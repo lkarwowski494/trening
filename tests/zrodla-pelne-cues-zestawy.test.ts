@@ -1,6 +1,6 @@
 /*
  * Źródła nowych wskazówek zestawów ogólnych (recenzja treści 1.1, 27.10.2026, S1): każde wdrożone id z cue-sets.json (dawne newIds + skull.depthFree) ma wpis z ≥ 2 przeczytanymi
- * źródłami w data/zrodla/cues-zestawy.json (poza paczką aplikacji; wewnętrzny rejestr), a tekst PL we wpisie zgadza się z lib/cues/text/pl.json. Wstrzymane (st.tension) nie ma tekstu w aplikacji.
+ * źródłami w data/zrodla/cues-zestawy.json (poza paczką aplikacji; wewnętrzny rejestr), a tekst PL we wpisie zgadza się z lib/cues/text/pl.json. Wstrzymanych brak (st.tension wdrożone 27.10.2026).
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -14,7 +14,7 @@ const EN: Record<string, string> = JSON.parse(fs.readFileSync(path.join(root, 'l
 describe('źródła wskazówek zestawów ogólnych (data/zrodla/cues-zestawy.json)', () => {
   test('wdrożone id: tekst w pl i en zgodny z wpisem, ≥ 2 źródła (adres albo miejsce + cytat), bez liczb w treści', () => {
     const ids = Object.entries(FILE.wskazowki).filter(([, v]) => v.status === 'wdrozony').map(([k]) => k);
-    expect(ids.length).toBe(53);
+    expect(ids.length).toBe(54);
     for (const id of ids) {
       const v = FILE.wskazowki[id];
       expect([id, PL[id]]).toEqual([id, v.pl]); expect([id, !!EN[id]?.trim()]).toEqual([id, true]);

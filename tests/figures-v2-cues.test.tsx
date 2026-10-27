@@ -22,10 +22,12 @@ describe('dane zestawów wskazówek (cue-sets.json)', () => {
     expect([n('own'), n('general'), n('open')]).toEqual([102, 538, 69]);
     expect(Object.keys(CUE_SETS.items).filter(k => CUE_SETS.items[k].b === 'own').sort()).toEqual(Object.keys(CUE_DATA.exercises).sort());
   });
+  /* OTWARTE (27.10.2026, badacz): zdanie o rzucie z nóg (mb.legs) nie pasuje do slamu — zdanie zastępcze do ustalenia; do tego czasu zestaw bez zaleceń (docs/16) */
+  const BEZ_ZALECEN = ['One-Arm Medicine Ball Slam'];
   test('każdy zestaw ogólny ma ≥ 1 zalecenie i rodzinę; identyfikatory istnieją w pl.json albo są na liście newIds (wstrzymane); newIds = identyfikatory bez tekstu', () => {
     const used = new Set<string>();
-    for (const [k, e] of Object.entries(CUE_SETS.items)) if (e.b === 'general') { expect([k, (e.ok ?? []).length >= 1, !!e.f]).toEqual([k, true, true]); [...(e.ok ?? []), ...(e.err ?? [])].forEach(i => used.add(i)); }
-    const missing = [...used].filter(i => !PL[i]).sort(); expect(missing).toEqual([...CUE_SETS.meta.newIds].sort()); expect(CUE_SETS.meta.newIds).toEqual(['st.tension']); /* 27.10.2026: reszta wdrożona (PL i EN); st.tension wstrzymane — powód w data/zrodla/cues-zestawy.json */
+    for (const [k, e] of Object.entries(CUE_SETS.items)) if (e.b === 'general') { expect([k, (e.ok ?? []).length >= 1 || BEZ_ZALECEN.includes(k), !!e.f]).toEqual([k, true, true]); [...(e.ok ?? []), ...(e.err ?? [])].forEach(i => used.add(i)); }
+    const missing = [...used].filter(i => !PL[i]).sort(); expect(missing).toEqual([...CUE_SETS.meta.newIds].sort()); expect(CUE_SETS.meta.newIds).toEqual([]); /* 27.10.2026: wszystkie wdrożone (PL i EN), w tym st.tension */
   });
 });
 

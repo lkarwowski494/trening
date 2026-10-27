@@ -1,24 +1,24 @@
 {
- "_opis": "Zestaw wskazówek techniki (lib/cues/text) czekających na przekład na 33 języki poza PL i EN (G7b, API). Id zdań bez tekstu w tych językach: aplikacja pokazuje angielski (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Format jak zestaw-przekladu-2026-10-23.json, plus pole id (klucz w lib/cues/text/<język>.json — wynik trafia do słowników wskazówek, nie do lib/locales). Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków). Wpis rodzaju 'nowy' nie blokuje wydania (blokuje tylko 'zmieniony'); mimo to G7b ma go domknąć przed 1.1. Zdanie st.tension jest wstrzymane (nie ma go w aplikacji) i nie jest na liście.",
+ "_opis": "Zestaw wskazówek techniki (lib/cues/text) czekających na przekład na 33 języki poza PL i EN (G7b, API). Id zdań bez tekstu w tych językach: aplikacja pokazuje angielski (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Format jak zestaw-przekladu-2026-10-23.json, plus pole id (klucz w lib/cues/text/<język>.json — wynik trafia do słowników wskazówek, nie do lib/locales). Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków). Wpis rodzaju 'nowy' nie blokuje wydania (blokuje tylko 'zmieniony'); mimo to G7b ma go domknąć przed 1.1. Zdanie st.tension wdrożone 27.10.2026 (bez słowa o bólu) i jest na liście.",
  "data": "2026-10-27",
  "klucze": [
   {
    "rodzaj": "nowy",
    "id": "bp.elbowsMid",
    "pl": "Łokcie trochę bliżej tułowia — nie rozkładaj ich szeroko na boki.",
-   "en": "Elbows a bit closer to your body — don't flare them out wide."
+   "en": "Elbows a bit closer to your body — don’t flare them out wide."
   },
   {
    "rodzaj": "nowy",
    "id": "bw.squat",
-   "pl": "Zejdź do lekkiego przysiadu i utrzymuj go przez cały marsz.",
-   "en": "Drop into a light squat and hold it for the whole walk."
+   "pl": "Zejdź do lekkiego przysiadu i trzymaj go przez cały marsz.",
+   "en": "Sink into a slight squat and hold it for the whole walk."
   },
   {
    "rodzaj": "nowy",
    "id": "cc.ribs",
    "pl": "Zwijaj tułów, ściągając żebra w dół — biodra zostają w miejscu.",
-   "en": "Curl your torso, drawing your ribs down — your hips stay put."
+   "en": "Crunch down, pulling your ribs toward your hips — keep your hips still."
   },
   {
    "rodzaj": "nowy",
@@ -30,7 +30,7 @@
    "rodzaj": "nowy",
    "id": "chop.close",
    "pl": "Ciężar blisko ciała, głowa i klatka nad biodrami.",
-   "en": "Keep the weight close to your body, head and chest over your hips."
+   "en": "Keep the weight close to your body, with your head and chest over your hips."
   },
   {
    "rodzaj": "nowy",
@@ -60,7 +60,7 @@
    "rodzaj": "nowy",
    "id": "dyn.mis.jerk",
    "pl": "Szarpanie i wymachy na siłę.",
-   "en": "Jerking and swinging with force."
+   "en": "Jerky, forced swinging."
   },
   {
    "rodzaj": "nowy",
@@ -77,14 +77,14 @@
   {
    "rodzaj": "nowy",
    "id": "halo.close",
-   "pl": "Prowadź kettlebell tuż wokół głowy.",
+   "pl": "Prowadź kettlebell wokół głowy, tuż przy niej.",
    "en": "Keep the kettlebell close as it circles your head."
   },
   {
    "rodzaj": "nowy",
    "id": "hang.ribs",
    "pl": "Żebra w dół, tułów spokojny — podwijaj miednicę.",
-   "en": "Ribs down, torso still — curl your pelvis up."
+   "en": "Ribs down, torso still — curl your hips up."
   },
   {
    "rodzaj": "nowy",
@@ -96,19 +96,19 @@
    "rodzaj": "nowy",
    "id": "hext.mis.arch",
    "pl": "Plecy wyginają się w łuk, gdy noga idzie w górę.",
-   "en": "Your back arches as the leg goes up."
+   "en": "Arching your back as your leg goes up."
   },
   {
    "rodzaj": "nowy",
    "id": "hext.range",
-   "pl": "Unoś nogę tylko tak wysoko, jak utrzymasz plecy bez wyginania.",
+   "pl": "Unoś nogę tylko tak wysoko, żeby plecy się nie wyginały.",
    "en": "Lift your leg only as high as you can without arching your back."
   },
   {
    "rodzaj": "nowy",
    "id": "jump.drive",
    "pl": "Wybij się, prostując biodra, kolana i kostki, z zamachem rąk.",
-   "en": "Jump by extending your hips, knees and ankles, with an arm swing."
+   "en": "Swing your arms and drive through your hips, knees and ankles."
   },
   {
    "rodzaj": "nowy",
@@ -149,14 +149,14 @@
   {
    "rodzaj": "nowy",
    "id": "oly.legs",
-   "pl": "Ręce długo proste — sztangę wybijają nogi i biodra.",
-   "en": "Arms stay straight for a long time — your legs and hips drive the bar."
+   "pl": "Ręce proste jak najdłużej — sztangę wybijają nogi i biodra.",
+   "en": "Keep your arms straight as long as you can — your legs and hips drive the bar."
   },
   {
    "rodzaj": "nowy",
    "id": "oly.mis",
    "pl": "Sztanga odjeżdża od ciała albo plecy się zaokrąglają.",
-   "en": "The bar drifts away from your body, or your back rounds."
+   "en": "Letting the bar drift away from your body, or rounding your back."
   },
   {
    "rodzaj": "nowy",
@@ -167,14 +167,14 @@
   {
    "rodzaj": "nowy",
    "id": "po.slow",
-   "pl": "Opuszczaj ciężar za głowę powoli i tak samo wracaj nad klatkę.",
-   "en": "Lower the weight back behind your head slowly, and bring it back over your chest the same way."
+   "pl": "Opuszczaj ciężar za głowę powoli i tak samo powoli wracaj nad klatkę.",
+   "en": "Lower the weight behind your head slowly, and bring it back over your chest just as slowly."
   },
   {
    "rodzaj": "nowy",
    "id": "ro.back",
-   "pl": "Biodra wypchnięte, plecy proste — nie zapadaj się w dolnej części pleców.",
-   "en": "Hips forward, back flat — don't let your lower back sag."
+   "pl": "Biodra wypchnięte, plecy proste — nie zapadaj się w lędźwiach.",
+   "en": "Hips extended, back flat — don’t let your lower back sag."
   },
   {
    "rodzaj": "nowy",
@@ -186,7 +186,7 @@
    "rodzaj": "nowy",
    "id": "rot.mis.elbowAway",
    "pl": "Łokieć odjeżdża od tułowia.",
-   "en": "Your elbow drifts away from your body."
+   "en": "Letting your elbow drift away from your body."
   },
   {
    "rodzaj": "nowy",
@@ -197,26 +197,26 @@
   {
    "rodzaj": "nowy",
    "id": "sb.plane",
-   "pl": "Pochylaj się tylko w bok — bez skrętu i bez pochylania w przód.",
+   "pl": "Skłaniaj się tylko w bok — bez skrętu i bez pochylania w przód.",
    "en": "Bend only to the side — no twisting, no leaning forward."
   },
   {
    "rodzaj": "nowy",
    "id": "skull.depthFree",
-   "pl": "Opuszczaj, aż dłonie będą tuż nad czołem albo ramiona zaczną uciekać w tył.",
-   "en": "Lower until your hands are just above your forehead or your upper arms start drifting back."
+   "pl": "Opuszczaj, aż dłonie będą tuż nad czołem — albo wcześniej, jeśli ramiona zaczną uciekać w tył.",
+   "en": "Lower until your hands are just above your forehead — or stop sooner if your upper arms start drifting back."
   },
   {
    "rodzaj": "nowy",
    "id": "sled.lean",
    "pl": "Pochyl się lekko w przód, tułów sztywny.",
-   "en": "Lean forward slightly, torso stiff."
+   "en": "Lean forward slightly and keep your torso tight."
   },
   {
    "rodzaj": "nowy",
    "id": "sled.legs",
-   "pl": "Pchaj nogami — odpychaj się od podłoża krok po kroku.",
-   "en": "Push with your legs — drive off the ground step by step."
+   "pl": "Pracuj nogami — odpychaj się od podłoża przy każdym kroku.",
+   "en": "Drive with your legs — push hard off the ground with every step."
   },
   {
    "rodzaj": "nowy",
@@ -233,14 +233,14 @@
   {
    "rodzaj": "nowy",
    "id": "smr.tender",
-   "pl": "Na tkliwym miejscu zwolnij i zostań chwilę.",
-   "en": "On a tender spot, slow down and stay for a moment."
+   "pl": "Gdy trafisz na wrażliwe miejsce, zwolnij i zatrzymaj się na chwilę.",
+   "en": "When you hit a tender spot, slow down and hold there for a moment."
   },
   {
    "rodzaj": "nowy",
    "id": "st.breathe",
    "pl": "Oddychaj spokojnie — nie wstrzymuj oddechu.",
-   "en": "Breathe calmly — don't hold your breath."
+   "en": "Breathe calmly — don’t hold your breath."
   },
   {
    "rodzaj": "nowy",
@@ -256,6 +256,12 @@
   },
   {
    "rodzaj": "nowy",
+   "id": "st.tension",
+   "pl": "Wchodź w rozciąganie powoli, aż poczujesz napięcie.",
+   "en": "Ease into the stretch slowly until you feel tension."
+  },
+  {
+   "rodzaj": "nowy",
    "id": "tgu.arm",
    "pl": "Kettlebell przez cały czas nad barkiem, ręka prosta.",
    "en": "Keep the kettlebell over your shoulder the whole time, arm straight."
@@ -264,7 +270,7 @@
    "rodzaj": "nowy",
    "id": "tgu.eyes",
    "pl": "Wzrok na kettlebellu przez cały ruch.",
-   "en": "Eyes on the kettlebell the whole movement."
+   "en": "Keep your eyes on the kettlebell the whole time."
   },
   {
    "rodzaj": "nowy",
@@ -275,20 +281,20 @@
   {
    "rodzaj": "nowy",
    "id": "ur.height",
-   "pl": "Prowadź łokciami — unoś je mniej więcej do wysokości barków, dłonie blisko ciała.",
-   "en": "Lead with your elbows — raise them to about shoulder height, hands staying close to your body."
+   "pl": "Unoś łokcie mniej więcej do wysokości barków, dłonie blisko ciała.",
+   "en": "Bring your elbows up to about shoulder height, keeping your hands close to your body."
   },
   {
    "rodzaj": "nowy",
    "id": "vup.back",
-   "pl": "Dolna część pleców bez wyginania i bez garbienia się.",
-   "en": "Lower back neither arched nor rounded."
+   "pl": "Nie wyginaj lędźwi w łuk i nie garb się.",
+   "en": "Don’t arch or round your lower back."
   },
   {
    "rodzaj": "nowy",
    "id": "wm.arm",
-   "pl": "Ręka z ciężarem prosta, nad barkiem.",
-   "en": "Arm with the weight straight, over your shoulder."
+   "pl": "Górna ręka z ciężarem prosta, nad barkiem.",
+   "en": "Keep your top arm straight, with the weight over your shoulder."
   },
   {
    "rodzaj": "nowy",
@@ -311,7 +317,7 @@
   {
    "rodzaj": "nowy",
    "id": "wr.range",
-   "pl": "Opuść ciężar, na ile pozwala nadgarstek, potem zegnij go do góry.",
+   "pl": "Opuść ciężar tak nisko, jak pozwala nadgarstek, potem zegnij nadgarstek w górę.",
    "en": "Lower the weight as far as your wrist allows, then curl it up."
   }
  ]

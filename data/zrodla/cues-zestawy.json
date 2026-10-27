@@ -17,7 +17,7 @@
    "status": "wdrozony"
   },
   "bw.squat": {
-   "pl": "Zejdź do lekkiego przysiadu i utrzymuj go przez cały marsz.",
+   "pl": "Zejdź do lekkiego przysiadu i trzymaj go przez cały marsz.",
    "claim": "Chód z gumą w półprzysiadzie.",
    "src": [
     [
@@ -182,7 +182,7 @@
    "status": "wdrozony"
   },
   "halo.close": {
-   "pl": "Prowadź kettlebell tuż wokół głowy.",
+   "pl": "Prowadź kettlebell wokół głowy, tuż przy niej.",
    "claim": "Ciężar krąży blisko głowy.",
    "src": [
     [
@@ -257,7 +257,7 @@
    "status": "wdrozony"
   },
   "hext.range": {
-   "pl": "Unoś nogę tylko tak wysoko, jak utrzymasz plecy bez wyginania.",
+   "pl": "Unoś nogę tylko tak wysoko, żeby plecy się nie wyginały.",
    "claim": "Wyprost biodra ograniczony kontrolą odcinka lędźwiowego.",
    "src": [
     [
@@ -377,7 +377,7 @@
    "status": "wdrozony"
   },
   "oly.legs": {
-   "pl": "Ręce długo proste — sztangę wybijają nogi i biodra.",
+   "pl": "Ręce proste jak najdłużej — sztangę wybijają nogi i biodra.",
    "claim": "Siła z wyprostu nóg i bioder; ramiona proste w pierwszej fazie.",
    "src": [
     [
@@ -422,7 +422,7 @@
    "status": "wdrozony"
   },
   "po.slow": {
-   "pl": "Opuszczaj ciężar za głowę powoli i tak samo wracaj nad klatkę.",
+   "pl": "Opuszczaj ciężar za głowę powoli i tak samo powoli wracaj nad klatkę.",
    "claim": "Kontrolowany ruch w obu fazach.",
    "src": [
     [
@@ -437,7 +437,7 @@
    "status": "wdrozony"
   },
   "ro.back": {
-   "pl": "Biodra wypchnięte, plecy proste — nie zapadaj się w dolnej części pleców.",
+   "pl": "Biodra wypchnięte, plecy proste — nie zapadaj się w lędźwiach.",
    "claim": "W rollout tułów sztywny, bez przeprostu lędźwi.",
    "src": [
     [
@@ -497,7 +497,7 @@
    "status": "wdrozony"
   },
   "sb.plane": {
-   "pl": "Pochylaj się tylko w bok — bez skrętu i bez pochylania w przód.",
+   "pl": "Skłaniaj się tylko w bok — bez skrętu i bez pochylania w przód.",
    "claim": "Skłon boczny w płaszczyźnie czołowej.",
    "src": [
     [
@@ -512,7 +512,7 @@
    "status": "wdrozony"
   },
   "skull.depthFree": {
-   "pl": "Opuszczaj, aż dłonie będą tuż nad czołem albo ramiona zaczną uciekać w tył.",
+   "pl": "Opuszczaj, aż dłonie będą tuż nad czołem — albo wcześniej, jeśli ramiona zaczną uciekać w tył.",
    "claim": "Zakres opuszczania w wyciskaniu francuskim bez gryfu (hantle, guma): to samo zdanie co skull.depth, z „dłońmi” zamiast „gryfu”.",
    "src": [
     [
@@ -543,7 +543,7 @@
    "status": "wdrozony"
   },
   "sled.legs": {
-   "pl": "Pchaj nogami — odpychaj się od podłoża krok po kroku.",
+   "pl": "Pracuj nogami — odpychaj się od podłoża przy każdym kroku.",
    "claim": "Napęd z nóg, nie z rąk.",
    "src": [
     [
@@ -588,7 +588,7 @@
    "status": "wdrozony"
   },
   "smr.tender": {
-   "pl": "Na tkliwym miejscu zwolnij i zostań chwilę.",
+   "pl": "Gdy trafisz na wrażliwe miejsce, zwolnij i zatrzymaj się na chwilę.",
    "claim": "Dłużej na miejscach tkliwych.",
    "src": [
     [
@@ -648,20 +648,19 @@
    "status": "wdrozony"
   },
   "st.tension": {
-   "pl": "Wchodź w rozciąganie powoli, do wyraźnego napięcia — nie do bólu.",
-   "claim": "Rozciąganie statyczne do odczucia napięcia, bez bólu.",
+   "pl": "Wchodź w rozciąganie powoli, aż poczujesz napięcie.",
+   "claim": "Rozciąganie statyczne do odczucia napięcia, łagodnie",
    "src": [
     [
      "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
-     "Step 3: „…to the point of tension in the stretch, but do not bounce or push to a point of pain.”"
+     "Step 3: „…to the point of tension…”"
     ],
     [
      "https://www.nasm.org/resource-center/exercise-library/static-butterfly-stretch",
      "avoid „forcing the stretch beyond mild discomfort”"
     ]
    ],
-   "status": "wstrzymany",
-   "powod": "Zdanie zawiera „nie do bólu”: test granicy medycznej (tests/cues.test.tsx) zabrania słów o bólu w treści wskazówek. Do decyzji: usunąć końcówkę albo świadomy wyjątek (pytanie otwarte)."
+   "status": "wdrozony"
   },
   "tgu.arm": {
    "pl": "Kettlebell przez cały czas nad barkiem, ręka prosta.",
@@ -709,7 +708,7 @@
    "status": "wdrozony"
   },
   "vup.back": {
-   "pl": "Dolna część pleców bez wyginania i bez garbienia się.",
+   "pl": "Nie wyginaj lędźwi w łuk i nie garb się.",
    "claim": "Neutralne lędźwie w V-up i podobnych.",
    "src": [
     [
@@ -724,7 +723,7 @@
    "status": "wdrozony"
   },
   "wm.arm": {
-   "pl": "Ręka z ciężarem prosta, nad barkiem.",
+   "pl": "Górna ręka z ciężarem prosta, nad barkiem.",
    "claim": "W wiatraku ramię z kettlebellem wyprostowane w pionie.",
    "src": [
     [
@@ -784,7 +783,7 @@
    "status": "wdrozony"
   },
   "wr.range": {
-   "pl": "Opuść ciężar, na ile pozwala nadgarstek, potem zegnij go do góry.",
+   "pl": "Opuść ciężar tak nisko, jak pozwala nadgarstek, potem zegnij nadgarstek w górę.",
    "claim": "Pełny zakres zgięcia/wyprostu nadgarstka.",
    "src": [
     [
@@ -799,7 +798,7 @@
    "status": "wdrozony"
   },
   "ur.height": {
-   "pl": "Prowadź łokciami — unoś je mniej więcej do wysokości barków, dłonie blisko ciała.",
+   "pl": "Unoś łokcie mniej więcej do wysokości barków, dłonie blisko ciała.",
    "claim": "Wiosłowanie pionowe: ruch prowadzą łokcie, idą mniej więcej do wysokości barków; dłonie zostają blisko ciała (od dołu mostka do brody/obojczyków).",
    "src": [
     [

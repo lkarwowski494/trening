@@ -476,3 +476,12 @@ Przegląd rolą `recenzent-lokalizacji` (26.10.2026, gałąź `recenzja-lok-2026
 - lt: Mięśnie przedramienia: „Išlaiko suspaustą delną ant rankenos” czy krócej „Išlaiko rankeną suėmus”?
 - hu: Faza podciągania obok „Leengedés”: „Felhúzás” czy „Felhúzódzkodás”?
 - Terminy w `docs/lokalizacja/slownik-terminow.json`: „chwyt” (grip) i „ramię” (górna część ręki) mają w językach bez ustalonego terminu pewność „niska” — do potwierdzenia przez native speakerów.
+
+## Pytania otwarte — 52 nowe wskazówki techniki (27.10.2026, recenzja lokalizacji; nie blokują wydania)
+*Poprawki brzmienia recenzenta nałożone (PL i EN, apostrof typograficzny we wszystkich tekstach EN); poniżej to, czego nie rozstrzygniemy bez native speakera albo badacza:*
+- EN (native speaker): `ro.back` (koło): „Hips extended, back flat” czy raczej „Don’t pike your hips, back flat”?
+- EN: `cc.ribs` (brzuszki na wyciągu): „Crunch down, pulling your ribs toward your hips” czy „Curl your ribs down toward your hips”?
+- EN: `sled.lean`: „keep your torso tight” czy „keep your torso braced”?
+- OTWARTE (badacz): `mb.legs` usunięte z One-Arm Medicine Ball Slam (zdanie o rzucie z nóg nie pasuje do uderzenia piłką w dół) — zastępcze zdanie dla slamu; ćwiczenie ma na razie zestaw ogólny bez wskazówki „ok”.
+- OTWARTE (badacz): `hab.hips` („pracuje tylko noga”) usunięte z Monster Walk i Lateral Band Walk (ruszają się obie nogi naprzemiennie) — zastępcze zdanie; zostaje `bw.squat`.
+- Nowe terminy w słowniku (`lędźwie`/lower back, `kettlebell`): dla 33 języków poza PL i EN propozycje bez recenzji native speakera (pewność „srednia” albo „niska”) — do potwierdzenia.

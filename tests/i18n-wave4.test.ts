@@ -11,7 +11,7 @@
  * listy uzupełnione w tej fali (TERMS, matrix-i18n — ALT i kropka dziesiętna, i18n-variants, i18n-multi, cues-lazy).
  */
 import * as fs from 'fs';
-import { PENDING_NEW } from './pending-translation';
+import { PENDING_NEW, PENDING_CUE_IDS } from './pending-translation';
 import * as path from 'path';
 import { LANGS, resolveLang, applyLang, lang, locale, decimalComma, tp, detectLang, LANG_NAME, APP_NAME, ZH_HANT_REGIONS, type Lang } from '@/lib/i18n';
 import { EN } from '@/lib/i18n.en';
@@ -104,7 +104,7 @@ describe('dane: komplet słownika UI i wskazówek techniki, pliki iOS i App Stor
     expect(src.filter(s => d[s.pl] !== undefined && params(d[s.pl]) !== params(s.pl)).map(s => s.pl)).toEqual([]);
     expect(Object.keys(d).length).toBe(src.length - PENDING_NEW.size); /* czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-10-23.json */
     const en = cueDict('en'), c = cueDict(l);
-    expect(Object.keys(c).sort()).toEqual(Object.keys(en).sort());
+    expect(Object.keys(c).sort()).toEqual(Object.keys(en).filter(k => !PENDING_CUE_IDS.has(k)).sort()); /* wskazówki czekające na przekład: zestaw-przekladu-*-wskazowki.json */
     expect(Object.entries(c).filter(([, v]) => !v.trim())).toEqual([]);
   });
   test.each([
