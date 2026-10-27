@@ -33,6 +33,29 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 | R-016 | Nazwy aplikacji w sklepie (26.10.2026, decyzja właściciela — wariant A): wstępne sprawdzenie znaków towarowych wskazuje ryzyko niskie (słowa opisowe); rejestry UE, PL, WIPO i UK nie były przeszukane automatycznie (badanie: Dysk, Trening App/05 Research konkurencji) | ręczne sprawdzenie właściciela w TMview, UPRP, WIPO Global Brand Database i USPTO (klasy 9, 41, 42, 44) przed wydaniem w App Store, wynik zapisany w docs/18 z datą | **zamknięte 26.10.2026** — ręczne sprawdzenie właściciela w TMview (obejmuje dane UPRP, WIPO, USPTO), słowa: Training, Trening, Trénink, Tréning, Treino, Träning, Træning, Treeni; klasy 9/41/42/44. Żywe znaki „TRAINING” w naszych klasach: EUIPO 018124951 (graficzny), UK00004089886 (graficzny), DE 3020152290030 (Wort-/Bildmarke, kl. 41) — chronią logo, nie słowo; IT 1993900291640 (kl. 41, rodzaj niesprawdzony; nie oprogramowanie); CN (kl. 9/42) — sprzedaż w Chinach kontynentalnych do decyzji przy dostępności. Treino/Treeni — żywe znaki tylko poza sklepami, w których nazwa jest używana. Decyzja właściciela: nazwy bez zmian. Ocena nie jest opinią prawną. |
 | R-017 | Strony Trening na apps4brew.com (privacy, support, espresso) to kopie `site/` w osobnym repo lkarwowski494/apps4brew-www (pages.yml publikuje `site/` tylko pod github.io/trening/) — rozjazd przy każdej zmianie `site/`; pierwotnie nikt nie sprawdzał, czy adresy z aplikacji w ogóle działają (ESPRESSO_URL zwracał 404, polityka miała starą treść — audyt 1.0, B-01/B-02) | `scripts/check-urls.mjs` (workflow `check-urls.yml`, ręcznie) porównuje treść na żywo z `site/` i sprawdza kod 200 wszystkich adresów; jest krokiem bramki wydania (docs/48 Z-10a); eksport: `scripts/site/eksport-apps4brew.mjs`; przebieg dowodowy zielony na gałęzi wydania | **zamknięte (27.10.2026)** — `check-urls.yml` zielony na commicie wydania 001ecf2 (przebieg 40435249217): wszystkie adresy 200, treść zgodna z `site/`; strony opublikowane w apps4brew-www 96e6bb3. Po każdej zmianie `site/` powtórzyć (docs/48 Z-10a) |
 
+## L-NNN (27.10.2026, zrzuty 1.0) — właściciel dostał estymatę „zrzuty 35 języków ok. 2 h zegarowo”; pomiar pokazał ok. 16 h na rozmiar (przebieg 40464544722 anulowany po limicie zadania)
+
+- **Co się stało:** docs/48 (pkt „Czekanie” i decyzja D7) podawał właścicielowi „zrzuty 35 języków ok. 2 h zegarowo”. Przebieg `store-screenshots.yml` z `jezyki: all`
+  (run 40464544722, zrzuty-1-0) po 180 min (limit zadania) miał gotowe ok. 6,5 języka z 35 (2,7 min na ekran; Maestro 2–3 razy na ekran, ok. 1 min każde na symulatorze
+  macos-26), czyli ok. 16 h na rozmiar. Przebieg anulowany, poranek stracony; właściciel wybrał wariant A (wszystkie 35 języków) na podstawie błędnej estymaty.
+- **Przyczyna źródłowa:** liczba „1 h na rozmiar” w opisie wejścia workflowu i „2 h” w docs/48 pochodziły z wcześniejszego przebiegu o innym zakresie (kilka języków, mniej
+  akcji Maestro), przeskalowane z pamięci, nie z pomiaru; workflow nie raportował czasu na jednostkę pracy (ekran), więc nic nie zmuszało do przeliczenia przy zmianie zakresu
+  (35 języków, 10 ekranów, dodane przebiegi „dialogi”). Estymata trafiła do właściciela jako decyzyjna (D7), bez znacznika „niezmierzone” — luka tej samej rodziny co L-002
+  (opis z pamięci zamiast z dowodu).
+- **Ocena zakresu: systemowa** — każda estymata czasu przebiegu CI (zrzuty, E2E, build, audyty) może być przepisana z pamięci i trafić do decyzji właściciela.
+  Propozycja zmiany modelu pracy (decyzja właściciela):
+  - **A (rekomendacja):** estymata czasu przebiegu podawana właścicielowi wymaga pomiaru czasu na jednostkę pracy z poprzedniego przebiegu o tym samym kształcie albo próbnego
+    przebiegu na małej próbce (1 język × kilka ekranów) i mnożenia; bez pomiaru — oznaczenie „niezmierzone” i widełki; workflowy długich zadań zapisują pomiar do podsumowania przebiegu.
+    Koszt: minuta pracy agenta + jeden krótki przebieg przed obietnicą; wygrywa, bo błąd estymaty jest tu 8-krotny i dotarł do decyzji.
+  - **B:** tylko oznaczenie „niezmierzone” przy każdej liczbie czasu CI w docs — tanie, ale nie wymusza pomiaru i właściciel dalej dostaje liczby bez podstaw.
+- **Akcje:**
+  1. Pomiar czasu na ekran zapisywany w podsumowaniu przebiegu (`scripts/ci/store-screenshots.sh` → `GITHUB_STEP_SUMMARY`, test w `tests/store-shards.test.ts`) — **zrobione** (zrzuty-1-0).
+  2. Liczba „czas na ekran” w jednym miejscu (`PER_SCREEN_MIN` w `scripts/ci/store-shards.mjs`); plan podziału na zadania i test limitu czasu liczą z niej — **zrobione**.
+  3. Podział języków na równoległe zadania (`store-shards.mjs`, macierz z wyjścia zadania „dane”), limit zadania 330 min ponad zmierzone ok. 3,2 h na 7 języków — **zrobione**, dowód: przebieg
+     `store-screenshots.yml` na gałęzi (wynik w PR) — **w toku**.
+  4. docs/48: estymata zastąpiona pomiarem („zmierzone 27.10.2026”), test pilnuje, że stare zdanie nie wróciło — **zrobione**.
+  5. Reguła w CLAUDE.md (estymata CI dla właściciela = pomiar albo „niezmierzone”) — **propozycja do decyzji właściciela** (zmiana modelu pracy, opcja A powyżej).
+
 ## L-039 (26.10.2026, straznik-paczki) — nawrót L-033: `check:bundle` znów zgłosił fałszywe „CDC” w bajtkodzie Hermes (tests.yml 40379990056, jakosc-r2, c171efb)
 
 - **Co się stało:** po poprawce L-033 (`SHORT_RUN_MIN`) krok `check:bundle` znów padł: „CDC ×1” w `.hbc`, kontekst „CWCTC7CDC·CKCGCPC;CE” (widok UTF-16). Żaden tekst aplikacji nie zawiera tej nazwy; verify mógł zaczerwienić się losowo po każdej zmianie danych, także w wydaniu 1.0.
