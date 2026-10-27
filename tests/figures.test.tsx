@@ -200,7 +200,8 @@ describe('lib/figures', () => {
     expect(figureFor(lib('Crunch'))).toBeNull();
     expect(figureFor(lib('Nie ma'))).toBeNull(); expect(figureFor(null)).toBeNull();
     const noCue = CUE_DATA.open[0]; if (noCue) expect(figureFor(lib(noCue))).toBeNull();
-    expect(figureByKey('Pendlay Row')!.frames).toEqual(figureByKey('Bent Over Row (sztanga)')!.frames);
+    /* Pendlay Row: figura ukryta po recenzji bramki 4 (brak cechy rozpoznawczej — docs/research/figury-recenzja.json); wskazówki zostają */
+    expect(figureByKey('Pendlay Row')).toBeNull(); expect(figureFor(lib('Pendlay Row'))).toBeNull(); expect(CUE_DATA.exercises['Pendlay Row']).toBeTruthy();
   });
   test('figureLabel: szablon + zdania „Ruch” wskazówek; frameLabel: podpisy klatek', () => {
     const mv = CUE_DATA.exercises['Back Squat'].move.map(r => cueText(r.c, 'pl')).join(' ');
@@ -265,7 +266,7 @@ describe('komponent ExerciseFigure', () => {
   });
   test('Ogranicz ruch włączone → statyczne pozycje obok siebie, bez animacji i bez przycisku pauzy', async () => {
     jest.useFakeTimers(); setReduce(true);
-    render(<ExerciseFigure exercise={lib('Push Press')} />); await flush();
+    render(<ExerciseFigure exercise={lib('Reverse Lunge')} />); await flush(); /* Push Press — figura ukryta po recenzji bramki 4 (docs/research/figury-recenzja.json) */
     expect(screen.queryByTestId('exercise-figure-anim')).toBeNull();
     for (const n of ['start', 'mid', 'end']) expect(screen.getByTestId(`exercise-figure-frame-${n}`)).toBeTruthy();
     expect(screen.getByText('W trakcie')).toBeTruthy();
