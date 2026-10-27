@@ -12,6 +12,7 @@ Ten BRD **opisuje, co aplikacja spełnia dziś** (wersja 1.0.0: 0.20.0 + naprawy
 | `README.md` | stan, spis, granica aplikacji, decyzje, blokery wydania, otwarte pytania |
 | `odkrywanie.md` | prace J, persona P, zasady produktu ZP, ograniczenia OG |
 | `wymagania.md` | przepływy PR, wymagania funkcjonalne BR i niefunkcjonalne NFR |
+| `wymagania-uzupelnienie.md` | wymagania dopisane 2026-10-28 dla funkcji bez BR (PR-10…PR-12); osobny plik, bo `wymagania.md` przekracza ok. 20 KB |
 | `reguly.md` | reguły dziedzinowe RD z wektorami testowymi |
 | `zrodla.md` | źródła S (przeniesione z zapisów w `docs/research`) |
 | `errata.md` | errata ER: sprzeczności i korekty BRD z datą i statusem |
@@ -34,10 +35,21 @@ Oznaczenia `D-nnn` to numery decyzji z audytu M1 (DEC-nn), zapisanych w `docs/18
 | D-006 | kalkulator talerzy usunięty (razem z paskiem talerzy) | 2026-10-19 | docs/18 |
 | D-008 | porzucony trening: przypomnienie po 2 h, ciche zakończenie po 6 h; liczby zostają | 2026-10-19 | docs/18; kod `lib/state/finish.ts` (`STALE_ASK_MS`, `STALE_AUTO_MS`) |
 | D-012 | usuwanie serii i ćwiczenia także z menu (obok gestu) | 2026-10-19 | docs/18, docs/32 |
+| D-101 | model M5 S1: cała aplikacja darmowa do 5 dni treningowych w miesiącu; trening wstecz, import i edycja poza limitem; usunięcie treningu nie zwraca dnia | 2026-10-22 | docs/18, docs/monetyzacja.md |
+| D-103 | monetyzacja w 1.0: okno „Uczciwe zasady” po pierwszym treningu na żywo (raz, tylko stan darmowy), rozszerzony import CSV, karta po imporcie | 2026-10-25 | docs/18, docs/monetyzacja.md |
+| D-104 | prośba o ocenę: po N-tym ukończonym treningu z nowym rekordem, odstęp 14 dni, najwyżej raz na wersję (11.10.2026); N = 3 (22.10.2026) | 2026-10-11, 2026-10-22 | docs/18, docs/26 |
+| D-105 | „Poproś o nową funkcję” obok „Napisz do nas”; link na podsumowaniu co N-ty trening, N = 10 (liczba produktowa), nigdy razem z prośbą o ocenę | 2026-10-14 | docs/18, docs/34 |
+| D-106 | „Napisz do nas”: wiadomość z poczty użytkownika na adres wsparcia, temat i stopka techniczna | 2026-10-13 | docs/18 |
 | D-107 | od ekranu treningu do odhaczonej serii najwyżej 1 stuknięcie (DEC-07 K9) | 2026-10-23 | docs/18 (wpis „DEC-07 — karty P2”) |
 | D-108 | publicznie bez źródeł, nawet ogólnie; ekran „Źródła” w Ustawieniach usunięty | 2026-10-25 | docs/18 (wpis „całkiem anonimowo”) |
 | D-109 | oznaczenia pewności („uproszczenie”, „nasz wybór”, „jedno źródło”, „konwencja”) poza tekstami interfejsu | 2026-10-23 | docs/18 (druga decyzja z 23.10.2026) |
 | D-110 | system miar metryczny albo imperialny jednym ustawieniem (DEC-28); domyślny z regionu telefonu (DEC-29) | 2026-10-20 | docs/18 |
+| D-111 | przypomnienie o treningu z planu: jedno lokalne powiadomienie rano w dniu treningu, godzina 8:00 | 2026-10-08 | docs/18-archiwum-do-11.10.md, `lib/planReminder.ts` |
+| D-112 | trening „zrobiony wcześniej” (wariant A): najbliższy dzień planu z tym szablonem oznaczony jako zrobiony, liczy się do swojego tygodnia | 2026-10-11 | docs/18 |
+| D-113 | „Strażnik progresji”: specyfikacja (kierunek tygodnia do tygodnia, cel serii po całym planie) i nazwa w aplikacji; 19.10.2026: z 0 kg do ciężaru = progres | 2026-10-14 | docs/18, `lib/guard.ts` |
+| D-116 | „Zapisz zmiany w szablonie” na podsumowaniu zamiast okna po „Zakończ” (8A), tylko zaraz po treningu (1A) | 2026-10-11 | docs/18 |
+| D-117 | „Pierwsze kroki”: 3 kroki, każdy z jednym przyciskiem (Planowanie / Przewodnik) | 2026-10-11 | docs/18 (docs/22 P4 A) |
+| D-118 | masa ciała z datą do e1RM ćwiczeń z masą ciała (wariant B, 08.10.2026); sekcja w Postępach (P5 A, 11.10.2026) | 2026-10-08, 2026-10-11 | docs/18, docs/research/masa-ciala-e1rm-2026-10.md |
 | D-120 | domyślny wygląd nowej instalacji: ciemny | 2026-10-23 | docs/18 (naprawa-telefon-1030-a) |
 
 Numery od D-101 nadaje ten BRD wpisom z `docs/18-przekazanie.md`, które nie mają numeru DEC-nn z audytu M1 z 19.10.2026 (żeby nie mylić ich z D-003…D-012); rejestrem decyzji pozostaje docs/18.

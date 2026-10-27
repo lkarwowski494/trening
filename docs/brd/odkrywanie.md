@@ -13,8 +13,10 @@ Odtworzone z `README.md`, `CLAUDE.md`, `docs/15-app-store.md` i `docs/18-przekaz
 - Kiedy zmieniam telefon albo chcę zabezpieczyć historię, chcę kopię, eksport i import oraz brak konta, żeby dane zostały moje. Źródło: README.md („Dane należą do użytkownika”).
 ### J-05: Dopasować trening do sprzętu i miejsca
 - Kiedy trenuję w innym miejscu niż zwykle, chcę żeby ćwiczenia pasowały do dostępnego sprzętu, żeby nie planować ćwiczeń, których nie zrobię. Źródło: docs/10-miejsca-i-sprzet.md, docs/33-dostosowanie-do-miejsca-spec.md.
+### J-06: Wiedzieć, jak zacząć, i dać znać autorowi
+- Kiedy zaczynam albo czegoś nie wiem, chcę krótkich wskazówek na starcie i przewodnika, a gdy coś nie działa albo czegoś mi brakuje — napisać do autora, żeby nie zostać z problemem. Źródło: decyzje właściciela 2026-10-11 („Pierwsze kroki”, D-117), 2026-10-13 („Napisz do nas”, D-106), 2026-10-14 („Poproś o nową funkcję”, D-105); docs/34-wsparcie-i-opinie.md. Dopisane 2026-10-28 (M1-audytor-generalny-022).
 ### P-1: Osoba trenująca siłowo z iPhone'em
-- Opis z README.md („na iPhone'a i Apple Watch”); bez wywiadu — dowód: opis produktu w repo. Prace: J-01, J-02, J-03, J-04, J-05.
+- Opis z README.md („na iPhone'a i Apple Watch”); bez wywiadu — dowód: opis produktu w repo. Prace: J-01, J-02, J-03, J-04, J-05, J-06.
 
 ## Zasady produktu
 

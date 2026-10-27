@@ -45,6 +45,24 @@ describe('M1-022: BRD aktualny wobec decyzji 20–27.10.2026', () => {
     for (const f of files()) read(f).split('\n').forEach((l, i) => { for (const m of l.matchAll(PATH)) if (!fs.existsSync(path.join(ROOT, m[1]))) missing.push(`${f}:${i + 1} ${m[1]}`); });
     expect(missing).toEqual([]);
   });
+  test('każdy ekran (trasa w app/) ma aktywne wymaganie BR, które go wskazuje; nowa trasa bez BR zatrzymuje verify (03-zakres-003)', () => {
+    /* trasy techniczne bez działania użytkownika: układy nawigacji, ekran „nie znaleziono”, mapa tras, menu „Więcej” (lista przejść) */
+    const TECH = new Set(['app/_layout.tsx', 'app/(tabs)/_layout.tsx', 'app/+not-found.tsx', 'app/_sitemap.tsx', 'app/(tabs)/more.tsx']);
+    const walk = (d: string): string[] => fs.readdirSync(path.join(ROOT, d)).flatMap(n => { const r = `${d}/${n}`; return fs.statSync(path.join(ROOT, r)).isDirectory() ? walk(r) : /\.tsx$/.test(n) ? [r] : []; });
+    const active = sections().filter(s => !s.withdrawn).map(s => s.text).join('\n');
+    expect(walk('app').filter(r => !TECH.has(r) && !active.includes(r))).toEqual([]);
+  });
+  test('funkcje z audytu 27.10.2026 (01-odkrywanie-004, 03-zakres-003, M1-018) mają aktywne BR z kryteriami', () => {
+    const s = sections().filter(x => !x.withdrawn); const has = (id: string, re: RegExp) => expect([id, re.test(s.find(x => x.id === id)?.text ?? '')]).toEqual([id, true]);
+    has('BR-DAN-006', /Wyczyść wszystkie dane/); has('BR-HIS-002', /app\/history\/add\.tsx/); has('BR-HIS-003', /app\/history\/edit\/\[id\]\.tsx/);
+    has('BR-DAN-007', /app\/more\/import\.tsx/); has('BR-DAN-008', /exportCsv/); has('BR-DAN-009', /autoBackup/); has('BR-PLN-004', /lib\/planReminder\.ts/);
+    has('BR-ZAK-004', /components\/FairRulesSheet\.tsx/); has('BR-ZAK-005', /components\/ImportProCard\.tsx/); has('BR-ZAK-006', /Przywróć zakupy/);
+    has('BR-ZAK-007', /tests\/audit-m1-2026-10-27-018-jedno-okno\.test\.tsx/); has('BR-KON-001', /lib\/review\.ts/); has('BR-KON-002', /Napisz do nas/);
+    has('BR-KON-003', /Poproś o nową funkcję/); has('BR-PST-006', /app\/more\/bodymass\.tsx/); has('BR-MJS-003', /app\/more\/bands\.tsx/); has('BR-TRN-012', /app\/reorder\.tsx/);
+    has('BR-POM-002', /app\/guide\.tsx/); has('BR-POM-001', /Pierwsze kroki/); has('BR-PST-007', /lib\/guard\.ts/); has('BR-PLN-005', /markDoneEarly/);
+    has('BR-TRN-013', /⇅ SS/); has('BR-UST-002', /Ekran włączony/); has('BR-SZB-002', /Zapisz zmiany w szablonie/);
+    for (const x of s.filter(y => y.file === 'wymagania-uzupelnienie.md')) expect([x.id, /Scenariusz:/.test(x.text) && /Wtedy /.test(x.text)]).toEqual([x.id, true]);
+  });
   test('errata: plik z tabelą ER (data, źródło, status)', () => {
     const e = read('errata.md'); expect(e).toMatch(/^\| ID \| Data \|/m); expect(e.match(/^\| ER-\d{2} \| \d{4}-\d\d-\d\d \|/gm)!.length).toBeGreaterThanOrEqual(5);
   });

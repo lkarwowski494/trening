@@ -27,6 +27,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-TRN-001: Trening z szablonu albo pusty, zapisywany na bieżąco
 - Przepływ: PR-01
 - Dowód potrzeby: J-01 (odtworzone z README.md); kod `components/ActiveWorkout.tsx`
+- Ekrany: `app/(tabs)/index.tsx`, `app/pick-template.tsx`, `app/picker.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Seria zapisuje się po odhaczeniu
     - Zakładając, że trwa trening z szablonu, a w serii wpisano ciężar i powtórzenia
@@ -208,6 +209,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-SZB-001: Własne szablony w folderach i archiwum
 - Przepływ: PR-01
 - Dowód potrzeby: ZP-01; J-01
+- Ekrany: `app/templates.tsx`, `app/template/[id].tsx`
 - Kryteria akceptacji:
   - Scenariusz: Szablon tworzy użytkownik
     - Zakładając, że użytkownik jest na ekranie szablonów
@@ -221,6 +223,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-PLN-001: Plan tygodnia z kalendarzem
 - Przepływ: PR-03
 - Dowód potrzeby: J-02; kod `app/plan.tsx`
+- Ekrany: `app/(tabs)/history.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Szablony przypisane do dni
     - Zakładając, że użytkownik ma szablony
@@ -260,6 +263,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-GEN-001: Generator szablonu i planu tygodnia na polecenie użytkownika
 - Przepływ: PR-04
 - Dowód potrzeby: ZP-01; D-004; docs/24-generator-i-plany.md
+- Ekrany: `app/generator.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Podgląd przed zapisem
     - Zakładając, że użytkownik wybrał cel, miejsce, liczbę dni i długość sesji
@@ -298,6 +302,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-MJS-001: Miejsca i sprzęt: ćwiczenia dobierane do tego, czym użytkownik dysponuje
 - Przepływ: PR-09
 - Dowód potrzeby: J-05; docs/10-miejsca-i-sprzet.md
+- Ekrany: `app/more/locations.tsx`, `app/more/location/[id].tsx`, `app/place-once.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Sprzęt w miejscu
     - Zakładając, że użytkownik zdefiniował miejsce ze sprzętem
@@ -307,6 +312,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-MJS-002: Dostosuj do miejsca: propozycje do przejrzenia
 - Przepływ: PR-09
 - Dowód potrzeby: J-05; D-004; docs/33-dostosowanie-do-miejsca-spec.md
+- Ekrany: `app/adapt.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Propozycje bez automatycznej zamiany
     - Zakładając, że użytkownik zmienia miejsce na takie, w którym brakuje sprzętu do części ćwiczeń
@@ -338,6 +344,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-PST-003: Porównanie bieżącego okresu z poprzednim (Progresja)
 - Przepływ: PR-05
 - Dowód potrzeby: J-03; README.md; docs/32 wzorzec 25
+- Ekrany: `app/progression.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Dwa okresy
     - Zakładając, że w obu okresach są zapisane treningi
@@ -347,6 +354,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-PST-005: Postępy: wykres i rekordy wybranego ćwiczenia na górze, wybór pod nimi
 - Przepływ: PR-05
 - Dowód potrzeby: J-03; decyzje właściciela 2026-10-21 (ZM-06, M1-026 = DEC-09, docs/design/to-be.md); testy `tests/m3-p3-postepy-historia.test.tsx`
+- Ekrany: `app/(tabs)/progress.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Wykres i rekordy na górze
     - Zakładając, że użytkownik ma zakończone treningi i nie wybrał ćwiczenia
@@ -364,6 +372,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-HIS-001: Usuwanie sesji z historii: gest na liście i przycisk w szczegółach, to samo potwierdzenie
 - Przepływ: PR-05
 - Dowód potrzeby: decyzja właściciela 2026-10-21 (ZM-04, W2, docs/32 wzorzec 5); testy `tests/swipe-delete.test.tsx`, `tests/m3-p3-postepy-historia.test.tsx`
+- Ekrany: `app/history/[id].tsx`
 - Kryteria akceptacji:
   - Scenariusz: „Usuń sesję” na dole szczegółów
     - Zakładając, że użytkownik otworzył zapisaną sesję
@@ -386,6 +395,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-BIB-001: Biblioteka ćwiczeń z krótkimi wskazówkami techniki
 - Przepływ: PR-01
 - Dowód potrzeby: J-01; docs/research/27-wskazowki-zrodla.md (generowany)
+- Ekrany: `app/exercises.tsx`, `app/exercise/[id].tsx`
 - Kryteria akceptacji:
   - Scenariusz: Wskazówki w języku aplikacji
     - Zakładając, że ćwiczenie ma wskazówki techniki
@@ -544,6 +554,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-DAN-002: Kopia zapasowa, eksport i import danych
 - Przepływ: PR-06
 - Dowód potrzeby: J-04; README.md; docs/12-edycja-treningow.md
+- Ekrany: `app/more/backup.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Kopia i odtworzenie
     - Zakładając, że użytkownik ma historię treningów
@@ -616,6 +627,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-JEZ-001: Interfejs w wielu językach
 - Przepływ: PR-08
 - Dowód potrzeby: J-04; docs/16-jezyki-i-marka.md; NFR-JEZ-001
+- Ekrany: `app/more/language.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Język jak w telefonie
     - Zakładając, że użytkownik nie zmieniał języka
@@ -717,6 +729,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-ZAK-003: Ekran zakupu bez presji
 - Przepływ: PR-08
 - Dowód potrzeby: ZP-06; docs/monetyzacja-badanie-2026-10.md rozdz. 11; rejestr twierdzeń T-042, T-043
+- Ekrany: `app/paywall.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Start ponad limit
     - Zakładając, że użytkownik zaczyna trening po wykorzystaniu darmowych dni
