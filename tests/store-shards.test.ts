@@ -22,11 +22,11 @@ const SIZES = esm('M.SIZES'); const PER_SCREEN_MIN: number = esm('M.PER_SCREEN_M
 
 describe('store-shards: podział języków', () => {
   test('all = wszystkie 35 języków z plików routes, bez powtórzeń, każdy dokładnie raz w rozmiarze', () => {
-    const m = plan('all', '6.9', 5, names(LANGS));
-    expect(m.include).toHaveLength(5);
+    const m = plan('all', '6.9', 6, names(LANGS));
+    expect(m.include).toHaveLength(6);
     const all = m.include.flatMap((j: { jezyki: string }) => j.jezyki.split(','));
     expect(all).toHaveLength(35); expect(new Set(all).size).toBe(35); expect([...all].sort()).toEqual([...LANGS].sort());
-    for (const j of m.include) expect(j.jezyki.split(',')).toHaveLength(7); /* 35 / 5 — po 7 języków (ok. 3,2 h na zadanie, limit zadania 330 min) */
+    for (const j of m.include) expect(j.jezyki.split(',').length).toBeGreaterThanOrEqual(5); /* 35 / 6 — po 5–6 języków (2,7–3,5 h na zadanie, limit zadania 330 min), dwie fale po 3 zadania */
   });
   test('zadania nierówne różnią się najwyżej o 1 język', () => {
     const sizes = plan('all', '6.9', 4, names(LANGS)).include.map((j: { jezyki: string }) => j.jezyki.split(',').length);
@@ -42,7 +42,7 @@ describe('store-shards: podział języków', () => {
     expect(plan('pl,en', '6.9', 5).include).toHaveLength(2);
     expect(esm("M.split(['a', 'b', 'c'], 5)")).toEqual([['a'], ['b'], ['c']]);
   });
-  test('błędy: nieznany rozmiar, liczba zadań poza 1–5, brak języków', () => {
+  test('błędy: nieznany rozmiar, liczba zadań poza 1–8, brak języków', () => {
     expect(tryEsm("M.plan('pl', '7.0', 1, 'x')")).toMatch(/nieznany rozmiar/);
     expect(tryEsm("M.plan('pl', '6.9', 0, 'x')")).toMatch(/liczba zadań/);
     expect(tryEsm(`M.plan('pl', '6.9', ${MAX_SHARDS + 1}, 'x')`)).toMatch(/liczba zadań/);
@@ -58,13 +58,13 @@ describe('store-screenshots.yml: macierz z podziału, scalanie artefaktów, powt
     expect(wf).toMatch(/name: sklep-zrzuty-\$\{\{ matrix\.rozmiar \}\}-\$\{\{ matrix\.shard \}\}/);
     expect(wf).toMatch(/JEZYKI: \$\{\{ matrix\.jezyki \}\}/);
     const t = Number(/timeout-minutes: (\d+)   # pomiar 27\.10\.2026/.exec(wf)![1]);
-    expect(t).toBeGreaterThanOrEqual(Math.ceil(7 * 10 * PER_SCREEN_MIN) + 60); expect(t).toBeLessThanOrEqual(360);
+    expect(t).toBeGreaterThanOrEqual(Math.ceil(6 * 10 * PER_SCREEN_MIN) + 60); expect(t).toBeLessThanOrEqual(360);
   });
   test('ramki scalają artefakty wszystkich zadań (pattern + merge-multiple)', () => {
     expect(wf).toMatch(/pattern: sklep-zrzuty-\*\n\s+path: sklep-zrzuty\n\s+merge-multiple: true/);
   });
-  test('wejścia rozmiary / zadan / ekrany; domyślnie 6.9 i 5 zadań', () => {
-    expect(wf).toMatch(/rozmiary:[\s\S]*?default: '6\.9'/); expect(wf).toMatch(/zadan:[\s\S]*?default: '5'/); expect(wf).toMatch(/ekrany:[\s\S]*?default: ''/);
+  test('wejścia rozmiary / zadan / ekrany; domyślnie 6.9 i 6 zadań, najwyżej 3 naraz', () => {
+    expect(wf).toMatch(/rozmiary:[\s\S]*?default: '6\.9'/); expect(wf).toMatch(/zadan:[\s\S]*?default: '6'/); expect(wf).toMatch(/max-parallel: 3/); expect(wf).toMatch(/ekrany:[\s\S]*?default: ''/);
     expect(wf).toMatch(/EKRANY: \$\{\{ inputs\.ekrany \}\}/);
   });
   test('skrypt zrzutów zapisuje pomiar czasu na ekran (podstawa kolejnych szacunków, lekcja z 27.10.2026)', () => {

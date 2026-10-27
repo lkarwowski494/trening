@@ -27,9 +27,9 @@ on:
         required: false
         default: '6.9'
       zadan:
-        description: 'Na ile równoległych zadań macOS podzielić języki (na rozmiar; 1–5; macOS w repo publicznym: do 5 zadań naraz). Pomiar 27.10.2026: 2,7–3,5 min na ekran → 35 języków w 5 zadaniach po 7 języków ok. 3,2–4,1 h każde'
+        description: 'Na ile zadań podzielić języki (na rozmiar; 1–8). Naraz biegną najwyżej 3 (max-parallel; 2 maszyny macOS z 5 zostają dla E2E i buildu), reszta czeka w kolejce. Pomiar 27.10.2026: 2,7–3,5 min na ekran → 35 języków w 6 zadaniach po 5–6 języków ok. 2,5–3,5 h każde, dwie fale'
         required: false
-        default: '5'
+        default: '6'
       ekrany:
         description: 'Tylko te ekrany (po przecinku, np. cwiczenie); pusty = wszystkie. Numeracja plików jak w pełnym scenorysie — powtórzenie jednego ekranu we wszystkich językach'
         required: false
@@ -122,9 +122,10 @@ jobs:
     needs: [dane, build]
     if: ${{ !cancelled() && needs.dane.result == 'success' && (needs.build.result == 'success' || needs.build.result == 'skipped') }}
     runs-on: macos-26
-    timeout-minutes: 330   # pomiar 27.10.2026: 2,7–3,5 min na ekran; 7 języków × 10 ekranów ≈ 3,2–4,1 h (limit zadania 360 min)
+    timeout-minutes: 330   # pomiar 27.10.2026: 2,7–3,5 min na ekran; 6 języków × 10 ekranów ≈ 2,7–3,5 h (limit zadania 360 min)
     strategy:
       fail-fast: false
+      max-parallel: 3  # decyzja właściciela 27.10.2026 (A+C): najwyżej 3 z 5 maszyn macOS planu darmowego naraz (2 zostają dla E2E i buildu — przebieg 40499391220 zajął wszystkie 5 na ok. 1,5 h); wartość w scripts/ci/store-shards.mjs (MACOS_MAX_PARALLEL)
       matrix: ${{ fromJSON(needs.dane.outputs.matrix) }}   # {rozmiar, wzorzec, shard, jezyki} z scripts/ci/store-shards.mjs (6.9 = iPhone 17 Pro Max 1320 × 2868, 6.3 = iPhone 17 Pro 1206 × 2622)
     steps:
       - uses: actions/checkout@v5

@@ -11,8 +11,10 @@ import { fileURLToPath } from 'node:url';
 export const SIZES = { '6.9': 'iPhone 17 Pro Max \\(', '6.3': 'iPhone 17 Pro \\(' };
 /** Zmierzony czas na ekran w minutach — najwolniejszy pomiar (6.9: 2,7 min w run 40464544722, 3,5 min w run 40487178778; 27.10.2026) — jedyne miejsce tej liczby; plan zadań i test limitu czasu liczą z niej, a przebieg zapisuje nowy pomiar (store-screenshots.sh → podsumowanie). */
 export const PER_SCREEN_MIN = 3.5;
-/** Maksymalna liczba zadań na rozmiar (macOS w repo publicznym: do 5 równoległych zadań naraz). */
-export const MAX_SHARDS = 5;
+/** Maksymalna liczba zadań na rozmiar (zadania ponad MACOS_MAX_PARALLEL czekają w kolejce — fale). */
+export const MAX_SHARDS = 8;
+/** Najwyżej tyle zadań macOS naraz w jednym workflowie (decyzja właściciela 27.10.2026, A+C: plan darmowy ma 5 maszyn macOS, 2 zostają dla E2E i buildu 1.0). Jedyne miejsce tej liczby; `max-parallel` w workflowach pilnuje tests/macos-max-parallel.test.ts. */
+export const MACOS_MAX_PARALLEL = 3;
 
 export function languagesFrom(spec, dir, ls = readdirSync) {
   if (spec.trim() === 'all') {
