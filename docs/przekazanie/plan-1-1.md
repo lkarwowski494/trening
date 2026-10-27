@@ -26,8 +26,8 @@ Uwagi: `gh` CLI w tym kontenerze niezalogowane — CI przez narzędzia MCP. Zapi
 | ID | Zadanie | Stan / gałąź | Następny krok |
 |---|---|---|---|
 | A1 | Lista z telefonu docs/49 T-01–T-14 (bez T-10) + zakupy sandbox | ⬜ właściciel (po pracy) | prowadzić krok po kroku od T-01 |
-| A2 | Naprawa figur 1.0: squat/bench_press/hinge (Deadlift hantle — zgłoszenie właściciela), lekcja w docs/40, reguła CLAUDE.md | 🔶 `naprawa-figury-1-0` 6a9dd65, tests.yml zielony 40468378516, PR https://github.com/lkarwowski494/trening/pull/73 (nie scalony), E2E podstawowy 40468399399 (wynik nieznany; brak maszyny → ponowić) | ~60 wariantów poprawionych (martwe ciągi 14, RDL/stiff, Front Squat, wyciskanie 18, Dip Belt, gumy); lekcja L-NNN do numeracji; **dołożyć pull_up** (3 błędy, poprawka na `poprawki-p1`: generator `agent-pozy/pull_up.mjs` + `poses/pull_up.json`) |
-| A2r | Niezależna ponowna recenzja ruchu i treści kart 4 rodzin z 1.0 | ⬜ PO A2 | recenzent bez dostępu do uzasadnień |
+| A2 | Naprawa figur 1.0: squat/bench_press/hinge (Deadlift hantle — zgłoszenie właściciela), lekcja w docs/40, reguła CLAUDE.md | 🔶 `naprawa-figury-1-0` 6a9dd65, tests.yml zielony 40468378516, PR https://github.com/lkarwowski494/trening/pull/73 (nie scalony), E2E podstawowy 40468399399 (wynik nieznany; brak maszyny → ponowić) | ~60 wariantów poprawionych (martwe ciągi 14, RDL/stiff, Front Squat, wyciskanie 18, Dip Belt, gumy); lekcja L-NNN do numeracji; ~~dołożyć pull_up~~ — KOREKTA 27.10 08:50: na main pull_up ma status `planned` (families.ts:35), w 1.0 niewidoczny; ready tylko na integracja-1-1 → poprawka pull_up zostaje w 1.1 (poprawki-p1) |
+| A2r | Niezależna ponowna recenzja ruchu i treści kart 3 rodzin z 1.0 (squat, bench_press, hinge) | ⬜ PO A2 | recenzent bez dostępu do uzasadnień |
 | A3 | „Technika” rozwinięta w karcie (decyzja B) | 🔶 `technika-rozwinieta-1-0` 5f3d92d | verify, tests.yml, E2E 16/17/57, PR; sprawdzić, czy w treningu na żywo jest wejście, które ma być zwinięte (?cues=0) |
 | A4 | Z-02 przekład po 26.10 | 🔶 `z02-przeklad-1-0` 5309766 | verify, PR (49 nieblokujących w osobnym commicie → akceptacja właściciela) |
 | A5 | Notatki App Review 1.0 | 🔶 `review-notes-1-0` 891ded9 | verify, PR; tekst EN do akceptacji |
@@ -62,7 +62,7 @@ Uwagi: `gh` CLI w tym kontenerze niezalogowane — CI przez narzędzia MCP. Zapi
 Audyt zmian od 1.0 → naprawy blokerów → 1.1.0 → pełny E2E → TestFlight → telefon → App Store. Po 1.1: wspólny pakiet silnika (kalistenika, wznowienie 2.11).
 
 ## Pytania do właściciela (otwarte)
-1. Animacje w 1.0: A) 4 rodziny po naprawie + ponownej recenzji (rek.), B) 1.0 bez animacji do audytu.
+1. Animacje w 1.0: A) 3 rodziny (squat, bench, hinge; korekta 27.10 — pull_up w 1.0 nie jest ready) po naprawie + ponownej recenzji (rek.), B) 1.0 bez animacji do audytu.
 2. Strona: ćwiczenia bez zatwierdzonej animacji zostają z tekstem (zrobione) czy znikają.
 3. Kółka gimnastyczne: A uproszczenie (rek.) / B osobny sprzęt.
 4. Czy plik `data/figury-audyt.json` ma sterować też statusem `ready` w aplikacji (jedno źródło; rek. tak, po 1.0).
