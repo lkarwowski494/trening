@@ -77,6 +77,13 @@ describe('M1-022: BRD aktualny wobec decyzji 20–27.10.2026', () => {
     for (const s of sections().filter(x => !x.withdrawn && x.id.startsWith('BR-'))) if (NUM.test(s.text.replace(/`[^`]*`/g, ''))) expect([s.id, /\bD-\d{3}\b|\bRD-\d{2}\b|\bOP-\d{2}\b/.test(s.text)]).toEqual([s.id, true]);
     expect(sections().find(s => s.id === 'BR-ZEG-001')!.text).toMatch(/5 sekund \(D-123\)/); expect(sections().find(s => s.id === 'BR-ZAK-002')!.text).toMatch(/7 minut \(D-102\)/);
   });
+  test('ślad BR → test (03-zakres-009): każde aktywne BR wskazuje co najmniej jeden istniejący test Jest albo scenariusz Maestro', () => {
+    const TEST = /(?:^|[\s(`„;,])((?:tests\/[\w./-]+\.test\.tsx?)|(?:\.maestro\/[\w.-]+\.yaml))(?![\w/])/g;
+    for (const s of sections().filter(x => !x.withdrawn && x.id.startsWith('BR-'))) {
+      const refs = [...s.text.matchAll(TEST)].map(m => m[1]).filter(r => fs.existsSync(path.join(ROOT, r)));
+      expect([s.id, refs.length > 0]).toEqual([s.id, true]);
+    }
+  });
   test('errata: plik z tabelą ER (data, źródło, status)', () => {
     const e = read('errata.md'); expect(e).toMatch(/^\| ID \| Data \|/m); expect(e.match(/^\| ER-\d{2} \| \d{4}-\d\d-\d\d \|/gm)!.length).toBeGreaterThanOrEqual(5);
   });
