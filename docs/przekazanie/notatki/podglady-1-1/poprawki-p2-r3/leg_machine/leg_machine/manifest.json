@@ -1,0 +1,685 @@
+{
+ "rodzina": "leg_machine",
+ "wygenerowano": "2026-10-27T13:57:39.417Z",
+ "wyjatki": {
+  "Smith Machine Leg Press": "stopy pchają sztangę Smitha leżąc pod nią, a sztanga w kontrakcie jest zawsze trzymana dłońmi (chwyt dłoni na osi gryfu w każdej klatce) — ćwiczenie bez rąk na sztandze nie da się narysować"
+ },
+ "przyblizenia": {
+  "Hack Squat": "przybliżenie: oparcie maszyny jako nieruchoma ławka skośna (plecy ślizgają się po niej); sanie, poduszki barkowe i platforma pod stopami niemodelowane (stopy stoją na podłodze)",
+  "Pendulum Squat": "przybliżenie: jak Hack Squat; łuk wahadła o promieniu 100 cm (rzeczywiste ramię krótsze) i nieruchome oparcie — pochylenie tułowia nie zmienia się wzdłuż łuku",
+  "Lying Machine Squat": "przybliżenie: jak Hack Squat, oparcie pochylone 42° od poziomu (leżąc na pochyłym oparciu); sanie, poduszki barkowe i platforma niemodelowane",
+  "Leg Press": "przybliżenie: suwnica pozioma (siad, platforma pionowa): stopa nie ma w modelu palców skierowanych do tyłu, więc platformy nachylonej 45° nie da się oprzeć o podeszwę",
+  "Single Leg Press": "przybliżenie: suwnica pozioma (siad, platforma pionowa); noga wolna stoi na podłodze obok",
+  "Calf Press (leg press)": "przybliżenie: suwnica pozioma; stopa obraca się wokół kuli stopy na dolnej krawędzi platformy"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Leg Press",
+   "obraz": "Leg-Press-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -60,
+     "x1": 200
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0.1,
+     "top": 37.8,
+     "kat": 80,
+     "siedzisko": 40,
+     "dlugosc": 75
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "prosta",
+     "kat": -15,
+     "punkt": "kostki",
+     "trzyma": "obie",
+     "x": 68.5,
+     "y": 52,
+     "z": 0,
+     "dlugosc": 28.6
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 85,
+     "max": 124.2
+    },
+    "knee": {
+     "min": 15.5,
+     "max": 86
+    },
+    "ankle": {
+     "min": -6.4,
+     "max": 24.7
+    },
+    "elbow": {
+     "min": 47.5,
+     "max": 47.5
+    },
+    "shSag": {
+     "min": -0.3,
+     "max": -0.3
+    },
+    "shElev": {
+     "min": 25.9,
+     "max": 25.9
+    },
+    "shAbd": {
+     "min": 25.9,
+     "max": 25.9
+    }
+   },
+   "bledy_w_pozie": [
+    "sq.mis.kneesIn"
+   ],
+   "bledy_wskazowki_id": [
+    "sq.mis.kneesIn"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: suwnica na nogi (prowadnica, punkt: kostki — platforma pod stopami) (sprzet: rodzaj \"dzwignia\")"
+    ],
+    "ruch": [
+     "Wypchnij platformę, prostując biodra i kolana; opuść ją powoli, uginając nogi."
+    ],
+    "bledy_wskazowki": [
+     "sq.mis.kneesIn (Kolana zapadające się do środka.)"
+    ]
+   },
+   "reguly_sensu": [
+    "zakres",
+    "kolana_nad_stopami",
+    "miednica_stala"
+   ],
+   "przyblizenie": "przybliżenie: suwnica pozioma (siad, platforma pionowa): stopa nie ma w modelu palców skierowanych do tyłu, więc platformy nachylonej 45° nie da się oprzeć o podeszwę"
+  },
+  {
+   "cwiczenie": "Single Leg Press",
+   "obraz": "Single-Leg-Press-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -60,
+     "x1": 200
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0.1,
+     "top": 37.8,
+     "kat": 80,
+     "siedzisko": 40,
+     "dlugosc": 75
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "prosta",
+     "kat": -15,
+     "punkt": "kostki",
+     "trzyma": "R",
+     "x": 68.5,
+     "y": 52,
+     "z": 13,
+     "dlugosc": 28.6
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 79.3,
+     "max": 125
+    },
+    "knee": {
+     "min": 15.5,
+     "max": 95
+    },
+    "ankle": {
+     "min": -5.9,
+     "max": 24.9
+    },
+    "elbow": {
+     "min": 47.5,
+     "max": 47.5
+    },
+    "shSag": {
+     "min": -0.3,
+     "max": -0.3
+    },
+    "shElev": {
+     "min": 25.9,
+     "max": 25.9
+    },
+    "shAbd": {
+     "min": 25.9,
+     "max": 25.9
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "sq.mis.kneesIn"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: suwnica na nogi (prowadnica, punkt: kostki — platforma pod stopami) (sprzet: rodzaj \"dzwignia\")"
+    ],
+    "ruch": [
+     "Wypchnij platformę, prostując biodra i kolana; opuść ją powoli, uginając nogi.",
+     "Pchaj całą stopą — pięty nie odrywają się od platformy."
+    ],
+    "bledy_wskazowki": [
+     "sq.mis.kneesIn (Kolana zapadające się do środka.)"
+    ]
+   },
+   "reguly_sensu": [
+    "zakres_jednonoz",
+    "miednica_stala"
+   ],
+   "przyblizenie": "przybliżenie: suwnica pozioma (siad, platforma pionowa); noga wolna stoi na podłodze obok"
+  },
+  {
+   "cwiczenie": "Calf Press (leg press)",
+   "obraz": "Calf-Press-leg-press--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -60,
+     "x1": 200
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0.1,
+     "top": 37.8,
+     "kat": 80,
+     "siedzisko": 40,
+     "dlugosc": 75
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "obrot",
+     "punkt": "kostki",
+     "trzyma": "obie",
+     "x": 150.6,
+     "y": 50.4,
+     "z": 0,
+     "dlugosc": 60
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 85.8,
+     "max": 90.4
+    },
+    "knee": {
+     "min": 14.9,
+     "max": 15.7
+    },
+    "ankle": {
+     "min": -45.5,
+     "max": 9.2
+    },
+    "elbow": {
+     "min": 47.5,
+     "max": 47.5
+    },
+    "shSag": {
+     "min": -0.3,
+     "max": -0.3
+    },
+    "shElev": {
+     "min": 25.9,
+     "max": 25.9
+    },
+    "shAbd": {
+     "min": 25.9,
+     "max": 25.9
+    }
+   },
+   "bledy_w_pozie": [
+    "calf.mis.partial"
+   ],
+   "bledy_wskazowki_id": [
+    "calf.mis.partial"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: suwnica na nogi (prowadnica, punkt: kostki — platforma pod stopami) (sprzet: rodzaj \"dzwignia\")"
+    ],
+    "ruch": [
+     "Wypychaj platformę palcami jak najdalej, potem pozwól piętom wrócić, aż poczujesz rozciągnięcie łydek."
+    ],
+    "bledy_wskazowki": [
+     "calf.mis.partial (Skrócony zakres — bez pełnego wspięcia i opuszczenia.)"
+    ]
+   },
+   "reguly_sensu": [
+    "wspiecie",
+    "kolana_proste"
+   ],
+   "przyblizenie": "przybliżenie: suwnica pozioma; stopa obraca się wokół kuli stopy na dolnej krawędzi platformy"
+  },
+  {
+   "cwiczenie": "Hack Squat",
+   "obraz": "Hack-Squat-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -90,
+     "x1": 110
+    },
+    {
+     "rodzaj": "lawka",
+     "x": -4.5,
+     "top": 28.7,
+     "kat": 65,
+     "siedzisko": 2,
+     "dlugosc": 99.5
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "obrot",
+     "punkt": "miednica",
+     "trzyma": "R",
+     "x": 119.9,
+     "y": 116.2,
+     "z": 0,
+     "dlugosc": 140
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 24.6,
+     "max": 69.6
+    },
+    "knee": {
+     "min": 21.5,
+     "max": 100
+    },
+    "ankle": {
+     "min": -27.6,
+     "max": 4.6
+    },
+    "elbow": {
+     "min": 72.4,
+     "max": 72.4
+    },
+    "shSag": {
+     "min": -4.9,
+     "max": -4.9
+    },
+    "shElev": {
+     "min": 38.7,
+     "max": 38.7
+    },
+    "shAbd": {
+     "min": 38.4,
+     "max": 38.4
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: hack squat (prowadnica, punkt: miednica — wózek z oparciem) (sprzet: rodzaj \"dzwignia\")"
+    ],
+    "ruch": [
+     "Opuść się, uginając biodra i kolana, potem wstań, prostując nogi."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "zakres",
+    "kolana_nad_stopami",
+    "piety"
+   ],
+   "przyblizenie": "przybliżenie: oparcie maszyny jako nieruchoma ławka skośna (plecy ślizgają się po niej); sanie, poduszki barkowe i platforma pod stopami niemodelowane (stopy stoją na podłodze)"
+  },
+  {
+   "cwiczenie": "Pendulum Squat",
+   "obraz": "Pendulum-Squat-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -90,
+     "x1": 110
+    },
+    {
+     "rodzaj": "lawka",
+     "x": -3.7,
+     "top": 29,
+     "kat": 65,
+     "siedzisko": 2,
+     "dlugosc": 99.5
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "obrot",
+     "punkt": "miednica",
+     "trzyma": "R",
+     "x": -95.9,
+     "y": 15.6,
+     "z": 0,
+     "dlugosc": 100
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 24.6,
+     "max": 69.6
+    },
+    "knee": {
+     "min": 21.5,
+     "max": 100
+    },
+    "ankle": {
+     "min": -27.6,
+     "max": 4.6
+    },
+    "elbow": {
+     "min": 72.4,
+     "max": 72.4
+    },
+    "shSag": {
+     "min": -4.9,
+     "max": -4.9
+    },
+    "shElev": {
+     "min": 38.7,
+     "max": 38.7
+    },
+    "shAbd": {
+     "min": 38.4,
+     "max": 38.4
+    }
+   },
+   "bledy_w_pozie": [
+    "sq.mis.kneesIn"
+   ],
+   "bledy_wskazowki_id": [
+    "sq.mis.kneesIn"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: pendulum squat (obrót, punkt: miednica) (sprzet: rodzaj \"dzwignia\")"
+    ],
+    "ruch": [
+     "Opuść się, uginając biodra i kolana, potem wstań, prostując nogi.",
+     "Kolana idą w linii palców stóp — nie zapadają się do środka."
+    ],
+    "bledy_wskazowki": [
+     "sq.mis.kneesIn (Kolana zapadające się do środka.)"
+    ]
+   },
+   "reguly_sensu": [
+    "zakres",
+    "kolana_nad_stopami",
+    "piety"
+   ],
+   "przyblizenie": "przybliżenie: jak Hack Squat; łuk wahadła o promieniu 100 cm (rzeczywiste ramię krótsze) i nieruchome oparcie — pochylenie tułowia nie zmienia się wzdłuż łuku"
+  },
+  {
+   "cwiczenie": "Lying Machine Squat",
+   "obraz": "Lying-Machine-Squat-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -90,
+     "x1": 110
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 1.8,
+     "top": 28.1,
+     "kat": 42,
+     "siedzisko": 2,
+     "dlugosc": 98.3
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "obrot",
+     "punkt": "miednica",
+     "trzyma": "R",
+     "x": 82.7,
+     "y": 157,
+     "z": 0,
+     "dlugosc": 140
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 10.7,
+     "max": 47
+    },
+    "knee": {
+     "min": 21.5,
+     "max": 100
+    },
+    "ankle": {
+     "min": -35.6,
+     "max": 4.6
+    },
+    "elbow": {
+     "min": 56,
+     "max": 56
+    },
+    "shSag": {
+     "min": -2.6,
+     "max": -2.6
+    },
+    "shElev": {
+     "min": 30.2,
+     "max": 30.2
+    },
+    "shAbd": {
+     "min": 30.1,
+     "max": 30.1
+    }
+   },
+   "bledy_w_pozie": [
+    "sq.mis.kneesIn"
+   ],
+   "bledy_wskazowki_id": [
+    "sq.mis.kneesIn"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: maszyna dźwigniowa (obrót, punkt: dłonie) (sprzet: rodzaj \"dzwignia\")"
+    ],
+    "ruch": [
+     "Opuść się, uginając biodra i kolana, potem wstań, prostując nogi.",
+     "Kolana idą w linii palców stóp — nie zapadają się do środka."
+    ],
+    "bledy_wskazowki": [
+     "sq.mis.kneesIn (Kolana zapadające się do środka.)"
+    ]
+   },
+   "reguly_sensu": [
+    "zakres",
+    "kolana_nad_stopami",
+    "piety"
+   ],
+   "przyblizenie": "przybliżenie: jak Hack Squat, oparcie pochylone 42° od poziomu (leżąc na pochyłym oparciu); sanie, poduszki barkowe i platforma niemodelowane"
+  },
+  {
+   "cwiczenie": "Belt Squat Machine",
+   "obraz": "Belt-Squat-Machine-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -90,
+     "x1": 110
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "obrot",
+     "punkt": "miednica",
+     "trzyma": "R",
+     "x": 12.8,
+     "y": 60.7,
+     "z": 0,
+     "dlugosc": 33
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 11.8,
+     "max": 104.7
+    },
+    "knee": {
+     "min": 8.4,
+     "max": 107.7
+    },
+    "ankle": {
+     "min": 1.7,
+     "max": 31.2
+    },
+    "elbow": {
+     "min": 135.4,
+     "max": 135.6
+    },
+    "shSag": {
+     "min": -21.1,
+     "max": 4.9
+    },
+    "shElev": {
+     "min": 29.8,
+     "max": 35.8
+    },
+    "shAbd": {
+     "min": 29.7,
+     "max": 29.8
+    }
+   },
+   "bledy_w_pozie": [
+    "sq.mis.kneesIn",
+    "sq.mis.heels"
+   ],
+   "bledy_wskazowki_id": [
+    "sq.mis.kneesIn",
+    "sq.mis.heels"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: belt squat (prowadnica albo obrót, punkt: miednica — pas) (sprzet: rodzaj \"dzwignia\")"
+    ],
+    "ruch": [
+     "Schodź, cofając biodra i uginając kolana jednocześnie; wstań, wypychając podłogę całymi stopami.",
+     "Plecy proste, klatka uniesiona."
+    ],
+    "bledy_wskazowki": [
+     "sq.mis.kneesIn (Kolana zapadające się do środka.)",
+     "sq.mis.heels (Odrywanie pięt od podłogi.)"
+    ]
+   },
+   "reguly_sensu": [
+    "przysiad",
+    "plecy",
+    "kolana_nad_stopami",
+    "piety"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}
