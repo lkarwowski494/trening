@@ -1,0 +1,24 @@
+{
+ "rodzina": "olympic",
+ "przeszly": [
+  "Power Clean",
+  "Clean",
+  "Split Clean",
+  "Hang Clean",
+  "Block Clean",
+  "Block Power Clean",
+  "Barbell Snatch",
+  "Power Snatch",
+  "Split Snatch",
+  "Hang Snatch",
+  "Block Snatch",
+  "Block Power Snatch",
+  "Clean Pull",
+  "Snatch Pull",
+  "Clean Shrug",
+  "Snatch Shrug",
+  "Squat Jerk",
+  "Clean and Jerk"
+ ],
+ "nie": {}
+}

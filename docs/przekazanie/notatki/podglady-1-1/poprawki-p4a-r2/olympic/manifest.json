@@ -1,0 +1,1782 @@
+{
+ "rodzina": "olympic",
+ "wygenerowano": "2026-10-27T10:38:07.013Z",
+ "wyjatki": {},
+ "przyblizenia": {},
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Power Clean",
+   "obraz": "Power-Clean-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.048,
+    0.095,
+    0.13,
+    0.164,
+    0.206,
+    0.247,
+    0.417,
+    0.617,
+    0.765,
+    0.87,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.048,
+    0.095,
+    0.13,
+    0.164,
+    0.206,
+    0.247,
+    0.417,
+    0.617,
+    0.765,
+    0.87,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.8,
+     "max": 126.5
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 99.6
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 21.1
+    },
+    "elbow": {
+     "min": 17.5,
+     "max": 148.4
+    },
+    "shSag": {
+     "min": -7.2,
+     "max": 144.9
+    },
+    "shElev": {
+     "min": 16,
+     "max": 105.7
+    },
+    "shAbd": {
+     "min": 9.6,
+     "max": 87.6
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "start_z_podlogi",
+    "odbior_na_barkach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Clean",
+   "obraz": "Clean-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.046,
+    0.091,
+    0.126,
+    0.158,
+    0.199,
+    0.238,
+    0.413,
+    0.602,
+    0.754,
+    0.873,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.046,
+    0.091,
+    0.126,
+    0.158,
+    0.199,
+    0.238,
+    0.413,
+    0.602,
+    0.754,
+    0.873,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.8,
+     "max": 126.5
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 123.8
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 32.6
+    },
+    "elbow": {
+     "min": 17.5,
+     "max": 146
+    },
+    "shSag": {
+     "min": 3.7,
+     "max": 133.4
+    },
+    "shElev": {
+     "min": 16,
+     "max": 104
+    },
+    "shAbd": {
+     "min": 9.6,
+     "max": 87.3
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "start_z_podlogi",
+    "odbior_na_barkach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Split Clean",
+   "obraz": "Split-Clean-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.033,
+    0.065,
+    0.095,
+    0.131,
+    0.165,
+    0.21,
+    0.248,
+    0.438,
+    0.68,
+    0.878,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.033,
+    0.065,
+    0.095,
+    0.131,
+    0.165,
+    0.21,
+    0.248,
+    0.438,
+    0.68,
+    0.878,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.8,
+     "max": 126.5
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 100.6
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 23.7
+    },
+    "elbow": {
+     "min": 17.5,
+     "max": 147.7
+    },
+    "shSag": {
+     "min": -0.5,
+     "max": 153.3
+    },
+    "shElev": {
+     "min": 16,
+     "max": 102.6
+    },
+    "shAbd": {
+     "min": 9.6,
+     "max": 87.1
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "start_z_podlogi",
+    "odbior_na_barkach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Hang Clean",
+   "obraz": "Hang-Clean-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.032,
+    0.053,
+    0.099,
+    0.144,
+    0.181,
+    0.256,
+    0.299,
+    0.538,
+    0.714,
+    0.854,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.032,
+    0.053,
+    0.099,
+    0.144,
+    0.181,
+    0.256,
+    0.299,
+    0.538,
+    0.714,
+    0.854,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.8,
+     "max": 94.6
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 123.8
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 32.8
+    },
+    "elbow": {
+     "min": 17,
+     "max": 146
+    },
+    "shSag": {
+     "min": 1.6,
+     "max": 133
+    },
+    "shElev": {
+     "min": 16,
+     "max": 104.1
+    },
+    "shAbd": {
+     "min": 9.6,
+     "max": 86.1
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "odbior_na_barkach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Block Clean",
+   "obraz": "Block-Clean-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -4,
+     "x1": 42,
+     "top": 29.5,
+     "z": 68,
+     "dwa": true
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.041,
+    0.086,
+    0.132,
+    0.175,
+    0.211,
+    0.282,
+    0.324,
+    0.55,
+    0.721,
+    0.858,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.041,
+    0.086,
+    0.132,
+    0.175,
+    0.211,
+    0.282,
+    0.324,
+    0.55,
+    0.721,
+    0.858,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.8,
+     "max": 94.6
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 123.8
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 32.8
+    },
+    "elbow": {
+     "min": 15.5,
+     "max": 146
+    },
+    "shSag": {
+     "min": 0.9,
+     "max": 136.5
+    },
+    "shElev": {
+     "min": 16,
+     "max": 104.6
+    },
+    "shAbd": {
+     "min": 9.6,
+     "max": 86
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga + skrzynia albo stopień (sprzet: rodzaj \"skrzynia\") albo asekuracja stojaka (sprzet: rodzaj \"slupek\")"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "odbior_na_barkach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Block Power Clean",
+   "obraz": "Block-Power-Clean-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -4,
+     "x1": 42,
+     "top": 29.5,
+     "z": 68,
+     "dwa": true
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.042,
+    0.089,
+    0.136,
+    0.181,
+    0.218,
+    0.298,
+    0.34,
+    0.569,
+    0.742,
+    0.848,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.042,
+    0.089,
+    0.136,
+    0.181,
+    0.218,
+    0.298,
+    0.34,
+    0.569,
+    0.742,
+    0.848,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.8,
+     "max": 89.8
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 77
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 21.1
+    },
+    "elbow": {
+     "min": 15.9,
+     "max": 148.3
+    },
+    "shSag": {
+     "min": -1.3,
+     "max": 139.2
+    },
+    "shElev": {
+     "min": 16,
+     "max": 104.6
+    },
+    "shAbd": {
+     "min": 9.6,
+     "max": 87.9
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga + skrzynia albo stopień (sprzet: rodzaj \"skrzynia\") albo asekuracja stojaka (sprzet: rodzaj \"slupek\")"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "odbior_na_barkach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Barbell Snatch",
+   "obraz": "Barbell-Snatch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.049,
+    0.096,
+    0.134,
+    0.173,
+    0.227,
+    0.292,
+    0.521,
+    0.678,
+    0.838,
+    0.92,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.049,
+    0.096,
+    0.134,
+    0.173,
+    0.227,
+    0.292,
+    0.521,
+    0.678,
+    0.838,
+    0.92,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 5.6,
+     "max": 131
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 126.2
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 34.1
+    },
+    "elbow": {
+     "min": 13.1,
+     "max": 133.6
+    },
+    "shSag": {
+     "min": -76.8,
+     "max": 261
+    },
+    "shElev": {
+     "min": 14.9,
+     "max": 148.2
+    },
+    "shAbd": {
+     "min": 9.7,
+     "max": 84.6
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "start_z_podlogi",
+    "odbior_nad_glowa"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Power Snatch",
+   "obraz": "Power-Snatch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.043,
+    0.087,
+    0.119,
+    0.154,
+    0.203,
+    0.26,
+    0.325,
+    0.435,
+    0.574,
+    0.717,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.043,
+    0.087,
+    0.119,
+    0.154,
+    0.203,
+    0.26,
+    0.325,
+    0.435,
+    0.574,
+    0.717,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 5.2,
+     "max": 131
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 99.6
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 22.8
+    },
+    "elbow": {
+     "min": 16.7,
+     "max": 133.6
+    },
+    "shSag": {
+     "min": -76.8,
+     "max": 261.7
+    },
+    "shElev": {
+     "min": 14.9,
+     "max": 148.1
+    },
+    "shAbd": {
+     "min": 9.9,
+     "max": 84.6
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "start_z_podlogi",
+    "odbior_nad_glowa"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Split Snatch",
+   "obraz": "Split-Snatch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.038,
+    0.073,
+    0.101,
+    0.13,
+    0.175,
+    0.22,
+    0.392,
+    0.524,
+    0.65,
+    0.731,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.038,
+    0.073,
+    0.101,
+    0.13,
+    0.175,
+    0.22,
+    0.392,
+    0.524,
+    0.65,
+    0.731,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 5.4,
+     "max": 131
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 100.6
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 23.7
+    },
+    "elbow": {
+     "min": 14.1,
+     "max": 135.2
+    },
+    "shSag": {
+     "min": -78.4,
+     "max": 257.1
+    },
+    "shElev": {
+     "min": 14.9,
+     "max": 147.8
+    },
+    "shAbd": {
+     "min": 9.9,
+     "max": 83.8
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "start_z_podlogi",
+    "odbior_nad_glowa"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Hang Snatch",
+   "obraz": "Hang-Snatch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.043,
+    0.081,
+    0.141,
+    0.2,
+    0.259,
+    0.336,
+    0.479,
+    0.648,
+    0.824,
+    0.913,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.043,
+    0.081,
+    0.141,
+    0.2,
+    0.259,
+    0.336,
+    0.479,
+    0.648,
+    0.824,
+    0.913,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 5.2,
+     "max": 105.9
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 126.2
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 34.1
+    },
+    "elbow": {
+     "min": 15.9,
+     "max": 134
+    },
+    "shSag": {
+     "min": -78.3,
+     "max": 247.1
+    },
+    "shElev": {
+     "min": 14.8,
+     "max": 148.2
+    },
+    "shAbd": {
+     "min": 9.7,
+     "max": 84.7
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "odbior_nad_glowa"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Block Snatch",
+   "obraz": "Block-Snatch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -4,
+     "x1": 42,
+     "top": 29.5,
+     "z": 68,
+     "dwa": true
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.048,
+    0.106,
+    0.163,
+    0.221,
+    0.278,
+    0.353,
+    0.492,
+    0.656,
+    0.828,
+    0.915,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.048,
+    0.106,
+    0.163,
+    0.221,
+    0.278,
+    0.353,
+    0.492,
+    0.656,
+    0.828,
+    0.915,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 5.3,
+     "max": 105.9
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 126.2
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 34.1
+    },
+    "elbow": {
+     "min": 14.6,
+     "max": 133.9
+    },
+    "shSag": {
+     "min": -82.7,
+     "max": 240.4
+    },
+    "shElev": {
+     "min": 14.9,
+     "max": 148.2
+    },
+    "shAbd": {
+     "min": 9.7,
+     "max": 83.5
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga + skrzynia albo stopień (sprzet: rodzaj \"skrzynia\") albo asekuracja stojaka (sprzet: rodzaj \"slupek\")"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "odbior_nad_glowa"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Block Power Snatch",
+   "obraz": "Block-Power-Snatch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -4,
+     "x1": 42,
+     "top": 29.5,
+     "z": 68,
+     "dwa": true
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.044,
+    0.1,
+    0.155,
+    0.211,
+    0.265,
+    0.338,
+    0.474,
+    0.633,
+    0.799,
+    0.858,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.044,
+    0.1,
+    0.155,
+    0.211,
+    0.265,
+    0.338,
+    0.474,
+    0.633,
+    0.799,
+    0.858,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 5.2,
+     "max": 94.4
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 77
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 21
+    },
+    "elbow": {
+     "min": 16.3,
+     "max": 133.8
+    },
+    "shSag": {
+     "min": -78.3,
+     "max": 256.2
+    },
+    "shElev": {
+     "min": 14.8,
+     "max": 148.1
+    },
+    "shAbd": {
+     "min": 9.3,
+     "max": 84.8
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga + skrzynia albo stopień (sprzet: rodzaj \"skrzynia\") albo asekuracja stojaka (sprzet: rodzaj \"slupek\")"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "odbior_nad_glowa"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Clean Pull",
+   "obraz": "Clean-Pull-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.118,
+    0.223,
+    0.342,
+    0.431,
+    0.507,
+    0.591,
+    0.709,
+    0.813,
+    0.897,
+    0.947,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.118,
+    0.223,
+    0.342,
+    0.431,
+    0.507,
+    0.591,
+    0.709,
+    0.813,
+    0.897,
+    0.947,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.1,
+     "max": 126.5
+    },
+    "knee": {
+     "min": 0,
+     "max": 99.6
+    },
+    "ankle": {
+     "min": -44.6,
+     "max": 19.3
+    },
+    "elbow": {
+     "min": 16.7,
+     "max": 20.4
+    },
+    "shSag": {
+     "min": 7.5,
+     "max": 49.5
+    },
+    "shElev": {
+     "min": 16,
+     "max": 51
+    },
+    "shAbd": {
+     "min": 9.6,
+     "max": 15.2
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "start_z_podlogi"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Snatch Pull",
+   "obraz": "Snatch-Pull-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.104,
+    0.209,
+    0.305,
+    0.381,
+    0.457,
+    0.54,
+    0.656,
+    0.785,
+    0.904,
+    0.947,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.104,
+    0.209,
+    0.305,
+    0.381,
+    0.457,
+    0.54,
+    0.656,
+    0.785,
+    0.904,
+    0.947,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -7,
+     "max": 131
+    },
+    "knee": {
+     "min": 0,
+     "max": 99.6
+    },
+    "ankle": {
+     "min": -44.6,
+     "max": 19.3
+    },
+    "elbow": {
+     "min": 16.5,
+     "max": 21.3
+    },
+    "shSag": {
+     "min": 1.2,
+     "max": 53.1
+    },
+    "shElev": {
+     "min": 14.7,
+     "max": 53.7
+    },
+    "shAbd": {
+     "min": 9.8,
+     "max": 16.3
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "start_z_podlogi"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Clean Shrug",
+   "obraz": "Clean-Shrug-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.077,
+    0.15,
+    0.222,
+    0.274,
+    0.392,
+    0.517,
+    0.655,
+    0.817,
+    0.942,
+    0.973,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.077,
+    0.15,
+    0.222,
+    0.274,
+    0.392,
+    0.517,
+    0.655,
+    0.817,
+    0.942,
+    0.973,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.8,
+     "max": 62.8
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 27
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 4
+    },
+    "elbow": {
+     "min": 16.6,
+     "max": 20.9
+    },
+    "shSag": {
+     "min": 7.4,
+     "max": 39.9
+    },
+    "shElev": {
+     "min": 16,
+     "max": 41.6
+    },
+    "shAbd": {
+     "min": 12.6,
+     "max": 15.2
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste",
+    "wyprost_bioder_kolan"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Snatch Shrug",
+   "obraz": "Snatch-Shrug-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.098,
+    0.188,
+    0.259,
+    0.315,
+    0.429,
+    0.548,
+    0.693,
+    0.84,
+    0.959,
+    0.98,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.098,
+    0.188,
+    0.259,
+    0.315,
+    0.429,
+    0.548,
+    0.693,
+    0.84,
+    0.959,
+    0.98,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 5.8,
+     "max": 69.2
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 27
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 4
+    },
+    "elbow": {
+     "min": 16.4,
+     "max": 22.2
+    },
+    "shSag": {
+     "min": 0.8,
+     "max": 44.6
+    },
+    "shElev": {
+     "min": 14.3,
+     "max": 46.6
+    },
+    "shAbd": {
+     "min": 9.9,
+     "max": 15.4
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste",
+    "wyprost_bioder_kolan"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Squat Jerk",
+   "obraz": "Squat-Jerk-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    },
+    {
+     "rodzaj": "slupek",
+     "x": -75,
+     "h": 215,
+     "hak": 140
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.04,
+    0.077,
+    0.154,
+    0.238,
+    0.315,
+    0.551,
+    0.638,
+    0.722,
+    0.807,
+    0.892,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.04,
+    0.077,
+    0.154,
+    0.238,
+    0.315,
+    0.551,
+    0.638,
+    0.722,
+    0.807,
+    0.892,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 5.7,
+     "max": 105.9
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 126.2
+    },
+    "ankle": {
+     "min": -40.3,
+     "max": 34.1
+    },
+    "elbow": {
+     "min": 14.1,
+     "max": 146.1
+    },
+    "shSag": {
+     "min": 43.8,
+     "max": 164.5
+    },
+    "shElev": {
+     "min": 64.2,
+     "max": 161.5
+    },
+    "shAbd": {
+     "min": 9.8,
+     "max": 65.2
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [
+     "Ugięcie krótkie, tułów napięty.",
+     "Siła wybicia idzie z nóg i bioder — ręce kończą ruch."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "przy_barkach_start",
+    "ugiecie_nog",
+    "odbior_nad_glowa"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Clean and Jerk",
+   "obraz": "Clean-and-Jerk-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.058,
+    0.1,
+    0.149,
+    0.247,
+    0.341,
+    0.45,
+    0.543,
+    0.643,
+    0.663,
+    0.746,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.058,
+    0.1,
+    0.149,
+    0.247,
+    0.341,
+    0.45,
+    0.543,
+    0.643,
+    0.663,
+    0.746,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 5.7,
+     "max": 126.5
+    },
+    "knee": {
+     "min": 2.6,
+     "max": 100.6
+    },
+    "ankle": {
+     "min": -43.3,
+     "max": 23.7
+    },
+    "elbow": {
+     "min": 15.8,
+     "max": 149.2
+    },
+    "shSag": {
+     "min": 5.1,
+     "max": 165.6
+    },
+    "shElev": {
+     "min": 16,
+     "max": 161.1
+    },
+    "shAbd": {
+     "min": 9.6,
+     "max": 77.3
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "oly.mis"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "oly.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_neutralne",
+    "sztanga_blisko",
+    "rece_proste_do_wyprostu",
+    "wyprost_bioder_kolan",
+    "start_z_podlogi",
+    "odbior_nad_glowa"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "wyjatki_opisu": {
+  "oly.mis": "brak tekstu w lib/cues/text/pl.json (id w newIds cue-sets.json: tekst wdroży tłumacz); błąd nierysowany do czasu wdrożenia tekstu (reguła etykieta_bledu)"
+ },
+ "zgodnosc_manifestu": []
+}
