@@ -1,0 +1,97 @@
+# inwentarz 2026-10-27T16:05:22Z commit 025a50b9
+app                  pliki=   36  bajty=310618
+components           pliki=   63  bajty=419536
+lib                  pliki=  218  bajty=8292765
+modules              pliki=   20  bajty=29496
+targets              pliki=  102  bajty=187416
+plugins              pliki=    1  bajty=524
+scripts              pliki=   86  bajty=647280
+tests                pliki=  546  bajty=7732556
+locales              pliki=   35  bajty=20561
+data                 pliki=    4  bajty=263180
+site                 pliki=    4  bajty=32996
+store                pliki=    9  bajty=186928
+docs                 pliki=  421  bajty=35139440
+assets               pliki=   13  bajty=282523
+.github/workflows    pliki=   18  bajty=115694
+
+## grep -l
+expo-iap               3
+expo-sqlite            3
+t\(                    219
+fetch\(                0
+HealthKit|healthkit    8
+Notifications          5
+
+## workflows
+asc-iap-localizations.yml
+asc-kontrola.yml
+asc-metadane.yml
+asc-zrzuty.yml
+check-urls.yml
+e2e-ios.yml
+gemini-figury.yml
+ios-unsigned.yml
+nightly.yml
+pages.yml
+przeglad-tlumaczen.yml
+przeklad-tlumaczen.yml
+sprzatanie-galezi.yml
+store-screenshots.yml
+testflight.yml
+tests-tz.yml
+tests.yml
+watch-sim.yml
+
+## docs/brd
+README.md
+odkrywanie.md
+reguly.md
+wymagania.md
+zrodla.md
+
+ls: cannot access 'docs/decyzje*': No such file or directory
+ls: cannot access 'docs/zalozenia*': No such file or directory
+ls: cannot access 'docs/sztafeta*': No such file or directory
+
+## M1 poprzednie
+tests/m1-013-sklep-niedostepny-jezyki.test.ts
+tests/m1-017-kalendarz-skala.test.tsx
+tests/m1-dec03-przelacznik.test.tsx
+## app
+app/(tabs)/_layout.tsx
+app/(tabs)/history.tsx
+app/(tabs)/index.tsx
+app/(tabs)/more.tsx
+app/(tabs)/progress.tsx
+app/+not-found.tsx
+app/_layout.tsx
+app/_sitemap.tsx
+app/adapt.tsx
+app/exercise/[id].tsx
+app/exercises.tsx
+app/generator.tsx
+app/guide.tsx
+app/history/[id].tsx
+app/history/add.tsx
+app/history/edit/[id].tsx
+app/more/about.tsx
+app/more/backup.tsx
+app/more/bands.tsx
+app/more/bodymass.tsx
+app/more/import.tsx
+app/more/language.tsx
+app/more/licenses.tsx
+app/more/location/[id].tsx
+app/more/locations.tsx
+app/more/settings.tsx
+app/paywall.tsx
+app/pick-template.tsx
+app/picker.tsx
+app/place-once.tsx
+app/plan.tsx
+app/progression.tsx
+app/reorder.tsx
+app/swap.tsx
+app/template/[id].tsx
+app/templates.tsx
