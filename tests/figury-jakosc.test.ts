@@ -3,6 +3,7 @@
  * Dla KAŻDEJ reguły: poza spełniająca (brak komunikatu) i łamiąca (komunikat z liczbami). Pozy bierzemy z danych (lib/figures/v2/poses) i modyfikujemy; reguły oparte na kształtach rysunku
  * (styk z podłogą z przodu, zasłanianie) dostają kształty syntetyczne. Plus: remis „skrajnej” w regule miednica_na_linii i zdjęcie wymogu zerowej delty w u = 0 dla błędów postawy.
  */
+import * as fs from 'fs';
 import * as path from 'path';
 import { execFileSync } from 'child_process';
 
@@ -145,8 +146,19 @@ W.widocznosc_w_obszarze = { dobre: J.widocznoscBleduKat(v2, WD), zle: J.widoczno
 /* P1 i tabela kątów */
 const kat = J.tabelaKatow(v2, PL);
 W.tabela_katow = { dobre: [Object.keys(J.STAWY_TABELA).every((k) => kat[k].min <= kat[k].max && Number.isFinite(kat[k].min)) ? 0 : 1, J.tabelaKatowMd([{ cwiczenie: 'Plank', katy: kat }]).includes('| Plank |') ? 0 : 1], zle: [] };
-const mw = (o) => ({ cwiczenia: [{ cwiczenie: 'Plank', obraz: 'Plank-light.png', katy_stawow: kat, ...o }], zgodnosc_manifestu: [] });
-W.podglad_wazny = { dobre: J.podgladWazny(mw({})), zle: [...J.podgladWazny({ ...mw({}), zgodnosc_manifestu: undefined }), ...J.podgladWazny({ ...mw({}), zgodnosc_manifestu: [{ regula: 'manifest_klatki', szczegol: 'x' }] }), ...J.podgladWazny(mw({ katy_stawow: undefined })), ...J.podgladWazny(mw({ obraz: null }))] };
+const mw = (o) => ({ cwiczenia: [{ cwiczenie: 'Plank', obraz: 'Plank-light.png', katy_stawow: kat, klatki_u: [0, 1], klatki_na_obrazie: [0, 1], ...o }], zgodnosc_manifestu: [] });
+W.podglad_wazny = { dobre: J.podgladWazny(mw({})), zle: [...J.podgladWazny({ ...mw({}), zgodnosc_manifestu: undefined }), ...J.podgladWazny({ ...mw({}), zgodnosc_manifestu: [{ regula: 'manifest_klatki', szczegol: 'x' }] }), ...J.podgladWazny(mw({ katy_stawow: undefined })), ...J.podgladWazny(mw({ obraz: null })), ...J.podgladWazny(mw({ klatki_na_obrazie: [0, 0.5, 1] })), ...J.podgladWazny(mw({ klatki_u: [0, 0.25, 0.5, 0.75, 1], klatki_na_obrazie: [0, 0.5, 1] })), ...J.podgladWazny(mw({ klatki_na_obrazie: undefined }))] };
+/* L-podglad-klatki: klatki na obrazie czytane z wyrenderowanego HTML (data-u), nie z założenia; podgladPartia rysuje WSZYSTKIE klatki (nie 0 / 0,5 / 1) */
+const K = (h) => J.klatkiZHtml(h);
+const hPL5 = hp(PL); const kPL = K(hPL5.html);
+const uPL = PL.klatki.map((k) => k.u);
+const ost = hPL5.html.lastIndexOf('<span class="k" data-u="'); const bezKomorki = hPL5.html.slice(0, ost) + hPL5.html.slice(hPL5.html.indexOf('</span>', ost) + 7);
+const dwaWiersze = hPL5.html.replace('data-u="0"', 'data-u="0.123"');
+W.klatki_z_obrazu = { dobre: [...kPL.uwagi, ...(JSON.stringify(kPL.klatki) === JSON.stringify(uPL) ? [] : ['rozne 1']), ...K('<div class="w"><span class="k" data-u="0" data-widok="side"></span><span class="k" data-u="0.5" data-widok="side"></span><span class="k" data-u="1" data-widok="side"></span></div>').klatki.length === 3 ? [] : ['trzy']], zle: [...K(bezKomorki).uwagi, ...K(dwaWiersze).uwagi, ...K('<html></html>').uwagi] };
+const ROLL = poza('pushup_plank', 'Rollout (sztanga)'); const PM = await V.podgladPartia({ PL, RC, ROLL }, fs.mkdtempSync(path.join(os.tmpdir(), 'podglad-')), 'light', { bezPrzegladarki: true });
+const trzyKlatki = klon(ROLL); trzyKlatki.klatki = trzyKlatki.klatki.slice(0, 3);
+const PM3 = await V.podgladPartia({ T: trzyKlatki }, fs.mkdtempSync(path.join(os.tmpdir(), 'podglad-')), 'light', { bezPrzegladarki: true });
+W.podglad_partia_wszystkie_klatki = { dobre: [JSON.stringify(PM.PL.klatki) === JSON.stringify(uPL) ? 0 : 1, JSON.stringify(PM.RC.klatki) === JSON.stringify(RC.klatki.map((k) => k.u)) ? 0 : 1, PM.ROLL.klatki.length > 3 && JSON.stringify(PM.ROLL.klatki) === JSON.stringify(ROLL.klatki.map((k) => k.u)) ? 0 : 1, PM3.T.klatki.length === 3 ? 0 : 1, PM.PL.uwagi.length + PM.RC.uwagi.length + PM.ROLL.uwagi.length, fs.readFileSync(PM.PL.plik, 'utf8').match(/class="k"/g).length === 2 * uPL.length * (1 + PL.bledy.length) ? 0 : 1], zle: [] };
 /* remis „skrajnej”: sztywne ciało (odległość bark–kostka stała), miednica poza linią dopiero w drugiej klatce */
 const sk = (pel) => ({ pelvis: pel, shoulderC: [100, 40, 0], legs: { R: { knee: [60, 25, 8], ankle: [0, 20, 8], heel: [0, 20, 8], toe: [0, 20, 8] }, L: { knee: [60, 25, -8], ankle: [0, 20, -8], heel: [0, 20, -8], toe: [0, 20, -8] } } });
 const probki = (a, b) => [{ u: 0, f: { sk: sk(a) }, kf: {} }, { u: 1, f: { sk: sk(b) }, kf: {} }];
@@ -177,7 +189,7 @@ W.high_pull_lokcie = { dobre: J.highPullLokcie(v2, SHP), zle: J.highPullLokcie(v
 console.log(JSON.stringify(W));
 `;
 const W = run(KOD) as Record<string, { dobre: unknown[]; zle: unknown[] }>;
-const REGULY = ['dzwon_gora_tylko_przy_pionowym_przedramieniu', 'high_pull_lokcie', 'blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'rzad_bledu_dotyczy', 'rzad_bledu_wszystkie', 'cialo_w_linii_pelne', 'kolana_proste_podpor', 'fallout_start_rece_przod', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'widocznosc_w_obszarze', 'podglad_wazny', 'widocznosc_bledu_kat', 'ledzwie_przy_podlodze', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'tor_lokcia_przyciaganie', 'srodek_ciezkosci_podparcie', 'manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz', 'dlon_na_wysokosci_barkow_swiat', 'tulow_przodem_do_lawki', 'zwis_przedramie_u0'];
+const REGULY = ['dzwon_gora_tylko_przy_pionowym_przedramieniu', 'high_pull_lokcie', 'blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'rzad_bledu_dotyczy', 'rzad_bledu_wszystkie', 'cialo_w_linii_pelne', 'kolana_proste_podpor', 'fallout_start_rece_przod', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'widocznosc_w_obszarze', 'podglad_wazny', 'widocznosc_bledu_kat', 'ledzwie_przy_podlodze', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'tor_lokcia_przyciaganie', 'srodek_ciezkosci_podparcie', 'manifest_klatki', 'klatki_z_obrazu', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz', 'dlon_na_wysokosci_barkow_swiat', 'tulow_przodem_do_lawki', 'zwis_przedramie_u0'];
 
 describe('delt_raise (wysokość w świecie, leżenie przodem)', () => {
   test('Straight Raises on Incline Bench (leżenie przodem) i Front Incline Dumbbell Raise (siad tyłem do oparcia): zwis i unoszenie do wysokości barków — wszystkie pozy rodziny bez naruszeń reguł 17', () => { expect(W.delt_raise_dane.dobre).toEqual([]); });
@@ -191,6 +203,8 @@ describe('reguły jakości póz (luki z recenzji ruchu): poza spełniająca bez 
   test('litera T (≈ 90°) odrzucana w pompce standardowej, szerokiej, wąskiej, diamentowej i wiosłowaniu; łokcie ciaśniejsze niż dolna granica to nie pompka szeroka', () => { expect((W.litera_T.zle as number[]).every((n) => n > 0)).toBe(true); expect(W.wide_dolna_granica.dobre).toEqual([]); expect(W.wide_dolna_granica.zle).toHaveLength(1); });
   test('rozstaw dłoni: 100% standardowa, 50% wąska; diamentowa bez sprawdzenia', () => { expect(W.rozstaw_dloni.dobre).toEqual([]); expect(W.rozstaw_dloni.zle).toHaveLength(3); });
   test('lędźwie przy podłodze: reguła włączana wskazówką z tekstów; V-Up, Cocoons i Tuck wyłączone jawnie', () => { expect(W.ledzwie_zakres.dobre).toEqual([0, 0, 0, 0, 0, 0]); expect(W.ledzwie_zakres.zle).toEqual([1]); });
+  test('podgląd partii rysuje WSZYSTKIE klatki kluczowe (nie 0 / 0,5 / 1); klatki_na_obrazie pochodzą z HTML (data-u)', () => { expect(W.podglad_partia_wszystkie_klatki.dobre).toEqual([0, 0, 0, 0, 0, 0]); });
+  test('oba runnery używają wspólnego podgladPartia z v2-validate (brak własnej kopii z u = 0 / 0,5 / 1) i czytają klatki z obrazu', () => { for (const f of ['run.mjs', 'run-dyn.mjs']) { const z = fs.readFileSync(path.join(ROOT, 'scripts/figures/agent-pozy', f), 'utf8'); expect(z).not.toMatch(/async function podgladPartia/); expect(z).not.toMatch(/const us = \[0, 0\.5, 1\]/); expect(z).toMatch(/podgladPartia/); expect(z).toMatch(/\.klatki\b/); expect(z).not.toMatch(/klatki_na_obrazie: htmlPodgladu/); } });
   test('tabela kątów stawów: min ≤ max dla każdego stawu, wiersz Markdown', () => { expect(W.tabela_katow.dobre).toEqual([0, 0]); });
   test('nic nie wisi: czworaki (Bird Dog) i ćwiczenia leżące bez lotu: zakres reguły w sprawdzJakosc', () => { expect(W.nic_nie_wisi_zakres.dobre).toEqual([0, 0, 0]); expect(W.nic_nie_wisi_zakres.zle).toEqual([1]); });
   test('środek ciężkości: otoczka punktów i udziały mas sumują się do 1', () => { expect(W.otoczka_i_masy.dobre).toEqual([0, 0, 0]); });
