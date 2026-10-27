@@ -1,0 +1,294 @@
+{
+ "rodzina": "lunge",
+ "wygenerowano": "2026-10-27T10:27:37.870Z",
+ "wyjatki": {},
+ "przyblizenia": {
+  "Lateral Lunge": "ruch boczny z przesuniecieBoczne: miednica przenosi się nad stopę zgiętej nogi, druga noga prawie prosta; stopy nieruchome",
+  "Cossack Squat": "jak Lateral Lunge, głębiej; prosta noga bez uniesienia palców (uproszczenie)"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Lateral Lunge",
+   "obraz": "Lateral-Lunge-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 120
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 22.4,
+     "max": 93.9
+    },
+    "knee": {
+     "min": 7.4,
+     "max": 100
+    },
+    "ankle": {
+     "min": -16.4,
+     "max": 35.7
+    },
+    "elbow": {
+     "min": 95.7,
+     "max": 101.7
+    },
+    "shSag": {
+     "min": -37.5,
+     "max": -35
+    },
+    "shElev": {
+     "min": 56.3,
+     "max": 58
+    },
+    "shAbd": {
+     "min": 47.4,
+     "max": 48.1
+    }
+   },
+   "bledy_w_pozie": [
+    "lunge.mis.kneeIn"
+   ],
+   "bledy_wskazowki_id": [
+    "lunge.mis.kneeIn"
+   ],
+   "opis": {
+    "sens": [
+     "dwa przyrządy"
+    ],
+    "ruch": [
+     "Przednie kolano w linii palców stopy.",
+     "Plecy proste, klatka uniesiona."
+    ],
+    "bledy_wskazowki": [
+     "lunge.mis.kneeIn (Przednie kolano uciekające do środka.)"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_proste",
+    "kolano_nad_stopa"
+   ],
+   "przyblizenie": "ruch boczny z przesuniecieBoczne: miednica przenosi się nad stopę zgiętej nogi, druga noga prawie prosta; stopy nieruchome"
+  },
+  {
+   "cwiczenie": "Cossack Squat",
+   "obraz": "Cossack-Squat-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 120
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 21.7,
+     "max": 116.3
+    },
+    "knee": {
+     "min": 7.6,
+     "max": 112
+    },
+    "ankle": {
+     "min": -21.3,
+     "max": 35.5
+    },
+    "elbow": {
+     "min": 93.5,
+     "max": 101.7
+    },
+    "shSag": {
+     "min": -37.5,
+     "max": -33.1
+    },
+    "shElev": {
+     "min": 55.2,
+     "max": 58
+    },
+    "shAbd": {
+     "min": 47.1,
+     "max": 48.1
+    }
+   },
+   "bledy_w_pozie": [
+    "lunge.mis.kneeIn"
+   ],
+   "bledy_wskazowki_id": [
+    "lunge.mis.kneeIn"
+   ],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Przednie kolano w linii palców stopy.",
+     "Plecy proste, klatka uniesiona."
+    ],
+    "bledy_wskazowki": [
+     "lunge.mis.kneeIn (Przednie kolano uciekające do środka.)"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_proste",
+    "kolano_nad_stopa"
+   ],
+   "przyblizenie": "jak Lateral Lunge, głębiej; prosta noga bez uniesienia palców (uproszczenie)"
+  },
+  {
+   "cwiczenie": "Barbell Side Split Squat",
+   "obraz": "Barbell-Side-Split-Squat-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 120
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    },
+    {
+     "rodzaj": "slupek",
+     "x": -40,
+     "h": 150,
+     "hak": 135
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 22.4,
+     "max": 93.9
+    },
+    "knee": {
+     "min": 7.4,
+     "max": 100
+    },
+    "ankle": {
+     "min": -16.4,
+     "max": 35.7
+    },
+    "elbow": {
+     "min": 146.6,
+     "max": 146.6
+    },
+    "shSag": {
+     "min": -5.4,
+     "max": 6.5
+    },
+    "shElev": {
+     "min": 1.4,
+     "max": 10.9
+    },
+    "shAbd": {
+     "min": 0.5,
+     "max": 8.8
+    }
+   },
+   "bledy_w_pozie": [
+    "lunge.mis.kneeIn"
+   ],
+   "bledy_wskazowki_id": [
+    "lunge.mis.kneeIn"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga + stojak (sprzet: rodzaj \"slupek\" z polem hak)"
+    ],
+    "ruch": [
+     "Przednie kolano w linii palców stopy.",
+     "Plecy proste, klatka uniesiona."
+    ],
+    "bledy_wskazowki": [
+     "lunge.mis.kneeIn (Przednie kolano uciekające do środka.)"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_proste",
+    "kolano_nad_stopa"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "zmiany_sprzetu": [],
+ "lista_kontrolna": [
+  "P3: każda zmiana sprzętu (wysokość skrzyni, położenie zaczepu, ławka) w poprawce trafia do recenzenta z opisem „dlaczego” i z porównaniem cechy rozpoznawczej przed i po (pole zmiany_sprzetu); recenzent ocenia, czy cecha ćwiczenia została zachowana, nie tylko czy liczba reguły się zgadza"
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": [],
+ "na_krawedzi": {
+  "Cossack Squat": [
+   "kolano_nad_stopa"
+  ]
+ }
+}
