@@ -370,11 +370,29 @@ export function tabelaKatowMd(wiersze) {
   const kol = Object.entries(STAWY_TABELA); const L = [`| ćwiczenie | ${kol.map(([, n]) => n).join(' | ')} |`, `|---|${kol.map(() => '---').join('|')}|`];
   for (const w of wiersze) L.push(`| ${w.cwiczenie} | ${kol.map(([k]) => `${f1(w.katy[k].min)}…${f1(w.katy[k].max)}°`).join(' | ')} |`); return L.join('\n') + '\n';
 }
+/** Klatki faktycznie narysowane w HTML podglądu (atrybuty `data-u` komórek `.k`; wiersz = `.w`): { klatki: [u…] pierwszego wiersza w widoku z boku, uwagi: [niezgodności między wierszami i widokami] }.
+ * Czyta wyrenderowany obraz, nie założenie generatora (L-podglad-klatki: podgląd 0 / 0,5 / 1 przechodził kontrolę manifestu, bo klatki_na_obrazie brano z funkcji, która rysuje wszystkie). */
+export function klatkiZHtml(html) {
+  const uwagi = []; const wiersze = String(html).split('<div class="w"').slice(1).map((blok) => {
+    const kom = [...blok.matchAll(/<span class="k" data-u="([^"]*)" data-widok="(side|front)"/g)].map((m) => ({ u: Number(m[1]), widok: m[2] }));
+    return { etykieta: (blok.match(/data-etykieta="([^"]*)"/) ?? [])[1] ?? '?', side: kom.filter((k) => k.widok === 'side').map((k) => k.u), front: kom.filter((k) => k.widok === 'front').map((k) => k.u) };
+  });
+  if (!wiersze.length) { uwagi.push('HTML podglądu nie ma żadnego wiersza klatek (0 wierszy .w) — nie da się odczytać klatek z obrazu'); return { klatki: [], uwagi }; }
+  const ref = wiersze[0].side; const txt = (l) => `${l.length} (${l.join(', ')})`;
+  for (const w of wiersze) for (const widok of ['side', 'front']) if (JSON.stringify(w[widok]) !== JSON.stringify(ref)) uwagi.push(`wiersz „${w.etykieta}”, widok ${widok}: ${txt(w[widok])} klatek, a pierwszy wiersz z boku ma ${txt(ref)} — komórki obrazu nie są jednolite`);
+  return { klatki: ref, uwagi };
+}
+/** Niezgodności klatek jednego ćwiczenia w manifeście (klatki_na_obrazie ≠ klatki_u albo brak pola) — niezależnie od `zgodnosc_manifestu`, żeby ważność podglądu nie zależała od jednej kontroli. */
+function klatkiObrazuNiezgodne(c) {
+  if (!Array.isArray(c.klatki_na_obrazie)) return [`${c.cwiczenie}: manifest nie podaje klatek na obrazie (klatki_na_obrazie) — nie wiadomo, ile klatek obejrzy recenzent`];
+  if (!Array.isArray(c.klatki_u)) return [`${c.cwiczenie}: manifest nie podaje klatki_u`];
+  return JSON.stringify(c.klatki_na_obrazie) === JSON.stringify(c.klatki_u) ? [] : [`${c.cwiczenie}: obraz ma ${c.klatki_na_obrazie.length} klatek (${c.klatki_na_obrazie.join(', ')}), a poza ma ${c.klatki_u.length} (${c.klatki_u.join(', ')}) — recenzent nie zobaczy klatek przejściowych`];
+}
 /** P1 (recenzja n4): podgląd jest WAŻNY dla recenzji tylko z wynikiem kontroli manifestu (`zgodnosc_manifestu`: tablica; pusta = zgodny) i tabelą kątów stawów (`katy_stawow`) przy każdym ćwiczeniu, a każde ćwiczenie ma obraz. Zwraca listę powodów nieważności (pusta = ważny). */
 export function podgladWazny(manifest) {
   const o = []; if (!Array.isArray(manifest.zgodnosc_manifestu)) o.push('manifest nie ma pola zgodnosc_manifestu — kontrola manifestu (zgodnoscManifestu) nie została uruchomiona przy budowie podglądu');
   else if (manifest.zgodnosc_manifestu.length) o.push(`kontrola manifestu zgłasza ${manifest.zgodnosc_manifestu.length} niezgodności (${manifest.zgodnosc_manifestu.map((x) => x.regula).join(', ')})`);
-  for (const c of manifest.cwiczenia ?? []) { if (!c.obraz) o.push(`${c.cwiczenie}: brak obrazu PNG`); if (!c.katy_stawow || !c.katy_stawow.knee) o.push(`${c.cwiczenie}: brak tabeli kątów stawów (katy_stawow)`); }
+  for (const c of manifest.cwiczenia ?? []) { if (!c.obraz) o.push(`${c.cwiczenie}: brak obrazu PNG`); o.push(...klatkiObrazuNiezgodne(c)); if (!c.katy_stawow || !c.katy_stawow.knee) o.push(`${c.cwiczenie}: brak tabeli kątów stawów (katy_stawow)`); }
   return o;
 }
 /** 19. Układ podglądu: wszystkie komórki jednego wiersza (poprawna poza / błąd) leżą w jednej linii — mają wspólną dolną krawędź (wiersz wyrównany do dołu; zawinięta komórka ma dolną krawędź o wysokość wiersza niżej). `wiersze` = [{ etykieta, dolne: [px…] }] (pomiar z przeglądarki). */
