@@ -572,5 +572,8 @@
  "Wypychanie": "Empurrar",
  "zgięcie biodra": "flexão do quadril",
  "Zobacz plany Pro ›": "Ver planos Pro ›",
- "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "O treino de {d} {s} ficou {h} horas sem atividade, então foi salvo automaticamente. Fim: {e} (última série). Você o encontra na aba Plano."
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "O treino de {d} {s} ficou {h} horas sem atividade, então foi salvo automaticamente. Fim: {e} (última série). Você o encontra na aba Plano.",
+ "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.": "Não apague o app — os dados e os backups somem junto com ele. Primeiro toque em «Enviar dados» e salve o arquivo fora do celular.",
+ "Kopia bazy w Plikach": "Cópia do banco de dados em Arquivos",
+ "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.": "Arquivos → No meu iPhone → {app} → Backup → {folder}. Salve esta pasta fora do celular."
 }

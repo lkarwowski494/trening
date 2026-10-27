@@ -12,6 +12,8 @@ require('./pin-now').applyPinNow(process.env.PIN_NOW);
 require('fast-check').configureGlobal({ seed: require('./prop-seed').resolvePropSeed(process.env.PROP_SEED).seed });
 
 jest.mock('expo-sqlite', () => ({
+  /* M1-audytor-generalny-004: katalog bazy (getter — `import * as` kopiuje wartości); brak = jak dotąd (web/testy bez katalogu) */
+  get defaultDatabaseDirectory() { return global.__dbDir; },
   /* global.__dbOpenFail: baza nie otwiera się przy starcie (ekran błędu startu; T-051 — ekran powitalny nie może go zasłonić) */
   openDatabaseAsync: async () => { if (global.__dbOpenFail) throw new Error('baza nieczytelna'); return ({
     execAsync: async () => {},

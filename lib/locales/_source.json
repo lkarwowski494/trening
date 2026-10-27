@@ -2056,6 +2056,10 @@
   "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → {app} → Backup, last {n}). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple account, export a backup elsewhere."
  },
  {
+  "pl": "Kopia bazy w Plikach",
+  "en": "Database copy in Files"
+ },
+ {
   "pl": "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.",
   "en": "A copy is kept on the phone. Tap to send it, then import a backup."
  },
@@ -3023,6 +3027,10 @@
   "en": "Couldn't save to Apple Health"
  },
  {
+  "pl": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+  "en": "Don't delete the app — your data and backups go with it. First tap “Send data” and save the file somewhere off your phone."
+ },
+ {
   "pl": "Nie zamieniaj: {name}",
   "en": "Don’t swap: {name}"
  },
@@ -3685,6 +3693,10 @@
  {
   "pl": "Plik nie zawiera żadnych poprawnych treningów. Dane nie zostały zmienione.",
   "en": "The file contains no valid workouts. Your data was not changed."
+ },
+ {
+  "pl": "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.",
+  "en": "Files → On My iPhone → {app} → Backup → {folder}. Save this folder somewhere off your phone."
  },
  {
   "pl": "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}",

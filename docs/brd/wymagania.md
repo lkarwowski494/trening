@@ -540,6 +540,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że zapis importowanych danych do bazy się nie udaje
     - Gdy import się kończy
     - Wtedy aplikacja nie pokazuje komunikatu o sukcesie
+  - Scenariusz: Baza nie otwiera się przy starcie
+    - Zakładając, że aplikacja pokazuje ekran błędu startu, bo baza danych się nie otwiera
+    - Gdy użytkownik czyta ekran i stuka „Wyślij dane”
+    - Wtedy widzi ostrzeżenie, żeby nie usuwać aplikacji (dane i kopie zniknęłyby razem z nią), a komplet plików bazy (z dziennikiem) trafia do Pliki → aplikacja → Backup → Rescue-… z podaniem tego miejsca; oryginał nie jest zmieniany (decyzja właściciela 27.10.2026; test `tests/audit-m1-2026-10-27-004-ratunek.test.tsx`)
 
 ### BR-DAN-003: Aktualizacja aplikacji zachowuje dane
 - Przepływ: PR-06

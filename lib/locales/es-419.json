@@ -255,5 +255,8 @@
  "Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.": "Los entrenamientos, récords y gráficas importados siempre están disponibles, incluso sin internet. Entrena {n} días al mes gratis; Pro quita el límite, también con un pago único para siempre.",
  "Zakończ trening na telefonie": "Termina el entrenamiento en tu celular",
  "Pierwszy trening za Tobą!": "¡Primer entrenamiento completado!",
- "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "El entrenamiento del {d} {s} estuvo {h} horas sin actividad, así que se guardó solo. Fin: {e} (última serie). Lo encontrarás en la pestaña Plan."
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "El entrenamiento del {d} {s} estuvo {h} horas sin actividad, así que se guardó solo. Fin: {e} (última serie). Lo encontrarás en la pestaña Plan.",
+ "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.": "No borres la app: se irán con ella tus datos y respaldos. Primero toca «Enviar datos» y guarda el archivo fuera del celular.",
+ "Kopia bazy w Plikach": "Respaldo de la base de datos en Archivos",
+ "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.": "Archivos → En mi iPhone → {app} → Backup → {folder}. Guarda esta carpeta fuera del celular."
 }
