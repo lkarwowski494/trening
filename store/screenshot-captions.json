@@ -4,6 +4,9 @@
     "pl": "zaakceptowane 14.10.2026",
     "en": "propozycja"
   },
+  "statusEkranow": {
+    "cwiczenie": "PL i EN — propozycja agenta 27.10.2026 (decyzja D3, docs/48 pkt 5), do akceptacji właściciela razem z obrazami"
+  },
   "maxZnakow": 40,
   "kolory": {
     "tlo": "#121316",
@@ -13,6 +16,7 @@
   "podpisy": {
     "pl": {
       "trening": "Twój trening zostaje w Twoim telefonie",
+      "cwiczenie": "Rysunki ruchu i wskazówki techniki",
       "postepy-cwiczenia": "Każdy rekord i postęp na wykresie",
       "straznik": "Strażnik progresji Twojego tygodnia",
       "plan": "Plan tygodnia — sam albo z naszą pomocą",
@@ -24,6 +28,7 @@
     },
     "en": {
       "trening": "Your training stays on your phone",
+      "cwiczenie": "Movement drawings and technique cues",
       "postepy-cwiczenia": "Every record and gain on a chart",
       "straznik": "Progress Guard watches your week",
       "plan": "Your weekly plan — solo or with our help",
