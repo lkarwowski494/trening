@@ -374,6 +374,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że ćwiczenie ma wskazówki techniki
     - Gdy użytkownik otwiera ćwiczenie
     - Wtedy sekcje „Ustawienie”, „Ruch”, „Wskazówki” i „Częste błędy” są po polsku lub w języku aplikacji; nazwa ćwiczenia z biblioteki zostaje po angielsku (decyzja 2026-10-19)
+  - Scenariusz: Sekcja „Technika” w karcie ćwiczenia jest domyślnie rozwinięta (decyzja właściciela 2026-10-27, wariant B; wyjątek od zamrożenia zakresu 1.0)
+    - Zakładając, że ćwiczenie ma wskazówki techniki
+    - Gdy użytkownik otwiera kartę ćwiczenia z biblioteki, z historii albo z Postępów (wejście poza treningiem na żywo)
+    - Wtedy sekcja „Technika” (wskazówki i rysunek ruchu) jest od razu rozwinięta, a przycisk „Technika” zwija ją i rozwija (stan rozwinięcia czytany przez VoiceOver, etykieta bez zmian); w podglądzie otwieranym w kontekście treningu na żywo sekcja zostaje zwinięta, a „Technika ›” rozwija ją
   - Scenariusz: Usunięcie własnego ćwiczenia z podglądu (ZM-04, W2 a, 21.10.2026)
     - Zakładając, że użytkownik ogląda podgląd ćwiczenia własnego
     - Gdy stuka „Usuń z biblioteki” na dole ekranu

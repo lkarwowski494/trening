@@ -147,7 +147,8 @@ describe('ekran ćwiczenia', () => {
     const { act } = require('./app');
     await act(async () => { router.push(`/exercise/${ex.id}`); });
     await flushAll();
-    await tap(appScreen.getByRole('button', { name: 'Technika' }));
+    /* 27.10.2026 (wariant B): karta ćwiczenia otwiera się z rozwiniętą sekcją — bez stuknięcia */
+    expect(appScreen.getByRole('button', { name: 'Technika' }).props.accessibilityState).toEqual({ expanded: true });
     expect(appScreen.getByText(`• ${cueText(CUE_DATA.exercises['Back Squat'].setup[0].c, 'pl')}`)).toBeTruthy();
   });
 });

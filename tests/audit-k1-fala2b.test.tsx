@@ -127,10 +127,24 @@ describe('UX2-05: wskazówki techniki z treningu na żywo i z szablonu', () => {
     const json = JSON.stringify(screen.toJSON()); expect(json.indexOf('exercise-cues')).toBeGreaterThan(-1); expect(json.indexOf('exercise-cues')).toBeLessThan(json.indexOf('Partia: nogi')); /* B: sekcja nad danymi konfiguracji */
     expect(S().active!.exercises.length).toBe(2); /* trening bez zmian */
   });
-  test('podgląd ćwiczenia z zakładki Ćwiczenia: sekcja „Technika” na górze, zwinięta', async () => {
+  test('karta ćwiczenia (biblioteka, historia, Postępy — wejście bez parametru): sekcja „Technika” na górze, domyślnie ROZWINIĘTA (27.10.2026, wariant B); stan i etykieta VoiceOver zgodne; przycisk zwija i rozwija', async () => {
     await boot(); await go(`/exercise/${ex('Back Squat').id}`); await flushAll(10);
-    expect(cuesOpen()).toBe(false); expect(screen.queryByText('Ustawienie')).toBeNull();
+    expect(cuesOpen()).toBe(true); expect(screen.getByText('Ustawienie')).toBeTruthy();
     const json = JSON.stringify(screen.toJSON()); expect(json.indexOf('exercise-cues')).toBeLessThan(json.indexOf('Partia: nogi'));
+    const btn = screen.getByTestId('exercise-cues-toggle'); expect(btn.props.accessibilityLabel).toBe('Technika'); expect(btn.props.accessibilityState).toEqual({ expanded: true });
+    await tap(btn); expect(cuesOpen()).toBe(false); expect(screen.queryByText('Ustawienie')).toBeNull();
+    await tap(screen.getByTestId('exercise-cues-toggle')); expect(cuesOpen()).toBe(true);
+  });
+  test('karta ćwiczenia rozwinięta od razu + „Ogranicz ruch”: figura statyczna, bez przycisku pauzy (nic nie miga po wejściu)', async () => {
+    const RN = require('react-native'); const AI = RN.AccessibilityInfo; AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(true));
+    try { await boot(); await go(`/exercise/${ex('Back Squat').id}`); await flushAll(10); expect(cuesOpen()).toBe(true); expect(screen.queryByLabelText('Zatrzymaj animację')).toBeNull(); expect(screen.queryByLabelText('Wznów animację')).toBeNull(); }
+    finally { AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(false)); }
+  });
+  test('podgląd w kontekście treningu na żywo (?cues=0): sekcja „Technika” zwinięta jak dotąd, etykieta VoiceOver bez zmian; „Technika ›” (?cues=1) rozwija', async () => {
+    await boot(); await go(`/exercise/${ex('Back Squat').id}?cues=0`); await flushAll(10);
+    expect(cuesOpen()).toBe(false); expect(screen.queryByText('Ustawienie')).toBeNull(); expect(screen.getByTestId('exercise-cues-toggle').props.accessibilityLabel).toBe('Technika');
+    await tap(screen.getByTestId('exercise-cues-toggle')); expect(cuesOpen()).toBe(true);
+    await go(`/exercise/${ex('Back Squat').id}?cues=1`); await flushAll(10); expect(cuesOpen()).toBe(true);
   });
   test('podgląd szablonu i edytor szablonu: „Technika ›” przy ćwiczeniu; w edycji otwarcie nie gubi szkicu', async () => {
     let id = ''; await boot(() => { id = mkTpl().id; }); await go(`/template/${id}`); await flushAll(10);
