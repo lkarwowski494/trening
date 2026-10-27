@@ -27,7 +27,7 @@ Legenda: **TERAZ** = można zacząć bez ryzyka przeróbki (to, od czego zależy
 | G5 | Wyjątki bez animacji (cardio, bez istoty ruchu) w teście pokrycia | lista z G4 | PO G4 | 1 h | — |
 | G6 | Scalenia do integracja-1-1 (jakosc-r2, rodziny-mobilnosc, poprawki G3/G4b) + regeneracja docs/51, macierzy, README, odcisków | G3/G4 | PO | 2–3 h na rundę | — |
 | G7a | Kontekst ekranu w przekładzie API + konteksty dla 145 kluczy (L-041 wariant B) | — | TERAZ | 3–4 h | w toku (przeklad-kontekst) |
-| G7b | Przekład nowych tekstów 1.1 przez API (≤ 6 USD) + recenzent lokalizacji + native speakerzy | G7a, teksty G4/G3 zamrożone | PO | 2–3 h + ~1–2 USD | — |
+| G7b | Przekład nowych tekstów 1.1 przez API (≤ 6 USD) + recenzent lokalizacji; potem JEDEN plik pytań pt-BR dla native speakera (decyzja 27.10; inne języki bez native speakera — otwarte, nie blokują) | G7a, teksty G4/G3 zamrożone | PO | 2–3 h + ~1–2 USD | — |
 | G8 | Definicja ukończenia: BRD, rejestr twierdzeń, macierz, Maestro 57 na próbce rodzin, budżet klatek, VoiceOver/„Ogranicz ruch” | G6 | PO G6 (częściowo TERAZ dla gotowych rodzin) | 3–5 h | — |
 
 ## Ścieżka 3 — techniqueatlas
