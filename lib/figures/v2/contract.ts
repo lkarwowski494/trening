@@ -36,7 +36,7 @@ export const CONTRACT = {
   coord: 300, angle: 200, deltaCoord: 60, deltaAngle: 90,
   maxIssues: 12,
   /** Niezmienniki konstrukcyjne (recenzja n5, 26.10.2026; konwencja rysunku): taśma nierozciągliwa — długość zaczep–uchwyt (kostka) zmienia się o ≤ cm w całym ruchu; kolano nie przechodzi za oś ciała — iloczyn znaku z biodra i z kolana ≥ −cm. */
-  tapeLenTol: 3, kneeSideTol: 2,
+  tapeLenTol: 3, kneeSideTol: 2, kneeSideHipMin: 4, /* biodro bliżej osi miednicy niż tyle cm (pół odległości biodro–oś ≈ 8,5) nie rozstrzyga strony kolana: ruch na boki, skręt */
 } as const;
 /** Ćwiczenia, w których kolano z założenia przechodzi na drugą stronę osi ciała (ruch poprzeczny): wyjątek od niezmiennika „kolano po swojej stronie”, z powodem. */
 export const KNEE_CROSS: Record<string, string> = {};
@@ -382,7 +382,7 @@ function invariants(d: PoseData, ctx: { exercise: string }, error: number | unde
     let f: Frame; try { f = keyframeFrame(d, u, error); } catch { return; } /* błąd obliczenia zgłasza geometry() */
     d.sprzet.forEach((g, gi) => { if (g.rodzaj !== 'zawieszenie') return; const anchor: V3 = [g.x ?? 0, g.y ?? EQUIP.suspensionY, g.z ?? 0];
       for (const sd of (g.trzyma === 'R' ? ['R'] : g.trzyma === 'L' ? ['L'] : SIDES) as Side[]) { const p = g.punkt === 'kostki' ? f.sk.legs[sd].ankle : f.sk.arms[sd].grip; const len = dist(anchor, p); (tapeLens[`${error}|${gi}|${sd}`] ??= []).push({ u, len }); } });
-    if (!(ctx.exercise in KNEE_CROSS) && !(error !== undefined && d.bledy[error].dotyczy.includes('kneeLat'))) for (const sd of SIDES) { const hz = f.sk.legs[sd].hip[2] - f.sk.pelvis[2], kz = f.sk.legs[sd].knee[2] - f.sk.pelvis[2]; /* oś ciała = oś miednicy (przesunięcie boczne miednicy przesuwa biodra względem z = 0 świata) */ if (Math.abs(hz) > 1 && Math.sign(hz) * kz < -CONTRACT.kneeSideTol) side.add(sd, u, uu => `${label}kolano ${sd} (z = ${f1(kz)}) leży po drugiej stronie osi ciała niż biodro (z = ${f1(hz)}) w fazie u=${uu} — kolano ma zostać po swojej stronie (ustaw biegunKolana i kostkę po tej samej stronie)`); }
+    if (!(ctx.exercise in KNEE_CROSS) && !(error !== undefined && d.bledy[error].dotyczy.includes('kneeLat'))) for (const sd of SIDES) { const hz = f.sk.legs[sd].hip[2] - f.sk.pelvis[2], kz = f.sk.legs[sd].knee[2] - f.sk.pelvis[2]; /* oś ciała = oś miednicy (przesunięcie boczne miednicy przesuwa biodra względem z = 0 świata) */ if (Math.abs(hz) > CONTRACT.kneeSideHipMin && Math.sign(hz) * kz < -CONTRACT.kneeSideTol) side.add(sd, u, uu => `${label}kolano ${sd} (z = ${f1(kz)}) leży po drugiej stronie osi ciała niż biodro (z = ${f1(hz)}) w fazie u=${uu} — kolano ma zostać po swojej stronie (ustaw biegunKolana i kostkę po tej samej stronie)`); }
   }
   for (const [k, v] of Object.entries(tapeLens)) { const lo = Math.min(...v.map(x => x.len)), hi = Math.max(...v.map(x => x.len)); if (hi - lo > CONTRACT.tapeLenTol) { const [, gi, sd] = k.split('|'); tape.add(k, v[0].u, () => `${label}taśma zawieszenia (${sd}, sprzęt[${gi}]) zmienia długość z ${f1(lo)} do ${f1(hi)} cm (dopuszczalnie ±${CONTRACT.tapeLenTol} cm; taśma jest nierozciągliwa) — dłoń/kostka ma poruszać się po łuku wokół zaczepu`); } }
   tape.flush('tasma-dlugosc', out); side.flush('kolano-strona', out);

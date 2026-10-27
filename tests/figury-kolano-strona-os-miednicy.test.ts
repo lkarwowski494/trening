@@ -15,7 +15,9 @@ import fs from 'node:fs';
 import { waliduj } from ${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-validate.mjs'))};
 const d = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(ROOT, 'lib/figures/v2/poses/lunge.json'))}, 'utf8')).cwiczenia;
 const strona = (p) => waliduj(p, { rodzina: 'lunge', cwiczenie: p.cwiczenie }).bledy.filter((b) => b.kod === 'kolano-strona').length;
+const pu = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(ROOT, 'lib/figures/v2/poses/pull_up.json'))}, 'utf8')).cwiczenia['Side To Side Chins'];
 const out = { poprawne: {} };
+out.poprawne['Side To Side Chins'] = waliduj(pu, { rodzina: 'pull_up', cwiczenie: 'Side To Side Chins' }).bledy.filter((b) => b.kod === 'kolano-strona').length;
 for (const c of ['Lateral Lunge', 'Cossack Squat', 'Barbell Side Split Squat']) out.poprawne[c] = strona(d[c]);
 const zle = JSON.parse(JSON.stringify(d['Lateral Lunge']));
 for (const k of zle.klatki) { if (k.nogi.L.kostka[2] < -20) { k.nogi.L.kostka[2] = 30; delete k.nogi.L.biegunKolana; } }
@@ -25,6 +27,6 @@ console.log(JSON.stringify(out));
 const W = run(KOD) as { poprawne: Record<string, number>; zle: number };
 
 describe('kolano-strona: oś ciała = oś miednicy (przesunięcie boczne)', () => {
-  test.each(['Lateral Lunge', 'Cossack Squat', 'Barbell Side Split Squat'])('%s: wyciągnięta noga przy przesuniętej miednicy nie łamie niezmiennika', (c) => { expect(W.poprawne[c]).toBe(0); });
+  test.each(['Lateral Lunge', 'Cossack Squat', 'Barbell Side Split Squat', 'Side To Side Chins'])('%s: poprawna poza z biodrem prawie na osi (przesunięcie boczne, ruch na boki) nie łamie niezmiennika', (c) => { expect(W.poprawne[c]).toBe(0); });
   test('kostka lewej nogi po prawej stronie miednicy (prawdziwe przekroczenie osi) jest odrzucona także przy przesuniętej miednicy', () => { expect(W.zle).toBeGreaterThan(0); });
 });
