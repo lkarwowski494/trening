@@ -7,6 +7,12 @@ Po buildzie TestFlight 1.0 (naprawa animacji, „Technika”, Z-02, notatki, zrz
 3. **reaudit** (M1 tryb reaudit) → gotowość do wydania.
 Nazwany wyjątek od CLAUDE.md „jeden audyt na wydanie, bez pętli” (Audyty pkt 2) dla 1.0 — świadomie, polecenie właściciela. Próg blokady bez zmian: KRYTYCZNE i WYSOKIE.
 
+## Zamrożenie i charakter audytu (doprecyzowanie właściciela 27.10 ~11:30 UTC)
+- Audyt jak na **gotowej aplikacji**: sprawdza, czy wszystko działa i jest zgodne z założeniami (BRD `docs/brd/`, decyzje docs/18 i docs/decyzje, CLAUDE.md, docs/48, docs/32 wzorce, rejestr twierdzeń). Nie jest częścią budowy.
+- **Nic się nie zmienia w trakcie audytu**: przedmiot audytu = dokładnie ten commit, z którego jest build TestFlight testowany przez właściciela na telefonie. Od startu audytu do raportu: żadnych pushy do `main`, żadnych scaleń PR 1.0, żadnych nowych buildów 1.0. Audytor niczego nie naprawia (M1: pliki śledzone nietknięte).
+- Praca nad 1.1 trwa tylko na osobnych gałęziach (nie dotyka `main` ani buildu 1.0).
+- Naprawy dopiero po raporcie, jednym przebiegiem (audyt + uwagi z telefonu), potem reaudit na nowym commicie.
+
 ## Jak uruchomić (koordynator)
 - Kiedy: po zakończeniu przeglądu z telefonu (właściciel zgłosi). Commit audytu = SHA buildu TestFlight na `main`.
 - Sesja: `create_session` w tym samym środowisku, repo `lkarwowski494/trening` @ <SHA buildu>, model opus, wysiłek high (pole `sesja` roli M1).
