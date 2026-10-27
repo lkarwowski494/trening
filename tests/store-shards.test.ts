@@ -54,6 +54,7 @@ describe('store-screenshots.yml: macierz z podziału, scalanie artefaktów, powt
   test('macierz z wyjścia zadania „dane”, nazwa artefaktu z numerem zadania, limit czasu ponad pomiar', () => {
     expect(wf).toMatch(/matrix: \$\{\{ fromJSON\(needs\.dane\.outputs\.matrix\) \}\}/);
     expect(wf).toMatch(/node scripts\/ci\/store-shards\.mjs/);
+    expect(wf).toMatch(/name: 'zrzuty \(\$\{\{ matrix\.rozmiar \}\}, zadanie \$\{\{ matrix\.shard \}\}\)'/); /* bez znaku # poza cudzysłowem (komentarz YAML) */
     expect(wf).toMatch(/name: sklep-zrzuty-\$\{\{ matrix\.rozmiar \}\}-\$\{\{ matrix\.shard \}\}/);
     expect(wf).toMatch(/JEZYKI: \$\{\{ matrix\.jezyki \}\}/);
     const t = Number(/timeout-minutes: (\d+)   # pomiar 27\.10\.2026/.exec(wf)![1]);

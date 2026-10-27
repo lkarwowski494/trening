@@ -118,7 +118,7 @@ jobs:
           retention-days: 3
           path: ios/xcodebuild.log
   zrzuty:
-    name: zrzuty (${{ matrix.rozmiar }} #${{ matrix.shard }})
+    name: 'zrzuty (${{ matrix.rozmiar }}, zadanie ${{ matrix.shard }})'   # w cudzysłowie: " #" w YAML zaczyna komentarz (przebieg 40499391220 pokazał nazwę „zrzuty (6.9”)
     needs: [dane, build]
     if: ${{ !cancelled() && needs.dane.result == 'success' && (needs.build.result == 'success' || needs.build.result == 'skipped') }}
     runs-on: macos-26
