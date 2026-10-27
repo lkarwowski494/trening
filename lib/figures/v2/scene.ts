@@ -24,7 +24,7 @@ export type Prop =
   | { k: 'barbell'; c: V3; plates?: boolean; len?: number; held?: boolean | 'R' | 'L'; id?: string }                        /* sztanga: środek gryfu */
   | { k: 'trapbar'; c: V3; w?: number }                                                                    /* gryf sześciokątny: środek (uchwyty wzdłuż z) */
   | { k: 'dumbbell'; c: V3; side: 'R' | 'L'; vertical?: boolean; r?: number; held?: boolean }                  /* hantel: środek chwytu */
-  | { k: 'kettlebell'; c: V3; side?: 'R' | 'L' | 'C'; r?: number; held?: boolean; bell?: 'down' | 'along' | 'back'; dir?: V3 } /* kettlebell: środek rączki; dir = wersor od rączki do środka dzwonu (domyślnie w dół; bell: tryb wyznaczany ze szkieletu) */
+  | { k: 'kettlebell'; c: V3; side?: 'R' | 'L' | 'C'; r?: number; held?: boolean; bell?: 'down' | 'along' | 'back'; dir?: V3; dnemDoGory?: boolean } /* kettlebell: środek rączki; dir = wersor od rączki do środka dzwonu (domyślnie w dół; bell: tryb wyznaczany ze szkieletu; dnemDoGory: przy bell „along” dzwon obraca się dnem do góry, gdy przedramię jest blisko pionu) */
   | { k: 'plate'; c: V3; r?: number; held?: boolean | 'R' | 'L' }                                           /* talerz trzymany: tarcza w płaszczyźnie y–z (powierzchnią do przodu), środek */
   | { k: 'ball'; c: V3; r?: number; held?: boolean | 'R' | 'L' }                                            /* kula, środek; domyślnie trzymana (piłka lekarska); held: false = leży na podłodze (piłka gimnastyczna) */
   | { k: 'roll'; c: V3; r: number; len: number; held?: boolean }                                                         /* wałek (roller piankowy): walec wzdłuż z, środek */
