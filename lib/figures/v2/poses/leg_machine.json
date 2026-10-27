@@ -369,53 +369,7 @@
      }
     }
    ],
-   "bledy": [
-    {
-     "cue": "sq.mis.kneesIn",
-     "znacznik": "knees",
-     "dotyczy": [
-      "kneeLat"
-     ],
-     "klatki": [
-      {
-       "u": 0
-      },
-      {
-       "u": 0.35,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -15
-        },
-        "L": {
-         "odchylenieKolana": -15
-        }
-       }
-      },
-      {
-       "u": 0.65,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -15
-        },
-        "L": {
-         "odchylenieKolana": -15
-        }
-       }
-      },
-      {
-       "u": 1,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -3.7
-        },
-        "L": {
-         "odchylenieKolana": -3.7
-        }
-       }
-      }
-     ]
-    }
-   ]
+   "bledy": []
   },
   "Single Leg Press": {
    "kontrakt": "figury-v2/poza@2",
@@ -1922,10 +1876,10 @@
        "u": 0.25,
        "nogi": {
         "R": {
-         "odchylenieKolana": -1.7
+         "odchylenieKolana": -1.6
         },
         "L": {
-         "odchylenieKolana": -1.7
+         "odchylenieKolana": -1.6
         }
        }
       },
@@ -1933,10 +1887,10 @@
        "u": 0.5,
        "nogi": {
         "R": {
-         "odchylenieKolana": -3.5
+         "odchylenieKolana": -3.2
         },
         "L": {
-         "odchylenieKolana": -3.5
+         "odchylenieKolana": -3.2
         }
        }
       },
@@ -1944,10 +1898,10 @@
        "u": 0.75,
        "nogi": {
         "R": {
-         "odchylenieKolana": -5.2
+         "odchylenieKolana": -4.8
         },
         "L": {
-         "odchylenieKolana": -5.2
+         "odchylenieKolana": -4.8
         }
        }
       },
@@ -1955,10 +1909,10 @@
        "u": 1,
        "nogi": {
         "R": {
-         "odchylenieKolana": -7
+         "odchylenieKolana": -6.4
         },
         "L": {
-         "odchylenieKolana": -7
+         "odchylenieKolana": -6.4
         }
        }
       }
@@ -2307,10 +2261,10 @@
        "u": 0.25,
        "nogi": {
         "R": {
-         "odchylenieKolana": -1.7
+         "odchylenieKolana": -1.6
         },
         "L": {
-         "odchylenieKolana": -1.7
+         "odchylenieKolana": -1.6
         }
        }
       },
@@ -2318,10 +2272,10 @@
        "u": 0.5,
        "nogi": {
         "R": {
-         "odchylenieKolana": -3.5
+         "odchylenieKolana": -3.2
         },
         "L": {
-         "odchylenieKolana": -3.5
+         "odchylenieKolana": -3.2
         }
        }
       },
@@ -2329,10 +2283,10 @@
        "u": 0.75,
        "nogi": {
         "R": {
-         "odchylenieKolana": -5.2
+         "odchylenieKolana": -4.8
         },
         "L": {
-         "odchylenieKolana": -5.2
+         "odchylenieKolana": -4.8
         }
        }
       },
@@ -2340,10 +2294,10 @@
        "u": 1,
        "nogi": {
         "R": {
-         "odchylenieKolana": -7
+         "odchylenieKolana": -6.4
         },
         "L": {
-         "odchylenieKolana": -7
+         "odchylenieKolana": -6.4
         }
        }
       }

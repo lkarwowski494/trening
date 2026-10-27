@@ -3,7 +3,8 @@
  * Statyczne (izometria, np. siad przy ścianie) = jedna pozycja końcowa bez animacji.
  */
 import { CATALOG } from '../../catalog.generated';
-import { FAMILY, familyOf, viewsOf, DZWIGNIA_BEZ_GLOWY, type FamilyId } from './families';
+import { FAMILY, familyOf, viewsOf, type FamilyId } from './families';
+import { dzwigniaPrzezGlowe } from './leverGuard';
 import { VARIANTS, type Variant } from './variants';
 import { squatFrame } from './rigs/squat';
 import { benchFrame } from './rigs/benchPress';
@@ -90,7 +91,7 @@ export function musclesFor(key: string): MuscleEntry | null { return Object.prot
 
 /** Kształty klatki w widoku (ciało + sprzęt + opcjonalnie podświetlenie mięśni; nieposortowane — sortuje renderer). */
 export function shapesAt(spec: FigureSpec, u: number, view: View, muscles = false, error?: FigError): Shape[] {
-  const f = frameAt(spec, u, error); const out = [...bodyShapes(f.sk, view), ...propShapes(f.props, view, DZWIGNIA_BEZ_GLOWY.includes(spec.family) ? f.sk : undefined)];
+  const f = frameAt(spec, u, error); const out = [...bodyShapes(f.sk, view), ...propShapes(f.props, view, 'data' in spec.variant && dzwigniaPrzezGlowe(spec.variant.data))];
   if (muscles) { const m = musclesFor(spec.key); if (m) out.push(...muscleShapes(f.sk, view, m.load)); }
   if (error) out.push(...errorMarks(f, view, error, spec));
   return out;

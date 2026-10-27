@@ -6,7 +6,7 @@ import { frameAt, faultApplicable, figureSpec } from './figure';
 import { ERRORS, type ErrorId } from './errors';
 import { bodyShapes, propShapes } from './draw';
 import { keyframeFrame, CONTRACT, type DataError, type DeltaFrame, type KeyFrame, type PoseData } from './contract';
-import { DZWIGNIA_BEZ_GLOWY, type FamilyId } from './families';
+import { dzwigniaPrzezGlowe } from './leverGuard';
 import type { Gear } from './gear';
 import type { PoseIn, Side } from './skeleton';
 import type { Frame, Shape, View } from './scene';
@@ -73,5 +73,5 @@ export function exampleFor(key: string, errors: Partial<Record<ErrorId, string>>
 
 /** Kształty klatki danych rodziny (podgląd wyniku generatora: arkusz SVG w scripts/figures/v2-validate.mjs --svg). */
 export function dataShapes(d: PoseData, u: number, view: View, error?: number): Shape[] {
-  const f = keyframeFrame(d, u, error); return [...bodyShapes(f.sk, view), ...propShapes(f.props, view, DZWIGNIA_BEZ_GLOWY.includes(d.rodzina as FamilyId) ? f.sk : undefined)];
+  const f = keyframeFrame(d, u, error); return [...bodyShapes(f.sk, view), ...propShapes(f.props, view, dzwigniaPrzezGlowe(d))];
 }

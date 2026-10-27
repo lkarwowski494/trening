@@ -43,6 +43,8 @@ function geom({ kPrzod1 = 95, kTyl1 = 85, yDol = 50, topTyl = 0, topPrzod = 0, z
   return { x, yDol, aF, aT: [ax, pb.y, zTyl], podT: pb.pod, L: -ax };
 }
 const POLE_TYL = (z = -0.1) => [0.15, -1, z]; /* tylne kolano w dół ku podłodze */
+/** Bulgarian Split Squat: kolano do środka w dole (stopnie). Przy −11° przednie kolano jest na z ≈ +4,5 cm (kostka z = 10, poprawna poza 13,2; tylne kolano −12): do środka od stopy, ale przed osią ciała i bez przenikania ud (p2-r4, B4; −48° dawało z = −15,6). */
+const KOLANO_DO_SRODKA_BULGARSKI = 11;
 const bladKolana = (us, cw, strony = ['R'], dosrodka = 55) => bladKolanaDoSrodka({ cue: cw === 'Pistol Squat' ? 'sq.mis.kneesIn' : 'lunge.mis.kneeIn', us, dosrodka, strony });
 /** Błąd kolana z dowolnym profilem [[u, stopnie do środka]] (np. gdy noga jest zgięta tylko w początku ruchu). */
 const bladKolanaProfil = (prof, cw, strony = ['R']) => ({ cue: cw === 'Pistol Squat' ? 'sq.mis.kneesIn' : 'lunge.mis.kneeIn', znacznik: 'knees', dotyczy: ['kneeLat'], klatki: prof.map(([u, w]) => (u === 0 ? { u: 0 } : { u, nogi: Object.fromEntries(strony.map((sd) => [sd, { odchylenieKolana: -w }])) })) });
@@ -59,7 +61,7 @@ export function splitSquat(cw, o = {}) {
   const us = [0, 0.25, 0.5, 0.75, 1];
   const rr = us.map((u) => mk(lerp(yGora, yDol, ease(u)), u));
   const spr = [PODLOGA(g.aT[0] - 70, 150), ...rr[0].o.sprzet, ...(sprzetFn ? sprzetFn(g, rr[0].f) : [])];
-  return zloz(cw, spr, rr.map(kl), bledy ? [bladKolana(us, cw, ['R'], grzbiet ? 48 : 55)] : []); /* Bulgarian: 48 zamiast 55 — przednie kolano nie przenika tylnego uda (strażnik segmentów nóg, p2-r3) */
+  return zloz(cw, spr, rr.map(kl), bledy ? [bladKolana(us, cw, ['R'], grzbiet ? KOLANO_DO_SRODKA_BULGARSKI : 55)] : []); /* Bulgarian: przednie kolano w dole na z ≈ +4…+5 cm (p2-r4, B4), bez przenikania ud */
 }
 
 /* ---------- krok: wykrok w tył (stopa tylna się przesuwa) albo w przód (stopa przednia się przesuwa); u = 0 stanie ---------- */

@@ -2,8 +2,8 @@
  * Poprawki p2, runda 3 (recenzja niezależna 27.10.2026: docs/przekazanie/notatki/recenzje-1-1/ponowne/p2-r2.md, błędy B1 i B2).
  *   1. Strażnik „segmenty nóg się nie przenikają”: udo × udo i goleń × goleń (kapsuły ciała, odstęp powierzchni ≥ −TOL_NOGI_CM) w KAŻDEJ klatce pozy poprawnej i KAŻDEGO wiersza błędu, wszystkie rodziny z poses/.
  *   2. Strażnik „stopa nieruchoma w pozie poprawnej stoi w miejscu w wierszu błędu” (kostka na platformie/podłodze nie jedzie po niej), poza wierszami, których tematem jest stopa (pięty).
- *   3. B1: Leg Press, wiersz „kolana do środka”: stopy nieruchome na platformie, kolana do środka (jak Pendulum).
- *   4. B2: Pendulum, Lying Machine Squat, Belt Squat Machine: kolano do środka w dole −6…−12° (nie −24°), bez przenikania nóg (przy −10…−12° kapsuły ud przenikają się o 5–7 cm, więc −7 i −8).
+ *   3. (B1, zastąpione w rundzie 4 przez B3: wiersz usunięty).
+ *   4. B2: Pendulum, Lying Machine Squat, Belt Squat Machine: kolano do środka w dole −6…−12° (nie −24°), bez przenikania nóg (przy −10…−12° kapsuły ud przenikają się o 5–7 cm; runda 4, tolerancja 0: −6 i −8).
  *   5. U-L1 (decyzja koordynatora a): widoki na poziomie ćwiczenia; suwnice (Leg Press, Single Leg Press, Calf Press) tylko z boku, reszta rodziny bez zmian.
  *   6. U-L2: Lying Machine Squat z przodu: pręt dźwigni nie przechodzi przez twarz.
  */
@@ -20,8 +20,8 @@ const SD = ['R', 'L'] as const;
 const dane = (rodzina: string, cw: string): PoseData => pliki.find(f => f.rodzina === rodzina)!.cwiczenia[cw];
 const wiersze = (d: PoseData): (number | undefined)[] => [undefined, ...d.bledy.map((_, i) => i)];
 
-/** KONWENCJA (jedno miejsce): najgłębsze dopuszczalne przenikanie segmentów tej samej pary nóg (cm). Kapsuły ciała mają promień uśredniony, a wypukłości mięśni nachodzą na siebie w rysunku w przybliżeniu o 1–1,5 cm. */
-export const TOL_NOGI_CM = 1.5;
+/** KONWENCJA (jedno miejsce): najgłębsze dopuszczalne przenikanie segmentów tej samej pary nóg (cm). Runda 4 (recenzja p2-r3, B4): 0 — poprzednie 1,5 cm przepuszczało przenikanie ud 1,3 cm w Bulgarian. */
+export const TOL_NOGI_CM = 0;
 /** KONWENCJA: stopa, która w pozie poprawnej nie rusza się (≤ STOPA_STOI_CM w całym ruchu), w wierszu błędu nie może odjechać od pozy poprawnej o więcej niż STOPA_BLAD_CM. */
 export const STOPA_STOI_CM = 0.5;
 export const STOPA_BLAD_CM = 1;
@@ -37,6 +37,20 @@ function odjazdKostki(d: PoseData, i: number, s: 'R' | 'L'): number { return Mat
 const POZA_P2 = 'trafienie prawdziwe, poza zakresem poprawek p2 (inna rodzina/ćwiczenie niż leg_machine i przysiad bułgarski); naprawa w backlogu 1.1 (docs/21)';
 const WYJATKI_NOGI: Record<string, string> = {
   'core_floor/Tuck Crunch/ok': `${POZA_P2}: golenie zbliżone o ok. 4 cm bardziej niż stykające się kostki`,
+  'lunge/Split Squat/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 1,5 cm`,
+  'lunge/Split Squat (linki)/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 1,5 cm`,
+  'lunge/Suspended Split Squat/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 1,5 cm (ćwiczenie kontrolne recenzji)`,
+  'lunge/Elevated Back Lunge/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 1 cm`,
+  'lunge/Reverse Lunge/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,2 cm`,
+  'lunge/Walking Lunges/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,2 cm`,
+  'lunge/Lunges (hantle)/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,2 cm`,
+  'lunge/Lunges (sztanga)/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,2 cm`,
+  'lunge/Barbell Walking Lunge/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,2 cm`,
+  'lunge/Slider Reverse Lunge/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,2 cm`,
+  'lunge/Lunge Pass Through/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,2 cm`,
+  'lunge/Curtsy Lunge/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,03 cm`,
+  'lunge/Cossack Squat/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 0,6 cm`,
+  'glute_floor/Clamshell/ok': `${POZA_P2}: w pozie poprawnej uda przenikają się o ok. 1,2 cm (rodzina glute_floor)`,
   'lunge/Barbell Step Up/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn przesadzony (przenikanie ud ok. 6 cm)`,
   'lunge/Pistol Squat/sq.mis.kneesIn': `${POZA_P2}: wiersz kneesIn przesadzony (uda przecinają się)`,
   'lunge/Smith Machine Pistol Squat/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn przesadzony (uda przecinają się)`,
@@ -73,20 +87,7 @@ describe('2. stopa na podporze (podłoga, platforma) w pozie poprawnej stoi na n
   });
 });
 
-describe('3. B1 Leg Press: „kolana do środka” — stopy nieruchome na platformie, kolana do środka', () => {
-  const d = dane('leg_machine', 'Leg Press'); const i = d.bledy.findIndex(b => b.cue === 'sq.mis.kneesIn');
-  test('wiersz istnieje', () => { expect(i).toBeGreaterThanOrEqual(0); });
-  test.each(SD)('kostka %s identyczna jak w pozie poprawnej w każdej klatce (≤ 0,3 cm)', s => { expect(odjazdKostki(d, i, s)).toBeLessThanOrEqual(0.3); });
-  test.each(SD)('kolano %s przesuwa się do środka (|z| maleje o ≥ 3 cm), nie przechodzi osi ciała', s => {
-    const z = (w?: number) => GRID.map(u => Math.abs(keyframeFrame(d, u, w).sk.legs[s].knee[2])); const ok = z(), bl = z(i);
-    expect(Math.max(...ok.map((v, j) => v - bl[j]))).toBeGreaterThanOrEqual(3);
-    for (const u of GRID) { const k = keyframeFrame(d, u, i).sk.legs[s].knee[2]; expect(s === 'R' ? k : -k).toBeGreaterThan(2); }
-  });
-  test('wiersz widoczny z przodu (≥ 5 cm różnicy w rzucie) — mimo że rodzina pokazuje Leg Press tylko z boku', () => {
-    let m = 0; for (const u of GRID) for (const s of SD) { const a = keyframeFrame(d, u).sk.legs[s].knee, b = keyframeFrame(d, u, i).sk.legs[s].knee; m = Math.max(m, Math.hypot(a[2] - b[2], a[1] - b[1])); }
-    expect(m).toBeGreaterThanOrEqual(5);
-  });
-});
+/* 3. B1 Leg Press (wiersz „kolana do środka”): od rundy 4 (B3) Leg Press nie ma tego wiersza — suwnice pokazujemy tylko z boku, gdzie różnica to < 1 cm; patrz tests/figury-p2-r4.test.ts, sekcja 1. */
 
 describe('4. B2: Pendulum, Lying Machine Squat, Belt Squat Machine — kolano do środka w dole −6…−12° (nie −24°), bez przenikania', () => {
   test.each(['Pendulum Squat', 'Lying Machine Squat', 'Belt Squat Machine'])('%s', cw => {

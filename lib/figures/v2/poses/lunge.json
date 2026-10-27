@@ -10319,8 +10319,6 @@
      "cue": "lunge.mis.kneeIn",
      "znacznik": "knees",
      "dotyczy": [
-      "hip",
-      "ankle",
       "kneeLat"
      ],
      "klatki": [
@@ -10331,7 +10329,7 @@
        "u": 0.25,
        "nogi": {
         "R": {
-         "odchylenieKolana": -12
+         "odchylenieKolana": -2.7
         }
        }
       },
@@ -10339,7 +10337,7 @@
        "u": 0.5,
        "nogi": {
         "R": {
-         "odchylenieKolana": -24
+         "odchylenieKolana": -5.5
         }
        }
       },
@@ -10347,7 +10345,7 @@
        "u": 0.75,
        "nogi": {
         "R": {
-         "odchylenieKolana": -36
+         "odchylenieKolana": -8.2
         }
        }
       },
@@ -10355,7 +10353,7 @@
        "u": 1,
        "nogi": {
         "R": {
-         "odchylenieKolana": -48
+         "odchylenieKolana": -11
         }
        }
       }
@@ -10721,8 +10719,6 @@
      "cue": "lunge.mis.kneeIn",
      "znacznik": "knees",
      "dotyczy": [
-      "hip",
-      "ankle",
       "kneeLat"
      ],
      "klatki": [
@@ -10733,7 +10729,7 @@
        "u": 0.25,
        "nogi": {
         "R": {
-         "odchylenieKolana": -12
+         "odchylenieKolana": -2.7
         }
        }
       },
@@ -10741,7 +10737,7 @@
        "u": 0.5,
        "nogi": {
         "R": {
-         "odchylenieKolana": -24
+         "odchylenieKolana": -5.5
         }
        }
       },
@@ -10749,7 +10745,7 @@
        "u": 0.75,
        "nogi": {
         "R": {
-         "odchylenieKolana": -36
+         "odchylenieKolana": -8.2
         }
        }
       },
@@ -10757,7 +10753,7 @@
        "u": 1,
        "nogi": {
         "R": {
-         "odchylenieKolana": -48
+         "odchylenieKolana": -11
         }
        }
       }
@@ -11122,8 +11118,6 @@
      "cue": "lunge.mis.kneeIn",
      "znacznik": "knees",
      "dotyczy": [
-      "hip",
-      "ankle",
       "kneeLat"
      ],
      "klatki": [
@@ -11134,7 +11128,7 @@
        "u": 0.25,
        "nogi": {
         "R": {
-         "odchylenieKolana": -12
+         "odchylenieKolana": -2.7
         }
        }
       },
@@ -11142,7 +11136,7 @@
        "u": 0.5,
        "nogi": {
         "R": {
-         "odchylenieKolana": -24
+         "odchylenieKolana": -5.5
         }
        }
       },
@@ -11150,7 +11144,7 @@
        "u": 0.75,
        "nogi": {
         "R": {
-         "odchylenieKolana": -36
+         "odchylenieKolana": -8.2
         }
        }
       },
@@ -11158,7 +11152,7 @@
        "u": 1,
        "nogi": {
         "R": {
-         "odchylenieKolana": -48
+         "odchylenieKolana": -11
         }
        }
       }

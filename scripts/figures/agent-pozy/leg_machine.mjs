@@ -5,15 +5,11 @@ import { v2, BODY, R, r1, lerp, ease, HIP, SH, ZASIEG_R, dNogi, rPlan, hipY, tp,
 
 export const RODZINA = 'leg_machine';
 /** Kolano do środka w dole (stopnie odchylenia kolana, ujemne = do środka), recenzja p2-r2, B2: −24° przenikało i krzyżowało nogi. Wartość = największa, przy której odstęp ud i goleni ≥ −1,5 cm (strażnik tests/figury-p2-r3.test.ts)
- * i wiersz nadal różni się od pozy poprawnej o ≥ 5 cm w widoku z przodu. Przy −10…−12° przekrój uda (7,6 cm) przy biodrach ±8,5 cm daje przenikanie 5–7 cm (kolana z ≈ 4 cm), dlatego −7 (wahadło, leżąca) i −8 (belt squat). */
-const KOLANO_DO_SRODKA_DOL = -7;
+ * i wiersz nadal różni się od pozy poprawnej o ≥ 5 cm w widoku z przodu. Przy −10…−12° przekrój uda (7,6 cm) przy biodrach ±8,5 cm daje przenikanie 5–7 cm (kolana z ≈ 4 cm), dlatego −6,4 (wahadło, leżąca; przy −7 uda nachodziły o 0,6 cm, a poniżej −6,3 wiersz różni się z przodu o < 5 cm; strażnik z tolerancją 0, p2-r4) i −8 (belt squat). */
+const KOLANO_DO_SRODKA_DOL = -6.4;
 const KOLANO_DO_SRODKA_BELT = -8;
-/** Suwnica (Leg Press): kolana nad stopami (z = 13 cm), więc ruch do środka ma zapas: do z ≈ 7 cm przy przenikaniu ud ≤ 1,5 cm (przekrój uda 7,6 cm, biodra ±8,5 cm). */
-const KOLANO_DO_SRODKA_SUWNICA = -15;
 const ZS = 13; const th = () => BODY().thigh, sh = () => BODY().shank;
 const poleKolana = (hip, ankle, knee) => { const mid = hip.map((v, i) => (v + ankle[i]) / 2); const d = knee.map((v, i) => v - mid[i]); const l = Math.hypot(...d) || 1; return d.map((v) => r1(v / l * 100) / 100); };
-/** Błąd „kolana do środka” w suwnicy (recenzja p2-r2, B1): stopy stoją nieruchomo na platformie (kostki jak w pozie poprawnej), kolano przechodzi do środka przez odchylenieKolana (jak w wahadle); profil: 0 → pełny od 35% ruchu do 65% → 25% na końcu. */
-const kneeBlad = (odch = KOLANO_DO_SRODKA_SUWNICA) => ({ cue: 'sq.mis.kneesIn', znacznik: 'knees', dotyczy: ['kneeLat'], klatki: [[0, 0], [0.35, 1], [0.65, 1], [1, 0.25]].map(([u, w]) => (u === 0 ? { u: 0 } : { u, nogi: { R: { odchylenieKolana: r1(odch * w) }, L: { odchylenieKolana: r1(odch * w) } } })) });
 const zloz = (cw, spr, kl, bl) => { const z = poza(RODZINA, cw, spr, kl, bl); for (const b of z.bledy) if (!b.dotyczy.includes('kneeLat')) b.dotyczy.push('kneeLat'); return z; };
 
 /** Suwnica pozioma (siad, oparcie 80°): stopy pionowo na platformie, platforma jedzie wzdłuż x; kolano od kPocz do kKon. jednonoz: pracuje prawa noga. calf: wspięcie na platformie (kulą stopy). */
@@ -27,7 +23,7 @@ export function suwnica(cw, o = {}) {
     else { aR = aK(u, zr); aL = jednonoz ? [m[0] + 38, 7, zl] : aK(u, zl); if (jednonoz) podL = 0; if (blad) { const e = u; aR[2] += 0; void e; } }
     const hipR = [m[0], m[1], HIP()], hipL = [m[0], m[1], -HIP()];
     const grip = (sg) => ({ g: [m[0] + 10, top + 4, sg * 22], pole: [-0.2, -0.5, sg] });
-    const kn = (hip, an, sg) => { const k2 = kolano2D([hip[0], hip[1]], [an[0], an[1]], [0.2, 1]); return [k2[0], k2[1], sg * (pary ? ZS : HIP() + 2)]; }; /* Leg Press (obie nogi): kolana nad stopami (z kostki), żeby „kolana do środka” miało miejsce na wyraźny ruch bez przenikania ud */
+    const kn = (hip, an, sg) => { const k2 = kolano2D([hip[0], hip[1]], [an[0], an[1]], [0.2, 1]); return [k2[0], k2[1], sg * (pary ? ZS : HIP() + 2)]; }; /* Leg Press (obie nogi): kolana nad stopami (z kostki). Suwnice pokazujemy tylko z boku, gdzie „kolana do środka” różni się o < 1 cm, więc wiersza błędu nie ma (tekst błędu na karcie zostaje; p2-r4, B3) */
     return K({ u, m, p, head: p, R: { a: aR, pod: podR, rot: 0, pole: poleKolana(hipR, aR, kn(hipR, aR, 1)) }, L: { a: aL, pod: podL, rot: 0, pole: poleKolana(hipL, aL, kn(hipL, aL, -1)) }, hr: grip(1), hl: grip(-1) });
   };
   const fr = us.map((u) => mk(u));
@@ -36,7 +32,7 @@ export function suwnica(cw, o = {}) {
   const kat0 = calf ? r1(katXY(A0, A1)) : 0; const dl = calf ? Math.hypot(A1[0] - A0[0], A1[1] - A0[1]) + 6 : A1[0] - A0[0] + 6;
   const dzw = calf ? (() => { /* obrót: okrąg o promieniu 60 przez punkty początkowy i końcowy ścieżki kostki */ const mid = [(A0[0] + A1[0]) / 2, (A0[1] + A1[1]) / 2]; const ch = Math.hypot(A1[0] - A0[0], A1[1] - A0[1]); const h = Math.sqrt(60 * 60 - (ch / 2) ** 2); const nrm = [-(A1[1] - A0[1]) / ch, (A1[0] - A0[0]) / ch]; const P1 = [mid[0] + nrm[0] * h, mid[1] + nrm[1] * h], P2 = [mid[0] - nrm[0] * h, mid[1] - nrm[1] * h]; const P = P1[1] > P2[1] ? P1 : P2; return { rodzaj: 'dzwignia', tryb: 'obrot', punkt: 'kostki', trzyma: 'obie', x: r1(P[0]), y: r1(P[1]), z: 0, dlugosc: 60 }; })() : { rodzaj: 'dzwignia', tryb: 'prosta', kat: GAM, punkt: 'kostki', trzyma: jednonoz ? 'R' : 'obie', x: r1(A0[0]), y: r1(A0[1]), z: jednonoz ? ZS : 0, dlugosc: r1(Math.max(12, Math.hypot(A1[0] - A0[0], A1[1] - A0[1]) + 6)) };
   const spr = [PODLOGA(-60, 200), { rodzaj: 'lawka', x: r1(m[0] - 8.5), top, kat, siedzisko: 40, dlugosc: 75 }, dzw];
-  const bl = bledy ? (calf ? [bladZTrajektorii({ cue: 'calf.mis.partial', znacznik: 'heels', us, ok: (u) => fr[us.indexOf(u)], zle: (u) => { const k = JSON.parse(JSON.stringify(fr[us.indexOf(u)])); void k; return mkCalfPartial(m, top, p, u); } })] : (jednonoz ? [] : [kneeBlad()])) : [];
+  const bl = bledy ? (calf ? [bladZTrajektorii({ cue: 'calf.mis.partial', znacznik: 'heels', us, ok: (u) => fr[us.indexOf(u)], zle: (u) => { const k = JSON.parse(JSON.stringify(fr[us.indexOf(u)])); void k; return mkCalfPartial(m, top, p, u); } })] : []) : [];
   return zloz(cw, spr, fr, bl);
 }
 /** Wspięcie na suwnicy: stopa obraca się wokół kuli stopy (12 cm od kostki) na platformie, która się przesuwa tak, by nogi zostały prawie proste (odległość biodro–kostka 80 cm). podKon = podbicie na końcu. */

@@ -199,8 +199,13 @@ export function hyperPolys(pr: Extract<Prop, { k: 'hyper' }>): { pad: V2[] } {
 /** Środek wałków na nogi ławki ujemnej (x, y w widoku z boku): nad kostkami przy końcu siedziska. */
 export const rollerAt = (pr: Extract<Prop, { k: 'bench' }>): V2 => [pr.seatFrom[0] + EQUIP.rollerDx, pr.seatFrom[1] + EQUIP.rollerDy];
 
-/** Kształty rekwizytów. */
-export function propShapes(props: Prop[], view: View, sk?: Skeleton): Shape[] {
+/** Czy rzut dźwigni maszyny w widoku z przodu przechodzi przez głowę w tej klatce (odcinek dźwigni bliżej środka głowy niż promień głowy + 1,4 cm). Ruch jako całość ocenia `dzwigniaPrzezGlowe` (leverGuard.ts). */
+export function dzwigniaDotykaGlowy(props: Prop[], sk: Skeleton): boolean {
+  const h = proj(sk.head, 'front');
+  return props.some(pr => pr.k === 'pivot' && pr.label === 'dzwignia' && distSegSeg([...proj(pr.from, 'front'), 0] as V3, [...proj(pr.to, 'front'), 0] as V3, [h[0], h[1], 0], [h[0], h[1], 0]) < BODY.headR + 1.4);
+}
+/** Kształty rekwizytów. `hideLever`: nie rysuj dźwigni maszyny w widoku z przodu (decyzja na cały ruch, patrz `dzwigniaPrzezGlowe`). */
+export function propShapes(props: Prop[], view: View, hideLever = false): Shape[] {
   const S: Shape[] = []; const side = view === 'side';
   const E = EQUIP;
   for (const pr of props) {
@@ -347,8 +352,8 @@ export function propShapes(props: Prop[], view: View, sk?: Skeleton): Shape[] {
         break;
       }
       case 'pivot': { const a = proj(pr.from, view), b = proj(pr.to, view);
-        /* dźwignia maszyny leży w płaszczyźnie ruchu, więc z przodu rzutuje się na pionową kreskę przez środek ciała; gdy przechodziłaby przez głowę (Lying Machine Squat: pręt przez twarz, recenzja p2-r2 U-L2), nie rysujemy jej (ani punktu obrotu nad głową) */
-        if (view === 'front' && sk && pr.label === 'dzwignia' && distSegSeg([a[0], a[1], 0], [b[0], b[1], 0], [proj(sk.head, view)[0], proj(sk.head, view)[1], 0], [proj(sk.head, view)[0], proj(sk.head, view)[1], 0]) < BODY.headR + 1.4) break;
+        /* dźwignia maszyny leży w płaszczyźnie ruchu, więc z przodu rzutuje się na pionową kreskę przez środek ciała; gdy przechodzi przez głowę w którejkolwiek klatce ruchu (Lying Machine Squat, Hack Squat: pręt przez twarz, recenzja p2-r2 U-L2, p2-r3 U-H1), nie rysujemy jej (ani punktu obrotu) w całym ruchu — decyzja jest stała, żeby pręt nie migał (hideLever liczy dźwigniaPrzezGlowe) */
+        if (view === 'front' && pr.label === 'dzwignia' && hideLever) break;
         S.push({ k: 'line', a, b, w: 2.8, role: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'landmine' }); S.push({ k: 'circle', c: a, r: 3, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pivot' }); break; }
       case 'barbell': {
         const c = pr.c; const o = proj(c, view);

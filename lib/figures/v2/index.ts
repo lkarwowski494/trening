@@ -23,3 +23,4 @@ export * from './guides';
 export * from './gear';
 export * from './contract';
 export * from './contractExample';
+export * from './leverGuard';

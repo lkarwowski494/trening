@@ -90,7 +90,7 @@ export const PODGLAD_SZEROKOSC = 3000;
 /** HTML podglądu pozy: wiersz = poprawna poza / jeden błąd; w wierszu najpierw widok z boku, potem z przodu, po jednej komórce na KAŻDĄ klatkę kluczową (klatki_u pozy) — wszystkie w jednym wierszu (bez zawijania).
  * Zwraca { html, klatki: [u…] (klatki narysowane), wiersze: [etykieta…], px }. */
 export function htmlPodgladu(poza, motyw) {
-  const { v2, tokens } = silnik(); const pal = v2.figurePalette(tokens[motyw]); const widoki = ['side', 'front']; const warianty = [undefined, ...poza.bledy.map((_, i) => i)];
+  const { v2, tokens } = silnik(); const pal = v2.figurePalette(tokens[motyw]); const widoki = v2.viewsOf(poza.cwiczenie, poza.rodzina); const warianty = [undefined, ...poza.bledy.map((_, i) => i)];
   const klatki = poza.klatki.map((k) => k.u);
   const boxy = widoki.map((view) => { const listy = []; for (const x of warianty) for (let i = 0; i <= 20; i++) listy.push(v2.dataShapes(poza, i / 20, view, x)); return v2.boundsOf(listy); });
   const suma = boxy.reduce((t, b) => t + b.w, 0) * klatki.length; const px = Math.min(1.5, Math.max(0.5, (PODGLAD_SZEROKOSC - 8 * (klatki.length * widoki.length)) / Math.max(1, suma)));

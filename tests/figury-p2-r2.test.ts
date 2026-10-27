@@ -23,7 +23,6 @@ export function roznicaBledu(d: PoseData, i: number, view: View): number {
 }
 /** Znane słabo widoczne błędy z innych rodzin (poza zakresem tej gałęzi; backlog 1.1, ta sama klasa co nr 2 recenzji). Wpis nie jest wymagany: po poprawie test nadal przechodzi. */
 const ODROCZONE = new Set([
-  'leg_machine/Leg Press/sq.mis.kneesIn', /* suwnice tylko z boku (U-L1, p2-r3); wiersz poprawiony i widoczny z przodu (tests/figury-p2-r3.test.ts, sekcja 3), czeka na widok z przodu suwnicy (platforma w draw.ts) albo decyzję o usunięciu wiersza */
   'row/Pendlay Row/mis.roundBack', 'row/Reverse Grip Bent Over Row/mis.roundBack', 'row/T-Bar Row/mis.roundBack', 'row/Barbell Rear Delt Row/mis.roundBack', 'row/Bent Over Row (hantle)/mis.roundBack',
   'row/Bent Over Row (linki)/mis.roundBack', 'row/Bent Over Row (sztanga)/mis.roundBack', 'row/Smith Machine Bent Over Row/mis.roundBack', 'kneeling_hinge/Seated Good Mornings/mis.roundBack',
   'hip_bridge/Frog Pump/ht.mis.arch', 'hip_bridge/Glute Bridge/ht.mis.arch', 'hip_bridge/Glute Bridge (sztanga)/ht.mis.arch', 'hip_bridge/Hip Thrust (hantel)/ht.mis.arch', 'hip_bridge/Hip Thrust (sztanga)/ht.mis.arch',
