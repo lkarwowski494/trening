@@ -75,3 +75,7 @@ Wektory są uruchamiane na prawdziwych funkcjach aplikacji w `tests/audit-m1-044
 | RD-04-W2 | 0 | 0 | 0 | 0 | 0 | granica | rachunek: brak serii |
 | RD-04-W3 | 3 | 2 | 3 | 1,5 | 0 | typowy | rachunek: rozgrzewka nie wchodzi do liczenia |
 | RD-04-W4 | 1 | 0 | 1 | 0,5 | 0 | typowy | rachunek: 1 × 1 i 1 × 0,5 |
+
+| ID | Serie robocze [-] | Ćwiczenie usunięte z biblioteki [-] | Oczekiwane: partia główna [-] | Oczekiwane: partia pomocnicza [-] | Tolerancja | Rodzaj | Pochodzenie |
+|---|---|---|---|---|---|---|---|
+| RD-04-W5 | 3 | 1 | 0 | 0 | 0 | błąd | rachunek: seria ćwiczenia, którego nie ma w bibliotece (1 = usunięte), nie ma przypisanych partii, więc nie wchodzi do liczenia; dopisane 2026-10-28 (01-odkrywanie-009) |

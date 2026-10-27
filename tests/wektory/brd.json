@@ -382,5 +382,21 @@
     "rodzaj": "typowy",
     "pochodzenie": "rachunek: 1 × 1 i 1 × 0,5",
     "miejsce": "docs/brd/reguly.md:77"
+  },
+  {
+    "regula": "RD-04",
+    "id": "RD-04-W5",
+    "wejscie": {
+      "Serie robocze [-]": 3,
+      "Ćwiczenie usunięte z biblioteki [-]": 1
+    },
+    "oczekiwane": {
+      "partia główna [-]": 0,
+      "partia pomocnicza [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "rachunek: seria ćwiczenia, którego nie ma w bibliotece (1 = usunięte), nie ma przypisanych partii, więc nie wchodzi do liczenia; dopisane 2026-10-28 (01-odkrywanie-009)",
+    "miejsce": "docs/brd/reguly.md:81"
   }
 ]

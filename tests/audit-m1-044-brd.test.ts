@@ -88,11 +88,11 @@ describe('wektory RD uruchomione na kodzie aplikacji', () => {
     }
   });
   test('RD-04 serie na partię: główna 1, pomocnicza 0,5, rozgrzewka poza liczeniem', async () => {
-    const vs = forRule('RD-04'); expect(vs.length).toBeGreaterThanOrEqual(3);
+    const vs = forRule('RD-04'); expect(vs.length).toBeGreaterThanOrEqual(5); expect(vs.some(v => v.rodzaj === 'błąd')).toBe(true);
     for (const v of vs) {
       await fresh(); const at = new Date(2026, 8, 1, 18).getTime(); const e = ex('Bench Press (sztanga)');
       const sets = [...Array.from({ length: inp(v, 'Serie robocze') }, () => ({ weight: 100, reps: 5 })), ...Array.from({ length: inp(v, 'Serie rozgrzewkowe') }, () => ({ weight: 40, reps: 10, kind: 'warmup' as const }))];
-      if (sets.length) addWorkout(at, [['Bench Press (sztanga)', sets]]); store.save();
+      if (sets.length) { const w = addWorkout(at, [['Bench Press (sztanga)', sets]]); if (inp(v, 'Ćwiczenie usunięte') === 1) w.exercises[0].exerciseId = 'usuniete-z-biblioteki'; /* RD-04-W5 (M1-audytor-generalny-022, 28.10.2026): wektor błędnych danych */ } store.save();
       const by = stats.setsByMuscle(at - 1000, at + 864e5); const main = e.muscles![0]; const sec = e.secondaryMuscles![0];
       expect({ id: v.id, main: by[main] ?? 0, sec: by[sec] ?? 0 }).toEqual({ id: v.id, main: out(v, 'partia główna'), sec: out(v, 'partia pomocnicza') });
     }
