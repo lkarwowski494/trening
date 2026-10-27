@@ -1,0 +1,606 @@
+{
+ "rodzina": "mobility_floor",
+ "wygenerowano": "2026-10-27T06:19:05.647Z",
+ "wyjatki": {
+  "Intermediate Groin Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Kneeling Forearm Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Middle Back Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Runner's Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Side Lying Groin Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Upper Back Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Supine Figure-Four Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Supine Spinal Twist": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Seated Rotation Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Downward Facing Balance": "zestaw „open”: ćwiczenie na piłce gimnastycznej bez przeczytanego źródła pozycji; wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "IT Band and Glute Stretch": "obrót miednicy przy prostej nodze przełożonej w poprzek ciała nie mieści się w modelu jednocześnie z regułami podłogi (miednica leży, kolano po swojej stronie ciała, kształty nad podłogą) — 12 prób parametrów (obrót −12…−35°, wysokość miednicy 10…13 cm); wyjątek bez animacji, do ponownej próby po rozszerzeniu modelu",
+  "Peroneals Stretch": "istota ćwiczenia (odwrócenie stopy z paskiem) nie jest stopniem swobody modelu, a pozycja nie ma przeczytanego źródła; wyjątek bez animacji (decyzja właściciela 26.10.2026 o ćwiczeniach bez widocznej istoty ruchu; 27.10.2026)",
+  "Posterior Tibialis Stretch": "istota ćwiczenia (nawrócenie stopy z paskiem) nie jest stopniem swobody modelu, a pozycja nie ma przeczytanego źródła; wyjątek bez animacji (decyzja właściciela 26.10.2026 o ćwiczeniach bez widocznej istoty ruchu; 27.10.2026)"
+ },
+ "przyblizenia": {},
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "The Straddle",
+   "obraz": "The-Straddle-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 119.6,
+     "max": 119.6
+    },
+    "knee": {
+     "min": 7.9,
+     "max": 7.9
+    },
+    "ankle": {
+     "min": 3.3,
+     "max": 3.3
+    },
+    "elbow": {
+     "min": 22.3,
+     "max": 22.3
+    },
+    "shSag": {
+     "min": 98,
+     "max": 98
+    },
+    "shElev": {
+     "min": 97.9,
+     "max": 97.9
+    },
+    "shAbd": {
+     "min": 6.2,
+     "max": 6.2
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "kolana_proste",
+    "plecy_plasko",
+    "sklon_z_bioder"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Seated Calf Stretch",
+   "obraz": "Seated-Calf-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 109.1,
+     "max": 109.1
+    },
+    "knee": {
+     "min": 7.5,
+     "max": 7.5
+    },
+    "ankle": {
+     "min": -13.1,
+     "max": -13.1
+    },
+    "elbow": {
+     "min": 38.5,
+     "max": 38.5
+    },
+    "shSag": {
+     "min": 67.6,
+     "max": 67.6
+    },
+    "shElev": {
+     "min": 68.1,
+     "max": 68.1
+    },
+    "shAbd": {
+     "min": 11.8,
+     "max": 11.8
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "kolana_proste",
+    "siad_prosto"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Seated Floor Hamstring Stretch",
+   "obraz": "Seated-Floor-Hamstring-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 111.2,
+     "max": 128.4
+    },
+    "knee": {
+     "min": 7.5,
+     "max": 136.2
+    },
+    "ankle": {
+     "min": -13.1,
+     "max": 11.2
+    },
+    "elbow": {
+     "min": 83.9,
+     "max": 102.1
+    },
+    "shSag": {
+     "min": 76.6,
+     "max": 77.6
+    },
+    "shElev": {
+     "min": 76.8,
+     "max": 80.5
+    },
+    "shAbd": {
+     "min": 8.7,
+     "max": 40
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "jedna_noga_prosta",
+    "plecy_plasko",
+    "sklon_z_bioder"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Butterfly Stretch",
+   "obraz": "Butterfly-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 106.5,
+     "max": 106.5
+    },
+    "knee": {
+     "min": 131.1,
+     "max": 131.1
+    },
+    "ankle": {
+     "min": 3.2,
+     "max": 3.2
+    },
+    "elbow": {
+     "min": 94.6,
+     "max": 94.6
+    },
+    "shSag": {
+     "min": 42,
+     "max": 42
+    },
+    "shElev": {
+     "min": 50.1,
+     "max": 50.1
+    },
+    "shAbd": {
+     "min": 30.3,
+     "max": 30.3
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "nogi_zgiete_siad",
+    "plecy_plasko"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Child's Pose",
+   "obraz": "Child-s-Pose-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 114.4,
+     "max": 114.4
+    },
+    "knee": {
+     "min": 139.1,
+     "max": 139.1
+    },
+    "ankle": {
+     "min": 18,
+     "max": 18
+    },
+    "elbow": {
+     "min": 22.5,
+     "max": 22.5
+    },
+    "shSag": {
+     "min": 161.6,
+     "max": 161.6
+    },
+    "shElev": {
+     "min": 161.5,
+     "max": 161.5
+    },
+    "shAbd": {
+     "min": 2,
+     "max": 2
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "posladki_na_pietach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Kneeling Hip Flexor Stretch",
+   "obraz": "Kneeling-Hip-Flexor-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -15.7,
+     "max": 103.3
+    },
+    "knee": {
+     "min": 81.5,
+     "max": 91.2
+    },
+    "ankle": {
+     "min": -0.9,
+     "max": 21.4
+    },
+    "elbow": {
+     "min": 95.6,
+     "max": 95.6
+    },
+    "shSag": {
+     "min": -38.5,
+     "max": -38.5
+    },
+    "shElev": {
+     "min": 57.9,
+     "max": 57.9
+    },
+    "shAbd": {
+     "min": 47.3,
+     "max": 47.3
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "kolano_tylne_na_podlodze",
+    "przednie_kolano_ugiete",
+    "tulow_wysoko",
+    "ledzwie_bez_luku"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Supine Hamstring Stretch",
+   "obraz": "Supine-Hamstring-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 4.7,
+     "max": 81.7
+    },
+    "knee": {
+     "min": 7.5,
+     "max": 7.5
+    },
+    "ankle": {
+     "min": -15.1,
+     "max": 5
+    },
+    "elbow": {
+     "min": 62.3,
+     "max": 62.3
+    },
+    "shSag": {
+     "min": 36.3,
+     "max": 36.3
+    },
+    "shElev": {
+     "min": 39.9,
+     "max": 39.9
+    },
+    "shAbd": {
+     "min": 18,
+     "max": 18
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "kolana_proste",
+    "lezenie_miednica"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Side-Lying Quad Stretch",
+   "obraz": "Side-Lying-Quad-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 8.4,
+     "max": 9.7
+    },
+    "knee": {
+     "min": 6.8,
+     "max": 140.9
+    },
+    "ankle": {
+     "min": 1.8,
+     "max": 5
+    },
+    "elbow": {
+     "min": 22.8,
+     "max": 102.6
+    },
+    "shSag": {
+     "min": -31.1,
+     "max": 127.1
+    },
+    "shElev": {
+     "min": 31.3,
+     "max": 125.6
+    },
+    "shAbd": {
+     "min": 31.1,
+     "max": 50.4
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "pieta_do_posladka",
+    "jedna_noga_prosta"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Cat-Cow",
+   "obraz": "Cat-Cow-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.5,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.5,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 72.2,
+     "max": 72.7
+    },
+    "knee": {
+     "min": 105,
+     "max": 105
+    },
+    "ankle": {
+     "min": 15,
+     "max": 15
+    },
+    "elbow": {
+     "min": 6.6,
+     "max": 9.7
+    },
+    "shSag": {
+     "min": 67.7,
+     "max": 69.3
+    },
+    "shElev": {
+     "min": 67.8,
+     "max": 69.3
+    },
+    "shAbd": {
+     "min": 1.8,
+     "max": 2.6
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "kregoslup_koci_grzbiet",
+    "podpor_rece_proste"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}
