@@ -23,7 +23,7 @@
       "pytanie": "Animacje v1 (56) bez recenzji bramki 4 w 1.0?",
       "rozstrzyga": "wlasciciel",
       "rekomendacja": "a",
-      "wybor": null,
+      "wybor": "b",
       "opcje": [
         {
           "id": "a",
@@ -51,7 +51,7 @@
       "pytanie": "Mechanizm decyzja → kod → test",
       "rozstrzyga": "wlasciciel",
       "rekomendacja": "a",
-      "wybor": null,
+      "wybor": "a",
       "opcje": [
         {
           "id": "a",
@@ -74,7 +74,7 @@
       "pytanie": "Kopia sprzed migracji przy zmianie normalizacji bez zmiany schematu",
       "rozstrzyga": "wlasciciel",
       "rekomendacja": "b",
-      "wybor": null,
+      "wybor": "b",
       "opcje": [
         {
           "id": "a",
@@ -118,7 +118,7 @@
       "pytanie": "Teksty dziedzinowe bez wpisu w rejestrze twierdzeń",
       "rozstrzyga": "zrodla",
       "rekomendacja": "a",
-      "wybor": null,
+      "wybor": "a",
       "opcje": [
         {
           "id": "a",
@@ -134,14 +134,15 @@
       "zrodla": [
         "06-tresci-002",
         "06-tresci-003"
-      ]
+      ],
+      "uzasadnienie": "rozstrzyga M1 wg hierarchii źródeł (CLAUDE.md): tekst w aplikacji tylko z przeczytanym źródłem; rachunek na danych z ASC w punkcie kontrolnym"
     },
     {
       "id": "DEC-07",
       "pytanie": "Termin produktowych P2 z pozycji zbiorczej",
       "rozstrzyga": "wlasciciel",
       "rekomendacja": "a",
-      "wybor": null,
+      "wybor": "b",
       "opcje": [
         {
           "id": "a",
@@ -165,7 +166,7 @@
       "pytanie": "Aktualizacja rachunku bramki W0",
       "rozstrzyga": "zrodla",
       "rekomendacja": "a",
-      "wybor": null,
+      "wybor": "a",
       "opcje": [
         {
           "id": "a",
@@ -180,14 +181,15 @@
       ],
       "zrodla": [
         "02-monetyzacja-004"
-      ]
+      ],
+      "uzasadnienie": "rozstrzyga M1 wg hierarchii źródeł (CLAUDE.md): tekst w aplikacji tylko z przeczytanym źródłem; rachunek na danych z ASC w punkcie kontrolnym"
     },
     {
       "id": "DEC-09",
       "pytanie": "Kształt stanu „mam Pro” na ekranie zakupu",
       "rozstrzyga": "wlasciciel",
       "rekomendacja": "b",
-      "wybor": null,
+      "wybor": "a",
       "opcje": [
         {
           "id": "a",
@@ -225,7 +227,7 @@
       "przyczyna": null,
       "raport": "role/02-monetyzacja-b/02-monetyzacja-2026-10-27.md",
       "test_akceptacyjny": "przy aktywnej subskrypcji wybór planu dożywotniego pokazuje przed arkuszem Apple uwagę o anulowaniu subskrypcji; test ekranu zakupu",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -244,7 +246,7 @@
       "przyczyna": null,
       "raport": "role/02-monetyzacja-b/02-monetyzacja-2026-10-27.md",
       "test_akceptacyjny": "test na kształcie danych adaptera natywnego (bez wygasłych wpisów): 7 dni w Pro, potem wygaśnięcie → used=0, start dozwolony",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -263,7 +265,7 @@
       "przyczyna": null,
       "raport": "role/05-architekt/05-architekt-2026-10-27.md",
       "test_akceptacyjny": "jedna stała długości notatki; notatka 450 znaków z importu po „Zapisz” bez zmian ma 450 znaków",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -282,7 +284,7 @@
       "przyczyna": null,
       "raport": "role/12-niezawodnosc/12-niezawodnosc-2026-10-27.md",
       "test_akceptacyjny": "ekran błędu startu ma ostrzeżenie przed usunięciem aplikacji (test tekstu i9n); wysyłka dołącza plik bazy, gdy baza się nie otwiera",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -302,8 +304,8 @@
       "decyzja": "DEC-01",
       "przyczyna": null,
       "raport": "role/06-tresci/06-tresci-2026-10-27.md",
-      "test_akceptacyjny": "strażnik: każda wyświetlana animacja ma wpis recenzji w repo; 0 animacji bez wpisu w paczce wydania",
-      "status": "otwarte",
+      "test_akceptacyjny": "DEC-01 b: zapis recenzji bramki 4 dla 56 animacji v1 przed zgłoszeniem (poprawki ruchu, jeśli recenzja wykaże) + strażnik „wyświetlana animacja ⇒ wpis recenzji”",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -322,7 +324,7 @@
       "przyczyna": null,
       "raport": "role/09-lokalizacja/09-lokalizacja-2026-10-27.md",
       "test_akceptacyjny": "docs/16 i docs/40 R-010 z zapisem przeglądu (data, zakres, wynik) dla treści z tego commitu; R-010 zamknięte albo przegląd wykonany",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -343,7 +345,7 @@
       "przyczyna": null,
       "raport": "role/02-monetyzacja-b/02-monetyzacja-2026-10-27.md",
       "test_akceptacyjny": "wpis w docs/40 (rejestr ryzyk) z warunkiem zamknięcia; krok listy wydania: ceny w zł na buildzie z App Store przy koncie PL; opcjonalnie piaskownica z regionem PL",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -362,7 +364,7 @@
       "przyczyna": null,
       "raport": "role/10-wydanie/10-wydanie-2026-10-27.md",
       "test_akceptacyjny": "krok zgłoszenia wymaga numeru buildu i SHA zgodnego z dziennikiem wydań (docs/09); wiersz 1031 i nowego buildu w dzienniku",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -388,7 +390,7 @@
       "przyczyna": "SYS-01",
       "raport": "role/07-jakosc/07-jakosc-2026-10-27.md",
       "test_akceptacyjny": "skrypt w verify: każda decyzja w docs/18 ma pole wdrożenia i test-strażnik albo powód; tabela decyzji 1.0 z audytu zgodna",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -413,8 +415,8 @@
       "decyzja": "DEC-09",
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
-      "test_akceptacyjny": "przy aktywnym planie ekran nazywa plan, nie pokazuje wstępu o darmowych dniach ani „Subskrybuj” przy posiadanym planie; wymaganie BR i test",
-      "status": "otwarte",
+      "test_akceptacyjny": "DEC-09 a: przy aktywnym planie ekran pokazuje stan „Masz plan X” zamiast oferty (bez wstępu o darmowych dniach, bez „Subskrybuj” przy posiadanym planie), zmiana planu zwinięta; wymaganie BR i test; teksty w 35 językach",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -437,7 +439,7 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "zrzut AX5 ekranu Trening bez uciętych elementów; scenariusz E2E albo test z największą skalą",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -458,7 +460,7 @@
       "przyczyna": null,
       "raport": "role/07-jakosc/07-jakosc-2026-10-27.md",
       "test_akceptacyjny": "każde ryzyko docs/40 ma stan z datą i dowodem; check:release wywoływany w testflight.yml albo liście wydania",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -477,7 +479,7 @@
       "przyczyna": null,
       "raport": "role/12-niezawodnosc/12-niezawodnosc-2026-10-27.md",
       "test_akceptacyjny": "test: wyjątek w migrate() przy starcie → tryb awaryjny, dane nietknięte",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -495,8 +497,8 @@
       "decyzja": "DEC-03",
       "przyczyna": null,
       "raport": "role/05-architekt/05-architekt-2026-10-27.md",
-      "test_akceptacyjny": "zgodnie z DEC-03: kopia albo reguła + test „normalizacja ⇒ podbicie schematu”",
-      "status": "otwarte",
+      "test_akceptacyjny": "DEC-03 b: reguła „zmiana normalizacji danych = podbicie numeru schematu” w docs + test-strażnik",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -515,7 +517,7 @@
       "przyczyna": null,
       "raport": "role/05-architekt/05-architekt-2026-10-27.md",
       "test_akceptacyjny": "komunikat błędu zapisu widoczny na ekranie, z którego zapisano",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -535,7 +537,7 @@
       "przyczyna": null,
       "raport": "role/08-programista/08-programista-2026-10-27.md",
       "test_akceptacyjny": "wywołanie arkusza systemowego (showManageSubscriptions) z zapasem na stronę; test",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -554,7 +556,7 @@
       "przyczyna": null,
       "raport": "role/01-odkrywanie/01-odkrywanie-2026-10-27.md",
       "test_akceptacyjny": "site/ i opublikowane strony zgodne z faktycznym obiegiem poczty; check-urls porównuje treść",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -573,7 +575,7 @@
       "przyczyna": null,
       "raport": "role/11-wzrost/11-wzrost-2026-10-27.md",
       "test_akceptacyjny": "test: import + pierwszy trening na żywo → najwyżej jedno okno",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -592,7 +594,7 @@
       "przyczyna": null,
       "raport": "role/09-lokalizacja/09-lokalizacja-2026-10-27.md",
       "test_akceptacyjny": "formy liczby mnogiej uk/sl wg CLDR w 3 kluczach; test",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -611,7 +613,7 @@
       "przyczyna": null,
       "raport": "role/06-tresci/06-tresci-2026-10-27.md",
       "test_akceptacyjny": "RIR 6 → RPE 5; wpis w rejestrze twierdzeń",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -631,7 +633,7 @@
       "przyczyna": null,
       "raport": "role/06-tresci/06-tresci-2026-10-27.md",
       "test_akceptacyjny": "check:claims rozpoznaje teksty dziedzinowe (test z nowym tekstem pada); wpisy dla ok. 10 tekstów",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -658,7 +660,7 @@
       "przyczyna": null,
       "raport": "role/01-odkrywanie/01-odkrywanie-2026-10-27.md",
       "test_akceptacyjny": "kontrola-brd 0 błędów; BR dla funkcji z listy; BR-ZRO-001 usunięte",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -677,7 +679,7 @@
       "przyczyna": null,
       "raport": "role/07-jakosc/07-jakosc-2026-10-27.md",
       "test_akceptacyjny": "jedno źródło bramek; pozostałe odsyłają",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -696,7 +698,7 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "zgodnie z decyzją albo zapisana zmiana decyzji; test",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -715,7 +717,7 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "teksty i cele kroków zgodne z ekranami; test",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -734,7 +736,7 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "alternatywa przyciskiem; test",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -753,7 +755,7 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "zrzut 320 pt przy dużym tekście bez zlewania",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -772,7 +774,7 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "cele dotyku ≥ 44 pt w wąskim układzie; test",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -791,7 +793,7 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "przegląd zamknięty; strażnik",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -813,7 +815,7 @@
       "przyczyna": null,
       "raport": "role/08-programista/08-programista-2026-10-27.md",
       "test_akceptacyjny": "stała SECONDARY_SHARE w obu miejscach; tokeny; „PR:” przez t()",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -834,7 +836,7 @@
       "przyczyna": null,
       "raport": "role/09-lokalizacja/09-lokalizacja-2026-10-27.md",
       "test_akceptacyjny": "check:i18n wykrywa wszystkie wywołania; uk jedna forma",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -853,7 +855,7 @@
       "przyczyna": null,
       "raport": "role/12-niezawodnosc/12-niezawodnosc-2026-10-27.md",
       "test_akceptacyjny": "treść e-maila zawiera kod startu",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -872,7 +874,7 @@
       "przyczyna": null,
       "raport": "role/11-wzrost/11-wzrost-2026-10-27.md",
       "test_akceptacyjny": "hipoteza z progiem i datą; bez okresu próbnego",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -893,7 +895,7 @@
       "przyczyna": null,
       "raport": "role/07-jakosc/07-jakosc-2026-10-27.md",
       "test_akceptacyjny": "test kalendarza przechodzi w losowej kolejności; strażnik Maestro",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -912,7 +914,7 @@
       "przyczyna": null,
       "raport": "role/05-architekt/05-architekt-2026-10-27.md",
       "test_akceptacyjny": "backlog z wersją",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -931,7 +933,7 @@
       "przyczyna": null,
       "raport": "role/02-monetyzacja/02-monetyzacja-2026-10-27.md",
       "test_akceptacyjny": "przeliczenie wg DEC-08",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null
     },
     {
@@ -962,7 +964,12 @@
       "raport": "role/03-zakres/03-zakres-2026-10-27.md",
       "test_akceptacyjny": "każda pozycja z wersją w backlogu docs/21 albo wykonana wg DEC-07",
       "status": "otwarte",
-      "commit": null
+      "commit": null,
+      "blokada": "DEC-07 b: właściciel wybiera pozycje przed 1.0 (propozycja M1 w raporcie)"
     }
-  ]
+  ],
+  "wybory": {
+    "data": "2026-10-27",
+    "slowa_wlasciciela": "Dec1 b DEC9 A DEC2 A DEC3 b DEC7b"
+  }
 }
