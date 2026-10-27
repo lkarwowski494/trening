@@ -7,7 +7,7 @@
 // w docs/research/figury-recenzja.json o werdykcie „wyswietlana” albo „zastapiona” (figura v1 ćwiczenia, które wyświetla figurę v2) i skrócie równym bieżącemu
 // (figuraSkrot: figura po rozwinięciu „like” + id i polskie teksty wskazówek ćwiczenia). Figura bez wpisu, ukryta po recenzji albo zmieniona po recenzji
 // trafia na listę otwartą — aplikacja jej nie rysuje, a test tests/figury-recenzja.test.tsx czerwieni verify.
-// Użycie: node scripts/zrodla-runtime.mjs --write  (zapis) | --check  (verify: nieaktualny plik runtime → kod 1; wzór: scripts/cues/gen.mjs)
+// Użycie: node scripts/zrodla-runtime.mjs --write  (zapis) | --check  (verify: nieaktualny plik runtime albo brak źródła wskazówki zestawu ogólnego → kod 1; wzór: scripts/cues/gen.mjs)
 //         | --skroty  (bieżące skróty do wpisu recenzji: { v1: { ćwiczenie: skrót }, v2: { rodzina: skrót } })
 import { fileURLToPath } from 'node:url';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
@@ -63,6 +63,34 @@ export function buildFigures(full, rec = recenzja(), cues = JSON.parse(readFileS
 }
 export const serialize = obj => JSON.stringify(obj) + '\n';
 
+/**
+ * M1-audytor-generalny-021 (06-tresci-003, DEC-05 a, 27.10.2026): źródła zestawów ogólnych figur v2 i kąta stóp są w repo (data/zrodla/wskazowki-ogolne.json,
+ * przeniesione z plików badacza z 25.10.2026). Zwraca listę braków (pusta = zgodne): każde id wskazówki z zestawu ogólnego (cue-sets.json, b = general) ma wpis —
+ * ćwiczenie w data/zrodla/cues.json, przy którym ta wskazówka ma źródła z adresem https, albo ≥ 2 źródła { adres (https:// lub data:<ćwiczenie>), miejsce };
+ * każde ćwiczenie z zestawem ogólnym ma przypisanie z rodziną i plikiem badacza; tekst kąta stóp ma ≥ 1 źródło z adresem i miejscem.
+ */
+export const OGOLNE = join(root, 'data/zrodla/wskazowki-ogolne.json'), CUE_SETS = join(root, 'lib/figures/v2/cue-sets.json');
+export function brakiZrodelOgolnych(sets, ogolne, full, toeText) {
+  const err = [], w = ogolne?.wskazowki ?? {}, p = ogolne?.przypisania ?? {};
+  const url = (sid) => /^https:\/\//.test(full.sources[sid]?.url ?? '');
+  const zrodlaPrzy = (ex, id) => Object.values(full.exercises[ex] ?? {}).flat().filter(r => r.c === id).flatMap(r => r.s);
+  for (const [ex, e] of Object.entries(sets.items)) {
+    if (e.b !== 'general') continue;
+    if (!p[ex] || p[ex].rodzina !== e.f || !p[ex].plik) err.push(`${ex}: brak przypisania zestawu ogólnego (rodzina ${e.f}, plik badacza)`);
+    for (const id of [...(e.ok ?? []), ...(e.err ?? [])]) {
+      const x = w[id];
+      if (!x) { err.push(`${ex}: wskazówka ${id} bez wpisu źródła`); continue; }
+      if (x.cwiczenie) { const s = zrodlaPrzy(x.cwiczenie, id); if (!s.length || !s.every(([sid, m]) => url(sid) && m)) err.push(`${id}: przy „${x.cwiczenie}” w data/zrodla/cues.json brak źródeł z adresem i miejscem`); }
+      else if (!Array.isArray(x.zrodla) || x.zrodla.length < 2 || x.zrodla.some(z => !z.miejsce || !(/^https:\/\//.test(z.adres ?? '') || (/^data:/.test(z.adres ?? '') && full.exercises[z.adres.slice(5)])))) err.push(`${id}: wymagane ≥ 2 źródła z adresem (https:// albo data:<ćwiczenie>) i miejscem`);
+    }
+  }
+  const k = ogolne?.katy?.['sq.toesAngle'];
+  if (!k || k.tekst !== toeText || !Array.isArray(k.zrodla) || !k.zrodla.length || k.zrodla.some(z => !/^https:\/\//.test(z.adres ?? '') || !z.miejsce)) err.push(`kąt stóp: brak wpisu źródła z adresem i miejscem dla tekstu „${toeText}”`);
+  return err;
+}
+/** Tekst kąta stóp w aplikacji (components/ExerciseFigureV2.tsx). */
+export const TOE_TEXT = 'Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.';
+
 export function outputs() {
   return [
     [OUT_CUES, serialize(buildCues(JSON.parse(readFileSync(FULL_CUES, 'utf8'))))],
@@ -75,6 +103,11 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const check = process.argv.includes('--check');
   if (!check && !process.argv.includes('--write')) { console.error('użycie: node scripts/zrodla-runtime.mjs --write | --check | --skroty'); process.exit(2); }
   let bad = 0;
+  if (check) {
+    const braki = existsSync(OGOLNE) ? brakiZrodelOgolnych(JSON.parse(readFileSync(CUE_SETS, 'utf8')), JSON.parse(readFileSync(OGOLNE, 'utf8')), JSON.parse(readFileSync(FULL_CUES, 'utf8')), TOE_TEXT) : ['brak pliku data/zrodla/wskazowki-ogolne.json'];
+    for (const b of braki) console.error(`źródła zestawów ogólnych (M1-audytor-generalny-021): ${b}`);
+    if (braki.length) bad = 1;
+  }
   for (const [file, text] of outputs()) {
     if (check) { if (!existsSync(file) || readFileSync(file, 'utf8') !== text) { console.error(`nieaktualny: ${file.slice(root.length)} — uruchom node scripts/zrodla-runtime.mjs --write (figura zmieniona po recenzji bramki 4 wypada z pliku: nowa recenzja i skrót w docs/research/figury-recenzja.json)`); bad = 1; } }
     else { writeFileSync(file, text); console.log(`zapisano ${file}`); }

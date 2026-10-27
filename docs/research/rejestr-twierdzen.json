@@ -1,5 +1,5 @@
 {
- "_opis": "Rejestr twierdzeń dla tekstów dziedzinowych interfejsu (M1-audytor-generalny-048, DEC-16). Tekst dziedzinowy = tekst słownika (klucz polski w lib/i18n.en.ts) z cytowanym źródłem albo oznaczeniem wagi (uproszczenie, konwencja, jedno źródło…; wzorzec DOMAIN_RE w scripts/claims.mjs). Każdy ma wpis: id, kotwica (początek polskiego tekstu), skrot i skrotEn (skróty polskiego tekstu i angielskiego brzmienia z chwili przeglądu), rodzaje, zrodla (źródła podstawy twierdzenia; od 23.10.2026 NIE stoją w tekście interfejsu — widać je tylko na ekranie Ustawienia → Źródła wiedzy, lib/sources.ts; każde ma tam wpis, pilnuje tests/zrodla-wiedzy.test.ts), dokument + fraza (miejsce w repo z uzasadnieniem; fraza musi w nim występować), przeglad (data: kto, zakres). Kontrola: npm run check:claims (część verify) — brak wpisu, brak tekstu albo zmiana brzmienia bez ponownego przeglądu = błąd. Po zmianie brzmienia: sprawdź źródła (badacz), zaktualizuj wpis, wykonaj node scripts/claims.mjs --rehash <ID> --przeglad \"<data: kto, co sprawdzono>\". Nowy tekst: node scripts/claims.mjs --stub. Stan 20.10.2026: wpisy założone z kodu i docs (programista). Stan 21.10.2026: przegląd badacza wykonany dla wszystkich wpisów T-001–T-040 (docs/research/przeglad-badacza-2026-10-21.md i przeglad-badacza-2026-10-21b.md); wpisy z polem „uwaga” czekają na zmianę brzmienia w aplikacji i --rehash. Ograniczenie: kontrola obejmuje teksty, które same się oznaczają źródłem lub wagą; teksty dziedzinowe bez takiego oznaczenia wymagają dopisania oznaczenia albo wpisu ręcznie. Stan 23.10.2026 (druga decyzja właściciela): oznaczenia pewności nie występują w tekstach interfejsu (pilnuje markerErrors w scripts/claims.mjs i tests/zrodla-wiedzy.test.ts); rodzaje (uproszczenie, konwencja, jedno źródło…) zostają tylko w tym rejestrze i na ekranie Źródła wiedzy. Pole „wycofane” (tekst) = tekst usunięty z interfejsu, wpis zostaje jako ślad decyzji i nie jest kontrolowany względem słownika.",
+ "_opis": "Rejestr twierdzeń dla tekstów dziedzinowych interfejsu (M1-audytor-generalny-048, DEC-16). Tekst dziedzinowy = tekst słownika (klucz polski w lib/i18n.en.ts) z cytowanym źródłem albo oznaczeniem wagi (uproszczenie, konwencja, jedno źródło…; wzorzec DOMAIN_RE w scripts/claims.mjs). Każdy ma wpis: id, kotwica (początek polskiego tekstu), skrot i skrotEn (skróty polskiego tekstu i angielskiego brzmienia z chwili przeglądu), rodzaje, zrodla (źródła podstawy twierdzenia; od 23.10.2026 nie stoją w tekście interfejsu, od 25.10.2026 aplikacja ich nie wymienia wcale — ekran „Źródła wiedzy” usunięty, lib/sources.ts służy tylko testom; źródła żyją tylko w tym rejestrze, docs/research i data/zrodla), dokument + fraza (miejsce w repo z uzasadnieniem; fraza musi w nim występować), przeglad (data: kto, zakres). Kontrola: npm run check:claims (część verify) — brak wpisu, brak tekstu albo zmiana brzmienia bez ponownego przeglądu = błąd. Po zmianie brzmienia: sprawdź źródła (badacz), zaktualizuj wpis, wykonaj node scripts/claims.mjs --rehash <ID> --przeglad \"<data: kto, co sprawdzono>\". Nowy tekst: node scripts/claims.mjs --stub. Stan 20.10.2026: wpisy założone z kodu i docs (programista). Stan 21.10.2026: przegląd badacza wykonany dla wszystkich wpisów T-001–T-040 (docs/research/przeglad-badacza-2026-10-21.md i przeglad-badacza-2026-10-21b.md); wpisy z polem „uwaga” czekają na zmianę brzmienia w aplikacji i --rehash. Ograniczenie do 27.10.2026 (zniesione — niżej): kontrola obejmowała tylko teksty, które same się oznaczały źródłem lub wagą. Stan 23.10.2026 (druga decyzja właściciela): oznaczenia pewności nie występują w tekstach interfejsu (pilnuje markerErrors w scripts/claims.mjs i tests/zrodla-wiedzy.test.ts); rodzaje (uproszczenie, konwencja, jedno źródło…) zostają tylko w tym rejestrze (ekran Źródła wiedzy usunięty 25.10.2026). Pole „wycofane” (tekst) = tekst usunięty z interfejsu, wpis zostaje jako ślad decyzji i nie jest kontrolowany względem słownika. Stan 27.10.2026 (M1-audytor-generalny-021, DEC-05 a): po decyzjach 23.10 i 25.10 wzorzec źródła/wagi nie rozpoznawał żadnego tekstu; tekst dziedzinowy rozpoznaje teraz także słownictwo dziedziny (DOMAIN_WORDS_RE) i jawna lista kluczy (DOMAIN_KEYS) w scripts/claims.mjs. Kandydat, który nie jest twierdzeniem (tekst interfejsu, rachunek na danych użytkownika, opis reguły produktu), ma wpis w „bezTwierdzenia” { kotwica, powod }; brak wpisu w obu listach = błąd verify. Kotwica krótsza niż 20 znaków tylko dla pełnego klucza z DOMAIN_KEYS. Wpisy T-047–T-059: docs/research/przeglad-tresci-2026-10-27.md.",
  "twierdzenia": [
   {
    "id": "T-001",
@@ -701,6 +701,258 @@
    "fraza": "## 1. Metoda",
    "przeglad": "23.10.2026: programista — tekst ekranu Ustawienia → Źródła wiedzy; ogólny opis podstawy przypisania partii (przeglądy badań i badania aktywności mięśni; gdzie jedno źródło albo uproszczenie — oznaczenie przy ćwiczeniu, T-014/T-019/T-035–T-038); metoda i źródła per ćwiczenie: docs/research/24-przypisanie-partii.md, 25-biblioteka. Do przeglądu badacza przy najbliższym przeglądzie rejestru.",
    "wycofane": "25.10.2026 (decyzja właściciela „całkiem anonimowo”, docs/18): ekran „Źródła wiedzy” usunięty z aplikacji, tekst nie występuje w interfejsie; wpis zostaje jako ślad podstawy (docs/research/24-przypisanie-partii.md)."
+  },
+  {
+   "id": "T-047",
+   "kotwica": "Redukcja: trening jak na masę (chroni mięśnie) i",
+   "skrot": "6c3ea9640f",
+   "skrotEn": "7a773ab8bd",
+   "rodzaje": [
+    "przegląd badań",
+    "uproszczenie",
+    "konwencja"
+   ],
+   "zrodla": [
+    "Sardeli i in. 2018 (Nutrients 10(4):423, PMC5946208) — odczyt 2026-10-27",
+    "WHO 2020 (Bull i in., BJSM, PMC7719906) — odczyt 2026-10-27"
+   ],
+   "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
+   "fraza": "**T-047**",
+   "uwaga": "Trening siłowy ogranicza utratę masy beztłuszczowej przy deficycie — przegląd dotyczy starszych osób z otyłością, tekst mówi ogólnie (uproszczenie, kierunek zgodny); umiarkowane cardio — WHO; „jedna sesja” = konwencja (T-011).",
+   "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — źródła otwarte i cytaty sprawdzone dosłownie na surowym tekście tego dnia; docs/research/przeglad-tresci-2026-10-27.md"
+  },
+  {
+   "id": "T-048",
+   "kotwica": "Redukcja: trening jak na masę (chroni mięśnie);",
+   "skrot": "dd0430212b",
+   "skrotEn": "46affa0613",
+   "rodzaje": [
+    "przegląd badań",
+    "uproszczenie",
+    "konwencja"
+   ],
+   "zrodla": [
+    "Sardeli i in. 2018 (Nutrients 10(4):423, PMC5946208) — odczyt 2026-10-27",
+    "WHO 2020 (Bull i in., BJSM, PMC7719906) — odczyt 2026-10-27"
+   ],
+   "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
+   "fraza": "**T-048**",
+   "uwaga": "Jak T-047; próg dni z sesją cardio = reguła produktu (T-023).",
+   "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — źródła otwarte i cytaty sprawdzone dosłownie na surowym tekście tego dnia; docs/research/przeglad-tresci-2026-10-27.md"
+  },
+  {
+   "id": "T-049",
+   "kotwica": "Dzień po dniu te same główne partie: {list}.",
+   "skrot": "f90ab869a0",
+   "skrotEn": "50660e93f4",
+   "rodzaje": [
+    "uproszczenie",
+    "przegląd badań"
+   ],
+   "zrodla": [
+    "ACSM 2026 (Currier i in., MSSE 58(4), PMC12965823) — odczyt 2026-10-27",
+    "ACSM 2011 (≥ 48 h) — odczyt badacza 21.10.2026 (T-004), nie powtórzony"
+   ],
+   "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
+   "fraza": "**T-049**",
+   "uwaga": "To samo twierdzenie co T-004/T-022; przy równej liczbie serii w tygodniu częstotliwość nie zmienia przerostu (ACSM 2026).",
+   "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — ACSM 2026 otwarte, cytat o częstotliwości przy równej objętości sprawdzony dosłownie; część „zwykle z dniem przerwy” jak T-004 (ACSM 2011, odczyt badacza 21.10.2026, nie powtórzony); docs/research/przeglad-tresci-2026-10-27.md"
+  },
+  {
+   "id": "T-050",
+   "kotwica": "Siła: bój główny na początku, {s} × {a}–{b} powt",
+   "skrot": "5f4a7a06e3",
+   "skrotEn": "bc45fc1a30",
+   "rodzaje": [
+    "przegląd badań",
+    "uproszczenie"
+   ],
+   "zrodla": [
+    "ACSM 2026 (Currier i in., MSSE 58(4), PMC12965823) — odczyt 2026-10-27"
+   ],
+   "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
+   "fraza": "**T-050**",
+   "uwaga": "ACSM 2026 tab. 6: ≥80% 1RM, 2–3 serie, początek sesji. Uproszczenie: 4–6 powtórzeń przy ≥80% 1RM to wybór projektu. [OTWARTE — przelicznik %1RM ↔ powtórzenia nie sprawdzony 27.10.2026 u źródła; badacz]",
+   "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — źródła otwarte i cytaty sprawdzone dosłownie na surowym tekście tego dnia; docs/research/przeglad-tresci-2026-10-27.md"
+  },
+  {
+   "id": "T-051",
+   "kotwica": "Masa: serie na partię w tygodniu do celu z Ustaw",
+   "skrot": "5e0a786b86",
+   "skrotEn": "69de080b39",
+   "rodzaje": [
+    "przegląd badań",
+    "uproszczenie"
+   ],
+   "zrodla": [
+    "ACSM 2026 (Currier i in., MSSE 58(4), PMC12965823) — odczyt 2026-10-27"
+   ],
+   "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
+   "fraza": "**T-051**",
+   "uwaga": "ACSM 2026: ≥10 serii/tydz., 30–100% 1RM, blisko upadku albo 2–3 RIR; liczby powtórzeń = uproszczenie (jak T-008), RIR 0–3 jak T-009.",
+   "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — źródła otwarte i cytaty sprawdzone dosłownie na surowym tekście tego dnia; docs/research/przeglad-tresci-2026-10-27.md"
+  },
+  {
+   "id": "T-052",
+   "kotwica": "Siła bez obciążenia zewnętrznego (sztanga, hantl",
+   "skrot": "d5e3b1d53b",
+   "skrotEn": "9c908cf77f",
+   "rodzaje": [
+    "przegląd badań"
+   ],
+   "zrodla": [
+    "ACSM 2026 (Currier i in., MSSE 58(4), PMC12965823) — odczyt 2026-10-27"
+   ],
+   "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
+   "fraza": "**T-052**",
+   "uwaga": "ACSM 2026: siłę poprawia też trening z gumami i w domu; siła rośnie z ciężarem (dawka–odpowiedź) — stąd „rośnie, ale zwykle mniej”.",
+   "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — źródła otwarte i cytaty sprawdzone dosłownie na surowym tekście tego dnia; docs/research/przeglad-tresci-2026-10-27.md"
+  },
+  {
+   "id": "T-053",
+   "kotwica": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR)",
+   "skrot": "1a264b5969",
+   "skrotEn": "65a2c9d2d3",
+   "rodzaje": [
+    "przegląd badań"
+   ],
+   "zrodla": [
+    "ACSM 2026 (Currier i in., MSSE 58(4), PMC12965823) — odczyt 2026-10-27"
+   ],
+   "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
+   "fraza": "**T-053**",
+   "uwaga": "Jak T-009: blisko upadku albo 2–3 RIR, upadek nieobowiązkowy, dokładnego RIR nie ustalono.",
+   "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — źródła otwarte i cytaty sprawdzone dosłownie na surowym tekście tego dnia; docs/research/przeglad-tresci-2026-10-27.md"
+  },
+  {
+   "id": "T-054",
+   "kotwica": "Palce stóp lekko na zewnątrz — zwykle mniej więcej",
+   "skrot": "bf0f7804c9",
+   "skrotEn": "2d7fbe33ad",
+   "rodzaje": [
+    "otwarte"
+   ],
+   "zrodla": [
+    "Stronger by Science „How to Squat”, sekcja Foot Angle (szczebel 4) — odczyt 2026-10-27"
+   ],
+   "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
+   "fraza": "**T-054**",
+   "uwaga": "[OTWARTE — przedział kąta wymaga 2 zgodnych źródeł szczebla 4 (zasada właściciela 25.10.2026); drugie z zapisu badacza 25.10 (NSCA Basics 2012, s. 49) nieotwarte 27.10.2026 — PDF HTTP 403. Krok: badacz z dostępem do PDF albo inne źródło szczebla 4 z liczbą. Tekst w aplikacji bez zmiany do rozstrzygnięcia.]",
+   "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — Stronger by Science otwarte, cytat 15–20° sprawdzony dosłownie; NSCA Basics 2012 nieotwarte (HTTP 403) — twierdzenie otwarte; docs/research/przeglad-tresci-2026-10-27.md"
+  },
+  {
+   "id": "T-055",
+   "kotwica": "Poniżej celu serii tygodniowo: {list}. Cel ustawisz",
+   "skrot": "2272d21e36",
+   "skrotEn": "061b4e1c7b",
+   "rodzaje": [
+    "przegląd badań"
+   ],
+   "zrodla": [
+    "ACSM 2026 (Currier i in., MSSE 58(4), PMC12965823) — odczyt 2026-10-27"
+   ],
+   "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
+   "fraza": "**T-055**",
+   "uwaga": "ACSM 2026 tab. 6: ≥10 serii/tydz. (dawka–odpowiedź) — dolny próg przy budowie masy; jak T-034.",
+   "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — źródła otwarte i cytaty sprawdzone dosłownie na surowym tekście tego dnia; docs/research/przeglad-tresci-2026-10-27.md"
+  },
+  {
+   "id": "T-056",
+   "kotwica": "Najcięższy ciężar w miejscu dla boju głównego",
+   "skrot": "fb3d15eb15",
+   "skrotEn": "725aff1df9",
+   "rodzaje": [
+    "przegląd badań",
+    "uproszczenie"
+   ],
+   "zrodla": [
+    "ACSM 2026 (Currier i in., MSSE 58(4), PMC12965823) — odczyt 2026-10-27"
+   ],
+   "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
+   "fraza": "**T-056**",
+   "uwaga": "ACSM 2026: przerost przy 30–100% 1RM, gdy serie blisko upadku; siła rośnie z ciężarem. 4–6 powtórzeń jak T-050 (uproszczenie).",
+   "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — źródła otwarte i cytaty sprawdzone dosłownie na surowym tekście tego dnia; docs/research/przeglad-tresci-2026-10-27.md"
+  },
+  {
+   "id": "T-057",
+   "kotwica": "Jeden trening w tygodniu też daje postępy, ale",
+   "skrot": "132ca98546",
+   "skrotEn": "abe6688732",
+   "rodzaje": [
+    "przegląd badań"
+   ],
+   "zrodla": [
+    "ACSM 2026 (Currier i in., MSSE 58(4), PMC12965823) — odczyt 2026-10-27"
+   ],
+   "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
+   "fraza": "**T-057**",
+   "uwaga": "ACSM 2026: przerost 1 vs >5 dni przy równej objętości bez różnicy; wpływ częstotliwości na siłę maleje przy równej objętości. Pełne zestawienie: docs/research/29-jeden-dzien-tygodniowo.md.",
+   "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — źródła otwarte i cytaty sprawdzone dosłownie na surowym tekście tego dnia; docs/research/przeglad-tresci-2026-10-27.md"
+  },
+  {
+   "id": "T-058",
+   "kotwica": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne;",
+   "skrot": "f8d003a7b9",
+   "skrotEn": "a75b5428f2",
+   "rodzaje": [
+    "przegląd badań"
+   ],
+   "zrodla": [
+    "Physical Activity Guidelines for Americans 2018, s. 61 — odczyt 2026-10-27",
+    "ACSM 2026 (Currier i in., MSSE 58(4), PMC12965823) — odczyt 2026-10-27"
+   ],
+   "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
+   "fraza": "**T-058**",
+   "uwaga": "Jak T-027: wytyczne USA 2018 („difficult to do another repetition”), upadek nieobowiązkowy (ACSM 2026).",
+   "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — źródła otwarte i cytaty sprawdzone dosłownie na surowym tekście tego dnia; docs/research/przeglad-tresci-2026-10-27.md"
+  },
+  {
+   "id": "T-059",
+   "kotwica": "{faza} {n} s",
+   "skrot": "a48ac292b1",
+   "skrotEn": "a48ac292b1",
+   "rodzaje": [
+    "przegląd badań",
+    "konwencja"
+   ],
+   "zrodla": [
+    "Schoenfeld, Ogborn, Krieger 2015 (Sports Med 45:577–585, PMID 25601394, streszczenie) — odczyt 2026-10-27",
+    "ACSM 2026 (Currier i in., MSSE 58(4), PMC12965823) — odczyt 2026-10-27"
+   ],
+   "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
+   "fraza": "**T-059**",
+   "uwaga": "Tempo faz animacji figury v2 (lib/figures/v2/anim.ts TEMPO: 2 s opuszczanie, 1 s podnoszenie): przerost podobny przy czasie powtórzenia 0,5–8 s; konkretne 2 s / 1 s = konwencja ilustracji w tym przedziale.",
+   "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — źródła otwarte i cytaty sprawdzone dosłownie na surowym tekście tego dnia; docs/research/przeglad-tresci-2026-10-27.md"
+  }
+ ],
+ "bezTwierdzenia": [
+  {
+   "kotwica": "Trening w toku zapisuje się na bieżąco.",
+   "powod": "pomoc ekranu treningu: jak oznaczyć typ serii (w tym „do upadku”); bez treści dziedzinowej"
+  },
+  {
+   "kotwica": "Zwykle w: {l} — {name}. Zamienić?",
+   "powod": "podpowiedź miejsca z historii użytkownika („zwykle” = rachunek na danych użytkownika)"
+  },
+  {
+   "kotwica": "Lista możliwości: przesunięcie planu, przeniesienie",
+   "powod": "opis funkcji przesunięcia planu; reguła odstępu między partiami ma wpisy T-004/T-022"
+  },
+  {
+   "kotwica": "Dni treningowe w tygodniu (w tym {n} cardio)",
+   "powod": "etykieta liczby dni w podglądzie generatora"
+  },
+  {
+   "kotwica": "Dni powyżej {k} to sesje umiarkowanego cardio",
+   "powod": "opis reguły produktu generatora (próg dni — wartość produktowa); uzasadnienie cardio we wpisach T-023 i T-029"
+  },
+  {
+   "kotwica": "Cardio poza planem: przy tej liczbie dni wszystkie",
+   "powod": "opis reguły produktu generatora (próg dni z sesją cardio, T-023); zalecenie WHO ma wpis T-024"
+  },
+  {
+   "kotwica": "Cardio w planie: {n} min tygodniowo.",
+   "powod": "suma minut z planu użytkownika (rachunek); wersja z zaleceniem WHO ma wpis T-013"
   }
  ]
 }
