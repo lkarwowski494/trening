@@ -83,4 +83,5 @@ Progi to konwencja rysunku do potwierdzenia przez badacza. Dobrane na tych samyc
 | leg_machine | 7 | 3 | 1 | 3 | 7/7 OK | 0 z 3 (0%) | [leg_machine.md](leg_machine.md) |
 | leg_isolation | 8 | 5 | 2 | 1 | 8/8 OK | 0 z 1 (0%) | [leg_isolation.md](leg_isolation.md) |
 | hip_bridge | 10 | 7 | 3 | 0 | 10/10 OK | — | [hip_bridge.md](hip_bridge.md) |
-| calf_raise | 12 | 4 | 2 | 6 | 12/12 OK | 0 z 6 (0%) | [calf_raise.md](calf_raise.md) |
+| calf_raise | 12 | 5 | 1 | 6 | 12/12 OK | 0 z 6 (0%) | [calf_raise.md](calf_raise.md) |
+| lunge | 24 | 17 | 3 | 4 | 24/24 OK | 0 z 4 (0%) | [lunge.md](lunge.md) |
