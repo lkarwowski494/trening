@@ -1,0 +1,133 @@
+{
+ "rodzina": "sled_throw",
+ "wygenerowano": "2026-10-27T12:45:07.369Z",
+ "wyjatki": {},
+ "przyblizenia": {},
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Sled Push",
+   "obraz": "Sled-Push-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -200,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sanie",
+     "x": 75,
+     "h": 100,
+     "dlugosc": 60
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.131,
+    0.197,
+    0.261,
+    0.343,
+    0.428,
+    0.509,
+    0.602,
+    0.696,
+    0.785,
+    0.873,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.131,
+    0.197,
+    0.261,
+    0.343,
+    0.428,
+    0.509,
+    0.602,
+    0.696,
+    0.785,
+    0.873,
+    1
+   ],
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: sanie obciążeniowe (sprzet: rodzaj \"sanie\")"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "sanki_pochylenie",
+    "sanki_plecy"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Sled Drag (Harness)",
+   "obraz": "Sled-Drag-Harness--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -200,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sanie",
+     "x": -170,
+     "dlugosc": 60,
+     "trzymanie": "pas"
+    },
+    {
+     "rodzaj": "pas"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.135,
+    0.201,
+    0.264,
+    0.346,
+    0.43,
+    0.511,
+    0.602,
+    0.697,
+    0.786,
+    0.873,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.135,
+    0.201,
+    0.264,
+    0.346,
+    0.43,
+    0.511,
+    0.602,
+    0.697,
+    0.786,
+    0.873,
+    1
+   ],
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: sanie obciążeniowe (sprzet: rodzaj \"sanie\") + pas obciążeniowy (sprzet: rodzaj \"pas\")"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "sanki_pochylenie",
+    "sanki_plecy"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}
