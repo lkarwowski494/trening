@@ -3,6 +3,10 @@
 // Błędy z cue: push.mis.partial (płytki dół — łamie tylko pompka_zakres), plank.mis.sag (opadające biodra — łamie tylko linię ciała), splank.mis.elbow (łokieć przed/za barkiem).
 import { v2, BODY, R, r1, up, dir, klatka, bladZTrajektorii, zbuduj, dChwytu, przeciecie, kostkaNaPalcach, barki, ZASIEG } from './model.mjs';
 
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+/** Wysokość podwyższenia pod stopami w Decline Push Up = siedzisko typowej ławki z danych sprzętu (UPROSZCZENIE: żadne źródło w repo nie podaje wysokości podwyższenia w tym ćwiczeniu, więc bierzemy typową ławkę/skrzynię z figury-sprzet.json, nie zgadujemy własnej liczby). */
+export const WYS_PODWYZSZENIA = JSON.parse(readFileSync(fileURLToPath(new URL('../../../data/zrodla/figury-sprzet.json', import.meta.url)), 'utf8')).lawka_regulowana.seatTop;
 export const SUSP_Y = 220; /* wysokość zaczepu taśm (EQUIP.suspensionY, domyślna w silniku) */
 const RODZINA = 'pushup_plank';
 const POD = -60; /* podbicie: palce stoją na podporze (wyjątek rodziny kostki −75°) */
@@ -26,12 +30,12 @@ function dlonX({ A, hy, theta0, hzR, hzL = hzR, off = 0, dl = DL }) {
 
 /** Trajektoria pompki: u ∈ [0,1], theta(u) = zgięcie łokcia (góra → dół), dłonie nieruchome, kostki nieruchome. */
 function trajPompki(o) {
-  const { A, H, hzR, hzL = hzR, theta, pole, zNog = ZNOG, miednicaZ = 0, rece } = o;
+  const { A, H, hzR, hzL = hzR, theta, pole, zNog = ZNOG, miednicaZ = 0, rece, pod = POD } = o;
   return (u) => {
     const t = typeof theta === 'function' ? theta(u) : theta; const h = typeof H === 'function' ? H(u) : H; const a = typeof A === 'function' ? A(u) : A;
     const k = uklad({ A: a, H: h, theta: t, hzR, hzL }); const po = o.poleLokcia ?? [-1, 0, 0.5];
     return { ...klatka({ u, miednica: [k.pelvis[0], k.pelvis[1], miednicaZ], pitch: k.pitch, glowa: k.pitch * 0.75,
-      nogi: { R: { k: [a[0], a[1], zNog], pod: POD }, L: { k: [a[0], a[1], -zNog], pod: POD } },
+      nogi: { R: { k: [a[0], a[1], zNog], pod }, L: { k: [a[0], a[1], -zNog], pod } },
       rece: rece ? rece(u, k, h) : { R: { g: [h[0], h[1], hzR], pole: [po[0], po[1], po[2]] }, L: { g: [h[0], h[1], -hzL], pole: [po[0], po[1], -po[2]] } } }), _S: k.S, _fi: k.fi };
   };
 }
@@ -50,10 +54,10 @@ const FSAG = () => 1; /* błąd postawy widoczny w każdej klatce (v2-jakosc: bl
 const bladSag = (okFn, sagFn = sagZ(okFn)) => bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us: US, ok: (u) => czysc(okFn(u)), zle: (u) => sagFn(u, FSAG(u)) });
 
 /* ---------- typ: pompka (dwie ręce, ciało w linii, dół = zgięcie łokci) ---------- */
-export function pompka(cw, { hz = 19, hzL, off = 0, pole = [-1, -0.3, 0.35], boxRece, boxStopy, thetaTop = 12, thetaDol = 144, thetaPlytko = 90, blady = ['partial', 'sag'], sagDeg = 11, zNog = ZNOG, rece, hy: hyOpt, sprzetRece } = {}) {
-  const y0r = boxRece ?? 0; const hy = hyOpt ?? (boxRece ? boxRece + 3.2 : 2); const A = [0, kostkaNaPalcach(boxStopy ?? 0)]; const hzl = hzL ?? hz;
+export function pompka(cw, { hz = 19, hzL, off = 0, pole = [-1, -0.3, 0.35], boxRece, boxStopy, thetaTop = 12, thetaDol = 144, thetaPlytko = 90, blady = ['partial', 'sag'], sagDeg = 11, zNog = ZNOG, rece, hy: hyOpt, sprzetRece, pod } = {}) {
+  const y0r = boxRece ?? 0; const hy = hyOpt ?? (boxRece ? boxRece + 3.2 : 2); const A = [0, kostkaNaPalcach(boxStopy ?? 0, pod ?? POD)]; const hzl = hzL ?? hz;
   const hx = dlonX({ A, hy, theta0: thetaTop, hzR: hz, hzL: hzl, off }); const H = [hx, hy];
-  const mk = (th) => trajPompki({ A, H, hzR: hz, hzL: hzl, theta: th, poleLokcia: pole, zNog, rece });
+  const mk = (th) => trajPompki({ A, H, hzR: hz, hzL: hzl, theta: th, poleLokcia: pole, zNog, rece, pod });
   const ok = mk((u) => thetaTop + (thetaDol - thetaTop) * u); const sprzet = [{ rodzaj: 'podloga', x0: -150, x1: 220 }];
   if (boxStopy) sprzet.push({ rodzaj: 'skrzynia', x0: -70, x1: 14, top: boxStopy });
   if (boxRece) sprzet.push({ rodzaj: 'skrzynia', x0: r1(hx - 2), x1: r1(hx + 16), top: boxRece });
@@ -208,6 +212,7 @@ export const WYJATKI = {
 export const WYJATKI_OPISU = { 'ro.back': 'zestaw ogólny (cue-sets.json) odwołuje się do wskazówki bez tekstu w lib/cues/text/*.json; tekst do napisania przez badacza, przekład przez tłumacza' };
 /** Uwagi: poza wyliczona, ale ćwiczenie przybliżone (do oceny recenzenta). */
 export const PRZYBLIZENIA = {
+  'Decline Push Up': `uproszczenie: stopy na podwyższeniu o wysokości typowej ławki (${WYS_PODWYZSZENIA} cm, figury-sprzet.json → lawka_regulowana.seatTop); źródła w repo nie podają wysokości podwyższenia w tym ćwiczeniu (dane aplikacji: „feet on a bench or box”), więc liczba jest konwencją rysunku, do potwierdzenia przez badacza; dłonie 13 cm za barkami w górze, żeby przedramię w dole było blisko pionu bez obniżania podparcia stóp`,
   'Clock Push-Up': 'przybliżenie: pompka z dłońmi przestawionymi przód/tył (zegar); skok i przesunięcie dłoni na kolejne godziny nie są w pojedynczym powtórzeniu pozy',
   'Plyo Push-Up': 'faza lotu: dłonie 12 cm nad podłogą, kostki stoją (ciało nie odrywa palców)',
   'Suspended Push-Up': 'taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi do uchwytów; uchwyty nieruchome w ruchu (w rzeczywistości taśmy się wahają), rozstaw uchwytów szeroki (z = ±33)',
@@ -222,7 +227,7 @@ export function generuj() {
     'Push-Up Wide': () => pompka('Push-Up Wide', { hz: 33, pole: [-0.5, -0.3, 1], sagDeg: 9 }),
     'Close-Grip Push-Up': () => pompka('Close-Grip Push-Up', { hz: 10, pole: [-1, 0.3, 0.25], blady: ['partial'] }),
     'Diamond Push Up': () => pompka('Diamond Push Up', { hz: 4.5, off: 6, thetaDol: 138, pole: [-0.6, 0.6, 1], blady: [] }),
-    'Decline Push Up': () => pompka('Decline Push Up', { hz: 22, boxStopy: 10, thetaDol: 146, blady: ['partial'] }),
+    'Decline Push Up': () => pompka('Decline Push Up', { hz: 22, off: 13, boxStopy: WYS_PODWYZSZENIA, pod: -68, thetaDol: 146, blady: ['partial'] }),
     'Incline Push Up': () => pompka('Incline Push Up', { hz: 22, off: -18, boxRece: 45, thetaDol: 148, blady: [] }),
     'Incline Push-Up Close-Grip': () => pompka('Incline Push-Up Close-Grip', { hz: 10, off: -18, pole: [-1, 0.3, 0.25], boxRece: 45, blady: ['partial'] }),
     'Single-Arm Push-Up': () => jednaReka('Single-Arm Push-Up'),

@@ -125,7 +125,7 @@ export const PODPOR_NA_DLONIACH_KOLANO = ['Mountain Climbers'];
 export const DOL_POMPKI = ['Push Up', 'Push-Up Wide', 'Close-Grip Push-Up', 'Diamond Push Up', 'Decline Push Up', 'Incline Push Up', 'Incline Push-Up Close-Grip'];
 /** R7: najmniejsze zgięcie kolana (w KAŻDEJ klatce) w ćwiczeniach z podkulonymi kolanami. */
 export const KOLANA_UGIETE = { 'Tuck Crunch': 80, 'Reverse Crunch': 80 };
-export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie', 'podparcie_kolan', 'ksztalty_nad_podloga', 'kregoslup_zwija_sie', 'wyjatek_nie_przeczy_wskazowce', 'wyjatek_wymaga_mechanizmu'];
+export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie', 'podparcie_kolan', 'ksztalty_nad_podloga', 'styk_z_podlozem', 'kregoslup_zwija_sie', 'wyjatek_nie_przeczy_wskazowce', 'wyjatek_wymaga_mechanizmu'];
 /** Reguły poziomu manifestu podglądu (nie pozy): zgodność manifestu z obrazem i układ podglądu. */
 export const REGULY_MANIFESTU = ['manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
 
@@ -422,6 +422,26 @@ export function ksztaltyNadPodloga(v2, poza) {
       if (y < PROGI.ksztaltPodPodlogaCm) return [`kształt „${sh.id}” sięga ${f1(y)} cm (rzut z ${view === 'side' ? 'boku' : 'przodu'}, u = ${u}${err === undefined ? '' : `, błąd ${err}`}), a ma ≥ ${PROGI.ksztaltPodPodlogaCm} cm — kształt schodzi pod podłogę`]; } }
   return [];
 }
+/** R17. Styk z podłożem (niezmiennik, bez warunku cechy ćwiczenia; recenzja n6): w każdej klatce najniższy punkt NARYSOWANEGO ciała (rzut z boku) leży najwyżej wisiCm nad podłożem pod nim: podłogą albo wierzchem zadeklarowanej skrzyni/ławki.
+ * Wyjątki: ćwiczenie z zadeklarowanym lotem (LOT) i ciało podwieszone (chwyt ≥ PODWIESZENIE_MIN_CM nad podłogą na sprzęcie zawieszenie/sztanga; zwis na drążku nie dotyka podłoża). */
+export const PODWIESZENIE_MIN_CM = 120;
+/** Dłoń na gryfie sztangi leżącej na talerzach na podłodze (rollout): spód dłoni ok. tyle cm pod osią gryfu (konwencja rysunku); gryf na talerzach jest podłożem dla dłoni. */
+export const DLON_POD_OSIA_GRYFU_CM = 3;
+export function stykZPodlozem(v2, poza) {
+  if (poza.cwiczenie in LOT) return [];
+  const hang = poza.sprzet.some((g) => g.rodzaj === 'zawieszenie' || (g.rodzaj === 'sztanga' && (g.y ?? 0) >= PODWIESZENIE_MIN_CM));
+  const pow = poza.sprzet.filter((g) => ['podloga', 'skrzynia', 'lawka'].includes(g.rodzaj)).map((g) => g.rodzaj === 'podloga' ? { y: 0, x0: g.x0 ?? -1e9, x1: g.x1 ?? 1e9 } : g.rodzaj === 'skrzynia' ? { y: g.top ?? 0, x0: g.x0, x1: g.x1 } : { y: g.top ?? 0, x0: (g.x ?? 0) - (g.dlugosc ?? 0), x1: (g.x ?? 0) + (g.dlugosc ?? 0) });
+  for (const g of poza.sprzet) if (g.rodzaj === 'sztanga' && g.talerze && (g.y ?? 0) < PODWIESZENIE_MIN_CM) pow.push({ y: (g.y ?? 0) - DLON_POD_OSIA_GRYFU_CM, x0: -1e9, x1: 1e9 });
+  if (!pow.some((q) => q.y === 0)) pow.push({ y: 0, x0: -1e9, x1: 1e9 });
+  for (const u of siatka(poza, 12)) {
+    if (hang && ['R', 'L'].some((k) => v2.keyframeFrame(poza, u).sk.arms[k].grip[1] >= PODWIESZENIE_MIN_CM)) continue;
+    let nisko = null; for (const sh of v2.dataShapes(poza, u, 'side')) { if (sh.k !== 'poly' || !CIALO_KSZTALT.test(sh.id ?? '')) continue; for (const q of sh.pts) if (!nisko || q[1] < nisko[1]) nisko = q; }
+    if (!nisko) continue;
+    const pod = pow.filter((q) => q.y <= nisko[1] + 0.5 && nisko[0] >= q.x0 - 5 && nisko[0] <= q.x1 + 5).map((q) => q.y); const h = nisko[1] - (pod.length ? Math.max(...pod) : 0);
+    if (h > PROGI.wisiCm) return [`najniższy punkt narysowanego ciała leży ${f1(h)} cm nad podłożem (u = ${u}; ≤ ${PROGI.wisiCm} cm) — ciało wisi w powietrzu (bez zadeklarowanego lotu ani zwisu)`];
+  }
+  return [];
+}
 const uniesienieTulowia = (s) => { const dy = s.shoulderC[1] - s.pelvis[1]; const d = Math.hypot(s.shoulderC[0] - s.pelvis[0], dy); return Math.asin(Math.max(-1, Math.min(1, dy / d))) / R; };
 /** R16. Kręgosłup zwija się: gdy tułów unosi się nad podłogę o więcej niż tulowUnosiMinDeg (wskazówka „lędźwie zostają na podłodze”), zgięcie kręgosłupa ≥ kregoslupZwijaMinDeg (zwija się odcinek piersiowy, nie sztywna deska). */
 export function kregoslupZwijaSie(v2, poza) {
@@ -503,7 +523,7 @@ export function sprawdzJakosc(poza, ctx) {
   if (cechy.has('rollout')) dodaj('proste_rece_rollout', prosteReceRollout(v2, poza));
   dodaj('widocznosc_bledu_kat', widocznoscBleduKat(v2, poza));
   if (cechy.has('klek_lawka')) dodaj('podparcie_kolan', podparcieKolan(v2, poza, 'lawka')); else if (cechy.has('klek_podloga')) dodaj('podparcie_kolan', podparcieKolan(v2, poza, 'podloga'));
-  dodaj('ksztalty_nad_podloga', ksztaltyNadPodloga(v2, poza));
+  dodaj('ksztalty_nad_podloga', ksztaltyNadPodloga(v2, poza)); dodaj('styk_z_podlozem', stykZPodlozem(v2, poza));
   if (cechy.has('ledzwie_przy_podlodze')) dodaj('kregoslup_zwija_sie', kregoslupZwijaSie(v2, poza));
   if (cwiczenie in LEDZWIE_WYJATKI) { dodaj('wyjatek_nie_przeczy_wskazowce', wyjatekNieStoiWSprzecznosci(cwiczenie, teksty ?? {}, ctx.root ?? ROOT)); dodaj('wyjatek_wymaga_mechanizmu', wyjatekWymagaMechanizmu(v2, poza)); }
   if (PODPARCIE_ZMIENNE.includes(cwiczenie)) dodaj('srodek_ciezkosci_podparcie', srodekCiezkosciNadPodparciem(v2, poza));

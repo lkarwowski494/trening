@@ -118,9 +118,10 @@ function deadBug(cw) {
     return ramka({ u, miednica: [0, Y0], p: -90, glowa: -90, nogi: { R: kR, L: kL }, rece: { R: { a: aR, z: 19 }, L: { a: 90, z: -19 } } }); };
   return zbuduj1(cw, us.map(fr));
 }
-export function cocoons(cw, { bend1 = 40, rise = 8 } = {}) {
+export function cocoons(cw, { bend1 = 40, rise = 3.4, dy0 = -1.3 } = {}) {
+  /* R17 (styk z podłożem, recenzja n6): zwijanie, nie lewitacja. Miednica unosi się o `rise` = 3,4 cm (R14b ≥ 3), ale start jest niżej o 1,3 cm (dy0: kość krzyżowa wtapia się w matę jak w pozach leżących), więc najniższy punkt narysowanego ciała zostaje ≤ 0,8 cm nad podłogą w każdej klatce (przy rise = 8 wisiał 6,7 cm). */
   const ks = kolanoProste(); const us = Array.from({ length: 9 }, (_, i) => i / 8);
-  const fr = (u) => { const p = lerp(-90, -62, u); const bend = bend1 * u; const y = Y0 + rise * wygladzenie(u); /* zwijanie obu końców (R14b): kręgosłup się zgina, a miednica unosi się o `rise` cm (pośladki odrywają się od podłogi) */ const t = lerp(10, 100, u), k = lerp(ks, 100, u); const S = barki([0, y], p, bend);
+  const fr = (u) => { const p = lerp(-90, -62, u); const bend = bend1 * u; const y = Y0 + dy0 + rise * wygladzenie(u); /* zwijanie obu końców (R14b): kręgosłup się zgina, a miednica unosi się o `rise` cm (pośladki odrywają się od podłogi) */ const t = lerp(10, 100, u), k = lerp(ks, 100, u); const S = barki([0, y], p, bend);
     const fk = nogaFK([0, y], t, k); const dokolan = Math.atan2(fk.knee[1] - S[1], fk.knee[0] - S[0]) / R; const aOver = KAT_OS(p) - 20; const a = lerp(aOver, dokolan, wygladzenie(Math.min(1, u * 1.2)));
     return ramka({ u, miednica: [0, y], p, bend, glowa: p, nogi: { R: { t, k, z: ZNOG, stopa: 'gora' }, L: { t, k, z: -ZNOG, stopa: 'gora' } }, rece: { R: { a, z: 8 }, L: { a, z: -8 } } }); };
   return zbuduj1(cw, us.map(fr));
