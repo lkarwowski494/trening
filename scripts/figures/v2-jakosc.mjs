@@ -4,6 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { wskazowkiCwiczenia } from './v2-sens.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const f1 = (x) => x.toFixed(1);
@@ -42,6 +43,9 @@ export const PROGI = {
   receProsteMaxDeg: 30, /* R8: ręce „wzdłuż ciała”/„sięgające”: zgięcie łokcia ≤ */
   bladGorszyCm: 2.5, /* R10: rząd błędu opadania: odchylenie miednicy od linii kostka–bark większe niż w pozie poprawnej o ≥ tyle (w stronę opadania) */
   rzadBleduTolDeg: 8, /* staw spoza obszaru błędu (WSZYSTKIE: biodro, kolano, kostka, łokieć, bark) może się różnić od pozy poprawnej najwyżej o tyle; wyjątki: TOL_BLEDU */
+  dlonWysokoscBarkowCm: 15, /* delt_raise (lat.height), układ ŚWIATA: w u = 1 |y dłoni − y barku| ≤ tyle, a przez cały ruch dłoń nie wyżej niż bark + tyle (KONWENCJA rysunku; badacz 27.10.2026: ręce „mniej więcej równolegle do podłogi”, bez liczby w źródłach) */
+  zwisPrzedramieDeg: 15, /* leżenie przodem ze sztangą (zwis na prostych rękach): u = 0 przedramię pionowo w dół ± tyle (KONWENCJA) */
+  tulowPrzodemFrontY: -0.3, /* leżenie przodem na ławce: składowa pionowa wektora „przód” klatki piersiowej ≤ tyle (klatka zwrócona ku ławce/podłodze; KONWENCJA) */
   stykPodparciaCm: 4.5, /* punkt ciała uznany za podparcie, gdy jego (oś) wysokość ≤ tyle: dłoń, stopa, kolano (promień kończyny) */
 };
 /** Odwiedzenie ramienia widoczne Z PRZODU (stopnie): arcsin(wysunięcie łokcia w bok poza oś barku / PRAWDZIWA długość ramienia 3D, nie długość w rzucie), sprawdzane w KAŻDEJ klatce. To druga linia obrony; pierwsza to geometria (lokiec_nad_nadgarstkiem, rozstaw_dloni).
@@ -102,6 +106,10 @@ export const PODPOR_NA_DLONIACH_KOLANO = ['Mountain Climbers'];
 export const DOL_POMPKI = ['Push Up', 'Push-Up Wide', 'Close-Grip Push-Up', 'Diamond Push Up', 'Decline Push Up', 'Incline Push Up', 'Incline Push-Up Close-Grip'];
 /** R7: najmniejsze zgięcie kolana (w KAŻDEJ klatce) w ćwiczeniach z podkulonymi kolanami. */
 export const KOLANA_UGIETE = { 'Tuck Crunch': 80, 'Reverse Crunch': 80 };
+/** Ćwiczenia delt_raise ze wskazówką lat.height poza regułą dlon_na_wysokosci_barkow_swiat (powód obowiązkowy). Raport 27.10.2026 na wszystkich 30 pozach rodziny: 1 trafienie prawdziwe (Straight Raises on Incline Bench), 1 fałszywy alarm (Car Drivers). */
+export const DLON_NA_WYSOKOSCI_BARKOW_WYJATKI = { 'Car Drivers': 'ruch kołowy kierownicy: podniesiona dłoń leży o promień koła (21 cm, rysunek 16,2 cm) nad osią obrotu; wysokość nie jest „ręce poziomo”' };
+/** Leżenie PRZODEM na ławce skośnej ze zwisem rąk (opis źródłowy: face down, ręce proste, unoszenie przodem). Front Incline Dumbbell Raise: [OTWARTE] — jedno źródło mówi o siadzie tyłem do oparcia, nie dodawać, dopóki nie ma drugiego. */
+export const LEZENIE_PRZODEM = ['Straight Raises on Incline Bench'];
 export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie'];
 /** Reguły poziomu manifestu podglądu (nie pozy): zgodność manifestu z obrazem i układ podglądu. */
 export const REGULY_MANIFESTU = ['manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
@@ -314,6 +322,23 @@ export function torLokciaPrzyciagania(v2, poza) {
     else if (wBiodra < 0) o.push(`łokieć ${k} na końcu (u = ${u}) leży ${f1(-wBiodra)} cm bliżej głowy niż bark, a ma być przy tułowiu (ku biodrom)`); }
   return o;
 }
+/** 17. delt_raise, wysokość w UKŁADZIE ŚWIATA (nie stawu): w ostatniej klatce dłoń (przynajmniej jednej ręki) leży |y dłoni − y barku| ≤ dlonWysokoscBarkowCm, a w żadnej klatce żadna dłoń nie jest wyżej niż bark + tyle. */
+export function dlonNaWysokosciBarkowSwiat(v2, poza) {
+  const o = []; const t = PROGI.dlonWysokoscBarkowCm; const us = siatka(poza); const hs = (u) => { const s = v2.keyframeFrame(poza, u).sk; return ['R', 'L'].map((k) => s.arms[k].grip[1] - s.arms[k].shoulder[1]); };
+  const uk = poza.klatki[poza.klatki.length - 1].u; const h1 = hs(uk);
+  if (!h1.some((h) => Math.abs(h) <= t)) o.push(`w u = ${uk} dłoń leży ${f1(h1.reduce((a, b) => (Math.abs(a) <= Math.abs(b) ? a : b)))} cm względem barku (świat, oś y), a ma |Δy| ≤ ${t} cm (ręce mniej więcej poziomo, dłonie na wysokości barków)`);
+  for (const u of us) { const m = Math.max(...hs(u)); if (m > t) { o.push(`w u = ${u} dłoń leży ${f1(m)} cm nad barkiem (świat), a ma ≤ ${t} cm (nie wyżej niż bark + ${t} cm)`); break; } }
+  return o;
+}
+/** 17b. Leżenie przodem: w każdej klatce klatka piersiowa zwrócona w dół (składowa y wektora „przód” ≤ tulowPrzodemFrontY) — tułów leży przodem do ławki. */
+export function tulowPrzodemDoLawki(v2, poza) {
+  const o = []; for (const u of siatka(poza)) { const fy = v2.keyframeFrame(poza, u).sk.front[1]; if (fy > PROGI.tulowPrzodemFrontY) { o.push(`w u = ${u} wektor „przód” klatki ma składową pionową ${fy.toFixed(2)}, a ma ≤ ${PROGI.tulowPrzodemFrontY} (tułów leży przodem do ławki, nie plecami)`); break; } } return o;
+}
+/** 17c. Leżenie przodem ze sztangą, u = 0: przedramię pionowo w dół ± zwisPrzedramieDeg (ręce zwisają). */
+export function zwisPrzedramieU0(v2, poza) {
+  const o = []; const s = v2.keyframeFrame(poza, poza.klatki[0].u).sk; for (const k of ['R', 'L']) { const a = s.arms[k]; const d = [a.grip[0] - a.elbow[0], a.grip[1] - a.elbow[1], a.grip[2] - a.elbow[2]]; const kat = (Math.acos(Math.max(-1, Math.min(1, -d[1] / Math.hypot(...d)))) * 180) / Math.PI; if (kat > PROGI.zwisPrzedramieDeg) { o.push(`przedramię ${k} w u = ${poza.klatki[0].u} odchyla się ${f1(kat)}° od pionu w dół, a ma ≤ ${PROGI.zwisPrzedramieDeg}° (ręce zwisają)`); break; } } return o;
+}
+const wskazowkiLatHeight = (cwiczenie) => wskazowkiCwiczenia(cwiczenie).includes('lat.height');
 const miedzy = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
 /** Środek ciężkości ciała (3D): suma mas segmentów (MASY.masa) w ich środkach mas (MASY.srodek × długość od końca bliższego). */
 export function srodekCiezkosci(s) {
@@ -401,6 +426,8 @@ export function sprawdzJakosc(poza, ctx) {
   if (rodzina === 'core_floor' && !(cwiczenie in LEDZWIE_WYJATKI) && !NIE_LEZY.includes(cwiczenie) && maWskazowkeLedzwie(cwiczenie, teksty ?? {})) dodaj('ledzwie_przy_podlodze', ledzwiePrzyPodlodze(v2, poza));
   dodaj('rzad_bledu_dotyczy', rzadBleduDotyczy(v2, poza));
   if (PRZYCIAGANIE.includes(cwiczenie)) { dodaj('tor_lokcia_przyciaganie', torLokciaPrzyciagania(v2, poza)); dodaj('zwis_startowy', zwisStartowy(v2, poza)); dodaj('tor_lokcia_srodek', torLokciaSrodek(v2, poza)); }
+  if (rodzina === 'delt_raise' && wskazowkiLatHeight(cwiczenie) && !(cwiczenie in DLON_NA_WYSOKOSCI_BARKOW_WYJATKI)) dodaj('dlon_na_wysokosci_barkow_swiat', dlonNaWysokosciBarkowSwiat(v2, poza));
+  if (LEZENIE_PRZODEM.includes(cwiczenie)) { dodaj('tulow_przodem_do_lawki', tulowPrzodemDoLawki(v2, poza)); dodaj('zwis_przedramie_u0', zwisPrzedramieU0(v2, poza)); }
   if (ROLLOUTY.includes(cwiczenie)) dodaj('proste_rece_rollout', prosteReceRollout(v2, poza));
   dodaj('widocznosc_bledu_kat', widocznoscBleduKat(v2, poza));
   if (PODPARCIE_ZMIENNE.includes(cwiczenie)) dodaj('srodek_ciezkosci_podparcie', srodekCiezkosciNadPodparciem(v2, poza));

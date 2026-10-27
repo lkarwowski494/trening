@@ -352,7 +352,7 @@
           "grupa": "zakres",
           "cue": null,
           "parametry": {
-            "min_deg": 30
+            "min_deg": 20
           },
           "zrodlo": "pozycja końcowa „V”: ACE #242 V-ups (progresje 1, 3–5: tułów ok. 45°, obie stopy uniesione) i Catalyst Athletics V-Up (#313: jednoczesny skłon i uniesienie prostych nóg, pauza, gdy dłonie i stopy się spotkają) — przeczytane 26.10.2026",
           "liczba": "uproszczenie (ACE podaje 45°; próg 30° z zapasem)",
@@ -363,7 +363,7 @@
           "grupa": "zakres",
           "cue": null,
           "parametry": {
-            "min_deg": 30
+            "min_deg": 20
           },
           "zrodlo": "ACE #242 (progresje 2 i 5: obie stopy uniesione, kolana wyprostowane); Catalyst V-Up (#313: uniesienie prostych nóg do kształtu V)",
           "liczba": "konwencja (≥ 30° nad poziomem)",
@@ -641,7 +641,7 @@
     },
     "delt_raise": {
       "zakres_wyjatki": {
-        "Front Incline Dumbbell Raise": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" }
+        "Straight Raises on Incline Bench": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, tułów na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −37° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026; pozycja ćwiczenia: 2 źródła szczebla 4 (badanie sprzeczności tekst–rysunek pkt 1, 27.10.2026)" }
       },
       "reguly": {
         "lokiec_staly": {
@@ -688,6 +688,21 @@
           "zrodlo": "ruch definiujący unoszenie bokiem/przodem: ACE #26 kroki 3–4, ExRx DBLateralRaise (lat.move); ACE #54, ExRx DBFrontRaise (front.move) — cues.json",
           "liczba": "uproszczenie (kąt ramię–tułów rośnie o ≥ 45°)",
           "pewnosc": "ustalone"
+        },
+        "ramie_unosi_sie_skos": {
+          "typ": "kat_ramie_tulow_wzrost",
+          "grupa": "zakres",
+          "cue": "front.move",
+          "cue_dodatkowe": [
+            "front.elbows",
+            "lat.height"
+          ],
+          "parametry": {
+            "min_deg": 20
+          },
+          "zrodlo": "jak delt_raise.ramie_unosi_sie, ale siedząc plecami do oparcia skośnego (oparcie 60°, górny zakres źródeł 45–60°): tułów odchylony o 30° od pionu, więc od zwisu pionowego do wysokości barków (do nieco powyżej) kąt ramię–tułów rośnie najwyżej o ok. 30–40° (Front Incline Dumbbell Raise: dwa źródła szczebla 4 + opis katalogu, 27.10.2026)",
+          "liczba": "konwencja (kąt ramię–tułów rośnie o ≥ 20°; próg 45° dla stania nie jest osiągalny na oparciu 60°)",
+          "pewnosc": "uproszczenie"
         },
         "rear_dlonie_w_linii_barkow": {
           "typ": "dlon_w_plaszczyznie_barkow_u1",
@@ -809,6 +824,10 @@
         "Straight Raises on Incline Bench": [
           "lokiec_staly",
           "ramie_unosi_sie"
+        ],
+        "Front Incline Dumbbell Raise": [
+          "lokiec_staly",
+          "ramie_unosi_sie_skos"
         ],
         "Kettlebell Halo with Overhead Extension": [],
         "Barbell Incline Shoulder Raise": [],

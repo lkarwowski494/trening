@@ -26,7 +26,7 @@ const ruchJ = (th, phi, o = {}) => (u) => ({ R: RACZ(lerp(th[0], th[1], u), lerp
 const rzad = (zr, x, y0, y1, o = {}) => (u) => { const y = lerp(y0, y1, u); const sp = (s) => ({ g: [x, y, POL(s) * zr], pole: [-0.15, 0.45, POL(s)], obrot: o.obrot }); return o.jedna ? { R: sp('R'), L: WOLNA() } : { R: sp('R'), L: sp('L') }; };
 
 
-/** Unoszenie ramion przodem leżąc przodem na ławce skośnej: ramiona od zwisu pionowo w dół do poziomu przed sobą (w stronę głowy), łokieć stały lekko zgięty. */
+/** Unoszenie ramion przodem leżąc przodem na ławce skośnej (Straight Raises on Incline Bench ze sztangą; Front Incline Dumbbell Raise [OTWARTE] — patrz figury-sens.json): ramiona od zwisu pionowo w dół do poziomu przed sobą (w stronę głowy), łokieć stały lekko zgięty. */
 function przodemLezac(cw, o) {
   const L = lezyPrzodem(o.kat ?? 45, { dl: 38, zr: 16, kolDx: 52, pole: [1, 0.2, 0] }); const zr = o.zr ?? 22; const re = Math.sqrt(62 ** 2 - (19 - zr) ** 2);
   const fr = (u) => { const th = lerp(0, 90, u) * R; const rece = {}; for (const sd of ['R', 'L']) { const sw = -POL(sd); const S = L.S(sd);
@@ -100,9 +100,9 @@ export function generuj() {
   G['Reverse Pec Deck'] = () => { const T = siedz(); const sp = (u) => RACZ(90, lerp(8, 100, u), { flex: 14, ku: [0, -1, 0] }); const S = bark(T.m, 0, 1); const G0 = ramieFK(S, 1, sp(0)).g;
     const pv = [r1(S[0]), r1(G0[1] - 15), r1(S[2])]; const lever = { rodzaj: 'dzwignia', tryb: 'obrot', x: pv[0], y: pv[1], z: pv[2], dlugosc: r1(Math.hypot(G0[0] - pv[0], G0[1] - pv[1], G0[2] - pv[2])), punkt: 'dlonie', trzyma: 'R' };
     return wlasna('Reverse Pec Deck', { sprzet: [{ rodzaj: 'lawka', x: 0, top: 43, kat: 80, dlugosc: 60, siedzisko: 38 }, lever], tulow: { m: T.m, p: 0 }, nogi: nogiSied(), rece: (u) => obie(sp(u)), us: U12 }); };
-  /* --- leżąc na ławce skośnej: sztanga z nad ud nad głowę --- */
-  G['Straight Raises on Incline Bench'] = () => { const B = naLawce(55, 43, { zr: 24 }); return wlasna('Straight Raises on Incline Bench', { sprzet: [{ rodzaj: 'lawka', x: 0, top: 43, kat: 55, dlugosc: 75 }, SPRZET.sztanga()], tulow: { m: B.m, p: B.p, glowa: B.glowa }, nogi: B.nogi,
-    rece: (u) => { const l = rekaProsta(lerp(80, 185, u), 0, { flex: 14, pl: 1 }); return obie(l); }, us: U12 }); };
-  G['Front Incline Dumbbell Raise'] = () => przodemLezac('Front Incline Dumbbell Raise', { sprzet: [H] });
+  /* --- leżąc PRZODEM na ławce skośnej (opis źródłowy: face down, ręce proste, sztanga zwisa i unosi się przodem do ok. poziomu; docs/przekazanie badanie sprzeczności pkt 1, 27.10.2026) --- */
+  G['Straight Raises on Incline Bench'] = () => przodemLezac('Straight Raises on Incline Bench', { sprzet: [SPRZET.sztanga()] });
+  /* --- siedząc plecami do oparcia ławki skośnej (45–60°): hantle od zwisu przy udach do wysokości barków (2 źródła szczebla 4 + opis katalogu, 27.10.2026; wcześniej rysunek błędnie pokazywał leżenie przodem) --- */
+  G['Front Incline Dumbbell Raise'] = () => { const B = naLawce(60, 43, { zr: 24 }); return wlasna('Front Incline Dumbbell Raise', { sprzet: [{ rodzaj: 'lawka', x: 0, top: 43, kat: 60, dlugosc: 75 }, H], tulow: { m: B.m, p: B.p, glowa: B.glowa }, nogi: B.nogi, rece: ruch([4, 92], [30, 0], { pl: 1, obrot: [0, 0] }) }); };
   return G;
 }
