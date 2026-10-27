@@ -47,7 +47,7 @@ describe('A4 — arkusz „📍” i okno „Inne miejsce”', () => {
   test('wybór pozycji otwiera okno „Inne miejsce”: nazwa z podpowiedzią „Tylko dziś”, „Zapisz jako miejsce”, gotowe zestawy, grupy sprzętu; „Anuluj” po lewej i „Użyj” po prawej', async () => {
     await boot({ start: true }); await pick(await sheetOpts(), ONCE);
     expect(top()).toBe('place-once'); expect(screen.getByText('Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.')).toBeTruthy();
-    expect(screen.getByPlaceholderText('Tylko dziś')).toBeTruthy(); expect(screen.getByText('Zapisz jako miejsce')).toBeTruthy(); expect(screen.getByText('Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).')).toBeTruthy();
+    expect(screen.getByPlaceholderText('Tylko dziś')).toBeTruthy(); expect(screen.getByText('Zapisz jako miejsce')).toBeTruthy(); expect(screen.getByText('Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).')).toBeTruthy();
     expect(screen.getByText('Gotowe zestawy')).toBeTruthy(); for (const n of ['Hotel', 'Tylko masa ciała', 'Dom']) expect(screen.getAllByText(n).length).toBeGreaterThan(0);
     expect(screen.getByText('Sprzęt')).toBeTruthy(); expect(screen.getByText('Wolne ciężary')).toBeTruthy();
     expect(screen.getByTestId('close-modal').props.accessibilityLabel).toBe('Anuluj'); expect(screen.getByTestId('place-once-use').props.accessibilityLabel).toBe('Użyj');

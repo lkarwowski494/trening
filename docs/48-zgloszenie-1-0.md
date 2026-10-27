@@ -66,6 +66,7 @@ Właściciela prowadzimy po jednym kroku, nie zbiorczą listą (CLAUDE.md); poni
 | Z-08 | Lista kontrolna z telefonu (`docs/39`, ok. 15–20 min) + R-004, R-013, R-014 (pkt 7) | właściciel | Z-07 | 20–30 min | od razu po buildzie (CLAUDE.md, model po L-001, pkt 3) |
 | Z-09 | Zakup w piaskownicy: każdy plan, przywrócenie, tryb samolotowy, zwrot, Chmura rodzinna (docs/39 US-13) | właściciel | Z-07 | 30–45 min | Apple: aplikacja z TestFlight sama działa w środowisku testowym, **bez** osobnego konta Sandbox (strona 1 poniżej); konto Sandbox służy tylko do scenariuszy specjalnych |
 | Z-10 | `asc-kontrola.yml` zielone (ceny, brak ofert wprowadzających, rodzina, kategoria, adresy) | automat | — | CI kilka minut | zamyka R-M5-3 przy każdym zgłoszeniu; uruchomić tuż przed Z-26 |
+| Z-10a | Adresy z aplikacji i z `store/app-store-urls.json` (prywatność, wsparcie, espresso, EULA, marketing) zwracają 200, a treść stron na apps4brew.com = `site/`, w tym znacznik wersji: workflow „Sprawdzenie adresów (ręcznie)” (`check-urls.yml`, skrypt `scripts/check-urls.mjs`). Po zmianie `site/` najpierw eksport do repo strony (`scripts/site/eksport-apps4brew.mjs`), push w apps4brew-www, potem ten krok | automat (agent uruchamia) | Z-05 | kilka minut | zamyka ryzyko R-017 (docs/40); **nie** w `npm run verify` (verify działa offline); uruchomić po każdej zmianie `site/` i tuż przed Z-26 |
 
 Strony Apple dla Z-09: <https://developer.apple.com/help/app-store-connect/test-a-beta-version/testing-subscriptions-and-in-app-purchases-in-testflight/> („Apps downloaded from TestFlight will automatically operate in a sandbox environment.”, odczyt 25.10.2026).
 
@@ -129,7 +130,7 @@ Podstawą jest `store/review-notes.md` (wersja 23.10.2026); poniżej wersja na 1
 testu `tests/store-review-notes.test.ts` (zdanie o wersjach 0.11–0.20 przestaje pasować do pierwszego wydania).
 
 Co się zmieniło względem wersji z 23.10.2026:
-- **Limit 5 dni nie do pokazania w czasie recenzji:** dzień treningowy to trening na żywo trwający ponad 20 minut, więc recenzent nie dojdzie do blokady w krótkiej sesji. Notatka mówi o tym wprost i wskazuje drogę do ekranu zakupu z Ustawień
+- **Limit 5 dni nie do pokazania w czasie recenzji:** dzień treningowy to trening na żywo trwający ponad 7 minut (`MIN_LIVE_MINUTES_FOR_DAY` w `lib/access.ts`; zmiana z 23.10.2026), więc recenzent nie dojdzie do blokady w krótkiej sesji. Notatka mówi o tym wprost i wskazuje drogę do ekranu zakupu z Ustawień
   (żadnej ukrytej funkcji do jego wywołania nie dodajemy — wytyczna 2.5.19 zabrania ukrytych funkcji).
 - Dodany akapit o imporcie i eksporcie CSV (ścieżka z tekstów aplikacji: Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”); recenzent nie ma pliku, więc podajemy sposób: eksport, potem import tego samego pliku.
 - Usunięte zdanie „od wersji 0.11 do 0.20”; w 1.0 stała wartość subskrypcji (3.1.2(a)) opiera się na regularnych aktualizacjach i alternatywie jednorazowej. Czy dodać konkretne zapowiedzi — decyzja produktowa, nie zgadujemy.
@@ -145,7 +146,7 @@ NO ACCOUNT, NO SERVER
 
 IN-APP PURCHASES (one subscription group "Full version": monthly and yearly auto-renewable subscriptions plus a one-time lifetime unlock; no introductory offers or free trials)
 - Where to find them: More > Settings, section "Subscription" > "Full version". The purchase screen opens from there at any time, and also when a workout is started after the free limit is used. It shows the price and period from the App Store, "Restore purchases", "Redeem code", and links to the Privacy Policy and the Terms of Use (Apple's standard EULA).
-- Free tier: the whole app is free for up to 5 training days per calendar month. A training day is a day with at least one finished live workout longer than 20 minutes (several workouts on the same day count as one day). Because of this rule the limit cannot be reached within a short review session; the purchase screen is therefore reachable from Settings as described above. History, backup, export and logging past workouts always work, with or without a purchase.
+- Free tier: the whole app is free for up to 5 training days per calendar month. A training day is a day with at least one finished live workout longer than 7 minutes (several workouts on the same day count as one day). Because of this rule the limit cannot be reached within a short review session; the purchase screen is therefore reachable from Settings as described above. History, backup, export and logging past workouts always work, with or without a purchase.
 - Family Sharing is enabled for all three products.
 - Ongoing value (Guideline 3.1.2(a)): the app is actively developed and updated regularly, and every new feature is included in the subscription. Users who prefer a single payment can choose the one-time lifetime unlock instead.
 
@@ -272,23 +273,22 @@ Znane ograniczenia zrzutów (docs/41): porównanie miesiąca liczy dni 1–N bie
 podtytuł PL „Serie i przerwy. Bez konta”, EN „Workout tracker. No account.” (decyzja STOP 2 M5, 21.10.2026); słowa kluczowe w granicy 100 bajtów (limit Apple: „up to 100 bytes”, pola nie powielają nazwy aplikacji i nie zawierają nazw innych aplikacji);
 tekst promocyjny z limitem 170 znaków; opis zawiera: szablony, widok „Skupiony”/„Lista”, timer przerw, Apple Watch, zapowiedzi głosowe, „Dostosuj do miejsca”, generator, odczyt i zapis Apple Health, kopię i eksport JSON/CSV, import CSV, 35 języków, model „darmowe do 5 dni treningowych w miesiącu” i przypis o espresso (bez kwot).
 
-**Nowe wyróżniki 1.0**, których opis jeszcze nie mówi (po zakończeniu prac w toku):
-1. rysunki ruchu dla całej biblioteki ćwiczeń (dziś opis: „Biblioteka ćwiczeń z krótkimi wskazówkami techniki”);
-2. wskazówki techniki z wymienionymi źródłami (próg 2 niezależnych źródeł, decyzja 25.10.2026) — w opisie jako cecha **możliwa do sprawdzenia** (aplikacja ma ekran „Źródła wiedzy”), nie jako ocena jakości;
-3. rozszerzony import historii z plików CSV (rozpoznawanie układu pliku, podgląd przed zapisem, brak nadpisywania) oraz karta po imporcie;
-4. okno „Uczciwe zasady” po pierwszym treningu na żywo (to funkcja aplikacji, w sklepie wystarczy zdanie o modelu, które już jest).
+**Nowe wyróżniki 1.0**, których opis jeszcze nie mówi (po zakończeniu prac w toku; korekta 26.10.2026 po audycie 1.0: bez odwołań do źródeł — decyzja „całkiem anonimowo” z 25.10.2026 — i bez rysunków dla pełnej biblioteki, które przechodzą do 1.1, wybór C z 26.10.2026):
+1. rozszerzony import historii z plików CSV (rozpoznawanie układu pliku, podgląd przed zapisem, brak nadpisywania) oraz karta po imporcie;
+2. okno „Uczciwe zasady” po pierwszym treningu na żywo (to funkcja aplikacji, w sklepie wystarczy zdanie o modelu, które już jest).
+Opis ćwiczeń zostaje bez zmian („Biblioteka ćwiczeń z krótkimi wskazówkami techniki”); o rysunkach ruchu w opisie nie wspominamy, dopóki nie obejmą całej biblioteki (1.1).
 
 **Propozycja zmian (do decyzji D4; bez nazw innych aplikacji — wytyczna 2.3.7; liczby tylko z kodu, np. liczba ćwiczeń z `libraryCount` jako stała pilnowana testem, jak `LANGS.length`):**
 
 | Pole | PL | EN |
 |---|---|---|
-| Punkt „POSTĘPY / PROGRESS”, zamiast „Biblioteka ćwiczeń z krótkimi wskazówkami techniki” | • Biblioteka ćwiczeń z rysunkami ruchu i wskazówkami techniki, każda z podanym źródłem | • Exercise library with movement drawings and technique cues, each with its sources listed |
+| Punkt „POSTĘPY / PROGRESS” | bez zmian (zob. wyżej) | bez zmian |
 | Punkt „TWOJE DANE / YOUR DATA”, zamiast „Import z kopii i z plików CSV popularnych dzienników treningowych” | • Import z kopii i z plików CSV: aplikacja rozpoznaje układ pliku, pokazuje podgląd przed zapisem i niczego nie nadpisuje | • Import from a backup and from CSV files: the app recognises the file layout, shows a preview before saving and never overwrites anything |
-| Tekst promocyjny (≤ 170 znaków; PL 150, EN 162) | Rysunki ruchu do ćwiczeń, wskazówki ze źródeł, własne szablony i timer przerw. Offline, bez konta i reklam. Za darmo do 5 dni treningowych w miesiącu. | Movement drawings for exercises, sourced technique cues, your own templates and a rest timer. Offline, no account, no ads. Free for up to 5 training days a month. |
+| Tekst promocyjny (≤ 170 znaków; PL 123, EN 121) | Własne szablony, timer przerw i wskazówki techniki. Offline, bez konta i reklam. Za darmo do 5 dni treningowych w miesiącu. | Your own templates, a rest timer and technique cues. Offline, no account, no ads. Free for up to 5 training days a month. |
 | Podtytuł | bez zmian (decyzja 21.10.2026) | bez zmian |
 | Słowa kluczowe | bez zmian (rekomendacja): dobór oparty na badaniu `docs/45-widocznosc-w-sklepie.md`; nowe wyróżniki nie mają mierzalnego popytu na frazy, a pomiar zrobi punkt 8 tygodni po premierze | bez zmian |
 
-Uwagi: (a) zdania o rysunkach i źródłach **wolno wpisać dopiero po potwierdzeniu w kodzie**, że obejmują całą bibliotekę (inaczej „dla wybranych ćwiczeń” albo bez słowa o pokryciu); (b) tekst promocyjny można zmieniać bez nowej wersji (Apple: „without requiring an updated submission”) —
+Uwagi: (a) zdania o rysunkach ruchu wolno wpisać dopiero, gdy obejmą całą bibliotekę (1.1); zdań o źródłach nie wpisujemy w ogóle (decyzja 25.10.2026); (b) tekst promocyjny można zmieniać bez nowej wersji (Apple: „without requiring an updated submission”) —
 nadaje się więc do poprawek po premierze; (c) po zmianie opisu trzeba zaktualizować dokładne asercje w `tests/audit-m1-045-store-description.test.ts` i `tests/store-metadata.test.ts` oraz przetłumaczyć nowe zdania na 31 pozostałych lokalizacji (rola tłumacz, recenzent lokalizacji, słownik terminów) — ok. 1,5–2 h agenta;
 (d) wpis do ASC: `asc-metadane.yml` tryb `podglad` → `zapis` (Z-14).
 

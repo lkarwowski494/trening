@@ -7,7 +7,7 @@
 <!-- /gen:badges-ci -->
 
 <!-- gen:badges-ver -->
-[![Wersja aplikacji](https://img.shields.io/badge/wersja-0.20.0-blue?style=flat)](docs/18-przekazanie.md)
+[![Wersja aplikacji](https://img.shields.io/badge/wersja-1.0.0-blue?style=flat)](docs/18-przekazanie.md)
 [![Minimalny iOS](https://img.shields.io/badge/iOS-16.4%2B-black?style=flat&logo=apple)](https://developer.apple.com/ios/)
 [![Minimalny watchOS](https://img.shields.io/badge/watchOS-10.0%2B-black?style=flat&logo=apple)](https://developer.apple.com/watchos/)
 [![Expo SDK](https://img.shields.io/badge/Expo_SDK-57-000020?style=flat&logo=expo)](https://expo.dev/)
@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-5777-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-5774-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-47-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -51,7 +51,7 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 <!-- gen:stats -->
 | Miara | Wartość | Źródło |
 |---|---|---|
-| Wersja aplikacji | 0.20.0 | `app.json`, `package.json` (docs/18) |
+| Wersja aplikacji | 1.0.0 | `app.json`, `package.json` (docs/18) |
 | Minimalny iOS | 16.4 | baza Expo (`ExpoModulesCore.podspec`); tylko iPhone |
 | Minimalny watchOS (Apple Watch) | 10.0 | `targets/watch-app/expo-target.config.js`, docs/35-zegarek-apple.md |
 | Platforma | Expo SDK 57 · React Native 0.86 · React 19.2 · TypeScript 6.0 | `package.json` |
@@ -59,11 +59,11 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Ćwiczenia w bibliotece | 709 | `lib/seed.ts`, `lib/catalog.generated.ts`, docs/10-miejsca-i-sprzet.md |
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
 | Elementy UI (przyciski, pola, przełączniki) | 354 (z testem: 354) | docs/19-macierz-testow.md |
-| Komunikaty i teksty | 1115 (z testem: 1115) | docs/19-macierz-testow.md |
+| Komunikaty i teksty | 1064 (z testem: 1064) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 1040 (z testem: 1040) | docs/19-macierz-testow.md |
-| Wymiary (listy wartości i typy-unie) | 147 (z testem: 147) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 496 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 5777 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Wymiary (listy wartości i typy-unie) | 145 (z testem: 145) | docs/19-macierz-testow.md |
+| Pliki testów Jest | 497 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 5774 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 157 (Maestro: 128, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 15) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 47 (w głównym przebiegu: 44, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -260,7 +260,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (52)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (53)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -306,6 +306,7 @@ trening/
 - [`docs/46-przeniesienie-1.0.md`](docs/46-przeniesienie-1.0.md) — 46. Przeniesienie czystej wersji 1.0 do Apps4Brew — lista kontrolna i narzędzie (21.10.2026)
 - [`docs/47-instrukcja-testu-dzwieku.md`](docs/47-instrukcja-testu-dzwieku.md) — 47. Instrukcja testu: dźwięk, wibracja, tryb skupienia, zegarek (build 1030 i kolejne)
 - [`docs/48-zgloszenie-1-0.md`](docs/48-zgloszenie-1-0.md) — 48. Zgłoszenie wersji 1.0 do App Store — szkic kompletu (stan 25.10.2026)
+- [`docs/49-testflight-1-0.md`](docs/49-testflight-1-0.md) — 49. TestFlight 1.0 — „What to Test” i lista „tylko telefon” (przygotowane 26.10.2026)
 - [`docs/50-figury-v2.md`](docs/50-figury-v2.md) — 50 — Figury v2: grafiki ćwiczeń dla całej biblioteki (projekt, etap 1)
 - [`docs/51-figury-v2-pokrycie.md`](docs/51-figury-v2-pokrycie.md) — 51 — Figury v2: rodziny ruchu i pokrycie ćwiczeń (generowane)
 - [`docs/52-gemini-pozy-pilotaz.md`](docs/52-gemini-pozy-pilotaz.md) — 52 — Pilotaż: pozy figur v2 generowane przez API Gemini
@@ -343,6 +344,7 @@ Workflowy (stan każdego z nich pokazują odznaki u góry dla trzech podstawowyc
 | `asc-kontrola.yml` | ASC kontrola ustawień | ręcznie | kontrola ustawień App Store Connect (tylko odczyt; ręcznie; narzędzie z repozytorium narzędzi studia) |
 | `asc-metadane.yml` | ASC metadane sklepu | ręcznie | wgranie metadanych sklepu (opisy, nazwy, słowa kluczowe; 33 lokalizacje) do App Store Connect (ręcznie; podgląd domyślnie, zapis za zatwierdzeniem release) |
 | `asc-zrzuty.yml` | ASC zrzuty ekranu | ręcznie | wgranie zrzutów ekranu sklepu (iPhone, Apple Watch; wszystkie lokalizacje) do App Store Connect (ręcznie; dry-run domyślnie, apply za zatwierdzeniem release) |
+| `check-urls.yml` | Sprawdzenie adresów (ręcznie) | ręcznie | sprawdzenie adresów wydania: kod 200 i zgodność stron apps4brew.com z site/ (ręcznie, tylko odczyt; krok bramki wydania) |
 | `e2e-ios.yml` | E2E iOS (symulator) | wypchnięcie, ręcznie, wywołanie z innego workflow | scenariusze Maestro na symulatorze iPhone |
 | `gemini-figury.yml` | Pozy figur przez Gemini (API, ręcznie) | ręcznie | pozy figur v2 przez API Gemini (ręcznie, płatny, limit 3 USD; pilotaż, wynik jako artefakt) |
 | `ios-unsigned.yml` | iOS — kompilacja | ręcznie | kompilacja natywna bez podpisu (sprawdzenie kodu, bez pliku do instalacji) |

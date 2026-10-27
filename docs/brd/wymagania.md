@@ -542,6 +542,19 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy użytkownik uruchamia nową wersję
     - Wtedy dane są przeniesione do nowego schematu, a kopia zapisu sprzed migracji istnieje
 
+### BR-DAN-005: „Co nowego” po aktualizacji; w pierwszej wersji sklepowej historia pusta
+- Przepływ: PR-06
+- Dowód potrzeby: J-04; decyzja właściciela 14.10.2026 (docs/18: przy 1.0 czyścimy „Co nowego”); kod `lib/whatsnew.ts`, `components/WhatsNew.tsx`; test `tests/whats-new.test.tsx`
+- Kryteria akceptacji:
+  - Scenariusz: Wersja 1.0 bez historii zmian
+    - Zakładając, że historia „Co nowego” jest pusta (pierwsza wersja w App Store)
+    - Gdy użytkownik, nowy albo po aktualizacji z wersji testowej, otwiera ekran Trening
+    - Wtedy nagłówek nie ma przycisku „Co nowego” ani kropki, a zapisane dane pozostają bez zmian
+  - Scenariusz: Kropka po aktualizacji z nowym wpisem
+    - Zakładając, że historia ma wpis, którego użytkownik z co najmniej jednym treningiem jeszcze nie otworzył
+    - Gdy otwiera ekran Trening
+    - Wtedy przycisk „Co nowego” ma kropkę, a po otwarciu panelu kropka znika
+
 ### BR-DAN-004: Usuwanie poza treningiem: widoczna droga obok gestu, to samo potwierdzenie
 - Przepływ: PR-09, PR-05
 - Dowód potrzeby: decyzja właściciela 21.10.2026 (docs/18, M3 ZM-04, W1 b, W2 a); docs/32 wzorzec 5; testy `tests/m3-p5-delete.test.tsx`, `tests/swipe-delete.test.tsx`
@@ -650,9 +663,9 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy sprawdza licznik
     - Wtedy zużył jeden dzień, a kolejny trening tego dnia może zacząć nawet przy wyczerpanym limicie
   - Scenariusz: Co się liczy
-    - Zakładając, że użytkownik ma trening wstecz (także z dzisiejszą datą), anulowany, trwający i trening na żywo krótszy niż 20 minut
+    - Zakładając, że użytkownik ma trening wstecz (także z dzisiejszą datą), anulowany, trwający i trening na żywo krótszy niż 7 minut
     - Gdy sprawdza licznik
-    - Wtedy żaden z nich nie zużywa dnia i żaden nie jest blokowany; liczy się trening na żywo dłuższy niż 20 minut (bez pauz), zakończony „Zakończ” albo zapisany po 6 godzinach bez aktywności
+    - Wtedy żaden z nich nie zużywa dnia i żaden nie jest blokowany; liczy się trening na żywo dłuższy niż 7 minut (bez pauz), zakończony „Zakończ” albo zapisany po 6 godzinach bez aktywności
   - Scenariusz: Usunięcie treningu
     - Zakładając, że użytkownik zużył dzień treningiem na żywo
     - Gdy usuwa ten trening z historii

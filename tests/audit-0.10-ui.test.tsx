@@ -132,7 +132,7 @@ describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
   test('H2: jedna nazwa — „Miejsca i sprzęt” (Więcej; z Ustawień zniknęło), „Kopia zapasowa”, „Odrzuć trening”; komunikat autozapisu wskazuje Kalendarz', async () => {
     await boot(undefined, '/more'); expect(screen.getByText('Miejsca i sprzęt')).toBeTruthy(); expect(screen.getByText('Kopia zapasowa (eksport / import)')).toBeTruthy();
     await go('/more/settings'); await flushAll(10); expect(screen.queryByText('Miejsca i sprzęt')).toBeNull(); /* 11.10.2026: tylko w Więcej */ expect(screen.queryByText('Miejsca treningu')).toBeNull();
-    const { EN } = require('@/lib/i18n.en'); expect(EN['Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.']).toMatch(/Plan tab\.$/);
+    const { EN } = require('@/lib/i18n.en'); expect(EN['Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.']).toMatch(/Plan tab\.$/);
     expect('Znajdziesz go w Historii' in EN).toBe(false);
   });
   test('H3: data dnia jednym formatem (fmtDayKey = fmtDate); przerwa w karcie szablonu jak w treningu (m:ss)', async () => {
@@ -151,7 +151,7 @@ describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
   test('H4: jednostka świeżej instalacji z regionu (en-US → lb, en-GB/pl → kg); „Co nowego” dla nowej osoby z dopiskiem', async () => {
     expect(deviceUnit('en-US')).toBe('lb'); expect(deviceUnit('en_US')).toBe('lb'); expect(deviceUnit('en-GB')).toBe('kg'); expect(deviceUnit('pl-PL')).toBe('kg'); expect(deviceUnit('en')).toBe('kg'); expect(LB_REGIONS).toContain('US');
     global.__kv.clear(); global.__locales = [{ languageCode: 'en', languageTag: 'en-US' }]; store.__resetForTests(); await store.init(); expect(S().settings.unit).toBe('lb');
-    await boot(); await tap(screen.getByTestId('whats-new-i')); await flushAll(5); expect(screen.getByText('Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik.')).toBeTruthy();
+    await boot(); expect(screen.queryByTestId('whats-new-i')).toBeNull(); /* 1.0.0: historia „Co nowego” pusta (docs/18, 14.10.2026); dopisek dla nowej osoby przy wpisach — tests/whats-new.test.tsx */
   });
   test('UX-16 A (zmienione 11.10.2026): bez „Ukryj” i tekstu zachęty (nagłówek „Bez planu tygodnia · Ustaw plan” jest stały); dane planHintHidden zostają (zapis, migrate); kafelki prowadzą do Postępów; „Powtórz ostatni” niżej przy innym treningu z planu', async () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });

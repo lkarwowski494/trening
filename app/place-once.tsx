@@ -53,7 +53,7 @@ export default function PlaceOnceScreen() {
           ? t('Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.', { a: fmtDayKey(range.from), b: fmtDayKey(range.to) })
           : t('Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.')}</Muted>
         <Field label={t('Nazwa')}><Input value={name} onChangeText={setName} placeholder={fallback} maxLength={NAME_MAX} returnKeyType="done" /></Field>
-        <SwitchRow label={t('Zapisz jako miejsce')} detail={t('Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).')} value={keep} onChange={setKeep} />
+        <SwitchRow label={t('Zapisz jako miejsce')} detail={t('Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).')} value={keep} onChange={setKeep} />
         <SectionTitle>{t('Gotowe zestawy')}</SectionTitle>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
           {ONE_OFF_PRESETS.map(k => <Chip key={k} label={equipLabel(LOCATION_PRESET_LABEL[k])} on={preset === k} onPress={() => pick(k)} />)}

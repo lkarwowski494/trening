@@ -38,6 +38,7 @@ function Entry({ e }: { e: WhatsNewEntry }) {
 export function WhatsNewPanel({ onClose }: { onClose: () => void }) {
   const th = useTheme(); const router = useRouter(); const [older, setOlder] = useState<string | null>(null);
   const [cur, ...rest] = WHATS_NEW;
+  if (!cur) return null; /* pusta historia (1.0.0) */
   return (
     <View testID="whats-new" style={{ marginBottom: 10, padding: 12, borderRadius: RADIUS.group, backgroundColor: th.surface2, gap: 8 }}>
       <H2 style={{ marginBottom: 0 }}>{t('Co nowego')}</H2>
@@ -61,12 +62,12 @@ export function WhatsNewPanel({ onClose }: { onClose: () => void }) {
 
 /** Nagłówek ekranu Trening: „i” w lewym górnym rogu, tytuł i data; sekcja pod spodem. Otwarcie = przeczytane (kropka znika). */
 export function WhatsNewHeader({ children }: { children: React.ReactNode }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); const any = WHATS_NEW.length > 0; /* 1.0.0 (docs/18, 14.10.2026): pusta historia — bez przycisku i panelu */
   return <>
     <TabHeader row style={{ justifyContent: 'flex-start', gap: 12 }}>
-      <WhatsNewButton open={open} onPress={() => { if (!open) markWhatsNewSeen(); setOpen(!open); }} />
+      {any ? <WhatsNewButton open={open} onPress={() => { if (!open) markWhatsNewSeen(); setOpen(!open); }} /> : null}
       <View style={{ flex: 1 }}>{children}</View>
     </TabHeader>
-    {open ? <WhatsNewPanel onClose={() => setOpen(false)} /> : null}
+    {open && any ? <WhatsNewPanel onClose={() => setOpen(false)} /> : null}
   </>;
 }

@@ -17,23 +17,14 @@ name: Pierwszy tydzień nowego użytkownika
     clearState: true
     permissions: { all: allow }
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
-# --- pierwsze uruchomienie: „Pierwsze kroki” i „Co nowego” ---
+# --- pierwsze uruchomienie: „Pierwsze kroki” (bez „Co nowego” w 1.0.0) ---
 - assertVisible: "First steps"
 - assertVisible: "Create your first template or generate templates and a plan."
 - assertVisible: "Set a weekly plan.*"
 - assertVisible: "First workout.*"
 - takeScreenshot: 80-pierwsze-kroki
-# run 38368489051: pierwsze stuknięcie tuż po starcie (animacja startowa) nie otworzyło panelu — powtórzenie; wpis może mieć numer buildu (13)
-- retry:
-    maxRetries: 2
-    commands:
-      - tapOn: { id: "whats-new-i" }
-      - extendedWaitUntil: { visible: "In this version|Test build [0-9]+ · .*", timeout: 10000 }
-- assertVisible: ".*starting with this version.*"
-# 0.18: rozwinięta sekcja (dwa punkty bieżącego wpisu + wiersze starszych) spycha „Close” pod listę — przewinięcie z wyśrodkowaniem przed stuknięciem (wzór 13, 34); po zwinięciu powrót w górę
-- scrollUntilVisible: { element: "Close", direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: "Close"
-- assertNotVisible: "In this version|Test build [0-9]+ · .*"
+# „Co nowego”: 1.0.0: historia „Co nowego” pusta (decyzja właściciela 14.10.2026, docs/18) — przycisku ✦ nie ma także dla nowej osoby
+- assertNotVisible: { id: "whats-new-i" }
 - scrollUntilVisible: { element: "Planning", direction: UP, timeout: 30000, centerElement: true }
 # --- generator szablonów i planu (jak 14) ---
 - runFlow: subflows/generator-plan.yaml

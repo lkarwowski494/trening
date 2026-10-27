@@ -45,23 +45,21 @@
   },
   {
    "id": "NU-02",
-   "tytul": "„Co nowego”: otwarcie panelu, rozwinięcie starszych wpisów, zamknięcie",
+   "tytul": "„Co nowego” w 1.0: historia pusta — bez przycisku ✦ i panelu (pierwsza wersja w App Store)",
    "stan": "nowy",
-   "wersja": "0.19",
+   "wersja": "1.0",
    "realnosc": "realny",
    "kroki": [
-    "Stuknij „i” w nagłówku ekranu Trening",
-    "Przeczytaj bieżący wpis, rozwiń starsze",
-    "Zamknij panel"
+    "Otwórz ekran Trening po pierwszym uruchomieniu",
+    "Sprawdź nagłówek ekranu"
    ],
-   "wynik": "Panel pokazuje wpis bieżącej wersji; po zamknięciu znika; „i” nie ma kropki.",
+   "wynik": "Nagłówek bez przycisku ✦ i bez kropki; panel „Co nowego” niedostępny (decyzja właściciela 14.10.2026, docs/18). Od pierwszego wpisu 1.1 przycisk wraca (tests/whats-new.test.tsx).",
    "ekrany": [
     "/"
    ],
    "scenariusz": "31-pierwszy-tydzien.yaml",
    "znaczniki": [
-    "whats-new-i",
-    "In this version"
+    "whats-new-i"
    ]
   },
   {
@@ -2806,21 +2804,21 @@
   },
   {
    "id": "AK-04",
-   "tytul": "„Co nowego” po aktualizacji: kropka na „i” i wpis bieżącej wersji",
+   "tytul": "„Co nowego” po aktualizacji do 1.0: bez przycisku ✦ i kropki (historia pusta)",
    "stan": "aktualizacja",
-   "wersja": "0.19",
+   "wersja": "1.0",
    "realnosc": "realny",
    "kroki": [
-    "Po aktualizacji na ekranie Trening „i” z kropką",
-    "Panel pokazuje wpis nowej wersji"
+    "Po aktualizacji z 0.20 otwórz ekran Trening",
+    "Sprawdź nagłówek ekranu"
    ],
-   "wynik": "Wpis wersji widoczny.",
+   "wynik": "Nagłówek bez przycisku ✦ i kropki mimo zapisanego id starego wpisu; dane bez zmian.",
    "ekrany": [
     "/"
    ],
    "scenariusz": "34-aktualizacja-sprawdz.yaml",
    "znaczniki": [
-    "In this version"
+    "whats-new-i"
    ]
   },
   {
@@ -2845,7 +2843,7 @@
      "tests/migrate-idem.test.ts",
      "tests/places-migrate.test.ts"
     ],
-    "kontrola": "Na własnym telefonie: stary build → TestFlight Zaktualizuj → otwórz: historia i szablony na miejscu, plan, trening w toku (jeśli był), ikona i nazwa poprawne, „Co nowego” pokazuje wersję."
+    "kontrola": "Na własnym telefonie: stary build → TestFlight Zaktualizuj → otwórz: historia i szablony na miejscu, plan, trening w toku (jeśli był), ikona i nazwa poprawne, w nagłówku ekranu Trening nie ma „Co nowego” (1.0, historia pusta)."
    }
   },
   {

@@ -28,6 +28,9 @@ function falszywyNpm(): { bin: string; log: string } {
   const log = join(d, 'npm.log');
   writeFileSync(join(d, 'npm'), '#!/bin/sh\necho "$*" >> "$NPM_LOG"\n[ "$2" = "$NPM_FAIL" ] && exit 1\nexit 0\n');
   chmodSync(join(d, 'npm'), 0o755);
+  /* L-037: podstawiony `npx` (testy dokumentów w haku) — zapisuje argumenty i gałąź docelową (GITHUB_REF_NAME), kończy się kodem 1 dla $NPM_FAIL = jest */
+  writeFileSync(join(d, 'npx'), '#!/bin/sh\necho "npx $* [ref=$GITHUB_REF_NAME]" >> "$NPM_LOG"\n[ "$1" = "$NPM_FAIL" ] && exit 1\nexit 0\n');
+  chmodSync(join(d, 'npx'), 0o755);
   return { bin: d, log };
 }
 const wywolania = (log: string) => (existsSync(log) ? readFileSync(log, 'utf8').trim().split('\n').filter(Boolean) : []);
@@ -41,6 +44,7 @@ function repoProbne(): { dir: string; zdalne: string } {
   mkdirSync(join(dir, 'scripts/hooks'), { recursive: true });
   for (const f of ['pre-push', 'instaluj.mjs', 'sprawdz-instalacje.mjs']) copyFileSync(join(root, 'scripts/hooks', f), join(dir, 'scripts/hooks', f));
   copyFileSync(join(root, 'scripts/verify-docs.mjs'), join(dir, 'scripts/verify-docs.mjs'));
+  copyFileSync(join(root, 'scripts/numeruj-lekcje.mjs'), join(dir, 'scripts/numeruj-lekcje.mjs'));
   chmodSync(join(dir, 'scripts/hooks/pre-push'), 0o755);
   writeFileSync(join(dir, 'plik.txt'), '1\n');
   git(dir, ['add', '-A']);
@@ -63,11 +67,14 @@ describe('hak pre-push — plik (L-009)', () => {
     expect(spawnSync('sh', ['-n', HAK], { encoding: 'utf8' }).status).toBe(0);
     expect(bezKomentarzy(hakTekst())).not.toMatch(/\[\[|\bfunction\b|<<<|\bsource\b|\bshopt\b/); /* bez składni bash */
   });
-  test('uruchamia dokładnie lint, check:readme, check:matrix — w tej kolejności i nic więcej', () => {
+  test('uruchamia lint, check:readme, check:matrix — w tej kolejności; przy zmianach w docs/ (L-037) także numeruj-lekcje --sprawdz i dwa testy dokumentów, nic więcej', () => {
     const wywolaniaNpm = [...bezKomentarzy(hakTekst()).matchAll(/^\s*sprawdz\s+(\S+)/gm)].map(m => m[1]);
     expect(wywolaniaNpm).toEqual(['lint', 'check:readme', 'check:matrix']);
     expect(bezKomentarzy(hakTekst()).match(/^\s*if ! npm run "\$1" >&2; then$/gm) || []).toHaveLength(1); /* jedyne wywołanie npm */
-    expect(bezKomentarzy(hakTekst())).not.toMatch(/npm run (jest|verify|typecheck|test)|\bnpx\b|expo export/);
+    const kod = bezKomentarzy(hakTekst());
+    expect(kod).not.toMatch(/npm run (jest|verify|typecheck|test)|expo export/);
+    expect(kod.match(/\bnpx\b[^\n]*/g)).toEqual(['npx jest tests/audit-m1-p4b-queue.test.ts tests/verify-docs.test.ts >&2 </dev/null; then']); /* jedyne wywołanie npx */
+    expect(kod.match(/node scripts\/numeruj-lekcje\.mjs --sprawdz/g)).toHaveLength(1);
   });
   test('komentarz opisuje świadome obejście `git push --no-verify` i zmierzony czas', () => {
     const komentarze = hakTekst().split('\n').filter(l => /^\s*#/.test(l)).join('\n');
@@ -118,6 +125,59 @@ describe('hak pre-push — działanie z podstawionym npm', () => {
     const r = uruchom(npm, '', '(delete) 0000 refs/heads/a 1234\nrefs/heads/b 1234567890 refs/heads/b 0000\n');
     expect(r.status).toBe(0);
     expect(wywolania(npm.log)).toHaveLength(3);
+  });
+});
+
+describe('hak: zmiany w docs/ — numeracja lekcji i testy dokumentów (L-037, wariant A, właściciel 26.10.2026)', () => {
+  const lekcje = (naglowek: string) => `# Lekcje\n\n## ${naglowek} (26.10.2026) — wpis\n\n## L-001 (01.10.2026) — stary\n`;
+  /** Repo próbne z main wypchniętym; gałąź `galaz` z commitem zmieniającym docs/40-lekcje.md (nagłówek lekcji `naglowek`) albo plik kodu. */
+  function przygotuj(galaz: string, naglowek: string, zmiana: 'docs' | 'kod' = 'docs') {
+    const r = repoProbne(); zainstaluj(r.dir); const npm = falszywyNpm();
+    mkdirSync(join(r.dir, 'docs'), { recursive: true }); writeFileSync(join(r.dir, 'docs/40-lekcje.md'), lekcje('L-002'));
+    git(r.dir, ['add', '-A']); git(r.dir, ['commit', '-q', '-m', 'lekcje']);
+    expect(git(r.dir, ['push', '--no-verify', '-u', 'origin', 'main']).status).toBe(0);
+    git(r.dir, ['checkout', '-q', '-b', galaz]);
+    if (zmiana === 'docs') writeFileSync(join(r.dir, 'docs/40-lekcje.md'), lekcje(naglowek)); else writeFileSync(join(r.dir, 'plik.txt'), '2\n');
+    git(r.dir, ['commit', '-q', '-am', 'zmiana']);
+    return { ...r, npm };
+  }
+  const JEST = (ref: string) => `npx jest tests/audit-m1-p4b-queue.test.ts tests/verify-docs.test.ts [ref=${ref}]`;
+  test('gałąź funkcji: lekcja „L-NNN” dozwolona; testy dokumentów biegną z GITHUB_REF_NAME = gałąź', () => {
+    const { dir, zdalne, npm } = przygotuj('naprawa-x', 'L-NNN');
+    const r = git(dir, ['push', 'origin', 'naprawa-x'], zNpm(npm));
+    expect(r.status).toBe(0); expect(gałęzieZdalne(zdalne)).toContain('naprawa-x');
+    expect(wywolania(npm.log).filter(l => l.startsWith('npx'))).toEqual([JEST('naprawa-x')]);
+  });
+  test.each(['integracja-2026-10-26b', 'main'])('na %s nienumerowana lekcja zatrzymuje wypchnięcie (numeruj-lekcje --sprawdz), testy dokumentów nie biegną', galaz => {
+    const { dir, zdalne, npm } = przygotuj(galaz === 'main' ? 'robocza' : galaz, 'L-NNN');
+    const odnosnik = galaz === 'main' ? 'robocza:refs/heads/main' : galaz;
+    const r = git(dir, ['push', 'origin', odnosnik], zNpm(npm));
+    expect(r.status).not.toBe(0);
+    expect(r.stderr).toContain('numeruj-lekcje'); expect(r.stderr).toContain('WYPCHNIĘCIE ZATRZYMANE'); expect(r.stderr).toContain('node scripts/numeruj-lekcje.mjs'); expect(r.stderr).toContain(galaz);
+    expect(wywolania(npm.log).filter(l => l.startsWith('npx'))).toEqual([]);
+    if (galaz !== 'main') expect(gałęzieZdalne(zdalne)).not.toContain(galaz);
+  });
+  test('na integracja-* lekcja z numerem przechodzi (numeruj-lekcje --sprawdz zielone, potem testy dokumentów z gałęzią)', () => {
+    const { dir, zdalne, npm } = przygotuj('integracja-2026-10-27', 'L-003');
+    const r = git(dir, ['push', 'origin', 'integracja-2026-10-27'], zNpm(npm));
+    expect(r.status).toBe(0); expect(gałęzieZdalne(zdalne)).toContain('integracja-2026-10-27');
+    expect(wywolania(npm.log).filter(l => l.startsWith('npx'))).toEqual([JEST('integracja-2026-10-27')]);
+  });
+  test('czerwony test dokumentów zatrzymuje wypchnięcie i mówi po polsku, co zrobić', () => {
+    const { dir, zdalne, npm } = przygotuj('naprawa-y', 'L-NNN');
+    const r = git(dir, ['push', 'origin', 'naprawa-y'], zNpm(npm, 'jest'));
+    expect(r.status).not.toBe(0); expect(r.stderr).toContain('testy dokumentów'); expect(r.stderr).toContain('Jak naprawić'); expect(r.stderr).toContain('git push --no-verify');
+    expect(gałęzieZdalne(zdalne)).not.toContain('naprawa-y');
+  });
+  test('zmiana bez docs/ (sam kod) nie uruchamia ani numeracji, ani testów dokumentów', () => {
+    const { dir, npm } = przygotuj('naprawa-z', 'L-NNN', 'kod');
+    const r = git(dir, ['push', 'origin', 'naprawa-z'], zNpm(npm));
+    expect(r.status).toBe(0); expect(wywolania(npm.log).filter(l => l.startsWith('npx'))).toEqual([]);
+  });
+  test('--no-verify omija sprawdzenia docs/', () => {
+    const { dir, zdalne, npm } = przygotuj('integracja-2026-10-28', 'L-NNN');
+    expect(git(dir, ['push', '--no-verify', 'origin', 'integracja-2026-10-28'], zNpm(npm)).status).toBe(0);
+    expect(gałęzieZdalne(zdalne)).toContain('integracja-2026-10-28'); expect(wywolania(npm.log)).toEqual([]);
   });
 });
 
@@ -194,7 +254,7 @@ describe('hak na prawdziwym git push (także z worktree)', () => {
     expect(git(dir, ['commit', '-q', '-m', 'dok']).status).toBe(0);
     const dok = git(dir, ['push', 'origin', 'dok'], zNpm(npm));
     expect(dok.status).toBe(0);
-    expect(wywolania(npm.log)).toEqual(['run check:readme', 'run check:matrix']);
+    expect(wywolania(npm.log)).toEqual(['run check:readme', 'run check:matrix', 'npx jest tests/audit-m1-p4b-queue.test.ts tests/verify-docs.test.ts [ref=dok]']); /* L-037: zmiana w docs/ → testy dokumentów */
     expect(dok.stderr).toContain('tylko w dokumentach');
     writeFileSync(npm.log, '');
     writeFileSync(join(dir, 'plik.txt'), '2\n');

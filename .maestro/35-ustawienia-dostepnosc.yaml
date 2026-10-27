@@ -21,7 +21,7 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - assertVisible: "More, tab, 4 of 4"
 - assertVisible: "Empty workout"
 - assertVisible: "Other workout"
-- assertVisible: { id: "whats-new-i" }
+- assertNotVisible: { id: "whats-new-i" }  # 1.0.0: historia „Co nowego” pusta (decyzja właściciela 14.10.2026, docs/18) — przycisku ✦ nie ma
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
