@@ -51,4 +51,4 @@ Kolana we wszystkich 24 pozach zginają się we właściwą stronę. Środek ci�
 
 | Reguła | Warunek | Błąd | Pozostałe |
 |---|---|---|---|
-| `zakres_wykroku` | rodzina lunge (bez izometrii): różnica wysokości miednicy między klatką najwyższą a najniższą ≥ 20 cm, a przednie kolano w klatce najwyższej ≤ 60° | 4 ćwiczenia: 8 cm, kolano 82–84° | Split Squat 21 cm / 57° (na granicy), pozostałe 19 ≥ 37 cm |
+| `zakres_wykroku` | rodzina lunge (bez izometrii): różnica wysokości miednicy między klatką najwyższą a najniższą ≥ 20 cm, a przy przedniej stopie na podłodze przednie kolano w klatce najwyższej ≤ 60° | 4 ćwiczenia: 8 cm, kolano 82–84° | Split Squat (oba) 21 cm / 57° (na granicy). Pozostałe 18: 22–52 cm (Lateral Lunge i Barbell Side Split Squat 22 cm, Cossack 32 cm). Elevated Back Lunge ma kolano 63° w górze, ale stopę na podwyższeniu, więc warunek kolana go nie obejmuje |
