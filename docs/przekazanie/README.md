@@ -398,3 +398,4 @@ techniqueatlas: PR https://github.com/lkarwowski494/techniqueatlas/pull/1 (CI zi
 - 15:42 UTC 27.10: (koordynator) TELEFON T-08 OK na koncie testerki (wyjątek dla T-08 nieaktualny).
 - 15:45 UTC 27.10: (koordynator) TELEFON (testerka, build 1031): ekran zakupu pokazuje ceny w USD (/bin/bash.99/.99/4.99), arkusz Apple miesięczny: 4,99 zł (zgodne z ASC PL). Waluta w aplikacji ≠ waluta zakupu — potencjalnie WYSOKIE (wprowadzająca cena, ryzyko odrzucenia Apple) — diagnoza w toku (adapter fake vs native, displayPrice biblioteki, storefront w TestFlight).
 - 15:49 UTC 27.10: (diagnoza) waluta na ekranie zakupu: nie błąd kodu, natywny StoreKit displayPrice; najpewniej storefront konta piaskownicy (USA); waga NISKIE
+- 15:49 UTC 27.10: (koordynator) waluta paywall: diagnoza — kod bez winy (Product.displayPrice), najpewniej storefront sandbox; NISKIE, [DO USTALENIA]; prośba do właściciela o region konta testerki i Sandbox Account; dopisane do pakietu audytu M1.
