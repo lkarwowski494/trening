@@ -71,3 +71,4 @@ Proponowane mechanizmy (szczegóły w plikach rodzin):
 - rozszerzenie `nogi_nieruchome` o oś y i kąt kolana.
 
 Progi to konwencja rysunku do potwierdzenia przez badacza. Dobrane na tych samych danych, więc to wynik w próbie, a nie dowód szczelności.
+| hip_abd_add | 6 | 4 | 2 | 0 | 6/6 OK | — | [hip_abd_add.md](hip_abd_add.md) |
