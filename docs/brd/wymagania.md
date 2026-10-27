@@ -707,6 +707,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik ma aktywną subskrypcję (miesięczną albo roczną)
     - Gdy otwiera ekran zakupu
     - Wtedy nie czyta wstępu o darmowych dniach, karta „Masz pełną wersję” podaje nazwę jego planu i datę, posiadany plan jest oznaczony „Aktualny plan” i nie da się go wybrać ani kupić drugi raz, a pozostałe plany zostają jako zmiana planu („Zmień plan”) z informacją o automatycznym odnawianiu
+  - Scenariusz: Dożywotni przy aktywnej subskrypcji
+    - Zakładając, że użytkownik sam płaci za aktywną subskrypcję (nie z Chmury rodzinnej ani z kodu)
+    - Gdy zaznacza plan dożywotni
+    - Wtedy przed przyciskiem „Kup na zawsze” czyta, że subskrypcja dalej się odnawia i trzeba ją anulować, żeby nie płacić podwójnie (docs/27 3.11; test `tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx`)
 
 ### BR-PRV-001: Zastrzeżenie medyczne widoczne w aplikacji
 - Przepływ: PR-01

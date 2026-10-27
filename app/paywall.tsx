@@ -50,6 +50,8 @@ export default function PaywallScreen() {
   const open = (url: string) => { Linking.openURL(url).catch(() => {}); };
   const lifetime = view.active?.plan === 'lifetime'; const subActive = (view.entitlements ?? []).some(e => e.plan !== 'lifetime' && entitlementActive(e, Date.now()));
   const chosen = Array.isArray(products) ? products.find(p => p.plan === sel && !ownedPlans.has(p.plan)) : undefined; const hasSub = SUBSCRIPTION_PLANS.some(p => ownedPlans.has(p));
+  /* M1-audytor-generalny-001 (docs/27 3.11): subskrypcja, za którą osoba płaci sama, odnawia się dalej po zakupie dożywotniego — uwaga przed arkuszem Apple, nie dopiero po zakupie */
+  const paysSub = (view.entitlements ?? []).some(e => e.plan !== 'lifetime' && e.source === 'purchase' && entitlementActive(e, Date.now()));
   const buy = async () => {
     if (!chosen || busy || ownedPlans.has(chosen.plan)) return; setBusy(true); setNote(null);
     try {
@@ -98,6 +100,7 @@ export default function PaywallScreen() {
             <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{line}</Text>
             <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('footnote'), marginTop: 2 }}>{planBlurb(p.plan)}</Text>
           </Pressable>; }) : null}
+        {chosen?.period === null && paysSub ? <Muted testID="paywall-lifetime-warning" style={{ marginBottom: 8 }}>{t('Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płacić podwójnie.')}</Muted> : null}
         {chosen ? <Btn kind="primary" block title={ctaLabel(chosen, hasSub)} style={{ marginTop: 4 }} onPress={() => { void buy(); }} /> : null}
         {chosen && chosen.period !== null ? <Muted style={{ ...font('footnote'), marginTop: 8 }}>{t('Subskrypcja odnawia się automatycznie, dopóki jej nie anulujesz w ustawieniach konta Apple.')}</Muted> : null}
       </> : null}
