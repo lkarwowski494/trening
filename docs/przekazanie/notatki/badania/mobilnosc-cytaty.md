@@ -1,0 +1,52 @@
+# Mobilność: sprawdzenie dosłowności cytatów źródeł póz (badacz, 27.10.2026)
+
+Zakres: wpisy źródeł póz rozciągania na gałęzi `rodziny-mobilnosc` (@ e6e95f26): `data/zrodla/figury-sens.json` (mobility_stand, mobility_floor)
+oraz komentarze i `PRZYBLIZENIA` w `scripts/figures/agent-pozy/mobility_stand.mjs` i `mobility_floor.mjs`. Odczyt z kopii roboczej
+`/home/user/wt/rodziny-mobilnosc` (bez `git diff` — badacz nie miał powłoki; sprawdzono wszystkie cytaty ACE #204, 202, 174, 152, 254, 214, 227, 149, 15 i AAOS
+użyte przez 10 narysowanych póz, niezależnie od daty wpisu).
+
+Metoda: ACE — strony `https://www.acefitness.org/resources/everyone/exercise-library/<nr>/<slug>/`, pytanie o dosłowne wystąpienie każdej frazy
+i dosłowny fragment strony (narzędzie zwraca fragmenty do ok. 20 słów; pełnego tekstu kroków nie oddaje). AAOS — PDF
+`https://www.orthoinfo.org/globalassets/pdfs/hip-conditioning-program-2026.pdf`, „Exercises Page 2”, ćw. 4, przeczytany jako obraz strony,
+oraz strona `https://www.orthoinfo.org/en/recovery/hip-conditioning-program`.
+
+## Tabela
+
+| Poza | Źródło | Cytat we wpisie | Wynik | Dosłowny tekst strony (≤ 2 zdania) | Czy źródło opisuje narysowany wariant |
+|---|---|---|---|---|---|
+| Chin To Chest | ACE #204 Neck Flexion and Extension, krok 1–2 | „arms by your sides”; „Slowly drop your chin toward your chest (neck flexion)” | zgodny dosłownie | „…toes pointing forward or turned slightly outwards, with arms by your sides.”; „Slowly drop your chin toward your chest (neck flexion), think of making a 'double-chin'…” | tak (stanie, stopy na szerokość bioder, ręce wzdłuż ciała; wariant z palcami u podstawy czaszki słusznie nierysowany) |
+| Side Neck | ACE #202 Lateral Neck Flexion, krok 1–2 | „arms by your sides”; „Slowly draw your right ear toward your right shoulder stopping when you feel the stretch.” | zgodny dosłownie | jak w cytacie; wariant krok 3: dłoń „to the top of your head” (na stronie literówka „brining”) | tak (wariant z dłonią na głowie słusznie nierysowany) |
+| Overhead Triceps | ACE #174 Overhead Triceps Stretch, krok 1 | „ręka w górę, zgięcie łokcia, dłoń opada na środek pleców” (opis) | zgodny co do sensu | „let your right hand drop to the middle of your back, palm facing your back”; „place your fingers on your right arm, just above the elbow, applying light pressure to deepen the stretch” | **częściowo**: ręka pomocnicza jest częścią pozycji wyjściowej w kroku 1, nie osobnym wariantem; dłoń na górze pleców zamiast „middle of your back”. Rysunek to przybliżenie (już oznaczone w `PRZYBLIZENIA`), ale wpis trzeba uściślić — patrz poprawki |
+| Wall Calf / Standing Gastrocnemius | ACE #152 Standing Dorsi-Flexion (Calf Stretch), krok 1–2, 4 | „…while keeping the opposite leg straightened”; „Increase the flexion (bend) in your LEFT (front) knee”; krok 4 „To increase the stretch in the soleus, slightly flex (bend) the back knee…” | zgodny dosłownie | dodatkowo: „Extend your arms to place your palms on the wall slightly higher than your shoulders.” (krok 1); „allowing your elbows to bend as you shift your weight forward” (krok 2); „continue pressing your right heel into the ground” (krok 2) | **częściowo**: źródło każe zgiąć łokcie przy przenoszeniu ciężaru do ściany; komentarz w `mobility_stand.mjs` (Wall Calf) mówi „ręce proste”. Reguły sensu nie dotyczą rąk, więc to rozbieżność rysunku, nie reguły |
+| Inchworm | ACE #254 Inchworms, krok 2–5 | „extended (but not locked)”; „a soft bend in your knees during this movement is acceptable”; „a full-push-up position where your spine, hips and head are level with the floor”; „Do not allow your low back to sag.” | 3× dosłownie; 4. cytat **skrócony z kropką** (zgodny co do sensu) | „Do not allow your low back to sag or your hips to hike upwards during this downward phase.” (krok 4); krok 5: „Slowly begin walking your feet forward towards your hands, taking 6-12" steps without moving your hands.”; krok 4: „Perform one full push-up…” | tak, z zastrzeżeniami: krok 5 nie mówi „obie stopy naraz” (tylko „your feet”, kroki 6–12 cali ≈ 15–30 cm — rysunek 15 cm mieści się); pompka jest w kroku 4, nie 3 |
+| Seated Calf | ACE #214 Seated Calf Stretch | „Sit upright (i.e., trunk vertical)”; „without bending your knees” | zgodny dosłownie | „Wrap a resistance band / rubber tubing around the sole of your foot, anchoring it securely and hold it in both hands”; „…moving your ankle into dorsiflexion (pointing your toes towards you)” | tak (guma wokół podeszwy jednej stopy, końce w obu dłoniach, druga noga bez gumy: „Repeat with the opposite leg”) |
+| Child's Pose | ACE #227 Childs Pose, krok 1–2, 4 | „…hinge at the hips, bringing your glutes to your heels” | zgodny dosłownie | krok 4: „Extend your arms alongside the body with the palms facing upward and the fronts of your shoulders toward the floor.”; krok 1: „feet plantar flexed (toes pointing behind you) with the big toes touching” | tak dla wariantu „ręce wzdłuż ciała” (krok 4). **Sprzeczność wewnętrzna**: komentarz funkcji `childsPose` mówi „ręce wyciągnięte do przodu… ręce na podłodze”, a `PRZYBLIZENIA` — wariant z kroku 4. Główny krok 1–2 nie mówi „wyciągnięte do przodu” (tylko dłonie pod barkami, „Keeping your hands planted”, „extend through your back and arms”) |
+| Side-Lying Quad | ACE #149 Side Lying Quadriceps Stretch | „Bend your left knee and pull your left heel up towards your left glute…” | zgodny dosłownie (pełniej: „…towards your left glute muscle (buttock)”) | „Your right (lower) arm should be bent and positioned under your head for support.”; „keeping the left thigh and knee resting on the inside of the right thigh and pointing straight out from the left hip joint” | tak; „dolna noga prosta” — tylko w pozycji wyjściowej („with your legs extended straight away from your body”), w trakcie strona nie mówi; „biodra i barki jedno nad drugim” = „Your hips and shoulder should be aligned vertically to the floor” (sens zgodny) |
+| Cat-Cow | ACE #15 Cat-Cow, krok 1, 4–5 | „pushing your spine upwards towards the ceiling”; „Let your stomach fall towards the floor (increasing the arch in your low back)”; „allow your head to fall towards your chest” | zgodny dosłownie (3. cytat: na stronie „Allow…, maintaining alignment with the spine.”, faza kota) | „…so that your knees are directly under your hips and hands are directly under your shoulders.” | tak; brak zalecenia dla głowy w fazie krowy — potwierdzone (rysunek: głowa w linii, słusznie). Proste łokcie (`podpor_rece_proste`) nie są w tekście — wpis już oznaczony „uproszczenie” |
+| Supine Hamstring | AAOS Hip Conditioning Program, Exercises Page 2, ćw. 4 | „Straighten your leg…”; druga stopa na podłodze z kolanem zgiętym | zgodny dosłownie (pierwszy); drugi — zgodny co do sensu | „Lie on the floor with both knees bent.”; „Clasp your hands behind your thigh below your knee.” Dalej: „Straighten your leg and then pull it gently toward your head until you feel a stretch.”; wskazówka: „Do not pull at your knee joint.” | tak: tekst nie mówi wprost, że druga stopa zostaje na podłodze, ale wynika to z pozycji wyjściowej i uniesienia jednej nogi, a rysunek w PDF to pokazuje (druga noga zgięta, stopa na podłodze) |
+
+## Lista poprawek do wpisów (cytaty dosłowne, ≤ 2 zdania)
+
+1. `figury-sens.json` → `mobility_stand.reguly.inchworm_podpor.zrodlo`: zamiast „krok 4: „Do not allow your low back to sag.”” wpisać
+   „krok 4: „Do not allow your low back to sag or your hips to hike upwards during this downward phase.””.
+2. `mobility_stand.mjs`, `PRZYBLIZENIA.Inchworm`: „obie stopy naraz, ACE #254 krok 5” → „krok 5: „…taking 6-12" steps without moving your hands.” (strona nie mówi, czy stopy idą naraz — obie stopy naraz to uproszczenie rysunku)”;
+   „pompka w podporze (krok 3)” → „(krok 4: „Perform one full push-up…”)”.
+3. `figury-sens.json` → `mobility_stand.reguly.lokiec_nad_barkiem.zrodlo`: dodać dosłowny cytat „let your right hand drop to the middle of your back, palm facing your back” (ACE #174, krok 1)
+   i zaznaczyć, że lewa ręka jest częścią pozycji wyjściowej: „place your fingers on your right arm, just above the elbow, applying light pressure to deepen the stretch”.
+   `PRZYBLIZENIA['Overhead Triceps Stretch']`: zamiast „ręka pomocnicza … lekki nacisk” jako wariant — „krok 1 zawiera rękę pomocniczą; rysunek ją pomija (przybliżenie)”.
+4. `mobility_stand.mjs`, komentarz Wall Calf Stretch: „ręce proste” jest sprzeczne z ACE #152 krok 2 „allowing your elbows to bend as you shift your weight forward”.
+   Albo zgiąć łokcie na rysunku, albo dopisać do `PRZYBLIZENIA` (Wall Calf i Standing Gastrocnemius): „ręce proste — przybliżenie; źródło: łokcie zgięte przy przeniesieniu ciężaru”.
+5. `mobility_floor.mjs`, komentarz `childsPose`: usunąć „ręce wyciągnięte do przodu … ręce na podłodze” i wpisać wariant z kroku 4: „Extend your arms alongside the body with the palms facing upward…”.
+   Do sprawdzenia przez programistę na kadrze: czy dłonie (cele x = 22, z = ±26 przy miednicy x = 26) leżą wzdłuż ciała, a nie szeroko w bok.
+6. `figury-sens.json` → `mobility_floor.reguly.jedna_noga_prosta.zrodlo` i `otwarte_czesciowo['Supine Hamstring Stretch']`: dopisać miejsce
+   („Exercises Page 2, ćw. 4”) i dosłowne „Lie on the floor with both knees bent.” jako podstawę „druga noga zgięta”; „druga stopa na podłodze” oznaczyć „z rysunku źródła”.
+7. `mobility_floor.mjs`, komentarz Side-Lying Quad: „dolna noga prosta” — dopisać, że to pozycja wyjściowa („with your legs extended straight away from your body”); „udo przy dolnym udzie” — cytat: „keeping the left thigh and knee resting on the inside of the right thigh”.
+8. Cat-Cow: cytat „allow your head to fall towards your chest” poprawić na dosłowne „Allow your head to fall towards your chest, maintaining alignment with the spine.” (faza kota, krok 4).
+
+Bez poprawek: ACE #204, #202, #214, #152 (cytaty reguł nóg), #227 (cytat pośladków), #149 (cytat pięty).
+
+## Otwarte
+
+- [OTWARTE] Pełny dosłowny tekst kroków ACE — narzędzie oddaje tylko fragmenty do ok. 20 słów. Wszystkie cytaty z wpisów zostały potwierdzone jako występujące dosłownie,
+  ale pozostałe części opisów (np. ułożenie rąk w Inchworm, krok 2) sprawdzono tylko co do sensu.
+- [OTWARTE] Zakres „zmienione na gałęzi” — bez `git diff` (brak powłoki) sprawdzono wszystkie cytaty z dziewięciu numerów ACE i AAOS; wpisy NHS, NASM i ACE #142, #148, #198, #208–#216, #232, #235, #273 (26.10.2026) nie były w tym przeglądzie.
