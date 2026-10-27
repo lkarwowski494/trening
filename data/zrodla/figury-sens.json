@@ -2144,6 +2144,13 @@
           "ciezar_nad_barkami",
           "tulow_wysoko"
         ],
+        "_arnold": [
+          "ciezar_nad_glowe",
+          "wyprost_lokci",
+          "start_przy_barkach",
+          "ciezar_nad_barkami",
+          "tulow_wysoko"
+        ],
         "Overhead Press (sztanga)": "_wyciskanie",
         "Overhead Press (hantle)": "_wyciskanie",
         "Band Shoulder Press": "_wyciskanie",
@@ -2156,8 +2163,8 @@
         "Single Arm Overhead Press (hantel)": "_wyciskanie",
         "See-Saw Press (Alternating Side Press)": "_wyciskanie",
         "Wyciskanie nad głowę (linki)": "_wyciskanie",
-        "Arnold Press": "_wyciskanie",
-        "Kettlebell Arnold Press": "_wyciskanie",
+        "Arnold Press": "_arnold",
+        "Kettlebell Arnold Press": "_arnold",
         "Push Press": [
           "ciezar_nad_glowe",
           "wyprost_lokci",
@@ -2189,7 +2196,7 @@
         "Handstand Push Up": "brak wskazówek (zestaw „open”); nie badane"
       },
       "otwarte_czesciowo": {
-        "Arnold Press, Kettlebell Arnold Press": "obrót przedramion na dole — źródła przeczytane opisują zwykłe wyciskanie; reguła lokcie_pod_dlonmi to analogia",
+        "Arnold Press, Kettlebell Arnold Press": "obrót przedramion na dole — źródła przeczytane opisują zwykłe wyciskanie; reguły wyciskania to analogia; reguły lokcie_pod_dlonmi NIE stosujemy (wariant _arnold, 27.10.2026): w Arnoldzie łokcie z definicji opuszczają pozycję pod nadgarstkami (rozchodzą się na boki w trakcie), a zakres tego ruchu czeka na dwa źródła szczebla 4 (badacz)",
         "Landmine Press, Linear Jammer": "tor ukośny — tylko wyprost łokcia (analogia); bez reguły kierunku"
       },
       "pomin": {}

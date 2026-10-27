@@ -67,14 +67,16 @@ export function generuj() {
   G['Pendlay Row'] = () => pochylony('Pendlay Row', { sprzet: [B], p: 80, m: [-34, 77.3], zr: 23, obrot: -75, L: 16, F: 12, blad: true });
   G['Smith Machine Bent Over Row'] = () => pochylony('Smith Machine Bent Over Row', { sprzet: [B], dodatki: [{ rodzaj: 'smith', x: 11, h: 200 }], xStaly: 11, p: 78, m: [-30, 77.3], stopaX: 8, zr: 23, obrot: -75, blad: true }); /* sztanga na prowadnicy porusza się tylko w pionie: barki przed sztangą, nogi za nią */
   G['Bent Over Row (linki)'] = () => pochylony('Bent Over Row (linki)', { sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, x: 40, y: 15, z: 50 })], zr: 27, obrot: 0, blad: true });
-  /* --- jednorącz: druga ręka podpiera się o udo, staggered stance --- */
-  G['One Arm Row (hantle)'] = () => { const p = 68; const m = [-22, 77]; const nog = (s) => noga3([s === 'R' ? -10 : 14, 7, POL(s) * 17], [1, 0.1, POL(s) * 0.05]);
+  /* --- jednorącz: lewe kolano i lewa dłoń na ławce, prawa stopa na podłodze, tułów prawie poziomo (wskazówka „setup” ćwiczenia; recenzja ruchu 27.10.2026) --- */
+  G['One Arm Row (hantle)'] = () => { const p = 75; const top = 38; const kb = BODY(); const kneeY = top + 8; const kx = -12; /* kolano lewe na ławce (y), cm za biodrem (x) */
+    const my = r1(kneeY + Math.sqrt(kb.thigh ** 2 - kx ** 2)); const m = [0, my]; const dyKostki = -4; const ay = kneeY + dyKostki; const ax = kx - Math.sqrt(kb.shank ** 2 - dyKostki ** 2);
+    const nogi = { R: noga3([4, 7, 27], [1, 0.1, 0.05]), L: noga3([ax, ay, -8.5], [0, -1, 0], { pod: -55, rot: 0 }) }; /* R: stopa na podłodze obok ławki (rozstaw 28 cm); L: kolano na ławce, goleń za nim lekko w górę */
     const fr = (u) => { const rece = {}; for (const s of SIDES) { const sg = POL(s); const S = bark(m, p, sg);
       if (s === 'R') { const u1 = up(p), f1 = front(p); const hx = 6, hz = 24 - 19; const hy = -Math.sqrt(63.2 ** 2 - hx * hx - hz * hz); const H0 = [S[0] + hx, S[1] + hy]; const H1 = [S[0] - 32 * u1[0] + 12 * f1[0], S[1] - 32 * u1[1] + 12 * f1[1]];
         rece[s] = { g: [lerp(H0[0], H1[0], u), lerp(H0[1], H1[1], u), 24], pole: [-0.6, 0.7, 0.35], obrot: 0 }; }
-      else rece[s] = { g: [S[0] + 18, S[1] - 40, -22], pole: [0.2, -1, -0.3], obrot: 0 }; }
-      return poza({ u, tulow: { m, p, glowa: p * 0.45 + 8 }, nogi: { R: nog('R'), L: nog('L') }, rece }); };
-    return buduj({ rodzina: RODZINA, cw: 'One Arm Row (hantle)', sprzet: [SPRZET.podloga(-110, 130), { ...H, trzyma: 'R' }], fr, us: U5 }); };
+      else rece[s] = { g: [S[0] + 3, top + 3.5, -15], pole: [-0.3, 0.2, -1], obrot: 0 }; } /* wolna dłoń na blacie ławki */
+      return poza({ u, tulow: { m, p, glowa: p * 0.45 + 8 }, nogi, rece }); };
+    return buduj({ rodzina: RODZINA, cw: 'One Arm Row (hantle)', sprzet: [SPRZET.podloga(-110, 130), { rodzaj: 'lawka', x: 0, top, kat: 0, dlugosc: 30, siedzisko: 65 }, { ...H, trzyma: 'R' }], fr, us: U5 }); };
   /* --- T-bar: dźwignia obrotowa z osią za osobą (schemat), uchwyt V między nogami --- */
   G['T-Bar Row'] = () => { const p = 55; const m = [-38, 76]; const P = [-85, 5]; const r = 101.3; const a0 = 21.2, a1 = 46;
     const nog = (s) => noga3([0, 7, POL(s) * 17], [1, 0.1, POL(s) * 0.05]);

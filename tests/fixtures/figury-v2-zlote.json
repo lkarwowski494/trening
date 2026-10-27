@@ -841,28 +841,28 @@
    "raw": "b0628feabe06d7db82f6"
   },
   "chest_fly/Chest Fly (hantle)": {
-   "svg": "8265d75cb3aef59bb590",
-   "raw": "4656d36d03dc85db20d5"
+   "svg": "b12c07d4473faeb6533f",
+   "raw": "7bcc9185e130e56f2df2"
   },
   "chest_fly/Incline Chest Fly (hantle)": {
-   "svg": "9fd2a321205641451a82",
-   "raw": "142640bd9736ff1c96f9"
+   "svg": "f150ad6f13f73d3f11d9",
+   "raw": "96b6686d164ae30360eb"
   },
   "chest_fly/Decline Dumbbell Fly": {
-   "svg": "cdb8c03d49a38b00b891",
-   "raw": "f4c8fd74bcfa88630bc5"
+   "svg": "b1280ee3ea67d0aee962",
+   "raw": "3647da9559ed22041cae"
   },
   "chest_fly/One-Arm Flat Bench Dumbbell Fly": {
    "svg": "4465cef640afac9af7a9",
    "raw": "1769ac8dcb67f628b2a9"
   },
   "chest_fly/Flat Bench Cable Fly": {
-   "svg": "c33b6729271b771821d3",
-   "raw": "a3226110967d9fae61c6"
+   "svg": "4f2599df14bb6932c176",
+   "raw": "879f7a4de7e9e2fc2a71"
   },
   "chest_fly/Incline Cable Fly": {
-   "svg": "3f56d73ff95762f8572d",
-   "raw": "3c2d8b79262ffaaaf31f"
+   "svg": "bf311390e6ab748cb8b5",
+   "raw": "b9b317f8d190841394c8"
   },
   "chest_fly/Cable Fly": {
    "svg": "45895a1aba3af7d5564b",
@@ -1169,8 +1169,8 @@
    "raw": "4287bbdc2f91970a8061"
   },
   "curl/Concentration Curl (hantle)": {
-   "svg": "7bde798f3641c219dafc",
-   "raw": "96a9344ae97f0edf5f14"
+   "svg": "0601e2ae86d3d88afa71",
+   "raw": "d357c126cb50996d6d36"
   },
   "curl/Seated Close-Grip Concentration Barbell Curl": {
    "svg": "ccc70ffaf55a08de4ee0",
@@ -1337,8 +1337,8 @@
    "raw": "7f6b77e62eb709fd9ae5"
   },
   "delt_raise/Reverse Pec Deck": {
-   "svg": "894e6b27fac6fa57ed08",
-   "raw": "f827bbea3fc2db1cc262"
+   "svg": "14a97cae255d928e2cfd",
+   "raw": "d0267e4aa8cffeceb325"
   },
   "delt_raise/Straight Raises on Incline Bench": {
    "svg": "54e2a1441998d48b4dfa",
@@ -1361,8 +1361,8 @@
    "raw": "f59fc59437e62527cf0c"
   },
   "dip/Ring Dips": {
-   "svg": "17533ca33955305bd3ed",
-   "raw": "d8ac7be38c33f97e2df9"
+   "svg": "801b5329448222cb94f3",
+   "raw": "c7eda5dcfb2cf94303bf"
   },
   "dip/Dip Machine": {
    "svg": "69421861d037ecf1fbb3",
@@ -1853,12 +1853,12 @@
    "raw": "265c2674cc21fd09a5cc"
   },
   "overhead_press/Arnold Press": {
-   "svg": "5cd95329ccbe6b75caac",
-   "raw": "4f29700bcea11e6a2cd2"
+   "svg": "48f24992b510d1f60ae4",
+   "raw": "c17663f117f99d24b637"
   },
   "overhead_press/Kettlebell Arnold Press": {
-   "svg": "58449573b8fd26be963c",
-   "raw": "c24298485c37c4c14a2e"
+   "svg": "0a31d782f2907f439a86",
+   "raw": "3f3f7e6b3b212392f416"
   },
   "overhead_press/Seated Shoulder Press (hantle)": {
    "svg": "6ac6158c3c871d1651ba",
@@ -2045,20 +2045,20 @@
    "raw": "72c728660ed7ef86cfcd"
   },
   "pull_up/Wide-Grip Rear Pull-Up": {
-   "svg": "5cb1c99eb910ce1e7aa3",
-   "raw": "7c2cba8dfd917343e543"
+   "svg": "de74d3f247ce39459c06",
+   "raw": "771ad54025cf05e561cb"
   },
   "pull_up/Dead Hang": {
-   "svg": "9ad3c465e2e91556765b",
-   "raw": "328400b38ff59d7d0988"
+   "svg": "eadc61be309798745e0e",
+   "raw": "d636eda7498c01aed0aa"
   },
   "pull_up/Gorilla Chin/Crunch": {
    "svg": "501de9c26219a3bed6fe",
    "raw": "b052c01dbd9f3ce6ff6b"
   },
   "pull_up/Scapular Pull-Up": {
-   "svg": "91d3b65e82e32bd13d30",
-   "raw": "7be151fd0aa7d47566a2"
+   "svg": "27c64009f2309282d802",
+   "raw": "2d8a9b024cfcbbb607db"
   },
   "pulldown/Lat Pulldown": {
    "svg": "d27a368ca5035e17b538",
@@ -2161,8 +2161,8 @@
    "raw": "6b591b4afb3a551b4327"
   },
   "rotator_cuff/External Rotation (hantel)": {
-   "svg": "4e72825d6560986fdef8",
-   "raw": "585a1f4629ef1e92e8f4"
+   "svg": "d360734aaa7084da1765",
+   "raw": "2118f1a66423d14d6be3"
   },
   "rotator_cuff/External Rotation (linki)": {
    "svg": "f07e4e9141cd7c98c3f6",
@@ -2217,8 +2217,8 @@
    "raw": "fbe6f2a91b39a3998a6d"
   },
   "row/One Arm Row (hantle)": {
-   "svg": "ba10835b615e8c455e9b",
-   "raw": "0f2ddc92abf830907292"
+   "svg": "750656938283ea584656",
+   "raw": "ecb5d15b22126d2535d2"
   },
   "row/T-Bar Row": {
    "svg": "37a8dfd366dda3e742e2",
@@ -2393,8 +2393,8 @@
    "raw": "4aceaff24c56f3388e3b"
   },
   "triceps/Tate Press": {
-   "svg": "131f486611f118290ecc",
-   "raw": "6309a770842a0f7a7b0a"
+   "svg": "da127e516fadb2a85887",
+   "raw": "e2e72c6514a99ad9aa4e"
   },
   "triceps/Lying Close-Grip Barbell Triceps Extension Behind The Head": {
    "svg": "82f5d7fc564b49645737",

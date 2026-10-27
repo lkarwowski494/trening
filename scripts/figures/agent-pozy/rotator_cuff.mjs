@@ -2,6 +2,7 @@
 // Rotacja: ramię pionowo przy tułowiu (łokieć nieruchomy względem barku), przedramię poziomo, kierunek przedramienia (kąt alfa od przodu: + na zewnątrz) przechodzi od ukośnie do środka do ukośnie na zewnątrz.
 // Błąd rot.mis.elbowAway: łokieć odchodzi od tułowia (ramię odwodzone do 35°) wraz z przedramieniem.
 import { lezyPrzodem } from './gora.mjs';
+import { K, poza as pozaD, PODLOGA, HIP } from './dol.mjs';
 import { v2, BODY, R, r1, lerp, Y_STOJ, SPRZET, poza, nogiStoj, buduj, rekaProsta, wolna, wyc, U9, U12 } from './gora.mjs';
 
 export const RODZINA = 'rotator_cuff';
@@ -25,6 +26,20 @@ function rotacja(cw, o) {
 }
 
 
+const nrm3 = (v) => { const l = Math.hypot(...v) || 1; return v.map((x) => x / l); };
+/** Rotacja zewnętrzna z hantlem LEŻĄC NA BOKU (prawy bok na podłodze, jak w clamshell; górna ręka L pracuje): łokieć zgięty 90° przy tułowiu, przedramię z poziomu (w poprzek brzucha) unosi się do pionu
+ * — rotacja przeciw grawitacji (hantel w płaszczyźnie poziomej na stojąco nie stawia oporu rotatorom; recenzja ruchu 27.10.2026). Wskazówki rotCuff: łokieć przy boku (rot.elbow), powoli (rot.slow). */
+function rotacjaLezac(cw) {
+  const py = 23; const m = [0, py, 0]; const b = BODY(); const hipR = [0, py - HIP(), 0];
+  const mk = (hip, d, e) => { const dn = nrm3(d), en = nrm3(e); const knee = hip.map((v, i) => v + b.thigh * dn[i]); const ankle = knee.map((v, i) => v + b.shank * en[i]); const mid = hip.map((v, i) => (v + ankle[i]) / 2); const pd = knee.map((v, i) => v - mid[i]); const pl = Math.hypot(...pd) || 1; return { ankle, pole: pd.map((v) => r1(v / pl * 100) / 100) }; };
+  const R0 = mk(hipR, [1, 0, 1], [1, 0, -1]); const ankR = R0.ankle; const ankL = [ankR[0], ankR[1] + 10, ankR[2]];
+  const S0 = [-b.trunk, py]; const Sl = [S0[0], py + 19, 0]; const gam = 8 * R; const E = [Sl[0] + 31 * Math.cos(gam), Sl[1] + 31 * Math.sin(gam), 0]; const L2 = b.farm + b.hand;
+  const fr = (u) => { const beta = lerp(12, 88, u) * R; const H = [E[0], E[1] + L2 * Math.sin(beta), E[2] + L2 * Math.cos(beta)];
+    const mid = Sl.map((v, i) => (v + H[i]) / 2); const pol = nrm3(E.map((v, i) => v - mid[i])).map((v) => r1(v * 100) / 100);
+    return K({ u, m, p: -90, head: -90, roll: 90, R: { a: ankR, pod: null, rot: 10, pole: R0.pole }, L: { a: ankL, pod: null, rot: 10, pole: [0.15, 0, 1] }, hr: { g: [S0[0] - 38, 6, 0], pole: [0, 0.3, 1] }, hl: { g: H.map(r1), pole: pol } }); };
+  return pozaD(RODZINA, cw, [PODLOGA(-130, 130), { ...SPRZET.hantle(), trzyma: 'L' }], [0, 0.25, 0.5, 0.75, 1].map(fr), []);
+}
+
 /** Odwodzenie ramion (reverse fly) leżąc przodem na ławce skośnej: ramiona od zwisu do poziomu w bok, łokieć stały lekko zgięty, rotacja zewnętrzna przedramienia rośnie w górę ruchu. */
 function reverseFlyER(cw, o) {
   const L = lezyPrzodem(45, { dl: 38, zr: 16, kolDx: 52, pole: [1, 0.2, 0] }); const reach = 61;
@@ -45,7 +60,7 @@ export const PRZYBLIZENIA = {
 export function generuj() {
   const G = {};
   const E_ = [-32, 58]; /* rotacja zewnętrzna: przedramię od ukośnie do środka do ukośnie na zewnątrz */
-  G['External Rotation (hantel)'] = () => rotacja('External Rotation (hantel)', { a: E_, sprzet: [SPRZET.hantle()], blad: true });
+  G['External Rotation (hantel)'] = () => rotacjaLezac('External Rotation (hantel)');
   G['External Rotation (linki)'] = () => rotacja('External Rotation (linki)', { a: E_, sprzet: [wyc({ chwyt: 'uchwyt', x: 36, y: 100, z: -75 })], blad: true });
   G['External Rotation with Band'] = () => rotacja('External Rotation with Band', { a: E_, sprzet: [{ rodzaj: 'guma', mocowanie: 'zaczep', x: 36, y: 100, z: -75 }], blad: true });
   G['Internal Rotation with Band'] = () => rotacja('Internal Rotation with Band', { a: [58, -32], sprzet: [{ rodzaj: 'guma', mocowanie: 'zaczep', x: 36, y: 100, z: 90 }], blad: true });

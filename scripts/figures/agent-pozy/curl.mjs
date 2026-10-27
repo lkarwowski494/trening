@@ -108,8 +108,10 @@ export function generuj() {
   /* --- siedząc / pochylony: łokieć o wewnętrzną stronę uda --- */
   const NAK = 40; /* pochylenie tułowia w koncentracyjnych (łokieć wsparty o udo) */
   const sed = (px = 22) => { const y = 43 + 9.5 + 0.3; const m = [px, y]; const kolano = (s) => [px + 38, 7, POL(s) * 26]; return { m, nogi: { R: noga3(kolano('R'), [0.8, 0.3, 0.7]), L: noga3(kolano('L'), [0.8, 0.3, -0.7]) } }; };
-  G['Concentration Curl (hantle)'] = () => { const T = sed(); return wlasna('Concentration Curl (hantle)', { sprzet: [{ rodzaj: 'lawka', x: 0, top: 43, kat: 0, dlugosc: 75, siedzisko: 38 }, SPRZET.hantle({ trzyma: 'R' })], tulow: { m: T.m, p: NAK, glowa: NAK * 0.7 }, nogi: T.nogi,
-    rece: (u) => ({ R: { f1: 0, a1: -16, f2: lerp(3, 128, u), zG: 11, obrot: lerp(0, 70, u) }, L: { g: [T.m[0] + 24, 70, -26] } }) }); };
+  /* Concentration Curl: tył ramienia (łokieć) oparty o wewnętrzną stronę uda tuż nad kolanem, wolna dłoń na drugim udzie (wskazówka „setup” ćwiczenia; recenzja ruchu 27.10.2026). Tułów 50° od pionu, żeby bark był nad łokciem opartym na udzie (ramię ma 31 cm). */
+  const NAK_CC = 50;
+  G['Concentration Curl (hantle)'] = () => { const T = sed(); return wlasna('Concentration Curl (hantle)', { sprzet: [{ rodzaj: 'lawka', x: 0, top: 43, kat: 0, dlugosc: 75, siedzisko: 38 }, SPRZET.hantle({ trzyma: 'R' })], tulow: { m: T.m, p: NAK_CC, glowa: NAK_CC * 0.7 }, nogi: T.nogi,
+    rece: (u) => ({ R: { f1: -9, a1: 5.6, f2: lerp(3, 128, u), zG: 15, obrot: lerp(0, 70, u) }, L: { g: [39, 61, -21], pole: [-0.4, 0.3, -0.8] } }) }); };
   G['Seated Close-Grip Concentration Barbell Curl'] = () => { const T = sed(); return wlasna('Seated Close-Grip Concentration Barbell Curl', { sprzet: [{ rodzaj: 'lawka', x: 0, top: 43, kat: 0, dlugosc: 75, siedzisko: 38 }, SPRZET.gryfLamany()], tulow: { m: T.m, p: NAK, glowa: NAK * 0.7 }, nogi: T.nogi,
     rece: (u) => { const a = (s) => ({ f1: 14, a1: -14, f2: lerp(34, 145, u), zG: 9, obrot: 60 }); return { R: a('R'), L: a('L') }; } }); };
   G['Standing Concentration Curl'] = () => { const m = [-22, 72]; const k = (s) => [0, 7, POL(s) * 26]; return wlasna('Standing Concentration Curl', { sprzet: [SPRZET.hantle({ trzyma: 'R' })], tulow: { m, p: 45, glowa: 38 }, nogi: { R: noga3(k('R'), [1, 0.1, 0.9]), L: noga3(k('L'), [1, 0.1, -0.9]) },

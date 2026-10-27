@@ -97,7 +97,7 @@ const bounds = (name: string, v: number | undefined, lo: number, hi: number): st
 export const GEAR_KINDS: Record<GearName, GearKind> = {
   sztanga: {
     nazwa: 'sztanga albo drążek',
-    caps: ['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'yoke'], capLabel: { yoke: 'jarzmo (rysowane jak sztanga na barkach — uproszczenie)' }, opis: 'sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma)',
+    caps: ['pullup.bar', 'barbell', 'ez_bar', 'axle_bar', 'yoke'], capLabel: { yoke: 'jarzmo (rysowane jak sztanga na barkach — uproszczenie)' }, opis: 'sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma)',
     props: (g, grips) => { const one = g.trzyma === 'R' || g.trzyma === 'L' ? g.trzyma : null; /* jedna dłoń trzymająca: środek sztangi na jej chwycie (x, y), nie średnia obu dłoni */ const c: V3 = g.podazaZaChwytem ? (one ? [grips[one][0], grips[one][1], 0] : [(grips.R[0] + grips.L[0]) / 2, (grips.R[1] + grips.L[1]) / 2, 0]) : [g.x ?? 0, g.y ?? 0, 0]; return [{ k: 'barbell', c, plates: g.talerze !== false, held: g.trzyma === 'R' || g.trzyma === 'L' ? g.trzyma : true, len: g.dlugosc ?? BAR_LEN }]; },
   },
   slupek: {
@@ -305,7 +305,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     ],
   },
   zawieszenie: {
-    nazwa: 'taśmy do podwieszania', caps: ['suspension'], fields: ['z', 'punkt'], opis: 'taśmy do podwieszania: punkt zaczepu wysoko (x, y, z), dwie taśmy do dłoni albo kostek (punkt, trzyma)',
+    nazwa: 'taśmy do podwieszania', caps: ['suspension', 'rings'], capLabel: { rings: 'kółka gimnastyczne (rysowane jako uchwyty na taśmach, bez obrotu kółek — uproszczenie)' }, fields: ['z', 'punkt'], opis: 'taśmy do podwieszania: punkt zaczepu wysoko (x, y, z), dwie taśmy do dłoni albo kostek (punkt, trzyma)',
     props: (g, grips, _all, ankles) => {
       const anchor: V3 = [g.x ?? 0, g.y ?? EQUIP.suspensionY, g.z ?? 0]; const kost = g.punkt === 'kostki';
       return sidesOf(g).map((s): Prop => ({ k: 'cable', from: anchor, to: kost ? ankles[s] : grips[s], attach: kost ? 'strap' : 'handle', ends: [kost ? ankles[s] : grips[s]], solid: true, free: EQUIP.suspensionFree }));

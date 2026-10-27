@@ -48,7 +48,7 @@ export const WYJATKI = {
 export const PRZYBLIZENIA = {
   'Cable Seated Lateral Raise': 'przybliżenie: ławka płaska jako siedzisko, dwa niskie wyciągi po bokach; ręce unoszone symetrycznie',
   'Machine Lateral Raise': 'przybliżenie: dźwignia obrotowa narysowana po stronie prawej (trzyma R), druga strona bez dźwigni; oś obrotu na osi barku (schemat)',
-  'Reverse Pec Deck': 'przybliżenie: dźwignia po stronie prawej (schemat); siedzisko bez poduszki piersiowej',
+  'Reverse Pec Deck': 'przybliżenie: dwie dźwignie (R i L) narysowane schematycznie z osią na wysokości barków; podpora piersiowa jako pionowe oparcie, siedzisko jako płaska ławka',
   'Car Drivers': 'przybliżenie: talerz obraca się o 60° w jedną stronę (jedna klatka ruchu); kierowca obraca w obie strony',
 };
 
@@ -97,9 +97,12 @@ export function generuj() {
   G['Machine Lateral Raise'] = () => { const T = siedz(); const sp = (u) => RACZ(lerp(9, 88, u), 85, { flex: 14, pl: -1 }); const S = bark(T.m, 0, 1); const G0 = ramieFK(S, 1, sp(0)).g;
     const pv = [r1(T.m[0] - 25), r1(S[1]), r1(S[2])]; const lever = { rodzaj: 'dzwignia', tryb: 'obrot', x: pv[0], y: pv[1], z: pv[2], dlugosc: r1(Math.hypot(G0[0] - pv[0], G0[1] - pv[1], G0[2] - pv[2])), punkt: 'dlonie', trzyma: 'R' };
     return wlasna('Machine Lateral Raise', { sprzet: [{ rodzaj: 'lawka', x: 0, top: 43, kat: 80, dlugosc: 60, siedzisko: 38 }, lever], tulow: { m: T.m, p: 0 }, nogi: nogiSied(), rece: (u) => obie(sp(u)), us: U12 }); };
-  G['Reverse Pec Deck'] = () => { const T = siedz(); const sp = (u) => RACZ(90, lerp(8, 100, u), { flex: 14, ku: [0, -1, 0] }); const S = bark(T.m, 0, 1); const G0 = ramieFK(S, 1, sp(0)).g;
-    const pv = [r1(S[0]), r1(G0[1] - 15), r1(S[2])]; const lever = { rodzaj: 'dzwignia', tryb: 'obrot', x: pv[0], y: pv[1], z: pv[2], dlugosc: r1(Math.hypot(G0[0] - pv[0], G0[1] - pv[1], G0[2] - pv[2])), punkt: 'dlonie', trzyma: 'R' };
-    return wlasna('Reverse Pec Deck', { sprzet: [{ rodzaj: 'lawka', x: 0, top: 43, kat: 80, dlugosc: 60, siedzisko: 38 }, lever], tulow: { m: T.m, p: 0 }, nogi: nogiSied(), rece: (u) => obie(sp(u)), us: U12 }); };
+  /* Reverse Pec Deck: siad PRZODEM do maszyny, klatka oparta o podporę przed tułowiem (plecy wolne), dwie dźwignie z rączkami (R i L); ręce w bok i w tył, aż łokcie miną linię pleców
+   * (wskazówki rpd.setup, rpd.move; recenzja ruchu 27.10.2026). Podpora piersiowa to oparcie pionowe (lawka kat 90) tuż przed klatką, siedzisko to ławka płaska. */
+  G['Reverse Pec Deck'] = () => { const T = siedz(); const sp = (u) => RACZ(90, lerp(8, 115, u), { flex: 14, ku: [0, -1, 0] }); const S = bark(T.m, 0, 1); const G0 = ramieFK(S, 1, sp(0)).g;
+    const lev = (side) => { const sg = side === 'R' ? 1 : -1; const pv = [r1(S[0]), r1(G0[1] - 15), r1(sg * S[2])]; return { rodzaj: 'dzwignia', tryb: 'obrot', x: pv[0], y: pv[1], z: pv[2], dlugosc: r1(Math.hypot(G0[0] - pv[0], G0[1] - pv[1], sg * G0[2] - pv[2])), punkt: 'dlonie', trzyma: side }; };
+    const siedzisko = { rodzaj: 'lawka', x: 0, top: 43, kat: 0, dlugosc: 30, siedzisko: 38 }; const podpora = { rodzaj: 'lawka', x: r1(T.m[0] + 19.7), top: 68, kat: 90, dlugosc: 30, siedzisko: 20 };
+    return wlasna('Reverse Pec Deck', { sprzet: [siedzisko, podpora, lev('R'), lev('L')], tulow: { m: T.m, p: 0 }, nogi: nogiSied(), rece: (u) => obie(sp(u)), us: U12 }); };
   /* --- leżąc na ławce skośnej: sztanga z nad ud nad głowę --- */
   G['Straight Raises on Incline Bench'] = () => { const B = naLawce(55, 43, { zr: 24 }); return wlasna('Straight Raises on Incline Bench', { sprzet: [{ rodzaj: 'lawka', x: 0, top: 43, kat: 55, dlugosc: 75 }, SPRZET.sztanga()], tulow: { m: B.m, p: B.p, glowa: B.glowa }, nogi: B.nogi,
     rece: (u) => { const l = rekaProsta(lerp(80, 185, u), 0, { flex: 14, pl: 1 }); return obie(l); }, us: U12 }); };

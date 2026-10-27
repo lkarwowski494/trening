@@ -45,12 +45,12 @@ export const PRZYBLIZENIA = {};
 
 export function generuj() {
   const G = {};
-  const H = SPRZET.hantle(); const A = [0, 100];
+  const H = SPRZET.hantle(); const A = [0, 92]; /* koniec ruchu: ramię pionowo (92°), dłonie ok. ±9 cm od osi — nie w jednym punkcie (recenzja ruchu 27.10.2026: przy 100° chwyty R i L leżały 0,4 cm od siebie) */
   /* --- hantle leżąc --- */
   G['Chest Fly (hantle)'] = () => lezac('Chest Fly (hantle)', { a: A, sprzet: [H], obrot: 0 });
   G['Incline Chest Fly (hantle)'] = () => lezac('Incline Chest Fly (hantle)', { kat: 55, a: A, sprzet: [H], obrot: 0 });
   G['Decline Dumbbell Fly'] = () => lezac('Decline Dumbbell Fly', { kat: -20, a: A, sprzet: [H], obrot: 0 });
-  G['One-Arm Flat Bench Dumbbell Fly'] = () => lezac('One-Arm Flat Bench Dumbbell Fly', { a: A, sprzet: [H], jedna: 'R', obrot: 0 });
+  G['One-Arm Flat Bench Dumbbell Fly'] = () => lezac('One-Arm Flat Bench Dumbbell Fly', { a: [0, 100], sprzet: [H], jedna: 'R', obrot: 0 });
   /* --- wyciągi leżąc --- */
   G['Flat Bench Cable Fly'] = () => lezac('Flat Bench Cable Fly', { a: A, sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, x: -50, y: 15, z: 105 })] });
   G['Incline Cable Fly'] = () => lezac('Incline Cable Fly', { kat: 55, a: A, sprzet: [wyc({ chwyt: 'uchwyt', dwa: true, x: -35, y: 15, z: 130 })] });

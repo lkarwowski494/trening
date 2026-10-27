@@ -8324,9 +8324,9 @@
       52.8,
       0
      ],
-     "pochylenieTulowia": 40,
+     "pochylenieTulowia": 50,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 28,
+     "pochylenieGlowy": 35,
      "nogi": {
       "R": {
        "kostka": [
@@ -8360,22 +8360,27 @@
      "rece": {
       "R": {
        "chwyt": [
-        55.9,
-        28.3,
-        11
+        57.2,
+        22.3,
+        15
        ],
        "biegunLokcia": [
-        -0.18818326562243246,
-        0.3343444973294522,
-        -0.9234721520680487
+        -0.5393869148908988,
+        0.14315641089504905,
+        0.8297999747313362
        ],
        "obrotPrzedramienia": 0
       },
       "L": {
        "chwyt": [
-        46,
-        70,
-        -26
+        39,
+        61,
+        -21
+       ],
+       "biegunLokcia": [
+        -0.4,
+        0.3,
+        -0.8
        ]
       }
      }
@@ -8387,9 +8392,9 @@
       52.8,
       0
      ],
-     "pochylenieTulowia": 40,
+     "pochylenieTulowia": 50,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 28,
+     "pochylenieGlowy": 35,
      "nogi": {
       "R": {
        "kostka": [
@@ -8423,22 +8428,27 @@
      "rece": {
       "R": {
        "chwyt": [
-        72.7,
-        33.9,
-        11
+        73.6,
+        27.8,
+        15
        ],
        "biegunLokcia": [
-        -0.9024133542163583,
-        -0.1267579658616381,
-        -0.41180402647691683
+        -0.9061415765643075,
+        -0.15061406903100094,
+        0.39525035791441865
        ],
        "obrotPrzedramienia": 17.5
       },
       "L": {
        "chwyt": [
-        46,
-        70,
-        -26
+        39,
+        61,
+        -21
+       ],
+       "biegunLokcia": [
+        -0.4,
+        0.3,
+        -0.8
        ]
       }
      }
@@ -8450,9 +8460,9 @@
       52.8,
       0
      ],
-     "pochylenieTulowia": 40,
+     "pochylenieTulowia": 50,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 28,
+     "pochylenieGlowy": 35,
      "nogi": {
       "R": {
        "kostka": [
@@ -8486,22 +8496,27 @@
      "rece": {
       "R": {
        "chwyt": [
-        84.2,
-        47.5,
-        11
+        84.8,
+        41.1,
+        15
        ],
        "biegunLokcia": [
-        -0.8541231676788358,
-        -0.4608248772523007,
-        -0.24106855236565694
+        -0.8650014955598891,
+        -0.43291121358885226,
+        0.25369330662865847
        ],
        "obrotPrzedramienia": 35
       },
       "L": {
        "chwyt": [
-        46,
-        70,
-        -26
+        39,
+        61,
+        -21
+       ],
+       "biegunLokcia": [
+        -0.4,
+        0.3,
+        -0.8
        ]
       }
      }
@@ -8513,9 +8528,9 @@
       52.8,
       0
      ],
-     "pochylenieTulowia": 40,
+     "pochylenieTulowia": 50,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 28,
+     "pochylenieGlowy": 35,
      "nogi": {
       "R": {
        "kostka": [
@@ -8549,22 +8564,27 @@
      "rece": {
       "R": {
        "chwyt": [
-        86.9,
-        65.1,
-        11
+        87.5,
+        58.3,
+        15
        ],
        "biegunLokcia": [
-        -0.6854379141879136,
-        -0.7062228377833732,
-        -0.17726863565482043
+        -0.7182293977421127,
+        -0.6678275940254188,
+        0.19532751182878136
        ],
        "obrotPrzedramienia": 52.5
       },
       "L": {
        "chwyt": [
-        46,
-        70,
-        -26
+        39,
+        61,
+        -21
+       ],
+       "biegunLokcia": [
+        -0.4,
+        0.3,
+        -0.8
        ]
       }
      }
@@ -8576,9 +8596,9 @@
       52.8,
       0
      ],
-     "pochylenieTulowia": 40,
+     "pochylenieTulowia": 50,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 28,
+     "pochylenieGlowy": 35,
      "nogi": {
       "R": {
        "kostka": [
@@ -8612,22 +8632,27 @@
      "rece": {
       "R": {
        "chwyt": [
-        80.1,
-        81.5,
-        11
+        80.9,
+        74.3,
+        15
        ],
        "biegunLokcia": [
-        -0.4548601759072719,
-        -0.8781370972540778,
-        -0.14824796389761327
+        -0.5076704319436711,
+        -0.8449616970298093,
+        0.16825713382389254
        ],
        "obrotPrzedramienia": 70
       },
       "L": {
        "chwyt": [
-        46,
-        70,
-        -26
+        39,
+        61,
+        -21
+       ],
+       "biegunLokcia": [
+        -0.4,
+        0.3,
+        -0.8
        ]
       }
      }
