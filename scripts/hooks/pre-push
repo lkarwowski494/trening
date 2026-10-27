@@ -45,6 +45,9 @@ else
   sprawdz lint "popraw błędy zgłoszone przez eslint i dodaj poprawki do commitu."
 fi
 sprawdz check:readme "node scripts/readme.mjs --write (README jest generowane z kodu), potem git add README.md."
+# L-NNN (28.10.2026, naprawy M2): plik kontekstów tłumaczeń zależy od numerów linii wywołań t() — łapany dopiero w CI
+if [ -f scripts/i18n-context.mjs ]; then echo "hak pre-push: node scripts/i18n-context.mjs --check" >&2; fi
+if [ -f scripts/i18n-context.mjs ] && ! node scripts/i18n-context.mjs --check >&2; then echo "hak pre-push: WYPCHNIĘCIE ZATRZYMANE — konteksty tłumaczeń nieaktualne." >&2; echo "Jak naprawić: node scripts/i18n-context.mjs --write, potem git add docs/lokalizacja/konteksty.json i commit. Obejście (świadome): git push --no-verify" >&2; exit 1; fi
 sprawdz check:matrix "najpierw git add nowych plików testów (macierz liczy tylko pliki śledzone), potem node scripts/test-matrix.mjs --write (docs/19-macierz-testow.md) i git add docs; brakujące testy z listy dopisz, nie wyłączaj sprawdzenia."
 
 # L-037 (wariant A, decyzja właściciela 26.10.2026): gdy wypychane commity zmieniają docs/, sprawdzamy numerację lekcji i testy dokumentów — zmiana „tylko w dokumentach”
