@@ -29,7 +29,7 @@
    "fontSize": 5
   },
   "components/StartError.tsx": {
-   "fontSize": 3
+   "fontSize": 2
   },
   "components/SwipeRow.tsx": {
    "fontSize": 1

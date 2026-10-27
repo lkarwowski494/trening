@@ -5,6 +5,7 @@ import { t, lang, appName } from '@/lib/i18n';
 import { exportStartDataDetailed } from '@/lib/backup';
 import { openSupportMail } from '@/lib/support';
 
+const BTN_FONT = 16; /* przyciski i ostrzeżenie — jedna stała zamiast powtórzonych literałów (strażnik tokenów) */
 const DIAG_FONT = 12; /* kod diagnostyczny pod komunikatem — mniejszy od treści, bez tokenów (ekran nie zależy od motywu) */
 
 /*
@@ -20,7 +21,7 @@ export function StartError({ title, message, detail, diag, onRetry }: { title: s
   const send = () => { exportStartDataDetailed().then(r => { if (!r.ok) fail(); else if (r.rescue) Alert.alert(t('Kopia bazy w Plikach'), t('Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.', { app: appName(), folder: r.rescue })); }).catch(fail); };
   const link = (label: string, onPress: () => void) => (
     <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={onPress} style={{ padding: 12 }}>
-      <Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 16, ...FW.semibold }}>{label}</Text>
+      <Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: BTN_FONT, ...FW.semibold }}>{label}</Text>
     </Pressable>);
   return (
     <View testID="start-error" style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}>
@@ -29,7 +30,7 @@ export function StartError({ title, message, detail, diag, onRetry }: { title: s
       {detail ? <Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center' }}>{detail}</Text> : null}
       {diag ? <Text testID="start-error-diag" selectable accessibilityLanguage="en" style={{ color: th.muted, textAlign: 'center', fontSize: DIAG_FONT }}>{diag}</Text> : null}
       <Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center', fontSize: 13 }}>{t('Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.', { app: appName() })}</Text>
-      <Text testID="start-error-warning" accessibilityLanguage={lang()} style={{ color: th.text, textAlign: 'center', fontSize: 16, ...FW.semibold }}>{t('Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.')}</Text>
+      <Text testID="start-error-warning" accessibilityLanguage={lang()} style={{ color: th.text, textAlign: 'center', fontSize: BTN_FONT, ...FW.semibold }}>{t('Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.')}</Text>
       {link(t('Wyślij dane'), send)}
       {link(t('Spróbuj ponownie'), onRetry)}
       {link(t('Napisz do nas'), () => openSupportMail('feedback'))}
