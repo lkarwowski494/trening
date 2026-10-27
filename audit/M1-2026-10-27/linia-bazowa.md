@@ -42,3 +42,28 @@ LB-09 Obietnice opisu w sklepie (35 języków, import z popularnych dzienników,
 LB-10 Każda decyzja właściciela (docs/18) wdrożona i pilnowana testem (sygnał z telefonu: decyzja 23.10 niewdrożona).
 LB-11 Tłumaczenia naturalne we wszystkich językach z opisu; ceny i formaty liczb lokalne.
 LB-12 Gotowość do przeglądu Apple: notatki recenzenta, konto demo/limit, linki prawne, „Przywróć zakupy”, „Zrealizuj kod”.
+
+## Soczewki (partia 1, 27.10.2026; 5 × 15 punktów; pliki w soczewki/)
+Punkty soczewek pokryte przez LB-01…LB-12 dopisane do nich jako źródło; nowe punkty dostały LB-13…LB-20.
+| LB | Punkty soczewek (plik: nr) |
+|---|---|
+| LB-01 dane | sceptyk-ryzyka: 1–6, 15; nowy-uzytkownik: 9; wlasciciel-0zl: 7 |
+| LB-02 cena = pobierana, stan po zakupie | recenzent-sklepu: 1, 2, 4, 6; sceptyk-ryzyka: 10, 11; nowy-uzytkownik: 6, 7; wlasciciel-0zl: 13 |
+| LB-03 limit bez zakładnika | recenzent-sklepu: 9, 14; sceptyk-ryzyka: 12; nowy-uzytkownik: 4, 5, 8; praktyk: 13; wlasciciel-0zl: 4 |
+| LB-04 dostępność | nowy-uzytkownik: 1–3 (przepływ bez instrukcji) |
+| LB-05 timer, zegarek | recenzent-sklepu: 13; nowy-uzytkownik: 12, 13; praktyk: 9, 10; wlasciciel-0zl: 8 |
+| LB-06 liczby | praktyk: 1–3, 5, 6, 11 (jeden nazwany wzór e1RM z granicą powtórzeń; rozgrzewka poza rekordami; dwie miary objętości nazwane) |
+| LB-07 treść i technika | praktyk: 4, 7, 8, 12; sceptyk-ryzyka: 14; recenzent-sklepu: 15 |
+| LB-08 prywatność | sceptyk-ryzyka: 8, 9; recenzent-sklepu: 11, 12; praktyk: 14; nowy-uzytkownik: 11; wlasciciel-0zl: 12 |
+| LB-09 obietnice opisu | recenzent-sklepu: 10; nowy-uzytkownik: 15; wlasciciel-0zl: 5 |
+| LB-11 język | nowy-uzytkownik: 14 |
+| LB-12 przegląd Apple | recenzent-sklepu: 4, 8 |
+| **LB-13** kopia w Plikach/iCloud a dane odczytane z HealthKit (wytyczna 5.1.3) — rozstrzygnięte świadomie | sceptyk-ryzyka: 7; nowy-uzytkownik: 10; recenzent-sklepu: 11 |
+| **LB-14** porównanie „espresso” prawdziwe w każdym storefroncie albo znika | recenzent-sklepu: 3 |
+| **LB-15** Pro na zegarku i brak dublowania dożywotni + subskrypcja (ostrzeżenie, zarządzanie, zwrot) | recenzent-sklepu: 5, 6 |
+| **LB-16** Family Sharing: cofnięcie dostępu obsłużone | recenzent-sklepu: 7; sceptyk-ryzyka: 13 |
+| **LB-17** status sprzedawcy (DSA, „trader”) rozstrzygnięty przed publikacją w UE | wlasciciel-0zl: 6 |
+| **LB-18** Small Business Program przed pierwszą sprzedażą; cena dożywotnia vs koszt utrzymania | wlasciciel-0zl: 1–3 |
+| **LB-19** zakres bez „kombajnu”: funkcje poza rdzeniem z metryką wartości; wzrost z widoczności w PL i kilku rynków | wlasciciel-0zl: 9, 10, 14, 15; praktyk: 15 |
+| **LB-20** CI darmowe i bez danych osobowych w logach | wlasciciel-0zl: 11, 12 |
+Kontrola nazw marek w plikach soczewek: grep po nazwach alternatyw — 0 trafień (27.10).

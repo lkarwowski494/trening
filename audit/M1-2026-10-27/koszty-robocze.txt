@@ -1,0 +1,6 @@
+| soczewka sceptyk-ryzyka | szac. 0,08–0,14 mln | 83 545 tok., 12 wywołań, 135 s |
+| soczewka wlasciciel-0zl | szac. 0,08–0,14 mln | 83 011 tok., 16 wywołań, 145 s |
+| soczewka nowy-uzytkownik | szac. 0,08–0,14 mln | 92 712 tok., 19 wywołań, 159 s |
+| soczewka recenzent-sklepu | szac. 0,08–0,14 mln | 116 136 tok., 23 wywołania, 210 s |
+| soczewka praktyk | szac. 0,08–0,14 mln | 113 181 tok., 19 wywołań, 226 s |
+| razem soczewki | plan 0,4–0,7 mln | 488 585 tok. (iloraz do środka planu ≈ 0,89) |
