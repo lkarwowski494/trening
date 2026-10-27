@@ -32,6 +32,7 @@ Decyzja właściciela 27.10.2026 (docs/18, wariant A): niezależna recenzja ruch
 | olympic | 23 | 1 | 4 | 18 | 23/23 OK | 0 z 18 (0%), 4 klasy | [olympic.md](olympic.md) |
 | kb_ballistic | 16 | 0 | 10 | 6 | 16/16 OK | 0 z 6 (0%), 4 klasy | [kb_ballistic.md](kb_ballistic.md) |
 | sled_throw | 8 | 0 | 6 | 2 | 8/8 OK | 0 z 2 (0%) | [sled_throw.md](sled_throw.md) |
+| core_standing | 16 | 12 | 1 | 3 | 16/16 OK | 0 z 3 (0%) | [core_standing.md](core_standing.md) |
 
 ## Partia rec-11 (dip, overhead_press, row, pull_up, curl, triceps, delt_raise, chest_fly + shrug, forearm, rotator_cuff), 27.10.2026
 
