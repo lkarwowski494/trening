@@ -33,6 +33,7 @@ Agent ścieżki 1.0 (stara sesja) prowadził te kroki; nowa sesja kontynuuje od 
 ## Wersja 1.0.1 (po 1.0)
 `wersja-1-0-1` dba56fc, tests.yml zielony (40379653147). Zawiera m.in. B-04 (pauza zegarka), check:claims dla liczb, poprawkę `test:fast` (słowniki → testy plików generowanych) z lekcją. Po 1.0: watch-sim / ios-unsigned (kompilacja Swift).
 - 06:58 UTC: scalenie main (1.0.0) do `wersja-1-0-1` zrobione lokalnie; stan zapisu na gałęzi `wersja-1-0-1-wip` 4b3055e8 (verify jeszcze nie przeszło). Dalej: pełne verify przez `flock /tmp/claude-0/verify.lock`, push na `wersja-1-0-1`, zielony tests.yml, linia końcowa.
+- 08:22 UTC: gałąź `wersja-1-0-1-wip` 4b3055e8 = merge main (konflikty rozwiązane, przywrócone 5 tłumaczeń es-419/pt-BR, README i macierz zregenerowane, lekcja L-040). Pełne verify nie przeszło jeszcze ani razu: pierwsze podejścia padły na haku (core.hooksPath wraca do ścieżki bezwzględnej — obejście: GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.hooksPath GIT_CONFIG_VALUE_0=<worktree>/scripts/hooks) i na lincie (nie trzymać zagnieżdżonego worktree w katalogu roboczym). Dalej: verify z obejściem w czystym worktree, potem `git push origin wersja-1-0-1` z 4b3055e8, zielony tests.yml, linia końcowa.
 
 ## 1.1 (biblioteka grafik v2 + strona techniqueatlas)
 | Obszar | Stan | Gałąź / SHA |
