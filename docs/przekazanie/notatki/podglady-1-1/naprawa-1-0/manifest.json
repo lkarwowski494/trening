@@ -1,0 +1,701 @@
+{
+ "baza": "main 4b77c9f + naprawa-figury-1-0",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Axle Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Back Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Band Bench Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Band Good Morning",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Band Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Barbell Guillotine Bench Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Barbell Hack Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Bench Press (hantle)",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Bench Press (sztanga)",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Bench Press with Chains",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Board Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Bodyweight Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Box Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Box Squat with Bands",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Box Squat with Chains",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Cable Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Cable Pull Through",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Cable Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Chain Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Clean Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Close Grip Bench Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Close-Grip Dumbbell Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Close-Grip EZ-Bar Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Deadlift (hantle)",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Deadlift (sztanga)",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Deadlift with Bands",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Deadlift with Chains",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Decline Bench Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Decline Bench Press (hantle)",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Decline Close-Grip Bench To Skull Crusher",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Deficit Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Dip Belt Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Double Kettlebell Front Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Dumbbell Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Floor Press (hantle)",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Floor Press (sztanga)",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Floor Press with Chains",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Front Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Goblet Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Good Morning",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Good Morning off Pins",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Incline Bench Press (hantle)",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Incline Bench Press (sztanga)",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "JM Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Landmine Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Leverage Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "One Arm Dumbbell Bench Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "One-Arm Kettlebell Floor Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "One-Arm Overhead Kettlebell Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "One-Arm Side Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Overhead Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Pin Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Przysiad z pasem (linki)",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "RDL (hantle/linki)",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "RDL (sztanga)",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Rack Pull",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Rack Pull with Bands",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Reverse Band Bench Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Reverse Band Box Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Reverse Band Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Reverse Band Power Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Reverse Band Sumo Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Reverse Grip Bench Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Rickshaw Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Single Arm RDL (hantel/linka)",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Single Leg RDL (hantel)",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Single Leg RDL (linki)",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Smith Machine Bench Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Smith Machine Close-Grip Bench Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Smith Machine Decline Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Smith Machine Incline Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Smith Machine Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Smith Machine Stiff-Legged Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Snatch Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Squat with Bands",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Squat with Chains",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Squeeze Press (hantle)",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Stiff-Legged Barbell Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Sumo Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Sumo Deadlift (kettlebell)",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Sumo Deadlift with Bands",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Sumo Deadlift with Chains",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Sumo Squat (hantel)",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Trap Bar Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Wall Sit",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Wide-Grip Barbell Bench Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Zercher Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1 @@
+Podglad ważny: wygenerowany z silnika (jointAngles/frameAt) z gałęzi naprawa-figury-1-0, manifest.json = lista ćwiczeń 3 rodzin (squat, bench_press, hinge; 87 ćwiczeń), katy-stawow.md = kąty w klatkach u=0, 0.5, 1. Rodziny rysowane z rigów (bez pozy z danych), więc brak pola zgodnosc_manifestu. Rodzina pull_up poza zakresem 1.0 (status planned).
