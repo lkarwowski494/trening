@@ -7,8 +7,6 @@
  "Prostowanie": "nazwa FAZY animacji ruchu (anim.ts PhaseName), pokazana w „{faza} {n} s”; prostowanie stawu (biodra, łokcia), rzeczownik odczasownikowy",
  "Grzbiet w dół": "nazwa FAZY animacji ruchu Cat-Cow (poseData.ts PHASES_BY_EXERCISE), pokazana w „{faza} {n} s”: grzbiet opada w dół ku podłodze, brzuch w dół (krowa); nie nazwa ćwiczenia i nie „wygięcie” w ogólnym sensie",
  "Koci grzbiet": "nazwa FAZY animacji ruchu Cat-Cow (poseData.ts PHASES_BY_EXERCISE), pokazana w „{faza} {n} s”: grzbiet wypukły ku górze jak u kota (koci grzbiet); nie nazwa ćwiczenia",
- "Dłonie do stóp": "nazwa FAZY animacji ruchu Inchworm (PHASES_BY_EXERCISE), pokazana w „{faza} {n} s”: dłonie dochodzą krokami do stóp (ruch w układzie stóp, które stoją w miejscu); nie nazwa ćwiczenia",
- "Marsz w podpór": "nazwa FAZY animacji ruchu Inchworm (PHASES_BY_EXERCISE), pokazana w „{faza} {n} s”: marsz w podpór (ręce lub stopy idą krokami, ciało w linii); nie nazwa ćwiczenia",
  "{faza} {n} s": "linia faz animacji w karcie ćwiczenia, np. „Podciąganie 1 s · Opuszczanie 2 s”: {faza} = nazwa fazy ruchu (nie ćwiczenia), {n} = liczba sekund; „s” = sekundy",
  "Zwiększ ciężar o {n}": "etykieta dostępności (VoiceOver) przycisku „+” przy polu ciężaru w serii: {n} = krok zmiany z jednostką (np. 2,5 kg); tryb rozkazujący",
  "Zmniejsz czas o {n}": "etykieta dostępności (VoiceOver) przycisku „−” przy polu czasu w serii na czas: {n} = krok zmiany w sekundach; tryb rozkazujący",

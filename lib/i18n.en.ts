@@ -774,8 +774,6 @@ export const EN: Record<string, string> = {
   'Prostowanie': 'Straightening',
   'Grzbiet w dół': 'Arching',
   'Koci grzbiet': 'Rounding',
-  'Dłonie do stóp': 'Hands to feet',
-  'Marsz w podpór': 'Walking out',
   '{faza} {n} s': '{faza} {n} s',
   'Pokaż częsty błąd': 'Show common mistake',
   'Ukryj częsty błąd': 'Hide common mistake',

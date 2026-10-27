@@ -2,7 +2,7 @@
  * Figury v2 — pokrycie rodzin mobility_stand, mobility_floor, foam_roll, neck (27.10.2026; docs/53 bramka 5 „kompletność”, decyzja właściciela 27.10.2026):
  * animacja tylko tam, gdzie reguły sensu mają przeczytane źródło; pozostałe ćwiczenia to jawne wyjątki bez animacji z powodem (data/zrodla/figury-wyjatki.json).
  * Rodzaje (docs/20): dane i macierz — każde z 74 ćwiczeń ma DOKŁADNIE jedno: pozę w poses/<rodzina>.json albo wyjątek z powodem; poza ma regułę sensu ze źródłem (nie samą „poza nieruchomą”);
- * niezmienniki — pozy statyczne to dwie identyczne klatki, ruchowe (Cat-Cow, Inchworm) mają klatki różne; regresja — wyjątki nie wracają po cichu do listy „do zrobienia”.
+ * niezmienniki — pozy statyczne to dwie identyczne klatki, ruchowa (Cat-Cow) ma klatki różne; regresja — wyjątki nie wracają po cichu do listy „do zrobienia”.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -32,7 +32,7 @@ describe('pokrycie rodzin mobilności, rolowania i szyi: poza albo wyjątek z po
   });
   test('liczba póz i wyjątków na rodzinę (zmiana = świadoma decyzja)', () => {
     const wynik = Object.fromEntries(RODZINY.map((r) => [r, [Object.keys(pozy(r)).length, cwiczenia(r).length - Object.keys(pozy(r)).length]]));
-    expect(wynik).toEqual({ mobility_stand: [9, 27], mobility_floor: [9, 13], foam_roll: [0, 10], neck: [0, 5] });
+    expect(wynik).toEqual({ mobility_stand: [8, 28], mobility_floor: [9, 13], foam_roll: [0, 10], neck: [0, 5] });
   });
   test('każda poza ma regułę sensu z przeczytanym źródłem inną niż sama „poza nieruchoma” (bez pozycji ze źródła nie rysujemy) i nie opiera się na samej analogii ani konwencji', () => {
     for (const r of ['mobility_stand', 'mobility_floor'] as const) for (const k of Object.keys(pozy(r))) {
@@ -41,8 +41,8 @@ describe('pokrycie rodzin mobilności, rolowania i szyi: poza albo wyjątek z po
       expect([k, reguly.some((id) => /ustalone|jedno źródło/.test(SENS[r].reguly[id].pewnosc) && !/^analogia$|^konwencja$/.test(SENS[r].reguly[id].pewnosc))]).toEqual([k, true]);
     }
   });
-  test('pozy statyczne: dwie identyczne klatki (u = 0 i 1); ruchowe (Cat-Cow, Inchworm) mają więcej klatek', () => {
-    const ruchowe = ['Cat-Cow', 'Inchworm'];
+  test('pozy statyczne: dwie identyczne klatki (u = 0 i 1); ruchowa (Cat-Cow) ma więcej klatek', () => {
+    const ruchowe = ['Cat-Cow'];
     for (const r of ['mobility_stand', 'mobility_floor'] as const) for (const [k, poza] of Object.entries(pozy(r))) {
       expect([k, poza.klatki[0].u, poza.klatki[poza.klatki.length - 1].u]).toEqual([k, 0, 1]);
       if (ruchowe.includes(k)) expect(poza.klatki.length).toBeGreaterThan(2);

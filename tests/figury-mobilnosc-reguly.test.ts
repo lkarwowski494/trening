@@ -1,6 +1,6 @@
 /*
  * Reguły ruchu z niezależnej recenzji póz mobilności (27.10.2026, recenzja „mobilność” w docs/przekazanie): R1–R6 (runda 1), R6b, R6c, R7, R8 (runda 3: stopy/dłonie zawsze w podparciu, brak kroku wstecz, chwyt kostki w rozciąganiu czworogłowego, łokcie przy ścianie), sprawdzenia geometrii, które na starych pozach były czerwone
- * (Standing Gastrocnemius, Wall Calf, Seated Calf, Cat-Cow, Child's Pose, Chin To Chest, Overhead Triceps, Side-Lying Quad, Inchworm); R3 ma progi ze źródła (nie z granicy modelu), a dla „dłoni” podparcie = środek dłoni ≤ 4 cm nad podłogą, uruchamiane na WSZYSTKICH pozach z danych
+ * (Standing Gastrocnemius, Wall Calf, Seated Calf, Cat-Cow, Child's Pose, Chin To Chest, Overhead Triceps, Side-Lying Quad; Inchworm: wyjątek bez animacji od 27.10.2026); R3 ma progi ze źródła (nie z granicy modelu), a dla „dłoni” podparcie = środek dłoni ≤ 4 cm nad podłogą, uruchamiane na WSZYSTKICH pozach z danych
  * (lib/figures/v2/poses/*.json). Rodziny mobilności muszą mieć 0 trafień; pozostałe rodziny mają zapadkę (TRAFIENIA_POZA_MOBILNOSCIA): lista znanych trafień nie może rosnąć,
  * a każde trafienie jest opisane jako prawdziwe (poza do poprawy w swojej rodzinie) albo fałszywe (reguła nie dotyczy tej pozy — ruch dynamiczny, inny rodzaj ćwiczenia).
  * Progi to KONWENCJA RYSUNKU (uproszczenie ilustracyjne), nie twierdzenia merytoryczne. Pozy do testu można podmienić zmienną POZY_DIR (np. stare pozy z gita — dowód, że reguły są czerwone).
@@ -188,7 +188,7 @@ describe('reguły ruchu z recenzji mobilności na wszystkich pozach', () => {
   });
   test('reguły są czerwone na starych pozach mobilności (dowód: POZY_DIR wskazuje pliki z c3913afd) — tu: sprawdzenie, że każda reguła ma zastosowanie (≥ 1 poza)', () => {
     for (const [nazwa, f] of Object.entries(REGULY)) {
-      const stosuje = wczytaj().some((p) => { try { return f(p).length > 0 || ({ R1_kostka_lydki: /calf|soleus|gastro/i, R2_glowa_za_kregoslupem: /cat-cow/i, R3_dziecko_odpoczynek: /child/i, R4_cecha_widoczna: /chin to chest|side-lying quad/i, R5_chwyt_pomocniczy: /overhead triceps/i, R6_palce_nie_slizgaja_sie: /inchworm/i, R6b_zawsze_podparcie: /inchworm/i, R6c_bez_cofania: /inchworm/i, R7_chwyt_kostki_czworoglowy: /side-lying quad/i, R8_lokcie_przy_scianie: /wall calf|gastrocnemius/i } as Record<string, RegExp>)[nazwa].test(p.cwiczenie); } catch { return false; } });
+      const stosuje = wczytaj().some((p) => { try { return f(p).length > 0 || ({ R1_kostka_lydki: /calf|soleus|gastro/i, R2_glowa_za_kregoslupem: /cat-cow/i, R3_dziecko_odpoczynek: /child/i, R4_cecha_widoczna: /chin to chest|side-lying quad/i, R5_chwyt_pomocniczy: /overhead triceps/i, R6_palce_nie_slizgaja_sie: /^$/, R6b_zawsze_podparcie: /^$/, R6c_bez_cofania: /^$/, /* R6–R6c: po usunięciu Inchworm (wyjątek bez animacji, 27.10.2026) żadna poza mobilności ich nie wymaga; reguły ogólne trafiają w pozy innych rodzin (f(p).length > 0) */ R7_chwyt_kostki_czworoglowy: /side-lying quad/i, R8_lokcie_przy_scianie: /wall calf|gastrocnemius/i } as Record<string, RegExp>)[nazwa].test(p.cwiczenie); } catch { return false; } });
       expect([nazwa, stosuje]).toEqual([nazwa, true]);
     }
   });
@@ -196,7 +196,7 @@ describe('reguły ruchu z recenzji mobilności na wszystkich pozach', () => {
 
 describe('rozciąganie statyczne = poza statyczna (bez pętli i licznika faz)', () => {
   const mob = wczytaj().filter((p) => MOB.includes(p.rodzina));
-  test('każda poza z dwóch identycznych klatek jest w ISOMETRIC, a ruchowe (Cat-Cow, Inchworm) nie; zbiór liczy 16 rozciągań + Dead Hang', () => {
+  test('każda poza z dwóch identycznych klatek jest w ISOMETRIC, a ruchowa (Cat-Cow) nie; zbiór liczy 16 rozciągań + Dead Hang', () => {
     for (const p of mob) expect([p.cwiczenie, ISOMETRIC.has(p.cwiczenie)]).toEqual([p.cwiczenie, statyczna(p)]);
     expect(mob.filter(statyczna).length).toBe(16); expect(ISOMETRIC.size).toBe(17);
   });
@@ -205,13 +205,13 @@ describe('rozciąganie statyczne = poza statyczna (bez pętli i licznika faz)', 
   });
 });
 
-describe('nazwy faz ruchów mobilności (Cat-Cow, Inchworm) — własne klucze t(), nie Opuszczanie/Wstawanie', () => {
-  test('wpisy PHASES_BY_EXERCISE: dokładnie Cat-Cow i Inchworm, nazwy różne od istniejących faz siłowych i z tekstem EN w słowniku', () => {
-    expect(Object.keys(PHASES_BY_EXERCISE).sort()).toEqual(['Cat-Cow', 'Inchworm']);
-    expect(PHASES_BY_EXERCISE['Cat-Cow']).toEqual({ first: 'Grzbiet w dół', second: 'Koci grzbiet' }); expect(PHASES_BY_EXERCISE.Inchworm).toEqual({ first: 'Dłonie do stóp', second: 'Marsz w podpór' });
+describe('nazwy faz ruchów mobilności (Cat-Cow) — własne klucze t(), nie Opuszczanie/Wstawanie', () => {
+  test('wpisy PHASES_BY_EXERCISE: dokładnie Cat-Cow, nazwy różne od istniejących faz siłowych i z tekstem EN w słowniku', () => {
+    expect(Object.keys(PHASES_BY_EXERCISE).sort()).toEqual(['Cat-Cow']);
+    expect(PHASES_BY_EXERCISE['Cat-Cow']).toEqual({ first: 'Grzbiet w dół', second: 'Koci grzbiet' });
     const silowe = ['Podciąganie', 'Opuszczanie', 'Wypychanie', 'Wstawanie', 'Podnoszenie', 'Prostowanie'];
     for (const n of Object.values(PHASES_BY_EXERCISE)) for (const k of [n.first, n.second]) { expect(silowe).not.toContain(k); expect(typeof EN[k]).toBe('string'); expect(EN[k]).not.toBe(k); }
-    expect([EN['Grzbiet w dół'], EN['Koci grzbiet'], EN['Dłonie do stóp'], EN['Marsz w podpór']]).toEqual(['Arching', 'Rounding', 'Hands to feet', 'Walking out']);
+    expect([EN['Grzbiet w dół'], EN['Koci grzbiet']]).toEqual(['Arching', 'Rounding']);
   });
 });
 

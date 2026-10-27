@@ -45,19 +45,17 @@ export const DATA_UI: Record<string, DataUi> = {
   /* u = 0 zwis, u = 1 górna pozycja: podciąganie 1 s, opuszczanie 2 s (tempo ilustracyjne, anim.ts) */
   pull_up: { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false, joint: 'elbow' },
 };
-/** Nazwy faz licznika dla ruchów rodzin z poza statycznymi: wpis po ćwiczeniu ma pierwszeństwo przed DATA_UI rodziny (Cat-Cow i Inchworm nie są Opuszczaniem/Wstawaniem). Teksty przez t() (lib/i18n.en.ts). */
+/** Nazwy faz licznika dla ruchów rodzin z poza statycznymi: wpis po ćwiczeniu ma pierwszeństwo przed DATA_UI rodziny (Cat-Cow nie jest Opuszczaniem/Wstawaniem). Teksty przez t() (lib/i18n.en.ts). */
 export const PHASES_BY_EXERCISE: Record<string, { first: PhaseName; second: PhaseName }> = {
   /* u = 0 koci grzbiet → u = 1 krowa */
   'Cat-Cow': { first: 'Grzbiet w dół', second: 'Koci grzbiet' },
-  /* u = 0 podpór → u = 1 skłon: dłonie wracają krokami do stóp (pierwsza faza), marsz rąk w podpór (druga); rysunek w układzie stóp */
-  Inchworm: { first: 'Dłonie do stóp', second: 'Marsz w podpór' },
 };
 export const dataUiFor = (family: string): DataUi | null => own(DATA_UI, family) ?? null;
 
 /** Ćwiczenia z danymi, które są izometrią (zwis, wytrzymanie): jedna pozycja statyczna bez animacji. Test: pomiar czasu w katalogu (metric „time”). */
 export const ISOMETRIC: ReadonlySet<string> = new Set([
   'Dead Hang',
-  /* rozciąganie statyczne = utrzymanie pozycji (poza z dwóch identycznych klatek): jedna pozycja bez pętli i licznika faz (27.10.2026; mobility_stand 8, mobility_floor 8 — Cat-Cow i Inchworm są ruchem) */
+  /* rozciąganie statyczne = utrzymanie pozycji (poza z dwóch identycznych klatek): jedna pozycja bez pętli i licznika faz (27.10.2026; mobility_stand 8, mobility_floor 8 — Cat-Cow jest ruchem) */
   'Chin To Chest Stretch', 'Side Neck Stretch', 'Overhead Triceps Stretch', 'Standing Chest Stretch', 'Standing Gastrocnemius Calf Stretch', 'Wall Calf Stretch', 'Standing Soleus And Achilles Stretch', 'Standing Lateral Stretch',
   'The Straddle', 'Seated Calf Stretch', 'Seated Floor Hamstring Stretch', 'Butterfly Stretch', "Child's Pose", 'Kneeling Hip Flexor Stretch', 'Supine Hamstring Stretch', 'Side-Lying Quad Stretch',
 ]);

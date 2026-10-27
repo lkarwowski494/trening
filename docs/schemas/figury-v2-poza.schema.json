@@ -574,7 +574,7 @@
     "additionalProperties": false
    },
    "minItems": 2,
-   "maxItems": 18,
+   "maxItems": 12,
    "description": "Klatki kluczowe poprawnej pozy; między nimi interpolacja liniowa, więc dodaj klatki pośrednie, gdy ruch jest zakrzywiony."
   },
   "bledy": {

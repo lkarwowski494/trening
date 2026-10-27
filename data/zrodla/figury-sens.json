@@ -6689,9 +6689,6 @@
       }
     },
     "mobility_stand": {
-      "dynamiczne": {
-        "Inchworm": "marsz rąk w podporze: dłonie idą naprzemiennie po ok. 22 cm przy rękach prawie prostych (bark 62 cm nad podłogą, ramię 64 cm), więc łokieć (IK) przesuwa się o 7,2 cm na 1/48 ruchu wobec limitu 6 cm ruchu zwykłego (pomiar generatora 27.10.2026) — limit CONTRACT.maxJumpDynamic (v2-sens.dynamiczne)"
-      },
       "reguly": {
         "poza_nieruchoma": {
           "typ": "szkielet_nieruchomy",
@@ -6875,33 +6872,6 @@
           },
           "zrodlo": "ACE #212 („…without rotating your trunk or bending forward”) — słownik",
           "liczba": "konwencja",
-          "pewnosc": "jedno źródło"
-        },
-        "inchworm_kolana": {
-          "typ": "stawy_proste",
-          "grupa": "pozycja",
-          "cue": "dyn.control",
-          "parametry": {
-            "stawy": [
-              "knee"
-            ],
-            "max_deg": 25
-          },
-          "zrodlo": "ACE #254 Inchworms (kolana „extended (but not locked)”; „a soft bend in your knees during this movement is acceptable”) — przeczytane 26.10.2026",
-          "liczba": "uproszczenie (≤ 25°)",
-          "pewnosc": "jedno źródło"
-        },
-        "inchworm_podpor": {
-          "typ": "miednica_na_linii",
-          "grupa": "pozycja",
-          "cue": "dyn.control",
-          "parametry": {
-            "max_cm": 8,
-            "koniec": "kostka_dalsza",
-            "tylko_skrajna": true
-          },
-          "zrodlo": "ACE #254 (krok 3: dojście do „a full-push-up position where your spine, hips and head are level with the floor”; krok 4: „Do not allow your low back to sag or your hips to hike upwards during this downward phase.”) — przeczytane 26.10.2026",
-          "liczba": "konwencja (jak pushup_plank.cialo_w_linii)",
           "pewnosc": "jedno źródło"
         },
         "nogi_wymach": {
@@ -7146,10 +7116,6 @@
           "rece_proste",
           "lat_plecy_plasko",
           "lat_pochylenie"
-        ],
-        "Inchworm": [
-          "inchworm_kolana",
-          "inchworm_podpor"
         ],
         "Leg Swings (Front-to-Back)": [
           "nogi_wymach"

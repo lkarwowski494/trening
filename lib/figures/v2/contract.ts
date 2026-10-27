@@ -25,7 +25,7 @@ export const CONTRACT = {
   /** Wcześniejsze wersje kontraktu przyjmowane przez walidator (dane zapisane w lib/figures/v2/poses/ mogą mieć poza@1). */
   legacy: ['figury-v2/poza@1'] as readonly string[],
   /** Liczba klatek kluczowych poprawnej pozy. */
-  frames: { min: 2, max: 18 }, /* 18 (było 12): marsz naprzemiennych dłoni w Inchworm: 4 kroki każdej dłoni = 17 klatek (27.10.2026) */
+  frames: { min: 2, max: 12 },
   /** Liczba klatek błędu (delty) i liczba błędów na ćwiczenie. */
   errorFrames: { min: 2, max: 8 }, errorsMax: 3,
   /** Siatka sprawdzeń geometrii (liczba przedziałów ruchu) i ciągłości (krok 1/48, maks. skok stawu w cm). */
