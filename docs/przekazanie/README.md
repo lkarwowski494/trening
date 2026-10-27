@@ -32,6 +32,7 @@ Agent ścieżki 1.0 (stara sesja) prowadził te kroki; nowa sesja kontynuuje od 
 
 ## Wersja 1.0.1 (po 1.0)
 `wersja-1-0-1` dba56fc, tests.yml zielony (40379653147). Zawiera m.in. B-04 (pauza zegarka), check:claims dla liczb, poprawkę `test:fast` (słowniki → testy plików generowanych) z lekcją. Po 1.0: watch-sim / ios-unsigned (kompilacja Swift).
+- 06:58 UTC: scalenie main (1.0.0) do `wersja-1-0-1` zrobione lokalnie; stan zapisu na gałęzi `wersja-1-0-1-wip` 4b3055e8 (verify jeszcze nie przeszło). Dalej: pełne verify przez `flock /tmp/claude-0/verify.lock`, push na `wersja-1-0-1`, zielony tests.yml, linia końcowa.
 
 ## 1.1 (biblioteka grafik v2 + strona techniqueatlas)
 | Obszar | Stan | Gałąź / SHA |
