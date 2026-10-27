@@ -11,7 +11,7 @@ import { render, screen, act, fireEvent } from '@testing-library/react-native';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
 import {
   CONTRACT, FAMILY, WALK, LOOP_MODES, TEMPO, SIDES, boxFor, checkSchema, cycleAt, cycleLength, figureSpec, frameAt, jointAngles, keyframeFrame, loopOf, loopSpan, measuredAngle,
-  mirrorKey, phasesFor, poseAt, poseSchema, shapesAt, staticPositions, stanceAdvance, validatePose, trailFor, pendulumFrames, loopFrames, uAt, loopLength,
+  mirrorKey, poseLoopSpan, loopJoinGap, dataUiForPose, GAIT_UI, phasesFor, poseAt, poseSchema, shapesAt, staticPositions, stanceAdvance, validatePose, trailFor, pendulumFrames, loopFrames, uAt, loopLength,
   type FamilyId, type Frame, type KeyFrame, type PoseData, type V3, type RomData,
 } from '@/lib/figures/v2';
 import { applyLang } from '@/lib/i18n';
@@ -128,6 +128,12 @@ describe('dane: 10 ćwiczeń marszowych w trybie cyklicznym', () => {
     const wprost = gap(keyframeFrame({ ...d, petla: undefined, klatki: [d.klatki[d.klatki.length - 1], d.klatki[d.klatki.length - 1]].map((c, i) => ({ ...c, u: i })) }, 0), keyframeFrame({ ...d, petla: undefined, klatki: [mirrorKey(d.klatki[0], !!d.lustroRece), mirrorKey(d.klatki[0], !!d.lustroRece)].map((c, i) => ({ ...c, u: i })) }, 0));
     expect(wprost).toBeLessThanOrEqual(CONTRACT.cycle.joinCm);
   });
+  test('poseLoopSpan: 2 dla trybu cyklicznego, 1 dla wahadła; loopJoinGap: styk faz mieści się w limicie, a zepsuty (stopa przesunięta o 30 cm) go przekracza', () => {
+    const d = dane('sled_throw', 'Sled Push'); expect(poseLoopSpan(d)).toBe(2); expect(poseLoopSpan({ ...d, petla: undefined })).toBe(1); expect(poseLoopSpan({ ...d, petla: 'wahadlo' })).toBe(1);
+    for (const [f, k] of CYKLICZNE) expect([k, loopJoinGap(dane(f, k)) <= CONTRACT.cycle.joinCm]).toEqual([k, true]);
+    const zle: PoseData = { ...d, klatki: d.klatki.map((c, i) => i === d.klatki.length - 1 ? { ...c, nogi: { R: { ...c.nogi.R, kostka: [c.nogi.R.kostka[0] + 30, c.nogi.R.kostka[1], c.nogi.R.kostka[2]] as V3 }, L: c.nogi.L } } : c) };
+    expect(loopJoinGap(zle)).toBeGreaterThan(20);
+  });
   test.each(CYKLICZNE)('%s / %s: ciągłość całej pętli (0 → 2): żaden punkt szkieletu nie skacze o więcej niż CONTRACT.maxJump na 1/48 kroku', (f, k) => {
     const d = dane(f, k); const n = 2 * CONTRACT.step; let prev = pts(keyframeFrame(d, 0)); let max = 0;
     for (let i = 1; i <= n; i++) { const cur = pts(keyframeFrame(d, 2 * i / n)); cur.forEach((p, j) => { max = Math.max(max, dist(p, prev[j])); }); prev = cur; }
@@ -199,6 +205,14 @@ describe('figura: tryb cykliczny w specyfikacji (silnik)', () => {
   test('pozycje statyczne („Ogranicz ruch”, pauza): start i koniec pierwszej połowy; żadnej trzeciej pozycji', () => { expect(staticPositions(sp('Sled Push'))).toEqual([0, 1]); });
   test('pięć stawów jak dotąd: rodziny z rigiem nie mają pola pętli (zgodność wsteczna): jointAngles i pętla wahadła bez zmian', () => {
     const k = 'Barbell Squat'; const s = figureSpec(k); if (s) { expect(loopOf(s)).toBe('wahadlo'); expect(jointAngles(frameAt(s, 1).sk, 'R').knee).toBeGreaterThan(40); }
+  });
+});
+
+describe('prezentacja: wpis UI dla ćwiczenia marszowego z rodziny bez DATA_UI', () => {
+  test('dataUiForPose: ćwiczenie cykliczne dostaje GAIT_UI (Marsz, kolano/biodro), niecykliczne ćwiczenie rodziny bez wpisu — null; rodzina z wpisem (carry) zachowuje swój', () => {
+    expect(dataUiForPose('sled_throw', dane('sled_throw', 'Sled Push'))).toBe(GAIT_UI); expect(dataUiForPose('strongman', dane('strongman', 'Yoke Walk'))).toBe(GAIT_UI);
+    expect(dataUiForPose('sled_throw', dane('sled_throw', 'Wall Ball'))).toBeNull(); expect(GAIT_UI).toMatchObject({ names: { first: 'Marsz', second: 'Marsz' }, walk: true, joints: ['knee', 'hip'] });
+    expect(dataUiForPose('carry', dane('carry', "Farmer's Walk"))?.walk).toBe(true);
   });
 });
 

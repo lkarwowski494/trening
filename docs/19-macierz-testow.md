@@ -12,7 +12,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 32 | 32 | 0 |
 | UI | 356 | 356 | 0 |
 | TEKST | 1066 | 1066 | 0 |
-| LOGIKA | 1105 | 1102 | 0 |
+| LOGIKA | 1105 | 1105 | 0 |
 | WYMIAR | 162 | 162 | 0 |
 
 ## EKRAN
@@ -1751,10 +1751,10 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/contract.neutralFootPitch | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
 | figures/v2/contract.toPoseIn | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-poza2.test.ts, tests/figures-v2-przesuniecie-boczne.test.ts |
 | figures/v2/contract.mirrorKey | lib/figures/v2/contract.ts | tests/figures-v2-chod-cykliczny.test.tsx |
-| figures/v2/contract.poseLoopSpan | lib/figures/v2/contract.ts | WYJĄTEK: BRAK |
+| figures/v2/contract.poseLoopSpan | lib/figures/v2/contract.ts | tests/figures-v2-chod-cykliczny.test.tsx |
 | figures/v2/contract.loopFrames | lib/figures/v2/contract.ts | tests/figures-v2-chod-cykliczny.test.tsx |
 | figures/v2/contract.pendulumFrames | lib/figures/v2/contract.ts | tests/figures-v2-chod-cykliczny.test.tsx |
-| figures/v2/contract.loopJoinGap | lib/figures/v2/contract.ts | WYJĄTEK: BRAK |
+| figures/v2/contract.loopJoinGap | lib/figures/v2/contract.ts | tests/figures-v2-chod-cykliczny.test.tsx |
 | figures/v2/contract.stanceAdvance | lib/figures/v2/contract.ts | tests/figures-v2-chod-cykliczny.test.tsx |
 | figures/v2/contract.keyframeFrame | lib/figures/v2/contract.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts +4 |
 | figures/v2/contract.validatePose | lib/figures/v2/contract.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts +2 |
@@ -1839,7 +1839,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/poseData.poseFile | lib/figures/v2/poseData.ts | tests/figures-v2-data.test.tsx |
 | figures/v2/poseData.poseDataFor | lib/figures/v2/poseData.ts | tests/figures-v2-chod-cykliczny.test.tsx, tests/figures-v2-data.test.tsx, tests/figures-v2-katy-fazy.test.tsx |
 | figures/v2/poseData.poseKeys | lib/figures/v2/poseData.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-mapping.test.ts |
-| figures/v2/poseData.dataUiForPose | lib/figures/v2/poseData.ts | WYJĄTEK: BRAK |
+| figures/v2/poseData.dataUiForPose | lib/figures/v2/poseData.ts | tests/figures-v2-chod-cykliczny.test.tsx |
 | figures/v2/poseData.dataUiFor | lib/figures/v2/poseData.ts | tests/figures-v2-data.test.tsx |
 | figures/v2/render.pathD | lib/figures/v2/render.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/render.ellipsePts | lib/figures/v2/render.ts | tests/figures-v2-engine.test.ts |
