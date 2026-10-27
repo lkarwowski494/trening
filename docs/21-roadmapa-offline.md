@@ -143,6 +143,14 @@ Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właścic
 - Wydanie Health — biblioteka `@kingstinct/react-native-healthkit` 8 → 16: odczyt aktywnych kcal, ocena wysiłku (`workoutEffortScore`; RPE → ocena **[OTWARTE]**),
   prawdziwe zdarzenia pauzy z `Workout.pauses`, masa ciała i pomiary ciała.
 - Import CSV ze Strong i Hevy — **przeniesione do „Przed App Store” (11.10.2026)**, sekcja niżej.
+- Grafiki ćwiczeń 1.1 — uwagi ŚREDNIE i NISKIE z ponownej recenzji partii p4a (olympic + kb_ballistic, 27.10.2026; wersja docelowa 1.1, nie blokują wydania; notatka: `docs/przekazanie/notatki/recenzje-1-1/ponowne/p4a.md`):
+  B — nożyce za głębokie w Split Clean, Split Snatch, Clean and Jerk (tylne kolano 100,6°, miednica 65 cm; ŚREDNIE);
+  C — sztanga nad głową przed czubkami palców w pełnym przysiadzie (Barbell, Hang i Block Snatch, Squat Jerk: sztanga x 24, palce x 18; ŚREDNIE) — próba taniej poprawki 27.10.2026 nie powiodła się:
+  samo cofnięcie ramion zgina łokcie powyżej 20° (reguła `odbior_nad_glowa`) i wypycha bark poza zakres w Squat Jerk, potrzebne przesunięcie miednicy i barków razem (zmiana pozy, nie parametru);
+  F — sztanga w racku na wysokości brody w zarzutach (NISKIE–ŚREDNIE; konwencja całej rodziny);
+  A/C — stopy w powietrzu, palce 2–4 cm nad podłogą w Squat Jerk, Clean and Jerk, obu Push Press (NISKIE);
+  G — rząd błędu `mis.roundBack` w One-Arm Kettlebell Swings nie obejmuje dołu zamachu (NISKIE);
+  H — Squat Jerk dostaje tekst karty z wyciskania z nóg (przypisanie zestawu wskazówek; NISKIE).
 - „Skąd to wiemy?” (dodane 13.10.2026, odłożone przez właściciela do backlogu bez priorytetu): przy każdej liczbie i regule merytorycznej
   przycisk ze źródłem, poziomem pewności i krótkim cytatem (25 miejsc w kodzie; jeden rejestr źródeł generowany z kodu). Specyfikacja: scratchpad
   koordynatora `spec-zrodla-i-glos.md` (część A) — do przeniesienia do docs przy wznowieniu. Także sposób pokazania cytatów w 35 językach — **[OTWARTE]**.

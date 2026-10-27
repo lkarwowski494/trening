@@ -157,10 +157,15 @@ const kontrakt = (p, cue) => waliduj(p, { rodzina: 'pushup_plank', cwiczenie: p.
 const sagNaStarcie = JSON.parse(JSON.stringify(PL)); sagNaStarcie.bledy[0].klatki[0] = { u: 0, miednica: [0, -5, 0] };
 const partialNaStarcie = JSON.parse(JSON.stringify(PU)); partialNaStarcie.bledy[0].klatki[0] = { u: 0, miednica: [0, -5, 0] };
 W.kontrakt_start = { dobre: [kontrakt(sagNaStarcie)], zle: [kontrakt(partialNaStarcie)] };
+/* 20/21 recenzja p4a r2: bottoms-up (dzwon do góry tylko przy pionowym przedramieniu) i high pull (łokcie nad dłonią i na boki); złe = pozy sprzed rundy 2 (fixture) */
+const STARE = JSON.parse(fs.readFileSync(path.join(${JSON.stringify(ROOT)}, 'tests/fixtures/figury-p4a-r2-stare.json'), 'utf8')).cwiczenia;
+const BU = poza('kb_ballistic', 'Bottoms-Up Clean From The Hang Position'), SHP = poza('kb_ballistic', 'Kettlebell Sumo High Pull');
+W.dzwon_gora_tylko_przy_pionowym_przedramieniu = { dobre: J.dzwonGoraTylkoPrzyPionowymPrzedramieniu(v2, BU), zle: J.dzwonGoraTylkoPrzyPionowymPrzedramieniu(v2, STARE['Bottoms-Up Clean From The Hang Position']) };
+W.high_pull_lokcie = { dobre: J.highPullLokcie(v2, SHP), zle: J.highPullLokcie(v2, STARE['Kettlebell Sumo High Pull']) };
 console.log(JSON.stringify(W));
 `;
 const W = run(KOD) as Record<string, { dobre: unknown[]; zle: unknown[] }>;
-const REGULY = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'rzad_bledu_dotyczy', 'rzad_bledu_wszystkie', 'cialo_w_linii_pelne', 'kolana_proste_podpor', 'fallout_start_rece_przod', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'widocznosc_w_obszarze', 'podglad_wazny', 'widocznosc_bledu_kat', 'ledzwie_przy_podlodze', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'tor_lokcia_przyciaganie', 'srodek_ciezkosci_podparcie', 'manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
+const REGULY = ['dzwon_gora_tylko_przy_pionowym_przedramieniu', 'high_pull_lokcie', 'blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'rzad_bledu_dotyczy', 'rzad_bledu_wszystkie', 'cialo_w_linii_pelne', 'kolana_proste_podpor', 'fallout_start_rece_przod', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'widocznosc_w_obszarze', 'podglad_wazny', 'widocznosc_bledu_kat', 'ledzwie_przy_podlodze', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'tor_lokcia_przyciaganie', 'srodek_ciezkosci_podparcie', 'manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
 
 describe('reguły jakości póz (luki z recenzji ruchu): poza spełniająca bez komunikatu, łamiąca z komunikatem', () => {
   test.each(REGULY)('%s', (r) => {

@@ -6,7 +6,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { createHash } from 'crypto';
-import { keyframeFrame, jointAngles, type PoseData } from '@/lib/figures/v2';
+import { keyframeFrame, jointAngles, type PoseData, type Prop, type V3 } from '@/lib/figures/v2';
 
 const ROOT = path.join(__dirname, '..');
 const poseFile = (rodzina: string): { cwiczenia: Record<string, PoseData> } => JSON.parse(fs.readFileSync(path.join(ROOT, 'lib/figures/v2/poses', `${rodzina}.json`), 'utf8'));
@@ -109,10 +109,10 @@ describe('kb_ballistic nr 1: Swing — na dole ciężar jest między nogami', ()
 
 describe('kb_ballistic nr 2: Bottoms-Up Clean — dnem do góry, start z zawieszenia, inna poza niż Kettlebell Clean', () => {
   const zbior = KB['Bottoms-Up Clean From The Hang Position'];
-  test('wyjątek albo poza z trybem „gora”', () => {
+  test('wyjątek albo poza z trybem „wzdluz_gora” (dzwon zależny od fazy)', () => {
     const wyjatki = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/figury-wyjatki.json'), 'utf8')).cwiczenia as Record<string, string>;
     if (!zbior) { expect(wyjatki['Bottoms-Up Clean From The Hang Position']).toBeTruthy(); return; }
-    expect(zbior.sprzet.some((x) => x.rodzaj === 'kettlebell' && x.dzwon === 'gora')).toBe(true);
+    expect(zbior.sprzet.some((x) => x.rodzaj === 'kettlebell' && x.dzwon === 'wzdluz_gora')).toBe(true);
     expect(JSON.stringify(zbior.klatki)).not.toBe(JSON.stringify(KB['Kettlebell Clean'].klatki));
     expect(probki(zbior)[0].chwytY).toBeGreaterThan(probki(KB['Kettlebell Clean'])[0].chwytY); /* start z zawieszenia (ciężar wyżej niż przy podłodze) */
   });
@@ -133,6 +133,26 @@ describe('kb_ballistic nr 4: Kettlebell Sumo High Pull — ciężar na wysokośc
     expect(s[N].chwytY).toBeLessThanOrEqual(s[N].barkiY + 10); /* przed poprawką 186 cm */
     expect(Math.max(...s.map((x) => x.chwytX - x.miednicaX))).toBeLessThanOrEqual(45); /* przed poprawką 55 cm przed miednicą (w dole zawias: miednica cofnięta) */
   });
+});
+
+describe('p4a runda 2 — Bottoms-Up Clean: zwis dzwonem w dół, dnem do góry dopiero przy pionowym przedramieniu, blisko ciała', () => {
+  const bu = KB['Bottoms-Up Clean From The Hang Position'];
+  const dzwon = (u: number): V3 => (keyframeFrame(bu, u).props.find((p) => p.k === 'kettlebell') as Extract<Prop, { k: 'kettlebell' }>).dir as V3;
+  test('u = 0: zwis, dzwon w dół (przed poprawką: nad rączką na prostej ręce); u = 1: dnem do góry', () => {
+    expect(keyframeFrame(bu, 0).sk.arms.R.grip[1]).toBeLessThan(keyframeFrame(bu, 0).sk.arms.R.elbow[1]); expect(dzwon(0)[1]).toBeLessThan(-0.5); expect(dzwon(1)[1]).toBeGreaterThan(0.9);
+  });
+  test('rączka najwyżej 32 cm przed barkiem (przed poprawką 47 cm), wolna ręka wzdłuż ciała (najwyżej 25 cm przed barkiem; przed poprawką 50 cm)', () => {
+    for (let g = 0; g <= N; g++) { const sk = keyframeFrame(bu, g / N).sk; expect(sk.arms.R.grip[0] - sk.shoulderC[0]).toBeLessThanOrEqual(32); expect(sk.arms.L.grip[0] - sk.shoulderC[0]).toBeLessThanOrEqual(25); }
+  });
+});
+
+describe('p4a runda 2 — Kettlebell Sumo High Pull: łokcie wysoko i na boki, stopy na podłodze w klatce końcowej', () => {
+  const sh = KB['Kettlebell Sumo High Pull'];
+  test('u = 1: łokieć nie niżej niż dłoń − 5 cm (przed poprawką 31 cm pod dłonią), odwiedzenie ramienia ≥ 35° (przed poprawką 12,6°; maksimum rigu przy dłoniach na jednej rączce ok. 43°), dłoń najwyżej 28 cm przed barkiem przez cały ruch (przed poprawką 33 cm)', () => {
+    const sk = keyframeFrame(sh, 1).sk; for (const k of ['R', 'L'] as const) { expect(sk.arms[k].grip[1] - sk.arms[k].elbow[1]).toBeLessThanOrEqual(5); expect(jointAngles(sk, k).shAbd).toBeGreaterThanOrEqual(35); }
+    for (let g = 0; g <= N; g++) { const q = keyframeFrame(sh, g / N).sk; expect(q.arms.R.grip[0] - q.shoulderC[0]).toBeLessThanOrEqual(28); }
+  });
+  test('palce na podłodze w klatce końcowej (przed poprawką 3,3 cm nad podłogą)', () => { expect(probki(sh)[N].palcePodloga).toBeLessThanOrEqual(1.5); });
 });
 
 /** Skróty SHA-256 póz ćwiczeń, których recenzja p4a nie ruszyła, z origin/integracja-1-1 (przed poprawkami). */

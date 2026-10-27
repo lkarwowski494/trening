@@ -27,7 +27,7 @@ const gotowe = (cw, sprz, W, bledy = []) => {
   const tk = wczytajTeksty(); const ok = new Set(bledy.map((b) => b.cue));
   for (const c of bledyCwiczenia(cw)) if (!ok.has(c)) POMINIETE_BLEDY[cw] = (POMINIETE_BLEDY[cw] ? POMINIETE_BLEDY[cw] + '; ' : '') + (tk[c] ? `błąd „${c}” (rząd błędu do wygenerowania)` : `błąd „${c}” bez opisu w lib/cues/text/pl.json — nie rysowany (reguła jakości etykieta_bledu); generator narysuje go po wdrożeniu tekstu`);
   const r = ruch(W, P, { rodzina: RODZINA, cw, sprzet: sprz });
-  if (process.env.DBG_KB) console.error(cw, 'szczyt', r.szczyt.toFixed(1), 'droga', r.suma.toFixed(0), 'klatek', r.klatki.length);
+  if (process.env.DBG_KB) console.error(cw, 'szczyt', r.szczyt.toFixed(1), 'droga', r.suma.toFixed(0), 'klatek', r.klatki.length, 'dl', JSON.stringify(r.dl?.map((x) => Math.round(x))));
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: sprz, klatki: r.klatki, bledy: bledyZOpisem(cw, bledy.map((b) => b(r)), POMINIETE_BLEDY) });
 };
 
@@ -59,14 +59,17 @@ function zarzut(cw, o) {
   ];
   return gotowe(cw, o.sprz, W);
 }
-/** Bottoms-up clean z zawieszenia (recenzja p4a): start ze zwisu przy udach (lekki zawias), wyprost, kettlebell dnem do góry przy barku: przedramię pionowo, łokieć pod dłonią, kula nad rączką (tryb dzwonu „gora”). */
+/** Bottoms-up clean z zawieszenia (recenzja p4a, runda 2): start ze zwisu przy udach (lekki zawias, dzwon w dół), rączka idzie blisko ciała (łokieć cofnięty, przedramię coraz bardziej w górę), na końcu kettlebell dnem do góry przy barku:
+ * przedramię pionowo, łokieć pod dłonią. Tryb dzwonu „wzdluz_gora”: dzwon wzdłuż przedramienia, a dnem do góry dopiero przy przedramieniu ≤ 45° od pionu. Wolna ręka wzdłuż ciała. */
 function zarzutDnemDoGory(cw) {
-  const o = { jedna: true }; const sprz = SPRZ(KB({ trzyma: 'R', dzwon: 'gora' })); const BU = { psi: -62, th: 148, z: 18 };
+  const sprz = SPRZ(KB({ trzyma: 'R', dzwon: 'wzdluz_gora' })); const BU = { psi: -62, th: 148, z: 18 }; const WOLNA_BU = { psi: -90, th: 8, z: 26 };
+  const r = (ra) => ({ ra, rl: WOLNA_BU });
   const W = [
-    wp({ al: 8, k: 26, pitch: 30, ...dwa(o, { psi: -100, th: 10, z: 15 }), kz: 0.3, zs: 20 }),
-    wp({ al: 6, k: 14, pitch: 6, ...dwa(o, { psi: -62, th: 20, z: 19 }), kz: 0.3, zs: 20 }),
-    wp({ al: 12, k: 30, pitch: 4, ...dwa(o, BU), kz: 0.3, zs: 20 }),
-    wp({ al: 4, k: 14, pitch: 2, ...dwa(o, BU), kz: 0.2, zs: 20 }),
+    wp({ al: 14, k: 40, pitch: 50, ...r({ psi: -100, th: 10, z: 15 }), kz: 0.3, zs: 20 }), /* zwis przy kolanach: dzwon w dół bez przenikania ud */
+    wp({ al: 6, k: 14, pitch: 6, ...r({ psi: -118, th: 100, z: 17 }), kz: 0.3, zs: 20 }),
+    wp({ al: 8, k: 22, pitch: 5, ...r({ psi: -96, th: 134, z: 18 }), kz: 0.3, zs: 20 }),
+    wp({ al: 12, k: 30, pitch: 4, ...r(BU), kz: 0.3, zs: 20 }),
+    wp({ al: 4, k: 14, pitch: 2, ...r(BU), kz: 0.2, zs: 20 }),
   ];
   return gotowe(cw, sprz, W);
 }
@@ -88,14 +91,16 @@ function podrzut(cw, o) {
     o.split ? wp({ ...SPLIT(), pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 14 }) : o.pp ? wp({ al: 3, k: 6, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 }) /* wyciskanie z nóg: po wybiciu nogi zostają proste, ręce kończą ruch (recenzja p4a) */ : wp({ al: 12, k: 30, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 })];
   return gotowe(cw, o.sprz, W);
 }
-/** Sumo high pull: szeroki rozkrok, dzwon między stopami → wyprost → łokcie wysoko, ciężar przy brodzie. */
+/** Chwyt kettlebella w świecie (x, y, |z|) i kierunek łokcia pole = [x, y, |z|] (łokieć na zewnątrz i w górę); obie ręce symetrycznie. */
+const dlonie = (x, y, z, pole) => ({ ra: { g: [x, y, z], pole }, rl: { g: [x, y, -z], pole: [pole[0], pole[1], -pole[2]] } });
+/** Sumo high pull: szeroki rozkrok, dzwon między stopami → wyprost → łokcie wysoko i na boki (nad dłońmi, odwiedzenie ≥ 45°), ciężar przy brodzie; stopy na podłodze także w klatce końcowej (recenzja p4a, runda 2). */
 function sumoHighPull(cw) {
   const sprz = SPRZ(KB({ dzwon: 'dol' })); const st = { zs: 23, rot: 38, kz: 0.9 };
   const mk = (bend = 0) => [
-    wp({ al: 22, k: 88, pitch: 38, ra: { psi: -95, th: 22, z: 5 }, ...st }),
-    wp({ al: 8, k: 36, pitch: 24, ra: { psi: -92, th: 24, z: 5 }, ...st, bend: bend * 0.6 }),
-    wp({ al: 4, k: 20, pitch: 4, ra: { psi: -92, th: 100, z: 5 }, ...st, bend: 0 }),
-    wp({ al: 4, k: 18, pitch: 3, ra: { psi: -55, th: 140, z: 5 }, ...st, A: [1, yP(-40) + 3], pod: -40 }),
+    wp({ al: 22, k: 88, pitch: 38, ra: { psi: -95, th: 22, z: 5, pz: 2 }, ...st }),
+    wp({ al: 8, k: 36, pitch: 24, ra: { psi: -92, th: 24, z: 5, pz: 2 }, ...st, bend: bend * 0.6 }),
+    wp({ al: 4, k: 20, pitch: 4, ra: { psi: -115, th: 112, z: 6.5, pz: 6 }, ...st, bend: 0 }),
+    wp({ al: 4, k: 18, pitch: 3, ra: { psi: -80, th: 140, z: 6.5, pz: 9.5 }, ...st, A: [1, yP(-40) + 1], pod: -40 }),
   ].map((w, i) => (i === 0 ? { ...w, bend } : w));
   const W = mk(0); const W2 = mk(26); W2[0].bend = 26; W2[1].bend = 26; W2[2].bend = 0;
   void W2;
