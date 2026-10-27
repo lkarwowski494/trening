@@ -104,6 +104,7 @@ Oszczędność limitu: agenci raportują tylko na końcu zadania albo przy bloka
 - pozy-1-1 (2711796): SCALONA (c16ad36), konflikty tylko README/docs/19 — zregenerowane; 433 pozy 0 naruszeń; gemini-polecenia 48/48, zgodność wsteczna i sens-pokrycie zielone lokalnie (odciski nie wymagały odświeżenia). Sprawdzić CI pozy-1-1 run 999 (nie widziałem wyniku).
 - Co dalej: tests.yml na 4e84adf, E2E 57, native speakerzy; po scaleniu 1.0 do main — scalić main do integracja-1-1 (nie robiłem). Limit poleceń Gemini: 36 000, zakres per część, przy pełnym katalogu nic nie jest pomijane.
 - 01:20 UTC: scalenie origin/main (001ecf2) do integracja-1-1 — merge commit eb5418c2 na gałęzi roboczej `integracja-1-1-main-wip` (52 konflikty rozwiązane; typecheck, check:i18n/cues/claims/figures/readme/matrix zielone); dalej: pełny jest, odciski, verify.
+- 01:51 UTC: pełny jest po scaleniu: 4 pakiety czerwone (gear, sens r4-r5, i18n-locales, zgodność wsteczna) — naprawione przyczynowo (biegun łokcia jednostkowy, przykład z rigu, _source z kodu, odciski świadomie, reguła hantli zdjęta — otwarte w docs/18); `integracja-1-1-main-wip` @ b6f06d21; dalej: pełne verify.
 ## Grafiki 1.1 — runda 5 (agent programisty, gałąź `jakosc-r2`, stan na SHA 61b1e0a)
 
 Zrobione:
