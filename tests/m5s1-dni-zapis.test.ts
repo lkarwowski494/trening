@@ -153,6 +153,18 @@ describe('limit tylko się luzuje (wzorzec portfela): stała limitu i ALWAYS_AVA
   test('zapis najnowszego wydania zgadza się z kodem (zmiana limitu = nowy wpis w tests/limity-wydan.json w tym samym commicie)', () => {
     const last = rec.wydania[rec.wydania.length - 1]; expect(last.FREE_TRAINING_DAYS_PER_MONTH).toBe(PAYWALL.FREE_TRAINING_DAYS_PER_MONTH); expect([...last.ALWAYS_AVAILABLE].sort()).toEqual([...ALWAYS_AVAILABLE].sort());
   });
+  /* M1-audytor-generalny-009 (02-monetyzacja-507 c, 27.10.2026): limit zaostrza też niższy próg minut dnia treningowego (więcej sesji zużywa dzień)
+     i liczenie dni z okresu Pro w miesiącu wygaśnięcia (P3). Oba w zapisie wydań: próg tylko rośnie, P3 tylko false. */
+  const ext = rec as unknown as { wydania: { wydanie: string; MIN_LIVE_MINUTES_FOR_DAY?: number; COUNT_FULL_STARTS_IN_EXPIRY_MONTH?: boolean }[] };
+  test('próg minut dnia treningowego nie maleje względem żadnego wydania; P3 (COUNT_FULL_STARTS_IN_EXPIRY_MONTH) nie wraca do true', () => {
+    for (const w of ext.wydania) {
+      expect([w.wydanie, typeof w.MIN_LIVE_MINUTES_FOR_DAY, typeof w.COUNT_FULL_STARTS_IN_EXPIRY_MONTH]).toEqual([w.wydanie, 'number', 'boolean']);
+      expect([w.wydanie, MIN_LIVE_MINUTES_FOR_DAY >= w.MIN_LIVE_MINUTES_FOR_DAY!]).toEqual([w.wydanie, true]);
+      if (w.COUNT_FULL_STARTS_IN_EXPIRY_MONTH === false) expect([w.wydanie, PAYWALL.COUNT_FULL_STARTS_IN_EXPIRY_MONTH]).toEqual([w.wydanie, false]);
+    }
+    const last = ext.wydania[ext.wydania.length - 1];
+    expect([last.MIN_LIVE_MINUTES_FOR_DAY, last.COUNT_FULL_STARTS_IN_EXPIRY_MONTH]).toEqual([MIN_LIVE_MINUTES_FOR_DAY, PAYWALL.COUNT_FULL_STARTS_IN_EXPIRY_MONTH]);
+  });
 });
 
 describe('błąd odczytu sklepu to „nieznany”, nigdy „darmowy” (docs/30 3.3 pułapka 2)', () => {
