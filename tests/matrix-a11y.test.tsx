@@ -202,8 +202,8 @@ describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności i
     R = { routes: routesFor(w, tpl, exId, locId, blockId), inputs: [], longLow: [], techOpen: false, monoNoLimit: [], btnNoLimit: [], btnTexts: 0, maxEff: 0 };
     for (const r of R.routes) {
       await go(r); await flushAll(10);
-      const tech = r.startsWith('/exercise/') ? screen.queryByRole('button', { name: 'Technika' }) : null; /* A11N-04: sekcja „Technika” rozwinięta */
-      if (tech) { await act(async () => { fireEvent.press(tech); }); await flushAll(5); R.techOpen = true; }
+      const tech = r.startsWith('/exercise/') ? screen.queryByRole('button', { name: 'Technika' }) : null; /* A11N-04: sekcja „Technika” rozwinięta (od 27.10.2026 domyślnie już jest — stukamy tylko, gdy zwinięta) */
+      if (tech) { if (!tech.props.accessibilityState?.expanded) { await act(async () => { fireEvent.press(tech); }); await flushAll(5); } R.techOpen = true; }
       const all: Node[] = visibleNodes();
       for (const i of all.filter(x => x.type === 'TextInput')) R.inputs.push({ r, m: i.props.maxFontSizeMultiplier, multi: !!i.props.multiline });
       for (const tx of all.filter(x => x.type === 'Text')) {

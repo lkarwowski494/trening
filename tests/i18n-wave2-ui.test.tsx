@@ -74,7 +74,7 @@ describe('ekran ćwiczenia: sekcja „Technika” po wietnamsku', () => {
     const ex = S().exercises.find(e => e.lib && e.libKey === 'Back Squat')!;
     const { router } = require('expo-router'); const { act } = require('./app');
     await act(async () => { router.push(`/exercise/${ex.id}`); }); await flushAll();
-    await tap(screen.getByRole('button', { name: 'Kỹ thuật' }));
+    expect(screen.getByRole('button', { name: 'Kỹ thuật' }).props.accessibilityState).toMatchObject({ expanded: true }); /* 27.10.2026 (wariant B): sekcja rozwinięta od razu */
     expect(screen.getByText(`• ${cueText(CUE_DATA.exercises['Back Squat'].setup[0].c, 'vi')}`)).toBeTruthy();
     expect(screen.getByRole('header', { name: 'Lỗi thường gặp' })).toBeTruthy();
   });

@@ -22,8 +22,7 @@ name: Figura ruchu v2 - fazy, mięśnie, częsty błąd
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013)
 - tapOn: "Back Squat, barbell.*"
-- extendedWaitUntil: { visible: "Technique", timeout: 30000 }
-- tapOn: "Technique"
+- extendedWaitUntil: { visible: "Technique", timeout: 30000 }   # sekcja rozwinięta od razu (27.10.2026, wariant B) — bez tapnięcia
 - scrollUntilVisible: { element: "Movement drawing: .*", direction: DOWN, timeout: 30000, centerElement: true }
 - assertVisible: "Lowering 2 s.*"
 - assertVisible: "Standing up 1 s"
