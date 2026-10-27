@@ -13,6 +13,7 @@ import { join, dirname, resolve } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { maskuj } from '../maskuj.mjs';
+import { wczytajKonteksty, kontekstDla, OPIS_POLA_KONTEKST } from './kontekst.mjs';
 
 /* ---------- liczby w jednym miejscu (ceny i identyfikatory modeli: skill claude-api, tabela „Current Models”, 2026-10-06) ---------- */
 export const MODELE = { opus: 'claude-opus-5-5', sonnet: 'claude-sonnet-5-5' };
@@ -128,6 +129,7 @@ export const SYSTEM = [
   '(3a) WYJĄTEK (decyzja właściciela 21.10.2026, docs/16 „ton trenera”): we wskazówkach techniki ćwiczeń (rodzaj „wskazowka”) forma „ty” jest zamierzona — nie zgłaszaj jej; dotyczy tylko wskazówek, nie zdania medycznego ani ostrzeżeń bezpieczeństwa;',
   '(4) naturalność dla rodzimego użytkownika; (5) zgodność zmiennych {…} (te same nazwy, bez tłumaczenia ani zmiany, bez dodanych przyrostków tam, gdzie rejestr tego zabrania);',
   '(6) liczbę mnogą (formy zgodne z gramatyką języka, gdy zdanie zawiera liczbę lub zmienną liczbową).',
+  OPIS_POLA_KONTEKST + ' Oceń tłumaczenie względem tego użycia (np. faza ruchu przełożona nazwą ćwiczenia to błąd znaczenia).',
   'Nie zgłaszaj różnic czysto stylistycznych bez powodu. Nie oceniaj merytorycznej prawdziwości zaleceń treningowych — tylko wierność przekładu.',
   'Wagi: „krytyczna” = zmiana lub utrata znaczenia, złagodzenie/wzmocnienie twierdzenia medycznego lub bezpieczeństwa, uszkodzona zmienna, niewłaściwy rejestr w zdaniu medycznym;',
   '„średnia” = niejasność, błędny rejestr w zwykłym zdaniu, nienaturalne sformułowanie, niespójna terminologia; „niska” = drobny styl, interpunkcja, typografia.',
@@ -135,22 +137,27 @@ export const SYSTEM = [
   '{"poprawka": "<proponowany pełny tekst w języku docelowym>", "powod": "<krótko, po polsku>", "waga": "krytyczna" | "średnia" | "niska"}. Każde zdanie musi mieć wpis.',
 ].join(' ');
 
-export function budujZadanie(kod, zdaniaJ) {
-  const lista = zdaniaJ.filter((z) => z.tlum !== null).map((z) => (kod === 'en'
-    ? { id: String(z.id), rodzaj: z.rodzaj, pl: z.pl, tlumaczenie: z.tlum }
-    : { id: String(z.id), rodzaj: z.rodzaj, pl: z.pl, en: z.en, tlumaczenie: z.tlum }));
+/** `konteksty` = docs/lokalizacja/konteksty.json (wczytajKonteksty): zdanie z kluczem słownika (nie wskazówka techniki) dostaje pole „kontekst” (L-030, L-041); null = bez kontekstu. */
+export function budujZadanie(kod, zdaniaJ, konteksty = null) {
+  const lista = zdaniaJ.filter((z) => z.tlum !== null).map((z) => {
+    const o = kod === 'en'
+      ? { id: String(z.id), rodzaj: z.rodzaj, pl: z.pl, tlumaczenie: z.tlum }
+      : { id: String(z.id), rodzaj: z.rodzaj, pl: z.pl, en: z.en, tlumaczenie: z.tlum };
+    const ctx = z.rodzaj === 'wskazowka' ? null : kontekstDla(konteksty, z.klucz); if (ctx) o.kontekst = ctx;
+    return o;
+  });
   const user = [
     `Język docelowy: ${nazwaJezyka(kod)} (${kod}).`,
     `Rejestr i konwencje tego języka: ${REJESTR[kod] ?? 'jak w iOS danego języka'}.`,
-    kod === 'en' ? 'To jest angielski tekst źródłowy aplikacji — oceń go względem polskiego.' : 'Pole „en” to angielski tekst odniesienia, „tlumaczenie” to tekst do oceny.',
+    kod === 'en' ? 'To jest angielski tekst źródłowy aplikacji — oceń go względem polskiego.' : 'Pole „en” to angielski tekst odniesienia, „tlumaczenie” to tekst do oceny; „kontekst” (jeśli jest) mówi, czym jest tekst i gdzie się pokazuje.',
     `Zdań: ${lista.length}. Rodzaje: krytyczne = zdanie medyczne i asekuracja; wskazowka = zdania wskazówek techniki ćwiczeń; nowe = teksty dodane lub zmienione w ostatnich partiach.`,
     '', JSON.stringify(lista),
   ].join('\n');
   return { system: SYSTEM, messages: [{ role: 'user', content: user }] };
 }
 
-export function budujZadanieBatcha(kod, zdaniaJ, { model, effort }) {
-  const z = budujZadanie(kod, zdaniaJ);
+export function budujZadanieBatcha(kod, zdaniaJ, { model, effort }, konteksty = null) {
+  const z = budujZadanie(kod, zdaniaJ, konteksty);
   return { custom_id: `tl-${kod}`, params: { model, max_tokens: MAX_TOKENS, system: z.system, messages: z.messages, output_config: { effort } } };
 }
 
@@ -301,7 +308,8 @@ export async function main(argv, env, { fetchFn = fetch, log = console.log, root
   const mapa = Object.fromEntries(kody.map((k) => [k, zdaniaJezyka(root, k, zdania)]));
   log(`zdań: ${zdania.length} (krytyczne ${zdania.filter((z) => z.rodzaj === 'krytyczne').length}, nowe ${zdania.filter((z) => z.rodzaj === 'nowe').length}, wskazówki ${zdania.filter((z) => z.rodzaj === 'wskazowka').length}); języków: ${kody.length}; model: ${o.model}; effort: ${o.effort}`);
   mkdirSync(o.wyjscie, { recursive: true });
-  const zadania = kody.map((k) => budujZadanieBatcha(k, mapa[k], o));
+  const konteksty = wczytajKonteksty(root);
+  const zadania = kody.map((k) => budujZadanieBatcha(k, mapa[k], o, konteksty));
 
   if (!o.wznow) {
     const wiersze = [];
