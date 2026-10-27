@@ -10,6 +10,7 @@ Decyzja właściciela 27.10.2026 (docs/18, wariant A): niezależna recenzja ruch
 | chest_press_machine | 5 | 0 | 3 | 2 | 5/5 OK | 0 z 2 (0%) | [chest_press_machine.md](chest_press_machine.md) |
 | squat (rig) | 25 | 16 | 3 | 6 | sens-gotowe 0 naruszeń; `waliduj` na pozach z rigu 17/25 | 0 z 3 (0%) | [squat.md](squat.md) |
 | bench_press (rig) | 30 | 8 | 6 | 16 | sens-gotowe 0 naruszeń; `waliduj` na pozach z rigu 28/30 | 0 z 2 (0%) | [bench_press.md](bench_press.md) |
+| hinge (rig) | 32 | 9 | 1 | 22 | sens-gotowe 0 naruszeń; `waliduj` na pozach z rigu 30/32 | 0 z 4 (0%) | [hinge.md](hinge.md) |
 | back_extension | 3 | 0 | 1 | 2 | 3/3 OK | 0 z 2 (0%) | [back_extension.md](back_extension.md) |
 | kneeling_hinge | 1 | 0 | 1 | 0 | 1/1 OK | — | [kneeling_hinge.md](kneeling_hinge.md) |
 | dip | 5 | 3 | 1 | 1 | 5/5 OK | 0 z 1 (0%) | [dip.md](dip.md) |
