@@ -743,6 +743,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik ma plan dożywotni (bez aktywnej subskrypcji)
     - Gdy otwiera ekran zakupu
     - Wtedy nagłówek karty to „Masz plan: {nazwa planu}” z dopiskiem „Masz dostęp na zawsze”, bez listy planów i bez „Zmień plan”
+  - Scenariusz: Wiersz w Ustawieniach
+    - Zakładając, że zakupy są włączone, a użytkownik otwiera Więcej → Ustawienia → sekcja „Subskrypcja”
+    - Gdy ogląda wiersz prowadzący na ekran zakupu
+    - Wtedy bez planu tytuł wiersza to wezwanie do działania „Zobacz plany Pro” (ta sama etykieta co pozostałe wejścia na ekran zakupu) z licznikiem darmowych dni w podtytule, a z planem tytuł nazywa plan „Masz plan: {nazwa planu}” z datą albo „Masz dostęp na zawsze” w podtytule (DEC-07 b, właściciel 27.10.2026; M1-audytor-generalny-037; test `tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx`)
   - Scenariusz: Dożywotni przy aktywnej subskrypcji
     - Zakładając, że użytkownik sam płaci za aktywną subskrypcję (nie z Chmury rodzinnej ani z kodu)
     - Gdy rozwija „Zmień plan” i zaznacza plan dożywotni

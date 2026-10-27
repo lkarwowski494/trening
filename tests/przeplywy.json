@@ -2429,7 +2429,7 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "Ustawienia → karta „Subskrypcja” → ekran zakupu",
+    "Ustawienia → karta „Subskrypcja” (wiersz z dostępem: „Masz plan: {nazwa}”, bez planu: „Zobacz plany Pro”) → ekran zakupu",
     "Panel „Test store”: wygaszenie → ceny → „Przywróć zakupy”",
     "Start ponad limit dni → ekran zakupu → zakup",
     "Po zakupie subskrypcji: nagłówek „Masz plan: {nazwa}”, lista planów zwinięta pod „Zmień plan”, po rozwinięciu „Aktualny plan” przy kupionym i „Przejdź na ten plan”"

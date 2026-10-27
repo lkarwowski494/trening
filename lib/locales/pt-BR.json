@@ -576,5 +576,6 @@
  "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.": "Não apague o app — os dados e os backups somem junto com ele. Primeiro toque em “Enviar dados” e salve o arquivo fora do celular.",
  "Kopia bazy w Plikach": "Cópia do banco de dados em Arquivos",
  "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.": "Arquivos → No meu iPhone → {app} → Backup → {folder}. Salve esta pasta fora do celular.",
- "Masz plan: {name}": "Seu plano: {name}"
+ "Masz plan: {name}": "Seu plano: {name}",
+ "Zobacz plany Pro": "Ver planos Pro"
 }

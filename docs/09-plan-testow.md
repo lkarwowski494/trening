@@ -557,3 +557,11 @@ Błąd: ekran blokady w przerwie brał język z systemu (`Locale.preferredLangua
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
 | Język Live Activity | `tests/live-activity-lang.test.ts` (każda z 35 wartości języka → `lang` w starcie; „auto” z tagami systemu: es-MX, es-ES, pt-BR, pt-PT, zh-Hant-TW, zh-HK, zh-Hans-CN, hi-IN; telefon pl + aplikacja en; `update` niesie język; relocalize po zmianie języka; statycznie Swift: pole opcjonalne bez własnego dekodera, moduł, kolejność wyboru etykiety w widżecie, komplet kodów w `RestLabels.swift`); `tests/regress.test.tsx` „Ekran blokady w przerwie: język aplikacji, nie systemu” | logika, języki, regresja, statyczne Swift, macierz | zielone | **rodzaj pominięty: wygląd na ekranie blokady** (symulator CI nie pokazuje Live Activity) — lista „tylko telefon”, PR-17 (docs/39) |
+
+## 28.10.2026 — naprawy M1 (audyt 27.10.2026), zadanie M1-audytor-generalny-037: DEC-07 b (gałąź naprawy partii 3)
+
+Decyzja właściciela 27.10.2026 (docs/18): do 1.0 wiersz „Pełna wersja”, dokumenty wydania, test pierwszego użycia, zrzuty w 33 lokalizacjach; reszta do backlogu z wersją (docs/21).
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| (A) wiersz w Ustawieniach → „Subskrypcja” | `tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx` (darmowy EN/PL: tytuł „Zobacz plany Pro”, licznik w podtytule, rola przycisku, przejście na ekran zakupu; z planem: miesięczny, roczny z Chmury rodzinnej, dożywotni — „Masz plan: {nazwa}” = nagłówek ekranu zakupu; ciemny wygląd; 33 słowniki: tytuł = „Zobacz plany Pro ›” bez „ ›”); `tests/subscription-ui.test.tsx` (karta w Ustawieniach); `tests/audit-m1-050-support-subscription.test.ts` (ścieżka na stronie wsparcia) | ekran, języki, wygląd, VoiceOver, regresja, E2E | zielone (przed: 39 z 40 czerwonych) | E2E: `.maestro/21-subskrypcja.yaml` (tytuł z planem, po wygaśnięciu „See Pro plans”), `.maestro/35`, `.maestro/56`. Przekład: istniejąca, zrecenzowana etykieta „Zobacz plany Pro ›” bez „ ›” (32 słowniki + nakładka pt-BR; es-419 bez różnic). |

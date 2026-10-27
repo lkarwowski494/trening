@@ -13,6 +13,7 @@ import { getStoreAdapter, type StoreProduct } from '@/lib/store-adapter';
 import type { FakeStoreControl } from '@/lib/store-fake';
 import { useAccess, purchasePlan, restorePurchases, refreshEntitlements, nextMonthDay } from '@/lib/entitlement';
 import { useAnnounce } from '@/lib/announce';
+import { planName } from '@/components/SubscriptionCard';
 
 /*
  * Ekran zakupu (docs/27 rozdz. 5; M5 S1, decyzja właściciela 22.10.2026): ceny wyłącznie z App Store (displayPrice), „{cena}/{okres}” albo „{cena} jednorazowo”,
@@ -20,8 +21,8 @@ import { useAnnounce } from '@/lib/announce';
  * liczb w opisach planów. Stany: ładowanie, brak sieci, błąd, zakupione. Dostęp z Ustawień → „Subskrypcja” (tylko gdy PAYWALL.ENABLED) oraz automatycznie
  * przy starcie treningu ponad limit dni (reason=limit); nie pokazuje się samoczynnie w żadnym innym miejscu. Żadna akcja tego ekranu nie zmienia danych.
  */
-/** Nazwy planów (propozycja do przeglądu właściciela 22.10.2026; EN z docs/18). */
-export const planName = (p: EntitlementPlan): string => (p === 'yearly' ? t('Trening to część mojego tygodnia') : p === 'monthly' ? t('Szukam swojego rytmu') : t('Trening to moje życie'));
+/** Nazwy planów (propozycja do przeglądu właściciela 22.10.2026; EN z docs/18) — jedno miejsce w components/SubscriptionCard.tsx (też tytuł wiersza w Ustawieniach, M1-037 A). */
+export { planName };
 /** Opis planu: co się dostaje, bez liczb, procentów i porównań cen. */
 export const planBlurb = (p: EntitlementPlan): string => (p === 'yearly' ? t('Cały rok treningów, rozliczany rocznie.') : p === 'monthly' ? t('Płacisz co miesiąc i kończysz, kiedy chcesz.') : t('Płacisz raz i masz na zawsze.'));
 const periodWord = (p: StoreProduct['period']): string => (p === 'year' ? t('rok') : t('miesiąc'));
