@@ -8,7 +8,7 @@ Decyzja właściciela 27.10.2026 (docs/18, wariant A): niezależna recenzja ruch
 | pulldown | 8 | 1 | 6 | 1 | 8/8 OK | 0 z 1 (0%) | [pulldown.md](pulldown.md) |
 | cable_press | 4 | 2 | 2 | 0 | 4/4 OK | 0 z 0 (brak błędów) | [cable_press.md](cable_press.md) |
 | chest_press_machine | 5 | 0 | 3 | 2 | 5/5 OK | 0 z 2 (0%) | [chest_press_machine.md](chest_press_machine.md) |
-| squat (rig) | 25 | 17 | 2 | 6 | sens-gotowe 0 naruszeń; `waliduj` na pozach z rigu 17/25 | 0 z 3 (0%) | [squat.md](squat.md) |
+| squat (rig) | 25 | 16 | 3 | 6 | sens-gotowe 0 naruszeń; `waliduj` na pozach z rigu 17/25 | 0 z 3 (0%) | [squat.md](squat.md) |
 | back_extension | 3 | 0 | 1 | 2 | 3/3 OK | 0 z 2 (0%) | [back_extension.md](back_extension.md) |
 | kneeling_hinge | 1 | 0 | 1 | 0 | 1/1 OK | — | [kneeling_hinge.md](kneeling_hinge.md) |
 | dip | 5 | 3 | 1 | 1 | 5/5 OK | 0 z 1 (0%) | [dip.md](dip.md) |
