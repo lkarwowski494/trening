@@ -90,7 +90,7 @@ describe('ekran ćwiczenia: sekcja techniki w ja, ko, zh-Hant', () => {
     const ex = S().exercises.find(e => e.lib && e.libKey === 'Back Squat')!;
     const { router } = require('expo-router'); const { act } = require('./app');
     await act(async () => { router.push(`/exercise/${ex.id}`); }); await flushAll();
-    await tap(screen.getByRole('button', { name: tech }));
+    expect(screen.getByRole('button', { name: tech }).props.accessibilityState).toMatchObject({ expanded: true }); /* 27.10.2026 (wariant B): sekcja rozwinięta od razu */
     expect(screen.getByText(`• ${cueText(CUE_DATA.exercises['Back Squat'].setup[0].c, l)}`)).toBeTruthy();
     expect(screen.getByRole('header', { name: mistakes })).toBeTruthy();
     expect(screen.getByText(/Back Squat/)).toBeTruthy(); /* nazwa ćwiczenia z biblioteki — po angielsku, jak w innych językach */
