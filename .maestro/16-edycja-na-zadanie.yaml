@@ -37,11 +37,13 @@ name: Edycja na żądanie — ekran ćwiczenia
 
 # --- podgląd: wiersze z wartościami, bez pól edycji ---
 - extendedWaitUntil: { visible: "Edit exercise", timeout: 30000 }
-- assertVisible: "Body part: legs"
+# 27.10.2026: sekcja „Technika” jest rozwinięta od razu i spycha wiersze danych pod krawędź — przewijamy do wiersza
+- scrollUntilVisible: { element: "Body part: legs", direction: DOWN, timeout: 30000, centerElement: true }
 - assertNotVisible: "Save exercise"
 - takeScreenshot: 50-podglad-cwiczenia
 
 # --- „Edit exercise” → zmiana → „Cancel” → „Discard changes?” → „Discard changes”: dane bez zmian ---
+- scrollUntilVisible: { element: "Edit exercise", direction: UP, timeout: 30000 }   # po przewinięciu do wierszy przycisk jest nad krawędzią
 - tapOn: "Edit exercise"
 - extendedWaitUntil: { visible: "Save exercise", timeout: 15000 }
 - tapOn: "reps"
@@ -50,15 +52,16 @@ name: Edycja na żądanie — ekran ćwiczenia
 - extendedWaitUntil: { visible: "Discard changes\\?", timeout: 15000 }
 - tapOn: "Discard changes"
 - extendedWaitUntil: { visible: "Edit exercise", timeout: 15000 }
-- assertVisible: "What you log per set: weight \\+ reps"
+- scrollUntilVisible: { element: "What you log per set: weight \\+ reps", direction: DOWN, timeout: 30000, centerElement: true }   # sekcja Technika rozwinięta (27.10.2026) — wiersz pod krawędzią
 
 # --- „Edit exercise” → zmiana → „Save exercise”: zapis i podgląd; zostaje po restarcie ---
+- scrollUntilVisible: { element: "Edit exercise", direction: UP, timeout: 30000 }   # po przewinięciu do wierszy przycisk jest nad krawędzią
 - tapOn: "Edit exercise"
 - extendedWaitUntil: { visible: "Save exercise", timeout: 15000 }
 - tapOn: "reps"
 - tapOn: "Save exercise"
 - extendedWaitUntil: { visible: "Edit exercise", timeout: 15000 }
-- assertVisible: "What you log per set: reps"
+- scrollUntilVisible: { element: "What you log per set: reps", direction: DOWN, timeout: 30000, centerElement: true }   # sekcja Technika rozwinięta (27.10.2026) — wiersz pod krawędzią
 - stopApp
 - launchApp:
     clearState: false
@@ -73,10 +76,11 @@ name: Edycja na żądanie — ekran ćwiczenia
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Back Squat, barbell.*"
 - extendedWaitUntil: { visible: "Edit exercise", timeout: 30000 }
-- assertVisible: "What you log per set: reps"
+- scrollUntilVisible: { element: "What you log per set: reps", direction: DOWN, timeout: 30000, centerElement: true }   # sekcja Technika rozwinięta (27.10.2026) — wiersz pod krawędzią
 - takeScreenshot: 52-po-restarcie
 
 # --- UX2-03 = DAT2-06 (audyt kontrolny 1): zmiana w edycji bez „Zapisz”, aplikacja zamknięta → po starcie pytanie i powrót do szkicu ---
+- scrollUntilVisible: { element: "Edit exercise", direction: UP, timeout: 30000 }   # po przewinięciu do wierszy przycisk jest nad krawędzią
 - tapOn: "Edit exercise"
 - extendedWaitUntil: { visible: "Save exercise", timeout: 15000 }
 - tapOn: "weight \\+ reps"
@@ -91,4 +95,4 @@ name: Edycja na żądanie — ekran ćwiczenia
 - extendedWaitUntil: { visible: "Save exercise", timeout: 30000 }
 - tapOn: "Save exercise"
 - extendedWaitUntil: { visible: "Edit exercise", timeout: 15000 }
-- assertVisible: "What you log per set: weight \\+ reps"
+- scrollUntilVisible: { element: "What you log per set: weight \\+ reps", direction: DOWN, timeout: 30000, centerElement: true }   # sekcja Technika rozwinięta (27.10.2026) — wiersz pod krawędzią
