@@ -39,6 +39,7 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 - **Przyczyna źródłowa:** edycja słowników `lib/locales/*.json` nie uruchamia regeneracji plików pochodnych (zegarek, widget); agent wypchnął gałąź na końcu limitu sesji bez lokalnego verify i bez `npm ci` w worktree, więc ani verify, ani hak pre-push nie zadziałały — pierwszą kontrolą było CI.
 - **Akcje:** plik odświeżony i naniesiony razem z 49 poprawkami w jednym commicie do odrzucenia revertem — zrobione; strażnik już istnieje (`tests/watch-apple-i18n.test.ts`), reguła „po zmianie tłumaczeń: `UPDATE_WATCH_APPLE=1 npx jest tests/watch-apple-i18n.test.ts`” jest w nagłówku testu — nowy mechanizm niepotrzebny; do rozważenia przez koordynatora: `test:fast` dla zmian w `lib/locales/` powinien obejmować ten test (sprawdzić `scripts/test-fast`) — otwarte.
 - **Ocena zakresu: lokalna** (strażnik złapał błąd; luką był tylko brak lokalnego uruchomienia).
+- **Druga luka (ta sama przyczyna):** nowy `tests/sciezki-nawigacji-i18n.test.ts` zmienił generowaną macierz, a `docs/19-macierz-testow.md` nie była odświeżona (`check:matrix`, który hak pre-push uruchamia) — odświeżona w osobnym commicie.
 
 ## L-039 (26.10.2026, straznik-paczki) — nawrót L-033: `check:bundle` znów zgłosił fałszywe „CDC” w bajtkodzie Hermes (tests.yml 40379990056, jakosc-r2, c171efb)
 
