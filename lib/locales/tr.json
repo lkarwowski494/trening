@@ -1713,5 +1713,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Setler: egzersiz başına {s}. En az {m} set yapmaya değer. Daha çok set genellikle biraz daha fazla sonuç verir, ama kazanç giderek azalır.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "{d} {s} tarihli antrenmanda {h} saattir hareket yoktu, bu yüzden otomatik olarak kaydedildi. Bitiş: {e} (son set). Plan sekmesinde bulabilirsiniz.",
  "Aktualny plan": "Mevcut plan",
+ "Masz plan: {name}": "Planınız: {name}",
+ "Przejdź na ten plan": "Bu plana geç",
  "Zmień plan": "Planı değiştir"
 }
