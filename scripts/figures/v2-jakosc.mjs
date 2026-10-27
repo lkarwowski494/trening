@@ -50,10 +50,12 @@ export const PROGI = {
   ksztaltPodPodlogaCm: -3.5, /* R15: dolna krawędź narysowanych kształtów ciała (tułów, kończyny) w rzucie z boku i z przodu nie niżej niż (cm; pozy leżące mają −2,0, Superman −2,9 z grubości kształtu) */
   tulowUnosiMinDeg: 15, kregoslupZwijaMinDeg: 20, /* R16: gdy tułów unosi się o więcej niż tyle ponad podłogę, kręgosłup zgina się o co najmniej tyle (zwija się, nie sztywna deska) */
   zwijanieMiednicaCm: 3, zwijanieKregoslupDeg: 20, vUpMinDeg: 30, /* R14b: mechanizm wyjątku „zwijanie obu końców” (miednica unosi się ≥ cm, kręgosłup zgięty ≥ stopni) i „V” (tułów i nogi razem ≥ stopni nad podłogą) */
+  declineNachylenieMaxDeg: 5, /* R19 (n7): wariant decline pompki, u = 0: linia kostka–bark wznosi się ku głowie najwyżej tyle stopni nad poziom (konwencja rysunku; Decline n6 miało +15,5°, n7 +0,3°, zwykła pompka +20,1°) */
+  lezenieUgniecenieCm: 1.5, /* R21 (n7): poza leżąca, u = 0: środek miednicy najwyżej tyle cm NIŻEJ niż promień kolizji tułowia z silnika (GIRTH.trunkCollide = 9,5); 8,0 starszych póz = 9,5 − 1,5. Konwencja rysunku bez źródła; wyżej dopuszczalne wisiCm */
   stykPodparciaCm: 4.5, /* punkt ciała uznany za podparcie, gdy jego (oś) wysokość ≤ tyle: dłoń, stopa, kolano (promień kończyny) */
 };
 /** P2 (recenzja n5): kierunek progów (max: wielkość ≤ próg; min: wielkość ≥ próg). Progi bramkujące (rolloutRekaMaxCm, rolloutBarkiMinCm, stykPodparciaCm, widocznoscBiodroMaxDeg, tulowUnosiMinDeg, statyczneMaxKlatek) i obiekty nie są zaostrzane. */
-export const PROGI_MAX = ['liniaPelnaCm', 'koloProsteMaxDeg', 'kolanoPodTulowiemCm', 'przedramieBokDeg', 'receProsteMaxDeg', 'rzadBleduKolanoDeg', 'rzadBleduTolDeg', 'wisiCm', 'lokiecPrzedPlecamiMaxCm', 'lokiecNadNadgarstkiemCm', 'ledzwieCm', 'prosteReceDeg', 'zwisKatDeg', 'zwisMostekCm', 'falloutLokiecMaxDeg', 'szyjaMaxDeg', 'rozstawTolerancja', 'stykFrontCm', 'kolanoStykCm', 'lokiecPodBarkiemCm'];
+export const PROGI_MAX = ['declineNachylenieMaxDeg', 'lezenieUgniecenieCm', 'liniaPelnaCm', 'koloProsteMaxDeg', 'kolanoPodTulowiemCm', 'przedramieBokDeg', 'receProsteMaxDeg', 'rzadBleduKolanoDeg', 'rzadBleduTolDeg', 'wisiCm', 'lokiecPrzedPlecamiMaxCm', 'lokiecNadNadgarstkiemCm', 'ledzwieCm', 'prosteReceDeg', 'zwisKatDeg', 'zwisMostekCm', 'falloutLokiecMaxDeg', 'szyjaMaxDeg', 'rozstawTolerancja', 'stykFrontCm', 'kolanoStykCm', 'lokiecPodBarkiemCm'];
 export const PROGI_MIN = ['bladMinCm', 'rozneKlatkiCm', 'podstawaMinCm', 'kolanoNadPodlogaCm', 'kolanaUgieteMinDeg', 'bladGorszyCm', 'bladWidocznyDeg', 'falloutBarkMinDeg', 'podparcieMarginesCm', 'podlogaKonczyna', 'podlogaTulow', 'ksztaltPodPodlogaCm', 'kregoslupZwijaMinDeg', 'zwijanieMiednicaCm', 'zwijanieKregoslupDeg', 'vUpMinDeg'];
 export const marginesJakosci = (v) => Math.max(0.05 * Math.abs(v), Math.abs(v) >= 4 ? 1 : 0);
 /** Wykonuje `fn` z progami zaostrzonymi o margines (P2) i przywraca progi. */
@@ -125,7 +127,7 @@ export const PODPOR_NA_DLONIACH_KOLANO = ['Mountain Climbers'];
 export const DOL_POMPKI = ['Push Up', 'Push-Up Wide', 'Close-Grip Push-Up', 'Diamond Push Up', 'Decline Push Up', 'Incline Push Up', 'Incline Push-Up Close-Grip'];
 /** R7: najmniejsze zgięcie kolana (w KAŻDEJ klatce) w ćwiczeniach z podkulonymi kolanami. */
 export const KOLANA_UGIETE = { 'Tuck Crunch': 80, 'Reverse Crunch': 80 };
-export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie', 'podparcie_kolan', 'ksztalty_nad_podloga', 'styk_z_podlozem', 'kregoslup_zwija_sie', 'wyjatek_nie_przeczy_wskazowce', 'wyjatek_wymaga_mechanizmu'];
+export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie', 'podparcie_kolan', 'ksztalty_nad_podloga', 'styk_z_podlozem', 'styk_kazdego_podparcia', 'podparcie_wyzej_niz_dlonie', 'baza_lezenia', 'kregoslup_zwija_sie', 'wyjatek_nie_przeczy_wskazowce', 'wyjatek_wymaga_mechanizmu'];
 /** Reguły poziomu manifestu podglądu (nie pozy): zgodność manifestu z obrazem i układ podglądu. */
 export const REGULY_MANIFESTU = ['manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
 
@@ -429,7 +431,7 @@ export const PODWIESZENIE_MIN_CM = 120;
 export const DLON_POD_OSIA_GRYFU_CM = 3;
 /** Powierzchnie, na których może stać albo opierać się ciało: podłoga, wierzch skrzyni i ławki, gryf na talerzach (dla dłoni). Zawsze jest podłoga y = 0. */
 export function powierzchniePodparcia(poza) {
-  const pow = poza.sprzet.filter((g) => ['podloga', 'skrzynia', 'lawka'].includes(g.rodzaj)).map((g) => g.rodzaj === 'podloga' ? { y: 0, x0: g.x0 ?? -1e9, x1: g.x1 ?? 1e9 } : g.rodzaj === 'skrzynia' ? { y: g.top ?? 0, x0: g.x0, x1: g.x1 } : { y: g.top ?? 0, x0: (g.x ?? 0) - (g.dlugosc ?? 0), x1: (g.x ?? 0) + (g.dlugosc ?? 0) });
+  const pow = poza.sprzet.filter((g) => ['podloga', 'skrzynia', 'lawka'].includes(g.rodzaj)).map((g) => g.rodzaj === 'podloga' ? { y: 0, x0: g.x0 ?? -1e9, x1: g.x1 ?? 1e9, rodzaj: 'podloga' } : g.rodzaj === 'skrzynia' ? { y: g.top ?? 0, x0: g.x0, x1: g.x1, rodzaj: 'skrzynia' } : { y: g.top ?? 0, x0: (g.x ?? 0) - (g.dlugosc ?? 0), x1: (g.x ?? 0) + (g.dlugosc ?? 0), rodzaj: 'lawka' });
   for (const g of poza.sprzet) if (g.rodzaj === 'sztanga' && g.talerze && (g.y ?? 0) < PODWIESZENIE_MIN_CM) pow.push({ y: (g.y ?? 0) - DLON_POD_OSIA_GRYFU_CM, x0: -1e9, x1: 1e9 });
   if (!pow.some((q) => q.y === 0)) pow.push({ y: 0, x0: -1e9, x1: 1e9 });
   return pow;
@@ -446,6 +448,43 @@ export function stykZPodlozem(v2, poza) {
     if (h > PROGI.wisiCm) return [`najniższy punkt narysowanego ciała leży ${f1(h)} cm nad podłożem (u = ${u}; ≤ ${PROGI.wisiCm} cm) — ciało wisi w powietrzu (bez zadeklarowanego lotu ani zwisu)`];
   }
   return [];
+}
+/** R17b (recenzja n7). Styk KAŻDEGO podparcia, nie tylko najniższego punktu (R17 nie widział stóp w Decline, bo najniżej są dłonie).
+ * (a) pompki z listy DOL_POMPKI: dłonie i stopy (każda kończyna osobno, kształt dłoni/stopy w rzucie z boku) leżą najwyżej wisiCm nad powierzchnią pod nimi (podłoga albo wierzch skrzyni) w każdej klatce;
+ * (b) stopa, która w KAŻDEJ klatce jest nad zadeklarowaną skrzynią (x ± 5 cm; top > 0) i w żadnej jej nie dotyka (≤ wisiCm): Decline z podwyższeniem za niskim albo za wysokim. Ruch, w którym stopa przechodzi nad skrzynią (Step Up, Box Jump), tego nie spełnia; ławka nie jest sprawdzana (jej zasięg x to przedział orientacyjny, stopy nad nim stoją na podłodze).
+ * Wyjątek: ćwiczenie z zadeklarowanym lotem (LOT). Progi: wisiCm i ksztaltPodPodlogaCm (jedno miejsce). */
+export function stykKazdegoPodparcia(v2, poza) {
+  if (poza.cwiczenie in LOT) return [];
+  const pow = powierzchniePodparcia(poza); const podwyzszenia = pow.filter((q) => q.y > 0 && q.rodzaj === 'skrzynia');
+  const nadSkrzynia = {}; const o = []; const sprawdz = (txt) => { if (o.length < 3 && !o.includes(txt)) o.push(txt); };
+  for (const u of siatka(poza, 12)) {
+    const sh = v2.dataShapes(poza, u, 'side').filter((x) => x.k === 'poly');
+    if (DOL_POMPKI.includes(poza.cwiczenie)) for (const [nazwa, re] of [['dłoń', /^hand/], ['stopa', /^foot/]]) for (const k of ['R', 'L']) {
+      const ksz = sh.find((x) => re.test(x.id ?? '') && (x.id ?? '').endsWith(k)); if (!ksz) continue; const q = ksz.pts.reduce((m, a) => (a[1] < m[1] ? a : m));
+      const pod = pow.filter((w) => w.y <= q[1] - PROGI.ksztaltPodPodlogaCm && q[0] >= w.x0 - 5 && q[0] <= w.x1 + 5).map((w) => w.y); const h = q[1] - (pod.length ? Math.max(...pod) : 0); /* kształt może zagłębiać się w powierzchnię do |ksztaltPodPodlogaCm| (jak w R15) */
+      if (h > PROGI.wisiCm) sprawdz(`${nazwa} ${k} leży ${f1(h)} cm nad podłożem (u = ${u}; ≤ ${PROGI.wisiCm} cm) — podparcie wisi w powietrzu`);
+    }
+    for (const w of podwyzszenia) for (const k of ['R', 'L']) { const ksz = sh.find((x) => /^foot/.test(x.id ?? '') && (x.id ?? '').endsWith(k)); const q = ksz && ksz.pts.reduce((m, a) => (a[1] < m[1] ? a : m)); const klucz = w.y + ':' + w.x0 + ':' + k; (nadSkrzynia[klucz] ??= { w, k, klatki: 0, wszystkie: 0, minH: Infinity }); const e = nadSkrzynia[klucz]; e.wszystkie++; if (q && q[0] >= w.x0 - 5 && q[0] <= w.x1 + 5) { e.klatki++; e.minH = Math.min(e.minH, q[1] - w.y); } }
+  }
+  for (const e of Object.values(nadSkrzynia)) if (e.klatki === e.wszystkie && e.minH > PROGI.wisiCm) sprawdz(`stopa ${e.k} jest nad podwyższeniem o wierzchu ${f1(e.w.y)} cm (x ${f1(e.w.x0)}…${f1(e.w.x1)}) w każdej klatce i nigdy go nie dotyka (najbliżej ${f1(e.minH)} cm nad wierzchem; ≤ ${PROGI.wisiCm} cm) — stopa wisi nad skrzynią`);
+  return o;
+}
+/** R19 (recenzja n7, z n6). Wariant decline pompki: w u = 0 linia kostka–bark wznosi się ku głowie najwyżej declineNachylenieMaxDeg nad poziom (stopy wyżej niż dłonie; zwykła pompka ma +20°). Tylko rodzina pushup_plank. */
+export const WARIANT_DECLINE_POMPKI = /^Decline\b.*Push[- ]?Up/;
+export function podparcieWyzejNizDlonie(v2, poza, rodzina) {
+  if (rodzina !== 'pushup_plank' || !WARIANT_DECLINE_POMPKI.test(poza.cwiczenie)) return [];
+  const s = v2.keyframeFrame(poza, 0).sk; const a = s.legs.R.ankle, b = s.shoulderC; const kat = (Math.atan2(b[1] - a[1], Math.abs(b[0] - a[0])) * 180) / Math.PI;
+  return kat > PROGI.declineNachylenieMaxDeg + 1e-6 ? [`linia kostka–bark w u = 0 wznosi się o ${f1(kat)}° ku głowie, a ma ≤ ${PROGI.declineNachylenieMaxDeg}° (stopy na podwyższeniu: wariant decline traci cechę, gdy podwyższenie jest za niskie)`] : [];
+}
+/** R21 (recenzja n7). Baza póz leżących: wysokość środka miednicy w u = 0 = promień kolizji tułowia z silnika (jedno miejsce: GIRTH.trunkCollide) − lezenieUgniecenieCm … + wisiCm.
+ * Poza „leżąca”: oś tułowia ≤ LEZENIE_OS_MAX_DEG od poziomu i miednica ≤ promień + LEZENIE_MIEDNICA_MAX_NAD_CM. Dla płaskich póz dolna granica pokrywa się z R15 (kształt tułowia sięga ok. 11,5 cm pod środkiem miednicy). */
+export const LEZENIE_OS_MAX_DEG = 20; export const LEZENIE_MIEDNICA_MAX_NAD_CM = 3; /* konwencje rysunku: poza leżąca (nie czworaki, nie podpór) */
+export const lezenieBazaCm = (v2) => v2.GIRTH.trunkCollide;
+export function bazaLezenia(v2, poza) {
+  const s = v2.keyframeFrame(poza, 0).sk; const baza = lezenieBazaCm(v2); const dx = s.shoulderC[0] - s.pelvis[0], dy = s.shoulderC[1] - s.pelvis[1];
+  const os = Math.abs((Math.atan2(dy, Math.abs(dx)) * 180) / Math.PI); if (os > LEZENIE_OS_MAX_DEG || s.pelvis[1] > baza + LEZENIE_MIEDNICA_MAX_NAD_CM) return [];
+  const y = s.pelvis[1]; const lo = baza - PROGI.lezenieUgniecenieCm, hi = baza + PROGI.wisiCm;
+  return y < lo - 1e-6 || y > hi + 1e-6 ? [`środek miednicy w u = 0 leży ${f1(y)} cm nad podłogą, a poza leżąca ma ${f1(lo)}…${f1(hi)} cm (promień kolizji tułowia ${f1(baza)} cm − ugniecenie ${PROGI.lezenieUgniecenieCm} … + ${PROGI.wisiCm})`] : [];
 }
 const uniesienieTulowia = (s) => { const dy = s.shoulderC[1] - s.pelvis[1]; const d = Math.hypot(s.shoulderC[0] - s.pelvis[0], dy); return Math.asin(Math.max(-1, Math.min(1, dy / d))) / R; };
 /** R16. Kręgosłup zwija się: gdy tułów unosi się nad podłogę o więcej niż tulowUnosiMinDeg (wskazówka „lędźwie zostają na podłodze”), zgięcie kręgosłupa ≥ kregoslupZwijaMinDeg (zwija się odcinek piersiowy, nie sztywna deska). */
@@ -529,6 +568,7 @@ export function sprawdzJakosc(poza, ctx) {
   dodaj('widocznosc_bledu_kat', widocznoscBleduKat(v2, poza));
   if (cechy.has('klek_lawka')) dodaj('podparcie_kolan', podparcieKolan(v2, poza, 'lawka')); else if (cechy.has('klek_podloga')) dodaj('podparcie_kolan', podparcieKolan(v2, poza, 'podloga'));
   dodaj('ksztalty_nad_podloga', ksztaltyNadPodloga(v2, poza)); dodaj('styk_z_podlozem', stykZPodlozem(v2, poza));
+  dodaj('styk_kazdego_podparcia', stykKazdegoPodparcia(v2, poza)); dodaj('podparcie_wyzej_niz_dlonie', podparcieWyzejNizDlonie(v2, poza, rodzina)); if (rodzina === 'core_floor') dodaj('baza_lezenia', bazaLezenia(v2, poza)); /* rigi (np. Floor Press leży na macie 2 cm, której sprzet nie opisuje) mają własne bazy */
   if (cechy.has('ledzwie_przy_podlodze')) dodaj('kregoslup_zwija_sie', kregoslupZwijaSie(v2, poza));
   if (cwiczenie in LEDZWIE_WYJATKI) { dodaj('wyjatek_nie_przeczy_wskazowce', wyjatekNieStoiWSprzecznosci(cwiczenie, teksty ?? {}, ctx.root ?? ROOT)); dodaj('wyjatek_wymaga_mechanizmu', wyjatekWymagaMechanizmu(v2, poza)); }
   if (PODPARCIE_ZMIENNE.includes(cwiczenie)) dodaj('srodek_ciezkosci_podparcie', srodekCiezkosciNadPodparciem(v2, poza));
