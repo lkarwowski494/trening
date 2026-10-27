@@ -10,7 +10,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { loadV2 } from './v2-build.mjs';
 import { sprawdzSens, izometryczne, bezBramkiRuchu, zakresWyjatek, dynamiczne, grupaBledu, wczytajSens } from './v2-sens.mjs';
-import { sprawdzJakosc, wczytajTeksty, GRUPY_POSTAWY, wierszeWJednejLinii } from './v2-jakosc.mjs';
+import { sprawdzJakosc, wczytajTeksty, GRUPY_POSTAWY, wierszeWJednejLinii, klatkiZHtml } from './v2-jakosc.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const SCHEMA_FILE = 'docs/schemas/figury-v2-poza.schema.json';
@@ -100,6 +100,27 @@ export function htmlPodgladu(poza, motyw) {
     return `<div style="font:12px sans-serif;color:${tokens[motyw].text};margin:6px 0 2px">${etykiety[n]}</div><div class="w" data-etykieta="${etykiety[n]}" style="display:flex;flex-wrap:nowrap;gap:8px;align-items:flex-end;width:max-content">${komorki.join('')}</div>`;
   });
   return { html: `<html><body style="margin:0;padding:8px;background:${tokens[motyw].surface}">${wiersze.join('')}</body></html>`, klatki, wiersze: etykiety, px };
+}
+/** Podglądy partii póz jedną przeglądarką: dla każdej pozy HTML z `htmlPodgladu` (WSZYSTKIE klatki kluczowe, oba widoki, poza poprawna i rzędy błędów) → PNG; zwraca { ćwiczenie: { plik, klatki, uwagi } }.
+ * `klatki` odczytane z zapisanego HTML (`klatkiZHtml`, atrybuty data-u), czyli z tego, co faktycznie trafiło na obraz; `uwagi` = niejednolite wiersze/widoki. Bez playwright (albo `bezPrzegladarki`) plikiem jest HTML. */
+export async function podgladPartia(poze, katalog, motyw = 'light', opcje = {}) {
+  const wynik = {}; fs.mkdirSync(katalog, { recursive: true });
+  let chromium = null; if (!opcje.bezPrzegladarki) { try { chromium = createRequire(import.meta.url)('playwright').chromium; } catch { /* bez przeglądarki: tylko HTML */ } }
+  const browser = chromium ? await chromium.launch() : null; const page = browser ? await browser.newPage({ viewport: { width: 1400, height: 700 } }) : null;
+  try {
+    for (const [cw, poza] of Object.entries(poze)) {
+      const { html } = htmlPodgladu(poza, motyw); const nazwa = path.join(katalog, `${poza.cwiczenie.replace(/\W+/g, '-')}-${motyw}`); fs.writeFileSync(nazwa + '.html', html);
+      const { klatki, uwagi } = klatkiZHtml(html); let plik = nazwa + '.html';
+      if (page) {
+        await page.setContent(html); const szer = await page.evaluate(() => document.documentElement.scrollWidth); await page.setViewportSize({ width: Math.max(1400, szer), height: 700 });
+        const pomiar = await page.evaluate(() => [...document.querySelectorAll('.w')].map((w) => ({ etykieta: w.dataset.etykieta, dolne: [...w.querySelectorAll('.k')].map((k) => k.getBoundingClientRect().bottom) })));
+        const uklad = wierszeWJednejLinii(pomiar); if (uklad.length) throw new Error(`podgląd ${poza.cwiczenie}: ${uklad.join('; ')}`);
+        await page.screenshot({ path: nazwa + '.png', fullPage: true }); plik = nazwa + '.png';
+      }
+      wynik[cw] = { plik, klatki, uwagi };
+    }
+  } finally { if (browser) await browser.close(); }
+  return wynik;
 }
 export function podglad(poza, katalog, motyw) {
   fs.mkdirSync(katalog, { recursive: true }); const { html } = htmlPodgladu(poza, motyw);
