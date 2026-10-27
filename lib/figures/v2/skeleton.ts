@@ -230,7 +230,7 @@ const dist3 = (a: V3, b: V3): number => len(sub(a, b));
 export const soleY = (l: Leg): number => Math.min(l.heel[1], l.toe[1]);
 
 /** Kąty stawów do sprawdzeń zakresu (konwencja jak w lib/figures/geom: zgięcie dodatnie, wyprost ujemny; stopa: zgięcie grzbietowe dodatnie). Biodro ma znak: przeprost (udo za linią tułowia) jest ujemny (poza@2). */
-export function jointAngles(k: Skeleton, s: Side): { hip: number; knee: number; ankle: number; shSag: number; shElev: number; shAbd: number; elbow: number; trunkRoll: number; trunkTwist: number; trunkLean: number; pelvisTilt: number; headTilt: number; shrug: number; protract: number; wristFlex: number; forearmRoll: number } {
+export function jointAngles(k: Skeleton, s: Side): { hip: number; knee: number; ankle: number; shSag: number; shElev: number; shAbd: number; elbow: number; trunkRoll: number; trunkTwist: number; trunkLean: number; pelvisTilt: number; headTilt: number; shrug: number; protract: number; wristFlex: number; forearmRoll: number; shRot: number } {
   const L = k.legs[s], A = k.arms[s];
   const ang = (a: V3, b: V3, c: V3): number => { const u = sub(a, b), v = sub(c, b); return deg(Math.acos(clamp(dot(u, v) / ((len(u) * len(v)) || 1), -1, 1))); };
   const thigh = sub(L.knee, L.hip); const behind = dot(thigh, k.front) < -HIP_SIGN_TOL_CM; /* udo za linią tułowia o więcej niż tolerancja → przeprost (poniżej: bez znaku, jak dotąd) */
@@ -245,7 +245,15 @@ export function jointAngles(k: Skeleton, s: Side): { hip: number; knee: number; 
   if (shSag < -90) shSag += 360; /* ramię za pionem nad głową = zgięcie powyżej 180°, nie wyprost */
   const elbowFlex = 180 - ang(A.shoulder, A.elbow, A.bent ? A.wrist : A.grip);
   const shAbd = deg(Math.asin(clamp(Math.abs(ua[2]), 0, 1))); /* odchylenie ramienia od płaszczyzny strzałkowej (0 = w płaszczyźnie, 90 = bokiem) */
-  return { hip: hipFlex, knee: kneeFlex, ankle: ankleDors, shSag, shElev, shAbd, elbow: elbowFlex, trunkRoll: k.roll, trunkTwist: k.twist, trunkLean: k.lean, pelvisTilt: k.tilt, headTilt: k.headTilt, shrug: A.shrug, protract: A.protract, wristFlex: A.wristFlex, forearmRoll: A.forearmRoll };
+  /* rotacja barku (obrót przedramienia wokół osi ramienia, łokieć zgięty): kąt rzutu przedramienia na płaszczyznę prostopadłą do ramienia względem kierunku „przód tułowia” rzutowanego na tę samą płaszczyznę; 0 = przedramię do przodu (ramię przy boku) albo w płaszczyźnie tułowia (ramię odwiedzone), dodatnie = na zewnątrz (od linii środkowej, przy odwiedzeniu: przedramię w górę), ujemne = do wewnątrz; ramię równoległe do osi „przód” (kierunek odniesienia nieokreślony) i przedramię w osi ramienia → 0 */
+  const fa = norm(sub(A.bent ? A.wrist : A.grip, A.elbow)); const along = dot(fa, ua);
+  const perp: V3 = sub(fa, mul(ua, along)); const ref: V3 = sub(k.front, mul(ua, dot(k.front, ua)));
+  let shRot = 0;
+  if (len(perp) > 1e-6 && len(ref) > 1e-6) {
+    const r = norm(ref); const out = mul([ua[1] * r[2] - ua[2] * r[1], ua[2] * r[0] - ua[0] * r[2], ua[0] * r[1] - ua[1] * r[0]], s === 'R' ? 1 : -1);
+    shRot = deg(Math.atan2(dot(perp, out), dot(perp, r)));
+  }
+  return { hip: hipFlex, knee: kneeFlex, ankle: ankleDors, shSag, shElev, shAbd, shRot, elbow: elbowFlex, trunkRoll: k.roll, trunkTwist: k.twist, trunkLean: k.lean, pelvisTilt: k.tilt, headTilt: k.headTilt, shrug: A.shrug, protract: A.protract, wristFlex: A.wristFlex, forearmRoll: A.forearmRoll };
 }
 /** Tolerancja znaku biodra (cm, odległość kolana za linią tułowia): poniżej niej biodro liczone jak dotąd (bez znaku), żeby udo odwiedzione bokiem nie zmieniało znaku od szumu. */
 const HIP_SIGN_TOL_CM = 2;

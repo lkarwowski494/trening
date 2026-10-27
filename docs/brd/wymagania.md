@@ -417,6 +417,19 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy użytkownik otwiera ćwiczenie
     - Wtedy sekcji nie ma
 
+### BR-BIB-004: Rysunek ruchu: faza i pomiar opisują staw, który się rusza (27.10.2026, S2)
+- Przepływ: PR-01
+- Dowód potrzeby: decyzja właściciela 2026-10-27 (rozszerzenie na wznosy ramion, szrugsy, rotacje, przedramię i noszenie); testy `tests/figures-v2-katy-fazy.test.tsx`; konwencja progu `MIN_MEASURED_ROM` (15° albo 2 cm) w `lib/figures/v2/poseData.ts`
+- Kryteria akceptacji:
+  - Scenariusz: Pomiar stawu, który pracuje
+    - Zakładając, że ćwiczenie z rysunkiem z danych (wznos ramion, szrugs, rotacja, ćwiczenie przedramienia, noszenie) jest podłączone
+    - Gdy użytkownik otwiera ćwiczenie
+    - Wtedy linia pomiaru pod licznikiem faz pokazuje ten staw rodziny, który w ćwiczeniu rusza się najbardziej, i tę stronę, która pracuje (ćwiczenie jednoręczne nie dostaje średniej z ręką nieruchomą); szrugsy w centymetrach przesunięcia barków, reszta w stopniach; przy ruchu nie większym niż 15° (2 cm) albo w ćwiczeniu naprzemiennym linii nie ma
+  - Scenariusz: Fazy bez opuszczania tam, gdzie go nie ma
+    - Zakładając, że ruch to wznos, rotacja, uginanie nadgarstka albo szrugs
+    - Gdy użytkownik ogląda licznik faz
+    - Wtedy fazy mają nazwy ruchu (Unoszenie, Obrót, Uginanie, Ściąganie, Rozsuwanie) z tempem ilustracyjnym jak w podciąganiu; przy noszeniu licznik pokazuje jedną fazę „Marsz” bez sekund i bez „Opuszczanie” i „Pauza”
+
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07
 - Dowód potrzeby: OG-01; docs/28-healthkit-etap0.md; `site/privacy.html`

@@ -32,18 +32,41 @@ export function poseDataFor(key: string, family: string): PoseData | null {
 /** Klucze ćwiczeń z danymi w rodzinie. */
 export const poseKeys = (family: string): string[] => Object.keys(poseFile(family)?.cwiczenia ?? {});
 
-export type MeasuredJoint = 'knee' | 'elbow' | 'hip';
+/** Staw (albo przesunięcie) pokazywany w linii pod licznikiem faz; nazwy = klucze `jointAngles` (skeleton.ts), więc wartość wynika wprost z geometrii klatki. */
+export type MeasuredJoint = 'knee' | 'elbow' | 'hip' | 'shElev' | 'shAbd' | 'shRot' | 'shrug' | 'protract' | 'wristFlex' | 'forearmRoll';
+/** Jednostka miary: stopnie (kąt stawu) albo centymetry (barki unoszone i wysuwane w cm — silnik nie ma dla nich kąta, EXT_ROM.shrug / protract). */
+export const MEASURE_UNIT: Record<MeasuredJoint, 'deg' | 'cm'> = { knee: 'deg', elbow: 'deg', hip: 'deg', shElev: 'deg', shAbd: 'deg', shRot: 'deg', shrug: 'cm', protract: 'cm', wristFlex: 'deg', forearmRoll: 'deg' };
+/**
+ * KONWENCJA (27.10.2026, bez źródła — nazwana, nie twierdzenie o wiedzy): linia „Kąt na rysunku” pojawia się tylko wtedy, gdy mierzony staw zmienia się w ruchu o więcej niż ten próg
+ * (stopnie albo cm). Poniżej staw „stoi” i liczba byłaby prawdziwa, ale nieistotna (np. kolano przy wznosie bokiem). Jedno miejsce; test: tests/figures-v2-katy-fazy.test.tsx.
+ */
+export const MIN_MEASURED_ROM = { deg: 15, cm: 2 } as const;
+export type PhaseOverride = { names?: { first: PhaseName; second: PhaseName }; joints?: readonly MeasuredJoint[]; hideAngle?: true };
 export type DataUi = {
   /** Nazwy faz licznika: first = faza u: 0 → 1, second = powrót. */
   names: { first: PhaseName; second: PhaseName };
   /** true: faza 0 → 1 to opuszczanie (dłuższa, 2 s); false: faza 0 → 1 to wysiłek (1 s), powrót dłuższy (jak martwy ciąg z podłogi). */
   lowerFirst: boolean;
-  /** Staw pokazywany w linii „Kąt na rysunku”. */
-  joint: MeasuredJoint;
+  /** Stawy do linii „Kąt na rysunku” (kandydaci, jedna jednostka): pokazany jest ten, który w ćwiczeniu rusza się najbardziej (figure.ts: measuredJoint). */
+  joints: readonly MeasuredJoint[];
+  /** Ruch to chód (noszenie): licznik pokazuje jedną fazę „Marsz” bez sekund — tempo opuszczania i podnoszenia nie dotyczy kroku, a czasu kroku nie podajemy (brak źródła). */
+  walk?: true;
+  /** Wyjątki dla pojedynczych ćwiczeń rodziny (inne nazwy faz, inny staw, ukrycie linii kąta). */
+  exceptions?: Record<string, PhaseOverride>;
 };
 export const DATA_UI: Record<string, DataUi> = {
   /* u = 0 zwis, u = 1 górna pozycja: podciąganie 1 s, opuszczanie 2 s (tempo ilustracyjne, anim.ts) */
-  pull_up: { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false, joint: 'elbow' },
+  pull_up: { names: { first: 'Podciąganie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['elbow'] },
+  /* Rodziny z danymi, jeszcze niepodłączone (status „planned”, families.ts) — wpisy gotowe, żeby podłączenie nie pokazało kąta stawu, który się nie rusza (S2, 27.10.2026). */
+  delt_raise: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shElev', 'shAbd'],
+    exceptions: { 'Car Drivers': { hideAngle: true } } },
+  shrug: { names: { first: 'Unoszenie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['shrug', 'protract'],
+    exceptions: { 'Middle Back Shrug': { names: { first: 'Ściąganie', second: 'Powrót' } } } },
+  rotator_cuff: { names: { first: 'Obrót', second: 'Powrót' }, lowerFirst: false, joints: ['shRot'],
+    exceptions: { 'Band Pull Apart': { names: { first: 'Rozsuwanie', second: 'Powrót' }, joints: ['shAbd'] }, 'Reverse Flyes With External Rotation': { names: { first: 'Unoszenie', second: 'Opuszczanie' }, joints: ['shAbd'] } } },
+  forearm: { names: { first: 'Uginanie', second: 'Opuszczanie' }, lowerFirst: false, joints: ['wristFlex', 'forearmRoll', 'elbow'],
+    exceptions: { 'Dumbbell Lying Pronation': { names: { first: 'Obrót', second: 'Powrót' } }, 'Dumbbell Lying Supination': { names: { first: 'Obrót', second: 'Powrót' } } } },
+  carry: { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true },
 };
 export const dataUiFor = (family: string): DataUi | null => own(DATA_UI, family) ?? null;
 

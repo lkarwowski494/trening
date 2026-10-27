@@ -155,5 +155,19 @@
  "serii": "Brak miejsca użycia w kodzie (klucz tylko w słowniku); angielskie odniesienie jest jedyną wskazówką znaczenia: „sets”, dopełniacz liczby mnogiej po liczbie; w kodzie liczebnik daje tp() z formami „seria|serie|serii”",
  "start": "Brak miejsca użycia w kodzie (klucz tylko w słowniku); angielskie odniesienie jest jedyną wskazówką znaczenia: „started”, forma opisowa „rozpoczęty”, nie przycisk „Start” (ten jest osobnym kluczem „Start”)",
  "Przerwa robocza": "etykieta w karcie ćwiczenia: czas odpoczynku MIĘDZY SERIAMI roboczymi (nie rozgrzewkowymi) na siłowni; „robocza” = seria robocza, NIE praca zawodowa ani przerwa w pracy",
- "Przerwa": "odpoczynek między seriami na siłowni (stoper przerwy po odhaczeniu serii), NIE przerwa w pracy ani w szkole"
+ "Przerwa": "odpoczynek między seriami na siłowni (stoper przerwy po odhaczeniu serii), NIE przerwa w pracy ani w szkole",
+ "Unoszenie": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names), pokazana w „{faza} {n} s”: rzeczownik odczasownikowy jak „Opuszczanie”, „Podciąganie”; NIE nazwa ćwiczenia; ruch ręki albo barków w górę (wznos, szrugs)",
+ "Obrót": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names), pokazana w „{faza} {n} s”: rzeczownik odczasownikowy jak „Opuszczanie”, „Podciąganie”; NIE nazwa ćwiczenia; obrót ramienia lub przedramienia wokół własnej osi (rotacje, nawracanie)",
+ "Powrót": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names), pokazana w „{faza} {n} s”: rzeczownik odczasownikowy jak „Opuszczanie”, „Podciąganie”; NIE nazwa ćwiczenia; powrót do pozycji wyjściowej po obrocie lub ściągnięciu łopatek",
+ "Rozsuwanie": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names), pokazana w „{faza} {n} s”: rzeczownik odczasownikowy jak „Opuszczanie”, „Podciąganie”; NIE nazwa ćwiczenia; rozsuwanie taśmy oburącz na boki (Band Pull Apart)",
+ "Ściąganie": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names), pokazana w „{faza} {n} s”: rzeczownik odczasownikowy jak „Opuszczanie”, „Podciąganie”; NIE nazwa ćwiczenia; ściąganie łopatek do tyłu, ku sobie (nie ściąganie drążka)",
+ "Uginanie": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names), pokazana w „{faza} {n} s”: rzeczownik odczasownikowy jak „Opuszczanie”, „Podciąganie”; NIE nazwa ćwiczenia; uginanie nadgarstków albo łokci pod ciężarem (curl)",
+ "Marsz": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names), pokazana w „{faza} {n} s”: rzeczownik odczasownikowy jak „Opuszczanie”, „Podciąganie”; NIE nazwa ćwiczenia; chód z ciężarem w rękach (noszenie); jedyna faza, bez sekund",
+ "uniesienie ramienia": "etykieta POMIARU w linii „Kąt na rysunku: {staw} {n}°” (karta ćwiczenia), czyli nazwa miejsca ruchu na rysunku, nie ćwiczenia: kąt uniesienia ramienia od tułowia",
+ "zgięcie nadgarstka": "etykieta POMIARU w linii „Kąt na rysunku: {staw} {n}°” (karta ćwiczenia), czyli nazwa miejsca ruchu na rysunku, nie ćwiczenia: dłoń zgięta ku przedramieniu",
+ "wyprost nadgarstka": "etykieta POMIARU w linii „Kąt na rysunku: {staw} {n}°” (karta ćwiczenia), czyli nazwa miejsca ruchu na rysunku, nie ćwiczenia: dłoń odgięta od przedramienia",
+ "barki w górę": "etykieta POMIARU w linii „Przesunięcie na rysunku: {staw} {n} cm” (szrugsy): barki uniesione ku uszom, w centymetrach",
+ "barki w dół": "etykieta POMIARU w linii „Przesunięcie na rysunku: {staw} {n} cm”: barki opuszczone poniżej pozycji spoczynkowej, w centymetrach",
+ "barki do przodu": "etykieta POMIARU w linii „Przesunięcie na rysunku: {staw} {n} cm”: barki wysunięte do przodu, w centymetrach",
+ "barki do tyłu": "etykieta POMIARU w linii „Przesunięcie na rysunku: {staw} {n} cm”: barki (łopatki) cofnięte do tyłu, w centymetrach"
 }

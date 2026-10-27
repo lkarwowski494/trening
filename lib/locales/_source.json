@@ -480,6 +480,22 @@
   "en": "rear delts"
  },
  {
+  "pl": "barki do przodu",
+  "en": "shoulders forward"
+ },
+ {
+  "pl": "barki do tyłu",
+  "en": "shoulders back"
+ },
+ {
+  "pl": "barki w dół",
+  "en": "shoulders down"
+ },
+ {
+  "pl": "barki w górę",
+  "en": "shoulders up"
+ },
+ {
   "pl": "beczka (keg)",
   "en": "keg"
  },
@@ -2316,6 +2332,10 @@
   "en": "Muscle map: no sets in this period."
  },
  {
+  "pl": "Marsz",
+  "en": "Walking"
+ },
+ {
   "pl": "Masa",
   "en": "Muscle"
  },
@@ -3251,6 +3271,26 @@
   "en": "One plan applies at a time. After a temporary period, you can return to the previous one with one button. Tap a plan to change its name and days."
  },
  {
+  "pl": "Obrót",
+  "en": "Rotating"
+ },
+ {
+  "pl": "obrót przedramienia dłonią w dół",
+  "en": "forearm turned palm down"
+ },
+ {
+  "pl": "obrót przedramienia dłonią w górę",
+  "en": "forearm turned palm up"
+ },
+ {
+  "pl": "obrót ramienia do wewnątrz",
+  "en": "arm rotated inward"
+ },
+ {
+  "pl": "obrót ramienia na zewnątrz",
+  "en": "arm rotated outward"
+ },
+ {
   "pl": "od",
   "en": "from"
  },
@@ -4135,6 +4175,10 @@
   "en": "Notifications work"
  },
  {
+  "pl": "Powrót",
+  "en": "Returning"
+ },
+ {
   "pl": "Powtórz ostatni",
   "en": "Repeat last"
  },
@@ -4397,6 +4441,10 @@
   "en": "Rest: {b} min after multi-joint exercises, {c} min after single-joint and core; the exact rest length is not fixed."
  },
  {
+  "pl": "Przesunięcie na rysunku: {staw} {n} cm",
+  "en": "Movement in the drawing: {staw} {n} cm"
+ },
+ {
   "pl": "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).",
   "en": "Swiping a set or an exercise name left deletes it (with confirmation)."
  },
@@ -4507,6 +4555,10 @@
  {
   "pl": "Pyta o potwierdzenie.",
   "en": "Asks for confirmation."
+ },
+ {
+  "pl": "ramię odsunięte w bok",
+  "en": "arm swung out to the side"
  },
  {
   "pl": "ramiona regulowane / wysoki wyciąg",
@@ -4627,6 +4679,10 @@
  {
   "pl": "rozgrzewkowa",
   "en": "warm-up"
+ },
+ {
+  "pl": "Rozsuwanie",
+  "en": "Pulling apart"
  },
  {
   "pl": "RPE / RIR przy serii",
@@ -5189,6 +5245,10 @@
   "en": "Pulls your upper arm down and back toward your body."
  },
  {
+  "pl": "Ściąganie",
+  "en": "Pulling back"
+ },
+ {
   "pl": "ślizgacze",
   "en": "sliders"
  },
@@ -5661,6 +5721,10 @@
   "en": "Farmer's walk handles"
  },
  {
+  "pl": "Uginanie",
+  "en": "Curling"
+ },
+ {
   "pl": "Ukryj cele partii",
   "en": "Hide muscle group goals"
  },
@@ -5675,6 +5739,10 @@
  {
   "pl": "ukryte: {n}",
   "en": "hidden: {n}"
+ },
+ {
+  "pl": "uniesienie ramienia",
+  "en": "arm raise"
  },
  {
   "pl": "Unosi barki.",
@@ -5699,6 +5767,10 @@
  {
   "pl": "Unosi ramię w bok.",
   "en": "Raises your arm out to the side."
+ },
+ {
+  "pl": "Unoszenie",
+  "en": "Raising"
  },
  {
   "pl": "uprząż na szyję",
@@ -6425,6 +6497,10 @@
   "en": "Fill with range"
  },
  {
+  "pl": "wyprost nadgarstka",
+  "en": "wrist extension"
+ },
+ {
   "pl": "Wypychanie",
   "en": "Pressing"
  },
@@ -6871,6 +6947,10 @@
  {
   "pl": "zgięcie łokcia",
   "en": "elbow flexion"
+ },
+ {
+  "pl": "zgięcie nadgarstka",
+  "en": "wrist flexion"
  },
  {
   "pl": "Zgina kolano.",

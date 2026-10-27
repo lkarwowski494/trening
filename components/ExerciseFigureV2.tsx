@@ -6,11 +6,11 @@ import { t, lang, exName } from '@/lib/i18n';
 import { catalogKey, type Exercise } from '@/lib/seed';
 import { useReduceMotion } from '@/components/ExerciseFigure';
 import {
-  figurePalette, figureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, spaceBadges, BADGE_GAP_PT, phasesFor, phaseIndexAt, trailFor, guideShapes, measuredAngle, contactShapes, badgeShapes, type Badge, type FigureSpec,
+  figurePalette, figureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, spaceBadges, BADGE_GAP_PT, phasesFor, phaseIndexAt, trailFor, guideShapes, measuredAngle, angleLineShown, contactShapes, badgeShapes, type Badge, type FigureSpec,
   type View as FView, type FigError, type GuideId,
 } from '@/lib/figures/v2';
 import { sortShapes } from '@/lib/figures/v2/draw';
-import { badgesFor, errorsOf, errorText, guidesOf, legendOf, toeAngleApplies } from '@/lib/figures/v2/ui';
+import { badgesFor, measureLine, errorsOf, errorText, guidesOf, legendOf, toeAngleApplies } from '@/lib/figures/v2/ui';
 
 /*
  * Figura ruchu v2 (grafiki ćwiczeń 1.0 — decyzja właściciela 25.10.2026; silnik: lib/figures/v2, projekt: docs/50). Widoki z boku i z przodu/z góry obok siebie, kolory z motywu,
@@ -18,8 +18,6 @@ import { badgesFor, errorsOf, errorText, guidesOf, legendOf, toeAngleApplies } f
  * (2 s / pauza / 1 s — ACSM 2009, docs/50), linie odniesienia tylko przy wskazówkach ze źródłem, przełącznik „Pokaż częsty błąd” (poza błędu jako modyfikacja pozy poprawnej, znacznik ✕).
  * Bez liczb i kątów na rysunku. WCAG 2.2.2: „Zatrzymaj animację”; „Ogranicz ruch” / pauza → pozycje statycznie z podpisami. VoiceOver: jeden obraz z opisem, kontrolki osobno.
  */
-
-const JOINT_LABEL = { knee: 'zgięcie kolana', elbow: 'zgięcie łokcia', hip: 'zgięcie biodra' } as const;
 
 function ViewSvg({ spec, u, view, box, th, height, error, guides, testID, onBadge }: { spec: FigureSpec; u: number; view: FView; box: { x: number; y: number; w: number; h: number }; th: Theme; height: number; error?: FigError; guides: GuideId[]; testID?: string; onBadge?: (b: Badge) => void }) {
   const pal = useMemo(() => figurePalette(th), [th]);
@@ -106,10 +104,10 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
       {!spec.static
         ? <View testID="exercise-figure-v2-phases" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 4 }}>
             {shown.map((p, i) => <Text key={i} accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, color: phases.indexOf(p) === cur ? th.accent : th.muted, ...(phases.indexOf(p) === cur ? FW.semibold : {}) }}>
-              {p.name === 'Pauza' ? t('Pauza') : t('{faza} {n} s', { faza: t(p.name), n: sec(p.ms) })}{i < shown.length - 1 ? ' ·' : ''}</Text>)}
+              {p.name === 'Pauza' ? t('Pauza') : p.untimed ? t(p.name) : t('{faza} {n} s', { faza: t(p.name), n: sec(p.ms) })}{i < shown.length - 1 ? ' ·' : ''}</Text>)}
           </View>
         : null}
-      <Text testID="exercise-figure-v2-angle" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, fontStyle: 'italic', marginTop: 2 }}>{t('Kąt na rysunku: {staw} {n}°', { staw: t(JOINT_LABEL[measured.joint]), n: Math.round(measured.deg) })}</Text>
+      {angleLineShown(spec) ? <Text testID="exercise-figure-v2-angle" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, fontStyle: 'italic', marginTop: 2 }}>{(() => { const ml = measureLine(measured); return t(ml.template, { staw: t(ml.staw), n: ml.n }); })()}</Text> : null}
       {legend
         ? <View testID="exercise-figure-v2-legend" style={{ marginTop: 4, gap: 2 }}>
             {legend.main.length ? <LegendRow color={figurePalette(th).muscleMain} text={t('Mięśnie główne: {lista}', { lista: legend.main.map(r => t(legend.label(r))).join(', ') })} txt={txt} /> : null}

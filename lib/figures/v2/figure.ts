@@ -13,14 +13,14 @@ import { boundsOf, type Box } from './render';
 import { muscleShapes } from './muscles';
 import { MUSCLE_DATA, type MuscleEntry } from './muscles.generated';
 import type { Frame, Shape, View } from './scene';
-import { SIDES, jointAngles } from './skeleton';
+import { SIDES, jointAngles, type Side } from './skeleton';
 import type { V3 } from './math';
 import { GUIDES, trailShapes, type GuideId } from './guides';
-import { phasesOf, TEMPO, type Tempo, type Phase, type PhaseNames } from './anim';
+import { phasesOf, walkPhases, TEMPO, type Tempo, type Phase, type PhaseNames } from './anim';
 import { ERRORS, isDataError, dataErrorIndex, type ErrorId, type FigError, type AnyErrorDef, type Fault } from './errors';
 import { keyframeFrame } from './contract';
 import { contactGlows, type ContactId } from './contacts';
-import { DATA_UI, ISOMETRIC, poseDataFor, type MeasuredJoint } from './poseData';
+import { DATA_UI, ISOMETRIC, MEASURE_UNIT, MIN_MEASURED_ROM, poseDataFor, type MeasuredJoint } from './poseData';
 import { ease } from './rigs/common';
 
 export type FigureSpec = { key: string; family: FamilyId; variant: Variant; views: View[]; static: boolean; lowerFirst: boolean };
@@ -74,12 +74,37 @@ export function faultApplicable(spec: FigureSpec, error: FigError): boolean {
 }
 function faultFor(spec: FigureSpec, error: ErrorId, u: number): Fault { return { m: ERRORS[error].mods, w: faultWeight(spec, u) }; }
 
-/** Staw mierzony na rysunku (decyzja właściciela 25.10.2026: kąt jako opis figury, nie zalecenie): przysiad — kolano, wyciskanie — łokieć, zawias — biodro; rodziny z danych — DATA_UI (podciąganie: łokieć). */
-export const measuredJoint = (spec: FigureSpec): MeasuredJoint => 'data' in spec.variant ? DATA_UI[spec.family].joint : spec.family === 'bench_press' ? 'elbow' : spec.family === 'hinge' ? 'hip' : 'knee';
-/** Kąt zgięcia stawu (stopnie; 0 = wyprost, konwencja jak w testach zakresów: docs/research/28) POLICZONY Z GEOMETRII klatki w pozycji u (średnia obu stron). */
-export function measuredAngle(spec: FigureSpec, u: number, error?: FigError): { joint: MeasuredJoint; deg: number } {
-  const f = frameAt(spec, u, error); const j = measuredJoint(spec); const a = SIDES.map(s => jointAngles(f.sk, s)[j]);
-  return { joint: j, deg: (a[0] + a[1]) / 2 };
+/** Ustawienia prezentacji ćwiczenia z danych: wpis rodziny (DATA_UI) z wyjątkiem ćwiczenia; null dla rodzin z rigiem. */
+function dataUiOf(spec: FigureSpec): { names: PhaseNames; joints: readonly MeasuredJoint[]; hideAngle: boolean; walk: boolean } | null {
+  if (!('data' in spec.variant)) return null;
+  const u = DATA_UI[spec.family]; const x = u.exceptions && Object.prototype.hasOwnProperty.call(u.exceptions, spec.key) ? u.exceptions[spec.key] : undefined;
+  return { names: x?.names ?? u.names, joints: x?.joints ?? u.joints, hideAngle: !!x?.hideAngle, walk: !!u.walk };
+}
+/** Pomiar na rysunku (decyzja właściciela 25.10.2026: kąt jako opis figury, nie zalecenie). Rig: przysiad — kolano, wyciskanie — łokieć, zawias — biodro (średnia obu stron). Dane (27.10.2026, S2): spośród stawów rodziny
+ * pokazujemy ten, który w ćwiczeniu rusza się najbardziej, i tę stronę, która pracuje (największy zakres; przy równych — prawa), więc ćwiczenie jednoręczne nie dostaje średniej z ręką nieruchomą;
+ * linia jest pokazana tylko, gdy zakres > MIN_MEASURED_ROM (izometria: zawsze, bo nic się nie rusza) i ćwiczenie nie ma wyjątku „ukryj”. */
+type Measure = { joint: MeasuredJoint; sides: readonly Side[]; shown: boolean };
+const MEASURE_CACHE = new Map<string, Measure>(); const MEASURE_SAMPLES = 24;
+function measureOf(spec: FigureSpec): Measure {
+  const id = spec.family + '|' + spec.key; const hit = MEASURE_CACHE.get(id); if (hit) return hit;
+  const ui = dataUiOf(spec); let m: Measure;
+  if (!ui) m = { joint: spec.family === 'bench_press' ? 'elbow' : spec.family === 'hinge' ? 'hip' : 'knee', sides: SIDES, shown: true };
+  else {
+    const frames = Array.from({ length: MEASURE_SAMPLES + 1 }, (_, i) => computeFrame(spec, i / MEASURE_SAMPLES));
+    const candidates = spec.static ? ui.joints.slice(0, 1) : ui.joints; let best = { joint: ui.joints[0], side: SIDES[0], range: -1 };
+    for (const joint of candidates) for (const side of SIDES) { const a = frames.map(f => jointAngles(f.sk, side)[joint]); const range = Math.max(...a) - Math.min(...a); if (range > best.range + 1e-9) best = { joint, side, range }; }
+    m = { joint: best.joint, sides: [best.side], shown: !ui.hideAngle && (spec.static || best.range > MIN_MEASURED_ROM[MEASURE_UNIT[best.joint]]) };
+  }
+  MEASURE_CACHE.set(id, m); return m;
+}
+/** Staw mierzony na rysunku. */
+export const measuredJoint = (spec: FigureSpec): MeasuredJoint => measureOf(spec).joint;
+/** Czy pokazać linię pomiaru: mierzony staw rusza się w ćwiczeniu o więcej niż próg (MIN_MEASURED_ROM). */
+export const angleLineShown = (spec: FigureSpec): boolean => measureOf(spec).shown;
+/** Wartość mierzona (stopnie: zgięcie dodatnie, wyprost ujemny, konwencja docs/research/28; cm: przesunięcie barków) POLICZONA Z GEOMETRII klatki w pozycji u. `deg` ma jednostkę `unit`. */
+export function measuredAngle(spec: FigureSpec, u: number, error?: FigError): { joint: MeasuredJoint; deg: number; unit: 'deg' | 'cm' } {
+  const f = frameAt(spec, u, error); const m = measureOf(spec); const a = m.sides.map(s => jointAngles(f.sk, s)[m.joint]);
+  return { joint: m.joint, deg: a.reduce((x, y) => x + y, 0) / a.length, unit: MEASURE_UNIT[m.joint] };
 }
 
 /** Pozycje u rysowane statycznie (Ogranicz ruch, pauza): start i koniec (jedna dla izometrii). */
@@ -138,7 +163,7 @@ export function boxFor(spec: FigureSpec, view: View, errors: FigError[] = []): B
 /** Nazwy faz licznika tempa dla ćwiczenia (klucze t()). */
 export function phaseNames(spec: FigureSpec): PhaseNames {
   const v = spec.variant;
-  if ('data' in v) return DATA_UI[spec.family].names;
+  if ('data' in v) return dataUiOf(spec)!.names;
   if (v.family === 'bench_press') return { first: 'Opuszczanie', second: 'Wypychanie' };
   if (v.family === 'hinge') return v.p.style === 'floor' ? { first: 'Podnoszenie', second: 'Opuszczanie' } : { first: 'Opuszczanie', second: 'Prostowanie' };
   return { first: 'Opuszczanie', second: 'Wstawanie' };
@@ -146,7 +171,7 @@ export function phaseNames(spec: FigureSpec): PhaseNames {
 /** Fazy pętli ćwiczenia z czasami (tempo ilustracyjne; błąd tempa podaje własne czasy). */
 /** Tempo figury: z błędu tempa albo domyślne; przysiad bez pauzy na dole (NSCA Basics 2012 s. 49–50; pauza 0,5 s to konwencja bez źródła). */
 export const tempoFor = (spec: FigureSpec, error?: FigError): Tempo => ({ ...(error && !isDataError(error) ? ERRORS[error].mods.tempo : undefined) ?? TEMPO, ...(spec.family === 'squat' && !spec.static ? { holdLowMs: 0 } : {}) });
-export const phasesFor = (spec: FigureSpec, tempo?: Tempo): Phase[] => phasesOf(phaseNames(spec), spec.lowerFirst, tempo);
+export const phasesFor = (spec: FigureSpec, tempo?: Tempo): Phase[] => dataUiOf(spec)?.walk ? walkPhases(tempo) : phasesOf(phaseNames(spec), spec.lowerFirst, tempo);
 
 const trailCache = new Map<string, Shape[]>();
 /** Tor ruchu środka ciężaru/dłoni w widoku (próbkowanie co 1/24; cache). */

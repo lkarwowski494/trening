@@ -8,6 +8,7 @@ import { catalogKey, type Exercise } from '@/lib/seed';
 import { REGION_LABEL } from '@/lib/seed';
 import { CUE_SETS } from './cueSets';
 import { CUE_TO_ERROR, ERRORS, dataErrorId, type FigError } from './errors';
+import type { MeasuredJoint } from './poseData';
 import { faultApplicable, figureSpec, frameAt, errorDefOf, markPoints, musclesFor, type FigureSpec } from './figure';
 import { BADGE_MAX, okBadges, type Badge } from './badges';
 import { proj } from './draw';
@@ -82,4 +83,22 @@ export function badgesFor(spec: FigureSpec, u: number, view: View, error?: FigEr
     return markPoints(f, view, def.mark).slice(0, BADGE_MAX).map((p, i) => ({ id: `err:${def.cue[0]}:${i}`, kind: 'err' as const, cue: def.cue[0], at: proj(p, view) }));
   }
   return okBadges(f, view, cueIdsOf(spec.key).ids);
+}
+
+/** Linia pomiaru pod licznikiem faz: szablon (klucz t()), etykieta stawu (klucz t()) i liczba. Znak wartości wybiera etykietę (nadgarstek, rotacja, obrót przedramienia, barki), liczba jest bez znaku; stopnie dla kolana, łokcia i biodra zostają jak były. */
+export function measureLine(m: { joint: MeasuredJoint; deg: number; unit: 'deg' | 'cm' }): { template: string; staw: string; n: number } {
+  const r = Math.round(m.deg) || 0; const neg = r < 0; const abs = Math.abs(r);
+  const D = 'Kąt na rysunku: {staw} {n}°'; const C = 'Przesunięcie na rysunku: {staw} {n} cm';
+  switch (m.joint) {
+    case 'knee': return { template: D, staw: 'zgięcie kolana', n: r };
+    case 'elbow': return { template: D, staw: 'zgięcie łokcia', n: r };
+    case 'hip': return { template: D, staw: 'zgięcie biodra', n: r };
+    case 'shElev': return { template: D, staw: 'uniesienie ramienia', n: r };
+    case 'shAbd': return { template: D, staw: 'ramię odsunięte w bok', n: r };
+    case 'shRot': return { template: D, staw: neg ? 'obrót ramienia do wewnątrz' : 'obrót ramienia na zewnątrz', n: abs };
+    case 'wristFlex': return { template: D, staw: neg ? 'wyprost nadgarstka' : 'zgięcie nadgarstka', n: abs };
+    case 'forearmRoll': return { template: D, staw: neg ? 'obrót przedramienia dłonią w dół' : 'obrót przedramienia dłonią w górę', n: abs };
+    case 'shrug': return { template: C, staw: neg ? 'barki w dół' : 'barki w górę', n: abs };
+    case 'protract': return { template: C, staw: neg ? 'barki do tyłu' : 'barki do przodu', n: abs };
+  }
 }
