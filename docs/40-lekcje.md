@@ -36,7 +36,7 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 ## L-NNN (27.10.2026, zrzuty 1.0) — właściciel dostał estymatę „zrzuty 35 języków ok. 2 h zegarowo”; pomiar pokazał ok. 16 h na rozmiar (przebieg 40464544722 anulowany po limicie zadania)
 
 - **Co się stało:** docs/48 (pkt „Czekanie” i decyzja D7) podawał właścicielowi „zrzuty 35 języków ok. 2 h zegarowo”. Przebieg `store-screenshots.yml` z `jezyki: all`
-  (run 40464544722, zrzuty-1-0) po 180 min (limit zadania) miał gotowe ok. 6,5 języka z 35 (2,7 min na ekran; Maestro 2–3 razy na ekran, ok. 1 min każde na symulatorze
+  (run 40464544722, zrzuty-1-0) po 180 min (limit zadania) miał gotowe ok. 6,5 języka z 35 (2,7 min na ekran, w drugim przebiegu 3,5; Maestro 2–3 razy na ekran, ok. 1 min każde na symulatorze
   macos-26), czyli ok. 16 h na rozmiar. Przebieg anulowany, poranek stracony; właściciel wybrał wariant A (wszystkie 35 języków) na podstawie błędnej estymaty.
 - **Przyczyna źródłowa:** liczba „1 h na rozmiar” w opisie wejścia workflowu i „2 h” w docs/48 pochodziły z wcześniejszego przebiegu o innym zakresie (kilka języków, mniej
   akcji Maestro), przeskalowane z pamięci, nie z pomiaru; workflow nie raportował czasu na jednostkę pracy (ekran), więc nic nie zmuszało do przeliczenia przy zmianie zakresu
@@ -51,10 +51,12 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 - **Akcje:**
   1. Pomiar czasu na ekran zapisywany w podsumowaniu przebiegu (`scripts/ci/store-screenshots.sh` → `GITHUB_STEP_SUMMARY`, test w `tests/store-shards.test.ts`) — **zrobione** (zrzuty-1-0).
   2. Liczba „czas na ekran” w jednym miejscu (`PER_SCREEN_MIN` w `scripts/ci/store-shards.mjs`); plan podziału na zadania i test limitu czasu liczą z niej — **zrobione**.
-  3. Podział języków na równoległe zadania (`store-shards.mjs`, macierz z wyjścia zadania „dane”), limit zadania 330 min ponad zmierzone ok. 3,2 h na 7 języków — **zrobione**, dowód: przebieg
+  3. Podział języków na równoległe zadania (`store-shards.mjs`, macierz z wyjścia zadania „dane”), limit zadania 330 min ponad zmierzone 3,2–4,1 h na 7 języków — **zrobione**, dowód: przebieg
      `store-screenshots.yml` na gałęzi (wynik w PR) — **w toku**.
   4. docs/48: estymata zastąpiona pomiarem („zmierzone 27.10.2026”), test pilnuje, że stare zdanie nie wróciło — **zrobione**.
-  5. Reguła w CLAUDE.md (estymata CI dla właściciela = pomiar albo „niezmierzone”) — **propozycja do decyzji właściciela** (zmiana modelu pracy, opcja A powyżej).
+  5. Przy okazji (ten sam przebieg pl,en): `pl/10-import` miał otwarte puste okno plików zamiast podglądu importu — skrypt zrzutów tylko ostrzegał o porażce akcji Maestro i zostawiał błędny
+     plik w zestawie. Teraz ekran jest powtarzany raz, a po drugiej porażce zrzut ląduje w `.nieudane` i na liście w podsumowaniu przebiegu (test na atrapach: `tests/store-screenshots-retry.test.ts`) — **zrobione**.
+  6. Reguła w CLAUDE.md (estymata CI dla właściciela = pomiar albo „niezmierzone”) — **propozycja do decyzji właściciela** (zmiana modelu pracy, opcja A powyżej).
 
 ## L-039 (26.10.2026, straznik-paczki) — nawrót L-033: `check:bundle` znów zgłosił fałszywe „CDC” w bajtkodzie Hermes (tests.yml 40379990056, jakosc-r2, c171efb)
 

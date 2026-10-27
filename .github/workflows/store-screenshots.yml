@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       jezyki:
-        description: 'Języki aplikacji po przecinku (np. "pl,en,de") albo "all" (35 języków; dzielone na równoległe zadania — wejście zadan; pomiar 27.10.2026: ok. 2,7 min na ekran)'
+        description: 'Języki aplikacji po przecinku (np. "pl,en,de") albo "all" (35 języków; dzielone na równoległe zadania — wejście zadan; pomiar 27.10.2026: 2,7–3,5 min na ekran)'
         required: false
         default: 'pl,en'
       wyglad:
@@ -27,7 +27,7 @@ on:
         required: false
         default: '6.9'
       zadan:
-        description: 'Na ile równoległych zadań macOS podzielić języki (na rozmiar; 1–5; macOS w repo publicznym: do 5 zadań naraz). Pomiar 27.10.2026: ok. 2,7 min na ekran → 35 języków w 5 zadaniach ok. 3,2 h każde'
+        description: 'Na ile równoległych zadań macOS podzielić języki (na rozmiar; 1–5; macOS w repo publicznym: do 5 zadań naraz). Pomiar 27.10.2026: 2,7–3,5 min na ekran → 35 języków w 5 zadaniach po 7 języków ok. 3,2–4,1 h każde'
         required: false
         default: '5'
       ekrany:
@@ -122,7 +122,7 @@ jobs:
     needs: [dane, build]
     if: ${{ !cancelled() && needs.dane.result == 'success' && (needs.build.result == 'success' || needs.build.result == 'skipped') }}
     runs-on: macos-26
-    timeout-minutes: 330   # pomiar 27.10.2026: ok. 2,7 min na ekran; 7 języków × 10 ekranów ≈ 3,2 h (limit godzinowy 360 min)
+    timeout-minutes: 330   # pomiar 27.10.2026: 2,7–3,5 min na ekran; 7 języków × 10 ekranów ≈ 3,2–4,1 h (limit zadania 360 min)
     strategy:
       fail-fast: false
       matrix: ${{ fromJSON(needs.dane.outputs.matrix) }}   # {rozmiar, wzorzec, shard, jezyki} z scripts/ci/store-shards.mjs (6.9 = iPhone 17 Pro Max 1320 × 2868, 6.3 = iPhone 17 Pro 1206 × 2622)

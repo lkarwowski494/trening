@@ -119,7 +119,7 @@ Uwagi do kroków:
 ### Szacunek czasu
 
 - **Agent:** Z-02 1–2 h, Z-03 2–4 h, Z-05 do 1 h, finalizacja notatek recenzenta i opisu z testami ok. 1,5 h, skrypt wgrywania zrzutów (jeśli D2 = skrypt) 2–3 h, przegląd każdego obrazu zrzutów ok. 1 h. Razem ok. 9–13 h pracy agenta, z równoległością krócej.
-- **Czekanie:** CI (verify ok. 25 min, pełny katalog E2E ok. 1,5 h, build TestFlight ok. 1,5 h, zrzuty 35 języków — **zmierzone 27.10.2026: ok. 2,7 min na ekran, czyli ok. 16 h na rozmiar przy jednym zadaniu (limit zadania 180 min ucina przebieg po ok. 6 językach); wymaga podziału na równoległe zadania — D7**), kolejka maszyn macOS u GitHuba (ponawiamy przebiegi bez maszyny), **przegląd Apple (czas nieznany)**.
+- **Czekanie:** CI (verify ok. 25 min, pełny katalog E2E ok. 1,5 h, build TestFlight ok. 1,5 h, zrzuty 35 języków — **zmierzone 27.10.2026: 2,7–3,5 min na ekran, czyli 16–20 h na rozmiar przy jednym zadaniu (limit zadania 180 min ucina przebieg po ok. 6 językach); wymaga podziału na równoległe zadania — D7**), kolejka maszyn macOS u GitHuba (ponawiamy przebiegi bez maszyny), **przegląd Apple (czas nieznany)**.
 - **Właściciel:** telefon po buildzie 45–75 min (lista + zakupy), App Store Connect łącznie ok. 1–1,5 h w kilku podejściach, decyzje D1–D7 ok. 30 min.
 
 ## 2. Notatki dla App Review (EN) — szkic do pola Notes
@@ -331,7 +331,7 @@ Każda z co najmniej dwiema opcjami; agent nie rozstrzygał żadnej z nich.
 | D4 | Zakres zmian opisu i tekstu promocyjnego (pkt 6) | A: propozycja z tabeli (rysunki, źródła, import) po potwierdzeniu pokrycia w kodzie; B: tylko tekst promocyjny (zmienialny bez nowej wersji), opis bez zmian do 1.0.1; C: bez zmian — opis mówi „krótkie wskazówki”, nie sprzedaje najmocniejszego wyróżnika | A |
 | D5 | Etykieta prywatności | A: „Data Not Collected” (decyzja 21.10.2026), wariant B zapasowy; B: od razu zadeklarować e-mail i wsparcie — bezpieczniej wobec definicji „collect”, ale etykieta mniej atrakcyjna i niezgodna z hasłem „bez zbierania danych” | A (odwracalne bez nowej wersji) |
 | D6 | Deklaracja wyrobu medycznego (Z-22) | A: „No” po krótkim sprawdzeniu kryteriów przez agenta (pkt Z-22); B: najpierw konsultacja prawna — czas i koszt właściciela, brak przesłanek, że aplikacja jest wyrobem medycznym (nie diagnozuje, nie leczy, odsyła do lekarza) | A |
-| D7 | Lokalizacje zrzutów | A: wszystkie 33 lokalizacje z nazwą (po pomiarze 27.10.2026 ok. 16 h macOS na rozmiar — tylko z podziałem języków na równoległe zadania); B: PL i EN na start, reszta w 1.0.1 | A |
+| D7 | Lokalizacje zrzutów | A: wszystkie 33 lokalizacje z nazwą (po pomiarze 27.10.2026 16–20 h macOS na rozmiar — tylko z podziałem języków na równoległe zadania); B: PL i EN na start, reszta w 1.0.1 | A |
 
 ## 9. Przeczytane strony Apple (25.10.2026)
 
