@@ -33,7 +33,8 @@ Legenda: **TERAZ** = można zacząć bez ryzyka przeróbki (to, od czego zależy
 ## Ścieżka 3 — techniqueatlas
 | ID | Zadanie | Zależy od | Start | Stan |
 |---|---|---|---|---|
-| S1 | PIN na integracja-1-1 (role mięśni), CI strony, PR | eksport `roles` | TERAZ | w toku |
+| S1 | PIN na integracja-1-1 (role mięśni), CI strony, PR | eksport `roles` | TERAZ | zrobione: techniqueatlas PR #1 (CI zielone, nie scalony; poprawione etykiety ról i favicon) |
+| S1b | Lista rodzin zatwierdzonych po audycie (jedno miejsce w aplikacji) + filtr w eksporcie strony (`scripts/strona/eksport.mjs`); strona publikuje dziś 709 ćwiczeń, w tym 189 bez figury i bez wyjątku (S6) — reguła CLAUDE.md 27.10 | G2/G3 (lista), mechanizm TERAZ | TERAZ (mechanizm) | — |
 | S2 | PIN na SHA wydania 1.1, noindex off, domena (właściciel), check-urls | wydanie 1.1 | PO 1.1 | — |
 
 ## Wydanie 1.1
@@ -41,3 +42,8 @@ W1 audyt zmian od 1.0 (2–4 h) → W2 naprawy blokerów → W3 wersja 1.1.0 + p
 
 ## Razem (szacunek)
 Agent ~50–70 h (przy 7–10 agentach równolegle ~2–3 dni zegarowo). Czekanie: CI/E2E/kolejka macOS, recenzja Apple ×2. Właściciel ~3–4 h (głównie 1.0).
+
+## Zmiany 27.10 przed południem
+- 1.0: decyzja A — naprawa figur squat/bench/hinge + „Technika” rozwinięta w karcie ćwiczenia (wariant B, wyjątek od zamrożenia) → nowy build 1.0 (gałęzie naprawa-figury-1-0, technika-rozwinieta-1-0).
+- Reguła CLAUDE.md: audyt dogłębny każdej animacji i karty ćwiczenia (aplikacja i strona). Do planu: **G2b — audyt treści kart** (wskazówki, mięśnie, kąt na rysunku, tempo, wiersze błędów vs rysunek) dla wszystkich rodzin wyświetlanych.
+- Recenzje G2 zakończone dla 36 rodzin: ok. 120 błędów / ok. 480 ćw.; poprawki: poprawki-p1, -p2, -p3, -p4a, -p4b (w toku). Po nich: ponowna recenzja zmienionych.
