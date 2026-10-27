@@ -6,3 +6,4 @@ Decyzja właściciela 27.10.2026 (docs/18, wariant A): niezależna recenzja ruch
 |---|---|---|---|---|---|---|---|
 | cable_row | 9 | 2 | 4 | 3 | 9/9 OK | 0 z 3 (0%) | [cable_row.md](cable_row.md) |
 | pulldown | 8 | 1 | 6 | 1 | 8/8 OK | 0 z 1 (0%) | [pulldown.md](pulldown.md) |
+| cable_press | 4 | 2 | 2 | 0 | 4/4 OK | 0 z 0 (brak błędów) | [cable_press.md](cable_press.md) |
