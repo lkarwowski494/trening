@@ -24,6 +24,7 @@ Decyzja właściciela 27.10.2026 (docs/18, wariant A): niezależna recenzja ruch
 | rotator_cuff (opcjonalna) | 7 | 5 | 1 | 1 | 7/7 OK | 0 z 1 (0%) | [rotator_cuff.md](rotator_cuff.md) |
 | core_hang | 3 | 0 | 2 | 1 | 3/3 OK | 0 z 1 (0%) | [core_hang.md](core_hang.md) |
 | strongman | 1 | 0 | 0 | 1 | 1/1 OK | 0 z 1 (0%) | [strongman.md](strongman.md) |
+| thruster | 3 | 0 | 3 | 0 | 3/3 OK | — | [thruster.md](thruster.md) |
 
 ## Partia rec-11 (dip, overhead_press, row, pull_up, curl, triceps, delt_raise, chest_fly + shrug, forearm, rotator_cuff), 27.10.2026
 
