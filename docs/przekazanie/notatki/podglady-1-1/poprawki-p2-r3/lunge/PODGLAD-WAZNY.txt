@@ -1,0 +1,2 @@
+Kontrola manifestu (zgodnosc_manifestu) wykonana, bez niezgodności; tabela kątów stawów w manifest.json i katy-stawow.md.
+Klatki na obrazie (odczytane z HTML podglądu, atrybuty data-u) = klatki_u pozy: Bulgarian Split Squat (hantle) 5; Bulgarian Split Squat (sztanga) 5; Smith Machine Bulgarian Split Squat 5.
