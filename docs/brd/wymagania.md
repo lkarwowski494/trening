@@ -82,7 +82,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy tablicy „teraz” nie ma, a przerwa jest w dolnym pasku (ZM-01: tablica tylko w widoku „Skupiony”)
 
 ### BR-TRN-009: Tablica „teraz”: wpis i krok ± na tablicy, „Seria zrobiona” bez wartości
-- Przepływ: PR-01
+- Przepływ: PR-01 · Reguła: RD-14
 - Dowód potrzeby: M3 p2 ZM-01 (docs/design/to-be.md, wzorzec 29 w docs/32); kod `lib/board.ts`, `components/NowBoard.tsx`; testy `tests/m3-p2-board-logic.test.ts`, `tests/m3-p2-board-ui.test.tsx`; **krok ± dla czasu (5 s) i dystansu (50 m / 50 yd) to konwencja robocza [DO USTALENIA: badacz]**, krok ciężaru i powtórzeń jak cicha podpowiedź progresji
 - Kryteria akceptacji:
   - Scenariusz: Krok ± ciężaru w miejscu z opisanym sprzętem
@@ -248,7 +248,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy kalendarz i ekran Trening korzystają z planu aktywnego
 
 ### BR-PLN-003: Deload: oznaczenie tygodnia i propozycja mniejszej liczby serii
-- Przepływ: PR-03
+- Przepływ: PR-03 · Reguła: RD-10
 - Dowód potrzeby: J-02; docs/research/22-serie-deload-generator.md
 - Kryteria akceptacji:
   - Scenariusz: Oznaczenie tygodnia
@@ -261,7 +261,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy aplikacja podpowiada „Zaplanuj deload od …”, nie zmieniając szablonów bez zatwierdzenia
 
 ### BR-GEN-001: Generator szablonu i planu tygodnia na polecenie użytkownika
-- Przepływ: PR-04
+- Przepływ: PR-04 · Reguła: RD-07, RD-08, RD-09, RD-13
 - Dowód potrzeby: ZP-01; D-004; docs/24-generator-i-plany.md
 - Ekrany: `app/generator.tsx`
 - Kryteria akceptacji:
@@ -329,7 +329,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy partia główna ma 3 serie, a partie pomocnicze po 1,5 (RD-04-W1)
 
 ### BR-PST-002: Rekordy i szacowany maksymalny ciężar (e1RM)
-- Przepływ: PR-05 · Reguła: RD-01
+- Przepływ: PR-05 · Reguła: RD-01, RD-12
 - Dowód potrzeby: J-03; README.md
 - Kryteria akceptacji:
   - Scenariusz: e1RM z serii roboczej
@@ -384,7 +384,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy w odpowiedniej komórce widzi „—”, a nie „0” (04-studio-projektowe-010); eksport CSV bez zmian
 
 ### BR-PST-004: Cel serii na partię w tygodniu: automatyczny albo ręczny
-- Przepływ: PR-05
+- Przepływ: PR-05 · Reguła: RD-11
 - Dowód potrzeby: J-03; docs/research/32-serie-na-partie.md
 - Kryteria akceptacji:
   - Scenariusz: Cel ręczny
@@ -681,7 +681,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 - Status: wycofane 2026-10-25 (D-108): ekran usunięty z aplikacji razem z wpisem w Ustawieniach i scenariuszem E2E; publicznie bez źródeł, źródła tylko w wewnętrznym rejestrze (ZP-09). Wpis zostaje jako ślad decyzji (ER-02); ID nie wraca.
 
 ### BR-ZAK-001: Model dostępu zgodny z modelem stałym (M5 S1)
-- Przepływ: PR-08
+- Przepływ: PR-08 · Reguła: RD-05
 - Dowód potrzeby: ZP-06; docs/monetyzacja.md; decyzja właściciela 22.10.2026 (docs/18)
 - Kryteria akceptacji:
   - Scenariusz: Zakupy włączone
@@ -698,7 +698,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy nie ma oferty wprowadzającej ani okresu próbnego, a cena za okres jest najwyraźniejszym elementem planu
 
 ### BR-ZAK-002: Dzień treningowy jako jednostka limitu
-- Przepływ: PR-08
+- Przepływ: PR-08 · Reguła: RD-05, RD-06
 - Dowód potrzeby: ZP-06; docs/monetyzacja-badanie-2026-10.md rozdz. 11
 - Kryteria akceptacji:
   - Scenariusz: Kilka treningów jednego dnia

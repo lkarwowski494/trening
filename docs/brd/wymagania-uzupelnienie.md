@@ -150,7 +150,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
     - Wtedy przełącznik zapisuje wybór, a przy braku zgody widać informację i „Otwórz Ustawienia iOS”
 
 ### BR-PLN-005: Przesunięcie i pominięcie dnia planu; trening „zrobiony wcześniej”
-- Przepływ: PR-03
+- Przepływ: PR-03 · Reguła: RD-13
 - Dowód potrzeby: J-02; D-112 (decyzja właściciela 2026-10-11, wariant A); kod `lib/plan.ts` (`shiftPlan`, `moveOnly`, `markDoneEarly`)
 - Test: `tests/plan-calendar.test.ts`, `tests/plan-wczesniej.test.ts`, `tests/plan-wczesniej-ui.test.tsx`, `.maestro/13-kalendarz-plan.yaml`
 - Kryteria akceptacji:
@@ -305,7 +305,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
     - Wtedy widzi listę pakietów i bibliotek natywnych z licencjami; ekran O aplikacji pokazuje wersję aplikacji
 
 ### BR-PST-006: Masa ciała z datą
-- Przepływ: PR-05
+- Przepływ: PR-05 · Reguła: RD-12
 - Dowód potrzeby: J-03; D-118 (decyzje właściciela 2026-10-08: masa ciała z datą do e1RM ćwiczeń z masą ciała; 2026-10-11: sekcja w Postępach); docs/research/masa-ciala-e1rm-2026-10.md
 - Ekrany: `app/more/bodymass.tsx`
 - Test: `tests/audit-0.10-data-ui.test.tsx`, `tests/m3-p5-delete.test.tsx`, `.maestro/15-masa-licencje.yaml`
@@ -328,7 +328,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
     - Wtedy pojawia się okno [Anuluj, Usuń] (BR-DAN-004)
 
 ### BR-PST-007: Strażnik progresji
-- Przepływ: PR-05
+- Przepływ: PR-05 · Reguła: RD-15, RD-11
 - Dowód potrzeby: J-03; D-113 (specyfikacja zatwierdzona przez właściciela 2026-10-14, nazwa widoczna w aplikacji; doprecyzowanie 2026-10-19: ciężar roboczy z 0 kg do ciężaru = progres); kod `lib/guard.ts`
 - Test: `tests/guard.test.ts`, `tests/guard-ui.test.tsx`, `.maestro/52-straznik-progresji.yaml`
 - Kryteria akceptacji:

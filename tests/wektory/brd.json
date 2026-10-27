@@ -398,5 +398,903 @@
     "rodzaj": "błąd",
     "pochodzenie": "rachunek: seria ćwiczenia, którego nie ma w bibliotece (1 = usunięte), nie ma przypisanych partii, więc nie wchodzi do liczenia; dopisane 2026-10-28 (01-odkrywanie-009)",
     "miejsce": "docs/brd/reguly.md:81"
+  },
+  {
+    "regula": "RD-05",
+    "id": "RD-05-W1",
+    "wejscie": {
+      "Dni zużyte [-]": 2,
+      "Dziś dzień treningowy [-]": 0,
+      "Wpisy uszkodzone [-]": 0
+    },
+    "oczekiwane": {
+      "start dozwolony [-]": 1,
+      "zostało [-]": 3
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "D-101: 2 < 5; 5 − 2",
+    "miejsce": "docs/brd/reguly.md:93"
+  },
+  {
+    "regula": "RD-05",
+    "id": "RD-05-W2",
+    "wejscie": {
+      "Dni zużyte [-]": 5,
+      "Dziś dzień treningowy [-]": 0,
+      "Wpisy uszkodzone [-]": 0
+    },
+    "oczekiwane": {
+      "start dozwolony [-]": 0,
+      "zostało [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "granica",
+    "pochodzenie": "D-101: 5 dni wykorzystane, nowy dzień zablokowany",
+    "miejsce": "docs/brd/reguly.md:94"
+  },
+  {
+    "regula": "RD-05",
+    "id": "RD-05-W3",
+    "wejscie": {
+      "Dni zużyte [-]": 4,
+      "Dziś dzień treningowy [-]": 0,
+      "Wpisy uszkodzone [-]": 0
+    },
+    "oczekiwane": {
+      "start dozwolony [-]": 1,
+      "zostało [-]": 1
+    },
+    "tolerancja": 0,
+    "rodzaj": "poniżej",
+    "pochodzenie": "D-101: 4 < 5; 5 − 4",
+    "miejsce": "docs/brd/reguly.md:95"
+  },
+  {
+    "regula": "RD-05",
+    "id": "RD-05-W4",
+    "wejscie": {
+      "Dni zużyte [-]": 6,
+      "Dziś dzień treningowy [-]": 0,
+      "Wpisy uszkodzone [-]": 0
+    },
+    "oczekiwane": {
+      "start dozwolony [-]": 0,
+      "zostało [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "powyżej",
+    "pochodzenie": "rachunek: więcej dni niż limit (np. przywrócona kopia z innego telefonu); zostało nie spada poniżej 0",
+    "miejsce": "docs/brd/reguly.md:96"
+  },
+  {
+    "regula": "RD-05",
+    "id": "RD-05-W5",
+    "wejscie": {
+      "Dni zużyte [-]": 5,
+      "Dziś dzień treningowy [-]": 1,
+      "Wpisy uszkodzone [-]": 0
+    },
+    "oczekiwane": {
+      "start dozwolony [-]": 1,
+      "zostało [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "D-101: kolejny trening tego samego dnia nie zużywa limitu i zawsze wolno go zacząć",
+    "miejsce": "docs/brd/reguly.md:97"
+  },
+  {
+    "regula": "RD-05",
+    "id": "RD-05-W6",
+    "wejscie": {
+      "Dni zużyte [-]": 0,
+      "Dziś dzień treningowy [-]": 0,
+      "Wpisy uszkodzone [-]": 5
+    },
+    "oczekiwane": {
+      "start dozwolony [-]": 1,
+      "zostało [-]": 5
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "rachunek: wpisy bez poprawnej chwili startu nie są dniami",
+    "miejsce": "docs/brd/reguly.md:98"
+  },
+  {
+    "regula": "RD-06",
+    "id": "RD-06-W1",
+    "wejscie": {
+      "Czas bez pauz [min]": 45
+    },
+    "oczekiwane": {
+      "dzień zużyty [-]": 1
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "D-102: 45 > 7",
+    "miejsce": "docs/brd/reguly.md:109"
+  },
+  {
+    "regula": "RD-06",
+    "id": "RD-06-W2",
+    "wejscie": {
+      "Czas bez pauz [min]": 7
+    },
+    "oczekiwane": {
+      "dzień zużyty [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "granica",
+    "pochodzenie": "D-102: „dłużej niż 7 minut”, 7 nie wystarcza",
+    "miejsce": "docs/brd/reguly.md:110"
+  },
+  {
+    "regula": "RD-06",
+    "id": "RD-06-W3",
+    "wejscie": {
+      "Czas bez pauz [min]": 6.5
+    },
+    "oczekiwane": {
+      "dzień zużyty [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "poniżej",
+    "pochodzenie": "D-102: 6,5 < 7",
+    "miejsce": "docs/brd/reguly.md:111"
+  },
+  {
+    "regula": "RD-06",
+    "id": "RD-06-W4",
+    "wejscie": {
+      "Czas bez pauz [min]": 7.5
+    },
+    "oczekiwane": {
+      "dzień zużyty [-]": 1
+    },
+    "tolerancja": 0,
+    "rodzaj": "powyżej",
+    "pochodzenie": "D-102: 7,5 > 7",
+    "miejsce": "docs/brd/reguly.md:112"
+  },
+  {
+    "regula": "RD-06",
+    "id": "RD-06-W5",
+    "wejscie": {
+      "Czas bez pauz [min]": -5
+    },
+    "oczekiwane": {
+      "dzień zużyty [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "rachunek: czas ujemny (np. zegar cofnięty) nie zużywa dnia",
+    "miejsce": "docs/brd/reguly.md:113"
+  },
+  {
+    "regula": "RD-07",
+    "id": "RD-07-W1",
+    "wejscie": {
+      "Rola ćwiczenia [-]": "heavy"
+    },
+    "oczekiwane": {
+      "od [-]": 4,
+      "do [-]": 6
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "S-05 i T-050: bój główny przy „Sile”, ciężko (uproszczenie)",
+    "miejsce": "docs/brd/reguly.md:125"
+  },
+  {
+    "regula": "RD-07",
+    "id": "RD-07-W2",
+    "wejscie": {
+      "Rola ćwiczenia [-]": "strength"
+    },
+    "oczekiwane": {
+      "od [-]": 6,
+      "do [-]": 10
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "S-13: przyrost przy 30–100% 1RM; 6–10 dla ćwiczeń dodatkowych przy „Sile” — uproszczenie (T-008)",
+    "miejsce": "docs/brd/reguly.md:126"
+  },
+  {
+    "regula": "RD-07",
+    "id": "RD-07-W3",
+    "wejscie": {
+      "Rola ćwiczenia [-]": "gym"
+    },
+    "oczekiwane": {
+      "od [-]": 8,
+      "do [-]": 12
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "S-14: 8–12 powtórzeń (T-026)",
+    "miejsce": "docs/brd/reguly.md:127"
+  },
+  {
+    "regula": "RD-07",
+    "id": "RD-07-W4",
+    "wejscie": {
+      "Rola ćwiczenia [-]": "home"
+    },
+    "oczekiwane": {
+      "od [-]": 12,
+      "do [-]": 20
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "S-13: 30–100% 1RM; 12–20 w domu i bez obciążenia — uproszczenie (T-026)",
+    "miejsce": "docs/brd/reguly.md:128"
+  },
+  {
+    "regula": "RD-07",
+    "id": "RD-07-W5",
+    "wejscie": {
+      "Rola ćwiczenia [-]": "nieznana"
+    },
+    "oczekiwane": {
+      "od [-]": null,
+      "do [-]": null
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "rachunek: rola spoza listy nie ma zakresu",
+    "miejsce": "docs/brd/reguly.md:129"
+  },
+  {
+    "regula": "RD-08",
+    "id": "RD-08-W1",
+    "wejscie": {
+      "Rola ćwiczenia [-]": "heavy"
+    },
+    "oczekiwane": {
+      "przerwa [s]": 180
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "S-07: 2–3 min przy ciężkich seriach (górna granica)",
+    "miejsce": "docs/brd/reguly.md:141"
+  },
+  {
+    "regula": "RD-08",
+    "id": "RD-08-W2",
+    "wejscie": {
+      "Rola ćwiczenia [-]": "multi"
+    },
+    "oczekiwane": {
+      "przerwa [s]": 120
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "S-07: 2 min (dolna granica)",
+    "miejsce": "docs/brd/reguly.md:142"
+  },
+  {
+    "regula": "RD-08",
+    "id": "RD-08-W3",
+    "wejscie": {
+      "Rola ćwiczenia [-]": "iso"
+    },
+    "oczekiwane": {
+      "przerwa [s]": 90
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "S-08: powyżej 60 s (uproszczenie)",
+    "miejsce": "docs/brd/reguly.md:143"
+  },
+  {
+    "regula": "RD-08",
+    "id": "RD-08-W4",
+    "wejscie": {
+      "Rola ćwiczenia [-]": "domyślna"
+    },
+    "oczekiwane": {
+      "przerwa [s]": 90
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "S-08: powyżej 60 s; konwencja jak po jednostawowych",
+    "miejsce": "docs/brd/reguly.md:144"
+  },
+  {
+    "regula": "RD-08",
+    "id": "RD-08-W5",
+    "wejscie": {
+      "Rola ćwiczenia [-]": "nieznana"
+    },
+    "oczekiwane": {
+      "przerwa [s]": null
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "rachunek: rola spoza listy nie ma przerwy",
+    "miejsce": "docs/brd/reguly.md:145"
+  },
+  {
+    "regula": "RD-09",
+    "id": "RD-09-W1",
+    "wejscie": {
+      "Cel [-]": "strength",
+      "Minuty [min]": 60
+    },
+    "oczekiwane": {
+      "serie [-]": 15
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: floor(50 × 60 / 190) = floor(15,79)",
+    "miejsce": "docs/brd/reguly.md:157"
+  },
+  {
+    "regula": "RD-09",
+    "id": "RD-09-W2",
+    "wejscie": {
+      "Cel [-]": "hypertrophy",
+      "Minuty [min]": 60
+    },
+    "oczekiwane": {
+      "serie [-]": 20
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: floor(50 × 60 / 145) = floor(20,69)",
+    "miejsce": "docs/brd/reguly.md:158"
+  },
+  {
+    "regula": "RD-09",
+    "id": "RD-09-W3",
+    "wejscie": {
+      "Cel [-]": "strength",
+      "Minuty [min]": 45
+    },
+    "oczekiwane": {
+      "serie [-]": 11
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: floor(35 × 60 / 190) = floor(11,05)",
+    "miejsce": "docs/brd/reguly.md:159"
+  },
+  {
+    "regula": "RD-09",
+    "id": "RD-09-W4",
+    "wejscie": {
+      "Cel [-]": "hypertrophy",
+      "Minuty [min]": 90
+    },
+    "oczekiwane": {
+      "serie [-]": 33
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: floor(80 × 60 / 145) = floor(33,10)",
+    "miejsce": "docs/brd/reguly.md:160"
+  },
+  {
+    "regula": "RD-09",
+    "id": "RD-09-W5",
+    "wejscie": {
+      "Cel [-]": "general",
+      "Minuty [min]": 45
+    },
+    "oczekiwane": {
+      "serie [-]": 14
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: floor(35 × 60 / 145) = floor(14,48)",
+    "miejsce": "docs/brd/reguly.md:161"
+  },
+  {
+    "regula": "RD-10",
+    "id": "RD-10-W1",
+    "wejscie": {
+      "Tygodnie z rzędu [tydz.]": 5,
+      "Treningi z przyszłości [-]": 0
+    },
+    "oczekiwane": {
+      "podpowiedź [-]": 1
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "S-09, D-114: 5 ≥ 4",
+    "miejsce": "docs/brd/reguly.md:173"
+  },
+  {
+    "regula": "RD-10",
+    "id": "RD-10-W2",
+    "wejscie": {
+      "Tygodnie z rzędu [tydz.]": 4,
+      "Treningi z przyszłości [-]": 0
+    },
+    "oczekiwane": {
+      "podpowiedź [-]": 1
+    },
+    "tolerancja": 0,
+    "rodzaj": "granica",
+    "pochodzenie": "D-114: dolna granica 4 tygodni",
+    "miejsce": "docs/brd/reguly.md:174"
+  },
+  {
+    "regula": "RD-10",
+    "id": "RD-10-W3",
+    "wejscie": {
+      "Tygodnie z rzędu [tydz.]": 3,
+      "Treningi z przyszłości [-]": 0
+    },
+    "oczekiwane": {
+      "podpowiedź [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "poniżej",
+    "pochodzenie": "D-114: 3 < 4",
+    "miejsce": "docs/brd/reguly.md:175"
+  },
+  {
+    "regula": "RD-10",
+    "id": "RD-10-W4",
+    "wejscie": {
+      "Tygodnie z rzędu [tydz.]": 8,
+      "Treningi z przyszłości [-]": 0
+    },
+    "oczekiwane": {
+      "podpowiedź [-]": 1
+    },
+    "tolerancja": 0,
+    "rodzaj": "powyżej",
+    "pochodzenie": "S-09: ponad górną granicę praktyki nadal podpowiedź",
+    "miejsce": "docs/brd/reguly.md:176"
+  },
+  {
+    "regula": "RD-10",
+    "id": "RD-10-W5",
+    "wejscie": {
+      "Tygodnie z rzędu [tydz.]": 0,
+      "Treningi z przyszłości [-]": 5
+    },
+    "oczekiwane": {
+      "podpowiedź [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "rachunek: treningi z datą w przyszłości (np. zły zegar) nie tworzą serii tygodni",
+    "miejsce": "docs/brd/reguly.md:177"
+  },
+  {
+    "regula": "RD-11",
+    "id": "RD-11-W1",
+    "wejscie": {
+      "Cel ręczny [serie]": null
+    },
+    "oczekiwane": {
+      "cel [serie]": 10
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "S-06: automatycznie dolny próg ≥ 10 serii",
+    "miejsce": "docs/brd/reguly.md:189"
+  },
+  {
+    "regula": "RD-11",
+    "id": "RD-11-W2",
+    "wejscie": {
+      "Cel ręczny [serie]": 14
+    },
+    "oczekiwane": {
+      "cel [serie]": 14
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: cel ręczny w granicach",
+    "miejsce": "docs/brd/reguly.md:190"
+  },
+  {
+    "regula": "RD-11",
+    "id": "RD-11-W3",
+    "wejscie": {
+      "Cel ręczny [serie]": 1
+    },
+    "oczekiwane": {
+      "cel [serie]": 1
+    },
+    "tolerancja": 0,
+    "rodzaj": "granica",
+    "pochodzenie": "rachunek: dolna granica pola",
+    "miejsce": "docs/brd/reguly.md:191"
+  },
+  {
+    "regula": "RD-11",
+    "id": "RD-11-W4",
+    "wejscie": {
+      "Cel ręczny [serie]": 0
+    },
+    "oczekiwane": {
+      "cel [serie]": 1
+    },
+    "tolerancja": 0,
+    "rodzaj": "poniżej",
+    "pochodzenie": "rachunek: poniżej granicy → 1",
+    "miejsce": "docs/brd/reguly.md:192"
+  },
+  {
+    "regula": "RD-11",
+    "id": "RD-11-W5",
+    "wejscie": {
+      "Cel ręczny [serie]": 41
+    },
+    "oczekiwane": {
+      "cel [serie]": 40
+    },
+    "tolerancja": 0,
+    "rodzaj": "powyżej",
+    "pochodzenie": "rachunek: powyżej granicy → 40",
+    "miejsce": "docs/brd/reguly.md:193"
+  },
+  {
+    "regula": "RD-11",
+    "id": "RD-11-W6",
+    "wejscie": {
+      "Cel ręczny [serie]": -5
+    },
+    "oczekiwane": {
+      "cel [serie]": 1
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "rachunek: wartość ujemna → 1",
+    "miejsce": "docs/brd/reguly.md:194"
+  },
+  {
+    "regula": "RD-12",
+    "id": "RD-12-W1",
+    "wejscie": {
+      "Ćwiczenie [-]": "Pull Up",
+      "Masa ciała [kg]": 80,
+      "Dociążenie [kg]": 0,
+      "Powtórzenia [-]": 5
+    },
+    "oczekiwane": {
+      "e1RM [kg]": 93.333333
+    },
+    "tolerancja": 0.000001,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: 1 × 80 × (1 + 5/30)",
+    "miejsce": "docs/brd/reguly.md:206"
+  },
+  {
+    "regula": "RD-12",
+    "id": "RD-12-W2",
+    "wejscie": {
+      "Ćwiczenie [-]": "Push Up",
+      "Masa ciała [kg]": 80,
+      "Dociążenie [kg]": 0,
+      "Powtórzenia [-]": 10
+    },
+    "oczekiwane": {
+      "e1RM [kg]": 68.266667
+    },
+    "tolerancja": 0.000001,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: 0,64 × 80 × (1 + 10/30)",
+    "miejsce": "docs/brd/reguly.md:207"
+  },
+  {
+    "regula": "RD-12",
+    "id": "RD-12-W3",
+    "wejscie": {
+      "Ćwiczenie [-]": "Pull Up",
+      "Masa ciała [kg]": 80,
+      "Dociążenie [kg]": 10,
+      "Powtórzenia [-]": 3
+    },
+    "oczekiwane": {
+      "e1RM [kg]": 99
+    },
+    "tolerancja": 0.000001,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: (80 + 10) × (1 + 3/30)",
+    "miejsce": "docs/brd/reguly.md:208"
+  },
+  {
+    "regula": "RD-12",
+    "id": "RD-12-W4",
+    "wejscie": {
+      "Ćwiczenie [-]": "Chest Dip",
+      "Masa ciała [kg]": 80,
+      "Dociążenie [kg]": 0,
+      "Powtórzenia [-]": 8
+    },
+    "oczekiwane": {
+      "e1RM [kg]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "S-10, S-11: brak udziału ze źródła → bez e1RM",
+    "miejsce": "docs/brd/reguly.md:209"
+  },
+  {
+    "regula": "RD-12",
+    "id": "RD-12-W5",
+    "wejscie": {
+      "Ćwiczenie [-]": "Pull Up",
+      "Masa ciała [kg]": null,
+      "Dociążenie [kg]": 0,
+      "Powtórzenia [-]": 5
+    },
+    "oczekiwane": {
+      "e1RM [kg]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "rachunek: brak pomiaru masy ciała → bez e1RM",
+    "miejsce": "docs/brd/reguly.md:210"
+  },
+  {
+    "regula": "RD-13",
+    "id": "RD-13-W1",
+    "wejscie": {
+      "Odstęp [dni]": 1,
+      "Wspólna partia [-]": 1,
+      "Szablon usunięty [-]": 0
+    },
+    "oczekiwane": {
+      "ostrzeżenia [-]": 1
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: dzień po dniu z tą samą partią",
+    "miejsce": "docs/brd/reguly.md:222"
+  },
+  {
+    "regula": "RD-13",
+    "id": "RD-13-W2",
+    "wejscie": {
+      "Odstęp [dni]": 1,
+      "Wspólna partia [-]": 0,
+      "Szablon usunięty [-]": 0
+    },
+    "oczekiwane": {
+      "ostrzeżenia [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: dzień po dniu, różne partie",
+    "miejsce": "docs/brd/reguly.md:223"
+  },
+  {
+    "regula": "RD-13",
+    "id": "RD-13-W3",
+    "wejscie": {
+      "Odstęp [dni]": 2,
+      "Wspólna partia [-]": 1,
+      "Szablon usunięty [-]": 0
+    },
+    "oczekiwane": {
+      "ostrzeżenia [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: dzień przerwy między sesjami",
+    "miejsce": "docs/brd/reguly.md:224"
+  },
+  {
+    "regula": "RD-13",
+    "id": "RD-13-W4",
+    "wejscie": {
+      "Odstęp [dni]": 1,
+      "Wspólna partia [-]": 1,
+      "Szablon usunięty [-]": 1
+    },
+    "oczekiwane": {
+      "ostrzeżenia [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "rachunek: szablon z planu usunięty — brak partii, brak ostrzeżenia",
+    "miejsce": "docs/brd/reguly.md:225"
+  },
+  {
+    "regula": "RD-14",
+    "id": "RD-14-W1",
+    "wejscie": {
+      "Pole [-]": "sztanga",
+      "Wartość [kg; s; m]": 60,
+      "Kierunek [-]": 1
+    },
+    "oczekiwane": {
+      "wynik [kg; s; m]": 62.5
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "D-122, T-039: + 2,5 kg",
+    "miejsce": "docs/brd/reguly.md:236"
+  },
+  {
+    "regula": "RD-14",
+    "id": "RD-14-W2",
+    "wejscie": {
+      "Pole [-]": "hantle",
+      "Wartość [kg; s; m]": 20,
+      "Kierunek [-]": 1
+    },
+    "oczekiwane": {
+      "wynik [kg; s; m]": 21
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "D-122, T-039: + 1 kg",
+    "miejsce": "docs/brd/reguly.md:237"
+  },
+  {
+    "regula": "RD-14",
+    "id": "RD-14-W3",
+    "wejscie": {
+      "Pole [-]": "masa ciała",
+      "Wartość [kg; s; m]": 0,
+      "Kierunek [-]": 1
+    },
+    "oczekiwane": {
+      "wynik [kg; s; m]": 2.5
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "D-122: dociążenie + 2,5 kg",
+    "miejsce": "docs/brd/reguly.md:238"
+  },
+  {
+    "regula": "RD-14",
+    "id": "RD-14-W4",
+    "wejscie": {
+      "Pole [-]": "czas",
+      "Wartość [kg; s; m]": 30,
+      "Kierunek [-]": 1
+    },
+    "oczekiwane": {
+      "wynik [kg; s; m]": 35
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "D-122: + 5 s (konwencja, OP-05)",
+    "miejsce": "docs/brd/reguly.md:239"
+  },
+  {
+    "regula": "RD-14",
+    "id": "RD-14-W5",
+    "wejscie": {
+      "Pole [-]": "dystans",
+      "Wartość [kg; s; m]": 100,
+      "Kierunek [-]": 1
+    },
+    "oczekiwane": {
+      "wynik [kg; s; m]": 150
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "D-122: + 50 m (konwencja, OP-05)",
+    "miejsce": "docs/brd/reguly.md:240"
+  },
+  {
+    "regula": "RD-14",
+    "id": "RD-14-W6",
+    "wejscie": {
+      "Pole [-]": "sztanga",
+      "Wartość [kg; s; m]": null,
+      "Kierunek [-]": -1
+    },
+    "oczekiwane": {
+      "wynik [kg; s; m]": null
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "D-122: „−” od pustej wartości nic nie robi",
+    "miejsce": "docs/brd/reguly.md:241"
+  },
+  {
+    "regula": "RD-15",
+    "id": "RD-15-W1",
+    "wejscie": {
+      "Ciężar poprzedni [kg]": 100,
+      "Serie poprzednie [-]": 3,
+      "Ciężar bieżący [kg]": 110,
+      "Serie bieżące [-]": 3
+    },
+    "oczekiwane": {
+      "kierunek [-]": "up"
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: 3 × 5 × 110 = 1650 > 1500",
+    "miejsce": "docs/brd/reguly.md:253"
+  },
+  {
+    "regula": "RD-15",
+    "id": "RD-15-W2",
+    "wejscie": {
+      "Ciężar poprzedni [kg]": 100,
+      "Serie poprzednie [-]": 3,
+      "Ciężar bieżący [kg]": 100,
+      "Serie bieżące [-]": 3
+    },
+    "oczekiwane": {
+      "kierunek [-]": "same"
+    },
+    "tolerancja": 0,
+    "rodzaj": "granica",
+    "pochodzenie": "rachunek: 1500 = 1500",
+    "miejsce": "docs/brd/reguly.md:254"
+  },
+  {
+    "regula": "RD-15",
+    "id": "RD-15-W3",
+    "wejscie": {
+      "Ciężar poprzedni [kg]": 100,
+      "Serie poprzednie [-]": 3,
+      "Ciężar bieżący [kg]": 90,
+      "Serie bieżące [-]": 3
+    },
+    "oczekiwane": {
+      "kierunek [-]": "down"
+    },
+    "tolerancja": 0,
+    "rodzaj": "poniżej",
+    "pochodzenie": "rachunek: 1350 < 1500",
+    "miejsce": "docs/brd/reguly.md:255"
+  },
+  {
+    "regula": "RD-15",
+    "id": "RD-15-W4",
+    "wejscie": {
+      "Ciężar poprzedni [kg]": 100,
+      "Serie poprzednie [-]": 3,
+      "Ciężar bieżący [kg]": 105,
+      "Serie bieżące [-]": 3
+    },
+    "oczekiwane": {
+      "kierunek [-]": "up"
+    },
+    "tolerancja": 0,
+    "rodzaj": "powyżej",
+    "pochodzenie": "rachunek: 1575 > 1500",
+    "miejsce": "docs/brd/reguly.md:256"
+  },
+  {
+    "regula": "RD-15",
+    "id": "RD-15-W5",
+    "wejscie": {
+      "Ciężar poprzedni [kg]": 100,
+      "Serie poprzednie [-]": 3,
+      "Ciężar bieżący [kg]": 110,
+      "Serie bieżące [-]": 2
+    },
+    "oczekiwane": {
+      "kierunek [-]": "up"
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "D-113: tonaż 1100 < 1500, ale ciężar roboczy 110 > 100 = progres",
+    "miejsce": "docs/brd/reguly.md:257"
+  },
+  {
+    "regula": "RD-15",
+    "id": "RD-15-W6",
+    "wejscie": {
+      "Ciężar poprzedni [kg]": null,
+      "Serie poprzednie [-]": 0,
+      "Ciężar bieżący [kg]": 100,
+      "Serie bieżące [-]": 3
+    },
+    "oczekiwane": {
+      "kierunek [-]": "new"
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "D-113: brak treningu w tygodniu porównawczym → „nowe”",
+    "miejsce": "docs/brd/reguly.md:258"
   }
 ]
