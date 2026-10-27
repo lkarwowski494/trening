@@ -379,7 +379,9 @@ export function klatkiZHtml(html) {
   });
   if (!wiersze.length) { uwagi.push('HTML podglądu nie ma żadnego wiersza klatek (0 wierszy .w) — nie da się odczytać klatek z obrazu'); return { klatki: [], uwagi }; }
   const ref = wiersze[0].side; const txt = (l) => `${l.length} (${l.join(', ')})`;
-  for (const w of wiersze) for (const widok of ['side', 'front']) if (JSON.stringify(w[widok]) !== JSON.stringify(ref)) uwagi.push(`wiersz „${w.etykieta}”, widok ${widok}: ${txt(w[widok])} klatek, a pierwszy wiersz z boku ma ${txt(ref)} — komórki obrazu nie są jednolite`);
+  /* widok, którego ćwiczenie w aplikacji nie ma (viewsOf, np. suwnice tylko z boku), nie występuje w żadnym wierszu i nie jest niejednolitością */
+  const jest = (widok) => wiersze.some((w) => w[widok].length);
+  for (const w of wiersze) for (const widok of ['side', 'front']) if ((jest(widok) || widok === 'side') && JSON.stringify(w[widok]) !== JSON.stringify(ref)) uwagi.push(`wiersz „${w.etykieta}”, widok ${widok}: ${txt(w[widok])} klatek, a pierwszy wiersz z boku ma ${txt(ref)} — komórki obrazu nie są jednolite`);
   return { klatki: ref, uwagi };
 }
 /** Niezgodności klatek jednego ćwiczenia w manifeście (klatki_na_obrazie ≠ klatki_u albo brak pola) — niezależnie od `zgodnosc_manifestu`, żeby ważność podglądu nie zależała od jednej kontroli. */

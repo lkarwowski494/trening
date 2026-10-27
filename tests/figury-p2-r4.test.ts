@@ -75,8 +75,9 @@ describe('4. podgląd rysuje widoki z aplikacji (viewsOf)', () => {
     const V = await import(${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-validate.mjs'))});
     const f = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(POSES, 'leg_machine.json'))}, 'utf8'));
     const h = V.htmlPodgladu(f.cwiczenia[${JSON.stringify(cw)}], 'light');
-    console.log(JSON.stringify([...new Set([...h.html.matchAll(/data-widok="(\\w+)"/g)].map((m) => m[1]))]));
+    const J = await import(${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-jakosc.mjs'))});
+    console.log(JSON.stringify([...new Set([...h.html.matchAll(/data-widok="(\\w+)"/g)].map((m) => m[1])), ...J.klatkiZHtml(h.html).uwagi]));
   `], { cwd: ROOT, env: { PATH: process.env.PATH ?? '' } as unknown as NodeJS.ProcessEnv, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }));
-  test.each([['Leg Press'], ['Single Leg Press'], ['Calf Press (leg press)']])('%s: podgląd tylko z boku', cw => { expect(widoki(cw)).toEqual(['side']); });
+  test.each([['Leg Press'], ['Single Leg Press'], ['Calf Press (leg press)']])('%s: podgląd tylko z boku, bez uwag o niejednolitych klatkach (klatkiZHtml)', cw => { expect(widoki(cw)).toEqual(['side']); });
   test.each([['Hack Squat'], ['Pendulum Squat']])('%s: podgląd z boku i z przodu', cw => { expect(widoki(cw)).toEqual(['side', 'front']); });
 });
