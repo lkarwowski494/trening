@@ -521,9 +521,9 @@ Słowa właściciela: „Dec1 b DEC9 A DEC2 A DEC3 b DEC7b”. Zapisane w plan-n
 - DEC-09 → a: pełny stan „Masz plan X” na ekranie zakupu (010).
 - DEC-02 → a: strażnik decyzja → test dla wszystkich decyzji, także wstecz (009).
 - DEC-03 → b: reguła „normalizacja = podbicie schematu” z testem (014).
-- DEC-07 → b: wybrane produktowe P2 przed 1.0 — pozycja 037 czeka na listę wybranych pozycji (propozycja M1 w odpowiedzi STOP 2).
+- DEC-07 → b: do 1.0 wchodzą wiersz „Pełna wersja”, dokumenty wydania (plan „zły build”, zamknięcie UA/espresso), test pierwszego użycia, zrzuty w 33 lokalizacjach; do backlogu 1.0.1/1.1: dwa widoki treningu, kalkulator talerzy, kanały i linki kampanii, pomiar skarg na limit.
 - DEC-04, DEC-05, DEC-08 (merytoryczne) → a, rozstrzygnięte według hierarchii źródeł.
-Status: 36 pozycji zatwierdzonych, 037 otwarta do wyboru zakresu.
+Status: 37/37 pozycji zatwierdzonych.
 
 ## Scalanie
 89 znalezisk 13 przebiegów (12 ról + drugi przebieg 02) → 37 pozycji (8 P1, 29 P2). Poziomy po weryfikacji przeciwnej. Wyjątek nazwany (zasada 7): pozycje zbiorcze P2 022, 030, 031, 034 i 037 łączą kilka drobnych zmian jednej roli — dla oszczędności poleceń fix. Każde ID źródłowe zostaje w `zrodla`.
@@ -621,7 +621,7 @@ Partia 1: dane, pieniądze P1, SYS-01; partia 2: treść, wydanie, stan po zakup
 | 3 | M1-audytor-generalny-022 | P2 | D | 01-odkrywanie | M2 | 01-odkrywanie-004, 01-odkrywanie-005, 01-odkrywanie-006, 01-odkrywanie-009, 01-odkrywanie-010, 01-odkrywanie-011, 03-zakres-003, 03-zakres-004, 03-zakres-009 | — | — | zatwierdzone |
 | 3 | M1-audytor-generalny-016 | P2 | D | 02-monetyzacja | M2 | 08-programista-001, 02-monetyzacja-505 | — | — | zatwierdzone |
 | 3 | M1-audytor-generalny-036 | P2 | M | 02-monetyzacja | rola | 02-monetyzacja-004 | — | DEC-08 | zatwierdzone |
-| 3 | M1-audytor-generalny-037 | P2 | P | 03-zakres | rola | 02-monetyzacja-002, 08-programista-005, 04-studio-projektowe-006, 02-monetyzacja-506, 03-zakres-006, 03-zakres-007, 03-zakres-008, 10-wydanie-004, 10-wydanie-005, 11-wzrost-002, 11-wzrost-004, 02-monetyzacja-005 | — | DEC-07 | otwarte |
+| 3 | M1-audytor-generalny-037 | P2 | P | 03-zakres | rola | 02-monetyzacja-002, 08-programista-005, 04-studio-projektowe-006, 02-monetyzacja-506, 03-zakres-006, 03-zakres-007, 03-zakres-008, 10-wydanie-004, 10-wydanie-005, 11-wzrost-002, 11-wzrost-004, 02-monetyzacja-005 | — | DEC-07 | zatwierdzone |
 | 3 | M1-audytor-generalny-024 | P2 | D | 04-studio-projektowe | M2 | 04-studio-projektowe-005 | — | — | zatwierdzone |
 | 3 | M1-audytor-generalny-025 | P2 | D | 04-studio-projektowe | M2 | 04-studio-projektowe-007 | — | — | zatwierdzone |
 | 3 | M1-audytor-generalny-026 | P2 | D | 04-studio-projektowe | M2 | 04-studio-projektowe-009 | — | — | zatwierdzone |

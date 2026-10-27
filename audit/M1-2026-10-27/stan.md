@@ -31,3 +31,5 @@ Reguła wypychania: przed każdym pushem wyklucz pliki skopiowane z biblioteki p
 20:50 UTC: E3 gotowe — raport końcowy audit/M1-audytor-generalny-2026-10-27.md (kontrola kod 0), plan-napraw.json (sprawdz-plan kod 0): 37 pozycji (8 P1, 29 P2), 8 decyzji. Werdykt: kurs trafny, stan ZABLOKOWANE. STOP 2: czekam na wybory właściciela (DEC-01, 02, 03, 07, 09) i zatwierdzenie pozycji; potem zapis w planie i polecenie M2.
 
 21:0x UTC: wybory właściciela zapisane (DEC-01 b, DEC-09 a, DEC-02 a, DEC-03 b, DEC-07 b; DEC-04/05/08 a wg źródeł); 36 zatwierdzonych, 037 czeka na listę pozycji DEC-07 b. Następny krok: lista 037 od właściciela, potem polecenie M2.
+
+21:1x UTC: DEC-07 b zakres od właściciela zapisany; 37/37 zatwierdzone; plan i raport: kontrole kod 0. M1 zakończony — następny krok: M2 (polecenie w raporcie), potem reaudit.

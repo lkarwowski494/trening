@@ -962,14 +962,15 @@
       "decyzja": "DEC-07",
       "przyczyna": null,
       "raport": "role/03-zakres/03-zakres-2026-10-27.md",
-      "test_akceptacyjny": "każda pozycja z wersją w backlogu docs/21 albo wykonana wg DEC-07",
-      "status": "otwarte",
+      "test_akceptacyjny": "pozycje zakres_1_0 wykonane z testami wg definicji ukończenia; pozycje backlog wpisane do docs/21 z wersją",
+      "status": "zatwierdzone",
       "commit": null,
-      "blokada": "DEC-07 b: właściciel wybiera pozycje przed 1.0 (propozycja M1 w raporcie)"
+      "zakres_1_0": "DEC-07 b (właściciel 27.10): wiersz „Pełna wersja” (02-monetyzacja-002, 08-programista-005, 04-studio-projektowe-006); dokumenty wydania — plan „zły build” (10-wydanie-005) i zamknięcie decyzji UA/espresso (02-monetyzacja-506); test pierwszego użycia (03-zakres-008); zrzuty w 33 lokalizacjach (10-wydanie-004)",
+      "backlog": "1.0.1/1.1 z wersją w docs/21: dwa widoki treningu (03-zakres-006), kalkulator talerzy (03-zakres-007), kanały i linki kampanii (11-wzrost-002, 11-wzrost-004), pomiar skarg na limit (02-monetyzacja-005)"
     }
   ],
   "wybory": {
     "data": "2026-10-27",
-    "slowa_wlasciciela": "Dec1 b DEC9 A DEC2 A DEC3 b DEC7b"
+    "slowa_wlasciciela": "Dec1 b DEC9 A DEC2 A DEC3 b DEC7b | DEC-07 b zakres: Wiersz „Pełna wersja”, Dokumenty wydania, Test pierwszego użycia, Zrzuty w 33 lokalizacjach"
   }
 }

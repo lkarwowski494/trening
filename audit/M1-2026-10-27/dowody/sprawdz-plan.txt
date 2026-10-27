@@ -16,7 +16,7 @@
 | 3 | M1-audytor-generalny-022 | P2 | D | 01-odkrywanie | M2 | 01-odkrywanie-004, 01-odkrywanie-005, 01-odkrywanie-006, 01-odkrywanie-009, 01-odkrywanie-010, 01-odkrywanie-011, 03-zakres-003, 03-zakres-004, 03-zakres-009 | — | — | zatwierdzone |
 | 3 | M1-audytor-generalny-016 | P2 | D | 02-monetyzacja | M2 | 08-programista-001, 02-monetyzacja-505 | — | — | zatwierdzone |
 | 3 | M1-audytor-generalny-036 | P2 | M | 02-monetyzacja | rola | 02-monetyzacja-004 | — | DEC-08 | zatwierdzone |
-| 3 | M1-audytor-generalny-037 | P2 | P | 03-zakres | rola | 02-monetyzacja-002, 08-programista-005, 04-studio-projektowe-006, 02-monetyzacja-506, 03-zakres-006, 03-zakres-007, 03-zakres-008, 10-wydanie-004, 10-wydanie-005, 11-wzrost-002, 11-wzrost-004, 02-monetyzacja-005 | — | DEC-07 | otwarte |
+| 3 | M1-audytor-generalny-037 | P2 | P | 03-zakres | rola | 02-monetyzacja-002, 08-programista-005, 04-studio-projektowe-006, 02-monetyzacja-506, 03-zakres-006, 03-zakres-007, 03-zakres-008, 10-wydanie-004, 10-wydanie-005, 11-wzrost-002, 11-wzrost-004, 02-monetyzacja-005 | — | DEC-07 | zatwierdzone |
 | 3 | M1-audytor-generalny-024 | P2 | D | 04-studio-projektowe | M2 | 04-studio-projektowe-005 | — | — | zatwierdzone |
 | 3 | M1-audytor-generalny-025 | P2 | D | 04-studio-projektowe | M2 | 04-studio-projektowe-007 | — | — | zatwierdzone |
 | 3 | M1-audytor-generalny-026 | P2 | D | 04-studio-projektowe | M2 | 04-studio-projektowe-009 | — | — | zatwierdzone |
