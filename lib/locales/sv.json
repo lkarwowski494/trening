@@ -1708,5 +1708,7 @@
  "zgięcie łokcia": "armbågsflexion",
  "zgięcie biodra": "höftflexion",
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Set: {s} per övning – gör gärna minst {m}; fler set ger oftast lite mer, men med avtagande effekt.",
- "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Passet från {d} {s} hade ingen aktivitet på {h} timmar, så det sparades automatiskt. Slut: {e} (sista setet). Du hittar det under fliken Plan."
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Passet från {d} {s} hade ingen aktivitet på {h} timmar, så det sparades automatiskt. Slut: {e} (sista setet). Du hittar det under fliken Plan.",
+ "Aktualny plan": "Nuvarande plan",
+ "Zmień plan": "Byt plan"
 }

@@ -336,6 +336,10 @@
   "en": "Accessories"
  },
  {
+  "pl": "Aktualny plan",
+  "en": "Current plan"
+ },
+ {
   "pl": "aktywny",
   "en": "active"
  },
@@ -6723,6 +6727,10 @@
  {
   "pl": "Zmień kolejność: {name}",
   "en": "Reorder: {name}"
+ },
+ {
+  "pl": "Zmień plan",
+  "en": "Change plan"
  },
  {
   "pl": "Zmień szablon",

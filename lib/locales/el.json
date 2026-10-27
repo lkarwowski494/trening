@@ -1708,5 +1708,7 @@
  "zgięcie łokcia": "κάμψη αγκώνα",
  "zgięcie biodra": "κάμψη ισχίου",
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Σετ: {s} ανά άσκηση — αξίζει να κάνετε τουλάχιστον {m}· περισσότερα σετ συνήθως δίνουν λίγο περισσότερα, με όλο και μικρότερο όφελος.",
- "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Η προπόνηση της {d} {s} δεν είχε δραστηριότητα για {h} ώρες, γι' αυτό αποθηκεύτηκε αυτόματα. Λήξη: {e} (τελευταίο σετ). Θα τη βρείτε στην καρτέλα Πρόγραμμα."
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Η προπόνηση της {d} {s} δεν είχε δραστηριότητα για {h} ώρες, γι' αυτό αποθηκεύτηκε αυτόματα. Λήξη: {e} (τελευταίο σετ). Θα τη βρείτε στην καρτέλα Πρόγραμμα.",
+ "Aktualny plan": "Τρέχον πλάνο",
+ "Zmień plan": "Αλλαγή πλάνου"
 }

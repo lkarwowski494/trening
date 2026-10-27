@@ -2431,9 +2431,10 @@
    "kroki": [
     "Ustawienia → karta „Subskrypcja” → ekran zakupu",
     "Panel „Test store”: wygaszenie → ceny → „Przywróć zakupy”",
-    "Start ponad limit dni → ekran zakupu → zakup"
+    "Start ponad limit dni → ekran zakupu → zakup",
+    "Po zakupie subskrypcji: karta z nazwą planu, „Aktualny plan” przy kupionym, „Zmień plan”"
    ],
-   "wynik": "Dostęp zgodny ze stanem sklepu; zamknięcie ekranu zakupu przyciskiem „Zamknij”.",
+   "wynik": "Dostęp zgodny ze stanem sklepu; zamknięcie ekranu zakupu przyciskiem „Zamknij”; po zakupie ekran nie oferuje kupna posiadanego planu.",
    "ekrany": [
     "/paywall",
     "/more/settings"

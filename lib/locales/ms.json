@@ -1708,5 +1708,7 @@
  "zgięcie łokcia": "lenturan siku",
  "zgięcie biodra": "lenturan pinggul",
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Set: {s} setiap senaman. Sebaiknya buat sekurang-kurangnya {m}; lebih banyak set biasanya memberi sedikit lebih, tetapi manfaatnya semakin berkurang.",
- "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Latihan pada {d} {s} tiada aktiviti selama {h} jam, jadi ia disimpan secara automatik. Tamat: {e} (set terakhir). Anda boleh menemuinya dalam tab Pelan."
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Latihan pada {d} {s} tiada aktiviti selama {h} jam, jadi ia disimpan secara automatik. Tamat: {e} (set terakhir). Anda boleh menemuinya dalam tab Pelan.",
+ "Aktualny plan": "Pelan semasa",
+ "Zmień plan": "Tukar pelan"
 }

@@ -151,6 +151,43 @@ describe('ekran zakupu: stan „zakupione”', () => {
   });
 });
 
+describe('ekran zakupu: posiadany plan subskrypcji (27.10.2026, uwaga z telefonu: build 1031)', () => {
+  const yearSub = (end: number): Entitlement => ({ plan: 'yearly', source: 'purchase', expiresAt: end });
+  test('miesięczny aktywny (EN): bez wstępu o darmowych dniach, karta z nazwą planu, „Current plan” przy miesięcznym, miesięczny niewybieralny, domyślnie roczny z „Change plan”', async () => {
+    await boot({ locale: 'en', ents: [sub(NOW + 9 * DAY)] });
+    expect(screen.queryByTestId('paywall-headline')).toBeNull(); expect(screen.queryByText(/^Train 5 days a month for free/)).toBeNull(); expect(screen.queryByText(/^Without a purchase/)).toBeNull();
+    expect(screen.getByText('You have the full version')).toBeTruthy(); expect(screen.getByTestId('paywall-owned-plan').props.children).toBe('Plan: Still finding my rhythm');
+    const m = screen.getByTestId('plan-monthly'); expect(m.props.accessibilityState).toEqual({ selected: false, disabled: true }); expect(m.props.accessibilityLabel).toMatch(/Current plan$/); expect(screen.getByTestId('plan-monthly-own')).toBeTruthy();
+    expect(screen.getByTestId('plan-yearly').props.accessibilityState).toEqual({ selected: true, disabled: false }); expect(screen.queryByTestId('plan-yearly-own')).toBeNull();
+    expect(screen.queryByText('Subscribe')).toBeNull(); expect(screen.getByText('Change plan')).toBeTruthy(); expect(screen.getByText('The subscription renews automatically until you cancel it in your Apple account settings.')).toBeTruthy();
+  });
+  test('stuknięcie posiadanego planu nic nie zaznacza i nie kupuje; „Change plan” kupuje wybrany inny plan; dożywotni nadal „Buy forever”', async () => {
+    await boot({ locale: 'en', ents: [sub(NOW + 9 * DAY)] });
+    await tap(screen.getByTestId('plan-monthly')); expect(screen.getByTestId('plan-yearly').props.accessibilityState.selected).toBe(true); expect(screen.getByTestId('plan-monthly').props.accessibilityState.selected).toBe(false);
+    await tap(screen.getByTestId('plan-lifetime')); expect(screen.getByText('Buy forever')).toBeTruthy(); await tap(screen.getByTestId('plan-yearly')); expect(fake.calls.purchase).toBe(0);
+    await tap(screen.getByText('Change plan')); await settle(); expect(fake.calls.purchase).toBe(1); expect(fake.entitlements()!.map(e => e.plan)).toEqual(['yearly']);
+    expect(screen.getByTestId('paywall-owned-plan').props.children).toBe('Plan: Training is part of my week'); expect(screen.getByTestId('plan-yearly-own')).toBeTruthy(); expect(screen.queryByTestId('plan-monthly-own')).toBeNull();
+    expect(screen.getByTestId('plan-monthly').props.accessibilityState.selected).toBe(true); /* zaznaczenie przeskakuje na pierwszy plan do wyboru */
+  });
+  test('roczny aktywny (PL): „Aktualny plan” przy rocznym, domyślnie zaznaczony miesięczny, przycisk „Zmień plan”, nazwa planu w karcie', async () => {
+    await boot({ locale: 'pl', ents: [yearSub(NOW + 200 * DAY)] });
+    expect(screen.getByText('Masz pełną wersję')).toBeTruthy(); expect(screen.getByTestId('paywall-owned-plan').props.children).toBe('Plan: Trening to część mojego tygodnia'); expect(screen.queryByText(/^Trenuj 5 dni w miesiącu za darmo/)).toBeNull();
+    expect(screen.getByTestId('plan-yearly').props.accessibilityState).toEqual({ selected: false, disabled: true }); expect(screen.getByTestId('plan-yearly').props.accessibilityLabel).toMatch(/Aktualny plan$/);
+    expect(screen.getByTestId('plan-monthly').props.accessibilityState.selected).toBe(true); expect(screen.getByText('Zmień plan')).toBeTruthy(); expect(screen.queryByText('Subskrybuj')).toBeNull();
+  });
+  test('bez dostępu: wstęp o darmowych dniach, brak „Aktualny plan”, „Subscribe”, domyślnie roczny (stan sprzed zakupu bez zmian)', async () => {
+    await boot({ locale: 'en' }); expect(screen.getByTestId('paywall-headline')).toBeTruthy(); expect(screen.queryByTestId('plan-yearly-own')).toBeNull(); expect(screen.queryByTestId('plan-monthly-own')).toBeNull(); expect(screen.queryByTestId('paywall-owned-plan')).toBeNull();
+    expect(screen.getByText('Subscribe')).toBeTruthy(); expect(screen.queryByText('Change plan')).toBeNull(); expect(screen.getByTestId('plan-yearly').props.accessibilityState.selected).toBe(true);
+    expect(screen.getByText(/^Without a purchase/)).toBeTruthy();
+  });
+  test('kod promocyjny (źródło „code”): plan też oznaczony jako aktualny i niewybieralny', async () => {
+    await boot({ locale: 'en', ents: [sub(NOW + 9 * DAY, { source: 'code' })] }); expect(screen.getByTestId('plan-monthly-own')).toBeTruthy(); expect(screen.getByTestId('plan-monthly').props.accessibilityState.disabled).toBe(true);
+  });
+  test('dożywotni: lista planów ukryta jak dotąd, bez wiersza „Plan:”', async () => {
+    await boot({ locale: 'en', ents: [life] }); expect(screen.queryByTestId('plan-yearly')).toBeNull(); expect(screen.queryByTestId('paywall-owned-plan')).toBeNull(); expect(screen.queryByText(/^Train 5 days a month for free/)).toBeNull();
+  });
+});
+
 describe('Ustawienia: karta „Subskrypcja”', () => {
   test('przełącznik wyłączony: karty nie ma (Ustawienia jak przed 0.17); sklep nietknięty', async () => {
     await boot({ on: false, locale: 'en', url: '/more/settings' }); expect(txt(/^Subscription$/i)).toBeNull(); expect(lbl(/^Full version/)).toBeNull(); expect(fake.calls.currentEntitlements).toBe(0);

@@ -1708,5 +1708,7 @@
  "zgięcie łokcia": "flexion du coude",
  "zgięcie biodra": "flexion de la hanche",
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Séries : {s} par exercice — faites-en au moins {m} ; plus de séries apportent en général un peu plus, avec un gain qui diminue.",
- "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "La séance du {d} {s} n’a eu aucune activité pendant {h} heures, elle a donc été enregistrée automatiquement. Fin : {e} (dernière série). Vous la trouverez dans l’onglet Plan."
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "La séance du {d} {s} n’a eu aucune activité pendant {h} heures, elle a donc été enregistrée automatiquement. Fin : {e} (dernière série). Vous la trouverez dans l’onglet Plan.",
+ "Aktualny plan": "Formule actuelle",
+ "Zmień plan": "Changer de formule"
 }

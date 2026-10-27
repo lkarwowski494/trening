@@ -1708,5 +1708,7 @@
  "zgięcie łokcia": "ohnutí lokte",
  "zgięcie biodra": "ohnutí v kyčli",
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Série: {s} na cvik. Vyplatí se udělat alespoň {m}; víc sérií obvykle přinese o trochu víc, ale přínos se postupně zmenšuje.",
- "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Trénink z {d} {s} neměl {h} hodin žádnou aktivitu, a proto se uložil sám. Konec: {e} (poslední série). Najdete ho na záložce Plán."
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Trénink z {d} {s} neměl {h} hodin žádnou aktivitu, a proto se uložil sám. Konec: {e} (poslední série). Najdete ho na záložce Plán.",
+ "Aktualny plan": "Aktuální plán",
+ "Zmień plan": "Změnit plán"
 }

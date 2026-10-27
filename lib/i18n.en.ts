@@ -959,6 +959,8 @@ export const EN: Record<string, string> = {
   '{price}/{period}': '{price}/{period}',
   'Kup na zawsze': 'Buy forever',
   'Subskrybuj': 'Subscribe',
+  'Zmień plan': 'Change plan', /* subskrybent wybiera inny plan (arkusz Apple zmiany planu) */
+  'Aktualny plan': 'Current plan', /* plan, który osoba już ma — niewybieralny na ekranie zakupu */
   'Czeka na zgodę organizatora rodziny.': 'Waiting for approval from the family organizer.',
   'Przywrócono zakupy.': 'Purchases restored.',
   'Nie znaleziono zakupów dla tego konta Apple.': 'No purchases found for this Apple account.',

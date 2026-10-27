@@ -699,6 +699,14 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik kończy pierwszy trening
     - Gdy ekran podsumowania się wyświetla
     - Wtedy ekran zakupu nie otwiera się sam
+  - Scenariusz: Kolejność planów i plan domyślny
+    - Zakładając, że użytkownik bez dostępu otwiera ekran zakupu
+    - Gdy ogląda plany
+    - Wtedy plany są w kolejności roczny, miesięczny, dożywotni, a zaznaczony jest roczny (decyzja właściciela 27.10.2026, docs/18; test `tests/paywall-kolejnosc-domyslna.test.ts`)
+  - Scenariusz: Posiadany plan subskrypcji
+    - Zakładając, że użytkownik ma aktywną subskrypcję (miesięczną albo roczną)
+    - Gdy otwiera ekran zakupu
+    - Wtedy nie czyta wstępu o darmowych dniach, karta „Masz pełną wersję” podaje nazwę jego planu i datę, posiadany plan jest oznaczony „Aktualny plan” i nie da się go wybrać ani kupić drugi raz, a pozostałe plany zostają jako zmiana planu („Zmień plan”) z informacją o automatycznym odnawianiu
 
 ### BR-PRV-001: Zastrzeżenie medyczne widoczne w aplikacji
 - Przepływ: PR-01

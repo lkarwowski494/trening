@@ -8,7 +8,7 @@ import { useTheme, TEXT_SCALE_MAX, FW, font, RADIUS } from '@/lib/theme';
 import { t, lang, appName } from '@/lib/i18n';
 import { fmtDate } from '@/lib/store';
 import { PAYWALL, entitlementActive, type EntitlementPlan } from '@/lib/access';
-import { PLAN_ORDER, PRIVACY_URL, TERMS_URL, isFakeStoreBuild } from '@/lib/products';
+import { PLAN_ORDER, SUBSCRIPTION_PLANS, PRIVACY_URL, TERMS_URL, isFakeStoreBuild } from '@/lib/products';
 import { getStoreAdapter, type StoreProduct } from '@/lib/store-adapter';
 import type { FakeStoreControl } from '@/lib/store-fake';
 import { useAccess, purchasePlan, restorePurchases, refreshEntitlements, nextMonthDay } from '@/lib/entitlement';
@@ -29,7 +29,8 @@ const periodWord = (p: StoreProduct['period']): string => (p === 'year' ? t('rok
 export function priceLine(p: StoreProduct): string {
   return p.period === null ? t('{price} jednorazowo', { price: p.displayPrice }) : t('{price}/{period}', { price: p.displayPrice, period: periodWord(p.period) });
 }
-const ctaLabel = (p: StoreProduct): string => (p.period === null ? t('Kup na zawsze') : t('Subskrybuj'));
+/** Przycisk zakupu: dożywotni „Kup na zawsze”; subskrypcja „Subskrybuj”, a gdy osoba ma już subskrypcję — „Zmień plan” (Apple pokazuje wtedy arkusz zmiany planu). */
+const ctaLabel = (p: StoreProduct, hasSub: boolean): string => (p.period === null ? t('Kup na zawsze') : hasSub ? t('Zmień plan') : t('Subskrybuj'));
 
 export default function PaywallScreen() {
   const th = useTheme(); const router = useRouter(); const headerOpts = useCloseHeader(); /* zasada 13.10.2026: „Zamknij” w nagłówku zawsze (także reason=settings); „Nie teraz” na dole zostaje */ const { reason } = useLocalSearchParams<{ reason?: string }>(); const view = useAccess();
@@ -37,12 +38,20 @@ export default function PaywallScreen() {
   const scrollRef = useRef<ScrollView>(null); const [busy, setBusy] = useState(false); const [note, setNote] = useState<string | null>(null);
   const load = useCallback(() => { setProducts('loading'); getStoreAdapter().getProducts().then(p => { setProducts(p); }).catch(() => setProducts('unavailable')); }, []);
   useEffect(load, [load]);
-  useEffect(() => { if (Array.isArray(products) && products.length && !products.some(p => p.plan === sel)) setSel(products[0].plan); }, [products, sel]);
+  /* Plany, które osoba już ma (aktywne uprawnienia): nie do kupienia drugi raz — Apple pokazałby „Już to subskrybujesz”; zaznaczenie przeskakuje na pierwszy plan do wyboru wg PLAN_ORDER */
+  const ownedPlans = new Set<EntitlementPlan>((view.entitlements ?? []).filter(e => entitlementActive(e, Date.now())).map(e => e.plan));
+  const ownedKey = [...ownedPlans].sort().join(',');
+  useEffect(() => {
+    if (!Array.isArray(products) || !products.length) return;
+    if (products.some(p => p.plan === sel) && !ownedPlans.has(sel)) return;
+    const next = PLAN_ORDER.find(pl => products.some(p => p.plan === pl) && !ownedPlans.has(pl)); if (next) setSel(next);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [products, sel, ownedKey]);
   const open = (url: string) => { Linking.openURL(url).catch(() => {}); };
   const lifetime = view.active?.plan === 'lifetime'; const subActive = (view.entitlements ?? []).some(e => e.plan !== 'lifetime' && entitlementActive(e, Date.now()));
-  const chosen = Array.isArray(products) ? products.find(p => p.plan === sel) : undefined;
+  const chosen = Array.isArray(products) ? products.find(p => p.plan === sel && !ownedPlans.has(p.plan)) : undefined; const hasSub = SUBSCRIPTION_PLANS.some(p => ownedPlans.has(p));
   const buy = async () => {
-    if (!chosen || busy) return; setBusy(true); setNote(null);
+    if (!chosen || busy || ownedPlans.has(chosen.plan)) return; setBusy(true); setNote(null);
     try {
       const r = await purchasePlan(chosen.plan);
       if (r.status === 'success') scrollRef.current?.scrollTo({ y: 0, animated: false }); /* karta „Masz pełną wersję” jest na górze; zakup robi się na dole długiego ekranu — bez przewinięcia nic się nie zmienia w polu widzenia (E2E 39825973624) */
@@ -59,7 +68,7 @@ export default function PaywallScreen() {
   const fake = isFakeStoreBuild() ? (getStoreAdapter() as unknown as FakeStoreControl) : null;
   return (
     <Screen><Stack.Screen options={headerOpts} /><ScrollView ref={scrollRef} testID="paywall-scroll" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
-      {reason === 'limit' && view.decision.resetsAt ? <View testID="paywall-limit" style={{ marginTop: 8, marginBottom: 12, gap: 6 }}>{/* wariant B (decyzja właściciela 22.10.2026): pochwała, jawny limit, kim jest autor, kiedy wracają dni */}
+      {view.active ? null : reason === 'limit' && view.decision.resetsAt ? <View testID="paywall-limit" style={{ marginTop: 8, marginBottom: 12, gap: 6 }}>{/* wariant B (decyzja właściciela 22.10.2026): pochwała, jawny limit, kim jest autor, kiedy wracają dni */}
         <Text accessibilityRole="header" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{t('Jesteśmy z Ciebie dumni!')}</Text>
         <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold }}>{t('W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Text>
         <Muted>{t('{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.', { app: appName(), date: fmtDate(nextMonthDay()) })}</Muted>
@@ -67,6 +76,7 @@ export default function PaywallScreen() {
 
       {view.active ? <View testID="paywall-owned" accessible accessibilityLanguage={lang()} style={{ borderWidth: 1, borderColor: th.line, borderRadius: RADIUS.group, padding: 12, gap: 4, marginBottom: 12, backgroundColor: th.surface }}>
         <Text accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{lifetime ? t('Masz dostęp na zawsze') : t('Masz pełną wersję')}</Text>
+        {!lifetime && SUBSCRIPTION_PLANS.includes(view.active.plan) ? <Muted testID="paywall-owned-plan">{t('Plan: {name}', { name: planName(view.active.plan) })}</Muted> : null}
         {view.active.source === 'family' ? <Muted>{t('Dostęp z Chmury rodzinnej')}</Muted> : null}
         {!lifetime && view.active.expiresAt != null ? <Muted>{view.active.source === 'code' ? t('Dostęp z kodu do {date}', { date: fmtDate(view.active.expiresAt) }) : t('Dostęp do {date}', { date: fmtDate(view.active.expiresAt) })}</Muted> : null}
         {lifetime && subActive ? <Muted>{t('Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płacić podwójnie.')}</Muted> : null}
@@ -78,19 +88,22 @@ export default function PaywallScreen() {
         {products === 'unavailable' ? <View testID="paywall-offline" style={{ gap: 8, paddingVertical: 8 }}><Muted>{t('Ceny są niedostępne bez połączenia z internetem.')}</Muted><Btn small title={t('Spróbuj ponownie')} style={{ alignSelf: 'flex-start' }} onPress={load} /></View> : null}
         {Array.isArray(products) && !products.length ? <View testID="paywall-empty" style={{ gap: 8, paddingVertical: 8 }}><Muted>{t('Sklep chwilowo niedostępny')}</Muted><Btn small title={t('Spróbuj ponownie')} style={{ alignSelf: 'flex-start' }} onPress={load} /></View> : null}
         {Array.isArray(products) ? PLAN_ORDER.map(plan => products.find(p => p.plan === plan)).filter((p): p is StoreProduct => !!p).map(p => {
-          const on = p.plan === sel; const line = priceLine(p);
-          return <Pressable key={p.plan} testID={`plan-${p.plan}`} accessibilityRole="radio" accessibilityState={{ selected: on }} accessibilityLanguage={lang()} accessibilityLabel={`${planName(p.plan)}, ${line}. ${planBlurb(p.plan)}`} onPress={() => setSel(p.plan)}
-            style={{ borderWidth: on ? 2 : 1, borderColor: on ? th.accent : th.line, borderRadius: RADIUS.group, padding: 12, marginBottom: 8, backgroundColor: th.surface, minHeight: 56 }}>
-            <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('callout'), ...FW.semibold }}>{planName(p.plan)}</Text>
+          const own = ownedPlans.has(p.plan); const on = !own && p.plan === sel; const line = priceLine(p);
+          return <Pressable key={p.plan} testID={`plan-${p.plan}`} accessibilityRole="radio" disabled={own} accessibilityState={{ selected: on, disabled: own }} accessibilityLanguage={lang()} accessibilityLabel={`${planName(p.plan)}, ${line}. ${planBlurb(p.plan)}${own ? `. ${t('Aktualny plan')}` : ''}`} onPress={() => setSel(p.plan)}
+            style={{ borderWidth: on ? 2 : 1, borderColor: on ? th.accent : th.line, borderRadius: RADIUS.group, padding: 12, marginBottom: 8, backgroundColor: th.surface, minHeight: 56, opacity: own ? 0.7 : 1 }}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 8 }}>
+              <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('callout'), ...FW.semibold }}>{planName(p.plan)}</Text>
+              {own ? <Text testID={`plan-${p.plan}-own`} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.accent, ...font('footnote'), ...FW.semibold }}>{t('Aktualny plan')}</Text> : null}
+            </View>
             <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{line}</Text>
             <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('footnote'), marginTop: 2 }}>{planBlurb(p.plan)}</Text>
           </Pressable>; }) : null}
-        {chosen ? <Btn kind="primary" block title={ctaLabel(chosen)} style={{ marginTop: 4 }} onPress={() => { void buy(); }} /> : null}
+        {chosen ? <Btn kind="primary" block title={ctaLabel(chosen, hasSub)} style={{ marginTop: 4 }} onPress={() => { void buy(); }} /> : null}
         {chosen && chosen.period !== null ? <Muted style={{ ...font('footnote'), marginTop: 8 }}>{t('Subskrypcja odnawia się automatycznie, dopóki jej nie anulujesz w ustawieniach konta Apple.')}</Muted> : null}
       </> : null}
 
       {note ? <Text testID="paywall-note" accessibilityLanguage={lang()} style={{ color: th.text, marginTop: 10 }}>{note}</Text> : null}
-      <Muted style={{ ...font('footnote'), marginTop: 12 }}>{t('Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Muted>
+      {view.active ? null : <Muted style={{ ...font('footnote'), marginTop: 12 }}>{t('Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Muted>}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>
         <Btn small title={t('Przywróć zakupy')} onPress={() => { void restore(); }} />
         <Btn small title={t('Zrealizuj kod')} onPress={() => { void store(() => getStoreAdapter().redeemCode().then(() => refreshEntitlements())); }} />
