@@ -28,7 +28,7 @@ export type Prop =
   | { k: 'plate'; c: V3; r?: number; held?: boolean | 'R' | 'L' }                                           /* talerz trzymany: tarcza w płaszczyźnie y–z (powierzchnią do przodu), środek */
   | { k: 'ball'; c: V3; r?: number; held?: boolean | 'R' | 'L' }                                            /* kula, środek; domyślnie trzymana (piłka lekarska); held: false = leży na podłodze (piłka gimnastyczna) */
   | { k: 'roll'; c: V3; r: number; len: number; held?: boolean }                                                         /* wałek (roller piankowy): walec wzdłuż z, środek */
-  | { k: 'bench'; seatFrom: V2; hinge: V2; backTo: V2; legH: number; w?: number; rollers?: boolean }              /* ławka: siedzisko od-do, zawias, koniec oparcia */
+  | { k: 'bench'; seatFrom: V2; hinge: V2; backTo: V2; legH: number; w?: number; rollers?: boolean; backFrame?: boolean }              /* ławka: siedzisko od-do, zawias, koniec oparcia */
   | { k: 'preacher'; top: V2; bottom: V2; seat: V2 }                                                      /* modlitewnik: pochyła podpórka na ramiona (górny koniec przy osobie, dolny dalej) i małe siedzisko (środek) */
   | { k: 'sled'; x: number; h: number; len: number; posts: boolean }                                    /* sanie obciążeniowe: słupki uchwytów w x (wysokość h, z = ±EQUIP.sledHalf), podstawa od x o len w stronę +x; posts = dłonie na słupkach */
   | { k: 'rope'; x: number; z: number; top: number; bottom: number; held?: boolean | 'R' | 'L' }      /* lina pionowa (do wspinania): od bottom do top w (x, z) */

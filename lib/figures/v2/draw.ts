@@ -163,14 +163,22 @@ export function bodyShapes(sk: Skeleton, view: View): Shape[] {
 
 const rect = (x0: number, y0: number, x1: number, y1: number): V2[] => [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
 
+/** Położenie nóg pod oparciem maszyny (ułamek długości oparcia od zawiasu). */
+const BACK_FRAME_T: [number, number] = [0.08, 0.75];
+
 /** Wielokąty ławki w widoku z boku: siedzisko, oparcie (górna krawędź = powierzchnia, na której leży osoba) i x nóg. Wspólne dla rysunku i kolizji. */
-export function benchPolys(pr: Extract<Prop, { k: 'bench' }>): { seat: V2[]; back: V2[]; legs: number[] } {
+export function benchPolys(pr: Extract<Prop, { k: 'bench' }>): { seat: V2[]; back: V2[]; legs: number[]; legTops: number[] } {
   const T = EQUIP.benchPad; const [sx0, sy] = pr.seatFrom, [hx, hy] = pr.hinge, [bx, by] = pr.backTo;
   const dir: V2 = [bx - hx, by - hy]; const L = Math.hypot(dir[0], dir[1]) || 1; let n: V2 = [-dir[1] / L, dir[0] / L]; if (n[1] < 0) n = [-n[0], -n[1]]; /* normalna w górę */
+  const back: V2[] = [[hx, hy - T], [bx - n[0] * T, by - n[1] * T], [bx, by], [hx, hy]];
+  /* Oparcie bez siedziska (maszyny: backFrame): nogi stoją pod spodem oparcia i dochodzą do niego (nie wiszą pod zawiasem) — jedna przy zawiasie, druga w trzech czwartych długości. */
+  const pod = (t: number): V2 => [back[0][0] + (back[1][0] - back[0][0]) * t, back[0][1] + (back[1][1] - back[0][1]) * t];
+  const frame = pr.backFrame ? [pod(BACK_FRAME_T[0]), pod(BACK_FRAME_T[1])] : null; const seatTop = Math.max(sy - EQUIP.benchPad, 0);
   return {
     seat: [[sx0, sy - T], [hx, hy - T], [hx, hy], [sx0, sy]],
-    back: [[hx, hy - T], [bx - n[0] * T, by - n[1] * T], [bx, by], [hx, hy]],
-    legs: [sx0 + Math.sign(hx - sx0) * 8, bx + Math.sign(hx - bx) * 6],
+    back,
+    legs: frame ? frame.map(p => p[0]) : [sx0 + Math.sign(hx - sx0) * 8, bx + Math.sign(hx - bx) * 6],
+    legTops: frame ? frame.map(p => p[1]) : [seatTop, seatTop],
   };
 }
 
@@ -213,7 +221,7 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         if (side) {
           S.push({ k: 'poly', pts: bp.seat, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-30), id: 'benchSeat' });
           S.push({ k: 'poly', pts: bp.back, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-29), id: 'benchBack' });
-          for (const x of bp.legs) S.push({ k: 'line', a: [x, 0], b: [x, Math.max(pr.seatFrom[1] - E.benchPad, 0)], w: E.benchLegW, role: 'frame', z: zb(-31), id: 'benchLeg' });
+          bp.legs.forEach((x, i) => S.push({ k: 'line', a: [x, 0], b: [x, bp.legTops[i]], w: E.benchLegW, role: 'frame', z: zb(-31), id: 'benchLeg' }));
           if (pr.rollers) S.push({ k: 'circle', c: ro, r: E.rollerR, fill: 'pad', stroke: 'frame', w: 0.8, z: zb(-28), id: 'benchRoller' });
         } else if (view === 'top') {
           S.push({ k: 'poly', pts: rect(-w / 2, pr.seatFrom[0], w / 2, pr.backTo[0]), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-30), id: 'benchSeat' });

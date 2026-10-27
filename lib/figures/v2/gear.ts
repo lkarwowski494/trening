@@ -210,7 +210,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     capOk: (cap, g) => { const k = g.kat ?? 0; const r = cap === 'bench.flat' ? BENCH_KAT.flat : cap === 'bench.incline' ? BENCH_KAT.incline : cap === 'bench.decline' ? BENCH_KAT.decline : null; return !r || (k >= r[0] && k <= r[1]); },
     props: g => {
       const th = rad(g.kat ?? 0); const seatY = g.top ?? ((g.kat ?? 0) < 0 ? BENCH.declineSeat : BENCH.seatTop); const H: [number, number] = [g.x ?? 0, seatY]; const L = g.dlugosc ?? BENCH.backLen;
-      return [{ k: 'bench', seatFrom: [H[0] + (g.siedzisko ?? BENCH.seatLen), seatY], hinge: H, backTo: [H[0] - Math.cos(th) * L, H[1] + Math.sin(th) * L], legH: seatY, ...(g.walki ? { rollers: true } : {}) }];
+      return [{ k: 'bench', seatFrom: [H[0] + (g.siedzisko ?? BENCH.seatLen), seatY], hinge: H, backTo: [H[0] - Math.cos(th) * L, H[1] + Math.sin(th) * L], legH: seatY, ...(g.walki ? { rollers: true } : {}), ...((g.siedzisko ?? BENCH.seatLen) <= SEAT_LEN.min ? { backFrame: true } : {}) }];
     },
     contacts: () => BENCH_CONTACTS,
     check: g => [
