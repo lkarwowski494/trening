@@ -1,0 +1,559 @@
+{
+ "rodzina": "calf_raise",
+ "wygenerowano": "2026-10-27T10:26:37.793Z",
+ "wyjatki": {},
+ "przyblizenia": {},
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Łydki na stopniu",
+   "obraz": "-ydki-na-stopniu-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -0.5,
+     "x1": 48,
+     "top": 8
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -10.5,
+     "max": 8.6
+    },
+    "knee": {
+     "min": 2.9,
+     "max": 6.9
+    },
+    "ankle": {
+     "min": -42.2,
+     "max": 20.9
+    },
+    "elbow": {
+     "min": 35.2,
+     "max": 35.2
+    },
+    "shSag": {
+     "min": 0,
+     "max": 0
+    },
+    "shElev": {
+     "min": 22.9,
+     "max": 22.9
+    },
+    "shAbd": {
+     "min": 22.9,
+     "max": 22.9
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "dwa przyrządy"
+    ],
+    "ruch": [
+     "Wspinaj się na palce jak najwyżej, potem opuść pięty, aż poczujesz rozciągnięcie łydek."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "wspiecie",
+    "kolana_proste"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Standing Calf Raise",
+   "obraz": "Standing-Calf-Raise-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -0.5,
+     "x1": 48,
+     "top": 6
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "prosta",
+     "kat": 90,
+     "punkt": "miednica",
+     "trzyma": "R",
+     "x": 0,
+     "y": 92.1,
+     "z": 0,
+     "dlugosc": 20.2
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -10.5,
+     "max": 8.6
+    },
+    "knee": {
+     "min": 2.9,
+     "max": 6.9
+    },
+    "ankle": {
+     "min": -42.2,
+     "max": 20.9
+    },
+    "elbow": {
+     "min": 134.3,
+     "max": 134.3
+    },
+    "shSag": {
+     "min": -40.1,
+     "max": -40.1
+    },
+    "shElev": {
+     "min": 49.3,
+     "max": 49.3
+    },
+    "shAbd": {
+     "min": 31.5,
+     "max": 31.5
+    }
+   },
+   "bledy_w_pozie": [
+    "calf.mis.partial"
+   ],
+   "bledy_wskazowki_id": [
+    "calf.mis.partial"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: maszyna do łydek (prowadnica, punkt: dłonie albo miednica; wspięcia: kostki) (sprzet: rodzaj \"dzwignia\")"
+    ],
+    "ruch": [
+     "Wspinaj się na palce jak najwyżej, potem opuść pięty, aż poczujesz rozciągnięcie łydek."
+    ],
+    "bledy_wskazowki": [
+     "calf.mis.partial (Skrócony zakres — bez pełnego wspięcia i opuszczenia.)"
+    ]
+   },
+   "reguly_sensu": [
+    "wspiecie",
+    "kolana_proste"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Smith Machine Calf Raise",
+   "obraz": "Smith-Machine-Calf-Raise-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -0.5,
+     "x1": 48,
+     "top": 6
+    },
+    {
+     "rodzaj": "smith",
+     "x": -12.8,
+     "h": 200
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -10.5,
+     "max": 8.6
+    },
+    "knee": {
+     "min": 2.9,
+     "max": 6.9
+    },
+    "ankle": {
+     "min": -42.2,
+     "max": 20.9
+    },
+    "elbow": {
+     "min": 146.6,
+     "max": 146.6
+    },
+    "shSag": {
+     "min": -8,
+     "max": -8
+    },
+    "shElev": {
+     "min": 9.8,
+     "max": 9.8
+    },
+    "shAbd": {
+     "min": 5.7,
+     "max": 5.7
+    }
+   },
+   "bledy_w_pozie": [
+    "calf.mis.partial"
+   ],
+   "bledy_wskazowki_id": [
+    "calf.mis.partial"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: suwnica Smitha (sprzet: rodzaj \"smith\" + sztanga podążająca za chwytem)"
+    ],
+    "ruch": [
+     "Wspinaj się na palce jak najwyżej, potem opuść pięty, aż poczujesz rozciągnięcie łydek.",
+     "Zatrzymaj się chwilę na górze i opuszczaj powoli."
+    ],
+    "bledy_wskazowki": [
+     "calf.mis.partial (Skrócony zakres — bez pełnego wspięcia i opuszczenia.)"
+    ]
+   },
+   "reguly_sensu": [
+    "wspiecie",
+    "kolana_proste"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Calf Raise (sztanga)",
+   "obraz": "Calf-Raise-sztanga--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -0.5,
+     "x1": 48,
+     "top": 6
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -10.5,
+     "max": 8.6
+    },
+    "knee": {
+     "min": 2.9,
+     "max": 6.9
+    },
+    "ankle": {
+     "min": -42.2,
+     "max": 20.9
+    },
+    "elbow": {
+     "min": 146.6,
+     "max": 146.6
+    },
+    "shSag": {
+     "min": -8,
+     "max": -8
+    },
+    "shElev": {
+     "min": 9.8,
+     "max": 9.8
+    },
+    "shAbd": {
+     "min": 5.7,
+     "max": 5.7
+    }
+   },
+   "bledy_w_pozie": [
+    "calf.mis.partial"
+   ],
+   "bledy_wskazowki_id": [
+    "calf.mis.partial"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga + stojak (sprzet: rodzaj \"slupek\" z polem hak)"
+    ],
+    "ruch": [
+     "Wspinaj się na palce jak najwyżej, potem opuść pięty, aż poczujesz rozciągnięcie łydek.",
+     "Zatrzymaj się chwilę na górze i opuszczaj powoli."
+    ],
+    "bledy_wskazowki": [
+     "calf.mis.partial (Skrócony zakres — bez pełnego wspięcia i opuszczenia.)"
+    ]
+   },
+   "reguly_sensu": [
+    "wspiecie",
+    "kolana_proste"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Donkey Calf Raise",
+   "obraz": "Donkey-Calf-Raise-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -0.5,
+     "x1": 48,
+     "top": 6
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": 57.7,
+     "x1": 89.7,
+     "top": 62
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "prosta",
+     "kat": 90,
+     "punkt": "miednica",
+     "trzyma": "R",
+     "x": 0,
+     "y": 92.1,
+     "z": 0,
+     "dlugosc": 20.2
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 77.7,
+     "max": 86
+    },
+    "knee": {
+     "min": 2.9,
+     "max": 6.9
+    },
+    "ankle": {
+     "min": -42.2,
+     "max": 20.9
+    },
+    "elbow": {
+     "min": 74.7,
+     "max": 107.3
+    },
+    "shSag": {
+     "min": 66.4,
+     "max": 76.2
+    },
+    "shElev": {
+     "min": 69.8,
+     "max": 77.4
+    },
+    "shAbd": {
+     "min": 23.6,
+     "max": 30.3
+    }
+   },
+   "bledy_w_pozie": [
+    "calf.mis.partial"
+   ],
+   "bledy_wskazowki_id": [
+    "calf.mis.partial"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: maszyna do łydek (prowadnica, punkt: dłonie albo miednica; wspięcia: kostki) (sprzet: rodzaj \"dzwignia\")"
+    ],
+    "ruch": [
+     "Wspinaj się na palce jak najwyżej, potem opuść pięty, aż poczujesz rozciągnięcie łydek.",
+     "Zatrzymaj się chwilę na górze i opuszczaj powoli."
+    ],
+    "bledy_wskazowki": [
+     "calf.mis.partial (Skrócony zakres — bez pełnego wspięcia i opuszczenia.)"
+    ]
+   },
+   "reguly_sensu": [
+    "wspiecie",
+    "kolana_proste"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Single Leg Calf Raise",
+   "obraz": "Single-Leg-Calf-Raise-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -0.5,
+     "x1": 48,
+     "top": 6
+    },
+    {
+     "rodzaj": "sciana",
+     "x": 40,
+     "h": 220,
+     "przed": true
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -10.5,
+     "max": 16.9
+    },
+    "knee": {
+     "min": 2.9,
+     "max": 85.7
+    },
+    "ankle": {
+     "min": -42.2,
+     "max": 20.9
+    },
+    "elbow": {
+     "min": 95,
+     "max": 107.3
+    },
+    "shSag": {
+     "min": 15.2,
+     "max": 27
+    },
+    "shElev": {
+     "min": 25.3,
+     "max": 34
+    },
+    "shAbd": {
+     "min": 20.4,
+     "max": 21.4
+    }
+   },
+   "bledy_w_pozie": [
+    "calf.mis.partial"
+   ],
+   "bledy_wskazowki_id": [
+    "calf.mis.partial"
+   ],
+   "opis": {
+    "sens": [
+     "jeden przyrząd (jedna ręka)"
+    ],
+    "ruch": [
+     "Wspinaj się na palce jak najwyżej, potem opuść pięty, aż poczujesz rozciągnięcie łydek.",
+     "Zatrzymaj się chwilę na górze i opuszczaj powoli."
+    ],
+    "bledy_wskazowki": [
+     "calf.mis.partial (Skrócony zakres — bez pełnego wspięcia i opuszczenia.)"
+    ]
+   },
+   "reguly_sensu": [
+    "wspiecie_jednonoz",
+    "kolana_proste_podporowa"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}

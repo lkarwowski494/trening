@@ -1,0 +1,265 @@
+{
+ "rodzina": "back_extension",
+ "wygenerowano": "2026-10-27T10:26:12.441Z",
+ "wyjatki": {},
+ "przyblizenia": {},
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Back Extension",
+   "obraz": "Back-Extension-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "rzymska",
+     "x": 0,
+     "top": 75,
+     "kat": 45,
+     "dlugosc": 61.5,
+     "y": 53.5
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 9.7,
+     "max": 84.7
+    },
+    "knee": {
+     "min": 5.5,
+     "max": 5.5
+    },
+    "ankle": {
+     "min": -36.8,
+     "max": -36.8
+    },
+    "elbow": {
+     "min": 92.3,
+     "max": 94.3
+    },
+    "shSag": {
+     "min": 37.5,
+     "max": 119.4
+    },
+    "shElev": {
+     "min": 48.8,
+     "max": 114
+    },
+    "shAbd": {
+     "min": 33.6,
+     "max": 34.4
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: ławka do prostowania tułowia (rzymska, GHD, glute-ham, reverse hyper) (sprzet: rodzaj \"rzymska\") albo ławka do prostowania tułowia (rzymska, GHD, glute-ham, reverse hyper) (sprzet: rodzaj \"rzymska\")",
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Opuść tułów, zginając się w biodrach mniej więcej do kąta prostego; wróć do linii prostej z nogami."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "zgiecie_w_biodrach",
+    "wyprost_na_gorze",
+    "plecy_neutralne"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Reverse Hyperextension",
+   "obraz": "Reverse-Hyperextension-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "rzymska",
+     "x": 0,
+     "top": 92,
+     "kat": 0,
+     "walki": false
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.186,
+    0.272,
+    0.343,
+    0.408,
+    0.47,
+    0.53,
+    0.592,
+    0.657,
+    0.728,
+    0.814,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.186,
+    0.272,
+    0.343,
+    0.408,
+    0.47,
+    0.53,
+    0.592,
+    0.657,
+    0.728,
+    0.814,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 9.4,
+     "max": 84.8
+    },
+    "knee": {
+     "min": 3.4,
+     "max": 9.8
+    },
+    "ankle": {
+     "min": 4.8,
+     "max": 5.4
+    },
+    "elbow": {
+     "min": 130,
+     "max": 130
+    },
+    "shSag": {
+     "min": 110.6,
+     "max": 110.6
+    },
+    "shElev": {
+     "min": 107.4,
+     "max": 107.4
+    },
+    "shAbd": {
+     "min": 31.7,
+     "max": 31.7
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: ławka do prostowania tułowia (rzymska, GHD, glute-ham, reverse hyper) (sprzet: rodzaj \"rzymska\")"
+    ],
+    "ruch": [
+     "Na górze kończ w linii prostej — bez wyginania lędźwi w łuk.",
+     "Ruch płynny w obie strony, bez szarpania."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "zgiecie_w_biodrach",
+    "wyprost_na_gorze",
+    "plecy_neutralne"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Lower Back Curl",
+   "obraz": "Lower-Back-Curl-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 130
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -10.6,
+     "max": 9.4
+    },
+    "knee": {
+     "min": 5.2,
+     "max": 5.2
+    },
+    "ankle": {
+     "min": -0.1,
+     "max": -0.1
+    },
+    "elbow": {
+     "min": 73.8,
+     "max": 76.2
+    },
+    "shSag": {
+     "min": -10.5,
+     "max": -9.7
+    },
+    "shElev": {
+     "min": 42.8,
+     "max": 44.1
+    },
+    "shAbd": {
+     "min": 41.9,
+     "max": 43.1
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "cobra.mis"
+   ],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "cobra.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "miednica_podpora",
+    "barki_w_gore"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": [
+  {
+   "regula": "manifest_opis_bledu",
+   "szczegol": "Lower Back Curl: błąd „cobra.mis” nie ma opisu w lib/cues/text/pl.json ani wyjątku z powodem"
+  }
+ ]
+}

@@ -1,0 +1,301 @@
+{
+ "rodzina": "cable_row",
+ "wygenerowano": "2026-10-27T10:29:12.331Z",
+ "wyjatki": {},
+ "przyblizenia": {
+  "Seated Cable Row": "przybliżenie: siedzisko maszyny jako ławka płaska (bez oparcia), podnóżek jako niska skrzynia; kolana ≈ 30° (kontrakt nie ma rysunku stacji do wiosłowania)",
+  "Wiosłowanie na linkach (siedząc)": "przybliżenie: siedzisko maszyny jako ławka płaska (bez oparcia), podnóżek jako niska skrzynia; kolana ≈ 30°",
+  "Cable Rope Rear-Delt Rows": "przybliżenie: siedzisko maszyny jako ławka płaska (bez oparcia), podnóżek jako niska skrzynia; kolana ≈ 30°"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Seated Cable Row",
+   "obraz": "Seated-Cable-Row-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -60,
+     "x1": 160
+    },
+    {
+     "rodzaj": "lawka",
+     "x": -4,
+     "top": 43,
+     "kat": 0,
+     "dlugosc": 40,
+     "siedzisko": 20
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": 76.7,
+     "x1": 105.7,
+     "top": 12
+    },
+    {
+     "rodzaj": "wyciag",
+     "x": 132,
+     "y": 55,
+     "z": 0,
+     "h": 230,
+     "chwyt": "drazek"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 76.6,
+     "max": 76.6
+    },
+    "knee": {
+     "min": 25.2,
+     "max": 25.2
+    },
+    "ankle": {
+     "min": -52.6,
+     "max": -52.6
+    },
+    "elbow": {
+     "min": 19.7,
+     "max": 99.9
+    },
+    "shSag": {
+     "min": -28.7,
+     "max": 69.8
+    },
+    "shElev": {
+     "min": 9.4,
+     "max": 69.9
+    },
+    "shAbd": {
+     "min": 2.3,
+     "max": 15.1
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: stacja do wiosłowania (bloczek niski) (sprzet: rodzaj \"wyciag\", bloczek niski: y 5–60 cm) albo wyciąg z bloczkiem niskim (sprzet: rodzaj \"wyciag\", bloczek niski: y 5–60 cm)"
+    ],
+    "ruch": [
+     "Przyciągnij uchwyt do brzucha, łokcie blisko tułowia; wróć do wyprostu rąk."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "zakres_lokcia",
+    "lokiec_za_plecami",
+    "plecy_neutralne",
+    "tulow_stabilny"
+   ],
+   "przyblizenie": "przybliżenie: siedzisko maszyny jako ławka płaska (bez oparcia), podnóżek jako niska skrzynia; kolana ≈ 30° (kontrakt nie ma rysunku stacji do wiosłowania)"
+  },
+  {
+   "cwiczenie": "Wiosłowanie na linkach (siedząc)",
+   "obraz": "Wios-owanie-na-linkach-siedz-c--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -60,
+     "x1": 160
+    },
+    {
+     "rodzaj": "lawka",
+     "x": -4,
+     "top": 43,
+     "kat": 0,
+     "dlugosc": 40,
+     "siedzisko": 20
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": 76.7,
+     "x1": 105.7,
+     "top": 12
+    },
+    {
+     "rodzaj": "wyciag",
+     "x": 132,
+     "y": 55,
+     "z": 0,
+     "h": 230,
+     "chwyt": "uchwyt"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 76.6,
+     "max": 76.6
+    },
+    "knee": {
+     "min": 25.2,
+     "max": 25.2
+    },
+    "ankle": {
+     "min": -52.6,
+     "max": -52.6
+    },
+    "elbow": {
+     "min": 19,
+     "max": 100.3
+    },
+    "shSag": {
+     "min": -28.8,
+     "max": 70.2
+    },
+    "shElev": {
+     "min": 11.5,
+     "max": 70.3
+    },
+    "shAbd": {
+     "min": 2.9,
+     "max": 17
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: stacja do wiosłowania (bloczek niski) (sprzet: rodzaj \"wyciag\", bloczek niski: y 5–60 cm) albo wyciąg z bloczkiem niskim (sprzet: rodzaj \"wyciag\", bloczek niski: y 5–60 cm)"
+    ],
+    "ruch": [
+     "Przyciągnij uchwyt do brzucha, łokcie blisko tułowia; wróć do wyprostu rąk."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "zakres_lokcia",
+    "lokiec_za_plecami",
+    "plecy_neutralne",
+    "tulow_stabilny"
+   ],
+   "przyblizenie": "przybliżenie: siedzisko maszyny jako ławka płaska (bez oparcia), podnóżek jako niska skrzynia; kolana ≈ 30°"
+  },
+  {
+   "cwiczenie": "Cable Rope Rear-Delt Rows",
+   "obraz": "Cable-Rope-Rear-Delt-Rows-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -60,
+     "x1": 160
+    },
+    {
+     "rodzaj": "lawka",
+     "x": -4,
+     "top": 43,
+     "kat": 0,
+     "dlugosc": 40,
+     "siedzisko": 20
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": 76.7,
+     "x1": 105.7,
+     "top": 12
+    },
+    {
+     "rodzaj": "wyciag",
+     "x": 132,
+     "y": 55,
+     "z": 0,
+     "h": 230,
+     "chwyt": "lina"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 76.6,
+     "max": 76.6
+    },
+    "knee": {
+     "min": 25.2,
+     "max": 25.2
+    },
+    "ankle": {
+     "min": -52.6,
+     "max": -52.6
+    },
+    "elbow": {
+     "min": 19.2,
+     "max": 143.9
+    },
+    "shSag": {
+     "min": -86.3,
+     "max": 95.9
+    },
+    "shElev": {
+     "min": 87.9,
+     "max": 94.2
+    },
+    "shAbd": {
+     "min": 22.7,
+     "max": 89.6
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: stacja do wiosłowania (bloczek niski) (sprzet: rodzaj \"wyciag\", bloczek niski: y 5–60 cm) albo wyciąg z bloczkiem niskim (sprzet: rodzaj \"wyciag\", bloczek niski: y 5–60 cm)"
+    ],
+    "ruch": [
+     "Prowadź ruch łokciami — cofaj je w tył.",
+     "Tułów stabilny i wyprostowany."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "zakres_lokcia",
+    "lokiec_za_plecami",
+    "tulow_stabilny"
+   ],
+   "przyblizenie": "przybliżenie: siedzisko maszyny jako ławka płaska (bez oparcia), podnóżek jako niska skrzynia; kolana ≈ 30°"
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}

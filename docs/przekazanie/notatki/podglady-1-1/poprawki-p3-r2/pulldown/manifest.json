@@ -1,0 +1,109 @@
+{
+ "rodzina": "pulldown",
+ "wygenerowano": "2026-10-27T10:30:02.414Z",
+ "wyjatki": {},
+ "przyblizenia": {
+  "Wide-Grip Pulldown Behind The Neck": "przybliżenie: bez oparcia za plecami (drążek przechodzi za głową) i bez poduszki na uda; siedzisko jako ławka płaska, tułów pionowo, głowa pochylona w przód w fazie przejścia drążka"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Wide-Grip Pulldown Behind The Neck",
+   "obraz": "Wide-Grip-Pulldown-Behind-The-Neck-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -60,
+     "x1": 140
+    },
+    {
+     "rodzaj": "lawka",
+     "x": -4,
+     "top": 45,
+     "kat": 0,
+     "dlugosc": 40,
+     "siedzisko": 20
+    },
+    {
+     "rodzaj": "wyciag",
+     "x": -38,
+     "y": 222,
+     "z": 0,
+     "h": 235,
+     "chwyt": "drazek"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 78,
+     "max": 78
+    },
+    "knee": {
+     "min": 75.8,
+     "max": 75.8
+    },
+    "ankle": {
+     "min": -3.8,
+     "max": -3.8
+    },
+    "elbow": {
+     "min": 19.4,
+     "max": 131.6
+    },
+    "shSag": {
+     "min": -84.2,
+     "max": 265
+    },
+    "shElev": {
+     "min": 29.9,
+     "max": 147.3
+    },
+    "shAbd": {
+     "min": 28.3,
+     "max": 62.5
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: wyciąg górny do ściągania (bloczek wysoki) (sprzet: rodzaj \"wyciag\", bloczek wysoki: y 150–240 cm) albo wyciąg z bloczkiem wysokim (sprzet: rodzaj \"wyciag\", bloczek wysoki: y 150–240 cm)"
+    ],
+    "ruch": [
+     "Zacznij ruch od ściągnięcia łopatek w dół.",
+     "Na górze wyprostuj ręce do końca."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "wyprost_u_gory"
+   ],
+   "przyblizenie": "przybliżenie: bez oparcia za plecami (drążek przechodzi za głową) i bez poduszki na uda; siedzisko jako ławka płaska, tułów pionowo, głowa pochylona w przód w fazie przejścia drążka"
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}

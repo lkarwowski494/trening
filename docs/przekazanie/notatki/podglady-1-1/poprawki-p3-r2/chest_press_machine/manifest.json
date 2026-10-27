@@ -1,0 +1,211 @@
+{
+ "rodzina": "chest_press_machine",
+ "wygenerowano": "2026-10-27T10:29:38.016Z",
+ "wyjatki": {},
+ "przyblizenia": {
+  "Leverage Decline Chest Press": "przybliżenie: dźwignia obrotowa jako schemat, oparcie ujemne (−20°) z wałkami na nogi",
+  "Machine Shoulder Press": "przybliżenie: jedna dźwignia obrotowa po prawej stronie (oś przed osobą, z = 30 cm — opis kontraktu: dźwignia z boku, nie w osi ciała), uchwyty startowe na wysokości barków"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Leverage Decline Chest Press",
+   "obraz": "Leverage-Decline-Chest-Press-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0,
+     "top": 60,
+     "kat": -20,
+     "dlugosc": 75,
+     "walki": true
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "obrot",
+     "x": -0.4,
+     "y": 119.9,
+     "z": 0,
+     "dlugosc": 70,
+     "punkt": "dlonie",
+     "trzyma": "obie"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 32,
+     "max": 32
+    },
+    "knee": {
+     "min": 111.4,
+     "max": 111.4
+    },
+    "ankle": {
+     "min": -28.7,
+     "max": -28.7
+    },
+    "elbow": {
+     "min": 22.3,
+     "max": 148.3
+    },
+    "shSag": {
+     "min": -29.7,
+     "max": 78
+    },
+    "shElev": {
+     "min": 30.8,
+     "max": 78.3
+    },
+    "shAbd": {
+     "min": 12.2,
+     "max": 32.4
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: maszyna dźwigniowa (obrót, punkt: dłonie) (sprzet: rodzaj \"dzwignia\")"
+    ],
+    "ruch": [
+     "Wypchnij uchwyty przed siebie do wyprostu rąk; wracaj powoli.",
+     "Łopatki zostają przy oparciu — nie wysuwaj barków w przód na końcu ruchu."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "zakres_klatka",
+    "plecy_przy_oparciu"
+   ],
+   "przyblizenie": "przybliżenie: dźwignia obrotowa jako schemat, oparcie ujemne (−20°) z wałkami na nogi"
+  },
+  {
+   "cwiczenie": "Machine Shoulder Press",
+   "obraz": "Machine-Shoulder-Press-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0,
+     "top": 45,
+     "kat": 85,
+     "dlugosc": 75,
+     "siedzisko": 40
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "obrot",
+     "x": 77.9,
+     "y": 153.9,
+     "z": 30,
+     "dlugosc": 70,
+     "punkt": "dlonie",
+     "trzyma": "R"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 71.8,
+     "max": 71.8
+    },
+    "knee": {
+     "min": 78,
+     "max": 78
+    },
+    "ankle": {
+     "min": -2.5,
+     "max": -2.5
+    },
+    "elbow": {
+     "min": 20.7,
+     "max": 145.8
+    },
+    "shSag": {
+     "min": 23,
+     "max": 167.7
+    },
+    "shElev": {
+     "min": 30.4,
+     "max": 160.9
+    },
+    "shAbd": {
+     "min": 14.8,
+     "max": 43.6
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: maszyna do wyciskania nad głowę (obrót, punkt: dłonie) (sprzet: rodzaj \"dzwignia\")"
+    ],
+    "ruch": [
+     "Wypchnij ciężar nad głowę do wyprostu rąk; opuść go z powrotem do barków."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "start_przy_barkach",
+    "nad_glowa",
+    "plecy_przy_oparciu"
+   ],
+   "przyblizenie": "przybliżenie: jedna dźwignia obrotowa po prawej stronie (oś przed osobą, z = 30 cm — opis kontraktu: dźwignia z boku, nie w osi ciała), uchwyty startowe na wysokości barków"
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}

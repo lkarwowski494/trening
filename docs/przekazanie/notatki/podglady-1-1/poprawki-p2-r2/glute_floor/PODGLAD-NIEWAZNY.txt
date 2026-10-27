@@ -1,0 +1,2 @@
+Podgląd NIE trafia do recenzji:
+- kontrola manifestu zgłasza 2 niezgodności (manifest_opis_bledu, manifest_opis_bledu)
