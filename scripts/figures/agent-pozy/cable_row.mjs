@@ -10,6 +10,15 @@ const WOLNA_BIODRO = (S, sg) => ({ g: [S[0] + 6, S[1] - 45, sg * 24], pole: [0.2
 
 /** Siedzenie na ławce (top 43): miednica x = 12, tułów pionowo, stopy na podłodze, kolana 90°. */
 function siedz() { const m = [12, 43 + 9.5 + 0.3]; return { m, nogi: { R: noga3([54, 7, 20], [1, 0.3, 0.1]), L: noga3([54, 7, -20], [1, 0.3, -0.1]) } }; }
+/** Siedzenie przy wyciągu dolnym (recenzja ruchu 1.1, 27.10.2026, błąd nr 1: postać siedziała w powietrzu): siedzisko (skrzynia, top 43, uproszczenie siedziska maszyny bez oparcia) pod miednicą,
+ * podnóżek (skrzynia top 12) pod stopami, kolana zgięte ≈ 30° („kolana lekko ugięte”, scr.sit): odległość biodro–kostka dla zgięcia 30° z BODY (udo, goleń), kostka na podnóżku. */
+export const SIEDZENIE_WYC = { top: 43, podnozekTop: 12, zgiecieKolana: 30 };
+function siedzWyc() {
+  const b = BODY(); const q = SIEDZENIE_WYC; const m = [12, q.top + 9.5 + 0.3]; const d = Math.sqrt(b.thigh ** 2 + b.shank ** 2 - 2 * b.thigh * b.shank * Math.cos((180 - q.zgiecieKolana) * R));
+  const ay = q.podnozekTop + b.ankleH; const ax = r1(m[0] + Math.sqrt(d * d - (m[1] - ay) ** 2));
+  const dodatki = [{ rodzaj: 'lawka', x: -4, top: q.top, kat: 0, dlugosc: 40, siedzisko: 20 }, { rodzaj: 'skrzynia', x0: r1(ax - b.heelBack - 2), x1: r1(ax + b.toeFwd + 2), top: q.podnozekTop }];
+  return { m, nogi: { R: noga3([ax, ay, 20], [1, 0.3, 0.1]), L: noga3([ax, ay, -20], [1, 0.3, -0.1]) }, dodatki };
+}
 /** Ręce w ruchu wiosłowania: H0 (wyprost, 63 cm od barku) → H1 (dłonie przy brzuchu/klatce), biegun łokcia za plecy. o: { zr, dy0, x1, dy1, pole, obrot, jedna }. */
 function rece(S0, o) {
   return (u) => { const out = {}; for (const s of SIDES) { const sg = POL(s); const S = [S0[0], S0[1], sg * 19]; const pracuje = !o.jedna || o.jedna === s;
@@ -42,16 +51,18 @@ export const WYJATKI = {
   'Sled Row': 'OTWARTE — brak źródła ruchu (brak wskazówek, zestaw „open”; sanie; figury-sens.json → cable_row.otwarte); wstrzymane do czasu źródła',
 };
 export const PRZYBLIZENIA = {
+  'Seated Cable Row': 'przybliżenie: siedzisko maszyny jako ławka płaska (bez oparcia), podnóżek jako niska skrzynia; kolana ≈ 30° (kontrakt nie ma rysunku stacji do wiosłowania)',
+  'Wiosłowanie na linkach (siedząc)': 'przybliżenie: siedzisko maszyny jako ławka płaska (bez oparcia), podnóżek jako niska skrzynia; kolana ≈ 30°',
+  'Cable Rope Rear-Delt Rows': 'przybliżenie: siedzisko maszyny jako ławka płaska (bez oparcia), podnóżek jako niska skrzynia; kolana ≈ 30°',
   'Machine Row': 'przybliżenie: dźwignia obrotowa jako schemat (oś przed osobą, dłonie na łuku), bez poduszki piersiowej; siedzisko jako ławka',
   'Leverage High Row': 'przybliżenie: dźwignia obrotowa jako schemat (uchwyty wysoko, ruch w dół i do tyłu), bez poduszki piersiowej',
 };
 
 export function generuj() {
   const G = {};
-  const T = siedz();
-  const sedz = (cw, o) => cw_(cw, { tulow: { m: T.m, p: 0, nogi: T.nogi }, ...o });
-  G['Seated Cable Row'] = () => sedz('Seated Cable Row', { sprzet: [wyc({ chwyt: 'drazek', x: 132, y: 55 })], ruch: { zr: 11, obrot: 0 } });
-  G['Wiosłowanie na linkach (siedząc)'] = () => sedz('Wiosłowanie na linkach (siedząc)', { sprzet: [wyc({ chwyt: 'uchwyt', x: 132, y: 55 })], ruch: { zr: 12, obrot: 0 } });
+  const S = siedzWyc(); const sedz = (cw, o) => cw_(cw, { tulow: { m: S.m, p: 0, nogi: S.nogi }, dodatki: S.dodatki, ...o });
+  G['Seated Cable Row'] = () => sedz('Seated Cable Row', { sprzet: [wyc({ chwyt: 'drazek', x: 132, y: 55 })], ruch: { zr: 11, dy0: -18, obrot: 0 } });
+  G['Wiosłowanie na linkach (siedząc)'] = () => sedz('Wiosłowanie na linkach (siedząc)', { sprzet: [wyc({ chwyt: 'uchwyt', x: 132, y: 55 })], ruch: { zr: 12, dy0: -18, obrot: 0 } });
   G['Cable Rope Rear-Delt Rows'] = () => sedz('Cable Rope Rear-Delt Rows', { sprzet: [wyc({ chwyt: 'lina', x: 132, y: 55 })], ruch: { zr: 33, dy0: 4, dy1: -2, x1: 14, pole: [-1.3, 0, 1], obrot: 0 } });
   G['Standing Cable Row'] = () => cw_('Standing Cable Row', { sprzet: [wyc({ chwyt: 'drazek', x: 120, y: 100 })], ruch: { zr: 11, dy0: -3, obrot: 0 } });
   G['Single Arm Cable Row'] = () => cw_('Single Arm Cable Row', { sprzet: [wyc({ chwyt: 'uchwyt', x: 120, y: 100, trzyma: 'R' })], ruch: { zr: 20, dy0: -3, jedna: 'R', obrot: 0 } });
