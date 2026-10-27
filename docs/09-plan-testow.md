@@ -211,6 +211,7 @@ Test regresji: `tests/cues-podobienstwo.test.ts` (34 klucze mają nowe teksty; t
 | `v0.20.0-b1019` | 1019 | `b8b8a31` | 19 | zielony, id 39306743773; gałąź feature/e2-swap (nie main); zielony, 51 min |
 | `v0.20.0-b1027` | 1027 | `920d917` | 27 | zielony (podejście 3; podejścia 1–2 anulowane bez maszyny macOS), id 39741738792; gałąź podglad-920d917 (build podglądowy redesignu M3, przed scaleniem do main); wysyłka do App Store Connect OK — R-013 |
 | `v0.20.0-b1030` | 1030 | `f2b0525` | 30 | zielony, id 39881352744; build do testu na telefonie (23.10.2026) |
+| `v1.0.0-b1031` | 1031 | `001ecf2` | 31 | wydanie 1.0.0 (TestFlight, docs/49); wiersz dopisany przy scaleniu main do wersja-1-0-1 — brakowało go w main |
 
 Przebiegi `testflight.yml` bez tagu `v*-b*`: 1–4 (przed wprowadzeniem tagów; wydanie 1 = build 1004, `ee637da`, patrz „Rundy”), 7 (czerwony, `c9d4c78`), 11 (czerwony, `d2b7c87`, powtórzony jako przebieg 12), 20 (czerwony, `8273448`, scalenie PR #13 na main), 21 (zielony, gałąź `audyt-m1`, `5542a68`, 20.10.2026).
 
