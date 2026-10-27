@@ -77,3 +77,4 @@ Progi to konwencja rysunku do potwierdzenia przez badacza. Dobrane na tych samyc
 | glute_floor | 7 | 3 | 3 | 1 | 7/7 OK | 0 z 1 (0%) | [glute_floor.md](glute_floor.md) |
 | leg_machine | 7 | 3 | 1 | 3 | 7/7 OK | 0 z 3 (0%) | [leg_machine.md](leg_machine.md) |
 | leg_isolation | 8 | 5 | 2 | 1 | 8/8 OK | 0 z 1 (0%) | [leg_isolation.md](leg_isolation.md) |
+| hip_bridge | 10 | 7 | 3 | 0 | 10/10 OK | — | [hip_bridge.md](hip_bridge.md) |
