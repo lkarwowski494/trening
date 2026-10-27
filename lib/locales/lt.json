@@ -1440,7 +1440,7 @@
  "Wyślij dane": "Siųsti duomenis",
  "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.": "Netrinkite programėlės — kartu dings duomenys ir kopijos. Pirmiausia palieskite „Siųsti duomenis“ ir išsaugokite failą ne telefone.",
  "Kopia bazy w Plikach": "Duomenų bazės kopija Failuose",
- "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.": "Failai → Mano iPhone → {app} → Backup → {folder}. Išsaugokite šį aplanką ne telefone.",
+ "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.": "„Failai“ → Mano iPhone → {app} → Backup → {folder}. Išsaugokite šį aplanką ne telefone.",
  "Wyślij kopię": "Siųsti kopiją",
  "Wyświetlane jako: {n}": "Rodoma kaip: {n}",
  "Wznów animację": "Tęsti animaciją",
