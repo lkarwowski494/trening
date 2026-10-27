@@ -37,6 +37,6 @@ export function generuj() {
   return {
     'Hanging Knee Raise': () => zwis('Hanging Knee Raise', { p1: -10, phi1: 100, k0: 6, k1: 110 }),
     'Hanging Leg Raise': () => zwis('Hanging Leg Raise', { p1: -12, phi1: 83, k0: 6, k1: 12 }),
-    'Toes to Bar': () => zwis('Toes to Bar', { p1: -55, phi1: 125, k0: 6, k1: 8, dx1: 30, n: 12, kb: 0, phi0: 45 }),
+    'Toes to Bar': () => zwis('Toes to Bar', { p1: -55, phi1: 125, k0: 6, k1: 8, dx1: 30, n: 12, kb: 0, phi0: 8 }),
   };
 }

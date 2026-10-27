@@ -3870,6 +3870,9 @@
       "pomin": {}
     },
     "core_hang": {
+      "dynamiczne": {
+        "Toes to Bar": "Toes to Bar: nogi pokonują w jednym ruchu drogę od zwisu do drążka (pięta i palec: ok. 290 cm na cały ruch wobec 288 cm limitu ruchu zwykłego, pomiar generatora 27.10.2026; start ze zwisu, biodro ≈ 10°, wydłuża ruch o ok. 20 cm względem startu z nogami uniesionymi), a schemat dopuszcza najwyżej 12 klatek kluczowych — limit CONTRACT.maxJumpDynamic zamiast maxJump (v2-sens.dynamiczne)"
+      },
       "reguly": {
         "rece_proste": {
           "typ": "lokiec_caly_ruch",
@@ -4623,9 +4626,9 @@
     },
     "core_standing": {
       "zakres_wyjatki": {
-        "Kettlebell Windmill": { "shSag": 245, "powod": "wiatrak: biodro wypchnięte w bok, tułów pochylony ok. 64° i przechylony ku nodze, a ręka z ciężarem pozostaje pionowo nad barkiem (reguła wm.arm); model nie ma obrotu klatki wokół osi długiej, który w prawdziwym ruchu ustawia ramię w płaszczyźnie czołowej tułowia, więc zgięcie barku w płaszczyźnie strzałkowej tułowia wychodzi do ok. 240° (limit kontraktu 171°); uproszczenie ilustracyjne (recenzja ruchu 27.10.2026: poza musi pokazywać głęboki skłon z wypchniętym biodrem)" },
-        "Double Kettlebell Windmill": { "shSag": 245, "powod": "wiatrak: biodro wypchnięte w bok, tułów pochylony ok. 64° i przechylony ku nodze, a ręka z ciężarem pozostaje pionowo nad barkiem (reguła wm.arm); model nie ma obrotu klatki wokół osi długiej, który w prawdziwym ruchu ustawia ramię w płaszczyźnie czołowej tułowia, więc zgięcie barku w płaszczyźnie strzałkowej tułowia wychodzi do ok. 240° (limit kontraktu 171°); uproszczenie ilustracyjne (recenzja ruchu 27.10.2026: poza musi pokazywać głęboki skłon z wypchniętym biodrem)" },
-        "Bent Press": { "shSag": 205, "powod": "Bent Press: ręka z hantlem prostuje się nad głową w skłonie (tułów pochylony ok. 30° i przechylony), a model nie ma obrotu klatki wokół osi długiej, więc zgięcie barku w płaszczyźnie strzałkowej tułowia wychodzi do ok. 200° (limit kontraktu 171°); uproszczenie ilustracyjne (recenzja ruchu 27.10.2026: start z hantlem przy barku, wyprost pod koniec)" }
+        "Kettlebell Windmill": { "shSag": 222, "powod": "wiatrak: klatka skręcona ku ciężarowi do granicy kontraktu (skręt 40°, skłon boczny 34°), tułów pochylony ok. 64° w biodrach; ręka z ciężarem pionowo nad barkiem leży wtedy w płaszczyźnie czołowej klatki, nieco za jej osią pionową, więc zgięcie barku w płaszczyźnie strzałkowej klatki wychodzi do ok. 219° (limit kontraktu 171°); większy skręt (±40°) i skłon (±35°) kontrakt wyklucza, a mniejszy skłon spłaszczyłby ruch do skłonu bocznego; uproszczenie ilustracyjne (recenzja ruchu 27.10.2026: poza musi pokazywać głęboki skłon z wypchniętym biodrem)" },
+        "Double Kettlebell Windmill": { "shSag": 222, "powod": "wiatrak: klatka skręcona ku ciężarowi do granicy kontraktu (skręt 40°, skłon boczny 34°), tułów pochylony ok. 64° w biodrach; ręka z ciężarem pionowo nad barkiem leży wtedy w płaszczyźnie czołowej klatki, nieco za jej osią pionową, więc zgięcie barku w płaszczyźnie strzałkowej klatki wychodzi do ok. 219° (limit kontraktu 171°); większy skręt (±40°) i skłon (±35°) kontrakt wyklucza, a mniejszy skłon spłaszczyłby ruch do skłonu bocznego; uproszczenie ilustracyjne (recenzja ruchu 27.10.2026: poza musi pokazywać głęboki skłon z wypchniętym biodrem)" },
+        "Bent Press": { "shSag": 216, "powod": "Bent Press: ciało schodzi pod ciężar w głęboki skłon (tułów pochylony ok. 75° w biodrach, skłon boczny 35° i skręt klatki ku ciężarowi 40° — granice kontraktu, nogi ugięte ok. 65°), a ręka z hantlem prostuje się na końcu prawie pionowo (lekko do przodu i do środka); w płaszczyźnie strzałkowej tak ustawionej klatki zgięcie barku wychodzi do ok. 213° (limit kontraktu 171°); większy skręt i skłon kontrakt wyklucza; uproszczenie ilustracyjne (ponowna recenzja ruchu 27.10.2026: hantel stoi na prawie stałej wysokości, barki opadają)" }
       },
       "reguly": {
         "pallof_tulow": {

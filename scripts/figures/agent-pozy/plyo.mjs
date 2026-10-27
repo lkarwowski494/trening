@@ -11,9 +11,9 @@ export const WYJATKI = {
 };
 export const PRZYBLIZENIA = {
   'Side to Side Box Shuffle': 'jedno przejście z podłogi na niski stopień z boku (seria naprzemienna = powtórzenia)',
-  'Lateral Bound': 'jeden skok boczny jednonóż; lądowanie na tej samej nodze, wolna noga uniesiona',
+  'Lateral Bound': 'jeden skok boczny z nogi na nogę: odbicie z jednej nogi, lądowanie na drugiej po stronie kierunku skoku (miednica przesuwa się w bok), wolna noga uniesiona; seria naprzemienna = powtórzenia',
   'Side Hop-Sprint': 'sam skok boczny; sprint po lądowaniu poza zakresem rysunku',
-  'Alternate Leg Diagonal Bound': 'skok z zamianą nóg w płaszczyźnie strzałkowej (odbicie jedną nogą, lądowanie na drugiej); ukośny tor ciała niewidoczny — model nie przesuwa miednicy w bok',
+  'Alternate Leg Diagonal Bound': 'jeden skok ukośny z nogi na nogę: odbicie z jednej nogi, lądowanie na drugiej, miednica przesuwa się w przód i w bok (ukośny tor widać z przodu i z boku); seria naprzemienna = powtórzenia',
   'Alternate Leg Push-Off': 'przy lądowaniu na drugiej nodze pierwsza zostaje z tyłu (jeden skok zamiast serii naprzemiennej)',
   'Box Skip': 'wolna noga uniesiona przez cały ruch (skip jako jeden skok jednonóż na skrzynię)',
   'Single-Leg Stride Jump': 'jeden skok jednonóż na skrzynię; lądowanie na tej samej nodze',

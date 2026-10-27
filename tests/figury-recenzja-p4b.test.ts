@@ -18,6 +18,7 @@ type PoseFile = { cwiczenia: Record<string, PoseData> };
 const load = (f: string): PoseFile => JSON.parse(fs.readFileSync(path.join(ROOT, 'lib/figures/v2/poses', `${f}.json`), 'utf8')) as PoseFile;
 const FILES = ['plyo', 'sled_throw', 'strongman', 'core_hang', 'core_standing'] as const;
 const POZY: Record<string, PoseFile> = Object.fromEntries(FILES.map((f) => [f, load(f)]));
+const SENS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/figury-sens.json'), 'utf8')) as { rodziny: Record<string, { zakres_wyjatki?: Record<string, unknown> }> };
 
 type Box = { x0: number; x1: number; top: number; z: number; w: number };
 const skrzynie = (d: PoseData): Box[] => d.sprzet.filter((g) => g.rodzaj === 'skrzynia').map((g) => ({ x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40, z: g.z ?? 0, w: 45 }));
@@ -165,26 +166,58 @@ describe('Toes to Bar: palce dochodzą do drążka (≤ 12 cm), Knee Raise i Leg
   test('na początku (zwis) palce są daleko od drążka; Hanging Leg Raise nie dochodzi do drążka (różni się od Toes to Bar)', () => {
     expect(toe('Toes to Bar', 0).dist).toBeGreaterThan(100); expect(toe('Hanging Leg Raise', 1).dist).toBeGreaterThan(40);
   });
+  /* ponowna recenzja p4b (27.10.2026, nr 3): Toes to Bar zaczynał z nogami uniesionymi o 45° (biodro 45°), a nie ze zwisu */
+  test.each(Object.keys(POZY.core_hang.cwiczenia))('%s: ruch zaczyna się ze zwisu (u = 0: biodro ≤ 15°, kostki pod barkami: przód ≤ 15 cm od pionu barku, stopy pod miednicą)', (c) => {
+    const sk = keyframeFrame(POZY.core_hang.cwiczenia[c], 0).sk;
+    for (const s of SIDES) { expect(jointAngles(sk, s).hip).toBeLessThanOrEqual(15); expect(Math.abs(sk.legs[s].ankle[0] - sk.shoulderC[0])).toBeLessThanOrEqual(15); }
+    expect(sk.legs.R.ankle[1]).toBeLessThan(sk.pelvis[1] - 60);
+  });
   test('dłonie trzymają drążek przez cały ruch (ręce proste albo lekko ugięte, łokieć ≤ 30°)', () => {
     for (let i = 0; i <= 20; i++) { const sk = keyframeFrame(POZY.core_hang.cwiczenia['Toes to Bar'], i / 20).sk; expect(jointAngles(sk, 'R').elbow).toBeLessThanOrEqual(30); }
   });
 });
 
 describe('Kettlebell Windmill, Double Kettlebell Windmill, Bent Press (core_standing)', () => {
-  const nad = (sk: ReturnType<typeof keyframeFrame>['sk'], s: 'R' | 'L') => sk.arms[s].grip[1];
-  test.each(['Kettlebell Windmill', 'Double Kettlebell Windmill'])('%s: w u = 1 wolna dłoń ≤ 45 cm nad podłogą, biodro zgięte ≥ 60°, miednica wypchnięta w stronę ciężaru', (c) => {
-    const d = POZY.core_standing.cwiczenia[c]; const sk1 = keyframeFrame(d, 1).sk; const sk0 = keyframeFrame(d, 0).sk;
+  const nad = (k: ReturnType<typeof keyframeFrame>['sk'], s: 'R' | 'L') => k.arms[s].grip[1];
+  const WIATRAKI = ['Kettlebell Windmill', 'Double Kettlebell Windmill'];
+  const sk = (c: string, u: number) => keyframeFrame(POZY.core_standing.cwiczenia[c], u).sk;
+  const siatka = (c: string, n = 40) => Array.from({ length: n + 1 }, (_, i) => sk(c, i / n));
+  test.each(WIATRAKI)('%s: w u = 1 wolna dłoń ≤ 45 cm nad podłogą, biodro zgięte ≥ 60°, miednica wypchnięta w stronę ciężaru', (c) => {
+    const sk1 = sk(c, 1), sk0 = sk(c, 0);
     expect(nad(sk1, 'L')).toBeLessThanOrEqual(45); expect(jointAngles(sk1, 'R').hip).toBeGreaterThanOrEqual(60); expect(sk1.pelvis[2] - sk0.pelvis[2]).toBeGreaterThanOrEqual(5);
     expect(sk1.arms.R.grip[1]).toBeGreaterThan(sk1.arms.R.shoulder[1] + 55); /* ręka z ciężarem nad barkiem (pionowo) */
     expect(Math.abs(sk1.arms.R.grip[0] - sk1.arms.R.shoulder[0])).toBeLessThanOrEqual(12);
   });
-  test('Bent Press: start z hantlem przy barku (łokieć ≥ 90°), koniec: ręka prosta nad głową, ruch w dół pod ciężarem (wolna dłoń ≤ 75 cm)', () => {
-    const d = POZY.core_standing.cwiczenia['Bent Press']; const sk0 = keyframeFrame(d, 0).sk, sk1 = keyframeFrame(d, 1).sk;
-    expect(jointAngles(sk0, 'R').elbow).toBeGreaterThanOrEqual(90); expect(jointAngles(sk1, 'R').elbow).toBeLessThanOrEqual(25);
+  /* ponowna recenzja p4b (27.10.2026, nr 4): dolna ręka (z kettlebellem albo wolna) wisiała na ugiętym ramieniu (łokieć 45°), 29 cm na zewnątrz od stopy */
+  test.each(WIATRAKI)('%s: dolna ręka prosta w całym ruchu (łokieć ≤ 15°), dłoń przy wewnętrznej stronie nogi (≤ 10 cm na zewnątrz od kostki, ≤ 25 cm przed nią)', (c) => {
+    for (const k of siatka(c)) expect(jointAngles(k, 'L').elbow).toBeLessThanOrEqual(15);
+    const s1 = sk(c, 1); const g = s1.arms.L.grip, a = s1.legs.L.ankle; expect(g[2] - a[2]).toBeGreaterThanOrEqual(-10); expect(g[0] - a[0]).toBeLessThanOrEqual(25);
+  });
+  /* nr 4 (wyjątek zakresu): klatka skręca się ku ciężarowi (skretTulowia, w granicach kontraktu ±40°), a wyjątek zakresu barku ma PRAWDZIWE uzasadnienie i ścisły limit */
+  test.each([...WIATRAKI, 'Bent Press'])('%s: klatka skręcona ku ciężarowi (skręt ≥ 30° w u = 1, ≤ 40° w całym ruchu), zgięcie barku ramienia z ciężarem nie przekracza zadeklarowanego wyjątku', (c) => {
+    expect(jointAngles(sk(c, 1), 'R').trunkTwist).toBeGreaterThanOrEqual(30);
+    const lim = (SENS.rodziny.core_standing.zakres_wyjatki?.[c] as { shSag: number }).shSag; let max = 0;
+    for (const k of siatka(c, 80)) { const a = jointAngles(k, 'R'); expect(Math.abs(a.trunkTwist)).toBeLessThanOrEqual(40.5); max = Math.max(max, a.shSag); }
+    expect(max).toBeLessThanOrEqual(lim); expect(lim - max).toBeLessThanOrEqual(6); /* limit wyjątku ścisły: zmierzone maksimum + najwyżej 6° */
+  });
+  test('wyjątek zakresu wiatraków i Bent Press: uzasadnienie nie twierdzi, że model nie ma obrotu klatki (ma: skretTulowia), tylko wskazuje skręt ku ciężarowi i granicę kontraktu', () => {
+    for (const c of [...WIATRAKI, 'Bent Press']) { const w = SENS.rodziny.core_standing.zakres_wyjatki?.[c] as { powod: string }; expect(w.powod).not.toMatch(/model nie ma obrotu/i); expect(w.powod).toMatch(/skręt/); expect(w.powod).toMatch(/granic/); }
+  });
+  /* ponowna recenzja p4b (nr 1): Bent Press = ciało schodzi w skłon POD (względnie) nieruchomym ciężarem; łokieć na starcie przy boku tułowia */
+  test('Bent Press (konwencja „ciężar stoi”): wysokość hantla zmienia się ≤ 15 cm, a barki opadają ≥ 25 cm i co najmniej 2 razy więcej niż hantel', () => {
+    const k = siatka('Bent Press', 80); const h = k.map((x) => x.arms.R.grip[1]); const b = k.map((x) => x.shoulderC[1]);
+    const zmianaHantla = Math.max(...h) - Math.min(...h); const spadekBarkow = b[0] - Math.min(...b);
+    expect({ zmianaHantla: Math.round(zmianaHantla * 10) / 10, spadekBarkow: Math.round(spadekBarkow * 10) / 10 }).toEqual({ zmianaHantla: expect.any(Number), spadekBarkow: expect.any(Number) });
+    expect(zmianaHantla).toBeLessThanOrEqual(15); expect(spadekBarkow).toBeGreaterThanOrEqual(25); expect(spadekBarkow).toBeGreaterThanOrEqual(2 * zmianaHantla);
+  });
+  test('Bent Press: start z hantlem przy barku, łokieć przy boku tułowia (zgięty ≥ 90°, odwiedzenie ramienia ≤ 30°, łokieć ≥ 15 cm poniżej barku); koniec: ręka prosta nad głową, wolna dłoń ≤ 75 cm', () => {
+    const sk0 = sk('Bent Press', 0), sk1 = sk('Bent Press', 1); const a0 = jointAngles(sk0, 'R');
+    expect(a0.elbow).toBeGreaterThanOrEqual(90); expect(a0.shAbd).toBeLessThanOrEqual(30); expect(sk0.shoulderC[1] - sk0.arms.R.elbow[1]).toBeGreaterThanOrEqual(15);
+    expect(jointAngles(sk1, 'R').elbow).toBeLessThanOrEqual(25);
     expect(nad(sk0, 'R')).toBeLessThan(sk0.arms.R.shoulder[1] + 20); expect(nad(sk1, 'R')).toBeGreaterThan(sk1.arms.R.shoulder[1] + 50); expect(nad(sk1, 'L')).toBeLessThanOrEqual(75);
   });
   test('Bent Press różni się od Kettlebell Windmill (nie ten sam ruch: start przy barku, nie nad głową)', () => {
-    const a = keyframeFrame(POZY.core_standing.cwiczenia['Bent Press'], 0).sk.arms.R.grip[1], b = keyframeFrame(POZY.core_standing.cwiczenia['Kettlebell Windmill'], 0).sk.arms.R.grip[1]; expect(b - a).toBeGreaterThan(40);
+    expect(nad(sk('Kettlebell Windmill', 0), 'R') - nad(sk('Bent Press', 0), 'R')).toBeGreaterThan(40);
   });
 });
 
