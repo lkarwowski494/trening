@@ -152,10 +152,14 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że w ustawieniach wybrano skalę RIR
     - Gdy użytkownik wpisuje RIR 2
     - Wtedy w danych zapisuje się RPE 8, a ekran pokazuje RIR 2 (RD-02-W1)
-  - Scenariusz: Wpis „lekko”
+  - Scenariusz: Wpis z przedziału 4–6 RIR
     - Zakładając, że wybrano skalę RIR
     - Gdy użytkownik wpisuje RIR 6
-    - Wtedy zapisuje się RPE 4 („lekko”), a ekran pokazuje „6+” (RD-02-W3)
+    - Wtedy zapisuje się RPE 5 (RD-02-W7)
+  - Scenariusz: Wpis „lekko”
+    - Zakładając, że wybrano skalę RIR
+    - Gdy użytkownik wpisuje RIR 7
+    - Wtedy zapisuje się RPE 4 („lekko”), a ekran pokazuje „7+” (RD-02-W9, RD-02-W3)
 
 ### BR-TRN-008: Usuwanie serii i ćwiczenia: gest i menu, to samo potwierdzenie
 - Przepływ: PR-01

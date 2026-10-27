@@ -67,8 +67,12 @@ describe('wektory RD uruchomione na kodzie aplikacji', () => {
   test('RD-02 RIR a RPE w skali RIR', async () => {
     await fresh(); store.getState().settings.showRpe = true; store.getState().settings.effortScale = 'rir'; store.save();
     const vs = forRule('RD-02'); expect(vs.length).toBeGreaterThanOrEqual(4);
-    for (const v of vs) expect(store.effortOut(inp(v, 'RPE'))).toBe(out(v, 'RIR'));
-    expect(store.effortIn(6)).toBe(store.RPE_LIGHT); /* RIR 6+ zapisuje się jako RPE „lekko” (BR-TRN-007) */
+    /* dwie tabele RD-02: wyświetlanie (wejście RPE → RIR) i wpis (wejście RIR → RPE; M1-audytor-generalny-020, DEC-04 a, 27.10.2026) */
+    const show = vs.filter(v => inp(v, 'RPE') !== undefined), entry = vs.filter(v => inp(v, 'RIR') !== undefined);
+    expect([show.length, entry.length]).toEqual([5, 5]);
+    for (const v of show) expect(store.effortOut(inp(v, 'RPE'))).toBe(out(v, 'RIR'));
+    for (const v of entry) expect({ id: v.id, rpe: store.effortIn(inp(v, 'RIR')) }).toEqual({ id: v.id, rpe: out(v, 'RPE') });
+    expect(store.effortIn(7)).toBe(store.RPE_LIGHT); /* RIR 7+ zapisuje się jako RPE „lekko” (BR-TRN-007) */
   });
   test('RD-03 porzucony trening: pytanie po 2 h, ciche zakończenie po 6 h', async () => {
     const vs = forRule('RD-03'); expect(vs.length).toBeGreaterThanOrEqual(6);
