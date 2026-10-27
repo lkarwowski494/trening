@@ -32,7 +32,7 @@ export function StartError({ title, message, detail, diag, onRetry }: { title: s
       <Text testID="start-error-warning" accessibilityLanguage={lang()} style={{ color: th.text, textAlign: 'center', fontSize: 16, ...FW.semibold }}>{t('Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.')}</Text>
       {link(t('Wyślij dane'), send)}
       {link(t('Spróbuj ponownie'), onRetry)}
-      {link(t('Napisz do nas'), () => openSupportMail('feedback'))}
+      {link(t('Napisz do nas'), () => openSupportMail('feedback', undefined, [diag, detail].filter(Boolean).join(' · ') || undefined))}{/* M1-audytor-generalny-032: kod etapu i treść błędu w treści wiadomości */}
     </View>
   );
 }

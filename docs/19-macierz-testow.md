@@ -20,7 +20,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Pozycja | Źródło | Testy (pierwsze 3) |
 |---|---|---|
 | /history | app/(tabs)/history.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +60 |
-| / | app/(tabs)/index.tsx | tests/a11y-routes.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +237 |
+| / | app/(tabs)/index.tsx | tests/a11y-routes.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +238 |
 | /more | app/(tabs)/more.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx +74 |
 | /progress | app/(tabs)/progress.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +37 |
 | /adapt | app/adapt.tsx | tests/a11y-routes.ts, tests/adapt-ui.test.tsx, tests/close-button-guard.test.tsx +1 |
@@ -111,7 +111,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Dni cardio w planie | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych. | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni treningowe w tygodniu | components/OwnPlan.tsx | tests/gen-days-ui.test.tsx, tests/gen-general-ui.test.tsx, tests/generator-ui.test.tsx +1 |
-| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +297 |
+| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +298 |
 | Do upadku (F) | app/template/[id].tsx | tests/scenario-full.test.tsx |
 | dodaj ciężar | components/LoadEditor.tsx | tests/audit-0.10-ui.test.tsx, tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx +1 |
 | Dodaj notatkę | components/WorkoutBlocks.tsx | tests/scenario-full.test.tsx |
@@ -178,7 +178,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | min na stronę | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
 | Możliwości w kolejności | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx |
 | Mój plan | app/plan.tsx | tests/audit-0.10-plan.test.ts, tests/mutation-plan.test.ts, tests/plan-own-templates-ui.test.tsx +4 |
-| Napisz do nas | app/more/about.tsx | tests/audit-m1-004-start-error.test.tsx, tests/idea-request.test.tsx, tests/support-mail.test.tsx |
+| Napisz do nas | app/more/about.tsx | tests/audit-m1-004-start-error.test.tsx, tests/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx, tests/idea-request.test.tsx +1 |
 | Nazwa | app/exercise/[id].tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-m1-064-language-ios.test.tsx, tests/b2-plan-own-templates.test.tsx +9 |
 | Nazwa planu | app/plan.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/plans-multi-ui.test.tsx, tests/ui2-08-saved-plan-title.test.tsx |
 | Nie teraz | app/paywall.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-0.10-plan.test.ts, tests/audit-m1-035-notif-denied.test.tsx +3 |
@@ -193,7 +193,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | np. samopoczucie, ból, sprzęt | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
 | O aplikacji | app/(tabs)/more.tsx | tests/audit-0.10-data-ui.test.tsx, tests/public-repo.test.ts |
 | Obciążenie partii (z katalogu) | app/exercise/[id].tsx | tests/catalog-v2.test.ts |
-| od | components/LoadEditor.tsx | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +328 |
+| od | components/LoadEditor.tsx | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +329 |
 | Odhacz bez pomiaru | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/m3-p2-board-ui.test.tsx, tests/matrix-tuleja.test.tsx |
 | Odhacz bez pomiaru: {ex}, seria {n} | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/m3-p2-board-ui.test.tsx |
 | Odrzuć | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-close2-a.test.tsx +11 |
@@ -1617,7 +1617,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | draft.commitObjDraft | lib/draft.ts | tests/audit-k1-fala2b.test.tsx, tests/audit011b.test.tsx, tests/backlog-0.10.1-dane.test.ts +2 |
 | draft.templateForEdit | lib/draft.ts | tests/edit-on-demand.test.tsx |
 | draft.dropUnsavedNew | lib/draft.ts | tests/edit-on-demand.test.tsx |
-| draft.restoreObjDrafts | lib/draft.ts | tests/audit-m1-004-start-error.test.tsx, tests/audit011b.test.tsx, tests/backlog-0.10.1-dane.test.ts |
+| draft.restoreObjDrafts | lib/draft.ts | tests/audit-m1-004-start-error.test.tsx, tests/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx, tests/audit011b.test.tsx +1 |
 | draft.dropRestored | lib/draft.ts | tests/backlog-0.10.1-dane.test.ts |
 | draft.__resetObjDrafts | lib/draft.ts | tests/audit-k1-fala2b.test.tsx, tests/audit011b.test.tsx, tests/b2-plan-own-templates.test.tsx +10 |
 | edit.touchDraft | lib/edit.ts | tests/audit011b.test.tsx, tests/edit-history.test.tsx, tests/integration-090.test.tsx +2 |
@@ -1923,7 +1923,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | i18n.decimalComma | lib/i18n.ts | tests/i18n-variants.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts +7 |
 | i18n.setPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
 | i18n.isPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
-| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/app.tsx, tests/asc-kontrola.test.ts +191 |
+| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/app.tsx, tests/asc-kontrola.test.ts +192 |
 | i18n.lbl | lib/i18n.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx +9 |
 | i18n.tp | lib/i18n.ts | tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts, tests/audit-k1-bl-mer.test.tsx +28 |
 | i18n.exName | lib/i18n.ts | tests/audit-0.10-lang-ui.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +29 |
@@ -2134,7 +2134,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | seed.fpHash | lib/seed.ts | tests/backlog-0.10.1-dane.test.ts |
 | seed.libKeyFromFields | lib/seed.ts | tests/audit-0.10-stats.test.ts |
 | seed.libKeyCandidates | lib/seed.ts | tests/backlog-0.10.1-dane-lib.test.ts |
-| seed.seedState | lib/seed.ts | tests/audit-1-0-a2-reset.test.ts, tests/audit-k1-catalog-step.test.ts, tests/audit-k1-data.test.ts +38 |
+| seed.seedState | lib/seed.ts | tests/audit-1-0-a2-reset.test.ts, tests/audit-k1-catalog-step.test.ts, tests/audit-k1-data.test.ts +39 |
 | setFlow.isClosingSet | lib/setFlow.ts | tests/set-flow.test.ts |
 | setFlow.completeSet | lib/setFlow.ts | tests/set-flow.test.ts, tests/voice-ui.test.tsx, tests/voice.test.ts +7 |
 | setFlow.restLabels | lib/setFlow.ts | tests/set-flow.test.ts |
@@ -2434,7 +2434,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store-native.entitlementFromPurchase | lib/store-native.ts | tests/m5s1-bez-proby.test.ts, tests/store-adapter.test.ts |
 | store-native.productFromStore | lib/store-native.ts | tests/cena-z-displayprice.test.ts, tests/m5s1-bez-proby.test.ts, tests/store-adapter.test.ts |
 | store-native.createNativeStore | lib/store-native.ts | tests/audit-m1-012-status.test.ts, tests/store-adapter.test.ts |
-| support.buildSupportMailto | lib/support.ts | tests/idea-request.test.tsx, tests/support-mail.test.tsx |
+| support.buildSupportMailto | lib/support.ts | tests/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx, tests/idea-request.test.tsx, tests/support-mail.test.tsx |
 | support.openSupportMail | lib/support.ts | tests/idea-request.test.tsx |
 | support.openWebPage | lib/support.ts | tests/legal-links.test.tsx |
 | swap.swapCandidates | lib/swap.ts | tests/adapt-logic.test.ts, tests/audit-0.10-stats.test.ts, tests/audit-0.10-tst.test.ts +3 |
