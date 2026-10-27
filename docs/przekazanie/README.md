@@ -169,3 +169,28 @@ Stan: ok. 520/709 ćwiczeń z pozą (433 w danych, 35 rodzin + 87 z rigu); recen
 - 06:35 UTC: rodziny-mobilnosc e061d8c9 — mobility_stand 9 póz/27 wyjątków, mobility_floor 9/13, foam_roll i neck cały wyjątek; podglądy w docs/przekazanie/notatki/podglady-1-1/; tests.yml i verify w toku.
 - 06:40 UTC (agent poprawki-p1): etap 1 — testy + poprawki pozy 11 błędów (16 ćwiczeń) na gałęzi poprawki-p1, SHA 7729cc0e; podglądy w notatki/podglady-1-1/poprawki-p1/; pełne verify w toku.
 - 06:58 UTC (agent poprawki-p4b): gałąź poprawki-p4b SHA fd59a27e — poprawione generatorem: plyo (6 błędów + Depth Jump + rzut z przodu), sled_throw, strongman, core_hang, core_standing; test tests/figury-recenzja-p4b.test.ts zielony (169). Dalej: podglądy do notatki/podglady-1-1/poprawki-p4b/, pełne verify przez kolejkę flock, push, tests.yml, raport
+
+## PRZEKAZANIE KONTA — 27.10.2026 (koordynator, sesja 01MuHteK…) — CZYTAJ NAJPIERW
+Plan i zależności: `docs/przekazanie/plan-1-1.md`. Decyzje właściciela z 27.10: docs/18 na `integracja-1-1` (ded4827, 88c2bf7) + CLAUDE.md (reguła „audyt dogłębny animacji i kart”).
+
+**Czeka na właściciela:** (1) lista z telefonu docs/49 T-01–T-14 (bez T-10 do nowego buildu) + zakupy sandbox — po południu; (2) polecenie scalenia do main PR-ów naprawy 1.0 (`naprawa-figury-1-0`, `technika-rozwinieta-1-0`), potem zatwierdzenie `release` nowego buildu testflight.yml; (3) akceptacje z agenta „1.0 App Store” (podpisy EN zrzutów, opis PL/EN, notatki App Review — PR review-notes-1-0).
+
+**Agenci w toku przy przekazaniu (gałąź → zadanie → następny krok, jeśli agent nie zdążył):**
+| Gałąź | Zadanie | Priorytet |
+|---|---|---|
+| `naprawa-figury-1-0` | potwierdzenie na main + naprawa figur squat/bench/hinge (w tym „Deadlift (hantle)” zgłoszony przez właściciela), lekcja L-NNN w docs/40, reguła w CLAUDE.md, E2E podstawowy, PR do main (nie scalać) | 1 |
+| `technika-rozwinieta-1-0` | „Technika” rozwinięta w karcie ćwiczenia, zwinięta w treningu na żywo (decyzja B, wyjątek od zamrożenia), testy + Maestro, PR do main | 1 |
+| (1.0 App Store) `review-notes-1-0` + przebiegi store-screenshots / asc-zrzuty dry-run / asc-kontrola | Z-02, notatki App Review, zrzuty (ekran karty ćwiczenia powtórzyć po naprawie) | 1 |
+| `wersja-1-0-1` (lub `wersja-1-0-1-wip`) | merge main 1.0 → 1.0.1, verify, push | 3 |
+| `jakosc-r2` | poprawki n6 (Cocoons, Decline), R17 kontakt z podłożem, P3, podglądy n7 → potem recenzja n7 (niezależny agent) | 2 |
+| `poprawki-p1` / `-p2` / `-p3` / `-p4a` / `-p4b` | poprawki po recenzjach rodzin (`docs/przekazanie/notatki/recenzje-1-1/`); po nich NIEZALEŻNA ponowna recenzja zmienionych póz | 2 |
+| `rodziny-mobilnosc` | nowe rodziny mobility_stand/floor, foam_roll, neck (bez źródła → wyjątek bez animacji) | 2 |
+| `przeklad-kontekst` | kontekst ekranu w przekładzie API + konteksty 145 kluczy (L-041 B) | 2 |
+| `strona-filtr-audytu` | plik rodzin zatwierdzonych + filtr eksportu strony | 3 |
+techniqueatlas: PR https://github.com/lkarwowski494/techniqueatlas/pull/1 (CI zielone, nie scalać; noindex do audytu).
+
+**Po agentach (kolejka):** recenzje n7 i ponowne recenzje p1–p4; G2b audyt treści kart; G4b luki w rodzinach (po recenzji rodziny); G6 scalenia do integracja-1-1 + regeneracja docs/51; G7b przekład + JEDEN plik pt-BR dla native speakera; G8 definicja ukończenia; audyt 1.1.
+
+**Zasady pracy sesji:** pełne verify przez kolejkę `flock /tmp/claude-0/verify.lock npm run verify`; core.hooksPath = `scripts/hooks` (względne — nie zmieniać na bezwzględne); nie przełączać głównego checkoutu /home/user/trening na inne gałęzie (używać worktree); agenci raportują tylko na końcu/blokadzie; właściciela pingować tylko przy decyzji lub gotowym buildzie.
+**Przypomnienia starej sesji** (send_later na koncie poprzednim — nowa sesja ich nie widzi): przegląd 08:30 UTC 27.10, kalistenika 2.11.2026 07:00 UTC. Nowa sesja ustawia własne (przegląd co ~3 h; kalistenika pon. 2.11 07:00 UTC — repo lkarwowski494/kalistenika, gałąź monetyzacja, docs/sztafeta.md „Wstrzymanie 26.10.2026”).
+**Uwaga:** agenci tej sesji zginą przy zmianie konta — ich gałęzie i linie stanu w tym pliku są jedynym zapisem; sprawdź `git log` każdej gałęzi z tabeli i wznów od pierwszego niezrobionego kroku.
