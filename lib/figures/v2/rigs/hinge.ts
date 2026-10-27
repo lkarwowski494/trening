@@ -31,9 +31,15 @@ export type HingeParams = {
   /** Przesunięcie barku względem gryfu (cm, + = bark przed gryfem) na starcie i na końcu. */
   sx: [number, number];
   platform?: number; band?: boolean; chain?: boolean; oneArm?: boolean; pull?: boolean;
+  /** Odmiana „reverse”: guma zwisa z góry stojaka do gryfu (zamiast od gryfu do podłogi). */
+  reverse?: boolean;
 };
 
 export const HINGE = {
+  /** Kotwica gumy „reverse” (górna belka stojaka), cm — nad gryfem na wyproście (ok. 80–100). */
+  bandHang: 150,
+  /** Martwy ciąg z hantlami: połowa rozstawu dłoni — hantle obok ud, nie przez kolana (tor ciężaru prawie pionowy). */
+  dbFloorGrip: 30,
   /** Ręce proste: długość ręki minus 0,05 cm (łokieć ≈ 3° zgięcia; dokładny wyprost = osobliwość IK). */
   arm: BODY.uarm + BODY.farm + BODY.hand - 0.05,
   /** Najdalej do tyłu (x kostki = 0): ciężar nie schodzi za śródstopie (ręce przy bokach nie mają kontaktu z nogami). */
@@ -134,7 +140,7 @@ export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
   if (p.impl === 'db') for (const s of single || p.oneArm ? ['R'] as const : ['R', 'L'] as const) props.push({ k: 'dumbbell', c: [barX, barY, s === 'R' ? gripHalf : -gripHalf], side: s });
   if (p.impl === 'kb') props.push({ k: 'kettlebell', c, side: 'C' });
   if (p.impl === 'cable') props.push({ k: 'cable', from: p.pull ? [-HINGE.pulley[0], HINGE.pulley[1], 0] : [barX, 0, 0], to: c });
-  if (p.band) props.push({ k: 'band', from: c, to: [c[0], 0, 0], bar: true });
+  if (p.band) props.push(p.reverse ? { k: 'band', from: [c[0], HINGE.bandHang, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [c[0], 0, 0], bar: true });
   if (p.chain) props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
   if (p.platform) contacts.push({ body: 'foot', equip: 'box', tol: 1.5 });
   contacts.push({ body: 'thigh', equip: 'bar', tol: 1.5 }, { body: 'shank', equip: 'bar', tol: 1.5 }, { body: 'thigh', equip: 'plateNear', tol: 99 });

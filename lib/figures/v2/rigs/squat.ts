@@ -25,6 +25,8 @@ export type SquatParams = {
   /** Reguła podudzia (domyślnie przysiad); dzień dobry używa pionowego podudzia. */
   shin?: ShinRule;
   box?: number; wall?: boolean; smith?: boolean; band?: boolean; chain?: boolean;
+  /** Odmiana „reverse”: guma zwisa z góry stojaka do gryfu (zamiast od gryfu do podłogi). */
+  reverse?: boolean;
 };
 
 export const SQUAT = {
@@ -37,10 +39,14 @@ export const SQUAT = {
   gripHalf: { highBar: 32, frontBar: 21, overhead: 36, goblet: 5, zercher: 8 },
   /** Środek gryfu w układzie tułowia: odsunięcie od osi (cm) wysoko/nisko na plecach i z przodu (powierzchnia tułowia + promień gryfu). */
   barBack: { high: 12.8 }, barFront: 9.0,
+  /** Gryf w racku przedniej leży 6 cm powyżej stawu barkowego (na obojczykach i przednich akromionach, nie na wysokości stawu): ramię może iść w przód pod gryfem, bez przenikania. */
+  barFrontRackUp: 6,
   /** Odległość łokieć–chwyt w racku przedniej (palce zagięte pod gryfem), cm. */
   rackLower: 27,
-  /** Rack przedni sztangi: łokieć–chwyt krótszy (palce pod gryfem, nadgarstek zgięty), żeby łokieć szedł w przód na wysokości barku, nie nad głowę. */
-  frontLower: 25.7, frontPole: [0.5, 0.2, 0.3] as V3,
+  /** Rack przedni sztangi: gryf 6 cm nad stawem barkowym, łokieć–chwyt 24 cm (palce pod gryfem, nadgarstek zgięty), biegun łokcia prosto w przód — łokieć ±12 cm od wysokości barku, ≥ 0,6 długości ramienia przed barkiem, odwiedzenie ≤ 30° (recenzja 27.10.2026, B1). */
+  frontLower: 24, frontPole: [1, 0, 0] as V3,
+  /** Wysokość kotwicy gumy „reverse” (górna belka stojaka), cm — nad gryfem stojąc (ok. 138) z zapasem. */
+  bandHang: 175,
   landminePivot: 150, cablePulley: [95, 12] as [number, number],
   sit: 9, /* wysokość stawu biodrowego nad siedziskiem (pośladek) */
 } as const;
@@ -82,7 +88,7 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
   const gh = SQUAT.gripHalf; const armsHeld = (g: V3, half: number, pole: V3, lower?: number) => ({ R: { grip: [g[0], g[1], half] as V3, elbowPole: [pole[0], pole[1], pole[2]] as V3, lower }, L: { grip: [g[0], g[1], -half] as V3, elbowPole: [pole[0], pole[1], -pole[2]] as V3, lower } });
   let arms: PoseIn['arms'];
   const target = (off: number) => ankX + mid + off;
-  const barAt = (kind: 'high' | 'front', t: number): V3 => kind === 'high' ? trunkPoint(hipC(), t, BODY.trunk - 3, -SQUAT.barBack.high, 0) : trunkPoint(hipC(), t, BODY.trunk + 1, SQUAT.barFront, 0);
+  const barAt = (kind: 'high' | 'front', t: number, off: number = SQUAT.barFront, up = 1): V3 => kind === 'high' ? trunkPoint(hipC(), t, BODY.trunk - 3, -SQUAT.barBack.high, 0) : trunkPoint(hipC(), t, BODY.trunk + up, off, 0);
   const balanceTau = (anchor: (t: number) => V3, off: number): number => wallSit ? 0 : solveRoot(t => anchor(t)[0] - target(off), -5, 80);
   const barOff = p.smith ? -14 : 0;
   const poleBack: V3 = [-0.7, -1, 0.5];
@@ -93,7 +99,7 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
       arms = armsHeld(load, gh.highBar, poleBack); break;
     }
     case 'frontBar': {
-      tau = balanceTau(t => barAt('front', t), barOff); load = barAt('front', tau);
+      tau = balanceTau(t => barAt('front', t, SQUAT.barFront, SQUAT.barFrontRackUp), barOff); load = barAt('front', tau, SQUAT.barFront, SQUAT.barFrontRackUp);
       arms = armsHeld(load, gh.frontBar, SQUAT.frontPole, SQUAT.frontLower); break;
     }
     case 'zercher': {
@@ -159,7 +165,7 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
   if (p.impl === 'barbell' && p.load !== 'dbSides' && p.load !== 'kbRack' && p.load !== 'landmine') {
     props.push({ k: 'barbell', c, held: p.load !== 'zercher' });
     info.bar = c;
-    if (p.band) props.push({ k: 'band', from: c, to: [c[0], 0, 0], bar: true });
+    if (p.band) props.push(p.reverse ? { k: 'band', from: [c[0], SQUAT.bandHang, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [c[0], 0, 0], bar: true });
     if (p.chain) props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
     if (p.smith) props.push({ k: 'rail', x: c[0], h: 200 });
     if (p.load === 'highBar') contacts.push({ body: 'torso', equip: 'bar', tol: 1.6 });

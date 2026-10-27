@@ -137,6 +137,11 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - **Prośba o ocenę w sklepie** — systemowe okno iOS (SKStoreReviewController / expo-store-review), po pozytywnym zdarzeniu (np. nowy rekord
   albo kilka ukończonych treningów), nigdy w zamian za nagrodę (Apple 5.6.1/3.2.2). **[OTWARTE]**: dokładny moment i odstęp między prośbami.
 
+### Figury v2 — uwagi ŚREDNIE/NISKIE z ponownej recenzji (27.10.2026), wersja 1.0.1 (nie blokują 1.0)
+Źródło: ponowne recenzje 1.0 (squat/bench, hinge) na gałęzi `przekazanie-konta`, `docs/przekazanie/notatki/recenzje-1-1/ponowne/`. Oceny realności: realne, ale niskiej szkody (obraz, nie dane ani zdrowie).
+- **Squat/bench:** Overhead Squat i One-Arm OH Kettlebell Squat — bark 183–198° względem tułowia (A); Board Press i Pin Press bez deski i bolców (A); Band Squat — guma do wyciągniętych rąk (B); wąski chwyt (4 ćwiczenia + Close Grip BP) — przedramię 50° czołowo, chwyt węższy od barków (B); JM Press 152° i Skull Crusher 154° przy limicie kontraktu 149° (C); trzy warianty ławki ujemnej z przedramieniem 12–13° od pionu w płaszczyźnie strzałkowej, decyzja 26.10 mówi ±10° (D); brak polskiego tekstu `bp.elbowsMid` (karty Decline, Smith, Chains, Reverse Band bez wskazówki o łokciach).
+- **Hinge:** tor ciężaru w kształcie „S” przy kolanach w 9 pozostałych klasycznych martwych ciągach (sztanga max +7 cm przed środkiem stopy; U1 — poprawiony tylko Deadlift (hantle)); Rack Pull (i with Bands) — start +6,3 cm i „hak” toru (U2); brak stojaka/bolców: Rack Pull, Rack Pull with Bands, Good Morning off Pins (A); trap bar / Leverage / Rickshaw — tułów −6,4° na górze (U4); widok z przodu: tor w osi ciała przy hantlach po bokach (U5); Cable Pull Through — kolano 41,5° i tułów 30° na dole, bliżej półprzysiadu niż zawiasu (U6).
+
 ### Backlog bez priorytetu (decyzja właściciela 08.10.2026)
 Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właściciel nie poprosi o listę (CLAUDE.md).
 - Wydanie natywne — sekcja 4n niżej (przyciski przerwy na ekranie blokady, widżet, kontrolka w Centrum sterowania).

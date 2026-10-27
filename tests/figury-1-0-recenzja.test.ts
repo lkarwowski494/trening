@@ -3,12 +3,13 @@
  * (komentarz „było”) i pilnuje poprawki. Rodzaje (docs/20): niezmienniki geometrii (położenie ciężaru, kąty), zgodność rysunku ze wskazówką, wiersze błędów (kontrast z pozą poprawną).
  * Liczby progów: uproszczenie ilustracyjne zgodne ze wskazówkami (dl.feet, fsq.rack, rdl.knees: docs/research/28) — bez nowych twierdzeń w interfejsie.
  */
-import { figureSpec, frameAt, shapesAt, assignAll, bodyColliders, equipColliders, gap, jointAngles, VARIANTS, ERRORS, type Frame, type V3 } from '@/lib/figures/v2';
+import { FAMILIES, figureSpec, frameAt, shapesAt, assignAll, bodyColliders, equipColliders, gap, jointAngles, VARIANTS, ERRORS, type Frame, type V3 } from '@/lib/figures/v2';
 
 const KEYS = Object.entries(assignAll()).filter(([, f]) => ['squat', 'bench_press', 'hinge'].includes(f)).map(([k]) => k);
 const spec = (k: string) => figureSpec(k)!;
 const fr = (k: string, u: number, e?: 'barAway' | 'kneesBent'): Frame => frameAt(spec(k), u, e);
 const U = Array.from({ length: 21 }, (_, i) => i / 20);
+const viewsOf = (k: string): ('side' | 'front' | 'top')[] => FAMILIES.find(f => f.id === VARIANTS[k].family)!.views; /* widoki, które rodzina faktycznie pokazuje (families.ts) */
 const MID = 6.5; /* środek stopy (x, cm): kostka 0, pięta −6, palce 19 */
 
 /* martwy ciąg klasyczny z podłogi/podwyższenia (gryf lub hantle przed nogami), bez sumo i drążka sześciokątnego */
@@ -34,6 +35,17 @@ describe('hinge: martwy ciąg klasyczny — ciężar nad środkiem stopy (było:
   });
   test('sumo i drążek sześciokątny bez zmian: ciężar nad środkiem stopy (±5 cm)', () => {
     for (const k of ['Sumo Deadlift', 'Trap Bar Deadlift', 'Leverage Deadlift', 'Rickshaw Deadlift']) expect([k, Math.abs(fr(k, 0).info.load[0] - MID) <= 5]).toEqual([k, true]);
+  });
+});
+
+describe('hinge: Deadlift (hantle) — tor hantli prawie pionowy nad środkiem stopy w KAŻDEJ klatce (było po rundzie 1: kształt „S” przy kolanach, do 5,8 cm przed środkiem stopy; zgłoszenie właściciela z TestFlight)', () => {
+  test('x hantli ∈ [−3, +2,5] cm od środka stopy w każdej z 21 klatek, rozrzut toru ≤ 3 cm; hantle nie przenikają nóg (kolizje, tolerancja 0,3 cm)', () => {
+    const xs = U.map(u => fr('Deadlift (hantle)', u).info.load[0] - MID); for (const x of xs) expect([x >= -3 && x <= 2.5, +x.toFixed(1)]).toEqual([true, +x.toFixed(1)]);
+    expect(Math.max(...xs) - Math.min(...xs)).toBeLessThanOrEqual(3);
+    for (const u of U) { const f = fr('Deadlift (hantle)', u); const B = bodyColliders(f.sk).filter(b => !/^(uarm|farm|hand)/.test(b.id)); const E = equipColliders(f.props).filter(e => /^db/.test(e.id)); for (const b of B) for (const e of E) expect([u, b.id, gap(b, e) > -0.3]).toEqual([u, b.id, true]); }
+  });
+  test('ręce przy hantlach: chwyt nad hantlem (|z| = 30), ramię odchylone od pionu ≤ 15° w płaszczyźnie czołowej', () => {
+    for (const u of U) { const f = fr('Deadlift (hantle)', u); const a = f.sk.arms.R; expect(Math.abs(a.grip[2] - 30)).toBeLessThan(0.7); const t = Math.atan2(Math.abs(a.grip[2] - a.shoulder[2]), Math.abs(a.shoulder[1] - a.grip[1])) * 180 / Math.PI; expect([u, t <= 15]).toEqual([u, true]); }
   });
 });
 
@@ -68,10 +80,11 @@ describe('hinge: kolana „lekko ugięte” w RDL i dzień dobry (było: 40–44
   });
 });
 
-describe('squat: Front Squat — łokcie w przód na wysokości barku, nie pionowo w górę (było: łokieć 28,6 cm nad barkiem, ramię 67° w górę; wskazówka fsq.rack „ramiona mniej więcej poziomo”)', () => {
-  test('w każdej klatce: łokieć ≤ 18 cm nad barkiem (było 28,6) i ≥ 10 cm przed nim, uniesienie ramienia nad poziom ≤ 40°, łokieć poniżej czubka głowy', () => {
-    for (const u of U) { const f = fr('Front Squat', u); for (const s of ['R', 'L'] as const) { const a = f.sk.arms[s]; const dy = a.elbow[1] - a.shoulder[1]; const dx = a.elbow[0] - a.shoulder[0]; const dz = a.elbow[2] - a.shoulder[2]; const elev = Math.atan2(dy, Math.hypot(dx, dz)) * 180 / Math.PI;
-      expect([u, s, dy <= 18, dx >= 10, elev <= 40, a.elbow[1] < f.sk.head[1] - 5]).toEqual([u, s, true, true, true, true]); } }
+describe('squat: Front Squat — łokcie w przód na wysokości barku, nie w górę i na boki (było po rundzie 1: łokieć 14–17 cm nad barkiem, 13,5 cm przed nim, 24 cm na zewnątrz, odwiedzenie 39–61°; wskazówka fsq.rack „ramiona mniej więcej poziomo”)', () => {
+  const ARM = 31; /* długość ramienia (BODY.uarm) */
+  test('w każdej klatce, obie strony: łokieć ±12 cm od wysokości barku, przed barkiem ≥ 0,6 × długość ramienia, odwiedzenie od kierunku „w przód” ≤ 30°, poniżej czubka głowy', () => {
+    for (const u of U) { const f = fr('Front Squat', u); for (const s of ['R', 'L'] as const) { const a = f.sk.arms[s]; const dy = a.elbow[1] - a.shoulder[1]; const dx = a.elbow[0] - a.shoulder[0]; const dz = Math.abs(a.elbow[2] - a.shoulder[2]); const abd = Math.atan2(dz, dx) * 180 / Math.PI;
+      expect([u, s, Math.abs(dy) <= 12, dx >= 0.6 * ARM, abd <= 30, a.elbow[1] < f.sk.head[1] - 5]).toEqual([u, s, true, true, true, true]); } }
   });
   test('chwyt nadal na gryfie (≤ 0,6 cm) i łokieć w zakresie stawu (≤ 165°)', () => {
     for (const u of U) { const f = fr('Front Squat', u); const bar = f.info.bar as V3; for (const s of ['R', 'L'] as const) { expect(Math.abs(f.sk.arms[s].grip[0] - bar[0])).toBeLessThan(0.7); expect(jointAngles(f.sk, s).elbow).toBeLessThanOrEqual(165); } }
@@ -90,9 +103,28 @@ describe('guma sztangi: dwie gumy przy końcach gryfu (było: jedna guma pionowo
     expect(BANDED).toEqual(expect.arrayContaining(['Squat with Bands', 'Box Squat with Bands', 'Reverse Band Box Squat', 'Reverse Band Power Squat', 'Band Bench Press', 'Reverse Band Bench Press', 'Deadlift with Bands', 'Rack Pull with Bands', 'Reverse Band Deadlift', 'Band Good Morning', 'Sumo Deadlift with Bands', 'Reverse Band Sumo Deadlift']));
     expect(BANDED).not.toContain('Band Squat');
   });
-  test('widok z przodu: dwie linie gumy po obu stronach (|x| > 60 cm), nie przez oś ciała; z boku jedna', () => {
-    for (const k of BANDED) { const front = shapesAt(spec(k), 1, 'front').filter(s => s.id === 'band'); expect([k, front.length]).toEqual([k, 2]); for (const s of front) expect(s.k === 'line' && Math.abs(s.a[0]) > 60).toBe(true);
-      expect([k, shapesAt(spec(k), 1, 'side').filter(s => s.id === 'band').length]).toEqual([k, 1]); }
+  /* widoki, które rodzina faktycznie pokazuje (families.ts): przysiad i zawias — bok i przód, wyciskanie — bok i góra */
+  test('w widokach rodziny: bok — jedna linia gumy; przód (przysiad, zawias) i góra (wyciskanie) — dwie, po obu stronach (|z| > 60 cm), nie przez oś ciała', () => {
+    for (const k of BANDED) for (const v of viewsOf(k)) { const n = shapesAt(spec(k), 1, v).filter(s => s.id === 'band'); expect([k, v, n.length]).toEqual([k, v, v === 'side' ? 1 : 2]);
+      if (v === 'front') for (const s of n) expect(s.k === 'line' && Math.abs(s.a[0]) > 60).toBe(true); }
+    expect(viewsOf('Band Bench Press')).toEqual(['side', 'top']);
+  });
+});
+
+describe('guma „Reverse Band”: zwisa z góry stojaka do gryfu, nie od gryfu do podłogi (było po rundzie 1: guma od gryfu do podłogi, jak w „with Bands” — 5 ćwiczeń; odciążenie na dole to cecha odmiany)', () => {
+  const REV = ['Reverse Band Box Squat', 'Reverse Band Power Squat', 'Reverse Band Bench Press', 'Reverse Band Deadlift', 'Reverse Band Sumo Deadlift'];
+  const bandOf = (f: Frame) => f.props.filter((p): p is Extract<typeof p, { k: 'band' }> => p.k === 'band' && !!p.bar);
+  test('w każdej klatce: kotwica gumy ≥ 30 cm nad gryfem (nie na podłodze), drugi koniec na gryfie; wszystkie 5 wersji z „Reverse Band” (przysiad, wyciskanie, martwy ciąg) objęte', () => {
+    expect(KEYS.filter(k => /Reverse Band/.test(k)).sort()).toEqual([...REV].sort());
+    for (const k of REV) for (const u of U) { const f = fr(k, u); const b = bandOf(f); expect([k, u, b.length]).toEqual([k, u, 1]); const bar = f.info.bar as V3;
+      expect([k, u, b[0].to[1] === bar[1] && b[0].to[0] === bar[0], b[0].from[1] >= bar[1] + 30]).toEqual([k, u, true, true]); }
+  });
+  test('inne gumy sztangi (with Bands, Band Bench Press, Deadlift with Bands) bez zmian: od gryfu do podłogi', () => {
+    for (const k of ['Squat with Bands', 'Box Squat with Bands', 'Band Bench Press', 'Deadlift with Bands', 'Sumo Deadlift with Bands']) for (const u of U) { const f = fr(k, u); const b = bandOf(f)[0]; expect([k, u, b.to[1]]).toEqual([k, u, 0]); expect(b.from[1]).toBe((f.info.bar as V3)[1]); }
+  });
+  test('w widoku z boku i z przodu/góry guma „Reverse” biegnie ku górze od gryfu (koniec rysunku wyżej niż gryf), nie ku podłodze', () => {
+    for (const k of REV) for (const v of viewsOf(k)) { if (v === 'top') continue; const sh = shapesAt(spec(k), 1, v); const bar = sh.find(s => s.id === 'bar')!; const by = bar.k === 'circle' ? bar.c[1] : bar.k === 'line' ? bar.a[1] : 0;
+      for (const s of sh.filter(x => x.id === 'band')) expect([k, v, s.k === 'line' && Math.max(s.a[1], s.b[1]) > by + 25 && Math.min(s.a[1], s.b[1]) > by - 1]).toEqual([k, v, true]); }
   });
 });
 

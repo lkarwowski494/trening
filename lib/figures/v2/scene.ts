@@ -31,7 +31,7 @@ export type Prop =
   | { k: 'rail'; x: number; h: number }                                                        /* prowadnica suwnicy Smitha (pionowa) */
   | { k: 'post'; x: number; h: number; hook?: number }                                         /* słupek stojaka */
   | { k: 'cable'; from: V3; to: V3 }
-  | { k: 'band'; from: V3; to: V3; /** guma sztangi: dwie gumy przy końcach gryfu (jak łańcuchy), nie jedna przez środek ciała */ bar?: true }
+  | { k: 'band'; from: V3; to: V3; /** guma sztangi: dwie gumy przy końcach gryfu (jak łańcuchy), nie jedna przez środek ciała */ bar?: true; /** odmiana „reverse”: guma zwisa z góry stojaka — `from` to kotwica nad gryfem, `to` to gryf (zamiast od gryfu do podłogi) */ hang?: true }
   | { k: 'chain'; from: V3; to: V3; /** łańcuch sztangi (wisi na obu tulejach); bez tego pola — pojedynczy łańcuch (np. pas z obciążeniem) */ bar?: true }
   | { k: 'floor'; x0: number; x1: number }
   | { k: 'mat'; x0: number; x1: number; h: number }

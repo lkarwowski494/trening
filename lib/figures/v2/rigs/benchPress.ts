@@ -27,6 +27,8 @@ export type BenchParams = {
   /** Wysokość dotyku nad osią tułowia (cm) — przód klatki / szyi + promień gryfu. */
   touchB?: number;
   floor?: boolean; oneArm?: boolean; squeeze?: boolean; band?: boolean; chain?: boolean;
+  /** Odmiana „reverse”: guma zwisa z góry stojaka do gryfu (zamiast od gryfu do podłogi). */
+  reverse?: boolean;
   /** Siła odchylenia łokci na boki (biegun IK): 0,45 domyślnie; wąski chwyt / JM — łokcie bliżej, ale poza obrysem ławki. */
   flare?: number;
   /** Przedramiona pionowo w płaszczyźnie czołowej (łokieć dokładnie pod dłonią) w całym ruchu: biegun łokcia liczony z geometrii (NSCA Basics 2012 s. 53–55: nadgarstki nad łokciami, przedramiona prostopadle do podłogi). Kąt odwiedzenia łokci wynika wtedy z szerokości chwytu i punktu dotyku. */
@@ -34,6 +36,8 @@ export type BenchParams = {
 };
 
 export const BENCH = {
+  /** Kotwica gumy „reverse” nad najwyższym położeniem gryfu (górna belka stojaka), cm. */
+  bandHangAbove: 35,
   seatTop: 43, declineSeat: 60, padBack: 10.2, backLen: 75, seatLen: 55,
   /** Stopy: odległość kostki od miednicy w stronę stóp (cm) i rozstaw. */
   footBack: 40, footHalf: 24,
@@ -102,7 +106,7 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
     props.push({ k: 'barbell', c });
     info.bar = c;
     if (p.impl === 'smith') props.push({ k: 'rail', x: c[0], h: 190 });
-    if (p.band || p.impl === 'band') props.push({ k: 'band', from: c, to: [c[0], 0, 0], bar: true });
+    if (p.band || p.impl === 'band') props.push(p.reverse ? { k: 'band', from: [c[0], top[1] + BENCH.bandHangAbove, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [c[0], 0, 0], bar: true });
     if (p.chain || p.impl === 'chain') props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
   }
   /* dozwolone kontakty: plecy na oparciu, miednica i uda na siedzisku, gryf/hantle na klatce (tylko na dole) */

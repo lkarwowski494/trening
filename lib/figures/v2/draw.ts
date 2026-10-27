@@ -173,9 +173,9 @@ export function propShapes(props: Prop[], view: View): Shape[] {
       }
       case 'cable': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 0.7, role: 'cable', z: zKey(LAYER.frontEquip, 0), id: 'cable' }); S.push({ k: 'circle', c: a, r: 2.6, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pulley' }); break; }
       case 'band': {
-        /* guma sztangi (bar): dwie gumy przy końcach gryfu w widoku z przodu i z góry (jak łańcuchy); z boku jedna linia. Guma chwytana w dłoniach (bez bar) — jedna. */
+        /* guma sztangi (bar): dwie gumy (hang: zwisa z kotwicy nad gryfem — odmiany „reverse”, znacznik kotwicy) przy końcach gryfu w widoku z przodu i z góry (jak łańcuchy); z boku jedna linia. Guma chwytana w dłoniach (bez bar) — jedna. */
         const zs = pr.bar && !side ? [-E.chainZ, E.chainZ] : [pr.from[2]];
-        for (const zz of zs) { const a = proj([pr.from[0], pr.from[1], zz], view), b = proj([pr.to[0], pr.to[1], pr.bar && !side ? zz : pr.to[2]], view); S.push({ k: 'line', a, b, w: 0.9, role: 'load', dash: [2.5, 2], z: zKey(LAYER.frontEquip, 0), id: 'band' }); }
+        for (const zz of zs) { const a = proj([pr.from[0], pr.from[1], zz], view), b = proj([pr.to[0], pr.to[1], pr.bar && !side ? zz : pr.to[2]], view); S.push({ k: 'line', a, b, w: 0.9, role: 'load', dash: [2.5, 2], z: zKey(LAYER.frontEquip, 0), id: 'band' }); if (pr.hang && view !== 'top') S.push({ k: 'circle', c: a, r: 2.4, fill: 'frame', z: zKey(LAYER.back, -60), id: 'bandAnchor' }); }
         break; }
       case 'chain': {
         /* łańcuchy sztangi (bar) wiszą na obu tulejach: w widoku z przodu i z góry dwa, na ±chainZ; z boku jeden. Łańcuch pasa (bez bar) — jeden, jak dotąd. */
