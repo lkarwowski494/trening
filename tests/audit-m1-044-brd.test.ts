@@ -16,7 +16,8 @@ jest.setTimeout(60000);
 const ROOT = path.join(__dirname, '..');
 const read = (f: string) => fs.readFileSync(path.join(ROOT, f), 'utf8');
 const SCRIPT = path.join(ROOT, 'scripts/kontrola-brd.mjs');
-const brd = ['README.md', 'odkrywanie.md', 'wymagania.md', 'reguly.md', 'zrodla.md'].map((f) => read(`docs/brd/${f}`)).join('\n');
+/* M1-audytor-generalny-022 (28.10.2026): wszystkie pliki BRD (errata, wymagania dzielone ponad ok. 20 KB), nie stała lista */
+const brd = fs.readdirSync(path.join(ROOT, 'docs/brd')).filter((f) => f.endsWith('.md')).sort().map((f) => read(`docs/brd/${f}`)).join('\n');
 const H = 3600e3;
 
 type Vec = { regula: string; id: string; wejscie: Record<string, number>; oczekiwane: Record<string, number>; tolerancja: number; rodzaj: string };
@@ -29,7 +30,7 @@ describe('BRD (docs/brd): kontrola mechaniczna i pokrycie', () => {
   test('kontrola-brd: kod 0, bez błędów; reguły RD z wektorami', () => {
     const r = spawnSync('node', [SCRIPT, path.join(ROOT, 'docs/brd')], { encoding: 'utf8' });
     expect(r.stdout).not.toMatch(/^BŁĄD/m); expect(r.status).toBe(0);
-    expect(r.stdout).toMatch(/kontrola-brd: 5 plików, \d+ wymagań BR, 4 reguł RD, \d+ wektorów/);
+    expect(r.stdout).toMatch(/kontrola-brd: \d+ plików, \d+ wymagań BR, 4 reguł RD, \d+ wektorów/);
     expect(Number(/(\d+) wymagań BR/.exec(r.stdout)![1])).toBeGreaterThanOrEqual(30);
   });
   test('funkcje z inwentarza: generator, odczyt Zdrowia, kilka planów, Dostosuj do miejsca (DEC-04) mają wymagania BR', () => {

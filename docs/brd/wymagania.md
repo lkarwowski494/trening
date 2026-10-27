@@ -118,6 +118,15 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy użytkownik stuka „Zakończ”
     - Wtedy okno pyta o zakończenie i ostrzega o seriach bez wyniku
 
+### BR-TRN-011: Od ekranu treningu do odhaczonej serii najwyżej jedno stuknięcie
+- Przepływ: PR-01
+- Dowód potrzeby: D-107 (decyzja właściciela 2026-10-23, DEC-07 K9, docs/18); test `tests/dec07-k9-stukniecia.test.tsx` (`MAX_TAPS_TO_FIRST_DONE_SET`)
+- Kryteria akceptacji:
+  - Scenariusz: Pierwsza seria z wartościami z szablonu
+    - Zakładając, że trwa trening z szablonu, a pierwsza seria ma ciężar i powtórzenia z szablonu albo z poprzedniego treningu
+    - Gdy użytkownik jest na ekranie treningu i stuka „Seria zrobiona”
+    - Wtedy pierwsza seria jest odhaczona po jednym stuknięciu (D-107)
+
 ### BR-TRN-005: Zamiana ćwiczenia w trakcie treningu
 - Przepływ: PR-01
 - Dowód potrzeby: J-01 (odtworzone z README.md); kod `app/swap.tsx`
@@ -625,45 +634,39 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że wybrano wygląd systemowy
     - Gdy telefon przełącza się na tryb ciemny
     - Wtedy aplikacja przełącza się na ciemny wygląd
+  - Scenariusz: Nowa instalacja startuje w ciemnym wyglądzie (D-120)
+    - Zakładając, że aplikację zainstalowano po raz pierwszy
+    - Gdy uruchamia się pierwszy raz
+    - Wtedy wygląd jest ciemny, a zapisane ustawienie osoby, która już korzysta z aplikacji, zostaje bez zmian (test `tests/domyslny-motyw.test.ts`)
 
-### BR-JEZ-003: Jednostka ciężaru kg albo lb
+### BR-JEZ-003: System miar metryczny albo imperialny
 - Przepływ: PR-08
-- Dowód potrzeby: J-01; OP-02
+- Dowód potrzeby: J-01; D-110 (decyzje właściciela 2026-10-20, docs/18); kod `lib/units.ts`; testy `tests/audit-m1-lok07-01-imperial-dist.test.tsx`, `tests/audit-m1-lok07-02-default-system.test.ts`
 - Kryteria akceptacji:
-  - Scenariusz: Zmiana jednostki
-    - Zakładając, że użytkownik ma zapisane treningi w kg
-    - Gdy zmienia jednostkę na lb
-    - Wtedy wartości pokazują się w lb, a zapis w danych zostaje w kg
+  - Scenariusz: Zmiana systemu miar
+    - Zakładając, że użytkownik ma zapisane treningi w kg i dystans w metrach
+    - Gdy zmienia system miar na imperialny
+    - Wtedy ciężar pokazuje się w lb, dystans w mi albo yd, a zapis w danych zostaje w kg i metrach (bez migracji)
+  - Scenariusz: Domyślny system nowej instalacji
+    - Zakładając, że aplikację zainstalowano po raz pierwszy w telefonie z regionem, który używa miar imperialnych
+    - Gdy aplikacja startuje
+    - Wtedy system miar jest imperialny; brak danych o regionie daje metryczny, a istniejący użytkownik zostaje przy swoim ustawieniu
 
-### BR-JEZ-004: Teksty zwykłym językiem, bez przypisów do źródeł
+### BR-JEZ-004: Teksty zwykłym językiem, bez przypisów i bez oznaczeń pewności
 - Przepływ: PR-08
-- Dowód potrzeby: ZP-09; decyzja właściciela 2026-10-23 (docs/18); `tests/zrodla-wiedzy.test.ts`
+- Dowód potrzeby: ZP-09; D-108, D-109 (decyzje właściciela 2026-10-23 i 2026-10-25, docs/18); `tests/zrodla-wiedzy.test.ts`; `scripts/claims.mjs` (`markerErrors`)
 - Kryteria akceptacji:
   - Scenariusz: Reguła z liczbami bez cytatu
     - Zakładając, że użytkownik otwiera objaśnienie reguły (generator, plan, Postępy, Ustawienia)
     - Gdy objaśnienie się wyświetla
-    - Wtedy tekst jest napisany zwykłym językiem i nie zawiera nazw źródeł, autorów, organizacji, norm ani lat publikacji
-  - Scenariusz: Uproszczenie nazwane wprost
-    - Zakładając, że reguła jest uproszczeniem albo wyborem aplikacji, a nie wynikiem badań
+    - Wtedy tekst jest napisany zwykłym językiem i nie zawiera nazw źródeł, autorów, organizacji, norm, lat publikacji ani odwołań ogólnych typu „na podstawie badań”
+  - Scenariusz: Bez oznaczeń pewności w interfejsie (D-109; zastępuje dawny scenariusz „Uproszczenie nazwane wprost”, ER-03)
+    - Zakładając, że reguła jest uproszczeniem albo wyborem aplikacji
     - Gdy użytkownik czyta jej objaśnienie
-    - Wtedy tekst mówi o tym zwykłymi słowami („uproszczenie”, „nasz wybór”)
+    - Wtedy tekst nie zawiera oznaczeń „uproszczenie”, „nasz wybór”, „jedno źródło”, „konwencja”; waga twierdzenia jest zapisana tylko w rejestrze twierdzeń (`docs/research/rejestr-twierdzen.json`, pole `rodzaje`)
 
 ### BR-ZRO-001: Ekran „Źródła wiedzy” w Ustawieniach
-- Przepływ: PR-08
-- Dowód potrzeby: ZP-02, ZP-09; `app/more/sources.tsx`, `lib/sources.ts`; scenariusz Maestro 55
-- Kryteria akceptacji:
-  - Scenariusz: Wejście z Ustawień
-    - Zakładając, że użytkownik jest w Ustawieniach
-    - Gdy stuka „Źródła wiedzy”
-    - Wtedy otwiera się ekran z listą źródeł pogrupowaną tematami (plan, ruch dla zdrowia, wysiłek, szacowany maksymalny ciężar, lżejszy tydzień, asekuracja), z cytatem i zdaniem, do czego źródło służy, oraz sekcjami o technice ćwiczeń, partiach mięśniowych i uproszczeniach
-  - Scenariusz: Bez sieci
-    - Zakładając, że telefon nie ma połączenia z internetem
-    - Gdy użytkownik otwiera ekran
-    - Wtedy lista jest w pełni widoczna (same teksty, bez adresów i bez przejścia do przeglądarki)
-  - Scenariusz: Powrót
-    - Zakładając, że ekran jest otwarty
-    - Gdy użytkownik stuka strzałkę powrotu w nagłówku
-    - Wtedy wraca do Ustawień
+- Status: wycofane 2026-10-25 (D-108): ekran usunięty z aplikacji razem z wpisem w Ustawieniach i scenariuszem E2E; publicznie bez źródeł, źródła tylko w wewnętrznym rejestrze (ZP-09). Wpis zostaje jako ślad decyzji (ER-02); ID nie wraca.
 
 ### BR-ZAK-001: Model dostępu zgodny z modelem stałym (M5 S1)
 - Przepływ: PR-08

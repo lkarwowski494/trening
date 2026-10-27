@@ -1,0 +1,10 @@
+# BRD Trening — errata (ER)
+Sprzeczności, korekty i prośby o zmianę BRD od innych ról, z datą i statusem. Źródło wpisów z 2026-10-28: audyt 1.0 z 27.10.2026 (raporty ról 01-odkrywanie i 03-zakres), naprawa M1-audytor-generalny-022.
+
+| ID | Data | Co było nie tak | Źródło zgłoszenia | Zmiana | Status |
+|---|---|---|---|---|---|
+| ER-01 | 2026-10-28 | OP-02 i BR-JEZ-003 opisywały system miar jako wdrażany (tylko kg/lb), a jest wdrożony (D-110) | 01-odkrywanie-006 | BR-JEZ-003 przepisane (metryczny albo imperialny, domyślny z regionu); OP-02 zamknięte | zamknięte |
+| ER-02 | 2026-10-28 | BR-ZRO-001 i ZP-09 wymagały ekranu źródeł w Ustawieniach, usuniętego decyzją z 2026-10-25 (D-108) | 01-odkrywanie-006, 03-zakres-004 | BR-ZRO-001 ze statusem „wycofane” (ID nie wraca), ZP-09 przepisane: źródła tylko w wewnętrznym rejestrze | zamknięte |
+| ER-03 | 2026-10-28 | BR-JEZ-004 wymagał w interfejsie słów „uproszczenie”, „nasz wybór”, sprzecznie z decyzją z 2026-10-23 (D-109) i strażnikiem `scripts/claims.mjs` | 01-odkrywanie-006 | scenariusz zastąpiony scenariuszem „Bez oznaczeń pewności w interfejsie” | zamknięte |
+| ER-04 | 2026-10-28 | wymaganie DEC-07 K9 (najwyżej 1 stuknięcie do odhaczonej serii) bez BR | 01-odkrywanie-006 | dopisane BR-TRN-011 | zamknięte |
+| ER-05 | 2026-10-28 | README BRD: data aktualizacji 2026-10-20 i wersja 0.20.0; BR-JEZ-002 bez domyślnego ciemnego wyglądu (D-120) | 01-odkrywanie-006 | data, wersja 1.0.0 i scenariusz nowej instalacji | zamknięte |
