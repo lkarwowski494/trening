@@ -27,15 +27,16 @@ const gotowe = (cw, sprz, W, bledy = []) => {
   const tk = wczytajTeksty(); const ok = new Set(bledy.map((b) => b.cue));
   for (const c of bledyCwiczenia(cw)) if (!ok.has(c)) POMINIETE_BLEDY[cw] = (POMINIETE_BLEDY[cw] ? POMINIETE_BLEDY[cw] + '; ' : '') + (tk[c] ? `błąd „${c}” (rząd błędu do wygenerowania)` : `błąd „${c}” bez opisu w lib/cues/text/pl.json — nie rysowany (reguła jakości etykieta_bledu); generator narysuje go po wdrożeniu tekstu`);
   const r = ruch(W, P, { rodzina: RODZINA, cw, sprzet: sprz });
-  if (process.env.DBG_KB) console.error(cw, 'szczyt', r.szczyt.toFixed(1), 'droga', r.suma.toFixed(0), 'klatek', r.klatki.length);
+  if (process.env.DBG_KB) console.error(cw, 'szczyt', r.szczyt.toFixed(1), 'droga', r.suma.toFixed(0), 'klatek', r.klatki.length, 'dl', JSON.stringify(r.dl?.map((x) => Math.round(x))));
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: sprz, klatki: r.klatki, bledy: bledyZOpisem(cw, bledy.map((b) => b(r)), POMINIETE_BLEDY) });
 };
 
 /** Swing: dół (zawias, ciężar za nogami) → środek (wyprost bioder) → góra (stanie, ręce prosto przed sobą na wysokości barków). */
 function swing(cw, { jedna = false, sprz }) {
   const ra = (psi, th = jedna ? 14 : 28) => ({ psi, th, z: jedna ? 19 : 5 });
+  const PSI0 = -145; /* dół zamachu: ręce za linią kolan, ciężar między udami (recenzja p4a) */
   const W = [
-    wp({ al: 18, k: 48, pitch: 62, ra: ra(-100, jedna ? 10 : 22), rl: jedna ? { psi: -60, th: 25, z: 24 } : undefined, kz: 0.5, zs: 20 }),
+    wp({ al: 18, k: 48, pitch: 62, ra: { ...ra(PSI0, jedna ? 26 : 22), z: jedna ? 3 : 6 }, rl: jedna ? { psi: -60, th: 25, z: 24 } : undefined, kz: 0.5, zs: jedna ? 27 : 20 }),
     wp({ al: 10, k: 26, pitch: 34, ra: ra(-60), rl: jedna ? { psi: -40, th: 25, z: 26 } : undefined, kz: 0.4, zs: 20 }),
     wp({ al: 3, k: 12, pitch: 2, ra: ra(-4), rl: jedna ? { psi: 10, th: 25, z: 28 } : undefined, kz: 0.2, zs: 20 }),
   ];
@@ -58,6 +59,20 @@ function zarzut(cw, o) {
   ];
   return gotowe(cw, o.sprz, W);
 }
+/** Bottoms-up clean z zawieszenia (recenzja p4a, runda 2): start ze zwisu przy udach (lekki zawias, dzwon w dół), rączka idzie blisko ciała (łokieć cofnięty, przedramię coraz bardziej w górę), na końcu kettlebell dnem do góry przy barku:
+ * przedramię pionowo, łokieć pod dłonią. Tryb dzwonu „wzdluz_gora”: dzwon wzdłuż przedramienia, a dnem do góry dopiero przy przedramieniu ≤ 45° od pionu. Wolna ręka wzdłuż ciała. */
+function zarzutDnemDoGory(cw) {
+  const sprz = SPRZ(KB({ trzyma: 'R', dzwon: 'wzdluz_gora' })); const BU = { psi: -62, th: 148, z: 18 }; const WOLNA_BU = { psi: -90, th: 8, z: 26 };
+  const r = (ra) => ({ ra, rl: WOLNA_BU });
+  const W = [
+    wp({ al: 14, k: 40, pitch: 50, ...r({ psi: -100, th: 10, z: 15 }), kz: 0.3, zs: 20 }), /* zwis przy kolanach: dzwon w dół bez przenikania ud */
+    wp({ al: 6, k: 14, pitch: 6, ...r({ psi: -118, th: 100, z: 17 }), kz: 0.3, zs: 20 }),
+    wp({ al: 8, k: 22, pitch: 5, ...r({ psi: -96, th: 134, z: 18 }), kz: 0.3, zs: 20 }),
+    wp({ al: 12, k: 30, pitch: 4, ...r(BU), kz: 0.3, zs: 20 }),
+    wp({ al: 4, k: 14, pitch: 2, ...r(BU), kz: 0.2, zs: 20 }),
+  ];
+  return gotowe(cw, sprz, W);
+}
 /** Rwanie: zawis między nogami → wyprost → ciężar prosto nad głową (u = 1). */
 function rwanie(cw, o) {
   const W = [
@@ -73,17 +88,19 @@ function podrzut(cw, o) {
   const rack = (extra = {}) => wp({ al: 3, k: 12, pitch: 2, ...dwa(o, RACK_R), kz: 0.2, zs: 18, ...extra });
   const W = [rack(), rack({ al: 10, k: 38, pitch: 3 }),
     rack({ al: 8, k: 8, pod: -45, A: [1, yP(-45) + 4], ra: { psi: 5, th: 95, z: 19 }, ...(o.jedna ? { rl: WOLNA() } : {}) }),
-    o.split ? wp({ ...SPLIT(), pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 14 }) : wp({ al: 12, k: 30, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 })];
+    o.split ? wp({ ...SPLIT(), pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 14 }) : o.pp ? wp({ al: 3, k: 6, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 }) /* wyciskanie z nóg: po wybiciu nogi zostają proste, ręce kończą ruch (recenzja p4a) */ : wp({ al: 12, k: 30, pitch: 3, ...dwa(o, NAD), kz: 0.2, zs: 18 })];
   return gotowe(cw, o.sprz, W);
 }
-/** Sumo high pull: szeroki rozkrok, dzwon między stopami → wyprost → łokcie wysoko, ciężar przy brodzie. */
+/** Chwyt kettlebella w świecie (x, y, |z|) i kierunek łokcia pole = [x, y, |z|] (łokieć na zewnątrz i w górę); obie ręce symetrycznie. */
+const dlonie = (x, y, z, pole) => ({ ra: { g: [x, y, z], pole }, rl: { g: [x, y, -z], pole: [pole[0], pole[1], -pole[2]] } });
+/** Sumo high pull: szeroki rozkrok, dzwon między stopami → wyprost → łokcie wysoko i na boki (nad dłońmi, odwiedzenie ≥ 45°), ciężar przy brodzie; stopy na podłodze także w klatce końcowej (recenzja p4a, runda 2). */
 function sumoHighPull(cw) {
   const sprz = SPRZ(KB({ dzwon: 'dol' })); const st = { zs: 23, rot: 38, kz: 0.9 };
   const mk = (bend = 0) => [
-    wp({ al: 22, k: 88, pitch: 38, ra: { psi: -95, th: 22, z: 5 }, ...st }),
-    wp({ al: 8, k: 36, pitch: 24, ra: { psi: -80, th: 26, z: 5 }, ...st, bend: bend * 0.6 }),
-    wp({ al: 4, k: 20, pitch: 4, ra: { psi: -62, th: 50, z: 5 }, ...st, bend: 0 }),
-    wp({ al: 4, k: 18, pitch: 3, ra: { psi: 5, th: 105, z: 5 }, ...st, A: [1, yP(-40) + 3], pod: -40 }),
+    wp({ al: 22, k: 88, pitch: 38, ra: { psi: -95, th: 22, z: 5, pz: 2 }, ...st }),
+    wp({ al: 8, k: 36, pitch: 24, ra: { psi: -92, th: 24, z: 5, pz: 2 }, ...st, bend: bend * 0.6 }),
+    wp({ al: 4, k: 20, pitch: 4, ra: { psi: -115, th: 112, z: 6.5, pz: 6 }, ...st, bend: 0 }),
+    wp({ al: 4, k: 18, pitch: 3, ra: { psi: -80, th: 140, z: 6.5, pz: 9.5 }, ...st, A: [1, yP(-40) + 1], pod: -40 }),
   ].map((w, i) => (i === 0 ? { ...w, bend } : w));
   const W = mk(0); const W2 = mk(26); W2[0].bend = 26; W2[1].bend = 26; W2[2].bend = 0;
   void W2;
@@ -115,13 +132,13 @@ export function generuj() {
   G['Kettlebell Clean'] = () => zarzut('Kettlebell Clean', k1());
   G['Double Kettlebell Clean'] = () => zarzut('Double Kettlebell Clean', k2());
   G['Dumbbell Clean'] = () => zarzut('Dumbbell Clean', { sprz: SPRZ(DB({ trzyma: 'R' }), DB({ trzyma: 'L' })) });
-  G['Bottoms-Up Clean From The Hang Position'] = () => zarzut('Bottoms-Up Clean From The Hang Position', k1());
+  G['Bottoms-Up Clean From The Hang Position'] = () => zarzutDnemDoGory('Bottoms-Up Clean From The Hang Position');
   G['Kettlebell Snatch'] = () => rwanie('Kettlebell Snatch', k1());
   G['Double Kettlebell Snatch'] = () => rwanie('Double Kettlebell Snatch', k2());
   G['Snatch (hantel)'] = () => rwanie('Snatch (hantel)', { jedna: true, sprz: SPRZ(DB({ trzyma: 'R' })) });
-  G['Double Kettlebell Push Press'] = () => podrzut('Double Kettlebell Push Press', k2());
+  G['Double Kettlebell Push Press'] = () => podrzut('Double Kettlebell Push Press', { ...k2(), pp: true });
   G['Double Kettlebell Jerk'] = () => podrzut('Double Kettlebell Jerk', k2());
-  G['One-Arm Kettlebell Push Press'] = () => podrzut('One-Arm Kettlebell Push Press', k1());
+  G['One-Arm Kettlebell Push Press'] = () => podrzut('One-Arm Kettlebell Push Press', { ...k1(), pp: true });
   G['One-Arm Kettlebell Jerk'] = () => podrzut('One-Arm Kettlebell Jerk', k1());
   G['One-Arm Kettlebell Split Jerk'] = () => podrzut('One-Arm Kettlebell Split Jerk', k1({ split: true }));
   G['Kettlebell Sumo High Pull'] = () => sumoHighPull('Kettlebell Sumo High Pull');

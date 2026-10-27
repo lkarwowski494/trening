@@ -1509,12 +1509,12 @@
    "raw": "d5c3c876cc7039a35f8c"
   },
   "kb_ballistic/Kettlebell Swing": {
-   "svg": "652ed9d72942e3373224",
-   "raw": "7b843c5d41808583fb9c"
+   "svg": "7f2b0bdd8850b3125a8d",
+   "raw": "ad0eb0e49b5da7c281f5"
   },
   "kb_ballistic/One-Arm Kettlebell Swings": {
-   "svg": "1cbc2bd4564fa86a78b0",
-   "raw": "4850b21083d7fd8ba996"
+   "svg": "ec5dc8f0c6e5fe0311c1",
+   "raw": "d06b4ab68386c29b8c38"
   },
   "kb_ballistic/Kettlebell Clean": {
    "svg": "0cbf1e74f02f997a5602",
@@ -1529,8 +1529,8 @@
    "raw": "a6ddcac55193b49d944a"
   },
   "kb_ballistic/Bottoms-Up Clean From The Hang Position": {
-   "svg": "0cbf1e74f02f997a5602",
-   "raw": "8223a188d0056f8b8b57"
+   "svg": "42af0a29d8a33b3ca133",
+   "raw": "e83ef496d1a165aa7a0d"
   },
   "kb_ballistic/Kettlebell Snatch": {
    "svg": "49b7ba4446ee678c64cd",
@@ -1545,16 +1545,16 @@
    "raw": "decacb613f00e09d08a9"
   },
   "kb_ballistic/Double Kettlebell Push Press": {
-   "svg": "873b0208ad5d114a83e4",
-   "raw": "7f5b26b781c78411eb2b"
+   "svg": "b3f4ef330a4964d3d587",
+   "raw": "90b8efd763ae4587bff4"
   },
   "kb_ballistic/Double Kettlebell Jerk": {
    "svg": "873b0208ad5d114a83e4",
    "raw": "7f5b26b781c78411eb2b"
   },
   "kb_ballistic/One-Arm Kettlebell Push Press": {
-   "svg": "f98ef384a411a26137b1",
-   "raw": "bd0049c889068b9756cf"
+   "svg": "447169c48fadb58ca53d",
+   "raw": "a5b349c6d00d845f7b78"
   },
   "kb_ballistic/One-Arm Kettlebell Jerk": {
    "svg": "f98ef384a411a26137b1",
@@ -1565,8 +1565,8 @@
    "raw": "5189a525eec78157aabd"
   },
   "kb_ballistic/Kettlebell Sumo High Pull": {
-   "svg": "449670239c9d416ee4af",
-   "raw": "fcd0959e5a69844a0d2c"
+   "svg": "c1f70ac965b5622eb1f9",
+   "raw": "3b647de6f51f4e480c70"
   },
   "kb_ballistic/One-Arm Kettlebell Clean and Jerk": {
    "svg": "92b395a11f038931187e",
@@ -1733,68 +1733,68 @@
    "raw": "fd0f6767f54da620b65c"
   },
   "olympic/Power Clean": {
-   "svg": "c2cf5bcd57f4d9ee5901",
-   "raw": "c0b096daff7399adfe37"
+   "svg": "e8d2749694986d029dcc",
+   "raw": "77caeb982b13db3d2a8b"
   },
   "olympic/Clean": {
-   "svg": "c9551353b09b6ef27000",
-   "raw": "a24b678337670ee69ac3"
+   "svg": "c806a14fa369ced105a9",
+   "raw": "37da6d904f61c4821756"
   },
   "olympic/Split Clean": {
-   "svg": "60018103722b4d8c3d91",
-   "raw": "fd5291fa4433d123b4ea"
+   "svg": "910cee8fa14bfeb15eee",
+   "raw": "9b1820f00fb658942422"
   },
   "olympic/Hang Clean": {
-   "svg": "80f59b523f823d8fede4",
-   "raw": "d5a2c3840533957bac31"
+   "svg": "bf7a1d6d9c42b40f950a",
+   "raw": "1528d8f232753ce5e5b9"
   },
   "olympic/Block Clean": {
-   "svg": "b1a4cbb9c0232c039226",
-   "raw": "e8c29ce717990eff9de1"
+   "svg": "0cec5def839de1d6e37d",
+   "raw": "2fbe367a8aa115077596"
   },
   "olympic/Block Power Clean": {
-   "svg": "0e88218c4b340b0b11a7",
-   "raw": "ab78ef524fb7afa5332d"
+   "svg": "474e3d9d0560e2dd377d",
+   "raw": "f5550296b4ed8841fe37"
   },
   "olympic/Barbell Snatch": {
-   "svg": "78702543f15aaedb40e7",
-   "raw": "ba5acd00d0e4cc35cb17"
+   "svg": "43acdcbab1d4537052ef",
+   "raw": "5fa3efa8eb18ce609a48"
   },
   "olympic/Power Snatch": {
-   "svg": "a909802896ba9d263925",
-   "raw": "3ffad86f95bba839a729"
+   "svg": "85e2fcd072ed002ce62f",
+   "raw": "06a58205eae3d956db9f"
   },
   "olympic/Split Snatch": {
-   "svg": "279b2d9e53a35da4b4d7",
-   "raw": "52c0f8138154969ea4f2"
+   "svg": "0f4c568b0a7c2a4862ba",
+   "raw": "e7596bf625091d26ab25"
   },
   "olympic/Hang Snatch": {
-   "svg": "78e4998b38c3e661c2ee",
-   "raw": "7231a063441ff25540e8"
+   "svg": "8b848332dd42b8f2468e",
+   "raw": "bd70b6cfcfb6e1d104a1"
   },
   "olympic/Block Snatch": {
-   "svg": "43fb7c0580c6ce03d4b8",
-   "raw": "a45f2e956a50d44b4501"
+   "svg": "7f534d70df7a4878af11",
+   "raw": "fe513c0979608eec2aca"
   },
   "olympic/Block Power Snatch": {
-   "svg": "8d2bba943d853e9cba6c",
-   "raw": "cdf18ea6a3fc1b87b205"
+   "svg": "be759632317ec8312399",
+   "raw": "e6c560dfdd326e7fabd5"
   },
   "olympic/Clean Pull": {
-   "svg": "b4f3534bbda6d9f1e41a",
-   "raw": "850f419710fe7ccb94d7"
+   "svg": "e68db1a121fe23a9f617",
+   "raw": "c7c7f5c8a93994f41976"
   },
   "olympic/Snatch Pull": {
-   "svg": "5579dc641bcabf092507",
-   "raw": "0fabfc72565630eb4ac3"
+   "svg": "e3b7afa50ded95747e89",
+   "raw": "aa77872a5571c6630436"
   },
   "olympic/Clean Shrug": {
-   "svg": "d042363776deb038f8c1",
-   "raw": "fb2dac02d33b43049ff1"
+   "svg": "b368e2c813756d7a452d",
+   "raw": "945de6a97a8968d18bed"
   },
   "olympic/Snatch Shrug": {
-   "svg": "821db684d9a576540706",
-   "raw": "3a50a1f1df01735408b1"
+   "svg": "1f1fe4904671229ce166",
+   "raw": "0247f9a0216d5eb48495"
   },
   "olympic/Power Jerk": {
    "svg": "a5d39e0d06c6ee5a6979",
@@ -1805,8 +1805,8 @@
    "raw": "fd8b8026fb3f62e2c612"
   },
   "olympic/Squat Jerk": {
-   "svg": "32a108dff095e103b1ed",
-   "raw": "6e1b17be3ebab0ef9865"
+   "svg": "b2b7a69cfc672e773b0d",
+   "raw": "e17d79a0c86b5c63786c"
   },
   "olympic/Jerk Dip Squat": {
    "svg": "3bde11e063e51d21b816",
@@ -1821,8 +1821,8 @@
    "raw": "fd58a2016ff62599c632"
   },
   "olympic/Clean and Jerk": {
-   "svg": "5cda89d492e5f8ba7ecc",
-   "raw": "fba0b47b3a52e2f44048"
+   "svg": "01301340f45489c6de68",
+   "raw": "ef5e9a856285f77cbec4"
   },
   "overhead_press/Overhead Press (sztanga)": {
    "svg": "7cd9bfec01bd2736bb6f",

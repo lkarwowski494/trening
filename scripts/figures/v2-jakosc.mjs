@@ -22,6 +22,9 @@ export const PROGI = {
   receWzdluz: { lokiecNadBarkiemCm: 2, dlonMaxY: 12 }, /* leżąc: łokieć nie wyżej niż bark, dłoń blisko podłogi */
   wisiCm: 1, /* ćwiczenie na podłodze: najniższy punkt tułowia/miednicy (oś − promień) najwyżej tyle nad podłogą (leżąc i siedząc ciało leży, nie wisi) */
   lokiecPrzedPlecamiMaxCm: 2, /* przyciąganie (wiosłowanie): na końcu łokieć leży najwyżej tyle PRZED płaszczyzną pleców (po stronie klatki/drążka); łokieć ma kończyć przy tułowiu, za linią pleców, nie nad klatką */
+  dzwonGoraMaxOdPionuDeg: 45, /* kettlebell dnem do góry (dzwon nad rączką): przedramię najwyżej tyle od pionu (dłoń nad łokciem); w zwisie dzwon wisi pod rączką */
+  highPullLokiecPodDloniaCm: 5, /* high pull: na końcu łokieć nie niżej niż dłoń minus tyle (łokcie prowadzą w górę, nad dłonią) */
+  highPullOdwiedzenieMinDeg: 35, /* high pull: na końcu odwiedzenie ramienia (łokieć na bok) co najmniej tyle; dłonie na jednej rączce (≤ 7 cm od jej środka) i długość przedramienia dają w tym rigu fizyczne maksimum ok. 43°, a poza poprzednia miała 12,6° (uproszczenie rysunku: reguła 45° z recenzji niewykonalna) */
   podparcieMarginesCm: 2, /* podpór jednorącz/jednonóż: rzut środka ciężkości leży wewnątrz wielokąta podparcia o co najmniej tyle */
   lokiecNadNadgarstkiemCm: 8, /* dolna faza: |łokieć z − dłoń z| ≤ tyle (przedramię pionowe z przodu; wymiar: ok. 40% szerokości barków) */
   rozstawTolerancja: 0.25, /* rozstaw dłoni = wielokrotność rozstawu barków ± tyle */
@@ -70,6 +73,8 @@ export function maWskazowkeLedzwie(cwiczenie, teksty, root = ROOT) {
 }
 /** Przyciąganie w poziomie (łokieć kończy za plecami): tylko ćwiczenia z tej listy. */
 export const PRZYCIAGANIE = ['Inverted Row'];
+/** Ćwiczenia „high pull”: łokcie na końcu ruchu wysoko i na boki (reguła high_pull_lokcie). */
+export const HIGH_PULL = ['Kettlebell Sumo High Pull'];
 /** Podpór jednorącz/jednonóż (stabilność): środek ciężkości nad podparciem. */
 export const PODPARCIE_ZMIENNE = ['Single-Arm Push-Up']; /* Plank Shoulder Taps i Mountain Climbers: faza jednej ręki/lotu trwa ułamek ruchu (przybliżenie przejścia) — reguła je mierzy (jakosc-raport), ale ich nie wymusza; powód: ruch dynamiczny, recenzja n2 = OK */
 /** Udziały mas segmentów i położenia ich środków mas: jeden komplet (de Leva 1996, zbiór męski; data/zrodla/figury-masy-segmentow.json — źródło i status w pliku). */
@@ -102,7 +107,7 @@ export const PODPOR_NA_DLONIACH_KOLANO = ['Mountain Climbers'];
 export const DOL_POMPKI = ['Push Up', 'Push-Up Wide', 'Close-Grip Push-Up', 'Diamond Push Up', 'Decline Push Up', 'Incline Push Up', 'Incline Push-Up Close-Grip'];
 /** R7: najmniejsze zgięcie kolana (w KAŻDEJ klatce) w ćwiczeniach z podkulonymi kolanami. */
 export const KOLANA_UGIETE = { 'Tuck Crunch': 80, 'Reverse Crunch': 80 };
-export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie'];
+export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie', 'dzwon_gora_tylko_przy_pionowym_przedramieniu', 'high_pull_lokcie'];
 /** Reguły poziomu manifestu podglądu (nie pozy): zgodność manifestu z obrazem i układ podglądu. */
 export const REGULY_MANIFESTU = ['manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
 
@@ -343,6 +348,24 @@ export function srodekCiezkosciNadPodparciem(v2, poza) {
   return [];
 }
 
+/** 20. Kettlebell dnem do góry tylko przy pionowym przedramieniu (recenzja p4a r2: bottoms-up wisiał dzwonem do góry na prostej ręce): w KAŻDEJ klatce, w której dzwon wskazuje w górę (kierunek y > 0,75),
+ * przedramię trzymającej ręki jest najwyżej dzwonGoraMaxOdPionuDeg od pionu, a dłoń leży nad łokciem. Dotyczy każdej pozy z kettlebellem (trybów gora i wzdluz_gora; inne tryby nie kierują dzwonu w górę). */
+export function dzwonGoraTylkoPrzyPionowymPrzedramieniu(v2, poza) {
+  const cos = Math.cos((PROGI.dzwonGoraMaxOdPionuDeg * Math.PI) / 180);
+  for (const u of siatka(poza, 40)) { const f = v2.keyframeFrame(poza, u);
+    for (const p of f.props.filter((x) => x.k === 'kettlebell' && x.dir && x.dir[1] > 0.75)) for (const side of (p.side === 'R' || p.side === 'L' ? [p.side] : ['R', 'L'])) { const a = f.sk.arms[side]; const v = [a.grip[0] - a.elbow[0], a.grip[1] - a.elbow[1], a.grip[2] - a.elbow[2]]; const n = Math.hypot(...v) || 1;
+      if (v[1] / n < cos) return [`kettlebell dnem do góry (dzwon nad rączką) w u = ${u}, a przedramię ${side} jest ${f1((Math.acos(Math.max(-1, Math.min(1, v[1] / n))) * 180) / Math.PI)}° od pionu (≤ ${PROGI.dzwonGoraMaxOdPionuDeg}°) — w zwisie i wymachu dzwon wisi pod rączką, do góry dopiero przy pionowym przedramieniu`]; } }
+  return [];
+}
+/** 21. High pull: w ostatniej klatce łokieć leży nie niżej niż dłoń minus highPullLokiecPodDloniaCm, a odwiedzenie ramienia wynosi co najmniej highPullOdwiedzenieMinDeg (łokcie wysoko i na boki, nie uginanie z ciężarem pod brodą). */
+export function highPullLokcie(v2, poza) {
+  const o = []; const u = poza.klatki[poza.klatki.length - 1].u; const s = v2.keyframeFrame(poza, u).sk;
+  for (const k of ['R', 'L']) { const a = s.arms[k]; const pod = a.grip[1] - a.elbow[1]; const abd = v2.jointAngles(s, k).shAbd;
+    if (pod > PROGI.highPullLokiecPodDloniaCm) { o.push(`łokieć ${k} na końcu (u = ${u}) leży ${f1(pod)} cm pod dłonią, a ma być nie niżej niż dłoń − ${PROGI.highPullLokiecPodDloniaCm} cm (łokcie prowadzą w górę, nad dłonią)`); break; }
+    if (abd < PROGI.highPullOdwiedzenieMinDeg) { o.push(`odwiedzenie ramienia ${k} na końcu (u = ${u}) to ${f1(abd)}°, a ma być ≥ ${PROGI.highPullOdwiedzenieMinDeg}° (łokcie na boki, nie w przód)`); break; } }
+  return o;
+}
+
 /** 18. Zgodność manifestu podglądu z obrazem (poziom manifestu, nie pozy): (a) liczba i położenie klatek na obrazie = klatki_u; (b) ćwiczenie z przybliżeń jest w zestawie albo w wyjątkach z powodem;
  * (c) każdy identyfikator błędu (rząd w pozie i wskazówki katalogu) ma opis w tekstach albo jawny wyjątek z powodem (`wyjatkiOpisu`: id → powód). Zwraca [{ regula, szczegol }]. */
 export function zgodnoscManifestu(manifest, teksty, wyjatkiOpisu = {}) {
@@ -403,6 +426,8 @@ export function sprawdzJakosc(poza, ctx) {
   if (PRZYCIAGANIE.includes(cwiczenie)) { dodaj('tor_lokcia_przyciaganie', torLokciaPrzyciagania(v2, poza)); dodaj('zwis_startowy', zwisStartowy(v2, poza)); dodaj('tor_lokcia_srodek', torLokciaSrodek(v2, poza)); }
   if (ROLLOUTY.includes(cwiczenie)) dodaj('proste_rece_rollout', prosteReceRollout(v2, poza));
   dodaj('widocznosc_bledu_kat', widocznoscBleduKat(v2, poza));
+  if (poza.sprzet.some((g) => g.rodzaj === 'kettlebell')) dodaj('dzwon_gora_tylko_przy_pionowym_przedramieniu', dzwonGoraTylkoPrzyPionowymPrzedramieniu(v2, poza));
+  if (HIGH_PULL.includes(cwiczenie)) dodaj('high_pull_lokcie', highPullLokcie(v2, poza));
   if (PODPARCIE_ZMIENNE.includes(cwiczenie)) dodaj('srodek_ciezkosci_podparcie', srodekCiezkosciNadPodparciem(v2, poza));
   return out;
 }
