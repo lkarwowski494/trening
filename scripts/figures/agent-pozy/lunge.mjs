@@ -29,11 +29,16 @@ function ramka({ u, m, p, bend = 0, aR, aL, podR = 0, podL = 0, tryb, glowa, pol
 const kl = (r) => r.f;
 
 /** Geometria pozycji dolnej wykroku/przysiadu wykrocznego względem kostki przedniej (x = 0): miednica na wysokości yDol, tylna stopa na palcach (podbicie z zakresu kostki). */
-function geom({ kPrzod1 = 95, kTyl1 = 85, yDol = 50, topTyl = 0, topPrzod = 0, zTyl = -ZS, zPrzod = ZS, poleTyl = [0.15, -1], tylWisi = 0 }) {
+/** Tylna stopa grzbietem na ławce (decyzja właściciela 27.10.2026; poprzednio na palcach). Konwencja w jednym miejscu: STOPA_GRZBIETEM w lib/figures/v2/contract.ts (oś kostka→palce ≤ 30° do siedziska, palce na blacie ± 3 cm; tu: wybrane wartości w tych granicach). */
+const STOPA_GRZBIET_DEG = v2().STOPA_GRZBIETEM.nachylenieDeg; const STOPA_GRZBIET_PALCE_NAD_BLATEM_CM = v2().STOPA_GRZBIETEM.palceNadBlatemCm;
+/** Kostka i podbicie tylnej stopy leżącej grzbietem na ławce o wysokości top (silnik: podbicie 180° + a = palce do tyłu i w dół o a°). */
+function stopaGrzbietem(top) { const b = BODY(); const a = STOPA_GRZBIET_DEG * R; return { pod: 180 + STOPA_GRZBIET_DEG, y: r1(top + STOPA_GRZBIET_PALCE_NAD_BLATEM_CM - (b.ankleH * Math.cos(a) - b.toeFwd * Math.sin(a))) }; }
+function geom({ kPrzod1 = 95, kTyl1 = 85, yDol = 50, topTyl = 0, topPrzod = 0, zTyl = -ZS, zPrzod = ZS, poleTyl = [0.15, -1], tylWisi = 0, grzbiet = false }) {
   const aF = [0, kostkaPlasko(topPrzod), zPrzod];
   const rF = rPlan(dNogi(kPrzod1), HIP() - zPrzod); const x = r1(-Math.sqrt(Math.max(1, rF * rF - (yDol - aF[1]) ** 2)));
   const rT = rPlan(dNogi(kTyl1), -HIP() - zTyl); let pb = { pod: -50, y: 20 }; let ax = 0;
   if (tylWisi) { for (let i = 0; i < 6; i++) { ax = r1(x - Math.sqrt(Math.max(1, rT * rT - (yDol - tylWisi) ** 2))); const kn = kolano2D([x, yDol], [ax, tylWisi], poleTyl); pb = { pod: r1(Math.max(-60, Math.min(20, katXY([ax, tylWisi], kn) - 84))), y: tylWisi }; } }
+  else if (grzbiet) { pb = stopaGrzbietem(topTyl); ax = r1(x - Math.sqrt(Math.max(1, rT * rT - (yDol - pb.y) ** 2))); }
   else for (let i = 0; i < 6; i++) { ax = r1(x - Math.sqrt(Math.max(1, rT * rT - (yDol - pb.y) ** 2))); pb = podAuto([x, yDol], ax, topTyl, poleTyl, { zapas: 4 }); }
   return { x, yDol, aF, aT: [ax, pb.y, zTyl], podT: pb.pod, L: -ax };
 }
@@ -46,8 +51,8 @@ function zloz(cw, sprzet, klatki, bledy) { const z = poza(RODZINA, cw, sprzet, k
 
 /* ---------- przysiad wykroczny w miejscu: stopy nieruchome, miednica pionowo (split squat, bułgarski, linki, zawieszenie, Smith) ---------- */
 export function splitSquat(cw, o = {}) {
-  const { tryb = 'cc', pitch = 6, bledy = true, sprzetFn = null, hipMin = -14.5, rotL = 0, yDol = 50, rece = null, topTyl = 0 } = o;
-  const g = geom({ ...o, yDol, topTyl });
+  const { tryb = 'cc', pitch = 6, bledy = true, sprzetFn = null, hipMin = -14.5, rotL = 0, yDol = 50, rece = null, topTyl = 0, grzbiet = false } = o;
+  const g = geom({ ...o, yDol, topTyl, grzbiet });
   const poleL = POLE_TYL();
   const mk = (y, u = 0) => ramka({ u, m: [g.x, y], p: pitch, aR: g.aF, aL: g.aT, podR: 0, podL: g.podT, tryb, poleL, rotL, rece: rece?.(g, y, u) });
   const yGora = znajdzY((y) => mk(y).f, (sk, ja) => ja('L').hip >= hipMin && ja('R').knee >= 8 && sk.legs.L.knee[1] < 70, hipY(g.aF, g.x, HIP(), 8), yDol + 8);
@@ -173,7 +178,7 @@ export function boczny(cw, o = {}) {
 export const WYJATKI = {
 };
 export const PRZYBLIZENIA = {
-  'Bulgarian Split Squat (hantle)': 'przybliżenie: tylna stopa na ławce wysokości 30 cm (reguła głębokości: tylne kolano ≤ 20 cm), stopa leży na ławce z zakresem kostki i biodra z deklaracji zakres_wyjatki',
+  'Bulgarian Split Squat (hantle)': 'przybliżenie: tylna stopa leży GRZBIETEM na ławce wysokości 30 cm (oś kostka→palce opada 30° do siedziska, palce na blacie ± 3 cm; reguła głębokości: tylne kolano ≤ 20 cm), zakres kostki (zgięcie podeszwowe ok. 68°) i biodra z deklaracji zakres_wyjatki',
   'Bulgarian Split Squat (sztanga)': 'przybliżenie: jak Bulgarian Split Squat (hantle)',
   'Smith Machine Bulgarian Split Squat': 'przybliżenie: jak Bulgarian Split Squat (hantle); prowadnica w osi sztangi',
   'Suspended Split Squat': 'przybliżenie: tylna stopa w pętli taśmy 40 cm nad podłogą, zakres kostki i biodra z deklaracji zakres_wyjatki',
@@ -189,7 +194,7 @@ const BT = 30, BY = 44; /* wysokość ławki pod tylną stopą, głębokość */
 const HIP_TYL_PODN = 30;
 export function generuj() {
   const linki = (g, f0) => [{ rodzaj: 'wyciag', dwa: true, x: 105, y: 22, z: 45, chwyt: 'uchwyt', h: 120 }];
-  const lawkaTyl = (g) => [{ rodzaj: 'lawka', x: r1(g.aT[0] - 22), top: BT, kat: 0, dlugosc: 40, siedzisko: 20 }];
+  const lawkaTyl = (g) => [{ rodzaj: 'lawka', x: r1(g.aT[0] - 25), top: BT, kat: 0, dlugosc: 40, siedzisko: 20 }];
   const pudlo = (g) => [{ rodzaj: 'skrzynia', x0: -16, x1: 30, top: 12, z: 26 }];
   return {
     'Split Squat': () => splitSquat('Split Squat'),
@@ -201,9 +206,9 @@ export function generuj() {
     'Barbell Walking Lunge': () => krok('Barbell Walking Lunge', { kierunek: 'przod', tryb: 'sztanga' }),
     'Elevated Back Lunge': () => krok('Elevated Back Lunge', { kierunek: 'tyl', tryb: 'sztanga', topPrzod: 12, sprzetFn: pudlo }),
     'Slider Reverse Lunge': () => krok('Slider Reverse Lunge', { kierunek: 'tyl', slizg: true, sprzetFn: () => [{ rodzaj: 'slizgacze', punkt: 'kostki', trzyma: 'L' }] }),
-    'Bulgarian Split Squat (hantle)': () => splitSquat('Bulgarian Split Squat (hantle)', { tryb: 'hantle', topTyl: BT, yDol: BY, hipMin: -HIP_TYL_PODN, sprzetFn: lawkaTyl }),
-    'Bulgarian Split Squat (sztanga)': () => splitSquat('Bulgarian Split Squat (sztanga)', { tryb: 'sztanga', topTyl: BT, yDol: BY, hipMin: -HIP_TYL_PODN, sprzetFn: (g, f) => [...lawkaTyl(g, f), { rodzaj: 'slupek', x: g.x - 40, h: 150, hak: 135 }] }),
-    'Smith Machine Bulgarian Split Squat': () => splitSquat('Smith Machine Bulgarian Split Squat', { tryb: 'smith', topTyl: BT, yDol: BY, hipMin: -HIP_TYL_PODN, sprzetFn: (g, f) => [...lawkaTyl(g, f), { rodzaj: 'smith', x: r1(f.rece.R.chwyt[0]), h: 200 }] }),
+    'Bulgarian Split Squat (hantle)': () => splitSquat('Bulgarian Split Squat (hantle)', { tryb: 'hantle', topTyl: BT, grzbiet: true, yDol: BY, hipMin: -HIP_TYL_PODN, sprzetFn: lawkaTyl }),
+    'Bulgarian Split Squat (sztanga)': () => splitSquat('Bulgarian Split Squat (sztanga)', { tryb: 'sztanga', topTyl: BT, grzbiet: true, yDol: BY, hipMin: -HIP_TYL_PODN, sprzetFn: (g, f) => [...lawkaTyl(g, f), { rodzaj: 'slupek', x: g.x - 40, h: 150, hak: 135 }] }),
+    'Smith Machine Bulgarian Split Squat': () => splitSquat('Smith Machine Bulgarian Split Squat', { tryb: 'smith', topTyl: BT, grzbiet: true, yDol: BY, hipMin: -HIP_TYL_PODN, sprzetFn: (g, f) => [...lawkaTyl(g, f), { rodzaj: 'smith', x: r1(f.rece.R.chwyt[0]), h: 200 }] }),
     'Suspended Split Squat': () => splitSquat('Suspended Split Squat', { tylWisi: 40, hipMin: -HIP_TYL_PODN, sprzetFn: (g) => [{ rodzaj: 'zawieszenie', punkt: 'kostki', trzyma: 'L', x: r1(g.aT[0]), y: 220, z: g.aT[2] }] }),
     'Lateral Lunge': () => boczny('Lateral Lunge'),
     'Cossack Squat': () => boczny('Cossack Squat', { kDol: 112, zR: 36, pitchDol: 32, hxB: -24, rotR: -28 }),

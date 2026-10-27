@@ -9977,7 +9977,7 @@
    "sprzet": [
     {
      "rodzaj": "podloga",
-     "x0": -173,
+     "x0": -172.7,
      "x1": 150
     },
     {
@@ -9985,7 +9985,7 @@
     },
     {
      "rodzaj": "lawka",
-     "x": -125,
+     "x": -127.7,
      "top": 30,
      "kat": 0,
      "dlugosc": 40,
@@ -10016,11 +10016,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,
@@ -10080,11 +10080,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,
@@ -10144,11 +10144,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,
@@ -10208,11 +10208,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,
@@ -10272,11 +10272,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,
@@ -10370,7 +10370,7 @@
    "sprzet": [
     {
      "rodzaj": "podloga",
-     "x0": -173,
+     "x0": -172.7,
      "x1": 150
     },
     {
@@ -10381,7 +10381,7 @@
     },
     {
      "rodzaj": "lawka",
-     "x": -125,
+     "x": -127.7,
      "top": 30,
      "kat": 0,
      "dlugosc": 40,
@@ -10418,11 +10418,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,
@@ -10482,11 +10482,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,
@@ -10546,11 +10546,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,
@@ -10610,11 +10610,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,
@@ -10674,11 +10674,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,
@@ -10772,7 +10772,7 @@
    "sprzet": [
     {
      "rodzaj": "podloga",
-     "x0": -173,
+     "x0": -172.7,
      "x1": 150
     },
     {
@@ -10783,7 +10783,7 @@
     },
     {
      "rodzaj": "lawka",
-     "x": -125,
+     "x": -127.7,
      "top": 30,
      "kat": 0,
      "dlugosc": 40,
@@ -10819,11 +10819,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,
@@ -10883,11 +10883,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,
@@ -10947,11 +10947,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,
@@ -11011,11 +11011,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,
@@ -11075,11 +11075,11 @@
       },
       "L": {
        "kostka": [
-        -103,
-        49.9,
+        -102.7,
+        35.4,
         -10
        ],
-       "podbicie": -80,
+       "podbicie": 210,
        "rotacjaStopy": 0,
        "biegunKolana": [
         0.15,

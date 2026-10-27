@@ -15,6 +15,8 @@ import { mkFrame } from './rigs/common';
 import { FAMILY } from './families';
 import type { Affects } from './errors';
 
+/** Konwencja: tylna stopa leżąca grzbietem na ławce (przysiad bułgarski; decyzja właściciela 27.10.2026; źródła: docs/przekazanie/notatki/badania/sprzecznosci-tekst-rysunek.md pkt 3). Oś kostka→palce opada najwyżej o maxNachylenieDeg do siedziska, palce (punkt stopy) leżą na blacie ± palceNaBlacieCm. */
+export const STOPA_GRZBIETEM = { maxNachylenieDeg: 30, palceNaBlacieCm: 3, nachylenieDeg: 30, palceNadBlatemCm: 2 } as const;
 export const CONTRACT = {
   /** poza@2 (26.10.2026): zgodna wstecz z poza@1 — dochodzą wyłącznie pola OPCJONALNE (obrót i skręt tułowia, skłon boczny, przechył miednicy, uniesienie barku, zgiecieNadgarstka, obrót przedramienia); stare pozy działają bez zmian. */
   id: 'figury-v2/poza@2',
