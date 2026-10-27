@@ -77,7 +77,7 @@ describe('ekran ćwiczenia: sekcja „Техника” po rosyjsku', () => {
     const ex = S().exercises.find(e => e.lib && e.libKey === 'Back Squat')!;
     const { router } = require('expo-router'); const { act } = require('./app');
     await act(async () => { router.push(`/exercise/${ex.id}`); }); await flushAll();
-    await tap(screen.getByRole('button', { name: 'Техника' }));
+    expect(screen.getByRole('button', { name: 'Техника' }).props.accessibilityState).toMatchObject({ expanded: true }); /* 27.10.2026 (wariant B): sekcja rozwinięta od razu */
     expect(screen.getByText(`• ${cueText(CUE_DATA.exercises['Back Squat'].setup[0].c, 'ru')}`)).toBeTruthy();
     expect(screen.getByRole('header', { name: 'Частые ошибки' })).toBeTruthy();
     expect(screen.getByText(/Back Squat/)).toBeTruthy(); /* nazwa ćwiczenia z biblioteki — po angielsku, jak w innych językach */

@@ -106,6 +106,7 @@ Odrzucone: „Planowanie” w treści (W1 b). Szczegóły: tytuł środkowy skra
 
 ### 20. Rozwijanie i zwijanie — S11
 Znaki ▸/▾ (zakaz ⌃ ⌄ ▴), `accessibilityState.expanded` (`Btn expanded`, `Item expanded`), etykieta VoiceOver stała (np. „Więcej opcji”, „Cele partii”). Menu otwierające arkusz („📍 Dom ▾”) to nie rozwijanie.
+Stan domyślny sekcji „Technika” w karcie ćwiczenia (decyzja właściciela 27.10.2026, wariant B): rozwinięta; zwinięta w podglądzie otwieranym w kontekście treningu na żywo (`?cues=0`), „Technika ›” (`?cues=1`) rozwija. Przycisk sekcji zwija i rozwija w obu przypadkach.
 
 ### 21. Wyszukiwanie — S15
 `SearchField` (`components/ui.tsx`): „Szukaj {czego}…”, przycisk czyszczenia (`clearButtonMode`), limit 80 znaków, bez autokorekty; autoFocus tylko w oknach wyboru. HIG Text fields: „Display a Clear button in the trailing end of a text field to help people erase their input.”

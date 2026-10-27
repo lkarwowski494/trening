@@ -172,7 +172,11 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         break;
       }
       case 'cable': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 0.7, role: 'cable', z: zKey(LAYER.frontEquip, 0), id: 'cable' }); S.push({ k: 'circle', c: a, r: 2.6, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pulley' }); break; }
-      case 'band': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 0.9, role: 'load', dash: [2.5, 2], z: zKey(LAYER.frontEquip, 0), id: 'band' }); break; }
+      case 'band': {
+        /* guma sztangi (bar): dwie gumy (hang: zwisa z kotwicy nad gryfem — odmiany „reverse”, znacznik kotwicy) przy końcach gryfu w widoku z przodu i z góry (jak łańcuchy); z boku jedna linia. Guma chwytana w dłoniach (bez bar) — jedna. */
+        const zs = pr.bar && !side ? [-E.chainZ, E.chainZ] : [pr.from[2]];
+        for (const zz of zs) { const a = proj([pr.from[0], pr.from[1], zz], view), b = proj([pr.to[0], pr.to[1], pr.bar && !side ? zz : pr.to[2]], view); S.push({ k: 'line', a, b, w: 0.9, role: 'load', dash: [2.5, 2], z: zKey(LAYER.frontEquip, 0), id: 'band' }); if (pr.hang && view !== 'top') S.push({ k: 'circle', c: a, r: 2.4, fill: 'frame', z: zKey(LAYER.back, -60), id: 'bandAnchor' }); }
+        break; }
       case 'chain': {
         /* łańcuchy sztangi (bar) wiszą na obu tulejach: w widoku z przodu i z góry dwa, na ±chainZ; z boku jeden. Łańcuch pasa (bez bar) — jeden, jak dotąd. */
         const zs = pr.bar && !side ? [-E.chainZ, E.chainZ] : [pr.from[2]];
@@ -181,6 +185,18 @@ export function propShapes(props: Prop[], view: View): Shape[] {
       case 'pivot': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 2.8, role: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'landmine' }); S.push({ k: 'circle', c: a, r: 3, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pivot' }); break; }
       case 'barbell': {
         const c = pr.c; const o = proj(c, view);
+        if (pr.axis === 'x') {
+          /* gryf wzdłuż x (z boku ciała): z boku i z góry — linia z talerzami na końcach; z przodu — widok wzdłuż gryfu (talerz jako koło) */
+          if (side || view === 'top') {
+            const half = (pr.len ?? E.barLen) / 2; const a = proj([c[0] - half, c[1], c[2]], view), b = proj([c[0] + half, c[1], c[2]], view);
+            S.push({ k: 'line', a, b, w: E.barR * 2, role: 'steel', z: zKey(LAYER.frontEquip, 0.3), id: 'bar' });
+            if (pr.plates !== false && side) for (const sg of [-1, 1]) for (const zz of E.plateZ) S.push({ k: 'poly', pts: rect(o[0] + sg * zz - E.plateW / 2, o[1] - E.plateR, o[0] + sg * zz + E.plateW / 2, o[1] + E.plateR), fill: 'plate', a: 0.55, stroke: 'plate', w: 0.7, close: true, z: zKey(LAYER.frontEquip, 0.2), id: 'plate' });
+          } else {
+            if (pr.plates !== false) S.push({ k: 'circle', c: o, r: E.plateR, fill: 'plate', a: 0.42, stroke: 'plate', w: 0.8, z: zKey(LAYER.frontEquip, 0), id: 'plateNear' });
+            S.push({ k: 'circle', c: o, r: E.barR, fill: 'steel', z: zKey(LAYER.overlay, 0), id: 'bar' });
+          }
+          break;
+        }
         if (side) {
           if (pr.plates !== false) {
             /* talerz za konturą ciała (pełny, ale blady), z przodu tylko cienki obrys — ciało nie jest zasłonięte */

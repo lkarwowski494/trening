@@ -38,7 +38,7 @@ export default function ExerciseScreen() {
     const commit = () => { commitObjDraft('exercise', id, { keepNew: isNew.current }); isNew.current = false; setEditing(false); };
     return <><DraftHeader title={isNew.current ? t('Nowe ćwiczenie') : t('Edycja ćwiczenia')} onCancel={cancel} onSave={commit} cancelLabel={t('Anuluj edycję ćwiczenia')} saveLabel={t('Zapisz ćwiczenie')} /><EditForm e={d} /></>;
   }
-  return <><Stack.Screen options={{ title: t('Ćwiczenie'), headerBackVisible: true, gestureEnabled: true, headerLeft: undefined, headerRight: undefined }} /><Preview e={real} onClose={close} cuesOpen={p.cues === '1'} onEdit={() => { if (beginObjDraft('exercise', id)) setEditing(true); } /* podwójne tapnięcie — ten sam szkic */} onOpen={(wid: string) => router.push(`/history/${wid}`)} onProgress={once(() => { if (router.canDismiss()) router.dismissAll(); router.navigate(`/progress?ex=${real.id}`); }) /* Postępy to zakładka — jak „Pokaż” w przewodniku, bez drugiego zestawu zakładek na stosie */} /></>;
+  return <><Stack.Screen options={{ title: t('Ćwiczenie'), headerBackVisible: true, gestureEnabled: true, headerLeft: undefined, headerRight: undefined }} /><Preview e={real} onClose={close} cuesOpen={p.cues !== '0'} /* 27.10.2026 (wariant B): domyślnie rozwinięta; zwinięta tylko z kontekstu treningu na żywo (?cues=0), „Technika ›” (?cues=1) rozwija */ onEdit={() => { if (beginObjDraft('exercise', id)) setEditing(true); } /* podwójne tapnięcie — ten sam szkic */} onOpen={(wid: string) => router.push(`/history/${wid}`)} onProgress={once(() => { if (router.canDismiss()) router.dismissAll(); router.navigate(`/progress?ex=${real.id}`); }) /* Postępy to zakładka — jak „Pokaż” w przewodniku, bez drugiego zestawu zakładek na stosie */} /></>;
 }
 
 /** Treść pytania przy usuwaniu ćwiczenia z biblioteki — ta sama dla gestu na liście i przycisku w podglądzie; liczona dopiero przy pytaniu (PERF-01). */
@@ -61,7 +61,7 @@ function Row({ label, value, info, infoId }: { label: string; value: string; /**
 }
 /** Ostatnie sesje z tym ćwiczeniem (najnowsze pierwsze). */
 const HISTORY_ROWS = 5;
-function Preview({ e, cuesOpen, onEdit, onOpen, onProgress, onClose }: { e: Exercise; onClose: () => void; /** UX2-05: z „Technika ›” — sekcja rozwinięta */ cuesOpen?: boolean; onEdit: () => void; onOpen: (id: string) => void; onProgress: () => void }) {
+function Preview({ e, cuesOpen, onEdit, onOpen, onProgress, onClose }: { e: Exercise; onClose: () => void; /** sekcja „Technika” rozwinięta (domyślnie; zwinięta przy ?cues=0) */ cuesOpen?: boolean; onEdit: () => void; onOpen: (id: string) => void; onProgress: () => void }) {
   const m = e.metric ?? 'weight_reps'; const def = getState().settings.defaultRest;
   const hist = finishedWorkouts().filter(w => w.exercises.some(x => x.exerciseId === e.id)).slice(0, HISTORY_ROWS);
   const mus = (xs: readonly string[] | undefined) => (xs ?? []).length ? (xs ?? []).map(x => t(x)).join(', ') : '—';
