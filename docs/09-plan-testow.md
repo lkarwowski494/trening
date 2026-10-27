@@ -557,3 +557,15 @@ Błąd: ekran blokady w przerwie brał język z systemu (`Locale.preferredLangua
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
 | Język Live Activity | `tests/live-activity-lang.test.ts` (każda z 35 wartości języka → `lang` w starcie; „auto” z tagami systemu: es-MX, es-ES, pt-BR, pt-PT, zh-Hant-TW, zh-HK, zh-Hans-CN, hi-IN; telefon pl + aplikacja en; `update` niesie język; relocalize po zmianie języka; statycznie Swift: pole opcjonalne bez własnego dekodera, moduł, kolejność wyboru etykiety w widżecie, komplet kodów w `RestLabels.swift`); `tests/regress.test.tsx` „Ekran blokady w przerwie: język aplikacji, nie systemu” | logika, języki, regresja, statyczne Swift, macierz | zielone | **rodzaj pominięty: wygląd na ekranie blokady** (symulator CI nie pokazuje Live Activity) — lista „tylko telefon”, PR-17 (docs/39) |
+
+## 27.10.2026 — M1-audytor-generalny-014 (05-architekt-002, DEC-03 b): zmiana normalizacji = podbicie schematu (gałąź `naprawy/M2-koordynator-napraw-2026-10-27-p3`)
+
+Decyzja właściciela (DEC-03 b): reguła „zmiana normalizacji danych = podbicie `SCHEMA_VERSION`”, pilnowana testem (reguła: docs/brd/wymagania.md NFR-DAN-001).
+Kod aplikacji bez zmian; nowy zapis z wydanego builda 1.0 (`v1.0.0-b1032`) w `tests/fixtures/released/`.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| Strażnik odcisków normalizacji | `tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts` (odciski dla bieżącego schematu; każdy zapis z `released/` ma odcisk; wynik startu = odcisk dla 4 zapisów; wzorzec 1.0 ma pola z 0.20–1.0; 7 zmian danych użytkownika wykrytych; katalog i metadane zapisu pominięte; kolejność pól bez znaczenia) | dane, regresja, strażnik | zielone | przed odciskami czerwony (6 testów); celowa zmiana normalizacji w kopii kodu → czerwony, podbity schemat bez odcisków → czerwony, zapis odcisków przy tym samym schemacie → odmowa (dowody w raporcie fix roli 05) |
+| Start na zapisie 1.0 | `tests/migrate-released.test.ts` (3 testy na nowym pliku `state-v1.0.0-b1032-schema19.json`) | dane | zielone | |
+
+Rodzaje pominięte: ekran, scenariusz, macierz, języki, E2E — zmiana bez kodu aplikacji i bez UI (reguła procesu pilnowana testem).
