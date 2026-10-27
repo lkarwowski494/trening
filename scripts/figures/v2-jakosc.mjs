@@ -427,12 +427,17 @@ export function ksztaltyNadPodloga(v2, poza) {
 export const PODWIESZENIE_MIN_CM = 120;
 /** Dłoń na gryfie sztangi leżącej na talerzach na podłodze (rollout): spód dłoni ok. tyle cm pod osią gryfu (konwencja rysunku); gryf na talerzach jest podłożem dla dłoni. */
 export const DLON_POD_OSIA_GRYFU_CM = 3;
-export function stykZPodlozem(v2, poza) {
-  if (poza.cwiczenie in LOT) return [];
-  const hang = poza.sprzet.some((g) => g.rodzaj === 'zawieszenie' || (g.rodzaj === 'sztanga' && (g.y ?? 0) >= PODWIESZENIE_MIN_CM));
+/** Powierzchnie, na których może stać albo opierać się ciało: podłoga, wierzch skrzyni i ławki, gryf na talerzach (dla dłoni). Zawsze jest podłoga y = 0. */
+export function powierzchniePodparcia(poza) {
   const pow = poza.sprzet.filter((g) => ['podloga', 'skrzynia', 'lawka'].includes(g.rodzaj)).map((g) => g.rodzaj === 'podloga' ? { y: 0, x0: g.x0 ?? -1e9, x1: g.x1 ?? 1e9 } : g.rodzaj === 'skrzynia' ? { y: g.top ?? 0, x0: g.x0, x1: g.x1 } : { y: g.top ?? 0, x0: (g.x ?? 0) - (g.dlugosc ?? 0), x1: (g.x ?? 0) + (g.dlugosc ?? 0) });
   for (const g of poza.sprzet) if (g.rodzaj === 'sztanga' && g.talerze && (g.y ?? 0) < PODWIESZENIE_MIN_CM) pow.push({ y: (g.y ?? 0) - DLON_POD_OSIA_GRYFU_CM, x0: -1e9, x1: 1e9 });
   if (!pow.some((q) => q.y === 0)) pow.push({ y: 0, x0: -1e9, x1: 1e9 });
+  return pow;
+}
+export function stykZPodlozem(v2, poza) {
+  if (poza.cwiczenie in LOT) return [];
+  const hang = poza.sprzet.some((g) => g.rodzaj === 'zawieszenie' || (g.rodzaj === 'sztanga' && (g.y ?? 0) >= PODWIESZENIE_MIN_CM));
+  const pow = powierzchniePodparcia(poza);
   for (const u of siatka(poza, 12)) {
     if (hang && ['R', 'L'].some((k) => v2.keyframeFrame(poza, u).sk.arms[k].grip[1] >= PODWIESZENIE_MIN_CM)) continue;
     let nisko = null; for (const sh of v2.dataShapes(poza, u, 'side')) { if (sh.k !== 'poly' || !CIALO_KSZTALT.test(sh.id ?? '')) continue; for (const q of sh.pts) if (!nisko || q[1] < nisko[1]) nisko = q; }
