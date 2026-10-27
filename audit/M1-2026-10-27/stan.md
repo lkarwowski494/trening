@@ -9,3 +9,6 @@ Wyjątek nazwany (27.10): gałąź audytu wypychana z `git push --no-verify` —
 
 16:10 UTC: wiadomość koordynatora (przekaz decyzji właściciela ~16:08): STOP 1 zaakceptowany z góry, wariant głęboki niezależnie od kosztu, workflowy macOS dozwolone (max 1 naraz) gdy plan wymaga. Uruchomione 5 soczewek E0b (soczewki/). Odpowiedź do koordynatora (send_message) zablokowana filtrem uprawnień.
 BLOKADA: biblioteka prompts (prywatna) — add_repo odrzucone; fan-out ról 01–12 czeka na dostęp (opcja A: zgoda właściciela na add_repo read; B: koordynator dostarcza złożone prompty ról).
+
+17:10 UTC: właściciel zezwolił na dołączenie lkarwowski494/prompts (odczyt); klon /home/user/prompts @97ec212. Prompty 13 przebiegów złożone (prompty/*.md — TREŚĆ PRYWATNEJ BIBLIOTEKI, nie wypychać do publicznego repo). Partia 1: 01, 02, 03, 10. Kolejne: 06, 09, 11 → 04, 05, 08, 12, 02-b → 07 → weryfikacja. Polecenia w prompty/*.polecenie.md.
+Decyzja właściciela 27.10 (opcja A): narzedzia/ usunięte z publicznej gałęzi; złożone prompty ról (prompty/<rola>.md) nie są wypychane — tylko polecenia.
