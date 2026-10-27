@@ -69,6 +69,14 @@ describe('M1-022: BRD aktualny wobec decyzji 20–27.10.2026', () => {
     for (const x of og) expect([x.slice(0, 5), /\[FAKT S-\d\d\]/.test(x) || /Zasada właściciela/.test(x)]).toEqual([x.slice(0, 5), true]);
     for (const n of ['3.1.1', '3.1.2(b)', '3.1.2(c)', '2.3.2', '5.1.3(i)', '5.1.3(ii)', '5.6.1']) expect(read('zrodla.md')).toMatch(new RegExp(`punkt ${n.replace(/[().]/g, '\\$&')} .*\\| \\d{4}-\\d\\d-\\d\\d \\| 1 \\| \\d{4}-\\d\\d-\\d\\d \\|`));
   });
+  test('liczby w wymaganiach (01-odkrywanie-011): znacznik DO USTALENIA / DO WYJAŚNIENIA w każdej postaci ma wpis OP; BR z czasem, liczbą dni lub procentem wskazuje decyzję D-nnn, regułę RD albo OP', () => {
+    const bad: string[] = [];
+    for (const f of files()) read(f).split('\n').forEach((l, i) => { if (/^\| OP-\d{2} \|/.test(l)) return; for (const m of l.matchAll(/\[DO (?:USTALENIA|WYJAŚNIENIA)[^\]]*\](?!\s*\(OP-\d{2}\))/g)) bad.push(`${f}:${i + 1} ${m[0]}`); });
+    expect(bad).toEqual([]);
+    const NUM = /\d+(?:[,.]\d+)? ?(?:s|sekund\w*|minut\w*|min|godzin\w*|h|dni|tygodni\w*|%)(?![\w])/;
+    for (const s of sections().filter(x => !x.withdrawn && x.id.startsWith('BR-'))) if (NUM.test(s.text.replace(/`[^`]*`/g, ''))) expect([s.id, /\bD-\d{3}\b|\bRD-\d{2}\b|\bOP-\d{2}\b/.test(s.text)]).toEqual([s.id, true]);
+    expect(sections().find(s => s.id === 'BR-ZEG-001')!.text).toMatch(/5 sekund \(D-123\)/); expect(sections().find(s => s.id === 'BR-ZAK-002')!.text).toMatch(/7 minut \(D-102\)/);
+  });
   test('errata: plik z tabelą ER (data, źródło, status)', () => {
     const e = read('errata.md'); expect(e).toMatch(/^\| ID \| Data \|/m); expect(e.match(/^\| ER-\d{2} \| \d{4}-\d\d-\d\d \|/gm)!.length).toBeGreaterThanOrEqual(5);
   });

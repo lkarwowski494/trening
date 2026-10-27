@@ -83,7 +83,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-TRN-009: Tablica „teraz”: wpis i krok ± na tablicy, „Seria zrobiona” bez wartości
 - Przepływ: PR-01 · Reguła: RD-14
-- Dowód potrzeby: M3 p2 ZM-01 (docs/design/to-be.md, wzorzec 29 w docs/32); kod `lib/board.ts`, `components/NowBoard.tsx`; testy `tests/m3-p2-board-logic.test.ts`, `tests/m3-p2-board-ui.test.tsx`; **krok ± dla czasu (5 s) i dystansu (50 m / 50 yd) to konwencja robocza [DO USTALENIA: badacz]**, krok ciężaru i powtórzeń jak cicha podpowiedź progresji
+- Dowód potrzeby: M3 p2 ZM-01 (docs/design/to-be.md, wzorzec 29 w docs/32); kod `lib/board.ts`, `components/NowBoard.tsx`; testy `tests/m3-p2-board-logic.test.ts`, `tests/m3-p2-board-ui.test.tsx`; **krok ± dla czasu (5 s) i dystansu (50 m / 50 yd) to konwencja robocza bez źródła [DO USTALENIA] (OP-05)**, krok ciężaru i powtórzeń jak cicha podpowiedź progresji (RD-14; D-122)
 - Kryteria akceptacji:
   - Scenariusz: Krok ± ciężaru w miejscu z opisanym sprzętem
     - Zakładając, że bieżąca seria ma ciężar 80 kg, a miejsce treningu ma opisane talerze i sztangę
@@ -463,7 +463,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-ZEG-001: Aplikacja na Apple Watch: odhaczanie serii, przerwa, „Cofnij”
 - Przepływ: PR-07
-- Dowód potrzeby: J-01; docs/35-zegarek-apple.md
+- Dowód potrzeby: J-01; docs/35-zegarek-apple.md; D-123 (okno „Cofnij” 5 s, decyzja właściciela 2026-10-14; `WATCH.UNDO_SEC` w `lib/watch/protocol.ts`)
 - Kryteria akceptacji:
   - Scenariusz: Seria z zegarka
     - Zakładając, że na telefonie trwa trening, a zegarek jest połączony
@@ -471,7 +471,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy seria jest odhaczona w treningu, a zegarek pokazuje odliczanie przerwy
   - Scenariusz: Cofnięcie
     - Zakładając, że seria została odhaczona z zegarka
-    - Gdy mija mniej niż 5 sekund i użytkownik stuka „Cofnij”
+    - Gdy mija mniej niż 5 sekund (D-123) i użytkownik stuka „Cofnij”
     - Wtedy odhaczenie jest cofnięte
   - Scenariusz: Potwierdzenie dopiero po zapisie (M1-audytor-generalny-028, 23.10.2026)
     - Zakładając, że telefon jest zablokowany, a zegarek wysyła zdarzenie (zrobione inaczej, pominięcie ćwiczenia, start sesji)
@@ -699,16 +699,16 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-ZAK-002: Dzień treningowy jako jednostka limitu
 - Przepływ: PR-08 · Reguła: RD-05, RD-06
-- Dowód potrzeby: ZP-06; docs/monetyzacja-badanie-2026-10.md rozdz. 11
+- Dowód potrzeby: ZP-06; D-101, D-102 (decyzje właściciela 2026-10-22 i 2026-10-23, docs/18); docs/monetyzacja-badanie-2026-10.md rozdz. 11
 - Kryteria akceptacji:
   - Scenariusz: Kilka treningów jednego dnia
     - Zakładając, że użytkownik ukończył dwa treningi na żywo tego samego dnia
     - Gdy sprawdza licznik
     - Wtedy zużył jeden dzień, a kolejny trening tego dnia może zacząć nawet przy wyczerpanym limicie
   - Scenariusz: Co się liczy
-    - Zakładając, że użytkownik ma trening wstecz (także z dzisiejszą datą), anulowany, trwający i trening na żywo krótszy niż 7 minut
+    - Zakładając, że użytkownik ma trening wstecz (także z dzisiejszą datą), anulowany, trwający i trening na żywo krótszy niż 7 minut (D-102)
     - Gdy sprawdza licznik
-    - Wtedy żaden z nich nie zużywa dnia i żaden nie jest blokowany; liczy się trening na żywo dłuższy niż 7 minut (bez pauz), zakończony „Zakończ” albo zapisany po 6 godzinach bez aktywności
+    - Wtedy żaden z nich nie zużywa dnia i żaden nie jest blokowany; liczy się trening na żywo dłuższy niż 7 minut (bez pauz; D-102, RD-06), zakończony „Zakończ” albo zapisany po 6 godzinach bez aktywności
   - Scenariusz: Usunięcie treningu
     - Zakładając, że użytkownik zużył dzień treningiem na żywo
     - Gdy usuwa ten trening z historii
