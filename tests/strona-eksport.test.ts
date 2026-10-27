@@ -28,7 +28,8 @@ import { SOURCE_NAME_PATTERNS, GENERIC_REFERENCE_PATTERNS } from '@/lib/sources'
 
 const root = path.join(__dirname, '..');
 const SCRIPT = path.join(root, 'scripts/strona/eksport.mjs');
-const run = (out: string, ...extra: string[]) => execFileSync('node', [SCRIPT, '--out', out, '--commit', 'abc1234def', ...extra], { encoding: 'utf8' });
+/** Te testy sprawdzają zgodność eksportu z runtime aplikacji dla wszystkich gotowych rodzin, więc biegną bez filtra audytu (sam filtr: tests/strona-filtr-audytu.test.ts). */
+const run = (out: string, ...extra: string[]) => execFileSync('node', [SCRIPT, '--out', out, '--commit', 'abc1234def', '--bez-filtra-audytu', ...extra], { encoding: 'utf8' });
 type Ex = { niche: boolean; musclesApproximate: boolean; id: string; slug: string; name: string; group: string; equipment: string; metric: string; pattern: string; muscles: { main: string[]; aux: string[] }; regions: { id: string; load: number }[]; family: string;
   figure: null | { phases: { name: string; ms: number }[]; errors: { id: string; text: string }[] }; cues: { scope: string; ok?: string[]; mistakes?: string[]; setup?: string[] }; alternatives: string[]; requires: string[][] };
 type ExRoles = { roles: { region: string; text: string }[] };

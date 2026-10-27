@@ -7,11 +7,18 @@
 // Pliki: atlas-<język>.json (teksty i dane ćwiczeń), figury.json (dane figur — niezależne od języka, więc raz), manifest.json, wzorce-zrodel.json (lista wzorców dla strażnika
 // w repo strony: ta sama co lib/sources.ts). Figura = próbki klatek (poza + rekwizyty w 25 punktach ruchu, już rozwiązane przez rig albo kontrakt pozy), z których przeglądarka
 // składa kształty silnikiem z silnik-build.mjs; dane pozy w kontrakcie figury-v2/poza@1 (jeśli są) dołączone obok.
-// Użycie: node scripts/strona/eksport.mjs --out <katalog> [--langs pl,en,…] [--commit <sha>]
+// Filtr audytu (CLAUDE.md, „Animacje i karty ćwiczeń — audyt dogłębny”, 27.10.2026): figura trafia do figury.json i do pola `figure` ćwiczenia tylko dla rodziny ze stanem `zatwierdzona`
+// w data/figury-audyt.json; inaczej ćwiczenie zostaje z tekstem, ale bez figury (`figure: null`). Pole `audit` ćwiczenia = stan jego rodziny; manifest.audit opisuje filtr. `--bez-filtra-audytu` tylko do testów
+// (manifest.audit.filter = false — strona ma odrzucić taki eksport).
+// Użycie: node scripts/strona/eksport.mjs --out <katalog> [--langs pl,en,…] [--commit <sha>] [--audyt <plik>] [--bez-filtra-audytu]
 import { execSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { appRequire, repoRoot } from './ts-loader.mjs';
+import { wczytajAudyt, zatwierdzone, AUDYT_SCHEMA, STANY } from './audyt.mjs';
+
+/** Domyślny plik audytu rodzin figur (jedno miejsce prawdy; filtr eksportu). */
+export const AUDYT_PLIK = join(repoRoot, 'data/figury-audyt.json');
 
 export const SCHEMA = 'techniqueatlas-eksport@1';
 /** Minimalny udział regionu na sylwetce: ten sam próg co lista „główne / pomocnicze” (MUSCLE_MIN_LOAD figur v2). */
@@ -36,13 +43,17 @@ export function makeSlugs(names) {
 function gitCommit() { try { return execSync('git rev-parse HEAD', { cwd: repoRoot, encoding: 'utf8' }).trim(); } catch { return 'unknown'; } }
 
 /** Wczytuje moduły aplikacji i zwraca konstruktor eksportu: buildLang(lang) → obiekt JSON. */
-export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit() } = {}) {
+export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(), audytPlik = AUDYT_PLIK, bezFiltra = false } = {}) {
   const R = appRequire();
   const seed = R('lib/seed.ts'), i18n = R('lib/i18n.ts'), cat = R('lib/catalog.generated.ts'), cues = R('lib/cues/index.ts'), eq = R('lib/equipment.ts');
   const mm = R('lib/musclemap.ts'), MIN_LOAD = R('lib/figures/v2/muscles.ts').MUSCLE_MIN_LOAD;
   const roles = R('lib/muscleRoles.ts');
   const v2 = R('lib/figures/v2/index.ts'), cueSets = R('lib/figures/v2/cueSets.ts'), ui = R('lib/figures/v2/ui.ts'), swapScore = R('lib/swapScore.ts'), sources = R('lib/sources.ts');
   const app = JSON.parse(readFileSync(join(repoRoot, 'app.json'), 'utf8')).expo;
+  const audit = bezFiltra ? null : wczytajAudyt(audytPlik, v2.FAMILIES.map(f => f.id), repoRoot);
+  const approved = audit ? zatwierdzone(audit) : null;
+  const auditInfo = { filter: !bezFiltra, ...(audit ? { schema: AUDYT_SCHEMA, approved: [...approved].sort(), counts: Object.fromEntries(STANY.map(st => [st, Object.values(audit.rodziny).filter(e => e.stan === st).length])) } : {}) };
+  const auditOf = key => audit ? audit.rodziny[v2.familyOf(key)].stan : null;
   const keys = seed.LIB.map(r => r[0]);
   const exOf = Object.fromEntries(seed.LIB.map(r => [r[0], seed.libExercise(r)]));
   const dispName = k => own(seed.LIB_DISPLAY_NAME, k) ?? k;
@@ -85,7 +96,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
   };
   const silhouette = { sprite: mm.silhouetteSprite(), vars: { body: mm.SILHOUETTE_VARS.body, part: mm.SILHOUETTE_VARS.part, muscle: seed.MUSCLES.map(mm.SILHOUETTE_VARS.muscle) }, muscles: [...seed.MUSCLES], levels: Object.fromEntries(keys.map(k => [slugs[k], levelsOf(k)])) };
   const figures = {};
-  for (const k of keys) { const fe = figureEntry(k); if (fe) figures[slugs[k]] = fe; }
+  for (const k of keys) { if (approved && !approved.has(v2.familyOf(k))) continue; const fe = figureEntry(k); if (fe) figures[slugs[k]] = fe; }
   const cueTextIn = (l, id) => { const a = cues.cueDict(l)[id] ?? cues.cueDict('en')[id] ?? cues.cueDict('pl')[id]; return a; };
 
   /* zamienniki: kandydaci i punkty (niezależne od języka) liczone kodem aplikacji (lib/swapScore.ts), kolejność jak w arkuszu zamiany dla NOWEGO użytkownika (bez miejsca i historii) —
@@ -143,7 +154,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
         /* „Co robią mięśnie”: zdania ról tylko dla regionów z wyświetlaną rolą (jak sekcja w aplikacji, muscleRoleRows), w języku pliku */
         roles: roles.muscleRoleRows(e).filter(r => r.role).map(r => ({ region: r.region, text: r.role })),
         requires: entry.requires, recommended: entry.recommended,
-        family: v2.familyOf(key), niche: seed.isNiche(e), musclesApproximate: !!ui.legendOf(key)?.simplified,
+        family: v2.familyOf(key), audit: auditOf(key), niche: seed.isNiche(e), musclesApproximate: !!ui.legendOf(key)?.simplified,
         figure: own(figures, slugs[key]) ? { phases: figurePhases(key), errors: figureErrors(key) } : null,
         cues: cueBlock,
         alternatives: alternativesFor(key),
@@ -164,7 +175,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
     walk(obj, l);
     if (bad.length) throw new Error(`eksport zawiera nazwy źródeł lub odwołania ogólne (${bad.length}), np. ${bad.slice(0, 3).join(' | ')}`);
   }
-  return { buildLang, guard, figures, silhouette, langNames: i18n.LANG_NAME, patterns: { name: sources.SOURCE_NAME_PATTERNS, generic: sources.GENERIC_REFERENCE_PATTERNS }, languages: i18n.LANGS, app: { version: app.version, commit, catalogRev: cat.CATALOG_REV } };
+  return { buildLang, guard, figures, silhouette, audit: auditInfo, langNames: i18n.LANG_NAME, patterns: { name: sources.SOURCE_NAME_PATTERNS, generic: sources.GENERIC_REFERENCE_PATTERNS }, languages: i18n.LANGS, app: { version: app.version, commit, catalogRev: cat.CATALOG_REV } };
 }
 
 export const serialize = obj => JSON.stringify(obj) + '\n';
@@ -172,10 +183,10 @@ export const serialize = obj => JSON.stringify(obj) + '\n';
 if (process.argv[1] && import.meta.url === new URL(process.argv[1], 'file://').href) {
   const a = process.argv.slice(2), arg = n => { const i = a.indexOf(n); return i >= 0 ? a[i + 1] : undefined; };
   const out = arg('--out'); if (!out) { console.error('użycie: node scripts/strona/eksport.mjs --out <katalog> [--langs pl,en] [--commit <sha>]'); process.exit(2); }
-  const ex = createExporter(arg('--commit') ? { commit: arg('--commit') } : {});
+  const ex = createExporter({ ...(arg('--commit') ? { commit: arg('--commit') } : {}), ...(arg('--audyt') ? { audytPlik: arg('--audyt') } : {}), bezFiltra: a.includes('--bez-filtra-audytu') });
   const langs = arg('--langs') ? arg('--langs').split(',') : [...ex.languages];
   mkdirSync(out, { recursive: true });
-  const manifest = { schema: SCHEMA, app: ex.app, languages: [], figures: 'figury.json', silhouette: 'sylwetka.json', patterns: 'wzorce-zrodel.json' };
+  const manifest = { schema: SCHEMA, app: ex.app, languages: [], figures: 'figury.json', silhouette: 'sylwetka.json', patterns: 'wzorce-zrodel.json', audit: ex.audit };
   const figText = serialize({ schema: SCHEMA, app: ex.app, figures: ex.figures }); writeFileSync(join(out, 'figury.json'), figText); manifest.figuresBytes = Buffer.byteLength(figText);
   writeFileSync(join(out, 'sylwetka.json'), serialize({ schema: SCHEMA, app: ex.app, ...ex.silhouette }));
   writeFileSync(join(out, 'wzorce-zrodel.json'), serialize({ schema: SCHEMA, ...ex.patterns }));
