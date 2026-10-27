@@ -36,6 +36,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że w serii wpisano wynik, ale nie odhaczono jej
     - Gdy użytkownik kończy trening
     - Wtedy aplikacja ostrzega, że nieodhaczone serie z wpisanymi wynikami nie zostaną zapisane
+  - Scenariusz: „Pierwsze kroki” prowadzą do przycisków, które są na ekranie (M1-audytor-generalny-025, 27.10.2026)
+    - Zakładając, że nowa osoba nie ma jeszcze szablonu z ćwiczeniami ani planu
+    - Gdy patrzy na „Pierwsze kroki” na ekranie Trening
+    - Wtedy krok 1 ma przycisk „Szablony i plan”, krok 2 „Planowanie” (oba otwierają ekran planu), krok 3 wskazuje duży przycisk „Pusty trening” (z szablonem — „Start”), przyciski kroków są jednego rodzaju, a zdanie o „Miejscach i sprzęcie” ma „›”
 
 ### BR-TRN-002: Typy serii: rozgrzewka, drop set, do upadku, notatka
 - Przepływ: PR-01

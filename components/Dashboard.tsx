@@ -3,9 +3,10 @@ import React from 'react';
 import { View, Pressable, Text } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, SectionTitle, useOnce } from '@/components/ui';
-import { useTheme, F, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW } from '@/lib/theme';
+import { useTheme, F, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
 import { useTick } from '@/lib/store';
 import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
+import { mainStart } from '@/lib/home';
 import { compareCached, pctText, type CmpKind } from '@/lib/progress';
 import { guardCached, guardTexts } from '@/lib/guard';
 import { fmtVol } from '@/lib/units';
@@ -84,7 +85,10 @@ export function ProgressTiles() {
 
 /** Nowa osoba: kroki do pierwszego treningu (znikają po pierwszym zakończonym treningu). P4 A (decyzja właściciela 11.10.2026, docs/22): trzy kroki, każdy
  * z jednym przyciskiem — „Planowanie” (szablony i plan są w jednym miejscu: + Nowy szablon, Plan z moich szablonów, Wygeneruj) albo „Przewodnik”.
- * P6 B (import z innego dziennika jako czwarty, pomijalny krok „Masz historię z innej aplikacji?”) — po wdrożeniu importu (dziś go nie ma). */
+ * P6 B (import z innego dziennika jako czwarty, pomijalny krok „Masz historię z innej aplikacji?”) — po wdrożeniu importu (dziś go nie ma).
+ * M1-audytor-generalny-025 (04-studio-projektowe-007, 27.10.2026): krok 1 ma przycisk nazwany celem („Szablony i plan”, to samo miejsce co „Planowanie”),
+ * krok 3 wskazuje duży przycisk, który jest na ekranie (bez szablonu „Pusty trening” — lib/home mainStart), przyciski kroków jednego rodzaju,
+ * zdanie o miejscach z „›” (przejście na inny ekran, docs/32 wzorzec 17). */
 export function FirstSteps() {
   useTick(); const router = useRouter(); const once = useOnce(); const th = useTheme(); const f = firstSteps(); if (!f) return null;
   const step = (done: boolean, n: number, text: string, action?: React.ReactNode) => (
@@ -94,16 +98,18 @@ export function FirstSteps() {
       </View>
       <View style={{ flex: 1, gap: 6 }}><Txt style={{ fontSize: 14, color: done ? th.muted : th.text }}>{text}</Txt>{action}</View>
     </View>);
-  const planning = <Btn nav small title={t('Planowanie')} onPress={() => router.push('/plan')} style={{ alignSelf: 'flex-start' }} />;
+  const toPlan = (title: string) => <Btn nav small title={title} onPress={() => router.push('/plan')} style={{ alignSelf: 'flex-start' }} />;
+  const noTemplate = mainStart().kind === 'empty';
   return (
     <View testID="first-steps" style={{ marginTop: 6, padding: 12, borderRadius: 12, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
       <Txt accessibilityRole="header" style={{ ...FW.semibold, fontSize: 17 }}>{t('Pierwsze kroki')}</Txt>
-      {step(f.template, 1, t('Utwórz pierwszy szablon albo wygeneruj szablony i plan.'), !f.template ? planning : undefined)}
-      {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? planning : undefined)}
-      {step(false, 3, t('Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.'), <Btn nav small kind="ghost" title={t('Przewodnik')} accessibilityLabel={t('Przewodnik po funkcjach')} onPress={() => router.push('/guide?topic=workout')} style={{ alignSelf: 'flex-start' }} />)}
+      {step(f.template, 1, t('Utwórz pierwszy szablon albo wygeneruj szablony i plan.'), !f.template ? toPlan(t('Szablony i plan')) : undefined)}
+      {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? toPlan(t('Planowanie')) : undefined)}
+      {step(false, 3, noTemplate ? t('Pierwszy trening: duży przycisk „Pusty trening” u góry.') : t('Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.'), <Btn nav small title={t('Przewodnik')} accessibilityLabel={t('Przewodnik po funkcjach')} onPress={() => router.push('/guide?topic=workout')} style={{ alignSelf: 'flex-start' }} />)}
       {/* 11.10.2026: „Miejsca i sprzęt” — jedno zdanie z odnośnikiem (nie osobny krok); z Ustawień wejście zniknęło */}
-      <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')} onPress={once(() => router.push('/more/locations'))} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}>
-        <Muted style={{ fontSize: 13 }}>{t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')}</Muted>
+      <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')} onPress={once(() => router.push('/more/locations'))} hitSlop={8} style={{ minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+        <View style={{ flexShrink: 1 }}><Muted style={{ fontSize: 13 }}>{t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')}</Muted></View>
+        <Text accessibilityElementsHidden importantForAccessibility="no" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('callout') }}>›</Text>
       </Pressable>
     </View>);
 }

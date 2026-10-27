@@ -3591,6 +3591,10 @@
   "en": "First workout done!"
  },
  {
+  "pl": "Pierwszy trening: duży przycisk „Pusty trening” u góry.",
+  "en": "First workout: the big “Empty workout” button at the top."
+ },
+ {
   "pl": "Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.",
   "en": "First workout: the big “Start” button at the top, or “Empty workout”."
  },
@@ -4995,6 +4999,10 @@
  {
   "pl": "Szablony ›",
   "en": "Templates ›"
+ },
+ {
+  "pl": "Szablony i plan",
+  "en": "Templates and plan"
  },
  {
   "pl": "Szablony trafiają do folderu „Wygenerowane”, a plan do „Inne plany” albo od razu jako aktywny.",

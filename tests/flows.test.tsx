@@ -22,14 +22,14 @@ test('B1 pierwszy start: podpowiedź, ZERO szablonów (decyzja 03.10.2026) i dro
   expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull();
   for (const n of ['Upper A', 'Upper B', 'Legs — siłownia', 'Legs — dom']) expect(screen.queryByText(n)).toBeNull();
   expect(screen.queryByLabelText(/^Start: /)).toBeNull(); expect(screen.getByText('Pusty trening')).toBeTruthy();
-  await tap(within(screen.getByTestId('first-steps')).getAllByText('Planowanie')[0]); await flushAll(10); /* P4 A: krok 1 → Planowanie → dzień → „+ Nowy szablon” → edytor nowego szablonu */
+  await tap(within(screen.getByTestId('first-steps')).getByText('Szablony i plan')); await flushAll(10); /* P4 A: krok 1 („Szablony i plan”, M1-audytor-generalny-025) → Planowanie → dzień → „+ Nowy szablon” → edytor nowego szablonu */
   await tap(screen.getAllByLabelText(/^poniedziałek, /)[0]); await flushAll(5); await tap(screen.getByLabelText('poniedziałek: + Nowy szablon')); await flushAll(10);
   expect(store.getState().templates).toHaveLength(1); expect(screen.getByDisplayValue('Nowy szablon')).toBeTruthy(); expect(screen.getByText('+ Dodaj ćwiczenie')).toBeTruthy();
 });
 
 test('B1 (EN) first launch without templates: hint, empty state and „+ New template” in English', async () => {
   await renderApp({ locale: 'en' });
-  expect(screen.getByText('Create your first template or generate templates and a plan.')).toBeTruthy(); expect(screen.getAllByLabelText('Planning')).toHaveLength(2); expect(screen.queryByText('+ New template')).toBeNull();
+  expect(screen.getByText('Create your first template or generate templates and a plan.')).toBeTruthy(); expect(screen.getAllByLabelText('Planning')).toHaveLength(1); expect(screen.getAllByLabelText('Templates and plan')).toHaveLength(1); /* M1-audytor-generalny-025 */ expect(screen.queryByText('+ New template')).toBeNull();
   expect(screen.queryByText(/Nie masz jeszcze szablonów|Pierwszy raz/)).toBeNull();
 });
 

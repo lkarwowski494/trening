@@ -54,17 +54,17 @@ describe('ekran', () => {
     jest.useFakeTimers({ now: NOW }); await fresh(undefined, locale); fn();
     await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/' }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
   };
-  test('nowa osoba: „Pierwsze kroki” (P4 A) — 3 kroki do zrobienia, każdy z jednym przyciskiem („Planowanie” ×2, „Przewodnik”); bez kafelków i Progresji', async () => {
+  test('nowa osoba: „Pierwsze kroki” (P4 A) — 3 kroki do zrobienia, każdy z jednym przyciskiem („Szablony i plan”, „Planowanie”, „Przewodnik” — M1-audytor-generalny-025); bez kafelków i Progresji', async () => {
     await boot();
     expect(screen.getByTestId('first-steps')).toBeTruthy(); expect(screen.getByRole('header', { name: 'Pierwsze kroki' })).toBeTruthy();
     expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); /* UX-12 A (audyt 0.10): przyciski przy kroku */
     expect(screen.getByText('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.')).toBeTruthy();
     expect(screen.getByLabelText('2. Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie. do zrobienia', { exact: false })).toBeTruthy();
-    expect(screen.getByLabelText('3. Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”. do zrobienia')).toBeTruthy(); expect(screen.queryByTestId('week-tiles')).toBeNull(); expect(screen.queryByText('Progresja')).toBeNull();
+    expect(screen.getByLabelText('3. Pierwszy trening: duży przycisk „Pusty trening” u góry. do zrobienia')).toBeTruthy(); /* M1-audytor-generalny-025: bez szablonu nie ma „Start” */ expect(screen.queryByTestId('week-tiles')).toBeNull(); expect(screen.queryByText('Progresja')).toBeNull();
     expect(screen.queryByText(/^4\. /)).toBeNull(); /* P6 B (import) — krok 4 dopiero po wdrożeniu importu */
-    const box = within(screen.getByTestId('first-steps')); expect(box.getAllByText('Planowanie')).toHaveLength(2); expect(box.getAllByText('Przewodnik')).toHaveLength(1);
+    const box = within(screen.getByTestId('first-steps')); expect(box.getAllByText('Szablony i plan')).toHaveLength(1); expect(box.getAllByText('Planowanie')).toHaveLength(1); expect(box.getAllByText('Przewodnik')).toHaveLength(1);
     for (const gone of ['+ Nowy szablon', 'Wygeneruj szablony i plan', 'Plan tygodnia', 'Plan z moich szablonów', 'Miejsca i sprzęt', 'Jak to działa']) expect(box.queryByText(gone)).toBeNull(); /* dawne 9 przycisków */
-    await tap(box.getAllByText('Planowanie')[0]); await flushAll(10); await openInfo('plan-days'); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.')).toBeTruthy() /* ⓘ 14.10.2026: opis pod ⓘ przy „Dni tygodnia” */;
+    await tap(box.getByText('Szablony i plan')); await flushAll(10); await openInfo('plan-days'); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.')).toBeTruthy() /* ⓘ 14.10.2026: opis pod ⓘ przy „Dni tygodnia” */;
     await tap(screen.getByText('Wygeneruj szablony i plan')); await flushAll(10); expect(screen.getByText('Podgląd')).toBeTruthy();
     /* 11.10.2026: „Miejsca i sprzęt” — jedno zdanie z odnośnikiem (nie osobny, numerowany krok); „Przewodnik” tylko raz (krok 3) */
     await go('/'); await flushAll(10); const box2 = within(screen.getByTestId('first-steps')); const places = 'Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.'; expect(box2.getByText(places)).toBeTruthy(); expect(screen.getByLabelText(places).props.accessibilityRole).toBe('button'); expect(screen.queryByText(/^4\. /)).toBeNull();

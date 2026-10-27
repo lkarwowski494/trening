@@ -140,12 +140,12 @@ describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
     const t = mkTpl(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await go(`/template/${t.id}`); await flushAll(10);
     expect(screen.getByText('zakres 6–8 · przerwa 1:30')).toBeTruthy(); expect(screen.getByText('przerwa 2:00')).toBeTruthy();
   });
-  test('H4 (UX-12 A, zmienione 11.10.2026 przez P4 A): Pierwsze kroki — 3 kroki, każdy z jednym przyciskiem; „Planowanie” prowadzi do Planowania, gdzie jest „+ Nowy szablon”; pusty stan pod spodem ukryty', async () => {
+  test('H4 (UX-12 A, zmienione 11.10.2026 przez P4 A): Pierwsze kroki — 3 kroki, każdy z jednym przyciskiem; „Szablony i plan” (krok 1, M1-audytor-generalny-025) prowadzi do Planowania, gdzie jest „+ Nowy szablon”; pusty stan pod spodem ukryty', async () => {
     await boot(); const fs = within(screen.getByTestId('first-steps'));
-    expect(fs.getAllByText('Planowanie')).toHaveLength(2); expect(fs.getAllByText('Przewodnik')).toHaveLength(1); expect(fs.queryByText('+ Nowy szablon')).toBeNull(); expect(fs.queryByText('Miejsca i sprzęt')).toBeNull();
+    expect(fs.getAllByText('Szablony i plan')).toHaveLength(1); expect(fs.getAllByText('Planowanie')).toHaveLength(1); /* M1-audytor-generalny-025 (27.10.2026): krok 1 „Szablony i plan”, krok 2 „Planowanie” */ expect(fs.getAllByText('Przewodnik')).toHaveLength(1); expect(fs.queryByText('+ Nowy szablon')).toBeNull(); expect(fs.queryByText('Miejsca i sprzęt')).toBeNull();
     expect(screen.queryByText('Najpierw utwórz szablon.')).toBeNull(); expect(screen.queryByText('Plan tygodnia')).toBeNull();
     expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull();
-    await tap(fs.getAllByText('Planowanie')[0]); await flushAll(10); expect(screen.getByText('Wygeneruj szablony i plan')).toBeTruthy();
+    await tap(fs.getByText('Szablony i plan')); await flushAll(10); expect(screen.getByText('Wygeneruj szablony i plan')).toBeTruthy();
     await tap(screen.getAllByLabelText(/^poniedziałek, /)[0]); await flushAll(5); await tap(screen.getByLabelText('poniedziałek: + Nowy szablon')); await flushAll(10); expect(screen.getByLabelText('Zapisz szablon')).toBeTruthy(); /* od razu edycja (edycja na żądanie) */
   });
   test('H4: jednostka świeżej instalacji z regionu (en-US → lb, en-GB/pl → kg); „Co nowego” dla nowej osoby z dopiskiem', async () => {
