@@ -148,7 +148,8 @@ describe('rzut z przodu dla rodziny plyo (błąd warunkowy W): skoki w bok i Sta
 describe('Sled Push / Sled Drag / Yoke Walk: chód jak w rodzinie carry (stopa podporowa cofa się, wykroczna idzie nad podłożem)', () => {
   test.each([['sled_throw', 'Sled Push'], ['sled_throw', 'Sled Drag (Harness)'], ['strongman', 'Yoke Walk']] as const)('%s / %s: noga wykroczna przechodzi do przodu NAD podłożem (≥ 6 cm), miednica nie faluje', (f, c) => {
     const p = probki(POZY[f].cwiczenia[c]);
-    for (const s of SIDES) { const o = odcinki(p, s); const wolne = p.map((q, i) => (o.some(([a, b]) => i >= a && i <= b) ? -1 : q[s].sole)).filter((x) => x >= 0); expect(Math.max(...wolne, 0)).toBeGreaterThanOrEqual(6); }
+    const wolne = SIDES.flatMap((s) => { const o = odcinki(p, s); return p.filter((_, i) => !o.some(([a, b]) => i >= a && i <= b)).map((q) => q[s].sole); }); /* w półkroku jedna stopa przenosi się nad podłożem */
+    expect(Math.max(...wolne, 0)).toBeGreaterThanOrEqual(6);
     expect(zakres(p.map((q) => q.pelvis[1]))).toBeLessThanOrEqual(c === 'Yoke Walk' ? 8 : 12);
   });
   test('Yoke Walk: krótkie kroki pod ciężarem (rozstaw kostek w osi x ≤ 50 cm)', () => {

@@ -3,7 +3,7 @@
 import { kostkaNaPalcach } from './model.mjs';
 import { bledyCwiczenia } from '../v2-validate.mjs';
 import { wczytajTeksty } from '../v2-jakosc.mjs';
-import { P, Q, katyNogi, ruch, bladKolana, zbuduj, PODLOGA, bledyZOpisem, kostkaZBiodra, wyjatkiOpisu } from './dyn.mjs';
+import { P, Q, katyNogi, ruch, bladKolana, zbuduj, PODLOGA, bledyZOpisem, wyjatkiOpisu } from './dyn.mjs';
 
 export const RODZINA = 'strongman';
 const OTW = 'ćwiczenie otwarte: zestaw „open”, brak wskazówek i źródła ruchu (data/zrodla/figury-sens.json → strongman.otwarte); poza wróci po opisie ruchu przez badacza';
@@ -25,20 +25,16 @@ const gotowe = (cw, sprz, W, bledy = [], buduj = P) => {
   for (const b of poza.bledy) if (b.cue === 'sq.mis.kneesIn' && !b.dotyczy.includes('kneeLat')) b.dotyczy.push('kneeLat');
   return poza;
 };
-/** Punkt zwrotny z biodrem w x = hx: prawa noga (al, k, pod) stoi na podłożu (kostka z wysokości podbicia) albo w locie (hy); lewa kostka AL (x względem hx, y bezwzględnie albo 'h' + różnica od biodra). */
-function krok(hx, hy, r, lAbs, o = {}) {
-  const rel = kostkaZBiodra([0, 0], r.al, r.k); const hipY = r.ziemia ? yP(r.pod ?? 0) + 0.6 - rel[1] : hy;
-  const A = [hx + rel[0], hipY + rel[1]];
-  return { A, al: r.al, k: r.k, pod: r.pod ?? 0, AL: [hx + lAbs[0], lAbs[1] === 'h' ? hipY + lAbs[2] : lAbs[1]], podL: o.podL ?? 0, pitch: o.pitch, ra: o.ra, zR: o.zs ?? 14, zL: o.zs ?? 14, kz: o.kz ?? 0.2, nopole: o.nopole, rotR: o.rot ?? 12, rotL: o.rot ?? 12 };
-}
-
-/** Yoke Walk: jarzmo na barkach (jak sztanga na plecach), tułów pionowo, krok naprzemienny (prawa noga pcha z tyłu → nogi razem → prawa noga w przód). */
+/** Yoke Walk: jarzmo na barkach (jak sztanga na plecach), tułów pionowo, krótkie kroki. Chód w miejscu jak w rodzinie carry (poprawka po recenzji 27.10.2026: wcześniej stopa na podłożu sunęła do przodu):
+ * lewa stopa ląduje przed ciałem i cofa się (stopa podporowa), prawa odrywa się z tyłu i przenosi nad podłożem do przodu; miednica na stałej wysokości (rozstaw kostek ≤ 40 cm). */
 function yoke(cw) {
   const sprz = SPRZ(BAR({ dlugosc: 190 })); const ra = { rel: [-3, -12.7], g: [0, 0], w: 0, z: 30, pole: [-0.5, -1, 0.6] };
-  const o = (podL) => ({ pitch: 3, ra, podL, zs: 14 });
-  const W = [krok(-2, 0, { al: 17, k: 8, pod: -45, ziemia: true }, [13, 'h', -64], o(-30)), krok(-2, 0, { al: 12, k: 16, pod: -25, ziemia: true }, [7, 'h', -68], o(-25)), krok(-2, 0, { al: 4, k: 12, pod: 0, ziemia: true }, [-2, 'h', -74], o(-15)),
-    krok(-2, 84, { al: -8, k: 30, pod: -8 }, [-22, yP(-45)], o(-45))];
-  return gotowe(cw, sprz, W);
+  const hx = -2, hy = 86; const hip = [hx, hy];
+  const gr = (pod) => yP(pod) + 0.6; /* kostka stopy stojącej na podłożu (podeszwa ~0) */
+  const pod = (A, plant) => { const k = katyNogi(hip, A); return Math.max(-85, k.t - k.k + 90 - plant); };
+  const fr = (R, L) => { const A = (f) => [hx + f[0], f[1] === null ? gr(f[2]) : f[1]]; const p = (f) => (f[1] === null ? f[2] : pod(A(f), f[2])); return { pel: hip, AR: A(R), AL: A(L), podR: p(R), podL: p(L), pitch: 3, ra, zR: 14, zL: 14, rot: 12, kz: 0.2 }; };
+  const W = [fr([-22, null, -55], [16, null, 0]), fr([-13, 32, 30], [6, null, 0]), fr([8, 28, 20], [-8, null, 0]), fr([15, 20, 15], [-15, null, -25]), fr([16, null, 0], [-22, null, -55])];
+  return gotowe(cw, sprz, W, [], Q);
 }
 
 export function generuj() {
