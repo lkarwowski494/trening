@@ -31,15 +31,27 @@ export type HingeParams = {
   /** Przesunięcie barku względem gryfu (cm, + = bark przed gryfem) na starcie i na końcu. */
   sx: [number, number];
   platform?: number; band?: boolean; chain?: boolean; oneArm?: boolean; pull?: boolean;
+  /** Odmiana „reverse”: guma zwisa z góry stojaka do gryfu (zamiast od gryfu do podłogi). */
+  reverse?: boolean;
 };
 
 export const HINGE = {
+  /** Kotwica gumy „reverse” (górna belka stojaka), cm — nad gryfem na wyproście (ok. 80–100). */
+  bandHang: 150,
+  /** Martwy ciąg z hantlami: połowa rozstawu dłoni — hantle obok ud, nie przez kolana (tor ciężaru prawie pionowy). */
+  dbFloorGrip: 30,
   /** Ręce proste: długość ręki minus 0,05 cm (łokieć ≈ 3° zgięcia; dokładny wyprost = osobliwość IK). */
   arm: BODY.uarm + BODY.farm + BODY.hand - 0.05,
   /** Najdalej do tyłu (x kostki = 0): ciężar nie schodzi za śródstopie (ręce przy bokach nie mają kontaktu z nogami). */
+  /** Martwy ciąg jedną ręką z boku: środek gryfu (x nad środkiem stopy, z po zewnętrznej stronie uda), gryf wzdłuż x. */
+  sideBar: [6.5, 26] as [number, number],
+  /** RDL i martwy na prostych nogach: bark przed gryfem na dole (cm) — ręce lekko odchylone do tyłu, kolana ≤ 27° (docs/research/28: 15° ± 12°) przy tułowiu ok. 60° od pionu. */
+  rdlSxEnd: 25,
   xMin: 4.5, clear: 0.0, pulley: [75, 14] as [number, number],
   shin: {
     floor: { stand: 3, perKnee: 0.32, max: 28 } as ShinRule,
+    /** Martwy ciąg klasyczny: goleń prawie pionowo (gryf zostaje nad środkiem stopy, tor niemal pionowy); uproszczenie ilustracyjne. */
+    conv: { stand: 0, perKnee: 0.1, max: 8 } as ShinRule,
     sumo: { stand: 3, perKnee: 0.28, max: 24 } as ShinRule,
     rdl: { stand: 2, perKnee: 0.06, max: 8 } as ShinRule,
   },
@@ -70,12 +82,14 @@ function clearance(p: HingeParams, x: number, y: number, legs: { hip: V3; knee: 
 export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
   if (p0.style === 'goodMorning') return goodMorning(p0, u, fault);
   const fw = fault?.w ?? 0; const fs = fault?.m.shin;
-  const p: HingeParams = fs ? { ...p0, shin: { stand: fs.stand ?? p0.shin.stand, perKnee: p0.shin.perKnee + ((fs.perKnee ?? p0.shin.perKnee) - p0.shin.perKnee) * fw, max: p0.shin.max + ((fs.max ?? p0.shin.max) - p0.shin.max) * fw } } : p0;
+  const pShin: HingeParams = fs ? { ...p0, shin: { stand: fs.stand ?? p0.shin.stand, perKnee: p0.shin.perKnee + ((fs.perKnee ?? p0.shin.perKnee) - p0.shin.perKnee) * fw, max: p0.shin.max + ((fs.max ?? p0.shin.max) - p0.shin.max) * fw } } : p0;
+  /* błąd „kolana jak w przysiadzie”: bark wraca bliżej gryfu (ręce pionowo), więc biodra nie mogą się cofnąć i kolana muszą się ugiąć */
+  const sxTo = fault?.m.shoulderAheadTo; const p: HingeParams = sxTo === undefined ? pShin : { ...pShin, sx: [pShin.sx[0], pShin.sx[1] + (sxTo - pShin.sx[1]) * fw] };
   const bend = (fault?.m.spineBend ?? 0) * fw; const Tl = BODY.trunk * trunkChord(bend);
   const k = ease(u); const sx = p.sx[0] + (p.sx[1] - p.sx[0]) * k;
   const ankY = BODY.ankleH + (p.platform ?? 0); const ankles: Record<'R' | 'L', V3> = { R: [0, ankY, p.stance], L: [0, ankY, -p.stance] };
   const single = p.style === 'singleLeg'; if (single) { ankles.R = [0, ankY, BODY.hipHalf]; }
-  const rz = p.impl === 'db' ? p.grip : 2; const gz = p.oneArm ? rz : p.grip; const dz = Math.abs(gz - BODY.shHalf);
+  const rz = p.impl === 'db' ? p.grip : 2; const sideBar = !!p.oneArm && p.impl === 'barbell' && p.style === 'floor'; const gz = sideBar ? HINGE.sideBar[1] : p.oneArm ? rz : p.grip; const dz = Math.abs(gz - BODY.shHalf);
   const dzLeg = Math.abs(p.stance - BODY.hipHalf);
   const yEnd = p.yEnd ?? (legFK(0, p.shin, ankles.R, single ? 0 : dzLeg).hip[1] + BODY.trunk * 0.995 - Math.sqrt(Math.max(1, HINGE.arm ** 2 - p.sx[1] ** 2 - dz * dz)));
   const rdlLike = p.style === 'rdl' || p.style === 'singleLeg' || p.style === 'pullThrough';
@@ -91,19 +105,22 @@ export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
   let K = p.style === 'rdl' ? 20 : 80; let barX = 8;
   for (let it = 0; it < 8; it++) {
     const legs = legsAt(K); barX = 60;
-    while (barX > HINGE.xMin && clearance(p, barX, barY, legs) >= HINGE.clear) barX -= 0.25; /* od przodu: pierwszy kontakt z nogami, nie dalej niż xMin */
-    barX += 0.25 + (fault?.m.barAway ?? 0) * fw;
+    if (sideBar) barX = HINGE.sideBar[0] + (fault?.m.barAway ?? 0) * fw; /* gryf z boku ciała, wzdłuż x: nie przechodzi przed nogami */
+    else {
+      while (barX > HINGE.xMin && clearance(p, barX, barY, legs) >= HINGE.clear) barX -= 0.25; /* od przodu: pierwszy kontakt z nogami, nie dalej niż xMin */
+      barX += 0.25 + (fault?.m.barAway ?? 0) * fw;
+    }
     const S: V3 = [barX + sx, barY + Larm, 0];
     K = solveRoot(kk => { const h = chain(kk).hip; return Math.hypot(S[0] - h[0], S[1] - h[1]) - Tl; }, 0, 141);
   }
   const ch = chain(K); const hip: V3 = [ch.hip[0], ch.hip[1], 0];
   const S: V3 = [barX + sx, barY + Larm, 0]; const tau = Math.atan2(S[0] - hip[0], S[1] - hip[1]) * 180 / Math.PI;
-  const gripHalf = p.grip; const c: V3 = [barX, barY, 0];
+  const gripHalf = p.grip; const c: V3 = [barX, barY, sideBar ? gz : 0];
   const props: Prop[] = [{ k: 'floor', x0: -95, x1: 120 }]; const info: Record<string, V3> = {}; const contacts: Contact[] = [];
   const g = (z: number): V3 => [barX, barY, z];
   let arms: PoseIn['arms'] = { R: { grip: g(gripHalf), elbowPole: [0, -1, 0.2] }, L: { grip: g(-gripHalf), elbowPole: [0, -1, -0.2] } };
   let legs: PoseIn['legs'] = { R: { ankle: ankles.R, toeOut: p.toeOut }, L: { ankle: ankles.L, toeOut: p.toeOut } };
-  if (p.oneArm && !single) arms = { R: { grip: g(rz), elbowPole: [0, -1, 0.2] }, L: { grip: [barX - 4, barY + 20, -BODY.shHalf - 6], elbowPole: [0, -1, -0.5] } };
+  if (p.oneArm && !single) arms = { R: { grip: g(sideBar ? gz : rz), elbowPole: [0, -1, 0.2] }, L: { grip: [barX - 4, barY + 20, -BODY.shHalf - 6], elbowPole: [0, -1, -0.5] } };
   if (single) {
     const back = mul(sag(tau + 180), 1); void back;
     const dir = sag(tau + 180 + 6);
@@ -117,13 +134,13 @@ export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
   const pose: PoseIn = { pelvis: hip, trunkPitch: tau, spineBend: bend, legs, arms };
   info.load = c; info.hip = hip; info.shoulder = S; info.midfoot = [6.5, 0, 0];
   if (p.platform) props.push({ k: 'box', x0: -26, x1: 34, top: p.platform, w: 60 });
-  if (p.impl === 'barbell' || p.impl === 'smith') { props.push({ k: 'barbell', c, held: p.oneArm ? 'R' : true }); info.bar = c; }
+  if (p.impl === 'barbell' || p.impl === 'smith') { props.push({ k: 'barbell', c, held: p.oneArm ? 'R' : true, axis: sideBar ? 'x' : undefined }); info.bar = c; }
   if (p.impl === 'smith') props.push({ k: 'rail', x: barX, h: 190 });
   if (p.impl === 'trapbar') { props.push({ k: 'trapbar', c, w: p.grip }); info.bar = c; }
   if (p.impl === 'db') for (const s of single || p.oneArm ? ['R'] as const : ['R', 'L'] as const) props.push({ k: 'dumbbell', c: [barX, barY, s === 'R' ? gripHalf : -gripHalf], side: s });
   if (p.impl === 'kb') props.push({ k: 'kettlebell', c, side: 'C' });
   if (p.impl === 'cable') props.push({ k: 'cable', from: p.pull ? [-HINGE.pulley[0], HINGE.pulley[1], 0] : [barX, 0, 0], to: c });
-  if (p.band) props.push({ k: 'band', from: c, to: [c[0], 0, 0] });
+  if (p.band) props.push(p.reverse ? { k: 'band', from: [c[0], HINGE.bandHang, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [c[0], 0, 0], bar: true });
   if (p.chain) props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
   if (p.platform) contacts.push({ body: 'foot', equip: 'box', tol: 1.5 });
   contacts.push({ body: 'thigh', equip: 'bar', tol: 1.5 }, { body: 'shank', equip: 'bar', tol: 1.5 }, { body: 'thigh', equip: 'plateNear', tol: 99 });
@@ -132,7 +149,7 @@ export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
 
 /** Dzień dobry: sztanga na plecach (jak przysiad wysokim gryfem), kolana prawie proste, tułów pochyla się do przodu, gryf nad śródstopiem. */
 function goodMorning(p: HingeParams, u: number, fault?: Fault): Frame {
-  const sq: SquatParams = { load: 'highBar', impl: 'barbell', depth: 28, stance: p.stance, toeOut: p.toeOut, shin: { stand: 1, perKnee: 0, max: 1 }, band: p.band, chain: p.chain };
+  const sq: SquatParams = { load: 'highBar', impl: 'barbell', depth: 24, stance: p.stance, toeOut: p.toeOut, shin: { stand: 1, perKnee: 0, max: 1 }, band: p.band, chain: p.chain };
   return squatFrame(sq, u, fault);
 }
 
