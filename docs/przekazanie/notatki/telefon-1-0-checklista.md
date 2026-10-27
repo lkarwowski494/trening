@@ -7,6 +7,7 @@
 | T-04 | ⚠️ Pogrubiony tekst: OK (wyraźnie grubszy). **Wada:** przy największym tekście (Większe rozmiary dostępności) na ekranie **Trening** ucięta jest większość ikon, m.in. duża szara ikona (start kolejnego treningu). Trafi do przebiegu napraw. |
 | T-02 | ✅ OK — bez zegarka: baner + dźwięk + wibracja; z zegarkiem na ręce: wibracja tylko na zegarku (tak działa iOS); zmiana przerwy, „Rest”, „Pause” OK |
 | T-03 | ✅ OK — przy trybie skupienia koniec przerwy daje baner (R-004 do zamknięcia) |
+| T-05 | ✅ OK |
 | pozostałe | do zrobienia |
 
 **Ważne przy kolejnych punktach z powiadomieniami (T-03, T-13):** zdejmij zegarek albo włącz na nim tryb samolotowy — gdy zegarek jest na ręce i odblokowany, iOS wysyła powiadomienia tylko na zegarek, a telefon milczy.
