@@ -133,6 +133,7 @@ Oszczędność limitu: agenci raportują tylko na końcu zadania albo przy bloka
 - 01:51 UTC: pełny jest po scaleniu: 4 pakiety czerwone (gear, sens r4-r5, i18n-locales, zgodność wsteczna) — naprawione przyczynowo (biegun łokcia jednostkowy, przykład z rigu, _source z kodu, odciski świadomie, reguła hantli zdjęta — otwarte w docs/18); `integracja-1-1-main-wip` @ b6f06d21; dalej: pełne verify.
 - 02:21 UTC: verify lokalnie zielone (jest 11484 testów; jedyny pakiet "failed to run" = worker ubity SIGTERM, `matrix-dim-langs2` osobno 36/36; export, check:bundle, licenses, verify:native OK); wypchnięte `integracja-1-1` @ b6f06d21 (fast-forward z 9878bb5); czekam na tests.yml.
 - 02:54 UTC: tests.yml run 40437949390 na b6f06d21 ZIELONY; uruchamiam e2e-ios.yml (pakiet: podstawowy) na integracja-1-1.
+- 04:16 UTC: e2e-ios.yml pakiet podstawowy run 40441136088 na b6f06d21 ZIELONY (build + 3 części). Scalenie main do integracja-1-1 ukończone: integracja-1-1 = b6f06d21 (merge eb5418c2 + poprawki).
 ## Grafiki 1.1 — runda 5 (agent programisty, gałąź `jakosc-r2`, stan na SHA 61b1e0a)
 
 Zrobione:
