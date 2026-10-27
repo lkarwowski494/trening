@@ -7,6 +7,7 @@ Decyzja właściciela 27.10.2026 (docs/18, wariant A): niezależna recenzja ruch
 | cable_row | 9 | 2 | 4 | 3 | 9/9 OK | 0 z 3 (0%) | [cable_row.md](cable_row.md) |
 | pulldown | 8 | 1 | 6 | 1 | 8/8 OK | 0 z 1 (0%) | [pulldown.md](pulldown.md) |
 | cable_press | 4 | 2 | 2 | 0 | 4/4 OK | 0 z 0 (brak błędów) | [cable_press.md](cable_press.md) |
+| chest_press_machine | 5 | 0 | 3 | 2 | 5/5 OK | 0 z 2 (0%) | [chest_press_machine.md](chest_press_machine.md) |
 | back_extension | 3 | 0 | 1 | 2 | 3/3 OK | 0 z 2 (0%) | [back_extension.md](back_extension.md) |
 | kneeling_hinge | 1 | 0 | 1 | 0 | 1/1 OK | — | [kneeling_hinge.md](kneeling_hinge.md) |
 | dip | 5 | 3 | 1 | 1 | 5/5 OK | 0 z 1 (0%) | [dip.md](dip.md) |
