@@ -10,7 +10,7 @@
 #   "Train 5 days a month for free.*", "Training is part of my week", "Restore purchases", "No purchases found for this Apple account."
 #   ".*free training days left this month.*"                                ← 'Pozostało {n} z {limit} darmowych dni treningowych w tym miesiącu' (components/StartPanel.tsx)
 #   "We're proud of you!", ".*no ads, no data collection.*"                 ← tekst przy starcie ponad limit (app/paywall.tsx, reason=limit)
-#   "Plan: Training is part of my week", ".*Current plan.*", "Change plan"  ← po zakupie planu: karta stanu, oznaczenie posiadanego planu, przycisk zmiany (app/paywall.tsx)
+#   ".*Plan: Training is part of my week.*", ".*Current plan.*", "Change plan"  ← po zakupie planu: karta stanu, oznaczenie posiadanego planu, przycisk zmiany (app/paywall.tsx)
 #   "Subscribe", "Log a past workout", "Not now", "Close" (id close-modal)
 #   "Empty workout", "Other workout", "Finish", "Set 1 done.*", "Skip", "Finish workout\?", "Session", "Upper A" ← jak flow 05
 appId: pl.lukasz.trening
@@ -76,7 +76,7 @@ name: Subskrypcja — ekran zakupu i limit
 - tapOn: "Subscribe"
 - extendedWaitUntil: { visible: ".*You have the full version.*", timeout: 30000 }
 # --- po zakupie subskrypcji (27.10.2026, uwaga z telefonu): karta podaje aktywny plan, bez wstępu o darmowych dniach, plan posiadany oznaczony i niewybieralny, reszta jako „Change plan” ---
-- assertVisible: "Plan: Training is part of my week"
+- assertVisible: ".*Plan: Training is part of my week.*"
 - assertNotVisible: "Train 5 days a month for free.*"
 - scrollUntilVisible: { element: "Change plan", direction: DOWN, timeout: 60000 }
 - assertVisible: ".*Current plan.*"
