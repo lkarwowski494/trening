@@ -19,8 +19,8 @@ const BP = (impl: BenchParams['impl'], o: Partial<BenchParams> = {}): Variant =>
 const HG = (style: HingeParams['style'], impl: HingeParams['impl'], o: Partial<HingeParams> = {}): Variant => {
   const rdl = style === 'rdl' || style === 'singleLeg' || style === 'pullThrough';
   const base: HingeParams = rdl
-    ? { style, impl, yEnd: 55, stance: style === 'singleLeg' ? 8.5 : 14, toeOut: 8, grip: impl === 'db' ? 18 : 23, shin: HINGE.shin.rdl, sx: [-2, -2] }
-    : { style, impl, stance: 14, toeOut: 8, grip: impl === 'trapbar' ? EQUIP.trapW : impl === 'db' ? 26 : 23, shin: HINGE.shin.floor, sx: [3, -9] };
+    ? { style, impl, yEnd: 55, stance: style === 'singleLeg' ? 8.5 : 14, toeOut: 8, grip: impl === 'db' ? 18 : 23, shin: HINGE.shin.rdl, sx: [-2, style === 'pullThrough' ? -2 : HINGE.rdlSxEnd] }
+    : { style, impl, stance: 14, toeOut: 8, grip: impl === 'trapbar' ? EQUIP.trapW : impl === 'db' ? 26 : 23, shin: impl === 'trapbar' ? HINGE.shin.floor : HINGE.shin.conv, sx: [3, -9] };
   const p = { ...base, ...o };
   return { family: 'hinge', p, lowerFirst: rdl || style === 'goodMorning' };
 };
@@ -59,31 +59,31 @@ export const VARIANTS: Record<string, Variant> = {
   'Bench Press (hantle)': BP('db', { grip: 32, gripTop: 22, touch: 32, vert: true }),
   'Incline Bench Press (sztanga)': BP('barbell', { angle: 30, grip: 35, touch: 40, vert: true }),
   'Incline Bench Press (hantle)': BP('db', { angle: 30, grip: 32, gripTop: 22, touch: 40, vert: true }),
-  'Decline Bench Press': BP('barbell', { angle: -15, touch: 28 }),
+  'Decline Bench Press': BP('barbell', { angle: -15, touch: 28, vert: true }),
   'Close Grip Bench Press': BP('barbell', { grip: 12, touch: 30 }),
-  'Decline Bench Press (hantle)': BP('db', { angle: -15, touch: 28, grip: 26, gripTop: 17 }),
-  'Floor Press (hantle)': BP('db', { floor: true, grip: 26, gripTop: 17 }),
-  'Floor Press (sztanga)': BP('barbell', { floor: true }),
+  'Decline Bench Press (hantle)': BP('db', { angle: -15, touch: 28, grip: 32, gripTop: 22, vert: true }),
+  'Floor Press (hantle)': BP('db', { floor: true, grip: 32, gripTop: 22, vert: true }),
+  'Floor Press (sztanga)': BP('barbell', { floor: true, vert: true }),
   'Squeeze Press (hantle)': BP('db', { grip: 7, squeeze: true }),
-  'Smith Machine Bench Press': BP('smith'),
-  'Smith Machine Incline Press': BP('smith', { angle: 30, touch: 38 }),
+  'Smith Machine Bench Press': BP('smith', { vert: true }),
+  'Smith Machine Incline Press': BP('smith', { angle: 30, touch: 38, vert: true }),
   'JM Press': BP('barbell', { grip: 12, touch: 60, touchB: 10, flare: 0.8 }),
-  'One-Arm Kettlebell Floor Press': BP('kb', { floor: true, oneArm: true, grip: 20 }),
-  'One Arm Dumbbell Bench Press': BP('db', { oneArm: true, grip: 22 }),
+  'One-Arm Kettlebell Floor Press': BP('kb', { floor: true, oneArm: true, grip: 30, vert: true }),
+  'One Arm Dumbbell Bench Press': BP('db', { oneArm: true, grip: 32, vert: true }),
   'Barbell Guillotine Bench Press': BP('barbell', { grip: 42, touch: 50, touchB: 9 }),
-  'Wide-Grip Barbell Bench Press': BP('barbell', { grip: 45 }),
-  'Smith Machine Decline Press': BP('smith', { angle: -15, touch: 28 }),
-  'Band Bench Press': BP('band'),
-  'Chain Press': BP('chain'),
-  'Bench Press with Chains': BP('chain'),
-  'Floor Press with Chains': BP('chain', { floor: true }),
-  'Reverse Band Bench Press': BP('barbell', { band: true }),
-  'Board Press': BP('barbell', { touchB: 17.5 }),
-  'Pin Press': BP('barbell', { touchB: 19 }),
+  'Wide-Grip Barbell Bench Press': BP('barbell', { grip: 45, vert: true }),
+  'Smith Machine Decline Press': BP('smith', { angle: -15, touch: 28, vert: true }),
+  'Band Bench Press': BP('band', { vert: true }),
+  'Chain Press': BP('chain', { vert: true }),
+  'Bench Press with Chains': BP('chain', { vert: true }),
+  'Floor Press with Chains': BP('chain', { floor: true, vert: true }),
+  'Reverse Band Bench Press': BP('barbell', { band: true, vert: true }),
+  'Board Press': BP('barbell', { touchB: 17.5, vert: true }),
+  'Pin Press': BP('barbell', { touchB: 19, vert: true }),
   'Close-Grip Dumbbell Press': BP('db', { grip: 10, touch: 30 }),
   'Close-Grip EZ-Bar Press': BP('barbell', { grip: 12, touch: 30 }),
   'Smith Machine Close-Grip Bench Press': BP('smith', { grip: 12, touch: 30 }),
-  'Reverse Grip Bench Press': BP('barbell', { grip: 30, touch: 31 }),
+  'Reverse Grip Bench Press': BP('barbell', { grip: 30, touch: 31, vert: true }),
   'Decline Close-Grip Bench To Skull Crusher': BP('barbell', { angle: -15, grip: 12, touch: 54, touchB: 12 }),
   /* ---- zawias ---- */
   'Deadlift (sztanga)': HG('floor', 'barbell'),
@@ -102,7 +102,7 @@ export const VARIANTS: Record<string, Variant> = {
   'Axle Deadlift': HG('floor', 'barbell'),
   'Deadlift with Bands': HG('floor', 'barbell', { band: true }),
   'Deadlift with Chains': HG('floor', 'barbell', { chain: true }),
-  'Deficit Deadlift': HG('floor', 'barbell', { platform: 8 }),
+  'Deficit Deadlift': HG('floor', 'barbell', { platform: 6 }),
   'Rack Pull with Bands': HG('floor', 'barbell', { yStart: 45, band: true }),
   'Reverse Band Deadlift': HG('floor', 'barbell', { band: true }),
   'Cable Deadlift': HG('floor', 'cable', { yStart: 20 }),

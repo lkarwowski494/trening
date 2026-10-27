@@ -70,15 +70,16 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
   const touchB = p.touchB ?? 11.9 + EQUIP.barR;
   let bottom = trunkPoint(hipT, pitchT, p.touch, touchB, 0);
   const fl = p.flare ?? (p.grip < 20 ? 1.1 : 0.8); const elbowPole: V3 = [0, -1, fl];
+  const underGripAt = (grip: V3): V3 => { const sh: V3 = [shoulderC[0], shoulderC[1], D.shHalf]; return [grip[0] - sh[0], grip[1] - (D.farm + BODY.hand) - sh[1], grip[2] - sh[2]]; };
   if (floorPress) {
-    const f = (y: number): number => { const sh: V3 = [shoulderC[0], shoulderC[1], D.shHalf]; const r = ik2(sh, [bottom[0], y, g], D.uarm, D.farm + BODY.hand, elbowPole); return r.mid[1] - (2 + 4.6); };
+    const f = (y: number): number => { const sh: V3 = [shoulderC[0], shoulderC[1], D.shHalf]; const r = ik2(sh, [bottom[0], y, g], D.uarm, D.farm + BODY.hand, p.vert ? underGripAt([bottom[0], y, g]) : elbowPole); return r.mid[1] - (2 + 4.6); };
     bottom = [bottom[0], solveRoot(f, bottom[1] - 4, bottom[1] + 30), 0];
   }
   const k = ease(u);
   const c: V3 = [top[0] + (bottom[0] - top[0]) * k, top[1] + (bottom[1] - top[1]) * k, 0];
 
   /* biegun łokcia ku „łokciowi idealnemu” pod dłonią (przedramię pionowo): IK wybiera na okręgu dozwolonych łokci (długości segmentów stałe) punkt najbliższy pionowemu przedramieniu */
-  const underGrip = (grip: V3): V3 => { const sh: V3 = [shoulderC[0], shoulderC[1], D.shHalf]; return [grip[0] - sh[0], grip[1] - (D.farm + BODY.hand) - sh[1], grip[2] - sh[2]]; };
+  const underGrip = underGripAt;
   const poleR: V3 = p.vert ? underGrip([c[0], c[1], g]) : elbowPole;
   const arms = { R: { grip: [c[0], c[1], g] as V3, elbowPole: poleR }, L: { grip: [c[0], c[1], -g] as V3, elbowPole: [poleR[0], poleR[1], -poleR[2]] as V3 } };
   if (p.oneArm) arms.L = { grip: trunkPoint(hipT, pitchT, 26, 12.5, -7), elbowPole: [0, -0.2, -1] as V3 };
@@ -101,7 +102,7 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
     props.push({ k: 'barbell', c });
     info.bar = c;
     if (p.impl === 'smith') props.push({ k: 'rail', x: c[0], h: 190 });
-    if (p.band || p.impl === 'band') props.push({ k: 'band', from: c, to: [c[0], 0, 0] });
+    if (p.band || p.impl === 'band') props.push({ k: 'band', from: c, to: [c[0], 0, 0], bar: true });
     if (p.chain || p.impl === 'chain') props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
   }
   /* dozwolone kontakty: plecy na oparciu, miednica i uda na siedzisku, gryf/hantle na klatce (tylko na dole) */

@@ -39,6 +39,8 @@ export const SQUAT = {
   barBack: { high: 12.8 }, barFront: 9.0,
   /** Odległość łokieć–chwyt w racku przedniej (palce zagięte pod gryfem), cm. */
   rackLower: 27,
+  /** Rack przedni sztangi: łokieć–chwyt krótszy (palce pod gryfem, nadgarstek zgięty), żeby łokieć szedł w przód na wysokości barku, nie nad głowę. */
+  frontLower: 25.7, frontPole: [0.5, 0.2, 0.3] as V3,
   landminePivot: 150, cablePulley: [95, 12] as [number, number],
   sit: 9, /* wysokość stawu biodrowego nad siedziskiem (pośladek) */
 } as const;
@@ -92,7 +94,7 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
     }
     case 'frontBar': {
       tau = balanceTau(t => barAt('front', t), barOff); load = barAt('front', tau);
-      arms = armsHeld(load, gh.frontBar, [1, 0.5, 0.25], SQUAT.rackLower); break;
+      arms = armsHeld(load, gh.frontBar, SQUAT.frontPole, SQUAT.frontLower); break;
     }
     case 'zercher': {
       const anc = (t: number) => trunkPoint(hipC(), t, 24, 14.5, 0);
@@ -157,11 +159,11 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
   if (p.impl === 'barbell' && p.load !== 'dbSides' && p.load !== 'kbRack' && p.load !== 'landmine') {
     props.push({ k: 'barbell', c, held: p.load !== 'zercher' });
     info.bar = c;
-    if (p.band) props.push({ k: 'band', from: c, to: [c[0], 0, 0] });
+    if (p.band) props.push({ k: 'band', from: c, to: [c[0], 0, 0], bar: true });
     if (p.chain) props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
     if (p.smith) props.push({ k: 'rail', x: c[0], h: 200 });
     if (p.load === 'highBar') contacts.push({ body: 'torso', equip: 'bar', tol: 1.6 });
-    if (p.load === 'frontBar') contacts.push({ body: 'torso', equip: 'bar', tol: 2.6 });
+    if (p.load === 'frontBar') contacts.push({ body: 'torso', equip: 'bar', tol: 2.6 }, { body: 'uarm', equip: 'bar', tol: 3.2 });
     if (p.load === 'zercher') contacts.push({ body: 'torso', equip: 'bar', tol: 6 }, { body: 'uarm', equip: 'bar', tol: 6 }, { body: 'farm', equip: 'bar', tol: 6 });
     if (p.load === 'behind') contacts.push({ body: 'thigh', equip: 'bar', tol: 1.5 });
   }
@@ -173,7 +175,7 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
   if (p.load === 'kbRack') contacts.push({ body: 'uarm', equip: 'kb', tol: 2.5 }, { body: 'torso', equip: 'kb', tol: 2.5 }, { body: 'farm', equip: 'kb', tol: 14 });
   if (p.impl === 'kb' && p.load === 'kbOverhead1') props.push({ k: 'kettlebell', c: add(c, [0, 6, 0]), side: 'R' });
   if (p.impl === 'kb' && p.load === 'dbSumo') props.push({ k: 'kettlebell', c: add(c, [0, 0, 0]), side: 'C' });
-  if (p.load === 'belt') props.push({ k: 'cable', from: [info.midfoot[0], 0, 0], to: hipC() });
+  if (p.load === 'belt' && p.impl === 'cable') props.push({ k: 'cable', from: [info.midfoot[0], 0, 0], to: hipC() });
   if (boxH !== undefined) { const hx = legChain(Kend, rule, dzL).hip[0]; const bx1 = Math.min(hx + 12, -BODY.heelBack - 6); props.push({ k: 'box', x0: bx1 - 40, x1: bx1, top: boxH }); contacts.push({ body: 'pelvis', equip: 'box', tol: 1.5 }, { body: 'thigh', equip: 'box', tol: 2.5 }, { body: 'torso', equip: 'box', tol: 1.5 }); }
   if (wallSit) { props.push({ k: 'wall', x: hipC()[0] - 10.5, h: 190 }); contacts.push({ body: 'torso', equip: 'wall', tol: 1.5 }, { body: 'pelvis', equip: 'wall', tol: 1.5 }); }
   return mkFrame(pose, props, info, contacts);

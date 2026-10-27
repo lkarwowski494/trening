@@ -21,7 +21,7 @@ export const LAYER = { back: -2, backEquip: -1, body: 0, frontEquip: 1, overlay:
 
 /** Rekwizyty w świecie 3D. Gryf leży wzdłuż osi z (prostopadle do płaszczyzny strzałkowej). */
 export type Prop =
-  | { k: 'barbell'; c: V3; plates?: boolean; len?: number; held?: boolean | 'R'; id?: string }                        /* sztanga: środek gryfu */
+  | { k: 'barbell'; c: V3; plates?: boolean; len?: number; held?: boolean | 'R'; id?: string; /** gryf wzdłuż osi x (przód–tył), np. martwy ciąg jedną ręką z boku; domyślnie wzdłuż z */ axis?: 'x' }                        /* sztanga: środek gryfu */
   | { k: 'trapbar'; c: V3; w?: number }                                                                    /* gryf sześciokątny: środek (uchwyty wzdłuż z) */
   | { k: 'dumbbell'; c: V3; side: 'R' | 'L'; vertical?: boolean; r?: number; held?: boolean }                  /* hantel: środek chwytu */
   | { k: 'kettlebell'; c: V3; side?: 'R' | 'L' | 'C'; r?: number; held?: boolean }                             /* kettlebell: środek rączki */
@@ -31,7 +31,7 @@ export type Prop =
   | { k: 'rail'; x: number; h: number }                                                        /* prowadnica suwnicy Smitha (pionowa) */
   | { k: 'post'; x: number; h: number; hook?: number }                                         /* słupek stojaka */
   | { k: 'cable'; from: V3; to: V3 }
-  | { k: 'band'; from: V3; to: V3 }
+  | { k: 'band'; from: V3; to: V3; /** guma sztangi: dwie gumy przy końcach gryfu (jak łańcuchy), nie jedna przez środek ciała */ bar?: true }
   | { k: 'chain'; from: V3; to: V3; /** łańcuch sztangi (wisi na obu tulejach); bez tego pola — pojedynczy łańcuch (np. pas z obciążeniem) */ bar?: true }
   | { k: 'floor'; x0: number; x1: number }
   | { k: 'mat'; x0: number; x1: number; h: number }

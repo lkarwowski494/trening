@@ -74,6 +74,8 @@
 - Gałęzie: praca na gałęzi funkcji od `main` (właściciel 21.10.2026; `integration/0.9.0` usunięta przy sprzątaniu gałęzi); scalenie do `main` tylko na polecenie właściciela. Nie łącz aktualizacji SDK ze zmianą
   schematu danych w jednym wydaniu.
 
+- **Animacje i karty ćwiczeń — audyt dogłębny (właściciel, 27.10.2026, po zgłoszeniu „Deadlift (hantle)” z TestFlight):** każda animacja ćwiczenia i każda karta ćwiczenia (opis, wskazówki, mięśnie, kąty, tempo, błędy), które trafiają do wydania aplikacji **albo na stronę z ćwiczeniami** (techniqueatlas), przechodzi przed wydaniem niezależną, dogłębną recenzję ruchu i treści (bramka 4, `docs/przekazanie/notatki/53-grafiki-model-pracy.md` na gałęzi przekazanie-konta), także rodziny uznane wcześniej za gotowe. Podwójne ryzyko: ten sam błąd widać w aplikacji i publicznie na stronie. Rodzina bez recenzji = nie wyświetlana (status nie `ready`, strona jej nie eksportuje). Reguły automatyczne tylko chronią przed regresją, nie zastępują recenzji.
+
 ## Audyty i wydania (zasada właściciela 09.10.2026, wariant A)
 
 1. **Próg wydania:** wydanie blokują tylko znaleziska KRYTYCZNE i WYSOKIE: utrata lub zepsucie danych (także migracja, import, kopia),
