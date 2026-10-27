@@ -1,0 +1,43 @@
+$ npx jest tests/migrate-released.test.ts --maxWorkers=1
+kod wyjścia: 0
+  ✓ są fixture’y z wydanych buildów dla schematów 18 i 19 (19 ms)
+    ✓ start bez kopii odzysku; treningi, szablony, trening w toku i plan 1:1; konfiguracja z „cfg” nałożona (78 ms)
+    ✓ kopia sprzed migracji tylko dla starszego schematu i jest surowym zapisem; schemat bieżący nie tworzy kopii (119 ms)
+    ✓ restart po migracji: ten sam stan, drugi start bez nowej kopii (157 ms)
+    ✓ start bez kopii odzysku; treningi, szablony, trening w toku i plan 1:1; konfiguracja z „cfg” nałożona (69 ms)
+    ✓ kopia sprzed migracji tylko dla starszego schematu i jest surowym zapisem; schemat bieżący nie tworzy kopii (119 ms)
+    ✓ restart po migracji: ten sam stan, drugi start bez nowej kopii (126 ms)
+    ✓ start bez kopii odzysku; treningi, szablony, trening w toku i plan 1:1; konfiguracja z „cfg” nałożona (35 ms)
+    ✓ kopia sprzed migracji tylko dla starszego schematu i jest surowym zapisem; schemat bieżący nie tworzy kopii (31 ms)
+    ✓ restart po migracji: ten sam stan, drugi start bez nowej kopii (148 ms)
+Tests:       10 passed, 10 total
+
+$ npx jest tests/migrate-idem.test.ts --maxWorkers=1
+kod wyjścia: 0
+  ✓ migrate is idempotent through JSON (export→import is a no-op) (172088 ms)
+  ✓ fala 2 (M3 / TST-03): poprawne wartości nowych pól przechodzą przez migrate bez zmian, złe — usunięte (27 ms)
+Tests:       2 passed, 2 total
+
+$ npx jest tests/matrix-data-fuzz.test.ts --maxWorkers=1
+kod wyjścia: 0
+    ✓ stan bazowy jest poprawny i przechodzi eksport → import bez zmian (kontrola generatora) (179 ms)
+    ✓ losowo popsute kopie: odrzucenie z komunikatem albo poprawny stan; punkt stały; bez zatrucia prototypu; aplikacja działa na wyniku (6544 ms)
+    ✓ ucięty plik w 200 miejscach i puste/obce dokumenty → odrzucenie (SyntaxError albo „bad state”), dane bez zmian (181 ms)
+    ✓ schemat z przyszłości (w kopercie, w stanie, tekstem, 1e400) → komunikat „Plik ma schemat …” z numerem tej wersji (13 ms)
+    ✓ klucze __proto__/constructor/prototype na każdym poziomie: brak zatrucia prototypu, pola opcjonalne nie dziedziczą wartości, aplikacja działa (135 ms)
+    ✓ unicode, emoji, RTL, zero‑width i bardzo długie nazwy: zostają co do znaku (poza białymi znakami na brzegach); CSV i eksport bez strat (5 ms)
+    ✓ 10 000 treningów w imporcie: wszystkie zostają, import < 10 s, eksport → import punkt stały (945 ms)
+    ✓ powtórzone id dostają nowe: oba treningi zostają osobno (także po ponownym wczytaniu), id unikalne, migrate idempotentne (21 ms)
+    ✓ NAPRAWIONE 06.10 (decyzja właściciela A): kopia z dwoma RÓŻNYMI treningami o tym samym id — usunięcie jednego z historii kasuje oba (lib/store.ts:291, :1227) (24 ms)
+    ✓ NAPRAWIONE 06.10 (decyzja właściciela A): kopia z dwoma RÓŻNYMI ćwiczeniami (i gumami) o tym samym id — drugie nieosiągalne po id (lib/store.ts:218, :225, :290) (22 ms)
+    ✓ NAPRAWIONE 06.10 (decyzja właściciela A): ekran Historii na kopii ze zduplikowanym id treningu — zduplikowane klucze listy (console.error Reacta) (7432 ms)
+    ✓ plik wraca z parsera RFC 4180: nagłówek, 12 kolumn, wiersz na każdą odhaczoną serię, ciężar w jednostce, ochrona formuł, BOM (1215 ms)
+    ✓ losowe awarie k‑tego zapisu podczas zmiany ustawień, importu i resetu (3018 ms)
+    ✓ import przy niedziałającej kopii bezpieczeństwa (pełny dysk w Plikach) → przerwany z komunikatem, dane bez zmian, nic nie zapisane (34 ms)
+    ✓ import uszkodzonego pliku przez importBackup → wyjątek przed kopią bezpieczeństwa i przed zmianą danych (17 ms)
+    ✓ zapis „state” udany, „live” nieudany w trakcie treningu → po restarcie trening w toku z ostatniego udanego zapisu, historia cała (25 ms)
+    ✓ start (JSON.parse + migracja), statystyki, rekordy, sumy tygodniowe, PR, CSV, eksport → import — bez zmiany wyniku na dużej historii (czasy: npm run perf) (1404 ms)
+    ✓ ekrany na dużej historii: start aplikacji, Historia, Postępy — każdy ekran się renderuje (czasy: npm run perf) (1850 ms)
+    ✓ 25 stanów z fuzzingu: start, trening w toku, historia, szczegóły treningu, postępy, szablony, ćwiczenia — bez wyjątku i bez console.error (29693 ms)
+Tests:       19 passed, 19 total
+

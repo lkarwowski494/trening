@@ -1,0 +1,27 @@
+# G4 — build 1031 a kandydat (10-wydanie-001), 2026-10-27, repo na 025a50b9
+## git ls-remote --tags origin | grep b103 (tag lokalnie nie istnieje; zdalnie:)
+f2b0525f65a1a4c589c4399296badd29bca6072e	refs/tags/v0.20.0-b1030
+001ecf28d96e5db95771aeb8f6c865ea963469c6	refs/tags/v1.0.0-b1031
+exit=0
+## git rev-list --count 001ecf28..025a50b9
+32
+## git merge-base --is-ancestor 001ecf28 025a50b9
+exit=0
+## git diff --stat 001ecf28 025a50b9 | tail -1
+ 55 files changed, 481 insertions(+), 171 deletions(-)
+## git diff --name-only 001ecf28 025a50b9 -- lib/figures
+lib/figures/v2/colliders.ts
+lib/figures/v2/draw.ts
+lib/figures/v2/errors.ts
+lib/figures/v2/rigs/benchPress.ts
+lib/figures/v2/rigs/hinge.ts
+lib/figures/v2/rigs/squat.ts
+lib/figures/v2/scene.ts
+lib/figures/v2/variants.ts
+## grep -c 'v1.0.0-b1031' docs/09-plan-testow.md
+0
+exit=1
+## grep -n '1031\|SHA' docs/48-zgloszenie-1-0.md
+exit=1 (1 = brak trafień)
+## app.json version
+5:    "version": "1.0.0",

@@ -1,0 +1,14 @@
+# G4 — sonda Jest w kopii roboczej (git worktree 025a50b9 w scratchpadzie): npx jest tests/g4-sonda.test.tsx --maxWorkers=1
+SONDA S1 effortIn RIR[5,6,7] = [5,4,4] effortText(4)= 6+
+SONDA S1 po zmianie na RPE: effortText(4)= 4
+SONDA S2 body= "\n\nWersja: 1.0.0 (1031) · iOS 18.0 · Język: pl" zawiera_begin/loaded= false
+SONDA S2 wywolanie= openSupportMail('feedback')
+SONDA S3 PLAN_ORDER= ["yearly","monthly","lifetime"]
+SONDA S4 store-native= async manageSubscriptions() { const m = iap(); await m.deepLinkToSubscriptions(); },
+SONDA S4 expo-iap deepLinkToSubscriptionsIOS= deepLinkToSubscriptionsIOS = (): Promise<void> => Linking.openURL('https://apps.apple.com/account/subscriptions');
+✓ S1 effort: RIR 5,6,7 -> RPE (308 ms)
+✓ S2 support mail: brak diag (13 ms)
+✓ S3 plan order (20 ms)
+✓ S4 manageSubscriptions -> expo-iap (25 ms)
+Tests:       4 passed, 4 total
+exit=0

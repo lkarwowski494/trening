@@ -1,0 +1,43 @@
+# G3 — forma liczby po {n} ćw. (commit 025a50b9)
+$ grep -F "\"dziś w planie · {n} ćw.\":" lib/locales/<l>.json (wszystkie języki)
+bg: "днес по план · {n} упр.",
+cs: "dnes v plánu · {n} cv.",
+da: "planlagt i dag · {n} øv.",
+de: "heute im Plan · {n} Üb.",
+el: "σήμερα στο πρόγραμμα · {n} ασκ.",
+es: "en el plan hoy · {n} ej.",
+et: "täna plaanis · {n} harj.",
+fi: "tänään suunnitelmassa · {n} liik.",
+fr: "prévue aujourd’hui · {n} ex.",
+hr: "danas u planu · {n} vj.",
+hu: "ma a tervben · {n} gyak.",
+id: "rencana hari ini · {n} gerakan",
+it: "oggi nel piano · {n} es.",
+ja: "今日の予定 · {n} 種目",
+ko: "오늘 계획 · {n}종목",
+lt: "šiandien plane · {n} prat.",
+lv: "šodien plānā · {n} vingr.",
+ms: "dirancang hari ini · {n} senaman",
+nb: "planlagt i dag · {n} øv.",
+nl: "vandaag gepland · {n} oef.",
+pt-BR: "no plano de hoje · {n} ex.",
+pt: "no plano hoje · {n} ex.",
+ro: "azi în plan · {n} ex.",
+ru: "сегодня в плане · {n} упр.",
+sk: "dnes v pláne · {n} cv.",
+sl: "danes v načrtu · {n} vaj",
+sr: "данас у плану · {n} вежб.",
+sv: "planerat i dag · {n} övn.",
+tr: "bugün planda · {n} egz.",
+uk: "сьогодні в плані · {n} вправ",
+vi: "theo kế hoạch hôm nay · {n} bài",
+zh-Hant: "今天的計畫 · {n} 個動作",
+
+uk/sl — pozostałe klucze:
+uk:659:  "następny po: {name} · {n} ćw.": "наступне після: {name} · {n} вправ",
+uk:1336:  "w planie na: {day} · {n} ćw.": "у плані на: {day} · {n} вправ",
+sl:659:  "następny po: {name} · {n} ćw.": "naslednji po: {name} · {n} vaj",
+sl:1336:  "w planie na: {day} · {n} ćw.": "v načrtu za: {day} · {n} vaj",
+
+Odmiana (CLDR, kategorie): uk one/few/many — 1 вправа, 2–4 вправи, 5+ вправ; sl one/two/few/other — 1 vaja, 2 vaji, 3–4 vaje, 5+ vaj. Przekład uk/sl ma formę dopełniacza l.mn. (poprawną tylko dla 0 i 5–20).
+Mechanizm liczebnika istnieje: lib/i18n.ts tp(n, forms) — nieużyty w tych kluczach.

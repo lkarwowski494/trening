@@ -1,0 +1,68 @@
+# G1 — konfiguracja buildu i kod biblioteki (2026-10-27, commit 025a50b9)
+
+## grep odwołań do pliku .storekit / konfiguracji StoreKit w workflowach, app.json, skryptach (bez node_modules, audit)
+$ grep -rn "Trening.storekit|.storekit|STOREKIT|StoreKitConfiguration" (yml,json,js,ts,mjs,sh,rb,xcscheme)
+./scripts/readme.mjs:4:// i jest wyliczane z kodu, app.json, package.json, docs/19 (macierz), tests/przeplywy.json, .maestro/, .github/workflows/, store/Trening.storekit.
+./scripts/readme.mjs:233:    const kit = JSON.parse(read('store/Trening.storekit'));
+./scripts/readme.mjs:234:    const subs = kit.subscriptionGroups.flatMap(g => g.subscriptions); const sub = p => subs.find(s => s.recurringSubscriptionPeriod === p) ?? fail(`store/Trening.storekit: brak subskrypcji ${p}`);
+./scripts/readme.mjs:235:    const life = kit.products.find(p => p.type === 'NonConsumable') ?? fail('store/Trening.storekit: brak zakupu jednorazowego');
+./scripts/readme.mjs:240:    L.push('| Plan | Rodzaj | Cena referencyjna (USD, plik `store/Trening.storekit`) |', '|---|---|---|');
+./scripts/readme.mjs:241:    const days = p => ({ P3D: 3, P1W: 7, P2W: 14, P1M: 30, P2M: 60, P3M: 90 })[p] ?? fail(`store/Trening.storekit: nieznany okres oferty ${p}`);
+(tylko generator README; brak w .github/workflows, app.json, schemacie — katalog ios/ nie jest w repo, powstaje z expo prebuild --clean)
+
+## testflight.yml — zmienne EXPO_PUBLIC_* i straż sztucznego sklepu
+102:          if [ -n "${EXPO_PUBLIC_STORE_FAKE:-}" ]; then echo "::error::EXPO_PUBLIC_STORE_FAKE ustawione w buildzie TestFlight"; exit 1; fi
+103:          if [ -n "${EXPO_PUBLIC_WATCH_FAKE:-}" ]; then echo "::error::EXPO_PUBLIC_WATCH_FAKE ustawione w buildzie TestFlight"; exit 1; fi
+114:          echo "EXPO_PUBLIC_BUILD_NUMBER=$((BUILD_BASE + GITHUB_RUN_NUMBER))" >> "$GITHUB_ENV"  # widoczny w „O aplikacji” (lib/version.ts)
+
+## wybór adaptera
+54:export const isFakeStoreBuild = (): boolean => process.env.EXPO_PUBLIC_STORE_FAKE === '1';
+56:  if (!cached) cached = isFakeStoreBuild() ? createFakeStore(E2E_START_ENTITLEMENTS) : createNativeStore();
+
+## openiap 3.6.0 (git clone --branch 3.6.0 https://github.com/hyodotdev/openiap.git, HEAD 1f789eb591e366a2b7e6253bf016a89c28421474; źródło z podspec CocoaPods openiap 3.6.0)
+### packages/apple/Sources/OpenIapModule.swift:677-689
+    public func getAvailablePurchases(_ options: PurchaseOptions?) async throws -> [Purchase] {
+        try await ensureConnection()
+        let onlyActive = options?.onlyIncludeActiveItemsIOS ?? false
+        let shouldPublish = options?.alsoPublishToEventListenerIOS ?? false
+        var purchasedItems: [Purchase] = []
+
+        for await verification in (onlyActive ? Transaction.currentEntitlements : Transaction.all) {
+            let transaction = try checkVerified(verification)
+
+            if onlyActive, let expirationDate = transaction.expirationDate, expirationDate <= Date() {
+                continue
+            }
+
+### packages/apple/Sources/OpenIapModule.swift:322-326 (pobranie produktów)
+
+        let fetchedProducts: [StoreKit.Product]
+        do {
+            fetchedProducts = try await StoreKit.Product.products(for: params.skus)
+            for product in fetchedProducts {
+### packages/apple/Sources/Helpers/StoreKitTypesBridge.swift:20-26 (displayPrice przepisany 1:1)
+            debugDescription: product.description,
+            description: product.description,
+            displayName: product.displayName,
+            displayNameIOS: product.displayName,
+            displayPrice: product.displayPrice,
+            id: product.id,
+            isFamilyShareableIOS: product.isFamilyShareable,
+
+## expo-iap 5.8.1 (node_modules) — fetchProducts bez przeliczeń ceny
+        AsyncFunction("fetchProducts") { (params: [String: Any]) async throws -> [[String: Any]] in
+            ExpoIapLog.payload("fetchProducts", payload: params)
+            do {
+                let request = try ExpoIapHelper.decodeProductRequest(from: params)
+                let result = try await OpenIapModule.shared.fetchProducts(request)
+                let products = ExpoIapHelper.sanitizeArray(OpenIapSerialization.products(result))
+                ExpoIapLog.result("fetchProducts", value: products)
+                return products
+{
+  "clientProtocol": "0.1.0",
+  "google": "3.6.1",
+  "apple": "3.6.0"
+}
+
+## mock expo-iap w testach — getAvailablePurchases zwraca listę bez filtra wygasłych
+64:    getAvailablePurchases: async (...a) => { rec('getAvailablePurchases', a); maybeFail(); return g().purchases; },

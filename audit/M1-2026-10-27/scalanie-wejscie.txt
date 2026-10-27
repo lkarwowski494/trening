@@ -75,3 +75,14 @@
 | 02-monetyzacja-505 | P2 | D | „Zarządzaj subskrypcją” otwiera stronę App Store, a nie systemowy arkusz (docs/27 3.10); w TestFlight pokazuje produkcyjną listę bez zakupów testowych | otwarte |
 | 02-monetyzacja-506 | P2 | P | Porównanie „jak jedno espresso” w opisie (33 lokalizacje) nie jest sprawdzone dla wszystkich krajów sprzedaży; decyzja o Ukrainie z 13.10 bez wdrożenia i bez zamknięcia | otwarte |
 | 02-monetyzacja-507 | P2 | P | Decyzja właściciela zapisana bez testu-strażnika i bez sprawdzenia wdrożenia (kolejność planów 23.10; P3 B; „limit tylko się luzuje” bez progu minut) — luka systemowa | otwarte |
+| 07-jakosc-001 | P1 | D | Bramka R-015 (`check:release`) nie jest uruchamiana przez żaden krok wydania, mimo deklaracji | otwarte |
+| 07-jakosc-002 | P1 | D | Rejestr ryzyk: 7 otwartych pozycji, stany nieaktualne, brak mechanizmu wiążącego rejestr z bramką | otwarte |
+| 07-jakosc-003 | P1 | D | Ekran zakupu z aktywną subskrypcją bez kryterium i testu; błąd T-11 dotarł do właściciela | otwarte |
+| 07-jakosc-004 | P1 | D | Duży tekst ucina ikony na ekranie Trening (T-04, ZD-03 czerwone); brak testu odtwarzającego na SHA | otwarte |
+| 07-jakosc-005 | P2 | P | Decyzje właściciela bez powiązania z testem: decyzja 23.10 niewdrożona, a test przypinał stan przeciwny | otwarte |
+| 07-jakosc-006 | P2 | P | Bramka 4 (recenzja ruchu) bez wymuszenia: status `ready` nie wymaga zapisu recenzji | otwarte |
+| 07-jakosc-007 | P2 | D | Brak strażnika nowych stuknięć po tekście w scenariuszach Maestro (decyzja 18.10) | otwarte |
+| 07-jakosc-008 | P2 | D | Dokumenty bramek sprzeczne lub nieaktualne (docs/20, docs/48, docs/18, opis trybu ścisłego) | otwarte |
+| 07-jakosc-009 | P2 | D | Wymaganie Dynamic Type mierzone testem Jest, który nie widzi ucięć | otwarte |
+| 07-jakosc-010 | P2 | D | Testy mutacyjne pomijają moduły ryzyk wysokich; próg `break` 40 bez decyzji | otwarte |
+| 07-jakosc-011 | P2 | D | Test kalendarza Historii zależy od kolejności (wyciek zegara między testami) | otwarte |

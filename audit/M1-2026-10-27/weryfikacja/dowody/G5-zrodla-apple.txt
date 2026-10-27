@@ -1,0 +1,11 @@
+# G5 źródła Apple przeczytane 27.10.2026 (curl, HTTP 200)
+
+## https://developer.apple.com/app-store/review/guidelines/ — 2.3
+„Customers should know what they’re getting when they download or buy your app, so make sure all your app metadata, including privacy information, your app description, screenshots, and previews accurately reflect the app’s core experience and remember to keep them up-to-date with new versions.”
+
+## https://developer.apple.com/design/human-interface-guidelines/ratings-and-reviews (dane: /tutorials/data/design/human-interface-guidelines/ratings-and-reviews.json)
+„Avoid asking for a rating on first launch or during onboarding, because people haven’t had enough time to gain a clear understanding of your app’s value or form an opinion.”
+„Avoid interrupting people while they’re performing a task or playing a game.”
+
+## https://developer.apple.com/app-store/subscriptions/ — kontekst cytatu z 02-monetyzacja-002
+„the following details must be included in your subscription’s sign-up screen: … A way for current subscribers to sign in or restore purchases” — wymóg dotyczy ekranu zapisu (ekranu zakupu), nie wiersza w Ustawieniach.

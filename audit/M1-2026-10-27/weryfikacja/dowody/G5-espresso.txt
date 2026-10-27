@@ -1,0 +1,24 @@
+# G5 espresso / ceny we wszystkich krajach / Ukraina (02-monetyzacja-506), commit 025a50b9
+
+## lokalizacje opisu z przypisem 1,06–1,51 €
+lokalizacje: 33 z przypisem: 33
+exit=0
+
+## terytoria w kontroli ASC (store/asc-kontrola.json)
+wybrane: USA,POL,DEU,FRA,ITA,ESP,NLD,GBR | strefaEuro: 21 | ceny.monthly: {"USA":0.99,"POL":4.99,"strefaEuro":0.99,"GBR":0.99} | dostepnosc.terytoria: null
+
+## Ukraina / UKR / UAH w kontroli, docs/monetyzacja.md, docs/40, docs/brd, store/
+grep exit=1 (1 = brak trafień)
+
+## [OTWARTE] UA
+135:    i „5× roczna” z 10.10.2026. Ukraina: niższy punkt cenowy poniżej ceny espresso — **[OTWARTE]** konkretny punkt (lista punktów w App Store
+179:- 13.10.
+
+## warunek otwarty
+**Otwarte:** oryginalna tabela MIMIT nieprzeczytana (strona Osservatorio prezzi niedostępna 21.10.2026), więc miesiąc danych i liczba prowincji nieznane;
+ceny planu miesięcznego we wszystkich krajach — po przebiegu kontroli App Store Connect (koordynator), do sprawdzenia, czy nigdzie nie odbiegają
+znacząco w górę od ok. 1 €.
+
+## kontrola z 21.10 objęła 4 waluty (docs/45)
+  „4 treningów na żywo”; tekst promocyjny mówi o 5 darmowych dniach. Porównanie planu miesięcznego z espresso zostaje — cena miesięczna bez zmian
+  (0,99 USD / 4,99 zł / 0,99 € / 0,99 £; kontrola ASC 21.10.2026), więc twierdzenie nadal prawdziwe (docs/research/espresso-mimit-2026-10.md).

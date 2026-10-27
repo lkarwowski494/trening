@@ -3,3 +3,101 @@
 
 ## BAZA (bez mutacji)
 $ npx jest --ci --maxWorkers=1 --silent tests/access.test.ts tests/m5s1-dni-treningowe.test.ts tests/monetyzacja-csv.test.ts tests/m5s1-dni-zapis.test.ts tests/audit-r83b.test.tsx tests/audit-r83.test.tsx tests/csv-import-logic.test.ts tests/audit-m1-041-reminder-files.test.tsx tests/stats.test.ts tests/logic.test.ts tests/audit-0.10-stats.test.ts tests/audit-0.10-data.test.ts tests/regress.test.tsx tests/audit-k1-mer.test.tsx
+Test Suites: 14 passed, 14 total
+Tests:       679 passed, 679 total
+jest exit=0
+
+## M1-limit: lib/access.ts: 'const allowed = used < limit ||' → 'const allowed = used <= limit ||'
+$ npx jest --ci --maxWorkers=1 --silent tests/access.test.ts tests/m5s1-dni-treningowe.test.ts tests/monetyzacja-csv.test.ts tests/m5s1-dni-zapis.test.ts
+ lib/access.ts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+FAIL iOS tests/m5s1-dni-zapis.test.ts
+  ● licznik z magazynu: ukończenie, wstecz, anulowany, trwający, zapis po 6 h, usunięcie › po ukończeniu („Zakończ”, 30 min) dzień się liczy; kolejny trening tego samego dnia przechodzi mimo limitu, następnego dnia — nie
+  ● licznik z magazynu: ukończenie, wstecz, anulowany, trwający, zapis po 6 h, usunięcie › R-M5-1 ZAMKNIĘTE decyzją (22.10.2026): usunięcie treningu z historii NIE zwraca dnia — dni są zapisane osobno
+  ● licznik z magazynu: ukończenie, wstecz, anulowany, trwający, zapis po 6 h, usunięcie › kopia zapasowa, drugie urządzenie, ponowna instalacja, cofnięty zegar (wyniki opisane w testach) › cofnięty zegar: na dzień bez wpisu w tym samym miesiącu nadal blokada; na dzień z wpisem — wolno; poprzedni miesiąc ma własny licznik
+FAIL iOS tests/access.test.ts
+  ● canStartLive() — limit 5 dni treningowych w stanie free › 5 zużytych dni → start zablokowany, limit wraca 1. dnia następnego miesiąca
+  ● canStartLive() — limit 5 dni treningowych w stanie free › zmiana miesiąca odblokowuje (północ 1.12.), a ostatnia sekunda listopada jeszcze blokuje
+  ● canStartLive() — limit 5 dni treningowych w stanie free › strefa -600 min: 5 dni w miesiącu blokują, nowy miesiąc na zegarze strefy odblokowuje
+  ● canStartLive() — limit 5 dni treningowych w stanie free › strefa -480 min: 5 dni w miesiącu blokują, nowy miesiąc na zegarze strefy odblokowuje
+  ● canStartLive() — limit 5 dni treningowych w stanie free › strefa -300 min: 5 dni w miesiącu blokują, nowy miesiąc na zegarze strefy odblokowuje
+  ● canStartLive() — limit 5 dni treningowych w stanie free › strefa 0 min: 5 dni w miesiącu blokują, nowy miesiąc na zegarze strefy odblokowuje
+  ● canStartLive() — limit 5 dni treningowych w stanie free › strefa 60 min: 5 dni w miesiącu blokują, nowy miesiąc na zegarze strefy odblokowuje
+jest exit=1
+przywrócone: 0 zmienionych plików
+
+## M2-dzien-7min: lib/access.ts: 'durationSec > MIN_LIVE_MINUTES_FOR_DAY * 60' → 'durationSec >= MIN_LIVE_MINUTES_FOR_DAY * 60'
+$ npx jest --ci --maxWorkers=1 --silent tests/access.test.ts tests/m5s1-dni-treningowe.test.ts tests/monetyzacja-csv.test.ts tests/m5s1-dni-zapis.test.ts
+ lib/access.ts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+FAIL iOS tests/m5s1-dni-zapis.test.ts
+  ● próg 7 minut: tylko trening na żywo dłuższy niż MIN_LIVE_MINUTES_FOR_DAY zużywa dzień › stała jedna: 7; dokładnie 7 min nie zużywa, 7 min i 1 s tak; NaN i ujemne nie
+  ● licznik z magazynu: ukończenie, wstecz, anulowany, trwający, zapis po 6 h, usunięcie › próg 7 min na żywo: 6 min i dokładnie 7 min nie zużywają dnia, 8 min tak; pauzy odejmowane (15 min z pauzą 10 min = 5 min → nie); krótkie zostają w historii
+Test Suites: 1 failed, 3 passed, 4 total
+Tests:       2 failed, 177 passed, 179 total
+jest exit=1
+przywrócone: 0 zmienionych plików
+
+## M3-kopia-bezp: lib/backup.ts: 'await FileSystem.deleteAsync(dir + name, { idempotent: true }).catch(() => {}); throw e; }' → 'await FileSystem.deleteAsync(dir + name, { idempotent: true }).catch(() => {}); }'
+$ npx jest --ci --maxWorkers=1 --silent tests/audit-r83b.test.tsx tests/audit-r83.test.tsx tests/csv-import-logic.test.ts tests/audit-m1-041-reminder-files.test.tsx
+ lib/backup.ts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+FAIL iOS tests/audit-r83.test.tsx (6.56 s)
+  ● Q-019 kopia bezpieczeństwa przed importem i „Wyczyść dane” › zły plik: nic nie jest zastępowane i nie powstaje kopia; nieudany zapis kopii przerywa import — dane bez zmian
+  ● Q-019 kopia bezpieczeństwa przed importem i „Wyczyść dane” › „Wyczyść wszystkie dane”: najpierw kopia (trening w toku, historia), potem czyszczenie; nieudana kopia → dane zostają
+FAIL iOS tests/csv-import-logic.test.ts
+  ● CSV: zapis › bezpieczeństwo: nieudana kopia bezpieczeństwa przerywa import — stan bez zmian; trening w toku i dane istniejące nietknięte
+FAIL iOS tests/audit-r83b.test.tsx
+  ● Q-019 kopia bezpieczeństwa — LOW 3 (nieczytelny zapis) i LOW 4 (writeKopia) › LOW 4: nieudany zapis — plik docelowy usuwany (nie zostaje ucięty JSON w puli), operacja przerwana
+Test Suites: 3 failed, 1 passed, 4 total
+Tests:       4 failed, 53 passed, 57 total
+jest exit=1
+przywrócone: 0 zmienionych plików
+
+## M4-e1rm-10: lib/stats.ts: 'reps > E1RM_MAX_REPS ? 0' → 'reps >= E1RM_MAX_REPS ? 0'
+$ npx jest --ci --maxWorkers=1 --silent tests/stats.test.ts tests/logic.test.ts tests/audit-0.10-stats.test.ts tests/audit-0.10-data.test.ts tests/regress.test.tsx tests/audit-k1-mer.test.tsx
+ lib/stats.ts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+FAIL iOS tests/regress.test.tsx (52.219 s)
+  ● runda 73 — rekord = suma na treningu + e1RM (decyzja 01.10) › R73-03 e1RM tylko z serii do 10 powtórzeń (standard dla wzorów szacujących 1RM)
+FAIL iOS tests/logic.test.ts
+  ● A4 obliczenia › PR: identyczne serie → jeden PR, kolejne słabsze bez fałszywego e1RM
+Test Suites: 2 failed, 4 passed, 6 total
+Tests:       2 failed, 441 passed, 443 total
+jest exit=1
+przywrócone: 0 zmienionych plików
+
+# koniec 2026-10-27T18:13:53Z; git status --porcelain kopii:
+(puste = kopia czysta)
+
+# druga partia 2026-10-27T18:14:11Z
+
+## M5-straznik-0kg: lib/guard.ts: 'dir = e === 'same' && byWeight ? 'up' : e;' → 'dir = e;'
+$ npx jest --ci --maxWorkers=1 --silent tests/guard.test.ts tests/guard-ui.test.tsx
+ lib/guard.ts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+FAIL iOS tests/guard.test.ts
+  ● progressGuard: tonaż w dół, ciężar roboczy w górę = progres (decyzja właściciela) › 3×10×100 → 3×5×110: tonaż spadł (3000 → 1650), ciężar wzrósł → partia „więcej”, wiersz tonażu nadal pokazuje spadek
+  ● progressGuard: tonaż w dół, ciężar roboczy w górę = progres (decyzja właściciela) › ćwiczenie z progresem ciężaru + drugie bez zmian → więcej; + drugie wyraźnie w górę → więcej
+  ● progressGuard: poprzednio 0 kg, teraz z ciężarem = więcej (decyzja właściciela 19.10.2026) › regresja (test 0.20 na telefonie): tydzień −1 Bench Press (hantle) 0 kg ×8, tydzień 0 50×8 → klatka „więcej”, ćwiczenie porównane (nie pominięte jako noWeight)
+  ● progressGuard: poprzednio 0 kg, teraz z ciężarem = więcej (decyzja właściciela 19.10.2026) › z drugim ćwiczeniem bez zmian → więcej (jak progres ciężarem)
+FAIL iOS tests/guard-ui.test.tsx (9.658 s)
+  ● Postępy: poprzednio 0 kg i rozdzielone powody pominięcia (lista napraw przed 1.0, 19.10.2026) › regresja: Bench Press (hantle) 0 kg ×8 → 50 kg ×8 — klatka w grupie „więcej”, linia tonażu z „poprz. 0 kg” i linia ciężaru roboczego, bez „Pominięte”
+Test Suites: 2 failed, 2 total
+Tests:       5 failed, 122 passed, 127 total
+jest exit=1
+przywrócone: 0 zmienionych plików
+
+## M6-migracja-dni: lib/state/migrate-live.ts: 'if (good) for (const d of raw.liveDays)' → 'if (false) for (const d of raw.liveDays)'
+$ npx jest --ci --maxWorkers=1 --silent tests/m5s1-dni-zapis.test.ts tests/monetyzacja-csv.test.ts tests/migrate-released.test.ts tests/migrate-idem.test.ts
+ lib/state/migrate-live.ts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+FAIL iOS tests/m5s1-dni-zapis.test.ts
+  ● licznik z magazynu: ukończenie, wstecz, anulowany, trwający, zapis po 6 h, usunięcie › migracja: dni z historii (dane poprzedniej wersji, bez pola liveDays) › idempotentna; poprawne pole zostaje (usunięty trening nie wraca do licznika po kolejnej migracji / restarcie)
+Test Suites: 1 failed, 3 passed, 4 total
+Tests:       1 failed, 62 passed, 63 total
+jest exit=1
+przywrócone: 0 zmienionych plików
+
+# koniec drugiej partii 2026-10-27T18:17:26Z; git status --porcelain kopii:
+(puste = kopia czysta)

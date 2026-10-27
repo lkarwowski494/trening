@@ -1,0 +1,58 @@
+# G5 sonda: okno „Uczciwe zasady” i prośba o ocenę na jednym podsumowaniu (11-wzrost-001)
+# commit 025a50b9, kopia robocza w scratchpadzie (plik testu tylko tam, usunięty po przebiegu)
+# komenda: npx jest tests/zz-sonda-g5.test.tsx --maxWorkers=1  -> exit=0 (3 passed)
+
+## wynik
+    S1 zaimportowane cwiczenia: Bench Press (sztanga) | Fikcyjny Wyciąg Testowy | Plank | Squat (Barbell) | Pull Up
+    S1 import CSV: zakonczone=4 na_zywo=1 rekord=true okno_Uczciwe_zasady=1 prosba_o_ocene=1 link_funkcja=0 opoznienie_ms=1500
+    S2 dwa wstecz: zakonczone=3 na_zywo=1 rekord=true okno_Uczciwe_zasady=1 prosba_o_ocene=1 link_funkcja=0 opoznienie_ms=1500
+    S3 bez historii: zakonczone=1 na_zywo=1 rekord=false okno_Uczciwe_zasady=1 prosba_o_ocene=0 link_funkcja=0 opoznienie_ms=1500
+  ✓ S1 import CSV (3 treningi) + pierwszy na zywo z rekordem, free (101 ms)
+  ✓ S2 dwa treningi wstecz + pierwszy na zywo z rekordem, free (20 ms)
+  ✓ S3 kontrola: nowa instalacja bez historii, pierwszy na zywo, free (12 ms)
+Tests:       3 passed, 3 total
+
+## źródło sondy
+/* Sonda weryfikacji G5 (11-wzrost-001) — tylko w kopii roboczej, nie w repo. */
+import * as fs from 'fs';
+import * as path from 'path';
+import * as store from '@/lib/store';
+import { PAYWALL } from '@/lib/access';
+import { STORE_TIMING } from '@/lib/products';
+import { setStoreAdapter, resetStoreAdapterForTests } from '@/lib/store-adapter';
+import { createFakeStore } from '@/lib/store-fake';
+import { resetEntitlementsForTests, refreshEntitlements } from '@/lib/entitlement';
+import { markJustFinished, onSummaryShown } from '@/lib/review-run';
+import { workoutPRs, prCountOf } from '@/lib/stats';
+import { parseImport } from '@/lib/csvparse';
+import { commitCsvImport } from '@/lib/csvimport';
+import { fresh, addWorkout } from './helpers';
+import { act } from './app';
+jest.setTimeout(60000);
+jest.mock('expo-constants', () => ({ __esModule: true, default: { expoConfig: { version: '1.0.0' } } }));
+const NOW = new Date(2026, 9, 27, 12).getTime();
+afterEach(() => { PAYWALL.ENABLED = false; resetEntitlementsForTests(); resetStoreAdapterForTests(); jest.useRealTimers(); });
+async function run(label: string, prep: () => Promise<void>, exName = 'Back Squat', kg = 140) {
+  jest.useFakeTimers({ now: NOW }); await fresh(); global.__review.available = true; global.__review.requested = 0; global.__review.fail = false;
+  resetEntitlementsForTests(); PAYWALL.ENABLED = true; setStoreAdapter(createFakeStore([])); await refreshEntitlements();
+  await prep();
+  const w = addWorkout(NOW - 3600e3 - 1000, [[exName, [{ weight: kg, reps: 5, done: true }]]], 'Live'); w.live = true; store.recordLiveDayFor(w); store.save();
+  let fair = 0, idea = 0; markJustFinished(w.id);
+  const off = onSummaryShown(w, () => { idea++; }, () => { fair++; });
+  await act(async () => { for (let i = 0; i < 6; i++) await Promise.resolve(); jest.advanceTimersByTime(STORE_TIMING.REVIEW_DELAY_MS + 10); for (let i = 0; i < 6; i++) await Promise.resolve(); });
+  off();
+  const line = `${label}: zakonczone=${store.finishedWorkouts().length} na_zywo=${store.getState().workouts.filter(x => x.live).length} rekord=${prCountOf(workoutPRs(w)) > 0} okno_Uczciwe_zasady=${fair} prosba_o_ocene=${global.__review.requested} link_funkcja=${idea} opoznienie_ms=${STORE_TIMING.REVIEW_DELAY_MS}`;
+  console.log(line); return { fair, rev: global.__review.requested };
+}
+test('S1 import CSV (3 treningi) + pierwszy na zywo z rekordem, free', async () => {
+  const r = await run('S1 import CSV', async () => { const csv = fs.readFileSync(path.join(__dirname, 'fixtures', 'import-formatA.csv'), 'utf8'); await commitCsvImport(parseImport(csv, NOW), { unit: 'kg' }); console.log('S1 zaimportowane cwiczenia: ' + [...new Set(store.getState().workouts.flatMap(x => x.exercises.map(b => store.getState().exercises.find(e => e.id === b.exerciseId)?.name)))].join(' | ')); }, 'Bench Press (sztanga)', 100);
+  expect(r).toEqual({ fair: 1, rev: 1 });
+});
+test('S2 dwa treningi wstecz + pierwszy na zywo z rekordem, free', async () => {
+  const r = await run('S2 dwa wstecz', async () => { addWorkout(NOW - 5 * 86400e3, [['Back Squat', [{ weight: 100, reps: 5, done: true }]]], 'W1'); addWorkout(NOW - 3 * 86400e3, [['Back Squat', [{ weight: 110, reps: 5, done: true }]]], 'W2'); });
+  expect(r).toEqual({ fair: 1, rev: 1 });
+});
+test('S3 kontrola: nowa instalacja bez historii, pierwszy na zywo, free', async () => {
+  const r = await run('S3 bez historii', async () => {});
+  expect(r).toEqual({ fair: 1, rev: 0 });
+});

@@ -1,0 +1,44 @@
+# G3 — T-04: ikony ekranu Trening przy największym tekście, analiza kodu (commit 025a50b9)
+
+## Mnożniki RN iOS (bez maxFontSizeMultiplier tekst rośnie do 3,571×)
+      UIContentSizeCategoryExtraExtraExtraLarge : @1.353,
+      UIContentSizeCategoryAccessibilityMedium : @1.786,
+      UIContentSizeCategoryAccessibilityLarge : @2.143,
+      UIContentSizeCategoryAccessibilityExtraLarge : @2.643,
+      UIContentSizeCategoryAccessibilityExtraExtraLarge : @3.143,
+      UIContentSizeCategoryAccessibilityExtraExtraExtraLarge : @3.571
+node_modules/react-native/Libraries/Text/RCTTextAttributes.mm:250-251:
+    CGFloat maxFontSizeMultiplier = !isnan(_maxFontSizeMultiplier) ? _maxFontSizeMultiplier : 0.0;
+    return maxFontSizeMultiplier >= 1.0 ? fminf(maxFontSizeMultiplier, fontSizeMultiplier) : fontSizeMultiplier;
+
+## Ikony SVG na ekranie Trening — stały rozmiar (nie rosną z tekstem)
+158:  icon: 24, iconInline: 16, tabIcon: 26,
+196:export const ICON = { grid: 24, stroke: 1.8, cap: 'round', join: 'round', tabSize: 26, inlineSize: 16 } as const;
+68:export const MINI_ICON = { w: 24, h: 18, bar: 2.5, stub: 2.2, gap: 1.2, k: 0.28 } as const;
+66:              <View testID={`strip-mark-${d.date}`} style={{ height: 20, alignItems: 'center', justifyContent: 'center' }}>{mark ? <DayIcon mark={mark} bg={th.surface} th={th} /> : null}</View>
+15:export function TabIcon({ name, color, size = 26 }: { name: TabIconName; color: ColorValue; size?: number }) {
+
+## Znaki-ikony (Text) bez maxFontSizeMultiplier (rosną do 357%, poza DEC-10 = 200%)
+64:        <Text accessibilityElementsHidden importantForAccessibility="no" style={{ color: th.accentInk, ...font('sectionTitle') }}>›</Text>
+50:        <Txt maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...FW.semibold, fontSize: 15, color: th.accent }}>{t('Szczegóły w Postępach')}</Txt><Txt style={{ color: th.accent, fontSize: 20 }}>›</Txt>
+66:        {glyph ? <Text accessible={false} importantForAccessibility="no" style={{ color: t.muted, ...font('body') }}>{glyph}</Text> : null}
+
+## Pojemniki o stałym rozmiarze z tekstem (z limitem — mieszczą się)
+27:      style={({ pressed }) => ({ width: 32, height: 32, borderRadius: RADIUS.round, borderWidth: 1.5, borderColor: open ? th.accent : th.line, alignItems: 'c
+28:      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.2} style={{ color: open ? th.accent : th.text, ...font('body'), ...FW.semibold }}>✦</Te
+92:      <View style={{ width: 24, height: 24, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: done ? th.accent : 'transparen
+231:  doneBtn: { height: 44, borderRadius: RADIUS.button, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
+
+## overflow: 'hidden' w komponentach ekranu Trening
+components/ActiveWorkout.tsx:275:    <View style={{ flex: 1, height: SPACE.xs, borderRadius: RADIUS.marker, backgroundColor: t.line, overflo
+
+## Duży tekst w E2E/CI
+$ grep -rln "content_size|ContentSizeCategory|preferred_content" .maestro .github/workflows scripts/ci
+kod=1 (1 = brak trafień)
+
+## Krok ręczny w liście wydania
+- [ ] **ZD-03** Powiększony tekst systemowy, VoiceOver na żywo i „Ogranicz ruch”
+  - Co zrobić i czego oczekiwać: Największy rozmiar tekstu: trening, plan i ustawienia czytelne bez ucięć; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają.
+
+## HIG Typography (pobrane 27.10.2026, developer.apple.com/design/human-interface-guidelines/typography, curl kod 0)
+  „Increase the size of meaningful interface icons as font size increases.”

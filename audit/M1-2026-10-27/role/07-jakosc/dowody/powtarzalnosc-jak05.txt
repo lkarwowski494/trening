@@ -1,0 +1,51 @@
+# JAK-05/JAK-06: podzbiór testów kalendarzowych (kopia 025a50b9), jeden proces na przebieg; pełny zestaw 3× NIE powtarzany (polecenie M1: wynik pełnego jest w wspolne/)
+# (pliki z własnym zegarem pominięte przy PIN_NOW wg scripts/ci/pin-wykluczenia.mjs — dlatego przy PIN_NOW zestaw F2)
+
+$ npx jest --ci --maxWorkers=1 --silent tests/matrix-time.test.ts tests/plan-calendar.test.ts tests/access.test.ts tests/m5s1-dni-treningowe.test.ts tests/m5s1-dni-zapis.test.ts tests/period-summary.test.tsx tests/deload-week.test.tsx tests/history-calendar.test.tsx
+Test Suites: 8 passed, 8 total
+Tests:       324 passed, 324 total
+exit=0 czas=16s
+
+$ npx jest --ci --maxWorkers=1 --silent --randomize --seed=1234567 tests/matrix-time.test.ts tests/plan-calendar.test.ts tests/access.test.ts tests/m5s1-dni-treningowe.test.ts tests/m5s1-dni-zapis.test.ts tests/period-summary.test.tsx tests/deload-week.test.tsx tests/history-calendar.test.tsx
+FAIL iOS tests/history-calendar.test.tsx
+  ● ekran Historia › dni z treningiem w bieżącym miesiącu to przyciski „data, N sesji”; inne dni i nagłówki dni — ukryte dla VoiceOver
+Test Suites: 1 failed, 7 passed, 8 total
+Tests:       1 failed, 323 passed, 324 total
+exit=1 czas=16s
+
+$ TZ=Asia/Kathmandu npx jest --ci --maxWorkers=1 --silent tests/matrix-time.test.ts tests/plan-calendar.test.ts tests/access.test.ts tests/m5s1-dni-treningowe.test.ts tests/m5s1-dni-zapis.test.ts tests/period-summary.test.tsx tests/deload-week.test.tsx tests/history-calendar.test.tsx
+Test Suites: 8 passed, 8 total
+Tests:       324 passed, 324 total
+exit=0 czas=15s
+
+$ TZ=America/St_Johns PIN_NOW=2027-03-14T05:30:00Z npx jest --ci --maxWorkers=1 --silent tests/access.test.ts tests/m5s1-dni-treningowe.test.ts tests/audit-final-stats.test.ts tests/live-marker.test.ts tests/logic.test.ts tests/audit-m1-012-status.test.ts
+Test Suites: 6 passed, 6 total
+Tests:       180 passed, 180 total
+exit=0 czas=6s
+
+$ TZ=Europe/Warsaw PIN_NOW=2026-12-31T22:59:30Z npx jest --ci --maxWorkers=1 --silent tests/access.test.ts tests/m5s1-dni-treningowe.test.ts tests/audit-final-stats.test.ts tests/live-marker.test.ts tests/logic.test.ts tests/audit-m1-012-status.test.ts
+Test Suites: 6 passed, 6 total
+Tests:       180 passed, 180 total
+exit=0 czas=5s
+
+# koniec 2026-10-27T18:18:25Z; git status --porcelain kopii: 0 zmian
+
+## diagnoza history-calendar (jeden plik)
+$ npx jest --ci --maxWorkers=1  tests/history-calendar.test.tsx
+Tests:       46 passed, 46 total
+exit=0
+$ npx jest --ci --maxWorkers=1 --randomize --seed=1234567 tests/history-calendar.test.tsx
+  ● ekran Historia › dni z treningiem w bieżącym miesiącu to przyciski „data, N sesji”; inne dni i nagłówki dni — ukryte dla VoiceOver
+Tests:       1 failed, 45 passed, 46 total
+exit=1
+$ npx jest --ci --maxWorkers=1 --randomize --seed=1234567 tests/history-calendar.test.tsx
+  ● ekran Historia › dni z treningiem w bieżącym miesiącu to przyciski „data, N sesji”; inne dni i nagłówki dni — ukryte dla VoiceOver
+Tests:       1 failed, 45 passed, 46 total
+exit=1
+$ npx jest --ci --maxWorkers=1 --randomize --seed=42 tests/history-calendar.test.tsx
+  ● ekran Historia › dni z treningiem w bieżącym miesiącu to przyciski „data, N sesji”; inne dni i nagłówki dni — ukryte dla VoiceOver
+Tests:       1 failed, 45 passed, 46 total
+exit=1
+$ npx jest --ci --maxWorkers=1 --randomize --seed=7 tests/history-calendar.test.tsx
+Tests:       46 passed, 46 total
+exit=0

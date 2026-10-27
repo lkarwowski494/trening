@@ -1,0 +1,61 @@
+# G6 — sondy w kopii roboczej (worktree 025a50b9, plik tests/sonda-g6.test.tsx, usunięty po sondzie)
+$ npx jest tests/sonda-g6.test.tsx --maxWorkers=1 -t 003
+SONDA-003 {"owned":true,"headline":"OBECNY","planMonthly":true,"subscribeBtn":1,"ownedTexts":["You have the full version","Access until Tue 3 Nov","Manage subscription"],"subscribeAfterSelectingMonthly":1,"lifetimeWarningBeforePurchase":0}
+Tests:       1 skipped, 1 passed, 2 total
+kod=0
+$ npx jest tests/sonda-g6.test.tsx --maxWorkers=1 -t 004
+SONDA-004 ["„›” hidden=true","„›” hidden=false"]
+Tests:       1 skipped, 1 passed, 2 total
+kod=0
+
+$ npx jest tests/matrix-a11y.test.tsx --maxWorkers=1 (zastępnik ZD-03; przegląd skali 2,0)
+Tests:       31 passed, 31 total
+kod=0
+(visibleNodes() w tests/matrix-a11y.test.tsx:31 pomija elementy ukryte przed VoiceOver; reguły skali dotyczą pól, zdań > 25 znaków, liczb mono i etykiet Btn — znak „›” nie jest objęty)
+
+## treść sondy
+/* Sonda weryfikacji G6 (nie commitować). */
+import * as RN from 'react-native';
+import * as store from '@/lib/store';
+import { PAYWALL, type Entitlement } from '@/lib/access';
+import { setStoreAdapter, resetStoreAdapterForTests } from '@/lib/store-adapter';
+import { createFakeStore } from '@/lib/store-fake';
+import { resetEntitlementsForTests } from '@/lib/entitlement';
+import { fresh, saved, seedWithDemo } from './helpers';
+import { renderApp, flushAll, screen, act, tap } from './app';
+import { richState } from './a11y-routes';
+
+const NOW = new Date(2026, 9, 14, 12, 0).getTime();
+const settle = async () => { for (let i = 0; i < 8; i++) await flushAll(10); };
+afterEach(() => { PAYWALL.ENABLED = false; resetEntitlementsForTests(); resetStoreAdapterForTests(); jest.restoreAllMocks(); jest.useRealTimers(); });
+
+test('SONDA 07-jakosc-003: subskrybent (monthly) na ekranie zakupu z Ustawień', async () => {
+  jest.useFakeTimers({ now: NOW }); await fresh(undefined, 'en'); resetEntitlementsForTests(); PAYWALL.ENABLED = true;
+  const ent: Entitlement = { plan: 'monthly', source: 'purchase', expiresAt: NOW + 20 * 86400e3 };
+  const fake = createFakeStore([ent]); setStoreAdapter(fake); store.save(); await act(async () => { await store.flush(); });
+  await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'en', url: '/paywall?reason=settings' }); jest.setSystemTime(NOW); await settle();
+  const out = {
+    owned: !!screen.queryByTestId('paywall-owned'),
+    headline: screen.queryByTestId('paywall-headline') ? 'OBECNY' : 'brak',
+    planMonthly: !!screen.queryByTestId('plan-monthly'),
+    subscribeBtn: screen.queryAllByText('Subscribe').length,
+    ownedTexts: [] as string[],
+  };
+  await tap(screen.getByTestId('plan-monthly')); await settle();
+  (out as any).subscribeAfterSelectingMonthly = screen.queryAllByText('Subscribe').length;
+  await tap(screen.getByTestId('plan-lifetime')); await settle();
+  (out as any).lifetimeWarningBeforePurchase = screen.queryAllByText(/still renews/i).length;
+  const card = screen.getByTestId('paywall-owned'); const walk = (x: any): void => { if (typeof x === 'string') out.ownedTexts.push(x); else if (x?.children) x.children.forEach(walk); }; walk(card);
+  process.stdout.write('SONDA-003 ' + JSON.stringify(out) + '\n');
+});
+
+test('SONDA 07-jakosc-004: ekran Trening przy skali 2,0 — krótkie znaki bez liter bez maxFontSizeMultiplier', async () => {
+  jest.spyOn(RN.PixelRatio, 'getFontScale').mockReturnValue(2);
+  const { s } = await richState('pl'); (s as any).active = null;
+  await renderApp({ saved: s }); await flushAll(10);
+  const hits: string[] = [];
+  const walk = (x: any) => { if (!x || typeof x !== 'object') return; if (x.type === 'Text') { const ch = (x.props.children); const t = typeof ch === 'string' ? ch : Array.isArray(ch) && ch.every((c: unknown) => typeof c === 'string') ? ch.join('') : null; if (t != null && t.trim().length > 0 && t.trim().length <= 2 && !/\p{L}|\d/u.test(t) && !(x.props.maxFontSizeMultiplier > 0)) hits.push(`„${t}” hidden=${!!x.props.accessibilityElementsHidden}`); } for (const c of x.children ?? []) walk(c); };
+  walk(screen.UNSAFE_root);
+  const all: string[] = []; const w2 = (x: any) => { if (!x || typeof x !== 'object') return; if (x.type === 'Text') all.push(JSON.stringify(x.props.children).slice(0,40) + '|' + x.props.maxFontSizeMultiplier); for (const c of x.children ?? []) w2(c); }; w2(screen.UNSAFE_root); process.stdout.write('ALL ' + all.length + ' ' + JSON.stringify(all.slice(0,60)) + '\n');
+  process.stdout.write('SONDA-004 ' + JSON.stringify(hits) + '\n');
+});

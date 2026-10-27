@@ -1,0 +1,28 @@
+# G1 — źródła przeczytane 2026-10-27 (cytaty 1–2 zdania)
+
+## App Review Guidelines — https://developer.apple.com/app-store/review/guidelines/ (strona: "Last Updated: October 16, 2026")
+- 3.1.2(b): "Users should have a seamless upgrade/downgrade experience and should not be able to inadvertently subscribe to multiple variations of the same thing."
+- 3.1.2(c): "Before asking a customer to subscribe, you should clearly describe what the user will get for the price."
+- 2.3.1(a): "... or promoting a false price, whether within or outside of the App Store, is grounds for removal of your app ..."
+- 5.6: "Apps should never prey on users or attempt to rip off customers, trick them into making unwanted purchases, ..."
+
+## Auto-renewable subscriptions — https://developer.apple.com/app-store/subscriptions/
+- "Since people can only buy one subscription within a group at a time, creating a single group is the best practice for most apps as it prevents people from accidentally purchasing multiple subscriptions."
+- "Full renewal price, shown clearly and prominently, and localized in available currencies"
+
+## StoreKit (JSON dokumentacji: https://developer.apple.com/tutorials/data/documentation/<ścieżka>.json)
+- storekit/product/displayprice: "Use this string to display the price, formatted for the locale. The storefront that the user’s device is connected to determines the locale."
+- storekit/transaction/currententitlements: "The latest transaction for each auto-renewable subscription that has a [RenewalState] state of [subscribed] or [inGracePeriod]" oraz "Products that the App Store has refunded or revoked don’t appear in the current entitlements."
+- storekit/transaction/all: "This sequence returns the customer’s transaction history current to the moment you access it." (obejmuje "Auto-renewable subscriptions, including all renewals")
+- storekit/storefront: "When you change the App Store Country or Region in App Store Connect for a Sandbox Apple Account, it changes the storefront in your app."
+- storekit/testing-in-app-purchases-with-sandbox: "Apps that you download from TestFlight always run in the sandbox environment." oraz "When testing this activation, you see the Apple In-App Purchases appropriate to the region assigned to your Sandbox Apple Account."
+
+## TestFlight — https://developer.apple.com/help/app-store-connect/test-a-beta-version/testing-subscriptions-and-in-app-purchases-in-testflight/
+- "Apps downloaded from TestFlight will automatically operate in a sandbox environment."
+- "Each subscription is renewed daily, up to 6 times within a 1-week period, regardless of the subscription's duration."
+
+## Wskazówki (szczebel 4–5, nie dowód przyczyny)
+- Dokumentacja testów piaskownicy Apple u dostawcy SDK subskrypcji (odczyt 2026-10-27; nazwa i adres pominięte — repo publiczne, zasada nazw innych firm):
+  "may return prices in USD when testing through TestFlight" oraz "Apple's purchase sheet may still show the correct local currency, and purchases can complete successfully"; o produkcji: "isn't commonly seen in production".
+- Wyszukiwarka (2026-10-27) zwróciła wątki forum Apple Developer o tym samym objawie w TestFlight (np. developer.apple.com/forums/thread/828279, /843085, /849485, /845478 — tytuły: displayPrice w USD przy arkuszu w EUR/JPY/GBP).
+  Treści NIE przeczytano (strona weryfikacji przeglądarki) — tylko tytuły z wyszukiwarki, nie źródło.

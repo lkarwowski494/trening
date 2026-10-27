@@ -26,3 +26,12 @@ Badany commit: 025a50b96f504ea9d16d573720d1e92dc951a103 (main, "Wydanie 1.0, bui
 - naprawy-1-0: c9cacfa6 "Ekran zakupu: posiadany plan subskrypcji ... decyzja 27.10 o kolejności planów, strażnik i lekcja" (tests.yml 40538903252 failure), b4484912 "Macierz testów po dodaniu cena-z-displayprice" (cancelled), 01f8bf0f (failure), 862f119e (success, 17:49 UTC)
   → poprawki T-11 i strażnik kolejności planów istnieją tylko poza badanym SHA.
 - tests-tz.yml: ostatni run 40446255570 (#23, schedule) na 001ecf28 — success; brak przebiegu na 025a50b9
+
+## Próby przebiegu E2E 40526427254 na 025a50b9 (gh api repos/.../actions/runs/40526427254/attempts/N, odczyt 27.10.2026)
+attempt 1: completed/failure start 2026-10-27T14:59:00Z upd 2026-10-27T15:14:18Z
+attempt 2: completed/failure start 2026-10-27T15:15:51Z upd 2026-10-27T15:31:08Z
+attempt 3: completed/failure start 2026-10-27T15:36:19Z upd 2026-10-27T15:51:36Z
+attempt 4: completed/failure start 2026-10-27T15:58:22Z upd 2026-10-27T16:13:41Z
+attempt 5: completed/failure start 2026-10-27T16:15:04Z upd 2026-10-27T16:30:27Z
+attempt 6: in_progress/null start 2026-10-27T17:14:37Z upd 2026-10-27T17:50:50Z
+próby 1 i 5 (jobs): build completed/cancelled bez przydzielonej maszyny (runner pusty), e2e skipped → klasyfikacja: MASZYNA (brak maszyny macOS), nie aplikacja ani scenariusz

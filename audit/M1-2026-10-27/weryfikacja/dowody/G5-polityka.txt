@@ -1,0 +1,21 @@
+# G5 polityka prywatności — odbiorcy poczty (01-odkrywanie-008), 27.10.2026
+# nazwy usług zastąpione: [POCZTA-G] = darmowa poczta Google, [REJ] = rejestrator domeny, [POCZTA-G-FIRMOWA] = firmowa poczta Google (repo publiczne, bez nazw innych aplikacji)
+
+## grep w site/privacy.html (commit 025a50b9): nazwa rejestratora
+liczba linii: 4
+89:  <li><strong>Odbiorcy i podmioty przetwarzające:</strong> Google (poczta: dziś [POCZTA-G], po przeniesieniu [POCZTA-G-FIRMOWA]; Dysk) oraz [REJ] (rejestrator domeny, który przekazuje pocztę do skrzynki).
+91:  <li><strong>Przekazanie poza EOG:</strong> Google i [REJ] mogą przetwarzać dane w USA. Podstawą są standardowe klauzule umowne zatwierdzone przez Komisję Europejską albo decyzja Komisji o odpowiednim stopniu ochrony (Ramy ochrony danych UE–USA) dl
+169:  <li><strong>Recipients and processors:</strong> Google (mail: [POCZTA-G] today, [POCZTA-G-FIRMOWA] after the move; Drive) and [REJ] (the domain registrar that forwards mail to the mailbox).
+171:  <li><strong>Transfers outside the EEA:</strong> Google and [REJ] may process data in the USA. The basis is the standard contractual clauses approved by the European Commission or the Commission’s adequacy decision (EU–US Data Privacy Framework) for c
+
+## opublikowane strony (curl, 27.10.2026)
+https://apps4brew.com/trening/privacy.html -> HTTP 200
+  linie z nazwą rejestratora: 4
+  113:  <li><strong>Odbiorcy i podmioty przetwarzające:</strong> Google (poczta: dziś [POCZTA-G], po przeniesieniu [POCZTA-G-FIRMOWA]; Dysk) oraz [REJ] (rejestrator domeny, który przekazuje pocztę do 
+https://lkarwowski494.github.io/trening/privacy.html -> HTTP 200
+  linie z nazwą rejestratora: 4
+  89:  <li><strong>Odbiorcy i podmioty przetwarzające:</strong> Google (poczta: dziś [POCZTA-G], po przeniesieniu [POCZTA-G-FIRMOWA]; Dysk) oraz [REJ] (rejestrator domeny, który przekazuje pocztę do s
+
+## github.io vs site/privacy.html: cmp
+cmp exit=0
+## apps4brew.com: inna obudowa strony (nagłówek, CSP), ta sama treść sekcji odbiorców (eksport scripts/site/eksport-apps4brew.mjs)

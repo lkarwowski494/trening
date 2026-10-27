@@ -1,0 +1,37 @@
+# G6 — rejestr ryzyk docs/40 (stan: ostatnia kolumna), commit 025a50b9
+docs/40-lekcje.md:13:  R-001  =>  **zamknięte 19.10.2026** — dowód: testflight.yml run 39233940303 zielony, build 1018 wysłany z nowym podpisem; potwierdzenie właściciela na telefonie 
+docs/40-lekcje.md:14:  R-002  =>  **zamknięte 19.10.2026** — dowód: build 1018 (run 39233940303); właściciel potwierdził na telefonie: przełączniki Apple Health działają, zaległy trening z 14.10 trafił do Zdrowia 
+docs/40-lekcje.md:15:  R-003  =>  **zamknięte 19.10.2026** — dowód: build 1018; właściciel potwierdził na Apple Watch (watchOS 10.6.2): zgoda na Zdrowie, odhaczenie → przerwa z timerem, „Cofnij” w 5 s, synchronizacja z telefonem 
+docs/40-lekcje.md:16:  R-005  =>  otwarte (partia 1 napraw M2, 20.10.2026; 23.10.2026: ZK-07 — wystąpiło na telefonie, naprawione w kodzie (L-029), do potwierdzenia: reinstalacja → otwarcie → natychmiastowe wyjście → ponowne otwarcie) 
+docs/40-lekcje.md:17:  R-004  =>  otwarte (świadomie odłożone przez właściciela 19.10.2026 — blokuje 1.0). 23.10.2026, build 1030: uprawnienie jest w pakiecie (log testflight.yml run 39881352744), a na telefonie w skupieniu „wibracja przyszła,
+docs/40-lekcje.md:18:  R-006  =>  otwarte (partia 1 napraw M2, 20.10.2026) 
+docs/40-lekcje.md:19:  R-007  =>  **zamknięte 22.10.2026** — deklaracja w `app.json` `ios.privacyManifests` (łatka `--fix` w testflight.yml zastąpiona `--check`); test `tests/privacy-manifest.test.ts` + `verify:native` zielone. Dowody: (a) `ios-uns
+docs/40-lekcje.md:20:  R-008  =>  otwarte (partia 2 napraw M2, 20.10.2026) 
+docs/40-lekcje.md:21:  R-009  =>  **zamknięte 23.10.2026** (M1-049) — dowód 2: `testflight.yml` 39741738792 (dispatch, 920d917): bramka „OK — zielony przebieg e2e-ios.yml #39734614771 na commicie 920d917”, pole powodu pominięcia puste (bez aw
+docs/40-lekcje.md:22:  R-010  =>  otwarte (20.10.2026) — **blokuje wydanie w App Store, nie blokuje TestFlight** (wewnętrzna grupa testerów, decyzja 20.10.2026). 22.10.2026: przegląd przez API wykonany (Opus, batch msgbatch_01ERD6bbDd8xuy225xob2jgC
+docs/40-lekcje.md:23:  R-011  =>  **zamknięte 21.10.2026** — dowód: nocny przebieg 39537208004 („Ekran: iPhone 17e — szerokość ekranu 390 pt”), SE niedostępny w obrazie macos-26; decyzja właściciela 21.10.2026: 390 pt wystarcza (docs/18) 
+docs/40-lekcje.md:24:  R-012  =>  **zamknięte 23.10.2026** (M1-049) — dowód 2: `testflight.yml` 39741738792 (920d917, build 1027), krok „Plik wydania Trening-sim.zip” zielony, wydanie `v0.20.0-b1027` ma plik `Trening-sim.zip`; dowód 1: `e2e-ios
+docs/40-lekcje.md:25:  R-013  =>  **częściowo spełnione 22.10.2026:** wysyłka zielona — `testflight.yml` 39741738792 (920d917, build 1027, krok „Wysyłka do App Store Connect” bez błędów); otwarte do sprawdzenia ikony na zegarku (lista „t
+docs/40-lekcje.md:26:  R-014  =>  otwarte (21.10.2026) 
+docs/40-lekcje.md:27:  R-M5-1  =>  **zamknięte decyzją 22.10.2026** (dni zapisane osobno; docs/18) 
+docs/40-lekcje.md:28:  R-M5-2  =>  **zaakceptowane** (teoretyczny, bez naprawy; 22.10.2026) 
+docs/40-lekcje.md:29:  R-M5-3  =>  **zamknięte 23.10.2026** (M1-049) — kontrola ASC (workflow „ASC kontrola ustawień”) 39822823188 z 22.10.2026: wiersze „Oferty wprowadzające subskrypcji” OK — monthly i yearly „brak ofert wprowadzającyc
+docs/40-lekcje.md:30:  R-M5-4  =>  **zaakceptowane** (brzegowy, bez naprawy; 22.10.2026) 
+docs/40-lekcje.md:31:  R-M5-5  =>  **zaakceptowane** (brzegowy, bez naprawy; 22.10.2026) 
+docs/40-lekcje.md:32:  R-015  =>  **zamknięte 26.10.2026** (przekład przez API, 71 kluczy × 33 języki, model Opus, Batch, ok. 3,3 USD; wyjątek pusty, `npm run check:release` = 0; teksty do przeglądu przez native speakerów — docs/18) 
+docs/40-lekcje.md:33:  R-016  =>  **zamknięte 26.10.2026** — ręczne sprawdzenie właściciela w TMview (obejmuje dane UPRP, WIPO, USPTO), słowa: Training, Trening, Trénink, Tréning, Treino, Träning, Træning, Treeni; klasy 9/41/42/44. Żywe znak
+docs/40-lekcje.md:34:  R-017  =>  **zamknięte (27.10.2026)** — `check-urls.yml` zielony na commicie wydania 001ecf2 (przebieg 40435249217): wszystkie adresy 200, treść zgodna z `site/`; strony opublikowane w apps4brew-www 96e6bb3. Po każdej zmiani
+
+$ grep -rln "Rejestr ryzyk|rejestr ryzyk" tests scripts .github
+tests/audit-m1-049-risk-register.test.ts
+tests/blokada-wydania.test.ts
+tests/walidacja-apple-bez-wysylki.test.ts
+scripts/hooks/pre-push
+scripts/check-bundle.mjs
+scripts/check-urls.mjs
+scripts/ci/blokada-wydania.mjs
+scripts/przeniesienie-1.0.json
+scripts/site/eksport-apps4brew.mjs
+.github/workflows/check-urls.yml
+.github/workflows/testflight.yml
+(audit-m1-049-risk-register.test.ts sprawdza tylko R-M5-3, R-012, R-009 jako zamknięte; blokada-wydania.test.ts tylko R-015; żaden nie blokuje przy stanie „otwarte”)

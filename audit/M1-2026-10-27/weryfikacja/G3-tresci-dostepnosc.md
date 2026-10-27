@@ -1,0 +1,63 @@
+# Weryfikacja przeciwna G3 — 2026-10-27
+
+Commit: 025a50b9
+
+Grupa: treści i dostępność. Pozycje scalone według mechanizmu: (a) 03-zakres-001 + 06-tresci-001; (b) 09-lokalizacja-001; (c) 09-lokalizacja-003; (d) 09-lokalizacja-004 + 01-odkrywanie-003 + 04-studio-projektowe-002; (e) 04-studio-projektowe-004. Sondy biegły w kopii roboczej w scratchpadzie (`wer-G3`, usunięta na końcu); pliki śledzone nietknięte.
+
+| ID | Wynik | Dowód | Realność | Poziom (zgłoszony → właściwy) |
+|---|---|---|---|---|
+| 03-zakres-001 | potwierdzone | `components/ExerciseCues.tsx:44` „<ExerciseFigureV2 exercise={exercise} /> : <ExerciseFigure exercise={exercise} />”; sonda: 56 z 71 figur v1 wyświetlanych (dowody/G3-figury-v1.txt); `CLAUDE.md:77` „także rodziny uznane wcześniej za gotowe”; brak zapisu recenzji v1 (grep, kod 1) | realny | P1 → P1 |
+| 06-tresci-001 | potwierdzone | jak wyżej (ten sam mechanizm) + `docs/40-lekcje.md:43` „reguła zapisana; wymuszenie w kodzie otwarte”; `lib/figures/v2/figure.ts:29` „if (fam.status !== 'ready') return null;” (jedyny warunek, bez recenzji) | realny | P1 → P1 |
+| 09-lokalizacja-001 | potwierdzone (stan rejestru); część „bez przeglądu po zmianach” niepewna | `docs/40-lekcje.md:22` „blokuje wydanie w App Store, nie blokuje TestFlight” (status otwarte); ale `docs/18-przekazanie.md:587` „przegląd lokalizacji Z-02” (26.10) i brak zmian wskazówek po f781b5e6 (dowody/G3-r010.txt); kolumna drugiego przeglądu = niewykonany: `docs/16-jezyki-i-marka.md:279` | realny (formalna blokada App Store) | P1 → P1 (tylko App Store) |
+| 09-lokalizacja-003 | potwierdzone | `lib/locales/uk.json:321` „сьогодні в плані · {n} вправ”, `lib/locales/sl.json:321` „danes v načrtu · {n} vaj”; pozostałe języki ze skrótem albo bez odmiany (dowody/G3-liczebnik-uk-sl.txt) | realny (szablon z 1–4 ćwiczeniami) | P1 → P2 |
+| 09-lokalizacja-004 | niepewne (objaw z telefonu właściciela; przyczyny w kodzie nie ustalono) | analiza stylów: dowody/G3-t04-ikony.txt; ikony SVG mają stały rozmiar, pojemniki o stałym rozmiarze mają limity skali i mieszczą treść; znaki-ikony bez limitu (`components/StartPanel.tsx:64`, `components/ui.tsx:66`) rosną do 357% | realny (jeśli objaw potwierdzi zrzut) | P1 → P1 warunkowo (P2, jeśli ucięta tylko dekoracja) |
+| 01-odkrywanie-003 | niepewne co do objawu; potwierdzone co do braku wymagania w BRD | `docs/brd/wymagania.md:721` „Próg: 2 (200%” — jedyne wymaganie o skali tekstu, nic o elementach sterujących | realny | P1 → P1 warunkowo |
+| 04-studio-projektowe-002 | niepewne co do przyczyny; potwierdzone: brak dużego tekstu w E2E/CI; częściowo obalone „brak sprawdzenia” | grep `.maestro`, workflowy, `scripts/ci`: kod 1; ręczny krok `docs/39-lista-kontrolna-wydania.md:71` „trening, plan i ustawienia czytelne bez ucięć” istnieje (to on wykrył objaw) | realny | P1 → P1 warunkowo |
+| 04-studio-projektowe-004 | potwierdzone co do wartości; kroki nieścisłe | `components/WorkoutBlocks.tsx:51` „play: 40, rpe: 40”; sonda rowLayout: plank z RPE bez gumy ma układ szeroki (44/46) na każdej szerokości (dowody/G3-kolumny-40pt.txt); HIG: minimum iOS 28x28 pt | brzegowy | P1 → P2 |
+
+## (a) 03-zakres-001, 06-tresci-001 — figury v1 bez recenzji bramki 4
+
+- Mechanizm potwierdzony: `components/ExerciseCues.tsx:44` pokazuje figurę v1, gdy nie ma gotowej figury v2. Sonda w kopii roboczej (`npx jest tests/_sonda/g3-figury.test.ts`, kod 0): 71 figur v1, 15 zastąpionych przez v2, **56 wyświetlanych jako v1** (m.in. Overhead Press, Pull Up, Bent Over Row, wykroki, Hip Thrust, Plank); lista w dowody/G3-figury-v1.txt (sonda).
+- Od 27.10 sekcja „Technika” jest domyślnie rozwinięta: `app/exercise/[id].tsx:41` „cuesOpen={p.cues !== '0'}”, więc animacja v1 jest widoczna od razu po otwarciu karty. Komentarz `components/ExerciseCues.tsx:19` („Zwinięta na starcie”) jest nieaktualny.
+- Czy reguła z 27.10 obejmuje v1: tak. `CLAUDE.md:77` mówi: „każda animacja ćwiczenia i każda karta ćwiczenia” trafiająca do wydania przechodzi recenzję, „także rodziny uznane wcześniej za gotowe”. Dodaje też: „Reguły automatyczne tylko chronią przed regresją, nie zastępują recenzji”. Decyzja `docs/18-przekazanie.md:599` mówi o animacjach, które „bez recenzji nie są wyświetlane ani eksportowane na stronę”. Pozostawienie v1 dla reszty ćwiczeń (`docs/50-figury-v2.md:89` „zostaje dla pozostałych do czasu gotowości wszystkich rodzin”) pochodzi sprzed tej reguły i jej nie uchyla.
+- Szukałem każdego możliwego zapisu recenzji v1 i żadnego nie znalazłem. Figury v1 mają tylko automatyczne sprawdzenia pozy względem zdania wskazówki (`docs/research/28-figury.md:11` „Test liczy geometrię i sprawdza, że poza spełnia każde z nich”). Według reguły to nie jest recenzja, a te same rodzaje sprawdzeń przepuściły błędy rodzin v2 (L-042). Grep po docs, tests, scripts, lib i components oraz CLAUDE.md za zapisem recenzji v1 dał kod 1. Trafienia „recenzja ruchu” dotyczą tylko L-042 i `tests/figury-1-0-recenzja.test.ts` (rodziny squat, bench_press, hinge). W rejestrze ryzyk nie ma wiersza o recenzji figur. Dokument bramki 4 (`docs/przekazanie/notatki/53-…`) nie istnieje w tym commicie. Wymuszenia nie ma ani dla v2 (`lib/figures/v2/figure.ts:29` sprawdza tylko status), ani dla v1, gdzie nie ma nawet statusu.
+- Teksty kart (wskazówki): zapisu recenzji według bramki 4 też nie ma. `check:cues` pilnuje tylko zgodności dokumentu z danymi.
+- Ocena realności: realny, bo każdy, kto otworzy kartę jednego z 56 ćwiczeń, widzi animację v1. Nie wiadomo, czy któraś figura v1 jest błędna. Poziom P1 pasuje: reguła właściciela z 27.10 blokuje wyświetlanie bez recenzji, a ryzyko dotyczy „błędnych twierdzeń merytorycznych” z progu wydania.
+
+## (b) 09-lokalizacja-001 — R-010
+
+- Stan rejestru potwierdzony. `docs/40-lekcje.md:22`: R-010 ma status otwarte i „blokuje wydanie w App Store, nie blokuje TestFlight”. `docs/16-jezyki-i-marka.md:357`: „nadal przegląd przez native speakerów jest otwarty”. Według `docs/48-zgloszenie-1-0.md:306` przegląd API z 22.10 „trzeba go powtórzyć po przekładzie”. W tabeli drugi przegląd ma wartość niewykonany w każdym wierszu (np. `docs/16-jezyki-i-marka.md:279`).
+- Fakty, które osłabiają część znaleziska:
+  - Przegląd po przekładzie odbył się: `docs/18-przekazanie.md:587` wymienia „przegląd lokalizacji Z-02” z 26.10, a commity Z-02 to f781b5e6, cf27efb7, 06c9aced, 125b5bc2 i eb44b911.
+  - Commit f781b5e6 nie zmienił tekstu po przeglądzie, tylko naniósł tabelę poprawek z tego przeglądu.
+  - Po f781b5e6 nie zmieniono żadnego pliku `lib/cues/text` ani zdania medycznego czy asekuracyjnego w `lib/locales` (dowody/G3-r010.txt).
+  - Decyzja `docs/18-przekazanie.md:406`: R-010 zamyka „przegląd wykonany przez Claude” z listą zdań, a nie native speaker. Nagłówek kolumny w docs/16 („native speaker”) jest z tą decyzją niespójny.
+- W tym commicie nadal brakuje: zapisu przeglądu Z-02 (według docs/21 jest na innej gałęzi, której nie czytałem), wpisu „drugi przegląd” w docs/16 i zamknięcia R-010 w docs/40. Wiersz Z-02 w `docs/48-zgloszenie-1-0.md:60` mówi, że przegląd musi być po „ostatniej zmianie tekstów”. Kontroli przekładu zwrotnego w repo nie ma (grep: 0 trafień).
+- Nie da się stąd ustalić, czy przegląd Z-02 objął wszystkie zdania krytyczne w 33 językach. Ocena: blokada formalna jest realna. P1 pasuje, ale tylko dla wydania w App Store. Zamknięcie wymaga zapisu, nie nowej pracy, o ile zapis Z-02 obejmuje treść krytyczną.
+
+## (c) 09-lokalizacja-003 — forma liczby uk/sl
+
+- Potwierdzone. `components/StartPanel.tsx:27` „t('dziś w planie · {n} ćw.', { n: m.tpl.items.length })”. Przekłady: `lib/locales/uk.json:321` „сьогодні в плані · {n} вправ”, `lib/locales/sl.json:321` „danes v načrtu · {n} vaj”. Ten sam błąd jest w kluczach 659 i 1336 obu plików. Pozostałe 31 języków ma skrót albo słowo bez odmiany (id, ms, vi, ja, ko, zh-Hant). Przy n = 1–4 (oraz 21–24) forma jest zła, np. „3 вправ” zamiast „3 вправи” i „3 vaj” zamiast „3 vaje”.
+- Mechanizm odmiany już istnieje (`lib/i18n.ts:121` „export function tp(n: number, forms: string)”), ale te klucze go nie używają.
+- Poziom: P1 → **P2**. To błąd gramatyczny w podpisie, a liczba jest poprawna. Nie mieści się w żadnej kategorii progu wydania z CLAUDE.md (dane, awaria, błędne liczby, prywatność, bariera dostępności, odrzucenie przez Apple). Realny w dwóch językach. Naprawa jest tania: skrót w przekładzie albo `tp`.
+
+## (d) 09-lokalizacja-004, 01-odkrywanie-003, 04-studio-projektowe-002 — ucięte ikony przy największym tekście (T-04)
+
+Wyniki z kodu stylów (dowody/G3-t04-ikony.txt):
+- **Mnożnik:** bez `maxFontSizeMultiplier` tekst w RN na iOS rośnie przy AX5 do 3,571× (`node_modules/react-native/React/CoreModules/RCTAccessibilityManager.mm:271` „UIContentSizeCategoryAccessibilityExtraExtraExtraLarge : @3.571”). Projekt ogranicza opisy do 200% (`lib/tokens.ts:125` „export const TEXT_SCALE = { text: 2, num: 1.3, bar: 1.25 }”). AX5 jest nazwanym odstępstwem (`lib/tokens.ts:127` „AX5 informacyjnie”), ale odstępstwo dotyczy skali tekstu, nie przyjmuje ucinania.
+- **Ikony SVG mają stały rozmiar:** 16, 24 i 26 pt, znacznik dnia 24×18 w pojemniku o wysokości 20 (`components/TodayPlan.tsx:66` „style={{ height: 20, alignItems: 'center'”, `lib/motif.ts:68` „MINI_ICON = { w: 24, h: 18”). Nie rosną, więc same się nie utną, ale przy dużym tekście są małe. HIG Typography (pobrane dziś): „Increase the size of meaningful interface icons as font size increases.”
+- **Znaki używane jako ikony nie mają limitu skali:** „›” w głównym przycisku startu (`components/StartPanel.tsx:64` „font('sectionTitle') }}>›”), znak w wierszu `Item` w szarym kolorze `muted` (`components/ui.tsx:66` „{glyph ? <Text accessible={false}”) i „›” w karcie tygodnia (`components/Dashboard.tsx:50` „style={{ color: th.accent, fontSize: 20 }}>›”). Rosną do 357% wbrew DEC-10. To kandydat na „dużą szarą ikonę”, ale ich pojemniki mają `minHeight`, nie stałą wysokość, i nie mają `overflow: 'hidden'`, więc z samego kodu ucięcia nie wynika.
+- **Pojemniki o stałym rozmiarze z tekstem mają limity i treść się mieści:** „✦” 32×32 z limitem 1,2 (`components/WhatsNew.tsx:28` „maxFontSizeMultiplier={1.2}”), kółko 24×24 z limitem 1,3 i przyciski serii o wysokości 44 z limitem 1,3 (`components/WorkoutBlocks.tsx:231` „doneBtn: { height: 44”). Jedyne `overflow: 'hidden'` na tym ekranie dotyczy paska postępu, nie ikon. Pasek zakładek (fork React Navigation) nie zależy od skali tekstu.
+- **Wniosek:** z kodu nie da się wskazać mechanizmu ucięcia. Emulacja web roli 04 też go nie odtworzyła. Objaw pochodzi z telefonu właściciela (build 1031) i trzeba go potwierdzić zrzutem przy AX5, żeby ustalić, który element jest ucięty. Prawdopodobne miejsca, specyficzne dla iOS: znaki „›” bez limitu i krój zastępczy przy dużych rozmiarach. To hipoteza, niesprawdzona.
+- **01-odkrywanie-003:** potwierdzone, że BRD ma tylko `docs/brd/wymagania.md:721` (200% opisów) i żadnego wymagania, że elementy sterujące pozostają widoczne.
+- **04-studio-projektowe-002:** potwierdzone, że nie ma przebiegu E2E ani CI z dużym tekstem (grep kod 1). „Brak sprawdzenia” jest częściowo nieścisłe, bo istnieje ręczny krok wydania ZD-03 (`docs/39-lista-kontrolna-wydania.md:71`) i to on wykrył objaw.
+- **Poziom:** P1 warunkowo. Ucięcia „bez ucięć” wymaga ZD-03, więc ten punkt bramki jest niespełniony. Jeśli zrzut pokaże, że ucięta jest tylko dekoracja (szewron, znacznik), a przycisk startu ma czytelny tytuł, działa i ma etykietę VoiceOver, to nie jest bariera według progu CLAUDE.md → P2. Jeśli nie da się rozpoznać albo użyć akcji, zostaje P1.
+
+## (e) 04-studio-projektowe-004 — przyciski 40 pt
+
+- Wartości potwierdzone: `components/WorkoutBlocks.tsx:51` „play: 40, rpe: 40” wobec `components/WorkoutBlocks.tsx:49` „play: 44, rpe: 46”, wysokość 44, a przycisk stopera nie ma `hitSlop` (`components/WorkoutBlocks.tsx:187` „style={[s.doneBtn, { width: W.play”).
+- Kroki są nieścisłe. Sonda `rowLayout` (dowody/G3-kolumny-40pt.txt): plank (metryka czasu) z RPE i bez gumy ma układ szeroki na każdej szerokości od 320 pt. Układ zwarty z 40 pt pojawia się tylko w dwóch przypadkach:
+  - przy 320 pt (Display Zoom na mini lub SE) dla czasu z gumą i RPE oraz dla dystansu z czasem albo ciężaru z czasem z RPE lub gumą;
+  - przy 375–402 pt tylko dla dystansu z czasem albo ciężaru z czasem, z gumą i z RPE jednocześnie.
+- HIG Accessibility (pobrane dziś, developer.apple.com/design/human-interface-guidelines/accessibility): iOS „Default control size 44x44 pt”, „Minimum control size 28x28 pt”; „Strive to meet the recommended minimum control size…”. Pole 40×44 jest poniżej zalecanego 44 i powyżej minimum 28, więc nie jest barierą dostępności.
+- Poziom: P1 → **P2** (szlif zgodności z tokenem `SIZE.hit` 44). Realność: brzegowa.

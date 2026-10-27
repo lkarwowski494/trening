@@ -1,0 +1,13 @@
+# G4 — istniejące testy przypinające stan sprzed decyzji / deepLink (worktree 025a50b9), każdy osobno z -t
+## npx jest tests/m5s1-bez-proby.test.ts --maxWorkers=1 → exit=0
+✓ kolejność planów bez zmian: roczny, miesięczny, dożywotni (5 ms)
+Tests:       12 skipped, 1 passed, 13 total
+## npx jest tests/m3-p2-start.test.tsx --maxWorkers=1 → exit=0
+✓ z planem: przycisk „Planowanie” w nagłówku nad tytułem „Trening”, nie w karcie planu; stuknięcie → ekran planu (6252 ms)
+✓ bez planu (są treningi): przycisk nazywa się „Ustaw plan”; nowa osoba (bez planu i treningów): przycisku w nagłówku nie ma (są „Pierwsze kroki”) (329 ms)
+✓ EN: „Planning” i „Set a plan” (340 ms)
+Tests:       6 skipped, 3 passed, 9 total
+## npx jest tests/store-adapter.test.ts --maxWorkers=1 → exit=0
+✓ źródła i znaczniki: family_shared → family, kod ofertowy → code, zwrot → revokedAt, nieznany produkt i śmieci → null (8 ms)
+✓ przywracanie: sync (restorePurchases) przed odczytem uprawnień; kod i zarządzanie subskrypcją wołają odpowiednie funkcje biblioteki (12 ms)
+Tests:       37 skipped, 2 passed, 39 total

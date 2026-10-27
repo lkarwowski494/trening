@@ -1,0 +1,24 @@
+# JAK-15: regeneracja plików generowanych na kopii 025a50b9 (tryb --write), potem git diff --stat; 2026-10-27T18:18:26Z
+$ node scripts/test-matrix.mjs --write
+macierz: 2635 pozycji (EKRAN 32, UI 354, TEKST 1064, LOGIKA 1040, WYMIAR 145), bez testu: 0, nieaktualne wyjątki: 0
+exit=0
+$ node scripts/readme.mjs --write
+README: bez zmian (README.md)
+exit=0
+$ node scripts/flows-catalog.mjs --write
+zapisano docs/37-katalog-przeplywow.md
+zapisano docs/39-lista-kontrolna-wydania.md
+exit=0
+$ node scripts/cues/gen.mjs --write
+zapisano /tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/07-jakosc-wt/docs/research/27-wskazowki-zrodla.md
+exit=0
+$ node scripts/figures/gen.mjs --write
+zapisano /tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/07-jakosc-wt/docs/research/28-figury.md
+exit=0
+$ node scripts/zrodla-runtime.mjs --write
+zapisano /tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/07-jakosc-wt/lib/cues/data.json
+zapisano /tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/07-jakosc-wt/lib/figures/data.json
+exit=0
+$ git diff --stat (puste = regeneracja nic nie zmienia)
+$ git status --porcelain
+# kopia przywrócona: 0 zmian

@@ -1,0 +1,31 @@
+# G3 — R-010 / treść krytyczna (commit 025a50b9)
+$ git log --oneline f781b5e6..HEAD -- lib/cues/text
+(pusto: wskazówki techniki bez zmian po f781b5e6)
+
+$ git log --oneline --since=2026-10-23 | grep -E "Z-02"
+eb44b911 Przekład id: ćwiczenie = gerakan na podglądzie importu (3 klucze); backlog 1.0.1 z uwagami recenzji Z-02
+125b5bc2 Z-02: ponowne naniesienie 49 nieblokujących poprawek przekładu razem z plikiem zegarka pt-BR (InfoPlist.strings) — jeden commit do odrzucenia revertem
+5ca838d7 Revert "Z-02: nieblokujące poprawki przekładu z notatki przeglądu (49 tekstów, pewność „wysoka”)"
+d079f0e3 Z-02: strażnik ścieżek do ekranów w przekładach (test odtwarzający błąd)
+06c9aced Z-02: nieblokujące poprawki przekładu z notatki przeglądu (49 tekstów, pewność „wysoka”)
+cf27efb7 Z-02: poprawki przekładu tekstów zmienionych po przeglądzie 26.10 (17 tekstów)
+f781b5e6 Wskazówki techniki: poprawione 4 zdania w 32 plikach językowych (blokada Z-02) i strażnik skrótów źródła/przekładu (L-038)
+
+$ zmiany lib/locales po f781b5e6 dotykające zdań medycznych/asekuracji (grep porad|asekur|lekarz|fizjo w liniach +/-):
+589f6c4a: 0
+eb44b911: 0
+125b5bc2: 0
+5ca838d7: 0
+d079f0e3: 0
+06c9aced: 0
+cf27efb7: 0
+7a45540d: 0
+50cd5883: 0
+aa9eca44: 0
+c82b6e7e: 0
+
+$ grep -rn -i "przekład zwrotny|back-translation" docs tests scripts
+0
+
+$ sed -n 22p docs/40-lekcje.md (status R-010)
+otwarte (20.10.2026) — **blokuje wydanie w App Store, nie blokuje TestFlight** (wewnętrzna grupa testerów, decyzja 20.10.2026). 22.10.2026: przegląd przez API wykonany (Opus, batch msgbatch_01ERD

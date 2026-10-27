@@ -1,0 +1,22 @@
+# T-11 (telefon 27.10, build 1031) — stan „subskrypcja aktywna” na ekranie zakupu, kod na 025a50b9
+$ grep -n "paywall-headline\|paywall-owned\|Masz pełną wersję\|ctaLabel\|!lifetime ? <>" app/paywall.tsx
+32:const ctaLabel = (p: StoreProduct): string => (p.period === null ? t('Kup na zawsze') : t('Subskrybuj'));
+48:      if (r.status === 'success') scrollRef.current?.scrollTo({ y: 0, animated: false }); /* karta „Masz pełną wersję” jest na górze; zakup robi się na dole długiego ekranu — bez przewi
+66:      </View> : <Text testID="paywall-headline" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold, marginTop: 8, marginB
+68:      {view.active ? <View testID="paywall-owned" accessible accessibilityLanguage={lang()} style={{ borderWidth: 1, borderColor: th.line, borderRadius: RADIUS.group, padding: 12, gap: 4, marginBot
+69:        <Text accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{lifetime ? t('Masz dostęp na zawsze') : t('Masz pełną wersję
+76:      {!lifetime ? <>
+
+# nagłówek (wstęp o darmowych dniach) zależy tylko od reason==='limit' (linia 61/66), nie od view.active; lista planów i przycisk zakupu ukryte tylko przy dożywotnim (!lifetime); karta posiadania nie podaje planu (tylko „Masz pełną wersję” + data)
+
+$ grep -rn "paywall-headline" tests/ | grep -c "queryByTestId(.paywall-headline.)).toBeNull"
+tests/monetyzacja-ui.test.tsx:62:    expect(S().seenFairRulesManifest).toBe(true); expect(win()).toBeNull(); expect(screen.getByTestId('paywall-headline')).toBeTruthy();
+tests/subscription-ui.test.tsx:122:    expect(screen.queryByTestId('paywall-headline')).toBeNull(); /* zamiast nagłówka z Ustawień */
+tests/subscription-ui.test.tsx:132:    await act(async () => { router.push('/paywall?reason=first'); }); await settle(); expect(screen.queryByTestId('paywall-limit')).toBeNull(); expect(screen.getByTe
+(jedyne toBeNull dotyczy wejścia z limitu — nie stanu z aktywną subskrypcją)
+
+$ grep -rn "BR-ZAK-00[0-9]" docs/brd/wymagania.md (kryteria ekranu zakupu)
+644:### BR-ZAK-001: Model dostępu zgodny z modelem stałym (M5 S1)
+661:### BR-ZAK-002: Dzień treningowy jako jednostka limitu
+686:### BR-ZAK-003: Ekran zakupu bez presji
+# BR-ZAK-003: scenariusze Start ponad limit, Ekran z Ustawień, Brak samoczynnych okien — brak scenariusza „użytkownik z aktywną subskrypcją otwiera ekran zakupu”

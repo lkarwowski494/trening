@@ -16,3 +16,10 @@
 | 12-niezawodnosc | plan 0,3–0,7 mln | 349 546 tok., 106 wywołań, 17,6 min | kontrola M1 OK |
 | 04-studio-projektowe | plan 0,3–0,7 mln | 520 383 tok., 151 wywołań, 27,7 min | kontrola M1 OK |
 | 02-monetyzacja-b | plan 0,3–0,6 mln | 352 622 tok., 99 wywołań, 16,4 min | kontrola M1 OK |
+| weryfikacja G1 | plan 0,08–0,19 mln/grupa | 195 203 tok., 74 wywołania, 8,5 min | kontrola M1 OK |
+| weryfikacja G2 | plan 0,08–0,19 mln/grupa | 163 739 tok., 35 wywołań, 9,7 min | kontrola M1 OK |
+| weryfikacja G3 | plan 0,08–0,19 mln/grupa | 228 898 tok., 86 wywołań, 9,7 min | kontrola M1 OK |
+| 07-jakosc | plan 0,4–0,9 mln | 435 051 tok., 154 wywołania, 18,6 min | kontrola M1 OK |
+| weryfikacja G4 | plan 0,08–0,19 mln/grupa | 153 103 tok., 42 wywołania, 5,1 min | kontrola M1 OK |
+| weryfikacja G5 | plan 0,08–0,19 mln/grupa | 155 159 tok., 40 wywołań, 5,1 min | kontrola M1 OK |
+| weryfikacja G6 | plan 0,08–0,19 mln/grupa | 156 419 tok., 42 wywołania, 5,7 min | kontrola M1 OK |

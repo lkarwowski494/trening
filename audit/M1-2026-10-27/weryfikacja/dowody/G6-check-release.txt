@@ -1,0 +1,22 @@
+# G6 — 07-jakosc-001: podpięcie check:release (commit 025a50b9)
+$ grep -rn "check:release|blokada-wydania" .github .claude scripts/hooks docs/39-lista-kontrolna-wydania.md docs/48-zgloszenie-1-0.md
+kod=1 (1 = brak trafień)
+
+$ grep -rlnE "check:release|blokada-wydania" --exclude-dir=node_modules --exclude-dir=audit .
+./scripts/ci/blokada-wydania.mjs
+./tests/package-scripts.test.ts
+./tests/blokada-wydania.test.ts
+./package.json
+./docs/19-macierz-testow.md
+./docs/40-lekcje.md
+./docs/09-plan-testow.md
+./docs/42-plan-wydania-1.0.md
+./docs/18-przekazanie.md
+
+$ grep -n "npm run" .github/workflows/testflight.yml
+90:      - name: Testy (jak przed każdym buildem — pełne npm run verify)
+97:        run: npm run verify
+
+$ npm run -s check:release
+wyjątek anonimizacji pusty — wydanie nie jest blokowane przez R-015
+kod=0

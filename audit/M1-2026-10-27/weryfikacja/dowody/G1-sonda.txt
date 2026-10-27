@@ -1,0 +1,118 @@
+# G1 sonda (kopia robocza scratchpad, commit 025a50b9; plik sondy tests/zz-sonda-g1.test.tsx tylko w kopii roboczej)
+# data: 2026-10-27
+# Uwaga: pole „nazwa_planu_w_karcie” w wierszu S-B jest zaślepką (zawsze false) — nie jest dowodem; brak nazwy planu w karcie wynika z kodu app/paywall.tsx:68-74.
+
+## npx jest tests/zz-sonda-g1.test.tsx --maxWorkers=1 -t "produkt w PLN"
+    S-A displayPrice=4,99 zł priceLine=4,99 zł/miesiąc
+PASS iOS tests/zz-sonda-g1.test.tsx
+  (a) cena: adapter przekazuje displayPrice bez zmian
+    ✓ produkt w PLN ze StoreKit -> wiersz ceny w PLN (34 ms)
+  (c) P3 B z adapterem natywnym
+    ○ skipped wygasła subskrypcja: lista natywna pusta (filtr openiap) vs lista z wygasłym wpisem
+  (b) ekran zakupu przy aktywnej subskrypcji rocznej
+    ○ skipped stan po zakupie rocznego i wybór dożywotniego
+Test Suites: 1 passed, 1 total
+Tests:       2 skipped, 1 passed, 3 total
+Snapshots:   0 total
+Time:        2.772 s, estimated 3 s
+Ran all test suites matching /tests\/zz-sonda-g1.test.tsx/i with tests matching "produkt w PLN".
+exit=0
+
+## npx jest tests/zz-sonda-g1.test.tsx --maxWorkers=1 -t "wygasła subskrypcja"
+    S-C natywna lista=[] -> level=free used=7 allowed=false remaining=0
+    S-C lista z wygaslym (ksztalt sztucznego sklepu) -> level=free used=0 allowed=true remaining=5
+PASS iOS tests/zz-sonda-g1.test.tsx
+  (a) cena: adapter przekazuje displayPrice bez zmian
+    ○ skipped produkt w PLN ze StoreKit -> wiersz ceny w PLN
+  (c) P3 B z adapterem natywnym
+    ✓ wygasła subskrypcja: lista natywna pusta (filtr openiap) vs lista z wygasłym wpisem (36 ms)
+  (b) ekran zakupu przy aktywnej subskrypcji rocznej
+    ○ skipped stan po zakupie rocznego i wybór dożywotniego
+Test Suites: 1 passed, 1 total
+Tests:       2 skipped, 1 passed, 3 total
+Snapshots:   0 total
+Time:        2.836 s, estimated 3 s
+Ran all test suites matching /tests\/zz-sonda-g1.test.tsx/i with tests matching "wygasła subskrypcja".
+exit=0
+
+## npx jest tests/zz-sonda-g1.test.tsx --maxWorkers=1 -t "stan po zakupie"
+    S-B owned=true headline=true plany=plan-yearly,plan-monthly,plan-lifetime wybrany_roczny=true przycisk_Subskrybuj=true nazwa_planu_w_karcie=false
+    S-B po wyborze dozywotniego: przycisk_Kup_na_zawsze=true ostrzezenie_przed_zakupem=false
+    S-B po zakupie dozywotniego: ostrzezenie=true uprawnienia=["yearly","lifetime"]
+PASS iOS tests/zz-sonda-g1.test.tsx
+  (a) cena: adapter przekazuje displayPrice bez zmian
+    ○ skipped produkt w PLN ze StoreKit -> wiersz ceny w PLN
+  (c) P3 B z adapterem natywnym
+    ○ skipped wygasła subskrypcja: lista natywna pusta (filtr openiap) vs lista z wygasłym wpisem
+  (b) ekran zakupu przy aktywnej subskrypcji rocznej
+    ✓ stan po zakupie rocznego i wybór dożywotniego (729 ms)
+Test Suites: 1 passed, 1 total
+Tests:       2 skipped, 1 passed, 3 total
+Snapshots:   0 total
+Time:        3.416 s
+Ran all test suites matching /tests\/zz-sonda-g1.test.tsx/i with tests matching "stan po zakupie".
+exit=0
+
+## Treść sondy
+/* Sonda weryfikacji G1 (audyt M1 27.10.2026) — tylko w kopii roboczej w scratchpadzie, nie w repo. */
+import * as store from '@/lib/store';
+import { applyLang } from '@/lib/i18n';
+import { PAYWALL, canStartLive, type Entitlement, type LiveStart } from '@/lib/access';
+import { PRODUCT_IDS } from '@/lib/products';
+import { setStoreAdapter, resetStoreAdapterForTests } from '@/lib/store-adapter';
+import { createFakeStore } from '@/lib/store-fake';
+import { createNativeStore, productFromStore } from '@/lib/store-native';
+import { resetEntitlementsForTests } from '@/lib/entitlement';
+import { priceLine } from '@/app/paywall';
+import { fresh, saved } from './helpers';
+import { renderApp, flushAll, screen, tap, act } from './app';
+
+const DAY = 86400e3; const iap = () => (global as any).__iap;
+afterEach(() => { PAYWALL.ENABLED = false; resetEntitlementsForTests(); resetStoreAdapterForTests(); applyLang('pl'); jest.useRealTimers(); });
+
+describe('(a) cena: adapter przekazuje displayPrice bez zmian', () => {
+  test('produkt w PLN ze StoreKit -> wiersz ceny w PLN', () => {
+    const p = productFromStore({ id: PRODUCT_IDS.monthly, displayPrice: '4,99 zł', subscriptionPeriodUnitIOS: 'month' })!;
+    console.log('S-A displayPrice=' + p.displayPrice + ' priceLine=' + priceLine(p));
+    expect(priceLine(p)).toBe('4,99 zł/miesiąc');
+  });
+});
+
+describe('(c) P3 B z adapterem natywnym', () => {
+  test('wygasła subskrypcja: lista natywna pusta (filtr openiap) vs lista z wygasłym wpisem', async () => {
+    const NOW = Date.UTC(2026, 10, 21, 11, 0); jest.useFakeTimers({ now: NOW }); const off = 60;
+    const expired = NOW - 1 * DAY; /* wygasła 20.11 */
+    const starts: LiveStart[] = Array.from({ length: 7 }, (_, i) => ({ startedAt: Date.UTC(2026, 10, 2 + 2 * i, 9, 0), tzOffsetMin: off })); /* 7 dni Pro przed wygaśnięciem */
+    Object.assign(iap(), { calls: [], products: [], status: [{ state: 'expired', renewalInfo: { gracePeriodExpirationDate: null } }], statusFail: null, fail: null, listeners: { updated: [], error: [] } });
+    /* openiap 3.6.0 przy onlyIncludeActiveItemsIOS: currentEntitlements + pominięcie expirationDate <= now -> wygasłej transakcji nie ma */
+    const raw = [{ productId: PRODUCT_IDS.monthly, expirationDateIOS: expired, ownershipTypeIOS: 'purchased', revocationDateIOS: null }];
+    iap().purchases = raw.filter(r => !(r.expirationDateIOS != null && r.expirationDateIOS <= Date.now()));
+    const nativeList = await createNativeStore().currentEntitlements();
+    const dn = canStartLive({}, nativeList, starts, NOW, off, { ...PAYWALL, ENABLED: true });
+    const withExpired: Entitlement[] = [{ plan: 'monthly', source: 'purchase', expiresAt: expired }];
+    const df = canStartLive({}, withExpired, starts, NOW, off, { ...PAYWALL, ENABLED: true });
+    console.log(`S-C natywna lista=${JSON.stringify(nativeList)} -> level=${dn.level} used=${dn.used} allowed=${dn.allowed} remaining=${dn.remaining}`);
+    console.log(`S-C lista z wygaslym (ksztalt sztucznego sklepu) -> level=${df.level} used=${df.used} allowed=${df.allowed} remaining=${df.remaining}`);
+    expect(dn.allowed).toBe(false); expect(df.allowed).toBe(true);
+  });
+});
+
+describe('(b) ekran zakupu przy aktywnej subskrypcji rocznej', () => {
+  test('stan po zakupie rocznego i wybór dożywotniego', async () => {
+    const NOW = new Date(2026, 9, 14, 12, 0).getTime();
+    jest.useFakeTimers({ now: NOW }); await fresh(undefined, 'pl'); resetEntitlementsForTests(); PAYWALL.ENABLED = true;
+    const fake = createFakeStore([{ plan: 'yearly', source: 'purchase', expiresAt: NOW + 300 * DAY }]); setStoreAdapter(fake);
+    store.save(); await act(async () => { await store.flush(); });
+    await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'pl', url: '/paywall?reason=settings' }); jest.setSystemTime(NOW);
+    for (let i = 0; i < 8; i++) await flushAll(10);
+    const warn = 'Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płacić podwójnie.';
+    const has = (s: string) => !!screen.queryByText(s);
+    console.log(`S-B owned=${!!screen.queryByTestId('paywall-owned')} headline=${!!screen.queryByTestId('paywall-headline')} plany=${screen.queryAllByTestId(/^plan-/).map(n => n.props.testID).join(',')} wybrany_roczny=${screen.getByTestId('plan-yearly').props.accessibilityState.selected} przycisk_Subskrybuj=${has('Subskrybuj')} nazwa_planu_w_karcie=${has('Trening to część mojego tygodnia') && false}`);
+    const ownedTxt = JSON.stringify(screen.getByTestId('paywall-owned').props.children?.length ?? ''); void ownedTxt;
+    await tap(screen.getByTestId('plan-lifetime'));
+    console.log(`S-B po wyborze dozywotniego: przycisk_Kup_na_zawsze=${has('Kup na zawsze')} ostrzezenie_przed_zakupem=${has(warn)}`);
+    await act(async () => { await tap(screen.getByText('Kup na zawsze')); }); for (let i = 0; i < 8; i++) await flushAll(10);
+    console.log(`S-B po zakupie dozywotniego: ostrzezenie=${has(warn)} uprawnienia=${JSON.stringify(fake.entitlements()?.map(e => e.plan))}`);
+    expect(has(warn)).toBe(true);
+  });
+});

@@ -1,0 +1,18 @@
+# G3 — figury v1 i bramka 4 (commit 025a50b9)
+$ npx jest tests/_sonda/g3-figury.test.ts --maxWorkers=1 (worktree w scratchpadzie; FIG_DATA/figureByKey z lib/figures, figureSpec z lib/figures/v2) — kod 0
+v1Total=71, v1Resolved=71, v1 wyświetlane (brak figury v2)=56, v1 zastąpione przez v2=15
+rodziny ready: squat, bench_press, hinge — pola obiektu: id,status,label,views,effort (brak pola recenzji)
+lista 56: Pistol Squat, Kettlebell Swing, Machine Chest Press, Push Up, Incline Push Up, Overhead Press (sztanga), Overhead Press (hantle), Seated Shoulder Press (hantle), Push Press, Wyciskanie nad głowę (linki), Bent Over Row (sztanga), Bent Over Row (hantle), Pendlay Row, T-Bar Row, One Arm Row (hantle), Chest Supported Row, Seated Cable Row, Wiosłowanie na linkach (siedząc), Face Pull, Lat Pulldown, Pull Up, Chin Up, Neutral Grip Pull Up, Lunges (hantle), Walking Lunges, Reverse Lunge, Bulgarian Split Squat (hantle), Step Up, Hip Thrust (sztanga), Hip Thrust (hantel), Glute Bridge, Biceps Curl (hantle), Barbell Curl, EZ Bar Curl, Hammer Curl, Cable Curl, Triceps Pushdown, Overhead Triceps Extension (hantel), Cable Overhead Extension, Skullcrusher (EZ), Triceps Dips (ławka), Lateral Raise (hantle), Cable Lateral Raise, Front Raise, Shrugs (sztanga), Shrugs (hantle), Standing Calf Raise, Łydki na stopniu, Leg Press, Calf Press (leg press), Lying Leg Curl, Plank, Dead Bug, Bird Dog, Mountain Climbers, Rowing Machine
+
+$ grep -rn -i -E "figur[a-z]* v1|v1.{0,40}recenz|recenz.{0,60}v1" docs tests scripts lib components CLAUDE.md
+kod=1 (1 = brak trafień)
+$ grep -rln -i "recenzj[a-ię] ruchu|recenzja figur|przegląd figur" docs tests scripts
+docs/40-lekcje.md
+tests/figury-1-0-recenzja.test.ts
+(trafienia tylko L-042 i test v2 — rodziny squat/bench_press/hinge)
+$ grep "^| R-" docs/40-lekcje.md | grep -i -E "figur|animac|grafik"
+1 — jedyne trafienie: R-013 (ikona zegarka; dopasowanie w innym kontekście); wiersza o recenzji figur v1 brak
+$ ls docs/przekazanie
+ls: cannot access 'docs/przekazanie': No such file or directory
+$ git ls-files | grep 53-grafiki
+0

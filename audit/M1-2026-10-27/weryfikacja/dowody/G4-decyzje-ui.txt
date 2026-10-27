@@ -1,0 +1,18 @@
+# G4 — decyzje UI z 23.10 a kandydat 025a50b9 (04-studio-projektowe-003)
+## git log --oneline 99563b1e^1..99563b1e^2 (scalona naprawa-m1-dec07-ui)
+ade64673 DEC-07 K9 (M1-006): test-wymaganie, najwyżej 1 stuknięcie od ekranu treningu do odhaczonej serii
+## grep PLAN_ORDER lib/products.ts
+19:export const PLAN_ORDER: readonly EntitlementPlan[] = ['yearly', 'monthly', 'lifetime'];
+## app/(tabs)/index.tsx:44 (Planowanie w osobnym wierszu nad tytułem)
+      {showPlanning ? <View style={{ alignItems: 'flex-end' }}><PlanningButton label={plan ? t('Planowanie') : t('Ustaw plan')} onPress={() => router.push('/plan')} /></View> : null}
+## grep -c 'przytrzym' docs/21-roadmapa-offline.md
+0
+exit=1
+## git merge-base --is-ancestor c9cacfa1 025a50b9 (strażnik decyzja→test z 27.10 na gałęzi naprawy-1-0)
+exit=1 (1 = poza kandydatem)
+## git branch -a --contains c9cacfa1
+  remotes/origin/naprawy-1-0
+## git show --stat c9cacfa1 | grep tests/
+ tests/paywall-kolejnosc-domyslna.test.ts | 47 ++++++++++++++++++++++++++++++++
+ tests/przeplywy.json                     |  5 ++--
+ tests/subscription-ui.test.tsx           | 37 +++++++++++++++++++++++++

@@ -1,0 +1,27 @@
+# G3 — kolumny wiersza serii, układ COMPACT (commit 025a50b9)
+$ npx jest tests/_sonda/g3-kolumny.test.ts --maxWorkers=1 (worktree w scratchpadzie; rowLayout z components/ActiveWorkout) — kod 0
+Przypadki z play=40 / rpe=40 (pozostałe kombinacje: układ WIDE, play 44, rpe 46):
+METRICS=weight_reps,reps,time,distance_time,weight_time,weight_distance
+w=320 weight_reps band=true rpe=true: COMPACT rpe=40
+w=320 time band=true rpe=true: COMPACT play=40 rpe=40
+w=320 distance_time band=false rpe=true: COMPACT play=40 rpe=40
+w=320 distance_time band=true rpe=false: COMPACT play=40
+w=320 distance_time band=true rpe=true: COMPACT play=40 rpe=40
+w=320 weight_time band=false rpe=true: COMPACT play=40 rpe=40
+w=320 weight_time band=true rpe=false: COMPACT play=40
+w=320 weight_time band=true rpe=true: COMPACT play=40 rpe=40
+w=320 weight_distance band=true rpe=true: COMPACT rpe=40
+w=375 distance_time band=true rpe=true: COMPACT play=40 rpe=40
+w=375 weight_time band=true rpe=true: COMPACT play=40 rpe=40
+w=390 distance_time band=true rpe=true: COMPACT play=40 rpe=40
+w=390 weight_time band=true rpe=true: COMPACT play=40 rpe=40
+w=393 distance_time band=true rpe=true: COMPACT play=40 rpe=40
+w=393 weight_time band=true rpe=true: COMPACT play=40 rpe=40
+w=402 distance_time band=true rpe=true: COMPACT play=40 rpe=40
+w=402 weight_time band=true rpe=true: COMPACT play=40 rpe=40
+
+Wniosek: plank (metryka time) z RPE bez gumy = WIDE przy każdej szerokości od 320 pt; COMPACT z play 40: 320 pt (time+guma+RPE, distance_time/weight_time z RPE albo gumą) oraz 375–402 pt tylko distance_time/weight_time z gumą i RPE.
+
+HIG Accessibility (pobrane 27.10.2026, https://developer.apple.com/design/human-interface-guidelines/accessibility; dane: developer.apple.com/tutorials/data/design/human-interface-guidelines/accessibility.json, curl kod 0):
+  tabela: iOS, iPadOS — Default control size 44x44 pt, Minimum control size 28x28 pt.
+  „Strive to meet the recommended minimum control size for each platform to ensure controls and menus are comfortable for all when tapping and clicking.”

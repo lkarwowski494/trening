@@ -1,0 +1,12 @@
+# G4 — źródła przeczytane 27.10.2026
+## Helms i in. 2016, Strength Cond J 38(4), PMC4961270 — pełny tekst przez Europe PMC (strona PMC zwróciła weryfikację przeglądarki)
+curl https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4961270/fullTextXML → HTTP 200
+cytat 1: "In addition, scores of 5–6 were grouped as 4–6 RIR as it is easier for athletes to give a range of RIR when RIR is greater than 3."
+cytat 2: "Because the scale has subjective descriptors of effort for values below 5 (1–2 RPE = “little to no effort,” 3–4 RPE = “light effort”)"
+wniosek: RIR 4–6 ↔ RPE 5–6; RIR 6 nie należy do opisu słownego RPE 3–4. RIR > 6 źródło nie przelicza.
+## Apple, AppStore.showManageSubscriptions(in:)
+curl https://developer.apple.com/tutorials/data/documentation/storekit/appstore/showmanagesubscriptions(in:).json → HTTP 200
+cytat: "Use this function to display the manage subscriptions sheet within your app."
+cytat: "Test the managing subscriptions functionality in the sandbox environment and StoreKit testing in Xcode."
+## Apple, https://developer.apple.com/app-store/subscriptions/ → HTTP 200
+cytat: "You can use the showManageSubscriptions(in:) method to let them manage their subscription within your app."

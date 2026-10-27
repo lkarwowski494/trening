@@ -1,0 +1,90 @@
+# Sonda G2 (commit 025a50b9, kopia robocza w scratchpadzie; plik sondy tests/zz-sonda-g2.test.ts nie trafia do repo)
+$ SONDA_OUT=... npx jest tests/zz-sonda-g2.test.ts --maxWorkers=1
+kod wyjścia: 0
+  ✓ 12-001 A: start na zmutowanym zapisie schematu 19 — kiedy migracja przy starcie kończy się kopią nieczytelnych danych (10485 ms)
+  ✓ 12-001 B: start, gdy migrate rzuca (exercises nie jest tablicą) — pusta aplikacja z kopią, nie tryb awaryjny (29 ms)
+  ✓ 05-002: zapis schematu 19 z pustą sesją — po starcie i flush pusta sesja znika, kopii premigrate brak (31 ms)
+  ✓ 05-001: notatka serii 450 znaków z importu CSV vs zapis w oknie notatki (clampName 300) (2 ms)
+Tests:       4 passed, 4 total
+--- wynik sondy:
+12-001 A: startów=400, kopia nieczytelnych danych=0 (z czego exercises/templates nie-tablica=0, inne=0), wyjątek init=0
+12-001 B: wyjątek init=brak, recovery=true, state_corrupt=1, treningów w aplikacji=0 (było 3), w state_corrupt=3
+05-002: pusta sesja w „state” po flush=false, klucze premigrate=[]
+05-001: notatka po imporcie CSV=450 znaków; po „Zapisz” w oknie notatki (clampName(…, 300))=300 znaków
+
+--- źródło sondy:
+/* Sonda weryfikacji G2 (nie do repo). */
+import * as fs from 'fs';
+import * as path from 'path';
+import fc from 'fast-check';
+import * as store from '@/lib/store';
+import { fresh } from './helpers';
+import { parseImport } from '@/lib/csvparse';
+import { clampName } from '@/lib/state/util';
+
+jest.setTimeout(600000);
+const fx = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'released', 'state-v0.20.0-b1018-schema19.json'), 'utf8'));
+const log: string[] = [];
+afterAll(() => { fs.writeFileSync(process.env.SONDA_OUT || '/dev/null', log.join('\n') + '\n'); });
+
+async function boot(state: unknown) {
+  await fresh(); global.__kv.clear();
+  global.__kv.set('state', JSON.stringify(state)); if (fx.live) global.__kv.set('live', JSON.stringify(fx.live)); if (fx.cfg) global.__kv.set('cfg', JSON.stringify(fx.cfg));
+  store.__resetForTests();
+  let thrown: string | null = null;
+  try { await store.init(); } catch (e) { thrown = (e as Error).message; }
+  return { thrown, rec: store.getRecovery(), corrupt: [...global.__kv.keys()].filter(k => /^state_corrupt_\d+$/.test(k)).length };
+}
+
+type Path = (string | number)[];
+function pathsOf(x: unknown, p: Path = [], out: Path[] = [], d = 0): Path[] {
+  if (d > 7 || x === null || typeof x !== 'object') return out;
+  for (const k of Array.isArray(x) ? x.map((_, i) => i) : Object.keys(x)) { const q = [...p, k]; out.push(q); pathsOf((x as any)[k], q, out, d + 1); }
+  return out;
+}
+const WEIRD: unknown[] = [null, true, '', 0, -1, 1e308, 'NaN', [], {}, [null], 'a'.repeat(500), '__proto__', '2026-02-30', 'x'];
+
+test('12-001 A: start na zmutowanym zapisie schematu 19 — kiedy migracja przy starcie kończy się kopią nieczytelnych danych', async () => {
+  const base = JSON.parse(JSON.stringify(fx.state));
+  const paths = pathsOf(base);
+  let n = 0, recov = 0, recovBadShape = 0, recovOther = 0, initThrow = 0; const other: string[] = [];
+  await fc.assert(fc.asyncProperty(fc.array(fc.record({ at: fc.nat(), v: fc.constantFrom(...WEIRD), del: fc.boolean() }), { minLength: 1, maxLength: 4 }), async muts => {
+    const s = JSON.parse(JSON.stringify(base));
+    for (const m of muts) { const p = paths[m.at % paths.length]; const par = p.slice(0, -1).reduce((a: any, k) => (a == null ? a : a[k]), s); if (par == null || typeof par !== 'object') continue;
+      if (m.del) { if (Array.isArray(par)) par.splice(Number(p[p.length - 1]), 1); else delete par[p[p.length - 1] as string]; } else par[p[p.length - 1] as any] = m.v; }
+    const badShape = !Array.isArray(s.exercises) || !Array.isArray(s.templates);
+    const r = await boot(s); n++;
+    if (r.thrown) { initThrow++; other.push('init: ' + r.thrown); return; }
+    if (r.rec) { recov++; if (badShape) recovBadShape++; else { recovOther++; other.push(JSON.stringify(muts).slice(0, 200)); } }
+  }), { numRuns: 400, seed: 20261027 });
+  log.push(`12-001 A: startów=${n}, kopia nieczytelnych danych=${recov} (z czego exercises/templates nie-tablica=${recovBadShape}, inne=${recovOther}), wyjątek init=${initThrow}`);
+  other.slice(0, 5).forEach(o => log.push('  inne: ' + o));
+  expect(recovOther).toBe(0);
+});
+
+test('12-001 B: start, gdy migrate rzuca (exercises nie jest tablicą) — pusta aplikacja z kopią, nie tryb awaryjny', async () => {
+  const s = JSON.parse(JSON.stringify(fx.state)); const nW = s.workouts.length; s.exercises = {};
+  const r = await boot(s);
+  const st = store.getState();
+  log.push(`12-001 B: wyjątek init=${r.thrown ?? 'brak'}, recovery=${!!r.rec}, state_corrupt=${r.corrupt}, treningów w aplikacji=${st.workouts.length} (było ${nW}), w state_corrupt=${JSON.parse(global.__kv.get(r.rec!.key)!).workouts.length}`);
+  expect(r.thrown).toBeNull(); expect(st.workouts.length).toBe(0);
+});
+
+test('05-002: zapis schematu 19 z pustą sesją — po starcie i flush pusta sesja znika, kopii premigrate brak', async () => {
+  const s = JSON.parse(JSON.stringify(fx.state)); const w0 = JSON.parse(JSON.stringify(s.workouts[0])); w0.id = 'pusta'; w0.exercises = []; s.workouts.push(w0);
+  await boot(s); await store.flush();
+  const after = JSON.parse(global.__kv.get('state')!);
+  const pre = [...global.__kv.keys()].filter(k => k.startsWith('premigrate'));
+  log.push(`05-002: pusta sesja w „state” po flush=${after.workouts.some((w: any) => w.id === 'pusta')}, klucze premigrate=${JSON.stringify(pre)}`);
+  expect(pre).toEqual([]);
+});
+
+test('05-001: notatka serii 450 znaków z importu CSV vs zapis w oknie notatki (clampName 300)', () => {
+  const longNote = 'n'.repeat(450);
+  const csv = 'Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE\n2026-10-01 10:00:00,T,30m,Back Squat,1,100,5,0,0,' + longNote + ',,\n';
+  const p = parseImport(csv, Date.UTC(2026, 9, 27));
+  const n = p.sessions[0].exercises[0].sets[0].note.length;
+  const after = clampName(longNote.trim(), 300).length;
+  log.push(`05-001: notatka po imporcie CSV=${n} znaków; po „Zapisz” w oknie notatki (clampName(…, 300))=${after} znaków`);
+  expect(n).toBe(450); expect(after).toBe(300);
+});

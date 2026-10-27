@@ -25,3 +25,7 @@ Reguła wypychania: przed każdym pushem wyklucz pliki skopiowane z biblioteki p
 19:3x UTC: 12-niezawodnosc gotowe (P0 0, P1 2, P2 1).
 19:4x UTC: 04 gotowe (P0 0, P1 4, P2 7); start 07-jakosc (02-b czyta kod, bez ciężkich operacji).
 20:0x UTC: 02-b gotowe (P0 0, P1 3, P2 4). Start weryfikacji przeciwnej (3 grupy) równolegle z 07.
+20:3x UTC: weryfikacja G1–G3 gotowa; G4, G5 w toku; 07 w toku.
+20:4x UTC: 07 gotowe (P0 0, P1 4, P2 7; czytało stan.md M1 — odnotować jako odstępstwo od niezależności GEN-04, nie wpływa na jego znaleziska własne). Start G6.
+
+20:50 UTC: E3 gotowe — raport końcowy audit/M1-audytor-generalny-2026-10-27.md (kontrola kod 0), plan-napraw.json (sprawdz-plan kod 0): 37 pozycji (8 P1, 29 P2), 8 decyzji. Werdykt: kurs trafny, stan ZABLOKOWANE. STOP 2: czekam na wybory właściciela (DEC-01, 02, 03, 07, 09) i zatwierdzenie pozycji; potem zapis w planie i polecenie M2.
