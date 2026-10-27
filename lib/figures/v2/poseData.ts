@@ -48,9 +48,9 @@ export const DATA_UI: Record<string, DataUi> = {
 /** Nazwy faz licznika dla ruchów rodzin z poza statycznymi: wpis po ćwiczeniu ma pierwszeństwo przed DATA_UI rodziny (Cat-Cow i Inchworm nie są Opuszczaniem/Wstawaniem). Teksty przez t() (lib/i18n.en.ts). */
 export const PHASES_BY_EXERCISE: Record<string, { first: PhaseName; second: PhaseName }> = {
   /* u = 0 koci grzbiet → u = 1 krowa */
-  'Cat-Cow': { first: 'Wygięcie', second: 'Zaokrąglenie' },
-  /* u = 0 podpór → u = 1 skłon: stopy dochodzą do dłoni (pierwsza faza), wejście w podpór (druga) */
-  Inchworm: { first: 'Stopy do dłoni', second: 'Marsz w podpór' },
+  'Cat-Cow': { first: 'Grzbiet w dół', second: 'Koci grzbiet' },
+  /* u = 0 podpór → u = 1 skłon: dłonie wracają krokami do stóp (pierwsza faza), marsz rąk w podpór (druga); rysunek w układzie stóp */
+  Inchworm: { first: 'Dłonie do stóp', second: 'Marsz w podpór' },
 };
 export const dataUiFor = (family: string): DataUi | null => own(DATA_UI, family) ?? null;
 

@@ -6689,6 +6689,9 @@
       }
     },
     "mobility_stand": {
+      "dynamiczne": {
+        "Inchworm": "marsz rąk w podporze: dłonie idą naprzemiennie po ok. 22 cm przy rękach prawie prostych (bark 62 cm nad podłogą, ramię 64 cm), więc łokieć (IK) przesuwa się o 7,2 cm na 1/48 ruchu wobec limitu 6 cm ruchu zwykłego (pomiar generatora 27.10.2026) — limit CONTRACT.maxJumpDynamic (v2-sens.dynamiczne)"
+      },
       "reguly": {
         "poza_nieruchoma": {
           "typ": "szkielet_nieruchomy",
@@ -6782,7 +6785,7 @@
             "min_cm": 15,
             "max_cm": 45
           },
-          "zrodlo": "ACE #174 Overhead Triceps Stretch (ręka w górę, zgięcie łokcia, dłoń opada na środek pleców) — przeczytane 26.10.2026",
+          "zrodlo": "ACE #174 Overhead Triceps Stretch (krok 1: „let your right hand drop to the middle of your back, palm facing your back”; ręka pomocnicza jest częścią kroku 1: „place your fingers on your right arm, just above the elbow, applying light pressure to deepen the stretch” — rysunek jej nie ma, patrz PRZYBLIZENIA) — przeczytane 26.10.2026",
           "liczba": "uproszczenie (łokieć 15–45 cm nad barkiem; ramię pionowo ≈ 31 cm)",
           "pewnosc": "jedno źródło"
         },
@@ -6897,7 +6900,7 @@
             "koniec": "kostka_dalsza",
             "tylko_skrajna": true
           },
-          "zrodlo": "ACE #254 (krok 3: dojście do „a full-push-up position where your spine, hips and head are level with the floor”; krok 4: „Do not allow your low back to sag.”) — przeczytane 26.10.2026",
+          "zrodlo": "ACE #254 (krok 3: dojście do „a full-push-up position where your spine, hips and head are level with the floor”; krok 4: „Do not allow your low back to sag or your hips to hike upwards during this downward phase.”) — przeczytane 26.10.2026",
           "liczba": "konwencja (jak pushup_plank.cialo_w_linii)",
           "pewnosc": "jedno źródło"
         },
@@ -7210,6 +7213,9 @@
       "pomin": {}
     },
     "mobility_floor": {
+      "zakres_wyjatki": {
+        "Child's Pose": { "hipMax": 142, "kneeMax": 156, "powod": "siad na piętach z tułowiem złożonym na uda (ACE #227: „…hinge at the hips, bringing your glutes to your heels”): bierne zgięcie kolana ok. 152° (limit zakresu czynnego 141°) i biodra ok. 139° (limit 133°); wartości graniczne w kontrakcie: CONTRACT.kneePassiveMaxDeg i CONTRACT.hipPassiveMaxDeg; uproszczenie ilustracyjne, decyzja koordynatora 27.10.2026 (rozszerzamy model zamiast wyjątku bez animacji)" }
+      },
       "reguly": {
         "poza_nieruchoma": {
           "typ": "szkielet_nieruchomy",
@@ -7244,7 +7250,7 @@
             "nogi": "co_najmniej_jedna",
             "max_min_deg": 15
           },
-          "zrodlo": "ACE #273 Modified Hurdler's Stretch (jedna noga wyprostowana, druga zgięta stopą do uda), ACE #149 (dolna noga wyprostowana) — przeczytane 26.10.2026; AAOS Hip Conditioning Program, Supine Hamstring Stretch („Straighten your leg…”, druga stopa na podłodze z kolanem zgiętym) — przeczytane 27.10.2026",
+          "zrodlo": "ACE #273 Modified Hurdler's Stretch (jedna noga wyprostowana, druga zgięta stopą do uda), ACE #149 (dolna noga wyprostowana w pozycji wyjściowej: „with your legs extended straight away from your body”; strona nie mówi o niej w trakcie ruchu) — przeczytane 26.10.2026; AAOS Hip Conditioning Program, Exercises Page 2, ćw. 4 (Supine Hamstring Stretch: „Lie on the floor with both knees bent.”, dalej „Straighten your leg and then pull it gently toward your head until you feel a stretch.”; druga stopa na podłodze z rysunku źródła) — przeczytane 27.10.2026",
           "liczba": "uproszczenie",
           "pewnosc": "ustalone"
         },
@@ -7302,7 +7308,7 @@
           "parametry": {
             "min_deg": 120
           },
-          "zrodlo": "ACE #227 Child's Pose („…hinge at the hips, bringing your glutes to your heels”) — przeczytane 26.10.2026",
+          "zrodlo": "ACE #227 Child's Pose („…hinge at the hips, bringing your glutes to your heels”; krok 4, wariant rąk: „Extend your arms alongside the body with the palms facing upward and the fronts of your shoulders toward the floor.”) — przeczytane 26.10.2026",
           "liczba": "uproszczenie (kolana ≥ 120°)",
           "pewnosc": "jedno źródło"
         },
@@ -7423,7 +7429,7 @@
             "osiaga_co_najmniej": 10,
             "osiaga_co_najwyzej": -10
           },
-          "zrodlo": "ACE #15 Cat-Cow (krok 4: „pushing your spine upwards towards the ceiling”; krok 5: „Let your stomach fall towards the floor (increasing the arch in your low back)”) — przeczytane 26.10.2026",
+          "zrodlo": "ACE #15 Cat-Cow (krok 4: „pushing your spine upwards towards the ceiling”; krok 5: „Let your stomach fall towards the floor (increasing the arch in your low back)”; głowa w fazie kota: „Allow your head to fall towards your chest, maintaining alignment with the spine.”) — przeczytane 26.10.2026",
           "liczba": "konwencja (zgięcie ≥ 10° i wyprost ≥ 10° względem neutralnego)",
           "pewnosc": "jedno źródło"
         },
@@ -7551,7 +7557,7 @@
       },
       "otwarte_czesciowo": {
         "rozciągania bez źródła pozycji (8)": "Intermediate Groin, Kneeling Forearm, Middle Back, Peroneals, Posterior Tibialis, Runner's, Side Lying Groin, Upper Back — tylko „poza nieruchoma” (UPROSZCZENIE); Peroneals / Posterior Tibialis: istota (odwrócenie/nawrócenie stopy) nie jest stopniem swobody nawet w poza@2; Kneeling Forearm: wyprost nadgarstka możliwy w poza@2, ale źródła pozycji nie mam",
-        "Supine Hamstring Stretch": "27.10.2026: poza wg AAOS (leżenie, jedna noga wyprostowana w górę, dłonie splecione z tyłu uda, druga noga zgięta ze stopą na podłodze); ACE #235 opisuje nogę opartą o ścianę (wariant niedrawany). Uniesienia nogi i położenia dłoni sprawdza tests/figury-mobilnosc-reguly.test.ts (brak typu „zgięcie biodra jednej nogi ≥” i „dłonie przy udzie”)",
+        "Supine Hamstring Stretch": "27.10.2026: poza wg AAOS (Hip Conditioning Program, Exercises Page 2, ćw. 4: „Lie on the floor with both knees bent.”, „Clasp your hands behind your thigh below your knee.”; leżenie, jedna noga wyprostowana w górę, dłonie splecione z tyłu uda, druga noga zgięta ze stopą na podłodze — stopa „na podłodze” z rysunku źródła); ACE #235 opisuje nogę opartą o ścianę (wariant niedrawany). Uniesienia nogi i położenia dłoni sprawdza tests/figury-mobilnosc-reguly.test.ts (brak typu „zgięcie biodra jednej nogi ≥” i „dłonie przy udzie”)",
         "Supine Figure-Four Stretch, Supine Spinal Twist": "pozycja z pokrewnego ćwiczenia ACE (analogia)",
         "Seated Rotation Stretch": "skręt z nazwy (konwencja)"
       },

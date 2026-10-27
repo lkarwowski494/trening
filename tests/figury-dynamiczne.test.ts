@@ -14,7 +14,7 @@ const ROOT = path.join(__dirname, '..');
 const SENS = path.join(ROOT, 'scripts/figures/v2-sens.mjs');
 const VAL = path.join(ROOT, 'scripts/figures/v2-validate.mjs');
 const run = (script: string, code: string) => JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', `import * as m from ${JSON.stringify(script)}; ${code}`], { env: { PATH: process.env.PATH ?? '' } as unknown as NodeJS.ProcessEnv, encoding: 'utf8', maxBuffer: 1 << 26 }));
-const DYN = ['olympic', 'plyo', 'kb_ballistic', 'sled_throw', 'strongman'];
+const DYN = ['olympic', 'plyo', 'kb_ballistic', 'sled_throw', 'strongman', 'mobility_stand']; /* mobility_stand: Inchworm (marsz rąk w podporze, 27.10.2026): tempo łokcia 7,2 cm na 1/48 */
 const sens = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/figury-sens.json'), 'utf8')).rodziny as Record<string, { dynamiczne?: Record<string, string>; warianty?: Record<string, unknown> }>;
 
 describe('deklaracja „dynamiczne” w danych sensu (powód obowiązkowy)', () => {

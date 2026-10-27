@@ -25995,7 +25995,6 @@
   "loadSource": "bodyweight",
   "muscleLoad": {
    "lower_back": 0.25,
-   "lats": 0.25,
    "glutes": 0.25
   },
   "confidence": "high",
@@ -27333,8 +27332,7 @@
   ],
   "loadSource": "bodyweight",
   "muscleLoad": {
-   "calves": 0.25,
-   "hamstrings": 0.25
+   "calves": 0.25
   },
   "confidence": "medium",
   "note": "Heel on a step, knee straight, reach for the toes; any step or curb works.",

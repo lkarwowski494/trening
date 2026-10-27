@@ -4,18 +4,18 @@
  "klucze": [
   {
    "rodzaj": "nowy",
-   "pl": "Wygięcie",
+   "pl": "Grzbiet w dół",
    "en": "Arching"
   },
   {
    "rodzaj": "nowy",
-   "pl": "Zaokrąglenie",
+   "pl": "Koci grzbiet",
    "en": "Rounding"
   },
   {
    "rodzaj": "nowy",
-   "pl": "Stopy do dłoni",
-   "en": "Feet to hands"
+   "pl": "Dłonie do stóp",
+   "en": "Hands to feet"
   },
   {
    "rodzaj": "nowy",

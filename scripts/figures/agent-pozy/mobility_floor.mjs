@@ -48,13 +48,16 @@ function butterfly(cw) {
 }
 
 /* ---------- klęk i wykrok ---------- */
-/** Child's Pose (ACE #227: klęk, kolana szeroko, palce za sobą (stopy wyprostowane podeszwowo), pośladki do pięt, klatka między udami, czoło na podłodze, ręce wyciągnięte do przodu): pośladki na piętach, głowa przy podłodze, ręce na podłodze.
- * Model nie ma stopy leżącej grzbietem na podłodze (podbicie ≤ 90°): stopy stoją na palcach skierowanych w dół (PRZYBLIZENIA). */
+/** Child's Pose (ACE #227: klęk, kolana szeroko, palce za sobą (stopy wyprostowane podeszwowo, grzbietem do podłogi), pośladki do pięt, klatka między udami, czoło na podłodze; krok 4: ręce wzdłuż ciała, dłonie do góry):
+ * pośladki na piętach (środek miednicy 12,6 cm od pięty = styk), kolana zgięte biernie ok. 156° (model: wyjątek `kneeMax`, limit CONTRACT.kneePassiveMaxDeg), biodro zgięte ≈ 139°, czoło na podłodze, ręce wzdłuż ciała (dłonie przy biodrach).
+ * Stopa leży grzbietem na podłodze (podbicie 180° + a: palce do tyłu i w dół o a°; tak samo jak tylna stopa przysiadu bułgarskiego). */
+const CP_A = 28; /* nachylenie osi stopy leżącej grzbietem (palce opadają o tyle stopni; kostka ≈ 5 cm nad podłogą, czubek palców ≈ 2 cm) */
 function childsPose(cw) {
-  const m = [26, 34, 0]; const p = 100; const T = sonda(m, p); const pod = -90;
-  const nogi = {}; for (const s of SD) nogi[s] = { a: [0, kostkaY(pod), POL(s) * 6], pod, rot: 0, pole: [1, 0, POL(s)] };
-  const rece = rekiDo(T.sh, { R: [22, 3, 26], L: [22, 3, -26] }, { R: [-0.5, 0.3, 1], L: [-0.5, 0.3, -1] });
-  return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 150, nogi, rece }));
+  const m = [2, 26, 0]; const p = 100; const T = sonda(m, p); const pod = 180 + CP_A; const ay = 6;
+  const nogi = {}; for (const s of SD) nogi[s] = { a: [0, ay, POL(s) * 6], pod, rot: 6, pole: [1, -0.5, POL(s) * 0.6] };
+  const neckY = T.shoulderC[1] + 4 * Math.cos(p * R); const hp = Math.acos(Math.max(-1, Math.min(1, (9.8 - neckY) / 18))) / R; /* środek głowy tuż nad podłogą: czoło na podłodze */
+  const rece = rekiDo(T.sh, { R: [-2, 3, 22], L: [-2, 3, -22] }, { R: [0, 0.3, 1], L: [0, 0.3, -1] });
+  return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: r1(hp), nogi, rece }));
 }
 /** Wykrok w klęku podpartym: tylna noga (L) kolanem przy podłodze, palce stopy podwinięte; przednia (R) stopa płasko. */
 function wykrokKleczny({ y = 46, p = 12, xF = 43, xB = -57, head = 6, rece }) {
@@ -82,19 +85,26 @@ function supineHamstring(cw) {
 /* ---------- leżenie bokiem (LEWY bok na podłodze, klatka ku −z (od kamery), głowa ku −x; górna noga R jest po stronie kamery) ---------- */
 const PYB = 23;
 const bokRamka = (nogi, rece, ext = { roll: -90 }) => (u) => K({ u, m: [0, PYB, 0], p: -90, head: -90, roll: ext.roll, R: nogi.R, L: nogi.L, hr: rece.R, hl: rece.L });
-/** Side-Lying Quad Stretch (ACE #149: leżenie na boku, biodra i barki jedno nad drugim, dolna ręka zgięta, przedramię pod głową; górne kolano zgięte, pięta ku pośladkowi, ręka górnej strony trzyma stopę, udo przy dolnym udzie, kolano wskazuje prosto od biodra; dolna noga prosta):
- * leżymy na LEWYM boku, górna (prawa) noga i dłoń są po stronie kamery (pięta i dłoń widoczne w rzucie z boku), stopy wzdłuż kierunku twarzy (−z). */
+/** Side-Lying Quad Stretch (ACE #149: leżenie na boku, biodra i barki jedno nad drugim, dolna ręka zgięta, przedramię pod głową; górne kolano zgięte, pięta ku pośladkowi: „Bend your left knee and pull your left heel up towards your left glute…”, „keeping the left thigh and knee resting on the inside of the right thigh and pointing straight out from the left hip joint”; dolna noga prosta tylko w pozycji wyjściowej: „with your legs extended straight away from your body”):
+ * leżymy na LEWYM boku (klatka ku −z, od kamery), górna (prawa) noga: udo w linii tułowia (biodro ≈ 13°, udo spoczywa na dolnym udzie), kolano zgięte ok. 140° (granica modelu) ku tyłowi ciała (+z, do kamery),
+ * dłoń górnej ręki (zza pleców) przy kostce (1,3 cm; środek dłoni na odcinku bark–kostka, sięg ręki ≈ 63 cm). */
+const SQ_PSI = 40; const SQ_POD = 45;
 function sideQuad(cw) {
-  const m = [0, PYB, 0]; const T = sonda(m, -90, { ext: { roll: -90 } });
-  const aR = [T.hip.R[0] + 27, T.hip.R[1] + 4, T.hip.R[2] + 6]; const aL = [T.hip.L[0] + 82.6, 8, T.hip.L[2]];
-  const nogi = { R: { a: aR, pod: 30, rot: 0, pole: [1, 0.1, 0.1] }, L: { a: aL, pod: 0, rot: 90, pole: [0, 1, -0.3] } };
-  const rece = { R: { g: sieganie(T.sh.R, [aR[0] + 2, aR[1] + 1, aR[2] - 5]), pole: [0, 0.4, 1] }, L: { g: [T.sh.L[0] - 12, 14, T.sh.L[2] - 8], pole: [0, 0.3, -1] } };
+  const m = [0, PYB, 0]; const T = sonda(m, -90, { ext: { roll: -90 } }); const H = T.hip.R; const B = BODY();
+  const th = 5 * R; const d1 = [Math.cos(th), -Math.sin(th), 0]; const K1 = add(H, d1, B.thigh);
+  const kf = 40 * R; /* kąt wewnętrzny kolana (zgięcie 140°); goleń zawraca ku tyłowi ciała (+z) */
+  const psi = SQ_PSI * R; /* płaszczyzna zgięcia kolana: ku tyłowi ciała (+z) i w górę (+y) */
+  const aR = add(K1, [-d1[0] * Math.cos(kf), -d1[1] * Math.cos(kf) + Math.sin(kf) * Math.sin(psi), Math.sin(kf) * Math.cos(psi)], B.shank).map(r1);
+  const mid = [(H[0] + aR[0]) / 2, (H[1] + aR[1]) / 2, (H[2] + aR[2]) / 2]; const pole = nrm([K1[0] - mid[0], K1[1] - mid[1], K1[2] - mid[2]]).map((x) => r1(x * 100) / 100);
+  const aL = [T.hip.L[0] + 82.6, 8, T.hip.L[2]];
+  const nogi = { R: { a: aR, pod: SQ_POD, rot: 0, pole }, L: { a: aL, pod: 0, rot: 90, pole: [0, 1, -0.3] } };
+  const rece = { R: { g: sieganie(T.sh.R, aR), pole: [0, 1, 0.5] }, L: { g: [T.sh.L[0] - 12, 14, T.sh.L[2] - 8], pole: [0, 0.3, -1] } };
   return statyczna(RODZINA, cw, SP, bokRamka(nogi, rece));
 }
 
 
 /* ---------- czworak: Cat-Cow ---------- */
-/** Cat-Cow (ACE #15: klęk podparty, dłonie pod barkami, kolana pod biodrami; koci grzbiet: brzuch w górę, „allow your head to fall towards your chest”; krowa: brzuch opada ku podłodze, kręgosłup wygięty, bez zalecenia dla głowy): głowa idzie za kręgosłupem
+/** Cat-Cow (ACE #15: klęk podparty, dłonie pod barkami, kolana pod biodrami; koci grzbiet: brzuch w górę, „Allow your head to fall towards your chest, maintaining alignment with the spine.”; krowa: brzuch opada ku podłodze, kręgosłup wygięty, bez zalecenia dla głowy): głowa idzie za kręgosłupem
  * — przy kocim grzbiecie opuszczona ku klatce (głowa − tułów +28°), w przejściu +14°, przy krowie w linii z tułowiem (0°; źródło nie każe unosić głowy). */
 function catCow(cw) {
   const B = BODY(); const hx = 60; const Sy = 65.8; const Py = 8.8 + B.thigh;
@@ -116,10 +126,10 @@ WYJATKI['Peroneals Stretch'] = 'istota ćwiczenia (odwrócenie stopy z paskiem) 
 WYJATKI['Posterior Tibialis Stretch'] = 'istota ćwiczenia (nawrócenie stopy z paskiem) nie jest stopniem swobody modelu, a pozycja nie ma przeczytanego źródła; wyjątek bez animacji (decyzja właściciela 26.10.2026 o ćwiczeniach bez widocznej istoty ruchu; 27.10.2026)';
 WYJATKI['Downward Facing Balance'] = 'zestaw „open”: ćwiczenie na piłce gimnastycznej bez przeczytanego źródła pozycji; wyjątek bez animacji (decyzja właściciela 27.10.2026)';
 export const PRZYBLIZENIA = {
-  "Child's Pose": 'przybliżenie: wariant ACE #227 „ręce wzdłuż ciała” (krok 4); miednica ok. 33 cm od pięt (zgięcie kolana modelu ≤ 141°), stopy na palcach skierowanych w dół (model nie ma stopy leżącej grzbietem na podłodze); kolana szeroko',
+  "Child's Pose": 'wariant ACE #227 „ręce wzdłuż ciała” (krok 4: „Extend your arms alongside the body with the palms facing upward…”): dłonie na podłodze przy biodrach (palce do góry nie rysujemy); kolana szeroko, bierne zgięcie kolana ≈ 152° i biodra ≈ 139° (wyjątek zakresu: CONTRACT.kneePassiveMaxDeg, hipPassiveMaxDeg); stopy grzbietem na podłodze (podbicie 208°, krok 1: „toes pointing behind you”)',
   'Seated Calf Stretch': 'przybliżenie: stopa pionowo (zgięcie grzbietowe ≈ 0°, maksymalne podbicie modelu to 90°); guma owinięta wokół podeszwy prawej stopy (ACE #214), druga noga bez gumy',
   'Supine Hamstring Stretch': 'poza wg AAOS (dłonie splecione z tyłu uda, druga noga zgięta, stopa na podłodze); wariant ACE #235 z nogą o ścianę nie jest rysowany',
-  'Side-Lying Quad Stretch': 'przybliżenie: leżenie na lewym boku, górną (prawą) nogą i dłonią od strony kamery; stopy ułożone poziomo (model nie ma stopy wzdłuż goleni leżącej na boku)',
+  'Side-Lying Quad Stretch': 'przybliżenie: leżenie na lewym boku, górną (prawą) nogą i dłonią od strony kamery; udo w linii tułowia (biodro ≈ 13°), kolano zgięte ≈ 140° (granica modelu), goleń zawraca ku tyłowi ciała i w górę; dłoń 1,3 cm od kostki (sięg ręki ≈ 63 cm); stopa pochylona 45° (model nie ma stopy wzdłuż goleni leżącej na boku)',
 };
 export function generuj() {
   const G = {

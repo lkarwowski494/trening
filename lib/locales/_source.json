@@ -1139,6 +1139,10 @@
   "en": "Diet"
  },
  {
+  "pl": "Dłonie do stóp",
+  "en": "Hands to feet"
+ },
+ {
   "pl": "dni 1–{n} miesiąca vs poprzedni miesiąc",
   "en": "days 1–{n} of the month vs last month"
  },
@@ -1661,6 +1665,10 @@
   "en": "Trap (hex) bar + plates"
  },
  {
+  "pl": "Grzbiet w dół",
+  "en": "Arching"
+ },
+ {
   "pl": "guma",
   "en": "band"
  },
@@ -2014,6 +2022,10 @@
  {
   "pl": "kłoda (log)",
   "en": "log bar"
+ },
+ {
+  "pl": "Koci grzbiet",
+  "en": "Rounding"
  },
  {
   "pl": "Kolejność ćwiczeń",
@@ -5000,10 +5012,6 @@
   "en": "Stopwatch running"
  },
  {
-  "pl": "Stopy do dłoni",
-  "en": "Feet to hands"
- },
- {
   "pl": "stos na {v}",
   "en": "stack at {v}"
  },
@@ -6369,10 +6377,6 @@
   "en": "Generate templates and plan"
  },
  {
-  "pl": "Wygięcie",
-  "en": "Arching"
- },
- {
   "pl": "Wygląd",
   "en": "Appearance"
  },
@@ -6683,10 +6687,6 @@
  {
   "pl": "Zamknij",
   "en": "Close"
- },
- {
-  "pl": "Zaokrąglenie",
-  "en": "Rounding"
  },
  {
   "pl": "Zapamiętać dla tego ćwiczenia?",

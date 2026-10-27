@@ -25,8 +25,9 @@ function sideNeck(cw) {
   const m = [0, MY, 0]; const p = 0; const T = sonda(m, p);
   return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 0, nogi: stoj(0, 12), rece: rekiWzdluz(T), ext: { headTilt: 25 } }));
 }
-/** Overhead Triceps Stretch (ACE #174: stanie, stopy na szerokość bioder; prawa ręka w górę, łokieć zgięty, dłoń opada na plecy za głową): łokieć nad barkiem, dłoń za szyją na górze pleców (zasięg ręki modelu).
- * Ręka pomocnicza (lewa, lekki nacisk na ramieniu tuż przy łokciu) NIE jest rysowana: dosięgnięcie prawego łokcia nad głową wymaga barku powyżej zakresu modelu (171°) albo przejścia przez głowę — lewa ręka zwisa wzdłuż ciała (PRZYBLIZENIA). */
+/** Overhead Triceps Stretch (ACE #174, krok 1: stanie, stopy na szerokość bioder; prawa ręka w górę, łokieć zgięty, dłoń opada za głowę, lewa dłoń na prawym ramieniu tuż nad łokciem, lekki nacisk): łokieć nad barkiem, dłoń za szyją na górze pleców (zasięg ręki modelu).
+ * Ręka pomocnicza (lewa) jest częścią kroku 1 źródła, ale NIE jest rysowana — próba 27.10.2026: lewa dłoń na prawym ramieniu (7,2 cm od łokcia) wymaga albo barku L 192° (limit modelu 171°; najlepsze ułożenie łokcia za głową), albo przedramienia przechodzącego przez głowę
+ * (łokieć L nie może wyjść nad czubek głowy: ramię 31 cm od barku daje y ≤ 170,5, a głowa sięga y = 170,4; przedramię leży ≈ 3 cm w głowie). Lewa ręka zwisa wzdłuż ciała (PRZYBLIZENIA). */
 function overheadTriceps(cw) {
   const m = [0, MY, 0]; const p = 0; const T = sonda(m, p);
   const gR = [-12, 144, 5]; const poleR = [0.6, 1, 0.3];
@@ -41,14 +42,14 @@ function standingChest(cw) {
 }
 /** Wykrok łydkowy: tylna noga (L) i przednia (R); tylna prosta (kolano ≤ 15°) albo lekko ugięta. */
 function wykrokLydka({ wall, tylnaProsta }) {
-  const p = wall ? 20 : 8; const m = wall ? [-7, 80, 0] : [-7, 79, 0]; const T = sonda(m, p);
+  const p = wall ? 22 : 8; const m = wall ? [-1, 80, 0] : [-7, 79, 0]; const T = sonda(m, p);
   const aF = [25, 7, 10]; const aB = tylnaProsta ? prosta(T.hip.L, [-0.47, -0.88, -0.03], { pod: 0 }).a : [-16, 7, -10];
   aB[1] = 7;
   const nogi = { R: { a: aF, pod: 0, rot: 8, pole: [1, 0, 0.1] }, L: { a: aB, pod: 0, rot: 8, pole: [1, 0.1, -0.1] } };
-  const rece = wall ? rekiDo(T.sh, { R: [72, 125, 19], L: [72, 125, -19] }, { R: [0, -0.5, 1], L: [0, -0.5, -1] }) : { R: { g: [T.hip.R[0] - 2, T.hip.R[1] + 8, 24], pole: [-0.6, -0.1, 1] }, L: { g: [T.hip.L[0] - 2, T.hip.L[1] + 8, -24], pole: [-0.6, -0.1, -1] } };
+  const rece = wall ? rekiDo(T.sh, { R: [72, 132, 19], L: [72, 132, -19] }, { R: [0, -0.5, 1], L: [0, -0.5, -1] }) : { R: { g: [T.hip.R[0] - 2, T.hip.R[1] + 8, 24], pole: [-0.6, -0.1, 1] }, L: { g: [T.hip.L[0] - 2, T.hip.L[1] + 8, -24], pole: [-0.6, -0.1, -1] } };
   return { m, p, nogi, rece };
 }
-/** Wall Calf Stretch (ACE #152 Standing Dorsi-Flexion Calf Stretch: twarzą do ściany, dłonie na ścianie nieco powyżej barków, rozkrok, OBIE stopy płasko, tylna noga prosta z piętą dociśniętą do podłogi, przednie kolano zgięte): wykrok, dłonie na ścianie przed sobą (ręce proste), tylna noga prosta z piętą na podłodze, przednia ugięta. */
+/** Wall Calf Stretch (ACE #152 Standing Dorsi-Flexion Calf Stretch: twarzą do ściany, dłonie na ścianie nieco powyżej barków, rozkrok, OBIE stopy płasko, tylna noga prosta z piętą dociśniętą do podłogi, przednie kolano zgięte): wykrok, dłonie na ścianie przed sobą (łokcie zgięte ok. 63°: „allowing your elbows to bend as you shift your weight forward”, krok 2), tylna noga prosta z piętą na podłodze, przednia ugięta. */
 function wallCalf(cw) {
   const o = wykrokLydka({ wall: true, tylnaProsta: true });
   return statyczna(RODZINA, cw, [...SP, { rodzaj: 'sciana', x: 75, h: 250, przed: true }], (u) => ramka(u, { m: o.m, p: o.p, head: 12, nogi: o.nogi, rece: o.rece }));
@@ -65,28 +66,41 @@ function lateral(cw) {
   return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 0, nogi: stoj(0, 12), rece, ext }));
 }
 
-/* ---------- Inchworm: wymiary ruchu w układzie dłoni ---------- */
-/** Inchworm (ACE #254): skłon z dłońmi na podłodze → marsz rąk do podporu → wejście stopami do dłoni. Pętla odtwarza ruch tam i z powrotem (ping-pong), więc rysujemy go w układzie DŁONI: dłonie stoją w miejscu (x = INCH_H), a stopy dochodzą do nich krokami
- * (krok 12,5–25 cm w źródle; tu 4 kroki po ok. 19 cm). u = 0: podpór (dłonie daleko), u = 1: skłon (stopy przy dłoniach). Ruch wstecz (u: 1 → 0) to marsz stóp do tyłu, czyli względem ciała ten sam ruch co „marsz rąk do podporu” ze źródła.
- * Podpory nie ślizgają się: dłonie nie ruszają się wcale, palce stóp stoją w miejscu między krokami (stopa obraca się wokół palców), a w kroku stopa jest uniesiona (INCH_LIFT). Marsz rąk i stóp naprzemiennie (jedna kończyna naraz) to UPROSZCZENIE: obie stopy idą razem. */
-export const INCH_H = 150; export const INCH_KROKI = 5; export const INCH_LIFT = 5;
+/* ---------- Inchworm: marsz rąk w układzie stóp ---------- */
+/** Inchworm (ACE #254): skłon z dłońmi na podłodze → marsz rąk do podporu → marsz stóp do dłoni. Pętla odtwarza ruch tam i z powrotem (ping-pong): u = 0 podpór (dłonie daleko), u = 1 skłon (dłonie przy stopach).
+ * Rysujemy go w układzie STÓP: palce stóp stoją w miejscu (obrót stopy wokół palców, pięta unosi się w podporze), a dłonie idą NAPRZEMIENNIE (R, L, R, L, R, L: po INCH_KROKI kroków każda, krok ≈ 22 cm ≈ 9", w zakresie źródła 6–12"): w każdej chwili co najmniej jedna
+ * dłoń stoi na podłodze, dłoń w kroku jest uniesiona o INCH_LIFT, a jej położenie tylko maleje (u rośnie): bez poślizgu i bez kroku wstecz. Względem ciała to ten sam ruch co marsz stóp do dłoni (krok 5: „…taking 6-12" steps without moving your hands”).
+ * Dlaczego nie naprzemienne stopy: przy nogach prawie prostych (kolano ≤ 25°) odległość biodro–kostka obu nóg może się różnić o ok. 1,4 cm, więc rozstaw stóp w x wynosi najwyżej 1,5 cm w podporze i ok. 8 cm w skłonie (nie 15–30 cm ze źródła); ruch stóp pokazuje ten sam rysunek co ruch rąk.
+ * Ciało (miednica, tułów) podąża za środkiem między dłońmi: ręce są prawie pionowe, więc dłoń może odejść od barku w x najwyżej o ok. 16 cm (ramię 64 cm, bark nad podłogą 62 cm) — rozstaw dłoni ≈ 22 cm mieści się jako ±11 cm. Pompka w podporze (ACE #254, krok 4: „Perform one full push-up…”) jest pominięta (uproszczenie, PRZYBLIZENIA). */
+export const INCH_KROKI = 4; export const INCH_LIFT = 5; export const INCH_TULOW_KONIEC = 120; const INCH_BARK_Y = 64; /* wysokość barków nad podłogą (ręka 64 cm: zapas na zgięcie łokcia przy kroku) */
+const INCH_ZASIEG = 62; /* odległość bark–dłoń przy dłoniach pod środkiem (stoją prawie proste) */
+/** Ułożenie ciała dla postępu `post` (0 = podpór, 1 = skłon) w układzie stóp: palce stóp w x = 0, ręka prosta do podłogi. */
+function inchTelo(post) {
+  const ee = ease(1 - post); const phi = lerp(4, 70.5, ee); const pod = lerp(0, -55, ee); const L = 82.4; const fp = pod * R; const yaw = 6 * R;
+  const ay = kostkaY(pod); const ax = -(19 * Math.cos(fp) + 7 * Math.sin(fp)) * Math.cos(yaw);
+  const P = [ax + L * Math.sin(phi * R), ay + L * Math.cos(phi * R)];
+  const pLerp = lerp(INCH_TULOW_KONIEC, phi, ee); const pMin = Math.acos(Math.max(-1, Math.min(1, (INCH_BARK_Y - P[1]) / 50))) / R; const p = Math.max(pLerp, pMin);
+  const T = sonda([P[0], P[1], 0], p);
+  const hands = (sd) => { const S = T.sh[sd]; const dy = S[1] - 2; const dx = Math.sqrt(Math.max(0, INCH_ZASIEG * INCH_ZASIEG - dy * dy)); return { g: [S[0] + dx, 2, S[2]], pole: [-1, 0, POL(sd) * 0.3] }; };
+  return { pod, ay, ax, P, p, hr: hands('R'), hl: hands('L') };
+}
+/** Położenie dłoni (x w układzie stóp) jako obwiednia malejąca postępu: do odwracania (x dłoni → postęp). */
+const INCH_TAB = (() => { let m = 1e9; return Array.from({ length: 401 }, (_, k) => { m = Math.min(m, inchTelo(k / 400).hr.g[0]); return m; }); })();
+export const INCH_X0 = INCH_TAB[0]; export const INCH_KROK = (INCH_TAB[0] - INCH_TAB[400]) / INCH_KROKI;
+const inchPostDla = (x) => { let lo = 0, hi = 400; while (lo < hi) { const mid = (lo + hi) >> 1; if (INCH_TAB[mid] > x) lo = mid + 1; else hi = mid; } return Math.min(1, lo / 400); };
+const inchFrames = 2 * 2 * INCH_KROKI + 1; /* 17: dłonie stoją po k krokach (parzyste), środek kroku z uniesioną jedną dłonią (nieparzyste) */
 function inchworm(cw) {
-  /* 11 klatek (limit kontraktu: 12): parzyste = stopy stoją po k krokach, nieparzyste = środek kroku z uniesionymi stopami */
   const fr = (i) => {
-    const u = i / (2 * INCH_KROKI); const post = i / (2 * INCH_KROKI); const lift = i % 2 ? INCH_LIFT : 0; /* post: 0 = podpór, 1 = skłon */
-    const e = 1 - post; const ee = ease(e);
-    const phi = lerp(4, 70.5, ee); const pod = lerp(0, -55, ee); const L = 82.4; const fp = pod * R; const yaw = 6 * R;
-    const ay = kostkaY(pod); const ax = -(19 * Math.cos(fp) + 7 * Math.sin(fp)) * Math.cos(yaw); /* palce w x = 0 (potem przesunięcie) */
-    const P = [ax + L * Math.sin(phi * R), ay + lift + L * Math.cos(phi * R)];
-    const pLerp = lerp(125, phi, ee); const pMin = Math.acos(Math.max(-1, Math.min(1, (64 - P[1]) / 50))) / R; const p = Math.max(pLerp, pMin);
-    const T = sonda([P[0], P[1], 0], p);
-    const hands = (s) => { const S = T.sh[s]; const dy = S[1] - 2; const dx = Math.sqrt(Math.max(0, 63.7 * 63.7 - dy * dy)); return { g: [S[0] + dx, 2, S[2]], pole: [-0.3, -0.5, POL(s) * 0.6] }; };
-    const hr = hands('R'); const hl = hands('L'); const sh = INCH_H - hr.g[0]; /* przesunięcie świata: dłonie zawsze w INCH_H */
-    const mv = (v) => [r1(v[0] + sh), v[1], v[2]];
-    const nogi = { R: { a: mv([ax, ay + lift, 10]), pod, rot: 6, pole: [1, 0, 0.1] }, L: { a: mv([ax, ay + lift, -10]), pod, rot: 6, pole: [1, 0, -0.1] } };
-    return ramka(u, { m: mv([P[0], P[1], 0]), p, head: p * 0.8, nogi, rece: { R: { g: mv(hr.g), pole: hr.pole }, L: { g: mv(hl.g), pole: hl.pole } } });
+    const etap = Math.ceil(i / 2); const wKroku = i % 2 === 1; const ruch = wKroku ? (etap % 2 === 1 ? 'R' : 'L') : null; /* etap nieparzysty: krok prawej dłoni, parzysty: lewej */
+    const kroki = (sd, e) => (sd === 'R' ? Math.ceil(e / 2) : Math.floor(e / 2));
+    const x = {}; const lift = {};
+    for (const sd of SD) { const n = kroki(sd, wKroku ? etap - 1 : etap) + (sd === ruch ? 0.5 : 0); x[sd] = INCH_X0 - n * INCH_KROK; lift[sd] = sd === ruch ? INCH_LIFT : 0; }
+    const B = inchTelo(inchPostDla((x.R + x.L) / 2)); /* ciało podąża za środkiem między dłońmi (każda ±11 cm od barku: ręce prawie proste, nigdy poza zasięgiem) */
+    const rece = {}; for (const sd of SD) { const g = sd === 'R' ? B.hr : B.hl; rece[sd] = { g: [r1(x[sd]), r1(g.g[1] + lift[sd]), g.g[2]], pole: g.pole }; }
+    const nogi = { R: { a: [r1(B.ax), r1(B.ay), 10], pod: B.pod, rot: 6, pole: [1, 0, 0.1] }, L: { a: [r1(B.ax), r1(B.ay), -10], pod: B.pod, rot: 6, pole: [1, 0, -0.1] } };
+    return ramka(i / (inchFrames - 1), { m: [r1(B.P[0]), B.P[1], 0], p: B.p, head: B.p * 0.8, nogi, rece });
   };
-  return poza(RODZINA, cw, SP, Array.from({ length: 2 * INCH_KROKI + 1 }, (_, i) => fr(i)), []);
+  return poza(RODZINA, cw, SP, Array.from({ length: inchFrames }, (_, i) => fr(i)), []);
 }
 
 const BRAK = 'brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)';
@@ -100,8 +114,8 @@ export const WYJATKI = Object.fromEntries([
 WYJATKI['Standing Pelvic Tilt'] = 'ruch wewnętrzny (przechył miednicy w płaszczyźnie strzałkowej) bez widocznej zmiany pozy szkieletu, a ćwiczenie bez przeczytanego źródła; wyjątek bez animacji (decyzja właściciela 26.10.2026 o ćwiczeniach bez widocznej istoty ruchu; 27.10.2026)';
 export const PRZYBLIZENIA = {
   'Standing Gastrocnemius Calf Stretch': 'poza ze źródła (ACE #152 Standing Dorsi-Flexion: przy ścianie, tylna noga prosta, pięta na podłodze) — taka sama jak Wall Calf Stretch; wariant z piętą na podwyższeniu i palcami w górę (podpowiedź katalogu) nie ma przeczytanego źródła i nie jest rysowany',
-  'Overhead Triceps Stretch': 'przybliżenie: bez ręki pomocniczej (ACE #174: lewa dłoń na ramieniu przy łokciu, lekki nacisk) — dosięgnięcie łokcia nad głową wymaga barku powyżej zakresu modelu (171°) albo przejścia ręki przez głowę; lewa ręka zwisa; dłoń prawa na górze pleców za szyją (zasięg ręki), nie „na środku pleców”',
-  Inchworm: 'uproszczenie: rysunek w układzie dłoni (dłonie stoją, stopy dochodzą do nich krokami po ok. 15 cm, obie stopy naraz, ACE #254 krok 5; ruch wstecz to marsz stóp do tyłu = względem ciała marsz rąk do podporu); pompka w podporze (krok 3) pominięta',
+  'Overhead Triceps Stretch': 'przybliżenie: krok 1 źródła (ACE #174) zawiera rękę pomocniczą (lewa dłoń na prawym ramieniu „just above the elbow”, lekki nacisk), rysunek ją pomija — dosięgnięcie łokcia nad głową wymaga barku L 192° (limit modelu 171°) albo przedramienia przechodzącego ≈ 3 cm przez głowę (pomiar 27.10.2026); lewa ręka zwisa; dłoń prawa na górze pleców za szyją (zasięg ręki), nie „na środku pleców” (źródło: „middle of your back”)',
+  Inchworm: 'uproszczenie: rysunek w układzie STÓP (stopy stoją, dłonie idą naprzemiennie po ok. 22 cm ≈ 9" — ACE #254 krok 5 mówi o krokach stóp po 6–12" bez ruchu rąk: „…taking 6-12" steps without moving your hands”; względem ciała ruch ten sam); naprzemienne stopy przy kolanach ≤ 25° (źródło: „extended (but not locked)”) nie mieszczą się w modelu: rozstaw stóp w x najwyżej ≈ 1,5 cm w podporze i ≈ 8 cm w skłonie przy kroku źródła 15–30 cm (pomiar 27.10.2026); pompka w podporze pominięta (ACE #254, krok 4: „Perform one full push-up…”)',
 };
 export function generuj() {
   return {
