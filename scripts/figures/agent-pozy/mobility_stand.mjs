@@ -10,46 +10,34 @@ const POL = (s) => (s === 'R' ? 1 : -1);
 const SD = ['R', 'L'];
 const MY = 89.5; /* miednica stojącej osoby (kolana zgięte ok. 12°) */
 
-/* ---------- siad ---------- */
-/** Chin To Chest Stretch: siad ze skrzyżowanymi nogami (stopy razem), tułów pionowo, głowa pochylona do klatki, dłonie na tyle głowy (ciągną ją w dół). */
+/* ---------- stanie, szyja ---------- */
+/** Ręce zwisają wzdłuż ciała (ACE #204 i #202, krok 1: „arms by your sides”): dłonie prawie prosto w dół od barków, tuż przy udach. */
+const rekiWzdluz = (T) => ({ R: { g: sieganie(T.sh.R, [T.sh.R[0] + 1, T.sh.R[1] - 63.5, T.sh.R[2] + 3], 64), pole: [-0.2, -0.3, 1] }, L: { g: sieganie(T.sh.L, [T.sh.L[0] + 1, T.sh.L[1] - 63.5, T.sh.L[2] - 3], 64), pole: [-0.2, -0.3, -1] } });
+/** Chin To Chest Stretch (ACE #204 Neck Flexion: stanie, stopy na szerokość bioder, ręce wzdłuż ciała, „drop your chin toward your chest”): tułów pionowo, sam skłon głowy do przodu, bez rąk na głowie (wariant z dłonią to osobny, lekki nacisk — nie rysujemy). */
 function chinToChest(cw) {
-  const m = [0, Y_PODLOGA, 0]; const p = 0; const hp = 42; const T = sonda(m, p);
-  const H = glowaSrodek(T.shoulderC, p, hp); const tyl = [-Math.cos(hp * R), Math.sin(hp * R)];
-  const g = (s) => [H[0] + tyl[0] * 12, H[1] + tyl[1] * 12 + 4, POL(s) * 6];
-  const nogi = { R: { a: [34, kostkaY(-12), 3.5], pod: -12, rot: 20, pole: [0, 0.15, 1] }, L: { a: [34, kostkaY(-12), -3.5], pod: -12, rot: 20, pole: [0, 0.15, -1] } };
-  const rece = { R: { g: g('R'), pole: [0.3, 0.3, 1] }, L: { g: g('L'), pole: [0.3, 0.3, -1] } };
-  return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: hp, nogi, rece }));
+  const m = [0, MY, 0]; const p = 0; const T = sonda(m, p);
+  return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 45, nogi: stoj(0, 12), rece: rekiWzdluz(T) }));
 }
 
 /* ---------- stanie ---------- */
-/** Side Neck Stretch: stanie, głowa pochylona w bok (ucho ku prawemu barkowi, 25°), prawa dłoń na głowie (ciągnie ją w bok), lewa ręka luźno w dół. */
+/** Side Neck Stretch (ACE #202 Lateral Neck Flexion: stanie, ręce wzdłuż ciała, „draw your right ear toward your right shoulder”): tułów pionowo, głowa pochylona w bok o 25°, ręce bez udziału (wariant z dłonią na głowie to osobny, lekki nacisk — nie rysujemy). */
 function sideNeck(cw) {
-  const m = [0, MY, 0]; const p = 0; const T = sonda(m, p); const H = glowaSrodek(T.shoulderC, p, 0);
-  const rece = { R: { g: sieganie(T.sh.R, [H[0], H[1] + 13, 8]), pole: [0, 0.6, 1] }, L: { g: sieganie(T.sh.L, [T.sh.L[0], T.sh.L[1] - 62, -6]), pole: [-0.2, -0.3, -1] } };
-  return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 0, nogi: stoj(0, 14), rece, ext: { headTilt: 25 } }));
+  const m = [0, MY, 0]; const p = 0; const T = sonda(m, p);
+  return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 0, nogi: stoj(0, 12), rece: rekiWzdluz(T), ext: { headTilt: 25 } }));
 }
-/** Overhead Triceps Stretch: stanie, prawa ręka uniesiona i zgięta (dłoń za głową, łokieć nad barkiem), lewa dłoń na prawym łokciu. */
+/** Overhead Triceps Stretch (ACE #174: stanie, stopy na szerokość bioder; prawa ręka w górę, łokieć zgięty, dłoń opada na plecy za głową): łokieć nad barkiem, dłoń za szyją na górze pleców (zasięg ręki modelu).
+ * Ręka pomocnicza (lewa, lekki nacisk na ramieniu tuż przy łokciu) NIE jest rysowana: dosięgnięcie prawego łokcia nad głową wymaga barku powyżej zakresu modelu (171°) albo przejścia przez głowę — lewa ręka zwisa wzdłuż ciała (PRZYBLIZENIA). */
 function overheadTriceps(cw) {
   const m = [0, MY, 0]; const p = 0; const T = sonda(m, p);
-  const f = fkRamie(T.sh.R, [0.24, 0.97, 0.1], [-0.75, -0.55, -0.35]);
-  const dolny = add(T.sh.R, nrm([0.24, 0.97, 0.1]), 10);
-  const rece = { R: { g: f.g, pole: f.pole ?? [0, 1, 0.3] }, L: { g: sieganie(T.sh.L, [dolny[0], dolny[1], dolny[2] + 2]), pole: [0, -0.2, -1] } };
-  return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 0, nogi: stoj(0, 12), rece }));
+  const gR = [-12, 144, 5]; const poleR = [0.6, 1, 0.3];
+  const rece = { R: { g: gR, pole: poleR }, L: rekiWzdluz(T).L };
+  return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 15, nogi: stoj(0, 12), rece }));
 }
 /** Standing Chest Stretch: stanie, ręce wyprostowane za plecami (dłonie splecione), łokcie za linią barków, tułów prosto. */
 function standingChest(cw) {
   const m = [0, MY, 0]; const p = 2; const T = sonda(m, p);
   const rece = rekiDo(T.sh, { R: [-26, 80, 3], L: [-26, 80, -3] }, { R: [-0.6, -0.4, 0.5], L: [-0.6, -0.4, -0.5] });
   return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 0, nogi: stoj(0, 12), rece }));
-}
-/** Standing Gastrocnemius Calf Stretch: stanie, prawa pięta na stopniu, noga prosta, palce ku górze, tułów pochylony, dłonie na nodze; lewa noga lekko ugięta. */
-function gastroc(cw) {
-  const m = [-10, 88, 0]; const p = 45; const T = sonda(m, p); const pod = 60; const top = 12;
-  const aR = prosta(T.hip.R, [0.58, -0.81, 0.03], { pod, rot: 6 }); aR.a[1] = r1(kostkaY(pod, top));
-  const nogi = { R: aR, L: { a: [-8, 7, -14], pod: 0, rot: 10, pole: [1, 0, -0.1] } };
-  const pt = add(T.hip.R, nrm([aR.a[0] - T.hip.R[0], aR.a[1] - T.hip.R[1], aR.a[2] - T.hip.R[2]]), 35);
-  const rece = rekiDo(T.sh, { R: [pt[0], pt[1] + 4, 9], L: [pt[0], pt[1] + 4, 3] }, { R: [0, -0.2, 1], L: [0, -0.2, -1] });
-  return statyczna(RODZINA, cw, [...SP, { rodzaj: 'skrzynia', x0: 28, x1: 82, top }], (u) => ramka(u, { m, p, head: 30, nogi, rece }));
 }
 /** Wykrok łydkowy: tylna noga (L) i przednia (R); tylna prosta (kolano ≤ 15°) albo lekko ugięta. */
 function wykrokLydka({ wall, tylnaProsta }) {
@@ -60,7 +48,7 @@ function wykrokLydka({ wall, tylnaProsta }) {
   const rece = wall ? rekiDo(T.sh, { R: [72, 125, 19], L: [72, 125, -19] }, { R: [0, -0.5, 1], L: [0, -0.5, -1] }) : { R: { g: [T.hip.R[0] - 2, T.hip.R[1] + 8, 24], pole: [-0.6, -0.1, 1] }, L: { g: [T.hip.L[0] - 2, T.hip.L[1] + 8, -24], pole: [-0.6, -0.1, -1] } };
   return { m, p, nogi, rece };
 }
-/** Wall Calf Stretch: wykrok, dłonie na ścianie przed sobą (ręce proste), tylna noga prosta z piętą na podłodze, przednia ugięta. */
+/** Wall Calf Stretch (ACE #152 Standing Dorsi-Flexion Calf Stretch: twarzą do ściany, dłonie na ścianie nieco powyżej barków, rozkrok, OBIE stopy płasko, tylna noga prosta z piętą dociśniętą do podłogi, przednie kolano zgięte): wykrok, dłonie na ścianie przed sobą (ręce proste), tylna noga prosta z piętą na podłodze, przednia ugięta. */
 function wallCalf(cw) {
   const o = wykrokLydka({ wall: true, tylnaProsta: true });
   return statyczna(RODZINA, cw, [...SP, { rodzaj: 'sciana', x: 75, h: 250, przed: true }], (u) => ramka(u, { m: o.m, p: o.p, head: 12, nogi: o.nogi, rece: o.rece }));
@@ -77,19 +65,28 @@ function lateral(cw) {
   return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 0, nogi: stoj(0, 12), rece, ext }));
 }
 
-/* ---------- Inchworm: stanie w skłonie → marsz rąk do podporu → powrót ---------- */
+/* ---------- Inchworm: wymiary ruchu w układzie dłoni ---------- */
+/** Inchworm (ACE #254): skłon z dłońmi na podłodze → marsz rąk do podporu → wejście stopami do dłoni. Pętla odtwarza ruch tam i z powrotem (ping-pong), więc rysujemy go w układzie DŁONI: dłonie stoją w miejscu (x = INCH_H), a stopy dochodzą do nich krokami
+ * (krok 12,5–25 cm w źródle; tu 4 kroki po ok. 19 cm). u = 0: podpór (dłonie daleko), u = 1: skłon (stopy przy dłoniach). Ruch wstecz (u: 1 → 0) to marsz stóp do tyłu, czyli względem ciała ten sam ruch co „marsz rąk do podporu” ze źródła.
+ * Podpory nie ślizgają się: dłonie nie ruszają się wcale, palce stóp stoją w miejscu między krokami (stopa obraca się wokół palców), a w kroku stopa jest uniesiona (INCH_LIFT). Marsz rąk i stóp naprzemiennie (jedna kończyna naraz) to UPROSZCZENIE: obie stopy idą razem. */
+export const INCH_H = 150; export const INCH_KROKI = 5; export const INCH_LIFT = 5;
 function inchworm(cw) {
-  const ANK = (u) => { const pod = lerp(0, -55, ease(u)); return { pod, y: kostkaY(pod) }; };
-  const fr = (u) => {
-    const e = ease(u); const phi = lerp(4, 70.5, e); const a = ANK(u); const L = 82.4;
-    const P = [L * Math.sin(phi * R), a.y + L * Math.cos(phi * R)];
-    const pLerp = lerp(125, phi, e); const pMin = Math.acos(Math.max(-1, Math.min(1, (62 - P[1]) / 50))) / R; const p = Math.max(pLerp, pMin);
+  /* 11 klatek (limit kontraktu: 12): parzyste = stopy stoją po k krokach, nieparzyste = środek kroku z uniesionymi stopami */
+  const fr = (i) => {
+    const u = i / (2 * INCH_KROKI); const post = i / (2 * INCH_KROKI); const lift = i % 2 ? INCH_LIFT : 0; /* post: 0 = podpór, 1 = skłon */
+    const e = 1 - post; const ee = ease(e);
+    const phi = lerp(4, 70.5, ee); const pod = lerp(0, -55, ee); const L = 82.4; const fp = pod * R; const yaw = 6 * R;
+    const ay = kostkaY(pod); const ax = -(19 * Math.cos(fp) + 7 * Math.sin(fp)) * Math.cos(yaw); /* palce w x = 0 (potem przesunięcie) */
+    const P = [ax + L * Math.sin(phi * R), ay + lift + L * Math.cos(phi * R)];
+    const pLerp = lerp(125, phi, ee); const pMin = Math.acos(Math.max(-1, Math.min(1, (64 - P[1]) / 50))) / R; const p = Math.max(pLerp, pMin);
     const T = sonda([P[0], P[1], 0], p);
     const hands = (s) => { const S = T.sh[s]; const dy = S[1] - 2; const dx = Math.sqrt(Math.max(0, 63.7 * 63.7 - dy * dy)); return { g: [S[0] + dx, 2, S[2]], pole: [-0.3, -0.5, POL(s) * 0.6] }; };
-    const nogi = { R: { a: [0, a.y, 10], pod: a.pod, rot: 6, pole: [1, 0, 0.1] }, L: { a: [0, a.y, -10], pod: a.pod, rot: 6, pole: [1, 0, -0.1] } };
-    return ramka(u, { m: [P[0], P[1], 0], p, head: p * 0.8, nogi, rece: { R: hands('R'), L: hands('L') } });
+    const hr = hands('R'); const hl = hands('L'); const sh = INCH_H - hr.g[0]; /* przesunięcie świata: dłonie zawsze w INCH_H */
+    const mv = (v) => [r1(v[0] + sh), v[1], v[2]];
+    const nogi = { R: { a: mv([ax, ay + lift, 10]), pod, rot: 6, pole: [1, 0, 0.1] }, L: { a: mv([ax, ay + lift, -10]), pod, rot: 6, pole: [1, 0, -0.1] } };
+    return ramka(u, { m: mv([P[0], P[1], 0]), p, head: p * 0.8, nogi, rece: { R: { g: mv(hr.g), pole: hr.pole }, L: { g: mv(hl.g), pole: hl.pole } } });
   };
-  return poza(RODZINA, cw, SP, [0, 0.12, 0.25, 0.37, 0.5, 0.63, 0.75, 0.88, 1].map(fr), []);
+  return poza(RODZINA, cw, SP, Array.from({ length: 2 * INCH_KROKI + 1 }, (_, i) => fr(i)), []);
 }
 
 const BRAK = 'brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)';
@@ -102,8 +99,9 @@ export const WYJATKI = Object.fromEntries([
 ].map((k) => [k, BRAK]));
 WYJATKI['Standing Pelvic Tilt'] = 'ruch wewnętrzny (przechył miednicy w płaszczyźnie strzałkowej) bez widocznej zmiany pozy szkieletu, a ćwiczenie bez przeczytanego źródła; wyjątek bez animacji (decyzja właściciela 26.10.2026 o ćwiczeniach bez widocznej istoty ruchu; 27.10.2026)';
 export const PRZYBLIZENIA = {
-  'Chin To Chest Stretch': 'przybliżenie: siad ze skrzyżowanymi nogami (stopy razem); katalog: „siad, dłonie ciągną głowę w dół”',
-  'Standing Gastrocnemius Calf Stretch': 'przybliżenie: dłonie na wyprostowanej nodze zamiast na palcach stopy (zasięg ręki nie sięga palców przy prostych plecach)',
+  'Standing Gastrocnemius Calf Stretch': 'poza ze źródła (ACE #152 Standing Dorsi-Flexion: przy ścianie, tylna noga prosta, pięta na podłodze) — taka sama jak Wall Calf Stretch; wariant z piętą na podwyższeniu i palcami w górę (podpowiedź katalogu) nie ma przeczytanego źródła i nie jest rysowany',
+  'Overhead Triceps Stretch': 'przybliżenie: bez ręki pomocniczej (ACE #174: lewa dłoń na ramieniu przy łokciu, lekki nacisk) — dosięgnięcie łokcia nad głową wymaga barku powyżej zakresu modelu (171°) albo przejścia ręki przez głowę; lewa ręka zwisa; dłoń prawa na górze pleców za szyją (zasięg ręki), nie „na środku pleców”',
+  Inchworm: 'uproszczenie: rysunek w układzie dłoni (dłonie stoją, stopy dochodzą do nich krokami po ok. 15 cm, obie stopy naraz, ACE #254 krok 5; ruch wstecz to marsz stóp do tyłu = względem ciała marsz rąk do podporu); pompka w podporze (krok 3) pominięta',
 };
 export function generuj() {
   return {
@@ -112,7 +110,7 @@ export function generuj() {
     'Side Neck Stretch': () => sideNeck('Side Neck Stretch'),
     'Overhead Triceps Stretch': () => overheadTriceps('Overhead Triceps Stretch'),
     'Standing Chest Stretch': () => standingChest('Standing Chest Stretch'),
-    'Standing Gastrocnemius Calf Stretch': () => gastroc('Standing Gastrocnemius Calf Stretch'),
+    'Standing Gastrocnemius Calf Stretch': () => wallCalf('Standing Gastrocnemius Calf Stretch'),
     'Wall Calf Stretch': () => wallCalf('Wall Calf Stretch'),
     'Standing Soleus And Achilles Stretch': () => soleus('Standing Soleus And Achilles Stretch'),
     'Standing Lateral Stretch': () => lateral('Standing Lateral Stretch'),

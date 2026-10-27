@@ -79,7 +79,7 @@ const RULES: Rule[] = [
   /* ---- wyjątki o jednoznacznych nazwach (przed rodzinami wzorcowymi) ---- */
   ['thruster', n => has(n, 'thruster', 'clean and press')],
   ['neck', n => has(n, 'neck') && !has(n, 'chin to chest', 'side neck stretch')],
-  ['foam_roll', n => has(n, '-smr', 'foam roll', 'wrist roller')],
+  ['foam_roll', n => has(n, '-smr', 'foam roll')],
   ['olympic', n => (/\b(clean|snatch|jerk)\b/.test(n) && !has(n, 'deadlift', 'kettlebell', 'dumbbell', 'press', 'bottoms', '(hantel)', 'one-arm'))
     || has(n, 'clean pull', 'snatch pull', 'clean shrug', 'snatch shrug', 'jerk balance', 'rack delivery', 'jerk dip', 'snatch balance')],
   ['kb_ballistic', n => (has(n, 'kettlebell') && has(n, 'swing', 'clean', 'snatch', 'high pull', 'jerk', 'push press', 'pirate')) || has(n, 'snatch (hantel)', 'dumbbell clean')],

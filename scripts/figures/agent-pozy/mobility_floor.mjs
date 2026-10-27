@@ -24,12 +24,13 @@ function straddle(cw) {
   const rece = rekiDo(T.sh, { R: [88, 3, 14], L: [88, 3, -14] });
   return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 36, nogi, rece }));
 }
-/** Seated Calf Stretch: siad, nogi proste przed sobą, stopy ściągnięte ku sobie (palce w górę), tułów prosto (≤ 20°), dłonie na goleniach. */
+/** Seated Calf Stretch (ACE #214: siad, obie nogi proste przed sobą, tułów pionowo; guma oporowa owinięta wokół podeszwy jednej stopy, końce w dłoniach; palce ku sobie, pięta od siebie): stopa pionowo (zgięcie grzbietowe ≈ 0°, maks. podbicie modelu 90°), guma od podeszwy prawej stopy do obu dłoni przy klatce. */
 function seatedCalf(cw) {
-  const m = [0, Y, 0]; const p = 18; const T = sonda(m, p);
-  const nogi = {}; for (const s of SD) nogi[s] = prosta(T.hip[s], [1, -0.02, POL(s) * 0.1], { pod: 72, rot: 6 });
-  const rece = rekiDo(T.sh, { R: [58, 15, 11], L: [58, 15, -11] }, { R: [0, 0.3, 1], L: [0, 0.3, -1] });
-  return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 8, nogi, rece }));
+  const m = [0, Y, 0]; const p = 8; const T = sonda(m, p);
+  const nogi = {}; for (const s of SD) nogi[s] = prosta(T.hip[s], [1, -0.02, POL(s) * 0.1], { pod: 90, rot: 6 });
+  const rece = rekiDo(T.sh, { R: [30, 40, 9], L: [30, 40, -9] }, { R: [0, -0.5, 1], L: [0, -0.5, -1] });
+  const A = nogi.R.a; const guma = { rodzaj: 'guma', mocowanie: 'zaczep', x: r1(A[0] + 6.5), y: r1(A[1] + 6), z: r1(A[2]) };
+  return statyczna(RODZINA, cw, [...SP, guma], (u) => ramka(u, { m, p, head: 6, nogi, rece }));
 }
 /** Seated Floor Hamstring Stretch: jedna noga (R) prosta, stopa drugiej (L) przy wewnętrznej stronie uda, tułów pochylony z bioder (plecy płasko), dłonie na goleni. */
 function seatedHamstring(cw) {
@@ -47,12 +48,13 @@ function butterfly(cw) {
 }
 
 /* ---------- klęk i wykrok ---------- */
-/** Child's Pose: klęk, pośladki nisko nad piętami, tułów złożony na udach, ręce wyciągnięte do przodu na podłodze. */
+/** Child's Pose (ACE #227: klęk, kolana szeroko, palce za sobą (stopy wyprostowane podeszwowo), pośladki do pięt, klatka między udami, czoło na podłodze, ręce wyciągnięte do przodu): pośladki na piętach, głowa przy podłodze, ręce na podłodze.
+ * Model nie ma stopy leżącej grzbietem na podłodze (podbicie ≤ 90°): stopy stoją na palcach skierowanych w dół (PRZYBLIZENIA). */
 function childsPose(cw) {
-  const m = [18, 42, 0]; const p = 95; const T = sonda(m, p); const pod = -85;
-  const nogi = {}; for (const s of SD) nogi[s] = { a: [0, kostkaY(pod), POL(s) * 12], pod, rot: 0, pole: [1, 0.1, POL(s) * 0.3] };
-  const rece = rekiDo(T.sh, { R: [120, 3, 15], L: [120, 3, -15] }, { R: [0, 1, 0.5], L: [0, 1, -0.5] });
-  return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 100, nogi, rece }));
+  const m = [26, 34, 0]; const p = 100; const T = sonda(m, p); const pod = -90;
+  const nogi = {}; for (const s of SD) nogi[s] = { a: [0, kostkaY(pod), POL(s) * 6], pod, rot: 0, pole: [1, 0, POL(s)] };
+  const rece = rekiDo(T.sh, { R: [22, 3, 26], L: [22, 3, -26] }, { R: [-0.5, 0.3, 1], L: [-0.5, 0.3, -1] });
+  return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 150, nogi, rece }));
 }
 /** Wykrok w klęku podpartym: tylna noga (L) kolanem przy podłodze, palce stopy podwinięte; przednia (R) stopa płasko. */
 function wykrokKleczny({ y = 46, p = 12, xF = 43, xB = -57, head = 6, rece }) {
@@ -67,38 +69,41 @@ function hipFlexor(cw) {
 }
 
 /* ---------- leżenie na plecach ---------- */
-/** Supine Hamstring Stretch: leżenie, noga R uniesiona prosto (kąt 78° nad podłogą), noga L prosta na podłodze, dłonie obejmują tył uda (bez paska — przybliżenie). */
+/** Supine Hamstring Stretch (AAOS Hip Conditioning: leżenie na plecach, jedna noga uniesiona i wyprostowana, dłonie splecione z tyłu uda, nie na stawie kolanowym, noga przyciągana ku głowie; druga stopa na podłodze z kolanem zgiętym; ACE #235 — wariant z nogą o ścianę — nie rysujemy):
+ * noga R prosta w górę (biodro ≈ 90°), dłonie obok siebie na tylnej stronie uda (ok. 12 cm od kolana), noga L zgięta, stopa płasko na podłodze. */
 function supineHamstring(cw) {
-  const m = [0, Y, 0]; const T = sonda(m, -90); const kierR = [Math.cos(78 * R), Math.sin(78 * R), 0.02];
-  const pt = add(T.hip.R, nrm(kierR), 24); const g = [pt[0] - 7, pt[1], pt[2]];
-  const nogi = { R: prosta(T.hip.R, kierR, { pole: [-0.15, 1, 0], rot: 8 }), L: prosta(T.hip.L, [1, -0.02, -0.1], { pod: 70, rot: 8 }) };
-  const rece = { R: { g: sieganie(T.sh.R, [g[0], g[1], 7]), pole: [-0.3, 0.2, 1] }, L: { g: sieganie(T.sh.L, [g[0], g[1], -7]), pole: [-0.3, 0.2, -1] } };
+  const m = [0, Y, 0]; const T = sonda(m, -90); const el = 88; const kierR = [Math.cos(el * R), Math.sin(el * R), 0.02];
+  const pt = add(T.hip.R, nrm(kierR), 28); const tyl = [Math.sin(el * R), -Math.cos(el * R)]; const g = (z) => [pt[0] + tyl[0] * 12.5, pt[1] + tyl[1] * 12.5, z];
+  const nogi = { R: prosta(T.hip.R, kierR, { pole: [-0.15, 1, 0], rot: 8 }), L: { a: [36, 7, -12], pod: 0, rot: 8, pole: [0, 1, -0.3] } };
+  const rece = { R: { g: sieganie(T.sh.R, g(11.5)), pole: [-0.3, 0.2, 1] }, L: { g: sieganie(T.sh.L, g(5.5)), pole: [-0.3, 0.2, -1] } };
   return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p: -90, head: -90, nogi, rece }));
 }
 
-/* ---------- leżenie bokiem (prawy bok na podłodze, klatka ku +z, głowa ku −x) ---------- */
+/* ---------- leżenie bokiem (LEWY bok na podłodze, klatka ku −z (od kamery), głowa ku −x; górna noga R jest po stronie kamery) ---------- */
 const PYB = 23;
-const bokRamka = (nogi, rece, ext = { roll: 90 }) => (u) => K({ u, m: [0, PYB, 0], p: -90, head: -90, roll: ext.roll, R: nogi.R, L: nogi.L, hr: rece.R, hl: rece.L });
-/** Side-Lying Quad Stretch: leżenie na boku, górna noga (L) zgięta, pięta przy pośladku, trzymana ręką; dolna noga prosta. */
+const bokRamka = (nogi, rece, ext = { roll: -90 }) => (u) => K({ u, m: [0, PYB, 0], p: -90, head: -90, roll: ext.roll, R: nogi.R, L: nogi.L, hr: rece.R, hl: rece.L });
+/** Side-Lying Quad Stretch (ACE #149: leżenie na boku, biodra i barki jedno nad drugim, dolna ręka zgięta, przedramię pod głową; górne kolano zgięte, pięta ku pośladkowi, ręka górnej strony trzyma stopę, udo przy dolnym udzie, kolano wskazuje prosto od biodra; dolna noga prosta):
+ * leżymy na LEWYM boku, górna (prawa) noga i dłoń są po stronie kamery (pięta i dłoń widoczne w rzucie z boku), stopy wzdłuż kierunku twarzy (−z). */
 function sideQuad(cw) {
-  const m = [0, PYB, 0]; const T = sonda(m, -90, { ext: { roll: 90 } });
-  const aL = [T.hip.L[0] + 14, T.hip.L[1] + 1, T.hip.L[2] - 24]; const aR = [T.hip.R[0] + 82.6, 8, T.hip.R[2]];
-  const nogi = { R: { a: aR, pod: null, rot: 10, pole: [0, 1, 0.3] }, L: { a: aL, pod: null, rot: 10, pole: [1, 0.1, 0.4] } };
-  const rece = { R: { g: [T.sh.R[0] - 40, 6, 0], pole: [0, 0.3, 1] }, L: { g: sieganie(T.sh.L, aL), pole: [0, 0.4, -1] } };
+  const m = [0, PYB, 0]; const T = sonda(m, -90, { ext: { roll: -90 } });
+  const aR = [T.hip.R[0] + 27, T.hip.R[1] + 4, T.hip.R[2] + 6]; const aL = [T.hip.L[0] + 82.6, 8, T.hip.L[2]];
+  const nogi = { R: { a: aR, pod: 30, rot: 0, pole: [1, 0.1, 0.1] }, L: { a: aL, pod: 0, rot: 90, pole: [0, 1, -0.3] } };
+  const rece = { R: { g: sieganie(T.sh.R, [aR[0] + 2, aR[1] + 1, aR[2] - 5]), pole: [0, 0.4, 1] }, L: { g: [T.sh.L[0] - 12, 14, T.sh.L[2] - 8], pole: [0, 0.3, -1] } };
   return statyczna(RODZINA, cw, SP, bokRamka(nogi, rece));
 }
 
 
 /* ---------- czworak: Cat-Cow ---------- */
-/** Cat-Cow: klęk podparty (ręce pod barkami, kolana pod biodrami), ruch kręgosłupa: koci grzbiet (zgięcie +) → neutralnie → wygięcie w dół (zgięcie −); ręce proste. */
+/** Cat-Cow (ACE #15: klęk podparty, dłonie pod barkami, kolana pod biodrami; koci grzbiet: brzuch w górę, „allow your head to fall towards your chest”; krowa: brzuch opada ku podłodze, kręgosłup wygięty, bez zalecenia dla głowy): głowa idzie za kręgosłupem
+ * — przy kocim grzbiecie opuszczona ku klatce (głowa − tułów +28°), w przejściu +14°, przy krowie w linii z tułowiem (0°; źródło nie każe unosić głowy). */
 function catCow(cw) {
   const B = BODY(); const hx = 60; const Sy = 65.8; const Py = 8.8 + B.thigh;
-  const fr = (u, bend, head) => {
+  const fr = (u, bend, glowaWzgTulowia) => {
     const chord = Math.cos(0.55 * bend * R); const phi = Math.asin((Sy - Py) / (B.trunk * chord)); const p = 90 - phi / R; const P = [hx - B.trunk * chord * Math.cos(phi), Py];
     const aK = (s) => { const f = fk([P[0], P[1], POL(s) * HIP()], [0, -1, 0], [Math.cos(165 * R), Math.sin(165 * R), 0]); return { a: [f.ankle[0], f.ankle[1], POL(s) * 10], pod: -90, rot: 10, pole: [0.15, -1, 0] }; };
-    return K({ u, m: P, p, bend, head, R: aK('R'), L: aK('L'), hr: { g: [hx, 2, 19], pole: [-0.5, -1, 0.3] }, hl: { g: [hx, 2, -19], pole: [-0.5, -1, -0.3] } });
+    return K({ u, m: P, p, bend, head: p + glowaWzgTulowia, R: aK('R'), L: aK('L'), hr: { g: [hx, 2, 19], pole: [-0.5, -1, 0.3] }, hl: { g: [hx, 2, -19], pole: [-0.5, -1, -0.3] } });
   };
-  return poza(RODZINA, cw, SP, [fr(0, 26, 12), fr(0.5, 4, 40), fr(1, -16, 52)], []);
+  return poza(RODZINA, cw, SP, [fr(0, 26, 28), fr(0.5, 4, 14), fr(1, -16, 0)], []);
 }
 
 const BRAK = 'brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)';
@@ -110,7 +115,12 @@ WYJATKI['IT Band and Glute Stretch'] = 'obrót miednicy przy prostej nodze prze�
 WYJATKI['Peroneals Stretch'] = 'istota ćwiczenia (odwrócenie stopy z paskiem) nie jest stopniem swobody modelu, a pozycja nie ma przeczytanego źródła; wyjątek bez animacji (decyzja właściciela 26.10.2026 o ćwiczeniach bez widocznej istoty ruchu; 27.10.2026)';
 WYJATKI['Posterior Tibialis Stretch'] = 'istota ćwiczenia (nawrócenie stopy z paskiem) nie jest stopniem swobody modelu, a pozycja nie ma przeczytanego źródła; wyjątek bez animacji (decyzja właściciela 26.10.2026 o ćwiczeniach bez widocznej istoty ruchu; 27.10.2026)';
 WYJATKI['Downward Facing Balance'] = 'zestaw „open”: ćwiczenie na piłce gimnastycznej bez przeczytanego źródła pozycji; wyjątek bez animacji (decyzja właściciela 27.10.2026)';
-export const PRZYBLIZENIA = {};
+export const PRZYBLIZENIA = {
+  "Child's Pose": 'przybliżenie: wariant ACE #227 „ręce wzdłuż ciała” (krok 4); miednica ok. 33 cm od pięt (zgięcie kolana modelu ≤ 141°), stopy na palcach skierowanych w dół (model nie ma stopy leżącej grzbietem na podłodze); kolana szeroko',
+  'Seated Calf Stretch': 'przybliżenie: stopa pionowo (zgięcie grzbietowe ≈ 0°, maksymalne podbicie modelu to 90°); guma owinięta wokół podeszwy prawej stopy (ACE #214), druga noga bez gumy',
+  'Supine Hamstring Stretch': 'poza wg AAOS (dłonie splecione z tyłu uda, druga noga zgięta, stopa na podłodze); wariant ACE #235 z nogą o ścianę nie jest rysowany',
+  'Side-Lying Quad Stretch': 'przybliżenie: leżenie na lewym boku, górną (prawą) nogą i dłonią od strony kamery; stopy ułożone poziomo (model nie ma stopy wzdłuż goleni leżącej na boku)',
+};
 export function generuj() {
   const G = {
     ...Object.fromEntries(Object.keys(WYJATKI).map((k) => [k, () => { throw new Error('wyjątek'); }])),

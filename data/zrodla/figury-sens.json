@@ -6807,7 +6807,7 @@
             ],
             "max_deg": 25
           },
-          "zrodlo": "ACE #209 (wariant: „extend your arms behind your back…”), ACE #208 („arms outstretched behind you”), ACE #198 („keeping the arms straight with the elbows extended”) — przeczytane 26.10.2026",
+          "zrodlo": "ACE #209 (wariant: „extend your arms behind your back…”), ACE #208 („arms outstretched behind you”), ACE #198 („keeping the arms straight with the elbows extended”) — przeczytane 26.10.2026; ręce wzdłuż ciała przy skłonie głowy: ACE #204 i #202 (krok 1: „arms by your sides”) — przeczytane 27.10.2026",
           "liczba": "uproszczenie",
           "pewnosc": "ustalone"
         },
@@ -7091,12 +7091,14 @@
         "Chin To Chest Stretch": [
           "poza_nieruchoma",
           "glowa_do_klatki",
-          "tulow_pion"
+          "tulow_pion",
+          "rece_proste"
         ],
         "Side Neck Stretch": [
           "poza_nieruchoma",
           "glowa_w_bok",
-          "tulow_pion"
+          "tulow_pion",
+          "rece_proste"
         ],
         "Overhead Triceps Stretch": [
           "poza_nieruchoma",
@@ -7242,9 +7244,9 @@
             "nogi": "co_najmniej_jedna",
             "max_min_deg": 15
           },
-          "zrodlo": "ACE #273 Modified Hurdler's Stretch (jedna noga wyprostowana, druga zgięta stopą do uda), ACE #149 (dolna noga wyprostowana) — przeczytane 26.10.2026",
+          "zrodlo": "ACE #273 Modified Hurdler's Stretch (jedna noga wyprostowana, druga zgięta stopą do uda), ACE #149 (dolna noga wyprostowana) — przeczytane 26.10.2026; AAOS Hip Conditioning Program, Supine Hamstring Stretch („Straighten your leg…”, druga stopa na podłodze z kolanem zgiętym) — przeczytane 27.10.2026",
           "liczba": "uproszczenie",
-          "pewnosc": "jedno źródło"
+          "pewnosc": "ustalone"
         },
         "plecy_plasko": {
           "typ": "kregoslup_neutralny",
@@ -7502,7 +7504,7 @@
         ],
         "Supine Hamstring Stretch": [
           "poza_nieruchoma",
-          "kolana_proste",
+          "jedna_noga_prosta",
           "lezenie_miednica"
         ],
         "Supine Spinal Twist": [
@@ -7549,7 +7551,7 @@
       },
       "otwarte_czesciowo": {
         "rozciągania bez źródła pozycji (8)": "Intermediate Groin, Kneeling Forearm, Middle Back, Peroneals, Posterior Tibialis, Runner's, Side Lying Groin, Upper Back — tylko „poza nieruchoma” (UPROSZCZENIE); Peroneals / Posterior Tibialis: istota (odwrócenie/nawrócenie stopy) nie jest stopniem swobody nawet w poza@2; Kneeling Forearm: wyprost nadgarstka możliwy w poza@2, ale źródła pozycji nie mam",
-        "Supine Hamstring Stretch": "ACE #235 opisuje nogę opartą o ścianę; uniesienia nogi nie sprawdzam (brak typu „zgięcie biodra jednej nogi ≥”) — tylko proste kolana i leżenie",
+        "Supine Hamstring Stretch": "27.10.2026: poza wg AAOS (leżenie, jedna noga wyprostowana w górę, dłonie splecione z tyłu uda, druga noga zgięta ze stopą na podłodze); ACE #235 opisuje nogę opartą o ścianę (wariant niedrawany). Uniesienia nogi i położenia dłoni sprawdza tests/figury-mobilnosc-reguly.test.ts (brak typu „zgięcie biodra jednej nogi ≥” i „dłonie przy udzie”)",
         "Supine Figure-Four Stretch, Supine Spinal Twist": "pozycja z pokrewnego ćwiczenia ACE (analogia)",
         "Seated Rotation Stretch": "skręt z nazwy (konwencja)"
       },

@@ -45,9 +45,9 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `hip_abd_add` | do zrobienia | 8 | front | 2 | Przywodzenie i odwodzenie (maszyny, linki, taśmy) |
 | `mobility_stand` | do zrobienia | 36 | side, front | 6 | Mobilność i rozciąganie stojąc / w ruchu |
 | `mobility_floor` | do zrobienia | 22 | side | 6 | Mobilność i rozciąganie na podłodze |
-| `foam_roll` | do zrobienia | 11 | side | 2 | Rolowanie i automasaż |
+| `foam_roll` | do zrobienia | 10 | side | 2 | Rolowanie i automasaż |
 | `neck` | do zrobienia | 5 | side | 1 | Szyja |
-| `forearm` | do zrobienia | 12 | side | 2 | Przedramiona i chwyt |
+| `forearm` | do zrobienia | 13 | side | 2 | Przedramiona i chwyt |
 | `thruster` | do zrobienia | 3 | side | 2 | Thruster i ruchy złożone przysiad + wyciskanie |
 | `chest_press_machine` | do zrobienia | 5 | side | 3 | Maszyny wyciskające siedząc (klatka, barki) |
 | `cable_press` | do zrobienia | 4 | side, top | 2 | Wyciskania na linkach |
@@ -205,17 +205,17 @@ Ankle Circles; Arm Circles; Chest And Front Of Shoulder Stretch; Chest Stretch o
 
 Butterfly Stretch; Cat-Cow; Child's Pose; Downward Facing Balance; Intermediate Groin Stretch; IT Band and Glute Stretch; Kneeling Forearm Stretch; Kneeling Hip Flexor Stretch; Middle Back Stretch; Peroneals Stretch; Posterior Tibialis Stretch; Runner's Stretch; Seated Calf Stretch; Seated Floor Hamstring Stretch; Seated Rotation Stretch; Side Lying Groin Stretch; Side-Lying Quad Stretch; Supine Figure-Four Stretch; Supine Hamstring Stretch; Supine Spinal Twist; The Straddle; Upper Back Stretch
 
-### foam_roll (11) — do zrobienia
+### foam_roll (10) — do zrobienia
 
-Adductor-SMR; Calves-SMR; Foam Roll: Hamstrings; Foam Roll: Quadriceps; Foot-SMR; Iliotibial Tract-SMR; Latissimus Dorsi-SMR; Peroneals-SMR; Piriformis-SMR; Rhomboids-SMR; Wrist Roller
+Adductor-SMR; Calves-SMR; Foam Roll: Hamstrings; Foam Roll: Quadriceps; Foot-SMR; Iliotibial Tract-SMR; Latissimus Dorsi-SMR; Peroneals-SMR; Piriformis-SMR; Rhomboids-SMR
 
 ### neck (5) — do zrobienia
 
 Isometric Neck Exercise - Front And Back; Isometric Neck Exercise - Sides; Lying Neck Extension (talerz); Lying Neck Flexion (talerz); Neck Harness Extension
 
-### forearm (12) — do zrobienia
+### forearm (13) — do zrobienia
 
-Barbell Reverse Wrist Curl; Barbell Wrist Curl; Behind-the-Back Barbell Wrist Curl; Cable Wrist Curl; Dumbbell Lying Pronation; Dumbbell Lying Supination; One-Arm Dumbbell Reverse Wrist Curl; One-Arm Dumbbell Wrist Curl; Plate Pinch; Reverse Plate Curls; Reverse Wrist Curl (hantle); Wrist Curl (hantle)
+Barbell Reverse Wrist Curl; Barbell Wrist Curl; Behind-the-Back Barbell Wrist Curl; Cable Wrist Curl; Dumbbell Lying Pronation; Dumbbell Lying Supination; One-Arm Dumbbell Reverse Wrist Curl; One-Arm Dumbbell Wrist Curl; Plate Pinch; Reverse Plate Curls; Reverse Wrist Curl (hantle); Wrist Curl (hantle); Wrist Roller
 
 ### thruster (3) — do zrobienia
 

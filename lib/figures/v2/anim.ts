@@ -25,7 +25,7 @@ const lowLeg = (tempo: Tempo): number => tempo.holdLowMs ?? TEMPO.holdMs;
 export const loopLength = (_lowerFirst: boolean, tempo: Tempo = TEMPO): number => TEMPO.holdMs + lowLeg(tempo) + tempo.downMs + tempo.upMs;
 
 /** Fazy pętli do licznika: etykiety (klucze t()) i czas w ms. `first` = faza 0→1 (u rośnie), `second` = powrót. */
-export type PhaseName = 'Podciąganie' | 'Opuszczanie' | 'Wypychanie' | 'Wstawanie' | 'Podnoszenie' | 'Prostowanie' | 'Pauza';
+export type PhaseName = 'Podciąganie' | 'Opuszczanie' | 'Wypychanie' | 'Wstawanie' | 'Podnoszenie' | 'Prostowanie' | 'Wygięcie' | 'Zaokrąglenie' | 'Stopy do dłoni' | 'Marsz w podpór' | 'Pauza';
 export type Phase = { name: PhaseName; ms: number };
 export type PhaseNames = { first: PhaseName; second: PhaseName };
 

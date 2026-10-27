@@ -7,11 +7,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { CATALOG } from '@/lib/catalog.generated';
-import { assignAll } from '@/lib/figures/v2';
+import { assignAll, familyOf } from '@/lib/figures/v2';
 
 const ROOT = path.resolve(__dirname, '..');
 const RODZINY = ['mobility_stand', 'mobility_floor', 'foam_roll', 'neck'] as const;
-const ILE = { mobility_stand: 36, mobility_floor: 22, foam_roll: 11, neck: 5 } as const;
+const ILE = { mobility_stand: 36, mobility_floor: 22, foam_roll: 10, neck: 5 } as const;
 const ALL = assignAll();
 const czytaj = <T,>(p: string): T => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8')) as T;
 const W = czytaj<{ rodziny: Record<string, string>; cwiczenia: Record<string, string> }>('data/zrodla/figury-wyjatki.json');
@@ -32,7 +32,7 @@ describe('pokrycie rodzin mobilności, rolowania i szyi: poza albo wyjątek z po
   });
   test('liczba póz i wyjątków na rodzinę (zmiana = świadoma decyzja)', () => {
     const wynik = Object.fromEntries(RODZINY.map((r) => [r, [Object.keys(pozy(r)).length, cwiczenia(r).length - Object.keys(pozy(r)).length]]));
-    expect(wynik).toEqual({ mobility_stand: [9, 27], mobility_floor: [9, 13], foam_roll: [0, 11], neck: [0, 5] });
+    expect(wynik).toEqual({ mobility_stand: [9, 27], mobility_floor: [9, 13], foam_roll: [0, 10], neck: [0, 5] });
   });
   test('każda poza ma regułę sensu z przeczytanym źródłem inną niż sama „poza nieruchoma” (bez pozycji ze źródła nie rysujemy) i nie opiera się na samej analogii ani konwencji', () => {
     for (const r of ['mobility_stand', 'mobility_floor'] as const) for (const k of Object.keys(pozy(r))) {
@@ -52,5 +52,11 @@ describe('pokrycie rodzin mobilności, rolowania i szyi: poza albo wyjątek z po
   test('rolowanie i szyja: całe rodziny to wyjątki (wpis rodzinny), mobilność: wyjątki imiennie istnieją w katalogu', () => {
     expect(Object.keys(W.rodziny)).toEqual(expect.arrayContaining(['foam_roll', 'neck']));
     for (const k of Object.keys(W.cwiczenia)) expect([k, k in CATALOG]).toEqual([k, true]);
+  });
+  test('Wrist Roller (ćwiczenie siłowe przedramion) nie wpada do rolowania: reguła nazwy foam_roll go nie łapie, trafia do forearm z wyjątkiem z powodem; rolowanie to tylko -SMR i „foam roll”', () => {
+    expect(familyOf('Wrist Roller')).toBe('forearm'); expect(ALL['Wrist Roller']).toBe('forearm');
+    expect(cwiczenia('foam_roll')).not.toContain('Wrist Roller');
+    for (const k of cwiczenia('foam_roll')) expect([k, /-smr|foam roll/i.test(k)]).toEqual([k, true]);
+    expect((W.cwiczenia['Wrist Roller'] ?? '').length).toBeGreaterThan(40);
   });
 });

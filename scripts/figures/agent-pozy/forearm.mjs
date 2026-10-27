@@ -51,6 +51,7 @@ function obrot(cw, o) {
 }
 
 export const WYJATKI = {
+  'Wrist Roller': 'OTWARTE — nawijanie liny nadgarstkami (zestaw „open”; figury-sens.json → forearm.otwarte): brak przeczytanego źródła ruchu; ćwiczenie trafiło do forearm 27.10.2026 po poprawce reguły rodzin (wcześniej błędnie foam_roll); wyjątek bez animacji (decyzja właściciela 27.10.2026)',
   'Plate Pinch': 'OTWARTE — brak źródła ruchu (zestaw „open”; ćwiczenie izometryczne, istota — chwyt szczypcowy — nie jest stopniem swobody poza@2; figury-sens.json → forearm.otwarte); wstrzymane do czasu źródła',
 };
 export const PRZYBLIZENIA = {
