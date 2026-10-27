@@ -173,6 +173,11 @@
    "reason": "źródło wskazówek techniki (producent sprzętu — organizacja i tytuły stron w danych źródeł, 0.14.0, docs/research/31 i 33); podpis w aplikacji neutralny (rodzaj źródła) — jak Concept2, decyzja MER2-07 = SEC2-02 wariant A"
   },
   {
+   "path": "data/zrodla/cues-zestawy.json",
+   "name": "Eleiko",
+   "reason": "źródło wskazówek techniki (producent sprzętu — wpis źródła w zestawie wskazówek, jak data/zrodla/cues.json; plik tylko do narzędzi i testów, nie trafia do paczki aplikacji); podpis w aplikacji neutralny (rodzaj źródła) — decyzja MER2-07 = SEC2-02 wariant A"
+  },
+  {
    "path": "data/zrodla/cues.json",
    "name": "Life Fitness",
    "reason": "źródło wskazówek techniki (producent sprzętu — organizacja i tytuł artykułu w danych źródeł, 0.14.0, docs/research/31 i 33); podpis w aplikacji neutralny (rodzaj źródła) — jak Concept2, decyzja MER2-07 = SEC2-02 wariant A"
