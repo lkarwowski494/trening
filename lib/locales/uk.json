@@ -1713,5 +1713,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Підходи: {s} на вправу — варто робити щонайменше {m}; більше підходів зазвичай дає трохи більше, але віддача зменшується.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Тренування від {d} {s} не мало активності {h} год, тому збереглося саме. Кінець: {e} (останній підхід). Знайдете його у вкладці «План».",
  "Aktualny plan": "Поточний план",
+ "Masz plan: {name}": "Ваш план: {name}",
+ "Przejdź na ten plan": "Перейти на цей план",
  "Zmień plan": "Змінити план"
 }

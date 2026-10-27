@@ -1713,5 +1713,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Serijos: {s} pratimui – verta atlikti bent {m}. Daugiau serijų paprastai duoda šiek tiek daugiau, bet nauda mažėja.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Treniruotė iš {d} {s} {h} val. neturėjo veiklos, todėl buvo išsaugota automatiškai. Pabaiga: {e} (paskutinė serija). Rasite ją skirtuke „Planas“.",
  "Aktualny plan": "Dabartinis planas",
+ "Masz plan: {name}": "Jūsų planas: {name}",
+ "Przejdź na ten plan": "Pereiti prie šio plano",
  "Zmień plan": "Keisti planą"
 }

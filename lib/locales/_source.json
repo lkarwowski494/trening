@@ -2352,6 +2352,10 @@
   "en": "You have the full version"
  },
  {
+  "pl": "Masz plan: {name}",
+  "en": "Your plan: {name}"
+ },
+ {
   "pl": "maszyna",
   "en": "machine"
  },
@@ -4187,6 +4191,10 @@
  {
   "pl": "przedramiona",
   "en": "forearms"
+ },
+ {
+  "pl": "Przejdź na ten plan",
+  "en": "Switch to this plan"
  },
  {
   "pl": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",

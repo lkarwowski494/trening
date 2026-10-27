@@ -1713,5 +1713,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Sätze: {s} pro Übung – mindestens {m} lohnen sich; mehr Sätze bringen meist etwas mehr, aber mit abnehmendem Nutzen.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Das Training vom {d} {s} hatte seit {h} Stunden keine Aktivität und wurde deshalb automatisch gespeichert. Ende: {e} (letzter Satz). Du findest es im Tab „Plan“.",
  "Aktualny plan": "Aktueller Plan",
+ "Masz plan: {name}": "Dein Plan: {name}",
+ "Przejdź na ten plan": "Zu diesem Plan wechseln",
  "Zmień plan": "Plan wechseln"
 }

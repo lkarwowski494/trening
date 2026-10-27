@@ -724,12 +724,20 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy ogląda plany
     - Wtedy plany są w kolejności roczny, miesięczny, dożywotni, a zaznaczony jest roczny (decyzja właściciela 27.10.2026, docs/18; test `tests/paywall-kolejnosc-domyslna.test.ts`)
   - Scenariusz: Posiadany plan subskrypcji
-    - Zakładając, że użytkownik ma aktywną subskrypcję (miesięczną albo roczną)
+    - Zakładając, że użytkownik ma aktywną subskrypcję (miesięczną albo roczną; kupioną sam, z kodu albo z Chmury rodzinnej)
     - Gdy otwiera ekran zakupu
-    - Wtedy nie czyta wstępu o darmowych dniach, karta „Masz pełną wersję” podaje nazwę jego planu i datę, posiadany plan jest oznaczony „Aktualny plan” i nie da się go wybrać ani kupić drugi raz, a pozostałe plany zostają jako zmiana planu („Zmień plan”) z informacją o automatycznym odnawianiu
+    - Wtedy zamiast oferty widzi stan swojego planu: nagłówek karty „Masz plan: {nazwa planu}” i datę, bez wstępu o darmowych dniach, bez listy planów i bez przycisku „Subskrybuj”; lista planów jest zwinięta pod przyciskiem „Zmień plan” (decyzja właściciela DEC-09 a, 27.10.2026; test `tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx`)
+  - Scenariusz: Zmiana planu
+    - Zakładając, że użytkownik ma aktywną subskrypcję i stuka „Zmień plan”
+    - Gdy lista planów się rozwija
+    - Wtedy posiadany plan jest oznaczony „Aktualny plan” i nie da się go wybrać ani kupić drugi raz, inny plan subskrypcji kupuje przyciskiem „Przejdź na ten plan” z informacją o automatycznym odnawianiu, dożywotni przyciskiem „Kup na zawsze”; drugie stuknięcie „Zmień plan” i udana zmiana planu zwijają listę
+  - Scenariusz: Plan dożywotni
+    - Zakładając, że użytkownik ma plan dożywotni (bez aktywnej subskrypcji)
+    - Gdy otwiera ekran zakupu
+    - Wtedy nagłówek karty to „Masz plan: {nazwa planu}” z dopiskiem „Masz dostęp na zawsze”, bez listy planów i bez „Zmień plan”
   - Scenariusz: Dożywotni przy aktywnej subskrypcji
     - Zakładając, że użytkownik sam płaci za aktywną subskrypcję (nie z Chmury rodzinnej ani z kodu)
-    - Gdy zaznacza plan dożywotni
+    - Gdy rozwija „Zmień plan” i zaznacza plan dożywotni
     - Wtedy przed przyciskiem „Kup na zawsze” czyta, że subskrypcja dalej się odnawia i trzeba ją anulować, żeby nie płacić podwójnie (docs/27 3.11; test `tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx`)
 
 ### BR-PRV-001: Zastrzeżenie medyczne widoczne w aplikacji

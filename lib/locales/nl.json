@@ -1713,5 +1713,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Sets: {s} per oefening — het loont om er minstens {m} te doen; meer sets geven meestal iets meer, met afnemend effect.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "De training van {d} {s} had {h} uur geen activiteit, dus is automatisch opgeslagen. Einde: {e} (laatste set). Je vindt hem in het tabblad Plan.",
  "Aktualny plan": "Huidig abonnement",
+ "Masz plan: {name}": "Je abonnement: {name}",
+ "Przejdź na ten plan": "Overstappen naar dit abonnement",
  "Zmień plan": "Abonnement wijzigen"
 }
