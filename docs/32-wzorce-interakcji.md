@@ -101,7 +101,7 @@ Przycisk, który **przechodzi na inny ekran**, ma po tytule „›” (np. „Te
 Zakładki — własne H1; stos — tytuł w nagłówku (ekrany pod Więcej bez H1); szczegóły: tytuł = rodzaj, H1 = nazwa. Ekran zakupu **bez** H1 powtarzającego tytuł. Przyciski w nagłówku: tylko wzorce 1, 3, 4 oraz **wyjątki nazwane z M3 (W1 wariant a, 21.10.2026; docs/18)** — każdy jako jeden wspólny komponent z `HeaderButton` (44 pt, limit powiększenia), dopuszczony przez strażnik S2:
 (a) trening w toku: „⋯” (menu treningu: miejsce, pauza, głos, notatka szablonu; etykieta „Opcje treningu”) i „Zakończ” (wzorzec 30);
 (b) listy z trybem usuwania bez ekranu szczegółów: „Edytuj” / „Gotowe” (wzorzec 5), obok „+” (wzorzec 4) — w trybie edycji „+” znika;
-(c) ekran Trening bez treningu w toku: „Planowanie” (przejście do planu, etykieta „Planowanie”; zastępuje przycisk pod nagłówkiem planu).
+(c) ekran Trening bez treningu w toku: „Planowanie” (przejście do planu, etykieta „Planowanie”; zastępuje przycisk pod nagłówkiem planu) — **w linii tytułu po prawej, jak w zakładce Plan** (DEC-07 K3 a, 23.10.2026; wdrożone 27.10.2026, M1-audytor-generalny-024; test `tests/m3-p2-start.test.tsx`); przy wąskim ekranie i dużym tekście wiersz tytułu się zawija i przycisk przechodzi pod tytuł.
 Odrzucone: „Planowanie” w treści (W1 b). Szczegóły: tytuł środkowy skraca się wielokropkiem, przyciski nie (limit powiększenia przycisków jak dziś w `HeaderButton`: 1,4).
 
 ### 20. Rozwijanie i zwijanie — S11

@@ -28,7 +28,7 @@ const hist = () => addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Back Squat'
 const flat = (el: { props: { style?: unknown } }) => StyleSheet.flatten(el.props.style as never) as Record<string, unknown>;
 
 describe('nagłówek ekranu: „Planowanie” jako PlanningButton (W1 c)', () => {
-  test('z planem: przycisk „Planowanie” w nagłówku nad tytułem „Trening”, nie w karcie planu; stuknięcie → ekran planu', async () => {
+  test('z planem: przycisk „Planowanie” w nagłówku ekranu (linia tytułu „Trening”), nie w karcie planu; stuknięcie → ekran planu', async () => {
     await boot(t => { setPlan(t, { 3: 0 }, 'Góra / Dół'); hist(); });
     const b = screen.getByTestId('planning-button'); expect(b.props.accessibilityLabel).toBe('Planowanie'); expect(within(screen.getByTestId('plan-header')).queryByText('Planowanie')).toBeNull();
     const ids = screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string; accessibilityRole?: string } }) => typeof n.type === 'string' && (n.props.testID === 'planning-button' || n.props.testID === 'today-plan')).map((n: { props: { testID?: string } }) => n.props.testID);
@@ -41,6 +41,22 @@ describe('nagłówek ekranu: „Planowanie” jako PlanningButton (W1 c)', () =>
   test('EN: „Planning” i „Set a plan”', async () => {
     await boot(t => { setPlan(t, { 3: 0 }, 'Upper / Lower'); hist(); }, 'en'); expect(screen.getByTestId('planning-button').props.accessibilityLabel).toBe('Planning');
     await boot(() => { hist(); }, 'en'); expect(screen.getByTestId('planning-button').props.accessibilityLabel).toBe('Set a plan');
+  });
+});
+
+/* Decyzja 21.10.2026 (STOP 3 M3: „Planowanie” w tym samym miejscu na starcie i w zakładce Plan) i DEC-07 K3 (a), właściciel 23.10.2026 (docs/18): „Planowanie” w linii tytułu także na ekranie Trening — jak w zakładce Plan (docs/32 wzorzec 19 c);
+ * M1-audytor-generalny-024 (04-studio-projektowe-005): przycisk stał w osobnym wierszu nad tytułem. */
+describe('K3 (23.10.2026): „Planowanie” w linii tytułu, jak w zakładce Plan', () => {
+  const fontScale = (s: number) => { const w = Dimensions.get('window'); jest.spyOn(Dimensions, 'get').mockImplementation(((k: string) => (k === 'window' ? { ...w, fontScale: s } : Dimensions.get.call(Dimensions, k as never))) as never); };
+  test.each([[1, 390], [2, 320]])('skala tekstu %s, szerokość %s: przycisk w wierszu tytułu po napisie „Trening”; wiersz się zawija (przycisk przechodzi pod tytuł zamiast ucinać)', async (fs, width) => {
+    fontScale(fs); jest.useFakeTimers({ now: NOW }); await fresh(); const t = withDemoTemplates('pl'); setPlan(t, { 3: 0 }, 'Góra / Dół'); hist();
+    await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'pl', width }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
+    const row = screen.getByTestId('title-row');
+    expect(within(row).getByTestId('planning-button').props.accessibilityLabel).toBe('Planowanie');
+    const order = row.findAll((n: { type: unknown; props: { testID?: string; accessibilityRole?: string } }) => typeof n.type === 'string' && (n.props.accessibilityRole === 'header' || n.props.testID === 'planning-button')).map((n: { props: { testID?: string } }) => n.props.testID ?? 'header');
+    expect(order).toEqual(['header', 'planning-button']);
+    expect(flat(row).flexWrap).toBe('wrap');
+    const h = screen.getByRole('header', { name: 'Trening' }); expect(h.props.numberOfLines).toBeUndefined();
   });
 });
 

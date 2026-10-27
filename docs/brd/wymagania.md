@@ -221,6 +221,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik jest w zakładce Plan
     - Gdy chce przejść do planowania
     - Wtedy przycisk „Planowanie” jest przy tytule, w tym samym miejscu co na ekranie Trening, i otwiera ekran planu
+  - Scenariusz: „Planowanie” w linii tytułu na ekranie Trening (DEC-07 K3 a, 23.10.2026; M1-audytor-generalny-024)
+    - Zakładając, że użytkownik ma plan albo treningi i jest na ekranie Trening bez treningu w toku
+    - Gdy patrzy na nagłówek ekranu
+    - Wtedy przycisk „Planowanie” (bez planu „Ustaw plan”) stoi w linii tytułu „Trening” po prawej, jak w zakładce Plan; przy wąskim ekranie i dużym tekście przechodzi pod tytuł, nic nie jest ucięte
   - Scenariusz: Postęp tygodnia po zmianie planu w trakcie tygodnia (decyzja właściciela 22.10.2026, wariant A; `lib/plan.planChangedInWeek`, `components/WeekStacks`)
     - Zakładając, że użytkownik zmienił plan tygodnia w środku bieżącego tygodnia (nie w poniedziałek), a poprzedni plan miał treningi
     - Gdy ogląda pasek postępu planu tygodnia na ekranie Trening

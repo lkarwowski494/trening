@@ -302,7 +302,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Technika: {name} | components/ExerciseCues.tsx | tests/audit-k1-fala2b.test.tsx |
 | Tempo | app/exercise/[id].tsx | tests/i18n-wave2.test.ts, tests/matrix-i18n.test.tsx, tests/scenario-full.test.tsx |
 | Tempo (opcjonalnie, np. 3-1-1) | app/exercise/[id].tsx | tests/scenario-full.test.tsx |
-| Trening | app/history/edit/[id].tsx | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-live.test.tsx +94 |
+| Trening | app/history/edit/[id].tsx | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-live.test.tsx +95 |
 | Trening zapisał się sam | app/(tabs)/index.tsx | tests/interaction-patterns.test.tsx, tests/matrix-ui.test.tsx |
 | Tydzień deload (D na wykresach). | components/PeriodSummary.tsx | tests/deload-week.test.tsx |
 | Tygodnie treningu bez deloadu: {n}. | components/DeloadHint.tsx | tests/deload-ui.test.tsx |
