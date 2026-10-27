@@ -62,7 +62,7 @@ Ekran szczegółów: tytuł nagłówka = rodzaj obiektu, H1 = nazwa, obok „Edy
 
 ### 9. Wybór z listy — S6 (częściowo)
 1 z 2–4 → `Segmented` (naprawiono: tryb generatora, Tydzień/Miesiąc w podsumowaniu); 1 z wielu krótkich → chipy (`selected`); długa lista / wyszukiwanie → okno modalne z „Anuluj” (wzorzec 1);
-kontekstowy wybór ≤ 3 opcje + Anuluj → arkusz akcji. Stan wybrania zawsze przez `accessibilityState.selected` (nie w etykiecie) — import CSV dostał `selected` na wierszach.
+kontekstowy wybór ≤ 3 opcje + Anuluj → arkusz akcji (np. „⋯” przy wierszu ekranu Kolejność: „Przesuń wyżej / niżej” — przyciskowa alternatywa przeciągania, M1-audytor-generalny-026, 27.10.2026; test `tests/audit-m1-026-kolejnosc-menu.test.tsx`). Stan wybrania zawsze przez `accessibilityState.selected` (nie w etykiecie) — import CSV dostał `selected` na wierszach.
 
 ### 10. Wpisywanie liczb — S7
 `NumInput` (przecinek wg języka, klawiatura numeryczna, przycięcie do limitu). Przerwa: zawsze pole z etykietą „… (s)”; przerwa w treningu — okno z wpisem „Przerwa (s)” (zostaje: ma „Zapamiętaj”). Daty: `DateField` (wzorzec 22).

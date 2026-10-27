@@ -36,6 +36,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że w serii wpisano wynik, ale nie odhaczono jej
     - Gdy użytkownik kończy trening
     - Wtedy aplikacja ostrzega, że nieodhaczone serie z wpisanymi wynikami nie zostaną zapisane
+  - Scenariusz: Kolejność ćwiczeń bez przeciągania (M1-audytor-generalny-026, 27.10.2026)
+    - Zakładając, że użytkownik jest na ekranie Kolejność (szablon albo trening w toku)
+    - Gdy stuka „⋯” przy wierszu (ćwiczenie, superset albo ćwiczenie w supersecie) i wybiera „Przesuń wyżej” albo „Przesuń niżej”
+    - Wtedy kolejność zmienia się tak samo jak po przeciągnięciu uchwytu „≡” o jedno miejsce; arkusz pokazuje tylko możliwe kierunki i „Anuluj”
   - Scenariusz: „Pierwsze kroki” prowadzą do przycisków, które są na ekranie (M1-audytor-generalny-025, 27.10.2026)
     - Zakładając, że nowa osoba nie ma jeszcze szablonu z ćwiczeniami ani planu
     - Gdy patrzy na „Pierwsze kroki” na ekranie Trening

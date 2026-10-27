@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, Animated, PanResponder, Platform, Text, View, type PanResponderInstance, type StyleProp, type ViewStyle } from 'react-native';
+import { AccessibilityInfo, ActionSheetIOS, Animated, PanResponder, Platform, Pressable, Text, View, type PanResponderInstance, type StyleProp, type ViewStyle } from 'react-native';
 import { ScrollView } from '@/components/Scroll';
 import * as Haptics from 'expo-haptics';
-import { useTheme, font } from '@/lib/theme';
+import { useTheme, font, SIZE } from '@/lib/theme';
+import { Icon } from '@/components/Icon';
 import { t, lang } from '@/lib/i18n';
 import { hapticsOn } from '@/lib/haptics';
 
@@ -11,6 +12,9 @@ import { hapticsOn } from '@/lib/haptics';
  * (transformacje na natywnym sterowniku, JS liczy tylko indeks docelowy). Wiersze mogą mieć różną wysokość (superset to
  * jeden wysoki wiersz). VoiceOver nie przeciąga — uchwyt ma akcje „Przesuń wyżej / niżej”. Lista w DragScroll przewija się
  * sama, gdy palec z przeciąganym wierszem dojdzie do krawędzi ekranu.
+ * M1-audytor-generalny-026 (04-studio-projektowe-009, 27.10.2026): gest ma widoczną alternatywę — przycisk „⋯” przy wierszu (jak menu ćwiczenia, docs/32
+ * wzorzec 5; etykieta „Opcje ćwiczenia: {nazwa}”, 44 pt) otwiera arkusz „Przesuń wyżej / niżej / Anuluj” (wzorzec 9); przesunięcie idzie tą samą drogą co
+ * akcja VoiceOver i upuszczenie (onMove), z ogłoszeniem nowej pozycji.
  */
 const NATIVE = Platform.OS !== 'web';
 const EDGE = 56; const STEP = 10;
@@ -49,7 +53,8 @@ export const dragHaptic = (kind: 'pick' | 'tick') => { if (Platform.OS === 'web'
 type Props<T> = {
   items: T[]; keyOf: (x: T) => string; /** nazwa dla VoiceOver */ label: (x: T) => string;
   /** upuszczenie: klucz przesuniętego wiersza i jego nowy indeks; false = nic się nie zmieniło */ onMove: (key: string, to: number) => boolean | void;
-  renderItem: (x: T, handle: React.ReactNode, dragging: boolean) => React.ReactNode;
+  /** `menu` — przycisk „⋯” z „Przesuń wyżej / niżej” (alternatywa gestu); ekran stawia go na końcu wiersza */
+  renderItem: (x: T, handle: React.ReactNode, dragging: boolean, menu: React.ReactNode) => React.ReactNode;
 };
 export function DragList<T>({ items, keyOf, label, onMove, renderItem }: Props<T>) {
   const th = useTheme(); const sc = useContext(ScrollCtx);
@@ -94,12 +99,17 @@ export function DragList<T>({ items, keyOf, label, onMove, renderItem }: Props<T
 
   return <View>{items.map((x, i) => { const k = keys[i]; const nm = label(x); const dragging = active === k;
     const acts = [i > 0 ? { name: 'up', label: t('Przesuń wyżej') } : null, i < items.length - 1 ? { name: 'down', label: t('Przesuń niżej') } : null].filter(Boolean) as { name: string; label: string }[];
+    /** przesunięcie o jedno miejsce bez gestu (VoiceOver i menu „⋯”) — ta sama funkcja zapisu co upuszczenie */
+    const step = (d: number) => { const to = i + d; if (d && to >= 0 && to < items.length && latest.current.onMove(k, to) !== false) AccessibilityInfo.announceForAccessibility?.(t('{n} z {all}', { n: to + 1, all: latest.current.n })); };
+    const menu = <Pressable testID={'move-menu-' + k} accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Opcje ćwiczenia: {name}', { name: nm })} hitSlop={4} style={{ minWidth: SIZE.hit, minHeight: SIZE.hit, alignItems: 'center', justifyContent: 'center' }}
+      onPress={() => ActionSheetIOS.showActionSheetWithOptions({ options: [...acts.map(a => a.label), t('Anuluj')], cancelButtonIndex: acts.length, title: nm }, j => { const a = acts[j]; if (a) step(a.name === 'up' ? -1 : 1); })}>
+      <Icon name="more" color={th.muted} size={SIZE.icon} /></Pressable>;
     const handle = <View accessibilityLanguage={lang()} {...responder(k).panHandlers} testID={'drag-' + k} accessible accessibilityRole="adjustable" accessibilityLabel={t('Zmień kolejność: {name}', { name: nm })}
       accessibilityValue={{ text: t('{n} z {all}', { n: i + 1, all: items.length }) }} accessibilityActions={[...acts, ...acts.map(a => ({ name: a.name === 'up' ? 'decrement' : 'increment' }))]}
-      onAccessibilityAction={e => { const n = e.nativeEvent.actionName; const to = n === 'up' || n === 'decrement' ? i - 1 : n === 'down' || n === 'increment' ? i + 1 : i; if (to !== i && to >= 0 && to < items.length && latest.current.onMove(k, to) !== false) AccessibilityInfo.announceForAccessibility?.(t('{n} z {all}', { n: to + 1, all: latest.current.n })); }}
+      onAccessibilityAction={e => { const n = e.nativeEvent.actionName; step(n === 'up' || n === 'decrement' ? -1 : n === 'down' || n === 'increment' ? 1 : 0); }}
       hitSlop={6} style={{ width: 40, minHeight: 44, alignItems: 'center', justifyContent: 'center' }}>
       <Text accessibilityLanguage={lang()} style={{ color: dragging ? th.accent : th.muted, ...font('boardField') }} maxFontSizeMultiplier={1.3}>≡</Text></View>;
     return <Animated.View key={k} onLayout={e => { heights.current.set(k, e.nativeEvent.layout.height); }}
       style={{ transform: [{ translateY: av(k) }], zIndex: dragging ? 10 : 0, ...(dragging ? { shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 10, shadowOffset: { width: 0, height: 4 } } : null) }}>
-      {renderItem(x, handle, dragging)}</Animated.View>; })}</View>;
+      {renderItem(x, handle, dragging, menu)}</Animated.View>; })}</View>;
 }
