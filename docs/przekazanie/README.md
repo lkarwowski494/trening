@@ -91,6 +91,32 @@ Przypomnienia starej sesji usunięte. Nowa sesja ustawia własne:
 2. Pon. 2.11.2026 07:00 UTC — wznowienie kalisteniki (repo lkarwowski494/kalistenika, gałąź monetyzacja, docs/sztafeta.md „Wstrzymanie 26.10.2026”; pytania DK-13, DK-14, zakup książek).
 Oszczędność limitu: agenci raportują tylko na końcu zadania albo przy blokadzie; czekanie na CI/E2E w tle (sleep), bez oddawania wyników pośrednich; mniejsze modele do czekania na przebiegi.
 
+## Stan ścieżki 1.0 przy przekazaniu (2026-10-27 02:05 UTC)
+- Kroki 1-2: E2E pakiet podstawowy run 40397482864 zielony; PR #70 i #71 scalone, main = 001ecf2 (wersja 1.0.0), `tests.yml` na 001ecf2 run 40423119977 zielony.
+- Krok 3 zrobiony: pełny katalog E2E (`pakiet: pelny`, main 001ecf2) run 40423153424 zielony (success) — bramka Z-06 spełniona.
+- Krok 4 zrobiony (01:53 UTC): `testflight.yml` z main (bez `pomin_bramke_e2e`) run 40435246644, https://github.com/lkarwowski494/trening/actions/runs/40435246644 — status `waiting` (środowisko `release`). NIE zatwierdzone; zatwierdza właściciel.
+- Krok 5 zrobiony: `check-urls.yml` run 40435249217 na 001ecf2 zielony (wszystkie adresy 200, treść zgodna z `site/`). R-017 zamknięte w PR https://github.com/lkarwowski494/trening/pull/72 (gałąź `zamkniecie-r017`, tylko docs/40) — NIE scalony, czeka na właściciela. Lokalnie `verify:docs`: 5 testów haka pre-push czerwonych w worktree agenta (środowisko, nie dokument); CI na PR pokaże pełne.
+- Czeka na właściciela: zatwierdzenie `release` w run 40435246644, scalenie PR #72, potem lista kontrolna z telefonu (Z-08/Z-09).
+
+## Integracja 1.1 (agent programisty, 26.10.2026 wieczór; aktualizacja 21:57 UTC)
+- `integracja-1-1` @ 9878bb5: tests.yml zielone (run 40412755945), lokalne `npm run verify` zielone (11459 testów). Gałąź zawiera już scalenie `pozy-1-1` (c16ad360 z 2711796, zrobione przez innego agenta) + test limitu polecenia (4e84adf).
+- Przekład ról mięśni: zastosowany w 96c8f48 (z poprawkami recenzji). Czerwone CI na 4e84adf (run 40401443739; 4 testy) naprawione w 9878bb5: ms „Petua”, fr 14 opisów „Permet de …” (3. os. -er = rozkaźnik „tu” dla strażnika A11N-02), nakładki es-419/pt-BR bez wpisów równych bazie. Recenzja ręczna (bez narzędzia Agent): zastrzeżenia niskiej wagi, niewprowadzone: hr „glavni dio tijela” i sr „главни мишић” zamiast „glavna mišićna skupina” (do native speakera).
+- E2E 57 (tylko_scenariusze): run 306 (40399201983, 0f45234) **zielony**; powtórka na 9878bb5: run 308 (40415155748), w kolejce.
+- Nie scalono nic więcej: `pozy-1-1` już wchodzi (jego własne CI czerwone na 2711796, ale integracja zielona); `jakosc-r2` nie ruszana.
+
+## Decyzje właściciela 26.10 wieczór (po 21:00 UTC)
+- „Co nowego” 1.0.0: bez przycisku ✦ (zapisane w docs/18 na wydanie-1-0-0).
+- Kalistenika na stronie: techniqueatlas, sekcja „Progresje” (kalistenika DK-15).
+- Domena jedzeniowa: decyzja później (po 1.1).
+- Kreator planów na stronie: wariant B po 1.1 (CSV/PDF/Excel + „Otwórz w aplikacji”), zaczątek modułu trenerskiego z backlogu — techniqueatlas docs/54.
+
+## Przejście do nowej sesji koordynatora (26.10, ok. 21:15 UTC)
+Powód: długi kontekst starej sesji — każde wybudzenie czytało setki tysięcy tokenów (limit tygodniowy). Wszyscy agenci starej sesji dostali STOP z poleceniem zapisu stanu tutaj; ich wpisy są poniżej (jeśli któregoś brak — stan sprawdź na jego gałęzi).
+Przypomnienia starej sesji usunięte. Nowa sesja ustawia własne:
+1. Przegląd agentów co ~2 h do rana (aktualizacja tego pliku jako pierwszy krok, priorytet 1.0 > integracja 1.1 > bramki > pozy).
+2. Pon. 2.11.2026 07:00 UTC — wznowienie kalisteniki (repo lkarwowski494/kalistenika, gałąź monetyzacja, docs/sztafeta.md „Wstrzymanie 26.10.2026”; pytania DK-13, DK-14, zakup książek).
+Oszczędność limitu: agenci raportują tylko na końcu zadania albo przy blokadzie; czekanie na CI/E2E w tle (sleep), bez oddawania wyników pośrednich; mniejsze modele do czekania na przebiegi.
+
 ## Stan ścieżki 1.0 przy przekazaniu (2026-10-26 23:58 UTC)
 - Krok 1 zrobiony: E2E pakiet podstawowy, run 40397482864 (c56ef5d) zielony.
 - Krok 2 zrobiony: PR #70 (integracja → main, https://github.com/lkarwowski494/trening/pull/70) scalony, main d1c8be6; PR #71 (wydanie-1-0-0 → main, https://github.com/lkarwowski494/trening/pull/71) scalony po zielonym verify (run 40417361424), main = 001ecf2 (wersja 1.0.0). `tests.yml` na 001ecf2: run 40423119977 (w toku o 23:58).
