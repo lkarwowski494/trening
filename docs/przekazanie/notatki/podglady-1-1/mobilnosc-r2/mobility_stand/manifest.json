@@ -1,0 +1,651 @@
+{
+ "rodzina": "mobility_stand",
+ "wygenerowano": "2026-10-27T09:25:50.525Z",
+ "wyjatki": {
+  "Chest And Front Of Shoulder Stretch": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Chest Stretch on Stability Ball": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Cross-Body Shoulder Stretch": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "One Knee To Chest": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Overhead Stretch": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Standing Toe Touches": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Standing Biceps Stretch": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Standing Elevated Quad Stretch": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Wall Lat Stretch": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Leg Swings (Front-to-Back)": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Leg Swings (Side-to-Side)": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Lying Leg Crossover Swings": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Ankle Circles": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Knee Circles": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Standing Hip Circles": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Arm Circles": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Round The World Shoulder Stretch": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Dynamic Chest Stretch": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Shoulder Circles": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Torso Rotation": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Iron Crosses (Stretch)": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Wrist Circles": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Dynamic Back Stretch": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Groiners": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Hip Circles (Prone)": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "World's Greatest Stretch": "brak przeczytanego źródła pozycji albo ruchu tego ćwiczenia (figury-sens.json → mobility_stand: tylko reguła „poza nieruchoma”, pozycja z analogii albo reguła z nazwy/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Standing Pelvic Tilt": "ruch wewnętrzny (przechył miednicy w płaszczyźnie strzałkowej) bez widocznej zmiany pozy szkieletu, a ćwiczenie bez przeczytanego źródła; wyjątek bez animacji (decyzja właściciela 26.10.2026 o ćwiczeniach bez widocznej istoty ruchu; 27.10.2026)"
+ },
+ "przyblizenia": {
+  "Standing Gastrocnemius Calf Stretch": "poza ze źródła (ACE #152 Standing Dorsi-Flexion: przy ścianie, tylna noga prosta, pięta na podłodze) — taka sama jak Wall Calf Stretch; wariant z piętą na podwyższeniu i palcami w górę (podpowiedź katalogu) nie ma przeczytanego źródła i nie jest rysowany",
+  "Overhead Triceps Stretch": "przybliżenie: bez ręki pomocniczej (ACE #174: lewa dłoń na ramieniu przy łokciu, lekki nacisk) — dosięgnięcie łokcia nad głową wymaga barku powyżej zakresu modelu (171°) albo przejścia ręki przez głowę; lewa ręka zwisa; dłoń prawa na górze pleców za szyją (zasięg ręki), nie „na środku pleców”",
+  "Inchworm": "uproszczenie: rysunek w układzie dłoni (dłonie stoją, stopy dochodzą do nich krokami po ok. 15 cm, obie stopy naraz, ACE #254 krok 5; ruch wstecz to marsz stóp do tyłu = względem ciała marsz rąk do podporu); pompka w podporze (krok 3) pominięta"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Chin To Chest Stretch",
+   "obraz": "Chin-To-Chest-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 8.7,
+     "max": 8.7
+    },
+    "knee": {
+     "min": 11.6,
+     "max": 11.6
+    },
+    "ankle": {
+     "min": 5.4,
+     "max": 5.4
+    },
+    "elbow": {
+     "min": 13.2,
+     "max": 13.2
+    },
+    "shSag": {
+     "min": -0.5,
+     "max": -0.5
+    },
+    "shElev": {
+     "min": 9.4,
+     "max": 9.4
+    },
+    "shAbd": {
+     "min": 9.3,
+     "max": 9.3
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "glowa_do_klatki",
+    "tulow_pion",
+    "rece_proste"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Side Neck Stretch",
+   "obraz": "Side-Neck-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 8.7,
+     "max": 8.7
+    },
+    "knee": {
+     "min": 11.6,
+     "max": 11.6
+    },
+    "ankle": {
+     "min": 5.4,
+     "max": 5.4
+    },
+    "elbow": {
+     "min": 13.2,
+     "max": 13.2
+    },
+    "shSag": {
+     "min": -0.5,
+     "max": -0.5
+    },
+    "shElev": {
+     "min": 9.4,
+     "max": 9.4
+    },
+    "shAbd": {
+     "min": 9.3,
+     "max": 9.3
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "glowa_w_bok",
+    "tulow_pion",
+    "rece_proste"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Overhead Triceps Stretch",
+   "obraz": "Overhead-Triceps-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 8.7,
+     "max": 8.7
+    },
+    "knee": {
+     "min": 11.6,
+     "max": 11.6
+    },
+    "ankle": {
+     "min": 5.4,
+     "max": 5.4
+    },
+    "elbow": {
+     "min": 13.2,
+     "max": 145.7
+    },
+    "shSag": {
+     "min": -0.5,
+     "max": 168.9
+    },
+    "shElev": {
+     "min": 9.4,
+     "max": 167
+    },
+    "shAbd": {
+     "min": 6.8,
+     "max": 9.3
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "lokiec_nad_barkiem"
+   ],
+   "przyblizenie": "przybliżenie: bez ręki pomocniczej (ACE #174: lewa dłoń na ramieniu przy łokciu, lekki nacisk) — dosięgnięcie łokcia nad głową wymaga barku powyżej zakresu modelu (171°) albo przejścia ręki przez głowę; lewa ręka zwisa; dłoń prawa na górze pleców za szyją (zasięg ręki), nie „na środku pleców”"
+  },
+  {
+   "cwiczenie": "Standing Chest Stretch",
+   "obraz": "Standing-Chest-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 10.1,
+     "max": 10.1
+    },
+    "knee": {
+     "min": 11.6,
+     "max": 11.6
+    },
+    "ankle": {
+     "min": 5.4,
+     "max": 5.4
+    },
+    "elbow": {
+     "min": 22.2,
+     "max": 22.2
+    },
+    "shSag": {
+     "min": -28.9,
+     "max": -28.9
+    },
+    "shElev": {
+     "min": 29.1,
+     "max": 29.1
+    },
+    "shAbd": {
+     "min": 3.8,
+     "max": 3.8
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "rece_proste",
+    "rece_proste_za_plecami",
+    "tulow_pion"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Standing Gastrocnemius Calf Stretch",
+   "obraz": "Standing-Gastrocnemius-Calf-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    },
+    {
+     "rodzaj": "sciana",
+     "x": 75,
+     "h": 250,
+     "przed": true
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -8.5,
+     "max": 59.6
+    },
+    "knee": {
+     "min": 7.9,
+     "max": 32.3
+    },
+    "ankle": {
+     "min": -7.2,
+     "max": 31.5
+    },
+    "elbow": {
+     "min": 29.2,
+     "max": 29.2
+    },
+    "shSag": {
+     "min": 101.3,
+     "max": 101.3
+    },
+    "shElev": {
+     "min": 101,
+     "max": 101
+    },
+    "shAbd": {
+     "min": 13.5,
+     "max": 13.5
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "tylna_noga_prosta",
+    "przednia_noga_ugieta"
+   ],
+   "przyblizenie": "poza ze źródła (ACE #152 Standing Dorsi-Flexion: przy ścianie, tylna noga prosta, pięta na podłodze) — taka sama jak Wall Calf Stretch; wariant z piętą na podwyższeniu i palcami w górę (podpowiedź katalogu) nie ma przeczytanego źródła i nie jest rysowany"
+  },
+  {
+   "cwiczenie": "Wall Calf Stretch",
+   "obraz": "Wall-Calf-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    },
+    {
+     "rodzaj": "sciana",
+     "x": 75,
+     "h": 250,
+     "przed": true
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -8.5,
+     "max": 59.6
+    },
+    "knee": {
+     "min": 7.9,
+     "max": 32.3
+    },
+    "ankle": {
+     "min": -7.2,
+     "max": 31.5
+    },
+    "elbow": {
+     "min": 29.2,
+     "max": 29.2
+    },
+    "shSag": {
+     "min": 101.3,
+     "max": 101.3
+    },
+    "shElev": {
+     "min": 101,
+     "max": 101
+    },
+    "shAbd": {
+     "min": 13.5,
+     "max": 13.5
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: ściana (sprzet: rodzaj \"sciana\", pole przed)",
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "tylna_noga_prosta",
+    "przednia_noga_ugieta"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Standing Soleus And Achilles Stretch",
+   "obraz": "Standing-Soleus-And-Achilles-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 29.7,
+     "max": 50.1
+    },
+    "knee": {
+     "min": 36.6,
+     "max": 58.1
+    },
+    "ankle": {
+     "min": -5.4,
+     "max": 36.3
+    },
+    "elbow": {
+     "min": 96.2,
+     "max": 96.2
+    },
+    "shSag": {
+     "min": -38.9,
+     "max": -38.9
+    },
+    "shElev": {
+     "min": 58,
+     "max": 58
+    },
+    "shAbd": {
+     "min": 47.1,
+     "max": 47.1
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "obie_kolana_lekko"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Standing Lateral Stretch",
+   "obraz": "Standing-Lateral-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 14.6,
+     "max": 26.1
+    },
+    "knee": {
+     "min": 11.6,
+     "max": 11.6
+    },
+    "ankle": {
+     "min": 5.4,
+     "max": 5.4
+    },
+    "elbow": {
+     "min": 25.7,
+     "max": 27.9
+    },
+    "shSag": {
+     "min": -3.6,
+     "max": 169.6
+    },
+    "shElev": {
+     "min": 37.9,
+     "max": 163.5
+    },
+    "shAbd": {
+     "min": 17.8,
+     "max": 32.5
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "sklon_boczny_statyczny",
+    "bez_skretu"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Inchworm",
+   "obraz": "Inchworm-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 9.2,
+     "max": 127.2
+    },
+    "knee": {
+     "min": 13.2,
+     "max": 16.6
+    },
+    "ankle": {
+     "min": 10.7,
+     "max": 22.3
+    },
+    "elbow": {
+     "min": 10.5,
+     "max": 15.1
+    },
+    "shSag": {
+     "min": 81.3,
+     "max": 145
+    },
+    "shElev": {
+     "min": 81.3,
+     "max": 144.8
+    },
+    "shAbd": {
+     "min": 4.2,
+     "max": 6.3
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "inchworm_kolana",
+    "inchworm_podpor"
+   ],
+   "przyblizenie": "uproszczenie: rysunek w układzie dłoni (dłonie stoją, stopy dochodzą do nich krokami po ok. 15 cm, obie stopy naraz, ACE #254 krok 5; ruch wstecz to marsz stóp do tyłu = względem ciała marsz rąk do podporu); pompka w podporze (krok 3) pominięta"
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}
