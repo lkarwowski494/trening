@@ -1,0 +1,313 @@
+{
+ "rodzina": "mobility_stand",
+ "wygenerowano": "2026-10-27T13:58:50.571Z",
+ "wyjatki": {},
+ "przyblizenia": {
+  "Standing Gastrocnemius Calf Stretch": "poza ze źródła (ACE #152 Standing Dorsi-Flexion: przy ścianie, tylna noga prosta, pięta na podłodze) — taka sama jak Wall Calf Stretch; wariant z piętą na podwyższeniu i palcami w górę (podpowiedź katalogu) nie ma przeczytanego źródła i nie jest rysowany",
+  "Overhead Triceps Stretch": "przybliżenie: krok 1 źródła (ACE #174) zawiera rękę pomocniczą (lewa dłoń na prawym ramieniu „just above the elbow”, lekki nacisk), rysunek ją pomija — dosięgnięcie łokcia nad głową wymaga barku L 192° (limit modelu 171°) albo przedramienia przechodzącego ≈ 3 cm przez głowę (pomiar 27.10.2026); lewa ręka zwisa; dłoń prawa na górze pleców za szyją (zasięg ręki), nie „na środku pleców” (źródło: „middle of your back”)",
+  "Inchworm": "uproszczenie: rysunek w układzie STÓP (stopy stoją, dłonie idą naprzemiennie po ok. 22 cm ≈ 9\" — ACE #254 krok 5 mówi o krokach stóp po 6–12\" bez ruchu rąk: „…taking 6-12\" steps without moving your hands”; względem ciała ruch ten sam); naprzemienne stopy przy kolanach ≤ 25° (źródło: „extended (but not locked)”) nie mieszczą się w modelu: rozstaw stóp w x najwyżej ≈ 1,5 cm w podporze i ≈ 8 cm w skłonie przy kroku źródła 15–30 cm (pomiar 27.10.2026); pompka w podporze pominięta (ACE #254, krok 4: „Perform one full push-up…”)"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Overhead Triceps Stretch",
+   "obraz": "Overhead-Triceps-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 8.7,
+     "max": 8.7
+    },
+    "knee": {
+     "min": 11.6,
+     "max": 11.6
+    },
+    "ankle": {
+     "min": 5.4,
+     "max": 5.4
+    },
+    "elbow": {
+     "min": 13.2,
+     "max": 145.7
+    },
+    "shSag": {
+     "min": -0.5,
+     "max": 168.9
+    },
+    "shElev": {
+     "min": 9.4,
+     "max": 167
+    },
+    "shAbd": {
+     "min": 6.8,
+     "max": 9.3
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "lokiec_nad_barkiem"
+   ],
+   "przyblizenie": "przybliżenie: krok 1 źródła (ACE #174) zawiera rękę pomocniczą (lewa dłoń na prawym ramieniu „just above the elbow”, lekki nacisk), rysunek ją pomija — dosięgnięcie łokcia nad głową wymaga barku L 192° (limit modelu 171°) albo przedramienia przechodzącego ≈ 3 cm przez głowę (pomiar 27.10.2026); lewa ręka zwisa; dłoń prawa na górze pleców za szyją (zasięg ręki), nie „na środku pleców” (źródło: „middle of your back”)"
+  },
+  {
+   "cwiczenie": "Standing Gastrocnemius Calf Stretch",
+   "obraz": "Standing-Gastrocnemius-Calf-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    },
+    {
+     "rodzaj": "sciana",
+     "x": 75,
+     "h": 250,
+     "przed": true
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.7,
+     "max": 62.1
+    },
+    "knee": {
+     "min": 7.9,
+     "max": 41.9
+    },
+    "ankle": {
+     "min": 1.6,
+     "max": 31.5
+    },
+    "elbow": {
+     "min": 63.1,
+     "max": 63.1
+    },
+    "shSag": {
+     "min": 102,
+     "max": 102
+    },
+    "shElev": {
+     "min": 100.5,
+     "max": 100.5
+    },
+    "shAbd": {
+     "min": 28.9,
+     "max": 28.9
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "tylna_noga_prosta",
+    "przednia_noga_ugieta"
+   ],
+   "przyblizenie": "poza ze źródła (ACE #152 Standing Dorsi-Flexion: przy ścianie, tylna noga prosta, pięta na podłodze) — taka sama jak Wall Calf Stretch; wariant z piętą na podwyższeniu i palcami w górę (podpowiedź katalogu) nie ma przeczytanego źródła i nie jest rysowany"
+  },
+  {
+   "cwiczenie": "Wall Calf Stretch",
+   "obraz": "Wall-Calf-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    },
+    {
+     "rodzaj": "sciana",
+     "x": 75,
+     "h": 250,
+     "przed": true
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.7,
+     "max": 62.1
+    },
+    "knee": {
+     "min": 7.9,
+     "max": 41.9
+    },
+    "ankle": {
+     "min": 1.6,
+     "max": 31.5
+    },
+    "elbow": {
+     "min": 63.1,
+     "max": 63.1
+    },
+    "shSag": {
+     "min": 102,
+     "max": 102
+    },
+    "shElev": {
+     "min": 100.5,
+     "max": 100.5
+    },
+    "shAbd": {
+     "min": 28.9,
+     "max": 28.9
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: ściana (sprzet: rodzaj \"sciana\", pole przed)",
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "tylna_noga_prosta",
+    "przednia_noga_ugieta"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Inchworm",
+   "obraz": "Inchworm-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.0625,
+    0.125,
+    0.1875,
+    0.25,
+    0.3125,
+    0.375,
+    0.4375,
+    0.5,
+    0.5625,
+    0.625,
+    0.6875,
+    0.75,
+    0.8125,
+    0.875,
+    0.9375,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.0625,
+    0.125,
+    0.1875,
+    0.25,
+    0.3125,
+    0.375,
+    0.4375,
+    0.5,
+    0.5625,
+    0.625,
+    0.6875,
+    0.75,
+    0.8125,
+    0.875,
+    0.9375,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 9.2,
+     "max": 121.9
+    },
+    "knee": {
+     "min": 13,
+     "max": 16.3
+    },
+    "ankle": {
+     "min": 10.7,
+     "max": 22.3
+    },
+    "elbow": {
+     "min": 17.2,
+     "max": 53
+    },
+    "shSag": {
+     "min": 41.2,
+     "max": 123.3
+    },
+    "shElev": {
+     "min": 41.8,
+     "max": 123.2
+    },
+    "shAbd": {
+     "min": 2.6,
+     "max": 7.6
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "inchworm_kolana",
+    "inchworm_podpor"
+   ],
+   "przyblizenie": "uproszczenie: rysunek w układzie STÓP (stopy stoją, dłonie idą naprzemiennie po ok. 22 cm ≈ 9\" — ACE #254 krok 5 mówi o krokach stóp po 6–12\" bez ruchu rąk: „…taking 6-12\" steps without moving your hands”; względem ciała ruch ten sam); naprzemienne stopy przy kolanach ≤ 25° (źródło: „extended (but not locked)”) nie mieszczą się w modelu: rozstaw stóp w x najwyżej ≈ 1,5 cm w podporze i ≈ 8 cm w skłonie przy kroku źródła 15–30 cm (pomiar 27.10.2026); pompka w podporze pominięta (ACE #254, krok 4: „Perform one full push-up…”)"
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}

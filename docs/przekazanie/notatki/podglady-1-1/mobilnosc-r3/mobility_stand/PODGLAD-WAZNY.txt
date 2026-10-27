@@ -1,0 +1,2 @@
+Kontrola manifestu (zgodnosc_manifestu) wykonana, bez niezgodności; tabela kątów stawów w manifest.json i katy-stawow.md.
+Klatki na obrazie (odczytane z HTML podglądu, atrybuty data-u) = klatki_u pozy: Overhead Triceps Stretch 2; Standing Gastrocnemius Calf Stretch 2; Wall Calf Stretch 2; Inchworm 17.

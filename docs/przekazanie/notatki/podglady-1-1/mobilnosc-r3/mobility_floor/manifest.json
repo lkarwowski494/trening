@@ -1,0 +1,207 @@
+{
+ "rodzina": "mobility_floor",
+ "wygenerowano": "2026-10-27T13:59:00.030Z",
+ "wyjatki": {},
+ "przyblizenia": {
+  "Child's Pose": "wariant ACE #227 „ręce wzdłuż ciała” (krok 4: „Extend your arms alongside the body with the palms facing upward…”): dłonie na podłodze przy biodrach (palce do góry nie rysujemy); kolana szeroko, bierne zgięcie kolana ≈ 152° i biodra ≈ 139° (wyjątek zakresu: CONTRACT.kneePassiveMaxDeg, hipPassiveMaxDeg); stopy grzbietem na podłodze (podbicie 208°, krok 1: „toes pointing behind you”)",
+  "Side-Lying Quad Stretch": "przybliżenie: leżenie na lewym boku, górną (prawą) nogą i dłonią od strony kamery; udo w linii tułowia (biodro ≈ 13°), kolano zgięte ≈ 140° (granica modelu), goleń zawraca ku tyłowi ciała i w górę; dłoń 1,3 cm od kostki (sięg ręki ≈ 63 cm); stopa pochylona 45° (model nie ma stopy wzdłuż goleni leżącej na boku)"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Child's Pose",
+   "obraz": "Child-s-Pose-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 138.5,
+     "max": 138.5
+    },
+    "knee": {
+     "min": 151.8,
+     "max": 151.8
+    },
+    "ankle": {
+     "min": -54.4,
+     "max": -54.4
+    },
+    "elbow": {
+     "min": 60.8,
+     "max": 60.8
+    },
+    "shSag": {
+     "min": 15.1,
+     "max": 15.1
+    },
+    "shElev": {
+     "min": 36.1,
+     "max": 36.1
+    },
+    "shAbd": {
+     "min": 33.1,
+     "max": 33.1
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "posladki_na_pietach"
+   ],
+   "przyblizenie": "wariant ACE #227 „ręce wzdłuż ciała” (krok 4: „Extend your arms alongside the body with the palms facing upward…”): dłonie na podłodze przy biodrach (palce do góry nie rysujemy); kolana szeroko, bierne zgięcie kolana ≈ 152° i biodra ≈ 139° (wyjątek zakresu: CONTRACT.kneePassiveMaxDeg, hipPassiveMaxDeg); stopy grzbietem na podłodze (podbicie 208°, krok 1: „toes pointing behind you”)"
+  },
+  {
+   "cwiczenie": "Side-Lying Quad Stretch",
+   "obraz": "Side-Lying-Quad-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 8.4,
+     "max": 13.3
+    },
+    "knee": {
+     "min": 6.8,
+     "max": 140.8
+    },
+    "ankle": {
+     "min": 1,
+     "max": 12.7
+    },
+    "elbow": {
+     "min": 21.8,
+     "max": 148.4
+    },
+    "shSag": {
+     "min": -23.5,
+     "max": 66.8
+    },
+    "shElev": {
+     "min": 27.6,
+     "max": 66.9
+    },
+    "shAbd": {
+     "min": 22.6,
+     "max": 66.8
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "pieta_do_posladka",
+    "jedna_noga_prosta"
+   ],
+   "przyblizenie": "przybliżenie: leżenie na lewym boku, górną (prawą) nogą i dłonią od strony kamery; udo w linii tułowia (biodro ≈ 13°), kolano zgięte ≈ 140° (granica modelu), goleń zawraca ku tyłowi ciała i w górę; dłoń 1,3 cm od kostki (sięg ręki ≈ 63 cm); stopa pochylona 45° (model nie ma stopy wzdłuż goleni leżącej na boku)"
+  },
+  {
+   "cwiczenie": "Cat-Cow",
+   "obraz": "Cat-Cow-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.5,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.5,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 72.2,
+     "max": 72.7
+    },
+    "knee": {
+     "min": 105,
+     "max": 105
+    },
+    "ankle": {
+     "min": 15,
+     "max": 15
+    },
+    "elbow": {
+     "min": 6.6,
+     "max": 9.7
+    },
+    "shSag": {
+     "min": 67.7,
+     "max": 69.3
+    },
+    "shElev": {
+     "min": 67.8,
+     "max": 69.3
+    },
+    "shAbd": {
+     "min": 1.8,
+     "max": 2.6
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "kregoslup_koci_grzbiet",
+    "podpor_rece_proste"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}
