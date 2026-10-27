@@ -67,3 +67,21 @@ Audyt zmian od 1.0 → naprawy blokerów → 1.1.0 → pełny E2E → TestFlight
 3. Kółka gimnastyczne: A uproszczenie (rek.) / B osobny sprzęt.
 4. Czy plik `data/figury-audyt.json` ma sterować też statusem `ready` w aplikacji (jedno źródło; rek. tak, po 1.0).
 5. Opcja A dla verify (gałęzie robocze: test:fast + CI), jeśli kolejka znów blokuje.
+
+## Przegląd koordynatora 27.10.2026 11:56 UTC
+Decyzje właściciela dziś (szczegóły z godziną w README przekazania): verify C → dla gałęzi 1.0 bramką tests.yml + E2E; kąty/fazy na karcie — rozszerzyć w 5 rodzinach; strona — ćwiczenia bez zatwierdzonej animacji zostają z tekstem; Bulgarian — stopa grzbietem (A); chód — tryb cykliczny (A); kółka — uproszczenie (A); zrzuty 1.0 — równolegle, 35 języków (A); przed zgłoszeniem 1.0: build → telefon → GŁĘBOKI audyt M1 w osobnej sesji na zamrożonym commicie → jeden przebieg napraw (audyt + telefon) → reaudit (pakiet: notatki/audyt-m1-1-0/); właściciel: pisać tylko przy potrzebie.
+| Ścieżka 1.0 | Stan |
+|---|---|
+| A2 naprawa-figury-1-0 @ 03723210, PR #73 | tests.yml ✅ 40494354841; recenzja r2 ✅ (7 ćw., 0 BŁĘDÓW); E2E 40494384801 w toku |
+| A3 technika-rozwinieta-1-0 @ ff519a6a, PR #74 | tests.yml ✅ 40489827464; E2E 40485030975 (61bc5613) ❌ część 2 — agent analizuje, ponowienie na HEAD |
+| A4 z02-przeklad-1-0 @ 589f6c4a, PR #76 | recenzja lokalizacji: 1 bloker id (ćwiczenie≠trening) poprawiony + 5 kluczy; tests.yml 40499028034 w toku |
+| A5 review-notes-1-0 @ 2ca29fff, PR #75 | tests.yml ✅; tekst EN do akceptacji właściciela (nie blokuje buildu) |
+| A6/A7 zrzuty-1-0 @ 6c0976df | zegarek ✅ bez alfy, dane w języku zrzutu; iPhone: shardy (decyzja A) w toku; nie blokuje buildu |
+| Do prośby o scalenie | zielone: E2E #73, E2E #74, tests.yml #76 |
+| Ścieżka 1.1 | Stan |
+|---|---|
+| p1, p3, p4a(r2), delt-raise, przeklad-kontekst, karta-katy-fazy, teksty-wskazowek(r2), podglad-klatki | recenzje ✅ / CI ✅ → G6 partia 1 (agent G6a, gałąź pośrednia integracja-1-1-g6a) |
+| p2 r2 @ 90430bf0, p4b r2 @ ad5fe355, mobilnosc r2 @ 5fb01fb7, silnik-chod-cykliczny @ e3e7620d, jakosc-r2 @ 3c4ccd56 | CI w toku/do sprawdzenia → ponowne recenzje (pełnoklatkowe) → G6 partia 2 |
+| strona-filtr-audytu, techniqueatlas PR #2 | po G6: data/figury-audyt.json z rodzinami zatwierdzonymi, PIN po scaleniu |
+| wersja-1-0-1-wip | po buildzie 1.0 (żeby nie dublować pracy) |
+| Otwarte | Front Incline — 2. źródło znalezione przez agenta (do potwierdzenia przez badacza); terminy słownika lędźwie/kettlebell w 33 jęz. — przegląd przed G7b; G7b: zapis przekładu do lib/cues/text |
