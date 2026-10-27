@@ -38,7 +38,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `core_standing` | do zrobienia | 19 | front, side | 4 | Core stojąc i rotacje (Pallof, drwal, skłony, windmill) |
 | `carry` | do zrobienia | 7 | side | 2 | Noszenie |
 | `cardio` | do zrobienia | 16 | side | 6 | Cardio i lokomocja (bieg, rower, wioślarz, skakanka, burpees) |
-| `plyo` | do zrobienia | 28 | side | 4 | Skoki i plyometria |
+| `plyo` | do zrobienia | 28 | side, front | 4 | Skoki i plyometria — skoki w bok i Star Jump widać z przodu (recenzja ruchu 27.10.2026) |
 | `sled_throw` | do zrobienia | 19 | side | 3 | Sanie, rzuty piłką, uderzenia |
 | `strongman` | do zrobienia | 10 | side | 3 | Strongman i podnoszenia nietypowych ciężarów |
 | `glute_floor` | do zrobienia | 7 | side, front | 4 | Pośladki i biodra na podłodze/linkach (clamshell, kickback, odwodzenie) |
