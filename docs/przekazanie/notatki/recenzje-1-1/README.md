@@ -48,9 +48,8 @@ Klasy błędów w tej partii (każdy przechodzi walidator):
 
 Uwagi przekrojowe (backlog, nie blokują):
 
-- **Maszyny dwuręczne z jedną dźwignią** (`dzwignia` z `trzyma: "R"`). Dotyczy 9 ćwiczeń:
-  - Dip Machine, Pec Deck, Reverse Pec Deck, Machine Lateral Raise, Machine Biceps Curl, Machine Triceps Extension, Leverage Shrug, Calf-Machine Shoulder Shrug;
-  - podobnie Machine Lateral Raise.
+- **Maszyny dwuręczne z jedną dźwignią** (`dzwignia` z `trzyma: "R"`). Dotyczy ćwiczeń:
+  Dip Machine, Pec Deck, Reverse Pec Deck, Machine Lateral Raise, Machine Biceps Curl, Machine Triceps Extension, Leverage Shrug, Calf-Machine Shoulder Shrug (8 ćwiczeń).
 
   Lewa ręka robi ruch w powietrzu. Kontrakt pozwala dać dwa wpisy sprzętu (R i L), tak jak Double Kettlebell Press.
 - **Leżenie przodem na ławce skośnej z biodrem −37°** (wyjątek zakresu `hipMin −45`, 7 ćwiczeń). Anatomicznie poza zakresem, a da się narysować bez wyjątku (stopy na podłodze za siedziskiem). Szczegóły: `row.md`, uwaga D.
