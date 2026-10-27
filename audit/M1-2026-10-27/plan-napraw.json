@@ -227,8 +227,8 @@
       "przyczyna": null,
       "raport": "role/02-monetyzacja-b/02-monetyzacja-2026-10-27.md",
       "test_akceptacyjny": "przy aktywnej subskrypcji wybór planu dożywotniego pokazuje przed arkuszem Apple uwagę o anulowaniu subskrypcji; test ekranu zakupu",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "a90caba"
     },
     {
       "id": "M1-audytor-generalny-002",
@@ -246,8 +246,8 @@
       "przyczyna": null,
       "raport": "role/02-monetyzacja-b/02-monetyzacja-2026-10-27.md",
       "test_akceptacyjny": "test na kształcie danych adaptera natywnego (bez wygasłych wpisów): 7 dni w Pro, potem wygaśnięcie → used=0, start dozwolony",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "8c12be9"
     },
     {
       "id": "M1-audytor-generalny-003",
@@ -265,8 +265,8 @@
       "przyczyna": null,
       "raport": "role/05-architekt/05-architekt-2026-10-27.md",
       "test_akceptacyjny": "jedna stała długości notatki; notatka 450 znaków z importu po „Zapisz” bez zmian ma 450 znaków",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "e66902b"
     },
     {
       "id": "M1-audytor-generalny-004",
@@ -284,8 +284,8 @@
       "przyczyna": null,
       "raport": "role/12-niezawodnosc/12-niezawodnosc-2026-10-27.md",
       "test_akceptacyjny": "ekran błędu startu ma ostrzeżenie przed usunięciem aplikacji (test tekstu i9n); wysyłka dołącza plik bazy, gdy baza się nie otwiera",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "451862d"
     },
     {
       "id": "M1-audytor-generalny-005",
@@ -305,8 +305,8 @@
       "przyczyna": null,
       "raport": "role/06-tresci/06-tresci-2026-10-27.md",
       "test_akceptacyjny": "DEC-01 b: zapis recenzji bramki 4 dla 56 animacji v1 przed zgłoszeniem (poprawki ruchu, jeśli recenzja wykaże) + strażnik „wyświetlana animacja ⇒ wpis recenzji”",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "562798d"
     },
     {
       "id": "M1-audytor-generalny-006",
@@ -345,8 +345,8 @@
       "przyczyna": null,
       "raport": "role/02-monetyzacja-b/02-monetyzacja-2026-10-27.md",
       "test_akceptacyjny": "wpis w docs/40 (rejestr ryzyk) z warunkiem zamknięcia; krok listy wydania: ceny w zł na buildzie z App Store przy koncie PL; opcjonalnie piaskownica z regionem PL",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "bd47ff1"
     },
     {
       "id": "M1-audytor-generalny-008",
@@ -364,8 +364,8 @@
       "przyczyna": null,
       "raport": "role/10-wydanie/10-wydanie-2026-10-27.md",
       "test_akceptacyjny": "krok zgłoszenia wymaga numeru buildu i SHA zgodnego z dziennikiem wydań (docs/09); wiersz 1031 i nowego buildu w dzienniku",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "8c2c77b"
     },
     {
       "id": "M1-audytor-generalny-009",
@@ -390,8 +390,8 @@
       "przyczyna": "SYS-01",
       "raport": "role/07-jakosc/07-jakosc-2026-10-27.md",
       "test_akceptacyjny": "skrypt w verify: każda decyzja w docs/18 ma pole wdrożenia i test-strażnik albo powód; tabela decyzji 1.0 z audytu zgodna",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "ee1713b"
     },
     {
       "id": "M1-audytor-generalny-010",
@@ -416,8 +416,8 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "DEC-09 a: przy aktywnym planie ekran pokazuje stan „Masz plan X” zamiast oferty (bez wstępu o darmowych dniach, bez „Subskrybuj” przy posiadanym planie), zmiana planu zwinięta; wymaganie BR i test; teksty w 35 językach",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "72338f0"
     },
     {
       "id": "M1-audytor-generalny-011",
@@ -460,8 +460,8 @@
       "przyczyna": null,
       "raport": "role/07-jakosc/07-jakosc-2026-10-27.md",
       "test_akceptacyjny": "każde ryzyko docs/40 ma stan z datą i dowodem; check:release wywoływany w testflight.yml albo liście wydania",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "1a95b76"
     },
     {
       "id": "M1-audytor-generalny-013",
@@ -479,8 +479,8 @@
       "przyczyna": null,
       "raport": "role/12-niezawodnosc/12-niezawodnosc-2026-10-27.md",
       "test_akceptacyjny": "test: wyjątek w migrate() przy starcie → tryb awaryjny, dane nietknięte",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "8f3fb6f"
     },
     {
       "id": "M1-audytor-generalny-014",
@@ -517,8 +517,8 @@
       "przyczyna": null,
       "raport": "role/05-architekt/05-architekt-2026-10-27.md",
       "test_akceptacyjny": "komunikat błędu zapisu widoczny na ekranie, z którego zapisano",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "ca84668"
     },
     {
       "id": "M1-audytor-generalny-016",
@@ -556,8 +556,8 @@
       "przyczyna": null,
       "raport": "role/01-odkrywanie/01-odkrywanie-2026-10-27.md",
       "test_akceptacyjny": "site/ i opublikowane strony zgodne z faktycznym obiegiem poczty; check-urls porównuje treść",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "d0ae52e"
     },
     {
       "id": "M1-audytor-generalny-018",
@@ -575,8 +575,8 @@
       "przyczyna": null,
       "raport": "role/11-wzrost/11-wzrost-2026-10-27.md",
       "test_akceptacyjny": "test: import + pierwszy trening na żywo → najwyżej jedno okno",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "a2300a1"
     },
     {
       "id": "M1-audytor-generalny-019",
@@ -594,8 +594,8 @@
       "przyczyna": null,
       "raport": "role/09-lokalizacja/09-lokalizacja-2026-10-27.md",
       "test_akceptacyjny": "formy liczby mnogiej uk/sl wg CLDR w 3 kluczach; test",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "d8efe02"
     },
     {
       "id": "M1-audytor-generalny-020",
@@ -613,8 +613,8 @@
       "przyczyna": null,
       "raport": "role/06-tresci/06-tresci-2026-10-27.md",
       "test_akceptacyjny": "RIR 6 → RPE 5; wpis w rejestrze twierdzeń",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "7fb4f1a"
     },
     {
       "id": "M1-audytor-generalny-021",
@@ -633,8 +633,8 @@
       "przyczyna": null,
       "raport": "role/06-tresci/06-tresci-2026-10-27.md",
       "test_akceptacyjny": "check:claims rozpoznaje teksty dziedzinowe (test z nowym tekstem pada); wpisy dla ok. 10 tekstów",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "1cc402f"
     },
     {
       "id": "M1-audytor-generalny-022",
@@ -836,8 +836,8 @@
       "przyczyna": null,
       "raport": "role/09-lokalizacja/09-lokalizacja-2026-10-27.md",
       "test_akceptacyjny": "check:i18n wykrywa wszystkie wywołania; uk jedna forma",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "c4a5f48"
     },
     {
       "id": "M1-audytor-generalny-032",
@@ -855,8 +855,8 @@
       "przyczyna": null,
       "raport": "role/12-niezawodnosc/12-niezawodnosc-2026-10-27.md",
       "test_akceptacyjny": "treść e-maila zawiera kod startu",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "dbc9f3b"
     },
     {
       "id": "M1-audytor-generalny-033",
@@ -934,7 +934,8 @@
       "raport": "role/02-monetyzacja/02-monetyzacja-2026-10-27.md",
       "test_akceptacyjny": "przeliczenie wg DEC-08",
       "status": "zatwierdzone",
-      "commit": null
+      "commit": null,
+      "blokada": "DEC-08 a: przeliczenie bramki W0 w punkcie kontrolnym 8 tygodni po premierze z danymi App Store Connect, kursem i potwierdzoną prowizją — danych jeszcze nie ma (przed wydaniem); następny krok: rola 02 tryb fix w punkcie kontrolnym (docs/48 Z-35)"
     },
     {
       "id": "M1-audytor-generalny-037",

@@ -1,0 +1,20 @@
+# Push Up
+widok: side, kotwica: toe, przyrządy: []
+notatka: Dłonie pod barkami na górze; rozstaw dłoni (szerokość barków) niewidoczny z boku.
+mięśnie (katalog): {"chest":1,"triceps":0.5,"front_delt":0.5,"abs":0.25}
+setup push.setup: Dłonie na podłodze na szerokość barków lub trochę szerzej, ciało proste od głowy do pięt.  [źródła: ace-41 / Step 2; nasm-push-up / Step 1; Step 2; exrx-PectoralSternal/BWPushup / Preparation]
+move push.move: Opuść klatkę prawie do podłogi, zginając łokcie; wypchnij się do wyprostu rąk.  [źródła: ace-41 / Step 3; Step 4; nasm-push-up / Step 3; Step 4; exrx-PectoralSternal/BWPushup / Execution]
+tips push.rigid: Tułów sztywny — biodra nie opadają i nie unoszą się.  [źródła: ace-41 / Step 3; Step 4 (do not allow your low back to sag or your hips to hike); nasm-push-up / Common Mistakes (hips sag); exrx-PectoralSternal/BWPushup / Comments (body kept straight)]
+tips plank.brace: Napnij brzuch, żeby tułów był sztywny.  [źródła: ace-41 / Step 2 (bracing); nasm-push-up / Step 2 (engage your core)]
+mistakes push.mis.partial: Skracanie ruchu — za płytko w dół albo bez wyprostu na górze.  [źródła: nasm-push-up / Common Mistakes (adequate range of motion); exrx-PectoralSternal/BWPushup / Execution (lower to floor; until arms are extended)]
+KLATKA start: poza {"t":20,"hip":0,"knee":0,"ft":-75,"sh":70,"el":0}
+  kąty: hip=0 knee=0 sh=70 el=0 ankle=-5 hip2=0 knee2=0 sh2=70 el2=0 ankle2=-5
+  punkty: head=(86.5,42.8) shoulder=(76.2,39) elbow=(76.2,21) hand=(76.2,1) hip=(48,28.8) knee=(24.5,20.2) ankle=(1,11.7) heel=(-3.6,13.5) toe=(0,0) knee2=(24.5,20.2) ankle2=(1,11.7) heel2=(-3.6,13.5) toe2=(0,0) elbow2=(76.2,21) hand2=(76.2,1)
+  why line push.setup → OK (180)
+  why joint push.move → OK (0)
+  why low push.setup → OK (1)
+KLATKA end: poza {"t":1,"hip":0,"knee":0,"ft":-94,"sh":-25,"el":137}
+  kąty: hip=0 knee=0 sh=-25 el=137 ankle=-5 hip2=0 knee2=0 sh2=-25 el2=137 ankle2=-5
+  punkty: head=(95.7,12.3) shoulder=(84.7,12.1) elbow=(68.3,19.4) hand=(76.1,1) hip=(54.7,11.6) knee=(29.8,11.1) ankle=(4.8,10.7) heel=(1,14) toe=(0,0) knee2=(29.8,11.1) ankle2=(4.8,10.7) heel2=(1,14) toe2=(0,0) elbow2=(68.3,19.4) hand2=(76.1,1)
+  why line push.rigid → OK (180)
+  why low push.move → OK (12.1)

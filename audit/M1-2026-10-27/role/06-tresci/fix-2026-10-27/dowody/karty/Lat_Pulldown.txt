@@ -1,0 +1,16 @@
+# Lat Pulldown
+widok: side, kotwica: hip, przyrządy: [{"k":"rect","x":-10,"y":20,"w":22,"h":4},{"k":"line","pts":[[0,20],[0,0]]},{"k":"rect","x":21,"y":32.1,"w":8,"h":4},{"k":"cable","at":"hand","from":[1.4,111]},{"k":"rod","a":"hand","b":"hand","ext":8}]
+notatka: Chwyt szeroki — ramię w rzucie krótsze; lekkie odchylenie tułowia ilustracyjne.
+mięśnie (katalog): {"lats":1,"upper_back":0.5,"biceps":0.5,"rear_delt":0.25,"forearms":0.25}
+setup lpd.thighs: Usiądź i ustaw wałki tak, żeby mocno przytrzymywały uda; chwyć drążek.  [źródła: ace-158 / Step 1; exrx-LatissimusDorsi/CBFrontPulldown / Preparation]
+move lpd.pull: Ściągnij drążek w dół przed twarzą do górnej części klatki.  [źródła: ace-158 / Step 2; Step 3; exrx-LatissimusDorsi/CBFrontPulldown / Execution]
+tips lpd.fullStretch: Na górze wyprostuj ręce do końca.  [źródła: ace-158 / Step 4 (until your elbows are fully extended); exrx-LatissimusDorsi/CBFrontPulldown / Execution (arms and shoulders fully extended)]
+tips lpd.toChest: Ściągaj do górnej części klatki — nie dalej.  [źródła: ace-158 / Step 3 (until the bar nears the chest or elbows begin to move backwards); exrx-LatissimusDorsi/CBFrontPulldown / Execution (to upper chest)]
+KLATKA start: poza {"t":100,"sh":160,"el":0,"hip":78,"knee":90} at [0,30]
+  kąty: hip=78 knee=90 sh=160 el=0 ankle=2 hip2=78 knee2=90 sh2=160 el2=0 ankle2=2
+  punkty: head=(-7.1,70.4) shoulder=(-5.2,59.5) elbow=(-2.1,77.3) hand=(1.4,97) hip=(0,30) knee=(25,29.1) ankle=(24.1,4.1) heel=(21.1,0.1) toe=(35.1,0.1) knee2=(25,29.1) ankle2=(24.1,4.1) heel2=(21.1,0.1) toe2=(35.1,0.1) elbow2=(-2.1,77.3) hand2=(1.4,97)
+  why joint lpd.fullStretch → OK (0)
+KLATKA end: poza {"t":100,"sh":-108,"el":180,"ap":0.55,"hip":78,"knee":90} at [0,30]
+  kąty: hip=78 knee=90 sh=-108 el=180 ankle=2 hip2=78 knee2=90 sh2=-108 el2=180 ankle2=2
+  punkty: head=(-7.1,70.4) shoulder=(-5.2,59.5) elbow=(-15,60.9) hand=(4.8,58.1) hip=(0,30) knee=(25,29.1) ankle=(24.1,4.1) heel=(21.1,0.1) toe=(35.1,0.1) knee2=(25,29.1) ankle2=(24.1,4.1) heel2=(21.1,0.1) toe2=(35.1,0.1) elbow2=(-15,60.9) hand2=(4.8,58.1)
+  why touch lpd.toChest → OK (0.6)

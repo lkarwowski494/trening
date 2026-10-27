@@ -1,0 +1,25 @@
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      14 | import { resetEntitlementsForTests } from '@/lib/entitlement';
+      15 | import { fresh, saved, addWorkout, withDemoTemplates } from './helpers';
+    > 16 | import { renderHook } from '@testing-library/react-native';
+         | ^
+      17 | import { useAccess } from '@/lib/entitlement';
+      18 | import { renderApp, flushAll, screen, tap, act, fromHome, startTpl } from './app';
+      19 |
+
+      at Object.afterEach (../../../node_modules/@testing-library/react-native/src/index.ts:15:5)
+      at Object.require (tests/subscription-ui.test.tsx:16:1)
+
+PASS iOS tests/subscription-i18n.test.ts
+PASS iOS tests/maestro-flows.test.tsx (514.761 s)
+PASS iOS tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx (6.193 s)
+PASS iOS tests/maestro-script.test.tsx (5.616 s)
+PASS iOS tests/maestro-e2e-modal.test.tsx (25.61 s)
+PASS iOS tests/maestro-zakup-m5s1.test.ts
+
+Test Suites: 1 failed, 7 passed, 8 total
+Tests:       1 failed, 179 passed, 180 total
+Snapshots:   0 total
+Time:        616.901 s
+Ran all test suites matching /tests\/subscription-ui.test.tsx|tests\/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx|tests\/maestro-zakup-m5s1.test.ts|tests\/maestro-selectors.test.ts|tests\/maestro-script.test.tsx|tests\/maestro-flows.test.tsx|tests\/maestro-e2e-modal.test.tsx|tests\/subscription-i18n.test.ts/i.

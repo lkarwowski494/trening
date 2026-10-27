@@ -1,0 +1,18 @@
+# Mountain Climbers
+widok: side, kotwica: hand, przyrządy: []
+notatka: Dwie pozycje: nogi zamieniają się miejscami. Tempo ilustracyjne (animacja wolniejsza niż ćwiczenie).
+mięśnie (katalog): {"abs":1,"obliques":0.25,"front_delt":0.25,"chest":0.25,"triceps":0.25,"quads":0.25}
+setup mc.setup: Podpór na prostych rękach, dłonie pod barkami lub trochę przed nimi; jedna noga ugięta pod klatką, druga wyprostowana w tył.  [źródła: ace-258 / Step 1; exrx-HipFlexors/STMountainClimber / Preparation (wersja z taśmami — ta sama pozycja)]
+move mc.move: Zmieniaj nogi jednocześnie: ugiętą prostuj w tył, a prostą przyciągaj pod klatkę.  [źródła: ace-258 / Step 2; exrx-HipFlexors/STMountainClimber / Execution]
+tips mc.straight: Przy każdej zmianie wyprostuj tylną nogę do końca.  [źródła: exrx-HipFlexors/STMountainClimber / Comments (straighten hip each stroke); ace-258 / Step 2 (fully extending … behind you)]
+tips mc.stable: Tułów stabilny, biodra cały czas na podobnej wysokości.  [źródła: exrx-HipFlexors/STMountainClimber / Comments (maintaining approximate height of hips); ace-258 / Step 1; Step 2 (abs engaged, brace to stabilize your spine)]
+KLATKA start: poza {"t":20,"hip":[61,0],"knee":[114,0],"ft":[-94,-75],"sh":72,"el":0} at [0,1.5]
+  kąty: hip=61 knee=114 sh=72 el=0 ankle=29 hip2=0 knee2=0 sh2=72 el2=0 ankle2=-5
+  punkty: head=(9,43.2) shoulder=(-1.3,39.5) elbow=(-0.7,21.5) hand=(0,1.5) hip=(-29.5,29.2) knee=(-33.4,4.5) ankle=(-54.4,18.1) heel=(-58.2,21.4) toe=(-59.2,7.4) knee2=(-53,20.7) ankle2=(-76.5,12.1) heel2=(-81.1,14) toe2=(-77.5,0.5) elbow2=(-0.7,21.5) hand2=(0,1.5)
+  why joint mc.straight → OK (0)
+  why alignX mc.setup → OK (1.3)
+KLATKA end: poza {"t":20,"hip":[0,61],"knee":[0,114],"ft":[-75,-94],"sh":72,"el":0} at [0,1.5]
+  kąty: hip=0 knee=0 sh=72 el=0 ankle=-5 hip2=61 knee2=114 sh2=72 el2=0 ankle2=29
+  punkty: head=(9,43.2) shoulder=(-1.3,39.5) elbow=(-0.7,21.5) hand=(0,1.5) hip=(-29.5,29.2) knee=(-53,20.7) ankle=(-76.5,12.1) heel=(-81.1,14) toe=(-77.5,0.5) knee2=(-33.4,4.5) ankle2=(-54.4,18.1) heel2=(-58.2,21.4) toe2=(-59.2,7.4) elbow2=(-0.7,21.5) hand2=(0,1.5)
+  why joint mc.straight → OK (0)
+  why alignX mc.setup → OK (1.3)

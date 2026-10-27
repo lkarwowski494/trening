@@ -1,0 +1,17 @@
+# Shrugs (sztanga)
+widok: front, kotwica: ankle, przyrządy: [{"k":"rod","a":"hand","b":"hand2","ext":12}]
+notatka: Widok z przodu; wysokość uniesienia barków ilustracyjna („tak wysoko, jak się da”).
+mięśnie (katalog): {"upper_back":1,"forearms":0.5}
+setup shrug.setup: Stań prosto z ciężarem w opuszczonych, prostych rękach.  [źródła: ace-72 / opis; exrx-TrapeziusUpper/BBShrug / Preparation]
+move shrug.move: Unieś barki w górę, potem powoli je opuść.  [źródła: ace-72 / opis; exrx-TrapeziusUpper/BBShrug / Execution]
+tips shrug.high: Unoś barki tak wysoko, jak się da.  [źródła: ace-72 / opis (as high as possible); exrx-TrapeziusUpper/BBShrug / Execution (as high as possible)]
+tips shrug.tall: Tułów prosto i nieruchomo — pracują tylko barki.  [źródła: ace-72 / opis (hips straight, back tall; only raising/lowering the shoulders); exrx-TrapeziusUpper/DBShrug / Comments (standing upright or very slightly bent over)]
+KLATKA start: poza {"hip":3,"sh":4,"el":0,"elev":0} at [5,4]
+  kąty: abd=4 el=0 hipAbd=3 abd2=4 el2=0 hipAbd2=3 elev=0
+  punkty: head=(-2.6,94.9) shoulder=(7.4,83.9) elbow=(8.6,66) hand=(10,46) hip=(-2.6,53.9) knee=(3.7,29) ankle=(5,4) heel=(4,0) toe=(12,0) knee2=(-8.9,29) ankle2=(-10.2,4) heel2=(-9.2,0) toe2=(-17.2,0) elbow2=(-13.9,66) hand2=(-15.3,46)
+  why joint shrug.setup → OK (0)
+KLATKA end: poza {"hip":3,"sh":4,"el":0,"elev":5} at [5,4]
+  kąty: abd=4 el=0 hipAbd=3 abd2=4 el2=0 hipAbd2=3 elev=5
+  punkty: head=(-2.6,94.9) shoulder=(7.4,88.9) elbow=(8.6,71) hand=(10,51) hip=(-2.6,53.9) knee=(3.7,29) ankle=(5,4) heel=(4,0) toe=(12,0) knee2=(-8.9,29) ankle2=(-10.2,4) heel2=(-9.2,0) toe2=(-17.2,0) elbow2=(-13.9,71) hand2=(-15.3,51)
+  why joint shrug.move → OK (5)
+  why joint shrug.tall → OK (0)

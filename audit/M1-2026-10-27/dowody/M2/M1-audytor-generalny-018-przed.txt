@@ -1,0 +1,63 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-018-jedno-okno.test.tsx
+  M1-018: najwyżej jedno okno na podsumowaniu
+    ✕ import 10 treningów + pierwszy na żywo z rekordem (free): okno „Uczciwe zasady”, bez prośby o ocenę (81 ms)
+    ✕ niezmiennik: dla 0–12 importowanych treningów suma okien na jednym podsumowaniu ≤ 1 (61 ms)
+
+  ● M1-018: najwyżej jedno okno na podsumowaniu › import 10 treningów + pierwszy na żywo z rekordem (free): okno „Uczciwe zasady”, bez prośby o ocenę
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "fair": 1,
+        "idea": 0,
+    -   "review": 0,
+    +   "review": 1,
+      }
+
+      34 | describe('M1-018: najwyżej jedno okno na podsumowaniu', () => {
+      35 |   test('import 10 treningów + pierwszy na żywo z rekordem (free): okno „Uczciwe zasady”, bez prośby o ocenę', async () => {
+    > 36 |     const r = await summary(await setup(10)); expect(r).toEqual({ fair: 1, idea: 0, review: 0 });
+         |                                                         ^
+      37 |   });
+      38 |   test('niezmiennik: dla 0–12 importowanych treningów suma okien na jednym podsumowaniu ≤ 1', async () => {
+      39 |     for (const n of [0, 2, 5, 12]) { global.__review.requested = 0; const r = await summary(await setup(n)); expect([n, r.fair + r.idea + r.review <= 1]).toEqual([n, true]); }
+
+      at Object.toEqual (tests/audit-m1-2026-10-27-018-jedno-okno.test.tsx:36:57)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-018: najwyżej jedno okno na podsumowaniu › niezmiennik: dla 0–12 importowanych treningów suma okien na jednym podsumowaniu ≤ 1
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        2,
+    -   true,
+    +   false,
+      ]
+
+      37 |   });
+      38 |   test('niezmiennik: dla 0–12 importowanych treningów suma okien na jednym podsumowaniu ≤ 1', async () => {
+    > 39 |     for (const n of [0, 2, 5, 12]) { global.__review.requested = 0; const r = await summary(await setup(n)); expect([n, r.fair + r.idea + r.review <= 1]).toEqual([n, true]); }
+         |                                                                                                                                                           ^
+      40 |   });
+      41 | });
+      42 |
+
+      at Object.toEqual (tests/audit-m1-2026-10-27-018-jedno-okno.test.tsx:39:155)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        4.632 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-018-jedno-okno.test.tsx/i.

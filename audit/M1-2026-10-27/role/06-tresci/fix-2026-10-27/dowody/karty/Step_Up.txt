@@ -1,0 +1,18 @@
+# Step Up
+widok: side, kotwica: toe, przyrządy: [{"k":"rect","x":-2,"y":0,"w":34,"h":26},{"k":"db","at":"hand"},{"k":"db","at":"hand2"}]
+notatka: Wysokość skrzyni ilustracyjna; druga noga w pozycji końcowej uniesiona obok (uproszczenie).
+mięśnie (katalog): {"quads":1,"glutes":1,"hamstrings":0.25,"abductors":0.25,"calves":0.25,"forearms":0.25}
+setup stepup.setup: Stań przodem do stabilnej skrzyni lub ławki, hantle w opuszczonych rękach.  [źródła: ace-28 / Step 1; exrx-Quadriceps/DBStepUp / Preparation]
+move stepup.move: Postaw całą stopę na podwyższeniu i wejdź, prostując tę nogę; zejdź kontrolowanie tą samą drogą.  [źródła: ace-28 / Step 2; Step 3; exrx-Quadriceps/DBStepUp / Execution]
+tips lunge.torso: Plecy proste przez cały ruch.  [źródła: ace-28 / Step 2 (torso upright); exrx-Quadriceps/DBStepUp / Comments (torso upright)]
+tips stepup.knee: Kolano nogi na podwyższeniu w linii palców stopy.  [źródła: ace-28 / Step 2; wskazówka końcowa (knee aligned over your second toe); exrx-Quadriceps/DBStepUp / Comments (lead knee same direction as foot)]
+KLATKA start: poza {"t":90,"hip":[90,12],"knee":[110,13],"ft":[0,0],"sh":0,"el":0} at [12,26]
+  kąty: hip=90 knee=110 sh=0 el=0 ankle=20 hip2=12 knee2=13 sh2=0 el2=0 ankle2=1
+  punkty: head=(-15.4,94.5) shoulder=(-15.4,83.5) elbow=(-15.4,65.5) hand=(-15.4,45.5) hip=(-15.4,53.5) knee=(9.6,53.5) ankle=(1,30) heel=(-2,26) toe=(12,26) knee2=(-10.3,29) ankle2=(-10.7,4) heel2=(-13.7,0) toe2=(0.3,0) elbow2=(-15.4,65.5) hand2=(-15.4,45.5)
+  why low stepup.move → OK (0)
+  why horiz lunge.torso → OK (90)
+KLATKA end: poza {"t":90,"hip":[0,60],"knee":[0,90],"ft":[0,-20],"sh":0,"el":0} at [12,26]
+  kąty: hip=0 knee=0 sh=0 el=0 ankle=0 hip2=60 knee2=90 sh2=0 el2=0 ankle2=10
+  punkty: head=(1,121) shoulder=(1,110) elbow=(1,92) hand=(1,72) hip=(1,80) knee=(1,55) ankle=(1,30) heel=(-2,26) toe=(12,26) knee2=(22.7,67.5) ankle2=(10.2,45.8) heel2=(6,43.1) toe2=(19.1,38.3) elbow2=(1,92) hand2=(1,72)
+  why joint stepup.move → OK (0)
+  why horiz lunge.torso → OK (90)

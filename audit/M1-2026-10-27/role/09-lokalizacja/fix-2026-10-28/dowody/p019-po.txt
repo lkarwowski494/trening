@@ -1,0 +1,29 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/i18n-skrot-liczebnik.test.ts
+  ✓ źródło ma klucze ze skrótem „{n} ćw.” (zabezpieczenie testu przed pustą pętlą) (5 ms)
+  ✓ lista języków z odmianą obejmuje uk i sl (1 ms)
+  skrót liczebnika ćwiczeń: cs
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (8 ms)
+  skrót liczebnika ćwiczeń: sk
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (10 ms)
+  skrót liczebnika ćwiczeń: ro
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (6 ms)
+  skrót liczebnika ćwiczeń: hr
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (7 ms)
+  skrót liczebnika ćwiczeń: sl
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (14 ms)
+  skrót liczebnika ćwiczeń: sr
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (11 ms)
+  skrót liczebnika ćwiczeń: lt
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (5 ms)
+  skrót liczebnika ćwiczeń: uk
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (13 ms)
+  skrót liczebnika ćwiczeń: ru
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (12 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        1.936 s, estimated 2 s
+Ran all test suites matching /tests\/i18n-skrot-liczebnik.test.ts/i.

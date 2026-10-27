@@ -1,0 +1,5 @@
+przed (HEAD): 0 błędów
+po: 3 błędów
+  tekst dziedzinowy bez ID w rejestrze: „Ciężkie serie 3–5 powtórzeń (ok. 85% maksimum) zwykle najlepiej budują 
+  tekst dziedzinowy bez ID w rejestrze: „{faza} {n} s…” (node scripts/claims.mjs --stub; gdy to nie twierdzenie 
+  tekst dziedzinowy bez ID w rejestrze: „Tapnij numer serii, by oznaczyć serię do upadku (F) albo dodać notatkę.

@@ -1,0 +1,24 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/zrodla-pelne-wskazowki-ogolne.test.ts
+  ● Test suite failed to run
+
+    ENOENT: no such file or directory, open '/home/user/trening/.claude/worktrees/agent-aa8072b2ba2a13fe6/data/zrodla/wskazowki-ogolne.json'
+
+      12 | const root = path.join(__dirname, '..');
+      13 | const script = path.join(root, 'scripts/zrodla-runtime.mjs');
+    > 14 | const read = (f: string) => JSON.parse(fs.readFileSync(path.join(root, f), 'utf8'));
+         |                                           ^
+      15 | type Sets = { items: Record<string, { b: string; f?: string; ok?: string[]; err?: string[] }> };
+      16 |
+      17 | /** Wywołuje brakiZrodelOgolnych w osobnym procesie (moduł ESM); dane sztuczne przez stdin (argument byłby za długi), bez danych — pliki z repo. */
+
+      at readFileSync (tests/zrodla-pelne-wskazowki-ogolne.test.ts:14:43)
+      at read (tests/zrodla-pelne-wskazowki-ogolne.test.ts:29:18)
+      at Object.describe (tests/zrodla-pelne-wskazowki-ogolne.test.ts:27:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        2.218 s, estimated 3 s
+Ran all test suites matching /tests\/zrodla-pelne-wskazowki-ogolne.test.ts/i.

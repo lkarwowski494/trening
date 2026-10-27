@@ -1,0 +1,40 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/i18n-forma-uk.test.ts
+  ✕ ukraiński słownik interfejsu: bez formy „ти” (forma grzecznościowa „ви”) (29 ms)
+  ✓ heurystyka rozpoznaje formę „ти” (próby dodatnie) i nie łapie formy „ви” (próby ujemne) (4 ms)
+
+  ● ukraiński słownik interfejsu: bez formy „ти” (forma grzecznościowa „ви”)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 10
+
+    - Array []
+    + Array [
+    +   "ćwiczenia dodasz w trakcie → вправи додаси під час тренування",
+    +   "Poniżej celu serii tygodniowo: {list}. Cel ustawis → Нижче тижневої цілі підходів: {list}. Ціль можна задати в розділі Параметри (автоматично —",
+    +   "Wpisz liczbę sekund od 0 do {n}. → Введи кількість секунд від 0 до {n}.",
+    +   "Wybierz co najmniej jeden szablon. → Вибери принаймні один шаблон.",
+    +   "Wybierz dni treningowe: {n}. → Вибери тренувальні дні: {n}.",
+    +   "Wybierz dni treningowe: od {a} do {b}. → Вибери тренувальні дні: від {a} до {b}.",
+    +   "Wybierz szablon na ten dzień. → Обери шаблон на цей день.",
+    +   "Zaplanowane = szablony z planu na pozostałe dni ty → Заплановано = шаблони з вашого плану на решту днів тижня, обчислені зі значень у шаблоні (",
+    + ]
+
+      12 | test('ukraiński słownik interfejsu: bez formy „ти” (forma grzecznościowa „ви”)', () => {
+      13 |   const zle = Object.entries(uk).filter(([, v]) => TY.test(v)).map(([k, v]) => `${k.slice(0, 50)} → ${v.slice(0, 90)}`);
+    > 14 |   expect(zle).toEqual([]);
+         |               ^
+      15 | });
+      16 |
+      17 | test('heurystyka rozpoznaje formę „ти” (próby dodatnie) i nie łapie formy „ви” (próby ujemne)', () => {
+
+      at Object.toEqual (tests/i18n-forma-uk.test.ts:14:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        3.137 s
+Ran all test suites matching /tests\/i18n-forma-uk.test.ts/i.

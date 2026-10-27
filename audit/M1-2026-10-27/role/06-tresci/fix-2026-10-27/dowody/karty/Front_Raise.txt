@@ -1,0 +1,16 @@
+# Front Raise
+widok: side, kotwica: toe, przyrządy: [{"k":"db","at":"hand"},{"k":"db","at":"hand2"}]
+mięśnie (katalog): {"front_delt":1,"side_delt":0.25,"chest":0.25}
+setup front.setup: Stań z hantlami przed udami, łokcie proste lub lekko ugięte.  [źródła: ace-54 / Step 1; exrx-DeltoidAnterior/DBFrontRaise / Preparation]
+move front.move: Unieś ręce przed sobą, potem opuść je powoli.  [źródła: ace-54 / Step 3; Step 4; exrx-DeltoidAnterior/DBFrontRaise / Execution; Comments (height just above horizontal)]
+tips front.elbows: Łokcie proste lub lekko ugięte — w tym samym ustawieniu przez cały ruch.  [źródła: ace-54 / Step 1; Step 4 (elbows extended or holding a slight bend); exrx-DeltoidAnterior/DBFrontRaise / Comments (elbows straight or slightly bent throughout)]
+tips lat.height: Unoś mniej więcej do wysokości barków.  [źródła: ace-54 / Step 3 (level with your shoulders); exrx-DeltoidAnterior/DBFrontRaise / Comments (height just above horizontal may be adequate)]
+KLATKA start: poza {"t":90,"hip":0,"knee":0,"sh":5,"el":5}
+  kąty: hip=0 knee=0 sh=5 el=5 ankle=0 hip2=0 knee2=0 sh2=5 el2=5 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-9.4,66.1) hand=(-6,46.4) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-9.4,66.1) hand2=(-6,46.4)
+  why joint front.elbows → OK (5)
+KLATKA end: poza {"t":90,"hip":0,"knee":0,"sh":90,"el":5}
+  kąty: hip=0 knee=0 sh=90 el=5 ankle=0 hip2=0 knee2=0 sh2=90 el2=5 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(7,84) hand=(26.9,85.7) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(7,84) hand2=(26.9,85.7)
+  why horiz lat.height → OK (2.6)
+  why joint front.elbows → OK (5)

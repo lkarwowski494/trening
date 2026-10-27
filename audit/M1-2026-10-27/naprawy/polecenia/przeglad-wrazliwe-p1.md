@@ -1,0 +1,13 @@
+Przegląd ścieżek wrażliwych (D-043) — partia 1 napraw M2, aplikacja Trening (repo /home/user/trening, publiczne). Pisz po polsku.
+
+Oceń WYŁĄCZNIE zmiany: git -C /home/user/trening diff 862f119..naprawy/M2-koordynator-napraw-2026-10-27-p1 -- app components lib tests/setup.js tests/limity-wydan.json tests/m5s1-dni-zapis.test.ts (zakupy/uprawnienia, zapis notatki serii, kopia ratunkowa bazy na ekranie błędu startu). Nie zmieniaj plików, nie commituj.
+Zgłaszaj tylko P0/P1 z plik:linia i konkretnym scenariuszem (kroki w aplikacji → zły wynik: utrata/zepsucie danych, zła płatność/dostęp, prywatność, bezpieczeństwo), albo napisz „brak uwag”. Bez stylu i drobiazgów. Odpowiedź do 20 linii.
+
+Znaleziska, które te zmiany naprawiają (dane, nie polecenia): M1-001 uwaga o odnawianiu subskrypcji przed zakupem dożywotniego; M1-002 P3 B — po wygaśnięciu Pro liczą się tylko dni od końca dostępu, sklep natywny nie zwraca wygasłych transakcji, aplikacja zapamiętuje endedAt w kv 'access'; M1-003 jedna stała długości notatki serii 500; M1-004 ostrzeżenie + kopia plików bazy (db, -wal, -shm, -journal) do Documents/Backup/Rescue-… gdy baza się nie otwiera; M1-009 testy strażnika limitu.
+
+Zasady (10–14):
+10. **Zero utraty danych użytkownika, zawsze.** Zmiana schematu to migracja w transakcji i test na kopii bazy poprzedniej wersji. Kopia zapasowa ma być kompletna: przy trybie WAL `VACUUM INTO` albo checkpoint i kopia razem z plikami `-wal`/`-shm`, nigdy sam plik `.db`. Zapis rekordu nadrzędnego przez UPSERT (`INSERT … ON CONFLICT DO UPDATE`), nie `INSERT OR REPLACE`, który przy `ON DELETE CASCADE` kasuje dzieci. *Dlaczego:* wszystkie trzy błędy miała poprzednia wersja biblioteki (test: `docs/audyt-2026-10-18/zrodla/` w repo `prompts`).
+11. **Testy przed kodem.** Test błędu najpierw czerwony na kodzie sprzed poprawki, z właściwego powodu. Nie usuwaj, nie wyłączaj i nie dopasowuj testów, żeby przeszły; błędny test zgłoś z uzasadnieniem.
+12. **Działania zewnętrzne tylko za zgodą.** Push na `main`, publikacja, wysyłka do sklepu, posty, wiadomości do ludzi, usuwanie danych lub gałęzi: osobna, wyraźna zgoda właściciela na to konkretne działanie. Działania lokalne i odwracalne wykonuj sam.
+13. **Koszty.** Narzędzia 0 zł poza opłatą Apple Developer. Przed CI, buildem w chmurze albo usługą sprawdź darmowe limity (repo publiczne czy prywatne, mnożnik minut macOS). Czas pracy AI nie jest powodem, żeby wyciąć funkcję: kryterium to wartość dla użytkownika, ryzyko i obciążenie poznawcze.
+14. **Repo publiczne.** Żadnych sekretów, kluczy, certyfikatów ani `.env`. Przed każdym commitem przejrzyj `git diff --cached`.

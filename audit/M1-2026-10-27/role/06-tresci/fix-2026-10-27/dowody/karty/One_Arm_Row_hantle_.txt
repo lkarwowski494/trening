@@ -1,0 +1,20 @@
+# One Arm Row (hantle)
+widok: side, kotwica: toe, przyrządy: [{"k":"rect","x":-40.8,"y":20,"w":86.5,"h":4},{"k":"line","pts":[[-36.8,20],[-36.8,0]]},{"k":"line","pts":[[41.7,20],[41.7,0]]},{"k":"db","at":"hand"}]
+mięśnie (katalog): {"lats":1,"upper_back":0.5,"rear_delt":0.5,"biceps":0.5,"forearms":0.25,"obliques":0.25}
+setup row1.bench: Oprzyj kolano i dłoń jednej strony na ławce; tułów mniej więcej równolegle do podłogi, plecy proste.  [źródła: ace-126 / Step 1; exrx-BackGeneral/DBBentOverRow / Preparation; Comments (torso close to horizontal)]
+move row1.pull: Ciągnij hantel w górę wzdłuż boku, łokciem w tył; opuść do pełnego wyprostu ręki.  [źródła: ace-126 / Step 2; Step 3; exrx-BackGeneral/DBBentOverRow / Execution]
+tips row1.noTwist: Nie skręcaj tułowia, żeby podrzucić hantel.  [źródła: ace-126 / Step 2 (avoid rotating your body); exrx-BackGeneral/DBBentOverRow / Comments (do not rotate torso)]
+tips row1.top: Ciągnij, aż ramię minie linię tułowia.  [źródła: ace-126 / Step 2 (pulling your upper arm backwards); exrx-BackGeneral/DBBentOverRow / Execution (upper arm just beyond horizontal)]
+tips row.fullStretch: Na dole wyprostuj ręce do końca, barki swobodnie w dół.  [źródła: ace-126 / Step 1 (extend your arm towards the floor); exrx-BackGeneral/DBBentOverRow / Execution (shoulder stretched downward)]
+KLATKA start: poza {"t":5,"hip":[93,87],"knee":[15,78],"ft":[0,-40],"sh":[85,119],"el":0}
+  kąty: hip=93 knee=15 sh=85 el=0 ankle=7 hip2=87 knee2=78 sh2=119 el2=0 ankle2=36
+  punkty: head=(29.4,57.1) shoulder=(18.5,56.2) elbow=(18.5,38.2) hand=(18.5,18.2) hip=(-11.4,53.6) knee=(-8,28.8) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-10.6,28.6) ankle2=(-34.8,22.5) heel2=(-39.7,21.4) toe2=(-29,12.4) elbow2=(28.5,41.3) hand2=(39.7,24.7)
+  why horiz row1.bench → OK (5)
+  why joint row.fullStretch → OK (0)
+  why low row1.bench → OK (4.6)
+KLATKA end: poza {"t":5,"hip":[93,87],"knee":[15,78],"ft":[0,-40],"sh":[-44,119],"el":[101,0]}
+  kąty: hip=93 knee=15 sh=-44 el=101 ankle=7 hip2=87 knee2=78 sh2=119 el2=0 ankle2=36
+  punkty: head=(29.4,57.1) shoulder=(18.5,56.2) elbow=(4.5,67.5) hand=(-4.9,49.9) hip=(-11.4,53.6) knee=(-8,28.8) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-10.6,28.6) ankle2=(-34.8,22.5) heel2=(-39.7,21.4) toe2=(-29,12.4) elbow2=(28.5,41.3) hand2=(39.7,24.7)
+  why behind row1.top → OK (12.5)
+  why touch row1.pull → OK (0.3)
+  why horiz row1.bench → OK (5)

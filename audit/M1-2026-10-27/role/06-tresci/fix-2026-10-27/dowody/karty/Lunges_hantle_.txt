@@ -1,0 +1,19 @@
+# Lunges (hantle)
+widok: side, kotwica: toe2, przyrządy: [{"k":"db","at":"hand"},{"k":"db","at":"hand2"}]
+notatka: Długość kroku i ustawienie przedniego podudzia ilustracyjne; z boku nie widać ustawienia kolana w linii palców (widok z przodu).
+mięśnie (katalog): {"quads":1,"glutes":1,"adductors":0.5,"hamstrings":0.25,"abductors":0.25,"calves":0.25,"forearms":0.25}
+setup lunge.dbSetup: Stań prosto, stopy na szerokość bioder, hantle w opuszczonych rękach.  [źródła: ace-363 / opis; exrx-Quadriceps/DBLunge / Preparation]
+move lunge.fwd: Zrób krok w przód i opuść się, aż tylne kolano będzie tuż nad podłogą; odepchnij się przednią nogą do pozycji wyjściowej.  [źródła: ace-363 / opis; exrx-Quadriceps/DBLunge / Execution]
+tips lunge.torso: Plecy proste przez cały ruch.  [źródła: ace-363 / opis (back straight); exrx-Quadriceps/DBLunge / Comments (torso upright)]
+tips lunge.knee: Przednie kolano w linii palców stopy.  [źródła: exrx-Quadriceps/DBLunge / Comments (lead knee same direction as foot); nasm-bulgarian-split-squat / Common Mistakes (przysiad wykroczny — ten sam wzorzec)]
+mistakes lunge.mis.kneeIn: Przednie kolano uciekające do środka.  [źródła: exrx-Quadriceps/DBLunge / Comments; nasm-bulgarian-split-squat / Common Mistakes]
+KLATKA start: poza {"t":90,"hip":0,"knee":0,"sh":0,"el":0}
+  kąty: hip=0 knee=0 sh=0 el=0 ankle=0 hip2=0 knee2=0 sh2=0 el2=0 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-11,66) hand=(-11,46) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-11,66) hand2=(-11,46)
+  why line lunge.dbSetup → OK (180)
+KLATKA end: poza {"t":90,"hip":[80,-3],"knee":[110,102],"ft":[0,-80],"sh":0,"el":0}
+  kąty: hip=80 knee=110 sh=0 el=0 ankle=30 hip2=-3 knee2=102 sh2=0 el2=0 ankle2=25
+  punkty: head=(27.5,71) shoulder=(27.5,60) elbow=(27.5,42) hand=(27.5,22) hip=(27.5,30) knee=(52.1,25.7) ankle=(39.6,4) heel=(36.6,0) toe=(50.6,0) knee2=(26.2,5.1) ankle2=(2,11.5) heel2=(-2.4,13.8) toe2=(0,0) elbow2=(27.5,42) hand2=(27.5,22)
+  why low lunge.fwd → OK (5.1)
+  why horiz lunge.torso → OK (90)
+  why low lunge.fwd → OK (0)

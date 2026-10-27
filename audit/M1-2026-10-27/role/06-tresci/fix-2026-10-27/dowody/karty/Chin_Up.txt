@@ -1,0 +1,17 @@
+# Chin Up
+widok: side, kotwica: hand, przyrządy: [{"k":"bar","x":0,"y":0}]
+mięśnie (katalog): {"lats":1,"biceps":0.5,"upper_back":0.5,"forearms":0.5,"rear_delt":0.25,"abs":0.25}
+setup cu.grip: Chwyć drążek podchwytem (dłonie do siebie), na szerokość barków, i zawiśnij na prostych rękach.  [źródła: ace-190 / Step 1; exrx-LatissimusDorsi/BWUnderhandChinup / Preparation]
+move cu.pull: Podciągaj się, ściągając łokcie w dół do boków; opuść się do pełnego wyprostu rąk.  [źródła: ace-190 / Step 2; Step 3; exrx-LatissimusDorsi/BWUnderhandChinup / Execution]
+tips pu.shoulders: Zacznij ruch od ściągnięcia łopatek w dół.  [źródła: ace-190 / Step 1 (depress and retract your scapulae); nasm-pull-up / Step 2 (podciąganie nachwytem — ta sama zasada)]
+tips pu.noSwing: Bez bujania i wymachów nogami.  [źródła: ace-190 / Step 2 (avoid swinging); nasm-pull-up / Common Mistakes (podciąganie nachwytem — ta sama zasada)]
+mistakes pu.partial: Skracanie ruchu — bez wyprostu rąk na dole.  [źródła: ace-190 / Step 3 (until your arms are fully extended); exrx-LatissimusDorsi/BWUnderhandChinup / Execution (arms and shoulders fully extended)]
+KLATKA start: poza {"t":99,"hip":9,"knee":10,"sh":171,"el":0}
+  kąty: hip=9 knee=10 sh=171 el=0 ankle=-8 hip2=9 knee2=10 sh2=171 el2=0 ankle2=-8
+  punkty: head=(-1.7,-27.1) shoulder=(0,-38) elbow=(0,-20) hand=(0,0) hip=(4.7,-67.6) knee=(12.4,-91.4) ankle=(15.9,-116.2) heel=(12.9,-120.2) toe=(26.9,-120.2) knee2=(12.4,-91.4) ankle2=(15.9,-116.2) heel2=(12.9,-120.2) toe2=(26.9,-120.2) elbow2=(0,-20) hand2=(0,0)
+  why joint cu.grip → OK (0)
+KLATKA end: poza {"t":88,"hip":10,"knee":20,"sh":31,"el":148,"ap":1}
+  kąty: hip=10 knee=20 sh=31 el=148 ankle=12 hip2=10 knee2=20 sh2=31 el2=148 ankle2=12
+  punkty: head=(-9.4,6.8) shoulder=(-9.8,-4.2) elbow=(-1,-20) hand=(0,0) hip=(-10.8,-34.2) knee=(-7.3,-59) ankle=(-12.5,-83.4) heel=(-15.5,-87.4) toe=(-1.5,-87.4) knee2=(-7.3,-59) ankle2=(-12.5,-83.4) heel2=(-15.5,-87.4) toe2=(-1.5,-87.4) elbow2=(-1,-20) hand2=(0,0)
+  why above cu.pull → OK (2.8)
+  why horiz cu.pull → OK (61)

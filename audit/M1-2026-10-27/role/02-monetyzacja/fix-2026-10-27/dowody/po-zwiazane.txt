@@ -1,0 +1,31 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/subscription-ui.test.tsx (21.767 s)
+PASS iOS tests/interaction-guards.test.ts (6.405 s)
+PASS iOS tests/monetyzacja-ui.test.tsx (11.323 s)
+PASS iOS tests/przeplywy.test.ts
+PASS iOS tests/decyzje-straznik.test.ts
+PASS iOS tests/slownik-terminow.test.ts
+PASS iOS tests/close-button-guard.test.tsx (6.591 s)
+PASS iOS tests/audit-m1-044-brd.test.ts
+PASS iOS tests/audit-m1-016-paywall-benefit.test.tsx
+PASS iOS tests/audit-1-0-teksty.test.ts
+PASS iOS tests/cena-z-displayprice.test.ts
+PASS iOS tests/paywall-kolejnosc-domyslna.test.ts
+PASS iOS tests/maestro-center-guard.test.ts
+PASS iOS tests/maestro-flows.test.tsx (589.168 s)
+PASS iOS tests/maestro-e2e-modal.test.tsx (42.143 s)
+PASS iOS tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx (6.701 s)
+PASS iOS tests/maestro-selectors.test.ts
+PASS iOS tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx
+PASS iOS tests/maestro-script.test.tsx (9.776 s)
+PASS iOS tests/i18n-locales.test.ts
+PASS iOS tests/subscription-i18n.test.ts
+PASS iOS tests/maestro-zakup-m5s1.test.ts
+
+Test Suites: 22 passed, 22 total
+Tests:       575 passed, 575 total
+Snapshots:   0 total
+Time:        712.3 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx|tests\/subscription-ui.test.tsx|tests\/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx|tests\/maestro-zakup-m5s1.test.ts|tests\/maestro-center-guard.test.ts|tests\/maestro-selectors.test.ts|tests\/maestro-script.test.tsx|tests\/maestro-e2e-modal.test.tsx|tests\/subscription-i18n.test.ts|tests\/i18n-locales.test.ts|tests\/slownik-terminow.test.ts|tests\/interaction-guards.test.ts|tests\/close-button-guard.test.tsx|tests\/audit-m1-044-brd.test.ts|tests\/decyzje-straznik.test.ts|tests\/przeplywy.test.ts|tests\/paywall-kolejnosc-domyslna.test.ts|tests\/cena-z-displayprice.test.ts|tests\/monetyzacja-ui.test.tsx|tests\/audit-m1-016-paywall-benefit.test.tsx|tests\/audit-1-0-teksty.test.ts|tests\/maestro-flows.test.tsx/i.
+exit=0

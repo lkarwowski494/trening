@@ -1,0 +1,704 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/public-repo.test.ts
+PASS iOS tests/i18n-wave2.test.ts
+FAIL iOS tests/i18n-variants.test.ts
+  ● nakładka es-419 (tylko różnice względem języka bazowego) › słownik UI: klucze ze źródła, każdy wpis różny od bazowego, niepusty, te same {parametry}
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 5
+
+    - Array []
+    + Array [
+    +   "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+    +   "Kopia bazy w Plikach",
+    +   "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.",
+    + ]
+
+      77 |   test('słownik UI: klucze ze źródła, każdy wpis różny od bazowego, niepusty, te same {parametry}', () => {
+      78 |     const keys = new Set((JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'lib', 'locales', '_source.json'), 'utf8')) as { pl: string }[]).map(s => s.pl)); /* aktualność pliku: tests/i18n-locales.test.ts */
+    > 79 |     expect(Object.keys(overlay).filter(k => !keys.has(k))).toEqual([]);
+         |                                                            ^
+      80 |     expect(Object.keys(overlay).filter(k => overlay[k] === baseDict[k])).toEqual([]);
+      81 |     expect(Object.keys(overlay).filter(k => !overlay[k].trim() || params(overlay[k]) !== params(k))).toEqual([]);
+      82 |   });
+
+      at Object.toEqual (tests/i18n-variants.test.ts:79:60)
+
+  ● nakładka pt-BR (tylko różnice względem języka bazowego) › słownik UI: klucze ze źródła, każdy wpis różny od bazowego, niepusty, te same {parametry}
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 5
+
+    - Array []
+    + Array [
+    +   "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+    +   "Kopia bazy w Plikach",
+    +   "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.",
+    + ]
+
+      77 |   test('słownik UI: klucze ze źródła, każdy wpis różny od bazowego, niepusty, te same {parametry}', () => {
+      78 |     const keys = new Set((JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'lib', 'locales', '_source.json'), 'utf8')) as { pl: string }[]).map(s => s.pl)); /* aktualność pliku: tests/i18n-locales.test.ts */
+    > 79 |     expect(Object.keys(overlay).filter(k => !keys.has(k))).toEqual([]);
+         |                                                            ^
+      80 |     expect(Object.keys(overlay).filter(k => overlay[k] === baseDict[k])).toEqual([]);
+      81 |     expect(Object.keys(overlay).filter(k => !overlay[k].trim() || params(overlay[k]) !== params(k))).toEqual([]);
+      82 |   });
+
+      at Object.toEqual (tests/i18n-variants.test.ts:79:60)
+
+PASS iOS tests/przeklad-tlumaczen.test.ts
+PASS iOS tests/health-permissions.test.ts
+PASS iOS tests/slownik-terminow.test.ts
+FAIL iOS tests/i18n-locales.test.ts
+  ● lib/locales/_source.json jest aktualny względem kodu (słownik EN + etykiety sprzętu)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 12
+    + Received  +  0
+
+    @@ -2054,14 +2054,10 @@
+       {
+        "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+        "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → {app} → Backup, last {n}). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple account, export a backup elsewhere."
+       },
+       {
+    -   "pl": "Kopia bazy w Plikach",
+    -   "en": "Database copy in Files"
+    -  },
+    -  {
+        "pl": "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.",
+        "en": "A copy is kept on the phone. Tap to send it, then import a backup."
+       },
+       {
+        "pl": "Kopia nieczytelnych danych",
+    @@ -3023,14 +3019,10 @@
+        "en": "Could not save the backup after your workout"
+       },
+       {
+        "pl": "Nie udało się zapisać w Apple Health",
+        "en": "Couldn't save to Apple Health"
+    -  },
+    -  {
+    -   "pl": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+    -   "en": "Don't delete the app — your data and backups go with it. First tap “Send data” and save the file somewhere off your phone."
+       },
+       {
+        "pl": "Nie zamieniaj: {name}",
+        "en": "Don’t swap: {name}"
+       },
+    @@ -3691,14 +3683,10 @@
+        "en": "The file does not say whether weights are in kg or lb. Default: the unit from Settings."
+       },
+       {
+        "pl": "Plik nie zawiera żadnych poprawnych treningów. Dane nie zostały zmienione.",
+        "en": "The file contains no valid workouts. Your data was not changed."
+    -  },
+    -  {
+    -   "pl": "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.",
+    -   "en": "Files → On My iPhone → {app} → Backup → {folder}. Save this folder somewhere off your phone."
+       },
+       {
+        "pl": "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}",
+        "en": "Files → On My iPhone → {app} → Backup, last {n}"
+       },
+
+      25 |   const want = JSON.stringify(source(), null, 1) + '\n';
+      26 |   if (process.env.UPDATE_I18N === '1') fs.writeFileSync(FILE, want);
+    > 27 |   expect(fs.readFileSync(FILE, 'utf8')).toBe(want);
+         |                                         ^
+      28 | });
+      29 |
+      30 |
+
+      at Object.toBe (tests/i18n-locales.test.ts:27:41)
+
+PASS iOS tests/audit-m1-067-language-registry.test.ts
+PASS iOS tests/subscription-i18n.test.ts
+PASS iOS tests/privacy-manifest.test.ts
+FAIL iOS tests/architecture-limits.test.ts
+  ● limit rozmiaru plików (M1-054) › pliki powyżej 20 KB są na liście wyjątków i nie przekraczają progu
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "lib/backup.ts: 23561",
+    + ]
+
+      35 |   test('pliki powyżej 20 KB są na liście wyjątków i nie przekraczają progu', () => {
+      36 |     const zle = pliki.map(f => [relative(ROOT, f), statSync(f).size] as const).filter(([r, n]) => n > (WYJATKI[r]?.[0] ?? LIMIT)).map(([r, n]) => `${r}: ${n}`);
+    > 37 |     expect(zle).toEqual([]);
+         |                 ^
+      38 |   });
+      39 |   test('wyjątki dotyczą istniejących plików większych niż limit, z powodem (lista się kurczy)', () => {
+      40 |     for (const [r, [prog, powod]] of Object.entries(WYJATKI)) {
+
+      at Object.toEqual (tests/architecture-limits.test.ts:37:17)
+
+PASS iOS tests/matrix-dim-langs3.test.tsx (126.725 s)
+PASS iOS tests/matrix-dim-langs1.test.tsx (136.167 s)
+PASS iOS tests/matrix-dim-langs2.test.tsx (128.712 s)
+PASS iOS tests/matrix-invariants.test.ts (142.163 s)
+PASS iOS tests/matrix-data-fuzz.test.ts (77.347 s)
+PASS iOS tests/matrix-dim-langs4.test.tsx (107.171 s)
+PASS iOS tests/matrix-migrations.test.tsx (63.566 s)
+PASS iOS tests/regress.test.tsx (105.2 s)
+  ● Console
+
+    console.error
+      Error: Unable to find node on an unmounted component.
+          at Error (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:1689:17)
+          at findCurrentFiberUsingSlowPath (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:1761:16)
+          at findCurrentHostFiber (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:15744:19)
+          at findHostInstanceWithWarning (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:15860:27)
+          at AnimatedProps._connectAnimatedView2 (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedProps.js:276:42)
+          at AnimatedProps.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedProps.js:257:13)
+          at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedStyle.js:225:5)
+          at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedTransform.js:87:5)
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedInterpolation.js:391:5)
+          at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedTransform.js:85:12)
+          at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedStyle.js:223:12)
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedInterpolation.js:391:5)
+          at AnimatedValue.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedValue.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedValue.js:131:5)
+          at TimingAnimation.__makeNative [as __startAnimationIfNative] (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/Animation.js:137:21)
+          at __startAnimationIfNative (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/TimingAnimation.js:123:36)
+          at TimingAnimation.start (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/TimingAnimation.js:139:7)
+          at AnimatedValue.start [as animate] (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedValue.js:320:15)
+          at animate (/home/user/trening/node_modules/react-native/Libraries/Animated/AnimatedImplementation.js:233:19)
+          at Object.start (/home/user/trening/node_modules/react-native/Libraries/Animated/AnimatedImplementation.js:240:9)
+          at start (/home/user/trening/components/BoardFace.tsx:28:178)
+          at Object.react_stack_bottom_frame (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:15755:20)
+          at runWithFiberInDEV (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+          at commitHookEffectListMount (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9530:29)
+          at commitHookPassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9617:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11205:13)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+          ... collapsed 4 duplicate lines matching above lines ...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          ... collapsed 12 duplicate lines matching above 6 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11387:17)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11354:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          ... collapsed 6 duplicate lines matching above lines ...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11) {
+        [stack]: [Getter/Setter],
+        [message]: 'Unable to find node on an unmounted component.'
+      }
+      
+      The above error occurred in the <NowBoard> component.
+      
+      React will try to recreate this component tree from scratch using the error boundary you provided, Try.
+
+      105 | // żeby log był czytelny. Pozostałe console.error przechodzą (C9 sprawdza je jawnie).
+      106 | const origError = console.error;
+    > 107 | console.error = (...a) => { if (/not wrapped in act/.test(String(a[0]))) return; origError(...a); };
+          |                                                                                  ^
+      108 |
+      109 | // ActionSheetIOS (menu serii): zapamiętujemy wywołania, test wybiera opcję przez global.__pickSheet(i).
+      110 | global.__sheets = [];
+
+      at console.origError [as error] (tests/setup.js:107:82)
+      at defaultOnCaughtError (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6439:17)
+      at logCaughtError (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6475:9)
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at Try.update.callback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6508:11)
+      at callCallback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4625:16)
+      at commitCallbacks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4645:11)
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at commitClassCallbacks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9658:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10082:25)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10202:17)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10168:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10118:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10010:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+
+PASS iOS tests/audit-journey-c.test.tsx (50.505 s)
+PASS iOS tests/gen-days-ui.test.tsx (22.713 s)
+PASS iOS tests/matrix-logic.test.tsx (46.443 s)
+PASS iOS tests/locations-model.test.ts (18.99 s)
+PASS iOS tests/matrix-ui.test.tsx (32.339 s)
+PASS iOS tests/monetyzacja-ui.test.tsx (10.204 s)
+PASS iOS tests/audit-0.10-data-ui.test.tsx (6.156 s)
+PASS iOS tests/idea-request.test.tsx (10.666 s)
+PASS iOS tests/edit-history.test.tsx (12.388 s)
+PASS iOS tests/audit-r83.test.tsx (5.856 s)
+PASS iOS tests/i18n-wave4-ui.test.tsx (10.738 s)
+PASS iOS tests/audit011b.test.tsx
+PASS iOS tests/roundtrip.test.ts (7.738 s)
+PASS iOS tests/matrix-dim-equipment.test.tsx
+PASS iOS tests/matrix-time.test.ts (6.59 s)
+PASS iOS tests/matrix-dim-metrics.test.tsx (6.793 s)
+PASS iOS tests/pause.test.tsx
+PASS iOS tests/review-run.test.tsx
+PASS iOS tests/template-rows.test.tsx
+PASS iOS tests/audit-r83b.test.tsx
+PASS iOS tests/i18n-wave2-ui.test.tsx (6.535 s)
+PASS iOS tests/matrix-i18n.test.tsx (6.019 s)
+PASS iOS tests/live2-split-template.test.tsx
+PASS iOS tests/integration-090.test.tsx (6.366 s)
+PASS iOS tests/i18n-wave3-ui.test.tsx
+PASS iOS tests/audit-backlog-q.test.tsx
+PASS iOS tests/catalog-library25.test.tsx
+PASS iOS tests/health-query.test.ts
+PASS iOS tests/decisions-0310.test.tsx
+(node:20845) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS iOS tests/audit-m1-2026-10-27-004-ratunek.test.tsx
+PASS iOS tests/health-scenario.test.tsx
+PASS iOS tests/audit-prephone.test.tsx
+PASS iOS tests/audit-0.10-data.test.ts
+PASS iOS tests/audit-io-more.test.tsx
+PASS iOS tests/matrix-dim-catalog.test.tsx
+PASS iOS tests/audit-backlog-r75.test.tsx
+PASS iOS tests/backlog-0.10.1-dane.test.ts
+PASS iOS tests/audit-0.10-stats.test.ts
+PASS iOS tests/entitlement.test.ts
+PASS iOS tests/m3-p5d-haptics.test.ts
+PASS iOS tests/mutation-bounds.test.ts
+PASS iOS tests/i18n-variants-ui.test.tsx
+PASS iOS tests/set-goals.test.ts
+PASS iOS tests/logic.test.ts
+PASS iOS tests/places-migrate.test.ts
+PASS iOS tests/db-location.test.ts
+PASS iOS tests/audit-0.10-live-logic.test.ts
+PASS iOS tests/audit-0.10-plan.test.ts
+PASS iOS tests/subscription-invariants.test.ts
+PASS iOS tests/zk07-pierwszy-start.test.tsx
+PASS iOS tests/voice.test.ts
+PASS iOS tests/audit-io-flows.test.tsx
+PASS iOS tests/audit-m1-016-paywall-benefit.test.tsx
+(node:20796) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS iOS tests/audit-m1-008-kopia-ui.test.tsx
+PASS iOS tests/db-real-sqlite.test.ts
+FAIL iOS tests/i18n-wave3.test.ts
+  ● dane: komplet słownika UI i wskazówek techniki › każdy klucz źródła ma niepuste tłumaczenie z tymi samymi {parametrami}; bez nadmiarowych kluczy; wskazówki — każde zdanie
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1712
+    Received: 1715
+
+      87 |     expect(src.filter(s => !PENDING_NEW.has(s.pl) && !d[s.pl]?.trim()).map(s => s.pl)).toEqual([]);
+      88 |     expect(src.filter(s => d[s.pl] !== undefined && params(d[s.pl]) !== params(s.pl)).map(s => s.pl)).toEqual([]);
+    > 89 |     expect(Object.keys(d).length).toBe(src.length - PENDING_NEW.size); /* czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-10-23.json */
+         |                                   ^
+      90 |     const en = cueDict('en'), c = cueDict('ru');
+      91 |     expect(Object.keys(c).sort()).toEqual(Object.keys(en).sort());
+      92 |     expect(Object.entries(c).filter(([, v]) => !v.trim())).toEqual([]);
+
+      at Object.toBe (tests/i18n-wave3.test.ts:89:35)
+
+PASS iOS tests/places-oneoff-logic.test.ts
+PASS iOS tests/m5s1-dni-zapis.test.ts
+PASS iOS tests/audit-m1-004-start-error.test.tsx
+PASS iOS tests/audit-m1-006-import-ui.test.tsx
+PASS iOS tests/live-marker.test.ts
+PASS iOS tests/swap-schema16.test.ts
+PASS iOS tests/audit-r72-b.test.ts
+PASS iOS tests/audit-m1-041-reminder-files.test.tsx
+PASS iOS tests/audit-r72-d.test.ts
+PASS iOS tests/audit-m1-002-premigrate.test.ts
+FAIL iOS tests/i18n-wave4.test.ts
+  ● dane: komplet słownika UI i wskazówek techniki, pliki iOS i App Store › ja: każdy klucz źródła ma niepuste tłumaczenie z tymi samymi {parametrami}; bez nadmiarowych kluczy; wskazówki — każde zdanie
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1712
+    Received: 1715
+
+      103 |     expect(src.filter(s => !PENDING_NEW.has(s.pl) && !d[s.pl]?.trim()).map(s => s.pl)).toEqual([]);
+      104 |     expect(src.filter(s => d[s.pl] !== undefined && params(d[s.pl]) !== params(s.pl)).map(s => s.pl)).toEqual([]);
+    > 105 |     expect(Object.keys(d).length).toBe(src.length - PENDING_NEW.size); /* czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-10-23.json */
+          |                                   ^
+      106 |     const en = cueDict('en'), c = cueDict(l);
+      107 |     expect(Object.keys(c).sort()).toEqual(Object.keys(en).sort());
+      108 |     expect(Object.entries(c).filter(([, v]) => !v.trim())).toEqual([]);
+
+      at toBe (tests/i18n-wave4.test.ts:105:35)
+
+  ● dane: komplet słownika UI i wskazówek techniki, pliki iOS i App Store › ko: każdy klucz źródła ma niepuste tłumaczenie z tymi samymi {parametrami}; bez nadmiarowych kluczy; wskazówki — każde zdanie
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1712
+    Received: 1715
+
+      103 |     expect(src.filter(s => !PENDING_NEW.has(s.pl) && !d[s.pl]?.trim()).map(s => s.pl)).toEqual([]);
+      104 |     expect(src.filter(s => d[s.pl] !== undefined && params(d[s.pl]) !== params(s.pl)).map(s => s.pl)).toEqual([]);
+    > 105 |     expect(Object.keys(d).length).toBe(src.length - PENDING_NEW.size); /* czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-10-23.json */
+          |                                   ^
+      106 |     const en = cueDict('en'), c = cueDict(l);
+      107 |     expect(Object.keys(c).sort()).toEqual(Object.keys(en).sort());
+      108 |     expect(Object.entries(c).filter(([, v]) => !v.trim())).toEqual([]);
+
+      at toBe (tests/i18n-wave4.test.ts:105:35)
+
+  ● dane: komplet słownika UI i wskazówek techniki, pliki iOS i App Store › zh-Hant: każdy klucz źródła ma niepuste tłumaczenie z tymi samymi {parametrami}; bez nadmiarowych kluczy; wskazówki — każde zdanie
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1712
+    Received: 1715
+
+      103 |     expect(src.filter(s => !PENDING_NEW.has(s.pl) && !d[s.pl]?.trim()).map(s => s.pl)).toEqual([]);
+      104 |     expect(src.filter(s => d[s.pl] !== undefined && params(d[s.pl]) !== params(s.pl)).map(s => s.pl)).toEqual([]);
+    > 105 |     expect(Object.keys(d).length).toBe(src.length - PENDING_NEW.size); /* czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-10-23.json */
+          |                                   ^
+      106 |     const en = cueDict('en'), c = cueDict(l);
+      107 |     expect(Object.keys(c).sort()).toEqual(Object.keys(en).sort());
+      108 |     expect(Object.entries(c).filter(([, v]) => !v.trim())).toEqual([]);
+
+      at toBe (tests/i18n-wave4.test.ts:105:35)
+
+PASS iOS tests/audit-m1-006-import.test.ts
+PASS iOS tests/audit-close-d.test.ts
+PASS iOS tests/xcheck-0610.test.tsx
+PASS iOS tests/csv-jednostka-eksportu.test.ts
+A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
+
+Summary of all failing tests
+FAIL tests/i18n-variants.test.ts
+  ● nakładka es-419 (tylko różnice względem języka bazowego) › słownik UI: klucze ze źródła, każdy wpis różny od bazowego, niepusty, te same {parametry}
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 5
+
+    - Array []
+    + Array [
+    +   "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+    +   "Kopia bazy w Plikach",
+    +   "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.",
+    + ]
+
+      77 |   test('słownik UI: klucze ze źródła, każdy wpis różny od bazowego, niepusty, te same {parametry}', () => {
+      78 |     const keys = new Set((JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'lib', 'locales', '_source.json'), 'utf8')) as { pl: string }[]).map(s => s.pl)); /* aktualność pliku: tests/i18n-locales.test.ts */
+    > 79 |     expect(Object.keys(overlay).filter(k => !keys.has(k))).toEqual([]);
+         |                                                            ^
+      80 |     expect(Object.keys(overlay).filter(k => overlay[k] === baseDict[k])).toEqual([]);
+      81 |     expect(Object.keys(overlay).filter(k => !overlay[k].trim() || params(overlay[k]) !== params(k))).toEqual([]);
+      82 |   });
+
+      at Object.toEqual (tests/i18n-variants.test.ts:79:60)
+
+  ● nakładka pt-BR (tylko różnice względem języka bazowego) › słownik UI: klucze ze źródła, każdy wpis różny od bazowego, niepusty, te same {parametry}
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 5
+
+    - Array []
+    + Array [
+    +   "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+    +   "Kopia bazy w Plikach",
+    +   "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.",
+    + ]
+
+      77 |   test('słownik UI: klucze ze źródła, każdy wpis różny od bazowego, niepusty, te same {parametry}', () => {
+      78 |     const keys = new Set((JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'lib', 'locales', '_source.json'), 'utf8')) as { pl: string }[]).map(s => s.pl)); /* aktualność pliku: tests/i18n-locales.test.ts */
+    > 79 |     expect(Object.keys(overlay).filter(k => !keys.has(k))).toEqual([]);
+         |                                                            ^
+      80 |     expect(Object.keys(overlay).filter(k => overlay[k] === baseDict[k])).toEqual([]);
+      81 |     expect(Object.keys(overlay).filter(k => !overlay[k].trim() || params(overlay[k]) !== params(k))).toEqual([]);
+      82 |   });
+
+      at Object.toEqual (tests/i18n-variants.test.ts:79:60)
+
+FAIL tests/i18n-locales.test.ts
+  ● lib/locales/_source.json jest aktualny względem kodu (słownik EN + etykiety sprzętu)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 12
+    + Received  +  0
+
+    @@ -2054,14 +2054,10 @@
+       {
+        "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+        "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → {app} → Backup, last {n}). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple account, export a backup elsewhere."
+       },
+       {
+    -   "pl": "Kopia bazy w Plikach",
+    -   "en": "Database copy in Files"
+    -  },
+    -  {
+        "pl": "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.",
+        "en": "A copy is kept on the phone. Tap to send it, then import a backup."
+       },
+       {
+        "pl": "Kopia nieczytelnych danych",
+    @@ -3023,14 +3019,10 @@
+        "en": "Could not save the backup after your workout"
+       },
+       {
+        "pl": "Nie udało się zapisać w Apple Health",
+        "en": "Couldn't save to Apple Health"
+    -  },
+    -  {
+    -   "pl": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+    -   "en": "Don't delete the app — your data and backups go with it. First tap “Send data” and save the file somewhere off your phone."
+       },
+       {
+        "pl": "Nie zamieniaj: {name}",
+        "en": "Don’t swap: {name}"
+       },
+    @@ -3691,14 +3683,10 @@
+        "en": "The file does not say whether weights are in kg or lb. Default: the unit from Settings."
+       },
+       {
+        "pl": "Plik nie zawiera żadnych poprawnych treningów. Dane nie zostały zmienione.",
+        "en": "The file contains no valid workouts. Your data was not changed."
+    -  },
+    -  {
+    -   "pl": "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.",
+    -   "en": "Files → On My iPhone → {app} → Backup → {folder}. Save this folder somewhere off your phone."
+       },
+       {
+        "pl": "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}",
+        "en": "Files → On My iPhone → {app} → Backup, last {n}"
+       },
+
+      25 |   const want = JSON.stringify(source(), null, 1) + '\n';
+      26 |   if (process.env.UPDATE_I18N === '1') fs.writeFileSync(FILE, want);
+    > 27 |   expect(fs.readFileSync(FILE, 'utf8')).toBe(want);
+         |                                         ^
+      28 | });
+      29 |
+      30 |
+
+      at Object.toBe (tests/i18n-locales.test.ts:27:41)
+
+FAIL tests/architecture-limits.test.ts
+  ● limit rozmiaru plików (M1-054) › pliki powyżej 20 KB są na liście wyjątków i nie przekraczają progu
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "lib/backup.ts: 23561",
+    + ]
+
+      35 |   test('pliki powyżej 20 KB są na liście wyjątków i nie przekraczają progu', () => {
+      36 |     const zle = pliki.map(f => [relative(ROOT, f), statSync(f).size] as const).filter(([r, n]) => n > (WYJATKI[r]?.[0] ?? LIMIT)).map(([r, n]) => `${r}: ${n}`);
+    > 37 |     expect(zle).toEqual([]);
+         |                 ^
+      38 |   });
+      39 |   test('wyjątki dotyczą istniejących plików większych niż limit, z powodem (lista się kurczy)', () => {
+      40 |     for (const [r, [prog, powod]] of Object.entries(WYJATKI)) {
+
+      at Object.toEqual (tests/architecture-limits.test.ts:37:17)
+
+FAIL tests/i18n-wave3.test.ts
+  ● dane: komplet słownika UI i wskazówek techniki › każdy klucz źródła ma niepuste tłumaczenie z tymi samymi {parametrami}; bez nadmiarowych kluczy; wskazówki — każde zdanie
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1712
+    Received: 1715
+
+      87 |     expect(src.filter(s => !PENDING_NEW.has(s.pl) && !d[s.pl]?.trim()).map(s => s.pl)).toEqual([]);
+      88 |     expect(src.filter(s => d[s.pl] !== undefined && params(d[s.pl]) !== params(s.pl)).map(s => s.pl)).toEqual([]);
+    > 89 |     expect(Object.keys(d).length).toBe(src.length - PENDING_NEW.size); /* czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-10-23.json */
+         |                                   ^
+      90 |     const en = cueDict('en'), c = cueDict('ru');
+      91 |     expect(Object.keys(c).sort()).toEqual(Object.keys(en).sort());
+      92 |     expect(Object.entries(c).filter(([, v]) => !v.trim())).toEqual([]);
+
+      at Object.toBe (tests/i18n-wave3.test.ts:89:35)
+
+FAIL tests/i18n-wave4.test.ts
+  ● dane: komplet słownika UI i wskazówek techniki, pliki iOS i App Store › ja: każdy klucz źródła ma niepuste tłumaczenie z tymi samymi {parametrami}; bez nadmiarowych kluczy; wskazówki — każde zdanie
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1712
+    Received: 1715
+
+      103 |     expect(src.filter(s => !PENDING_NEW.has(s.pl) && !d[s.pl]?.trim()).map(s => s.pl)).toEqual([]);
+      104 |     expect(src.filter(s => d[s.pl] !== undefined && params(d[s.pl]) !== params(s.pl)).map(s => s.pl)).toEqual([]);
+    > 105 |     expect(Object.keys(d).length).toBe(src.length - PENDING_NEW.size); /* czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-10-23.json */
+          |                                   ^
+      106 |     const en = cueDict('en'), c = cueDict(l);
+      107 |     expect(Object.keys(c).sort()).toEqual(Object.keys(en).sort());
+      108 |     expect(Object.entries(c).filter(([, v]) => !v.trim())).toEqual([]);
+
+      at toBe (tests/i18n-wave4.test.ts:105:35)
+
+  ● dane: komplet słownika UI i wskazówek techniki, pliki iOS i App Store › ko: każdy klucz źródła ma niepuste tłumaczenie z tymi samymi {parametrami}; bez nadmiarowych kluczy; wskazówki — każde zdanie
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1712
+    Received: 1715
+
+      103 |     expect(src.filter(s => !PENDING_NEW.has(s.pl) && !d[s.pl]?.trim()).map(s => s.pl)).toEqual([]);
+      104 |     expect(src.filter(s => d[s.pl] !== undefined && params(d[s.pl]) !== params(s.pl)).map(s => s.pl)).toEqual([]);
+    > 105 |     expect(Object.keys(d).length).toBe(src.length - PENDING_NEW.size); /* czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-10-23.json */
+          |                                   ^
+      106 |     const en = cueDict('en'), c = cueDict(l);
+      107 |     expect(Object.keys(c).sort()).toEqual(Object.keys(en).sort());
+      108 |     expect(Object.entries(c).filter(([, v]) => !v.trim())).toEqual([]);
+
+      at toBe (tests/i18n-wave4.test.ts:105:35)
+
+  ● dane: komplet słownika UI i wskazówek techniki, pliki iOS i App Store › zh-Hant: każdy klucz źródła ma niepuste tłumaczenie z tymi samymi {parametrami}; bez nadmiarowych kluczy; wskazówki — każde zdanie
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1712
+    Received: 1715
+
+      103 |     expect(src.filter(s => !PENDING_NEW.has(s.pl) && !d[s.pl]?.trim()).map(s => s.pl)).toEqual([]);
+      104 |     expect(src.filter(s => d[s.pl] !== undefined && params(d[s.pl]) !== params(s.pl)).map(s => s.pl)).toEqual([]);
+    > 105 |     expect(Object.keys(d).length).toBe(src.length - PENDING_NEW.size); /* czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-10-23.json */
+          |                                   ^
+      106 |     const en = cueDict('en'), c = cueDict(l);
+      107 |     expect(Object.keys(c).sort()).toEqual(Object.keys(en).sort());
+      108 |     expect(Object.entries(c).filter(([, v]) => !v.trim())).toEqual([]);
+
+      at toBe (tests/i18n-wave4.test.ts:105:35)
+
+
+Test Suites: 5 failed, 85 passed, 90 total
+Tests:       8 failed, 1 skipped, 3611 passed, 3620 total
+Snapshots:   0 total
+Time:        641.407 s, estimated 796 s
+Ran all test suites matching /tests\/architecture-limits.test.ts|tests\/audit-0.10-data-ui.test.tsx|tests\/audit-0.10-data.test.ts|tests\/audit-0.10-live-logic.test.ts|tests\/audit-0.10-plan.test.ts|tests\/audit-0.10-stats.test.ts|tests\/audit-backlog-q.test.tsx|tests\/audit-backlog-r75.test.tsx|tests\/audit-close-d.test.ts|tests\/audit-io-flows.test.tsx|tests\/audit-io-more.test.tsx|tests\/audit-journey-c.test.tsx|tests\/audit-m1-002-premigrate.test.ts|tests\/audit-m1-004-start-error.test.tsx|tests\/audit-m1-006-import-ui.test.tsx|tests\/audit-m1-006-import.test.ts|tests\/audit-m1-008-kopia-ui.test.tsx|tests\/audit-m1-016-paywall-benefit.test.tsx|tests\/audit-m1-041-reminder-files.test.tsx|tests\/audit-m1-067-language-registry.test.ts|tests\/audit-m1-2026-10-27-004-ratunek.test.tsx|tests\/audit-prephone.test.tsx|tests\/audit-r72-b.test.ts|tests\/audit-r72-d.test.ts|tests\/audit-r83.test.tsx|tests\/audit-r83b.test.tsx|tests\/audit011b.test.tsx|tests\/backlog-0.10.1-dane.test.ts|tests\/catalog-library25.test.tsx|tests\/csv-jednostka-eksportu.test.ts|tests\/db-location.test.ts|tests\/db-real-sqlite.test.ts|tests\/decisions-0310.test.tsx|tests\/edit-history.test.tsx|tests\/entitlement.test.ts|tests\/gen-days-ui.test.tsx|tests\/health-permissions.test.ts|tests\/health-query.test.ts|tests\/health-scenario.test.tsx|tests\/i18n-locales.test.ts|tests\/i18n-variants-ui.test.tsx|tests\/i18n-variants.test.ts|tests\/i18n-wave2-ui.test.tsx|tests\/i18n-wave2.test.ts|tests\/i18n-wave3-ui.test.tsx|tests\/i18n-wave3.test.ts|tests\/i18n-wave4-ui.test.tsx|tests\/i18n-wave4.test.ts|tests\/idea-request.test.tsx|tests\/integration-090.test.tsx|tests\/live-marker.test.ts|tests\/live2-split-template.test.tsx|tests\/locations-model.test.ts|tests\/logic.test.ts|tests\/m3-p5d-haptics.test.ts|tests\/m5s1-dni-zapis.test.ts|tests\/matrix-data-fuzz.test.ts|tests\/matrix-dim-catalog.test.tsx|tests\/matrix-dim-equipment.test.tsx|tests\/matrix-dim-langs1.test.tsx|tests\/matrix-dim-langs2.test.tsx|tests\/matrix-dim-langs3.test.tsx|tests\/matrix-dim-langs4.test.tsx|tests\/matrix-dim-metrics.test.tsx|tests\/matrix-i18n.test.tsx|tests\/matrix-invariants.test.ts|tests\/matrix-logic.test.tsx|tests\/matrix-migrations.test.tsx|tests\/matrix-time.test.ts|tests\/matrix-ui.test.tsx|tests\/monetyzacja-ui.test.tsx|tests\/mutation-bounds.test.ts|tests\/pause.test.tsx|tests\/places-migrate.test.ts|tests\/places-oneoff-logic.test.ts|tests\/privacy-manifest.test.ts|tests\/przeklad-tlumaczen.test.ts|tests\/public-repo.test.ts|tests\/regress.test.tsx|tests\/review-run.test.tsx|tests\/roundtrip.test.ts|tests\/set-goals.test.ts|tests\/slownik-terminow.test.ts|tests\/subscription-i18n.test.ts|tests\/subscription-invariants.test.ts|tests\/swap-schema16.test.ts|tests\/template-rows.test.tsx|tests\/voice.test.ts|tests\/xcheck-0610.test.tsx|tests\/zk07-pierwszy-start.test.tsx/i.
+kod 1

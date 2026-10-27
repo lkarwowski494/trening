@@ -1,0 +1,18 @@
+# Hammer Curl
+widok: side, kotwica: toe, przyrządy: [{"k":"db","at":"hand"},{"k":"db","at":"hand2"}]
+mięśnie (katalog): {"biceps":1,"forearms":0.5}
+setup curl.hammerSetup: Hantle przy bokach, dłonie zwrócone do ciała.  [źródła: ace-10 / Step 1; exrx-Brachioradialis/DBHammerCurl / Preparation]
+move curl.hammerMove: Zginaj łokieć, kciukiem w stronę barku, aż przedramię będzie pionowo; opuść do pełnego wyprostu.  [źródła: ace-10 / Step 2; Step 3; exrx-Brachioradialis/DBHammerCurl / Execution]
+tips curl.elbows: Łokcie zostają przy bokach — pracuje przedramię, nie ramię.  [źródła: ace-10 / Step 2 (without moving your elbows forward); exrx-Brachioradialis/DBHammerCurl / Execution (with elbows to sides)]
+tips curl.noSwing: Tułów nieruchomo: bez bujania i odchylania się.  [źródła: ace-10 / Step 2 (keeping your torso erect); nasm-barbell-bicep-curl / Common Mistakes (swinging; sztanga — ta sama zasada)]
+mistakes curl.mis.elbows: Wysuwanie łokci do przodu albo od tułowia.  [źródła: ace-10 / Step 2; exrx-Brachioradialis/DBHammerCurl / Execution]
+KLATKA start: poza {"t":90,"hip":0,"knee":0,"sh":0,"el":0}
+  kąty: hip=0 knee=0 sh=0 el=0 ankle=0 hip2=0 knee2=0 sh2=0 el2=0 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-11,66) hand=(-11,46) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-11,66) hand2=(-11,46)
+  why joint curl.hammerMove → OK (0)
+  why horiz curl.elbows → OK (90)
+KLATKA end: poza {"t":90,"hip":0,"knee":0,"sh":14,"el":148}
+  kąty: hip=0 knee=0 sh=14 el=148 ankle=0 hip2=0 knee2=0 sh2=14 el2=148 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-6.6,66.5) hand=(-0.5,85.6) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-6.6,66.5) hand2=(-0.5,85.6)
+  why horiz curl.hammerMove → OK (72)
+  why horiz curl.elbows → OK (76)

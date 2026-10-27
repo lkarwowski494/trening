@@ -1,0 +1,17 @@
+# Machine Chest Press
+widok: side, kotwica: hip, przyrządy: [{"k":"rect","x":-8,"y":20,"w":20,"h":4},{"k":"line","pts":[[2,20],[2,0]]},{"k":"line","pts":[[-6,28],[-6,66]]},{"k":"grip","at":"hand","r":3}]
+notatka: Uchwyty maszyny jako punkt przy dłoniach; rama maszyny pominięta (uproszczenie).
+mięśnie (katalog): {"chest":1,"triceps":0.5,"front_delt":0.5}
+setup mcp.seat: Ustaw siedzisko tak, by uchwyty były na wysokości środka klatki; plecy oparte, stopy na podłodze.  [źródła: ace-188 / Step 1; nasm-chest-press-machine / Step 1; FAQ (seat adjustment); exrx-PectoralSternal/LVChestPress / Preparation (chest approximately height of handles)]
+move mcp.move: Wypchnij uchwyty przed siebie do wyprostu rąk; wracaj powoli.  [źródła: ace-188 / Step 2; Step 3; nasm-chest-press-machine / Step 3; Step 4; exrx-PectoralSternal/LVChestPress / Execution]
+tips mcp.blades: Łopatki zostają przy oparciu — nie wysuwaj barków w przód na końcu ruchu.  [źródła: ace-188 / Step 1; Step 3; wskazówka końcowa; nasm-chest-press-machine / Step 2 (shoulders back and down)]
+tips press.noLock: Prostuj ręce do końca, ale bez gwałtownego blokowania łokci.  [źródła: ace-188 / Step 3 (fully extended, but not locked); nasm-chest-press-machine / Common Mistakes (locking out elbows)]
+KLATKA start: poza {"t":90,"sh":-52,"el":138,"ap":0.7,"hip":88,"knee":90} at [0,30]
+  kąty: hip=88 knee=90 sh=-52 el=138 ankle=2 hip2=88 knee2=90 sh2=-52 el2=138 ankle2=2
+  punkty: head=(0,71) shoulder=(0,60) elbow=(-9.9,52.2) hand=(10,50.8) hip=(0,30) knee=(25,29.1) ankle=(24.1,4.1) heel=(21.1,0.1) toe=(35.1,0.1) knee2=(25,29.1) ankle2=(24.1,4.1) heel2=(21.1,0.1) toe2=(35.1,0.1) elbow2=(-9.9,52.2) hand2=(10,50.8)
+  why touch mcp.seat → OK (0.2)
+KLATKA end: poza {"t":90,"sh":80,"el":5,"hip":88,"knee":90} at [0,30]
+  kąty: hip=88 knee=90 sh=80 el=5 ankle=2 hip2=88 knee2=90 sh2=80 el2=5 ankle2=2
+  punkty: head=(0,71) shoulder=(0,60) elbow=(17.7,56.9) hand=(37.7,55.1) hip=(0,30) knee=(25,29.1) ankle=(24.1,4.1) heel=(21.1,0.1) toe=(35.1,0.1) knee2=(25,29.1) ankle2=(24.1,4.1) heel2=(21.1,0.1) toe2=(35.1,0.1) elbow2=(17.7,56.9) hand2=(37.7,55.1)
+  why joint press.noLock → OK (5)
+  why horiz mcp.move → OK (7.4)

@@ -1,0 +1,10 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/blokada-wydania.test.ts
+PASS iOS tests/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        5.347 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts|tests\/blokada-wydania.test.ts/i.

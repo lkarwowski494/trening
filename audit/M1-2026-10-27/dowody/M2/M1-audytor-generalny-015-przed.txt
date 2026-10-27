@@ -1,0 +1,50 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-015-blad-zapisu.test.tsx (5.03 s)
+  M1-015: błąd zapisu widoczny na ekranie, z którego zapisano
+    ✕ edycja sesji z historii: „Zapisz sesję” przy pełnej pamięci → okno błędu od razu (bez przechodzenia na Trening); „Spróbuj ponownie” po zwolnieniu miejsca zapisuje (1643 ms)
+    ✕ kolejne nieudane zapisy tego samego błędu nie mnożą okien (jedno okno na epizod błędu) (380 ms)
+
+  ● M1-015: błąd zapisu widoczny na ekranie, z którego zapisano › edycja sesji z historii: „Zapisz sesję” przy pełnej pamięci → okno błędu od razu (bez przechodzenia na Trening); „Spróbuj ponownie” po zwolnieniu miejsca zapisuje
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      19 |     global.__dbFail = true; global.__alerts.length = 0;
+      20 |     await type(screen.getByLabelText('Nazwa'), 'Push A — zmiana'); await tap(screen.getByLabelText('Zapisz sesję')); await flushAll(30);
+    > 21 |     expect(alerted().length).toBe(1); expect(alerted()[0].buttons!.map(b => b.text)).toContain(t('Spróbuj ponownie'));
+         |                              ^
+      22 |     global.__dbFail = false; await act(async () => { alerted()[0].buttons!.find(b => b.text === t('Spróbuj ponownie'))!.onPress?.(); }); await flushAll(30);
+      23 |     expect(JSON.parse(global.__kv.get('state')!).workouts.find((x: { id: string }) => x.id === w.id).templateName).toBe('Push A — zmiana');
+      24 |   });
+
+      at Object.toBe (tests/audit-m1-2026-10-27-015-blad-zapisu.test.tsx:21:30)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-015: błąd zapisu widoczny na ekranie, z którego zapisano › kolejne nieudane zapisy tego samego błędu nie mnożą okien (jedno okno na epizod błędu)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      27 |     global.__dbFail = true; global.__alerts.length = 0;
+      28 |     const s = require('@/lib/store'); for (let i = 0; i < 3; i++) { s.getState().settings.defaultRest = 60 + i; s.save(); await act(async () => { await s.flush(); }); await flushAll(5); }
+    > 29 |     expect(alerted().length).toBe(1);
+         |                              ^
+      30 |   });
+      31 | });
+      32 |
+
+      at Object.toBe (tests/audit-m1-2026-10-27-015-blad-zapisu.test.tsx:29:30)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        5.518 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-015-blad-zapisu.test.tsx/i.

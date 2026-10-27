@@ -1,0 +1,30 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-048-claims-registry.test.ts (6.658 s)
+  ● M1-audytor-generalny-021 (27.10.2026): strażnik rozpoznaje teksty dziedzinowe bez nazw źródeł i oznaczeń wagi › kandydat bez twierdzenia: wpis w „bezTwierdzenia” z powodem przechodzi; bez powodu albo bez tekstu w słowniku → błąd
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /bez ID w rejestrze/
+    Received string:  ""
+
+      76 |   test('kandydat bez twierdzenia: wpis w „bezTwierdzenia” z powodem przechodzi; bez powodu albo bez tekstu w słowniku → błąd', () => {
+      77 |     const ui = 'Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba.';
+    > 78 |     expect(check({ [ui]: 'x' }, { twierdzenia: [] }, docs).join('\n')).toMatch(/bez ID w rejestrze/);
+         |                                                                        ^
+      79 |     expect(check({ [ui]: 'x' }, { twierdzenia: [], bezTwierdzenia: [{ kotwica: ui.slice(0, 30), powod: 'opis wykresu: rachunek na danych użytkownika' }] }, docs)).toEqual([]);
+      80 |     expect(check({ [ui]: 'x' }, { twierdzenia: [], bezTwierdzenia: [{ kotwica: ui.slice(0, 30), powod: '' }] }, docs).join('\n')).toMatch(/powód/);
+      81 |     expect(check({}, { twierdzenia: [], bezTwierdzenia: [{ kotwica: ui.slice(0, 30), powod: 'opis wykresu: rachunek na danych użytkownika' }] }, docs).join('\n')).toMatch(/nie istnieje w słowniku/);
+
+      at Object.toMatch (tests/audit-m1-048-claims-registry.test.ts:78:72)
+
+PASS iOS tests/zrodla-wiedzy.test.ts
+PASS iOS tests/research-quotes.test.ts
+PASS iOS tests/audit-m1-046-047-claims.test.tsx (5.292 s)
+PASS iOS tests/audit-m1-061-quality-claims.test.ts
+
+Test Suites: 1 failed, 4 passed, 5 total
+Tests:       1 failed, 42 passed, 43 total
+Snapshots:   0 total
+Time:        17.596 s
+Ran all test suites matching /tests\/audit-m1-048-claims-registry.test.ts|tests\/zrodla-wiedzy.test.ts|tests\/research-quotes.test.ts|tests\/audit-m1-046-047-claims.test.tsx|tests\/audit-m1-061-quality-claims.test.ts/i.

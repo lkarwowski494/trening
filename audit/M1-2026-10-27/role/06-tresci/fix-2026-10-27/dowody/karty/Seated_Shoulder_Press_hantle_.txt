@@ -1,0 +1,19 @@
+# Seated Shoulder Press (hantle)
+widok: side, kotwica: hip, przyrządy: [{"k":"rect","x":-8,"y":20,"w":20,"h":4},{"k":"line","pts":[[2,20],[2,0]]},{"k":"line","pts":[[-5.8,27.5],[-8.9,63.3]]},{"k":"db","at":"hand"},{"k":"db","at":"hand2"}]
+notatka: Oparcie lekko odchylone (ilustracyjnie); hantle przy barkach, łokcie pod nadgarstkami.
+mięśnie (katalog): {"front_delt":1,"side_delt":0.5,"triceps":0.5,"upper_back":0.25}
+setup ohp.seat: Usiądź z plecami opartymi o oparcie, stopy mocno na podłodze; hantle przy barkach.  [źródła: ace-186 / Step 1 (back against the backrest, feet firmly on the floor); exrx-DeltoidAnterior/DBShoulderPress / Preparation]
+move ohp.move: Wypchnij ciężar nad głowę do wyprostu rąk; opuść go z powrotem do barków.  [źródła: exrx-DeltoidAnterior/DBShoulderPress / Execution; ace-43 / opis]
+tips ohp.elbowsUnder: Łokcie pod nadgarstkami przez cały ruch.  [źródła: exrx-DeltoidAnterior/DBShoulderPress / Preparation; ace-186 / Step 1; Step 2]
+tips ohp.fullExt: Na górze wyprostuj ręce, bez gwałtownego blokowania łokci.  [źródła: ace-186 / Step 3 (fully extended, but not locked); exrx-DeltoidAnterior/DBShoulderPress / Execution (until arms are extended)]
+KLATKA start: poza {"t":95,"sh":25,"el":148,"ap":0.75,"hip":83,"knee":90} at [0,30]
+  kąty: hip=83 knee=90 sh=25 el=148 ankle=2 hip2=83 knee2=90 sh2=25 el2=148 ankle2=2
+  punkty: head=(-3.6,70.8) shoulder=(-2.6,59.9) elbow=(4.1,48.2) hand=(4.8,68.2) hip=(0,30) knee=(25,29.1) ankle=(24.1,4.1) heel=(21.1,0.1) toe=(35.1,0.1) knee2=(25,29.1) ankle2=(24.1,4.1) heel2=(21.1,0.1) toe2=(35.1,0.1) elbow2=(4.1,48.2) hand2=(4.8,68.2)
+  why touch ohp.seat → OK (5.1)
+  why alignX ohp.elbowsUnder → OK (0.7)
+  why low ohp.seat → OK (0.1)
+KLATKA end: poza {"t":95,"sh":165,"el":3,"hip":83,"knee":90} at [0,30]
+  kąty: hip=83 knee=90 sh=165 el=3 ankle=2 hip2=83 knee2=90 sh2=165 el2=3 ankle2=2
+  punkty: head=(-3.6,70.8) shoulder=(-2.6,59.9) elbow=(0.5,77.6) hand=(2.9,97.5) hip=(0,30) knee=(25,29.1) ankle=(24.1,4.1) heel=(21.1,0.1) toe=(35.1,0.1) knee2=(25,29.1) ankle2=(24.1,4.1) heel2=(21.1,0.1) toe2=(35.1,0.1) elbow2=(0.5,77.6) hand2=(2.9,97.5)
+  why joint ohp.fullExt → OK (3)
+  why low ohp.seat → OK (0.1)

@@ -1,0 +1,17 @@
+# Cable Curl
+widok: side, kotwica: toe, przyrządy: [{"k":"cable","at":"hand","from":[26,4]},{"k":"grip","at":"hand","r":3}]
+mięśnie (katalog): {"biceps":1,"forearms":0.25}
+setup curl.cableSetup: Chwyć uchwyt dolnego wyciągu podchwytem, ręce wyprostowane w dół.  [źródła: exrx-Biceps/CBCurl / Preparation; ace-322 / opis (palms facing the ceiling; guma/linka)]
+move curl.cableMove: Zginaj łokcie, przyciągając uchwyt w stronę barków; wróć do pełnego wyprostu rąk.  [źródła: exrx-Biceps/CBCurl / Execution; ace-322 / opis]
+tips curl.elbows: Łokcie zostają przy bokach — pracuje przedramię, nie ramię.  [źródła: exrx-Biceps/CBCurl / Execution (with elbows to side); ace-322 / opis (keep the elbows in close to the sides)]
+tips curl.control: Opuszczaj ciężar powoli, z kontrolą.  [źródła: ace-322 / opis (lower slowly); nasm-barbell-bicep-curl / Common Mistakes (incomplete eccentric control)]
+KLATKA start: poza {"t":90,"hip":0,"knee":0,"sh":5,"el":0}
+  kąty: hip=0 knee=0 sh=5 el=0 ankle=0 hip2=0 knee2=0 sh2=5 el2=0 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-9.4,66.1) hand=(-7.7,46.1) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-9.4,66.1) hand2=(-7.7,46.1)
+  why joint curl.cableSetup → OK (0)
+  why horiz curl.elbows → OK (85)
+KLATKA end: poza {"t":90,"hip":0,"knee":0,"sh":12,"el":140}
+  kąty: hip=0 knee=0 sh=12 el=140 ankle=0 hip2=0 knee2=0 sh2=12 el2=140 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-7.3,66.4) hand=(2.1,84.1) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-7.3,66.4) hand2=(2.1,84.1)
+  why joint curl.cableMove → OK (140)
+  why horiz curl.elbows → OK (78)

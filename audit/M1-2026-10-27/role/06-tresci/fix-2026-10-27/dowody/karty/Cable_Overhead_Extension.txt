@@ -1,0 +1,18 @@
+# Cable Overhead Extension
+widok: side, kotwica: toe, przyrządy: [{"k":"cable","at":"hand","from":[-34,6]},{"k":"grip","at":"hand","r":3}]
+notatka: Bloczek dolny za plecami (ustawienie ilustracyjne); ćwiczący stoi tyłem do wyciągu.
+mięśnie (katalog): {"triceps":1}
+setup cote.setup: Uchwyt wyciągu za głową, łokcie skierowane w górę nad głową.  [źródła: exrx-Triceps/CBTriExt / Preparation; ace-74 / Step 2 (elbows pointing forward/up; hantel — ta sama pozycja)]
+move cote.move: Prostuj łokcie, wypychając uchwyt nad głowę; opuść go za głowę, zginając łokcie.  [źródła: exrx-Triceps/CBTriExt / Execution; ace-74 / Step 2; Step 3]
+tips ote.upperArm: Ramiona nieruchomo, łokcie nad głową — pracują przedramiona.  [źródła: exrx-Triceps/CBTriExt / Execution (elbows remaining overhead); ace-74 / Step 3; wskazówka końcowa]
+tips press.noLock: Prostuj ręce do końca, ale bez gwałtownego blokowania łokci.  [źródła: ace-74 / Step 2 (not completely locked); exrx-Triceps/CBStandingTricepsExtensionRope / Execution (until arms are straight)]
+KLATKA start: poza {"t":90,"hip":0,"knee":0,"sh":165,"el":130}
+  kąty: hip=0 knee=0 sh=165 el=130 ankle=0 hip2=0 knee2=0 sh2=165 el2=130 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-6.3,101.4) hand=(-24.5,92.9) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-6.3,101.4) hand2=(-24.5,92.9)
+  why horiz cote.setup → OK (75)
+  why joint cote.move → OK (130)
+KLATKA end: poza {"t":90,"hip":0,"knee":0,"sh":165,"el":3}
+  kąty: hip=0 knee=0 sh=165 el=3 ankle=0 hip2=0 knee2=0 sh2=165 el2=3 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-6.3,101.4) hand=(-2.2,120.9) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-6.3,101.4) hand2=(-2.2,120.9)
+  why joint press.noLock → OK (3)
+  why horiz ote.upperArm → OK (75)

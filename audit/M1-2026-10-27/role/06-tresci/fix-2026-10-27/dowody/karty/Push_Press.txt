@@ -1,0 +1,22 @@
+# Push Press
+widok: side, kotwica: toe, przyrządy: [{"k":"plate","at":"hand"}]
+notatka: Ugięcie nóg krótkie — głębokość ilustracyjna.
+mięśnie (katalog): {"front_delt":1,"side_delt":0.5,"triceps":0.5,"quads":0.5,"glutes":0.25,"upper_back":0.25,"abs":0.25,"calves":0.25}
+setup pp.setup: Sztanga przy przedniej części barków, chwyt mniej więcej na szerokość barków lub trochę szerzej, stopy na szerokość bioder.  [źródła: ace-24 / opis; exrx-OlympicLifts/PushPress / Preparation]
+move pp.move: Krótko ugnij kolana, a potem dynamicznie wyprostuj nogi i biodra, wypychając sztangę nad głowę do wyprostu rąk.  [źródła: ace-24 / opis; exrx-OlympicLifts/PushPress / Execution]
+tips pp.legs: Siła wybicia idzie z nóg i bioder — ręce kończą ruch.  [źródła: ace-24 / opis (power from the hips through the shoulders and arms); exrx-OlympicLifts/PushPress / Execution (explosively drive upward with legs)]
+tips pp.dip: Ugięcie krótkie, tułów napięty.  [źródła: exrx-OlympicLifts/PushPress / Preparation; Execution (torso tight; dip slightly); ace-24 / opis (bend at the knees while keeping the back straight)]
+KLATKA start: poza {"t":90,"hip":0,"knee":0,"sh":29,"el":148,"ap":0.75,"fp":0.75}
+  kąty: hip=0 knee=0 sh=29 el=148 ankle=0 hip2=0 knee2=0 sh2=29 el2=148 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-4.5,72.2) hand=(-3.7,87.2) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-4.5,72.2) hand2=(-3.7,87.2)
+  why touch pp.setup → OK (4.2)
+KLATKA mid: poza {"t":90,"hip":15,"knee":25,"sh":29,"el":148,"ap":0.75,"fp":0.75,"ft":0}
+  kąty: hip=15 knee=25 sh=29 el=148 ankle=10 hip2=15 knee2=25 sh2=29 el2=148 ankle2=10
+  punkty: head=(-13.1,93.8) shoulder=(-13.1,82.8) elbow=(-6.6,71) hand=(-5.8,85.9) hip=(-13.1,52.8) knee=(-6.7,28.6) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-6.7,28.6) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-6.6,71) hand2=(-5.8,85.9)
+  why horiz pp.dip → OK (90)
+  why joint pp.move → OK (25)
+KLATKA end: poza {"t":95,"hip":-5,"knee":0,"sh":171,"el":0}
+  kąty: hip=-5 knee=0 sh=171 el=0 ankle=0 hip2=-5 knee2=0 sh2=171 el2=0 ankle2=0
+  punkty: head=(-14.6,94.8) shoulder=(-13.6,83.9) elbow=(-12.4,101.8) hand=(-11,121.8) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-12.4,101.8) hand2=(-11,121.8)
+  why joint pp.move → OK (0)
+  why line pp.legs → OK (175)

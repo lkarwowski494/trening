@@ -1,0 +1,15 @@
+# Plank
+widok: side, kotwica: toe, przyrządy: []
+notatka: Pozycja statyczna — jedna klatka, bez animacji.
+mięśnie (katalog): {"abs":1,"obliques":0.5,"front_delt":0.25,"glutes":0.25,"quads":0.25}
+setup plank.setup: Oprzyj się na przedramionach, łokcie dokładnie pod barkami, nogi wyprostowane.  [źródła: ace-32 / Step 1; nasm-plank / Step 1: Setup]
+move plank.move: Unieś tułów i trzymaj ciało w jednej linii od głowy do pięt; oddychaj normalnie.  [źródła: ace-32 / Step 2; nasm-plank / Step 2; Step 3]
+tips plank.noSag: Biodra nie opadają ani nie unoszą się.  [źródła: ace-32 / Step 2 (avoid sagging or hiking); nasm-plank / Step 2; Common Mistakes]
+tips plank.brace: Napnij brzuch, żeby tułów był sztywny.  [źródła: ace-32 / Step 1 (contract your core to stiffen your torso); nasm-plank / Step 2 (engage your core)]
+mistakes plank.mis.sag: Opadające biodra i wygięte w łuk lędźwie.  [źródła: nasm-plank / Common Mistakes; ace-32 / Step 2]
+mistakes plank.mis.breath: Wstrzymywanie oddechu.  [źródła: nasm-plank / Common Mistakes (holding the breath); ace-32 / Step 2 (continue to breathe)]
+KLATKA start: poza {"t":7,"hip":0,"knee":0,"ft":-88,"sh":83,"el":90}
+  kąty: hip=0 knee=0 sh=83 el=90 ankle=-5 hip2=0 knee2=0 sh2=83 el2=90 ankle2=-5
+  punkty: head=(93.9,22.2) shoulder=(83,20.9) elbow=(83,2.9) hand=(103,2.9) hip=(53.2,17.2) knee=(28.4,14.2) ankle=(3.6,11.1) heel=(-0.5,14) toe=(0,0) knee2=(28.4,14.2) ankle2=(3.6,11.1) heel2=(-0.5,14) toe2=(0,0) elbow2=(83,2.9) hand2=(103,2.9)
+  why alignX plank.setup → OK (0)
+  why line plank.move → OK (180)

@@ -1,0 +1,50 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx (5.197 s)
+  M1-032: kod diagnostyczny w wiadomości z ekranu błędu startu
+    ✕ buildSupportMailto z extra: treść zawiera kod i komunikat pod stopką; bez extra — jak dotąd (8 ms)
+    ✕ ekran błędu startu: „Napisz do nas” otwiera pocztę z treścią błędu; bez danych treningowych z zapisu (898 ms)
+
+  ● M1-032: kod diagnostyczny w wiadomości z ekranu błędu startu › buildSupportMailto z extra: treść zawiera kod i komunikat pod stopką; bez extra — jak dotąd
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "boot:init t=1200 s=19 n=2 · boom-x"
+    Received string:    "·
+    Wersja: 1.0.0 (1040) · iOS 18.1 · Język: pl"
+
+      17 |     const plain = bodyOf(buildSupportMailto({ version: '1.0.0 (1040)', os: '18.1', language: 'pl' }));
+      18 |     const withDiag = bodyOf(buildSupportMailto({ version: '1.0.0 (1040)', os: '18.1', language: 'pl', extra: 'boot:init t=1200 s=19 n=2 · boom-x' }));
+    > 19 |     expect(withDiag.startsWith(plain)).toBe(true); expect(withDiag).toContain('boot:init t=1200 s=19 n=2 · boom-x'); expect(plain).not.toContain('boot:');
+         |                                                                     ^
+      20 |   });
+      21 |   test('ekran błędu startu: „Napisz do nas” otwiera pocztę z treścią błędu; bez danych treningowych z zapisu', async () => {
+      22 |     const state = seedState('pl'); state.settings.defaultRest = 77;
+
+      at Object.toContain (tests/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx:19:69)
+
+  ● M1-032: kod diagnostyczny w wiadomości z ekranu błędu startu › ekran błędu startu: „Napisz do nas” otwiera pocztę z treścią błędu; bez danych treningowych z zapisu
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "boom-po-init"
+    Received string:    "·
+    Wersja: — · iOS undefined · Język: pl"
+
+      27 |       await tap(screen.getByText(t('Napisz do nas'))); await flushAll(20);
+      28 |       const body = bodyOf(String(open.mock.calls.at(-1)![0]));
+    > 29 |       expect(body).toContain('boom-po-init'); expect(body).not.toMatch(/defaultRest|Back Squat|"workouts"/);
+         |                    ^
+      30 |     } finally { spy.mockRestore(); open.mockRestore(); }
+      31 |   });
+      32 | });
+
+      at Object.toContain (tests/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx:29:20)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        5.752 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx/i.

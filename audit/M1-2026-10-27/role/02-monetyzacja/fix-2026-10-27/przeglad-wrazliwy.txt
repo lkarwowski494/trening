@@ -1,0 +1,9 @@
+Przegląd ścieżki wrażliwej (zakupy; D-043) — M1-audytor-generalny-010 (DEC-09 a), diff 82f6310..72338f0 -- app components lib
+Data: 27.10.2026. Przeglądający: nowy subagent, tylko odczyt.
+
+Wynik: brak uwag (brak P0/P1).
+
+(a) Ponowny zakup posiadanego planu: nie. Strażnik w buy() bez zmian (app/paywall.tsx:59 `ownedPlans.has(chosen.plan)`), `chosen` pomija posiadane plany (:55), wiersz planu posiadanego `disabled` (:99). Zwinięcie listy (:93) niczego tu nie zdejmuje.
+(b) Ukrycie przywracania / zarządzania / uwag: nie. „Przywróć zakupy” i „Zrealizuj kod” poza warunkiem listy, zawsze widoczne (:116-117); „Zarządzaj subskrypcją” w karcie stanu bez zmiany warunku (:89). Uwaga o podwójnym płaceniu przed dożywotnim (:108) i o odnawianiu (:110) są w tym samym bloku co przycisk zakupu (:109) — nie da się zobaczyć przycisku bez nich; przy dożywotnim karta nadal pokazuje uwagę o odnawianiu (:88).
+(c) Dane / uprawnienia: nie. Nowy stan `plansOpen` jest tylko lokalnym stanem UI (:41, :62, :92); purchasePlan/restorePurchases bez zmian.
+(d) „Masz plan” bez uprawnienia: nie. Karta i przełącznik zależą od `view.active` z useAccess (:82, :92) — ten sam warunek co dotychczasowe „Masz pełną wersję”; zmieniono tylko tekst nagłówka (:84).

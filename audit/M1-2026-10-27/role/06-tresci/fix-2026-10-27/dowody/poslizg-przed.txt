@@ -1,0 +1,8 @@
+Wynik narzedzia/poslizg.mjs na danych bazy 862f119 (przed poprawką; odczyt 27.10.2026, przepisany z wyjścia sesji — tylko pozycje z wynikiem innym niż ok):
+One Arm Row (hantle): W PRZYRZĄDZIE 1.6 (hand @0+0.3)
+Bulgarian Split Squat (hantle): POŚLIZG toe2 7.5; POŚLIZG heel2 7.5; POŚLIZG ankle2 7.5
+Reverse Lunge: POŚLIZG toe 3.1; POŚLIZG heel 3.1; POŚLIZG ankle 3.1
+Step Up: W PRZYRZĄDZIE 6 (toe2 @0+0.45)
+Bird Dog: POD PODŁOGĄ -1.2
+Push Up: POŚLIZG hand 5.7; POŚLIZG hand2 5.7
+Incline Push Up: POŚLIZG hand 6; POŚLIZG hand2 6

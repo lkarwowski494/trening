@@ -1,0 +1,55 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx (5.197 s)
+  M1-003: notatka serii — jedna stała długości
+    ✓ import i oba okna używają tej samej stałej (500); import zachowuje 450 znaków (6 ms)
+    ✕ strażnik: w ekranach i komponentach notatka serii nie jest przycinana liczbą wpisaną na sztywno (7 ms)
+    ✕ scenariusz: seria z notatką 450 znaków (jak po imporcie) → Historia → Edytuj → „Edytuj notatkę” → „Zapisz” bez zmian → „Zapisz sesję” → 450 znaków (1894 ms)
+
+  ● M1-003: notatka serii — jedna stała długości › strażnik: w ekranach i komponentach notatka serii nie jest przycinana liczbą wpisaną na sztywno
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "app/history/edit/[id].tsx",
+    -   true,
+    +   false,
+      ]
+
+      23 |       const src = fs.readFileSync(path.join(__dirname, '..', f), 'utf8');
+      24 |       expect([f, /set\.note = clampName\([^)]*\)\s*,\s*\d+\)/.test(src)]).toEqual([f, false]);
+    > 25 |       expect([f, src.includes('SET_NOTE_MAX')]).toEqual([f, true]);
+         |                                                 ^
+      26 |     }
+      27 |   });
+      28 |   test('scenariusz: seria z notatką 450 znaków (jak po imporcie) → Historia → Edytuj → „Edytuj notatkę” → „Zapisz” bez zmian → „Zapisz sesję” → 450 znaków', async () => {
+
+      at Object.toEqual (tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx:25:49)
+
+  ● M1-003: notatka serii — jedna stała długości › scenariusz: seria z notatką 450 znaków (jak po imporcie) → Historia → Edytuj → „Edytuj notatkę” → „Zapisz” bez zmian → „Zapisz sesję” → 450 znaków
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 450
+    Received: 300
+
+      34 |     await tap(screen.getByLabelText('Zapisz sesję')); await flushAll(20);
+      35 |     const after = store.getState().workouts.find(x => x.id === w.id)!.exercises[0].sets[0].note;
+    > 36 |     expect(after.length).toBe(450); expect(after.endsWith('K')).toBe(true);
+         |                          ^
+      37 |   });
+      38 | });
+      39 |
+
+      at Object.toBe (tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx:36:26)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 1 passed, 3 total
+Snapshots:   0 total
+Time:        5.688 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-003-notatka-serii.test.tsx/i.

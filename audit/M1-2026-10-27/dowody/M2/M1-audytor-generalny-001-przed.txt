@@ -1,0 +1,1256 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx (14.029 s)
+  M1-001: dożywotni przy aktywnej subskrypcji — uwaga przed zakupem
+    ✕ EN: miesięczny kupiony sam → wybór dożywotniego pokazuje uwagę nad „Buy forever”; przy innym planie uwagi nie ma (3458 ms)
+    ✕ PL: ta sama uwaga po polsku (296 ms)
+    ✓ bez subskrypcji: dożywotni bez uwagi (259 ms)
+    ✓ subskrypcja z Chmury rodzinnej albo z kodu (osoba nie płaci sama): bez sugestii „anuluj” (639 ms)
+
+  ● M1-001: dożywotni przy aktywnej subskrypcji — uwaga przed zakupem › EN: miesięczny kupiony sam → wybór dożywotniego pokazuje uwagę nad „Buy forever”; przy innym planie uwagi nie ma
+
+    Unable to find an element with testID: paywall-lifetime-warning
+
+    [36m<RNCSafeAreaProvider>[39m
+      [36m<View>[39m
+        [36m<View[39m
+          [33maccessibilityElementsHidden[39m=[32m{false}[39m
+          [33mimportantForAccessibility[39m=[32m"auto"[39m
+        [36m>[39m
+          [36m<View>[39m
+            [36m<RNSScreenStack>[39m
+              [36m<RNSScreen[39m
+                [33maria-hidden[39m=[32m{true}[39m
+              [36m>[39m
+                [36m<RNSScreenContentWrapper>[39m
+                  [36m<View>[39m
+                    [36m<RNSScreenNavigationContainer>[39m
+                      [36m<RNSScreen>[39m
+                        [36m<View[39m
+                          [33maria-hidden[39m=[32m{false}[39m
+                        [36m>[39m
+                          [36m<View>[39m
+                            [36m<RNCSafeAreaView>[39m
+                              [36m<View>[39m
+                                [36m<RCTScrollView>[39m
+                                  [36m<View>[39m
+                                    [36m<View[39m
+                                      [33mtestID[39m=[32m"tab-header"[39m
+                                    [36m>[39m
+                                      [36m<View>[39m
+                                        [36m<View[39m
+                                          [33mtestID[39m=[32m"title-row"[39m
+                                        [36m>[39m
+                                          [36m<View>[39m
+                                            [36m<Text[39m
+                                              [33maccessibilityRole[39m=[32m"header"[39m
+                                            [36m>[39m
+                                              [0mWorkout[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                            [33mimportantForAccessibility[39m=[32m"no-hide-descendants"[39m
+                                            [33mtestID[39m=[32m"title-barbell"[39m
+                                          [36m>[39m
+                                            [36m<RNSVGSvgView[39m
+                                              [33maccessible[39m=[32m{false}[39m
+                                            [36m>[39m
+                                              [36m<RNSVGGroup>[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                              [36m</RNSVGGroup>[39m
+                                            [36m</RNSVGSvgView>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                        [36m<Text>[39m
+                                          [0mTuesday 27 October[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                    [36m<View[39m
+                                      [33mtestID[39m=[32m"start-panel"[39m
+                                    [36m>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"Empty workout"[39m
+                                        [33maccessibilityRole[39m=[32m"button"[39m
+                                        [33maccessible[39m=[32m{true}[39m
+                                        [33mtestID[39m=[32m"start-main"[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mEmpty workout[0m
+                                          [36m</Text>[39m
+                                          [36m<Text>[39m
+                                            [0madd exercises as you go[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<Text[39m
+                                          [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                          [33mimportantForAccessibility[39m=[32m"no"[39m
+                                        [36m>[39m
+                                          [0m›[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityHint[39m=[32m"Another from the plan, repeat last, from a template or empty."[39m
+                                        [33maccessibilityLabel[39m=[32m"Other workout"[39m
+                                        [33maccessibilityRole[39m=[32m"button"[39m
+                                        [33maccessible[39m=[32m{true}[39m
+                                      [36m>[39m
+                                        [36m<Text>[39m
+                                          [0mOther workout[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                    [36m<View[39m
+                                      [33mtestID[39m=[32m"first-steps"[39m
+                                    [36m>[39m
+                                      [36m<Text[39m
+                                        [33maccessibilityRole[39m=[32m"header"[39m
+                                      [36m>[39m
+                                        [0mFirst steps[0m
+                                      [36m</Text>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"1. Create your first template or generate templates and a plan. to do"[39m
+                                        [33maccessible[39m=[32m{false}[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0m1[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mCreate your first template or generate templates and a plan.[0m
+                                          [36m</Text>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityLabel[39m=[32m"Planning"[39m
+                                            [33maccessibilityRole[39m=[32m"button"[39m
+                                            [33maccessible[39m=[32m{true}[39m
+                                          [36m>[39m
+                                            [36m<Text>[39m
+                                              [0mPlanning[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"2. Set a weekly plan — you will see today’s workout here and get a reminder. to do"[39m
+                                        [33maccessible[39m=[32m{false}[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0m2[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mSet a weekly plan — you will see today’s workout here and get a reminder.[0m
+                                          [36m</Text>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityLabel[39m=[32m"Planning"[39m
+                                            [33maccessibilityRole[39m=[32m"button"[39m
+                                            [33maccessible[39m=[32m{true}[39m
+                                          [36m>[39m
+                                            [36m<Text>[39m
+                                              [0mPlanning[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"3. First workout: the big “Start” button at the top, or “Empty workout”. to do"[39m
+                                        [33maccessible[39m=[32m{false}[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0m3[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mFirst workout: the big “Start” button at the top, or “Empty workout”.[0m
+                                          [36m</Text>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityLabel[39m=[32m"Feature guide"[39m
+                                            [33maccessibilityRole[39m=[32m"button"[39m
+                                            [33maccessible[39m=[32m{true}[39m
+                                          [36m>[39m
+                                            [36m<Text>[39m
+                                              [0mGuide[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"Exercising at home or at a gym? Set your equipment in “Places and equipment”."[39m
+                                        [33maccessibilityRole[39m=[32m"button"[39m
+                                        [33maccessible[39m=[32m{true}[39m
+                                      [36m>[39m
+                                        [36m<Text>[39m
+                                          [0mExercising at home or at a gym? Set your equipment in “Places and equipment”.[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</RCTScrollView>[39m
+                              [36m</View>[39m
+                            [36m</RNCSafeAreaView>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</RNSScreen>[39m
+                    [36m</RNSScreenNavigationContainer>[39m
+                    [36m<View>[39m
+                      [36m<View />[39m
+                      [36m<View[39m
+                        [33mrole[39m=[32m"tablist"[39m
+                      [36m>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Workout, tab, 1 of 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": true,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mWorkout[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Plan, tab, 2 of 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mPlan[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Progress, tab, 3 of 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mProgress[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"More, tab, 4 of 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mMore[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                [36m</RNSScreenContentWrapper>[39m
+                [36m<RNSScreenStackHeaderConfig[39m
+                  [33mpointerEvents[39m=[32m"box-none"[39m
+                  [33mtitle[39m=[32m"(tabs)"[39m
+                [36m/>[39m
+              [36m</RNSScreen>[39m
+              [36m<RNSModalScreen[39m
+                [33maria-hidden[39m=[32m{false}[39m
+              [36m>[39m
+                [36m<RNSScreenStack>[39m
+                  [36m<RNSScreen>[39m
+                    [36m<View[39m
+                      [33mpointerEvents[39m=[32m"box-none"[39m
+                    [36m>[39m
+                      [36m<View[39m
+                        [33mpointerEvents[39m=[32m"box-none"[39m
+                      [36m>[39m
+                        [36m<RNSScreenContentWrapper>[39m
+                          [36m<View>[39m
+                            [36m<RCTScrollView[39m
+                              [33mtestID[39m=[32m"paywall-scroll"[39m
+                            [36m>[39m
+                              [36m<View>[39m
+                                [36m<View[39m
+                                  [33maccessible[39m=[32m{true}[39m
+                                  [33mtestID[39m=[32m"paywall-owned"[39m
+                                [36m>[39m
+                                  [36m<Text[39m
+                                    [33maccessibilityRole[39m=[32m"header"[39m
+                                  [36m>[39m
+                                    [0mYou have the full version[0m
+                                  [36m</Text>[39m
+                                  [36m<Text[39m
+                                    [33mtestID[39m=[32m"paywall-owned-plan"[39m
+                                  [36m>[39m
+                                    [0mPlan: Still finding my rhythm[0m
+                                  [36m</Text>[39m
+                                  [36m<Text>[39m
+                                    [0mAccess until Thu 5 Nov[0m
+                                  [36m</Text>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Manage subscription"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mManage subscription[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityLabel[39m=[32m"Training is part of my week, $6.99/year. A whole year of workouts, billed yearly."[39m
+                                  [33maccessibilityRole[39m=[32m"radio"[39m
+                                  [33maccessibilityState[39m=[32m{
+                                    {
+                                      "disabled": false,
+                                      "selected": false,
+                                    }
+                                  }[39m
+                                  [33maccessible[39m=[32m{true}[39m
+                                  [33mtestID[39m=[32m"plan-yearly"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<Text>[39m
+                                      [0mTraining is part of my week[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                  [36m<Text>[39m
+                                    [0m$6.99/year[0m
+                                  [36m</Text>[39m
+                                  [36m<Text>[39m
+                                    [0mA whole year of workouts, billed yearly.[0m
+                                  [36m</Text>[39m
+                                [36m</View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityLabel[39m=[32m"Still finding my rhythm, $0.99/month. Pay month by month and stop whenever you like.. Current plan"[39m
+                                  [33maccessibilityRole[39m=[32m"radio"[39m
+                                  [33maccessibilityState[39m=[32m{
+                                    {
+                                      "disabled": true,
+                                      "selected": false,
+                                    }
+                                  }[39m
+                                  [33maccessible[39m=[32m{true}[39m
+                                  [33mtestID[39m=[32m"plan-monthly"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<Text>[39m
+                                      [0mStill finding my rhythm[0m
+                                    [36m</Text>[39m
+                                    [36m<Text[39m
+                                      [33mtestID[39m=[32m"plan-monthly-own"[39m
+                                    [36m>[39m
+                                      [0mCurrent plan[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                  [36m<Text>[39m
+                                    [0m$0.99/month[0m
+                                  [36m</Text>[39m
+                                  [36m<Text>[39m
+                                    [0mPay month by month and stop whenever you like.[0m
+                                  [36m</Text>[39m
+                                [36m</View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityLabel[39m=[32m"Training is my life, $14.99 one-time. Pay once, keep it forever."[39m
+                                  [33maccessibilityRole[39m=[32m"radio"[39m
+                                  [33maccessibilityState[39m=[32m{
+                                    {
+                                      "disabled": false,
+                                      "selected": true,
+                                    }
+                                  }[39m
+                                  [33maccessible[39m=[32m{true}[39m
+                                  [33mtestID[39m=[32m"plan-lifetime"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<Text>[39m
+                                      [0mTraining is my life[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                  [36m<Text>[39m
+                                    [0m$14.99 one-time[0m
+                                  [36m</Text>[39m
+                                  [36m<Text>[39m
+                                    [0mPay once, keep it forever.[0m
+                                  [36m</Text>[39m
+                                [36m</View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityLabel[39m=[32m"Buy forever"[39m
+                                  [33maccessibilityRole[39m=[32m"button"[39m
+                                  [33maccessible[39m=[32m{true}[39m
+                                [36m>[39m
+                                  [36m<Text>[39m
+                                    [0mBuy forever[0m
+                                  [36m</Text>[39m
+                                [36m</View>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Restore purchases"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mRestore purchases[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Redeem code"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mRedeem code[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<Text>[39m
+                                  [0mPurchases are tied to your Apple account. You restore workouts from a backup.[0m
+                                [36m</Text>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityHint[39m=[32m"Opens the page in your browser."[39m
+                                    [33maccessibilityLabel[39m=[32m"Terms of Use"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mTerms of Use[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityHint[39m=[32m"Opens the page in your browser."[39m
+                                    [33maccessibilityLabel[39m=[32m"Privacy"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mPrivacy[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                              [36m</View>[39m
+                            [36m</RCTScrollView>[39m
+                          [36m</View>[39m
+                        [36m</RNSScreenContentWrapper>[39m
+                      [36m</View>[39m
+                    [36m</View>[39m
+                    [36m<RNSScreenStackHeaderConfig[39m
+                      [33mpointerEvents[39m=[32m"box-none"[39m
+                      [33mtitle[39m=[32m"Full version"[39m
+                    [36m>[39m
+                      [36m<RNSScreenStackHeaderSubview>[39m
+                        [36m<View[39m
+                          [33maccessibilityLabel[39m=[32m"Cancel"[39m
+                          [33maccessibilityRole[39m=[32m"button"[39m
+                          [33maccessible[39m=[32m{true}[39m
+                          [33mtestID[39m=[32m"close-modal"[39m
+                        [36m>[39m
+                          [36m<Text>[39m
+                            [0mCancel[0m
+                          [36m</Text>[39m
+                        [36m</View>[39m
+                      [36m</RNSScreenStackHeaderSubview>[39m
+                    [36m</RNSScreenStackHeaderConfig>[39m
+                  [36m</RNSScreen>[39m
+                [36m</RNSScreenStack>[39m
+              [36m</RNSModalScreen>[39m
+            [36m</RNSScreenStack>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</View>[39m
+    [36m</RNCSafeAreaProvider>[39m
+
+      31 |     await tap(screen.getByTestId('plan-lifetime'));
+      32 |     expect(screen.getByText('Buy forever')).toBeTruthy();
+    > 33 |     expect(screen.getByTestId('paywall-lifetime-warning').props.children).toBe(EN);
+         |                   ^
+      34 |     await tap(screen.getByTestId('plan-yearly')); expect(screen.queryByTestId('paywall-lifetime-warning')).toBeNull();
+      35 |   });
+      36 |   test('PL: ta sama uwaga po polsku', async () => {
+
+      at Object.getByTestId (tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx:33:19)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-001: dożywotni przy aktywnej subskrypcji — uwaga przed zakupem › PL: ta sama uwaga po polsku
+
+    Unable to find an element with testID: paywall-lifetime-warning
+
+    [36m<RNCSafeAreaProvider>[39m
+      [36m<View>[39m
+        [36m<View[39m
+          [33maccessibilityElementsHidden[39m=[32m{false}[39m
+          [33mimportantForAccessibility[39m=[32m"auto"[39m
+        [36m>[39m
+          [36m<View>[39m
+            [36m<RNSScreenStack>[39m
+              [36m<RNSScreen[39m
+                [33maria-hidden[39m=[32m{true}[39m
+              [36m>[39m
+                [36m<RNSScreenContentWrapper>[39m
+                  [36m<View>[39m
+                    [36m<RNSScreenNavigationContainer>[39m
+                      [36m<RNSScreen>[39m
+                        [36m<View[39m
+                          [33maria-hidden[39m=[32m{false}[39m
+                        [36m>[39m
+                          [36m<View>[39m
+                            [36m<RNCSafeAreaView>[39m
+                              [36m<View>[39m
+                                [36m<RCTScrollView>[39m
+                                  [36m<View>[39m
+                                    [36m<View[39m
+                                      [33mtestID[39m=[32m"tab-header"[39m
+                                    [36m>[39m
+                                      [36m<View>[39m
+                                        [36m<View[39m
+                                          [33mtestID[39m=[32m"title-row"[39m
+                                        [36m>[39m
+                                          [36m<View>[39m
+                                            [36m<Text[39m
+                                              [33maccessibilityRole[39m=[32m"header"[39m
+                                            [36m>[39m
+                                              [0mTrening[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                            [33mimportantForAccessibility[39m=[32m"no-hide-descendants"[39m
+                                            [33mtestID[39m=[32m"title-barbell"[39m
+                                          [36m>[39m
+                                            [36m<RNSVGSvgView[39m
+                                              [33maccessible[39m=[32m{false}[39m
+                                            [36m>[39m
+                                              [36m<RNSVGGroup>[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                              [36m</RNSVGGroup>[39m
+                                            [36m</RNSVGSvgView>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                        [36m<Text>[39m
+                                          [0mwtorek, 27 października[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                    [36m<View[39m
+                                      [33mtestID[39m=[32m"start-panel"[39m
+                                    [36m>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"Pusty trening"[39m
+                                        [33maccessibilityRole[39m=[32m"button"[39m
+                                        [33maccessible[39m=[32m{true}[39m
+                                        [33mtestID[39m=[32m"start-main"[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mPusty trening[0m
+                                          [36m</Text>[39m
+                                          [36m<Text>[39m
+                                            [0mćwiczenia dodasz w trakcie[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<Text[39m
+                                          [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                          [33mimportantForAccessibility[39m=[32m"no"[39m
+                                        [36m>[39m
+                                          [0m›[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityHint[39m=[32m"Inny z planu, powtórz ostatni, z szablonu albo pusty."[39m
+                                        [33maccessibilityLabel[39m=[32m"Inny trening"[39m
+                                        [33maccessibilityRole[39m=[32m"button"[39m
+                                        [33maccessible[39m=[32m{true}[39m
+                                      [36m>[39m
+                                        [36m<Text>[39m
+                                          [0mInny trening[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                    [36m<View[39m
+                                      [33mtestID[39m=[32m"first-steps"[39m
+                                    [36m>[39m
+                                      [36m<Text[39m
+                                        [33maccessibilityRole[39m=[32m"header"[39m
+                                      [36m>[39m
+                                        [0mPierwsze kroki[0m
+                                      [36m</Text>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia"[39m
+                                        [33maccessible[39m=[32m{false}[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0m1[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mUtwórz pierwszy szablon albo wygeneruj szablony i plan.[0m
+                                          [36m</Text>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityLabel[39m=[32m"Planowanie"[39m
+                                            [33maccessibilityRole[39m=[32m"button"[39m
+                                            [33maccessible[39m=[32m{true}[39m
+                                          [36m>[39m
+                                            [36m<Text>[39m
+                                              [0mPlanowanie[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"2. Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie. do zrobienia"[39m
+                                        [33maccessible[39m=[32m{false}[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0m2[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mUstaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.[0m
+                                          [36m</Text>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityLabel[39m=[32m"Planowanie"[39m
+                                            [33maccessibilityRole[39m=[32m"button"[39m
+                                            [33maccessible[39m=[32m{true}[39m
+                                          [36m>[39m
+                                            [36m<Text>[39m
+                                              [0mPlanowanie[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"3. Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”. do zrobienia"[39m
+                                        [33maccessible[39m=[32m{false}[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0m3[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mPierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.[0m
+                                          [36m</Text>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityLabel[39m=[32m"Przewodnik po funkcjach"[39m
+                                            [33maccessibilityRole[39m=[32m"button"[39m
+                                            [33maccessible[39m=[32m{true}[39m
+                                          [36m>[39m
+                                            [36m<Text>[39m
+                                              [0mPrzewodnik[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”."[39m
+                                        [33maccessibilityRole[39m=[32m"button"[39m
+                                        [33maccessible[39m=[32m{true}[39m
+                                      [36m>[39m
+                                        [36m<Text>[39m
+                                          [0mĆwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</RCTScrollView>[39m
+                              [36m</View>[39m
+                            [36m</RNCSafeAreaView>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</RNSScreen>[39m
+                    [36m</RNSScreenNavigationContainer>[39m
+                    [36m<View>[39m
+                      [36m<View />[39m
+                      [36m<View[39m
+                        [33mrole[39m=[32m"tablist"[39m
+                      [36m>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Trening, zakładka, 1 z 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": true,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mTrening[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Plan, zakładka, 2 z 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mPlan[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Postępy, zakładka, 3 z 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mPostępy[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Więcej, zakładka, 4 z 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mWięcej[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                [36m</RNSScreenContentWrapper>[39m
+                [36m<RNSScreenStackHeaderConfig[39m
+                  [33mpointerEvents[39m=[32m"box-none"[39m
+                  [33mtitle[39m=[32m"(tabs)"[39m
+                [36m/>[39m
+              [36m</RNSScreen>[39m
+              [36m<RNSModalScreen[39m
+                [33maria-hidden[39m=[32m{false}[39m
+              [36m>[39m
+                [36m<RNSScreenStack>[39m
+                  [36m<RNSScreen>[39m
+                    [36m<View[39m
+                      [33mpointerEvents[39m=[32m"box-none"[39m
+                    [36m>[39m
+                      [36m<View[39m
+                        [33mpointerEvents[39m=[32m"box-none"[39m
+                      [36m>[39m
+                        [36m<RNSScreenContentWrapper>[39m
+                          [36m<View>[39m
+                            [36m<RCTScrollView[39m
+                              [33mtestID[39m=[32m"paywall-scroll"[39m
+                            [36m>[39m
+                              [36m<View>[39m
+                                [36m<View[39m
+                                  [33maccessible[39m=[32m{true}[39m
+                                  [33mtestID[39m=[32m"paywall-owned"[39m
+                                [36m>[39m
+                                  [36m<Text[39m
+                                    [33maccessibilityRole[39m=[32m"header"[39m
+                                  [36m>[39m
+                                    [0mMasz pełną wersję[0m
+                                  [36m</Text>[39m
+                                  [36m<Text[39m
+                                    [33mtestID[39m=[32m"paywall-owned-plan"[39m
+                                  [36m>[39m
+                                    [0mPlan: Szukam swojego rytmu[0m
+                                  [36m</Text>[39m
+                                  [36m<Text>[39m
+                                    [0mDostęp do czw., 5 lis[0m
+                                  [36m</Text>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Zarządzaj subskrypcją"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mZarządzaj subskrypcją[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityLabel[39m=[32m"Trening to część mojego tygodnia, $6.99/rok. Cały rok treningów, rozliczany rocznie."[39m
+                                  [33maccessibilityRole[39m=[32m"radio"[39m
+                                  [33maccessibilityState[39m=[32m{
+                                    {
+                                      "disabled": false,
+                                      "selected": false,
+                                    }
+                                  }[39m
+                                  [33maccessible[39m=[32m{true}[39m
+                                  [33mtestID[39m=[32m"plan-yearly"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<Text>[39m
+                                      [0mTrening to część mojego tygodnia[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                  [36m<Text>[39m
+                                    [0m$6.99/rok[0m
+                                  [36m</Text>[39m
+                                  [36m<Text>[39m
+                                    [0mCały rok treningów, rozliczany rocznie.[0m
+                                  [36m</Text>[39m
+                                [36m</View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityLabel[39m=[32m"Szukam swojego rytmu, $0.99/miesiąc. Płacisz co miesiąc i kończysz, kiedy chcesz.. Aktualny plan"[39m
+                                  [33maccessibilityRole[39m=[32m"radio"[39m
+                                  [33maccessibilityState[39m=[32m{
+                                    {
+                                      "disabled": true,
+                                      "selected": false,
+                                    }
+                                  }[39m
+                                  [33maccessible[39m=[32m{true}[39m
+                                  [33mtestID[39m=[32m"plan-monthly"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<Text>[39m
+                                      [0mSzukam swojego rytmu[0m
+                                    [36m</Text>[39m
+                                    [36m<Text[39m
+                                      [33mtestID[39m=[32m"plan-monthly-own"[39m
+                                    [36m>[39m
+                                      [0mAktualny plan[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                  [36m<Text>[39m
+                                    [0m$0.99/miesiąc[0m
+                                  [36m</Text>[39m
+                                  [36m<Text>[39m
+                                    [0mPłacisz co miesiąc i kończysz, kiedy chcesz.[0m
+                                  [36m</Text>[39m
+                                [36m</View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityLabel[39m=[32m"Trening to moje życie, $14.99 jednorazowo. Płacisz raz i masz na zawsze."[39m
+                                  [33maccessibilityRole[39m=[32m"radio"[39m
+                                  [33maccessibilityState[39m=[32m{
+                                    {
+                                      "disabled": false,
+                                      "selected": true,
+                                    }
+                                  }[39m
+                                  [33maccessible[39m=[32m{true}[39m
+                                  [33mtestID[39m=[32m"plan-lifetime"[39m
+                                [36m>[39m
+                                  [36m<View>[39m
+                                    [36m<Text>[39m
+                                      [0mTrening to moje życie[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                  [36m<Text>[39m
+                                    [0m$14.99 jednorazowo[0m
+                                  [36m</Text>[39m
+                                  [36m<Text>[39m
+                                    [0mPłacisz raz i masz na zawsze.[0m
+                                  [36m</Text>[39m
+                                [36m</View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityLabel[39m=[32m"Kup na zawsze"[39m
+                                  [33maccessibilityRole[39m=[32m"button"[39m
+                                  [33maccessible[39m=[32m{true}[39m
+                                [36m>[39m
+                                  [36m<Text>[39m
+                                    [0mKup na zawsze[0m
+                                  [36m</Text>[39m
+                                [36m</View>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Przywróć zakupy"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mPrzywróć zakupy[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Zrealizuj kod"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mZrealizuj kod[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<Text>[39m
+                                  [0mZakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej.[0m
+                                [36m</Text>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityHint[39m=[32m"Otwiera stronę w przeglądarce."[39m
+                                    [33maccessibilityLabel[39m=[32m"Warunki korzystania"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mWarunki korzystania[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityHint[39m=[32m"Otwiera stronę w przeglądarce."[39m
+                                    [33maccessibilityLabel[39m=[32m"Prywatność"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mPrywatność[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                              [36m</View>[39m
+                            [36m</RCTScrollView>[39m
+                          [36m</View>[39m
+                        [36m</RNSScreenContentWrapper>[39m
+                      [36m</View>[39m
+                    [36m</View>[39m
+                    [36m<RNSScreenStackHeaderConfig[39m
+                      [33mpointerEvents[39m=[32m"box-none"[39m
+                      [33mtitle[39m=[32m"Pełna wersja"[39m
+                    [36m>[39m
+                      [36m<RNSScreenStackHeaderSubview>[39m
+                        [36m<View[39m
+                          [33maccessibilityLabel[39m=[32m"Anuluj"[39m
+                          [33maccessibilityRole[39m=[32m"button"[39m
+                          [33maccessible[39m=[32m{true}[39m
+                          [33mtestID[39m=[32m"close-modal"[39m
+                        [36m>[39m
+                          [36m<Text>[39m
+                            [0mAnuluj[0m
+                          [36m</Text>[39m
+                        [36m</View>[39m
+                      [36m</RNSScreenStackHeaderSubview>[39m
+                    [36m</RNSScreenStackHeaderConfig>[39m
+                  [36m</RNSScreen>[39m
+                [36m</RNSScreenStack>[39m
+              [36m</RNSModalScreen>[39m
+            [36m</RNSScreenStack>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</View>[39m
+    [36m</RNCSafeAreaProvider>[39m
+
+      36 |   test('PL: ta sama uwaga po polsku', async () => {
+      37 |     await boot([sub()], 'pl'); await tap(screen.getByTestId('plan-lifetime'));
+    > 38 |     expect(screen.getByTestId('paywall-lifetime-warning').props.children).toBe(PL);
+         |                   ^
+      39 |   });
+      40 |   test('bez subskrypcji: dożywotni bez uwagi', async () => {
+      41 |     await boot([], 'en'); await tap(screen.getByTestId('plan-lifetime')); expect(screen.queryByTestId('paywall-lifetime-warning')).toBeNull();
+
+      at Object.getByTestId (tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx:38:19)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 passed, 4 total
+Snapshots:   0 total
+Time:        14.909 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx/i.

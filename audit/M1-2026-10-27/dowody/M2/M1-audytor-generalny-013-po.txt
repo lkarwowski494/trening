@@ -1,0 +1,12 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx (8.464 s)
+  M1-013: wyjątek migracji przy starcie → tryb awaryjny, dane nietknięte
+    ✓ migrate rzuca na czytelnych danych: ekran błędu startu, „state” bez zmian, brak state_corrupt_*, „Wyślij dane” daje dane z bazy (868 ms)
+    ✓ nieczytelny JSON: jak dotąd — odłożenie pod state_corrupt_* i start z komunikatem (bez ekranu błędu startu) (895 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        9.203 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx/i.

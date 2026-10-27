@@ -1,0 +1,20 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts
+  M1-002: P3 B na kształcie danych sklepu natywnego
+    ✓ źródło purchase, restart false: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony (53 ms)
+    ✓ źródło purchase, restart true: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony (19 ms)
+    ✓ źródło family, restart false: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony (32 ms)
+    ✓ źródło code, restart true: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony (30 ms)
+    ✓ dni po wygaśnięciu liczą się dalej (limit działa): 5 dni po 21.11 → szósty nowy dzień zablokowany (33 ms)
+    ✓ ktoś, kto nigdy nie miał Pro: wszystkie dni miesiąca się liczą (bez zmian) (29 ms)
+  M1-002: funkcje (logika)
+    ✓ freeSinceWithMemory: aktywne → null; pusta lista + pamięć → pamięć; lista z wygasłym + pamięć → późniejszy; pamięć z przyszłości pomijana; brak obu → null (2 ms)
+    ✓ withEndedAt: full → free zapisuje koniec okresu albo „teraz” przy zwrocie przed końcem; free → free zachowuje; full czyści; brak poprzedniego → bez końca (2 ms)
+    ✓ parseLastKnown: free z endedAt zachowany; zły endedAt pominięty (dane z kv) (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        3.972 s, estimated 4 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts/i.

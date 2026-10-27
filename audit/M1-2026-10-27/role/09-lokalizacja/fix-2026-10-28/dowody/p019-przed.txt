@@ -1,0 +1,77 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/i18n-skrot-liczebnik.test.ts
+  ✓ źródło ma klucze ze skrótem „{n} ćw.” (zabezpieczenie testu przed pustą pętlą) (11 ms)
+  ✓ lista języków z odmianą obejmuje uk i sl (1 ms)
+  skrót liczebnika ćwiczeń: cs
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (6 ms)
+  skrót liczebnika ćwiczeń: sk
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (6 ms)
+  skrót liczebnika ćwiczeń: ro
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (10 ms)
+  skrót liczebnika ćwiczeń: hr
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (7 ms)
+  skrót liczebnika ćwiczeń: sl
+    ✕ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (9 ms)
+  skrót liczebnika ćwiczeń: sr
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (7 ms)
+  skrót liczebnika ćwiczeń: lt
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (5 ms)
+  skrót liczebnika ćwiczeń: uk
+    ✕ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (9 ms)
+  skrót liczebnika ćwiczeń: ru
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (7 ms)
+
+  ● skrót liczebnika ćwiczeń: sl › każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 5
+
+    - Array []
+    + Array [
+    +   "dziś w planie · {n} ćw. → danes v načrtu · {n} vaj (skrót: vaj.)",
+    +   "w planie na: {day} · {n} ćw. → v načrtu za: {day} · {n} vaj (skrót: vaj.)",
+    +   "następny po: {name} · {n} ćw. → naslednji po: {name} · {n} vaj (skrót: vaj.)",
+    + ]
+
+      27 |     expect(typeof skrot).toBe('string');
+      28 |     const zle = keys.filter(k => d[k] !== undefined && !d[k].endsWith(`{n} ${skrot}`)).map(k => `${k} → ${d[k]} (skrót: ${skrot})`);
+    > 29 |     expect(zle).toEqual([]);
+         |                 ^
+      30 |   });
+      31 | });
+      32 |
+
+      at Object.toEqual (tests/i18n-skrot-liczebnik.test.ts:29:17)
+
+  ● skrót liczebnika ćwiczeń: uk › każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 5
+
+    - Array []
+    + Array [
+    +   "dziś w planie · {n} ćw. → сьогодні в плані · {n} вправ (skrót: впр.)",
+    +   "w planie na: {day} · {n} ćw. → у плані на: {day} · {n} вправ (skrót: впр.)",
+    +   "następny po: {name} · {n} ćw. → наступне після: {name} · {n} вправ (skrót: впр.)",
+    + ]
+
+      27 |     expect(typeof skrot).toBe('string');
+      28 |     const zle = keys.filter(k => d[k] !== undefined && !d[k].endsWith(`{n} ${skrot}`)).map(k => `${k} → ${d[k]} (skrót: ${skrot})`);
+    > 29 |     expect(zle).toEqual([]);
+         |                 ^
+      30 |   });
+      31 | });
+      32 |
+
+      at Object.toEqual (tests/i18n-skrot-liczebnik.test.ts:29:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 9 passed, 11 total
+Snapshots:   0 total
+Time:        2.481 s, estimated 5 s
+Ran all test suites matching /tests\/i18n-skrot-liczebnik.test.ts/i.

@@ -1,0 +1,189 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/check-i18n-script.test.ts (5.137 s)
+  ✓ repozytorium: npm run check:i18n przechodzi (kod i słowniki lib/locales) (340 ms)
+  check:i18n — wywołania t() w każdym zapisie
+    ✓ wzorzec: t('…') ze wpisem w słowniku przechodzi (123 ms)
+    ✕ t("…") w cudzysłowie bez wpisu: błąd (87 ms)
+    ✕ t(`…`) szablon bez podstawień bez wpisu: błąd (65 ms)
+    ✕ tp(n, "…") w cudzysłowie bez wpisu: błąd; tr("…") też (59 ms)
+    ✕ wywołanie przez obiekt (i18n.t("…")) bez wpisu: błąd (153 ms)
+    ✓ wpis słownika w cudzysłowie i użycie w cudzysłowie: przechodzi (słownik czytany składnią, nie wyrażeniem) (251 ms)
+    ✕ klucz z podstawieniem albo sklejany: błąd „nie do sprawdzenia” (167 ms)
+    ✓ zmienna jako klucz (t(x)): bez błędu — wartości dynamiczne sprawdza R39-02 (219 ms)
+    ✓ różne {parametry} w kluczu i wartości EN: błąd (130 ms)
+  check:i18n — pismo języka w słownikach
+    ✕ ru z tekstem łacinką: błąd; ten sam tekst na liście wyjątków: przechodzi (162 ms)
+    ✓ ru: tekst z pismem języka, symbole i parametry bez liter: przechodzi (138 ms)
+    ✕ el, ja, ko, zh-Hant, bg, uk: łacinka bez wyjątku to błąd (126 ms)
+    ✕ język łaciński (de) z cyrylicą albo greką: błąd; sr z łacinką: przechodzi (83 ms)
+    ✓ polskie litery w słowniku łacińskim nie są już błędem pisma (kontrola „liter polskich” usunięta) (200 ms)
+
+  ● check:i18n — wywołania t() w każdym zapisie › t("…") w cudzysłowie bez wpisu: błąd
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+    -   1,
+    -   true,
+    +   0,
+    +   false,
+      ]
+
+      34 |   test('t("…") w cudzysłowie bez wpisu: błąd', () => {
+      35 |     const r = probe({ code: 't("Nowy tekst");' });
+    > 36 |     expect([r.code, r.out.includes('Nowy tekst')]).toEqual([1, true]);
+         |                                                    ^
+      37 |   });
+      38 |   test('t(`…`) szablon bez podstawień bez wpisu: błąd', () => {
+      39 |     const r = probe({ code: 't(`Nowy tekst`);' });
+
+      at Object.toEqual (tests/check-i18n-script.test.ts:36:52)
+
+  ● check:i18n — wywołania t() w każdym zapisie › t(`…`) szablon bez podstawień bez wpisu: błąd
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+    -   1,
+    -   true,
+    +   0,
+    +   false,
+      ]
+
+      38 |   test('t(`…`) szablon bez podstawień bez wpisu: błąd', () => {
+      39 |     const r = probe({ code: 't(`Nowy tekst`);' });
+    > 40 |     expect([r.code, r.out.includes('Nowy tekst')]).toEqual([1, true]);
+         |                                                    ^
+      41 |   });
+      42 |   test('tp(n, "…") w cudzysłowie bez wpisu: błąd; tr("…") też', () => {
+      43 |     expect(probe({ code: 'tp(2, "a|b|c");' }).code).toBe(1);
+
+      at Object.toEqual (tests/check-i18n-script.test.ts:40:52)
+
+  ● check:i18n — wywołania t() w każdym zapisie › tp(n, "…") w cudzysłowie bez wpisu: błąd; tr("…") też
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      41 |   });
+      42 |   test('tp(n, "…") w cudzysłowie bez wpisu: błąd; tr("…") też', () => {
+    > 43 |     expect(probe({ code: 'tp(2, "a|b|c");' }).code).toBe(1);
+         |                                                     ^
+      44 |     expect(probe({ code: 'tr("Nowy");' }).code).toBe(1);
+      45 |   });
+      46 |   test('wywołanie przez obiekt (i18n.t("…")) bez wpisu: błąd', () => {
+
+      at Object.toBe (tests/check-i18n-script.test.ts:43:53)
+
+  ● check:i18n — wywołania t() w każdym zapisie › wywołanie przez obiekt (i18n.t("…")) bez wpisu: błąd
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      45 |   });
+      46 |   test('wywołanie przez obiekt (i18n.t("…")) bez wpisu: błąd', () => {
+    > 47 |     expect(probe({ code: 'i18n.t("Nowy tekst");' }).code).toBe(1);
+         |                                                           ^
+      48 |   });
+      49 |   test('wpis słownika w cudzysłowie i użycie w cudzysłowie: przechodzi (słownik czytany składnią, nie wyrażeniem)', () => {
+      50 |     expect(probe({ code: 't("Zapisz plik");', en: '"Zapisz plik": "Save file",' }).code).toBe(0);
+
+      at Object.toBe (tests/check-i18n-script.test.ts:47:59)
+
+  ● check:i18n — wywołania t() w każdym zapisie › klucz z podstawieniem albo sklejany: błąd „nie do sprawdzenia”
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      51 |   });
+      52 |   test('klucz z podstawieniem albo sklejany: błąd „nie do sprawdzenia”', () => {
+    > 53 |     expect(probe({ code: 't(`Zapisz ${1}`);' }).code).toBe(1);
+         |                                                       ^
+      54 |     expect(probe({ code: "t('Zapisz' + 1);" }).code).toBe(1);
+      55 |   });
+      56 |   test('zmienna jako klucz (t(x)): bez błędu — wartości dynamiczne sprawdza R39-02', () => {
+
+      at Object.toBe (tests/check-i18n-script.test.ts:53:55)
+
+  ● check:i18n — pismo języka w słownikach › ru z tekstem łacinką: błąd; ten sam tekst na liście wyjątków: przechodzi
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+    -   1,
+    -   true,
+    +   0,
+    +   false,
+      ]
+
+      66 |     const locales = { ru: { 'Zapisz': 'Save file', 'Wróć': 'Назад' } };
+      67 |     const r = probe({ locales });
+    > 68 |     expect([r.code, r.out.includes('Save file')]).toEqual([1, true]);
+         |                                                   ^
+      69 |     expect(probe({ locales, wyjatki: ['Save file'] }).code).toBe(0);
+      70 |   });
+      71 |   test('ru: tekst z pismem języka, symbole i parametry bez liter: przechodzi', () => {
+
+      at Object.toEqual (tests/check-i18n-script.test.ts:68:51)
+
+  ● check:i18n — pismo języka w słownikach › el, ja, ko, zh-Hant, bg, uk: łacinka bez wyjątku to błąd
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "el",
+    -   1,
+    +   0,
+      ]
+
+      73 |   });
+      74 |   test('el, ja, ko, zh-Hant, bg, uk: łacinka bez wyjątku to błąd', () => {
+    > 75 |     for (const l of ['el', 'ja', 'ko', 'zh-Hant', 'bg', 'uk']) expect([l, probe({ locales: { [l]: { a: 'Hello world' } } }).code]).toEqual([l, 1]);
+         |                                                                                                                                    ^
+      76 |   });
+      77 |   test('język łaciński (de) z cyrylicą albo greką: błąd; sr z łacinką: przechodzi', () => {
+      78 |     expect(probe({ locales: { de: { a: 'Speichern Сохранить' } } }).code).toBe(1);
+
+      at Object.toEqual (tests/check-i18n-script.test.ts:75:132)
+
+  ● check:i18n — pismo języka w słownikach › język łaciński (de) z cyrylicą albo greką: błąd; sr z łacinką: przechodzi
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      76 |   });
+      77 |   test('język łaciński (de) z cyrylicą albo greką: błąd; sr z łacinką: przechodzi', () => {
+    > 78 |     expect(probe({ locales: { de: { a: 'Speichern Сохранить' } } }).code).toBe(1);
+         |                                                                           ^
+      79 |     expect(probe({ locales: { de: { a: 'Speichern α' } } }).code).toBe(1);
+      80 |     expect(probe({ locales: { sr: { a: 'Sačuvaj' } } }).code).toBe(0);
+      81 |   });
+
+      at Object.toBe (tests/check-i18n-script.test.ts:78:75)
+
+Test Suites: 1 failed, 1 total
+Tests:       8 failed, 7 passed, 15 total
+Snapshots:   0 total
+Time:        6.155 s
+Ran all test suites matching /tests\/check-i18n-script.test.ts/i.

@@ -1,0 +1,23 @@
+# Bird Dog
+widok: side, kotwica: knee, przyrządy: []
+notatka: Bliższa ręka i dalsza noga (przeciwne strony). Ręce są dłuższe od ud, więc na schemacie tułów jest lekko uniesiony z przodu (uproszczenie proporcji).
+mięśnie (katalog): {"obliques":1,"abs":0.5,"lower_back":1,"glutes":0.5,"front_delt":0.25,"upper_back":0.25}
+setup bd.setup: Klęk podparty: dłonie pod barkami, kolana pod biodrami, plecy neutralnie.  [źródła: ace-14 / Step 1–3; nasm-bird-dog / Step 1; Step 2; exrx-ErectorSpinae/BWBirdDog / Preparation]
+move bd.move: Unieś jednocześnie przeciwną rękę i nogę do linii tułowia; wróć i zmień strony.  [źródła: ace-14 / Step 4; Step 5; Step 7; nasm-bird-dog / Step 3; Step 4; exrx-ErectorSpinae/BWBirdDog / Execution]
+tips bd.level: Biodra i barki równolegle do podłogi — bez skręcania tułowia.  [źródła: ace-14 / Step 4; Step 5; nasm-bird-dog / Common Mistakes (spine rotate, hips shift)]
+tips bd.slow: Unoś kończyny powoli, bez szarpania.  [źródła: exrx-ErectorSpinae/BWBirdDog / Comments (deliberately, no jerking); nasm-bird-dog / Common Mistakes (jerky movements)]
+tips bd.range: Unoś rękę i nogę tylko tak wysoko, jak utrzymasz lędźwie bez wyginania.  [źródła: ace-14 / Step 6; nasm-bird-dog / Common Mistakes (extending limbs too far)]
+KLATKA start: poza {"t":17,"hip":72,"knee":90,"ft":210,"sh":73,"el":0} at [0,3]
+  kąty: hip=72 knee=90 sh=73 el=0 ankle=-59 hip2=72 knee2=90 sh2=73 el2=0 ankle2=-59
+  punkty: head=(39.6,40) shoulder=(29.1,36.8) elbow=(29.1,18.8) hand=(29.1,-1.2) hip=(0.4,28) knee=(0,3) ankle=(-25,3.4) heel=(-24.4,8.4) toe=(-36.5,1.4) knee2=(0,3) ankle2=(-25,3.4) heel2=(-24.4,8.4) toe2=(-36.5,1.4) elbow2=(29.1,18.8) hand2=(29.1,-1.2)
+  why alignX bd.setup → OK (0)
+  why alignX bd.setup → OK (0.4)
+  why horiz bd.level → OK (17)
+KLATKA end: poza {"t":17,"hip":[72,-16],"knee":[90,0],"ft":[210,-119],"sh":[163,73],"el":0} at [0,3]
+  kąty: hip=72 knee=90 sh=163 el=0 ankle=-59 hip2=-16 knee2=0 sh2=73 el2=0 ankle2=-30
+  punkty: head=(39.6,40) shoulder=(29.1,36.8) elbow=(47.1,36.8) hand=(67.1,36.8) hip=(0.4,28) knee=(0,3) ankle=(-25,3.4) heel=(-24.4,8.4) toe=(-36.5,1.4) knee2=(-24.6,27.6) ankle2=(-49.6,27.1) heel2=(-51.6,31.7) toe2=(-58.4,19.4) elbow2=(29.1,18.8) hand2=(29.1,-1.2)
+  why horiz bd.move → OK (0)
+  why ahead bd.move → OK (38)
+  why horiz bd.move → OK (1)
+  why ahead bd.move → OK (50)
+  why horiz bd.level → OK (17)

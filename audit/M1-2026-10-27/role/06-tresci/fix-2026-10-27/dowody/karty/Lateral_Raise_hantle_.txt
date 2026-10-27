@@ -1,0 +1,18 @@
+# Lateral Raise (hantle)
+widok: front, kotwica: ankle, przyrządy: [{"k":"db","at":"hand"},{"k":"db","at":"hand2"}]
+notatka: Widok z przodu. Wysokość „mniej więcej do barków”; ugięcie łokci ilustracyjne.
+mięśnie (katalog): {"side_delt":1,"front_delt":0.25,"upper_back":0.25}
+setup lat.setup: Stań z hantlami przy udach, łokcie lekko ugięte, tułów stabilny.  [źródła: ace-26 / Step 1; Step 2; exrx-DeltoidLateral/DBLateralRaise / Preparation]
+move lat.move: Unieś ramiona bokiem, potem opuść je powoli.  [źródła: ace-26 / Step 3; Step 4; exrx-DeltoidLateral/DBLateralRaise / Execution]
+tips lat.elbows: Łokcie lekko ugięte i prowadzą ruch — są na wysokości dłoni lub wyżej.  [źródła: ace-26 / Step 3 (elbows and upper arms rise slightly ahead of the forearms); exrx-DeltoidLateral/DBLateralRaise / Execution; Comments (elbows above or equal to wrists)]
+tips lat.height: Unoś mniej więcej do wysokości barków.  [źródła: ace-26 / Step 3 (until your arms are level with your shoulders); exrx-DeltoidLateral/DBLateralRaise / Execution (until elbows are shoulder height)]
+KLATKA start: poza {"hip":3,"sh":10,"el":15} at [5,4]
+  kąty: abd=10 el=15 hipAbd=3 abd2=10 el2=15 hipAbd2=3 elev=0
+  punkty: head=(-2.6,94.9) shoulder=(7.4,83.9) elbow=(10.5,66.2) hand=(8.8,46.3) hip=(-2.6,53.9) knee=(3.7,29) ankle=(5,4) heel=(4,0) toe=(12,0) knee2=(-8.9,29) ankle2=(-10.2,4) heel2=(-9.2,0) toe2=(-17.2,0) elbow2=(-15.7,66.2) hand2=(-14,46.3)
+  why joint lat.setup → OK (15)
+KLATKA end: poza {"hip":3,"sh":90,"el":15} at [5,4]
+  kąty: abd=90 el=15 hipAbd=3 abd2=90 el2=15 hipAbd2=3 elev=0
+  punkty: head=(-2.6,94.9) shoulder=(7.4,83.9) elbow=(25.4,83.9) hand=(44.7,78.8) hip=(-2.6,53.9) knee=(3.7,29) ankle=(5,4) heel=(4,0) toe=(12,0) knee2=(-8.9,29) ankle2=(-10.2,4) heel2=(-9.2,0) toe2=(-17.2,0) elbow2=(-30.6,83.9) hand2=(-49.9,78.8)
+  why horiz lat.height → OK (7.9)
+  why above lat.elbows → OK (5.7)
+  why joint lat.setup → OK (15)

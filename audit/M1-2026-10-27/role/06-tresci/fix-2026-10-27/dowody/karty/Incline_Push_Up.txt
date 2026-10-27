@@ -1,0 +1,19 @@
+# Incline Push Up
+widok: side, kotwica: toe, przyrządy: [{"k":"rect","x":8,"y":0,"w":16,"h":30}]
+notatka: Wysokość podwyższenia ilustracyjna (zdanie ipush.height: im wyżej, tym łatwiej).
+mięśnie (katalog): {"chest":1,"triceps":0.5,"front_delt":0.5,"abs":0.25}
+setup ipush.setup: Oprzyj dłonie o krawędź ławki lub stabilnego podwyższenia, trochę szerzej niż barki; stopy cofnięte, ciało proste.  [źródła: nasm-incline-push-up / Step 1; Step 2; exrx-PectoralSternal/BWInclinePushup / Preparation]
+move ipush.move: Opuść klatkę do krawędzi podwyższenia, potem wypchnij się do wyprostu rąk.  [źródła: nasm-incline-push-up / Step 3; Step 4; exrx-PectoralSternal/BWInclinePushup / Execution]
+tips push.rigid: Tułów sztywny — biodra nie opadają i nie unoszą się.  [źródła: nasm-incline-push-up / Step 2; Common Mistakes; exrx-PectoralSternal/BWInclinePushup / Comments (body kept straight)]
+tips ipush.height: Im wyższe podparcie, tym łatwiej — obniżaj je stopniowo.  [źródła: exrx-PectoralSternal/BWInclinePushup / Comments (height affects difficulty; Easier/Harder); nasm-incline-push-up / FAQ (start with a higher bench, gradually lower)]
+KLATKA start: poza {"t":49,"hip":0,"knee":0,"ft":-43,"sh":39,"el":0} at [-30,0]
+  kąty: hip=0 knee=0 sh=39 el=0 ankle=-2 hip2=0 knee2=0 sh2=39 el2=0 ankle2=-2
+  punkty: head=(24.4,79.1) shoulder=(17.2,70.8) elbow=(16.5,52.8) hand=(15.8,32.8) hip=(-2.5,48.2) knee=(-18.9,29.3) ankle=(-35.3,10.4) heel=(-40.2,9.5) toe=(-30,0) knee2=(-18.9,29.3) ankle2=(-35.3,10.4) heel2=(-40.2,9.5) toe2=(-30,0) elbow2=(16.5,52.8) hand2=(15.8,32.8)
+  why line ipush.setup → OK (180)
+  why joint ipush.move → OK (0)
+  why low ipush.setup → OK (2.8)
+KLATKA end: poza {"t":23,"hip":0,"knee":0,"ft":-72,"sh":-44,"el":76} at [-30,0]
+  kąty: hip=0 knee=0 sh=-44 el=76 ankle=-5 hip2=0 knee2=0 sh2=-44 el2=76 ankle2=-5
+  punkty: head=(54.2,47.3) shoulder=(44,43) elbow=(27.2,49.4) hand=(15.8,33) hip=(16.4,31.2) knee=(-6.6,21.5) ankle=(-29.6,11.7) heel=(-34.3,13.3) toe=(-30,0) knee2=(-6.6,21.5) ankle2=(-29.6,11.7) heel2=(-34.3,13.3) toe2=(-30,0) elbow2=(27.2,49.4) hand2=(15.8,33)
+  why line push.rigid → OK (180)
+  why low ipush.move → OK (13)

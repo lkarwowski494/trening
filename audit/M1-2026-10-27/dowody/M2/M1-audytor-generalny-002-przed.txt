@@ -1,0 +1,151 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts
+  M1-002: P3 B na kształcie danych sklepu natywnego
+    ✕ źródło purchase, restart false: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony (47 ms)
+    ✕ źródło purchase, restart true: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony (23 ms)
+    ✕ źródło family, restart false: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony (17 ms)
+    ✕ źródło code, restart true: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony (17 ms)
+    ✕ dni po wygaśnięciu liczą się dalej (limit działa): 5 dni po 21.11 → szósty nowy dzień zablokowany (24 ms)
+    ✓ ktoś, kto nigdy nie miał Pro: wszystkie dni miesiąca się liczą (bez zmian) (23 ms)
+
+  ● M1-002: P3 B na kształcie danych sklepu natywnego › źródło purchase, restart false: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 3
+    + Received  + 3
+
+      Object {
+    -   "allowed": true,
+    +   "allowed": false,
+        "level": "free",
+    -   "remaining": 5,
+    -   "used": 0,
+    +   "remaining": 0,
+    +   "used": 7,
+      }
+
+      36 |   test.each([['purchase', false], ['purchase', true], ['family', false], ['code', true]] as const)('źródło %s, restart %s: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony', async (source, restart) => {
+      37 |     const d = await scenario(source, restart);
+    > 38 |     expect(d).toMatchObject({ level: 'free', used: 0, allowed: true, remaining: 5 });
+         |               ^
+      39 |   });
+      40 |   test('dni po wygaśnięciu liczą się dalej (limit działa): 5 dni po 21.11 → szósty nowy dzień zablokowany', async () => {
+      41 |     await scenario('purchase', false);
+
+      at toMatchObject (tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts:38:15)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-002: P3 B na kształcie danych sklepu natywnego › źródło purchase, restart true: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 3
+    + Received  + 3
+
+      Object {
+    -   "allowed": true,
+    +   "allowed": false,
+        "level": "free",
+    -   "remaining": 5,
+    -   "used": 0,
+    +   "remaining": 0,
+    +   "used": 7,
+      }
+
+      36 |   test.each([['purchase', false], ['purchase', true], ['family', false], ['code', true]] as const)('źródło %s, restart %s: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony', async (source, restart) => {
+      37 |     const d = await scenario(source, restart);
+    > 38 |     expect(d).toMatchObject({ level: 'free', used: 0, allowed: true, remaining: 5 });
+         |               ^
+      39 |   });
+      40 |   test('dni po wygaśnięciu liczą się dalej (limit działa): 5 dni po 21.11 → szósty nowy dzień zablokowany', async () => {
+      41 |     await scenario('purchase', false);
+
+      at toMatchObject (tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts:38:15)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-002: P3 B na kształcie danych sklepu natywnego › źródło family, restart false: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 3
+    + Received  + 3
+
+      Object {
+    -   "allowed": true,
+    +   "allowed": false,
+        "level": "free",
+    -   "remaining": 5,
+    -   "used": 0,
+    +   "remaining": 0,
+    +   "used": 7,
+      }
+
+      36 |   test.each([['purchase', false], ['purchase', true], ['family', false], ['code', true]] as const)('źródło %s, restart %s: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony', async (source, restart) => {
+      37 |     const d = await scenario(source, restart);
+    > 38 |     expect(d).toMatchObject({ level: 'free', used: 0, allowed: true, remaining: 5 });
+         |               ^
+      39 |   });
+      40 |   test('dni po wygaśnięciu liczą się dalej (limit działa): 5 dni po 21.11 → szósty nowy dzień zablokowany', async () => {
+      41 |     await scenario('purchase', false);
+
+      at toMatchObject (tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts:38:15)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-002: P3 B na kształcie danych sklepu natywnego › źródło code, restart true: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 3
+    + Received  + 3
+
+      Object {
+    -   "allowed": true,
+    +   "allowed": false,
+        "level": "free",
+    -   "remaining": 5,
+    -   "used": 0,
+    +   "remaining": 0,
+    +   "used": 7,
+      }
+
+      36 |   test.each([['purchase', false], ['purchase', true], ['family', false], ['code', true]] as const)('źródło %s, restart %s: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony', async (source, restart) => {
+      37 |     const d = await scenario(source, restart);
+    > 38 |     expect(d).toMatchObject({ level: 'free', used: 0, allowed: true, remaining: 5 });
+         |               ^
+      39 |   });
+      40 |   test('dni po wygaśnięciu liczą się dalej (limit działa): 5 dni po 21.11 → szósty nowy dzień zablokowany', async () => {
+      41 |     await scenario('purchase', false);
+
+      at toMatchObject (tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts:38:15)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-002: P3 B na kształcie danych sklepu natywnego › dni po wygaśnięciu liczą się dalej (limit działa): 5 dni po 21.11 → szósty nowy dzień zablokowany
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      40 |   test('dni po wygaśnięciu liczą się dalej (limit działa): 5 dni po 21.11 → szósty nowy dzień zablokowany', async () => {
+      41 |     await scenario('purchase', false);
+    > 42 |     for (let d = 21; d <= 25; d++) { jest.setSystemTime(at(2026, 11, d)); expect(ent.accessNow(at(2026, 11, d)).decision.allowed).toBe(true); live(at(2026, 11, d)); }
+         |                                                                                                                                   ^
+      43 |     expect(ent.accessNow(at(2026, 11, 26)).decision).toMatchObject({ used: 5, allowed: false });
+      44 |   });
+      45 |   test('ktoś, kto nigdy nie miał Pro: wszystkie dni miesiąca się liczą (bez zmian)', async () => {
+
+      at Object.toBe (tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts:42:131)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 1 passed, 6 total
+Snapshots:   0 total
+Time:        4.026 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts/i.

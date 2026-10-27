@@ -1,0 +1,17 @@
+# Overhead Press (hantle)
+widok: side, kotwica: toe, przyrządy: [{"k":"db","at":"hand"},{"k":"db","at":"hand2"}]
+mięśnie (katalog): {"front_delt":1,"side_delt":0.5,"triceps":0.5,"upper_back":0.25,"abs":0.25}
+setup ohp.dbSetup: Hantle przy barkach, łokcie pod nadgarstkami.  [źródła: exrx-DeltoidAnterior/DBShoulderPress / Preparation; ace-186 / Step 1 (handles at shoulder level, wrists in line with forearms; maszyna — ta sama pozycja)]
+move ohp.move: Wypchnij ciężar nad głowę do wyprostu rąk; opuść go z powrotem do barków.  [źródła: exrx-DeltoidAnterior/DBShoulderPress / Execution; ace-71 / opis (sztanga — ten sam ruch)]
+tips ohp.tall: Tułów wysoko i stabilnie; ciężar idzie prosto w górę nad głowę.  [źródła: ace-71 / opis; exrx-DeltoidAnterior/DBShoulderPress / Execution]
+tips ohp.elbowsUnder: Łokcie pod nadgarstkami przez cały ruch.  [źródła: exrx-DeltoidAnterior/DBShoulderPress / Preparation (elbows below wrists); ace-186 / Step 1; Step 2 (neutral wrist position)]
+KLATKA start: poza {"t":90,"hip":0,"knee":0,"sh":32,"el":148,"ap":0.75,"fp":0.75}
+  kąty: hip=0 knee=0 sh=32 el=148 ankle=0 hip2=0 knee2=0 sh2=32 el2=148 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-3.8,72.6) hand=(-3.8,87.6) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-3.8,72.6) hand2=(-3.8,87.6)
+  why touch ohp.dbSetup → OK (1.3)
+  why alignX ohp.elbowsUnder → OK (0)
+KLATKA end: poza {"t":95,"hip":-5,"knee":0,"sh":171,"el":0}
+  kąty: hip=-5 knee=0 sh=171 el=0 ankle=0 hip2=-5 knee2=0 sh2=171 el2=0 ankle2=0
+  punkty: head=(-14.6,94.8) shoulder=(-13.6,83.9) elbow=(-12.4,101.8) hand=(-11,121.8) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-12.4,101.8) hand2=(-11,121.8)
+  why joint ohp.move → OK (0)
+  why alignX ohp.tall → OK (2.7)

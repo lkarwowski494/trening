@@ -1,0 +1,18 @@
+# Overhead Press (sztanga)
+widok: side, kotwica: toe, przyrządy: [{"k":"plate","at":"hand"}]
+notatka: Chwyt szerzej niż barki — ramię w rzucie z boku krótsze; tor sztangi omija głowę (uproszczenie: linia prosta).
+mięśnie (katalog): {"front_delt":1,"side_delt":0.5,"triceps":0.5,"upper_back":0.25,"chest":0.25,"abs":0.25}
+setup ohp.bbSetup: Zdejmij sztangę ze stojaka na wysokości barków; chwyt na szerokość barków lub trochę szerzej, sztanga przy przedniej części barków.  [źródła: ace-71 / opis (rack at about shoulder-height; hands about shoulder-width apart; bar across the top of the shoulders); exrx-DeltoidAnterior/BBMilitaryPress / Preparation (grip slightly wider than shoulder width; bar in front of neck); ace-43 / opis (siedząc — ten sam bój: hands a little wider than shoulder-width apart)]
+move ohp.move: Wypchnij ciężar nad głowę do wyprostu rąk; opuść go z powrotem do barków.  [źródła: ace-71 / opis; exrx-DeltoidAnterior/BBMilitaryPress / Execution]
+tips ohp.tall: Tułów wysoko i stabilnie; ciężar idzie prosto w górę nad głowę.  [źródła: ace-71 / opis (back straight and tall, press directly overhead); exrx-DeltoidAnterior/BBMilitaryPress / Execution; Comments (chest high)]
+tips ohp.feet: Stopy pewnie na podłodze.  [źródła: ace-43 / opis (siedząc — ten sam bój: press the feet into the floor); exrx-DeltoidAnterior/BBMilitaryPress / Comments (feet shoulder width apart or one foot in front of other)]
+KLATKA start: poza {"t":90,"hip":0,"knee":0,"sh":29,"el":148,"ap":0.75,"fp":0.75}
+  kąty: hip=0 knee=0 sh=29 el=148 ankle=0 hip2=0 knee2=0 sh2=29 el2=148 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-4.5,72.2) hand=(-3.7,87.2) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-4.5,72.2) hand2=(-3.7,87.2)
+  why touch ohp.bbSetup → OK (4.2)
+  why line ohp.tall → OK (180)
+KLATKA end: poza {"t":95,"hip":-5,"knee":0,"sh":171,"el":0}
+  kąty: hip=-5 knee=0 sh=171 el=0 ankle=0 hip2=-5 knee2=0 sh2=171 el2=0 ankle2=0
+  punkty: head=(-14.6,94.8) shoulder=(-13.6,83.9) elbow=(-12.4,101.8) hand=(-11,121.8) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-12.4,101.8) hand2=(-11,121.8)
+  why joint ohp.move → OK (0)
+  why alignX ohp.tall → OK (2.7)

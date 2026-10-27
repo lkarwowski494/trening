@@ -1,0 +1,760 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+file:///home/user/trening/.claude/worktrees/agent-a61045dbe650f8b51/[eval1]:1
+import { buildFigures, recenzja } from "/home/user/trening/.claude/worktrees/agent-a61045dbe650f8b51/scripts/zrodla-runtime.mjs";
+                       ^^^^^^^^
+SyntaxError: The requested module '/home/user/trening/.claude/worktrees/agent-a61045dbe650f8b51/scripts/zrodla-runtime.mjs' does not provide an export named 'recenzja'
+    at ModuleJob._instantiate (node:internal/modules/esm/module_job:226:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:335:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+FAIL iOS tests/figury-recenzja.test.tsx
+  zapis recenzji (docs/research/figury-recenzja.json)
+    ✕ każda figura v1 z danych ma wpis: rodzina, werdykt, data, kto, skrót 12 znaków; ukryta — wada i proponowana poprawka (12 ms)
+    ✓ wyświetlana albo zastąpiona ⇒ skrót recenzji = skrót bieżących danych figury i wskazówek (zmiana bez nowej recenzji czerwieni test) (1 ms)
+    ✕ plik runtime: figury = tylko wpisy wyświetlane/zastąpione z aktualnym skrótem; ukryte na liście otwartej (nie renderują się) (15 ms)
+    ✓ „zastąpiona” tylko tam, gdzie wyświetla się figura v2 (gotowa rodzina); „wyświetlana” — tam, gdzie v2 nie ma (1 ms)
+    ✕ rodzina v2 „ready” ⇒ wpis recenzji z bieżącym skrótem rigu i liczbą ćwiczeń z chwili recenzji (35 ms)
+    ✕ skrót v2 = sha256 tekstu rigu rodziny, wspólnego modułu rigów i wariantów (ten sam wzór w skrypcie i w teście) (2 ms)
+    ✕ generator: figura zmieniona po recenzji (inny skrót) wypada z pliku runtime na listę otwartą (73 ms)
+  ekran: figura ukryta po recenzji — sekcja „Technika” bez rysunku, wskazówki zostają
+    ✕ Push Press (9 ms)
+    ✕ Pendlay Row
+    ✓ figura z recenzją się renderuje (Pull Up, Overhead Press (sztanga)) (104 ms)
+  regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026)
+    ✕ Pull Up — bez bujania (pu.noSwing): biodro pod drążkiem, rozrzut x ≤ 10 j. (było 21,6–22,2) (5 ms)
+    ✕ Chin Up — bez bujania (pu.noSwing): biodro pod drążkiem, rozrzut x ≤ 10 j. (było 21,6–22,2) (2 ms)
+    ✕ Neutral Grip Pull Up — bez bujania (pu.noSwing): biodro pod drążkiem, rozrzut x ≤ 10 j. (było 21,6–22,2) (3 ms)
+    ✕ Lat Pulldown — drążek w dół przed twarzą (lpd.pull): odchylenie toru dłoni od prostej ≤ 5 j. (było 18,9) (3 ms)
+    ✕ Overhead Press (sztanga) — gryf prosto w górę (ohp.tall): nie wybiega przed linię startu o więcej niż 1 j. (było +8) i mija twarz (≥ 7 j. od środka głowy poniżej jej czubka) (5 ms)
+    ✕ Overhead Press (hantle) — ciężar prosto w górę: odchylenie toru dłoni ≤ 4 j. (było 10,5–10,9) (2 ms)
+    ✕ Seated Shoulder Press (hantle) — ciężar prosto w górę: odchylenie toru dłoni ≤ 4 j. (było 10,5–10,9) (2 ms)
+    ✕ Wyciskanie nad głowę (linki) — ciężar prosto w górę: odchylenie toru dłoni ≤ 4 j. (było 10,5–10,9) (13 ms)
+    ✕ Push Up — dłonie w miejscu (podpora): przesunięcie ≤ 2,5 j. (było 5,7–6) (9 ms)
+    ✕ Incline Push Up — dłonie w miejscu (podpora): przesunięcie ≤ 2,5 j. (było 5,7–6) (8 ms)
+    ✕ Machine Chest Press — uchwyt po prostej prowadnicy: odchylenie toru ≤ 3 j. (było 9,3) (7 ms)
+    ✕ Seated Cable Row — linka poziomo od bloczka do uchwytu w całym ruchu: ≤ 5° (było 34,5°) (3 ms)
+    ✕ Wiosłowanie na linkach (siedząc) — linka poziomo od bloczka do uchwytu w całym ruchu: ≤ 5° (było 34,5°) (2 ms)
+    ✕ Hip Thrust (sztanga) — dłonie przytrzymują ciężar (ht.hold): dłoń ≤ 2 j. od środka ciężaru (było do 20) (3 ms)
+    ✕ Hip Thrust (hantel) — dłonie przytrzymują ciężar (ht.hold): dłoń ≤ 2 j. od środka ciężaru (było do 20) (1 ms)
+    ✕ Triceps Dips (ławka) — pięty w miejscu na podłodze (≤ 3 j., było 9,7); biodra przy krawędzi ławki (1–10 j. przed nią) (2 ms)
+    ✕ Leg Press — platforma jedzie prostopadle do swojej powierzchni (wzdłuż prowadnicy), stopa płasko na platformie (było: 36° odchyłki) (1 ms)
+    ✕ Bulgarian Split Squat (hantle) — tylna stopa na ławce przez cały ruch (bss.setup): przesunięcie ≤ 2 j. (było 7,6) (2 ms)
+    ✕ Step Up — stopa nogi zakrocznej nie przechodzi przez skrzynię (było 6 j. w środku) (29 ms)
+    ✕ Lunges (hantle) — krok w przód: przednia stopa przenoszona w powietrzu, nie sunie po podłodze (było 7,5 j.) (2 ms)
+    ✕ Walking Lunges — krok w przód: przednia stopa przenoszona w powietrzu, nie sunie po podłodze (było 7,5 j.) (2 ms)
+
+  ● zapis recenzji (docs/research/figury-recenzja.json) › każda figura v1 z danych ma wpis: rodzina, werdykt, data, kto, skrót 12 znaków; ukryta — wada i proponowana poprawka
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 70
+    Received:    0
+
+      32 | describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
+      33 |   test('każda figura v1 z danych ma wpis: rodzina, werdykt, data, kto, skrót 12 znaków; ukryta — wada i proponowana poprawka', () => {
+    > 34 |     expect(Object.keys(NOW.v1).length).toBeGreaterThanOrEqual(70);
+         |                                        ^
+      35 |     for (const k of Object.keys(NOW.v1)) expect([k, !!REC.v1[k]]).toEqual([k, true]);
+      36 |     for (const [k, e] of Object.entries(REC.v1)) {
+      37 |       expect([k, ['wyswietlana', 'zastapiona', 'ukryta'].includes(e.werdykt), /^\d{4}-\d\d-\d\d$/.test(e.data), e.kto.length > 10, /^[0-9a-f]{12}$/.test(e.sha), e.rodzina.length > 1]).toEqual([k, true, true, true, true, true]);
+
+      at Object.toBeGreaterThanOrEqual (tests/figury-recenzja.test.tsx:34:40)
+
+  ● zapis recenzji (docs/research/figury-recenzja.json) › plik runtime: figury = tylko wpisy wyświetlane/zastąpione z aktualnym skrótem; ukryte na liście otwartej (nie renderują się)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 73
+
+    - Array []
+    + Array [
+    +   "Back Squat",
+    +   "Barbell Curl",
+    +   "Bench Press (hantle)",
+    +   "Bench Press (sztanga)",
+    +   "Bent Over Row (hantle)",
+    +   "Bent Over Row (sztanga)",
+    +   "Biceps Curl (hantle)",
+    +   "Bird Dog",
+    +   "Bulgarian Split Squat (hantle)",
+    +   "Cable Curl",
+    +   "Cable Lateral Raise",
+    +   "Cable Overhead Extension",
+    +   "Calf Press (leg press)",
+    +   "Chest Supported Row",
+    +   "Chin Up",
+    +   "Close Grip Bench Press",
+    +   "Dead Bug",
+    +   "Deadlift (hantle)",
+    +   "Deadlift (sztanga)",
+    +   "EZ Bar Curl",
+    +   "Face Pull",
+    +   "Front Raise",
+    +   "Front Squat",
+    +   "Glute Bridge",
+    +   "Goblet Squat",
+    +   "Good Morning",
+    +   "Hammer Curl",
+    +   "Hip Thrust (hantel)",
+    +   "Hip Thrust (sztanga)",
+    +   "Incline Bench Press (hantle)",
+    +   "Incline Bench Press (sztanga)",
+    +   "Incline Push Up",
+    +   "Kettlebell Swing",
+    +   "Lat Pulldown",
+    +   "Lateral Raise (hantle)",
+    +   "Leg Press",
+    +   "Lunges (hantle)",
+    +   "Lying Leg Curl",
+    +   "Machine Chest Press",
+    +   "Mountain Climbers",
+    +   "Neutral Grip Pull Up",
+    +   "One Arm Row (hantle)",
+    +   "Overhead Press (hantle)",
+    +   "Overhead Press (sztanga)",
+    +   "Overhead Triceps Extension (hantel)",
+    +   "Pendlay Row",
+    +   "Pistol Squat",
+    +   "Plank",
+    +   "Przysiad z pasem (linki)",
+    +   "Pull Up",
+    +   "Push Press",
+    +   "Push Up",
+    +   "RDL (hantle/linki)",
+    +   "RDL (sztanga)",
+    +   "Reverse Lunge",
+    +   "Rowing Machine",
+    +   "Seated Cable Row",
+    +   "Seated Shoulder Press (hantle)",
+    +   "Shrugs (hantle)",
+    +   "Shrugs (sztanga)",
+    +   "Skullcrusher (EZ)",
+    +   "Standing Calf Raise",
+    +   "Step Up",
+    +   "T-Bar Row",
+    +   "Trap Bar Deadlift",
+    +   "Triceps Dips (ławka)",
+    +   "Triceps Pushdown",
+    +   "Walking Lunges",
+    +   "Wiosłowanie na linkach (siedząc)",
+    +   "Wyciskanie nad głowę (linki)",
+    +   "Łydki na stopniu",
+    + ]
+
+      44 |   test('plik runtime: figury = tylko wpisy wyświetlane/zastąpione z aktualnym skrótem; ukryte na liście otwartej (nie renderują się)', () => {
+      45 |     const ok = Object.keys(NOW.v1).filter(k => SHOWN(REC.v1[k]) && REC.v1[k].sha === NOW.v1[k]);
+    > 46 |     expect(Object.keys(FIG_DATA.exercises).sort()).toEqual(ok.sort());
+         |                                                    ^
+      47 |     for (const [k, e] of Object.entries(REC.v1)) if (e.werdykt === 'ukryta') { expect([k, FIG_DATA.open.includes(k), figureByKey(k)]).toEqual([k, true, null]); }
+      48 |   });
+      49 |   test('„zastąpiona” tylko tam, gdzie wyświetla się figura v2 (gotowa rodzina); „wyświetlana” — tam, gdzie v2 nie ma', () => {
+
+      at Object.toEqual (tests/figury-recenzja.test.tsx:46:52)
+
+  ● zapis recenzji (docs/research/figury-recenzja.json) › rodzina v2 „ready” ⇒ wpis recenzji z bieżącym skrótem rigu i liczbą ćwiczeń z chwili recenzji
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "squat",
+    -   true,
+    +   false,
+      ]
+
+      56 |     const all = assignAll();
+      57 |     for (const f of FAMILIES.filter(x => x.status === 'ready')) {
+    > 58 |       const e = REC.v2[f.id]; expect([f.id, !!e]).toEqual([f.id, true]);
+         |                                                   ^
+      59 |       const n = Object.values(all).filter(x => x === f.id).length;
+      60 |       expect([f.id, e.werdykt, e.sha, e.liczba, /^\d{4}-\d\d-\d\d$/.test(e.data)]).toEqual([f.id, 'wyswietlana', NOW.v2[f.id], n, true]);
+      61 |     }
+
+      at toEqual (tests/figury-recenzja.test.tsx:58:51)
+      at Object._loop (tests/figury-recenzja.test.tsx:57:63)
+
+  ● zapis recenzji (docs/research/figury-recenzja.json) › skrót v2 = sha256 tekstu rigu rodziny, wspólnego modułu rigów i wariantów (ten sam wzór w skrypcie i w teście)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "squat",
+    -   undefined,
+    +   "fd142e983e89",
+      ]
+
+      65 |     for (const f of FAMILIES.filter(x => x.status === 'ready')) {
+      66 |       const txt = ['lib/figures/v2/rigs/' + RIG[f.id], 'lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts'].map(p => fs.readFileSync(path.join(root, p), 'utf8')).join('\n');
+    > 67 |       expect([f.id, createHash('sha256').update(txt).digest('hex').slice(0, 12)]).toEqual([f.id, NOW.v2[f.id]]);
+         |                                                                                   ^
+      68 |     }
+      69 |   });
+      70 |   test('generator: figura zmieniona po recenzji (inny skrót) wypada z pliku runtime na listę otwartą', () => {
+
+      at Object.toEqual (tests/figury-recenzja.test.tsx:67:83)
+
+  ● zapis recenzji (docs/research/figury-recenzja.json) › generator: figura zmieniona po recenzji (inny skrót) wypada z pliku runtime na listę otwartą
+
+    Command failed: node --input-type=module -e import { buildFigures, recenzja } from "/home/user/trening/.claude/worktrees/agent-a61045dbe650f8b51/scripts/zrodla-runtime.mjs";
+          import { readFileSync } from 'node:fs';
+          const full = JSON.parse(readFileSync("/home/user/trening/.claude/worktrees/agent-a61045dbe650f8b51/data/zrodla/figures.json", 'utf8'));
+          const k = 'Barbell Curl'; full.exercises[k].frames[1].p.el += 5;
+          const out = buildFigures(full, recenzja());
+          console.log(JSON.stringify({ has: k in out.exercises, open: out.open.includes(k) }));
+    file:///home/user/trening/.claude/worktrees/agent-a61045dbe650f8b51/[eval1]:1
+    import { buildFigures, recenzja } from "/home/user/trening/.claude/worktrees/agent-a61045dbe650f8b51/scripts/zrodla-runtime.mjs";
+                           ^^^^^^^^
+    SyntaxError: The requested module '/home/user/trening/.claude/worktrees/agent-a61045dbe650f8b51/scripts/zrodla-runtime.mjs' does not provide an export named 'recenzja'
+
+      75 |       const out = buildFigures(full, recenzja());
+      76 |       console.log(JSON.stringify({ has: k in out.exercises, open: out.open.includes(k) }));`;
+    > 77 |     expect(JSON.parse(execFileSync('node', ['--input-type=module', '-e', code], { encoding: 'utf8' }))).toEqual({ has: false, open: true });
+         |                                   ^
+      78 |   });
+      79 | });
+      80 |
+
+      Node.js v22.22.0
+      at Object.<anonymous> (tests/figury-recenzja.test.tsx:77:35)
+
+  ● ekran: figura ukryta po recenzji — sekcja „Technika” bez rysunku, wskazówki zostają › Push Press
+
+    TypeError: Cannot read properties of undefined (reading 'werdykt')
+
+      81 | describe('ekran: figura ukryta po recenzji — sekcja „Technika” bez rysunku, wskazówki zostają', () => {
+      82 |   test.each(['Push Press', 'Pendlay Row'])('%s', k => {
+    > 83 |     expect(REC.v1[k].werdykt).toBe('ukryta');
+         |                      ^
+      84 |     render(<ExerciseCues exercise={lib(k)} initialOpen />);
+      85 |     expect(screen.queryByTestId('exercise-figure')).toBeNull();
+      86 |     expect(screen.queryByTestId('exercise-figure-v2')).toBeNull();
+
+      at werdykt (tests/figury-recenzja.test.tsx:83:22)
+
+  ● ekran: figura ukryta po recenzji — sekcja „Technika” bez rysunku, wskazówki zostają › Pendlay Row
+
+    TypeError: Cannot read properties of undefined (reading 'werdykt')
+
+      81 | describe('ekran: figura ukryta po recenzji — sekcja „Technika” bez rysunku, wskazówki zostają', () => {
+      82 |   test.each(['Push Press', 'Pendlay Row'])('%s', k => {
+    > 83 |     expect(REC.v1[k].werdykt).toBe('ukryta');
+         |                      ^
+      84 |     render(<ExerciseCues exercise={lib(k)} initialOpen />);
+      85 |     expect(screen.queryByTestId('exercise-figure')).toBeNull();
+      86 |     expect(screen.queryByTestId('exercise-figure-v2')).toBeNull();
+
+      at werdykt (tests/figury-recenzja.test.tsx:83:22)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Pull Up — bez bujania (pu.noSwing): biodro pod drążkiem, rozrzut x ≤ 10 j. (było 21,6–22,2)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Pull Up",
+    -   true,
+    +   false,
+        21.6,
+      ]
+
+      108 |   test.each(['Pull Up', 'Chin Up', 'Neutral Grip Pull Up'])('%s — bez bujania (pu.noSwing): biodro pod drążkiem, rozrzut x ≤ 10 j. (było 21,6–22,2)', k => {
+      109 |     const xs = all(fig(k)).map(P => P.hip[0]); const r = Math.max(...xs) - Math.min(...xs);
+    > 110 |     expect([k, r <= 10, r1(r)]).toEqual([k, true, r1(r)]);
+          |                                 ^
+      111 |   });
+      112 |   test('Lat Pulldown — drążek w dół przed twarzą (lpd.pull): odchylenie toru dłoni od prostej ≤ 5 j. (było 18,9)', () => {
+      113 |     const a = arc(fig('Lat Pulldown'), 'hand'); expect([a <= 5, r1(a)]).toEqual([true, r1(a)]);
+
+      at toEqual (tests/figury-recenzja.test.tsx:110:33)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Chin Up — bez bujania (pu.noSwing): biodro pod drążkiem, rozrzut x ≤ 10 j. (było 21,6–22,2)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Chin Up",
+    -   true,
+    +   false,
+        22.2,
+      ]
+
+      108 |   test.each(['Pull Up', 'Chin Up', 'Neutral Grip Pull Up'])('%s — bez bujania (pu.noSwing): biodro pod drążkiem, rozrzut x ≤ 10 j. (było 21,6–22,2)', k => {
+      109 |     const xs = all(fig(k)).map(P => P.hip[0]); const r = Math.max(...xs) - Math.min(...xs);
+    > 110 |     expect([k, r <= 10, r1(r)]).toEqual([k, true, r1(r)]);
+          |                                 ^
+      111 |   });
+      112 |   test('Lat Pulldown — drążek w dół przed twarzą (lpd.pull): odchylenie toru dłoni od prostej ≤ 5 j. (było 18,9)', () => {
+      113 |     const a = arc(fig('Lat Pulldown'), 'hand'); expect([a <= 5, r1(a)]).toEqual([true, r1(a)]);
+
+      at toEqual (tests/figury-recenzja.test.tsx:110:33)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Neutral Grip Pull Up — bez bujania (pu.noSwing): biodro pod drążkiem, rozrzut x ≤ 10 j. (było 21,6–22,2)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Neutral Grip Pull Up",
+    -   true,
+    +   false,
+        22.2,
+      ]
+
+      108 |   test.each(['Pull Up', 'Chin Up', 'Neutral Grip Pull Up'])('%s — bez bujania (pu.noSwing): biodro pod drążkiem, rozrzut x ≤ 10 j. (było 21,6–22,2)', k => {
+      109 |     const xs = all(fig(k)).map(P => P.hip[0]); const r = Math.max(...xs) - Math.min(...xs);
+    > 110 |     expect([k, r <= 10, r1(r)]).toEqual([k, true, r1(r)]);
+          |                                 ^
+      111 |   });
+      112 |   test('Lat Pulldown — drążek w dół przed twarzą (lpd.pull): odchylenie toru dłoni od prostej ≤ 5 j. (było 18,9)', () => {
+      113 |     const a = arc(fig('Lat Pulldown'), 'hand'); expect([a <= 5, r1(a)]).toEqual([true, r1(a)]);
+
+      at toEqual (tests/figury-recenzja.test.tsx:110:33)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Lat Pulldown — drążek w dół przed twarzą (lpd.pull): odchylenie toru dłoni od prostej ≤ 5 j. (było 18,9)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+    -   true,
+    +   false,
+        18.9,
+      ]
+
+      111 |   });
+      112 |   test('Lat Pulldown — drążek w dół przed twarzą (lpd.pull): odchylenie toru dłoni od prostej ≤ 5 j. (było 18,9)', () => {
+    > 113 |     const a = arc(fig('Lat Pulldown'), 'hand'); expect([a <= 5, r1(a)]).toEqual([true, r1(a)]);
+          |                                                                         ^
+      114 |   });
+      115 |   test('Overhead Press (sztanga) — gryf prosto w górę (ohp.tall): nie wybiega przed linię startu o więcej niż 1 j. (było +8) i mija twarz (≥ 7 j. od środka głowy poniżej jej czubka)', () => {
+      116 |     const f = fig('Overhead Press (sztanga)'); const x0 = Math.max(framePoints(f, 0).hand[0], framePoints(f, f.frames.length - 1).hand[0]);
+
+      at Object.toEqual (tests/figury-recenzja.test.tsx:113:73)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Overhead Press (sztanga) — gryf prosto w górę (ohp.tall): nie wybiega przed linię startu o więcej niż 1 j. (było +8) i mija twarz (≥ 7 j. od środka głowy poniżej jej czubka)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        1.5,
+    -   true,
+    +   false,
+      ]
+
+      115 |   test('Overhead Press (sztanga) — gryf prosto w górę (ohp.tall): nie wybiega przed linię startu o więcej niż 1 j. (było +8) i mija twarz (≥ 7 j. od środka głowy poniżej jej czubka)', () => {
+      116 |     const f = fig('Overhead Press (sztanga)'); const x0 = Math.max(framePoints(f, 0).hand[0], framePoints(f, f.frames.length - 1).hand[0]);
+    > 117 |     for (const P of all(f)) { expect([r1(P.hand[0] - x0), P.hand[0] - x0 <= 1]).toEqual([r1(P.hand[0] - x0), true]); if (P.hand[1] < P.head[1] + 6.5) expect(d(P.hand, P.head)).toBeGreaterThanOrEqual(7); }
+          |                                                                                 ^
+      118 |   });
+      119 |   test.each(['Overhead Press (hantle)', 'Seated Shoulder Press (hantle)', 'Wyciskanie nad głowę (linki)'])('%s — ciężar prosto w górę: odchylenie toru dłoni ≤ 4 j. (było 10,5–10,9)', k => {
+      120 |     const a = arc(fig(k), 'hand'); expect([k, a <= 4, r1(a)]).toEqual([k, true, r1(a)]);
+
+      at Object.toEqual (tests/figury-recenzja.test.tsx:117:81)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Overhead Press (hantle) — ciężar prosto w górę: odchylenie toru dłoni ≤ 4 j. (było 10,5–10,9)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Overhead Press (hantle)",
+    -   true,
+    +   false,
+        10.9,
+      ]
+
+      118 |   });
+      119 |   test.each(['Overhead Press (hantle)', 'Seated Shoulder Press (hantle)', 'Wyciskanie nad głowę (linki)'])('%s — ciężar prosto w górę: odchylenie toru dłoni ≤ 4 j. (było 10,5–10,9)', k => {
+    > 120 |     const a = arc(fig(k), 'hand'); expect([k, a <= 4, r1(a)]).toEqual([k, true, r1(a)]);
+          |                                                               ^
+      121 |   });
+      122 |   test.each(['Push Up', 'Incline Push Up'])('%s — dłonie w miejscu (podpora): przesunięcie ≤ 2,5 j. (było 5,7–6)', k => {
+      123 |     const s = slide(fig(k), 'hand'); expect([k, s <= 2.5, r1(s)]).toEqual([k, true, r1(s)]);
+
+      at toEqual (tests/figury-recenzja.test.tsx:120:63)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Seated Shoulder Press (hantle) — ciężar prosto w górę: odchylenie toru dłoni ≤ 4 j. (było 10,5–10,9)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Seated Shoulder Press (hantle)",
+    -   true,
+    +   false,
+        10.5,
+      ]
+
+      118 |   });
+      119 |   test.each(['Overhead Press (hantle)', 'Seated Shoulder Press (hantle)', 'Wyciskanie nad głowę (linki)'])('%s — ciężar prosto w górę: odchylenie toru dłoni ≤ 4 j. (było 10,5–10,9)', k => {
+    > 120 |     const a = arc(fig(k), 'hand'); expect([k, a <= 4, r1(a)]).toEqual([k, true, r1(a)]);
+          |                                                               ^
+      121 |   });
+      122 |   test.each(['Push Up', 'Incline Push Up'])('%s — dłonie w miejscu (podpora): przesunięcie ≤ 2,5 j. (było 5,7–6)', k => {
+      123 |     const s = slide(fig(k), 'hand'); expect([k, s <= 2.5, r1(s)]).toEqual([k, true, r1(s)]);
+
+      at toEqual (tests/figury-recenzja.test.tsx:120:63)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Wyciskanie nad głowę (linki) — ciężar prosto w górę: odchylenie toru dłoni ≤ 4 j. (było 10,5–10,9)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Wyciskanie nad głowę (linki)",
+    -   true,
+    +   false,
+        10.9,
+      ]
+
+      118 |   });
+      119 |   test.each(['Overhead Press (hantle)', 'Seated Shoulder Press (hantle)', 'Wyciskanie nad głowę (linki)'])('%s — ciężar prosto w górę: odchylenie toru dłoni ≤ 4 j. (było 10,5–10,9)', k => {
+    > 120 |     const a = arc(fig(k), 'hand'); expect([k, a <= 4, r1(a)]).toEqual([k, true, r1(a)]);
+          |                                                               ^
+      121 |   });
+      122 |   test.each(['Push Up', 'Incline Push Up'])('%s — dłonie w miejscu (podpora): przesunięcie ≤ 2,5 j. (było 5,7–6)', k => {
+      123 |     const s = slide(fig(k), 'hand'); expect([k, s <= 2.5, r1(s)]).toEqual([k, true, r1(s)]);
+
+      at toEqual (tests/figury-recenzja.test.tsx:120:63)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Push Up — dłonie w miejscu (podpora): przesunięcie ≤ 2,5 j. (było 5,7–6)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Push Up",
+    -   true,
+    +   false,
+        5.7,
+      ]
+
+      121 |   });
+      122 |   test.each(['Push Up', 'Incline Push Up'])('%s — dłonie w miejscu (podpora): przesunięcie ≤ 2,5 j. (było 5,7–6)', k => {
+    > 123 |     const s = slide(fig(k), 'hand'); expect([k, s <= 2.5, r1(s)]).toEqual([k, true, r1(s)]);
+          |                                                                   ^
+      124 |   });
+      125 |   test('Machine Chest Press — uchwyt po prostej prowadnicy: odchylenie toru ≤ 3 j. (było 9,3)', () => {
+      126 |     const a = arc(fig('Machine Chest Press'), 'hand'); expect([a <= 3, r1(a)]).toEqual([true, r1(a)]);
+
+      at toEqual (tests/figury-recenzja.test.tsx:123:67)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Incline Push Up — dłonie w miejscu (podpora): przesunięcie ≤ 2,5 j. (było 5,7–6)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Incline Push Up",
+    -   true,
+    +   false,
+        6,
+      ]
+
+      121 |   });
+      122 |   test.each(['Push Up', 'Incline Push Up'])('%s — dłonie w miejscu (podpora): przesunięcie ≤ 2,5 j. (było 5,7–6)', k => {
+    > 123 |     const s = slide(fig(k), 'hand'); expect([k, s <= 2.5, r1(s)]).toEqual([k, true, r1(s)]);
+          |                                                                   ^
+      124 |   });
+      125 |   test('Machine Chest Press — uchwyt po prostej prowadnicy: odchylenie toru ≤ 3 j. (było 9,3)', () => {
+      126 |     const a = arc(fig('Machine Chest Press'), 'hand'); expect([a <= 3, r1(a)]).toEqual([true, r1(a)]);
+
+      at toEqual (tests/figury-recenzja.test.tsx:123:67)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Machine Chest Press — uchwyt po prostej prowadnicy: odchylenie toru ≤ 3 j. (było 9,3)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+    -   true,
+    +   false,
+        9.3,
+      ]
+
+      124 |   });
+      125 |   test('Machine Chest Press — uchwyt po prostej prowadnicy: odchylenie toru ≤ 3 j. (było 9,3)', () => {
+    > 126 |     const a = arc(fig('Machine Chest Press'), 'hand'); expect([a <= 3, r1(a)]).toEqual([true, r1(a)]);
+          |                                                                                ^
+      127 |   });
+      128 |   test.each(['Seated Cable Row', 'Wiosłowanie na linkach (siedząc)'])('%s — linka poziomo od bloczka do uchwytu w całym ruchu: ≤ 5° (było 34,5°)', k => {
+      129 |     const f = fig(k); const c = f.props.find(p => p.k === 'cable') as { from: Pt };
+
+      at Object.toEqual (tests/figury-recenzja.test.tsx:126:80)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Seated Cable Row — linka poziomo od bloczka do uchwytu w całym ruchu: ≤ 5° (było 34,5°)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Seated Cable Row",
+    -   true,
+    +   false,
+        7.9,
+      ]
+
+      128 |   test.each(['Seated Cable Row', 'Wiosłowanie na linkach (siedząc)'])('%s — linka poziomo od bloczka do uchwytu w całym ruchu: ≤ 5° (było 34,5°)', k => {
+      129 |     const f = fig(k); const c = f.props.find(p => p.k === 'cable') as { from: Pt };
+    > 130 |     for (const P of all(f)) { const a = Math.abs(Math.atan2(P.hand[1] - c.from[1], c.from[0] - P.hand[0]) * 180 / Math.PI); expect([k, a <= 5, r1(a)]).toEqual([k, true, r1(a)]); }
+          |                                                                                                                                                        ^
+      131 |   });
+      132 |   test.each(['Hip Thrust (sztanga)', 'Hip Thrust (hantel)'])('%s — dłonie przytrzymują ciężar (ht.hold): dłoń ≤ 2 j. od środka ciężaru (było do 20)', k => {
+      133 |     const f = fig(k); const pr = f.props.find(p => p.k === 'plate' || p.k === 'db') as { tb: Pt };
+
+      at toEqual (tests/figury-recenzja.test.tsx:130:152)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Wiosłowanie na linkach (siedząc) — linka poziomo od bloczka do uchwytu w całym ruchu: ≤ 5° (było 34,5°)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Wiosłowanie na linkach (siedząc)",
+    -   true,
+    +   false,
+        7.9,
+      ]
+
+      128 |   test.each(['Seated Cable Row', 'Wiosłowanie na linkach (siedząc)'])('%s — linka poziomo od bloczka do uchwytu w całym ruchu: ≤ 5° (było 34,5°)', k => {
+      129 |     const f = fig(k); const c = f.props.find(p => p.k === 'cable') as { from: Pt };
+    > 130 |     for (const P of all(f)) { const a = Math.abs(Math.atan2(P.hand[1] - c.from[1], c.from[0] - P.hand[0]) * 180 / Math.PI); expect([k, a <= 5, r1(a)]).toEqual([k, true, r1(a)]); }
+          |                                                                                                                                                        ^
+      131 |   });
+      132 |   test.each(['Hip Thrust (sztanga)', 'Hip Thrust (hantel)'])('%s — dłonie przytrzymują ciężar (ht.hold): dłoń ≤ 2 j. od środka ciężaru (było do 20)', k => {
+      133 |     const f = fig(k); const pr = f.props.find(p => p.k === 'plate' || p.k === 'db') as { tb: Pt };
+
+      at toEqual (tests/figury-recenzja.test.tsx:130:152)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Hip Thrust (sztanga) — dłonie przytrzymują ciężar (ht.hold): dłoń ≤ 2 j. od środka ciężaru (było do 20)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Hip Thrust (sztanga)",
+    -   true,
+    +   false,
+        20.1,
+      ]
+
+      135 |       const { p, P } = poseBetween(f, i, i + 1, s / 20); const t = (p as { t: number }).t * Math.PI / 180;
+      136 |       const c: Pt = [P.hip[0] + Math.cos(t) * pr.tb[0] + Math.cos(t - Math.PI / 2) * pr.tb[1], P.hip[1] + Math.sin(t) * pr.tb[0] + Math.sin(t - Math.PI / 2) * pr.tb[1]];
+    > 137 |       expect([k, d(P.hand, c) <= 2, r1(d(P.hand, c))]).toEqual([k, true, r1(d(P.hand, c))]);
+          |                                                        ^
+      138 |     }
+      139 |   });
+      140 |   test('Triceps Dips (ławka) — pięty w miejscu na podłodze (≤ 3 j., było 9,7); biodra przy krawędzi ławki (1–10 j. przed nią)', () => {
+
+      at toEqual (tests/figury-recenzja.test.tsx:137:56)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Hip Thrust (hantel) — dłonie przytrzymują ciężar (ht.hold): dłoń ≤ 2 j. od środka ciężaru (było do 20)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Hip Thrust (hantel)",
+    -   true,
+    +   false,
+        20.3,
+      ]
+
+      135 |       const { p, P } = poseBetween(f, i, i + 1, s / 20); const t = (p as { t: number }).t * Math.PI / 180;
+      136 |       const c: Pt = [P.hip[0] + Math.cos(t) * pr.tb[0] + Math.cos(t - Math.PI / 2) * pr.tb[1], P.hip[1] + Math.sin(t) * pr.tb[0] + Math.sin(t - Math.PI / 2) * pr.tb[1]];
+    > 137 |       expect([k, d(P.hand, c) <= 2, r1(d(P.hand, c))]).toEqual([k, true, r1(d(P.hand, c))]);
+          |                                                        ^
+      138 |     }
+      139 |   });
+      140 |   test('Triceps Dips (ławka) — pięty w miejscu na podłodze (≤ 3 j., było 9,7); biodra przy krawędzi ławki (1–10 j. przed nią)', () => {
+
+      at toEqual (tests/figury-recenzja.test.tsx:137:56)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Triceps Dips (ławka) — pięty w miejscu na podłodze (≤ 3 j., było 9,7); biodra przy krawędzi ławki (1–10 j. przed nią)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+    -   true,
+    +   false,
+        9.7,
+      ]
+
+      139 |   });
+      140 |   test('Triceps Dips (ławka) — pięty w miejscu na podłodze (≤ 3 j., było 9,7); biodra przy krawędzi ławki (1–10 j. przed nią)', () => {
+    > 141 |     const f = fig('Triceps Dips (ławka)'); const s = slide(f, 'heel'); expect([s <= 3, r1(s)]).toEqual([true, r1(s)]);
+          |                                                                                                ^
+      142 |     for (const i of [0, f.frames.length - 1]) { const x = framePoints(f, i).hip[0]; expect([i, x >= 1 && x <= 10, r1(x)]).toEqual([i, true, r1(x)]); }
+      143 |   });
+      144 |   test('Leg Press — platforma jedzie prostopadle do swojej powierzchni (wzdłuż prowadnicy), stopa płasko na platformie (było: 36° odchyłki)', () => {
+
+      at Object.toEqual (tests/figury-recenzja.test.tsx:141:96)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Leg Press — platforma jedzie prostopadle do swojej powierzchni (wzdłuż prowadnicy), stopa płasko na platformie (było: 36° odchyłki)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+    -   true,
+    +   false,
+        36.4,
+      ]
+
+      145 |     const f = fig('Leg Press'); const pl = f.props.find(p => p.k === 'plank') as { ang: number };
+      146 |     const A = framePoints(f, 0).toe, B = framePoints(f, f.frames.length - 1).toe; const dir = Math.atan2(B[1] - A[1], B[0] - A[0]) * 180 / Math.PI;
+    > 147 |     const off = Math.abs((((dir - (pl.ang - 270)) % 360) + 540) % 360 - 180); expect([off <= 5, r1(off)]).toEqual([true, r1(off)]);
+          |                                                                                                           ^
+      148 |     for (const fr of f.frames) expect((fr.p as { ft: number }).ft).toBe(pl.ang);
+      149 |   });
+      150 |   test('Bulgarian Split Squat (hantle) — tylna stopa na ławce przez cały ruch (bss.setup): przesunięcie ≤ 2 j. (było 7,6)', () => {
+
+      at Object.toEqual (tests/figury-recenzja.test.tsx:147:107)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Bulgarian Split Squat (hantle) — tylna stopa na ławce przez cały ruch (bss.setup): przesunięcie ≤ 2 j. (było 7,6)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+    -   true,
+    +   false,
+        7.6,
+      ]
+
+      149 |   });
+      150 |   test('Bulgarian Split Squat (hantle) — tylna stopa na ławce przez cały ruch (bss.setup): przesunięcie ≤ 2 j. (było 7,6)', () => {
+    > 151 |     const s = slide(fig('Bulgarian Split Squat (hantle)'), 'toe2'); expect([s <= 2, r1(s)]).toEqual([true, r1(s)]);
+          |                                                                                             ^
+      152 |   });
+      153 |   test('Step Up — stopa nogi zakrocznej nie przechodzi przez skrzynię (było 6 j. w środku)', () => {
+      154 |     const f = fig('Step Up'); const b = f.props.find(p => p.k === 'rect') as { x: number; y: number; w: number; h: number };
+
+      at Object.toEqual (tests/figury-recenzja.test.tsx:151:93)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Step Up — stopa nogi zakrocznej nie przechodzi przez skrzynię (było 6 j. w środku)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "toe2",
+    -   true,
+    +   false,
+        2.2,
+      ]
+
+      153 |   test('Step Up — stopa nogi zakrocznej nie przechodzi przez skrzynię (było 6 j. w środku)', () => {
+      154 |     const f = fig('Step Up'); const b = f.props.find(p => p.k === 'rect') as { x: number; y: number; w: number; h: number };
+    > 155 |     for (const P of all(f)) for (const [n, q] of Object.entries(P)) { if (n === 'hip') continue; const inside = Math.min(q[0] - b.x, b.x + b.w - q[0], q[1] - b.y, b.y + b.h - q[1]); expect([n, inside <= 1, r1(inside)]).toEqual([n, true, r1(inside)]); }
+          |                                                                                                                                                                                                                            ^
+      156 |   });
+      157 |   test.each(['Lunges (hantle)', 'Walking Lunges'])('%s — krok w przód: przednia stopa przenoszona w powietrzu, nie sunie po podłodze (było 7,5 j.)', k => {
+      158 |     const f = fig(k); const st = framePoints(f, 0).toe, en = framePoints(f, f.frames.length - 1).toe;
+
+      at Object.toEqual (tests/figury-recenzja.test.tsx:155:220)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Lunges (hantle) — krok w przód: przednia stopa przenoszona w powietrzu, nie sunie po podłodze (było 7,5 j.)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Lunges (hantle)",
+    -   true,
+    +   false,
+        3.7,
+      ]
+
+      157 |   test.each(['Lunges (hantle)', 'Walking Lunges'])('%s — krok w przód: przednia stopa przenoszona w powietrzu, nie sunie po podłodze (było 7,5 j.)', k => {
+      158 |     const f = fig(k); const st = framePoints(f, 0).toe, en = framePoints(f, f.frames.length - 1).toe;
+    > 159 |     for (const P of all(f)) if (Math.min(P.toe[1], P.heel[1]) < 1.5) { const g = Math.min(Math.abs(P.toe[0] - st[0]), Math.abs(P.toe[0] - en[0])); expect([k, g <= 2, r1(g)]).toEqual([k, true, r1(g)]); }
+          |                                                                                                                                                                               ^
+      160 |   });
+      161 | });
+      162 |
+
+      at toEqual (tests/figury-recenzja.test.tsx:159:175)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Walking Lunges — krok w przód: przednia stopa przenoszona w powietrzu, nie sunie po podłodze (było 7,5 j.)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Walking Lunges",
+    -   true,
+    +   false,
+        3.7,
+      ]
+
+      157 |   test.each(['Lunges (hantle)', 'Walking Lunges'])('%s — krok w przód: przednia stopa przenoszona w powietrzu, nie sunie po podłodze (było 7,5 j.)', k => {
+      158 |     const f = fig(k); const st = framePoints(f, 0).toe, en = framePoints(f, f.frames.length - 1).toe;
+    > 159 |     for (const P of all(f)) if (Math.min(P.toe[1], P.heel[1]) < 1.5) { const g = Math.min(Math.abs(P.toe[0] - st[0]), Math.abs(P.toe[0] - en[0])); expect([k, g <= 2, r1(g)]).toEqual([k, true, r1(g)]); }
+          |                                                                                                                                                                               ^
+      160 |   });
+      161 | });
+      162 |
+
+      at toEqual (tests/figury-recenzja.test.tsx:159:175)
+
+Test Suites: 1 failed, 1 total
+Tests:       28 failed, 3 passed, 31 total
+Snapshots:   0 total
+Time:        4.735 s, estimated 34 s
+Ran all test suites matching /tests\/figury-recenzja.test.tsx/i.

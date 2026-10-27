@@ -1,0 +1,19 @@
+# Calf Press (leg press)
+widok: side, kotwica: hip, przyrządy: [{"k":"line","pts":[[-6,22],[14,22]]},{"k":"line","pts":[[-3.3,24.6],[-27.7,53.7]]},{"k":"line","pts":[[4,22],[4,0]]},{"k":"plank","at":"toe","ang":135,"len":26}]
+notatka: Nogi proste, ruch tylko w stawach skokowych; platforma przesuwa się wzdłuż prowadnicy. Zakres ruchu stopy ilustracyjny.
+mięśnie (katalog): {"calves":1}
+setup calf.press: Usiądź na prasie, oprzyj przednią część stóp na dolnej krawędzi platformy, pięty poza nią; nogi wyprostowane.  [źródła: exrx-Gastrocnemius/SL45CalfPress / Preparation; nasm-leg-press-calf-raise / Step 1]
+move calf.pressMove: Wypychaj platformę palcami jak najdalej, potem pozwól piętom wrócić, aż poczujesz rozciągnięcie łydek.  [źródła: exrx-Gastrocnemius/SL45CalfPress / Execution; nasm-leg-press-calf-raise / Step 3; Step 4; ace-294 / opis]
+tips calf.knees: Kolana proste lub tylko lekko ugięte — ruch wyłącznie w stawach skokowych.  [źródła: exrx-Gastrocnemius/SL45CalfPress / Comments; ace-294 / opis (keeping legs straight)]
+tips calf.pause: Zatrzymaj się chwilę na górze i opuszczaj powoli.  [źródła: nasm-leg-press-calf-raise / Step 4 (with control); ace-294 / opis (slowly return)]
+mistakes calf.mis.partial: Skrócony zakres — bez pełnego wspięcia i opuszczenia.  [źródła: nasm-leg-press-calf-raise / Common Mistakes; exrx-Gastrocnemius/SL45CalfPress / Execution]
+KLATKA start: poza {"t":130,"hip":90,"knee":0,"ft":150,"sh":0,"el":0} at [0,30]
+  kąty: hip=90 knee=0 sh=0 el=0 ankle=20 hip2=90 knee2=0 sh2=0 el2=0 ankle2=20
+  punkty: head=(-26.4,61.4) shoulder=(-19.3,53) elbow=(-7.7,39.2) hand=(5.1,23.9) hip=(0,30) knee=(19.2,46.1) ankle=(38.3,62.1) heel=(42.9,64.1) toe=(30.8,71.1) knee2=(19.2,46.1) ankle2=(38.3,62.1) heel2=(42.9,64.1) toe2=(30.8,71.1) elbow2=(-7.7,39.2) hand2=(5.1,23.9)
+  why joint calf.press → OK (0)
+  why joint calf.pressMove → OK (20)
+KLATKA end: poza {"t":130,"hip":90,"knee":0,"ft":105,"sh":0,"el":0} at [0,30]
+  kąty: hip=90 knee=0 sh=0 el=0 ankle=-25 hip2=90 knee2=0 sh2=0 el2=0 ankle2=-25
+  punkty: head=(-26.4,61.4) shoulder=(-19.3,53) elbow=(-7.7,39.2) hand=(5.1,23.9) hip=(0,30) knee=(19.2,46.1) ankle=(38.3,62.1) heel=(42.9,60.3) toe=(39.3,73.8) knee2=(19.2,46.1) ankle2=(38.3,62.1) heel2=(42.9,60.3) toe2=(39.3,73.8) elbow2=(-7.7,39.2) hand2=(5.1,23.9)
+  why joint calf.knees → OK (0)
+  why joint calf.pressMove → OK (-25)

@@ -1,0 +1,17 @@
+# Chest Supported Row
+widok: side, kotwica: toe, przyrządy: [{"k":"line","pts":[[-13.3,50],[6.6,66.7]]},{"k":"line","pts":[[-13.3,50],[-13.3,0]]},{"k":"db","at":"hand"}]
+notatka: Kąt oparcia i ciężar (hantle albo uchwyty maszyny) ilustracyjne; klatka przez cały ruch na podporze.
+mięśnie (katalog): {"lats":1,"upper_back":1,"rear_delt":0.5,"biceps":0.5,"forearms":0.25}
+setup csr.chest: Oprzyj klatkę piersiową o podporę i trzymaj ją tam przez cały ruch.  [źródła: exrx-BackGeneral/DBInclineRow / Preparation (lie chest down); ace-168 / Step 1; Step 2 (chest against the chest pad)]
+move csr.pull: Ciągnij łokcie w tył wzdłuż tułowia, potem wyprostuj ręce do końca.  [źródła: exrx-BackGeneral/DBInclineRow / Execution; ace-168 / Step 2; Step 3]
+tips row.elbowsPast: Ciągnij, aż łokcie miną linię pleców.  [źródła: exrx-BackGeneral/DBInclineRow / Execution (upper arm just beyond height of back); ace-168 / Step 3 (until your elbows pass the sides of your body)]
+tips row.fullStretch: Na dole wyprostuj ręce do końca, barki swobodnie w dół.  [źródła: exrx-BackGeneral/DBLyingRow / Execution (arms extended, shoulders stretched downward); ace-168 / Step 3 (stopping when your arms are fully extended)]
+KLATKA start: poza {"t":40,"hip":76,"knee":25,"sh":50,"el":0}
+  kąty: hip=76 knee=25 sh=50 el=0 ankle=-1 hip2=76 knee2=25 sh2=50 el2=0 ankle2=-1
+  punkty: head=(9,77.8) shoulder=(0.6,70.7) elbow=(0.6,52.7) hand=(0.6,32.7) hip=(-22.4,51.5) knee=(-11.4,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11.4,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(0.6,52.7) hand2=(0.6,32.7)
+  why joint row.fullStretch → OK (0)
+  why horiz csr.pull → OK (90)
+KLATKA end: poza {"t":40,"hip":76,"knee":25,"sh":-50,"el":133}
+  kąty: hip=76 knee=25 sh=-50 el=133 ankle=-1 hip2=76 knee2=25 sh2=-50 el2=133 ankle2=-1
+  punkty: head=(9,77.8) shoulder=(0.6,70.7) elbow=(-17.1,73.9) hand=(-6.2,57.1) hip=(-22.4,51.5) knee=(-11.4,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11.4,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-17.1,73.9) hand2=(-6.2,57.1)
+  why behind row.elbowsPast → OK (13.8)

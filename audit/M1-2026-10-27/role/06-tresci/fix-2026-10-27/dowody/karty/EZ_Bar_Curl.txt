@@ -1,0 +1,19 @@
+# EZ Bar Curl
+widok: side, kotwica: toe, like: Barbell Curl, przyrządy: [{"k":"plate","at":"hand","r":10}]
+notatka: „Przedramiona pionowo” przy łokciach przy bokach — z zakresem zgięcia łokcia przedramię jest tylko mniej więcej pionowe (ok. 20°).
+mięśnie (katalog): {"biceps":1,"forearms":0.25}
+setup curl.ezGrip: Chwyć gryf łamany podchwytem, mniej więcej na szerokość barków; ręce wyprostowane.  [źródła: exrx-Biceps/BBCurl / Preparation; Comments (cambered bar = EZ Bar Curl); ace-70 / opis (sztanga — ten sam ruch)]
+move curl.bbMove: Zginaj łokcie, aż przedramiona będą pionowo; opuść sztangę do pełnego wyprostu rąk.  [źródła: exrx-Biceps/BBCurl / Execution; ace-70 / opis]
+tips curl.elbows: Łokcie zostają przy bokach — pracuje przedramię, nie ramię.  [źródła: exrx-Biceps/BBCurl / Execution; ace-70 / opis; nasm-barbell-bicep-curl / Step 2]
+tips curl.noSwing: Tułów nieruchomo: bez bujania i odchylania się.  [źródła: ace-70 / opis; nasm-barbell-bicep-curl / Common Mistakes]
+mistakes curl.mis.elbows: Wysuwanie łokci do przodu albo od tułowia.  [źródła: nasm-barbell-bicep-curl / Common Mistakes; ace-70 / opis]
+KLATKA start: poza {"t":90,"hip":0,"knee":0,"sh":0,"el":0}
+  kąty: hip=0 knee=0 sh=0 el=0 ankle=0 hip2=0 knee2=0 sh2=0 el2=0 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-11,66) hand=(-11,46) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-11,66) hand2=(-11,46)
+  why joint curl.ezGrip → OK (0)
+  why horiz curl.elbows → OK (90)
+KLATKA end: poza {"t":90,"hip":0,"knee":0,"sh":14,"el":148}
+  kąty: hip=0 knee=0 sh=14 el=148 ankle=0 hip2=0 knee2=0 sh2=14 el2=148 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-6.6,66.5) hand=(-0.5,85.6) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-6.6,66.5) hand2=(-0.5,85.6)
+  why horiz curl.bbMove → OK (72)
+  why horiz curl.elbows → OK (76)

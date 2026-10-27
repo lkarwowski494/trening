@@ -1,0 +1,20 @@
+# Pistol Squat
+widok: side, kotwica: toe, przyrządy: []
+notatka: Głębokość „tak nisko, jak kontrolujesz” — pokazana pozycja głęboka jest ilustracyjna.
+mięśnie (katalog): {"quads":1,"glutes":0.5,"adductors":0.25,"abductors":0.25,"abs":0.25,"calves":0.25}
+setup pistol.setup: Stań na jednej nodze, drugą wyprostuj w przód nad podłogą; ręce przed sobą do równowagi.  [źródła: exrx-Quadriceps/BWSingleLegSquat / Preparation; ace-308 / opis; nasm-single-leg-squat / Step 1; Step 2]
+move pistol.move: Zejdź w przysiad na nodze podporowej tak nisko, jak kontrolujesz ruch; wstań do pełnego wyprostu.  [źródła: exrx-Quadriceps/BWSingleLegSquat / Execution; nasm-single-leg-squat / Step 3; Step 4; FAQ (depth); ace-308 / opis]
+tips pistol.knee: Kolano nogi podporowej w linii palców stopy.  [źródła: exrx-Quadriceps/BWSingleLegSquat / Execution; Comments; nasm-single-leg-squat / Common Mistakes (planted knee cave inward)]
+tips pistol.assist: Na początek pomagaj sobie podpórką albo zmniejsz zakres ruchu.  [źródła: exrx-Quadriceps/BWSingleLegSquat / Comments: Easier (partial reps, self assistance); nasm-single-leg-squat / Step 1; FAQ (support for beginners)]
+mistakes sq.mis.kneesIn: Kolana zapadające się do środka.  [źródła: nasm-single-leg-squat / Common Mistakes; exrx-Quadriceps/BWSingleLegSquat / Comments]
+KLATKA start: poza {"t":90,"hip":[0,85],"knee":[0,0],"sh":90,"el":0,"ft":[0,65]}
+  kąty: hip=0 knee=0 sh=90 el=0 ankle=0 hip2=85 knee2=0 sh2=90 el2=0 ankle2=-20
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(7,84) hand=(27,84) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(13.9,51.8) ankle2=(38.8,49.6) heel2=(41.2,45.2) toe2=(47.1,57.9) elbow2=(7,84) hand2=(27,84)
+  why joint pistol.setup → OK (0)
+  why above pistol.setup → OK (45.2)
+KLATKA end: poza {"t":46,"hip":[118,106],"knee":[110,0],"sh":110,"el":0,"ft":[0,42]}
+  kąty: hip=118 knee=110 sh=110 el=0 ankle=36 hip2=106 knee2=0 sh2=110 el2=0 ankle2=-20
+  punkty: head=(8.1,60.6) shoulder=(0.5,52.7) elbow=(16.9,45.4) hand=(35.2,37.2) hip=(-20.3,31.1) knee=(3.7,24.2) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(1.7,19.4) ankle2=(23.8,7.6) heel2=(24.3,2.7) toe2=(34.7,12) elbow2=(16.9,45.4) hand2=(35.2,37.2)
+  why joint pistol.setup → OK (0)
+  why above pistol.setup → OK (2.7)
+  why low pistol.move → OK (0)

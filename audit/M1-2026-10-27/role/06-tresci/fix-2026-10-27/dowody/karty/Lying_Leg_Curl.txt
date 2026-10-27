@@ -1,0 +1,18 @@
+# Lying Leg Curl
+widok: side, kotwica: hip, przyrządy: [{"k":"rect","x":-24,"y":20,"w":58,"h":4},{"k":"line","pts":[[-16,20],[-16,0]]},{"k":"line","pts":[[26,20],[26,0]]},{"k":"grip","at":"ankle","r":3.5}]
+notatka: Wałek na dolnej części łydek; końcowe zgięcie kolan ilustracyjne. Rama maszyny pominięta.
+mięśnie (katalog): {"hamstrings":1,"calves":0.25}
+setup llc.setup: Połóż się przodem; kolana na wysokości osi maszyny, wałek nad piętami na dolnej części łydek.  [źródła: ace-153 / Step 1; nasm-lying-leg-curl / Step 1 (pad just above your ankles)]
+move llc.move: Zegnij kolana, przyciągając wałek w stronę pośladków; opuść go powoli.  [źródła: ace-153 / Step 2–4; nasm-lying-leg-curl / Step 3; Step 4]
+tips llc.hips: Biodra przyciśnięte do ławki — bez wyginania pleców.  [źródła: ace-153 / Step 2; wskazówka końcowa (avoid arching, stabilize the low back); nasm-lying-leg-curl / Step 1; Common Mistakes (hips shift)]
+tips llc.control: Ruch płynny w obie strony, bez szarpania.  [źródła: ace-153 / Step 2; Step 4 (controlled manner); nasm-lying-leg-curl / Common Mistakes (jerky movements)]
+KLATKA start: poza {"t":0,"hip":0,"knee":0,"ft":230,"sh":150,"el":30} at [0,30]
+  kąty: hip=0 knee=0 sh=150 el=30 ankle=-40 hip2=0 knee2=0 sh2=150 el2=30 ankle2=-40
+  punkty: head=(41,30) shoulder=(30,30) elbow=(45.6,21) hand=(65.6,21) hip=(0,30) knee=(-25,30) ankle=(-50,30) heel=(-51.1,34.9) toe=(-60.1,24.1) knee2=(-25,30) ankle2=(-50,30) heel2=(-51.1,34.9) toe2=(-60.1,24.1) elbow2=(45.6,21) hand2=(65.6,21)
+  why joint llc.hips → OK (0)
+  why joint llc.setup → OK (0)
+KLATKA end: poza {"t":0,"hip":0,"knee":110,"ft":120,"sh":150,"el":30} at [0,30]
+  kąty: hip=0 knee=110 sh=150 el=30 ankle=-40 hip2=0 knee2=110 sh2=150 el2=30 ankle2=-40
+  punkty: head=(41,30) shoulder=(30,30) elbow=(45.6,21) hand=(65.6,21) hip=(0,30) knee=(-25,30) ankle=(-16.4,53.5) heel=(-11.5,52.9) toe=(-18.5,65) knee2=(-25,30) ankle2=(-16.4,53.5) heel2=(-11.5,52.9) toe2=(-18.5,65) elbow2=(45.6,21) hand2=(65.6,21)
+  why joint llc.hips → OK (0)
+  why joint llc.move → OK (110)

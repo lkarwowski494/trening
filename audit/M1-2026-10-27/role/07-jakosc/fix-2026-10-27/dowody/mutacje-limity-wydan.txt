@@ -1,0 +1,14 @@
+=== M6: próg minut obniżony 7 → 5 (zaostrzenie limitu)
+ lib/access.ts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+kod wyjścia jest: 1
+    ✕ próg minut dnia treningowego nie maleje względem żadnego wydania; P3 (COUNT_FULL_STARTS_IN_EXPIRY_MONTH) nie wraca do true (29 ms)
+Tests:       1 failed, 21 skipped, 2 passed, 24 total
+=== M7: P3 przełączone na true
+ lib/access.ts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+kod wyjścia jest: 1
+    ✕ próg minut dnia treningowego nie maleje względem żadnego wydania; P3 (COUNT_FULL_STARTS_IN_EXPIRY_MONTH) nie wraca do true (5 ms)
+Tests:       1 failed, 21 skipped, 2 passed, 24 total
+=== stan kopii po mutacjach
+(pusty = cofnięte)

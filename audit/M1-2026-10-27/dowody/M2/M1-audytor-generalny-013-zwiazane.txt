@@ -1,0 +1,267 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/regress.test.tsx (168.206 s)
+  ● Console
+
+    console.error
+      Error: Unable to find node on an unmounted component.
+          at Error (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:1689:17)
+          at findCurrentFiberUsingSlowPath (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:1761:16)
+          at findCurrentHostFiber (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:15744:19)
+          at findHostInstanceWithWarning (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:15860:27)
+          at AnimatedProps._connectAnimatedView2 (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedProps.js:276:42)
+          at AnimatedProps.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedProps.js:257:13)
+          at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedStyle.js:225:5)
+          at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedTransform.js:87:5)
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedInterpolation.js:391:5)
+          at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedTransform.js:85:12)
+          at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedStyle.js:223:12)
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedInterpolation.js:391:5)
+          at AnimatedValue.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedValue.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedValue.js:131:5)
+          at TimingAnimation.__makeNative [as __startAnimationIfNative] (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/Animation.js:137:21)
+          at __startAnimationIfNative (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/TimingAnimation.js:123:36)
+          at TimingAnimation.start (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/TimingAnimation.js:139:7)
+          at AnimatedValue.start [as animate] (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedValue.js:320:15)
+          at animate (/home/user/trening/node_modules/react-native/Libraries/Animated/AnimatedImplementation.js:233:19)
+          at Object.start (/home/user/trening/node_modules/react-native/Libraries/Animated/AnimatedImplementation.js:240:9)
+          at start (/home/user/trening/components/BoardFace.tsx:28:178)
+          at Object.react_stack_bottom_frame (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:15755:20)
+          at runWithFiberInDEV (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+          at commitHookEffectListMount (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9530:29)
+          at commitHookPassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9617:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11205:13)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+          ... collapsed 4 duplicate lines matching above lines ...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          ... collapsed 12 duplicate lines matching above 6 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11387:17)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11354:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          ... collapsed 6 duplicate lines matching above lines ...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11) {
+        [stack]: [Getter/Setter],
+        [message]: 'Unable to find node on an unmounted component.'
+      }
+      
+      The above error occurred in the <NowBoard> component.
+      
+      React will try to recreate this component tree from scratch using the error boundary you provided, Try.
+
+      105 | // żeby log był czytelny. Pozostałe console.error przechodzą (C9 sprawdza je jawnie).
+      106 | const origError = console.error;
+    > 107 | console.error = (...a) => { if (/not wrapped in act/.test(String(a[0]))) return; origError(...a); };
+          |                                                                                  ^
+      108 |
+      109 | // ActionSheetIOS (menu serii): zapamiętujemy wywołania, test wybiera opcję przez global.__pickSheet(i).
+      110 | global.__sheets = [];
+
+      at console.origError [as error] (tests/setup.js:107:82)
+      at defaultOnCaughtError (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6439:17)
+      at logCaughtError (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6475:9)
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at Try.update.callback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6508:11)
+      at callCallback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4625:16)
+      at commitCallbacks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4645:11)
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at commitClassCallbacks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9658:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10082:25)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10202:17)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10168:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10118:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10010:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+
+PASS iOS tests/matrix-data-fuzz.test.ts (223.249 s)
+PASS iOS tests/matrix-migrations.test.tsx (90.992 s)
+PASS iOS tests/matrix-logic.test.tsx (98.696 s)
+PASS iOS tests/matrix-ui.test.tsx (52.266 s)
+PASS iOS tests/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx
+PASS iOS tests/audit-0.10-data-ui.test.tsx (14.886 s)
+PASS iOS tests/db-location.test.ts
+PASS iOS tests/audit-r83b.test.tsx (5.243 s)
+FAIL iOS tests/audit-io-more.test.tsx (8.819 s)
+  ● T4b more › stale reminder text after language switch
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      41 |   });
+      42 |
+    > 43 |   test('stale reminder text after language switch', async () => {
+         |   ^
+      44 |     await renderApp();
+      45 |     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); }); await flushAll(10);
+      46 |     await go('/more/settings'); await flushAll(10);
+
+      at test (tests/audit-io-more.test.tsx:43:3)
+      at Object.describe (tests/audit-io-more.test.tsx:8:1)
+
+  ● recovery copy (state + live) cannot be imported back
+
+    bad state
+
+      88 |        * pod state_corrupt_* i bez zapisu czystego stanu; dane w bazie zostają nietknięte do poprawionej wersji. */
+      89 |       let migrated: State;
+    > 90 |       try { migrated = migrate(raw); } catch (e) { throw Object.assign(new Error(e instanceof Error ? e.message : String(e)), { migrationFailed: true, cause: e }); }
+         |                                                                        ^
+      91 |       setS(migrated); needsPersist = before !== SCHEMA_VERSION;
+      92 |       /* M1-audytor-generalny-002: udana migracja nie może zostawić jedynie zmigrowanego zapisu — surowy zapis sprzed niej (wraz z „live” i „cfg”) czeka
+      93 |        * w bazie pod kluczem premigrate_<schemat> do upływu PREMIGRATE_KEEP_MS. Bez kopii (np. brak miejsca) zmigrowany stan nie nadpisuje starego „state”. */
+
+      at lib/state/boot.ts:90:72
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+    Cause:
+    bad state
+
+      65 |  */
+      66 | export function migrate(raw: unknown): State {
+    > 67 |   if (!isObj(raw) || !Array.isArray(raw.exercises) || !Array.isArray(raw.templates)) throw new Error('bad state');
+         |                                                                                            ^
+      68 |   setLegacyLb(!((Number(raw.schemaVersion) || 0) >= 11));
+      69 |   const owner: string = typeof raw.ownerId === 'string' && raw.ownerId ? raw.ownerId : LOCAL_OWNER;
+      70 |   const stamp = (o: any, fallbackTs?: number) => {
+
+      at migrate (lib/state/migrate.ts:67:92)
+      at lib/state/boot.ts:90:31
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+PASS iOS tests/audit-backlog-r75.test.tsx
+PASS iOS tests/migrate-released.test.ts
+PASS iOS tests/zk07-pierwszy-start.test.tsx
+(node:27029) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS iOS tests/db-real-sqlite.test.ts
+PASS iOS tests/logic.test.ts
+PASS iOS tests/audit-persist.test.ts
+PASS iOS tests/audit-1-0-a2-reset.test.ts
+
+Test Suites: 1 failed, 16 passed, 17 total
+Tests:       2 failed, 667 passed, 669 total
+Snapshots:   0 total
+Time:        688.75 s
+Ran all test suites matching /tests\/audit-0.10-data-ui.test.tsx|tests\/audit-1-0-a2-reset.test.ts|tests\/audit-backlog-r75.test.tsx|tests\/audit-io-more.test.tsx|tests\/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx|tests\/audit-persist.test.ts|tests\/audit-r83b.test.tsx|tests\/db-location.test.ts|tests\/db-real-sqlite.test.ts|tests\/logic.test.ts|tests\/matrix-data-fuzz.test.ts|tests\/matrix-logic.test.tsx|tests\/matrix-migrations.test.tsx|tests\/matrix-ui.test.tsx|tests\/migrate-released.test.ts|tests\/regress.test.tsx|tests\/zk07-pierwszy-start.test.tsx/i.
+kod 1

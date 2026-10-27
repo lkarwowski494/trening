@@ -1,0 +1,11 @@
+    ✓ każda figura v1 z danych ma wpis: rodzina, werdykt, data, kto, skrót 12 znaków; ukryta — wada i proponowana poprawka (35 ms)
+    ✓ wyświetlana albo zastąpiona ⇒ skrót recenzji = skrót bieżących danych figury i wskazówek (zmiana bez nowej recenzji czerwieni test) (6 ms)
+    ✓ plik runtime: figury = tylko wpisy wyświetlane/zastąpione z aktualnym skrótem; ukryte na liście otwartej (nie renderują się) (4 ms)
+    ✓ „zastąpiona” tylko tam, gdzie wyświetla się figura v2 (gotowa rodzina); „wyświetlana” — tam, gdzie v2 nie ma (15 ms)
+    ✕ rodzina v2 „ready” ⇒ wpis recenzji z bieżącym skrótem rigu i liczbą ćwiczeń z chwili recenzji (28 ms)
+    ✓ skrót v2 = sha256 tekstu rigu rodziny, wspólnego modułu rigów i wariantów (ten sam wzór w skrypcie i w teście) (2 ms)
+    ✓ generator: figura zmieniona po recenzji (inny skrót) wypada z pliku runtime na listę otwartą (114 ms)
+    ✓ Push Press (38 ms)
+    ✓ Pendlay Row (8 ms)
+    ✕ figura z recenzją się renderuje (Pull Up, Overhead Press (sztanga)) (10 ms)
+Tests:       2 failed, 21 skipped, 8 passed, 31 total

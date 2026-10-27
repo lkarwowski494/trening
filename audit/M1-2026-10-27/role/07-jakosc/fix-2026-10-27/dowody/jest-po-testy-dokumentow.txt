@@ -1,0 +1,44 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/matrix-data-fuzz.test.ts (145.08 s)
+PASS iOS tests/hak-pre-push.test.ts (25.74 s)
+PASS iOS tests/zrodlo-jedno.test.ts
+PASS iOS tests/przeplywy.test.ts
+PASS iOS tests/cues.test.tsx (5.94 s)
+PASS iOS tests/sec2-01-names.test.ts
+PASS iOS tests/m5s1-bez-proby.test.ts
+PASS iOS tests/watch-fixtures.test.ts
+PASS iOS tests/store-review-notes.test.ts
+PASS iOS tests/rm-signing.test.tsx
+PASS iOS tests/audit-m1-044-brd.test.ts
+PASS iOS tests/audit-m1-067-language-registry.test.ts
+PASS iOS tests/audit-m1-048-claims-registry.test.ts
+PASS iOS tests/audit-m1-049-critical-content.test.ts
+PASS iOS tests/blokada-wydania.test.ts
+PASS iOS tests/research-quotes.test.ts
+PASS iOS tests/audit-m1-047-store-docs.test.ts
+PASS iOS tests/audit-m1-068-release-plan.test.ts
+PASS iOS tests/audit-k1-brands.test.ts
+PASS iOS tests/store-asc-odpowiedzi.test.ts
+PASS iOS tests/audit-m1-049-risk-register.test.ts
+PASS iOS tests/test-fast.test.ts
+PASS iOS tests/audit-m1-061-quality-claims.test.ts
+PASS iOS tests/worktrees-ignore.test.ts
+PASS iOS tests/readme.test.ts (17.818 s)
+PASS iOS tests/public-repo.test.ts
+PASS iOS tests/verify-docs.test.ts (5.413 s)
+PASS iOS tests/decyzje-straznik.test.ts
+Pakiet musi być „podstawowy” albo „pelny” (jest: czesciowy)
+PASS iOS tests/e2e-pakiet.test.ts
+PASS iOS tests/forbidden-names.test.ts
+PASS iOS tests/audit-m1-045-store-description.test.ts
+PASS iOS tests/paywall-kolejnosc-domyslna.test.ts
+PASS iOS tests/prices-decision.test.ts
+PASS iOS tests/audit-m1-055-promo-rules.test.ts
+PASS iOS tests/audit-m1-p4b-queue.test.ts
+
+Test Suites: 35 passed, 35 total
+Tests:       468 passed, 468 total
+Snapshots:   0 total
+Time:        236.756 s
+Ran all test suites within paths "tests/audit-k1-brands.test.ts", "tests/audit-m1-044-brd.test.ts", "tests/audit-m1-047-store-docs.test.ts", "tests/audit-m1-048-claims-registry.test.ts", "tests/audit-m1-049-critical-content.test.ts", "tests/audit-m1-049-risk-register.test.ts", "tests/audit-m1-061-quality-claims.test.ts", "tests/audit-m1-067-language-registry.test.ts", "tests/audit-m1-068-release-plan.test.ts", "tests/audit-m1-p4b-queue.test.ts", "tests/blokada-wydania.test.ts", "tests/cues.test.tsx", "tests/e2e-pakiet.test.ts", "tests/forbidden-names.test.ts", "tests/hak-pre-push.test.ts", "tests/m5s1-bez-proby.test.ts", "tests/matrix-data-fuzz.test.ts", "tests/przeplywy.test.ts", "tests/public-repo.test.ts", "tests/readme.test.ts", "tests/research-quotes.test.ts", "tests/rm-signing.test.tsx", "tests/sec2-01-names.test.ts", "tests/store-asc-odpowiedzi.test.ts", "tests/store-review-notes.test.ts", "tests/test-fast.test.ts", "tests/verify-docs.test.ts", "tests/watch-fixtures.test.ts", "tests/worktrees-ignore.test.ts", "tests/zrodlo-jedno.test.ts", "tests/decyzje-straznik.test.ts", "tests/paywall-kolejnosc-domyslna.test.ts", "tests/audit-m1-045-store-description.test.ts", "tests/audit-m1-055-promo-rules.test.ts", "tests/prices-decision.test.ts".

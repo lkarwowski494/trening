@@ -1,0 +1,19 @@
+# Standing Calf Raise
+widok: side, kotwica: toe, przyrządy: [{"k":"rect","x":-8,"y":0,"w":28,"h":10}]
+notatka: Przednia część stopy na podwyższeniu, pięty poza krawędzią; zakres ruchu w stawie skokowym ilustracyjny.
+mięśnie (katalog): {"calves":1}
+setup calf.edge: Oprzyj przednią część stóp na podwyższeniu, pięty poza krawędzią.  [źródła: exrx-Gastrocnemius/LVStandingCalfRaise / Preparation; nasm-leg-press-calf-raise / Step 1 (forefeet on the platform, heels beyond the edge)]
+move calf.move: Wspinaj się na palce jak najwyżej, potem opuść pięty, aż poczujesz rozciągnięcie łydek.  [źródła: exrx-Gastrocnemius/LVStandingCalfRaise / Execution; ace-51 / opis; nasm-leg-press-calf-raise / Step 3; FAQ (range of motion)]
+tips calf.knees: Kolana proste lub tylko lekko ugięte — ruch wyłącznie w stawach skokowych.  [źródła: exrx-Gastrocnemius/LVStandingCalfRaise / Comments; ace-51 / opis (slight bend in knees)]
+tips calf.pause: Zatrzymaj się chwilę na górze i opuszczaj powoli.  [źródła: ace-51 / opis (pause at the top, slowly roll the heels down); nasm-leg-press-calf-raise / Step 4 (with control)]
+mistakes calf.mis.partial: Skrócony zakres — bez pełnego wspięcia i opuszczenia.  [źródła: nasm-leg-press-calf-raise / Common Mistakes; exrx-Gastrocnemius/LVStandingCalfRaise / Execution (as high as possible… until calves are stretched)]
+KLATKA start: poza {"t":90,"hip":0,"knee":0,"sh":0,"el":0,"ft":20} at [0,10]
+  kąty: hip=0 knee=0 sh=0 el=0 ankle=20 hip2=0 knee2=0 sh2=0 el2=0 ankle2=20
+  punkty: head=(-11.7,101) shoulder=(-11.7,90) elbow=(-11.7,72) hand=(-11.7,52) hip=(-11.7,60) knee=(-11.7,35) ankle=(-11.7,10) heel=(-13.2,5.2) toe=(0,10) knee2=(-11.7,35) ankle2=(-11.7,10) heel2=(-13.2,5.2) toe2=(0,10) elbow2=(-11.7,72) hand2=(-11.7,52)
+  why above calf.move → OK (4.8)
+  why joint calf.knees → OK (0)
+KLATKA end: poza {"t":90,"hip":0,"knee":0,"sh":0,"el":0,"ft":-35} at [0,10]
+  kąty: hip=0 knee=0 sh=0 el=0 ankle=-35 hip2=0 knee2=0 sh2=0 el2=0 ankle2=-35
+  punkty: head=(-6.7,110.6) shoulder=(-6.7,99.6) elbow=(-6.7,81.6) hand=(-6.7,61.6) hip=(-6.7,69.6) knee=(-6.7,44.6) ankle=(-6.7,19.6) heel=(-11.5,18) toe=(0,10) knee2=(-6.7,44.6) ankle2=(-6.7,19.6) heel2=(-11.5,18) toe2=(0,10) elbow2=(-6.7,81.6) hand2=(-6.7,61.6)
+  why above calf.move → OK (8)
+  why joint calf.knees → OK (0)

@@ -1,0 +1,12 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx
+  M1-032: kod diagnostyczny w wiadomości z ekranu błędu startu
+    ✓ buildSupportMailto z extra: treść zawiera kod i komunikat pod stopką; bez extra — jak dotąd (8 ms)
+    ✓ ekran błędu startu: „Napisz do nas” otwiera pocztę z treścią błędu; bez danych treningowych z zapisu (884 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        5.377 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx/i.

@@ -1,0 +1,18 @@
+# Neutral Grip Pull Up
+widok: side, kotwica: hand, przyrządy: [{"k":"bar","x":0,"y":0}]
+mięśnie (katalog): {"lats":1,"upper_back":0.5,"biceps":0.5,"forearms":0.5,"rear_delt":0.25,"abs":0.25}
+setup npu.hang: Chwyć uchwyty pełnym chwytem (kciuk dookoła) i zawiśnij na prostych rękach.  [źródła: exrx-LatissimusDorsi/BWPullupN / Preparation (neutral grip); ace-191 / Step 1 (full grip); nasm-pull-up / Step 1 (arms fully extended)]
+move pu.pull: Podciągnij się, aż broda znajdzie się nad drążkiem; opuść się do pełnego wyprostu rąk.  [źródła: exrx-LatissimusDorsi/BWPullupN / Execution (neck reaches height of hands); ace-191 / Step 3; nasm-pull-up / Step 3; Step 4]
+tips pu.elbowsDown: Prowadź łokcie w dół, do boków tułowia.  [źródła: ace-191 / Step 2; nasm-pull-up / Step 3]
+tips pu.shoulders: Zacznij ruch od ściągnięcia łopatek w dół.  [źródła: ace-191 / Step 1; nasm-pull-up / Step 2]
+tips pu.noSwing: Bez bujania i wymachów nogami.  [źródła: ace-191 / Step 2; nasm-pull-up / Common Mistakes]
+mistakes pu.partial: Skracanie ruchu — bez wyprostu rąk na dole.  [źródła: nasm-pull-up / Common Mistakes; exrx-LatissimusDorsi/BWPullupN / Execution (arms and shoulders fully extended)]
+KLATKA start: poza {"t":99,"hip":9,"knee":10,"sh":171,"el":0}
+  kąty: hip=9 knee=10 sh=171 el=0 ankle=-8 hip2=9 knee2=10 sh2=171 el2=0 ankle2=-8
+  punkty: head=(-1.7,-27.1) shoulder=(0,-38) elbow=(0,-20) hand=(0,0) hip=(4.7,-67.6) knee=(12.4,-91.4) ankle=(15.9,-116.2) heel=(12.9,-120.2) toe=(26.9,-120.2) knee2=(12.4,-91.4) ankle2=(15.9,-116.2) heel2=(12.9,-120.2) toe2=(26.9,-120.2) elbow2=(0,-20) hand2=(0,0)
+  why joint npu.hang → OK (0)
+KLATKA end: poza {"t":88,"hip":10,"knee":20,"sh":31,"el":148,"ap":1}
+  kąty: hip=10 knee=20 sh=31 el=148 ankle=12 hip2=10 knee2=20 sh2=31 el2=148 ankle2=12
+  punkty: head=(-9.4,6.8) shoulder=(-9.8,-4.2) elbow=(-1,-20) hand=(0,0) hip=(-10.8,-34.2) knee=(-7.3,-59) ankle=(-12.5,-83.4) heel=(-15.5,-87.4) toe=(-1.5,-87.4) knee2=(-7.3,-59) ankle2=(-12.5,-83.4) heel2=(-15.5,-87.4) toe2=(-1.5,-87.4) elbow2=(-1,-20) hand2=(0,0)
+  why above pu.pull → OK (2.8)
+  why horiz pu.elbowsDown → OK (61)

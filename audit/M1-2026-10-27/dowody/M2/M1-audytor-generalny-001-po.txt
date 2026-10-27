@@ -1,0 +1,14 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx (5.63 s)
+  M1-001: dożywotni przy aktywnej subskrypcji — uwaga przed zakupem
+    ✓ EN: miesięczny kupiony sam → wybór dożywotniego pokazuje uwagę nad „Buy forever”; przy innym planie uwagi nie ma (1954 ms)
+    ✓ PL: ta sama uwaga po polsku (290 ms)
+    ✓ bez subskrypcji: dożywotni bez uwagi (311 ms)
+    ✓ subskrypcja z Chmury rodzinnej albo z kodu (osoba nie płaci sama): bez sugestii „anuluj” (587 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        6.141 s, estimated 15 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx/i.

@@ -1,5 +1,5 @@
-Nowa sesja (świeży kontekst). Repo https://github.com/lkarwowski494/trening; gałąź naprawy/M2-koordynator-napraw-2026-10-27-p1: git fetch && git switch naprawy/M2-koordynator-napraw-2026-10-27-p1.
-Prompt roli: node /home/user/prompts/tools/assemble.mjs 07-jakosc --tryb fix --wyjscie /home/user/trening/audit/M1-2026-10-27/role/07-jakosc/fix-2026-10-27 --galaz naprawy/M2-koordynator-napraw-2026-10-27-p1 --data 2026-10-27 --zadania 07-jakosc-005
+Nowa sesja (świeży kontekst). Repo /home/user/trening (Twoja kopia robocza od naprawy/M2-koordynator-napraw-2026-10-27-p1; koordynator scali ją do gałęzi partii 1). Commituj w kopii roboczej, nie wypychaj.
+Prompt roli: /home/user/trening/audit/M1-2026-10-27/prompty/07-jakosc-fix-p1.md (złożony: assemble.mjs 07-jakosc --tryb fix --zadania 07-jakosc-005)
 Zadanie planu M1-audytor-generalny-009 (P2, P): SYS-01 — decyzje właściciela trafiają do zapisu bez wdrożenia i bez testu-strażnika (decyzja → kod → test).
 Test akceptacyjny: skrypt w verify: każda decyzja w docs/18 ma pole wdrożenia i test-strażnik albo powód; tabela decyzji 1.0 z audytu zgodna. Zależy od: —.
 P: decyzja DEC-02 rozstrzygnięta 2026-10-27, wybór a „strażnik w verify dla wszystkich decyzji (także wstecz, z tabel audytu)”. Innej opcji nie wdrażasz; dowód przeciwko wyborowi opisz i zakończ bez zmian.

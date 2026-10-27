@@ -1,0 +1,19 @@
+# Leg Press
+widok: side, kotwica: hip, przyrządy: [{"k":"line","pts":[[-6,22],[14,22]]},{"k":"line","pts":[[-3.3,24.6],[-27.7,53.7]]},{"k":"line","pts":[[4,22],[4,0]]},{"k":"plank","at":"toe","ang":135,"len":26}]
+notatka: Kąt oparcia i prowadnicy (45°) ilustracyjny; platforma przesuwa się wzdłuż prowadnicy. Stopy płasko na platformie (lp.heels).
+mięśnie (katalog): {"quads":1,"glutes":0.5,"adductors":0.5,"hamstrings":0.25}
+setup lp.setup: Oprzyj plecy i miednicę o oparcie; stopy płasko na platformie, kolana zgięte mniej więcej pod kątem prostym.  [źródła: ace-154 / Step 1 (back and sacrum flat against the backrest; feet on the plate, knees at approximately 90 degrees, heels flat); nasm-leg-press / Step 1: Setup (back and head against the backrest; knees bent at approximately 90 degrees); exrx-Quadriceps/SL45LegPress / Preparation (back on padded support; feet on platform)]
+move lp.move: Wypchnij platformę, prostując biodra i kolana; opuść ją powoli, uginając nogi.  [źródła: ace-154 / Step 2; Step 4; nasm-leg-press / Step 3; Step 4; exrx-Quadriceps/SL45LegPress / Execution]
+tips lp.noLock: Na górze nie blokuj kolan w przeproście.  [źródła: ace-154 / Step 3 (do not hyperextend/lock-out); nasm-leg-press / Common Mistakes (locking out knees)]
+tips lp.heels: Pchaj całą stopą — pięty nie odrywają się od platformy.  [źródła: ace-154 / Step 2; Step 3; exrx-Quadriceps/SL45LegPress / Comments (do not allow heels to raise)]
+tips lp.hips: Nie schodź tak nisko, by miednica odrywała się od oparcia, a dolne plecy zaokrąglały.  [źródła: ace-154 / Step 3; Step 4 (butt off the seat, thighs against ribcage); exrx-Quadriceps/SL45LegPress / Comments (without forcing hips to bend at waist)]
+tips sq.kneesToes: Kolana idą w linii palców stóp — nie zapadają się do środka.  [źródła: exrx-Quadriceps/SL45LegPress / Comments (knees pointed same direction as feet); nasm-leg-press / Common Mistakes (knees cave inward)]
+mistakes sq.mis.kneesIn: Kolana zapadające się do środka.  [źródła: nasm-leg-press / Common Mistakes; exrx-Quadriceps/LVSeatedLegPress / Comments]
+KLATKA start: poza {"t":130,"hip":90,"knee":5,"ft":135,"sh":0,"el":0} at [0,30]
+  kąty: hip=90 knee=5 sh=0 el=0 ankle=10 hip2=90 knee2=5 sh2=0 el2=0 ankle2=10
+  punkty: head=(-26.4,61.4) shoulder=(-19.3,53) elbow=(-7.7,39.2) hand=(5.1,23.9) hip=(0,30) knee=(19.2,46.1) ankle=(39.6,60.4) heel=(44.6,61.1) toe=(34.7,71) knee2=(19.2,46.1) ankle2=(39.6,60.4) heel2=(44.6,61.1) toe2=(34.7,71) elbow2=(-7.7,39.2) hand2=(5.1,23.9)
+  why joint lp.noLock → OK (5)
+KLATKA end: poza {"t":130,"hip":132,"knee":73,"ft":135,"sh":0,"el":0} at [0,30]
+  kąty: hip=132 knee=73 sh=0 el=0 ankle=36 hip2=132 knee2=73 sh2=0 el2=0 ankle2=36
+  punkty: head=(-26.4,61.4) shoulder=(-19.3,53) elbow=(-7.7,39.2) hand=(5.1,23.9) hip=(0,30) knee=(3.5,54.8) ankle=(28.2,58.7) heel=(33.1,59.4) toe=(23.2,69.3) knee2=(3.5,54.8) ankle2=(28.2,58.7) heel2=(33.1,59.4) toe2=(23.2,69.3) elbow2=(-7.7,39.2) hand2=(5.1,23.9)
+  why joint lp.move → OK (73)

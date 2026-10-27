@@ -1,0 +1,20 @@
+# Seated Cable Row
+widok: side, kotwica: hip, przyrządy: [{"k":"rect","x":-16,"y":4,"w":26,"h":4},{"k":"line","pts":[[46,4],[46,26]]},{"k":"cable","at":"hand","from":[54,41.7]},{"k":"grip","at":"hand","r":3}]
+notatka: Siedzisko i podnóżek uproszczone; linka poziomo od bloczka na wysokości uchwytu.
+mięśnie (katalog): {"lats":1,"upper_back":1,"rear_delt":0.5,"biceps":0.5,"forearms":0.25,"lower_back":0.25}
+setup scr.sit: Usiądź, oprzyj stopy, kolana lekko ugięte, plecy wyprostowane.  [źródła: ace-48 / opis; exrx-BackGeneral/CBSeatedRow / Preparation]
+move scr.pull: Przyciągnij uchwyt do brzucha, łokcie blisko tułowia; wróć do wyprostu rąk.  [źródła: ace-48 / opis; exrx-BackGeneral/CBSeatedRow / Execution; nasm-seated-machine-row-close-grip / Step 3; Step 4]
+tips scr.chest: Na końcu ruchu klatka do przodu, łopatki ściągnięte w tył.  [źródła: ace-48 / opis (lift the chest); exrx-BackGeneral/CBSeatedRow / Execution (shoulders back, chest forward); nasm-seated-machine-row-close-grip / Step 3 (retracting your shoulder blades)]
+tips scr.control: Wracaj powoli, bez odbijania ciężaru na końcu.  [źródła: ace-48 / opis (slowly straightening the arms); exrx-BackGeneral/CBSeatedRow / Comments (do not pause or bounce at bottom); nasm-seated-machine-row-close-grip / Step 4 (with control)]
+mistakes mis.jerk: Szarpanie i rzucanie ciężarem zamiast kontrolowanego ruchu.  [źródła: nasm-seated-machine-row-close-grip / Common Mistakes (jerky movements, momentum); exrx-BackGeneral/CBSeatedRow / Comments (do not bounce)]
+KLATKA start: poza {"t":90,"sh":88,"el":0,"hip":95,"knee":21,"ft":109} at [0,13]
+  kąty: hip=95 knee=21 sh=88 el=0 ankle=35 hip2=95 knee2=21 sh2=88 el2=0 ankle2=35
+  punkty: head=(0,54) shoulder=(0,43) elbow=(18,42.4) hand=(38,41.7) hip=(0,13) knee=(24.9,15.2) ankle=(48.9,8.3) heel=(53.7,6.8) toe=(49.1,20) knee2=(24.9,15.2) ankle2=(48.9,8.3) heel2=(53.7,6.8) toe2=(49.1,20) elbow2=(18,42.4) hand2=(38,41.7)
+  why joint scr.pull → OK (0)
+  why joint scr.sit → OK (21)
+  why horiz scr.sit → OK (90)
+KLATKA end: poza {"t":90,"sh":-38,"el":111,"hip":95,"knee":21,"ft":109} at [0,13]
+  kąty: hip=95 knee=21 sh=-38 el=111 ankle=35 hip2=95 knee2=21 sh2=-38 el2=111 ankle2=35
+  punkty: head=(0,54) shoulder=(0,43) elbow=(-11.1,28.8) hand=(8,23) hip=(0,13) knee=(24.9,15.2) ankle=(48.9,8.3) heel=(53.7,6.8) toe=(49.1,20) knee2=(24.9,15.2) ankle2=(48.9,8.3) heel2=(53.7,6.8) toe2=(49.1,20) elbow2=(-11.1,28.8) hand2=(8,23)
+  why touch scr.pull → OK (0.1)
+  why horiz scr.sit → OK (90)

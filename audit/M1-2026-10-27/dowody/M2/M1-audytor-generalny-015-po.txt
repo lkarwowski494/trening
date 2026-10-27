@@ -1,0 +1,12 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-015-blad-zapisu.test.tsx
+  M1-015: błąd zapisu widoczny na ekranie, z którego zapisano
+    ✓ edycja sesji z historii: „Zapisz sesję” przy pełnej pamięci → okno błędu od razu (bez przechodzenia na Trening); „Spróbuj ponownie” po zwolnieniu miejsca zapisuje (1739 ms)
+    ✓ kolejne nieudane zapisy tego samego błędu nie mnożą okien (jedno okno na epizod błędu) (353 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        5.062 s, estimated 6 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-015-blad-zapisu.test.tsx/i.

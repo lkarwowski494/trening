@@ -1,0 +1,19 @@
+# Hip Thrust (sztanga)
+widok: side, kotwica: toe, przyrządy: [{"k":"rect","x":-56,"y":20,"w":36,"h":4},{"k":"line","pts":[[-50,20],[-50,0]]},{"k":"line","pts":[[-26,20],[-26,0]]},{"k":"plate","at":"hip","tb":[3,9]}]
+notatka: Ułożenie dłoni na sztandze i kąt kolan w górnej pozycji ilustracyjne.
+mięśnie (katalog): {"glutes":1,"hamstrings":0.5,"quads":0.25,"adductors":0.25,"abductors":0.25}
+setup ht.setup: Oprzyj górną część pleców o krawędź ławki, sztangę połóż na biodrach (najlepiej na podkładce); stopy płasko, kolana ugięte.  [źródła: exrx-GluteusMaximus/BBHipThrust / Preparation; Comments (padding); acecert-7403 / akapit „The BHT is basically a glute or hip bridge…”]
+move ht.move: Unieś biodra do pełnego wyprostu; opuść je kontrolowanie.  [źródła: exrx-GluteusMaximus/BBHipThrust / Execution; acecert-7403 / akapit wstępny (lowers the tailbone… presses the hips upward); ace-318 / opis]
+tips ht.rigid: Ruch tylko w biodrach — na górze nie wyginaj lędźwi w łuk.  [źródła: exrx-GluteusMaximus/BBHipThrust / Comments (torso rigid; avoid chest arching and anterior pelvic tilt); ace-49 / Step 2; wskazówka końcowa (avoid arching your lower back)]
+tips ht.hold: Przytrzymuj ciężar dłońmi, żeby się nie przetaczał.  [źródła: exrx-GluteusMaximus/BBHipThrust / Comments (keep bar from rolling back with hands); ace-318 / opis (hold on to the bar)]
+mistakes ht.mis.arch: Przeprost w lędźwiach na górze zamiast wyprostu w biodrach.  [źródła: exrx-GluteusMaximus/BBHipThrust / Comments; ace-49 / wskazówka końcowa]
+KLATKA start: poza {"t":150,"hip":70,"knee":135,"ft":0,"sh":40,"el":20} at [32,0]
+  kąty: hip=70 knee=135 sh=40 el=20 ankle=5 hip2=70 knee2=135 sh2=40 el2=20 ankle2=5
+  punkty: head=(-31.5,33.3) shoulder=(-22,27.8) elbow=(-4.2,31) hand=(13.1,41) hip=(4,12.8) knee=(23.2,28.9) ankle=(21,4) heel=(18,0) toe=(32,0) knee2=(23.2,28.9) ankle2=(21,4) heel2=(18,0) toe2=(32,0) elbow2=(-4.2,31) hand2=(13.1,41)
+  why low ht.setup → OK (0)
+  why low ht.setup → OK (3.8)
+KLATKA end: poza {"t":180,"hip":-4,"knee":114,"ft":0,"sh":12,"el":0} at [32,0]
+  kąty: hip=-4 knee=114 sh=12 el=0 ankle=28 hip2=-4 knee2=114 sh2=12 el2=0 ankle2=28
+  punkty: head=(-33.2,27.8) shoulder=(-22.2,27.8) elbow=(-4.6,31.6) hand=(15,35.7) hip=(7.8,27.8) knee=(32.7,26.1) ankle=(21,4) heel=(18,0) toe=(32,0) knee2=(32.7,26.1) ankle2=(21,4) heel2=(18,0) toe2=(32,0) elbow2=(-4.6,31.6) hand2=(15,35.7)
+  why line ht.move → OK (176)
+  why low ht.setup → OK (0)

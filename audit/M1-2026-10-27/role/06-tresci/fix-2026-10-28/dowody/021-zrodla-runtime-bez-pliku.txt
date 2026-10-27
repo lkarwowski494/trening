@@ -1,0 +1,2 @@
+źródła zestawów ogólnych (M1-audytor-generalny-021): brak pliku data/zrodla/wskazowki-ogolne.json
+exit 1

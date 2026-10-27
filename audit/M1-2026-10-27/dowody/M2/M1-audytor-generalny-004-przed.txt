@@ -1,0 +1,173 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+(node:19765) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL iOS tests/audit-m1-2026-10-27-004-ratunek.test.tsx
+  M1-004: ostrzeżenie na ekranie błędu startu
+    ✕ PL i EN: ostrzeżenie widoczne nad „Wyślij dane” (494 ms)
+    ✕ wszystkie słowniki mają ostrzeżenie i oba teksty komunikatu o kopii (treść krytyczna: dane) (9 ms)
+  M1-004: kopia ratunkowa plików bazy (prawdziwy SQLite, tryb WAL)
+    ✕ komplet plików: kopia ma integrity_check = ok i tyle samo wierszy; sama baza bez dziennika gubi wiersze; oryginał bez zmian (117 ms)
+    ✕ brak pliku bazy, brak katalogu bazy (web) albo błąd kopiowania → null, bez wyjątku
+    ✕ ekran: baza się nie otwiera, brak kopii w puli → „Wyślij dane” zapisuje folder Rescue-… i podaje miejsce w Plikach (28 ms)
+
+  ● M1-004: ostrzeżenie na ekranie błędu startu › PL i EN: ostrzeżenie widoczne nad „Wyślij dane”
+
+    Unable to find an element with testID: start-error-warning
+
+    [36m<RNCSafeAreaProvider>[39m
+      [36m<View>[39m
+        [36m<View[39m
+          [33maccessibilityElementsHidden[39m=[32m{false}[39m
+          [33mimportantForAccessibility[39m=[32m"auto"[39m
+        [36m>[39m
+          [36m<View[39m
+            [33mtestID[39m=[32m"start-error"[39m
+          [36m>[39m
+            [36m<Text[39m
+              [33maccessibilityRole[39m=[32m"header"[39m
+            [36m>[39m
+              [0mNie udało się otworzyć danych.[0m
+            [36m</Text>[39m
+            [36m<Text>[39m
+              [0mDane w telefonie nie zostały zmienione — możesz je wysłać jako plik.[0m
+            [36m</Text>[39m
+            [36m<Text>[39m
+              [0mbaza nieczytelna[0m
+            [36m</Text>[39m
+            [36m<Text>[39m
+              [0mAutomatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → Trening → Backup.[0m
+            [36m</Text>[39m
+            [36m<View[39m
+              [33maccessibilityRole[39m=[32m"button"[39m
+              [33maccessible[39m=[32m{true}[39m
+            [36m>[39m
+              [36m<Text>[39m
+                [0mWyślij dane[0m
+              [36m</Text>[39m
+            [36m</View>[39m
+            [36m<View[39m
+              [33maccessibilityRole[39m=[32m"button"[39m
+              [33maccessible[39m=[32m{true}[39m
+            [36m>[39m
+              [36m<Text>[39m
+                [0mSpróbuj ponownie[0m
+              [36m</Text>[39m
+            [36m</View>[39m
+            [36m<View[39m
+              [33maccessibilityRole[39m=[32m"button"[39m
+              [33maccessible[39m=[32m{true}[39m
+            [36m>[39m
+              [36m<Text>[39m
+                [0mNapisz do nas[0m
+              [36m</Text>[39m
+            [36m</View>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</View>[39m
+    [36m</RNCSafeAreaProvider>[39m
+
+      26 |   test('PL i EN: ostrzeżenie widoczne nad „Wyślij dane”', async () => {
+      27 |     (global as any).__dbOpenFail = true; await renderApp(); await flushAll(10);
+    > 28 |     expect(screen.getByTestId('start-error-warning').props.children).toBe(WARN);
+         |                   ^
+      29 |   });
+      30 |   test('wszystkie słowniki mają ostrzeżenie i oba teksty komunikatu o kopii (treść krytyczna: dane)', () => {
+      31 |     const keys = [WARN, 'Kopia bazy w Plikach', 'Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.'];
+
+      at Object.getByTestId (tests/audit-m1-2026-10-27-004-ratunek.test.tsx:28:19)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-004: ostrzeżenie na ekranie błędu startu › wszystkie słowniki mają ostrzeżenie i oba teksty komunikatu o kopii (treść krytyczna: dane)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "_source.json",
+        "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+    -   true,
+    +   false,
+      ]
+
+      32 |     for (const f of fs.readdirSync(LOCALES).filter(x => x.endsWith('.json'))) {
+      33 |       const d = JSON.parse(fs.readFileSync(path.join(LOCALES, f), 'utf8'));
+    > 34 |       for (const k of keys) expect([f, k, typeof d[k] === 'string' && d[k].length > 0]).toEqual([f, k, true]);
+         |                                                                                         ^
+      35 |       expect([f, d[keys[2]].includes('{app}') && d[keys[2]].includes('{folder}')]).toEqual([f, true]);
+      36 |     }
+      37 |   });
+
+      at Object.toEqual (tests/audit-m1-2026-10-27-004-ratunek.test.tsx:34:89)
+
+  ● M1-004: kopia ratunkowa plików bazy (prawdziwy SQLite, tryb WAL) › komplet plików: kopia ma integrity_check = ok i tyle samo wierszy; sama baza bez dziennika gubi wiersze; oryginał bez zmian
+
+    TypeError: (0 , _backup.rescueDbCopy) is not a function
+
+      48 |     (FS.getInfoAsync as jest.Mock).mockImplementation(async (u: string) => ({ exists: fs.existsSync(real(u)) }));
+      49 |     (FS.makeDirectoryAsync as jest.Mock).mockImplementation(async (u: string) => { fs.mkdirSync(real(u), { recursive: true }); });
+    > 50 |     const name = await rescueDbCopy(new Date(2026, 9, 27, 21, 5), src, async (a, b) => { fs.copyFileSync(real(a), real(b)); });
+         |                                    ^
+      51 |     expect(name).toBe('Rescue-2026-10-27-2105');
+      52 |     const out = path.join(doc, 'Backup', name!); expect(fs.readdirSync(out).sort()).toEqual(fs.readdirSync(src).filter(f => (DB_FILES as readonly string[]).includes(f)).sort());
+      53 |     const copy = new DatabaseSync(path.join(out, 'trening.db'));
+
+      at Object.<anonymous> (tests/audit-m1-2026-10-27-004-ratunek.test.tsx:50:36)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● M1-004: kopia ratunkowa plików bazy (prawdziwy SQLite, tryb WAL) › brak pliku bazy, brak katalogu bazy (web) albo błąd kopiowania → null, bez wyjątku
+
+    TypeError: (0 , _backup.rescueDbCopy) is not a function
+
+      59 |   });
+      60 |   test('brak pliku bazy, brak katalogu bazy (web) albo błąd kopiowania → null, bez wyjątku', async () => {
+    > 61 |     expect(await rescueDbCopy(new Date(), undefined)).toBeNull();
+         |                              ^
+      62 |     expect(await rescueDbCopy(new Date(), '/nie/ma')).toBeNull();
+      63 |     (FS.getInfoAsync as jest.Mock).mockImplementation(async () => ({ exists: true }));
+      64 |     expect(await rescueDbCopy(new Date(), '/c/Library/SQLite', async () => { throw new Error('EACCES'); })).toBeNull();
+
+      at Object.<anonymous> (tests/audit-m1-2026-10-27-004-ratunek.test.tsx:61:30)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● M1-004: kopia ratunkowa plików bazy (prawdziwy SQLite, tryb WAL) › ekran: baza się nie otwiera, brak kopii w puli → „Wyślij dane” zapisuje folder Rescue-… i podaje miejsce w Plikach
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 6
+    + Received  + 1
+
+    - Array [
+    -   Object {
+    -     "from": "file:///c/Library/SQLite/trening.db",
+    -     "to": StringMatching /^file:\/\/\/doc\/Backup\/Rescue-\d{4}-\d{2}-\d{2}-\d{4}\/trening\.db$/,
+    -   },
+    - ]
+    + Array []
+
+      69 |     (global as any).__dbOpenFail = true; await renderApp(); await flushAll(10); (Sharing.shareAsync as jest.Mock).mockClear();
+      70 |     await tap(screen.getByText(t('Wyślij dane'))); await flushAll(20);
+    > 71 |     expect((FS.copyAsync as jest.Mock).mock.calls.map(c => c[0])).toEqual([{ from: 'file:///c/Library/SQLite/trening.db', to: expect.stringMatching(/^file:\/\/\/doc\/Backup\/Rescue-\d{4}-\d{2}-\d{2}-\d{4}\/trening\.db$/) }]);
+         |                                                                   ^
+      72 |     const a = global.__alerts.at(-1)!; expect(a.title).toBe('Kopia bazy w Plikach'); expect(a.msg).toMatch(new RegExp(`^Pliki → Na moim iPhonie → ${appName()} → Backup → Rescue-`));
+      73 |     expect(global.__alerts.some(x => x.title === t('Nie udało się wysłać danych'))).toBe(false);
+      74 |   });
+
+      at Object.toEqual (tests/audit-m1-2026-10-27-004-ratunek.test.tsx:71:67)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 5 total
+Snapshots:   0 total
+Time:        4.469 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-004-ratunek.test.tsx/i.

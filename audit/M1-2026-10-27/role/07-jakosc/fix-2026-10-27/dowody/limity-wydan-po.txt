@@ -1,0 +1,40 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/m5s1-dni-zapis.test.ts
+  próg 7 minut: tylko trening na żywo dłuższy niż MIN_LIVE_MINUTES_FOR_DAY zużywa dzień
+    ✓ stała jedna: 7; dokładnie 7 min nie zużywa, 7 min i 1 s tak; NaN i ujemne nie (7 ms)
+    ✓ recordLiveDay: jeden wpis na dzień z najpóźniejszym startem, kolejność rosnąca, bez mutacji; stare wpisy (> 400 dni) odpadają; śmieci pomijane (2 ms)
+  licznik z magazynu: ukończenie, wstecz, anulowany, trwający, zapis po 6 h, usunięcie
+    ✓ trening wstecz (bez znacznika live), także z dzisiejszą datą, nigdy nie zużywa dnia i nie jest blokowany (79 ms)
+    ✓ anulowany trening (30 min) nie zużywa dnia: 4 dni wcześniej → dozwolony, zużyte 4 (50 ms)
+    ✓ trwający trening nie jest dniem ukończonym; strażnik wpuszcza (blokuje „trening w toku”, nie limit) (27 ms)
+    ✓ po ukończeniu („Zakończ”, 30 min) dzień się liczy; kolejny trening tego samego dnia przechodzi mimo limitu, następnego dnia — nie (29 ms)
+    ✓ próg 7 min na żywo: 6 min i dokładnie 7 min nie zużywają dnia, 8 min tak; pauzy odejmowane (15 min z pauzą 10 min = 5 min → nie); krótkie zostają w historii (83 ms)
+    ✓ zapis po 6 h bez aktywności (autoFinishStale) liczy się jak ukończony, jeśli trwał > 7 min (34 ms)
+    ✓ R-M5-1 ZAMKNIĘTE decyzją (22.10.2026): usunięcie treningu z historii NIE zwraca dnia — dni są zapisane osobno (33 ms)
+    ✓ edycja zakończonego treningu (czas, data) nie zmienia zapisanych dni (34 ms)
+    migracja: dni z historii (dane poprzedniej wersji, bez pola liveDays)
+      ✓ brak pola → dni BIEŻĄCEGO miesiąca z treningów na żywo > 7 min (2 i 9; nie krótki 11, nie wstecz 12, nie październik) (47 ms)
+      ✓ idempotentna; poprawne pole zostaje (usunięty trening nie wraca do licznika po kolejnej migracji / restarcie) (94 ms)
+      ✓ uszkodzone pole (nie lista, wpis bez startu) → odtworzone z historii; pusta lista → brak pola (138 ms)
+      ✓ wydana kopia v0.20.0 (schemat 19, fixture) migruje bez utraty treningów; wpisy dni poprawne (33 ms)
+      ✓ wczytanie przez start aplikacji: zapis bez pola → pole uzupełnione (44 ms)
+    kopia zapasowa, drugie urządzenie, ponowna instalacja, cofnięty zegar (wyniki opisane w testach)
+      ✓ kopia zawiera zapisane dni; przywrócenie niesie dni z kopii, także gdy treningi usunięto (48 ms)
+      ✓ drugie urządzenie / starsza kopia: dni = dni z kopii (przywrócenie starszej kopii cofa do jej dni — świadomie, brak konta i synchronizacji) (81 ms)
+      ✓ ponowna instalacja bez kopii: licznik zaczyna od zera (dni żyją tylko na telefonie) — R-M5-5, brzegowy, bez naprawy (35 ms)
+      ✓ cofnięty zegar: na dzień bez wpisu w tym samym miesiącu nadal blokada; na dzień z wpisem — wolno; poprzedni miesiąc ma własny licznik (27 ms)
+  limit tylko się luzuje (wzorzec portfela): stała limitu i ALWAYS_AVAILABLE względem zapisu z poprzednich wydań
+    ✓ liczba dni darmowych nie maleje względem żadnego zapisanego wydania; lista „zawsze dostępne” zawiera wszystko, co zawierała (2 ms)
+    ✓ zapis najnowszego wydania zgadza się z kodem (zmiana limitu = nowy wpis w tests/limity-wydan.json w tym samym commicie)
+    ✓ próg minut dnia treningowego nie maleje względem żadnego wydania; P3 (COUNT_FULL_STARTS_IN_EXPIRY_MONTH) nie wraca do true
+  błąd odczytu sklepu to „nieznany”, nigdy „darmowy” (docs/30 3.3 pułapka 2)
+    ✓ sklep rzuca przy odczycie: state = unknown (nie free); z zapamiętanym pełnym dostępem poziom full, bez zapamiętanego — free po cichu; dopiero odpowiedź „brak uprawnień” daje free (23 ms)
+  expo-iap przypięty dokładnie (bez ^ i ~)
+    ✓ package.json: "expo-iap": "5.8.1" (wydana 26.09.2026 wg rejestru npm); zainstalowana wersja zgodna (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       24 passed, 24 total
+Snapshots:   0 total
+Time:        5.371 s, estimated 6 s
+Ran all test suites within paths "tests/m5s1-dni-zapis.test.ts".

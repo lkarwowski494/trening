@@ -1,0 +1,321 @@
+docs/18-przekazanie.md:41: brak pola [wdrożenie: …] — - 11.10.2026: raporty rynkowe — wnioski w docs/research/raporty-rynkowe-2026-10.md; import
+docs/18-przekazanie.md:42: brak pola [wdrożenie: …] — - 11.10.2026: ocena realności znalezisk (A) — CLAUDE.md.
+docs/18-przekazanie.md:43: brak pola [wdrożenie: …] — - 11.10.2026: usprawnienie pracy — wariant B (wszystko naraz, przed nowymi funkcjami); doc
+docs/18-przekazanie.md:44: brak pola [wdrożenie: …] — - 11.10.2026: **trening zrobiony wcześniej (pkt 4) — wariant A**: trening szablonem X w dn
+docs/18-przekazanie.md:48: brak pola [wdrożenie: …] — - 11.10.2026: **wyłączenie wszystkich planów (pkt 5) — wariant A z potwierdzeniem**: ikona
+docs/18-przekazanie.md:52: brak pola [wdrożenie: …] — - 11.10.2026: **autouzupełnianie serii (pkt 6) — wariant A (kaskada w dół)**: wartość wpis
+docs/18-przekazanie.md:55: brak pola [wdrożenie: …] — - 11.10.2026: **podsumowanie rekordów (pkt 7) — wariant A, bez grafiki**: dla każdego ćwic
+docs/18-przekazanie.md:58: brak pola [wdrożenie: …] — - 11.10.2026: **Apple Zdrowie (pkt 9)** — (1) etapami (A): etap 1 — aktywności i kroki z H
+docs/18-przekazanie.md:64: brak pola [wdrożenie: …] — - 11.10.2026: **trening z zegarka (pkt 9, etap 2) — A**: trening siłowy w Health pokrywają
+docs/18-przekazanie.md:67: brak pola [wdrożenie: …] — - 11.10.2026: **baza ćwiczeń (pkt 10) — A**: rozbudowa własnych wskazówek techniki (dziś 8
+docs/18-przekazanie.md:71: brak pola [wdrożenie: …] — - 11.10.2026: **Apps4Brew (pkt 11) — A**: marka od teraz (strona, polityka prywatności, st
+docs/18-przekazanie.md:76: brak pola [wdrożenie: …] — - 11.10.2026: **nawigacja (docs/22, P1) — wariant A: 4 zakładki Trening · Plan · Postępy ·
+docs/18-przekazanie.md:78: brak pola [wdrożenie: …] — - 11.10.2026: **domena** — zgoda właściciela na zakup (niewielki wydatek poza Apple); reko
+docs/18-przekazanie.md:80: brak pola [wdrożenie: …] — - 11.10.2026: **strona internetowa (pkt 12) — A**: jedna prosta strona Apps4Brew na GitHub
+docs/18-przekazanie.md:83: brak pola [wdrożenie: …] — - 11.10.2026: **Ryzyko jednej z popularnych aplikacji (pkt 13) — A**: raport Gemini mylił 
+docs/18-przekazanie.md:86: brak pola [wdrożenie: …] — - 11.10.2026: **aplikacja na Apple Watch — A jako priorytet po wejściu do App Store**: eta
+docs/18-przekazanie.md:89: brak pola [wdrożenie: …] — - 11.10.2026 (zastąpione 13.10.2026 i 20.10.2026 — obowiązuje docs/monetyzacja.md): **cenn
+docs/18-przekazanie.md:91: brak pola [wdrożenie: …] — - 11.10.2026: **docs/22 P2 — B**: „Z szablonu” w arkuszu „Inny trening” otwiera osobny peł
+docs/18-przekazanie.md:93: brak pola [wdrożenie: …] — - 11.10.2026: **docs/22 P3 — A**: dolny „Zakończ trening i zapisz” usunięty; zostaje „Zako
+docs/18-przekazanie.md:95: brak pola [wdrożenie: …] — - 11.10.2026: **podział lib/store.ts scalony** (gałąź refactor-store): fasada 6 KB + 25 mo
+docs/18-przekazanie.md:97: brak pola [wdrożenie: …] — - 11.10.2026: **docs/22 P4 — A**: „Pierwsze kroki” — 3 kroki, każdy z jednym przyciskiem (
+docs/18-przekazanie.md:98: brak pola [wdrożenie: …] — - 11.10.2026: **docs/22 P5 — A**: masa ciała jako sekcja w zakładce Postępy (wykres + doda
+docs/18-przekazanie.md:99: brak pola [wdrożenie: …] — - 11.10.2026: **docs/22 P6 — B**: import CSV z innych dzienników w Kopii zapasowej ORAZ ja
+docs/18-przekazanie.md:101: brak pola [wdrożenie: …] — - 11.10.2026: **docs/22 P7 — A z wyjątkiem (decyzja właściciela)**: dwa wydania — (1) ekra
+docs/18-przekazanie.md:106: brak pola [wdrożenie: …] — - 11.10.2026: **docs/22 P8 — B (właściciel)**: Progresja tygodnia = wykonane + zaplanowane
+docs/18-przekazanie.md:111: brak pola [wdrożenie: …] — - 11.10.2026: **okienko rekordów po „Zakończ” — usunięte (A)**: po zakończeniu treningu od
+docs/18-przekazanie.md:113: brak pola [wdrożenie: …] — - 11.10.2026: **pozostałe problemy audytu nawigacji (docs/22, 2.2) — A, pakietem wg propoz
+docs/18-przekazanie.md:117: brak pola [wdrożenie: …] — - 11.10.2026: **8A** okno „Zaktualizować szablon?” po „Zakończ” → przycisk „Zapisz zmiany 
+docs/18-przekazanie.md:122: brak pola [wdrożenie: …] — - 11.10.2026: **1A** przycisk „Zapisz zmiany w szablonie” tylko zaraz po treningu (stan w 
+docs/18-przekazanie.md:126: brak pola [wdrożenie: …] — - 11.10.2026: **wydanie 2 — cztery zakładki i masa ciała w Postępach (docs/22 wariant A; P
+docs/18-przekazanie.md:144: brak pola [wdrożenie: …] — - 11.10.2026 (ok. 23:30): **TestFlight 0.12.0 — A**: po zielonym E2E 18/18, verify i liści
+docs/18-przekazanie.md:147: brak pola [wdrożenie: …] — - 11.10.2026: **hasło „w cenie espresso lub taniej”** — wyjątek od warunku źródeł (docs/15
+docs/18-przekazanie.md:148: brak pola [wdrożenie: …] — - 11.10.2026 (ok. 23:45, „wszystko wg rekomendacji”): (1) wskazówki ćwiczeń, partia 1 — ba
+docs/18-przekazanie.md:153: brak pola [wdrożenie: …] — - 11.10.2026: **kolejność wydań natywnych — A** (docs/28): (1) sama aktualizacja `@kingsti
+docs/18-przekazanie.md:156: brak pola [wdrożenie: …] — - 11.10.2026: **Gemini (subskrypcja właściciela) — wniosek z prób** (wskazówki techniki, p
+docs/18-przekazanie.md:161: brak pola [wdrożenie: …] — - 12.10.2026: 0.12.0 — A: osobny build dziś (poprawka scenariusza 05, PR, Merge + Run work
+docs/18-przekazanie.md:162: brak pola [wdrożenie: …] — - 12.10.2026: komunikacja — A: agent pisze tylko, gdy potrzebna decyzja/kliknięcie właścic
+docs/18-przekazanie.md:163: brak pola [wdrożenie: …] — - 12.10.2026: tag v0.12.0-b1006 zostaje (B) — build 1006 nie powstał (TestFlight 382072863
+docs/18-przekazanie.md:164: brak pola [wdrożenie: …] — - 12.10.2026: cel serii na partię/tydzień — funkcja A (Ustawienia: per partia Automatyczni
+docs/18-przekazanie.md:165: brak pola [wdrożenie: …] — - 12.10.2026: research serii wg partii (docs/research/32): automatycznie 10 dla każdej par
+docs/18-przekazanie.md:166: brak pola [wdrożenie: …] — - 12.10.2026: audyt zmian 0.13.0 — 1 WYSOKIE (import CSV: ćwiczenia z masą ciała w `weight
+docs/18-przekazanie.md:167: brak pola [wdrożenie: …] — - 12.10.2026: backlog — A: 0.14.0 = porządek statusów + małe błędy (Q-004, Q-012…Q-016, Q-
+docs/18-przekazanie.md:168: brak pola [wdrożenie: …] — - 12.10.2026: rozbicie barków/pleców w statystykach serii — wycofane (A, decyzja zastępuje
+docs/18-przekazanie.md:169: brak pola [wdrożenie: …] — - 12.10.2026: monetyzacja — B: na start subskrypcja (docs/27, wydanie 0.17), z możliwością
+docs/18-przekazanie.md:170: brak pola [wdrożenie: …] — - 12.10.2026: E2E 0.13.0 i 0.14.0 — scenariusz 07 padał (linijka podpowiedzi zamiennika po
+docs/18-przekazanie.md:171: brak pola [wdrożenie: …] — - 12.10.2026: droga do App Store — C: kolejność bez zmian (0.15/0.16 Zdrowie, 0.17 subskry
+docs/18-przekazanie.md:172: brak pola [wdrożenie: …] — - 12.10.2026: nazwy producentów w tytułach źródeł wskazówek (lib/cues/data.json; wyjątki w
+docs/18-przekazanie.md:173: brak pola [wdrożenie: …] — - 12.10.2026: audyt przed App Store (raport: znaleziska F1–F6): F1 (dane właściciela w his
+docs/18-przekazanie.md:174: brak pola [wdrożenie: …] — - 12.10.2026: 0.13.0 wydane — build 1009 (TestFlight 38294805184, automatycznie po scaleni
+docs/18-przekazanie.md:175: brak pola [wdrożenie: …] — - 12.10.2026: po researchu „darmowe aplikacje + patroni” (Dysk, 05 Research konkurencji) —
+docs/18-przekazanie.md:176: brak pola [wdrożenie: …] — - 12.10.2026: 0.16 (docs/29) — P1 A, P2 A, P3 wariant właściciela (średnia dzienna kroków 
+docs/18-przekazanie.md:177: brak pola [wdrożenie: …] — - 12.10.2026: subskrypcja 0.17 (docs/27) — zgodnie z rekomendacją: P2 B (ekran zakupu raz 
+docs/18-przekazanie.md:178: brak pola [wdrożenie: …] — - **13.10.2026 (właściciel) — zasada projektowa „to samo działa tak samo”:** katalog wzorc
+docs/18-przekazanie.md:179: brak pola [wdrożenie: …] — - 13.10.2026: cennik (po researchu „indeks espresso”, scratchpad/indeks-espresso.md → docs
+docs/18-przekazanie.md:180: brak pola [wdrożenie: …] — - 13.10.2026: przycisk „Napisz do nas” w Więcej → O aplikacji (wariant A, właściciel): `ma
+docs/18-przekazanie.md:181: brak pola [wdrożenie: …] — - 13.10.2026: wydanie 0.18 „Dostosuj do miejsca” — decyzje właściciela P0–P7 (wariant C = 
+docs/18-przekazanie.md:182: brak pola [wdrożenie: …] — - 13.10.2026: serie pomocnicze — A: nadal liczą się do celu po 0,5 (bez zmiany wagi), ale 
+docs/18-przekazanie.md:183: brak pola [wdrożenie: …] — - 12.10.2026: repozytorium produkcyjne — A: organizacja GitHub **Apps4Brew** (nie drugie k
+docs/18-przekazanie.md:184: brak pola [wdrożenie: …] — - 12.10.2026: 0.14.0 wydane — build 1010 (TestFlight 38311331235, po scaleniu PR #5), tag 
+docs/18-przekazanie.md:185: brak pola [wdrożenie: …] — - 13.10.2026: 0.15.0 wydane — build 1012 (TestFlight 38355743899; build 1011 przepadł — pr
+docs/18-przekazanie.md:186: brak pola [wdrożenie: …] — - 13.10.2026: proces wsparcia (docs/34, strony site/support.html i privacy.html) — decyzje
+docs/18-przekazanie.md:187: brak pola [wdrożenie: …] — - 13.10.2026: 0.16.0 wydane — build 1013 (TestFlight 38374133953), tag v0.16.0-b1013. Gałą
+docs/18-przekazanie.md:188: brak pola [wdrożenie: …] — - 13.10.2026: termin przenosin do Apps4Brew — po wydaniu 0.19 (kolejność: 0.17 → 0.18 → 0.
+docs/18-przekazanie.md:189: brak pola [wdrożenie: …] — - 13.10.2026 (właściciel): zamiana ćwiczenia w trakcie pomiaru serii — A: bez pytania (zwy
+docs/18-przekazanie.md:190: brak pola [wdrożenie: …] — - 13.10.2026 (właściciel): marki — B: trzy osobne marki według półek cenowych (Apps4Brew 0
+docs/18-przekazanie.md:191: brak pola [wdrożenie: …] — - 13.10.2026 (właściciel, „P1–P9 zgodnie z rekomendacją”): agent-menedżer portfela i dashb
+docs/18-przekazanie.md:192: brak pola [wdrożenie: …] — - 13.10.2026 (właściciel, uzupełnienie P1–P9 po przeglądzie innych projektów): zakres pulp
+docs/18-przekazanie.md:193: brak pola [wdrożenie: …] — - 13.10.2026 (właściciel, pulpit): wsparcie — klucz do recenzji A (dwa klucze zespołowe: C
+docs/18-przekazanie.md:194: brak pola [wdrożenie: …] — - 13.10.2026: 0.17.0 wydane — build 1014 (TestFlight 38413965421), tag v0.17.0-b1014. Właś
+docs/18-przekazanie.md:195: brak pola [wdrożenie: …] — - 13.10.2026: 0.18.0 złożone (gałąź f018-dostosuj): wersja 0.18.0 (app.json, package.json,
+docs/18-przekazanie.md:196: brak pola [wdrożenie: …] — - 13.10.2026 (właściciel, research Treningu i nowe funkcje): ocena w portfelu 79 (było 81 
+docs/18-przekazanie.md:197: brak pola [wdrożenie: …] — - 13.10.2026 (właściciel): głos — zapowiedź NA POCZĄTKU przerwy: ćwiczenie, ciężar i liczb
+docs/18-przekazanie.md:198: brak pola [wdrożenie: …] — - 13.10.2026 (właściciel): ZEGARKI przed App Store — Apple Watch i Garmin (fēnix 8 AMOLED 
+docs/18-przekazanie.md:199: brak pola [wdrożenie: …] — - 13.10.2026 (właściciel): skrzynka wsparcia — płatny Google Workspace (wyjątek od zasady 
+docs/18-przekazanie.md:200: brak pola [wdrożenie: …] — - 13.10.2026 (właściciel, plan marketingu — scratchpad koordynatora `trening-marketing.md`
+docs/18-przekazanie.md:201: brak pola [wdrożenie: …] — - 13.10.2026, wieczór (właściciel): **Garmin PO App Store** — zmienia wpis „ZEGARKI przed 
+docs/18-przekazanie.md:202: brak pola [wdrożenie: …] — - 13.10.2026, wieczór (właściciel, przyspieszenie wydań): 0.18 wydawane osobno; **0.19 (mi
+docs/18-przekazanie.md:203: brak pola [wdrożenie: …] — - 14.10.2026 (właściciel): ceny w App Store Connect — utworzone produkty w grupie „Pełna w
+docs/18-przekazanie.md:204: brak pola [wdrożenie: …] — - 14.10.2026: błąd WYSOKI TestFlight 0.18 (build 1015) — „Nie udało się włączyć Apple Heal
+docs/18-przekazanie.md:206: brak pola [wdrożenie: …] — ## 14.10.2026 — decyzje właściciela: liczby w kartach Progresji (gałąź `f020-postepy`)
+docs/18-przekazanie.md:213: brak pola [wdrożenie: …] — ## 14.10.2026 — strażnik progresji (gałąź `f020-straznik`, od `f020-postepy`; specyfikacja
+docs/18-przekazanie.md:234: brak pola [wdrożenie: …] — - 11.10.2026 ~23:30: TestFlight 0.12.0 — A (po zielonym E2E 18/18 + verify + lista kontrol
+docs/18-przekazanie.md:235: brak pola [wdrożenie: …] — - 11.10.2026: hasło „w cenie espresso lub taniej” — wyjątek od warunku źródeł (docs/15, ga
+docs/18-przekazanie.md:236: brak pola [wdrożenie: …] — - 11.10.2026: zadania pasujące do Gemini — zgłaszać właścicielowi (dopisać do CLAUDE.md).
+docs/18-przekazanie.md:237: brak pola [wdrożenie: …] — - 11.10.2026: Gemini dla wskazówek ćwiczeń — wynik słaby (DR: 43/50 bez źródeł; bez DR: zm
+docs/18-przekazanie.md:238: brak pola [wdrożenie: …] — - 11.10.2026: kolejność wydań natywnych — A: (1) healthkit 8→16 sam, zapis jak dziś; (2) H
+docs/18-przekazanie.md:239: brak pola [wdrożenie: …] — - 11.10.2026 (~23:45, „wszystko wg rekomendacji”): (1) wskazówki ćwiczeń partia 1 — badacz
+docs/18-przekazanie.md:240: brak pola [wdrożenie: …] — - 12.10.2026: 0.12.0 — A: osobny build dziś (poprawka scenariusza 05, PR, Merge + Run work
+docs/18-przekazanie.md:241: brak pola [wdrożenie: …] — - 12.10.2026: komunikacja — A: agent pisze tylko, gdy potrzebna decyzja/kliknięcie właścic
+docs/18-przekazanie.md:242: brak pola [wdrożenie: …] — - 12.10.2026: tag v0.12.0-b1006 zostaje (B) — build 1006 nie powstał (TestFlight 382072863
+docs/18-przekazanie.md:243: brak pola [wdrożenie: …] — - 12.10.2026: cel serii na partię/tydzień — funkcja A (Ustawienia: per partia Automatyczni
+docs/18-przekazanie.md:244: brak pola [wdrożenie: …] — - 12.10.2026: research serii wg partii (docs/research/32): automatycznie 10 dla każdej par
+docs/18-przekazanie.md:245: brak pola [wdrożenie: …] — - 12.10.2026: audyt zmian 0.13.0 — 1 WYSOKIE (import CSV: ćwiczenia z masą ciała w `weight
+docs/18-przekazanie.md:246: brak pola [wdrożenie: …] — - 12.10.2026: backlog — A: 0.14.0 = porządek statusów + małe błędy (Q-004, Q-012…Q-016, Q-
+docs/18-przekazanie.md:247: brak pola [wdrożenie: …] — - 12.10.2026: rozbicie barków/pleców w statystykach serii — wycofane (A, decyzja zastępuje
+docs/18-przekazanie.md:249: brak pola [wdrożenie: …] — ## 12.10.2026 — monetyzacja (właściciel)
+docs/18-przekazanie.md:254: brak pola [wdrożenie: …] — - 12.10.2026: droga do App Store — C: kolejność bez zmian (0.15/0.16 Zdrowie, 0.17 subskry
+docs/18-przekazanie.md:255: brak pola [wdrożenie: …] — - 12.10.2026: nazwy producentów w tytułach źródeł wskazówek (lib/cues/data.json; wyjątki w
+docs/18-przekazanie.md:256: brak pola [wdrożenie: …] — - 12.10.2026: audyt przed App Store (raport: znaleziska F1–F6): F1 (dane właściciela w his
+docs/18-przekazanie.md:257: brak pola [wdrożenie: …] — - 12.10.2026: po researchu „darmowe aplikacje + patroni” (Dysk, 05 Research konkurencji): 
+docs/18-przekazanie.md:258: brak pola [wdrożenie: …] — - 14.10.2026 (właściciel): pierwsza wersja w App Store = **1.0** (zawartość 0.20 + poprawk
+docs/18-przekazanie.md:261: brak pola [wdrożenie: …] — - 14.10.2026 (właściciel): App Privacy w App Store Connect opublikowane: „Data Not Collect
+docs/18-przekazanie.md:262: brak pola [wdrożenie: …] — - 14.10.2026 (właściciel przypomina): Google Workspace + skrzynka support@apps4brew.com — 
+docs/18-przekazanie.md:263: brak pola [wdrożenie: …] — - 14.10.2026 (właściciel): przejście do organizacji GitHub **Apps4Brew (plan Free, nie Ent
+docs/18-przekazanie.md:264: brak pola [wdrożenie: …] — - 14.10.2026: właściciel założył organizację GitHub **Apps4Brew** (https://github.com/Apps
+docs/18-przekazanie.md:265: brak pola [wdrożenie: …] — - 14.10.2026: aplikacja Claude zainstalowana w organizacji Apps4Brew (All repositories).
+docs/18-przekazanie.md:266: brak pola [wdrożenie: …] — - 14.10.2026: DO DECYZJI po teście 0.20 na telefonie — kroki z Apple Health (średnia pod „
+docs/18-przekazanie.md:267: brak pola [wdrożenie: …] — - 14.10.2026 (właściciel, pomysł PO App Store, „na koniec”): włączenie kroków, snu, cardio
+docs/18-przekazanie.md:268: brak pola [wdrożenie: …] — - 14.10.2026 (właściciel): konto mBank PLN aktywne, waluta wypłat USD (przewalutowanie prz
+docs/18-przekazanie.md:269: brak pola [wdrożenie: …] — - 14.10.2026: właściciel złożył zgłoszenie do App Store Small Business Program (15% prowiz
+docs/18-przekazanie.md:270: brak pola [wdrożenie: …] — - 14.10.2026 (właściciel, decyzje z docs/41): D-1 **płatności od 1.0** (test zakupów w pia
+docs/18-przekazanie.md:271: brak pola [wdrożenie: …] — - 14.10.2026 (właściciel, strażnik progresji — pytania programisty): kilka ćwiczeń w parti
+docs/18-przekazanie.md:272: brak pola [wdrożenie: …] — - 14.10.2026 (właściciel): nazwa funkcji **„Strażnik progresji”** widoczna w aplikacji (na
+docs/18-przekazanie.md:273: brak pola [wdrożenie: …] — ## 14.10.2026 — nazwa funkcji „Strażnik progresji” (gałąź `f020-nazwa-straznika`)
+docs/18-przekazanie.md:279: brak pola [wdrożenie: …] — - 18.10.2026 (właściciel): kolejność zmieniona — **najpierw pełny audyt (w obecnym repo, p
+docs/18-przekazanie.md:280: brak pola [wdrożenie: …] — - 18.10.2026 (właściciel): zmiana zasady „jedno źródło” — reguła/liczba oparta na JEDNYM ź
+docs/18-przekazanie.md:281: brak pola [wdrożenie: …] — - 18.10.2026 (właściciel, wdrożenie zasady „jedno źródło”; gałąź f020-jedno-zrodlo): zatwi
+docs/18-przekazanie.md:282: brak pola [wdrożenie: …] — - 18.10.2026: D-7 rozwiązane — właściciel ma własny Apple Watch (starszy model, watchOS 10
+docs/18-przekazanie.md:283: brak pola [wdrożenie: …] — - 18.10.2026 (właściciel): wszystkie zrzuty do App Store z ciemnej wersji aplikacji (ramka
+docs/18-przekazanie.md:284: brak pola [wdrożenie: …] — - 18.10.2026 (właściciel, po analizie porażek E2E): (1) szybki przebieg zmienionych scenar
+docs/18-przekazanie.md:285: brak pola [wdrożenie: …] — - 18.10.2026 (właściciel): licencja kodu repozytorium — **wszelkie prawa zastrzeżone** (pl
+docs/18-przekazanie.md:286: brak pola [wdrożenie: …] — - 19.10.2026 (właściciel, koszt czasu i tokenów E2E): podział E2E — przy TestFlight blokuj
+docs/18-przekazanie.md:287: brak pola [wdrożenie: …] — - 19.10.2026 (właściciel): bramka przed App Store — najpierw naprawa niestabilności E2E w 
+docs/18-przekazanie.md:288: brak pola [wdrożenie: …] — - 13.10.2026, wieczór (właściciel, testy użytkownika): scenariusze E2E mają zastąpić ręczn
+docs/18-przekazanie.md:289: brak pola [wdrożenie: …] — - 14.10.2026, rano (właściciel, pytania z nocy): **0.19** — miejsce na zakres dat zostaje 
+docs/18-przekazanie.md:290: brak pola [wdrożenie: …] — - 14.10.2026, rano (właściciel): **„Poproś o nową funkcję”** w 0.20 — osobny przycisk obok
+docs/18-przekazanie.md:291: brak pola [wdrożenie: …] — - 14.10.2026, rano (właściciel): **zmiany workflowów wypycha koordynator na gałąź funkcji;
+docs/18-przekazanie.md:292: brak pola [wdrożenie: …] — - 19.10.2026: **0.20.0 złożone do wydania** (gałąź `f020-wydanie`, PR #12; 0.19 + 0.20 jed
+docs/18-przekazanie.md:293: brak pola [wdrożenie: …] — - 19.10.2026 (pomysł z rozmowy z właścicielem, do fazy audytu): pamięć podręczna budowania
+docs/18-przekazanie.md:294: brak pola [wdrożenie: …] — - 19.10.2026 (właściciel): pełny audyt przed App Store przez **M1 Audytor Generalny z bibl
+docs/18-przekazanie.md:295: brak pola [wdrożenie: …] — - 19.10.2026 (właściciel): do backlogu bez priorytetu (docs/21) — animacje techniki ćwicze
+docs/18-przekazanie.md:296: brak pola [wdrożenie: …] — - 19.10.2026: **0.20.0 wydane na TestFlight** — PR #12 scalony na `main` (80e43fc), `testf
+docs/18-przekazanie.md:297: brak pola [wdrożenie: …] — - 19.10.2026 (właściciel, lista kontrolna 0.20 na telefonie, build 1018): kroki 1–9, 11, 1
+docs/18-przekazanie.md:298: brak pola [wdrożenie: …] — - 19.10.2026 (właściciel): **strażnik progresji** — ćwiczenie z ciężarem zapisane w poprze
+docs/18-przekazanie.md:299: brak pola [wdrożenie: …] — - 19.10.2026 (właściciel): **kroki z Apple Health** zostają w 1.0 bez zmian (średnia pod „
+docs/18-przekazanie.md:300: brak pola [wdrożenie: …] — - 19.10.2026 (właściciel): **zapowiedzi głosowe** — jeden wybór „Wyłączone / W słuchawkach
+docs/18-przekazanie.md:301: brak pola [wdrożenie: …] — - 19.10.2026: **lista napraw przed 1.0 z testu 0.20** — (1) strażnik 0 kg → „więcej” (decy
+docs/18-przekazanie.md:303: brak pola [wdrożenie: …] — ## 19.10.2026 — lista napraw przed 1.0 z testu 0.20 (programista, gałąź `feature/e2-swap`)
+docs/18-przekazanie.md:321: brak pola [wdrożenie: …] — - 19.10.2026 (właściciel): build TestFlight z poprawkami listy kontrolnej 0.20 (strażnik 0
+docs/18-przekazanie.md:322: brak pola [wdrożenie: …] — - 19.10.2026 (właściciel, przegląd zrzutów do sklepu v10): **pasek talerzy (PlateBar) usun
+docs/18-przekazanie.md:323: brak pola [wdrożenie: …] — - 19.10.2026 (właściciel): front aplikacji będzie zmieniany po audycie M1 → zrzuty do skle
+docs/18-przekazanie.md:326: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel): **start M2 (Koordynator Napraw) od partii 1** napraw z audytu M
+docs/18-przekazanie.md:327: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel, DEC-05): **zapowiedzi głosowe domyślnie WYŁĄCZONE** — zastępuje 
+docs/18-przekazanie.md:328: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel): cena roczna = 6,99 USD/rok — zastępuje 4,99 USD z 13–14.10.2026
+docs/18-przekazanie.md:329: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel): **wykaz decyzji z audytu M1 (DEC-01…27)** — rozstrzygnięte 19–2
+docs/18-przekazanie.md:330: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel, oszczędność tokenów): zadania **M1-audytor-generalny-026 (układ 
+docs/18-przekazanie.md:331: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel, wieczór): zgoda z góry na partie 2–4 napraw M2 (audyt M1) — po k
+docs/18-przekazanie.md:332: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel, nowy LOK-07 biblioteki prompts): **„System miar”** metryczny (kg
+docs/18-przekazanie.md:333: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel): **domyślny system miar nowej instalacji z regionu telefonu**; i
+docs/18-przekazanie.md:334: brak pola [wdrożenie: …] — - 20.10.2026 (koordynator, LOK-07): etykiety presetów sprzętu (lib/equipment.ts) zostają w
+docs/18-przekazanie.md:335: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel): końcowy reaudyt po M2 z nowym LOK-07 (D-030).
+docs/18-przekazanie.md:336: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel, oszczędność tokenów): **M3 Redesigner przed 1.0, zaraz po M2** (
+docs/18-przekazanie.md:337: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel): **oszczędzanie limitu tygodniowego** — (1) role wykonawcze na l
+docs/18-przekazanie.md:338: brak pola [wdrożenie: …] — - 20.10.2026: **zaplanowane zadania konta (stan, do odtworzenia na innym koncie)** — dla T
+docs/18-przekazanie.md:340: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel, K-P4-1): decyzja o Androidzie po 8 tygodniach — metryka **A + C*
+docs/18-przekazanie.md:341: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel, K-P4-2): drugi przegląd treści krytycznej w 34 językach (R-010) 
+docs/18-przekazanie.md:342: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel, K-P4-3): wynik bramki W0 — brak; zostaje [DO USTALENIA].
+docs/18-przekazanie.md:343: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel, K-P4-4): plan wydania 1.0 — pauza wydania stopniowego po pierwsz
+docs/18-przekazanie.md:344: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel): GitHub Pro (4 USD/mies.) nie daje pierwszeństwa ani więcej masz
+docs/18-przekazanie.md:345: brak pola [wdrożenie: …] — - 20.10.2026: Apple zweryfikowało dane przedsiębiorcy (DSA) — informacje widoczne w App St
+docs/18-przekazanie.md:346: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel): **przegląd tłumaczeń przez API Anthropic z kredytów właściciela
+docs/18-przekazanie.md:347: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel): **limit 50 USD na przebieg przeglądu tłumaczeń, decyzja właścic
+docs/18-przekazanie.md:348: brak pola [wdrożenie: …] — - 20.10.2026 (właściciel): **domyślny model przeglądu = najnowszy Opus (`claude-opus-5-5`)
+docs/18-przekazanie.md:349: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): **wyjątek „ton trenera” dla wskazówek techniki** — wskazówki ćw
+docs/18-przekazanie.md:350: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, nowe konto): **PR #18** (naprawy CI, zmiana `NIGHTLY_REFS` w `ni
+docs/18-przekazanie.md:351: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): **scenariusze E2E na małym ekranie (iPhone 17e) naprawiamy tera
+docs/18-przekazanie.md:352: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, L-013): **mechanizm przeglądu nocy = zgłoszenie (issue) otwieran
+docs/18-przekazanie.md:353: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, R-011): **mały ekran = 390 pt (iPhone 17e) wystarcza** — obraz m
+docs/18-przekazanie.md:354: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, przyspieszenie prac): **scalenie do main zmieniające tylko dokum
+docs/18-przekazanie.md:355: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): **TestFlight tylko dla wersji uznanej za finalną** — właściciel
+docs/18-przekazanie.md:356: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): wyjątek — **jeden build podglądowy w TestFlight z gałęzi M3 po 
+docs/18-przekazanie.md:357: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel: „Super pomysl z tym workflow sprawdzajacym. Rob go.”): **workflo
+docs/18-przekazanie.md:358: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): **koordynator sam rozdziela pracę i przekazuje ją między agenta
+docs/18-przekazanie.md:359: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): **koordynator sam scala do main swoje PR-y z testami, dokumenta
+docs/18-przekazanie.md:360: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): **po kroku 4 planu (M3 scalone + nowe brzmienia badacza + powtó
+docs/18-przekazanie.md:361: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): **bramka E2E przed App Store = jeden pełny katalog E2E na stand
+docs/18-przekazanie.md:362: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): **wszystkie pytania i zgody od agentów i sesji (M3 i kolejne) i
+docs/18-przekazanie.md:363: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, planowanie): **okno maszyn macOS** — w ostatnich dniach GitHub o
+docs/18-przekazanie.md:364: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, App Store Connect K-CENA): roczna **6,99 USD**; **strefa euro: 7
+docs/18-przekazanie.md:365: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): w App Store Connect zrobione **K-CENA** (roczna 6,99 USD / 7,99
+docs/18-przekazanie.md:366: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): workflow kontrolny App Store Connect jako **narzędzie wspólne s
+docs/18-przekazanie.md:367: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, ok. 17:10 UTC): **E2E — jedna próba na godzinę** — gdy potrzebny
+docs/18-przekazanie.md:368: brak pola [wdrożenie: …] — - 21.10.2026 (koordynator, wyjątek nazwany): commit „scal main do gałęzi”, w którym konfli
+docs/18-przekazanie.md:369: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, plan audytu M1 — STOP 1, przez koordynatora): **pełny audyt M1 p
+docs/18-przekazanie.md:370: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, M8 Formalności — STOP 1, przez koordynatora): subagenci M8 dozwo
+docs/18-przekazanie.md:371: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, porządki przed 1.0): zgoda na usunięcie **gałęzi scalonych z mai
+docs/18-przekazanie.md:372: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, STOP 1 M5 — widoczność w sklepie, przekazane przez koordynatora;
+docs/18-przekazanie.md:373: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, STOP 2 M5, przekazane przez koordynatora): metadane App Store — 
+docs/18-przekazanie.md:374: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, STOP 2 M5 pkt 3, przekazane przez koordynatora): wybór **3(a) „w
+docs/18-przekazanie.md:375: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, STOP końcowy M5, przekazane przez koordynatora): **kategoria dod
+docs/18-przekazanie.md:376: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, L-009; decyzja podjęta w sesji M3, commit b78ddb3 na gałęzi rede
+docs/18-przekazanie.md:377: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): **„Szybsze verify dla dokumentów” — commit zmieniający tylko do
+docs/18-przekazanie.md:378: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, przez koordynatora): **przeniesienie czystej 1.0 do Apps4Brew — 
+docs/18-przekazanie.md:379: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, STOP 1 roli M8 Formalności — przekazane przez koordynatora; gałą
+docs/18-przekazanie.md:388: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, STOP 2 roli M8 — przekazane przez koordynatora): Q9 A — **App Pr
+docs/18-przekazanie.md:392: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, Q13 roli M8 — przekazane przez koordynatora): **polityka prywatn
+docs/18-przekazanie.md:394: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, po zrzutach podpowiedzi M5, przekazane przez koordynatora): „Zgo
+docs/18-przekazanie.md:395: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, R-007 / WYD-09, przekazane przez koordynatora): **manifest prywa
+docs/18-przekazanie.md:396: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, L-014 akcja 4, przekazane przez koordynatora): **pierwszy krok `
+docs/18-przekazanie.md:397: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, ceny w opisie sklepu — zgłoszenie M1, przekazane przez koordynat
+docs/18-przekazanie.md:398: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): **sprzątanie gałęzi wykonane** workflowem „Sprzątanie gałęzi” (
+docs/18-przekazanie.md:399: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): **archiwizacja sesji** — koordynator archiwizuje sesje, które s
+docs/18-przekazanie.md:400: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, K1–K2 M8): **poczta na Google Workspace** — konto Business Start
+docs/18-przekazanie.md:401: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, przez kontrolę ASC): **cena roczna w Polsce poprawiona na 19,99 
+docs/18-przekazanie.md:402: brak pola [wdrożenie: …] — - 21.10.2026 (M3, przekazane koordynatorowi do ewentualnego weta; właściciel bez weta): us
+docs/18-przekazanie.md:403: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, K-019): **ustawienia GitHuba** — Secret Protection, push protect
+docs/18-przekazanie.md:404: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, L-016): **numery lekcji nadaje koordynator przy scalaniu do main
+docs/18-przekazanie.md:405: brak pola [wdrożenie: …] — - 21.10.2026 (koordynator, L-016): **wyjątek nazwany dla scalania `main` zawężony** — jeśl
+docs/18-przekazanie.md:406: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): **R-010 (treść krytyczna w 34 językach) zamyka przegląd wykonan
+docs/18-przekazanie.md:407: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel): **zmiany workflowów scala koordynator sam** — po prawdziwym prz
+docs/18-przekazanie.md:408: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel, wariant a; po odrzuceniu buildu TestFlight 39723671701 przez wal
+docs/18-przekazanie.md:409: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, STOP 1 przebiegu M3 Redesigner): (1) **bramka opłacalności uchyl
+docs/18-przekazanie.md:410: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, zmiana decyzji z tego samego dnia): **bramka opłacalności jednak
+docs/18-przekazanie.md:411: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, STOP 2 przebiegu M3): zatwierdzone przepływy TO BE (`docs/design
+docs/18-przekazanie.md:412: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, STOP E1 roli 04 w M3): **cztery kierunki do E2** — A tablica pod
+docs/18-przekazanie.md:413: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, STOP E2 roli 04 w M3): **kierunek A — tablica podejść**, z prośb
+docs/18-przekazanie.md:414: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, M3 E3): **liczba serii jednego ćwiczenia — projekt do 12, bez li
+docs/18-przekazanie.md:415: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, STOP E2b roli 04 w M3): **wariant A2** (barwy talerzy IWF jako s
+docs/18-przekazanie.md:416: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, STOP E3 roli 04 w M3): **system zatwierdzony** (arkusze `docs/de
+docs/18-przekazanie.md:417: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, STOP 3 przebiegu M3): **plan wdrożenia zatwierdzony** — p1 syste
+docs/18-przekazanie.md:418: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, lekcje L-009 i M3 „tests.yml czerwony na gałęzi M3” (docs/40) — 
+docs/18-przekazanie.md:419: brak pola [wdrożenie: …] — - 21.10.2026 (rola 08, partia p1 M3 — wdrożenie systemu, wykonanie decyzji STOP 3): **stan
+docs/18-przekazanie.md:420: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, czat M3): **kanał decyzji dla przebiegu M3** — „od teraz wszystk
+docs/18-przekazanie.md:421: brak pola [wdrożenie: …] — - 21.10.2026 ok. 14:00 UTC (właściciel, przekazane przez koordynatora; STOP „punkt kontrol
+docs/18-przekazanie.md:422: brak pola [wdrożenie: …] — - 21.10.2026 ok. 14:00 UTC (właściciel, przekazane przez koordynatora; STOP „przed p5d” M3
+docs/18-przekazanie.md:423: brak pola [wdrożenie: …] — - 21.10.2026 (właściciel, przekazane przez koordynatora; M3 p3): **doprecyzowanie ZM-06** 
+docs/18-przekazanie.md:424: brak pola [wdrożenie: …] — - 21.10.2026 (rola 08, partia p5d M3 — ZM-07 i ekran Ustawień): **stan p5d** — dwa przełąc
+docs/18-przekazanie.md:426: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel, przekazane przez koordynatora; decyzje po weryfikacji E5 M3): **
+docs/18-przekazanie.md:427: brak pola [wdrożenie: …] — - 22.10.2026 (rola 08, M3 fix 04-studio-projektowe-008 — wykonanie decyzji właściciela): *
+docs/18-przekazanie.md:428: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel, STOP końcowy M3, przez koordynatora): **scalić redesign M3 do ma
+docs/18-przekazanie.md:429: brak pola [wdrożenie: …] — - 22.10.2026 (rola 08, M3 — poprawka po odrzuceniu buildu podglądowego 1026 przez App Stor
+docs/18-przekazanie.md:430: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel, uwagi z telefonu — build z 22.10, ekran Trening; gałąź `ekran-tr
+docs/18-przekazanie.md:431: brak pola [wdrożenie: …] — - 22.10.2026 (M5, po redesignie M3): **opisy i teksty promocyjne App Store w 33 lokalizacj
+docs/18-przekazanie.md:432: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel): **komunikacja koordynatora** — do właściciela tylko (a) sprawy 
+docs/18-przekazanie.md:433: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel): **walidacja Apple przy buildzie bez wysyłki — wariant (a)**: `a
+docs/18-przekazanie.md:434: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel): **pełny audyt M1 po wszystkich krokach** (brzmienia, przegląd t
+docs/18-przekazanie.md:435: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel): **badanie zmiany modelu monetyzacji** w osobnej sesji (rola 02,
+docs/18-przekazanie.md:436: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel, uwagi z telefonu do buildu 1027): **ekran Trening** — duża grafi
+docs/18-przekazanie.md:437: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel, zgłoszenie z telefonu; wariant A wybrany spośród A/B/C): **pasek
+docs/18-przekazanie.md:438: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel, rola 02 build „cena-i-rachunek, storekit-expo”): **otwarte badan
+docs/18-przekazanie.md:439: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel, badanie modelu — tekst ekranu ofert, warunkowo do wyboru V1/V2 n
+docs/18-przekazanie.md:440: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel, badanie modelu — drugie zlecenie; tylko badanie, bez decyzji): *
+docs/18-przekazanie.md:441: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel, STOP E2 roli 02 — **decyzja o modelu monetyzacji**, zastępuje mo
+docs/18-przekazanie.md:442: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel, potwierdzenie szczegółów M5 S1): odpowiedź „1. a 2. A 3. C” — **
+docs/18-przekazanie.md:443: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel, przy modelu M5 S1): **prośba o ocenę po 3. ukończonym treningu**
+docs/18-przekazanie.md:444: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel, przy M5 S1): **tekst ekranu zakupu przy starcie ponad limit — wa
+docs/18-przekazanie.md:445: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel, doprecyzowanie M5 S1 według wzorca portfela „limit miesięczny, P
+docs/18-przekazanie.md:448: brak pola [wdrożenie: …] — - 22.10.2026 (właściciel): żeby nie przepisywać ręcznie 33 lokalizacji, metadane sklepu z 
+docs/18-przekazanie.md:458: brak pola [wdrożenie: …] — ## 23.10.2026 — decyzje właściciela po audycie generalnym M1 (STOP 2, SHA a2e04b8)
+docs/18-przekazanie.md:472: brak pola [wdrożenie: …] — ## 23.10.2026 — język naturalny, źródła wiedzy w jednym miejscu (wzorzec portfela; gałąź `
+docs/18-przekazanie.md:481: brak pola [wdrożenie: …] — - 23.10.2026 (właściciel, uwaga z buildu 1030) — **ZASTĄPIONE 27.10.2026 (poniżej, koniec 
+docs/18-przekazanie.md:482: brak pola [wdrożenie: …] — - 23.10.2026 (właściciel): lekcja L-028 — wariant A (strażnik kroków dla właściciela bez ź
+docs/18-przekazanie.md:483: brak pola [wdrożenie: …] — - 23.10.2026 (właściciel, DEC-07 K5/K6/K7 — wdrożenie w gałęzi `naprawa-m1-dec07-teksty`):
+docs/18-przekazanie.md:484: brak pola [wdrożenie: …] — - 23.10.2026 (właściciel, test na telefonie, build 1030; gałąź `naprawa-telefon-1030-a`): 
+docs/18-przekazanie.md:485: brak pola [wdrożenie: …] — - 23.10.2026 (naprawa-telefon-1030-a): **domyślny motyw nowej instalacji: ciemny** (`defau
+docs/18-przekazanie.md:487: brak pola [wdrożenie: …] — ## 23.10.2026 (druga decyzja właściciela) — oznaczenia pewności poza interfejsem, „Zasady 
+docs/18-przekazanie.md:491: brak pola [wdrożenie: …] — - 23.10.2026 (właściciel, test na telefonie, build 1030, kod f2b0525, iPhone + Apple Watch
+docs/18-przekazanie.md:498: brak pola [wdrożenie: …] — - 23.10.2026 (właściciel): dźwięk w trybie cichym — **wariant A**: zostaje zachowanie syst
+docs/18-przekazanie.md:499: brak pola [wdrożenie: …] — - 23.10.2026 (właściciel, STOP „język naturalny”): (1) **zgoda na przekład 33 języków prze
+docs/18-przekazanie.md:501: brak pola [wdrożenie: …] — ## 25.10.2026 — decyzja właściciela: nocne CI (zmiana czasu, mutacje po modułach); gałąź `
+docs/18-przekazanie.md:512: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel): **workflow przekładu przez API — wyjątek od L-001** dla workflo
+docs/18-przekazanie.md:513: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel, uwagi native speakera pt-BR — „przerwa” w karcie ćwiczenia czyta
+docs/18-przekazanie.md:514: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel): **grafiki ćwiczeń w 1.0** — „nie możemy wypuścić aplikacji, któ
+docs/18-przekazanie.md:515: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel): **dokument „Monetyzacja Trening” (24.10.2026) — całość w 1.0**:
+docs/18-przekazanie.md:516: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel): **ton tekstów** — teksty naturalne, jak w każdej innej aplikacj
+docs/18-przekazanie.md:517: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel): **wskazówki przy ćwiczeniach-analogiach — wariant A**: wskazówk
+docs/18-przekazanie.md:518: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel): **próg źródeł dla wskazówek techniki** — 2 zgodne niezależne źr
+docs/18-przekazanie.md:519: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel): **strona z biblioteką ćwiczeń — po zgłoszeniu 1.0**: osobna, op
+docs/18-przekazanie.md:520: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel): **funkcje z makiety silnika figur — wersje po 1.0** (nie 1.0): 
+docs/18-przekazanie.md:521: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel): **domena strony z biblioteką ćwiczeń — techniqueatlas.com** (wo
+docs/18-przekazanie.md:522: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel): **osobna aplikacja do kalisteniki na silniku Treningu — wariant
+docs/18-przekazanie.md:523: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel): **kąty techniki i oddech — szczebel 4, tylko gdy zgodne**: prze
+docs/18-przekazanie.md:524: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel, „całkiem anonimowo”; przekazane przez koordynatora): **publiczni
+docs/18-przekazanie.md:527: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel, przez koordynatora): **D1** pełny audyt przed App Store obowiązu
+docs/18-przekazanie.md:528: brak pola [wdrożenie: …] — - 25.10.2026 (agent wydawca): skrypt wgrywania używa App Asset Library (dokumentacja Apple
+docs/18-przekazanie.md:531: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel, przekazane przez koordynatora; powód: native speaker z Brazylii 
+docs/18-przekazanie.md:532: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel, dopisek do słownika, roli tłumacza i roli recenzenta): **teksty 
+docs/18-przekazanie.md:534: brak pola [wdrożenie: …] — - 25.10.2026 (wdrożenie, agent, gałąź `monetyzacja-1-0`): **monetyzacja w 1.0 wdrożona w k
+docs/18-przekazanie.md:535: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel): **teksty okna „Uczciwe zasady” i karty po imporcie zatwierdzone
+docs/18-przekazanie.md:538: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel): grafiki ćwiczeń dla wszystkich 709 ćwiczeń w 1.0 wraz z animacj
+docs/18-przekazanie.md:540: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel, wyjątek L-001 jak przy przekładzie): workflow tylko ręczny → **s
+docs/18-przekazanie.md:541: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel, dwie decyzje dodatkowe do „całkiem anonimowo”; wdrożenie: agent,
+docs/18-przekazanie.md:543: brak pola [wdrożenie: …] — ## 25.10.2026 — ochrona bazy danych przy publicznym repozytorium (gałąź `ochrona-bazy`)
+docs/18-przekazanie.md:550: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel, przez koordynatora — grafiki ćwiczeń, wskazówki wzorców): **wari
+docs/18-przekazanie.md:551: brak pola [wdrożenie: …] — - 25.10.2026 (agent programista, grafiki ćwiczeń — etap 1, gałąź `grafiki-cwiczen`): **arc
+docs/18-przekazanie.md:552: brak pola [wdrożenie: …] — - 25.10.2026 (agent programista, grafiki ćwiczeń — etap 2, gałąź `grafiki-cwiczen`): styl 
+docs/18-przekazanie.md:553: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel, przez koordynatora — kąty i oddech w grafikach, źródła: `katy-od
+docs/18-przekazanie.md:554: brak pola [wdrożenie: …] — - 25.10.2026: scenariusz Maestro grafik przenumerowany na **57** (55 zajęte na main), `mai
+docs/18-przekazanie.md:555: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel, przez koordynatora — kąty mierzone na rysunku): kąty w stawach w
+docs/18-przekazanie.md:556: brak pola [wdrożenie: …] — - 25.10.2026 (właściciel, przez koordynatora — wyciskanie leżąc, reguły z opisu NSCA, włas
+docs/18-przekazanie.md:558: brak pola [wdrożenie: …] — - 26.10.2026: przekład przez API (Opus, Batch, ok. 3,3 USD) 71 kluczy × 33 języki nałożony
+docs/18-przekazanie.md:561: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel): wywołanie Gemini API (AI Studio) dostało 429 „Free Tier, limit 
+docs/18-przekazanie.md:565: brak pola [wdrożenie: …] — - 26.10.2026 (agent, po pierwszym przebiegu vertex 40279418852): 404 dla `gemini-4-argon` 
+docs/18-przekazanie.md:566: brak pola [wdrożenie: …] — - 26.10.2026 (agent, kolejne przebiegi): lista modeli nie działa z kluczem API (401); kluc
+docs/18-przekazanie.md:567: brak pola [wdrożenie: …] — - 26.10.2026 (agent): przebieg 40282417033 — próba połączenia OK (rozliczenie działa), wła
+docs/18-przekazanie.md:569: brak pola [wdrożenie: …] — ## 26.10.2026 — nazwy aplikacji w sklepie: znaki towarowe (decyzja właściciela, wariant A)
+docs/18-przekazanie.md:573: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel, przez koordynatora — wyciskanie leżąc, „jak jest w rzeczywistośc
+docs/18-przekazanie.md:574: brak pola [wdrożenie: …] — - 26.10.2026 (korekta po zrzucie, przez koordynatora): wynik 14° odwiedzenia był nierealny
+docs/18-przekazanie.md:576: brak pola [wdrożenie: …] — ## 26.10.2026 — grafiki ćwiczeń: 1.0 bez nowych grafik, biblioteka w 1.1 (decyzja właścici
+docs/18-przekazanie.md:582: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel, decyzja do 1.1): stuknięcie znaczka ✓/✕ zatrzymuje animację i po
+docs/18-przekazanie.md:584: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel): **strona z biblioteką ćwiczeń** — wyłącznie pełna biblioteka ćw
+docs/18-przekazanie.md:585: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel, po pilotażu): **pozy dla 1.1 liczy nasz agent** (generator rodzi
+docs/18-przekazanie.md:586: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel): **strona z biblioteką — decyzje ze specyfikacji** (docs/54 w re
+docs/18-przekazanie.md:587: brak pola [wdrożenie: …] — - 26.10.2026 (audyt pełny 1.0, trzy obszary + przegląd lokalizacji Z-02): 0 KRYTYCZNYCH; W
+docs/18-przekazanie.md:588: brak pola [wdrożenie: …] — - 26.10.2026 (badacz, odczyt dokumentacji Google Cloud): **Claude na Vertex na koncie prób
+docs/18-przekazanie.md:589: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel): **mięśnie na stronie biblioteki i w aplikacji (1.1): mapa (sylw
+docs/18-przekazanie.md:590: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel): **znaki towarowe nazw w sklepie — R-016 zamknięte, nazwy bez zm
+docs/18-przekazanie.md:591: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel, App Store Connect, prowadzony krok po kroku): zrobione kroki z d
+docs/18-przekazanie.md:592: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel): **aplikacja do kalisteniki — specyfikacja startuje teraz** (wcz
+docs/18-przekazanie.md:593: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel): **kalistenika — ścieżka greenfield z biblioteki ról (`prompts`,
+docs/18-przekazanie.md:594: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel, start 1.0 — szkice marketingu `start-1-0`): M-2 **1.0 bez nomina
+docs/18-przekazanie.md:595: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel, bramka opłacalności kalisteniki — rola 02 krok 0: budować warunk
+docs/18-przekazanie.md:596: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel, kalistenika — decyzje bez analogii w Treningu, 3 opcje z rekomen
+docs/18-przekazanie.md:597: brak pola [wdrożenie: …] — - 26.10.2026 (koordynator wydania 1.0, krok Z-05 docs/48): **1.0.0 złożone** na gałęzi `wy
+docs/18-przekazanie.md:598: brak pola [wdrożenie: …] — - 26.10.2026 (właściciel, wieczór): **kalistenika na stronie techniqueatlas w sekcji „Prog
+docs/18-przekazanie.md:599: brak pola [wdrożenie: …] — - 27.10.2026 (właściciel, po zgłoszeniu z TestFlight: tor hantli w „Deadlift (hantle)” wyb
+docs/18-przekazanie.md:600: brak pola [wdrożenie: …] — - 27.10.2026 (właściciel, **nazwany wyjątek od zamrożenia zakresu 1.0, wchodzi do poprawio
+docs/18-przekazanie.md:601: brak pola [wdrożenie: …] — - 27.10.2026 ~16:00 UTC (właściciel, test na telefonie, build 1031): **kolejność planów na
+docs/18-przekazanie.md:602: brak pola [wdrożenie: …] — - 27.10.2026 ~16:40 UTC (właściciel, waluta na ekranie zakupu, build 1031): **wariant A — 
+check:decyzje — 319 błędów w 319 wpisach decyzji (wzór pól: nagłówek scripts/decyzje.mjs)
+kod wyjścia 1

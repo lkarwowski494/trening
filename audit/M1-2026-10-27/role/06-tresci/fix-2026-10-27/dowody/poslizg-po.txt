@@ -1,0 +1,53 @@
+Bent Over Row (sztanga): ok
+Bent Over Row (hantle): ok
+One Arm Row (hantle): W PRZYRZĄDZIE 1.6 (hand @0+0.3)
+Chest Supported Row: ok
+T-Bar Row: ok
+Seated Cable Row: ok
+Wiosłowanie na linkach (siedząc): ok
+Lat Pulldown: ok
+Pull Up: ok
+Chin Up: ok
+Neutral Grip Pull Up: ok
+Biceps Curl (hantle): ok
+Barbell Curl: ok
+EZ Bar Curl: ok
+Hammer Curl: ok
+Cable Curl: ok
+Shrugs (sztanga): ok
+Shrugs (hantle): ok
+Face Pull: ok
+Overhead Press (sztanga): ok
+Overhead Press (hantle): ok
+Seated Shoulder Press (hantle): ok
+Leg Press: ok
+Bulgarian Split Squat (hantle): ok
+Lunges (hantle): ok
+Walking Lunges: ok
+Reverse Lunge: POŚLIZG toe 3.1; POŚLIZG heel 3.1; POŚLIZG ankle 3.1
+Step Up: ok
+Pistol Squat: ok
+Hip Thrust (sztanga): ok
+Hip Thrust (hantel): ok
+Glute Bridge: ok
+Kettlebell Swing: ok
+Standing Calf Raise: ok
+Łydki na stopniu: ok
+Calf Press (leg press): ok
+Wyciskanie nad głowę (linki): ok
+Lateral Raise (hantle): ok
+Cable Lateral Raise: ok
+Front Raise: ok
+Lying Leg Curl: ok
+Dead Bug: ok
+Bird Dog: POD PODŁOGĄ -1.2
+Mountain Climbers: ok
+Rowing Machine: ok
+Machine Chest Press: ok
+Push Up: ok
+Incline Push Up: ok
+Skullcrusher (EZ): ok
+Triceps Dips (ławka): POŚLIZG heel 2.2; POŚLIZG heel2 2.2
+Triceps Pushdown: ok
+Overhead Triceps Extension (hantel): ok
+Cable Overhead Extension: ok

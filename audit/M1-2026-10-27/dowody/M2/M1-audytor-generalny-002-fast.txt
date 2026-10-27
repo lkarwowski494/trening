@@ -1,0 +1,49 @@
+test:fast — 3 plików względem HEAD
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+(node:12853) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+<--- Last few GCs --->
+
+[12853:0x34d11000]  1103789 ms: Scavenge (interleaved) 2013.4 (2079.5) -> 2003.4 (2082.5) MB, pooled: 6 MB, 34.70 / 0.00 ms  (average mu = 0.160, current mu = 0.048) allocation failure; 
+[12853:0x34d11000]  1106203 ms: Mark-Compact 2017.5 (2083.0) -> 1998.6 (2085.5) MB, pooled: 2 MB, 2312.08 / 0.00 ms  (average mu = 0.162, current mu = 0.163) allocation failure; scavenge might not succeed
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+Summary of all failing tests
+FAIL tests/tabs-four.test.tsx (30.556 s)
+  ● przepływy dalej osiągalne (docs/22 4.5): Szablony, Ćwiczenia, Postępy, masa ciała › C4 ćwiczenie (Więcej → Ćwiczenia → ćwiczenie → „Postępy”) otwiera wykres ćwiczenia w zakładce Postępy; wybór zostaje po przełączeniu zakładek (ZM-06)
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      143 |     expect(screen.getByRole('header', { name: 'Postępy' })).toBeTruthy(); expect(treesOf().filter(n => n === '(tabs)').length).toBe(1);
+      144 |   });
+    > 145 |   test('C4 ćwiczenie (Więcej → Ćwiczenia → ćwiczenie → „Postępy”) otwiera wykres ćwiczenia w zakładce Postępy; wybór zostaje po przełączeniu zakładek (ZM-06)', async () => {
+          |   ^
+      146 |     await boot('/', () => { lastTrain(); }); const id = ex('Back Squat').id;
+      147 |     await go(`/exercise/${id}`); await flushAll(10); await tap(screen.getByText('Postępy')); await flushAll(10);
+      148 |     expect(screen.getByLabelText('Back Squat')).toBeTruthy(); expect(screen.getByText('REKORDY')).toBeTruthy(); expect(treesOf().filter(n => n === '(tabs)').length).toBe(1);
+
+      at test (tests/tabs-four.test.tsx:145:3)
+      at Object.describe (tests/tabs-four.test.tsx:135:1)
+
+FAIL tests/matrix-dim-langs-routes2.test.tsx
+  ● Test suite failed to run
+
+    A jest worker process (pid=12853) was terminated by another process: signal=SIGTERM, exitCode=null. Operating system logs may contain more information on why this occurred.
+
+      at ChildProcessWorker._onExit (node_modules/jest-worker/build/workers/ChildProcessWorker.js:370:23)
+
+
+Test Suites: 2 failed, 371 passed, 373 total
+Tests:       1 failed, 1 skipped, 7406 passed, 7408 total
+Snapshots:   5 passed, 5 total
+Time:        2357.383 s
+kod 1
+Powtórka 2 zestawów, --maxWorkers=1: tabs-four PASS, matrix-dim-langs-routes2 PASS (31/31) — porażki w przebiegu zbiorczym z obciążenia (SIGTERM procesu, timeout), nie z poprawki.

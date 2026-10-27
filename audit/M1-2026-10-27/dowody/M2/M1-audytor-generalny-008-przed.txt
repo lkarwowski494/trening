@@ -1,0 +1,63 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts
+  M1-008: build do zgłoszenia 1.0
+    ✕ docs/09: dziennik wydań ma wiersze 1031 (001ecf2) i 1032 (025a50b) (16 ms)
+    ✕ docs/48 Z-26: pole kandydata z numerem buildu i SHA; numer wypełniony musi być w dzienniku z tym samym SHA (2 ms)
+    ✕ docs/48: krok wygaszenia starszych buildów 1.0 (1031, 1032) w TestFlight przed wyborem buildu (2 ms)
+
+  ● M1-008: build do zgłoszenia 1.0 › docs/09: dziennik wydań ma wiersze 1031 (001ecf2) i 1032 (025a50b)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "001ecf2"
+    Received: undefined
+
+      14 |   test('docs/09: dziennik wydań ma wiersze 1031 (001ecf2) i 1032 (025a50b)', () => {
+      15 |     const j = journal(); const row = (b: string) => j.find(r => r[1] === b);
+    > 16 |     expect(row('1031')?.[2]).toBe('001ecf2'); expect(row('1032')?.[2]).toBe('025a50b');
+         |                              ^
+      17 |   });
+      18 |   test('docs/48 Z-26: pole kandydata z numerem buildu i SHA; numer wypełniony musi być w dzienniku z tym samym SHA', () => {
+      19 |     const z26 = read('docs/48-zgloszenie-1-0.md').split('\n').find(l => l.startsWith('| Z-26 |'))!;
+
+      at Object.toBe (tests/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts:16:30)
+
+  ● M1-008: build do zgłoszenia 1.0 › docs/48 Z-26: pole kandydata z numerem buildu i SHA; numer wypełniony musi być w dzienniku z tym samym SHA
+
+    expect(received).not.toBeNull()
+
+    Received: null
+
+      18 |   test('docs/48 Z-26: pole kandydata z numerem buildu i SHA; numer wypełniony musi być w dzienniku z tym samym SHA', () => {
+      19 |     const z26 = read('docs/48-zgloszenie-1-0.md').split('\n').find(l => l.startsWith('| Z-26 |'))!;
+    > 20 |     const m = /Kandydat: build (\d{4}|—) · SHA `?([0-9a-f]{7}|—)`?/.exec(z26); expect(m).not.toBeNull();
+         |                                                                                              ^
+      21 |     if (m![1] !== '—') expect(journal().find(r => r[1] === m![1])?.[2]).toBe(m![2]);
+      22 |     expect(z26).toMatch(/v1\.0\.0-b/); expect(z26).toMatch(/reaudyt/);
+      23 |   });
+
+      at Object.toBeNull (tests/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts:20:94)
+
+  ● M1-008: build do zgłoszenia 1.0 › docs/48: krok wygaszenia starszych buildów 1.0 (1031, 1032) w TestFlight przed wyborem buildu
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      24 |   test('docs/48: krok wygaszenia starszych buildów 1.0 (1031, 1032) w TestFlight przed wyborem buildu', () => {
+      25 |     const rows = read('docs/48-zgloszenie-1-0.md').split('\n').filter(l => /^\| Z-\d+[a-z]? \|/.test(l));
+    > 26 |     expect(rows.some(l => /Expire Build|wygas/i.test(l) && /1031/.test(l) && /1032/.test(l))).toBe(true);
+         |                                                                                               ^
+      27 |   });
+      28 | });
+      29 |
+
+      at Object.toBe (tests/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts:26:95)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        3.743 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts/i.

@@ -1,0 +1,19 @@
+# Biceps Curl (hantle)
+widok: side, kotwica: toe, przyrządy: [{"k":"db","at":"hand"},{"k":"db","at":"hand2"}]
+notatka: Wysokość dłoni na górze ilustracyjna (zgięcie łokcia ok. 140°); obrót dłoni niewidoczny na schemacie.
+mięśnie (katalog): {"biceps":1,"forearms":0.25}
+setup curl.dbSetup: Stań lub usiądź prosto, hantle w opuszczonych rękach, łokcie przy bokach.  [źródła: ace-44 / Step 1; exrx-Biceps/DBCurl / Preparation]
+move curl.dbMove: Zginaj łokieć, obracając dłoń w stronę barku; opuść hantel do pełnego wyprostu ręki.  [źródła: ace-44 / Step 2; Step 3; Step 4 (rotate the forearms); exrx-Biceps/DBCurl / Execution]
+tips curl.elbows: Łokcie zostają przy bokach — pracuje przedramię, nie ramię.  [źródła: ace-44 / Step 2 (without moving your elbows forward); exrx-Biceps/DBCurl / Execution (with elbows to sides)]
+tips curl.noSwing: Tułów nieruchomo: bez bujania i odchylania się.  [źródła: ace-44 / Step 2 (without arching your back); nasm-barbell-bicep-curl / Common Mistakes (swinging; sztanga — ta sama zasada)]
+mistakes curl.mis.elbows: Wysuwanie łokci do przodu albo od tułowia.  [źródła: ace-44 / Step 2; nasm-barbell-bicep-curl / Common Mistakes (elbows drift away from the body)]
+KLATKA start: poza {"t":90,"hip":0,"knee":0,"sh":0,"el":0}
+  kąty: hip=0 knee=0 sh=0 el=0 ankle=0 hip2=0 knee2=0 sh2=0 el2=0 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-11,66) hand=(-11,46) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-11,66) hand2=(-11,46)
+  why joint curl.dbSetup → OK (0)
+  why horiz curl.elbows → OK (90)
+KLATKA end: poza {"t":90,"hip":0,"knee":0,"sh":10,"el":140}
+  kąty: hip=0 knee=0 sh=10 el=140 ankle=0 hip2=0 knee2=0 sh2=10 el2=140 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-7.9,66.3) hand=(2.1,83.6) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-7.9,66.3) hand2=(2.1,83.6)
+  why joint curl.dbMove → OK (140)
+  why horiz curl.elbows → OK (80)

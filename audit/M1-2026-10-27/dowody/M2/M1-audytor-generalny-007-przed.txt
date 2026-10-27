@@ -1,0 +1,51 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-007-waluta-ryzyko.test.ts
+  M1-007: ryzyko waluty w rejestrze i krok listy wydania
+    ✕ docs/40: wiersz R-WAL w rejestrze ryzyk ma warunek zamknięcia (ceny w PLN w wersji z App Store, konto PL) i stan (8 ms)
+    ✕ docs/48: krok sprawdzenia cen w zł odsyła do R-WAL; numery kroków Z-NN są jednoznaczne (4 ms)
+
+  ● M1-007: ryzyko waluty w rejestrze i krok listy wydania › docs/40: wiersz R-WAL w rejestrze ryzyk ma warunek zamknięcia (ceny w PLN w wersji z App Store, konto PL) i stan
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /konto żony|prawdziwe konto|konto z regionem Polska/
+    Received string:  "| R-WAL | Waluta na ekranie zakupu (build 1031, 27.10.2026; ocena: **NISKIE** — ryzyko dotyczy środowiska testowego): lista planów pokazała USD ($0.99 / $6.99 / $14.99) przy koncie testerki ze sklepem PL, arkusz Apple pokazał PLN. Kod i biblioteka przepisują `displayPrice` StoreKit bez zapasowej waluty, pamięci podręcznej i formatowania (strażnik `tests/cena-z-displayprice.test.ts`); Apple: „The storefront that the user’s device is connected to determines the locale”; RevenueCat i Purchasely opisują USD w metadanych produktów w piaskownicy/TestFlight przy poprawnej walucie arkusza zakupu (docs/waluta-ekranu-zakupu-1031.md). Nie potwierdzone, że w produkcji tego nie ma | pierwszy dzień po wydaniu: właściciel (albo tester z polskim kontem, bez piaskownicy) otwiera ekran zakupu w wersji z App Store i potwierdza ceny w PLN (4,99 zł / 19,99 zł / 59,99 zł) zgodne z arkuszem Apple (punkt listy telefonu po wydaniu); USD przy sklepie PL w produkcji = WYSOKIE, naprawa przed ogłoszeniem | **otwarte** (27.10.2026) |"
+
+      14 |     expect(row).toBeTruthy(); const cols = row!.split(' | ');
+      15 |     expect(cols.length).toBeGreaterThanOrEqual(4); expect(cols[2]).toMatch(/App Store/); expect(cols[2]).toMatch(/PLN|zł/); expect(cols[3]).toMatch(/otwarte|zamknięte/);
+    > 16 |     expect(row).toMatch(/konto żony|prawdziwe konto|konto z regionem Polska/); /* fakt od właściciela 27.10.2026: nie konto piaskownicy, tylko prawdziwe konto z regionem PL */
+         |                 ^
+      17 |   });
+      18 |   test('docs/48: krok sprawdzenia cen w zł odsyła do R-WAL; numery kroków Z-NN są jednoznaczne', () => {
+      19 |     const rows = read('docs/48-zgloszenie-1-0.md').split('\n').filter(l => /^\| Z-\d+ \|/.test(l));
+
+      at Object.toMatch (tests/audit-m1-2026-10-27-007-waluta-ryzyko.test.ts:16:17)
+
+  ● M1-007: ryzyko waluty w rejestrze i krok listy wydania › docs/48: krok sprawdzenia cen w zł odsyła do R-WAL; numery kroków Z-NN są jednoznaczne
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "Z-34",
+    + ]
+
+      20 |     expect(rows.some(l => /R-WAL/.test(l) && /zł/.test(l))).toBe(true);
+      21 |     const ids = rows.map(l => l.split(' | ')[0].replace('| ', '')); const dup = ids.filter((x, i) => ids.indexOf(x) !== i);
+    > 22 |     expect(dup).toEqual([]);
+         |                 ^
+      23 |   });
+      24 | });
+      25 |
+
+      at Object.toEqual (tests/audit-m1-2026-10-27-007-waluta-ryzyko.test.ts:22:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.918 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-007-waluta-ryzyko.test.ts/i.

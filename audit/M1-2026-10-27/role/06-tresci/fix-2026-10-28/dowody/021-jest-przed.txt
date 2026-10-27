@@ -1,0 +1,101 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-048-claims-registry.test.ts (7.023 s)
+  kontrola rejestru twierdzeń (dane sztuczne)
+    ✓ zgodny rejestr: brak błędów (279 ms)
+    ✓ tekst dziedzinowy bez ID w rejestrze → błąd (220 ms)
+    ✓ tekst bez znaczników dziedzinowych i krótkie etykiety nie wymagają wpisu (83 ms)
+    ✓ zmiana polskiego brzmienia bez ponownego przeglądu (skrót różny) → błąd (264 ms)
+    ✓ zmiana angielskiego brzmienia (skrót różny) → błąd (294 ms)
+    ✓ wpis bez tekstu w słowniku → błąd (434 ms)
+    ✓ dokument albo fraza nie istnieje → błąd; brak dokumentu wymaga uwagi „[OTWARTE” (1489 ms)
+    ✓ cytat autora „Nazwisko i in. RRRR” bez innych znaczników też wymaga wpisu (przegląd badacza 21.10.2026: tekst z Helms i in. 2016 był poza kontrolą) (112 ms)
+    ✓ powtórzone ID i nieznany rodzaj → błąd (706 ms)
+  M1-audytor-generalny-021 (27.10.2026): strażnik rozpoznaje teksty dziedzinowe bez nazw źródeł i oznaczeń wagi
+    ✕ nowy tekst dziedzinowy bez źródła i bez oznaczenia wagi, bez wpisu → błąd (63 ms)
+    ✕ tekst z jawnej listy kluczy dziedzinowych (krótki, np. tempo faz animacji) bez wpisu → błąd (54 ms)
+    ✕ kandydat bez twierdzenia: wpis w „bezTwierdzenia” z powodem przechodzi; bez powodu albo bez tekstu w słowniku → błąd (92 ms)
+    ✕ wpis twierdzenia z kotwicą równą całemu krótkiemu kluczowi jest dozwolony (295 ms)
+  rejestr twierdzeń: prawdziwy słownik i verify
+    ✓ npm run check:claims przechodzi (kod 0): każdy tekst dziedzinowy ma wpis, skróty zgodne, dokumenty istnieją (802 ms)
+    ✓ rejestr ma wpisy ze wszystkimi rodzajami wagi z tekstów (uproszczenie, konwencja, jedno źródło, źródło cytowane) (2 ms)
+    ✓ verify (package.json) wywołuje check:claims; CLAUDE.md ma regułę rejestru (1 ms)
+
+  ● M1-audytor-generalny-021 (27.10.2026): strażnik rozpoznaje teksty dziedzinowe bez nazw źródeł i oznaczeń wagi › nowy tekst dziedzinowy bez źródła i bez oznaczenia wagi, bez wpisu → błąd
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /bez ID w rejestrze/
+    Received string:  ""
+
+      69 |   const NEW = 'Ciężkie serie 3–5 powtórzeń (ok. 85% maksimum) zwykle najlepiej budują siłę.';
+      70 |   test('nowy tekst dziedzinowy bez źródła i bez oznaczenia wagi, bez wpisu → błąd', () => {
+    > 71 |     expect(check({ [NEW]: 'Heavy sets of 3–5 reps (about 85% of max) usually build strength best.' }, { twierdzenia: [] }, docs).join('\n')).toMatch(/bez ID w rejestrze/);
+         |                                                                                                                                              ^
+      72 |   });
+      73 |   test('tekst z jawnej listy kluczy dziedzinowych (krótki, np. tempo faz animacji) bez wpisu → błąd', () => {
+      74 |     expect(check({ '{faza} {n} s': '{faza} {n} s' }, { twierdzenia: [] }, docs).join('\n')).toMatch(/bez ID w rejestrze/);
+
+      at Object.toMatch (tests/audit-m1-048-claims-registry.test.ts:71:142)
+
+  ● M1-audytor-generalny-021 (27.10.2026): strażnik rozpoznaje teksty dziedzinowe bez nazw źródeł i oznaczeń wagi › tekst z jawnej listy kluczy dziedzinowych (krótki, np. tempo faz animacji) bez wpisu → błąd
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /bez ID w rejestrze/
+    Received string:  ""
+
+      72 |   });
+      73 |   test('tekst z jawnej listy kluczy dziedzinowych (krótki, np. tempo faz animacji) bez wpisu → błąd', () => {
+    > 74 |     expect(check({ '{faza} {n} s': '{faza} {n} s' }, { twierdzenia: [] }, docs).join('\n')).toMatch(/bez ID w rejestrze/);
+         |                                                                                             ^
+      75 |   });
+      76 |   test('kandydat bez twierdzenia: wpis w „bezTwierdzenia” z powodem przechodzi; bez powodu albo bez tekstu w słowniku → błąd', () => {
+      77 |     const ui = 'Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba.';
+
+      at Object.toMatch (tests/audit-m1-048-claims-registry.test.ts:74:93)
+
+  ● M1-audytor-generalny-021 (27.10.2026): strażnik rozpoznaje teksty dziedzinowe bez nazw źródeł i oznaczeń wagi › kandydat bez twierdzenia: wpis w „bezTwierdzenia” z powodem przechodzi; bez powodu albo bez tekstu w słowniku → błąd
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /bez ID w rejestrze/
+    Received string:  ""
+
+      76 |   test('kandydat bez twierdzenia: wpis w „bezTwierdzenia” z powodem przechodzi; bez powodu albo bez tekstu w słowniku → błąd', () => {
+      77 |     const ui = 'Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba.';
+    > 78 |     expect(check({ [ui]: 'x' }, { twierdzenia: [] }, docs).join('\n')).toMatch(/bez ID w rejestrze/);
+         |                                                                        ^
+      79 |     expect(check({ [ui]: 'x' }, { twierdzenia: [], bezTwierdzenia: [{ kotwica: ui.slice(0, 30), powod: 'opis wykresu: rachunek na danych użytkownika' }] }, docs)).toEqual([]);
+      80 |     expect(check({ [ui]: 'x' }, { twierdzenia: [], bezTwierdzenia: [{ kotwica: ui.slice(0, 30), powod: '' }] }, docs).join('\n')).toMatch(/powód/);
+      81 |     expect(check({}, { twierdzenia: [], bezTwierdzenia: [{ kotwica: ui.slice(0, 30), powod: 'opis wykresu: rachunek na danych użytkownika' }] }, docs).join('\n')).toMatch(/nie istnieje w słowniku/);
+
+      at Object.toMatch (tests/audit-m1-048-claims-registry.test.ts:78:72)
+
+  ● M1-audytor-generalny-021 (27.10.2026): strażnik rozpoznaje teksty dziedzinowe bez nazw źródeł i oznaczeń wagi › wpis twierdzenia z kotwicą równą całemu krótkiemu kluczowi jest dozwolony
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "T-001: kotwica (początek polskiego tekstu, ≥ 20 znaków)",
+    + ]
+
+      84 |     const k = '{faza} {n} s';
+      85 |     const e = { id: 'T-001', kotwica: k, skrot: hashOf(k), skrotEn: hashOf(k), rodzaje: ['przegląd badań'], zrodla: ['x'], dokument: 'd.md', fraza: 'ACSM 2026', przeglad: '2026-10-27: test' };
+    > 86 |     expect(check({ [k]: k }, { twierdzenia: [e] }, docs)).toEqual([]);
+         |                                                           ^
+      87 |   });
+      88 | });
+      89 |
+
+      at Object.toEqual (tests/audit-m1-048-claims-registry.test.ts:86:59)
+
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 12 passed, 16 total
+Snapshots:   0 total
+Time:        8.034 s
+Ran all test suites matching /tests\/audit-m1-048-claims-registry.test.ts/i.

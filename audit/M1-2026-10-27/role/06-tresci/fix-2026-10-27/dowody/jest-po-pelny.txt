@@ -1,0 +1,34 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/figures-v2-engine.test.ts
+PASS iOS tests/audit-0.10-lang-ui.test.tsx (58.483 s)
+PASS iOS tests/figures-v2-geometry.test.ts (62.516 s)
+PASS iOS tests/cues.test.tsx
+PASS iOS tests/figures-v2-errors.test.tsx (50.488 s)
+PASS iOS tests/figures-v2-guides.test.tsx
+PASS iOS tests/figures-v2-bench-rules.test.ts
+PASS iOS tests/audit-m1-044-brd.test.ts
+PASS iOS tests/figures-v2-cues.test.tsx
+PASS iOS tests/figures-v2-mapping.test.ts
+PASS iOS tests/figures-v2-sprzet-geometria.test.ts (32.149 s)
+PASS iOS tests/cues-podobienstwo.test.ts
+PASS iOS tests/cues-lazy.test.ts
+PASS iOS tests/zrodla-pelne-sprzet.test.ts
+PASS iOS tests/kroki-wlasciciela-zrodla.test.ts
+PASS iOS tests/zrodla-pelne-grafiki.test.ts
+PASS iOS tests/figures-v2-contract.test.ts (16.405 s)
+PASS iOS tests/zrodla-paczka.test.ts (18.858 s)
+PASS iOS tests/figures-v2-ui.test.tsx (14.052 s)
+PASS iOS tests/figury-1-0-recenzja.test.ts (13.503 s)
+PASS iOS tests/figury-recenzja.test.tsx
+PASS iOS tests/figures.test.tsx
+PASS iOS tests/cues-014.test.tsx
+PASS iOS tests/zrodla-wiedzy.test.ts
+PASS iOS tests/zrodla-pelne-cues.test.ts
+PASS iOS tests/zrodla-pelne-figury.test.ts
+
+Test Suites: 26 passed, 26 total
+Tests:       427 passed, 427 total
+Snapshots:   5 passed, 5 total
+Time:        289.608 s
+Ran all test suites matching /audit-0.10-lang-ui|audit-m1-044-brd|cues-014|cues-lazy|cues-podobienstwo|tests\/cues.test.tsx|figures-v2|tests\/figures.test.tsx|figury-1-0-recenzja|figury-recenzja|kroki-wlasciciela-zrodla|zrodla-paczka|zrodla-pelne|zrodla-wiedzy/i.

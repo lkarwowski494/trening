@@ -1,0 +1,17 @@
+# Cable Lateral Raise
+widok: front, kotwica: ankle, przyrządy: [{"k":"cable","at":"hand","from":[-24,3]},{"k":"grip","at":"hand","r":3}]
+notatka: Widok z przodu; linka od dolnego bloczka po drugiej stronie ciała. Druga ręka swobodnie (w praktyce trzyma się wyciągu).
+mięśnie (katalog): {"side_delt":1,"front_delt":0.25,"upper_back":0.25}
+setup clat.setup: Złap uchwyt dolnego wyciągu, łokieć lekko ugięty, tułów stabilny.  [źródła: exrx-DeltoidLateral/CBOneArmLateralRaise / Preparation; Execution (elbow slightly bent); ace-26 / Step 1; Step 2 (slight bend; bracing)]
+move lat.move: Unieś ramiona bokiem, potem opuść je powoli.  [źródła: exrx-DeltoidLateral/CBOneArmLateralRaise / Execution; ace-26 / Step 3; Step 4 (hantle — ten sam ruch)]
+tips lat.elbows: Łokcie lekko ugięte i prowadzą ruch — są na wysokości dłoni lub wyżej.  [źródła: exrx-DeltoidLateral/CBOneArmLateralRaise / Comments (fixed, slightly bent elbow); ace-26 / Step 3]
+tips lat.height: Unoś mniej więcej do wysokości barków.  [źródła: exrx-DeltoidLateral/CBLateralRaise / Execution (until elbows are shoulder height); ace-26 / Step 3]
+KLATKA start: poza {"hip":3,"sh":[12,4],"el":[15,0]} at [5,4]
+  kąty: abd=12 el=15 hipAbd=3 abd2=4 el2=0 hipAbd2=3 elev=0
+  punkty: head=(-2.6,94.9) shoulder=(7.4,83.9) elbow=(11.1,66.3) hand=(10.1,46.4) hip=(-2.6,53.9) knee=(3.7,29) ankle=(5,4) heel=(4,0) toe=(12,0) knee2=(-8.9,29) ankle2=(-10.2,4) heel2=(-9.2,0) toe2=(-17.2,0) elbow2=(-13.9,66) hand2=(-15.3,46)
+  why joint clat.setup → OK (15)
+KLATKA end: poza {"hip":3,"sh":[90,4],"el":[15,0]} at [5,4]
+  kąty: abd=90 el=15 hipAbd=3 abd2=4 el2=0 hipAbd2=3 elev=0
+  punkty: head=(-2.6,94.9) shoulder=(7.4,83.9) elbow=(25.4,83.9) hand=(44.7,78.8) hip=(-2.6,53.9) knee=(3.7,29) ankle=(5,4) heel=(4,0) toe=(12,0) knee2=(-8.9,29) ankle2=(-10.2,4) heel2=(-9.2,0) toe2=(-17.2,0) elbow2=(-13.9,66) hand2=(-15.3,46)
+  why horiz lat.height → OK (7.9)
+  why above lat.elbows → OK (5.7)

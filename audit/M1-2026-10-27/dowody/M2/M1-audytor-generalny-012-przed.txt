@@ -1,0 +1,97 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+file:///home/user/trening/[eval1]:1
+import { blockingRisks } from "file:///home/user/trening/scripts/ci/blokada-wydania.mjs"; import { readFileSync } from 'node:fs'; process.stdout.write(JSON.stringify(blockingRisks(readFileSync(process.argv[1], 'utf8'))));
+         ^^^^^^^^^^^^^
+SyntaxError: The requested module 'file:///home/user/trening/scripts/ci/blokada-wydania.mjs' does not provide an export named 'blockingRisks'
+    at ModuleJob._instantiate (node:internal/modules/esm/module_job:226:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:335:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/[eval1]:1
+import { blockingRisks } from "file:///home/user/trening/scripts/ci/blokada-wydania.mjs"; import { readFileSync } from 'node:fs'; process.stdout.write(JSON.stringify(blockingRisks(readFileSync(process.argv[1], 'utf8'))));
+         ^^^^^^^^^^^^^
+SyntaxError: The requested module 'file:///home/user/trening/scripts/ci/blokada-wydania.mjs' does not provide an export named 'blockingRisks'
+    at ModuleJob._instantiate (node:internal/modules/esm/module_job:226:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:335:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+FAIL iOS tests/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts
+  M1-012: rejestr ryzyk jako bramka wydania
+    ✕ blockingRisks: otwarte i częściowe blokują; zamknięte, zaakceptowane, odroczone decyzją z datą i „sprawdzenie po wydaniu” nie (158 ms)
+    ✕ dodanie wiersza „otwarte” do bieżącego rejestru jest wykryte (test potrafi paść) (106 ms)
+    ✓ bieżący rejestr: każdy wiersz ma stan z datą (dd.mm.rrrr) (10 ms)
+    ✕ krok wydania wywołuje check:release: docs/48 (przed Z-26) i lista wydawcy (2 ms)
+
+  ● M1-012: rejestr ryzyk jako bramka wydania › blockingRisks: otwarte i częściowe blokują; zamknięte, zaakceptowane, odroczone decyzją z datą i „sprawdzenie po wydaniu” nie
+
+    Command failed: node --input-type=module -e import { blockingRisks } from "file:///home/user/trening/scripts/ci/blokada-wydania.mjs"; import { readFileSync } from 'node:fs'; process.stdout.write(JSON.stringify(blockingRisks(readFileSync(process.argv[1], 'utf8')))); /tmp/rejestr-UYoDB4/r.md
+    file:///home/user/trening/[eval1]:1
+    import { blockingRisks } from "file:///home/user/trening/scripts/ci/blokada-wydania.mjs"; import { readFileSync } from 'node:fs'; process.stdout.write(JSON.stringify(blockingRisks(readFileSync(process.argv[1], 'utf8'))));
+             ^^^^^^^^^^^^^
+    SyntaxError: The requested module 'file:///home/user/trening/scripts/ci/blokada-wydania.mjs' does not provide an export named 'blockingRisks'
+
+      16 | /** Wywołanie modułu ESM w osobnym procesie (jak tests/blokada-wydania.test.ts): treść rejestru z pliku tymczasowego. */
+      17 | const blockingRisks = (md: string): { id: string; state: string }[] => { const f = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'rejestr-')), 'r.md'); fs.writeFileSync(f, md);
+    > 18 |   return JSON.parse(execFileSync('node', ['--input-type=module', '-e', `import { blockingRisks } from ${JSON.stringify('file://' + SCRIPT)}; import { readFileSync } from 'node:fs'; process.stdout.write(JSON.stringify(blockingRisks(readFileSync(process.argv[1], 'utf8'))));`, f], { encoding: 'utf8' })); };
+         |                                 ^
+      19 | const load = async () => ({ blockingRisks });
+      20 | const table = (rows: string[]) => ['## Rejestr ryzyk (otwarte blokują wydanie)', '', '| id | ryzyko | warunek zamknięcia | stan |', '|---|---|---|---|', ...rows, '', '## Lekcje'].join('\n');
+      21 |
+
+      Node.js v22.22.0
+      at blockingRisks (tests/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts:18:33)
+      at Object.blockingRisks (tests/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts:27:12)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-012: rejestr ryzyk jako bramka wydania › dodanie wiersza „otwarte” do bieżącego rejestru jest wykryte (test potrafi paść)
+
+    Command failed: node --input-type=module -e import { blockingRisks } from "file:///home/user/trening/scripts/ci/blokada-wydania.mjs"; import { readFileSync } from 'node:fs'; process.stdout.write(JSON.stringify(blockingRisks(readFileSync(process.argv[1], 'utf8')))); /tmp/rejestr-pZAIPo/r.md
+    file:///home/user/trening/[eval1]:1
+    import { blockingRisks } from "file:///home/user/trening/scripts/ci/blokada-wydania.mjs"; import { readFileSync } from 'node:fs'; process.stdout.write(JSON.stringify(blockingRisks(readFileSync(process.argv[1], 'utf8'))));
+             ^^^^^^^^^^^^^
+    SyntaxError: The requested module 'file:///home/user/trening/scripts/ci/blokada-wydania.mjs' does not provide an export named 'blockingRisks'
+
+      16 | /** Wywołanie modułu ESM w osobnym procesie (jak tests/blokada-wydania.test.ts): treść rejestru z pliku tymczasowego. */
+      17 | const blockingRisks = (md: string): { id: string; state: string }[] => { const f = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'rejestr-')), 'r.md'); fs.writeFileSync(f, md);
+    > 18 |   return JSON.parse(execFileSync('node', ['--input-type=module', '-e', `import { blockingRisks } from ${JSON.stringify('file://' + SCRIPT)}; import { readFileSync } from 'node:fs'; process.stdout.write(JSON.stringify(blockingRisks(readFileSync(process.argv[1], 'utf8'))));`, f], { encoding: 'utf8' })); };
+         |                                 ^
+      19 | const load = async () => ({ blockingRisks });
+      20 | const table = (rows: string[]) => ['## Rejestr ryzyk (otwarte blokują wydanie)', '', '| id | ryzyko | warunek zamknięcia | stan |', '|---|---|---|---|', ...rows, '', '## Lekcje'].join('\n');
+      21 |
+
+      Node.js v22.22.0
+      at blockingRisks (tests/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts:18:33)
+      at Object.blockingRisks (tests/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts:32:12)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-012: rejestr ryzyk jako bramka wydania › krok wydania wywołuje check:release: docs/48 (przed Z-26) i lista wydawcy
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 0
+    Received:    -1
+
+      38 |   test('krok wydania wywołuje check:release: docs/48 (przed Z-26) i lista wydawcy', () => {
+      39 |     const z = read('docs/48-zgloszenie-1-0.md').split('\n').filter(l => /^\| Z-\d+[a-z]? \|/.test(l)); const i = z.findIndex(l => l.includes('npm run check:release')); const j = z.findIndex(l => l.startsWith('| Z-26 |'));
+    > 40 |     expect(i).toBeGreaterThanOrEqual(0); expect(i).toBeLessThan(j);
+         |               ^
+      41 |     expect(read('.claude/agents/wydawca.md')).toContain('npm run check:release');
+      42 |   });
+      43 | });
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts:40:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 1 passed, 4 total
+Snapshots:   0 total
+Time:        2.495 s, estimated 3 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts/i.

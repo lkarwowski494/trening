@@ -1,0 +1,21 @@
+# Dead Bug
+widok: side, kotwica: hip, przyrządy: []
+notatka: Ręka bliższa i dalsza noga (przeciwne strony); dalsza noga szara. Jak nisko opuszczać — ilustracyjnie, bez dotykania podłogi.
+mięśnie (katalog): {"abs":1,"obliques":0.5}
+setup db.setup: Połóż się na plecach, ręce wyprostowane w górę, biodra i kolana ugięte pod kątem prostym.  [źródła: ace-147 / Step 2 (knees over hips bent 90°, elbows over shoulders); nasm-dead-bug / Step 1: Setup]
+move db.move: Powoli opuść przeciwną rękę i nogę w stronę podłogi, nie kładąc ich; wróć i zmień strony.  [źródła: ace-147 / Step 3; nasm-dead-bug / Step 3; Step 4]
+tips db.back: Lędźwie przy podłodze — nie wyginaj pleców w łuk.  [źródła: nasm-dead-bug / Step 2; Common Mistakes; ace-147 / Step 1 (without increasing the arch in your low back)]
+tips db.slow: Ruszaj się powoli i oddychaj normalnie.  [źródła: nasm-dead-bug / Common Mistakes; FAQ (movement speed); ace-147 / Step 3; wskazówka końcowa (continue to breathe)]
+mistakes plank.mis.breath: Wstrzymywanie oddechu.  [źródła: nasm-dead-bug / Common Mistakes; ace-147 / wskazówka końcowa]
+KLATKA start: poza {"t":180,"hip":90,"knee":90,"ft":60,"sh":90,"el":0} at [0,6]
+  kąty: hip=90 knee=90 sh=90 el=0 ankle=-30 hip2=90 knee2=90 sh2=90 el2=0 ankle2=-30
+  punkty: head=(-41,6) shoulder=(-30,6) elbow=(-30,24) hand=(-30,44) hip=(0,6) knee=(0,31) ankle=(25,31) heel=(27,26.4) toe=(34,38.5) knee2=(0,31) ankle2=(25,31) heel2=(27,26.4) toe2=(34,38.5) elbow2=(-30,24) hand2=(-30,44)
+  why joint db.setup → OK (90)
+  why joint db.setup → OK (90)
+  why horiz db.setup → OK (90)
+KLATKA end: poza {"t":180,"hip":[90,15],"knee":[90,5],"ft":[60,100],"sh":[165,90],"el":0} at [0,6]
+  kąty: hip=90 knee=90 sh=165 el=0 ankle=-30 hip2=15 knee2=5 sh2=90 el2=0 ankle2=0
+  punkty: head=(-41,6) shoulder=(-30,6) elbow=(-47.4,10.7) hand=(-66.7,15.8) hip=(0,6) knee=(0,31) ankle=(25,31) heel=(27,26.4) toe=(34,38.5) knee2=(24.1,12.5) ankle2=(48.8,16.8) heel2=(53.2,14.6) toe2=(50.8,28.3) elbow2=(-30,24) hand2=(-30,44)
+  why above db.move → OK (14.8)
+  why above db.move → OK (14.6)
+  why joint db.move → OK (90)

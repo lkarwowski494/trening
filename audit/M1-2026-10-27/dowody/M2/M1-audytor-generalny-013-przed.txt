@@ -1,0 +1,459 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx (6.361 s)
+  M1-013: wyjątek migracji przy starcie → tryb awaryjny, dane nietknięte
+    ✕ migrate rzuca na czytelnych danych: ekran błędu startu, „state” bez zmian, brak state_corrupt_*, „Wyślij dane” daje dane z bazy (1398 ms)
+    ✓ nieczytelny JSON: jak dotąd — odłożenie pod state_corrupt_* i start z komunikatem (bez ekranu błędu startu) (147 ms)
+
+  ● M1-013: wyjątek migracji przy starcie → tryb awaryjny, dane nietknięte › migrate rzuca na czytelnych danych: ekran błędu startu, „state” bez zmian, brak state_corrupt_*, „Wyślij dane” daje dane z bazy
+
+    Unable to find an element with text: Nie udało się otworzyć danych.
+
+    [36m<RNCSafeAreaProvider>[39m
+      [36m<View>[39m
+        [36m<View[39m
+          [33maccessibilityElementsHidden[39m=[32m{false}[39m
+          [33mimportantForAccessibility[39m=[32m"auto"[39m
+        [36m>[39m
+          [36m<View>[39m
+            [36m<RNSScreenStack>[39m
+              [36m<RNSScreen[39m
+                [33maria-hidden[39m=[32m{false}[39m
+              [36m>[39m
+                [36m<RNSScreenContentWrapper>[39m
+                  [36m<View>[39m
+                    [36m<RNSScreenNavigationContainer>[39m
+                      [36m<RNSScreen>[39m
+                        [36m<View[39m
+                          [33maria-hidden[39m=[32m{false}[39m
+                        [36m>[39m
+                          [36m<View>[39m
+                            [36m<RNCSafeAreaView>[39m
+                              [36m<View>[39m
+                                [36m<RCTScrollView>[39m
+                                  [36m<View>[39m
+                                    [36m<View[39m
+                                      [33mtestID[39m=[32m"tab-header"[39m
+                                    [36m>[39m
+                                      [36m<View>[39m
+                                        [36m<View[39m
+                                          [33mtestID[39m=[32m"title-row"[39m
+                                        [36m>[39m
+                                          [36m<View>[39m
+                                            [36m<Text[39m
+                                              [33maccessibilityRole[39m=[32m"header"[39m
+                                            [36m>[39m
+                                              [0mTrening[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                            [33mimportantForAccessibility[39m=[32m"no-hide-descendants"[39m
+                                            [33mtestID[39m=[32m"title-barbell"[39m
+                                          [36m>[39m
+                                            [36m<RNSVGSvgView[39m
+                                              [33maccessible[39m=[32m{false}[39m
+                                            [36m>[39m
+                                              [36m<RNSVGGroup>[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                              [36m</RNSVGGroup>[39m
+                                            [36m</RNSVGSvgView>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                        [36m<Text>[39m
+                                          [0mwtorek, 27 października[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                    [36m<View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"Poprzednich danych nie dało się odczytać, Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup."[39m
+                                        [33maccessibilityRole[39m=[32m"button"[39m
+                                        [33maccessibilityState[39m=[32m{
+                                          {
+                                            "disabled": false,
+                                          }
+                                        }[39m
+                                        [33maccessible[39m=[32m{true}[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mPoprzednich danych nie dało się odczytać[0m
+                                          [36m</Text>[39m
+                                          [36m<Text>[39m
+                                            [0mKopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<Text[39m
+                                          [33maccessible[39m=[32m{false}[39m
+                                          [33mimportantForAccessibility[39m=[32m"no"[39m
+                                        [36m>[39m
+                                          [0m›[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                    [36m<View[39m
+                                      [33mtestID[39m=[32m"start-panel"[39m
+                                    [36m>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"Pusty trening"[39m
+                                        [33maccessibilityRole[39m=[32m"button"[39m
+                                        [33maccessible[39m=[32m{true}[39m
+                                        [33mtestID[39m=[32m"start-main"[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mPusty trening[0m
+                                          [36m</Text>[39m
+                                          [36m<Text>[39m
+                                            [0mćwiczenia dodasz w trakcie[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<Text[39m
+                                          [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                          [33mimportantForAccessibility[39m=[32m"no"[39m
+                                        [36m>[39m
+                                          [0m›[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityHint[39m=[32m"Inny z planu, powtórz ostatni, z szablonu albo pusty."[39m
+                                        [33maccessibilityLabel[39m=[32m"Inny trening"[39m
+                                        [33maccessibilityRole[39m=[32m"button"[39m
+                                        [33maccessible[39m=[32m{true}[39m
+                                      [36m>[39m
+                                        [36m<Text>[39m
+                                          [0mInny trening[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                    [36m<View[39m
+                                      [33mtestID[39m=[32m"first-steps"[39m
+                                    [36m>[39m
+                                      [36m<Text[39m
+                                        [33maccessibilityRole[39m=[32m"header"[39m
+                                      [36m>[39m
+                                        [0mPierwsze kroki[0m
+                                      [36m</Text>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia"[39m
+                                        [33maccessible[39m=[32m{false}[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0m1[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mUtwórz pierwszy szablon albo wygeneruj szablony i plan.[0m
+                                          [36m</Text>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityLabel[39m=[32m"Planowanie"[39m
+                                            [33maccessibilityRole[39m=[32m"button"[39m
+                                            [33maccessible[39m=[32m{true}[39m
+                                          [36m>[39m
+                                            [36m<Text>[39m
+                                              [0mPlanowanie[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"2. Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie. do zrobienia"[39m
+                                        [33maccessible[39m=[32m{false}[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0m2[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mUstaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.[0m
+                                          [36m</Text>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityLabel[39m=[32m"Planowanie"[39m
+                                            [33maccessibilityRole[39m=[32m"button"[39m
+                                            [33maccessible[39m=[32m{true}[39m
+                                          [36m>[39m
+                                            [36m<Text>[39m
+                                              [0mPlanowanie[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"3. Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”. do zrobienia"[39m
+                                        [33maccessible[39m=[32m{false}[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0m3[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mPierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.[0m
+                                          [36m</Text>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityLabel[39m=[32m"Przewodnik po funkcjach"[39m
+                                            [33maccessibilityRole[39m=[32m"button"[39m
+                                            [33maccessible[39m=[32m{true}[39m
+                                          [36m>[39m
+                                            [36m<Text>[39m
+                                              [0mPrzewodnik[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”."[39m
+                                        [33maccessibilityRole[39m=[32m"button"[39m
+                                        [33maccessible[39m=[32m{true}[39m
+                                      [36m>[39m
+                                        [36m<Text>[39m
+                                          [0mĆwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</RCTScrollView>[39m
+                              [36m</View>[39m
+                            [36m</RNCSafeAreaView>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</RNSScreen>[39m
+                    [36m</RNSScreenNavigationContainer>[39m
+                    [36m<View>[39m
+                      [36m<View />[39m
+                      [36m<View[39m
+                        [33mrole[39m=[32m"tablist"[39m
+                      [36m>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Trening, zakładka, 1 z 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": true,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mTrening[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Plan, zakładka, 2 z 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mPlan[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Postępy, zakładka, 3 z 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mPostępy[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Więcej, zakładka, 4 z 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mWięcej[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                [36m</RNSScreenContentWrapper>[39m
+                [36m<RNSScreenStackHeaderConfig[39m
+                  [33mpointerEvents[39m=[32m"box-none"[39m
+                  [33mtitle[39m=[32m"(tabs)"[39m
+                [36m/>[39m
+              [36m</RNSScreen>[39m
+            [36m</RNSScreenStack>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</View>[39m
+    [36m</RNCSafeAreaProvider>[39m
+
+      21 |     spies.push(jest.spyOn(require('@/lib/state/migrate'), 'migrate').mockImplementation(() => { throw new Error('boom-migracja'); }));
+      22 |     await renderApp({ saved: state }); await flushAll(50);
+    > 23 |     expect(screen.getByText('Nie udało się otworzyć danych.')).toBeTruthy();
+         |                   ^
+      24 |     expect(corruptKeys()).toEqual([]); expect(global.__kv.has('recovery')).toBe(false);
+      25 |     expect(JSON.parse(global.__kv.get('state')!).settings.defaultRest).toBe(77);
+      26 |     const before = global.__kv.get('state'); (FS.writeAsStringAsync as jest.Mock).mockClear(); (Sharing.shareAsync as jest.Mock).mockClear();
+
+      at Object.getByText (tests/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx:23:19)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        6.943 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx/i.

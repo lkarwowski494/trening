@@ -1,0 +1,17 @@
+# Kettlebell Swing
+widok: side, kotwica: toe, przyrządy: [{"k":"kb","at":"hand","d":[0,2]}]
+notatka: Wysokość kettlebella na górze (ok. barków) ilustracyjna — wskazówki mówią „unosi się przed tobą”.
+mięśnie (katalog): {"glutes":1,"hamstrings":1,"lower_back":0.5,"abs":0.25,"forearms":0.25,"front_delt":0.25,"quads":0.25}
+setup kb.setup: Stań za kettlebellem, stopy na szerokość barków lub trochę szerzej; pochyl się w biodrach z prostymi plecami i chwyć uchwyt oburącz.  [źródła: exrx-Kettlebell/KBTwoArmSwing / Preparation (feet slightly wider apart than shoulder width; bend over at hip, back straight; grasp handle with both hands); ace-391 / opis (feet shoulder-width apart; hold with both hands; back straight, sink back into the hips)]
+move kb.move: Cofnij biodra, przepuszczając kettlebell między nogami, potem energicznie wypchnij biodra w przód — kettlebell unosi się przed tobą.  [źródła: exrx-Kettlebell/KBTwoArmSwing / Execution; ace-391 / opis]
+tips kb.hips: Siła idzie z bioder, nie z barków — ręce tylko prowadzą kettlebell.  [źródła: ace-391 / opis (Tip: strength from legs and hips, NOT the shoulders); exrx-Kettlebell/KBTwoArmSwing / Comments (hips primarily drive; shoulder movements largely passive)]
+tips hinge.back: Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.  [źródła: ace-391 / opis (keep the back straight); exrx-Kettlebell/KBTwoArmSwing / Comments (back taut)]
+KLATKA start: poza {"t":30,"hip":108,"knee":45,"sh":35,"el":0}
+  kąty: hip=108 knee=45 sh=35 el=0 ankle=-3 hip2=108 knee2=45 sh2=35 el2=0 ankle2=-3
+  punkty: head=(4.6,66.2) shoulder=(-4.9,60.7) elbow=(-12.5,44.4) hand=(-21,26.3) hip=(-30.9,45.7) knee=(-12.3,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-12.3,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-12.5,44.4) hand2=(-21,26.3)
+  why ahead kb.move → OK (8.7)
+  why ahead kb.move → OK (16.9)
+KLATKA end: poza {"t":90,"hip":0,"knee":0,"sh":90,"el":0}
+  kąty: hip=0 knee=0 sh=90 el=0 ankle=0 hip2=0 knee2=0 sh2=90 el2=0 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(7,84) hand=(27,84) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(7,84) hand2=(27,84)
+  why line kb.move → OK (180)

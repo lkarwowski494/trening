@@ -1,0 +1,20 @@
+# Bulgarian Split Squat (hantle)
+widok: side, kotwica: toe, przyrządy: [{"k":"rect","x":-74,"y":20,"w":30,"h":4},{"k":"line","pts":[[-70,20],[-70,0]]},{"k":"line","pts":[[-48,20],[-48,0]]},{"k":"db","at":"hand"},{"k":"db","at":"hand2"}]
+notatka: Długość ustawienia nóg i wysokość ławki ilustracyjne.
+mięśnie (katalog): {"quads":1,"glutes":1,"hamstrings":0.5,"adductors":0.5,"abductors":0.25,"calves":0.25,"forearms":0.25}
+setup bss.setup: Stań tyłem do ławki i oprzyj na niej grzbiet tylnej stopy; przednia stopa wysunięta.  [źródła: ace-366 / opis; nasm-bulgarian-split-squat / Step 1: Setup; exrx-Quadriceps/DBSingleLegSplitSquat / Preparation]
+move bss.move: Opuść się, uginając przednie kolano i biodro, aż tylne kolano będzie tuż nad podłogą; wstań, odpychając się przednią nogą.  [źródła: ace-366 / opis; nasm-bulgarian-split-squat / Step 3; Step 4; exrx-Quadriceps/DBSingleLegSplitSquat / Execution]
+tips lunge.torso: Plecy proste przez cały ruch.  [źródła: ace-366 / opis (back straight); nasm-bulgarian-split-squat / Step 2; Step 3 (upright posture); exrx-Quadriceps/DBSingleLegSplitSquat / Comments (torso upright)]
+tips lunge.knee: Przednie kolano w linii palców stopy.  [źródła: exrx-Quadriceps/DBSingleLegSplitSquat / Comments; nasm-bulgarian-split-squat / Common Mistakes (front knee cave inward)]
+mistakes lunge.mis.kneeIn: Przednie kolano uciekające do środka.  [źródła: nasm-bulgarian-split-squat / Common Mistakes; exrx-Quadriceps/DBSingleLegSplitSquat / Comments]
+KLATKA start: poza {"t":90,"hip":[24,5],"knee":[10,99],"ft":[0,209],"sh":0,"el":0}
+  kąty: hip=24 knee=10 sh=0 el=0 ankle=-14 hip2=5 knee2=99 sh2=0 el2=0 ankle2=-57
+  punkty: head=(-27.2,92.1) shoulder=(-27.2,81.1) elbow=(-27.2,63.1) hand=(-27.2,43.1) hip=(-27.2,51.1) knee=(-17,28.3) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-25,26.2) ankle2=(-50,27.9) heel2=(-49.3,32.9) toe2=(-61.5,26.1) elbow2=(-27.2,63.1) hand2=(-27.2,43.1)
+  why horiz lunge.torso → OK (90)
+  why low bss.setup → OK (3.9)
+KLATKA end: poza {"t":90,"hip":[89,-16],"knee":[96,140],"ft":[0,209],"sh":0,"el":0}
+  kąty: hip=89 knee=96 sh=0 el=0 ankle=7 hip2=-16 knee2=140 sh2=0 el2=0 ankle2=5
+  punkty: head=(-32.9,70.2) shoulder=(-32.9,59.2) elbow=(-32.9,41.2) hand=(-32.9,21.2) hip=(-32.9,29.2) knee=(-8,28.8) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-39.8,5.2) ankle2=(-50,28.1) heel2=(-49.3,33) toe2=(-61.6,26.2) elbow2=(-32.9,41.2) hand2=(-32.9,21.2)
+  why low bss.move → OK (5.2)
+  why horiz lunge.torso → OK (90)
+  why low bss.setup → OK (4.1)

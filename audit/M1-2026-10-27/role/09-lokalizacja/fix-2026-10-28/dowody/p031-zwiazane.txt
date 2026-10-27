@@ -1,0 +1,18 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/matrix-i18n.test.tsx (15.004 s)
+PASS iOS tests/public-repo.test.ts
+PASS iOS tests/i18n-wave4.test.ts
+PASS iOS tests/verify-docs.test.ts (5.959 s)
+PASS iOS tests/i18n-multi.test.ts
+PASS iOS tests/check-i18n-script.test.ts (21.183 s)
+PASS iOS tests/slownik-terminow.test.ts
+PASS iOS tests/i18n-locales.test.ts
+PASS iOS tests/i18n-forma-uk.test.ts
+PASS iOS tests/i18n-skrot-liczebnik.test.ts
+
+Test Suites: 10 passed, 10 total
+Tests:       1175 passed, 1175 total
+Snapshots:   0 total
+Time:        57.75 s, estimated 99 s
+Ran all test suites matching /tests\/check-i18n-script.test.ts|tests\/i18n-locales.test.ts|tests\/i18n-forma-uk.test.ts|tests\/i18n-skrot-liczebnik.test.ts|tests\/slownik-terminow.test.ts|tests\/i18n-multi.test.ts|tests\/matrix-i18n.test.tsx|tests\/public-repo.test.ts|tests\/verify-docs.test.ts|tests\/i18n-wave4.test.ts/i.

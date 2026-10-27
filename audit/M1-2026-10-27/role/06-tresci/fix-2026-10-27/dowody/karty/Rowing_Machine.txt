@@ -1,0 +1,25 @@
+# Rowing Machine
+widok: side, kotwica: heel, przyrządy: [{"k":"line","pts":[[-40,10],[44,10]]},{"k":"rect","x":36,"y":4,"w":4,"h":16},{"k":"cable","at":"hand","from":[62,26]},{"k":"grip","at":"hand","r":3}]
+notatka: Trzy pozycje: wyjściowa, po pracy nóg, koniec pociągnięcia; powrót w odwrotnej kolejności (erg.recovery). Pochylenie tułowia ilustracyjne.
+mięśnie (katalog): {"quads":0.5,"glutes":0.5,"lats":0.5,"upper_back":0.5,"hamstrings":0.25,"lower_back":0.25,"biceps":0.25,"rear_delt":0.25,"forearms":0.25,"abs":0.25}
+setup erg.setup: Zapnij stopy; w pozycji wyjściowej ręce proste, tułów pochylony w biodrach, piszczele mniej więcej pionowo.  [źródła: c2-technique / The Catch; aceblog-5881 / The Catch: Starting Position]
+move erg.drive: Pociągnięcie: najpierw nogi, potem odchylenie tułowia, na końcu ręce.  [źródła: c2-technique / The Drive; aceblog-5881 / The Drive: Work]
+move erg.recovery: Powrót w odwrotnej kolejności: ręce, tułów, dopiero potem ugięcie kolan.  [źródła: c2-technique / The Recovery; aceblog-5881 / The Recovery: Rest]
+tips erg.handle: Prowadź uchwyt w linii prostej do koła zamachowego i z powrotem.  [źródła: c2-technique / The Drive (hands move in a straight line); aceblog-5881 / The Drive (arms in a straight line to and from the flywheel)]
+tips erg.finish: Na końcu pociągnięcia nogi proste, tułów lekko odchylony, uchwyt tuż pod żebrami.  [źródła: c2-technique / The Finish; aceblog-5881 / The Finish: Stabilize]
+KLATKA start: poza {"t":65,"hip":132,"knee":93,"ft":50,"sh":60,"el":0} at [40,8]
+  kąty: hip=132 knee=93 sh=60 el=0 ankle=36 hip2=132 knee2=93 sh2=60 el2=0 ankle2=36
+  punkty: head=(26.2,67) shoulder=(21.6,57) elbow=(31.9,42.3) hand=(43.4,25.9) hip=(8.9,29.8) knee=(32.8,37.1) ankle=(38.9,12.9) heel=(40,8) toe=(49,18.7) knee2=(32.8,37.1) ankle2=(38.9,12.9) heel2=(40,8) toe2=(49,18.7) elbow2=(31.9,42.3) hand2=(43.4,25.9)
+  why horiz erg.setup → OK (76)
+  why joint erg.setup → OK (0)
+KLATKA mid: poza {"t":65,"hip":116,"knee":9,"ft":50,"sh":88,"el":0} at [40,8]
+  kąty: hip=116 knee=9 sh=88 el=0 ankle=-32 hip2=116 knee2=9 sh2=88 el2=0 ankle2=-32
+  punkty: head=(6.4,53.1) shoulder=(1.8,43.1) elbow=(17.8,34.9) hand=(35.6,25.8) hip=(-10.9,15.9) knee=(14.1,16.3) ankle=(38.9,12.9) heel=(40,8) toe=(49,18.7) knee2=(14.1,16.3) ankle2=(38.9,12.9) heel2=(40,8) toe2=(49,18.7) elbow2=(17.8,34.9) hand2=(35.6,25.8)
+  why joint erg.drive → OK (9)
+  why joint erg.drive → OK (0)
+KLATKA end: poza {"t":105,"hip":72,"knee":1,"ft":50,"sh":-42,"el":130} at [40,8]
+  kąty: hip=72 knee=1 sh=-42 el=130 ankle=-36 hip2=72 knee2=1 sh2=-42 el2=130 ankle2=-36
+  punkty: head=(-21.7,55.5) shoulder=(-18.8,44.9) elbow=(-27,28.9) hand=(-7.5,33.4) hip=(-11,15.9) knee=(13.9,14.6) ankle=(38.9,12.9) heel=(40,8) toe=(49,18.7) knee2=(13.9,14.6) ankle2=(38.9,12.9) heel2=(40,8) toe2=(49,18.7) elbow2=(-27,28.9) hand2=(-7.5,33.4)
+  why joint erg.finish → OK (1)
+  why horiz erg.finish → OK (75)
+  why touch erg.finish → OK (0.1)

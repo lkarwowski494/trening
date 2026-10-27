@@ -1,0 +1,38 @@
+=== M1: skrypt nie sprawdza, czy wskazany test istnieje
+ scripts/decyzje.mjs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+kod wyjścia jest: 1
+    ✕ wskazany test musi istnieć (124 ms)
+Tests:       1 failed, 20 passed, 21 total
+kod wyjścia check:decyzje: 0
+=== M2: od 28.10.2026 fragment nadal zastępuje datę
+ scripts/decyzje.mjs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+kod wyjścia jest: 1
+    ✕ od 28.10.2026 fragment nie zastępuje daty: nowy wskazany test musi zawierać datę decyzji (129 ms)
+Tests:       1 failed, 20 passed, 21 total
+kod wyjścia check:decyzje: 0
+=== M3: wpis 13.10 (Ukraina) przemianowany na „bez kodu”
+ docs/18-przekazanie.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+kod wyjścia jest: 1
+    ✕ 2026-10-13 „Wyjątek Ukraina”: otwarte → M1-audytor-generalny-037 albo kod z testem (tabela audytu M1) (5 ms)
+Tests:       1 failed, 20 passed, 21 total
+kod wyjścia check:decyzje: 0
+=== M4: dopisana decyzja bez pola [wdrożenie: …]
+ docs/18-przekazanie.md | 1 +
+ 1 file changed, 1 insertion(+)
+kod wyjścia jest: 1
+    ✕ dziennik bez błędów strażnika (wynik jak `npm run check:decyzje`) (138 ms)
+    ✕ CLI: `npm run check:decyzje` w verify; kod 0 na repozytorium (199 ms)
+Tests:       2 failed, 19 passed, 21 total
+kod wyjścia check:decyzje: 1
+=== M5: brak kontroli daty zastąpienia
+ scripts/decyzje.mjs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+kod wyjścia jest: 1
+    ✕ bez kodu — z powodem; zastąpione — data nie wcześniejsza niż wpis; otwarte/odłożone — ze wskazaniem; inne — czerwony; dwa pola — czerwony (298 ms)
+Tests:       1 failed, 20 passed, 21 total
+kod wyjścia check:decyzje: 0
+=== stan kopii po mutacjach
+(pusty = cofnięte)

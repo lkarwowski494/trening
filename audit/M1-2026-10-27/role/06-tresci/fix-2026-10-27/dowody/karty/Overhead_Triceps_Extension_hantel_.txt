@@ -1,0 +1,18 @@
+# Overhead Triceps Extension (hantel)
+widok: side, kotwica: toe, przyrządy: [{"k":"db","at":"hand","r":6}]
+notatka: Ramiona nieruchomo nad głową; głębokość opuszczenia za głowę ilustracyjna.
+mięśnie (katalog): {"triceps":1}
+setup ote.setup: Chwyć hantel oburącz i wypchnij go nad głowę na wyprostowanych rękach.  [źródła: ace-74 / Step 1; Step 2; exrx-Triceps/DBTriExt / Preparation]
+move ote.move: Zginaj łokcie, opuszczając hantel za głowę; wyprostuj ręce nad głową.  [źródła: ace-74 / Step 2; Step 3; exrx-Triceps/DBTriExt / Execution]
+tips ote.upperArm: Ramiona nieruchomo, łokcie nad głową — pracują przedramiona.  [źródła: ace-74 / Step 3; wskazówka końcowa (upper arms vertical); exrx-Triceps/DBTriExt / Execution (with elbows over head)]
+tips ote.elbowsIn: Łokcie nie rozchodzą się szeroko na boki.  [źródła: ace-74 / wskazówka końcowa (elbows shoulder-width apart); exrx-Triceps/DBTriExt / Comments (keep elbows from pointing out too much)]
+KLATKA start: poza {"t":90,"hip":0,"knee":0,"sh":165,"el":0}
+  kąty: hip=0 knee=0 sh=165 el=0 ankle=0 hip2=0 knee2=0 sh2=165 el2=0 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-6.3,101.4) hand=(-1.2,120.7) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-6.3,101.4) hand2=(-1.2,120.7)
+  why joint ote.setup → OK (0)
+  why horiz ote.upperArm → OK (75)
+KLATKA end: poza {"t":90,"hip":0,"knee":0,"sh":165,"el":130}
+  kąty: hip=0 knee=0 sh=165 el=130 ankle=0 hip2=0 knee2=0 sh2=165 el2=130 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-6.3,101.4) hand=(-24.5,92.9) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-6.3,101.4) hand2=(-24.5,92.9)
+  why joint ote.move → OK (130)
+  why horiz ote.upperArm → OK (75)

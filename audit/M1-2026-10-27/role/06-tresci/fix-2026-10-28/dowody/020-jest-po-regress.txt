@@ -1,0 +1,808 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+  console.error
+    Error: Unable to find node on an unmounted component.
+        at Error (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:1689:17)
+        at findCurrentFiberUsingSlowPath (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:1761:16)
+        at findCurrentHostFiber (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:15744:19)
+        at findHostInstanceWithWarning (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:15860:27)
+        at AnimatedProps._connectAnimatedView2 (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedProps.js:276:42)
+        at AnimatedProps.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedProps.js:257:13)
+        at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+        at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+        at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedStyle.js:225:5)
+        at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+        at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+        at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedTransform.js:87:5)
+        at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+        at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+        at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedInterpolation.js:391:5)
+        at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedTransform.js:85:12)
+        at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedStyle.js:223:12)
+        at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+        at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+        at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedInterpolation.js:391:5)
+        at AnimatedValue.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+        at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+        at AnimatedValue.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedValue.js:131:5)
+        at TimingAnimation.__makeNative [as __startAnimationIfNative] (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/Animation.js:137:21)
+        at __startAnimationIfNative (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/TimingAnimation.js:123:36)
+        at TimingAnimation.start (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/TimingAnimation.js:139:7)
+        at AnimatedValue.start [as animate] (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedValue.js:320:15)
+        at animate (/home/user/trening/node_modules/react-native/Libraries/Animated/AnimatedImplementation.js:233:19)
+        at Object.start (/home/user/trening/node_modules/react-native/Libraries/Animated/AnimatedImplementation.js:240:9)
+        at start (/home/user/trening/.claude/worktrees/agent-aa8072b2ba2a13fe6/components/BoardFace.tsx:28:178)
+        at Object.react_stack_bottom_frame (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:15755:20)
+        at runWithFiberInDEV (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+        at commitHookEffectListMount (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9530:29)
+        at commitHookPassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9617:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11205:13)
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+        ... collapsed 4 duplicate lines matching above lines ...
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+        ... collapsed 12 duplicate lines matching above 6 lines 2 times...
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+        ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11387:17)
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11354:11)
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+        ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+        ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+        at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+        ... collapsed 6 duplicate lines matching above lines ...
+        at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11) {
+      [stack]: [Getter/Setter],
+      [message]: 'Unable to find node on an unmounted component.'
+    }
+    
+    The above error occurred in the <NowBoard> component.
+    
+    React will try to recreate this component tree from scratch using the error boundary you provided, Try.
+
+      105 | // żeby log był czytelny. Pozostałe console.error przechodzą (C9 sprawdza je jawnie).
+      106 | const origError = console.error;
+    > 107 | console.error = (...a) => { if (/not wrapped in act/.test(String(a[0]))) return; origError(...a); };
+          |                                                                                  ^
+      108 |
+      109 | // ActionSheetIOS (menu serii): zapamiętujemy wywołania, test wybiera opcję przez global.__pickSheet(i).
+      110 | global.__sheets = [];
+
+      at console.origError [as error] (tests/setup.js:107:82)
+      at defaultOnCaughtError (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6439:17)
+      at logCaughtError (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6475:9)
+      at runWithFiberInDEV (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at Try.update.callback (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6508:11)
+      at callCallback (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4625:16)
+      at commitCallbacks (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4645:11)
+      at runWithFiberInDEV (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at commitClassCallbacks (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9658:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10082:25)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10202:17)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10168:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10118:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10010:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+
+  console.error
+    Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+    1. You might have mismatching versions of React and the renderer (such as React DOM)
+    2. You might be breaking the Rules of Hooks
+    3. You might have more than one copy of React in the same app
+    See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+
+      105 | // żeby log był czytelny. Pozostałe console.error przechodzą (C9 sprawdza je jawnie).
+      106 | const origError = console.error;
+    > 107 | console.error = (...a) => { if (/not wrapped in act/.test(String(a[0]))) return; origError(...a); };
+          |                                                                                  ^
+      108 |
+      109 | // ActionSheetIOS (menu serii): zapamiętujemy wywołania, test wybiera opcję przez global.__pickSheet(i).
+      110 | global.__sheets = [];
+
+      at console.origError [as error] (tests/setup.js:107:82)
+      at resolveDispatcher (../../../node_modules/react/cjs/react.development.js:518:17)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.useSyncExternalStore (../../../node_modules/react/cjs/react.development.js:1270:14)
+      at useA11yPrefs (lib/a11yPrefs.ts:24:72)
+      at useTheme (lib/theme.ts:42:36)
+      at RootLayout (app/_layout.tsx:35:22)
+      at Object.react_stack_bottom_frame (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:15670:20)
+      at renderWithHooks (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4863:22)
+      at updateFunctionComponent (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7018:19)
+      at beginWork (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8499:18)
+      at runWithFiberInDEV (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at performUnitOfWork (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13224:22)
+      at workLoopSync (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13068:41)
+      at renderRootSync (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13049:11)
+      at performWorkOnRoot (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12181:11)
+      at performWorkOnRootViaSchedulerTask (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2908:7)
+      at flushActQueue (../../../node_modules/react/cjs/react.development.js:590:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (../../../node_modules/react/cjs/react.development.js:884:10)
+      at actImplementation (../../../node_modules/@testing-library/react-native/src/act.ts:30:25)
+      at renderWithAct (../../../node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (../../../node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at Object.renderInternal (../../../node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at render (../../../node_modules/expo-router/src/testing-library/index.tsx:90:35)
+      at tests/app.tsx:22:25
+      at asyncGeneratorStep (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  console.error
+    Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+    1. You might have mismatching versions of React and the renderer (such as React DOM)
+    2. You might be breaking the Rules of Hooks
+    3. You might have more than one copy of React in the same app
+    See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+
+      105 | // żeby log był czytelny. Pozostałe console.error przechodzą (C9 sprawdza je jawnie).
+      106 | const origError = console.error;
+    > 107 | console.error = (...a) => { if (/not wrapped in act/.test(String(a[0]))) return; origError(...a); };
+          |                                                                                  ^
+      108 |
+      109 | // ActionSheetIOS (menu serii): zapamiętujemy wywołania, test wybiera opcję przez global.__pickSheet(i).
+      110 | global.__sheets = [];
+
+      at console.origError [as error] (tests/setup.js:107:82)
+      at resolveDispatcher (../../../node_modules/react/cjs/react.development.js:518:17)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.useSyncExternalStore (../../../node_modules/react/cjs/react.development.js:1270:14)
+      at useA11yPrefs (lib/a11yPrefs.ts:24:72)
+      at useTheme (lib/theme.ts:42:36)
+      at StartError (components/StartError.tsx:17:22)
+      at Object.react_stack_bottom_frame (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:15670:20)
+      at renderWithHooks (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4863:22)
+      at updateFunctionComponent (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7018:19)
+      at beginWork (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8499:18)
+      at runWithFiberInDEV (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at performUnitOfWork (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13224:22)
+      at workLoopSync (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13068:41)
+      at renderRootSync (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13049:11)
+      at performWorkOnRoot (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12181:11)
+      at performWorkOnRootViaSchedulerTask (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2908:7)
+      at flushActQueue (../../../node_modules/react/cjs/react.development.js:590:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (../../../node_modules/react/cjs/react.development.js:884:10)
+      at actImplementation (../../../node_modules/@testing-library/react-native/src/act.ts:30:25)
+      at renderWithAct (../../../node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (../../../node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at Object.renderInternal (../../../node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at render (../../../node_modules/expo-router/src/testing-library/index.tsx:90:35)
+      at tests/app.tsx:22:25
+      at asyncGeneratorStep (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  console.error
+    Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+    1. You might have mismatching versions of React and the renderer (such as React DOM)
+    2. You might be breaking the Rules of Hooks
+    3. You might have more than one copy of React in the same app
+    See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+
+      105 | // żeby log był czytelny. Pozostałe console.error przechodzą (C9 sprawdza je jawnie).
+      106 | const origError = console.error;
+    > 107 | console.error = (...a) => { if (/not wrapped in act/.test(String(a[0]))) return; origError(...a); };
+          |                                                                                  ^
+      108 |
+      109 | // ActionSheetIOS (menu serii): zapamiętujemy wywołania, test wybiera opcję przez global.__pickSheet(i).
+      110 | global.__sheets = [];
+
+      at console.origError [as error] (tests/setup.js:107:82)
+      at resolveDispatcher (../../../node_modules/react/cjs/react.development.js:518:17)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.useSyncExternalStore (../../../node_modules/react/cjs/react.development.js:1270:14)
+      at useA11yPrefs (lib/a11yPrefs.ts:24:72)
+      at useTheme (lib/theme.ts:42:36)
+      at RootLayout (app/_layout.tsx:35:22)
+      at Object.react_stack_bottom_frame (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:15670:20)
+      at renderWithHooks (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4863:22)
+      at updateFunctionComponent (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7018:19)
+      at beginWork (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8499:18)
+      at runWithFiberInDEV (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at performUnitOfWork (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13224:22)
+      at workLoopSync (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13068:41)
+      at renderRootSync (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13049:11)
+      at performWorkOnRoot (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12253:39)
+      at performWorkOnRootViaSchedulerTask (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2908:7)
+      at flushActQueue (../../../node_modules/react/cjs/react.development.js:590:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (../../../node_modules/react/cjs/react.development.js:884:10)
+      at actImplementation (../../../node_modules/@testing-library/react-native/src/act.ts:30:25)
+      at renderWithAct (../../../node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (../../../node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at Object.renderInternal (../../../node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at render (../../../node_modules/expo-router/src/testing-library/index.tsx:90:35)
+      at tests/app.tsx:22:25
+      at asyncGeneratorStep (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  console.error
+    Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+    1. You might have mismatching versions of React and the renderer (such as React DOM)
+    2. You might be breaking the Rules of Hooks
+    3. You might have more than one copy of React in the same app
+    See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+
+      105 | // żeby log był czytelny. Pozostałe console.error przechodzą (C9 sprawdza je jawnie).
+      106 | const origError = console.error;
+    > 107 | console.error = (...a) => { if (/not wrapped in act/.test(String(a[0]))) return; origError(...a); };
+          |                                                                                  ^
+      108 |
+      109 | // ActionSheetIOS (menu serii): zapamiętujemy wywołania, test wybiera opcję przez global.__pickSheet(i).
+      110 | global.__sheets = [];
+
+      at console.origError [as error] (tests/setup.js:107:82)
+      at resolveDispatcher (../../../node_modules/react/cjs/react.development.js:518:17)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.useSyncExternalStore (../../../node_modules/react/cjs/react.development.js:1270:14)
+      at useA11yPrefs (lib/a11yPrefs.ts:24:72)
+      at useTheme (lib/theme.ts:42:36)
+      at StartError (components/StartError.tsx:17:22)
+      at Object.react_stack_bottom_frame (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:15670:20)
+      at renderWithHooks (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4863:22)
+      at updateFunctionComponent (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7018:19)
+      at beginWork (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8499:18)
+      at runWithFiberInDEV (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at performUnitOfWork (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13224:22)
+      at workLoopSync (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13068:41)
+      at renderRootSync (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13049:11)
+      at performWorkOnRoot (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12253:39)
+      at performWorkOnRootViaSchedulerTask (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2908:7)
+      at flushActQueue (../../../node_modules/react/cjs/react.development.js:590:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (../../../node_modules/react/cjs/react.development.js:884:10)
+      at actImplementation (../../../node_modules/@testing-library/react-native/src/act.ts:30:25)
+      at renderWithAct (../../../node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (../../../node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at Object.renderInternal (../../../node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at render (../../../node_modules/expo-router/src/testing-library/index.tsx:90:35)
+      at tests/app.tsx:22:25
+      at asyncGeneratorStep (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+FAIL iOS tests/regress.test.tsx (191.491 s)
+  ✓ R50-08 wykresy mają streszczenie dla VoiceOver (słupki) (667 ms)
+  ✓ R50-09 wykresy mają streszczenie dla VoiceOver (linia) (668 ms)
+  ✓ R51-05 → P-001/T-055: zmiana gumy nie rusza ±kg (ani asysty, ani dociążenia) (34 ms)
+  ✓ R69-09 start aplikacji z treningiem porzuconym > 6 h: zapis i komunikat; przypomnienie zaplanowane 2 h po serii (285 ms)
+  ✓ R69-10 przypomnienie o porzuconym treningu planowane 2 h po ostatniej serii (562 ms)
+  runda 1 — logika
+    ✓ R1-01 powiadomienia przerwy/serii mają stałe identyfikatory (anulowalne po restarcie) (52 ms)
+    ✓ R1-02 domyślna przerwa 0 s działa i przeżywa restart (87 ms)
+    ✓ R1-03 przerwa po rozgrzewce 0 s (64 ms)
+    ✓ R1-04 przerwa z pozycji szablonu ma pierwszeństwo (42 ms)
+    ✓ R1-05 → P-001/T-055: wybór i zmiana gumy (przycisk gumy — store.cycleBand) nie zmieniają ±kg (także ze starym nominalKg w danych) (84 ms)
+    ✓ R1-06 powtórz ostatni porządkuje superset po usuniętym ćwiczeniu (47 ms)
+    ✓ R1-07 objętość tygodnia = suma objętości treningów z historii (49 ms)
+    ✓ R1-08 CSV bez szumu zmiennoprzecinkowego (40 ms)
+    ✓ R1-09 +15 s po końcu przerwy uzbraja alarm na nowo (60 ms)
+    ✓ R1-10 odhaczenie nieistniejącej serii nie wywraca aplikacji (50 ms)
+    ✓ R1-11 seria bez powtórzeń nie jest rekordem ciężaru (30 ms)
+    ✓ R1-12 nowe ćwiczenie własne domyślnie ×1 (nie „hantle ×2”) (74 ms)
+    ✓ R1-13 odhaczenie pustej serii bierze wynik z „Poprzednio” (60 ms)
+    ✓ R1-14 czas od godziny w formacie h:mm:ss (45 ms)
+    ✓ R1-15 Apple Health: odmowa zgody nie włącza zapisu (50 ms)
+  runda 1 — ekrany
+    ✓ R1-20 − seria na trwającym stoperze zatrzymuje stoper (2880 ms)
+    ✓ R1-21 po polsku przecinek w polach wstawionych przez apkę (4661 ms)
+    ✓ R1-22 puste pole w oknie przerwy nie zeruje przerwy (3821 ms)
+    ✓ R1-23 (runda 75, Q-001): edytor ćwiczenia z masą ciała nie ma już pola udziału masy ciała (1147 ms)
+    ✓ R1-24 zakończenie z nagłówka wymaga potwierdzenia i ostrzega o nieodhaczonych wynikach (4449 ms)
+    ✓ R1-25 plakietka z czasem przerwy na zakładce Trening (5960 ms)
+    ✓ R1-26 wiersz szablonu w wyborze szablonu („Inny trening” → „Z szablonu”) otwiera podgląd, nie start (1479 ms)
+  runda 2 — logika
+    ✓ R2-01 cel czasu z szablonu wygrywa z czasem z poprzedniej sesji (37 ms)
+    ✓ R2-02 czas serii nie przechodzi na następną serię (nie staje się celem stopera) (19 ms)
+    ✓ R2-03 +15 po dawno minionej przerwie liczy od teraz (21 ms)
+    ✓ R2-04 piramida: puste serie biorą swoją podpowiedź, nie pierwszej serii (31 ms)
+    ✓ R2-05 asysta z podpowiedzi przychodzi razem z gumą (19 ms)
+    ✓ R2-06 seria bez podpowiedzi („—”) nie jest uzupełniana ostatnią serią (27 ms)
+    ✓ R2-07 pusta przerwa w pozycji szablonu = przerwa z ćwiczenia (38 ms)
+    ✓ R2-08 start ±kg z szablonu dla masy ciała (19 ms)
+    ✓ R2-09 powtórz ostatni odtwarza faktyczny trening (z ćwiczeniem dodanym w trakcie) (21 ms)
+  runda 2 — ekrany
+    ✓ R2-20 ostrzeżenie przy zakończeniu nie liczy wartości z podpowiedzi (3305 ms)
+    ✓ R2-21 numer serii w dostępności i menu = numer na ekranie (po rozgrzewce) (433 ms)
+    ✓ R2-22 pusta nazwa ćwiczenia wraca do domyślnej po edycji (2000 ms)
+    ✓ R2-23 (05.10.2026: poranny wpis usunięty z ekranu) wpis z BB = 0 i samymi godzinami snu zostaje w danych bez zmian (236 ms)
+    ✓ R2-24 pole liczbowe pokazuje po edycji wartość zapisaną (po przycięciu) (889 ms)
+    ✓ R2-25 zmiana języka przeformatowuje separator w polach (1787 ms)
+    ✓ R2-26 nietknięty nowy szablon znika po wyjściu (646 ms)
+    ✓ R2-27 plakietka po czasie pokazuje nadwyżkę (4666 ms)
+  runda 3
+    ✓ R3-01 + seria po zmierzonej serii nie przejmuje jej czasu jako celu (24 ms)
+    ✓ R3-02 ręczne ±kg: guma z podpowiedzi nie jest dokładana ani przenoszona (47 ms)
+    ✓ R3-03 wybrana guma (bez kg) przechodzi na następną serię (21 ms)
+    ✓ R3-04 Start w edytorze szablonu wraca do istniejącego ekranu głównego (3061 ms)
+    ✓ R3-05 skasowana nazwa wraca do poprzedniej; pusty zapisany szablon nie znika (624 ms)
+    ✓ R3-06 zakończenie przy trwającym stoperze zapisuje serię na czas (1899 ms)
+    ✓ R3-07 ekran błędu startu w języku telefonu (1 ms)
+    ✓ R3-08 przecinek dziesiętny: godziny snu, RPE, dystans (15 ms)
+    ✓ R3-09 szablon bez ćwiczeń nie ma przycisku Start na ekranie głównym (281 ms)
+    ✓ R3-10 pola w edytorze szablonu i porannym wpisie mają opis dla VoiceOver (1181 ms)
+    ✓ R3-11 szablon bez ćwiczeń nie ma „Duplikuj” (414 ms)
+    ✓ R3-12 wywołania Live Activity idą po kolei (185 ms)
+  runda 4
+    ✓ R4-01 cofnięcie i ponowne odhaczenie nie przenosi podpowiedzi na następną serię (66 ms)
+    ✓ R4-02 stoper dłuższy niż godzina wraca po restarcie aplikacji (91 ms)
+    ✓ R4-03 reset tworzy dane w języku widocznym po resecie (57 ms)
+    ✓ R4-04 czas z poprzedniej sesji nie jest celem stopera w kolejnym treningu (117 ms)
+    ✓ R4-05 odhaczenie bez powtórzeń przy zakresie bierze dolną granicę (24 ms)
+    ✓ R4-06 postępy pokazują usunięte ćwiczenie z historią (2599 ms)
+    ✓ R4-07 serie per partia z przecinkiem (1087 ms)
+    ✓ R4-08 „Zakończ” → „Wróć” nie przerywa trwającej serii na czas (778 ms)
+    ✓ R4-09 wyszukanie usuniętego ćwiczenia pozwala je przywrócić (791 ms)
+  runda 5
+    ✓ R5-01 cofnięcie odhaczenia czyści podpowiedzi, ale zostawia pole poprawione ręcznie (17 ms)
+    ✓ R5-02 stary format „hinted” (lista) po migracji nie psuje odznaczania (85 ms)
+    ✓ R5-03 trwająca seria na czas nie jest liczona jako „nie zostanie zapisana” (801 ms)
+    ✓ R5-04 trwająca rozgrzewka na czas nie zawyża liczby serii roboczych (680 ms)
+    ✓ R5-05 EN: wyszukanie usuniętego ćwiczenia pokazuje tylko „Restore”, bez „Create” (425 ms)
+    ✓ R5-06 zmiana partii: automatyczna partia główna jest podmieniana i nie dubluje pomocniczej (732 ms)
+    ✓ R5-07 pola na ekranie gum mają opisy dla VoiceOver (756 ms)
+  runda 6
+    ✓ R6-01 objętość w lb zaokrąglana po przeliczeniu (1000 lb, nie 1000,9) (19 ms)
+    ✓ R6-02 wolniejszy bieg nie jest rekordem „czas” (34 ms)
+    ✓ R6-03 ciężar dropu nie przechodzi na serię roboczą i odwrotnie (18 ms)
+    ✓ R6-04 (runda 73) dociążenie: rekordem jest e1RM; ta sama suma powtórzeń nie jest rekordem (23 ms)
+    ✓ R6-05 przycisk Start w wyborze szablonu jest osobnym elementem (nie w wierszu) (441 ms)
+    ✓ R6-06 przełączniki w ustawieniach mają nazwę i stan (570 ms)
+    ✓ R6-07 podwójne „Duplikuj” robi jedną kopię (741 ms)
+    ✓ R6-08 podwójne „Zakończ” otwiera jedno okno (3001 ms)
+    ✓ R6-09 picker z filtrem partii: ćwiczenie z grupy dostaje partię, a istniejące nie jest dublowane (830 ms)
+    ✓ R6-10 szablon: start ±kg dla ćwiczenia z masą ciała przyjmuje asystę (ujemne) (864 ms)
+    ✓ R6-11 wyszukiwanie bez wyników pokazuje tekst (Ćwiczenia i Postępy, ze spacją na końcu) (1650 ms)
+    ✓ R6-12 sama rozgrzewka: osobne okno z możliwością odrzucenia (4291 ms)
+  runda 7
+    ✓ R7-01 start z szablonu nie wstawia wagi drop setu do zwykłych serii (50 ms)
+    ✓ R7-02 wykres i rekord objętości w Postępach w tym samym formacie co historia (24 ms)
+    ✓ R7-03 Apple Health: objętość zaokrąglona, serie bez rozgrzewek (25 ms)
+    ✓ R7-04 CSV w jednostce użytkownika (lb) (32 ms)
+    ✓ R7-05 import backupu z BOM (40 ms)
+    ✓ R7-06 wiersze list: cały wiersz (min. 52 pt, M3) to pole dotyku, „+” w pickerze dodaje ćwiczenie (618 ms)
+    ✓ R7-07 Ćwiczenia: wyszukanie usuniętego pozwala je przywrócić, bez „Utwórz” (1371 ms)
+    ✓ R7-08 okno „brak odhaczonych” i „tylko rozgrzewka” ostrzega o wpisanych, nieodhaczonych seriach (364 ms)
+  runda 8
+    ✓ R8-01 wykres tygodniowy i historia: ta sama objętość (jedno zaokrąglenie) (13 ms)
+    ✓ R8-02 to samo ćwiczenie dwa razy: drugi blok bierze drugi blok z poprzedniej sesji (19 ms)
+    ✓ R8-03 ekran Backup mówi prawdę o jednostce CSV (331 ms)
+    ✓ R8-04 EN: przycisk przerwy „This time only” (1 ms)
+    ✓ R8-05 ekran główny bez szablonów prowadzi do tworzenia: „Planowanie” → dzień → „+ Nowy szablon” (936 ms)
+  runda 9
+    ✓ R9-01 blok z samą rozgrzewką nie przesuwa numeracji bloków (40 ms)
+    ✓ R9-02 odhaczenie pustej zwykłej serii nie bierze wartości z dawnego drop setu (21 ms)
+    ✓ R9-03 „Zapamiętaj” przerwę zmienia tylko odpowiadającą pozycję szablonu (730 ms)
+    ✓ R9-04 podwójne „+ Nowy” tworzy jeden szablon (590 ms)
+    ✓ R9-05 ponowny Start w edytorze szablonu nie pokazuje sprzecznego komunikatu (2553 ms)
+    ✓ R9-06 teksty w wierszu serii mają limit powiększenia (2430 ms)
+    ✓ R9-07 Start w edytorze otwartym z zakładki Szablony przechodzi do treningu (2298 ms)
+  runda 10
+    ✓ R10-01 poprzednio: blok samej rozgrzewki + blok roboczy, dziś ćwiczenie raz → podpowiedź z bloku roboczego (20 ms)
+    ✓ R10-02 odhaczenie serii czasowej nie wpisuje powtórzeń ani ciężaru (38 ms)
+    ✓ R10-03 podwójne „usuń” ćwiczenia w treningu usuwa jedno (2539 ms)
+    ✓ R10-04 podwójne „✕” w szablonie usuwa jedną pozycję (1328 ms)
+    ✓ R10-05 „Zapamiętaj” przerwę w bloku dodanym w trakcie nie zmienia szablonu (682 ms)
+  runda 11
+    ✓ R11-01 wyłączona asysta gumą: guma nie wraca z historii (36 ms)
+    ✓ R11-02 pominięty blok szablonu nie przesuwa podpowiedzi pozostałych (27 ms)
+    ✓ R11-03 przerwa wpisana w treningu ma limit 30:00 (3377 ms)
+    ✓ R11-04 podwójne „Usuń sesję” nie wyrzuca z zakładki Historia (719 ms)
+  runda 12
+    ✓ R12-01 jedyny pozostały blok bierze swój blok z poprzedniej sesji (po id pozycji szablonu) (39 ms)
+    ✓ R12-02 Postępy pompek bez masy ciała otwierają wykres z danymi (970 ms)
+    ✓ R12-03 ▶ i guma mówią, której serii dotyczą (545 ms)
+    ✓ R12-04 czas serii od godziny w formacie h:mm:ss (1 ms)
+    ✓ R12-05 szczegóły sesji bez objętości nie pokazują „0 kg” (676 ms)
+  runda 13
+    ✓ R13-01 ćwiczenie usunięte i dodane na nowo do szablonu dalej ma podpowiedzi (71 ms)
+    ✓ R13-02 „najlepsza” seria nie jest serią bez powtórzeń (99 ms)
+    ✓ R13-03 etykiety osi wykresu mieszczą się w lewym marginesie (28 ms)
+    ✓ R13-04 zakładki bez treningu nie przerysowują się przy wpisach w treningu (useHistTick) (31 ms)
+  runda 14
+    ✓ R14-01 data z innego roku pokazuje rok, z bieżącego — nie (14 ms)
+  runda 15
+    ✓ R15-01 oś wykresu powtórzeń bez ułamków binarnych (31 ms)
+  runda 16
+    ✓ R16-01 migracja naprawia pola ćwiczeń i szablonów z ręcznie edytowanego backupu (idempotentnie) (150 ms)
+    ✓ R16-02 wykres ze stałą ujemną wartością ma poprawną oś (171 ms)
+    ✓ R16-03 usunięta guma nie przechodzi do nowego treningu (79 ms)
+  runda 17
+    ✓ R17-01 migracja: limit przerwy 1800 także dla szablonu i ustawień (90 ms)
+    ✓ R17-02 migracja: nieistniejące daty poranne odpadają, jeden wpis na dzień (60 ms)
+    ✓ R17-03 poziome rzędy chipów przyjmują tapnięcie przy otwartej klawiaturze (51 ms)
+  runda 18
+    ✓ R18-01 CSV zachowuje RPE/RIR 0 (42 ms)
+    ✓ R18-02 ponowny pomiar odhaczonej serii liczy od nowa; po nim nowa przerwa (3709 ms)
+  runda 19
+    ✓ R19-01 Live Activity: każdy timer kończy tylko swoją, drugi ją przejmuje (39 ms)
+    ✓ R19-02 odhaczenie innej serii w trakcie stopera kończy pomiar (bez ukrytej przerwy w tle) (1300 ms)
+  runda 20
+    ✓ R20-01 restart: stara Live Activity bez właściciela jest kończona (96 ms)
+    ✓ R20-02 ponowny pomiar w supersecie przywraca przerwaną przerwę (2243 ms)
+  runda 21
+    ✓ R21-01 po ponownym pomiarze w supersecie: pełna przerwa rundy, należąca do zmierzonej serii (1884 ms)
+    ✓ R21-02 CSV: tekst od „=” nie jest formułą, ujemne liczby zostają liczbami (26 ms)
+  runda 22
+    ✓ R22-01 przerwa po ponownym pomiarze ma podpis następnej serii (1354 ms)
+    ✓ R22-02 „Powtórz ostatni” zachowuje cel czasu z szablonu (28 ms)
+  runda 23
+    ✓ R23-01 podpis przerwy w supersecie wskazuje pierwsze ćwiczenie następnej rundy; po odznaczeniu — to, co karta „teraz” (audyt 0.10, LIVE-04) (1231 ms)
+  runda 26
+    ✓ R26-01 remis e1RM (82,5×6 i 90×3) nie jest rekordem (22 ms)
+    ✓ R26-02 wpisanie w lb wartości wyświetlanej z historii nie daje fałszywego rekordu (24 ms)
+    ✓ R26-03 picker z powtórzonym parametrem target nie wywraca aplikacji (807 ms)
+  runda 27
+    ✓ R27-01 funty: ta sama liczba na ekranie = te same kg (także dla wartości z dwoma miejscami) (652 ms)
+    ✓ R27-02 migracja przyciąga stare wartości zapisane z funtów, kg zostają (133 ms)
+    ✓ R27-03 link prosto do ekranu ze stosu ma drogę powrotu (315 ms)
+    ✓ R27-04 nieznany adres wraca na ekran główny (jeden zestaw zakładek, runda 28) (390 ms)
+  runda 28
+    ✓ R28-01 stary zapis w lb (np. 11,75 lb) po migracji = to, co zapisuje dziś wpisanie tej wartości (49 ms)
+    ✓ R28-02 asysta gumy po migracji = −nominał (symetria dla wartości ujemnych) (63 ms)
+    ✓ R28-03 podpowiedzi w treningu w toku migrują razem z wartościami (83 ms)
+  runda 29
+    ✓ R29-01 prawdziwe kg z ≤ 3 miejscami nie są przyciągane jak stare funty (635 ms)
+  runda 30
+    ✓ R30-01 powrót z tła następnego dnia odświeża ekran główny (365 ms)
+    ✓ R30-02 ekran Backup po imporcie pokazuje język i jednostkę danych (302 ms)
+    ✓ R30-03 cofnięty zegar nie daje ujemnej przerwy; cel 0 w szablonie = bez celu (60 ms)
+  runda 31
+    ✓ R31-01 Historia po powrocie z tła w nowym roku pokazuje rok przy starych sesjach (562 ms)
+  runda 32
+    ✓ R32-02 błąd zapisu widoczny w trakcie treningu (2972 ms)
+    ✓ R32-03 wyszukiwanie bez polskich znaków (633 ms)
+  runda 33
+    ✓ R33-02 import backupu usuwa komunikat o nieczytelnych danych (240 ms)
+  runda 34
+    ✓ R34-01 spacja na końcu nazwy nie pozwala utworzyć duplikatu w pickerze (397 ms)
+    ✓ R34-02 komunikat o nieczytelnych danych przetrwa ponowne uruchomienie (do importu/resetu) (248 ms)
+  runda 35
+    ✓ R35-01 druga awaria danych nie zasłania pierwszej kopii (199 ms)
+    ✓ R35-02 Start i Duplikuj używają uporządkowanej nazwy szablonu (3155 ms)
+    ✓ R35-03 komunikat o nieczytelnych danych można ukryć (241 ms)
+  runda 36
+    ✓ R36-01 migracja nadaje pustym nazwom domyślną nazwę w języku z ustawień, nie telefonu (96 ms)
+    ✓ R36-02 wysłanie kopii nieczytelnych danych: błąd zapisu kończy się komunikatem (170 ms)
+  runda 37
+    ✓ R37-01 etykieta Live Activity w języku aplikacji (nie telefonu) (62 ms)
+  runda 39
+    ✓ R39-01 nazwy tworzone przez aplikację mieszczą się w limicie 80 znaków (35 ms)
+    ✓ R39-02 słownik EN obejmuje wszystkie wartości domenowe (34 ms)
+  runda 40
+    ✓ R40-01 ponowne wybranie tego samego sprzętu nie resetuje ustawień (28 ms)
+    ✓ R40-02 kopia szablonu nie rozcina emoji (21 ms)
+    ✓ R40-03 ćwiczenie usunięte tylko z bieżącego treningu nie zostaje jako „usunięte z historią” (25 ms)
+  runda 41
+    ✓ R41-01 migracja usuwa zarchiwizowane ćwiczenia bez żadnego treningu; archived tylko gdy true; partia/sprzęt ze słownika (53 ms)
+    ✓ R41-02 „Przywróć” dla ćwiczenia bez historii nie obiecuje historii (601 ms)
+  runda 42
+    ✓ R42-01 usunięcie bloku z treningu usuwa od razu skasowane ćwiczenie bez historii (59 ms)
+    ✓ R42-02 edytor nie kasuje „nowego” ćwiczenia, które jest w szablonie (532 ms)
+  runda 43
+    ✓ R43-01 migracja usuwa z szablonów pozycje z brakującymi/usuniętymi ćwiczeniami (50 ms)
+  runda 45
+    ✓ R45-01 guma przechodzi na następną serię razem z asystą (także gdy szablon wpisał ±0) (41 ms)
+  runda 46
+    ✓ R46-01 asysta z podpowiedzi (innej gumy) nie trafia do serii ani nie przechodzi dalej (21 ms)
+    ✓ R46-02 seria wykonana poprzednio bez gumy nie dostaje gumy z poprzedniej serii (43 ms)
+  runda 47
+    ✓ R47-01 wpisana asysta przechodzi, gdy następna seria ma już tę samą gumę bez asysty (41 ms)
+    ✓ R47-02 guma z podpowiedzi przechodzi razem ze swoją asystą (21 ms)
+    ✓ R47-03 guma zdjęta cyklem do „—” nie wraca z podpowiedzi po odhaczeniu (344 ms)
+    ✓ R47-04 guma nie trafia do serii z własnym obciążeniem (np. asysta −10 z szablonu); ±0 zastępuje asystą gumy (59 ms)
+    ✓ R47-05 dociążenie +10 bez gumy nadal przechodzi; guma nie przechodzi do serii zdjętej ręcznie (28 ms)
+    ✓ R47-06 migracja: noBand tylko true i tylko bez gumy (72 ms)
+  runda 48
+    ✓ R48-01 ujemny ciężar startowy z szablonu (po zmianie sprzętu z masy ciała) nie daje ujemnej objętości (40 ms)
+    ✓ R48-02 import: wartości serii tylko liczby albo puste, finishedAt liczba ≥ startu (329 ms)
+    ✓ R48-03 zmiana gumy na odhaczonej serii i cofnięcie odhaczenia zostawia asystę nowej gumy (30 ms)
+    ✓ R48-04 „+ seria” po zdjęciu gumy nie przywraca jej z podpowiedzi (31 ms)
+    ✓ R48-05 usunięcie gumy zdejmuje ją z treningu w toku (P-001: ±kg zostaje) (691 ms)
+    ✓ R48-06 zdjęcie gumy o nieznanej asyście zabiera jej asystę; asysta podpowiedzi gumy nie trafia do ćwiczenia bez asysty gumą (63 ms)
+    ✓ R48-07 druga instancja ekranu treningu nie wywraca się po zakończeniu (1725 ms)
+  runda 49
+    ✓ R49-01 start z szablonu i „Powtórz ostatni” nie wnoszą asysty gumy do ćwiczenia bez asysty gumą (19 ms)
+    ✓ R49-02 asysta usuniętej gumy nie wraca z „Poprzednio” ani z „Powtórz ostatni” (58 ms)
+    ✓ R49-03 import: ogromne liczby nie stają się Infinity; RPE ≤ 10, powtórzenia całkowite; migracja idempotentna (253 ms)
+    ✓ R49-04 import: podpowiedzi tylko dla pól wartości i w postaci liczb — cofnięcie nie kasuje id/typu (78 ms)
+    ✓ R49-05 import: przerwa pozycji szablonu z tekstu; pola stopera śmieciowe → domyślne (49 ms)
+    ✓ R49-06 VoiceOver: kontrolki wiersza szablonu i gumy mówią, czego dotyczą; chip wybranego ćwiczenia; nieaktywne moduły (1702 ms)
+    ✓ R49-07 pusta nazwa wraca do ostatniej zapisanej, nie do tej sprzed otwarcia ekranu (2071 ms)
+  runda 50
+    ✓ R50-01 podpowiedź na ekranie odświeża się po edycji szablonu w trakcie treningu (ta sama co przy odhaczeniu) (3660 ms)
+    ✓ R50-02 zmiana gumy o nieznanej asyście na inną o nieznanej zabiera starą asystę; „62,5” z importu to 62,5 (131 ms)
+    ✓ R50-03 import z obiektem w porannym wpisie nie wywraca aplikacji; BB i sen 0–100 (ekran wpisu usunięty 05.10.2026) (195 ms)
+    ✓ R50-04 moduł włączony w imporcie: sekcja modułów schowana (05.10.2026), import nie wywraca ustawień (539 ms)
+    ✓ R50-05 usunięcie nieużywanej gumy nie straszy historią ani treningiem (255 ms)
+    ✓ R50-06 historia: wiersz serii czytany jako „nagłówek: wartość” (414 ms)
+    ✓ R50-07 import: blok z nieprawidłowym exerciseId odpada, liczbowy zamieniony na tekst (42 ms)
+  runda 51
+    ✓ R51-01 import z liczbowymi id: historia, szablony i gumy dalej wskazują swoje ćwiczenia (395 ms)
+    ✓ R51-02 import: pola szablonu, ustawień i ćwiczeń jak wartości serii (przecinek, tekst, zakresy, nieskończoność) (72 ms)
+    ✓ R51-03 import: daty treningów poza zakresem Date odpadają, tekstowa data startu jest czytana; ranna waga 0 = brak (77 ms)
+    ✓ R51-04 po zmianie języka litera gumy zgadza się z nazwą na ekranie Gumy (367 ms)
+  runda 52
+    ✓ R52-01 wyczyszczony kolor gumy to puste pole (nie „?” doklejany do nowego tekstu) (345 ms)
+    ✓ R52-02 import: czas tekstem (liczba i sama data) czytany; createdAt/updatedAt zawsze liczbą; najnowszy wpis poranny wygrywa (87 ms)
+    ✓ R52-03 własne ćwiczenie o nazwie z biblioteki zostaje własne po restarcie (93 ms)
+    ✓ R52-04 emoji w kolorze gumy: litera to całe emoji; VoiceOver słyszy pełną nazwę (31 ms)
+    ✓ R52-05 guma z podpowiedzi dostaje swoją (już znaną) asystę (29 ms)
+    ✓ R52-06 import: przerwa serii i czasy stopera w rozsądnych granicach; tylko tekstowe healthUUID (59 ms)
+    ✓ R52-07 zakończenie ostrzega o odhaczonych seriach bez czasu lub dystansu (532 ms)
+  runda 53
+    ✓ R53-01 mierzona seria na czas nie dostaje ostrzeżenia o braku czasu; mierzony bieg bez dystansu — dostaje (1253 ms)
+    ✓ R53-02 kolor gumy przycinany (litera na przycisku); stare dane też (68 ms)
+    ✓ R53-03 asysta z podpowiedzi nie trafia do ćwiczenia bez ±kg; cofnięcie zdejmuje gumę razem z poprawioną asystą (39 ms)
+    ✓ R53-04 przerwa kończąca się dalej niż cała przerwa (uszkodzony zapis) nie wraca po restarcie (26 ms)
+    ✓ R53-05 migracja: v i metaUpdatedAt skończone (64 ms)
+  runda 54
+    ✓ R54-01 pola liczbowe mają tę samą granicę co wczytanie; ciężar nieujemny — restart nic nie zmienia (692 ms)
+    ✓ R54-02 usunięcie gumy nie zabiera ±kg (P-001); pusty ekran gum ma opis (700 ms)
+    ✓ R54-03 link do postępów ćwiczenia przy otwartym ekranie postępów pokazuje to ćwiczenie (1138 ms)
+    ✓ R54-04 guma w ćwiczeniu bez pola ±kg nie zapisuje ukrytej asysty (466 ms)
+  runda 55
+    ✓ R55-01 kg z wieloma miejscami po przecinku zostają po restarcie (przyciąganie funtów tylko dla starych danych) (79 ms)
+    ✓ R55-02 nazwy jak „toString”/„constructor”/„__proto__” nie trafiają w Object.prototype (128 ms)
+    ✓ R55-04 cel stopera ograniczony do doby (jak po wczytaniu); czas/dystans zaokrąglone, pole bez zapisu wykładniczego (35 ms)
+  runda 56
+    ✓ R56-01 przejście ze schematu 10 na 11 nie robi z własnego ćwiczenia ćwiczenia z biblioteki (149 ms)
+    ✓ R56-02 wartość przycięta do już zapisanej liczby od razu widoczna w polu (RPE 10 → „100”) (747 ms)
+    ✓ R56-03 komunikat o backupie z nowszej wersji nie powtarza tytułu (48 ms)
+  runda 57
+    ✓ R57-01 stare ułamkowe sekundy/metry zaokrąglane przy wczytaniu (bez rekordu przy tej samej wyświetlanej wartości); poranne ułamki zostają (45 ms)
+    ✓ R57-02 pole pokazuje od razu wartość przyciętą do limitu (store.REPS_MAX, audyt 0.10) i zaokrąglone RPE; „0” na początku „0,5” nie znika (486 ms)
+  runda 58
+    ✓ R58-01 ciężar × 0 s (seria na czas z ciężarem) nie jest rekordem ciężaru i nie blokuje prawdziwego (54 ms)
+    ✓ R58-02 CI uruchamia natywne sprawdzenia (warstwa D) (2 ms)
+    ✓ T-051 CI (SDK 54+): buildy na macOS wybierają najnowszy Xcode 26.x; platforma iOS dla buildów na urządzenie; obraz EAS zgodny z SDK (691 ms)
+    ✓ T-051 audyt (NISKIE): zakładki z `expo-router/js-tabs` — `Tabs` z głównego `expo-router` jest przestarzałe od routera 57 (50 ms)
+  runda 59
+    ✓ R59-01 bieg z samym dystansem może być najlepszą serią sesji (52 ms)
+    ✓ R59-02 kg wpisane z 3 miejscami to wartość z ekranu (0,01) — bez fałszywego rekordu (21 ms)
+    ✓ R59-03 import: zakończony trening trzyma tylko odhaczone serie (lista i statystyki zgodne) (55 ms)
+    ✓ R59-04 postępy ćwiczenia jednostronnego: rekordy „na stronę”; w historii VoiceOver mówi typ serii słownie (809 ms)
+  runda 60
+    ✓ R60-01 ten sam dystans: seria z czasem wygrywa z serią bez czasu (27 ms)
+    ✓ R60-02 import: kg na siatce 0,01 (bez rekordu przy tej samej liczbie); puste sesje odpadają (164 ms)
+    ✓ R60-03 pole kg nie zmienia tekstu w trakcie „62,555” (657 ms)
+    ✓ R60-04 npm run verify bez /dev/null i /tmp (Windows) (1 ms)
+  runda 61
+    ✓ R61-01 kg z importu: połówki od zera (asysta lustrzana); 0,004 kg masy ciała to brak wpisu od razu (248 ms)
+    ✓ R61-02 wykres „max ±” pokazuje sesję bez asysty (0) — dzień bez gumy (998 ms)
+  runda 62
+    ✓ R62-01 sesja bez wykonanej serii nie daje punktu 0 na wykresie „max ±” (553 ms)
+    ✓ R62-02 stoper bez celu zapisuje najwyżej dobę (jak pole i wczytanie) (78 ms)
+  runda 63
+    ✓ R63-01 przycisk numeru serii mówi, którego ćwiczenia dotyczy; szablon: „start kg/hantel”, serie do 50 (8711 ms)
+  runda 65
+    ✓ R65-01 ćwiczenie z masą ciała: objętość i e1RM z samego dociążenia (runda 75: masa ciała poza obliczeniami) (27 ms)
+    ✓ R65-02 wyłączona asysta gumą: „+ seria” i odhaczenie nie przenoszą ukrytej gumy ani jej asysty (77 ms)
+  runda 66
+    ✓ R66-02 ukryta guma (asysta gumą wyłączona) nie blokuje +kg z podpowiedzi ani z poprzedniej serii (29 ms)
+    ✓ R66-03 zmiana dźwięku w trakcie przerwy przeplanowuje powiadomienie (50 ms)
+    ✓ R66-04 dwa bloki tego samego ćwiczenia rozróżnialne dla VoiceOver (332 ms)
+  runda 67
+    ✓ R67-02 przerwa po czasie: zmiana dźwięku nie planuje drugiego powiadomienia (36 ms)
+    ✓ R67-03 dwie pozycje szablonu z tym samym ćwiczeniem rozróżnialne dla VoiceOver (396 ms)
+    ✓ R67-04 koniec przerwy kończy Live Activity także poza zakładką Trening (446 ms)
+  runda 69
+    ✓ R69-01 zmiana serii w treningu zapisuje tylko mały klucz „live”; restart odtwarza trening z „live” (113 ms)
+    ✓ R69-02 „live” starsze niż pełny stan albo uszkodzone — ignorowane (137 ms)
+    ✓ R69-03 ćwiczenie zmienione w trakcie treningu trafia do pełnego zapisu (52 ms)
+    ✓ R69-04 historia z 300 sesjami: lista renderuje się porcjami (611 ms)
+  runda 69 — porzucony trening
+    ✓ R69-05 po 6 h bez aktywności trening zapisuje się sam; koniec = ostatnia odhaczona seria (19 ms)
+    ✓ R69-06 bez odhaczonych serii roboczych nic się nie zapisuje samo; pytanie po 2 h, „Kontynuuj” odsuwa je o kolejne 2 h (24 ms)
+    ✓ R69-07 ekran pyta o porzucony trening i „Zakończ i zapisz” kończy z godziną ostatniej serii (642 ms)
+    ✓ R69-08 migracja: staleAck tylko w treningu w toku (39 ms)
+  runda 68 (testy dopisane)
+    ✓ R68-02 tytuły ekranów to nagłówki dla VoiceOver (380 ms)
+    ✓ R68-03 stoper z celem po czasie kończy Live Activity także bez ekranu treningu (89 ms)
+  runda 70 (audyt tematyczny T1/T2)
+    ✓ R70-01 cofnięty zegar nie gubi treningu w toku (licznik zapisów zamiast godziny) (129 ms)
+    ✓ R70-02 awaria między zapisem stanu a „live” nie wskrzesza zakończonego treningu (121 ms)
+    ✓ R70-03 nieczytelny stan: kopia do wysłania zawiera też trening w toku z „live” (86 ms)
+    ✓ R70-04 trwający stoper serii to aktywność; koniec po czasie nie wcześniej niż ostatnia seria (45 ms)
+    ✓ R70-05 przypomnienie po „Kontynuuj” podaje godzinę ostatniej serii (33 ms)
+    ✓ R70-06 oś wykresu: w lb etykiety się nie powtarzają, objętość bez powtórzeń, powtórzenia na całkowitych (934 ms)
+  runda 71 (audyt tematyczny T1b/T3)
+    ✓ R71-01 zapis timera w trakcie nieudanego pełnego zapisu nie gubi zakończonego treningu i nie gasi banera (116 ms)
+    ✓ R71-02 po nieczytelnym stanie stary „live” nie wraca przy kolejnym starcie (77 ms)
+    ✓ R71-03 przypomnienie liczone od startu trwającego stopera serii (jak pytanie) (460 ms)
+    ✓ R71-04 pytanie bez serii roboczych: inna treść, bez „Zakończ i zapisz”; rozgrzewka ma własny wariant; przypomnienie też (669 ms)
+    ✓ R71-05 „Odrzuć” → „Wróć” wraca do pytania; przyciski nie działają na innym treningu (1641 ms)
+    ✓ R71-06 oś: objętość tylko całkowite kroki, czas kroki zegarowe (2 ms)
+    ✓ R71-07 szablon: krótka etykieta ciężaru startowego, pełna dla VoiceOver (740 ms)
+  runda 73 — rekord = suma na treningu + e1RM (decyzja 01.10)
+    ✓ R73-01 objętość treningu: odznaka przy serii, która przebiła poprzednią sumę, raz na trening (20 ms)
+    ✓ R73-02 to samo ćwiczenie w dwóch blokach — suma liczona łącznie (35 ms)
+    ✓ R73-03 e1RM tylko z serii do 10 powtórzeń (standard dla wzorów szacujących 1RM) (27 ms)
+    ✓ R73-04 ćwiczenie na czas: łączny czas; na powtórzenia: suma powtórzeń; bieg: łączny dystans (27 ms)
+    ✓ R73-05 karta rekordów: pierwszy wiersz to najlepszy trening, drugi e1RM (648 ms)
+  verify 09.10.2026 (migrate-idem, ziarno 994171374): pauza krótsza niż 1 ms po zaokrągleniu
+    ✓ cleanPauses zaokrągla przed odrzuceniem pustych — wynik stały przy ponownym czyszczeniu (migracja idempotentna) (1 ms)
+  B1 (build 1004; zmienione 11.10.2026): stała zachęta do planu (bez „Ukryj”), pasek tygodnia bez dat
+    ✓ 11.10.2026: zachęta do planu = stały nagłówek „Bez planu tygodnia · Ustaw plan”; bez „Ukryj”, tekstu zachęty i przełącznika w Ustawieniach (1411 ms)
+    ✓ z planem tygodnia nagłówek karty „Dziś” prowadzi do planu przyciskiem „Planowanie” (817 ms)
+    ✓ pasek tygodnia pokazuje numer dnia pod skrótem (pl) (606 ms)
+    ✓ pasek tygodnia pokazuje numer dnia pod skrótem (en) (723 ms)
+  bloker audytu 0.13 #1 (12.10.2026): import CSV zapisuje ciężar ćwiczeń z masą ciała w addKg, nie w weight
+    ✓ (a) formatA: Pull Up 0×10 i +20×5, Push Up 0×20 — rekordy jak dla treningu wpisanego ręcznie (1565 ms)
+    ✓ (b)+(c) eksport CSV → import do świeżego stanu: rekordy identyczne, asysta (ujemny) zachowuje znak (130 ms)
+  Q-004 (0.14.0): zmiana języka w trakcie przerwy/stopera odświeża Live Activity, podpis i przypomnienie o porzuconym treningu
+    ✓ przerwa: Live Activity startuje od nowa po angielsku (etykieta „rest|Rest”, podpis „next: …”), T.sub w nowym języku (891 ms)
+    ✓ przypomnienie o porzuconym treningu jest przeplanowane w nowym języku także bez zamontowanego ekranu treningu (1064 ms)
+    ✓ stoper z celem: Live Activity serii od nowa po angielsku (1000 ms)
+  Q-013 (0.14.0): stoper bez celu, zamknięty razem z aplikacją, liczy się jako aktywność (nie ma cichego zapisu po 6 h od ostatniej serii)
+    ✓ stoper bez celu sprzed 3 h, ostatnia seria sprzed 6,5 h: po starcie aplikacji trening NIE zapisuje się po cichu (pytanie), seria stopera nieodhaczona (111 ms)
+    ✓ bez stopera trening sprzed 6,5 h nadal zapisuje się po cichu; stoper starszy niż 6 h nie wstrzymuje zapisu (193 ms)
+    ✓ stoper bez celu z wpisanym czasem: seria się odhacza (Q-002) i też liczy jako aktywność (63 ms)
+  Q-013 (audyt 0.14.0, NISKIE): zimny start ze stoperem bez celu nie kasuje pauzy treningu
+    ✓ pauza po starcie stopera przetrwa zimny start; znacznik aktywności (staleAck) i tak się przesuwa (50 ms)
+  Q-014 (0.14.0): rotacja kopii automatycznych wg czasu zapisu pliku, nie czasu lokalnego z nazwy (zmiana strefy / DST)
+    ✓ najświeższa kopia z „wcześniejszą” nazwą zostaje, kasowana jest najstarsza wg czasu zapisu (114 ms)
+    ✓ bez czasu zapisu (platforma go nie podaje) zostaje kolejność z nazw (55 ms)
+  Q-016 (0.14.0): dwa bloki tego samego ćwiczenia spoza szablonu — „Poprzednio” idzie za blokiem po zmianie kolejności
+    ✓ zamiana kolejności bloków: każdy blok zachowuje swoje „Poprzednio”; powrót do pierwotnej kolejności czyści znacznik (56 ms)
+    ✓ przesunięcie obcego ćwiczenia nie ruszy „Poprzednio”; kolejne zamiany (A, potem B) są spójne (52 ms)
+    ✓ zakończony trening nie niesie znacznika (tylko trening w toku) (28 ms)
+  audyt 0.13 ŚREDNIE (0.14.0): import bez godzin i czasu — historia nie udaje godziny 12:00 ani czasu trwania (serie × 90 s)
+    ✓ formatB: sesja bez czasu (koniec = start), czas trwania 0, nie wlicza się do sum czasu; formatA z czasem trwania bez zmian (127 ms)
+    ✓ formatA z godziną, ale bez czasu trwania: też bez szacunku (koniec = start) (90 ms)
+    ✓ formatA z godziną, bez Duration: godzina zostaje w Historii i w eksporcie; ponowny import zachowuje godzinę (także z „0m”) (243 ms)
+    ✓ sesja z końcem = start o godzinie innej niż 12:00 (cofnięty zegar) zachowuje godzinę; o 12:00:00 — nadal „godzina nieznana” (import samej daty) (34 ms)
+    ✓ Historia i szczegóły sesji: „godzina nieznana” zamiast 12:00 i czasu; sesja z godziną — jak dotąd (4919 ms)
+    ✓ eksport CSV: sesja bez czasu — sama data i puste Duration; ponowny import zachowuje „bez czasu” (367 ms)
+  audyt 0.13 NISKIE (0.14.0): Postępy zachowują wybrane ćwiczenie, szukanie i przewinięcie po powrocie z ekranu stosu
+    ✓ wybrane ćwiczenie i przewinięcie listy sesji przeżywają wejście na ekran stosu i powrót (ZM-06: ćwiczenie z danymi jest wybrane od razu, chip „✕” zniknął) (1071 ms)
+    ✓ wpisana nazwa w szukajce ćwiczeń przeżywa wejście na ekran stosu i powrót (1432 ms)
+  Q-026 (0.14.0): edytor historii oznacza ciężar zapisany pod innym sprzętem
+    ✓ seria z wartością spod innego sprzętu ma dopisek; seria pusta i ćwiczenie z własnym sprzętem — nie (943 ms)
+    ✓ wpisanie ciężaru w polu przenosi go do obecnego sprzętu i dopisek znika (1037 ms)
+  TestFlight 0.18/1015 (14.10.2026, WYSOKI): „Nie udało się włączyć Apple Health” — build bez uprawnienia HealthKit
+    ✓ wyjątek z requestAuthorization (brak uprawnienia w podpisie) = „failed”, a nie „ok” (659 ms)
+    ✓ aplikacja wymaga HealthKit w obu celach (telefon i zegarek) i strażnik .ipa sprawdza dokładnie te cele (1 ms)
+  Ekran blokady w przerwie: język aplikacji, nie systemu (26.10.2026, realny, rzadki)
+    ✓ telefon po polsku + aplikacja po angielsku: start Live Activity niesie „en”, a zmiana języka przy trwającej przerwie odświeża ją (78 ms)
+  M1-audytor-generalny-020 (06-tresci-004, DEC-04 a, 27.10.2026): RIR 6 → RPE 5, „lekko” od RIR 7
+    ✓ wpis RIR 6 zapisuje RPE 5; RIR powyżej 6 — „lekko” (RPE 4, pokazywane „7+”); RIR 0–5 bez zmian (38 ms)
+    ✕ Ustawienia: opis skali mówi o zakresie 0–6 i granicy RPE 5 (nie 10 − RIR_MAX) (1444 ms)
+
+  ● M1-audytor-generalny-020 (06-tresci-004, DEC-04 a, 27.10.2026): RIR 6 → RPE 5, „lekko” od RIR 7 › Ustawienia: opis skali mówi o zakresie 0–6 i granicy RPE 5 (nie 10 − RIR_MAX)
+
+    TypeError: Cannot read properties of null (reading 'useSyncExternalStore')
+
+      22 | const subscribe = (l: () => void) => { listeners.add(l); return () => { listeners.delete(l); }; };
+      23 | /** Odświeża komponent przy zmianie „Pogrubiony tekst” / „Zwiększ kontrast”; zwraca bieżące wartości. */
+    > 24 | export function useA11yPrefs(): A11yPrefs { return useSyncExternalStore(subscribe, a11yPrefs, a11yPrefs); }
+         |                                                                        ^
+      25 |
+      26 | let started = false;
+      27 | /** Odczyt początkowy i nasłuch zmian ustawień systemu; bez API (testy, web) — wartości domyślne. Idempotentne. */
+
+      at Object.<anonymous>.process.env.NODE_ENV.exports.useSyncExternalStore (../../../node_modules/react/cjs/react.development.js:1270:33)
+      at useA11yPrefs (lib/a11yPrefs.ts:24:72)
+      at useTheme (lib/theme.ts:42:36)
+      at StartError (components/StartError.tsx:17:22)
+      at Object.react_stack_bottom_frame (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:15670:20)
+      at renderWithHooks (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4863:22)
+      at updateFunctionComponent (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7018:19)
+      at beginWork (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8499:18)
+      at runWithFiberInDEV (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at performUnitOfWork (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13224:22)
+      at workLoopSync (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13068:41)
+      at renderRootSync (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13049:11)
+      at performWorkOnRoot (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12253:39)
+      at performWorkOnRootViaSchedulerTask (../../../node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2908:7)
+      at flushActQueue (../../../node_modules/react/cjs/react.development.js:590:34)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (../../../node_modules/react/cjs/react.development.js:884:10)
+      at actImplementation (../../../node_modules/@testing-library/react-native/src/act.ts:30:25)
+      at renderWithAct (../../../node_modules/@testing-library/react-native/src/render-act.ts:13:11)
+      at renderInternal (../../../node_modules/@testing-library/react-native/src/render.tsx:69:33)
+      at Object.renderInternal (../../../node_modules/@testing-library/react-native/src/render.tsx:44:10)
+      at render (../../../node_modules/expo-router/src/testing-library/index.tsx:90:35)
+      at tests/app.tsx:22:25
+      at asyncGeneratorStep (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 321 passed, 322 total
+Snapshots:   0 total
+Time:        192.573 s
+Ran all test suites matching /tests\/regress.test.tsx/i.

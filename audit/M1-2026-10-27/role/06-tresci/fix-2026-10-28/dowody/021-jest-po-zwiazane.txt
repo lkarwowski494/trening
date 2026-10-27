@@ -1,0 +1,48 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/figury-recenzja.test.tsx (5.623 s)
+PASS iOS tests/zrodla-pelne-cues.test.ts
+PASS iOS tests/zrodla-paczka.test.ts (22.265 s)
+PASS iOS tests/figures-v2-bench-rules.test.ts
+PASS iOS tests/verify-docs.test.ts (5.125 s)
+PASS iOS tests/figures-v2-sprzet-geometria.test.ts (30.536 s)
+PASS iOS tests/zrodla-pelne-figury.test.ts
+PASS iOS tests/zrodla-pelne-sprzet.test.ts
+FAIL iOS tests/forbidden-names.test.ts
+  ● TST2-08: nazwy innych aplikacji i marek poza kodem, komentarzami, testami i tekstami aplikacji › brak nazw poza wyjątkami (plik:linia: nazwa)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 5
+
+    - Array []
+    + Array [
+    +   "data/zrodla/wskazowki-ogolne.json:598: Eleiko",
+    +   "data/zrodla/wskazowki-ogolne.json:606: Eleiko",
+    +   "data/zrodla/wskazowki-ogolne.json:1285: Assault Bike",
+    + ]
+
+      17 |   });
+      18 |   test('brak nazw poza wyjątkami (plik:linia: nazwa)', () => {
+    > 19 |     expect(hits.filter(h => !exceptionFor(h.f, h.n)).map(h => `${h.f}:${h.line}: ${h.n}`)).toEqual([]);
+         |                                                                                            ^
+      20 |   });
+      21 |   test('każdy wyjątek jest jeszcze potrzebny (nieużywany — do usunięcia z listy)', () => {
+      22 |     expect(CFG.exceptions.filter(x => !hits.some(h => exceptionFor(h.f, h.n) === x)).map(x => `${x.path}: ${x.name}`)).toEqual([]);
+
+      at Object.toEqual (tests/forbidden-names.test.ts:19:92)
+
+PASS iOS tests/zrodla-pelne-grafiki.test.ts
+PASS iOS tests/audit-m1-048-claims-registry.test.ts (6.516 s)
+PASS iOS tests/audit-m1-046-047-claims.test.tsx
+PASS iOS tests/zrodla-wiedzy.test.ts
+PASS iOS tests/research-quotes.test.ts
+PASS iOS tests/audit-m1-061-quality-claims.test.ts
+PASS iOS tests/zrodla-pelne-wskazowki-ogolne.test.ts
+
+Test Suites: 1 failed, 15 passed, 16 total
+Tests:       1 failed, 187 passed, 188 total
+Snapshots:   0 total
+Time:        83.519 s
+Ran all test suites matching /tests\/zrodla-pelne-figury.test.ts|tests\/zrodla-wiedzy.test.ts|tests\/zrodla-pelne-grafiki.test.ts|tests\/zrodla-paczka.test.ts|tests\/verify-docs.test.ts|tests\/audit-m1-048-claims-registry.test.ts|tests\/figures-v2-sprzet-geometria.test.ts|tests\/figury-recenzja.test.tsx|tests\/figures-v2-bench-rules.test.ts|tests\/zrodla-pelne-wskazowki-ogolne.test.ts|tests\/zrodla-pelne-cues.test.ts|tests\/zrodla-pelne-sprzet.test.ts|tests\/research-quotes.test.ts|tests\/audit-m1-046-047-claims.test.tsx|tests\/audit-m1-061-quality-claims.test.ts|tests\/forbidden-names.test.ts|tests\/decyzje.test.ts/i.

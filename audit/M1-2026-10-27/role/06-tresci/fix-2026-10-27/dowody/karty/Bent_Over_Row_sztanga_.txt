@@ -1,0 +1,20 @@
+# Bent Over Row (sztanga)
+widok: side, kotwica: toe, przyrządy: [{"k":"plate","at":"hand"}]
+notatka: Pochylenie tułowia ilustracyjne — wskazówki mówią tylko „pochyl tułów w biodrach, plecy proste”.
+mięśnie (katalog): {"lats":1,"upper_back":1,"rear_delt":0.5,"biceps":0.5,"lower_back":0.5,"forearms":0.25}
+setup row.hinge: Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.  [źródła: ace-12 / opis; exrx-BackGeneral/BBBentOverRow / Preparation]
+setup row.bbGrip: Chwyć sztangę nachwytem, na szerokość barków lub szerzej.  [źródła: ace-12 / opis (palms down; wrists, elbows and shoulders in line); exrx-BackGeneral/BBBentOverRow / Preparation; Comments (wide or shoulder-width grip)]
+move row.bbPull: Przyciągnij sztangę do brzucha, potem opuść ją do pełnego wyprostu rąk.  [źródła: ace-12 / opis (towards the belly button); exrx-BackGeneral/BBBentOverRow / Execution (to upper waist)]
+tips hinge.back: Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.  [źródła: ace-12 / opis (back straight/flat); exrx-BackGeneral/BBBentOverRow / Comments (low back straight)]
+tips row.fullStretch: Na dole wyprostuj ręce do końca, barki swobodnie w dół.  [źródła: ace-12 / opis (until the elbows are completely straight); exrx-BackGeneral/BBBentOverRow / Execution (arms extended, shoulders stretched downward)]
+mistakes mis.roundBack: Zaokrąglanie pleców, żeby dociągnąć ciężar.  [źródła: exrx-BackGeneral/BBBentOverRow / Comments (low back rounded due to poor form); ace-12 / opis (keep the back flat)]
+KLATKA start: poza {"t":30,"hip":95,"knee":20,"sh":60,"el":0}
+  kąty: hip=95 knee=20 sh=60 el=0 ankle=-15 hip2=95 knee2=20 sh2=60 el2=0 ankle2=-15
+  punkty: head=(3.7,69.1) shoulder=(-5.8,63.6) elbow=(-5.8,45.6) hand=(-5.8,25.6) hip=(-31.8,48.6) knee=(-17.5,28.1) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-17.5,28.1) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-5.8,45.6) hand2=(-5.8,25.6)
+  why joint row.fullStretch → OK (0)
+  why joint row.hinge → OK (20)
+KLATKA end: poza {"t":30,"hip":95,"knee":20,"sh":-40,"el":109}
+  kąty: hip=95 knee=20 sh=-40 el=109 ankle=-15 hip2=95 knee2=20 sh2=-40 el2=109 ankle2=-15
+  punkty: head=(3.7,69.1) shoulder=(-5.8,63.6) elbow=(-23.6,66.8) hand=(-20.4,47) hip=(-31.8,48.6) knee=(-17.5,28.1) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-17.5,28.1) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-23.6,66.8) hand2=(-20.4,47)
+  why touch row.bbPull → OK (0.1)
+  why joint row.hinge → OK (20)

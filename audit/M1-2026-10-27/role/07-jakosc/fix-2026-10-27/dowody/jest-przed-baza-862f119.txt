@@ -1,0 +1,2120 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/decyzje-straznik.test.ts (5.505 s)
+  scripts/decyzje.mjs — wpisy dziennika
+    ✓ wpis = punkt z datą (także pogrubioną i zakresem dni) albo rozdział z datą i własną treścią; rozdział bez treści (same punkty z datą) nie jest wpisem (108 ms)
+    ✓ wpisy przed sekcją „## Decyzje” nie są sprawdzane (48 ms)
+  scripts/decyzje.mjs — reguły pola wdrożenia (próbki)
+    ✓ dopisanie decyzji bez pola wdrożenia czerwieni strażnik (test akceptacyjny 07-jakosc-005) (82 ms)
+    ✓ [wdrożenie: kod] bez testu i bez powodu — czerwony; z [bez testu: powód] — zielony; za krótki powód — czerwony (182 ms)
+    ✓ wskazany test musi istnieć (54 ms)
+    ✓ wskazany test zawiera datę decyzji (07-jakosc-005); wstecz (przed 28.10.2026) wystarczy fragment z pliku testu (247 ms)
+    ✓ od 28.10.2026 fragment nie zastępuje daty: nowy wskazany test musi zawierać datę decyzji (74 ms)
+    ✓ bez kodu — z powodem; zastąpione — data nie wcześniejsza niż wpis; otwarte/odłożone — ze wskazaniem; inne — czerwony; dwa pola — czerwony (595 ms)
+    ✓ pole może stać w dowolnej linii wpisu wieloliniowego i w treści rozdziału (63 ms)
+  docs/18-przekazanie.md: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium)
+    ✕ dziennik bez błędów strażnika (wynik jak `npm run check:decyzje`) (111 ms)
+    ✕ CLI: `npm run check:decyzje` w verify; kod 0 na repozytorium (1 ms)
+    ✓ CLI: dziennik z wpisem bez pola kończy się kodem 1 z linią wpisu (63 ms)
+    ✕ 2026-10-12 „P2 B (ekran zakupu raz po pierwszym treningu)”: otwarte → M1-audytor-generalny-001 albo kod z testem (tabela audytu M1) (1 ms)
+    ✕ 2026-10-12 „0.16 (docs/29)”: otwarte → M1-audytor-generalny-002 albo kod z testem (tabela audytu M1)
+    ✕ 2026-10-13 „Wyjątek Ukraina”: otwarte → M1-audytor-generalny-037 albo kod z testem (tabela audytu M1)
+    ✕ 2026-10-18 „po analizie porażek E2E”: otwarte → M1-audytor-generalny-034 albo kod z testem (tabela audytu M1) (1 ms)
+    ✕ 2026-10-21 „K1–K2 M8”: otwarte → M1-audytor-generalny-017 albo kod z testem (tabela audytu M1) (1 ms)
+    ✕ 2026-10-21 „STOP 3 przebiegu M3”: otwarte → M1-audytor-generalny-024 albo kod z testem (tabela audytu M1) (3 ms)
+    ✕ 2026-10-23 „decyzje właściciela po audycie generalnym M1”: otwarte → M1-audytor-generalny-024 albo kod z testem (tabela audytu M1) (1 ms)
+    ✕ 2026-10-27 „po zgłoszeniu z TestFlight”: otwarte → M1-audytor-generalny-005 albo kod z testem (tabela audytu M1) (1 ms)
+    ✕ kolejność planów: wpis z 23.10.2026 zastąpiony 27.10.2026; wpis z 27.10.2026 wskazuje test kolejności i planu domyślnego (02-monetyzacja-003)
+
+  ● docs/18-przekazanie.md: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium) › dziennik bez błędów strażnika (wynik jak `npm run check:decyzje`)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -    1
+    + Received  + 1916
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 41,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: raporty rynkowe — wnioski w docs/research/raporty-rynkowe-2026-10.md; import",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 42,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: ocena realności znalezisk (A) — CLAUDE.md.",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 43,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: usprawnienie pracy — wariant B (wszystko naraz, przed nowymi funkcjami); doc",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 44,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **trening zrobiony wcześniej (pkt 4) — wariant A**: trening szablonem X w dn",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 48,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **wyłączenie wszystkich planów (pkt 5) — wariant A z potwierdzeniem**: ikona",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 52,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **autouzupełnianie serii (pkt 6) — wariant A (kaskada w dół)**: wartość wpis",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 55,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **podsumowanie rekordów (pkt 7) — wariant A, bez grafiki**: dla każdego ćwic",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 58,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **Apple Zdrowie (pkt 9)** — (1) etapami (A): etap 1 — aktywności i kroki z H",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 64,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **trening z zegarka (pkt 9, etap 2) — A**: trening siłowy w Health pokrywają",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 67,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **baza ćwiczeń (pkt 10) — A**: rozbudowa własnych wskazówek techniki (dziś 8",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 71,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **Apps4Brew (pkt 11) — A**: marka od teraz (strona, polityka prywatności, st",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 76,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **nawigacja (docs/22, P1) — wariant A: 4 zakładki Trening · Plan · Postępy ·",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 78,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **domena** — zgoda właściciela na zakup (niewielki wydatek poza Apple); reko",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 80,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **strona internetowa (pkt 12) — A**: jedna prosta strona Apps4Brew na GitHub",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 83,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **Ryzyko jednej z popularnych aplikacji (pkt 13) — A**: raport Gemini mylił ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 86,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **aplikacja na Apple Watch — A jako priorytet po wejściu do App Store**: eta",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 89,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026 (zastąpione 13.10.2026 i 20.10.2026 — obowiązuje docs/monetyzacja.md): **cenn",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 91,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **docs/22 P2 — B**: „Z szablonu” w arkuszu „Inny trening” otwiera osobny peł",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 93,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **docs/22 P3 — A**: dolny „Zakończ trening i zapisz” usunięty; zostaje „Zako",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 95,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **podział lib/store.ts scalony** (gałąź refactor-store): fasada 6 KB + 25 mo",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 97,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **docs/22 P4 — A**: „Pierwsze kroki” — 3 kroki, każdy z jednym przyciskiem (",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 98,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **docs/22 P5 — A**: masa ciała jako sekcja w zakładce Postępy (wykres + doda",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 99,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **docs/22 P6 — B**: import CSV z innych dzienników w Kopii zapasowej ORAZ ja",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 101,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **docs/22 P7 — A z wyjątkiem (decyzja właściciela)**: dwa wydania — (1) ekra",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 106,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **docs/22 P8 — B (właściciel)**: Progresja tygodnia = wykonane + zaplanowane",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 111,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **okienko rekordów po „Zakończ” — usunięte (A)**: po zakończeniu treningu od",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 113,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **pozostałe problemy audytu nawigacji (docs/22, 2.2) — A, pakietem wg propoz",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 117,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **8A** okno „Zaktualizować szablon?” po „Zakończ” → przycisk „Zapisz zmiany ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 122,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **1A** przycisk „Zapisz zmiany w szablonie” tylko zaraz po treningu (stan w ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 126,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **wydanie 2 — cztery zakładki i masa ciała w Postępach (docs/22 wariant A; P",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 144,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026 (ok. 23:30): **TestFlight 0.12.0 — A**: po zielonym E2E 18/18, verify i liści",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 147,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **hasło „w cenie espresso lub taniej”** — wyjątek od warunku źródeł (docs/15",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 148,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026 (ok. 23:45, „wszystko wg rekomendacji”): (1) wskazówki ćwiczeń, partia 1 — ba",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 153,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **kolejność wydań natywnych — A** (docs/28): (1) sama aktualizacja `@kingsti",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 156,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: **Gemini (subskrypcja właściciela) — wniosek z prób** (wskazówki techniki, p",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 161,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: 0.12.0 — A: osobny build dziś (poprawka scenariusza 05, PR, Merge + Run work",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 162,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: komunikacja — A: agent pisze tylko, gdy potrzebna decyzja/kliknięcie właścic",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 163,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: tag v0.12.0-b1006 zostaje (B) — build 1006 nie powstał (TestFlight 382072863",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 164,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: cel serii na partię/tydzień — funkcja A (Ustawienia: per partia Automatyczni",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 165,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: research serii wg partii (docs/research/32): automatycznie 10 dla każdej par",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 166,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: audyt zmian 0.13.0 — 1 WYSOKIE (import CSV: ćwiczenia z masą ciała w `weight",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 167,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: backlog — A: 0.14.0 = porządek statusów + małe błędy (Q-004, Q-012…Q-016, Q-",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 168,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: rozbicie barków/pleców w statystykach serii — wycofane (A, decyzja zastępuje",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 169,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: monetyzacja — B: na start subskrypcja (docs/27, wydanie 0.17), z możliwością",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 170,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: E2E 0.13.0 i 0.14.0 — scenariusz 07 padał (linijka podpowiedzi zamiennika po",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 171,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: droga do App Store — C: kolejność bez zmian (0.15/0.16 Zdrowie, 0.17 subskry",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 172,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: nazwy producentów w tytułach źródeł wskazówek (lib/cues/data.json; wyjątki w",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 173,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: audyt przed App Store (raport: znaleziska F1–F6): F1 (dane właściciela w his",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 174,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: 0.13.0 wydane — build 1009 (TestFlight 38294805184, automatycznie po scaleni",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 175,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: po researchu „darmowe aplikacje + patroni” (Dysk, 05 Research konkurencji) —",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 176,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: 0.16 (docs/29) — P1 A, P2 A, P3 wariant właściciela (średnia dzienna kroków ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 177,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: subskrypcja 0.17 (docs/27) — zgodnie z rekomendacją: P2 B (ekran zakupu raz ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 178,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- **13.10.2026 (właściciel) — zasada projektowa „to samo działa tak samo”:** katalog wzorc",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 179,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026: cennik (po researchu „indeks espresso”, scratchpad/indeks-espresso.md → docs",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 180,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026: przycisk „Napisz do nas” w Więcej → O aplikacji (wariant A, właściciel): `ma",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 181,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026: wydanie 0.18 „Dostosuj do miejsca” — decyzje właściciela P0–P7 (wariant C = ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 182,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026: serie pomocnicze — A: nadal liczą się do celu po 0,5 (bez zmiany wagi), ale ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 183,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: repozytorium produkcyjne — A: organizacja GitHub **Apps4Brew** (nie drugie k",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 184,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: 0.14.0 wydane — build 1010 (TestFlight 38311331235, po scaleniu PR #5), tag ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 185,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026: 0.15.0 wydane — build 1012 (TestFlight 38355743899; build 1011 przepadł — pr",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 186,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026: proces wsparcia (docs/34, strony site/support.html i privacy.html) — decyzje",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 187,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026: 0.16.0 wydane — build 1013 (TestFlight 38374133953), tag v0.16.0-b1013. Gałą",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 188,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026: termin przenosin do Apps4Brew — po wydaniu 0.19 (kolejność: 0.17 → 0.18 → 0.",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 189,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026 (właściciel): zamiana ćwiczenia w trakcie pomiaru serii — A: bez pytania (zwy",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 190,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026 (właściciel): marki — B: trzy osobne marki według półek cenowych (Apps4Brew 0",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 191,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026 (właściciel, „P1–P9 zgodnie z rekomendacją”): agent-menedżer portfela i dashb",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 192,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026 (właściciel, uzupełnienie P1–P9 po przeglądzie innych projektów): zakres pulp",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 193,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026 (właściciel, pulpit): wsparcie — klucz do recenzji A (dwa klucze zespołowe: C",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 194,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026: 0.17.0 wydane — build 1014 (TestFlight 38413965421), tag v0.17.0-b1014. Właś",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 195,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026: 0.18.0 złożone (gałąź f018-dostosuj): wersja 0.18.0 (app.json, package.json,",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 196,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026 (właściciel, research Treningu i nowe funkcje): ocena w portfelu 79 (było 81 ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 197,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026 (właściciel): głos — zapowiedź NA POCZĄTKU przerwy: ćwiczenie, ciężar i liczb",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 198,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026 (właściciel): ZEGARKI przed App Store — Apple Watch i Garmin (fēnix 8 AMOLED ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 199,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026 (właściciel): skrzynka wsparcia — płatny Google Workspace (wyjątek od zasady ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 200,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026 (właściciel, plan marketingu — scratchpad koordynatora `trening-marketing.md`",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 201,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026, wieczór (właściciel): **Garmin PO App Store** — zmienia wpis „ZEGARKI przed ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 202,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026, wieczór (właściciel, przyspieszenie wydań): 0.18 wydawane osobno; **0.19 (mi",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 203,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026 (właściciel): ceny w App Store Connect — utworzone produkty w grupie „Pełna w",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 204,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026: błąd WYSOKI TestFlight 0.18 (build 1015) — „Nie udało się włączyć Apple Heal",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 206,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "## 14.10.2026 — decyzje właściciela: liczby w kartach Progresji (gałąź `f020-postepy`)",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 213,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "## 14.10.2026 — strażnik progresji (gałąź `f020-straznik`, od `f020-postepy`; specyfikacja",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 234,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026 ~23:30: TestFlight 0.12.0 — A (po zielonym E2E 18/18 + verify + lista kontrol",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 235,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: hasło „w cenie espresso lub taniej” — wyjątek od warunku źródeł (docs/15, ga",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 236,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: zadania pasujące do Gemini — zgłaszać właścicielowi (dopisać do CLAUDE.md).",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 237,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: Gemini dla wskazówek ćwiczeń — wynik słaby (DR: 43/50 bez źródeł; bez DR: zm",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 238,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026: kolejność wydań natywnych — A: (1) healthkit 8→16 sam, zapis jak dziś; (2) H",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 239,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 11.10.2026 (~23:45, „wszystko wg rekomendacji”): (1) wskazówki ćwiczeń partia 1 — badacz",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 240,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: 0.12.0 — A: osobny build dziś (poprawka scenariusza 05, PR, Merge + Run work",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 241,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: komunikacja — A: agent pisze tylko, gdy potrzebna decyzja/kliknięcie właścic",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 242,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: tag v0.12.0-b1006 zostaje (B) — build 1006 nie powstał (TestFlight 382072863",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 243,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: cel serii na partię/tydzień — funkcja A (Ustawienia: per partia Automatyczni",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 244,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: research serii wg partii (docs/research/32): automatycznie 10 dla każdej par",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 245,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: audyt zmian 0.13.0 — 1 WYSOKIE (import CSV: ćwiczenia z masą ciała w `weight",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 246,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: backlog — A: 0.14.0 = porządek statusów + małe błędy (Q-004, Q-012…Q-016, Q-",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 247,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: rozbicie barków/pleców w statystykach serii — wycofane (A, decyzja zastępuje",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 249,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "## 12.10.2026 — monetyzacja (właściciel)",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 254,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: droga do App Store — C: kolejność bez zmian (0.15/0.16 Zdrowie, 0.17 subskry",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 255,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: nazwy producentów w tytułach źródeł wskazówek (lib/cues/data.json; wyjątki w",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 256,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: audyt przed App Store (raport: znaleziska F1–F6): F1 (dane właściciela w his",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 257,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 12.10.2026: po researchu „darmowe aplikacje + patroni” (Dysk, 05 Research konkurencji): ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 258,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026 (właściciel): pierwsza wersja w App Store = **1.0** (zawartość 0.20 + poprawk",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 261,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026 (właściciel): App Privacy w App Store Connect opublikowane: „Data Not Collect",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 262,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026 (właściciel przypomina): Google Workspace + skrzynka support@apps4brew.com — ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 263,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026 (właściciel): przejście do organizacji GitHub **Apps4Brew (plan Free, nie Ent",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 264,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026: właściciel założył organizację GitHub **Apps4Brew** (https://github.com/Apps",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 265,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026: aplikacja Claude zainstalowana w organizacji Apps4Brew (All repositories).",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 266,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026: DO DECYZJI po teście 0.20 na telefonie — kroki z Apple Health (średnia pod „",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 267,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026 (właściciel, pomysł PO App Store, „na koniec”): włączenie kroków, snu, cardio",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 268,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026 (właściciel): konto mBank PLN aktywne, waluta wypłat USD (przewalutowanie prz",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 269,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026: właściciel złożył zgłoszenie do App Store Small Business Program (15% prowiz",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 270,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026 (właściciel, decyzje z docs/41): D-1 **płatności od 1.0** (test zakupów w pia",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 271,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026 (właściciel, strażnik progresji — pytania programisty): kilka ćwiczeń w parti",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 272,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026 (właściciel): nazwa funkcji **„Strażnik progresji”** widoczna w aplikacji (na",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 273,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "## 14.10.2026 — nazwa funkcji „Strażnik progresji” (gałąź `f020-nazwa-straznika`)",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 279,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 18.10.2026 (właściciel): kolejność zmieniona — **najpierw pełny audyt (w obecnym repo, p",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 280,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 18.10.2026 (właściciel): zmiana zasady „jedno źródło” — reguła/liczba oparta na JEDNYM ź",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 281,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 18.10.2026 (właściciel, wdrożenie zasady „jedno źródło”; gałąź f020-jedno-zrodlo): zatwi",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 282,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 18.10.2026: D-7 rozwiązane — właściciel ma własny Apple Watch (starszy model, watchOS 10",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 283,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 18.10.2026 (właściciel): wszystkie zrzuty do App Store z ciemnej wersji aplikacji (ramka",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 284,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 18.10.2026 (właściciel, po analizie porażek E2E): (1) szybki przebieg zmienionych scenar",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 285,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 18.10.2026 (właściciel): licencja kodu repozytorium — **wszelkie prawa zastrzeżone** (pl",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 286,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026 (właściciel, koszt czasu i tokenów E2E): podział E2E — przy TestFlight blokuj",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 287,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026 (właściciel): bramka przed App Store — najpierw naprawa niestabilności E2E w ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 288,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 13.10.2026, wieczór (właściciel, testy użytkownika): scenariusze E2E mają zastąpić ręczn",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 289,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026, rano (właściciel, pytania z nocy): **0.19** — miejsce na zakres dat zostaje ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 290,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026, rano (właściciel): **„Poproś o nową funkcję”** w 0.20 — osobny przycisk obok",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 291,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 14.10.2026, rano (właściciel): **zmiany workflowów wypycha koordynator na gałąź funkcji;",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 292,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026: **0.20.0 złożone do wydania** (gałąź `f020-wydanie`, PR #12; 0.19 + 0.20 jed",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 293,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026 (pomysł z rozmowy z właścicielem, do fazy audytu): pamięć podręczna budowania",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 294,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026 (właściciel): pełny audyt przed App Store przez **M1 Audytor Generalny z bibl",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 295,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026 (właściciel): do backlogu bez priorytetu (docs/21) — animacje techniki ćwicze",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 296,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026: **0.20.0 wydane na TestFlight** — PR #12 scalony na `main` (80e43fc), `testf",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 297,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026 (właściciel, lista kontrolna 0.20 na telefonie, build 1018): kroki 1–9, 11, 1",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 298,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026 (właściciel): **strażnik progresji** — ćwiczenie z ciężarem zapisane w poprze",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 299,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026 (właściciel): **kroki z Apple Health** zostają w 1.0 bez zmian (średnia pod „",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 300,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026 (właściciel): **zapowiedzi głosowe** — jeden wybór „Wyłączone / W słuchawkach",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 301,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026: **lista napraw przed 1.0 z testu 0.20** — (1) strażnik 0 kg → „więcej” (decy",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 303,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "## 19.10.2026 — lista napraw przed 1.0 z testu 0.20 (programista, gałąź `feature/e2-swap`)",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 321,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026 (właściciel): build TestFlight z poprawkami listy kontrolnej 0.20 (strażnik 0",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 322,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026 (właściciel, przegląd zrzutów do sklepu v10): **pasek talerzy (PlateBar) usun",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 323,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 19.10.2026 (właściciel): front aplikacji będzie zmieniany po audycie M1 → zrzuty do skle",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 326,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel): **start M2 (Koordynator Napraw) od partii 1** napraw z audytu M",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 327,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel, DEC-05): **zapowiedzi głosowe domyślnie WYŁĄCZONE** — zastępuje ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 328,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel): cena roczna = 6,99 USD/rok — zastępuje 4,99 USD z 13–14.10.2026",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 329,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel): **wykaz decyzji z audytu M1 (DEC-01…27)** — rozstrzygnięte 19–2",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 330,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel, oszczędność tokenów): zadania **M1-audytor-generalny-026 (układ ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 331,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel, wieczór): zgoda z góry na partie 2–4 napraw M2 (audyt M1) — po k",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 332,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel, nowy LOK-07 biblioteki prompts): **„System miar”** metryczny (kg",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 333,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel): **domyślny system miar nowej instalacji z regionu telefonu**; i",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 334,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (koordynator, LOK-07): etykiety presetów sprzętu (lib/equipment.ts) zostają w",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 335,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel): końcowy reaudyt po M2 z nowym LOK-07 (D-030).",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 336,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel, oszczędność tokenów): **M3 Redesigner przed 1.0, zaraz po M2** (",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 337,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel): **oszczędzanie limitu tygodniowego** — (1) role wykonawcze na l",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 338,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026: **zaplanowane zadania konta (stan, do odtworzenia na innym koncie)** — dla T",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 340,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel, K-P4-1): decyzja o Androidzie po 8 tygodniach — metryka **A + C*",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 341,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel, K-P4-2): drugi przegląd treści krytycznej w 34 językach (R-010) ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 342,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel, K-P4-3): wynik bramki W0 — brak; zostaje [DO USTALENIA].",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 343,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel, K-P4-4): plan wydania 1.0 — pauza wydania stopniowego po pierwsz",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 344,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel): GitHub Pro (4 USD/mies.) nie daje pierwszeństwa ani więcej masz",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 345,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026: Apple zweryfikowało dane przedsiębiorcy (DSA) — informacje widoczne w App St",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 346,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel): **przegląd tłumaczeń przez API Anthropic z kredytów właściciela",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 347,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel): **limit 50 USD na przebieg przeglądu tłumaczeń, decyzja właścic",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 348,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 20.10.2026 (właściciel): **domyślny model przeglądu = najnowszy Opus (`claude-opus-5-5`)",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 349,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): **wyjątek „ton trenera” dla wskazówek techniki** — wskazówki ćw",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 350,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, nowe konto): **PR #18** (naprawy CI, zmiana `NIGHTLY_REFS` w `ni",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 351,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): **scenariusze E2E na małym ekranie (iPhone 17e) naprawiamy tera",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 352,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, L-013): **mechanizm przeglądu nocy = zgłoszenie (issue) otwieran",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 353,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, R-011): **mały ekran = 390 pt (iPhone 17e) wystarcza** — obraz m",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 354,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, przyspieszenie prac): **scalenie do main zmieniające tylko dokum",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 355,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): **TestFlight tylko dla wersji uznanej za finalną** — właściciel",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 356,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): wyjątek — **jeden build podglądowy w TestFlight z gałęzi M3 po ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 357,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel: „Super pomysl z tym workflow sprawdzajacym. Rob go.”): **workflo",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 358,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): **koordynator sam rozdziela pracę i przekazuje ją między agenta",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 359,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): **koordynator sam scala do main swoje PR-y z testami, dokumenta",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 360,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): **po kroku 4 planu (M3 scalone + nowe brzmienia badacza + powtó",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 361,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): **bramka E2E przed App Store = jeden pełny katalog E2E na stand",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 362,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): **wszystkie pytania i zgody od agentów i sesji (M3 i kolejne) i",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 363,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, planowanie): **okno maszyn macOS** — w ostatnich dniach GitHub o",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 364,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, App Store Connect K-CENA): roczna **6,99 USD**; **strefa euro: 7",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 365,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): w App Store Connect zrobione **K-CENA** (roczna 6,99 USD / 7,99",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 366,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): workflow kontrolny App Store Connect jako **narzędzie wspólne s",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 367,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, ok. 17:10 UTC): **E2E — jedna próba na godzinę** — gdy potrzebny",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 368,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (koordynator, wyjątek nazwany): commit „scal main do gałęzi”, w którym konfli",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 369,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, plan audytu M1 — STOP 1, przez koordynatora): **pełny audyt M1 p",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 370,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, M8 Formalności — STOP 1, przez koordynatora): subagenci M8 dozwo",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 371,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, porządki przed 1.0): zgoda na usunięcie **gałęzi scalonych z mai",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 372,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, STOP 1 M5 — widoczność w sklepie, przekazane przez koordynatora;",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 373,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, STOP 2 M5, przekazane przez koordynatora): metadane App Store — ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 374,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, STOP 2 M5 pkt 3, przekazane przez koordynatora): wybór **3(a) „w",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 375,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, STOP końcowy M5, przekazane przez koordynatora): **kategoria dod",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 376,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, L-009; decyzja podjęta w sesji M3, commit b78ddb3 na gałęzi rede",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 377,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): **„Szybsze verify dla dokumentów” — commit zmieniający tylko do",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 378,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, przez koordynatora): **przeniesienie czystej 1.0 do Apps4Brew — ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 379,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, STOP 1 roli M8 Formalności — przekazane przez koordynatora; gałą",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 388,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, STOP 2 roli M8 — przekazane przez koordynatora): Q9 A — **App Pr",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 392,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, Q13 roli M8 — przekazane przez koordynatora): **polityka prywatn",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 394,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, po zrzutach podpowiedzi M5, przekazane przez koordynatora): „Zgo",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 395,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, R-007 / WYD-09, przekazane przez koordynatora): **manifest prywa",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 396,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, L-014 akcja 4, przekazane przez koordynatora): **pierwszy krok `",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 397,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, ceny w opisie sklepu — zgłoszenie M1, przekazane przez koordynat",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 398,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): **sprzątanie gałęzi wykonane** workflowem „Sprzątanie gałęzi” (",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 399,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): **archiwizacja sesji** — koordynator archiwizuje sesje, które s",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 400,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, K1–K2 M8): **poczta na Google Workspace** — konto Business Start",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 401,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, przez kontrolę ASC): **cena roczna w Polsce poprawiona na 19,99 ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 402,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (M3, przekazane koordynatorowi do ewentualnego weta; właściciel bez weta): us",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 403,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, K-019): **ustawienia GitHuba** — Secret Protection, push protect",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 404,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, L-016): **numery lekcji nadaje koordynator przy scalaniu do main",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 405,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (koordynator, L-016): **wyjątek nazwany dla scalania `main` zawężony** — jeśl",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 406,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): **R-010 (treść krytyczna w 34 językach) zamyka przegląd wykonan",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 407,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel): **zmiany workflowów scala koordynator sam** — po prawdziwym prz",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 408,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel, wariant a; po odrzuceniu buildu TestFlight 39723671701 przez wal",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 409,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, STOP 1 przebiegu M3 Redesigner): (1) **bramka opłacalności uchyl",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 410,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, zmiana decyzji z tego samego dnia): **bramka opłacalności jednak",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 411,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, STOP 2 przebiegu M3): zatwierdzone przepływy TO BE (`docs/design",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 412,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, STOP E1 roli 04 w M3): **cztery kierunki do E2** — A tablica pod",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 413,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, STOP E2 roli 04 w M3): **kierunek A — tablica podejść**, z prośb",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 414,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, M3 E3): **liczba serii jednego ćwiczenia — projekt do 12, bez li",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 415,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, STOP E2b roli 04 w M3): **wariant A2** (barwy talerzy IWF jako s",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 416,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, STOP E3 roli 04 w M3): **system zatwierdzony** (arkusze `docs/de",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 417,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, STOP 3 przebiegu M3): **plan wdrożenia zatwierdzony** — p1 syste",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 418,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, lekcje L-009 i M3 „tests.yml czerwony na gałęzi M3” (docs/40) — ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 419,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (rola 08, partia p1 M3 — wdrożenie systemu, wykonanie decyzji STOP 3): **stan",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 420,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, czat M3): **kanał decyzji dla przebiegu M3** — „od teraz wszystk",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 421,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 ok. 14:00 UTC (właściciel, przekazane przez koordynatora; STOP „punkt kontrol",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 422,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 ok. 14:00 UTC (właściciel, przekazane przez koordynatora; STOP „przed p5d” M3",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 423,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (właściciel, przekazane przez koordynatora; M3 p3): **doprecyzowanie ZM-06** ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 424,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 21.10.2026 (rola 08, partia p5d M3 — ZM-07 i ekran Ustawień): **stan p5d** — dwa przełąc",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 426,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel, przekazane przez koordynatora; decyzje po weryfikacji E5 M3): **",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 427,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (rola 08, M3 fix 04-studio-projektowe-008 — wykonanie decyzji właściciela): *",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 428,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel, STOP końcowy M3, przez koordynatora): **scalić redesign M3 do ma",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 429,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (rola 08, M3 — poprawka po odrzuceniu buildu podglądowego 1026 przez App Stor",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 430,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel, uwagi z telefonu — build z 22.10, ekran Trening; gałąź `ekran-tr",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 431,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (M5, po redesignie M3): **opisy i teksty promocyjne App Store w 33 lokalizacj",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 432,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel): **komunikacja koordynatora** — do właściciela tylko (a) sprawy ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 433,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel): **walidacja Apple przy buildzie bez wysyłki — wariant (a)**: `a",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 434,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel): **pełny audyt M1 po wszystkich krokach** (brzmienia, przegląd t",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 435,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel): **badanie zmiany modelu monetyzacji** w osobnej sesji (rola 02,",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 436,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel, uwagi z telefonu do buildu 1027): **ekran Trening** — duża grafi",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 437,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel, zgłoszenie z telefonu; wariant A wybrany spośród A/B/C): **pasek",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 438,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel, rola 02 build „cena-i-rachunek, storekit-expo”): **otwarte badan",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 439,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel, badanie modelu — tekst ekranu ofert, warunkowo do wyboru V1/V2 n",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 440,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel, badanie modelu — drugie zlecenie; tylko badanie, bez decyzji): *",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 441,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel, STOP E2 roli 02 — **decyzja o modelu monetyzacji**, zastępuje mo",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 442,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel, potwierdzenie szczegółów M5 S1): odpowiedź „1. a 2. A 3. C” — **",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 443,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel, przy modelu M5 S1): **prośba o ocenę po 3. ukończonym treningu**",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 444,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel, przy M5 S1): **tekst ekranu zakupu przy starcie ponad limit — wa",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 445,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel, doprecyzowanie M5 S1 według wzorca portfela „limit miesięczny, P",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 448,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 22.10.2026 (właściciel): żeby nie przepisywać ręcznie 33 lokalizacji, metadane sklepu z ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 458,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "## 23.10.2026 — decyzje właściciela po audycie generalnym M1 (STOP 2, SHA a2e04b8)",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 472,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "## 23.10.2026 — język naturalny, źródła wiedzy w jednym miejscu (wzorzec portfela; gałąź `",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 481,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 23.10.2026 (właściciel, uwaga z buildu 1030) — **ZASTĄPIONE 27.10.2026 (poniżej, koniec ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 482,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 23.10.2026 (właściciel): lekcja L-028 — wariant A (strażnik kroków dla właściciela bez ź",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 483,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 23.10.2026 (właściciel, DEC-07 K5/K6/K7 — wdrożenie w gałęzi `naprawa-m1-dec07-teksty`):",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 484,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 23.10.2026 (właściciel, test na telefonie, build 1030; gałąź `naprawa-telefon-1030-a`): ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 485,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 23.10.2026 (naprawa-telefon-1030-a): **domyślny motyw nowej instalacji: ciemny** (`defau",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 487,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "## 23.10.2026 (druga decyzja właściciela) — oznaczenia pewności poza interfejsem, „Zasady ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 491,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 23.10.2026 (właściciel, test na telefonie, build 1030, kod f2b0525, iPhone + Apple Watch",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 498,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 23.10.2026 (właściciel): dźwięk w trybie cichym — **wariant A**: zostaje zachowanie syst",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 499,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 23.10.2026 (właściciel, STOP „język naturalny”): (1) **zgoda na przekład 33 języków prze",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 501,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "## 25.10.2026 — decyzja właściciela: nocne CI (zmiana czasu, mutacje po modułach); gałąź `",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 512,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel): **workflow przekładu przez API — wyjątek od L-001** dla workflo",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 513,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel, uwagi native speakera pt-BR — „przerwa” w karcie ćwiczenia czyta",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 514,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel): **grafiki ćwiczeń w 1.0** — „nie możemy wypuścić aplikacji, któ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 515,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel): **dokument „Monetyzacja Trening” (24.10.2026) — całość w 1.0**:",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 516,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel): **ton tekstów** — teksty naturalne, jak w każdej innej aplikacj",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 517,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel): **wskazówki przy ćwiczeniach-analogiach — wariant A**: wskazówk",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 518,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel): **próg źródeł dla wskazówek techniki** — 2 zgodne niezależne źr",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 519,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel): **strona z biblioteką ćwiczeń — po zgłoszeniu 1.0**: osobna, op",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 520,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel): **funkcje z makiety silnika figur — wersje po 1.0** (nie 1.0): ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 521,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel): **domena strony z biblioteką ćwiczeń — techniqueatlas.com** (wo",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 522,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel): **osobna aplikacja do kalisteniki na silniku Treningu — wariant",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 523,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel): **kąty techniki i oddech — szczebel 4, tylko gdy zgodne**: prze",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 524,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel, „całkiem anonimowo”; przekazane przez koordynatora): **publiczni",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 527,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel, przez koordynatora): **D1** pełny audyt przed App Store obowiązu",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 528,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (agent wydawca): skrypt wgrywania używa App Asset Library (dokumentacja Apple",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 531,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel, przekazane przez koordynatora; powód: native speaker z Brazylii ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 532,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel, dopisek do słownika, roli tłumacza i roli recenzenta): **teksty ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 534,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (wdrożenie, agent, gałąź `monetyzacja-1-0`): **monetyzacja w 1.0 wdrożona w k",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 535,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel): **teksty okna „Uczciwe zasady” i karty po imporcie zatwierdzone",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 538,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel): grafiki ćwiczeń dla wszystkich 709 ćwiczeń w 1.0 wraz z animacj",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 540,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel, wyjątek L-001 jak przy przekładzie): workflow tylko ręczny → **s",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 541,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel, dwie decyzje dodatkowe do „całkiem anonimowo”; wdrożenie: agent,",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 543,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "## 25.10.2026 — ochrona bazy danych przy publicznym repozytorium (gałąź `ochrona-bazy`)",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 550,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel, przez koordynatora — grafiki ćwiczeń, wskazówki wzorców): **wari",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 551,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (agent programista, grafiki ćwiczeń — etap 1, gałąź `grafiki-cwiczen`): **arc",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 552,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (agent programista, grafiki ćwiczeń — etap 2, gałąź `grafiki-cwiczen`): styl ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 553,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel, przez koordynatora — kąty i oddech w grafikach, źródła: `katy-od",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 554,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026: scenariusz Maestro grafik przenumerowany na **57** (55 zajęte na main), `mai",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 555,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel, przez koordynatora — kąty mierzone na rysunku): kąty w stawach w",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 556,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 25.10.2026 (właściciel, przez koordynatora — wyciskanie leżąc, reguły z opisu NSCA, włas",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 558,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026: przekład przez API (Opus, Batch, ok. 3,3 USD) 71 kluczy × 33 języki nałożony",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 561,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel): wywołanie Gemini API (AI Studio) dostało 429 „Free Tier, limit ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 565,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (agent, po pierwszym przebiegu vertex 40279418852): 404 dla `gemini-4-argon` ",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 566,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (agent, kolejne przebiegi): lista modeli nie działa z kluczem API (401); kluc",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 567,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (agent): przebieg 40282417033 — próba połączenia OK (rozliczenie działa), wła",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 569,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "## 26.10.2026 — nazwy aplikacji w sklepie: znaki towarowe (decyzja właściciela, wariant A)",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 573,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel, przez koordynatora — wyciskanie leżąc, „jak jest w rzeczywistośc",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 574,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (korekta po zrzucie, przez koordynatora): wynik 14° odwiedzenia był nierealny",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 576,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "## 26.10.2026 — grafiki ćwiczeń: 1.0 bez nowych grafik, biblioteka w 1.1 (decyzja właścici",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 582,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel, decyzja do 1.1): stuknięcie znaczka ✓/✕ zatrzymuje animację i po",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 584,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel): **strona z biblioteką ćwiczeń** — wyłącznie pełna biblioteka ćw",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 585,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel, po pilotażu): **pozy dla 1.1 liczy nasz agent** (generator rodzi",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 586,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel): **strona z biblioteką — decyzje ze specyfikacji** (docs/54 w re",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 587,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (audyt pełny 1.0, trzy obszary + przegląd lokalizacji Z-02): 0 KRYTYCZNYCH; W",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 588,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (badacz, odczyt dokumentacji Google Cloud): **Claude na Vertex na koncie prób",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 589,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel): **mięśnie na stronie biblioteki i w aplikacji (1.1): mapa (sylw",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 590,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel): **znaki towarowe nazw w sklepie — R-016 zamknięte, nazwy bez zm",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 591,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel, App Store Connect, prowadzony krok po kroku): zrobione kroki z d",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 592,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel): **aplikacja do kalisteniki — specyfikacja startuje teraz** (wcz",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 593,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel): **kalistenika — ścieżka greenfield z biblioteki ról (`prompts`,",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 594,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel, start 1.0 — szkice marketingu `start-1-0`): M-2 **1.0 bez nomina",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 595,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel, bramka opłacalności kalisteniki — rola 02 krok 0: budować warunk",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 596,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel, kalistenika — decyzje bez analogii w Treningu, 3 opcje z rekomen",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 597,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (koordynator wydania 1.0, krok Z-05 docs/48): **1.0.0 złożone** na gałęzi `wy",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 598,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 26.10.2026 (właściciel, wieczór): **kalistenika na stronie techniqueatlas w sekcji „Prog",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 599,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 27.10.2026 (właściciel, po zgłoszeniu z TestFlight: tor hantli w „Deadlift (hantle)” wyb",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 600,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 27.10.2026 (właściciel, **nazwany wyjątek od zamrożenia zakresu 1.0, wchodzi do poprawio",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 601,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 27.10.2026 ~16:00 UTC (właściciel, test na telefonie, build 1031): **kolejność planów na",
+    +   },
+    +   Object {
+    +     "blad": "brak pola [wdrożenie: …]",
+    +     "linia": 602,
+    +     "plik": "docs/18-przekazanie.md",
+    +     "poczatek": "- 27.10.2026 ~16:40 UTC (właściciel, waluta na ekranie zakupu, build 1031): **wariant A — ",
+    +   },
+    + ]
+
+      82 |   const wpisy = wywolaj<Wpis[]>(`return m.wpisy(${czytaj});`);
+      83 |   test('dziennik bez błędów strażnika (wynik jak `npm run check:decyzje`)', () => {
+    > 84 |     expect(wywolaj<unknown[]>(`return m.sprawdz(${JSON.stringify(D18)}, ${czytaj});`)).toEqual([]);
+         |                                                                                        ^
+      85 |     expect(wpisy.length).toBeGreaterThan(300); /* wstecz od 11.10.2026: 319 wpisów 27.10.2026 */
+      86 |   });
+      87 |   test('CLI: `npm run check:decyzje` w verify; kod 0 na repozytorium', () => {
+
+      at Object.toEqual (tests/decyzje-straznik.test.ts:84:88)
+
+  ● docs/18-przekazanie.md: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium) › CLI: `npm run check:decyzje` w verify; kod 0 na repozytorium
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "node scripts/decyzje.mjs --check"
+    Received: undefined
+
+      87 |   test('CLI: `npm run check:decyzje` w verify; kod 0 na repozytorium', () => {
+      88 |     const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+    > 89 |     expect(pkg.scripts['check:decyzje']).toBe('node scripts/decyzje.mjs --check');
+         |                                          ^
+      90 |     expect(pkg.scripts.verify).toContain('npm run check:decyzje');
+      91 |     const r = spawnSync(process.execPath, [SKRYPT, '--check'], { cwd: ROOT, encoding: 'utf8' });
+      92 |     expect([r.status, r.stdout]).toEqual([0, expect.stringContaining('każdy z polem wdrożenia')]);
+
+      at Object.toBe (tests/decyzje-straznik.test.ts:89:42)
+
+  ● docs/18-przekazanie.md: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium) › 2026-10-12 „P2 B (ekran zakupu raz po pierwszym treningu)”: otwarte → M1-audytor-generalny-001 albo kod z testem (tabela audytu M1)
+
+    TypeError: Cannot read properties of null (reading '1')
+
+      113 |     ['2026-10-27', 'po zgłoszeniu z TestFlight', 'M1-audytor-generalny-005'],
+      114 |   ];
+    > 115 |   const pole = (w: Wpis) => /\[wdrożenie: ([^\]]*)\]/.exec(w.tekst)![1];
+          |                                                                    ^
+      116 |   test.each(NIEWDROZONE)('%s „%s”: otwarte → %s albo kod z testem (tabela audytu M1)', (data, kotwica, id) => {
+      117 |     const w = wpisy.filter(x => x.data === data && x.tekst.includes(kotwica));
+      118 |     expect(w).toHaveLength(1);
+
+      at pole (tests/decyzje-straznik.test.ts:115:68)
+      at pole (tests/decyzje-straznik.test.ts:119:15)
+
+  ● docs/18-przekazanie.md: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium) › 2026-10-12 „0.16 (docs/29)”: otwarte → M1-audytor-generalny-002 albo kod z testem (tabela audytu M1)
+
+    TypeError: Cannot read properties of null (reading '1')
+
+      113 |     ['2026-10-27', 'po zgłoszeniu z TestFlight', 'M1-audytor-generalny-005'],
+      114 |   ];
+    > 115 |   const pole = (w: Wpis) => /\[wdrożenie: ([^\]]*)\]/.exec(w.tekst)![1];
+          |                                                                    ^
+      116 |   test.each(NIEWDROZONE)('%s „%s”: otwarte → %s albo kod z testem (tabela audytu M1)', (data, kotwica, id) => {
+      117 |     const w = wpisy.filter(x => x.data === data && x.tekst.includes(kotwica));
+      118 |     expect(w).toHaveLength(1);
+
+      at pole (tests/decyzje-straznik.test.ts:115:68)
+      at pole (tests/decyzje-straznik.test.ts:119:15)
+
+  ● docs/18-przekazanie.md: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium) › 2026-10-13 „Wyjątek Ukraina”: otwarte → M1-audytor-generalny-037 albo kod z testem (tabela audytu M1)
+
+    TypeError: Cannot read properties of null (reading '1')
+
+      113 |     ['2026-10-27', 'po zgłoszeniu z TestFlight', 'M1-audytor-generalny-005'],
+      114 |   ];
+    > 115 |   const pole = (w: Wpis) => /\[wdrożenie: ([^\]]*)\]/.exec(w.tekst)![1];
+          |                                                                    ^
+      116 |   test.each(NIEWDROZONE)('%s „%s”: otwarte → %s albo kod z testem (tabela audytu M1)', (data, kotwica, id) => {
+      117 |     const w = wpisy.filter(x => x.data === data && x.tekst.includes(kotwica));
+      118 |     expect(w).toHaveLength(1);
+
+      at pole (tests/decyzje-straznik.test.ts:115:68)
+      at pole (tests/decyzje-straznik.test.ts:119:15)
+
+  ● docs/18-przekazanie.md: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium) › 2026-10-18 „po analizie porażek E2E”: otwarte → M1-audytor-generalny-034 albo kod z testem (tabela audytu M1)
+
+    TypeError: Cannot read properties of null (reading '1')
+
+      113 |     ['2026-10-27', 'po zgłoszeniu z TestFlight', 'M1-audytor-generalny-005'],
+      114 |   ];
+    > 115 |   const pole = (w: Wpis) => /\[wdrożenie: ([^\]]*)\]/.exec(w.tekst)![1];
+          |                                                                    ^
+      116 |   test.each(NIEWDROZONE)('%s „%s”: otwarte → %s albo kod z testem (tabela audytu M1)', (data, kotwica, id) => {
+      117 |     const w = wpisy.filter(x => x.data === data && x.tekst.includes(kotwica));
+      118 |     expect(w).toHaveLength(1);
+
+      at pole (tests/decyzje-straznik.test.ts:115:68)
+      at pole (tests/decyzje-straznik.test.ts:119:15)
+
+  ● docs/18-przekazanie.md: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium) › 2026-10-21 „K1–K2 M8”: otwarte → M1-audytor-generalny-017 albo kod z testem (tabela audytu M1)
+
+    TypeError: Cannot read properties of null (reading '1')
+
+      113 |     ['2026-10-27', 'po zgłoszeniu z TestFlight', 'M1-audytor-generalny-005'],
+      114 |   ];
+    > 115 |   const pole = (w: Wpis) => /\[wdrożenie: ([^\]]*)\]/.exec(w.tekst)![1];
+          |                                                                    ^
+      116 |   test.each(NIEWDROZONE)('%s „%s”: otwarte → %s albo kod z testem (tabela audytu M1)', (data, kotwica, id) => {
+      117 |     const w = wpisy.filter(x => x.data === data && x.tekst.includes(kotwica));
+      118 |     expect(w).toHaveLength(1);
+
+      at pole (tests/decyzje-straznik.test.ts:115:68)
+      at pole (tests/decyzje-straznik.test.ts:119:15)
+
+  ● docs/18-przekazanie.md: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium) › 2026-10-21 „STOP 3 przebiegu M3”: otwarte → M1-audytor-generalny-024 albo kod z testem (tabela audytu M1)
+
+    TypeError: Cannot read properties of null (reading '1')
+
+      113 |     ['2026-10-27', 'po zgłoszeniu z TestFlight', 'M1-audytor-generalny-005'],
+      114 |   ];
+    > 115 |   const pole = (w: Wpis) => /\[wdrożenie: ([^\]]*)\]/.exec(w.tekst)![1];
+          |                                                                    ^
+      116 |   test.each(NIEWDROZONE)('%s „%s”: otwarte → %s albo kod z testem (tabela audytu M1)', (data, kotwica, id) => {
+      117 |     const w = wpisy.filter(x => x.data === data && x.tekst.includes(kotwica));
+      118 |     expect(w).toHaveLength(1);
+
+      at pole (tests/decyzje-straznik.test.ts:115:68)
+      at pole (tests/decyzje-straznik.test.ts:119:15)
+
+  ● docs/18-przekazanie.md: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium) › 2026-10-23 „decyzje właściciela po audycie generalnym M1”: otwarte → M1-audytor-generalny-024 albo kod z testem (tabela audytu M1)
+
+    TypeError: Cannot read properties of null (reading '1')
+
+      113 |     ['2026-10-27', 'po zgłoszeniu z TestFlight', 'M1-audytor-generalny-005'],
+      114 |   ];
+    > 115 |   const pole = (w: Wpis) => /\[wdrożenie: ([^\]]*)\]/.exec(w.tekst)![1];
+          |                                                                    ^
+      116 |   test.each(NIEWDROZONE)('%s „%s”: otwarte → %s albo kod z testem (tabela audytu M1)', (data, kotwica, id) => {
+      117 |     const w = wpisy.filter(x => x.data === data && x.tekst.includes(kotwica));
+      118 |     expect(w).toHaveLength(1);
+
+      at pole (tests/decyzje-straznik.test.ts:115:68)
+      at pole (tests/decyzje-straznik.test.ts:119:15)
+
+  ● docs/18-przekazanie.md: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium) › 2026-10-27 „po zgłoszeniu z TestFlight”: otwarte → M1-audytor-generalny-005 albo kod z testem (tabela audytu M1)
+
+    TypeError: Cannot read properties of null (reading '1')
+
+      113 |     ['2026-10-27', 'po zgłoszeniu z TestFlight', 'M1-audytor-generalny-005'],
+      114 |   ];
+    > 115 |   const pole = (w: Wpis) => /\[wdrożenie: ([^\]]*)\]/.exec(w.tekst)![1];
+          |                                                                    ^
+      116 |   test.each(NIEWDROZONE)('%s „%s”: otwarte → %s albo kod z testem (tabela audytu M1)', (data, kotwica, id) => {
+      117 |     const w = wpisy.filter(x => x.data === data && x.tekst.includes(kotwica));
+      118 |     expect(w).toHaveLength(1);
+
+      at pole (tests/decyzje-straznik.test.ts:115:68)
+      at pole (tests/decyzje-straznik.test.ts:119:15)
+
+  ● docs/18-przekazanie.md: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium) › kolejność planów: wpis z 23.10.2026 zastąpiony 27.10.2026; wpis z 27.10.2026 wskazuje test kolejności i planu domyślnego (02-monetyzacja-003)
+
+    TypeError: Cannot read properties of null (reading '1')
+
+      113 |     ['2026-10-27', 'po zgłoszeniu z TestFlight', 'M1-audytor-generalny-005'],
+      114 |   ];
+    > 115 |   const pole = (w: Wpis) => /\[wdrożenie: ([^\]]*)\]/.exec(w.tekst)![1];
+          |                                                                    ^
+      116 |   test.each(NIEWDROZONE)('%s „%s”: otwarte → %s albo kod z testem (tabela audytu M1)', (data, kotwica, id) => {
+      117 |     const w = wpisy.filter(x => x.data === data && x.tekst.includes(kotwica));
+      118 |     expect(w).toHaveLength(1);
+
+      at pole (tests/decyzje-straznik.test.ts:115:68)
+      at Object.pole (tests/decyzje-straznik.test.ts:125:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       11 failed, 10 passed, 21 total
+Snapshots:   0 total
+Time:        8.625 s
+Ran all test suites within paths "tests/decyzje-straznik.test.ts".

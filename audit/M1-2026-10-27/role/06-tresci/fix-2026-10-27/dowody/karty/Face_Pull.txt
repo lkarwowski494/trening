@@ -1,0 +1,19 @@
+# Face Pull
+widok: side, kotwica: toe, przyrządy: [{"k":"cable","at":"hand","from":[42,90]},{"k":"grip","at":"hand","r":3}]
+notatka: Łokcie wysoko i na boki — z boku ramię wygląda na krótkie (rzut).
+mięśnie (katalog): {"rear_delt":1,"upper_back":0.5,"side_delt":0.25,"biceps":0.25}
+setup fp.setup: Lina na wyciągu co najmniej na wysokości barków; chwyć jej końce i cofnij się, aż linka się napnie.  [źródła: nasm-face-pull / Step 1; Step 2 (cable at approximately eye height; grab the rope, step back to create tension); exrx-DeltoidPosterior/CBStandingRearDeltRowRope / Preparation (rope attachment on high pulley; step back so cable is taut); ace-336 / opis (High Row: rope at about shoulder-height) / analogia]
+move fp.move: Przyciągnij linę w stronę twarzy; wróć do wyprostu rąk.  [źródła: nasm-face-pull / Step 3; Step 4 (pull the rope toward your face; extend your arms to return); exrx-DeltoidPosterior/CBStandingRearDeltRowRope / Execution (pull rope to upper chest or neck; return until arms are extended forward); ace-336 / opis (High Row: pull, then slowly straighten the arms) / analogia]
+tips fp.elbowsBack: Prowadź ruch łokciami — cofaj je w tył.  [źródła: nasm-face-pull / Step 3 (driving your elbows backward); exrx-DeltoidPosterior/CBStandingRearDeltRowRope / Execution (until elbows travel slightly behind back); ace-336 / opis (High Row: pull the elbows back) / analogia]
+tips fp.chest: Tułów stabilny i wyprostowany.  [źródła: nasm-face-pull / Step 2 (engage your core); exrx-DeltoidPosterior/CBStandingRearDeltRowRope / Comments (torso not positioned forward beyond vertical); ace-336 / opis (High Row: the back tall, lift the chest up) / analogia]
+KLATKA start: poza {"t":90,"hip":0,"knee":0,"sh":94,"el":0}
+  kąty: hip=0 knee=0 sh=94 el=0 ankle=0 hip2=0 knee2=0 sh2=94 el2=0 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(7,85.3) hand=(26.9,86.7) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(7,85.3) hand2=(26.9,86.7)
+  why joint fp.move → OK (0)
+  why horiz fp.chest → OK (90)
+KLATKA end: poza {"t":90,"hip":0,"knee":0,"sh":-12,"el":160,"ap":0.45}
+  kąty: hip=0 knee=0 sh=-12 el=160 ankle=0 hip2=0 knee2=0 sh2=-12 el2=160 ankle2=0
+  punkty: head=(-11,95) shoulder=(-11,84) elbow=(-12.7,76.1) hand=(-2.1,93) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-12.7,76.1) hand2=(-2.1,93)
+  why behind fp.elbowsBack → OK (1.7)
+  why touch fp.move → OK (0.1)
+  why horiz fp.chest → OK (90)

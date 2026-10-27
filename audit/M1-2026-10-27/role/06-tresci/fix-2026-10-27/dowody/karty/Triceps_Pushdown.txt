@@ -1,0 +1,18 @@
+# Triceps Pushdown
+widok: side, kotwica: toe, przyrządy: [{"k":"cable","at":"hand","from":[22,104]},{"k":"grip","at":"hand","r":3}]
+notatka: Lekkie pochylenie tułowia i ugięcie łokci na górze ilustracyjne.
+mięśnie (katalog): {"triceps":1}
+setup tpd.setup: Stań przodem do wyciągu z górnym bloczkiem, chwyć uchwyt, łokcie przy bokach.  [źródła: ace-185 / Step 1; exrx-Triceps/CBPushdown / Preparation]
+move tpd.move: Prostuj łokcie, wypychając uchwyt w dół; wróć, aż przedramiona zbliżą się do ramion.  [źródła: exrx-Triceps/CBPushdown / Execution; ace-185 / Step 2; Step 3]
+tips tpd.elbows: Łokcie przy bokach — pracują przedramiona, nie barki.  [źródła: ace-185 / Step 3; wskazówka końcowa (monitor the forward movement of your elbows); exrx-Triceps/CBPushdown / Preparation; Comments (elbows to side, only slight travel at top)]
+tips press.noLock: Prostuj ręce do końca, ale bez gwałtownego blokowania łokci.  [źródła: ace-185 / Step 3 (fully extended, do not “lock out”); exrx-Triceps/CBPushdown / Execution (extend arms down)]
+KLATKA start: poza {"t":84,"hip":6,"knee":0,"sh":6,"el":125}
+  kąty: hip=6 knee=0 sh=6 el=125 ankle=0 hip2=6 knee2=0 sh2=6 el2=125 ankle2=0
+  punkty: head=(-6.7,94.8) shoulder=(-7.9,83.8) elbow=(-7.9,65.8) hand=(8.5,77.3) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-7.9,65.8) hand2=(8.5,77.3)
+  why horiz tpd.elbows → OK (90)
+  why joint tpd.move → OK (125)
+KLATKA end: poza {"t":84,"hip":6,"knee":0,"sh":6,"el":5}
+  kąty: hip=6 knee=0 sh=6 el=5 ankle=0 hip2=6 knee2=0 sh2=6 el2=5 ankle2=0
+  punkty: head=(-6.7,94.8) shoulder=(-7.9,83.8) elbow=(-7.9,65.8) hand=(-6.1,45.9) hip=(-11,54) knee=(-11,29) ankle=(-11,4) heel=(-14,0) toe=(0,0) knee2=(-11,29) ankle2=(-11,4) heel2=(-14,0) toe2=(0,0) elbow2=(-7.9,65.8) hand2=(-6.1,45.9)
+  why joint press.noLock → OK (5)
+  why horiz tpd.elbows → OK (90)

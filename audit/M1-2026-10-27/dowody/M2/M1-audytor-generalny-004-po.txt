@@ -1,0 +1,18 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+(node:19892) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS iOS tests/audit-m1-2026-10-27-004-ratunek.test.tsx
+  M1-004: ostrzeżenie na ekranie błędu startu
+    ✓ PL i EN: ostrzeżenie widoczne nad „Wyślij dane” (518 ms)
+    ✓ wszystkie słowniki mają ostrzeżenie i oba teksty komunikatu o kopii (treść krytyczna: dane) (143 ms)
+  M1-004: kopia ratunkowa plików bazy (prawdziwy SQLite, tryb WAL)
+    ✓ komplet plików: kopia ma integrity_check = ok i tyle samo wierszy; sama baza bez dziennika gubi wiersze; oryginał bez zmian (167 ms)
+    ✓ brak pliku bazy, brak katalogu bazy (web) albo błąd kopiowania → null, bez wyjątku (2 ms)
+    ✓ ekran: baza się nie otwiera, brak kopii w puli → „Wyślij dane” zapisuje folder Rescue-… i podaje miejsce w Plikach (31 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        4.665 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-004-ratunek.test.tsx/i.

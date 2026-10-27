@@ -1,0 +1,18 @@
+# Glute Bridge
+widok: side, kotwica: toe, przyrządy: []
+mięśnie (katalog): {"glutes":1,"hamstrings":0.5}
+setup gb.setup: Połóż się na plecach, kolana ugięte, stopy płasko na podłodze na szerokość bioder.  [źródła: ace-49 / Step 1; nasm-floor-bridge / Step 1: Setup]
+move gb.move: Unieś biodra, napinając pośladki, aż barki, biodra i kolana utworzą linię; opuść powoli.  [źródła: ace-49 / Step 2; Step 3; nasm-floor-bridge / Step 3; Step 4]
+tips gb.noArch: Nie wypychaj bioder wyżej niż linia tułowia — lędźwie bez przeprostu.  [źródła: ace-49 / Step 2; wskazówka końcowa; nasm-floor-bridge / Common Mistakes (excessive lower back arching)]
+tips gb.heels: Dociskaj stopy, zwłaszcza pięty, do podłogi.  [źródła: ace-49 / Step 2 (press your heels into the floor); nasm-floor-bridge / Step 3; FAQ (driving through your heels)]
+mistakes ht.mis.arch: Przeprost w lędźwiach na górze zamiast wyprostu w biodrach.  [źródła: ace-49 / wskazówka końcowa; nasm-floor-bridge / Common Mistakes; FAQ]
+KLATKA start: poza {"t":180,"hip":50,"knee":108,"ft":0,"sh":-6,"el":0} at [36,0]
+  kąty: hip=50 knee=108 sh=-6 el=0 ankle=-32 hip2=50 knee2=108 sh2=-6 el2=0 ankle2=-32
+  punkty: head=(-45.3,6.1) shoulder=(-34.3,6.1) elbow=(-16.4,4.2) hand=(3.5,2.1) hip=(-4.3,6.1) knee=(11.8,25.2) ankle=(25,4) heel=(22,0) toe=(36,0) knee2=(11.8,25.2) ankle2=(25,4) heel2=(22,0) toe2=(36,0) elbow2=(-16.4,4.2) hand2=(3.5,2.1)
+  why low gb.setup → OK (0)
+  why low gb.setup → OK (6.1)
+KLATKA end: poza {"t":203,"hip":0,"knee":93,"ft":0,"sh":-29,"el":0} at [36,0]
+  kąty: hip=0 knee=93 sh=-29 el=0 ankle=-20 hip2=0 knee2=93 sh2=-29 el2=0 ankle2=-20
+  punkty: head=(-44.3,1.7) shoulder=(-34.2,6) elbow=(-16.3,4.1) hand=(3.6,2) hip=(-6.6,17.7) knee=(16.4,27.5) ankle=(25,4) heel=(22,0) toe=(36,0) knee2=(16.4,27.5) ankle2=(25,4) heel2=(22,0) toe2=(36,0) elbow2=(-16.3,4.1) hand2=(3.6,2)
+  why line gb.move → OK (180)
+  why low gb.heels → OK (0)

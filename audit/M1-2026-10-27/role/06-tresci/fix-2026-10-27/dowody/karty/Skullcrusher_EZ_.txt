@@ -1,0 +1,17 @@
+# Skullcrusher (EZ)
+widok: side, kotwica: hip, przyrządy: [{"k":"rect","x":-44,"y":20,"w":54,"h":4},{"k":"line","pts":[[-38,20],[-38,0]]},{"k":"line","pts":[[4,20],[4,0]]},{"k":"plate","at":"hand","r":10}]
+mięśnie (katalog): {"triceps":1}
+setup skull.setup: Połóż się na ławce, chwyć gryf wąsko nachwytem i trzymaj go nad czołem na prostych rękach.  [źródła: ace-36 / Step 1; exrx-Triceps/BBLyingTriExt / Preparation; Comments (EZ Bar Lying Triceps Extension)]
+move skull.move: Zginaj łokcie, opuszczając gryf w stronę czoła; wyprostuj ręce do pozycji wyjściowej.  [źródła: ace-36 / Step 2; Step 3; exrx-Triceps/BBLyingTriExt / Execution]
+tips skull.upperArm: Ramiona prawie nieruchome, mniej więcej pionowo — pracują łokcie.  [źródła: ace-36 / Step 2; wskazówka końcowa (upper arms vertical); exrx-Triceps/BBLyingTriExt / Execution (elbows move back only slightly to clear the head)]
+tips skull.depth: Opuszczaj, aż gryf będzie tuż nad czołem albo ramiona zaczną uciekać w tył.  [źródła: ace-36 / Step 2; exrx-Triceps/BBLyingTriExt / Execution (as bar nears head)]
+KLATKA start: poza {"t":180,"sh":100,"el":0,"hip":-3,"knee":95} at [0,30]
+  kąty: hip=-3 knee=95 sh=100 el=0 ankle=8 hip2=-3 knee2=95 sh2=100 el2=0 ankle2=8
+  punkty: head=(-41,30) shoulder=(-30,30) elbow=(-33.1,47.7) hand=(-36.6,67.4) hip=(0,30) knee=(25,28.7) ankle=(21.5,3.9) heel=(18.5,-0.1) toe=(32.5,-0.1) knee2=(25,28.7) ankle2=(21.5,3.9) heel2=(18.5,-0.1) toe2=(32.5,-0.1) elbow2=(-33.1,47.7) hand2=(-36.6,67.4)
+  why joint skull.setup → OK (0)
+  why horiz skull.upperArm → OK (80)
+KLATKA end: poza {"t":180,"sh":100,"el":105,"hip":-3,"knee":95} at [0,30]
+  kąty: hip=-3 knee=95 sh=100 el=105 ankle=8 hip2=-3 knee2=95 sh2=100 el2=105 ankle2=8
+  punkty: head=(-41,30) shoulder=(-30,30) elbow=(-33.1,47.7) hand=(-51.3,39.3) hip=(0,30) knee=(25,28.7) ankle=(21.5,3.9) heel=(18.5,-0.1) toe=(32.5,-0.1) knee2=(25,28.7) ankle2=(21.5,3.9) heel2=(18.5,-0.1) toe2=(32.5,-0.1) elbow2=(-33.1,47.7) hand2=(-51.3,39.3)
+  why touch skull.depth → OK (10.3)
+  why horiz skull.upperArm → OK (80)

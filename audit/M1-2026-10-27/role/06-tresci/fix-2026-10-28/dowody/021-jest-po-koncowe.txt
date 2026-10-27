@@ -1,0 +1,11 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/forbidden-names.test.ts
+PASS iOS tests/audit-m1-048-claims-registry.test.ts
+PASS iOS tests/zrodla-pelne-wskazowki-ogolne.test.ts
+
+Test Suites: 3 passed, 3 total
+Tests:       25 passed, 25 total
+Snapshots:   0 total
+Time:        9.764 s, estimated 10 s
+Ran all test suites matching /tests\/forbidden-names.test.ts|tests\/zrodla-pelne-wskazowki-ogolne.test.ts|tests\/audit-m1-048-claims-registry.test.ts/i.

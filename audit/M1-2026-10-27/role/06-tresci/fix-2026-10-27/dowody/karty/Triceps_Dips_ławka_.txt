@@ -1,0 +1,18 @@
+# Triceps Dips (ławka)
+widok: side, kotwica: hand, przyrządy: [{"k":"rect","x":-34,"y":22,"w":34,"h":4},{"k":"line","pts":[[-28,22],[-28,0]]},{"k":"line","pts":[[-6,22],[-6,0]]}]
+notatka: Nogi wyprostowane w przód, pięty na podłodze (wariant średni z bdip.easier).
+mięśnie (katalog): {"triceps":1,"chest":0.5,"front_delt":0.5}
+setup bdip.setup: Oprzyj dłonie o krawędź ławki za sobą, ręce proste, nogi wysunięte w przód.  [źródła: nasm-bench-dips / Step 1; exrx-Triceps/BWBenchDip / Preparation]
+move bdip.move: Opuść się, zginając łokcie, do lekkiego rozciągnięcia (mniej więcej kąt prosty w łokciach); wypchnij się do wyprostu.  [źródła: nasm-bench-dips / Step 3; Step 4; exrx-Triceps/BWBenchDip / Execution]
+tips bdip.easier: Stopy bliżej ławki i ugięte kolana ułatwiają ćwiczenie; nogi na podwyższeniu — utrudniają.  [źródła: nasm-bench-dips / Step 1; FAQ (modifications for beginners); exrx-Triceps/BWBenchDip / Comments: Easier/Harder]
+tips bdip.range: Wykonuj pełny zakres: w dół do lekkiego rozciągnięcia, w górę do wyprostu rąk.  [źródła: nasm-bench-dips / Common Mistakes (adequate range of motion); exrx-Triceps/BWBenchDip / Comments (full range of motion)]
+KLATKA start: poza {"t":88,"hip":71,"knee":15,"ft":44,"sh":-29,"el":0} at [0,26]
+  kąty: hip=71 knee=15 sh=-29 el=0 ankle=-10 hip2=71 knee2=15 sh2=-29 el2=0 ankle2=-10
+  punkty: head=(20,69.6) shoulder=(19.6,58.6) elbow=(10.3,43.1) hand=(0,26) hip=(18.5,28.6) knee=(41.9,19.6) ankle=(62.1,4.9) heel=(62.7,0) toe=(72.8,9.7) knee2=(41.9,19.6) ankle2=(62.1,4.9) heel2=(62.7,0) toe2=(72.8,9.7) elbow2=(10.3,43.1) hand2=(0,26)
+  why joint bdip.setup → OK (0)
+  why low bdip.setup → OK (0)
+KLATKA end: poza {"t":105,"hip":55,"knee":0,"ft":93,"sh":-52,"el":90} at [0,26]
+  kąty: hip=55 knee=0 sh=-52 el=90 ankle=23 hip2=55 knee2=0 sh2=-52 el2=90 ankle2=23
+  punkty: head=(-8,63) shoulder=(-5.1,52.4) elbow=(-16,38) hand=(0,26) hip=(2.6,23.4) knee=(26.1,14.9) ankle=(49.6,6.3) heel=(53.8,3.5) toe=(53,17.5) knee2=(26.1,14.9) ankle2=(49.6,6.3) heel2=(53.8,3.5) toe2=(53,17.5) elbow2=(-16,38) hand2=(0,26)
+  why joint bdip.move → OK (90)
+  why low bdip.setup → OK (3.5)

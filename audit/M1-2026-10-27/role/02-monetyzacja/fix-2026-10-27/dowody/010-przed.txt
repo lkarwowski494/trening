@@ -1,0 +1,20 @@
+    ✕ miesięczny kupiony: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (1416 ms)
+    ✕ roczny kupiony: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (278 ms)
+    ✕ miesięczny z kodu: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (327 ms)
+    ✕ roczny z Chmury rodzinnej: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (319 ms)
+    ✕ „Zmień plan” rozwija listę: posiadany plan oznaczony i niewybieralny, przycisk zakupu inny niż „Subskrybuj”, drugie stuknięcie zwija (etykieta stała) (300 ms)
+    ✕ zmiana planu po rozwinięciu: zakup wybranego planu, potem karta z nową nazwą i lista znowu zwinięta (283 ms)
+    ✕ dożywotni po rozwinięciu przy aktywnej subskrypcji: „Kup na zawsze” z uwagą o odnawianiu przed zakupem (M1-001 bez zmian) (184 ms)
+    ✕ PL: „Masz plan: {nazwa}”, „Zmień plan” zwinięty, po rozwinięciu „Przejdź na ten plan” (237 ms)
+    ✕ dożywotni: nagłówek z nazwą planu i „Masz dostęp na zawsze”, bez listy i bez „Zmień plan” (475 ms)
+    ✓ bez dostępu: oferta jak dotąd — wstęp o darmowych dniach, lista od razu widoczna, „Subskrybuj”, bez „Zmień plan” i bez karty stanu (291 ms)
+    Unable to find an element with testID: paywall-owned-title
+    Unable to find an element with testID: paywall-owned-title
+    Unable to find an element with testID: paywall-owned-title
+    Unable to find an element with testID: paywall-owned-title
+    Unable to find an element with testID: paywall-change-plan
+    Unable to find an element with testID: paywall-change-plan
+    Unable to find an element with testID: paywall-change-plan
+    Unable to find an element with testID: paywall-owned-title
+    Unable to find an element with testID: paywall-owned-title
+Tests:       9 failed, 1 passed, 10 total

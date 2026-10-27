@@ -1,0 +1,9 @@
+Przegląd ścieżek wrażliwych (D-043), partia 1 M2 — diff 862f119..naprawy/M2-koordynator-napraw-2026-10-27-p1 (app, components, lib, tests/setup.js, tests/limity-wydan.json, tests/m5s1-dni-zapis.test.ts)
+Wynik: brak uwag P0/P1.
+Sprawdzone:
+- lib/rescue.ts: tylko kopiowanie (copyAsync), oryginał bazy nietknięty; komplet plików db/-wal/-shm/-journal; odczyt z Library/SQLite przechodzi uprawnienia expo-file-system (getInfoAsync bez kontroli, copyAsync: isReadableFile w piaskownicy); folder Rescue-… poza wzorcami puli kopii (AUTO_RE/SAFETY_RE), więc przycinanie go nie usuwa.
+- lib/backup.ts exportStartDataDetailed: ścieżka z surowymi danymi bez zmian; kopia ratunkowa tylko gdy exportRawData zawiedzie.
+- lib/entitlement.ts withEndedAt + lib/access.ts freeSinceWithMemory: endedAt tylko łagodzi licznik (późniejszy z dwóch końców, nie z przyszłości), aktywne uprawnienie → null; zapis kv 'access' bez tabel podrzędnych (INSERT OR REPLACE bez ryzyka kaskady).
+- app/paywall.tsx: uwaga tylko informacyjna, nie zmienia zakupu.
+- SET_NOTE_MAX=500: limit okien notatki wzrósł z 300 do 500 (luzowanie, bez obcinania istniejących notatek).
+Poniżej progu (P2, do decyzji): paywall.tsx — uwaga o odnawianiu pomija subskrypcję z kodu promocyjnego (source 'code'), która po okresie promocji też odnawia się płatnie.
