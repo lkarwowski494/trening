@@ -271,7 +271,7 @@ describe('strona www aplikacji (GitHub Pages)', () => {
       expect(en).toContain(`'${pl}': '`); const val = new RegExp(`'${pl.replace(/[()/]/g, '\\$&')}': '([^']+)'`).exec(en)![1]; expect(sup).toContain(val);
     }
     for (const pl of ['Eksportuj backup (plik JSON)', 'Eksportuj historię do CSV', 'Wyczyść wszystkie dane']) expect(sup).toContain(pl);
-    expect(readFileSync(join(root, 'lib/backup.ts'), 'utf8')).toContain("AUTO_DIR = 'Backup/'");
+    expect(readFileSync(join(root, 'lib/rescue.ts'), 'utf8')).toContain("AUTO_DIR = 'Backup/'");
   });
 });
 
