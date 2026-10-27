@@ -169,11 +169,11 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Masa ciała — pomiary | app/(tabs)/progress.tsx | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-stats-ui.test.tsx, tests/audit-k1-fala2b.test.tsx +3 |
 | Masa ciała ({u}) | app/more/bodymass.tsx | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-stats-ui.test.tsx, tests/ux2-11-bodymass-se.test.tsx |
 | max na stronę | components/LoadEditor.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
-| Miejsca i sprzęt | app/(tabs)/more.tsx | tests/audit-0.10-ui.test.tsx, tests/audit-1-0-teksty.test.ts, tests/dashboard.test.tsx +9 |
-| Miejsce | app/generator.tsx | tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx, tests/app.tsx +15 |
+| Miejsca i sprzęt | app/(tabs)/more.tsx | tests/audit-0.10-ui.test.tsx, tests/audit-1-0-teksty.test.ts, tests/dashboard.test.tsx +10 |
+| Miejsce | app/generator.tsx | tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx, tests/app.tsx +16 |
 | Miejsce domyślne | app/template/[id].tsx | tests/locations-ui.test.tsx, tests/places-ui.test.tsx, tests/scenario-full.test.tsx |
 | Miejsce na te dni | components/DayPanel.tsx | tests/maestro-selectors.test.ts, tests/places-scenario.test.tsx, tests/places-ui.test.tsx |
-| Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt). | app/place-once.tsx | tests/audit-1-0-teksty.test.ts, tests/places-ui.test.tsx |
+| Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt). | app/place-once.tsx | tests/audit-1-0-teksty.test.ts, tests/places-ui.test.tsx, tests/sciezki-nawigacji-i18n.test.ts |
 | Miejsce treningu: {l} | app/history/edit/[id].tsx | tests/integration-090.test.tsx, tests/locations-audit.test.tsx, tests/locations-ui.test.tsx +5 |
 | min na stronę | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
 | Możliwości w kolejności | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx |
@@ -1329,7 +1329,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Wiersz otwiera podgląd szablonu, „Start” zaczyna trening. | app/pick-template.tsx | tests/pick-template.test.tsx |
 | Wiersz w ramce — tydzień deload. | components/HistoryCalendar.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/deload-ui.test.tsx |
 | więcej | components/MuscleMap.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/audit-0.10-live-logic.test.ts +29 |
-| Więcej | app/(tabs)/_layout.tsx | tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-plan-ui.test.tsx, tests/audit-1-0-teksty.test.ts +35 |
+| Więcej | app/(tabs)/_layout.tsx | tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-plan-ui.test.tsx, tests/audit-1-0-teksty.test.ts +36 |
 | Więcej → Kopia zapasowa: eksport wszystkich danych do pliku i import z pliku. | lib/guide.ts | tests/guide.test.tsx |
 | Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami. | lib/guide.ts | tests/guide.test.tsx |
 | Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy. | lib/guide.ts | tests/guide.test.tsx |

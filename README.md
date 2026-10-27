@@ -62,7 +62,7 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Komunikaty i teksty | 1064 (z testem: 1064) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 1040 (z testem: 1040) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 145 (z testem: 145) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 495 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Pliki testów Jest | 496 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
 | Przypadki testowe (statycznie) | 5760 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 157 (Maestro: 128, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 15) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 47 (w głównym przebiegu: 44, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
