@@ -5,7 +5,7 @@
  */
 import * as fs from 'fs';
 import * as path from 'path';
-import { keyframeFrame, FAMILIES, dataShapes, benchPolys, proj, EQUIP, STOPA_GRZBIETEM, type PoseData, type View, type V3, type Prop } from '@/lib/figures/v2';
+import { keyframeFrame, FAMILIES, viewsOf, dataShapes, benchPolys, proj, EQUIP, STOPA_GRZBIETEM, type PoseData, type View, type V3, type Prop, type FamilyId } from '@/lib/figures/v2';
 
 const POSES = path.join(__dirname, '..', 'lib/figures/v2/poses');
 type PoseFile = { rodzina: string; cwiczenia: Record<string, PoseData> };
@@ -23,6 +23,7 @@ export function roznicaBledu(d: PoseData, i: number, view: View): number {
 }
 /** Znane słabo widoczne błędy z innych rodzin (poza zakresem tej gałęzi; backlog 1.1, ta sama klasa co nr 2 recenzji). Wpis nie jest wymagany: po poprawie test nadal przechodzi. */
 const ODROCZONE = new Set([
+  'leg_machine/Leg Press/sq.mis.kneesIn', /* suwnice tylko z boku (U-L1, p2-r3); wiersz poprawiony i widoczny z przodu (tests/figury-p2-r3.test.ts, sekcja 3), czeka na widok z przodu suwnicy (platforma w draw.ts) albo decyzję o usunięciu wiersza */
   'row/Pendlay Row/mis.roundBack', 'row/Reverse Grip Bent Over Row/mis.roundBack', 'row/T-Bar Row/mis.roundBack', 'row/Barbell Rear Delt Row/mis.roundBack', 'row/Bent Over Row (hantle)/mis.roundBack',
   'row/Bent Over Row (linki)/mis.roundBack', 'row/Bent Over Row (sztanga)/mis.roundBack', 'row/Smith Machine Bent Over Row/mis.roundBack', 'kneeling_hinge/Seated Good Mornings/mis.roundBack',
   'hip_bridge/Frog Pump/ht.mis.arch', 'hip_bridge/Glute Bridge/ht.mis.arch', 'hip_bridge/Glute Bridge (sztanga)/ht.mis.arch', 'hip_bridge/Hip Thrust (hantel)/ht.mis.arch', 'hip_bridge/Hip Thrust (sztanga)/ht.mis.arch',
@@ -31,14 +32,14 @@ const ODROCZONE = new Set([
 ]);
 
 describe('1. wiersz błędu różni się od pozy poprawnej w pokazywanym widoku (≥ MIN_ROZNICA_BLEDU_W_WIDOKU_CM)', () => {
-  const wiersze = pliki.flatMap(f => { const fam = FAMILIES.find(x => x.id === f.rodzina)!; return Object.entries(f.cwiczenia).flatMap(([cw, d]) => d.bledy.map((b, i) => ({ klucz: `${f.rodzina}/${cw}/${b.cue}`, d, i, widoki: fam.views as View[] }))); });
+  const wiersze = pliki.flatMap(f => { return Object.entries(f.cwiczenia).flatMap(([cw, d]) => d.bledy.map((b, i) => ({ klucz: `${f.rodzina}/${cw}/${b.cue}`, d, i, widoki: viewsOf(cw, f.rodzina as FamilyId) as View[] }))); });
   test('zbiór sprawdzanych wierszy jest duży', () => { expect(wiersze.length).toBeGreaterThan(90); });
   test('leg_machine pokazuje widok z przodu (kolana do środka widać z przodu)', () => { expect(FAMILIES.find(x => x.id === 'leg_machine')!.views).toContain('front'); });
   test.each(wiersze.filter(w => !ODROCZONE.has(w.klucz)).map(w => [w.klucz, w] as const))('%s: różnica ≥ konwencji w którymś pokazywanym widoku', (_k, w) => {
     const best = Math.max(...w.widoki.map(v => roznicaBledu(w.d, w.i, v)));
     expect([w.klucz, best >= MIN_ROZNICA_BLEDU_W_WIDOKU_CM]).toEqual([w.klucz, true]);
   });
-  test.each(['Pendulum Squat', 'Lying Machine Squat', 'Leg Press', 'Belt Squat Machine'])('%s: „kolana do środka” widać z przodu (widok pokazywany w aplikacji)', cw => {
+  test.each(['Pendulum Squat', 'Lying Machine Squat', 'Belt Squat Machine'])('%s: „kolana do środka” widać z przodu (widok pokazywany w aplikacji)', cw => {
     expect(FAMILIES.find(x => x.id === 'leg_machine')!.views).toContain('front');
     const f = pliki.find(x => x.rodzina === 'leg_machine')!.cwiczenia[cw]; const i = f.bledy.findIndex(b => b.cue === 'sq.mis.kneesIn'); expect(i).toBeGreaterThanOrEqual(0);
     expect(roznicaBledu(f, i, 'front')).toBeGreaterThanOrEqual(MIN_ROZNICA_BLEDU_W_WIDOKU_CM);

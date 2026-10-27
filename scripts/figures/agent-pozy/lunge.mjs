@@ -59,7 +59,7 @@ export function splitSquat(cw, o = {}) {
   const us = [0, 0.25, 0.5, 0.75, 1];
   const rr = us.map((u) => mk(lerp(yGora, yDol, ease(u)), u));
   const spr = [PODLOGA(g.aT[0] - 70, 150), ...rr[0].o.sprzet, ...(sprzetFn ? sprzetFn(g, rr[0].f) : [])];
-  return zloz(cw, spr, rr.map(kl), bledy ? [bladKolana(us, cw)] : []);
+  return zloz(cw, spr, rr.map(kl), bledy ? [bladKolana(us, cw, ['R'], grzbiet ? 48 : 55)] : []); /* Bulgarian: 48 zamiast 55 — przednie kolano nie przenika tylnego uda (strażnik segmentów nóg, p2-r3) */
 }
 
 /* ---------- krok: wykrok w tył (stopa tylna się przesuwa) albo w przód (stopa przednia się przesuwa); u = 0 stanie ---------- */

@@ -287,9 +287,14 @@ export function deltaAt(frames: DeltaFrame[], u: number): DeltaFrame {
 }
 const plus = (a: V3, d: V3 | undefined): V3 => d ? add(a, d) : a;
 const plusN = (a: number | undefined, d: number | undefined, base = 0): number | undefined => d === undefined ? a : (a ?? base) + d;
+/** Delta odchylenia kolana przy jawnym kierunku zgięcia (biegunKolana): obraca kierunek w poziomie o dOut stopni na zewnątrz (ujemne = do środka); bez jawnego kierunku odchylenie liczy IK (odchylenieKolana), bez delty kierunek bez zmian. Dotąd delta była przy jawnym kierunku ignorowana, więc wiersz „kolana do środka” suwnicy (kierunek z pozy) nic nie zmieniał (recenzja p2-r2, B1). */
+const poleZDelta = (pole: V3 | undefined, dOut: number | undefined, s: Side): V3 | undefined => {
+  if (!pole || dOut === undefined || dOut === 0) return pole;
+  const h = Math.hypot(pole[0], pole[1]) || 1; return [pole[0], pole[1], pole[2] + (s === 'R' ? 1 : -1) * Math.tan(dOut * Math.PI / 180) * h];
+};
 /** Poza z nałożoną deltą. */
 export function applyDelta(k: KeyFrame, d: DeltaFrame): KeyFrame {
-  const leg = (s: Side): LegData => { const l = k.nogi[s], x = d.nogi?.[s]; const toe = l.rotacjaStopy ?? 10; return { biegunKolana: l.biegunKolana, kostka: plus(l.kostka, x?.kostka), podbicie: plusN(l.podbicie, x?.podbicie), rotacjaStopy: plusN(l.rotacjaStopy, x?.rotacjaStopy, 10), odchylenieKolana: plusN(l.odchylenieKolana, x?.odchylenieKolana, toe * 2) }; };
+  const leg = (s: Side): LegData => { const l = k.nogi[s], x = d.nogi?.[s]; const toe = l.rotacjaStopy ?? 10; return { biegunKolana: poleZDelta(l.biegunKolana, x?.odchylenieKolana, s), kostka: plus(l.kostka, x?.kostka), podbicie: plusN(l.podbicie, x?.podbicie), rotacjaStopy: plusN(l.rotacjaStopy, x?.rotacjaStopy, 10), odchylenieKolana: plusN(l.odchylenieKolana, x?.odchylenieKolana, toe * 2) }; };
   const sumExt = <K extends string>(keys: readonly K[], base: Partial<Record<K, number>>, dd: Partial<Record<K, number>> | undefined): Partial<Record<K, number>> => { const o: Partial<Record<K, number>> = {}; for (const key of keys) { const x = plusN(base[key], dd?.[key]); if (x !== undefined) o[key] = x; } return o; };
   const arm = (s: Side): ArmData => ({ ...k.rece[s], chwyt: plus(k.rece[s].chwyt, d.rece?.[s]?.chwyt), ...sumExt(ARM_EXT, k.rece[s], d.rece?.[s]) });
   return { ...k, ...sumExt(TRUNK_EXT, k, d), miednica: plus(k.miednica, d.miednica), pochylenieTulowia: k.pochylenieTulowia + (d.pochylenieTulowia ?? 0), zgiecieKregoslupa: plusN(k.zgiecieKregoslupa, d.zgiecieKregoslupa), pochylenieGlowy: d.pochylenieGlowy === undefined ? k.pochylenieGlowy : (k.pochylenieGlowy ?? Math.max(-20, Math.min(60, k.pochylenieTulowia * 0.4))) + d.pochylenieGlowy, nogi: { R: leg('R'), L: leg('L') }, rece: { R: arm('R'), L: arm('L') } };

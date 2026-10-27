@@ -180,10 +180,11 @@ function odcisk(d: PoseData): { svg: string; raw: string } {
 const ZMIENIONE = new Set([
   ...STOPIEN.map(c => `calf_raise/${c}`), ...BULGARSKIE.map(c => `lunge/${c}`), ...MASZYNY.map(c => `leg_machine/${c}`),
   'back_extension/Back Extension', 'back_extension/Reverse Hyperextension', 'back_extension/Lower Back Curl', 'glute_floor/Prone Flutter Kicks', 'glute_floor/Machine Glute Kickback', 'leg_isolation/Seated Band Hamstring Curl',
+  'leg_machine/Leg Press', 'leg_machine/Belt Squat Machine', /* runda 3 (p2-r3): wiersz „kolana do środka” (B1, B2) */
 ]);
 describe('7. pozostałe pozy sześciu rodzin bez zmian (odciski SVG i kształtów)', () => {
   const baza = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'figury-p2-baza.json'), 'utf8')) as Record<string, { svg: string; raw: string }>;
-  test('baza obejmuje wszystkie 61 póz tych rodzin; zmieniane to 17 ćwiczeń z recenzji (+ Lower Back Curl, Prone Flutter Kicks z niezmiennika kolana)', () => { expect(Object.keys(baza)).toHaveLength(61); for (const k of ZMIENIONE) expect(baza[k]).toBeDefined(); expect(ZMIENIONE.size).toBe(19); });
+  test('baza obejmuje wszystkie 61 póz tych rodzin; zmieniane to 17 ćwiczeń z recenzji (+ Lower Back Curl, Prone Flutter Kicks z niezmiennika kolana; + Leg Press i Belt Squat Machine z rundy 3)', () => { expect(Object.keys(baza)).toHaveLength(61); for (const k of ZMIENIONE) expect(baza[k]).toBeDefined(); expect(ZMIENIONE.size).toBe(21); });
   test.each(Object.keys(baza).filter(k => !ZMIENIONE.has(k)))('%s: rysunek bez zmian', klucz => { const [r, ...reszta] = klucz.split('/'); expect([klucz, odcisk(poza(r, reszta.join('/')))]).toEqual([klucz, baza[klucz]]); });
   test.each([...ZMIENIONE])('%s: rysunek zmieniony względem bazy (poprawka jest widoczna)', klucz => { const [r, ...reszta] = klucz.split('/'); expect(odcisk(poza(r, reszta.join('/')))).not.toEqual(baza[klucz]); });
 });

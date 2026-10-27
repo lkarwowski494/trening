@@ -4,6 +4,7 @@
  * Wzorzec (odciski SHA-256 dokumentu SVG i surowych kształtów) powstał na silniku sprzed zmiany: tests/fixtures/figury-v2-zlote.json.
 
  * Zmiana celowa 26.10.2026 (badacz, runda 4): rigi „Cable Pull Through”, „Incline Bench Press (hantle)”, „Smith Machine Stiff-Legged Deadlift”, „Stiff-Legged Barbell Deadlift” mają poprawione parametry (kolano, biodro, łokieć pod chwytem) — tylko ich odciski zmieniono we wzorcu, pozostałe 83 figur bez zmian.
+ * Zmiana celowa 27.10.2026 (poprawki p2, runda 3): odciski 8 póz — Leg Press, Pendulum Squat, Lying Machine Squat, Belt Squat Machine (wiersz „kolana do środka”, Leg Press także kolana nad stopami), Hack Squat (dźwignia z przodu nie przechodzi przez głowę, jak w Lying) i 3 × Bulgarian Split Squat (mniejsze „kolano do środka”, bez przenikania ud).
  * Odtworzenie wzorca (tylko świadomie, gdy rysunek ma się zmienić): ZLOTE_ZAPISZ=1 npx jest tests/figures-v2-zgodnosc-wsteczna.test.ts
  */
 import * as fs from 'fs';

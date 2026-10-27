@@ -2,7 +2,7 @@
  * Figury v2 — rysunek: szkielet 3D + rekwizyty → kształty 2D (widok z boku albo z przodu). Kapsuły kończyn, kontur tułowia, głowa, stopy w butach,
  * sprzęt. Brak kolorów — tylko role (palette.ts). Liczby wymiarów sprzętu w EQUIP (jedno miejsce).
  */
-import { add, mul, norm, sub, rad, type V2, type V3 } from './math';
+import { add, mul, norm, sub, rad, distSegSeg, type V2, type V3 } from './math';
 import { BODY, GIRTH, SIDES, type Skeleton } from './skeleton';
 import { LAYER, type Prop, type Role, type Shape, type View } from './scene';
 
@@ -200,7 +200,7 @@ export function hyperPolys(pr: Extract<Prop, { k: 'hyper' }>): { pad: V2[] } {
 export const rollerAt = (pr: Extract<Prop, { k: 'bench' }>): V2 => [pr.seatFrom[0] + EQUIP.rollerDx, pr.seatFrom[1] + EQUIP.rollerDy];
 
 /** Kształty rekwizytów. */
-export function propShapes(props: Prop[], view: View): Shape[] {
+export function propShapes(props: Prop[], view: View, sk?: Skeleton): Shape[] {
   const S: Shape[] = []; const side = view === 'side';
   const E = EQUIP;
   for (const pr of props) {
@@ -346,7 +346,10 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         else S.push({ k: 'circle', c: b, r: 3, fill: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'slidePad' });
         break;
       }
-      case 'pivot': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 2.8, role: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'landmine' }); S.push({ k: 'circle', c: a, r: 3, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pivot' }); break; }
+      case 'pivot': { const a = proj(pr.from, view), b = proj(pr.to, view);
+        /* dźwignia maszyny leży w płaszczyźnie ruchu, więc z przodu rzutuje się na pionową kreskę przez środek ciała; gdy przechodziłaby przez głowę (Lying Machine Squat: pręt przez twarz, recenzja p2-r2 U-L2), nie rysujemy jej (ani punktu obrotu nad głową) */
+        if (view === 'front' && sk && pr.label === 'dzwignia' && distSegSeg([a[0], a[1], 0], [b[0], b[1], 0], [proj(sk.head, view)[0], proj(sk.head, view)[1], 0], [proj(sk.head, view)[0], proj(sk.head, view)[1], 0]) < BODY.headR + 1.4) break;
+        S.push({ k: 'line', a, b, w: 2.8, role: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'landmine' }); S.push({ k: 'circle', c: a, r: 3, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pivot' }); break; }
       case 'barbell': {
         const c = pr.c; const o = proj(c, view);
         if (side) {

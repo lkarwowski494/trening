@@ -70,6 +70,20 @@ export const FAMILIES: Family[] = [
 ];
 export const FAMILY: Record<FamilyId, Family> = Object.fromEntries(FAMILIES.map(f => [f.id, f])) as Record<FamilyId, Family>;
 
+/** Rodziny, w których dźwignia maszyny nie jest rysowana w widoku z przodu, gdy jej rzut przechodzi przez głowę (draw.ts, case 'pivot'; recenzja p2-r2, U-L2: Lying Machine Squat). Rodziny z tym samym defektem, których nie przeglądano w tej rundzie (cable_row, chest_press_machine, leg_isolation), czekają w backlogu 1.1 (docs/21): ich rysunek bez zmian. */
+export const DZWIGNIA_BEZ_GLOWY: readonly string[] = ['leg_machine'];
+/** Widoki ustawione na poziomie ćwiczenia (nadpisują widoki rodziny). Suwnice pokazujemy tylko z boku (recenzja p2-r2, U-L1, decyzja koordynatora 27.10.2026): z przodu uda są w skrócie, platforma nie jest rysowana, więc stopy i siedzisko wiszą w powietrzu, a ruch w kostce jest niewidoczny. */
+export const EXERCISE_VIEWS: Record<string, { family: FamilyId; views: ('side' | 'front' | 'top')[]; reason: string }> = {
+  'Leg Press': { family: 'leg_machine', views: ['side'], reason: 'suwnica: z przodu bez platformy stopy i siedzisko wiszą, uda w skrócie' },
+  'Single Leg Press': { family: 'leg_machine', views: ['side'], reason: 'suwnica: z przodu bez platformy stopy i siedzisko wiszą, uda w skrócie' },
+  'Calf Press (leg press)': { family: 'leg_machine', views: ['side'], reason: 'suwnica: z przodu nogi prawie proste, ruch w kostce niewidoczny' },
+};
+/** Widoki figury ćwiczenia: wyjątek ćwiczenia (EXERCISE_VIEWS), a w jego braku widoki rodziny. */
+export function viewsOf(key: string, family: FamilyId): ('side' | 'front' | 'top')[] {
+  const x = Object.prototype.hasOwnProperty.call(EXERCISE_VIEWS, key) ? EXERCISE_VIEWS[key] : undefined;
+  return x && x.family === family ? x.views : FAMILY[family].views;
+}
+
 const has = (n: string, ...parts: string[]): boolean => parts.some(p => n.includes(p));
 
 type Rule = [FamilyId, (n: string, e: CatalogEntry) => boolean];

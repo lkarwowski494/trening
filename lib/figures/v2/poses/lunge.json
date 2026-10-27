@@ -10331,7 +10331,7 @@
        "u": 0.25,
        "nogi": {
         "R": {
-         "odchylenieKolana": -13.7
+         "odchylenieKolana": -12
         }
        }
       },
@@ -10339,7 +10339,7 @@
        "u": 0.5,
        "nogi": {
         "R": {
-         "odchylenieKolana": -27.5
+         "odchylenieKolana": -24
         }
        }
       },
@@ -10347,7 +10347,7 @@
        "u": 0.75,
        "nogi": {
         "R": {
-         "odchylenieKolana": -41.2
+         "odchylenieKolana": -36
         }
        }
       },
@@ -10355,7 +10355,7 @@
        "u": 1,
        "nogi": {
         "R": {
-         "odchylenieKolana": -55
+         "odchylenieKolana": -48
         }
        }
       }
@@ -10733,7 +10733,7 @@
        "u": 0.25,
        "nogi": {
         "R": {
-         "odchylenieKolana": -13.7
+         "odchylenieKolana": -12
         }
        }
       },
@@ -10741,7 +10741,7 @@
        "u": 0.5,
        "nogi": {
         "R": {
-         "odchylenieKolana": -27.5
+         "odchylenieKolana": -24
         }
        }
       },
@@ -10749,7 +10749,7 @@
        "u": 0.75,
        "nogi": {
         "R": {
-         "odchylenieKolana": -41.2
+         "odchylenieKolana": -36
         }
        }
       },
@@ -10757,7 +10757,7 @@
        "u": 1,
        "nogi": {
         "R": {
-         "odchylenieKolana": -55
+         "odchylenieKolana": -48
         }
        }
       }
@@ -11134,7 +11134,7 @@
        "u": 0.25,
        "nogi": {
         "R": {
-         "odchylenieKolana": -13.7
+         "odchylenieKolana": -12
         }
        }
       },
@@ -11142,7 +11142,7 @@
        "u": 0.5,
        "nogi": {
         "R": {
-         "odchylenieKolana": -27.5
+         "odchylenieKolana": -24
         }
        }
       },
@@ -11150,7 +11150,7 @@
        "u": 0.75,
        "nogi": {
         "R": {
-         "odchylenieKolana": -41.2
+         "odchylenieKolana": -36
         }
        }
       },
@@ -11158,7 +11158,7 @@
        "u": 1,
        "nogi": {
         "R": {
-         "odchylenieKolana": -55
+         "odchylenieKolana": -48
         }
        }
       }
