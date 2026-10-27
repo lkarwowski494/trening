@@ -682,6 +682,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik jest na darmowym poziomie
     - Gdy otwiera ekran startu treningu
     - Wtedy widzi, ile darmowych dni treningowych zostało w tym miesiącu
+  - Scenariusz: Dni z okresu Pro po wygaśnięciu
+    - Zakładając, że użytkownik trenował w Pro, a subskrypcja wygasła, została zwrócona albo cofnięta (sklep nie zwraca już transakcji)
+    - Gdy zaczyna trening w tym samym miesiącu
+    - Wtedy liczą się tylko dni od chwili, w której aplikacja zobaczyła koniec dostępu (decyzja P3 B, docs/18; test `tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts`); po ponownej instalacji aplikacji ta chwila nie jest znana i liczą się wszystkie dni miesiąca
 
 ### BR-ZAK-003: Ekran zakupu bez presji
 - Przepływ: PR-08
