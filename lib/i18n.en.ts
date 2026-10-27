@@ -962,8 +962,10 @@ export const EN: Record<string, string> = {
   '{price}/{period}': '{price}/{period}',
   'Kup na zawsze': 'Buy forever',
   'Subskrybuj': 'Subscribe',
-  'Zmień plan': 'Change plan', /* subskrybent wybiera inny plan (arkusz Apple zmiany planu) */
+  'Zmień plan': 'Change plan', /* przełącznik zwiniętej listy planów przy aktywnym planie (DEC-09 a, 27.10.2026) */
   'Aktualny plan': 'Current plan', /* plan, który osoba już ma — niewybieralny na ekranie zakupu */
+  'Masz plan: {name}': 'Your plan: {name}', /* DEC-09 a (27.10.2026): nagłówek karty stanu na ekranie zakupu przy aktywnym planie; {name} = nazwa planu */
+  'Przejdź na ten plan': 'Switch to this plan', /* przycisk zakupu innego planu subskrypcji, gdy osoba ma już subskrypcję (arkusz Apple zmiany planu) */
   'Czeka na zgodę organizatora rodziny.': 'Waiting for approval from the family organizer.',
   'Przywrócono zakupy.': 'Purchases restored.',
   'Nie znaleziono zakupów dla tego konta Apple.': 'No purchases found for this Apple account.',

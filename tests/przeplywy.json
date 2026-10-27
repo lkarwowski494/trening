@@ -2432,7 +2432,7 @@
     "Ustawienia → karta „Subskrypcja” → ekran zakupu",
     "Panel „Test store”: wygaszenie → ceny → „Przywróć zakupy”",
     "Start ponad limit dni → ekran zakupu → zakup",
-    "Po zakupie subskrypcji: karta z nazwą planu, „Aktualny plan” przy kupionym, „Zmień plan”"
+    "Po zakupie subskrypcji: nagłówek „Masz plan: {nazwa}”, lista planów zwinięta pod „Zmień plan”, po rozwinięciu „Aktualny plan” przy kupionym i „Przejdź na ten plan”"
    ],
    "wynik": "Dostęp zgodny ze stanem sklepu; zamknięcie ekranu zakupu przyciskiem „Zamknij”; po zakupie ekran nie oferuje kupna posiadanego planu.",
    "ekrany": [
@@ -2468,7 +2468,7 @@
      "tests/subscription-invariants.test.ts",
      "tests/entitlement.test.ts"
     ],
-    "kontrola": "Model M5 S1 (docs/monetyzacja.md), sześć scenariuszy: (1) kup każdy plan → arkusz Apple pokazuje cenę planu i brak oferty wprowadzającej, po zakupie „Masz pełną wersję” (dożywotni: „Masz dostęp na zawsze”); (2) usuń i zainstaluj ponownie → „Przywróć zakupy” przywraca dostęp; (3) tryb samolotowy po zakupie → dostęp zostaje; (4) zwrot w piaskownicy → dostęp znika po odświeżeniu; (5) Chmura rodzinna: drugie konto z rodziny ma dostęp; (6) bez zakupu po wykorzystaniu darmowego limitu dni treningowych w miesiącu → start treningu w nowym dniu otwiera ekran zakupu, historia i kopia dostępne."
+    "kontrola": "Model M5 S1 (docs/monetyzacja.md), sześć scenariuszy: (1) kup każdy plan → arkusz Apple pokazuje cenę planu i brak oferty wprowadzającej, po zakupie „Masz plan: {nazwa planu}” (dożywotni także „Masz dostęp na zawsze”); (2) usuń i zainstaluj ponownie → „Przywróć zakupy” przywraca dostęp; (3) tryb samolotowy po zakupie → dostęp zostaje; (4) zwrot w piaskownicy → dostęp znika po odświeżeniu; (5) Chmura rodzinna: drugie konto z rodziny ma dostęp; (6) bez zakupu po wykorzystaniu darmowego limitu dni treningowych w miesiącu → start treningu w nowym dniu otwiera ekran zakupu, historia i kopia dostępne."
    }
   },
   {

@@ -1713,5 +1713,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "세트: 종목당 {s}세트. 최소 {m}세트는 하는 것이 좋습니다. 세트를 늘리면 보통 효과가 조금 더 커지지만, 늘어나는 폭은 점점 줄어듭니다.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "{d} {s} 운동은 {h}시간 동안 활동이 없어 자동으로 저장되었습니다. 종료: {e}(마지막 세트). 플랜 탭에서 확인할 수 있습니다.",
  "Aktualny plan": "현재 요금제",
+ "Masz plan: {name}": "내 요금제: {name}",
+ "Przejdź na ten plan": "이 요금제로 변경",
  "Zmień plan": "요금제 변경"
 }

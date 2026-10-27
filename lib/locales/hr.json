@@ -1713,5 +1713,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Serije: {s} po vježbi — vrijedi napraviti najmanje {m}; više serija obično donosi malo više, uz sve manji dobitak.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Trening od {d} {s} nije imao aktivnosti {h} sati pa je spremljen automatski. Kraj: {e} (zadnja serija). Pronaći ćete ga na kartici Plan.",
  "Aktualny plan": "Trenutni plan",
+ "Masz plan: {name}": "Vaš plan: {name}",
+ "Przejdź na ten plan": "Prijeđi na ovaj plan",
  "Zmień plan": "Promijeni plan"
 }

@@ -1713,5 +1713,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Séries: {s} por exercício — vale a pena fazer pelo menos {m}; mais séries costumam dar um pouco mais, com ganhos cada vez menores.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "O treino de {d} {s} esteve {h} horas sem atividade, por isso foi guardado automaticamente. Fim: {e} (última série). Encontra-o no separador Plano.",
  "Aktualny plan": "Plano atual",
+ "Masz plan: {name}": "O seu plano: {name}",
+ "Przejdź na ten plan": "Mudar para este plano",
  "Zmień plan": "Mudar de plano"
 }

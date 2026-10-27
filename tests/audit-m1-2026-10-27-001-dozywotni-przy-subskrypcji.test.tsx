@@ -26,7 +26,7 @@ const PL = 'Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płac
 
 describe('M1-001: dożywotni przy aktywnej subskrypcji — uwaga przed zakupem', () => {
   test('EN: miesięczny kupiony sam → wybór dożywotniego pokazuje uwagę nad „Buy forever”; przy innym planie uwagi nie ma', async () => {
-    await boot([sub()], 'en');
+    await boot([sub()], 'en'); await tap(screen.getByTestId('paywall-change-plan')); /* DEC-09 a (27.10.2026): przy aktywnym planie lista pod „Zmień plan” */
     expect(screen.queryByTestId('paywall-lifetime-warning')).toBeNull();
     await tap(screen.getByTestId('plan-lifetime'));
     expect(screen.getByText('Buy forever')).toBeTruthy();
@@ -34,7 +34,7 @@ describe('M1-001: dożywotni przy aktywnej subskrypcji — uwaga przed zakupem',
     await tap(screen.getByTestId('plan-yearly')); expect(screen.queryByTestId('paywall-lifetime-warning')).toBeNull();
   });
   test('PL: ta sama uwaga po polsku', async () => {
-    await boot([sub()], 'pl'); await tap(screen.getByTestId('plan-lifetime'));
+    await boot([sub()], 'pl'); await tap(screen.getByTestId('paywall-change-plan')); await tap(screen.getByTestId('plan-lifetime'));
     expect(screen.getByTestId('paywall-lifetime-warning').props.children).toBe(PL);
   });
   test('bez subskrypcji: dożywotni bez uwagi', async () => {
@@ -42,7 +42,7 @@ describe('M1-001: dożywotni przy aktywnej subskrypcji — uwaga przed zakupem',
   });
   test('subskrypcja z Chmury rodzinnej albo z kodu (osoba nie płaci sama): bez sugestii „anuluj”', async () => {
     for (const source of ['family', 'code'] as const) {
-      await boot([sub({ source })], 'en'); await tap(screen.getByTestId('plan-lifetime'));
+      await boot([sub({ source })], 'en'); await tap(screen.getByTestId('paywall-change-plan')); await tap(screen.getByTestId('plan-lifetime'));
       expect(screen.queryByTestId('paywall-lifetime-warning')).toBeNull(); expect(screen.queryByText(EN)).toBeNull();
     }
   });

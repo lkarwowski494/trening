@@ -5,12 +5,14 @@
 # Prawdziwy StoreKit i okna Apple: lista ręczna w piaskownicy (docs/27 7.2).
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "Subscription", "Full version", ".*You have access forever.*", "You have the full version"  ← components/SubscriptionCard.tsx, app/paywall.tsx
+#   "Subscription", "Full version", ".*You have access forever.*"           ← components/SubscriptionCard.tsx, app/paywall.tsx
+#   ".*Your plan: .*"                                                       ← nagłówek karty stanu po zakupie: 'Masz plan: {name}' (app/paywall.tsx, DEC-09 a 27.10.2026)
 #   "Test store: expire access"                                             ← panel tylko w buildzie E2E (app/paywall.tsx, bez t())
 #   "Train 5 days a month for free.*", "Training is part of my week", "Restore purchases", "No purchases found for this Apple account."
 #   ".*free training days left this month.*"                                ← 'Pozostało {n} z {limit} darmowych dni treningowych w tym miesiącu' (components/StartPanel.tsx)
 #   "We're proud of you!", ".*no ads, no data collection.*"                 ← tekst przy starcie ponad limit (app/paywall.tsx, reason=limit)
-#   ".*Plan: Training is part of my week.*", ".*Current plan.*", "Change plan"  ← po zakupie planu: karta stanu, oznaczenie posiadanego planu, przycisk zmiany (app/paywall.tsx)
+#   ".*Your plan: Training is part of my week.*", "Change plan", ".*Current plan.*", "Switch to this plan"  ← po zakupie planu: karta stanu, przełącznik zwiniętej listy,
+#       oznaczenie posiadanego planu, przycisk zmiany planu (app/paywall.tsx; DEC-09 a 27.10.2026: lista planów zwinięta pod „Change plan”)
 #   "Subscribe", "Log a past workout", "Not now", "Close" (id close-modal)
 #   "Empty workout", "Other workout", "Finish", "Set 1 done.*", "Skip", "Finish workout\?", "Session", "Upper A" ← jak flow 05
 appId: pl.lukasz.trening
@@ -74,14 +76,20 @@ name: Subskrypcja — ekran zakupu i limit
 - scrollUntilVisible: { element: "Subscribe", direction: DOWN, timeout: 60000, centerElement: true }
 - waitForAnimationToEnd
 - tapOn: "Subscribe"
-- extendedWaitUntil: { visible: ".*You have the full version.*", timeout: 30000 }
-# --- po zakupie subskrypcji (27.10.2026, uwaga z telefonu): karta podaje aktywny plan, bez wstępu o darmowych dniach, plan posiadany oznaczony i niewybieralny, reszta jako „Change plan” ---
-- assertVisible: ".*Plan: Training is part of my week.*"
+- extendedWaitUntil: { visible: ".*Your plan: .*", timeout: 30000 }
+# --- po zakupie subskrypcji (27.10.2026, uwaga z telefonu; DEC-09 a): nagłówek karty nazywa plan, bez wstępu o darmowych dniach i bez oferty;
+#     lista planów zwinięta pod „Change plan”, po rozwinięciu plan posiadany oznaczony, zakup innego planu to „Switch to this plan” ---
+- assertVisible: ".*Your plan: Training is part of my week.*"
 - assertNotVisible: "Train 5 days a month for free.*"
-- scrollUntilVisible: { element: "Change plan", direction: DOWN, timeout: 60000 }
+- assertNotVisible: "Subscribe"
+- assertNotVisible: ".*Current plan.*"
+- takeScreenshot: 99-zakup-plan-aktywny
+- scrollUntilVisible: { element: "Change plan", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Change plan"
+- scrollUntilVisible: { element: "Switch to this plan", direction: DOWN, timeout: 60000 }
 - assertVisible: ".*Current plan.*"
 - assertNotVisible: "Subscribe"
-- takeScreenshot: 99-zakup-plan-aktywny
+- takeScreenshot: 99-zakup-zmiana-planu
 - scrollUntilVisible: { element: "Not now", direction: DOWN, timeout: 60000 }
 - tapOn: "Not now"
 # --- po zakupie start działa ---
