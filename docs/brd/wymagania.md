@@ -378,6 +378,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że ćwiczenie ma wskazówki techniki
     - Gdy użytkownik otwiera kartę ćwiczenia z biblioteki, z historii albo z Postępów (wejście poza treningiem na żywo)
     - Wtedy sekcja „Technika” (wskazówki i rysunek ruchu) jest od razu rozwinięta, a przycisk „Technika” zwija ją i rozwija (stan rozwinięcia czytany przez VoiceOver, etykieta bez zmian); w podglądzie otwieranym w kontekście treningu na żywo sekcja zostaje zwinięta, a „Technika ›” rozwija ją
+  - Scenariusz: Rysunek ruchu tylko po recenzji (bramka 4, CLAUDE.md 27.10.2026; decyzja DEC-01 b, 2026-10-27; zapis `docs/research/figury-recenzja.json`, test `tests/figury-recenzja.test.tsx`)
+    - Zakładając, że rysunek ćwiczenia nie ma zapisu niezależnej recenzji ruchu i treści karty albo zmienił się po recenzji (inny skrót danych), albo recenzja go ukryła (np. Push Press, Pendlay Row)
+    - Gdy użytkownik otwiera sekcję „Technika” tego ćwiczenia
+    - Wtedy widzi wskazówki, asekurację i stopkę medyczną bez rysunku; rysunek z aktualną recenzją wyświetla się jak dotąd
   - Scenariusz: Usunięcie własnego ćwiczenia z podglądu (ZM-04, W2 a, 21.10.2026)
     - Zakładając, że użytkownik ogląda podgląd ćwiczenia własnego
     - Gdy stuka „Usuń z biblioteki” na dole ekranu

@@ -245,6 +245,8 @@ Widok: z boku; kotwica: biodro; rzut ręki (kąty ręki = rzut); przyrządy: rec
 
 - **pozycja wyjściowa** — t 90, sh -52, el 138, ap 0.7, hip 88, knee 90
   - dłoń przy: biodro + [21, 10] w układzie tułowia (≤ 6) ← `mcp.seat`: „Ustaw siedzisko tak, by uchwyty były na wysokości środka klatki; plecy oparte, stopy na podłodze.”
+- **w trakcie** — t 90, sh 19, el 104, ap 1, hip 88, knee 90
+  - odcinek bark–dłoń: 0° do poziomu (±25°) ← `mcp.move`: „Wypchnij uchwyty przed siebie do wyprostu rąk; wracaj powoli.”
 - **pozycja końcowa** — t 90, sh 80, el 5, hip 88, knee 90
   - zgięcie łokcia: 5° (±6°) ← `press.noLock`: „Prostuj ręce do końca, ale bez gwałtownego blokowania łokci.”
   - odcinek bark–dłoń: 0° do poziomu (±15°) ← `mcp.move`: „Wypchnij uchwyty przed siebie do wyprostu rąk; wracaj powoli.”
@@ -258,6 +260,8 @@ Widok: z boku; kotwica: przód stopy; druga podpora: dłoń; przyrządy: brak.
   - bark – biodro – kostka w jednej linii (±5°) ← `push.setup`: „Dłonie na podłodze na szerokość barków lub trochę szerzej, ciało proste od głowy do pięt.”
   - zgięcie łokcia: 0° (±4°) ← `push.move`: „Opuść klatkę prawie do podłogi, zginając łokcie; wypchnij się do wyprostu rąk.”
   - dłoń tuż nad poziomem 0 (do 3) ← `push.setup`: „Dłonie na podłodze na szerokość barków lub trochę szerzej, ciało proste od głowy do pięt.”
+- **w trakcie** — t 10, hip 0, knee 0, ft -85, sh 15, el 100
+  - bark – biodro – kostka w jednej linii (±5°) ← `push.rigid`: „Tułów sztywny — biodra nie opadają i nie unoszą się.”
 - **pozycja końcowa** — t 1, hip 0, knee 0, ft -94, sh -25, el 137
   - bark – biodro – kostka w jednej linii (±5°) ← `push.rigid`: „Tułów sztywny — biodra nie opadają i nie unoszą się.”
   - bark tuż nad poziomem 0 (do 14) ← `push.move`: „Opuść klatkę prawie do podłogi, zginając łokcie; wypchnij się do wyprostu rąk.”
@@ -271,6 +275,8 @@ Widok: z boku; kotwica: przód stopy; druga podpora: dłoń; przyrządy: rect.
   - bark – biodro – kostka w jednej linii (±5°) ← `ipush.setup`: „Oprzyj dłonie o krawędź ławki lub stabilnego podwyższenia, trochę szerzej niż barki; stopy cofnięte, ciało proste.”
   - zgięcie łokcia: 0° (±4°) ← `ipush.move`: „Opuść klatkę do krawędzi podwyższenia, potem wypchnij się do wyprostu rąk.”
   - dłoń tuż nad poziomem 30 (do 3) ← `ipush.setup`: „Oprzyj dłonie o krawędź ławki lub stabilnego podwyższenia, trochę szerzej niż barki; stopy cofnięte, ciało proste.”
+- **w trakcie** — t 35, hip 0, knee 0, ft -59, sh -22, el 82
+  - bark – biodro – kostka w jednej linii (±5°) ← `push.rigid`: „Tułów sztywny — biodra nie opadają i nie unoszą się.”
 - **pozycja końcowa** — t 23, hip 0, knee 0, ft -72, sh -44, el 76
   - bark – biodro – kostka w jednej linii (±5°) ← `push.rigid`: „Tułów sztywny — biodra nie opadają i nie unoszą się.”
   - bark tuż nad poziomem 30 (do 14) ← `ipush.move`: „Opuść klatkę do krawędzi podwyższenia, potem wypchnij się do wyprostu rąk.”
@@ -282,6 +288,8 @@ Widok: z boku; kotwica: przód stopy; rzut ręki (kąty ręki = rzut); przyrząd
 
 - **pozycja wyjściowa** — t 90, hip 0, knee 0, sh 29, el 148, ap 0.75, fp 0.75
   - dłoń przy: bark + [-1, 7] w układzie tułowia (≤ 5) ← `ohp.bbSetup`: „Zdejmij sztangę ze stojaka na wysokości barków; chwyt na szerokość barków lub trochę szerzej, sztanga przy przedniej części barków.”
+  - bark – biodro – kostka w jednej linii (±6°) ← `ohp.tall`: „Tułów wysoko i stabilnie; ciężar idzie prosto w górę nad głowę.”
+- **w trakcie** — t 92, hip -2, knee 0, sh 106, el 106, ap 0.7, fp 1
   - bark – biodro – kostka w jednej linii (±6°) ← `ohp.tall`: „Tułów wysoko i stabilnie; ciężar idzie prosto w górę nad głowę.”
 - **pozycja końcowa** — t 95, hip -5, knee 0, sh 171, el 0
   - zgięcie łokcia: 0° (±4°) ← `ohp.move`: „Wypchnij ciężar nad głowę do wyprostu rąk; opuść go z powrotem do barków.”
@@ -295,6 +303,8 @@ Widok: z boku; kotwica: przód stopy; rzut ręki (kąty ręki = rzut); przyrząd
 - **pozycja wyjściowa** — t 90, hip 0, knee 0, sh 32, el 148, ap 0.75, fp 0.75
   - dłoń przy: bark + [3, 6] w układzie tułowia (≤ 5) ← `ohp.dbSetup`: „Hantle przy barkach, łokcie pod nadgarstkami.”
   - łokieć w pionie nad/pod: dłoń (±3) ← `ohp.elbowsUnder`: „Łokcie pod nadgarstkami przez cały ruch.”
+- **w trakcie** — t 92, hip -2, knee 0, sh 109, el 81, ap 0.4, fp 0.9
+  - łokieć w pionie nad/pod: dłoń (±4) ← `ohp.elbowsUnder`: „Łokcie pod nadgarstkami przez cały ruch.”
 - **pozycja końcowa** — t 95, hip -5, knee 0, sh 171, el 0
   - zgięcie łokcia: 0° (±4°) ← `ohp.move`: „Wypchnij ciężar nad głowę do wyprostu rąk; opuść go z powrotem do barków.”
   - dłoń w pionie nad/pod: bark (±6) ← `ohp.tall`: „Tułów wysoko i stabilnie; ciężar idzie prosto w górę nad głowę.”
@@ -308,6 +318,8 @@ Widok: z boku; kotwica: biodro; rzut ręki (kąty ręki = rzut); przyrządy: rec
   - dłoń przy: biodro + [33, 6] w układzie tułowia (≤ 6) ← `ohp.seat`: „Usiądź z plecami opartymi o oparcie, stopy mocno na podłodze; hantle przy barkach.”
   - łokieć w pionie nad/pod: dłoń (±4) ← `ohp.elbowsUnder`: „Łokcie pod nadgarstkami przez cały ruch.”
   - pięta tuż nad poziomem 0 (do 1) ← `ohp.seat`: „Usiądź z plecami opartymi o oparcie, stopy mocno na podłodze; hantle przy barkach.”
+- **w trakcie** — t 95, sh 104, el 82, ap 0.5, hip 83, knee 90
+  - łokieć w pionie nad/pod: dłoń (±4) ← `ohp.elbowsUnder`: „Łokcie pod nadgarstkami przez cały ruch.”
 - **pozycja końcowa** — t 95, sh 165, el 3, hip 83, knee 90
   - zgięcie łokcia: 3° (±4°) ← `ohp.fullExt`: „Na górze wyprostuj ręce, bez gwałtownego blokowania łokci.”
   - pięta tuż nad poziomem 0 (do 1) ← `ohp.seat`: „Usiądź z plecami opartymi o oparcie, stopy mocno na podłodze; hantle przy barkach.”
@@ -326,6 +338,7 @@ Widok: z boku; kotwica: przód stopy; rzut ręki (kąty ręki = rzut); przyrząd
   - zgięcie łokcia: 0° (±4°) ← `pp.move`: „Krótko ugnij kolana, a potem dynamicznie wyprostuj nogi i biodra, wypychając sztangę nad głowę do wyprostu rąk.”
   - bark – biodro – kostka w jednej linii (±6°) ← `pp.legs`: „Siła wybicia idzie z nóg i bioder — ręce kończą ruch.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Ugięcie nóg krótkie — głębokość ilustracyjna.
+- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-27, docs/research/figury-recenzja.json): Jak w wyciskaniu: gryf łukiem przed twarzą przy wypychaniu; nogi i ręce prostują się jednocześnie, choć wskazówka mówi, że siła idzie z nóg, a ręce kończą ruch (pp.legs). Figura ma już 3 pozycje (limit silnika v1) — nie da się dodać pozycji pośredniej.
 
 ### Wyciskanie nad głowę (linki)
 
@@ -334,6 +347,8 @@ Widok: z boku; kotwica: przód stopy; rzut ręki (kąty ręki = rzut); przyrząd
 - **pozycja wyjściowa** — t 90, hip 0, knee 0, sh 32, el 148, ap 0.75, fp 0.75
   - łokieć w pionie nad/pod: dłoń (±3) ← `cohp.setup`: „Stań lub usiądź między dolnymi bloczkami; uchwyty przy barkach, łokcie w dół, nadgarstki nad łokciami.”
   - dłoń przy: bark + [3, 6] w układzie tułowia (≤ 5) ← `cohp.setup`: „Stań lub usiądź między dolnymi bloczkami; uchwyty przy barkach, łokcie w dół, nadgarstki nad łokciami.”
+- **w trakcie** — t 92, hip -2, knee 0, sh 109, el 81, ap 0.4, fp 0.9
+  - łokieć w pionie nad/pod: dłoń (±4) ← `ohp.elbowsUnder`: „Łokcie pod nadgarstkami przez cały ruch.”
 - **pozycja końcowa** — t 95, hip -5, knee 0, sh 171, el 0
   - zgięcie łokcia: 0° (±4°) ← `ohp.move`: „Wypchnij ciężar nad głowę do wyprostu rąk; opuść go z powrotem do barków.”
   - dłoń w pionie nad/pod: bark (±6) ← `ohp.tall`: „Tułów wysoko i stabilnie; ciężar idzie prosto w górę nad głowę.”
@@ -374,6 +389,7 @@ Widok: z boku; kotwica: przód stopy; na wzór: Bent Over Row (sztanga); przyrz�
   - dłoń przy: biodro + [9, 7] w układzie tułowia (≤ 6) ← `row.bbPull`: „Przyciągnij sztangę do brzucha, potem opuść ją do pełnego wyprostu rąk.”
   - zgięcie kolana: 20° (±15°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Ta sama figura co wiosłowanie sztangą w opadzie — wskazówki etapu 1 dla obu ćwiczeń są takie same (cechy Pendlaya, np. start z podłogi, nie wynikają z nich).
+- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-27, docs/research/figury-recenzja.json): Figura identyczna z wiosłowaniem sztangą w opadzie (tułów ok. 30° nad poziomem, sztanga zawieszona nad podłogą) — brak cechy rozpoznawczej nazwy (bramka 4, pkt 1 listy recenzenta); wskazówki karty też nie opisują startu z podłogi.
 
 ### T-Bar Row
 
@@ -416,9 +432,11 @@ Widok: z boku; kotwica: przód stopy; przyrządy: line, line, db.
 
 Widok: z boku; kotwica: biodro; przyrządy: rect, line, cable, grip.
 
-- **pozycja wyjściowa** — t 90, sh 88, el 0, hip 95, knee 21, ft 109
+- **pozycja wyjściowa** — t 90, sh 57, el 0, hip 95, knee 21, ft 109
   - zgięcie łokcia: 0° (±4°) ← `scr.pull`: „Przyciągnij uchwyt do brzucha, łokcie blisko tułowia; wróć do wyprostu rąk.”
   - zgięcie kolana: 20° (±15°) ← `scr.sit`: „Usiądź, oprzyj stopy, kolana lekko ugięte, plecy wyprostowane.”
+  - odcinek biodro–bark: 90° do poziomu (±10°) ← `scr.sit`: „Usiądź, oprzyj stopy, kolana lekko ugięte, plecy wyprostowane.”
+- **w trakcie** — t 90, sh 14, el 68, hip 95, knee 21, ft 109
   - odcinek biodro–bark: 90° do poziomu (±10°) ← `scr.sit`: „Usiądź, oprzyj stopy, kolana lekko ugięte, plecy wyprostowane.”
 - **pozycja końcowa** — t 90, sh -38, el 111, hip 95, knee 21, ft 109
   - dłoń przy: biodro + [10, 8] w układzie tułowia (≤ 6) ← `scr.pull`: „Przyciągnij uchwyt do brzucha, łokcie blisko tułowia; wróć do wyprostu rąk.”
@@ -429,9 +447,11 @@ Widok: z boku; kotwica: biodro; przyrządy: rect, line, cable, grip.
 
 Widok: z boku; kotwica: biodro; na wzór: Seated Cable Row; przyrządy: rect, line, cable, grip.
 
-- **pozycja wyjściowa** — t 90, sh 88, el 0, hip 95, knee 21, ft 109
+- **pozycja wyjściowa** — t 90, sh 57, el 0, hip 95, knee 21, ft 109
   - zgięcie łokcia: 0° (±4°) ← `scr.pull`: „Przyciągnij uchwyt do brzucha, łokcie blisko tułowia; wróć do wyprostu rąk.”
   - zgięcie kolana: 20° (±15°) ← `scr.sit`: „Usiądź, oprzyj stopy, kolana lekko ugięte, plecy wyprostowane.”
+  - odcinek biodro–bark: 90° do poziomu (±10°) ← `scr.sit`: „Usiądź, oprzyj stopy, kolana lekko ugięte, plecy wyprostowane.”
+- **w trakcie** — t 90, sh 14, el 68, hip 95, knee 21, ft 109
   - odcinek biodro–bark: 90° do poziomu (±10°) ← `scr.sit`: „Usiądź, oprzyj stopy, kolana lekko ugięte, plecy wyprostowane.”
 - **pozycja końcowa** — t 90, sh -38, el 111, hip 95, knee 21, ft 109
   - dłoń przy: biodro + [10, 8] w układzie tułowia (≤ 6) ← `scr.pull`: „Przyciągnij uchwyt do brzucha, łokcie blisko tułowia; wróć do wyprostu rąk.”
@@ -457,6 +477,8 @@ Widok: z boku; kotwica: biodro; rzut ręki (kąty ręki = rzut); przyrządy: rec
 
 - **pozycja wyjściowa** — t 100, sh 160, el 0, hip 78, knee 90
   - zgięcie łokcia: 0° (±4°) ← `lpd.fullStretch`: „Na górze wyprostuj ręce do końca.”
+- **w trakcie** — t 100, sh 84, el 118, ap 0.9, hip 78, knee 90
+  - dłoń przed: głowa ← `lpd.pull`: „Ściągnij drążek w dół przed twarzą do górnej części klatki.”
 - **pozycja końcowa** — t 100, sh -108, el 180, ap 0.55, hip 78, knee 90
   - dłoń przy: biodro + [27, 9] w układzie tułowia (≤ 6) ← `lpd.toChest`: „Ściągaj do górnej części klatki — nie dalej.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Chwyt szeroki — ramię w rzucie krótsze; lekkie odchylenie tułowia ilustracyjne.
@@ -467,10 +489,12 @@ Widok: z boku; kotwica: dłoń; rzut ręki (kąty ręki = rzut); przyrządy: bar
 
 - **pozycja wyjściowa** — t 99, hip 9, knee 10, sh 171, el 0, ap 0.85
   - zgięcie łokcia: 0° (±4°) ← `pu.grip`: „Chwyć drążek nachwytem, trochę szerzej niż barki, i zawiśnij na prostych rękach.”
-- **pozycja końcowa** — t 89, hip 10, knee 20, sh 10, el 154, ap 0.85
+- **w trakcie** — t 106, hip 15, knee 14, sh 83, el 110, ap 0.8
+  - biodro w pionie nad/pod: dłoń (±8) ← `pu.noSwing`: „Bez bujania i wymachów nogami.”
+- **pozycja końcowa** — t 104, hip 10, knee 20, sh -5, el 154, ap 0.85
   - głowa (-4) wyżej niż dłoń ← `pu.pull`: „Podciągnij się, aż broda znajdzie się nad drążkiem; opuść się do pełnego wyprostu rąk.”
   - odcinek bark–łokieć: 90° do poziomu (±30°) ← `pu.elbowsDown`: „Prowadź łokcie w dół, do boków tułowia.”
-- Uproszczenie ilustracyjne: pozostałe kąty. Chwyt szerzej niż barki — ramię w rzucie krótsze; ugięcie kolan ilustracyjne.
+- Uproszczenie ilustracyjne: pozostałe kąty. Chwyt szerzej niż barki — ramię w rzucie krótsze; ugięcie kolan i odchylenie tułowia na górze ilustracyjne. Pozycja „w trakcie”: ciało pod drążkiem (bez bujania).
 
 ### Chin Up
 
@@ -478,7 +502,9 @@ Widok: z boku; kotwica: dłoń; przyrządy: bar.
 
 - **pozycja wyjściowa** — t 99, hip 9, knee 10, sh 171, el 0
   - zgięcie łokcia: 0° (±4°) ← `cu.grip`: „Chwyć drążek podchwytem (dłonie do siebie), na szerokość barków, i zawiśnij na prostych rękach.”
-- **pozycja końcowa** — t 88, hip 10, knee 20, sh 31, el 148, ap 1
+- **w trakcie** — t 105, hip 15, knee 10, sh 93, el 104, ap 0.8
+  - biodro w pionie nad/pod: dłoń (±8) ← `pu.noSwing`: „Bez bujania i wymachów nogami.”
+- **pozycja końcowa** — t 104, hip 10, knee 20, sh 15, el 148, ap 1
   - głowa (-4) wyżej niż dłoń ← `cu.pull`: „Podciągaj się, ściągając łokcie w dół do boków; opuść się do pełnego wyprostu rąk.”
   - odcinek bark–łokieć: 90° do poziomu (±30°) ← `cu.pull`: „Podciągaj się, ściągając łokcie w dół do boków; opuść się do pełnego wyprostu rąk.”
 - Uproszczenie ilustracyjne: pozostałe kąty.
@@ -489,7 +515,9 @@ Widok: z boku; kotwica: dłoń; przyrządy: bar.
 
 - **pozycja wyjściowa** — t 99, hip 9, knee 10, sh 171, el 0
   - zgięcie łokcia: 0° (±4°) ← `npu.hang`: „Chwyć uchwyty pełnym chwytem (kciuk dookoła) i zawiśnij na prostych rękach.”
-- **pozycja końcowa** — t 88, hip 10, knee 20, sh 31, el 148, ap 1
+- **w trakcie** — t 105, hip 15, knee 10, sh 93, el 104, ap 0.8
+  - biodro w pionie nad/pod: dłoń (±8) ← `pu.noSwing`: „Bez bujania i wymachów nogami.”
+- **pozycja końcowa** — t 104, hip 10, knee 20, sh 15, el 148, ap 1
   - głowa (-4) wyżej niż dłoń ← `pu.pull`: „Podciągnij się, aż broda znajdzie się nad drążkiem; opuść się do pełnego wyprostu rąk.”
   - odcinek bark–łokieć: 90° do poziomu (±30°) ← `pu.elbowsDown`: „Prowadź łokcie w dół, do boków tułowia.”
 - Uproszczenie ilustracyjne: pozostałe kąty.
@@ -500,11 +528,13 @@ Widok: z boku; kotwica: przód stopy (dalsza strona); przyrządy: db, db.
 
 - **pozycja wyjściowa** — t 90, hip 0, knee 0, sh 0, el 0
   - bark – biodro – kostka w jednej linii (±6°) ← `lunge.dbSetup`: „Stań prosto, stopy na szerokość bioder, hantle w opuszczonych rękach.”
+- **w trakcie** — t 85, hip 55/10, knee 94/5, ft -7/0, sh 0, el 0
+  - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
 - **pozycja końcowa** — t 90, hip 80/-3, knee 110/102, ft 0/-80, sh 0, el 0
   - kolano (dalsza strona) tuż nad poziomem 0 (do 8) ← `lunge.fwd`: „Zrób krok w przód i opuść się, aż tylne kolano będzie tuż nad podłogą; odepchnij się przednią nogą do pozycji wyjściowej.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
   - pięta tuż nad poziomem 0 (do 1) ← `lunge.fwd`: „Zrób krok w przód i opuść się, aż tylne kolano będzie tuż nad podłogą; odepchnij się przednią nogą do pozycji wyjściowej.”
-- Uproszczenie ilustracyjne: pozostałe kąty. Długość kroku i ustawienie przedniego podudzia ilustracyjne; z boku nie widać ustawienia kolana w linii palców (widok z przodu).
+- Uproszczenie ilustracyjne: pozostałe kąty. Długość kroku i ustawienie przedniego podudzia ilustracyjne; pozycja „w trakcie” = krok w przód (przednia noga w powietrzu); z boku nie widać ustawienia kolana w linii palców (widok z przodu).
 
 ### Walking Lunges
 
@@ -512,6 +542,8 @@ Widok: z boku; kotwica: przód stopy (dalsza strona); na wzór: Lunges (hantle);
 
 - **pozycja wyjściowa** — t 90, hip 0, knee 0, sh 0, el 0
   - bark – biodro – kostka w jednej linii (±6°) ← `lunge.dbSetup`: „Stań prosto, stopy na szerokość bioder, hantle w opuszczonych rękach.”
+- **w trakcie** — t 85, hip 55/10, knee 94/5, ft -7/0, sh 0, el 0
+  - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
 - **pozycja końcowa** — t 90, hip 80/-3, knee 110/102, ft 0/-80, sh 0, el 0
   - kolano (dalsza strona) tuż nad poziomem 0 (do 8) ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
@@ -540,6 +572,8 @@ Widok: z boku; kotwica: przód stopy; przyrządy: rect, line, line, db, db.
 - **pozycja wyjściowa** — t 90, hip 24/5, knee 10/99, ft 0/209, sh 0, el 0
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
   - kostka (dalsza strona) tuż nad poziomem 24 (do 6) ← `bss.setup`: „Stań tyłem do ławki i oprzyj na niej grzbiet tylnej stopy; przednia stopa wysunięta.”
+- **w trakcie** — t 90, hip 56/19.2, knee 53/130.8, ft 0/210.7, sh 0, el 0
+  - kostka (dalsza strona) tuż nad poziomem 24 (do 6) ← `bss.setup`: „Stań tyłem do ławki i oprzyj na niej grzbiet tylnej stopy; przednia stopa wysunięta.”
 - **pozycja końcowa** — t 90, hip 89/-16, knee 96/140, ft 0/209, sh 0, el 0
   - kolano (dalsza strona) tuż nad poziomem 0 (do 8) ← `bss.move`: „Opuść się, uginając przednie kolano i biodro, aż tylne kolano będzie tuż nad podłogą; wstań, odpychając się przednią nogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
@@ -553,6 +587,8 @@ Widok: z boku; kotwica: przód stopy; przyrządy: rect, db, db.
 - **pozycja wyjściowa** — t 90, hip 90/12, knee 110/13, ft 0/0, sh 0, el 0
   - pięta tuż nad poziomem 26 (do 1) ← `stepup.move`: „Postaw całą stopę na podwyższeniu i wejdź, prostując tę nogę; zejdź kontrolowanie tą samą drogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
+- **w trakcie** — t 90, hip 62/-8, knee 61/59, ft 0/-48, sh 0, el 0
+  - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
 - **pozycja końcowa** — t 90, hip 0/60, knee 0/90, ft 0/-20, sh 0, el 0
   - zgięcie kolana: 0° (±5°) ← `stepup.move`: „Postaw całą stopę na podwyższeniu i wejdź, prostując tę nogę; zejdź kontrolowanie tą samą drogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
@@ -562,25 +598,25 @@ Widok: z boku; kotwica: przód stopy; przyrządy: rect, db, db.
 
 Widok: z boku; kotwica: przód stopy; przyrządy: rect, line, line, plate.
 
-- **pozycja wyjściowa** — t 150, hip 70, knee 135, ft 0, sh 40, el 20
+- **pozycja wyjściowa** — t 150, hip 70, knee 135, ft 0, sh -26, el 83
   - pięta tuż nad poziomem 0 (do 1) ← `ht.setup`: „Oprzyj górną część pleców o krawędź ławki, sztangę połóż na biodrach (najlepiej na podkładce); stopy płasko, kolana ugięte.”
   - bark tuż nad poziomem 24 (do 6) ← `ht.setup`: „Oprzyj górną część pleców o krawędź ławki, sztangę połóż na biodrach (najlepiej na podkładce); stopy płasko, kolana ugięte.”
-- **pozycja końcowa** — t 180, hip -4, knee 114, ft 0, sh 12, el 0
+- **pozycja końcowa** — t 180, hip -4, knee 114, ft 0, sh -26, el 83
   - bark – biodro – kolano w jednej linii (±8°) ← `ht.move`: „Unieś biodra do pełnego wyprostu; opuść je kontrolowanie.”
   - pięta tuż nad poziomem 0 (do 1) ← `ht.setup`: „Oprzyj górną część pleców o krawędź ławki, sztangę połóż na biodrach (najlepiej na podkładce); stopy płasko, kolana ugięte.”
-- Uproszczenie ilustracyjne: pozostałe kąty. Ułożenie dłoni na sztandze i kąt kolan w górnej pozycji ilustracyjne.
+- Uproszczenie ilustracyjne: pozostałe kąty. Dłonie przytrzymują ciężar (ułożenie rąk ilustracyjne); kąt kolan w górnej pozycji ilustracyjny.
 
 ### Hip Thrust (hantel)
 
 Widok: z boku; kotwica: przód stopy; na wzór: Hip Thrust (sztanga); przyrządy: rect, line, line, db.
 
-- **pozycja wyjściowa** — t 150, hip 70, knee 135, ft 0, sh 40, el 20
+- **pozycja wyjściowa** — t 150, hip 70, knee 135, ft 0, sh -24, el 79
   - pięta tuż nad poziomem 0 (do 1) ← `ht.dbSetup`: „Oprzyj górną część pleców o ławkę, stopy płasko na podłodze, hantel na biodrach przytrzymany dłońmi.”
   - bark tuż nad poziomem 24 (do 6) ← `ht.dbSetup`: „Oprzyj górną część pleców o ławkę, stopy płasko na podłodze, hantel na biodrach przytrzymany dłońmi.”
-- **pozycja końcowa** — t 180, hip -4, knee 114, ft 0, sh 12, el 0
+- **pozycja końcowa** — t 180, hip -4, knee 114, ft 0, sh -24, el 79
   - bark – biodro – kolano w jednej linii (±8°) ← `ht.move`: „Unieś biodra do pełnego wyprostu; opuść je kontrolowanie.”
   - pięta tuż nad poziomem 0 (do 1) ← `ht.dbSetup`: „Oprzyj górną część pleców o ławkę, stopy płasko na podłodze, hantel na biodrach przytrzymany dłońmi.”
-- Uproszczenie ilustracyjne: pozostałe kąty. Ułożenie dłoni na sztandze i kąt kolan w górnej pozycji ilustracyjne.
+- Uproszczenie ilustracyjne: pozostałe kąty. Dłonie przytrzymują ciężar (ułożenie rąk ilustracyjne); kąt kolan w górnej pozycji ilustracyjny.
 
 ### Glute Bridge
 
@@ -706,13 +742,13 @@ Widok: z boku; kotwica: biodro; przyrządy: rect, line, line, plate.
 
 Widok: z boku; kotwica: dłoń; przyrządy: rect, line, line.
 
-- **pozycja wyjściowa** — t 88, hip 71, knee 15, ft 44, sh -29, el 0
+- **pozycja wyjściowa** — t 91, hip 58, knee 8, ft 41, sh -13, el 0
   - zgięcie łokcia: 0° (±4°) ← `bdip.setup`: „Oprzyj dłonie o krawędź ławki za sobą, ręce proste, nogi wysunięte w przód.”
   - pięta tuż nad poziomem 0 (do 4) ← `bdip.setup`: „Oprzyj dłonie o krawędź ławki za sobą, ręce proste, nogi wysunięte w przód.”
-- **pozycja końcowa** — t 105, hip 55, knee 0, ft 93, sh -52, el 90
+- **pozycja końcowa** — t 92, hip 74, knee 20, ft 89, sh -52, el 90
   - zgięcie łokcia: 90° (±12°) ← `bdip.move`: „Opuść się, zginając łokcie, do lekkiego rozciągnięcia (mniej więcej kąt prosty w łokciach); wypchnij się do wyprostu.”
   - pięta tuż nad poziomem 0 (do 4) ← `bdip.setup`: „Oprzyj dłonie o krawędź ławki za sobą, ręce proste, nogi wysunięte w przód.”
-- Uproszczenie ilustracyjne: pozostałe kąty. Nogi wyprostowane w przód, pięty na podłodze (wariant średni z bdip.easier).
+- Uproszczenie ilustracyjne: pozostałe kąty. Nogi wyprostowane w przód, pięty na podłodze w jednym miejscu (wariant średni z bdip.easier); biodra blisko krawędzi ławki.
 
 ### Lateral Raise (hantle)
 
@@ -800,11 +836,11 @@ Widok: z boku; kotwica: przód stopy; na wzór: Standing Calf Raise; przyrządy:
 
 Widok: z boku; kotwica: biodro; przyrządy: line, line, line, plank.
 
-- **pozycja wyjściowa** — t 130, hip 90, knee 5, ft 135, sh 0, el 0
+- **pozycja wyjściowa** — t 138, hip 70, knee 6, ft 110, sh 0, el 0
   - zgięcie kolana: 5° (±6°) ← `lp.noLock`: „Na górze nie blokuj kolan w przeproście.”
-- **pozycja końcowa** — t 130, hip 132, knee 73, ft 135, sh 0, el 0
+- **pozycja końcowa** — t 138, hip 114, knee 89, ft 110, sh 0, el 0
   - zgięcie kolana: 95° (±30°) ← `lp.move`: „Wypchnij platformę, prostując biodra i kolana; opuść ją powoli, uginając nogi.”
-- Uproszczenie ilustracyjne: pozostałe kąty. Kąt oparcia i prowadnicy (45°) ilustracyjny; platforma przesuwa się wzdłuż prowadnicy. Stopy płasko na platformie (lp.heels).
+- Uproszczenie ilustracyjne: pozostałe kąty. Kąt oparcia i prowadnicy ilustracyjny; platforma przesuwa się wzdłuż prowadnicy, prostopadle do swojej powierzchni. Stopy płasko na platformie (lp.heels).
 
 ### Calf Press (leg press)
 
