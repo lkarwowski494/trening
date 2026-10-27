@@ -647,12 +647,12 @@
     "źródło cytowane w tekście"
    ],
    "zrodla": [
-    "Helms i in. 2016 (Strength Cond J 38(4):42–49, PMC4961270)"
+    "Helms i in. 2016 (Strength Cond J 38(4):42–49, PMC4961270): INTRODUCTION „scores of 5–6 were grouped as 4–6 RIR”; INCORPORATING THE SCALE INTO PROGRAMMING „3–4 RPE = light effort” (odczyt 2026-10-27)"
    ],
-   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
-   "fraza": "Helms i in. 2016",
-   "uwaga": "Opis skali RIR/RPE według jej autorów (definicja skali, nie wynik badań nad skutkami) — jedno źródło wystarcza dla definicji; zgodne z RIR_MAX = 5, RPE_LIGHT = 4.",
-   "przeglad": "21.10.2026: badacz-merytoryczny — Helms i in. 2016 (Z11): opisy RIR dla 5–10, opisy wysiłku dla 1–4; RPE 3–4 = light effort; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
+   "fraza": "T-041 — skala RIR",
+   "uwaga": "Opis skali RIR/RPE według jej autorów (definicja skali, nie wynik badań nad skutkami) — jedno źródło wystarcza dla definicji. Od 27.10.2026 (M1-audytor-generalny-020, DEC-04 a): RIR_MAX = 6, RPE_RIR_MIN = 5, RPE_LIGHT = 4 — źródło grupuje 4–6 RIR przy RPE 5–6; wcześniejszy przegląd (21.10, RIR_MAX = 5) w docs/research/przeglad-badacza-2026-10-21b.md.",
+   "przeglad": "21.10.2026: badacz-merytoryczny — Helms i in. 2016 (Z11): opisy RIR dla 5–10, opisy wysiłku dla 1–4; RPE 3–4 = light effort; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18) | 27.10.2026: 06-tresci (fix, M1-audytor-generalny-020) — pełny tekst Helms 2016 otwarty (Europe PMC), cytat o grupie 4–6 RIR przy RPE 5–6 sprawdzony dosłownie; parametry RIR_MAX 6, RPE_RIR_MIN 5, RPE_LIGHT 4; brzmienie tekstu bez zmian; docs/research/przeglad-tresci-2026-10-27.md"
   },
   {
    "id": "T-042",

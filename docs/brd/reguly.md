@@ -20,20 +20,28 @@ Wektory są uruchamiane na prawdziwych funkcjach aplikacji w `tests/audit-m1-044
 | RD-01-W5 | -5 | 5 | 0 | 0 | błąd | rachunek: ciężar ≤ 0 daje 0 |
 
 ### RD-02: Skala RIR a RPE
-- Wzór: `RIR = 10 − RPE` dla RPE od 5 do 10 (RIR od 0 do 5); RPE poniżej 5 w skali RIR to „lekko” (RIR 6+), zapisywane jako RPE 4
+- Wzór: wyświetlanie `RIR = 10 − RPE` dla RPE od 5 do 10 (RIR od 0 do 5); RPE poniżej 5 w skali RIR to „lekko” (RIR 7+). Wpis: RIR od 0 do 5 → `RPE = 10 − RIR`; RIR powyżej 5 do 6 → RPE 5; RIR powyżej 6 → RPE 4 („lekko”)
 - Jednostki: RPE [-], RIR [-]
-- Granica: RPE ≥ 5 (włącznie) przelicza się na RIR 0–5; RIR powyżej 5 = „lekko”
-- Podstawa: S-01, S-02
+- Granica: RPE ≥ 5 (włącznie) przelicza się na RIR 0–5; wpis RIR ≤ 6 (włącznie) przelicza się na RPE 5–10; RIR powyżej 6 = „lekko”
+- Podstawa: S-01, S-02, S-04
 - Krytyczna: nie
-- Uproszczenie: dane zawsze w RPE, RIR to sposób wyświetlenia i wpisu (`lib/state/effort.ts`); granica „lekko” z zapisu audytu kontrolnego 1 (MER2-08).
+- Uproszczenie: dane zawsze w RPE, RIR to sposób wyświetlenia i wpisu (`lib/state/effort.ts`). Źródło grupuje 4–6 RIR przy RPE 5–6 (S-04), więc RIR 6 zapisuje się jako najniższe RPE tego przedziału (5) i wraca na ekran jako RIR 5; granica „lekko” od RIR 7 — M1-audytor-generalny-020 (DEC-04 a, 27.10.2026). Dane zapisane wcześniej (RPE 4) się nie zmieniają.
 
 | ID | RPE [-] | Oczekiwane: RIR [-] | Tolerancja | Rodzaj | Pochodzenie |
 |---|---|---|---|---|---|
 | RD-02-W1 | 8 | 2 | 0 | typowy | rachunek: 10 − 8 |
 | RD-02-W2 | 5 | 5 | 0 | granica | rachunek: 10 − 5; najniższe RPE przeliczane na RIR |
-| RD-02-W3 | 4,5 | 6 | 0 | poniżej | S-02: poniżej RPE 5 opisy słowne („lekko”); wartość 6 = RIR_MAX + 1 (pokazywane „6+”) |
+| RD-02-W3 | 4,5 | 7 | 0 | poniżej | S-02: poniżej RPE 5 opisy słowne („lekko”); wartość 7 = RIR_MAX + 1 (pokazywane „7+”) |
 | RD-02-W4 | 10 | 0 | 0 | powyżej | rachunek: 10 − 10 |
 | RD-02-W5 | 11 | 0 | 0 | błąd | rachunek: wartość poza skalą 1–10 ograniczona do zakresu (RIR 0) |
+
+| ID | RIR [-] | Oczekiwane: RPE [-] | Tolerancja | Rodzaj | Pochodzenie |
+|---|---|---|---|---|---|
+| RD-02-W6 | 2 | 8 | 0 | typowy | rachunek: 10 − 2 |
+| RD-02-W7 | 6 | 5 | 0 | granica | S-04: 4–6 RIR w przedziale RPE 5–6; RIR 6 = najniższe RPE przedziału |
+| RD-02-W8 | 5,5 | 5 | 0 | poniżej | S-04: przedział 4–6 RIR; RPE nie schodzi poniżej 5 |
+| RD-02-W9 | 7 | 4 | 0 | powyżej | S-02: więcej niż 6 RIR = „lekko” (RPE 4, górna granica „light effort”) |
+| RD-02-W10 | -3 | 10 | 0 | błąd | rachunek: wartość ujemna ograniczona do RPE 10 (RIR 0) |
 
 ### RD-03: Porzucony trening w toku
 - Wzór: pytanie, gdy `bezczynność ≥ 2 h`; ciche zakończenie, gdy `bezczynność ≥ 6 h` (bezczynność = czas od ostatniej odhaczonej serii lub startu)

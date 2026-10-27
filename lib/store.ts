@@ -46,7 +46,7 @@ export const {
   getNewerSchema, markDraft, isDraftObj, save, saveCfg, getState, useStore, useTick, usePrefsTick, getHistRev, getRev, refreshViews,
   useForegroundTick, useHistTick, useCfgTick, memoHist, memoHistBy, setTimerState, isReadyForTests, __resetForTests
 } = coreMod;
-export const { effortScale, effortLabel, RPE_MIN, RPE_MAX, RIR_MAX, RPE_LIGHT, effortOut, effortText, effortIn, effortField } = effortMod;
+export const { effortScale, effortLabel, RPE_MIN, RPE_MAX, RIR_MAX, RPE_LIGHT, RPE_RIR_MIN, effortOut, effortText, effortIn, effortField } = effortMod;
 export const {
   exById, bandById, isBW, repsOf, loadOf, shownLoad, setLoad, loadFieldValue, writeLoad, effectiveLoad, exMult, isWorking, workCount, workSetCount,
   workingSets, setVolume, blockMult, volOf, loadLabelShort, loadLabel, restFor, bandColor, shortBand, bandA11y, setSummary, setScore, setHasValue,

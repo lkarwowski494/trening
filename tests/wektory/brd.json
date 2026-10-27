@@ -109,11 +109,11 @@
       "RPE [-]": 4.5
     },
     "oczekiwane": {
-      "RIR [-]": 6
+      "RIR [-]": 7
     },
     "tolerancja": 0,
     "rodzaj": "poniżej",
-    "pochodzenie": "S-02: poniżej RPE 5 opisy słowne („lekko”); wartość 6 = RIR_MAX + 1 (pokazywane „6+”)",
+    "pochodzenie": "S-02: poniżej RPE 5 opisy słowne („lekko”); wartość 7 = RIR_MAX + 1 (pokazywane „7+”)",
     "miejsce": "docs/brd/reguly.md:34"
   },
   {
@@ -145,6 +145,76 @@
     "miejsce": "docs/brd/reguly.md:36"
   },
   {
+    "regula": "RD-02",
+    "id": "RD-02-W6",
+    "wejscie": {
+      "RIR [-]": 2
+    },
+    "oczekiwane": {
+      "RPE [-]": 8
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: 10 − 2",
+    "miejsce": "docs/brd/reguly.md:40"
+  },
+  {
+    "regula": "RD-02",
+    "id": "RD-02-W7",
+    "wejscie": {
+      "RIR [-]": 6
+    },
+    "oczekiwane": {
+      "RPE [-]": 5
+    },
+    "tolerancja": 0,
+    "rodzaj": "granica",
+    "pochodzenie": "S-04: 4–6 RIR w przedziale RPE 5–6; RIR 6 = najniższe RPE przedziału",
+    "miejsce": "docs/brd/reguly.md:41"
+  },
+  {
+    "regula": "RD-02",
+    "id": "RD-02-W8",
+    "wejscie": {
+      "RIR [-]": 5.5
+    },
+    "oczekiwane": {
+      "RPE [-]": 5
+    },
+    "tolerancja": 0,
+    "rodzaj": "poniżej",
+    "pochodzenie": "S-04: przedział 4–6 RIR; RPE nie schodzi poniżej 5",
+    "miejsce": "docs/brd/reguly.md:42"
+  },
+  {
+    "regula": "RD-02",
+    "id": "RD-02-W9",
+    "wejscie": {
+      "RIR [-]": 7
+    },
+    "oczekiwane": {
+      "RPE [-]": 4
+    },
+    "tolerancja": 0,
+    "rodzaj": "powyżej",
+    "pochodzenie": "S-02: więcej niż 6 RIR = „lekko” (RPE 4, górna granica „light effort”)",
+    "miejsce": "docs/brd/reguly.md:43"
+  },
+  {
+    "regula": "RD-02",
+    "id": "RD-02-W10",
+    "wejscie": {
+      "RIR [-]": -3
+    },
+    "oczekiwane": {
+      "RPE [-]": 10
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "rachunek: wartość ujemna ograniczona do RPE 10 (RIR 0)",
+    "miejsce": "docs/brd/reguly.md:44"
+  },
+  {
     "regula": "RD-03",
     "id": "RD-03-W1",
     "wejscie": {
@@ -157,7 +227,7 @@
     "tolerancja": 0,
     "rodzaj": "typowy",
     "pochodzenie": "D-008: poniżej 2 h bez pytania",
-    "miejsce": "docs/brd/reguly.md:48"
+    "miejsce": "docs/brd/reguly.md:56"
   },
   {
     "regula": "RD-03",
@@ -172,7 +242,7 @@
     "tolerancja": 0,
     "rodzaj": "granica",
     "pochodzenie": "D-008: 2 h włącznie",
-    "miejsce": "docs/brd/reguly.md:49"
+    "miejsce": "docs/brd/reguly.md:57"
   },
   {
     "regula": "RD-03",
@@ -187,7 +257,7 @@
     "tolerancja": 0,
     "rodzaj": "poniżej",
     "pochodzenie": "D-008: tuż poniżej 2 h",
-    "miejsce": "docs/brd/reguly.md:50"
+    "miejsce": "docs/brd/reguly.md:58"
   },
   {
     "regula": "RD-03",
@@ -202,7 +272,7 @@
     "tolerancja": 0,
     "rodzaj": "powyżej",
     "pochodzenie": "D-008: między 2 h a 6 h tylko pytanie",
-    "miejsce": "docs/brd/reguly.md:51"
+    "miejsce": "docs/brd/reguly.md:59"
   },
   {
     "regula": "RD-03",
@@ -217,7 +287,7 @@
     "tolerancja": 0,
     "rodzaj": "granica",
     "pochodzenie": "D-008: 6 h włącznie",
-    "miejsce": "docs/brd/reguly.md:52"
+    "miejsce": "docs/brd/reguly.md:60"
   },
   {
     "regula": "RD-03",
@@ -232,7 +302,7 @@
     "tolerancja": 0,
     "rodzaj": "poniżej",
     "pochodzenie": "D-008: tuż poniżej 6 h trening nie kończy się sam",
-    "miejsce": "docs/brd/reguly.md:53"
+    "miejsce": "docs/brd/reguly.md:61"
   },
   {
     "regula": "RD-03",
@@ -247,7 +317,7 @@
     "tolerancja": 0,
     "rodzaj": "błąd",
     "pochodzenie": "D-008: godzina ostatniej serii z przyszłości jest niewiarygodna — aplikacja pyta od razu, ale nie zapisuje sama (`lib/state/finish.ts`, T6)",
-    "miejsce": "docs/brd/reguly.md:54"
+    "miejsce": "docs/brd/reguly.md:62"
   },
   {
     "regula": "RD-04",
@@ -263,7 +333,7 @@
     "tolerancja": 0,
     "rodzaj": "typowy",
     "pochodzenie": "rachunek: 3 × 1 i 3 × 0,5",
-    "miejsce": "docs/brd/reguly.md:66"
+    "miejsce": "docs/brd/reguly.md:74"
   },
   {
     "regula": "RD-04",
@@ -279,7 +349,7 @@
     "tolerancja": 0,
     "rodzaj": "granica",
     "pochodzenie": "rachunek: brak serii",
-    "miejsce": "docs/brd/reguly.md:67"
+    "miejsce": "docs/brd/reguly.md:75"
   },
   {
     "regula": "RD-04",
@@ -295,7 +365,7 @@
     "tolerancja": 0,
     "rodzaj": "typowy",
     "pochodzenie": "rachunek: rozgrzewka nie wchodzi do liczenia",
-    "miejsce": "docs/brd/reguly.md:68"
+    "miejsce": "docs/brd/reguly.md:76"
   },
   {
     "regula": "RD-04",
@@ -311,6 +381,6 @@
     "tolerancja": 0,
     "rodzaj": "typowy",
     "pochodzenie": "rachunek: 1 × 1 i 1 × 0,5",
-    "miejsce": "docs/brd/reguly.md:69"
+    "miejsce": "docs/brd/reguly.md:77"
   }
 ]
