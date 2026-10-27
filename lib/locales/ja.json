@@ -1710,5 +1710,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "セット：1種目{s}セット — 少なくとも{m}セットは行いましょう。セット数を増やすと通常は少し効果が上がりますが、増やすほど上がり幅は小さくなります。",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "{d} {s} のトレーニングは {h} 時間操作がなかったため、自動で保存されました。終了時刻：{e}（最後のセット）。「プラン」タブで確認できます。",
  "Aktualny plan": "現在のプラン",
- "Zmień plan": "プランを変更"
+ "Zmień plan": "プランを変更",
+ "Plan: miesięczny": "プラン：月額",
+ "Plan: roczny": "プラン：年額"
 }

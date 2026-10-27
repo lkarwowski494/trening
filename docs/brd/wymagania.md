@@ -706,7 +706,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Posiadany plan subskrypcji
     - Zakładając, że użytkownik ma aktywną subskrypcję (miesięczną albo roczną)
     - Gdy otwiera ekran zakupu
-    - Wtedy nie czyta wstępu o darmowych dniach, karta „Masz pełną wersję” podaje nazwę jego planu i datę, posiadany plan jest oznaczony „Aktualny plan” i nie da się go wybrać ani kupić drugi raz, a pozostałe plany zostają jako zmiana planu („Zmień plan”) z informacją o automatycznym odnawianiu
+    - Wtedy nie czyta wstępu o darmowych dniach, karta „Masz pełną wersję” podaje jego plan jako „Plan: miesięczny” albo „Plan: roczny” (nie poetycką nazwę planu; decyzja właściciela 27.10.2026, docs/18) i datę, posiadany plan jest oznaczony „Aktualny plan” i nie da się go wybrać ani kupić drugi raz, a pozostałe plany zostają jako zmiana planu („Zmień plan”) z informacją o automatycznym odnawianiu
 
 ### BR-PRV-001: Zastrzeżenie medyczne widoczne w aplikacji
 - Przepływ: PR-01

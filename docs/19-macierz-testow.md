@@ -11,7 +11,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 |---|---|---|---|
 | EKRAN | 32 | 32 | 0 |
 | UI | 354 | 354 | 0 |
-| TEKST | 1066 | 1066 | 0 |
+| TEKST | 1068 | 1068 | 0 |
 | LOGIKA | 1040 | 1040 | 0 |
 | WYMIAR | 145 | 145 | 0 |
 
@@ -987,7 +987,9 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Plan tygodnia i Kalendarz | lib/guide.ts | tests/guide.test.tsx |
 | Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian. | components/OwnPlan.tsx | tests/plan-own-templates-ui.test.tsx |
 | Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu | components/WeekStacks.tsx | tests/postep-tygodnia-zmiana-planu.test.tsx |
-| Plan: {name} | app/paywall.tsx | tests/deload-week.test.tsx, tests/guide.test.tsx, tests/home-b.test.tsx +4 |
+| Plan: {name} | components/TodayPlan.tsx | tests/deload-week.test.tsx, tests/guide.test.tsx, tests/home-b.test.tsx +4 |
+| Plan: miesięczny | app/paywall.tsx | tests/subscription-ui.test.tsx |
+| Plan: roczny | app/paywall.tsx | tests/subscription-ui.test.tsx |
 | Plik jest pusty. Dane nie zostały zmienione. | app/more/import.tsx | tests/csv-import-ui.test.tsx |
 | Plik jest za duży. Dane nie zostały zmienione. | app/more/import.tsx | tests/csv-import-ui.test.tsx |
 | Plik ma schemat {a}, a ta wersja obsługuje do {b}. Zaktualizuj aplikację. | lib/backup.ts | tests/audit-0.10-plan.test.ts, tests/matrix-data-fuzz.test.ts, tests/matrix-ui.test.tsx |

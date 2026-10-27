@@ -76,7 +76,7 @@ export default function PaywallScreen() {
 
       {view.active ? <View testID="paywall-owned" accessible accessibilityLanguage={lang()} style={{ borderWidth: 1, borderColor: th.line, borderRadius: RADIUS.group, padding: 12, gap: 4, marginBottom: 12, backgroundColor: th.surface }}>
         <Text accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{lifetime ? t('Masz dostęp na zawsze') : t('Masz pełną wersję')}</Text>
-        {!lifetime && SUBSCRIPTION_PLANS.includes(view.active.plan) ? <Muted testID="paywall-owned-plan">{t('Plan: {name}', { name: planName(view.active.plan) })}</Muted> : null}
+        {!lifetime && SUBSCRIPTION_PLANS.includes(view.active.plan) ? <Muted testID="paywall-owned-plan">{view.active.plan === 'yearly' ? t('Plan: roczny') : t('Plan: miesięczny')}</Muted> : null}
         {view.active.source === 'family' ? <Muted>{t('Dostęp z Chmury rodzinnej')}</Muted> : null}
         {!lifetime && view.active.expiresAt != null ? <Muted>{view.active.source === 'code' ? t('Dostęp z kodu do {date}', { date: fmtDate(view.active.expiresAt) }) : t('Dostęp do {date}', { date: fmtDate(view.active.expiresAt) })}</Muted> : null}
         {lifetime && subActive ? <Muted>{t('Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płacić podwójnie.')}</Muted> : null}

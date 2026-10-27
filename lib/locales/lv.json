@@ -1710,5 +1710,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Sērijas: {s} uz vingrinājumu — vērts veikt vismaz {m}; vairāk sēriju parasti dod nedaudz vairāk, taču ieguvums samazinās.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Treniņš no {d} {s} {h} stundas nebija aktīvs, tāpēc tika saglabāts automātiski. Beigas: {e} (pēdējā sērija). Atradīsiet to cilnē Plāns.",
  "Aktualny plan": "Pašreizējais plāns",
- "Zmień plan": "Mainīt plānu"
+ "Zmień plan": "Mainīt plānu",
+ "Plan: miesięczny": "Plāns: mēneša",
+ "Plan: roczny": "Plāns: gada"
 }

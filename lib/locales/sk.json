@@ -1710,5 +1710,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Série: {s} na cvik — oplatí sa urobiť aspoň {m}; viac sérií zvyčajne prinesie o niečo viac, no s každou ďalšou prínos klesá.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Tréning z {d} {s} nemal aktivitu {h} hodín, preto sa uložil sám. Koniec: {e} (posledná séria). Nájdete ho na karte Plán.",
  "Aktualny plan": "Aktuálny plán",
- "Zmień plan": "Zmeniť plán"
+ "Zmień plan": "Zmeniť plán",
+ "Plan: miesięczny": "Plán: mesačný",
+ "Plan: roczny": "Plán: ročný"
 }

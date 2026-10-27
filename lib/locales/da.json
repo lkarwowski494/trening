@@ -1710,5 +1710,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Sæt: {s} pr. øvelse. Det er værd at lave mindst {m}; flere sæt giver som regel lidt mere, men gevinsten aftager.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Træningen fra {d} {s} havde ingen aktivitet i {h} timer, så den blev gemt automatisk. Slut: {e} (sidste sæt). Du finder den under fanen Plan.",
  "Aktualny plan": "Nuværende plan",
- "Zmień plan": "Skift plan"
+ "Zmień plan": "Skift plan",
+ "Plan: miesięczny": "Plan: månedlig",
+ "Plan: roczny": "Plan: årlig"
 }

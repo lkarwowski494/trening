@@ -1710,5 +1710,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Serie: {s} per esercizio. Conviene farne almeno {m}; più serie di solito danno un po’ di più, ma con benefici decrescenti.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "L’allenamento del {d} {s} è rimasto fermo per {h} ore, quindi è stato salvato in automatico. Fine: {e} (ultima serie). Lo trovi nella scheda Piano.",
  "Aktualny plan": "Piano attuale",
- "Zmień plan": "Cambia piano"
+ "Zmień plan": "Cambia piano",
+ "Plan: miesięczny": "Piano: mensile",
+ "Plan: roczny": "Piano: annuale"
 }

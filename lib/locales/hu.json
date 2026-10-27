@@ -1710,5 +1710,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Sorozatok: gyakorlatonként {s} — érdemes legalább {m} sorozatot végezni; több sorozat általában valamivel többet hoz, de egyre kisebb pluszt.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "A(z) {d} {s} edzésen {h} órája nem volt aktivitás, ezért automatikusan elmentődött. Vége: {e} (utolsó sorozat). Megtalálja a Terv fülön.",
  "Aktualny plan": "Jelenlegi csomag",
- "Zmień plan": "Csomagváltás"
+ "Zmień plan": "Csomagváltás",
+ "Plan: miesięczny": "Csomag: havi",
+ "Plan: roczny": "Csomag: éves"
 }

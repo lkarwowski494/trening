@@ -1710,5 +1710,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Series: {s} por ejercicio. Conviene hacer al menos {m}; más series suelen dar algo más, aunque cada vez menos.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "El entreno del {d} {s} estuvo {h} horas sin actividad, así que se guardó solo. Fin: {e} (última serie). Lo encontrarás en la pestaña Plan.",
  "Aktualny plan": "Plan actual",
- "Zmień plan": "Cambiar de plan"
+ "Zmień plan": "Cambiar de plan",
+ "Plan: miesięczny": "Plan: mensual",
+ "Plan: roczny": "Plan: anual"
 }
