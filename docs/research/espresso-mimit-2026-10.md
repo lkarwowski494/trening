@@ -18,3 +18,8 @@ na danych MIMIT (włoskie Ministerstwo Przedsiębiorstw i Made in Italy); kilka 
 **Otwarte:** oryginalna tabela MIMIT nieprzeczytana (strona Osservatorio prezzi niedostępna 21.10.2026), więc miesiąc danych i liczba prowincji nieznane;
 ceny planu miesięcznego we wszystkich krajach — po przebiegu kontroli App Store Connect (koordynator), do sprawdzenia, czy nigdzie nie odbiegają
 znacząco w górę od ok. 1 €.
+
+**Sprawdzenie cen we wszystkich krajach (DEC-07 b, 27.10.2026; 02-monetyzacja-506):** krok **Z-10b** w `docs/48-zgloszenie-1-0.md` przed zgłoszeniem 1.0 —
+właściciel eksportuje z App Store Connect ceny planu miesięcznego we wszystkich krajach, agent przelicza je na EUR (kurs EBC z dnia) i porównuje z 1,51 €.
+Wynik (data, kurs, lista krajów powyżej progu albo „brak”) dopisać tutaj. Decyzja z 13.10.2026 o osobnym punkcie cenowym dla Ukrainy zamknięta jako zastąpiona (docs/18):
+przy brzmieniu „porównywalnej” wystarcza ten próg. Stan: **[OTWARTE] — czeka na eksport właściciela.**
