@@ -6,28 +6,14 @@
 import { readFileSync, writeFileSync, appendFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { waliduj, htmlPodgladu, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
-import { zgodnoscManifestu, wczytajTeksty, wierszeWJednejLinii } from '../v2-jakosc.mjs';
+import { waliduj, podgladPartia, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
+import { zgodnoscManifestu, wczytajTeksty } from '../v2-jakosc.mjs';
 import { opisCwiczenia, silnikCatalog } from '../gemini-polecenia.mjs';
 import { regulyDla } from '../v2-sens.mjs';
-import { silnik } from './model.mjs';
-import { createRequire } from 'node:module';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const arg = (n, d) => { const i = process.argv.indexOf('--' + n); return i >= 0 ? process.argv[i + 1] : d; };
 const flag = (n) => process.argv.includes('--' + n);
-
-/** Podglądy partii póz jedną przeglądarką: zrzut PNG na pozę; zwraca { ćwiczenie: ścieżka PNG }. */
-async function podgladPartia(poze, dir, motyw = 'light') {
-  const wynik = {}; mkdirSync(dir, { recursive: true });
-  let chromium = null; try { chromium = createRequire(import.meta.url)('playwright').chromium; } catch { /* bez przeglądarki: tylko HTML */ }
-  const browser = chromium ? await chromium.launch() : null; const page = browser ? await browser.newPage({ viewport: { width: 1400, height: 700 } }) : null;
-  for (const [cw, poza] of Object.entries(poze)) {
-    const { html } = htmlPodgladu(poza, motyw); const nazwa = join(dir, `${poza.cwiczenie.replace(/\W+/g, '-')}-${motyw}`); writeFileSync(nazwa + '.html', html);
-    if (page) { await page.setContent(html); const szer = await page.evaluate(() => document.documentElement.scrollWidth); await page.setViewportSize({ width: Math.max(1400, szer), height: 700 }); const pomiar = await page.evaluate(() => [...document.querySelectorAll('.w')].map((w) => ({ etykieta: w.dataset.etykieta, dolne: [...w.querySelectorAll('.k')].map((k) => k.getBoundingClientRect().bottom) }))); const uklad = wierszeWJednejLinii(pomiar); if (uklad.length) throw new Error(`podgląd ${poza.cwiczenie}: ${uklad.join('; ')}`); await page.screenshot({ path: nazwa + '.png', fullPage: true }); wynik[cw] = nazwa + '.png'; } else wynik[cw] = nazwa + '.html';
-  }
-  if (browser) await browser.close(); return wynik;
-}
 
 async function main() {
   const rodzina = arg('rodzina'); if (!rodzina) throw new Error('wymagane: --rodzina');
@@ -56,12 +42,12 @@ async function main() {
     const catalog = silnikCatalog(); const manifest = { rodzina, wygenerowano: new Date().toISOString(), wyjatki: mod.WYJATKI ?? {}, przyblizenia: mod.PRZYBLIZENIA ?? {}, bledy_pominiete: mod.POMINIETE_BLEDY ?? {}, pytania_recenzenta: 'patrz docs/53 (bramka 4)', cwiczenia: [] };
     let obrazy = {}; try { obrazy = await podgladPartia(poze, dir, 'light'); } catch (e) { console.log(`podglądy: ${e.message}`); }
     for (const [cw, poza] of Object.entries(poze)) {
-      const png = obrazy[cw] ?? null;
+      const png = obrazy[cw]?.plik ?? null;
       const op = opisCwiczenia(cw, { root: ROOT, bledyCwiczenia, catalog, rodzina });
-      manifest.cwiczenia.push({ cwiczenie: cw, obraz: png ? png.split('/').pop() : null, sprzet: poza.sprzet, klatki_u: poza.klatki.map((k) => k.u), klatki_na_obrazie: htmlPodgladu(poza, 'light').klatki, bledy_w_pozie: poza.bledy.map((b) => b.cue), bledy_wskazowki_id: bledyCwiczenia(cw, ROOT), opis: { sens: op.sens, ruch: op.ruch, bledy_wskazowki: op.bledy }, reguly_sensu: regulyDla(rodzina, cw, ROOT).map((r) => r.id), przyblizenie: mod.PRZYBLIZENIA?.[cw] ?? null });
+      manifest.cwiczenia.push({ cwiczenie: cw, obraz: png ? png.split('/').pop() : null, sprzet: poza.sprzet, klatki_u: poza.klatki.map((k) => k.u), klatki_na_obrazie: obrazy[cw]?.klatki, bledy_w_pozie: poza.bledy.map((b) => b.cue), bledy_wskazowki_id: bledyCwiczenia(cw, ROOT), opis: { sens: op.sens, ruch: op.ruch, bledy_wskazowki: op.bledy }, reguly_sensu: regulyDla(rodzina, cw, ROOT).map((r) => r.id), przyblizenie: mod.PRZYBLIZENIA?.[cw] ?? null });
     }
     if (tylko) { const pod = (o) => Object.fromEntries(Object.entries(o ?? {}).filter(([k]) => tylko.includes(k))); manifest.wyjatki = pod(manifest.wyjatki); manifest.przyblizenia = pod(manifest.przyblizenia); }
-    manifest.wyjatki_opisu = mod.WYJATKI_OPISU ?? {}; const uwagi = zgodnoscManifestu(manifest, wczytajTeksty(ROOT), manifest.wyjatki_opisu); manifest.zgodnosc_manifestu = uwagi;
+    manifest.wyjatki_opisu = mod.WYJATKI_OPISU ?? {}; const uwagi = [...zgodnoscManifestu(manifest, wczytajTeksty(ROOT), manifest.wyjatki_opisu), ...Object.entries(obrazy).flatMap(([cw, o]) => o.uwagi.map((szczegol) => ({ regula: 'manifest_klatki', szczegol: `${cw}: ${szczegol}` })))]; manifest.zgodnosc_manifestu = uwagi;
     if (uwagi.length) { console.log('NIEZGODNOŚĆ MANIFESTU Z OBRAZEM:'); for (const u of uwagi) console.log(`  [${u.regula}] ${u.szczegol}`); process.exitCode = 1; }
     writeFileSync(join(dir, 'manifest.json'), JSON.stringify(manifest, null, 1) + '\n'); console.log(`podglądy + manifest: ${dir}`);
   }
