@@ -145,6 +145,9 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 ### Backlog 1.0.1 — przekład (recenzja Z-02, 27.10.2026)
 - Poprawki nieblokujące z recenzji lokalizacji (`docs/przekazanie/notatki/audyt-1-0/Z02-recenzja-lokalizacji.md` na gałęzi `przekazanie-konta`): de „Apple-Account” → „Apple Account” (do sprawdzenia przez native speakera); el „Το Pro αίρει το όριο” → „Με το Pro δεν υπάρχει όριο” oraz okno zgody Zdrowia (NSHealth*) na „σας”; lt „nepadarysi” → „nepadarysite” i „pakeistum” → „pakeistumėte”; cs/sk „máš” → „máte” (2 klucze w każdym języku); id zgoda Zdrowia zegarka „perangkatmu” → „perangkat Anda”; słownik: es-419 „trening” → „Entrenamiento”, zakazane „entreno” (najpierw sprawdzić 4 wystąpienia; wpis z testem).
 
+### Backlog 1.1 — architektura (plan napraw M2, 28.10.2026)
+- **Podział plików źródłowych ponad 20 KB** (M1-audytor-generalny-035; 05-architekt-004): `lib/seed.ts`, `lib/plan.ts`, `lib/generator.ts`, `lib/equipment.ts`, `lib/stats.ts`, `components/ActiveWorkout.tsx`, `lib/edit.ts`, `components/WorkoutBlocks.tsx`, `app/template/[id].tsx`, `components/ui.tsx`, `lib/state/migrate.ts` i inne z listy wyjątków `tests/architecture-limits.test.ts` — dzielone przy najbliższej zmianie danego pliku w 1.1 (nie przed 1.0: zamrożenie zakresu, ryzyko regresji); nowy plik ponad limit już dziś blokuje verify (strażnik z listą wyjątków).
+
 ### Backlog bez priorytetu (decyzja właściciela 08.10.2026)
 Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właściciel nie poprosi o listę (CLAUDE.md).
 - Wydanie natywne — sekcja 4n niżej (przyciski przerwy na ekranie blokady, widżet, kontrolka w Centrum sterowania).
