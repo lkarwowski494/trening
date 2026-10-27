@@ -23,5 +23,7 @@ export const GENERIC_REFERENCE_PATTERNS: readonly string[] = [
   'health and training (?:guidelines|recommendations)', 'follows (?:health|training)', 'systematic review', 'scientific (?:studies|organi[sz]ations)', 'guidelines',
   /* 25.10.2026 (druga decyzja właściciela): słowa ogólne, które w tekście przywołują autorytet („dowody”, „badania”, „eksperci”, „trenerzy i zawodnicy”) — PL i EN */
   'dowod(?:u|y|ów|em|ach|ami|om)?(?![\\p{L}])', 'dowód(?![\\p{L}])', 'badani(?:a|ach|ami|om)(?![\\p{L}])', 'badań(?![\\p{L}])', 'naukow(?:cy|ców|com|cami|y|a|e|ych|ymi)(?![\\p{L}])', 'ekspert(?:y|ów|om|ami|ach)?(?![\\p{L}])', 'trenerzy i zawodnicy', 'trenerów i zawodników',
+  /* 26.10.2026 (audyt 1.0, C-1): samo słowo „źródło/source” w tekście publicznym (np. „wskazówki ze źródeł”, „sourced technique cues”) — też odwołanie do podstaw wiedzy */
+  'źródł(?:o|a|u|em|ach|ami|om|owy|owa|owe)(?![\\p{L}])', 'źródeł(?![\\p{L}])', 'źródle(?![\\p{L}])', '(?<!open[ -])sources?(?![\\p{L}])', 'sourced(?![\\p{L}])',
   'evidence(?![\\p{L}])', 'studies(?![\\p{L}])', 'research(?:ers?)?(?![\\p{L}])', 'experts?(?![\\p{L}])', 'scientists?(?![\\p{L}])', 'coaches and athletes',
 ];

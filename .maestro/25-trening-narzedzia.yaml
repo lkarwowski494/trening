@@ -82,6 +82,8 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - scrollUntilVisible: { element: "Bent Over Row \\(Dumbbell\\)", direction: UP, timeout: 30000 }
 # E2E 39702654990: nagłówek bloku po przewinięciu leży na górnej krawędzi (ex-1 [16,-19][386,30]) i przesunięcie trafiało pod pasek statusu — zsuwamy listę w dół
 - swipe: { start: "50%, 35%", end: "50%, 75%", duration: 400 }
+# E2E 40309850938: po zsunięciu listy do góry blok ex-1 (pod blokiem pierwszego ćwiczenia) bywa poniżej ekranu i nie ma go w hierarchii — przewijamy do niego i środkujemy
+- scrollUntilVisible: { element: { id: "ex-1" }, direction: DOWN, timeout: 30000, centerElement: true }
 - swipe: { from: { id: "ex-1" }, direction: LEFT, duration: 400 }
 - runFlow:
     when: { visible: { id: "ex-1-del" } }

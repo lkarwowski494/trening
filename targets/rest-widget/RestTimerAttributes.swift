@@ -9,7 +9,10 @@ public struct RestTimerAttributes: ActivityAttributes {
     public var endAt: Date
     public var totalSec: Int
     public var subtitle: String
-    public init(endAt: Date, totalSec: Int, subtitle: String) { self.endAt = endAt; self.totalSec = totalSec; self.subtitle = subtitle }
+    /// Język aplikacji (kod Lang, np. „pt-BR”, „zh-Hant”). Opcjonalne: stan zapisany bez pola (starsza wersja) dekoduje się jako nil → widżet używa
+    /// języka systemu jak dawniej (bez podbicia wersji stanu — zgodność wsteczna).
+    public var lang: String?
+    public init(endAt: Date, totalSec: Int, subtitle: String, lang: String? = nil) { self.endAt = endAt; self.totalSec = totalSec; self.subtitle = subtitle; self.lang = lang }
   }
   public var title: String
   public var kind: String // "rest" | "set"

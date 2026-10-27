@@ -86,10 +86,28 @@ export function budujZadanieBatcha(kod, pozycje, staraTresc, { model, effort }, 
   return { custom_id: `pr-${kod}`, params: { model, max_tokens: MAX_TOKENS, system: z.system, messages: z.messages, output_config: { effort } } };
 }
 
+/** Typografia języka: fr — spacja nierozdzielająca przed ; : ! ? » i po « (strażnik A11N-03, tests/audit-k1-bl-mer.test.tsx); inne języki bez zmian. */
+export function typografia(kod, tekst) {
+  return kod === 'fr' ? tekst.replace(/[ \t]([;:!?»])/g, '\u00a0$1').replace(/«[ \t]/g, '«\u00a0') : tekst;
+}
+
+/** Indeks klamry zamykającej pierwszy obiekt JSON od pozycji `a` (z uwzględnieniem łańcuchów i znaków ucieczki); gdy się nie domyka — ostatnia „}” w tekście (jak dawniej).
+ * Komentarz modelu po obiekcie (np. „zmienne {n} bez zmian”) nie może przesuwać końca obiektu. */
+export function zamknieciaObiektu(s, a) {
+  if (a < 0) return -1;
+  let g = 0, w = false, u = false;
+  for (let i = a; i < s.length; i++) {
+    const c = s[i];
+    if (w) { if (u) u = false; else if (c === '\\') u = true; else if (c === '"') w = false; continue; }
+    if (c === '"') w = true; else if (c === '{') g++; else if (c === '}' && --g === 0) return i;
+  }
+  return s.lastIndexOf('}');
+}
+
 /** Odpowiedź modelu → { blad, propozycje: {pl: tlumaczenie}, odrzucone: [{klucz, powod}] }. Tłumaczenie bez zgodnych zmiennych {…} albo puste trafia do „odrzucone”. */
 export function parsujOdpowiedz(tekst, pozycje, kod = null, slownik = null) {
   const s = String(tekst ?? '').trim().replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '');
-  const a = s.indexOf('{'); const b = s.lastIndexOf('}');
+  const a = s.indexOf('{'); const b = zamknieciaObiektu(s, a);
   if (a < 0 || b <= a) return { blad: 'brak obiektu JSON w odpowiedzi', propozycje: {}, odrzucone: pozycje.map((p) => ({ klucz: p.pl, powod: 'brak odpowiedzi' })) };
   let obj;
   try { obj = JSON.parse(s.slice(a, b + 1)); } catch (e) { return { blad: `niepoprawny JSON: ${e.message}`, propozycje: {}, odrzucone: pozycje.map((p) => ({ klucz: p.pl, powod: 'brak odpowiedzi' })) }; }
@@ -100,7 +118,7 @@ export function parsujOdpowiedz(tekst, pozycje, kod = null, slownik = null) {
     if (zmienne(p.pl).join('') !== zmienne(v).join('')) { odrzucone.push({ klucz: p.pl, powod: `zmienne: źródło ${zmienne(p.pl).join('') || '—'}, tłumaczenie ${zmienne(v).join('') || '—'}`, tlumaczenie: v }); continue; }
     const naruszenia = kod && slownik ? SLOWNIK_MOD.sprawdz(slownik, kod, p.pl, v) : [];
     if (naruszenia.length) { odrzucone.push({ klucz: p.pl, powod: `słownik terminów: ${naruszenia.map((n) => `${n.pojecie} /${n.wzorzec}/ — ${n.powod}`).join('; ')}`, tlumaczenie: v }); continue; }
-    propozycje[p.pl] = v.trim();
+    propozycje[p.pl] = typografia(kod, v.trim());
   }
   return { blad: null, propozycje, odrzucone };
 }
@@ -157,7 +175,7 @@ export function zastosuj(root, katalog, plikZestawu) {
     for (const [pl, tl] of Object.entries(r.propozycje ?? {})) {
       if (!dozwolone.has(pl)) { podsumowanie.pominietych.push(`${kod}: klucz spoza zestawu „${pl.slice(0, 40)}”`); continue; }
       if (typeof tl !== 'string' || !tl.trim() || zmienne(pl).join('') !== zmienne(tl).join('')) { podsumowanie.pominietych.push(`${kod}: zmienne „${pl.slice(0, 40)}”`); continue; }
-      d[pl] = tl; podsumowanie.zapisanych++; pokrycie.set(pl, (pokrycie.get(pl) ?? 0) + 1);
+      d[pl] = typografia(kod, tl); podsumowanie.zapisanych++; pokrycie.set(pl, (pokrycie.get(pl) ?? 0) + 1);
     }
     writeFileSync(plik, JSON.stringify(d, null, 1) + '\n'); podsumowanie.jezykow++;
   }

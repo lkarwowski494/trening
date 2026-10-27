@@ -1,5 +1,5 @@
 /*
- * Reguły sensu rund 4 i 5 (badacz, 26.10.2026) — L-036: każdy NOWY typ reguły sprawdzony na PRAWDZIWEJ pozie (dane kontraktu → ten sam silnik co aplikacja, nie szkielet z liczb):
+ * Reguły sensu rund 4 i 5 (badacz, 26.10.2026) — L-040: każdy NOWY typ reguły sprawdzony na PRAWDZIWEJ pozie (dane kontraktu → ten sam silnik co aplikacja, nie szkielet z liczb):
  * kolano_zakres_ruch, rozstaw_zakres (r4), stopien_swobody, punkt_zakres (r5), pole `wymaga` (poza@2). Dla każdego: poza spełniająca (brak naruszeń) i łamiąca (komunikat z liczbami).
  * Do tego poprawki badacza: jedna ręka pracująca z dowolnego sprzętu (trzyma), potrójny wyprost z parametrem `nogi`, zawias jednonóż po nodze podporowej, biodro ze znakiem w regule,
  * rodziny „behind the neck”, zapadka naruszeń gotowych figur = 0, oraz ćwiczenia czekające na kontrakt.

@@ -109,7 +109,7 @@ describe('/more/backup', () => {
     expect(AUTO_KEEP).toBe(10);
     expect(store.getState().settings.autoBackup).toBe(true);
     expect(screen.getByText('Kopie automatyczne znikają razem z aplikacją — przed jej usunięciem wyeksportuj backup.')).toBeTruthy(); /* utrata danych: ostrzeżenie zostaje na wierzchu */
-    await openInfo('backup-auto'); expect(screen.getByText('Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie 10). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.')).toBeTruthy();
+    await openInfo('backup-auto'); expect(screen.getByText('Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie 10). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.')).toBeTruthy();
     Sharing.shareAsync.mockClear();
     await tap(screen.getByText('Eksportuj backup (plik JSON)')); await flushAll(20);
     expect(Sharing.shareAsync.mock.calls.pop()[1]).toMatchObject({ mimeType: 'application/json', dialogTitle: 'Backup treningów' });
@@ -354,7 +354,7 @@ describe('app/_layout', () => {
     Object.assign(a.exercises[0].sets[0], { weight: 100, reps: 5, done: true, completedAt: last }); });
   await renderApp({ saved }); await flushAll(600);
   expect(store.getState().active).toBeNull();
-  expect(alertOf('Zapisałem trening')).toBeUndefined(); expect(screen.getByText('Trening zapisał się sam')).toBeTruthy(); expect(require('@/lib/notices').autoSavedNotice()).toBe(`Trening z ${store.fmtDate(start)} ${store.fmtTime(start)} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: ${store.fmtTime(store.wallTs({ startedAt: start, tzOffsetMin: store.tzOffsetAt(start) }, last))} (ostatnia seria). Znajdziesz go w zakładce Plan.`);
+  expect(alertOf('Zapisałem trening')).toBeUndefined(); expect(screen.getByText('Trening zapisał się sam')).toBeTruthy(); expect(require('@/lib/notices').autoSavedNotice()).toBe(`Trening z ${store.fmtDate(start)} ${store.fmtTime(start)} nie miał aktywności od ${store.STALE_AUTO_MS / 3600e3} godzin, więc zapisał się sam. Koniec: ${store.fmtTime(store.wallTs({ startedAt: start, tzOffsetMin: store.tzOffsetAt(start) }, last))} (ostatnia seria). Znajdziesz go w zakładce Plan.`);
   } finally { unpin(); } };
   test('trening bez aktywności od 6 h zapisuje się sam przy starcie — wiersz „Trening zapisał się sam” na ekranie Trening, bez okna przy starcie', async () => { await autoSavedAt('2026-07-15T10:00:00Z'); });
   test.each([['po jesiennej zmianie czasu (25.10.2026, start przed zmianą)', '2026-10-25T02:30:00Z'], ['po wiosennej zmianie czasu (29.03.2026, start przed zmianą)', '2026-03-29T03:00:00Z']])('zapis automatyczny — godziny w strefie startu, %s', async (_n, iso) => { await autoSavedAt(iso); });

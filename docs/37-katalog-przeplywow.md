@@ -7,7 +7,7 @@ każdy ekran z `app/` występuje w co najmniej jednym przepływie (nowy ekran be
 
 ## Podsumowanie
 
-Przepływów w katalogu: **156** (realny: 134, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
+Przepływów w katalogu: **157** (realny: 135, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
 
 | Stan startowy | Przepływów | Opis |
 |---|---|---|
@@ -15,14 +15,14 @@ Przepływów w katalogu: **156** (realny: 134, brzegowy: 22); pominięte jako te
 | `istniejacy` | 115 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
 | `aktualizacja` | 6 | Po aktualizacji z poprzedniej wersji: dane z poprzedniego buildu, nowa wersja zainstalowana na tej samej instalacji (33 → 34). |
 | `kopia` | 5 | Po przywróceniu kopii lub imporcie: dane wczytane z pliku kopii po wyczyszczeniu. |
-| `jezyk-motyw` | 9 | Po zmianie języka, wyglądu lub jednostki: zmienione w Ustawieniach, sprawdzane też po restarcie. |
+| `jezyk-motyw` | 10 | Po zmianie języka, wyglądu lub jednostki: zmienione w Ustawieniach, sprawdzane też po restarcie. |
 
 | Pokrycie | Przepływów |
 |---|---|
 | Maestro | 128 |
 | Maestro (eksperyment) | 4 |
 | Jest | 10 |
-| Telefon | 14 |
+| Telefon | 15 |
 | Projekt 0.20 | 0 |
 
 „Maestro (eksperyment)” — scenariusz z krokami, których nikt jeszcze nie uruchomił na symulatorze (okna systemowe, tło, wybór pliku); znacznik `eksperyment`, poza listą `flows` w `.maestro/config.yaml`, uruchamiany osobno (docs/38 pkt 5).
@@ -32,7 +32,7 @@ Przepływów w katalogu: **156** (realny: 134, brzegowy: 22); pominięte jako te
 | ID | Przepływ i kroki | Oczekiwany wynik | Stan | Realność | Pokrycie |
 |---|---|---|---|---|---|
 | NU-01 | **Pierwsze uruchomienie: ekran Trening z „Pierwszymi krokami”** — Zainstaluj i uruchom aplikację (pusta baza) → Poczekaj na koniec animacji startowej → Na zakładce Trening jest karta „Pierwsze kroki” z trzema krokami (szablon / plan / pierwszy trening) | Brak szablonów i treningów; widać „Pierwsze kroki”, a duży przycisk startu to „Pusty trening”. | `nowy` | realny | Maestro: `.maestro/31-pierwszy-tydzien.yaml` |
-| NU-02 | **„Co nowego”: otwarcie panelu, rozwinięcie starszych wpisów, zamknięcie** — Stuknij „i” w nagłówku ekranu Trening → Przeczytaj bieżący wpis, rozwiń starsze → Zamknij panel | Panel pokazuje wpis bieżącej wersji; po zamknięciu znika; „i” nie ma kropki. | `nowy` | realny | Maestro: `.maestro/31-pierwszy-tydzien.yaml` |
+| NU-02 | **„Co nowego” w 1.0: historia pusta — bez przycisku ✦ i panelu (pierwsza wersja w App Store)** — Otwórz ekran Trening po pierwszym uruchomieniu → Sprawdź nagłówek ekranu | Nagłówek bez przycisku ✦ i bez kropki; panel „Co nowego” niedostępny (decyzja właściciela 14.10.2026, docs/18). Od pierwszego wpisu 1.1 przycisk wraca (tests/whats-new.test.tsx). | `nowy` | realny | Maestro: `.maestro/31-pierwszy-tydzien.yaml` |
 | NU-03 | **Pierwszy trening bez szablonu: pusty trening, ćwiczenie z listy, seria, zakończenie, sesja** — „Pusty trening” → „+ Dodaj ćwiczenie” → wyszukaj → wybierz → Wpisz ciężar i powtórzenia, odhacz serię → Zakończ → potwierdź → ekran sesji | Sesja zapisana i widoczna w Planie; kafelki „Ten tydzień” pokazują 1 trening. | `nowy` | realny | Maestro: `.maestro/04-plank-stoper.yaml` |
 | NU-04 | **Pierwszy szablon zrobiony ręcznie (Więcej → Szablony → „+”)** — Więcej → Szablony → „+” → wpisz nazwę → Dodaj dwa ćwiczenia z listy → Zapisz szablon | Szablon jest na liście i da się z niego wystartować. | `nowy` | realny | Maestro: `.maestro/01-trening-z-szablonu.yaml` |
 | NU-05 | **Generator szablonów i planu: dni, cel, podgląd, zapis, aktywacja** — „Planowanie” → „Wygeneruj szablony i plan” → Wybierz dni, obejrzyj podgląd i „Zasady planu” → Zapisz → „Ustaw jako aktywny” → okno „Zapisano” | Powstają szablony i aktywny plan; kalendarz pokazuje zaplanowane dni. | `nowy` | realny | Maestro: `.maestro/14-generator.yaml` |
@@ -103,6 +103,7 @@ Przepływów w katalogu: **156** (realny: 134, brzegowy: 22); pominięte jako te
 | PR-14 | **Zmiana daty, strefy czasowej i przejście przez północ / granicę miesiąca** — Podróż do innej strefy albo trening przez północ → Dzień tygodnia, plan, „dziś” i sesje zgodne z lokalnym czasem | Brak zdublowanych / zgubionych dni; plan wskazuje właściwy dzień. | `istniejacy` | brzegowy | Jest: `tests/matrix-time.test.ts`, `tests/maestro-zycie.test.tsx` — Zegara symulatora nie da się zmienić z Maestro; strefy sprawdza osobny nocny przebieg całego zestawu Jest w 7 strefach (tests-tz.yml), a scenariusze 13/31/32/33 interpreter uruchamia w niedzielę, poniedziałek i przed północą (MAESTRO_NOW). |
 | PR-15 | **Bardzo dużo danych: setki sesji, długa lista, wykresy, eksport** — Historia kilku lat (setki sesji, tysiące serii) → Otwórz Plan, Postępy, wykres ćwiczenia, kopię | Ekrany otwierają się bez zawieszenia; wyniki zgodne z danymi. | `istniejacy` | brzegowy | Jest: `tests/audit-perf-equiv.test.ts`, `tests/audit-perf-ui.test.tsx`, `tests/audit-records-perf.test.ts` — Wytworzenie setek sesji przez UI zajęłoby godziny (≈40 s na sesję); 8 sesji przez UI robi scenariusz 28, skalę sprawdzają testy wydajności i równoważności na wygenerowanych danych. |
 | PR-16 | **Dane z nowszej wersji aplikacji i błąd startu bazy (ekrany awaryjne)** — Zainstaluj starszą wersję na danych nowszej (downgrade) albo uszkodzona baza → Ekran „Dane z nowszej wersji” z „Wyślij dane” / „Spróbuj ponownie” | Aplikacja niczego nie nadpisuje i daje wyjście. | `istniejacy` | brzegowy | Jest: `tests/audit-persist.test.ts`, `tests/splash-start-error.test.tsx`, `tests/places-migrate.test.ts` — Wymaga bazy zapisanej przez nowszy schemat albo uszkodzonej; z poziomu UI nie do wywołania, a downgrade przez TestFlight jest nieobsługiwany. |
+| PR-17 | **Ekran blokady w przerwie: Live Activity w języku aplikacji, nie systemu** — Telefon po polsku (lub innym), w aplikacji Więcej → Język → English → Odhacz serię → zablokuj telefon → Na ekranie blokady / w Wyspie etykieta rodzaju po angielsku („Rest”); zmień język w aplikacji w trakcie przerwy — etykieta się zmienia | Live Activity przerwy mówi językiem wybranym w aplikacji, także po zmianie języka w trakcie przerwy. | `jezyk-motyw` | realny | Telefon (lista kontrolna wydania) — Live Activity (ekran blokady, Dynamic Island) działa tylko na prawdziwym iPhonie; symulator CI jej nie pokazuje, a Maestro nie czyta widżetu poza aplikacją. |
 
 ## PL — Plan, kalendarz i generator
 
@@ -208,7 +209,7 @@ Przepływów w katalogu: **156** (realny: 134, brzegowy: 22); pominięte jako te
 | AK-01 | **Aktualizacja z treningiem w toku: wpisana seria i przerwa zostają** — W poprzedniej wersji: drugi trening w toku, jedna seria odhaczona → Zainstaluj nową wersję na tej samej instalacji (bez odinstalowania) | Trening w toku, wartości na miejscu, trening da się dokończyć. | `aktualizacja` | realny | Maestro: `.maestro/34-aktualizacja-sprawdz.yaml` |
 | AK-02 | **Aktualizacja: historia, szablon, masa ciała, jednostka i ciemny wygląd zachowane** — W poprzedniej wersji: szablon, kg, ciemny wygląd, trening, masa 80 kg → Po aktualizacji sprawdź każdą z tych rzeczy | Dane identyczne; „2 sessions” w kalendarzu. | `aktualizacja` | realny | Maestro: `.maestro/34-aktualizacja-sprawdz.yaml` |
 | AK-03 | **Aktualizacja: plan tygodnia, miejsce z wyposażeniem i trening wstecz zachowane (migracja schematu)** — W poprzedniej wersji: plan na każdy dzień, miejsce „Home” z hantlami, trening wstecz → Po aktualizacji: plan, miejsce i sesje na miejscu, Start planowego treningu działa | Migracja schematu nie gubi planu ani miejsc; nowe pola (miejsce jednorazowe) nie psują planu. | `aktualizacja` | realny | Maestro: `.maestro/34-aktualizacja-sprawdz.yaml` |
-| AK-04 | **„Co nowego” po aktualizacji: kropka na „i” i wpis bieżącej wersji** — Po aktualizacji na ekranie Trening „i” z kropką → Panel pokazuje wpis nowej wersji | Wpis wersji widoczny. | `aktualizacja` | realny | Maestro: `.maestro/34-aktualizacja-sprawdz.yaml` |
+| AK-04 | **„Co nowego” po aktualizacji do 1.0: bez przycisku ✦ i kropki (historia pusta)** — Po aktualizacji z 0.20 otwórz ekran Trening → Sprawdź nagłówek ekranu | Nagłówek bez przycisku ✦ i kropki mimo zapisanego id starego wpisu; dane bez zmian. | `aktualizacja` | realny | Maestro: `.maestro/34-aktualizacja-sprawdz.yaml` |
 | AK-05 | **Aktualizacja z TestFlight na prawdziwym telefonie (dane z poprzedniego buildu)** — Telefon właściciela z poprzednim buildem → TestFlight „Zaktualizuj” → Otwórz aplikację | Dane, trening w toku, ikona, widżet i Live Activity jak przed aktualizacją. | `aktualizacja` | realny | Telefon (lista kontrolna wydania) — Instalacja z TestFlight na prawdziwym urządzeniu (podpis, ikona, rozszerzenie Live Activity, dane w prawdziwej bazie) nie istnieje na symulatorze CI. |
 | AK-06 | **Poprzednia wersja aplikacji: dane zbudowane przez UI (część 1 testu aktualizacji)** — Na poprzedniej wersji: ciemny wygląd, kg, szablon, plan, miejsce, dwa treningi, masa ciała, trening w toku z odhaczoną serią | Stan, który ma przetrwać aktualizację, powstaje wyłącznie z UI poprzedniej wersji. | `aktualizacja` | realny | Maestro: `.maestro/33-aktualizacja-przygotuj.yaml` |
 

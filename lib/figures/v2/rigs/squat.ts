@@ -160,7 +160,7 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
     props.push({ k: 'barbell', c, held: p.load !== 'zercher' });
     info.bar = c;
     if (p.band) props.push({ k: 'band', from: c, to: [c[0], 0, 0] });
-    if (p.chain) props.push({ k: 'chain', from: c, to: [c[0], 0, 0] });
+    if (p.chain) props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
     if (p.smith) props.push({ k: 'rail', x: c[0], h: 200 });
     if (p.load === 'highBar') contacts.push({ body: 'torso', equip: 'bar', tol: 1.6 });
     if (p.load === 'frontBar') contacts.push({ body: 'torso', equip: 'bar', tol: 2.6 });

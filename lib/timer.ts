@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 import { getState, setTimerState, findSet, fmtTime as fmtTimeNow, wallTs, STALE_ASK_MS, lastActivity, staleRef, staleKind, DURATION_MAX_SEC } from './store';
 import { restLabel, timedLabel } from './live';
 import * as LA from '@/modules/rest-activity';
-import { t } from './i18n';
+import { t, lang } from './i18n';
 import { hapticsOn } from './haptics';
 
 /** Ustawienie „Dźwięk na koniec przerwy” (do 0.7.1 przełącznik istniał, ale nic nie wyłączał — T-039); wibracje osobno: lib/haptics hapticsOn (ZM-07). */
@@ -37,8 +37,10 @@ const listeners = new Set<() => void>();
  * — przerwy czy serii — i każdy timer kończy/aktualizuje tylko swoją. Gdy jeden się kończy, a drugi trwa, drugi ją przejmuje.
  */
 let laKind: 'rest' | 'set' | null = null;
+// Język aplikacji (lang() = to samo odwzorowanie co resolveLang, z ustawienia „Język”) idzie do Live Activity w stanie aktywności (pole lang):
+// widżet nie zgaduje go z języka systemu (naprawa 26.10.2026), a zmiana języka przy trwającej przerwie odświeża je przez relocalize().
 // Runda 37: etykieta rodzaju („Przerwa”/„Seria”) w języku aplikacji, przekazana w polu kind jako „rest|Przerwa” (widżet dzieli po „|”).
-const laStart = (kind: 'rest' | 'set', sub: string, endAt: number, total: number) => { laKind = kind; LA.start(title(), sub, endAt, total, `${kind}|${kind === 'set' ? t('Seria') : t('Przerwa')}`).catch(() => {}); };
+const laStart = (kind: 'rest' | 'set', sub: string, endAt: number, total: number) => { laKind = kind; LA.start(title(), sub, endAt, total, `${kind}|${kind === 'set' ? t('Seria') : t('Przerwa')}`, lang()).catch(() => {}); };
 const laEnd = (kind: 'rest' | 'set') => { if (laKind !== kind) return; laKind = null; LA.end().catch(() => {}); handover(); };
 /** Po końcu jednej aktywności: pokaż drugi trwający timer (jeśli odlicza do celu). */
 function handover() {
@@ -74,7 +76,7 @@ export async function adjust(delta: number) {
   setTimerState({ restEndAt: T.endAt, restTotal: T.total });
   const sub = T.sub || t('przerwa {s} s', { s: Math.round(T.total) });
   // Wydłużenie po końcu przerwy uzbraja alarm na nowo i przywraca Live Activity (wcześniej tylko powiadomienie).
-  if (T.alarmed && T.endAt > Date.now()) { T.alarmed = false; if (laKind !== 'set') laStart('rest', sub, T.endAt, T.total); } else if (laKind === 'rest') LA.update(sub, T.endAt, T.total).catch(() => {});
+  if (T.alarmed && T.endAt > Date.now()) { T.alarmed = false; if (laKind !== 'set') laStart('rest', sub, T.endAt, T.total); } else if (laKind === 'rest') LA.update(sub, T.endAt, T.total, lang()).catch(() => {});
   await reschedule(); emit();
 }
 /** E2 (docs/14 pkt 3.8): nowy podpis TRWAJĄCEJ przerwy — po zamianie ćwiczenia (podpis jest zamrażany na starcie przerwy, T.sub), także na Live Activity.
@@ -82,7 +84,7 @@ export async function adjust(delta: number) {
  * zmiana `last` przeplanowuje powiadomienie (treść „Następna seria.” albo „Nic więcej do zrobienia…”). */
 export function relabel(sub: string, last = false) {
   if (!T.on || !sub || (sub === T.sub && last === T.last)) return; const lastChanged = last !== T.last; T.sub = sub; T.last = last; labels.subtitle = sub; labels.last = last;
-  if (laKind === 'rest' && !T.alarmed) LA.update(sub, T.endAt, T.total).catch(() => {});
+  if (laKind === 'rest' && !T.alarmed) LA.update(sub, T.endAt, T.total, lang()).catch(() => {});
   if (lastChanged && !T.alarmed && T.endAt > Date.now()) reschedule().catch(() => {});
   emit();
 }

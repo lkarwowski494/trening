@@ -42,7 +42,7 @@ export const views = buf => [buf.toString('utf8'), buf.toString('utf16le'), buf.
 
 /** Krótki skrót (do 4 liter: WHO, CDC, ACSM, NSCA, ISSN) trafia w bajtkodzie przypadkiem: bajty łańcuchów leżą ciągle, a w widoku UTF-16 zwykłe pary bajtów dają przypadkowe ciągi liter
  * (L-033: „CDC” w kontekście „DECDC”; nawrót: „CWCTC7CDC·CKCGCPC;CE”, tests.yml 40379990056). Heurystyka długości biegu (L-033) łapała jeden przykład, nie klasę: przypadkowy ciąg liter bywa długi.
- * Wybór (nawrót L-033, lekcja L-NNN w docs/40): skrót liczy się tylko „na tle tekstu” — przynajmniej jeden sąsiad to spacja lub interpunkcja (albo początek/koniec widoku). Tak wygląda każde realne
+ * Wybór (nawrót L-033, lekcja L-039 w docs/40): skrót liczy się tylko „na tle tekstu” — przynajmniej jeden sąsiad to spacja lub interpunkcja (albo początek/koniec widoku). Tak wygląda każde realne
  * użycie w tekście dla użytkownika („według CDC”, „(ACSM)”, „WHO.”); ciąg liter/cyfr/bajtów po obu stronach to przypadek. Skrót wklejony bez spacji w sąsiednie łańcuchy tablicy Hermes
  * (np. „…zaleceniaWHOkolejny…”) jest pomijany świadomie: tekst aplikacji nie ma takich zapisów, a nazwy dłuższe niż 4 litery nadal łapiemy w ciągłym zapisie.
  * Odrzucone: (a) czytanie tablicy łańcuchów Hermes — wymaga parsowania formatu zależnego od wersji (nagłówek, tablice małych i dużych łańcuchów, offsety), kruche przy każdej aktualizacji SDK

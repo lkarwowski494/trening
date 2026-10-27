@@ -66,7 +66,10 @@ export type ArmIn = {
   /** Obrót przedramienia (stopnie): 0 = kciuk w górę, dodatni = supinacja (dłoń w górę), ujemny = pronacja (dłoń w dół). Wyznacza płaszczyznę zgięcia nadgarstka i kierunek dłoni (`Arm.palm`). Domyślnie 0. */
   forearmRoll?: number;
 };
+/** Wymiary rąk i barków nadpisywane dla jednej figury (domyślnie BODY): wyciskanie leżąc ma sylwetkę z mediany ANSUR II (M), reszta rodzin zostaje na wspólnym BODY. */
+export type ArmDims = { uarm?: number; farm?: number; shHalf?: number };
 export type PoseIn = {
+  dims?: ArmDims;
   pelvis: V3;
   /** Pochylenie tułowia od pionu w płaszczyźnie strzałkowej (stopnie, do przodu dodatnie; 90 = poziomo głową do przodu, 180 = do góry nogami). */
   trunkPitch: number;
@@ -99,6 +102,8 @@ export type Arm = {
   shrug: number; protract: number; wristFlex: number; forearmRoll: number;
   /** Długość przedramienia (łokieć → nadgarstek, cm); gdy `bent` (zgięty nadgarstek), środek chwytu nie leży na prostej łokieć–nadgarstek. */
   forearm: number; bent: boolean;
+  /** Długość ramienia (bark → łokieć, cm) tej figury (BODY.uarm albo wymiar z `dims`). */
+  uarm: number;
 };
 export type Skeleton = {
   pelvis: V3; spineMid: V3; shoulderC: V3; neck: V3; head: V3;
@@ -190,30 +195,31 @@ export function solveSkeleton(p: PoseIn): Skeleton {
     };
     legs[s] = { hip, knee: r.mid, ankle: r.end, heel: foot(-BODY.heelBack), toe: foot(BODY.toeFwd), err: r.err };
 
+    const D = p.dims ?? {}; const shH = D.shHalf ?? BODY.shHalf, farm = D.farm ?? BODY.farm, uarm = D.uarm ?? BODY.uarm;
     const ai = p.arms[s];
     const lift = ai.shrug ?? 0;
     const prot = ai.protract ?? 0;
-    let shoulder: V3 = ax.ext ? [shoulderC[0] + sg * BODY.shHalf * ax.right[0], shoulderC[1] + sg * BODY.shHalf * ax.right[1], (shoulderC[2] - p.pelvis[2]) + (p.lateral ?? 0) + sg * BODY.shHalf * ax.right[2]] : [shoulderC[0], shoulderC[1], (p.lateral ?? 0) + sg * BODY.shHalf];
+    let shoulder: V3 = ax.ext ? [shoulderC[0] + sg * shH * ax.right[0], shoulderC[1] + sg * shH * ax.right[1], (shoulderC[2] - p.pelvis[2]) + (p.lateral ?? 0) + sg * shH * ax.right[2]] : [shoulderC[0], shoulderC[1], (p.lateral ?? 0) + sg * shH];
     if (lift !== 0) shoulder = add(shoulder, mul(up, lift));
     if (prot !== 0) shoulder = add(shoulder, mul(front, prot));
     const aPole = ai.elbowPole ?? [-0.3, -1, sg * 0.4];
-    const lower = ai.lower ?? BODY.farm + BODY.hand;
+    const lower = ai.lower ?? farm + BODY.hand;
     const wf = ai.wristFlex ?? 0, fr = ai.forearmRoll ?? 0;
-    const fLen = Math.min(BODY.farm, lower - 1);
-    const ra = ik2(shoulder, ai.grip, BODY.uarm, lower, aPole);
+    const fLen = Math.min(farm, lower - 1);
+    const ra = ik2(shoulder, ai.grip, uarm, lower, aPole);
     const dirF = norm(sub(ra.end, ra.mid));
     if (wf === 0) {
       const hd = handOf(dirF, aPole, sg, 0, fr, up);
-      arms[s] = { shoulder, elbow: ra.mid, wrist: add(ra.mid, mul(dirF, fLen)), grip: ra.end, err: ra.err, lower, hand: hd.hand, palm: hd.palm, shrug: lift, protract: prot, wristFlex: 0, forearmRoll: fr, forearm: fLen, bent: false };
+      arms[s] = { shoulder, elbow: ra.mid, wrist: add(ra.mid, mul(dirF, fLen)), grip: ra.end, err: ra.err, lower, hand: hd.hand, palm: hd.palm, shrug: lift, protract: prot, wristFlex: 0, forearmRoll: fr, forearm: fLen, bent: false, uarm };
     } else {
       /* zgięty nadgarstek: dłoń (lower − fLen) odchylona od osi przedramienia o wf w płaszczyźnie wyznaczonej obrotem przedramienia; nadgarstek = chwyt − dłoń, iteracyjnie (zbieżne, dłoń ≪ ręka) */
       const handLen = lower - fLen; let elbow = ra.mid, wrist = ra.end, f = dirF, hd = handOf(f, aPole, sg, wf, fr, up), err = ra.err;
       for (let i = 0; i < 8; i++) {
-        const target = sub(ai.grip, mul(hd.hand, handLen)); const q = ik2(shoulder, target, BODY.uarm, fLen, aPole);
+        const target = sub(ai.grip, mul(hd.hand, handLen)); const q = ik2(shoulder, target, uarm, fLen, aPole);
         elbow = q.mid; wrist = q.end; f = norm(sub(q.end, q.mid)); hd = handOf(f, aPole, sg, wf, fr, up);
       }
       const grip = add(wrist, mul(hd.hand, handLen)); err = dist3(grip, ai.grip);
-      arms[s] = { shoulder, elbow, wrist, grip, err, lower, hand: hd.hand, palm: hd.palm, shrug: lift, protract: prot, wristFlex: wf, forearmRoll: fr, forearm: fLen, bent: true };
+      arms[s] = { shoulder, elbow, wrist, grip, err, lower, hand: hd.hand, palm: hd.palm, shrug: lift, protract: prot, wristFlex: wf, forearmRoll: fr, forearm: fLen, bent: true, uarm };
     }
   }
   return { pelvis: p.pelvis, spineMid, shoulderC, neck, head, up, front, headUp, right: ax.right, pelvisRight: ax.pelvisRight, headFront, roll: ax.roll, twist: ax.twist, lean: ax.lean, tilt: ax.tilt, headTilt: htl, legs, arms };

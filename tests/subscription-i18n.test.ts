@@ -22,7 +22,7 @@ const PAIRS: [string, string][] = [
   ['Nie znaleziono zakupów dla tego konta Apple.', 'No purchases found for this Apple account.'],
   ['Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.', 'Couldn\'t restore purchases. Check your internet connection.'],
   ['Potrzebne połączenie z internetem.', 'An internet connection is needed.'],
-  ['Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.', 'Train {n} days a month for free. Pro removes the limit. Cancel anytime in your Apple ID settings.'],
+  ['Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.', 'Train {n} days a month for free. Pro removes the limit. Cancel anytime in your Apple account settings.'],
   ['Jesteśmy z Ciebie dumni!', 'We\'re proud of you!'],
   ['W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!', 'You\'ve trained hard this month and used all {n} free training days. Good job!'],
   ['{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.', '{app} is made by an independent developer: no ads, no data collection. If it helps you, choose a plan to keep training without limits. Your free days come back on {date}.'],

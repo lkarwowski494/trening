@@ -38,6 +38,7 @@
   w odpowiedzi. Przed wydaniem przejrzyj otwarte akcje z `docs/40`. Na gałęzi nowa lekcja ma nagłówek `## L-NNN` (numer nadaje koordynator przy scalaniu do main:
   `node scripts/numeruj-lekcje.mjs`; właściciel 21.10.2026, L-016).
 - **Uwagi wizualne dla właściciela (lekcja M3 o makiecie A2 w docs/40, decyzja właściciela 21.10.2026):** różnicę między zrzutami lub wariantami zgłaszasz właścicielowi dopiero po sprawdzeniu plików źródłowych (`cmp`/różnica pikseli albo kadr w pełnej rozdzielczości) i z podaniem ścieżki; podgląd zmniejszonego arkusza nie jest dowodem.
+- **Aktualne zasady przed planem (właściciel 26.10.2026, lekcja „nieaktualne zasady w długiej sesji” w docs/40):** przed podaniem właścicielowi planu, terminu albo bramki wydania przeczytaj aktualne CLAUDE.md i `docs/48` z gałęzi integracji — nie z pamięci sesji (długie sesje działają na kopii z chwili startu). Hak `SessionStart` (`compact`) w `.claude/settings.json` wczytuje CLAUDE.md po każdym streszczeniu kontekstu.
 - **Model pracy po lekcji L-001 (decyzja właściciela 14.10.2026, wszystkie projekty):**
   1. *Przebieg dowodowy CI:* zmiana budowania, podpisu lub wysyłki (workflowy, skrypty CI) trafia do scalenia dopiero po prawdziwym przebiegu,
      który pokazuje wynik na gotowym produkcie (np. uprawnienia w wyeksportowanym pakiecie); testy samego pliku workflowu nie wystarczą.
@@ -65,7 +66,7 @@
   `pakiet: podstawowy`, jedno ponowienie pojedynczego scenariusza); **pełny katalog** biegnie w nocy (`nightly.yml`), niewiążąco, z pomiarem
   niestabilności — przegląd zbiorczo raz dziennie, nie po każdej porażce. Wydanie do App Store blokuje **jeden pełny katalog E2E
   na standardowym iPhonie** (jedno ponowienie scenariusza dozwolone) + pełny audyt + telefon; noc to sygnał (zgłoszenie `nocne-testy`), nie bramka —
-  porażka: błąd aplikacji → naprawa, błąd skryptu → backlog (właściciel 21.10.2026; zastępuje „3 czyste noce w trybie ścisłym”). Przed oddaniem
+  porażka: błąd aplikacji → naprawa, błąd skryptu → backlog (właściciel 21.10.2026; zastępuje „3 czyste noce w trybie ścisłym”); to samo w bramce App Store: scenariusz czerwony z winy skryptu (tester-e2e potwierdza logiem/zrzutem, że aplikacja jest w poprawnym stanie) nie blokuje wydania — scenariusz do naprawy (właściciel 26.10.2026). Przed oddaniem
   pracy: szybki przebieg tylko zmienionych scenariuszy (`tylko_scenariusze`). Pełne verify na tej maszynie przez kolejkę (jeden naraz).
 - Workflowy (`.github/workflows`): zmiany wypycha koordynator na gałąź funkcji i **scala sam** po prawdziwym przebiegu dowodowym (wynik na gotowym produkcie),
   bez nowych sekretów i uprawnień, z opisem zmiany w PR; właściciel dostaje informację, nie pytanie (właściciel 21.10.2026; zastępuje zatwierdzanie

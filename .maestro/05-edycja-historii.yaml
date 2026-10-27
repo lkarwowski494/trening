@@ -117,7 +117,8 @@ name: Edycja historii i trening wstecz
 - tapOn: { id: "info-sets-part" }
 - assertVisible: "Line = weekly goal of sets per muscle group: 10 automatically.*"
 - takeScreenshot: 20c-kreska-10-serii
-- scrollUntilVisible: { element: "Month", direction: UP, timeout: 20000, centerElement: true }  # run 37738868663: po przewinięciu do mapy i kreski „Month” jest nad ekranem
+- tapOn: { id: "info-sets-part" }  # run 40279947833: opis ⓘ wydłuża ekran — zwijamy go, żeby powrót w górę mieścił się w czasie
+- scrollUntilVisible: { element: "Month", direction: UP, timeout: 60000, centerElement: true }  # run 37738868663: po przewinięciu do mapy i kreski „Month” jest nad ekranem; run 40279947833: 4 przesunięcia w 20 s na wolnym symulatorze nie dochodziły do góry (60 s)
 - tapOn: "Month"
 - tapOn: "Previous period"
 - assertVisible: "Workouts: .*, previously .*"

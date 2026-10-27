@@ -28,18 +28,6 @@
   "en": "“Skip today” skips the rest of an exercise’s sets in this workout."
  },
  {
-  "pl": "„Poproś o nową funkcję” obok „Napisz do nas” w Więcej → O aplikacji.",
-  "en": "“Request a new feature” next to “Write to us” in More → About."
- },
- {
-  "pl": "„Strażnik progresji” w Postępach: sylwetka z kierunkiem progresu oraz zdanie o brakach do celu z uwzględnieniem planu.",
-  "en": "“Progress Guard” in Progress: a body figure showing the direction of progress and a sentence on what is missing to reach the goal, taking your plan into account."
- },
- {
-  "pl": "„Technika”: wskazówki do ćwiczenia otworzysz też z treningu i z szablonu.",
-  "en": "“Technique”: open the exercise tips from a workout and from a template too."
- },
- {
   "pl": "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.",
   "en": "“Generate templates and plan” (Templates or Planning): choose goal, place, number and length of sessions."
  },
@@ -340,36 +328,12 @@
   "en": "★ Main place — default for new workouts and for templates without their own place."
  },
  {
-  "pl": "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.",
-  "en": "10 new languages: German, French, Italian, Dutch, Swedish, Danish, Norwegian, Finnish, Turkish and Greek."
- },
- {
-  "pl": "16 języków; wygląd jasny, ciemny albo jak w telefonie.",
-  "en": "16 languages; light, dark or system appearance."
- },
- {
   "pl": "2 tyg. temu",
   "en": "2 weeks ago"
  },
  {
-  "pl": "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.",
-  "en": "20 new exercises with tips in the “Technique” section."
- },
- {
-  "pl": "35 języków; język zmienisz w Ustawieniach.",
-  "en": "35 languages; change the language in Settings."
- },
- {
-  "pl": "9 nowych języków: {list}.",
-  "en": "9 new languages: {list}."
- },
- {
   "pl": "Akcesoria",
   "en": "Accessories"
- },
- {
-  "pl": "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.",
-  "en": "Updated integration with Apple Health — saving workouts works as before."
  },
  {
   "pl": "aktywny",
@@ -438,10 +402,6 @@
  {
   "pl": "Apple Health…",
   "en": "Apple Health…"
- },
- {
-  "pl": "Apple Watch: odhaczanie serii, przerwa z timerem i „Cofnij” przez 5 sekund (watchOS 10 lub nowszy).",
-  "en": "Apple Watch: tick off sets, a rest timer and “Undo” for 5 seconds (watchOS 10 or later)."
  },
  {
   "pl": "Archiwizować szablon?",
@@ -840,10 +800,6 @@
   "en": "Weekly set goal per muscle group"
  },
  {
-  "pl": "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.",
-  "en": "Set the weekly set goal per muscle group in Settings (Automatic or Manual); the bars in “This week” and in Progress measure against this goal, and an exercise’s secondary muscle group counts as half a set."
- },
- {
   "pl": "Cel serii: {part}",
   "en": "Set goal: {part}"
  },
@@ -1020,10 +976,6 @@
   "en": "some planned sets have no weight"
  },
  {
-  "pl": "Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej.",
-  "en": "Four tabs: Workout, Plan, Progress and More. Templates and Exercises are now under More."
- },
- {
   "pl": "czworogłowe",
   "en": "quads"
  },
@@ -1069,8 +1021,7 @@
  },
  {
   "pl": "ćwiczenie bez sprzętu|ćwiczenia bez sprzętu|ćwiczeń bez sprzętu",
-  "en": "exercise without equipment|exercises without equipment",
-  "plural": true
+  "en": "exercise without equipment|exercises without equipment"
  },
  {
   "pl": "Ćwiczenie ma co najmniej jedną serię. Żeby usunąć całe ćwiczenie, przesuń w lewo jego nazwę.",
@@ -1078,8 +1029,7 @@
  },
  {
   "pl": "ćwiczenie wraca do planu|ćwiczenia wracają do planu|ćwiczeń wraca do planu",
-  "en": "exercise returns to your plan|exercises return to your plan",
-  "plural": true
+  "en": "exercise returns to your plan|exercises return to your plan"
  },
  {
   "pl": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
@@ -1099,8 +1049,7 @@
  },
  {
   "pl": "ćwiczenie|ćwiczenia|ćwiczeń",
-  "en": "exercise|exercises",
-  "plural": true
+  "en": "exercise|exercises"
  },
  {
   "pl": "Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.",
@@ -1137,10 +1086,6 @@
  {
   "pl": "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.",
   "en": "Your data on this phone was not changed — you can send it as a file."
- },
- {
-  "pl": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję (TestFlight). Dane możesz też wysłać jako plik.",
-  "en": "The data on this phone was saved by a newer version (schema {a}); this version supports up to {b}. Nothing is changed — install the latest version (TestFlight). You can also send the data as a file."
  },
  {
   "pl": "Dane z nowszej wersji aplikacji",
@@ -1181,10 +1126,6 @@
  {
   "pl": "deload — mniej serii",
   "en": "deload — fewer sets"
- },
- {
-  "pl": "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.",
-  "en": "Deload: a hint in the Calendar and, in a deload week, {less} at start; a morning reminder on planned workout days."
  },
  {
   "pl": "Dieta",
@@ -1353,10 +1294,6 @@
  {
   "pl": "Dostosuj do miejsca",
   "en": "Adjust to location"
- },
- {
-  "pl": "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.",
-  "en": "Adjust to location: after you switch to a location without the equipment you need, the app suggests exercise substitutes for you to review — changes apply to this workout only."
  },
  {
   "pl": "Dostosuj do: {l}",
@@ -1543,14 +1480,6 @@
   "en": "This screen could not be shown."
  },
  {
-  "pl": "Ekran Trening w nowym układzie; „Powtórz ostatni” z nazwą i datą.",
-  "en": "The Workout screen has a new layout; “Repeat last” shows the name and date."
- },
- {
-  "pl": "Ekran Trening: „Planowanie” przy nazwie planu, „Ten tydzień” i „Progresja”; „Z szablonu” w arkuszu „Inny trening” otwiera wybór szablonu ze „Startem”.",
-  "en": "Workout screen: “Planning” next to the plan name, “This week” and “Progression”; “From a template” in the “Other workout” sheet opens a template picker with “Start”."
- },
- {
   "pl": "Ekran włączony podczas treningu",
   "en": "Keep screen on during workout"
  },
@@ -1624,8 +1553,7 @@
  },
  {
   "pl": "funt|funty|funtów",
-  "en": "pound|pounds",
-  "plural": true
+  "en": "pound|pounds"
  },
  {
   "pl": "funta",
@@ -1642,18 +1570,6 @@
  {
   "pl": "Generator szablonów i planu",
   "en": "Template and plan generator"
- },
- {
-  "pl": "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.",
-  "en": "Template and weekly plan generator on request (goal, place, number and length of sessions) and several plans with a choice of the active one."
- },
- {
-  "pl": "Generator uwzględnia Twój cel serii z Ustawień.",
-  "en": "The generator now uses your sets goal from Settings."
- },
- {
-  "pl": "Generator: wybór dni tygodnia, od {a} do {b} dni, cel „Ogólny” i „Plan z moich szablonów”.",
-  "en": "Generator: choose the days of the week, from {a} to {b} days, the “General fitness” goal and “Plan from my templates”."
  },
  {
   "pl": "GHD",
@@ -1689,8 +1605,7 @@
  },
  {
   "pl": "godzina|godziny|godzin",
-  "en": "hour|hours",
-  "plural": true
+  "en": "hour|hours"
  },
  {
   "pl": "Gotowe",
@@ -1829,10 +1744,6 @@
   "en": "imperial (lb, mi, yd)"
  },
  {
-  "pl": "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.",
-  "en": "Import your workout history from CSV files of popular training logs (More → Backup → “Import history from a CSV file”), with a preview before saving."
- },
- {
   "pl": "Import historii z CSV",
   "en": "Import history from CSV"
  },
@@ -1866,8 +1777,7 @@
  },
  {
   "pl": "inna aktywność|inne aktywności|innych aktywności",
-  "en": "other activity|other activities",
-  "plural": true
+  "en": "other activity|other activities"
  },
  {
   "pl": "Inna kolejność ćwiczeń.",
@@ -1951,8 +1861,7 @@
  },
  {
   "pl": "jard|jardy|jardów",
-  "en": "yard|yards",
-  "plural": true
+  "en": "yard|yards"
  },
  {
   "pl": "jarda",
@@ -2023,20 +1932,12 @@
   "en": "From today the calendar will be empty."
  },
  {
-  "pl": "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.",
-  "en": "Calendar instead of History: weekly plan, moving workouts and suggested changes that take muscle-group recovery into account."
- },
- {
   "pl": "kamienie atlas",
   "en": "atlas stones"
  },
  {
   "pl": "Kamienie atlas",
   "en": "Atlas stones"
- },
- {
-  "pl": "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.",
-  "en": "Current set card during a workout; the “List” view as before, selectable in Settings."
  },
  {
   "pl": "Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.",
@@ -2076,8 +1977,7 @@
  },
  {
   "pl": "kilogram|kilogramy|kilogramów",
-  "en": "kilogram|kilograms",
-  "plural": true
+  "en": "kilogram|kilograms"
  },
  {
   "pl": "kilograma",
@@ -2142,10 +2042,6 @@
  {
   "pl": "Kopia automatyczna po treningu jest wyłączona (Ustawienia).",
   "en": "Automatic backup after a workout is off (Settings)."
- },
- {
-  "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.",
-  "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → {app} → Backup, last {n}). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple ID, export a backup elsewhere."
  },
  {
   "pl": "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.",
@@ -2222,10 +2118,6 @@
  {
   "pl": "Kroki: {n}",
   "en": "Steps: {n}"
- },
- {
-  "pl": "Krótka animacja przy starcie: talerze wsuwają się na gryf.",
-  "en": "A short animation at launch: plates slide onto the bar."
  },
  {
   "pl": "Kup na zawsze",
@@ -2382,10 +2274,6 @@
  {
   "pl": "Łączny dystans",
   "en": "Total distance"
- },
- {
-  "pl": "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.",
-  "en": "Elbows about 45° from your torso — not flared wide, not tucked tight."
  },
  {
   "pl": "łydki",
@@ -2669,8 +2557,7 @@
  },
  {
   "pl": "metr|metry|metrów",
-  "en": "metre|metres",
-  "plural": true
+  "en": "metre|metres"
  },
  {
   "pl": "metra",
@@ -2693,10 +2580,6 @@
   "en": "Places and equipment"
  },
  {
-  "pl": "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.",
-  "en": "Workout locations and “Adjust to location”: changes apply to today’s workout only — the template and plan stay as they are."
- },
- {
   "pl": "Miejsce",
   "en": "Place"
  },
@@ -2715,10 +2598,6 @@
  {
   "pl": "Miejsce tego treningu",
   "en": "Place of this workout"
- },
- {
-  "pl": "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).",
-  "en": "The place will be added to your places (Settings → Places and equipment)."
  },
  {
   "pl": "Miejsce treningu: {l}",
@@ -2758,8 +2637,7 @@
  },
  {
   "pl": "mila|mile|mil",
-  "en": "mile|miles",
-  "plural": true
+  "en": "mile|miles"
  },
  {
   "pl": "mili",
@@ -2775,8 +2653,7 @@
  },
  {
   "pl": "minuta|minuty|minut",
-  "en": "minute|minutes",
-  "plural": true
+  "en": "minute|minutes"
  },
  {
   "pl": "młot",
@@ -2845,10 +2722,6 @@
  {
   "pl": "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.",
   "en": "On the Workout screen tap the big “Start” button (next workout) or “Other workout” — there you pick a template, repeat the last workout or start an empty one."
- },
- {
-  "pl": "Na ekranie treningu: dzisiejszy trening z planu, bieżący tydzień i najbliższe treningi z nazwą.",
-  "en": "On the workout screen: today's planned workout, the current week and the next workouts by name."
  },
  {
   "pl": "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.",
@@ -3195,10 +3068,6 @@
   "en": "Unsaved changes"
  },
  {
-  "pl": "Niezapisane zmiany w edycji szablonu i ćwiczenia przetrwają zamknięcie aplikacji — po starcie wrócisz do edycji albo je odrzucisz.",
-  "en": "Unsaved changes while editing a template or exercise survive the app being closed — after launch you can go back to editing or discard them."
- },
- {
   "pl": "niszowe ukryte: {n} — znajdziesz je wyszukiwaniem",
   "en": "niche hidden: {n} — find them by searching"
  },
@@ -3271,10 +3140,6 @@
   "en": "new this week"
  },
  {
-  "pl": "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.",
-  "en": "New Workout screen: today’s workout, the week in numbers and your last workout; feature guide under More."
- },
- {
   "pl": "Nowy plan",
   "en": "New plan"
  },
@@ -3295,20 +3160,8 @@
   "en": "A new template with this session’s exercises and sets."
  },
  {
-  "pl": "Nowy wygląd z ikony: znacznik dnia jak ikona aplikacji, stosy talerzy z procentem planu tygodnia, filiżanka w dzień odpoczynku, podsumowanie miesiąca jako stosy.",
-  "en": "New look from the icon: the day marker looks like the app icon, plate stacks show the percentage of the weekly plan, a cup on rest days, the monthly summary as stacks."
- },
- {
-  "pl": "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.",
-  "en": "New look: colours and typefaces, plate graphics on the bar."
- },
- {
   "pl": "np. samopoczucie, ból, sprzęt",
   "en": "e.g. how you feel, pain, equipment"
- },
- {
-  "pl": "Numer buildu w „O aplikacji”.",
-  "en": "Build number in “About”."
  },
  {
   "pl": "O aplikacji",
@@ -3333,10 +3186,6 @@
  {
   "pl": "obj.",
   "en": "vol."
- },
- {
-  "pl": "Objaśnienia pod przyciskiem „i” na ekranach.",
-  "en": "Explanations under the “i” button on the screens."
  },
  {
   "pl": "objętość",
@@ -3387,14 +3236,6 @@
   "en": "From {date}: deload week. When you start a workout I will suggest {less}, same weights."
  },
  {
-  "pl": "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.",
-  "en": "Since 0.10: a tidier exercise library — similar variants merged, rarer ones appear when you turn off the “Basic” filter (your workouts stay the same); body weight with a date and e1RM for pull-ups and push-ups, technique tips with a movement drawing, “Save as template” in history."
- },
- {
-  "pl": "Od 0.10: szablon i ćwiczenie otwierają się w podglądzie — zmiany zaczynasz przyciskiem „Edytuj” i zatwierdzasz „Zapisz”.",
-  "en": "Since 0.10: templates and exercises open in a preview — start changes with “Edit” and confirm them with “Save”."
- },
- {
   "pl": "Od: {day}",
   "en": "From: {day}"
  },
@@ -3405,10 +3246,6 @@
  {
   "pl": "Odciąga ramię do tyłu.",
   "en": "Draws your arm back."
- },
- {
-  "pl": "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.",
-  "en": "Reading from Apple Health (turn it on in Settings): steps and other activities in the day panel, average steps under “This week”, and heart rate and kcal from your watch on a workout."
  },
  {
   "pl": "Odhacz bez pomiaru",
@@ -3695,10 +3532,6 @@
   "en": "Dip belt"
  },
  {
-  "pl": "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).",
-  "en": "Set bars show indirect sets separately (secondary sets, counted as 0.5 each)."
- },
- {
   "pl": "pauza",
   "en": "paused"
  },
@@ -3713,10 +3546,6 @@
  {
   "pl": "Pauza treningu",
   "en": "Pause workout"
- },
- {
-  "pl": "Pauza treningu — czas pauzy nie liczy się do czasu trwania.",
-  "en": "Workout pause — paused time doesn't count towards the duration."
  },
  {
   "pl": "Pełna siłownia",
@@ -3741,10 +3570,6 @@
  {
   "pl": "per hantel (×2)",
   "en": "per dumbbell (×2)"
- },
- {
-  "pl": "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.",
-  "en": "First test version: workouts from templates, history, progress and records, backup in Files."
  },
  {
   "pl": "Pierwsze kroki",
@@ -4159,20 +3984,8 @@
   "en": "Retry now"
  },
  {
-  "pl": "Poprawione sformułowania części wskazówek techniki.",
-  "en": "Reworded some of the technique tips."
- },
- {
   "pl": "Poprawka zapisu: wszystkie serie bloku „{name}” przejdą pod wybrane ćwiczenie (wartości bez zmian).",
   "en": "Log correction: all sets of “{name}” move to the chosen exercise (values unchanged)."
- },
- {
-  "pl": "Poprawka: zapis i odczyt Apple Health działają (w poprzedniej wersji testowej brakowało uprawnienia).",
-  "en": "Fix: writing to and reading from Apple Health work (the previous test version lacked the permission)."
- },
- {
-  "pl": "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.",
-  "en": "Fixes: Progress remembers the selected exercise, an import without times shows “time unknown”, and help texts now match the tab names."
  },
  {
   "pl": "Poproś o nową funkcję",
@@ -4259,18 +4072,6 @@
   "en": "Progress and records"
  },
  {
-  "pl": "Postępy mają własną zakładkę: podsumowanie, „Progresja”, wykresy ćwiczeń i masa ciała.",
-  "en": "Progress has its own tab: summary, “Progression”, exercise charts and body weight."
- },
- {
-  "pl": "Postępy: dwa słupki na partię — porównanie okresu z poprzednim okresem.",
-  "en": "Progress: two bars per muscle group — a period compared with the previous period."
- },
- {
-  "pl": "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.",
-  "en": "Progress: weekly and monthly summary with a muscle map, a {n}-sets-per-muscle-group weekly mark and marking a week as deload."
- },
- {
   "pl": "Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.",
   "en": "Progress: weekly or monthly summary with the previous period alongside."
  },
@@ -4340,8 +4141,7 @@
  },
  {
   "pl": "powtórzenie|powtórzenia|powtórzeń",
-  "en": "rep|reps",
-  "plural": true
+  "en": "rep|reps"
  },
  {
   "pl": "Poziom (1–7)",
@@ -4373,8 +4173,7 @@
  },
  {
   "pl": "pozycja sprzętu|pozycje sprzętu|pozycji sprzętu",
-  "en": "equipment item|equipment items",
-  "plural": true
+  "en": "equipment item|equipment items"
  },
  {
   "pl": "Pozycja wyjściowa",
@@ -4625,10 +4424,6 @@
   "en": "Brings your upper arm forward and inward."
  },
  {
-  "pl": "Przycisk „Napisz do nas” w Więcej → O aplikacji.",
-  "en": "A “Write to us” button in More → About."
- },
- {
   "pl": "Przyda się: {list}.",
   "en": "Would help: {list}."
  },
@@ -4842,8 +4637,7 @@
  },
  {
   "pl": "sekunda|sekundy|sekund",
-  "en": "second|seconds",
-  "plural": true
+  "en": "second|seconds"
  },
  {
   "pl": "sen",
@@ -4927,8 +4721,7 @@
  },
  {
   "pl": "seria|serie|serii",
-  "en": "set|sets",
-  "plural": true
+  "en": "set|sets"
  },
  {
   "pl": "Serie",
@@ -5008,8 +4801,7 @@
  },
  {
   "pl": "sesja|sesje|sesji",
-  "en": "session|sessions",
-  "plural": true
+  "en": "session|sessions"
  },
  {
   "pl": "Sesje",
@@ -5042,10 +4834,6 @@
  {
   "pl": "Skala wysiłku",
   "en": "Effort scale"
- },
- {
-  "pl": "Skala wysiłku RPE albo RIR w Ustawieniach.",
-  "en": "Effort scale RPE or RIR in Settings."
  },
  {
   "pl": "Skąd ta cena? Poznaj indeks espresso.",
@@ -5082,10 +4870,6 @@
  {
   "pl": "Skupiony: bieżąca seria dużymi cyframi nad listą ćwiczeń.",
   "en": "Focused: the current set in big numbers above the exercise list."
- },
- {
-  "pl": "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.",
-  "en": "More consistent controls across the app: windows with “Cancel” on the left, “+” in list headers for adding, and clearer messages and VoiceOver descriptions."
  },
  {
   "pl": "Sprawdź datę i godzinę",
@@ -5305,8 +5089,7 @@
  },
  {
   "pl": "szablon|szablony|szablonów",
-  "en": "template|templates",
-  "plural": true
+  "en": "template|templates"
  },
  {
   "pl": "Szablony",
@@ -5323,10 +5106,6 @@
  {
   "pl": "Szablony trafią do folderu „{folder}”, a plan — do „Inne plany” albo od razu jako aktywny.",
   "en": "Templates will go to the “{folder}” folder, and the plan to “Other plans” or straight in as the active plan."
- },
- {
-  "pl": "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.",
-  "en": "Templates in folders and archive, “Skip today” without changing the template, swipe left to delete."
  },
  {
   "pl": "Szablony zostają bez zmian. Plan trafi do „Inne plany” albo od razu jako aktywny.",
@@ -5637,10 +5416,6 @@
   "en": "Training — feedback"
  },
  {
-  "pl": "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.",
-  "en": "Workouts logged after the fact: you can choose the workout place in the editor."
- },
- {
   "pl": "Trening i serie",
   "en": "Workouts and sets"
  },
@@ -5693,10 +5468,6 @@
   "en": "Workout paused"
  },
  {
-  "pl": "Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
-  "en": "The workout from {d} {s} had no activity for 6 hours, so it was saved automatically. End: {e} (last set). You will find it in the Plan tab."
- },
- {
   "pl": "Trening z tego dnia zrobiony wcześniej — dzień wolny.",
   "en": "This day’s workout was done earlier — the day is free."
  },
@@ -5743,10 +5514,6 @@
  {
   "pl": "Trenuj {n} dni w miesiącu za darmo, bez końca.",
   "en": "Train {n} days a month for free, no time limit."
- },
- {
-  "pl": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.",
-  "en": "Train {n} days a month for free. Pro removes the limit. Cancel anytime in your Apple ID settings."
  },
  {
   "pl": "triceps",
@@ -6167,10 +5934,6 @@
  {
   "pl": "W jakiej sytuacji na treningu:",
   "en": "In what situation during a workout:"
- },
- {
-  "pl": "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.",
-  "en": "In the window you can change a substitute or choose “No change” or “Skip today”; you can undo an applied swap at the exercise."
  },
  {
   "pl": "w planie na: {day} · {n} ćw.",
@@ -6645,10 +6408,6 @@
   "en": "Effort: usually {a}–{b} reps in reserve (RIR); training to failure is not needed."
  },
  {
-  "pl": "Wyszukiwanie ćwiczeń także po dawnej nazwie.",
-  "en": "Exercise search also finds former names."
- },
- {
   "pl": "wyszukiwanie obejmuje też niszowe",
   "en": "search also covers niche ones"
  },
@@ -6985,10 +6744,6 @@
   "en": "Voice announcements"
  },
  {
-  "pl": "Zapowiedzi głosowe na początku przerwy: ćwiczenie, ciężar i powtórzenia.",
-  "en": "Voice announcements at the start of the rest: exercise, weight and reps."
- },
- {
   "pl": "Zapowiedzi głosowe: {mode}",
   "en": "Voice announcements: {mode}"
  },
@@ -7202,8 +6957,7 @@
  },
  {
   "pl": "Został|Zostały|Zostało",
-  "en": "left|left",
-  "plural": true
+  "en": "left|left"
  },
  {
   "pl": "Zostaw",
@@ -7284,5 +7038,25 @@
  {
   "pl": "Żadna partia nie ma większej objętości niż poprzednio.",
   "en": "No muscle group has more volume than before."
+ },
+ {
+  "pl": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.",
+  "en": "The data on this phone was saved by a newer version (schema {a}); this version supports up to {b}. Nothing is changed — install the latest version from the App Store. You can also send the data as a file."
+ },
+ {
+  "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+  "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → {app} → Backup, last {n}). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple account, export a backup elsewhere."
+ },
+ {
+  "pl": "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).",
+  "en": "The place will be added to your places (More → Places and equipment)."
+ },
+ {
+  "pl": "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+  "en": "The workout from {d} {s} had no activity for {h} hours, so it was saved automatically. End: {e} (last set). You will find it in the Plan tab."
+ },
+ {
+  "pl": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.",
+  "en": "Train {n} days a month for free. Pro removes the limit. Cancel anytime in your Apple account settings."
  }
 ]

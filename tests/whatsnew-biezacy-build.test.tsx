@@ -8,6 +8,7 @@ import { fresh } from './helpers';
 import { t } from '@/lib/i18n';
 import { WHATS_NEW } from '@/lib/whatsnew';
 import { versionLabel } from '@/lib/version';
+import { zProbkami } from './whatsnew-probki'; /* 1.0.0: historia w kodzie pusta — zachowanie tytułu na próbkach (bieżący 1018, starszy 1005) */
 
 let mockBuild: string | undefined;
 jest.mock('@/lib/version', () => new Proxy(jest.requireActual('@/lib/version'), { get: (t, k) => (k === 'BUILD_NUMBER' ? mockBuild : t[k as string]) }));
@@ -16,6 +17,7 @@ jest.mock('expo-router', () => ({ ...jest.requireActual('expo-router'), useRoute
 const open = async () => { await fresh(); const { WhatsNewPanel } = require('@/components/WhatsNew'); render(<WhatsNewPanel onClose={() => {}} />); };
 
 describe('„Co nowego”: tytuł najnowszego wpisu = uruchomiony build', () => {
+  zProbkami();
   test('build z CI (1030): „0.20.0 (1030)”, bez „1018” w tytule najnowszego wpisu', async () => {
     mockBuild = '1030'; await open();
     expect(screen.getByText(`${versionLabel(Constants.expoConfig?.version, "1030")}`)).toBeTruthy(); expect(screen.queryByText(/Wersja testowa 1018/)).toBeNull();

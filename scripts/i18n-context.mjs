@@ -9,7 +9,7 @@ import { join, relative } from 'node:path';
 export const SHORT_MAX = 20;
 const root = fileURLToPath(new URL('..', import.meta.url));
 const OUT = join(root, 'docs/lokalizacja/konteksty.json');
-/** Konteksty ręczne (docs/lokalizacja/konteksty-reczne.json): klucze użyte dynamicznie (nazwy faz w danych, teksty z placeholderami), których miejsca użycia nie wyjaśniają znaczenia — tłumacz musi wiedzieć, CO to jest (L-039: 26 języków oddało fazę „Podciąganie” nazwą ćwiczenia). */
+/** Konteksty ręczne (docs/lokalizacja/konteksty-reczne.json): klucze użyte dynamicznie (nazwy faz w danych, teksty z placeholderami), których miejsca użycia nie wyjaśniają znaczenia — tłumacz musi wiedzieć, CO to jest (L-041: 26 języków oddało fazę „Podciąganie” nazwą ćwiczenia). */
 export const RECZNE = JSON.parse(readFileSync(join(root, 'docs/lokalizacja/konteksty-reczne.json'), 'utf8'));
 const files = [];
 const walk = d => { for (const f of readdirSync(d).sort()) { const p = join(d, f); if (statSync(p).isDirectory()) walk(p); else if (/\.(ts|tsx)$/.test(f) && !/i18n(\.en)?\.ts$/.test(f) && !/\.generated\./.test(f)) files.push(p); } };

@@ -1,4 +1,4 @@
-// Reguły JAKOŚCI póz figur v2 (docs/53, bramka 3 i 4; L-036): luki znalezione przez recenzenta ruchu w pilotażu agent-pozy 26.10.2026 zamienione w sprawdzenia automatyczne.
+// Reguły JAKOŚCI póz figur v2 (docs/53, bramka 3 i 4; L-040): luki znalezione przez recenzenta ruchu w pilotażu agent-pozy 26.10.2026 zamienione w sprawdzenia automatyczne.
 // Każda reguła: funkcja czysta (poza lub kształty → lista komunikatów z liczbami), id w REGULY_JAKOSCI, test na pozie spełniającej i łamiącej (tests/figury-jakosc.test.ts).
 // Używa je waliduj() (v2-validate.mjs, kod „jakosc”) po przejściu schematu, geometrii i sensu; liczby w PROGI (jedno miejsce).
 import fs from 'node:fs';

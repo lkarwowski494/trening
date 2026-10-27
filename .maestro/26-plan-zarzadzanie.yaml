@@ -143,6 +143,7 @@ name: Plan — nazwa, drugi plan, wyłączenie, panel dnia
     when: { notVisible: ".*, today.*" }
     commands:
       - tapOn: "Next month"
+- scrollUntilVisible: { element: ".*, today.*", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { text: ".*, today.*" }
 - extendedWaitUntil: { visible: "Start planned workout: Upper A", timeout: 15000 }
 - tapOn: "Start planned workout: Upper A"

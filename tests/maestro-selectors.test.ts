@@ -99,7 +99,7 @@ test('regresja run 37738868663: każde stuknięcie „Swap exercise: …” na e
       const prev = lines[i - 1] ?? '';
       if (!(prev.startsWith(`- scrollUntilVisible: { element: ${m[1]},`) && /centerElement: true/.test(prev))) bad.push(`${f.split('/').pop()}: ${l.trim()}`);
     });
-    if (/05-/.test(f)) { const k = lines.findIndex(l => l.startsWith('- tapOn: "Month"')); if (k >= 0 && !/scrollUntilVisible: \{ element: "Month", direction: UP/.test(lines[k - 1] ?? '')) bad.push('05: „Month” bez przewinięcia w górę'); }
+    if (/05-/.test(f)) { const k = lines.findIndex(l => l.startsWith('- tapOn: "Month"')); if (k >= 0 && !/scrollUntilVisible: \{ element: "Month", direction: UP/.test(lines[k - 1] ?? '')) bad.push('05: „Month” bez przewinięcia w górę'); else if (k >= 0 && !(/timeout: (\d+)/.test(lines[k - 1]) && Number(/timeout: (\d+)/.exec(lines[k - 1])![1]) >= 60000 && lines[k - 2]?.startsWith('- tapOn: { id: "info-sets-part" }'))) bad.push('05: run 40279947833 — powrót w górę do „Month” wymaga zwiniętego ⓘ i timeoutu >= 60000'); }
   }
   expect(bad).toEqual([]);
 });
