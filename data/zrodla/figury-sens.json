@@ -4622,6 +4622,11 @@
       "pomin": {}
     },
     "core_standing": {
+      "zakres_wyjatki": {
+        "Kettlebell Windmill": { "shSag": 245, "powod": "wiatrak: biodro wypchnięte w bok, tułów pochylony ok. 64° i przechylony ku nodze, a ręka z ciężarem pozostaje pionowo nad barkiem (reguła wm.arm); model nie ma obrotu klatki wokół osi długiej, który w prawdziwym ruchu ustawia ramię w płaszczyźnie czołowej tułowia, więc zgięcie barku w płaszczyźnie strzałkowej tułowia wychodzi do ok. 240° (limit kontraktu 171°); uproszczenie ilustracyjne (recenzja ruchu 27.10.2026: poza musi pokazywać głęboki skłon z wypchniętym biodrem)" },
+        "Double Kettlebell Windmill": { "shSag": 245, "powod": "wiatrak: biodro wypchnięte w bok, tułów pochylony ok. 64° i przechylony ku nodze, a ręka z ciężarem pozostaje pionowo nad barkiem (reguła wm.arm); model nie ma obrotu klatki wokół osi długiej, który w prawdziwym ruchu ustawia ramię w płaszczyźnie czołowej tułowia, więc zgięcie barku w płaszczyźnie strzałkowej tułowia wychodzi do ok. 240° (limit kontraktu 171°); uproszczenie ilustracyjne (recenzja ruchu 27.10.2026: poza musi pokazywać głęboki skłon z wypchniętym biodrem)" },
+        "Bent Press": { "shSag": 205, "powod": "Bent Press: ręka z hantlem prostuje się nad głową w skłonie (tułów pochylony ok. 30° i przechylony), a model nie ma obrotu klatki wokół osi długiej, więc zgięcie barku w płaszczyźnie strzałkowej tułowia wychodzi do ok. 200° (limit kontraktu 171°); uproszczenie ilustracyjne (recenzja ruchu 27.10.2026: start z hantlem przy barku, wyprost pod koniec)" }
+      },
       "reguly": {
         "pallof_tulow": {
           "typ": "tulow_nieruchomy",
@@ -4892,7 +4897,10 @@
         ],
         "Kettlebell Windmill": "_wiatrak",
         "Double Kettlebell Windmill": "_wiatrak",
-        "Bent Press": "_wiatrak",
+        "Bent Press": [
+          "wiatrak_plecy",
+          "wiatrak_bok"
+        ],
         "Kettlebell Figure 8": [],
         "Spell Caster": [],
         "_twist": [

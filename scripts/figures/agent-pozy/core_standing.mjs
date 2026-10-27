@@ -5,6 +5,7 @@ import { v2, BODY, R, r1, lerp, ease, HIP, K, poza, PODLOGA, hipY, klatkaPiersio
 
 export const RODZINA = 'core_standing';
 const US = [0, 0.25, 0.5, 0.75, 1];
+const US9 = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]; /* wiatrak i bent press: dłuższy ruch ręki, więcej klatek (łuk, nie cięciwa) */
 const a01 = ease;
 export const WYJATKI = {
   'Seated Barbell Twist': 'sztanga w modelu leży zawsze wzdłuż osi z (dłonie na jej osi, ±0,6 cm), a skręt tułowia ze sztangą na plecach obraca sztangę wokół osi pionowej — sprzęt „sztanga” nie ma obrotu w poziomie, więc chwyt zeszłby z osi sztangi',
@@ -123,15 +124,31 @@ function landmine(cw) {
 }
 
 /* ================= wiatrak i bent press ================= */
-function wiatrak(cw, { lean1 = -34, podwojny = false, hantel = false, zs = 22 }) {
-  const st = stanie(zs, 4, 30);
-  const fr = (u) => { const lean = lean1 * a01(u); const c = klatkaPiersiowa(st.m, 0, { lean }); const sR = c.sh(1), sL = c.sh(-1);
-    const gR = [sR[0] + 14, sR[1] + Math.sqrt(63.7 ** 2 - 14 * 14), sR[2]]; const hl = rekaWisi(sL, sL[2] - (podwojny ? 12 : 2), 56);
-    return K({ u, m: st.m, p: 0, head: 0, lean, R: st.R, L: st.L, hr: { g: gR, pole: [0.2, 0, 1] }, hl: { g: hl, pole: [0, 0, -1] } }); };
-  const sprzet = [PODLOGA(-110, 120)];
-  if (hantel) sprzet.push({ rodzaj: 'hantel', trzyma: 'R' }); else sprzet.push({ rodzaj: 'kettlebell', trzyma: 'R', dzwon: 'tyl' });
+/** Nogi do wiatraka: stopy szeroko (zs), palce na zewnątrz (rot), prawe biodro wypchnięte w stronę ciężaru (zo, przesunięcie boczne miednicy); kostki w świecie (stoją w miejscu), wysokość miednicy z lewej, dalszej nogi. */
+function nogiWiatrak(zs, zo, rot) {
+  const aL = [0, 7, -zs]; const y = hipY(aL, 0, zo - HIP(), 8); const m = [0, y];
+  return { m, R: { a: [0, 7, zs], pod: 0, rot, pole: [0.15, 0.2, 0.1] }, L: { a: aL, pod: 0, rot, pole: [0.15, 0.2, -0.1] } };
+}
+/** Wiatrak (poprawka po recenzji 27.10.2026: wcześniej płytki skłon boczny): biodro wypchnięte w stronę ciężaru, zgięcie w biodrach (pochylenie tułowia) z przechyłem ku nodze przeciwnej, ręka z ciężarem pionowo nad barkiem,
+ * wolna dłoń zjeżdża wzdłuż nogi (nisko nad podłogą). `podwojny`: drugi kettlebell w wolnej ręce (dzwon w dół), wtedy ręka zwisa pionowo ze skłonem. */
+function wiatrak(cw, { lean1 = -34, pitch1 = 64, zo1 = 7, podwojny = false, zs = 20 }) {
+  const st = nogiWiatrak(zs, zo1, 30);
+  const fr = (u) => { const a = a01(u); const lean = lean1 * a, p = pitch1 * a; const zo = zo1 * a; const c = klatkaPiersiowa([st.m[0], st.m[1]], p, { lean }); const sR = c.sh(1), sL = c.sh(-1);
+    const dx = lerp(18, 11, a) + 14 * Math.sin(Math.PI * a); const gR = [sR[0] + dx, sR[1] + Math.sqrt(63.9 ** 2 - dx * dx), sR[2] + zo]; /* ramię nad głową lekko do przodu (zakres barku w płaszczyźnie tułowia) */ const dzL = podwojny ? -12 : -2; const hl = rekaWisi([sL[0], sL[1], sL[2] + zo], sL[2] + zo + dzL, podwojny ? 59 : 60);
+    return K({ u, m: st.m, p, head: p * 0.4, lean, boczne: zo, R: st.R, L: st.L, hr: { g: gR, pole: [0.2, 0, 1] }, hl: { g: hl, pole: [0, 0, -1] } }); };
+  const sprzet = [PODLOGA(-110, 120), { rodzaj: 'kettlebell', trzyma: 'R', dzwon: 'tyl' }];
   if (podwojny) sprzet.push({ rodzaj: 'kettlebell', trzyma: 'L', dzwon: 'dol' });
-  return zloz(cw, sprzet, fr);
+  return zloz(cw, sprzet, fr, US9);
+}
+/** Bent Press (poprawka po recenzji 27.10.2026: wcześniej start z ręką już nad głową): hantel startuje przy barku (łokieć zgięty), a ręka prostuje się, gdy ciało schodzi w dół i w bok;
+ * pionowy wyprost ręki osiąga się na końcu, w skłonie. */
+function bentPress(cw) {
+  const zs = 16, zo1 = 6; const st = nogiWiatrak(zs, zo1, 20);
+  const fr = (u) => { const a = a01(u); const lean = -30 * a, p = 30 * a, zo = zo1 * a; const c = klatkaPiersiowa([st.m[0], st.m[1]], p, { lean }); const sR = c.sh(1), sL = c.sh(-1);
+    const rack = c.pt(8, 16, 19); const w = a01(Math.min(1, u / 0.75)); /* wyprost ręki rozłożony na większą część ruchu */ const top = [sR[0] + 14, sR[1] + Math.sqrt(63.6 ** 2 - 196), sR[2]];
+    const gR = [lerp(rack[0], top[0], w), lerp(rack[1], top[1], w), lerp(rack[2], top[2], w) + zo]; const hl = rekaWisi([sL[0], sL[1], sL[2] + zo], sL[2] + zo - 2, 56);
+    return K({ u, m: st.m, p, head: p * 0.4, lean, boczne: zo, R: st.R, L: st.L, hr: { g: gR, pole: [0.2, -0.4, 1] }, hl: { g: hl, pole: [0, 0, -1] } }); };
+  return zloz(cw, [PODLOGA(-110, 120), { rodzaj: 'hantel', trzyma: 'R' }], fr, US9);
 }
 
 export function generuj() {
@@ -151,6 +168,6 @@ export function generuj() {
     'Landmine Rotation': () => landmine('Landmine Rotation'),
     'Kettlebell Windmill': () => wiatrak('Kettlebell Windmill', {}),
     'Double Kettlebell Windmill': () => wiatrak('Double Kettlebell Windmill', { podwojny: true }),
-    'Bent Press': () => wiatrak('Bent Press', { lean1: -30, hantel: true, zs: 16 }),
+    'Bent Press': () => bentPress('Bent Press'),
   };
 }
