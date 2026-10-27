@@ -137,6 +137,12 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - **Prośba o ocenę w sklepie** — systemowe okno iOS (SKStoreReviewController / expo-store-review), po pozytywnym zdarzeniu (np. nowy rekord
   albo kilka ukończonych treningów), nigdy w zamian za nagrodę (Apple 5.6.1/3.2.2). **[OTWARTE]**: dokładny moment i odstęp między prośbami.
 
+### Backlog 1.1 — grafiki: tryb cykliczny marszu (ponowna recenzja 27.10.2026, uwagi 2–5; uwaga 1 naprawiona regułą `marsz_zawsze_podparcie`)
+- Sled Drag: zamach rąk jak w sprincie (bark do 104,5°, dłoń z przodu 116 cm), a przy ciężkich saniach zamach bywa mniejszy — NISKIE, pewność 50%.
+- Yoke Walk: kolano nogi podporowej 31–42° i lądowanie stopy wykrocznej na palcach przed piętą — NISKIE, pewność 55%.
+- Linia kąta na karcie w marszu (jedno kolano, wartość skacze 2×/s; w „Ogranicz ruch” bywa czytana jak zalecenie) — rekomendacja: `hideAngle` dla `walk`; `walkPhases` liczy `ms` z `loopLength` zamiast `cycleLength` — NISKIE.
+- Sled Push / Drag: brak tekstów wskazówek `sled.lean` i `sled.legs` w `lib/cues/text/pl.json` (karta bez wskazówek) — NISKIE, stan sprzed gałęzi.
+
 ### Backlog bez priorytetu (decyzja właściciela 08.10.2026)
 Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właściciel nie poprosi o listę (CLAUDE.md).
 - Wydanie natywne — sekcja 4n niżej (przyciski przerwy na ekranie blokady, widżet, kontrolka w Centrum sterowania).

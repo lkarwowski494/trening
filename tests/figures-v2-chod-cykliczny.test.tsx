@@ -170,6 +170,11 @@ describe('reguła sensu marszu: stopa w kontakcie z podłożem nie przesuwa się
     expect(r.cm).toBeGreaterThanOrEqual(min); /* ta sama reguła, która przepuszcza pętlę cykliczną, wykrywa chód tyłem w powrocie wahadła */
     expect(stanceAdvance(loopFrames(dane(f, k), 160)).cm).toBeLessThanOrEqual(CONTRACT.cycle.advanceCm);
   });
+  test.each(CYKLICZNE)('marsz_zawsze_podparcie: %s / %s: w każdej klatce całej pętli (2 × 160 próbek) co najmniej jedna podeszwa < contactCm nad podłogą (bez „wiszenia” na rączkach)', (f, k) => {
+    const fr = loopFrames(dane(f, k), 160); const zle: string[] = [];
+    fr.forEach((x, i) => { const w = Math.min(...SIDES.map(s => Math.min(x.sk.legs[s].heel[1], x.sk.legs[s].toe[1]))); if (w >= CONTRACT.cycle.contactCm) zle.push(`${i}:${w.toFixed(1)}`); });
+    expect({ k, klatkiBezPodparcia: zle }).toEqual({ k, klatkiBezPodparcia: [] });
+  });
   test('stanceAdvance: znana konstrukcja — stopa w kontakcie cofa się o 30 cm (0 przesuwu), a po odwróceniu kolejności klatek sunie do przodu o 30 cm', () => {
     const fr = (x: number): Frame => { const base = keyframeFrame(dane('carry', "Farmer's Walk"), 0.4); const sh = (p: V3): V3 => [p[0] + x, p[1], p[2]]; const L = base.sk.legs;
       const leg = (l: typeof L.R) => ({ ...l, ankle: sh(l.ankle), heel: [l.ankle[0] + x - 3, 0, l.ankle[2]] as V3, toe: [l.ankle[0] + x + 12, 0, l.ankle[2]] as V3 });

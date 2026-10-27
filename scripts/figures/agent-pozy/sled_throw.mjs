@@ -80,11 +80,11 @@ const chodKrok = (hx, hy, { R, L }, extra = {}) => {
 /** Półkrok: prawa noga odpycha się z tyłu i leci do przodu, lewa ląduje przed ciałem i cofa się do odbicia (cały chód to ten półkrok na przemian, zamiana nóg przy powtórzeniu).
  * Stopa w powietrzu: trzeci element = zgięcie podeszwowe względem goleni; na podłożu: bezwzględne podbicie (dla ostatniego kroku podporu pośredni punkt toczenia stopy: pięta unosi się, palce stoją). */
 const polkrok = (hx, hy, extra = [{}, {}, {}, {}, {}]) => [
-  chodKrok(hx, hy, { R: [-58, null, -55], L: [22, 28, 25] }, extra[0]),
+  chodKrok(hx, hy, { R: [-58, null, -55], L: [24, null, 0] }, extra[0]), /* podwójne podparcie: stopa przednia już na podłożu, zanim tylna się oderwie (recenzja 27.10.2026, uwaga 1: wcześniej obie w powietrzu przez ok. ¼ kroku) */
   chodKrok(hx, hy, { R: [-40, 38, 35], L: [24, null, 0] }, extra[1]),
   chodKrok(hx, hy, { R: [-2, 44, 25], L: [-2, null, 0] }, extra[2]),
   chodKrok(hx, hy, { R: [12, 40, 20], L: [-30, null, -25] }, extra[3]),
-  chodKrok(hx, hy, { R: [22, 28, 25], L: [-58, null, -55] }, extra[4]), /* tryb cykliczny: klatka końcowa = lustro początkowej (R ↔ L), stopa lądująca nie cofa się o kilkadziesiąt cm */
+  chodKrok(hx, hy, { R: [24, null, 0], L: [-58, null, -55] }, extra[4]), /* tryb cykliczny: klatka końcowa = lustro początkowej (R ↔ L), stopa lądująca nie cofa się o kilkadziesiąt cm */
 ];
 function sledPush(cw) {
   const sprz = SPRZ({ rodzaj: 'sanie', x: 75, h: 100, dlugosc: 60 }); const post = { g: [75, 88], rel: [0, 0], w: 1, z: 25, reach: 62, pole: [0, -1, 0.3] };
