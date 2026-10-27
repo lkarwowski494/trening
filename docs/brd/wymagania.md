@@ -557,6 +557,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że zapis pochodzi z poprzedniej wersji aplikacji
     - Gdy użytkownik uruchamia nową wersję
     - Wtedy dane są przeniesione do nowego schematu, a kopia zapisu sprzed migracji istnieje
+  - Scenariusz: Błąd kodu migracji na czytelnych danych
+    - Zakładając, że po aktualizacji migracja danych rzuca wyjątek na poprawnym zapisie (błąd w kodzie wersji)
+    - Gdy aplikacja startuje
+    - Wtedy pokazuje ekran błędu startu („Wyślij dane”, „Spróbuj ponownie”, „Napisz do nas”), niczego nie zapisuje ani nie odkłada, a dane w telefonie zostają bajt w bajt do poprawionej wersji; zapis nieczytelny albo o złym kształcie — jak dotąd odłożony z komunikatem (test `tests/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx`)
 
 ### BR-DAN-005: „Co nowego” po aktualizacji; w pierwszej wersji sklepowej historia pusta
 - Przepływ: PR-06
