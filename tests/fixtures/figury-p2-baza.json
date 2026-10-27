@@ -1,0 +1,246 @@
+{
+ "back_extension/Back Extension": {
+  "svg": "d76aab2b872edaad73ce",
+  "raw": "adaaa9ae600fd5a264ab"
+ },
+ "back_extension/Reverse Hyperextension": {
+  "svg": "19fb64e3ceb3f3ed7469",
+  "raw": "70218270fca657de1eba"
+ },
+ "back_extension/Lower Back Curl": {
+  "svg": "10ba0bbdeb970a16cbf2",
+  "raw": "7545a46ee077e11449da"
+ },
+ "calf_raise/Łydki na stopniu": {
+  "svg": "11557441e9afbeb63a85",
+  "raw": "1fd032f276a61239731f"
+ },
+ "calf_raise/Standing Calf Raise": {
+  "svg": "d3b2835d6270766c6ae9",
+  "raw": "563dae4ca245f14a56c9"
+ },
+ "calf_raise/Smith Machine Calf Raise": {
+  "svg": "1bc0fdca82e702ebf2da",
+  "raw": "b588579d43ec88c1cc1b"
+ },
+ "calf_raise/Calf Raise (sztanga)": {
+  "svg": "f848e066dced24137472",
+  "raw": "9f0ee0b873292ba903fe"
+ },
+ "calf_raise/Calf Raise (linki)": {
+  "svg": "154bafa7966130fccb17",
+  "raw": "d589a4901b890d7c0061"
+ },
+ "calf_raise/Donkey Calf Raise": {
+  "svg": "ed8a64362beb14eed17f",
+  "raw": "fb40e610773f7a672c51"
+ },
+ "calf_raise/Band Calf Raise": {
+  "svg": "0fef00d2ef543390b60a",
+  "raw": "cdd2140296f4eb583e22"
+ },
+ "calf_raise/Single Leg Calf Raise": {
+  "svg": "e78641fdfa829409927d",
+  "raw": "69cdd32d0355ab6719a6"
+ },
+ "calf_raise/Seated Calf Raise": {
+  "svg": "9b30958a77f8b9db3fcb",
+  "raw": "0cfa4b9d2aa57b784960"
+ },
+ "calf_raise/Seated Calf Raise (hantle)": {
+  "svg": "cf8054d0a139c5bb8ae6",
+  "raw": "ed7b715bd5044e8e6450"
+ },
+ "calf_raise/Barbell Seated Calf Raise": {
+  "svg": "82c3a46096eea89207d0",
+  "raw": "709a2f647f4d0a2628ec"
+ },
+ "calf_raise/Dumbbell Seated One-Leg Calf Raise": {
+  "svg": "15dbbe170a8d486c5401",
+  "raw": "e25c2b70190ead5f76f2"
+ },
+ "glute_floor/Donkey Kick": {
+  "svg": "0f5a3aeb6c3e99d83e92",
+  "raw": "33452bdf1b270708f681"
+ },
+ "glute_floor/Fire Hydrant": {
+  "svg": "cf62a15785cd329d804b",
+  "raw": "a7f72646e7ef6b832334"
+ },
+ "glute_floor/Clamshell": {
+  "svg": "0fff1a7fdf14fdc3bca5",
+  "raw": "a03021381ae33d5ae62d"
+ },
+ "glute_floor/Cable Kickback": {
+  "svg": "7fb1a03e28d8c59c49c4",
+  "raw": "fc584fd6a9548e09382a"
+ },
+ "glute_floor/Hip Extension with Bands": {
+  "svg": "82b3904215f30a53140a",
+  "raw": "b72e088c7ac1c7eb904e"
+ },
+ "glute_floor/Machine Glute Kickback": {
+  "svg": "529ac269435664d11a70",
+  "raw": "48004010f822cfe62106"
+ },
+ "glute_floor/Prone Flutter Kicks": {
+  "svg": "b0357e15e2832c5da67c",
+  "raw": "d37a08a5e8d5eec9c791"
+ },
+ "leg_isolation/Leg Extension": {
+  "svg": "0acb1c28efecec3c7608",
+  "raw": "93e46d11d5721338ef7c"
+ },
+ "leg_isolation/Single-Leg Leg Extension": {
+  "svg": "6ee0b1c9c000ec6d04de",
+  "raw": "aed19e60961d8f75de84"
+ },
+ "leg_isolation/Leg Curl": {
+  "svg": "f1410348649ff3550671",
+  "raw": "7323b536a57f1b1bfd06"
+ },
+ "leg_isolation/Lying Leg Curl": {
+  "svg": "56b67b197728afb0b54e",
+  "raw": "dddaef357db9c0cdbd26"
+ },
+ "leg_isolation/Standing Leg Curl": {
+  "svg": "5b2ca67c53b5ed56bc70",
+  "raw": "41dd3ca7dcf9365400ff"
+ },
+ "leg_isolation/Standing Cable Leg Curl": {
+  "svg": "10ed0151fe93b032cb63",
+  "raw": "2c8a3e23dfbdcdc93237"
+ },
+ "leg_isolation/Seated Band Hamstring Curl": {
+  "svg": "d46275b04bcf1f8baf88",
+  "raw": "a2118a6ba4052966e9ab"
+ },
+ "leg_isolation/Slider Hamstring Curl": {
+  "svg": "1b6edff0a73c09ce579f",
+  "raw": "045b12c58dc6dd42e42e"
+ },
+ "leg_machine/Leg Press": {
+  "svg": "14c5af97d8056a8b8e6f",
+  "raw": "a4dcf57628cb641049b9"
+ },
+ "leg_machine/Single Leg Press": {
+  "svg": "c515fec6659b775320b6",
+  "raw": "5926a169286d8063f260"
+ },
+ "leg_machine/Calf Press (leg press)": {
+  "svg": "7b0bcb7df0101c72b4c7",
+  "raw": "d2d196c8f33e1bb0c38d"
+ },
+ "leg_machine/Hack Squat": {
+  "svg": "e50c89860cff8a33120e",
+  "raw": "767166d7b0ef1475fe8f"
+ },
+ "leg_machine/Pendulum Squat": {
+  "svg": "7129fd9005449a53bac5",
+  "raw": "4439af32a0d94b69b9c8"
+ },
+ "leg_machine/Lying Machine Squat": {
+  "svg": "85b24ceb9a81c76f888f",
+  "raw": "7fc3083121e8fc292121"
+ },
+ "leg_machine/Belt Squat Machine": {
+  "svg": "c6d2890c53adc44b8220",
+  "raw": "f2842d398ef432bcb4b7"
+ },
+ "lunge/Split Squat": {
+  "svg": "ec7d561d94c2b8e64f2f",
+  "raw": "f89bebd7c5f9dce54cf1"
+ },
+ "lunge/Split Squat (linki)": {
+  "svg": "8c199e7f6cbe8d95374c",
+  "raw": "03c806a63d5638010059"
+ },
+ "lunge/Reverse Lunge": {
+  "svg": "632e9973d2bac939d957",
+  "raw": "81ae30e79e1494a03a33"
+ },
+ "lunge/Walking Lunges": {
+  "svg": "aa283e26056ea4f5e92c",
+  "raw": "72c2fdd66d14bad80afe"
+ },
+ "lunge/Lunges (hantle)": {
+  "svg": "aa283e26056ea4f5e92c",
+  "raw": "72c2fdd66d14bad80afe"
+ },
+ "lunge/Lunges (sztanga)": {
+  "svg": "cedb7b7bb7c90be9daaa",
+  "raw": "38d9ba50747fd3f226b5"
+ },
+ "lunge/Barbell Walking Lunge": {
+  "svg": "cedb7b7bb7c90be9daaa",
+  "raw": "38d9ba50747fd3f226b5"
+ },
+ "lunge/Elevated Back Lunge": {
+  "svg": "237c679356eef7db60d6",
+  "raw": "7f75085b4791a0ecc2be"
+ },
+ "lunge/Slider Reverse Lunge": {
+  "svg": "a05598745f8bfecc1461",
+  "raw": "3535191f0bf8d6c5d768"
+ },
+ "lunge/Step Up": {
+  "svg": "c1900ee44c63f9c433f2",
+  "raw": "8296d912776c0e84dc0e"
+ },
+ "lunge/Barbell Step Up": {
+  "svg": "e7365f768f832a396359",
+  "raw": "3d74333ebdd090f824a2"
+ },
+ "lunge/Pistol Squat": {
+  "svg": "63ba47e55313141e2f2b",
+  "raw": "09ba5287a0778f70de92"
+ },
+ "lunge/Smith Machine Pistol Squat": {
+  "svg": "e91345520cb144472e96",
+  "raw": "1716383cc8dc58d419f1"
+ },
+ "lunge/Single-Leg High Box Squat": {
+  "svg": "c98e5b2dbb3bfb0aa129",
+  "raw": "46bd3edbb08ec39dbe21"
+ },
+ "lunge/Lunge Pass Through": {
+  "svg": "425bf50903f8eee0915b",
+  "raw": "a4d16ea6598db6655b84"
+ },
+ "lunge/Curtsy Lunge": {
+  "svg": "b334c198eab9ec5626c7",
+  "raw": "4617ede9754cfb5a17a0"
+ },
+ "lunge/Crossover Reverse Lunge": {
+  "svg": "fa14fcf7d8440dbb5622",
+  "raw": "da698ababd731474718d"
+ },
+ "lunge/Bulgarian Split Squat (hantle)": {
+  "svg": "9a87ed5ec6037a0dbaa1",
+  "raw": "7fe2b7b5025913b2254b"
+ },
+ "lunge/Bulgarian Split Squat (sztanga)": {
+  "svg": "70d96677f7d1c085c3ca",
+  "raw": "a8b001b28df93c5d793f"
+ },
+ "lunge/Smith Machine Bulgarian Split Squat": {
+  "svg": "2d56708ff9c78a941324",
+  "raw": "6afbb3afbf397d3d2604"
+ },
+ "lunge/Suspended Split Squat": {
+  "svg": "70db428a2c3696fba2a1",
+  "raw": "215f3fbef1e2adde9085"
+ },
+ "lunge/Lateral Lunge": {
+  "svg": "e2be793e556bbf73aaa0",
+  "raw": "dcc0daa73427d431a8d0"
+ },
+ "lunge/Cossack Squat": {
+  "svg": "e33c2361ce6b5b0f7da6",
+  "raw": "11ed5670d39ab6f181c5"
+ },
+ "lunge/Barbell Side Split Squat": {
+  "svg": "77f261bfbe8bf1b07948",
+  "raw": "fd0f6767f54da620b65c"
+ }
+}
