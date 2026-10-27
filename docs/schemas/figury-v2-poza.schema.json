@@ -180,9 +180,10 @@
        "stopy",
        "kostki",
        "dlonie",
-       "sztanga"
+       "sztanga",
+       "zaczep_kostki"
       ],
-      "description": "Tylko guma: zaczep (stały punkt x, y, z), stopy (guma pod stopami), kostki (pętla między kostkami), dlonie (guma między dłońmi), sztanga (od końców gryfu do punktu pod/nad)."
+      "description": "Tylko guma: zaczep (stały punkt x, y, z → dłonie), zaczep_kostki (stały punkt x, y, z → kostki), stopy (guma pod stopami), kostki (pętla między kostkami), dlonie (guma między dłońmi), sztanga (od końców gryfu do punktu pod/nad)."
      },
      "kat": {
       "type": "number",
@@ -192,9 +193,9 @@
      },
      "siedzisko": {
       "type": "number",
-      "minimum": 20,
+      "minimum": 2,
       "maximum": 70,
-      "description": "Tylko lawka: długość siedziska od zawiasu w stronę +x w cm (domyślnie 55; maszyny i ławki do siedzenia ok. 40–45)."
+      "description": "Tylko lawka: długość siedziska od zawiasu w stronę +x w cm (domyślnie 55; maszyny i ławki do siedzenia ok. 40–45; 2 = samo oparcie maszyny bez siedziska)."
      },
      "walki": {
       "type": "boolean",

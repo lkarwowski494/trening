@@ -185,6 +185,8 @@ export const PRZYBLIZENIA = {
 };
 
 const BT = 30, BY = 44; /* wysokość ławki pod tylną stopą, głębokość */
+/** Przy tylnej stopie podniesionej (ławka, taśma) wyprost biodra tylnej nogi sięga dalej niż w Split Squat: limit z deklaracji zakres_wyjatki (data/zrodla/figury-sens.json → lunge) to −50°; góra ruchu przy −HIP_TYL_PODN (recenzja 1.1, partia 2, nr 1: wcześniej domyślne −14,5° ucinało ruch do 8 cm). */
+const HIP_TYL_PODN = 30;
 export function generuj() {
   const linki = (g, f0) => [{ rodzaj: 'wyciag', dwa: true, x: 105, y: 22, z: 45, chwyt: 'uchwyt', h: 120 }];
   const lawkaTyl = (g) => [{ rodzaj: 'lawka', x: r1(g.aT[0] - 22), top: BT, kat: 0, dlugosc: 40, siedzisko: 20 }];
@@ -199,10 +201,10 @@ export function generuj() {
     'Barbell Walking Lunge': () => krok('Barbell Walking Lunge', { kierunek: 'przod', tryb: 'sztanga' }),
     'Elevated Back Lunge': () => krok('Elevated Back Lunge', { kierunek: 'tyl', tryb: 'sztanga', topPrzod: 12, sprzetFn: pudlo }),
     'Slider Reverse Lunge': () => krok('Slider Reverse Lunge', { kierunek: 'tyl', slizg: true, sprzetFn: () => [{ rodzaj: 'slizgacze', punkt: 'kostki', trzyma: 'L' }] }),
-    'Bulgarian Split Squat (hantle)': () => splitSquat('Bulgarian Split Squat (hantle)', { tryb: 'hantle', topTyl: BT, yDol: BY, sprzetFn: lawkaTyl }),
-    'Bulgarian Split Squat (sztanga)': () => splitSquat('Bulgarian Split Squat (sztanga)', { tryb: 'sztanga', topTyl: BT, yDol: BY, sprzetFn: (g, f) => [...lawkaTyl(g, f), { rodzaj: 'slupek', x: g.x - 40, h: 150, hak: 135 }] }),
-    'Smith Machine Bulgarian Split Squat': () => splitSquat('Smith Machine Bulgarian Split Squat', { tryb: 'smith', topTyl: BT, yDol: BY, sprzetFn: (g, f) => [...lawkaTyl(g, f), { rodzaj: 'smith', x: r1(f.rece.R.chwyt[0]), h: 200 }] }),
-    'Suspended Split Squat': () => splitSquat('Suspended Split Squat', { tylWisi: 40, sprzetFn: (g) => [{ rodzaj: 'zawieszenie', punkt: 'kostki', trzyma: 'L', x: r1(g.aT[0]), y: 220, z: g.aT[2] }] }),
+    'Bulgarian Split Squat (hantle)': () => splitSquat('Bulgarian Split Squat (hantle)', { tryb: 'hantle', topTyl: BT, yDol: BY, hipMin: -HIP_TYL_PODN, sprzetFn: lawkaTyl }),
+    'Bulgarian Split Squat (sztanga)': () => splitSquat('Bulgarian Split Squat (sztanga)', { tryb: 'sztanga', topTyl: BT, yDol: BY, hipMin: -HIP_TYL_PODN, sprzetFn: (g, f) => [...lawkaTyl(g, f), { rodzaj: 'slupek', x: g.x - 40, h: 150, hak: 135 }] }),
+    'Smith Machine Bulgarian Split Squat': () => splitSquat('Smith Machine Bulgarian Split Squat', { tryb: 'smith', topTyl: BT, yDol: BY, hipMin: -HIP_TYL_PODN, sprzetFn: (g, f) => [...lawkaTyl(g, f), { rodzaj: 'smith', x: r1(f.rece.R.chwyt[0]), h: 200 }] }),
+    'Suspended Split Squat': () => splitSquat('Suspended Split Squat', { tylWisi: 40, hipMin: -HIP_TYL_PODN, sprzetFn: (g) => [{ rodzaj: 'zawieszenie', punkt: 'kostki', trzyma: 'L', x: r1(g.aT[0]), y: 220, z: g.aT[2] }] }),
     'Lateral Lunge': () => boczny('Lateral Lunge'),
     'Cossack Squat': () => boczny('Cossack Squat', { kDol: 112, zR: 36, pitchDol: 32, hxB: -24, rotR: -28 }),
     'Barbell Side Split Squat': () => boczny('Barbell Side Split Squat', { tryb: 'sztanga', sprzetFn: (f) => [{ rodzaj: 'slupek', x: -40, h: 150, hak: 135 }] }),

@@ -89,12 +89,17 @@ export function naLawce(kat, top = 43, { zr = 24 } = {}) {
   return { m, p, glowa: p, nogi: nogiLezac(m, { dx: v2().BENCH.footBack, zr }) };
 }
 
+/** Siedzisko ławki osoby leżącej przodem (cm): samo oparcie (SEAT_LEN.min = 2) — uda proste, opadające za brzegiem ławki, nie mogą przenikać siedziska (dawne 20 cm: przenikanie 6 cm). */
+const SIEDZISKO_LEZACY = 2;
 /** Leżenie przodem na ławce skośnej (kat oparcia): ta sama linia ciała co leżenie tyłem, obrotTulowia 180 (klatka ku oparciu; strona R leży po −z), nogi za siedziskiem
  * (biodro nad siedziskiem, uda na siedzisku, kolana poza jego końcem, golenie w dół, stopy na podłodze), oparcie skrócone do dl (barki poza jego górnym końcem — ręce zwisają przed ławką).
  * Zwraca { m, p, ext, nogi, lawka, S(strona) — bark w świecie }. */
-export function lezyPrzodem(kat = 45, { top = 43, dl = 38, zr = 10, kolDx, pole = [1, 1, 0], uniesienie, sedzisko = 20 } = {}) {
-  const B = naLawce(kat, top, { zr: 24 }); const nk = [Math.sin(kat * R), Math.cos(kat * R)]; const m = [B.m[0] + nk[0] * (uniesienie ?? 2.6), B.m[1] + nk[1] * (uniesienie ?? 2.6)]; const p = B.p; const kolX = m[0] + (kolDx ?? 52);
-  const nog = (s) => ({ k: [kolX, BODY().ankleH, -POL(s) * zr], pod: 0, rot: 0, pole });
+export function lezyPrzodem(kat = 45, { top = 43, dl = 38, zr = 10, kolDx, pole = [1, 1, 0], uniesienie, sedzisko = SIEDZISKO_LEZACY } = {}) {
+  const B = naLawce(kat, top, { zr: 24 }); const nk = [Math.sin(kat * R), Math.cos(kat * R)]; const m = [B.m[0] + nk[0] * (uniesienie ?? 2.6), B.m[1] + nk[1] * (uniesienie ?? 2.6)]; const p = B.p;
+  /* Nogi PROSTE (recenzja 1.1, partia 2, klasa nr 1): kostki na podłodze tam, gdzie sięga prosta noga z biodra (odległość 3D biodro–kostka = długość nogi − 0,1 cm), nie bliżej: przy bliższych kostkach (dawne kolDx 52) kolano musiało się zgiąć, a biegun
+   * (do przodu i w górę, jak dla stojącego) zginał je do TYŁU o ok. 19 cm. Parametr `kolDx` jest ignorowany (zostaje dla zgodności wywołań). */
+  void kolDx; const dyN = m[1] - BODY().ankleH; const dzN = zr - BODY().hipHalf; const kolX = m[0] + Math.sqrt(Math.max(1, (BODY().thigh + BODY().shank - 0.1) ** 2 - dyN ** 2 - dzN ** 2));
+  const nog = (s) => ({ k: [kolX, BODY().ankleH, -POL(s) * zr], pod: 0, rot: 0, pole: [-pole[0], -pole[1], pole[2]] }); /* `pole` podawane jak dla stojącego (do przodu i w górę); leżąc przodem przód uda wskazuje w dół i do tyłu → odwrócone, żeby resztkowe zgięcie kolana (do 2 cm przy prawie prostej nodze) szło we właściwą stronę */
   const S = (sd) => bark(m, p, -POL(sd));
   return { m, p, glowa: p, ext: { obrotTulowia: 180 }, nogi: { R: nog('R'), L: nog('L') }, lawka: { rodzaj: 'lawka', x: 0, top, kat, dlugosc: dl, siedzisko: sedzisko }, S };
 }

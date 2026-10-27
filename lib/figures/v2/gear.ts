@@ -16,11 +16,13 @@ export type GearName = typeof GEAR[number];
 export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number]; kat?: number; walki?: boolean; mocowanie?: typeof BAND_MOUNT[number]; tryb?: typeof LEVER_MODE[number]; punkt?: typeof LEVER_POINT[number]; siedzisko?: number; trzymanie?: typeof SLED_HOLD[number] };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
 export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt', 'kat', 'walki', 'mocowanie', 'tryb', 'punkt', 'siedzisko', 'trzymanie'] as const;
+/** Długość siedziska ławki (cm). Minimum 2 cm = oparcie maszyny bez siedziska (hack squat, wahadło, przysiad leżąc: nieruchome oparcie pod plecami; recenzja ruchu 1.1, partia 2) — dłuższe siedzisko przenikałoby golenie. */
+export const SEAT_LEN = { min: 2, max: 70 } as const;
 export const BELL_MODES = ['dol', 'wzdluz', 'tyl'] as const;
 /** Osprzęt linki wyciągu: uchwyt (jeden na dłoń), lina (dwa końce), drążek (prosty, między dłońmi), kostka (opaska na kostkę). */
 export const CABLE_ATTACH = ['uchwyt', 'lina', 'drazek', 'kostka'] as const;
-/** Mocowanie gumy oporowej: zaczep (stały punkt x, y, z), stopy (guma pod stopami), kostki (pętla między kostkami), dlonie (guma między dłońmi), sztanga (od końców gryfu do punktu pod/nad). */
-export const BAND_MOUNT = ['zaczep', 'stopy', 'kostki', 'dlonie', 'sztanga'] as const;
+/** Mocowanie gumy oporowej: zaczep (stały punkt x, y, z → dłonie), zaczep_kostki (stały punkt x, y, z → kostki; uginanie nogi, odwodzenie, kickback), stopy (guma pod stopami), kostki (pętla między kostkami), dlonie (guma między dłońmi), sztanga (od końców gryfu do punktu pod/nad). */
+export const BAND_MOUNT = ['zaczep', 'stopy', 'kostki', 'dlonie', 'sztanga', 'zaczep_kostki'] as const;
 /** Dźwignia maszyny: obrót wokół osi (sztywne ramię) albo prowadnica liniowa (skok po prostej); punkt mocowania: dłonie, kostki, miednica. */
 export const LEVER_MODE = ['obrot', 'prosta'] as const;
 export const LEVER_POINT = ['dlonie', 'kostki', 'miednica'] as const;
@@ -215,7 +217,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
       ...(g.kat !== undefined && (g.kat < BENCH_KAT.min || g.kat > BENCH_KAT.max) ? [`sprzęt: kąt ławki kat = ${g.kat}° poza przedziałem ${BENCH_KAT.min}…${BENCH_KAT.max}°`] : []),
       ...(g.top !== undefined && (g.top < 20 || g.top > 80) ? [`sprzęt: wysokość siedziska top = ${g.top} cm poza przedziałem 20–80 cm`] : []),
       ...(g.dlugosc !== undefined && (g.dlugosc < 30 || g.dlugosc > 120) ? [`sprzęt: długość oparcia dlugosc = ${g.dlugosc} cm poza przedziałem 30–120 cm`] : []),
-      ...bounds('siedzisko (długość siedziska)', g.siedzisko, 20, 70),
+      ...bounds('siedzisko (długość siedziska)', g.siedzisko, SEAT_LEN.min, SEAT_LEN.max),
     ],
     ref: () => {
       const hip = (deg: number, top?: number): { hip: V3; pitch: number; sh: V3; head: V3 } => {
@@ -224,7 +226,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
       };
       const row = (deg: number, top?: number): string => { const q = hip(deg, top); const feet = deg < 0 ? `kostki [${f1(q.hip[0] + 44)}, ${f1(BENCH.declineSeat + 6)}, ±${BENCH.footHalf}] (stopy pod wałkami)` : `kostki [${f1(q.hip[0] + BENCH.footBack)}, ${f1(BODY.ankleH)}, ±${BENCH.footHalf}] (stopy na podłodze)`; return `kat ${deg}°: miednica [${f1(q.hip[0])}, ${f1(q.hip[1])}, 0], pochylenieTulowia ${q.pitch}, bark [${f1(q.sh[0])}, ${f1(q.sh[1])}], środek głowy [${f1(q.head[0])}, ${f1(q.head[1])}] (pochylenieGlowy = pochylenieTulowia), ${feet}`; };
       return [
-        `lawka: ławka z regulowanym oparciem. Zawias (styk siedziska i oparcia) w x (domyślnie 0) na wysokości top (siedzisko ${BENCH.seatTop} cm; ławka ujemna ${BENCH.declineSeat} cm); siedzisko biegnie od zawiasu o siedzisko cm (domyślnie ${BENCH.seatLen}; maszyny i ławki do siedzenia ok. 40–45) w stronę +x (stopy), oparcie o dlugosc (domyślnie ${BENCH.backLen}) cm w stronę −x pod kątem kat od poziomu: 0 = płaska, dodatni = skos (głowa wyżej), ujemny = ławka ujemna (głowa niżej). Pole kat: ławka płaska ${BENCH_KAT.flat[0]}…${BENCH_KAT.flat[1]}°, skośna ${BENCH_KAT.incline[0]}…${BENCH_KAT.incline[1]}°, ujemna ${BENCH_KAT.decline[0]}…${BENCH_KAT.decline[1]}° — kąt musi odpowiadać możliwości katalogu ćwiczenia (płaska/skośna/ujemna). Szerokość ${EQUIP.benchW} cm (z = ±${EQUIP.benchW / 2}).`,
+        `lawka: ławka z regulowanym oparciem. Zawias (styk siedziska i oparcia) w x (domyślnie 0) na wysokości top (siedzisko ${BENCH.seatTop} cm; ławka ujemna ${BENCH.declineSeat} cm); siedzisko biegnie od zawiasu o siedzisko cm (domyślnie ${BENCH.seatLen}; maszyny i ławki do siedzenia ok. 40–45; ${SEAT_LEN.min}–${SEAT_LEN.max}: samo oparcie maszyny bez siedziska = ${SEAT_LEN.min}) w stronę +x (stopy), oparcie o dlugosc (domyślnie ${BENCH.backLen}) cm w stronę −x pod kątem kat od poziomu: 0 = płaska, dodatni = skos (głowa wyżej), ujemny = ławka ujemna (głowa niżej). Pole kat: ławka płaska ${BENCH_KAT.flat[0]}…${BENCH_KAT.flat[1]}°, skośna ${BENCH_KAT.incline[0]}…${BENCH_KAT.incline[1]}°, ujemna ${BENCH_KAT.decline[0]}…${BENCH_KAT.decline[1]}° — kąt musi odpowiadać możliwości katalogu ćwiczenia (płaska/skośna/ujemna). Szerokość ${EQUIP.benchW} cm (z = ±${EQUIP.benchW / 2}).`,
         `lawka walki: true = wałki na nogi (ławka ujemna): wałek o promieniu ${f1(EQUIP.rollerR)} cm nad kostkami przy końcu siedziska (stopy pod wałkami: kostki ${BENCH.declineSeat + 6} cm nad podłogą, nogi nie przenikają wałka).`,
         `OSOBA NA ŁAWCE (głowa w stronę −x, stopy +x): miednica leży ${BENCH.padBack} cm nad powierzchnią — kat ≤ 45°: [x + ${BENCH.padBack}·sin(kat), top + ${BENCH.padBack}·cos(kat), 0] (leżąc); kat > 45° (siedząc): miednica styka się z siedziskiem i oparciem, na dwusiecznej kąta między nimi w odległości ${BENCH.padBack}/cos(kat/2) od zawiasu; pochylenieTulowia = kat − 90; bark = miednica + ${BODY.trunk}·[−cos(kat), sin(kat)]; pochylenieGlowy = pochylenieTulowia (głowa na oparciu). Wartości wyliczone z modelu: ${row(0)}; ${row(30)}; ${row(-15)}; ${row(75, 45)}.`,
         `lawka, kontakty: plecy, miednica, uda i głowa mogą dotykać ławki (przenikanie do 1,5 cm), ramię do 6 cm, przedramię do 2,5 cm; sztanga na klatce: tułów do 2,6 cm, ramię do 2,2 cm — głębiej odrzucane. Ławka nie ma kolidera poza siedziskiem i oparciem (dwa graniastosłupy).`,
@@ -238,6 +240,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
       const m = g.mocowanie ?? 'zaczep'; const ss = sidesOf(g); const band = (from: V3, to: V3): Prop => ({ k: 'band', from, to });
       if (m === 'stopy') return ss.map(s => band([ankles[s][0], 0, ankles[s][2]], grips[s]));
       if (m === 'kostki') return [band(ankles.R, ankles.L)];
+      if (m === 'zaczep_kostki') { const a: V3 = [g.x ?? 0, g.y ?? 10, g.z ?? 0]; return ss.map(s => band(a, ankles[s])); }
       if (m === 'dlonie') return [band(grips.R, grips.L)];
       if (m === 'sztanga') { const bar = all.find(x => x.rodzaj === 'sztanga'); if (!bar) return []; const [b] = GEAR_KINDS.sztanga.props(bar, grips, all, ankles, pelvis); if (b.k !== 'barbell') return []; return [-1, 1].map(sg => band([g.x ?? b.c[0], g.y ?? 0, sg * EQUIP.chainZ], [b.c[0], b.c[1], sg * EQUIP.chainZ])); }
       const a: V3 = [g.x ?? 0, g.y ?? 100, g.z ?? 0]; return ss.map(s => band(a, grips[s]));
@@ -246,7 +249,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
       ...(g.y !== undefined && (g.y < 0 || g.y > 300) ? [`sprzęt: wysokość zaczepu gumy y = ${g.y} cm poza przedziałem 0–300 cm`] : []),
     ],
     ref: () => [
-      `guma: guma oporowa (pole mocowanie): "zaczep" (domyślnie) = stały punkt P = [x, y, z] (domyślnie [0, 100, 0]: drzwi, słupek, kolumna), guma biegnie od P do dłoni (jedna linia na dłoń; trzyma "obie" / "R" / "L"); "stopy" = guma pod stopami: od podłogi pod kostką (x, z kostki, y = 0) do dłoni tej samej strony (przysiad z gumą, uginanie, wznosy); "kostki" = pętla między kostkami (kroki w bok, odwodzenie: linia od kostki R do kostki L); "dlonie" = guma między dłońmi (rozciąganie gumy w poziomie: linia od dłoni R do dłoni L); "sztanga" = guma od końców gryfu (z = ±${f1(EQUIP.chainZ)} cm) do punktu [x (domyślnie x sztangi), y (domyślnie 0 = podłoga; wysoko = guma odwrócona), z] — wymaga wpisu sztanga.`,
+      `guma: guma oporowa (pole mocowanie): "zaczep" (domyślnie) = stały punkt P = [x, y, z] (domyślnie [0, 100, 0]: drzwi, słupek, kolumna), guma biegnie od P do dłoni (jedna linia na dłoń; trzyma "obie" / "R" / "L"); "zaczep_kostki" = stały punkt P = [x, y, z] (domyślnie [0, 10, 0]: noga stojaka, kolumna tuż nad podłogą), guma biegnie od P do kostki (jedna linia na nogę; trzyma "R" / "L" = ta noga, "obie" = obie; uginanie nogi w siadzie, kickback, odwodzenie: ruch kostki OD zaczepu rozciąga gumę); "stopy" = guma pod stopami: od podłogi pod kostką (x, z kostki, y = 0) do dłoni tej samej strony (przysiad z gumą, uginanie, wznosy); "kostki" = pętla między kostkami (kroki w bok, odwodzenie: linia od kostki R do kostki L); "dlonie" = guma między dłońmi (rozciąganie gumy w poziomie: linia od dłoni R do dłoni L); "sztanga" = guma od końców gryfu (z = ±${f1(EQUIP.chainZ)} cm) do punktu [x (domyślnie x sztangi), y (domyślnie 0 = podłoga; wysoko = guma odwrócona), z] — wymaga wpisu sztanga.`,
       'guma rysowana jest jako linia przerywana; nie ma kolidera ani limitu długości (guma się rozciąga): położenie zaczepu wyznacza KIERUNEK OPORU (ruch ćwiczenia ma rozciągać gumę); w całym ruchu linia ma prowadzić od zaczepu do dłoni/kostek/sztangi.',
     ],
   },

@@ -9,7 +9,7 @@
 import { add, dist, type V3 } from './math';
 import { BODY, EXT_ROM, SIDES, hipPoint, jointAngles, legJoints, type LegIn, type ArmIn, type PoseIn, type Side } from './skeleton';
 import type { Frame, Prop } from './scene';
-import { GEAR, GEAR_KINDS, BELL_MODES, CABLE_ATTACH, BENCH_KAT, BAND_MOUNT, LEVER_MODE, LEVER_POINT, SLED_HOLD, contactsFrom, gearFieldIssues, gearSetIssues, propsFrom, resolveBells, type Gear } from './gear';
+import { GEAR, GEAR_KINDS, SEAT_LEN, BELL_MODES, CABLE_ATTACH, BENCH_KAT, BAND_MOUNT, LEVER_MODE, LEVER_POINT, SLED_HOLD, contactsFrom, gearFieldIssues, gearSetIssues, propsFrom, resolveBells, type Gear } from './gear';
 import { checkFrame } from './colliders';
 import { mkFrame } from './rigs/common';
 import { FAMILY } from './families';
@@ -183,9 +183,9 @@ export function poseSchema(family: string, scope?: PromptScope): Sch {
     trzymanie: { type: 'string', enum: [...SLED_HOLD], description: 'Tylko sanie: slupki (dłonie na słupkach, domyślnie) albo lina (lina od przodu sań do dłoni).' },
     tryb: { type: 'string', enum: [...LEVER_MODE], description: 'Tylko dzwignia (maszyna): obrot (sztywne ramię wokół osi, domyślnie) albo prosta (prowadnica liniowa pod kątem kat).' },
     punkt: { type: 'string', enum: [...LEVER_POINT], description: 'Tylko dzwignia: punkt ciała, do którego mocuje się dźwignia: dlonie (domyślnie), kostki, miednica; trzyma wskazuje stronę (domyślnie R).' },
-    mocowanie: { type: 'string', enum: [...BAND_MOUNT], description: 'Tylko guma: zaczep (stały punkt x, y, z), stopy (guma pod stopami), kostki (pętla między kostkami), dlonie (guma między dłońmi), sztanga (od końców gryfu do punktu pod/nad).' },
+    mocowanie: { type: 'string', enum: [...BAND_MOUNT], description: 'Tylko guma: zaczep (stały punkt x, y, z → dłonie), zaczep_kostki (stały punkt x, y, z → kostki), stopy (guma pod stopami), kostki (pętla między kostkami), dlonie (guma między dłońmi), sztanga (od końców gryfu do punktu pod/nad).' },
     kat: num(BENCH_KAT.min, BENCH_KAT.max, 'Kąt w stopniach od poziomu. Lawka: kąt oparcia (0 = płaska, dodatni = skos głową wyżej, ujemny = ławka ujemna). Dzwignia w trybie prosta: kąt prowadnicy (0 = do przodu +x, 90 = w górę). Modlitewnik: kąt podpórki od poziomu (30–80).'),
-    siedzisko: num(20, 70, 'Tylko lawka: długość siedziska od zawiasu w stronę +x w cm (domyślnie 55; maszyny i ławki do siedzenia ok. 40–45).'),
+    siedzisko: num(SEAT_LEN.min, SEAT_LEN.max, 'Tylko lawka: długość siedziska od zawiasu w stronę +x w cm (domyślnie 55; maszyny i ławki do siedzenia ok. 40–45; 2 = samo oparcie maszyny bez siedziska).'),
     walki: { type: 'boolean', description: 'Tylko lawka: true = wałki na nogi (ławka ujemna).' },
     dwa: { type: 'boolean', description: 'Tylko wyciag: true = dwa wyciągi (kolumny i bloczki w z = ±|z|, po jednej lince na dłoń); domyślnie false = jeden wyciąg.' },
     chwyt: { type: 'string', enum: [...CABLE_ATTACH], description: 'Tylko wyciag: osprzęt linki: uchwyt (domyślnie), lina, drazek, kostka (opaska na kostkę; nogę wskazuje trzyma).' },

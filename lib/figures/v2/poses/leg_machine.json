@@ -1291,6 +1291,14 @@
      "x1": 110
     },
     {
+     "rodzaj": "lawka",
+     "x": -4.5,
+     "top": 28.7,
+     "kat": 65,
+     "siedzisko": 2,
+     "dlugosc": 99.5
+    },
+    {
      "rodzaj": "dzwignia",
      "tryb": "obrot",
      "punkt": "miednica",
@@ -1611,14 +1619,22 @@
      "x1": 110
     },
     {
+     "rodzaj": "lawka",
+     "x": -3.7,
+     "top": 29,
+     "kat": 65,
+     "siedzisko": 2,
+     "dlugosc": 99.5
+    },
+    {
      "rodzaj": "dzwignia",
      "tryb": "obrot",
      "punkt": "miednica",
      "trzyma": "R",
-     "x": -58.9,
-     "y": 32.8,
+     "x": -95.9,
+     "y": 15.6,
      "z": 0,
-     "dlugosc": 60
+     "dlugosc": 100
     }
    ],
    "klatki": [
@@ -1684,8 +1700,8 @@
     {
      "u": 0.25,
      "miednica": [
-      -9.7,
-      67,
+      -10,
+      66.8,
       0
      ],
      "pochylenieTulowia": -25,
@@ -1716,8 +1732,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        2.3,
-        73,
+        2,
+        72.8,
         24
        ],
        "biegunLokcia": [
@@ -1728,8 +1744,8 @@
       },
       "L": {
        "chwyt": [
-        2.3,
-        73,
+        2,
+        72.8,
         -24
        ],
        "biegunLokcia": [
@@ -1743,8 +1759,8 @@
     {
      "u": 0.5,
      "miednica": [
-      -4.6,
-      58.2,
+      -5.2,
+      57.8,
       0
      ],
      "pochylenieTulowia": -25,
@@ -1775,8 +1791,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        7.4,
-        64.2,
+        6.8,
+        63.8,
         24
        ],
        "biegunLokcia": [
@@ -1787,8 +1803,8 @@
       },
       "L": {
        "chwyt": [
-        7.4,
-        64.2,
+        6.8,
+        63.8,
         -24
        ],
        "biegunLokcia": [
@@ -1802,8 +1818,8 @@
     {
      "u": 0.75,
      "miednica": [
-      -1,
-      48.5,
+      -1.4,
+      48.4,
       0
      ],
      "pochylenieTulowia": -25,
@@ -1834,8 +1850,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        11,
-        54.5,
+        10.6,
+        54.4,
         24
        ],
        "biegunLokcia": [
@@ -1846,8 +1862,8 @@
       },
       "L": {
        "chwyt": [
-        11,
-        54.5,
+        10.6,
+        54.4,
         -24
        ],
        "biegunLokcia": [
@@ -1987,6 +2003,14 @@
      "rodzaj": "podloga",
      "x0": -90,
      "x1": 110
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 1.8,
+     "top": 28.1,
+     "kat": 42,
+     "siedzisko": 2,
+     "dlugosc": 98.3
     },
     {
      "rodzaj": "dzwignia",

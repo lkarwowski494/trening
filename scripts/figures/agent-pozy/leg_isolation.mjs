@@ -62,13 +62,15 @@ export function stojac(cw, o = {}) {
   return poza(RODZINA, cw, spr, fr, []);
 }
 
+const ZACZEP_GUMY = [125, 14, ZS]; /* punkt zaczepu gumy (x, y, z): noga stojaka 125 cm przed osobą, 14 cm nad podłogą, w osi ćwiczonej nogi */
 /** Uginanie nogi na gumie w siadzie na skrzyni: goleń prawej nogi wraca po podłodze pod kolano, pętla gumy między kostkami. */
 export function guma(cw) {
   const m = [0, 48]; const us = [0, 0.25, 0.5, 0.75, 1]; const aLx = th(); const aL3 = [aLx, 7, -ZS];
   const x0 = Math.sqrt(dNogi(10) ** 2 - (48 - 8.6) ** 2 - 1.5 ** 2); const x1 = th() + 1;
   const mk = (u) => { const ax = lerp(x0, x1, ease(u)); const aR3 = [ax, 8.6, ZS]; const grip = (sg) => ({ g: [8, 40, sg * 27], pole: [-0.2, -0.6, sg] });
     return K({ u, m, p: 0, head: 0, R: { a: aR3, pod: -5, rot: 10, odch: 6, pole: [1, 0.3, 0.05] }, L: { a: aL3, pod: 0, rot: 10, odch: 6, pole: [1, 0.3, -0.05] }, hr: grip(1), hl: grip(-1) }); };
-  const spr = [PODLOGA(-60, 140), { rodzaj: 'skrzynia', x0: -40, x1: -1, top: 38.6 }, { rodzaj: 'guma', mocowanie: 'kostki' }];
+  /* guma zaczepiona z przodu, tuż nad podłogą (noga stojaka), do kostki ćwiczonej nogi: ruch pięty pod siedzisko ODSUWA kostkę od zaczepu i rozciąga gumę (recenzja 1.1, partia 2, nr 6; poprzednio pętla między kostkami, z których jedna stała) */
+  const spr = [PODLOGA(-60, 160), { rodzaj: 'skrzynia', x0: -40, x1: -1, top: 38.6 }, { rodzaj: 'slupek', x: ZACZEP_GUMY[0], h: 60 }, { rodzaj: 'guma', mocowanie: 'zaczep_kostki', trzyma: 'R', x: ZACZEP_GUMY[0], y: ZACZEP_GUMY[1], z: ZACZEP_GUMY[2] }];
   return poza(RODZINA, cw, spr, us.map(mk), []);
 }
 
@@ -91,7 +93,9 @@ export const WYJATKI = {
   'Glute Ham Raise': 'schemat „rzymskiej” ma podpórkę pod biodrami i wałki na kostki (oś ruchu = biodra, osoba leży przodem), a w GHR ciało obraca się wokół podpórki pod udami/kolanami z kolanem jako głównym stawem ruchu — takiej podpórki ani ruchu kolana pod obciążeniem tułowia nie da się odwzorować w tym schemacie bez naginania sprzętu (sprzęt rzymska: kontakty biodra/uda/tułów z podpórką do 3 cm)',
   'Nordic Curl': 'ćwiczenie wymaga klęku na podpórce z kostkami zaczepionymi za sobą (ghd, glute ham, wyciąg górny albo sztanga) i opadania prostego ciała do przodu wokół kolan; w kontrakcie nie ma podpórki pod kolana (rzymska ma podpórkę biodrową z kostkami po stronie +x przy leżeniu przodem), a sztanga/wyciąg jako zaczep kostek nie mają chwytu na kostce — poza nie byłaby zgodna ze sprzętem',
 };
-export const PRZYBLIZENIA = {};
+export const PRZYBLIZENIA = {
+  'Seated Band Hamstring Curl': 'przybliżenie: zaczep gumy to nieruchomy punkt przed osobą na wysokości kostek (noga stojaka, schematycznie słupek); guma biegnie do kostki ćwiczonej nogi i rozciąga się, gdy pięta idzie pod siedzisko (tryb zaczep_kostki)',
+};
 export function generuj() {
   return {
     'Leg Extension': () => siadMaszyna('Leg Extension'),

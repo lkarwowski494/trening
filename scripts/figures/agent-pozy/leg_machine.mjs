@@ -49,13 +49,25 @@ function okrag3(A, B, C) { const d = 2 * (A[0] * (B[1] - C[1]) + B[0] * (C[1] - 
 /** Okrąg o promieniu rho przez punkty A i B (środek po stronie o większym y). */
 function srodekOkregu(A, B, rho) { const mid = [(A[0] + B[0]) / 2, (A[1] + B[1]) / 2]; const ch = Math.hypot(B[0] - A[0], B[1] - A[1]); const h = Math.sqrt(Math.max(0, rho * rho - (ch / 2) ** 2)); const n = [-(B[1] - A[1]) / ch, (B[0] - A[0]) / ch]; const P1 = [mid[0] + n[0] * h, mid[1] + n[1] * h], P2 = [mid[0] - n[0] * h, mid[1] - n[1] * h]; const ok = [P1, P2].filter((q) => q[1] >= 0); const cand = ok.length ? ok : [P1[1] > P2[1] ? P1 : P2]; return cand.reduce((a, b) => (a[0] < b[0] ? a : b)); }
 
+/** Promień łuku miednicy w wahadle (cm). Oparcie jest nieruchome i proste (styczne do łuku), więc promień musi być na tyle duży, by odchylenie łuku od prostej mieściło się w tolerancji styku pleców (1,5 cm): przy 100 cm odchylenie ±1,2 cm. Uproszczenie ilustracyjne (rzeczywiste ramię wahadła jest krótsze, a oparcie obraca się z nim) — PRZYBLIZENIA. */
+const RHO_WAHADLA = 100;
+/** Oparcie maszyny (recenzja 1.1, partia 2, nr 1–3): nieruchoma ławka (`lawka`) pod kątem 90° − alfa od poziomu, równoległa do osi tułowia, z powierzchnią 10,2 cm za osią tułowia (BENCH.padBack) w połowie rozrzutu ścieżki miednicy;
+ * sięga od ok. 12 cm poniżej najniższej miednicy do 8 cm ponad barki w najwyższej pozycji (ale nie więcej niż 120 cm). Samo oparcie, bez siedziska (siedzisko = SEAT_LEN.min, 2 cm): siedzisko 20 cm przenikałoby golenie w przysiadzie leżąc. Sanie/ramię wahadła to w rysunku nieruchome oparcie, po którym ślizga się plecami osoba (przybliżenie). */
+function oparcie(alfa, fr) {
+  const a = alfa * R; const dir = [-Math.sin(a), Math.cos(a)]; const nF = [Math.cos(a), Math.sin(a)]; const B = v2().BENCH.padBack;
+  const P = fr.map((k) => k.miednica); const ns = P.map((p) => p[0] * nF[0] + p[1] * nF[1]); const ts = P.map((p) => p[0] * dir[0] + p[1] * dir[1]);
+  const cn = (Math.max(...ns) + Math.min(...ns)) / 2 - B; const tMin = Math.min(...ts) - 12; const tMax = Math.max(...ts) + BODY().trunk + 8;
+  const H = [nF[0] * cn + dir[0] * tMin, nF[1] * cn + dir[1] * tMin];
+  return { rodzaj: 'lawka', x: r1(H[0]), top: r1(H[1]), kat: r1(90 - alfa), siedzisko: v2().SEAT_LEN.min, dlugosc: r1(Math.min(120, tMax - tMin)) };
+}
+
 /** Hack squat i pochodne (leżąca/wahadło): plecy na pochylonej podkładce (alfa od pionu), podkładka jedzie w dół i do przodu, stopy płasko na platformie (pięty nieruchomo). pend: ruch po łuku (dźwignia obrotowa). */
 export function hack(cw, o = {}) {
   const { alfa = 25, yb = 44, kb = 100, kt = 20, pend = false, bledy = true, odchBlad = -24 } = o; const dz = HIP() - ZS; const a = alfa * R;
   const rb = rPlan(dNogi(kb), dz), rt = rPlan(dNogi(kt), dz); const dxB = Math.sqrt(rb * rb - (yb - 7) ** 2); const A = [dxB, 7]; const B = [0, yb];
   let lo = 0, hi = 80; for (let i = 0; i < 50; i++) { const sm = (lo + hi) / 2; const T = [B[0] - sm * Math.sin(a), B[1] + sm * Math.cos(a)]; if (Math.hypot(T[0] - A[0], T[1] - A[1]) < rt) lo = sm; else hi = sm; } const sT = (lo + hi) / 2 - 0.2;
   const T = [B[0] - sT * Math.sin(a), B[1] + sT * Math.cos(a)];
-  const us = [0, 0.25, 0.5, 0.75, 1]; let rho = pend ? 60 : 140; let P = srodekOkregu(T, B, rho); let thT = Math.atan2(T[1] - P[1], T[0] - P[0]), thB = Math.atan2(B[1] - P[1], B[0] - P[0]);
+  const us = [0, 0.25, 0.5, 0.75, 1]; let rho = pend ? RHO_WAHADLA : 140; let P = srodekOkregu(T, B, rho); let thT = Math.atan2(T[1] - P[1], T[0] - P[0]), thB = Math.atan2(B[1] - P[1], B[0] - P[0]);
   const pelv = (u) => { const e = ease(u); if (true) { const th_ = lerp(thT, thB, e); return [P[0] + rho * Math.cos(th_), P[1] + rho * Math.sin(th_)]; } const sm = sT * (1 - e); return [B[0] - sm * Math.sin(a), B[1] + sm * Math.cos(a)]; };
   if (!pend) { /* ścieżka po łuku zamiast po prostej: różnica < 1 cm */ }
   const mk = (u) => { const m = pelv(u); const grip = (sg) => ({ g: [m[0] + 12, m[1] + 6, sg * 24], pole: [-0.2, -0.5, sg] });
@@ -64,7 +76,7 @@ export function hack(cw, o = {}) {
   /* prowadnica jako łuk o bardzo dużym promieniu (≈ prosta): tryb „prosta” dopuszcza kąt prowadnicy tylko od −45° do 90° */
   const dzw = { rodzaj: 'dzwignia', tryb: 'obrot', punkt: 'miednica', trzyma: 'R', x: r1(P[0]), y: r1(P[1]), z: 0, dlugosc: rho };
   const kn = bledy ? { cue: 'sq.mis.kneesIn', znacznik: 'knees', dotyczy: ['kneeLat'], klatki: us.map((u) => (u === 0 ? { u: 0 } : { u, nogi: { R: { odchylenieKolana: r1(odchBlad * u) }, L: { odchylenieKolana: r1(odchBlad * u) } } })) } : null;
-  const spr = [PODLOGA(-90, 110), dzw];
+  const spr = [PODLOGA(-90, 110), oparcie(alfa, fr), dzw];
   return zloz(cw, spr, fr, kn && /Hack Squat|Lying|Pendulum/.test(cw) && cw !== 'Hack Squat' ? [kn] : []);
 }
 
@@ -88,6 +100,9 @@ export const WYJATKI = {
   'Smith Machine Leg Press': 'stopy pchają sztangę Smitha leżąc pod nią, a sztanga w kontrakcie jest zawsze trzymana dłońmi (chwyt dłoni na osi gryfu w każdej klatce) — ćwiczenie bez rąk na sztandze nie da się narysować',
 };
 export const PRZYBLIZENIA = {
+  'Hack Squat': 'przybliżenie: oparcie maszyny jako nieruchoma ławka skośna (plecy ślizgają się po niej); sanie, poduszki barkowe i platforma pod stopami niemodelowane (stopy stoją na podłodze)',
+  'Pendulum Squat': 'przybliżenie: jak Hack Squat; łuk wahadła o promieniu 100 cm (rzeczywiste ramię krótsze) i nieruchome oparcie — pochylenie tułowia nie zmienia się wzdłuż łuku',
+  'Lying Machine Squat': 'przybliżenie: jak Hack Squat, oparcie pochylone 42° od poziomu (leżąc na pochyłym oparciu); sanie, poduszki barkowe i platforma niemodelowane',
   'Leg Press': 'przybliżenie: suwnica pozioma (siad, platforma pionowa): stopa nie ma w modelu palców skierowanych do tyłu, więc platformy nachylonej 45° nie da się oprzeć o podeszwę',
   'Single Leg Press': 'przybliżenie: suwnica pozioma (siad, platforma pionowa); noga wolna stoi na podłodze obok',
   'Calf Press (leg press)': 'przybliżenie: suwnica pozioma; stopa obraca się wokół kuli stopy na dolnej krawędzi platformy',

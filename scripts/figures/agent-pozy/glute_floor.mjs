@@ -15,9 +15,10 @@ function fk3(hip, d, e) {
 const rotX = (v, a) => { const c = Math.cos(a * R), s = Math.sin(a * R); return [v[0], v[1] * c + v[2] * s, -v[1] * s + v[2] * c]; }; /* obrót wokół osi x: dół (0,−1,0) → bok (0,−cos,sin) */
 const a01 = (u) => ease(u);
 const US = [0, 0.25, 0.5, 0.75, 1];
+const UCHWYT_MASZYNY_Z = 15; /* połowa rozstawu uchwytów maszyny (cm): dolna granica kontraktu dla poręczy */
 export const PRZYBLIZENIA = {
   'Hip Extension with Bands': 'przybliżenie: guma w pętli na kostkach (model gumy nie ma zaczepu do kostki), opór rośnie, gdy kostka ucieka do tyłu; ręce na biodrach',
-  'Machine Glute Kickback': 'przybliżenie: maszyna schematyczna (bez oparcia klatki i uchwytów), dźwignia obraca się wokół biodra i prowadzi kostkę; ręce przed sobą',
+  'Machine Glute Kickback': 'przybliżenie: maszyna schematyczna — uchwyty rysowane jako dwie równoległe poręcze przed klatką (dłonie na nich), bez oparcia klatki i poduszki; dźwignia obraca się wokół biodra i prowadzi kostkę',
   'Clamshell': 'przybliżenie: zgięcie bioder do przodu (do kamery) jest skrócone w widoku z boku; odwodzenie widać jako uniesienie górnego kolana',
   'Prone Flutter Kicks': 'przybliżenie: nogi poza końcem ławki (ławka płaska), ruch naprzemienny pokazują dwie fazy skrajne',
 };
@@ -79,12 +80,14 @@ function kickback(cw, o = {}) {
   const { wariant = 'wyciag', lean = wariant === 'maszyna' ? 32 : wariant === 'guma' ? 8 : 24, t0 = 282, t1 = wariant === 'guma' ? 252 : 238, bladK = -30 } = o;
   const ax = 0;
   const reka = (Sx) => { if (wariant === 'guma') return { R: { g: [Sx[0] + 6, Sx[1] - 22, 19], pole: [-0.3, 0, 1] }, L: { g: [Sx[0] + 6, Sx[1] - 22, -19], pole: [-0.3, 0, -1] } };
-    const gx = Sx[0] + 56; return { R: { g: [gx, Sx[1] - 12, 14], pole: [0, -0.4, 1] }, L: { g: [gx, Sx[1] - 12, -14], pole: [0, -0.4, -1] } }; };
+    const gx = Sx[0] + 56; const gz = wariant === 'maszyna' ? UCHWYT_MASZYNY_Z : 14; return { R: { g: [gx, Sx[1] - 12, gz], pole: [0, -0.4, 1] }, L: { g: [gx, Sx[1] - 12, -gz], pole: [0, -0.4, -1] } }; };
   const fr = (u, bend = 0) => { const r = stojacaRamka({ u, lean, ax, tBack: lerp(t0, t1, a01(u)), reka }); if (bend) { const m = r.f.miednica; const f2 = K({ u, m, p: lean, bend, head: lean * 0.4, R: { a: r.ankle, pod: null, rot: 10, pole: r.f.nogi.R.biegunKolana }, L: { a: [ax, 7, -8], pod: 0, rot: 10, pole: [0.15, 0.2, -0.1] }, hr: r.f.rece.R, hl: r.f.rece.L }); void f2; } return r; };
   const ok = US.map((u) => fr(u)); const sprzet = [PODLOGA(-130, 140)];
   const m0 = ok[0].f.miednica; const Sx0 = S([m0[0], m0[1]], lean); const Xc = Sx0[0] + 56 + 10;
   if (wariant === 'wyciag') sprzet.push({ rodzaj: 'wyciag', x: r1(Xc), y: 22, z: 0, chwyt: 'kostka', trzyma: 'R' });
   if (wariant === 'guma') sprzet.push({ rodzaj: 'guma', mocowanie: 'kostki' });
+  if (wariant === 'maszyna') { /* uchwyty maszyny: dwie równoległe poręcze na wysokości chwytu (rozstaw ≥ 30 cm wg kontraktu), dłonie na nich w każdej klatce (recenzja 1.1, partia 2, nr 5) */
+    const hg = ok[0].f.rece.R.chwyt; sprzet.push({ rodzaj: 'poreczy', x0: r1(hg[0] - 15), x1: r1(hg[0] + 15), h: hg[1], z: UCHWYT_MASZYNY_Z }); }
   if (wariant === 'maszyna') { const P = [ok[0].hip[0], ok[0].hip[1], 38]; const a0 = ok[0].ankle; sprzet.push({ rodzaj: 'dzwignia', tryb: 'obrot', punkt: 'kostki', trzyma: 'R', x: r1(P[0]), y: r1(P[1]), z: P[2], dlugosc: r1(Math.hypot(a0[0] - P[0], a0[1] - P[1], a0[2] - P[2])) }); }
   /* błąd: przeprost lędźwi na końcu ruchu (kręgosłup zgięty ku tyłowi) */
   const zleKl = US.map((u) => { const r = fr(u).f; return r; });
@@ -96,7 +99,7 @@ function kickback(cw, o = {}) {
 function flutter(cw) {
   const top = 43; const xp = -66; const m = [xp, top + 10.2]; const p = 90; const Sx = [m[0] + BODY().trunk, m[1]];
   const kat = (u, s) => { const a = Math.sin(2 * Math.PI * u * 0.5) ; return s * lerp(0, 1, 1) * 0 + (s * (12 - 24 * a01(u)) ); };
-  const noga = (s, u) => { const ang = kat(u, s) ; const hip = [m[0], m[1], s * HIP()]; const dx = -Math.cos(ang * R), dy = Math.sin(ang * R); const f = fk3(hip, [dx, dy, 0], [dx, dy, 0]); return { a: [f.ankle[0], f.ankle[1], s * 8], pod: null, rot: 10, pole: [0, 1, s * 0.1] }; };
+  const noga = (s, u) => { const ang = kat(u, s) ; const hip = [m[0], m[1], s * HIP()]; const dx = -Math.cos(ang * R), dy = Math.sin(ang * R); const f = fk3(hip, [dx, dy, 0], [dx, dy, 0]); return { a: [f.ankle[0], f.ankle[1], s * 8], pod: null, rot: 10, pole: [0, -1, s * 0.1] }; }; /* leżenie przodem: kolano ku przodowi uda (w dół), nie do tyłu — przy nodze prawie prostej drobne skrócenie cięciwy w fazach pośrednich nie wygina kolana wstecz (recenzja 1.1, partia 2, uwaga C) */
   const fr = (u) => K({ u, m, p, head: 78, R: noga(1, u), L: noga(-1, u), hr: { g: [Sx[0] + 48, top + 3, 19], pole: [0, 0.4, 1] }, hl: { g: [Sx[0] + 48, top + 3, -19], pole: [0, 0.4, -1] } });
   const bl = { cue: 'hext.mis.arch', znacznik: 'back', dod: ['spine'], klatki: US.map((u) => (u === 0 ? { u: 0 } : { u, zgiecieKregoslupa: r1(-30 * a01(u)) })) };
   return zloz(cw, [PODLOGA(-170, 120), { rodzaj: 'lawka', x: 0, top, kat: 0, dlugosc: 75, siedzisko: 55 }], US.map(fr), [bl]);
