@@ -44,7 +44,7 @@
   "db.back": "data:Dead Bug", "db.slow": "data:Dead Bug", "bd.range": "data:Bird Dog", "bd.level": "data:Bird Dog", "bd.slow": "data:Bird Dog",
   "splank.noSag": "data:Side Plank", "splank.mis.elbow": "data:Side Plank", "pallof.noTwist": "data:Pallof Press",
   "rt.control": "data:Russian Twist", "rt.back": "data:Russian Twist", "mc.stable": "data:Mountain Climbers", "mc.straight": "data:Mountain Climbers",
-  "carry.noLean": "data:Farmer's Walk", "carry.walk": "data:Farmer's Walk",
+  "carry.noLean": "data:Suitcase Carry", "carry.walk": "data:Farmer's Walk",
   "walk.rails": "data:Incline Walk (bieżnia)", "walk.upright": "data:Incline Walk (bieżnia)", "run.under": "data:Bieg", "run.bounce": "data:Bieg",
   "bj.land": "data:Box Jump", "bj.mis.stiff": "data:Box Jump", "burpee.down": "data:Burpees", "slam.move": "data:Medicine Ball Slam",
   "erg.drive": "data:Rowing Machine", "erg.handle": "data:Rowing Machine"
