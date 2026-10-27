@@ -5,6 +5,11 @@
  * (decyzja z badań 25.10.2026: konwencja bez źródła szczebla 1–2, sprzeczna z częścią źródeł przy ciężkich bojach).
  */
 export const TEMPO = { downMs: 2000, upMs: 1000, holdMs: 500, tickMs: 33 } as const;
+/**
+ * Tempo marszu w trybie cyklicznym (27.10.2026): czas jednego kroku = połowy pętli (u 0 → 1, potem ta sama faza w lustrze). KONWENCJA ilustracyjna bez źródła (jak pauzy HOLD_MS): ruch ciągły,
+ * bez pauz i bez zwolnień; tempo opuszczania i podnoszenia z TEMPO nie dotyczy kroku, a czasu kroku w aplikacji nie podajemy.
+ */
+export const WALK = { stepMs: 1000 } as const;
 /** Tempo animacji; holdLowMs = pauza po fazie opuszczania (u = 1) zamiast HOLD_MS (0 = bez pauzy na dole: przysiad, NSCA Basics 2012 s. 49–50). */
 export type Tempo = { downMs: number; upMs: number; holdLowMs?: number };
 
@@ -21,6 +26,10 @@ export function uAt(ms: number, lowerFirst: boolean, tempo: Tempo = TEMPO): numb
   if (x < h + a + hl) return 1;
   return 1 - ease((x - h - a - hl) / b);
 }
+/** Pętla marszu w chwili `ms`: pozycja p ∈ [0, 2) rosnąca liniowo (0 → 1 = krok, 1 → 2 = ta sama faza w lustrze), zawija się bez skoku klatki. Tempo wahadła nie wpływa na krok. */
+export function cycleAt(ms: number, _tempo: Tempo = TEMPO): number { const total = cycleLength(); return (((ms % total) + total) % total) / WALK.stepMs; }
+/** Czas pełnej pętli marszu (dwa kroki), ms. */
+export const cycleLength = (): number => 2 * WALK.stepMs;
 const lowLeg = (tempo: Tempo): number => tempo.holdLowMs ?? TEMPO.holdMs;
 export const loopLength = (_lowerFirst: boolean, tempo: Tempo = TEMPO): number => TEMPO.holdMs + lowLeg(tempo) + tempo.downMs + tempo.upMs;
 

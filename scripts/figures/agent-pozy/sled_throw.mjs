@@ -4,7 +4,7 @@
 import { kostkaNaPalcach } from './model.mjs';
 import { bledyCwiczenia } from '../v2-validate.mjs';
 import { wczytajTeksty } from '../v2-jakosc.mjs';
-import { P, Q, ruch, bladZRuchu, bladKolana, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, kostkaZBiodra, katyNogi, wyjatkiOpisu } from './dyn.mjs';
+import { P, Q, ruch, bladZRuchu, bladKolana, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, kostkaZBiodra, katyNogi, wyjatkiOpisu, cyklLustro } from './dyn.mjs';
 
 export const RODZINA = 'sled_throw';
 const OTW = (powod) => `ćwiczenie otwarte: ${powod} (data/zrodla/figury-sens.json → sled_throw.otwarte); poza wróci po opisie ruchu przez badacza`;
@@ -83,19 +83,19 @@ const polkrok = (hx, hy, extra = [{}, {}, {}, {}, {}]) => [
   chodKrok(hx, hy, { R: [-58, null, -55], L: [22, 28, 25] }, extra[0]),
   chodKrok(hx, hy, { R: [-40, 38, 35], L: [24, null, 0] }, extra[1]),
   chodKrok(hx, hy, { R: [-2, 44, 25], L: [-2, null, 0] }, extra[2]),
-  chodKrok(hx, hy, { R: [28, 40, 20], L: [-30, null, -25] }, extra[3]),
-  chodKrok(hx, hy, { R: [52, 36, 15], L: [-55, null, -55] }, extra[4]),
+  chodKrok(hx, hy, { R: [12, 40, 20], L: [-30, null, -25] }, extra[3]),
+  chodKrok(hx, hy, { R: [22, 28, 25], L: [-58, null, -55] }, extra[4]), /* tryb cykliczny: klatka końcowa = lustro początkowej (R ↔ L), stopa lądująca nie cofa się o kilkadziesiąt cm */
 ];
 function sledPush(cw) {
   const sprz = SPRZ({ rodzaj: 'sanie', x: 75, h: 100, dlugosc: 60 }); const post = { g: [75, 88], rel: [0, 0], w: 1, z: 25, reach: 62, pole: [0, -1, 0.3] };
   const W = polkrok(-4, 79, Array(5).fill({ ra: post }));
-  return gotowe(cw, sprz, W, [], Q);
+  return cyklLustro(gotowe(cw, sprz, W, [], Q));
 }
 function sledDrag(cw) {
   const sprz = SPRZ({ rodzaj: 'sanie', x: -170, dlugosc: 60, trzymanie: 'pas' }, { rodzaj: 'pas' });
   const ra = (a) => ({ psi: a, th: 30, z: 19 }); const R_ = [-20, -42, -65, -88, -110]; const L_ = [-110, -88, -65, -42, -20]; /* ręka przeciwna do nogi: prawa noga do przodu → prawa ręka do tyłu */
   const W = polkrok(0, 79, R_.map((a, i) => ({ pitch: 34, ra: ra(a), rl: ra(L_[i]) })));
-  return gotowe(cw, sprz, W, [], Q);
+  return cyklLustro(gotowe(cw, sprz, W, [], Q), { rece: true }); /* ręka przeciwna do nogi zamienia strony razem z nogami */
 }
 
 const KB = (o = {}) => ({ rodzaj: 'kettlebell', ...o });

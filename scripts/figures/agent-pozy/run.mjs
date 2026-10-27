@@ -24,8 +24,8 @@ async function podgladPartia(poze, dir, motyw = 'light') {
   let chromium = null; try { chromium = createRequire(import.meta.url)('playwright').chromium; } catch { /* bez przeglądarki: tylko HTML */ }
   const browser = chromium ? await chromium.launch() : null; const page = browser ? await browser.newPage({ viewport: { width: 1400, height: 700 } }) : null;
   for (const [cw, poza] of Object.entries(poze)) {
-    const us = [0, 0.5, 1]; const widoki = ['side', 'front']; const warianty = [undefined, ...poza.bledy.map((_, i) => i)];
-    const wiersze = warianty.map((w) => { const komorki = widoki.flatMap((view) => { const listy = []; for (const x of warianty) for (let i = 0; i <= 20; i++) listy.push(v2.dataShapes(poza, i / 20, view, x)); const box = v2.boundsOf(listy); return us.map((u) => v2.svgDocument(v2.dataShapes(poza, u, view, w), box, pal, 1.5)); });
+    const cykl = poza.petla === 'cykl_lustro'; const rozpietosc = cykl ? 2 : 1; const us = cykl ? [0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75] : [0, 0.5, 1]; /* tryb cykliczny: klatki całej pętli (druga połowa w lustrze) */ const widoki = ['side', 'front']; const warianty = [undefined, ...poza.bledy.map((_, i) => i)];
+    const wiersze = warianty.map((w) => { const komorki = widoki.flatMap((view) => { const listy = []; for (const x of warianty) for (let i = 0; i <= 20; i++) listy.push(v2.dataShapes(poza, rozpietosc * i / 20, view, x)); const box = v2.boundsOf(listy); return us.map((u) => v2.svgDocument(v2.dataShapes(poza, u, view, w), box, pal, 1.5)); });
       return `<div style="font:12px sans-serif;color:${tokens[motyw].text};margin:6px 0 2px">${w === undefined ? 'poza poprawna' : 'błąd: ' + poza.bledy[w].cue}</div><div style="display:flex;gap:8px;flex-wrap:wrap">${komorki.join('')}</div>`; });
     const html = `<html><body style="margin:0;padding:8px;background:${tokens[motyw].surface}">${wiersze.join('')}</body></html>`; const nazwa = join(dir, `${poza.cwiczenie.replace(/\W+/g, '-')}-${motyw}`);
     writeFileSync(nazwa + '.html', html);

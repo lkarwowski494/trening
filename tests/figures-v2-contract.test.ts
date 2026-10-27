@@ -37,7 +37,7 @@ const swing = (affects: Affects[], dx = 22): DataError => ({ cue: 'pu.noSwing', 
 
 describe('schemat JSON (docs/schemas/figury-v2-poza.schema.json)', () => {
   test('poseSchema: obiekt z polami kontrakt, rodzina, cwiczenie, sprzet, klatki, bledy; bez $ref i oneOf (structured output); stałe w CONTRACT', () => {
-    const s = poseSchema('pull_up') as { properties: Record<string, unknown>; required: string[] }; expect(Object.keys(s.properties)).toEqual(['kontrakt', 'rodzina', 'cwiczenie', 'sprzet', 'klatki', 'bledy']); expect(s.required.length).toBe(6);
+    const s = poseSchema('pull_up') as { properties: Record<string, unknown>; required: string[] }; expect(Object.keys(s.properties)).toEqual(['kontrakt', 'rodzina', 'cwiczenie', 'petla', 'lustroRece', 'sprzet', 'klatki', 'bledy']); /* petla i lustroRece: pola opcjonalne trybu cyklicznego (27.10.2026) */ expect(s.required.length).toBe(6);
     const json = JSON.stringify(s); expect(json).not.toMatch(/\$ref|oneOf|anyOf/); expect(json).toContain(CONTRACT.id);
     expect(CONTRACT.frames.min).toBe(2); expect(CONTRACT.errorsMax).toBe(3); expect(MARKS).toEqual(['knees', 'heels', 'back', 'pelvis', 'bar']); expect(GEAR.slice(0, 4)).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia']); /* pełna lista rodzajów: tests/figures-v2-gear.test.ts */ expect(AFFECTS.length).toBe(10);
   });

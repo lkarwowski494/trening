@@ -3,7 +3,7 @@
 import { kostkaNaPalcach } from './model.mjs';
 import { bledyCwiczenia } from '../v2-validate.mjs';
 import { wczytajTeksty } from '../v2-jakosc.mjs';
-import { P, Q, katyNogi, ruch, bladKolana, zbuduj, PODLOGA, bledyZOpisem, wyjatkiOpisu } from './dyn.mjs';
+import { P, Q, katyNogi, ruch, bladKolana, zbuduj, PODLOGA, bledyZOpisem, wyjatkiOpisu, cyklLustro } from './dyn.mjs';
 
 export const RODZINA = 'strongman';
 const OTW = 'ćwiczenie otwarte: zestaw „open”, brak wskazówek i źródła ruchu (data/zrodla/figury-sens.json → strongman.otwarte); poza wróci po opisie ruchu przez badacza';
@@ -34,7 +34,7 @@ function yoke(cw) {
   const pod = (A, plant) => { const k = katyNogi(hip, A); return Math.max(-85, k.t - k.k + 90 - plant); };
   const fr = (R, L) => { const A = (f) => [hx + f[0], f[1] === null ? gr(f[2]) : f[1]]; const p = (f) => (f[1] === null ? f[2] : pod(A(f), f[2])); return { pel: hip, AR: A(R), AL: A(L), podR: p(R), podL: p(L), pitch: 3, ra, zR: 14, zL: 14, rot: 12, kz: 0.2 }; };
   const W = [fr([-22, null, -55], [16, null, 0]), fr([-13, 32, 30], [6, null, 0]), fr([8, 28, 20], [-8, null, 0]), fr([15, 20, 15], [-15, null, -25]), fr([16, null, 0], [-22, null, -55])];
-  return gotowe(cw, sprz, W, [], Q);
+  return cyklLustro(gotowe(cw, sprz, W, [], Q)); /* ostatnia klatka = lustro pierwszej (tryb cykliczny) */
 }
 
 export function generuj() {

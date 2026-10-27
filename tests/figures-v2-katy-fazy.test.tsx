@@ -47,7 +47,7 @@ afterEach(() => { applyLang('pl'); jest.useRealTimers(); AI.isReduceMotionEnable
 
 /* Niezależny rachunek: wartość stawu `j` strony `s` w pozycji u wprost z klatek kontraktu i kątów silnika (bez kodu wyboru z figure.ts). */
 const val = (d: PoseData, j: MeasuredJoint, s: Side, u: number): number => jointAngles(keyframeFrame(d, u).sk, s)[j];
-const series = (d: PoseData, j: MeasuredJoint, s: Side): number[] => Array.from({ length: 25 }, (_, i) => val(d, j, s, i / 24));
+const series = (d: PoseData, j: MeasuredJoint, s: Side): number[] => Array.from({ length: 25 }, (_, i) => val(d, j, s, (d.petla === 'cykl_lustro' ? 2 : 1) * i / 24)); /* tryb cykliczny (marsz, 27.10.2026): zakres liczony na całej pętli, razem z połową w lustrze */
 const rangeOf = (a: number[]): number => Math.max(...a) - Math.min(...a);
 const uiOf = (f: Fam, k: string) => { const u = DATA_UI[f]; const x = u.exceptions?.[k]; return { joints: x?.joints ?? u.joints, names: x?.names ?? u.names, hide: !!x?.hideAngle }; };
 /** Oczekiwany wybór: staw i strona o największym zakresie (przy równych — pierwszy kandydat, strona prawa). */

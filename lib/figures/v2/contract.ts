@@ -34,7 +34,13 @@ export const CONTRACT = {
   minMotionCm: 8,
   coord: 300, angle: 200, deltaCoord: 60, deltaAngle: 90,
   maxIssues: 12,
+  /** Tryb cykliczny pętli (`petla: 'cykl_lustro'`, 27.10.2026): styk faz (największa różnica punktu szkieletu między końcem połowy a lustrem jej początku, cm), kontakt stopy z podłożem (podeszwa niżej niż cm)
+   * i dopuszczalny przesuw stopy w kontakcie do przodu względem miednicy (cm; ta sama tolerancja co niezmiennik marszu z recenzji p4b: obrót stopy wokół kostki). */
+  cycle: { joinCm: 1, contactCm: 1.5, advanceCm: 2 },
 } as const;
+/** Tryb animacji ćwiczenia: wahadło (0 → 1 → 0, domyślnie) albo cykl z lustrem (0 → 1, potem ta sama faza z zamienionymi stronami kończyn; marsz bez cofania). */
+export const LOOP_MODES = ['wahadlo', 'cykl_lustro'] as const;
+export type LoopMode = typeof LOOP_MODES[number];
 
 export const MARKS = ['knees', 'heels', 'back', 'pelvis', 'bar'] as const;
 export const AFFECTS: Affects[] = ['knee', 'ankle', 'hip', 'spine', 'kneeLat', 'heel', 'pelvis', 'bar', 'shoulder', 'elbow'];
@@ -64,7 +70,12 @@ export type DeltaFrame = {
   nogi?: Partial<Record<Side, Partial<LegData>>>; rece?: Partial<Record<Side, { chwyt?: V3; uniesienieBarkow?: number; wysuniecieBarkow?: number; zgiecieNadgarstka?: number; obrotPrzedramienia?: number }>>;
 };
 export type DataError = { cue: string; znacznik: typeof MARKS[number]; dotyczy: Affects[]; klatki: DeltaFrame[] };
-export type PoseData = { kontrakt: string; rodzina: string; cwiczenie: string; sprzet: Gear[]; klatki: KeyFrame[]; bledy: DataError[] };
+export type PoseData = {
+  kontrakt: string; rodzina: string; cwiczenie: string;
+  /** Opcjonalnie: tryb pętli (domyślnie wahadło). cykl_lustro: pozycje u ∈ (1, 2] to klatki u − 1 z zamienionymi stronami nóg (i rąk, gdy lustroRece). Wymaga, by klatka u = 1 była lustrem klatki u = 0. */ petla?: LoopMode;
+  /** Opcjonalnie (tylko z cykl_lustro): ręce też zamieniają strony w drugiej połowie (ruch rąk jest częścią kroku, np. ręka przeciwna do nogi). Domyślnie fałsz: ręce zostają. */ lustroRece?: boolean;
+  sprzet: Gear[]; klatki: KeyFrame[]; bledy: DataError[];
+};
 
 /* ---------- szablony rodzin (sprzęt i wyjątki zakresu) ---------- */
 export type FamilyTemplate = {
@@ -210,6 +221,8 @@ export function poseSchema(family: string, scope?: PromptScope): Sch {
     $schema: 'https://json-schema.org/draft/2020-12/schema', title: `Poza ćwiczenia — rodzina ${family}`, description: t.movement,
     ...obj({
       kontrakt: { type: 'string', enum: [CONTRACT.id] }, /* dane poza@1 przechodzą walidator (CONTRACT.legacy), ale generator dostaje wersję bieżącą */ rodzina: { type: 'string', maxLength: 40 }, cwiczenie: { type: 'string', maxLength: 120 },
+      petla: { type: 'string', enum: [...LOOP_MODES], description: 'OPCJONALNIE: wahadlo (domyślnie: ruch 0 → 1 i z powrotem) albo cykl_lustro (marsz: po u = 1 ta sama faza z zamienionymi nogami, więc klatka u = 1 musi być lustrem klatki u = 0).' },
+      lustroRece: { type: 'boolean', description: 'OPCJONALNIE, tylko z cykl_lustro: true, gdy ręce też zamieniają strony (ręka przeciwna do nogi); domyślnie false.' },
       sprzet: { type: 'array', items: gear, minItems: 1, maxItems: 8, description: gearText(family, scope) },
       klatki: { type: 'array', items: key, minItems: CONTRACT.frames.min, maxItems: CONTRACT.frames.max, description: 'Klatki kluczowe poprawnej pozy; między nimi interpolacja liniowa, więc dodaj klatki pośrednie, gdy ruch jest zakrzywiony.' },
       bledy: { type: 'array', items: err, maxItems: CONTRACT.errorsMax },
@@ -318,9 +331,56 @@ export function toPoseIn(k: KeyFrame): PoseIn {
   const arm = (s: Side): ArmIn => { const a = k.rece[s]; return { grip: a.chwyt, elbowPole: a.biegunLokcia, lower: a.dolnaCzesc, shrug: a.uniesienieBarkow, protract: a.wysuniecieBarkow, wristFlex: a.zgiecieNadgarstka, forearmRoll: a.obrotPrzedramienia }; };
   return { pelvis, trunkPitch: k.pochylenieTulowia, spineBend: k.zgiecieKregoslupa, headPitch: k.pochylenieGlowy, ...ext, legs: { R: leg('R'), L: leg('L') }, arms: { R: arm('R'), L: arm('L') } };
 }
+/** Odbicie punktu względem płaszczyzny strzałkowej (z → −z; „0 −” unika −0). */
+const reflect = (p: V3): V3 => [p[0], p[1], 0 - p[2]];
+const mirrorLeg = (l: LegData): LegData => ({ ...l, kostka: reflect(l.kostka), ...(l.biegunKolana ? { biegunKolana: reflect(l.biegunKolana) } : {}) });
+const mirrorArm = (a: ArmData): ArmData => ({ ...a, chwyt: reflect(a.chwyt), ...(a.biegunLokcia ? { biegunLokcia: reflect(a.biegunLokcia) } : {}) });
+/**
+ * Lustro klatki kluczowej (tryb cykliczny): strony nóg zamieniają się z odbiciem osi z; miednica odbita; pola tułowia o znaku zależnym od strony (obrót, skręt, skłon, przechył miednicy i głowy, przesunięcie
+ * boczne) zmieniają znak; pochylenie tułowia i głowy (płaszczyzna strzałkowa) bez zmian. Ręce zamieniają strony tylko przy `rece` (ruch rąk jest częścią kroku); inaczej zostają.
+ * Pola per strona (rotacja stopy, odchylenie kolana, pola poza@2 rąk) mają konwencję „na zewnątrz” i są przenoszone bez zmiany znaku.
+ */
+export function mirrorKey(k: KeyFrame, rece: boolean): KeyFrame {
+  const o: KeyFrame = { ...k, miednica: reflect(k.miednica), nogi: { R: mirrorLeg(k.nogi.L), L: mirrorLeg(k.nogi.R) }, rece: rece ? { R: mirrorArm(k.rece.L), L: mirrorArm(k.rece.R) } : k.rece };
+  const flip = o as unknown as Record<string, number | undefined>; for (const f of TRUNK_EXT) if (flip[f] !== undefined) flip[f] = 0 - (flip[f] as number);
+  return o;
+}
+/** Długość pętli w jednostkach u: 2 dla trybu cyklicznego, 1 dla wahadła. */
+export const poseLoopSpan = (d: PoseData): number => d.petla === 'cykl_lustro' ? 2 : 1;
+/** Klatki pętli co 1/n połowy: tryb cykliczny — od u = 0 do 2 (2n + 1 klatek), wahadło — od u = 0 do 1 (n + 1). */
+export function loopFrames(d: PoseData, n: number): Frame[] { return Array.from({ length: poseLoopSpan(d) * n + 1 }, (_, i) => keyframeFrame(d, i / n)); }
+/** Klatki animacji WAHADŁOWEJ (0 → 1 → 0, 2n + 1 klatek) niezależnie od trybu danych — do porównania z pętlą cykliczną. */
+export function pendulumFrames(d: PoseData, n: number): Frame[] { const up = Array.from({ length: n + 1 }, (_, i) => keyframeFrame({ ...d, petla: undefined }, i / n)); return [...up, ...up.slice(0, -1).reverse()]; }
+/** Różnica na styku faz: największe przemieszczenie punktu szkieletu między klatką u = 1 a lustrem klatki u = 0 (cm). */
+export function loopJoinGap(d: PoseData): number {
+  const a = pts(keyframeFrame(d, 1)), b = pts(keyframeFrame(d, 1 + 1e-9)); return Math.max(...a.map((p, i) => dist(p, b[i])));
+}
+/**
+ * Reguła sensu marszu (27.10.2026): stopa w kontakcie z podłożem (podeszwa niżej niż CONTRACT.cycle.contactCm) nie przesuwa się do przodu względem miednicy — w marszu stopa podporowa cofa się.
+ * Wynik: `cm` = największy przyrost położenia kostki względem miednicy w jednym ciągłym kontakcie (0 = tylko cofanie), `retreat` = największe cofnięcie w kontakcie, `runs` = liczba kontaktów.
+ * Podłoże = y = 0 (ćwiczenia marszowe nie mają skrzyni). Klatki podajemy w kolejności odtwarzania (pętla cykliczna albo wahadło tam i z powrotem).
+ */
+export function stanceAdvance(frames: Frame[]): { cm: number; side: Side | null; retreat: number; runs: Record<Side, number> } {
+  let cm = 0, retreat = 0; let side: Side | null = null; const runs: Record<Side, number> = { R: 0, L: 0 };
+  for (const s of SIDES) {
+    let rel: number[] = [];
+    const flush = (): void => {
+      if (!rel.length) return; runs[s]++;
+      let rise = 0, low = rel[0]; for (const r of rel) { low = Math.min(low, r); rise = Math.max(rise, r - low); }
+      if (rise > cm) { cm = rise; side = s; } retreat = Math.max(retreat, rel[0] - rel[rel.length - 1]); rel = [];
+    };
+    for (const f of frames) { const l = f.sk.legs[s]; if (Math.min(l.heel[1], l.toe[1]) < CONTRACT.cycle.contactCm) rel.push(l.ankle[0] - f.sk.pelvis[0]); else flush(); }
+    flush();
+  }
+  return { cm, side, retreat, runs };
+}
+
 /** Klatka danych rodziny w pozycji u; error = indeks błędu (poza poprawna + delta). Zwraca tę samą Frame co rigi (kolidery, kształty). */
 export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
-  let k = poseAt(d.klatki, u); if (error !== undefined && d.bledy[error]) k = applyDelta(k, deltaAt(d.bledy[error].klatki, u));
+  /* tryb cykliczny: u ∈ (1, 2] = klatka u − 1 w lustrze (lustro po nałożeniu delty błędu, więc błąd też jest lustrzany) */
+  const mir = d.petla === 'cykl_lustro' && u > 1; const uu = mir ? u - 1 : u;
+  let k = poseAt(d.klatki, uu); if (error !== undefined && d.bledy[error]) k = applyDelta(k, deltaAt(d.bledy[error].klatki, uu));
+  if (mir) k = mirrorKey(k, !!d.lustroRece);
   const pose = toPoseIn(k); const grips = { R: pose.arms.R.grip, L: pose.arms.L.grip };
   const props = propsFrom(d.sprzet, grips, { R: pose.legs.R.ankle, L: pose.legs.L.ankle }, pose.pelvis); const bar = props.find(p => p.k === 'barbell');
   const info: Record<string, V3> = {}; if (bar && bar.k === 'barbell') info.load = bar.c;
@@ -346,7 +406,8 @@ class Agg {
 /** Kąty sprawdzane pod kątem niedeklarowanych zmian błędu → wielkości z `dotyczy`, które je usprawiedliwiają. Nowe stopnie swobody (poza@2) używają istniejących etykiet: tułów (obrót, skręt, skłon) = spine, przechył miednicy = pelvis, barki = shoulder, zgiecieNadgarstka i przedramię = elbow. */
 const ANG_OF: Record<string, Affects[]> = { hip: ['hip'], knee: ['knee'], ankle: ['ankle'], elbow: ['elbow'], shElev: ['shoulder'], trunkRoll: ['spine'], trunkTwist: ['spine'], trunkLean: ['spine'], pelvisTilt: ['pelvis'], headTilt: ['spine'], wristFlex: ['elbow'], forearmRoll: ['elbow'] };
 const pts = (f: Frame): V3[] => [f.sk.pelvis, f.sk.head, f.sk.shoulderC, f.sk.spineMid, ...SIDES.flatMap(s => [f.sk.legs[s].knee, f.sk.legs[s].ankle, f.sk.legs[s].heel, f.sk.legs[s].toe, f.sk.arms[s].elbow, f.sk.arms[s].grip]), ...(f.info.load ? [f.info.load] : [])];
-const gridU = (d: PoseData, extra: number[] = []): number[] => [...new Set([...Array.from({ length: CONTRACT.grid + 1 }, (_, i) => i / CONTRACT.grid), ...d.klatki.map(k => k.u), ...extra])].sort((a, b) => a - b);
+const gridU = (d: PoseData, extra: number[] = []): number[] => { const base = [...new Set([...Array.from({ length: CONTRACT.grid + 1 }, (_, i) => i / CONTRACT.grid), ...d.klatki.map(k => k.u), ...extra])].sort((a, b) => a - b);
+  return d.petla === 'cykl_lustro' ? [...base, ...base.filter(u => u > 0).map(u => 1 + u)] : base; /* tryb cykliczny: sprawdzamy też połowę w lustrze */ };
 const deltaMag = (d: DeltaFrame): number => Math.max(0, ...[d.miednica, d.nogi?.R?.kostka, d.nogi?.L?.kostka, d.rece?.R?.chwyt, d.rece?.L?.chwyt].map(v => v ? Math.max(...v.map(Math.abs)) : 0), ...[d.pochylenieTulowia, d.zgiecieKregoslupa, d.pochylenieGlowy, d.nogi?.R?.podbicie, d.nogi?.R?.rotacjaStopy, d.nogi?.R?.odchylenieKolana, d.nogi?.L?.podbicie, d.nogi?.L?.rotacjaStopy, d.nogi?.L?.odchylenieKolana,
   d.obrotTulowia, d.skretTulowia, d.przechylTulowia, d.przechylMiednicy, d.przechylGlowy, d.przesuniecieBoczne, ...SIDES.flatMap(sd => [d.rece?.[sd]?.uniesienieBarkow, d.rece?.[sd]?.wysuniecieBarkow, d.rece?.[sd]?.zgiecieNadgarstka, d.rece?.[sd]?.obrotPrzedramienia])].map(v => Math.abs(v ?? 0)));
 /** Pola poza@2 użyte w danych (nazwy) — poza@1 ich nie może zawierać. */
@@ -412,6 +473,11 @@ export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
   const a = pts(keyframeFrame(d, 0)), b = pts(keyframeFrame(d, 1)); const moved = Math.max(...a.map((p, i) => dist(p, b[i])));
   if (!ctx.isometric && moved < CONTRACT.minMotionCm) out.push({ kod: 'ruch', szczegol: `poza u = 1 prawie nie różni się od u = 0 (największe przemieszczenie punktu ${f1(moved)} cm, wymagane ≥ ${CONTRACT.minMotionCm} cm)` });
 
+  /* tryb cykliczny: styk faz i reguła sensu marszu na całej pętli */
+  if (d.petla === 'cykl_lustro') {
+    const g = loopJoinGap(d); if (g > CONTRACT.cycle.joinCm) out.push({ kod: 'petla', szczegol: `styk faz: klatka u = 1 różni się od lustra klatki u = 0 o ${f1(g)} cm (limit ${CONTRACT.cycle.joinCm} cm) — w trybie cykl_lustro ostatnia klatka ma być lustrem pierwszej (nogi zamienione miejscami${d.lustroRece ? ', ręce też' : ''})` });
+    const st = stanceAdvance(loopFrames(d, 160)); if (st.cm > CONTRACT.cycle.advanceCm) out.push({ kod: 'petla', szczegol: `stopa ${st.side ?? ''} w kontakcie z podłożem przesuwa się do przodu względem miednicy o ${f1(st.cm)} cm (limit ${CONTRACT.cycle.advanceCm} cm) — w marszu stopa podporowa tylko się cofa` });
+  }
   /* błędy jako delty */
   const seen = new Set<string>();
   d.bledy.forEach((e, j) => {
