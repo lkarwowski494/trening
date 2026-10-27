@@ -1,0 +1,648 @@
+{
+ "rodzina": "carry",
+ "wygenerowano": "2026-10-27T11:44:31.392Z",
+ "wyjatki": {},
+ "przyblizenia": {
+  "Rickshaw Carry": "przybliżenie: ramę riksza rysujemy jak gryf sześciokątny (rejestr sprzętu: riksza = trap bar)"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Farmer's Walk",
+   "obraz": "Farmer-s-Walk-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 120
+    },
+    {
+     "rodzaj": "hantel"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.03,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    0.97,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.03,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    0.97,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -11.4,
+     "max": 37.1
+    },
+    "knee": {
+     "min": 3.1,
+     "max": 67.8
+    },
+    "ankle": {
+     "min": -6.7,
+     "max": 20
+    },
+    "elbow": {
+     "min": 13.1,
+     "max": 14.6
+    },
+    "shSag": {
+     "min": 0,
+     "max": 0
+    },
+    "shElev": {
+     "min": 12.2,
+     "max": 12.9
+    },
+    "shAbd": {
+     "min": 12.2,
+     "max": 12.9
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: hantle (sprzet: rodzaj \"hantel\") albo kettlebell (sprzet: rodzaj \"kettlebell\")",
+     "dwa przyrządy"
+    ],
+    "ruch": [
+     "Idź spokojnym, kontrolowanym krokiem na ustalony dystans albo czas."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "tulow_pion",
+    "tulow_bez_przechylu",
+    "rece_proste",
+    "ciezar_przy_biodrach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Farmer's Walk (Farmers Handles)",
+   "obraz": "Farmer-s-Walk-Farmers-Handles--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 120
+    },
+    {
+     "rodzaj": "hantel",
+     "promien": 10
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.03,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    0.97,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.03,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    0.97,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -11.3,
+     "max": 36.8
+    },
+    "knee": {
+     "min": 4.8,
+     "max": 67.8
+    },
+    "ankle": {
+     "min": -6.5,
+     "max": 20
+    },
+    "elbow": {
+     "min": 13,
+     "max": 14.4
+    },
+    "shSag": {
+     "min": 0,
+     "max": 0
+    },
+    "shElev": {
+     "min": 15.7,
+     "max": 16.5
+    },
+    "shAbd": {
+     "min": 15.7,
+     "max": 16.5
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: uchwyty farmerskie (sprzet: rodzaj \"hantel\", promien 10–12)"
+    ],
+    "ruch": [
+     "Nie przechylaj się ani w stronę ciężaru, ani od niego — idź wyprostowany.",
+     "Idź spokojnym, kontrolowanym krokiem na ustalony dystans albo czas."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "tulow_pion",
+    "tulow_bez_przechylu",
+    "rece_proste",
+    "ciezar_przy_biodrach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Farmer's Walk (trap bar)",
+   "obraz": "Farmer-s-Walk-trap-bar--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 120
+    },
+    {
+     "rodzaj": "gryf_szesciokatny"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.03,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    0.97,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.03,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    0.97,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -11.3,
+     "max": 36.8
+    },
+    "knee": {
+     "min": 4.8,
+     "max": 67.8
+    },
+    "ankle": {
+     "min": -6.5,
+     "max": 20
+    },
+    "elbow": {
+     "min": 13,
+     "max": 14.4
+    },
+    "shSag": {
+     "min": 0,
+     "max": 0
+    },
+    "shElev": {
+     "min": 15.7,
+     "max": 16.5
+    },
+    "shAbd": {
+     "min": 15.7,
+     "max": 16.5
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: gryf sześciokątny (sprzet: rodzaj \"gryf_szesciokatny\")"
+    ],
+    "ruch": [
+     "Nie przechylaj się ani w stronę ciężaru, ani od niego — idź wyprostowany.",
+     "Idź spokojnym, kontrolowanym krokiem na ustalony dystans albo czas."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "tulow_pion",
+    "tulow_bez_przechylu",
+    "rece_proste",
+    "ciezar_przy_biodrach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Rickshaw Carry",
+   "obraz": "Rickshaw-Carry-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 120
+    },
+    {
+     "rodzaj": "gryf_szesciokatny"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.03,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    0.97,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.03,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    0.97,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -10,
+     "max": 36
+    },
+    "knee": {
+     "min": 3,
+     "max": 67.8
+    },
+    "ankle": {
+     "min": -5.3,
+     "max": 20.1
+    },
+    "elbow": {
+     "min": 13,
+     "max": 14.4
+    },
+    "shSag": {
+     "min": 0,
+     "max": 0
+    },
+    "shElev": {
+     "min": 15.7,
+     "max": 16.5
+    },
+    "shAbd": {
+     "min": 15.7,
+     "max": 16.5
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: riksza (rysowana jak trap bar — uproszczenie) (sprzet: rodzaj \"gryf_szesciokatny\")"
+    ],
+    "ruch": [
+     "Nie przechylaj się ani w stronę ciężaru, ani od niego — idź wyprostowany.",
+     "Idź spokojnym, kontrolowanym krokiem na ustalony dystans albo czas."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "tulow_pion",
+    "tulow_bez_przechylu",
+    "rece_proste",
+    "ciezar_przy_biodrach"
+   ],
+   "przyblizenie": "przybliżenie: ramę riksza rysujemy jak gryf sześciokątny (rejestr sprzętu: riksza = trap bar)"
+  },
+  {
+   "cwiczenie": "Suitcase Carry",
+   "obraz": "Suitcase-Carry-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 120
+    },
+    {
+     "rodzaj": "kettlebell",
+     "trzyma": "R",
+     "dzwon": "dol"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.03,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    0.97,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.03,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    0.97,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -11.4,
+     "max": 37.1
+    },
+    "knee": {
+     "min": 3.1,
+     "max": 67.8
+    },
+    "ankle": {
+     "min": -6.7,
+     "max": 20
+    },
+    "elbow": {
+     "min": 12.9,
+     "max": 14.4
+    },
+    "shSag": {
+     "min": 0,
+     "max": 0
+    },
+    "shElev": {
+     "min": 11.1,
+     "max": 16.5
+    },
+    "shAbd": {
+     "min": 11.1,
+     "max": 16.5
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: hantle (sprzet: rodzaj \"hantel\") albo kettlebell (sprzet: rodzaj \"kettlebell\")",
+     "jeden przyrząd (jedna ręka)"
+    ],
+    "ruch": [
+     "Idź spokojnym, kontrolowanym krokiem na ustalony dystans albo czas."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "tulow_pion",
+    "tulow_bez_przechylu",
+    "rece_proste",
+    "ciezar_przy_biodrach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Overhead Carry (hantle)",
+   "obraz": "Overhead-Carry-hantle--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 120
+    },
+    {
+     "rodzaj": "hantel"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.03,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    0.97,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.03,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    0.97,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -10.5,
+     "max": 36.4
+    },
+    "knee": {
+     "min": 4,
+     "max": 67.8
+    },
+    "ankle": {
+     "min": -5.1,
+     "max": 20
+    },
+    "elbow": {
+     "min": 13.6,
+     "max": 15
+    },
+    "shSag": {
+     "min": 163.9,
+     "max": 164.1
+    },
+    "shElev": {
+     "min": 162.2,
+     "max": 162.7
+    },
+    "shAbd": {
+     "min": 6.9,
+     "max": 7.6
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: hantle (sprzet: rodzaj \"hantel\") albo kettlebell (sprzet: rodzaj \"kettlebell\")",
+     "dwa przyrządy"
+    ],
+    "ruch": [
+     "Nie przechylaj się ani w stronę ciężaru, ani od niego — idź wyprostowany.",
+     "Idź spokojnym, kontrolowanym krokiem na ustalony dystans albo czas."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "tulow_pion",
+    "tulow_bez_przechylu",
+    "rece_proste",
+    "nad_glowa_caly"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Double Kettlebell Front Rack Carry",
+   "obraz": "Double-Kettlebell-Front-Rack-Carry-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 120
+    },
+    {
+     "rodzaj": "kettlebell",
+     "trzyma": "R",
+     "dzwon": "tyl"
+    },
+    {
+     "rodzaj": "kettlebell",
+     "trzyma": "L",
+     "dzwon": "tyl"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.03,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    0.97,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.03,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    0.97,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -10.5,
+     "max": 36.4
+    },
+    "knee": {
+     "min": 4,
+     "max": 67.8
+    },
+    "ankle": {
+     "min": -5.1,
+     "max": 20
+    },
+    "elbow": {
+     "min": 114.7,
+     "max": 114.7
+    },
+    "shSag": {
+     "min": 30.9,
+     "max": 30.9
+    },
+    "shElev": {
+     "min": 33.4,
+     "max": 33.4
+    },
+    "shAbd": {
+     "min": 13.5,
+     "max": 13.5
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: kettlebell (sprzet: rodzaj \"kettlebell\")",
+     "dwa przyrządy"
+    ],
+    "ruch": [
+     "Nie przechylaj się ani w stronę ciężaru, ani od niego — idź wyprostowany.",
+     "Idź spokojnym, kontrolowanym krokiem na ustalony dystans albo czas."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "tulow_pion",
+    "tulow_bez_przechylu",
+    "rack_caly"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}

@@ -1,0 +1,104 @@
+{
+ "rodzina": "strongman",
+ "wygenerowano": "2026-10-27T11:43:44.695Z",
+ "wyjatki": {},
+ "przyblizenia": {},
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Yoke Walk",
+   "obraz": "Yoke-Walk-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -200,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 190
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.115,
+    0.229,
+    0.321,
+    0.411,
+    0.503,
+    0.593,
+    0.681,
+    0.769,
+    0.844,
+    0.916,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.115,
+    0.229,
+    0.321,
+    0.411,
+    0.503,
+    0.593,
+    0.681,
+    0.769,
+    0.844,
+    0.916,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 15.3,
+     "max": 54.2
+    },
+    "knee": {
+     "min": 31.4,
+     "max": 95.6
+    },
+    "ankle": {
+     "min": -23.9,
+     "max": 23.6
+    },
+    "elbow": {
+     "min": 149.3,
+     "max": 149.3
+    },
+    "shSag": {
+     "min": 7.6,
+     "max": 7.6
+    },
+    "shElev": {
+     "min": 10.3,
+     "max": 10.3
+    },
+    "shAbd": {
+     "min": 6.9,
+     "max": 6.9
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: jarzmo (rysowane jak sztanga na barkach — uproszczenie) (sprzet: rodzaj \"sztanga\")"
+    ],
+    "ruch": [
+     "Nie przechylaj się ani w stronę ciężaru, ani od niego — idź wyprostowany.",
+     "Idź spokojnym, kontrolowanym krokiem na ustalony dystans albo czas."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "tulow_pion_marsz",
+    "tulow_bez_przechylu"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}
