@@ -84,8 +84,9 @@ export function generuj() {
   G['Decline EZ Bar Triceps Extension'] = () => lezac('Decline EZ Bar Triceps Extension', { kat: -20, sprzet: [SPRZET.gryfLamany()], zr: 10 });
   /* --- leżąc: łokcie na boki (Tate), sztanga za głową --- */
   const lerp3 = (a, b, t) => a.map((x, i) => lerp(x, b[i], t));
-  G['Tate Press'] = () => { const B = naLawce(0, 43, { zr: 22 }); const d1 = [0.05, 1, 0.32]; return wlasna('Tate Press', { sprzet: [LAW(0), SPRZET.hantle()], tulow: { m: B.m, p: B.p, glowa: B.glowa }, nogi: B.nogi,
-    rece: (u) => obie({ d1, d2: lerp3([0.12, -0.4, -0.85], d1, u), obrot: 0 }) }); };
+  /* Tate Press: hantle leżą na mostku końcami do siebie (środki chwytów ok. ±12 cm od osi, przedramiona się nie krzyżują), łokcie szeroko na boki i lekko za linią barków; w górę ramię wraca do pionu (recenzja ruchu 27.10.2026) */
+  G['Tate Press'] = () => { const B = naLawce(0, 43, { zr: 22 }); const d1k = [0.05, 1, 0.32]; const d1s = [-0.5, 0.65, 0.58]; const d2s = [0.65, -0.1, -0.75]; return wlasna('Tate Press', { sprzet: [LAW(0), SPRZET.hantle()], tulow: { m: B.m, p: B.p, glowa: B.glowa }, nogi: B.nogi,
+    rece: (u) => obie({ d1: lerp3(d1s, d1k, u), d2: lerp3(d2s, d1k, u), obrot: 0 }) }); };
   G['Lying Close-Grip Barbell Triceps Extension Behind The Head'] = () => lezac('Lying Close-Grip Barbell Triceps Extension Behind The Head', { kat: 0, f1: 200, zgiecie: 100, sprzet: [SPRZET.sztanga()], zr: 9 });
   /* --- siedząc w maszynie: łokcie przy bokach, dźwignia na osi łokcia --- */
   G['Machine Triceps Extension'] = () => { const B = naLawce(80, 43, { zr: 24 }); const spec = (u) => ({ f1: [4, 4], a1: 5, f2: [104, 12], zr: 22 });

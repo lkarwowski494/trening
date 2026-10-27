@@ -2316,7 +2316,7 @@
    ]
   },
   "Wide-Grip Rear Pull-Up": {
-   "kontrakt": "figury-v2/poza@1",
+   "kontrakt": "figury-v2/poza@2",
    "rodzina": "pull_up",
    "cwiczenie": "Wide-Grip Rear Pull-Up",
    "sprzet": [
@@ -2343,8 +2343,8 @@
     {
      "u": 0,
      "miednica": [
-      -18,
-      136.2,
+      4.5,
+      134.4,
       0
      ],
      "pochylenieTulowia": 0,
@@ -2353,8 +2353,8 @@
      "nogi": {
       "R": {
        "kostka": [
-        -22,
-        56.2,
+        0.5,
+        52.4,
         15
        ],
        "podbicie": -10,
@@ -2362,8 +2362,8 @@
       },
       "L": {
        "kostka": [
-        -22,
-        56.2,
+        0.5,
+        52.4,
         -15
        ],
        "podbicie": -10,
@@ -2390,18 +2390,18 @@
     {
      "u": 0.25,
      "miednica": [
-      -18,
-      156,
+      4.5,
+      154.2,
       0
      ],
-     "pochylenieTulowia": 0,
+     "pochylenieTulowia": 1,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 0,
+     "pochylenieGlowy": 20,
      "nogi": {
       "R": {
        "kostka": [
-        -22,
-        76,
+        0.5,
+        72.2,
         15
        ],
        "podbicie": -10,
@@ -2409,8 +2409,8 @@
       },
       "L": {
        "kostka": [
-        -22,
-        76,
+        0.5,
+        72.2,
         -15
        ],
        "podbicie": -10,
@@ -2437,18 +2437,18 @@
     {
      "u": 0.5,
      "miednica": [
-      -18,
-      171,
+      4.5,
+      170,
       0
      ],
-     "pochylenieTulowia": 0,
+     "pochylenieTulowia": 2,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 0,
+     "pochylenieGlowy": 35,
      "nogi": {
       "R": {
        "kostka": [
-        -22,
-        91,
+        0.5,
+        88,
         15
        ],
        "podbicie": -10,
@@ -2456,8 +2456,8 @@
       },
       "L": {
        "kostka": [
-        -22,
-        91,
+        0.5,
+        88,
         -15
        ],
        "podbicie": -10,
@@ -2484,18 +2484,18 @@
     {
      "u": 0.75,
      "miednica": [
-      -18,
+      4.5,
       180.5,
       0
      ],
-     "pochylenieTulowia": 0,
+     "pochylenieTulowia": 3,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 0,
+     "pochylenieGlowy": 35,
      "nogi": {
       "R": {
        "kostka": [
-        -22,
-        100.5,
+        0.5,
+        98.5,
         15
        ],
        "podbicie": -10,
@@ -2503,8 +2503,8 @@
       },
       "L": {
        "kostka": [
-        -22,
-        100.5,
+        0.5,
+        98.5,
         -15
        ],
        "podbicie": -10,
@@ -2531,18 +2531,18 @@
     {
      "u": 1,
      "miednica": [
-      -18,
-      185.5,
+      4.5,
+      186.3,
       0
      ],
-     "pochylenieTulowia": 0,
+     "pochylenieTulowia": 3,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 0,
+     "pochylenieGlowy": 35,
      "nogi": {
       "R": {
        "kostka": [
-        -22,
-        105.5,
+        0.5,
+        104.3,
         15
        ],
        "podbicie": -10,
@@ -2550,8 +2550,8 @@
       },
       "L": {
        "kostka": [
-        -22,
-        105.5,
+        0.5,
+        104.3,
         -15
        ],
        "podbicie": -10,
@@ -2583,8 +2583,7 @@
      "dotyczy": [
       "hip",
       "knee",
-      "ankle",
-      "heel"
+      "ankle"
      ],
      "klatki": [
       {
@@ -2633,7 +2632,7 @@
    ]
   },
   "Dead Hang": {
-   "kontrakt": "figury-v2/poza@1",
+   "kontrakt": "figury-v2/poza@2",
    "rodzina": "pull_up",
    "cwiczenie": "Dead Hang",
    "sprzet": [
@@ -2660,8 +2659,8 @@
     {
      "u": 0,
      "miednica": [
-      -18,
-      119,
+      0,
+      112.2,
       0
      ],
      "pochylenieTulowia": 0,
@@ -2670,8 +2669,8 @@
      "nogi": {
       "R": {
        "kostka": [
-        -22,
-        36.8,
+        -4,
+        30.2,
         15
        ],
        "podbicie": -10,
@@ -2679,8 +2678,8 @@
       },
       "L": {
        "kostka": [
-        -22,
-        36.8,
+        -4,
+        30.2,
         -15
        ],
        "podbicie": -10,
@@ -2693,22 +2692,24 @@
         0,
         230,
         22
-       ]
+       ],
+       "uniesienieBarkow": 4
       },
       "L": {
        "chwyt": [
         0,
         230,
         -22
-       ]
+       ],
+       "uniesienieBarkow": 4
       }
      }
     },
     {
      "u": 1,
      "miednica": [
-      -18,
-      120,
+      0,
+      112.2,
       0
      ],
      "pochylenieTulowia": 0,
@@ -2717,8 +2718,8 @@
      "nogi": {
       "R": {
        "kostka": [
-        -19,
-        45.8,
+        -4,
+        30.2,
         15
        ],
        "podbicie": -10,
@@ -2726,8 +2727,8 @@
       },
       "L": {
        "kostka": [
-        -19,
-        45.8,
+        -4,
+        30.2,
         -15
        ],
        "podbicie": -10,
@@ -2740,14 +2741,16 @@
         0,
         230,
         22
-       ]
+       ],
+       "uniesienieBarkow": 4
       },
       "L": {
        "chwyt": [
         0,
         230,
         -22
-       ]
+       ],
+       "uniesienieBarkow": 4
       }
      }
     }
@@ -2759,8 +2762,7 @@
      "dotyczy": [
       "hip",
       "knee",
-      "ankle",
-      "heel"
+      "ankle"
      ],
      "klatki": [
       {
@@ -3072,7 +3074,7 @@
    "bledy": []
   },
   "Scapular Pull-Up": {
-   "kontrakt": "figury-v2/poza@1",
+   "kontrakt": "figury-v2/poza@2",
    "rodzina": "pull_up",
    "cwiczenie": "Scapular Pull-Up",
    "sprzet": [
@@ -3099,8 +3101,8 @@
     {
      "u": 0,
      "miednica": [
-      -18,
-      119,
+      0,
+      111.2,
       0
      ],
      "pochylenieTulowia": 0,
@@ -3109,8 +3111,8 @@
      "nogi": {
       "R": {
        "kostka": [
-        -22,
-        36.8,
+        -4,
+        29.2,
         15
        ],
        "podbicie": -10,
@@ -3118,8 +3120,8 @@
       },
       "L": {
        "kostka": [
-        -22,
-        36.8,
+        -4,
+        29.2,
         -15
        ],
        "podbicie": -10,
@@ -3132,32 +3134,34 @@
         0,
         230,
         22
-       ]
+       ],
+       "uniesienieBarkow": 5
       },
       "L": {
        "chwyt": [
         0,
         230,
         -22
-       ]
+       ],
+       "uniesienieBarkow": 5
       }
      }
     },
     {
      "u": 0.5,
      "miednica": [
-      -18,
-      119.6,
+      0,
+      115.2,
       0
      ],
-     "pochylenieTulowia": -1,
+     "pochylenieTulowia": 0,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": -2,
+     "pochylenieGlowy": 0,
      "nogi": {
       "R": {
        "kostka": [
-        -22,
-        41.3,
+        -4,
+        33.2,
         15
        ],
        "podbicie": -10,
@@ -3165,8 +3169,8 @@
       },
       "L": {
        "kostka": [
-        -22,
-        41.3,
+        -4,
+        33.2,
         -15
        ],
        "podbicie": -10,
@@ -3179,32 +3183,34 @@
         0,
         230,
         22
-       ]
+       ],
+       "uniesienieBarkow": 1
       },
       "L": {
        "chwyt": [
         0,
         230,
         -22
-       ]
+       ],
+       "uniesienieBarkow": 1
       }
      }
     },
     {
      "u": 1,
      "miednica": [
-      -18,
-      120.2,
+      0,
+      119.2,
       0
      ],
-     "pochylenieTulowia": -2,
+     "pochylenieTulowia": 0,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": -5,
+     "pochylenieGlowy": 0,
      "nogi": {
       "R": {
        "kostka": [
-        -22,
-        45.8,
+        -4,
+        37.2,
         15
        ],
        "podbicie": -10,
@@ -3212,8 +3218,8 @@
       },
       "L": {
        "kostka": [
-        -22,
-        45.8,
+        -4,
+        37.2,
         -15
        ],
        "podbicie": -10,
@@ -3226,14 +3232,16 @@
         0,
         230,
         22
-       ]
+       ],
+       "uniesienieBarkow": -3
       },
       "L": {
        "chwyt": [
         0,
         230,
         -22
-       ]
+       ],
+       "uniesienieBarkow": -3
       }
      }
     }
@@ -3245,8 +3253,7 @@
      "dotyczy": [
       "hip",
       "knee",
-      "ankle",
-      "heel"
+      "ankle"
      ],
      "klatki": [
       {

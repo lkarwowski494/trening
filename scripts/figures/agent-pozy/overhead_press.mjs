@@ -19,12 +19,12 @@ function wyciskanie(cw, o) {
     const tu = o.tulowu ? o.tulowu(u) : {}; const m = tu.m ?? T.m; const p = tu.p ?? T.p ?? 0; const nogi = tu.nogi ?? T.nogi; const rece = {};
     for (const s of SIDES) { const sg = POL(s); const S = bark(m, p, sg); const prac = !o.jedna || o.jedna === s;
       if (!prac) { rece[s] = o.wolna ? o.wolna(S, sg) : WOLNA(S, sg); continue; }
-      const e0 = o.alt && s === 'L' ? 1 - u : u; const e = o.rytm ? o.rytm(e0) : e0; const dz = (o.zr ?? 26) - 19;
+      const e0 = o.alt && s === 'L' ? 1 - u : u; const e = o.rytm ? o.rytm(e0) : e0; const zrr = typeof o.zr === 'function' ? o.zr(e) : (o.zr ?? 26); const dz = zrr - 19; /* zr może zależeć od fazy (Arnold: dłonie z wąskiego chwytu przed klatką do chwytu nad głową) */
       const yTop = Math.sqrt(Math.max(1, (o.reach ?? 63.4) ** 2 - (o.xTop ?? -2) ** 2 - dz * dz));
       const yy = lerp(o.dy0 ?? 14, yTop, e); const hy = S[1] + yy; const hx = S[0] + lerp(o.x0 ?? 22, o.xTop ?? 6, sm((yy - (o.ys ?? 48)) / (yTop - (o.ys ?? 45))));
-      const ob = typeof o.obrot === 'function' ? o.obrot(e) : o.obrot ?? 0; const gz = sg * (o.zr ?? 26);
+      const ob = typeof o.obrot === 'function' ? o.obrot(e) : o.obrot ?? 0; const gz = sg * zrr; const pdz = typeof o.pdz === 'function' ? o.pdz(e) : (o.pdz ?? 0);
       /* biegun łokcia: punkt pod chwytem (przedramię pionowo) — łokieć pod dłonią (ohp.elbowsUnder) */
-      const pv = o.pole ? [o.pole[0], o.pole[1], o.pole[2] * sg] : [hx - S[0] + (o.pdx ?? 0), hy - 33 - S[1], gz - sg * 19 + sg * (o.pdz ?? 0)]; const pl = Math.hypot(...pv) || 1; const pole = pv.map((c) => r1(c / pl * 3) );
+      const pv = o.pole ? [o.pole[0], o.pole[1], o.pole[2] * sg] : [hx - S[0] + (o.pdx ?? 0), hy - 33 - S[1], gz - sg * 19 + sg * pdz]; const pl = Math.hypot(...pv) || 1; const pole = pv.map((c) => r1(c / pl * 3) );
       rece[s] = { g: [hx, hy, gz], pole, obrot: ob }; }
     return poza({ u, tulow: { m, p, glowa: tu.glowa ?? p, bend: 0 }, nogi, rece }); };
   const sprz = o.jedna ? sprzJ(o.sprzet, o.jedna) : o.sprzet;
@@ -84,6 +84,9 @@ export const WYJATKI = {
 };
 export const PRZYBLIZENIA = {};
 
+/** Arnold Press (recenzja ruchu 27.10.2026): start — ciężary przed twarzą/klatką, dłonie do siebie (supinacja), łokcie przed klatką blisko siebie (chwyt |z| 12); w trakcie łokcie rozchodzą się na boki (pdz > 0), a przedramię obraca się do nachwytu; na górze chwyt jak w zwykłym wyciskaniu. */
+const ARNOLD = { zr: (e) => lerp(12, 24, sm(e / 0.85)), pdz: (e) => 26 * Math.sin(Math.PI * Math.min(1, e / 0.85)) ** 1.2, obrot: (e) => lerp(80, -75, sm(e / 0.7)) };
+
 export function generuj() {
   const G = {}; const B = SPRZET.sztanga(); const H = SPRZET.hantle(); const KB = (x = {}) => ({ rodzaj: 'kettlebell', dzwon: 'tyl', ...x });
   const RACK = { rodzaj: 'slupek', x: -45, h: 210, hak: 140 };
@@ -94,8 +97,8 @@ export function generuj() {
   G['Kettlebell Press'] = () => wyciskanie('Kettlebell Press', { sprzet: [KB()], jedna: 'R' });
   G['Single Arm Overhead Press (hantel)'] = () => wyciskanie('Single Arm Overhead Press (hantel)', { sprzet: [H], jedna: 'R' });
   G['See-Saw Press (Alternating Side Press)'] = () => wyciskanie('See-Saw Press (Alternating Side Press)', { sprzet: [{ ...H, trzyma: 'R' }, { ...H, trzyma: 'L' }], alt: true, us: U12 });
-  G['Arnold Press'] = () => wyciskanie('Arnold Press', { sprzet: [H], zr: 24, obrot: (e) => lerp(80, -75, sm(e / 0.7)) });
-  G['Kettlebell Arnold Press'] = () => wyciskanie('Kettlebell Arnold Press', { sprzet: [KB()], jedna: 'R', zr: 24, obrot: (e) => lerp(80, -75, sm(e / 0.7)) });
+  G['Arnold Press'] = () => wyciskanie('Arnold Press', { sprzet: [H], ...ARNOLD });
+  G['Kettlebell Arnold Press'] = () => wyciskanie('Kettlebell Arnold Press', { sprzet: [KB()], jedna: 'R', ...ARNOLD, zr: (e) => lerp(16, 24, sm(e / 0.85)) });
   const sd = siedzac(85, 45);
   G['Seated Shoulder Press (hantle)'] = () => wyciskanie('Seated Shoulder Press (hantle)', { T: sd.T, dod: [sd.lawka], sprzet: [H] });
   G['Kettlebell Seated Press'] = () => wyciskanie('Kettlebell Seated Press', { T: sd.T, dod: [sd.lawka], sprzet: [KB()], jedna: 'R' });

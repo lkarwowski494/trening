@@ -7,9 +7,11 @@ export const RODZINA = 'dip';
 const US = [0, 0.25, 0.5, 0.75, 1];
 const a01 = ease;
 const ZR = 22; /* dłonie: z = ±22 (połowa rozstawu poręczy) */
+const ODCHYL_TASMY = 21; /* taśma rozchodzi się ku górze o tyle cm na zewnątrz (ok. 8°), żeby przedramię nie przechodziło przez nią */
+const ZR_KOLKA = 28; /* kółka: dłonie nieco szerzej niż barki (19), taśmy lekko na zewnątrz, żeby nie przechodziły przez ramię */
 export const WYJATKI = {};
 export const PRZYBLIZENIA = {
-  'Ring Dips': 'przybliżenie: kółka rysowane jak poprzeczka (sprzęt „sztanga” z możliwością rings) — bez wychylenia kółek na zewnątrz na dole',
+  'Ring Dips': 'przybliżenie: kółka rysowane jako dwa uchwyty na osobnych taśmach (sprzęt „zawieszenie”, taśma na każdą dłoń, zaczep 250 cm nad podłogą, taśmy lekko rozchodzą się ku górze) — bez obrotu kółek na zewnątrz na dole; dwie niezależne rączki, nie poprzeczka (recenzja ruchu 27.10.2026)',
 };
 const poleKolana = (hip, ankle, knee) => { const mid = hip.map((v, i) => (v + ankle[i]) / 2); const d = knee.map((v, i) => v - mid[i]); const l = Math.hypot(...v3(d)) || 1; return d.map((v) => r1(v / l * 100) / 100); };
 const v3 = (d) => d;
@@ -20,11 +22,11 @@ function noga(hip, ang, k, z) {
 }
 
 /** Pompki w podporze na poręczach/kółkach: dłonie (0, h, ±22) stałe; bark od (0, h + 63,5) do (dx, h + dyDol) przy ugięciu ≈ 95°. */
-function wPodporze(cw, { h = 115, p1, p2, dxDol, dyDol, poleLokcia, sprzet, kolana = 95 }) {
-  const dz = ZR - 19; const dGora = 63.6; const yGora = Math.sqrt(dGora * dGora - dz * dz);
+function wPodporze(cw, { h = 115, p1, p2, dxDol, dyDol, poleLokcia, sprzet, kolana = 95, zr = ZR }) {
+  const dz = zr - 19; const dGora = 63.6; const yGora = Math.sqrt(dGora * dGora - dz * dz);
   const fr = (u) => { const a = a01(u); const Sx = lerp(0, dxDol, a), Sy = h + lerp(yGora, dyDol, a); const p = lerp(p1, p2, a); const tr = BODY().trunk; const m = [Sx - tr * Math.sin(p * R), Sy - tr * Math.cos(p * R)];
     const ang = 270 - p + 8; const hR = [m[0], m[1], HIP()], hL = [m[0], m[1], -HIP()]; const nR = noga(hR, ang, kolana, 9), nL = noga(hL, ang, kolana, -9);
-    return K({ u, m, p, head: p * 0.4, R: { a: nR.ankle, pod: null, rot: 10, pole: nR.pole }, L: { a: nL.ankle, pod: null, rot: 10, pole: nL.pole }, hr: { g: [0, h, ZR], pole: poleLokcia(1) }, hl: { g: [0, h, -ZR], pole: poleLokcia(-1) } }); };
+    return K({ u, m, p, head: p * 0.4, R: { a: nR.ankle, pod: null, rot: 10, pole: nR.pole }, L: { a: nL.ankle, pod: null, rot: 10, pole: nL.pole }, hr: { g: [0, h, zr], pole: poleLokcia(1) }, hl: { g: [0, h, -zr], pole: poleLokcia(-1) } }); };
   return poza(RODZINA, cw, [PODLOGA(-120, 120), ...sprzet(h)], US.map(fr), []);
 }
 
@@ -57,7 +59,7 @@ export function generuj() {
   return {
     'Chest Dip': () => wPodporze('Chest Dip', { p1: 28, p2: 34, dxDol: 8, dyDol: 42.4, poleLokcia: (sg) => [-1, -0.3, sg * 0.6], sprzet: por }),
     'Triceps Dip': () => wPodporze('Triceps Dip', { p1: 4, p2: 4, dxDol: 0, dyDol: 43.2, poleLokcia: (sg) => [-1, 0, sg * 0.3], sprzet: por }),
-    'Ring Dips': () => wPodporze('Ring Dips', { p1: 24, p2: 30, dxDol: 6, dyDol: 42.8, poleLokcia: (sg) => [-1, -0.3, sg * 0.5], sprzet: (h) => [{ rodzaj: 'sztanga', x: 0, y: h, dlugosc: 60, talerze: false, podazaZaChwytem: false }] }),
+    'Ring Dips': () => wPodporze('Ring Dips', { p1: 24, p2: 30, dxDol: 6, dyDol: 42.8, poleLokcia: (sg) => [-1, -0.3, sg * 0.5], zr: ZR_KOLKA, sprzet: () => [{ rodzaj: 'zawieszenie', x: 0, y: 250, z: ZR_KOLKA + ODCHYL_TASMY, punkt: 'dlonie', trzyma: 'R' }, { rodzaj: 'zawieszenie', x: 0, y: 250, z: -(ZR_KOLKA + ODCHYL_TASMY), punkt: 'dlonie', trzyma: 'L' }] }),
     'Dip Machine': () => maszyna('Dip Machine'),
     'Triceps Dips (ławka)': () => zLawki('Triceps Dips (ławka)'),
   };

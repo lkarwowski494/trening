@@ -43,7 +43,9 @@ describe('dane póz: rejestr i podłączenie (logika)', () => {
       expect([k, b.sk.pelvis[1] - a.sk.pelvis[1] > 0.5]).toEqual([k, true]);
       expect(s.lowerFirst).toBe(false); expect(measuredJoint(s)).toBe('elbow');
       const ph = phasesFor(s); expect(ph.map(p => [p.name, p.ms])).toEqual([['Podciąganie', 1000], ['Pauza', 500], ['Opuszczanie', 2000], ['Pauza', 500]]);
-      expect(measuredAngle(s, 1).deg).toBeGreaterThan(measuredAngle(s, 0).deg);
+      /* Scapular Pull-Up (poprawka po recenzji ruchu, partia 1): ruch łopatek przy prostych rękach — kąt w łokciu się nie zmienia; reszta rośnie */
+      if (k === 'Scapular Pull-Up') { expect(measuredAngle(s, 1).deg).toBeCloseTo(measuredAngle(s, 0).deg, 5); }
+      else { expect(measuredAngle(s, 1).deg).toBeGreaterThan(measuredAngle(s, 0).deg); }
     }
   });
   test('izometria (Dead Hang) = pozycja statyczna; lista ISOMETRIC zgadza się z katalogiem (pomiar czasu); pozostałe ćwiczenia z danymi animowane', () => {
