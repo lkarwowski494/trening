@@ -16,6 +16,7 @@ jest.mock('expo-sqlite', () => ({
   openDatabaseAsync: async () => { if (global.__dbOpenFail) throw new Error('baza nieczytelna'); return ({
     execAsync: async () => {},
     getFirstAsync: async (_q, k) => (global.__kv.has(k) ? { v: global.__kv.get(k) } : null),
+    getAllAsync: async (_q) => [...global.__kv.entries()].map(([k, v]) => ({ k, v })), /* A-2 (audyt 1.0): lista kluczy (np. SELECT k FROM kv) — „Wyczyść wszystkie dane” sprząta kopie techniczne */
     runAsync: async (_q, k, v) => { const f = global.__dbFail; if (typeof f === 'function' ? f(k, _q) : f) throw new Error('disk full'); if (/^\s*DELETE/i.test(_q)) global.__kv.delete(k); else global.__kv.set(k, v); }, /* runda 71: __dbFail może być funkcją (k, zapytanie) — awaria tylko wybranego klucza */
   }); },
 }));

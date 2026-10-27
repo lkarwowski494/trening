@@ -106,6 +106,15 @@ describe('walidator: poza poprawna i komunikaty o błędach (konkretne, do popra
     const d = pullUp(); d.klatki[0].rece.R.biegunLokcia = [0, -1, 1]; d.klatki[1].rece.R.biegunLokcia = [0, 1, -1]; d.klatki[2].rece.R.biegunLokcia = [0, 1, -1];
     expect(codes(validatePose(d, ctx()))).toEqual(expect.arrayContaining(['ciaglosc'])); expect(texts(validatePose(d, ctx()))).toContain('dodaj klatki pośrednie');
   });
+  test('ciągłość w ruchu dynamicznym (wersja 1.1): ctx.dynamic podnosi limit skoku do CONTRACT.maxJumpDynamic; bez flagi limit i komunikat bez zmian; zbyt duży skok (teleport) łapie też tryb dynamiczny', () => {
+    expect(CONTRACT.maxJumpDynamic).toBeGreaterThan(CONTRACT.maxJump); expect(CONTRACT.maxJumpDynamic).toBeLessThanOrEqual(3 * CONTRACT.maxJump); /* lot, przechwyt i wymach: szybciej niż ruch zwykły, ale nie bez granicy */
+    const d = pullUp(); d.klatki[1].miednica = [80, 135, 0]; /* szybszy niż limit zwykły (7,6 cm na 1/48), wolniejszy niż dynamiczny */
+    expect(codes(validatePose(d, ctx()))).toContain('ciaglosc'); expect(texts(validatePose(d, ctx()))).toMatch(/limit 6 cm na 1\/48 ruchu/);
+    expect(codes(validatePose(d, ctx({ dynamic: false })))).toContain('ciaglosc'); /* jawne false = domyślne */
+    expect(codes(validatePose(d, ctx({ dynamic: true })))).not.toContain('ciaglosc');
+    const e = pullUp(); e.klatki[1].u = 0.25; e.klatki[1].miednica = [250, 135, 0]; /* ≈ 21 cm na 1/48: teleport łapie też tryb dynamiczny */
+    expect(texts(validatePose(e, ctx({ dynamic: true })))).toMatch(new RegExp(`limit ${CONTRACT.maxJumpDynamic} cm na 1/48 ruchu`));
+  });
   test('ruch: identyczne klatki → „ruch”; u poza kolejnością i brak klatki 0 lub 1 → „klatki-u” z liczbami', () => {
     const d = pullUp(); d.klatki[2] = { ...clone(d.klatki[0]), u: 1 }; expect(codes(validatePose(d, ctx()))).toContain('ruch');
     const e = pullUp(); e.klatki[1].u = 0; expect(texts(validatePose(e, ctx()))).toContain('rosnące u'); const g = pullUp(); g.klatki[0].u = 0.1; g.klatki[2].u = 0.9; expect(texts(validatePose(g, ctx()))).toMatch(/pierwsza klatka ma u = 0.1.*ostatnia klatka ma u = 0.9/);
@@ -168,7 +177,7 @@ describe('biblioteka scripts/figures/v2-validate.mjs (interfejs pilotażu) i CLI
   });
   test('przyklad: gotowa rodzina → [{ cwiczenie, poza }] przechodząca walidator; rodzina planowana → []', () => {
     const r = lib(`const out = {}; for (const f of ['squat', 'bench_press', 'hinge', 'pull_up']) { const p = m.przyklad(f); out[f] = p.map(x => ({ cwiczenie: x.cwiczenie, bledy: m.waliduj(x.poza, { rodzina: f, cwiczenie: x.cwiczenie }).bledy, nBledow: x.poza.bledy.length })); } return out;`);
-    expect(r.squat).toEqual([{ cwiczenie: 'Back Squat', bledy: [], nBledow: 2 }]); expect(r.pull_up).toEqual([]); for (const f of ['bench_press', 'hinge']) { expect(r[f].length).toBe(1); expect(r[f][0].bledy).toEqual([]); }
+    expect(r.squat).toEqual([{ cwiczenie: 'Back Squat', bledy: [], nBledow: 2 }]); expect(r.pull_up).toEqual([]); expect(r.bench_press).toEqual([]); /* wyciskanie ma własną sylwetkę (ANSUR II) i ławkę — kontrakt v1 nie ma wymiarów ani ławki */ expect(r.hinge.length).toBe(1); expect(r.hinge[0].bledy).toEqual([]);
   });
   test('zastosuj: zapisuje tylko poprawne pozy do lib/figures/v2/poses/<rodzina>.json (katalog tymczasowy), odrzucone zwraca z błędami; kolejne wywołanie scala', () => {
     const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'v2apply-'));

@@ -1,5 +1,5 @@
 /*
- * Reguły JAKOŚCI póz figur v2 (scripts/figures/v2-jakosc.mjs; docs/53; L-036): 12 luk z recenzji ruchu pilotażu agent-pozy (26.10.2026) zamienionych w sprawdzenia automatyczne.
+ * Reguły JAKOŚCI póz figur v2 (scripts/figures/v2-jakosc.mjs; docs/53; L-040): 12 luk z recenzji ruchu pilotażu agent-pozy (26.10.2026) zamienionych w sprawdzenia automatyczne.
  * Dla KAŻDEJ reguły: poza spełniająca (brak komunikatu) i łamiąca (komunikat z liczbami). Pozy bierzemy z danych (lib/figures/v2/poses) i modyfikujemy; reguły oparte na kształtach rysunku
  * (styk z podłogą z przodu, zasłanianie) dostają kształty syntetyczne. Plus: remis „skrajnej” w regule miednica_na_linii i zdjęcie wymogu zerowej delty w u = 0 dla błędów postawy.
  */

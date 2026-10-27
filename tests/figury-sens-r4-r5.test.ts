@@ -1,5 +1,5 @@
 /*
- * Reguły sensu rund 4 i 5 (badacz, 26.10.2026) — L-036: każdy NOWY typ reguły sprawdzony na PRAWDZIWEJ pozie (dane kontraktu → ten sam silnik co aplikacja, nie szkielet z liczb):
+ * Reguły sensu rund 4 i 5 (badacz, 26.10.2026) — L-040: każdy NOWY typ reguły sprawdzony na PRAWDZIWEJ pozie (dane kontraktu → ten sam silnik co aplikacja, nie szkielet z liczb):
  * kolano_zakres_ruch, rozstaw_zakres (r4), stopien_swobody, punkt_zakres (r5), pole `wymaga` (poza@2). Dla każdego: poza spełniająca (brak naruszeń) i łamiąca (komunikat z liczbami).
  * Do tego poprawki badacza: jedna ręka pracująca z dowolnego sprzętu (trzyma), potrójny wyprost z parametrem `nogi`, zawias jednonóż po nodze podporowej, biodro ze znakiem w regule,
  * rodziny „behind the neck”, zapadka naruszeń gotowych figur = 0, oraz ćwiczenia czekające na kontrakt.
@@ -78,7 +78,7 @@ describe('stopien_swobody (r5) na prawdziwej pozie: skręt tułowia, nadgarstek,
     expect(w.szyjaFlex).toEqual([]); expect(w.szyjaProsta.join('|')).toMatch(/dochodzi tylko do 0\.0/); expect(w.szyjaLezacaWOsi).toEqual([]); expect(w.szyjaLezacaDomyslna.join('|')).toMatch(/zgiecieSzyi dochodzi do (-)?\d+\.\d, a ma być ≤ 5/);
   });
   test('pola poza@1 (zgiecieKregoslupa, pochylenieTulowia) działają tym samym typem', () => { expect(w.kregoslup).toEqual([]); expect(w.tulowPoza1.join('|')).toContain('pochylenieTulowia dochodzi do 50.0, a ma być ≤ 20'); });
-  test('lista pól poza@2 w regułach = pola kontraktu (nazwy zgodne z silnikiem)', () => { expect(Object.keys(w.odSkeletuSkret).sort()).toEqual(['obrotPrzedramienia', 'obrotTulowia', 'przechylGlowy', 'przechylMiednicy', 'przechylTulowia', 'skretTulowia', 'uniesienieBarkow', 'wysuniecieBarkow', 'zgiecieNadgarstka']); });
+  test('lista pól poza@2 w regułach = pola kontraktu (nazwy zgodne z silnikiem)', () => { expect(Object.keys(w.odSkeletuSkret).sort()).toEqual(['obrotPrzedramienia', 'obrotTulowia', 'przechylGlowy', 'przechylMiednicy', 'przechylTulowia', 'przesuniecieBoczne', 'skretTulowia', 'uniesienieBarkow', 'wysuniecieBarkow', 'zgiecieNadgarstka']); });
 });
 
 describe('punkt_zakres (r5) na prawdziwej pozie: krążenie dłoni i rolowanie', () => {

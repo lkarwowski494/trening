@@ -1,0 +1,12 @@
+{
+ "Podciąganie": "nazwa FAZY animacji ruchu (poseData.ts DATA_UI.names.first), pokazana w „{faza} {n} s”: rzeczownik odczasownikowy jak siostrzane fazy „Opuszczanie”, „Wypychanie”; NIE nazwa ćwiczenia „podciąganie na drążku”",
+ "Opuszczanie": "nazwa FAZY animacji ruchu (anim.ts PhaseName, poseData.ts), pokazana w „{faza} {n} s”; rzeczownik odczasownikowy jak „Podciąganie”",
+ "Wypychanie": "nazwa FAZY animacji ruchu (anim.ts PhaseName), pokazana w „{faza} {n} s”; rzeczownik odczasownikowy jak „Opuszczanie”",
+ "Wstawanie": "nazwa FAZY animacji ruchu (anim.ts PhaseName), pokazana w „{faza} {n} s”; wstawanie z przysiadu, nie wstawanie z łóżka",
+ "Podnoszenie": "nazwa FAZY animacji ruchu (anim.ts PhaseName), pokazana w „{faza} {n} s”; podnoszenie ciężaru, rzeczownik odczasownikowy",
+ "Prostowanie": "nazwa FAZY animacji ruchu (anim.ts PhaseName), pokazana w „{faza} {n} s”; prostowanie stawu (biodra, łokcia), rzeczownik odczasownikowy",
+ "{faza} {n} s": "linia faz animacji w karcie ćwiczenia, np. „Podciąganie 1 s · Opuszczanie 2 s”: {faza} = nazwa fazy ruchu (nie ćwiczenia), {n} = liczba sekund; „s” = sekundy",
+ "Zwiększ ciężar o {n}": "etykieta dostępności (VoiceOver) przycisku „+” przy polu ciężaru w serii: {n} = krok zmiany z jednostką (np. 2,5 kg); tryb rozkazujący",
+ "Zmniejsz czas o {n}": "etykieta dostępności (VoiceOver) przycisku „−” przy polu czasu w serii na czas: {n} = krok zmiany w sekundach; tryb rozkazujący",
+ "Zwiększ czas o {n}": "etykieta dostępności (VoiceOver) przycisku „+” przy polu czasu w serii na czas: {n} = krok zmiany w sekundach; tryb rozkazujący"
+}

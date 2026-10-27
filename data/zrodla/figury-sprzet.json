@@ -1,96 +1,591 @@
 {
- "_opis": "Wymiary sprzętu rysowanych w figurach v2 (lib/figures/v2/draw.ts → EQUIP; docs/53 bramka 6 „spójność”, docs/54). WSZYSTKIE wymiary to „konwencja rysunku” (uproszczenie ilustracyjne: figura nie twierdzi nic o rozmiarach sprzętu i aplikacja ich nie podaje użytkownikowi). Pole zgodnosc opisuje orientacyjną zgodność z powszechnymi rozmiarami (wiedza ogólna, NIE przeczytane źródło); potwierdzenie źródłem szczebla 4 (dokumentacja producentów, regulaminy federacji) jest otwarte (docs/54, otwarte pytania) i należy do badacza. Do paczki aplikacji NIC stąd nie trafia; test tests/zrodla-pelne-sprzet.test.ts pilnuje zgodności z EQUIP i kompletności (każdy klucz EQUIP ma wpis).",
- "statusy": ["konwencja rysunku"],
- "wysokosci_bloczkow": { "status": "konwencja rysunku", "zgodnosc": "typowe wysokości bloczków stacji wyciągów (cm): niski ok. 5–60, środkowy ok. 70–160, wysoki ok. 150–240 — wiedza ogólna, NIE przeczytane źródło", "low": [5, 60], "mid": [70, 160], "high": [150, 240] },
- "lawka_regulowana": { "status": "konwencja rysunku", "zgodnosc": "wymiary ławki z rigu wyciskania leżąc (docs/50): siedzisko 43 cm (ujemna 60), siedzisko 55 cm, oparcie 75 cm, wygięcie pod miednicą 10,2 cm, stopy 40 cm od miednicy i rozstaw ±24 cm; zakresy kąta: płaska ±5°, skośna 10–90°, ujemna −45…−5° — wiedza ogólna, NIE przeczytane źródło", "seatTop": 43, "declineSeat": 60, "padBack": 10.2, "backLen": 75, "seatLen": 55, "footBack": 40, "footHalf": 24, "kat": { "min": -45, "max": 90, "flat": [-5, 5], "incline": [10, 90], "decline": [-45, -5] } },
- "wymiary": {
-  "barR": { "cm": 1.6, "status": "konwencja rysunku", "zgodnosc": "promień gryfu ok. 1,4–1,6 cm (gryf ok. 28–32 mm)", "uzycie": "gryf sztangi i drążka" },
-  "barLen": { "cm": 220, "status": "konwencja rysunku", "zgodnosc": "długość gryfu olimpijskiego męskiego ok. 2,2 m", "uzycie": "długość gryfu w widoku z przodu i w kolizjach" },
-  "sleeveR": { "cm": 2.6, "status": "konwencja rysunku", "zgodnosc": "promień tulei ok. 2,5 cm (średnica 50 mm)", "uzycie": "piasta talerza" },
-  "plateR": { "cm": 22.5, "status": "konwencja rysunku", "zgodnosc": "średnica talerza obciążeniowego ok. 450 mm (talerz 20 kg)", "uzycie": "talerz na sztandze i talerz trzymany (domyślny promień)" },
-  "plateZ": { "cm": [44, 49], "status": "konwencja rysunku", "zgodnosc": "położenie talerzy wzdłuż gryfu (widok z przodu)", "uzycie": "talerze na sztandze" },
-  "plateW": { "cm": 2.8, "status": "konwencja rysunku", "zgodnosc": "grubość talerza ok. 2,5–3 cm", "uzycie": "grubość talerza trzymanego i kapsuł kolidera" },
-  "dbHeadR": { "cm": 6, "status": "konwencja rysunku", "zgodnosc": "główka hantla ok. 12 cm średnicy (hantel ok. 10–20 kg)", "uzycie": "hantel trzymany" },
-  "dbHandle": { "cm": 13, "status": "konwencja rysunku", "zgodnosc": "długość rączki hantla ok. 13 cm", "uzycie": "hantel trzymany (rysunek z przodu i pionowy)" },
-  "kbBallR": { "cm": 9.5, "status": "konwencja rysunku", "zgodnosc": "dzwon kettlebell ok. 18–20 cm średnicy (ok. 16 kg)", "uzycie": "kettlebell trzymany" },
-  "kbHandleR": { "cm": 6, "status": "konwencja rysunku", "zgodnosc": "rączka kettlebell ok. 12 cm wewnętrznej średnicy", "uzycie": "kettlebell trzymany" },
-  "medBallR": { "cm": 11, "status": "konwencja rysunku", "zgodnosc": "piłka lekarska ok. 4 kg ma ok. 22–24 cm średnicy (rozmiary różnych piłek: ok. 20–36 cm)", "uzycie": "piłka lekarska trzymana (domyślny promień)" },
-  "landmineLen": { "cm": 200, "status": "konwencja rysunku", "zgodnosc": "długość gryfu przy osi landmine ok. 2,0–2,2 m", "uzycie": "landmine: sztywny gryf od osi obrotu do dłoni" },
-  "landmineR": { "cm": 1.8, "status": "konwencja rysunku", "zgodnosc": "promień gryfu w kolizjach (z tuleją)", "uzycie": "landmine: kapsuła gryfu" },
-  "landmineHand": { "cm": 10, "status": "konwencja rysunku", "zgodnosc": "długość końca gryfu w dłoniach (bez kolidera)", "uzycie": "landmine: kolider gryfu kończy się tyle cm przed dłońmi" },
-  "chainZ": { "cm": 45, "status": "konwencja rysunku", "zgodnosc": "położenie łańcuchów na tulejach gryfu (talerze leżą w z = ±44…49)", "uzycie": "łańcuchy zawieszone na sztandze" },
-  "towerW": { "cm": 10, "status": "konwencja rysunku", "zgodnosc": "szerokość kolumny stacji wyciągów ok. 10 cm (rysunek)", "uzycie": "wyciąg: kolumna i jej kolider" },
-  "cableR": { "cm": 0.6, "status": "konwencja rysunku", "zgodnosc": "promień linki w kolizjach", "uzycie": "wyciąg: kolider linki" },
-  "cableEnd": { "cm": 12, "status": "konwencja rysunku", "zgodnosc": "długość końca linki przy osprzęcie (dłonie, kostka) bez kolidera", "uzycie": "wyciąg: kolider linki kończy się tyle cm przed osprzętem" },
-  "cableSpan": { "cm": 45, "status": "konwencja rysunku", "zgodnosc": "połowa rozstawu kolumn dwóch wyciągów (domyślna; stacje krzyżowe mają ok. 1–2 m)", "uzycie": "wyciąg: dwa wyciągi (dwa: true), domyślne z" },
-  "handleR": { "cm": 1.8, "status": "konwencja rysunku", "zgodnosc": "promień uchwytu na rysunku", "uzycie": "wyciąg: uchwyt, koniec liny" },
-  "strapR": { "cm": 3.4, "status": "konwencja rysunku", "zgodnosc": "promień opaski na kostkę na rysunku", "uzycie": "wyciąg: opaska na kostkę" },
-  "gymBallR": { "cm": 32.5, "status": "konwencja rysunku", "zgodnosc": "piłka gimnastyczna o średnicy 65 cm (rozmiary 55/65/75 cm)", "uzycie": "piłka gimnastyczna (domyślny promień)" },
-  "foamR": { "cm": 7.5, "status": "konwencja rysunku", "zgodnosc": "wałek piankowy o średnicy 15 cm", "uzycie": "wałek piankowy" },
-  "foamLen": { "cm": 90, "status": "konwencja rysunku", "zgodnosc": "wałek piankowy długości ok. 90 cm (rozmiary ok. 30–100 cm)", "uzycie": "wałek piankowy" },
-  "rollerR": { "cm": 4.5, "status": "konwencja rysunku", "zgodnosc": "promień wałka na nogi ławki ujemnej ok. 4–5 cm", "uzycie": "ławka: wałki na nogi" },
-  "rollerDx": { "cm": -8, "status": "konwencja rysunku", "zgodnosc": "położenie środka wałka względem końca siedziska (x), nad kostkami", "uzycie": "ławka: wałki na nogi" },
-  "rollerDy": { "cm": 19, "status": "konwencja rysunku", "zgodnosc": "wysokość środka wałka nad siedziskiem", "uzycie": "ławka: wałki na nogi" },
-  "rollerHalf": { "cm": 28, "status": "konwencja rysunku", "zgodnosc": "połowa długości wałka (z)", "uzycie": "ławka: wałki na nogi" },
-  "leverArm": { "cm": 60, "status": "konwencja rysunku", "zgodnosc": "domyślna długość ramienia dźwigni maszyny w rysunku schematycznym", "uzycie": "maszyna: dźwignia obrotowa" },
-  "leverStroke": { "cm": 60, "status": "konwencja rysunku", "zgodnosc": "domyślny skok prowadnicy maszyny w rysunku schematycznym", "uzycie": "maszyna: prowadnica liniowa" },
-  "leverEnd": { "cm": 25, "status": "konwencja rysunku", "zgodnosc": "długość końca ramienia dźwigni przy punkcie mocowania bez kolidera (ramię dochodzi do nogi/dłoni z boku)", "uzycie": "maszyna: kolider ramienia" },
-  "machinePad": { "cm": 36, "status": "konwencja rysunku", "zgodnosc": "długość platformy na rysunku prowadnicy (z boku)", "uzycie": "maszyna: prowadnica liniowa" },
-  "preacherTop": { "cm": 95, "status": "konwencja rysunku", "zgodnosc": "wysokość górnego końca podpórki modlitewnika ok. 90–105 cm (na wysokości klatki osoby siedzącej)", "uzycie": "modlitewnik" },
-  "preacherKat": { "cm": 60, "status": "konwencja rysunku", "zgodnosc": "kąt podpórki modlitewnika ok. 45–75° od poziomu (wartość w stopniach, nie cm)", "uzycie": "modlitewnik" },
-  "preacherLen": { "cm": 45, "status": "konwencja rysunku", "zgodnosc": "długość podpórki modlitewnika ok. 40–50 cm", "uzycie": "modlitewnik" },
-  "preacherSeatDx": { "cm": 28, "status": "konwencja rysunku", "zgodnosc": "odległość środka siedziska od górnego końca podpórki (x)", "uzycie": "modlitewnik" },
-  "preacherSeatY": { "cm": 48, "status": "konwencja rysunku", "zgodnosc": "wysokość siedziska modlitewnika ok. 40–55 cm", "uzycie": "modlitewnik" },
-  "preacherW": { "cm": 50, "status": "konwencja rysunku", "zgodnosc": "szerokość podpórki modlitewnika ok. 45–55 cm", "uzycie": "modlitewnik" },
-  "preacherT": { "cm": 8, "status": "konwencja rysunku", "zgodnosc": "grubość podpórki modlitewnika (z wyściełaniem)", "uzycie": "modlitewnik" },
-  "preacherSeatW": { "cm": 30, "status": "konwencja rysunku", "zgodnosc": "szerokość siedziska modlitewnika", "uzycie": "modlitewnik" },
-  "preacherSeatL": { "cm": 34, "status": "konwencja rysunku", "zgodnosc": "głębokość siedziska modlitewnika", "uzycie": "modlitewnik" },
-  "suspensionFree": { "cm": 15, "status": "konwencja rysunku", "zgodnosc": "odcinek taśmy zawieszenia przy uchwycie bez kolidera: dłoń trzyma uchwyt, a taśma biegnie wzdłuż przedramienia", "uzycie": "zawieszenie: kolider taśmy kończy się tyle cm przed uchwytem (pole free rekwizytu cable)" },
-  "suspensionY": { "cm": 220, "status": "konwencja rysunku", "zgodnosc": "wysokość punktu zaczepu taśm do podwieszania (belka, drzwi) ok. 200–250 cm", "uzycie": "taśmy do podwieszania" },
-  "sledHalf": { "cm": 25, "status": "konwencja rysunku", "zgodnosc": "połowa rozstawu słupków sań obciążeniowych", "uzycie": "sanie" },
-  "sledBase": { "cm": 12, "status": "konwencja rysunku", "zgodnosc": "wysokość podstawy sań", "uzycie": "sanie" },
-  "sledLen": { "cm": 60, "status": "konwencja rysunku", "zgodnosc": "długość podstawy sań ok. 60–100 cm", "uzycie": "sanie" },
-  "sledPostH": { "cm": 100, "status": "konwencja rysunku", "zgodnosc": "wysokość słupków sań (wysokie uchwyty ok. 100–120 cm)", "uzycie": "sanie" },
-  "ropeR": { "cm": 1.9, "status": "konwencja rysunku", "zgodnosc": "promień liny do wspinania (średnica ok. 3,8 cm)", "uzycie": "lina pionowa" },
-  "ropeTop": { "cm": 400, "status": "konwencja rysunku", "zgodnosc": "wysokość zaczepu liny do wspinania (sala ok. 4–6 m)", "uzycie": "lina pionowa" },
-  "ropeBottom": { "cm": 20, "status": "konwencja rysunku", "zgodnosc": "wysokość dolnego końca liny nad podłogą", "uzycie": "lina pionowa" },
-  "dipHalf": { "cm": 22, "status": "konwencja rysunku", "zgodnosc": "połowa rozstawu poręczy do dipów (rozstaw ok. 40–60 cm)", "uzycie": "poręcze do dipów" },
-  "dipLen": { "cm": 60, "status": "konwencja rysunku", "zgodnosc": "długość poręczy do dipów ok. 50–70 cm", "uzycie": "poręcze do dipów" },
-  "dipH": { "cm": 115, "status": "konwencja rysunku", "zgodnosc": "wysokość poręczy do dipów ok. 100–130 cm", "uzycie": "poręcze do dipów" },
-  "dipR": { "cm": 1.75, "status": "konwencja rysunku", "zgodnosc": "promień rury poręczy (średnica ok. 3,5 cm)", "uzycie": "poręcze do dipów" },
-  "sliderR": { "cm": 8, "status": "konwencja rysunku", "zgodnosc": "ślizgacz (krążek) o średnicy ok. 16–18 cm", "uzycie": "ślizgacze" },
-  "sliderH": { "cm": 2, "status": "konwencja rysunku", "zgodnosc": "grubość ślizgacza ok. 1–2 cm", "uzycie": "ślizgacze" },
-  "wheelR": { "cm": 8, "status": "konwencja rysunku", "zgodnosc": "kółko do brzucha o średnicy ok. 14–18 cm", "uzycie": "kółko do brzucha" },
-  "wheelW": { "cm": 4, "status": "konwencja rysunku", "zgodnosc": "szerokość kółka do brzucha na rysunku z przodu", "uzycie": "kółko do brzucha" },
-  "boxSide": { "cm": 45, "status": "konwencja rysunku", "zgodnosc": "domyślne położenie skrzyń po bokach osoby (z = ±45 cm; skrzynie ustawione obok siebie przy rozstawie dłoni)", "uzycie": "skrzynia poza osią (dwa: true)" },
-  "domeR": { "cm": 30, "status": "konwencja rysunku", "zgodnosc": "platforma balansowa (półkula) o średnicy ok. 60 cm; wysokość = promień — uproszczenie", "uzycie": "platforma balansowa" },
-  "hyperTop": { "cm": 75, "status": "konwencja rysunku", "zgodnosc": "wysokość środka podpórki bioder ławki do prostowania tułowia ok. 70–85 cm", "uzycie": "ławka do prostowania" },
-  "hyperKat": { "cm": 45, "status": "konwencja rysunku", "zgodnosc": "kąt podpórki ławki do prostowania ok. 30–60° (stopnie)", "uzycie": "ławka do prostowania" },
-  "hyperLen": { "cm": 30, "status": "konwencja rysunku", "zgodnosc": "długość podpórki bioder ok. 25–35 cm", "uzycie": "ławka do prostowania" },
-  "hyperT": { "cm": 10, "status": "konwencja rysunku", "zgodnosc": "grubość podpórki bioder", "uzycie": "ławka do prostowania" },
-  "hyperW": { "cm": 30, "status": "konwencja rysunku", "zgodnosc": "szerokość podpórki bioder ok. 30 cm", "uzycie": "ławka do prostowania" },
-  "hyperRollerDx": { "cm": 55, "status": "konwencja rysunku", "zgodnosc": "odległość wałków na kostki od podpórki (x)", "uzycie": "ławka do prostowania" },
-  "hyperRollerDy": { "cm": -45, "status": "konwencja rysunku", "zgodnosc": "wysokość wałków względem podpórki (y)", "uzycie": "ławka do prostowania" },
-  "tireR": { "cm": 60, "status": "konwencja rysunku", "zgodnosc": "opona strongman o średnicy ok. 120 cm (zakres 80–180 cm)", "uzycie": "opona" },
-  "tireW": { "cm": 25, "status": "konwencja rysunku", "zgodnosc": "szerokość opony ok. 25 cm", "uzycie": "opona" },
-  "logR": { "cm": 15, "status": "konwencja rysunku", "zgodnosc": "kłoda strongman o średnicy ok. 30 cm", "uzycie": "kłoda" },
-  "logLen": { "cm": 60, "status": "konwencja rysunku", "zgodnosc": "długość kłody ok. 60 cm", "uzycie": "kłoda" },
-  "hammerLen": { "cm": 90, "status": "konwencja rysunku", "zgodnosc": "trzonek młota kowalskiego ok. 90 cm", "uzycie": "młot" },
-  "hammerHead": { "cm": 16, "status": "konwencja rysunku", "zgodnosc": "długość głowicy młota na rysunku", "uzycie": "młot" },
-  "beltLen": { "cm": 35, "status": "konwencja rysunku", "zgodnosc": "łańcuch pasa obciążeniowego / uprzęży ok. 30–40 cm", "uzycie": "pas, uprząż na szyję" },
-  "beltPlateR": { "cm": 12, "status": "konwencja rysunku", "zgodnosc": "talerz na pasie ok. 10 kg (średnica ok. 24 cm)", "uzycie": "pas, uprząż na szyję" },
-  "wristBar": { "cm": 30, "status": "konwencja rysunku", "zgodnosc": "drążek wałka na nadgarstki ok. 30 cm", "uzycie": "wałek na nadgarstki" },
-  "wristRope": { "cm": 60, "status": "konwencja rysunku", "zgodnosc": "lina wałka na nadgarstki ok. 60 cm", "uzycie": "wałek na nadgarstki" },
-  "benchW": { "cm": 28, "status": "konwencja rysunku", "zgodnosc": "szerokość ławki ok. 28–32 cm", "uzycie": "ławka" },
-  "benchPad": { "cm": 8, "status": "konwencja rysunku", "zgodnosc": "grubość wyściełania ławki", "uzycie": "ławka" },
-  "benchLegW": { "cm": 3.2, "status": "konwencja rysunku", "zgodnosc": "grubość nóg ławki", "uzycie": "ławka" },
-  "floorLine": { "cm": 1.2, "status": "konwencja rysunku", "zgodnosc": "grubość linii podłogi na rysunku", "uzycie": "podłoga" },
-  "trapW": { "cm": 29, "status": "konwencja rysunku", "zgodnosc": "rozstaw uchwytów gryfu sześciokątnego ok. 58 cm", "uzycie": "trap bar" },
-  "boxW": { "cm": 45, "status": "konwencja rysunku", "zgodnosc": "szerokość skrzyni ok. 45–50 cm", "uzycie": "skrzynia" },
-  "postW": { "cm": 3.5, "status": "konwencja rysunku", "zgodnosc": "grubość słupka stojaka", "uzycie": "słupek" },
-  "postSpan": { "cm": 64, "status": "konwencja rysunku", "zgodnosc": "połowa rozstawu słupków stojaka (rozstaw wewnętrzny ok. 1,1–1,3 m)", "uzycie": "stojak (widok z przodu i kolizje)" },
-  "railW": { "cm": 1.2, "status": "konwencja rysunku", "zgodnosc": "grubość prowadnicy suwnicy Smitha", "uzycie": "prowadnica" },
-  "railSpan": { "cm": 56, "status": "konwencja rysunku", "zgodnosc": "połowa rozstawu prowadnic suwnicy Smitha (rozstaw ok. 1,1 m)", "uzycie": "suwnica Smitha (widok z przodu i kolizje)" },
-  "wallW": { "cm": 3, "status": "konwencja rysunku", "zgodnosc": "grubość ściany na rysunku", "uzycie": "ściana" }
- }
+  "_opis": "Wymiary sprzętu rysowanych w figurach v2 (lib/figures/v2/draw.ts → EQUIP): pełne dane ze źródłami; runtime bez nazw (stałe w module). Korekta 26.10.2026 (naprawy po audycie 1.0): talerze, łańcuchy i szerokość ławki wg przepisów technicznych federacji trójboju (szczebel 4, jedno źródło — oznaczenie „zgodne ze źródłem”, nie „ustalone”). Pozostałe wymiary: konwencja rysunku (figura nie twierdzi nic o rozmiarach sprzętu, aplikacja ich nie podaje). Test tests/zrodla-pelne-sprzet.test.ts pilnuje zgodności z EQUIP; poza paczką aplikacji. Sprzęt dodany w integracji 1.1 (piłka gimnastyczna, wałek, kopuła, landmine, piłka lekarska, ślizgi itd.) i pozostałe klucze: konwencja rysunku, bez źródła; potwierdzenie źródłem szczebla 4 jest otwarte (docs/54).",
+  "statusy": [
+    "zgodne ze źródłem",
+    "konwencja rysunku"
+  ],
+  "wysokosci_bloczkow": {
+    "status": "konwencja rysunku",
+    "zgodnosc": "typowe wysokości bloczków stacji wyciągów (cm): niski ok. 5–60, środkowy ok. 70–160, wysoki ok. 150–240 — wiedza ogólna, NIE przeczytane źródło",
+    "low": [
+      5,
+      60
+    ],
+    "mid": [
+      70,
+      160
+    ],
+    "high": [
+      150,
+      240
+    ]
+  },
+  "lawka_regulowana": {
+    "status": "konwencja rysunku",
+    "zgodnosc": "wymiary ławki z rigu wyciskania leżąc (docs/50): siedzisko 43 cm (ujemna 60), siedzisko 55 cm, oparcie 75 cm, wygięcie pod miednicą 10,2 cm, stopy 40 cm od miednicy i rozstaw ±24 cm; zakresy kąta: płaska ±5°, skośna 10–90°, ujemna −45…−5° — wiedza ogólna, NIE przeczytane źródło",
+    "seatTop": 43,
+    "declineSeat": 60,
+    "padBack": 10.2,
+    "backLen": 75,
+    "seatLen": 55,
+    "footBack": 40,
+    "footHalf": 24,
+    "kat": {
+      "min": -45,
+      "max": 90,
+      "flat": [
+        -5,
+        5
+      ],
+      "incline": [
+        10,
+        90
+      ],
+      "decline": [
+        -45,
+        -5
+      ]
+    }
+  },
+  "wymiary": {
+    "barR": {
+      "cm": 1.6,
+      "status": "konwencja rysunku",
+      "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+      "zgodnosc": "gryf ma średnicę 28–29 mm (promień 1,4–1,45 cm); rysujemy 1,6 cm (Ø 32 mm) jako jawną konwencję „pogrubienie dla czytelności” — decyzja 26.10.2026: przy 1,45 linia gryfu w widoku z przodu ma ok. 3,9 pt zamiast 4,3 pt na 390 pt, a styk gryfu z klatką (touchB = 11,9 + barR w rigu wyciskania) i odstępy kolizji przesunęłyby się o 0,15 cm bez korzyści dla czytelności",
+      "uzycie": "gryf sztangi (promień kapsuły kolizji i szerokość linii)"
+    },
+    "barLen": {
+      "cm": 220,
+      "status": "zgodne ze źródłem",
+      "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+      "zgodnosc": "długość całkowita gryfu ≤ 2,2 m (górna granica)",
+      "uzycie": "długość gryfu w widoku z przodu i w kolizjach"
+    },
+    "sleeveR": {
+      "cm": 2.6,
+      "status": "zgodne ze źródłem",
+      "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+      "zgodnosc": "średnica tulei 50–52 mm (promień 2,5–2,6 cm)",
+      "uzycie": "piasta talerza"
+    },
+    "plateR": {
+      "cm": 22.5,
+      "status": "zgodne ze źródłem",
+      "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+      "zgodnosc": "średnica największych talerzy ≤ 45 cm",
+      "uzycie": "talerz na sztandze i talerz trzymany (domyślny promień)"
+    },
+    "plateZ": {
+      "cm": [
+        66,
+        71
+      ],
+      "status": "zgodne ze źródłem",
+      "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+      "zgodnosc": "talerze zaczynają się za wewnętrznymi kołnierzami: odległość między wewnętrznymi kołnierzami 1,31–1,32 m (±65,5–66 cm); dwa talerze po ok. 2,8 cm obok siebie; korekta 26.10.2026 (wcześniej 44–49 cm = talerze na części chwytnej gryfu)",
+      "uzycie": "środki dwóch talerzy na każdej tulei w widoku z przodu (od osi gryfu, cm)"
+    },
+    "plateW": {
+      "cm": 2.8,
+      "status": "zgodne ze źródłem",
+      "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+      "zgodnosc": "grubość talerzy ≥ 20 kg ≤ 6 cm, talerzy ≤ 15 kg ≤ 3 cm",
+      "uzycie": "grubość talerza na sztandze"
+    },
+    "dbHeadR": {
+      "cm": 6,
+      "status": "konwencja rysunku",
+      "zgodnosc": "główka hantla ok. 12 cm średnicy (hantel ok. 10–20 kg)",
+      "uzycie": "hantel trzymany"
+    },
+    "dbHandle": {
+      "cm": 13,
+      "status": "konwencja rysunku",
+      "zgodnosc": "długość rączki hantla ok. 13 cm",
+      "uzycie": "hantel trzymany (rysunek z przodu i pionowy)"
+    },
+    "kbBallR": {
+      "cm": 9.5,
+      "status": "konwencja rysunku",
+      "zgodnosc": "dzwon kettlebell ok. 18–20 cm średnicy (ok. 16 kg)",
+      "uzycie": "kettlebell trzymany"
+    },
+    "kbHandleR": {
+      "cm": 6,
+      "status": "konwencja rysunku",
+      "zgodnosc": "rączka kettlebell ok. 12 cm wewnętrznej średnicy",
+      "uzycie": "kettlebell trzymany"
+    },
+    "medBallR": {
+      "cm": 11,
+      "status": "konwencja rysunku",
+      "zgodnosc": "piłka lekarska ok. 4 kg ma ok. 22–24 cm średnicy (rozmiary różnych piłek: ok. 20–36 cm)",
+      "uzycie": "piłka lekarska trzymana (domyślny promień)"
+    },
+    "landmineLen": {
+      "cm": 200,
+      "status": "konwencja rysunku",
+      "zgodnosc": "długość gryfu przy osi landmine ok. 2,0–2,2 m",
+      "uzycie": "landmine: sztywny gryf od osi obrotu do dłoni"
+    },
+    "landmineR": {
+      "cm": 1.8,
+      "status": "konwencja rysunku",
+      "zgodnosc": "promień gryfu w kolizjach (z tuleją)",
+      "uzycie": "landmine: kapsuła gryfu"
+    },
+    "landmineHand": {
+      "cm": 10,
+      "status": "konwencja rysunku",
+      "zgodnosc": "długość końca gryfu w dłoniach (bez kolidera)",
+      "uzycie": "landmine: kolider gryfu kończy się tyle cm przed dłońmi"
+    },
+    "chainZ": {
+      "cm": 73,
+      "status": "zgodne ze źródłem",
+      "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+      "zgodnosc": "łańcuchy wiszą na tulejach tuż za zewnętrznym talerzem (talerze do ±72,4 cm = środek 71 + połowa grubości 1,4)",
+      "uzycie": "dwa łańcuchy sztangi w widoku z przodu i z góry (±73 cm od osi gryfu)"
+    },
+    "towerW": {
+      "cm": 10,
+      "status": "konwencja rysunku",
+      "zgodnosc": "szerokość kolumny stacji wyciągów ok. 10 cm (rysunek)",
+      "uzycie": "wyciąg: kolumna i jej kolider"
+    },
+    "cableR": {
+      "cm": 0.6,
+      "status": "konwencja rysunku",
+      "zgodnosc": "promień linki w kolizjach",
+      "uzycie": "wyciąg: kolider linki"
+    },
+    "cableEnd": {
+      "cm": 12,
+      "status": "konwencja rysunku",
+      "zgodnosc": "długość końca linki przy osprzęcie (dłonie, kostka) bez kolidera",
+      "uzycie": "wyciąg: kolider linki kończy się tyle cm przed osprzętem"
+    },
+    "cableSpan": {
+      "cm": 45,
+      "status": "konwencja rysunku",
+      "zgodnosc": "połowa rozstawu kolumn dwóch wyciągów (domyślna; stacje krzyżowe mają ok. 1–2 m)",
+      "uzycie": "wyciąg: dwa wyciągi (dwa: true), domyślne z"
+    },
+    "handleR": {
+      "cm": 1.8,
+      "status": "konwencja rysunku",
+      "zgodnosc": "promień uchwytu na rysunku",
+      "uzycie": "wyciąg: uchwyt, koniec liny"
+    },
+    "strapR": {
+      "cm": 3.4,
+      "status": "konwencja rysunku",
+      "zgodnosc": "promień opaski na kostkę na rysunku",
+      "uzycie": "wyciąg: opaska na kostkę"
+    },
+    "gymBallR": {
+      "cm": 32.5,
+      "status": "konwencja rysunku",
+      "zgodnosc": "piłka gimnastyczna o średnicy 65 cm (rozmiary 55/65/75 cm)",
+      "uzycie": "piłka gimnastyczna (domyślny promień)"
+    },
+    "foamR": {
+      "cm": 7.5,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wałek piankowy o średnicy 15 cm",
+      "uzycie": "wałek piankowy"
+    },
+    "foamLen": {
+      "cm": 90,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wałek piankowy długości ok. 90 cm (rozmiary ok. 30–100 cm)",
+      "uzycie": "wałek piankowy"
+    },
+    "rollerR": {
+      "cm": 4.5,
+      "status": "konwencja rysunku",
+      "zgodnosc": "promień wałka na nogi ławki ujemnej ok. 4–5 cm",
+      "uzycie": "ławka: wałki na nogi"
+    },
+    "rollerDx": {
+      "cm": -8,
+      "status": "konwencja rysunku",
+      "zgodnosc": "położenie środka wałka względem końca siedziska (x), nad kostkami",
+      "uzycie": "ławka: wałki na nogi"
+    },
+    "rollerDy": {
+      "cm": 19,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wysokość środka wałka nad siedziskiem",
+      "uzycie": "ławka: wałki na nogi"
+    },
+    "rollerHalf": {
+      "cm": 28,
+      "status": "konwencja rysunku",
+      "zgodnosc": "połowa długości wałka (z)",
+      "uzycie": "ławka: wałki na nogi"
+    },
+    "leverArm": {
+      "cm": 60,
+      "status": "konwencja rysunku",
+      "zgodnosc": "domyślna długość ramienia dźwigni maszyny w rysunku schematycznym",
+      "uzycie": "maszyna: dźwignia obrotowa"
+    },
+    "leverStroke": {
+      "cm": 60,
+      "status": "konwencja rysunku",
+      "zgodnosc": "domyślny skok prowadnicy maszyny w rysunku schematycznym",
+      "uzycie": "maszyna: prowadnica liniowa"
+    },
+    "leverEnd": {
+      "cm": 25,
+      "status": "konwencja rysunku",
+      "zgodnosc": "długość końca ramienia dźwigni przy punkcie mocowania bez kolidera (ramię dochodzi do nogi/dłoni z boku)",
+      "uzycie": "maszyna: kolider ramienia"
+    },
+    "machinePad": {
+      "cm": 36,
+      "status": "konwencja rysunku",
+      "zgodnosc": "długość platformy na rysunku prowadnicy (z boku)",
+      "uzycie": "maszyna: prowadnica liniowa"
+    },
+    "preacherTop": {
+      "cm": 95,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wysokość górnego końca podpórki modlitewnika ok. 90–105 cm (na wysokości klatki osoby siedzącej)",
+      "uzycie": "modlitewnik"
+    },
+    "preacherKat": {
+      "cm": 60,
+      "status": "konwencja rysunku",
+      "zgodnosc": "kąt podpórki modlitewnika ok. 45–75° od poziomu (wartość w stopniach, nie cm)",
+      "uzycie": "modlitewnik"
+    },
+    "preacherLen": {
+      "cm": 45,
+      "status": "konwencja rysunku",
+      "zgodnosc": "długość podpórki modlitewnika ok. 40–50 cm",
+      "uzycie": "modlitewnik"
+    },
+    "preacherSeatDx": {
+      "cm": 28,
+      "status": "konwencja rysunku",
+      "zgodnosc": "odległość środka siedziska od górnego końca podpórki (x)",
+      "uzycie": "modlitewnik"
+    },
+    "preacherSeatY": {
+      "cm": 48,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wysokość siedziska modlitewnika ok. 40–55 cm",
+      "uzycie": "modlitewnik"
+    },
+    "preacherW": {
+      "cm": 50,
+      "status": "konwencja rysunku",
+      "zgodnosc": "szerokość podpórki modlitewnika ok. 45–55 cm",
+      "uzycie": "modlitewnik"
+    },
+    "preacherT": {
+      "cm": 8,
+      "status": "konwencja rysunku",
+      "zgodnosc": "grubość podpórki modlitewnika (z wyściełaniem)",
+      "uzycie": "modlitewnik"
+    },
+    "preacherSeatW": {
+      "cm": 30,
+      "status": "konwencja rysunku",
+      "zgodnosc": "szerokość siedziska modlitewnika",
+      "uzycie": "modlitewnik"
+    },
+    "preacherSeatL": {
+      "cm": 34,
+      "status": "konwencja rysunku",
+      "zgodnosc": "głębokość siedziska modlitewnika",
+      "uzycie": "modlitewnik"
+    },
+    "suspensionFree": {
+      "cm": 15,
+      "status": "konwencja rysunku",
+      "zgodnosc": "odcinek taśmy zawieszenia przy uchwycie bez kolidera: dłoń trzyma uchwyt, a taśma biegnie wzdłuż przedramienia",
+      "uzycie": "zawieszenie: kolider taśmy kończy się tyle cm przed uchwytem (pole free rekwizytu cable)"
+    },
+    "suspensionY": {
+      "cm": 220,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wysokość punktu zaczepu taśm do podwieszania (belka, drzwi) ok. 200–250 cm",
+      "uzycie": "taśmy do podwieszania"
+    },
+    "sledHalf": {
+      "cm": 25,
+      "status": "konwencja rysunku",
+      "zgodnosc": "połowa rozstawu słupków sań obciążeniowych",
+      "uzycie": "sanie"
+    },
+    "sledBase": {
+      "cm": 12,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wysokość podstawy sań",
+      "uzycie": "sanie"
+    },
+    "sledLen": {
+      "cm": 60,
+      "status": "konwencja rysunku",
+      "zgodnosc": "długość podstawy sań ok. 60–100 cm",
+      "uzycie": "sanie"
+    },
+    "sledPostH": {
+      "cm": 100,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wysokość słupków sań (wysokie uchwyty ok. 100–120 cm)",
+      "uzycie": "sanie"
+    },
+    "ropeR": {
+      "cm": 1.9,
+      "status": "konwencja rysunku",
+      "zgodnosc": "promień liny do wspinania (średnica ok. 3,8 cm)",
+      "uzycie": "lina pionowa"
+    },
+    "ropeTop": {
+      "cm": 400,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wysokość zaczepu liny do wspinania (sala ok. 4–6 m)",
+      "uzycie": "lina pionowa"
+    },
+    "ropeBottom": {
+      "cm": 20,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wysokość dolnego końca liny nad podłogą",
+      "uzycie": "lina pionowa"
+    },
+    "dipHalf": {
+      "cm": 22,
+      "status": "konwencja rysunku",
+      "zgodnosc": "połowa rozstawu poręczy do dipów (rozstaw ok. 40–60 cm)",
+      "uzycie": "poręcze do dipów"
+    },
+    "dipLen": {
+      "cm": 60,
+      "status": "konwencja rysunku",
+      "zgodnosc": "długość poręczy do dipów ok. 50–70 cm",
+      "uzycie": "poręcze do dipów"
+    },
+    "dipH": {
+      "cm": 115,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wysokość poręczy do dipów ok. 100–130 cm",
+      "uzycie": "poręcze do dipów"
+    },
+    "dipR": {
+      "cm": 1.75,
+      "status": "konwencja rysunku",
+      "zgodnosc": "promień rury poręczy (średnica ok. 3,5 cm)",
+      "uzycie": "poręcze do dipów"
+    },
+    "sliderR": {
+      "cm": 8,
+      "status": "konwencja rysunku",
+      "zgodnosc": "ślizgacz (krążek) o średnicy ok. 16–18 cm",
+      "uzycie": "ślizgacze"
+    },
+    "sliderH": {
+      "cm": 2,
+      "status": "konwencja rysunku",
+      "zgodnosc": "grubość ślizgacza ok. 1–2 cm",
+      "uzycie": "ślizgacze"
+    },
+    "wheelR": {
+      "cm": 8,
+      "status": "konwencja rysunku",
+      "zgodnosc": "kółko do brzucha o średnicy ok. 14–18 cm",
+      "uzycie": "kółko do brzucha"
+    },
+    "wheelW": {
+      "cm": 4,
+      "status": "konwencja rysunku",
+      "zgodnosc": "szerokość kółka do brzucha na rysunku z przodu",
+      "uzycie": "kółko do brzucha"
+    },
+    "boxSide": {
+      "cm": 45,
+      "status": "konwencja rysunku",
+      "zgodnosc": "domyślne położenie skrzyń po bokach osoby (z = ±45 cm; skrzynie ustawione obok siebie przy rozstawie dłoni)",
+      "uzycie": "skrzynia poza osią (dwa: true)"
+    },
+    "domeR": {
+      "cm": 30,
+      "status": "konwencja rysunku",
+      "zgodnosc": "platforma balansowa (półkula) o średnicy ok. 60 cm; wysokość = promień — uproszczenie",
+      "uzycie": "platforma balansowa"
+    },
+    "hyperTop": {
+      "cm": 75,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wysokość środka podpórki bioder ławki do prostowania tułowia ok. 70–85 cm",
+      "uzycie": "ławka do prostowania"
+    },
+    "hyperKat": {
+      "cm": 45,
+      "status": "konwencja rysunku",
+      "zgodnosc": "kąt podpórki ławki do prostowania ok. 30–60° (stopnie)",
+      "uzycie": "ławka do prostowania"
+    },
+    "hyperLen": {
+      "cm": 30,
+      "status": "konwencja rysunku",
+      "zgodnosc": "długość podpórki bioder ok. 25–35 cm",
+      "uzycie": "ławka do prostowania"
+    },
+    "hyperT": {
+      "cm": 10,
+      "status": "konwencja rysunku",
+      "zgodnosc": "grubość podpórki bioder",
+      "uzycie": "ławka do prostowania"
+    },
+    "hyperW": {
+      "cm": 30,
+      "status": "konwencja rysunku",
+      "zgodnosc": "szerokość podpórki bioder ok. 30 cm",
+      "uzycie": "ławka do prostowania"
+    },
+    "hyperRollerDx": {
+      "cm": 55,
+      "status": "konwencja rysunku",
+      "zgodnosc": "odległość wałków na kostki od podpórki (x)",
+      "uzycie": "ławka do prostowania"
+    },
+    "hyperRollerDy": {
+      "cm": -45,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wysokość wałków względem podpórki (y)",
+      "uzycie": "ławka do prostowania"
+    },
+    "tireR": {
+      "cm": 60,
+      "status": "konwencja rysunku",
+      "zgodnosc": "opona strongman o średnicy ok. 120 cm (zakres 80–180 cm)",
+      "uzycie": "opona"
+    },
+    "tireW": {
+      "cm": 25,
+      "status": "konwencja rysunku",
+      "zgodnosc": "szerokość opony ok. 25 cm",
+      "uzycie": "opona"
+    },
+    "logR": {
+      "cm": 15,
+      "status": "konwencja rysunku",
+      "zgodnosc": "kłoda strongman o średnicy ok. 30 cm",
+      "uzycie": "kłoda"
+    },
+    "logLen": {
+      "cm": 60,
+      "status": "konwencja rysunku",
+      "zgodnosc": "długość kłody ok. 60 cm",
+      "uzycie": "kłoda"
+    },
+    "hammerLen": {
+      "cm": 90,
+      "status": "konwencja rysunku",
+      "zgodnosc": "trzonek młota kowalskiego ok. 90 cm",
+      "uzycie": "młot"
+    },
+    "hammerHead": {
+      "cm": 16,
+      "status": "konwencja rysunku",
+      "zgodnosc": "długość głowicy młota na rysunku",
+      "uzycie": "młot"
+    },
+    "beltLen": {
+      "cm": 35,
+      "status": "konwencja rysunku",
+      "zgodnosc": "łańcuch pasa obciążeniowego / uprzęży ok. 30–40 cm",
+      "uzycie": "pas, uprząż na szyję"
+    },
+    "beltPlateR": {
+      "cm": 12,
+      "status": "konwencja rysunku",
+      "zgodnosc": "talerz na pasie ok. 10 kg (średnica ok. 24 cm)",
+      "uzycie": "pas, uprząż na szyję"
+    },
+    "wristBar": {
+      "cm": 30,
+      "status": "konwencja rysunku",
+      "zgodnosc": "drążek wałka na nadgarstki ok. 30 cm",
+      "uzycie": "wałek na nadgarstki"
+    },
+    "wristRope": {
+      "cm": 60,
+      "status": "konwencja rysunku",
+      "zgodnosc": "lina wałka na nadgarstki ok. 60 cm",
+      "uzycie": "wałek na nadgarstki"
+    },
+    "benchW": {
+      "cm": 30,
+      "status": "zgodne ze źródłem",
+      "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+      "zgodnosc": "szerokość ławki 29–32 cm (korekta 26.10.2026 z 28 cm)",
+      "uzycie": "szerokość ławki (widok z przodu i z góry)"
+    },
+    "benchPad": {
+      "cm": 8,
+      "status": "konwencja rysunku",
+      "zgodnosc": "grubość wyściełania ławki",
+      "uzycie": "ławka"
+    },
+    "benchLegW": {
+      "cm": 3.2,
+      "status": "konwencja rysunku",
+      "zgodnosc": "grubość nóg ławki",
+      "uzycie": "ławka"
+    },
+    "floorLine": {
+      "cm": 1.2,
+      "status": "konwencja rysunku",
+      "zgodnosc": "grubość linii podłogi na rysunku",
+      "uzycie": "podłoga"
+    },
+    "trapW": {
+      "cm": 29,
+      "status": "konwencja rysunku",
+      "zgodnosc": "rozstaw uchwytów gryfu sześciokątnego ok. 58 cm",
+      "uzycie": "trap bar"
+    },
+    "boxW": {
+      "cm": 45,
+      "status": "konwencja rysunku",
+      "zgodnosc": "szerokość skrzyni ok. 45–50 cm",
+      "uzycie": "skrzynia"
+    },
+    "postW": {
+      "cm": 3.5,
+      "status": "konwencja rysunku",
+      "zgodnosc": "grubość słupka stojaka",
+      "uzycie": "słupek"
+    },
+    "postSpan": {
+      "cm": 64,
+      "status": "konwencja rysunku",
+      "zgodnosc": "połowa rozstawu słupków stojaka (rozstaw wewnętrzny ok. 1,1–1,3 m)",
+      "uzycie": "stojak (widok z przodu i kolizje)"
+    },
+    "railW": {
+      "cm": 1.2,
+      "status": "konwencja rysunku",
+      "zgodnosc": "grubość prowadnicy suwnicy Smitha",
+      "uzycie": "prowadnica"
+    },
+    "railSpan": {
+      "cm": 56,
+      "status": "konwencja rysunku",
+      "zgodnosc": "połowa rozstawu prowadnic suwnicy Smitha (rozstaw ok. 1,1 m)",
+      "uzycie": "suwnica Smitha (widok z przodu i kolizje)"
+    },
+    "wallW": {
+      "cm": 3,
+      "status": "konwencja rysunku",
+      "zgodnosc": "grubość ściany na rysunku",
+      "uzycie": "ściana"
+    }
+  }
 }

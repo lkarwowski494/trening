@@ -1,0 +1,21 @@
+# Sprawdzenie adresów wydania (audyt 1.0, B-01/B-02; rejestr ryzyk docs/40): każdy adres z aplikacji (lib/products.ts) i store/app-store-urls.json zwraca 200,
+# a strony Trening na apps4brew.com mają tę samą treść co site/ (w tym znacznik wersji). Tylko ręcznie, odczyt repozytorium, bez sekretów, bez zapisu.
+# Krok bramki wydania (docs/48 Faza A) — uruchamiany po publikacji stron w repo apps4brew-www i tuż przed zgłoszeniem do App Store. NIE jest częścią `npm run verify` (offline).
+name: Sprawdzenie adresów (ręcznie)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  adresy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Adresy zwracają 200, treść zgodna z site/
+        run: node scripts/check-urls.mjs

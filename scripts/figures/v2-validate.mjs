@@ -9,7 +9,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { loadV2 } from './v2-build.mjs';
-import { sprawdzSens, izometryczne, grupaBledu, wczytajSens, regulyDla } from './v2-sens.mjs';
+import { sprawdzSens, izometryczne, bezBramkiRuchu, zakresWyjatek, dynamiczne, grupaBledu, wczytajSens, regulyDla } from './v2-sens.mjs';
 import { sprawdzJakosc, krawedzJakosci, wczytajTeksty, GRUPY_POSTAWY, wierszeWJednejLinii } from './v2-jakosc.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -43,7 +43,7 @@ export function opisKontraktu(rodzina, zakres) { return silnik().v2.describeCont
 export function waliduj(poza, { rodzina, cwiczenie, root = ROOT }) {
   /* błędy postawy (grupa inna niż „zakres”): pierwsza klatka błędu NIE musi mieć delty zerowej — błąd jest widoczny w każdej klatce (v2-jakosc: blad_widoczny_stale) */
   const postural = new Set(((poza && poza.bledy) || []).map((b) => b.cue).filter((c) => { const g = grupaBledu(rodzina, c, root); return g && GRUPY_POSTAWY.includes(g); }));
-  const bledy = silnik().v2.validatePose(poza, { family: rodzina, exercise: cwiczenie, errorCues: bledyCwiczenia(cwiczenie, root), rom: rom(root), isometric: izometryczne(rodzina, cwiczenie, root) }).filter((b) => !(b.kod === 'blad-start' && [...postural].some((c) => b.szczegol.includes(`„${c}”`))));
+  const bledy = silnik().v2.validatePose(poza, { family: rodzina, exercise: cwiczenie, errorCues: bledyCwiczenia(cwiczenie, root), rom: rom(root), isometric: izometryczne(rodzina, cwiczenie, root) || bezBramkiRuchu(cwiczenie, root), allow: zakresWyjatek(rodzina, cwiczenie, root), dynamic: dynamiczne(rodzina, cwiczenie, root) }).filter((b) => !(b.kod === 'blad-start' && [...postural].some((c) => b.szczegol.includes(`„${c}”`))));
   const rigowa = silnik().v2.FAMILIES.find((f) => f.id === rodzina)?.status === 'ready' && !fs.existsSync(path.join(ROOT, POSES_DIR, `${rodzina}.json`)); /* rodziny gotowe z rigu (kod) sprawdza sens-gotowe.mjs na klatkach rigu; rodzina gotowa z DANYCH (poses/<rodzina>.json) ma sens i wymagany sprzęt sprawdzane tu */
   /* wymagany sprzęt ćwiczenia z katalogu (docs/54): poza musi go zawierać (np. wyciąg z bloczkiem wysokim) */
   /* rodziny gotowe z rigu w kodzie (przykłady few-shot z rigów, np. ławka bez wpisu w gearOf) pomijane — wymóg obejmuje pozy generowane */
@@ -71,7 +71,7 @@ export function przyklad(rodzina) {
   const { v2 } = silnik();
   const f = v2.FAMILIES.find((x) => x.id === rodzina);
   if (!f || f.status !== 'ready') return [];
-  const wzor = { squat: ['Back Squat', { kneesIn: 'sq.mis.kneesIn', heels: 'sq.mis.heels' }], bench_press: ['Bench Press (sztanga)', { arch: 'bp.mis.arch' }], hinge: ['RDL (sztanga)', { kneesBent: 'rdl.knees' }] }[rodzina];
+  const wzor = { squat: ['Back Squat', { kneesIn: 'sq.mis.kneesIn', heels: 'sq.mis.heels' }], hinge: ['RDL (sztanga)', { kneesBent: 'rdl.knees' }] }[rodzina];
   if (!wzor) return [];
   const cw = wzor[0]; const dopuszczone = bledyCwiczenia(cw);
   const bledy = Object.fromEntries(Object.entries(wzor[1]).filter(([, cue]) => dopuszczone.includes(cue)));

@@ -196,8 +196,8 @@ describe('rysunek tułowia przy nowych polach i lista pól', () => {
     const a = solveSkeleton(STAND), b = solveSkeleton(withP({ trunkRoll: 90 }));
     expect(w(b, 'side')).toBeGreaterThan(w(a, 'side')); expect(w(b, 'front')).toBeLessThan(w(a, 'front'));
   });
-  test('lista pól poza@2 w kontrakcie: 5 pól tułowia i 4 pola ręki (nazwy zgodne z regułami sensu)', () => {
-    expect([...TRUNK_EXT]).toEqual(['obrotTulowia', 'skretTulowia', 'przechylTulowia', 'przechylMiednicy', 'przechylGlowy']); expect([...ARM_EXT]).toEqual(['uniesienieBarkow', 'wysuniecieBarkow', 'zgiecieNadgarstka', 'obrotPrzedramienia']);
+  test('lista pól poza@2 w kontrakcie: 6 pól tułowia (z bocznym przesunięciem korzenia, 26.10.2026) i 4 pola ręki (nazwy zgodne z regułami sensu)', () => {
+    expect([...TRUNK_EXT]).toEqual(['obrotTulowia', 'skretTulowia', 'przechylTulowia', 'przechylMiednicy', 'przechylGlowy', 'przesuniecieBoczne']); expect([...ARM_EXT]).toEqual(['uniesienieBarkow', 'wysuniecieBarkow', 'zgiecieNadgarstka', 'obrotPrzedramienia']);
   });
 });
 

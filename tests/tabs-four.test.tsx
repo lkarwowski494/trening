@@ -10,7 +10,6 @@ import * as path from 'path';
 import { router } from 'expo-router';
 import * as store from '@/lib/store';
 import { TAB_ROUTES } from '@/app/guide';
-import { WHATS_NEW } from '@/lib/whatsnew';
 import { LANGS, applyLang } from '@/lib/i18n';
 import { fresh, saved, seedWithDemo, addWorkout, ex } from './helpers';
 import { renderApp, flushAll, screen, tap, act, go } from './app';
@@ -167,27 +166,4 @@ describe('przepływy dalej osiągalne (docs/22 4.5): Szablony, Ćwiczenia, Post�
   });
 });
 
-describe('„Co nowego” — wspólny wpis o nowym układzie (docs/18 P7)', () => {
-  test('wpis 0.13 (id 2026-10-11, historyczny; bieżący 0.17: release-0.17.test.tsx), build 1009, trzy punkty o czterech zakładkach, Postępach i ekranie Trening oraz punkt o imporcie CSV (0.13.0); pod nim 0.12 z buildem 1008', () => {
-    const e = WHATS_NEW.find(w => w.id === '2026-10-11')!; const j = WHATS_NEW.indexOf(e); expect([e.id, e.build, WHATS_NEW[j + 1].id, WHATS_NEW[j + 1].build]).toEqual(['2026-10-11', 1009, '2026-10-10', 1008]); expect(e.items()).toEqual([
-      'Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej.',
-      'Postępy mają własną zakładkę: podsumowanie, „Progresja”, wykresy ćwiczeń i masa ciała.',
-      'Ekran Trening: „Planowanie” przy nazwie planu, „Ten tydzień” i „Progresja”; „Z szablonu” w arkuszu „Inny trening” otwiera wybór szablonu ze „Startem”.',
-      'Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.',
-    ]);
-  });
-  test('wszystkie języki: cztery punkty przetłumaczone (różne od polskich), bez „{”, zakończone kropką („。” w ja/zh-Hant)', () => {
-    const E = () => WHATS_NEW.find(w => w.id === '2026-10-11')!; const pl = E().items();
-    for (const l of LANGS) {
-      if (l === 'pl') continue; applyLang(l); const it = E().items();
-      expect([l, it.length]).toEqual([l, 4]);
-      expect([l, it.filter((x, i) => x === pl[i] || /[{}]/.test(x) || !/[.。]$/.test(x))]).toEqual([l, []]);
-    }
-  });
-  test('Trening → „i”: bieżący wpis rozwinięty, kropka znika po otwarciu', async () => {
-    await boot('/', () => { lastTrain(); }); expect(screen.getByTestId('whats-new-dot')).toBeTruthy();
-    await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
-    for (const x of WHATS_NEW[0].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
-    expect(screen.queryByTestId('whats-new-dot')).toBeNull(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id); /* bieżący wpis (od 0.17: id 2026-10-15) */
-  });
-});
+/* „Co nowego” — wpis 0.13 o nowym układzie (docs/18 P7) usunięty z historią przy 1.0.0 (docs/18, 14.10.2026); zachowanie panelu: tests/whats-new.test.tsx. */

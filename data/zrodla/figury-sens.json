@@ -478,6 +478,10 @@
       "pomin": {}
     },
     "curl": {
+      "zakres_wyjatki": {
+        "Spider Curl": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" },
+        "Spider Curl (sztanga)": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" }
+      },
       "reguly": {
         "lokiec_przy_tulowiu": {
           "typ": "lokiec_nieruchomy_wzgledem_barku",
@@ -636,6 +640,9 @@
       "pomin": {}
     },
     "delt_raise": {
+      "zakres_wyjatki": {
+        "Front Incline Dumbbell Raise": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" }
+      },
       "reguly": {
         "lokiec_staly": {
           "typ": "lokiec_staly_kat",
@@ -1379,7 +1386,7 @@
             "noga": "podporowa"
           },
           "zrodlo": "NSCA Basics s. 51 i s. 52 (sztanga przez cały ruch w kontakcie z nogami); ACE #317 („keeping the bar very close to the body”) — przeczytane 26.10.2026; dl.close: ExRx BBDeadlift, NASM Barbell Deadlift (Common Mistakes), SBS How to Deadlift (cues.json)",
-          "liczba": "uproszczenie (środek chwytu ≤ 15 cm od osi nóg w płaszczyźnie strzałkowej — obwód uda/podudzia + gryf). R4/L-036: wariant jednonóż — oś nóg liczona z nogi PODPOROWEJ (średnia z nogą wolną zniekształcała linię: wolna noga leży w osi tułowia za osobą)",
+          "liczba": "uproszczenie (środek chwytu ≤ 15 cm od osi nóg w płaszczyźnie strzałkowej — obwód uda/podudzia + gryf). R4/L-040: wariant jednonóż — oś nóg liczona z nogi PODPOROWEJ (średnia z nogą wolną zniekształcała linię: wolna noga leży w osi tułowia za osobą)",
           "pewnosc": "ustalone"
         }
       },
@@ -1682,6 +1689,12 @@
           "przedramie_pod_sztanga",
           "lokcie_nie_szeroko"
         ],
+        "_lawka_hantle": [
+          "pelny_zakres",
+          "lawka_kontakt",
+          "dol_przy_klatce",
+          "lokcie_nie_szeroko"
+        ],
         "_waski": [
           "pelny_zakres",
           "lawka_kontakt",
@@ -1705,14 +1718,14 @@
           "lawka_kontakt"
         ],
         "Bench Press (sztanga)": "_lawka",
-        "Bench Press (hantle)": "_lawka",
+        "Bench Press (hantle)": "_lawka_hantle",
         "Band Bench Press": "_lawka",
         "Bench Press with Chains": "_lawka",
         "Chain Press": "_lawka",
         "Decline Bench Press": "_lawka",
         "Decline Bench Press (hantle)": "_lawka",
         "Incline Bench Press (sztanga)": "_lawka",
-        "Incline Bench Press (hantle)": "_lawka",
+        "Incline Bench Press (hantle)": "_lawka_hantle",
         "One Arm Dumbbell Bench Press": "_lawka",
         "Reverse Band Bench Press": "_lawka",
         "Reverse Grip Bench Press": "_lawka",
@@ -1749,12 +1762,19 @@
         "Barbell Guillotine Bench Press": "sztanga do szyi, łokcie celowo szeroko — przeczytane źródła tej odmiany nie opisują; reguły przedramienia i łokci pominięte",
         "JM Press": "odmiana pośrednia między wyciskaniem a prostowaniem — bez źródła ruchu; tylko zakres łokcia i ławka (analogia)",
         "Decline Close-Grip Bench To Skull Crusher": "jak JM Press",
+        "Bench Press (hantle) i Incline Bench Press (hantle) — przedramię (scalenie main, 27.10.2026; OTWARTE)": "Kalibracja wyciskania leżąc z main (decyzja właściciela 26.10.2026 „jak jest w rzeczywistości — nadrzędne”; sylwetka ANSUR II, data/zrodla/figury-wyciskanie.json) daje przy hantlach w środku ruchu odchylenie chwytu od łokcia w osi x ok. 15,7 cm (próg reguły przedramie_pod_sztanga: 10 cm); przeszukanie parametrów (dotyk, chwyt na górze, wysokość dotyku) nie schodzi poniżej ok. 11 cm bez zmiany kalibracji main. Rozstrzygnięcie koordynatora: kalibracja main zostaje, reguła przedramie_pod_sztanga zdjęta dla tych dwóch ćwiczeń (grupa _lawka_hantle), sztanga zostaje pod regułą. Do rozstrzygnięcia przez badacza: czy próg 10 cm (konwencja) ma dla hantli inną wartość.",
         "Squeeze Press (hantle)": "hantle dociskane do siebie — źródła reguły przedramienia (NSCA s. 53–55, SBS) opisują zwykłe wyciskanie; reguła przedramie_pod_sztanga zdjęta (r3)",
         "Incline Bench Press (hantle) — przedramię (r4 — rozstrzygnięte)": "To nie jest sprzeczność źródeł. NSCA Basics s. 54–55 (Dumbbell Incline Bench Press): opuszczaj hantle, trzymając dłonie nad barkami, do poziomu klatki; ramiona ok. 45° do tułowia; najczęstszy błąd: dłonie szerzej niż łokcie („the forearms should not go wider than perpendicular to the ground”); s. 54: nadgarstki w linii łokci, przedramiona prostopadle do podłogi; SBS How to Bench (ciężar mniej więcej nad łokciem) — przeczytane 26.10.2026. Rachunek na wymiarach BODY (ramię 31 cm, przedramię z dłonią 33 cm, ławka 30°): przy przedramieniu pionowym i chwycie ok. 10 cm od barków wzdłuż tułowia łokieć leży ok. 26 cm pod barkiem, a kąt ramię–tułów wychodzi 32–49° — oba warunki (≤ 10 cm, ≤ 75°) spełnione jednocześnie. Próg 10 cm ZOSTAJE (konwencja: ≈ 20° odchylenia przedramienia od pionu). Naprawa rigu (variants.ts, Incline Bench Press (hantle)): punkt dotyku bliżej barków (touch ≈ 40–41 zamiast 38; NSCA: „top of the chest”) i biegun łokcia tak, żeby łokieć był pod chwytem; flare 0,222 przy chwycie 26 cm daje dłonie szerzej niż łokcie — dokładnie błąd opisany przez NSCA. Kandydat na regułę (nie wdrażam w r4): chwyt nie szerzej niż łokieć w osi z (NSCA s. 55, jedna organizacja)."
       },
       "pomin": {}
     },
     "lunge": {
+      "zakres_wyjatki": {
+        "Bulgarian Split Squat (hantle)": { "hipMin": -50, "ankleMax": 66, "powod": "tylna stopa podniesiona (na ławce, w pętli taśmy): zgięcie w kostce do ok. 65° (limit kontraktu 37°, model stopy wskazuje tylko do przodu) i wyprost biodra tylnej nogi do ok. −50° (limit −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" },
+        "Bulgarian Split Squat (sztanga)": { "hipMin": -50, "ankleMax": 66, "powod": "tylna stopa podniesiona (na ławce, w pętli taśmy): zgięcie w kostce do ok. 65° (limit kontraktu 37°, model stopy wskazuje tylko do przodu) i wyprost biodra tylnej nogi do ok. −50° (limit −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" },
+        "Smith Machine Bulgarian Split Squat": { "hipMin": -50, "ankleMax": 66, "powod": "tylna stopa podniesiona (na ławce, w pętli taśmy): zgięcie w kostce do ok. 65° (limit kontraktu 37°, model stopy wskazuje tylko do przodu) i wyprost biodra tylnej nogi do ok. −50° (limit −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" },
+        "Suspended Split Squat": { "hipMin": -50, "ankleMax": 66, "powod": "tylna stopa podniesiona (na ławce, w pętli taśmy): zgięcie w kostce do ok. 65° (limit kontraktu 37°, model stopy wskazuje tylko do przodu) i wyprost biodra tylnej nogi do ok. −50° (limit −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" }
+      },
       "reguly": {
         "plecy_proste": {
           "typ": "kregoslup_neutralny",
@@ -2343,6 +2363,10 @@
       "pomin": {}
     },
     "row": {
+      "zakres_wyjatki": {
+        "Chest Supported Row": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" },
+        "Lying T-Bar Row": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" }
+      },
       "reguly": {
         "tulow_pochylony": {
           "typ": "pochylenie_tulowia_ruch",
@@ -2773,6 +2797,9 @@
       "pomin": {}
     },
     "plyo": {
+      "dynamiczne": {
+        "*": "skok: wybicie, lot i lądowanie w jednym przebiegu z zamachem rąk; droga najszybszego punktu (dłoń przy zamachu rąk) wynosi 420–590 cm na cały ruch wobec 288 cm limitu ruchu zwykłego (pomiar generatora 26.10.2026), bo tego wymaga sam skok — limit CONTRACT.maxJumpDynamic zamiast maxJump (v2-sens.dynamiczne)"
+      },
       "reguly": {
         "faza_lotu": {
           "typ": "lot",
@@ -2936,6 +2963,9 @@
       "pomin": {}
     },
     "olympic": {
+      "dynamiczne": {
+        "*": "zarzut, rwanie i podrzut z przechwytem: sztanga pokonuje 130–200 cm, a ciało schodzi pod nią w jednym przebiegu; droga najszybszego punktu na cały ruch (sztanga, łokcie, głowa przy przechwycie) przekracza 288 cm limitu ruchu zwykłego (pomiar generatora 26.10.2026) — limit CONTRACT.maxJumpDynamic zamiast maxJump (v2-sens.dynamiczne)"
+      },
       "reguly": {
         "plecy_neutralne": {
           "typ": "kregoslup_neutralny",
@@ -4344,6 +4374,9 @@
       "pomin": {}
     },
     "kb_ballistic": {
+      "dynamiczne": {
+        "One-Arm Kettlebell Clean and Jerk": "zarzut i podrzut jednym ciężarem w jednym przebiegu (zawis, rack, ugięcie, wyrzut, wykrok): sześć faz z przechwytem, tempo najszybszego punktu 7–8 cm na 1/48 wobec limitu 6 cm ruchu zwykłego (pomiar generatora 26.10.2026) — limit CONTRACT.maxJumpDynamic (v2-sens.dynamiczne)"
+      },
       "reguly": {
         "plecy": {
           "typ": "kregoslup_neutralny",
@@ -5031,6 +5064,9 @@
       "pomin": {}
     },
     "rotator_cuff": {
+      "zakres_wyjatki": {
+        "Reverse Flyes With External Rotation": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" }
+      },
       "reguly": {
         "lokiec_przy_boku": {
           "typ": "lokiec_nieruchomy_wzgledem_barku",
@@ -6098,6 +6134,9 @@
       "pomin": {}
     },
     "sled_throw": {
+      "dynamiczne": {
+        "Backward Medicine Ball Throw": "rzut do tyłu znad kolan: z głębokiego przysiadu do wyprostu i ręce za głowę w jednym przebiegu; tempo najszybszego punktu 9–10 cm na 1/48 wobec limitu 6 cm ruchu zwykłego (pomiar generatora 26.10.2026) — limit CONTRACT.maxJumpDynamic (v2-sens.dynamiczne)"
+      },
       "reguly": {
         "sanki_pochylenie": {
           "typ": "pochylenie_tulowia",
@@ -6436,6 +6475,9 @@
       "pomin": {}
     },
     "shrug": {
+      "zakres_wyjatki": {
+        "Middle Back Shrug": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" }
+      },
       "reguly": {
         "barki_w_gore": {
           "typ": "stopien_swobody",
@@ -7597,6 +7639,11 @@
     }
   },
   "_opis_r3": "RUNDA 3 (badacz, 26.10.2026) — JSON Merge Patch (RFC 7386) do reguly-sensu-r2.json: obiekty łączone rekurencyjnie, tablice i wartości zastępowane w całości, null = usuń klucz. r2 + ten plik = r3. Powód: naruszenia 42/87 gotowych figur (scratchpad/naruszenia-gotowych.json). Zmiany: (1) RDL — próg kolana i miara zawiasu ze źródeł (pomiar Lee i in. 2018); (2) dzień dobry — głębokość jako osiągnięte pochylenie 45°–95° (NASM + ExRx); (3) klucz izometryczne; (4) pompka — głębokość i łokcie; (5) BŁĄD BADACZA w definicji kolano_w_linii_stopy (kąt daje fałszywe naruszenia przy stopach szerzej niż biodra) — nowa definicja przez odległość kolana od osi stopy.",
+  "bez_bramki_ruchu": {
+    "_opis": "Ćwiczenia, w których ruch to czysty obrót przedramienia (obrotPrzedramienia w poza@2) i nie przemieszcza żadnego punktu szkieletu o ≥ 8 cm: bramka ruchu (CONTRACT.minMotionCm) ich nie dotyczy, ale poza NIE jest statyczna (klatki różnią się obrotem; klatki_rozne i reguły sensu działają normalnie). Decyzja właściciela 26.10.2026.",
+    "Dumbbell Lying Pronation": "pronacja: obrót przedramienia przy łokciu na udzie, hantel = punkt w dłoni na osi obrotu",
+    "Dumbbell Lying Supination": "supinacja: obrót przedramienia przy łokciu na udzie, hantel = punkt w dłoni na osi obrotu"
+  },
   "izometryczne": {
     "_opis": "Ćwiczenia, w których poprawna poza jest nieruchoma (utrzymanie pozycji): bramka ruchu (CONTRACT.minMotionCm) ich nie dotyczy, reguły „w ruchu” liczy się na pozie stałej. Kryterium: opis ćwiczenia/wskazówki mówią o utrzymaniu pozycji, nie o ruchu. Źródło przy każdym.",
     "Plank": "plank.move („trzymaj ciało w jednej linii”): ACE #32, NASM Plank (cues.json); NSCA Basics s. 46–47 (deska — utrzymanie pozycji)",
@@ -7722,6 +7769,6 @@
       "liczba": "styk dłoni = tolerancja chwytu walidatora"
     }
   },
-  "_opis_r4": "RUNDA 4, partia 1 (badacz, 26.10.2026) — JSON Merge Patch (RFC 7386) do data/zrodla/figury-sens.json z gałęzi gemini-polecenia (c472269). Obiekty łączone rekurencyjnie, tablice zastępowane w całości, null = usuń klucz. Zawartość: (A) reguły sensu dla 24 z 26 rodzin bez reguł (każde ćwiczenie ma jawny wpis w warianty: lista reguł albo [] + powód w otwarte); mobility_stand i mobility_floor — partia 2; (B) rozstrzygnięcia sprzeczności hinge (RDL jednonóż — błąd definicji: średnia obu nóg) i bench_press (przedramię w wyciskaniu hantli na skosie — bez zmiany progu, poprawka rigu). Dwa NOWE typy: kolano_zakres_ruch, rozstaw_zakres (definicje w _typy; w tych rodzinach nie ma jeszcze póz — sprawdzenie na pierwszej pozie każdej rodziny = warunek wdrożenia, L-036). Raport: scratchpad/badania-figury/reguly-sensu-r4.md.",
+  "_opis_r4": "RUNDA 4, partia 1 (badacz, 26.10.2026) — JSON Merge Patch (RFC 7386) do data/zrodla/figury-sens.json z gałęzi gemini-polecenia (c472269). Obiekty łączone rekurencyjnie, tablice zastępowane w całości, null = usuń klucz. Zawartość: (A) reguły sensu dla 24 z 26 rodzin bez reguł (każde ćwiczenie ma jawny wpis w warianty: lista reguł albo [] + powód w otwarte); mobility_stand i mobility_floor — partia 2; (B) rozstrzygnięcia sprzeczności hinge (RDL jednonóż — błąd definicji: średnia obu nóg) i bench_press (przedramię w wyciskaniu hantli na skosie — bez zmiany progu, poprawka rigu). Dwa NOWE typy: kolano_zakres_ruch, rozstaw_zakres (definicje w _typy; w tych rodzinach nie ma jeszcze póz — sprawdzenie na pierwszej pozie każdej rodziny = warunek wdrożenia, L-040). Raport: scratchpad/badania-figury/reguly-sensu-r4.md.",
   "_opis_r5": "RUNDA 5 (badacz, 26.10.2026) — JSON Merge Patch (RFC 7386) do figury-sens.json PO nałożeniu r4 (reguly-sensu-r4-patch.json). Obiekty łączone rekurencyjnie, tablice zastępowane w całości, null = usuń klucz. Zawartość: (A) decyzja właściciela — model figury rozszerzony (poza@2): reguły w nowych stopniach swobody dla ćwiczeń zablokowanych w r4 przez silnik (skręt i skłon boczny tułowia, przechył miednicy, uniesienie i wysunięcie barków, nadgarstek, obrót przedramienia, skłon boczny głowy); każda taka reguła ma pole wymaga = „poza@2”; (B) partia 2: mobility_stand (36), mobility_floor (22), foam_roll (10 + Wrist Roller otwarte). Trzy NOWE typy: stopien_swobody, punkt_zakres (oraz pole wymaga). Raport: scratchpad/badania-figury/reguly-sensu-r5.md."
 }

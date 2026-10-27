@@ -7456,6 +7456,491 @@
      "pewnosc": "srednia"
     }
    }
+  },
+  {
+   "id": "chwyt",
+   "pl": "chwyt (sposób trzymania uchwytu, ang. grip)",
+   "znaczenie": "sposób, w jaki dłoń trzyma uchwyt, drążek albo sztangę; NIE „zaciskanie dłoni”, NIE przytrzymanie czegoś ręką w sensie kontroli",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])chwyt(u|em|y|ów|om|ach)?(?![\\p{L}])",
+   "jezyki": {
+    "pl": {
+     "zalecany": "chwyt",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "grip",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "úchop",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "úchop",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "fogás",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "bg": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "hr": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "sl": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "sr": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "lt": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "lv": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "et": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "uk": {
+     "zalecany": "хват",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "agarre",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "agarre",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "pt-BR": {
+     "zalecany": "pegada",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Griff",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "prise",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "nl": {
+     "zalecany": "grip",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "grepp",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "nb": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "fi": {
+     "zalecany": "ote",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "el": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "id": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "ms": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "vi": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "ru": {
+     "zalecany": "хват",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "ko": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    },
+    "zh-Hant": {
+     "zalecany": "grip",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16."
+    }
+   }
+  },
+  {
+   "id": "faza_ruchu",
+   "pl": "nazwy faz ruchu w animacji (Podciąganie, Opuszczanie, Wypychanie…)",
+   "znaczenie": "nazwa FAZY ruchu pokazywana w animacji („{faza} {n} s”), rzeczownik odczasownikowy jak siostrzane fazy („Opuszczanie”, „Wypychanie”); NIE nazwa ćwiczenia (podciąganie na drążku)",
+   "kanon": "Podciąganie",
+   "wykrywaj": "(?<![\\p{L}])podci[aą]ganie(?![\\p{L}])",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Podciąganie",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Pulling up",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Přitahování",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Priťahovanie",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Felhúzás",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Tracțiune",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Набиране",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Povlačenje",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Vlečenje",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Повлачење",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Prisitraukimas",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Pievilkšanās",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Tõmbamine",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Підтягування",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Subida",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Subida",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Subida",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Subida",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Hochziehen",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Traction",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Trazione",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Optrekken",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Uppdragning",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Optræk",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Opptrekk",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Veto",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Çekme",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Έλξη",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Menarik",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Menarik",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Kéo người lên",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Подтягивание",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "引き上げる",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "당기기",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "拉起",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "ramie",
+   "pl": "ramię (górna część ręki, nie bark)",
+   "znaczenie": "górna część ręki między barkiem a łokciem; NIE bark (partia „barki”) i NIE cała ręka",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])rami(ę|enia|eniu|eniem|onach)(?![\\p{L}])",
+   "jezyki": {
+    "pl": {
+     "zalecany": "ramię",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "upper arm",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "sk": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "hu": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "ro": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "bg": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "hr": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "sl": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "sr": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "lt": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "lv": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "et": {
+     "zalecany": "õlavars",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "плече",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "brazo",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "brazo",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "braço",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "braço",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Oberarm",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "bras",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "braccio",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "bovenarm",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "överarm",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "overarm",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "overarm",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "olkavarsi",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "el": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "id": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "ms": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "vi": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "ru": {
+     "zalecany": "плечо",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "ko": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    },
+    "zh-Hant": {
+     "zalecany": "upper arm",
+     "pewnosc": "niska",
+     "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
+    }
+   }
   }
  ]
 }

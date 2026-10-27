@@ -223,10 +223,20 @@ const stateReplacedHooks = new Set<() => void>();
 export function onStateReplaced(cb: () => void) { stateReplacedHooks.add(cb); }
 export function replaceState(next: State) { setS(migrate(next)); setSavedDrafts(null); stateReplacedHooks.forEach(h => h()); applyPrefs(); save(); }
 /** Reset: nowe dane startowe w języku, który będzie widoczny po resecie (ustawienie wraca na „auto” = język telefonu). */
-export function resetAll() {
+export function resetAll(): Promise<void> {
   const s = seedState(detectLang());
   s.settings.unit = deviceUnit(); /* jak świeża instalacja (UX-12) */
   replaceState(s);
   clearRecovery();
-  flush();
+  return flush().then(purgeTechnicalCopies);
+}
+/** A-2 (audyt 1.0): „Wyczyść wszystkie dane” usuwa też kopie techniczne z bazy — sprzed migracji (premigrate*), nieczytelne zapisy (state_corrupt_*), znacznik
+ * kopii odzysku (recovery) i szkice (drafts). Polityka prywatności obiecuje usunięcie danych w aplikacji; kopia bezpieczeństwa w Plikach powstaje wcześniej. */
+const TECHNICAL_KEY = /^(premigrate|state_corrupt_|recovery$|drafts$)/;
+async function purgeTechnicalCopies(): Promise<void> {
+  if (!db) return;
+  try {
+    const rows = await db.getAllAsync<{ k: string }>('SELECT k FROM kv');
+    for (const { k } of rows) if (TECHNICAL_KEY.test(k)) await db.runAsync('DELETE FROM kv WHERE k = ?', k);
+  } catch {}
 }

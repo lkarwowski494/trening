@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=\"$CLAUDE_PROJECT_DIR/CLAUDE.md\"; [ -f \"$f\" ] && { echo 'Aktualne zasady projektu (CLAUDE.md z dysku, po streszczeniu kontekstu — mają pierwszeństwo przed wcześniejszą kopią):'; cat \"$f\"; } || true",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

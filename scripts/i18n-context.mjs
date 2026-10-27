@@ -9,6 +9,8 @@ import { join, relative } from 'node:path';
 export const SHORT_MAX = 20;
 const root = fileURLToPath(new URL('..', import.meta.url));
 const OUT = join(root, 'docs/lokalizacja/konteksty.json');
+/** Konteksty ręczne (docs/lokalizacja/konteksty-reczne.json): klucze użyte dynamicznie (nazwy faz w danych, teksty z placeholderami), których miejsca użycia nie wyjaśniają znaczenia — tłumacz musi wiedzieć, CO to jest (L-041: 26 języków oddało fazę „Podciąganie” nazwą ćwiczenia). */
+export const RECZNE = JSON.parse(readFileSync(join(root, 'docs/lokalizacja/konteksty-reczne.json'), 'utf8'));
 const files = [];
 const walk = d => { for (const f of readdirSync(d).sort()) { const p = join(d, f); if (statSync(p).isDirectory()) walk(p); else if (/\.(ts|tsx)$/.test(f) && !/i18n(\.en)?\.ts$/.test(f) && !/\.generated\./.test(f)) files.push(p); } };
 ['app', 'components', 'lib'].forEach(d => walk(join(root, d)));
@@ -25,7 +27,7 @@ function add(k, f, l) { const a = uses.get(k) ?? []; if (a.length < 3 && !a.some
 export function build() {
   const src = JSON.parse(readFileSync(join(root, 'lib/locales/_source.json'), 'utf8'));
   const out = {};
-  for (const e of src.map(x => x.pl).filter(k => [...k].length <= SHORT_MAX).sort((a, b) => a.localeCompare(b, 'pl'))) out[e] = uses.get(e)?.join(', ') ?? 'dynamiczny (lista, etykieta albo dane w kodzie)';
+  for (const e of src.map(x => x.pl).filter(k => [...k].length <= SHORT_MAX).sort((a, b) => a.localeCompare(b, 'pl'))) { const g = uses.get(e)?.join(', ') ?? 'dynamiczny (lista, etykieta albo dane w kodzie)'; out[e] = RECZNE[e] ? `${RECZNE[e]} [${g}]` : g; }
   return JSON.stringify(out, null, 1) + '\n';
 }
 if (process.argv[1] && process.argv[1].endsWith('i18n-context.mjs')) {

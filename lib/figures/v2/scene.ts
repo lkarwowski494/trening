@@ -47,7 +47,7 @@ export type Prop =
   | { k: 'tower'; x: number; z: number; h: number; solid?: boolean }                                    /* kolumna stacji wyciągów (bloczek na linii x, z) */
   | { k: 'slide'; from: V3; to: V3; dir: V3; len: number }                                                /* prowadnica liniowa maszyny: odcinek skoku od from w kierunku dir (długość len), to = punkt mocowania (platforma, wałek, uchwyt) na prowadnicy */
   | { k: 'band'; from: V3; to: V3 }
-  | { k: 'chain'; from: V3; to: V3 }
+  | { k: 'chain'; from: V3; to: V3; /** łańcuch sztangi (wisi na obu tulejach); bez tego pola — pojedynczy łańcuch (np. pas z obciążeniem) */ bar?: true }
   | { k: 'floor'; x0: number; x1: number }
   | { k: 'mat'; x0: number; x1: number; h: number }
   | { k: 'pivot'; from: V3; to: V3; len?: number; label?: string; cut?: number }                                                /* gryf landmine albo dźwignia maszyny: z osi obrotu do dłoni/kostek; len = długość ramienia (sztywne); label = nazwa w komunikatach */

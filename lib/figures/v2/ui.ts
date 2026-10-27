@@ -12,7 +12,7 @@ import { faultApplicable, figureSpec, frameAt, errorDefOf, markPoints, musclesFo
 import { BADGE_MAX, okBadges, type Badge } from './badges';
 import { proj } from './draw';
 import type { View } from './scene';
-import { guidesFor, ELBOW45_KEYS, type GuideId } from './guides';
+import { guidesFor, type GuideId } from './guides';
 import { MUSCLE_MIN_LOAD, type MuscleId } from './muscles';
 
 /** Id wskazówek ćwiczenia: własne (lib/cues) albo zestaw ogólny (ok i err). */
@@ -25,10 +25,7 @@ export function cueIdsOf(key: string): { ids: string[]; errs: string[] } {
 }
 
 /** Linie odniesienia dozwolone przy ćwiczeniu (tylko z wskazówek ze źródłem). */
-export const guidesOf = (key: string): GuideId[] => [...guidesFor(cueIdsOf(key).ids), ...(ELBOW45_KEYS.has(key) ? ['elbows45' as const] : [])];
-
-/** Opis „łokcie ok. 45° od tułowia” przy wyciskaniu leżąc (sztanga i hantle, płasko i skos; decyzja właściciela 25.10.2026). */
-export const elbowAngleApplies = (spec: FigureSpec): boolean => spec.family === 'bench_press' && ELBOW45_KEYS.has(spec.key);
+export const guidesOf = (key: string): GuideId[] => guidesFor(cueIdsOf(key).ids);
 
 /** Błędy do animacji: wskazówki „częsty błąd” ćwiczenia, które da się pokazać pozą w tym wariancie rysunku (bez powtórzeń). */
 export function errorsOf(spec: FigureSpec): { error: FigError; cue: string }[] {

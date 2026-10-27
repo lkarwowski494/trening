@@ -114,7 +114,7 @@
      },
      "podazaZaChwytem": {
       "type": "boolean",
-      "description": "true: środek sztangi leży między dłońmi w każdej klatce (sztanga w ruchu); false: nieruchoma (x, y). Domyślnie false."
+      "description": "true: środek sztangi leży między dłońmi w każdej klatce (sztanga w ruchu; przy trzyma R/L — na chwycie tej jednej dłoni); false: nieruchoma (x, y). Domyślnie false."
      },
      "dlugosc": {
       "type": "number",
@@ -308,6 +308,12 @@
       "minimum": -90,
       "maximum": 90,
       "description": "OPCJONALNIE (poza@2): skłon boczny głowy względem tułowia, stopnie (-35…35): dodatni = ucho ku prawemu barkowi."
+     },
+     "przesuniecieBoczne": {
+      "type": "number",
+      "minimum": -300,
+      "maximum": 300,
+      "description": "OPCJONALNIE (poza@2): boczne przesunięcie korzenia w cm (oś z; dodatnie = ku prawej stronie osoby): przesuwa miednicę, stawy biodrowe i barki razem. Kroki i skoki boczne (boczny skok, krok z gumą, wykrok boczny). Kostki i chwyty nadal podajesz w układzie świata; dla pozy symetrycznej pomiń."
      },
      "przechylMiednicy": {
       "type": "number",
@@ -676,6 +682,12 @@
          "minimum": -35,
          "maximum": 35,
          "description": "Zmiana skłonu bocznego głowy w stopniach."
+        },
+        "przesuniecieBoczne": {
+         "type": "number",
+         "minimum": -60,
+         "maximum": 60,
+         "description": "Zmiana bocznego przesunięcia korzenia w cm."
         },
         "przechylMiednicy": {
          "type": "number",

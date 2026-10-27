@@ -124,7 +124,7 @@ export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
   if (p.impl === 'kb') props.push({ k: 'kettlebell', c, side: 'C' });
   if (p.impl === 'cable') props.push({ k: 'cable', from: p.pull ? [-HINGE.pulley[0], HINGE.pulley[1], 0] : [barX, 0, 0], to: c });
   if (p.band) props.push({ k: 'band', from: c, to: [c[0], 0, 0] });
-  if (p.chain) props.push({ k: 'chain', from: c, to: [c[0], 0, 0] });
+  if (p.chain) props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
   if (p.platform) contacts.push({ body: 'foot', equip: 'box', tol: 1.5 });
   contacts.push({ body: 'thigh', equip: 'bar', tol: 1.5 }, { body: 'shank', equip: 'bar', tol: 1.5 }, { body: 'thigh', equip: 'plateNear', tol: 99 });
   return mkFrame(pose, props, info, contacts);

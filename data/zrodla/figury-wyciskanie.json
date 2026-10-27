@@ -1,0 +1,61 @@
+{
+  "_opis": "Parametry modelu wyciskania leżąc (rig lib/figures/v2/rigs/benchPress.ts, warianty z `vert`): źródła, statusy i wartości (pełne dane; runtime bez nazw źródeł). Badacz merytoryczny 26.10.2026 (scratchpad/badania-figury/wyciskanie-geometria.md), wdrożenie 26.10.2026.",
+  "data": "2026-10-26",
+  "parametry": [
+    {
+      "id": "B1",
+      "parametr": "połowa szerokości barków (BENCH.dims.shHalf)",
+      "wartosc": "20,5 cm",
+      "status": "zgodne źródła + uproszczenie",
+      "uzasadnienie": "szerokość dwubarkowa M: 41,1 cm (CDC NCHS NHANES III, Vital Health Stat 11(249), Table 54), 41,5 (ANSUR II mediana), 42,6 (Guan i in. 2012, Human Factors 54(5):849); „środek stawu ramiennego = akromion bocznie” — uproszczenie"
+    },
+    {
+      "id": "B2",
+      "parametr": "długość ramienia (staw–staw, BENCH.dims.uarm)",
+      "wartosc": "33 cm",
+      "status": "zgodne źródła",
+      "uzasadnienie": "ANSUR II mediana akromion–radiale M 33,5 cm (pośrednik: przeglądarka danych); Contini 1972 (Artif Limbs 16(1):1–19): 0,189 × wzrost 175,6 = 33,2 cm"
+    },
+    {
+      "id": "B3",
+      "parametr": "przedramię (łokieć–nadgarstek, BENCH.dims.farm)",
+      "wartosc": "26,5 cm",
+      "status": "zgodne źródła",
+      "uzasadnienie": "ANSUR II radiale–stylion M 26,7; Contini 1972: 0,145 × 175,6 = 25,5; dłoń do środka chwytu (BODY.hand 7 cm) — uproszczenie ilustracyjne"
+    },
+    {
+      "id": "B4",
+      "parametr": "połowa chwytu sztangi (płasko i skos) = 35 cm, hantli = 32 cm na dole",
+      "wartosc": "1,7 × / 1,56 × szerokość dwubarkowa",
+      "status": "konwencja w zakresie zgodnych źródeł",
+      "uzasadnienie": "zakres 1,4–2,0 × BAD: Larsen, Gomo, van den Tillaar 2021 (1,0/1,4/1,7 ×), Lockie i in. 2017 (preferowany 175 % BAD, 0,60 m), Noteboom i in. 2024 (1,0/1,5/2,0 ×), Stronger by Science (1,5–2 × szerokość barków); NSCA Basics 2012 rozdz. 4a: „hands slightly wider than shoulder-width” (bez liczby); środek dłoni ok. 2–3 cm na zewnątrz od palca wskazującego — uproszczenie"
+    },
+    {
+      "id": "B5",
+      "parametr": "dotyk sztangi poniżej linii stawów ramiennych (wzdłuż tułowia)",
+      "wartosc": "16 cm płasko, 10 cm skos, hantle: 18 cm płasko, 10 cm skos",
+      "status": "uproszczenie (zakres 10–20 cm)",
+      "uzasadnienie": "akromion → linia sutków stojąc ok. 15 cm M (ANSUR II, różnica median wysokości akromionu i klatki; jedno źródło/pośrednik); sztanga „between the nipple and the bottom of the sternum” (Stronger by Science), „just above the xiphoid process” (Lockie 2017, za innymi); NSCA: płasko „touch the chest”, skos „top of the chest”, hantle „chest level”"
+    },
+    {
+      "id": "B6",
+      "parametr": "przedramiona pionowo (≤ 10° od pionu) i równolegle",
+      "wartosc": "łokieć wybierany z okręgu IK (stałe długości segmentów) najbliżej położenia pod dłonią",
+      "status": "źródło (NSCA Basics 2012 s. 53–55)",
+      "uzasadnienie": "NSCA: nadgarstki nad łokciami, przedramiona prostopadle do podłogi; pomiar Mausehund i in. 2022 (JSCR 36(10):2685): kąt przedramienia −0,8° przy chwycie średnim"
+    },
+    {
+      "id": "B7",
+      "parametr": "odwiedzenie ramienia od osi tułowia w widoku z góry (wynik, nie parametr)",
+      "wartosc": "42° sztanga płasko, 43° sztanga skos, 33° hantle płasko, 37° hantle skos (test: tests/figures-v2-bench-rules.test.ts)",
+      "status": "wynik geometrii; pomiar 3D 59° (Mausehund 2022, chwyt średni) — inna definicja kąta",
+      "uzasadnienie": "rachunek badacza ok. 42° (sztanga płasko); kąta nie pokazujemy w aplikacji jako zalecenia — tylko „Kąt na rysunku” (zgięcie łokcia) z geometrii"
+    }
+  ],
+  "otwarte": [
+    "przesunięcie środka stawu ramiennego względem akromionu (Rab i in. 2002 — nieprzeczytane)",
+    "odległość staw ramienny → wyrostek mieczykowaty w liczbach",
+    "oryginał ANSUR II (DTIC) i licencja danych — tylko pośrednik",
+    "położenie hantli na skosie (4d NSCA nieczytelne w wyciągu)"
+  ]
+}
