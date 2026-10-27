@@ -6,6 +6,8 @@
  * VoiceOver: przycisk z expanded, nagłówki sekcji, punkty bez „•” w etykiecie), ekran ćwiczenia, generator dokumentu (--check).
  */
 import React from 'react';
+import * as fs from 'fs';
+import * as path from 'path';
 import { render, screen, fireEvent } from '@testing-library/react-native';
 import { CUE_DATA, CUE_SECTIONS, cuesFor, cueText, cueDict } from '@/lib/cues';
 import { ExerciseCues } from '@/components/ExerciseCues';
@@ -47,14 +49,22 @@ describe('dane wskazówek', () => {
   });
 });
 
+/** Zdania czekające na przekład (G7b): docs/lokalizacja/zestaw-przekladu-*-wskazowki.json — w językach poza pl/en aplikacja pokazuje angielski (cueText). */
+const PENDING_CUES = new Set<string>(fs.readdirSync(path.join(__dirname, '..', 'docs', 'lokalizacja')).filter(f => /^zestaw-przekladu-.*-wskazowki\.json$/.test(f))
+  .flatMap(f => (JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'docs', 'lokalizacja', f), 'utf8')).klucze as { id: string }[]).map(k => k.id)));
+
 describe('języki', () => {
-  const ids = Object.keys(cueDict('pl'));
+  const allIds = Object.keys(cueDict('pl')); const ids = allIds.filter(k => !PENDING_CUES.has(k));
   test('każde zdanie ma tekst w każdym z 26 języków, bez nadmiarowych id', () => {
     for (const l of LANGS) {
       const d = cueDict(l);
       expect([l, ids.filter(k => typeof d[k] !== 'string' || !d[k].trim())]).toEqual([l, []]);
-      expect([l, Object.keys(d).filter(k => !ids.includes(k))]).toEqual([l, []]);
+      expect([l, Object.keys(d).filter(k => !allIds.includes(k))]).toEqual([l, []]);
     }
+  });
+  test('zdania oczekujące na przekład: istnieją w pl i en, a w pozostałych językach ich jeszcze nie ma (po przekładzie usunąć wpis z zestawu); pl i en mają komplet', () => {
+    for (const id of PENDING_CUES) { expect([id, !!cueDict('pl')[id], !!cueDict('en')[id]]).toEqual([id, true, true]); for (const l of LANGS.filter(x => x !== 'pl' && x !== 'en')) expect([l, id, cueDict(l)[id]]).toEqual([l, id, undefined]); }
+    for (const l of ['pl', 'en'] as const) expect([l, allIds.filter(k => !cueDict(l)[k]?.trim())]).toEqual([l, []]);
   });
   test('tłumaczenia są prawdziwe: w językach innych niż pl/en tekst różni się od angielskiego i polskiego', () => {
     for (const l of LANGS.filter(x => x !== 'pl' && x !== 'en')) {

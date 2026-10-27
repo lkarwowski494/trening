@@ -30,7 +30,9 @@ const TARGETS = LANGS.filter((l) => l !== 'pl');
 const cueFile = (l: string): Record<string, string> => JSON.parse(read(`lib/cues/text/${l}.json`));
 /** Warianty regionalne (es-419, pt-BR) to nakładki na es/pt — jak w lib/cues/index.ts. */
 const cues = (l: string): Record<string, string> => (l === 'es-419' ? { ...cueFile('es'), ...cueFile(l) } : l === 'pt-BR' ? { ...cueFile('pt'), ...cueFile(l) } : cueFile(l));
-const plCueIds = Object.keys(cues('pl'));
+/** Zdania czekające na przekład (G7b, docs/lokalizacja/zestaw-przekladu-*-wskazowki.json): poza komplet (pl i en mają je od razu; reszta języków — angielski w zastępstwie, kontrola w tests/cues.test.tsx). */
+const PENDING_CUES = new Set<string>(fs.readdirSync(path.join(ROOT, 'docs/lokalizacja')).filter((f) => /^zestaw-przekladu-.*-wskazowki\.json$/.test(f)).flatMap((f) => (JSON.parse(read(`docs/lokalizacja/${f}`)).klucze as { id: string }[]).map((k) => k.id)));
+const plCueIds = Object.keys(cues('pl')).filter((id) => !PENDING_CUES.has(id));
 const dict = (l: Lang): Record<string, string> => (l === 'en' ? (EN as Record<string, string>) : (LOCALES[l] as Record<string, string>));
 const present = (l: Lang, k: string) => { const v = dict(l)[k]; return typeof v === 'string' && v.trim() !== '' && v !== k && (l === 'en' || v !== (EN as Record<string, string>)[k] || /^[A-Za-z .,'-]+$/.test(k)); };
 

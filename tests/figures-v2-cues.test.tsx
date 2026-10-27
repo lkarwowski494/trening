@@ -6,11 +6,12 @@
  */
 import { CATALOG } from '@/lib/catalog.generated';
 import { CUE_DATA } from '@/lib/cues';
-import { assignAll, VARIANTS } from '@/lib/figures/v2';
-import { CUE_SETS, CUE_POLICY, CUE_REQUIRES, cueSelection, generalCueNote } from '@/lib/figures/v2/cueSets';
+import { assignAll, FAMILIES, VARIANTS } from '@/lib/figures/v2';
+import { CUE_SETS, CUE_POLICY, CUE_REQUIRES, cueSelection, cueTextGaps, generalCueNote } from '@/lib/figures/v2/cueSets';
 import { applyLang, t } from '@/lib/i18n';
 
 const PL: Record<string, string> = require('@/lib/cues/text/pl.json');
+const EN: Record<string, string> = require('@/lib/cues/text/en.json');
 const KEYS = Object.keys(CATALOG);
 afterEach(() => applyLang('pl'));
 
@@ -21,10 +22,10 @@ describe('dane zestawów wskazówek (cue-sets.json)', () => {
     expect([n('own'), n('general'), n('open')]).toEqual([102, 538, 69]);
     expect(Object.keys(CUE_SETS.items).filter(k => CUE_SETS.items[k].b === 'own').sort()).toEqual(Object.keys(CUE_DATA.exercises).sort());
   });
-  test('każdy zestaw ogólny ma ≥ 1 zalecenie i rodzinę; identyfikatory istnieją w pl.json albo są na liście newIds (teksty od tłumacza); newIds = identyfikatory bez tekstu', () => {
+  test('każdy zestaw ogólny ma ≥ 1 zalecenie i rodzinę; identyfikatory istnieją w pl.json albo są na liście newIds (wstrzymane); newIds = identyfikatory bez tekstu', () => {
     const used = new Set<string>();
     for (const [k, e] of Object.entries(CUE_SETS.items)) if (e.b === 'general') { expect([k, (e.ok ?? []).length >= 1, !!e.f]).toEqual([k, true, true]); [...(e.ok ?? []), ...(e.err ?? [])].forEach(i => used.add(i)); }
-    const missing = [...used].filter(i => !PL[i]).sort(); expect(missing).toEqual([...CUE_SETS.meta.newIds].sort()); expect(CUE_SETS.meta.newIds.length).toBe(52);
+    const missing = [...used].filter(i => !PL[i]).sort(); expect(missing).toEqual([...CUE_SETS.meta.newIds].sort()); expect(CUE_SETS.meta.newIds).toEqual(['st.tension']); /* 27.10.2026: reszta wdrożona (PL i EN); st.tension wstrzymane — powód w data/zrodla/cues-zestawy.json */
   });
 });
 
@@ -63,5 +64,45 @@ describe('strażnik: wskazówka przypisana do ćwiczenia nie przeczy jego ruchow
     const withJerk = READY.filter(k => [...cueSelection(k).err].includes('mis.jerk')).sort();
     expect(withJerk).toEqual(['Decline Close-Grip Bench To Skull Crusher', 'Floor Press (hantle)', 'Floor Press (sztanga)', 'Floor Press with Chains', 'One-Arm Kettlebell Floor Press']);
     expect(READY.filter(k => VARIANTS[k].family === 'squat' && (VARIANTS[k] as { static?: boolean }).static && cueSelection(k).err.includes('mis.jerk'))).toEqual([]);
+  });
+});
+
+describe('strażnik: rodzina gotowa (ready) nie używa identyfikatora wskazówki bez tekstu PL i EN (recenzja treści 1.1, S1: karta pomijała je po cichu albo pokazywała surowe id)', () => {
+  test('rodziny ze statusem ready w kodzie: każde id zestawów (ok i err) ma tekst w pl.json i en.json', () => {
+    expect(cueTextGaps(FAMILIES, PL, EN)).toEqual([]);
+  });
+  test('fixture: rodzina z brakami ustawiona na ready jest czerwona (lista „ćwiczenie: id (język)”), a po dopisaniu tekstów zielona', () => {
+    const forearm = Object.entries(assignAll()).filter(([, f]) => f === 'forearm').map(([k]) => k);
+    const ids = new Set<string>(); for (const k of forearm) { const c = cueSelection(k); [...c.ok, ...c.err].forEach(i => ids.add(i)); }
+    const withoutWr = (d: Record<string, string>) => Object.fromEntries(Object.entries(d).filter(([k]) => !k.startsWith('wr.')));
+    const asReady = FAMILIES.map(f => (f.id === 'forearm' ? { ...f, status: 'ready' as const } : f));
+    expect(ids.has('wr.forearms')).toBe(true);
+    const red = cueTextGaps(asReady, withoutWr(PL), withoutWr(EN));
+    expect(red.some(x => x.includes('wr.forearms (pl)')) && red.some(x => x.includes('wr.forearms (en)'))).toBe(true);
+    expect(cueTextGaps(asReady, PL, withoutWr(EN)).every(x => x.endsWith('(en)'))).toBe(true);
+    expect(cueTextGaps(asReady, PL, EN)).toEqual([]);
+    /* rodzina planned z brakami nie blokuje (strażnik dotyczy tylko ready) */
+    expect(cueTextGaps(FAMILIES.map(f => (f.id === 'forearm' ? { ...f, status: 'planned' as const } : f)), withoutWr(PL), withoutWr(EN)).filter(x => x.includes('wr.'))).toEqual([]);
+  });
+  test('id w zestawach ogólnych bez tekstu to wyłącznie lista newIds (nic nie znika po cichu): ids z pl.json + newIds = wszystkie użyte', () => {
+    const used = new Set<string>(); for (const e of Object.values(CUE_SETS.items)) [...(e.ok ?? []), ...(e.err ?? [])].forEach(i => used.add(i));
+    expect([...used].filter(i => !PL[i] && !CUE_SETS.meta.newIds.includes(i))).toEqual([]);
+  });
+});
+
+describe('B3 (recenzja treści 1.1): wskazówka o zakresie opuszczania nie mówi „gryf” przy hantlach i gumie', () => {
+  test('Skullcrusher (hantle), Decline Dumbbell Triceps Extension i Band Skull Crusher dostają zdanie neutralne sprzętowo (skull.depthFree: „dłonie”); ćwiczenia z gryfem zostają przy skull.depth', () => {
+    for (const k of ['Skullcrusher (hantle)', 'Decline Dumbbell Triceps Extension', 'Band Skull Crusher']) { const c = cueSelection(k); expect([k, c.ok.includes('skull.depthFree'), c.ok.includes('skull.depth')]).toEqual([k, true, false]); }
+    for (const k of ['Skullcrusher (sztanga)', 'Decline EZ Bar Triceps Extension']) expect([k, cueSelection(k).ok.includes('skull.depth')]).toEqual([k, true]);
+    expect(PL['skull.depthFree']).not.toMatch(/gryf|sztang/i); expect(EN['skull.depthFree']).not.toMatch(/\bbar\b/i);
+  });
+});
+
+describe('Upright Row (badacz 27.10.2026): wysokość dotyczy łokci (ur.height zamiast dwuznacznego lat.height)', () => {
+  test('7 ćwiczeń rodziny uprightRow ma ur.elbows + ur.height, bez lat.height; Straight Raises on Incline Bench zachowuje lat.height', () => {
+    const ur = Object.entries(CUE_SETS.items).filter(([, e]) => e.f === 'uprightRow'); expect(ur.length).toBe(7);
+    for (const [k, e] of ur) expect([k, e.ok]).toEqual([k, ['ur.elbows', 'ur.height']]);
+    expect(PL['ur.height']).toMatch(/łokci/); expect(EN['ur.height']).toMatch(/elbows/);
+    expect(cueSelection('Straight Raises on Incline Bench').ok).toContain('lat.height');
   });
 });

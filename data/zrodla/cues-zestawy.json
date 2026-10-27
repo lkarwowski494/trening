@@ -1,0 +1,826 @@
+{
+ "_opis": "Źródła nowych wskazówek zestawów ogólnych (id z cue-sets.json meta.newIds, tekst wdrożony 27.10.2026). Wpis: tekst PL, twierdzenie, ≥ 2 przeczytane źródła (adres + miejsce) ze słownika badacza z 25.10.2026. Poza paczką aplikacji (data/zrodla), tylko wewnętrzny rejestr. Status „wstrzymany” = tekstu nie ma w aplikacji (powód w polu powod).",
+ "wskazowki": {
+  "bp.elbowsMid": {
+   "pl": "Łokcie trochę bliżej tułowia — nie rozkładaj ich szeroko na boki.",
+   "claim": "Przy wyciskaniu leżąc łokcie ani maksymalnie odwiedzone, ani przyklejone (bez liczby kąta).",
+   "src": [
+    [
+     "https://www.nasm.org/resource-center/exercise-library/barbell-bench-press",
+     "Common Mistakes: „Positioning elbows too wide or too close…”"
+    ],
+    [
+     "https://www.strongerbyscience.com/how-to-bench/",
+     "FAQ „How much should I tuck my elbows?”: „…around 45-60 degrees.”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "bw.squat": {
+   "pl": "Zejdź do lekkiego przysiadu i utrzymuj go przez cały marsz.",
+   "claim": "Chód z gumą w półprzysiadzie.",
+   "src": [
+    [
+     "https://www.issaonline.com/blog/post/master-the-lateral-band-walk-for-a-stronger-gluteus-medius",
+     "„partial squat position”; „There is no upper body movement”"
+    ],
+    [
+     "https://www.acefitness.org/resources/pros/expert-articles/6936/6-glute-medius-exercises-for-strength-amp-stability/",
+     "„assume a quarter-squat position… Maintain the squat position while stepping laterally”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "cc.ribs": {
+   "pl": "Zwijaj tułów, ściągając żebra w dół — biodra zostają w miejscu.",
+   "claim": "Zgięcie tułowia przeciw oporowi linki bez ruchu w biodrach.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/331/standing-crunch/",
+     "„rolling the rib cage down against the pull of the cable”; „the hips straight…”"
+    ],
+    [
+     "data:Crunch",
+     "crunch.move (ACE #52, ExRx BWCrunch: zbliżanie żeber do miednicy) — analogia"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "cc.slow": {
+   "pl": "Wracaj do góry powoli.",
+   "claim": "Kontrolowany powrót.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/331/standing-crunch/",
+     "„slowly returning to the top”"
+    ],
+    [
+     "data:Crunch",
+     "crunch.move („wracaj powoli”; ACE #52, ExRx) — analogia"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "chop.close": {
+   "pl": "Ciężar blisko ciała, głowa i klatka nad biodrami.",
+   "claim": "Kontrola rotacji w ruchach typu drwal.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/108/standing-wood-chop/",
+     "Step 3: „Keep the medicine ball relatively close to your body.”; Step 6: „…remain aligned over your hips.”"
+    ],
+    [
+     "data:Russian Twist",
+     "rt.control (NASM Russian Twist, ACE #65) — ruch rotacyjny, analogia"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "cobra.control": {
+   "pl": "Opuszczaj się powoli.",
+   "claim": "Kontrolowany powrót.",
+   "src": [
+    [
+     "https://www.nasm.org/resource-center/exercise-library/floor-prone-cobra",
+     "Step 4: „Lower yourself back to the floor with control.”"
+    ],
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/16/cobra-exercise/",
+     "„Gently relax and lower your upper body…”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "cobra.hips": {
+   "pl": "Biodra zostają na podłodze.",
+   "claim": "Wyprost tułowia w leżeniu przodem bez unoszenia bioder.",
+   "src": [
+    [
+     "https://www.nasm.org/resource-center/exercise-library/floor-prone-cobra",
+     "Step 2: „Keep your hips and legs relaxed on the floor…”"
+    ],
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/16/cobra-exercise/",
+     "„press your hips into the mat… keeping your hips stable”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "cobra.mis": {
+   "pl": "Wyginanie pleców na siłę, za wysoko.",
+   "claim": "Częsty błąd: nadmierny wyprost.",
+   "src": [
+    [
+     "https://www.nasm.org/resource-center/exercise-library/floor-prone-cobra",
+     "Common Mistakes: „Excessive spinal extension…”"
+    ],
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/16/cobra-exercise/",
+     "ogranicz wyprost rąk, jeśli biodra odrywają się od maty"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "dyn.control": {
+   "pl": "Ruszaj się płynnie, a zakres zwiększaj stopniowo.",
+   "claim": "Ćwiczenia ruchomości: powolny, kontrolowany ruch w wygodnym zakresie.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
+     "Step 4: „performing slow, controlled movements”"
+    ],
+    [
+     "https://www.nhs.uk/live-well/exercise/flexibility-exercises/",
+     "Neck rotation: „Slowly turn your head… as far as is comfortable.”; wstęp: „Build up slowly…”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "dyn.mis.jerk": {
+   "pl": "Szarpanie i wymachy na siłę.",
+   "claim": "Częsty błąd: gwałtowny ruch/odbijanie w ćwiczeniach rozciągających.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
+     "Step 4: „avoid bouncing and control movement…”"
+    ],
+    [
+     "https://www.nasm.org/resource-center/exercise-library/static-butterfly-stretch",
+     "advises against „bouncing”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "hab.hips": {
+   "pl": "Biodra i tułów nieruchomo — pracuje tylko noga.",
+   "claim": "Odwodzenie bez rotacji/przechylania miednicy.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/38/side-lying-hip-abduction/",
+     "„The hips should remain vertical to the floor”"
+    ],
+    [
+     "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+     "Sideways leg lift: „…keeping your back and hips straight.”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "hab.mis.high": {
+   "pl": "Noga za wysoko — biodro zaczyna się przechylać.",
+   "claim": "Częsty błąd: zakres większy niż pozwala stabilna miednica.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/38/side-lying-hip-abduction/",
+     "„raising the leg too high”; stop when „the hips begin to tilt upwards”"
+    ],
+    [
+     "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+     "„as far as is comfortable, keeping your back and hips straight”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "halo.close": {
+   "pl": "Prowadź kettlebell tuż wokół głowy.",
+   "claim": "Ciężar krąży blisko głowy.",
+   "src": [
+    [
+     "https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training",
+     "Halo: „keeping the kettlebell as close to your head as possible”"
+    ],
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/394/halo/",
+     "„moving the kettlebell around and behind the head”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "hang.noSwing": {
+   "pl": "Bujanie się i wymachy nogami.",
+   "claim": "Częsty błąd: rozpęd w zwisie.",
+   "src": [
+    [
+     "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+     "Hanging Knee Raise: „Avoid using momentum to swing the legs upward.”"
+    ],
+    [
+     "data:Pull Up",
+     "pu.noSwing (ACE #191 „avoid swinging”) — zwis na drążku, analogia"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "hang.ribs": {
+   "pl": "Żebra w dół, tułów spokojny — podwijaj miednicę.",
+   "claim": "Stabilny tułów, ruch z podwinięciem miednicy.",
+   "src": [
+    [
+     "https://www.issaonline.com/blogs/training-tips/5-best-exercises-to-include-in-your-core-workout",
+     "„Keeping the ribcage down… tuck their pelvis… curling the hips up and under”"
+    ],
+    [
+     "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+     "„…maintaining a stable torso throughout each repetition.”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "hang.slow": {
+   "pl": "Opuszczaj nogi powoli, z kontrolą.",
+   "claim": "Kontrolowana faza opuszczania w zwisie.",
+   "src": [
+    [
+     "https://www.issaonline.com/blogs/training-tips/5-best-exercises-to-include-in-your-core-workout",
+     "Hanging Leg Raises: „…slowly controlled back down into the starting position…”"
+    ],
+    [
+     "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+     "Hanging Knee Raise: „…control both the raising and lowering phases…”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "hext.mis.arch": {
+   "pl": "Plecy wyginają się w łuk, gdy noga idzie w górę.",
+   "claim": "Częsty błąd: przeprost lędźwi przy unoszeniu nogi.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/270/quadruped-bent-knee-hip-extensions/",
+     "„…an increase in lumbar lordosis (low back sagging).”"
+    ],
+    [
+     "data:Bird Dog",
+     "bd.range (NASM Bird Dog) — analogia"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "hext.range": {
+   "pl": "Unoś nogę tylko tak wysoko, jak utrzymasz plecy bez wyginania.",
+   "claim": "Wyprost biodra ograniczony kontrolą odcinka lędźwiowego.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/270/quadruped-bent-knee-hip-extensions/",
+     "„Only raise the leg to a height where the low back position can be maintained…”"
+    ],
+    [
+     "data:Bird Dog",
+     "bd.range (ACE #14, NASM Bird Dog) — ten sam podpór, analogia"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "jump.drive": {
+   "pl": "Wybij się, prostując biodra, kolana i kostki, z zamachem rąk.",
+   "claim": "Wybicie przez wyprost trzech stawów z zamachem ramion.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/177/forward-linear-jumps/",
+     "Step 3: „…throwing your arms overhead to achieve triple extension.”"
+    ],
+    [
+     "https://www.nasm.org/resource-center/exercise-library/squat-jump",
+     "Step 3: „Explosively extend your hips, knees, and ankles while swinging your arms upward…”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "jump.land": {
+   "pl": "Ląduj miękko, na ugiętych kolanach.",
+   "claim": "Miękkie lądowanie z amortyzacją w biodrach i kolanach.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/177/forward-linear-jumps/",
+     "Step 6: „attempt to land softly on the whole foot…”"
+    ],
+    [
+     "https://www.nasm.org/resource-center/exercise-library/squat-jump",
+     "Step 4: „Land softly… and bent knees to absorb impact.”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "jump.mis.stiff": {
+   "pl": "Lądowanie na sztywnych nogach.",
+   "claim": "Częsty błąd: lądowanie z wyprostowanymi kolanami.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/177/forward-linear-jumps/",
+     "„do not land with a straight or hyper-extended knee…”"
+    ],
+    [
+     "https://www.nasm.org/resource-center/exercise-library/tuck-jump",
+     "Common Mistakes: „Landing with straight or minimally bent knees…”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "mb.legs": {
+   "pl": "Rzucaj całym ciałem — prostuj biodra, kolana i kostki razem z wyrzutem.",
+   "claim": "Moc rzutu z wyprostu trzech stawów.",
+   "src": [
+    [
+     "https://www.issaonline.com/blogs/strength/10-highly-effective-medicine-ball-exercises",
+     "Wall Underhand Throw: „In one movement, extend the hips, knees, and ankles while underhand throwing the ball…”"
+    ],
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/178/overhead-medicine-ball-throws/",
+     "„…create triple extension”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "ohp.mis.lock": {
+   "pl": "Gwałtowne blokowanie łokci na górze.",
+   "claim": "Na górze pełny wyprost bez gwałtownego blokowania.",
+   "src": [
+    [
+     "data:Seated Shoulder Press (hantle)",
+     "ohp.fullExt (ACE #186 Step 3 „fully extended, but not locked”; ExRx/Eleiko)"
+    ],
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/186/seated-shoulder-press/",
+     "Step 3 (przeczytane 25.10.2026)"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "oly.back": {
+   "pl": "Na starcie plecy proste, klatka do góry.",
+   "claim": "Pozycja startowa podrzutu/rwania: neutralne plecy.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/125/power-clean/",
+     "Step 2: hinge, „straight back and a tall chest”"
+    ],
+    [
+     "https://www.nsca.com/contentassets/7b03489a05aa4f39a01d4c37d5464e0f/a_simple_technique_to_teaching_the_power_clean.pdf",
+     "NSCA TSAC Report 39 (Cruz), s. 43: „the lower back should be flat or slightly concave”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "oly.close": {
+   "pl": "Sztanga blisko ciała przez cały ciąg.",
+   "claim": "Tor sztangi blisko ciała.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/125/power-clean/",
+     "Step 3: „…pulling the bar straight up, close to the body.”"
+    ],
+    [
+     "https://www.nsca.com/contentassets/7b03489a05aa4f39a01d4c37d5464e0f/a_simple_technique_to_teaching_the_power_clean.pdf",
+     "s. 44: „the bar is a magnet for the body”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "oly.legs": {
+   "pl": "Ręce długo proste — sztangę wybijają nogi i biodra.",
+   "claim": "Siła z wyprostu nóg i bioder; ramiona proste w pierwszej fazie.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/125/power-clean/",
+     "Step 3–4: „explosively push the feet into the ground…”, „explosively push the hips forward and up”"
+    ],
+    [
+     "https://www.nsca.com/contentassets/7b03489a05aa4f39a01d4c37d5464e0f/a_simple_technique_to_teaching_the_power_clean.pdf",
+     "s. 44: „The arms should remain fully extended…”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "oly.mis": {
+   "pl": "Sztanga odjeżdża od ciała albo plecy się zaokrąglają.",
+   "claim": "Częste błędy: oddalanie sztangi, zaokrąglanie pleców.",
+   "src": [
+    [
+     "https://www.nsca.com/contentassets/7b03489a05aa4f39a01d4c37d5464e0f/a_simple_technique_to_teaching_the_power_clean.pdf",
+     "s. 44: błędy „shooting the hips, rounding the back, or swinging the bar forward”"
+    ],
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/125/power-clean/",
+     "Step 2–3 (straight back; bar close)"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "po.arms": {
+   "pl": "Ręce proste przez cały ruch.",
+   "claim": "Pullover na prostych rękach.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/37/lying-pullovers/",
+     "„…keeping the elbows straight”"
+    ],
+    [
+     "https://www.issaonline.com/blogs/training-tips/stability-ball-exercises-build-muscle-balance-endurance",
+     "„With both arms fully extended…”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "po.slow": {
+   "pl": "Opuszczaj ciężar za głowę powoli i tak samo wracaj nad klatkę.",
+   "claim": "Kontrolowany ruch w obu fazach.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/37/lying-pullovers/",
+     "„slowly stretch the arms up overhead”, „slowly pull the weights back up”"
+    ],
+    [
+     "https://www.issaonline.com/blogs/training-tips/stability-ball-exercises-build-muscle-balance-endurance",
+     "„slowly lower the dumbbell behind the head”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "ro.back": {
+   "pl": "Biodra wypchnięte, plecy proste — nie zapadaj się w dolnej części pleców.",
+   "claim": "W rollout tułów sztywny, bez przeprostu lędźwi.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/309/roll-out/",
+     "„Keep the hips pressed forward and the back straight.”"
+    ],
+    [
+     "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+     "Ab Wheel Rollout: „…the core must work to prevent lumbar extension.”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "rot.elbow": {
+   "pl": "Łokieć zgięty i przy boku — obraca się tylko przedramię.",
+   "claim": "Rotacja w barku przy nieruchomym ramieniu.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/352/rotator-cuff-external-rotation/",
+     "„Keep the left elbow tucked in to the body”"
+    ],
+    [
+     "https://www.issaonline.com/blogs/safety-and-injuries/strengthen-your-rotator-cuff",
+     "„…elbow bent at 90 degrees and tucked in close to the body”; „Keeping the upper arm stationary”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "rot.mis.elbowAway": {
+   "pl": "Łokieć odjeżdża od tułowia.",
+   "claim": "Częsty błąd: ruch ramienia zamiast rotacji.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/352/rotator-cuff-external-rotation/",
+     "„Keep the… elbow tucked in”"
+    ],
+    [
+     "https://www.issaonline.com/blogs/safety-and-injuries/strengthen-your-rotator-cuff",
+     "„tucked in close to the body”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "rot.slow": {
+   "pl": "Wracaj powoli.",
+   "claim": "Kontrolowana faza powrotu.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/352/rotator-cuff-external-rotation/",
+     "„…slowly lowering the weight”"
+    ],
+    [
+     "https://www.issaonline.com/blogs/safety-and-injuries/strengthen-your-rotator-cuff",
+     "„the movement should be slow and controlled”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "sb.plane": {
+   "pl": "Pochylaj się tylko w bok — bez skrętu i bez pochylania w przód.",
+   "claim": "Skłon boczny w płaszczyźnie czołowej.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
+     "Step 2: „…bend sideways… without rotating your trunk or bending forward.”"
+    ],
+    [
+     "https://www.nhs.uk/live-well/exercise/flexibility-exercises/",
+     "Sideways bend: skłon w bok „as far as is comfortable”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "skull.depthFree": {
+   "pl": "Opuszczaj, aż dłonie będą tuż nad czołem albo ramiona zaczną uciekać w tył.",
+   "claim": "Zakres opuszczania w wyciskaniu francuskim bez gryfu (hantle, guma): to samo zdanie co skull.depth, z „dłońmi” zamiast „gryfu”.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/",
+     "Step 2 (jak skull.depth; zdanie o zakresie, bez słowa o gryfie)"
+    ],
+    [
+     "https://exrx.net/WeightExercises/Triceps/BBLyingTriExt",
+     "Execution (as bar nears head); zakres ten sam przy hantlach i gumie — uogólnienie sprzętowe, uproszczenie"
+    ]
+   ],
+   "status": "wdrozony",
+   "uproszczenie": true
+  },
+  "sled.lean": {
+   "pl": "Pochyl się lekko w przód, tułów sztywny.",
+   "claim": "Pchanie sanek z pochyleniem i sztywnym tułowiem.",
+   "src": [
+    [
+     "https://www.issaonline.com/blog/post/hockey-workouts-for-lower-body-power",
+     "„…maintain a slight forward lean.”"
+    ],
+    [
+     "https://www.acefitness.org/continuing-education/prosource/february-2014/3676/strongman-training-for-your-clients/",
+     "„forward-leaning body position”; „stiff, stable spine”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "sled.legs": {
+   "pl": "Pchaj nogami — odpychaj się od podłoża krok po kroku.",
+   "claim": "Napęd z nóg, nie z rąk.",
+   "src": [
+    [
+     "https://www.issaonline.com/blog/post/hockey-workouts-for-lower-body-power",
+     "„Drive through the legs, not the upper body.”"
+    ],
+    [
+     "https://www.acefitness.org/continuing-education/prosource/february-2014/3676/strongman-training-for-your-clients/",
+     "„push into the ground one leg at a time”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "smr.mis.fast": {
+   "pl": "Za szybkie rolowanie.",
+   "claim": "Częsty błąd: zbyt szybkie rolowanie.",
+   "src": [
+    [
+     "https://www.nasm.org/resource-center/exercise-library/foam-roll-calves",
+     "Common Mistakes: „Rolling too quickly…”"
+    ],
+    [
+     "https://www.acefitness.org/resources/everyone/blog/5624/foam-rolling-101/",
+     "„Slowly roll…”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "smr.slow": {
+   "pl": "Roluj powoli, krótkimi ruchami.",
+   "claim": "Rolowanie wolne i kontrolowane.",
+   "src": [
+    [
+     "https://www.nasm.org/resource-center/exercise-library/foam-roll-calves",
+     "Step 3: „Perform slow, controlled rolling motions.”"
+    ],
+    [
+     "https://www.acefitness.org/resources/everyone/blog/5624/foam-rolling-101/",
+     "„Slowly roll the tender areas…”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "smr.tender": {
+   "pl": "Na tkliwym miejscu zwolnij i zostań chwilę.",
+   "claim": "Dłużej na miejscach tkliwych.",
+   "src": [
+    [
+     "https://www.nasm.org/resource-center/exercise-library/foam-roll-adductors",
+     "Step 3: „pausing on tender areas…”"
+    ],
+    [
+     "https://www.acefitness.org/resources/everyone/blog/5624/foam-rolling-101/",
+     "„Slowly roll the tender areas for 30 to 60 seconds.”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "st.breathe": {
+   "pl": "Oddychaj spokojnie — nie wstrzymuj oddechu.",
+   "claim": "W rozciąganiu oddychać, nie wstrzymywać oddechu.",
+   "src": [
+    [
+     "https://www.nasm.org/resource-center/exercise-library/static-butterfly-stretch",
+     "Common Mistakes: „Holding the breath during stretching”"
+    ],
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
+     "Step 2: „gently exhale and slowly bend sideways”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "st.mis.force": {
+   "pl": "Wciskanie się w rozciąganie na siłę.",
+   "claim": "Częsty błąd: przekraczanie umiarkowanego dyskomfortu.",
+   "src": [
+    [
+     "https://www.nasm.org/resource-center/exercise-library/static-butterfly-stretch",
+     "Common Mistakes: „Overstretching beyond moderate discomfort”"
+    ],
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
+     "Step 3: „…do not… push to a point of pain.”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "st.noBounce": {
+   "pl": "Trzymaj spokojnie, bez sprężynowania.",
+   "claim": "W rozciąganiu statycznym bez odbijania.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
+     "Step 3–4: „do not bounce”, „avoid bouncing”"
+    ],
+    [
+     "https://www.nasm.org/resource-center/exercise-library/static-standing-adductor-stretch",
+     "„Avoid bouncing or forcing the stretch beyond mild discomfort.”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "st.tension": {
+   "pl": "Wchodź w rozciąganie powoli, do wyraźnego napięcia — nie do bólu.",
+   "claim": "Rozciąganie statyczne do odczucia napięcia, bez bólu.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
+     "Step 3: „…to the point of tension in the stretch, but do not bounce or push to a point of pain.”"
+    ],
+    [
+     "https://www.nasm.org/resource-center/exercise-library/static-butterfly-stretch",
+     "avoid „forcing the stretch beyond mild discomfort”"
+    ]
+   ],
+   "status": "wstrzymany",
+   "powod": "Zdanie zawiera „nie do bólu”: test granicy medycznej (tests/cues.test.tsx) zabrania słów o bólu w treści wskazówek. Do decyzji: usunąć końcówkę albo świadomy wyjątek (pytanie otwarte)."
+  },
+  "tgu.arm": {
+   "pl": "Kettlebell przez cały czas nad barkiem, ręka prosta.",
+   "claim": "Ciężar utrzymany pionowo nad stawem barkowym.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/388/turkish-get-up/",
+     "„…hold it straight overhead”"
+    ],
+    [
+     "https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training",
+     "TGU: „Keep the kettlebell over the shoulder joint throughout the entire motion.”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "tgu.eyes": {
+   "pl": "Wzrok na kettlebellu przez cały ruch.",
+   "claim": "Kontrola wzrokowa ciężaru.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/388/turkish-get-up/",
+     "„Keeping the eyes on the kettlebell throughout the movement”"
+    ],
+    [
+     "https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training",
+     "„keeping your eyes on the kettlebell”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "ur.elbows": {
+   "pl": "Łokcie prowadzą ruch i są wyżej niż dłonie.",
+   "claim": "W wiosłowaniu pionowym łokieć nad przedramieniem.",
+   "src": [
+    [
+     "https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more",
+     "„Make sure each elbow stays above the forearm.”"
+    ],
+    [
+     "data:Lateral Raise (hantle)",
+     "lat.elbows (ACE #26: elbows rise ahead of forearms; ExRx: elbows above wrists) — analogia"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "vup.back": {
+   "pl": "Dolna część pleców bez wyginania i bez garbienia się.",
+   "claim": "Neutralne lędźwie w V-up i podobnych.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/242/v-ups/",
+     "Cautions: avoid „arching” or „slumping” your low back"
+    ],
+    [
+     "data:Crunch",
+     "crunch.lowBack (ACE #52, ExRx) — analogia"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "wm.arm": {
+   "pl": "Ręka z ciężarem prosta, nad barkiem.",
+   "claim": "W wiatraku ramię z kettlebellem wyprostowane w pionie.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/386/high-windmill/",
+     "„Keeping the left arm straight during the movement.”"
+    ],
+    [
+     "https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training",
+     "Windmill: „keeping it straight in the air”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "wm.eyes": {
+   "pl": "Patrz na górną dłoń.",
+   "claim": "Wzrok na ręce z ciężarem.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/386/high-windmill/",
+     "„Turn to look up at the left hand…”"
+    ],
+    [
+     "https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training",
+     "Windmill: „look at the top hand”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "wr.forearms": {
+   "pl": "Przedramiona oparte — rusza się tylko nadgarstek.",
+   "claim": "Ruch izolowany w nadgarstku.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/30/wrist-curl-flexion/",
+     "„…without releasing your grip, extending your arms or leaning…”"
+    ],
+    [
+     "https://www.issaonline.com/blogs/strength/forearm-dumbbell-workouts-to-improve-strength",
+     "„Do not lift your wrists or forearms off your legs.”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "wr.mis.lift": {
+   "pl": "Przedramiona odrywają się od podparcia.",
+   "claim": "Częsty błąd: pomaganie sobie ramionami.",
+   "src": [
+    [
+     "https://www.issaonline.com/blogs/strength/forearm-dumbbell-workouts-to-improve-strength",
+     "„Do not lift your wrists or forearms off your legs.”"
+    ],
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/30/wrist-curl-flexion/",
+     "„…without… extending your arms or leaning…”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "wr.range": {
+   "pl": "Opuść ciężar, na ile pozwala nadgarstek, potem zegnij go do góry.",
+   "claim": "Pełny zakres zgięcia/wyprostu nadgarstka.",
+   "src": [
+    [
+     "https://www.acefitness.org/resources/everyone/exercise-library/30/wrist-curl-flexion/",
+     "„allow the wrists to move into extension”"
+    ],
+    [
+     "https://www.issaonline.com/blogs/strength/forearm-dumbbell-workouts-to-improve-strength",
+     "„Begin curling or flexing your wrists upwards.” / „Lower your hands to the starting position…”"
+    ]
+   ],
+   "status": "wdrozony"
+  },
+  "ur.height": {
+   "pl": "Prowadź łokciami — unoś je mniej więcej do wysokości barków, dłonie blisko ciała.",
+   "claim": "Wiosłowanie pionowe: ruch prowadzą łokcie, idą mniej więcej do wysokości barków; dłonie zostają blisko ciała (od dołu mostka do brody/obojczyków).",
+   "src": [
+    [
+     "https://www.coachesontario.ca/articles/breaking-down-the-upright-row/",
+     "NSCA Exercise Technique Manual (przedruk), Upward movement: „At the highest bar position, the elbows should be level with or slightly higher than the shoulders and wrists.”"
+    ],
+    [
+     "https://theprehabguys.com/vimeo-video/upright-row-band/",
+     "„Drive your elbows up and out so that they're even with your hands at the top.”"
+    ],
+    [
+     "https://www.ummhealth.org/health-library/upper-body-exercises-upright-row",
+     "„…raise the weights along the midline of your body up to your collarbone.”"
+    ],
+    [
+     "Schoenfeld i in., Strength Cond J 2011;33(5), s. 26–27",
+     "„…pull through the elbows, not the wrist…”; ramiona do tuż poniżej wysokości barków"
+    ]
+   ],
+   "status": "wdrozony",
+   "uwaga": "Badacz 27.10.2026 (sprzecznosci-tekst-rysunek.md, pkt 2): ustalone; tolerancja wysokości — konwencja, bez uzasadnienia zdrowotnego w tekście. Zastępuje lat.height w rodzinie uprightRow."
+  }
+ }
+}

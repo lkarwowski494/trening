@@ -10,6 +10,7 @@
  */
 import { t } from '@/lib/i18n';
 import type { Variant } from './variants';
+import { assignAll, type Family } from './families';
 
 type CueSetData = { meta: { newIds: string[] }; items: Record<string, { b: 'own' | 'general' | 'open'; f?: string; ok?: string[]; err?: string[] }> };
 export const CUE_SETS: CueSetData = require('./cue-sets.json');
@@ -51,3 +52,18 @@ export const CUE_REQUIRES: Record<string, { why: string; ok: (v: Variant) => boo
   'sq.mis.heels': { why: 'stopa płasko na podłodze', ok: v => v.family === 'squat' && !v.p.wall },
   'sq.mis.kneesIn': { why: 'obie nogi pracują symetrycznie', ok: v => v.family === 'squat' },
 };
+
+/**
+ * Strażnik kompletności tekstów (recenzja treści 1.1, 27.10.2026, S1): rodzina o statusie `ready` nie może używać identyfikatora wskazówki, który nie ma tekstu w PL i EN
+ * (karta pomijałaby go po cichu albo pokazała surowe id). Zwraca listę „ćwiczenie: id (pl|en)”; pusta = komplet. `families` i słowniki są parametrami (test z fixture).
+ */
+export function cueTextGaps(families: Pick<Family, 'id' | 'status'>[], pl: Record<string, string>, en: Record<string, string>, assign: Record<string, string> = assignAll()): string[] {
+  const ready = new Set(families.filter(f => f.status === 'ready').map(f => f.id as string)); const out: string[] = [];
+  const has = (d: Record<string, string>, id: string) => Object.prototype.hasOwnProperty.call(d, id) && d[id].trim().length > 0;
+  for (const [k, fam] of Object.entries(assign)) {
+    if (!ready.has(fam)) continue;
+    const sel = cueSelection(k);
+    for (const id of [...sel.ok, ...sel.err]) for (const [lang, d] of [['pl', pl], ['en', en]] as const) if (!has(d, id)) out.push(`${k}: ${id} (${lang})`);
+  }
+  return out;
+}

@@ -100,6 +100,7 @@ describe('regresja: tekst częstego błędu (bez gołego id wskazówki)', () => 
       for (const [, k] of DATA_KEYS) for (const e of errorsOf(figureSpec(k)!)) { const x = errorText(e.cue); expect([k, e.cue, x !== e.cue && x.length > 8 && !/^[a-z]+\.[A-Za-z.]+$/.test(x)]).toEqual([k, e.cue, true]); }
     }
     applyLang('pl'); expect(errorText('hang.noSwing')).toBe('Bujanie się i wymachy nogami.'); applyLang('en'); expect(errorText('hang.noSwing')).toBe('Swinging and kicking the legs.');
+    expect(GAP_CUES).toEqual([]); /* wszystkie teksty błędów są w słowniku wskazówek (27.10.2026) */
     for (const id of GAP_CUES) { expect([id, cueDict('pl')[id]]).toEqual([id, undefined]); } /* gdy tłumacz doda zdanie do słownika wskazówek, usuń wpis z GAP_TEXT */
     applyLang('pl'); expect(errorText('pu.partial')).toBe(cueText('pu.partial', 'pl'));
   });
