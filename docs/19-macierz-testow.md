@@ -112,7 +112,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Dni cardio w planie | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych. | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni treningowe w tygodniu | components/OwnPlan.tsx | tests/gen-days-ui.test.tsx, tests/gen-general-ui.test.tsx, tests/generator-ui.test.tsx +1 |
-| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +301 |
+| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +302 |
 | Do upadku (F) | app/template/[id].tsx | tests/scenario-full.test.tsx |
 | dodaj ciężar | components/LoadEditor.tsx | tests/audit-0.10-ui.test.tsx, tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx +1 |
 | Dodaj notatkę | components/WorkoutBlocks.tsx | tests/scenario-full.test.tsx |
@@ -449,7 +449,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | {n} kilokalorii aktywnych | lib/healthRead.ts | tests/health-read-ui.test.tsx, tests/health-read.test.ts |
 | {n} km | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/audit-m1-lok07-01-imperial-dist.test.tsx, tests/csv-import-logic.test.ts +12 |
 | {n} m | lib/state/time.ts | (tylko parametry) |
-| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +332 |
+| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +333 |
 | {n} rozgrz. | app/history/edit/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/scenario-full.test.tsx |
 | {n} s | lib/state/time.ts | (tylko parametry) |
 | {n} yd | lib/state/time.ts | tests/architecture-limits.test.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +72 |
@@ -858,7 +858,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | nic więcej do zrobienia | lib/live.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/voice.test.ts +4 |
 | Nic więcej do zrobienia — możesz zakończyć trening. | lib/timer.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst.test.ts, tests/timer-logic.test.ts |
 | Nic więcej do zrobienia (część pominięta) | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/skip-today.test.tsx |
-| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +327 |
+| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +328 |
 | Nie ma nowych treningów do dodania — wszystkie są już w historii. | app/more/import.tsx | tests/csv-import-ui.test.tsx |
 | Nie ma takiego ćwiczenia. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Nie ma takiego miejsca. | app/more/location/[id].tsx | tests/matrix-ui.test.tsx |
@@ -1748,7 +1748,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/contract.applyDelta | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-poza2.test.ts, tests/figures-v2-przesuniecie-boczne.test.ts |
 | figures/v2/contract.neutralFootPitch | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
 | figures/v2/contract.toPoseIn | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-poza2.test.ts, tests/figures-v2-przesuniecie-boczne.test.ts |
-| figures/v2/contract.keyframeFrame | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts +1 |
+| figures/v2/contract.keyframeFrame | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts +2 |
 | figures/v2/contract.validatePose | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts +1 |
 | figures/v2/contract.describeContract | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts +1 |
 | figures/v2/contractExample.keyFrameOf | lib/figures/v2/contractExample.ts | tests/figures-v2-contract.test.ts |
@@ -1805,13 +1805,13 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/guides.guidesFor | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx |
 | figures/v2/guides.trailShapes | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-styk.test.tsx |
 | figures/v2/math.rad | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/motyw.test.tsx |
-| figures/v2/math.deg | lib/figures/v2/math.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-engine.test.ts, tests/figures-v2-ui.test.tsx |
+| figures/v2/math.deg | lib/figures/v2/math.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-engine.test.ts, tests/figures-v2-ui.test.tsx +1 |
 | figures/v2/math.clamp | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/math.add | lib/figures/v2/math.ts | tests/architecture-limits.test.ts, tests/audit-0.10-tst.test.ts, tests/audit-k1-fala2b.test.tsx +30 |
-| figures/v2/math.sub | lib/figures/v2/math.ts | tests/access.test.ts, tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx +29 |
+| figures/v2/math.sub | lib/figures/v2/math.ts | tests/access.test.ts, tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx +30 |
 | figures/v2/math.mul | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts |
-| figures/v2/math.dot | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-poza2.test.ts |
-| figures/v2/math.len | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts +4 |
+| figures/v2/math.dot | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-poza2.test.ts, tests/figury-recenzja-p3.test.ts |
+| figures/v2/math.len | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts +5 |
 | figures/v2/math.dist | lib/figures/v2/math.ts | tests/audit-m1-025-muscle-caption.test.tsx, tests/figures-v2-engine.test.ts, tests/figures-v2-poza2.test.ts +3 |
 | figures/v2/math.norm | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figures.test.tsx, tests/intro.test.tsx +1 |
 | figures/v2/math.sag | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts |
@@ -1961,7 +1961,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | i18n.decimalComma | lib/i18n.ts | tests/i18n-variants.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts +7 |
 | i18n.setPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
 | i18n.isPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
-| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/app.tsx, tests/asc-kontrola.test.ts +195 |
+| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/app.tsx, tests/asc-kontrola.test.ts +196 |
 | i18n.lbl | lib/i18n.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx +9 |
 | i18n.tp | lib/i18n.ts | tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts, tests/audit-k1-bl-mer.test.tsx +28 |
 | i18n.exName | lib/i18n.ts | tests/audit-0.10-lang-ui.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +30 |
