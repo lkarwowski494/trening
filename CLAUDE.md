@@ -22,6 +22,9 @@
 - Liczby (progi, limity, czasy) w jednym miejscu; dokumenty generowane z kodu, nie przepisywane ręcznie (wzór: `gen.mjs --check`).
 - Dokumentacja w `docs/` (po polsku): stan prac i decyzje właściciela zapisuj tam, z datą. Specyfikacja w toku: E2 —
   `docs/14-e2-specyfikacja.md` (decyzje: docs/13 A5 i docs/14 pkt 9). Nie zgaduj liczb nieznanego pochodzenia — oznacz jako otwarte.
+  Każdy wpis decyzji w docs/18 ma pole `[wdrożenie: kod | bez kodu — powód | zastąpione DD.MM.RRRR | otwarte → ID | odłożone → wersja]`, a „kod” —
+  `[test: ścieżka]` (test zawiera datę decyzji) albo `[bez testu: powód]`; decyzja odwracająca stan pilnowany testem zmienia ten test w tym samym
+  commicie; `npm run check:decyzje` w verify i verify:docs (DEC-02 a, 27.10.2026; powód: decyzja z 23.10 utknęła bez sygnału, lekcja w docs/40).
 - Backlog bez priorytetu (decyzja właściciela 08.10.2026, lista w `docs/21`, sekcja „Backlog bez priorytetu”): na pytanie „co dalej” wspominaj
   o nim tylko zbiorczo jednym zdaniem („mamy też kilka rzeczy w backlogu bez priorytetu — chcesz je przejrzeć?”), bez wymieniania pozycji z nazwy,
   dopóki właściciel nie poprosi.
