@@ -2316,6 +2316,10 @@
   "en": "Muscle map: no sets in this period."
  },
  {
+  "pl": "Marsz w podpór",
+  "en": "Walking out"
+ },
+ {
   "pl": "Masa",
   "en": "Muscle"
  },
@@ -4996,6 +5000,10 @@
   "en": "Stopwatch running"
  },
  {
+  "pl": "Stopy do dłoni",
+  "en": "Feet to hands"
+ },
+ {
   "pl": "stos na {v}",
   "en": "stack at {v}"
  },
@@ -6361,6 +6369,10 @@
   "en": "Generate templates and plan"
  },
  {
+  "pl": "Wygięcie",
+  "en": "Arching"
+ },
+ {
   "pl": "Wygląd",
   "en": "Appearance"
  },
@@ -6671,6 +6683,10 @@
  {
   "pl": "Zamknij",
   "en": "Close"
+ },
+ {
+  "pl": "Zaokrąglenie",
+  "en": "Rounding"
  },
  {
   "pl": "Zapamiętać dla tego ćwiczenia?",
