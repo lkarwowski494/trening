@@ -1,0 +1,61 @@
+{
+ "baza": "main 4b77c9f + naprawa-figury-1-0 (runda 2)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Front Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Reverse Band Box Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Reverse Band Power Squat",
+   "rodzina": "squat",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Reverse Band Bench Press",
+   "rodzina": "bench_press",
+   "widoki": [
+    "side",
+    "top"
+   ]
+  },
+  {
+   "cwiczenie": "Reverse Band Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Reverse Band Sumo Deadlift",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  },
+  {
+   "cwiczenie": "Deadlift (hantle)",
+   "rodzina": "hinge",
+   "widoki": [
+    "side",
+    "front"
+   ]
+  }
+ ]
+}
