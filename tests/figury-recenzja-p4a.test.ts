@@ -50,7 +50,7 @@ describe('olympic nr 1: sztanga nie dochodzi do wysokości przyjęcia w staniu n
   });
   test('Clean and Jerk: po zarzucie nogi się prostują, potem ugięcie i podrzut (nie rusza wprost z przysiadu)', () => {
     const s = probki(OLY['Clean and Jerk']); const cap = s.findIndex((x, i) => i > wyprost(s) && x.kolano >= 60); expect(cap).toBeGreaterThan(0); /* przysiad po zarzucie */
-    const wstanie = s.findIndex((x, i) => i > cap && x.kolano <= 20); expect(wstanie).toBeGreaterThan(cap); /* wstanie */
+    const wstanie = s.findIndex((x, i) => i > cap && x.kolano <= 20 && !x.powietrze && x.chwytY < x.barkiY + 25); expect(wstanie).toBeGreaterThan(cap); /* wstanie ze sztangą na barkach, stopy na podłodze (przed poprawką podrzut ruszał wprost z przysiadu: stopy w powietrzu) */
     const ugiecie = s.findIndex((x, i) => i > wstanie && x.kolano >= 30); expect(ugiecie).toBeGreaterThan(wstanie); /* ugięcie przed wybiciem */
     expect(s[N].kolano).toBeGreaterThan(60); /* nożyce na końcu */
   });
@@ -135,9 +135,14 @@ describe('kb_ballistic nr 4: Kettlebell Sumo High Pull — ciężar na wysokośc
   });
 });
 
-describe('regresja: pozy bez zmian', () => {
-  const BEZ_ZMIAN_OLY = ['Power Jerk', 'Split Jerk', 'Jerk Dip Squat', 'Snatch Balance', 'Muscle Snatch'];
-  test('ćwiczenia z oceną OK (olympic) mają tę samą liczbę klatek co wzorzec i ruch w zakresie', () => {
-    for (const cw of BEZ_ZMIAN_OLY) expect(OLY[cw]).toBeDefined();
+/** Skróty SHA-256 póz ćwiczeń, których recenzja p4a nie ruszyła, z origin/integracja-1-1 (przed poprawkami). */
+const BEZ_ZMIAN: Record<string, Record<string, string>> = {"olympic": {"Power Jerk": "567e26a95418122b", "Split Jerk": "6d0aeb6142ed1ca3", "Jerk Dip Squat": "3a72def5b2f2fc72", "Snatch Balance": "d3e23e6d652adede", "Muscle Snatch": "6c1ee32d2fb5dcb7"}, "kb_ballistic": {"Kettlebell Clean": "ed22e6f99459d35a", "Double Kettlebell Clean": "eb9f533d51721320", "Dumbbell Clean": "201cff54e2ce4914", "Kettlebell Snatch": "a15c1a39149ef3bc", "Double Kettlebell Snatch": "26565c5a9f432d0f", "Snatch (hantel)": "b9738fee613e0532", "Double Kettlebell Jerk": "02a106031cd4bdc7", "One-Arm Kettlebell Jerk": "b151c63125489ff1", "One-Arm Kettlebell Split Jerk": "002a539901d836cc", "One-Arm Kettlebell Clean and Jerk": "ad9e669c5fd813fd"}};
+describe('regresja: pozy bez zmian (inne ćwiczenia obu rodzin)', () => {
+  test.each(Object.entries(BEZ_ZMIAN).flatMap(([r, m]) => Object.entries(m).map(([cw, h]) => [r, cw, h] as const)))('%s / %s: poza bajt w bajt jak przed poprawkami', (r, cw, h) => {
+    const p = (r === 'olympic' ? OLY : KB)[cw]; expect(createHash('sha256').update(JSON.stringify(p)).digest('hex').slice(0, 16)).toBe(h);
+  });
+  test('poprawione ćwiczenia różnią się od wersji sprzed poprawek, a rodziny mają komplet póz', () => {
+    expect(Object.keys(OLY)).toHaveLength(23); expect(Object.keys(KB)).toHaveLength(16);
+    expect(Object.keys(BEZ_ZMIAN.olympic)).toHaveLength(5); expect(Object.keys(BEZ_ZMIAN.kb_ballistic)).toHaveLength(10);
   });
 });
