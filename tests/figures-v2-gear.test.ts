@@ -205,7 +205,7 @@ describe('propsFrom: rekwizyty ze sprzętu i chwytów (sprzęt trzymany podąża
   test.each([...BAND_MOUNT])('guma: mocowanie „%s” — linie gumy od właściwego punktu do właściwego celu (macierz po BAND_MOUNT)', m => {
     const A = { R: [5, 20, 9] as V3, L: [6, 22, -9] as V3 }; const bar = { rodzaj: 'sztanga' as const, x: 3, y: 90, trzyma: 'obie' as const };
     const out = propsFrom([bar, { rodzaj: 'guma', mocowanie: m, x: -60, y: 110, z: 5 }], G, A).filter(p => p.k === 'band');
-    const want = { zaczep: [[[-60, 110, 5], G.R], [[-60, 110, 5], G.L]], stopy: [[[5, 0, 9], G.R], [[6, 0, -9], G.L]], kostki: [[A.R, A.L]], dlonie: [[G.R, G.L]], sztanga: [[[-60, 110, -EQUIP.chainZ], [3, 90, -EQUIP.chainZ]], [[-60, 110, EQUIP.chainZ], [3, 90, EQUIP.chainZ]]] }[m];
+    const want = { zaczep: [[[-60, 110, 5], G.R], [[-60, 110, 5], G.L]], stopy: [[[5, 0, 9], G.R], [[6, 0, -9], G.L]], kostki: [[A.R, A.L]], zaczep_kostki: [[[-60, 110, 5], A.R], [[-60, 110, 5], A.L]], dlonie: [[G.R, G.L]], sztanga: [[[-60, 110, -EQUIP.chainZ], [3, 90, -EQUIP.chainZ]], [[-60, 110, EQUIP.chainZ], [3, 90, EQUIP.chainZ]]] }[m];
     expect(out.map(p => p.k === 'band' ? [p.from, p.to] : null)).toEqual(want);
     for (const v of ['side', 'front', 'top'] as View[]) { const sh = propShapes(out, v).filter(x => x.id === 'band'); expect(sh.length).toBe(want.length); for (const x of sh) expect(x.k === 'line' && x.dash).toBeTruthy(); }
     expect(equipColliders(out)).toEqual([]); /* guma bez kolidera */
@@ -274,7 +274,7 @@ describe('propsFrom: rekwizyty ze sprzętu i chwytów (sprzęt trzymany podąża
     expect(benchHip(0, 43)).toEqual([0, 43 + BENCH.padBack, 0]); const h30 = benchHip(30, 43); expect(h30[0]).toBeCloseTo(BENCH.padBack * Math.sin(Math.PI / 6), 9); expect(h30[1]).toBeCloseTo(43 + BENCH.padBack * Math.cos(Math.PI / 6), 9);
     const h75 = benchHip(75, 45); expect(h75[0]).toBeCloseTo(7.8267, 3); expect(h75[1]).toBeCloseTo(55.2, 3); const th = 75 * Math.PI / 180; /* odległość od siedziska i od oparcia = padBack */
     expect(h75[1] - 45).toBeCloseTo(BENCH.padBack, 6); expect(h75[0] * Math.sin(th) + (h75[1] - 45) * Math.cos(th)).toBeCloseTo(BENCH.padBack, 6);
-    expect(gearFieldIssues({ rodzaj: 'lawka', siedzisko: 10 })).toEqual(['sprzęt: siedzisko (długość siedziska) = 10 cm poza przedziałem 20–70 cm']);
+    expect(gearFieldIssues({ rodzaj: 'lawka', siedzisko: 1 })).toEqual(['sprzęt: siedzisko (długość siedziska) = 1 cm poza przedziałem 2–70 cm']); expect(gearFieldIssues({ rodzaj: 'lawka', siedzisko: 2 })).toEqual([]); /* 2 cm = samo oparcie maszyny (27.10.2026) */
     expect(gearFieldIssues({ rodzaj: 'dzwignia', dlugosc: 10 })).toEqual(['sprzęt: dlugosc ramienia dźwigni = 10 cm poza przedziałem 20–150 cm']); expect(gearFieldIssues({ rodzaj: 'dzwignia', tryb: 'prosta', dlugosc: 5 })).toEqual(['sprzęt: dlugosc skoku prowadnicy = 5 cm poza przedziałem 10–150 cm']);
     expect(gearFieldIssues({ rodzaj: 'dzwignia', kat: 30 })).toEqual(['sprzęt: pole „kat” (kąt prowadnicy) dotyczy tylko dźwigni w trybie „prosta”']); expect(gearFieldIssues({ rodzaj: 'dzwignia', tryb: 'prosta', kat: 30 })).toEqual([]); expect(gearFieldIssues({ rodzaj: 'hantel', tryb: 'obrot' })[0]).toContain('pole „tryb” nie dotyczy rodzaju „hantel”');
   });
