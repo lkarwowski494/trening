@@ -256,7 +256,7 @@ const PRZED: Record<string, Record<string, string>> = {
     "Bent Press": '9fa40088e109',
   },
 };
-const POPRAWIONE: Record<string, string[]> = {"plyo":["Split Jump","Alternate Leg Diagonal Bound","Lateral Bound","Side to Side Box Shuffle","Single Leg Push-Off","Alternate Leg Push-Off"],"sled_throw":["Sled Push","Sled Drag (Harness)"],"strongman":["Yoke Walk"],"core_hang":["Toes to Bar"],"core_standing":["Kettlebell Windmill","Double Kettlebell Windmill","Bent Press"]};
+const POPRAWIONE: Record<string, string[]> = {"plyo":["Depth Jump","Split Jump","Alternate Leg Diagonal Bound","Lateral Bound","Side to Side Box Shuffle","Single Leg Push-Off","Alternate Leg Push-Off"],"sled_throw":["Sled Push","Sled Drag (Harness)"],"strongman":["Yoke Walk"],"core_hang":["Toes to Bar"],"core_standing":["Kettlebell Windmill","Double Kettlebell Windmill","Bent Press"]};
 describe('inne pozy bez zmian (regresja)', () => {
   const odcisk = (d: PoseData) => crypto.createHash('sha1').update(JSON.stringify(d)).digest('hex').slice(0, 12);
   const pary = FILES.flatMap((f) => Object.entries(PRZED[f]).map(([c, h]) => ({ f, c, h, zmiana: (POPRAWIONE[f] ?? []).includes(c) })));
