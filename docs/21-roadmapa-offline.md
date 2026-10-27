@@ -137,6 +137,9 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - **Prośba o ocenę w sklepie** — systemowe okno iOS (SKStoreReviewController / expo-store-review), po pozytywnym zdarzeniu (np. nowy rekord
   albo kilka ukończonych treningów), nigdy w zamian za nagrodę (Apple 5.6.1/3.2.2). **[OTWARTE]**: dokładny moment i odstęp między prośbami.
 
+### Backlog 1.0.1 — przekład (recenzja Z-02, 27.10.2026)
+- Poprawki nieblokujące z recenzji lokalizacji (`docs/przekazanie/notatki/audyt-1-0/Z02-recenzja-lokalizacji.md` na gałęzi `przekazanie-konta`): de „Apple-Account” → „Apple Account” (do sprawdzenia przez native speakera); el „Το Pro αίρει το όριο” → „Με το Pro δεν υπάρχει όριο” oraz okno zgody Zdrowia (NSHealth*) na „σας”; lt „nepadarysi” → „nepadarysite” i „pakeistum” → „pakeistumėte”; cs/sk „máš” → „máte” (2 klucze w każdym języku); id zgoda Zdrowia zegarka „perangkatmu” → „perangkat Anda”; id: pozostałe teksty o ćwiczeniach z „latihan” zamiast „gerakan” (m.in. „Pominąć ćwiczenie?”, „Dodano treningi: {n}, nowe ćwiczenia: {m}.”); słownik: es-419 „trening” → „Entrenamiento”, zakazane „entreno” (najpierw sprawdzić 4 wystąpienia; wpis z testem).
+
 ### Backlog bez priorytetu (decyzja właściciela 08.10.2026)
 Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właściciel nie poprosi o listę (CLAUDE.md).
 - Wydanie natywne — sekcja 4n niżej (przyciski przerwy na ekranie blokady, widżet, kontrolka w Centrum sterowania).
