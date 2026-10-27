@@ -388,3 +388,4 @@ techniqueatlas: PR https://github.com/lkarwowski494/techniqueatlas/pull/1 (CI zi
 - 15:03 UTC 27.10: (koordynator) TELEFON T-06 OK.
 - 15:05 UTC 27.10: (koordynator) TELEFON T-07 OK.
 - 15:05 UTC 27.10: (agent teksty CI) gałąź teksty-wskazowek-1-1, SHA afbfc138 — naprawa 2 zestawów (forbidden-names Eleiko w cues-zestawy; skroty-przekladu: wyjątki + UPDATE_SKROTY); NASTĘPNY KROK: koordynator sprawdza tests.yml; po przekładzie skull.depth usunąć wyjątek w skroty-przekladu.json
+- 15:08 UTC 27.10: (koordynator) TELEFON T-13, T-14 OK. teksty-wskazowek-1-1 @ afbfc138 (poprawka CI: wyjątek forbidden-names dla rejestru źródeł, skroty-przekladu) — CI do sprawdzenia, potem G6 partia 2.
