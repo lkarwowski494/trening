@@ -3,6 +3,7 @@
 // Zakres biodra 133° ogranicza podniesienie prostych nóg: przy toes to bar tułów odchyla się do tyłu (pochylenie ujemne), a kąt uda liczony jest od osi tułowia.
 // Błąd katalogu hang.noSwing (bujanie): rysowany tylko po wdrożeniu opisu w pl.json (dotąd pominięty z powodem w PRZYBLIZENIA).
 import { v2, BODY, R, r1, lerp, ease, HIP, K, poza, PODLOGA, S, bladZTrajektorii, bledyZOpisem, kluczeRownoDroznie } from './dol.mjs';
+import { wyjatkiOpisu } from './dyn.mjs';
 
 export const RODZINA = 'core_hang';
 const US = [0, 1, 2, 3, 4, 5, 6, 7].map((k) => Math.round(k / 7 * 1000) / 1000);
@@ -11,6 +12,7 @@ const nrm = (v) => { const l = Math.hypot(...v) || 1; return v.map((x) => x / l)
 const poleKolana = (hip, ankle, knee) => { const mid = hip.map((v, i) => (v + ankle[i]) / 2); const d = knee.map((v, i) => v - mid[i]); const l = Math.hypot(...d) || 1; return d.map((v) => r1(v / l * 100) / 100); };
 export const WYJATKI = {};
 export const PRZYBLIZENIA = {};
+export const WYJATKI_OPISU = wyjatkiOpisu(RODZINA); /* hang.noSwing bez tekstu w pl.json: jawny wyjątek opisu w manifeście podglądu (jak w pozostałych rodzinach) */
 const D = 63.4;
 
 /** Noga z FK w płaszczyźnie strzałkowej: biodro, kąt uda ang (od +x, 270 = w dół), zgięcie kolana k (stopnie, goleń zawija się do tyłu). */
