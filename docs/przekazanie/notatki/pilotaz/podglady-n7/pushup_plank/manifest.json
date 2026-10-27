@@ -1,0 +1,137 @@
+{
+ "rodzina": "pushup_plank",
+ "wygenerowano": "2026-10-27T04:52:51.535Z",
+ "wyjatki": {},
+ "przyblizenia": {
+  "Decline Push Up": "uproszczenie: stopy na podwyższeniu o wysokości typowej ławki (43 cm, figury-sprzet.json → lawka_regulowana.seatTop); źródła w repo nie podają wysokości podwyższenia w tym ćwiczeniu (dane aplikacji: „feet on a bench or box”), więc liczba jest konwencją rysunku, do potwierdzenia przez badacza; dłonie 13 cm za barkami w górze, żeby przedramię w dole było blisko pionu bez obniżania podparcia stóp"
+ },
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Decline Push Up",
+   "obraz": "Decline-Push-Up-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -70,
+     "x1": 14,
+     "top": 43
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -6,
+     "max": 2.7
+    },
+    "knee": {
+     "min": 17.3,
+     "max": 18.9
+    },
+    "ankle": {
+     "min": 21.8,
+     "max": 35.5
+    },
+    "elbow": {
+     "min": 11.6,
+     "max": 146
+    },
+    "shSag": {
+     "min": 10.8,
+     "max": 72.3
+    },
+    "shElev": {
+     "min": 20.5,
+     "max": 72.3
+    },
+    "shAbd": {
+     "min": 4.7,
+     "max": 19.2
+    }
+   },
+   "bledy_w_pozie": [
+    "push.mis.partial"
+   ],
+   "bledy_wskazowki_id": [
+    "push.mis.partial"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: ławka płaska (sprzet: rodzaj \"lawka\", kat -5…5°) albo skrzynia albo stopień (sprzet: rodzaj \"skrzynia\")",
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Dłonie na podłodze na szerokość barków lub trochę szerzej, ciało proste od głowy do pięt.",
+     "Napnij brzuch, żeby tułów był sztywny."
+    ],
+    "bledy_wskazowki": [
+     "push.mis.partial (Skracanie ruchu — za płytko w dół albo bez wyprostu na górze.)"
+    ]
+   },
+   "reguly_sensu": [
+    "cialo_w_linii",
+    "pompka_zakres",
+    "klatka_przy_dloniach"
+   ],
+   "przyblizenie": "uproszczenie: stopy na podwyższeniu o wysokości typowej ławki (43 cm, figury-sprzet.json → lawka_regulowana.seatTop); źródła w repo nie podają wysokości podwyższenia w tym ćwiczeniu (dane aplikacji: „feet on a bench or box”), więc liczba jest konwencją rysunku, do potwierdzenia przez badacza; dłonie 13 cm za barkami w górze, żeby przedramię w dole było blisko pionu bez obniżania podparcia stóp"
+  }
+ ],
+ "zmiany_sprzetu": [
+  {
+   "cwiczenie": "Decline Push Up",
+   "sprzet_przed": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -70,
+     "x1": 14,
+     "top": 10
+    }
+   ],
+   "sprzet_po": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -70,
+     "x1": 14,
+     "top": 43
+    }
+   ],
+   "cecha_rozpoznawcza_przed_i_po": "Cecha: stopy na ławce albo skrzyni (dane aplikacji: „feet on a bench or box”), więc ciało jest poziome albo opada ku głowie, a barki w dole są wyraźnie niżej niż stopy. Przed (n6): skrzynia 10 cm, kostki 10 cm wyżej niż w zwykłej pompce, ciało w górze wznosi się ku głowie o 15,5° (zwykła pompka 20,1°), cecha prawie niewidoczna. Po (n7): skrzynia 43 cm = siedzisko typowej ławki z data/zrodla/figury-sprzet.json (UPROSZCZENIE: źródła w repo nie podają wysokości podwyższenia, więc liczba jest konwencją rysunku, do potwierdzenia przez badacza). Dlaczego zmiana: poprzednia poprawka kąta przedramienia obniżyła podparcie; teraz kąt ustawia położenie dłoni (13 cm za barkami w górze), nie wysokość stóp."
+  }
+ ],
+ "lista_kontrolna": [
+  "P3: każda zmiana sprzętu (wysokość skrzyni, położenie zaczepu, ławka) w poprawce trafia do recenzenta z opisem „dlaczego” i z porównaniem cechy rozpoznawczej przed i po (pole zmiany_sprzetu); recenzent ocenia, czy cecha ćwiczenia została zachowana, nie tylko czy liczba reguły się zgadza"
+ ],
+ "wyjatki_opisu": {
+  "ro.back": "zestaw ogólny (cue-sets.json) odwołuje się do wskazówki bez tekstu w lib/cues/text/*.json; tekst do napisania przez badacza, przekład przez tłumacza"
+ },
+ "zgodnosc_manifestu": [],
+ "na_krawedzi": {}
+}
