@@ -1,0 +1,303 @@
+{
+ "rodzina": "lunge",
+ "wygenerowano": "2026-10-27T15:08:38.683Z",
+ "wyjatki": {},
+ "przyblizenia": {
+  "Bulgarian Split Squat (hantle)": "przybliżenie: tylna stopa leży GRZBIETEM na ławce wysokości 30 cm (oś kostka→palce opada 30° do siedziska, palce na blacie ± 3 cm; reguła głębokości: tylne kolano ≤ 20 cm), zakres kostki (zgięcie podeszwowe ok. 68°) i biodra z deklaracji zakres_wyjatki",
+  "Bulgarian Split Squat (sztanga)": "przybliżenie: jak Bulgarian Split Squat (hantle)",
+  "Smith Machine Bulgarian Split Squat": "przybliżenie: jak Bulgarian Split Squat (hantle); prowadnica w osi sztangi"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Bulgarian Split Squat (hantle)",
+   "obraz": "Bulgarian-Split-Squat-hantle--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -172.7,
+     "x1": 150
+    },
+    {
+     "rodzaj": "hantel"
+    },
+    {
+     "rodzaj": "lawka",
+     "x": -127.7,
+     "top": 30,
+     "kat": 0,
+     "dlugosc": 40,
+     "siedzisko": 20
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -34.2,
+     "max": 100
+    },
+    "knee": {
+     "min": 14,
+     "max": 95
+    },
+    "ankle": {
+     "min": -67.7,
+     "max": 0.2
+    },
+    "elbow": {
+     "min": 24.4,
+     "max": 25.3
+    },
+    "shSag": {
+     "min": 7.8,
+     "max": 7.8
+    },
+    "shElev": {
+     "min": 20.5,
+     "max": 20.9
+    },
+    "shAbd": {
+     "min": 19,
+     "max": 19.5
+    }
+   },
+   "bledy_w_pozie": [
+    "lunge.mis.kneeIn"
+   ],
+   "bledy_wskazowki_id": [
+    "lunge.mis.kneeIn"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: hantle (sprzet: rodzaj \"hantel\") + ławka płaska (sprzet: rodzaj \"lawka\", kat -5…5°) albo skrzynia albo stopień (sprzet: rodzaj \"skrzynia\")",
+     "dwa przyrządy"
+    ],
+    "ruch": [
+     "Opuść się, uginając przednie kolano i biodro, aż tylne kolano będzie tuż nad podłogą; wstań, odpychając się przednią nogą."
+    ],
+    "bledy_wskazowki": [
+     "lunge.mis.kneeIn (Przednie kolano uciekające do środka.)"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_proste",
+    "kolano_nad_stopa",
+    "glebokosc_wykroku"
+   ],
+   "przyblizenie": "przybliżenie: tylna stopa leży GRZBIETEM na ławce wysokości 30 cm (oś kostka→palce opada 30° do siedziska, palce na blacie ± 3 cm; reguła głębokości: tylne kolano ≤ 20 cm), zakres kostki (zgięcie podeszwowe ok. 68°) i biodra z deklaracji zakres_wyjatki"
+  },
+  {
+   "cwiczenie": "Bulgarian Split Squat (sztanga)",
+   "obraz": "Bulgarian-Split-Squat-sztanga--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -172.7,
+     "x1": 150
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    },
+    {
+     "rodzaj": "lawka",
+     "x": -127.7,
+     "top": 30,
+     "kat": 0,
+     "dlugosc": 40,
+     "siedzisko": 20
+    },
+    {
+     "rodzaj": "slupek",
+     "x": -82.1,
+     "h": 150,
+     "hak": 135
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -34.2,
+     "max": 100
+    },
+    "knee": {
+     "min": 14,
+     "max": 95
+    },
+    "ankle": {
+     "min": -67.7,
+     "max": 0.2
+    },
+    "elbow": {
+     "min": 146.6,
+     "max": 146.6
+    },
+    "shSag": {
+     "min": -4.1,
+     "max": -4.1
+    },
+    "shElev": {
+     "min": 4.6,
+     "max": 4.6
+    },
+    "shAbd": {
+     "min": 2,
+     "max": 2
+    }
+   },
+   "bledy_w_pozie": [
+    "lunge.mis.kneeIn"
+   ],
+   "bledy_wskazowki_id": [
+    "lunge.mis.kneeIn"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga + stojak (sprzet: rodzaj \"slupek\" z polem hak) + ławka płaska (sprzet: rodzaj \"lawka\", kat -5…5°) albo skrzynia albo stopień (sprzet: rodzaj \"skrzynia\")"
+    ],
+    "ruch": [
+     "Opuść się, uginając przednie kolano i biodro, aż tylne kolano będzie tuż nad podłogą; wstań, odpychając się przednią nogą.",
+     "Przednie kolano w linii palców stopy."
+    ],
+    "bledy_wskazowki": [
+     "lunge.mis.kneeIn (Przednie kolano uciekające do środka.)"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_proste",
+    "kolano_nad_stopa",
+    "glebokosc_wykroku"
+   ],
+   "przyblizenie": "przybliżenie: jak Bulgarian Split Squat (hantle)"
+  },
+  {
+   "cwiczenie": "Smith Machine Bulgarian Split Squat",
+   "obraz": "Smith-Machine-Bulgarian-Split-Squat-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -172.7,
+     "x1": 150
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    },
+    {
+     "rodzaj": "lawka",
+     "x": -127.7,
+     "top": 30,
+     "kat": 0,
+     "dlugosc": 40,
+     "siedzisko": 20
+    },
+    {
+     "rodzaj": "smith",
+     "x": -49.9,
+     "h": 200
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -34.2,
+     "max": 100
+    },
+    "knee": {
+     "min": 14,
+     "max": 95
+    },
+    "ankle": {
+     "min": -67.7,
+     "max": 0.2
+    },
+    "elbow": {
+     "min": 146.6,
+     "max": 146.6
+    },
+    "shSag": {
+     "min": -4.1,
+     "max": -4.1
+    },
+    "shElev": {
+     "min": 4.6,
+     "max": 4.6
+    },
+    "shAbd": {
+     "min": 2,
+     "max": 2
+    }
+   },
+   "bledy_w_pozie": [
+    "lunge.mis.kneeIn"
+   ],
+   "bledy_wskazowki_id": [
+    "lunge.mis.kneeIn"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: suwnica Smitha (sprzet: rodzaj \"smith\" + sztanga podążająca za chwytem) + ławka płaska (sprzet: rodzaj \"lawka\", kat -5…5°) albo skrzynia albo stopień (sprzet: rodzaj \"skrzynia\")"
+    ],
+    "ruch": [
+     "Opuść się, uginając przednie kolano i biodro, aż tylne kolano będzie tuż nad podłogą; wstań, odpychając się przednią nogą.",
+     "Przednie kolano w linii palców stopy."
+    ],
+    "bledy_wskazowki": [
+     "lunge.mis.kneeIn (Przednie kolano uciekające do środka.)"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy_proste",
+    "kolano_nad_stopa",
+    "glebokosc_wykroku"
+   ],
+   "przyblizenie": "przybliżenie: jak Bulgarian Split Squat (hantle); prowadnica w osi sztangi"
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}

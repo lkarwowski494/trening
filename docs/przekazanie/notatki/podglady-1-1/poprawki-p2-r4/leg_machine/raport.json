@@ -1,0 +1,10 @@
+{
+ "rodzina": "leg_machine",
+ "przeszly": [
+  "Leg Press",
+  "Hack Squat",
+  "Pendulum Squat",
+  "Lying Machine Squat"
+ ],
+ "nie": {}
+}
