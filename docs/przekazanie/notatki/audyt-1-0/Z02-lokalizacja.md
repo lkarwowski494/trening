@@ -146,3 +146,20 @@ Poprawki tekstu źródłowego (PL/EN → potem przekład; programista):
 ## 7. Podsumowanie
 
 Przeczytane ręcznie ok. 9 700 tekstów (205 kluczy UI × 34, 76 wskazówek × 33, InfoPlist i Live Activity × 35), automatycznie całość (≈ 70 000 tekstów); poprawek: 132 blokujących (4 wskazówki × 33 języki) + 41 pozycji nieblokujących (≈ 70 tekstów) + 3 zmiany tekstu źródłowego; pytań do native speakerów: 8.
+
+
+## 8. Uzupełnienie 27.10.2026 — stan `main` 4b77c9f (1.0.0), agent „1.0 App Store”
+
+**Pkt 2 (blokujące) — wprowadzone na main** (L-038): 4 wskazówki × 32 pliki zgodne z tabelą wyżej; strażnik `tests/skroty-przekladu.test.ts` pilnuje źródła i przekładu wskazówek oraz InfoPlist.
+
+**Po przeglądzie 26.10 zmieniło się 5 tekstów źródłowych UI** (6ea116a → 4b77c9f): „zainstaluj najnowszą wersję z App Store” (zamiast TestFlight), kopia automatyczna „z innego konta Apple”,
+„(Więcej → Miejsca i sprzęt)”, „od {h} godzin” (próg z `STALE_AUTO_MS`), nagłówek ekranu zakupu „…w ustawieniach konta Apple…”. Przeczytane ręcznie 5 × 33 = 165 tekstów; żadna zmiana wartości istniejących kluczy (0) — nieblokujące poprawki z pkt 3 nie były wprowadzone.
+
+Znalezione i poprawione (gałąź `z02-przeklad-1-0`, PR — link w raporcie agenta):
+- ścieżka do ekranu inna niż etykiety zakładki/ekranu: cs „Více” (zakładka „Další”), hu „Továbbiak → Helyek…” („Egyebek → Helyszínek és eszközök”), ro „Mai multe” („Mai mult”), sr „Више” („Још”), tr „Diğer” („Daha Fazla”), pt-BR „equipamentos” („equipamento”); nowy strażnik `tests/sciezki-nawigacji-i18n.test.ts` (czerwony na słownikach z main);
+- „Apple ID” zamiast „konto Apple” jak w reszcie ekranu zakupu: de (2 teksty), fr, it, pt, ru;
+- el: forma formalna w 4 nowych tekstach (ekran zakupu, kopia, zapis automatyczny, nowsza wersja); ro: nagłówek ekranu zakupu w formie „dvs.” jak pozostałe teksty subskrypcji.
+Razem 17 tekstów. Osobny commit: 49 pozycji z pkt 3 z pewnością „wysoka” (es-419, pt-BR, rejestr el/lt/lv/cs/sk/tr/id/sr/hu/uk/pt/ro) — do przyjęcia albo odrzucenia przez właściciela razem z PR.
+Nie ruszane: InfoPlist (el, es-419; strażnik skrótów), pozycje „średnia” i pytania do native speakerów (pkt 6), słownik terminów (pkt 5).
+
+**R-010:** warunek „przegląd po ostatniej zmianie tekstów” spełniony dla stanu 4b77c9f + PR; zamknięcie wpisu w docs/40 i kolumna „drugi przegląd” w docs/16 — koordynator po scaleniu PR (tekstów nie wolno zmieniać po tym przeglądzie bez ponownego przeglądu zmienionych kluczy).
