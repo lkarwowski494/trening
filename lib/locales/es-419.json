@@ -176,8 +176,6 @@
  "Dodaj miejsce": "Agregar lugar",
  "Dodaj gumę": "Agregar banda",
  "Dodaj plan": "Agregar plan",
- "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Agrega entrenamientos desde archivos CSV de diarios de entrenamiento populares, sin quitar tus datos actuales y con vista previa antes de guardar.",
- "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "Agrega entrenamientos desde archivos CSV de diarios de entrenamiento populares. No cambia ni elimina tus datos actuales. Verás una vista previa antes de guardar nada.",
  "Nie udało się wyeksportować kopii": "No se pudo exportar la copia",
  "Nie udało się zaimportować pliku": "No se pudo importar el archivo",
  "Nie udało się włączyć Apple Health": "No se pudo activar Apple Health",
@@ -213,7 +211,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Sin compra: hasta {n} días de entrenamiento al mes; el historial, el respaldo y la exportación siempre están disponibles.",
  "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Este mes entrenaste duro y usaste todos los días de entrenamiento gratuitos ({n}). ¡Buen trabajo!",
  "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Descanso. Tiempo restante: {t}. Descanso total: {all}.",
- "Zakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej.": "Las compras están vinculadas a tu cuenta de Apple. Los entrenamientos se restauran desde un respaldo.",
  "W trybie cichym telefon tylko wibruje": "En modo silencio, el celular solo vibra",
  "RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali.": "El RIR son las repeticiones que te quedaban en reserva: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Los valores guardados se convierten al cambiar de escala.",
  "Propozycja według Twoich założeń — przejrzysz ją przed zapisem.": "Propuesta según tus parámetros: la revisas antes de guardarla.",
@@ -254,6 +251,5 @@
  "Wszystkie funkcje działają od pierwszego dnia, bez konta i bez reklam. Dane zostają w telefonie.": "Todas las funciones están disponibles desde el primer día, sin cuenta y sin anuncios. Tus datos se quedan en tu celular.",
  "Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.": "Los entrenamientos, récords y gráficas importados siempre están disponibles, incluso sin internet. Entrena {n} días al mes gratis; Pro quita el límite, también con un pago único para siempre.",
  "Zakończ trening na telefonie": "Termina el entrenamiento en tu celular",
- "Pierwszy trening za Tobą!": "¡Primer entrenamiento completado!",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "El entrenamiento del {d} {s} estuvo {h} horas sin actividad, así que se guardó solo. Fin: {e} (última serie). Lo encontrarás en la pestaña Plan."
 }

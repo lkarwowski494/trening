@@ -1476,7 +1476,7 @@
  "Zakres jest niepoprawny: „max” musi być ≥ „min”, krok > 0. Ciężary nie są liczone.": "Diapazons nav derīgs: „maks.” jābūt ≥ „min.”, solis > 0. Svari netiek aprēķināti.",
  "Zakres powtórzeń: {r} — gdy ostatnio wszystkie serie robocze miały co najmniej {n} powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).": "Atkārtojumu diapazons: {r} — ja iepriekšējā reizē visām darba sērijām bija vismaz {n} atk., pie vingrinājuma parādīsies padoms “↑ mēģiniet …”: lielāks svars vai par vienu atkārtojumu vairāk (izņemot atslodzes nedēļu).",
  "Zaktualizuj aplikację na zegarku": "Atjauniniet lietotni pulkstenī",
- "Zakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej.": "Pirkumi ir piesaistīti Apple kontam. Treniņus atjaunosiet no rezerves kopijas.",
+ "Zakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej.": "Pirkumi ir piesaistīti Apple kontam. Treniņus atjaunosi no rezerves kopijas.",
  "Zalecenia": "Rekomendācijas",
  "Zamiana tylko w tym treningu: {name}": "Mainīt tikai šajā treniņā: {name}",
  "Zamiany tylko w tym treningu — szablon i plan bez zmian.": "Maiņas attiecas tikai uz šo treniņu — veidne un plāns nemainās.",
