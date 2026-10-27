@@ -1,0 +1,10 @@
+$ npx jest tests/interaction-guards.test.ts tests/close-button-guard.test.tsx tests/swipe-delete.test.tsx tests/m3-token-guard.test.ts tests/audit-m1-031-contrast.test.tsx tests/m3-contrast.test.ts --maxWorkers=1 (worktree 025a50b9)
+PASS iOS tests/swipe-delete.test.tsx (35.628 s)
+PASS iOS tests/interaction-guards.test.ts
+PASS iOS tests/close-button-guard.test.tsx
+PASS iOS tests/m3-contrast.test.ts
+PASS iOS tests/audit-m1-031-contrast.test.tsx
+PASS iOS tests/m3-token-guard.test.ts
+Test Suites: 6 passed, 6 total
+Tests:       327 passed, 327 total
+exit=0

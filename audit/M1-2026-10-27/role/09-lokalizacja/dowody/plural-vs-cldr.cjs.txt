@@ -1,0 +1,8 @@
+const { PLURAL_FORMS, pluralIndex } = require('./plural.cjs');
+const bad = [];
+for (const l of Object.keys(PLURAL_FORMS)) {
+  const pr = new Intl.PluralRules(l); const forms = PLURAL_FORMS[l];
+  for (let n = 0; n <= 1000; n++) { const want = pr.select(n); const got = forms[pluralIndex(l, n)]; if (forms.length > 1 && want !== got) bad.push(`${l} ${n}: ${got} != ${want}`); }
+  for (const f of [0.5, 1.5, 2.5]) { const want = pr.select(f); const got = forms[pluralIndex(l, f)]; if (forms.length > 1 && want !== got) bad.push(`${l} ${f} (ułamek): ${got} != CLDR ${want}`); }
+}
+console.log(bad.join('\n') || 'OK'); console.log('rozbieżności:', bad.length, '; ICU', process.versions.icu, 'CLDR', process.versions.cldr);

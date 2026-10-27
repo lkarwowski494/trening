@@ -1,0 +1,10 @@
+$ npx jest tests/health-query.test.ts tests/migrate-released.test.ts tests/db-real-sqlite.test.ts tests/audit-m1-006-import.test.ts tests/audit-1-0-a2-reset.test.ts tests/audit-m1-002-premigrate.test.ts --maxWorkers=1  (worktree 025a50b9)
+PASS iOS tests/health-query.test.ts
+PASS iOS tests/db-real-sqlite.test.ts
+PASS iOS tests/migrate-released.test.ts
+PASS iOS tests/audit-m1-006-import.test.ts
+PASS iOS tests/audit-m1-002-premigrate.test.ts
+PASS iOS tests/audit-1-0-a2-reset.test.ts
+Test Suites: 6 passed, 6 total
+Tests:       70 passed, 70 total
+exit=0

@@ -1,0 +1,33 @@
+E0b — linia bazowa roli 11-wzrost (zapisana 27.10.2026 PRZED lekturą docs/wzrost.md, docs/26, docs/45 i kodu prośby o ocenę/powiadomień)
+O aplikacji przeczytano tylko: store/app-store-metadata.json (opis PL) i jedno zdanie celu z polecenia M1.
+Nazwy aplikacji konkurencji i serwisów zanonimizowane (repo publiczne, CLAUDE.md). Surowe dane: scratchpad sesji (…/scratchpad/11-wzrost/raw, e0b-recenzje.txt).
+
+Komendy (kod wyjścia 0 dla każdej):
+$ curl -sS "https://itunes.apple.com/search?term=<fraza>&country=pl&entity=software&limit=25"   # frazy: dziennik treningowy, workout log, gym tracker, trening silownia, strength training log
+$ curl -sSL --compressed https://apps.apple.com/pl/app/id<ID>      # 3 aplikacje
+$ curl -sS https://itunes.apple.com/{pl,us}/rss/customerreviews/page={1,2,3}/id=<ID>/sortby=mostrecent/json
+$ curl -sSL https://developer.apple.com/app-store/review/guidelines/   # "Last Updated: October 16, 2026"
+$ curl -sS https://developer.apple.com/tutorials/data/{documentation/storekit/requestreviewaction,documentation/storekit/requesting-app-store-reviews,design/human-interface-guidelines/ratings-and-reviews,design/human-interface-guidelines/managing-notifications}.json
+$ curl -sSL https://www.redditinc.com/policies/reddit-rules ; curl ...reddit.com/r/... -> 403 (kontener)
+$ curl -sSL <największe polskie forum o sporcie siłowym>/regulamin
+
+1. Wzorzec: 3 aplikacje dziennika treningu siłowego z największą liczbą ocen w sklepie PL (Health & Fitness, praca: zapis serii na siłowni)
+   A: 4380 ocen, 4,94; B: 2666 ocen, 4,89; C: 1961 ocen, 4,92 (odczyt Search API PL 27.10.2026).
+   - Rytm wersji: ostatnia wersja A 23.10.2026, B 22.10.2026, C 21.10.2026 — wszystkie aktualizowane w ostatnim tygodniu; notatki wersji konkretne (nowa funkcja słowami użytkownika).
+   - Odpowiedzi autora na stronie produktu PL (próbka 8 recenzji wyróżnionych na stronę): A 0 z 8, B 4 z 8, C 8 z 8. Odpowiedzi C: krótkie, rzeczowe, z wersją naprawy („will be fixed in 0.5.x”), podpowiedź funkcji; B: prośba o e-mail przy błędzie. Żadna odpowiedź z marketingiem ani danymi osobowymi recenzenta.
+   - Obecność autora: recenzja C (PL, 18.10.2026) zwraca się do autora po imieniu i pisze „Polska gurom” — autor jest widoczny jako osoba w niszy; recenzja C 17.11.2025: „developer clearly listens to the audience feedback, plus trains himself”.
+   - Powód powrotu (RSS, n=300/218/300): historia i dane („So much Data!”, rekordy, porównanie z poprzednim razem), plan użytkownika, zegarek, darmowa wersja w pełni używalna. Słowa „streak” 1 z 218 (B, prośba o widżet serii), powiadomienia 1 z 300 (C, pozytywnie: timer na zegarku). Brak skarg na powiadomienia „wróć”.
+   - Powód odejścia / złości (n w próbce RSS): B — zabranie wcześniej darmowej funkcji (timer przerw) za paywall: 5 z 218 (2023–2024, oceny 1–2); utrata danych: 8 z 218 (B, 2021–2023, ocena 1). C — „tries getting you to buy the subscription all the time”: 1 z 300 (ocena 3). A — notatki znikające po tygodniu: 1 z 300.
+   - Pozyskanie: A rośnie przez funkcje społecznościowe (znajomi, udostępnianie treningów; 4 z 8 recenzji wyróżnionych wspomina znajomych/udostępnianie). B i C — przez jakość i odpowiedzi autora. Wszystkie trzy mają jawny model freemium, który recenzje chwalą, gdy darmowe jest używalne.
+2. Kanały PL (odczyt 27.10.2026):
+   - Największe polskie forum o sporcie siłowym: działy „Trening dla początkujących”, „Plany treningowe”, „Trening w domu” (nisza rozmawia o pracy J). Regulamin pkt 3 j: zakaz „Materiałów reklamowych i innych promujących określone produkty, serwisy, firmy, […] bez pisemnej zgody Usługodawcy”. => autopromocja tylko po pisemnej zgodzie administracji; inaczej kanał poza listą startową.
+   - Agregator społecznościowy (subreddity): Rule 2 „Participate authentically in communities where you have a personal interest, and do not spam…”; reguły konkretnych społeczności — 403 z kontenera => nie sprawdzono (krok właściciela w przeglądarce, tylko odczyt).
+   - Grupy w serwisach społecznościowych, kluby/siłownie lokalne, twórcy wideo: wymagają logowania — nie sprawdzono.
+3. Reguły platformy (odczyt 27.10.2026, Guidelines „Last Updated: October 16, 2026”): 4.5.4, 5.1.2(i), 3.2.2(x), 5.6.1 „we will disallow custom review prompts”, 5.6.3, sekcja 3 „paid, incentivized, filtered, or fake feedback” — brzmienie zgodne z promptem roli. RequestReviewAction: „a maximum of three times within a 365-day period”; „don’t call it in response to a button tap or other user action”; „this method has no effect in apps that you distribute for beta testing using TestFlight”; link `action=write-review`. HIG: „Avoid asking for a rating on first launch or during onboarding”, „at least a week or two between requests”. Managing notifications: Time Sensitive tylko dla zdarzenia „happening now or will happen within an hour”; sekcja „Sending marketing notifications”.
+4. Wnioski — jak wygląda najlepszy w klasie wzrost tej aplikacji (do porównania w E1):
+   W1 Powrót przez wartość: historia, rekordy, porównanie z poprzednim razem, plan użytkownika; przypomnienie tylko o treningu, który użytkownik zaplanował; bez serii dni (trening siłowy 2–5x/tydz., nie codziennie).
+   W2 Darmowe używalne i stabilne: nie zabierać darmowych funkcji po wydaniu (największa fala złości u B); nie nękać ofertą; dane bezpieczne (utrata danych = najczęstsza ocena 1 u B).
+   W3 Opinie: systemowa prośba po zakończonym treningu; autor odpowiada na recenzje rzeczowo, z wersją naprawy (C 8/8); zgłoszenie w aplikacji bez konta.
+   W4 Rytm wersji widoczny (tygodniowy u wszystkich trzech) z notatkami słowami użytkownika.
+   W5 Kanały PL: forum główne wymaga pisemnej zgody na promocję; autor jako jawny uczestnik niszy (wzorzec C — polski autor widoczny w recenzjach); udostępnianie treningu jako naturalny kanał (A), ale w aplikacji bez konta tylko jako plik/obraz z wyboru użytkownika.
+   W6 Pomiar: App Analytics + linki kampanii (pt z ASC) + recenzje + zgłoszenia; bez SDK.

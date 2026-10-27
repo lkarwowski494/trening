@@ -1,0 +1,4 @@
+# komenda: node audit/M1-2026-10-27/narzedzia/sprawdz-raport.mjs audit/M1-2026-10-27/role/09-lokalizacja/09-lokalizacja-2026-10-27.md /home/user/trening /home/user/trening/audit/M1-2026-10-27/role/09-lokalizacja --rola 09-lokalizacja
+# kod wyjścia: 0
+OK: odwołania, cytaty, pliki dowodów i sekrety sprawdzone; format raportu 09-lokalizacja
+# git status --porcelain: []

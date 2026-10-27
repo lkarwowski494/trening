@@ -1,0 +1,15 @@
+$ git clone <publiczne repo projektu na GitHub> (pełny klon w scratchpadzie, nie płytki: 1646 commitów na gałęzi domyślnej), git checkout 025a50b9
+$ node sprawdz-wydanie.mjs sekrety . --historia
+BŁĄD IDENTYFIKATOR scripts/asc/iap-localizations.mjs:153: ASC_ISSUER_ID = is…Id
+BŁĄD IDENTYFIKATOR scripts/asc/metadane.mjs:170: ASC_ISSUER_ID = is…Id
+BŁĄD IDENTYFIKATOR scripts/asc/zrzuty.mjs:202: ASC_ISSUER_ID = is…Id
+BŁĄD IDENTYFIKATOR tests/walidacja-apple-bez-wysylki.test.ts:66: ASC_KEY_ID = KI…67
+BŁĄD IDENTYFIKATOR tests/walidacja-apple-bez-wysylki.test.ts:66: ASC_ISSUER_ID = IS…ID
+BŁĄD IDENTYFIKATOR w historii (4c7e3f2f): ASC_ISSUER_ID = is…Id
+BŁĄD IDENTYFIKATOR w historii (8090bc6b): ASC_ISSUER_ID = is…Id
+BŁĄD IDENTYFIKATOR w historii (4e9ad3cc): ASC_KEY_ID = KI…67
+BŁĄD IDENTYFIKATOR w historii (4e9ad3cc): ASC_ISSUER_ID = IS…ID
+BŁĄD IDENTYFIKATOR w historii (ff60c3eb): ASC_ISSUER_ID = is…Id
+BŁĄD IDENTYFIKATOR w historii (69579162): ASC_ISSUER_ID = is…Id
+BŁĘDY: 11
+exit=1

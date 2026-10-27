@@ -1,0 +1,21 @@
+ćwiczeń w rodzinach gotowych: 87; z figurą (figureSpec): 87
+Trap Bar Deadlift: tułów (trunkPitch) u=0 36.1°, u≈1 -6.4°
+Leverage Deadlift: tułów (trunkPitch) u=0 35.9°, u≈1 -6.4°
+Rickshaw Deadlift: tułów (trunkPitch) u=0 35.6°, u≈1 -6.4°
+Deadlift (sztanga): tułów (trunkPitch) u=0 65.1°, u≈1 3.3°
+Cable Pull Through: na dole kolano 41.5°, biodro 65.4°, tułów 29.8°
+RDL (sztanga): na dole kolano 15.5°, biodro 71.7°, tułów 60.0°
+Good Morning: na dole kolano 23.9°, biodro 64.2°, tułów 42.3°
+Deadlift (sztanga): ciężar względem środka stopy min -1.8 cm, max 6.8 cm
+Deadlift (hantle): ciężar względem środka stopy min -1.8 cm, max 0.0 cm
+Rack Pull: ciężar względem środka stopy min -1.8 cm, max 6.5 cm
+Axle Deadlift: ciężar względem środka stopy min -1.8 cm, max 6.8 cm
+Deadlift with Bands: ciężar względem środka stopy min -1.8 cm, max 6.8 cm
+Deadlift with Chains: ciężar względem środka stopy min -1.8 cm, max 6.8 cm
+Deficit Deadlift: ciężar względem środka stopy min -1.8 cm, max 7.0 cm
+Rack Pull with Bands: ciężar względem środka stopy min -1.8 cm, max 6.5 cm
+Reverse Band Deadlift: ciężar względem środka stopy min -1.8 cm, max 6.8 cm
+Cable Deadlift: ciężar względem środka stopy min -1.8 cm, max 7.3 cm
+One-Arm Side Deadlift: ciężar względem środka stopy min 0.0 cm, max 0.0 cm
+Clean Deadlift: ciężar względem środka stopy min -1.8 cm, max 6.8 cm
+Snatch Deadlift: ciężar względem środka stopy min -1.8 cm, max 7.3 cm

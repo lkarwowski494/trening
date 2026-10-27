@@ -4,3 +4,15 @@
 | soczewka recenzent-sklepu | szac. 0,08–0,14 mln | 116 136 tok., 23 wywołania, 210 s |
 | soczewka praktyk | szac. 0,08–0,14 mln | 113 181 tok., 19 wywołań, 226 s |
 | razem soczewki | plan 0,4–0,7 mln | 488 585 tok. (iloraz do środka planu ≈ 0,89) |
+| 10-wydanie | plan 0,3–0,6 mln | 315 775 tok., 101 wywołań, 12,6 min | kontrola M1 OK |
+| 02-monetyzacja | plan 0,3–0,6 mln | 310 443 tok., 85 wywołań, 15,1 min | kontrola M1 OK |
+| 03-zakres | plan 0,25–0,5 mln | 449 157 tok., 96 wywołań, 15,5 min | kontrola M1 OK |
+| 01-odkrywanie | plan 0,25–0,5 mln | 450 143 tok., 130 wywołań, 18,5 min | kontrola M1 OK |
+| 11-wzrost | plan 0,2–0,4 mln | 270 229 tok., 84 wywołania, 12,1 min | kontrola M1 OK |
+| 06-tresci | plan 0,4–0,9 mln | 363 727 tok., 129 wywołań, 15,4 min | kontrola M1 OK |
+| 09-lokalizacja | plan 0,4–0,9 mln | 295 467 tok., 100 wywołań, 13,0 min | kontrola M1 OK |
+| 05-architekt | plan 0,4–0,8 mln | 367 000 tok., 128 wywołań, 26,1 min | kontrola M1 OK |
+| 08-programista | plan 0,4–0,8 mln | 444 447 tok., 140 wywołań, 17,7 min | kontrola M1 OK |
+| 12-niezawodnosc | plan 0,3–0,7 mln | 349 546 tok., 106 wywołań, 17,6 min | kontrola M1 OK |
+| 04-studio-projektowe | plan 0,3–0,7 mln | 520 383 tok., 151 wywołań, 27,7 min | kontrola M1 OK |
+| 02-monetyzacja-b | plan 0,3–0,6 mln | 352 622 tok., 99 wywołań, 16,4 min | kontrola M1 OK |

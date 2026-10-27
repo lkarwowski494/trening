@@ -1,0 +1,20 @@
+$ node -e (klucze lib/figures/data.json exercises minus klucze wariantów lib/figures/v2/variants.ts rodzin ready: squat, bench_press, hinge)
+v2 kluczy (parsowane): 87 v1: 71 v1 bez rodziny v2 gotowej: 56
+Pistol Squat; Kettlebell Swing; Machine Chest Press; Push Up; Incline Push Up; Overhead Press (sztanga); Overhead Press (hantle); Seated Shoulder Press (hantle); Push Press; Wyciskanie nad głowę (linki); Bent Over Row (sztanga); Bent Over Row (hantle); Pendlay Row; T-Bar Row; One Arm Row (hantle); Chest Supported Row; Seated Cable Row; Wiosłowanie na linkach (siedząc); Face Pull; Lat Pulldown; Pull Up; Chin Up; Neutral Grip Pull Up; Lunges (hantle); Walking Lunges; Reverse Lunge; Bulgarian Split Squat (hantle); Step Up; Hip Thrust (sztanga); Hip Thrust (hantel); Glute Bridge; Biceps Curl (hantle); Barbell Curl; EZ Bar Curl; Hammer Curl; Cable Curl; Triceps Pushdown; Overhead Triceps Extension (hantel); Cable Overhead Extension; Skullcrusher (EZ); Triceps Dips (ławka); Lateral Raise (hantle); Cable Lateral Raise; Front Raise; Shrugs (sztanga); Shrugs (hantle); Standing Calf Raise; Łydki na stopniu; Leg Press; Calf Press (leg press); Lying Leg Curl; Plank; Dead Bug; Bird Dog; Mountain Climbers; Rowing Machine
+exit 0
+
+$ grep -oE "status: ..." lib/figures/v2/families.ts | sort | uniq -c
+     40 status: 'planned'
+      3 status: 'ready'
+
+$ grep -n "v2 ?" components/ExerciseCues.tsx
+44:        {v2 ? <ExerciseFigureV2 exercise={exercise} /> : <ExerciseFigure exercise={exercise} />}
+
+$ grep -rlni "bramka 4|recenzj.* ruchu|recenzent ruchu" docs tests scripts
+docs/40-lekcje.md
+docs/18-przekazanie.md
+tests/figury-1-0-recenzja.test.ts
+exit 0
+
+$ grep -n "wymuszenie w kodzie otwarte" docs/40-lekcje.md
+43:  3. Krok listy kontrolnej przed wydaniem: niezależna recenzja ruchu każdej rodziny wyświetlanej w wydaniu (reguła w CLAUDE.md, 27.10.2026; `docs/przekazanie/notatki/53-grafiki-model-pracy.md`)

@@ -1,0 +1,27 @@
+# Sonda ARCH-08 (worktree w scratchpadzie na 025a50b9; plik testu poniżej, NIE w repo)
+$ npx jest tests/sonda-arch08.test.ts --maxWorkers=1
+    {"SCHEMA_VERSION":19,"workoutsBefore":1,"workoutsAfter":0,"premigrateKeys":[]}
+PASS iOS tests/sonda-arch08.test.ts
+  ✓ zapis z bieżącym schematem: wpis usunięty przez normalizację znika z bazy po pierwszym flush, kopii sprzed migracji brak (80 ms)
+Tests:       1 passed, 1 total
+exit=0
+
+----- tests/sonda-arch08.test.ts -----
+/* SONDA audytu 05-architekt (scratchpad, nie w repo): ARCH-08 — normalizacja migrate() przy tym samym numerze schematu trafia do „state” bez kopii premigrate_*. */
+import * as store from '@/lib/store';
+import { SCHEMA_VERSION } from '@/lib/seed';
+import { fresh, saved } from './helpers';
+
+test('zapis z bieżącym schematem: wpis usunięty przez normalizację znika z bazy po pierwszym flush, kopii sprzed migracji brak', async () => {
+  await fresh();
+  const raw: any = JSON.parse(JSON.stringify(store.getState()));
+  raw.workouts.push({ id: 'pusty', ownerId: 'local', createdAt: 1, updatedAt: 1, loggedBy: 'local', sessionMode: 'solo', healthUUID: null, templateId: null, templateName: 'X', startedAt: Date.now() - 864e5, finishedAt: Date.now() - 864e5 + 6e5, note: 'notatka', exercises: [] });
+  raw.schemaVersion = SCHEMA_VERSION;
+  global.__kv.clear(); global.__kv.set('state', JSON.stringify(raw));
+  const before = JSON.parse(global.__kv.get('state')!).workouts.length;
+  store.__resetForTests(); await store.init(); await store.flush();
+  const after = JSON.parse(global.__kv.get('state')!).workouts.length;
+  const pre = [...global.__kv.keys()].filter(k => k.startsWith('premigrate'));
+  console.log(JSON.stringify({ SCHEMA_VERSION, workoutsBefore: before, workoutsAfter: after, premigrateKeys: pre }));
+  expect(after).toBe(before - 1); expect(pre).toEqual([]);
+});

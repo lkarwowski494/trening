@@ -1,0 +1,12 @@
+# komenda: npx jest tests/access.test.ts tests/entitlement.test.ts tests/subscription-invariants.test.ts tests/subscription-ui.test.tsx tests/monetyzacja-ui.test.tsx tests/store-adapter.test.ts tests/prices-decision.test.ts tests/monetyzacja-csv.test.ts --maxWorkers=1
+PASS iOS tests/subscription-ui.test.tsx (10.701 s)
+PASS iOS tests/monetyzacja-ui.test.tsx (5.806 s)
+PASS iOS tests/subscription-invariants.test.ts
+PASS iOS tests/monetyzacja-csv.test.ts
+PASS iOS tests/entitlement.test.ts
+PASS iOS tests/store-adapter.test.ts
+PASS iOS tests/access.test.ts
+PASS iOS tests/prices-decision.test.ts
+Test Suites: 8 passed, 8 total
+Tests:       290 passed, 290 total
+exit 0

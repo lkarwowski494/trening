@@ -1,0 +1,54 @@
+Odczyt 27.10.2026 (curl -sS -L, surowy HTML → tekst, grep); kod 200 dla wszystkich stron:
+developer.apple.com/app-store/review/guidelines/ — Last Updated: October 16, 2026
+2.1 App Completeness
+2.3.7 Choose a unique app name, assign keywords that accurately describe your app, and don’t try to pack any of your metadata with trademarked terms, popular app names, pricing information, or other irrelevant phrases just to game the system. App names must be limited to 30 characters. Metadata such as app names, subtitles, sc
+2.3.12 Apps must clearly describe new features and product changes in their “What’s New” text. Simple bug fixes, security updates, and performance improvements may rely on a generic description, but more significant changes must be listed in the notes.
+1.5 Developer Information
+2.5.5 Apps must be fully functional on IPv6-only networks.
+People need to know how to reach you with questions and support issues. Make sure your app and its Support URL include an easy way to contact you; this is particularly important for apps that may be u
+
+developer.apple.com/news/upcoming-requirements/:
+iOS and iPadOS minimum system requirements
+Since September 9, 2026
+iOS and iPadOS apps uploaded to App Store Connect must target iOS 13 or later.
+--
+SDK minimum requirements
+Since April 28, 2026
+Apps uploaded to App Store Connect must be built with Xcode 26 or later using an SDK for iOS 26, iPadOS 26, tvOS 26, visionOS 26, or watchOS 26.
+--
+DSA trader status required for apps in the EU
+Since February 17, 2025
+Apps without trader status will be removed from the App Store in the European Union (EU) until trader status is provided and verified in order to comply with the Digital Services Act.
+--
+DSA trader status required for app updates in the EU
+Since October 16, 2024
+Your trader status is required to submit app updates for apps distributed on the App Store in the European Union (EU), in order to comply with the Digital Services Act.
+
+App Store Connect Help — platform-version-information:
+Promotional text lets you inform your App Store visitors of any current app features without requiring an updated submission. This text will appear above your description on the App Store for customers with devices running iOS 11 or later. This property can’t be longer than 170 characters.
+A description of the app, detailing the features and functionality. Limited to 4000 characters. The description should b
+One or more keywords (each greater than two characters) describing your app. You can provide up to 100 bytes of content. Your app is searchable by app name and company name, so you shouldn't duplicate these values in the keyword list. Names of other apps or companies aren't allowed.
+The Notes field can contain up to 4000 bytes
+This property isn't available for the first version of the app but required for all subsequent versions. This property can be localized.
+
+screenshot-specifications:
+Note: Images can’t include alpha channels or transparencies.
+You must use the same screenshot size for Apple Watch consistently across all localizations for the app
+
+app-store-localizations: Arabic, Bangla, Catalan, Chinese (Simplified), Chinese (Traditional), Croatian, Czech, Danish, Dutch, English (Australia… (bez: bułgarski, estoński, litewski, łotewski, serbski)
+
+app-privacy-details:
+“Collect” refers to transmitting data off the device in a way that allows you and/or your third-party partners to access it for a period longer than what is necessary to service the transmitted request in real time.
+The data is not used for Third-Party Advertising, your Advertising or Marketing purposes, or for Other Purposes, as those terms are defined in the Tracking section.
+Collection of the data occurs only in infrequent cases that are not part of your app’s primary functionality, and which are optional for the user.
+Data types must meet all criteria in order to be considered optional for disclosure. If a data type collected by your app meets some, but not all, of the above criteria, it must be disclosed in App Store Connect.
+
+DSA:
+Articles 30 and 31 of the Digital Services Act (DSA) require Apple to verify and display trader contact information for all traders distributing apps on the App Store in the European Union (EU). This includes an address, phone number, and email address that yo
+
+Uzupełnienie (grep -F):
+(b) If you offer in-app purchases in your app, make sure they are complete, up-to-date, visible to the reviewer and functional. If any configured in-app purchase items cannot be found or reviewed in your app, explain the reason in your review notes.
+3.1.2(b) Upgrades and Downgrades: Users should have a seamless upgrade/downgrade experience and should not be able to inadvertently subscribe to multiple variations of the same thing. Review best practices on managing your subscription upgrade and downgrade op
+Similarly, marketing your app in a misleading way, such as by promoting content or services that it does not actually offer (such as iOS-based virus and malware scanners) or promoting a false price, whether within or outside of the App Store, is gr
+3.1.2(a) Permissible uses: If you offer an auto-renewable subscription, you must provide ongoing value to the customer, and the subscription period must last at least seven days and be available acros
+exit=0

@@ -1,0 +1,7 @@
+$ npm run check:cues
+
+> trening@1.0.0 check:cues
+> node scripts/cues/gen.mjs --check
+
+wskazówki: 102 ćwiczeń, dokument aktualny
+exit 0

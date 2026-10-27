@@ -1,0 +1,2 @@
+$ git -C /home/user/trening status --porcelain
+exit=0 (pusty wynik = pliki śledzone nietknięte; katalog audit/ w .git/info/exclude)

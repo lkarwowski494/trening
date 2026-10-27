@@ -1,0 +1,289 @@
+
+## T-001
+PL: RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali.
+EN: RIR is the number of reps you still had left: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Saved values convert when you switch scales.
+DE: RIR sind die Wiederholungen, die du noch in Reserve hattest: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Gespeicherte Werte werden beim Wechsel der Skala umgerechnet.
+RU: RIR — это повторения, которые у вас остались в запасе: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Сохранённые значения пересчитываются при смене шкалы.
+TR: RIR, yedekte kalan tekrar sayısıdır: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Ölçeği değiştirdiğinizde kayıtlı değerler dönüştürülür.
+
+## T-002
+PL: Propozycja według Twoich założeń — przejrzysz ją przed zapisem.
+EN: A proposal based on your assumptions — you review it before saving.
+DE: Ein Vorschlag nach deinen Vorgaben – du prüfst ihn vor dem Speichern.
+RU: Предложение по вашим параметрам — вы просмотрите его перед сохранением.
+TR: Varsayımlarınıza göre bir öneri; kaydetmeden önce gözden geçirirsiniz.
+
+## T-003
+PL: Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów.
+EN: Progression: when you reach the top of the rep range, add weight. Adding load gradually is what keeps you progressing.
+DE: Progression: Schaffst du das obere Ende des Wdh.-Bereichs, leg Gewicht drauf. Das Gewicht Schritt für Schritt zu steigern, ist die Grundlage für weitere Fortschritte.
+RU: Прогрессия: когда дойдёте до верхней границы диапазона повторений, добавьте вес. Постепенное увеличение нагрузки — основа дальнейшего прогресса.
+TR: Progresyon: tekrar aralığının üst sınırına ulaşınca ağırlık ekleyin. İlerlemeye devam etmenin temeli, yükü kademeli artırmaktır.
+
+## T-004
+PL: Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku.
+EN: Usually a rest day between sessions with the same main muscle groups; two days in a row are also fine with the same weekly number of sets.
+DE: Meist ein Ruhetag zwischen Einheiten mit denselben Hauptmuskelgruppen; zwei Tage hintereinander sind bei gleicher Satzzahl pro Woche auch in Ordnung.
+RU: Обычно день отдыха между тренировками с теми же основными мышечными группами; два дня подряд при том же количестве подходов в неделю — тоже нормально.
+TR: Aynı ana vücut bölgelerini çalıştıran antrenmanlar arasında genellikle bir dinlenme günü olur. Haftalık set sayısı aynıysa art arda iki gün de uygundur.
+
+## T-005
+PL: Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.
+EN: Each major muscle group on at least {n} days a week — that is what is recommended for health. Frequency affects strength, but more days do not have to give proportionally more; with the same number of sets the differences are small. A day when the group only assists counts as {h}. You can pick the split (full body, upper/lower) freely — with the same number of sets it gives similar results.
+DE: Jede große Muskelgruppe an mindestens {n} Tagen pro Woche – so viel wird für die Gesundheit empfohlen. Die Häufigkeit beeinflusst die Kraft, aber mehr Tage bringen nicht unbedingt proportional mehr; bei gleicher Satzzahl sind die Unterschiede klein. Ein Tag, an dem die Muskelgruppe nur unterstützt, zählt als {h}. Die Aufteilung (Ganzkörper, Ober-/Unterkörper) kannst du frei wählen – bei gleicher Satzzahl bringt sie ähnliche Ergebnisse.
+RU: Каждая основная мышечная группа не менее {n} дн. в неделю — столько рекомендуется для здоровья. Частота влияет на силу, но больше дней не обязательно даёт пропорционально больше; при том же количестве подходов разница небольшая. День, когда группа работает только как вспомогательная, считается как {h}. Деление на тренировки (всё тело, верх/низ) можно выбрать любое — при том же количестве подходов эффект похожий.
+TR: Sağlık için her ana vücut bölgesini haftada en az {n} gün çalıştırmanız önerilir. Sıklık kuvveti etkiler, ama gün sayısını artırmak orantılı olarak daha fazla sonuç vermeyebilir; set sayısı aynıysa farklar küçüktür. Bölgenin yalnızca yardımcı olarak çalıştığı gün {h} sayılır. Antrenman bölümlemesini (tüm vücut, üst/alt) istediğiniz gibi seçebilirsiniz; aynı set sayısıyla benzer sonuç verir.
+
+## T-006
+PL: Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.
+EN: Sets: {s} per exercise — it is worth doing at least {m}; more sets usually give a little more, with diminishing returns.
+DE: Sätze: {s} pro Übung – mindestens {m} lohnen sich; mehr Sätze bringen meist etwas mehr, aber mit abnehmendem Nutzen.
+RU: Подходы: {s} на упражнение — стоит делать не менее {m}; больше подходов обычно даёт чуть больше, но с убывающей отдачей.
+TR: Setler: egzersiz başına {s}. En az {m} set yapmaya değer. Daha çok set genellikle biraz daha fazla sonuç verir, ama kazanç giderek azalır.
+
+## T-007
+PL: Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia przerwa {r} s) = {n}; ćwiczeń = serie / {k} (co najmniej {e}). To szacunek.
+EN: Number of sets from session length: (minutes − {w} min warm-up) × 60 / ({s} s per set + average rest {r} s) = {n}; exercises = sets / {k} (at least {e}). This is an estimate.
+DE: Anzahl der Sätze aus der Dauer der Einheit: (Minuten − {w} min Aufwärmen) × 60 / ({s} s pro Satz + durchschnittliche Pause {r} s) = {n}; Übungen = Sätze / {k} (mindestens {e}). Das ist eine Schätzung.
+RU: Число подходов по длительности тренировки: (минуты − {w} мин разминки) × 60 / ({s} с на подход + средний отдых {r} с) = {n}; упражнений = подходы / {k} (не менее {e}). Это оценка.
+TR: Antrenman süresinden set sayısı: (dakika − {w} dk ısınma) × 60 / (set başına {s} sn + ortalama dinlenme {r} sn) = {n}; egzersiz = set / {k} (en az {e}). Bu bir tahmindir.
+
+## T-008
+PL: Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.
+EN: Rep ranges (muscle {a}–{b}, at home and without external load {c}–{d}; for strength other exercises {e}–{f}): muscles grow across a wide range of loads when sets are close to failure.
+DE: Wdh.-Bereiche (Muskelaufbau {a}–{b}, zu Hause und ohne Zusatzgewicht {c}–{d}; bei Kraft weitere Übungen {e}–{f}): Muskeln wachsen bei einem breiten Spektrum an Gewichten, wenn die Sätze nah am Versagen sind.
+RU: Диапазоны повторений (масса {a}–{b}, дома и без отягощения {c}–{d}; при цели «сила» — дополнительные упражнения {e}–{f}): мышцы растут при широком диапазоне весов, если подходы близки к отказу.
+TR: Tekrar aralıkları (kas için {a}–{b}, evde ve ek yük olmadan {c}–{d}; kuvvet hedefinde yardımcı egzersizler {e}–{f}): setler tükenişe yakın yapıldığında kaslar geniş bir ağırlık aralığında büyür.
+
+## T-009
+PL: Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.
+EN: Effort: usually {a}–{b} reps in reserve — close to failure or {c}–{d}; the exact number is not established. Training to failure is not needed.
+DE: Anstrengung: meist {a}–{b} Wiederholungen in Reserve – nah am Versagen oder {c}–{d}; die genaue Zahl ist nicht festgelegt. Bis zum Versagen musst du nicht gehen.
+RU: Усилие: обычно {a}–{b} повторения в запасе — близко к отказу или {c}–{d}; точное число не установлено. До отказа не нужно.
+TR: Efor: genellikle yedekte {a}–{b} tekrar, yani tükenişe yakın ya da {c}–{d}; kesin sayı belli değil. Tükenişe kadar gitmeniz gerekmez.
+
+## T-010
+PL: Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.
+EN: Rest: {a} min after heavy sets of the main lift, {b} min after other compound exercises, {c} min after isolation and core exercises; the exact rest length is not fixed.
+DE: Pausen: {a} min nach schweren Sätzen der Hauptübung, {b} min nach anderen Mehrgelenkübungen, {c} min nach Isolationsübungen und Core; die genaue Pausenlänge ist nicht festgelegt.
+RU: Отдых: {a} мин после тяжёлых подходов основного упражнения, {b} мин после других многосуставных, {c} мин после односуставных и упражнений на кор; точная длительность отдыха не установлена.
+TR: Dinlenme: ana hareketin ağır setlerinden sonra {a} dk, diğer çok eklemli egzersizlerden sonra {b} dk, tek eklemli ve core egzersizlerinden sonra {c} dk. Kesin dinlenme süresi belli değil.
+
+## T-011
+PL: Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.
+EN: Cardio: one session of moderate effort on a separate day; its length = the session length.
+DE: Cardio: eine Einheit mit moderater Anstrengung an einem eigenen Tag; ihre Dauer = Dauer der Einheit.
+RU: Кардио: одна тренировка умеренной интенсивности в отдельный день; её длительность = длительность тренировки.
+TR: Kardiyo: ayrı bir günde orta eforlu bir antrenman; süresi = antrenman süresi.
+
+## T-012
+PL: Serie na partię w tygodniu (pomocnicza = {h} serii): {list}
+EN: Sets per muscle group per week (assisting = {h} set): {list}
+DE: Sätze pro Muskelgruppe pro Woche (unterstützend = {h} Satz): {list}
+RU: Подходы на мышечную группу в неделю (вспомогательная = {h} подхода): {list}
+TR: Vücut bölgesi başına haftalık set (yardımcı = {h} set): {list}
+
+## T-013
+PL: Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.
+EN: Cardio in the plan: {n} min per week. For health it is worth getting at least {a}–{b} min of moderate activity per week (or {c}–{d} min of vigorous); moderate movement during the day counts too, e.g. brisk walking, even in short bouts.
+DE: Cardio im Plan: {n} min pro Woche. Für die Gesundheit lohnen sich mindestens {a}–{b} min moderate Bewegung pro Woche (oder {c}–{d} min intensive); moderate Bewegung im Alltag zählt auch, z. B. zügiges Gehen, auch kurz.
+RU: Кардио в плане: {n} мин в неделю. Для здоровья стоит набирать не менее {a}–{b} мин умеренной нагрузки в неделю (или {c}–{d} мин интенсивной); учитывается и умеренное движение в течение дня, например быстрая ходьба, даже короткая.
+TR: Planda kardiyo: haftada {n} dk. Sağlık için haftada en az {a}–{b} dk orta yoğunlukta (ya da {c}–{d} dk yüksek yoğunlukta) hareket etmeye değer. Gün içindeki orta yoğunlukta hareket de sayılır, örneğin kısa süreli bile olsa tempolu yürüyüş.
+
+## T-015
+PL: e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała), pompki (ok. {p}%).
+EN: e1RM in bodyweight exercises is calculated only with the body weight entered in Progress, and only where it is known what share of it you lift: pull-ups (all of it), push-ups (about {p}%).
+DE: Das e1RM bei Körpergewichtsübungen wird nur mit dem unter Fortschritt eingetragenen Körpergewicht berechnet und nur dort, wo bekannt ist, welchen Anteil davon du hebst: Klimmzüge (alles), Liegestütze (etwa {p} %).
+RU: e1RM в упражнениях с собственной массой тела считается только с массой тела, введённой в разделе «Прогресс», и только там, где известно, какую её долю вы поднимаете: подтягивания (вся), отжимания (ок. {p}%).
+TR: Vücut ağırlığı egzersizlerinde e1RM yalnızca İlerleme’ye girilen vücut ağırlığıyla hesaplanır. Bu hesap yalnızca ağırlığın ne kadarını kaldırdığınız bilinen egzersizlerde yapılır: barfiks (tamamı), şınav (yaklaşık %{p}).
+
+## T-016
+PL: Drop set liczy się razem z serią, po której jest.
+EN: A drop set counts together with the set before it.
+DE: Ein Dropsatz zählt zusammen mit dem Satz davor.
+RU: Дроп-сет считается вместе с подходом, после которого он идёт.
+TR: Drop set, kendinden önceki setle birlikte sayılır.
+
+## T-017
+PL: Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała) i w pompkach (ok. {p}% masy ciała). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.
+EN: Optional, stays on this phone. With it the app calculates e1RM for pull-ups (the whole body weight) and push-ups (about {p}% of body weight). Each workout uses the latest measurement from that day or earlier; workouts before the first measurement — no e1RM in these exercises.
+DE: Optional, bleibt nur auf deinem Telefon. Damit berechnet die App das e1RM bei Klimmzügen (ganzes Körpergewicht) und Liegestützen (etwa {p} % des Körpergewichts). Jedes Training nutzt die letzte Messung von diesem oder einem früheren Tag; Trainings vor der ersten Messung – kein e1RM bei diesen Übungen.
+RU: Необязательно, хранится только в телефоне. С ней приложение считает e1RM в подтягиваниях (вся масса тела) и в отжиманиях (ок. {p}% массы тела). Каждая тренировка считается по последнему замеру за этот день или раньше; тренировки до первого замера — без e1RM в этих упражнениях.
+TR: İsteğe bağlıdır ve yalnızca bu telefonda kalır. Bununla uygulama barfikste (tüm vücut ağırlığı) ve şınavda (vücut ağırlığının yaklaşık %{p} kadarı) e1RM hesaplar. Her antrenmanda o günün veya daha önceki günlerin son ölçümü kullanılır. İlk ölçümden önceki antrenmanlarda bu egzersizler için e1RM yoktur.
+
+## T-018
+PL: e1RM liczone z {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie.
+EN: e1RM calculated from {p}% of the body weight from the workout day (the latest measurement from that day or earlier) plus added weight.
+DE: e1RM berechnet aus {p} % des Körpergewichts vom Trainingstag (letzte Messung von diesem oder einem früheren Tag) plus Zusatzgewicht.
+RU: e1RM считается от {p}% массы тела на день тренировки (последний замер за этот день или раньше) плюс доп. вес.
+TR: e1RM, antrenman günündeki vücut ağırlığının %{p} kadarı (o günün veya daha önceki günlerin son ölçümü) artı ek ağırlıkla hesaplanır.
+
+## T-020
+PL: Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze.
+EN: More days than templates: templates in order (A, B, A…), as in the generator.
+DE: Mehr Tage als Vorlagen: Vorlagen der Reihe nach (A, B, A…), wie im Generator.
+RU: Дней больше, чем шаблонов: шаблоны по очереди (A, B, A…), как в генераторе.
+TR: Gün sayısı şablon sayısından fazlaysa şablonlar oluşturucudaki gibi sırayla (A, B, A…) kullanılır.
+
+## T-021
+PL: Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — to częsta praktyka, nie sztywna reguła.
+EN: Training weeks in a row without a deload: {n}. A deload usually comes every {a}–{b} weeks — that is common practice, not a fixed rule.
+DE: Trainingswochen in Folge ohne Deload: {n}. Ein Deload kommt meist alle {a}–{b} Wochen – das ist gängige Praxis, keine feste Regel.
+RU: Тренировочных недель подряд без разгрузки: {n}. Разгрузку обычно делают каждые {a}–{b} недель — это частая практика, а не строгое правило.
+TR: Deload olmadan art arda antrenman haftası: {n}. Deload genellikle {a}–{b} haftada bir yapılır; bu yaygın bir uygulamadır, katı bir kural değildir.
+
+## T-022
+PL: Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.
+EN: Usually a rest day between sessions with the same main muscle groups.
+DE: Meist ein Ruhetag zwischen Einheiten mit denselben Hauptmuskelgruppen.
+RU: Обычно день отдыха между тренировками с теми же основными мышечными группами.
+TR: Aynı ana vücut bölgelerini çalıştıran antrenmanlar arasında genellikle bir dinlenme günü olur.
+
+## T-023
+PL: Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).
+EN: Cardio: from {k} days per week, one session on a separate day; with fewer days all are strength days, so cardio does not take days from strength training (each major muscle group on at least {n} days).
+DE: Cardio: ab {k} Tagen pro Woche eine Einheit an einem eigenen Tag; bei weniger Tagen sind alle Krafttage, damit Cardio dem Krafttraining keine Tage wegnimmt (jede große Muskelgruppe an mindestens {n} Tagen).
+RU: Кардио: от {k} дн. в неделю — одна тренировка в отдельный день; при меньшем количестве дней все силовые, чтобы кардио не отнимало дни у силовых тренировок (каждая основная мышечная группа не менее {n} дн.).
+TR: Kardiyo: haftada {k} gün ve üzerinde ayrı bir günde bir antrenman yapılır. Daha az günde hepsi kuvvet günüdür; böylece kardiyo kuvvet antrenmanından gün almaz (her ana vücut bölgesi en az {n} gün).
+
+## T-024
+PL: Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.
+EN: Cardio outside the plan: a cardio session is in the plan from {k} days per week; with fewer, all days are strength days. For health it is worth getting at least {a}–{b} min of moderate activity per week (or {c}–{d} min of vigorous); moderate movement during the day counts too, e.g. brisk walking, even in short bouts.
+DE: Cardio außerhalb des Plans: Eine Cardio-Einheit ist ab {k} Tagen pro Woche im Plan, bei weniger Tagen sind alle Krafttage. Für die Gesundheit lohnen sich mindestens {a}–{b} min moderate Bewegung pro Woche (oder {c}–{d} min intensive); moderate Bewegung im Alltag zählt auch, z. B. zügiges Gehen, auch kurz.
+RU: Кардио вне плана: кардиотренировка входит в план от {k} дн. в неделю, при меньшем количестве все дни силовые. Для здоровья стоит набирать не менее {a}–{b} мин умеренной нагрузки в неделю (или {c}–{d} мин интенсивной); учитывается и умеренное движение в течение дня, например быстрая ходьба, даже короткая.
+TR: Plan dışında kardiyo: kardiyo antrenmanı haftada {k} gün ve üzerinde plana girer; daha az günde tüm günler kuvvet günüdür. Sağlık için haftada en az {a}–{b} dk orta yoğunlukta (ya da {c}–{d} dk yüksek yoğunlukta) hareket etmeye değer. Gün içindeki orta yoğunlukta hareket de sayılır, örneğin kısa süreli bile olsa tempolu yürüyüş.
+
+## T-025
+PL: Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.
+EN: General fitness (for health): {s} sets per exercise, {a}–{b} reps (at home {c}–{d}), until another repetition would be hard. For health it is worth training all major muscle groups on at least {n} days a week.
+DE: Allgemein (für Gesundheit und Fitness): {s} Sätze pro Übung, {a}–{b} Wiederholungen (zu Hause {c}–{d}), bis eine weitere Wiederholung schwer wäre. Für die Gesundheit lohnt es sich, alle großen Muskelgruppen an mindestens {n} Tagen pro Woche zu trainieren.
+RU: Общая форма (для здоровья и физподготовки): {s} подхода на упражнение, {a}–{b} повторений (дома {c}–{d}), до момента, когда следующее повторение было бы трудным. Для здоровья стоит тренировать все основные мышечные группы не менее {n} дн. в неделю.
+TR: Genel (sağlık ve kondisyon için): egzersiz başına {s} set, {a}–{b} tekrar (evde {c}–{d}). Bir tekrar daha zorlayıcı olana kadar devam edin. Sağlık için tüm ana vücut bölgelerini haftada en az {n} gün çalıştırmaya değer.
+
+## T-026
+PL: Powtórzenia: {a}–{b}; w domu i bez obciążenia {c}–{d} — lżejszy ciężar, więcej powtórzeń.
+EN: Reps: {a}–{b}; at home and without external load {c}–{d} — lighter weight, more reps.
+DE: Wiederholungen: {a}–{b}; zu Hause und ohne Zusatzgewicht {c}–{d} – leichteres Gewicht, mehr Wiederholungen.
+RU: Повторения: {a}–{b}; дома и без отягощения {c}–{d} — меньше вес, больше повторений.
+TR: Tekrarlar: {a}–{b}; evde ve ek yük olmadan {c}–{d}, yani daha hafif ağırlık, daha çok tekrar.
+
+## T-027
+PL: Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.
+EN: Effort: until another repetition would be hard — tired, but not exhausted. You do not need to go to failure.
+DE: Anstrengung: bis eine weitere Wiederholung schwer wäre – müde, aber nicht erschöpft. Bis zum Versagen musst du nicht gehen.
+RU: Усилие: до момента, когда следующее повторение было бы трудным, — усталость, но не изнеможение. До отказа не нужно.
+TR: Efor: bir tekrar daha zorlayıcı olana kadar devam edin; yorulun, ama bitkin düşmeyin. Tükenişe kadar gitmeniz gerekmez.
+
+## T-028
+PL: Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.
+EN: Rest: {b} min after multi-joint exercises, {c} min after single-joint and core; the exact rest length is not fixed.
+DE: Pausen: {b} min nach Mehrgelenkübungen, {c} min nach Isolationsübungen und Core; die genaue Pausenlänge ist nicht festgelegt.
+RU: Отдых: {b} мин после многосуставных, {c} мин после односуставных и упражнений на кор; точная длительность отдыха не установлена.
+TR: Dinlenme: çok eklemli egzersizlerden sonra {b} dk, tek eklemli ve core egzersizlerinden sonra {c} dk. Kesin dinlenme süresi belli değil.
+
+## T-029
+PL: Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.
+EN: Cardio: with {k}–{m} days you can turn the days above {j} into moderate cardio sessions (“Cardio days in the plan”, off by default). More muscle-strengthening activity does not necessarily bring more health benefits, and aerobic activity is best spread over several days. Cardio session length = session time.
+DE: Cardio: Bei {k}–{m} Tagen kannst du die Tage über {j} in Einheiten mit moderatem Cardio umwandeln („Cardio-Tage im Plan“, standardmäßig aus). Mehr Krafttraining bringt nicht unbedingt mehr für die Gesundheit, und Ausdauerbewegung verteilst du am besten auf mehrere Tage. Dauer der Cardio-Einheit = Dauer der Einheit.
+RU: Кардио: при {k}–{m} днях можно заменить дни сверх {j} на тренировки умеренного кардио («Дни кардио в плане», по умолчанию выключено). Больше силовых упражнений не обязательно даёт больше пользы для здоровья, а аэробную нагрузку лучше распределять на несколько дней. Длительность кардио = длительность тренировки.
+TR: Kardiyo: {k}–{m} günde, {j} günün üzerindeki günleri orta tempolu kardiyo antrenmanlarına çevirebilirsiniz (“Planda kardiyo günleri”, varsayılan olarak kapalı). Daha fazla kuvvet çalışması sağlığa daha fazla yarar sağlamayabilir. Aerobik hareketi birkaç güne yaymak iyi olur. Kardiyo antrenmanının süresi = antrenman süresi.
+
+## T-030
+PL: Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.
+EN: Sets: {s} per exercise — for health usually {s}–{b}. It is worth doing at least {m}. One set already works, {s}–{b} may work better; for beginners and older adults one set can be enough. {s} is the lower end.
+DE: Sätze: {s} pro Übung – für die Gesundheit meist {s}–{b}. Mindestens {m} lohnen sich. Schon ein Satz wirkt, {s}–{b} können besser wirken; bei Einsteigern und Älteren kann ein Satz reichen. {s} ist die Untergrenze.
+RU: Подходы: {s} на упражнение — для здоровья обычно {s}–{b}. Стоит делать не менее {m}. Один подход уже работает, {s}–{b} могут работать лучше; новичкам и пожилым одного подхода может хватить. {s} — нижняя граница.
+TR: Setler: egzersiz başına {s}; sağlık için genellikle {s}–{b}. En az {m} set yapmaya değer. Tek set bile işe yarar, {s}–{b} set daha iyi sonuç verebilir. Yeni başlayanlar ve yaşlılar için tek set yeterli olabilir. {s} alt sınırdır.
+
+## T-031
+PL: {k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.
+EN: {k} strength day a week is less than the recommended minimum (at least {n} days). It is a good first step: you can strength-train just {k} day a week at first and build up to {n} over time — some activity is better than none.
+DE: {k} Krafttag pro Woche ist weniger als das empfohlene Minimum (mindestens {n} Tage). Für den Anfang ist das ein guter Schritt: Du kannst anfangs nur an {k} Tag pro Woche Krafttraining machen und mit der Zeit auf {n} steigern – etwas Bewegung ist besser als keine.
+RU: {k} силовой день в неделю — меньше рекомендуемого минимума (не менее {n} дн.). Для начала это хороший шаг: можно заниматься силовыми только {k} день в неделю и со временем дойти до {n} — немного движения лучше, чем ничего.
+TR: Haftada {k} kuvvet günü, önerilen minimumun (en az {n} gün) altındadır. Yine de başlangıç için iyi bir adımdır: önce haftada yalnızca {k} gün kuvvet antrenmanı yapıp zamanla {n} güne çıkabilirsiniz. Biraz hareket hiç yoktan iyidir.
+
+## T-032
+PL: Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosną wyraźniej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.
+EN: With at least {n} sets per muscle group per week, muscles grow more than with fewer sets; resistance training in its various forms builds muscle compared with none.
+DE: Ab mindestens {n} Sätzen pro Muskelgruppe und Woche wachsen die Muskeln deutlicher als mit weniger Sätzen; Krafttraining in verschiedenen Formen bringt Zuwachs im Vergleich zu keinem Training.
+RU: При {n} и более подходах на мышечную группу в неделю мышцы растут заметнее, чем при меньшем количестве подходов; силовая тренировка в разных формах даёт рост по сравнению с отсутствием тренировок.
+TR: Vücut bölgesi başına haftada en az {n} set yapıldığında kaslar, daha az sete göre belirgin şekilde daha çok büyür. Çeşitli biçimlerdeki kuvvet antrenmanı, hiç antrenman yapmamaya göre gelişim sağlar.
+
+## T-033
+PL: Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).
+EN: A secondary muscle group of an exercise counts as half a set (main 1, secondary 0.5).
+DE: Eine Hilfsmuskelgruppe einer Übung zählt als halber Satz (Hauptmuskelgruppe 1, Hilfsmuskelgruppe 0,5).
+RU: Вспомогательная мышечная группа упражнения считается как полподхода (основная 1, вспомогательная 0,5).
+TR: Bir egzersizin yardımcı vücut bölgesi yarım set sayılır (ana 1, yardımcı 0,5).
+
+## T-034
+PL: Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.
+EN: The line in “This week” and in Progress. Automatic: {n} sets. Manual: your own number from {min} to {max}.
+DE: Die Linie in „Diese Woche“ und in Fortschritt. Automatisch: {n} Sätze. Manuell: deine eigene Zahl von {min} bis {max}.
+RU: Черта в разделе «Эта неделя» и в «Прогрессе». Автоматически: {n} подходов. Вручную: ваше число от {min} до {max}.
+TR: “Bu hafta” ve İlerleme ekranındaki çizgi. Otomatik: {n} set. Elle: {min} ile {max} arasında kendi belirlediğiniz sayı.
+
+## T-040
+PL: Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.
+EN: Barbell exercise with the bar on the trunk or over the head and face: safety equipment is recommended — a rack with safety arms, plus a spotter.
+DE: Übung mit der Langhantel auf dem Rumpf oder über Kopf und Gesicht: Absicherung wird empfohlen — ein Rack mit Sicherheitsarmen und eine Sicherungsperson.
+RU: Упражнение со штангой на туловище или над головой и лицом: рекомендуется страховка — стойка со страховочными упорами и страхующий.
+TR: Halterin gövde üzerinde ya da baş ve yüz üzerinde olduğu egzersiz: güvenlik önlemi önerilir — güvenlik kollu bir raf ve yardımcı bir kişi.
+
+## T-044
+PL: Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.
+EN: Barbell exercise with the bar on the trunk or over the head and face: a spotter is recommended.
+DE: Übung mit der Langhantel auf dem Rumpf oder über Kopf und Gesicht: eine Sicherungsperson wird empfohlen.
+RU: Упражнение со штангой на туловище или над головой и лицом: рекомендуется страхующий.
+TR: Halterin gövde üzerinde ya da baş ve yüz üzerinde olduğu egzersiz: yardımcı bir kişi önerilir.
+
+## T-045
+PL: Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.
+EN: Dumbbell exercise with the weights over the head or face: a spotter is recommended.
+DE: Übung mit Kurzhanteln über Kopf oder Gesicht: eine Sicherungsperson wird empfohlen.
+RU: Упражнение с гантелями над головой или лицом: рекомендуется страхующий.
+TR: Dambılların baş veya yüz üzerinde olduğu egzersiz: yardımcı bir kişi önerilir.
+
+## T-041
+PL: RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.
+EN: Enter RIR from 0 to {max}; more than {max} reps in reserve is saved as “light” (RPE {light}), because below RPE {min} the scale describes effort in words, not reps in reserve.
+DE: RIR gibst du von 0 bis {max} ein; mehr als {max} Wiederholungen in Reserve werden als „leicht“ gespeichert (RPE {light}), weil die Skala unter RPE {min} die Anstrengung mit Worten beschreibt, nicht mit Wiederholungen in Reserve.
+RU: RIR вводится в диапазоне 0–{max}; больше {max} повторений в запасе сохраняется как «легко» (RPE {light}), потому что ниже RPE {min} шкала описывает усилие словами, а не повторениями в запасе.
+TR: RIR 0–{max} aralığında girilir. {max} tekrardan fazla yedek, “hafif” (RPE {light}) olarak kaydedilir; çünkü RPE {min} altında ölçek eforu yedek tekrarla değil, sözcüklerle tanımlar.
+
+## T-042
+PL: {app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.
+EN: {app} is made by an independent developer: no ads, no data collection. If it helps you, choose a plan to keep training without limits. Your free days come back on {date}.
+DE: {app} wird von einem unabhängigen Entwickler gemacht: ohne Werbung, ohne Datensammlung. Wenn es dir hilft, wähle einen Plan und trainiere ohne Limit. Die kostenlosen Tage kommen am {date} zurück.
+RU: {app} делает независимый разработчик: без рекламы и без сбора данных. Если приложение вам помогает, выберите план и тренируйтесь без ограничений. Бесплатные дни вернутся {date}.
+TR: Uygulama ({app}) bağımsız bir geliştirici tarafından yapılır: reklamsız, veri toplamadan. Size yardımcı oluyorsa bir plan seçin ve sınırsız antrenman yapın. Ücretsiz günler şu tarihte geri gelir: {date}.
+
+## (poza rejestrem)
+PL: Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.
+EN: The app does not give medical advice. If you have pain, an injury or an illness, consult a doctor or physiotherapist.
+DE: Die App gibt keine medizinischen Ratschläge. Bei Schmerzen, Verletzungen oder Krankheit lass dich ärztlich oder physiotherapeutisch beraten.
+RU: Приложение не даёт медицинских советов. При боли, травме или болезни обратитесь к врачу или физиотерапевту.
+TR: Uygulama tıbbi tavsiye vermez. Ağrı, sakatlık veya hastalık durumunda bir doktora ya da fizyoterapiste danışın.
+
+## (poza rejestrem)
+PL: Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.
+EN: Toes pointed slightly out — usually about 15–20°.
+DE: Zehen leicht nach außen – meist etwa 15–20°.
+RU: Носки слегка наружу — обычно примерно на 15–20°.
+TR: Ayak parmakları hafifçe dışarı dönük olsun, genellikle yaklaşık 15–20°.
+
+## (poza rejestrem)
+PL: Redukcja: trening jak na masę (chroni mięśnie) i jedna sesja umiarkowanego cardio.
+EN: Fat loss: training as for muscle (protects muscle) and one session of moderate cardio.
+DE: Fettabbau: Training wie für Muskelaufbau (schützt die Muskeln) und eine Einheit moderates Cardio.
+RU: Похудение: тренировки как на массу (сохраняют мышцы) и одна тренировка умеренного кардио.
+TR: Yağ yakımı: kas için olduğu gibi antrenman (kasları korur) ve bir seans orta tempolu kardiyo.
+
+## (poza rejestrem)
+PL: Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.
+EN: One workout a week still brings progress, but usually a little less than training more often — mainly because fewer sets fit into one session. With the same number of sets per week, the difference in muscle growth disappears and the difference in strength shrinks.
+DE: Ein Training pro Woche bringt auch Fortschritt, meist aber etwas weniger als häufigeres Training — vor allem, weil in eine Einheit weniger Sätze passen. Bei gleicher Satzzahl pro Woche verschwindet der Unterschied beim Muskelaufbau, bei der Kraft wird er kleiner.
+RU: Одна тренировка в неделю тоже даёт прогресс, но обычно немного меньший, чем более частые тренировки, — в основном потому, что в одну тренировку помещается меньше подходов. При том же количестве подходов в неделю разница в росте мышц исчезает, а в силе уменьшается.
+TR: Haftada bir antrenman da ilerleme sağlar, ancak genellikle daha sık antrenmandan biraz daha az — çoğunlukla tek seansa daha az set sığdığı için. Haftalık set sayısı aynı olduğunda kas gelişimindeki fark kaybolur, kuvvetteki fark ise azalır.
+
+rozbieżności mechaniczne (brak / placeholdery / liczby): 0

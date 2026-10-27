@@ -1,0 +1,2 @@
+$ git ls-files | grep -i "wskazowki-cwiczenia\|katy-oddech\|slownik-badacza"
+exit 1 (1 = brak plików w repo)

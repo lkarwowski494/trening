@@ -1,0 +1,2 @@
+import u from 'react-native-web/dist/exports/useWindowDimensions'; import { FS } from './common';
+export default function useWindowDimensions() { const d = u(); return { ...d, fontScale: FS }; }

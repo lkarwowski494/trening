@@ -1,0 +1,4 @@
+$ npx expo config --type introspect --json > introspect.json (worktree 025a50b9 w scratchpadzie), exit=0
+$ node sprawdz-wydanie.mjs prywatnosc introspect.json /home/user/trening/node_modules
+OK
+exit=0

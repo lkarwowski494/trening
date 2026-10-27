@@ -1,0 +1,6 @@
+$ node audit/M1-2026-10-27/narzedzia/sprawdz-raport.mjs audit/M1-2026-10-27/role/05-architekt/05-architekt-2026-10-27.md /home/user/trening /home/user/trening/audit/M1-2026-10-27/role/05-architekt --rola 05-architekt
+OK: odwołania, cytaty, pliki dowodów i sekrety sprawdzone; format raportu 05-architekt
+exit=0
+
+$ git status --porcelain (repo /home/user/trening)
+linii: 0

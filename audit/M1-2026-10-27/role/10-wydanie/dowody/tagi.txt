@@ -1,0 +1,11 @@
+$ git for-each-ref refs/tags/v1.0* refs/tags/v0.20* (pełny klon); git log -1 001ecf28; git diff --stat 001ecf28 025a50b9 -- app/paywall.tsx components/SubscriptionCard.tsx lib/store-native.ts store/ app.json site/ .github/workflows
+v0.20.0-b1030 -> f2b0525f65a1a4c589c4399296badd29bca6072e
+v1.0.0-b1031 -> 001ecf28d96e5db95771aeb8f6c865ea963469c6
+001ecf28: 2026-10-27 00:56:24 +0100 Merge pull request #71 from <właściciel>/wydanie-1-0-0
+commity 001ecf28..025a50b9: 32
+diff paywall/sklep/app.json/site/workflowy 001ecf28..025a50b9: 0 linii (0 = bez zmian)
+zmienione pliki figur 001ecf28..025a50b9: 8
+git merge-base --is-ancestor 025a50b9 origin/main: tak
+$ grep v1.0.0-b1031 docs/09-plan-testow.md
+0
+exit=0

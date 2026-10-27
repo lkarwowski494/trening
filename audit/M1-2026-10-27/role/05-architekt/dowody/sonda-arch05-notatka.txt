@@ -1,0 +1,43 @@
+# Sonda ARCH-05 (worktree w scratchpadzie na 025a50b9; plik testu poniżej, NIE w repo)
+$ npx jest tests/sonda-arch05.test.ts --maxWorkers=1
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+  console.log
+    {"IMPORT_NOTE_MAX":500,"imported":{"workouts":1,"exercises":0},"noteBefore":450}
+      at Object.log (tests/sonda-arch05.test.ts:18:11)
+  console.log
+    {"noteAfterEditSave":300}
+      at Object.log (tests/sonda-arch05.test.ts:22:11)
+PASS iOS tests/sonda-arch05.test.ts
+  ✓ notatka serii 450 znaków z CSV zostaje w historii; zapis z okna „Notatka do serii” (clampName(…, 300)) ją ucina (81 ms)
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.477 s, estimated 7 s
+Ran all test suites matching /tests\/sonda-arch05.test.ts/i.
+exit=0
+
+----- tests/sonda-arch05.test.ts -----
+/* SONDA audytu 05-architekt (scratchpad, nie w repo): ARCH-05 — limit notatki serii: import CSV 500 znaków vs edycja 300 znaków. */
+import * as store from '@/lib/store';
+import { parseImport } from '@/lib/csvparse';
+import { commitCsvImport } from '@/lib/csvimport';
+import { clampName } from '@/lib/state/util';
+import { IMPORT_NOTE_MAX } from '@/lib/csvcore';
+import { fresh } from './helpers';
+
+test('notatka serii 450 znaków z CSV zostaje w historii; zapis z okna „Notatka do serii” (clampName(…, 300)) ją ucina', async () => {
+  await fresh();
+  const long = 'x'.repeat(450);
+  const csv = 'Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE\n' +
+    `2026-03-02 18:05:00,Push A,52m,Bench Press (Barbell),1,60.0,8.0,0,0,${long},,\n`;
+  const file = parseImport(csv);
+  const r = await commitCsvImport(file, {} as any);
+  const w = store.getState().workouts.find(x => x.templateName === 'Push A')!;
+  const set = w.exercises[0].sets[0];
+  console.log(JSON.stringify({ IMPORT_NOTE_MAX, imported: r, noteBefore: set.note.length }));
+  expect(set.note.length).toBe(450);
+  /* ten sam kod co app/history/edit/[id].tsx:113 i components/WorkoutBlocks.tsx:134 po „Zapisz” bez zmiany tekstu */
+  set.note = clampName((set.note ?? '').trim(), 300);
+  console.log(JSON.stringify({ noteAfterEditSave: set.note.length }));
+  expect(set.note.length).toBe(300);
+});

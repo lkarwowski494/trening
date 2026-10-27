@@ -1,0 +1,152 @@
+T-001 [źródło cytowane w tekście] zrodla=["Zourdos i in., JSCR 2016"]
+ PL: RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali.
+ EN: RIR is the number of reps you still had left: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Saved values convert when you switch scales.
+
+T-002 [konwencja/uproszczenie/przegląd badań] zrodla=[]
+ PL: Propozycja według Twoich założeń — przejrzysz ją przed zapisem.
+ EN: A proposal based on your assumptions — you review it before saving.
+
+T-003 [konwencja/źródło cytowane w tekście] zrodla=["ACSM 2009","ACSM 2011","ACSM 2026"]
+ PL: Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów.
+ EN: Progression: when you reach the top of the rep range, add weight. Adding load gradually is what keeps you progressing.
+
+T-004 [uproszczenie/przegląd badań/źródło cytowane w tekście] zrodla=["ACSM"]
+ PL: Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku.
+ EN: Usually a rest day between sessions with the same main muscle groups; two days in a row are also fine with the same weekly number of sets.
+
+T-005 [konwencja/uproszczenie/źródło cytowane w tekście] zrodla=["ACSM 2026","WHO","Pelland i in. 2026","Ramos-Campo i in. 2024"]
+ PL: Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.
+ EN: Each major muscle group on at least {n} days a week — that is what is recommended for health. Frequency affects strength, but more days do not have to give proportionally more; with the same number of sets the differences are small. A day when the group only assists counts as {h}. You can pick the split (full body, upper/lower) freely — with the same number of sets it gives similar results.
+
+T-006 [uproszczenie/źródło cytowane w tekście] zrodla=["ACSM 2026"]
+ PL: Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.
+ EN: Sets: {s} per exercise — it is worth doing at least {m}; more sets usually give a little more, with diminishing returns.
+
+T-007 [uproszczenie] zrodla=[]
+ PL: Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia przerwa {r} s) = {n}; ćwiczeń = serie / {k} (co najmniej {e}). To szacunek.
+ EN: Number of sets from session length: (minutes − {w} min warm-up) × 60 / ({s} s per set + average rest {r} s) = {n}; exercises = sets / {k} (at least {e}). This is an estimate.
+
+T-008 [uproszczenie/przegląd badań/źródło cytowane w tekście] zrodla=["ACSM"]
+ PL: Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.
+ EN: Rep ranges (muscle {a}–{b}, at home and without external load {c}–{d}; for strength other exercises {e}–{f}): muscles grow across a wide range of loads when sets are close to failure.
+
+T-009 [źródło cytowane w tekście] zrodla=["ACSM 2026"]
+ PL: Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.
+ EN: Effort: usually {a}–{b} reps in reserve — close to failure or {c}–{d}; the exact number is not established. Training to failure is not needed.
+
+T-010 [uproszczenie/źródło cytowane w tekście] zrodla=["ACSM 2026"]
+ PL: Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.
+ EN: Rest: {a} min after heavy sets of the main lift, {b} min after other compound exercises, {c} min after isolation and core exercises; the exact rest length is not fixed.
+
+T-011 [konwencja] zrodla=[]
+ PL: Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.
+ EN: Cardio: one session of moderate effort on a separate day; its length = the session length.
+
+T-012 [uproszczenie] zrodla=[]
+ PL: Serie na partię w tygodniu (pomocnicza = {h} serii): {list}
+ EN: Sets per muscle group per week (assisting = {h} set): {list}
+
+T-013 [źródło cytowane w tekście] zrodla=["WHO"]
+ PL: Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.
+ EN: Cardio in the plan: {n} min per week. For health it is worth getting at least {a}–{b} min of moderate activity per week (or {c}–{d} min of vigorous); moderate movement during the day counts too, e.g. brisk walking, even in short bouts.
+
+T-015 [uproszczenie] zrodla=[]
+ PL: e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała), pompki (ok. {p}%).
+ EN: e1RM in bodyweight exercises is calculated only with the body weight entered in Progress, and only where it is known what share of it you lift: pull-ups (all of it), push-ups (about {p}%).
+
+T-016 [uproszczenie] zrodla=[]
+ PL: Drop set liczy się razem z serią, po której jest.
+ EN: A drop set counts together with the set before it.
+
+T-017 [uproszczenie] zrodla=[]
+ PL: Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała) i w pompkach (ok. {p}% masy ciała). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.
+ EN: Optional, stays on this phone. With it the app calculates e1RM for pull-ups (the whole body weight) and push-ups (about {p}% of body weight). Each workout uses the latest measurement from that day or earlier; workouts before the first measurement — no e1RM in these exercises.
+
+T-018 [uproszczenie/źródło cytowane w tekście] zrodla=["Epley"]
+ PL: e1RM liczone z {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie.
+ EN: e1RM calculated from {p}% of the body weight from the workout day (the latest measurement from that day or earlier) plus added weight.
+
+T-020 [konwencja] zrodla=[]
+ PL: Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze.
+ EN: More days than templates: templates in order (A, B, A…), as in the generator.
+
+T-021 [jedno źródło] zrodla=[]
+ PL: Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — to częsta praktyka, nie sztywna reguła.
+ EN: Training weeks in a row without a deload: {n}. A deload usually comes every {a}–{b} weeks — that is common practice, not a fixed rule.
+
+T-022 [uproszczenie] zrodla=[]
+ PL: Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.
+ EN: Usually a rest day between sessions with the same main muscle groups.
+
+T-023 [konwencja] zrodla=[]
+ PL: Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).
+ EN: Cardio: from {k} days per week, one session on a separate day; with fewer days all are strength days, so cardio does not take days from strength training (each major muscle group on at least {n} days).
+
+T-024 [źródło cytowane w tekście] zrodla=["WHO"]
+ PL: Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.
+ EN: Cardio outside the plan: a cardio session is in the plan from {k} days per week; with fewer, all days are strength days. For health it is worth getting at least {a}–{b} min of moderate activity per week (or {c}–{d} min of vigorous); moderate movement during the day counts too, e.g. brisk walking, even in short bouts.
+
+T-025 [źródło cytowane w tekście] zrodla=["WHO"]
+ PL: Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.
+ EN: General fitness (for health): {s} sets per exercise, {a}–{b} reps (at home {c}–{d}), until another repetition would be hard. For health it is worth training all major muscle groups on at least {n} days a week.
+
+T-026 [uproszczenie/źródło cytowane w tekście] zrodla=["ACSM 2011","wytyczne USA 2018"]
+ PL: Powtórzenia: {a}–{b}; w domu i bez obciążenia {c}–{d} — lżejszy ciężar, więcej powtórzeń.
+ EN: Reps: {a}–{b}; at home and without external load {c}–{d} — lighter weight, more reps.
+
+T-027 [źródło cytowane w tekście] zrodla=["ACSM 2011","WHO","wytyczne USA 2018"]
+ PL: Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.
+ EN: Effort: until another repetition would be hard — tired, but not exhausted. You do not need to go to failure.
+
+T-028 [uproszczenie/źródło cytowane w tekście] zrodla=["ACSM 2026"]
+ PL: Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.
+ EN: Rest: {b} min after multi-joint exercises, {c} min after single-joint and core; the exact rest length is not fixed.
+
+T-029 [konwencja/źródło cytowane w tekście] zrodla=["ACSM 2011","WHO","wytyczne USA 2018"]
+ PL: Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.
+ EN: Cardio: with {k}–{m} days you can turn the days above {j} into moderate cardio sessions (“Cardio days in the plan”, off by default). More muscle-strengthening activity does not necessarily bring more health benefits, and aerobic activity is best spread over several days. Cardio session length = session time.
+
+T-030 [uproszczenie/źródło cytowane w tekście] zrodla=["ACSM 2026","ACSM 2011"]
+ PL: Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.
+ EN: Sets: {s} per exercise — for health usually {s}–{b}. It is worth doing at least {m}. One set already works, {s}–{b} may work better; for beginners and older adults one set can be enough. {s} is the lower end.
+
+T-031 [źródło cytowane w tekście] zrodla=["WHO","wytyczne USA 2018"]
+ PL: {k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.
+ EN: {k} strength day a week is less than the recommended minimum (at least {n} days). It is a good first step: you can strength-train just {k} day a week at first and build up to {n} over time — some activity is better than none.
+
+T-032 [źródło cytowane w tekście] zrodla=["ACSM 2026"]
+ PL: Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosną wyraźniej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.
+ EN: With at least {n} sets per muscle group per week, muscles grow more than with fewer sets; resistance training in its various forms builds muscle compared with none.
+
+T-033 [uproszczenie/źródło cytowane w tekście] zrodla=["Pelland i in. 2026"]
+ PL: Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).
+ EN: A secondary muscle group of an exercise counts as half a set (main 1, secondary 0.5).
+
+T-034 [źródło cytowane w tekście] zrodla=["ACSM 2026"]
+ PL: Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.
+ EN: The line in “This week” and in Progress. Automatic: {n} sets. Manual: your own number from {min} to {max}.
+
+T-040 [uproszczenie] zrodla=["NSCA 2017 (Standard 3.2)"]
+ PL: Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.
+ EN: Barbell exercise with the bar on the trunk or over the head and face: safety equipment is recommended — a rack with safety arms, plus a spotter.
+
+T-044 [uproszczenie/konwencja] zrodla=["NSCA 2017 (Standard 3.2)"]
+ PL: Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.
+ EN: Barbell exercise with the bar on the trunk or over the head and face: a spotter is recommended.
+
+T-045 [uproszczenie/konwencja] zrodla=["NSCA 2017 (Standard 3.2)"]
+ PL: Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.
+ EN: Dumbbell exercise with the weights over the head or face: a spotter is recommended.
+
+T-041 [źródło cytowane w tekście] zrodla=["Helms i in. 2016 (Strength Cond J 38(4):42–49, PMC4961270)"]
+ PL: RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.
+ EN: Enter RIR from 0 to {max}; more than {max} reps in reserve is saved as “light” (RPE {light}), because below RPE {min} the scale describes effort in words, not reps in reserve.
+
+T-042 [źródło cytowane w tekście] zrodla=["App Store Connect, App Privacy „Data Not Collected” (opublikowane 14.10.2026, docs/18; docs/45 Q9 A z 21.10.2026)"]
+ PL: {app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.
+ EN: {app} is made by an independent developer: no ads, no data collection. If it helps you, choose a plan to keep training without limits. Your free days come back on {date}.
+
+T-043 [źródło cytowane w tekście] zrodla=["App Store Connect, App Privacy „Data Not Collected” (brak reklam i śledzenia); brak zależności reklamowych w package.json"]
+ PL: {app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.
+ EN: {app} is made by an independent developer: no ads, no data collection. If it helps you, choose a plan to keep training without limits. Your free days come back on {date}.
+

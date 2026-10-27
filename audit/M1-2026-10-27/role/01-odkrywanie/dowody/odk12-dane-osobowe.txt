@@ -1,0 +1,5 @@
+$ grep -nE "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}|\+?[0-9]{3}[ -]?[0-9]{3}[ -]?[0-9]{3}|UDID" docs/brd/*.md docs/research/skargi-wnioski-2026-10.md docs/research/raporty-rynkowe-2026-10.md
+docs/brd/zrodla.md:8:| S-03 | https://sportrxiv.org/index.php/server/preprint/view/460 | Pelland i in., preprint SportRxiv 2024 (wersja opublikowana: Sports Med
+exit=0  (1 = brak trafień)
+$ git ls-files docs | grep -iE "wywiad|rozmow|interview|notatki"
+exit=1

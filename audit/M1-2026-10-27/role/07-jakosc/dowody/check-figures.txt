@@ -1,0 +1,9 @@
+# katalog: kopia robocza 025a50b9 (git worktree w scratchpadzie, node_modules = dowiązanie do /home/user/trening/node_modules)
+# start: 2026-10-27T18:06:35Z
+$ npm run check:figures
+
+> trening@1.0.0 check:figures
+> node scripts/figures/gen.mjs --check
+
+figury: 71 ćwiczeń, 31 otwartych — dokument aktualny
+exit=0  czas=0s  koniec: 2026-10-27T18:06:35Z

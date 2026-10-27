@@ -1,0 +1,25 @@
+$ grep -E "<pliki strażników decyzji>" wspolne/jest.txt   (wynik pełnego przebiegu jest z E0: npx jest --maxWorkers=1 --silent, exit=0, 497/497)
+PASS iOS tests/audit-k1-fala2b.test.tsx (9.031 s)
+PASS iOS tests/timer-logic.test.ts
+PASS iOS tests/idea-request.test.tsx (7.802 s)
+PASS iOS tests/subscription-ui.test.tsx (9.825 s)
+PASS iOS tests/store-adapter.test.ts
+PASS iOS tests/access.test.ts
+PASS iOS tests/health-read.test.ts
+PASS iOS tests/monetyzacja-ui.test.tsx (6.326 s)
+PASS iOS tests/m5s1-dni-zapis.test.ts
+PASS iOS tests/zrodla-wiedzy.test.ts
+PASS iOS tests/audit-m1-031-hantle-asekuracja.test.tsx
+PASS iOS tests/m5s1-bez-proby.test.ts
+PASS iOS tests/support-mail.test.tsx
+PASS iOS tests/prices-decision.test.ts
+PASS iOS tests/review.test.ts
+PASS iOS tests/audit-m1-044-brd.test.ts
+PASS iOS tests/csv-jednostka-eksportu.test.ts
+PASS iOS tests/audit-m1-lok07-02-default-system.test.ts
+PASS iOS tests/tryb-cichy-wskazowka.test.tsx
+PASS iOS tests/dec07-k9-stukniecia.test.tsx
+PASS iOS tests/domyslny-motyw.test.ts
+PASS iOS tests/release-1.0.test.tsx
+PASS iOS tests/m1-013-sklep-niedostepny-jezyki.test.ts
+exit=0

@@ -1,0 +1,7 @@
+$ ls docs/scope-contract.md docs/decyzje.md docs/zalozenia.md docs/sztafeta.md
+ls: cannot access 'docs/scope-contract.md': No such file or directory
+ls: cannot access 'docs/decyzje.md': No such file or directory
+ls: cannot access 'docs/zalozenia.md': No such file or directory
+ls: cannot access 'docs/sztafeta.md': No such file or directory
+exit 2
+# zakres.mjs (kopia z promptu w scratchpadzie) nie uruchomiony: brak kontraktu zakresu (decyzja właściciela DEC-02, docs/18-przekazanie.md:329)

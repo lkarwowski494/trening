@@ -1,0 +1,22 @@
+$ node narzedzia/arch07-kv.mjs
+sqlite 3.50.4 | PRAGMA foreign_keys = 0
+tabele: kv | klucze obce kv: 0
+wiersze przed: 3
+wiersze po INSERT OR REPLACE state: 3 | state = {"a":2}
+journal_mode (domyślny SQLite): memory
+exit=0
+
+----- narzedzia/arch07-kv.mjs -----
+// ARCH-07/ARCH-10: schemat aplikacji (tylko tabela kv z lib/state/boot.ts:40) na node:sqlite, zapis jak lib/state/core.ts:85-88
+import { DatabaseSync } from 'node:sqlite';
+const d = new DatabaseSync(':memory:', { enableForeignKeyConstraints: false });
+d.exec('CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)');
+const put = (k, v) => d.prepare('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)').run(k, v);
+put('state', '{"a":1}'); put('live', '{"seq":1}'); put('cfg', '{"seq":1}');
+const n = () => d.prepare('SELECT count(*) n FROM kv').get().n;
+console.log('sqlite', d.prepare('select sqlite_version() v').get().v, '| PRAGMA foreign_keys =', d.prepare('PRAGMA foreign_keys').get().foreign_keys);
+console.log('tabele:', d.prepare("SELECT name FROM sqlite_schema WHERE type='table'").all().map(r => r.name).join(','), '| klucze obce kv:', d.prepare("SELECT count(*) n FROM pragma_foreign_key_list('kv')").get().n);
+console.log('wiersze przed:', n());
+put('state', '{"a":2}');
+console.log('wiersze po INSERT OR REPLACE state:', n(), '| state =', d.prepare("SELECT v FROM kv WHERE k='state'").get().v);
+console.log('journal_mode (domyślny SQLite):', d.prepare('PRAGMA journal_mode').get().journal_mode);

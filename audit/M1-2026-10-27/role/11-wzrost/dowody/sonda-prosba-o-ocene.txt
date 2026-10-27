@@ -1,0 +1,66 @@
+$ (worktree 025a50b9 w scratchpadzie) npx jest tests/zz-sonda-wzrost.test.tsx --maxWorkers=1
+    WEKTOR pierwsze uruchomienie, zero zakończonych prac → tooFewWorkouts
+    WEKTOR zakończona praca, progi spełnione, inna wersja niż przy ostatniej prośbie (>=14 dni) → ask
+    WEKTOR progi spełnione, ta sama wersja (decyzja: 1 na wersję) → sameVersion
+    WEKTOR progi spełnione, trening w toku → workoutActive
+    WEKTOR odstęp krótszy niż próg → tooSoon
+    WEKTOR próg N-1 treningów → tooFewWorkouts
+    WEKTOR limit darmowy wyczerpany → blocked
+    dostęp {"state":"free","level":"free","silent":false,"enabled":true,"active":null,"entitlements":[],"lastKnown":{"level":"free"
+    PR w treningu na żywo: 2 ; ukończone treningi: 11 ; live: 1
+    WYNIK kolizji: okno Uczciwe zasady = 1 ; prośby o ocenę do systemu = 1 ; fairRulesDue po = true
+PASS iOS tests/zz-sonda-wzrost.test.tsx
+    ✓ pierwsze uruchomienie, zero zakończonych prac (35 ms)
+    ✓ zakończona praca, progi spełnione, inna wersja niż przy ostatniej prośbie (>=14 dni) (2 ms)
+    ✓ progi spełnione, ta sama wersja (decyzja: 1 na wersję) (2 ms)
+    ✓ progi spełnione, trening w toku (2 ms)
+    ✓ odstęp krótszy niż próg (2 ms)
+    ✓ próg N-1 treningów (2 ms)
+    ✓ limit darmowy wyczerpany (2 ms)
+    ✓ użytkownik z zaimportowaną historią (bez live) kończy PIERWSZY trening na żywo z rekordem (64 ms)
+Tests:       8 passed, 8 total
+exit 0
+
+--- źródło sondy ---
+/* Sonda audytu 11-wzrost (scratchpad) — wektory prośby o ocenę z modułu pomiar-prywatny + kolizja okna „Uczciwe zasady” z prośbą o ocenę. */
+import * as store from '@/lib/store';
+import { reviewDecision, REVIEW } from '@/lib/review';
+import { PAYWALL } from '@/lib/access';
+import { STORE_TIMING } from '@/lib/products';
+import { setStoreAdapter, resetStoreAdapterForTests } from '@/lib/store-adapter';
+import { createFakeStore } from '@/lib/store-fake';
+import { resetEntitlementsForTests, initEntitlements, accessNow } from '@/lib/entitlement';
+import { markJustFinished, onSummaryShown } from '@/lib/review-run';
+import { fairRulesDue } from '@/lib/fairrules';
+import { workoutPRs, prCountOf } from '@/lib/stats';
+import { fresh, addWorkout } from './helpers';
+import { act } from './app';
+jest.setTimeout(120000);
+jest.mock('expo-constants', () => ({ __esModule: true, default: { expoConfig: { version: '1.0.0' } } }));
+const DAY = 86400e3; const NOW = new Date(2026, 9, 27, 12).getTime(); const S = () => store.getState();
+const base = { now: NOW, finishedWorkouts: 5, justFinishedHasRecord: true, version: '1.0.0' };
+describe('wektory modułu pomiar-prywatny', () => {
+  test.each([
+    ['pierwsze uruchomienie, zero zakończonych prac', { ...base, finishedWorkouts: 0 }, false],
+    ['zakończona praca, progi spełnione, inna wersja niż przy ostatniej prośbie (>=14 dni)', { ...base, lastAsked: { at: NOW - 15 * DAY, version: '0.9' } }, true],
+    ['progi spełnione, ta sama wersja (decyzja: 1 na wersję)', { ...base, lastAsked: { at: NOW - 100 * DAY, version: '1.0.0' } }, false],
+    ['progi spełnione, trening w toku', { ...base, workoutActive: true }, false],
+    ['odstęp krótszy niż próg', { ...base, lastAsked: { at: NOW - 13 * DAY, version: '0.9' } }, false],
+    ['próg N-1 treningów', { ...base, finishedWorkouts: REVIEW.MIN_WORKOUTS - 1 }, false],
+    ['limit darmowy wyczerpany', { ...base, blocked: true }, false],
+  ])('%s', (_n, input, want) => { const d = reviewDecision(input as never); console.log('WEKTOR', _n, '→', d); expect(d === 'ask').toBe(want); });
+});
+describe('kolizja: import historii + pierwszy trening na żywo (free)', () => {
+  afterEach(() => { PAYWALL.ENABLED = false; resetEntitlementsForTests(); resetStoreAdapterForTests(); jest.useRealTimers(); });
+  test('użytkownik z zaimportowaną historią (bez live) kończy PIERWSZY trening na żywo z rekordem', async () => {
+    jest.useFakeTimers({ now: NOW }); await fresh(); global.__review.available = true; global.__review.requested = 0; global.__review.fail = false;
+    PAYWALL.ENABLED = true; resetEntitlementsForTests(); setStoreAdapter(createFakeStore([])); await act(async () => { await initEntitlements(); });
+    for (let i = 0; i < 10; i++) addWorkout(NOW - (20 - i) * DAY, [['Back Squat', [{ weight: 60 + i, reps: 5, done: true }]]], 'Upper A'); /* import/wstecz: bez live */
+    const w = addWorkout(NOW - 60 * 60e3, [['Back Squat', [{ weight: 100, reps: 5, done: true }]]], 'Upper A'); w.live = true; store.recordLiveDayFor(w); S().active = null;
+    console.log('dostęp', JSON.stringify(accessNow(NOW)).slice(0,120)); console.log('PR w treningu na żywo:', prCountOf(workoutPRs(w)), '; ukończone treningi:', store.finishedWorkouts().length, '; live:', S().workouts.filter(x => x.live).length);
+    let fair = 0; markJustFinished(w.id); const off = onSummaryShown(w, () => {}, () => { fair++; });
+    await act(async () => { for (let i = 0; i < 6; i++) await Promise.resolve(); jest.advanceTimersByTime(STORE_TIMING.REVIEW_DELAY_MS + 10); for (let i = 0; i < 6; i++) await Promise.resolve(); });
+    console.log('WYNIK kolizji: okno Uczciwe zasady =', fair, '; prośby o ocenę do systemu =', global.__review.requested, '; fairRulesDue po =', fairRulesDue(w));
+    off();
+  });
+});

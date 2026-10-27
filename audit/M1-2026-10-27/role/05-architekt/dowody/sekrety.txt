@@ -1,0 +1,12 @@
+$ git ls-files | grep -Ei "\.(env|p8|p12|pem|key|jks|keystore|mobileprovision|cer|certSigningRequest)$|(^|/)\.env"
+exit(grep)=1 (1 = brak trafień)
+
+$ git grep -nE "EXPO_PUBLIC_[A-Z_]+" -- ":!audit" | wycinek nazw zmiennych
+      7 EXPO_PUBLIC_BUILD_NUMBER
+      2 EXPO_PUBLIC_PSEUDO
+     41 EXPO_PUBLIC_STORE_FAKE
+     24 EXPO_PUBLIC_WATCH_FAKE
+
+$ git grep -nE wzorce kluczy (AKIA, ghp_, github_pat_, sk-, AIza, xox, BEGIN PRIVATE KEY)
+tests/gemini-pozy.test.ts:343: [linia testu redakcji — syntetyczny klucz „sk-…ABCDEFGHIJKLMNOP”, nie sekret; zamaskowane]
+exit(git grep)=0 (1 = brak trafień)

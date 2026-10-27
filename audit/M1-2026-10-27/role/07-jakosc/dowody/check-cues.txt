@@ -1,0 +1,9 @@
+# katalog: kopia robocza 025a50b9 (git worktree w scratchpadzie, node_modules = dowiązanie do /home/user/trening/node_modules)
+# start: 2026-10-27T18:06:34Z
+$ npm run check:cues
+
+> trening@1.0.0 check:cues
+> node scripts/cues/gen.mjs --check
+
+wskazówki: 102 ćwiczeń, dokument aktualny
+exit=0  czas=0s  koniec: 2026-10-27T18:06:34Z

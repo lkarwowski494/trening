@@ -1,0 +1,53 @@
+# Sonda 08-programista-002 — kopia robocza: git worktree add --detach /tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/08-programista-wt 025a50b9 (node_modules jako dowiązanie)
+$ npx jest tests/sonda-08-paywall.test.tsx --ci --maxWorkers=1   (w kopii roboczej; 1. przebieg: przekroczony czas 30 s przy zimnej pamięci podręcznej Jest, 2. przebieg poniżej)
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+  console.log
+    SONDA-08 {"kartaPosiadania":true,"naglowek5DniZaDarmo":true,"listaPlanow":["plan-yearly","plan-monthly","plan-lifetime"],"zaznaczonyPlan":["plan-yearly"],"przyciskSubskrybuj":true,"nazwaPosiadanegoPlanuNaKarcie":false}
+
+      at Object.log (tests/sonda-08-paywall.test.tsx:31:11)
+
+PASS iOS tests/sonda-08-paywall.test.tsx
+  ✓ SONDA: posiadacz rocznej subskrypcji — co widzi na ekranie zakupu z Ustawień (898 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        4.045 s
+Ran all test suites matching /tests\/sonda-08-paywall.test.tsx/i.
+exit=0
+
+# Źródło sondy:
+/* SONDA audytu 08-programista (tylko kopia robocza w scratchpadzie, nie w repo): ekran zakupu przy AKTYWNEJ subskrypcji rocznej.
+ * Oczekiwanie wg docs/27 5.5 („aktywna subskrypcja (plan, data odnowienia, „Zarządzaj”)”) i uwagi T-11 z telefonu. */
+import * as store from '@/lib/store';
+import { applyLang } from '@/lib/i18n';
+import { PAYWALL, type Entitlement } from '@/lib/access';
+import { setStoreAdapter, resetStoreAdapterForTests } from '@/lib/store-adapter';
+import { createFakeStore } from '@/lib/store-fake';
+import { resetEntitlementsForTests } from '@/lib/entitlement';
+import { planName } from '@/app/paywall';
+import { fresh, saved } from './helpers';
+import { renderApp, flushAll, screen, act } from './app';
+
+const NOW = new Date(2026, 9, 14, 12, 0).getTime(); const DAY = 86400e3;
+const settle = async () => { for (let i = 0; i < 8; i++) await flushAll(10); };
+afterEach(() => { PAYWALL.ENABLED = false; resetEntitlementsForTests(); resetStoreAdapterForTests(); applyLang('pl'); jest.useRealTimers(); });
+
+test('SONDA: posiadacz rocznej subskrypcji — co widzi na ekranie zakupu z Ustawień', async () => {
+  jest.useFakeTimers({ now: NOW }); await fresh(undefined, 'pl'); resetEntitlementsForTests(); PAYWALL.ENABLED = true;
+  const yearly: Entitlement = { plan: 'yearly', source: 'purchase', expiresAt: NOW + 300 * DAY };
+  setStoreAdapter(createFakeStore([yearly])); store.save(); await act(async () => { await store.flush(); });
+  await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'pl', url: '/paywall?reason=settings' }); jest.setSystemTime(NOW); await settle();
+  const fakty = {
+    kartaPosiadania: !!screen.queryByTestId('paywall-owned'),
+    naglowek5DniZaDarmo: !!screen.queryByTestId('paywall-headline'),
+    listaPlanow: screen.queryAllByTestId(/^plan-/).map(n => n.props.testID),
+    zaznaczonyPlan: screen.queryAllByTestId(/^plan-/).filter(n => n.props.accessibilityState?.selected).map(n => n.props.testID),
+    przyciskSubskrybuj: !!screen.queryByText('Subskrybuj'),
+    nazwaPosiadanegoPlanuNaKarcie: !!screen.queryByText(planName('yearly')) && screen.queryAllByText(planName('yearly')).length > 1,
+  };
+  // eslint-disable-next-line no-console
+  console.log('SONDA-08', JSON.stringify(fakty));
+  expect(fakty).toEqual({ kartaPosiadania: true, naglowek5DniZaDarmo: true, listaPlanow: ['plan-yearly', 'plan-monthly', 'plan-lifetime'], zaznaczonyPlan: ['plan-yearly'], przyciskSubskrybuj: true, nazwaPosiadanegoPlanuNaKarcie: false });
+});

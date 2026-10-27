@@ -1,0 +1,6 @@
+$ gh api repos/lkarwowski494/trening/releases/tags/v1.0.0-b1031 --jq {tag, created, assets[name,size]}
+{"assets":[{"name":"main.jsbundle.map","size":12075150},{"name":"Trening-sim.zip","size":32802842}],"created":"2026-10-26T23:56:24Z","tag":"v1.0.0-b1031"}
+exit=0
+$ git ls-remote origin refs/tags/v1.0.0-b1031
+001ecf28d96e5db95771aeb8f6c865ea963469c6	refs/tags/v1.0.0-b1031
+exit=0

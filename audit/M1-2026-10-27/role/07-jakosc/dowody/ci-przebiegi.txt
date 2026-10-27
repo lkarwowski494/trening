@@ -1,0 +1,28 @@
+# Przebiegi CI (odczyt narzędziami MCP GitHub, tylko odczyt; 2026-10-27 ok. 18:10 UTC)
+# metoda: mcp__github__actions_list list_workflow_runs (repo lkarwowski494/trening), list_workflow_jobs dla wskazanych przebiegów
+Badany commit: 025a50b96f504ea9d16d573720d1e92dc951a103 (main, "Wydanie 1.0, build 2 ... (#78)")
+
+## Na badanym SHA 025a50b9
+- tests.yml "Testy (każde wypchnięcie)" run 40526427186 (#1221, push main): completed / success (14:59–15:21 UTC)
+- e2e-ios.yml "E2E iOS · podstawowy" run 40526427254 (#317, push main): run_attempt 6, status in_progress w chwili odczytu
+    job build 122346290618: success (Release, symulator; 17:14–17:50 UTC)
+    job e2e (część 1) 122366409806: in_progress (krok Maestro od 17:54:59)
+    job e2e (część 2) 122366409811: in_progress (krok Maestro od 17:55:40)
+    job e2e (część 3) 122366409780: success, ale WSZYSTKIE kroki Simulator/Maestro/Aktualizacja = skipped (plan części bez scenariuszy)
+    job eksperymenty (niewiążące): skipped
+    (próby 1–5 tego przebiegu: nie odczytano wyniku pojedynczych prób; attempt 6 to szóste uruchomienie)
+- e2e-ios.yml run 40526502530 (#318, workflow_dispatch main, ten sam SHA): completed / cancelled
+- nightly.yml: brak przebiegu na 025a50b9 (ostatni: run 40443012193, 001ecf28, schedule 27.10 03:14 UTC, success)
+- testflight.yml: brak przebiegu na 025a50b9 (ostatni: run 40435246644 #31, 001ecf28, success → build 1031 = BUILD_BASE 1000 + run_number 31)
+
+## Build TestFlight 1031 (ten, który testował właściciel 27.10)
+- testflight.yml run 40435246644 (#31), head_sha 001ecf28d96e5db95771aeb8f6c865ea963469c6 ("Merge pull request #71 ... Wydanie 1.0.0")
+    job bramka E2E: success; job build (macos-26): success — krok "Testy (jak przed każdym buildem — pełne npm run verify)" success (04:38–05:17),
+    "Logika zegarka — testy jednostkowe Swift (targets/watch-tests)" success, "Mapa źródeł JS" success, "Strażnik uprawnień w .ipa" success,
+    "Walidacja Apple na gotowym .ipa" skipped (tylko przy bez_wysylki), "Wysyłka do App Store Connect" success; job tag: success (w tym "Plik wydania Trening-sim.zip")
+- różnica 001ecf28..025a50b9: 32 commity, 55 plików (+481/−171); w kodzie aplikacji: lib/figures/v2/* (rigi squat, bench, hinge), app/exercise/[id].tsx, 25 słowników lib/locales/*.json, targets/watch-app (etykiety, InfoPlist pt-BR); bez zmian schematu danych (lib/state, migracje nietknięte — git diff --stat)
+
+## Inne gałęzie (kontekst, nie badany SHA)
+- naprawy-1-0: c9cacfa6 "Ekran zakupu: posiadany plan subskrypcji ... decyzja 27.10 o kolejności planów, strażnik i lekcja" (tests.yml 40538903252 failure), b4484912 "Macierz testów po dodaniu cena-z-displayprice" (cancelled), 01f8bf0f (failure), 862f119e (success, 17:49 UTC)
+  → poprawki T-11 i strażnik kolejności planów istnieją tylko poza badanym SHA.
+- tests-tz.yml: ostatni run 40446255570 (#23, schedule) na 001ecf28 — success; brak przebiegu na 025a50b9

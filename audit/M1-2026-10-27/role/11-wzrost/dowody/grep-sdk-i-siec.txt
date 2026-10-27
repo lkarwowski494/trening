@@ -1,0 +1,15 @@
+$ grep -iE "analytic|amplitude|mixpanel|segment|appsflyer|adjust|branch|posthog|aptabase|telemetrydeck|sentry|firebase|bugsnag|crashlytics|datadog|facebook|tracking-transparency" package.json  (jedyne trafienie: wzorzec transformIgnorePatterns jest, nie zależność)
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|standard-navigation)"
+exit 0
+$ grep pakietów śledzących w package-lock.json
+exit 1 (1 = brak trafień)
+$ grep -rnE "fetch\(|XMLHttpRequest|axios" lib components app --include=*.ts* | grep -v test
+exit (brak trafień)
+$ grep -n NSPrivacyTracking app.json
+67:        "NSPrivacyTracking": false,
+exit 0
+$ grep -rn "Linking.openURL" lib components app
+lib/support.ts:26: * Jedna droga otwarcia poczty dla obu przycisków (docs/32 wzorzec 14; decyzja właściciela 13.10.2026): mailto: przez Linking.openURL bez wcześniejszego canOpenURL
+lib/support.ts:31:  Promise.resolve().then(() => Linking.openURL(url)).catch(() => {
+lib/support.ts:38:export function openWebPage(url: string): void { Promise.resolve().then(() => Linking.openURL(url)).catch(() => {}); }
+app/paywall.tsx:41:  const open = (url: string) => { Linking.openURL(url).catch(() => {}); };

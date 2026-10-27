@@ -1,0 +1,53 @@
+# Linia bazowa E0b roli 02-monetyzacja — zapisana 2026-10-27 PRZED lekturą docs/monetyzacja.md i kodu płatności
+# Wejście o aplikacji: tylko zdanie celu z polecenia M1 („iOS-owy dziennik treningu siłowego (siłownia i dom), offline, bez konta,
+# uczciwy model freemium”) i stan sklepu z polecenia (3 produkty: miesięczny, roczny, dożywotni; bez okresu próbnego; Family Sharing).
+# Aplikacja nie ma jeszcze strony w App Store (TestFlight), więc opisu w sklepie nie czytano.
+# Dowody: dowody/rynek-ceny-pl.txt, dowody/rynek-recenzje-pl.txt, dowody/apple-zrodla-2026-10-27.txt
+
+1. Rodzaj wartości: dziennik treningu daje wartość stałą (każdy trening dopisuje dane, historia i postęp rosną z czasem;
+   aplikacja obiecuje aktualizacje treści — atlas ćwiczeń). Subskrypcja jest dopuszczalna wg 3.1.2(a) („ongoing value”,
+   przykład „apps that offer consistent, substantive updates”), ale wartość stała jest tu głównie po stronie użytkownika
+   (jego dane), nie usługi (brak chmury, brak konta). Wniosek: obok subskrypcji powinna być opcja jednorazowa (dożywotnia) —
+   3 z 5 badanych konkurentów ją mają (K1, K2, K4), a recenzja K3 (5★, 2026-10-03) o nią prosi.
+
+2. Za co płacą w kategorii (PL, 27.10.2026): wszyscy 5 — pobranie bezpłatne, freemium. Płatne: limit rutyn/planów (K1: „limited
+   number of creating routines… in the free version”), analityka, własne ćwiczenia, RIR, motywy, ustawienia minutnika.
+   Rejestrowanie treningów jest w darmowej wersji bez limitu u K1, K4 (recenzje: „W darmowej wersji jest wszystko co potrzeba do
+   monitorowania treningów”, K1 2026-07-29; „Wszystkie darmowe opcje wystarczają, a aplikacja nie jest nachalna”, K4 2026-09-13).
+   Ceny PL: miesięczny ok. 15–65 zł, roczny ok. 100–400 zł, dożywotni ok. 350–500 zł (mediana K1/K2/K4: ok. 18–22 / 105–125 / 400–430 zł).
+
+3. Skargi płacących i niepłacących: „one big paywall” (K3, 1★, 2026-10-23); „Bez opłacenia aplikacja jest goła” (K5, 1★, 2024-09-15);
+   „Płać za większość” (K3, 3★, 2023-12-31); dożywotni „zbyt drogi” / „400 zł … to trochę sporo” (K1 2026-08-23, K2 2024-02-28);
+   pochwały za brak nachalności i reklam. Hipoteza H-1 [OCENA z próbki recenzji]: w PL ocena zależy bardziej od hojności darmowej
+   wersji niż od ceny Pro; limit rejestrowania treningów (głównej pracy) jest w kategorii nietypowy.
+
+4. Reguły sklepu ograniczające model (odczyt 2026-10-27, Guidelines „Last Updated: October 16, 2026”):
+   - 3.1.1: darmowy dostęp ograniczony czasem w aplikacji bez subskrypcji = „XX-day Trial” (Non-Consumable 0) z ujawnieniem; limit
+     liczby użyć (np. dni treningowe w miesiącu) to limit darmowej wersji, nie okres próbny — ale słowo „za darmo/dni” przy subskrypcji
+     może czytać się jak okres próbny subskrypcji, który wg 3.1.2(a) idzie tylko przez ofertę w App Store Connect.
+   - 3.1.2(a)/(c) i strona subskrypcji: pełna cena odnowienia jako najważniejszy element, „localized in available currencies”,
+     przywracanie na ekranie, okres, automatyczne odnawianie; 5.6: bez manipulacji.
+   - StoreKit: displayPrice „formatted for the locale. The storefront that the user’s device is connected to determines the locale”;
+     currentEntitlements jako źródło prawdy; Transaction.updates od startu; AppStore.sync tylko na działanie użytkownika.
+   - Family Sharing włączone = nieodwracalne („this can’t be undone”), więc kod musi przyjmować transakcje rodzinne.
+
+5. Wzorzec najlepszych w klasie dla tej aplikacji (wniosek):
+   - rejestrowanie treningu i wgląd/eksport danych zawsze darmowe; płatne „głębia” (plany, analityka, integracje, zegarek);
+   - Pro: miesięczny + roczny + dożywotni (bez okresu próbnego dopuszczalne, jeśli darmowa część pokazuje główną pracę);
+   - ceny z displayPrice sklepu, nigdy na sztywno; przywracanie i „Zarządzaj subskrypcją” w aplikacji;
+   - stan dostępu z transakcji, pamięć podręczna offline do końca opłaconego okresu; posiadany plan nazwany na ekranie zakupu;
+   - zero pilności, zero „najpopularniejszy” bez danych; ekran zakupu nie wyskakuje w trakcie treningu.
+
+6. Soczewki (każda osobno):
+   a) oszczędny użytkownik: chce wiedzieć, ile ma za darmo i ile zapłaci w swojej walucie — rozjazd waluty to dla niego wprost
+      „inna cena niż obiecana”; dożywotni w PL zwykle 350–500 zł, więc niski dożywotni to silny argument.
+   b) pasjonat po roku, nowy telefon: zakup musi wrócić bez konta (transakcje sklepu), dane przez kopię (osobny obszar ARCH).
+   c) recenzent App Store: czyta ekran zakupu z 3.1.2(c) i 5.6 — cena odnowienia, okres, linki EULA/prywatność, przywracanie,
+      brak sformułowań sugerujących okres próbny, którego nie ma w App Store Connect.
+   d) analityk konkurencji: rynek PL ceni hojną darmową wersję; ceny Pro niskie względem rynku to przewaga tylko, gdy darmowa część
+      nie zniechęca od pierwszego tygodnia.
+
+7. Wymiary pokrycia — stan na etapie linii bazowej (wynik końcowy w raporcie):
+   modele (bez opłat, napiwek, płatna aplikacja, jednorazowy, subskrypcja) — rozważone wyżej; rynek i skargi — wyżej; okres próbny —
+   wyżej (pkt 4); trwałość zakupu — do sprawdzenia w kodzie; ceny w regionach/podatki — do rachunku; etyka — do ekranu; miejsce ekranu
+   zakupu — do kodu; próg/lejek — bramka W0 w docs (MON-18); prywatność narzędzi płatności — do package.json.

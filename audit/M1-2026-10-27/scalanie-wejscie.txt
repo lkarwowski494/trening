@@ -1,0 +1,77 @@
+== role/01-odkrywanie/01-odkrywanie-2026-10-27.md
+| 01-odkrywanie-001 | P1 | D | Ekran zakupu pokazuje cenę w innej walucie niż pobiera App Store (T-11) | otwarte |
+| 01-odkrywanie-002 | P1 | P | Po zakupie ekran dalej sprzedaje plany; dożywotni przy aktywnej subskrypcji bez uwagi przed zakupem | otwarte |
+| 01-odkrywanie-003 | P1 | D | Przy największym tekście ikony ekranu Trening ucięte (T-04); brak wymagania dla elementów sterujących | otwarte |
+| 01-odkrywanie-004 | P2 | D | Funkcje zmieniające dane, proszące o zgodę lub prowadzące do zakupu bez wymagania BR | otwarte |
+| 01-odkrywanie-005 | P2 | D | Reguły dziedzinowe i progi z kodu bez reguły RD (generator, deload, cel serii, regeneracja, limit dni) | otwarte |
+| 01-odkrywanie-006 | P2 | D | BRD nieaktualny wobec decyzji 20–27.10 (usunięty ekran wciąż wymagany, sprzeczne scenariusze) | otwarte |
+| 01-odkrywanie-007 | P2 | P | Decyzja właściciela zapisana bez testu-strażnika i bez weryfikacji wdrożenia (kolejność planów, 23.10) | otwarte |
+| 01-odkrywanie-008 | P2 | D | Polityka prywatności (repo i strona) wymienia nieaktualnych odbiorców poczty | otwarte |
+| 01-odkrywanie-009 | P2 | D | RD-04 bez wektora błędnych danych | otwarte |
+| 01-odkrywanie-010 | P2 | D | Ograniczenia z polityk Apple (OG) bez cytatu i daty; brak OG dla zakupów, Zdrowia, ceny | otwarte |
+| 01-odkrywanie-011 | P2 | D | Liczby w wymaganiach bez podstawy albo bez ID decyzji | otwarte |
+== role/02-monetyzacja/02-monetyzacja-2026-10-27.md
+| 02-monetyzacja-001 | P2 | D | Po zakupie ekran zakupu nadal zachęca do subskrypcji i nie nazywa posiadanego planu | otwarte |
+| 02-monetyzacja-002 | P2 | D | Wiersz „Pełna wersja” w Ustawieniach (stan darmowy) wygląda jak stan, nie jak wejście do zakupu | otwarte |
+| 02-monetyzacja-003 | P2 | P | Decyzja właściciela z 23.10 zapisana jako wdrożona, choć kod i test-strażnik mówiły co innego; brak mechanizmu decyzja → kod → test | otwarte |
+| 02-monetyzacja-004 | P2 | M | Rachunek i bramka W0 w docs mają nieaktualne dane wejściowe (kurs, prowizja, liczba płatności w roku) | otwarte |
+| 02-monetyzacja-005 | P2 | P | Punkt kontrolny po 8 tygodniach nie mierzy skarg na limit głównej pracy, a rynek PL ocenia głównie hojność darmowej wersji | otwarte |
+== role/03-zakres/03-zakres-2026-10-27.md
+| 03-zakres-001 | P1 | M | 56 animacji starego systemu figur wyświetla się w 1.0 bez zapisu recenzji ruchu i bez wymuszenia reguły bramki 4 z 27.10 | otwarte |
+| 03-zakres-002 | P2 | D | Decyzje właściciela przechodzą do kodu bez śladu wdrożenia i bez strażnika (K3, K1, kolejność planów z 23.10, brak wpisu z 27.10) | otwarte |
+| 03-zakres-003 | P2 | D | BRD nie opisuje kilkunastu funkcji pętli i okolic (m.in. okno po pierwszym treningu, import CSV, Strażnik progresji), mimo reguły „BRD w tym samym commicie” | otwarte |
+| 03-zakres-004 | P2 | D | BRD (BR-ZRO-001, ZP-09) opisuje usunięty ekran „Źródła wiedzy” jako spełniane wymaganie | otwarte |
+| 03-zakres-005 | P2 | P | Ekran zakupu nie ma wymagania dla stanu „mam Pro”, więc po zakupie dalej sprzedaje posiadany plan (T-11) | otwarte |
+| 03-zakres-006 | P2 | P | Dwa widoki treningu (Skupiony i Lista) — druga wersja pętli głównej utrzymywana jako ustawienie | otwarte |
+| 03-zakres-007 | P2 | P | Kalkulator talerzy wycięty (D-006) bez warunku powrotu, a 3 z 4 najpopularniejszych dzienników niszy go mają | otwarte |
+| 03-zakres-008 | P2 | P | Żadna funkcja nie ma kryterium ani wyniku testu pierwszego użycia; problemy T-04 i T-11 znalazł dopiero właściciel na telefonie | otwarte |
+| 03-zakres-009 | P2 | D | Ślad funkcja → BR → test: 45 z 49 wymagań BR nie występuje z ID w żadnym teście ani scenariuszu | otwarte |
+== role/05-architekt/05-architekt-2026-10-27.md
+| 05-architekt-001 | P1 | D | Notatka serii z importu CSV (do 500 znaków) ucinana do 300 przy edycji — dwa limity tej samej długości | otwarte |
+| 05-architekt-002 | P2 | P | Kopia sprzed migracji powstaje tylko przy zmianie numeru schematu; zmiana normalizacji w `migrate()` zapisuje się bez kopii | otwarte |
+| 05-architekt-003 | P2 | D | Nieudany zapis po „Zapisz” w edycji historii i w ustawieniach widać dopiero na zakładce Trening | otwarte |
+| 05-architekt-004 | P2 | D | 15 plików źródłowych powyżej ok. 20 KB (bez generowanych i słowników) | otwarte |
+== role/06-tresci/06-tresci-2026-10-27.md
+| 06-tresci-001 | P1 | P | Animacje v1 (56 ćwiczeń) i karty ćwiczeń idą do 1.0 bez zapisu recenzji bramki 4; reguła „bez recenzji = nie wyświetlane” nie ma mechanizmu | otwarte |
+| 06-tresci-002 | P2 | M | Strażnik rejestru twierdzeń nie wykrywa nowych tekstów dziedzinowych (wzorzec pasuje do 0 tekstów); ok. 10 tekstów bez wpisu | otwarte |
+| 06-tresci-003 | P2 | M | Źródła treści dodanych 25.10 (zestawy ogólne wskazówek, kąt stóp 15–20°) nie są w repozytorium — łańcucha zdanie → źródło nie da się sprawdzić | otwarte |
+| 06-tresci-004 | P2 | M | RIR 6 zapisywany jako „lekko” (RPE 4), choć źródło grupuje 4–6 RIR przy RPE 5–6 | otwarte |
+== role/08-programista/08-programista-2026-10-27.md
+| 08-programista-001 | P2 | D | „Zarządzaj subskrypcją” otwiera stronę App Store zamiast arkusza StoreKit; w TestFlight i piaskownicy nie widać zakupów testowych | otwarte |
+| 08-programista-002 | P2 | D | Ekran zakupu nie rozpoznaje posiadanego planu (nagłówek „za darmo”, „Subskrybuj” przy własnym planie, karta bez nazwy planu) | otwarte |
+| 08-programista-003 | P2 | P | Decyzje właściciela bez strażnika „decyzja → kod → test”: decyzja z 23.10 nie weszła do kodu, test pilnował starego stanu, zadania gałęzi zginęły | otwarte |
+| 08-programista-004 | P2 | D | Udział partii pomocniczej (0,5) wpisany liczbą w dwóch miejscach obok stałej `SECONDARY_SHARE` | otwarte |
+| 08-programista-005 | P2 | P | Wiersz „Pełna wersja” w Ustawieniach w stanie darmowym czyta się jak stan, nie jak akcja | otwarte |
+| 08-programista-006 | P2 | D | 67 liczbowych `fontSize` w 10 plikach mimo planu przejścia na tokeny przed 1.0 (zapadka zatrzymana) | otwarte |
+== role/09-lokalizacja/09-lokalizacja-2026-10-27.md
+| 09-lokalizacja-001 | P1 | P | Treść krytyczna w 33 językach bez zamkniętego przeglądu po ostatnich zmianach (R-010 otwarte) | otwarte |
+| 09-lokalizacja-002 | P1 | D | Ekran zakupu pokazuje ceny w USD, a arkusz Apple pobiera PLN (T-11) | otwarte |
+| 09-lokalizacja-003 | P1 | D | Panel startu po ukraińsku i słoweńsku pokazuje złą formę liczby ćwiczeń („4 вправ”, „4 vaj”) | otwarte |
+| 09-lokalizacja-004 | P1 | D | Przy największym tekście ekran Trening ucina ikony, w tym ikonę startu kolejnego treningu (T-04) | otwarte |
+| 09-lokalizacja-005 | P2 | D | Masa zawsze „kg”/„lb” łacinką, a dystans i czas w piśmie języka („5 км”, „80 kg”) | otwarte |
+| 09-lokalizacja-006 | P2 | D | Ukraiński miesza formę „ти” z zapisaną formą grzecznościową na ekranach | otwarte |
+| 09-lokalizacja-007 | P2 | D | Walidator `check:i18n` widzi tylko `t('…')` w apostrofach i jeden słownik; test „polskich liter” zamiast kontroli pisma | otwarte |
+| 09-lokalizacja-008 | P2 | D | Etykieta „PR:” w szczegółach treningu wpisana na sztywno | otwarte |
+== role/10-wydanie/10-wydanie-2026-10-27.md
+| 10-wydanie-001 | P1 | P | Do recenzji można wybrać build 1031 z błędnymi figurami; procedura nie wskazuje numeru buildu ani SHA, dziennik wydań nie ma wiersza 1031 | otwarte |
+| 10-wydanie-002 | P1 | D | Ekran zakupu po zakupie dalej oferuje plany i „darmowe dni”; dożywotni bez ostrzeżenia przed zakupem przy aktywnej subskrypcji (MON-10) | otwarte |
+| 10-wydanie-003 | P2 | P | Rejestr ryzyk nierozliczony: 7 pozycji „otwarte” mimo dowodów z 26–27.10, formalnie blokuje zgłoszenie | otwarte |
+| 10-wydanie-004 | P2 | P | Podpisy zrzutów tylko PL i EN (EN „propozycja”), decyzja D7 zakłada zrzuty w 33 lokalizacjach | otwarte |
+| 10-wydanie-005 | P2 | P | Plan „zły build” ma dwa otwarte punkty [DO PRZECZYTANIA] (wycofanie ze sprzedaży, przyspieszona recenzja) | otwarte |
+| 10-wydanie-006 | P2 | P | Decyzja produktowa zapisana z „Wdrożenie: gałąź …” nie dotarła do kodu, a test pilnował starego stanu; brak mechanizmu „decyzja → wdrożenie” przed wydaniem | otwarte |
+== role/11-wzrost/11-wzrost-2026-10-27.md
+| 11-wzrost-001 | P2 | D | Po imporcie historii pierwszy trening na żywo kończy się oknem „Uczciwe zasady” i prośbą o ocenę naraz | otwarte |
+| 11-wzrost-002 | P2 | P | Na premierę brak aktywnego kanału poza wyszukiwaniem w sklepie; prośba o zgodę forum nie wysłana | otwarte |
+| 11-wzrost-003 | P2 | D | Hipoteza Androidu bez progu i daty; opcja B opisuje nieistniejący 14-dniowy okres próbny | otwarte |
+| 11-wzrost-004 | P2 | P | Brak planu linków kampanii (pt/ct) dla własnych kanałów — punkt kontrolny nie powie, który kanał działał | otwarte |
+== role/12-niezawodnosc/12-niezawodnosc-2026-10-27.md
+| 12-niezawodnosc-001 | P1 | D | Wyjątek w migracji przy starcie daje pustą aplikację zamiast trybu awaryjnego; pula kopii po treningu wypiera całą dawną historię, a „Ukryj komunikat” + „Wyczyść” usuwa ostatnią k
+| 12-niezawodnosc-002 | P1 | D | Ekran błędu startu nie ostrzega, że usunięcie aplikacji skasuje dane i kopie; przy nieotwierającej się bazie „Wyślij dane” daje tylko ostatnią kopię po treningu albo nic | otwarte |
+| 12-niezawodnosc-003 | P2 | D | „Napisz do nas” z ekranu błędu startu nie dołącza kodu diagnostycznego ani treści błędu | otwarte |
+| 02-monetyzacja-501 | P1 | D | Po wygaśnięciu albo cofnięciu Pro dni treningowe z okresu Pro zużywają darmowy limit (P3 B nie działa z prawdziwym sklepem) | otwarte |
+| 02-monetyzacja-502 | P1 | M | T-11: cena na liście planów (USD) różna od ceny w arkuszu Apple (PLN); przyczyna niewyjaśniona, ryzyka nie ma w rejestrze, a lista telefonu tego nie sprawdza | otwarte |
+| 02-monetyzacja-503 | P1 | D | Subskrybent wybierający plan dożywotni nie widzi przed zakupem, że subskrypcja dalej się odnawia (podwójna płatność; wymóg docs/27 3.11 bez wdrożenia) | otwarte |
+| 02-monetyzacja-504 | P2 | D | Płacący widzi „5 dni za darmo”, pełną ofertę i „Subskrybuj” przy posiadanym planie; stan nie nazywa planu; „Dostęp do {data}” przy odnawianej subskrypcji wygląda jak koniec; w Ustawieniach brak „Chmury rodzinnej” | otwarte |
+| 02-monetyzacja-505 | P2 | D | „Zarządzaj subskrypcją” otwiera stronę App Store, a nie systemowy arkusz (docs/27 3.10); w TestFlight pokazuje produkcyjną listę bez zakupów testowych | otwarte |
+| 02-monetyzacja-506 | P2 | P | Porównanie „jak jedno espresso” w opisie (33 lokalizacje) nie jest sprawdzone dla wszystkich krajów sprzedaży; decyzja o Ukrainie z 13.10 bez wdrożenia i bez zamknięcia | otwarte |
+| 02-monetyzacja-507 | P2 | P | Decyzja właściciela zapisana bez testu-strażnika i bez sprawdzenia wdrożenia (kolejność planów 23.10; P3 B; „limit tylko się luzuje” bez progu minut) — luka systemowa | otwarte |

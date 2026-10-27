@@ -1,0 +1,21 @@
+$ uname -srm
+Linux 6.18.44-fc-v165 x86_64
+$ node -v
+v22.22.0
+$ git rev-parse HEAD
+025a50b96f504ea9d16d573720d1e92dc951a103
+$ git status --porcelain (start)
+(puste)
+$ which xcodebuild xcrun swift
+exit=1
+$ ls node_modules/.bin/playwright
+ls: cannot access 'node_modules/.bin/playwright': No such file or directory
+$ gh auth status
+github.com
+  X Failed to log in to github.com using token (GH_TOKEN)
+  - Active account: true
+  - The token in GH_TOKEN is invalid.
+$ curl -sS -o /dev/null -w "%{http_code}" https://developer.apple.com/
+200
+
+Widoczność repo: publiczne (CLAUDE.md, ADR-031).

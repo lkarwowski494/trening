@@ -1,0 +1,2 @@
+$ grep -rEn 'ACSM|\bWHO\b|NSCA|Epley|Brzycki|Zourdos|Helms|Pelland|Mayhew|Schoenfeld|Stronger by Science|ExRx|\bACE\b|NASM|Concept2|Eleiko|PubMed|Light Fitness|Life Fitness|NordicTrack|\bOMS\b|\bВОЗ\b|\bWHO\b' lib/locales lib/cues/text lib/cues/data.json lib/figures/data.json lib/figures/v2/cue-sets.json lib/figures/v2/muscles.generated.ts lib/i18n.en.ts store/*.json site/*.html
+exit 1

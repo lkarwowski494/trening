@@ -1,0 +1,40 @@
+$ grep -rn "CREATE TABLE|REFERENCES|INSERT OR REPLACE|REPLACE INTO|VACUUM|journal_mode|foreign_keys|backupDatabase|withExclusiveTransaction|withTransactionAsync|user_version|wal_checkpoint" app lib components modules targets plugins scripts (bez testów)
+lib/state/core.ts:85:    if (stateJson != null) await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', 'state', stateJson);
+lib/state/core.ts:86:    if (cfgJson != null) await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', 'cfg', cfgJson);
+lib/state/core.ts:88:    await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', 'live', liveJson);
+lib/state/core.ts:126:      await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', DRAFTS_KEY, j);
+lib/state/backupstat.ts:26:  db?.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', KEY, JSON.stringify(stat)).catch(() => {});
+lib/state/db.ts:16:    runAsync(q: string, ...p: unknown[]): Promise<unknown>; withTransactionAsync(f: () => Promise<void>): Promise<void>; closeAsync(): Promise<void> };
+lib/state/db.ts:24:  if (rows.length) await next.withTransactionAsync(async () => {
+lib/state/db.ts:25:    for (const r of rows) await next.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', r.k, r.v);
+lib/state/db.ts:32:  const KV = 'CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)';
+lib/state/boot.ts:32:  await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_PHASE_KEY, JSON.stringify(body)).catch(() => {});
+lib/state/boot.ts:40:  await db!.execAsync('CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)');
+lib/state/boot.ts:51:    await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_GUARD_KEY, JSON.stringify(next)).catch(() => {});
+lib/state/boot.ts:94:      await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key, row.v);
+lib/state/boot.ts:102:        await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_live', lv.v);
+lib/state/boot.ts:107:        await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_cfg', cv.v);
+lib/state/boot.ts:115:      await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', 'recovery', JSON.stringify(recovery)).catch(() => {});
+lib/state/boot.ts:160:    await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', preKey(from), JSON.stringify(env));
+lib/state/boot.ts:162:    await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', PREMIGRATE_INDEX, JSON.stringify(idx));
+lib/state/boot.ts:170:    if (changed) await db!.runAsync(Object.keys(idx).length ? 'INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)' : 'DELETE FROM kv WHERE k = ?', PREMIGRATE_INDEX, ...(Object.keys(i
+lib/state/boot.ts:184:  await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_GUARD_KEY, JSON.stringify({ starts: 0 })).catch(() => {});
+lib/entitlement.ts:47:  try { await db?.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', ACCESS_KEY, JSON.stringify({ ...v, at: now })); } catch { /* brak zapisu nie psuje stanu w pamięci *
+exit=0
+
+$ grep -rn "journal|WAL" node_modules/expo-sqlite/ios/*.swift node_modules/expo-sqlite/src/*.ts (domyślny tryb dziennika expo-sqlite 57.0.3)
+exit=1 (1 = brak: expo-sqlite nie ustawia WAL, domyślny dziennik SQLite)
+
+$ grep -rn "openDatabase|SQLiteProvider|AsyncStorage|SecureStore|expo-file-system|UserDefaults" (mapa przechowywania)
+lib/csvimport.ts:9:import * as FileSystem from 'expo-file-system/legacy';
+lib/state/db.ts:6:import * as FileSystem from 'expo-file-system/legacy';
+lib/state/db.ts:31:  if (!dir) return SQLite.openDatabaseAsync('trening.db');
+lib/state/db.ts:35:    next = await SQLite.openDatabaseAsync('trening.db', undefined, dir);
+lib/state/db.ts:42:    const old = await SQLite.openDatabaseAsync('trening.db'); let ok = false;
+lib/state/db.ts:56:      const old = await SQLite.openDatabaseAsync('trening.db');
+lib/state/db.ts:65:  const old = await SQLite.openDatabaseAsync('trening.db');
+lib/state/db.ts:94:    old = await SQLite.openDatabaseAsync('trening.db');
+lib/backup.ts:1:import * as FileSystem from 'expo-file-system/legacy';
+modules/watch-link/ios/WatchLinkHub.swift:79:    let d = UserDefaults.standard
+modules/watch-link/ios/WatchLinkHub.swift:89:    let d = UserDefaults.standard
+targets/watch-app/TreningWatchApp.swift:39:    return WatchStore(transport: transport, workout: workout, haptics: SystemHaptics(), persistence: UserDefaultsPers

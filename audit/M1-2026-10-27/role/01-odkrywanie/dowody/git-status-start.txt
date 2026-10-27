@@ -1,0 +1,4 @@
+$ git rev-parse HEAD; git branch --show-current; git status --porcelain
+025a50b96f504ea9d16d573720d1e92dc951a103
+branch: 
+exit=0

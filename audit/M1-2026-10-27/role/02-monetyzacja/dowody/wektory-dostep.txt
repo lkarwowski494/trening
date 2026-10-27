@@ -1,0 +1,47 @@
+# komenda: cp lib/access.ts <scratchpad>/wektory/ ; node --experimental-strip-types wektory.ts (Node v22.22.0) -> exit 0
+# skrypt wektorów (kopia):
+#  // Wektory modułu storekit-expo na funkcjach z lib/access.ts (kopia z commitu 025a50b9). Uruchom: node --experimental-strip-types wektory.ts
+#  import { effectiveAccess, canStartLive, PAYWALL, type Entitlement } from './access.ts';
+#  const T = Date.UTC(2026, 9, 27, 12); const DAY = 86400e3; const cfg = { ...PAYWALL, ENABLED: true };
+#  const row = (n: string, got: unknown, exp: unknown) => console.log((JSON.stringify(got) === JSON.stringify(exp) ? 'OK  ' : 'FAIL') + ' ' + n + ' -> ' + JSON.stringify(got) + (JSON.stringify(got) === JSON.stringify(exp) ? '' : ' oczekiwano ' + JSON.stringify(exp)));
+#  const lvl = (ctx: any, e: Entitlement[] | null) => effectiveAccess(ctx, e, T, cfg).level;
+#  row('zakup jednorazowy (sklep: lifetime)', lvl({}, [{ plan: 'lifetime', source: 'purchase', expiresAt: null }]), 'full');
+#  row('ponowna instalacja (sklep: lifetime, pamięć pusta)', lvl({ lastKnown: null }, [{ plan: 'lifetime', source: 'purchase', expiresAt: null }]), 'full');
+#  row('brak sieci po zakupie (błąd, pamięć lifetime)', lvl({ lastKnown: { level: 'full', expiresAt: null } }, null), 'full');
+#  row('brak sieci, nigdy nie kupił (błąd, brak pamięci)', lvl({ lastKnown: null }, null), 'free');
+#  row('zwrot (sklep: lifetime odebrany, pamięć full)', lvl({ lastKnown: { level: 'full', expiresAt: null } }, [{ plan: 'lifetime', source: 'purchase', expiresAt: null, revokedAt: T - 1 }]), 'free');
+#  row('zwrot — StoreKit nie zwraca odebranych (sklep: [])', lvl({ lastKnown: { level: 'full', expiresAt: null } }, []), 'free');
+#  row('subskrypcja wygasła, brak sieci (pamięć rok wygasa T-1)', lvl({ lastKnown: { level: 'full', expiresAt: T - 1 } }, null), 'full');
+#  console.log('     ^ odstępstwo zamierzone: karencja offline OFFLINE_GRACE_DAYS=7 (decyzja P6 A 12.10.2026); po 7 dniach:');
+#  row('subskrypcja wygasła 8 dni temu, brak sieci', effectiveAccess({ lastKnown: { level: 'full', expiresAt: T - 8 * DAY } }, null, T, cfg).level, 'free');
+#  row('karencja płatności (expires T-1, grace T+1)', lvl({}, [{ plan: 'monthly', source: 'purchase', expiresAt: T - 1, graceUntil: T + DAY }]), 'full');
+#  row('Chmura rodzinna (source family)', lvl({}, [{ plan: 'yearly', source: 'family', expiresAt: T + DAY }]), 'full');
+#  row('przywracanie bez zakupu (sklep: [])', lvl({}, []), 'free');
+#  // limit dni (MON-09): 5 dni zużyte, dziś nowy dzień -> blokada; dziś już był trening -> wolno
+#  const d = (k: number) => ({ startedAt: Date.UTC(2026, 9, k, 8), tzOffsetMin: 60 });
+#  const five = [1, 3, 5, 7, 9].map(d);
+#  const c1 = canStartLive({}, [], five, T, 60, cfg); row('free, 5 dni zużyte, nowy dzień', [c1.allowed, c1.used, c1.remaining], [false, 5, 0]);
+#  const c2 = canStartLive({}, [], [...five.slice(0, 4), { startedAt: T - 3600e3, tzOffsetMin: 60 }], T, 60, cfg); row('free, 5. dzień = dziś, kolejny trening dziś', [c2.allowed, c2.used], [true, 5]);
+#  const c3 = canStartLive({}, [], five.slice(0, 4), T, 60, cfg); row('free, 4 dni zużyte', [c3.allowed, c3.remaining], [true, 1]);
+#  const c4 = canStartLive({}, [], [d(1), d(2), d(3), d(4), { startedAt: Date.UTC(2026, 8, 30, 8) }], T, 60, cfg); row('dzień z poprzedniego miesiąca się nie liczy', [c4.allowed, c4.used], [true, 4]);
+#  const c5 = canStartLive({}, [{ plan: 'monthly', source: 'purchase', expiresAt: Date.UTC(2026, 9, 6) }], five, T, 60, cfg); row('P3 B: po wygaśnięciu 6.10 liczą się tylko dni od wygaśnięcia', [c5.allowed, c5.used], [true, 2]);
+#  const c6 = canStartLive({ lastKnown: null }, null, five, T, 60, cfg); row('unknown bez pamięci + limit przekroczony: blokada (nie cicha)', [c6.allowed, c6.silent], [false, false]);
+# wynik:
+OK   zakup jednorazowy (sklep: lifetime) -> "full"
+OK   ponowna instalacja (sklep: lifetime, pamięć pusta) -> "full"
+OK   brak sieci po zakupie (błąd, pamięć lifetime) -> "full"
+OK   brak sieci, nigdy nie kupił (błąd, brak pamięci) -> "free"
+OK   zwrot (sklep: lifetime odebrany, pamięć full) -> "free"
+OK   zwrot — StoreKit nie zwraca odebranych (sklep: []) -> "free"
+OK   subskrypcja wygasła, brak sieci (pamięć rok wygasa T-1) -> "full"
+     ^ odstępstwo zamierzone: karencja offline OFFLINE_GRACE_DAYS=7 (decyzja P6 A 12.10.2026); po 7 dniach:
+OK   subskrypcja wygasła 8 dni temu, brak sieci -> "free"
+OK   karencja płatności (expires T-1, grace T+1) -> "full"
+OK   Chmura rodzinna (source family) -> "full"
+OK   przywracanie bez zakupu (sklep: []) -> "free"
+OK   free, 5 dni zużyte, nowy dzień -> [false,5,0]
+OK   free, 5. dzień = dziś, kolejny trening dziś -> [true,5]
+OK   free, 4 dni zużyte -> [true,1]
+OK   dzień z poprzedniego miesiąca się nie liczy -> [true,4]
+OK   P3 B: po wygaśnięciu 6.10 liczą się tylko dni od wygaśnięcia -> [true,2]
+OK   unknown bez pamięci + limit przekroczony: blokada (nie cicha) -> [false,false]

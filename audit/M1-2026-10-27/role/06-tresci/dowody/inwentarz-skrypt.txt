@@ -1,0 +1,10 @@
+import { loadDictionary, domainTexts } from '/home/user/trening/scripts/claims.mjs';
+import { readFileSync } from 'node:fs';
+const EN = loadDictionary();
+const r = JSON.parse(readFileSync('/home/user/trening/docs/research/rejestr-twierdzen.json','utf8'));
+const act = r.twierdzenia.filter(e=>!e.wycofane);
+const covered = new Set(Object.keys(EN).filter(k=>act.some(e=>k.startsWith(e.kotwica))));
+const DOM = /upad|zapas|RIR|RPE|e1RM|deload|przerw[ay]? (?:między|po)|powtórze|serii na|seri[ei] (?:na|w)|mięśni|rosn|siła|siły|sił[ęy]? |zdrowi|cardio|wysił|regenera|odpoczyn|asekur|rozgrzew|maksimum|1RM|%|tętn|kalori|energi|tygodni|częstotliw|progres|objętoś/i;
+const out = Object.keys(EN).filter(k => k.length >= 50 && DOM.test(k) && !covered.has(k));
+console.log(`słownik: ${Object.keys(EN).length} kluczy; domainTexts (DOMAIN_RE): ${domainTexts(EN).length}; pokryte rejestrem: ${covered.size}; kandydaci bez wpisu (heurystyka, ≥50 znaków): ${out.length}`);
+for (const k of out) console.log('- ' + k);

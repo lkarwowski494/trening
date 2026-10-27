@@ -1,0 +1,14 @@
+diff --git a/metro.config.js b/metro.config.js
+index 982ccb43..8d2627a1 100644
+--- a/metro.config.js
++++ b/metro.config.js
+@@ -3,7 +3,9 @@ const config = getDefaultConfig(__dirname);
+ const map = { 'expo-sqlite': 'sqlite.js', 'expo-notifications': 'notifications.js', '@kingstinct/react-native-healthkit': 'healthkit.js' };
+ const orig = config.resolver.resolveRequest;
+ config.resolver.resolveRequest = (ctx, name, platform) => {
++  if (process.env.SONDA_LOG && /react-native/.test(name) && ctx.originModulePath && ctx.originModulePath.includes('components/ui')) require('fs').appendFileSync(process.env.SONDA_LOG, platform+' '+name+' '+ctx.originModulePath+'\n');
+   if (platform === 'web') {
++    { const m = /^react-native-web\/dist\/exports\/(Text|TextInput|useWindowDimensions|PixelRatio)$/.exec(name); if (m && ctx.originModulePath && !ctx.originModulePath.includes('node_modules') && !ctx.originModulePath.includes('/sonda/')) return { type: 'sourceFile', filePath: path.join(__dirname, 'sonda', m[1] + '.js') }; }
+     if (map[name]) return { type: 'sourceFile', filePath: path.join(__dirname, 'scripts', 'screens', 'shims', map[name]) };
+     if (/modules\/rest-activity$/.test(name) || name === '@/modules/rest-activity') return { type: 'sourceFile', filePath: path.join(__dirname, 'scripts', 'screens', 'shims', 'la.js') };
+   }

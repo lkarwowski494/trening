@@ -1,0 +1,26 @@
+# komenda: node docs/monetyzacja/rachunek.mjs docs/monetyzacja/rachunek.json (cwd docs/monetyzacja)
+Rachunek z 2026-10-22 (PLN); VAT 23% [ustawa o VAT, Dz.U. 2026 poz. 1263, art. 146ef ust. 1 pkt 1 („wynosi 23 %”), odczyt 2026-10-22]; prowizja 15% [developer.apple.com/app-store/small-business-program, „reduced commission rate of 15%”, odczyt 2026-10-22]
+Koszty roczne razem: 0,00 PLN
+30 dni / miesięczna (4,99 zł): cena 4,99 → bez VAT 4,06 → prowizja 15% → wpływ 3,45 (szacunek; porównaj z wpływem z App Store Connect); rocznie na płacącego 3,45; próg: 0 płacących/rok
+3 mies. (propozycja 11,99 zł, [DO USTALENIA]): cena 11,99 → bez VAT 9,75 → prowizja 15% → wpływ 8,29 (szacunek; porównaj z wpływem z App Store Connect); rocznie na płacącego 8,29; próg: 0 płacących/rok
+rok / roczna (19,99 zł): cena 19,99 → bez VAT 16,25 → prowizja 15% → wpływ 13,81 (szacunek; porównaj z wpływem z App Store Connect); rocznie na płacącego 13,81; próg: 0 płacących/rok
+dożywotnia (59,99 zł): cena 59,99 → bez VAT 48,77 → prowizja 15% → wpływ 41,46 (szacunek; porównaj z wpływem z App Store Connect); rocznie na płacącego 41,46; próg: 0 płacących/rok
+Bez podatku dochodowego i składek; przybliżenie z danych wejściowych, nie prognoza.
+exit 0
+# kurs NBP dziś: curl -sS https://api.nbp.pl/api/exchangerates/rates/a/usd/?format=json
+{"table":"A","currency":"dolar amerykański","code":"USD","rates":[{"no":"209/A/NBP/2026","effectiveDate":"2026-10-27","mid":3.9542}]}
+exit 0
+# platnosci_w_roku w rachunek.json:
+0
+32:    if (p?.platnosci_w_roku != null) { dodatnia(p.platnosci_w_roku, `produkty[${i}].platnosci_w_roku`); zrodlo(p.platnosci_zrodlo, `produkty[${i}].platnosci_zrodlo`); }
+49:    const rocznie = wplyw * (p.platnosci_w_roku ?? 1);
+# VAT PL: curl -sS -o vat.pdf https://api.sejm.gov.pl/eli/acts/DU/2026/1263/text.pdf (200); pdftotext vat.pdf; grep 'Art. 146ef' -> exit 0 (odczyt 2026-10-27)
+Art. 146ef. 1. W okresie od dnia 1 stycznia 2024 r. do końca roku, w którym suma wydatków wymienionych w art. 40
+ust. 1 pkt 2 ustawy z dnia 11 marca 2022 r. o obronie Ojczyzny (Dz. U. z 2025 r. poz. 825, z późn. zm.34)) określonych na
+ten rok w ustawie budżetowej, w brzmieniu obowiązującym na dzień 31 lipca tego roku, oraz planie finansowym Funduszu
+Wsparcia Sił Zbrojnych przedłożonym zgodnie z art. 42 ust. 4 ustawy z dnia 11 marca 2022 r. o obronie Ojczyzny albo projekcie tego planu przedstawionym do zatwierdzenia Ministrowi Obrony Narodowej zgodnie z art. 42 ust. 2 i 3 tej ustawy,
+jeżeli plan ten nie został przedłożony zgodnie z art. 42 ust. 4 tej ustawy, po wyłączeniu planowanych przepływów finansowych w ramach tej sumy wydatków, jest wyższa niż 3 % wartości produktu krajowego brutto określonego zgodnie z art. 40
+ust. 2 tej ustawy:
+1)
+
+stawka podatku, o której mowa w art. 41 ust. 1 i 13, art. 109 ust. 2, art. 110, art. 120 ust. 3a i art. 138i ust. 4, wynosi 23 %;

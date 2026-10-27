@@ -1,0 +1,33 @@
+# katalog: kopia robocza 025a50b9 (git worktree w scratchpadzie, node_modules = dowiązanie do /home/user/trening/node_modules)
+# start: 2026-10-27T18:06:40Z
+$ CI=1 npx expo export --platform ios --output-dir /tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/07-expo-export
+🔍 [expo-iap] Config values: horizonAppId=undefined, pinnedStore=auto, amazonAppstoreKey=none, isVegaEnabled=false, isOnsideEnabled=false
+📦 [expo-iap] Using OpenIAP from CocoaPods
+Starting Metro Bundler
+
+iOS Bundled 32183ms ../../../../../../home/user/trening/node_modules/expo-router/entry.js (1799 modules)
+
+› Assets (25):
+../../../../../../home/user/trening/node_modules/expo-router/assets/arrow_down.png (9.5KB)
+../../../../../../home/user/trening/node_modules/expo-router/assets/error.png (469B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/file.png (138B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/forward.png (188B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/pkg.png (364B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/react-navigation/elements/back-icon-mask.png (653B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/react-navigation/elements/back-icon.png (4 variations | 566B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/react-navigation/elements/clear-icon.png (4 variations | 425B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/react-navigation/elements/close-icon.png (4 variations | 235B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/react-navigation/elements/search-icon.png (3 variations | 582B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/sitemap.png (465B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/unmatched.png (4.8KB)
+assets/fonts/BarlowCondensed-Bold.ttf (110KB)
+assets/fonts/BarlowCondensed-SemiBold.ttf (109KB)
+
+› ios bundles (1):
+_expo/static/js/ios/entry-44d1fe5df53713f450f370f90f2a9653.hbc (11MB)
+
+› Files (1):
+metadata.json (1.7KB)
+
+Exported: /tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/07-expo-export
+exit=0  czas=34s  koniec: 2026-10-27T18:07:14Z

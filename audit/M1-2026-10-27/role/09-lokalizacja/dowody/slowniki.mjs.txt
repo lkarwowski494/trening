@@ -1,0 +1,40 @@
+// Kontrola mechaniczna słowników Treningu (format: klucz = polski tekst, wartość = przekład; liczebniki 'a|b|c').
+// Uruchom z katalogu repo: node <ten plik>
+import { readFileSync } from 'node:fs';
+const R = (p) => JSON.parse(readFileSync(p, 'utf8'));
+const src = R('lib/locales/_source.json');
+const LANGS = ['cs','sk','hu','ro','bg','hr','sl','sr','lt','lv','et','uk','es','es-419','pt','pt-BR','de','fr','it','nl','sv','da','nb','fi','tr','el','id','ms','vi','ru','ja','ko','zh-Hant'];
+const BASE = { 'es-419': 'es', 'pt-BR': 'pt' };
+const PF = { pl:3,en:2,cs:3,sk:3,hu:2,ro:3,bg:2,hr:3,sl:4,sr:3,lt:3,lv:3,et:2,uk:3,es:2,'es-419':2,pt:2,'pt-BR':2,id:1,ms:1,vi:1,ru:3,ja:1,ko:1,'zh-Hant':1,de:2,fr:2,it:2,nl:2,sv:2,da:2,nb:2,fi:2,tr:2,el:2 };
+const SCRIPT = { bg:/\p{Script=Cyrillic}/u, sr:/\p{Script=Cyrillic}/u, uk:/\p{Script=Cyrillic}/u, ru:/\p{Script=Cyrillic}/u, el:/\p{Script=Greek}/u, ja:/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u, ko:/\p{Script=Hangul}/u, 'zh-Hant':/\p{Script=Han}/u };
+const params = (s) => (s.match(/\{\w+\}/g) || []).sort().join(',');
+const digits = (s) => (s.replace(/\{\w+\}/g, ' ').match(/\d+(?:[.,]\d+)?/g) || []).map((x) => x.replace(',', '.')).map(Number).sort((a, b) => a - b).join(',');
+const out = []; const sum = {};
+const P = (l, k, m) => { out.push(`${l}\t${m}\t${k.slice(0, 90)}`); sum[l] ??= {}; const c = m.split(':')[0]; sum[l][c] = (sum[l][c] || 0) + 1; };
+// EN
+for (const s of src) {
+  if (params(s.en) !== params(s.pl)) P('en', s.pl, 'PARAM');
+  if (s.plural && s.en.split('|').length !== 2) P('en', s.pl, 'PLURAL');
+  if (digits(s.en) !== digits(s.pl)) P('en', s.pl, `LICZBY: ${digits(s.pl)} → ${digits(s.en)} | ${s.en.slice(0, 80)}`);
+}
+for (const l of LANGS) {
+  let d = R(`lib/locales/${BASE[l] ?? l}.json`); if (BASE[l]) d = { ...d, ...R(`lib/locales/${l}.json`) };
+  const keys = new Set(src.map((s) => s.pl));
+  for (const k of Object.keys(d)) if (!keys.has(k)) P(l, k, 'SIEROTA');
+  for (const s of src) {
+    const v = d[s.pl];
+    if (v === undefined) { P(l, s.pl, 'BRAK'); continue; }
+    if (!v.trim() || v.split('|').some((x) => !x.trim())) P(l, s.pl, 'PUSTY');
+    if (params(v) !== params(s.pl)) P(l, s.pl, `PARAM: ${params(s.pl)} → ${params(v)}`);
+    if (s.plural && v.split('|').length !== PF[BASE[l] ?? l]) P(l, s.pl, `PLURAL: ${v.split('|').length}≠${PF[l]}`);
+    if (!s.plural && v.includes('|') && !s.pl.includes('|')) P(l, s.pl, `PIPE: ${v}`);
+    if (digits(v) !== digits(s.pl)) P(l, s.pl, `LICZBY: ${digits(s.pl)} → ${digits(v)} | ${v.slice(0, 80)}`);
+    const letters = (v.replace(/\{\w+\}/g, '').match(/\p{L}/gu) || []);
+    if (SCRIPT[l] && letters.length >= 4 && !letters.some((c) => SCRIPT[l].test(c))) P(l, s.pl, `PISMO: ${v.slice(0, 60)}`);
+    if (v === s.en && letters.length >= 6 && !BASE[l]) P(l, s.pl, `JAK_EN: ${v.slice(0, 60)}`);
+  }
+}
+console.log(out.join('\n'));
+console.log('\n# PODSUMOWANIE (język: kategoria=liczba)');
+for (const [l, c] of Object.entries(sum)) console.log(l, JSON.stringify(c));
+console.log(`kluczy w źródle: ${src.length}; języki: en + ${LANGS.length}`);

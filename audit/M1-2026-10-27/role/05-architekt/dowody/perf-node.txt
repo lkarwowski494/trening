@@ -1,0 +1,34 @@
+# Sonda ARCH-19/ARCH-13: rozmiar stanu i czasy w Node (maszyna audytu, nie telefon; zapis do atrapy kv, nie SQLite). Worktree 025a50b9, plik testu niżej (NIE w repo).
+$ npx jest tests/sonda-arch19.test.ts --maxWorkers=1
+    {"n":1000,"stateMB":6.24,"stringifyMs":32,"flushMsAtrapa":31}
+    {"n":2000,"stateMB":12.13,"stringifyMs":73,"flushMsAtrapa":73}
+PASS iOS tests/sonda-arch19.test.ts
+Tests:       2 passed, 2 total
+exit=0
+(Pełne 'npm run perf' z PERF_N=1000,2000 przerwane po 900 s limitem timeout — exit 124; zastąpione tą sondą.)
+----- tests/sonda-arch19.test.ts -----
+/* SONDA audytu 05-architekt (scratchpad): rozmiar stanu i czas JSON.stringify / pełnego flush (atrapa kv) w Node — funkcja build skopiowana z scripts/perf/app.perf.tsx. */
+import * as store from '@/lib/store';
+import { fresh, ex, withDemoTemplates } from './helpers';
+import type { Workout, WSet } from '@/lib/seed';
+const now = () => require('perf_hooks').performance.now();
+function build(n: number) {
+  const st = store.getState(); const names = ['Back Squat', 'Bench Press (sztanga)', 'Bent Over Row (sztanga)', 'Pull Up', 'Plank', 'Bench Press (hantle)'];
+  const ids = names.map(x => ex(x).id); const t0 = Date.now() - (n + 1) * 2 * 86400e3;
+  for (let i = 0; i < n; i++) {
+    const at = t0 + i * 2 * 86400e3;
+    const sets = (k: number): WSet[] => Array.from({ length: 4 }, (_, j) => ({ id: `s${i}_${k}_${j}`, weight: k === 3 || k === 4 ? '' : 60 + (i % 40), reps: k === 4 ? '' : 5 + (j % 3), durationSec: k === 4 ? 45 + (i % 20) : '', distanceM: '', rpe: '', bandId: '', addKg: k === 3 ? (i % 10) : '', kind: 'normal', warmup: false, note: '', done: true, completedAt: at + (k * 4 + j) * 60e3, actualRest: 90 }) as WSet);
+    const w: Workout = { id: `w${i}`, ownerId: 'local', createdAt: at, updatedAt: at, loggedBy: 'local', sessionMode: 'solo', healthUUID: null, templateId: null, templateName: 'Upper A', startedAt: at, finishedAt: at + 3600e3, note: '', exercises: ids.map((id, k) => ({ id: `e${i}_${k}`, exerciseId: id, restSec: 90, repMin: null, repMax: null, groupId: null, sets: sets(k) })) };
+    st.workouts.push(w);
+  }
+  store.save();
+}
+
+jest.setTimeout(300000);
+test.each([1000, 2000])('N=%i', async n => {
+  await fresh(); withDemoTemplates(); build(n); await store.flush();
+  const mb = global.__kv.get('state')!.length / 1e6;
+  let best = Infinity; for (let k = 0; k < 3; k++) { const t = now(); JSON.stringify(store.getState()); best = Math.min(best, now() - t); }
+  let fl = Infinity; for (let k = 0; k < 3; k++) { store.save(); const t = now(); await store.flush(); fl = Math.min(fl, now() - t); }
+  console.log(JSON.stringify({ n, stateMB: Math.round(mb * 100) / 100, stringifyMs: Math.round(best), flushMsAtrapa: Math.round(fl) }));
+});

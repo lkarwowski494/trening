@@ -1,0 +1,24 @@
+# T-11: lista planów w USD (0.99 / 6.99 / 14.99), arkusz Apple w PLN — analiza (2026-10-27)
+## Kod (commit 025a50b9)
+- lib/store-native.ts:53-58 productFromStore: cena = pole displayPrice wiersza z fetchProducts (bez przeliczeń, bez stałych kwot).
+- expo-iap 5.8.1 -> pod openiap 3.6.0 (node_modules/expo-iap/openiap-versions.json: "apple": "3.6.0").
+  openiap tag 3.6.0, packages/apple/Sources/Helpers/StoreKitTypesBridge.swift:24/75/105: `displayPrice: product.displayPrice`
+  (git clone --sparse https://github.com/hyodotdev/openiap, git fetch tag 3.6.0, git show -> exit 0) = StoreKit Product.displayPrice bez zmian.
+- lib/store-adapter.ts:56 sztuczny sklep (FAKE_PRICES $0.99/$6.99/$14.99, lib/store-fake.ts:12) tylko przy EXPO_PUBLIC_STORE_FAKE=1;
+  w TestFlight sztuczny sklep nie wywołuje arkusza Apple, a testerka widziała arkusz Apple -> build 1031 używał adaptera natywnego.
+  Kwoty z listy = ceny bazowe USA z App Store Connect (docs/monetyzacja.md, tabela „USA (USD)”).
+## Apple (szczebel 1, odczyt 2026-10-27, dowody/apple-zrodla-2026-10-27.txt)
+- Product.displayPrice: „formatted for the locale. The storefront that the user’s device is connected to determines the locale.”
+- Testing with sandbox: „Apps that you download from TestFlight always run in the sandbox environment.”
+- Strona subskrypcji: „Full renewal price, shown clearly and prominently, and localized in available currencies”.
+## Szczebel 5 (tylko wskazówka; strona forum Apple blokuje curl weryfikacją przeglądarki — odczyt narzędziem WebFetch, niesprawdzony dosłownie)
+- developer.apple.com/forums/thread/843085 (sierpień 2026): w buildach TestFlight Product.products(for:) zwraca ceny USD niezależnie od regionu konta,
+  a arkusz zakupu tego samego produktu w tej samej sesji pokazuje walutę lokalną; Storefront.current też zwraca USA.
+- Podobne wątki: 849485 (JPY), 828279 (EUR), 845478 (EUR) — tytuły z wyszukiwarki, nie czytane.
+- community.revenuecat.com/sdks-51/facing-a-currency-display-issue-in-our-app-7521 (pracownik wsparcia, 11.03.2026; WebFetch):
+  „This is a known Apple sandbox/TestFlight limitation.” „In production, StoreKit returns the correct localized price based on the user's actual App Store storefront”
+## Wniosek [OCENA]
+Kod nie ma drogi do pokazania innej waluty niż StoreKit; objaw pasuje do opisanej wady środowiska TestFlight/piaskownicy. W produkcji displayPrice
+i arkusz biorą walutę z tego samego storefrontu (dokumentacja Apple). Ryzyko produkcyjne: niskie, ale niepotwierdzone na buildzie z App Store
+-> krok właściciela w dniu wydania (raport, „Decyzje dla właściciela” 1). Dodatkowe ryzyko: recenzent Apple też pracuje w piaskownicy — przy
+storefroncie USA zobaczy USD na liście i w arkuszu (spójnie); rozjazd widziałby tylko recenzent z kontem spoza USA [OCENA, bez źródła].

@@ -1,0 +1,8 @@
+$ npx jest tests/m5s1-bez-proby.test.ts tests/subscription-ui.test.tsx tests/store-adapter.test.ts tests/db-real-sqlite.test.ts --ci --maxWorkers=1
+PASS iOS tests/subscription-ui.test.tsx (13.296 s)
+PASS iOS tests/db-real-sqlite.test.ts
+PASS iOS tests/m5s1-bez-proby.test.ts
+PASS iOS tests/store-adapter.test.ts
+Test Suites: 4 passed, 4 total
+Tests:       96 passed, 96 total
+exit=0

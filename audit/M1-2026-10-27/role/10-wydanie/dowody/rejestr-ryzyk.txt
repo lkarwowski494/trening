@@ -1,0 +1,24 @@
+$ awk rejestr ryzyk docs/40-lekcje.md (kolumna stan, 120 znaków)
+ R-001  :: **zamknięte 19.10.2026** — dowód: testflight.yml run 39233940303 zielony, build 1018 wysłany z nowym podpisem; potw
+ R-002  :: **zamknięte 19.10.2026** — dowód: build 1018 (run 39233940303); właściciel potwierdził na telefonie: przełączni
+ R-003  :: **zamknięte 19.10.2026** — dowód: build 1018; właściciel potwierdził na Apple Watch (watchOS 10.6.2): zgoda na Zd
+ R-005  :: otwarte (partia 1 napraw M2, 20.10.2026; 23.10.2026: ZK-07 — wystąpiło na telefonie, naprawione w kodzie (L-029), do
+ R-004  :: otwarte (świadomie odłożone przez właściciela 19.10.2026 — blokuje 1.0). 23.10.2026, build 1030: uprawnienie jest
+ R-006  :: otwarte (partia 1 napraw M2, 20.10.2026)
+ R-007  :: **zamknięte 22.10.2026** — deklaracja w `app.json` `ios.privacyManifests` (łatka `--fix` w testflight.yml zastąpion
+ R-008  :: otwarte (partia 2 napraw M2, 20.10.2026)
+ R-009  :: **zamknięte 23.10.2026** (M1-049) — dowód 2: `testflight.yml` 39741738792 (dispatch, 920d917): bramka „OK — ziel
+ R-010  :: otwarte (20.10.2026) — **blokuje wydanie w App Store, nie blokuje TestFlight** (wewnętrzna grupa testerów, decyzja 2
+ R-011  :: **zamknięte 21.10.2026** — dowód: nocny przebieg 39537208004 („Ekran: iPhone 17e — szerokość ekranu 390 pt”)
+ R-012  :: **zamknięte 23.10.2026** (M1-049) — dowód 2: `testflight.yml` 39741738792 (920d917, build 1027), krok „Plik wydani
+ R-013  :: **częściowo spełnione 22.10.2026:** wysyłka zielona — `testflight.yml` 39741738792 (920d917, build 1027, krok „W
+ R-014  :: otwarte (21.10.2026)
+ R-M5-1  :: **zamknięte decyzją 22.10.2026** (dni zapisane osobno; docs/18)
+ R-M5-2  :: **zaakceptowane** (teoretyczny, bez naprawy; 22.10.2026)
+ R-M5-3  :: **zamknięte 23.10.2026** (M1-049) — kontrola ASC (workflow „ASC kontrola ustawień”) 39822823188 z 22.10.2026: wi
+ R-M5-4  :: **zaakceptowane** (brzegowy, bez naprawy; 22.10.2026)
+ R-M5-5  :: **zaakceptowane** (brzegowy, bez naprawy; 22.10.2026)
+ R-015  :: **zamknięte 26.10.2026** (przekład przez API, 71 kluczy × 33 języki, model Opus, Batch, ok. 3,3 USD; wyjątek pusty,
+ R-016  :: **zamknięte 26.10.2026** — ręczne sprawdzenie właściciela w TMview (obejmuje dane UPRP, WIPO, USPTO), słowa: Trai
+ R-017  :: **zamknięte (27.10.2026)** — `check-urls.yml` zielony na commicie wydania 001ecf2 (przebieg 40435249217): wszystkie a
+exit=0

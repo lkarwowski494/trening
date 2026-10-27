@@ -1,0 +1,6 @@
+$ npm run check:zrodla-runtime
+
+> trening@1.0.0 check:zrodla-runtime
+> node scripts/zrodla-runtime.mjs --check
+
+exit 0

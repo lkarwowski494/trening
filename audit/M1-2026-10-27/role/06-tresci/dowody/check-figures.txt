@@ -1,0 +1,7 @@
+$ npm run check:figures
+
+> trening@1.0.0 check:figures
+> node scripts/figures/gen.mjs --check
+
+figury: 71 ćwiczeń, 31 otwartych — dokument aktualny
+exit 0

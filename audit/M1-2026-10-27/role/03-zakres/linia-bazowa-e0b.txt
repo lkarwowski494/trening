@@ -1,0 +1,26 @@
+Linia bazowa E0b roli 03-zakres — zapisana 2026-10-27 ok. 17:15 UTC, PRZED lekturą BRD, docs/18, rejestru decyzji i kodu.
+Wejście: zdanie celu od właściciela (polecenie M1: „iOS-owy dziennik treningu siłowego (siłownia i dom), offline, bez konta, uczciwy model freemium”),
+README (substytut listingu; aplikacja przed App Store), odczyt 4 aplikacji niszy w App Store PL (dowody/rynek-linia-bazowa.txt).
+
+Główna praca (J): zapisać trening siłowy w trakcie (siłownia albo dom) szybko, bez sieci i bez konta, i wiedzieć, co zrobić następnym razem, żeby robić postęp.
+Najmniejsza pętla: start (z szablonu albo pusty) -> seria z podpowiedzią z poprzedniego razu -> przerwa z minutnikiem -> koniec i zapis -> historia/postęp -> następny trening z podpowiedzią.
+
+Funkcja linii bazowej | dowód | rdzeń pętli?
+L01 szybki zapis serii (ciężar x powtórzenia), poprzedni wynik/ciężar podpowiedziany | A1-A4 opisy; A2 Co nowego 22.10 | rdzeń
+L02 szablony (własne), start z szablonu | A1-A4 | rdzeń
+L03 minutnik przerwy (auto, per ćwiczenie) z powiadomieniem | A1-A4; skargi A2/A4 | rdzeń
+L04 biblioteka ćwiczeń + własne ćwiczenia | A1-A4 | rdzeń
+L05 historia, rekordy, wykres postępu, e1RM | A1-A4 | rdzeń (powrót)
+L06 typy serii (rozgrzewka, drop, do upadku) i superserie | A1, A3, A4 | ważna dla pasjonata
+L07 offline, bez konta | A3 „w pełni offline”; cel właściciela | podłoga kierunku
+L08 kopia / eksport (CSV) i przeniesienie na nowy telefon | A3 kopia, A4 CSV; A2 recenzja o utracie danych | podłoga danych
+L09 język polski (rynek główny) | 13 próśb w 351 recenzjach | wyróżnik
+L10 Zdrowie (zapis treningu) | A1-A4 | oczekiwana na iOS
+L11 zegarek | A1, A2, A4; najczęstsze skargi na synchronizację (A4 19/83) | wartość z ryzykiem kosztu utrzymania
+L12 notatki do ćwiczenia/treningu | A1 Co nowego 23.10, A3, A4 | pomocnicza
+L13 pomiary ciała / masa | A3, A4 | pomocnicza
+L14 kalkulator talerzy / rozgrzewki | A2, A3 (płatny, Co nowego 21.10), A4 | pomocnicza
+L15 Live Activity / Dynamic Island | A2 | pomocnicza
+L16 programy / plan tygodnia, przypomnienia | A2, A3 | poza rdzeniem (rytm tygodnia)
+L17 uczciwe płatności: darmowy rdzeń, płatne dodatki | 7-9 skarg na płatność na próbkę w każdej z 4 | kierunek modelu
+Celowo nie ma u najprostszych / sygnał kombajnu: społeczność (A1-A3, sprzeczne z „bez konta”), plany generowane AI (A2: skarga na jakość), motywy i podsumowanie roku (A3).

@@ -1,0 +1,126 @@
+$ cd <scratchpad>/02-monetyzacja-b-wt (git worktree 025a50b9) && SONDA_OUT=... npx jest tests/sonda-mon-b.test.tsx --maxWorkers=1
+    ✓ czysta funkcja: lista z wygasłym uprawnieniem vs pusta lista (tak odpowiada currentEntitlements po wygaśnięciu) (4 ms)
+    ✓ adapter natywny: wygasła subskrypcja nie wraca z getAvailablePurchases(onlyActive) → [] → strażnik blokuje 1. dzień po wygaśnięciu (33 ms)
+    ✓ aktywna miesięczna: nagłówek „za darmo”, plany i „Subskrybuj” widoczne; plan posiadany nienazwany; przy wyborze dożywotniego brak ostrzeżenia przed zakupem (898 ms)
+    ✓ aktywna roczna: przycisk „Subskrybuj” przy zaznaczonym rocznym (domyślny wybór = posiadany plan) (119 ms)
+    ✓ wektory (2 ms)
+    ✓ przywracanie bez zakupu → none; przywracanie z błędem → error, stan bez zmian (9 ms)
+Tests:       6 passed, 6 total
+exit 0
+
+--- wynik sondy (log):
+S1 czysta: freeSince(fake)=1792494000000 freeSince(native [])=null
+S1 czysta: lista z wygasłym (kształt sztucznego sklepu) -> allowed=true used=0; pusta lista (kształt natywny) -> allowed=false used=7
+S1 natywny: level=free used=7 allowed=false (7 dni w Pro przed wygaśnięciem 5 dni temu, 0 dni po)
+S2 PL miesięczna aktywna: paywall-owned=true nagłówek-free=true "Trenuj 5 dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz."
+S2: plan-yearly=true plan-monthly=true plan-lifetime=true przycisk Subskrybuj=true
+S2: nazwa posiadanego planu w karcie ("Szukam swojego rytmu" w karcie paywall-owned)=false; tekst karty: Masz pełną wersję=true Dostęp do=true
+S2: po wyborze dożywotniego: przycisk "Kup na zawsze"=true; ostrzeżenie o odnawiającej się subskrypcji PRZED zakupem=false
+S2: po zakupie dożywotniego: "Masz dostęp na zawsze"=true ostrzeżenie=true uprawnienia w sklepie=["monthly","lifetime"]
+S2 roczna aktywna: zaznaczony=yearly Subskrybuj=true
+S3 zakup dożywotni: state=full level=full silent=false
+S3 ponowna instalacja (pamięć pusta, sklep zwraca dożywotni): state=full level=full silent=false
+S3 brak sieci po zakupie dożywotnim: state=unknown level=full silent=false
+S3 brak sieci, nigdy nie kupił: state=unknown level=free silent=true
+S3 zwrot (currentEntitlements bez transakcji), pamięć full: state=free level=free silent=false
+S3 subskrypcja wygasła T-1, brak sieci (decyzja P6 A: +7 dni): state=unknown level=full silent=false
+S3 uwaga: wektor modułu oczekuje braku dostępu; aplikacja daje full (karencja offline 7 dni — decyzja P6 A 12.10.2026)
+S3 subskrypcja wygasła T-8, brak sieci: state=unknown level=free silent=false
+S3 Chmura rodzinna aktywna: state=full level=full silent=false
+S3 Chmura rodzinna cofnięta (brak w currentEntitlements): state=free level=free silent=false
+S3 wiersz z revocationDate (gdyby wrócił): state=free level=free silent=false
+S3 źródło rodziny: {"plan":"yearly","source":"family","expiresAt":1793790000000,"revokedAt":null}
+S3 przywracanie bez zakupu: none
+S3 przywracanie offline: error
+
+--- źródło sondy (kopia):
+/*
+ * SONDA audytu M1 02-monetyzacja-b (scratchpad, nie trafia do repo). Odtworzenie zamiast wnioskowania.
+ */
+import * as store from '@/lib/store';
+import { applyLang } from '@/lib/i18n';
+import { PAYWALL, canStartLive, freeSince, effectiveAccess, type Entitlement } from '@/lib/access';
+import { PRODUCT_IDS } from '@/lib/products';
+import { setStoreAdapter, resetStoreAdapterForTests } from '@/lib/store-adapter';
+import { createFakeStore } from '@/lib/store-fake';
+import { createNativeStore, entitlementFromPurchase } from '@/lib/store-native';
+import * as ent from '@/lib/entitlement';
+import { fresh, saved, addWorkout } from './helpers';
+import { renderApp, flushAll, screen, tap, act } from './app';
+
+const NOW = new Date(2026, 9, 25, 12, 0).getTime(); const DAY = 86400e3; const S = () => store.getState();
+const settle = async () => { for (let i = 0; i < 8; i++) await flushAll(10); };
+const iap = () => (global as any).__iap;
+const liveAt = (when: number) => { const w = addWorkout(when, [['Back Squat', [{ weight: 100, reps: 5, done: true }]]], 'Upper A'); w.live = true; w.tzOffsetMin = -new Date(w.startedAt).getTimezoneOffset(); store.recordLiveDayFor(w); return w; };
+afterEach(() => { PAYWALL.ENABLED = false; ent.resetEntitlementsForTests(); resetStoreAdapterForTests(); applyLang('pl'); jest.useRealTimers(); });
+const log: string[] = []; const L = (s: string) => { log.push(s); };
+afterAll(() => { require('fs').writeFileSync(process.env.SONDA_OUT ?? '/dev/null', log.join('\n') + '\n'); });
+
+describe('S1: P3 B (starty sprzed wygaśnięcia nie liczą się) — kształt sklepu natywnego vs sztucznego', () => {
+  test('czysta funkcja: lista z wygasłym uprawnieniem vs pusta lista (tak odpowiada currentEntitlements po wygaśnięciu)', () => {
+    const offset = -new Date(NOW).getTimezoneOffset(); const exp = NOW - 5 * DAY;
+    const starts = [1, 2, 3, 4, 5, 6, 7].map(i => ({ startedAt: NOW - (5 + i) * DAY, tzOffsetMin: offset })); /* 7 dni treningowych w Pro, przed wygaśnięciem */
+    const C = { ...PAYWALL, ENABLED: true }; const fakeShape = canStartLive({}, [{ plan: 'monthly', source: 'purchase', expiresAt: exp }], starts, NOW, offset, C);
+    const nativeShape = canStartLive({}, [], starts, NOW, offset, C);
+    L(`S1 czysta: freeSince(fake)=${freeSince([{ plan: 'monthly', source: 'purchase', expiresAt: exp }], NOW)} freeSince(native [])=${freeSince([], NOW)}`);
+    L(`S1 czysta: lista z wygasłym (kształt sztucznego sklepu) -> allowed=${fakeShape.allowed} used=${fakeShape.used}; pusta lista (kształt natywny) -> allowed=${nativeShape.allowed} used=${nativeShape.used}`);
+    expect(fakeShape.allowed).toBe(true); expect(nativeShape.allowed).toBe(false);
+  });
+  test('adapter natywny: wygasła subskrypcja nie wraca z getAvailablePurchases(onlyActive) → [] → strażnik blokuje 1. dzień po wygaśnięciu', async () => {
+    jest.useFakeTimers({ now: NOW }); await fresh(); ent.resetEntitlementsForTests(); PAYWALL.ENABLED = true;
+    for (let i = 1; i <= 7; i++) liveAt(NOW - (5 + i) * DAY);
+    Object.assign(iap(), { calls: [], products: [], purchases: [], status: [], fail: null, statusFail: null, listeners: { updated: [], error: [] } });
+    setStoreAdapter(createNativeStore()); await ent.initEntitlements(); for (let i = 0; i < 10; i++) await Promise.resolve();
+    const v = ent.accessNow(NOW); L(`S1 natywny: level=${v.level} used=${v.decision.used} allowed=${v.decision.allowed} (7 dni w Pro przed wygaśnięciem 5 dni temu, 0 dni po)`);
+    expect(v.decision.allowed).toBe(false);
+  });
+});
+
+describe('S2: ekran zakupu przy posiadanym planie (T-11)', () => {
+  async function boot(ents: Entitlement[], locale: 'pl' | 'en' = 'pl') {
+    jest.useFakeTimers({ now: NOW }); await fresh(undefined, locale); ent.resetEntitlementsForTests(); PAYWALL.ENABLED = true;
+    const fake = createFakeStore(ents); setStoreAdapter(fake); store.save(); await act(async () => { await store.flush(); });
+    await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/paywall?reason=settings' }); jest.setSystemTime(NOW); await settle(); return fake;
+  }
+  test('aktywna miesięczna: nagłówek „za darmo”, plany i „Subskrybuj” widoczne; plan posiadany nienazwany; przy wyborze dożywotniego brak ostrzeżenia przed zakupem', async () => {
+    const fake = await boot([{ plan: 'monthly', source: 'purchase', expiresAt: NOW + 20 * DAY }]);
+    const has = (id: string) => !!screen.queryByTestId(id); const txt = (s: string | RegExp) => !!screen.queryByText(s);
+    L(`S2 PL miesięczna aktywna: paywall-owned=${has('paywall-owned')} nagłówek-free=${has('paywall-headline')} "${screen.queryByTestId('paywall-headline')?.props.children}"`);
+    L(`S2: plan-yearly=${has('plan-yearly')} plan-monthly=${has('plan-monthly')} plan-lifetime=${has('plan-lifetime')} przycisk Subskrybuj=${txt('Subskrybuj')}`);
+    L(`S2: nazwa posiadanego planu w karcie ("Szukam swojego rytmu" w karcie paywall-owned)=${require('@testing-library/react-native').within(screen.getByTestId('paywall-owned')).queryAllByText(/rytmu|tygodnia|życie/).length > 0}; tekst karty: ${['Masz pełną wersję', 'Dostęp do'].map(s => `${s}=${txt(new RegExp(s))}`).join(' ')}`);
+    await tap(screen.getByTestId('plan-lifetime')); await settle();
+    L(`S2: po wyborze dożywotniego: przycisk "Kup na zawsze"=${txt('Kup na zawsze')}; ostrzeżenie o odnawiającej się subskrypcji PRZED zakupem=${txt(/nadal się odnawia/)}`);
+    await tap(screen.getByText('Kup na zawsze')); await settle();
+    L(`S2: po zakupie dożywotniego: "Masz dostęp na zawsze"=${txt('Masz dostęp na zawsze')} ostrzeżenie=${txt(/nadal się odnawia/)} uprawnienia w sklepie=${JSON.stringify(fake.entitlements()!.map(e => e.plan))}`);
+  }, 120000);
+  test('aktywna roczna: przycisk „Subskrybuj” przy zaznaczonym rocznym (domyślny wybór = posiadany plan)', async () => {
+    await boot([{ plan: 'yearly', source: 'purchase', expiresAt: NOW + 200 * DAY }]);
+    const sel = ['yearly', 'monthly', 'lifetime'].filter(p => screen.queryByTestId(`plan-${p}`)?.props.accessibilityState?.selected);
+    L(`S2 roczna aktywna: zaznaczony=${sel.join(',')} Subskrybuj=${!!screen.queryByText('Subskrybuj')}`);
+  }, 120000);
+});
+
+describe('S3: wektory modułu storekit-expo na funkcjach aplikacji (adapter natywny + access)', () => {
+  const T = NOW;
+  const row = (plan: keyof typeof PRODUCT_IDS, extra: Record<string, unknown> = {}) => ({ productId: PRODUCT_IDS[plan], expirationDateIOS: plan === 'lifetime' ? null : T + 10 * DAY, ownershipTypeIOS: 'purchased', revocationDateIOS: null, ...extra });
+  test('wektory', () => {
+    const lv = (rows: unknown[]) => rows.map(entitlementFromPurchase).filter(Boolean) as Entitlement[];
+    const v = (name: string, ents: Entitlement[] | null, lastKnown: any) => { const e = effectiveAccess({ lastKnown }, ents, T, { ...PAYWALL, ENABLED: true }); L(`S3 ${name}: state=${e.state} level=${e.level} silent=${e.silent}`); return e; };
+    expect(v('zakup dożywotni', lv([row('lifetime')]), null).level).toBe('full');
+    expect(v('ponowna instalacja (pamięć pusta, sklep zwraca dożywotni)', lv([row('lifetime')]), null).level).toBe('full');
+    expect(v('brak sieci po zakupie dożywotnim', null, { level: 'full', expiresAt: null }).level).toBe('full');
+    expect(v('brak sieci, nigdy nie kupił', null, null).level).toBe('free');
+    expect(v('zwrot (currentEntitlements bez transakcji), pamięć full', [], { level: 'full', expiresAt: null }).level).toBe('free');
+    const e6 = v('subskrypcja wygasła T-1, brak sieci (decyzja P6 A: +7 dni)', null, { level: 'full', expiresAt: T - DAY });
+    L(`S3 uwaga: wektor modułu oczekuje braku dostępu; aplikacja daje ${e6.level} (karencja offline 7 dni — decyzja P6 A 12.10.2026)`);
+    expect(v('subskrypcja wygasła T-8, brak sieci', null, { level: 'full', expiresAt: T - 8 * DAY }).level).toBe('free');
+    expect(v('Chmura rodzinna aktywna', lv([row('monthly', { ownershipTypeIOS: 'family_shared' })]), null).level).toBe('full');
+    expect(v('Chmura rodzinna cofnięta (brak w currentEntitlements)', [], { level: 'full', expiresAt: T + 10 * DAY }).level).toBe('free');
+    expect(v('wiersz z revocationDate (gdyby wrócił)', lv([row('monthly', { revocationDateIOS: T - 1 })]), null).level).toBe('free');
+    L(`S3 źródło rodziny: ${JSON.stringify(entitlementFromPurchase(row('yearly', { ownershipTypeIOS: 'family_shared' })))}`);
+  });
+  test('przywracanie bez zakupu → none; przywracanie z błędem → error, stan bez zmian', async () => {
+    jest.useFakeTimers({ now: NOW }); await fresh(); ent.resetEntitlementsForTests(); PAYWALL.ENABLED = true; const f = createFakeStore([]); setStoreAdapter(f); await ent.initEntitlements();
+    L(`S3 przywracanie bez zakupu: ${await ent.restorePurchases()}`); f.offline = true; L(`S3 przywracanie offline: ${await ent.restorePurchases()}`);
+  });
+});

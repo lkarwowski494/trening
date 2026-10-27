@@ -1,0 +1,9 @@
+$ grep -rn "requestReview|StoreReview|RequestReviewAction|SKStoreReview|write-review" lib components app
+lib/review-run.ts:4: * treningu). Okno pokazuje wyłącznie system (StoreReview.requestReview) — aplikacja nie ma własnego okna oceny (App Review 5.6.1). Data i wersja ostatniej prośby:
+lib/review-run.ts:16:interface ReviewModule { isAvailableAsync(): Promise<boolean>; requestReview(): Promise<void> }
+lib/review-run.ts:40:    await m.requestReview(); /* rzuca, gdy nie ma aktywnej sceny na pierwszym planie (expo-store-review 57.0.3) — wtedy prośby nie było i odstępu nie zużywamy */
+exit 0
+$ grep -rn "write-review|apps.apple.com" lib components app site store
+exit 1 (1 = brak: brak linku Oceń i linku do strony produktu)
+$ grep -lE "fairRules|FairRules|fair-rules" tests/*.test.* | xargs grep -lE "__review|requestReview"
+exit 123 (xargs: grep bez trafień = żaden test nie łączy okna Uczciwe zasady z prośbą o ocenę)

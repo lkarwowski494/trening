@@ -1,0 +1,18 @@
+import { loadDictionary } from '/home/user/trening/scripts/claims.mjs';
+import { readFileSync } from 'node:fs';
+const EN = loadDictionary();
+const R = '/home/user/trening/';
+const reg = JSON.parse(readFileSync(R+'docs/research/rejestr-twierdzen.json','utf8')).twierdzenia.filter(e=>!e.wycofane);
+const langs = ['de','ru','tr'];
+const D = Object.fromEntries(langs.map(l=>[l, JSON.parse(readFileSync(R+`lib/locales/${l}.json`,'utf8'))]));
+const extra = ['Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.','Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.','Redukcja: trening jak na masę (chroni mięśnie) i jedna sesja umiarkowanego cardio.','Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.'];
+const keys = [...reg.map(e=>Object.keys(EN).find(k=>k.startsWith(e.kotwica)).trim()), ...extra];
+const ph = s => (s.match(/\{[^}]+\}/g)||[]).sort().join(',');
+const nums = s => (s.replace(/\{[^}]+\}/g,'').match(/\d+(?:[.,]\d+)?/g)||[]).join(',');
+let bad=0;
+for (const k of [...new Set(keys)]) {
+  const id = reg.find(e=>k.startsWith(e.kotwica))?.id ?? '(poza rejestrem)';
+  console.log(`\n## ${id}\nPL: ${k}\nEN: ${EN[k]}`);
+  for (const l of langs) { const v = D[l][k]; const okPh = v && ph(v)===ph(k); const okN = v && nums(v)===nums(k); if(!v||!okPh||!okN) bad++; console.log(`${l.toUpperCase()}${!v?' [BRAK]':''}${v&&!okPh?' [PLACEHOLDER≠]':''}${v&&!okN?' [LICZBY≠ '+nums(v)+' vs '+nums(k)+']':''}: ${v}`); }
+}
+console.log(`\nrozbieżności mechaniczne (brak / placeholdery / liczby): ${bad}`);

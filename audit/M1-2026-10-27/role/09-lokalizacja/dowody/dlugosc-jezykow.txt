@@ -1,0 +1,5 @@
+# komenda: node -e (suma długości przekładów / suma długości PL, wszystkie klucze _source.json; druga linia: klucze ≤ 12 znaków)
+# kod wyjścia: 0
+en 0.972
+fr:1.164 el:1.135 it:1.113 es:1.110 ro:1.108 de:1.100 bg:1.084 lt:1.080 nl:1.068 ms:1.067 pt:1.066 ru:1.066 hu:1.057 id:1.052 lv:1.040 fi:1.039 uk:1.037 hr:1.012 tr:1.010 sl:1.008 et:0.996 da:0.992 sk:0.980 sr:0.975 sv:0.974 vi:0.974 nb:0.971 cs:0.953 ja:0.537 ko:0.530 zh-Hant:0.379
+krótkie: lt:1.24 el:1.23 fr:1.22 it:1.17 ro:1.16 es:1.16 bg:1.15 lv:1.14

@@ -1,0 +1,18 @@
+$ grep -rn -i -E "VACUUM|REINDEX|deleteDatabase|\.recover|integrity_check|journal_mode" lib app components modules --include=*.ts --include=*.tsx | grep -v -E "catalog.generated|lib/cues|lib/figures"
+lib/state/db.ts:103:  try { await SQLite.deleteDatabaseAsync('trening.db'); } catch {}
+lib/state/boot.ts:150:async function readPreIndex(): Promise<Record<string, number>> {
+lib/state/boot.ts:161:    const idx = await readPreIndex(); idx[String(from)] = at;
+lib/state/boot.ts:168:    const idx = await readPreIndex(); let changed = false;
+lib/state/boot.ts:176:  const idx = await readPreIndex(); const from = Object.entries(idx).sort((a, b) => b[1] - a[1])[0]?.[0]; if (from == null) return null;
+lib/catalog-fp-legacy.generated.ts:202:  "1qorh8ogi0r": ["Stomach Vacuum"],
+exit=0
+
+$ grep -rn -E "DELETE FROM kv" lib --include=*.ts
+lib/state/core.ts:124:      await db.runAsync('DELETE FROM kv WHERE k = ?', DRAFTS_KEY);
+lib/state/core.ts:141:  db?.runAsync('DELETE FROM kv WHERE k = ?', 'recovery').catch(() => {});
+lib/state/boot.ts:103:        try { await db!.runAsync('DELETE FROM kv WHERE k = ?', 'live'); } catch {} }
+lib/state/boot.ts:108:        try { await db!.runAsync('DELETE FROM kv WHERE k = ?', 'cfg'); } catch {} }
+lib/state/boot.ts:169:    for (const [from, at] of Object.entries(idx)) if (now - at > PREMIGRATE_KEEP_MS) { await db!.runAsync('DELETE FROM kv WHERE k = ?', preKey(Number(from))); delete idx[from]; changed = true; }
+lib/state/boot.ts:170:    if (changed) await db!.runAsync(Object.keys(idx).length ? 'INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)' : 'DELETE FROM kv WHERE k = ?', PREMIGRATE_INDEX, ...(Object.keys(idx).length ? [JSON.s
+lib/state/boot.ts:240:    for (const { k } of rows) if (TECHNICAL_KEY.test(k)) await db.runAsync('DELETE FROM kv WHERE k = ?', k);
+exit=0

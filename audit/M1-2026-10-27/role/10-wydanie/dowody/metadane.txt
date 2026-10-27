@@ -1,0 +1,3 @@
+$ node sprawdz-wydanie.mjs metadane <eas-meta.json złożony z store/app-store-metadata.json + store/app-store-names.json>
+OK
+exit=0

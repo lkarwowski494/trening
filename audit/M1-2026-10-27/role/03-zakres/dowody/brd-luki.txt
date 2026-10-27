@@ -1,0 +1,34 @@
+$ git show --stat d4929106 -- docs/brd (commit „Monetyzacja w 1.0: okno Uczciwe zasady, karta po imporcie, rozszerzony import CSV”)
+d4929106 2026-10-25 Monetyzacja w 1.0: okno „Uczciwe zasady”, karta po imporcie, rozszerzony import CSV
+ components/FairRulesSheet.tsx      |  39 ++++++++
+ components/ImportProCard.tsx       |  24 +++++
+ lib/csvparse.ts                    | 148 ++++++++++++++++++++++++++----
+ lib/fairrules.ts                   |  27 ++++++
+exit 0
+
+$ git log --format="%h %ad %s" --date=short -- docs/brd | grep -c "Uczciwe\|CSV\|FairRules"
+0
+
+$ grep -c pozycji w docs/brd/wymagania.md
+Uczciwe zasady: 0
+Strażnik progresji: 0
+Przewodnik: 0
+Pierwsze kroki: 0
+Napisz do nas: 0
+Poproś o nową funkcję: 0
+o ocenę: 0
+superser: 0
+Wyczyść wszystkie dane: 0
+Automatyczna kopia: 0
+Ekran włączony: 0
+Podpowiedź progresji: 1
+Zapisz zmiany w szablonie: 0
+Dopisz trening wstecz: 0
+import CSV\|Import CSV\|importu CSV: 0
+
+$ ls app/more/sources.tsx
+ls: cannot access 'app/more/sources.tsx': No such file or directory
+$ grep -n "BR-ZRO-001\|Źródła wiedzy" docs/brd/*.md
+docs/brd/odkrywanie.md:38:- Aplikacja jest dla zwykłych ludzi, nie dla naukowców: teksty przy funkcjach nie mają przypisów (nazwy źródeł, autorów, organizacji, lat); źródła podstaw liczb i reguł są w jednym miejscu — Ustawienia → „Źródła wiedzy” (decyzja właściciela 2026-10-23, docs/18). Źródła zostają podstawą w rejestrze twierdzeń i dokumentach badacza (ZP-02).
+docs/brd/wymagania.md:627:### BR-ZRO-001: Ekran „Źródła wiedzy” w Ustawieniach
+docs/brd/wymagania.md:633:    - Gdy stuka „Źródła wiedzy”

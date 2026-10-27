@@ -1,0 +1,243 @@
+[
+ {
+  "lang": "pl",
+  "ekran": "trening",
+  "problemy": []
+ },
+ {
+  "lang": "pl",
+  "ekran": "zakup",
+  "problemy": []
+ },
+ {
+  "lang": "pl",
+  "ekran": "limit",
+  "problemy": []
+ },
+ {
+  "lang": "pl",
+  "ekran": "ustawienia",
+  "problemy": []
+ },
+ {
+  "lang": "pl",
+  "ekran": "wiecej",
+  "problemy": []
+ },
+ {
+  "lang": "fr",
+  "ekran": "trening",
+  "problemy": []
+ },
+ {
+  "lang": "fr",
+  "ekran": "zakup",
+  "problemy": []
+ },
+ {
+  "lang": "fr",
+  "ekran": "limit",
+  "problemy": []
+ },
+ {
+  "lang": "fr",
+  "ekran": "ustawienia",
+  "problemy": []
+ },
+ {
+  "lang": "fr",
+  "ekran": "wiecej",
+  "problemy": []
+ },
+ {
+  "lang": "uk",
+  "ekran": "trening",
+  "problemy": []
+ },
+ {
+  "lang": "uk",
+  "ekran": "zakup",
+  "problemy": []
+ },
+ {
+  "lang": "uk",
+  "ekran": "limit",
+  "problemy": []
+ },
+ {
+  "lang": "uk",
+  "ekran": "ustawienia",
+  "problemy": []
+ },
+ {
+  "lang": "uk",
+  "ekran": "wiecej",
+  "problemy": []
+ },
+ {
+  "lang": "de",
+  "ekran": "trening",
+  "problemy": [
+   [
+    "poza ekranem",
+    "10px",
+    "⟦pöw.~~~⟧"
+   ],
+   [
+    "ucięty",
+    "303>288",
+    "6–8 ⟦pöw.~~~⟧, ⟦↑ špŕóbûj 25 kg~~~~~~~⟧, ⟦šûpéŕšét · pŕžéŕwà pö ŕûñdžî"
+   ],
+   [
+    "ucięty",
+    "97>64",
+    "⟦kg/hàñt.~~~~⟧"
+   ],
+   [
+    "ucięty",
+    "103>70",
+    "⟦Tŕéñîñg~~~~~~~⟧"
+   ],
+   [
+    "ucięty",
+    "105>70",
+    "⟦Pöštępý~~~~~~~⟧"
+   ],
+   [
+    "ucięty",
+    "92>70",
+    "⟦Wîęçéj~~~~~~⟧"
+   ]
+  ],
+  "bez_nawiasow": [
+   "kg",
+   "RPE",
+   "[a11y] RPE",
+   "±kg",
+   "[a11y] ±kg",
+   "[a11y] kg"
+  ]
+ },
+ {
+  "lang": "de",
+  "ekran": "zakup",
+  "problemy": [
+   [
+    "poza ekranem",
+    "23px",
+    "⟦Péłñà wéŕšjà~~~~~~~~~⟧"
+   ],
+   [
+    "poza ekranem",
+    "23px",
+    "⟦Wàŕûñkî köŕžýštàñîà~~~~~~~~~~~~~~~⟧"
+   ]
+  ],
+  "bez_nawiasow": []
+ },
+ {
+  "lang": "de",
+  "ekran": "limit",
+  "problemy": [
+   [
+    "poza ekranem",
+    "23px",
+    "⟦Péłñà wéŕšjà~~~~~~~~~⟧"
+   ],
+   [
+    "poza ekranem",
+    "23px",
+    "⟦Wàŕûñkî köŕžýštàñîà~~~~~~~~~~~~~~~⟧"
+   ]
+  ],
+  "bez_nawiasow": []
+ },
+ {
+  "lang": "de",
+  "ekran": "ustawienia",
+  "problemy": [
+   [
+    "poza ekranem",
+    "4px",
+    "⟦Špŕàwdź žgödę ñà pöwîàdömîéñîà~~~~~~~~~~~~~~~~~⟧"
+   ]
+  ],
+  "bez_nawiasow": [
+   "Deutsch",
+   "on",
+   "RPE",
+   "RIR"
+  ]
+ },
+ {
+  "lang": "de",
+  "ekran": "wiecej",
+  "problemy": [
+   [
+    "ucięty",
+    "103>70",
+    "⟦Tŕéñîñg~~~~~~~⟧"
+   ],
+   [
+    "ucięty",
+    "105>70",
+    "⟦Pöštępý~~~~~~~⟧"
+   ],
+   [
+    "ucięty",
+    "92>70",
+    "⟦Wîęçéj~~~~~~⟧"
+   ]
+  ],
+  "bez_nawiasow": [
+   "Training 1.0.0"
+  ]
+ },
+ {
+  "lang": "es",
+  "ekran": "trening",
+  "problemy": [],
+  "teksty": [
+   "1:33",
+   "Finish",
+   "[a11y] Workout progress: 1 of 31 sets",
+   "1/31",
+   "[a11y] Bent Over Row (Dumbbell), set 1 of 4. 20 kilograms, 6 reps. Sets: 0 of 4 done",
+   "set 1 of 4",
+   "20",
+   "kg",
+   "×",
+   "6",
+   "reps",
+   "1",
+   "2",
+   "3",
+   "4",
+   "[a11y] dumbbells: 2 × 20 kg",
+   "dumbbells: 2 × 20 kg",
+   "Set done",
+   "Delete",
+   "SS A ·",
+   "6–8 reps, ↑ try 25 kg, superset · rest after round 2:00",
+   "24 kg isn’t available here — enter a weight",
+   "#",
+   "Previous",
+   "kg/DB",
+   "Reps",
+   "RPE",
+   "✓",
+   "24×8 @8",
+   "24",
+   "[a11y] kg/dumbbell",
+   "8",
+   "[a11y] Reps",
+   "[a11y] RPE",
+   "[a11y] Set 1 done — Bench Press (Dumbbell)",
+   "24×8",
+   "[a11y] Set 2 done — Bench Press (Dumbbell)",
+   "—",
+   "[a11y] Set 3 done — Bench Press (Dumbbell)",
+   "[a11y] Set 4 done — Bench Press (Dumbbell)"
+  ]
+ }
+]

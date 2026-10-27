@@ -1,0 +1,71 @@
+# expo-iap 5.8.1 (node_modules, kod biblioteki) i openiap 3.6.0 (git clone --depth 1 --branch 3.6.0 https://github.com/hyodotdev/openiap.git do scratchpadu; podspec CocoaPods openiap 3.6.0 wskazuje to repo i tag)
+$ grep -n "deepLinkToSubscriptionsIOS = " -A1 node_modules/expo-iap/src/modules/ios.ts
+378:export const deepLinkToSubscriptionsIOS = (): Promise<void> =>
+379-  Linking.openURL('https://apps.apple.com/account/subscriptions');
+$ grep -n "export const deepLinkToSubscriptions:" -A6 node_modules/expo-iap/src/index.ts
+1262:export const deepLinkToSubscriptions: MutationField<
+1263-  'deepLinkToSubscriptions'
+1264-> = async (options) => {
+1265-  if (Platform.OS === 'ios') {
+1266-    await deepLinkToSubscriptionsIOS();
+1267-    return;
+1268-  }
+$ grep -n "export const restorePurchases:" -A9 node_modules/expo-iap/src/index.ts
+1231:export const restorePurchases: MutationField<'restorePurchases'> = async () => {
+1232-  if (Platform.OS === 'ios') {
+1233-    await restorePurchasesIOSNative();
+1234-  }
+1235-
+1236-  await getAvailablePurchases({
+1237-    alsoPublishToEventListenerIOS: false,
+1238-    onlyIncludeActiveItemsIOS: true,
+1239-  });
+1240-};
+
+$ openiap packages/apple/Sources/OpenIapModule.swift: getAvailablePurchases (filtr wygasłych przy onlyActive)
+    public func getAvailablePurchases(_ options: PurchaseOptions?) async throws -> [Purchase] {
+        try await ensureConnection()
+        let onlyActive = options?.onlyIncludeActiveItemsIOS ?? false
+        let shouldPublish = options?.alsoPublishToEventListenerIOS ?? false
+        var purchasedItems: [Purchase] = []
+
+        for await verification in (onlyActive ? Transaction.currentEntitlements : Transaction.all) {
+            let transaction = try checkVerified(verification)
+
+            if onlyActive, let expirationDate = transaction.expirationDate, expirationDate <= Date() {
+                continue
+            }
+
+            let purchase = await StoreKitTypesBridge.purchase(
+                from: transaction,
+                jwsRepresentation: verification.jwsRepresentation
+            )
+            purchasedItems.append(purchase)
+        }
+$ openiap fetchProducts → StoreKit.Product.products(for:)
+        let fetchedProducts: [StoreKit.Product]
+        do {
+            fetchedProducts = try await StoreKit.Product.products(for: params.skus)
+            for product in fetchedProducts {
+                await productManager.addProduct(product)
+            }
+$ openiap StoreKitTypesBridge.swift:24
+            displayName: product.displayName,
+            displayNameIOS: product.displayName,
+            displayPrice: product.displayPrice,
+            id: product.id,
+            isFamilyShareableIOS: product.isFamilyShareable,
+$ openiap deepLinkToSubscriptions (natywny: AppStore.showManageSubscriptions) — w expo-iap 5.8.1 JS na iOS NIE używany (Linking.openURL wyżej)
+    public func deepLinkToSubscriptions(_ options: DeepLinkOptions?) async throws -> Void {
+        try await ensureConnection()
+        // tvOS: AppStore.showManageSubscriptions not available on tvOS (subscriptions managed in Settings > Accounts)
+        // watchOS: No window scene UI for showManageSubscriptions
+        #if !os(tvOS) && !os(watchOS)
+            #if canImport(UIKit)
+            let scene: UIWindowScene? = await MainActor.run {
+                UIApplication.shared.connectedScenes.first as? UIWindowScene
+            }
+            guard let scene else {
+                throw makePurchaseError(code: .unknown)
+            }
+            try await AppStore.showManageSubscriptions(in: scene)

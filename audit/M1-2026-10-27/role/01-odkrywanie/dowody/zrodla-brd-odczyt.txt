@@ -1,0 +1,8 @@
+$ curl -sSL https://pmc.ncbi.nlm.nih.gov/articles/PMC11127506/ (S-01), .../PMC4961270/ (S-02), https://sportrxiv.org/index.php/server/preprint/view/460 (S-03); odczyt 2026-10-27; HTTP 200 x3; exit 0
+--- S-01 grep:
+created a 10-point RIR-based rating of perceived exertion scale (RPE-RIR)
+--- S-02 grep:
+descriptors of effort for values below 5 (1–2 RPE = “little to no effort,” 3–4 RPE = “light effort”)
+--- S-03 grep (strona preprintu, abstrakt; cytat BRD „Fractional counted indirect sets as half a set” NIE występuje na stronie — jest z pełnego tekstu, niesprawdzony dosłownie):
+quantified as 1 for ‘total,’ 0.5 for ‘fractional,’ and 0 for ‘direct.’
+0

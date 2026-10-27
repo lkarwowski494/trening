@@ -1,0 +1,42 @@
+$ git log --no-merges -40 --format="%h %ad %s" --date=short -- lib app components modules targets plugins app.json | head -40
+(dla każdego: czy ten sam commit zmienia tests/ albo .maestro/)
+f7cad151 testy=1 kod=1 2026-10-27 Zegarek: regeneracja etykiet po poprawce id (skipAsk) — watch-fixtures, WatchLabelTable; lekcja: nawrót, ocena syste
+589f6c4a testy=0 kod=0 2026-10-27 Przekład id: gerakan zamiast latihan w 5 kolejnych tekstach o ćwiczeniach
+eb44b911 testy=0 kod=0 2026-10-27 Przekład id: ćwiczenie = gerakan na podglądzie importu (3 klucze); backlog 1.0.1 z uwagami recenzji Z-02
+03723210 testy=1 kod=6 2026-10-27 Figury v2 w 1.0, runda 2: Front Squat (łokcie w przód na wysokości barku), guma Reverse Band z góry stojaka (5 ćwi
+125b5bc2 testy=0 kod=1 2026-10-27 Z-02: ponowne naniesienie 49 nieblokujących poprawek przekładu razem z plikiem zegarka pt-BR (InfoPlist.strings) — 
+5ca838d7 testy=0 kod=0 2026-10-27 Revert "Z-02: nieblokujące poprawki przekładu z notatki przeglądu (49 tekstów, pewność „wysoka”)"
+968967b7 testy=8 kod=1 2026-10-27 Sekcja Technika domyślnie rozwinięta w karcie ćwiczenia (wariant B, 27.10.2026)
+c6b1c813 testy=2 kod=8 2026-10-27 Figury v2 w 1.0: naprawy po recenzji ruchu (martwy ciąg: ciężar nad środkiem stopy, One-Arm Side z gryfem z boku, R
+d079f0e3 testy=1 kod=0 2026-10-27 Z-02: strażnik ścieżek do ekranów w przekładach (test odtwarzający błąd)
+06c9aced testy=0 kod=0 2026-10-27 Z-02: nieblokujące poprawki przekładu z notatki przeglądu (49 tekstów, pewność „wysoka”)
+cf27efb7 testy=0 kod=0 2026-10-27 Z-02: poprawki przekładu tekstów zmienionych po przeglądzie 26.10 (17 tekstów)
+7a45540d testy=25 kod=2 2026-10-26 Wydanie 1.0.0: wersja, pusta historia „Co nowego”, testy, docs
+50cd5883 testy=1 kod=0 2026-10-26 fr: spacja nierozdzielająca w nowych przekładach; przeklad-api wstawia NBSP dla fr (typografia)
+aa9eca44 testy=0 kod=0 2026-10-26 Przekład 33 języków: konto Apple, App Store, Więcej → Miejsca i sprzęt, {h} godzin autozapisu (API, sonnet, 5 kl
+71da7166 testy=2 kod=5 2026-10-26 Figury v2: talerze za wewnętrznymi kołnierzami (plateZ 66/71), łańcuchy sztangi na tulejach (chainZ 73), ławka 30 
+2dee115f testy=3 kod=2 2026-10-26 Audyt 1.0: bramka adresów (check-urls.mjs, workflow ręczny, eksport do apps4brew-www), docs/48 (7 min, opis sklepu be
+c82b6e7e testy=8 kod=4 2026-10-26 Teksty źródłowe po audycie 1.0: konto Apple, App Store zamiast TestFlight, Więcej → Miejsca i sprzęt, {h} godzin
+fdb0a700 testy=1 kod=1 2026-10-26 A-1 (audyt 1.0): import CSV — kolumna Time w formacie godziny przy osobnej dacie jest godziną treningu
+b58b98ae testy=2 kod=1 2026-10-26 A-2 (audyt 1.0): Wyczyść wszystkie dane usuwa też premigrate*, state_corrupt_*, recovery i drafts
+f781b5e6 testy=1 kod=0 2026-10-26 Wskazówki techniki: poprawione 4 zdania w 32 plikach językowych (blokada Z-02) i strażnik skrótów źródła/przek�
+bfb9f84a testy=2 kod=4 2026-10-26 Wyciskanie lezac: sylwetka ANSUR II (tylko 4 warianty), chwyt 1,7 x BAD, dotyk 16/10 cm, lokiec z lancucha 3D; odwiedze
+7d8548e3 testy=0 kod=1 2026-10-26 Rig wyciskania: biegun lokcia ograniczony (bez skrajnych wartosci przy prostych rekach), przyklad kontraktu znow przech
+168fc797 testy=7 kod=5 2026-10-26 Live Activity przerwy: język aplikacji w stanie aktywności zamiast języka systemu
+51745507 testy=3 kod=5 2026-10-26 Wyciskanie lezac wg rzeczywistosci: przedramiona pionowo na dole (NSCA), chwyt trochę szerzej niz barki, lokcie wynika
+f4ea7e47 testy=0 kod=0 2026-10-26 Recenzja lokalizacji 71 kluczy (26.10.2026): 15 tekstów w 9 językach, lista pytań do native speakerów
+34a1978e testy=2 kod=1 2026-10-26 Przekład 71 kluczy x 33 języki przez API (Opus, Batch): R-015 zamknięte, wyjątek anonimizacji pusty; fr: spacje nie
+7c50461b testy=1 kod=1 2026-10-25 Podpis figur v2 bez oznaczenia pewności: "Dobór mięśni: przybliżony" (strażnik zrodla-wiedzy), regeneracja kontek
+bc45607a testy=2 kod=0 2026-10-25 Integracja 27.10: dane cues z grafik do data/zrodla, test źródeł arch w zrodla-pelne, L-030, regeneracja
+3ab140e0 testy=6 kod=4 2026-10-25 Dwa teksty bez ogólnych odwołań do wiedzy (częstotliwość na partię, deload); strażnik anonimizacji rozszerzony 
+80e91c76 testy=11 kod=5 2026-10-25 Paczka aplikacji bez nazw źródeł: pełne dane w data/zrodla, plik runtime generowany (zrodla-runtime.mjs), strażnik
+a8292e44 testy=2 kod=2 2026-10-25 Figury v2: kat na rysunku (pomiar z geometrii, test +-1 stopien), reguly wyciskania z opisu NSCA (testy), zrodlo NSCA p
+5ce69cc9 testy=0 kod=0 2026-10-25 lib/locales/_source.json po nowych tekstach (palce, lokcie)
+49fb1d7d testy=2 kod=4 2026-10-25 Figury v2: palce w przysiadzie ok. 15-20 stopni i lokcie ok. 45 stopni przy wyciskaniu (opis + linia odniesienia), rig 
+e4e3e28c testy=18 kod=6 2026-10-25 Całkiem anonimowo (właściciel 25.10.2026): usunięty ekran Źródła wiedzy, strażnik bez nazw źródeł i odwoła�
+6b8580ee testy=1 kod=1 2026-10-25 Poprawki po CI: sr cyrylicą, fr z NBSP, wyjątek '{faza} {n} s', accessibilityLanguage na chipach błędu
+753a477e testy=1 kod=6 2026-10-25 Figury v2: kontrakt danych rodziny (JSON Schema, interpreter klatek kluczowych, walidator, przykład z gotowej rodziny)
+3b6a656a testy=8 kod=5 2026-10-25 Figury v2: sekcja Technika pokazuje figurę v2 (zastępuje v1), scenariusz Maestro 55 i przepływ SZ-14, przysiad bez p
+4393b490 testy=0 kod=0 2026-10-25 Słowniki języków po scaleniu: osierocone klucze usunięte, terminy ze słownika w tekstach zmienionych źródeł (ja
+253831e5 testy=2 kod=6 2026-10-25 Figury v2: mięśnie z legendą, tor ruchu, licznik faz z tempem, linie odniesienia ze źródłem, przełącznik błęd
+7f1bc371 testy=2 kod=11 2026-10-25 Figury v2: cieniowanie (światło na kończynach i tułowiu), talerz za konturą ciała; poza błędu jako modyfikacja 

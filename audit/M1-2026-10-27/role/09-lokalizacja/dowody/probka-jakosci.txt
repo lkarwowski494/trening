@@ -1,0 +1,2210 @@
+# komenda: node /tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/09lok/probka.mjs (klucze t()/tp() z plików ekranów; języki de, cs, uk, nb, hr; nb i hr wylosowane wzorem z datą 20261027)
+# kod wyjścia: 0
+
+######## zakup (44 kluczy; pliki: app/paywall.tsx)
+
+# PL: Trening to część mojego tygodnia
+  en: Training is part of my week
+  de: Training gehört zu meiner Woche
+  cs: Trénink je součástí mého týdne
+  uk: Тренування — частина мого тижня
+  nb: Trening er en del av uken min
+  hr: Trening je dio mog tjedna
+
+# PL: Szukam swojego rytmu
+  en: Still finding my rhythm
+  de: Ich suche meinen Rhythmus
+  cs: Hledám svůj rytmus
+  uk: Шукаю свій ритм
+  nb: Jeg leter etter rytmen min
+  hr: Tražim svoj ritam
+
+# PL: Trening to moje życie
+  en: Training is my life
+  de: Training ist mein Leben
+  cs: Trénink je můj život
+  uk: Тренування — моє життя
+  nb: Trening er livet mitt
+  hr: Trening je moj život
+
+# PL: Cały rok treningów, rozliczany rocznie.
+  en: A whole year of workouts, billed yearly.
+  de: Ein ganzes Jahr Training, jährlich abgerechnet.
+  cs: Celý rok tréninků, účtovaný ročně.
+  uk: Цілий рік тренувань із щорічною оплатою.
+  nb: Et helt år med trening, fakturert årlig.
+  hr: Cijela godina treninga, naplata godišnje.
+
+# PL: Płacisz co miesiąc i kończysz, kiedy chcesz.
+  en: Pay month by month and stop whenever you like.
+  de: Du zahlst jeden Monat und hörst auf, wann du willst.
+  cs: Platíte každý měsíc a skončíte, kdy chcete.
+  uk: Ви платите щомісяця й завершуєте, коли захочете.
+  nb: Du betaler hver måned og slutter når du vil.
+  hr: Plaćate svaki mjesec i prestajete kad želite.
+
+# PL: Płacisz raz i masz na zawsze.
+  en: Pay once, keep it forever.
+  de: Du zahlst einmal und hast es für immer.
+  cs: Zaplatíte jednou a máte to navždy.
+  uk: Ви платите раз і маєте назавжди.
+  nb: Du betaler én gang og har det for alltid.
+  hr: Platite jednom i imate zauvijek.
+
+# PL: rok
+  en: year
+  de: Jahr
+  cs: rok
+  uk: рік
+  nb: år
+  hr: godina
+
+# PL: miesiąc
+  en: month
+  de: Monat
+  cs: měsíc
+  uk: місяць
+  nb: måned
+  hr: mjesec
+
+# PL: {price} jednorazowo
+  en: {price} one-time
+  de: {price} einmalig
+  cs: {price} jednorázově
+  uk: {price} одноразово
+  nb: {price} én gang
+  hr: {price} jednokratno
+
+# PL: {price}/{period}
+  en: {price}/{period}
+  de: {price}/{period}
+  cs: {price}/{period}
+  uk: {price}/{period}
+  nb: {price}/{period}
+  hr: {price}/{period}
+
+# PL: Kup na zawsze
+  en: Buy forever
+  de: Für immer kaufen
+  cs: Koupit navždy
+  uk: Купити назавжди
+  nb: Kjøp for alltid
+  hr: Kupi zauvijek
+
+# PL: Subskrybuj
+  en: Subscribe
+  de: Abonnieren
+  cs: Předplatit
+  uk: Підписатися
+  nb: Abonner
+  hr: Pretplati se
+
+# PL: Czeka na zgodę organizatora rodziny.
+  en: Waiting for approval from the family organizer.
+  de: Wartet auf die Genehmigung des Familienorganisators.
+  cs: Čeká na schválení organizátorem rodiny.
+  uk: Очікує схвалення організатора сім’ї.
+  nb: Venter på godkjenning fra familieorganisatoren.
+  hr: Čeka odobrenje organizatora obitelji.
+
+# PL: Nie udało się dokończyć zakupu
+  en: Couldn't complete the purchase
+  de: Kauf konnte nicht abgeschlossen werden
+  cs: Nákup se nepodařilo dokončit
+  uk: Не вдалося завершити покупку
+  nb: Kunne ikke fullføre kjøpet
+  hr: Kupnju nije moguće dovršiti
+
+# PL: Spróbuj ponownie.
+  en: Please try again.
+  de: Bitte versuche es erneut.
+  cs: Zkuste to prosím znovu.
+  uk: Спробуйте ще раз.
+  nb: Prøv igjen.
+  hr: Pokušajte ponovno.
+
+# PL: Przywrócono zakupy.
+  en: Purchases restored.
+  de: Käufe wiederhergestellt.
+  cs: Nákupy byly obnoveny.
+  uk: Покупки відновлено.
+  nb: Kjøp gjenopprettet.
+  hr: Kupnje su vraćene.
+
+# PL: Nie znaleziono zakupów dla tego konta Apple.
+  en: No purchases found for this Apple account.
+  de: Für diesen Apple-Account wurden keine Käufe gefunden.
+  cs: Pro tento účet Apple nebyly nalezeny žádné nákupy.
+  uk: Для цього облікового запису Apple покупок не знайдено.
+  nb: Fant ingen kjøp for denne Apple-kontoen.
+  hr: Nisu pronađene kupnje za ovaj Apple račun.
+
+# PL: Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.
+  en: Couldn't restore purchases. Check your internet connection.
+  de: Käufe konnten nicht wiederhergestellt werden. Prüfe deine Internetverbindung.
+  cs: Nákupy se nepodařilo obnovit. Zkontrolujte připojení k internetu.
+  uk: Не вдалося відновити покупки. Перевірте підключення до інтернету.
+  nb: Kunne ikke gjenopprette kjøp. Sjekk internettforbindelsen.
+  hr: Kupnje nije moguće vratiti. Provjerite internetsku vezu.
+
+# PL: Potrzebne połączenie z internetem.
+  en: An internet connection is needed.
+  de: Eine Internetverbindung ist erforderlich.
+  cs: Je potřeba připojení k internetu.
+  uk: Потрібне підключення до інтернету.
+  nb: Du trenger internettforbindelse.
+  hr: Potrebna je internetska veza.
+
+# PL: Jesteśmy z Ciebie dumni!
+  en: We're proud of you!
+  de: Wir sind stolz auf dich!
+  cs: Jsme na vás hrdí!
+  uk: Ми пишаємося вами!
+  nb: Vi er stolte av deg!
+  hr: Ponosni smo na vas!
+
+# PL: W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!
+  en: You've trained hard this month and used all {n} free training days. Good job!
+  de: Diesen Monat trainierst du hart und nutzt alle kostenlosen Trainingstage ({n}). Gut gemacht!
+  cs: Tento měsíc trénujete naplno a využíváte všechny bezplatné tréninkové dny ({n}). Dobrá práce!
+  uk: Цього місяця ви наполегливо тренуєтеся й використовуєте всі безкоштовні дні тренувань ({n}). Чудова робота!
+  nb: Denne måneden trener du hardt og bruker alle de gratis treningsdagene ({n}). Bra jobbet!
+  hr: Ovaj mjesec naporno trenirate i iskorištavate sve besplatne dane treninga ({n}). Bravo!
+
+# PL: {app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.
+  en: {app} is made by an independent developer: no ads, no data collection. If it helps you, choose a plan to keep training without limits. Your free days come back on {date}.
+  de: {app} wird von einem unabhängigen Entwickler gemacht: ohne Werbung, ohne Datensammlung. Wenn es dir hilft, wähle einen Plan und trainiere ohne Limit. Die kostenlosen Tage kommen am {date} zurück.
+  cs: {app} vytváří nezávislý vývojář: bez reklam a bez sběru dat. Pokud vám pomáhá, vyberte si plán a trénujte bez limitu. Bezplatné dny se vrátí {date}.
+  uk: {app} створює незалежний розробник: без реклами та без збору даних. Якщо застосунок вам допомагає, оберіть план і тренуйтеся без обмежень. Безкоштовні дні повернуться {date}.
+  nb: {app} lages av en uavhengig utvikler: uten reklame og uten datainnsamling. Hvis den hjelper deg, velg en plan og tren uten grense. De gratis dagene kommer tilbake {date}.
+  hr: {app} izrađuje neovisni programer: bez oglasa i bez prikupljanja podataka. Ako vam pomaže, odaberite plan i trenirajte bez ograničenja. Besplatni dani vraćaju se {date}.
+
+# PL: Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.
+  en: Train {n} days a month for free. Pro removes the limit. Cancel anytime in your Apple account settings.
+  de: Trainiere {n} Tage im Monat kostenlos. Pro hebt das Limit auf. Du kannst jederzeit in den Einstellungen deines Apple-Accounts kündigen.
+  cs: Trénujte zdarma {n} dní v měsíci. Pro odstraní limit. Zrušit můžete kdykoli v nastavení účtu Apple.
+  uk: Тренуйтеся безкоштовно {n} днів на місяць. Pro знімає обмеження. Скасувати можна будь-коли в налаштуваннях облікового запису Apple.
+  nb: Tren {n} dager i måneden gratis. Pro fjerner grensen. Du kan avslutte når som helst i innstillingene for Apple-kontoen din.
+  hr: Trenirajte {n} dana mjesečno besplatno. Pro uklanja ograničenje. Pretplatu možete otkazati bilo kada u postavkama svog Apple računa.
+
+# PL: Masz dostęp na zawsze
+  en: You have access forever
+  de: Du hast dauerhaften Zugriff
+  cs: Máte přístup navždy
+  uk: У вас доступ назавжди
+  nb: Du har tilgang for alltid
+  hr: Imate pristup zauvijek
+
+# PL: Masz pełną wersję
+  en: You have the full version
+  de: Du hast die Vollversion
+  cs: Máte plnou verzi
+  uk: У вас повна версія
+  nb: Du har full versjon
+  hr: Imate punu verziju
+
+# PL: Dostęp z Chmury rodzinnej
+  en: Access through Family Sharing
+  de: Zugriff über Familienfreigabe
+  cs: Přístup přes Sdílení v rodině
+  uk: Доступ через Сімейний доступ
+  nb: Tilgang via Familiedeling
+  hr: Pristup putem Obiteljskog dijeljenja
+
+# PL: Dostęp z kodu do {date}
+  en: Access from a code until {date}
+  de: Zugriff per Code bis {date}
+  cs: Přístup z kódu do {date}
+  uk: Доступ за кодом до {date}
+  nb: Tilgang med kode til {date}
+  hr: Pristup s kodom do {date}
+
+# PL: Dostęp do {date}
+  en: Access until {date}
+  de: Zugriff bis {date}
+  cs: Přístup do {date}
+  uk: Доступ до {date}
+  nb: Tilgang til {date}
+  hr: Pristup do {date}
+
+# PL: Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płacić podwójnie.
+  en: Your subscription still renews — cancel it so you don't pay twice.
+  de: Dein Abonnement verlängert sich weiterhin — kündige es, damit du nicht doppelt zahlst.
+  cs: Vaše předplatné se stále obnovuje — zrušte ho, ať neplatíte dvakrát.
+  uk: Ваша підписка досі поновлюється — скасуйте її, щоб не платити двічі.
+  nb: Abonnementet ditt fornyes fortsatt — avbryt det, så du ikke betaler dobbelt.
+  hr: Vaša se pretplata i dalje obnavlja — otkažite je da ne platite dvaput.
+
+# PL: Zarządzaj subskrypcją
+  en: Manage subscription
+  de: Abonnement verwalten
+  cs: Spravovat předplatné
+  uk: Керування підпискою
+  nb: Administrer abonnement
+  hr: Upravljaj pretplatom
+
+# PL: Ładowanie cen…
+  en: Loading prices…
+  de: Preise werden geladen…
+  cs: Načítání cen…
+  uk: Завантаження цін…
+  nb: Laster inn priser…
+  hr: Učitavanje cijena…
+
+# PL: Ceny są niedostępne bez połączenia z internetem.
+  en: Prices are unavailable without an internet connection.
+  de: Ohne Internetverbindung sind keine Preise verfügbar.
+  cs: Ceny nejsou bez připojení k internetu k dispozici.
+  uk: Без підключення до інтернету ціни недоступні.
+  nb: Priser er ikke tilgjengelige uten internettforbindelse.
+  hr: Cijene nisu dostupne bez internetske veze.
+
+# PL: Spróbuj ponownie
+  en: Try again
+  de: Erneut versuchen
+  cs: Zkusit znovu
+  uk: Спробувати ще раз
+  nb: Prøv igjen
+  hr: Pokušaj ponovno
+
+# PL: Sklep chwilowo niedostępny
+  en: Store temporarily unavailable
+  de: Store vorübergehend nicht verfügbar
+  cs: Obchod je dočasně nedostupný
+  uk: Магазин тимчасово недоступний
+  nb: Butikken er midlertidig utilgjengelig
+  hr: Trgovina je privremeno nedostupna
+
+# PL: Subskrypcja odnawia się automatycznie, dopóki jej nie anulujesz w ustawieniach konta Apple.
+  en: The subscription renews automatically until you cancel it in your Apple account settings.
+  de: Das Abonnement verlängert sich automatisch, bis du es in den Einstellungen deines Apple-Accounts kündigst.
+  cs: Předplatné se obnovuje automaticky, dokud ho nezrušíte v nastavení účtu Apple.
+  uk: Підписка поновлюється автоматично, доки ви не скасуєте її в параметрах облікового запису Apple.
+  nb: Abonnementet fornyes automatisk til du avbryter det i innstillingene for Apple-kontoen din.
+  hr: Pretplata se automatski obnavlja dok je ne otkažete u postavkama svog Apple računa.
+
+# PL: Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.
+  en: Without a purchase: up to {n} training days per month; history, backup and export always available.
+  de: Ohne Kauf: bis zu {n} Trainingstage pro Monat; Verlauf, Backup und Export sind immer verfügbar.
+  cs: Bez nákupu: až {n} tréninkových dní v měsíci; historie, záloha a export jsou vždy k dispozici.
+  uk: Без покупки: до {n} днів тренувань на місяць; історія, резервна копія й експорт завжди доступні.
+  nb: Uten kjøp: opptil {n} treningsdager i måneden; historikk, sikkerhetskopi og eksport er alltid tilgjengelig.
+  hr: Bez kupnje: do {n} dana treninga mjesečno; povijest, sigurnosna kopija i izvoz uvijek su dostupni.
+
+# PL: Przywróć zakupy
+  en: Restore purchases
+  de: Käufe wiederherstellen
+  cs: Obnovit nákupy
+  uk: Відновити покупки
+  nb: Gjenopprett kjøp
+  hr: Vrati kupnje
+
+# PL: Zrealizuj kod
+  en: Redeem code
+  de: Code einlösen
+  cs: Uplatnit kód
+  uk: Активувати код
+  nb: Løs inn kode
+  hr: Iskoristi kôd
+
+# PL: Zakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej.
+  en: Purchases are tied to your Apple account. You restore workouts from a backup.
+  de: Käufe sind an deinen Apple-Account gebunden. Trainings stellst du aus einer Sicherung wieder her.
+  cs: Nákupy jsou svázané s účtem Apple. Tréninky obnovíte ze zálohy.
+  uk: Покупки прив’язані до облікового запису Apple. Тренування відновлюються з резервної копії.
+  nb: Kjøp er knyttet til Apple-kontoen din. Øktene gjenoppretter du fra en sikkerhetskopi.
+  hr: Kupnje su vezane uz vaš Apple račun. Treninge vraćate iz sigurnosne kopije.
+
+# PL: Warunki korzystania
+  en: Terms of Use
+  de: Nutzungsbedingungen
+  cs: Podmínky použití
+  uk: Умови використання
+  nb: Vilkår for bruk
+  hr: Uvjeti korištenja
+
+# PL: Otwiera stronę w przeglądarce.
+  en: Opens the page in your browser.
+  de: Öffnet die Seite im Browser.
+  cs: Otevře stránku v prohlížeči.
+  uk: Відкриває сторінку в браузері.
+  nb: Åpner siden i nettleseren.
+  hr: Otvara stranicu u pregledniku.
+
+# PL: Prywatność
+  en: Privacy
+  de: Datenschutz
+  cs: Soukromí
+  uk: Конфіденційність
+  nb: Personvern
+  hr: Privatnost
+
+# PL: Dopisz trening wstecz
+  en: Log a past workout
+  de: Training nachtragen
+  cs: Zapsat minulý trénink
+  uk: Записати минуле тренування
+  nb: Registrer tidligere økt
+  hr: Unesi prošli trening
+
+# PL: Nie teraz
+  en: Not now
+  de: Nicht jetzt
+  cs: Teď ne
+  uk: Не зараз
+  nb: Ikke nå
+  hr: Ne sada
+
+######## limit (37 kluczy; pliki: components/StartPanel.tsx, components/FairRulesSheet.tsx, components/SubscriptionCard.tsx)
+
+# PL: jutro
+  en: tomorrow
+  de: morgen
+  cs: zítra
+  uk: завтра
+  nb: i morgen
+  hr: sutra
+
+# PL: Wróć do treningu
+  en: Back to workout
+  de: Zurück zum Training
+  cs: Zpět k tréninku
+  uk: Повернутися до тренування
+  nb: Tilbake til økten
+  hr: Natrag na trening
+
+# PL: Start: {name}
+  en: Start: {name}
+  de: Start: {name}
+  cs: Začít: {name}
+  uk: Почати: {name}
+  nb: Start: {name}
+  hr: Započni: {name}
+
+# PL: dziś w planie · {n} ćw.
+  en: planned for today · {n} ex.
+  de: heute im Plan · {n} Üb.
+  cs: dnes v plánu · {n} cv.
+  uk: сьогодні в плані · {n} вправ
+  nb: planlagt i dag · {n} øv.
+  hr: danas u planu · {n} vj.
+
+# PL: Start zaplanowanego treningu: {name}
+  en: Start planned workout: {name}
+  de: Geplantes Training starten: {name}
+  cs: Spustit naplánovaný trénink: {name}
+  uk: Почати заплановане тренування: {name}
+  nb: Start planlagt økt: {name}
+  hr: Pokreni planirani trening: {name}
+
+# PL: w planie na: {day} · {n} ćw.
+  en: planned for: {day} · {n} ex.
+  de: im Plan für: {day} · {n} Üb.
+  cs: v plánu na: {day} · {n} cv.
+  uk: у плані на: {day} · {n} вправ
+  nb: planlagt: {day} · {n} øv.
+  hr: u planu za: {day} · {n} vj.
+
+# PL: Start następnego treningu: {name}
+  en: Start next workout: {name}
+  de: Nächstes Training starten: {name}
+  cs: Start dalšího tréninku: {name}
+  uk: Почати наступне тренування: {name}
+  nb: Start neste økt: {name}
+  hr: Pokreni sljedeći trening: {name}
+
+# PL: następny po: {name} · {n} ćw.
+  en: next after: {name} · {n} ex.
+  de: nächstes nach: {name} · {n} Üb.
+  cs: další po: {name} · {n} cv.
+  uk: наступне після: {name} · {n} вправ
+  nb: neste etter: {name} · {n} øv.
+  hr: sljedeći nakon: {name} · {n} vj.
+
+# PL: ćw.
+  en: ex.
+  de: Üb.
+  cs: cv.
+  uk: впр.
+  nb: øv.
+  hr: vj.
+
+# PL: Pusty trening
+  en: Empty workout
+  de: Leeres Training
+  cs: Prázdný trénink
+  uk: Порожнє тренування
+  nb: Tom økt
+  hr: Prazan trening
+
+# PL: ćwiczenia dodasz w trakcie
+  en: add exercises as you go
+  de: Übungen fügst du unterwegs hinzu
+  cs: cviky přidáte během tréninku
+  uk: вправи додаси під час тренування
+  nb: legg til øvelser underveis
+  hr: vježbe dodajete usput
+
+# PL: Inny z planu
+  en: Another from the plan
+  de: Anderes aus dem Plan
+  cs: Jiný z plánu
+  uk: Інше з плану
+  nb: En annen fra planen
+  hr: Drugi iz plana
+
+# PL: {name} · w planie na: {day}
+  en: {name} · planned for: {day}
+  de: {name} · im Plan für: {day}
+  cs: {name} · v plánu na: {day}
+  uk: {name} · у плані на: {day}
+  nb: {name} · planlagt: {day}
+  hr: {name} · u planu za: {day}
+
+# PL: Inny z planu: {name}
+  en: Another from the plan: {name}
+  de: Anderes aus dem Plan: {name}
+  cs: Jiný z plánu: {name}
+  uk: Інше з плану: {name}
+  nb: En annen fra planen: {name}
+  hr: Drugi iz plana: {name}
+
+# PL: Powtórz ostatni
+  en: Repeat last
+  de: Letztes Training wiederholen
+  cs: Zopakovat poslední
+  uk: Повторити останнє
+  nb: Gjenta siste
+  hr: Ponovi zadnji
+
+# PL: bez szablonu
+  en: no template
+  de: keine Vorlage
+  cs: bez šablony
+  uk: без шаблону
+  nb: uten mal
+  hr: bez predloška
+
+# PL: Powtórz ostatni ({name})
+  en: Repeat last ({name})
+  de: Letztes Training wiederholen ({name})
+  cs: Zopakovat poslední ({name})
+  uk: Повторити останнє ({name})
+  nb: Gjenta siste ({name})
+  hr: Ponovi zadnji ({name})
+
+# PL: Z szablonu
+  en: From a template
+  de: Aus Vorlage
+  cs: Ze šablony
+  uk: Із шаблону
+  nb: Fra en mal
+  hr: Iz predloška
+
+# PL: szablon|szablony|szablonów
+  en: template|templates
+  de: Vorlage|Vorlagen
+  cs: šablona|šablony|šablon
+  uk: шаблон|шаблони|шаблонів
+  nb: mal|maler
+  hr: predložak|predloška|predložaka
+
+# PL: Inny trening
+  en: Other workout
+  de: Anderes Training
+  cs: Jiný trénink
+  uk: Інше тренування
+  nb: Annen økt
+  hr: Drugi trening
+
+# PL: Inny z planu, powtórz ostatni, z szablonu albo pusty.
+  en: Another from the plan, repeat last, from a template or empty.
+  de: Anderes aus dem Plan, letztes wiederholen, aus Vorlage oder leer.
+  cs: Jiný z plánu, zopakovat poslední, ze šablony nebo prázdný.
+  uk: Інше з плану, повторити останнє, із шаблону або порожнє.
+  nb: En annen fra planen, gjenta siste, fra mal eller tom.
+  hr: Drugi iz plana, ponovi zadnji, iz predloška ili prazan.
+
+# PL: {left} {n} z {limit} darmowych dni treningowych w tym miesiącu.
+  en: {n} of {limit} free training days {left} this month.
+  de: {n} von {limit} kostenlosen Trainingstagen in diesem Monat {left}.
+  cs: {left} {n} z {limit} bezplatných tréninkových dní tento měsíc.
+  uk: {left} {n} із {limit} безкоштовних тренувальних днів цього місяця.
+  nb: {n} av {limit} gratis treningsdager denne måneden {left}.
+  hr: {left} {n} od {limit} besplatnih dana treninga ovog mjeseca.
+
+# PL: Został|Zostały|Zostało
+  en: left|left
+  de: übrig|übrig
+  cs: Zbývá|Zbývají|Zbývá
+  uk: Залишився|Залишилося|Залишилося
+  nb: igjen|igjen
+  hr: Preostaje|Preostaju|Preostaje
+
+# PL: Pierwszy trening za Tobą!
+  en: First workout done!
+  de: Das erste Training ist geschafft!
+  cs: První trénink za vámi!
+  uk: Перше тренування позаду!
+  nb: Første treningsøkt er unnagjort!
+  hr: Prvi trening je iza vas!
+
+# PL: Wszystkie funkcje działają od pierwszego dnia, bez konta i bez reklam. Dane zostają w telefonie.
+  en: Every feature works from day one, with no account and no ads. Your data stays on your phone.
+  de: Alle Funktionen laufen ab dem ersten Tag – ohne Konto und ohne Werbung. Deine Daten bleiben auf deinem Telefon.
+  cs: Všechny funkce fungují od prvního dne, bez účtu a bez reklam. Data zůstávají v telefonu.
+  uk: Усі функції працюють з першого дня — без облікового запису та без реклами. Ваші дані залишаються на телефоні.
+  nb: Alle funksjoner fungerer fra første dag, uten konto og uten reklame. Dataene dine blir på telefonen.
+  hr: Sve funkcije rade od prvog dana, bez računa i bez oglasa. Podaci ostaju na vašem telefonu.
+
+# PL: Trenuj {n} dni w miesiącu za darmo, bez końca.
+  en: Train {n} days a month for free, no time limit.
+  de: Trainiere {n} Tage im Monat kostenlos, ohne Zeitlimit.
+  cs: Trénujte zdarma {n} dní v měsíci, bez časového omezení.
+  uk: Тренуйтеся безкоштовно {n} днів на місяць, без обмеження за часом.
+  nb: Tren {n} dager i måneden gratis, uten tidsbegrensning.
+  hr: Trenirajte besplatno {n} dana mjesečno, bez vremenskog ograničenja.
+
+# PL: Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.
+  en: Want more? Pro removes the limit: subscribe, or pay once for good.
+  de: Du willst öfter? Pro hebt das Limit auf: Abo oder einmaliger Kauf für immer.
+  cs: Chcete trénovat častěji? Pro odstraní limit: předplatné, nebo jednorázový nákup navždy.
+  uk: Хочете частіше? Pro знімає обмеження: підписка або разова покупка назавжди.
+  nb: Vil du ha mer? Pro fjerner grensen: abonnement eller engangskjøp for alltid.
+  hr: Želite više? Pro uklanja ograničenje: pretplata ili jednokratna kupnja zauvijek.
+
+# PL: Skąd ta cena? Poznaj indeks espresso.
+  en: Why this price? See the espresso index.
+  de: Warum dieser Preis? Zum Espresso-Index.
+  cs: Proč tato cena? Podívejte se na espresso index.
+  uk: Чому така ціна? Перегляньте індекс еспресо.
+  nb: Hvorfor denne prisen? Se espressoindeksen.
+  hr: Zašto ova cijena? Pogledajte espresso indeks.
+
+# PL: Otwiera stronę w przeglądarce.
+  en: Opens the page in your browser.
+  de: Öffnet die Seite im Browser.
+  cs: Otevře stránku v prohlížeči.
+  uk: Відкриває сторінку в браузері.
+  nb: Åpner siden i nettleseren.
+  hr: Otvara stranicu u pregledniku.
+
+# PL: Super, trenuję dalej!
+  en: Awesome, keep training!
+  de: Super, ich trainiere weiter!
+  cs: Super, trénuji dál!
+  uk: Чудово, тренуюся далі!
+  nb: Supert, jeg trener videre!
+  hr: Super, nastavljam trenirati!
+
+# PL: Zobacz plany Pro ›
+  en: See Pro plans ›
+  de: Pro-Pläne ansehen ›
+  cs: Zobrazit plány Pro ›
+  uk: Переглянути плани Pro ›
+  nb: Se Pro-planer ›
+  hr: Pogledajte planove Pro ›
+
+# PL: Masz dostęp na zawsze
+  en: You have access forever
+  de: Du hast dauerhaften Zugriff
+  cs: Máte přístup navždy
+  uk: У вас доступ назавжди
+  nb: Du har tilgang for alltid
+  hr: Imate pristup zauvijek
+
+# PL: Dostęp do {date}
+  en: Access until {date}
+  de: Zugriff bis {date}
+  cs: Přístup do {date}
+  uk: Доступ до {date}
+  nb: Tilgang til {date}
+  hr: Pristup do {date}
+
+# PL: Masz pełną wersję
+  en: You have the full version
+  de: Du hast die Vollversion
+  cs: Máte plnou verzi
+  uk: У вас повна версія
+  nb: Du har full versjon
+  hr: Imate punu verziju
+
+# PL: Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}
+  en: Free training days this month: {n} of {limit} used
+  de: Kostenlose Trainingstage in diesem Monat: {n} von {limit} genutzt
+  cs: Bezplatné tréninkové dny tento měsíc: využito {n} z {limit}
+  uk: Безкоштовні тренувальні дні цього місяця: використано {n} із {limit}
+  nb: Gratis treningsdager denne måneden: {n} av {limit} brukt
+  hr: Besplatni dani treninga ovog mjeseca: iskorišteno {n} od {limit}
+
+# PL: Subskrypcja
+  en: Subscription
+  de: Abonnement
+  cs: Předplatné
+  uk: Підписка
+  nb: Abonnement
+  hr: Pretplata
+
+# PL: Pełna wersja
+  en: Full version
+  de: Vollversion
+  cs: Plná verze
+  uk: Повна версія
+  nb: Full versjon
+  hr: Puna verzija
+
+######## trening (108 kluczy; pliki: app/(tabs)/index.tsx, components/WorkoutBlocks.tsx)
+
+# PL: Trening zapisał się sam
+  en: Workout saved automatically
+  de: Training automatisch gespeichert
+  cs: Trénink se uložil sám
+  uk: Тренування збереглося саме
+  nb: Økten ble lagret automatisk
+  hr: Trening se spremio sam
+
+# PL: Tapnij, by ukryć.
+  en: Tap to dismiss.
+  de: Tippe zum Ausblenden.
+  cs: Klepnutím skryjete.
+  uk: Торкніться, щоб сховати.
+  nb: Trykk for å skjule.
+  hr: Dodirnite za sakrivanje.
+
+# PL: Nie udało się zapisać kopii po treningu
+  en: Could not save the backup after your workout
+  de: Das Backup nach dem Training konnte nicht gespeichert werden
+  cs: Zálohu po tréninku se nepodařilo uložit
+  uk: Не вдалося зберегти копію після тренування
+  nb: Sikkerhetskopien etter økten kunne ikke lagres
+  hr: Sigurnosnu kopiju nakon treninga nije bilo moguće spremiti
+
+# PL: Ostatnia udana kopia: {date}
+  en: Last successful backup: {date}
+  de: Letztes erfolgreiches Backup: {date}
+  cs: Poslední úspěšná záloha: {date}
+  uk: Остання успішна копія: {date}
+  nb: Siste vellykkede sikkerhetskopi: {date}
+  hr: Posljednja uspješna kopija: {date}
+
+# PL: Spróbuj ponownie.
+  en: Please try again.
+  de: Bitte versuche es erneut.
+  cs: Zkuste to prosím znovu.
+  uk: Спробуйте ще раз.
+  nb: Prøv igjen.
+  hr: Pokušajte ponovno.
+
+# PL: Nie udało się zapisać danych
+  en: Could not save your data
+  de: Deine Daten konnten nicht gespeichert werden
+  cs: Data se nepodařilo uložit
+  uk: Не вдалося зберегти ваші дані
+  nb: Kunne ikke lagre dataene
+  hr: Nije moguće spremiti vaše podatke
+
+# PL: Tapnij, by spróbować ponownie. Zrób też backup.
+  en: Tap to try again. Also make a backup.
+  de: Tippe, um es erneut zu versuchen. Mach auch ein Backup.
+  cs: Klepnutím to zkusíte znovu. Udělejte také zálohu.
+  uk: Торкніться, щоб спробувати ще раз. Також зробіть резервну копію.
+  nb: Trykk for å prøve igjen. Ta også en sikkerhetskopi.
+  hr: Dodirnite za ponovni pokušaj. Napravite i sigurnosnu kopiju.
+
+# PL: Poprzednich danych nie dało się odczytać
+  en: Your previous data could not be read
+  de: Deine vorherigen Daten konnten nicht gelesen werden
+  cs: Předchozí data se nepodařilo načíst
+  uk: Не вдалося прочитати ваші попередні дані
+  nb: De tidligere dataene kunne ikke leses
+  hr: Vaše prethodne podatke nije bilo moguće pročitati
+
+# PL: Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.
+  en: A copy is kept on the phone. Tap to send it, then import a backup.
+  de: Eine Kopie bleibt auf dem iPhone. Tippe, um sie zu senden, und importiere dann ein Backup.
+  cs: Kopie je uložena v telefonu. Klepnutím ji odešlete a pak zálohu importujte.
+  uk: Копію збережено на телефоні. Торкніться, щоб надіслати її, а потім імпортуйте резервну копію.
+  nb: Kopien ligger på telefonen. Trykk for å sende den, og importer deretter en sikkerhetskopi.
+  hr: Kopija je spremljena na telefonu. Dodirnite da je pošaljete, zatim uvezite sigurnosnu kopiju.
+
+# PL: Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna.
+  en: After hiding this message the copy can no longer be sent from the app — send it first if you need it.
+  de: Nach dem Ausblenden dieser Meldung kann die Kopie nicht mehr aus der App gesendet werden — sende sie vorher, falls du sie brauchst.
+  cs: Po skrytí této zprávy už kopii z aplikace nepůjde odeslat – pokud ji potřebujete, odešlete ji nejdřív.
+  uk: Після приховання цього повідомлення копію вже не можна буде надіслати з програми — спершу надішліть її, якщо вона потрібна.
+  nb: Når meldingen skjules, kan kopien ikke lenger sendes fra appen — send den først hvis du trenger den.
+  hr: Nakon skrivanja ove poruke kopija se više ne može poslati iz aplikacije — najprije je pošaljite ako vam treba.
+
+# PL: Ukryj komunikat
+  en: Hide message
+  de: Meldung ausblenden
+  cs: Skrýt zprávu
+  uk: Приховати повідомлення
+  nb: Skjul meldingen
+  hr: Sakrij poruku
+
+# PL: Wyślij kopię
+  en: Send copy
+  de: Kopie senden
+  cs: Odeslat kopii
+  uk: Надіслати копію
+  nb: Send kopi
+  hr: Pošalji kopiju
+
+# PL: Nie udało się wysłać kopii
+  en: Couldn't send the backup
+  de: Backup konnte nicht gesendet werden
+  cs: Zálohu se nepodařilo odeslat
+  uk: Не вдалося надіслати копію
+  nb: Kunne ikke sende sikkerhetskopien
+  hr: Sigurnosnu kopiju nije moguće poslati
+
+# PL: Planowanie
+  en: Planning
+  de: Planung
+  cs: Plánování
+  uk: Планування
+  nb: Planlegging
+  hr: Planiranje
+
+# PL: Ustaw plan
+  en: Set a plan
+  de: Plan festlegen
+  cs: Nastavit plán
+  uk: Встановити план
+  nb: Lag plan
+  hr: Postavi plan
+
+# PL: Trening
+  en: Workout
+  de: Training
+  cs: Trénink
+  uk: Тренування
+  nb: Trening
+  hr: Trening
+
+# PL: Cofnąć zamianę?
+  en: Undo swap?
+  de: Tausch rückgängig machen?
+  cs: Vrátit výměnu?
+  uk: Відмінити заміну?
+  nb: Angre byttet?
+  hr: Poništiti zamjenu?
+
+# PL: Wpisane wartości zamiennika przepadną.
+  en: Values entered for the substitute will be lost.
+  de: Für die Ersatzübung eingetragene Werte gehen verloren.
+  cs: Hodnoty zadané pro náhradu budou ztraceny.
+  uk: Значення, уведені для заміни, буде втрачено.
+  nb: Verdiene for erstatningen går tapt.
+  hr: Vrijednosti unesene za zamjenu bit će izgubljene.
+
+# PL: Cofnij
+  en: Undo
+  de: Rückgängig
+  cs: Vrátit
+  uk: Відмінити
+  nb: Angre
+  hr: Poništi
+
+# PL: seria|serie|serii
+  en: set|sets
+  de: Satz|Sätze
+  cs: série|série|sérií
+  uk: підхід|підходи|підходів
+  nb: sett|sett
+  hr: serija|serije|serija
+
+# PL: zamiast: {name}
+  en: instead of: {name}
+  de: statt: {name}
+  cs: místo: {name}
+  uk: замість: {name}
+  nb: i stedet for: {name}
+  hr: umjesto: {name}
+
+# PL: ostatnio {s}
+  en: last time {s}
+  de: zuletzt {s}
+  cs: minule {s}
+  uk: минулого разу {s}
+  nb: sist {s}
+  hr: zadnji put {s}
+
+# PL: Usuń usunięte ćwiczenie z treningu
+  en: Remove the deleted exercise from this workout
+  de: Gelöschte Übung aus dem Training entfernen
+  cs: Odebrat smazaný cvik z tohoto tréninku
+  uk: Вилучити видалену вправу з цього тренування
+  nb: Fjern den slettede øvelsen fra økten
+  hr: Ukloni obrisanu vježbu iz ovog treninga
+
+# PL: Usunąć z treningu?
+  en: Remove from workout?
+  de: Aus dem Training entfernen?
+  cs: Odebrat z tréninku?
+  uk: Вилучити з тренування?
+  nb: Fjerne fra økten?
+  hr: Ukloniti iz treninga?
+
+# PL: Usunięte ćwiczenie
+  en: Deleted exercise
+  de: Gelöschte Übung
+  cs: Smazaný cvik
+  uk: Видалена вправа
+  nb: Slettet øvelse
+  hr: Obrisana vježba
+
+# PL: ciężaru {w} nie ma tutaj — wpisz ciężar
+  en: {w} isn’t available here — enter a weight
+  de: {w} gibt es hier nicht — gib ein Gewicht ein
+  cs: {w} tu není – zadejte váhu
+  uk: {w} тут недоступна — уведіть вагу
+  nb: {w} finnes ikke her — skriv inn en vekt
+  hr: {w} ovdje nije dostupno — unesite težinu
+
+# PL: Odhaczone serie: {n} — przepadną.
+  en: Ticked sets: {n} — they will be lost.
+  de: Abgehakte Sätze: {n} — sie gehen verloren.
+  cs: Odškrtnuté série: {n} – budou ztraceny.
+  uk: Позначені підходи: {n} — їх буде втрачено.
+  nb: Avhukede sett: {n} — de går tapt.
+  hr: Označene serije: {n} — bit će izgubljene.
+
+# PL: Usuń ćwiczenie: {name}
+  en: Remove exercise: {name}
+  de: Übung entfernen: {name}
+  cs: Odebrat cvik: {name}
+  uk: Вилучити вправу: {name}
+  nb: Fjern øvelse: {name}
+  hr: Ukloni vježbu: {name}
+
+# PL: pominięte dziś
+  en: skipped today
+  de: heute übersprungen
+  cs: dnes vynecháno
+  uk: пропущено сьогодні
+  nb: hoppet over i dag
+  hr: preskočeno danas
+
+# PL: Przywróć
+  en: Restore
+  de: Wiederherstellen
+  cs: Obnovit
+  uk: Відновити
+  nb: Gjenopprett
+  hr: Vrati
+
+# PL: Przywróć ćwiczenie: {name}
+  en: Restore exercise: {name}
+  de: Übung wiederherstellen: {name}
+  cs: Obnovit cvik: {name}
+  uk: Відновити вправу: {name}
+  nb: Gjenopprett øvelse: {name}
+  hr: Vrati vježbu: {name}
+
+# PL: ↑ spróbuj {n} pow.
+  en: ↑ try {n} reps
+  de: ↑ versuche {n} Wdh.
+  cs: ↑ zkuste {n} opak.
+  uk: ↑ спробуйте {n} повт.
+  nb: ↑ prøv {n} rep.
+  hr: ↑ pokušajte {n} pon.
+
+# PL: ↑ spróbuj bez asysty
+  en: ↑ try without assistance
+  de: ↑ versuche ohne Unterstützung
+  cs: ↑ zkuste bez dopomoci
+  uk: ↑ спробуйте без допомоги
+  nb: ↑ prøv uten assistanse
+  hr: ↑ pokušajte bez pomoći
+
+# PL: ↑ spróbuj {v}
+  en: ↑ try {v}
+  de: ↑ versuche {v}
+  cs: ↑ zkuste {v}
+  uk: ↑ спробуйте {v}
+  nb: ↑ prøv {v}
+  hr: ↑ pokušajte {v}
+
+# PL: pow.
+  en: reps
+  de: Wdh.
+  cs: opak.
+  uk: повт.
+  nb: rep.
+  hr: pon.
+
+# PL: superset · przerwa po rundzie {t}
+  en: superset · rest after round {t}
+  de: Supersatz · Pause nach Runde {t}
+  cs: superset · pauza po kole {t}
+  uk: суперсет · відпочинок після кола {t}
+  nb: supersett · hvile etter runde {t}
+  hr: superset · odmor nakon kruga {t}
+
+# PL: przerwa
+  en: rest
+  de: Pause
+  cs: pauza
+  uk: відпочинок
+  nb: hvile
+  hr: odmor
+
+# PL: Nie zmieniono przerwy
+  en: Rest not changed
+  de: Pause nicht geändert
+  cs: Pauza nezměněna
+  uk: Відпочинок не змінено
+  nb: Hvilen er ikke endret
+  hr: Odmor nije promijenjen
+
+# PL: Wpisz liczbę sekund od 0 do {n}.
+  en: Enter a number of seconds from 0 to {n}.
+  de: Gib eine Sekundenzahl von 0 bis {n} ein.
+  cs: Zadejte počet sekund od 0 do {n}.
+  uk: Введи кількість секунд від 0 до {n}.
+  nb: Skriv inn antall sekunder fra 0 til {n}.
+  hr: Upišite broj sekundi od 0 do {n}.
+
+# PL: Seria normalna
+  en: Normal set
+  de: Normaler Satz
+  cs: Normální série
+  uk: Звичайний підхід
+  nb: Vanlig sett
+  hr: Normalna serija
+
+# PL: Rozgrzewka (W)
+  en: Warm-up (W)
+  de: Aufwärmsatz (W)
+  cs: Zahřívací (W)
+  uk: Розминка (W)
+  nb: Oppvarming (W)
+  hr: Zagrijavanje (W)
+
+# PL: Drop set (D)
+  en: Drop set (D)
+  de: Dropsatz (D)
+  cs: Drop set (D)
+  uk: Дроп-сет (D)
+  nb: Dropsett (D)
+  hr: Drop set (D)
+
+# PL: Do upadku (F)
+  en: To failure (F)
+  de: Bis zum Versagen (F)
+  cs: Do selhání (F)
+  uk: До відмови (F)
+  nb: Til utmattelse (F)
+  hr: Do otkaza (F)
+
+# PL: Edytuj notatkę
+  en: Edit note
+  de: Notiz bearbeiten
+  cs: Upravit poznámku
+  uk: Редагувати нотатку
+  nb: Rediger notat
+  hr: Uredi bilješku
+
+# PL: Dodaj notatkę
+  en: Add note
+  de: Notiz hinzufügen
+  cs: Přidat poznámku
+  uk: Додати нотатку
+  nb: Legg til notat
+  hr: Dodaj bilješku
+
+# PL: Usuń serię
+  en: Delete set
+  de: Satz löschen
+  cs: Smazat sérii
+  uk: Видалити підхід
+  nb: Slett sett
+  hr: Obriši seriju
+
+# PL: Anuluj
+  en: Cancel
+  de: Abbrechen
+  cs: Zrušit
+  uk: Скасувати
+  nb: Avbryt
+  hr: Odustani
+
+# PL: Seria {n}
+  en: Set {n}
+  de: Satz {n}
+  cs: Série {n}
+  uk: Підхід {n}
+  nb: Sett {n}
+  hr: Serija {n}
+
+# PL: Notatka do serii
+  en: Set note
+  de: Satznotiz
+  cs: Poznámka k sérii
+  uk: Нотатка до підходу
+  nb: Settnotat
+  hr: Bilješka serije
+
+# PL: Zapisz
+  en: Save
+  de: Speichern
+  cs: Uložit
+  uk: Зберегти
+  nb: Lagre
+  hr: Spremi
+
+# PL: Usunąć serię?
+  en: Delete set?
+  de: Satz löschen?
+  cs: Smazat sérii?
+  uk: Видалити підхід?
+  nb: Slette settet?
+  hr: Obrisati seriju?
+
+# PL: Seria jest już odhaczona.
+  en: This set is already ticked.
+  de: Dieser Satz ist bereits abgehakt.
+  cs: Tato série už je odškrtnutá.
+  uk: Цей підхід уже позначено.
+  nb: Settet er allerede avhuket.
+  hr: Ova je serija već označena.
+
+# PL: Usuń ćwiczenie
+  en: Delete exercise
+  de: Übung löschen
+  cs: Smazat cvik
+  uk: Видалити вправу
+  nb: Slett øvelse
+  hr: Obriši vježbu
+
+# PL: usunięte
+  en: deleted
+  de: gelöscht
+  cs: smazáno
+  uk: видалено
+  nb: slettet
+  hr: obrisano
+
+# PL: Opcje ćwiczenia: {name}
+  en: Exercise options: {name}
+  de: Optionen für Übung: {name}
+  cs: Možnosti cviku: {name}
+  uk: Параметри вправи: {name}
+  nb: Valg for øvelse: {name}
+  hr: Opcije vježbe: {name}
+
+# PL: przyrząd: {impl}
+  en: equipment: {impl}
+  de: Gerät: {impl}
+  cs: náčiní: {impl}
+  uk: знаряддя: {impl}
+  nb: utstyr: {impl}
+  hr: oprema: {impl}
+
+# PL: ↺ cofnij
+  en: ↺ undo
+  de: ↺ rückgängig
+  cs: ↺ zpět
+  uk: ↺ відмінити
+  nb: ↺ angre
+  hr: ↺ poništi
+
+# PL: Cofnij zamianę: {name}
+  en: Undo swap: {name}
+  de: Tausch rückgängig: {name}
+  cs: Vrátit výměnu: {name}
+  uk: Відмінити заміну: {name}
+  nb: Angre bytte: {name}
+  hr: Poništi zamjenu: {name}
+
+# PL: Zawsze w: {l}
+  en: Always at {l}
+  de: Immer in: {l}
+  cs: Vždy v místě {l}
+  uk: Завжди в: {l}
+  nb: Alltid på {l}
+  hr: Uvijek na mjestu {l}
+
+# PL: Zawsze w: {l} — {name}
+  en: Always at {l} — {name}
+  de: Immer in: {l} — {name}
+  cs: Vždy v místě {l} – {name}
+  uk: Завжди в: {l} — {name}
+  nb: Alltid på {l} — {name}
+  hr: Uvijek na mjestu {l} — {name}
+
+# PL: Zapisuje zamiennik w szablonie dla tego miejsca.
+  en: Saves the substitute in the template for this place.
+  de: Speichert die Ersatzübung in der Vorlage für diesen Ort.
+  cs: Uloží náhradu do šablony pro toto místo.
+  uk: Зберігає заміну в шаблоні для цього місця.
+  nb: Lagrer erstatningen i malen for dette stedet.
+  hr: Sprema zamjenu u predložak za ovo mjesto.
+
+# PL: Zamień na zamiennik: {name}
+  en: Swap to substitute: {name}
+  de: Gegen Ersatzübung tauschen: {name}
+  cs: Vyměnit za náhradu: {name}
+  uk: Замінити на: {name}
+  nb: Bytt til erstatning: {name}
+  hr: Prebaci na zamjenu: {name}
+
+# PL: Zwykle w: {l} — {name}. Zamienić?
+  en: Usually at {l} — {name}. Swap?
+  de: Meist in: {l} — {name}. Tauschen?
+  cs: Obvykle v místě {l} – {name}. Vyměnit?
+  uk: Зазвичай у: {l} — {name}. Замінити?
+  nb: Vanligvis på {l} — {name}. Bytte?
+  hr: Obično na mjestu {l} — {name}. Zamijeniti?
+
+# PL: Nie zamieniaj: {name}
+  en: Don’t swap: {name}
+  de: Nicht tauschen: {name}
+  cs: Nevyměňovat: {name}
+  uk: Не замінювати: {name}
+  nb: Ikke bytt: {name}
+  hr: Ne zamjenjuj: {name}
+
+# PL: Brak sprzętu w: {l}. Brakuje: {m}
+  en: No equipment at {l}. Missing: {m}
+  de: Keine Ausrüstung in: {l}. Es fehlt: {m}
+  cs: Na místě {l} chybí vybavení: {m}
+  uk: Немає обладнання в: {l}. Бракує: {m}
+  nb: Ikke riktig utstyr på {l}. Mangler: {m}
+  hr: Nema opreme na mjestu {l}. Nedostaje: {m}
+
+# PL: Otwiera zamianę ćwiczenia
+  en: Opens the exercise swap
+  de: Öffnet den Übungstausch
+  cs: Otevře výměnu cviku
+  uk: Відкриває заміну вправи
+  nb: Åpner bytte av øvelse
+  hr: Otvara zamjenu vježbe
+
+# PL: brak sprzętu w: {l}
+  en: no equipment at {l}
+  de: keine Ausrüstung in: {l}
+  cs: {l}: chybí vybavení
+  uk: немає обладнання в: {l}
+  nb: mangler utstyr på {l}
+  hr: nema opreme na mjestu {l}
+
+# PL: Poprzednio: {l}
+  en: Previous: {l}
+  de: Vorher: {l}
+  cs: Předchozí: {l}
+  uk: Минулого разу: {l}
+  nb: Forrige: {l}
+  hr: Prethodno: {l}
+
+# PL: Poprzednio
+  en: Previous
+  de: Vorher
+  cs: Předchozí
+  uk: Попередні
+  nb: Forrige
+  hr: Prethodno
+
+# PL: Pow.
+  en: Reps
+  de: Wdh.
+  cs: Opak.
+  uk: Повт.
+  nb: Rep.
+  hr: Pon.
+
+# PL: sek.
+  en: sec.
+  de: Sek.
+  cs: s
+  uk: сек.
+  nb: sek.
+  hr: sek.
+
+# PL: Guma
+  en: Band
+  de: Band
+  cs: Guma
+  uk: Резинка
+  nb: Strikk
+  hr: Traka
+
+# PL: Seria {n} — {ex}
+  en: Set {n} — {ex}
+  de: Satz {n} — {ex}
+  cs: Série {n} – {ex}
+  uk: Підхід {n} — {ex}
+  nb: Sett {n} — {ex}
+  hr: Serija {n} — {ex}
+
+# PL: Usuń serię {n} — {ex}
+  en: Delete set {n} — {ex}
+  de: Satz {n} löschen — {ex}
+  cs: Smazat sérii {n} – {ex}
+  uk: Видалити підхід {n} — {ex}
+  nb: Slett sett {n} — {ex}
+  hr: Obriši seriju {n} — {ex}
+
+# PL: Tapnij, by zmienić typ lub dodać notatkę.
+  en: Tap to change the type or add a note.
+  de: Tippe, um den Typ zu ändern oder eine Notiz hinzuzufügen.
+  cs: Klepnutím změníte typ nebo přidáte poznámku.
+  uk: Торкніться, щоб змінити тип або додати нотатку.
+  nb: Trykk for å endre type eller legge til notat.
+  hr: Dodirnite za promjenu vrste ili dodavanje bilješke.
+
+# PL: Seria {n}, typ: {k}
+  en: Set {n}, type: {k}
+  de: Satz {n}, Typ: {k}
+  cs: Série {n}, typ: {k}
+  uk: Підхід {n}, тип: {k}
+  nb: Sett {n}, type: {k}
+  hr: Serija {n}, vrsta: {k}
+
+# PL: Rekord: {list}
+  en: Record: {list}
+  de: Rekord: {list}
+  cs: Rekord: {list}
+  uk: Рекорд: {list}
+  nb: Rekord: {list}
+  hr: Rekord: {list}
+
+# PL: PR
+  en: PR
+  de: PR
+  cs: PR
+  uk: PR
+  nb: PR
+  hr: PR
+
+# PL: Powtórzenia
+  en: Reps
+  de: Wiederholungen
+  cs: Opakování
+  uk: Повторення
+  nb: Repetisjoner
+  hr: Ponavljanja
+
+# PL: dystans
+  en: distance
+  de: Distanz
+  cs: vzdálenost
+  uk: відстань
+  nb: distanse
+  hr: udaljenost
+
+# PL: czas
+  en: time
+  de: Zeit
+  cs: čas
+  uk: час
+  nb: tid
+  hr: vrijeme
+
+# PL: Stoper trwa
+  en: Stopwatch running
+  de: Stoppuhr läuft
+  cs: Stopky běží
+  uk: Секундомір працює
+  nb: Stoppeklokken går
+  hr: Štoperica radi
+
+# PL: Start stopera serii
+  en: Start set stopwatch
+  de: Satz-Stoppuhr starten
+  cs: Spustit stopky série
+  uk: Запустити секундомір підходу
+  nb: Start stoppeklokke for sett
+  hr: Pokreni štopericu serije
+
+# PL: Tapnij, by zmienić.
+  en: Tap to change.
+  de: Tippe zum Ändern.
+  cs: Klepnutím změníte.
+  uk: Торкніться, щоб змінити.
+  nb: Trykk for å endre.
+  hr: Dodirnite za promjenu.
+
+# PL: Guma: {b}
+  en: Band: {b}
+  de: Band: {b}
+  cs: Guma: {b}
+  uk: Резинка: {b}
+  nb: Strikk: {b}
+  hr: Traka: {b}
+
+# PL: brak
+  en: none
+  de: keine
+  cs: žádná
+  uk: немає
+  nb: ingen
+  hr: nema
+
+# PL: Seria {n} zrobiona — {ex}
+  en: Set {n} done — {ex}
+  de: Satz {n} erledigt — {ex}
+  cs: Série {n} hotova – {ex}
+  uk: Підхід {n} виконано — {ex}
+  nb: Sett {n} gjort — {ex}
+  hr: Serija {n} gotova — {ex}
+
+# PL: Seria {n} do uzupełnienia — {ex}
+  en: Set {n} to fill in — {ex}
+  de: Satz {n} zu ergänzen — {ex}
+  cs: Série {n} k doplnění — {ex}
+  uk: Підхід {n} до заповнення — {ex}
+  nb: Sett {n} skal fylles ut — {ex}
+  hr: Serija {n} za dopunu — {ex}
+
+# PL: do uzupełnienia
+  en: to fill in
+  de: zu ergänzen
+  cs: k doplnění
+  uk: до заповнення
+  nb: skal fylles ut
+  hr: za dopunu
+
+# PL: Gotowe
+  en: Done
+  de: Fertig
+  cs: Hotovo
+  uk: Готово
+  nb: Ferdig
+  hr: Gotovo
+
+# PL: Seria {n} uzupełniona — {ex}
+  en: Set {n} filled in — {ex}
+  de: Satz {n} ergänzt — {ex}
+  cs: Série {n} doplněna — {ex}
+  uk: Підхід {n} заповнено — {ex}
+  nb: Sett {n} fylt ut — {ex}
+  hr: Serija {n} dopunjena — {ex}
+
+# PL: + seria
+  en: + set
+  de: + Satz
+  cs: + série
+  uk: + підхід
+  nb: + sett
+  hr: + serija
+
+# PL: + rozgrzewka
+  en: + warm-up
+  de: + Aufwärmsatz
+  cs: + zahřívací
+  uk: + розминка
+  nb: + oppvarming
+  hr: + zagrijavanje
+
+# PL: + drop set
+  en: + drop set
+  de: + Dropsatz
+  cs: + drop set
+  uk: + дроп-сет
+  nb: + dropsett
+  hr: + drop set
+
+# PL: Przerwa: {s}
+  en: Rest: {s}
+  de: Pause: {s}
+  cs: Pauza: {s}
+  uk: Відпочинок: {s}
+  nb: Hvile: {s}
+  hr: Odmor: {s}
+
+# PL: Przerwa (s)
+  en: Rest (s)
+  de: Pause (s)
+  cs: Pauza (s)
+  uk: Відпочинок (с)
+  nb: Hvile (s)
+  hr: Odmor (s)
+
+# PL: Zapamiętać dla tego ćwiczenia?
+  en: Remember for this exercise?
+  de: Für diese Übung merken?
+  cs: Zapamatovat pro tento cvik?
+  uk: Запам’ятати для цієї вправи?
+  nb: Huske for denne øvelsen?
+  hr: Zapamtiti za ovu vježbu?
+
+# PL: Tylko teraz
+  en: This time only
+  de: Nur dieses Mal
+  cs: Jen tentokrát
+  uk: Лише цього разу
+  nb: Bare denne gangen
+  hr: Samo ovaj put
+
+# PL: Zapamiętaj
+  en: Remember
+  de: Merken
+  cs: Zapamatovat
+  uk: Запам’ятати
+  nb: Husk
+  hr: Zapamti
+
+# PL: Połącz z następnym w superset
+  en: Link with next into a superset
+  de: Mit der nächsten Übung zum Supersatz verbinden
+  cs: Spojit s dalším do supersetu
+  uk: Об’єднати з наступною в суперсет
+  nb: Koble med neste i et supersett
+  hr: Poveži sa sljedećom u superset
+
+# PL: Wyjmij z supersetu
+  en: Remove from superset
+  de: Aus Supersatz entfernen
+  cs: Odebrat ze supersetu
+  uk: Вилучити із суперсету
+  nb: Fjern fra supersett
+  hr: Ukloni iz superseta
+
+# PL: ⇄ zamień
+  en: ⇄ swap
+  de: ⇄ tauschen
+  cs: ⇄ vyměnit
+  uk: ⇄ замінити
+  nb: ⇄ bytt
+  hr: ⇄ zamijeni
+
+# PL: Zamień ćwiczenie: {name}
+  en: Swap exercise: {name}
+  de: Übung tauschen: {name}
+  cs: Vyměnit cvik: {name}
+  uk: Замінити вправу: {name}
+  nb: Bytt øvelse: {name}
+  hr: Zamijeni vježbu: {name}
+
+# PL: Pomiń dziś
+  en: Skip today
+  de: Heute überspringen
+  cs: Dnes vynechat
+  uk: Пропустити сьогодні
+  nb: Hopp over i dag
+  hr: Preskoči danas
+
+# PL: Pomiń dziś: {name}
+  en: Skip today: {name}
+  de: Heute überspringen: {name}
+  cs: Dnes vynechat: {name}
+  uk: Пропустити сьогодні: {name}
+  nb: Hopp over i dag: {name}
+  hr: Preskoči danas: {name}
+
+# PL: Zmierzyć serię od nowa?
+  en: Time this set again?
+  de: Satz neu messen?
+  cs: Měřit tuto sérii znovu?
+  uk: Засікти час цього підходу ще раз?
+  nb: Ta tiden på nytt?
+  hr: Ponovno mjeriti vrijeme ove serije?
+
+# PL: Zapisany czas zostanie nadpisany.
+  en: The saved time will be overwritten.
+  de: Die gespeicherte Zeit wird überschrieben.
+  cs: Uložený čas bude přepsán.
+  uk: Збережений час буде перезаписано.
+  nb: Den lagrede tiden blir overskrevet.
+  hr: Spremljeno vrijeme bit će prepisano.
+
+# PL: Zmierz
+  en: Time it
+  de: Zeit messen
+  cs: Měřit čas
+  uk: Засікти час
+  nb: Ta tiden
+  hr: Mjeri vrijeme
+
+######## ustawienia (86 kluczy; pliki: app/more/settings.tsx, app/(tabs)/more.tsx)
+
+# PL: Ogólne
+  en: General
+  de: Allgemein
+  cs: Obecné
+  uk: Загальні
+  nb: Generelt
+  hr: Općenito
+
+# PL: Język
+  en: Language
+  de: Sprache
+  cs: Jazyk
+  uk: Мова
+  nb: Språk
+  hr: Jezik
+
+# PL: Jak w telefonie
+  en: Phone setting
+  de: Wie System
+  cs: Nastavení telefonu
+  uk: Як на телефоні
+  nb: Som telefonen
+  hr: Postavka telefona
+
+# PL: Wygląd
+  en: Appearance
+  de: Erscheinungsbild
+  cs: Vzhled
+  uk: Вигляд
+  nb: Utseende
+  hr: Izgled
+
+# PL: Jasny
+  en: Light
+  de: Hell
+  cs: Světlý
+  uk: Світлий
+  nb: Lys
+  hr: Svijetlo
+
+# PL: Ciemny
+  en: Dark
+  de: Dunkel
+  cs: Tmavý
+  uk: Темний
+  nb: Mørk
+  hr: Tamno
+
+# PL: System miar
+  en: Measurement system
+  de: Maßsystem
+  cs: Systém jednotek
+  uk: Система мір
+  nb: Målesystem
+  hr: Sustav mjera
+
+# PL: metryczny (kg, km, m)
+  en: metric (kg, km, m)
+  de: Metrisch (kg, km, m)
+  cs: metrický (kg, km, m)
+  uk: метрична (kg, km, m)
+  nb: metrisk (kg, km, m)
+  hr: metrički (kg, km, m)
+
+# PL: imperialny (lb, mi, yd)
+  en: imperial (lb, mi, yd)
+  de: Imperial (lb, mi, yd)
+  cs: imperiální (lb, mi, yd)
+  uk: імперська (lb, mi, yd)
+  nb: imperisk (lb, mi, yd)
+  hr: imperijalni (lb, mi, yd)
+
+# PL: Trening
+  en: Workout
+  de: Training
+  cs: Trénink
+  uk: Тренування
+  nb: Trening
+  hr: Trening
+
+# PL: Widok treningu
+  en: Workout view
+  de: Trainingsansicht
+  cs: Zobrazení tréninku
+  uk: Вигляд тренування
+  nb: Øktvisning
+  hr: Prikaz treninga
+
+# PL: Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.
+  en: List: exercises and sets as in earlier versions, without the card.
+  de: Liste: Übungen und Sätze wie in früheren Versionen, ohne Karte.
+  cs: Seznam: cviky a série jako v předchozích verzích, bez karty.
+  uk: Список: вправи й підходи як у попередніх версіях, без картки.
+  nb: Liste: øvelser og sett som i tidligere versjoner, uten kortet.
+  hr: Popis: vježbe i serije kao u prethodnim verzijama, bez kartice.
+
+# PL: Skupiony: bieżąca seria dużymi cyframi nad listą ćwiczeń.
+  en: Focused: the current set in big numbers above the exercise list.
+  de: Fokus: der aktuelle Satz in großen Zahlen über der Übungsliste.
+  cs: Soustředěné: aktuální série velkými číslicemi nad seznamem cviků.
+  uk: Зосереджений: поточний підхід великими цифрами над списком вправ.
+  nb: Fokusert: gjeldende sett med store tall over øvelseslisten.
+  hr: Fokusirani prikaz: trenutna serija velikim brojkama iznad popisa vježbi.
+
+# PL: Skupiony
+  en: Focused
+  de: Fokus
+  cs: Soustředěné
+  uk: Зосереджений
+  nb: Fokusert
+  hr: Fokusirani
+
+# PL: Lista
+  en: List
+  de: Liste
+  cs: Seznam
+  uk: Список
+  nb: Liste
+  hr: Popis
+
+# PL: Domyślna przerwa (s)
+  en: Default rest (s)
+  de: Standardpause (s)
+  cs: Výchozí pauza (s)
+  uk: Типовий відпочинок (с)
+  nb: Standard hviletid (s)
+  hr: Zadani odmor (s)
+
+# PL: Dźwięk na koniec przerwy
+  en: Sound at the end of rest
+  de: Ton am Ende der Pause
+  cs: Zvuk na konci pauzy
+  uk: Звук наприкінці відпочинку
+  nb: Lyd når hvilen er over
+  hr: Zvuk na kraju odmora
+
+# PL: W trybie cichym telefon tylko wibruje
+  en: In silent mode the phone only vibrates
+  de: Im Lautlos-Modus vibriert das Telefon nur
+  cs: V tichém režimu telefon jen vibruje
+  uk: У беззвучному режимі телефон лише вібрує
+  nb: I stille modus vibrerer telefonen bare
+  hr: U tihom načinu rada telefon samo vibrira
+
+# PL: Wibracje
+  en: Haptics
+  de: Vibration
+  cs: Vibrace
+  uk: Вібрація
+  nb: Vibrering
+  hr: Vibracija
+
+# PL: Zapowiedzi głosowe
+  en: Voice announcements
+  de: Sprachansagen
+  cs: Hlasová oznámení
+  uk: Голосові підказки
+  nb: Stemmemeldinger
+  hr: Glasovne najave
+
+# PL: Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.
+  en: At the start of the rest the phone announces the next exercise, weight and reps. In headphones — only with headphones connected; Also through the speaker — also without headphones, through the phone speaker (even in silent mode); Off — no announcements.
+  de: Zu Beginn der Pause sagt das Telefon die nächste Übung, das Gewicht und die Wiederholungen an. Über Kopfhörer — nur mit verbundenen Kopfhörern; Auch über Lautsprecher — auch ohne Kopfhörer, über den Lautsprecher des Telefons (auch im Stumm-Modus); Aus — keine Ansagen.
+  cs: Na začátku pauzy telefon ohlásí další cvik, váhu a opakování. Ve sluchátkách — jen s připojenými sluchátky; I přes reproduktor — také bez sluchátek, přes reproduktor telefonu (i v tichém režimu); Vypnuto — bez oznámení.
+  uk: На початку відпочинку телефон називає наступну вправу, вагу й повторення. У навушниках — лише з підключеними навушниками; Також через динамік — і без навушників, через динамік телефону (навіть у беззвучному режимі); Вимкнено — без підказок.
+  nb: Når hvilen starter, sier telefonen neste øvelse, vekt og repetisjoner. I hodetelefoner — bare med tilkoblede hodetelefoner; Også i høyttaleren — også uten hodetelefoner, gjennom telefonens høyttaler (også i lydløs modus); Av — ingen meldinger.
+  hr: Na početku odmora telefon najavljuje sljedeću vježbu, težinu i ponavljanja. U slušalicama — samo s povezanim slušalicama; I preko zvučnika — i bez slušalica, preko zvučnika telefona (i u nečujnom načinu); Isključeno — bez najava.
+
+# PL: Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.
+  en: Announcements work when “Sound at the end of rest” is on. You can change the same setting in the “⋯” menu on the workout screen.
+  de: Ansagen funktionieren, wenn „Ton am Ende der Pause“ eingeschaltet ist. Dieselbe Einstellung änderst du im Menü „⋯“ auf dem Trainingsbildschirm.
+  cs: Oznámení fungují, když je zapnutý „Zvuk na konci pauzy“. Stejné nastavení změníte v nabídce „⋯“ na obrazovce tréninku.
+  uk: Голосові підказки працюють, коли увімкнено «Звук наприкінці відпочинку». Те саме налаштування можна змінити в меню «⋯» на екрані тренування.
+  nb: Meldingene virker når «Lyd når hvilen er over» er slått på. Samme innstilling kan endres i menyen «⋯» på treningsskjermen.
+  hr: Najave rade kad je uključena opcija „Zvuk na kraju odmora”. Istu postavku mijenjate i u izborniku „⋯” na zaslonu treninga.
+
+# PL: Posłuchaj przykładu
+  en: Listen to an example
+  de: Beispiel anhören
+  cs: Poslechnout ukázku
+  uk: Послухати приклад
+  nb: Hør et eksempel
+  hr: Poslušaj primjer
+
+# PL: Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).
+  en: This phone has no voice for the app language. Download one in iOS Settings (Accessibility).
+  de: Auf diesem Telefon gibt es keine Stimme für die Sprache der App. Lade sie in den iOS-Einstellungen herunter (Bedienungshilfen).
+  cs: Telefon nemá hlas pro jazyk aplikace. Stáhněte ho v Nastavení iOS (Zpřístupnění).
+  uk: У телефоні немає голосу для мови застосунку. Завантажте його в налаштуваннях iOS (Універсальний доступ).
+  nb: Telefonen har ingen stemme for appens språk. Last ned en i iOS-innstillinger (Tilgjengelighet).
+  hr: Telefon nema glas za jezik aplikacije. Preuzmite ga u iOS postavkama (Pristupačnost).
+
+# PL: Ekran włączony podczas treningu
+  en: Keep screen on during workout
+  de: Bildschirm beim Training anlassen
+  cs: Nechat displej zapnutý během tréninku
+  uk: Не вимикати екран під час тренування
+  nb: Hold skjermen på under økten
+  hr: Zaslon uključen tijekom treninga
+
+# PL: RPE / RIR przy serii
+  en: RPE / RIR per set
+  de: RPE / RIR pro Satz
+  cs: RPE / RIR u každé série
+  uk: RPE / RIR у підході
+  nb: RPE / RIR per sett
+  hr: RPE / RIR po seriji
+
+# PL: opcjonalne pole, nie wpływa na objętość
+  en: optional field, does not affect volume
+  de: optionales Feld, beeinflusst das Volumen nicht
+  cs: nepovinné pole, neovlivňuje objem
+  uk: необов’язкове поле, не впливає на обсяг
+  nb: valgfritt felt, påvirker ikke volumet
+  hr: neobavezno polje, ne utječe na volumen
+
+# PL: Skala wysiłku
+  en: Effort scale
+  de: Anstrengungsskala
+  cs: Škála úsilí
+  uk: Шкала зусилля
+  nb: Anstrengelsesskala
+  hr: Ljestvica napora
+
+# PL: RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali.
+  en: RIR is the number of reps you still had left: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Saved values convert when you switch scales.
+  de: RIR sind die Wiederholungen, die du noch in Reserve hattest: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Gespeicherte Werte werden beim Wechsel der Skala umgerechnet.
+  cs: RIR jsou opakování, která vám zbývala v rezervě: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Uložené hodnoty se při změně škály přepočítají.
+  uk: RIR — це повторення, що залишилися в запасі: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Збережені значення перераховуються при зміні шкали.
+  nb: RIR er antall repetisjoner du fortsatt hadde igjen: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Lagrede verdier regnes om når du bytter skala.
+  hr: RIR su ponavljanja koja su vam ostala u rezervi: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Spremljene vrijednosti preračunavaju se pri promjeni ljestvice.
+
+# PL: RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.
+  en: Enter RIR from 0 to {max}; more than {max} reps in reserve is saved as “light” (RPE {light}), because below RPE {min} the scale describes effort in words, not reps in reserve.
+  de: RIR gibst du von 0 bis {max} ein; mehr als {max} Wiederholungen in Reserve werden als „leicht“ gespeichert (RPE {light}), weil die Skala unter RPE {min} die Anstrengung mit Worten beschreibt, nicht mit Wiederholungen in Reserve.
+  cs: RIR zadáváte v rozsahu 0–{max}; víc než {max} opakování v rezervě se uloží jako „lehce“ (RPE {light}), protože pod RPE {min} popisuje škála úsilí slovy, ne opakováními v rezervě.
+  uk: RIR вводиться в межах 0–{max}; понад {max} повторень у запасі зберігається як «легко» (RPE {light}), бо нижче RPE {min} шкала описує зусилля словами, а не повтореннями в запасі.
+  nb: RIR registreres fra 0 til {max}. Mer enn {max} repetisjoner i reserve lagres som «lett» (RPE {light}), fordi skalaen under RPE {min} beskriver anstrengelsen med ord, ikke med repetisjoner i reserve.
+  hr: RIR unosite u rasponu 0–{max}; više od {max} ponavljanja u rezervi sprema se kao „lagano” (RPE {light}), jer ispod RPE {min} ljestvica opisuje napor riječima, a ne ponavljanjima u rezervi.
+
+# PL: Podpowiedź progresji
+  en: Progression hint
+  de: Progressionshinweis
+  cs: Nápověda progrese
+  uk: Підказка прогресії
+  nb: Progresjonstips
+  hr: Savjet za napredak
+
+# PL: ↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń
+  en: ↑ next to an exercise when last time all sets reached the top of the rep range
+  de: ↑ bei einer Übung, wenn beim letzten Mal alle Sätze das obere Ende des Wiederholungsbereichs erreicht haben
+  cs: ↑ u cviku, když minule všechny série dosáhly horní hranice rozsahu opakování
+  uk: ↑ біля вправи, якщо минулого разу всі підходи досягли верху діапазону повторень
+  nb: ↑ ved en øvelse når alle sett sist nådde toppen av repetisjonsområdet
+  hr: ↑ uz vježbu kad su prošli put sve serije dosegle vrh raspona ponavljanja
+
+# PL: Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.
+  en: The line in “This week” and in Progress. Automatic: {n} sets. Manual: your own number from {min} to {max}.
+  de: Die Linie in „Diese Woche“ und in Fortschritt. Automatisch: {n} Sätze. Manuell: deine eigene Zahl von {min} bis {max}.
+  cs: Čára v „Tento týden“ a v Pokroku. Automaticky: {n} sérií. Ručně: vlastní číslo od {min} do {max}.
+  uk: Риска в розділі «Цей тиждень» і в «Прогресі». Автоматично: {n} підходів. Вручну: ваше число від {min} до {max}.
+  nb: Linjen i «Denne uken» og i Fremgang. Automatisk: {n} sett. Manuelt: ditt eget tall fra {min} til {max}.
+  hr: Crta u „Ovaj tjedan“ i u Napretku. Automatski: {n} serija. Ručno: vlastiti broj od {min} do {max}.
+
+# PL: Cel serii na partię w tygodniu
+  en: Weekly set goal per muscle group
+  de: Wochenziel an Sätzen pro Muskelgruppe
+  cs: Týdenní cíl sérií na partii
+  uk: Тижнева ціль за підходами на частину тіла
+  nb: Ukentlig settmål per muskelgruppe
+  hr: Tjedni cilj serija po dijelu tijela
+
+# PL: Cele partii
+  en: Muscle group goals
+  de: Ziele der Muskelgruppen
+  cs: Cíle partií
+  uk: Цілі частин тіла
+  nb: Mål for muskelgrupper
+  hr: Ciljevi dijelova tijela
+
+# PL: Ukryj cele partii
+  en: Hide muscle group goals
+  de: Ziele der Muskelgruppen ausblenden
+  cs: Skrýt cíle partií
+  uk: Сховати цілі частин тіла
+  nb: Skjul mål for muskelgrupper
+  hr: Sakrij ciljeve dijelova tijela
+
+# PL: Pokaż cele partii
+  en: Show muscle group goals
+  de: Ziele der Muskelgruppen zeigen
+  cs: Zobrazit cíle partií
+  uk: Показати цілі частин тіла
+  nb: Vis mål for muskelgrupper
+  hr: Prikaži ciljeve dijelova tijela
+
+# PL: Dane i kopie
+  en: Data and backups
+  de: Daten und Backups
+  cs: Data a zálohy
+  uk: Дані й резервні копії
+  nb: Data og sikkerhetskopier
+  hr: Podaci i sigurnosne kopije
+
+# PL: Zapisuj zakończone treningi do Apple Health
+  en: Save finished workouts to Apple Health
+  de: Abgeschlossene Trainings in Apple Health speichern
+  cs: Ukládat dokončené tréninky do Apple Health
+  uk: Зберігати завершені тренування в Apple Health
+  nb: Lagre fullførte økter i Apple Health
+  hr: Spremaj završene treninge u Apple Health
+
+# PL: Apple Health niedostępne
+  en: Apple Health unavailable
+  de: Apple Health nicht verfügbar
+  cs: Apple Health není k dispozici
+  uk: Apple Health недоступне
+  nb: Apple Health utilgjengelig
+  hr: Apple Health nije dostupan
+
+# PL: Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.
+  en: No permission to save workouts. Turn it on in the Health app: profile → Apps → {app}.
+  de: Keine Berechtigung zum Speichern von Trainings. Aktiviere sie in der Health-App: Profil → Apps → {app}.
+  cs: Chybí oprávnění k zápisu tréninků. Zapněte ho v aplikaci Zdraví: profil → Aplikace → {app}.
+  uk: Немає дозволу на запис тренувань. Увімкніть його в програмі «Здоров’я»: профіль → Програми → {app}.
+  nb: Ingen tillatelse til å lagre økter. Slå den på i Helse-appen: profil → Apper → {app}.
+  hr: Nema dopuštenja za spremanje treninga. Uključite ga u aplikaciji Zdravlje: profil → Aplikacije → {app}.
+
+# PL: Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.
+  en: Waiting to be saved to Apple Health: {n}. It will be retried when the app starts and when you return to it.
+  de: Warten auf Speicherung in Apple Health: {n}. Das Speichern wird beim Start und bei der Rückkehr zur App wiederholt.
+  cs: Čeká na uložení do Apple Health: {n}. Ukládání se zopakuje při spuštění a návratu do aplikace.
+  uk: Очікують на збереження в Apple Health: {n}. Збереження буде повторено під час запуску й повернення до застосунку.
+  nb: Venter på lagring i Apple Health: {n}. Lagringen prøves igjen når appen starter og når du går tilbake til den.
+  hr: Čeka spremanje u Apple Health: {n}. Spremanje će se ponoviti pri pokretanju i povratku u aplikaciju.
+
+# PL: Ponów teraz
+  en: Retry now
+  de: Jetzt erneut versuchen
+  cs: Zkusit znovu
+  uk: Повторити зараз
+  nb: Prøv igjen nå
+  hr: Pokušaj sada
+
+# PL: Nie udało się zapisać w Apple Health
+  en: Couldn't save to Apple Health
+  de: Speichern in Apple Health fehlgeschlagen
+  cs: Do Apple Health se nepodařilo uložit
+  uk: Не вдалося зберегти в Apple Health
+  nb: Kunne ikke lagre i Apple Health
+  hr: Spremanje u Apple Health nije uspjelo
+
+# PL: Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.
+  en: Workouts are still waiting to be saved to Apple Health. Check the permission in the Health app: profile → Apps → {app}.
+  de: Trainings warten noch auf die Speicherung in Apple Health. Prüfe die Berechtigung in der Health-App: Profil → Apps → {app}.
+  cs: Tréninky stále čekají na uložení do Apple Health. Zkontrolujte oprávnění v aplikaci Zdraví: profil → Aplikace → {app}.
+  uk: Тренування досі чекають на збереження в Apple Health. Перевірте дозвіл у програмі «Здоров’я»: профіль → Програми → {app}.
+  nb: Økter venter fortsatt på lagring i Apple Health. Sjekk tillatelsen i Helse-appen: profil → Apper → {app}.
+  hr: Treninzi još čekaju spremanje u Apple Health. Provjerite dopuštenje u aplikaciji Zdravlje: profil → Aplikacije → {app}.
+
+# PL: Pokazuj dane z Apple Health
+  en: Show data from Apple Health
+  de: Daten aus Apple Health anzeigen
+  cs: Zobrazovat data z Apple Health
+  uk: Показувати дані з Apple Health
+  nb: Vis data fra Apple Health
+  hr: Prikaži podatke iz Apple Healtha
+
+# PL: Kroki, inne aktywności oraz tętno i kcal z zegarka — tylko do wglądu, dane zostają w Zdrowiu.
+  en: Steps, other activities, and heart rate and kcal from your watch — view only, the data stays in Health.
+  de: Schritte, andere Aktivitäten sowie Herzfrequenz und kcal von der Uhr — nur zur Ansicht, die Daten bleiben in Health.
+  cs: Kroky, jiné aktivity a tep a kcal z hodinek — jen k nahlédnutí, data zůstávají ve Zdraví.
+  uk: Кроки, інші активності, а також пульс і ккал з годинника — лише для перегляду, дані залишаються в «Здоров’ї».
+  nb: Skritt, andre aktiviteter og puls og kcal fra klokken — kun til visning, dataene blir i Helse.
+  hr: Koraci, druge aktivnosti te puls i kcal sa sata — samo za pregled, podaci ostaju u Zdravlju.
+
+# PL: Apple Health nie jest dostępne na tym urządzeniu.
+  en: Apple Health is not available on this device.
+  de: Apple Health ist auf diesem Gerät nicht verfügbar.
+  cs: Apple Health není na tomto zařízení k dispozici.
+  uk: Apple Health недоступне на цьому пристрої.
+  nb: Apple Health er ikke tilgjengelig på denne enheten.
+  hr: Apple Health nije dostupan na ovom uređaju.
+
+# PL: Nie udało się włączyć Apple Health
+  en: Couldn't turn on Apple Health
+  de: Apple Health konnte nicht aktiviert werden
+  cs: Apple Health se nepodařilo zapnout
+  uk: Не вдалося ввімкнути Apple Health
+  nb: Kunne ikke slå på Apple Health
+  hr: Apple Health nije moguće uključiti
+
+# PL: Spróbuj ponownie.
+  en: Please try again.
+  de: Bitte versuche es erneut.
+  cs: Zkuste to prosím znovu.
+  uk: Спробуйте ще раз.
+  nb: Prøv igjen.
+  hr: Pokušajte ponovno.
+
+# PL: Gotowe
+  en: Done
+  de: Fertig
+  cs: Hotovo
+  uk: Готово
+  nb: Ferdig
+  hr: Gotovo
+
+# PL: Jeśli dane się nie pokażą, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.
+  en: If no data shows up, check access in the Health app: profile → Apps → {app}.
+  de: Wenn keine Daten erscheinen, prüfe den Zugriff in der Health-App: Profil → Apps → {app}.
+  cs: Pokud se data nezobrazí, zkontrolujte přístup v aplikaci Zdraví: profil → Aplikace → {app}.
+  uk: Якщо дані не з’являться, перевірте доступ у програмі «Здоров’я»: профіль → Програми → {app}.
+  nb: Hvis dataene ikke vises, sjekk tilgangen i Helse-appen: profil → Apper → {app}.
+  hr: Ako se podaci ne prikažu, provjerite pristup u aplikaciji Zdravlje: profil → Aplikacije → {app}.
+
+# PL: Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.
+  en: You can revoke access in the Health app: profile → Apps → {app}.
+  de: Die Berechtigung kannst du in der Health-App widerrufen: Profil → Apps → {app}.
+  cs: Oprávnění zrušíte v aplikaci Zdraví: profil → Aplikace → {app}.
+  uk: Дозвіл можна скасувати в програмі «Здоров’я»: профіль → Програми → {app}.
+  nb: Tillatelsen kan du trekke tilbake i Helse-appen: profil → Apper → {app}.
+  hr: Dopuštenje možete opozvati u aplikaciji Zdravlje: profil → Aplikacije → {app}.
+
+# PL: Automatyczna kopia po każdym treningu
+  en: Automatic backup after every workout
+  de: Automatisches Backup nach jedem Training
+  cs: Automatická záloha po každém tréninku
+  uk: Автоматична резервна копія після кожного тренування
+  nb: Automatisk sikkerhetskopi etter hver økt
+  hr: Automatska sig. kopija nakon svakog treninga
+
+# PL: Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}
+  en: Files → On My iPhone → {app} → Backup, last {n}
+  de: Dateien → Auf meinem iPhone → {app} → Backup, letzte {n}
+  cs: Soubory → Na mém iPhonu → {app} → Backup, posledních {n}
+  uk: Файли → На iPhone → {app} → Backup, останні {n}
+  nb: Filer → På min iPhone → {app} → Backup, siste {n}
+  hr: Datoteke → Na mom iPhoneu → {app} → Backup, zadnjih {n}
+
+# PL: Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.
+  en: The timer counts down in the app and a notification arrives at the end of rest — even when the phone is locked.
+  de: Der Timer läuft in der App, und am Pausenende kommt eine Mitteilung — auch bei gesperrtem iPhone.
+  cs: Časovač odpočítává v aplikaci a na konci pauzy přijde oznámení – i při zamčeném telefonu.
+  uk: Таймер відлічує час у програмі, а в кінці відпочинку надходить сповіщення — навіть коли телефон заблоковано.
+  nb: Timeren teller ned i appen, og et varsel kommer når hvilen er over — også når telefonen er låst.
+  hr: Mjerač odbrojava u aplikaciji, a na kraju odmora stiže obavijest — čak i kad je telefon zaključan.
+
+# PL: Powiadomienia
+  en: Notifications
+  de: Mitteilungen
+  cs: Oznámení
+  uk: Сповіщення
+  nb: Varsler
+  hr: Obavijesti
+
+# PL: Przypomnienie o treningu z planu
+  en: Reminder for planned workouts
+  de: Erinnerung an geplante Trainings
+  cs: Připomínka plánovaného tréninku
+  uk: Нагадування про заплановане тренування
+  nb: Påminnelse om planlagte økter
+  hr: Podsjetnik na planirani trening
+
+# PL: rano o {h}:00 w dniu zaplanowanego treningu
+  en: in the morning at {h}:00 on a planned workout day
+  de: morgens um {h}:00 Uhr an einem geplanten Trainingstag
+  cs: ráno v {h}:00 v den plánovaného tréninku
+  uk: вранці о {h}:00 у день запланованого тренування
+  nb: om morgenen kl. {h}:00 på en planlagt treningsdag
+  hr: ujutro u {h}:00 na dan planiranog treninga
+
+# PL: Brak zgody na powiadomienia — przypomnienia i koniec przerwy nie przyjdą. Zgodę włączysz w Ustawieniach iOS.
+  en: No notification permission — reminders and end-of-rest alerts will not arrive. You can allow notifications in iOS Settings.
+  de: Keine Mitteilungsberechtigung — Erinnerungen und das Pausenende kommen nicht an. Die Berechtigung aktivierst du in den iOS-Einstellungen.
+  cs: Bez oprávnění k oznámením — připomínky ani konec pauzy nepřijdou. Oprávnění zapnete v Nastavení iOS.
+  uk: Немає дозволу на сповіщення — нагадування і кінець відпочинку не надходитимуть. Дозвіл вмикається в Параметрах iOS.
+  nb: Mangler tillatelse for varsler — påminnelser og varsel om at hvilen er over kommer ikke. Du slår på tillatelsen i iOS-innstillingene.
+  hr: Nema dopuštenja za obavijesti — podsjetnici i kraj odmora neće stizati. Dopuštenje uključujete u iOS Postavkama.
+
+# PL: Otwórz Ustawienia iOS
+  en: Open iOS Settings
+  de: iOS-Einstellungen öffnen
+  cs: Otevřít Nastavení iOS
+  uk: Відкрити Параметри iOS
+  nb: Åpne iOS-innstillingene
+  hr: Otvori iOS Postavke
+
+# PL: Zgody na powiadomienia jeszcze nie ma — „Sprawdź zgodę na powiadomienia” poprosi o nią.
+  en: Notification permission not granted yet — “Check notification permission” will ask for it.
+  de: Noch keine Mitteilungsberechtigung — „Mitteilungsberechtigung prüfen“ fragt danach.
+  cs: Oprávnění k oznámením zatím chybí — „Zkontrolujte oprávnění k oznámením“ o něj požádá.
+  uk: Дозволу на сповіщення ще немає — «Перевірте дозвіл на сповіщення» попросить про нього.
+  nb: Tillatelse for varsler er ikke gitt ennå — «Sjekk tillatelsen for varsler» ber om den.
+  hr: Dopuštenje za obavijesti još nije dano — „Provjerite dopuštenje za obavijesti” zatražit će ga.
+
+# PL: Sprawdź zgodę na powiadomienia
+  en: Check notification permission
+  de: Mitteilungsberechtigung prüfen
+  cs: Zkontrolujte oprávnění k oznámením
+  uk: Перевірте дозвіл на сповіщення
+  nb: Sjekk tillatelsen for varsler
+  hr: Provjerite dopuštenje za obavijesti
+
+# PL: Powiadomienia działają
+  en: Notifications work
+  de: Mitteilungen funktionieren
+  cs: Oznámení fungují
+  uk: Сповіщення працюють
+  nb: Varsler virker
+  hr: Obavijesti rade
+
+# PL: Koniec przerwy i przypomnienie o treningu z planu przyjdą także przy zablokowanym ekranie.
+  en: End-of-rest alerts and planned-workout reminders will arrive even on a locked screen.
+  de: Pausenende und Erinnerung an geplante Trainings melden sich auch bei gesperrtem Bildschirm.
+  cs: Konec pauzy i připomínka plánovaného tréninku přijdou i na zamčené obrazovce.
+  uk: Кінець відпочинку і нагадування про заплановане тренування надходитимуть навіть на заблокованому екрані.
+  nb: Varsel om at hvilen er over og påminnelser om planlagte økter kommer også på låst skjerm.
+  hr: Kraj odmora i podsjetnik na planirani trening stizat će i na zaključanom zaslonu.
+
+# PL: Brak zgody
+  en: No permission
+  de: Keine Berechtigung
+  cs: Bez oprávnění
+  uk: Немає дозволу
+  nb: Mangler tillatelse
+  hr: Nema dopuštenja
+
+# PL: Włącz powiadomienia dla {app} w Ustawieniach iOS.
+  en: Enable notifications for {app} in iOS Settings.
+  de: Aktiviere Mitteilungen für {app} in den iOS-Einstellungen.
+  cs: Zapněte oznámení pro {app} v Nastavení iOS.
+  uk: Увімкніть сповіщення для {app} у Параметрах iOS.
+  nb: Slå på varsler for {app} i iOS-innstillingene.
+  hr: Uključite obavijesti za {app} u iOS Postavkama.
+
+# PL: Dane w telefonie
+  en: Data on this phone
+  de: Daten auf diesem iPhone
+  cs: Data v tomto telefonu
+  uk: Дані на телефоні
+  nb: Data på denne telefonen
+  hr: Podaci na ovom telefonu
+
+# PL: Wyczyść wszystkie dane
+  en: Erase all data
+  de: Alle Daten löschen
+  cs: Vymazat všechna data
+  uk: Стерти всі дані
+  nb: Slett alle data
+  hr: Izbriši sve podatke
+
+# PL: Wyczyścić wszystkie dane?
+  en: Erase all data?
+  de: Alle Daten löschen?
+  cs: Vymazat všechna data?
+  uk: Стерти всі дані?
+  nb: Slette alle data?
+  hr: Izbrisati sve podatke?
+
+# PL: Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).
+  en: This deletes exercises, templates and all history and restores default settings (including places, equipment and bands). Your current data is first saved as a copy in Files: {app} → Backup (you can import it).
+  de: Löscht Übungen, Vorlagen und den gesamten Verlauf und stellt die Standardeinstellungen wieder her (auch Orte, Ausrüstung und Bänder). Deine aktuellen Daten werden vorher als Kopie in „Dateien“ gesichert: {app} → Backup (importierbar).
+  cs: Smaže cviky, šablony a celou historii a obnoví výchozí nastavení (včetně míst, vybavení a gum). Současná data se nejdřív uloží jako kopie v Souborech: {app} → Backup (lze ji importovat).
+  uk: Буде видалено вправи, шаблони й усю історію та відновлено типові налаштування (зокрема місця, обладнання й гумки). Поточні дані спершу буде збережено як копію у Файлах: {app} → Backup (її можна імпортувати).
+  nb: Dette sletter øvelser, maler og hele historikken og gjenoppretter standardinnstillingene (også steder, utstyr og strikker). Nåværende data lagres først som kopi i Filer: {app} → Backup (kan importeres).
+  hr: Ovo briše vježbe, predloške i cijelu povijest te vraća zadane postavke (uključujući mjesta, opremu i gume). Vaši trenutačni podaci najprije se spremaju kao kopija u Datoteke: {app} → Backup (možete je uvesti).
+
+# PL: Trening w toku też zostanie usunięty.
+  en: The workout in progress will be deleted too.
+  de: Das laufende Training wird ebenfalls gelöscht.
+  cs: Probíhající trénink bude také smazán.
+  uk: Тренування в процесі також буде видалено.
+  nb: Økten som pågår, slettes også.
+  hr: Obrisat će se i trening u tijeku.
+
+# PL: Wyczyść
+  en: Erase
+  de: Löschen
+  cs: Vymazat
+  uk: Стерти
+  nb: Slett
+  hr: Izbriši
+
+# PL: Dane nie zostały wyczyszczone
+  en: Data was not erased
+  de: Daten wurden nicht gelöscht
+  cs: Data nebyla smazána
+  uk: Дані не стерто
+  nb: Dataene ble ikke slettet
+  hr: Podaci nisu izbrisani
+
+# PL: Cel serii: {part}
+  en: Set goal: {part}
+  de: Satzziel: {part}
+  cs: Cíl sérií: {part}
+  uk: Ціль за підходами: {part}
+  nb: Settmål: {part}
+  hr: Cilj serija: {part}
+
+# PL: Automatycznie ({n})
+  en: Automatic ({n})
+  de: Automatisch ({n})
+  cs: Automaticky ({n})
+  uk: Автоматично ({n})
+  nb: Automatisk ({n})
+  hr: Automatski ({n})
+
+# PL: Ręcznie
+  en: Manual
+  de: Manuell
+  cs: Ručně
+  uk: Вручну
+  nb: Manuelt
+  hr: Ručno
+
+# PL: Więcej
+  en: More
+  de: Mehr
+  cs: Další
+  uk: Більше
+  nb: Mer
+  hr: Više
+
+# PL: Szablony
+  en: Templates
+  de: Vorlagen
+  cs: Šablony
+  uk: Шаблони
+  nb: Maler
+  hr: Predlošci
+
+# PL: Ćwiczenia
+  en: Exercises
+  de: Übungen
+  cs: Cviky
+  uk: Вправи
+  nb: Øvelser
+  hr: Vježbe
+
+# PL: Przewodnik
+  en: Guide
+  de: Anleitung
+  cs: Průvodce
+  uk: Посібник
+  nb: Veiledning
+  hr: Vodič
+
+# PL: Przeczytane: {n} z {m}
+  en: Read: {n} of {m}
+  de: Gelesen: {n} von {m}
+  cs: Přečteno: {n} z {m}
+  uk: Прочитано: {n} з {m}
+  nb: Lest: {n} av {m}
+  hr: Pročitano: {n} od {m}
+
+# PL: Miejsca i sprzęt
+  en: Places and equipment
+  de: Orte und Ausrüstung
+  cs: Místa a vybavení
+  uk: Місця й обладнання
+  nb: Steder og utstyr
+  hr: Mjesta i oprema
+
+# PL: Kopia zapasowa (eksport / import)
+  en: Backup (export / import)
+  de: Sicherung (Export / Import)
+  cs: Záloha (export / import)
+  uk: Резервна копія (експорт / імпорт)
+  nb: Sikkerhetskopi (eksport / import)
+  hr: Sigurnosna kopija (izvoz / uvoz)
+
+# PL: Ustawienia
+  en: Settings
+  de: Einstellungen
+  cs: Nastavení
+  uk: Параметри
+  nb: Innstillinger
+  hr: Postavke
+
+# PL: O aplikacji
+  en: About
+  de: Über die App
+  cs: O aplikaci
+  uk: Про застосунок
+  nb: Om appen
+  hr: O aplikaciji

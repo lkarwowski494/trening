@@ -1,0 +1,3 @@
+$ git status --porcelain (koniec pracy, po zapisie raportu)
+exit=0
+(puste = pliki śledzone nietknięte; katalog audit/ wykluczony w .git/info/exclude)

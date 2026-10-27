@@ -1,0 +1,37 @@
+$ (worktree 025a50b9 w scratchpadzie; plik sondy: dowody/sonda-ratowanie-zrodlo.txt) npx jest tests/zz-sonda-niezawodnosc.test.ts --maxWorkers=1
+SONDA A0 przed startem: treningi w bazie (state) = 25 ; kopii w puli Backup/ = 10 ; z 25 treningami = 10
+SONDA A1 po starcie: błąd startu = null ; tryb awaryjny = false ; treningi w aplikacji = 0 ; treningi w „state” = 0 ; kopia state_corrupt_* (treningi) = [25] ; komunikat recovery = true
+SONDA A2 po 10 nowych treningach: kopii w puli = 10 ; kopii z 25 dawnymi treningami = 0 ; treningi w aplikacji = 10
+SONDA A3 po „Wyczyść wszystkie dane”: wiersze state_corrupt_* = 0 ; kopia bezpieczeństwa: treningi w state = 10 , w polu recovery = -1 ; kopii w puli z 25 dawnymi = 0
+SONDA A4 miejsc w telefonie z 25 dawnymi treningami = 0
+SONDA A0 przed startem: treningi w bazie (state) = 25 ; kopii w puli Backup/ = 10 ; z 25 treningami = 10
+SONDA A1 po starcie: błąd startu = null ; tryb awaryjny = false ; treningi w aplikacji = 0 ; treningi w „state” = 0 ; kopia state_corrupt_* (treningi) = [25] ; komunikat recovery = true
+SONDA A2 po 10 nowych treningach: kopii w puli = 10 ; kopii z 25 dawnymi treningami = 0 ; treningi w aplikacji = 10
+SONDA A3 po „Wyczyść wszystkie dane”: wiersze state_corrupt_* = 0 ; kopia bezpieczeństwa: treningi w state = 10 , w polu recovery = 25 ; kopii w puli z 25 dawnymi = 0
+SONDA A4 miejsc w telefonie z 25 dawnymi treningami = 1
+SONDA B0 baza: treningi = 12 , przerwa domyślna = 177 ; kopia w puli: treningi = 12 , przerwa = 90
+SONDA B1 start: błąd = file is not a database ; „Wyślij dane” ok = true ; wysłany plik = training-2026-10-20-080000.json ; treningi w pliku = 12 , przerwa = 90 ; baza po (treningi) = 12
+SONDA B2 to samo bez kopii w puli (kopia automatyczna wyłączona albo brak treningu): „Wyślij dane” ok = false ; plik bazy oferowany = nie (brak takiej ścieżki w kodzie)
+SONDA C świeża: pierwszy start → normalny {"starts":1}
+SONDA C świeża: drugi bez kamienia (ZK-07: brak danych) → awaryjny {"starts":2}
+SONDA C dane: pierwszy start → normalny {"starts":1}
+SONDA C dane: kamień → - {"starts":0}
+SONDA C dane: start po udanym → normalny {"starts":1}
+SONDA C dane: drugi z rzędu bez kamienia → awaryjny {"starts":2}
+SONDA C dane: kolejny start (ekran awaryjny bez kamienia) → awaryjny {"starts":3}
+SONDA C dane: „state” niezmieniony w trybie awaryjnym → true 
+SONDA C „Spróbuj ponownie” → normalny {"starts":1}
+SONDA C po „Spróbuj ponownie” znów bez kamienia → awaryjny {"starts":2}
+SONDA C „Spróbuj ponownie” + kamień → normalny {"starts":0}
+SONDA C zapis licznika {"x":1} → normalny {"starts":1}
+SONDA C zapis licznika nie-json → normalny {"starts":1}
+SONDA C zapis licznika null → normalny {"starts":1}
+  SONDA A — NIE-14/NIE-01: błąd migracji przy starcie, kopie w puli i „Wyczyść wszystkie dane”
+    ✓ ukryty komunikat przed „Wyczyść” (805 ms)
+    ✓ komunikat widoczny przy „Wyczyść” (347 ms)
+  SONDA B — NIE-01: baza się nie otwiera (ekran błędu startu, „Wyślij dane”)
+    ✓ wysyłka = najnowsza kopia z puli; zmiany po ostatniej kopii nie wchodzą; bez kopii — nic (192 ms)
+  SONDA C — NIE-04: wektory strażnika pętli awarii przez init({ guard })
+    ✓ wektory z wzorców roli (próg 2) (859 ms)
+Tests:       4 passed, 4 total
+exit=0

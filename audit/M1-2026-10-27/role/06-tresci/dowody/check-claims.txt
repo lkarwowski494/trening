@@ -1,0 +1,7 @@
+$ npm run check:claims
+
+> trening@1.0.0 check:claims
+> node scripts/claims.mjs --check
+
+twierdzenia: 46 wpisów, 0 tekstów dziedzinowych, rejestr zgodny
+exit 0

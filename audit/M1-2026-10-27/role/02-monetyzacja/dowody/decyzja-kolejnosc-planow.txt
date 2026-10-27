@@ -1,0 +1,22 @@
+# Decyzja 23.10.2026 (kolejność planów miesięczny-roczny-dożywotni, domyślnie miesięczny) a wdrożenie
+$ sed -n 481p docs/18-przekazanie.md
+- 23.10.2026 (właściciel, uwaga z buildu 1030): ekran „Pełna wersja” — kolejność planów **miesięczny, roczny, dożywotni** i **domyślnie zaznaczony miesięczny** („pierwsze co rzuca się w oczy to WOW, ale tanio, a później przyszła myśl, że rok i lifetime wychodzą jeszcze taniej”). Odrzucone: domyślnie roczny przy miesięcznym na górze. Wdrożenie: gałąź naprawa-m1-dec07-ui.
+$ git log --oneline -G'PLAN_ORDER|useState<EntitlementPlan>' -- lib/products.ts app/paywall.tsx  (exit 0)
+737010cf Monetyzacja M5 S1: limit 5 dni treningowych w miesiacu, bez okresu probnego
+a707a0a0 [M3 fix] Widoczna droga usuwania bez gestu: edytor szablonu, edycja sesji, zamiennik, zapisany plan (04-studio-projektowe-003)
+$ git log -1 --format='%h %ad' --date=iso 737010cf
+737010cf 2026-10-22 15:42:01 +0000 Monetyzacja M5 S1: limit 5 dni treningowych w miesiacu, bez okresu probnego
+$ git show --stat 99563b1e (merge gałęzi naprawa-m1-dec07-ui) — brak zmian lib/products.ts i app/paywall.tsx
+99563b1e Merge remote-tracking branch 'origin/naprawa-m1-dec07-ui' into integracja-2026-10-25
+
+ README.md                          |  6 +++---
+ docs/19-macierz-testow.md          | 14 +++++++-------
+ tests/dec07-k9-stukniecia.test.tsx | 25 +++++++++++++++++++++++++
+ 3 files changed, 35 insertions(+), 10 deletions(-)
+$ grep -n PLAN_ORDER lib/products.ts
+19:export const PLAN_ORDER: readonly EntitlementPlan[] = ['yearly', 'monthly', 'lifetime'];
+$ sed -n 43,44p tests/subscription-ui.test.tsx (test pilnuje kolejności roczny-miesięczny-dożywotni i domyślnie roczny)
+    const order = screen.getAllByTestId(/^plan-/).map(n => n.props.testID); expect(order).toEqual(['plan-yearly', 'plan-monthly', 'plan-lifetime']);
+    expect(screen.getByTestId('plan-yearly').props.accessibilityState.selected).toBe(true); expect(screen.getByTestId('plan-monthly').props.accessibilityState.selected).toBe(false);
+$ grep -c '27.10.2026' docs/18-przekazanie.md
+2

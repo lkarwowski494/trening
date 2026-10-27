@@ -1,0 +1,9 @@
+$ node scripts/kontrola-brd.mjs docs/brd
+UWAGA docs/brd/reguly.md:56: RD-04: brak wektora błędnych danych
+kontrola-brd: 5 plików, 49 wymagań BR, 4 reguł RD, 21 wektorów, 4 otwartych pytań · 0 błędów, 1 uwag
+exit=0
+
+$ npx jest tests/audit-m1-044-brd.test.ts --ci --maxWorkers=1
+PASS iOS tests/audit-m1-044-brd.test.ts
+Tests:       12 passed, 12 total
+exit=0

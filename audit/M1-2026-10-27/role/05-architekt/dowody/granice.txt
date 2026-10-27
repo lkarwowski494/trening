@@ -1,0 +1,25 @@
+$ node granice.mjs /home/user/trening brak-domeny 20   (kopia skryptu z promptu; pominięte katalogi: node_modules audit tests docs site scripts assets data locales store watch-fixtures targets ios android plugins)
+ROZMIAR app/generator.tsx: 20.9 KB > 20 KB
+ROZMIAR app/template/[id].tsx: 30.8 KB > 20 KB
+ROZMIAR components/ActiveWorkout.tsx: 35.8 KB > 20 KB
+ROZMIAR components/WorkoutBlocks.tsx: 32.8 KB > 20 KB
+ROZMIAR components/ui.tsx: 28.0 KB > 20 KB
+ROZMIAR lib/backup.ts: 20.8 KB > 20 KB
+ROZMIAR lib/catalog-fp-legacy.generated.ts: 31.9 KB > 20 KB
+ROZMIAR lib/catalog.generated.ts: 332.2 KB > 20 KB
+ROZMIAR lib/edit.ts: 34.1 KB > 20 KB
+ROZMIAR lib/equipment.ts: 44.4 KB > 20 KB
+ROZMIAR lib/figures/geom.ts: 22.5 KB > 20 KB
+ROZMIAR lib/figures/v2/contract.ts: 32.9 KB > 20 KB
+ROZMIAR lib/figures/v2/draw.ts: 20.5 KB > 20 KB
+ROZMIAR lib/figures/v2/muscles.generated.ts: 76.5 KB > 20 KB
+ROZMIAR lib/generator.ts: 46.2 KB > 20 KB
+ROZMIAR lib/i18n.en.ts: 131.7 KB > 20 KB
+ROZMIAR lib/licenses.generated.ts: 128.0 KB > 20 KB
+ROZMIAR lib/plan.ts: 47.4 KB > 20 KB
+ROZMIAR lib/seed.ts: 60.2 KB > 20 KB
+ROZMIAR lib/state/migrate.ts: 22.6 KB > 20 KB
+ROZMIAR lib/stats.ts: 36.4 KB > 20 KB
+CYKL lib/store.ts -> lib/store.ts
+22 naruszeń w 254 plikach
+exit=1

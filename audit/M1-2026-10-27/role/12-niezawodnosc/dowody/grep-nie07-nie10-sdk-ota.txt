@@ -1,0 +1,11 @@
+$ grep -n -i -E "sentry|crashlytics|bugsnag|datadog|insights|observe|expo-updates|analytics" package.json app.json
+package.json:103:      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|standard-navigation)"
+exit=0 (1 = brak trafień)
+$ ls node_modules/expo-updates
+ls: cannot access 'node_modules/expo-updates': No such file or directory
+$ grep -rn -E "fetch\(|XMLHttpRequest|ErrorUtils|setGlobalHandler" lib app components modules --include=*.ts --include=*.tsx
+exit=1 (1 = brak trafień)
+$ grep -n "NSPrivacyCollectedDataTypes\|NSPrivacyTracking\"" app.json
+67:        "NSPrivacyTracking": false,
+69:        "NSPrivacyCollectedDataTypes": [],
+exit=0

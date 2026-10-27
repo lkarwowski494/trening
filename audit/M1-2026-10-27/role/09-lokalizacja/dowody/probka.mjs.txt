@@ -1,0 +1,11 @@
+import { readFileSync } from 'node:fs';
+const files = { zakup: ['app/paywall.tsx'], limit: ['components/StartPanel.tsx', 'components/FairRulesSheet.tsx', 'components/SubscriptionCard.tsx'], trening: ['app/(tabs)/index.tsx', 'components/WorkoutBlocks.tsx'], ustawienia: ['app/more/settings.tsx', 'app/(tabs)/more.tsx'] };
+const langs = ['de', 'cs', 'uk', 'nb', 'hr'];
+const L = Object.fromEntries(langs.map((l) => [l, JSON.parse(readFileSync(`lib/locales/${l}.json`, 'utf8'))]));
+const src = JSON.parse(readFileSync('lib/locales/_source.json', 'utf8')); const EN = Object.fromEntries(src.map((s) => [s.pl, s.en]));
+for (const [ekran, fs] of Object.entries(files)) {
+  const keys = new Set();
+  for (const f of fs) { let s; try { s = readFileSync(f, 'utf8'); } catch { continue; } for (const m of s.matchAll(/\b(?:t|tr|tp\([^,]+,)\s*\(?\s*'((?:[^'\\]|\\.)*)'/g)) keys.add(m[1].replace(/\\'/g, "'")); }
+  console.log(`\n######## ${ekran} (${[...keys].length} kluczy; pliki: ${fs.join(', ')})`);
+  for (const k of keys) { if (!EN[k]) continue; console.log(`\n# PL: ${k}\n  en: ${EN[k]}`); for (const l of langs) console.log(`  ${l}: ${L[l][k]}`); }
+}

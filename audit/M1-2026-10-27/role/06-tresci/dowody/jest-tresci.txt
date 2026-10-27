@@ -1,0 +1,4 @@
+$ npx jest tests/zrodla-wiedzy.test.ts tests/slownik-terminow.test.ts tests/audit-m1-044-brd.test.ts tests/cues.test.tsx --maxWorkers=1
+Test Suites: 4 passed, 4 total
+Tests:       151 passed, 151 total
+exit 0

@@ -1,0 +1,2 @@
+$ node scripts/kontrola-brd.mjs docs/brd --wektory | diff - tests/wektory/brd.json
+exit=0

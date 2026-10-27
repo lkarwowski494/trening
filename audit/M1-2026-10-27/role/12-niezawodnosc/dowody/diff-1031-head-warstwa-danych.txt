@@ -1,0 +1,5 @@
+$ git diff --stat 001ecf28d96e5db95771aeb8f6c865ea963469c6 HEAD -- lib/state lib/seed.ts lib/backup.ts app/_layout.tsx components/StartError.tsx lib/access.ts lib/entitlement.ts
+exit=0 (pusty wynik = warstwa danych i startu bez zmian od buildu 1031, tag v1.0.0-b1031 = 001ecf2)
+
+$ git diff --stat 001ecf2 HEAD | tail -1
+ 55 files changed, 481 insertions(+), 171 deletions(-)

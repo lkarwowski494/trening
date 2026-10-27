@@ -1,0 +1,29 @@
+skopiowane 296
+POMINIĘTE narzedzia/sprawdz-plan.mjs - reguła
+POMINIĘTE narzedzia/wyciag.mjs - reguła
+POMINIĘTE narzedzia/sprawdz-raport.mjs - reguła
+POMINIĘTE prompty/04-studio-projektowe.md - prompt biblioteki
+POMINIĘTE prompty/03-zakres.md - prompt biblioteki
+POMINIĘTE prompty/02-monetyzacja-b.md - prompt biblioteki
+POMINIĘTE prompty/06-tresci.md - prompt biblioteki
+POMINIĘTE prompty/08-programista.md - prompt biblioteki
+POMINIĘTE prompty/11-wzrost.md - prompt biblioteki
+POMINIĘTE prompty/10-wydanie.md - prompt biblioteki
+POMINIĘTE prompty/05-architekt.md - prompt biblioteki
+POMINIĘTE prompty/12-niezawodnosc.md - prompt biblioteki
+POMINIĘTE prompty/07-jakosc.md - prompt biblioteki
+POMINIĘTE prompty/01-odkrywanie.md - prompt biblioteki
+POMINIĘTE prompty/09-lokalizacja.md - prompt biblioteki
+POMINIĘTE prompty/02-monetyzacja.md - prompt biblioteki
+POMINIĘTE role/09-lokalizacja/dowody/kod.mjs.txt - 6 linii z biblioteki
+POMINIĘTE role/04-studio-projektowe/narzedzia/kontrast.mjs.txt - 8 linii z biblioteki
+POMINIĘTE wspolne/jest.txt - reguła
+POMINIĘTE audit/M1-2026-10-27/role/01-odkrywanie/dowody/rynek-konkurencja.txt - cudze treści (recenzje/listingi konkurencji; CLAUDE.md: na Dysk)
+POMINIĘTE audit/M1-2026-10-27/role/01-odkrywanie/dowody/rynek-recenzje-niskie.txt - cudze treści (recenzje/listingi konkurencji; CLAUDE.md: na Dysk)
+POMINIĘTE audit/M1-2026-10-27/role/02-monetyzacja-b/dowody/e0b-linia-bazowa-rynek.txt - cudze treści (recenzje/listingi konkurencji; CLAUDE.md: na Dysk)
+POMINIĘTE audit/M1-2026-10-27/role/02-monetyzacja/dowody/rynek-ceny-pl.txt - cudze treści (recenzje/listingi konkurencji; CLAUDE.md: na Dysk)
+POMINIĘTE audit/M1-2026-10-27/role/02-monetyzacja/dowody/rynek-recenzje-pl.txt - cudze treści (recenzje/listingi konkurencji; CLAUDE.md: na Dysk)
+POMINIĘTE audit/M1-2026-10-27/role/03-zakres/dowody/rynek-linia-bazowa.txt - cudze treści (recenzje/listingi konkurencji; CLAUDE.md: na Dysk)
+POMINIĘTE audit/M1-2026-10-27/role/09-lokalizacja/dowody/konkurencja-jezyki.txt - cudze treści (recenzje/listingi konkurencji; CLAUDE.md: na Dysk)
+POMINIĘTE audit/M1-2026-10-27/role/10-wydanie/dowody/konkurencja.txt - cudze treści (recenzje/listingi konkurencji; CLAUDE.md: na Dysk)
+POMINIĘTE audit/M1-2026-10-27/role/12-niezawodnosc/dowody/recenzje-pl-wzorzec.txt - cudze treści (recenzje/listingi konkurencji; CLAUDE.md: na Dysk)

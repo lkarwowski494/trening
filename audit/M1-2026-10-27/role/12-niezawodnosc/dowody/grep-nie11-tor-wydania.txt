@@ -1,0 +1,13 @@
+$ grep -n -E "^on:|workflow_dispatch|push:|schedule:|environment:|destination|submit|reviewSubmission|automatic" .github/workflows/testflight.yml
+18:on:
+19:  workflow_dispatch:
+68:    environment: release
+190:            <key>destination</key><string>$D</string>
+exit=0
+$ grep -rln -i -E "reviewSubmission|appStoreVersionSubmission|submit_for_review|automatic_release|eas submit|eas update" .github/workflows scripts
+exit=1 (1 = brak trafień)
+$ grep -n -A3 "\"submit\"" eas.json
+22:  "submit": {
+23-    "production": {}
+24-  }
+25-}

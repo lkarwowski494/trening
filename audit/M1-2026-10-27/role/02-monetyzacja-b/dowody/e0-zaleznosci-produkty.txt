@@ -1,0 +1,26 @@
+$ grep -rnE "expo-iap|react-native-iap|react-native-purchases|StoreKit" package.json app.json
+package.json:43:    "expo-iap": "5.8.1",
+app.json:106:      "expo-iap",
+exit 0
+
+$ grep -n "PRODUCT_IDS\|PLAN_ORDER\|SUBSCRIPTION_PLANS" lib/products.ts
+14:  monthly: 'pl.lukasz.trening.full.monthly',
+15:  yearly: 'pl.lukasz.trening.full.yearly',
+16:  lifetime: 'pl.lukasz.trening.full.lifetime',
+19:export const PLAN_ORDER: readonly EntitlementPlan[] = ['yearly', 'monthly', 'lifetime'];
+21:export const SUBSCRIPTION_PLANS: readonly EntitlementPlan[] = ['monthly', 'yearly'];
+exit 0
+
+$ python3 (store/Trening.storekit: grupy i produkty)
+Pełna wersja pl.lukasz.trening.full.monthly level 2 P1M 0.99 family True intro None
+Pełna wersja pl.lukasz.trening.full.yearly level 1 P1Y 6.99 family True intro None
+pl.lukasz.trening.full.lifetime NonConsumable 14.99 family True
+exit 0
+
+$ grep -n "expo-iap" -A1 node_modules/expo-iap/package.json | head -3
+  "version": "5.8.1",
+{
+  "clientProtocol": "0.1.0",
+  "google": "3.6.1",
+  "apple": "3.6.0"
+}

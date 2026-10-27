@@ -1,0 +1,11 @@
+$ npx jest tests/store-review-notes.test.ts tests/store-metadata.test.ts tests/store-asc-odpowiedzi.test.ts tests/privacy-manifest.test.ts tests/audit-m1-045-store-description.test.ts tests/asc-kontrola.test.ts tests/store-urls.test.ts --maxWorkers=1 (worktree 025a50b9)
+PASS iOS tests/audit-m1-045-store-description.test.ts
+PASS iOS tests/store-review-notes.test.ts
+PASS iOS tests/asc-kontrola.test.ts
+PASS iOS tests/privacy-manifest.test.ts
+PASS iOS tests/store-metadata.test.ts
+PASS iOS tests/store-asc-odpowiedzi.test.ts
+PASS iOS tests/store-urls.test.ts
+Test Suites: 7 passed, 7 total
+Tests:       71 passed, 71 total
+exit=0

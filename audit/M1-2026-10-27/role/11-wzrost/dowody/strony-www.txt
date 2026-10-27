@@ -1,0 +1,64 @@
+Teksty o aplikacji poza sklepem — odczyt 27.10.2026
+$ curl -sSL -w "%{http_code}" https://apps4brew.com/{,trening/,trening/support.html,trening/espresso.html,trening/privacy.html}
+  /: 200; trening/: 404; trening/support.html: 200; trening/espresso.html: 200; trening/privacy.html: 200
+$ curl -sS -o /dev/null -w "%{http_code}" https://lkarwowski494.github.io/trening/  -> 200 (kopia site/ z pages.yml)
+
+$ porównanie tekstu sekcji pl/en: site/<strona>.html (repo) vs strona live (skrypt txt.py: tekst z <section lang>)
+== support: 10 różnych linii:
+< pl: Trening — wsparcie
+< pl: Zgłoszenia techniczne możesz też dodać w
+< pl: GitHub Issues
+< pl: . Uwaga: zgłoszenia tam są publiczne —
+< pl: nie podawaj w nich swoich danych osobowych.
+< en: Trening — Support
+< en: You can also report technical issues in
+< en: GitHub Issues
+< en: . Note: reports there are public —
+< en: do not post personal data.
+== espresso: 2 różnych linii:
+< pl: Skąd ta cena? Indeks espresso
+< en: Why this price? The espresso index
+== privacy: 2 różnych linii:
+< pl: Trening — polityka prywatności
+< en: Trening — Privacy Policy
+(różnice: tylko nagłówek h1 i usunięty akapit o zgłoszeniach na GitHubie — zgodnie ze scripts/site/eksport-apps4brew.mjs)
+
+== strona marki https://apps4brew.com/ — zdania o aplikacji Trening (tekst):
+   Apps4Brew — aplikacje tańsze niż espresso
+   Indeks espresso
+   Aplikacje tańsze niż espresso.
+   Robimy małe, dopracowane aplikacje na iPhone’a. Miesięczna subskrypcja kosztuje mniej niż jedno espresso w kawiarni. Bez reklam i bez sprzedawania danych.
+   Indeks espresso
+   Trening: dziennik siłowni
+   Na iPhone’a, w 35 językach. W App Store jesienią 2026.
+   Plan tygodnia, kalendarz i generator planu dopasowany do Twojego sprzętu
+   Serie, przerwy i postępy w jednym miejscu
+   Apple Health: zapis treningów i odczyt kroków oraz tętna z zegarka
+   Prywatność: bez konta, dane tylko na Twoim telefonie, działa bez internetu.
+   Na iPhone’a, w 35 językach przed wydaniem.
+   Prywatność: bez konta, dane tylko na Twoim telefonie, działa bez internetu.
+   Na iPhone’a, w 35 językach przed wydaniem.
+   AI na każdym etapie. Dlatego taniej niż espresso.
+   Każda funkcja powstaje razem z testami automatycznymi i według wspólnych wzorców: ta sama czynność wszędzie działa, wygląda i nazywa się tak samo — także dla VoiceOver i w 35 językach. Testy pilnują tego przy każdej zmianie, więc aplikacja zostaje przewidywalna i prosta w obsłudze.
+   Cena niższa niż espresso
+   Czytamy każdą opinię, a AI pomaga je porządkować, żeby żadna prośba nie zginęła. W aplikacjach dla zwykłych ludzi to wciąż rzadkość.
+   Bez reklam i śledzenia
+   Indeks espresso
+   Miesiąc tańszy niż espresso.
+   Jak indeks Big Maca, tylko z filiżanki. Raz w roku sprawdzamy, ile kosztuje espresso w kawiarniach na różnych kontynentach. Nasza zasada jest prosta: miesięczna subskrypcja każdej aplikacji kosztuje mniej niż jedno espresso.
+   espresso*
+   espresso*
+   espresso*
+   espresso*
+   Trening
+   iPhone, App Store, Apple Watch i Apple Health są znakami towarowymi Apple Inc.
+
+== site/index.html (repo / github.io) — lista „Co potrafi” (PL):
+30:  <li>Działa offline — nie łączy się z internetem (zakupy obsługuje App Store).</li>
+31:  <li>Bez konta i bez reklam; bez analityki i śledzenia.</li>
+32:  <li>Szybki zapis serii, także z Apple Watch (opcjonalnie).</li>
+33:  <li>Dane zostają na Twoim telefonie.</li>
+34:  <li>Szablony, plan tygodnia, kalendarz, historia treningów i rekordy.</li>
+35:  <li>Kopia zapasowa i eksport CSV do aplikacji Pliki.</li>
+36:  <li>35 języków; wygląd jasny, ciemny albo jak w telefonie.</li>
+40:  <li><a href="privacy.html">Polityka prywatności</a></li>

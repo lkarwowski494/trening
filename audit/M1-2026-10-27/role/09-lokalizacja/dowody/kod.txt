@@ -1,0 +1,131 @@
+# komenda: node /tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/09lok/kod.mjs (z katalogu repo; kopia: dowody/kod.mjs.txt)
+# kod wyjścia: 0
+## twarde: 18
+app/history/[id].tsx:74	JSX	PR:
+app/paywall.tsx:109	JSX	Test store
+app/paywall.tsx:110	prop title	Test store: expire access
+app/paywall.tsx:111	prop title	Test store: go offline
+app/paywall.tsx:112	prop title	Test store: go online
+components/ExerciseProgress.tsx:57	JSX{}	 · e1RM …
+components/TestWatchPanel.tsx:12	JSX	Test watch
+components/TestWatchPanel.tsx:13	prop title	Test watch: done
+components/TestWatchPanel.tsx:14	prop title	Test watch: differ
+components/TestWatchPanel.tsx:15	prop title	Test watch: skip
+lib/musclemap.ts:70	prop body	#E9ECF2
+lib/state/boot.ts:157	prop note	state = zapis sprzed migracji schematu, live = trening w toku, cfg = konfiguracj
+lib/state/boot.ts:205	prop note	state = zapis z nowszej wersji aplikacji, live = trening w toku, cfg = nowsza ko
+lib/state/boot.ts:218	prop note	state = nieczytelny zapis, live = trening w toku
+lib/stats.ts:276	prop label	e1RM
+lib/store-fake.ts:48	prop message	offline
+lib/store-fake.ts:49	prop message	fake
+lib/tokens.ts:41	prop text	#E8EAED
+## brakKlucza: 0
+## dynamiczne: 65
+app/exercise/[id].tsx:67	t(x)
+app/exercise/[id].tsx:72	t(e.group)
+app/exercise/[id].tsx:73	t(e.equipment)
+app/exercise/[id].tsx:75	t(METRIC_LABEL[m])
+app/exercise/[id].tsx:76	t(LOAD_MODE_LABEL[e.loadMode ?? 'total'])
+app/exercise/[id].tsx:82	t(REGION_LABEL[r])
+app/exercise/[id].tsx:82	t(REGION_LABEL[r])
+app/exercise/[id].tsx:106	t(g)
+app/exercise/[id].tsx:107	t(g)
+app/exercise/[id].tsx:108	t(METRIC_LABEL[m])
+app/exercise/[id].tsx:109	t(LOAD_MODE_LABEL[m])
+app/exercise/[id].tsx:114	t(mu)
+app/exercise/[id].tsx:115	t(mu)
+app/exercise/[id].tsx:117	t(REGION_LABEL[r])
+app/exercise/[id].tsx:117	t(REGION_LABEL[r])
+app/exercises.tsx:41	t(r.group)
+app/exercises.tsx:45	t(e.equipment)
+app/history/[id].tsx:69	t(SET_KIND_LABEL.warmup)
+app/history/[id].tsx:69	t(SET_KIND_LABEL[kindK])
+app/history/[id].tsx:74	t(k)
+app/history/edit/[id].tsx:141	t(SET_KIND_LABEL[kind])
+app/more/settings.tsx:98	t(part)
+app/picker.tsx:63	t(e.group)
+app/picker.tsx:65	t(e.equipment)
+app/picker.tsx:82	t(x)
+app/progression.tsx:80	t(r.muscle)
+app/swap.tsx:82	t(ex.group)
+app/swap.tsx:82	t(ex.group)
+app/swap.tsx:82	t(ex.group)
+app/swap.tsx:82	t(ex.group)
+app/swap.tsx:88	t(b.equipment)
+app/template/[id].tsx:86	t(SET_KIND_LABEL[r.kind])
+app/template/[id].tsx:198	t(SET_KIND_LABEL[r.kind])
+components/BoardControls.tsx:23	tr(plus ? 'Zwiększ powtórzenia o 1' : 'Zmniejsz powtórzenia o 1')
+components/BoardControls.tsx:24	tr(plus ? 'Zwiększ czas o {n}' : 'Zmniejsz czas o {n}')
+components/BoardControls.tsx:24	tr(plus ? 'Zwiększ dystans o {n}' : 'Zmniejsz dystans o {n}')
+components/BoardControls.tsx:25	tr(plus ? 'Zwiększ ciężar o {n}' : 'Zmniejsz ciężar o {n}')
+components/ExerciseFigureV2.tsx:94	t(p.name)
+components/ExerciseFigureV2.tsx:97	t(JOINT_LABEL[measured.joint])
+components/ExerciseFigureV2.tsx:100	t(legend.label(r))
+components/ExerciseFigureV2.tsx:101	t(legend.label(r))
+components/GuardSection.tsx:44	t(p.part)
+components/GuardSection.tsx:124	t(p.part)
+components/MuscleCompare.tsx:19	t(mu)
+components/MuscleMap.tsx:18	t(m)
+components/ProgressBars.tsx:68	t(r.muscle)
+components/ProgressBars.tsx:70	t(r.part)
+components/WorkoutBlocks.tsx:178	tr(SET_KIND_LABEL[kind])
+components/WorkoutBlocks.tsx:181	tr(k)
+lib/generator.ts:294	t(m)
+lib/generator.ts:296	t(m)
+lib/generator.ts:313	t(m)
+lib/generator.ts:315	t(m)
+lib/guard.ts:157	t(p.part)
+lib/guard.ts:161	t(p.part)
+lib/guard.ts:165	t(p.part)
+lib/live.ts:67	tp(many)
+lib/live.ts:68	tp(many)
+lib/live.ts:69	t(frac)
+lib/live.ts:87	tp(forms)
+lib/state/sets.ts:133	tIn(k)
+lib/state/sets.ts:136	t(canonicalBandColor(b.color) || '?')
+lib/stats.ts:219	t(k)
+lib/stats.ts:245	t(k)
+lib/swap.ts:103	t(b.equipment)
+## sklejenia: 36
+app/exercises.tsx:45
+app/exercises.tsx:45
+app/exercises.tsx:45
+app/generator.tsx:151
+app/history/edit/[id].tsx:129
+app/more/backup.tsx:26
+app/more/settings.tsx:91
+app/more/settings.tsx:91
+app/pick-template.tsx:33
+app/picker.tsx:64
+app/picker.tsx:64
+app/picker.tsx:65
+app/picker.tsx:65
+app/picker.tsx:78
+app/picker.tsx:78
+app/swap.tsx:74
+app/swap.tsx:87
+app/swap.tsx:87
+components/DayPanel.tsx:56
+components/LoadEditor.tsx:78
+components/MuscleCompare.tsx:22
+components/MuscleCompare.tsx:22
+components/ProgressBars.tsx:121
+components/ProgressBars.tsx:121
+components/WeekStacks.tsx:20
+components/WorkoutBlocks.tsx:118
+components/WorkoutBlocks.tsx:118
+components/WorkoutBlocks.tsx:148
+lib/backup.ts:105
+lib/locations.ts:28
+lib/start.ts:36
+lib/start.ts:36
+lib/start.ts:50
+lib/start.ts:50
+lib/state/templates.ts:120
+lib/timer.ts:219
+## eq1: 4
+app/exercise/[id].tsx:82	w === 1 ? t('główna') : w === 0.5 ? t('pomocnicza') : t('stabilizacja')
+app/exercise/[id].tsx:117	w === 1 ? t('główna') : w === 0.5 ? t('pomocnicza') : t('stabilizacja')
+components/Chart.tsx:38	points.length === 1 ? tr('Jedna sesja: {v}. Wykres pojawi się po drugiej.', { v: fmt(points[0].y) })
+components/RecordsCard.tsx:20	count === 1 ? tr('Nowy rekord!') : tr('Nowe rekordy: {n}', { n: count })
+plików: 214; kluczy w źródle: 1710

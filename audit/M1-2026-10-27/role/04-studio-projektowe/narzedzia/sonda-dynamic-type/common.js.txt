@@ -1,0 +1,4 @@
+import StyleSheet from 'react-native-web/dist/exports/StyleSheet';
+export let FS = 1; try { FS = Number(globalThis.localStorage && localStorage.getItem('fs')) || 1; } catch (e) {}
+export const mult = (p) => (p.allowFontScaling === false ? 1 : Math.max(1, Math.min(FS, p.maxFontSizeMultiplier >= 1 ? p.maxFontSizeMultiplier : FS)));
+export const scale = (style, m, isRoot) => { const f = StyleSheet.flatten(style) || {}; const out = { ...f }; if (f.fontSize != null) out.fontSize = f.fontSize * m; else if (isRoot) out.fontSize = 14 * m; if (f.lineHeight != null) out.lineHeight = f.lineHeight * m; return out; };

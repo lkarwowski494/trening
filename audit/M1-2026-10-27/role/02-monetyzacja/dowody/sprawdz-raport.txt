@@ -1,0 +1,4 @@
+# komenda (cwd /home/user/trening, 2026-10-27):
+$ node audit/M1-2026-10-27/narzedzia/sprawdz-raport.mjs audit/M1-2026-10-27/role/02-monetyzacja/02-monetyzacja-2026-10-27.md /home/user/trening audit/M1-2026-10-27/role/02-monetyzacja --rola 02-monetyzacja
+OK: odwołania, cytaty, pliki dowodów i sekrety sprawdzone; format raportu 02-monetyzacja
+exit 0

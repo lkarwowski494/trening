@@ -1,0 +1,20 @@
+$ uname -a
+Linux vm 6.18.44-fc-v165 #1 SMP PREEMPT_DYNAMIC @0 x86_64 x86_64 x86_64 GNU/Linux
+exit 0
+$ node -v
+v22.22.0
+exit 0
+$ git --version
+git version 2.43.0
+exit 0
+$ gh --version
+gh version 2.89.0 (2026-03-26)
+https://github.com/cli/cli/releases/tag/v2.89.0
+exit 0
+$ npx --no-install playwright --version
+Version 1.63.0
+exit 0
+$ which xcodebuild xcrun
+exit 1
+$ curl -sS -o /dev/null -w %{http_code} https://itunes.apple.com/lookup?id=464254577&country=pl
+200exit 0

@@ -1,0 +1,116 @@
+$ grep -n 'PlanningButton' 'app/(tabs)/index.tsx' 'app/(tabs)/history.tsx'
+app/(tabs)/index.tsx:6:import { PlanningButton } from '@/components/HeaderActions';
+app/(tabs)/index.tsx:44:      {showPlanning ? <View style={{ alignItems: 'flex-end' }}><PlanningButton label={plan ? t('Planowanie') : t('Ustaw plan')} onPress={() => router.push('/plan')} /></View> : null}
+app/(tabs)/history.tsx:9:import { PlanningButton } from '@/components/HeaderActions';
+app/(tabs)/history.tsx:38:      {/* M3 p3 (W1 c, decyzja STOP 3): „Planowanie” w nagłówku, w tym samym miejscu co na ekranie Trening (PlanningButton, prawy górny róg przy tytule) */}
+app/(tabs)/history.tsx:39:      <TabHeader row><H1>{t('Plan')}</H1><PlanningButton label={t('Planowanie')} onPress={() => router.push('/plan')} /></TabHeader>
+exit 0
+
+$ grep -n 'Planowanie' tests/trening-naglowek.test.tsx
+exit 1
+
+$ grep -n 'PLAN_ORDER' lib/products.ts; grep -n 'kolejność planów' tests/m5s1-bez-proby.test.ts
+19:export const PLAN_ORDER: readonly EntitlementPlan[] = ['yearly', 'monthly', 'lifetime'];
+86:  test('kolejność planów bez zmian: roczny, miesięczny, dożywotni', () => { expect(PLAN_ORDER).toEqual(['yearly', 'monthly', 'lifetime']); });
+exit 0
+
+$ grep -n "useState<EntitlementPlan>('yearly')" app/paywall.tsx
+36:  const [products, setProducts] = useState<StoreProduct[] | 'loading' | 'unavailable'>('loading'); const [sel, setSel] = useState<EntitlementPlan>('yearly');
+exit 0
+
+$ grep -rnoE "t\('[^']*\bPro\b[^']{0,40}" app components --include=*.tsx
+app/paywall.tsx:66:t('Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniac
+components/ImportProCard.tsx:21:t('Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na z
+components/ImportProCard.tsx:22:t('Zobacz plany Pro ›
+components/FairRulesSheet.tsx:34:t('Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednor
+components/FairRulesSheet.tsx:37:t('Zobacz plany Pro ›
+exit 0
+
+$ grep -n "title: t('Pełna wersja')" app/_layout.tsx
+119:        <Stack.Screen name="paywall" options={{ presentation: 'modal', title: t('Pełna wersja') }} />{/* 0.17.0 (docs/27): ekran zakupu */}
+exit 0
+
+$ git log --oneline 99563b1e^1..99563b1e^2
+ade64673 DEC-07 K9 (M1-006): test-wymaganie, najwyżej 1 stuknięcie od ekranu treningu do odhaczonej serii
+exit 0
+
+$ grep -n '23.10.2026 (właściciel, uwaga z buildu 1030)' docs/18-przekazanie.md
+481:- 23.10.2026 (właściciel, uwaga z buildu 1030): ekran „Pełna wersja” — kolejność planów **miesięczny, roczny, dożywotni** i **domyślnie zaznaczony miesięczny** („pierwsze co rzuca się w oczy to WOW, ale tanio, a później przyszła myśl
+exit 0
+
+$ grep -c '27.10.2026' docs/18-przekazanie.md; grep -n 'kolejność planów' docs/18-przekazanie.md | cut -c1-120
+2
+481:- 23.10.2026 (właściciel, uwaga z buildu 1030): ekran „Pełna wersja” — kolejność planów **miesięczny, r
+exit 0
+
+$ grep -n 'ENABLED: true\|FREE_TRAINING_DAYS_PER_MONTH: 5' lib/access.ts; grep -n 'MIN_LIVE_MINUTES_FOR_DAY = 7' lib/access.ts
+24:  ENABLED: true,
+25:  FREE_TRAINING_DAYS_PER_MONTH: 5,
+31:export const MIN_LIVE_MINUTES_FOR_DAY = 7;
+exit 0
+
+$ grep -n 'MIN_WORKOUTS: 3\|EVERY_N_WORKOUTS: 10' lib/review.ts
+14:  MIN_WORKOUTS: 3,
+25:  EVERY_N_WORKOUTS: 10,
+exit 0
+
+$ grep -n 'WHATS_NEW: WhatsNewEntry\[\] = \[\]' lib/whatsnew.ts
+18:export const WHATS_NEW: WhatsNewEntry[] = [];
+exit 0
+
+$ grep -n "Nowe szablony i plan" app/generator.tsx
+35:/** Ekran generatora: dwa tryby (decyzja właściciela 09.10.2026, B) — „Nowe szablony i plan” (generator) i „Plan z moich szablonów” (components/OwnPlan);
+41:    <Segmented label={t('Generator szablonów i planu')} value={mode} onChange={setMode} options={[['gen', t('Nowe szablony i plan')], ['own', t('Plan z moich szablonów')]]} />
+exit 0
+
+$ grep -n 'W trybie cichym telefon tylko wibruje' app/more/settings.tsx
+44:      <SwitchRow label={t('Dźwięk na koniec przerwy')} detail={t('W trybie cichym telefon tylko wibruje')} /* decyzja właściciela 23.10.2026 (wariant A): zachowanie systemu, tylko wskazówka */ value={s.sound} onChange={v => { if (s.haptics === undefine
+exit 0
+
+$ grep -n "voice: 'off'" lib/seed.ts
+323:    settings: { ...defaultSettings(), voice: 'off' /* DEC-05 (20.10.2026): zapowiedzi głosowe domyślnie wyłączone dla nowej instalacji; brak pola w starszych danych = „W słuchawkach” (lib/voice.ts) */ }, exercises,
+exit 0
+
+$ grep -n "cuesOpen={p.cues !== '0'}" 'app/exercise/[id].tsx'
+41:  return <><Stack.Screen options={{ title: t('Ćwiczenie'), headerBackVisible: true, gestureEnabled: true, headerLeft: undefined, headerRight: undefined }} /><Preview e={real} onClose={close} cuesOpen={p.cues !== '0'} /* 27.10.2026 (wariant B): domyślnie r
+exit 0
+
+$ grep -rn 'PlateBar' lib/discColors.ts lib/equipvis.ts
+lib/discColors.ts:6: * 20.10.2026 (DEC-06, audyt M1): pasek talerzy „na każdą stronę” (PlateBar) i jego kalkulator usunięte z aplikacji — zostaje tylko paleta marki.
+lib/equipvis.ts:18:/* 20.10.2026 (DEC-06, audyt M1): rysunek „talerze na każdą stronę” (PlateBar) i jego kalkulator (platesPerSide, podpis „Nie da się ułożyć z talerzy”) usunięte.
+exit 0
+
+$ grep -rlniE 'garmin|bluetooth' app.json; grep -n 'Bluetooth' app.json
+exit 1
+
+$ grep -rlnE 'Siri|AppIntent|QRCode|metronom' app components lib modules targets
+exit 1
+
+$ grep -n "MODULES_AVAILABLE" lib/seed.ts
+20:export const MODULES_AVAILABLE: ReadonlySet<ModuleId> = new Set<ModuleId>(['training']);
+exit 0
+
+$ ls app/more/sources.tsx
+ls: cannot access 'app/more/sources.tsx': No such file or directory
+exit 2
+
+$ grep -n 'Masz historię z innej aplikacji' components/Dashboard.tsx
+87: * P6 B (import z innego dziennika jako czwarty, pomijalny krok „Masz historię z innej aplikacji?”) — po wdrożeniu importu (dziś go nie ma). */
+exit 0
+
+$ grep -n 'BodyMassSection' 'app/(tabs)/progress.tsx'
+96:      <BodyMassSection />{/* odstępstwo od „samego pustego stanu” (ZM-06): masa ciała to jedyne wejście do pomiarów i bywa wpisywana przed pierwszym treningiem (e1RM podciągania) */}
+119:      <BodyMassSection />
+126:function BodyMassSection() {
+exit 0
+
+$ grep -n "guardLiveStart" lib/entitlement.ts
+5: * Wszystko za PAYWALL.ENABLED: przy false (`paywallConfig().ENABLED`) nic się nie uruchamia — ani sklep, ani zapis, ani strażnik (`guardLiveStart` zwraca
+108:export function guardLiveStart(_path: GuardedStart, now: number = Date.now(), open: (href: string) => void = href => router.push(href as never)): boolean {
+exit 0
+
+$ grep -oE "status: '[a-z_]+'" lib/figures/v2/families.ts | sort | uniq -c
+     40 status: 'planned'
+      3 status: 'ready'
+exit 0
+

@@ -1,0 +1,36 @@
+$ grep -rn "scheduleNotificationAsync\|requestPermissionsAsync\|interruptionLevel\|timeSensitive\|getPermissionsAsync" lib components app --include=*.ts* | grep -v test
+lib/planReminder.ts:40:    try { await Notifications.scheduleNotificationAsync({ identifier: idOf(k), content: { title: t('Dziś: {name}', { name }), body: t('Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.'), sound: true }, trigger: { type: Notifications.SchedulableTriggerInputTypes.DATE, date: when } }); } catch {}
+lib/planReminder.ts:66:  try { const p = await Notifications.getPermissionsAsync(); return p.granted ? 'granted' : p.canAskAgain === false || p.status === 'denied' ? 'denied' : 'undetermined'; } catch { return 'undetermined'; }
+lib/planReminder.ts:77:    { text: t('Nie teraz'), style: 'cancel' }, { text: t('Dalej'), onPress: () => { Notifications.requestPermissionsAsync().catch(() => {}); } },
+lib/planReminder.ts:87:  try { await Notifications.requestPermissionsAsync(); } catch { /* błąd iOS: stan odczytamy poniżej */ }
+lib/timer.ts:33:const URGENT = { interruptionLevel: 'timeSensitive' as const };
+lib/timer.ts:54:  const cur = await Notifications.getPermissionsAsync();
+lib/timer.ts:56:  const req = await Notifications.requestPermissionsAsync();
+lib/timer.ts:148:    await Notifications.scheduleNotificationAsync({
+lib/timer.ts:175:  if (S.targetSec > 0 && left > 0) { try { await Notifications.scheduleNotificationAsync({ identifier: SET_ID, content: { title: t('Seria skończona'), body: t('Minęło {s} s.', { s: S.targetSec }), sound: soundOn(), ...URGENT }, trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: left, repeats: false } }); } catch {} }
+lib/timer.ts:228:  try { await Notifications.scheduleNotificationAsync({ identifier: STALE_ID, content: { title: t('Trening wciąż trwa'), body: staleBody(kind, lastSetMs, false, pausedAt, tz), sound: soundOn() }, trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: secs, repeats: false } }); } catch {}
+exit 0
+
+$ grep -rniE "streak|z rzędu|passa|odznak|badge|achievement|osiągnię|dawno|tęsknimy" lib components app (bez i18n)
+lib/period.ts:10: * rekordy = workoutPRs (ten sam silnik co odznaki przy seriach i podsumowanie po treningu), trening liczy się w okresie swojego startu.
+lib/setFlow.ts:39:/** Koniec serii czasowej (auto po osiągnięciu celu, ✓ albo ręcznie): zapisuje czas (maks. cel) i odhacza. */
+lib/deload.ts:8: * Uproszczenie: liczymy tygodnie treningu z rzędu; tydzień bez treningu albo oznaczony jako deload przerywa serię.
+lib/deload.ts:17:/** Tygodnie treningu z rzędu do bieżącego (gdy w bieżącym jeszcze nic — do poprzedniego). */
+lib/deload.ts:18:export function trainingStreakWeeks(now: number): number {
+lib/deload.ts:30:  const weeks = trainingStreakWeeks(now); return weeks >= DELOAD_EVERY[0] && getState().deloadSnooze !== from ? { kind: 'suggest', weeks, from } : { kind: 'none' };
+lib/stats.ts:13: * PR-y liczy jeden silnik (prMap), który podnosi poprzeczkę po każdej serii, więc odznaka przy serii, historia
+lib/stats.ts:68: * Masa ciała: suma powtórzeń bez asysty (jak „najwięcej powtórzeń w sesji” w popularnych dziennikach); pozostałe maksima zostają na karcie jako informacja, bez odznaki PR. */
+lib/stats.ts:166: * drugi rekord, suma na treningu, liczy się dla całego ćwiczenia w prMap (odznaka przy serii, która przebiła poprzednią sumę).
+lib/stats.ts:198:    // Runda 73: suma na treningu — odznaka przy serii, która przebiła najlepszą dotychczasową sumę (raz na ćwiczenie w treningu).
+lib/figures/v2/colliders.ts:17:  /** Zasięg IK: odległość osiągniętego chwytu od celu (cm). */
+lib/figures/v2/math.ts:28: * faktycznie osiągniętą oraz wskaźnik osiągnięcia (|koniec − cel|).
+lib/guard.ts:43:  /** brakujące serie do celu PO całym planie (0, gdy cel osiągnięty albo tydzień deload) */ gap: number; over: number; belowGoal: boolean; /** dni (RRRR-MM-DD) zaplanowanych treningów z tą partią */ plannedDays: string[];
+lib/guide.ts:52:    t('Po kilku tygodniach treningu z rzędu zakładka Plan podpowie „Zaplanuj deload od …”.'),
+lib/state/crashguard.ts:3: * (BOOT_STABLE_MS po zamontowaniu aplikacji), trzyma mały klucz kv. Drugi z rzędu start bez „kamienia” (próg CRASH_LOOP_THRESHOLD) jest awaryjny:
+components/DeloadHint.tsx:28:      <InfoTip id="deload" label={t('Tygodnie treningu bez deloadu: {n}.', { n: h.weeks })} info={t('Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — to częsta praktyka, nie sztywna reguła.', { n: h.weeks, a: DELOAD_EVERY[0], b: DELOAD_EVERY[1] })}>
+exit 0
+
+$ grep -rn "Share.share\|shareAsync" lib components app
+lib/backup.ts:31:    await Sharing.shareAsync(path, opts); return true;
+lib/backup.ts:206:    await Sharing.shareAsync(dir + files[0][0], { mimeType: 'application/json', dialogTitle: t('Backup treningów') }); return true;
+exit 0

@@ -1,0 +1,52 @@
+$ grep -n "deepLinkToSubscriptions" lib/store-native.ts
+29:  deepLinkToSubscriptions(opts?: Record<string, unknown>): Promise<void>;
+126:    async manageSubscriptions() { const m = iap(); await m.deepLinkToSubscriptions(); },
+
+$ sed -n 1262,1276p node_modules/expo-iap/src/index.ts   (expo-iap 5.8.1)
+export const deepLinkToSubscriptions: MutationField<
+  'deepLinkToSubscriptions'
+> = async (options) => {
+  if (Platform.OS === 'ios') {
+    await deepLinkToSubscriptionsIOS();
+    return;
+  }
+
+  if (Platform.OS === 'android') {
+    await deepLinkToSubscriptionsAndroid((options as DeepLinkOptions) ?? null);
+    return;
+  }
+
+  throw unsupportedPlatformError();
+};
+
+$ sed -n 372,380p node_modules/expo-iap/src/modules/ios.ts
+/**
+ * Deep link to subscriptions screen on iOS.
+ * @returns {Promise<void>}
+ *
+ * @platform iOS
+ */
+export const deepLinkToSubscriptionsIOS = (): Promise<void> =>
+  Linking.openURL('https://apps.apple.com/account/subscriptions');
+
+
+$ grep -n "showManageSubscriptionsIOS" node_modules/expo-iap/src/modules/ios.ts node_modules/expo-iap/ios/ExpoIapModule.swift
+node_modules/expo-iap/src/modules/ios.ts:186:export const showManageSubscriptionsIOS: MutationField<
+node_modules/expo-iap/src/modules/ios.ts:187:  'showManageSubscriptionsIOS'
+node_modules/expo-iap/src/modules/ios.ts:189:  requireIosPlatform('showManageSubscriptionsIOS');
+node_modules/expo-iap/src/modules/ios.ts:190:  const purchases = await ExpoIapModule.showManageSubscriptionsIOS();
+node_modules/expo-iap/ios/ExpoIapModule.swift:286:        AsyncFunction("showManageSubscriptionsIOS") { () async throws -> [[String: Any]] in
+node_modules/expo-iap/ios/ExpoIapModule.swift:287:            ExpoIapLog.payload("showManageSubscriptionsIOS", payload: nil)
+node_modules/expo-iap/ios/ExpoIapModule.swift:288:            let purchases = try await OpenIapModule.shared.showManageSubscriptionsIOS()
+node_modules/expo-iap/ios/ExpoIapModule.swift:292:            ExpoIapLog.result("showManageSubscriptionsIOS", value: sanitized)
+
+# OpenIAP Apple 3.6.0 (wersja z node_modules/expo-iap/openiap-versions.json), plik pobrany 27.10.2026 z raw.githubusercontent.com/hyodotdev/openiap/3.6.0/packages/apple/Sources/OpenIapModule.swift
+$ grep -n "AppStore.showManageSubscriptions(in: scene)" OpenIapModule.swift
+1229:            try await AppStore.showManageSubscriptions(in: scene)
+$ grep -n "displayPrice: product.displayPrice" StoreKitTypesBridge.swift
+24:            displayPrice: product.displayPrice,
+75:            displayPrice: product.displayPrice,
+105:            displayPrice: product.displayPrice,
+
+$ grep -rn "Zarządzaj subskrypcją.*TestFlight\|sprawdzenie „Zarządzaj subskrypcją”" docs
+docs/przekazanie-koordynatora-2026-10-23.md:48:**Zatwierdzone, nierozpoczęte:** `naprawa-m1-dec07-ui` (od p2-kod po jej zakończeniu) — M1-014 (K1 „Pełna wersja”), 025 (K3 „Planowanie”), 0

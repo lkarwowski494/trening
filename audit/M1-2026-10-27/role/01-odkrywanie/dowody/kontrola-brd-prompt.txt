@@ -1,0 +1,4 @@
+$ node <scratchpad>/narz/kontrola-brd.mjs docs/brd   (wersja z promptu roli, bez --szkic)
+UWAGA docs/brd/reguly.md:56: RD-04: brak wektora błędnych danych
+kontrola-brd: 5 plików, 49 wymagań BR, 4 reguł RD, 21 wektorów, 4 otwartych pytań · 0 błędów, 1 uwag
+exit=0

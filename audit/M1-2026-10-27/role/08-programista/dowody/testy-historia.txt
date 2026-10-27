@@ -1,0 +1,27 @@
+$ git log --diff-filter=D --name-only --format="%h %ad %s" --date=short -- tests | head -40
+7a45540d 2026-10-26 Wydanie 1.0.0: wersja, pusta historia „Co nowego”, testy, docs
+
+tests/release-0.12.test.tsx
+tests/release-0.13.test.tsx
+tests/release-0.14.test.tsx
+tests/release-0.15.test.tsx
+tests/release-0.16.test.tsx
+tests/release-0.17.test.tsx
+tests/release-0.18.test.tsx
+tests/release-0.20.test.tsx
+e4e3e28c 2026-10-25 Całkiem anonimowo (właściciel 25.10.2026): usunięty ekran Źródła wiedzy, strażnik bez nazw źródeł i odwołań ogólnych, teksty bez odwołań do badań i zaleceń, przypis ceny espresso bez źródła
+
+tests/zrodla-wiedzy-ui.test.tsx
+737010cf 2026-10-22 Monetyzacja M5 S1: limit 5 dni treningowych w miesiacu, bez okresu probnego
+
+tests/audit-m1-011-trial14.test.ts
+tests/audit-m1-017-trial-ios16.test.ts
+tests/trial-reminder.test.ts
+5c8c078e 2026-10-21 Kontrola ASC: narzędzie przeniesione do repozytorium narzędzi studia, workflow przypięty do SHA
+
+tests/fixtures/asc-kontrola-driver.mjs
+
+$ (ostatnie 150 commitów z tests/): commity, w których usunięto więcej linii z expect( niż dodano (netto <= -5)
+7a45540d netto=-122 (+27/-149) 2026-10-26 Wydanie 1.0.0: wersja, pusta historia „Co nowego”, testy, docs
+e4e3e28c netto=-27 (+20/-47) 2026-10-25 Całkiem anonimowo (właściciel 25.10.2026): usunięty ekran Źródła wiedzy, strażnik bez nazw źródeł 
+48adeea0 netto=-12 (+35/-47) 2026-10-23 Testy dopasowane do tekstów bez oznaczeń pewności; asercje dopisków pewności zamienione na asercje ich b

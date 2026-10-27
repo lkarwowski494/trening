@@ -1,0 +1,36 @@
+# komenda: transpilacja lib/plural.ts (typescript z projektu) + node /tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/09lok/plural-vs-cldr.cjs; porównanie z Intl.PluralRules Node
+# kod wyjścia: 0
+pl 0.5 (ułamek): many != CLDR other
+pl 1.5 (ułamek): many != CLDR other
+pl 2.5 (ułamek): many != CLDR other
+cs 0.5 (ułamek): other != CLDR many
+cs 1.5 (ułamek): other != CLDR many
+cs 2.5 (ułamek): other != CLDR many
+sk 0.5 (ułamek): other != CLDR many
+sk 1.5 (ułamek): other != CLDR many
+sk 2.5 (ułamek): other != CLDR many
+ro 0.5 (ułamek): other != CLDR few
+ro 1.5 (ułamek): other != CLDR few
+ro 2.5 (ułamek): other != CLDR few
+sl 0.5 (ułamek): other != CLDR few
+sl 1.5 (ułamek): other != CLDR few
+sl 2.5 (ułamek): other != CLDR few
+lt 0.5 (ułamek): other != CLDR many
+lt 1.5 (ułamek): other != CLDR many
+lt 2.5 (ułamek): other != CLDR many
+uk 0.5 (ułamek): many != CLDR other
+uk 1.5 (ułamek): many != CLDR other
+uk 2.5 (ułamek): many != CLDR other
+pt 0: other != one
+pt 0.5 (ułamek): other != CLDR one
+pt 1.5 (ułamek): other != CLDR one
+pt-BR 0.5 (ułamek): other != CLDR one
+pt-BR 1.5 (ułamek): other != CLDR one
+ru 0.5 (ułamek): many != CLDR other
+ru 1.5 (ułamek): many != CLDR other
+ru 2.5 (ułamek): many != CLDR other
+fr 0.5 (ułamek): other != CLDR one
+fr 1.5 (ułamek): other != CLDR one
+da 0.5 (ułamek): other != CLDR one
+da 1.5 (ułamek): other != CLDR one
+rozbieżności: 33 ; ICU 77.1 CLDR 47.0

@@ -1,0 +1,27 @@
+$ grep -rn "readPreMigrate\|premigrate" app components lib --include=*.ts --include=*.tsx | grep -v "^lib/state/boot.ts"
+lib/store.ts:93:export const { init, sanitizeDraftObj, readRawData, readRecovery, readPreMigrate, markBootStable, onStateReplaced, replaceState, resetAll } = bootMod;
+exit=0 (jedyne użycie poza boot.ts: reeksport w lib/store.ts — brak wywołania w ekranach)
+
+$ grep -n "openSupportMail\|diag" components/StartError.tsx
+6:import { openSupportMail } from '@/lib/support';
+8:const DIAG_FONT = 12; /* kod diagnostyczny pod komunikatem — mniejszy od treści, bez tokenów (ekran nie zależy od motywu) */
+16:export function StartError({ title, message, detail, diag, onRetry }: { title: string; message?: string; detail?: string; /** ZK-07: kod diagnostyczny ostatniego startu (lib/state/bootphase.ts), be
+28:      {diag ? <Text testID="start-error-diag" selectable accessibilityLanguage="en" style={{ color: th.muted, textAlign: 'center', fontSize: DIAG_FONT }}>{diag}</Text> : null}
+32:      {link(t('Napisz do nas'), () => openSupportMail('feedback'))}
+exit=0
+
+$ grep -n "const footer\|const body = " lib/support.ts
+19:  const footer = t('Wersja: {v} · iOS {os} · Język: {lang}', { v: version, os: String(os), lang: language });
+21:  const body = kind === 'idea' ? `\n\n${t('Czego brakuje:')}\n\n${t('W jakiej sytuacji na treningu:')}\n\n\n${footer}` : `\n\n${footer}`;
+exit=0
+
+$ grep -n "Automatyczna kopia po każdym treningu\|Dane w telefonie nie zostały zmienione" components/StartError.tsx app/_layout.tsx
+components/StartError.tsx:29:      <Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center', fontSize: 13 }}>{t('Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → B
+app/_layout.tsx:65:  : err ? <StartError title={t('Nie udało się otworzyć danych.')} message={t('Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.')} detail={err} diag={diag} onRetry={() => st
+app/_layout.tsx:78:  return <StartError title={t('Ekran nie mógł się wyświetlić.')} message={t('Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.')} detail={error.message} onRetry={() => { r
+exit=0
+
+$ grep -n "znikają razem z aplikacją" app/more/backup.tsx
+32:        ? <InfoTip id="backup-auto" label={t('Kopie automatyczne znikają razem z aplikacją — przed jej usunięciem wyeksportuj backup.')} info={t('Kopia 
+33:          <Muted style={font('footnote')}>{t('Kopie automatyczne znikają razem z aplikacją — przed jej usunięciem wyeksportuj backup.')}</Muted>
+exit=0

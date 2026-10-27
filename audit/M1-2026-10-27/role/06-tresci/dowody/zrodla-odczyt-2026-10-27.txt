@@ -1,0 +1,169 @@
+# Źródła otwarte przez weryfikatora 27.10.2026 (curl przez proxy; PDF → pdftotext; XML Europe PMC → tekst; cytat = grep na surowym tekście)
+
+## NSCA Strength and Conditioning Professional Standards and Guidelines 2017, Standard 3.2
+adres: https://www.nsca.com/globalassets/education/nsca_strength_and_conditioning_professional_standards_and_guidelines.pdf
+$ grep -o -E "free weights are supported on" nsca2.txt
+free weights are supported on
+exit 0
+STANDARD 3.2
+
+In conjunction with appropriate safety
+equipment (e.g., power racks), attentive spotting must be provided for
+
+participants performing activities in
+which free weights are supported on
+the trunk or moved over the head/face
+
+## WHO guidelines on physical activity and sedentary behaviour 2020 (ISBN 978-92-4-001512-8)
+adres: https://iris.who.int/server/api/core/bitstreams/faa83413-d89e-4be9-bb01-b24671aef7ca/content
+$ grep -o -E "Doing some physical activity is better than doing none\." who2.txt
+Doing some physical activity is better than doing none.
+exit 0
+
+Adults should do at least 150–
+300 minutes of moderate-intensity
+aerobic physical activity; or at
+least 75–150 minutes of vigorousintensity aerobic physical activity;
+or an equivalent combination of
+moderate- and vigorous-intensity
+activity throughout the week,
+Adults should also do musclestrengthening activities at
+moderate or greater intensity that
+involve all major muscle groups
+on 2 or more days a week, as these
+provide additional health benefits.
+activity should be performed in bouts of at least 10
+minutes duration. However, new evidence, using
+device-based assessments, demonstrates that physical
+activity of any duration, without a minimum threshold,
+is associated with improved health outcomes, including
+
+## Bull i in. 2020, BJSM (WHO 2020), PMC7719906
+adres: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7719906/fullTextXML
+$ grep -o -E ".{0,40}no evidence to support a dose-response association with higher volumes of muscle-strengthening activities\." bull.txt
+ moderate-certainty evidence. There was no evidence to support a dose-response association with higher volumes of muscle-strengthening activities.
+exit 0
+
+## ACSM Position Stand 2026 (Currier i in.), PMC12965823
+adres: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12965823/fullTextXML
+$ grep -o -E "healthy adults are advised to complete at least two sets per exercise\. Completing more than two sets per exercise may provide additional benefits" acsm2026.txt
+healthy adults are advised to complete at least two sets per exercise. Completing more than two sets per exercise may provide additional benefits
+exit 0
+
+## ACSM 2026 — RIR
+adres: j.w.
+$ grep -o -E "completion of “near-failure” or a target of 2–3 repetitions in reserve \(RIR\)" acsm2026.txt
+completion of “near-failure” or a target of 2–3 repetitions in reserve (RIR)
+exit 0
+
+## ACSM 2026 — dokładny RIR
+adres: j.w.
+$ grep -o -E "there is insufficient evidence to quantify exact RIR and perceived exertion targets" acsm2026.txt
+there is insufficient evidence to quantify exact RIR and perceived exertion targets
+exit 0
+
+## ACSM 2026 — objętość
+adres: j.w.
+$ grep -o -E "higher volume \(≥10 sets/muscle group/wk\)" acsm2026.txt
+higher volume (≥10 sets/muscle group/wk)
+exit 0
+
+## ACSM 2026 — zakres ciężarów
+adres: j.w.
+$ grep -o -E "low \(30% 1RM\) to high \(100% 1RM\) loads" acsm2026.txt
+low (30% 1RM) to high (100% 1RM) loads
+exit 0
+
+## van den Tillaar i Ball 2020, J Hum Kinet, PMC7386139 (pompki: udział masy ciała)
+adres: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7386139/fullTextXML
+$ grep -o -E "This made the relative load from 62\.6 to 65\.1% of body mass" vdt.txt
+This made the relative load from 62.6 to 65.1% of body mass
+exit 0
+
+## Helms i in. 2016, Strength Cond J, PMC4961270 (skala RIR–RPE)
+adres: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4961270/fullTextXML
+$ grep -o -E "scores of 5–6 were grouped as 4–6 RIR" helms.txt
+scores of 5–6 were grouped as 4–6 RIR
+exit 0
+
+## Helms 2016 — opisy słowne poniżej 5
+adres: j.w.
+$ grep -o -E "1–2 RPE = “little to no effort,” 3–4 RPE = “light effort”" helms.txt
+1–2 RPE = “little to no effort,” 3–4 RPE = “light effort”
+exit 0
+
+## Bell i in. 2023, Sports Med Open, PMC10511399 (deload)
+adres: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10511399/fullTextXML
+$ grep -o -E "Deloading is generally undertaken every 4–6 weeks" PMC10511399.txt
+Deloading is generally undertaken every 4–6 weeks
+exit 0
+
+## Rogerson i in. 2024, Sports Med Open, PMC10948666 (deload, zawodnicy)
+adres: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10948666/fullTextXML
+$ grep -o -E "every 5\.6 ± 2\.3 weeks" PMC10948666.txt
+every 5.6 ± 2.3 weeks
+exit 0
+
+## Pelland i in. 2026, Sports Med, PMID 41343037 (streszczenie)
+adres: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=41343037&rettype=abstract&retmode=text
+$ grep -o -E "0\.5 for 'fractional,'" pelland.txt
+0.5 for 'fractional,'
+exit 0
+
+## Ramos-Campo i in. 2024, JSCR, PMID 38595233 (streszczenie)
+adres: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=38595233&rettype=abstract&retmode=text
+$ grep -o -E "does not significantly impact either strength gains or muscle hypertrophy when volume is" /dev/fd/63
+does not significantly impact either strength gains or muscle hypertrophy when volume is
+exit 0
+
+## ACSM 2009, PMID 19204579 (streszczenie) — tempo i progresja
+adres: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19204579&rettype=abstract&retmode=text
+$ grep -o -E "velocity \(1-2 s CON; 1-2 s ECC\)" pm-19204579.txt
+velocity (1-2 s CON; 1-2 s ECC)
+exit 0
+
+## Schoenfeld, Ogborn, Krieger 2015, Sports Med, PMID 25601394 (streszczenie)
+adres: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=25601394&rettype=abstract&retmode=text
+$ grep -o -E "repetition durations ranging from 0\.5 to 8 s" pm-25601394.txt
+repetition durations ranging from 0.5 to 8 s
+exit 0
+
+## Mayhew i in. 2008, JSCR 22(5):1570-7, PMID 18714230 (streszczenie)
+adres: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18714230&rettype=abstract&retmode=text
+$ grep -o -E "in which fewer than 10 RTF were used" /dev/fd/63
+in which fewer than 10 RTF were used
+exit 0
+(fraza z komentarza lib/stats.ts „no more than 10 produces better predictions” w streszczeniu:)
+0
+
+## Wytyczne USA 2018 — streszczenie (PAG Executive Summary)
+adres: https://odphp.health.gov/sites/default/files/2019-10/PAG_ExecutiveSummary.pdf
+$ grep -o -E "Preferably, aerobic activity should be spread throughout the week\." /dev/fd/63
+Preferably, aerobic activity should be spread throughout the week.
+exit 0
+
+## Stronger by Science — How to Squat (kąt stóp)
+adres: https://www.strongerbyscience.com/how-to-squat/
+$ grep -o -E "toes pointed out 15-20 degrees" sbs-squat.txt
+toes pointed out 15-20 degrees
+exit 0
+
+## Lea, O’Driscoll, Wiles 2023, PMC10786991 (oddech przy siadzie przy ścianie)
+adres: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10786991/fullTextXML
+$ grep -o -E "To avoid the Valsalva manoeuvre, participants were instructed to breathe normally" PMC10786991.txt
+To avoid the Valsalva manoeuvre, participants were instructed to breathe normally
+exit 0
+
+## Krobot Cutura i in. 2024, PMC11050476
+adres: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11050476/fullTextXML
+$ grep -o -E "Subjects followed a normal breathing pattern, and holding their breath was not permitted" PMC11050476.txt
+Subjects followed a normal breathing pattern, and holding their breath was not permitted
+exit 0
+
+## Teleborsa 18.08.2026 (espresso, dane MIMIT; opis w sklepie)
+adres: https://www.teleborsa.it/News/2026/08/18/prezzi_caffe_al_bar_%2b_24_2percento_in_cinque_anni-115.html
+$ grep -o -E "Messina risulta oggi la città più economica, con un prezzo medio di 1,06 euro" teleborsa.txt
+Messina risulta oggi la città più economica, con un prezzo medio di 1,06 euro
+exit 0
+
+## Niedostępne: acefitness.org (HTTP 403 dla curl, 27.10.2026) — źródła ACE wskazówek techniki nieotwarte

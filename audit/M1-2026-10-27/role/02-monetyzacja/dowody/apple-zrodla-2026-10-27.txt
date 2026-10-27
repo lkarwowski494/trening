@@ -1,0 +1,53 @@
+# Źródła Apple przeczytane 2026-10-27 (surowy tekst: curl -sSL --compressed <url> | html->txt; exit 0)
+## https://developer.apple.com/app-store/review/guidelines/
+493: Last Updated: October 16, 2026 
+270: Any credits or in-game currencies purchased via in-app purchase may not expire, and you should make sure you have a restore mechanism for any restorable in-app purchases. 
+275: Non-subscription apps may offer a free time-based trial period before presenting a full unlock option by setting up a Non-Consumable IAP item at Price Tier 0 that follows the naming convention: “XX-day Trial.” Prior to the start of the trial, your app must clearly identify its duration, the content or services that will no longer be accessible when the trial ends, and any downstream charges the user would ne
+281: 3.1.2(a) Permissible uses: If you offer an auto-renewable subscription, you must provide ongoing value to the customer, and the subscription period must last at least seven days and be available across all of the user’s devices. While the following list is not exhaustive, examples of appropriate subscriptions include: new game levels; episodic content; multiplayer support; apps that offer consistent, substanti
+287: If you are changing your existing app to a subscription-based business model, you should not take away the primary functionality existing users have already paid for. For example, let customers who have already purchased a “full game unlock” continue to access the full game after you introduce a subscription model for new customers. 
+288: Auto-renewable subscription apps may offer a free trial period to customers by providing the relevant information set forth in App Store Connect. Learn more about providing subscription offers. 
+289: Apps that attempt to scam users will be removed from the App Store. This includes apps that attempt to trick users into purchasing a subscription under false pretenses or engage in bait-and-switch and scam practices; these will be removed from the App Store and you may be removed from the Apple Developer Program. 
+292: 3.1.2(c) Subscription Information: Before asking a customer to subscribe, you should clearly describe what the user will get for the price. How many issues per month? How much cloud storage? What kind of access to your service? Ensure you clearly communicate the requirements described in Schedule 2 of the Apple Developer Program License Agreement . 
+472: Customer trust is a cornerstone of the App ecosystem. Apps should never prey on users or attempt to rip off customers, trick them into making unwanted purchases, force them to share unnecessary data, raise prices in a tricky manner, charge for features or content that are not delivered, or engage in any other manipulative practices within or outside of the app. 
+## https://developer.apple.com/app-store/subscriptions/
+170: Family Sharing allows a subscriber to share access to an auto-renewable subscription with up to five family members across their Apple devices. With a streamlined, convenient user experience, Family Sharing can help you attract subscribers, encourage paid subscriptions, increase engagement, and
+198: Full renewal price, shown clearly and prominently, and localized in available currencies 
+199: A way for current subscribers to sign in or restore purchases 
+201: Billing amount In the purchase flow, the amount that will be billed must be the most prominent pricing element in the layout. For example, an annual subscription should clearly display the total amount that will be billed upon purchase. While you may also present a breakdown price that the annu
+202: Free trials In the purchase flow for a free trial, clearly indicate how long the free trial lasts and the price billed once the free trial is over. 
+274: A subscriber’s preferences may change during a subscription period. You can use the showManageSubscriptions(in:) method to let them manage their subscription within your app. By providing a dedicated place in your app to manage subscriptions, you can also display other options to complement t
+## StoreKit (developer.apple.com/tutorials/data/documentation/storekit/...json)
+== storekit/product/displayprice 11124
+The localized string representation of the product price, suitable for display.
+--
+Use this string to display the price, formatted for the locale. The storefront that the user’s device is connected to determines the locale. For more information, see .To perform arithmetic calculations with the price, use the  property instead.
+== storekit/product/priceformatstyle 14639
+The format style for the numbers in the price of the product.
+--
+The  value is a localized number suitable for display. Use this value for localizing numbers derived from the  property, such as to calculate the price of two products as $(price * 2).To display the  directly, rather than making calculations, use the  string instead. When using  on systems earlier than iOS 16, macOS 13, tvOS 16, and watchOS 9, the property may return a format style with a sentinel locale identifier of “xx_XX” in uncommon cases, including if the server has an error, or while testing your app using StoreKit Testing in Xcode. For StoreKit testing, use a later OS version.
+== storekit/storefront 13819
+The region and unique identifier of the App Store storefront for the device.
+--
+In-app products you create through App Store Connect are available for sale in each region with an App Store. You can use the storefront information to determine the customer’s region, and offer in-app products suitable for that region.You need to maintain your own list of product identifiers and the storefronts where you want to make them available. Don’t save the storefront information with your customer information because storefront information can change at any time. Get the storefront identifier immediately before you display product information or availability in your app. Don’t use storefront information to develop or enhance a customer profile, or to track customers for advert
+== storekit/transaction/currententitlements 18173
+A sequence of the latest transactions that entitle a customer to Apple In-App Purchases and subscriptions.
+--
+The current entitlements sequence emits the latest transaction for each product the customer has an entitlement to, specifically:A transaction for each non-consumable Apple In-App PurchaseThe latest transaction for each auto-renewable subscription that has a  state of  or The latest transaction for each non-renewing subscription, including finished onesProducts that the App Store has refunded or revoked don’t appear in the current entitlements. Consumable Apple In-App Purchases also don’t appear in the current entitlements. To get transactions for unfinished consumables, use the  or  sequences in .The following example illustrates iterating through the current entitlements:
+== storekit/transaction/updates 20557
+The asynchronous sequence that emits a transaction when the system creates or updates transactions that occur outside the app or on other devices.
+--
+Use  to receive new transactions while the app is running. This sequence receives transactions that occur outside of the app, such as Ask to Buy transactions, offer code redemptions, and purchases that customers make in the App Store. It also emits transactions that customers complete in your app on another device.Note that after a successful Apple In-App Purchase on the same device, StoreKit returns the transaction through . Create a  to iterate through the transactions from the listener as soon as your app launches. If your app has unfinished transactions, the  listener receives them once, immediately after the app launches. Without the  to listen for these transactions, your app may miss 
+== storekit/appstore/sync 15639
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+== storekit/testing-in-app-purchases-with-sandbox 46424
+Test your implementation of Apple In-App Purchases using real product information and server-to-server transactions in the sandbox environment.
+--
+Use the Apple sandbox environment to test your implementation of Apple In-App Purchases that use the StoreKit framework on devices with real product information from App Store Connect. Transactions from test accounts don’t incur charges because the sandbox environment simulates successful transactions using the App Store’s infrastructure without processing actual payments.Apps in the development and beta-testing stages of your product cycle use the sandbox environment for Apple In-App Purchases. These apps include:Development-signed apps you build and run from XcodeApps you download from TestFlightWhen you sign in to a Sandbox Apple Account on your device, you gain access to sandbox sett
+== storekit/product/subscriptioninfo/iseligibleforintrooffer 12485
+A Boolean value that indicates whether the customer is eligible for an introductory offer.
+--
+This value is true if the customer is eligible for an introductory offer on this auto-renewable subscription, or any auto-renewable subscription in the same subscription group; this value is false otherwise. This value may be true even if you haven’t set up an introductory offer in App Store Connect. The following example illustrates checking the  property of a product to determine whether the user is eligible for an introductory offer.To specify a customer’s eligibility for an introductory offer, see .
+## storekit/testing-in-app-purchases-with-sandbox
+27:Apps that you download from TestFlight always run in the sandbox environment. However, to access the sandbox controls for testing, you need to sign out of your production Apple Account in Media & Purchases, and sign in with a Sandbox Apple Account in Developer settings.
+37:If you sign back in to your Apple Account in Media & Purchases, apps you install through TestFlight revert to attributing Apple In-App Purchases to your Apple Account and not to your Sandbox Apple Account.
+86:To activate a storefront after you change the region in App Store Connect, sign out of the Sandbox Apple Account account on the device and sign back in. When testing this activation, you see the Apple In-App Purchases appropriate to the region assigned to your Sandbox Apple Account. Changing the App Store Country or Region setting affects the storefront value in your app. For more information, 

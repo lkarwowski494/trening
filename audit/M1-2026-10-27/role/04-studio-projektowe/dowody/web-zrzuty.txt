@@ -1,0 +1,80 @@
+$ CI=1 EXPO_PUBLIC_STORE_FAKE=1 npx expo export -p web --clear --output-dir <scratchpad>/web04ax  (worktree 025a50b9 + sonda w metro.config.js)
+index.html (1.2KB)
+metadata.json (49B)
+
+Exported: /tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/web04ax
+exit=0
+
+$ node shoot04.mjs <dist> <seed.json> <out> <jobs.json> — wyniki (błędy konsoli, elementy przycięte/poza ekranem)
+t04-trening-plan-390-dark-fs1 błędy: [] przycięte: 0
+t04-trening-plan-390-dark-ax5 błędy: [] przycięte: 0
+t04-trening-plan-390-light-ax5 błędy: [] przycięte: 0
+t04-trening-aktywny-390-dark-ax5 błędy: [] przycięte: 0
+t04-trening-plan-320-dark-ax5 błędy: [] przycięte: 0
+t04-trening-noplan-390-dark-ax5 błędy: [] przycięte: 0
+t04-trening-fresh-390-dark-ax5 błędy: [] przycięte: 0
+t04-aktywny-390-dark-ax5 błędy: [] przycięte: 0
+t04-aktywny-przerwa-390-dark-ax5 błędy: [] przycięte: 0
+pw-darmowy-390-dark błędy: [] przycięte: 0
+pw-po-zakupie-rocznym-390-dark błędy: [] przycięte: 0
+pw-po-zakupie-rocznym-390-light błędy: [] przycięte: 0
+pw-dozywotni-390-dark błędy: [] przycięte: 0
+ustawienia-darmowy-390-dark błędy: ["klik text=Ustawienia: TimeoutError: locator.click: Timeout 4000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=Us"] przycięte: 0
+ustawienia-po-zakupie-390-dark błędy: ["klik text=Ustawienia: TimeoutError: locator.click: Timeout 4000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=Us"] przycięte: 0
+start-pierwsze-390-dark błędy: [] przycięte: 0
+start-pierwsze-390-light błędy: [] przycięte: 0
+start-pierwsze-320-dark błędy: [] przycięte: 0
+start-pierwsze-390-dark-szary błędy: [] przycięte: 0
+start-plan-390-dark błędy: [] przycięte: 0
+start-plan-390-light błędy: [] przycięte: 0
+start-plan-320-dark błędy: [] przycięte: 0
+start-plan-390-dark-szary błędy: [] przycięte: 0
+plan-tab-390-dark błędy: [] przycięte: 0
+plan-tab-390-light błędy: [] przycięte: 0
+plan-tab-320-dark błędy: [] przycięte: 0
+plan-tab-390-dark-szary błędy: [] przycięte: 0
+postepy-390-dark błędy: [] przycięte: 5
+postepy-390-light błędy: [] przycięte: 5
+postepy-320-dark błędy: [] przycięte: 5
+postepy-390-dark-szary błędy: [] przycięte: 5
+postepy-pusty-390-dark błędy: [] przycięte: 0
+postepy-pusty-390-light błędy: [] przycięte: 0
+postepy-pusty-320-dark błędy: [] przycięte: 0
+postepy-pusty-390-dark-szary błędy: [] przycięte: 0
+wiecej-390-dark błędy: [] przycięte: 0
+wiecej-390-light błędy: [] przycięte: 0
+wiecej-320-dark błędy: [] przycięte: 0
+wiecej-390-dark-szary błędy: [] przycięte: 0
+ustawienia-390-dark błędy: [] przycięte: 0
+ustawienia-390-light błędy: [] przycięte: 0
+ustawienia-320-dark błędy: [] przycięte: 0
+ustawienia-390-dark-szary błędy: [] przycięte: 0
+sesja-390-dark błędy: [] przycięte: 0
+sesja-390-light błędy: [] przycięte: 0
+sesja-320-dark błędy: [] przycięte: 0
+sesja-390-dark-szary błędy: [] przycięte: 0
+cwiczenie-390-dark błędy: [] przycięte: 0
+cwiczenie-390-light błędy: [] przycięte: 0
+cwiczenie-320-dark błędy: [] przycięte: 0
+cwiczenie-390-dark-szary błędy: [] przycięte: 0
+szablon-390-dark błędy: [] przycięte: 0
+szablon-390-light błędy: [] przycięte: 0
+szablon-320-dark błędy: [] przycięte: 0
+szablon-390-dark-szary błędy: [] przycięte: 0
+generator-390-dark błędy: [] przycięte: 0
+generator-390-light błędy: [] przycięte: 0
+generator-320-dark błędy: [] przycięte: 0
+generator-390-dark-szary błędy: [] przycięte: 0
+trening-aktywny-390-dark błędy: [] przycięte: 0
+trening-aktywny-390-light błędy: [] przycięte: 0
+trening-aktywny-320-dark błędy: [] przycięte: 0
+trening-aktywny-390-dark-szary błędy: [] przycięte: 0
+as-is-p1-01-pierwsze-uruchomienie błędy: [] przycięte: 0
+as-is-p1-02-pusty-trening błędy: [] przycięte: 0
+as-is-p2-01-start-plan błędy: [] przycięte: 0
+as-is-p2-02-inny-trening błędy: [] przycięte: 0
+as-is-p2-03-po-starcie błędy: [] przycięte: 0
+as-is-p3-01-seria-zrobiona błędy: [] przycięte: 0
+as-is-p3-02-menu-treningu błędy: ["TypeError: Cannot read properties of undefined (reading 'showActionSheetWithOptions')"] przycięte: 0
+as-is-p6-01-wiecej-ustawienia błędy: [] przycięte: 0
+exit=0

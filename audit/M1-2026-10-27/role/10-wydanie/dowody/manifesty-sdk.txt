@@ -1,0 +1,22 @@
+$ find -L node_modules -name PrivacyInfo.xcprivacy → kategorie i powody; grep UserDefaults/PrivacyInfo w modules/ targets/
+node_modules/expo-localization/ios/PrivacyInfo.xcprivacy: UserDefaults, CA92.1,
+node_modules/expo-application/ios/PrivacyInfo.xcprivacy: FileTimestamp, C617.1,
+node_modules/expo-file-system/ios/PrivacyInfo.xcprivacy: DiskSpace,FileTimestamp, 0A2A.1,3B52.1,E174.1,85F4.1,
+node_modules/expo-constants/ios/PrivacyInfo.xcprivacy: UserDefaults, CA92.1,
+node_modules/expo-notifications/ios/PrivacyInfo.xcprivacy: UserDefaults, CA92.1,
+node_modules/react-native/third-party-podspecs/boost/PrivacyInfo.xcprivacy: FileTimestamp,SystemBootTime, C617.1,35F9.1,
+node_modules/react-native/third-party-podspecs/glog/PrivacyInfo.xcprivacy: FileTimestamp, C617.1,
+node_modules/react-native/third-party-podspecs/RCT-Folly/PrivacyInfo.xcprivacy: FileTimestamp, C617.1,
+node_modules/react-native/React/Resources/PrivacyInfo.xcprivacy: FileTimestamp,UserDefaults, C617.1,CA92.1,
+node_modules/react-native/ReactCommon/react/timing/PrivacyInfo.xcprivacy: SystemBootTime, 35F9.1,
+node_modules/react-native/ReactCommon/cxxreact/PrivacyInfo.xcprivacy: FileTimestamp, C617.1,
+--- własny kod natywny:
+modules/watch-link/ios/WatchLinkHub.swift:10:/// Komunikat z zegarka jest zapisywany w trwałej kolejce (UserDefaults) PRZED odpowiedzią tr
+modules/watch-link/ios/WatchLinkHub.swift:79:    let d = UserDefaults.standard
+modules/watch-link/ios/WatchLinkHub.swift:89:    let d = UserDefaults.standard
+targets/watch-app/TreningWatchApp.swift:39:    return WatchStore(transport: transport, workout: workout, haptics: SystemHaptics(), persisten
+targets/watch-app/Core/WatchPersistence.swift:12:final class UserDefaultsPersistence: WatchPersistence {
+targets/watch-app/Core/WatchPersistence.swift:13:  private let defaults: UserDefaults
+targets/watch-app/Core/WatchPersistence.swift:17:  init(defaults: UserDefaults = .standard) { self.defaults = defaults }
+--- PrivacyInfo.xcprivacy w modules/ targets/: 0
+exit=0

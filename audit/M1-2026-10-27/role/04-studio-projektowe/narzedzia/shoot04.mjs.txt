@@ -1,0 +1,37 @@
+// Sonda roli 04: zrzuty web (react-native-web) z danymi z seed.json; opcjonalnie emulacja Dynamic Type (localStorage fs) i skala szarości.
+// użycie: node shoot04.mjs <dist> <seed.json> <out> <jobs.json>
+import http from 'http'; import fs from 'fs'; import path from 'path'; import { chromium } from 'playwright';
+const [root, seedPath, out, jobsPath] = process.argv.slice(2);
+const seed = JSON.parse(fs.readFileSync(seedPath, 'utf8')); const jobs = JSON.parse(fs.readFileSync(jobsPath, 'utf8'));
+fs.mkdirSync(out, { recursive: true });
+const port = 8700 + Math.floor(Math.random() * 90);
+const srv = http.createServer((q, r) => { let p = path.join(root, decodeURIComponent(q.url.split('?')[0])); if (!fs.existsSync(p) || fs.statSync(p).isDirectory()) p = path.join(root, 'index.html'); r.writeHead(200, { 'content-type': p.endsWith('.js') ? 'text/javascript' : p.endsWith('.html') ? 'text/html' : p.endsWith('.ttf') ? 'font/ttf' : 'application/octet-stream' }); fs.createReadStream(p).pipe(r); }).listen(port);
+const tpl = seed.templates;
+const variants = {
+  active: s => s,
+  plan: s => { s.active = null; s.weekPlan = { days: [tpl[0].id, null, tpl[1].id, null, tpl[2].id, null, null], name: 'Mój plan' }; return s; },
+  noplan: s => { s.active = null; return s; },
+  fresh: s => null,
+};
+const browser = await chromium.launch();
+const report = [];
+for (const j of jobs) {
+  const ctx = await browser.newContext({ viewport: { width: j.w ?? 390, height: j.h ?? 844 }, colorScheme: j.theme ?? 'dark', deviceScaleFactor: j.dsf ?? 2, locale: j.locale ?? 'pl-PL', reducedMotion: j.reduce ? 'reduce' : 'no-preference' });
+  const st0 = variants[j.variant ?? 'plan'](JSON.parse(JSON.stringify(seed)));
+  if (st0) { st0.settings.language = j.lang ?? 'pl'; st0.settings.theme = j.theme ?? 'dark'; if (j.settings) Object.assign(st0.settings, j.settings); }
+  await ctx.addInitScript(([s, fsc]) => { if (!sessionStorage.getItem('seeded')) { localStorage.clear(); if (s) localStorage.setItem('kv:state', s); localStorage.setItem('fs', String(fsc)); sessionStorage.setItem('seeded', '1'); } }, [st0 ? JSON.stringify(st0) : null, j.fs ?? 1]);
+  const page = await ctx.newPage(); const errs = []; page.on('pageerror', e => errs.push(String(e).slice(0, 200)));
+  await page.goto(`http://localhost:${port}${j.url ?? '/'}`, { waitUntil: 'networkidle' }); await page.waitForTimeout(j.wait ?? 1500);
+  for (const c of j.clicks ?? []) { try { await page.locator(c).first().click({ timeout: 4000 }); await page.waitForTimeout(800); } catch (e) { errs.push('klik ' + c + ': ' + String(e).slice(0, 100)); } }
+  if (j.gray) await page.addStyleTag({ content: 'html{filter:grayscale(1)}' });
+  const clip = await page.evaluate(() => { const W = innerWidth, res = []; for (const el of document.querySelectorAll('div,span,svg')) { const r = el.getBoundingClientRect(); if (!r.width) continue; const cs = getComputedStyle(el); const txt = (el.innerText || '').trim().slice(0, 40); if (r.right > W + 1) res.push(['poza ekranem', Math.round(r.right - W), txt || el.tagName]); if (cs.overflow === 'hidden' && el.children.length && (el.scrollHeight > el.clientHeight + 2 || el.scrollWidth > el.clientWidth + 2)) res.push(['przycięte (overflow hidden)', `${el.scrollWidth}x${el.scrollHeight}>${el.clientWidth}x${el.clientHeight}`, txt || el.tagName]); } const seen = new Set(); return res.filter(x => { const k = x.join('|'); if (seen.has(k)) return false; seen.add(k); return true; }).slice(0, 30); });
+  const file = path.join(out, j.name + '.png'); await page.screenshot({ path: file, fullPage: j.full ?? true });
+  for (let k = 1; k <= (j.scrolls ?? 0); k++) {
+    await page.evaluate((k) => { const els = [...document.querySelectorAll('div')].filter(e => { const cs = getComputedStyle(e); return (cs.overflowY === 'auto' || cs.overflowY === 'scroll') && e.scrollHeight > e.clientHeight + 5; }); els.sort((a, b) => b.clientHeight - a.clientHeight); const el = els[0]; if (el) el.scrollTop = k * el.clientHeight * 0.85; }, k);
+    await page.waitForTimeout(400); await page.screenshot({ path: path.join(out, j.name + '-s' + k + '.png') });
+  }
+  report.push({ name: j.name, file, errs, clip });
+  await ctx.close();
+}
+await browser.close(); srv.close();
+console.log(JSON.stringify(report, null, 1));

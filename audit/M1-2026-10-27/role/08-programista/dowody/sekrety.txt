@@ -1,0 +1,56 @@
+$ git ls-files | grep -Ei "\.(env|p8|p12|pem|key|jks|keystore|mobileprovision)$|(^|/)\.env"
+exit=1
+
+$ git grep -nI -E "-----BEGIN|sk-[A-Za-z0-9]{20}|AIza[0-9A-Za-z_-]{30}|ghp_[A-Za-z0-9]{30}|api_key\s*[:=]|apiKey\s*[:=]" -- . ":!node_modules" | wc -l
+exit=0
+
+$ grep -rn EXPO_PUBLIC_ (app lib components, .github)
+      3 EXPO_PUBLIC_BUILD_NUMBER
+      2 EXPO_PUBLIC_PSEUDO
+     12 EXPO_PUBLIC_STORE_FAKE
+      6 EXPO_PUBLIC_WATCH_FAKE
+
+$ cat .gitignore
+node_modules
+.expo/
+dist/
+/ios/
+/android/
+*.log
+.DS_Store
+.stryker-tmp
+reports/
+*.ipa
+coverage/
+.secrets/
+__pycache__/
+
+# audyt 06.10.2026: sekrety i pliki podpisu nigdy w repo (CLAUDE.md)
+.env*
+*.p8
+*.p12
+*.mobileprovision
+*.cer
+# audyt 08.10.2026 (SEC-07): poświadczenia i pliki budowania lokalnego
+credentials.json
+*.pem
+*.key
+*.jks
+*.keystore
+*.xcarchive/
+upload.json
+build.json
+build.err
+e2e-out/
+Trening-sim.zip
+.claude/worktrees/
+.claude/settings.local.json
+
+# SwiftPM (targets/Package.swift, testy logiki zegarka)
+targets/.build/
+targets/.swiftpm/
+$ git grep -cI -E "-----BEGIN|sk-[A-Za-z0-9]{20}|AIza[0-9A-Za-z_-]{30}|ghp_[A-Za-z0-9]{30}|api_key\s*[:=]|apiKey\s*[:=]" (pliki śledzone, bez node_modules)
+plików z trafieniem: 0
+
+$ git log --all --diff-filter=A --name-only --format= | grep -Ei "\.(env|p8|p12|pem|key|jks|keystore|mobileprovision|cer)$" | sort -u
+(koniec listy)

@@ -1,0 +1,2 @@
+$ git -C /tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/07-jakosc-wt status --porcelain (po kontrolach)
+exit=0

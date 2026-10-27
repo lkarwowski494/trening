@@ -1,0 +1,25 @@
+# sonda (worktree w scratchpadzie, commit 025a50b9): npx jest tests/zz-sonda-06.test.ts --maxWorkers=1 → exit 0; wynik: dowody/sonda-figury.txt
+import { figureSpec, frameAt, assignAll, jointAngles, VARIANTS } from '@/lib/figures/v2';
+const KEYS = Object.entries(assignAll()).filter(([, f]) => ['squat', 'bench_press', 'hinge'].includes(f)).map(([k]) => k);
+const U = Array.from({ length: 21 }, (_, i) => i / 20); const MID = 6.5;
+test('sonda', () => {
+  const shown = KEYS.filter(k => !!figureSpec(k));
+  const out: string[] = [`ćwiczeń w rodzinach gotowych: ${KEYS.length}; z figurą (figureSpec): ${shown.length}`];
+  for (const k of ['Trap Bar Deadlift', 'Leverage Deadlift', 'Rickshaw Deadlift', 'Deadlift (sztanga)']) { if (!figureSpec(k)) { out.push(k + ': brak figury'); continue; } const f = frameAt(figureSpec(k)!, 0.999); const f0 = frameAt(figureSpec(k)!, 0); out.push(`${k}: tułów (trunkPitch) u=0 ${f0.pose?.trunkPitch?.toFixed(1)}°, u≈1 ${f.pose?.trunkPitch?.toFixed(1)}°`); }
+  for (const k of ['Cable Pull Through', 'RDL (sztanga)', 'Good Morning']) { if (!figureSpec(k)) { out.push(k + ': brak figury'); continue; } const f = frameAt(figureSpec(k)!, 1); out.push(`${k}: na dole kolano ${jointAngles(f.sk, 'R').knee.toFixed(1)}°, biodro ${jointAngles(f.sk, 'R').hip.toFixed(1)}°, tułów ${f.pose?.trunkPitch?.toFixed(1)}°`); }
+  const conv = KEYS.filter(k => { const v = VARIANTS[k]; return figureSpec(k) && v.family === 'hinge' && v.p.style === 'floor' && v.p.impl !== 'trapbar' && !(v.p.stance > 20) && v.p.impl !== 'kb'; });
+  for (const k of conv) { const xs = U.map(u => frameAt(figureSpec(k)!, u).info.load[0] - MID); out.push(`${k}: ciężar względem środka stopy min ${Math.min(...xs).toFixed(1)} cm, max ${Math.max(...xs).toFixed(1)} cm`); }
+  require('fs').writeFileSync(process.env.SONDA_OUT!, out.join('\n') + '\n');
+});
+
+# sonda v1: npx jest tests/zz-sonda-06b.test.ts --maxWorkers=1 → exit 0; wynik: dowody/sonda-figury-v1.txt
+import { CUE_DATA } from '@/lib/cues';
+import { FIG_DATA, figureByKey } from '@/lib/figures';
+import { figureSpec } from '@/lib/figures/v2';
+test('sonda v1', () => {
+  const own = Object.keys(CUE_DATA.exercises);
+  const v2 = own.filter(k => !!figureSpec(k));
+  const v1 = own.filter(k => !figureSpec(k) && !!figureByKey(k));
+  const none = own.filter(k => !figureSpec(k) && !figureByKey(k));
+  require('fs').writeFileSync(process.env.SONDA_OUT!, [`ćwiczenia z własnymi wskazówkami: ${own.length}`, `z figurą v2 (rodziny ready): ${v2.length}`, `z figurą v1 (wyświetlaną przez ExerciseFigure): ${v1.length}`, `bez figury: ${none.length}`, '', 'v1: ' + v1.join('; ')].join('\n') + '\n');
+});

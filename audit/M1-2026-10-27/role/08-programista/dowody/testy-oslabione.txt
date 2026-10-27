@@ -1,0 +1,11 @@
+$ grep -rnE "\b(it|test|describe)\.(skip|only|todo)\(|\bx(it|describe|test)\(|expect\(true\)|^\s*//\s*expect\(" tests --include=*.ts --include=*.tsx --include=*.js
+exit=0
+
+$ grep -rnE "skip:|\.skipIf|test\.each.*skip|process\.platform.*skip" tests | head
+exit=0
+
+$ grep -rn "\.skip\b\|\.skip(" tests (warunkowe pominięcia)
+tests/matrix-invariants.test.ts:720:(process.env.MATRIX_REPLAY ? test : test.skip)('replay', async () => { const [seq, loc] = JSON.parse(process.env.MATRIX_REPLAY!); try { await runSeq((seq as Act[][]).flat(), loc); } fi
+tests/edit-history.test.tsx:379:  (new Date(2026, 2, 29, 2, 30).getHours() === 3 && new Date(2026, 0, 1).getTimezoneOffset() === -60 ? test : test.skip)('LOW: godzina nieistniejąca przez zmianę czasu (Europe/Warsaw, 29
+
+Wniosek: 2 pominięcia warunkowe z powodem (replay macierzy tylko z MATRIX_REPLAY; test DST tylko w strefie Europe/Warsaw). Jest: 1 skipped (wspolne/jest-podsumowanie.txt) = jeden z nich.

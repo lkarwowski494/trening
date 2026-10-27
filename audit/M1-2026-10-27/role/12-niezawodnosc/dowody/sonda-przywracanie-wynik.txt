@@ -1,0 +1,11 @@
+$ (worktree 025a50b9 w scratchpadzie; plik sondy: dowody/sonda-przywracanie-zrodlo.txt) npx jest tests/zz-sonda-przywracanie.test.ts --maxWorkers=1
+SONDA D pusty plik → błąd: Unexpected end of JSON input ; treningi przed = 7 , po = 7 ; kopia bezpieczeństwa przed importem = 0
+SONDA D ucięty JSON → błąd: Unterminated string in JSON at position 189111 (line 1 column 189112) ; treningi przed = 7 , po = 7 ; kopia bezpieczeństwa przed importem = 0
+SONDA D {} → błąd: bad state ; treningi przed = 7 , po = 7 ; kopia bezpieczeństwa przed importem = 0
+SONDA D obca aplikacja (lista bez ćwiczeń) → błąd: bad state ; treningi przed = 7 , po = 7 ; kopia bezpieczeństwa przed importem = 0
+SONDA D nowszy schemat → błąd: Plik ma schemat 99, a ta wersja obsługuje do 19. Zaktualizuj aplikację. ; treningi przed = 7 , po = 7 ; kopia bezpieczeństwa przed importem = 0
+SONDA D starszy (schemat 15, wersja 0.9) → true ; treningi przed = 7 , po = 6 ; kopia bezpieczeństwa przed importem = 1
+SONDA D poprawny (3 treningi) → true ; treningi przed = 6 , po = 3 ; kopia bezpieczeństwa przed importem = 1
+  ✓ import: liczności przed i po (137 ms)
+Tests:       1 passed, 1 total
+exit=0

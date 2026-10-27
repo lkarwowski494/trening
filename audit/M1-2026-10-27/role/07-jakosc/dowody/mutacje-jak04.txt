@@ -1,0 +1,5 @@
+# JAK-04: ręczne mutacje na kopii roboczej 025a50b9 (/tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/07-jakosc-wt); jest --ci --maxWorkers=1; po każdej mutacji git checkout -- <plik>
+# start 2026-10-27T18:10:43Z
+
+## BAZA (bez mutacji)
+$ npx jest --ci --maxWorkers=1 --silent tests/access.test.ts tests/m5s1-dni-treningowe.test.ts tests/monetyzacja-csv.test.ts tests/m5s1-dni-zapis.test.ts tests/audit-r83b.test.tsx tests/audit-r83.test.tsx tests/csv-import-logic.test.ts tests/audit-m1-041-reminder-files.test.tsx tests/stats.test.ts tests/logic.test.ts tests/audit-0.10-stats.test.ts tests/audit-0.10-data.test.ts tests/regress.test.tsx tests/audit-k1-mer.test.tsx

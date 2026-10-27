@@ -1,0 +1,36 @@
+// Zrzuty Expo web (worktree): języki pl, fr (najdłuższy), uk, de = pseudolokalizacja; 320 pt; ekrany Trening, zakup, limit, ustawienia, Więcej.
+import http from 'http'; import fs from 'fs'; import path from 'path'; import { createRequire } from 'module';
+const WT = process.argv[2], OUT = process.argv[3];
+const req = createRequire(path.join(WT, 'package.json')); const { chromium } = req('playwright');
+const root = path.join(WT, '.expo/screens/dist'); const seed = JSON.parse(fs.readFileSync(path.join(WT, '.expo/screens/seed.json'), 'utf8'));
+const srv = http.createServer((q, r) => { let p = path.join(root, decodeURIComponent(q.url.split('?')[0])); if (!fs.existsSync(p) || fs.statSync(p).isDirectory()) p = path.join(root, 'index.html'); r.writeHead(200, { 'content-type': p.endsWith('.js') ? 'text/javascript' : p.endsWith('.html') ? 'text/html' : p.endsWith('.css') ? 'text/css' : 'application/octet-stream' }); fs.createReadStream(p).pipe(r); }).listen(8779);
+const routes = { trening: '/', zakup: '/paywall', limit: '/paywall?reason=limit', ustawienia: '/more/settings', wiecej: '/more' };
+const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1243/chrome-linux64/chrome' });
+const raport = [];
+for (const [lang, loc, w] of [['pl', 'pl-PL', 320], ['fr', 'fr-FR', 320], ['uk', 'uk-UA', 320], ['de', 'de-DE', 320], ['es', 'en-US', 375]]) {
+  const ctx = await browser.newContext({ viewport: { width: w, height: 640 }, colorScheme: 'light', deviceScaleFactor: 2, locale: loc });
+  const st = JSON.parse(JSON.stringify(seed)); st.settings.language = lang === 'es' ? 'auto' : lang;
+  await ctx.addInitScript((s) => { if (!sessionStorage.getItem('seeded')) { localStorage.clear(); localStorage.setItem('kv:state', s); sessionStorage.setItem('seeded', '1'); } }, JSON.stringify(st));
+  const page = await ctx.newPage(); const errs = []; page.on('pageerror', (e) => errs.push(String(e)));
+  for (const [name, url] of Object.entries(routes)) {
+    if (lang === 'es' && name !== 'trening') continue;
+    await page.goto('http://localhost:8779' + url, { waitUntil: 'networkidle' }); await page.waitForTimeout(900);
+    const f = await page.evaluate(() => {
+      const W = window.innerWidth; const res = []; const lines = new Set();
+      for (const el of document.querySelectorAll('div,span,input')) {
+        const r = el.getBoundingClientRect(); if (!r.width || !r.height) continue; const txt = (el.innerText || el.value || '').trim().slice(0, 70);
+        if (r.right > W + 1 && txt && !/\n/.test(txt)) res.push(['poza ekranem', Math.round(r.right - W) + 'px', txt]);
+        const cs = getComputedStyle(el); if (el.children.length === 0 && txt && el.scrollWidth > el.clientWidth + 2 && cs.overflow !== 'visible') res.push(['ucięty', el.scrollWidth + '>' + el.clientWidth, txt]);
+        if (el.children.length === 0 && txt) lines.add(txt);
+        const al = el.getAttribute('aria-label'); if (al) lines.add('[a11y] ' + al.slice(0, 90));
+      }
+      const seen = new Set(); return { problemy: res.filter((x) => { const k = x[0] + x[2]; if (seen.has(k)) return false; seen.add(k); return true; }), teksty: [...lines] };
+    });
+    await page.screenshot({ path: `${OUT}/${lang}-${w}-${name}.png`, fullPage: true });
+    raport.push({ lang, ekran: name, problemy: f.problemy, ...(lang === 'de' ? { bez_nawiasow: f.teksty.filter((t) => /\p{L}{2,}/u.test(t) && !t.includes('⟦')) } : {}), ...(lang === 'es' ? { teksty: f.teksty.slice(0, 40) } : {}) });
+  }
+  if (errs.length) raport.push({ lang, bledy: errs.slice(0, 5) });
+  await ctx.close();
+}
+await browser.close(); srv.close();
+fs.writeFileSync(path.join(OUT, 'raport.json'), JSON.stringify(raport, null, 1)); console.log('ok', raport.length);

@@ -1,0 +1,26 @@
+$ sed -n 481p docs/18-przekazanie.md
+- 23.10.2026 (właściciel, uwaga z buildu 1030): ekran „Pełna wersja” — kolejność planów **miesięczny, roczny, dożywotni** i **domyślnie zaznaczony miesięczny** („pierwsze co rzuca się w oczy to WOW, ale tanio, a później przyszła myśl, że rok i lifetime wychodzą jeszcze taniej”). Odrzucone: domyślnie roczny przy miesięcznym na górze. Wdrożenie: gałąź naprawa-m1-dec07-ui.
+
+$ grep -n "naprawa-m1-dec07-ui" docs/przekazanie-koordynatora-2026-10-23.md
+26:| `naprawa-m1-dec07-ui` (od p2-kod) | K1 „Pełna wersja”, K3 „Planowanie”, K9; **kolejność planów: miesięczny, roczny, dożywotni + domyślnie miesięczny**; ZK-05 odświeżanie po zakupie, ZK-06 ostrzeżenie o odnawianiu | M1 |
+48:**Zatwierdzone, nierozpoczęte:** `naprawa-m1-dec07-ui` (od p2-kod po jej zakończeniu) — M1-014 (K1 „Pełna wersja”), 025 (K3 „Planowanie”), 006 (K9 ≤ 1 stuknięcie), kolejność planów miesięczny–roczny–dożywotni z domyślnym miesięcznym, ZK-05 (odświeżanie po zakupie), ZK-06 (ostrzeżenie przy dożywotnim), sprawdzenie „Zarządzaj subskrypcją” w TestFlight. Jeśli 
+76:| `naprawa-m1-dec07-ui` | po p2-kod: K1, K3, K9, kolejność planów (domyślny miesięczny), ZK-05, ZK-06 | **nierozpoczęte** |
+
+$ git log --oneline 99563b1e^1..99563b1e^2   (co faktycznie scalono z gałęzi naprawa-m1-dec07-ui, 25.10.2026)
+ade64673 DEC-07 K9 (M1-006): test-wymaganie, najwyżej 1 stuknięcie od ekranu treningu do odhaczonej serii
+
+$ grep -n "PLAN_ORDER" lib/products.ts tests/m5s1-bez-proby.test.ts tests/store-adapter.test.ts
+lib/products.ts:19:export const PLAN_ORDER: readonly EntitlementPlan[] = ['yearly', 'monthly', 'lifetime'];
+tests/m5s1-bez-proby.test.ts:16:import { PLAN_ORDER } from '@/lib/products';
+tests/m5s1-bez-proby.test.ts:86:  test('kolejność planów bez zmian: roczny, miesięczny, dożywotni', () => { expect(PLAN_ORDER).toEqual(['yearly', 'monthly', 'lifetime']); });
+tests/store-adapter.test.ts:10:import { PRODUCT_IDS, PLAN_ORDER, SUBSCRIPTION_PLANS, SUBSCRIPTION_GROUP_NAME, planOfProduct, isSubscriptionPlan, PRIVACY_URL, TERMS_URL,
+tests/store-adapter.test.ts:34:    expect([...PLAN_ORDER].sort()).toEqual([...ENTITLEMENT_PLANS].sort()); expect(PLAN_ORDER[0]).toBe('yearly');
+
+$ grep -n "useState<EntitlementPlan>" app/paywall.tsx
+36:  const [products, setProducts] = useState<StoreProduct[] | 'loading' | 'unavailable'>('loading'); const [sel, setSel] = useState<EntitlementPlan>('yearly');
+
+$ grep -rn "dec07-ui\|ZK-05\|ZK-06" docs --include=*.md -l
+docs/przekazanie-koordynatora-2026-10-23.md
+docs/18-przekazanie.md
+
+Wniosek: decyzja 23.10 (kolejność miesięczny–roczny–dożywotni, domyślnie miesięczny) nie trafiła do kodu; gałąź scalona 25.10 zawierała tylko K9; test m5s1-bez-proby pilnuje kolejności SPRZED decyzji; brak śladu zamknięcia pozostałych pozycji (K1, kolejność, ZK-05, ZK-06, sprawdzenie „Zarządzaj subskrypcją” w TestFlight). 27.10.2026 ~17:00 właściciel zatwierdził kolejność z kodu (polecenie M1) — sama kolejność nie jest znaleziskiem.

@@ -1,0 +1,26 @@
+# Moduły lib/ (bez *.generated.ts) i liczba plików testów, które je importują (@/lib/<moduł> albo ../lib/<moduł>)
+0 lib/deload-sets.ts
+0 lib/genconst.ts
+0 lib/state/backupstat.ts
+0 lib/state/bands.ts
+0 lib/state/bodymass.ts
+0 lib/state/boot.ts
+0 lib/state/core.ts
+0 lib/state/effort.ts
+0 lib/state/exercises.ts
+0 lib/state/finish.ts
+0 lib/state/history.ts
+0 lib/state/live.ts
+0 lib/state/migrate-catalog.ts
+0 lib/state/migrate-live.ts
+0 lib/state/migrate-records.ts
+0 lib/state/migrate.ts
+0 lib/state/pause.ts
+0 lib/state/places.ts
+0 lib/state/settings.ts
+0 lib/state/setvals.ts
+0 lib/state/start.ts
+0 lib/state/swap.ts
+0 lib/state/templates.ts
+0 lib/state/time.ts
+0 lib/state/weekplan.ts

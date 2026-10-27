@@ -1,0 +1,107 @@
+$ grep -n 'PlanningButton label' 'app/(tabs)/index.tsx' | cut -c1-200
+44:      {showPlanning ? <View style={{ alignItems: 'flex-end' }}><PlanningButton label={plan ? t('Planowanie') : t('Ustaw plan')} onPress={() => router.push('/plan')} /></View> : null}
+exit=0
+
+$ grep -n 'TabHeader row' 'app/(tabs)/history.tsx' | cut -c1-200
+39:      <TabHeader row><H1>{t('Plan')}</H1><PlanningButton label={t('Planowanie')} onPress={() => router.push('/plan')} /></TabHeader>
+exit=0
+
+$ grep -n 'nad tytułem' tests/m3-p2-start.test.tsx | cut -c1-200
+31:  test('z planem: przycisk „Planowanie” w nagłówku nad tytułem „Trening”, nie w karcie planu; stuknięcie → ekran planu', async () => {
+exit=0
+
+$ grep -n 'export const PLAN_ORDER' lib/products.ts
+19:export const PLAN_ORDER: readonly EntitlementPlan[] = ['yearly', 'monthly', 'lifetime'];
+exit=0
+
+$ grep -n 'kolejność planów bez zmian' tests/m5s1-bez-proby.test.ts | cut -c1-200
+86:  test('kolejność planów bez zmian: roczny, miesięczny, dożywotni', () => { expect(PLAN_ORDER).toEqual(['yearly', 'monthly', 'lifetime']); });
+exit=0
+
+$ git log --oneline 99563b1e^2 -6
+ade64673 DEC-07 K9 (M1-006): test-wymaganie, najwyżej 1 stuknięcie od ekranu treningu do odhaczonej serii
+39d8ce8a Poprawka CI: kolejność _source.json i test pól dotyku kalendarza (minHeight)
+fc1cd366 Partia 2 kod: macierz testów, README i plan testów (docs/09) wygenerowane ponownie
+8dba7137 Zgody Zdrowia pt-BR: poprawna forma „apaga” (partia 2, „formy w el/pt” — zakres z przekazania, bez ID)
+16eb986e M1-013 (DEC-05): osobny komunikat „Sklep chwilowo niedostępny” przy pustej liście produktów
+544f1e68 M1-017 (DEC-01): kalendarz miesiąca rośnie z tekstem do progu 130%
+exit=0
+
+$ grep -n 'K3\|kolejność planów' docs/przekazanie-koordynatora-2026-10-23.md | cut -c1-260
+26:| `naprawa-m1-dec07-ui` (od p2-kod) | K1 „Pełna wersja”, K3 „Planowanie”, K9; **kolejność planów: miesięczny, roczny, dożywotni + domyślnie miesięczny**; ZK-05 odświeżanie po zakupie, ZK-06 ostrzeżenie o odnawianiu | M1 |
+34:3. Przed App Store: pełny katalog E2E na kandydacie; zrzuty sklepu z podpisami (po K1/K3/K6); `asc-metadane.yml` tryb `zapis` (zatwierdza właściciel); forma grzecznościowa fr/tr (R-010 pkt 2); notatki dla App Review (`store/review-notes.md`), App Privac
+48:**Zatwierdzone, nierozpoczęte:** `naprawa-m1-dec07-ui` (od p2-kod po jej zakończeniu) — M1-014 (K1 „Pełna wersja”), 025 (K3 „Planowanie”), 006 (K9 ≤ 1 stuknięcie), kolejność planów miesięczny–roczny–dożywotni z domyślnym miesięczn
+76:| `naprawa-m1-dec07-ui` | po p2-kod: K1, K3, K9, kolejność planów (domyślny miesięczny), ZK-05, ZK-06 | **nierozpoczęte** |
+exit=0
+
+$ grep -rn 'przytrzyman' docs/21-roadmapa-offline.md
+exit=1
+
+$ grep -n 'export const WHATS_NEW' lib/whatsnew.ts
+18:export const WHATS_NEW: WhatsNewEntry[] = [];
+exit=0
+
+$ grep -n "voice: 'off'" lib/seed.ts | cut -c1-160
+323:    settings: { ...defaultSettings(), voice: 'off' /* DEC-05 (20.10.2026): zapowiedzi głosowe domyślnie wyłączone dla nowej instalacji; brak pola w star
+exit=0
+
+$ grep -n "theme: 'dark'" lib/seed.ts | cut -c1-80
+273:export const defaultSettings = (): Settings => ({ defaultRest: DEFAULT_REST,
+exit=0
+
+$ grep -n 'Segmented label' app/generator.tsx | cut -c1-200
+41:    <Segmented label={t('Generator szablonów i planu')} value={mode} onChange={setMode} options={[['gen', t('Nowe szablony i plan')], ['own', t('Plan z moich szablonów')]]} />
+exit=0
+
+$ grep -n 'W trybie cichym' app/more/settings.tsx | cut -c1-160
+44:      <SwitchRow label={t('Dźwięk na koniec przerwy')} detail={t('W trybie cichym telefon tylko wibruje')} /* decyzja właściciela 23.10.2026 (wariant A):
+exit=0
+
+$ grep -n 'cues=1' components/ExerciseCues.tsx | cut -c1-200
+75: * ćwiczenia z rozwiniętą sekcją „Technika” na górze (`?cues=1`); ten sam komponent wskazówek i figury, bez kopii treści. Tylko ćwiczenia, które mają
+80:  return <Btn nav small kind="ghost" title={`${t('Technika')} ›`} accessibilityLabel={t('Technika: {name}', { name })} onPress={() => router.push(`/exercise/${exercise.id}?cues=1`)} />;
+exit=0
+
+$ grep -rn 'cues=0' app components | wc -l
+2
+exit=0
+
+$ grep -n 'MIN_LIVE_MINUTES_FOR_DAY = 7' lib/access.ts
+31:export const MIN_LIVE_MINUTES_FOR_DAY = 7;
+exit=0
+
+$ grep -n 'showsVerticalScrollIndicator={false}' components/Scroll.tsx | cut -c1-120
+10:  return <RNScrollView ref={ref} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} {...prop
+15:  return <RNFlatList ref={ref} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} {...props}
+20:  return <RNSectionList ref={ref} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} {...pro
+exit=0
+
+$ grep -rnP '[\x{1F300}-\x{1FAFF}\x{2600}-\x{26FF}]' app components lib/i18n.en.ts lib/guide.ts | wc -l
+grep: character code point value in \x{} or \o{} is too large
+0
+exit=0
+
+$ grep -rln PlateBar app components lib | wc -l
+2
+exit=0
+
+$ grep -n 'paywall-headline\|paywall-owned\|PLAN_ORDER.map\|ctaLabel(chosen)' app/paywall.tsx | cut -c1-140
+66:      </View> : <Text testID="paywall-headline" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.
+68:      {view.active ? <View testID="paywall-owned" accessible accessibilityLanguage={lang()} style={{ borderWidth: 1, borderColor: th.line
+80:        {Array.isArray(products) ? PLAN_ORDER.map(plan => products.find(p => p.plan === plan)).filter((p): p is StoreProduct => !!p).map(
+88:        {chosen ? <Btn kind="primary" block title={ctaLabel(chosen)} style={{ marginTop: 4 }} onPress={() => { void buy(); }} /> : null}
+exit=0
+
+$ grep -n "title={t('Pełna wersja')}" components/SubscriptionCard.tsx | cut -c1-200
+16:    <Item title={t('Pełna wersja')} sub={sub} accessibilityLabel={`${t('Pełna wersja')}. ${sub}`} onPress={() => router.push('/paywall?reason=settings')} />
+exit=0
+
+$ grep -n 'const WIDE\|const COMPACT' components/WorkoutBlocks.tsx | cut -c1-200
+49:const WIDE = { idx: 28, w: 64, reps: 56, dist: 64, time: 56, play: 44, rpe: 46, band: 56, done: 44, gap: 6, prevMin: 70 };
+51:const COMPACT = { idx: 24, w: 56, reps: 48, dist: 56, time: 50, play: 40, rpe: 40, band: 48, done: 44, gap: 4, prevMin: 70 };
+exit=0
+
+$ grep -n 'accessibilityActions' components/DragList.tsx | cut -c1-160
+98:      accessibilityValue={{ text: t('{n} z {all}', { n: i + 1, all: items.length }) }} accessibilityActions={[...acts, ...acts.map(a => ({ name: a.name === '
+exit=0
+

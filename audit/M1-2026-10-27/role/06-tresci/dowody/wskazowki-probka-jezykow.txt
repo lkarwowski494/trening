@@ -1,0 +1,48 @@
+## dl.feet
+  pl : Stopy pod sztangą, mniej więcej na szerokość bioder do barków; sztanga tuż przy piszczelach, nad środkiem stopy.
+  en : Feet under the bar, about hip- to shoulder-width apart; the bar close to your shins, over mid-foot.
+  de : Füße unter der Stange, etwa hüft- bis schulterbreit; die Stange nah an den Schienbeinen, über der Fußmitte.
+  ru : Стопы под грифом, примерно от ширины таза до ширины плеч; гриф близко к голеням, над серединой стопы.
+  tr : Ayaklar halterin altında, yaklaşık kalça ile omuz genişliği arasında; halter kaval kemiklerinize yakın, ayağın ortasının üstünde.
+## hinge.back
+  pl : Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.
+  en : Keep your back straight (neutral) throughout — no rounding.
+  de : Rücken die ganze Zeit gerade (neutral) — kein Rundrücken.
+  ru : Держи спину прямой (нейтральной) всё время — не округляй.
+  tr : Hareket boyunca sırt düz (nötr) — yuvarlamadan.
+## rdl.knees
+  pl : Kolana tylko lekko ugięte — to nie przysiad.
+  en : Knees only slightly bent — this isn’t a squat.
+  de : Knie nur leicht gebeugt — das ist keine Kniebeuge.
+  ru : Колени лишь слегка согнуты — это не присед.
+  tr : Dizler yalnızca hafif bükük — bu bir squat değil.
+## fsq.rack
+  pl : Sztanga oparta z przodu barków, łokcie wysoko, ramiona mniej więcej poziomo.
+  en : Let the bar sit across the fronts of your shoulders, elbows high, upper arms roughly parallel to the floor.
+  de : Leg die Stange vorn auf die Schultern, Ellbogen hoch, Oberarme etwa waagerecht.
+  ru : Положи гриф на переднюю часть плеч, локти высоко, плечи примерно горизонтально.
+  tr : Halteri omuzlarınızın önüne koyun, dirsekler yukarıda, üst kollar yaklaşık yatay.
+## wall.breath
+  pl : Oddychaj normalnie — nie wstrzymuj oddechu.
+  en : Breathe normally; do not hold your breath.
+  de : Atme normal; halte die Luft nicht an.
+  ru : Дыши нормально; не задерживай дыхание.
+  tr : Normal nefes alın; nefesinizi tutmayın.
+## bdip.move
+  pl : Opuść się, zginając łokcie, do lekkiego rozciągnięcia (mniej więcej kąt prosty w łokciach); wypchnij się do wyprostu.
+  en : Lower yourself by bending your elbows to a light stretch (about a right angle at the elbows); push back up until straight.
+  de : Senke dich durch Beugen der Ellbogen bis zu einer leichten Dehnung ab (etwa rechter Winkel im Ellbogen); drück dich bis zur Streckung hoch.
+  ru : Опускайся, сгибая локти, до лёгкого растяжения (примерно прямой угол в локтях); выжмись вверх до выпрямленных рук.
+  tr : Dirsekleri bükerek hafif bir gerilmeye kadar inin (dirseklerde yaklaşık dik açı); kollar düzelene kadar kendinizi itin.
+## sq.kneesToes
+  pl : Kolana idą w linii palców stóp — nie zapadają się do środka.
+  en : Your knees track in line with your toes — they don’t cave in.
+  de : Die Knie zeigen in Richtung der Zehen — sie knicken nicht nach innen.
+  ru : Колени идут по линии носков — не заваливаются внутрь.
+  tr : Dizler ayak parmaklarının doğrultusunda ilerler — içe çökmez.
+## bp.blades
+  pl : Ściągnij łopatki do siebie i w dół i utrzymaj je tak przez cały ruch.
+  en : Squeeze your shoulder blades together and down, and hold them there throughout.
+  de : Zieh die Schulterblätter nach hinten unten und halte sie dort während der ganzen Bewegung.
+  ru : Сведи лопатки и опусти их вниз, держи так всё время.
+  tr : Kürek kemiklerinizi geriye ve aşağı çekin, hareket boyunca orada tutun.

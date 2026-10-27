@@ -1,0 +1,6 @@
+$ curl -sS https://api.nbp.pl/api/exchangerates/rates/a/eur/?format=json
+{"table":"A","currency":"euro","code":"EUR","rates":[{"no":"209/A/NBP/2026","effectiveDate":"2026-10-27","mid":4.4056}]}
+exit 0
+$ curl -sS https://api.nbp.pl/api/exchangerates/rates/a/usd/?format=json
+{"table":"A","currency":"dolar amerykański","code":"USD","rates":[{"no":"209/A/NBP/2026","effectiveDate":"2026-10-27","mid":3.9542}]}
+exit 0

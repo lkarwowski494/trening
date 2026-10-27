@@ -1,0 +1,3 @@
+$ curl -sS "https://developer.apple.com/tutorials/data/documentation/storekit/appstore/showmanagesubscriptions(in:).json"  (odczyt 27.10.2026, HTTP 200); tekst wyciągnięty z JSON:
+OK  Use this function to display the manage subscriptions sheet within your app.
+OK  Test the managing subscriptions functionality in the sandbox environment and StoreKit testing in Xcode.

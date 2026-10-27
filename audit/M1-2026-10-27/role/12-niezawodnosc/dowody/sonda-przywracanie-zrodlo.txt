@@ -1,0 +1,23 @@
+/* SONDA AUDYTU 12-niezawodnosc — NIE-03: przywrócenie (import kopii JSON) z plikiem złym, nowszym, starszym, obcym, pustym i poprawnym. Liczności przed i po. */
+import * as store from '@/lib/store';
+import * as backup from '@/lib/backup';
+import * as DocumentPicker from 'expo-document-picker';
+import * as FS from 'expo-file-system/legacy';
+import { fresh, addWorkout, ex } from './helpers';
+import * as fs from 'fs'; import * as path from 'path';
+const log = (...a: unknown[]) => { process.stdout.write('SONDA ' + a.map(x => typeof x === 'string' ? x : JSON.stringify(x)).join(' ') + '\n'); };
+const pick = (body: string) => { (DocumentPicker.getDocumentAsync as jest.Mock).mockResolvedValueOnce({ canceled: false, assets: [{ uri: 'file:///cache/pick.json' }] }); (FS.readAsStringAsync as jest.Mock).mockResolvedValueOnce(body); };
+test('import: liczności przed i po', async () => {
+  await fresh(); const name = store.getState().exercises[0].name; for (let i = 0; i < 7; i++) addWorkout(Date.UTC(2026, 8, 1 + i, 8), [[name, [{ weight: 50, reps: 5 }]]]); await store.flush();
+  const good = JSON.stringify(backup.buildBackup()); const g = JSON.parse(good); g.state.workouts = g.state.workouts.slice(0, 3);
+  const old15 = JSON.stringify(JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'state-090-schema15.json'), 'utf8')).state); /* goły stan wersji 0.9 */
+  const cases: [string, string][] = [['pusty plik', ''], ['ucięty JSON', good.slice(0, good.length / 2)], ['{}', '{}'], ['obca aplikacja (lista bez ćwiczeń)', JSON.stringify({ workouts: [{ date: '2026-01-01' }] })],
+    ['nowszy schemat', JSON.stringify({ ...g, schemaVersion: 99, state: { ...g.state, schemaVersion: 99 } })], ['starszy (schemat 15, wersja 0.9)', old15], ['poprawny (3 treningi)', JSON.stringify(g)]];
+  for (const [n, body] of cases) {
+    const before = store.getState().workouts.length; const writes = (FS.writeAsStringAsync as jest.Mock).mock.calls.length; let res: string;
+    pick(body);
+    try { res = String(await backup.importBackup()); } catch (e) { res = 'błąd: ' + (e instanceof Error ? e.message : String(e)).slice(0, 80); }
+    const safety = (FS.writeAsStringAsync as jest.Mock).mock.calls.slice(writes).filter(c => /before-import/.test(String(c[0]))).length;
+    log('D', n, '→', res, '; treningi przed =', before, ', po =', store.getState().workouts.length, '; kopia bezpieczeństwa przed importem =', safety);
+  }
+});

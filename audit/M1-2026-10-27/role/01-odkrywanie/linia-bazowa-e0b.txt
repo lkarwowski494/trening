@@ -1,0 +1,60 @@
+Linia bazowa kursu (E0b) roli 01-odkrywanie — zapisana 2026-10-27 17:13 UTC, PRZED lekturą docs/brd, rejestru decyzji i kodu.
+Wejście o aplikacji: tylko opis w sklepie (store/app-store-metadata.json, lokalizacja pl) i jedno zdanie celu z polecenia M1
+("iOS-owy dziennik treningu siłowego (siłownia i dom), offline, bez konta, uczciwy model freemium").
+Dowody rynku: dowody/rynek-konkurencja.txt, dowody/rynek-recenzje-niskie.txt (odczyt 2026-10-27, sklep PL).
+Dowody dziedziny: ACSM, Progression models in resistance training for healthy adults, Med Sci Sports Exerc 2009;41(3):687-708,
+PMID 19204579, abstrakt odczytany 2026-10-27 przez eutils.ncbi.nlm.nih.gov (szczebel 2 wg CLAUDE.md).
+Polityki: App Review Guidelines, "Last Updated: October 16, 2026", odczyt 2026-10-27.
+
+PRACE (J) i dowód potrzeby
+LB-J1 Szybki zapis serii (ciężar x powtórzenia) w trakcie treningu, między seriami, często jedną ręką.
+      Dowód: K1 3★ 2026-08-30 chwali "fast logging"; K5 2★ 2015-04-22 "There is a lot of pain when logging workouts".
+LB-J2 Wiedzieć, co zrobić dziś i ile dołożyć (progresja obciążenia).
+      Dowód: ACSM 2009: "it is recommended that 2-10% increase in load be applied when the individual can perform the
+      current workload for one to two repetitions over the desired number."
+LB-J3 Odpocząć właściwy czas między seriami (timer przerw).
+      Dowód: ACSM 2009: "3- to 5-min rest periods" (siła), "1- to 2-min rest periods" (hipertrofia);
+      K2 1★ 2023-11-09 skarga na płatną konfigurację timera przerw.
+LB-J4 Widzieć postęp (historia, wykresy, rekordy) bez płacenia za własne dane.
+      Dowód: K2 1★ 2023-06-26 "After update i can’t see my workout weights bcs it’s now a paid function"; K5 1★ 2023-07-25 (skala osi wykresu).
+LB-J5 Nie stracić danych (nowy telefon, kopia, eksport, brak konta).
+      Dowód: K2 2★ 2023-06-24 "I changed my phone and I lost all my data"; K5 1★ 2025-05-05 i K2 1★ 2026-06-23 (problemy z kontem).
+LB-J6 Trenować w innym miejscu / w domu z tym sprzętem, który jest.
+      Dowód: cel właściciela ("siłownia i dom"); wyniki wyszukiwania PL "trening w domu" (dowody/rynek-konkurencja.txt, frazy).
+
+KONIECZNE PRZEPŁYWY
+LB-PR1 Pierwsze uruchomienie → pierwszy trening bez konta i bez ankiety przed informacją o cenie
+       (K7 1★ 2026-09-19 "Dopiero po podaniu swoich danych i całej ankiecie dowiadujemy się ze aplikacja jest płatna").
+LB-PR2 Trening: start → serie → timer → zakończenie → zapis (przerwanie: telefon, wyjście z aplikacji, rozładowanie).
+LB-PR3 Przegląd postępów (historia, rekordy, wykres) — także w wersji darmowej.
+LB-PR4 Kopia / przeniesienie na nowy telefon / eksport / usunięcie danych.
+LB-PR5 Zakup: jasna cena w walucie sklepu, co dostaję, przywracanie, zarządzanie subskrypcją, Chmura rodzinna,
+       stan „masz już ten plan” (App Review 3.1.2(b): "should not be able to inadvertently subscribe to multiple variations of the same thing").
+LB-PR6 Zegarek: odhaczanie serii i przerwa na nadgarstku bez rozjazdu stanu z telefonem (K4: 6 recenzji ≤3★ o synchronizacji z zegarkiem w próbce).
+
+OGRANICZENIA DZIEDZINOWE I PRAWNE
+LB-OG1 Brak porad medycznych; ból/uraz → specjalista (CLAUDE.md). Technika ćwiczeń jako ryzyko urazu
+       (K2 1★ 2026-08-25 "Nieprawidłowa technika ćwiczeń może prowadzić do poważnych kontuzji").
+LB-OG2 Liczby, których aplikacja uczy (progresja, przerwy, e1RM, objętość) ze źródeł (CLAUDE.md, hierarchia 1–5).
+LB-OG3 HealthKit: App Review 5.1.3(ii) "Apps must not write false or inaccurate data into HealthKit ... and may not store
+       personal health information in iCloud." Skarga K1 3★ 2026-09-22 na zawyżone kalorie z treningu siłowego.
+LB-OG4 Metadane i cena zgodne z aplikacją: App Review 2.3 i 2.3.1(a) ("promoting a false price"), 3.1.2(c).
+
+SKARGI KONKURENCJI (motywy, próbka RSS PL str. 1–3, 2026-10-27)
+LB-S1 Paywall na podstawy (timer, postęp): K2 2023-11-09, 2023-06-26, 2023-12-31; K5 2024-09-15; K4 2018-05-27, 2015-02-24.
+LB-S2 Utrata danych przy zmianie telefonu / konto: K2 2023-06-24, 2026-06-23; K5 2025-05-05.
+LB-S3 Synchronizacja z zegarkiem: K4 2025-05-25, 2025-05-12, 2024-06-27, 2022-12-07; K5 2021-10-01; K1 2026-08-30.
+LB-S4 Brak języka polskiego: K4 2022-02-15, K5 2024-01-13, K7 2026-03-08.
+LB-S5 Cena nieprzystająca do Polski / pobieranie opłat po anulowaniu: K6 2026-01-23, 2026-08-28; Chmura rodzinna nie działa: K6 2025-07-14.
+LB-S6 Cena ujawniona dopiero po ankiecie: K7 2026-09-19.
+
+WZORZEC NAJLEPSZYCH (z listingów PL)
+K1 (4380 ocen, 4,94) i K3 (1961 ocen, 4,92): darmowy rdzeń z subskrypcją miesięczną/roczną i dożywotnią
+(K1: 14,99–22,99 zł / 117,99 zł / 429,99 zł; K3: 17,49 / 99,99 / 349,99 zł), szybki zapis, zegarek.
+Wniosek dla aplikacji: uczciwy darmowy rdzeń (historia i dane zawsze), cena w walucie sklepu, polski język, zegarek bez rozjazdu.
+
+SOCZEWKI (po kolei, bez subagentów)
+- początkujący w 1. tygodniu: LB-PR1, LB-J1, LB-J3, LB-OG1 (technika), cena przed ankietą (LB-S6);
+- zaawansowany po roku: LB-J2 (progresja), LB-J4 (wykresy, rekordy), LB-J5 (eksport, nowy telefon), LB-PR6 (zegarek);
+- ekspert dziedziny: LB-OG1, LB-OG2 (ACSM: progresja 2–10%, przerwy 1–2 / 3–5 min, częstotliwość 2–3 / 3–4 / 4–5 dni), LB-OG3;
+- analityk konkurencji: LB-S1–S6, modele cen K1–K7.

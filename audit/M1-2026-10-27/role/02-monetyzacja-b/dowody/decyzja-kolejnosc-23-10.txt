@@ -1,0 +1,24 @@
+$ git log --all --oneline | grep -i "dec07"
+99563b1e Merge remote-tracking branch 'origin/naprawa-m1-dec07-ui' into integracja-2026-10-25
+d795d7a5 Merge remote-tracking branch 'origin/naprawa-m1-dec07-teksty' into integracja-2026-10-25
+
+$ git log --oneline 99563b1e^1..99563b1e^2   (zawartość scalonej gałęzi naprawa-m1-dec07-ui)
+ade64673 DEC-07 K9 (M1-006): test-wymaganie, najwyżej 1 stuknięcie od ekranu treningu do odhaczonej serii
+$ git show --stat 99563b1e^2 | tail -4
+ README.md                          |  6 +++---
+ docs/19-macierz-testow.md          | 14 +++++++-------
+ tests/dec07-k9-stukniecia.test.tsx | 25 +++++++++++++++++++++++++
+ 3 files changed, 35 insertions(+), 10 deletions(-)
+
+$ git log -S"kolejność planów bez zmian" -- tests/m5s1-bez-proby.test.ts (pierwsze dodanie testu kolejności)
+737010cf 2026-10-22 15:42:01 +0000 Monetyzacja M5 S1: limit 5 dni treningowych w miesiacu, bez okresu probnego
+$ git log -1 8ca3ab54 (zapis decyzji 23.10 w docs/18)
+8ca3ab54 2026-10-23 07:50:17 +0000 docs/18: kolejność planów na ekranie zakupu i wariant A lekcji L-028 (decyzje 23.10.2026)
+
+$ grep -n "PLAN_ORDER" lib/products.ts tests/m5s1-bez-proby.test.ts tests/store-adapter.test.ts; grep -n "useState<EntitlementPlan>" app/paywall.tsx
+lib/products.ts:19:export const PLAN_ORDER: readonly EntitlementPlan[] = ['yearly', 'monthly', 'lifetime'];
+tests/m5s1-bez-proby.test.ts:16:import { PLAN_ORDER } from '@/lib/products';
+tests/m5s1-bez-proby.test.ts:86:  test('kolejność planów bez zmian: roczny, miesięczny, dożywotni', () => { expect(PLAN_ORDER).toEqual(['yearly', 'monthly', 'lifetime']); });
+tests/store-adapter.test.ts:10:import { PRODUCT_IDS, PLAN_ORDER, SUBSCRIPTION_PLANS, SUBSCRIPTION_GROUP_NAME, planOfProduct, isSubscriptionPlan, PRIVACY_URL, TERMS_URL,
+tests/store-adapter.test.ts:34:    expect([...PLAN_ORDER].sort()).toEqual([...ENTITLEMENT_PLANS].sort()); expect(PLAN_ORDER[0]).toBe('yearly');
+36:  const [products, setProducts] = useState<StoreProduct[] | 'loading' | 'unavailable'>('loading'); const [sel, setSel] = useState<EntitlementPlan>('yearly');

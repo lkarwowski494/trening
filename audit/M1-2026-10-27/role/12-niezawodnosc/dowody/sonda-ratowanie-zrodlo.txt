@@ -1,0 +1,143 @@
+/*
+ * SONDA AUDYTU 12-niezawodnosc (M1 27.10.2026) — tylko w scratchpadzie, nie w repo.
+ * Odtworzenia ścieżek ratunku na prawdziwym SQLite (node:sqlite) + atrapie systemu plików w pamięci (z czasem modyfikacji).
+ * Wynik: liczności przed i po (console.log z prefiksem SONDA).
+ */
+import { DatabaseSync } from 'node:sqlite';
+
+jest.setTimeout(120000);
+type Dbs = Map<string, DatabaseSync>;
+const DOCS = '/c/Documents/SQLite'; const LIB = '/c/Library/SQLite';
+const log = (...a: unknown[]) => { process.stdout.write('SONDA ' + a.map(x => typeof x === 'string' ? x : JSON.stringify(x)).join(' ') + '\n'); };
+
+function realSqlite(dbs: Dbs, opts: { openFail?: boolean } = {}) {
+  const open = async (_n: string, _o?: unknown, dir?: string) => {
+    if (opts.openFail) throw new Error('file is not a database');
+    const key = dir ?? DOCS; if (!dbs.has(key)) dbs.set(key, new DatabaseSync(':memory:')); const d = dbs.get(key)!;
+    return {
+      execAsync: async (q: string) => { d.exec(q); },
+      getFirstAsync: async (q: string, ...p: unknown[]) => ((d.prepare(q).get(...(p as never[])) as unknown) ?? null) as any,
+      getAllAsync: async (q: string, ...p: unknown[]) => d.prepare(q).all(...(p as never[])) as any,
+      runAsync: async (q: string, ...p: unknown[]) => d.prepare(q).run(...(p as never[])),
+      withTransactionAsync: async (f: () => Promise<void>) => { d.exec('BEGIN'); try { await f(); d.exec('COMMIT'); } catch (e) { d.exec('ROLLBACK'); throw e; } },
+      closeAsync: async () => {},
+    };
+  };
+  return { defaultDatabaseDirectory: DOCS, openDatabaseAsync: open, deleteDatabaseAsync: async (_n: string, dir?: string) => { dbs.delete(dir ?? DOCS); } };
+}
+/** System plików w pamięci: ścieżka → { body, mtime (s) }. */
+function fakeFs(files: Map<string, { body: string; mtime: number }>) {
+  let clock = 1_000_000;
+  return {
+    documentDirectory: 'file:///doc/', cacheDirectory: 'file:///cache/', bundleDirectory: null,
+    EncodingType: { UTF8: 'utf8' },
+    getInfoAsync: async (p: string) => { const f = files.get(p); if (f) return { exists: true, isDirectory: false, modificationTime: f.mtime }; const isDir = [...files.keys()].some(k => k.startsWith(p.endsWith('/') ? p : p + '/')); return { exists: isDir || p === 'file:///doc/Backup/', isDirectory: isDir }; },
+    makeDirectoryAsync: async () => {},
+    writeAsStringAsync: async (p: string, body: string) => { files.set(p, { body, mtime: ++clock }); },
+    readAsStringAsync: async (p: string) => { const f = files.get(p); if (!f) throw new Error('nie ma ' + p); return f.body; },
+    readDirectoryAsync: async (dir: string) => [...files.keys()].filter(k => k.startsWith(dir)).map(k => k.slice(dir.length)).filter(n => n && !n.includes('/')),
+    deleteAsync: async (p: string) => { files.delete(p); },
+    copyAsync: async () => {},
+  };
+}
+type Store = typeof import('@/lib/store'); type Backup = typeof import('@/lib/backup');
+async function boot(dbs: Dbs, files: Map<string, { body: string; mtime: number }>, o: { migrateThrowsWhen?: (raw: any) => boolean; openFail?: boolean; guard?: boolean; retry?: boolean } = {}) {
+  let s!: Store; let b!: Backup; let err: any = null; const shared: string[] = [];
+  await jest.isolateModulesAsync(async () => {
+    jest.doMock('expo-sqlite', () => realSqlite(dbs, { openFail: o.openFail }));
+    jest.doMock('expo-file-system/legacy', () => fakeFs(files));
+    jest.doMock('expo-sharing', () => ({ isAvailableAsync: async () => true, shareAsync: async (p: string) => { shared.push(p); } }));
+    if (o.migrateThrowsWhen) {
+      const real = jest.requireActual('@/lib/state/migrate');
+      jest.doMock('@/lib/state/migrate', () => ({ ...real, migrate: (raw: any) => { if (o.migrateThrowsWhen!(raw)) throw new TypeError("Cannot read properties of undefined (reading 'sets')"); return real.migrate(raw); } }));
+    }
+    s = require('@/lib/store'); b = require('@/lib/backup');
+    try { await s.init({ guard: o.guard, retry: o.retry }); } catch (e) { err = e; }
+  });
+  await new Promise(r => setTimeout(r, 0));
+  return { s, b, err, shared };
+}
+const kv = (d: DatabaseSync) => Object.fromEntries((d.prepare('SELECT k, v FROM kv ORDER BY k').all() as { k: string; v: string }[]).map(r => [r.k, r.v]));
+const withKv = (...entries: [string, string][]) => { const d = new DatabaseSync(':memory:'); d.exec('CREATE TABLE kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)'); for (const [k, v] of entries) d.prepare('INSERT INTO kv (k, v) VALUES (?, ?)').run(k, v); return d; };
+const nWorkouts = (txt: string | undefined): number => { if (!txt) return -1; try { const o = JSON.parse(txt); const st = o.format ? (typeof o.state === 'string' ? JSON.parse(o.state) : o.state) : o; return Array.isArray(st?.workouts) ? st.workouts.length : -1; } catch { return -1; } };
+const recWorkouts = (txt: string | undefined): number => { if (!txt) return -1; try { const o = JSON.parse(txt); return o.recovery ? nWorkouts(o.recovery) : -1; } catch { return -1; } };
+
+/** Stan użytkownika z N zakończonymi treningami (budowany kodem aplikacji, potem serializowany). */
+async function userState(n: number): Promise<string> {
+  let out = '';
+  await jest.isolateModulesAsync(async () => { /* osobny rejestr: atrapa expo-sqlite z setup.js nie trafia do głównego rejestru (inaczej doMock niżej nie działa) */
+    jest.doMock('expo-sqlite', () => ({ openDatabaseAsync: async () => ({ execAsync: async () => {}, getFirstAsync: async (_q: string, k: string) => (global.__kv.has(k) ? { v: global.__kv.get(k) } : null), getAllAsync: async () => [...global.__kv.entries()].map(([k, v]) => ({ k, v })), runAsync: async (q: string, k: string, v: string) => { if (/^\s*DELETE/i.test(q)) global.__kv.delete(k); else global.__kv.set(k, v); } }) }));
+    jest.doMock('expo-file-system/legacy', () => fakeFs(new Map()));
+    const h = require('./helpers'); const store = require('@/lib/store');
+    await h.fresh();
+    const name = store.getState().exercises[0].name;
+    for (let i = 0; i < n; i++) h.addWorkout(Date.UTC(2026, 8, 1 + i, 8), [[name, [{ weight: 60 + i, reps: 5 }]]]);
+    await store.flush();
+    out = global.__kv.get('state')!;
+  });
+  return out;
+}
+
+describe('SONDA A — NIE-14/NIE-01: błąd migracji przy starcie, kopie w puli i „Wyczyść wszystkie dane”', () => {
+  test.each([['ukryty komunikat przed „Wyczyść”', true], ['komunikat widoczny przy „Wyczyść”', false]])('%s', async (_t, hide) => {
+    const raw = await userState(25);
+    const dbs: Dbs = new Map([[LIB, withKv(['state', raw])]]);
+    const files = new Map<string, { body: string; mtime: number }>();
+    for (let i = 1; i <= 10; i++) files.set(`file:///doc/Backup/training-2026-10-${String(i).padStart(2, '0')}-080000.json`, { body: JSON.stringify({ format: 'trening-backup', schemaVersion: 19, exportedAt: '', state: JSON.parse(raw) }), mtime: i });
+    const pool = () => [...files.entries()].filter(([k]) => /\/Backup\/training-\d/.test(k));
+    const old = () => pool().filter(([, f]) => nWorkouts(f.body) === 25).length;
+    log('A0 przed startem: treningi w bazie (state) =', nWorkouts(kv(dbs.get(LIB)!).state), '; kopii w puli Backup/ =', pool().length, '; z 25 treningami =', old());
+    /* start nowej wersji: migracja rzuca na danych z 25 treningami (symulacja błędu migracji po aktualizacji) */
+    const r = await boot(dbs, files, { migrateThrowsWhen: (x: any) => Array.isArray(x?.workouts) && x.workouts.length >= 25, guard: true });
+    const k1 = kv(dbs.get(LIB)!); const corrupt = Object.keys(k1).filter(k => /^state_corrupt_\d+$/.test(k));
+    log('A1 po starcie: błąd startu =', r.err ? String(r.err.message) : null, '; tryb awaryjny =', !!r.err?.crashLoop, '; treningi w aplikacji =', r.s.getState().workouts.length,
+      '; treningi w „state” =', nWorkouts(k1.state), '; kopia state_corrupt_* (treningi) =', corrupt.map(k => nWorkouts(k1[k])), '; komunikat recovery =', !!r.s.getRecovery());
+    /* użytkownik trenuje dalej w „pustej” aplikacji: 10 treningów → 10 kopii po treningu */
+    for (let i = 0; i < 10; i++) { const st = r.s.getState(); st.workouts.push({ ...JSON.parse(raw).workouts[0], id: 'nowy' + i }); r.s.save(); await r.s.flush(); await r.b.autoBackup(); }
+    log('A2 po 10 nowych treningach: kopii w puli =', pool().length, '; kopii z 25 dawnymi treningami =', old(), '; treningi w aplikacji =', r.s.getState().workouts.length);
+    if (hide) r.s.clearRecovery(); /* „Ukryj komunikat” */
+    const safetyPath = await r.b.safetyBackup('reset'); await r.s.resetAll();
+    const k2 = kv(dbs.get(LIB)!); const corrupt2 = Object.keys(k2).filter(k => /^state_corrupt_/.test(k));
+    const sf = files.get(safetyPath)!.body;
+    log('A3 po „Wyczyść wszystkie dane”: wiersze state_corrupt_* =', corrupt2.length, '; kopia bezpieczeństwa: treningi w state =', nWorkouts(sf), ', w polu recovery =', recWorkouts(sf), '; kopii w puli z 25 dawnymi =', old());
+    const where = old() + corrupt2.filter(k => nWorkouts(k2[k]) === 25).length + (recWorkouts(sf) === 25 ? 1 : 0);
+    log('A4 miejsc w telefonie z 25 dawnymi treningami =', where);
+  });
+});
+
+describe('SONDA B — NIE-01: baza się nie otwiera (ekran błędu startu, „Wyślij dane”)', () => {
+  test('wysyłka = najnowsza kopia z puli; zmiany po ostatniej kopii nie wchodzą; bez kopii — nic', async () => {
+    const raw = await userState(12); const st = JSON.parse(raw); st.settings.defaultRest = 177;
+    const dbs: Dbs = new Map([[LIB, withKv(['state', JSON.stringify(st)])]]);
+    const files = new Map<string, { body: string; mtime: number }>([['file:///doc/Backup/training-2026-10-20-080000.json', { body: JSON.stringify({ format: 'trening-backup', schemaVersion: 19, exportedAt: '', state: JSON.parse(raw) }), mtime: 5 }]]);
+    log('B0 baza: treningi =', nWorkouts(kv(dbs.get(LIB)!).state), ', przerwa domyślna =', st.settings.defaultRest, '; kopia w puli: treningi =', nWorkouts([...files.values()][0].body), ', przerwa =', JSON.parse([...files.values()][0].body).state.settings.defaultRest);
+    const r = await boot(dbs, files, { openFail: true, guard: true });
+    const ok = await r.b.exportStartData();
+    const sent = r.shared[0]; const body = sent ? files.get(sent)?.body : undefined;
+    log('B1 start: błąd =', r.err ? String(r.err.message) : null, '; „Wyślij dane” ok =', ok, '; wysłany plik =', sent ? sent.replace(/.*\//, '') : null, '; treningi w pliku =', nWorkouts(body), ', przerwa =', body ? JSON.parse(body).state.settings.defaultRest : null, '; baza po (treningi) =', nWorkouts(kv(dbs.get(LIB)!).state));
+    const r2 = await boot(dbs, new Map(), { openFail: true, guard: true });
+    log('B2 to samo bez kopii w puli (kopia automatyczna wyłączona albo brak treningu): „Wyślij dane” ok =', await r2.b.exportStartData(), '; plik bazy oferowany = nie (brak takiej ścieżki w kodzie)');
+  });
+});
+
+describe('SONDA C — NIE-04: wektory strażnika pętli awarii przez init({ guard })', () => {
+  test('wektory z wzorców roli (próg 2)', async () => {
+    const raw = await userState(3); const files = new Map<string, { body: string; mtime: number }>();
+    const run = async (dbs: Dbs, o: { retry?: boolean } = {}) => { const r = await boot(dbs, files, { guard: true, ...o }); return { mode: r.err?.crashLoop ? 'awaryjny' : r.err ? 'błąd' : 'normalny', s: r.s, guard: kv(dbs.get(LIB)!).bootguard }; };
+    const res: [string, string, string | undefined][] = [];
+    /* świeża instalacja */
+    let dbs: Dbs = new Map(); let x = await run(dbs); res.push(['świeża: pierwszy start', x.mode, x.guard]); x = await run(dbs); res.push(['świeża: drugi bez kamienia (ZK-07: brak danych)', x.mode, x.guard]);
+    /* z danymi */
+    dbs = new Map([[LIB, withKv(['state', raw])]]);
+    x = await run(dbs); res.push(['dane: pierwszy start', x.mode, x.guard]); await x.s.markBootStable(); res.push(['dane: kamień', '-', kv(dbs.get(LIB)!).bootguard]);
+    x = await run(dbs); res.push(['dane: start po udanym', x.mode, x.guard]);
+    x = await run(dbs); res.push(['dane: drugi z rzędu bez kamienia', x.mode, x.guard]);
+    const before = kv(dbs.get(LIB)!).state; x = await run(dbs); res.push(['dane: kolejny start (ekran awaryjny bez kamienia)', x.mode, x.guard]);
+    res.push(['dane: „state” niezmieniony w trybie awaryjnym', String(kv(dbs.get(LIB)!).state === before), undefined]);
+    x = await run(dbs, { retry: true }); res.push(['„Spróbuj ponownie”', x.mode, x.guard]);
+    x = await run(dbs); res.push(['po „Spróbuj ponownie” znów bez kamienia', x.mode, x.guard]);
+    x = await run(dbs, { retry: true }); await x.s.markBootStable(); res.push(['„Spróbuj ponownie” + kamień', x.mode, kv(dbs.get(LIB)!).bootguard]);
+    for (const g of ['{"x":1}', 'nie-json', 'null']) { dbs.get(LIB)!.prepare('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)').run('bootguard', g); x = await run(dbs); res.push([`zapis licznika ${g}`, x.mode, x.guard]); await x.s.markBootStable(); }
+    for (const r of res) log('C', r[0], '→', r[1], r[2] ?? '');
+  });
+});

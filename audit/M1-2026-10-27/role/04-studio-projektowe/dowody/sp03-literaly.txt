@@ -1,0 +1,43 @@
+$ grep -rnoE "fontSize: ?[0-9]+" app components | wc -l
+67
+$ grep -rnoE "borderRadius: ?[0-9]+" app components | wc -l
+18
+$ pliki z literałem fontSize (top 15)
+components/GuardSection.tsx:21
+components/Dashboard.tsx:15
+components/LoadEditor.tsx:5
+app/more/settings.tsx:5
+components/StartError.tsx:3
+components/ExerciseFigure.tsx:3
+components/EquipVisual.tsx:3
+components/Guard.tsx:2
+components/SwipeRow.tsx:1
+app/(tabs)/_layout.tsx:1
+$ kolory hex/rgba w app/ components/ (poza lib/theme.ts, lib/tokens.ts)
+components/DragList.tsx:103:'#000'
+components/StartPanel.tsx:70:rgba(0,0,0,0.4)
+components/EquipVisual.tsx:46:'#FFFFFF'
+components/FairRulesSheet.tsx:25:rgba(0,0,0,0.4)
+$ F.heavy / F. (stare API kroju) w app/ components/
+11
+app/plan.tsx
+components/PeriodSummary.tsx
+components/ProgressBars.tsx
+components/Dashboard.tsx
+components/GuardSection.tsx
+components/RecordsCard.tsx
+$ tests/token-baseline.json (zapadka)
+{
+ "_powod": "Zapadka tokenów (04-011, design-spec §11): ekrany i część komponentów przechodzą z liczbowych fontSize / borderRadius na font(rola) i RADIUS w partiach p2–p5 (design-spec §10, kolumna „Partia”); p1 przeniosła komponenty wspólne i system. Liczby w tym pliku tylko maleją; po migracji pliku obniż wpis (zero = usuń plik z listy) — tests/m3-token-guard.test.ts.",
+ "pliki": {
+  "app/(tabs)/_layout.tsx": {
+   "fontSize": 1
+  },
+  "app/more/settings.tsx": {
+   "fontSize": 5
+  },
+  "components/Dashboard.tsx": {
+   "fontSize": 18,
+   "borderRadius": 4
+  },
+  "component

@@ -1,0 +1,19 @@
+$ grep -rnoE "#[0-9A-Fa-f]{6}\b|#[0-9A-Fa-f]{3}\b|rgba?\(" app components --include=*.tsx | wc -l
+4
+      1 components/StartPanel.tsx
+      1 components/FairRulesSheet.tsx
+      1 components/EquipVisual.tsx
+      1 components/DragList.tsx
+
+$ grep -rnoE "fontSize: [0-9]+" app components --include=*.tsx | wc -l
+67
+     25 components/GuardSection.tsx
+     18 components/Dashboard.tsx
+      5 components/LoadEditor.tsx
+      5 app/more/settings.tsx
+      3 components/StartError.tsx
+      3 components/Guard.tsx
+      3 components/ExerciseFigure.tsx
+      3 components/EquipVisual.tsx
+      1 components/SwipeRow.tsx
+      1 app/(tabs)/_layout.tsx

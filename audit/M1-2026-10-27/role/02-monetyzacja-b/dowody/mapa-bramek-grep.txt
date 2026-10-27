@@ -1,0 +1,84 @@
+$ grep -rnE "expo-iap|react-native-iap|react-native-purchases|StoreKit" package.json app.json app.config.*
+package.json:43:    "expo-iap": "5.8.1",
+app.json:106:      "expo-iap",
+exit 2
+
+$ grep -rnE "currentEntitlements|getAvailablePurchases|getCustomerInfo|purchaseUpdatedListener|addCustomerInfoUpdateListener|Transaction\.updates|finishTransaction|restorePurchases|syncIOS|AppStore\.sync|originalAppVersion" lib app components
+lib/store-fake.ts:28:  calls: { purchase: number; restore: number; getProducts: number; currentEntitlements: number; redeemCode: number; manageSubscriptions: number };
+lib/store-fake.ts:38:    calls: { purchase: 0, restore: 0, getProducts: 0, currentEntitlements: 0, redeemCode: 0, manageSubscriptions: 0 },
+lib/store-fake.ts:56:    async currentEntitlements() { ctl.calls.currentEntitlements++; if (ctl.offline || ent == null) throw offlineError(); return ent; },
+lib/store-native.ts:6: *  - dostęp liczymy WYŁĄCZNIE z getAvailablePurchases({ onlyIncludeActiveItemsIOS: true }) (= Transaction.currentEntitlements); nigdy z
+lib/store-native.ts:22:  getAvailablePurchases(opts?: { onlyIncludeActiveItemsIOS?: boolean; alsoPublishToEventListenerIOS?: boolean }): Promise<unknown[]>;
+lib/store-native.ts:23:  restorePurchases(): Promise<void>;
+lib/store-native.ts:24:  finishTransaction(args: { purchase: unknown; isConsumable?: boolean }): Promise<void>;
+lib/store-native.ts:25:  purchaseUpdatedListener(l: (p: unknown) => void): { remove(): void };
+lib/store-native.ts:63: * Uprawnienia: aktywne z currentEntitlements + subskrypcje w karencji płatności (P7 A, Billing Grace Period). Biblioteka (pod openiap 3.6.0) przy
+lib/store-native.ts:66: * pomocniczego nie unieważnia odczytu zakupów — zwracamy uprawnienia z getAvailablePurchases; dopiero gdy nie ma żadnego uprawnienia, a zapytanie
+lib/store-native.ts:67: * rzuciło (nie wiemy, czy ktoś jest w karencji), przekazujemy wyjątek (`unknown`, nigdy `free`). Błąd samego getAvailablePurchases → wyjątek jak dotąd.
+lib/store-native.ts:70:  const rows = await withTimeout(m.getAvailablePurchases({ onlyIncludeActiveItemsIOS: true }));
+lib/store-native.ts:100:        for (const p of Array.isArray(res) ? res : res ? [res] : []) await m.finishTransaction({ purchase: p, isConsumable: false }).catch(() => {});
+lib/store-native.ts:109:    async currentEntitlements() {
+lib/store-native.ts:114:      const m = iap(); await withTimeout(connect()); await withTimeout(m.restorePurchases());
+lib/store-native.ts:122:        subs = [m.purchaseUpdatedListener(p => { m.finishTransaction({ purchase: p, isConsumable: false }).catch(() => {}).finally(() => listener()); }), m.purchaseErrorListener(() => listener())]
+lib/store-adapter.ts:36:  /** „Przywróć zakupy” (AppStore.sync + odczyt uprawnień). Wyjątek = błąd lub brak sieci. */
+lib/store-adapter.ts:38:  /** Aktualne uprawnienia (Transaction.currentEntitlements). Wyjątek = brak odpowiedzi. */
+lib/store-adapter.ts:39:  currentEntitlements(): Promise<Entitlement[]>;
+lib/access.ts:48:/** Jedno uprawnienie z magazynu (odpowiednik wpisu `Transaction.currentEntitlements`, bez zależności od StoreKit). Czasy w ms (epoch). */
+lib/access.ts:248:  'backup', 'restoreBackup', 'exportCsv', 'restorePurchases', 'redeemCode', 'manageSubscription',
+lib/entitlement.ts:63:  inflight = (async () => { let list: Entitlement[] | null = null; try { list = (await getStoreAdapter().currentEntitlements()).filter(e => ENTITLEMENT_PLANS.includes(e.plan)); } catch { list = null
+lib/entitlement.ts:125:export async function restorePurchases(): Promise<'restored' | 'none' | 'error'> {
+app/paywall.tsx:14:import { useAccess, purchasePlan, restorePurchases, refreshEntitlements, nextMonthDay } from '@/lib/entitlement';
+app/paywall.tsx:55:    try { const r = await restorePurchases(); setNote(r === 'restored' ? t('Przywrócono zakupy.') : r === 'none' ? t('Nie znaleziono zakupów dla tego konta Apple.') : t('Nie udało się przywrócić 
+exit 0
+
+$ grep -rnE "guardLiveStart|isPro|setPro|premium|unlock|odblok|__DEV__|isFakeStoreBuild|paywall" lib app components --include=*.ts --include=*.tsx
+lib/watch/test-mode.ts:2:import { isFakeStoreBuild } from '@/lib/products';
+lib/watch/test-mode.ts:7: * Tryb „udawanego zegarka” — TYLKO build E2E na symulatorze (decyzja właściciela 14.10.2026, docs/18; wzór: sztuczny sklep, lib/products.ts isFakeStoreBuild).
+lib/watch/test-mode.ts:16:export const isFakeWatchBuild = (): boolean => process.env.EXPO_PUBLIC_WATCH_FAKE === '1' && isFakeStoreBuild();
+lib/fairrules.ts:7:import { accessNow, paywallOn } from '@/lib/entitlement';
+lib/fairrules.ts:12:  if (!paywallOn()) return false;
+lib/store-adapter.ts:9:import { isFakeStoreBuild } from '@/lib/products';
+lib/store-adapter.ts:56:  if (!cached) cached = isFakeStoreBuild() ? createFakeStore(E2E_START_ENTITLEMENTS) : createNativeStore();
+lib/i18n.ts:102: * Pseudolokalizacja (M1-audytor-generalny-066, DEC-20): tylko w buildzie deweloperskim (`__DEV__`) każdy tekst z t() jest w nawiasach ⟦…⟧ — tekst bez nawiasów na ekranie omija słownik
+lib/i18n.ts:105:let pseudo = typeof __DEV__ !== 'undefined' && __DEV__ && process.env.EXPO_PUBLIC_PSEUDO === '1';
+lib/i18n.ts:106:export function setPseudo(on: boolean) { pseudo = on && typeof __DEV__ !== 'undefined' && __DEV__; }
+lib/i18n.ts:107:export const isPseudo = () => pseudo && typeof __DEV__ !== 'undefined' && __DEV__;
+lib/access.ts:6: * jako argumenty. Podłączony w 0.17.0: lib/entitlement.ts (stan, zapamiętany wynik, strażnik startu w lib/start.ts), adapter sklepu lib/store-adapter.ts, ekran zakupu app/paywall.tsx.
+lib/products.ts:54:export const isFakeStoreBuild = (): boolean => process.env.EXPO_PUBLIC_STORE_FAKE === '1';
+lib/start.ts:5:import { guardLiveStart } from '@/lib/entitlement';
+lib/start.ts:64:  if (!guardLiveStart(via)) return; /* subskrypcja (docs/27, 0.17): ponad limit darmowych treningów — ekran zakupu zamiast startu; przy PAYWALL.ENABLED = false bez skutku */
+lib/start.ts:70:  if (!guardLiveStart('repeatLast')) return;
+lib/start.ts:75:  if (!guardLiveStart('empty')) return false;
+lib/entitlement.ts:5: * Wszystko za PAYWALL.ENABLED: przy false (`paywallConfig().ENABLED`) nic się nie uruchamia — ani sklep, ani zapis, ani strażnik (`guardLiveStart` zwraca
+lib/entitlement.ts:12:import { E2E_FREE_TRAINING_DAYS, isFakeStoreBuild } from '@/lib/products';
+lib/entitlement.ts:21:export function paywallConfig(): PaywallConfig { return isFakeStoreBuild() ? { ...PAYWALL, ENABLED: true, FREE_TRAINING_DAYS_PER_MONTH: E2E_FREE_TRAINING_DAYS } : PAYWALL; }
+lib/entitlement.ts:22:export const paywallOn = (): boolean => paywallConfig().ENABLED;
+lib/entitlement.ts:61:  if (!paywallOn()) return Promise.resolve();
+lib/entitlement.ts:69:  if (!paywallOn() || started) return; started = true;
+lib/entitlement.ts:91:  const cfg = paywallConfig(); const ctx: AccessContext = { lastKnown }; const eff = effectiveAccess(ctx, ent, now, cfg);
+lib/entitlement.ts:108:export function guardLiveStart(_path: GuardedStart, now: number = Date.now(), open: (href: string) => void = href => router.push(href as never)): boolean {
+lib/entitlement.ts:109:  if (!paywallOn()) return true;
+lib/entitlement.ts:112:  open('/paywall?reason=limit'); return false;
+lib/entitlement.ts:116:/** Czy limit dni jest wyczerpany, więc start w NOWYM dniu byłby zablokowany (prośba o ocenę nie wchodzi w blokadę — docs/26 zasada 3; dziś już zaliczony dzień nie odblokowuje oceny). */
+lib/entitlement.ts:117:export const nextStartBlocked = (now: number = Date.now()): boolean => { if (!paywallOn()) return false; const v = accessNow(now); return v.level === 'free' && v.decision.used >= v.decision.limit; 
+app/paywall.tsx:11:import { PLAN_ORDER, PRIVACY_URL, TERMS_URL, isFakeStoreBuild } from '@/lib/products';
+app/paywall.tsx:36:  const [products, setProducts] = useState<StoreProduct[] | 'loading' | 'unavailable'>('loading'); const [sel, setSel] = useState<EntitlementPlan>('yearly');
+app/paywall.tsx:38:  const load = useCallback(() => { setProducts('loading'); getStoreAdapter().getProducts().then(p => { setProducts(p); }).catch(() => setProducts('unavailable')); }, []);
+app/paywall.tsx:59:  const fake = isFakeStoreBuild() ? (getStoreAdapter() as unknown as FakeStoreControl) : null;
+app/paywall.tsx:61:    <Screen><Stack.Screen options={headerOpts} /><ScrollView ref={scrollRef} testID="paywall-scroll" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
+app/paywall.tsx:62:      {reason === 'limit' && view.decision.resetsAt ? <View testID="paywall-limit" style={{ marginTop: 8, marginBottom: 12, gap: 6 }}>{/* wariant B (decyzja właściciela 22.10.2026): pochwała, jawny 
+app/paywall.tsx:66:      </View> : <Text testID="paywall-headline" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold, marginTop: 8, marginBotto
+app/paywall.tsx:68:      {view.active ? <View testID="paywall-owned" accessible accessibilityLanguage={lang()} style={{ borderWidth: 1, borderColor: th.line, borderRadius: RADIUS.group, padding: 12, gap: 4, marginBottom:
+app/paywall.tsx:77:        {products === 'loading' ? <View testID="paywall-loading" accessible accessibilityLabel={t('Ładowanie cen…')} accessibilityLanguage={lang()} style={{ paddingVertical: 20, alignItems: 'center'
+app/paywall.tsx:78:        {products === 'unavailable' ? <View testID="paywall-offline" style={{ gap: 8, paddingVertical: 8 }}><Muted>{t('Ceny są niedostępne bez połączenia z internetem.')}</Muted><Btn small title={t
+app/paywall.tsx:79:        {Array.isArray(products) && !products.length ? <View testID="paywall-empty" style={{ gap: 8, paddingVertical: 8 }}><Muted>{t('Sklep chwilowo niedostępny')}</Muted><Btn small title={t('Spróbuj
+app/paywall.tsx:92:      {note ? <Text testID="paywall-note" accessibilityLanguage={lang()} style={{ color: th.text, marginTop: 10 }}>{note}</Text> : null}
+app/more/settings.tsx:3:import { paywallOn } from '@/lib/entitlement';
+app/more/settings.tsx:33:      {paywallOn() ? <SubscriptionCard /> /* 0.17.0 (docs/27): karta tylko przy PAYWALL.ENABLED */ : null}
+app/_layout.tsx:119:        <Stack.Screen name="paywall" options={{ presentation: 'modal', title: t('Pełna wersja') }} />{/* 0.17.0 (docs/27): ekran zakupu */}
+components/SubscriptionCard.tsx:16:    <Item title={t('Pełna wersja')} sub={sub} accessibilityLabel={`${t('Pełna wersja')}. ${sub}`} onPress={() => router.push('/paywall?reason=settings')} />
+components/ImportProCard.tsx:22:      <Btn nav testID="import-pro-plans" title={t('Zobacz plany Pro ›')} onPress={() => router.push('/paywall?reason=settings')} />
+components/TestWatchPanel.tsx:7: * (symulator iPhone’a nie ma sparowanego zegarka). Bez t(): nie trafia do TestFlight ani App Store (tests/watch-test-mode.test.ts). Wzór: panel „Test store” (app/paywall.tsx). */
+components/FairRulesSheet.tsx:20:  const plans = () => { markFairRulesSeen(); onClose(); router.push('/paywall?reason=settings'); };
+exit 0
+

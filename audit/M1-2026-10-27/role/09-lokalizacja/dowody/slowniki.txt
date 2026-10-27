@@ -1,0 +1,1132 @@
+# komenda: node /tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/09lok/slowniki.mjs (z katalogu repo; kopia skryptu: dowody/slowniki.mjs.txt)
+# kod wyjścia: 0
+# legenda: BRAK/SIEROTA/PUSTY/PARAM/PLURAL/PIPE = błędy (0 wystąpień); LICZBY/PISMO/JAK_EN = uwagi do przejrzenia
+en	LICZBY: 1 →  | Remove one rep	Zmniejsz powtórzenia o 1
+en	LICZBY: 1 →  | Add one rep	Zwiększ powtórzenia o 1
+cs	JAK_EN: + drop set	+ drop set
+cs	JAK_EN: Apple Health	Apple Health
+cs	JAK_EN: Apple Health…	Apple Health…
+cs	JAK_EN: biceps	biceps
+cs	JAK_EN: circus bell	circus bell
+cs	JAK_EN: Deload	Deload
+cs	JAK_EN: drop set	drop set
+cs	JAK_EN: Drop set (D)	Drop set (D)
+cs	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+cs	JAK_EN: glute-ham raise	glute-ham raise
+cs	JAK_EN: Import	Importuj
+cs	JAK_EN: kettlebell	kettlebell
+cs	JAK_EN: kettlebell: {v}	kettlebell: {v}
+cs	JAK_EN: landmine	landmine
+cs	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+cs	LICZBY: 2 →  | Minulý týden oproti týdnu před dvěma týdny	Poprzedni tydzień vs 2 tyg. temu
+cs	JAK_EN: reverse hyper	reverse hyper
+cs	JAK_EN: Strongman	Strongman
+cs	JAK_EN: superset	superset
+cs	JAK_EN: leg press	suwnica na nogi
+cs	JAK_EN: Leg press	Suwnica na nogi (leg press)
+cs	JAK_EN: trap bar	trap bar
+cs	JAK_EN: triceps	triceps
+cs	JAK_EN: sandbag	worek z piaskiem
+cs	JAK_EN: Sandbag	Worek z piaskiem (sandbag)
+cs	LICZBY: 1 →  | Ubrat jedno opakování	Zmniejsz powtórzenia o 1
+cs	LICZBY: 1 →  | Přidat jedno opakování	Zwiększ powtórzenia o 1
+sk	JAK_EN: + drop set	+ drop set
+sk	JAK_EN: Apple Health	Apple Health
+sk	JAK_EN: Apple Health…	Apple Health…
+sk	JAK_EN: biceps	biceps
+sk	JAK_EN: circus bell	circus bell
+sk	JAK_EN: Deload	Deload
+sk	JAK_EN: drop set	drop set
+sk	JAK_EN: Drop set (D)	Drop set (D)
+sk	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+sk	JAK_EN: glute-ham raise	glute-ham raise
+sk	JAK_EN: hack squat	hack squat
+sk	JAK_EN: Hack squat	Hack squat
+sk	JAK_EN: kettlebell	kettlebell
+sk	JAK_EN: kettlebell: {v}	kettlebell: {v}
+sk	JAK_EN: Log bar	Kłoda (log bar)
+sk	JAK_EN: log bar	kłoda (log)
+sk	JAK_EN: landmine	landmine
+sk	JAK_EN: pendulum squat	pendulum squat
+sk	LICZBY: 2 →  | Minulý týždeň oproti týždňu spred dvoch týždňov	Poprzedni tydzień vs 2 tyg. temu
+sk	JAK_EN: reverse hyper	reverse hyper
+sk	JAK_EN: Strongman	Strongman
+sk	JAK_EN: superset	superset
+sk	JAK_EN: leg press	suwnica na nogi
+sk	JAK_EN: Leg press	Suwnica na nogi (leg press)
+sk	JAK_EN: trap bar	trap bar
+sk	JAK_EN: triceps	triceps
+sk	LICZBY: 1 →  | Ubrať jedno opakovanie	Zmniejsz powtórzenia o 1
+sk	LICZBY: 1 →  | Pridať jedno opakovanie	Zwiększ powtórzenia o 1
+hu	JAK_EN: + drop set	+ drop set
+hu	JAK_EN: Apple Health	Apple Health
+hu	JAK_EN: Apple Health…	Apple Health…
+hu	JAK_EN: pec deck	butterfly (pec deck)
+hu	JAK_EN: Pec deck	Butterfly (pec deck)
+hu	JAK_EN: circus bell	circus bell
+hu	JAK_EN: Deload	Deload
+hu	JAK_EN: drop set	drop set
+hu	JAK_EN: Drop set (D)	Drop set (D)
+hu	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+hu	JAK_EN: glute-ham raise	glute-ham raise
+hu	JAK_EN: kettlebell	kettlebell
+hu	JAK_EN: kettlebell: {v}	kettlebell: {v}
+hu	JAK_EN: landmine	landmine
+hu	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+hu	LICZBY:  → 0 | A testsúlynak 0-nál nagyobbnak és legfeljebb {max} értékűnek kell lennie.	Masa ciała musi być większa od zera i nie większa niż {max}.
+hu	LICZBY: 0.5,0.5,1,1 → 0.5,0.5,0.5,1,1 | A fő izom 1 sorozatnak számít, a másodlagos 0,5-nek (pl. fekvenyomás: mell 1, tr	Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 
+hu	LICZBY: 2 →  | Előző hét a két héttel korábbihoz képest	Poprzedni tydzień vs 2 tyg. temu
+hu	JAK_EN: reverse hyper	reverse hyper
+hu	JAK_EN: Strongman	Strongman
+hu	LICZBY: 1 →  | Eggyel kevesebb ismétlés	Zmniejsz powtórzenia o 1
+hu	LICZBY: 1 →  | Eggyel több ismétlés	Zwiększ powtórzenia o 1
+ro	JAK_EN: {d} + {w} indirect ({n} {s})	{d} + {w} pośrednio ({n} {s})
+ro	JAK_EN: + drop set	+ drop set
+ro	JAK_EN: Apple Health	Apple Health
+ro	JAK_EN: Apple Health…	Apple Health…
+ro	JAK_EN: biceps	biceps
+ro	JAK_EN: cardio	cardio
+ro	JAK_EN: Cardio	Cardio
+ro	JAK_EN: circus bell	circus bell
+ro	JAK_EN: drop set	drop set
+ro	JAK_EN: Drop set (D)	Drop set (D)
+ro	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+ro	JAK_EN: glute-ham raise	glute-ham raise
+ro	JAK_EN: hack squat	hack squat
+ro	JAK_EN: Hack squat	Hack squat
+ro	JAK_EN: imperial (lb, mi, yd)	imperialny (lb, mi, yd)
+ro	JAK_EN: kettlebell	kettlebell
+ro	JAK_EN: kettlebell: {v}	kettlebell: {v}
+ro	JAK_EN: Log bar	Kłoda (log bar)
+ro	JAK_EN: log bar	kłoda (log)
+ro	JAK_EN: landmine	landmine
+ro	JAK_EN: battle ropes	liny bojowe
+ro	JAK_EN: Battle ropes	Liny bojowe (battle ropes)
+ro	JAK_EN: metric (kg, km, m)	metryczny (kg, km, m)
+ro	JAK_EN: General	Ogólne
+ro	JAK_EN: pendulum squat	pendulum squat
+ro	JAK_EN: Record: {list}	Rekord: {list}
+ro	JAK_EN: reverse hyper	reverse hyper
+ro	JAK_EN: Manual	Ręcznie
+ro	JAK_EN: rickshaw	riksza
+ro	JAK_EN: Rickshaw	Riksza (rickshaw)
+ro	JAK_EN: Strongman	Strongman
+ro	JAK_EN: superset	superset
+ro	JAK_EN: trap bar	trap bar
+ro	JAK_EN: Training — feedback	Trening — opinia
+ro	JAK_EN: triceps	triceps
+ro	LICZBY: 1 →  | O repetare în minus	Zmniejsz powtórzenia o 1
+ro	LICZBY: 1 →  | O repetare în plus	Zwiększ powtórzenia o 1
+bg	PISMO: Apple Health	Apple Health
+bg	JAK_EN: Apple Health	Apple Health
+bg	PISMO: Apple Health…	Apple Health…
+bg	JAK_EN: Apple Health…	Apple Health…
+bg	PISMO: GHD (glute-ham developer)	GHD (glute-ham developer)
+bg	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+bg	PISMO: glute-ham raise	glute-ham raise
+bg	JAK_EN: glute-ham raise	glute-ham raise
+bg	PISMO: landmine	landmine
+bg	JAK_EN: landmine	landmine
+bg	PISMO: reverse hyper	reverse hyper
+bg	JAK_EN: reverse hyper	reverse hyper
+bg	PISMO: T-bar	T-bar
+bg	LICZBY: 1 →  | Премахване на едно повторение	Zmniejsz powtórzenia o 1
+bg	LICZBY: 1 →  | Добавяне на едно повторение	Zwiększ powtórzenia o 1
+hr	JAK_EN: + drop set	+ drop set
+hr	JAK_EN: Apple Health	Apple Health
+hr	JAK_EN: Apple Health…	Apple Health…
+hr	JAK_EN: biceps	biceps
+hr	JAK_EN: pec deck	butterfly (pec deck)
+hr	JAK_EN: Pec deck	Butterfly (pec deck)
+hr	JAK_EN: circus bell	circus bell
+hr	JAK_EN: drop set	drop set
+hr	JAK_EN: Drop set (D)	Drop set (D)
+hr	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+hr	JAK_EN: glute-ham raise	glute-ham raise
+hr	JAK_EN: kettlebell	kettlebell
+hr	JAK_EN: kettlebell: {v}	kettlebell: {v}
+hr	JAK_EN: Power rack	Klatka treningowa (power rack)
+hr	JAK_EN: landmine	landmine
+hr	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+hr	JAK_EN: reverse hyper	reverse hyper
+hr	JAK_EN: Strongman	Strongman
+hr	JAK_EN: superset	superset
+hr	JAK_EN: leg press	suwnica na nogi
+hr	JAK_EN: Leg press	Suwnica na nogi (leg press)
+hr	JAK_EN: triceps	triceps
+hr	LICZBY: 1 →  | Ukloni jedno ponavljanje	Zmniejsz powtórzenia o 1
+hr	LICZBY: 1 →  | Dodaj jedno ponavljanje	Zwiększ powtórzenia o 1
+sl	JAK_EN: + drop set	+ drop set
+sl	JAK_EN: Apple Health	Apple Health
+sl	JAK_EN: Apple Health…	Apple Health…
+sl	JAK_EN: biceps	biceps
+sl	JAK_EN: circus bell	circus bell
+sl	JAK_EN: drop set	drop set
+sl	JAK_EN: Drop set (D)	Drop set (D)
+sl	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+sl	JAK_EN: glute-ham raise	glute-ham raise
+sl	JAK_EN: hack squat	hack squat
+sl	JAK_EN: Hack squat	Hack squat
+sl	JAK_EN: kettlebell	kettlebell
+sl	JAK_EN: kettlebell: {v}	kettlebell: {v}
+sl	JAK_EN: landmine	landmine
+sl	JAK_EN: pendulum squat	pendulum squat
+sl	JAK_EN: reverse hyper	reverse hyper
+sl	JAK_EN: Strongman	Strongman
+sl	JAK_EN: superset	superset
+sl	JAK_EN: trap bar	trap bar
+sl	JAK_EN: triceps	triceps
+sl	LICZBY: 1 →  | Odstrani eno ponovitev	Zmniejsz powtórzenia o 1
+sl	LICZBY: 1 →  | Dodaj eno ponovitev	Zwiększ powtórzenia o 1
+sr	PISMO: Apple Health	Apple Health
+sr	JAK_EN: Apple Health	Apple Health
+sr	PISMO: Apple Health…	Apple Health…
+sr	JAK_EN: Apple Health…	Apple Health…
+sr	PISMO: circus bell	circus bell
+sr	JAK_EN: circus bell	circus bell
+sr	PISMO: GHD (glute-ham developer)	GHD (glute-ham developer)
+sr	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+sr	PISMO: T-bar	T-bar
+sr	LICZBY: 1 →  | Уклони једно понављање	Zmniejsz powtórzenia o 1
+sr	LICZBY: 1 →  | Додај једно понављање	Zwiększ powtórzenia o 1
+lt	JAK_EN: + drop set	+ drop set
+lt	JAK_EN: Apple Health	Apple Health
+lt	JAK_EN: Apple Health…	Apple Health…
+lt	JAK_EN: circus bell	circus bell
+lt	JAK_EN: drop set	drop set
+lt	JAK_EN: Drop set (D)	Drop set (D)
+lt	JAK_EN: glute-ham raise	glute-ham raise
+lt	JAK_EN: hack squat	hack squat
+lt	JAK_EN: Hack squat	Hack squat
+lt	JAK_EN: landmine	landmine
+lt	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+lt	JAK_EN: pendulum squat	pendulum squat
+lt	JAK_EN: reverse hyper	reverse hyper
+lt	JAK_EN: Strongman	Strongman
+lt	LICZBY: 1 →  | Atimti vieną pakartojimą	Zmniejsz powtórzenia o 1
+lt	LICZBY: 1 →  | Pridėti vieną pakartojimą	Zwiększ powtórzenia o 1
+lv	JAK_EN: + drop set	+ drop set
+lv	JAK_EN: Apple Health	Apple Health
+lv	JAK_EN: Apple Health…	Apple Health…
+lv	JAK_EN: circus bell	circus bell
+lv	JAK_EN: drop set	drop set
+lv	JAK_EN: Drop set (D)	Drop set (D)
+lv	JAK_EN: distance	dystans
+lv	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+lv	JAK_EN: glute-ham raise	glute-ham raise
+lv	JAK_EN: hack squat	hack squat
+lv	JAK_EN: Hack squat	Hack squat
+lv	JAK_EN: landmine	landmine
+lv	JAK_EN: pendulum squat	pendulum squat
+lv	JAK_EN: Progress	Postępy
+lv	JAK_EN: reverse hyper	reverse hyper
+lv	JAK_EN: Strongman	Strongman
+lv	JAK_EN: trap bar	trap bar
+lv	LICZBY: 1 →  | Noņemt vienu atkārtojumu	Zmniejsz powtórzenia o 1
+lv	LICZBY: 1 →  | Pievienot vienu atkārtojumu	Zwiększ powtórzenia o 1
+et	JAK_EN: + drop set	+ drop set
+et	JAK_EN: Apple Health	Apple Health
+et	JAK_EN: Apple Health…	Apple Health…
+et	JAK_EN: circus bell	circus bell
+et	JAK_EN: drop set	drop set
+et	JAK_EN: Drop set (D)	Drop set (D)
+et	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+et	JAK_EN: glute-ham raise	glute-ham raise
+et	JAK_EN: hack squat	hack squat
+et	JAK_EN: Hack squat	Hack squat
+et	JAK_EN: landmine	landmine
+et	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+et	LICZBY:  → 0 | Kehakaal peab olema suurem kui 0 ja kuni {max}.	Masa ciała musi być większa od zera i nie większa niż {max}.
+et	JAK_EN: pendulum squat	pendulum squat
+et	JAK_EN: reverse hyper	reverse hyper
+et	JAK_EN: Strongman	Strongman
+et	JAK_EN: trap bar	trap bar
+et	LICZBY: 1 →  | Eemalda üks kordus	Zmniejsz powtórzenia o 1
+et	LICZBY: 1 →  | Lisa üks kordus	Zwiększ powtórzenia o 1
+uk	PISMO: Apple Health	Apple Health
+uk	JAK_EN: Apple Health	Apple Health
+uk	PISMO: Apple Health…	Apple Health…
+uk	JAK_EN: Apple Health…	Apple Health…
+uk	PISMO: circus bell	circus bell
+uk	JAK_EN: circus bell	circus bell
+uk	PISMO: T-bar	T-bar
+uk	LICZBY: 1 →  | Прибрати одне повторення	Zmniejsz powtórzenia o 1
+uk	LICZBY: 1 →  | Додати одне повторення	Zwiększ powtórzenia o 1
+es	JAK_EN: + drop set	+ drop set
+es	JAK_EN: Apple Health	Apple Health
+es	JAK_EN: Apple Health…	Apple Health…
+es	JAK_EN: pec deck	butterfly (pec deck)
+es	JAK_EN: Pec deck	Butterfly (pec deck)
+es	JAK_EN: cardio	cardio
+es	JAK_EN: Cardio	Cardio
+es	JAK_EN: circus bell	circus bell
+es	JAK_EN: drop set	drop set
+es	JAK_EN: Drop set (D)	Drop set (D)
+es	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+es	JAK_EN: glute-ham raise	glute-ham raise
+es	JAK_EN: imperial (lb, mi, yd)	imperialny (lb, mi, yd)
+es	JAK_EN: kettlebell	kettlebell
+es	JAK_EN: Kettlebells	Kettlebell
+es	JAK_EN: kettlebell: {v}	kettlebell: {v}
+es	JAK_EN: landmine	landmine
+es	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+es	JAK_EN: normal	normalna
+es	JAK_EN: General	Ogólne
+es	JAK_EN: reverse hyper	reverse hyper
+es	JAK_EN: Manual	Ręcznie
+es	JAK_EN: rickshaw	riksza
+es	JAK_EN: Rickshaw	Riksza (rickshaw)
+es	JAK_EN: Strongman	Strongman
+es	JAK_EN: sandbag	worek z piaskiem
+es	JAK_EN: Sandbag	Worek z piaskiem (sandbag)
+es	LICZBY: 1 →  | Una repetición menos	Zmniejsz powtórzenia o 1
+es	LICZBY: 1 →  | Una repetición más	Zwiększ powtórzenia o 1
+es-419	LICZBY: 1 →  | Una repetición menos	Zmniejsz powtórzenia o 1
+es-419	LICZBY: 1 →  | Una repetición más	Zwiększ powtórzenia o 1
+pt	JAK_EN: + drop set	+ drop set
+pt	JAK_EN: Apple Health	Apple Health
+pt	JAK_EN: Apple Health…	Apple Health…
+pt	JAK_EN: pec deck	butterfly (pec deck)
+pt	JAK_EN: Pec deck	Butterfly (pec deck)
+pt	JAK_EN: cardio	cardio
+pt	JAK_EN: Cardio	Cardio
+pt	JAK_EN: circus bell	circus bell
+pt	JAK_EN: drop set	drop set
+pt	JAK_EN: Drop set (D)	Drop set (D)
+pt	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+pt	JAK_EN: glute-ham raise	glute-ham raise
+pt	JAK_EN: hack squat	hack squat
+pt	JAK_EN: Hack squat	Hack squat
+pt	JAK_EN: imperial (lb, mi, yd)	imperialny (lb, mi, yd)
+pt	JAK_EN: kettlebell	kettlebell
+pt	JAK_EN: Kettlebells	Kettlebell
+pt	JAK_EN: kettlebell: {v}	kettlebell: {v}
+pt	JAK_EN: Power rack	Klatka treningowa (power rack)
+pt	JAK_EN: Log bar	Kłoda (log bar)
+pt	JAK_EN: log bar	kłoda (log)
+pt	JAK_EN: landmine	landmine
+pt	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+pt	JAK_EN: normal	normalna
+pt	JAK_EN: volume	objętość
+pt	JAK_EN: Volume	Objętość
+pt	JAK_EN: pendulum squat	pendulum squat
+pt	JAK_EN: reverse hyper	reverse hyper
+pt	JAK_EN: Manual	Ręcznie
+pt	JAK_EN: rickshaw	riksza
+pt	JAK_EN: Rickshaw	Riksza (rickshaw)
+pt	JAK_EN: Strongman	Strongman
+pt	JAK_EN: superset	superset
+pt	JAK_EN: trap bar	trap bar
+pt	LICZBY: 1 →  | Menos uma repetição	Zmniejsz powtórzenia o 1
+pt	LICZBY: 1 →  | Mais uma repetição	Zwiększ powtórzenia o 1
+pt-BR	LICZBY: 1 →  | Menos uma repetição	Zmniejsz powtórzenia o 1
+pt-BR	LICZBY: 1 →  | Mais uma repetição	Zwiększ powtórzenia o 1
+de	JAK_EN: Apple Health	Apple Health
+de	JAK_EN: Apple Health…	Apple Health…
+de	JAK_EN: Cardio	Cardio
+de	JAK_EN: Deload	Deload
+de	JAK_EN: Kettlebells	Kettlebell
+de	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+de	LICZBY:  → 0 | Das Körpergewicht muss größer als 0 und höchstens {max} sein.	Masa ciała musi być większa od zera i nie większa niż {max}.
+de	JAK_EN: normal	normalna
+de	JAK_EN: Progression	Progresja
+de	JAK_EN: Strongman	Strongman
+de	JAK_EN: Version	Wersja
+de	LICZBY: 1 →  | Eine Wiederholung weniger	Zmniejsz powtórzenia o 1
+de	LICZBY: 1 →  | Eine Wiederholung mehr	Zwiększ powtórzenia o 1
+fr	JAK_EN: + drop set	+ drop set
+fr	JAK_EN: biceps	biceps
+fr	JAK_EN: pec deck	butterfly (pec deck)
+fr	JAK_EN: Pec deck	Butterfly (pec deck)
+fr	JAK_EN: cardio	cardio
+fr	JAK_EN: Cardio	Cardio
+fr	JAK_EN: circus bell	circus bell
+fr	JAK_EN: drop set	drop set
+fr	JAK_EN: Drop set (D)	Drop set (D)
+fr	JAK_EN: distance	dystans
+fr	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+fr	JAK_EN: glute-ham raise	glute-ham raise
+fr	JAK_EN: hack squat	hack squat
+fr	JAK_EN: Hack squat	Hack squat
+fr	JAK_EN: yard|yards	jard|jardy|jardów
+fr	JAK_EN: kettlebell	kettlebell
+fr	JAK_EN: Kettlebells	Kettlebell
+fr	JAK_EN: Log bar	Kłoda (log bar)
+fr	JAK_EN: log bar	kłoda (log)
+fr	JAK_EN: landmine	landmine
+fr	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+fr	JAK_EN: battle ropes	liny bojowe
+fr	JAK_EN: Battle ropes	Liny bojowe (battle ropes)
+fr	JAK_EN: machine	maszyna
+fr	JAK_EN: Leg extension	Maszyna do prostowania nóg
+fr	JAK_EN: Leg curl	Maszyna do uginania nóg
+fr	JAK_EN: Machines	Maszyny
+fr	JAK_EN: mile|miles	mila|mile|mil
+fr	JAK_EN: minute|minutes	minuta|minuty|minut
+fr	JAK_EN: volume	objętość
+fr	JAK_EN: Volume	Objętość
+fr	JAK_EN: pendulum squat	pendulum squat
+fr	JAK_EN: Notifications	Powiadomienia
+fr	JAK_EN: Progression	Progresja
+fr	JAK_EN: Suggestions	Propozycje
+fr	LICZBY: 1 →  | Décaler le plan d’un jour	Przesuń plan o 1 dzień
+fr	JAK_EN: RECORDS	REKORDY
+fr	JAK_EN: reverse hyper	reverse hyper
+fr	JAK_EN: rickshaw	riksza
+fr	JAK_EN: Rickshaw	Riksza (rickshaw)
+fr	JAK_EN: obliques	skośne brzucha
+fr	JAK_EN: box / step	skrzynia / stopień
+fr	JAK_EN: Plyo box / step	Skrzynia / stopień
+fr	JAK_EN: station	stacja
+fr	JAK_EN: Strongman	Strongman
+fr	LICZBY: 1 →  | Touchez un jour dans l’onglet Plan : « Déplacer ou sauter » montre les possibili	Stuknij dzień w zakładce Plan: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie pla
+fr	JAK_EN: superset	superset
+fr	JAK_EN: Smith machine	suwnica Smitha
+fr	JAK_EN: Smith machine	Suwnica Smitha
+fr	JAK_EN: sliders	ślizgacze
+fr	JAK_EN: Sliders	Ślizgacze (slidery)
+fr	JAK_EN: Technique	Technika
+fr	JAK_EN: trap bar	trap bar
+fr	JAK_EN: triceps	triceps
+fr	JAK_EN: Version	Wersja
+fr	LICZBY: 1 →  | Une répétition de moins	Zmniejsz powtórzenia o 1
+fr	LICZBY: 1 →  | Une répétition de plus	Zwiększ powtórzenia o 1
+it	JAK_EN: + drop set	+ drop set
+it	JAK_EN: Apple Health	Apple Health
+it	JAK_EN: Apple Health…	Apple Health…
+it	JAK_EN: pec deck	butterfly (pec deck)
+it	JAK_EN: Pec deck	Butterfly (pec deck)
+it	JAK_EN: cardio	cardio
+it	JAK_EN: Cardio	Cardio
+it	JAK_EN: circus bell	circus bell
+it	JAK_EN: drop set	drop set
+it	JAK_EN: Drop set (D)	Drop set (D)
+it	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+it	JAK_EN: glute-ham raise	glute-ham raise
+it	JAK_EN: hack squat	hack squat
+it	JAK_EN: Hack squat	Hack squat
+it	JAK_EN: kettlebell	kettlebell
+it	JAK_EN: kettlebell: {v}	kettlebell: {v}
+it	JAK_EN: Power rack	Klatka treningowa (power rack)
+it	JAK_EN: Log bar	Kłoda (log bar)
+it	JAK_EN: log bar	kłoda (log)
+it	JAK_EN: Backup	Kopia zapasowa
+it	JAK_EN: landmine	landmine
+it	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+it	JAK_EN: Leg extension	Maszyna do prostowania nóg
+it	JAK_EN: Leg curl	Maszyna do uginania nóg
+it	JAK_EN: volume	objętość
+it	JAK_EN: Volume	Objętość
+it	JAK_EN: pendulum squat	pendulum squat
+it	JAK_EN: Privacy	Prywatność
+it	JAK_EN: Record: {list}	Rekord: {list}
+it	JAK_EN: reverse hyper	reverse hyper
+it	JAK_EN: rickshaw	riksza
+it	JAK_EN: Rickshaw	Riksza (rickshaw)
+it	JAK_EN: foam roller	roller
+it	JAK_EN: Foam roller	Roller do automasażu
+it	JAK_EN: wrist roller	roller na nadgarstki
+it	JAK_EN: Wrist roller	Roller na nadgarstki
+it	JAK_EN: box / step	skrzynia / stopień
+it	JAK_EN: Plyo box / step	Skrzynia / stopień
+it	JAK_EN: stair climber	stepper schodowy
+it	JAK_EN: Stair climber	Stepper schodowy (stair climber)
+it	JAK_EN: Strongman	Strongman
+it	JAK_EN: superset	superset
+it	JAK_EN: leg press	suwnica na nogi
+it	JAK_EN: Leg press	Suwnica na nogi (leg press)
+it	JAK_EN: Smith machine	suwnica Smitha
+it	JAK_EN: Smith machine	Suwnica Smitha
+it	JAK_EN: trap bar	trap bar
+it	JAK_EN: Training — feedback	Trening — opinia
+it	JAK_EN: sandbag	worek z piaskiem
+it	JAK_EN: Sandbag	Worek z piaskiem (sandbag)
+it	LICZBY: 1 →  | Una ripetizione in meno	Zmniejsz powtórzenia o 1
+it	LICZBY: 1 →  | Una ripetizione in più	Zwiększ powtórzenia o 1
+nl	JAK_EN: {d} + {w} indirect ({n} {s})	{d} + {w} pośrednio ({n} {s})
+nl	JAK_EN: {goal}, {n}× per week · {place}	{goal}, {n}× w tygodniu · {place}
+nl	JAK_EN: {title} ({sub}): volume {v}, {p}; sets {s}, {d}	{title} ({sub}): objętość {v}, {p}; serie {s}, {d}
+nl	JAK_EN: {u}/dumbbell	{u}/hantel
+nl	JAK_EN: Apple Health	Apple Health
+nl	JAK_EN: Apple Health…	Apple Health…
+nl	JAK_EN: direct	bezpośrednie
+nl	JAK_EN: biceps	biceps
+nl	JAK_EN: pec deck	butterfly (pec deck)
+nl	JAK_EN: Pec deck	Butterfly (pec deck)
+nl	JAK_EN: cardio	cardio
+nl	JAK_EN: Cardio	Cardio
+nl	JAK_EN: circus bell	circus bell
+nl	JAK_EN: Deload	Deload
+nl	JAK_EN: hamstrings	dwugłowe
+nl	JAK_EN: e1RM (per dumbbell)	e1RM (na hantel)
+nl	JAK_EN: e1RM {v} (set {s})	e1RM {v} (seria {s})
+nl	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+nl	JAK_EN: glute-ham raise	glute-ham raise
+nl	JAK_EN: axle bar	gryf gruby (axle)
+nl	JAK_EN: Axle bar	Gryf gruby (axle)
+nl	JAK_EN: hack squat	hack squat
+nl	JAK_EN: Hack squat	Hack squat
+nl	JAK_EN: dumbbells	hantle
+nl	JAK_EN: dumbbells: {v}	hantle: {v}
+nl	JAK_EN: atlas stones	kamienie atlas
+nl	JAK_EN: Atlas stones	Kamienie atlas
+nl	JAK_EN: kettlebell	kettlebell
+nl	JAK_EN: Kettlebells	Kettlebell
+nl	JAK_EN: kettlebell: {v}	kettlebell: {v}
+nl	JAK_EN: Power rack	Klatka treningowa (power rack)
+nl	JAK_EN: Log bar	Kłoda (log bar)
+nl	JAK_EN: log bar	kłoda (log)
+nl	JAK_EN: landmine	landmine
+nl	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+nl	JAK_EN: battle ropes	liny bojowe
+nl	JAK_EN: Battle ropes	Liny bojowe (battle ropes)
+nl	JAK_EN: machine	maszyna
+nl	JAK_EN: Leg extension	Maszyna do prostowania nóg
+nl	JAK_EN: Leg curl	Maszyna do uginania nóg
+nl	JAK_EN: Machines	Maszyny
+nl	JAK_EN: volume	objętość
+nl	JAK_EN: Volume	Objętość
+nl	JAK_EN: pendulum squat	pendulum squat
+nl	JAK_EN: per dumbbell (×2)	per hantel (×2)
+nl	JAK_EN: Planning	Planowanie
+nl	JAK_EN: Privacy	Prywatność
+nl	JAK_EN: Record: {list}	Rekord: {list}
+nl	JAK_EN: RECORDS	REKORDY
+nl	JAK_EN: reverse hyper	reverse hyper
+nl	JAK_EN: rickshaw	riksza
+nl	JAK_EN: Rickshaw	Riksza (rickshaw)
+nl	JAK_EN: RPE / RIR per set	RPE / RIR przy serii
+nl	JAK_EN: Set {n}, type: {k}	Seria {n}, typ: {k}
+nl	JAK_EN: set|sets	seria|serie|serii
+nl	JAK_EN: box / step	skrzynia / stopień
+nl	JAK_EN: station	stacja
+nl	JAK_EN: Power tower (pull-up + dip)	Stacja: drążek + poręcze (power tower)
+nl	JAK_EN: Start stopwatch: {ex}, set {n}	Start stopera: {ex}, seria {n}
+nl	JAK_EN: rotator cuff	stożek rotatorów
+nl	JAK_EN: Strongman	Strongman
+nl	JAK_EN: superset	superset
+nl	JAK_EN: leg press	suwnica na nogi
+nl	JAK_EN: Leg press	Suwnica na nogi (leg press)
+nl	JAK_EN: Smith machine	suwnica Smitha
+nl	JAK_EN: Smith machine	Suwnica Smitha
+nl	JAK_EN: barbell	sztanga
+nl	JAK_EN: sliders	ślizgacze
+nl	JAK_EN: Sliders	Ślizgacze (slidery)
+nl	JAK_EN: trap bar	trap bar
+nl	JAK_EN: Training — feedback	Trening — opinia
+nl	JAK_EN: triceps	triceps
+nl	JAK_EN: T-bar row	Wiosłowanie T-bar
+nl	JAK_EN: sandbag	worek z piaskiem
+nl	JAK_EN: Sandbag	Worek z piaskiem (sandbag)
+nl	JAK_EN: lat pulldown	wyciąg do ściągania drążka
+nl	JAK_EN: Seated cable row	Wyciąg dolny (wiosłowanie siedząc)
+nl	JAK_EN: Lat pulldown	Wyciąg górny (ściąganie drążka)
+nl	LICZBY: 1 →  | Eén herhaling eraf	Zmniejsz powtórzenia o 1
+nl	LICZBY: 1 →  | Eén herhaling erbij	Zwiększ powtórzenia o 1
+sv	JAK_EN: Apple Health	Apple Health
+sv	JAK_EN: Apple Health…	Apple Health…
+sv	JAK_EN: biceps	biceps
+sv	JAK_EN: pec deck	butterfly (pec deck)
+sv	JAK_EN: Pec deck	Butterfly (pec deck)
+sv	JAK_EN: circus bell	circus bell
+sv	JAK_EN: Deload	Deload
+sv	JAK_EN: e1RM {v} (set {s})	e1RM {v} (seria {s})
+sv	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+sv	JAK_EN: glute-ham raise	glute-ham raise
+sv	JAK_EN: hack squat	hack squat
+sv	JAK_EN: Hack squat	Hack squat
+sv	JAK_EN: kettlebell	kettlebell
+sv	JAK_EN: Kettlebells	Kettlebell
+sv	JAK_EN: kettlebell: {v}	kettlebell: {v}
+sv	JAK_EN: Power rack	Klatka treningowa (power rack)
+sv	JAK_EN: Log bar	Kłoda (log bar)
+sv	JAK_EN: log bar	kłoda (log)
+sv	JAK_EN: landmine	landmine
+sv	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+sv	JAK_EN: battle ropes	liny bojowe
+sv	JAK_EN: Battle ropes	Liny bojowe (battle ropes)
+sv	JAK_EN: max reps	max pow.
+sv	JAK_EN: pendulum squat	pendulum squat
+sv	JAK_EN: rep|reps	powtórzenie|powtórzenia|powtórzeń
+sv	JAK_EN: Progression	Progresja
+sv	JAK_EN: reverse hyper	reverse hyper
+sv	JAK_EN: rickshaw	riksza
+sv	JAK_EN: Rickshaw	Riksza (rickshaw)
+sv	JAK_EN: RPE / RIR per set	RPE / RIR przy serii
+sv	JAK_EN: station	stacja
+sv	JAK_EN: Strongman	Strongman
+sv	JAK_EN: superset	superset
+sv	JAK_EN: trap bar	trap bar
+sv	JAK_EN: triceps	triceps
+sv	JAK_EN: Version	Wersja
+da	JAK_EN: Apple Health	Apple Health
+da	JAK_EN: Apple Health…	Apple Health…
+da	JAK_EN: biceps	biceps
+da	JAK_EN: pec deck	butterfly (pec deck)
+da	JAK_EN: Pec deck	Butterfly (pec deck)
+da	JAK_EN: cardio	cardio
+da	JAK_EN: Cardio	Cardio
+da	JAK_EN: circus bell	circus bell
+da	JAK_EN: Deload	Deload
+da	JAK_EN: distance	dystans
+da	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+da	JAK_EN: glute-ham raise	glute-ham raise
+da	JAK_EN: hack squat	hack squat
+da	JAK_EN: Hack squat	Hack squat
+da	JAK_EN: imperial (lb, mi, yd)	imperialny (lb, mi, yd)
+da	JAK_EN: kettlebell	kettlebell
+da	JAK_EN: Kettlebells	Kettlebell
+da	JAK_EN: kettlebell: {v}	kettlebell: {v}
+da	JAK_EN: Power rack	Klatka treningowa (power rack)
+da	JAK_EN: Log bar	Kłoda (log bar)
+da	JAK_EN: log bar	kłoda (log)
+da	JAK_EN: landmine	landmine
+da	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+da	JAK_EN: battle ropes	liny bojowe
+da	JAK_EN: Battle ropes	Liny bojowe (battle ropes)
+da	JAK_EN: normal	normalna
+da	JAK_EN: pendulum squat	pendulum squat
+da	JAK_EN: tibialis anterior	piszczelowy przedni
+da	JAK_EN: Progression	Progresja
+da	JAK_EN: reverse hyper	reverse hyper
+da	JAK_EN: rickshaw	riksza
+da	JAK_EN: Rickshaw	Riksza (rickshaw)
+da	JAK_EN: Session	Sesja
+da	JAK_EN: Session {d}: {s}	Sesja {d}: {s}
+da	JAK_EN: station	stacja
+da	JAK_EN: Power tower (pull-up + dip)	Stacja: drążek + poręcze (power tower)
+da	JAK_EN: Strongman	Strongman
+da	JAK_EN: triceps	triceps
+da	JAK_EN: Version	Wersja
+da	JAK_EN: lat pulldown	wyciąg do ściągania drążka
+da	JAK_EN: Lat pulldown	Wyciąg górny (ściąganie drążka)
+da	JAK_EN: serratus anterior	zębaty przedni
+da	LICZBY: 1 →  | Fjern én gentagelse	Zmniejsz powtórzenia o 1
+da	LICZBY: 1 →  | Tilføj én gentagelse	Zwiększ powtórzenia o 1
+nb	JAK_EN: Apple Health	Apple Health
+nb	JAK_EN: Apple Health…	Apple Health…
+nb	JAK_EN: biceps	biceps
+nb	JAK_EN: pec deck	butterfly (pec deck)
+nb	JAK_EN: Pec deck	Butterfly (pec deck)
+nb	JAK_EN: circus bell	circus bell
+nb	JAK_EN: Deload	Deload
+nb	JAK_EN: hamstrings	dwugłowe
+nb	JAK_EN: e1RM (per side)	e1RM (na stronę)
+nb	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+nb	JAK_EN: glute-ham raise	glute-ham raise
+nb	JAK_EN: hack squat	hack squat
+nb	JAK_EN: Hack squat	Hack squat
+nb	JAK_EN: unilateral (per side, ×2)	jednostronne (per strona, ×2)
+nb	JAK_EN: kettlebell	kettlebell
+nb	JAK_EN: kettlebell: {v}	kettlebell: {v}
+nb	JAK_EN: Power rack	Klatka treningowa (power rack)
+nb	JAK_EN: Log bar	Kłoda (log bar)
+nb	JAK_EN: log bar	kłoda (log)
+nb	JAK_EN: landmine	landmine
+nb	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+nb	JAK_EN: battle ropes	liny bojowe
+nb	JAK_EN: Battle ropes	Liny bojowe (battle ropes)
+nb	LICZBY:  → 0 | Kroppsvekten må være over 0 og høyst {max}.	Masa ciała musi być większa od zera i nie większa niż {max}.
+nb	JAK_EN: Leg extension	Maszyna do prostowania nóg
+nb	JAK_EN: Leg curl	Maszyna do uginania nóg
+nb	JAK_EN: min per side	min na stronę
+nb	JAK_EN: normal	normalna
+nb	JAK_EN: pendulum squat	pendulum squat
+nb	JAK_EN: tibialis anterior	piszczelowy przedni
+nb	JAK_EN: reverse hyper	reverse hyper
+nb	JAK_EN: rickshaw	riksza
+nb	JAK_EN: Rickshaw	Riksza (rickshaw)
+nb	JAK_EN: Strongman	Strongman
+nb	JAK_EN: sliders	ślizgacze
+nb	JAK_EN: Sliders	Ślizgacze (slidery)
+nb	JAK_EN: trap bar	trap bar
+nb	JAK_EN: triceps	triceps
+nb	JAK_EN: serratus anterior	zębaty przedni
+nb	LICZBY: 1 →  | Én repetisjon mindre	Zmniejsz powtórzenia o 1
+nb	LICZBY: 1 →  | Én repetisjon mer	Zwiększ powtórzenia o 1
+fi	JAK_EN: Apple Health	Apple Health
+fi	JAK_EN: Apple Health…	Apple Health…
+fi	JAK_EN: pec deck	butterfly (pec deck)
+fi	JAK_EN: Pec deck	Butterfly (pec deck)
+fi	JAK_EN: circus bell	circus bell
+fi	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+fi	JAK_EN: glute-ham raise	glute-ham raise
+fi	JAK_EN: hack squat	hack squat
+fi	JAK_EN: Hack squat	Hack squat
+fi	JAK_EN: landmine	landmine
+fi	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+fi	JAK_EN: battle ropes	liny bojowe
+fi	JAK_EN: Battle ropes	Liny bojowe (battle ropes)
+fi	JAK_EN: pendulum squat	pendulum squat
+fi	LICZBY: 2 →  | Edellinen viikko verrattuna kahteen viikkoon sitten	Poprzedni tydzień vs 2 tyg. temu
+fi	JAK_EN: reverse hyper	reverse hyper
+fi	JAK_EN: foam roller	roller
+fi	JAK_EN: Foam roller	Roller do automasażu
+fi	JAK_EN: Strongman	Strongman
+fi	JAK_EN: trap bar	trap bar
+fi	LICZBY: 1 →  | Yksi toisto vähemmän	Zmniejsz powtórzenia o 1
+fi	LICZBY: 1 →  | Yksi toisto lisää	Zwiększ powtórzenia o 1
+tr	JAK_EN: + drop set	+ drop set
+tr	JAK_EN: biceps	biceps
+tr	JAK_EN: pec deck	butterfly (pec deck)
+tr	JAK_EN: Pec deck	Butterfly (pec deck)
+tr	JAK_EN: circus bell	circus bell
+tr	JAK_EN: Deload	Deload
+tr	JAK_EN: drop set	drop set
+tr	JAK_EN: Drop set (D)	Drop set (D)
+tr	JAK_EN: e1RM {v} (set {s})	e1RM {v} (seria {s})
+tr	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+tr	JAK_EN: glute-ham raise	glute-ham raise
+tr	JAK_EN: axle bar	gryf gruby (axle)
+tr	JAK_EN: Axle bar	Gryf gruby (axle)
+tr	JAK_EN: hack squat	hack squat
+tr	JAK_EN: Hack squat	Hack squat
+tr	JAK_EN: kettlebell	kettlebell
+tr	JAK_EN: kettlebell: {v}	kettlebell: {v}
+tr	JAK_EN: Power rack	Klatka treningowa (power rack)
+tr	JAK_EN: Log bar	Kłoda (log bar)
+tr	JAK_EN: log bar	kłoda (log)
+tr	JAK_EN: landmine	landmine
+tr	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+tr	JAK_EN: Leg extension	Maszyna do prostowania nóg
+tr	JAK_EN: Leg curl	Maszyna do uginania nóg
+tr	JAK_EN: normal	normalna
+tr	JAK_EN: pendulum squat	pendulum squat
+tr	JAK_EN: tibialis anterior	piszczelowy przedni
+tr	JAK_EN: reverse hyper	reverse hyper
+tr	JAK_EN: rickshaw	riksza
+tr	JAK_EN: Rickshaw	Riksza (rickshaw)
+tr	JAK_EN: foam roller	roller
+tr	JAK_EN: Foam roller	Roller do automasażu
+tr	JAK_EN: Normal set	Seria normalna
+tr	JAK_EN: Strongman	Strongman
+tr	JAK_EN: leg press	suwnica na nogi
+tr	JAK_EN: Leg press	Suwnica na nogi (leg press)
+tr	JAK_EN: trap bar	trap bar
+tr	JAK_EN: triceps	triceps
+tr	JAK_EN: T-bar row	Wiosłowanie T-bar
+tr	JAK_EN: lat pulldown	wyciąg do ściągania drążka
+tr	JAK_EN: Lat pulldown	Wyciąg górny (ściąganie drążka)
+tr	JAK_EN: serratus anterior	zębaty przedni
+tr	LICZBY: 1 →  | Bir tekrar azalt	Zmniejsz powtórzenia o 1
+tr	LICZBY: 1 →  | Bir tekrar ekle	Zwiększ powtórzenia o 1
+el	PISMO: + drop set	+ drop set
+el	JAK_EN: + drop set	+ drop set
+el	PISMO: Apple Health	Apple Health
+el	JAK_EN: Apple Health	Apple Health
+el	PISMO: Apple Health…	Apple Health…
+el	JAK_EN: Apple Health…	Apple Health…
+el	PISMO: pec deck	butterfly (pec deck)
+el	JAK_EN: pec deck	butterfly (pec deck)
+el	PISMO: Pec deck	Butterfly (pec deck)
+el	JAK_EN: Pec deck	Butterfly (pec deck)
+el	PISMO: cardio	cardio
+el	JAK_EN: cardio	cardio
+el	PISMO: Cardio	Cardio
+el	JAK_EN: Cardio	Cardio
+el	PISMO: circus bell	circus bell
+el	JAK_EN: circus bell	circus bell
+el	PISMO: drop set	drop set
+el	JAK_EN: drop set	drop set
+el	PISMO: Drop set (D)	Drop set (D)
+el	JAK_EN: Drop set (D)	Drop set (D)
+el	PISMO: GHD (glute-ham developer)	GHD (glute-ham developer)
+el	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+el	PISMO: glute-ham raise	glute-ham raise
+el	JAK_EN: glute-ham raise	glute-ham raise
+el	PISMO: hack squat	hack squat
+el	JAK_EN: hack squat	hack squat
+el	PISMO: Hack squat	Hack squat
+el	JAK_EN: Hack squat	Hack squat
+el	PISMO: yoke	jarzmo (yoke)
+el	PISMO: Yoke	Jarzmo (yoke)
+el	PISMO: kettlebell	kettlebell
+el	JAK_EN: kettlebell	kettlebell
+el	PISMO: Kettlebell	Kettlebell
+el	PISMO: kettlebell: {v}	kettlebell: {v}
+el	JAK_EN: kettlebell: {v}	kettlebell: {v}
+el	PISMO: Power rack	Klatka treningowa (power rack)
+el	JAK_EN: Power rack	Klatka treningowa (power rack)
+el	PISMO: Log bar	Kłoda (log bar)
+el	JAK_EN: Log bar	Kłoda (log bar)
+el	PISMO: log bar	kłoda (log)
+el	JAK_EN: log bar	kłoda (log)
+el	PISMO: landmine	landmine
+el	JAK_EN: landmine	landmine
+el	PISMO: Landmine	Landmine (uchwyt końca gryfu)
+el	JAK_EN: Landmine	Landmine (uchwyt końca gryfu)
+el	PISMO: battle ropes	liny bojowe
+el	JAK_EN: battle ropes	liny bojowe
+el	PISMO: Battle ropes	Liny bojowe (battle ropes)
+el	JAK_EN: Battle ropes	Liny bojowe (battle ropes)
+el	PISMO: pendulum squat	pendulum squat
+el	JAK_EN: pendulum squat	pendulum squat
+el	PISMO: reverse hyper	reverse hyper
+el	JAK_EN: reverse hyper	reverse hyper
+el	PISMO: rickshaw	riksza
+el	JAK_EN: rickshaw	riksza
+el	PISMO: Rickshaw	Riksza (rickshaw)
+el	JAK_EN: Rickshaw	Riksza (rickshaw)
+el	PISMO: foam roller	roller
+el	JAK_EN: foam roller	roller
+el	PISMO: Foam roller	Roller do automasażu
+el	JAK_EN: Foam roller	Roller do automasażu
+el	PISMO: wrist roller	roller na nadgarstki
+el	JAK_EN: wrist roller	roller na nadgarstki
+el	PISMO: Wrist roller	Roller na nadgarstki
+el	JAK_EN: Wrist roller	Roller na nadgarstki
+el	PISMO: stair climber	stepper schodowy
+el	JAK_EN: stair climber	stepper schodowy
+el	PISMO: Stair climber	Stepper schodowy (stair climber)
+el	JAK_EN: Stair climber	Stepper schodowy (stair climber)
+el	PISMO: Strongman	Strongman
+el	JAK_EN: Strongman	Strongman
+el	PISMO: superset	superset
+el	JAK_EN: superset	superset
+el	PISMO: Smith machine	suwnica Smitha
+el	JAK_EN: Smith machine	suwnica Smitha
+el	PISMO: Smith machine	Suwnica Smitha
+el	JAK_EN: Smith machine	Suwnica Smitha
+el	PISMO: sliders	ślizgacze
+el	JAK_EN: sliders	ślizgacze
+el	PISMO: Sliders	Ślizgacze (slidery)
+el	JAK_EN: Sliders	Ślizgacze (slidery)
+el	PISMO: T-bar	T-bar
+el	PISMO: T-bar row	Wiosłowanie T-bar
+el	JAK_EN: T-bar row	Wiosłowanie T-bar
+el	PISMO: sandbag	worek z piaskiem
+el	JAK_EN: sandbag	worek z piaskiem
+el	PISMO: Sandbag	Worek z piaskiem (sandbag)
+el	JAK_EN: Sandbag	Worek z piaskiem (sandbag)
+el	PISMO: lat pulldown	wyciąg do ściągania drążka
+el	JAK_EN: lat pulldown	wyciąg do ściągania drążka
+el	PISMO: Lat pulldown	Wyciąg górny (ściąganie drążka)
+el	JAK_EN: Lat pulldown	Wyciąg górny (ściąganie drążka)
+el	LICZBY: 1 →  | Μία επανάληψη λιγότερη	Zmniejsz powtórzenia o 1
+el	LICZBY: 1 →  | Μία επανάληψη παραπάνω	Zwiększ powtórzenia o 1
+id	JAK_EN: + drop set	+ drop set
+id	JAK_EN: Apple Health	Apple Health
+id	JAK_EN: Apple Health…	Apple Health…
+id	JAK_EN: treadmill	bieżnia
+id	JAK_EN: Treadmill	Bieżnia
+id	JAK_EN: pec deck	butterfly (pec deck)
+id	JAK_EN: Pec deck	Butterfly (pec deck)
+id	JAK_EN: circus bell	circus bell
+id	JAK_EN: Deload	Deload
+id	JAK_EN: drop set	drop set
+id	JAK_EN: Drop set (D)	Drop set (D)
+id	JAK_EN: e1RM {v} (set {s})	e1RM {v} (seria {s})
+id	JAK_EN: Full Body	FBW
+id	JAK_EN: Full Body A	FBW A
+id	JAK_EN: Full Body B	FBW B
+id	JAK_EN: Folder	Folder
+id	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+id	JAK_EN: glute-ham raise	glute-ham raise
+id	JAK_EN: hack squat	hack squat
+id	JAK_EN: Hack squat	Hack squat
+id	JAK_EN: imperial (lb, mi, yd)	imperialny (lb, mi, yd)
+id	JAK_EN: kettlebell	kettlebell
+id	JAK_EN: kettlebell: {v}	kettlebell: {v}
+id	JAK_EN: Power rack	Klatka treningowa (power rack)
+id	JAK_EN: Log bar	Kłoda (log bar)
+id	JAK_EN: log bar	kłoda (log)
+id	JAK_EN: landmine	landmine
+id	JAK_EN: Leg extension	Maszyna do prostowania nóg
+id	JAK_EN: Leg curl	Maszyna do uginania nóg
+id	JAK_EN: normal	normalna
+id	JAK_EN: volume	objętość
+id	JAK_EN: Volume	Objętość
+id	JAK_EN: elliptical	orbitrek
+id	JAK_EN: Elliptical	Orbitrek
+id	JAK_EN: pendulum squat	pendulum squat
+id	JAK_EN: tibialis anterior	piszczelowy przedni
+id	JAK_EN: reverse hyper	reverse hyper
+id	JAK_EN: rickshaw	riksza
+id	JAK_EN: Rickshaw	Riksza (rickshaw)
+id	JAK_EN: foam roller	roller
+id	JAK_EN: Foam roller	Roller do automasażu
+id	JAK_EN: wrist roller	roller na nadgarstki
+id	JAK_EN: Wrist roller	Roller na nadgarstki
+id	JAK_EN: Sled (prowler)	Sanki (prowler)
+id	JAK_EN: set · target {s}	seria · cel {s}
+id	JAK_EN: Power tower (pull-up + dip)	Stacja: drążek + poręcze (power tower)
+id	JAK_EN: stair climber	stepper schodowy
+id	JAK_EN: Stair climber	Stepper schodowy (stair climber)
+id	JAK_EN: rotator cuff	stożek rotatorów
+id	JAK_EN: Strongman	Strongman
+id	JAK_EN: superset	superset
+id	JAK_EN: leg press	suwnica na nogi
+id	JAK_EN: Leg press	Suwnica na nogi (leg press)
+id	JAK_EN: Smith machine	suwnica Smitha
+id	JAK_EN: Smith machine	Suwnica Smitha
+id	JAK_EN: suspension trainer	taśmy do podwieszania
+id	JAK_EN: Suspension trainer	Taśmy do podwieszania
+id	JAK_EN: trap bar	trap bar
+id	JAK_EN: T-bar row	Wiosłowanie T-bar
+id	JAK_EN: sandbag	worek z piaskiem
+id	JAK_EN: lat pulldown	wyciąg do ściągania drążka
+id	JAK_EN: Seated cable row	Wyciąg dolny (wiosłowanie siedząc)
+id	JAK_EN: Lat pulldown	Wyciąg górny (ściąganie drążka)
+id	JAK_EN: serratus anterior	zębaty przedni
+id	LICZBY: 1 →  | Kurangi satu repetisi	Zmniejsz powtórzenia o 1
+id	LICZBY: 1 →  | Tambah satu repetisi	Zwiększ powtórzenia o 1
+ms	JAK_EN: + drop set	+ drop set
+ms	JAK_EN: Apple Health	Apple Health
+ms	JAK_EN: Apple Health…	Apple Health…
+ms	JAK_EN: treadmill	bieżnia
+ms	JAK_EN: Treadmill	Bieżnia
+ms	JAK_EN: pec deck	butterfly (pec deck)
+ms	JAK_EN: Pec deck	Butterfly (pec deck)
+ms	JAK_EN: circus bell	circus bell
+ms	JAK_EN: Deload	Deload
+ms	JAK_EN: drop set	drop set
+ms	JAK_EN: Drop set (D)	Drop set (D)
+ms	JAK_EN: e1RM {v} (set {s})	e1RM {v} (seria {s})
+ms	JAK_EN: Folder	Folder
+ms	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+ms	JAK_EN: glute-ham raise	glute-ham raise
+ms	JAK_EN: hack squat	hack squat
+ms	JAK_EN: Hack squat	Hack squat
+ms	JAK_EN: imperial (lb, mi, yd)	imperialny (lb, mi, yd)
+ms	JAK_EN: Import	Importuj
+ms	JAK_EN: kettlebell	kettlebell
+ms	JAK_EN: kettlebell: {v}	kettlebell: {v}
+ms	JAK_EN: Power rack	Klatka treningowa (power rack)
+ms	JAK_EN: Log bar	Kłoda (log bar)
+ms	JAK_EN: log bar	kłoda (log)
+ms	JAK_EN: landmine	landmine
+ms	JAK_EN: Leg extension	Maszyna do prostowania nóg
+ms	JAK_EN: Leg curl	Maszyna do uginania nóg
+ms	JAK_EN: elliptical	orbitrek
+ms	JAK_EN: Elliptical	Orbitrek
+ms	JAK_EN: pendulum squat	pendulum squat
+ms	JAK_EN: tibialis anterior	piszczelowy przedni
+ms	JAK_EN: reverse hyper	reverse hyper
+ms	JAK_EN: rickshaw	riksza
+ms	JAK_EN: Rickshaw	Riksza (rickshaw)
+ms	JAK_EN: foam roller	roller
+ms	JAK_EN: Foam roller	Roller do automasażu
+ms	JAK_EN: wrist roller	roller na nadgarstki
+ms	JAK_EN: Wrist roller	Roller na nadgarstki
+ms	JAK_EN: Sled (prowler)	Sanki (prowler)
+ms	JAK_EN: stair climber	stepper schodowy
+ms	JAK_EN: Stair climber	Stepper schodowy (stair climber)
+ms	JAK_EN: rotator cuff	stożek rotatorów
+ms	JAK_EN: Strongman	Strongman
+ms	JAK_EN: superset	superset
+ms	JAK_EN: leg press	suwnica na nogi
+ms	JAK_EN: Leg press	Suwnica na nogi (leg press)
+ms	JAK_EN: Smith machine	suwnica Smitha
+ms	JAK_EN: Smith machine	Suwnica Smitha
+ms	JAK_EN: suspension trainer	taśmy do podwieszania
+ms	JAK_EN: Suspension trainer	Taśmy do podwieszania
+ms	JAK_EN: trap bar	trap bar
+ms	JAK_EN: T-bar row	Wiosłowanie T-bar
+ms	JAK_EN: sandbag	worek z piaskiem
+ms	JAK_EN: lat pulldown	wyciąg do ściągania drążka
+ms	JAK_EN: Seated cable row	Wyciąg dolny (wiosłowanie siedząc)
+ms	JAK_EN: Lat pulldown	Wyciąg górny (ściąganie drążka)
+ms	JAK_EN: serratus anterior	zębaty przedni
+ms	LICZBY: 1 →  | Kurangkan satu ulangan	Zmniejsz powtórzenia o 1
+ms	LICZBY: 1 →  | Tambah satu ulangan	Zwiększ powtórzenia o 1
+vi	JAK_EN: + drop set	+ drop set
+vi	JAK_EN: Apple Health	Apple Health
+vi	JAK_EN: Apple Health…	Apple Health…
+vi	JAK_EN: pec deck	butterfly (pec deck)
+vi	JAK_EN: Pec deck	Butterfly (pec deck)
+vi	JAK_EN: cardio	cardio
+vi	JAK_EN: Cardio	Cardio
+vi	JAK_EN: circus bell	circus bell
+vi	JAK_EN: Deload	Deload
+vi	JAK_EN: drop set	drop set
+vi	JAK_EN: Drop set (D)	Drop set (D)
+vi	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+vi	JAK_EN: glute-ham raise	glute-ham raise
+vi	JAK_EN: hack squat	hack squat
+vi	JAK_EN: Hack squat	Hack squat
+vi	JAK_EN: kettlebell	kettlebell
+vi	JAK_EN: kettlebell: {v}	kettlebell: {v}
+vi	JAK_EN: Log bar	Kłoda (log bar)
+vi	JAK_EN: log bar	kłoda (log)
+vi	JAK_EN: landmine	landmine
+vi	LICZBY:  → 0 | Cân nặng phải lớn hơn 0 và không quá {max}.	Masa ciała musi być większa od zera i nie większa niż {max}.
+vi	JAK_EN: pendulum squat	pendulum squat
+vi	JAK_EN: reverse hyper	reverse hyper
+vi	JAK_EN: rickshaw	riksza
+vi	JAK_EN: Rickshaw	Riksza (rickshaw)
+vi	JAK_EN: Strongman	Strongman
+vi	JAK_EN: superset	superset
+vi	JAK_EN: trap bar	trap bar
+vi	JAK_EN: T-bar row	Wiosłowanie T-bar
+vi	LICZBY: 1 →  | Bớt một lần	Zmniejsz powtórzenia o 1
+vi	LICZBY: 1 →  | Thêm một lần	Zwiększ powtórzenia o 1
+ru	LICZBY: 1,1 → 1 | {v} от {d}. Для тренировок этого периода e1RM пересчитается по более раннему зам	{v} z {d}. Treningi z tego okresu przeliczą e1RM z wcześniejszego pomiaru (albo bez e1RM, 
+ru	PISMO: Apple Health	Apple Health
+ru	JAK_EN: Apple Health	Apple Health
+ru	PISMO: Apple Health…	Apple Health…
+ru	JAK_EN: Apple Health…	Apple Health…
+ru	PISMO: circus bell	circus bell
+ru	JAK_EN: circus bell	circus bell
+ru	PISMO: Full Body	FBW
+ru	JAK_EN: Full Body	FBW
+ru	PISMO: Full Body A	FBW A
+ru	JAK_EN: Full Body A	FBW A
+ru	PISMO: Full Body B	FBW B
+ru	JAK_EN: Full Body B	FBW B
+ru	PISMO: GHD (glute-ham developer)	GHD (glute-ham developer)
+ru	JAK_EN: GHD (glute-ham developer)	GHD (glute-ham developer)
+ru	PISMO: glute-ham raise	glute-ham raise
+ru	JAK_EN: glute-ham raise	glute-ham raise
+ru	PISMO: landmine	landmine
+ru	JAK_EN: landmine	landmine
+ru	PISMO: pendulum squat	pendulum squat
+ru	JAK_EN: pendulum squat	pendulum squat
+ru	PISMO: reverse hyper	reverse hyper
+ru	JAK_EN: reverse hyper	reverse hyper
+ru	LICZBY: 1 →  | Убрать одно повторение	Zmniejsz powtórzenia o 1
+ru	LICZBY: 1 →  | Добавить одно повторение	Zwiększ powtórzenia o 1
+ja	LICZBY:  → 1 | {price}（1回払い）	{price} jednorazowo
+ja	LICZBY:  → 1 | {u}/ダンベル1本	{u}/hantel
+ja	PISMO: Apple Health	Apple Health
+ja	JAK_EN: Apple Health	Apple Health
+ja	PISMO: Apple Health…	Apple Health…
+ja	JAK_EN: Apple Health…	Apple Health…
+ja	LICZBY:  → 1 | バンドがありません。補助付き懸垂を記録するには、まず1本追加してください。	Brak gum. Dodaj pierwszą, by zapisywać asystę przy podciąganiu.
+ja	LICZBY:  → 2 | ケーブルクロスオーバー（高さ調整できるプーリー2つ）	Brama (dwa wyciągi z regulacją wysokości)
+ja	LICZBY:  → 1 | 1年分のトレーニング、年額でのお支払い。	Cały rok treningów, rozliczany rocznie.
+ja	LICZBY:  → 1 | 有酸素運動：中強度のセッションを別の日に1回。長さ＝セッションの時間。	Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.
+ja	LICZBY:  → 1 | 有酸素運動：週{k}日以上なら別の日に1回のセッション。それより少ない日数ではすべて筋力トレーニングの日にして、有酸素運動が筋力トレーニングの日を減らさないよう	Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszys
+ja	PISMO: circus bell	circus bell
+ja	JAK_EN: circus bell	circus bell
+ja	LICZBY:  → 1 | 種目には少なくとも1セットが必要です。種目全体を削除するには、種目名を左にスワイプしてください。	Ćwiczenie ma co najmniej jedną serię. Żeby usunąć całe ćwiczenie, przesuń w lewo jego nazw
+ja	LICZBY:  → 2 | ケーブル2本	dwa wyciągi
+ja	LICZBY:  → 2 | 独立したケーブル2本	dwie niezależne linki
+ja	LICZBY: 1 → 1,1 | e1RM（ダンベル1本あたり）	e1RM (na hantel)
+ja	PISMO: GHD（glute-ham developer）	GHD (glute-ham developer)
+ja	PISMO: glute-ham raise	glute-ham raise
+ja	JAK_EN: glute-ham raise	glute-ham raise
+ja	LICZBY:  → 1,1 | 週1回のトレーニングでも進歩はありますが、通常はもっと頻繁なトレーニングより少し小さくなります — 主な理由は、1回のセッションに入るセット数が少ないことです。	Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening
+ja	LICZBY:  → 1,2 | 1回のセッション: {v}。2回目以降にグラフが表示されます。	Jedna sesja: {v}. Wykres pojawi się po drugiej.
+ja	LICZBY:  → 1 | 1日あたりの歩数（{d}日間の平均）：{n}	Kroki dziennie (średnia z {d} dni): {n}
+ja	LICZBY: 60 → 1,60 | セッションの長さから求めるセット数：（分 − ウォームアップ {w}分）× 60 /（1セット {s}秒 ＋ 平均インターバル {r}秒）= {n}；種目数 =	Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia pr
+ja	LICZBY:  → 0 | 体重は0より大きく、{max}以下にしてください。	Masa ciała musi być większa od zera i nie większa niż {max}.
+ja	LICZBY:  → 1 | 最大重量（ダンベル1本あたり）	Max ciężar (per hantel)
+ja	LICZBY:  → 1 | 1セットの最大回数	Max powtórzeń w serii
+ja	LICZBY: 0 → 0,0,1 | 指標: 総重量（セット数×回数×重量）を、その種目の1回あたりの平均で見ます。回数が違っても結果は歪みません。総重量が減っても作業重量が増えていれば（または以前	Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba s
+ja	LICZBY:  → 1 | 1回のトレーニングでの最長合計時間	Najdłużej łącznie na treningu
+ja	LICZBY:  → 1 | 1回のトレーニングでの最長距離	Najdłuższy dystans na treningu
+ja	LICZBY:  → 1 | 1回のトレーニングでの最多回数	Najwięcej powtórzeń na treningu
+ja	LICZBY:  → 1 | テンプレートは最大{n}個 — どれにも少なくとも1日が割り当てられます。	Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.
+ja	LICZBY:  → 1 | 結果のあるセットが1つも残りません。このセッションを履歴から削除しますか？	Nie zostałaby żadna seria z wynikiem. Usunąć tę sesję z historii?
+ja	LICZBY:  → 1 | 現在のプランは「その他のプラン」に残ります — ボタン1つで戻せます。	Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.
+ja	LICZBY:  → 1,1 | 有効なプランは一度に1つです。一時的な期間のあとは、ボタン1つで前のプランに戻せます。プランをタップすると名前と日程を変更できます。	Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyci
+ja	LICZBY:  → 1,1 | 健康・体力（健康のため）：1種目{s}セット、{a}–{b}回（自宅では{c}–{d}回）、次の1回がきつくなるところまで。健康のためには、すべての主な部位を週	Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{
+ja	LICZBY:  → 1 | ペア: {a}（{r}）；ダンベル1本: {b}（{r1}）	para: {a} ({r}); jeden hantel: {b} ({r1})
+ja	LICZBY: 2 → 1,2 | ダンベル1本あたり（×2）	per hantel (×2)
+ja	LICZBY:  → 1 | 1回のお支払いで、ずっとお使いいただけます。	Płacisz raz i masz na zawsze.
+ja	LICZBY: 5,200 → 1,5,200 | ポータブル電動ケーブル機、ケーブル1本（5–200 lb）	Przenośna stacja elektryczna, jedna linka (5–200 lb)
+ja	LICZBY:  → 1 | 減量：筋肥大と同じトレーニング（筋肉を守る）と、中強度の有酸素運動セッション1回。	Redukcja: trening jak na masę (chroni mięśnie) i jedna sesja umiarkowanego cardio.
+ja	PISMO: reverse hyper	reverse hyper
+ja	JAK_EN: reverse hyper	reverse hyper
+ja	LICZBY:  → 1,1,1 | セット：1種目{s}セット — 健康のためには通常{s}–{b}セット。少なくとも{m}セットは行いましょう。1セットでも効果があり、{s}–{b}セットのほう	Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna 
+ja	LICZBY:  → 1 | セット：1種目{s}セット — 少なくとも{m}セットは行いましょう。セット数を増やすと通常は少し効果が上がりますが、増やすほど上がり幅は小さくなります。	Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę wi
+ja	LICZBY:  → 2 | 目標の2倍までの目盛り、» は それ以上。	Skala do dwukrotności celu, » — więcej.
+ja	LICZBY:  → 1 | スーパーセット · 1ラウンド後のインターバル {t}	superset · przerwa po rundzie {t}
+ja	LICZBY:  → 2 | プレート：重量と枚数（すべて、ダンベル2本分の合計）。	Talerze: ciężar i liczba sztuk (wszystkie, dla obu hantli razem).
+ja	LICZBY:  → 1 | トレーニングは私の1週間の一部	Trening to część mojego tygodnia
+ja	LICZBY:  → 1 | ハンドル（1個、{u}）	Uchwyt (jeden, {u})
+ja	LICZBY:  → 1 | テンプレートを1つ以上選んでください。	Wybierz co najmniej jeden szablon.
+ja	LICZBY:  → 1 | 高さ調整できるプーリー（1つ）	Wyciąg z regulacją wysokości (jeden)
+ja	LICZBY:  → 1 | 強度：次の1回がきつくなるところまで — 疲れてはいるが、へとへとではない状態。限界までやる必要はありません。	Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie
+ja	LICZBY:  → 1 | 強度：次の1回がきつくなるところまで。限界までやる必要はありません。	Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne; do upadku nie trzeba.
+ja	LICZBY:  → 1 | レップ範囲: {r} — 前回すべてのワーキングセットが{n}回以上だった場合、種目に「↑ … に挑戦」というヒントが表示されます：重量を増やすか、1回多く（デ	Zakres powtórzeń: {r} — gdy ostatnio wszystkie serie robocze miały co najmniej {n} powt., 
+ja	LICZBY:  → 1,2 | 通常、同じ主な部位を鍛えるセッションの間には休息日を1日入れます。週のセット数が同じなら、2日連続でも問題ありません。	Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy
+ja	LICZBY:  → 1 | 通常、同じ主な部位を鍛えるセッションの間には休息日を1日入れます。	Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.
+ko	LICZBY:  → 1 | {price} 1회 결제	{price} jednorazowo
+ko	LICZBY:  → 1 | {u}/덤벨 1개	{u}/hantel
+ko	PISMO: Apple Health	Apple Health
+ko	JAK_EN: Apple Health	Apple Health
+ko	PISMO: Apple Health…	Apple Health…
+ko	JAK_EN: Apple Health…	Apple Health…
+ko	LICZBY:  → 2 | 케이블 크로스오버(높이 조절 풀리 2개)	Brama (dwa wyciągi z regulacją wysokości)
+ko	LICZBY:  → 1 | 1년 내내 운동하는 연간 결제입니다.	Cały rok treningów, rozliczany rocznie.
+ko	LICZBY:  → 1 | 유산소: 중강도 세션 1회를 다른 날에 합니다. 길이 = 세션 시간.	Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.
+ko	LICZBY:  → 1 | 유산소: 주 {k}일 이상이면 다른 날에 세션 1회를 넣습니다. 그보다 적으면 유산소가 근력 운동할 날을 차지하지 않도록 모든 날을 근력 운동으	Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszys
+ko	PISMO: circus bell	circus bell
+ko	JAK_EN: circus bell	circus bell
+ko	LICZBY:  → 1 | 종목에는 최소 1세트가 있어야 합니다. 종목 전체를 삭제하려면 종목 이름을 왼쪽으로 쓸어 넘기세요.	Ćwiczenie ma co najmniej jedną serię. Żeby usunąć całe ćwiczenie, przesuń w lewo jego nazw
+ko	LICZBY:  → 2 | 케이블 2개	dwa wyciągi
+ko	LICZBY:  → 2 | 독립된 케이블 2개	dwie niezależne linki
+ko	LICZBY: 1 → 1,1 | e1RM(덤벨 1개 기준)	e1RM (na hantel)
+ko	PISMO: GHD(glute-ham developer)	GHD (glute-ham developer)
+ko	PISMO: glute-ham raise	glute-ham raise
+ko	JAK_EN: glute-ham raise	glute-ham raise
+ko	LICZBY:  → 1 | 주 1회 운동으로도 발전은 있지만, 보통 더 자주 운동할 때보다 조금 적습니다 — 주된 이유는 한 세션에 들어가는 세트 수가 적기 때문입니다. 	Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening
+ko	LICZBY:  → 1 | 세션 1회: {v}. 두 번째 세션 후에 그래프가 나타납니다.	Jedna sesja: {v}. Wykres pojawi się po drugiej.
+ko	LICZBY:  → 0 | 체중은 0보다 크고 {max} 이하여야 합니다.	Masa ciała musi być większa od zera i nie większa niż {max}.
+ko	LICZBY:  → 1 | 최대 무게(덤벨 1개 기준)	Max ciężar (per hantel)
+ko	LICZBY: 0 → 0,0,1 | 기준: 총 중량(세트 × 횟수 × 무게)을 그 운동의 1회 평균으로 봅니다. 운동 횟수가 달라도 결과가 왜곡되지 않습니다. 총 중량이 줄었어도 	Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba s
+ko	LICZBY:  → 1 | 일반(건강과 체력): 종목당 {s}세트, {a}–{b}회(집에서는 {c}–{d}회), 다음 1회가 힘들어질 때까지 합니다. 건강을 위해 모든 주	Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{
+ko	LICZBY:  → 1 | 한 쌍: {a}({r}); 덤벨 1개: {b}({r1})	para: {a} ({r}); jeden hantel: {b} ({r1})
+ko	LICZBY: 2 → 1,2 | 덤벨 1개 기준(×2)	per hantel (×2)
+ko	LICZBY: 5,200 → 1,5,200 | 휴대용 전동 케이블 기기, 케이블 1개(5–200lb)	Przenośna stacja elektryczna, jedna linka (5–200 lb)
+ko	LICZBY:  → 1 | 감량: 근비대와 같은 운동(근육 보호)과 중강도 유산소 세션 1회.	Redukcja: trening jak na masę (chroni mięśnie) i jedna sesja umiarkowanego cardio.
+ko	PISMO: reverse hyper	reverse hyper
+ko	JAK_EN: reverse hyper	reverse hyper
+ko	LICZBY:  → 1,1 | 세트: 종목당 {s}세트. 건강을 위해서는 보통 {s}–{b}세트입니다. 최소 {m}세트는 하는 것이 좋습니다. 1세트도 효과가 있고, {s}–	Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna 
+ko	LICZBY:  → 2 | 목표의 2배까지의 눈금, » 는 그 이상.	Skala do dwukrotności celu, » — więcej.
+ko	LICZBY:  → 1 | 손잡이(1개, {u})	Uchwyt (jeden, {u})
+ko	LICZBY:  → 1 | 높이 조절 풀리(1개)	Wyciąg z regulacją wysokości (jeden)
+ko	LICZBY:  → 1 | 강도: 다음 1회가 힘들어질 때까지, 피곤하지만 녹초가 되지는 않을 정도로 합니다. 실패 지점까지 할 필요는 없습니다.	Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie
+ko	LICZBY:  → 1 | 강도: 다음 1회가 힘들어질 때까지. 실패 지점까지 할 필요는 없습니다.	Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne; do upadku nie trzeba.
+ko	LICZBY:  → 1 | 반복 범위: {r} — 지난번 모든 작업 세트가 {n}회 이상이었으면 종목에 ‘↑ … 도전’ 힌트가 나타납니다: 무게를 늘리거나 1회 더(디로드	Zakres powtórzeń: {r} — gdy ostatnio wszystkie serie robocze miały co najmniej {n} powt., 
+zh-Hant	PISMO: Apple Health	Apple Health
+zh-Hant	JAK_EN: Apple Health	Apple Health
+zh-Hant	PISMO: Apple Health…	Apple Health…
+zh-Hant	JAK_EN: Apple Health…	Apple Health…
+zh-Hant	PISMO: circus bell	circus bell
+zh-Hant	JAK_EN: circus bell	circus bell
+zh-Hant	PISMO: GHD（glute-ham developer）	GHD (glute-ham developer)
+zh-Hant	PISMO: glute-ham raise	glute-ham raise
+zh-Hant	JAK_EN: glute-ham raise	glute-ham raise
+zh-Hant	LICZBY:  → 0 | 體重必須大於 0，且不超過 {max}。	Masa ciała musi być większa od zera i nie większa niż {max}.
+zh-Hant	LICZBY: 2 →  | 上週，對比兩週前	Poprzedni tydzień vs 2 tyg. temu
+zh-Hant	PISMO: reverse hyper	reverse hyper
+zh-Hant	JAK_EN: reverse hyper	reverse hyper
+
+# PODSUMOWANIE (język: kategoria=liczba)
+en {"LICZBY":2}
+cs {"JAK_EN":24,"LICZBY":3}
+sk {"JAK_EN":25,"LICZBY":3}
+hu {"JAK_EN":17,"LICZBY":5}
+ro {"JAK_EN":35,"LICZBY":2}
+bg {"PISMO":7,"JAK_EN":6,"LICZBY":2}
+hr {"JAK_EN":22,"LICZBY":2}
+sl {"JAK_EN":20,"LICZBY":2}
+sr {"PISMO":5,"JAK_EN":4,"LICZBY":2}
+lt {"JAK_EN":14,"LICZBY":2}
+lv {"JAK_EN":17,"LICZBY":2}
+et {"JAK_EN":16,"LICZBY":3}
+uk {"PISMO":4,"JAK_EN":3,"LICZBY":2}
+es {"JAK_EN":27,"LICZBY":2}
+es-419 {"LICZBY":2}
+pt {"JAK_EN":34,"LICZBY":2}
+pt-BR {"LICZBY":2}
+de {"JAK_EN":10,"LICZBY":3}
+fr {"JAK_EN":53,"LICZBY":4}
+it {"JAK_EN":50,"LICZBY":2}
+nl {"JAK_EN":78,"LICZBY":2}
+sv {"JAK_EN":36}
+da {"JAK_EN":42,"LICZBY":2}
+nb {"JAK_EN":38,"LICZBY":3}
+fi {"JAK_EN":19,"LICZBY":3}
+tr {"JAK_EN":42,"LICZBY":2}
+el {"PISMO":48,"JAK_EN":44,"LICZBY":2}
+id {"JAK_EN":64,"LICZBY":2}
+ms {"JAK_EN":57,"LICZBY":2}
+vi {"JAK_EN":28,"LICZBY":3}
+ru {"LICZBY":3,"PISMO":11,"JAK_EN":11}
+ja {"LICZBY":46,"PISMO":6,"JAK_EN":5}
+ko {"LICZBY":27,"PISMO":6,"JAK_EN":5}
+zh-Hant {"PISMO":6,"JAK_EN":5,"LICZBY":2}
+kluczy w źródle: 1710; języki: en + 33

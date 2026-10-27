@@ -1,0 +1,20 @@
+Źródła przeczytane 27.10.2026 (surowy tekst: curl + usunięcie znaczników HTML / tekst z JSON dokumentacji Apple; grep cytatów)
+$ curl https://developer.apple.com/tutorials/data/documentation/xcode/acquiring-crash-reports-and-diagnostic-logs.json
+  trafień „TestFlight   users of your app automatically share crash reports with you”: 1
+  trafień „The Crashes organizer presents crash reports from customers who share diagnostic and usage information”: 1
+  trafień „ask the customer to e-mail you the crash report from their   device”: 1
+$ curl -L https://developer.apple.com/help/app-store-connect/test-a-beta-version/view-tester-feedback
+  trafień „Crash reports are available for download for 120 days”: 1
+  trafień „comments related to crashes”: 1
+$ curl -L https://developer.apple.com/help/app-store-connect/test-a-beta-version/view-build-status-and-metrics
+  trafień „Crashes View the number of times a build crashed on tester devices”: 1
+  trafień „To view crash reports directly in Xcode”: 1
+$ curl https://developer.apple.com/tutorials/data/documentation/metrickit.json
+  trafień „Diagnostic reports arrive immediately in iOS 15 and later”: 1
+$ curl https://www.sqlite.org/howtocorrupt.html
+  trafień „Overwriting a database file with another without also deleting any hot journal”: 1
+$ curl https://www.sqlite.org/recovery.html
+  trafień „Application faults and power failures typically leave the content of the database intact”: 1
+$ curl -L https://developer.apple.com/help/app-store-connect/measure-app-performance/overview-of-reporting-tools (szukanie „crash”)
+  trafień „crash”: 0
+exit=0

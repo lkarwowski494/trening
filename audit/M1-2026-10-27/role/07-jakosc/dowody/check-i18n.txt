@@ -1,0 +1,9 @@
+# katalog: kopia robocza 025a50b9 (git worktree w scratchpadzie, node_modules = dowiązanie do /home/user/trening/node_modules)
+# start: 2026-10-27T18:06:34Z
+$ npm run check:i18n
+
+> trening@1.0.0 check:i18n
+> node scripts/check-i18n.mjs
+
+i18n: 1432 tekstów w kodzie, 1528 w słowniku EN
+exit=0  czas=0s  koniec: 2026-10-27T18:06:34Z

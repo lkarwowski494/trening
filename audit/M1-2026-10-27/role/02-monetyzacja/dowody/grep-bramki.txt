@@ -1,0 +1,43 @@
+app/paywall.tsx:11:import { PLAN_ORDER, PRIVACY_URL, TERMS_URL, isFakeStoreBuild } from '@/lib/products';
+app/paywall.tsx:14:import { useAccess, purchasePlan, restorePurchases, refreshEntitlements, nextMonthDay } from '@/lib/entitlement';
+app/paywall.tsx:20: * liczb w opisach planów. Stany: ładowanie, brak sieci, błąd, zakupione. Dostęp z Ustawień → „Subskrypcja” (tylko gdy PAYWALL.ENABLED) oraz automatycznie
+app/paywall.tsx:35:  const th = useTheme(); const router = useRouter(); const headerOpts = useCloseHeader(); /* zasada 13.10.2026: „Zamknij” w nagłówku zawsze (także reason=settings); „Nie teraz” na dole zostaje */ const { reason } = useLocalSearchParams<{ reason?: string }>(); const view = useAccess();
+app/paywall.tsx:47:      const r = await purchasePlan(chosen.plan);
+app/paywall.tsx:55:    try { const r = await restorePurchases(); setNote(r === 'restored' ? t('Przywrócono zakupy.') : r === 'none' ? t('Nie znaleziono zakupów dla tego konta Apple.') : t('Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.')); } finally { setBusy(false); }
+app/paywall.tsx:59:  const fake = isFakeStoreBuild() ? (getStoreAdapter() as unknown as FakeStoreControl) : null;
+app/paywall.tsx:64:        <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold }}>{t('W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Text>
+app/paywall.tsx:66:      </View> : <Text testID="paywall-headline" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold, marginTop: 8, marginBottom: 12 }}>{t('Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Text>}
+app/paywall.tsx:73:        {!lifetime || subActive ? <Btn small title={t('Zarządzaj subskrypcją')} style={{ alignSelf: 'flex-start', marginTop: 6 }} onPress={() => { void store(() => getStoreAdapter().manageSubscriptions()); }} /> : null}
+app/paywall.tsx:93:      <Muted style={{ ...font('footnote'), marginTop: 12 }}>{t('Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Muted>
+app/paywall.tsx:96:        <Btn small title={t('Zrealizuj kod')} onPress={() => { void store(() => getStoreAdapter().redeemCode().then(() => refreshEntitlements())); }} />
+app/paywall.tsx:108:      {fake ? <View testID="fake-store-panel" style={{ marginTop: 24, gap: 8 }}>{/* tylko build E2E (EXPO_PUBLIC_STORE_FAKE=1) — sterowanie sztucznym sklepem w Maestro; bez t(), nie trafia do TestFlight */}
+app/more/settings.tsx:33:      {paywallOn() ? <SubscriptionCard /> /* 0.17.0 (docs/27): karta tylko przy PAYWALL.ENABLED */ : null}
+app/_layout.tsx:25:import { initEntitlements, refreshEntitlements } from '@/lib/entitlement';
+app/_layout.tsx:42:  const start = (retry = false) => { setErr(null); setDiag(undefined); Promise.all([init({ guard: true, retry }), loadFonts()]).then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); retryHealth().catch(() => {}); /* J2: zapisy do Zdrowia, które się nie udały */ cleanShareLeftovers().catch(() => {}); /* SEC-09 */ restored = restoreObjDrafts(); /* UX2-03 = DAT2-06: szkice edycji sprzed zamknięcia aplikacji */ cancelLegacyReminders().catch(() => {}); /* decyzja 09.10.2026: bez przypomnienia o podpisie — stare odwołane */ initEntitlements().catch(() => {}); /* 0.17.0: sklep tylko przy PAYWALL.ENABLED */ return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => { setDiag(typeof e?.bootDiag === 'string' ? e.bootDiag : undefined); setErr(e instanceof Error ? e.message : String(e)); }); };
+app/_layout.tsx:55:  useEffect(() => { const sub = AppState.addEventListener('change', st => { if (st !== 'active') { flush(); if (!errRef.current) markBootStable().catch(() => {}); /* ZK-07: także przed końcem ładowania — wyjście do tła nie jest awarią; ekran błędu licznika nie zeruje */ } else { const w = autoFinishStale(); /* runda 74 (audyt): stoper zdjęty z zapisu przez cichy zapis (Q-011, seria z celem odhaczona) nie liczy dalej w pamięci */ if (!w && timer.S.on && !getState().timer?.setStartAt) timer.stopSet().catch(() => {}); autoSaved(w); timer.onForeground(); refreshViews(); retryHealth().catch(() => {}); /* J2 */ refreshEntitlements().catch(() => {}); /* 0.17.0: powrót z tła */ } }); return () => sub.remove(); }, []);
+lib/watch/fake.ts:6: * Atrapa zegarka do testów i E2E (wzór EXPO_PUBLIC_STORE_FAKE): transport po stronie telefonu + zegarek zbudowany z modelu referencyjnego (lib/watch/client.ts).
+lib/watch/test-mode.ts:2:import { isFakeStoreBuild } from '@/lib/products';
+lib/watch/test-mode.ts:7: * Tryb „udawanego zegarka” — TYLKO build E2E na symulatorze (decyzja właściciela 14.10.2026, docs/18; wzór: sztuczny sklep, lib/products.ts isFakeStoreBuild).
+lib/watch/test-mode.ts:12: * Zamek podwójny: tryb włącza dopiero EXPO_PUBLIC_WATCH_FAKE=1 RAZEM z EXPO_PUBLIC_STORE_FAKE=1. Obie zmienne ustawia wyłącznie e2e-ios.yml; testflight.yml odrzuca
+lib/watch/test-mode.ts:16:export const isFakeWatchBuild = (): boolean => process.env.EXPO_PUBLIC_WATCH_FAKE === '1' && isFakeStoreBuild();
+lib/fairrules.ts:12:  if (!paywallOn()) return false;
+lib/fairrules.ts:13:  const v = accessNow(now); return v.level === 'free' && !v.silent;
+lib/review-run.ts:12:import { nextStartBlocked } from '@/lib/entitlement';
+lib/review-run.ts:29:    lastAsked: st.settings.reviewAsked ?? null, workoutActive: !!st.active, blocked: nextStartBlocked(now), ioBusy: false, lastFailed: !!getPersistError() });
+lib/products.ts:4: * Przełącznik całości (PAYWALL.ENABLED) i liczby limitu: lib/access.ts. Moduł bez zależności od StoreKit i od magazynu — importowalny z każdego miejsca.
+lib/products.ts:54:export const isFakeStoreBuild = (): boolean => process.env.EXPO_PUBLIC_STORE_FAKE === '1';
+lib/start.ts:5:import { guardLiveStart } from '@/lib/entitlement';
+lib/start.ts:64:  if (!guardLiveStart(via)) return; /* subskrypcja (docs/27, 0.17): ponad limit darmowych treningów — ekran zakupu zamiast startu; przy PAYWALL.ENABLED = false bez skutku */
+lib/start.ts:70:  if (!guardLiveStart('repeatLast')) return;
+lib/start.ts:75:  if (!guardLiveStart('empty')) return false;
+components/SubscriptionCard.tsx:8:/** Karta „Subskrypcja” w Ustawieniach (docs/27, 0.17.0): stan dostępu i wejście na ekran zakupu. Montowana tylko przy PAYWALL.ENABLED (app/more/settings.tsx). */
+components/SubscriptionCard.tsx:10:  const router = useRouter(); const v = useAccess(); const a = v.active;
+components/SubscriptionCard.tsx:16:    <Item title={t('Pełna wersja')} sub={sub} accessibilityLabel={`${t('Pełna wersja')}. ${sub}`} onPress={() => router.push('/paywall?reason=settings')} />
+components/StartPanel.tsx:36:  const m = mainStart(); const x = mainText(m); const acc = useAccess(); /* M5 S1: licznik darmowych dni treningowych (tylko stan free przy włączonym przełączniku) */
+components/ImportProCard.tsx:16:  const th = useTheme(); const router = useRouter(); useAccess(); /* odświeża kartę przy zmianie dostępu */
+components/ImportProCard.tsx:21:      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body') }}>{t('Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Text>
+components/ImportProCard.tsx:22:      <Btn nav testID="import-pro-plans" title={t('Zobacz plany Pro ›')} onPress={() => router.push('/paywall?reason=settings')} />
+components/TestWatchPanel.tsx:7: * (symulator iPhone’a nie ma sparowanego zegarka). Bez t(): nie trafia do TestFlight ani App Store (tests/watch-test-mode.test.ts). Wzór: panel „Test store” (app/paywall.tsx). */
+components/FairRulesSheet.tsx:20:  const plans = () => { markFairRulesSeen(); onClose(); router.push('/paywall?reason=settings'); };
+components/FairRulesSheet.tsx:33:          {line('free', t('Trenuj {n} dni w miesiącu za darmo, bez końca.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH }))}
+modules/watch-link/transport.ts:89:/** Atrapa transportu natywnego: testy logiki telefonu i scenariusze E2E z fałszywym transportem (wzór EXPO_PUBLIC_STORE_FAKE). */

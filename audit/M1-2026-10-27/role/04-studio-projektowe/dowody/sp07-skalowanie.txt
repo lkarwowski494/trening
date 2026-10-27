@@ -1,0 +1,25 @@
+$ grep -rn "allowFontScaling={false}" app components lib
+exit=1
+
+$ grep -rnc "maxFontSizeMultiplier" app components | sort -t: -k2 -n -r | head
+components/WorkoutBlocks.tsx:16
+components/TodayPlan.tsx:11
+components/ExerciseFigureV2.tsx:11
+components/ui.tsx:10
+components/NowBoard.tsx:7
+components/ExerciseCues.tsx:7
+components/Dashboard.tsx:7
+app/paywall.tsx:7
+components/BoardFace.tsx:6
+components/ActiveWorkout.tsx:6
+components/HistoryCalendar.tsx:5
+components/GuardSection.tsx:5
+app/history/edit/[id].tsx:5
+components/RecordsCard.tsx:4
+components/StartPanel.tsx:3
+
+$ liczba <Text bez maxFontSizeMultiplier (przybliżenie: linie z <Text i bez maxFontSize) w app/ components/
+24
+
+$ allowsFontScaling / adjustsFontSizeToFit
+8

@@ -1,0 +1,61 @@
+// Pary kontrastu systemu E3 z tokenów (M3, 21.10.2026): node --experimental-strip-types docs/design/narzedzia/e3-kontrast.mjs
+// Zapisuje docs/design/tokeny-kontrast.json (wejście kontrast.mjs). Tylko pary, które naprawdę sąsiadują (WCAG 1.4.3 tekst, 1.4.11 elementy).
+// Progi: tekst 4,5; duży tekst (≥ 24 pt albo ≥ 19 pt pogrubiony) 3; elementy 3. „Zwiększ kontrast” (HC): tekst pomocniczy i akcent 7, elementy 4,5 (M1-031).
+import { writeFileSync } from 'node:fs';
+const T = await import('file:///home/user/trening/lib/tokens.ts');
+const out = {};
+const add = (n, fg, bg, min = 4.5) => { out[n] = [fg, bg, min]; };
+for (const [nazwa, p, hc] of [['jasny', T.light, false], ['ciemny', T.dark, false], ['jasny HC', T.lightHC, true], ['ciemny HC', T.darkHC, true]]) {
+  const tla = { bg: p.bg, surface: p.surface, surface2: p.surface2 };
+  for (const [tn, tb] of Object.entries(tla)) {
+    add(`${nazwa}: text/${tn}`, p.text, tb);
+    add(`${nazwa}: muted/${tn}`, p.muted, tb, hc ? 7 : 4.5);
+    add(`${nazwa}: accent (tekst przycisku w nagłówku)/${tn}`, p.accent, tb, hc ? 7 : 4.5);
+    add(`${nazwa}: band (tekst gumy)/${tn}`, p.band, tb, hc ? 7 : 4.5);
+    add(`${nazwa}: danger (tekst „Usuń …”)/${tn}`, p.danger, tb);
+    add(`${nazwa}: ctrlLine (element)/${tn}`, p.ctrlLine, tb, hc ? 4.5 : 3);
+    add(`${nazwa}: doneLine (element)/${tn}`, p.doneLine, tb, hc ? 4.5 : 3);
+    add(`${nazwa}: less (element)/${tn}`, p.less, tb, hc ? 4.5 : 3);
+    if (hc) add(`${nazwa}: line jako tor (element)/${tn}`, p.line, tb, 4.5);
+  }
+  add(`${nazwa}: text/done (wiersz zrobiony)`, p.text, p.done);
+  add(`${nazwa}: doneLine/done (element)`, p.doneLine, p.done, hc ? 4.5 : 3);
+  add(`${nazwa}: przycisk główny accentInk/accent`, p.accentInk, p.accent, hc ? 7 : 4.5);
+  add(`${nazwa}: przycisk główny/bg (element)`, p.accent, p.bg, 3);
+  add(`${nazwa}: przycisk drugorzędny text/surface2`, p.text, p.surface2);
+  add(`${nazwa}: dangerInk/danger`, p.dangerInk, p.danger);
+  // tablica (element firmowy); przycisk ± na tablicy odróżnia kształt (koło z ikoną „−”/„+”), więc para boardField/board nie jest mierzona (WCAG 1.4.11: wystarcza ikona ≥ 3:1)
+  add(`${nazwa}: tablica ikona ± boardText/boardField (element)`, p.boardText, p.boardField, hc ? 4.5 : 3);
+  add(`${nazwa}: tablica cyfry boardText/board`, p.boardText, p.board);
+  add(`${nazwa}: tablica opis boardMuted/board`, p.boardMuted, p.board, hc ? 7 : 4.5);
+  add(`${nazwa}: tablica zegar now/board (duży tekst)`, p.now, p.board, hc ? 4.5 : 3);
+  add(`${nazwa}: tablica zegar now/board jako tekst zwykły`, p.now, p.board, 4.5);
+  add(`${nazwa}: tablica ± boardText/boardField`, p.boardText, p.boardField);
+  add(`${nazwa}: pole zrobione board/boardText (tekst)`, p.board, p.boardText);
+  add(`${nazwa}: pole czekające kontur boardMuted/board (element)`, p.boardMuted, p.board, hc ? 4.5 : 3);
+  add(`${nazwa}: pole bieżące ramka now/board (element)`, p.now, p.board, hc ? 4.5 : 3);
+  add(`${nazwa}: tablica brzeg/bg (element)`, p.boardEdge === p.board ? p.board : p.boardEdge, p.bg, 3);
+  add(`${nazwa}: znacznik dnia accent/surface (element)`, p.accent, p.surface, 3);
+  // motyw A2: tekst, który mógłby na nim leżeć
+  for (const m of ['motif25', 'motif20', 'motif15', 'motif10', 'motifBar']) {
+    add(`${nazwa}: text/${m}`, p.text, p[m]);
+    add(`${nazwa}: muted/${m}`, p.muted, p[m], hc ? 7 : 4.5);
+  }
+}
+// --- pary dodatkowe audytu 04 (27.10.2026): elementy spoza zestawu E3
+for (const [nazwa, p, hc] of [['jasny', T.light, false], ['ciemny', T.dark, false], ['jasny HC', T.lightHC, true], ['ciemny HC', T.darkHC, true]]) {
+  add(`${nazwa}: [A04] text przycisku drugorzędnego / surface2`, p.text, p.surface2);
+  add(`${nazwa}: [A04] muted zakładka nieaktywna / surface paska`, p.muted, p.surface, hc ? 7 : 4.5);
+  add(`${nazwa}: [A04] accent zakładka aktywna / surface`, p.accent, p.surface, 3);
+  add(`${nazwa}: [A04] accentInk / accent przycisk główny`, p.accentInk, p.accent);
+  add(`${nazwa}: [A04] muted placeholder / surface2 pole`, p.muted, p.surface2, hc ? 7 : 4.5);
+  add(`${nazwa}: [A04] ctrlLine ramka pola / surface2`, p.ctrlLine, p.surface2, 3);
+  add(`${nazwa}: [A04] accent ramka wybranego planu / surface`, p.accent, p.surface, 3);
+  add(`${nazwa}: [A04] line ramka planu niewybranego / surface`, p.line, p.surface, 3);
+  add(`${nazwa}: [A04] boardMuted / board`, p.boardMuted, p.board);
+  add(`${nazwa}: [A04] now ramka bieżącej serii / board`, p.now, p.board, 3);
+  add(`${nazwa}: [A04] boardEdge / bg krawędź tablicy`, p.boardEdge, p.bg, 3);
+}
+
+writeFileSync('/tmp/claude-0/-home-user-trening/81b73b20-062e-5092-9b1c-cd2123475852/scratchpad/k/pary.json', JSON.stringify(out, null, 1) + '\n');
+console.log(Object.keys(out).length, 'par');

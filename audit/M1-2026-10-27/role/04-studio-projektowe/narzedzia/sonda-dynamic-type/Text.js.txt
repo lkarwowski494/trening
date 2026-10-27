@@ -1,0 +1,4 @@
+import React from 'react'; import RText from 'react-native-web/dist/exports/Text'; import { mult, scale } from './common';
+const InText = React.createContext(false);
+const Text = React.forwardRef(function Text(p, ref) { const nested = React.useContext(InText); const m = mult(p); return React.createElement(InText.Provider, { value: true }, React.createElement(RText, { ...p, ref, style: scale(p.style, m, !nested) })); });
+export default Text;

@@ -1,0 +1,3 @@
+import React from 'react'; import RTI from 'react-native-web/dist/exports/TextInput'; import { mult, scale } from './common';
+const TextInput = React.forwardRef(function TextInput(p, ref) { return React.createElement(RTI, { ...p, ref, style: scale(p.style, mult(p), true) }); });
+export default TextInput;
