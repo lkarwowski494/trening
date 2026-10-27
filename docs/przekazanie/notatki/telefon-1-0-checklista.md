@@ -12,7 +12,8 @@
 | T-07 | ✅ OK |
 | T-13 | ✅ OK |
 | T-14 | ✅ OK |
-| pozostałe (T-12, T-09, T-08, T-11) | do zrobienia |
+| T-12 | ✅ OK |
+| pozostałe (T-09, T-08, T-11) | do zrobienia |
 
 **Ważne przy kolejnych punktach z powiadomieniami (T-03, T-13):** zdejmij zegarek albo włącz na nim tryb samolotowy — gdy zegarek jest na ręce i odblokowany, iOS wysyła powiadomienia tylko na zegarek, a telefon milczy.
 
