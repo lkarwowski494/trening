@@ -32,3 +32,18 @@
 - Język danych: nazwy szablonów („Legs”, „Push”, „Full body”), nazwa miejsca „Home” i nazwy ćwiczeń w oknie „Dostosuj” są angielskie we wszystkich językach (znane ograniczenie docs/41: dane użytkownika).
 - Nachodzące elementy: brak w en; w el legenda Strażnika zawija się do 2 wierszy; tytuł okna „Dostosuj” ucięty.
 - Podpisy: tylko pl i en (status en/cwiczenie = propozycja do akceptacji właściciela); pozostałe 31 języków bez podpisów — krok „ramki” je pomija.
+
+## Dopisek: przebieg pl,en 40487178778 (zrzuty-1-0 @ e61683b5, aplikacja z 40457513087) — zielony, 1 h 28 min (6.9 ok. 71 min, 6.3 ok. 46 min na 20 ekranów)
+- Artefakt `sklep-zrzuty-ramki`: 40 PNG (pl, en × 10 × 2 rozmiary), **wszystkie `srgb` bez kanału alfa**, 1320 × 2868 i 1206 × 2622 (`identify`).
+- **ZNALEZISKO (pl/10-import, 6.9): zamiast podglądu importu otwarte puste systemowe okno wyboru plików („Recents / No Recents”).** Dziennik `pl-import-import/maestro.log`: akcja
+  nie powiodła się po 3 próbach (asercja „Browse|Recents|Cancel” nie przeszła), skrypt tylko ostrzegał i zrobił zrzut. en/10-import jest poprawny. Naprawa w potoku: ekran powtarzany raz,
+  po drugiej porażce zrzut ląduje w `.nieudane` (nie w zestawie) i na liście w podsumowaniu; test na atrapach `tests/store-screenshots-retry.test.ts`. **Zestaw pl 6.9 wymaga powtórzenia ekranu `import`** (wejście `ekrany=import`).
+- pl 01–09: bez nachodzenia; podpisy PL (zaakceptowane 14.10) i EN zgodne z `store/screenshot-captions.json`. pl/02-cwiczenie: kąt kolana 0° (w en 5°) — faza animacji losowa, jak wyżej.
+- Podpisy `cwiczenie` PL „Rysunki ruchu i wskazówki techniki” i EN „Movement drawings and technique cues” (status propozycja) mieszczą się w 2 wierszach, bez ucięcia.
+
+## Zegarek (watch-sim 40488905420 @ 6c0976df, 35 języków)
+- 175 PNG = 35 × 5 (bez stanu „paused”), nazwy `01-set-first … 05-idle`, **416 × 496 `srgb`, bez kanału alfa** (identify na wszystkich); poprzedni zestaw 40477377838: 210 PNG, też bez alfy.
+- Dane w języku zrzutu: obejrzane pl, en, de, ja, ru (np. ja „セット 1/3”, ru „подход 1 из 3”); nazwa ćwiczenia „Bench Press (Barbell)” po angielsku we wszystkich językach poza pl (nazwa z katalogu), jednostki i ciężar „80 kg × 8” takie same.
+- Nakładka „Trening wstrzymany” nie występuje (stan pominięty); błąd w aplikacji opisany w backlogu 1.0.1 (docs/21).
+- **Uwaga do decyzji właściciela:** w pasku stanu każdego zrzutu czerwona ikona „brak telefonu” (przekreślony iPhone) i godzina bieżąca (nie 9:41). Ikona to znacznik „offline” aplikacji zegarka na symulatorze bez sparowanego telefonu; na zrzucie w sklepie wygląda jak błąd.
+  Opcje: A) zaakceptować (zero pracy; ryzyko słabszego wrażenia), B) wyłączyć znacznik tylko w konfiguracji Debug przy migawce testowej (zmiana w `targets/watch-app`, wymaga przebiegu watch-sim; ok. 1 h pracy agenta + 1 przebieg) — rekomendacja B przed wgraniem zegarka, ale nie blokuje 1.0 (zegarek można dodać po premierze).
