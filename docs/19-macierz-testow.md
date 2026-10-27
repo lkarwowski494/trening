@@ -12,7 +12,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 32 | 32 | 0 |
 | UI | 355 | 355 | 0 |
 | TEKST | 1072 | 1072 | 0 |
-| LOGIKA | 1044 | 1044 | 0 |
+| LOGIKA | 1046 | 1046 | 0 |
 | WYMIAR | 146 | 146 | 0 |
 
 ## EKRAN
@@ -20,7 +20,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Pozycja | Źródło | Testy (pierwsze 3) |
 |---|---|---|
 | /history | app/(tabs)/history.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +61 |
-| / | app/(tabs)/index.tsx | tests/a11y-routes.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +241 |
+| / | app/(tabs)/index.tsx | tests/a11y-routes.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +242 |
 | /more | app/(tabs)/more.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx +75 |
 | /progress | app/(tabs)/progress.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +37 |
 | /adapt | app/adapt.tsx | tests/a11y-routes.ts, tests/adapt-ui.test.tsx, tests/close-button-guard.test.tsx +1 |
@@ -111,7 +111,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Dni cardio w planie | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych. | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni treningowe w tygodniu | components/OwnPlan.tsx | tests/gen-days-ui.test.tsx, tests/gen-general-ui.test.tsx, tests/generator-ui.test.tsx +1 |
-| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +300 |
+| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +301 |
 | Do upadku (F) | app/template/[id].tsx | tests/scenario-full.test.tsx |
 | dodaj ciężar | components/LoadEditor.tsx | tests/audit-0.10-ui.test.tsx, tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx +1 |
 | Dodaj notatkę | components/WorkoutBlocks.tsx | tests/scenario-full.test.tsx |
@@ -858,7 +858,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | nic więcej do zrobienia | lib/live.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/voice.test.ts +4 |
 | Nic więcej do zrobienia — możesz zakończyć trening. | lib/timer.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst.test.ts, tests/timer-logic.test.ts |
 | Nic więcej do zrobienia (część pominięta) | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/skip-today.test.tsx |
-| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +324 |
+| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +325 |
 | Nie ma nowych treningów do dodania — wszystkie są już w historii. | app/more/import.tsx | tests/csv-import-ui.test.tsx |
 | Nie ma takiego ćwiczenia. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Nie ma takiego miejsca. | app/more/location/[id].tsx | tests/matrix-ui.test.tsx |
@@ -1556,10 +1556,12 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | calendar.monthGrid | lib/calendar.ts | tests/audit-m1-065-week-start.test.tsx, tests/history-calendar.test.tsx |
 | calendar.workoutsByDay | lib/calendar.ts | tests/history-calendar.test.tsx |
 | calendar.shiftMonth | lib/calendar.ts | tests/history-calendar.test.tsx |
-| calendar.weekdayLabels | lib/calendar.ts | tests/audit-m1-065-week-start.test.tsx, tests/gen-days.test.ts, tests/history-calendar.test.tsx |
+| calendar.weekdayLabels | lib/calendar.ts | tests/audit-m1-027-pasek-tygodnia.test.tsx, tests/audit-m1-065-week-start.test.tsx, tests/gen-days.test.ts +1 |
 | calendar.weekdayNames | lib/calendar.ts | tests/gen-days.test.ts |
 | calendar.monthTitle | lib/calendar.ts | tests/history-calendar.test.tsx |
 | calendar.dayTitle | lib/calendar.ts | tests/history-calendar.test.tsx |
+| calendar.stripColumnPt | lib/calendar.ts | tests/audit-m1-027-pasek-tygodnia.test.tsx |
+| calendar.stripLabelsFit | lib/calendar.ts | tests/audit-m1-027-pasek-tygodnia.test.tsx |
 | confirm.cancelButton | lib/confirm.ts | tests/interaction-patterns.test.tsx |
 | confirm.backToEditButton | lib/confirm.ts | tests/interaction-patterns.test.tsx |
 | confirm.okButton | lib/confirm.ts | tests/interaction-patterns.test.tsx |
@@ -1917,15 +1919,15 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | i18n.baseLang | lib/i18n.ts | tests/i18n-variants.test.ts, tests/matrix-i18n.test.tsx |
 | i18n.resolveLang | lib/i18n.ts | tests/i18n-variants.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts +3 |
 | i18n.detectLang | lib/i18n.ts | tests/i18n-variants.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts +2 |
-| i18n.applyLang | lib/i18n.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +123 |
+| i18n.applyLang | lib/i18n.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +124 |
 | i18n.lang | lib/i18n.ts | tests/asc-metadane.test.ts, tests/asc-zrzuty.test.ts, tests/audit-m1-028-delete-menus.test.tsx +33 |
 | i18n.appName | lib/i18n.ts | tests/audit-m1-004-start-error.test.tsx, tests/audit-m1-2026-10-27-004-ratunek.test.tsx, tests/i18n-locales.test.ts |
 | i18n.deviceUnit | lib/i18n.ts | tests/audit-0.10-tst.test.ts, tests/audit-0.10-ui.test.tsx, tests/audit-m1-lok07-02-default-system.test.ts +1 |
-| i18n.locale | lib/i18n.ts | tests/adapt-ui.test.tsx, tests/app.tsx, tests/asc-metadane.test.ts +114 |
+| i18n.locale | lib/i18n.ts | tests/adapt-ui.test.tsx, tests/app.tsx, tests/asc-metadane.test.ts +115 |
 | i18n.decimalComma | lib/i18n.ts | tests/i18n-variants.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts +7 |
 | i18n.setPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
 | i18n.isPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
-| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/app.tsx, tests/asc-kontrola.test.ts +194 |
+| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/app.tsx, tests/asc-kontrola.test.ts +195 |
 | i18n.lbl | lib/i18n.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx +9 |
 | i18n.tp | lib/i18n.ts | tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts, tests/audit-k1-bl-mer.test.tsx +28 |
 | i18n.exName | lib/i18n.ts | tests/audit-0.10-lang-ui.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +29 |
@@ -2029,7 +2031,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | plan.plannedOn | lib/plan.ts | tests/audit-0.10-plan-ui.test.tsx, tests/audit-0.10-plan.test.ts, tests/audit-k1-fala2b.test.tsx +11 |
 | plan.planTplName | lib/plan.ts | tests/audit-0.10-plan.test.ts |
 | plan.busyDays | lib/plan.ts | tests/audit-0.10-data.test.ts, tests/matrix-invariants.test.ts, tests/plan-wczesniej.test.ts |
-| plan.setWeekDay | lib/plan.ts | tests/a11y-routes.ts, tests/adapt-scenario.test.tsx, tests/audit-0.10-gen-ui.test.tsx +50 |
+| plan.setWeekDay | lib/plan.ts | tests/a11y-routes.ts, tests/adapt-scenario.test.tsx, tests/audit-0.10-gen-ui.test.tsx +51 |
 | plan.planName | lib/plan.ts | tests/audit-0.10-plan-ui.test.tsx, tests/audit-0.10-plan.test.ts, tests/gen-days-ui.test.tsx +16 |
 | plan.savedPlans | lib/plan.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/audit-0.10-plan-ui.test.tsx +30 |
 | plan.plansFull | lib/plan.ts | tests/audit-0.10-plan.test.ts, tests/matrix-invariants.test.ts |
@@ -2182,7 +2184,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.replaceState | lib/state/boot.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-plan.test.ts, tests/audit-close-d.test.ts +17 |
 | store.resetAll | lib/state/boot.ts | tests/audit-1-0-a2-reset.test.ts, tests/audit-journey-c.test.tsx, tests/audit-m1-lok07-02-default-system.test.ts +5 |
 | store.applyCfg | lib/state/core.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-tst.test.ts, tests/helpers.ts +1 |
-| store.flush | lib/state/core.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +209 |
+| store.flush | lib/state/core.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +210 |
 | store.flushStrict | lib/state/core.ts | tests/audit-m1-006-import.test.ts |
 | store.registerDraftStore | lib/state/core.ts | tests/backlog-0.10.1-dane-lib.test.ts |
 | store.draftsChanged | lib/state/core.ts | tests/backlog-0.10.1-dane-lib.test.ts |
@@ -2379,7 +2381,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.localDateTs | lib/state/time.ts | tests/audit-0.10-data-ui.test.tsx, tests/logic.test.ts, tests/matrix-time.test.ts |
 | store.fmtSec | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/i18n-wave3.test.ts, tests/i18n-wave4.test.ts +4 |
 | store.fmtDist | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/audit-m1-lok07-01-imperial-dist.test.tsx, tests/i18n-wave3.test.ts +2 |
-| store.reps | lib/state/time.ts | tests/adapt-scenario.test.tsx, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts +206 |
+| store.reps | lib/state/time.ts | tests/adapt-scenario.test.tsx, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts +207 |
 | store.fmtDur | lib/state/time.ts | tests/regress.test.tsx |
 | store.fmtDayKey | lib/state/time.ts | tests/audit-0.10-ui.test.tsx, tests/csv-import-ui.test.tsx |
 | store.fmtDate | lib/state/time.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-m1-008-kopia-ui.test.tsx +9 |
@@ -2447,7 +2449,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | swap.parseSwapTarget | lib/swap.ts | tests/matrix-logic.test.tsx |
 | theme.applyTheme | lib/theme.ts | tests/matrix-logic.test.tsx |
 | theme.useTheme | lib/theme.ts | tests/audit-m1-024-bold.test.tsx, tests/audit-m1-031-contrast.test.tsx, tests/matrix-logic.test.tsx |
-| theme.font | lib/theme.ts | tests/i18n-wave2.test.ts, tests/m3-system.test.tsx, tests/m3-theme.test.ts |
+| theme.font | lib/theme.ts | tests/audit-m1-027-pasek-tygodnia.test.tsx, tests/i18n-wave2.test.ts, tests/m3-system.test.tsx +1 |
 | theme.maxScale | lib/theme.ts | tests/m3-theme.test.ts |
 | theme.titleMaxScale | lib/theme.ts | tests/m3-components.test.tsx, tests/m3-theme.test.ts |
 | theme.boardDigitSize | lib/theme.ts | tests/m3-theme.test.ts |
@@ -2667,7 +2669,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | SwapReason: pattern \| muscle \| firstMuscle \| group \| secondary \| swapped \| history | lib/swap.ts | tests/access.test.ts, tests/audit-0.10-tst.test.ts, tests/audit-k1-catalog-step.test.ts +2 |
 | StaleKind: work \| warmup \| none | lib/timer.ts | tests/adapt-logic.test.ts, tests/audit-0.10-live-logic.test.ts, tests/audit-stale-ui.test.tsx |
 | PaletteKey: bg \| surface \| surface2 \| line \| ctrlLine \| text \| muted \| accent \| accentInk \| done \| doneLine \| danger \| dangerInk \| band \| less \| board \| boardEdge \| boardText \| boardMuted \| boardField \| now \| motifBar \| motif25 \| motif20 \| motif15 \| motif10 | lib/tokens.ts | tests/asc-zrzuty.test.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-tst-ui.test.tsx +5 |
-| TypeRole: largeTitle \| navTitle \| sectionTitle \| body \| bodyStrong \| callout \| footnote \| caption \| button \| buttonPrimary \| boardName \| boardMeta \| boardNumber \| boardClock \| boardField \| boardNext \| stepLabel \| stat | lib/tokens.ts | tests/adapt-ui.test.tsx, tests/figures.test.tsx, tests/health-world.ts +1 |
+| TypeRole: largeTitle \| navTitle \| sectionTitle \| body \| bodyStrong \| callout \| footnote \| caption \| button \| buttonPrimary \| boardName \| boardMeta \| boardNumber \| boardClock \| boardField \| boardNext \| stepLabel \| stat | lib/tokens.ts | tests/adapt-ui.test.tsx, tests/audit-m1-027-pasek-tygodnia.test.tsx, tests/figures.test.tsx +2 |
 | HAPTICS (7) | lib/tokens.ts | tests/m3-p2-haptics.test.ts, tests/m3-p5d-haptics-done.test.tsx, tests/m3-theme.test.ts |
 | Unit: kg \| lb | lib/units.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx |
 | VoiceMode: speak \| announce \| silent | lib/voice.ts | tests/voice-native.test.ts, tests/voice.test.ts |
