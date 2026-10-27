@@ -216,6 +216,13 @@ describe('Kettlebell Windmill, Double Kettlebell Windmill, Bent Press (core_stan
     expect(jointAngles(sk1, 'R').elbow).toBeLessThanOrEqual(25);
     expect(nad(sk0, 'R')).toBeLessThan(sk0.arms.R.shoulder[1] + 20); expect(nad(sk1, 'R')).toBeGreaterThan(sk1.arms.R.shoulder[1] + 50); expect(nad(sk1, 'L')).toBeLessThanOrEqual(75);
   });
+  /* ponowna recenzja p4b r2 (nr 1, 1b): ciężar stoi nad stopami (≤ 15 cm w poziomie), przedramię pionowo, ciało schodzi pod ciężar */
+  test('Bent Press: chwyt przesuwa się w poziomie ≤ 15 cm od startu, przedramię ≤ 15° od pionu w całym ruchu, miednica cofnięta w tył ≥ 15 cm', () => {
+    const k = siatka('Bent Press', 80); const g0 = k[0].arms.R.grip; let dMax = 0, tMax = 0;
+    for (const x of k) { const g = x.arms.R.grip; dMax = Math.max(dMax, Math.hypot(g[0] - g0[0], g[2] - g0[2])); const a = x.arms.R; const d = [a.wrist[0] - a.elbow[0], a.wrist[1] - a.elbow[1], a.wrist[2] - a.elbow[2]]; tMax = Math.max(tMax, (Math.acos(d[1] / Math.hypot(d[0], d[1], d[2])) * 180) / Math.PI); }
+    expect(dMax).toBeLessThanOrEqual(15); expect(tMax).toBeLessThanOrEqual(15); expect(Math.min(...k.map((x) => x.pelvis[0]))).toBeLessThanOrEqual(-15);
+  });
+  test.each([...WIATRAKI])('%s: miednica cofnięta w tył ≥ 10 cm (biodro w tył, nie nad kostkami)', (c) => { expect(Math.min(...siatka(c).map((x) => x.pelvis[0]))).toBeLessThanOrEqual(-10); });
   test('Bent Press różni się od Kettlebell Windmill (nie ten sam ruch: start przy barku, nie nad głową)', () => {
     expect(nad(sk('Kettlebell Windmill', 0), 'R') - nad(sk('Bent Press', 0), 'R')).toBeGreaterThan(40);
   });
