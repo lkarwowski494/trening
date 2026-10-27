@@ -561,6 +561,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że po aktualizacji migracja danych rzuca wyjątek na poprawnym zapisie (błąd w kodzie wersji)
     - Gdy aplikacja startuje
     - Wtedy pokazuje ekran błędu startu („Wyślij dane”, „Spróbuj ponownie”, „Napisz do nas”), niczego nie zapisuje ani nie odkłada, a dane w telefonie zostają bajt w bajt do poprawionej wersji; zapis nieczytelny albo o złym kształcie — jak dotąd odłożony z komunikatem (test `tests/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx`)
+  - Scenariusz: Nieudany zapis poza zakładką Trening
+    - Zakładając, że telefon nie ma miejsca i zapis danych się nie udaje
+    - Gdy użytkownik zapisuje zmianę na dowolnym ekranie (np. edycja sesji z historii, ustawienia)
+    - Wtedy od razu widzi okno „Nie udało się zapisać danych” z „Spróbuj ponownie” (jedno na epizod błędu), a zmiana czeka w pamięci na ponowienie (test `tests/audit-m1-2026-10-27-015-blad-zapisu.test.tsx`)
 
 ### BR-DAN-005: „Co nowego” po aktualizacji; w pierwszej wersji sklepowej historia pusta
 - Przepływ: PR-06
