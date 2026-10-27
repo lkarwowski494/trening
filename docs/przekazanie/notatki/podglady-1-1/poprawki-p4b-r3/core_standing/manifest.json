@@ -1,0 +1,275 @@
+{
+ "rodzina": "core_standing",
+ "wygenerowano": "2026-10-27T12:55:05.964Z",
+ "wyjatki": {},
+ "przyblizenia": {},
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Kettlebell Windmill",
+   "obraz": "Kettlebell-Windmill-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 120
+    },
+    {
+     "rodzaj": "kettlebell",
+     "trzyma": "R",
+     "dzwon": "tyl"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 9.8,
+     "max": 87.6
+    },
+    "knee": {
+     "min": 7.4,
+     "max": 26.5
+    },
+    "ankle": {
+     "min": -13.7,
+     "max": 6.8
+    },
+    "elbow": {
+     "min": 0,
+     "max": 13.4
+    },
+    "shSag": {
+     "min": 0,
+     "max": 218.4
+    },
+    "shElev": {
+     "min": 19.9,
+     "max": 164.8
+    },
+    "shAbd": {
+     "min": 0.1,
+     "max": 22.2
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: kettlebell (sprzet: rodzaj \"kettlebell\")",
+     "jeden przyrząd (jedna ręka)"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "wiatrak_reka_prosta",
+    "wiatrak_ciezar_nad_barkiem",
+    "wiatrak_plecy",
+    "wiatrak_bok"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Double Kettlebell Windmill",
+   "obraz": "Double-Kettlebell-Windmill-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 120
+    },
+    {
+     "rodzaj": "kettlebell",
+     "trzyma": "R",
+     "dzwon": "tyl"
+    },
+    {
+     "rodzaj": "kettlebell",
+     "trzyma": "L",
+     "dzwon": "dol"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 9.8,
+     "max": 87.6
+    },
+    "knee": {
+     "min": 7.4,
+     "max": 26.5
+    },
+    "ankle": {
+     "min": -13.7,
+     "max": 6.8
+    },
+    "elbow": {
+     "min": 0,
+     "max": 13.4
+    },
+    "shSag": {
+     "min": 0,
+     "max": 218.4
+    },
+    "shElev": {
+     "min": 19.9,
+     "max": 164.8
+    },
+    "shAbd": {
+     "min": 0.1,
+     "max": 22.2
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: kettlebell (sprzet: rodzaj \"kettlebell\")",
+     "dwa przyrządy"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "wiatrak_reka_prosta",
+    "wiatrak_ciezar_nad_barkiem",
+    "wiatrak_plecy",
+    "wiatrak_bok"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Bent Press",
+   "obraz": "Bent-Press-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 120
+    },
+    {
+     "rodzaj": "hantel",
+     "trzyma": "R"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.091,
+    0.182,
+    0.273,
+    0.364,
+    0.455,
+    0.545,
+    0.636,
+    0.727,
+    0.818,
+    0.909,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.091,
+    0.182,
+    0.273,
+    0.364,
+    0.455,
+    0.545,
+    0.636,
+    0.727,
+    0.818,
+    0.909,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -4.7,
+     "max": 133.1
+    },
+    "knee": {
+     "min": 22.2,
+     "max": 87.8
+    },
+    "ankle": {
+     "min": -7.5,
+     "max": 34.6
+    },
+    "elbow": {
+     "min": 3.1,
+     "max": 145.7
+    },
+    "shSag": {
+     "min": 0,
+     "max": 198
+    },
+    "shElev": {
+     "min": 19.9,
+     "max": 148.4
+    },
+    "shAbd": {
+     "min": 0.2,
+     "max": 19.9
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: kettlebell (sprzet: rodzaj \"kettlebell\") albo hantle (sprzet: rodzaj \"hantel\")",
+     "jeden przyrząd (jedna ręka)"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "wiatrak_plecy",
+    "wiatrak_bok"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}
