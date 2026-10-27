@@ -157,6 +157,18 @@ const kontrakt = (p, cue) => waliduj(p, { rodzina: 'pushup_plank', cwiczenie: p.
 const sagNaStarcie = JSON.parse(JSON.stringify(PL)); sagNaStarcie.bledy[0].klatki[0] = { u: 0, miednica: [0, -5, 0] };
 const partialNaStarcie = JSON.parse(JSON.stringify(PU)); partialNaStarcie.bledy[0].klatki[0] = { u: 0, miednica: [0, -5, 0] };
 W.kontrakt_start = { dobre: [kontrakt(sagNaStarcie)], zle: [kontrakt(partialNaStarcie)] };
+/* 17 delt_raise: wysokość w układzie ŚWIATA (dłoń ≈ bark, nie wyżej niż bark + 15 cm), leżenie przodem (tułów, zwis przedramienia); poza łamiąca = poprawna z dłonią/przedramieniem przesuniętym */
+const LR = poza('delt_raise', 'Lateral Raise (hantle)'), FI = poza('delt_raise', 'Front Incline Dumbbell Raise'), SR = poza('delt_raise', 'Straight Raises on Incline Bench');
+const lrWysoko = klon(LR); for (const sd of ['R', 'L']) lrWysoko.klatki[lrWysoko.klatki.length - 1].rece[sd].chwyt[1] += 30;
+W.dlon_na_wysokosci_barkow_swiat = { dobre: J.dlonNaWysokosciBarkowSwiat(v2, LR), zle: J.dlonNaWysokosciBarkowSwiat(v2, lrWysoko) };
+W.tulow_przodem_do_lawki = { dobre: J.tulowPrzodemDoLawki(v2, SR), zle: [...J.tulowPrzodemDoLawki(v2, LR), ...J.tulowPrzodemDoLawki(v2, FI)] }; /* siedzenie plecami do oparcia (Front Incline) i stanie nie są leżeniem przodem */
+const srZwis = klon(SR); for (const sd of ['R', 'L']) srZwis.klatki[0].rece[sd].chwyt[0] -= 40;
+W.zwis_przedramie_u0 = { dobre: J.zwisPrzedramieU0(v2, SR), zle: J.zwisPrzedramieU0(v2, srZwis) };
+const NAZWY17 = ['dlon_na_wysokosci_barkow_swiat', 'tulow_przodem_do_lawki', 'zwis_przedramie_u0'];
+const dr = JSON.parse(fs.readFileSync(path.join(${JSON.stringify(ROOT)}, 'lib/figures/v2/poses/delt_raise.json'), 'utf8')).cwiczenia;
+const tk17 = J.wczytajTeksty();
+W.delt_raise_dane = { dobre: Object.entries(dr).flatMap(([cw, p]) => J.sprawdzJakosc(p, { v2, rodzina: 'delt_raise', cwiczenie: cw, postural: new Set(), izometryczne: false, teksty: tk17 }).filter((x) => NAZWY17.includes(x.regula)).map((x) => cw + ' ' + x.szczegol)), zle: [] };
+W.delt_raise_zakres = { dobre: [J.LEZENIE_PRZODEM.every((c) => c in dr) ? 0 : 1, J.LEZENIE_PRZODEM.includes('Front Incline Dumbbell Raise') ? 1 : 0, Object.keys(J.DLON_NA_WYSOKOSCI_BARKOW_WYJATKI).every((c) => c in dr && String(J.DLON_NA_WYSOKOSCI_BARKOW_WYJATKI[c]).length > 20) ? 0 : 1, J.sprawdzJakosc(SR, { v2, rodzina: 'delt_raise', cwiczenie: 'Straight Raises on Incline Bench', postural: new Set(), izometryczne: false, teksty: tk17 }).some((x) => x.regula === 'dlon_na_wysokosci_barkow_swiat') ? 1 : 0], zle: [] };
 /* 20/21 recenzja p4a r2: bottoms-up (dzwon do góry tylko przy pionowym przedramieniu) i high pull (łokcie nad dłonią i na boki); złe = pozy sprzed rundy 2 (fixture) */
 const STARE = JSON.parse(fs.readFileSync(path.join(${JSON.stringify(ROOT)}, 'tests/fixtures/figury-p4a-r2-stare.json'), 'utf8')).cwiczenia;
 const BU = poza('kb_ballistic', 'Bottoms-Up Clean From The Hang Position'), SHP = poza('kb_ballistic', 'Kettlebell Sumo High Pull');
@@ -165,8 +177,12 @@ W.high_pull_lokcie = { dobre: J.highPullLokcie(v2, SHP), zle: J.highPullLokcie(v
 console.log(JSON.stringify(W));
 `;
 const W = run(KOD) as Record<string, { dobre: unknown[]; zle: unknown[] }>;
-const REGULY = ['dzwon_gora_tylko_przy_pionowym_przedramieniu', 'high_pull_lokcie', 'blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'rzad_bledu_dotyczy', 'rzad_bledu_wszystkie', 'cialo_w_linii_pelne', 'kolana_proste_podpor', 'fallout_start_rece_przod', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'widocznosc_w_obszarze', 'podglad_wazny', 'widocznosc_bledu_kat', 'ledzwie_przy_podlodze', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'tor_lokcia_przyciaganie', 'srodek_ciezkosci_podparcie', 'manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
+const REGULY = ['dzwon_gora_tylko_przy_pionowym_przedramieniu', 'high_pull_lokcie', 'blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'rzad_bledu_dotyczy', 'rzad_bledu_wszystkie', 'cialo_w_linii_pelne', 'kolana_proste_podpor', 'fallout_start_rece_przod', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'widocznosc_w_obszarze', 'podglad_wazny', 'widocznosc_bledu_kat', 'ledzwie_przy_podlodze', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'tor_lokcia_przyciaganie', 'srodek_ciezkosci_podparcie', 'manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz', 'dlon_na_wysokosci_barkow_swiat', 'tulow_przodem_do_lawki', 'zwis_przedramie_u0'];
 
+describe('delt_raise (wysokość w świecie, leżenie przodem)', () => {
+  test('Straight Raises on Incline Bench (leżenie przodem) i Front Incline Dumbbell Raise (siad tyłem do oparcia): zwis i unoszenie do wysokości barków — wszystkie pozy rodziny bez naruszeń reguł 17', () => { expect(W.delt_raise_dane.dobre).toEqual([]); });
+  test('zakres reguł: leżenie przodem tylko Straight Raises (Front Incline [OTWARTE]), wyjątki z powodem, reguła w sprawdzJakosc', () => { expect(W.delt_raise_zakres.dobre).toEqual([0, 0, 0, 0]); });
+});
 describe('reguły jakości póz (luki z recenzji ruchu): poza spełniająca bez komunikatu, łamiąca z komunikatem', () => {
   test.each(REGULY)('%s', (r) => {
     expect(W[r].dobre).toEqual([]); expect(W[r].zle.length).toBeGreaterThan(0); if (!['sprzet_rozpoznawczy', 'etykieta_bledu', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_wazny'].includes(r)) expect(String(W[r].zle[0])).toMatch(/\d/); /* komunikat z liczbą (poza regułami nazwowymi) */
