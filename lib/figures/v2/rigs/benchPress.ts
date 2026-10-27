@@ -7,7 +7,7 @@
  * Podłoga (floor): u = 1 → łokcie dotykają podłogi (zakres ograniczony). Kąty i szerokość chwytu bez źródła = UPROSZCZENIE ILUSTRACYJNE.
  */
 import { BODY } from '../skeleton';
-import { add, rad, type V2, type V3 } from '../math';
+import { add, norm, rad, type V2, type V3 } from '../math';
 import type { Contact, Frame, Prop } from '../scene';
 import { EQUIP } from '../draw';
 import { ease, mkFrame, solveRoot, trunkPoint } from './common';
@@ -79,7 +79,7 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
 
   /* biegun łokcia ku „łokciowi idealnemu” pod dłonią (przedramię pionowo): IK wybiera na okręgu dozwolonych łokci (długości segmentów stałe) punkt najbliższy pionowemu przedramieniu */
   const underGrip = (grip: V3): V3 => { const sh: V3 = [shoulderC[0], shoulderC[1], D.shHalf]; return [grip[0] - sh[0], grip[1] - (D.farm + BODY.hand) - sh[1], grip[2] - sh[2]]; };
-  const poleR: V3 = p.vert ? underGrip([c[0], c[1], g]) : elbowPole;
+  const poleR: V3 = p.vert ? norm(underGrip([c[0], c[1], g])) : elbowPole; /* biegun to kierunek (IK zna tylko jego kierunek) — jednostkowy, zgodny ze schematem kontraktu (biegunLokcia ≤ 10) */
   const arms = { R: { grip: [c[0], c[1], g] as V3, elbowPole: poleR }, L: { grip: [c[0], c[1], -g] as V3, elbowPole: [poleR[0], poleR[1], -poleR[2]] as V3 } };
   if (p.oneArm) arms.L = { grip: trunkPoint(hipT, pitchT, 26, 12.5, -7), elbowPole: [0, -0.2, -1] as V3 };
   /* nogi: stopy na podłodze (ujemna: na wałkach przy końcu siedziska) */

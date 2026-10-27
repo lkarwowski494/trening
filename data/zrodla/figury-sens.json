@@ -1689,6 +1689,12 @@
           "przedramie_pod_sztanga",
           "lokcie_nie_szeroko"
         ],
+        "_lawka_hantle": [
+          "pelny_zakres",
+          "lawka_kontakt",
+          "dol_przy_klatce",
+          "lokcie_nie_szeroko"
+        ],
         "_waski": [
           "pelny_zakres",
           "lawka_kontakt",
@@ -1712,14 +1718,14 @@
           "lawka_kontakt"
         ],
         "Bench Press (sztanga)": "_lawka",
-        "Bench Press (hantle)": "_lawka",
+        "Bench Press (hantle)": "_lawka_hantle",
         "Band Bench Press": "_lawka",
         "Bench Press with Chains": "_lawka",
         "Chain Press": "_lawka",
         "Decline Bench Press": "_lawka",
         "Decline Bench Press (hantle)": "_lawka",
         "Incline Bench Press (sztanga)": "_lawka",
-        "Incline Bench Press (hantle)": "_lawka",
+        "Incline Bench Press (hantle)": "_lawka_hantle",
         "One Arm Dumbbell Bench Press": "_lawka",
         "Reverse Band Bench Press": "_lawka",
         "Reverse Grip Bench Press": "_lawka",
@@ -1756,6 +1762,7 @@
         "Barbell Guillotine Bench Press": "sztanga do szyi, łokcie celowo szeroko — przeczytane źródła tej odmiany nie opisują; reguły przedramienia i łokci pominięte",
         "JM Press": "odmiana pośrednia między wyciskaniem a prostowaniem — bez źródła ruchu; tylko zakres łokcia i ławka (analogia)",
         "Decline Close-Grip Bench To Skull Crusher": "jak JM Press",
+        "Bench Press (hantle) i Incline Bench Press (hantle) — przedramię (scalenie main, 27.10.2026; OTWARTE)": "Kalibracja wyciskania leżąc z main (decyzja właściciela 26.10.2026 „jak jest w rzeczywistości — nadrzędne”; sylwetka ANSUR II, data/zrodla/figury-wyciskanie.json) daje przy hantlach w środku ruchu odchylenie chwytu od łokcia w osi x ok. 15,7 cm (próg reguły przedramie_pod_sztanga: 10 cm); przeszukanie parametrów (dotyk, chwyt na górze, wysokość dotyku) nie schodzi poniżej ok. 11 cm bez zmiany kalibracji main. Rozstrzygnięcie koordynatora: kalibracja main zostaje, reguła przedramie_pod_sztanga zdjęta dla tych dwóch ćwiczeń (grupa _lawka_hantle), sztanga zostaje pod regułą. Do rozstrzygnięcia przez badacza: czy próg 10 cm (konwencja) ma dla hantli inną wartość.",
         "Squeeze Press (hantle)": "hantle dociskane do siebie — źródła reguły przedramienia (NSCA s. 53–55, SBS) opisują zwykłe wyciskanie; reguła przedramie_pod_sztanga zdjęta (r3)",
         "Incline Bench Press (hantle) — przedramię (r4 — rozstrzygnięte)": "To nie jest sprzeczność źródeł. NSCA Basics s. 54–55 (Dumbbell Incline Bench Press): opuszczaj hantle, trzymając dłonie nad barkami, do poziomu klatki; ramiona ok. 45° do tułowia; najczęstszy błąd: dłonie szerzej niż łokcie („the forearms should not go wider than perpendicular to the ground”); s. 54: nadgarstki w linii łokci, przedramiona prostopadle do podłogi; SBS How to Bench (ciężar mniej więcej nad łokciem) — przeczytane 26.10.2026. Rachunek na wymiarach BODY (ramię 31 cm, przedramię z dłonią 33 cm, ławka 30°): przy przedramieniu pionowym i chwycie ok. 10 cm od barków wzdłuż tułowia łokieć leży ok. 26 cm pod barkiem, a kąt ramię–tułów wychodzi 32–49° — oba warunki (≤ 10 cm, ≤ 75°) spełnione jednocześnie. Próg 10 cm ZOSTAJE (konwencja: ≈ 20° odchylenia przedramienia od pionu). Naprawa rigu (variants.ts, Incline Bench Press (hantle)): punkt dotyku bliżej barków (touch ≈ 40–41 zamiast 38; NSCA: „top of the chest”) i biegun łokcia tak, żeby łokieć był pod chwytem; flare 0,222 przy chwycie 26 cm daje dłonie szerzej niż łokcie — dokładnie błąd opisany przez NSCA. Kandydat na regułę (nie wdrażam w r4): chwyt nie szerzej niż łokieć w osi z (NSCA s. 55, jedna organizacja)."
       },

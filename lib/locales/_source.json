@@ -1021,7 +1021,8 @@
  },
  {
   "pl": "ćwiczenie bez sprzętu|ćwiczenia bez sprzętu|ćwiczeń bez sprzętu",
-  "en": "exercise without equipment|exercises without equipment"
+  "en": "exercise without equipment|exercises without equipment",
+  "plural": true
  },
  {
   "pl": "Ćwiczenie ma co najmniej jedną serię. Żeby usunąć całe ćwiczenie, przesuń w lewo jego nazwę.",
@@ -1029,7 +1030,8 @@
  },
  {
   "pl": "ćwiczenie wraca do planu|ćwiczenia wracają do planu|ćwiczeń wraca do planu",
-  "en": "exercise returns to your plan|exercises return to your plan"
+  "en": "exercise returns to your plan|exercises return to your plan",
+  "plural": true
  },
  {
   "pl": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
@@ -1049,7 +1051,8 @@
  },
  {
   "pl": "ćwiczenie|ćwiczenia|ćwiczeń",
-  "en": "exercise|exercises"
+  "en": "exercise|exercises",
+  "plural": true
  },
  {
   "pl": "Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.",
@@ -1086,6 +1089,10 @@
  {
   "pl": "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.",
   "en": "Your data on this phone was not changed — you can send it as a file."
+ },
+ {
+  "pl": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.",
+  "en": "The data on this phone was saved by a newer version (schema {a}); this version supports up to {b}. Nothing is changed — install the latest version from the App Store. You can also send the data as a file."
  },
  {
   "pl": "Dane z nowszej wersji aplikacji",
@@ -1553,7 +1560,8 @@
  },
  {
   "pl": "funt|funty|funtów",
-  "en": "pound|pounds"
+  "en": "pound|pounds",
+  "plural": true
  },
  {
   "pl": "funta",
@@ -1605,7 +1613,8 @@
  },
  {
   "pl": "godzina|godziny|godzin",
-  "en": "hour|hours"
+  "en": "hour|hours",
+  "plural": true
  },
  {
   "pl": "Gotowe",
@@ -1777,7 +1786,8 @@
  },
  {
   "pl": "inna aktywność|inne aktywności|innych aktywności",
-  "en": "other activity|other activities"
+  "en": "other activity|other activities",
+  "plural": true
  },
  {
   "pl": "Inna kolejność ćwiczeń.",
@@ -1861,7 +1871,8 @@
  },
  {
   "pl": "jard|jardy|jardów",
-  "en": "yard|yards"
+  "en": "yard|yards",
+  "plural": true
  },
  {
   "pl": "jarda",
@@ -1977,7 +1988,8 @@
  },
  {
   "pl": "kilogram|kilogramy|kilogramów",
-  "en": "kilogram|kilograms"
+  "en": "kilogram|kilograms",
+  "plural": true
  },
  {
   "pl": "kilograma",
@@ -2042,6 +2054,10 @@
  {
   "pl": "Kopia automatyczna po treningu jest wyłączona (Ustawienia).",
   "en": "Automatic backup after a workout is off (Settings)."
+ },
+ {
+  "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+  "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → {app} → Backup, last {n}). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple account, export a backup elsewhere."
  },
  {
   "pl": "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.",
@@ -2557,7 +2573,8 @@
  },
  {
   "pl": "metr|metry|metrów",
-  "en": "metre|metres"
+  "en": "metre|metres",
+  "plural": true
  },
  {
   "pl": "metra",
@@ -2600,6 +2617,10 @@
   "en": "Place of this workout"
  },
  {
+  "pl": "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).",
+  "en": "The place will be added to your places (More → Places and equipment)."
+ },
+ {
   "pl": "Miejsce treningu: {l}",
   "en": "Workout place: {l}"
  },
@@ -2637,7 +2658,8 @@
  },
  {
   "pl": "mila|mile|mil",
-  "en": "mile|miles"
+  "en": "mile|miles",
+  "plural": true
  },
  {
   "pl": "mili",
@@ -2653,7 +2675,8 @@
  },
  {
   "pl": "minuta|minuty|minut",
-  "en": "minute|minutes"
+  "en": "minute|minutes",
+  "plural": true
  },
  {
   "pl": "młot",
@@ -4141,7 +4164,8 @@
  },
  {
   "pl": "powtórzenie|powtórzenia|powtórzeń",
-  "en": "rep|reps"
+  "en": "rep|reps",
+  "plural": true
  },
  {
   "pl": "Poziom (1–7)",
@@ -4173,7 +4197,8 @@
  },
  {
   "pl": "pozycja sprzętu|pozycje sprzętu|pozycji sprzętu",
-  "en": "equipment item|equipment items"
+  "en": "equipment item|equipment items",
+  "plural": true
  },
  {
   "pl": "Pozycja wyjściowa",
@@ -4637,7 +4662,8 @@
  },
  {
   "pl": "sekunda|sekundy|sekund",
-  "en": "second|seconds"
+  "en": "second|seconds",
+  "plural": true
  },
  {
   "pl": "sen",
@@ -4721,7 +4747,8 @@
  },
  {
   "pl": "seria|serie|serii",
-  "en": "set|sets"
+  "en": "set|sets",
+  "plural": true
  },
  {
   "pl": "Serie",
@@ -4801,7 +4828,8 @@
  },
  {
   "pl": "sesja|sesje|sesji",
-  "en": "session|sessions"
+  "en": "session|sessions",
+  "plural": true
  },
  {
   "pl": "Sesje",
@@ -5089,7 +5117,8 @@
  },
  {
   "pl": "szablon|szablony|szablonów",
-  "en": "template|templates"
+  "en": "template|templates",
+  "plural": true
  },
  {
   "pl": "Szablony",
@@ -5468,6 +5497,10 @@
   "en": "Workout paused"
  },
  {
+  "pl": "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+  "en": "The workout from {d} {s} had no activity for {h} hours, so it was saved automatically. End: {e} (last set). You will find it in the Plan tab."
+ },
+ {
   "pl": "Trening z tego dnia zrobiony wcześniej — dzień wolny.",
   "en": "This day’s workout was done earlier — the day is free."
  },
@@ -5514,6 +5547,10 @@
  {
   "pl": "Trenuj {n} dni w miesiącu za darmo, bez końca.",
   "en": "Train {n} days a month for free, no time limit."
+ },
+ {
+  "pl": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.",
+  "en": "Train {n} days a month for free. Pro removes the limit. Cancel anytime in your Apple account settings."
  },
  {
   "pl": "triceps",
@@ -6957,7 +6994,8 @@
  },
  {
   "pl": "Został|Zostały|Zostało",
-  "en": "left|left"
+  "en": "left|left",
+  "plural": true
  },
  {
   "pl": "Zostaw",
@@ -7038,25 +7076,5 @@
  {
   "pl": "Żadna partia nie ma większej objętości niż poprzednio.",
   "en": "No muscle group has more volume than before."
- },
- {
-  "pl": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.",
-  "en": "The data on this phone was saved by a newer version (schema {a}); this version supports up to {b}. Nothing is changed — install the latest version from the App Store. You can also send the data as a file."
- },
- {
-  "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
-  "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → {app} → Backup, last {n}). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple account, export a backup elsewhere."
- },
- {
-  "pl": "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).",
-  "en": "The place will be added to your places (More → Places and equipment)."
- },
- {
-  "pl": "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
-  "en": "The workout from {d} {s} had no activity for {h} hours, so it was saved automatically. End: {e} (last set). You will find it in the Plan tab."
- },
- {
-  "pl": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.",
-  "en": "Train {n} days a month for free. Pro removes the limit. Cancel anytime in your Apple account settings."
  }
 ]

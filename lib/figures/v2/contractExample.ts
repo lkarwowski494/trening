@@ -10,7 +10,7 @@ import type { Gear } from './gear';
 import type { PoseIn, Side } from './skeleton';
 import type { Frame, Shape, View } from './scene';
 import type { V3 } from './math';
-import { SIDES } from './skeleton';
+import { BODY, SIDES } from './skeleton';
 
 const r2 = (x: number): number => Math.round(x * 100) / 100;
 const v3 = (v: V3): V3 => [r2(v[0]), r2(v[1]), r2(v[2])];
@@ -42,6 +42,17 @@ const gearOf = (f: Frame): Gear[] => f.props.flatMap((p): Gear[] => {
   if (p.k === 'bench') return [{ rodzaj: 'lawka', x: r2(p.hinge[0]), top: r2(p.seatFrom[1]), kat: r2(Math.atan2(p.backTo[1] - p.hinge[1], p.hinge[0] - p.backTo[0]) * 180 / Math.PI), dlugosc: r2(Math.hypot(p.backTo[0] - p.hinge[0], p.backTo[1] - p.hinge[1])) }];
   return [];
 });
+/** Kontrakt danych nie zna wymiarów ręki nadpisanych w rigu (`PoseIn.dims`, np. sylwetka wyciskania leżąc z ANSUR II): walidator liczy IK na wspólnym BODY. Chwyt, którego przy BODY nie da się osiągnąć (ręce proste na górze), zbliżamy do barku do zasięgu BODY — przykład ma przechodzić ten sam walidator co wynik generatora. Rigi bez `dims` bez zmian (bajtowo). */
+function withinBodyReach(k: KeyFrame, f: Frame): KeyFrame {
+  if (!(f.pose as PoseIn).dims) return k;
+  const rece = { ...k.rece };
+  for (const s of SIDES) {
+    const a = rece[s]; const sh: V3 = [f.sk.shoulderC[0], f.sk.shoulderC[1], (s === 'R' ? 1 : -1) * BODY.shHalf];
+    const reach = BODY.uarm + (a.dolnaCzesc ?? BODY.farm + BODY.hand) - 0.8; const d: V3 = [a.chwyt[0] - sh[0], a.chwyt[1] - sh[1], a.chwyt[2] - sh[2]]; const n = Math.hypot(d[0], d[1], d[2]);
+    if (n > reach) rece[s] = { ...a, chwyt: v3([sh[0] + d[0] * reach / n, sh[1] + d[1] * reach / n, sh[2] + d[2] * reach / n]) };
+  }
+  return { ...k, rece };
+}
 const MARK = (e: ErrorId): DataError['znacznik'] => ERRORS[e].mark;
 const AFF = (e: ErrorId): DataError['dotyczy'] => ERRORS[e].affects;
 /** Dane rodziny dla ćwiczenia gotowej rodziny: 9 klatek kluczowych, błędy pozowe z `errors` (id → identyfikator wskazówki), sprzęt z rigu. null, gdy rodzina nie jest gotowa albo jest z danych (poses/*.json — to nie rig, a wzorce z danych wybiera generator poleceń). */
@@ -56,7 +67,7 @@ export function exampleFor(key: string, errors: Partial<Record<ErrorId, string>>
     bledy.push({ cue, znacznik: MARK(id), dotyczy: [...AFF(id)], klatki });
   }
   void CONTRACT;
-  return { kontrakt: CONTRACT.id, rodzina: spec.family, cwiczenie: key, sprzet: gearOf(frames[0]), klatki: frames.map((f, i) => keyFrameOf(f.pose as PoseIn, us[i])), bledy };
+  return { kontrakt: CONTRACT.id, rodzina: spec.family, cwiczenie: key, sprzet: gearOf(frames[0]), klatki: frames.map((f, i) => withinBodyReach(keyFrameOf(f.pose as PoseIn, us[i]), f)), bledy };
 }
 
 /** Kształty klatki danych rodziny (podgląd wyniku generatora: arkusz SVG w scripts/figures/v2-validate.mjs --svg). */
