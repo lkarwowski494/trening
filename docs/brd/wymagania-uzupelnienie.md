@@ -201,7 +201,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
 
 ### BR-ZAK-006: Przywracanie zakupów i realizacja kodu
 - Przepływ: PR-08
-- Dowód potrzeby: ZP-06; kod `app/paywall.tsx` („Przywróć zakupy”, „Zrealizuj kod”), `lib/access.ts` (`ALWAYS_AVAILABLE`)
+- Dowód potrzeby: ZP-06; OG-04; kod `app/paywall.tsx` („Przywróć zakupy”, „Zrealizuj kod”), `lib/access.ts` (`ALWAYS_AVAILABLE`)
 - Test: `tests/subscription-ui.test.tsx`, `tests/store-adapter.test.ts`, `.maestro/21-subskrypcja.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Przywrócenie zakupu
@@ -241,7 +241,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
 
 ### BR-KON-001: Prośba o ocenę w App Store
 - Przepływ: PR-11
-- Dowód potrzeby: D-104 (decyzje właściciela 2026-10-11: po N-tym treningu z rekordem, odstęp 14 dni, najwyżej raz na wersję; 2026-10-22: N = 3); docs/26-prosba-o-ocene.md; kod `lib/review.ts` (`REVIEW`), `lib/review-run.ts`
+- Dowód potrzeby: D-104 (decyzje właściciela 2026-10-11: po N-tym treningu z rekordem, odstęp 14 dni, najwyżej raz na wersję; 2026-10-22: N = 3); docs/26-prosba-o-ocene.md; OG-10; kod `lib/review.ts` (`REVIEW`), `lib/review-run.ts`
 - Test: `tests/review.test.ts`, `tests/review-run.test.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Trzeci trening na żywo z rekordem

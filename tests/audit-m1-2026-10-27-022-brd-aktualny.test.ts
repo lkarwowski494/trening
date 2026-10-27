@@ -63,6 +63,12 @@ describe('M1-022: BRD aktualny wobec decyzji 20–27.10.2026', () => {
     has('BR-TRN-013', /⇅ SS/); has('BR-UST-002', /Ekran włączony/); has('BR-SZB-002', /Zapisz zmiany w szablonie/);
     for (const x of s.filter(y => y.file === 'wymagania-uzupelnienie.md')) expect([x.id, /Scenariusz:/.test(x.text) && /Wtedy /.test(x.text)]).toEqual([x.id, true]);
   });
+  test('ograniczenia OG (01-odkrywanie-010): każde OG ma źródło S z adresem, cytatem i datą odczytu albo jest nazwaną zasadą właściciela; S polityk mają termin przeglądu', () => {
+    const o = read('odkrywanie.md'); const og = o.slice(o.indexOf('## Ograniczenia')).split(/^### /m).slice(1);
+    expect(og.length).toBeGreaterThanOrEqual(10);
+    for (const x of og) expect([x.slice(0, 5), /\[FAKT S-\d\d\]/.test(x) || /Zasada właściciela/.test(x)]).toEqual([x.slice(0, 5), true]);
+    for (const n of ['3.1.1', '3.1.2(b)', '3.1.2(c)', '2.3.2', '5.1.3(i)', '5.1.3(ii)', '5.6.1']) expect(read('zrodla.md')).toMatch(new RegExp(`punkt ${n.replace(/[().]/g, '\\$&')} .*\\| \\d{4}-\\d\\d-\\d\\d \\| 1 \\| \\d{4}-\\d\\d-\\d\\d \\|`));
+  });
   test('errata: plik z tabelą ER (data, źródło, status)', () => {
     const e = read('errata.md'); expect(e).toMatch(/^\| ID \| Data \|/m); expect(e.match(/^\| ER-\d{2} \| \d{4}-\d\d-\d\d \|/gm)!.length).toBeGreaterThanOrEqual(5);
   });

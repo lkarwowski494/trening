@@ -437,7 +437,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07
-- Dowód potrzeby: OG-01; docs/28-healthkit-etap0.md; `site/privacy.html`
+- Dowód potrzeby: OG-01, OG-09; docs/28-healthkit-etap0.md; `site/privacy.html`
 - Kryteria akceptacji:
   - Scenariusz: Zapis po zgodzie
     - Zakładając, że użytkownik włączył zapis i udzielił zgody systemowej
@@ -450,7 +450,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-ZDR-002: Opcjonalny odczyt z Apple Health: kroki, treningi, tętno, aktywna energia
 - Przepływ: PR-07
-- Dowód potrzeby: OG-01; D-004; docs/29-zdrowie-odczyt-spec.md; `site/privacy.html`
+- Dowód potrzeby: OG-01, OG-08; D-004; docs/29-zdrowie-odczyt-spec.md; `site/privacy.html`
 - Kryteria akceptacji:
   - Scenariusz: Odczyt po zgodzie
     - Zakładając, że użytkownik włączył odczyt i udzielił zgody
@@ -728,7 +728,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-ZAK-003: Ekran zakupu bez presji
 - Przepływ: PR-08
-- Dowód potrzeby: ZP-06; docs/monetyzacja-badanie-2026-10.md rozdz. 11; rejestr twierdzeń T-042, T-043
+- Dowód potrzeby: ZP-06; OG-05, OG-06; docs/monetyzacja-badanie-2026-10.md rozdz. 11; rejestr twierdzeń T-042, T-043
 - Ekrany: `app/paywall.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Start ponad limit
