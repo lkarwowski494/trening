@@ -29,6 +29,7 @@ Decyzja właściciela 27.10.2026 (docs/18, wariant A): niezależna recenzja ruch
 | thruster | 3 | 0 | 3 | 0 | 3/3 OK | — | [thruster.md](thruster.md) |
 | carry | 7 | 2 | 5 | 0 | 7/7 OK | — | [carry.md](carry.md) |
 | plyo | 27 | 9 | 12 | 6 | 27/27 OK | 0 z 6 (0%); + W (rzut tylko z boku, 8 ćw.) | [plyo.md](plyo.md) |
+| olympic | 23 | 1 | 4 | 18 | 23/23 OK | 0 z 18 (0%), 4 klasy | [olympic.md](olympic.md) |
 
 ## Partia rec-11 (dip, overhead_press, row, pull_up, curl, triceps, delt_raise, chest_fly + shrug, forearm, rotator_cuff), 27.10.2026
 
