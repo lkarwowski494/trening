@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
-import { useTheme, TEXT_SCALE_MAX, FW, font } from '@/lib/theme';
+import { useTheme, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
 import { cuesFor, cueText, type CueSection } from '@/lib/cues';
 import { catalogKey } from '@/lib/seed';
@@ -37,7 +37,7 @@ export function ExerciseCues({ exercise, initialOpen }: { exercise: Pick<Exercis
     <View testID="exercise-cues" style={{ borderTopWidth: 1, borderBottomWidth: 1, borderColor: th.line, marginBottom: 14 }}>
       <Pressable accessibilityLanguage={lang()} testID="exercise-cues-toggle" onPress={() => setOpen(o => !o)} accessibilityRole="button" accessibilityLabel={t('Technika')} accessibilityHint={t('Ustawienie, ruch, wskazówki i częste błędy.')} accessibilityState={{ expanded: open }} hitSlop={4} style={{ minHeight: 44, flexDirection: 'row', alignItems: 'center' }}>
         <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold, flex: 1 }}>{t('Technika')}</Text>
-        <Text importantForAccessibility="no" accessibilityElementsHidden style={{ color: th.muted, ...font('body'), ...FW.regular }}>{open ? '▾' : '▸'}</Text>
+        <Text importantForAccessibility="no" accessibilityElementsHidden maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.muted, ...font('body'), ...FW.regular }}>{open ? '▾' : '▸'}</Text>
       </Pressable>
       {safety ? <SafetyNote kind={safety} inside /> /* widoczne także przy zwiniętej sekcji */ : null}
       {open ? <View style={{ paddingBottom: 12 }}>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Pressable } from 'react-native';
 import { H2, Muted, Txt, monoSafe } from '@/components/ui';
 import { SignChip, SIGN_CHAR, GuardMap, GuardLegend } from '@/components/Guard';
-import { useTheme, F, NUM_SCALE_MAX, TEXT_SCALE_MAX, FW } from '@/lib/theme';
+import { useTheme, F, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW } from '@/lib/theme';
 import { useTick, exById } from '@/lib/store';
 import { guardCached, guardTexts, guardWord, type Guard, type GuardPart, type GuardDir, type SkipReason } from '@/lib/guard';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
@@ -57,7 +57,7 @@ function GuardRow({ p }: { p: GuardPart }) {
     <View testID={`grow-${p.part}`} style={{ paddingHorizontal: 12, paddingVertical: 4, borderTopWidth: 1, borderTopColor: th.line }}>
       <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ expanded: open }} onPress={() => setOpen(!open)} style={({ pressed }) => ({ minHeight: 44, justifyContent: 'center', paddingVertical: 6, opacity: pressed ? 0.7 : 1 })}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', columnGap: 8, flexWrap: 'wrap' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, flexShrink: 1 }}><SignChip dir={p.dir} /><Txt style={{ ...FW.semibold, fontSize: 15, flexShrink: 1 }}>{name}</Txt><Muted style={{ fontSize: 13 }}>{open ? '▾' : '▸'}</Muted></View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, flexShrink: 1 }}><SignChip dir={p.dir} /><Txt style={{ ...FW.semibold, fontSize: 15, flexShrink: 1 }}>{name}</Txt><Muted maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ fontSize: 13 }}>{open ? '▾' : '▸'}</Muted></View>
           <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontFamily: F.mono, fontVariant: ['tabular-nums'], fontSize: 13 }}>{monoSafe(series)}</Txt>
         </View>
         {line(false) ? <Muted style={{ fontSize: 12, marginTop: 2 }}>{line(false)}</Muted> : null}

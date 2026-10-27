@@ -3,7 +3,7 @@ import { View, Pressable } from 'react-native';
 import { ScrollView } from '@/components/Scroll';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Screen, Muted, Txt, Btn } from '@/components/ui';
-import { useTheme, NUM_SCALE_MAX, FW, font, RADIUS } from '@/lib/theme';
+import { useTheme, NUM_SCALE_MAX, GLYPH_SCALE_MAX, FW, font, RADIUS } from '@/lib/theme';
 import { useTick } from '@/lib/store';
 import { GUIDE, guideSeen, guideProgress, markGuideSeen } from '@/lib/guide';
 import { t, lang } from '@/lib/i18n';
@@ -31,7 +31,7 @@ export default function GuideScreen() {
               {done ? <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} /* A11-07: znak w kółku 22–24 pt */ style={{ color: th.accentInk, ...font('footnote'), ...FW.semibold }}>✓</Txt> : null}
             </View>
             <Txt style={{ flex: 1, ...FW.semibold }}>{g.title()}</Txt>
-            <Muted>{on ? '▾' : '▸'}</Muted>
+            <Muted maxFontSizeMultiplier={GLYPH_SCALE_MAX}>{on ? '▾' : '▸'}</Muted>
           </Pressable>
           {on ? <View style={{ paddingHorizontal: 12, paddingBottom: 12, gap: 6 }}>
             {g.steps().map((s, i) => <Txt key={i} style={font('callout')}>{`${i + 1}. ${s}`}</Txt>)}

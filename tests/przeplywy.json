@@ -3049,7 +3049,7 @@
      "tests/tabs-a11y.test.tsx",
      "tests/matrix-a11y.test.tsx"
     ],
-    "kontrola": "Największy rozmiar tekstu: trening, plan i ustawienia czytelne bez ucięć; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają."
+    "kontrola": "Największy rozmiar tekstu (T-04, 27.10.2026: ucięte ikony na ekranie Trening — strażnik znaków-ikon w tests/matrix-a11y.test.tsx; Maestro nie ustawi rozmiaru tekstu systemu, a `xcrun simctl ui content_size` wymagałoby zmiany workflowu): trening, plan i ustawienia czytelne bez ucięć, w tym ikony; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają."
    }
   },
   {

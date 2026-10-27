@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
-import { useTheme, TEXT_SCALE_MAX, FW, font } from '@/lib/theme';
+import { useTheme, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
 import { openSupportMail } from '@/lib/support';
 
@@ -19,7 +19,7 @@ export function IdeaLink() {
         <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('callout'), ...FW.regular, textDecorationLine: 'underline' }}>{t('Czego Ci brakuje? Poproś o funkcję')}</Text>
       </Pressable>
       <Pressable testID="idea-link-close" accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Zamknij')} onPress={() => setOpen(false)} style={{ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' }}>
-        <Text accessible={false} importantForAccessibility="no" style={{ color: th.muted, ...font('body') }}>✕</Text>
+        <Text accessible={false} importantForAccessibility="no" maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.muted, ...font('body') }}>✕</Text>
       </Pressable>
     </View>);
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, Pressable, Switch, Text, TextInput, View, StyleSheet, useWindowDimensions, type ViewStyle, type TextStyle, type TextInputProps, type StyleProp } from 'react-native';
-import { useTheme, FW, font, maxScale, titleMaxScale, TEXT_SCALE_MAX, NUM_SCALE_MAX, RADIUS, SIZE, SPACE, HEADER } from '@/lib/theme';
+import { useTheme, FW, font, maxScale, titleMaxScale, TEXT_SCALE_MAX, NUM_SCALE_MAX, GLYPH_SCALE_MAX, RADIUS, SIZE, SPACE, HEADER } from '@/lib/theme';
 import { decimalComma, lang, upper, LOCALE_UPPER, t as tr, type Lang } from '@/lib/i18n';
 import { useRouter } from 'expo-router';
 import { wu } from '@/lib/units';
@@ -63,7 +63,7 @@ export function Item({ title, sub, right, icon, onPress, dim, accessibilityLabel
           <Text accessibilityLanguage={a11yLang ?? titleLang ?? lang()} style={{ color: dim ? t.muted : t.text /* A11-16: wyszarzenie kolorem muted (≥ 4,5:1) zamiast przezroczystości 0,5 — wiersz zostaje aktywny */, ...font('bodyStrong') }}>{title}</Text>
           {sub ? <Text accessibilityLanguage={a11yLang ?? lang()} style={{ color: t.muted, ...font('callout'), marginTop: 2 }}>{sub}</Text> : null}
         </View>
-        {glyph ? <Text accessible={false} importantForAccessibility="no" style={{ color: t.muted, ...font('body') }}>{glyph}</Text> : null}
+        {glyph ? <Text accessible={false} importantForAccessibility="no" maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: t.muted, ...font('body') }}>{glyph}</Text> : null}
       </Pressable>
       {right ?? null}
     </View>
@@ -145,7 +145,7 @@ export function Chip({ label, on, onPress, toggle, a11yLabel, a11yHint, disabled
   const swName = a11yLabel ?? field ?? label;
   /* A11-14: wartość (tekst chipa) tylko wtedy, gdy różni się od nazwy — inaczej VoiceOver czyta „Tydzień deload, Tydzień deload” */
   const a11y = toggle ? { accessibilityRole: 'switch' as const, accessibilityHint: a11yHint, accessibilityLabel: swName, ...(swName !== label ? { accessibilityValue: { text: label } } : {}), accessibilityState: { checked: on, disabled: !!disabled } } : { accessibilityRole: 'button' as const, accessibilityLabel: a11yLabel ?? label, accessibilityHint: a11yHint ?? field, accessibilityState: { selected: on, disabled: !!disabled } };
-  return <Pressable accessibilityLanguage={lang()} onPress={disabled ? undefined : press} {...a11y} hitSlop={4} style={[s.chip, { backgroundColor: on ? t.accent : t.surface2, borderColor: on ? t.accent : t.line }, (icon || lead) && { flexDirection: 'row', alignItems: 'center', gap: SPACE.xs }, disabled && !on && { opacity: 0.5 }]}>{lead ? <Text accessibilityLanguage={lang()} style={{ color: on ? t.accentInk : t.muted, ...font('footnote'), ...FW.semibold }}>{lead}</Text> : null}{icon ? <Icon name={icon} color={on ? t.accentInk : t.muted} size={SIZE.iconInline} /> : null}<Text accessibilityLanguage={lang()} style={{ color: on ? t.accentInk : t.muted, ...font('footnote'), ...FW.semibold }}>{label}</Text></Pressable>;
+  return <Pressable accessibilityLanguage={lang()} onPress={disabled ? undefined : press} {...a11y} hitSlop={4} style={[s.chip, { backgroundColor: on ? t.accent : t.surface2, borderColor: on ? t.accent : t.line }, (icon || lead) && { flexDirection: 'row', alignItems: 'center', gap: SPACE.xs }, disabled && !on && { opacity: 0.5 }]}>{lead ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: on ? t.accentInk : t.muted, ...font('footnote'), ...FW.semibold }}>{lead}</Text> : null}{icon ? <Icon name={icon} color={on ? t.accentInk : t.muted} size={SIZE.iconInline} /> : null}<Text accessibilityLanguage={lang()} style={{ color: on ? t.accentInk : t.muted, ...font('footnote'), ...FW.semibold }}>{label}</Text></Pressable>;
 }
 /**
  * P-002 (02.10.2026): ustawienia jak w Ustawieniach iOS (Apple HIG: przełącznik dla wł./wył., kontrolka segmentowa dla 1 z 2–4).

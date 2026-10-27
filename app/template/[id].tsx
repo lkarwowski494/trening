@@ -17,7 +17,7 @@ import { implLabel } from '@/lib/swap';
 import { visibleLocations, getState, useTick, exById, save, dupTemplate, templateFolders, setTemplateFolder, setTemplateArchived, TEMPLATE_NOTE_MAX, groupLabels, ssTag, ssBtn, linkWithNext, unlink, removeItem, restFor, isBW, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, tplAddRow, tplRemoveRow, tplEditRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps, usesBand, tplCycleBand, bandA11y, shortBand, workCount, tplWorkSets, fmtSec , REPS_MAX , REST_MAX } from '@/lib/store';
 import { beginObjDraft, objDraft, objDirty, discardObjDraft, commitObjDraft, dropUnsavedNew } from '@/lib/draft';
 import { nowParts } from '@/lib/live';
-import { useTheme, FW, font, RADIUS } from '@/lib/theme';
+import { useTheme, FW, font, RADIUS, GLYPH_SCALE_MAX } from '@/lib/theme';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type Template, type TemplateItem, type TRow, type Exercise, type WSet } from '@/lib/seed';
 import { t, tp, exName, exNameLang, lang } from '@/lib/i18n';
 import { startTemplate, workoutInProgressNotice } from '@/lib/start';
@@ -132,7 +132,7 @@ function TemplateEditor({ tpl }: { tpl: Template }) {
               <Txt a11yLang={exNameLang(ex)} style={{ ...FW.semibold }}>{it.groupId ? <Txt style={{ color: th.band, ...FW.semibold }}>{`${ssTag(labels[it.groupId])} · `}</Txt> : null}{exName(ex)}</Txt>
               {open !== it.id ? <Muted style={{ ...font('footnote') }}>{tplSummary(it)}</Muted> : null}
             </View>
-            <Muted style={{ ...font('body') }}>{open === it.id ? '▾' : '▸'}</Muted>
+            <Muted maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ ...font('body') }}>{open === it.id ? '▾' : '▸'}</Muted>
           </Pressable><ExMenuButton testID={`tpl-item-menu-${i}`} name={nm} title={t('Usunąć z szablonu?')} onDelete={() => { const j = tpl.items.indexOf(it); if (j >= 0) removeItem(tpl.items, j, tpl); }} /></View>}</SwipeRow>
           {open === it.id ? <>
             <TplRows tpl={tpl} it={it} ii={i} nm={nm} />

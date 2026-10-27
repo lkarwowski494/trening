@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Animated, Modal, PanResponder, Pressable, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Item, Muted, useOnce } from '@/components/ui';
-import { useTheme, TEXT_SCALE_MAX, font, RADIUS, SIZE, SPACE } from '@/lib/theme';
+import { useTheme, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, font, RADIUS, SIZE, SPACE } from '@/lib/theme';
 import { fmtDate, fmtDayKey } from '@/lib/store';
 import { startTemplate, startRepeatLast, startEmptyWorkout } from '@/lib/start';
 import { mainStart, otherStarts, type MainStart, type OtherStart } from '@/lib/home';
@@ -61,7 +61,7 @@ export function StartPanel() {
           <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.accentInk, ...font('buttonPrimary') }}>{x.title}</Text>
           {x.sub ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.accentInk, ...font('footnote'), marginTop: 2 }}>{x.sub}</Text> : null}
         </View>
-        <Text accessibilityElementsHidden importantForAccessibility="no" style={{ color: th.accentInk, ...font('sectionTitle') }}>›</Text>
+        <Text accessibilityElementsHidden importantForAccessibility="no" maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.accentInk, ...font('sectionTitle') }}>›</Text>
       </Pressable>
       {m.kind !== 'resume' ? <Btn block title={t('Inny trening')} accessibilityLabel={t('Inny trening')} accessibilityHint={t('Inny z planu, powtórz ostatni, z szablonu albo pusty.')} onPress={() => setOpen(true)} /> : null}
       {m.kind !== 'resume' && acc.enabled && acc.level === 'free' && !acc.silent ? <Muted testID="start-free-days" style={{ textAlign: 'center' }}>{t('{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.', { left: tp(acc.decision.remaining, 'Został|Zostały|Zostało'), n: acc.decision.remaining, limit: acc.decision.limit })}</Muted> : null}
