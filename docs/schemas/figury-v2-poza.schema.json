@@ -342,8 +342,8 @@
          "podbicie": {
           "type": "number",
           "minimum": -90,
-          "maximum": 90,
-          "description": "Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (dodatnie = palce wyżej niż pięta). NIE PODAWAJ, gdy stopa nie jest istotą ruchu (np. leżenie, zwis): wtedy stopa ustawia się sama neutralnie względem goleni (kąt kostki ≈ 5°). Podaj tylko tam, gdzie stopa jest ruchem lub podporą: wspięcia, stanie na palcach (np. −60)."
+          "maximum": 270,
+          "description": "Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (dodatnie = palce wyżej niż pięta; 91…270 = stopa skierowana do tyłu: 180 = palce do tyłu poziomo, 180 + a = palce opadają o a stopni; tak leży tylna stopa na ławce grzbietem w dół — przysiad bułgarski). NIE PODAWAJ, gdy stopa nie jest istotą ruchu (np. leżenie, zwis): wtedy stopa ustawia się sama neutralnie względem goleni (kąt kostki ≈ 5°). Podaj tylko tam, gdzie stopa jest ruchem lub podporą: wspięcia, stanie na palcach (np. −60)."
          },
          "rotacjaStopy": {
           "type": "number",
@@ -391,8 +391,8 @@
          "podbicie": {
           "type": "number",
           "minimum": -90,
-          "maximum": 90,
-          "description": "Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (dodatnie = palce wyżej niż pięta). NIE PODAWAJ, gdy stopa nie jest istotą ruchu (np. leżenie, zwis): wtedy stopa ustawia się sama neutralnie względem goleni (kąt kostki ≈ 5°). Podaj tylko tam, gdzie stopa jest ruchem lub podporą: wspięcia, stanie na palcach (np. −60)."
+          "maximum": 270,
+          "description": "Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (dodatnie = palce wyżej niż pięta; 91…270 = stopa skierowana do tyłu: 180 = palce do tyłu poziomo, 180 + a = palce opadają o a stopni; tak leży tylna stopa na ławce grzbietem w dół — przysiad bułgarski). NIE PODAWAJ, gdy stopa nie jest istotą ruchu (np. leżenie, zwis): wtedy stopa ustawia się sama neutralnie względem goleni (kąt kostki ≈ 5°). Podaj tylko tam, gdzie stopa jest ruchem lub podporą: wspięcia, stanie na palcach (np. −60)."
          },
          "rotacjaStopy": {
           "type": "number",
