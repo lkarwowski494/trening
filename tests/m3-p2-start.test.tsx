@@ -47,9 +47,10 @@ describe('nagłówek ekranu: „Planowanie” jako PlanningButton (W1 c)', () =>
 /* Decyzja 21.10.2026 (STOP 3 M3: „Planowanie” w tym samym miejscu na starcie i w zakładce Plan) i DEC-07 K3 (a), właściciel 23.10.2026 (docs/18): „Planowanie” w linii tytułu także na ekranie Trening — jak w zakładce Plan (docs/32 wzorzec 19 c);
  * M1-audytor-generalny-024 (04-studio-projektowe-005): przycisk stał w osobnym wierszu nad tytułem. */
 describe('K3 (23.10.2026): „Planowanie” w linii tytułu, jak w zakładce Plan', () => {
-  const fontScale = (s: number) => { const w = Dimensions.get('window'); jest.spyOn(Dimensions, 'get').mockImplementation(((k: string) => (k === 'window' ? { ...w, fontScale: s } : Dimensions.get.call(Dimensions, k as never))) as never); };
+  /* okno podmienione wprost: opcja `width` w renderApp nie ustawia szerokości okna (tests/app.tsx) */
+  const fontScale = (s: number, width: number) => { const w = Dimensions.get('window'); jest.spyOn(Dimensions, 'get').mockImplementation(((k: string) => (k === 'window' ? { ...w, fontScale: s, width } : Dimensions.get.call(Dimensions, k as never))) as never); };
   test.each([[1, 390], [2, 320]])('skala tekstu %s, szerokość %s: przycisk w wierszu tytułu po napisie „Trening”; wiersz się zawija (przycisk przechodzi pod tytuł zamiast ucinać)', async (fs, width) => {
-    fontScale(fs); jest.useFakeTimers({ now: NOW }); await fresh(); const t = withDemoTemplates('pl'); setPlan(t, { 3: 0 }, 'Góra / Dół'); hist();
+    fontScale(fs, width); jest.useFakeTimers({ now: NOW }); await fresh(); const t = withDemoTemplates('pl'); setPlan(t, { 3: 0 }, 'Góra / Dół'); hist();
     await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'pl', width }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
     const row = screen.getByTestId('title-row');
     expect(within(row).getByTestId('planning-button').props.accessibilityLabel).toBe('Planowanie');
