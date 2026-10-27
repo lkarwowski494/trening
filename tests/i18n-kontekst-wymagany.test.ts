@@ -12,8 +12,8 @@ const konteksty: Record<string, string> = JSON.parse(fs.readFileSync(path.join(r
 const reczne: Record<string, string> = JSON.parse(fs.readFileSync(path.join(root, 'docs/lokalizacja/konteksty-reczne.json'), 'utf8'));
 const source: { pl: string }[] = JSON.parse(fs.readFileSync(path.join(root, 'lib/locales/_source.json'), 'utf8'));
 const klucze = new Set(source.map(s => s.pl));
-/** Zapadka: liczba kluczy dynamicznych (< 3 słowa albo z placeholderem) bez kontekstu ręcznego — może tylko maleć (stan 26.10.2026: 145). */
-export const BEZ_KONTEKSTU_MAX = 145;
+/** Zapadka: liczba kluczy dynamicznych (< 3 słowa albo z placeholderem) bez kontekstu ręcznego — wariant B z L-041: 0 (27.10.2026; było 145) — każdy nowy krótki klucz dynamiczny wymaga kontekstu ręcznego. */
+export const BEZ_KONTEKSTU_MAX = 0;
 const wymaga = (k: string): boolean => k.split(/\s+/).length < 3 || /\{/.test(k);
 
 describe('kontekst tłumaczeń: ręczny, wymagany dla kluczy bez wyjaśnienia w kodzie (L-041)', () => {

@@ -19,6 +19,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { CENY, MODELE, RABAT_BATCH, DOMYSLNY_MODEL, DOMYSLNY_EFFORT, EFFORTY, MAX_TOKENS, REJESTR, INTERWAL_S, CZEKAJ_MIN_DOMYSLNIE, jezyki, zmienne, nazwaJezyka, przyblizTokeny, tekstZadania, kosztUsd, klient, czekajNaBatch } from './przeglad-api.mjs';
 import { maskuj } from '../maskuj.mjs';
+import { wczytajKonteksty, kontekstDla, OPIS_POLA_KONTEKST } from './kontekst.mjs';
 
 /** Powyżej tego szacunku (USD) przebieg zatrzymuje się, chyba że podano --zgoda-koszt (zgoda właściciela 23.10.2026: do 6 USD). */
 export const LIMIT_KOSZTU_USD = 6;
@@ -42,6 +43,7 @@ export const SYSTEM = [
   'Zdania ostrzegawcze (zdrowie, bezpieczeństwo, asekuracja) tłumacz wiernie, bez złagodzenia i bez wzmocnienia. Nazwy elementów interfejsu w cudzysłowach („…”) tłumacz tak, jak brzmią w tym języku w tym samym zestawie (spójnie).',
   'Jeśli podano „stare” tłumaczenie poprzedniego brzmienia, użyj go tylko jako wzoru terminologii — nie przenoś z niego nazw źródeł ani zdań, których nie ma w nowym polskim tekście.',
   'Pisz naturalnie, tak jak powiedziałby trener albo kolega na siłowni w tym języku: potoczny termin siłowni zamiast naukowego żargonu i stylu podręcznikowego, bez zbędnych zastrzeżeń, krótko (ekran telefonu). Terminy treningowe tłumacz WYŁĄCZNIE według słownika terminów podanego dla języka (termin zalecany; terminów oznaczonych „NIE używaj” nie używaj nigdy, bo znaczą co innego albo brzmią jak przerwa w pracy).',
+  OPIS_POLA_KONTEKST,
   'Formy liczby mnogiej oddzielone znakiem | zachowaj w liczbie i kolejności wymaganej przez język. Odpowiedz WYŁĄCZNIE jednym obiektem JSON, bez komentarza i bez bloku kodu: kluczem jest numer pozycji (tekst), wartością tłumaczenie (tekst).',
 ].join(' ');
 
@@ -65,24 +67,26 @@ export function stare(root, kod) {
   return existsSync(p) ? czytaj(p) : {};
 }
 
-export function budujZadanie(kod, pozycje, staraTresc = {}, slownik = null) {
+/** `konteksty` = docs/lokalizacja/konteksty.json (wczytajKonteksty): pozycja dostaje pole „kontekst” (L-030, L-041); null = bez kontekstu. */
+export function budujZadanie(kod, pozycje, staraTresc = {}, slownik = null, konteksty = null) {
   const lista = pozycje.map((p) => {
     const o = { id: String(p.id), pl: p.pl, en: p.en };
     if (p.rodzaj === 'zmieniony' && typeof staraTresc[p.pl] === 'string') o.stare = staraTresc[p.pl];
+    const ctx = kontekstDla(konteksty, p.pl); if (ctx) o.kontekst = ctx;
     return o;
   });
   const user = [
     `Język docelowy: ${nazwaJezyka(kod)} (${kod}).`,
     `Rejestr i konwencje tego języka: ${REJESTR[kod] ?? 'jak w iOS danego języka'}.`,
     ...(slownik ? [SLOWNIK_MOD.blokPromptu(slownik, kod)].filter(Boolean) : []),
-    `Pozycji: ${lista.length}. Pole „pl” to tekst źródłowy, „en” angielski tekst odniesienia, „stare” (jeśli jest) — poprzednie tłumaczenie poprzedniego brzmienia.`,
+    `Pozycji: ${lista.length}. Pole „pl” to tekst źródłowy, „en” angielski tekst odniesienia, „stare” (jeśli jest) — poprzednie tłumaczenie poprzedniego brzmienia, „kontekst” (jeśli jest) — czym jest tekst i gdzie się pokazuje.`,
     '', JSON.stringify(lista),
   ].join('\n');
   return { system: SYSTEM, messages: [{ role: 'user', content: user }] };
 }
 
-export function budujZadanieBatcha(kod, pozycje, staraTresc, { model, effort }, slownik = null) {
-  const z = budujZadanie(kod, pozycje, staraTresc, slownik);
+export function budujZadanieBatcha(kod, pozycje, staraTresc, { model, effort }, slownik = null, konteksty = null) {
+  const z = budujZadanie(kod, pozycje, staraTresc, slownik, konteksty);
   return { custom_id: `pr-${kod}`, params: { model, max_tokens: MAX_TOKENS, system: z.system, messages: z.messages, output_config: { effort } } };
 }
 
@@ -151,8 +155,8 @@ export function podsumowanieMd(raporty, meta) {
 }
 
 /* ---------- szacunek kosztu ---------- */
-export function wiersz(kod, pozycje, staraTresc, model, slownik = null) {
-  const z = budujZadanie(kod, pozycje, staraTresc, slownik);
+export function wiersz(kod, pozycje, staraTresc, model, slownik = null, konteksty = null) {
+  const z = budujZadanie(kod, pozycje, staraTresc, slownik, konteksty);
   const wy = Math.ceil(pozycje.reduce((s, p) => s + przyblizTokeny(p.en) * WSPOLCZYNNIK(kod) + ZALOZENIA.obwiednia, 0)) + ZALOZENIA.myslenie;
   return { jezyk: kod, pozycji: pozycje.length, we: przyblizTokeny(tekstZadania(z)), wy, model };
 }
@@ -222,12 +226,13 @@ export async function main(argv, env, { fetchFn = fetch, log = console.log, root
   log(`pozycji: ${pozycje.length} (nowe ${pozycje.filter((p) => p.rodzaj === 'nowy').length}, zmienione ${pozycje.filter((p) => p.rodzaj === 'zmieniony').length}); języków: ${kody.length}; model ${o.model}, effort ${o.effort}`);
   mkdirSync(o.wyjscie, { recursive: true });
   const slownik = slownikTerminow(root);
-  const zadania = kody.map((k) => budujZadanieBatcha(k, pozycje, stareTresc[k], o, slownik));
+  const konteksty = wczytajKonteksty(root);
+  const zadania = kody.map((k) => budujZadanieBatcha(k, pozycje, stareTresc[k], o, slownik, konteksty));
 
   if (!o.wznow) {
     const wiersze = [];
     for (const [i, k] of kody.entries()) {
-      const w = wiersz(k, pozycje, stareTresc[k], o.model, slownik);
+      const w = wiersz(k, pozycje, stareTresc[k], o.model, slownik, konteksty);
       if (api) w.we = await api.liczTokeny(o.model, zadania[i].params);
       wiersze.push(w);
     }
