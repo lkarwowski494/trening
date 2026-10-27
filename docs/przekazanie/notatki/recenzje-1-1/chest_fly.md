@@ -42,3 +42,5 @@ Pullovery idą zza głowy (zgięcie barku 140–165°) nad klatkę i dalej ku bi
 | Reguła | Warunek | Błąd | Pozostałe |
 |---|---|---|---|
 | `dlonie_nie_przenikaja` (niezmiennik) | w każdej klatce odległość chwytów R–L ≥ szerokość dłoni (ok. 8 cm), a przy dwóch hantlach / uchwytach ≥ suma promieni talerzy; wyjątek: jeden przedmiot trzymany oburącz (hantel `pionowo`, sztanga, talerz, lina) | 5 rozpiętek: 0,4 cm | Pullover (hantel pionowo, jeden przedmiot) bez alarmu; Cable Fly 35 cm |
+
+Skan wszystkich 11 rodzin tej partii (minimalna odległość chwytów R–L przy dwóch osobnych przedmiotach, 41 punktów u) znalazł poza tymi 5 rozpiętkami jeszcze Tate Press (1,0 cm, błąd w `triceps.md`). Wszystkie pozostałe ćwiczenia mają ≥ 8 cm.

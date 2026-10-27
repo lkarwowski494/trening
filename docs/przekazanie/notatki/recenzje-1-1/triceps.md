@@ -2,7 +2,7 @@
 
 Metoda jak w `dip.md` (`origin/integracja-1-1` @ 4e5a7f95, istniejące pozy, PNG w pełnej rozdzielczości, liczby silnikiem v2).
 
-Walidator: **29/29 OK**. Błędów: **0**.
+Walidator: **29/29 OK**. Szczelność reguł automatycznych: **0 z 1 błędów (0%)**. Błąd znaleziony skanem przenikania dłoni (skrypt `dlonie`: minimalna odległość chwytów R–L przy dwóch osobnych przedmiotach, wszystkie 11 rodzin), potwierdzony na obrazie.
 
 Szablony rodziny (wszystkie z nieruchomym ramieniem; pracuje tylko łokieć, zgodnie ze wskazówkami „ramiona nieruchomo”):
 
@@ -19,12 +19,18 @@ Szablony rodziny (wszystkie z nieruchomym ramieniem; pracuje tylko łokieć, zgo
 |---|---|---|
 | Overhead Triceps Extension (EZ), Standing Overhead Barbell Triceps Extension, Overhead Triceps Extension (hantel), Kettlebell Overhead Triceps Extension, Dumbbell One-Arm Triceps Extension, Band Overhead Triceps Extension, Cable Overhead Extension, Standing Low-Pulley One-Arm Triceps Extension | OK (8) | |
 | Skullcrusher (sztanga), Skullcrusher (EZ), Skullcrusher (hantle), One-Arm Lying Dumbbell Triceps Extension, Band Skull Crusher, Chain Handle Extension, Cable Lying Triceps Extension, Lying Close-Grip Barbell Triceps Extension Behind The Head | OK (8) | |
-| Tate Press | OK | hantle na mostku (z −1…7), łokcie na boki (z 28, odwiedzenie 18°), wyprost 132° → 0° |
+| **Tate Press** | **BŁĄD** | przedramiona się krzyżują, hantle przenikają się na mostku (nr 1) |
 | Incline Barbell Triceps Extension, Cable Incline Triceps Extension, Decline Dumbbell Triceps Extension, Decline EZ Bar Triceps Extension | OK (4) | |
 | Triceps Pushdown, Reverse Grip Triceps Pushdown (obrót +75°), Single Arm Triceps Pushdown | OK (3) | |
 | Triceps Kickback, Two-Arm Dumbbell Kickback, Triceps Kickback (linki) | OK (3) | w wersji jednorącz wolna ręka zwisa swobodnie; wskazówki aplikacji nie wymagają podparcia |
 | Machine Triceps Extension | OK z uwagą | jedna dźwignia (`trzyma: R`), uwaga przekrojowa (README) |
 | Kneeling Cable Triceps Extension | OK z uwagą | ławka bez funkcji (uwaga L) |
+
+## Znaleziska: BŁĄD
+
+| # | Ćwiczenie | Klatka / element | Co jest źle (liczby) | Jak powinno być | Pewność | Realność | Reguła łapie? |
+|---|---|---|---|---|---|---|---|
+| 1 | **Tate Press** | u = 0 … 0,5, dłonie i hantle | **Dłonie przechodzą przez oś ciała, a hantle wchodzą w siebie.** W u = 0 chwyt R jest w (−44; 69; −1), czyli po lewej stronie osi, a chwyt L symetrycznie po prawej. W rzucie z przodu przedramiona tworzą „X” nad mostkiem, a hantle nachodzą na siebie. Najmniejsza odległość chwytów R–L to 1,0 cm (u = 0,35). W u = 0,25 dwa hantle ustawiają się w jedną linię z nachodzącymi talerzami. Wyprost (łokieć 132° → 0°) i łokcie na boki (z 28) są poprawne. | Hantle leżą na mostku końcami do siebie (stykają się talerzami). Środki chwytów ok. ±15 cm od osi (połowa długości hantla), przedramiona się nie krzyżują, łokcie na boki. | 80% | realny | nie: brak reguły dłoń–dłoń / sprzęt–sprzęt (jak w `chest_fly.md`, propozycja `dlonie_nie_przenikaja`) |
 
 ## OK z uwagą (backlog, nie blokuje)
 
