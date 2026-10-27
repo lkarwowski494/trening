@@ -74,3 +74,4 @@ Proponowane mechanizmy (szczegóły w plikach rodzin):
 Progi to konwencja rysunku do potwierdzenia przez badacza. Dobrane na tych samych danych, więc to wynik w próbie, a nie dowód szczelności.
 | hip_abd_add | 6 | 4 | 2 | 0 | 6/6 OK | — | [hip_abd_add.md](hip_abd_add.md) |
 | glute_floor | 7 | 3 | 3 | 1 | 7/7 OK | 0 z 1 (0%) | [glute_floor.md](glute_floor.md) |
+| leg_machine | 7 | 3 | 1 | 3 | 7/7 OK | 0 z 3 (0%) | [leg_machine.md](leg_machine.md) |
