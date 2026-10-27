@@ -1,5 +1,15 @@
 # Trening 1.0 — test na telefonie (obecny build z TestFlight)
 
+## Wyniki (aktualizacja 27.10.2026)
+| Punkt | Wynik |
+|---|---|
+| T-01 | ✅ OK — wersja 1.0.0 (1031) |
+| T-04 | ⚠️ Pogrubiony tekst: OK (wyraźnie grubszy). **Wada:** przy największym tekście (Większe rozmiary dostępności) na ekranie **Trening** ucięta jest większość ikon, m.in. duża szara ikona (start kolejnego treningu). Trafi do przebiegu napraw. |
+| T-02 | ✅ OK — bez zegarka: baner + dźwięk + wibracja; z zegarkiem na ręce: wibracja tylko na zegarku (tak działa iOS); zmiana przerwy, „Rest”, „Pause” OK |
+| pozostałe | do zrobienia |
+
+**Ważne przy kolejnych punktach z powiadomieniami (T-03, T-13):** zdejmij zegarek albo włącz na nim tryb samolotowy — gdy zegarek jest na ręce i odblokowany, iOS wysyła powiadomienia tylko na zegarek, a telefon milczy.
+
 Zakres: wszystkie punkty z docs/49 **oprócz T-10** (figury — sprawdzisz na nowym buildzie, ok. 10 min).
 Wadę zgłaszaj numerem punktu, np. „T-05: …” — najlepiej ze zrzutem ekranu (w TestFlight: zrzut → „Udostępnij uwagi”).
 Czas: ok. 45–60 min (w tym trening > 7 min i zakupy). Kolejność poniżej jest celowa — nie zmieniaj jej.
