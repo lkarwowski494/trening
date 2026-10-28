@@ -75,9 +75,9 @@ const W = {};
   for (const n of nazwy) { const p = P('chest_fly', n); W.fly[n] = { minOdleglosc: Math.min(...US.map((u) => { const s = sk(p, u); return d3(s.arms.R.grip, s.arms.L.grip); })), koniec: sk(p, 1).arms.R.grip, walid: ok(p, 'chest_fly') }; } }
 
 /* 11. External Rotation (hantel): opór grawitacji */
-{ const p = P('rotator_cuff', 'External Rotation (hantel)'); const g = US.map((u) => sk(p, u).arms.L.grip); const ds = US.slice(1).map((_, i) => d3(g[i], g[i + 1])); const droga = ds.reduce((a, b) => a + b, 0);
+{ const p = P('rotator_cuff', 'External Rotation (hantel)'); const sd = p.sprzet.find((x) => x.rodzaj === 'hantel')?.trzyma ?? 'L'; /* ręka robocza z deklaracji sprzętu (od 28.10.2026 leżenie na lewym boku: pracuje górna, prawa ręka) */ const g = US.map((u) => sk(p, u).arms[sd].grip); const ds = US.slice(1).map((_, i) => d3(g[i], g[i + 1])); const droga = ds.reduce((a, b) => a + b, 0);
   W.rot = { hantel: p.sprzet.find((x) => x.rodzaj === 'hantel'), dy: Math.max(...g.map((x) => x[1])) - Math.min(...g.map((x) => x[1])), droga,
-    osTulowiaY: US.map((u) => sk(p, u).up[1]), lokiec: US.map((u) => ang(p, u, 'L').elbow), lokiecPrzyBoku: US.map((u) => { const s = sk(p, u); return d3(s.arms.L.elbow, sk(p, 0).arms.L.elbow); }), walid: ok(p, 'rotator_cuff') }; }
+    osTulowiaY: US.map((u) => sk(p, u).up[1]), lokiec: US.map((u) => ang(p, u, sd).elbow), lokiecPrzyBoku: US.map((u) => { const s = sk(p, u); return d3(s.arms[sd].elbow, sk(p, 0).arms[sd].elbow); }), walid: ok(p, 'rotator_cuff') }; }
 
 console.log(JSON.stringify(W));
 `;

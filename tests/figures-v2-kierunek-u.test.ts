@@ -1,7 +1,7 @@
 /*
  * Strażnik kierunku u: 0 → 1 (recenzja treści kart leg_machine i lunge, 28.10.2026, Z4). Wpis rodziny w DATA_UI (`lowerFirst`, `names`) mówi, czy faza 0 → 1 to opuszczanie, ale w rodzinie kierunek bywa różny:
  * Leg Press, Single Leg Press (wypychanie) kontra Hack Squat i reszta (opuszczanie); Step Up, Barbell Step Up (wejście w górę) kontra reszta wykroków (opuszczanie). Jeden wpis bez wyjątków dałby błędne nazwy i czasy faz.
- * Kierunek wynika z geometrii póz: miednica (zmiana wysokości ≥ PELVIS_MIN_CM), a gdy miednica stoi — kolano (zmiana ≥ MIN_MEASURED_ROM.deg). Ćwiczenie bez takiego ruchu (ruch tylko w kostce) musi mieć kierunek zadeklarowany wprost w wyjątku (`lowerFirst`).
+ * Kierunek wynika z geometrii póz: miednica (zmiana wysokości ≥ PELVIS_MIN_CM), a gdy miednica stoi — kolano, a gdy i kolana stoją — pion ruchomego końca (barki albo kostki; zmiana ≥ PELVIS_MIN_CM). Ćwiczenie bez takiego ruchu (ruch tylko w kostce) musi mieć kierunek zadeklarowany wprost w wyjątku (`lowerFirst`).
  * Rodziny: leg_machine i lunge są jeszcze „planned” (bez wpisu DATA_UI) — test pokazuje na proponowanych wpisach, że jeden wpis jest czerwony, a wpis z wyjątkami zielony; wpis każdej rodziny z plikiem póz (także przyszły) jest sprawdzany automatycznie.
  */
 import * as fs from 'fs';
@@ -21,6 +21,11 @@ function kierunekU(d: PoseData): Kierunek {
   if (Math.abs(dy) >= PELVIS_MIN_CM) return dy < 0 ? 'opuszczanie' : 'wysilek';
   const dk = SIDES.map(s => jointAngles(b, s).knee - jointAngles(a, s).knee).reduce((m, x) => Math.abs(x) > Math.abs(m) ? x : m, 0);
   if (Math.abs(dk) >= MIN_MEASURED_ROM.deg) return dk > 0 ? 'opuszczanie' : 'wysilek';
+  /* miednica i kolana stoją, ale tułów albo nogi się ruszają (back_extension, brzuszki, Superman): kierunek daje pion ruchomego końca — barki (środek) albo kostki (środek): w dół = opuszczanie, w górę = wysiłek.
+   * Sam znak kąta biodra nie wystarcza (zgięcie biodra to opuszczanie tułowia w wyproście z opadem, a unoszenie w nogach w brzuszku; Crunch zwija kręgosłup przy biodrze ≈ 5°); backlog figur 28.10.2026, Z4. */
+  const sr = (k: typeof a) => [k.shoulderC[1], (k.legs.R.ankle[1] + k.legs.L.ankle[1]) / 2]; const ra = sr(a), rb = sr(b);
+  const dv = rb.map((y, i) => y - ra[i]).reduce((m, x) => Math.abs(x) > Math.abs(m) ? x : m, 0);
+  if (Math.abs(dv) >= PELVIS_MIN_CM) return dv < 0 ? 'opuszczanie' : 'wysilek';
   return null;
 }
 /** Naruszenia wpisu `ui` rodziny `family`: ćwiczenia, których lowerFirst albo nazwa pierwszej fazy nie zgadza się z kierunkiem u, i ćwiczenia bez pomiaru bez zadeklarowanego kierunku (gdy w rodzinie da się go zmierzyć). */
@@ -81,6 +86,16 @@ describe('strażnik: wpis DATA_UI zgodny z kierunkiem u dla każdego ćwiczenia'
   test('lunge: jeden wpis rodziny jest czerwony (wejścia na stopień), wpis z wyjątkami zielony', () => {
     expect(naruszenia('lunge', OPUSZCZANIE)).toEqual(['Step Up: u 0→1 to wysilek, a lowerFirst = true', 'Barbell Step Up: u 0→1 to wysilek, a lowerFirst = true']);
     expect(naruszenia('lunge', { ...OPUSZCZANIE, exceptions: { 'Step Up': WEJSCIE, 'Barbell Step Up': WEJSCIE } })).toEqual([]);
+  });
+  test('back_extension: miednica i kolana stoją, kierunek z kąta biodra — jeden wpis rodziny jest czerwony, wpis z deklaracją per ćwiczenie zielony (Z4)', () => {
+    expect(Object.fromEntries(Object.entries(plik('back_extension')).map(([k, d]) => [k, kierunekU(d)]))).toEqual({ 'Back Extension': 'opuszczanie', 'Reverse Hyperextension': 'wysilek', 'Lower Back Curl': 'wysilek' });
+    expect(naruszenia('back_extension', OPUSZCZANIE)).toEqual(['Reverse Hyperextension: u 0→1 to wysilek, a lowerFirst = true', 'Lower Back Curl: u 0→1 to wysilek, a lowerFirst = true']);
+    const wyj = { 'Reverse Hyperextension': { names: { first: 'Podnoszenie', second: 'Opuszczanie' }, lowerFirst: false }, 'Lower Back Curl': { names: { first: 'Podnoszenie', second: 'Opuszczanie' }, lowerFirst: false } } as const;
+    expect(naruszenia('back_extension', { names: { first: 'Opuszczanie', second: 'Podnoszenie' }, lowerFirst: true, joints: ['hip'], exceptions: wyj })).toEqual([]);
+  });
+  test('orientacja ma znaczenie: zgięcie biodra to opuszczanie w wyproście z opadem, a unoszenie w brzuszku — kierunek z pionu barków i kostek (core_floor)', () => {
+    const cf = plik('core_floor'); expect(['Crunch', 'Sit Up', 'Superman', 'Reverse Crunch'].map(k => kierunekU(cf[k]))).toEqual(['wysilek', 'wysilek', 'wysilek', 'wysilek']);
+    expect(kierunekU(cf['Hollow Hold'])).toBeNull(); /* pozycja utrzymywana: bez ruchu */
   });
   test('sama zmiana lowerFirst bez nazwy faz też jest czerwona (nazwa „Opuszczanie” przy wypychaniu)', () => {
     expect(naruszenia('lunge', { ...OPUSZCZANIE, exceptions: { 'Step Up': { lowerFirst: false }, 'Barbell Step Up': { ...WEJSCIE } } })).toEqual(['Step Up: u 0→1 to wysilek, a pierwsza faza nazywa się „Opuszczanie”']);

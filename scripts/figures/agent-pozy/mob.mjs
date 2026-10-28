@@ -64,3 +64,24 @@ export const prosta = (hip, kier, { pole = [0, 1, 0], pod = null, rot = 10 } = {
 export const stoj = (x = 0, z = 14) => ({ R: { a: [x, 7, z], pod: 0, rot: 10, pole: [1, 0, 0.12] }, L: { a: [x, 7, -z], pod: 0, rot: 10, pole: [1, 0, -0.12] } });
 /** Środek głowy (świat, z = 0) dla środka barków shC, pochylenia tułowia p i głowy hp: jak solveSkeleton (kark 4 cm, głowa 18 cm od C7). */
 export const glowaSrodek = (shC, p, hp) => [shC[0] + 4 * Math.sin(p * R) + 18 * Math.sin(hp * R), shC[1] + 4 * Math.cos(p * R) + 18 * Math.cos(hp * R)];
+
+/* ---------- leżenie na LEWYM boku (wspólne: Side-Lying Quad, Clamshell, External Rotation z hantlem; klatka ku −z, od kamery, głowa ku −x, górna noga i ręka R po stronie kamery) ----------
+ * Jedno ustawienie ciała dla wszystkich póz leżących na boku (backlog figur 28.10.2026: R9 „ciało leży” jako bramka każdej rodziny): obrys tułowia i spodenek ≤ 2 cm nad podłogą, dolna ręka leży pod głową, dolna noga na podłodze. */
+export const BOK = {
+  PYB: 20, /* środek miednicy: obrys tułowia i spodenek ≤ 2 cm nad podłogą (reguła „ciało leży”, R9) */
+  ROLL: -75, /* ODSTĘPSTWO OD −90 wymuszone ograniczeniem rysunku: przy −90 dolny bark wchodzi pod podłogę albo tułów wisi nad nią; tułów odchylony do tyłu o 15° (w widoku z boku odchylenia nie widać; widać je w widoku z przodu — glute_floor i rotator_cuff mają oba widoki, mobility_floor tylko widok z boku) */
+  LEAN: 2, /* przechył tułowia w płaszczyźnie czołowej (stopnie): bark (głowa) o ok. 1,7 cm wyżej niż miednica */
+  HEAD_TILT: -20, /* skłon boczny głowy ku dolnemu barkowi: głowa opada na dłoń leżącą na podłodze */
+};
+/** Klatka leżenia na lewym boku: nogi {R,L}, ręce {R,L} (wpisy K), u; ext nadpisuje ustawienie. */
+export const bokKlatka = (u, nogi, rece, ext = {}) => { const e = { roll: BOK.ROLL, lean: BOK.LEAN, headTilt: BOK.HEAD_TILT, ...ext }; const k = K({ u, m: [0, BOK.PYB, 0], p: -90, head: -90, roll: e.roll, lean: e.lean, twist: e.twist, tilt: e.tilt, R: nogi.R, L: nogi.L, hr: rece.R, hl: rece.L }); if (e.headTilt !== undefined) k.przechylGlowy = e.headTilt; return k; };
+/** Sonda ciała leżącego na lewym boku (biodra, barki w świecie). */
+export const bokSonda = () => sonda([0, BOK.PYB, 0], -90, { ext: { roll: BOK.ROLL, lean: BOK.LEAN } });
+/** Dolna ręka leży pod głową (dłoń przy podłodze, przedramię pod głową) — wspólna dla póz leżących na lewym boku. */
+export const bokDolnaReka = (T) => ({ g: [T.sh.L[0] - 22, 4.5, T.sh.L[2]], pole: [0, 0.04, -1] });
+/** Nogi ułożone leżąc na lewym boku (biodro ≈ 45°, kolano ≈ 90°, stopy jedna nad drugą): dolna L leży na podłodze (kostka 7,2 cm), górna R — kostka 10 cm nad dolną, biegun kolana `poleGora` (domyślnie kolana razem). */
+export function bokNogiUlozone(T, poleGora = [0.15, 0, -1], podbicieGora = 0) {
+  const B = BODY(); const hL = T.hip.L, hR = T.hip.R; const dx = Math.sqrt((B.thigh ** 2 + B.shank ** 2) - (hL[1] - 7.2) ** 2);
+  const aL = [r1(hL[0] + dx), 7.2, hL[2]]; const aR = [aL[0], r1(aL[1] + 10), hR[2]];
+  return { L: { a: aL, pod: 0, rot: 60, pole: [0, 0, -1] }, R: { a: aR, pod: podbicieGora, rot: -60, pole: poleGora } };
+}

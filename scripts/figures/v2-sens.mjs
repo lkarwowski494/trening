@@ -11,9 +11,16 @@ export const PLIK_SENS = 'data/zrodla/figury-sens.json';
 const f1 = (x) => x.toFixed(1);
 const zakres = (v) => ({ min: Math.min(...v), max: Math.max(...v), span: Math.max(...v) - Math.min(...v) });
 
+/** „Kolano lekko ugięte” (ACE #12 „slight bend in the knees”, ISSA, ACE #152): żadne przeczytane źródło nie podaje kąta, więc próg to KONWENCJA rysunku — jedna wartość dla wszystkich reguł „lekko”
+ * (wiosłowanie w opadzie, zwis, rozciąganie stojąc); w figury-sens.json reguły odwołują się do niej przez "@kolano_lekko_max_deg" (stale.kolano_lekko_max_deg), a wczytajSens rozwiązuje odnośnik. Decyzja koordynatora 28.10.2026 wg badacza; zastępuje trzy różne granice (5–35°, 40°, 30°). */
+export const KOLANO_LEKKO_MAX_DEG = 30;
+const rozwiazOdnosniki = (x, stale) => { if (typeof x === 'string' && x.startsWith('@')) { const w = stale?.[x.slice(1)]?.wartosc; if (w === undefined) throw new Error(`nieznana stała w figury-sens.json: ${x}`); return w; } if (Array.isArray(x)) return x.map((y) => rozwiazOdnosniki(y, stale)); if (x && typeof x === 'object') return Object.fromEntries(Object.entries(x).map(([k, v]) => [k, rozwiazOdnosniki(v, stale)])); return x; };
 export function wczytajSens(root = ROOT) {
   const p = path.join(root, PLIK_SENS);
-  return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : { rodziny: {} };
+  if (!fs.existsSync(p)) return { rodziny: {} };
+  const d = JSON.parse(fs.readFileSync(p, 'utf8')); if (!d.stale) return d;
+  if (d.stale.kolano_lekko_max_deg?.wartosc !== KOLANO_LEKKO_MAX_DEG) throw new Error('figury-sens.json: stale.kolano_lekko_max_deg.wartosc musi równać się KOLANO_LEKKO_MAX_DEG (v2-sens.mjs)');
+  return rozwiazOdnosniki(d, d.stale);
 }
 /** Reguły ćwiczenia: [{ id, typ, grupa, cue, parametry, zrodlo, liczba }]; null = ćwiczenie do pominięcia (powód w `pomin`), [] = brak reguł. */
 export function regulyDla(rodzina, cwiczenie, root = ROOT) {

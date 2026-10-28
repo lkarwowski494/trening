@@ -160,8 +160,8 @@ export const TRAFIENIA_POZA_MOBILNOSCIA: Record<string, { max: number; ocena: st
   'R6_palce_nie_slizgaja_sie|glute_floor': { max: 3, ocena: 'FAŁSZYWE: noga robocza (kickback) dotyka podłogi palcami w ruchu, to nie podparcie' },
   'R6_palce_nie_slizgaja_sie|hip_abd_add': { max: 1, ocena: 'FAŁSZYWE: noga robocza przy podłodze, nie podparcie' },
   'R6_palce_nie_slizgaja_sie|leg_isolation': { max: 4, ocena: 'FAŁSZYWE: ugięcie nogi (stopa pracująca przy podłodze/podkładce), nie podparcie' },
-  'R6_palce_nie_slizgaja_sie|kb_ballistic': { max: 4, ocena: 'BRZEGOWE: przeskok stóp w podrzucie, ślizg 2,7–6,9 cm [zapadka podniesiona przy scaleniu integracji 1.1 z mobilnością 28.10.2026: nowe pozy tych rodzin z integracji, ta sama klasa trafień]' },
-  'R6_palce_nie_slizgaja_sie|plyo': { max: 3, ocena: 'FAŁSZYWE: skoki — stopy w locie i lądowanie, nie podparcie [zapadka podniesiona przy scaleniu integracji 1.1 z mobilnością 28.10.2026: nowe pozy tych rodzin z integracji, ta sama klasa trafień]' },
+  'R6_palce_nie_slizgaja_sie|kb_ballistic': { max: 4, ocena: 'BRZEGOWE: przeskok stóp w podrzucie, ślizg 2,7–6,9 cm; dodano po scaleniu z integracją (28.10.2026): Kettlebell Sumo High Pull i One-Arm Kettlebell Clean and Jerk / Split Jerk / Swings — ślizg stóp 2,7–7,0 cm przy wymachu i przeskoku, ta sama ocena brzegowa' },
+  'R6_palce_nie_slizgaja_sie|plyo': { max: 3, ocena: 'FAŁSZYWE: skoki — stopy w locie i lądowanie, nie podparcie; Lateral Bound i Side to Side Box Shuffle — skoki w bok i przeskoki, stopa nie jest stałym podparciem' },
   'R6_palce_nie_slizgaja_sie|pushup_plank': { max: 1, ocena: 'FAŁSZYWE: ruch nóg w podporze (wspinaczka/przenoszenie), stopa nie jest stałym podparciem' },
   'R6b_zawsze_podparcie|carry': { max: 7, ocena: 'PRAWDZIWE: marsz z ciężarem — obie stopy w powietrzu w 9% ruchu (u 0,15–0,23: podskok zamiast kroku); do poprawy w rodzinie carry razem z R6' },
   'R6b_zawsze_podparcie|pushup_plank': { max: 3, ocena: 'Plank Shoulder Taps: PRAWDZIWE (obie dłonie w powietrzu w 46% ruchu: ręka wraca na podłogę dopiero po zdjęciu drugiej; do poprawy w rodzinie pushup_plank); Plyo Push-Up: FAŁSZYWE (lot dłoni jest istotą ćwiczenia); Standing Barbell Rollout: FAŁSZYWE (palce stoją na granicy progu 0,3 cm, artefakt progu)' },
@@ -170,12 +170,12 @@ export const TRAFIENIA_POZA_MOBILNOSCIA: Record<string, { max: number; ocena: st
   'R6b_zawsze_podparcie|sled_throw': { max: 6, ocena: 'FAŁSZYWE: rzuty i uderzenia piłką — wyskok lub wspięcie na palce w rzucie' },
   'R6b_zawsze_podparcie|kb_ballistic': { max: 10, ocena: 'BRZEGOWE: szarpnięcia i wyrzuty ciężarka — stopy odrywają się obie (wyskok lub wspięcie na palce, 40–75% ruchu); nie zbadano, czy lot jest zamierzony' },
   'R6b_zawsze_podparcie|leg_isolation': { max: 2, ocena: 'FAŁSZYWE: Leg Extension i Leg Curl na maszynie — stopy zawieszone w powietrzu cały ruch poza początkiem (nie chód)' },
-  'R6b_zawsze_podparcie|core_floor': { max: 2, ocena: 'FAŁSZYWE: Superman — leżenie przodem, ręce i nogi w powietrzu (nie podparcie); Alternate Heel Touchers — leżenie na plecach, ręce na zmianę nad podłogą w skłonach bocznych (nie podparcie); trafienie pojawiło się po scaleniu integracji 1.1 z rodzinami mobilności (28.10.2026)' },
-  'R5_chwyt_pomocniczy|pull_up': { max: 1, ocena: 'DO OCENY: Dead Hang (pozycja z integracji) — reguła chwytu pomocniczego z mobilności nie dotyczy zwisu na drążku z dwiema rękami; trafienie ujawnione przy scaleniu integracji 1.1 z mobilnością 28.10.2026' },
+  'R6b_zawsze_podparcie|core_floor': { max: 2, ocena: 'FAŁSZYWE: Superman — leżenie przodem, ręce i nogi w powietrzu (nie podparcie); Alternate Heel Touchers — leżenie na plecach, dłonie sięgają pięt w powietrzu, łopatki i stopy na podłodze (dłonie nie są podparciem)' },
   'R6c_bez_cofania|olympic': { max: 3, ocena: 'FAŁSZYWE: Split Clean, Split Snatch i Clean and Jerk — przeskok nóg w rozkrok (jedna stopa do przodu, druga do tyłu), reguła „kierunku marszu” nie dotyczy' },
-  'R6c_bez_cofania|core_floor': { max: 1, ocena: 'FAŁSZYWE: Alternate Heel Touchers — leżenie na plecach, dłonie na zmianę sięgają pięt w skłonach bocznych (nie chód i nie podparcie); trafienie ujawnione przy scaleniu integracji 1.1 z mobilnością 28.10.2026' },
+  'R6c_bez_cofania|core_floor': { max: 1, ocena: 'FAŁSZYWE: Alternate Heel Touchers — dłonie sięgają pięt na przemian (ruch rąk, nie krok): reguła „kierunku marszu” nie dotyczy' },
+  'R5_chwyt_pomocniczy|pull_up': { max: 1, ocena: 'FAŁSZYWE: Dead Hang — zwis na drążku obiema rękami; reguła „chwyt pomocniczy” dotyczy rozciągania z ręką pomagającą (ACE), nie zwisu' },
   'R6c_bez_cofania|plyo': { max: 1, ocena: 'FAŁSZYWE: Alternate Leg Diagonal Bound — skok z lądowaniem na zmianę nóg' },
-  'R6_palce_nie_slizgaja_sie|sled_throw': { max: 7, ocena: 'FAŁSZYWE: pchanie sań i rzuty — kroki z poślizgiem są częścią ruchu; wymagają osobnej oceny [zapadka podniesiona przy scaleniu integracji 1.1 z mobilnością 28.10.2026: nowe pozy tych rodzin z integracji, ta sama klasa trafień]' },
+  'R6_palce_nie_slizgaja_sie|sled_throw': { max: 7, ocena: 'FAŁSZYWE: pchanie sań i rzuty — kroki z poślizgiem są częścią ruchu; wymagają osobnej oceny; rzuty piłką (Slam, Scoop, Backward, Standing Two-Arm Overhead) — stopy przestawiają się w zamachu 2,6–8,9 cm; Sled Push i Sled Drag — krok z sanią, ślizg 2,9–3,0 cm (BRZEGOWE, próg 2 cm dla marszu z oporem za ostry)' },
 };
 
 describe('reguły ruchu z recenzji mobilności na wszystkich pozach', () => {
@@ -274,16 +274,10 @@ const skan = ((): { sl: Record<string, PomiarSL>; mut: Record<'rekaWisi' | 'noga
   JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', SKAN], { cwd: ROOT, env: { PATH: process.env.PATH ?? '' } as unknown as NodeJS.ProcessEnv, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })))();
 
 /** Znane trafienia R9/R10 poza mobilnością (zapadka: nowe pary rodzina|ćwiczenie nie powstają; naprawa pozy tylko zmniejsza listę). Ocena: PRAWDZIWE = poza do poprawy w swojej rodzinie; FAŁSZYWE = reguła nie dotyczy ruchu. */
-export const TRAFIENIA_R9_R10: Record<string, string> = {
-  'cialo_lezy|glute_floor|Clamshell': 'PRAWDZIWE: leżenie na boku jak w Side-Lying Quad Stretch — obrys tułowia 4,3 cm i spodenek 4,6 cm nad podłogą, dolna noga: udo 5,3 cm i goleń 8,1 cm nad podłogą (L2), głowa 13,5 cm bez podparcia; do poprawy w rodzinie glute_floor tym samym sposobem (miednica 20 cm, obrót tułowia −75°, przechył 2°, dolna noga kostką na y ≈ 7, głowa skłonem bocznym na dłoń)',
-  'cialo_lezy|rotator_cuff|External Rotation (hantel)': 'PRAWDZIWE: ta sama poza leżenia na boku co Clamshell (tułów 4,3 cm, spodenki 4,6 cm, udo 5,3 cm, goleń 8,1 cm nad podłogą); do poprawy w rodzinie rotator_cuff (trafienie ujawnione przy scaleniu integracji 1.1 z mobilnością 28.10.2026)',
-  'cialo_lezy|leg_isolation|Slider Hamstring Curl': 'FAŁSZYWE: mostek na jednej nodze — miednica uniesiona celowo (środek na 19,9 cm), reguła „miednica leży” zakłada leżenie bez unoszenia',
-  'czesc_ciala_nie_znika|back_extension|Lower Back Curl': 'PRAWDZIWE: obie stopy rysują się w widoku z boku jako punkt (stopa wprost na kamerę); do poprawy w rodzinie back_extension',
-  'czesc_ciala_nie_znika|core_floor|Superman': 'PRAWDZIWE: obie stopy rysują się w widoku z boku jako punkt; do poprawy w rodzinie core_floor',
-  'czesc_ciala_nie_znika|row|Seal Row (sztanga)': 'PRAWDZIWE: obie stopy rysują się w widoku z boku jako punkt; do poprawy w rodzinie row',
-};
+export const TRAFIENIA_R9_R10: Record<string, string> = {};
+/* Backlog figur (28.10.2026): zapadka opróżniona — Clamshell, External Rotation (hantel), Lower Back Curl, Superman i Seal Row poprawione generatorami, Slider Hamstring Curl (mostek) zdjęty z listy przez warunek reguły (miednica unoszona celowo); R9 i R10 są bramką sprawdzJakosc dla WSZYSTKICH rodzin (tests/figury-backlog-bramka.test.ts). */
 /** Pozy z regułą „lekko” (kolano), w których kolano przekracza 30° (konwencja „lekko” z obie_kolana_lekko): znane, bo ich reguły mają własny, wyższy próg (wiosłowanie w opadzie ≤ 40°). Zapadka. */
-export const LEKKO_PONAD_30 = ['Bent Over Row (sztanga)', 'Bent Over Row (hantle)', 'Reverse Grip Bent Over Row', 'Barbell Rear Delt Row', 'Pendlay Row', 'Bent Over Row (linki)', 'T-Bar Row'];
+export const LEKKO_PONAD_30: string[] = []; /* jedna wspólna stała KOLANO_LEKKO_MAX_DEG = 30 (konwencja; backlog figur 28.10.2026): wiosłowanie w opadzie nie ma już własnego, wyższego progu */
 
 describe('R9 „ciało leży” (obrys z boku) i R10 „część ciała nie znika” na wszystkich pozach z danych (recenzja mobilności r4, 28.10.2026)', () => {
   const klucz = (r: string, t: { rodzina: string; cwiczenie: string }) => `${r}|${t.rodzina}|${t.cwiczenie}`;
@@ -302,15 +296,15 @@ describe('R9 „ciało leży” (obrys z boku) i R10 „część ciała nie znik
 describe('R9 rozszerzone (recenzja mobilności r5, 28.10.2026): kończyna podpierająca głowę i dolna noga leżącego na boku same leżą', () => {
   test('L1: głowa podparta ręką, która sama wisi 7 cm nad podłogą, jest zgłaszana (głowa na wiszącej dłoni nie jest podparta); głowa na podłodze nie wymaga ręki', () => {
     expect(skan.mut.rekaWisi.filter((x) => /podpiera|wisi/.test(x)).length).toBeGreaterThan(0);
-    expect(skan.mut.glowaNaPodlodze).toEqual([]);
+    expect(skan.mut.glowaNaPodlodze.filter((x) => /głow|podpiera|wisi/.test(x))).toEqual([]); /* mutant przesuwa też ramię pod podłogę — łapie je nowy próg obrysu kończyn (backlog figur), tu liczy się tylko podparcie głowy */
   });
   test('L2: dolna noga podniesiona o 6 cm (udo i goleń nad podłogą) jest zgłaszana; poza wzorcowa (dane) nie ma żadnego zgłoszenia', () => {
     expect(skan.mut.nogaWisi.filter((x) => /dolna noga|udo|goleń/.test(x)).length).toBeGreaterThan(0);
     expect(skan.mut.wzorzec).toEqual([]);
   });
-  test('próg nogi na boku (lezyBokNogaCm) to konwencja 3 cm i jest jedną liczbą w v2-jakosc.mjs; ręka podpierająca głowę używa progu lezyCm (2 cm)', () => {
+  test('próg nogi na boku (lezyBokNogaCm) to konwencja 4 cm (miara profilem od 28.10.2026; było 3 cm dla minimum kształtu) i jest jedną liczbą w v2-jakosc.mjs; ręka podpierająca głowę używa progu lezyCm (2 cm)', () => {
     const src = fs.readFileSync(path.join(ROOT, 'scripts/figures/v2-jakosc.mjs'), 'utf8');
-    expect(src).toMatch(/lezyBokNogaCm: 3, \/\* [^*]*konwencja/i);
+    expect(src).toMatch(/lezyBokNogaCm: 4, \/\* [^*]*konwencja/i);
     expect(src).toMatch(/lezyCm: 2,/);
   });
   test('Side-Lying Quad Stretch (obie klatki): przedramię i dłoń dolnej ręki ≤ 2 cm nad podłogą, udo i goleń dolnej nogi ≤ 3 cm, stopa leży (0…2 cm), głowa na dłoni (kolizor głowy 4…10 cm nad podłogą), tułów ≤ 2 cm', () => {
@@ -359,10 +353,10 @@ describe('„lekko” ma górny próg: kolano ≤ 30° (konwencja) w regule obie
   const lekkie = Object.entries(SENS).flatMap(([rodzina, d]) => Object.entries(d.reguly).filter(([id, r]) => /lekko/i.test(id) && ['kolana_max', 'kolano_zakres_ruch'].includes(r.typ)).map(([id, r]) => ({ rodzina, id, r })));
   test('każda reguła „lekko” (kolano) ma górny próg (max_deg albo max_max_deg), a obie_kolana_lekko ma 30° opisane jako konwencja', () => {
     expect(lekkie.length).toBeGreaterThanOrEqual(5);
-    for (const { rodzina, id, r } of lekkie) expect([rodzina, id, typeof (r.parametry.max_deg ?? r.parametry.max_max_deg)]).toEqual([rodzina, id, 'number']);
-    const o = SENS.mobility_stand.reguly.obie_kolana_lekko; expect(o.parametry).toEqual({ nogi: 'obie', min_max_deg: 10, max_max_deg: 30 }); expect(o.liczba).toMatch(/konwencja/); expect(o.liczba).toMatch(/30°/);
+    for (const { rodzina, id, r } of lekkie) { const g = r.parametry.max_deg ?? r.parametry.max_max_deg; expect([rodzina, id, typeof g === 'number' || g === '@kolano_lekko_max_deg']).toEqual([rodzina, id, true]); } /* liczba albo odnośnik do jedynej stałej */
+    const o = SENS.mobility_stand.reguly.obie_kolana_lekko; expect(o.parametry).toEqual({ nogi: 'obie', min_max_deg: 10, max_max_deg: '@kolano_lekko_max_deg' }); expect(o.liczba).toMatch(/konwencja/); expect(o.liczba).toMatch(/30°/);
   });
-  test('pozy z regułą „lekko”: kolano > 30° tylko w znanych pozach (wiosłowanie w opadzie, reguła ≤ 40°); mobilność i zwis ≤ 30°', () => {
+  test('pozy z regułą „lekko”: kolano > 30° tylko w znanych pozach (lista pusta od 28.10.2026: jedna stała ≤ 30°); mobilność i zwis ≤ 30°', () => {
     const ponad = skan.lekko.filter((x) => x.max > 30).map((x) => x.cwiczenie).sort(); expect(ponad).toEqual([...LEKKO_PONAD_30].sort());
     for (const x of skan.lekko.filter((y) => MOB.includes(y.rodzina) || y.rodzina === 'core_hang')) expect([x.cwiczenie, x.max <= 30]).toEqual([x.cwiczenie, true]);
     expect(skan.lekko.some((x) => x.cwiczenie === 'Standing Soleus And Achilles Stretch')).toBe(true);

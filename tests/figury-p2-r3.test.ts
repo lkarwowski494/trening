@@ -36,7 +36,6 @@ function odjazdKostki(d: PoseData, i: number, s: 'R' | 'L'): number { return Mat
 /** Wyjątki strażników: klucz `rodzina/ćwiczenie/wiersz` (wiersz = „ok” albo cue). Wpis wymaga powodu; test pilnuje, że wyjątek jest nadal potrzebny (zapadka). */
 const POZA_P2 = 'trafienie prawdziwe, poza zakresem poprawek p2 (inna rodzina/ćwiczenie niż leg_machine i przysiad bułgarski); naprawa w backlogu 1.1 (docs/21)';
 const WYJATKI_NOGI: Record<string, string> = {
-  'mobility_floor/Butterfly Stretch/ok': 'motyl: stopy złączone, kolana na zewnątrz — w rzucie z boku udo i goleń lewej i prawej nogi pokrywają się z założenia; przenikanie ok. 3 cm w widoku z boku (ujawnione przy scaleniu rodzin mobilności do integracji 1.1, 28.10.2026; poza zrecenzowana jako zatwierdzona w recenzji r6 bez tego strażnika; do oceny przez recenzenta ruchu)',
   'core_floor/Tuck Crunch/ok': `${POZA_P2}: golenie zbliżone o ok. 4 cm bardziej niż stykające się kostki`,
   'lunge/Split Squat/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 1,5 cm`,
   'lunge/Split Squat (linki)/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn, przenikanie ud ok. 1,5 cm`,

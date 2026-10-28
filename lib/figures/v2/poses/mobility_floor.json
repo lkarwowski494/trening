@@ -479,7 +479,7 @@
        "kostka": [
         34,
         10.8,
-        3.5
+        5.1
        ],
        "podbicie": -12,
        "rotacjaStopy": 20,
@@ -493,7 +493,7 @@
        "kostka": [
         34,
         10.8,
-        -3.5
+        -5.1
        ],
        "podbicie": -12,
        "rotacjaStopy": 20,
@@ -546,7 +546,7 @@
        "kostka": [
         34,
         10.8,
-        3.5
+        5.1
        ],
        "podbicie": -12,
        "rotacjaStopy": 20,
@@ -560,7 +560,7 @@
        "kostka": [
         34,
         10.8,
-        -3.5
+        -5.1
        ],
        "podbicie": -12,
        "rotacjaStopy": 20,
@@ -1075,8 +1075,8 @@
         44.2,
         22.4
        ],
-       "podbicie": 45,
-       "rotacjaStopy": 0,
+       "podbicie": 35,
+       "rotacjaStopy": 40,
        "biegunKolana": [
         0.9209999999999999,
         -0.294,
@@ -1145,8 +1145,8 @@
         44.2,
         22.4
        ],
-       "podbicie": 45,
-       "rotacjaStopy": 0,
+       "podbicie": 35,
+       "rotacjaStopy": 40,
        "biegunKolana": [
         0.9209999999999999,
         -0.294,

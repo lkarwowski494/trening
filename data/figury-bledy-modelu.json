@@ -104,6 +104,15 @@
    "przyklad": "Side To Side Chins: reguła „tulow_pion” (wskazówka pu.noSwing): pochylenieTulowia w ruchu: -20.0°…0.0°, dozwolone -12°…3° (odchylenie tułowia to bujanie)",
    "zapobieganie": "pochylenieTulowia w poprawnej pozie w {trunkRange}° w każdej klatce; odchylenie tułowia to bujanie."
   },
+  "sens:kolana_lekko": {
+   "wystapien": 7,
+   "cwiczen": 7,
+   "rodziny": [
+    "row"
+   ],
+   "przyklad": "Pendlay Row: reguła „kolana_lekko” (wskazówka row.hinge): kolano dochodzi do 37.7°, a ma ≤ 30° (kolana tylko lekko ugięte)",
+   "zapobieganie": "kolano „lekko ugięte” ≤ {lekkoMax}° w każdej klatce (jedna stała konwencji dla wiosłowania, zwisu i rozciągania stojąc): przy wiosłowaniu w opadzie odległość biodro–kostka ≥ ok. 80 cm (kolano ≈ 26° przy 80,9 cm); przesuń stopy do przodu względem miednicy, nie zginaj kolan do 35–38°."
+  },
   "sens:rece_proste_caly_ruch": {
    "wystapien": 6,
    "cwiczen": 3,
@@ -130,6 +139,29 @@
    ],
    "przyklad": "Reverse Crunch: staw knee L = 141.6° poza zakresem ruchu [0°, 141°] w fazie u=0.54 — zmień położenie kostki, miednicy lub chwytu",
    "zapobieganie": "kolano 0…{kneeMax}°."
+  },
+  "jakosc:cialo_lezy": {
+   "wystapien": 5,
+   "cwiczen": 3,
+   "rodziny": [
+    "glute_floor",
+    "mobility_floor",
+    "rotator_cuff"
+   ],
+   "przyklad": "Side-Lying Quad Stretch: cialo_lezy: głowa leży 13.5 cm nad podłogą i 2.9 cm od najbliższego ramienia/dłoni (u = 0; ≤ 2 cm od podłogi albo ≤ 1 cm od ręki) — głowa leżącego jest podparta",
+   "zapobieganie": "poza leżąca na boku, plecach albo siedząca LEŻY: obrys tułowia (z boku) i spodenek ≤ {lezyCm} cm nad podłogą w każdej klatce (leżąc na boku miednica ≈ 20 cm, a nie 23: obrys ma szerokość ciała, nie grubość); dolny bark nie wchodzi pod podłogę dzięki obrotowi tułowia ok. −75° (nie −90°) i przechyłowi 2°; głowa leży na podłodze albo na dłoni/przedramieniu, a ta kończyna sama leży na podłodze (dolna krawędź ≤ {lezyCm} cm, odstęp głowy od niej ≤ {glowaPodparcieCm} cm; głowę opuść skłonem bocznym głowy ok. −20°, nie podnoś ręki); dolna noga (udo, goleń) ≤ {lezyBokNogaCm} cm nad podłogą (kostka na y ≈ 7, kolano wypchnięte w głąb, biegun [0, 0, −1])."
+  },
+  "jakosc:czesc_ciala_nie_znika": {
+   "wystapien": 4,
+   "cwiczen": 4,
+   "rodziny": [
+    "back_extension",
+    "core_floor",
+    "mobility_floor",
+    "row"
+   ],
+   "przyklad": "Side-Lying Quad Stretch: czesc_ciala_nie_znika: kształt „footL” w rzucie z boku ma rozmiar 0.0 cm (u = 0; ≥ 1.5 cm) — część ciała znika z rysunku (obrócona wprost na kamerę)",
+   "zapobieganie": "żaden kształt części ciała (stopa, goleń, dłoń, tułów) nie ma w rzucie z boku rozmiaru < {znikaCm} cm: stopa obrócona wprost na kamerę (rotacjaStopy 90° przy poziomej goleni) rysuje się jako punkt — ustaw rotacjaStopy 45–70° albo stopę wzdłuż podłogi."
   },
   "zakres:hip": {
    "wystapien": 4,
@@ -158,15 +190,6 @@
    "przyklad": "Muscle Up: torso × bar: przenikanie 3.78 cm (dopuszczalne 0.3) w fazie u=0.54",
    "zapobieganie": "tułów nie może przenikać drążka: odsuń miednicę w x o ≥ 10 cm od osi drążka w klatkach, w których drążek jest na wysokości klatki piersiowej."
   },
-  "jakosc:cialo_lezy": {
-   "wystapien": 3,
-   "cwiczen": 1,
-   "rodziny": [
-    "mobility_floor"
-   ],
-   "przyklad": "Side-Lying Quad Stretch: cialo_lezy: głowa leży 13.5 cm nad podłogą i 2.9 cm od najbliższego ramienia/dłoni (u = 0; ≤ 2 cm od podłogi albo ≤ 1 cm od ręki) — głowa leżącego jest podparta",
-   "zapobieganie": "poza leżąca na boku, plecach albo siedząca LEŻY: obrys tułowia (z boku) i spodenek ≤ {lezyCm} cm nad podłogą w każdej klatce (leżąc na boku miednica ≈ 20 cm, a nie 23: obrys ma szerokość ciała, nie grubość); dolny bark nie wchodzi pod podłogę dzięki obrotowi tułowia ok. −75° (nie −90°) i przechyłowi 2°; głowa leży na podłodze albo na dłoni/przedramieniu, a ta kończyna sama leży na podłodze (dolna krawędź ≤ {lezyCm} cm, odstęp głowy od niej ≤ {glowaPodparcieCm} cm; głowę opuść skłonem bocznym głowy ok. −20°, nie podnoś ręki); dolna noga (udo, goleń) ≤ {lezyBokNogaCm} cm nad podłogą (kostka na y ≈ 7, kolano wypchnięte w głąb, biegun [0, 0, −1])."
-  },
   "blad-sens": {
    "wystapien": 2,
    "cwiczen": 2,
@@ -194,15 +217,6 @@
    "przyklad": "One Arm Chin-Up: reguła „jedna_reka” (wskazówka konwencja): ćwiczenie jednorącz, a sprzet[] ma drążek trzymany obiema rękami — ustaw na sztandze trzyma: \"R\" albo \"L\"",
    "zapobieganie": "ćwiczenie jednorącz: na drążku trzyma: \"R\" albo \"L\"; wolna dłoń ≥ {freeHand} cm od osi drążka, nie na drążku."
   },
-  "sens:stopa_na_platformie": {
-   "wystapien": 2,
-   "cwiczen": 2,
-   "rodziny": [
-    "leg_machine"
-   ],
-   "przyklad": "Leg Press: reguła „stopa_na_platformie” (wskazówka lp.setup): podeszwa nie leży na płycie platformy: odstęp -7.0…-7.0 cm, a ma być w -0.5…1 cm (platforma w kostce; wykryte przez recenzenta ruchu p2-r4, Single Leg Press tak samo)",
-   "zapobieganie": "stopa na platformie maszyny leży NA płycie: płyta jest prostopadła do prowadnicy, a punkt mocowania prowadnicy to PODESZWA (punkt: \"podeszwy\" = kostka + {ankleH} cm wzdłuż prowadnicy), nie kostka; punkt \"kostki\" dotyczy wałka lub poduszki przy kostce (Leg Extension, Leg Curl); odstęp podeszwy od płyty −0,5…+1 cm w każdej klatce."
-  },
   "sens:obie_kolana_lekko": {
    "wystapien": 2,
    "cwiczen": 1,
@@ -212,14 +226,14 @@
    "przyklad": "Standing Soleus And Achilles Stretch: reguła „obie_kolana_lekko” (wskazówka st.tension): kolano L dochodzi do 58.1°, a ma być zawsze ≤ 30° (lekko ugięte: górny próg to konwencja rysunku)",
    "zapobieganie": "„lekko ugięte” kolano to {lekkoMin}…{lekkoMax}° (konwencja rysunku): wykrok z kolanem 58° nie jest lekkim zgięciem; odległość biodro–kostka ≈ 81 cm daje kolano ≈ 25° (przy pionowej nodze: miednica ≥ 84 cm nad podłogą)."
   },
-  "jakosc:czesc_ciala_nie_znika": {
-   "wystapien": 1,
-   "cwiczen": 1,
+  "sens:stopa_na_platformie": {
+   "wystapien": 2,
+   "cwiczen": 2,
    "rodziny": [
-    "mobility_floor"
+    "leg_machine"
    ],
-   "przyklad": "Side-Lying Quad Stretch: czesc_ciala_nie_znika: kształt „footL” w rzucie z boku ma rozmiar 0.0 cm (u = 0; ≥ 1.5 cm) — część ciała znika z rysunku (obrócona wprost na kamerę)",
-   "zapobieganie": "żaden kształt części ciała (stopa, goleń, dłoń, tułów) nie ma w rzucie z boku rozmiaru < {znikaCm} cm: stopa obrócona wprost na kamerę (rotacjaStopy 90° przy poziomej goleni) rysuje się jako punkt — ustaw rotacjaStopy 45–70° albo stopę wzdłuż podłogi."
+   "przyklad": "Leg Press: reguła „stopa_na_platformie” (wskazówka lp.setup): podeszwa nie leży na płycie platformy: odstęp -7.0…-7.0 cm, a ma być w -0.5…1 cm (platforma w kostce; wykryte przez recenzenta ruchu p2-r4, Single Leg Press tak samo)",
+   "zapobieganie": "stopa na platformie maszyny leży NA płycie: płyta jest prostopadła do prowadnicy, a punkt mocowania prowadnicy to PODESZWA (punkt: \"podeszwy\" = kostka + {ankleH} cm wzdłuż prowadnicy), nie kostka; punkt \"kostki\" dotyczy wałka lub poduszki przy kostce (Leg Extension, Leg Curl); odstęp podeszwy od płyty −0,5…+1 cm w każdej klatce."
   },
   "sprzet": {
    "wystapien": 1,

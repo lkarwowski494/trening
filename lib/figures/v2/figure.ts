@@ -79,7 +79,7 @@ function faultFor(spec: FigureSpec, error: ErrorId, u: number): Fault { return {
 function dataUiOf(spec: FigureSpec): { names: PhaseNames; joints: readonly MeasuredJoint[]; hideAngle: boolean; walk: boolean } | null {
   if (!('data' in spec.variant)) return null;
   const u = DATA_UI[spec.family] ?? (loopOf(spec) === 'jednokierunkowa' ? ONE_WAY_UI[spec.family] : undefined) ?? GAIT_UI; const x = u.exceptions && Object.prototype.hasOwnProperty.call(u.exceptions, spec.key) ? u.exceptions[spec.key] : undefined;
-  return { names: x?.names ?? u.names, joints: x?.joints ?? u.joints, hideAngle: !!x?.hideAngle, walk: !!u.walk || loopOf(spec) === 'cykl_lustro' };
+  return { names: x?.names ?? (Object.prototype.hasOwnProperty.call(PHASES_BY_EXERCISE, spec.key) ? PHASES_BY_EXERCISE[spec.key] : u.names), joints: x?.joints ?? u.joints, hideAngle: !!x?.hideAngle, walk: !!u.walk || loopOf(spec) === 'cykl_lustro' };
 }
 /** Pomiar na rysunku (decyzja właściciela 25.10.2026: kąt jako opis figury, nie zalecenie). Rig: przysiad — kolano, wyciskanie — łokieć, zawias — biodro (średnia obu stron). Dane (27.10.2026, S2): spośród stawów rodziny
  * pokazujemy ten, który w ćwiczeniu rusza się najbardziej, i tę stronę, która pracuje (największy zakres; przy równych — prawa), więc ćwiczenie jednoręczne nie dostaje średniej z ręką nieruchomą;

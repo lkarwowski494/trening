@@ -709,8 +709,8 @@
    "raw": "2c59dca58600a2597bd7"
   },
   "back_extension/Lower Back Curl": {
-   "svg": "9975f151445c5a400863",
-   "raw": "859e5b4b73be42fa28ef"
+   "svg": "3508a2b0893e119856ad",
+   "raw": "ac99c10db42de57e30db"
   },
   "cable_press/Wyciskanie na linkach (stojąc)": {
    "svg": "12307afa01fdcf6cc668",
@@ -1001,8 +1001,8 @@
    "raw": "7a7e2049dafc60c0e0c0"
   },
   "core_floor/Superman": {
-   "svg": "c15471c1c8f8e79e94a5",
-   "raw": "7c80ffbe802a3069191c"
+   "svg": "4cf7b3f7968dea8113e2",
+   "raw": "22477a6e12af82a002c4"
   },
   "core_floor/V-Up": {
    "svg": "984cfbaa6b3c53a0b0c3",
@@ -1421,12 +1421,12 @@
    "raw": "33452bdf1b270708f681"
   },
   "glute_floor/Fire Hydrant": {
-   "svg": "cf62a15785cd329d804b",
-   "raw": "a7f72646e7ef6b832334"
+   "svg": "09d740dc8fc7878dee14",
+   "raw": "505ee88a6c1aa3ea2659"
   },
   "glute_floor/Clamshell": {
-   "svg": "0fff1a7fdf14fdc3bca5",
-   "raw": "a03021381ae33d5ae62d"
+   "svg": "55549e17306ecc976349",
+   "raw": "7bbd5729d4ffc5e5052d"
   },
   "glute_floor/Cable Kickback": {
    "svg": "7fb1a03e28d8c59c49c4",
@@ -1741,8 +1741,8 @@
    "raw": "145669e4ffe4f13ddc80"
   },
   "mobility_floor/Butterfly Stretch": {
-   "svg": "7a6a487c8940109cef9b",
-   "raw": "7c5523d8c09b5727748e"
+   "svg": "d0ff64dfa5d0e4af999b",
+   "raw": "5844de5d5cf40c254c77"
   },
   "mobility_floor/Child's Pose": {
    "svg": "0905a85c55ccf96d3e83",
@@ -1757,8 +1757,8 @@
    "raw": "4a4f8ce0b96fcdbe11aa"
   },
   "mobility_floor/Side-Lying Quad Stretch": {
-   "svg": "b27b9142733473a589c7",
-   "raw": "6ed0a7927b7da3b4ca1e"
+   "svg": "9ed84274c8e31db5bc8d",
+   "raw": "a9a7495766e8fa63972d"
   },
   "mobility_floor/Cat-Cow": {
    "svg": "05ba28382540baa73169",
@@ -2225,8 +2225,8 @@
    "raw": "75ae531fe362e44a5012"
   },
   "rotator_cuff/External Rotation (hantel)": {
-   "svg": "d360734aaa7084da1765",
-   "raw": "2118f1a66423d14d6be3"
+   "svg": "76d048c7c9eb40c184ff",
+   "raw": "ebc45ff47790847dd184"
   },
   "rotator_cuff/External Rotation (linki)": {
    "svg": "f07e4e9141cd7c98c3f6",
@@ -2253,44 +2253,44 @@
    "raw": "c5fa56a59345fac36776"
   },
   "row/Bent Over Row (sztanga)": {
-   "svg": "bb84ab5de73bde59bc8f",
-   "raw": "46bec3986983d74482da"
+   "svg": "2dd3f28f7aa333e2ee2c",
+   "raw": "e8c556ea5a4778df484f"
   },
   "row/Bent Over Row (hantle)": {
-   "svg": "6a889b1c6c5f24f37f59",
-   "raw": "1cd7bad30f84cd7f9dcb"
+   "svg": "d7e5d6e6792238548204",
+   "raw": "5755f961c6484287ea20"
   },
   "row/Reverse Grip Bent Over Row": {
-   "svg": "5a6bc44f5569b09b5e69",
-   "raw": "993ee3bb6ddfe9cc20a7"
+   "svg": "837cdfd386c22a003464",
+   "raw": "538412e9c802c7581d9f"
   },
   "row/Barbell Rear Delt Row": {
-   "svg": "8715e39bb1f69803170b",
-   "raw": "eef40b50b030e505b7fa"
+   "svg": "cd15ca1490c452038458",
+   "raw": "de4909e31df7aea10ce8"
   },
   "row/Pendlay Row": {
-   "svg": "38e90129053dbba9dd14",
-   "raw": "878f317bb3fb138d2a40"
+   "svg": "0bb60ca59757052e8d0a",
+   "raw": "e1fa86ad196cb562622a"
   },
   "row/Smith Machine Bent Over Row": {
    "svg": "1e9cf7e4364b4a78cbae",
    "raw": "a3f06f238e62c3a1e299"
   },
   "row/Bent Over Row (linki)": {
-   "svg": "1d669705171a8bed4e25",
-   "raw": "fbe6f2a91b39a3998a6d"
+   "svg": "18f206daf50d4b2c4a2e",
+   "raw": "679d4f9a5e2d2b60adad"
   },
   "row/One Arm Row (hantle)": {
    "svg": "750656938283ea584656",
    "raw": "ecb5d15b22126d2535d2"
   },
   "row/T-Bar Row": {
-   "svg": "37a8dfd366dda3e742e2",
-   "raw": "4df6a26a94d8a4141ccc"
+   "svg": "60b047559beec3ac8e8f",
+   "raw": "e73cc57cc937bf4f80e9"
   },
   "row/Seal Row (sztanga)": {
-   "svg": "8e950ddbd2873949d7c9",
-   "raw": "dd5b0d5a68d07ca2387e"
+   "svg": "31313da98bd91d880c19",
+   "raw": "4f04d81e4ea34505dabb"
   },
   "row/Lying T-Bar Row": {
    "svg": "3306c215b57b985ee99b",

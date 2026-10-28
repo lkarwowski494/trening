@@ -11,7 +11,7 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { cwiczeniaRodziny, wczytajKontrakt } from './gemini-pozy.mjs';
 import { loadV2 } from './v2-build.mjs';
-import { regulyDla, stopaAutomatyczna, pominiecie, otwarteDla, EWALUATORY, grupaBledu, wczytajSens, bledyBezAnimacji, czekaNaKontrakt, deklaracjeCwiczenia } from './v2-sens.mjs';
+import { regulyDla, stopaAutomatyczna, pominiecie, otwarteDla, EWALUATORY, grupaBledu, wczytajSens, bledyBezAnimacji, czekaNaKontrakt, deklaracjeCwiczenia, KOLANO_LEKKO_MAX_DEG } from './v2-sens.mjs';
 import { wczytajRejestr, liniePolecenia, statystykaWersji } from './gemini-rejestr.mjs';
 import { PROGI } from './v2-jakosc.mjs';
 
@@ -115,7 +115,7 @@ export function liczbyZSilnika(rodzina = 'pull_up') {
   return { gripTol: 0.6, reach, reachAim: reach - 0.5, trunk: B.trunk, ankleH: B.ankleH, shHalf: B.shHalf, ankleMax: rom.side.ankle.max, ankleSafe: '−20…−5°', elbowMax: rom.side.el.max, elbowAim: 140, shSagMax: rom.side.sh.max, shElevMax: rom.front.abd.max, shSagAllow: al.shSag ?? rom.side.sh.max,
     hipMin: rom.side.hip.min, hipMax: rom.side.hip.max, kneeMax: rom.side.knee.max, pen: v2.TOL.pen, maxJump: C.maxJump, step: C.step, perFrame: C.maxJump * C.step, gap10: Math.floor((C.maxJump * C.step) / 20), minMotion: C.minMotionCm,
     undeclared: C.undeclaredDeg, visibleCm: C.visibleCm, visibleDeg: C.visibleDeg, chinMargin: par('broda_nad_drazkiem', 'margines_cm', 2), armsStraight: par('dol_rece_proste', 'max_lokiec_deg', 25), swingPelvis: par('miednica_nie_buja', 'max_cm', 3),
-    lezyCm: PROGI.lezyCm, lezyBokNogaCm: PROGI.lezyBokNogaCm, glowaPodparcieCm: PROGI.glowaPodparcieCm, znikaCm: PROGI.znikaCm, lekkoMin: wczytajSens().rodziny?.mobility_stand?.reguly?.obie_kolana_lekko?.parametry?.min_max_deg ?? 10, lekkoMax: wczytajSens().rodziny?.mobility_stand?.reguly?.obie_kolana_lekko?.parametry?.max_max_deg ?? 30,
+    lezyCm: PROGI.lezyCm, lezyBokNogaCm: PROGI.lezyBokNogaCm, glowaPodparcieCm: PROGI.glowaPodparcieCm, znikaCm: PROGI.znikaCm, lekkoMin: wczytajSens().rodziny?.mobility_stand?.reguly?.obie_kolana_lekko?.parametry?.min_max_deg ?? 10, lekkoMax: KOLANO_LEKKO_MAX_DEG, podlogaObrysKonczynCm: -PROGI.podlogaObrysKonczynCm, mostekDeg: PROGI.mostekDeg,
     ankleRel: `${par('nogi_nieruchome', 'min_cm', -10)}…${par('nogi_nieruchome', 'max_cm', 5)}`, trunkRange: `${par('tulow_pion', 'min_deg', -12)}…${par('tulow_pion', 'max_deg', 3)}`, freeHand: par('jedna_reka', 'min_wolna_od_osi_cm', 15) };
 }
 const KOSTKI_Z = 15;

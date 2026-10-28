@@ -3,6 +3,10 @@
 // Układ: leżenie na plecach — głowa w stronę −x, nogi w stronę +x, miednica [0, 8, 0], pochylenieTulowia −90 (poziomo); na brzuchu — głowa +x, pochylenie +90.
 import { wczytajTeksty } from '../v2-jakosc.mjs';
 import { v2, BODY, R, r1, up, dir, klatka, bladZTrajektorii, zbuduj, barki } from './model.mjs';
+/** Stopa leżącego przodem (Superman, Lower Back Curl, Seal Row, Back Extension): grzbietem do podłogi, palce w dół i do tyłu (silnik od b07c7ed7 ma podbicie 91…270°: stopa skierowana do tyłu). Poprzednie przybliżenie (stopa obrócona na zewnątrz, podeszwa w dół pod goleniami) pokazywało stopę zgiętą wzdłuż goleni (recenzja ruchu r2, F2, 28.10.2026).
+ * Podbicie = kierunek goleni (kolano → kostka, stopnie od +x) + 90° − zgięcie podeszwowe: stopa prostopadła do goleni (palce ku podłodze) zgięta podeszwowo o PODESZWOWE_LEZY stopni; rotacja 0 (palce w płaszczyźnie boku). */
+export const PODESZWOWE_LEZY = 50;
+export const podbicieStopyPrzodem = (goleńDeg) => Math.max(91, Math.min(270, ((goleńDeg % 360) + 360) % 360 + 90 - PODESZWOWE_LEZY));
 
 export const RODZINA = 'core_floor';
 const Y0 = 9.5; /* wysokość miednicy i barków leżącej osoby (głowa leży na podłodze: środek ≈ 9,5 = promień) */
@@ -42,7 +46,7 @@ export function ramka({ u, miednica, p, bend = 0, glowa, nogi, rece, polaLokci =
   for (const s of ['R', 'L']) {
     const sg = s === 'R' ? 1 : -1; const n = nogi[s]; const hz = sg * 8.5; void hz;
     const f = n.ankle ? nogaZCelu(hip, n.ankle, n.strona ?? 'gora') : nogaFK(hip, n.t, n.k); const pole = n.pole ?? f.pole;
-    const sd = n.ankle ? null : n.t - n.k; nog[s] = { k: [f.ankle[0], f.ankle[1], sg * (n.z === undefined ? ZNOG : Math.abs(n.z))], pod: n.pod ?? (sd === null ? 0 : podbicieNeutralne(sd, n.stopa)), rot: n.rot ?? 10, pole: pole ? [pole[0], pole[1], sg * 0.1] : [0.15, 1, sg * 0.1] };
+    const sd = n.ankle ? null : n.t - n.k; const goleń = n.stopaPrzodem ? Math.atan2(f.ankle[1] - f.knee[1], f.ankle[0] - f.knee[0]) / R : 0; nog[s] = { k: [f.ankle[0], f.ankle[1], sg * (n.z === undefined ? ZNOG : Math.abs(n.z))], pod: n.stopaPrzodem ? r1(podbicieStopyPrzodem(goleń)) : n.pod ?? (sd === null ? 0 : podbicieNeutralne(sd, n.stopa)), rot: n.stopaPrzodem ? 0 : n.rot ?? 10, pole: pole ? [pole[0], pole[1], sg * 0.1] : [0.15, 1, sg * 0.1] };
     const r = rece[s]; const g = r.g ? r.g : chwyt(S, r.a, r.z ?? sg * 19, r.d); rec[s] = { g, pole: polaLokci[s] ?? r.pole ?? (r.g ? undefined : [0, 0.2, sg]) };
   }
   return klatka({ u, miednica: [miednica[0], miednica[1], 0], pitch: p, bend, glowa: glowa ?? p, nogi: nog, rece: rec, przechyl });
@@ -138,7 +142,7 @@ function superman(cw, { bledy = !!wczytajTeksty()['cobra.mis'] } = {}) { /* bł�
   const us = [0, 0.25, 0.5, 0.75, 1];
   const fr = (u, wznios) => { const phi = Math.asin(Math.min(1, wznios / BODY().trunk)) / R; const p = 90 - phi; const S = barki([0, Y0], p); const aR = phi * 0.6 - 2 - 3 * (1 - u); const hz = 15; /* ręce prosto przed sobą, lekko w górę */
     const ank = () => { const y = 16 + 10 * u; /* r4: biodro ze znakiem, zakres −17°…133°: wyprost nogi w Supermanie ≤ ok. 17° */ const a = Math.asin((y - Y0) / D_PROSTA_NOGA); return [-D_PROSTA_NOGA * Math.cos(a), y]; };
-    const nog = (sg) => ({ ankle: ank(), strona: 'dol', pod: 0, rot: 90, z: ZNOG, pole: [0.15, -1, 0.1 * sg] });
+    const nog = (sg) => ({ ankle: ank(), strona: 'dol', stopaPrzodem: true, z: ZNOG, pole: [0.15, -1, 0.1 * sg] });
     return ramka({ u, miednica: [0, Y0], p, glowa: p * 0.92, nogi: { R: nog(1), L: nog(-1) }, rece: { R: { g: chwyt(S, aR, hz), pole: [0, -1, 0.2] }, L: { g: chwyt(S, aR, -hz), pole: [0, -1, -0.2] } } }); };
   const ok = (u) => fr(u, 8 * u); const zle = (u) => fr(u, 5 + 17 * u); /* błąd: klatka uniesiona o 5 cm już w u = 0, o 22 cm na końcu (przeprost lędźwi) */
   return zbuduj1(cw, us.map(ok), bledy ? [bladZTrajektorii({ cue: 'cobra.mis', postawa: true, znacznik: 'back', us, ok, zle })] : []);
@@ -163,7 +167,7 @@ export const WYJATKI = {};
 export const WYJATKI_OPISU = { 'cobra.mis': 'zestaw ogólny „cobra” (cue-sets.json: Superman, Lower Back Curl) odwołuje się do wskazówki bez tekstu w lib/cues/text/*.json; tekst do napisania przez badacza, przekład przez tłumacza' };
 export const PRZYBLIZENIA = {
   'Alternate Heel Touchers': 'skłon boczny tułowia (przechylTulowia, poza@2) jest sztywny w biodrach, nie łukiem; dłoń kończy ruch przy pięcie, bez dotyku',
-  'Superman': 'przybliżenie: stopy skierowane na zewnątrz (rotacja 90°), bo model stopy nie ma palców skierowanych do tyłu',
+  'Superman': 'przybliżenie: stopy grzbietem w dół, palce do tyłu (zgięcie podeszwowe 50°); nogi i ręce unoszą się razem, rysowane dwie fazy skrajne',
   'Tuck Crunch': 'przybliżenie: skrzyżowanie kostek zastąpione zbliżeniem kostek (z = ±3)',
   'Cocoons': 'ruch ramion: z nad głową w stronę kolan (opis katalogu niejednoznaczny)',
 };

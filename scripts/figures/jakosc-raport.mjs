@@ -14,7 +14,7 @@ export function raport(root = ROOT) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'jakosc-')); process.on('exit', () => { try { fs.rmSync(dir, { recursive: true, force: true }); } catch { /* best effort */ } });
   const { v2, catalog } = loadV2(dir); const teksty = wczytajTeksty(root); const wynik = [];
   const oceń = (zrodlo, rodzina, cw, poza) => { const postural = new Set((poza.bledy ?? []).map((b) => b.cue).filter((c) => { const g = grupaBledu(rodzina, c, root); return g && GRUPY_POSTAWY.includes(g); }));
-    let n = []; try { n = sprawdzJakosc(poza, { v2, rodzina, cwiczenie: cw, postural, izometryczne: izometryczne(rodzina, cw, root), teksty, reguly: regulyDla(rodzina, cw, root), root, stykWszystkie: process.argv.includes('--styk-wszystkie') }); } catch (e) { n = [{ regula: 'wyjatek', szczegol: e.message }]; }
+    let n = []; try { n = sprawdzJakosc(poza, { v2, rodzina, cwiczenie: cw, postural, izometryczne: izometryczne(rodzina, cw, root), teksty, reguly: regulyDla(rodzina, cw, root), root, stykWszystkie: process.argv.includes('--styk-wszystkie'), zRigu: zrodlo === 'rig' }); } catch (e) { n = [{ regula: 'wyjatek', szczegol: e.message }]; }
     wynik.push({ zrodlo, rodzina, cwiczenie: cw, naruszenia: n.map((x) => x.regula) }); };
   const pd = path.join(root, 'lib/figures/v2/poses');
   for (const f of fs.existsSync(pd) ? fs.readdirSync(pd) : []) { const d = JSON.parse(fs.readFileSync(path.join(pd, f), 'utf8')); for (const [cw, poza] of Object.entries(d.cwiczenia ?? {})) oceń('dane', d.rodzina, cw, poza); }

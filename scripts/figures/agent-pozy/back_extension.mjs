@@ -48,7 +48,7 @@ export function reverseHyper(cw, o = {}) {
 export function lowerBackCurl(cw) {
   const Y0 = 9.5; const us = [0, 0.25, 0.5, 0.75, 1]; const D = NOGA_PROSTA;
   const fr = us.map((u) => { const phi = lerp(0, 7, ease(u)); const p = 90 - phi; const a = [-D, Y0 + 1.5]; const Sx = [Math.cos(phi * R) * T(), Y0 + Math.sin(phi * R) * T()];
-    const nog = (z) => ({ ankle: a, strona: 'dol', pod: 0, rot: 90, z, pole: [0.15, -1, 0.1 * Math.sign(z || 1)] }); /* leżenie przodem: kolano ku przodowi uda, czyli w dół (nie do tyłu) */
+    const nog = (z) => ({ ankle: a, strona: 'dol', stopaPrzodem: true, z, pole: [0.15, -1, 0.1 * Math.sign(z || 1)] }); /* leżenie przodem: kolano ku przodowi uda, czyli w dół (nie do tyłu) */
     return ramkaPodloga({ u, miednica: [0, Y0], p, glowa: p * 0.9, nogi: { R: nog(9), L: nog(-9) }, rece: { R: { g: [Sx[0] - 50, 6, 24], pole: [0, 0.3, 1] }, L: { g: [Sx[0] - 50, 6, -24], pole: [0, 0.3, -1] } } }); });
   return poza(RODZINA, cw, [PODLOGA(-170, 130)], fr, []);
 }
@@ -56,7 +56,9 @@ export function lowerBackCurl(cw) {
 export const WYJATKI = {
   'Weighted Ball Hyperextension': 'talerz w kontrakcie to tarcza stojąca w płaszczyźnie y–z (nie da się go położyć płasko na klatce leżącego przodem), a piłka gimnastyczna ma kontakt z osią tułowia w odległości promień + 9,5 cm (wgniecenie ≤ 3 cm): przy zgięciu biodra ≥ 70° (reguła zawias_biodrowy) tułów wchodzi w piłkę o ponad 3 cm, a przy wyprostowanym na górze (biodro ≤ 15°) leży pod kątem ≈ 45–68° nad poziomem; talerz trzymany na wyprostowanych ramionach zahacza o podłogę lub piłkę',
 };
-export const PRZYBLIZENIA = {};
+export const PRZYBLIZENIA = {
+  'Lower Back Curl': 'przybliżenie: stopy grzbietem w dół, palce do tyłu (zgięcie podeszwowe 50° względem goleni leżącej poziomo; podbicie liczone z kierunku goleni), bez kontaktu palców z podłogą',
+};
 export function generuj() {
   return {
     'Back Extension': () => rzymska('Back Extension'),
