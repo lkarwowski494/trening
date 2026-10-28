@@ -80,5 +80,5 @@ Kiedy: po premierze 1.0, przed punktem kontrolnym 8 tygodni (Z-35). Kto: 3–5 o
 Etykiety, na których stoi to przejście (klucze słownika PL; strażnik sprawdza, że istnieją — zmiana którejkolwiek oznacza ponowne przejście kroku):
 
 ```json
-["Pusty trening", "ćwiczenia dodasz w trakcie", "+ Dodaj ćwiczenie", "Wybierz ćwiczenie", "Szukaj ćwiczenia…", "Utwórz „{name}”", "Seria zrobiona", "Wszystkie serie odhaczone", "Zakończ trening", "Plan", "Dopisz trening wstecz", "Postępy", "Ćwiczenie", "Więcej", "Kopia zapasowa (eksport / import)", "Eksportuj backup (plik JSON)", "Ustawienia", "Subskrypcja", "Zobacz plany Pro", "Masz plan: {name}", "Pierwsze kroki"]
+["Pusty trening", "ćwiczenia dodasz w trakcie", "+ Dodaj ćwiczenie", "Wybierz ćwiczenie", "Szukaj ćwiczenia…", "Utwórz „{name}”", "Seria zrobiona", "Wszystkie serie odhaczone", "Zakończ trening", "Plan", "Dopisz trening wstecz", "Postępy", "Ćwiczenie", "Więcej", "Kopia zapasowa (eksport / import)", "Eksportuj backup (plik JSON)", "Ustawienia", "Subskrypcja", "Zobacz plany Pro", "Masz plan: roczny", "Pierwsze kroki"]
 ```

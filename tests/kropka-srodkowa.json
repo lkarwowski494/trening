@@ -25,7 +25,6 @@
   "components/NowBoard.tsx": { "n": 2, "powod": "Tablica „teraz”: znacznik supersetu przed nazwą i znak między dystansem a czasem w wyniku serii (jak „×” między ciężarem a powtórzeniami)." },
   "components/PeriodSummary.tsx": { "n": 1, "powod": "Rekord w okresie: nazwa ćwiczenia · data — dwa pola. Lista pobitych wartości zmieniona na przecinek 27.10.2026." },
   "components/StartPanel.tsx": { "n": 5, "powod": "Podpisy startu (04-studio-projektowe-011): kiedy w planie · liczba ćwiczeń, nazwa · dzień, nazwa · data — dwa pola metadanych w stałej kolejności, zgodne z regułą DEC-17 a. Ostrzejsza reguła (zdanie zamiast „·”) byłaby nową decyzją właściciela — opcje w raporcie roli 04 (fix 27.10.2026)." },
-  "components/StartError.tsx": { "n": 1, "powod": "Treść wiadomości do wsparcia z ekranu błędu startu: kod etapu · treść błędu (M1-audytor-generalny-032) — dwa pola techniczne w stałej kolejności, nie tekst na ekranie." },
   "components/WhatsNew.tsx": { "n": 1, "powod": "„Co nowego”: wersja testowa · data — dwa pola w stałej kolejności." },
   "components/WorkoutBlocks.tsx": { "n": 3, "powod": "Blok ćwiczenia: usunięte ćwiczenie · serie, „superset · przerwa po rundzie”, znacznik supersetu przed nazwą — stała kolejność." },
   "lib/generator.ts": { "n": 1, "powod": "Nazwa planu z generatora: cel, liczba dni · miejsce — stałe pola." },
