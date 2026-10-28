@@ -9,11 +9,13 @@
 // składa kształty silnikiem z silnik-build.mjs; dane pozy w kontrakcie figury-v2/poza@1 (jeśli są) dołączone obok.
 // Użycie: node scripts/strona/eksport.mjs --out <katalog> [--langs pl,en,…] [--commit <sha>] [--recenzja <plik>]
 import { execSync } from 'node:child_process';
-import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { mkdirSync, readFileSync, writeFileSync, existsSync, copyFileSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { appRequire, repoRoot } from './ts-loader.mjs';
 import { PLIK_RECENZJI, rodzinyZRecenzja } from './recenzja-figur.mjs';
 
+const here = dirname(fileURLToPath(import.meta.url));
 export const SCHEMA = 'techniqueatlas-eksport@1';
 /** Minimalny udział regionu na sylwetce: ten sam próg co lista „główne / pomocnicze” (MUSCLE_MIN_LOAD figur v2). */
 /** Liczba zamienników przy ćwiczeniu = SWAP_TOP aplikacji (arkusz zamiany; test pilnuje równości). */
@@ -90,7 +92,8 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
   const silhouette = { sprite: mm.silhouetteSprite(), vars: { body: mm.SILHOUETTE_VARS.body, part: mm.SILHOUETTE_VARS.part, muscle: seed.MUSCLES.map(mm.SILHOUETTE_VARS.muscle) }, muscles: [...seed.MUSCLES], levels: Object.fromEntries(keys.map(k => [slugs[k], levelsOf(k)])) };
   const figures = {};
   for (const k of keys) { const fe = figureEntry(k); if (fe) figures[slugs[k]] = fe; }
-  const cueTextIn = (l, id) => { const a = cues.cueDict(l)[id] ?? cues.cueDict('en')[id] ?? cues.cueDict('pl')[id]; return a; };
+  /* Tekst zdania WYŁĄCZNIE ze słownika języka pliku: brak przekładu = brak zdania (undefined), nigdy angielski ani polski zamiennik — strona nie może mieszać języków (K-13); braki liczą `missing` i manifest. */
+  const cueTextIn = (l, id) => Object.prototype.hasOwnProperty.call(cues.cueDict(l), id) ? cues.cueDict(l)[id] : undefined;
 
   /* zamienniki: kandydaci i punkty (niezależne od języka) liczone kodem aplikacji (lib/swapScore.ts), kolejność jak w arkuszu zamiany dla NOWEGO użytkownika (bez miejsca i historii) —
    * remisy rozstrzyga nazwa w języku pliku, więc kolejność składa buildLang */
@@ -145,7 +148,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
         muscles: { main: e.muscles, aux: e.secondaryMuscles },
         regions: load.map(([id, w]) => ({ id, load: w })),
         /* „Co robią mięśnie”: zdania ról tylko dla regionów z wyświetlaną rolą (jak sekcja w aplikacji, muscleRoleRows), w języku pliku */
-        roles: roles.muscleRoleRows(e).filter(r => r.role).map(r => ({ region: r.region, text: r.role })),
+        roles: roles.muscleRoleRows(e).filter(r => r.role).map(r => ({ id: r.region, text: r.role })), /* kontrakt: kontrakt.json — id jak regions[].id */
         requires: entry.requires, recommended: entry.recommended,
         family: v2.familyOf(key), niche: seed.isNiche(e), musclesApproximate: !!ui.legendOf(key)?.simplified,
         figure: own(figures, slugs[key]) ? { phases: figurePhases(key), errors: figureErrors(key) } : null,
@@ -179,13 +182,16 @@ if (process.argv[1] && import.meta.url === new URL(process.argv[1], 'file://').h
   const ex = createExporter({ ...(arg('--commit') ? { commit: arg('--commit') } : {}), ...(arg('--recenzja') ? { recenzja: arg('--recenzja') } : {}) });
   const langs = arg('--langs') ? arg('--langs').split(',') : [...ex.languages];
   mkdirSync(out, { recursive: true });
-  const manifest = { schema: SCHEMA, app: ex.app, languages: [], figures: 'figury.json', silhouette: 'sylwetka.json', patterns: 'wzorce-zrodel.json' };
+  const manifest = { schema: SCHEMA, app: ex.app, languages: [], figures: 'figury.json', silhouette: 'sylwetka.json', patterns: 'wzorce-zrodel.json', contract: { schema: 'kontrakt.json', validator: 'kontrakt.mjs' } };
+  for (const f of ['kontrakt.json', 'kontrakt.mjs']) copyFileSync(join(here, f), join(out, f));
   const figText = serialize({ schema: SCHEMA, app: ex.app, figures: ex.figures }); writeFileSync(join(out, 'figury.json'), figText); manifest.figuresBytes = Buffer.byteLength(figText);
   writeFileSync(join(out, 'sylwetka.json'), serialize({ schema: SCHEMA, app: ex.app, ...ex.silhouette }));
   writeFileSync(join(out, 'wzorce-zrodel.json'), serialize({ schema: SCHEMA, ...ex.patterns }));
   for (const l of langs) {
-    const file = `atlas-${l}.json`; const text = serialize(ex.buildLang(l));
-    writeFileSync(join(out, file), text); manifest.languages.push({ lang: l, name: ex.langNames[l], file, bytes: Buffer.byteLength(text) });
+    const file = `atlas-${l}.json`, built = ex.buildLang(l), text = serialize(built);
+    /* braki przekładu wskazówek: razem i per ćwiczenie (slug) — strona nie pokazuje sekcji ani nie indeksuje takiego ćwiczenia, a właściciel widzi skalę w manifeście */
+    const missing = { cues: built.meta.cuesWithoutText, exercises: Object.fromEntries(built.exercises.filter(e => e.cues.missing).map(e => [e.slug, e.cues.missing])) };
+    writeFileSync(join(out, file), text); manifest.languages.push({ lang: l, name: ex.langNames[l], file, bytes: Buffer.byteLength(text), missing });
   }
   writeFileSync(join(out, 'manifest.json'), serialize(manifest));
   console.log(`eksport: ${langs.length} języków → ${out} (wersja ${ex.app.version}, commit ${ex.app.commit.slice(0, 7)})`);

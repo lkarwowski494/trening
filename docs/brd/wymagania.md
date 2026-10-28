@@ -477,6 +477,23 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy użytkownik wybiera ten błąd
     - Wtedy rysunek ma widok z przodu, w którym zapadanie kolan jest widoczne
 
+### BR-BIB-008: Strona z ćwiczeniami dostaje teksty tylko w swoim języku i w jednym, sprawdzanym kształcie pól (28.10.2026)
+- Przepływ: PR-01
+- Dowód potrzeby: analiza strony 28.10.2026 (C-01, C-02, K-13: na stronach pojawiało się „undefined” przy rolach mięśni i angielskie zdania w 33 językach); `scripts/strona/kontrakt.json`, `scripts/strona/kontrakt.mjs`, `scripts/strona/eksport.mjs`; testy `tests/strona-eksport.test.ts` (kontrakt pól, brak przekładu = brak zdania, licznik w manifeście)
+- Kryteria akceptacji:
+  - Scenariusz: Rola mięśnia ma etykietę
+    - Zakładając, że ćwiczenie ma zdania o roli mięśni
+    - Gdy powstaje eksport
+    - Wtedy każda rola ma klucz regionu i zdanie, a klucz regionu ma etykietę w tym samym pliku języka (strona pokazuje nazwę partii, nigdy „undefined”)
+  - Scenariusz: Zdanie bez przekładu
+    - Zakładając, że zdanie wskazówki nie ma przekładu w języku pliku (np. 53 zdania wersji 1.1 w 33 językach)
+    - Gdy powstaje eksport tego języka
+    - Wtedy zdanie jest pominięte, nie zastąpione angielskim ani polskim; ćwiczenie ma licznik braków, a manifest podaje braki dla języka razem i dla każdego ćwiczenia
+  - Scenariusz: Zmiana kształtu pola
+    - Zakładając, że kształt pola w eksporcie zmienia się bez zmiany kontraktu
+    - Gdy uruchamiane są testy aplikacji (a po stronie strony: testy na prawdziwym eksporcie)
+    - Wtedy test kontraktu zgłasza błąd, zanim strona zostanie zbudowana ze złymi danymi
+
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07
 - Dowód potrzeby: OG-01; docs/28-healthkit-etap0.md; `site/privacy.html`
