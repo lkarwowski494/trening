@@ -779,6 +779,7 @@ export const EN: Record<string, string> = {
   'Wznów animację': 'Resume animation',
   'Pozycja wyjściowa': 'Starting position',
   'W trakcie': 'Midway',
+  'W trakcie {n}': 'Midway {n}',
   'Pozycja końcowa': 'End position',
   'Rysunek schematyczny — pozycje orientacyjne.': 'Schematic drawing — positions are approximate.',
   'zakładka, {i} z {n}': 'tab, {i} of {n}',

@@ -1722,5 +1722,6 @@
  "Masz plan: roczny": "Vaš plan: godišnji",
  "Masz plan: dożywotni": "Vaš plan: doživotni",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "W trakcie {n}": "Tijekom pokreta {n}"
 }

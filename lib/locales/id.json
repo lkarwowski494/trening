@@ -1722,5 +1722,6 @@
  "Masz plan: roczny": "Paket Anda: tahunan",
  "Masz plan: dożywotni": "Paket Anda: seumur hidup",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "W trakcie {n}": "Sedang berjalan {n}"
 }

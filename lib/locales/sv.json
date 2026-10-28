@@ -1722,5 +1722,6 @@
  "Masz plan: roczny": "Din plan: årsvis",
  "Masz plan: dożywotni": "Din plan: livstid",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "W trakcie {n}": "Under rörelsen {n}"
 }

@@ -1722,5 +1722,6 @@
  "Masz plan: roczny": "Il tuo piano: annuale",
  "Masz plan: dożywotni": "Il tuo piano: a vita",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "W trakcie {n}": "Durante il movimento {n}"
 }

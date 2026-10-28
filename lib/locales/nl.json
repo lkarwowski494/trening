@@ -1722,5 +1722,6 @@
  "Masz plan: roczny": "Je abonnement: jaarlijks",
  "Masz plan: dożywotni": "Eenmalige aankoop",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "W trakcie {n}": "Tijdens de beweging {n}"
 }

@@ -1722,5 +1722,6 @@
  "Masz plan: roczny": "Váš plán: ročný",
  "Masz plan: dożywotni": "Váš plán: doživotný",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "W trakcie {n}": "Počas pohybu {n}"
 }
