@@ -376,6 +376,7 @@
         19.4,
         8.5
        ],
+       "podbicie": 260,
        "rotacjaStopy": 10,
        "biegunKolana": [
         0.601,
@@ -442,7 +443,8 @@
         19.8,
         13.2
        ],
-       "rotacjaStopy": 10,
+       "podbicie": 258,
+       "rotacjaStopy": -34.5,
        "biegunKolana": [
         0.601,
         -0.79,
@@ -508,7 +510,8 @@
         23,
         23
        ],
-       "rotacjaStopy": 10,
+       "podbicie": 242.6,
+       "rotacjaStopy": -68.3,
        "biegunKolana": [
         0.601,
         -0.7090000000000001,
@@ -574,7 +577,8 @@
         29.2,
         31.2
        ],
-       "rotacjaStopy": 10,
+       "podbicie": 224.5,
+       "rotacjaStopy": -76.2,
        "biegunKolana": [
         0.601,
         -0.551,
@@ -640,7 +644,8 @@
         32.8,
         34.2
        ],
-       "rotacjaStopy": 10,
+       "podbicie": 216.1,
+       "rotacjaStopy": -77.8,
        "biegunKolana": [
         0.601,
         -0.45799999999999996,
@@ -721,7 +726,8 @@
         17.2,
         2.2
        ],
-       "rotacjaStopy": 10,
+       "podbicie": 0,
+       "rotacjaStopy": -60,
        "biegunKolana": [
         0.14800000000000002,
         0,
@@ -790,7 +796,8 @@
         17.2,
         2.2
        ],
-       "rotacjaStopy": 10,
+       "podbicie": 4.7,
+       "rotacjaStopy": -60,
        "biegunKolana": [
         0.14800000000000002,
         0.121,
@@ -859,7 +866,8 @@
         17.2,
         2.2
        ],
-       "rotacjaStopy": 10,
+       "podbicie": 15,
+       "rotacjaStopy": -60,
        "biegunKolana": [
         0.14800000000000002,
         0.37799999999999995,
@@ -928,7 +936,8 @@
         17.2,
         2.2
        ],
-       "rotacjaStopy": 10,
+       "podbicie": 25.3,
+       "rotacjaStopy": -60,
        "biegunKolana": [
         0.14800000000000002,
         0.608,
@@ -997,7 +1006,8 @@
         17.2,
         2.2
        ],
-       "rotacjaStopy": 10,
+       "podbicie": 30,
+       "rotacjaStopy": -60,
        "biegunKolana": [
         0.14800000000000002,
         0.6990000000000001,

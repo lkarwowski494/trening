@@ -52,6 +52,7 @@ export const WYJATKI = {
   'Cuban Press': 'OTWARTE — brak źródła ruchu (zestaw „open”; figury-sens.json → rotator_cuff.otwarte); wstrzymane do czasu źródła',
 };
 export const PRZYBLIZENIA = {
+  'External Rotation (hantel)': 'przybliżenie: leżenie na lewym boku jak w Clamshell (obrót tułowia −75°, nie −90°: dolny bark nie wchodzi pod podłogę; tułów odchylony do tyłu o 15°, widoczne w widoku z przodu), ręka robocza R górna z hantlem, łokieć 90° przy tułowiu; dolna ręka pod głową; stopy ułożone jedna na drugiej, palcami w stronę kolan',
   'Cable Internal Rotation': 'przybliżenie: wyciąg po stronie roboczej (zewnętrznej), dłoń rusza do środka; druga ręka zwisa przy boku',
   'External Rotation (linki)': 'przybliżenie: wyciąg po przeciwnej stronie, linka przechodzi przed brzuchem; druga ręka zwisa',
 };

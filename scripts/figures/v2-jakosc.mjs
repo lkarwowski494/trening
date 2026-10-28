@@ -76,6 +76,7 @@ export const PROGI = {
   zwijanieMiednicaCm: 3, zwijanieKregoslupDeg: 20, vUpMinDeg: 30, /* R14b: mechanizm wyjątku „zwijanie obu końców” (miednica unosi się ≥ cm, kręgosłup zgięty ≥ stopni) i „V” (tułów i nogi razem ≥ stopni nad podłogą) */
   declineNachylenieMaxDeg: 5, /* R19 (n7): wariant decline pompki, u = 0: linia kostka–bark wznosi się ku głowie najwyżej tyle stopni nad poziom (konwencja rysunku; Decline n6 miało +15,5°, n7 +0,3°, zwykła pompka +20,1°) */
   lezenieUgniecenieCm: 1.5, /* R21 (n7): poza leżąca, u = 0: środek miednicy najwyżej tyle cm NIŻEJ niż promień kolizji tułowia z silnika (GIRTH.trunkCollide = 9,5); 8,0 starszych póz = 9,5 − 1,5. Konwencja rysunku bez źródła; wyżej dopuszczalne wisiCm */
+  osStopyDeg: 30, osStopyKolanoMinDeg: 35, /* R11 (recenzja ruchu r2, L2): oś stopy (pięta → palce) leży w płaszczyźnie biodro–kolano–kostka z tolerancją ±osStopyDeg (stopa „idzie” w stronę kolana, nie w bok ani w sufit); płaszczyzna jest określona tylko przy zgiętym kolanie (≥ osStopyKolanoMinDeg: przy prawie prostej nodze kierunek płaszczyzny wyznacza szum). KONWENCJA RYSUNKU (stopa naturalnie ułożona względem kolana; próg do potwierdzenia przez badacza) */
   stykPodparciaCm: 4.5, /* punkt ciała uznany za podparcie, gdy jego (oś) wysokość ≤ tyle: dłoń, stopa, kolano (promień kończyny) */
 };
 /** P2 (recenzja n5): kierunek progów (max: wielkość ≤ próg; min: wielkość ≥ próg). Progi bramkujące (rolloutRekaMaxCm, rolloutBarkiMinCm, stykPodparciaCm, widocznoscBiodroMaxDeg, tulowUnosiMinDeg, statyczneMaxKlatek) i obiekty nie są zaostrzane. */
@@ -168,7 +169,7 @@ export const KOLANA_UGIETE = { 'Tuck Crunch': 80, 'Reverse Crunch': 80 };
 export const DLON_NA_WYSOKOSCI_BARKOW_WYJATKI = { 'Car Drivers': 'ruch kołowy kierownicy: podniesiona dłoń leży o promień koła (21 cm, rysunek 16,2 cm) nad osią obrotu; wysokość nie jest „ręce poziomo”' };
 /** Leżenie PRZODEM na ławce skośnej ze zwisem rąk (opis źródłowy: face down, ręce proste, unoszenie przodem). Front Incline Dumbbell Raise: [OTWARTE] — jedno źródło mówi o siadzie tyłem do oparcia, nie dodawać, dopóki nie ma drugiego. */
 export const LEZENIE_PRZODEM = ['Straight Raises on Incline Bench'];
-export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie', 'dzwon_gora_tylko_przy_pionowym_przedramieniu', 'high_pull_lokcie', 'ciezar_stoi_poziomo', 'przedramie_pod_ciezarem', 'podparcie_kolan', 'ksztalty_nad_podloga', 'styk_z_podlozem', 'styk_kazdego_podparcia', 'podparcie_wyzej_niz_dlonie', 'baza_lezenia', 'kregoslup_zwija_sie', 'wyjatek_nie_przeczy_wskazowce', 'wyjatek_wymaga_mechanizmu', 'cialo_lezy', 'czesc_ciala_nie_znika'];
+export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie', 'dzwon_gora_tylko_przy_pionowym_przedramieniu', 'high_pull_lokcie', 'ciezar_stoi_poziomo', 'przedramie_pod_ciezarem', 'podparcie_kolan', 'ksztalty_nad_podloga', 'styk_z_podlozem', 'styk_kazdego_podparcia', 'podparcie_wyzej_niz_dlonie', 'baza_lezenia', 'kregoslup_zwija_sie', 'wyjatek_nie_przeczy_wskazowce', 'wyjatek_wymaga_mechanizmu', 'cialo_lezy', 'czesc_ciala_nie_znika', 'os_stopy_w_plaszczyznie'];
 /** Reguły poziomu manifestu podglądu (nie pozy): zgodność manifestu z obrazem i układ podglądu. */
 export const REGULY_MANIFESTU = ['manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
 
@@ -345,6 +346,35 @@ export function czescCialaNieZnika(v2, poza) {
     const xs = x.pts.map((q) => q[0]), ys = x.pts.map((q) => q[1]); const rozmiar = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys));
     if (rozmiar < PROGI.znikaCm && !zgl.has(x.id + view)) { zgl.add(x.id + view); o.push(`kształt „${x.id}” w rzucie ${view === 'side' ? 'z boku' : 'z przodu'} ma rozmiar ${f1(rozmiar)} cm (u = ${u}; ≥ ${PROGI.znikaCm} cm) — część ciała znika z rysunku (obrócona wprost na kamerę)`); }
   }
+  return o;
+}
+/** Znane odstępstwa od reguły R11 (oś stopy w płaszczyźnie nogi): ćwiczenie → powód. Każdy wpis musi nadal łamać regułę (tests/figury-os-stopy.test.ts: wpis, który już niczego nie wyłącza, jest błędem) i ma powód; pozy objęte backlogiem figur są poprawione, nie wpisane. */
+export const OS_STOPY_WYJATKI = {
+  'Frog Sit-Ups': 'żaba (core_floor): oś stopy 87° od płaszczyzny biodro–kolano–kostka — podeszwy razem, palce w górę przy odwiedzionych kolanach (heel y = 1, toe y = 26); poza z danych historycznych, której generator rodziny nie odtwarza; ustawienie stóp nie było oceniane w tym backlogu',
+  'Frog Pump': 'rodzina hip_bridge poza zakresem backlogu figur; pomiar R11: oś stopy 32° od płaszczyzny biodro–kolano–kostka (próg 30°) (tuż ponad progiem; żaba: podeszwy razem, palce w górę); ustawienie stóp nie było oceniane — do przeglądu przy rodzinie',
+  'Standing Concentration Curl': 'rodzina curl poza zakresem backlogu figur; pomiar R11: oś stopy 32° od płaszczyzny biodro–kolano–kostka (próg 30°); ustawienie stóp nie było oceniane — do przeglądu przy rodzinie',
+  'Curtsy Lunge': 'rodzina lunge poza zakresem backlogu figur; pomiar R11: oś stopy 54° od płaszczyzny biodro–kolano–kostka (próg 30°); ustawienie stóp nie było oceniane — do przeglądu przy rodzinie',
+  'Crossover Reverse Lunge': 'rodzina lunge poza zakresem backlogu figur; pomiar R11: oś stopy 54° od płaszczyzny biodro–kolano–kostka (próg 30°); ustawienie stóp nie było oceniane — do przeglądu przy rodzinie',
+  'Cossack Squat': 'rodzina lunge poza zakresem backlogu figur; pomiar R11: oś stopy 34° od płaszczyzny biodro–kolano–kostka (próg 30°); ustawienie stóp nie było oceniane — do przeglądu przy rodzinie',
+  'Snatch Balance': 'rodzina olympic poza zakresem backlogu figur; pomiar R11: oś stopy 34° od płaszczyzny biodro–kolano–kostka (próg 30°); ustawienie stóp nie było oceniane — do przeglądu przy rodzinie',
+  'Sumo Deadlift': 'rodzina hinge (rig) poza zakresem backlogu figur; pomiar R11: oś stopy 40° od płaszczyzny biodro–kolano–kostka (próg 30°) (szeroki rozkrok, kolano prowadzi biegun 2 × rotacja stopy); ustawienie stóp nie było oceniane — do przeglądu przy rodzinie',
+  'Sumo Deadlift (kettlebell)': 'rodzina hinge (rig) poza zakresem backlogu figur; pomiar R11: oś stopy 40° od płaszczyzny biodro–kolano–kostka (próg 30°) (szeroki rozkrok, kolano prowadzi biegun 2 × rotacja stopy); ustawienie stóp nie było oceniane — do przeglądu przy rodzinie',
+  'Reverse Band Sumo Deadlift': 'rodzina hinge (rig) poza zakresem backlogu figur; pomiar R11: oś stopy 40° od płaszczyzny biodro–kolano–kostka (próg 30°) (szeroki rozkrok, kolano prowadzi biegun 2 × rotacja stopy); ustawienie stóp nie było oceniane — do przeglądu przy rodzinie',
+  'Sumo Deadlift with Bands': 'rodzina hinge (rig) poza zakresem backlogu figur; pomiar R11: oś stopy 40° od płaszczyzny biodro–kolano–kostka (próg 30°) (szeroki rozkrok, kolano prowadzi biegun 2 × rotacja stopy); ustawienie stóp nie było oceniane — do przeglądu przy rodzinie',
+  'Sumo Deadlift with Chains': 'rodzina hinge (rig) poza zakresem backlogu figur; pomiar R11: oś stopy 40° od płaszczyzny biodro–kolano–kostka (próg 30°) (szeroki rozkrok, kolano prowadzi biegun 2 × rotacja stopy); ustawienie stóp nie było oceniane — do przeglądu przy rodzinie',
+  'Sumo Squat (hantel)': 'rodzina squat (rig) poza zakresem backlogu figur; pomiar R11: oś stopy 40° od płaszczyzny biodro–kolano–kostka (próg 30°) (szeroki rozkrok, kolano prowadzi biegun 2 × rotacja stopy); ustawienie stóp nie było oceniane — do przeglądu przy rodzinie',
+};
+/** Kąt (stopnie) między osią stopy (pięta → palce) a płaszczyzną biodro–kolano–kostka danej nogi w danej klatce; null, gdy kolano zgięte mniej niż osStopyKolanoMinDeg (płaszczyzna nieokreślona). */
+export function katOsiStopyOdPlaszczyzny(sk, strona) {
+  const l = sk.legs[strona]; const sub = (a, b) => a.map((x, i) => x - b[i]); const dot = (a, b) => a.reduce((t, x, i) => t + x * b[i], 0); const nr = (a) => Math.hypot(...a) || 1;
+  const t = sub(l.knee, l.hip), h = sub(l.ankle, l.knee); const n = [t[1] * h[2] - t[2] * h[1], t[2] * h[0] - t[0] * h[2], t[0] * h[1] - t[1] * h[0]];
+  const zgiecie = Math.asin(Math.min(1, nr(n) / (nr(t) * nr(h)))) / R; if (zgiecie < PROGI.osStopyKolanoMinDeg) return null;
+  const os = sub(l.toe, l.heel); return Math.asin(Math.min(1, Math.abs(dot(os, n)) / (nr(os) * nr(n)))) / R;
+}
+/** 22. R11 (recenzja ruchu r2, L2, 28.10.2026): oś stopy w płaszczyźnie biodro–kolano–kostka ±osStopyDeg w KAŻDEJ klatce i dla każdej nogi ze zgiętym kolanem (stopa skierowana w sufit względem kolana w Clamshell i External Rotation przechodziła geometrię, R9 i R10). */
+export function osStopyWPlaszczyznie(v2, poza) {
+  if ((poza.cwiczenie ?? '') in OS_STOPY_WYJATKI) return []; const o = []; const zgl = new Set();
+  for (const u of siatka(poza)) { const sk = v2.keyframeFrame(poza, u).sk; for (const k of ['R', 'L']) { const a = katOsiStopyOdPlaszczyzny(sk, k); if (a !== null && a > PROGI.osStopyDeg && !zgl.has(k)) { zgl.add(k); o.push(`oś stopy ${k} odchylona o ${f1(a)}° od płaszczyzny biodro–kolano–kostka (u = ${u}; ≤ ${PROGI.osStopyDeg}°, kolano zgięte ≥ ${PROGI.osStopyKolanoMinDeg}°) — palce mają iść w stronę kolana, nie w bok ani w sufit`); } } }
   return o;
 }
 /** 15. Rząd błędu zmienia tylko to, co opisuje jego wskazówka: kąty stawów spoza DOTYCZY_BLEDU[cue] różnią się od pozy poprawnej o ≤ rzadBleduTolDeg w każdej klatce (np. „sag” nie zgina kolan). Liczone z kątów, nie z deklaracji `dotyczy` (ta jest wyliczana z tych samych zmian). */
@@ -564,14 +594,16 @@ export function zgodnoscManifestu(manifest, teksty, wyjatkiOpisu = {}) {
  * Kąty z silnika: zgięcie dodatnie (łokieć i kolano proste = 0°, noga „prosta” w tym rigu ≈ 10–18°: uda + golenie = 83 cm, więc 1 cm niedoboru odległości to ok. 14°); biodro ze znakiem (przeprost < 0); bark: zgięcie w płaszczyźnie strzałkowej (shSag), uniesienie (shElev), odwiedzenie (shAbd). */
 export const STAWY_TABELA = { hip: 'biodro', knee: 'kolano', ankle: 'kostka', elbow: 'łokieć', shSag: 'bark zgięcie', shElev: 'bark uniesienie', shAbd: 'bark odwiedzenie' };
 export function tabelaKatow(v2, poza) {
-  const t = {}; for (const k of Object.keys(STAWY_TABELA)) t[k] = { min: Infinity, max: -Infinity };
-  for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; for (const side of ['R', 'L']) { const a = v2.jointAngles(s, side); for (const k of Object.keys(STAWY_TABELA)) { t[k].min = Math.min(t[k].min, a[k]); t[k].max = Math.max(t[k].max, a[k]); } } }
-  for (const k of Object.keys(t)) { t[k].min = Math.round(t[k].min * 10) / 10; t[k].max = Math.round(t[k].max * 10) / 10; } return t;
+  /* L3 (recenzja ruchu r2, 28.10.2026): osobno strona prawa (R) i lewa (L) oraz zakres łączny — w pozach jednostronnych i na boku zakres łączny ukrywał asymetrię (stopa górna i dolna w jednej kolumnie) */
+  const pusty = () => ({ min: Infinity, max: -Infinity }); const t = {}; for (const k of Object.keys(STAWY_TABELA)) t[k] = { ...pusty(), R: pusty(), L: pusty() };
+  for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; for (const side of ['R', 'L']) { const a = v2.jointAngles(s, side); for (const k of Object.keys(STAWY_TABELA)) for (const c of [t[k], t[k][side]]) { c.min = Math.min(c.min, a[k]); c.max = Math.max(c.max, a[k]); } } }
+  const zaokr = (c) => { c.min = Math.round(c.min * 10) / 10; c.max = Math.round(c.max * 10) / 10; };
+  for (const k of Object.keys(t)) { zaokr(t[k]); zaokr(t[k].R); zaokr(t[k].L); } return t;
 }
-/** Tabela kątów jako Markdown (jeden wiersz na ćwiczenie): `wiersze` = [{ cwiczenie, katy }]. */
+/** Tabela kątów jako Markdown (jeden wiersz na ćwiczenie): `wiersze` = [{ cwiczenie, katy }]; kolumny osobno dla strony prawej (R) i lewej (L) każdego stawu (L3). */
 export function tabelaKatowMd(wiersze) {
-  const kol = Object.entries(STAWY_TABELA); const L = [`| ćwiczenie | ${kol.map(([, n]) => n).join(' | ')} |`, `|---|${kol.map(() => '---').join('|')}|`];
-  for (const w of wiersze) L.push(`| ${w.cwiczenie} | ${kol.map(([k]) => `${f1(w.katy[k].min)}…${f1(w.katy[k].max)}°`).join(' | ')} |`); return L.join('\n') + '\n';
+  const kol = Object.entries(STAWY_TABELA).flatMap(([k, n]) => [[k, 'R', `${n} R`], [k, 'L', `${n} L`]]); const L = [`| ćwiczenie | ${kol.map(([, , n]) => n).join(' | ')} |`, `|---|${kol.map(() => '---').join('|')}|`];
+  for (const w of wiersze) L.push(`| ${w.cwiczenie} | ${kol.map(([k, s]) => { const c = w.katy[k][s]; return c ? `${f1(c.min)}…${f1(c.max)}°` : '—'; }).join(' | ')} |`); return L.join('\n') + '\n';
 }
 /** Klatki faktycznie narysowane w HTML podglądu (atrybuty `data-u` komórek `.k`; wiersz = `.w`): { klatki: [u…] pierwszego wiersza w widoku z boku, uwagi: [niezgodności między wierszami i widokami] }.
  * Czyta wyrenderowany obraz, nie założenie generatora (L-podglad-klatki: podgląd 0 / 0,5 / 1 przechodził kontrolę manifestu, bo klatki_na_obrazie brano z funkcji, która rysuje wszystkie). */
@@ -597,7 +629,7 @@ function klatkiObrazuNiezgodne(c) {
 export function podgladWazny(manifest) {
   const o = []; if (!Array.isArray(manifest.zgodnosc_manifestu)) o.push('manifest nie ma pola zgodnosc_manifestu — kontrola manifestu (zgodnoscManifestu) nie została uruchomiona przy budowie podglądu');
   else if (manifest.zgodnosc_manifestu.length) o.push(`kontrola manifestu zgłasza ${manifest.zgodnosc_manifestu.length} niezgodności (${manifest.zgodnosc_manifestu.map((x) => x.regula).join(', ')})`);
-  for (const c of manifest.cwiczenia ?? []) { if (!c.obraz) o.push(`${c.cwiczenie}: brak obrazu PNG`); o.push(...klatkiObrazuNiezgodne(c)); if (!c.katy_stawow || !c.katy_stawow.knee) o.push(`${c.cwiczenie}: brak tabeli kątów stawów (katy_stawow)`); }
+  for (const c of manifest.cwiczenia ?? []) { if (!c.obraz) o.push(`${c.cwiczenie}: brak obrazu PNG`); o.push(...klatkiObrazuNiezgodne(c)); if (!c.katy_stawow || !c.katy_stawow.knee) o.push(`${c.cwiczenie}: brak tabeli kątów stawów (katy_stawow)`); else if (!c.katy_stawow.knee.R || !c.katy_stawow.knee.L) o.push(`${c.cwiczenie}: tabela kątów stawów bez podziału na stronę prawą i lewą (katy_stawow.<staw>.R / .L) — zakres łączny ukrywa asymetrię`); }
   return o;
 }
 /** 19. Układ podglądu: wszystkie komórki jednego wiersza (poprawna poza / błąd) leżą w jednej linii — mają wspólną dolną krawędź (wiersz wyrównany do dołu; zawinięta komórka ma dolną krawędź o wysokość wiersza niżej). `wiersze` = [{ etykieta, dolne: [px…] }] (pomiar z przeglądarki). */
@@ -764,6 +796,7 @@ export function sprawdzJakosc(poza, ctx) {
   if (cechy.has('ledzwie_przy_podlodze')) dodaj('ledzwie_przy_podlodze', ledzwiePrzyPodlodze(v2, poza));
   if (!ctx.zRigu) dodaj('cialo_lezy', cialoLezy(v2, poza, { glowa: glowaWymagana(v2, poza) })); /* pozy z rigów (ctx.zRigu, tylko raport): Floor Press leży na macie 2 cm, której sprzet nie opisuje — rigi mają własne bazy; R9 liczy od podłogi y = 0 */
   dodaj('czesc_ciala_nie_znika', czescCialaNieZnika(v2, poza)); /* R9 i R10: bramka dla WSZYSTKICH rodzin (backlog figur 28.10.2026; było: tylko mobilność) */
+  dodaj('os_stopy_w_plaszczyznie', osStopyWPlaszczyznie(v2, poza)); /* R11 (L2): bramka dla WSZYSTKICH rodzin; znane odstępstwa: OS_STOPY_WYJATKI z powodem */
   dodaj('rzad_bledu_dotyczy', rzadBleduDotyczy(v2, poza));
   if (PRZYCIAGANIE.includes(cwiczenie)) { dodaj('tor_lokcia_przyciaganie', torLokciaPrzyciagania(v2, poza)); dodaj('zwis_startowy', zwisStartowy(v2, poza)); dodaj('tor_lokcia_srodek', torLokciaSrodek(v2, poza)); }
   if (rodzina === 'delt_raise' && wskazowkiLatHeight(cwiczenie) && !(cwiczenie in DLON_NA_WYSOKOSCI_BARKOW_WYJATKI)) dodaj('dlon_na_wysokosci_barkow_swiat', dlonNaWysokosciBarkowSwiat(v2, poza));

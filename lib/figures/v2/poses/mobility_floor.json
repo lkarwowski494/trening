@@ -1075,8 +1075,8 @@
         44.2,
         22.4
        ],
-       "podbicie": 45,
-       "rotacjaStopy": 0,
+       "podbicie": 35,
+       "rotacjaStopy": 40,
        "biegunKolana": [
         0.9209999999999999,
         -0.294,
@@ -1145,8 +1145,8 @@
         44.2,
         22.4
        ],
-       "podbicie": 45,
-       "rotacjaStopy": 0,
+       "podbicie": 35,
+       "rotacjaStopy": 40,
        "biegunKolana": [
         0.9209999999999999,
         -0.294,

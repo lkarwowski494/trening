@@ -88,7 +88,7 @@ const bokRamka = (nogi, rece, ext = { roll: SQ_ROLL, lean: SQ_LEAN, headTilt: SQ
 /** Side-Lying Quad Stretch (ACE #149: leżenie na boku, biodra i barki jedno nad drugim, dolna ręka zgięta, przedramię pod głową; górne kolano zgięte, pięta ku pośladkowi: „Bend your left knee and pull your left heel up towards your left glute…”, „keeping the left thigh and knee resting on the inside of the right thigh and pointing straight out from the left hip joint”; dolna noga prosta tylko w pozycji wyjściowej: „with your legs extended straight away from your body”):
  * leżymy na LEWYM boku (klatka ku −z, od kamery, tułów odchylony do tyłu o 15°), górna (prawa) noga: udo w linii tułowia (biodro ≈ 13°, udo spoczywa na dolnym udzie), kolano zgięte ok. 140° (granica modelu) ku tyłowi ciała (+z, do kamery),
  * dłoń górnej ręki (zza pleców) przy kostce (1,3 cm; środek dłoni na odcinku bark–kostka, sięg ręki ≈ 63 cm); dolna ręka zgięta, przedramię pod głową (głowa na przedramieniu, styk), dolna stopa wzdłuż podłogi (stopa na zewnętrznej krawędzi: nie w osi widoku). */
-const SQ_PSI = 40; const SQ_POD = 45;
+const SQ_PSI = 40; const SQ_POD = 35; const SQ_ROT = 40; /* stopa górna: oś w płaszczyźnie biodro–kolano–kostka (R11): podbicie 35°, rotacja 40° — palce ku tyłowi ciała i w górę, jak goleń */
 function sideQuad(cw) {
   const m = [0, PYB, 0]; const T = sonda(m, -90, { ext: { roll: SQ_ROLL, lean: SQ_LEAN } }); const H = T.hip.R; const B = BODY();
   const th = 5 * R; const d1 = [Math.cos(th), -Math.sin(th), 0]; const K1 = add(H, d1, B.thigh);
@@ -97,7 +97,7 @@ function sideQuad(cw) {
   const aR = add(K1, [-d1[0] * Math.cos(kf), -d1[1] * Math.cos(kf) + Math.sin(kf) * Math.sin(psi), Math.sin(kf) * Math.cos(psi)], B.shank).map(r1);
   const mid = [(H[0] + aR[0]) / 2, (H[1] + aR[1]) / 2, (H[2] + aR[2]) / 2]; const pole = nrm([K1[0] - mid[0], K1[1] - mid[1], K1[2] - mid[2]]).map((x) => r1(x * 100) / 100);
   const aL = [T.hip.L[0] + 82.6, 7.2, T.hip.L[2]]; /* dolna noga leży: udo i goleń ≤ 3 cm nad podłogą (R9: lezyBokNogaCm), kolano wypchnięte w głąb (−z), nie w górę */
-  const nogi = { R: { a: aR, pod: SQ_POD, rot: 0, pole }, L: { a: aL, pod: 0, rot: 60, pole: [0, 0, -1] } };
+  const nogi = { R: { a: aR, pod: SQ_POD, rot: SQ_ROT, pole }, L: { a: aL, pod: 0, rot: 60, pole: [0, 0, -1] } };
   const rece = { R: { g: sieganie(T.sh.R, aR), pole: [0, 1, 0.5] }, L: { g: [T.sh.L[0] - 22, 4.5, T.sh.L[2]], pole: [0, 0.04, -1] } }; /* dolna ręka leży: łokieć i dłoń przy podłodze (dolna krawędź ≤ 2 cm), przedramię pod głową */
   return statyczna(RODZINA, cw, SP, bokRamka(nogi, rece));
 }
@@ -129,7 +129,7 @@ export const PRZYBLIZENIA = {
   "Child's Pose": 'wariant ACE #227 „ręce wzdłuż ciała” (krok 4: „Extend your arms alongside the body with the palms facing upward…”): dłonie na podłodze przy biodrach (palce do góry nie rysujemy); kolana szeroko, bierne zgięcie kolana ≈ 152° i biodra ≈ 139° (wyjątek zakresu: CONTRACT.kneePassiveMaxDeg, hipPassiveMaxDeg); stopy grzbietem na podłodze (podbicie 208°, krok 1: „toes pointing behind you”)',
   'Seated Calf Stretch': 'przybliżenie: stopa pionowo (zgięcie grzbietowe ≈ 0°, maksymalne podbicie modelu to 90°); guma owinięta wokół podeszwy prawej stopy (ACE #214), druga noga bez gumy',
   'Supine Hamstring Stretch': 'poza wg AAOS (dłonie splecione z tyłu uda, druga noga zgięta, stopa na podłodze); wariant ACE #235 z nogą o ścianę nie jest rysowany',
-  'Side-Lying Quad Stretch': 'przybliżenie: leżenie na lewym boku, górną (prawą) nogą i dłonią od strony kamery; tułów odchylony do tyłu o 15° (obrót tułowia −75°, nie −90°: przy −90° dolny bark wchodzi pod podłogę albo tułów wisi nad nią; w widoku z boku, jedynym w aplikacji, odchylenia nie widać); głowa opada skłonem bocznym ≈ 20° na dłoń dolnej ręki leżącej na podłodze; dolna noga prosta (kolano ≈ 9°) leży na podłodze; udo górnej nogi w linii tułowia (biodro ≈ 13°), kolano zgięte ≈ 140° (granica modelu), goleń zawraca ku tyłowi ciała i w górę; dłoń 1,3 cm od kostki (sięg ręki ≈ 63 cm); stopa pochylona 45° (model nie ma stopy wzdłuż goleni leżącej na boku)',
+  'Side-Lying Quad Stretch': 'przybliżenie: leżenie na lewym boku, górną (prawą) nogą i dłonią od strony kamery; tułów odchylony do tyłu o 15° (obrót tułowia −75°, nie −90°: przy −90° dolny bark wchodzi pod podłogę albo tułów wisi nad nią; w widoku z boku, jedynym w aplikacji, odchylenia nie widać); głowa opada skłonem bocznym ≈ 20° na dłoń dolnej ręki leżącej na podłodze; dolna noga prosta (kolano ≈ 9°) leży na podłodze; udo górnej nogi w linii tułowia (biodro ≈ 13°), kolano zgięte ≈ 140° (granica modelu), goleń zawraca ku tyłowi ciała i w górę; dłoń 1,3 cm od kostki (sięg ręki ≈ 63 cm); stopa górna: oś w płaszczyźnie biodro–kolano–kostka (podbicie 35°, rotacja 40°: palce ku tyłowi ciała i w górę, jak goleń)',
 };
 export function generuj() {
   const G = {

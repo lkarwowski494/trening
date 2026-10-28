@@ -1,0 +1,96 @@
+{
+ "_opis": "Przybliżenia póz figur v2, które powołują się na ograniczenie silnika albo kontraktu (słowa: model, kontrakt, silnik w PRZYBLIZENIA generatora). Recenzja ruchu r2 (28.10.2026, L4): uzasadnienie „model stopy nie ma palców do tyłu” przeżyło zmianę silnika (podbicie 91–270° od b07c7ed7) i przez dzień opisywało nieistniejące ograniczenie. Reguła: wpis jest albo przejrzany przy bieżącym odcisku schematu kontraktu (przejrzane_przy = odciskKontraktu(schematRepo()); po zmianie schematu test czerwienieje, aż wpis zostanie przejrzany), albo jawnie do_przegladu z powodem. Nowe przybliżenie z takim uzasadnieniem bez wpisu tutaj blokuje test (scripts/figures/ograniczenia-silnika.mjs).",
+ "wpisy": [
+  {
+   "rodzina": "cable_row",
+   "cwiczenie": "Seated Cable Row",
+   "ograniczenie": "kontrakt nie ma rysunku stacji do wiosłowania",
+   "status": "do_przegladu",
+   "powod": "nie sprawdzone po zmianie silnika (b07c7ed7, 27.10.2026: podbicie 91–270°, przesunięcie boczne miednicy poza@2); przegląd przybliżeń z ograniczeniem w backlogu figur"
+  },
+  {
+   "rodzina": "chest_press_machine",
+   "cwiczenie": "Machine Shoulder Press",
+   "ograniczenie": "opis kontraktu: dźwignia maszyny z boku, nie w osi ciała",
+   "status": "do_przegladu",
+   "powod": "nie sprawdzone po zmianie silnika (b07c7ed7, 27.10.2026: podbicie 91–270°, przesunięcie boczne miednicy poza@2); przegląd przybliżeń z ograniczeniem w backlogu figur"
+  },
+  {
+   "rodzina": "glute_floor",
+   "cwiczenie": "Hip Extension with Bands",
+   "ograniczenie": "model gumy nie ma zaczepu do kostki",
+   "status": "do_przegladu",
+   "powod": "nie sprawdzone po zmianie silnika (b07c7ed7, 27.10.2026: podbicie 91–270°, przesunięcie boczne miednicy poza@2); przegląd przybliżeń z ograniczeniem w backlogu figur"
+  },
+  {
+   "rodzina": "hip_abd_add",
+   "cwiczenie": "Lateral Band Walk",
+   "ograniczenie": "model nie przesuwa miednicy w bok",
+   "status": "do_przegladu",
+   "powod": "prawdopodobnie nieaktualne: kontrakt poza@2 ma przesuniecieBoczne (przesunięcie boczne miednicy); sprawdzić przy przeglądzie rodziny hip_abd_add"
+  },
+  {
+   "rodzina": "hip_abd_add",
+   "cwiczenie": "Monster Walk",
+   "ograniczenie": "model nie przesuwa miednicy w bok",
+   "status": "do_przegladu",
+   "powod": "prawdopodobnie nieaktualne: kontrakt poza@2 ma przesuniecieBoczne (przesunięcie boczne miednicy); sprawdzić przy przeglądzie rodziny hip_abd_add"
+  },
+  {
+   "rodzina": "leg_machine",
+   "cwiczenie": "Leg Press",
+   "ograniczenie": "stopa nie ma w modelu palców skierowanych do tyłu",
+   "status": "do_przegladu",
+   "powod": "nieaktualne: silnik ma podbicie 91–270° (palce do tyłu, jak w Child's Pose i leżeniu przodem); do poprawy przy przeglądzie rodziny leg_machine (platforma nachylona 45° może oprzeć się o podeszwę)"
+  },
+  {
+   "rodzina": "mobility_floor",
+   "cwiczenie": "Seated Calf Stretch",
+   "ograniczenie": "maksymalne podbicie modelu to 90°",
+   "status": "do_przegladu",
+   "powod": "nieaktualne: zakres podbicia w kontrakcie to −90…270°; do przeglądu przy rodzinie mobility_floor (stopa pionowo = zgięcie grzbietowe 0° może zostać, uzasadnienie nie)"
+  },
+  {
+   "rodzina": "mobility_floor",
+   "cwiczenie": "Side-Lying Quad Stretch",
+   "ograniczenie": "kolano zgięte ≈ 140° to granica modelu",
+   "status": "do_przegladu",
+   "powod": "nie sprawdzone po zmianie silnika (b07c7ed7, 27.10.2026: podbicie 91–270°, przesunięcie boczne miednicy poza@2); przegląd przybliżeń z ograniczeniem w backlogu figur"
+  },
+  {
+   "rodzina": "mobility_stand",
+   "cwiczenie": "Overhead Triceps Stretch",
+   "ograniczenie": "bark L 192° przekracza limit modelu (171°)",
+   "status": "do_przegladu",
+   "powod": "nie sprawdzone po zmianie silnika (b07c7ed7, 27.10.2026: podbicie 91–270°, przesunięcie boczne miednicy poza@2); przegląd przybliżeń z ograniczeniem w backlogu figur"
+  },
+  {
+   "rodzina": "pulldown",
+   "cwiczenie": "Lat Pulldown",
+   "ograniczenie": "kontrakt nie ma sprzętu „poduszka na uda”",
+   "status": "do_przegladu",
+   "powod": "nie sprawdzone po zmianie silnika (b07c7ed7, 27.10.2026: podbicie 91–270°, przesunięcie boczne miednicy poza@2); przegląd przybliżeń z ograniczeniem w backlogu figur"
+  },
+  {
+   "rodzina": "row",
+   "cwiczenie": "Seal Row (sztanga)",
+   "ograniczenie": "ławka płaska na 80 cm opisana jako granica kontraktu (kontrakt: współrzędne do 300 cm)",
+   "status": "do_przegladu",
+   "powod": "prawdopodobnie błędne uzasadnienie: współrzędna kontraktu sięga 300 cm, więc 80 cm nie jest jej granicą; sprawdzić, skąd wynika 80 cm (wysokość siedziska ławki?)"
+  },
+  {
+   "rodzina": "shrug",
+   "cwiczenie": "Shrugs (sztanga)",
+   "ograniczenie": "uniesienie barków 6 cm to granica kontraktu",
+   "status": "do_przegladu",
+   "powod": "nie sprawdzone po zmianie silnika (b07c7ed7, 27.10.2026: podbicie 91–270°, przesunięcie boczne miednicy poza@2); przegląd przybliżeń z ograniczeniem w backlogu figur"
+  },
+  {
+   "rodzina": "shrug",
+   "cwiczenie": "Calf-Machine Shoulder Shrug",
+   "ograniczenie": "kontrakt nie ma sprzętu „poduszki na barkach”",
+   "status": "do_przegladu",
+   "powod": "nie sprawdzone po zmianie silnika (b07c7ed7, 27.10.2026: podbicie 91–270°, przesunięcie boczne miednicy poza@2); przegląd przybliżeń z ograniczeniem w backlogu figur"
+  }
+ ]
+}

@@ -35,7 +35,8 @@
         17.2,
         2.2
        ],
-       "rotacjaStopy": 10,
+       "podbicie": 0,
+       "rotacjaStopy": -60,
        "biegunKolana": [
         0.15,
         0,
@@ -104,7 +105,8 @@
         17.2,
         2.2
        ],
-       "rotacjaStopy": 10,
+       "podbicie": 0,
+       "rotacjaStopy": -60,
        "biegunKolana": [
         0.15,
         0,
@@ -173,7 +175,8 @@
         17.2,
         2.2
        ],
-       "rotacjaStopy": 10,
+       "podbicie": 0,
+       "rotacjaStopy": -60,
        "biegunKolana": [
         0.15,
         0,
@@ -242,7 +245,8 @@
         17.2,
         2.2
        ],
-       "rotacjaStopy": 10,
+       "podbicie": 0,
+       "rotacjaStopy": -60,
        "biegunKolana": [
         0.15,
         0,
@@ -311,7 +315,8 @@
         17.2,
         2.2
        ],
-       "rotacjaStopy": 10,
+       "podbicie": 0,
+       "rotacjaStopy": -60,
        "biegunKolana": [
         0.15,
         0,

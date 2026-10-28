@@ -14,17 +14,33 @@ const stabilny = (x) => (Array.isArray(x) ? `[${x.map(stabilny).join(',')}]` : x
 /** Odcisk SHA-256 wartości JSON (klucze posortowane, pola undefined pominięte, więc odcisk przeżywa zapis i odczyt pliku). */
 export const odcisk = (x) => createHash('sha256').update(stabilny(x === undefined ? null : JSON.parse(JSON.stringify(x)))).digest('hex');
 
-const git = (...a) => { try { return execFileSync('git', a, { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim(); } catch { return null; } };
+const gitW = (root, ...a) => { try { return execFileSync('git', a, { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim(); } catch { return null; } };
+const git = (...a) => gitW(ROOT, ...a);
+/** Pliki rodziny, których zmiana unieważnia starszy podgląd: generator rodziny i pozy w aplikacji (L1, recenzja ruchu r2, 28.10.2026). */
+export const plikiRodziny = (rodzina) => [`scripts/figures/agent-pozy/${rodzina}.mjs`, `lib/figures/v2/poses/${rodzina}.json`];
+/** Powody nieważności podglądu z historii gita (L1): (a) znacznik zbudowany na commicie starszym niż ostatni commit zmieniający pliki rodziny, (b) pliki rodziny mają teraz niezatwierdzone zmiany (podgląd nie wskazuje commitu, który recenzent mógłby sprawdzić). Brak gita albo brak commitów rodziny = brak zastrzeżeń. */
+export function powodyGit(rodzina, { commit, drzewo }, root = ROOT) {
+  const pliki = plikiRodziny(rodzina).filter((f) => existsSync(join(root, f))); if (!pliki.length || gitW(root, 'rev-parse', 'HEAD') === null) return [];
+  const o = []; const ostatni = gitW(root, 'log', '-1', '--format=%H', '--', ...pliki);
+  if (ostatni) {
+    if (!commit || commit === 'brak') o.push(`znacznik nie ma commitu, a pliki rodziny ${rodzina} są w historii gita (ostatnia zmiana ${ostatni.slice(0, 8)}) — nie wiadomo, czy podgląd jest świeży`);
+    else if (gitW(root, 'cat-file', '-e', `${commit}^{commit}`) === null) o.push(`commit znacznika (${commit.slice(0, 8)}) nie istnieje w tym repozytorium — nie da się ocenić świeżości podglądu`);
+    else if (gitW(root, 'merge-base', '--is-ancestor', ostatni, commit) === null) o.push(`podgląd zbudowany na ${commit.slice(0, 8)} jest starszy niż ostatni commit zmieniający pliki rodziny ${rodzina} (${ostatni.slice(0, 8)}) — zbuduj podgląd ponownie`);
+  }
+  const brudne = gitW(root, 'status', '--porcelain', '--', ...pliki);
+  if (brudne) o.push(`pliki rodziny ${rodzina} mają niezatwierdzone zmiany (${brudne.split('\n').map((l) => l.slice(3)).join(', ')}) — podgląd do recenzji budujemy z zatwierdzonego stanu (znacznik wskazuje commit)`);
+  void drzewo; return o;
+}
 /** Treść znacznika PODGLAD-WAZNY.txt: odciski póz i przybliżeń (+ SHA commitu i stan drzewa dla człowieka; rozstrzyga odcisk, nie commit). `ekstra` = dopisek wywołującego (wynik kontroli manifestu). */
-export function zbudujZnacznik({ rodzina, poze, przyblizenia, ekstra = '' }) {
-  const sha = git('rev-parse', 'HEAD'); const status = git('status', '--porcelain'); const drzewo = status === null ? 'brak-git' : status === '' ? 'czyste' : 'zmienione';
+export function zbudujZnacznik({ rodzina, poze, przyblizenia, ekstra = '', root = ROOT }) {
+  const sha = gitW(root, 'rev-parse', 'HEAD'); const status = gitW(root, 'status', '--porcelain'); const drzewo = status === null ? 'brak-git' : status === '' ? 'czyste' : 'zmienione';
   return `${ekstra ? ekstra.replace(/\n*$/, '\n') : ''}rodzina: ${rodzina}\nodcisk_poz: ${odcisk(poze)}\nodcisk_przyblizen: ${odcisk(przyblizenia)}\ncommit: ${sha ?? 'brak'}\ndrzewo: ${drzewo}\n`;
 }
 const pole = (tekst, nazwa) => new RegExp(`^${nazwa}: (.+)$`, 'm').exec(tekst)?.[1]?.trim() ?? null;
 const wczytaj = (p) => JSON.parse(readFileSync(p, 'utf8'));
 
 /** Lista powodów, dla których podgląd w katalogu `dir` jest NIEWAŻNY (pusta = ważny). `generator` = moduł generatora rodziny (generuj, PRZYBLIZENIA); domyślnie importowany z agent-pozy/<rodzina>.mjs. */
-export async function sprawdzPodglad(dir, { generator } = {}) {
+export async function sprawdzPodglad(dir, { generator, root = ROOT } = {}) {
   const o = []; const znacznik = join(dir, 'PODGLAD-WAZNY.txt');
   if (!existsSync(znacznik)) return [`brak znacznika PODGLAD-WAZNY.txt w ${dir}${existsSync(join(dir, 'PODGLAD-NIEWAZNY.txt')) ? ' (jest PODGLAD-NIEWAZNY.txt)' : ''} — podgląd nie przeszedł kontroli`];
   const tekst = readFileSync(znacznik, 'utf8'); const oPoz = pole(tekst, 'odcisk_poz'); const oPrz = pole(tekst, 'odcisk_przyblizen'); const rodzina = pole(tekst, 'rodzina');
@@ -35,6 +51,10 @@ export async function sprawdzPodglad(dir, { generator } = {}) {
   if (odcisk(przyblizenia) !== oPrz) o.push('manifest.json: przybliżenia nie zgadzają się z odciskiem przybliżeń w znaczniku (przybliżenia zmieniono po zbudowaniu podglądu)');
   const gen = generator ?? await import(pathToFileURL(join(ROOT, 'scripts/figures/agent-pozy', `${rodzina}.mjs`)).href);
   const G = gen.generuj();
+  /* L1: podgląd do recenzji obejmuje CAŁĄ rodzinę (każde ćwiczenie generatora bez jawnego wyjątku) — podgląd samych zmienionych póz nie pozwala sprawdzić regresji pozostałych */
+  const wyjatki = gen.WYJATKI ?? {}; const brakuje = Object.keys(G).filter((cw) => !(cw in wyjatki) && !(cw in poze));
+  if (brakuje.length) o.push(`podgląd niepełnej rodziny ${rodzina}: brakuje ${brakuje.length} z ${Object.keys(G).filter((cw) => !(cw in wyjatki)).length} póz (${brakuje.slice(0, 6).join(', ')}${brakuje.length > 6 ? '…' : ''}) — zbuduj podgląd całej rodziny (bez --tylko) i popraw pozy, które nie przechodzą`);
+  o.push(...powodyGit(rodzina, { commit: pole(tekst, 'commit'), drzewo: pole(tekst, 'drzewo') }, root));
   for (const cw of Object.keys(poze)) {
     if (!(cw in G)) { o.push(`poza „${cw}” z podglądu nie istnieje już w generatorze rodziny ${rodzina}`); continue; }
     let teraz; try { teraz = JSON.parse(JSON.stringify(G[cw]())); } catch (e) { o.push(`generator rodziny ${rodzina} nie buduje już pozy „${cw}”: ${e.message}`); continue; }

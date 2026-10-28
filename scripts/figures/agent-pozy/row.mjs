@@ -2,7 +2,7 @@
 // Tułów pochylony w biodrach (40–105°, stały ±10°), plecy neutralne (zgięcie kręgosłupa ≤ 10°), kolana ugięte ≤ 40°; łokcie: z prawie prostych (≤ 20°) do ≥ 70° i za linią tułowia (≥ 5 cm).
 // Błąd mis.roundBack: zaokrąglone plecy (zgięcie kręgosłupa narasta do 30°, barki zjeżdżają w dół, ręce poruszają się razem z barkami).
 import { lezyPrzodem, U9 } from './gora.mjs';
-import { ROT_STOPA_LEZY } from './core_floor.mjs';
+import { podbicieStopyPrzodem } from './core_floor.mjs';
 import { KOLANO_LEKKO_MAX_DEG } from '../v2-sens.mjs';
 import { v2, BODY, R, r1, lerp, Y_STOJ, SPRZET, poza, noga3, bark, ramieFK, buduj, wyc, naLawce, kier } from './gora.mjs';
 
@@ -63,9 +63,13 @@ function przodem(cw, o) {
 export const WYJATKI = {
   'Meadows Row': 'landmine + sztanga jedną ręką jest już obsługiwane (środek gryfu na chwycie trzymającej dłoni), ale tor wiosłowania nie leży na sferze gryfu: oś obrotu landmine może być co najwyżej 30 cm nad podłogą, a dłoń porusza się po łuku o promieniu 200 cm wokół osi (przemieszczenie ≈ 30 cm do tyłu i 45 cm w górę wymagałoby osi ≈ 80 cm nad podłogą i ≈ 120 cm przed osobą); nie da się narysować bez fałszowania toru',
 };
+/** Wiosłowanie w opadzie z kolanem ≤ 30° (KOLANO_LEKKO_MAX_DEG) osiągniętym przesunięciem stóp przed miednicę (`dobierzX`): goleń odchylona do tyłu, kolano za piętą (recenzja ruchu r2, F4). Test: każda poza row z kolanem za piętą ≥ 3 cm ma wpis. */
+export const WIOSLO_STOPY_PRZED_KOLANEM = ['Bent Over Row (sztanga)', 'Bent Over Row (hantle)', 'Reverse Grip Bent Over Row', 'Barbell Rear Delt Row', 'Pendlay Row', 'Smith Machine Bent Over Row', 'Bent Over Row (linki)', 'T-Bar Row'];
+const PRZYBLIZENIE_STOPY_PRZED_KOLANEM = 'przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony';
 export const PRZYBLIZENIA = {
-  'Seal Row (sztanga)': 'przybliżenie: ławka płaska na wysokości 80 cm (granica kontraktu), osoba leży przodem głową do przodu (+x), stopy obrócone na zewnątrz o 70° (nie 90°: przy 90° stopa rysowałaby się w widoku z boku jako punkt; model stopy nie ma palców do tyłu), sztanga zwisa pod ławką',
-  'T-Bar Row': 'przybliżenie: T-bar jako dźwignia obrotowa z osią przed osobą (schemat; uchwyt na ramieniu dźwigni, bez rysowania talerzy)',
+  ...Object.fromEntries(WIOSLO_STOPY_PRZED_KOLANEM.map((cw) => [cw, PRZYBLIZENIE_STOPY_PRZED_KOLANEM])),
+  'Seal Row (sztanga)': 'przybliżenie: ławka płaska na wysokości 80 cm (granica kontraktu), osoba leży przodem głową do przodu (+x), stopy grzbietem w dół, palce do tyłu (podbicie 91…270° silnika), sztanga zwisa pod ławką',
+  'T-Bar Row': `przybliżenie: T-bar jako dźwignia obrotowa z osią przed osobą (schemat; uchwyt na ramieniu dźwigni, bez rysowania talerzy); ${PRZYBLIZENIE_STOPY_PRZED_KOLANEM.replace('przybliżenie: ', '')}`,
 };
 
 export function generuj() {
@@ -97,7 +101,7 @@ export function generuj() {
     sx = dobierzX(sx, (x) => { sx = x; return kolanoMax(fr(0, false), 'T-Bar Row'); });
     return buduj({ rodzina: RODZINA, cw: 'T-Bar Row', sprzet: [SPRZET.podloga(-110, 130), { rodzaj: 'dzwignia', tryb: 'obrot', x: P[0], y: P[1], z: 0, dlugosc: r, punkt: 'dlonie', trzyma: 'obie' }], fr, us: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1], blad: { cue: 'mis.roundBack', postawa: false, znacznik: 'back' } }); };
   /* --- seal row: przodem na wysokiej ławce płaskiej (głowa do przodu), sztanga zwisa pod ławką --- */
-  G['Seal Row (sztanga)'] = () => { const m = [-15, 89.5]; const p = 90; const noga = (s) => noga3([m[0] - 82.5, 89.5, POL(s) * 10], [0, 1, 0], { pod: 0, rot: ROT_STOPA_LEZY });
+  G['Seal Row (sztanga)'] = () => { const m = [-15, 89.5]; const p = 90; const noga = (s) => noga3([m[0] - 82.5, 89.5, POL(s) * 10], [0, 1, 0], { pod: podbicieStopyPrzodem(180), rot: 0 }); /* nogi leżą poziomo za ławką (goleń ku −x): stopa grzbietem w dół, palce do tyłu */
     const fr = (u) => { const rece = {}; for (const s of SIDES) { const sg = POL(s); const S = bark(m, p, sg); const H0 = [S[0] + 2, S[1] - 63.4]; const H1 = [S[0] - 22, S[1] - 24]; rece[s] = { g: [lerp(H0[0], H1[0], u), lerp(H0[1], H1[1], u), sg * 24], pole: [-0.6, 0.9, 0.4 * sg], obrot: -75 }; }
       return poza({ u, tulow: { m, p, glowa: 80 }, nogi: { R: noga('R'), L: noga('L') }, rece }); };
     return buduj({ rodzina: RODZINA, cw: 'Seal Row (sztanga)', sprzet: [SPRZET.podloga(-130, 130), { rodzaj: 'lawka', x: 0, top: 80, kat: 0, dlugosc: 110, siedzisko: 70 }, B], fr, us: U5 }); };

@@ -20,7 +20,7 @@ const UCHWYT_MASZYNY_Z = 15; /* połowa rozstawu uchwytów maszyny (cm): dolna g
 export const PRZYBLIZENIA = {
   'Hip Extension with Bands': 'przybliżenie: guma w pętli na kostkach (model gumy nie ma zaczepu do kostki), opór rośnie, gdy kostka ucieka do tyłu; ręce na biodrach',
   'Machine Glute Kickback': 'przybliżenie: maszyna schematyczna — uchwyty rysowane jako dwie równoległe poręcze przed klatką (dłonie na nich), bez oparcia klatki i poduszki; dźwignia obraca się wokół biodra i prowadzi kostkę',
-  'Clamshell': 'przybliżenie: leżenie na lewym boku jak w rozciąganiu na boku (obrót tułowia −75°, nie −90°: dolny bark nie wchodzi pod podłogę; w widoku z boku odchylenia nie widać); głowa na dłoni dolnej ręki; zgięcie bioder do przodu (od kamery) jest skrócone w widoku z boku; odwodzenie widać jako uniesienie górnego kolana',
+  'Clamshell': 'przybliżenie: leżenie na lewym boku jak w rozciąganiu na boku (obrót tułowia −75°, nie −90°: dolny bark nie wchodzi pod podłogę; w widoku z boku odchylenia nie widać, w widoku z przodu tak); głowa na dłoni dolnej ręki; stopa górna idzie za goleniem (podbicie do 30° przy unoszeniu kolana), obie stopy palcami w stronę kolan; zgięcie bioder do przodu (od kamery) jest skrócone w widoku z boku; odwodzenie widać jako uniesienie górnego kolana',
   'Prone Flutter Kicks': 'przybliżenie: nogi poza końcem ławki (ławka płaska), ruch naprzemienny pokazują dwie fazy skrajne',
 };
 /** Składanie pozy: błędy bez opisu w pl.json odpadają (z powodem w PRZYBLIZENIA), `dod` = etykiety `dotyczy` dla pól spoza delta() (skręt, przechył). */
@@ -49,10 +49,17 @@ function donkey(cw, o = {}) {
   return zloz(cw, [PODLOGA(-120, 120)], US.map(ok), [bl]);
 }
 
-/** Fire Hydrant: udo odwodzi się bokiem (kolano w górę i na zewnątrz), kolano zgięte 90°, miednica nieruchoma. */
+/** Podbicie i rotacja stopy strony R dla kierunku pięta → palce w (wektor jednostkowy świata): kontrakt opisuje kierunek jako (cos p cos r, sin p, cos p sin r); p ∈ [−90, 270] (91…270 = palce do tyłu), r ∈ [−90, 90]. */
+function stopaZKierunku(w) {
+  const wy = Math.max(-1, Math.min(1, w[1])); const c = (w[0] < 0 ? -1 : 1) * Math.sqrt(1 - wy * wy) || 1e-9; let p = Math.atan2(wy, c) / R; if (p < -90) p += 360;
+  return { pod: r1(p), rot: r1(Math.atan2(w[2] / c, w[0] / c) / R) };
+}
+/** Fire Hydrant: udo odwodzi się bokiem (kolano w górę i na zewnątrz), kolano zgięte 90°, miednica nieruchoma. Stopa idzie za goleniem (R11: oś stopy w płaszczyźnie biodro–kolano–kostka): kierunek stopy z klatki u = 0 obracany razem z nogą wokół osi x. */
 function hydrant(cw, o = {}) {
   const { alfa = 55 } = o; const nogaU = (u) => { const a = alfa * a01(u); return { d: rotX([0, -1, 0], a), e: rotX([Math.cos(165 * R), Math.sin(165 * R), 0], a) }; };
-  const ok = (u) => czworakRamka({ u, noga: nogaU(u) }); const zle = (u) => czworakRamka({ u, noga: nogaU(u), tilt: 12 * a01(u) });
+  const E = v2(); const f0 = (() => { const k = czworakRamka({ u: 0, noga: nogaU(0) }); const sk = E.keyframeFrame({ kontrakt: E.CONTRACT.id, rodzina: RODZINA, cwiczenie: cw, sprzet: [PODLOGA(-120, 120)], klatki: [k, { ...k, u: 1 }], bledy: [] }, 0).sk.legs.R; const v = nrm(sk.toe.map((x, i) => x - sk.heel[i])); return v; })();
+  const stopa = (u) => stopaZKierunku(rotX(f0, alfa * a01(u)));
+  const ok = (u) => czworakRamka({ u, noga: { ...nogaU(u), ...stopa(u) } }); const zle = (u) => czworakRamka({ u, noga: { ...nogaU(u), ...stopa(u) }, tilt: 12 * a01(u) });
   const bl = bladZTrajektorii({ cue: 'hab.mis.high', znacznik: 'pelvis', us: US, ok, zle });
   /* delta przechyłu miednicy (pole poza@2) nie jest liczona przez delta(): dopisana ręcznie */
   bl.klatki = US.map((u) => (u === 0 ? { u: 0 } : { u, przechylMiednicy: r1(12 * a01(u)) }));
@@ -62,13 +69,17 @@ function hydrant(cw, o = {}) {
 /* ---------- leżenie bokiem (clamshell): LEWY bok na podłodze, klatka ku −z (od kamery), głowa ku −x; górna noga R po stronie kamery ----------
  * Jak Side-Lying Quad (mob.mjs BOK): obrys tułowia i spodenek ≤ 2 cm nad podłogą, dolna ręka leży pod głową (głowa podparta), dolna noga ugięta (biodro ≈ 45°, kolano ≈ 90°) leży na podłodze. Górna noga: kolano unosi się o 45° ku górze i przodowi, stopy razem. */
 export const LEZY_BOK_UWAGA = 'leżenie na lewym boku (jak w mobilności, backlog figur 28.10.2026: poprzednia poza wisiała 4–8 cm nad podłogą i miała głowę bez podparcia)';
+const BLAD_SKRET = 25, BLAD_KOLANO = 40; /* błąd Clamshell: skręt tułowia i przechył miednicy (stopnie) w ostatniej klatce */
+const PODBICIE_GORA = 30; /* stopa górna idzie za goleniem, gdy kolano się unosi (oś stopy w płaszczyźnie biodro–kolano–kostka ±30°) */
 function clamshell(cw, o = {}) {
   const { kolanoGora = 45 } = o; const T = bokSonda();
   const poleU = (u) => nrm([0.15, Math.sin(kolanoGora * a01(u) * R), -Math.cos(kolanoGora * a01(u) * R)]).map((v) => r1(v * 100) / 100);
   const rece = { L: bokDolnaReka(T), R: { g: [r1(T.sh.R[0] + 22), 3.5, -22], pole: [0, 0.6, 0.4] } };
-  const fr = (u, tw) => bokKlatka(u, bokNogiUlozone(T, poleU(u)), rece, tw === undefined ? {} : { twist: tw });
-  const bl = { cue: 'hab.mis.high', znacznik: 'pelvis', dod: ['spine'], klatki: US.map((u) => (u === 0 ? { u: 0 } : { u, skretTulowia: r1(25 * a01(u)) })) };
-  return zloz(cw, [PODLOGA(-120, 120)], US.map((u) => fr(u)), [bl]);
+  const fr = (u, ext = {}) => bokKlatka(u, bokNogiUlozone(T, poleU(u), r1(PODBICIE_GORA * a01(u))), rece, ext);
+  /* błąd „noga za wysoko — biodro zaczyna się przechylać”: górne kolano unosi się wyżej (odchylenieKolana > 0 obraca kierunek zgięcia ku górze), a tułów odchyla się do tyłu względem miednicy (skretTulowia) */
+  const bl = bladZTrajektorii({ cue: 'hab.mis.high', znacznik: 'pelvis', us: US, ok: (u) => fr(u), zle: (u) => fr(u, { twist: r1(BLAD_SKRET * a01(u)) }) });
+  bl.klatki = bl.klatki.map((k) => (k.u === 0 ? k : { ...k, nogi: { R: { odchylenieKolana: r1(BLAD_KOLANO * a01(k.u)) } } }));
+  bl.dod = ['spine']; return zloz(cw, [PODLOGA(-120, 120)], US.map((u) => fr(u)), [bl]);
 }
 
 /* ---------- stanie: kickback przy wyciągu, z gumą, na maszynie ---------- */
