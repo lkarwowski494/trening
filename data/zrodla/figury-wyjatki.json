@@ -6,6 +6,7 @@
  "cwiczenia": {
   "Stomach Vacuum": "ruch wewnętrzny (wciąganie brzucha) bez widocznej zmiany pozy szkieletu; animacja szkieletem nie ma sensu (decyzja właściciela 26.10.2026)",
   "Inverted Row": "model nie pozwala jednocześnie na zwis startowy z rękami w pionie, łokieć za linią pleców (w środku i na końcu ruchu) i odwiedzenie ≤ 45° przy ramieniu 28 cm, przedramieniu 30 cm i piętach na podłodze (przeszukanie: by 72–100, θ 125–150, bieguny łokcia; zawsze pada tor łokcia albo odwiedzenie); generator inverted() zostaje do ponownej próby po zmianie proporcji lub kontraktu",
-  "Clock Push-Up": "brak cechy rozpoznawczej: pompka z dłońmi przesuniętymi przód/tył nie pokazuje, że dłonie wędrują po okręgu (zegar), a ciało obraca się wokół stóp; wymagany widok z góry albo sekwencja kilku powtórzeń z obrotem tułowia (recenzja n3, 26.10.2026)"
+  "Clock Push-Up": "brak cechy rozpoznawczej: pompka z dłońmi przesuniętymi przód/tył nie pokazuje, że dłonie wędrują po okręgu (zegar), a ciało obraca się wokół stóp; wymagany widok z góry albo sekwencja kilku powtórzeń z obrotem tułowia (recenzja n3, 26.10.2026)",
+  "Calf Press (leg press)": "figura nie modeluje platformy pod przodostopiem (ćwiczenie to wspięcie na kuli stopy na platformie suwnicy: stopa stoi na krawędzi platformy, pięta w powietrzu; w modelu stopa ma tylko pręt przez but, bez zaczepu „przodostopie”, więc platforma nie ma gdzie się oprzeć o stopę); decyzja koordynatora 28.10.2026 wg analogii (Smith Machine Leg Press, Inchworm); rozbudowa silnika w backlogu docs/50"
  }
 }

@@ -101,6 +101,7 @@ export function belt(cw, o = {}) {
 
 export const WYJATKI = {
   'Smith Machine Leg Press': 'stopy pchają sztangę Smitha leżąc pod nią, a sztanga w kontrakcie jest zawsze trzymana dłońmi (chwyt dłoni na osi gryfu w każdej klatce) — ćwiczenie bez rąk na sztandze nie da się narysować',
+  'Calf Press (leg press)': 'figura nie modeluje platformy pod przodostopiem (ćwiczenie to wspięcie na kuli stopy na platformie suwnicy: stopa stoi na krawędzi platformy, pięta w powietrzu; w modelu stopa ma tylko pręt przez but, bez zaczepu „przodostopie”, więc platforma nie ma gdzie się oprzeć o stopę); decyzja koordynatora 28.10.2026 wg analogii (Smith Machine Leg Press, Inchworm); rozbudowa silnika w backlogu docs/50',
 };
 export const PRZYBLIZENIA = {
   'Hack Squat': 'przybliżenie: oparcie maszyny jako nieruchoma ławka skośna (plecy ślizgają się po niej); sanie, poduszki barkowe i platforma pod stopami niemodelowane (stopy stoją na podłodze)',
@@ -108,7 +109,6 @@ export const PRZYBLIZENIA = {
   'Lying Machine Squat': 'przybliżenie: jak Hack Squat, oparcie pochylone 42° od poziomu (leżąc na pochyłym oparciu); sanie, poduszki barkowe i platforma niemodelowane',
   'Leg Press': 'przybliżenie: suwnica pozioma (siad, platforma pionowa): stopa nie ma w modelu palców skierowanych do tyłu, więc platformy nachylonej 45° nie da się oprzeć o podeszwę',
   'Single Leg Press': 'przybliżenie: suwnica pozioma (siad, platforma pionowa); noga wolna stoi na podłodze obok',
-  'Calf Press (leg press)': 'przybliżenie: suwnica pozioma; stopa obraca się wokół kuli stopy na dolnej krawędzi platformy',
 };
 export function generuj() {
   return {

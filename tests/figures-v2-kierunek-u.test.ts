@@ -1,7 +1,7 @@
 /*
  * Strażnik kierunku u: 0 → 1 (recenzja treści kart leg_machine i lunge, 28.10.2026, Z4). Wpis rodziny w DATA_UI (`lowerFirst`, `names`) mówi, czy faza 0 → 1 to opuszczanie, ale w rodzinie kierunek bywa różny:
  * Leg Press, Single Leg Press (wypychanie) kontra Hack Squat i reszta (opuszczanie); Step Up, Barbell Step Up (wejście w górę) kontra reszta wykroków (opuszczanie). Jeden wpis bez wyjątków dałby błędne nazwy i czasy faz.
- * Kierunek wynika z geometrii póz: miednica (zmiana wysokości ≥ PELVIS_MIN_CM), a gdy miednica stoi — kolano (zmiana ≥ MIN_MEASURED_ROM.deg). Ćwiczenie bez takiego ruchu (Calf Press: tylko kostka) musi mieć kierunek zadeklarowany wprost w wyjątku (`lowerFirst`).
+ * Kierunek wynika z geometrii póz: miednica (zmiana wysokości ≥ PELVIS_MIN_CM), a gdy miednica stoi — kolano (zmiana ≥ MIN_MEASURED_ROM.deg). Ćwiczenie bez takiego ruchu (ruch tylko w kostce) musi mieć kierunek zadeklarowany wprost w wyjątku (`lowerFirst`).
  * Rodziny: leg_machine i lunge są jeszcze „planned” (bez wpisu DATA_UI) — test pokazuje na proponowanych wpisach, że jeden wpis jest czerwony, a wpis z wyjątkami zielony; wpis każdej rodziny z plikiem póz (także przyszły) jest sprawdzany automatycznie.
  */
 import * as fs from 'fs';
@@ -44,13 +44,13 @@ const WEJSCIE = { names: { first: 'Wstawanie', second: 'Opuszczanie' }, lowerFir
 
 describe('kierunek u z geometrii póz (dane, logika)', () => {
   test.each([
-    ['leg_machine', 'Leg Press', 'wysilek'], ['leg_machine', 'Single Leg Press', 'wysilek'], ['leg_machine', 'Calf Press (leg press)', null],
+    ['leg_machine', 'Leg Press', 'wysilek'], ['leg_machine', 'Single Leg Press', 'wysilek'],
     ['leg_machine', 'Hack Squat', 'opuszczanie'], ['leg_machine', 'Pendulum Squat', 'opuszczanie'], ['leg_machine', 'Lying Machine Squat', 'opuszczanie'], ['leg_machine', 'Belt Squat Machine', 'opuszczanie'],
     ['lunge', 'Step Up', 'wysilek'], ['lunge', 'Barbell Step Up', 'wysilek'], ['lunge', 'Reverse Lunge', 'opuszczanie'], ['lunge', 'Pistol Squat', 'opuszczanie'], ['lunge', 'Lateral Lunge', 'opuszczanie'],
   ] as const)('%s / %s: kierunek %s', (f, k, oczekiwany) => { expect(kierunekU(plik(f)[k])).toBe(oczekiwany); });
   test('lista odwróceń: w leg_machine i lunge dokładnie te ćwiczenia mają u 0→1 inny niż „opuszczanie” (wejście dla wpisów DATA_UI)', () => {
     const inne = (f: string) => Object.entries(plik(f)).filter(([, d]) => kierunekU(d) !== 'opuszczanie').map(([k]) => k);
-    expect(inne('leg_machine')).toEqual(['Leg Press', 'Single Leg Press', 'Calf Press (leg press)']); expect(inne('lunge')).toEqual(['Step Up', 'Barbell Step Up']);
+    expect(inne('leg_machine')).toEqual(['Leg Press', 'Single Leg Press']); expect(inne('lunge')).toEqual(['Step Up', 'Barbell Step Up']);
   });
 });
 
@@ -72,11 +72,11 @@ describe('wyjątek lowerFirst w DATA_UI (silnik)', () => {
 });
 
 describe('strażnik: wpis DATA_UI zgodny z kierunkiem u dla każdego ćwiczenia', () => {
-  test('leg_machine: jeden wpis rodziny jest czerwony (trzy ćwiczenia), wpis z wyjątkami zielony', () => {
+  test('leg_machine: jeden wpis rodziny jest czerwony (dwa ćwiczenia), wpis z wyjątkami zielony', () => {
     expect(naruszenia('leg_machine', OPUSZCZANIE)).toEqual([
-      'Leg Press: u 0→1 to wysilek, a lowerFirst = true', 'Single Leg Press: u 0→1 to wysilek, a lowerFirst = true', 'Calf Press (leg press): kierunek nie do zmierzenia, a wyjątek nie deklaruje lowerFirst',
+      'Leg Press: u 0→1 to wysilek, a lowerFirst = true', 'Single Leg Press: u 0→1 to wysilek, a lowerFirst = true',
     ]);
-    expect(naruszenia('leg_machine', { ...OPUSZCZANIE, exceptions: { 'Leg Press': WYPYCHANIE, 'Single Leg Press': WYPYCHANIE, 'Calf Press (leg press)': { ...WYPYCHANIE } } })).toEqual([]);
+    expect(naruszenia('leg_machine', { ...OPUSZCZANIE, exceptions: { 'Leg Press': WYPYCHANIE, 'Single Leg Press': WYPYCHANIE } })).toEqual([]);
   });
   test('lunge: jeden wpis rodziny jest czerwony (wejścia na stopień), wpis z wyjątkami zielony', () => {
     expect(naruszenia('lunge', OPUSZCZANIE)).toEqual(['Step Up: u 0→1 to wysilek, a lowerFirst = true', 'Barbell Step Up: u 0→1 to wysilek, a lowerFirst = true']);
