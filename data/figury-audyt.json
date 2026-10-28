@@ -1,0 +1,264 @@
+{
+  "schema": "figury-audyt@1",
+  "opis": "Rodziny figur po niezależnym audycie ruchu i treści karty. Eksport dla strony pomija figury rodzin bez stanu zatwierdzona. Stan zmienia tylko recenzent po poprawkach; zatwierdzona wymaga daty oraz istniejących plików recenzji ruchu i treści. Pliki recenzji ruchu leżą na gałęzi przekazanie-konta.",
+  "rodziny": {
+    "squat": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/squat.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "bench_press": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/bench_press.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "hinge": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/hinge.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "pushup_plank": {
+      "stan": "brak",
+      "recenzjaRuchu": null,
+      "recenzjaTresci": null,
+      "uwaga": "brak niezależnej recenzji ruchu i treści karty"
+    },
+    "dip": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/dip.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "overhead_press": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/overhead_press.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "row": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/row.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "cable_row": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/cable_row.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "pull_up": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/pull_up.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "pulldown": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/pulldown.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "lunge": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/lunge.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "leg_machine": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/leg_machine.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "leg_isolation": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/leg_isolation.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "calf_raise": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/calf_raise.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "hip_bridge": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/hip_bridge.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "kb_ballistic": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/kb_ballistic.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "olympic": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/olympic.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "back_extension": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/back_extension.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "curl": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/curl.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "triceps": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/triceps.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "delt_raise": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/delt_raise.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "chest_fly": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/chest_fly.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "shrug": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/shrug.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu bez błędów (0), ale brak audytu treści karty"
+    },
+    "rotator_cuff": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/rotator_cuff.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "core_floor": {
+      "stan": "brak",
+      "recenzjaRuchu": null,
+      "recenzjaTresci": null,
+      "uwaga": "brak niezależnej recenzji ruchu i treści karty"
+    },
+    "core_hang": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/core_hang.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "core_standing": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/core_standing.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "carry": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/carry.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "cardio": {
+      "stan": "brak",
+      "recenzjaRuchu": null,
+      "recenzjaTresci": null,
+      "uwaga": "brak niezależnej recenzji ruchu i treści karty"
+    },
+    "plyo": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/plyo.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "sled_throw": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/sled_throw.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "strongman": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/strongman.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "glute_floor": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/glute_floor.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "hip_abd_add": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/hip_abd_add.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "mobility_stand": {
+      "stan": "brak",
+      "recenzjaRuchu": null,
+      "recenzjaTresci": null,
+      "uwaga": "brak niezależnej recenzji ruchu i treści karty"
+    },
+    "mobility_floor": {
+      "stan": "brak",
+      "recenzjaRuchu": null,
+      "recenzjaTresci": null,
+      "uwaga": "brak niezależnej recenzji ruchu i treści karty"
+    },
+    "foam_roll": {
+      "stan": "brak",
+      "recenzjaRuchu": null,
+      "recenzjaTresci": null,
+      "uwaga": "brak niezależnej recenzji ruchu i treści karty"
+    },
+    "neck": {
+      "stan": "brak",
+      "recenzjaRuchu": null,
+      "recenzjaTresci": null,
+      "uwaga": "brak niezależnej recenzji ruchu i treści karty"
+    },
+    "forearm": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/forearm.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu bez błędów (0), ale brak audytu treści karty"
+    },
+    "thruster": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/thruster.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "chest_press_machine": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/chest_press_machine.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "cable_press": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/cable_press.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    },
+    "kneeling_hinge": {
+      "stan": "do_poprawy",
+      "recenzjaRuchu": "docs/przekazanie/notatki/recenzje-1-1/kneeling_hinge.md",
+      "recenzjaTresci": null,
+      "uwaga": "recenzja ruchu 27.10.2026 znalazła błędy do poprawy; brak audytu treści karty"
+    }
+  }
+}
