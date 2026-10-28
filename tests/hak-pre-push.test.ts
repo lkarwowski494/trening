@@ -12,7 +12,7 @@ const INSTALATOR = join(root, 'scripts/hooks/instaluj.mjs');
 const SPRAWDZ = join(root, 'scripts/hooks/sprawdz-instalacje.mjs');
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
 const hakTekst = () => readFileSync(HAK, 'utf8');
-const bezKomentarzy = (s: string) => s.split('\n').filter(l => !/^\s*#/.test(l)).join('\n');
+const bezKomentarzy = (s: string) => s.split('\n').filter(l => !/^\s*#/.test(l) && !/^\s*echo /.test(l)).join('\n'); /* bez komentarzy i komunikatów (echo) */
 
 const tmp: string[] = [];
 const nowyKatalog = (p: string) => { const d = mkdtempSync(join(tmpdir(), p)); tmp.push(d); return d; };
@@ -45,6 +45,7 @@ function repoProbne(): { dir: string; zdalne: string } {
   for (const f of ['pre-push', 'instaluj.mjs', 'sprawdz-instalacje.mjs']) copyFileSync(join(root, 'scripts/hooks', f), join(dir, 'scripts/hooks', f));
   copyFileSync(join(root, 'scripts/verify-docs.mjs'), join(dir, 'scripts/verify-docs.mjs'));
   copyFileSync(join(root, 'scripts/numeruj-lekcje.mjs'), join(dir, 'scripts/numeruj-lekcje.mjs'));
+  copyFileSync(ZNACZNIK, join(dir, 'scripts/verify-znacznik.mjs'));
   chmodSync(join(dir, 'scripts/hooks/pre-push'), 0o755);
   writeFileSync(join(dir, 'plik.txt'), '1\n');
   git(dir, ['add', '-A']);
@@ -56,7 +57,11 @@ const zainstaluj = (dir: string, env: NodeJS.ProcessEnv = bezCI()) =>
   spawnSync(process.execPath, [INSTALATOR], { cwd: dir, env, encoding: 'utf8' });
 const hooksPath = (dir: string) => git(dir, ['config', '--local', '--get', 'core.hooksPath']).stdout.trim();
 const zNpm = (npm: { bin: string; log: string }, fail = '') =>
-  ({ ...bezCI(), PATH: `${npm.bin}:${process.env.PATH}`, NPM_LOG: npm.log, NPM_FAIL: fail }) as NodeJS.ProcessEnv;
+  ({ ...bezCI(), PATH: `${npm.bin}:${process.env.PATH}`, NPM_LOG: npm.log, NPM_FAIL: fail, VERIFY_ZNACZNIK_PLIK: join(npm.bin, 'znaczniki.json') }) as NodeJS.ProcessEnv;
+/* L-NNN (opcja A, 28.10.2026): znacznik zielonego verify w pliku tymczasowym (VERIFY_ZNACZNIK_PLIK), jak po `npm run verify` w repo `dir` */
+const ZNACZNIK = join(root, 'scripts/verify-znacznik.mjs');
+const oznacz = (dir: string, npm: { bin: string; log: string }, rodzaj = 'pelne') =>
+  spawnSync(process.execPath, [ZNACZNIK, '--zapisz', rodzaj], { cwd: dir, env: zNpm(npm), encoding: 'utf8' });
 const gałęzieZdalne = (zdalne: string) => git(zdalne, ['for-each-ref', '--format=%(refname:short)', 'refs/heads']).stdout.trim().split('\n').filter(Boolean);
 
 describe('hak pre-push — plik (L-009)', () => {
@@ -89,8 +94,13 @@ describe('hak pre-push — plik (L-009)', () => {
 });
 
 describe('hak pre-push — działanie z podstawionym npm', () => {
-  const uruchom = (npm: ReturnType<typeof falszywyNpm>, fail = '', input = 'refs/heads/x 1234567890abcdef refs/heads/x 0000000000000000\n') =>
-    spawnSync(HAK, [], { cwd: root, env: zNpm(npm, fail), input, encoding: 'utf8' });
+  /* prawdziwy commit repo próbnego (bez docs/, bez origin) ze znacznikiem w pliku tymczasowym — hak sprawdza znacznik przed lintem (L-NNN) */
+  const PROBA = repoProbne().dir;
+  const HEAD = git(PROBA, ['rev-parse', 'HEAD']).stdout.trim();
+  const uruchom = (npm: ReturnType<typeof falszywyNpm>, fail = '', input = `refs/heads/x ${HEAD} refs/heads/x 0000000000000000\n`, znacznik = true) => {
+    if (znacznik) expect(oznacz(PROBA, npm).status).toBe(0);
+    return spawnSync(HAK, [], { cwd: PROBA, env: zNpm(npm, fail), input, encoding: 'utf8' });
+  };
 
   test('zielone: dwa polecenia (lint, check:pochodne) w kolejności, kod 0, czas w komunikacie', () => {
     const npm = falszywyNpm();
@@ -113,6 +123,12 @@ describe('hak pre-push — działanie z podstawionym npm', () => {
     expect(r.stderr).toContain(naprawa);
     expect(r.stderr).toContain('git push --no-verify');
   });
+  test('L-NNN (28.10.2026): bez znacznika zielonego verify dla wypychanego drzewa — zatrzymane przed lintem, po polsku, z obejściem', () => {
+    const npm = falszywyNpm();
+    const r = uruchom(npm, '', undefined, false);
+    expect(r.status).toBe(1); expect(wywolania(npm.log)).toEqual([]);
+    expect(r.stderr).toContain('WYPCHNIĘCIE ZATRZYMANE'); expect(r.stderr).toContain('npm run verify'); expect(r.stderr).toContain('git push --no-verify');
+  });
   test('samo usuwanie gałęzi (same zera) nie uruchamia sprawdzeń', () => {
     const npm = falszywyNpm();
     const r = uruchom(npm, 'lint', '(delete) 0000000000000000 refs/heads/x 1234567890abcdef\n');
@@ -121,7 +137,7 @@ describe('hak pre-push — działanie z podstawionym npm', () => {
   });
   test('wypchnięcie razem z usunięciem nadal sprawdza', () => {
     const npm = falszywyNpm();
-    const r = uruchom(npm, '', '(delete) 0000 refs/heads/a 1234\nrefs/heads/b 1234567890 refs/heads/b 0000\n');
+    const r = uruchom(npm, '', `(delete) 0000 refs/heads/a 1234\nrefs/heads/b ${HEAD} refs/heads/b 0000\n`);
     expect(r.status).toBe(0);
     expect(wywolania(npm.log)).toHaveLength(2);
   });
@@ -138,6 +154,7 @@ describe('hak: zmiany w docs/ — numeracja lekcji i testy dokumentów (L-037, w
     git(r.dir, ['checkout', '-q', '-b', galaz]);
     if (zmiana === 'docs') writeFileSync(join(r.dir, 'docs/40-lekcje.md'), lekcje(naglowek)); else writeFileSync(join(r.dir, 'plik.txt'), '2\n');
     git(r.dir, ['commit', '-q', '-am', 'zmiana']);
+    expect(oznacz(r.dir, npm).status).toBe(0); /* zielone verify po commicie */
     return { ...r, npm };
   }
   const JEST = (ref: string) => `npx jest tests/audit-m1-p4b-queue.test.ts tests/verify-docs.test.ts [ref=${ref}]`;
@@ -224,7 +241,7 @@ describe('hak na prawdziwym git push (także z worktree)', () => {
   test('zielone sprawdzenia przepuszczają push, czerwone go odrzucają, --no-verify omija', () => {
     const { dir, zdalne } = repoProbne();
     zainstaluj(dir);
-    const npm = falszywyNpm();
+    const npm = falszywyNpm(); oznacz(dir, npm);
     const dobry = git(dir, ['push', '-u', 'origin', 'main'], zNpm(npm));
     expect(dobry.status).toBe(0);
     expect(wywolania(npm.log)).toEqual(['run lint', 'run check:pochodne']);
@@ -243,21 +260,21 @@ describe('hak na prawdziwym git push (także z worktree)', () => {
   test('zmiany tylko w dokumentach (względem origin/main) pomijają lint; zmiana kodu przywraca oba sprawdzenia', () => {
     const { dir } = repoProbne();
     zainstaluj(dir);
-    const npm = falszywyNpm();
+    const npm = falszywyNpm(); oznacz(dir, npm);
     expect(git(dir, ['push', '-u', 'origin', 'main'], zNpm(npm)).status).toBe(0);
     writeFileSync(npm.log, '');
     git(dir, ['checkout', '-q', '-b', 'dok']);
     mkdirSync(join(dir, 'docs'));
     writeFileSync(join(dir, 'docs/a.md'), 'opis\n');
     git(dir, ['add', '-A']);
-    expect(git(dir, ['commit', '-q', '-m', 'dok']).status).toBe(0);
+    expect(git(dir, ['commit', '-q', '-m', 'dok']).status).toBe(0); oznacz(dir, npm, 'dokumenty');
     const dok = git(dir, ['push', 'origin', 'dok'], zNpm(npm));
     expect(dok.status).toBe(0);
     expect(wywolania(npm.log)).toEqual(['run check:pochodne', 'npx jest tests/audit-m1-p4b-queue.test.ts tests/verify-docs.test.ts [ref=dok]']); /* L-037: zmiana w docs/ → testy dokumentów */
     expect(dok.stderr).toContain('tylko w dokumentach');
     writeFileSync(npm.log, '');
     writeFileSync(join(dir, 'plik.txt'), '2\n');
-    git(dir, ['commit', '-q', '-am', 'kod']);
+    git(dir, ['commit', '-q', '-am', 'kod']); oznacz(dir, npm);
     expect(git(dir, ['push', 'origin', 'dok'], zNpm(npm)).status).toBe(0);
     expect(wywolania(npm.log)).toEqual(['run lint', 'run check:pochodne']);
   });
@@ -280,6 +297,7 @@ describe('hak na prawdziwym git push (także z worktree)', () => {
     const npm = falszywyNpm();
     /* hak podstawia pwd do dziennika: dowód, że `npm` biegł w katalogu worktree, nie głównego repo */
     writeFileSync(join(npm.bin, 'npm'), '#!/bin/sh\necho "$PWD" >> "$NPM_LOG"\n[ "$2" = "$NPM_FAIL" ] && exit 1\nexit 0\n');
+    oznacz(wt, npm); /* znacznik z worktree trafia do wspólnego pliku */
     const r = git(wt, ['push', '-u', 'origin', 'funkcja'], zNpm(npm));
     expect(r.status).toBe(0);
     const katalogi = new Set(wywolania(npm.log).map(p => p.replace(/^\/private/, '')));
@@ -410,5 +428,50 @@ describe('verify sprawdza zainstalowany hak pre-push (L-014)', () => {
     const r = sprawdz(dir, { ...bezCI(), CI: 'true' });
     expect(r.status).toBe(0);
     expect(r.stdout + r.stderr).toMatch(/CI/);
+  });
+});
+
+describe('L-NNN (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego verify blokuje wypchnięcie', () => {
+  /** Repo z main wypchniętym (docs/a.md, plik.txt) i gałęzią `g` z jednym commitem: zmiana dokumentu albo kodu. */
+  function galaz(zmiana: 'docs' | 'kod') {
+    const r = repoProbne(); zainstaluj(r.dir); const npm = falszywyNpm();
+    mkdirSync(join(r.dir, 'docs'), { recursive: true }); writeFileSync(join(r.dir, 'docs/a.md'), 'a\n');
+    git(r.dir, ['add', '-A']); git(r.dir, ['commit', '-q', '-m', 'docs']);
+    expect(git(r.dir, ['push', '--no-verify', '-u', 'origin', 'main']).status).toBe(0);
+    git(r.dir, ['checkout', '-q', '-b', 'g']);
+    writeFileSync(join(r.dir, zmiana === 'docs' ? 'docs/a.md' : 'plik.txt'), 'b\n'); git(r.dir, ['commit', '-q', '-am', 'zmiana']);
+    return { ...r, npm };
+  }
+  const pchnij = (x: ReturnType<typeof galaz>) => git(x.dir, ['push', 'origin', 'g'], zNpm(x.npm));
+  test('verify zielone dla tego drzewa → przechodzi', () => {
+    const x = galaz('kod'); expect(oznacz(x.dir, x.npm).stdout).toContain('zapisany');
+    expect(pchnij(x).status).toBe(0); expect(gałęzieZdalne(x.zdalne)).toContain('g');
+  });
+  test('commit po verify (inne drzewo) → zatrzymane, gałąź nie trafia na zdalne', () => {
+    const x = galaz('kod'); oznacz(x.dir, x.npm);
+    writeFileSync(join(x.dir, 'plik.txt'), 'c\n'); git(x.dir, ['commit', '-q', '-am', 'po verify']);
+    const r = pchnij(x); expect(r.status).not.toBe(0); expect(r.stderr).toContain('brak zielonego pełnego verify'); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');
+  });
+  test('verify przy niezatwierdzonych albo nieśledzonych plikach nie zapisuje znacznika', () => {
+    const x = galaz('kod'); writeFileSync(join(x.dir, 'nowy.test.ts'), 'x\n');
+    const z = oznacz(x.dir, x.npm); expect(z.status).toBe(0); expect(z.stderr).toContain('NIE zapisany');
+    rmSync(join(x.dir, 'nowy.test.ts')); expect(pchnij(x).status).not.toBe(0);
+  });
+  test('znacznik verify:docs wystarcza tylko, gdy zmiany od origin/main to same dokumenty', () => {
+    const d = galaz('docs'); oznacz(d.dir, d.npm, 'dokumenty'); expect(pchnij(d).status).toBe(0);
+    const k = galaz('kod'); oznacz(k.dir, k.npm, 'dokumenty'); const r = pchnij(k);
+    expect(r.status).not.toBe(0); expect(r.stderr).toContain('znacznik verify:docs');
+  });
+  test('świadome obejście --no-verify nadal działa', () => {
+    const x = galaz('kod'); expect(git(x.dir, ['push', '--no-verify', 'origin', 'g'], zNpm(x.npm)).status).toBe(0);
+  });
+  test('npm run verify kończy się zapisem znacznika „pelne”; verify:docs zapisuje „dokumenty” poza trybem testowym', () => {
+    expect(pkg.scripts.verify).toMatch(/&& node scripts\/verify-znacznik\.mjs --zapisz pelne$/);
+    const vd = readFileSync(join(root, 'scripts/verify-docs.mjs'), 'utf8');
+    expect(vd).toContain("'--zapisz', 'dokumenty'"); expect(vd).toMatch(/VERIFY_DOCS_CHANGED === undefined/);
+  });
+  test('w CI zapis nic nie robi (verify w tests.yml nie zostawia znaczników)', () => {
+    const x = galaz('kod'); const r = spawnSync(process.execPath, [ZNACZNIK, '--zapisz', 'pelne'], { cwd: x.dir, env: { ...zNpm(x.npm), CI: 'true' }, encoding: 'utf8' });
+    expect(r.status).toBe(0); expect(existsSync(join(x.npm.bin, 'znaczniki.json'))).toBe(false);
   });
 });
