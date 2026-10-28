@@ -1,6 +1,8 @@
 import { exById, focusSet, isBW, fmtSec, fmtDist, occurrence, occurrences } from './store';
 import { t, tp, exName, lang } from './i18n';
-import { wu, unitLabel, distLabel, distLongLabel, wOut, fmtNum, isImperial, DIST_LONG_FROM_M, M_PER_MI, M_PER_YD } from './units';
+import { wu, unitLabel, distLabel, distLongLabel, wOut, fmtNum, isImperial, DIST_LONG_FROM_M, M_PER_MI, M_PER_YD, spokenUnit, spokenNoun } from './units';
+/** spokenUnit przeniesione do lib/units.ts (M1-041: używa go też lib/board.ts bez cyklu importów); eksport zostaje dla dotychczasowych odbiorców. */
+export { spokenUnit };
 import { hasWeight, hasReps, hasTime, hasDistance, SET_KIND_MARK, type Exercise, type SetKind, type WExercise, type WSet, type Workout } from './seed';
 
 /*
@@ -52,22 +54,6 @@ export function restLabel(a: Workout, ei: number, si: number): { sub: string; la
   const s = a.exercises[ei]?.sets[si]; if (!s) return { sub: '', last: false };
   const c = restCue(a, s.id); return { sub: c.text, last: c.last };
 }
-/**
- * Pełna, odmieniona nazwa jednostki ciężaru dla głosu (syntezator mowy literuje skróty „kg”, „lb”): „kilogram|kilogramy|kilogramów”, „funt|funty|funtów”
- * wg liczby mnogiej `tp()`. Ułamek (62,5) ma w wielu językach własną formę (CLDR, v ≠ 0: pl „62,5 kilograma”, cs/sk „kilogramu”, lt „kilogramo”,
- * ru/uk „килограмма/кілограма”) — klucze „kilograma” / „funta”; fr i pt-BR czytają ułamek poniżej 2 w liczbie pojedynczej (CLDR: one = i 0..1).
- * Uproszczenie: hr/sr/lv mają „one” także dla ułamków kończących się na 1 (62,1) — tu forma „other”. `n` = wartość w jednostce aplikacji.
- */
-export function spokenUnit(n: number): string {
-  return wu() === 'lb' ? spokenNoun(n, 'funt|funty|funtów', 'funta') : spokenNoun(n, 'kilogram|kilogramy|kilogramów', 'kilograma');
-}
-/** Nazwa jednostki przy liczbie `n` do głosu: całkowita — `tp(many)`, ułamek — osobna forma `frac` (CLDR, v ≠ 0); fr i pt-BR: ułamek poniżej 2 w liczbie pojedynczej. */
-function spokenNoun(n: number, many: string, frac: string): string {
-  const a = Math.abs(n);
-  if (Number.isInteger(a)) return tp(a, many);
-  if ((lang() === 'fr' || lang() === 'pt-BR') && a < 2) return tp(1, many);
-  return t(frac);
-}
 /** Dystans w metrach do głosu: „400 metrów”, „1 metr”, „12,5 metra” (zamiast „400 m”, które syntezator literuje). */
 export const spokenMeters = (m: number): string => `${Number.isInteger(m) ? m : fmtNum(m, 2)} ${spokenNoun(m, 'metr|metry|metrów', 'metra')}`;
 /** Dystans do głosu w systemie użytkownika (M2-LOK07-01): metryczny jak `spokenMeters`; imperialny pełne jardy („100 jardów”) albo mile (od 1 mi, do 2 miejsc). */
@@ -105,7 +91,7 @@ function loadText(ex: Exercise, set: WSet, spoken: boolean): string {
       out.push(p.num + (p.unit ? ' ' + (spoken ? spokenUnit(wOut(v)) : p.unit) : ''));
     }
   }
-  if (hasDistance(m) && Number(set.distanceM) > 0) out.push(spoken ? spokenDist(Number(set.distanceM)) : isImperial() ? fmtDist(Number(set.distanceM)) : `${set.distanceM} m`);
+  if (hasDistance(m) && Number(set.distanceM) > 0) out.push(spoken ? spokenDist(Number(set.distanceM)) : isImperial() ? fmtDist(Number(set.distanceM)) : `${set.distanceM} ${distLabel()}`); /* M1-040: symbol dystansu w piśmie języka */
   { const n = Number(set.reps); if (hasReps(m) && n > 0) out.push(`${n} ${tp(n, 'powtórzenie|powtórzenia|powtórzeń')}`); }
   if (hasTime(m) && Number(set.durationSec) > 0) out.push(spoken ? spokenDuration(Number(set.durationSec)) : fmtSec(Number(set.durationSec)));
   return out.join(', ');

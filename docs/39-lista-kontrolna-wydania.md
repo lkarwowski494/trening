@@ -68,8 +68,8 @@ Zasada: odhacz każdy punkt dla wersji, którą wypuszczasz; wada → wiadomoś�
   - Dlaczego nie automat: Podpis, ikona, ekran startowy i środowisko prawdziwego urządzenia istnieją dopiero w buildzie z TestFlight.
   - Pokrycie zastępcze w Jest: `tests/intro.test.tsx`, `tests/smoke.test.tsx`
 - [ ] **ZD-03** Powiększony tekst systemowy, VoiceOver na żywo i „Ogranicz ruch”
-  - Co zrobić i czego oczekiwać: Największy rozmiar tekstu (T-04, 27.10.2026: ucięte ikony na ekranie Trening — strażnik znaków-ikon w tests/matrix-a11y.test.tsx; Maestro nie ustawi rozmiaru tekstu systemu, a `xcrun simctl ui content_size` wymagałoby zmiany workflowu): trening, plan i ustawienia czytelne bez ucięć, w tym ikony; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają.
-  - Dlaczego nie automat: Maestro nie przestawia ustawień dostępności systemu.
+  - Co zrobić i czego oczekiwać: Największy rozmiar tekstu (T-04, 27.10.2026: ucięte ikony na ekranie Trening — strażnik znaków-ikon w tests/matrix-a11y.test.tsx; scenariusz Maestro 58 (`.maestro/58-duzy-tekst.yaml`, wejście `rozmiar_tekstu` w e2e-ios.yml) robi zrzuty ekranu Trening z treningiem przy największym tekście — telefon sprawdza to, czego scenariusz nie pokrywa: stan „dziś bez treningu” (ikona startu kolejnego treningu w całości widoczna), plan i ustawienia czytelne bez ucięć, w tym ikony; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają.
+  - Dlaczego nie automat: VoiceOver i „Ogranicz ruch” Maestro nie przestawi; rozmiar tekstu tak (scenariusz 58), ale scenariusz nie obejmuje stanu bez treningu, planu i ustawień (M1-audytor-generalny-047).
   - Pokrycie zastępcze w Jest: `tests/tabs-a11y.test.tsx`, `tests/matrix-a11y.test.tsx`
 
 ## Wersja 0.20 (zegarek i głos) — projekt

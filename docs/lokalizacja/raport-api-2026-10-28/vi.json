@@ -1,0 +1,49 @@
+{
+ "jezyk": "vi",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 476,
+ "uwagi": [
+  {
+   "klucz": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.",
+   "rodzaj": "nowe",
+   "pl": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.",
+   "tlumaczenie": "Dữ liệu trên điện thoại này được lưu bởi phiên bản mới hơn (lược đồ {a}); phiên bản này hỗ trợ đến {b}. Mình không thay đổi gì cả — hãy cài phiên bản mới nhất từ App Store. Bạn cũng có thể gửi dữ liệu dưới dạng tệp.",
+   "poprawka": "Dữ liệu trên điện thoại này được lưu bởi phiên bản mới hơn (lược đồ {a}); phiên bản này hỗ trợ đến {b}. Không có gì bị thay đổi — hãy cài phiên bản mới nhất từ App Store. Bạn cũng có thể gửi dữ liệu dưới dạng tệp.",
+   "powod": "„Mình” to potoczna forma pierwszej osoby, niespójna z bezosobowym tonem aplikacji. Lepiej sformułować bezosobowo, jak w angielskim.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "rodzaj": "nowe",
+   "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "tlumaczenie": "Sao lưu tự động: sau mỗi buổi tập, một tệp JSON được tự lưu vào Tệp (Trên iPhone → {app} → Backup, {n} bản gần nhất). Nhập cũng nhận các tệp này. Các bản sao này bị xóa cùng ứng dụng — trước khi gỡ ứng dụng hoặc cài từ tài khoản Apple khác, hãy xuất bản sao lưu ra nơi khác.",
+   "poprawka": "Sao lưu tự động: sau mỗi buổi tập, một tệp JSON được tự lưu vào Tệp (Trên iPhone của tôi → {app} → Backup, {n} bản gần nhất). Tính năng Nhập cũng chấp nhận các tệp này. Các bản sao này bị xóa cùng ứng dụng — trước khi gỡ ứng dụng hoặc cài từ tài khoản Apple khác, hãy xuất bản sao lưu ra nơi khác.",
+   "powod": "Niespójna nazwa lokalizacji iOS: w zdaniu 19 jest „Trên iPhone của tôi”, tutaj samo „Trên iPhone”. Do tego „Nhập cũng nhận” brzmi nienaturalnie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.",
+   "rodzaj": "nowe",
+   "pl": "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.",
+   "tlumaczenie": "Tệp → Trên iPhone → {app} → Backup → {folder}. Hãy lưu thư mục này ra ngoài điện thoại.",
+   "poprawka": "Tệp → Trên iPhone của tôi → {app} → Backup → {folder}. Hãy lưu thư mục này ra ngoài điện thoại.",
+   "powod": "Niespójna nazwa lokalizacji iOS względem zdania 19 („Trên iPhone của tôi”).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "row1.noTwist",
+   "rodzaj": "wskazowka",
+   "pl": "Nie skręcaj tułowia, żeby podrzucić hantel.",
+   "tlumaczenie": "Đừng xoay thân để kéo tạ đơn lên.",
+   "poprawka": "Đừng xoay thân để hất tạ đơn lên.",
+   "powod": "„Podrzucić” oznacza szarpnięcie lub podrzut. Neutralne „kéo” (ciągnąć) gubi sens opisanego błędu.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

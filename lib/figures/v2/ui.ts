@@ -2,7 +2,7 @@
  * Figury v2 — dane dla warstwy ekranu (poza czystym silnikiem, bo używa lib/cues i aliasów): wskazówki przypisane ćwiczeniu → linie odniesienia i błędy do animacji,
  * mięśnie z legendą i oznaczeniem „uproszczenie”. Wszystko wynika z danych ze źródłami (lib/cues, cue-sets.json, muscleLoad katalogu) — nic nie jest dopisywane ręcznie.
  */
-import { CUE_DATA, CUE_SECTIONS, hasCues } from '@/lib/cues';
+import { CUE_DATA, CUE_SECTIONS, generalCuesReviewed, hasCues } from '@/lib/cues';
 import { catalogKey, type Exercise } from '@/lib/seed';
 import { REGION_LABEL } from '@/lib/seed';
 import { CUE_SETS } from './cueSets';
@@ -16,7 +16,7 @@ export function cueIdsOf(key: string): { ids: string[]; errs: string[] } {
   const own = Object.prototype.hasOwnProperty.call(CUE_DATA.exercises, key) ? CUE_DATA.exercises[key] : null;
   if (own) return { ids: CUE_SECTIONS.flatMap(s => (own[s] ?? []).map(r => r.c)), errs: (own.mistakes ?? []).map(r => r.c) };
   const e = Object.prototype.hasOwnProperty.call(CUE_SETS.items, key) ? CUE_SETS.items[key] : null;
-  if (e && e.b === 'general') return { ids: [...(e.ok ?? []), ...(e.err ?? [])], errs: e.err ?? [] };
+  if (e && e.b === 'general' && generalCuesReviewed(key) /* zestaw bez recenzji treści — bez linii i błędów (M1-audytor-generalny-038) */) return { ids: [...(e.ok ?? []), ...(e.err ?? [])], errs: e.err ?? [] };
   return { ids: [], errs: [] };
 }
 

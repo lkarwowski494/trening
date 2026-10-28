@@ -41,14 +41,16 @@ describe('M1-audytor-generalny-021 (27.10.2026): źródła zestawów ogólnych i
     const jedno = { ...ogolne, wskazowki: { ...ogolne.wskazowki, [id]: { zrodla: [{ adres: 'https://example.org/a', miejsce: 'x' }] } } };
     expect(braki({ sets, ogolne: jedno }).join('\n')).toContain(`${id}: wymagane ≥ 2 źródła`);
   });
-  test('kąt stóp: tekst z karty ćwiczenia ma wpis źródła z adresem i miejscem; bez wpisu → błąd; stan „otwarte” zgodny z rejestrem twierdzeń (T-054)', () => {
+  test('kąt stóp: tekst z karty ćwiczenia ma wpis źródła z adresem i miejscem; bez wpisu → błąd; stan zgodny z rejestrem twierdzeń (T-054; potwierdzone 28.10.2026 — 2 źródła szczebla 4)', () => {
     const toe = ogolne.katy['sq.toesAngle'];
     expect(fs.readFileSync(path.join(root, 'components/ExerciseFigureV2.tsx'), 'utf8')).toContain(`t('${toe.tekst}')`);
     expect(toe.zrodla.every((z: { adres: string; miejsce: string }) => /^https:\/\//.test(z.adres) && z.miejsce)).toBe(true);
     expect(braki({ sets, ogolne: { ...ogolne, katy: {} } }).join('\n')).toMatch(/kąt stóp: brak wpisu źródła/);
     const reg = read('docs/research/rejestr-twierdzen.json') as { twierdzenia: { id: string; rodzaje: string[]; uwaga?: string }[] };
     const t054 = reg.twierdzenia.find((e) => e.id === 'T-054')!;
-    expect(toe.status).toBe('otwarte'); expect(t054.rodzaje).toEqual(['otwarte']); expect(t054.uwaga).toMatch(/\[OTWARTE/);
+    /* decyzja właściciela 28.10.2026 „5b” (M1-audytor-generalny-021): drugie źródło szczebla 4 przeczytane — T-054 zamknięte; przedział kąta: ≥ 2 źródła z adresem https (zasada 25.10.2026) */
+    expect(toe.status).toBe('potwierdzone'); expect(t054.rodzaje).not.toContain('otwarte'); expect(t054.uwaga).not.toMatch(/\[OTWARTE/);
+    expect(new Set(toe.zrodla.map((z: { adres: string }) => new URL(z.adres).hostname)).size).toBeGreaterThanOrEqual(2);
   });
   test('verify uruchamia kontrolę (check:zrodla-runtime) i aplikacja nie importuje pliku źródeł', () => {
     expect(read('package.json').scripts.verify).toMatch(/npm run check:zrodla-runtime/);

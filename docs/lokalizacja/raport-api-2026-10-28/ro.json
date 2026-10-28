@@ -1,0 +1,49 @@
+{
+ "jezyk": "ro",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 476,
+ "uwagi": [
+  {
+   "klucz": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.",
+   "rodzaj": "nowe",
+   "pl": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.",
+   "tlumaczenie": "Datele de pe telefon au fost salvate de o versiune mai nouă (schema {a}); această versiune acceptă până la {b}. Nu modific nimic — instalează cea mai recentă versiune din App Store. Poți trimite datele și ca fișier.",
+   "poprawka": "Datele de pe telefon au fost salvate de o versiune mai nouă (schema {a}); această versiune acceptă până la {b}. Nu modific nimic — instalați cea mai recentă versiune din App Store. Puteți trimite datele și ca fișier.",
+   "powod": "Forma „ty” („instalează”, „Poți”) zamiast formalnej wymaganej przez rejestr",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "rodzaj": "nowe",
+   "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "tlumaczenie": "Copie automată: după fiecare antrenament, un fișier JSON se salvează automat în Fișiere (Pe iPhone-ul meu → {app} → Backup, ultimele {n}). Importul acceptă și aceste fișiere. Aceste copii dispar odată cu aplicația — înainte de a o șterge sau de a o instala dintr-un alt cont Apple, exportă o copie de rezervă în altă parte.",
+   "poprawka": "Copie automată: după fiecare antrenament, un fișier JSON se salvează automat în Fișiere (Pe iPhone-ul meu → {app} → Backup, ultimele {n}). Importul acceptă și aceste fișiere. Aceste copii dispar odată cu aplicația — înainte de a o șterge sau de a o instala dintr-un alt cont Apple, exportați o copie de rezervă în altă parte.",
+   "powod": "Forma „ty” („exportă”) zamiast formalnej",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.",
+   "rodzaj": "nowe",
+   "pl": "Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.",
+   "tlumaczenie": "Atingeți numărul de pe tablă și introduceți greutatea și repetările (sau folosiți + și −), apoi „Serie gata” — pauza se numără singură. Dacă lipsește o valoare, „Serie gata” mută cursorul în câmpul gol.",
+   "poprawka": "Atingeți numărul de pe tablă și introduceți greutatea și repetările (sau folosiți + și −), apoi „Serie gata” — cronometrul pauzei pornește automat. Dacă lipsește o valoare, „Serie gata” mută cursorul în câmpul gol.",
+   "powod": "„pauza se numără singură” brzmi nienaturalnie; chodzi o automatyczne odliczanie przerwy",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+   "rodzaj": "nowe",
+   "pl": "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+   "tlumaczenie": "Antrenamentul din {d} {s} nu a avut activitate de {h} ore, așa că s-a salvat automat. Final: {e} (ultima serie). Îl găsești în fila Plan.",
+   "poprawka": "Antrenamentul din {d} {s} nu a avut activitate de {h} ore, așa că s-a salvat automat. Final: {e} (ultima serie). Îl găsiți în fila Plan.",
+   "powod": "Forma „ty” („Îl găsești”) zamiast formalnej",
+   "waga": "średnia"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

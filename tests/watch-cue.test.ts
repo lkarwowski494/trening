@@ -9,7 +9,7 @@ import { restCue, restLabel, spokenLoad, cueLoad, spokenUnit, spokenMeters, spok
 import { completeSet } from '@/lib/setFlow';
 import { METRICS, type Exercise, type MetricType, type WSet } from '@/lib/seed';
 import { LANGS, applyLang, t } from '@/lib/i18n';
-import { applyUnit, unitName } from '@/lib/units';
+import { applyUnit, unitName, distLabel } from '@/lib/units';
 import { ex } from './helpers';
 import { world, A, sid, teardownWorld } from './watch-world';
 
@@ -104,7 +104,7 @@ describe('głos: metry, sekundy i czas zegarowy słowami, nie skrótem „m” /
     applyLang(l);
     for (const n of [1, 2, 5, 22, 5000, 12.5]) {
       const v = D(n); expect(v).toMatch(/^\d/); expect(v).not.toMatch(/^\S+ (m|M|s|с|м)( |,|$)/); expect(v.split(', ')[0].length).toBeGreaterThan(String(n).length + 1);
-      expect(cueLoad(withMetric('distance_time'), blank({ distanceM: n }))).toBe(`${n} m`); /* ekran: skrót jak dotąd */
+      expect(cueLoad(withMetric('distance_time'), blank({ distanceM: n }))).toBe(`${n} ${distLabel()}`); /* ekran: skrót w piśmie języka, jak karta „teraz” (nowParts) — M1-040, 28.10.2026 */
     }
     for (const n of [1, 2, 5, 22, 45, 90, 3905]) { const v = T(n); expect(v).not.toMatch(/\d:\d/); if (!["ja", "ko", "zh-Hant", "ms", "vi"].includes(l)) expect(v).not.toBe(fmtSec(n)); /* CJK: skrót i pełne słowo to ten sam znak (秒, 초, ms „saat”, vi „giây”) */ expect(v).toMatch(/^\d/); }
     expect(new Set([1, 2, 5, 22].map(T)).size).toBeGreaterThan(1);

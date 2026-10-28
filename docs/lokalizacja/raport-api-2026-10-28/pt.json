@@ -1,0 +1,94 @@
+{
+ "jezyk": "pt",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 471,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "tlumaczenie": "Exercício com barra sobre o tronco ou acima da cabeça e do rosto: recomenda-se segurança — um rack com braços de segurança e um parceiro que faça a segurança.",
+   "poprawka": "Exercício com barra sobre o tronco ou acima da cabeça e do rosto: recomenda-se o uso de meios de segurança — um rack com braços de segurança e um parceiro que faça a segurança.",
+   "powod": "„recomenda-se segurança” jest niejasne i nienaturalne; chodzi o zalecenie stosowania środków asekuracji (sprzęt i osoba).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "tlumaczenie": "Exercício com halteres acima da cabeça ou do rosto: recomenda-se alguém que dê auxílio e segurança.",
+   "poprawka": "Exercício com halteres acima da cabeça ou do rosto: recomenda-se um parceiro que faça a segurança.",
+   "powod": "Niespójna terminologia „osoby asekurującej” względem zdań 3 i 4.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "tlumaczenie": "Toque na etiqueta de uma série para mudar o tipo; deslize uma linha para a esquerda para a apagar. A gama de repetições é opcional — com ele surgem as sugestões «↑». «⇅ SS» liga o exercício ao seguinte numa supersérie, «✕ SS» retira-o do grupo. Ordem: «≡ Reordenar».",
+   "poprawka": "Toque na etiqueta de uma série para mudar o tipo; deslize uma linha para a esquerda para a apagar. A gama de repetições é opcional — com ela surgem as sugestões «↑». «⇅ SS» liga o exercício ao seguinte numa supersérie, «✕ SS» retira-o do grupo. Ordem: «≡ Reordenar».",
+   "powod": "Błąd rodzaju gramatycznego: „gama” jest żeńska, powinno być „com ela”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "rodzaj": "nowe",
+   "pl": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "tlumaczenie": "Não elimine a app — os dados e as cópias desaparecem com ela. Primeiro toque em «Enviar dados» e guarde o ficheiro fora do telemóvel.",
+   "poprawka": "Não apague a app — os dados e as cópias desaparecem com ela. Primeiro toque em «Enviar dados» e guarde o ficheiro fora do telemóvel.",
+   "powod": "Niespójna terminologia: w pozostałych tekstach „usuń” to „apagar”, a nie „eliminar”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wypychanie",
+   "rodzaj": "nowe",
+   "pl": "Wypychanie",
+   "tlumaczenie": "Empurrão",
+   "poprawka": "Empurrar",
+   "powod": "„Empurrão” (pchnięcie, szturchnięcie) jest nienaturalne jako nazwa fazy ruchu.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "bj.height",
+   "rodzaj": "wskazowka",
+   "pl": "Zacznij od niskiej skrzyni i podnoś ją dopiero, gdy lądowanie jest pewne.",
+   "tlumaczenie": "Começa com uma caixa baixa e sobe-a só quando aterrares com segurança.",
+   "poprawka": "Começa com uma caixa baixa e aumenta a altura só quando aterrares com segurança.",
+   "powod": "„sobe-a” w znaczeniu „podnieś wysokość skrzyni” jest niejasne i nienaturalne.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "+ {n} {w}",
+   "rodzaj": "nowe",
+   "pl": "+ {n} {w}",
+   "tlumaczenie": "+ mais {n} {w}",
+   "poprawka": "+ {n} {w}",
+   "powod": "„+ mais” to zbędne podwojenie; znak „+” już oznacza „więcej”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "llc.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Połóż się przodem; kolana na wysokości osi maszyny, wałek nad piętami na dolnej części łydek.",
+   "tlumaczenie": "Deita-te de barriga para baixo com os joelhos alinhados com o eixo da máquina e o rolo na parte de baixo das pernas, acima dos calcanhares.",
+   "poprawka": "Deita-te de barriga para baixo com os joelhos alinhados com o eixo da máquina e o rolo na parte de baixo dos gémeos, acima dos calcanhares.",
+   "powod": "„pernas” jest nieprecyzyjne; w źródle chodzi o łydki.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "rcrunch.move",
+   "rodzaj": "wskazowka",
+   "pl": "Zwijaj biodra od podłoża w stronę żeber, potem powoli opuść je z powrotem.",
+   "tlumaczenie": "Enrola as ancas do chão na direção das costelas e depois baixa-as devagar.",
+   "poprawka": "Enrola as ancas, levantando-as do chão na direção das costelas, e depois baixa-as devagar.",
+   "powod": "„Enrola as ancas do chão” brzmi niezręcznie; lepiej opisać uniesienie bioder od podłoża.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

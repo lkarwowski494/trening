@@ -161,7 +161,7 @@ export function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w
       <View style={[s.row, { gap: W.gap }]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" /* A11-18: nagłówki kolumn „#”, „✓”, „▶” — szum dla VoiceOver; każde pole ma własną etykietę (jak w historii) */>
         <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.idx, textAlign: 'left' }]}>#</Muted>
         {prevInline ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} numberOfLines={1} style={[s.c, { flex: 1, textAlign: 'left' }]}>{tr('Poprzednio')}</Muted> : <View style={{ flex: 1 }} />}
-        {hasWeight(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} numberOfLines={1} style={[s.c, { width: W.w }]}>{loadLabelShort(ex, impl)}</Muted> : null}
+        {hasWeight(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} numberOfLines={1} adjustsFontSizeToFit /* A11-19, M1-041: el „κιλά/πλευρά” dłuższe niż kolumna — krój maleje zamiast „…” */ style={[s.c, { width: W.w }]}>{loadLabelShort(ex, impl)}</Muted> : null}
         {hasReps(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.reps }]}>{tr('Pow.')}</Muted> : null}
         {hasDistance(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.dist }]}>{distLabel()}</Muted> : null}
         {hasTime(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.time }]}>{tr('sek.')}</Muted> : null}

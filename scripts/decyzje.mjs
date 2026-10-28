@@ -13,6 +13,7 @@
 // zastępuje daty: nowy wskazany test musi zawierać datę decyzji (07-jakosc-005: test wskazuje decyzję, którą pilnuje).
 // Użycie: node scripts/decyzje.mjs --check [plik…]   (domyślnie docs/18-przekazanie.md; kod 1 przy błędach)
 //         node scripts/decyzje.mjs --lista [plik]    (JSON wpisów: linia, data, pole wdrożenia, testy — do przeglądu)
+import { spawnSync } from 'node:child_process';
 import { readFileSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -100,6 +101,24 @@ export function sprawdzWpis(w, czytaj) {
   return b;
 }
 
+/* M1-audytor-generalny-047 (28.10.2026): „[wdrożenie: otwarte → M1-audytor-generalny-NNN]” przy zadaniu, które ma już commit naprawy z tym ID
+ * (konwencja commitów napraw M2: „[M1-audytor-generalny-NNN;” albo „…NNN]”, od audytu 1.0 z 27.10.2026), to wpis nieaktualny — pole trzeba zmienić
+ * na „kod” z testem, „bez kodu — powód” albo wskazać nowe ID; zadanie otwarte ponownie po reaudycie oznacza się „(pętla N)” po ID. Historia git: lokalnie pełna; w CI (fetch-depth 1) tylko ostatni commit — sprawdzenie słabsze. */
+export const AUDYT_OD = '2026-10-27';
+export function zadaniaZNaprawa(root = ROOT) {
+  /* płytka kopia (CI, fetch-depth 1): historia niepełna — null, jak brak historii (porażka tests.yml 40716367925, 28.10.2026) */
+  const sh = spawnSync('git', ['rev-parse', '--is-shallow-repository'], { cwd: root, encoding: 'utf8' });
+  if (sh.status !== 0 || sh.stdout.trim() === 'true') return null;
+  const r = spawnSync('git', ['log', `--since=${AUDYT_OD}`, '--format=%B'], { cwd: root, encoding: 'utf8', maxBuffer: 1 << 26 });
+  if (r.status !== 0) return null;
+  return [...new Set([...r.stdout.matchAll(/\[(M1-audytor-generalny-\d{3})[;\]]/g)].map(m => m[1]))];
+}
+export function nieaktualneWskazniki(tekst, zNaprawa) {
+  const z = new Set(zNaprawa);
+  return wpisy(tekst).flatMap(w => [...w.tekst.matchAll(POLE)].map(m => m[1]).filter(p => /^otwarte\b/.test(p))
+    .flatMap(p => [...p.matchAll(/(M1-audytor-generalny-\d{3})(?! \(pętla \d+\))/g)].map(x => x[1]).filter(id => z.has(id)).map(id => ({ linia: w.linia, id, poczatek: w.naglowek.slice(0, 90) }))));
+}
+
 const czytajZ = root => p => { const f = join(root, p); return existsSync(f) ? readFileSync(f, 'utf8') : null; };
 
 /** Wszystkie błędy dziennika: [{ plik, linia, błąd }]. */
@@ -118,6 +137,9 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   } else {
     const lista = pliki.length ? pliki : PLIKI;
     const bledy = lista.flatMap(p => sprawdz(p, readFileSync(resolve(ROOT, p), 'utf8')));
+    const zNaprawa = zadaniaZNaprawa();
+    if (zNaprawa) for (const p of lista) for (const x of nieaktualneWskazniki(readFileSync(resolve(ROOT, p), 'utf8'), zNaprawa))
+      bledy.push({ plik: p, linia: x.linia, blad: `[wdrożenie: otwarte → ${x.id}], a zadanie ma commit naprawy — zmień pole na „kod” z [test: …], „bez kodu — powód” albo wskaż nowe ID (M1-047)`, poczatek: x.poczatek });
     for (const e of bledy) console.error(`${e.plik}:${e.linia}: ${e.blad} — ${e.poczatek}`);
     const ile = lista.reduce((s, p) => s + wpisy(readFileSync(resolve(ROOT, p), 'utf8')).length, 0);
     if (bledy.length) { console.error(`check:decyzje — ${bledy.length} błędów w ${ile} wpisach decyzji (wzór pól: nagłówek scripts/decyzje.mjs)`); process.exit(1); }

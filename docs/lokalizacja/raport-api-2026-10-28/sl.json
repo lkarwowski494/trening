@@ -1,0 +1,112 @@
+{
+ "jezyk": "sl",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 469,
+ "uwagi": [
+  {
+   "klucz": "Drop set liczy się razem z serią, po której jest.",
+   "rodzaj": "nowe",
+   "pl": "Drop set liczy się razem z serią, po której jest.",
+   "tlumaczenie": "Drop set se šteje skupaj s serijo, ki ji sledi.",
+   "poprawka": "Drop set se šteje skupaj s serijo pred njim.",
+   "powod": "„ki ji sledi” oznacza serię, która następuje po drop secie, czyli odwrotny kierunek niż w źródle",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "e1RM liczone z {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie.",
+   "rodzaj": "nowe",
+   "pl": "e1RM liczone z {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie.",
+   "tlumaczenie": "e1RM, izračunan iz {p} % telesne teže z dneva treninga (zadnja meritev s tega ali prejšnjega dne) in dodatne teže.",
+   "poprawka": "e1RM, izračunan iz {p} % telesne teže z dneva treninga (zadnja meritev s tega dne ali prej) in dodatne teže.",
+   "powod": "„lub wcześniejszy” to dowolny wcześniejszy dzień, a „prejšnjega dne” znaczy tylko poprzedni dzień",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "Na koncu tapnite »Končaj« v glavi (ali »Končaj trening« v kartici po zadnji seriji) — seja se shrani v zavihek Načrt.",
+   "poprawka": "Na koncu tapnite »Končaj« v glavi (ali »Končaj trening« v kartici po zadnji seriji) — trening se shrani v zavihek Načrt.",
+   "powod": "„seja” odbiega od terminologii stosowanej w pozostałych tekstach („trening”)",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała) i w pompkach (ok. {p}% masy ciała). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.",
+   "rodzaj": "nowe",
+   "pl": "Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała) i w pompkach (ok. {p}% masy ciała). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.",
+   "tlumaczenie": "Neobvezno, samo v telefonu. Z njo aplikacija izračuna e1RM pri zgibih (celotna telesna teža) in sklecah (približno {p} % telesne teže). Vsak trening se računa z zadnjo meritvijo s tega ali prejšnjega dne; treningi pred prvo meritvijo — pri teh vajah brez e1RM.",
+   "poprawka": "Neobvezno, samo v telefonu. Z njo aplikacija izračuna e1RM pri zgibih (celotna telesna teža) in sklecah (približno {p} % telesne teže). Vsak trening se računa z zadnjo meritvijo s tega dne ali prej; treningi pred prvo meritvijo — pri teh vajah brez e1RM.",
+   "powod": "„lub wcześniejszy” to dowolny wcześniejszy dzień, a „prejšnjega dne” znaczy tylko poprzedni dzień",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "cu.grip",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć drążek podchwytem (dłonie do siebie), na szerokość barków, i zawiśnij na prostych rękach.",
+   "tlumaczenie": "Drog primi s podprijemom (dlani proti tebi) v širini ramen in vsi na iztegnjenih rokah.",
+   "poprawka": "Drog primi s podprijemom (dlani proti tebi) v širini ramen in visi na iztegnjenih rokah.",
+   "powod": "Błąd: „vsi” (= wszyscy) zamiast trybu rozkazującego „visi”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "npu.hang",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć uchwyty pełnym chwytem (kciuk dookoła) i zawiśnij na prostych rękach.",
+   "tlumaczenie": "Ročaja primi s celo dlanjo (palca okrog) in vsi na iztegnjenih rokah.",
+   "poprawka": "Ročaja primi s celo dlanjo (palca okrog) in visi na iztegnjenih rokah.",
+   "powod": "Błąd: „vsi” zamiast trybu rozkazującego „visi”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "pallof.noTwist",
+   "rodzaj": "wskazowka",
+   "pl": "Nie pozwól, by linka obróciła tułów — tułów i biodra zostają nieruchomo.",
+   "tlumaczenie": "Ne dovoli, da vrv zasuka trup; trup in boki ostanejo pri miru.",
+   "poprawka": "Ne dovoli, da jeklenica zasuka trup; trup in boki ostanejo pri miru.",
+   "powod": "„vrv” (lina) zamiast „jeklenica” (linka wyciągu); niespójne z tekstem 275",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "pallof.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Stań bokiem do wyciągu ustawionego mniej więcej na wysokości klatki; uchwyt trzymaj oburącz przy klatce, linka napięta.",
+   "tlumaczenie": "Stoj bočno proti škripcu, nastavljenemu približno v višino prsi; ročaj drži z obema rokama ob prsih, vrv napeta.",
+   "poprawka": "Stoj bočno proti škripcu, nastavljenemu približno v višino prsi; ročaj drži z obema rokama ob prsih, jeklenica napeta.",
+   "powod": "„vrv” (lina) zamiast „jeklenica” (linka wyciągu); niespójna terminologia",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "pu.grip",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć drążek nachwytem, trochę szerzej niż barki, i zawiśnij na prostych rękach.",
+   "tlumaczenie": "Drog primi z nadprijemom malo širše od ramen in vsi na iztegnjenih rokah.",
+   "poprawka": "Drog primi z nadprijemom malo širše od ramen in visi na iztegnjenih rokah.",
+   "powod": "Błąd: „vsi” zamiast trybu rozkazującego „visi”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+   "rodzaj": "nowe",
+   "pl": "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+   "tlumaczenie": "{k} dan za moč na teden je manj od priporočenega minimuma (vsaj {n} dni). Za začetek je to dober korak: na začetku lahko trening moči izvajate le {k} dan na teden in ga sčasoma povečate na {n} — malo gibanja je bolje kot nič.",
+   "poprawka": "{k} dan treninga moči na teden je manj od priporočenega minimuma (vsaj {n} dni). Za začetek je to dober korak: na začetku lahko trening moči izvajate le {k} dan na teden in ga sčasoma povečate na {n} — malo gibanja je bolje kot nič.",
+   "powod": "„dan za moč” brzmi nienaturalnie; lepiej „dan treninga moči”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Przerwa trwa — powiadomić na koniec?",
+   "rodzaj": "nowe",
+   "pl": "Przerwa trwa — powiadomić na koniec?",
+   "tlumaczenie": "Počitek poteka — obvestiti ob koncu?",
+   "poprawka": "Počitek poteka — vas obvestimo ob koncu?",
+   "powod": "Bezokolicznik „obvestiti” w pytaniu brzmi nienaturalnie",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

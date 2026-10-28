@@ -41,3 +41,21 @@ describe('M1-012: rejestr ryzyk jako bramka wydania', () => {
     expect(read('.claude/agents/wydawca.md')).toContain('npm run check:release');
   });
 });
+
+/* Pętla 2 (M2, 28.10.2026; reaudyt 07-jakosc-001): każde ryzyko ma stan z datą, a zamknięte lub zaakceptowane — dowód (plik, przebieg, test) albo decyzję
+ * z datą; sprawdzenie pustego pola zapobiega powrotowi R-010 bez zapisu zamknięcia. */
+export const riskStateProblems = (md: string): string[] => {
+  const sec = md.split(/^## /m).find(s => s.startsWith('Rejestr ryzyk')) ?? '';
+  return sec.split('\n').filter(l => /^\| R-[\w-]+ \|/.test(l)).flatMap((l) => {
+    const c = l.split(' | '); const id = c[0].replace('| ', '').trim(); const st = c.at(-1)!.replace(/\|\s*$/, '').trim();
+    if (!/\d{2}\.\d{2}\.\d{4}/.test(st)) return [`${id}: stan bez daty`];
+    if (/zamknięte|zaakceptowane/i.test(st) && !/dowód|`[^`]+`|\b\d{8,}\b|decyzj|test|bez naprawy|potwierdzi/i.test(st)) return [`${id}: zamknięte bez dowodu`];
+    return [];
+  });
+};
+describe('M1-012 (pętla 2): stan każdego ryzyka z datą, zamknięte z dowodem', () => {
+  test('docs/40: brak wierszy bez daty i zamkniętych bez dowodu', () => { expect(riskStateProblems(read('docs/40-lekcje.md'))).toEqual([]); });
+  test('strażnik potrafi paść: stan bez daty i zamknięte bez dowodu', () => {
+    expect(riskStateProblems(table(['| R-1 | x | y | otwarte |', '| R-2 | x | y | **zamknięte 01.01.2026** |', '| R-3 | x | y | zamknięte 01.01.2026 — dowód: `a.ts` |']))).toEqual(['R-1: stan bez daty', 'R-2: zamknięte bez dowodu']);
+  });
+});

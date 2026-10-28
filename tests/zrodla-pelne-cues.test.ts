@@ -72,14 +72,16 @@ describe('plik runtime lib/cues/data.json = funkcja pełnych danych, bez nazw', 
     expect(() => execFileSync('node', [path.join(root, 'scripts/zrodla-runtime.mjs'), '--check'], { stdio: 'pipe' })).not.toThrow();
   });
   test('te same ćwiczenia, sekcje i zdania w tej samej kolejności; runtime bez pól sources/orgs/s/partialNote', () => {
-    expect(Object.keys(CUE_DATA.exercises)).toEqual(Object.keys(CUE_FULL.exercises));
-    for (const [ex, x] of Object.entries(CUE_FULL.exercises)) for (const sec of Object.keys(x)) expect([ex, sec, CUE_DATA.exercises[ex][sec as 'setup'].map(r => r.c)]).toEqual([ex, sec, x[sec as 'setup'].map(r => r.c)]);
-    expect(Object.keys(CUE_DATA).sort()).toEqual(['basis', 'exercises', 'open', 'partial']);
+    /* bramka 4 dla treści kart (M1-audytor-generalny-038, 28.10.2026): karta bez aktualnej recenzji — na liście hidden, nie w runtime (tests/karty-recenzja.test.tsx) */
+    expect([...Object.keys(CUE_DATA.exercises), ...CUE_DATA.hidden].sort()).toEqual(Object.keys(CUE_FULL.exercises).sort());
+    expect(Object.keys(CUE_DATA.exercises)).toEqual(Object.keys(CUE_FULL.exercises).filter(ex => !CUE_DATA.hidden.includes(ex)));
+    for (const [ex, x] of Object.entries(CUE_FULL.exercises)) if (!CUE_DATA.hidden.includes(ex)) for (const sec of Object.keys(x)) expect([ex, sec, CUE_DATA.exercises[ex][sec as 'setup'].map(r => r.c)]).toEqual([ex, sec, x[sec as 'setup'].map(r => r.c)]);
+    expect(Object.keys(CUE_DATA).sort()).toEqual(['basis', 'exercises', 'general', 'hidden', 'open', 'partial']);
     expect(JSON.stringify(CUE_DATA.exercises)).not.toMatch(/"s":/);
     expect(CUE_DATA.open).toEqual(Object.keys(CUE_FULL.open)); expect(CUE_DATA.partial).toEqual(CUE_FULL.partial ?? []);
   });
   test('podpis (basis) = rodzaje organizacji ze wszystkich odwołań ćwiczenia (też „analogia”), w kolejności CUE_BASIS_KINDS — niezależne przeliczenie', () => {
-    for (const ex of Object.keys(CUE_FULL.exercises)) {
+    for (const ex of Object.keys(CUE_FULL.exercises).filter(e => !CUE_DATA.hidden.includes(e))) {
       const kinds = new Set<CueBasisKind>(cueOrgsFull(ex).map(o => CUE_FULL.orgs[o].kind));
       expect([ex, cueBasis(ex)]).toEqual([ex, CUE_BASIS_KINDS.filter(k => kinds.has(k))]);
     }

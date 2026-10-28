@@ -1,0 +1,112 @@
+{
+ "jezyk": "bg",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 469,
+ "uwagi": [
+  {
+   "klucz": "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).",
+   "rodzaj": "nowe",
+   "pl": "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).",
+   "tlumaczenie": "„Архивирай“ в прегледа скрива шаблона; можете да го изтриете с бутона „Изтриване на шаблона“ най-долу в прегледа или с плъзгане наляво в списъка (с потвърждение).",
+   "poprawka": "„Архивиране“ в прегледа скрива шаблона; можете да го изтриете с бутона „Изтриване на шаблона“ най-долу в прегледа или с плъзгане наляво в списъка (с потвърждение).",
+   "powod": "Etykieta w formie „ty” (Архивирай) jest niezgodna z formalnym rejestrem i z formą rzeczownikową innych przycisków (Изтриване…). Etykietę trzeba ujednolicić z faktycznym tekstem przycisku.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{n} mi",
+   "rodzaj": "nowe",
+   "pl": "{n} mi",
+   "tlumaczenie": "{n} мили",
+   "poprawka": "{n} mi",
+   "powod": "„мили” jest błędne dla n=1. Lepszy jest skrót, spójny z „{n} lb”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{n} yd",
+   "rodzaj": "nowe",
+   "pl": "{n} yd",
+   "tlumaczenie": "{n} ярд",
+   "poprawka": "{n} yd",
+   "powod": "„ярд” jest błędne dla n>1 (powinno być „ярда”). Lepszy jest skrót, spójny z „{n} lb”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "rodzaj": "nowe",
+   "pl": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "tlumaczenie": "Не изтривайте приложението — с него ще изчезнат данните и копията. Първо натиснете „Изпрати данните“ и запазете файла извън телефона.",
+   "poprawka": "Не изтривайте приложението — с него ще изчезнат данните и копията. Първо докоснете „Изпращане на данните“ и запазете файла извън телефона.",
+   "powod": "Etykieta przycisku jest w formie „ty” (Изпрати), a reszta aplikacji używa „докоснете”. Trzeba ujednolicić z faktyczną etykietą przycisku.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Pokaż częsty błąd",
+   "rodzaj": "nowe",
+   "pl": "Pokaż częsty błąd",
+   "tlumaczenie": "Покажи честата грешка",
+   "poprawka": "Показване на честата грешка",
+   "powod": "Tryb rozkazujący „ty” jest niezgodny z formalnym rejestrem. Lepsza jest forma rzeczownikowa jak w innych przyciskach.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Przejdź na ten plan",
+   "rodzaj": "nowe",
+   "pl": "Przejdź na ten plan",
+   "tlumaczenie": "Премини към този план",
+   "poprawka": "Преминаване към този план",
+   "powod": "Tryb rozkazujący „ty” jest niezgodny z formalnym rejestrem.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ukryj częsty błąd",
+   "rodzaj": "nowe",
+   "pl": "Ukryj częsty błąd",
+   "tlumaczenie": "Скрий честата грешка",
+   "poprawka": "Скриване на честата грешка",
+   "powod": "Tryb rozkazujący „ty” jest niezgodny z formalnym rejestrem.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zmień plan",
+   "rodzaj": "nowe",
+   "pl": "Zmień plan",
+   "tlumaczenie": "Смени плана",
+   "poprawka": "Смяна на плана",
+   "powod": "Tryb rozkazujący „ty” jest niezgodny z formalnym rejestrem.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "imperialny (lb, mi, yd)",
+   "rodzaj": "nowe",
+   "pl": "imperialny (lb, mi, yd)",
+   "tlumaczenie": "имперска (lb, мили, ярд)",
+   "poprawka": "имперска (lb, mi, yd)",
+   "powod": "Spójność ze skrótami jednostek (lb, mi, yd) po poprawce zdań 14 i 15.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "hinge.back",
+   "rodzaj": "wskazowka",
+   "pl": "Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.",
+   "tlumaczenie": "Гърбът изправен (в неутрално положение) през цялото движение — без извиване на гръбнака напред.",
+   "poprawka": "Гърбът изправен (в неутрално положение) през цялото движение — без изгърбване.",
+   "powod": "„Извиване на гръбнака напред” brzmi niezręcznie; naturalne jest „изгърбване” (spójne z 327 i 352).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "mis.roundBack",
+   "rodzaj": "wskazowka",
+   "pl": "Zaokrąglanie pleców, żeby dociągnąć ciężar.",
+   "tlumaczenie": "Изгърбване на гърба, за да вдигнеш тежестта.",
+   "poprawka": "Изгърбване, за да довършиш вдигането.",
+   "powod": "Tautologia „изгърбване на гърба”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

@@ -1,0 +1,22 @@
+{
+ "jezyk": "zh-Hant",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 479,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "tlumaczenie": "啞鈴在頭部或臉部上方的動作：建議有人在旁負責安全防護。",
+   "poprawka": "啞鈴在頭部或臉部上方的動作：建議安排一位保護者。",
+   "powod": "Niespójna terminologia: w zdaniach 3 i 4 „osoba asekurująca” to „保護者”, tu opisowo „有人在旁負責安全防護”. Znaczenie jest zachowane.",
+   "waga": "średnia"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

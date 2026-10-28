@@ -1,0 +1,58 @@
+{
+ "jezyk": "cs",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 475,
+ "uwagi": [
+  {
+   "klucz": "Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.",
+   "rodzaj": "nowe",
+   "pl": "Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.",
+   "tlumaczenie": "Kardio: jeden trénink mírné zátěže v samostatný den; jeho délka = délka tréninku.",
+   "poprawka": "Kardio: jeden trénink středně intenzivní zátěže v samostatný den; jeho délka = délka tréninku.",
+   "powod": "„umiarkowany wysiłek” oddano jako „mírná zátěž”, a w zdaniach 23 i 24 jako „středně intenzivní”. „Mírný” znaczy raczej łagodny, więc terminologia jest niespójna.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "rodzaj": "nowe",
+   "pl": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "tlumaczenie": "Kardio: při {k}–{m} dnech můžete dny nad {j} změnit na tréninky mírného kardia („Dny kardia v plánu“, ve výchozím stavu vypnuto). Víc posilování nemusí přinést víc zdravotních přínosů a aerobní pohyb je dobré rozložit do několika dnů. Délka kardio tréninku = délka tréninku.",
+   "poprawka": "Kardio: při {k}–{m} dnech můžete dny nad {j} změnit na tréninky středně intenzivního kardia („Dny kardia v plánu“, ve výchozím stavu vypnuto). Víc posilování nemusí přinést víc zdravotních přínosů a aerobní pohyb je dobré rozložit do několika dnů. Délka kardio tréninku = délka tréninku.",
+   "powod": "„umiarkowane cardio” oddano jako „mírné kardio”; niespójne z terminem „středně intenzivní” w zdaniach 23 i 24.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).",
+   "rodzaj": "nowe",
+   "pl": "Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).",
+   "tlumaczenie": "Vedlejší partie cviku se počítá jako půl série (hlavní 1, vedlejší 0,5).",
+   "poprawka": "Pomocná partie cviku se počítá jako půl série (hlavní 1, pomocná 0,5).",
+   "powod": "„pomocnicza” przetłumaczono jako „vedlejší”, a w pozostałych tekstach (64, 108) jako „pomocná/pomocné” — niespójna terminologia.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "calf.edge",
+   "rodzaj": "wskazowka",
+   "pl": "Oprzyj przednią część stóp na podwyższeniu, pięty poza krawędzią.",
+   "tlumaczenie": "Postav přední část chodidel na hranu, paty volně dolů.",
+   "poprawka": "Postav přední část chodidel na vyvýšení, paty přes okraj.",
+   "powod": "Pominięto „podwyższenie” ze źródła (tłumaczenie idzie za angielskim „edge”), więc nie wiadomo, o jaką krawędź chodzi.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "Nakonec „Dokončit“ v záhlaví (nebo „Dokončit trénink“ v kartě po poslední sérii) — trénink se uloží na kartu Plán.",
+   "poprawka": "Nakonec „Dokončit“ v záhlaví (nebo „Dokončit trénink“ v kartě po poslední sérii) — trénink se uloží na záložku Plán.",
+   "powod": "Ta sama zakładka Plan jest nazwana raz „karta”, a w zdaniu 124 „záložka”; „karta” myli się tu z kartą po serii.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

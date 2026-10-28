@@ -90,3 +90,5 @@ if (testy.length) {
   if (r.status !== 0) { console.error('verify:docs — błąd w testach Jest'); process.exit(r.status ?? 1); }
 }
 console.log(`verify:docs — zielone po ${Math.round((Date.now() - start) / 1000)} s`);
+/* L-049 (opcja A, 28.10.2026): znacznik „dokumenty” dla haka pre-push; nie w trybie testowym (VERIFY_DOCS_CHANGED) ani przy porównaniu z innym ref niż origin/main */
+if (process.env.VERIFY_DOCS_CHANGED === undefined && ref === 'origin/main') spawnSync(process.execPath, [join(root, 'scripts/verify-znacznik.mjs'), '--zapisz', 'dokumenty'], { cwd: root, stdio: 'inherit' });
