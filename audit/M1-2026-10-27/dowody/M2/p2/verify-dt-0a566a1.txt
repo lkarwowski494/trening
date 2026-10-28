@@ -1,0 +1,1406 @@
+
+> trening@1.0.0 verify
+> node scripts/hooks/sprawdz-instalacje.mjs && npm run typecheck && npm run lint && npm run check:i18n && npm run check:cues && npm run check:claims && npm run check:decyzje && npm run check:figures && npm run check:figures-v2 && npm run check:zrodla-runtime && npm run check:readme && jest && npm run check:matrix && npm run check:licenses && npx expo export --platform ios --output-dir .expo/verify-export && npm run check:bundle && node -e "require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})" && npm run verify:native && node scripts/verify-znacznik.mjs --zapisz pelne
+
+hak pre-push: zainstalowany
+
+> trening@1.0.0 typecheck
+> tsc --noEmit
+
+
+> trening@1.0.0 lint
+> eslint .
+
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/(tabs)/_layout.tsx
+   3:24  warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/store.ts' imported multiple times  import/no-duplicates
+  10:30  warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/store.ts' imported multiple times  import/no-duplicates
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/(tabs)/index.tsx
+   2:22  warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+  11:23  warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/(tabs)/more.tsx
+  2:10  warning  'View' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/_layout.tsx
+   5:52  warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+   8:23  warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+  17:26  warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+  21:32  warning  'FW' is defined but never used                                                                                                                       @typescript-eslint/no-unused-vars
+  45:33  warning  React Hook useEffect has a missing dependency: 'start'. Either include it or remove the dependency array                                             react-hooks/exhaustive-deps
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/exercise/[id].tsx
+   4:49   warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/node_modules/expo-router/build/index.js' imported multiple times  import/no-duplicates
+   8:23   warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/node_modules/expo-router/build/index.js' imported multiple times  import/no-duplicates
+  12:31   warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/seed.ts' imported multiple times                              import/no-duplicates
+  13:193  warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/seed.ts' imported multiple times                              import/no-duplicates
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/exercises.tsx
+  6:29  warning  'Input' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/generator.tsx
+  10:69   warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/store.ts' imported multiple times  import/no-duplicates
+  18:13   warning  'locale' is defined but never used                                                                                             @typescript-eslint/no-unused-vars
+  20:33   warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/store.ts' imported multiple times  import/no-duplicates
+  56:162  warning  React Hook useMemo has an unnecessary dependency: 'rev'. Either exclude it or remove the dependency array                      react-hooks/exhaustive-deps
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/history/[id].tsx
+   2:16  warning  'Alert' is defined but never used   @typescript-eslint/no-unused-vars
+  10:96  warning  'isBW' is defined but never used    @typescript-eslint/no-unused-vars
+  23:24  warning  'fmtNum' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/history/edit/[id].tsx
+   5:43  warning  'Stack' is defined but never used         @typescript-eslint/no-unused-vars
+  18:23  warning  'HeaderButton' is defined but never used  @typescript-eslint/no-unused-vars
+  33:64  warning  'th' is assigned a value but never used   @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/more/bands.tsx
+   2:16  warning  'Alert' is defined but never used          @typescript-eslint/no-unused-vars
+   4:18  warning  'Input' is defined but never used          @typescript-eslint/no-unused-vars
+   4:35  warning  'Btn' is defined but never used            @typescript-eslint/no-unused-vars
+  19:66  warning  'once' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/more/bodymass.tsx
+  5:35  warning  'Input' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/more/import.tsx
+  4:61  warning  'Input' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/more/location/[id].tsx
+   2:16  warning  'Alert' is defined but never used      @typescript-eslint/no-unused-vars
+  12:61  warning  'bandColor' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/pick-template.tsx
+   1:17  warning  'useMemo' is defined but never used      @typescript-eslint/no-unused-vars
+   2:10  warning  'Pressable' is defined but never used    @typescript-eslint/no-unused-vars
+   3:10  warning  'Text' is defined but never used         @typescript-eslint/no-unused-vars
+   6:20  warning  'F' is defined but never used            @typescript-eslint/no-unused-vars
+   7:18  warning  'Input' is defined but never used        @typescript-eslint/no-unused-vars
+   7:36  warning  'Muted' is defined but never used        @typescript-eslint/no-unused-vars
+  11:23  warning  'lang' is defined but never used         @typescript-eslint/no-unused-vars
+  22:20  warning  'th' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/picker.tsx
+   2:10   warning  'Pressable' is defined but never used                                                           @typescript-eslint/no-unused-vars
+   3:10   warning  'Text' is defined but never used                                                                @typescript-eslint/no-unused-vars
+   7:18   warning  'Input' is defined but never used                                                               @typescript-eslint/no-unused-vars
+  17:35   warning  'hasReps' is defined but never used                                                             @typescript-eslint/no-unused-vars
+  18:33   warning  'locale' is defined but never used                                                              @typescript-eslint/no-unused-vars
+  18:47   warning  'lang' is defined but never used                                                                @typescript-eslint/no-unused-vars
+  27:9    warning  'th' is assigned a value but never used                                                         @typescript-eslint/no-unused-vars
+  50:105  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/plan.tsx
+   3:35  warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+   5:40  warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+  15:13  warning  'locale' is defined but never used                                                                                                                   @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/progression.tsx
+  14:17  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/reorder.tsx
+  4:35  warning  'Empty' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/swap.tsx
+   1:17  warning  'useMemo' is defined but never used      @typescript-eslint/no-unused-vars
+   2:10  warning  'Pressable' is defined but never used    @typescript-eslint/no-unused-vars
+   3:10  warning  'Text' is defined but never used         @typescript-eslint/no-unused-vars
+   6:20  warning  'F' is defined but never used            @typescript-eslint/no-unused-vars
+   7:58  warning  'Input' is defined but never used        @typescript-eslint/no-unused-vars
+  16:33  warning  'locale' is defined but never used       @typescript-eslint/no-unused-vars
+  16:47  warning  'lang' is defined but never used         @typescript-eslint/no-unused-vars
+  31:9   warning  'th' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/template/[id].tsx
+  105:3   warning  React Hook useEffect contains a call to 'setOpen'. Without a list of dependencies, this can lead to an infinite chain of updates. To fix this, pass [tpl.items] as a second argument to the useEffect Hook  react-hooks/exhaustive-deps
+  168:10  warning  'Col' is defined but never used                                                                                                                                                                             @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/app/templates.tsx
+   2:22   warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+   6:27   warning  '/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+  16:132  warning  'once' is assigned a value but never used                                                                                                            @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/components/AddButton.tsx
+  25:153  warning  React Hook useMemo has an unnecessary dependency: 'th'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/components/DayPanel.tsx
+   2:27  warning  'Alert' is defined but never used   @typescript-eslint/no-unused-vars
+  11:13  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/components/DeloadHint.tsx
+  8:13  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/components/OwnPlan.tsx
+  11:13  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/components/PeriodSummary.tsx
+   6:21  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+  10:10  warning  'Chip' is defined but never used    @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/components/Scroll.tsx
+  12:13  warning  'ScrollView' is already defined   @typescript-eslint/no-redeclare
+  17:13  warning  'FlatList' is already defined     @typescript-eslint/no-redeclare
+  22:13  warning  'SectionList' is already defined  @typescript-eslint/no-redeclare
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/components/SwipeRow.tsx
+  73:74  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/components/WhatsNew.tsx
+  9:13  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/docs/design/narzedzia/ikona.mjs
+  34:3  warning  Unused eslint-disable directive (no problems were reported from 'import/no-unresolved')
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/docs/design/narzedzia/warsztat.mjs
+  32:3  warning  Unused eslint-disable directive (no problems were reported from 'import/no-unresolved')
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/docs/design/narzedzia/zrzuty.mjs
+  2:1  warning  Unused eslint-disable directive (no problems were reported from 'import/no-unresolved')
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/backup.ts
+   5:178  warning  'flush' is defined but never used     @typescript-eslint/no-unused-vars
+  10:58   warning  'Exercise' is defined but never used  @typescript-eslint/no-unused-vars
+  10:73   warning  'WSet' is defined but never used      @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/calendar.ts
+  18:19  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/cues/index.ts
+  31:1  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-var-requires')
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/dashboard.ts
+  1:54  warning  'isWorking' is defined but never used  @typescript-eslint/no-unused-vars
+  1:65  warning  'exById' is defined but never used     @typescript-eslint/no-unused-vars
+  2:65  warning  'plannedOn' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/figures/index.ts
+  15:1  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-var-requires')
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/generator.ts
+   4:21  warning  'LIB_BASE_NAMES' is defined but never used  @typescript-eslint/no-unused-vars
+   7:23  warning  'locale' is defined but never used          @typescript-eslint/no-unused-vars
+  12:1   warning  Import in body of module; reorder to top    import/first
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/hkModule.ts
+  34:16  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/i18n.ts
+  65:5   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-var-requires')
+  66:18  warning  A `require()` style import is forbidden                                                                @typescript-eslint/no-require-imports
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/live.ts
+   2:25   warning  'lang' is defined but never used          @typescript-eslint/no-unused-vars
+   6:1    warning  Import in body of module; reorder to top  import/first
+  40:144  warning  'si' is assigned a value but never used   @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/locales/index.ts
+  4:1  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-var-requires')
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/motif.ts
+  3:59  warning  'weekdayIdx' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/plan.ts
+  3:13  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/review-run.ts
+  17:60  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/store-native.ts
+  34:86  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/lib/swap.ts
+  3:21  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 106 problems (0 errors, 106 warnings)
+  0 errors and 19 warnings potentially fixable with the `--fix` option.
+
+
+> trening@1.0.0 check:i18n
+> node scripts/check-i18n.mjs
+
+i18n: 1446 tekstów w kodzie, 1542 w słowniku EN
+
+> trening@1.0.0 check:cues
+> node scripts/cues/gen.mjs --check
+
+wskazówki: 102 ćwiczeń, dokument aktualny
+
+> trening@1.0.0 check:claims
+> node scripts/claims.mjs --check
+
+twierdzenia: 59 wpisów, 41 tekstów dziedzinowych (w tym bez twierdzenia: 7), rejestr zgodny
+
+> trening@1.0.0 check:decyzje
+> node scripts/decyzje.mjs --check
+
+check:decyzje — 365 wpisów decyzji, każdy z polem wdrożenia i testem albo powodem
+
+> trening@1.0.0 check:figures
+> node scripts/figures/gen.mjs --check
+
+figury: 71 ćwiczeń, 31 otwartych — dokument aktualny
+
+> trening@1.0.0 check:figures-v2
+> node scripts/figures/v2-gen.mjs --check && node scripts/figures/v2-validate.mjs --schema --check
+
+figury v2: aktualne
+docs/schemas/figury-v2-poza.schema.json aktualny
+
+> trening@1.0.0 check:zrodla-runtime
+> node scripts/zrodla-runtime.mjs --check
+
+
+> trening@1.0.0 check:readme
+> node scripts/readme.mjs --check
+
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/scenario-full.test.tsx (40.749 s)
+PASS iOS tests/regress.test.tsx (55.035 s)
+  ● Console
+
+    console.error
+      Error: Unable to find node on an unmounted component.
+          at Error (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:1689:17)
+          at findCurrentFiberUsingSlowPath (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:1761:16)
+          at findCurrentHostFiber (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:15744:19)
+          at findHostInstanceWithWarning (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:15860:27)
+          at AnimatedProps._connectAnimatedView2 (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedProps.js:276:42)
+          at AnimatedProps.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedProps.js:257:13)
+          at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedStyle.js:225:5)
+          at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedTransform.js:87:5)
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedInterpolation.js:391:5)
+          at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedTransform.js:85:12)
+          at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedStyle.js:223:12)
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedInterpolation.js:391:5)
+          at AnimatedValue.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedValue.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedValue.js:131:5)
+          at TimingAnimation.__makeNative [as __startAnimationIfNative] (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/Animation.js:137:21)
+          at __startAnimationIfNative (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/TimingAnimation.js:123:36)
+          at TimingAnimation.start (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/TimingAnimation.js:139:7)
+          at AnimatedValue.start [as animate] (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedValue.js:320:15)
+          at animate (/home/user/trening/node_modules/react-native/Libraries/Animated/AnimatedImplementation.js:233:19)
+          at Object.start (/home/user/trening/node_modules/react-native/Libraries/Animated/AnimatedImplementation.js:240:9)
+          at start (/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/components/BoardFace.tsx:29:178)
+          at Object.react_stack_bottom_frame (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:15755:20)
+          at runWithFiberInDEV (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+          at commitHookEffectListMount (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9530:29)
+          at commitHookPassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9617:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11205:13)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+          ... collapsed 4 duplicate lines matching above lines ...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          ... collapsed 12 duplicate lines matching above 6 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11387:17)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11354:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          ... collapsed 6 duplicate lines matching above lines ...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11) {
+        [stack]: [Getter/Setter],
+        [message]: 'Unable to find node on an unmounted component.'
+      }
+      
+      The above error occurred in the <NowBoard> component.
+      
+      React will try to recreate this component tree from scratch using the error boundary you provided, Try.
+
+      107 | // żeby log był czytelny. Pozostałe console.error przechodzą (C9 sprawdza je jawnie).
+      108 | const origError = console.error;
+    > 109 | console.error = (...a) => { if (/not wrapped in act/.test(String(a[0]))) return; origError(...a); };
+          |                                                                                  ^
+      110 |
+      111 | // ActionSheetIOS (menu serii): zapamiętujemy wywołania, test wybiera opcję przez global.__pickSheet(i).
+      112 | global.__sheets = [];
+
+      at console.origError [as error] (tests/setup.js:109:82)
+      at defaultOnCaughtError (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6439:17)
+      at logCaughtError (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6475:9)
+      at runWithFiberInDEV (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at Try.update.callback (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6508:11)
+      at callCallback (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4625:16)
+      at commitCallbacks (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4645:11)
+      at runWithFiberInDEV (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at commitClassCallbacks (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9658:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10082:25)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10202:17)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10168:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10118:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10010:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (../../../../../../home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+
+PASS iOS tests/matrix-ui.test.tsx (20.605 s)
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:58
+  const t = (tryb === 'vertex' ? CENY_VERTEX : CENY)[model]; if (!t) throw new Error(`nieznany model: ${model} (dozwolone: ${MODELE.join(', ')})`);
+                                                                           ^
+
+Error: nieznany model: gpt-x (dozwolone: gemini-4-argon, gemini-3.1-pro-preview, gemini-3.8-flash)
+    at Module.cena (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:58:76)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:373
+    else if (a === '--rodzina') { o.rodzina = wart(i++, a); if (!/^[a-z][a-z0-9_]{1,40}$/.test(o.rodzina)) throw new Error('--rodzina: oczekiwany identyfikator rodziny (małe litery, cyfry, _)'); }
+                                                                                                                 ^
+
+Error: --rodzina: oczekiwany identyfikator rodziny (małe litery, cyfry, _)
+    at Module.parsujArgumenty (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:373:114)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:373
+    else if (a === '--rodzina') { o.rodzina = wart(i++, a); if (!/^[a-z][a-z0-9_]{1,40}$/.test(o.rodzina)) throw new Error('--rodzina: oczekiwany identyfikator rodziny (małe litery, cyfry, _)'); }
+                                                                                                                 ^
+
+Error: --rodzina: oczekiwany identyfikator rodziny (małe litery, cyfry, _)
+    at Module.parsujArgumenty (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:373:114)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:378
+    else if (a === '--model') { o.model = wart(i++, a); if (!MODELE.includes(o.model)) throw new Error(`nieznany model: ${o.model} (dozwolone: ${MODELE.join(', ')})`); }
+                                                                                             ^
+
+Error: nieznany model: gpt (dozwolone: gemini-4-argon, gemini-3.1-pro-preview, gemini-3.8-flash)
+    at Module.parsujArgumenty (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:378:94)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:379
+    else if (a === '--limit-usd') { o.limitUsd = Number(wart(i++, a)); if (!(o.limitUsd > 0 && o.limitUsd <= 50)) throw new Error('--limit-usd: liczba z przedziału (0, 50]'); }
+                                                                                                                        ^
+
+Error: --limit-usd: liczba z przedziału (0, 50]
+    at Module.parsujArgumenty (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:379:121)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:379
+    else if (a === '--limit-usd') { o.limitUsd = Number(wart(i++, a)); if (!(o.limitUsd > 0 && o.limitUsd <= 50)) throw new Error('--limit-usd: liczba z przedziału (0, 50]'); }
+                                                                                                                        ^
+
+Error: --limit-usd: liczba z przedziału (0, 50]
+    at Module.parsujArgumenty (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:379:121)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:380
+    else if (a === '--proby') { o.proby = Number(wart(i++, a)); if (!Number.isInteger(o.proby) || o.proby < 1 || o.proby > 8) throw new Error('--proby: liczba całkowita 1–8'); }
+                                                                                                                                    ^
+
+Error: --proby: liczba całkowita 1–8
+    at Module.parsujArgumenty (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:380:133)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:385
+    else throw new Error(`nieznany argument: ${a}`);
+               ^
+
+Error: nieznany argument: --nic
+    at Module.parsujArgumenty (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:385:16)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:369
+  const wart = (i, n) => { if (i + 1 >= argv.length) throw new Error(`brak wartości dla ${n}`); return argv[i + 1]; };
+                                                           ^
+
+Error: brak wartości dla --model
+    at wart (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:369:60)
+    at Module.parsujArgumenty (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:378:43)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:84
+  if (i < 0) throw new Error(`rodzina „${rodzina}” nie występuje w ${plik}`);
+                   ^
+
+Error: rodzina „nie_ma” nie występuje w /tmp/gemini-OTKrUl/docs/51-figury-v2-pokrycie.md
+    at Module.cwiczeniaRodziny (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:84:20)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:82
+  if (!existsSync(plik)) throw new Error(`brak ${plik} (jest na gałęzi grafiki-cwiczen; uruchom z tej gałęzi)`);
+                               ^
+
+Error: brak /nie/ma.md (jest na gałęzi grafiki-cwiczen; uruchom z tej gałęzi)
+    at Module.cwiczeniaRodziny (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:82:32)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:374
+    else if (a === '--api') { o.api = wart(i++, a); if (!API_TRYBY.includes(o.api)) throw new Error(`nieznany tryb --api: ${o.api} (dozwolone: ${API_TRYBY.join(', ')})`); }
+                                                                                          ^
+
+Error: nieznany tryb --api: azure (dozwolone: vertex, gemini)
+    at Module.parsujArgumenty (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:374:91)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:369
+  const wart = (i, n) => { if (i + 1 >= argv.length) throw new Error(`brak wartości dla ${n}`); return argv[i + 1]; };
+                                                           ^
+
+Error: brak wartości dla --api
+    at wart (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:369:60)
+    at Module.parsujArgumenty (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:374:39)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:374
+    else if (a === '--api') { o.api = wart(i++, a); if (!API_TRYBY.includes(o.api)) throw new Error(`nieznany tryb --api: ${o.api} (dozwolone: ${API_TRYBY.join(', ')})`); }
+                                                                                          ^
+
+Error: nieznany tryb --api:  (dozwolone: vertex, gemini)
+    at Module.parsujArgumenty (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:374:91)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:375
+    else if (a === '--lokalizacja') { o.lokalizacja = wart(i++, a); if (!LOKALIZACJE.includes(o.lokalizacja)) throw new Error(`nieznana --lokalizacja: ${o.lokalizacja} (dozwolone: ${LOKALIZACJE.join(', ')})`); }
+                                                                                                                    ^
+
+Error: nieznana --lokalizacja: us-central1 (dozwolone: global, us, eu)
+    at Module.parsujArgumenty (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:375:117)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:369
+  const wart = (i, n) => { if (i + 1 >= argv.length) throw new Error(`brak wartości dla ${n}`); return argv[i + 1]; };
+                                                           ^
+
+Error: brak wartości dla --lokalizacja
+    at wart (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:369:60)
+    at Module.parsujArgumenty (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/figures/gemini-pozy.mjs:375:55)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:144
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+PASS iOS tests/gemini-pozy.test.ts
+PASS iOS tests/edit-history.test.tsx (6.157 s)
+PASS iOS tests/motyw.test.tsx (6.047 s)
+PASS iOS tests/matrix-invariants.test.ts (79.033 s)
+PASS iOS tests/matrix-logic.test.tsx (25.148 s)
+PASS iOS tests/public-repo.test.ts
+PASS iOS tests/matrix-time.test.ts
+PASS iOS tests/audit-0.10-plan.test.ts
+PASS iOS tests/audit-0.10-live.test.tsx (11.44 s)
+PASS iOS tests/maestro-selectors.test.ts
+PASS iOS tests/audit-0.10-ui.test.tsx (11.605 s)
+PASS iOS tests/guard.test.ts
+PASS iOS tests/audit-k1-fala2b.test.tsx (9.884 s)
+PASS iOS tests/subscription-ui.test.tsx (11.545 s)
+PASS iOS tests/guard-ui.test.tsx (12.865 s)
+PASS iOS tests/audit-0.10-plan-ui.test.tsx (14.916 s)
+PASS iOS tests/catalog-library25.test.tsx
+PASS iOS tests/integration-090.test.tsx (5.789 s)
+PASS iOS tests/timer-logic.test.ts
+PASS iOS tests/przeglad-tlumaczen.test.ts
+PASS iOS tests/matrix-data-fuzz.test.ts (53.534 s)
+PASS iOS tests/interaction-guards.test.ts
+PASS iOS tests/idea-request.test.tsx (7.256 s)
+PASS iOS tests/figures.test.tsx
+PASS iOS tests/audit-0.10-live-logic.test.ts
+PASS iOS tests/swap-logic.test.ts
+PASS iOS tests/m3-p2-board-ui.test.tsx (13.175 s)
+PASS iOS tests/backlog-0.10.1-dane.test.ts
+PASS iOS tests/hak-pre-push.test.ts (16.9 s)
+PASS iOS tests/health-query.test.ts
+PASS iOS tests/adapt-logic.test.ts
+PASS iOS tests/audit-0.10-data.test.ts
+PASS iOS tests/swipe-delete.test.tsx (10.721 s)
+PASS iOS tests/matrix-migrations.test.tsx (33.353 s)
+PASS iOS tests/adapt-ui.test.tsx (18.395 s)
+PASS iOS tests/matrix-a11y.test.tsx (38.39 s)
+PASS iOS tests/decisions-0310.test.tsx
+PASS iOS tests/progression-ui.test.tsx (7.893 s)
+PASS iOS tests/figures-v2-engine.test.ts
+PASS iOS tests/store-adapter.test.ts
+PASS iOS tests/przeklad-tlumaczen.test.ts
+PASS iOS tests/access.test.ts
+PASS iOS tests/places-ui.test.tsx (31.321 s)
+PASS iOS tests/figures-v2-contract.test.ts (12.827 s)
+PASS iOS tests/matrix-dim-metrics.test.tsx
+PASS iOS tests/health-read.test.ts
+PASS iOS tests/zrodla-wiedzy.test.ts
+PASS iOS tests/mutation-plan.test.ts
+PASS iOS tests/audit-0.10-lang-ui.test.tsx (22.866 s)
+PASS iOS tests/audit-0.10-stats.test.ts
+PASS iOS tests/audit-0.10-gen.test.ts
+PASS iOS tests/edit-on-demand.test.tsx (8.762 s)
+  ● Console
+
+    console.warn
+      A function to advance timers was called but the timers APIs are not replaced with fake timers. Call `jest.useFakeTimers()` in this test file or enable fake timers for all tests by setting 'fakeTimers': {'enableGlobally': true} in Jest configuration file.
+      Stack Trace:
+      
+            25 |     const d = draft.beginObjDraft<Template>('template', t.id)!; expect(d).not.toBe(t); expect(d.items[0]).not.toBe(t.items[0]); expect(draft.beginObjDraft('template', t.id)).toBe(d);
+            26 |     expect(store.isDraftObj(d)).toBe(true); expect(store.isDraftObj(t)).toBe(false);
+          > 27 |     d.name = 'Zmieniony'; store.tplAddRow(d, 'a', 'warmup'); store.save(d); await act(async () => { jest.advanceTimersByTime(1000); await store.flush(); });
+               |                                                                                                          ^
+            28 |     expect(global.__kv.get('state')).toBe(kv); expect(store.getHistRev()).toBe(hist); expect(t.name).toBe('Push'); expect(store.tplRows(t.items[0]).length).toBe(3);
+            29 |     expect(draft.objDirty('template', t.id)).toBe(true); expect(draft.templateForEdit(t.id)).toBe(d);
+            30 |     draft.discardObjDraft('template', t.id); expect(draft.objDraft('template', t.id)).toBeUndefined(); expect(draft.templateForEdit(t.id)).toBe(t); expect(draft.objDirty('template', t.id)).toBe(false);
+      
+            Error: 
+            at FakeTimers._checkFakeTimers (../../../../../../home/user/trening/node_modules/@jest/fake-timers/build/modernFakeTimers.js:158:13)
+            at FakeTimers.advanceTimersByTime (../../../../../../home/user/trening/node_modules/@jest/fake-timers/build/modernFakeTimers.js:93:14)
+            at advanceTimersByTime (tests/edit-on-demand.test.tsx:27:106)
+            at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+            at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+            at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+            at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+            at callback (../../../../../../home/user/trening/node_modules/@testing-library/react-native/src/act.ts:31:24)
+            at Object.<anonymous>.process.env.NODE_ENV.exports.act (../../../../../../home/user/trening/node_modules/react/cjs/react.development.js:814:22)
+            at actImplementation (../../../../../../home/user/trening/node_modules/@testing-library/react-native/src/act.ts:30:25)
+            at Object.<anonymous> (tests/edit-on-demand.test.tsx:27:86)
+            at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+            at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+      25 |     const d = draft.beginObjDraft<Template>('template', t.id)!; expect(d).not.toBe(t); expect(d.items[0]).not.toBe(t.items[0]); expect(draft.beginObjDraft('template', t.id)).toBe(d);
+      26 |     expect(store.isDraftObj(d)).toBe(true); expect(store.isDraftObj(t)).toBe(false);
+    > 27 |     d.name = 'Zmieniony'; store.tplAddRow(d, 'a', 'warmup'); store.save(d); await act(async () => { jest.advanceTimersByTime(1000); await store.flush(); });
+         |                                                                                                          ^
+      28 |     expect(global.__kv.get('state')).toBe(kv); expect(store.getHistRev()).toBe(hist); expect(t.name).toBe('Push'); expect(store.tplRows(t.items[0]).length).toBe(3);
+      29 |     expect(draft.objDirty('template', t.id)).toBe(true); expect(draft.templateForEdit(t.id)).toBe(d);
+      30 |     draft.discardObjDraft('template', t.id); expect(draft.objDraft('template', t.id)).toBeUndefined(); expect(draft.templateForEdit(t.id)).toBe(t); expect(draft.objDirty('template', t.id)).toBe(false);
+
+      at FakeTimers._checkFakeTimers (../../../../../../home/user/trening/node_modules/@jest/fake-timers/build/modernFakeTimers.js:152:28)
+      at FakeTimers.advanceTimersByTime (../../../../../../home/user/trening/node_modules/@jest/fake-timers/build/modernFakeTimers.js:93:14)
+      at advanceTimersByTime (tests/edit-on-demand.test.tsx:27:106)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at callback (../../../../../../home/user/trening/node_modules/@testing-library/react-native/src/act.ts:31:24)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (../../../../../../home/user/trening/node_modules/react/cjs/react.development.js:814:22)
+      at actImplementation (../../../../../../home/user/trening/node_modules/@testing-library/react-native/src/act.ts:30:25)
+      at Object.<anonymous> (tests/edit-on-demand.test.tsx:27:86)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+    console.warn
+      A function to advance timers was called but the timers APIs are not replaced with fake timers. Call `jest.useFakeTimers()` in this test file or enable fake timers for all tests by setting 'fakeTimers': {'enableGlobally': true} in Jest configuration file.
+      Stack Trace:
+      
+            34 |     draft.beginObjDraft('template', t.id); expect(draft.commitObjDraft('template', t.id)).toBe(true); expect(t.updatedAt).toBe(ts); /* nic nie zmieniono */
+            35 |     const d = draft.beginObjDraft<Template>('template', t.id)!; delete d.folder; d.note = '  RIR  1 '; d.items.reverse(); (d as Template & { archived?: true }).archived = true;
+          > 36 |     jest.advanceTimersByTime(5); expect(draft.commitObjDraft('template', t.id)).toBe(true);
+               |          ^
+            37 |     expect(S().templates.find(x => x.id === t.id)).toBe(t); expect('folder' in t).toBe(false); expect(t.note).toBe('RIR 1'); expect(t.items.map(i => i.id)).toEqual(['b', 'a']);
+            38 |     expect(t.archived).toBeUndefined(); /* archiwum przełącza się w podglądzie, nie szkicem */ expect(t.updatedAt).toBeGreaterThan(ts); expect(store.isDraftObj(t)).toBe(false);
+            39 |     expect(draft.commitObjDraft('template', t.id)).toBe(false); /* brak szkicu */
+      
+            Error: 
+            at FakeTimers._checkFakeTimers (../../../../../../home/user/trening/node_modules/@jest/fake-timers/build/modernFakeTimers.js:158:13)
+            at FakeTimers.advanceTimersByTime (../../../../../../home/user/trening/node_modules/@jest/fake-timers/build/modernFakeTimers.js:93:14)
+            at Object.advanceTimersByTime (tests/edit-on-demand.test.tsx:36:10)
+            at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+            at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+      34 |     draft.beginObjDraft('template', t.id); expect(draft.commitObjDraft('template', t.id)).toBe(true); expect(t.updatedAt).toBe(ts); /* nic nie zmieniono */
+      35 |     const d = draft.beginObjDraft<Template>('template', t.id)!; delete d.folder; d.note = '  RIR  1 '; d.items.reverse(); (d as Template & { archived?: true }).archived = true;
+    > 36 |     jest.advanceTimersByTime(5); expect(draft.commitObjDraft('template', t.id)).toBe(true);
+         |          ^
+      37 |     expect(S().templates.find(x => x.id === t.id)).toBe(t); expect('folder' in t).toBe(false); expect(t.note).toBe('RIR 1'); expect(t.items.map(i => i.id)).toEqual(['b', 'a']);
+      38 |     expect(t.archived).toBeUndefined(); /* archiwum przełącza się w podglądzie, nie szkicem */ expect(t.updatedAt).toBeGreaterThan(ts); expect(store.isDraftObj(t)).toBe(false);
+      39 |     expect(draft.commitObjDraft('template', t.id)).toBe(false); /* brak szkicu */
+
+      at FakeTimers._checkFakeTimers (../../../../../../home/user/trening/node_modules/@jest/fake-timers/build/modernFakeTimers.js:152:28)
+      at FakeTimers.advanceTimersByTime (../../../../../../home/user/trening/node_modules/@jest/fake-timers/build/modernFakeTimers.js:93:14)
+      at Object.advanceTimersByTime (tests/edit-on-demand.test.tsx:36:10)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+PASS iOS tests/asc-zrzuty.test.ts
+PASS iOS tests/csv-import-logic.test.ts
+PASS iOS tests/stats.test.ts
+PASS iOS tests/health-read-ui.test.tsx (7.624 s)
+PASS iOS tests/catalog-v2.test.ts
+PASS iOS tests/monetyzacja-csv.test.ts
+PASS iOS tests/intro.test.tsx (14.449 s)
+PASS iOS tests/m3-p3-postepy-historia.test.tsx (7.067 s)
+PASS iOS tests/audit-0.10-data-ui.test.tsx
+PASS iOS tests/nocny-raport.test.ts
+PASS iOS tests/audit-r83.test.tsx
+PASS iOS tests/figures-v2-ui.test.tsx (6.87 s)
+PASS iOS tests/progress.test.ts
+PASS iOS tests/gen-days.test.ts
+PASS iOS tests/entitlement.test.ts
+PASS iOS tests/guide.test.tsx
+PASS iOS tests/logic.test.ts
+PASS iOS tests/plan-calendar-ui.test.tsx (6.334 s)
+PASS iOS tests/iap-localizations.test.ts
+PASS iOS tests/asc-metadane.test.ts
+PASS iOS tests/watch-apple-contract.test.ts
+PASS iOS tests/audit-0.10-gen-ui.test.tsx
+PASS iOS tests/audit-0.10-tst.test.ts
+PASS iOS tests/figury-1-0-recenzja.test.ts
+PASS iOS tests/locations-audit.test.tsx
+PASS iOS tests/m5s1-dni-zapis.test.ts
+PASS iOS tests/locations-model.test.ts (11.829 s)
+PASS iOS tests/voice.test.ts
+PASS iOS tests/invariants.test.ts (142.582 s)
+PASS iOS tests/plan-own-templates-ui.test.tsx (6.336 s)
+PASS iOS tests/m3-components.test.tsx
+PASS iOS tests/m3-fix-e2e.test.tsx (5.887 s)
+PASS iOS tests/plan-wczesniej.test.ts
+PASS iOS tests/plan-places.test.ts
+PASS iOS tests/mutation-bounds.test.ts
+PASS iOS tests/gen-general-ui.test.tsx (26.01 s)
+PASS iOS tests/mutation-generator.test.ts
+PASS iOS tests/audit-r82b.test.tsx
+PASS iOS tests/review-run.test.tsx (6.181 s)
+PASS iOS tests/gen-general.test.ts
+PASS iOS tests/monetyzacja-ui.test.tsx (6.866 s)
+PASS iOS tests/watch-link.test.ts
+PASS iOS tests/audit-m1-044-brd.test.ts
+PASS iOS tests/readme.test.ts (8.723 s)
+PASS iOS tests/gen-days-ui.test.tsx (17.598 s)
+PASS iOS tests/figury-recenzja.test.tsx
+PASS iOS tests/m3-p2-board-logic.test.ts
+PASS iOS tests/watch-apply.test.ts
+PASS iOS tests/audit-r82c.test.tsx
+PASS iOS tests/live2-split-template.test.tsx
+PASS iOS tests/figury-podparcie.test.ts
+PASS iOS tests/watch-cue.test.ts
+PASS iOS tests/watch-snapshot.test.ts
+Pakiet musi być „podstawowy” albo „pelny” (jest: czesciowy)
+PASS iOS tests/e2e-pakiet.test.ts
+PASS iOS tests/tabs-four.test.tsx (7.404 s)
+PASS iOS tests/interaction-patterns.test.tsx
+PASS iOS tests/audit011b.test.tsx
+PASS iOS tests/generator-ui.test.tsx
+PASS iOS tests/reorder-t010.test.tsx
+PASS iOS tests/period-bars.test.tsx (6.751 s)
+PASS iOS tests/places-oneoff-logic.test.ts
+PASS iOS tests/cascade-sets.test.tsx
+PASS iOS tests/flows.test.tsx (13.113 s)
+PASS iOS tests/backlog-0.10.1-dane-ui.test.tsx
+PASS iOS tests/audit-r82.test.tsx (5.835 s)
+PASS iOS tests/csv-import-ui.test.tsx
+PASS iOS tests/home-b.test.tsx
+PASS iOS tests/audit-r83b.test.tsx
+PASS iOS tests/matrix-dim-equipment.test.tsx
+PASS iOS tests/audit-m1-workflows.test.ts
+PASS iOS tests/set-goals-ui.test.tsx
+PASS iOS tests/maestro-e2e38563.test.tsx (163.517 s)
+PASS iOS tests/swap-alternates.test.tsx
+PASS iOS tests/plan-own-templates.test.ts
+PASS iOS tests/m3-theme.test.ts
+PASS iOS tests/watch-link-module.test.ts
+PASS iOS tests/template-rows.test.tsx
+PASS iOS tests/store-stale.test.ts
+PASS iOS tests/zrodla-pelne-cues.test.ts
+PASS iOS tests/audit-0.10-stats-ui.test.tsx (7.412 s)
+PASS iOS tests/swap-history.test.tsx
+PASS iOS tests/figures-v2-geometry.test.ts (19.855 s)
+PASS iOS tests/locations-catalog.test.ts
+PASS iOS tests/matrix-dim-catalog.test.tsx
+PASS iOS tests/voice-ui.test.tsx (5.332 s)
+PASS iOS tests/locations-ui.test.tsx (9.042 s)
+PASS iOS tests/pick-template.test.tsx (5.372 s)
+PASS iOS tests/plan-calendar.test.ts
+PASS iOS tests/m3-p5d-haptics.test.ts
+PASS iOS tests/store-toggle.test.ts
+PASS iOS tests/swap-schema16.test.ts
+PASS iOS tests/set-split-ui.test.tsx (5.134 s)
+PASS iOS tests/zrodlo-jedno.test.ts
+PASS iOS tests/audit-backlog-r75.test.tsx
+PASS iOS tests/db-location.test.ts
+PASS iOS tests/ux.test.tsx (12.071 s)
+PASS iOS tests/audit-0.10-lang.test.ts
+PASS iOS tests/audit-m1-031-asekuracja-zakres.test.tsx
+PASS iOS tests/matrix-dim-langs1.test.tsx (94.806 s)
+PASS iOS tests/matrix-dim-langs3.test.tsx (92.203 s)
+PASS iOS tests/matrix-dim-langs2.test.tsx (91.635 s)
+PASS iOS tests/info-tip.test.tsx
+PASS iOS tests/set-goals.test.ts
+PASS iOS tests/places-migrate.test.ts
+PASS iOS tests/pause.test.tsx
+PASS iOS tests/locations-loads.test.ts
+PASS iOS tests/m3-p2-start.test.tsx
+PASS iOS tests/m3-p5-delete.test.tsx
+PASS iOS tests/watch-client.test.ts
+PASS iOS tests/set-split.test.ts
+PASS iOS tests/dashboard.test.tsx
+PASS iOS tests/swap-ui.test.tsx
+PASS iOS tests/przeplywy.test.ts
+PASS iOS tests/karta-sprzet.test.tsx
+PASS iOS tests/e2e-shards.test.ts
+PASS iOS tests/decyzje-straznik.test.ts
+PASS iOS tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts
+(node:22809) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS iOS tests/db-real-sqlite.test.ts
+PASS iOS tests/karty-recenzja.test.tsx
+PASS iOS tests/zrodla-paczka.test.ts (11.716 s)
+PASS iOS tests/whats-new.test.tsx
+PASS iOS tests/matrix-dim-langs4.test.tsx (71.045 s)
+PASS iOS tests/cues.test.tsx
+PASS iOS tests/generator.test.ts
+PASS iOS tests/audit-m1-031-hantle-asekuracja.test.tsx
+PASS iOS tests/audit-prephone.test.tsx
+PASS iOS tests/audit-persist.test.ts
+PASS iOS tests/audit-m1-045-store-description.test.ts
+PASS iOS tests/home-plan-header.test.tsx
+PASS iOS tests/audit-perf-equiv.test.ts
+PASS iOS tests/m3-p5d-settings-ui.test.tsx
+PASS iOS tests/maestro-e2e91.test.tsx (43.914 s)
+PASS iOS tests/ux2-08-gen-replace-active.test.tsx
+PASS iOS tests/m3-system.test.tsx
+PASS iOS tests/figures-v2-guides.test.tsx
+PASS iOS tests/tuleja.test.tsx
+PASS iOS tests/figures-v2-errors.test.tsx (24.165 s)
+PASS iOS tests/history-calendar.test.tsx
+PASS iOS tests/sec2-01-names.test.ts
+PASS iOS tests/plan-new-template-day.test.tsx
+PASS iOS tests/zk07-pierwszy-start.test.tsx
+PASS iOS tests/catalog-full.test.tsx
+PASS iOS tests/watch-test-mode.test.tsx
+PASS iOS tests/audit-m1-lok07-01-imperial-dist.test.tsx
+PASS iOS tests/audit-m1-048-claims-registry.test.ts
+PASS iOS tests/records-card.test.tsx
+PASS iOS tests/template-folders.test.tsx
+PASS iOS tests/deload-ui.test.tsx (5.599 s)
+PASS iOS tests/m5s1-bez-proby.test.ts
+PASS iOS tests/watch-fixtures.test.ts
+PASS iOS tests/maestro-failures.test.ts (6.728 s)
+PASS iOS tests/motyw-miesiac.test.tsx
+PASS iOS tests/m3-p4-generator.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts
+PASS iOS tests/audit-r72-d.test.ts
+PASS iOS tests/plan-wczesniej-ui.test.tsx
+PASS iOS tests/audit-journey-c.test.tsx (28.976 s)
+PASS iOS tests/watch-protocol.test.ts
+PASS iOS tests/audit-k1-log.test.ts
+PASS iOS tests/skip-today.test.tsx
+PASS iOS tests/audit-r72-a.test.ts (33.001 s)
+PASS iOS tests/places-scenario.test.tsx
+PASS iOS tests/live-activity-lang.test.ts
+PASS iOS tests/plan-reminder.test.tsx
+PASS iOS tests/watch-apple-i18n.test.ts
+PASS iOS tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx
+PASS iOS tests/cues-014.test.tsx
+file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/przeniesienie-1.0.mjs:54
+  if (bledy.length) throw new Error(`lista przeniesienia niepoprawna:\n- ${bledy.join('\n- ')}`);
+                          ^
+
+Error: lista przeniesienia niepoprawna:
+- lista nie ma wpisów
+    at Module.zbudujPlan (file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/scripts/przeniesienie-1.0.mjs:54:27)
+    at file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-dt/[eval1]:1:190
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+PASS iOS tests/przeniesienie-1.0.test.ts
+PASS iOS tests/store-rest.test.ts
+PASS iOS tests/support-mail.test.tsx
+PASS iOS tests/store-review-notes.test.ts
+PASS iOS tests/audit-0.10-tst-ui.test.tsx
+PASS iOS tests/plans-multi-ui.test.tsx
+PASS iOS tests/figures-v2-bench-rules.test.ts
+PASS iOS tests/migrate-idem.test.ts (178.928 s)
+PASS iOS tests/nocne-workflowy.test.ts
+PASS iOS tests/watch-health.test.ts
+PASS iOS tests/muscle-map.test.tsx
+PASS iOS tests/close-button-guard.test.tsx
+PASS iOS tests/audit-r72-b.test.ts
+PASS iOS tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts
+PASS iOS tests/audit-close2-a.test.tsx (6.699 s)
+PASS iOS tests/audit-m1-026-kolejnosc-menu.test.tsx
+PASS iOS tests/prices-decision.test.ts
+PASS iOS tests/period-summary.test.tsx
+PASS iOS tests/i18n-wave4-ui.test.tsx (7.29 s)
+(node:24424) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS iOS tests/audit-m1-2026-10-27-004-ratunek.test.tsx
+PASS iOS tests/health-permissions.test.ts
+PASS iOS tests/audit-m1-062-update.test.ts
+PASS iOS tests/b2-plan-own-templates.test.tsx
+PASS iOS tests/audit-training.test.ts
+PASS iOS tests/rm-signing.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx
+PASS iOS tests/review.test.ts
+PASS iOS tests/figures-v2-tor.test.ts (5.748 s)
+PASS iOS tests/audit-m1-015-asekuracja.test.tsx
+PASS iOS tests/scenario-0.10.test.tsx (7.527 s)
+PASS iOS tests/adapt-scenario.test.tsx
+PASS iOS tests/asc-kontrola.test.ts
+PASS iOS tests/m5s1-dni-treningowe.test.ts
+PASS iOS tests/locations-verify2.test.tsx
+PASS iOS tests/figures-v2-cues.test.tsx
+PASS iOS tests/live-marker.test.ts
+PASS iOS tests/audit-m1-065-week-start.test.tsx
+PASS iOS tests/audit-m1-049-critical-content.test.ts
+PASS iOS tests/audit-m1-035-notif-denied.test.tsx
+PASS iOS tests/i18n-wave3-ui.test.tsx
+PASS iOS tests/backlog-0410.test.tsx
+PASS iOS tests/watch-availability.test.ts
+PASS iOS tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts
+PASS iOS tests/audit-m1-067-language-registry.test.ts
+PASS iOS tests/audit-backlog-q.test.tsx
+PASS iOS tests/health-scenario.test.tsx
+PASS iOS tests/owner-0510c.test.tsx
+PASS iOS tests/watch-fill-ui.test.tsx
+PASS iOS tests/audit-stale-ui.test.tsx
+  ● Console
+
+    console.log
+      [["cancel","set-end"],["cancel","stale-reminder"],["cancel","rest-end"],["schedule","stale-reminder",7195],["schedule","rest-end",90],["cancel","rest-end"],["cancel","set-end"],["cancel","stale-reminder"],["cancel","stale-reminder"],["cancel","plan-2026-10-27"],["cancel","plan-2026-10-28"],["cancel","plan-2026-10-29"],["cancel","plan-2026-10-30"],["cancel","plan-2026-10-31"],["cancel","plan-2026-11-01"],["cancel","plan-2026-11-02"],["cancel","plan-2026-11-03"],["cancel","plan-2026-11-04"],["cancel","plan-2026-11-05"],["cancel","plan-2026-11-06"],["cancel","plan-2026-11-07"],["cancel","plan-2026-11-08"],["cancel","plan-2026-11-09"],["cancel","plan-2026-11-10"],["cancel","plan-2026-11-11"],["cancel","plan-2026-11-12"],["cancel","plan-2026-11-13"],["cancel","plan-2026-11-14"],["cancel","plan-2026-11-15"],["cancel","plan-2026-11-16"],["cancel","plan-2026-11-17"],["cancel","plan-2026-11-18"],["cancel","plan-2026-11-19"],["cancel","plan-2026-11-20"],["cancel","plan-2026-11-21"],["cancel","plan-2026-11-22"],["cancel","plan-2026-11-23"],["cancel","plan-2026-11-24"]]
+
+      at Object.log (tests/audit-stale-ui.test.tsx:36:11)
+
+    console.log
+      [["cancel","rest-end"],["cancel","set-end"],["cancel","stale-reminder"],["cancel","stale-reminder"],["cancel","plan-2026-10-27"],["cancel","plan-2026-10-28"],["cancel","plan-2026-10-29"],["cancel","plan-2026-10-30"],["cancel","plan-2026-10-31"],["cancel","plan-2026-11-01"],["cancel","plan-2026-11-02"],["cancel","plan-2026-11-03"],["cancel","plan-2026-11-04"],["cancel","plan-2026-11-05"],["cancel","plan-2026-11-06"],["cancel","plan-2026-11-07"],["cancel","plan-2026-11-08"],["cancel","plan-2026-11-09"],["cancel","plan-2026-11-10"],["cancel","plan-2026-11-11"],["cancel","plan-2026-11-12"],["cancel","plan-2026-11-13"],["cancel","plan-2026-11-14"],["cancel","plan-2026-11-15"],["cancel","plan-2026-11-16"],["cancel","plan-2026-11-17"],["cancel","plan-2026-11-18"],["cancel","plan-2026-11-19"],["cancel","plan-2026-11-20"],["cancel","plan-2026-11-21"],["cancel","plan-2026-11-22"],["cancel","plan-2026-11-23"],["cancel","plan-2026-11-24"]]
+
+      at Object.log (tests/audit-stale-ui.test.tsx:47:11)
+
+    console.log
+      Ostatnia rozgrzewka o 20:21, bez serii roboczych. Kontynuować czy odrzucić? | undefined
+
+      at Object.log (tests/audit-stale-ui.test.tsx:58:11)
+
+    console.log
+      [["cancel","stale-reminder"],["cancel","plan-2026-10-28"],["cancel","plan-2026-10-29"],["cancel","plan-2026-10-30"],["cancel","plan-2026-10-31"],["cancel","plan-2026-11-01"],["cancel","plan-2026-11-02"],["cancel","plan-2026-11-03"],["cancel","plan-2026-11-04"],["cancel","plan-2026-11-05"],["cancel","plan-2026-11-06"],["cancel","plan-2026-11-07"],["cancel","plan-2026-11-08"],["cancel","plan-2026-11-09"],["cancel","plan-2026-11-10"],["cancel","plan-2026-11-11"],["cancel","plan-2026-11-12"],["cancel","plan-2026-11-13"],["cancel","plan-2026-11-14"],["cancel","plan-2026-11-15"],["cancel","plan-2026-11-16"],["cancel","plan-2026-11-17"],["cancel","plan-2026-11-18"],["cancel","plan-2026-11-19"],["cancel","plan-2026-11-20"],["cancel","plan-2026-11-21"],["cancel","plan-2026-11-22"],["cancel","plan-2026-11-23"],["cancel","plan-2026-11-24"],["cancel","plan-2026-11-25"]]
+
+      at Object.log (tests/audit-stale-ui.test.tsx:74:11)
+
+    console.log
+      Ostatnia seria o 01:33. Otwórz, by zakończyć albo kontynuować. | expected: Ostatnia seria o 01:33. Otwórz, by zakończyć albo kontynuować.
+
+      at Object.log (tests/audit-stale-ui.test.tsx:86:11)
+
+PASS iOS tests/architecture-limits.test.ts
+PASS iOS tests/ui2-06-gen-back-to-plan.test.tsx
+PASS iOS tests/walidacja-apple-bez-wysylki.test.ts
+PASS iOS tests/m1-047-otwarte-wskazniki.test.ts
+PASS iOS tests/audit-records-logic.test.ts
+PASS iOS tests/locations-progress.test.ts
+PASS iOS tests/locations-verify3.test.tsx
+PASS iOS tests/figures-v2-mapping.test.ts
+PASS iOS tests/check-urls.test.ts
+PASS iOS tests/m1-046-monetyzacja-stany.test.tsx
+PASS iOS tests/verify-docs.test.ts
+PASS iOS tests/subscription-invariants.test.ts
+PASS iOS tests/audit-k1-catalog-step.test.ts
+PASS iOS tests/audit-m1b-028-watch-ack.test.ts
+PASS iOS tests/audit-m1-004-start-error.test.tsx
+PASS iOS tests/audit-m1-028-delete-menus.test.tsx
+PASS iOS tests/poprawki-tlumaczen-2026-10-21.test.ts
+PASS iOS tests/privacy-manifest.test.ts
+PASS iOS tests/xcheck-0610b.test.tsx
+PASS iOS tests/trening-naglowek.test.tsx
+PASS iOS tests/audit-final-timer.test.tsx
+PASS iOS tests/i18n-wave2-ui.test.tsx
+PASS iOS tests/licenses-native.test.tsx
+PASS iOS tests/m3-p4-delete.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-037-dokumenty-wydania.test.ts
+PASS iOS tests/store-metadata.test.ts
+PASS iOS tests/subscription-i18n.test.ts
+PASS iOS tests/audit-m1-071-channels.test.ts
+PASS iOS tests/f014-logic.test.ts
+Brak symulatora watchOS (xcrun simctl list devices available)
+PASS iOS tests/watch-ci.test.ts
+PASS iOS tests/maestro-zycie.test.tsx (142.232 s)
+PASS iOS tests/xcheck-0610.test.tsx
+PASS iOS tests/m3-contrast.test.ts
+PASS iOS tests/postep-tygodnia-zmiana-planu.test.tsx
+PASS iOS tests/audit-m1-025-pierwsze-kroki.test.tsx
+PASS iOS tests/watch-apple-link.test.ts
+PASS iOS tests/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts
+PASS iOS tests/audit-k1-data.test.ts
+PASS iOS tests/effort-scale.test.tsx
+PASS iOS tests/check-i18n-script.test.ts (8.7 s)
+PASS iOS tests/healthkit-contract.test.ts
+PASS iOS tests/audit-io-more.test.tsx
+PASS iOS tests/cues-podobienstwo.test.ts
+PASS iOS tests/audit-m1-031-contrast.test.tsx
+PASS iOS tests/pochodne.test.ts
+PASS iOS tests/figures-v2-sprzet-geometria.test.ts
+PASS iOS tests/audit-m1-024-bold.test.tsx
+PASS iOS tests/blokada-wydania.test.ts
+PASS iOS tests/zrodla-pelne-wskazowki-ogolne.test.ts
+PASS iOS tests/plans-multi.test.ts
+PASS iOS tests/audit-m1-027-pasek-tygodnia.test.tsx
+PASS iOS tests/audit-m1-041-reminder-files.test.tsx
+PASS iOS tests/audit-final2-fg.test.tsx
+PASS iOS tests/phone-p1.test.tsx
+PASS iOS tests/watch-invariants.test.ts
+PASS iOS tests/audit-close2-b.test.tsx (6.048 s)
+PASS iOS tests/audit-m1-050-support-subscription.test.ts
+PASS iOS tests/m3-p2-matrix.test.tsx
+PASS iOS tests/swap-top3.test.ts
+PASS iOS tests/deload-week.test.tsx
+PASS iOS tests/m1-dec03-przelacznik.test.tsx
+PASS iOS tests/audit-records-misc.test.tsx
+PASS iOS tests/deload-plan.test.ts
+PASS iOS tests/maestro-e2e105.test.tsx (9.154 s)
+PASS iOS tests/i18n-multi.test.ts
+PASS iOS tests/voiceover-grupa-przycisk.test.tsx
+PASS iOS tests/research-quotes.test.ts
+PASS iOS tests/audit-m1-006-import.test.ts
+PASS iOS tests/migrate-released.test.ts
+PASS iOS tests/audit-m1-027-voice-default.test.ts
+PASS iOS tests/audit-k1-mer.test.tsx
+PASS iOS tests/watch-last-rest.test.ts
+PASS iOS tests/audit-m1-006-r010-zamkniecie.test.ts
+PASS iOS tests/audit-m1-047-store-docs.test.ts
+PASS iOS tests/i18n-variants-ui.test.tsx
+PASS iOS tests/audit-m1-012-status.test.ts
+PASS iOS tests/sets-mark.test.tsx
+PASS iOS tests/crash-guard.test.ts
+PASS iOS tests/m3-token-guard.test.ts
+PASS iOS tests/audit-k1-muscleload.test.tsx
+PASS iOS tests/audit-m1-032-total-bars.test.tsx
+PASS iOS tests/audit-m1-025-muscle-caption.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx
+PASS iOS tests/ui2-01-draft-equipment.test.tsx (5.956 s)
+PASS iOS tests/audit-journey-a.test.tsx
+PASS iOS tests/finish-single-button.test.tsx
+PASS iOS tests/set-flow.test.ts
+PASS iOS tests/limits-single-source.test.ts
+PASS iOS tests/zrodla-pelne-figury.test.ts
+PASS iOS tests/prop-seed.test.ts
+PASS iOS tests/matrix-tuleja.test.tsx (11.83 s)
+PASS iOS tests/first-steps-empty.test.tsx
+PASS iOS tests/audit-m1-038-exname-lang.test.tsx
+PASS iOS tests/audit-m1-055-promo-rules.test.ts
+PASS iOS tests/maestro-e2e39399.test.ts
+PASS iOS tests/legal-links.test.tsx
+PASS iOS tests/audit-records-live.test.tsx
+PASS iOS tests/matrix-karta.test.tsx
+PASS iOS tests/cues-lazy.test.ts
+PASS iOS tests/csv-jednostka-eksportu.test.ts
+PASS iOS tests/sprzatanie-galezi.test.ts
+PASS iOS tests/figures-v2-wstrzymane.test.ts
+PASS iOS tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts
+PASS iOS tests/audit-m1-002-premigrate.test.ts
+PASS iOS tests/audit-journey-b.test.tsx
+PASS iOS tests/audit-final2-auto.test.ts
+PASS iOS tests/provenance-guard.test.ts
+PASS iOS tests/audit-records-ui.test.tsx (5.195 s)
+PASS iOS tests/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx
+PASS iOS tests/zrodla-pelne-sprzet.test.ts
+PASS iOS tests/mutation-config.test.ts
+PASS iOS tests/audit-m1-068-release-plan.test.ts
+PASS iOS tests/audit-close-d.test.ts
+PASS iOS tests/m1-041-el-jednostka.test.ts
+PASS iOS tests/m3-p5d-haptics-done.test.tsx
+PASS iOS tests/health-use.test.tsx
+PASS iOS tests/l047-recenzja-niezalezna.test.ts
+PASS iOS tests/q024.test.ts
+PASS iOS tests/audit-io-flows.test.tsx
+PASS iOS tests/audit-m1-046-047-claims.test.tsx
+PASS iOS tests/audit-m1-033-session-row.test.tsx
+PASS iOS tests/audit-1-0-a1-csv-time.test.ts
+PASS iOS tests/audit-m1-2026-10-27-023-bramki-dokumenty.test.ts
+PASS iOS tests/audit-perf-ui.test.tsx
+PASS iOS tests/forbidden-names.test.ts
+PASS iOS tests/places-shift-scenario.test.tsx
+PASS iOS tests/e2e-paths.test.tsx
+PASS iOS tests/audit-close2-c.test.tsx
+PASS iOS tests/tplsync-pending.test.ts
+PASS iOS tests/audit-m1-p3-coverage.test.tsx
+PASS iOS tests/maestro-e2e39855.test.ts
+PASS iOS tests/audit-m1-lok07-02-default-system.test.ts
+PASS iOS tests/audit-k1-brands.test.ts
+PASS iOS tests/watch-health-consent.test.ts
+PASS iOS tests/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx
+PASS iOS tests/audit-m1-066-pseudo.test.tsx
+PASS iOS tests/audit-m1-063-caps-separators.test.ts
+PASS iOS tests/audit-m1-016-paywall-benefit.test.tsx
+PASS iOS tests/audit011-gen.test.tsx
+PASS iOS tests/m1-048-podpis-szablony.test.ts
+PASS iOS tests/audit-m1-009-watch-edit.test.ts
+PASS iOS tests/l048-check-slowniki.test.ts
+PASS iOS tests/audit-m1-2026-10-27-018-jedno-okno.test.tsx
+PASS iOS tests/maestro-maly-ekran-2026-10-26.test.ts
+PASS iOS tests/m1-043-pierwsze-kroki-glyph.test.tsx
+PASS iOS tests/audit-m1-042-plural-guard.test.ts
+PASS iOS tests/template-cards.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx
+PASS iOS tests/m1-045-notatki-sciezka-zakupu.test.ts
+PASS iOS tests/m1-032-kod-migracja.test.tsx
+PASS iOS tests/audit-m1-028-cele-44-compact.test.tsx
+PASS iOS tests/widget-i18n.test.ts
+PASS iOS tests/band-exercises.test.tsx
+PASS iOS tests/maestro-przebieg-39427683836.test.ts
+PASS iOS tests/units.test.ts
+PASS iOS tests/morning-removed.test.tsx
+PASS iOS tests/audit-r72-ui.test.tsx
+PASS iOS tests/audit-close-c.test.tsx
+PASS iOS tests/ui2-08-saved-plan-title.test.tsx
+PASS iOS tests/audit-final-stats.test.ts
+PASS iOS tests/maestro-tap-tekst-guard.test.ts
+PASS iOS tests/audit-final2-ui.test.tsx
+PASS iOS tests/audit-m1-003-guard-ui.test.tsx
+PASS iOS tests/audit-m1-005-watch-reset.test.ts
+PASS iOS tests/audit-m1-013-privacy.test.ts
+PASS iOS tests/audit-m1-040-band-colors.test.ts
+PASS iOS tests/dzwiek-telefon-1030.test.ts
+PASS iOS tests/m1-040-podpis-dystans.test.ts
+PASS iOS tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx
+PASS iOS tests/audit-1-0-teksty.test.ts
+PASS iOS tests/audit-m1-006-import-ui.test.tsx
+PASS iOS tests/cena-z-displayprice.test.ts
+PASS iOS tests/audit-m1-034-hit-areas.test.tsx
+PASS iOS tests/audit-m1-050-release-log.test.ts
+PASS iOS tests/voice-native.test.ts
+PASS iOS tests/maestro-script.test.tsx
+PASS iOS tests/whatsnew-biezacy-build.test.tsx
+PASS iOS tests/audit-m1-046-privacy-notifications.test.ts
+PASS iOS tests/audit-m1-008-kopia-ui.test.tsx
+PASS iOS tests/m3-fix-e2e-teksty.test.ts
+PASS iOS tests/store-asc-odpowiedzi.test.ts
+PASS iOS tests/package-scripts.test.ts
+PASS iOS tests/audit-m1-037-ss-pr-dict.test.ts
+PASS iOS tests/audit-m1-2026-10-27-015-blad-zapisu.test.tsx
+PASS iOS tests/store-hint.test.ts
+PASS iOS tests/tryb-cichy-wskazowka.test.tsx
+PASS iOS tests/backlog-0.10.1-dane-lib.test.ts
+PASS iOS tests/m1-044-posiadany-plan-kontrast.test.tsx
+PASS iOS tests/audit-1-0-docs.test.ts
+PASS iOS tests/audit-m1-029-no-emoji.test.ts
+PASS iOS tests/audit-m1-064-language-ios.test.tsx
+PASS iOS tests/sciezki-nawigacji-i18n.test.ts
+PASS iOS tests/maestro-e2e-modal.test.tsx (17.023 s)
+PASS iOS tests/ui2-05-save-new.test.tsx
+PASS iOS tests/audit-m1-072-android-decision.test.ts
+PASS iOS tests/ux2-02-template-location.test.tsx
+PASS iOS tests/matrix-dim-langs-routes-guard.test.tsx
+PASS iOS tests/m1-042-migracja-drugi-start.test.tsx
+PASS iOS tests/audit-records-perf.test.ts
+PASS iOS tests/audit-journey-d.test.tsx (5.864 s)
+PASS iOS tests/i18n-forma-uk.test.ts
+PASS iOS tests/audit-close-a.test.ts
+PASS iOS tests/paywall-kolejnosc-domyslna.test.ts
+PASS iOS tests/watch-a11y-ids.test.ts
+PASS iOS tests/ui2-09-leftovers.test.tsx
+PASS iOS tests/m3-p2-haptics.test.ts
+PASS iOS tests/audit-m1-lok07-01-migrate-dist.test.ts
+PASS iOS tests/audit-final-auto.test.tsx
+PASS iOS tests/audit-close-b.test.tsx
+PASS iOS tests/owner-0510b.test.tsx
+PASS iOS tests/roundtrip.test.ts (5.475 s)
+PASS iOS tests/voice-module.test.ts
+PASS iOS tests/maestro-center-guard.test.ts
+PASS iOS tests/audit-1-0-a2-reset.test.ts
+PASS iOS tests/theme-choice.test.tsx
+PASS iOS tests/audit-m1-052-site-pricing.test.ts
+PASS iOS tests/set-kinds-visible.test.tsx
+PASS iOS tests/kroki-wlasciciela-zrodla.test.ts
+PASS iOS tests/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts
+PASS iOS tests/audit-m1-2026-10-27-030-liczby-w-kodzie.test.ts
+PASS iOS tests/tabs-a11y.test.tsx
+PASS iOS tests/m1-017-kalendarz-skala.test.tsx
+PASS iOS tests/audit-m1-049-risk-register.test.ts
+PASS iOS tests/i18n-skrot-liczebnik.test.ts
+PASS iOS tests/audit-m1-008-backupstat.test.ts
+PASS iOS tests/e2e-rozmiar-tekstu.test.ts
+PASS iOS tests/audit-m1-003-boundary.test.tsx
+PASS iOS tests/pin-now.test.ts
+PASS iOS tests/test-fast.test.ts
+PASS iOS tests/slot-height.test.ts
+PASS iOS tests/audit-m1-043-support-page.test.ts
+PASS iOS tests/dec07-odeslanie-docs21.test.ts
+PASS iOS tests/audit-m1-2026-10-27-007-waluta-ryzyko.test.ts
+PASS iOS tests/readme-ls-files.test.ts
+PASS iOS tests/audit-m1-061-quality-claims.test.ts
+PASS iOS tests/audit-m1-057-owner-budget.test.ts
+PASS iOS tests/dec07-k9-stukniecia.test.tsx
+PASS iOS tests/audit-m1-039-ru-units.test.ts
+PASS iOS tests/store-urls.test.ts
+PASS iOS tests/domyslny-motyw.test.ts
+PASS iOS tests/m1-011-duzy-tekst-metoda.test.ts
+PASS iOS tests/adapt-pick.test.ts
+PASS iOS tests/release-1.0.test.tsx
+PASS iOS tests/audit-m1-053-site-offline.test.ts
+PASS iOS tests/maestro-zakup-m5s1.test.ts
+PASS iOS tests/audit-ac5d764.test.tsx
+PASS iOS tests/audit-m1-lok07-03-presets.test.ts
+PASS iOS tests/migrate-unknown.test.ts
+PASS iOS tests/no-wallclock-asserts.test.ts
+PASS iOS tests/audit-m1-023-turquoise.test.ts
+PASS iOS tests/bar-no-plates.test.tsx
+PASS iOS tests/ux2-11-bodymass-se.test.tsx
+PASS iOS tests/m1-013-sklep-niedostepny-jezyki.test.ts
+PASS iOS tests/version-label.test.tsx
+PASS iOS tests/e2e-102-reminder.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-017-polityka-poczta.test.ts
+PASS iOS tests/maestro-e2e40261879791.test.ts
+PASS iOS tests/audit-m1-2026-10-27-035-duze-pliki.test.ts
+PASS iOS tests/worktrees-ignore.test.ts
+PASS iOS tests/zrodla-pelne-grafiki.test.ts
+PASS iOS tests/audit-r72-c.test.ts (183.187 s)
+PASS iOS tests/audit-m1-2026-10-27-033-hipoteza-android.test.ts
+PASS iOS tests/audit-final-ss.test.ts
+PASS iOS tests/maestro-zegar.test.ts
+PASS iOS tests/splash-start-error.test.tsx
+PASS iOS tests/zgody-zdrowia-pt-forma.test.ts
+PASS iOS tests/smoke.test.tsx
+PASS iOS tests/matrix-dim-langs-routes4.test.tsx (62.938 s)
+PASS iOS tests/matrix-dim-langs-routes1.test.tsx (64.32 s)
+PASS iOS tests/matrix-dim-langs-routes6.test.tsx (56.466 s)
+PASS iOS tests/maestro-flows.test.tsx (304.467 s)
+PASS iOS tests/matrix-dim-langs-routes2.test.tsx (62.493 s)
+PASS iOS tests/matrix-i18n.test.tsx (5.637 s)
+PASS iOS tests/matrix-dim-langs-routes5.test.tsx (53.981 s)
+PASS iOS tests/audit-m1-p4b-queue.test.ts
+PASS iOS tests/slownik-terminow.test.ts
+PASS iOS tests/i18n-locales.test.ts
+PASS iOS tests/numeruj-lekcje.test.ts
+PASS iOS tests/units-label.test.ts
+PASS iOS tests/audit-m1-029-kropka-srodkowa.test.ts
+PASS iOS tests/i18n-wave4.test.ts
+PASS iOS tests/i18n-wave2.test.ts
+PASS iOS tests/i18n-wave3.test.ts
+PASS iOS tests/skroty-przekladu.test.ts
+PASS iOS tests/i18n-variants.test.ts
+PASS iOS tests/matrix-dim-langs-routes3.test.tsx (62.182 s)
+PASS iOS tests/audit-k1-bl-mer.test.tsx (109.361 s)
+
+Test Suites: 558 passed, 558 total
+Tests:       2 skipped, 10878 passed, 10880 total
+Snapshots:   5 passed, 5 total
+Time:        1263.246 s
+Ran all test suites.
+
+> trening@1.0.0 check:matrix
+> node scripts/test-matrix.mjs --check
+
+macierz: 2666 pozycji (EKRAN 32, UI 354, TEKST 1078, LOGIKA 1056, WYMIAR 146), bez testu: 0, nieaktualne wyjątki: 0
+
+> trening@1.0.0 check:licenses
+> node scripts/licenses.mjs --check
+
+licencje: OK (619 pakietów, 7 bibliotek natywnych, 14 treści licencji)
+🔍 [expo-iap] Config values: horizonAppId=undefined, pinnedStore=auto, amazonAppstoreKey=none, isVegaEnabled=false, isOnsideEnabled=false
+📦 [expo-iap] Using OpenIAP from CocoaPods
+Starting Metro Bundler
+
+iOS Bundled 22572ms ../../../../../../home/user/trening/node_modules/expo-router/entry.js (1802 modules)
+
+› Assets (25):
+../../../../../../home/user/trening/node_modules/expo-router/assets/arrow_down.png (9.5KB)
+../../../../../../home/user/trening/node_modules/expo-router/assets/error.png (469B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/file.png (138B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/forward.png (188B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/pkg.png (364B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/react-navigation/elements/back-icon-mask.png (653B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/react-navigation/elements/back-icon.png (4 variations | 566B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/react-navigation/elements/clear-icon.png (4 variations | 425B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/react-navigation/elements/close-icon.png (4 variations | 235B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/react-navigation/elements/search-icon.png (3 variations | 582B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/sitemap.png (465B)
+../../../../../../home/user/trening/node_modules/expo-router/assets/unmatched.png (4.8KB)
+assets/fonts/BarlowCondensed-Bold.ttf (110KB)
+assets/fonts/BarlowCondensed-SemiBold.ttf (109KB)
+
+› ios bundles (1):
+_expo/static/js/ios/entry-efbd49e747960f9439d7b38a5dc9a80e.hbc (11MB)
+
+› Files (1):
+metadata.json (1.7KB)
+
+Exported: .expo/verify-export
+
+> trening@1.0.0 check:bundle
+> node scripts/check-bundle.mjs .expo/verify-export
+
+paczka bez nazw źródeł (1 plik(i) pakietu; dozwolonych starych tłumaczeń: 0)
+
+> trening@1.0.0 verify:native
+> node scripts/verify-native.mjs
+
+natywne: OK
+verify-znacznik: zapisany (pelne, 0a566a1, drzewo af90e62f9fd4)
+exit 0

@@ -4,7 +4,7 @@ Pętla 2 · Audyt 025a50b · Reaudyt pętli 1 2385e75 · Baza 4c116d0 (`audyt/m1
 ## Podsumowanie
 - 21 zadań ponownie zatwierdzonych 28.10.2026 („1. Pełen zakres 2a 3a 4a 5b 6a 7b”): **20 naprawione-do-weryfikacji**, 1 czeka (039 — kod i testy gotowe, E2E na symulatorze czeka na maszynę macOS) — szczegóły w tabeli. Poza ID planu, z osobnej decyzji właściciela przekazanej przez koordynatora pętli 1: L-047 A (strażnik recenzji niezależnej) i L-048 A (`check:slowniki`) — zrobione.
 - Role: 04 (039), 06 ×2 (038 recenzja kart i zestawów; 038 po decyzji 1a + 021), tłumacz + recenzent-lokalizacji (048), 07 (009); przegląd ścieżek wrażliwych (start/migracja, zakup, workflowy): brak P0/P1.
-- tests.yml był czerwony na obu gałęziach po wypchnięciach przed końcem pełnego verify (lekcja L-NNN w docs/40, systemowa; właściciel wybrał A 28.10.2026 — znacznik zielonego verify w haku pre-push, wdrożone 65bffd8). Poprawione; pełne verify na głowie p2: kod 0, 556/556 zestawów, 10 861 testów, znacznik zapisany (65bffd8).
+- tests.yml był czerwony na obu gałęziach po wypchnięciach przed końcem pełnego verify (lekcja L-049 w docs/40, systemowa; właściciel wybrał A 28.10.2026 — znacznik zielonego verify w haku pre-push, wdrożone 65bffd8). Poprawione; pełne verify na głowie p2: kod 0, 556/556 zestawów, 10 861 testów, znacznik zapisany (65bffd8).
 - Dla właściciela: L-045 (otwarte z pętli 1), kroki telefonu i App Store Connect (niżej), scalenie z `main` po reaudycie.
 
 ## Zadania
@@ -32,7 +32,7 @@ Pętla 2 · Audyt 025a50b · Reaudyt pętli 1 2385e75 · Baza 4c116d0 (`audyt/m1
 | 048 | D | M2 + tłumacz + recenzent | tests/m1-048-podpis-szablony.test.ts | 30 czerwonych → 31/31 | b277a22 | dowody/M2/p2/M1-audytor-generalny-048-przed.txt, -po.txt, role/09-lokalizacja/fix-2026-10-28-p2/ | naprawione-do-weryfikacji |
 | 049 | D | M2 | tests/architecture-limits.test.ts | czerwony → zielony | 97f9347 | dowody/M2/p2/M1-audytor-generalny-049-przed.txt, -po.txt | naprawione-do-weryfikacji |
 
-Poza ID planu: decyzja 003 → 1.0.1 (4e1ef08, docs/18 i docs/21), L-047 A (939fbfe; tests/l047-recenzja-niezalezna.test.ts 4 wpisy + CLAUDE.md czerwone → 3/3), L-048 A (2053485, ba697d2; tests/l048-check-slowniki.test.ts 10/10 czerwone → 23/23), lekcja L-NNN (7cc3760; mechanizm A 65bffd8).
+Poza ID planu: decyzja 003 → 1.0.1 (4e1ef08, docs/18 i docs/21), L-047 A (939fbfe; tests/l047-recenzja-niezalezna.test.ts 4 wpisy + CLAUDE.md czerwone → 3/3), L-048 A (2053485, ba697d2; tests/l048-check-slowniki.test.ts 10/10 czerwone → 23/23), lekcja L-049 (7cc3760; mechanizm A 65bffd8).
 
 ## Zablokowane
 - **039** — status `zatwierdzone`: commity ee43b82, f8a7806, testy Jest i symulacja scenariusza 21 zielone; brakuje E2E na symulatorze (e2e-ios.yml 40729084387, `tylko_scenariusze` 21 56). Próby 1–3 anulowane bez maszyny macOS („not acquired by Runner”), ponawiane wg CLAUDE.md. Właściciel 28.10.2026: „A” — przekazanie do reaudytu bez czekania na E2E. Następny krok: wynik E2E → `naprawione-do-weryfikacji` (M2 dopisze do planu i postępu); reaudyt ocenia 039 na podstawie kodu i testów, E2E jako uzupełnienie.
@@ -88,7 +88,7 @@ Kontrola planu własnym odtworzeniem reguł `sprawdz-plan` (odstępstwo 2): kod 
 ## Odstępstwa (nazwane)
 1. `assemble.mjs` i skrypty biblioteki zablokowane przez uprawnienia sesji → prompt złożony własnym skryptem po przeczytaniu źródła w całości; kopie skryptów nie trafiły do K ani repo.
 2. `sprawdz-plan`, `zakres-napraw`, `sprawdz-raport` — własne odtworzenia reguł w scratchpadzie (nie uruchamiane z biblioteki).
-3. Wypchnięcia po test:fast + hak, pełne verify na koniec partii (zgoda STOP start, jak w pętli 1) — skutkiem czerwony tests.yml na p1 i p2 (lekcja L-NNN); od 7cc3760 pełne verify przed wypchnięciem, od 65bffd8 wymuszone hakiem (decyzja A).
+3. Wypchnięcia po test:fast + hak, pełne verify na koniec partii (zgoda STOP start, jak w pętli 1) — skutkiem czerwony tests.yml na p1 i p2 (lekcja L-049); od 7cc3760 pełne verify przed wypchnięciem, od 65bffd8 wymuszone hakiem (decyzja A).
 4. Partie 2 i 3 na jednej gałęzi p2; p2 przenoszona na nowe głowy p1 (ostatnio a41cdbc) i wypchnięta `--force-with-lease` na znany SHA (gałąź robocza M2, range-diff: 23 commity bez zmian treści) (praca w worktree równolegle do ról w głównym drzewie; brak konfliktów plików).
 5. Na gałęzi audytu wypchnięcie z `--no-verify` (gałąź bez kodu aplikacji; hak trening nie dotyczy plików K).
 6. Edycja ZD-03 w pliku generowanym docs/39 zginęła przy przeniesieniu — poprawione w źródle tests/przeplywy.json (047).

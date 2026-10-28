@@ -1,0 +1,15 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/figures-v2-tor.test.ts (5.011 s)
+  L-050: tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)
+    ✓ miara potrafi paść: „S” jak w buildzie 1032 (4,2 cm, 2 zawrócenia) — źle; łuk 1,7 cm — dobrze (7 ms)
+    ✓ każde ćwiczenie i widok spełnia progi albo ma wyjątek z powodem (3748 ms)
+    ✓ lista wyjątków tylko maleje: każdy wyjątek nadal przekracza próg, ma powód i istnieje (560 ms)
+    ✓ martwe ciągi ze sztangą (skan 28.10.2026: 11 ćwiczeń z torem „S”) nie mają wyjątku (3 ms)
+    ✓ maszyna Smitha: szyna stoi w miejscu, gryf na szynie w każdej klatce (18 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        5.471 s, estimated 11 s
+Ran all test suites matching /tests\/figures-v2-tor.test.ts/i.

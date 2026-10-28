@@ -1,0 +1,80 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/figures-v2-tor.test.ts (10.391 s)
+  L-050: tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)
+    ✓ miara potrafi paść: „S” jak w buildzie 1032 (4,2 cm, 2 zawrócenia) — źle; łuk 1,7 cm — dobrze (8 ms)
+    ✕ każde ćwiczenie i widok spełnia progi albo ma wyjątek z powodem (9132 ms)
+    ✓ lista wyjątków tylko maleje: każdy wyjątek nadal przekracza próg, ma powód i istnieje (581 ms)
+    ✓ martwe ciągi ze sztangą (skan 28.10.2026: 11 ćwiczeń z torem „S”) nie mają wyjątku (1 ms)
+    ✕ maszyna Smitha: szyna stoi w miejscu, gryf na szynie w każdej klatce (2 ms)
+
+  ● L-050: tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026) › każde ćwiczenie i widok spełnia progi albo ma wyjątek z powodem
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   "Deadlift (sztanga)|side: 4.2 cm, 2 zawr.",
+    +   "Sumo Deadlift|side: 5.6 cm, 0 zawr.",
+    +   "RDL (sztanga)|side: 5.4 cm, 1 zawr.",
+    +   "Rack Pull|side: 5.6 cm, 2 zawr.",
+    +   "Single Leg RDL (linki)|side: 5.5 cm, 1 zawr.",
+    +   "Sumo Deadlift (kettlebell)|side: 4.4 cm, 0 zawr.",
+    +   "Axle Deadlift|side: 4.2 cm, 2 zawr.",
+    +   "Deadlift with Bands|side: 4.2 cm, 2 zawr.",
+    +   "Deadlift with Chains|side: 4.2 cm, 2 zawr.",
+    +   "Deficit Deadlift|side: 4.7 cm, 2 zawr.",
+    +   "Rack Pull with Bands|side: 5.6 cm, 2 zawr.",
+    +   "Reverse Band Deadlift|side: 4.2 cm, 2 zawr.",
+    +   "Cable Deadlift|side: 4.4 cm, 2 zawr.",
+    +   "Clean Deadlift|side: 4.2 cm, 2 zawr.",
+    +   "Reverse Band Sumo Deadlift|side: 5.6 cm, 0 zawr.",
+    +   "Smith Machine Stiff-Legged Deadlift|side: 6.4 cm, 1 zawr.",
+    +   "Snatch Deadlift|side: 4.9 cm, 2 zawr.",
+    +   "Stiff-Legged Barbell Deadlift|side: 6.4 cm, 1 zawr.",
+    +   "Sumo Deadlift with Bands|side: 5.6 cm, 0 zawr.",
+    +   "Sumo Deadlift with Chains|side: 5.6 cm, 0 zawr.",
+    + ]
+
+      35 |     const zle = CASES.filter(([k, v]) => !WYJATKI[`${k}|${v}`]).map(([k, v]) => ({ k, v, ...tor(k, v) })).filter(t => !ok(t))
+      36 |       .map(t => `${t.k}|${t.v}: ${t.odchylenie.toFixed(1)} cm, ${t.zawrocenia} zawr.`);
+    > 37 |     expect(zle).toEqual([]);
+         |                 ^
+      38 |   });
+      39 |   test('lista wyjątków tylko maleje: każdy wyjątek nadal przekracza próg, ma powód i istnieje', () => {
+      40 |     const keys = new Set(CASES.map(([k, v]) => `${k}|${v}`));
+
+      at Object.toEqual (tests/figures-v2-tor.test.ts:37:17)
+
+  ● L-050: tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026) › maszyna Smitha: szyna stoi w miejscu, gryf na szynie w każdej klatce
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Smith Machine Bench Press",
+    -   0,
+    +   15,
+      ]
+
+      54 |       const xs = Array.from({ length: 13 }, (_, i) => frameAt(figureSpec(k)!, i / 12)).map(f => { const r = f.props.find(p => p.k === 'rail') as { x: number } | undefined; return { rail: r?.x, bar: f.info.load[0] }; });
+      55 |       expect([k, xs.every(x => x.rail !== undefined)]).toEqual([k, true]);
+    > 56 |       expect([k, +(Math.max(...xs.map(x => x.rail!)) - Math.min(...xs.map(x => x.rail!))).toFixed(2)]).toEqual([k, 0]);
+         |                                                                                                        ^
+      57 |       for (const x of xs) expect([k, +Math.abs(x.bar - x.rail!).toFixed(2)]).toEqual([k, 0]);
+      58 |     }
+      59 |   });
+
+      at toEqual (tests/figures-v2-tor.test.ts:56:104)
+      at Object._loop (tests/figures-v2-tor.test.ts:53:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 3 passed, 5 total
+Snapshots:   0 total
+Time:        10.775 s
+Ran all test suites matching /tests\/figures-v2-tor.test.ts/i.
