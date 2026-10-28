@@ -11,6 +11,17 @@ Aktualizowane na bieżąco przez koordynatora (polecenie właściciela 26.10.202
 4. Właściciel: pisz po polsku, decyzje produktowe przez pytanie z ≥2 opcjami i rekomendacją, zadania dla niego po jednym, krok po kroku. Pinguj tylko, gdy trzeba.
 5. Zasada od 03:00 Warszawa (02:00 UTC): każdy agent wypycha pracę po każdym kroku (najpóźniej co ~30 min), także stan pośredni (gałąź robocza, w razie potrzeby `--no-verify` tylko dla zapisu, nie do scalenia).
 
+## Mapa sesji (decyzja właściciela 28.10.2026 ~12:30 UTC, wariant A) — sprawdź przed startem
+
+| Obszar | Sesja-właściciel | Inne sesje |
+|---|---|---|
+| Wersja 1.0, gałąź `main`, gałęzie `naprawy/M2-*`, `audyt*` | napraw M2 (pętla 2: session_01T66VBxrAq3PEG32R4ofJh9); audyt: reaudyt M1 (session_01T66VBwCYNzrLzzcMFyJkDR) | nie wypychają na `main` ani `naprawy/M2-*` |
+| Wersja 1.1: `integracja-1-1`, figury rodzin v2 (pozy, rigi, reguły jakości/sensu, podglądy, recenzje ruchu), eksport strony (`scripts/strona/*`), gałęzie funkcji od integracji | koordynator przeglądów (session_01T66VBvPuyAg4fmtCyWDTgh) | nie zakładają gałęzi od `integracja-1-1` i nie zmieniają tych obszarów — prośba przez send_message |
+| Pliki wspólne (`lib/cues/*`, `cue-sets.json`, `docs/research/figury-recenzja.json`, `docs/18`, `docs/40`) | zmiana dla 1.0: M2 na `main`; do 1.1 przez scalenie `main` → integracja (konflikty rozwiązuje koordynator przeglądów) | — |
+| Gałąź `przekazanie-konta` (README, notatki) | wszyscy, tylko przez `zapisz-stan.sh` (dopisywanie linii) | — |
+
+Kolizja wykryta 28.10: dwa filtry eksportu figur dla strony (`strona-filtr-audytu` / `data/figury-audyt.json` vs `naprawy/M2-po-decyzjach-eksport-figur` wg decyzji 9a). Obowiązuje 9a; koordynator przeglądów przenosi go do integracji i usuwa `figury-audyt.json`.
+
 ## 1.0 (premiera, zakres zamrożony — tylko blokery)
 | Krok | Stan | Gdzie |
 |---|---|---|
@@ -461,3 +472,4 @@ techniqueatlas: PR https://github.com/lkarwowski494/techniqueatlas/pull/1 (CI zi
 - 12:10 UTC 28.10: (koordynator) uzgodnienie z M1/M2: Z2/Z3 (teksty wskazówek wspólne z 1.0) poprawia sesja M2 pętla 2 (session_01T66VBxrAq3PEG32R4ofJh9, DEC-10 a — recenzja treści kart przed zgłoszeniem 1.0); na 1.1 (gałąź tresc-kart-lm) tylko Z1 figura Calf Press i Z4 strażnik kierunku u. Bez osobnej gałęzi od main.
 - 12:16 UTC 28.10: (koordynator) ROZEZNANIE SESJI 28.10 ~12:20 na prośbę właściciela: aktywne — ta sesja (1.1: integracja, figury, mobilność r6, tresc-kart-lm), M2 pętla 2 (session_01T66VBxrAq3PEG32R4ofJh9, 1.0, gałąź naprawy/M2-koordynator-napraw-2026-10-28-p1, zadanie 038 treść kart); M1 reaudyt (…VBwCYNzrLzzcMFyJkDR) i M2 pętla 1 — bezczynne. KOLIZJA: dwa mechanizmy filtra eksportu figur dla strony — strona-filtr-audytu (figury-audyt.json, 27.10, scalony do integracja-1-1 w G6b) vs naprawy/M2-po-decyzjach-eksport-figur (decyzja właściciela 9a 28.10: ready + figury-recenzja.json ze skrótem; od integracja-1-1-g6a, nie scalony nigdzie). Nieuporządkowane gałęzie M2-po-decyzjach-* (5 poza main?) do sprawdzenia. Czekam na decyzję właściciela o podziale.
 - 12:17 UTC 28.10: (agent tresc-kart-lm) gałąź tresc-kart-lm, SHA 8089a816 — Z4 strażnik kierunku u (lowerFirst per ćwiczenie + tests/figures-v2-kierunek-u.test.ts); Z1 (Calf Press) wymaga decyzji (silnik: brak punktu przodostopia i zgięcia palców); Z2/Z3 przekazane M2; NASTĘPNY KROK: tests.yml do zielonego, decyzja Z1
+- 12:19 UTC 28.10: (koordynator) DECYZJA WŁAŚCICIELA 28.10 ~12:30 UTC: wariant A podziału sesji — 1.0/main tylko M2 (+M1 audyt), 1.1 (integracja, figury v2, eksport strony) tylko ta sesja; sekcja 'Mapa sesji' w tym README; przekazane M2 pętla 2 i M1. Filtr eksportu strony: obowiązuje decyzja 9a (gałąź M2 eksport-figur) → przeniesienie do integracji, usunięcie figury-audyt.json. Calf Press (Z1): wyjątek bez animacji (analogia: Smith Machine Leg Press, Inchworm), rozbudowa silnika (przodostopie) — przy podłączaniu rodziny, jeśli właściciel zechce animację.
