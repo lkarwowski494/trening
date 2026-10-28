@@ -38,6 +38,14 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że w serii wpisano wynik, ale nie odhaczono jej
     - Gdy użytkownik kończy trening
     - Wtedy aplikacja ostrzega, że nieodhaczone serie z wpisanymi wynikami nie zostaną zapisane
+  - Scenariusz: Kolejność ćwiczeń bez przeciągania (M1-audytor-generalny-026, 27.10.2026)
+    - Zakładając, że użytkownik jest na ekranie Kolejność (szablon albo trening w toku)
+    - Gdy stuka „⋯” przy wierszu (ćwiczenie, superset albo ćwiczenie w supersecie) i wybiera „Przesuń wyżej” albo „Przesuń niżej”
+    - Wtedy kolejność zmienia się tak samo jak po przeciągnięciu uchwytu „≡” o jedno miejsce; arkusz pokazuje tylko możliwe kierunki i „Anuluj”
+  - Scenariusz: „Pierwsze kroki” prowadzą do przycisków, które są na ekranie (M1-audytor-generalny-025, 27.10.2026)
+    - Zakładając, że nowa osoba nie ma jeszcze szablonu z ćwiczeniami ani planu
+    - Gdy patrzy na „Pierwsze kroki” na ekranie Trening
+    - Wtedy krok 1 ma przycisk „Szablony i plan”, krok 2 „Planowanie” (oba otwierają ekran planu), krok 3 wskazuje duży przycisk „Pusty trening” (z szablonem — „Start”), przyciski kroków są jednego rodzaju, a zdanie o „Miejscach i sprzęcie” ma „›”
 
 ### BR-TRN-002: Typy serii: rozgrzewka, drop set, do upadku, notatka
 - Przepływ: PR-01
@@ -176,6 +184,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że wybrano skalę RIR
     - Gdy użytkownik wpisuje RIR 7
     - Wtedy zapisuje się RPE 4 („lekko”), a ekran pokazuje „7+” (RD-02-W9, RD-02-W3)
+  - Scenariusz: Stoper serii i pole RPE na wąskim ekranie (M1-audytor-generalny-028, 27.10.2026)
+    - Zakładając, że ekran ma 320 pt i ćwiczenie na czas z dystansem, a skala wysiłku jest włączona (układ zwarty wiersza serii)
+    - Gdy użytkownik stuka przycisk stopera serii albo pole RPE
+    - Wtedy pole dotyku każdego z nich ma co najmniej 44 pt szerokości (kolumna 40 pt + margines dotyku po bokach), a wiersz nadal mieści się na ekranie
 
 ### BR-TRN-008: Usuwanie serii i ćwiczenia: gest i menu, to samo potwierdzenie
 - Przepływ: PR-01
@@ -243,6 +255,18 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik jest w zakładce Plan
     - Gdy chce przejść do planowania
     - Wtedy przycisk „Planowanie” jest przy tytule, w tym samym miejscu co na ekranie Trening, i otwiera ekran planu
+  - Scenariusz: „Planowanie” w linii tytułu na ekranie Trening (DEC-07 K3 a, 23.10.2026; M1-audytor-generalny-024)
+    - Zakładając, że użytkownik ma plan albo treningi i jest na ekranie Trening bez treningu w toku
+    - Gdy patrzy na nagłówek ekranu
+    - Wtedy przycisk „Planowanie” (bez planu „Ustaw plan”) stoi w linii tytułu „Trening” po prawej, jak w zakładce Plan; przy wąskim ekranie i dużym tekście przechodzi pod tytuł, nic nie jest ucięte
+  - Scenariusz: Listy dni i powodów oddzielone przecinkiem (docs/32 wzorzec 28; M1-audytor-generalny-029, 27.10.2026)
+    - Zakładając, że plan albo podgląd generatora ma kilka dni treningowych, a propozycja zamiany ma kilka powodów
+    - Gdy użytkownik ogląda podsumowanie planu, nagłówek podglądu albo podpis propozycji
+    - Wtedy elementy listy o zmiennej długości są oddzielone przecinkiem (np. „pon. FBW A, śr. FBW B”); „·” zostaje tylko między polami metadanych w stałej kolejności (wykaz z powodami: `tests/kropka-srodkowa.json`)
+  - Scenariusz: Pasek tygodnia na wąskim ekranie przy dużym tekście (M1-audytor-generalny-027, 27.10.2026)
+    - Zakładając, że ekran ma 320 pt (iPhone SE albo „Powiększenie ekranu”), a tekst jest powiększony (limit liczb 130 %)
+    - Gdy użytkownik patrzy na pasek tygodnia na ekranie Trening
+    - Wtedy każdy skrót dnia stoi w jednej linii w swojej kolumnie (może się zmniejszyć); gdy najdłuższy skrót nie zmieściłby się nawet po zmniejszeniu, pasek pokazuje skróty jednoliterowe (data pod spodem, pełna nazwa dnia w etykiecie VoiceOver bez zmian)
   - Scenariusz: Postęp tygodnia po zmianie planu w trakcie tygodnia (decyzja właściciela 22.10.2026, wariant A; `lib/plan.planChangedInWeek`, `components/WeekStacks`)
     - Zakładając, że użytkownik zmienił plan tygodnia w środku bieżącego tygodnia (nie w poniedziałek), a poprzedni plan miał treningi
     - Gdy ogląda pasek postępu planu tygodnia na ekranie Trening

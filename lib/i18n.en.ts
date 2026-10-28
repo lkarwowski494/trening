@@ -926,6 +926,7 @@ export const EN: Record<string, string> = {
   'Otwiera szczegóły Progresji.': 'Opens the Progression details.',
   '{title} ({sub}): objętość {v}, {p}; serie {s}, {d}': '{title} ({sub}): volume {v}, {p}; sets {s}, {d}',
   'Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.': 'First workout: the big “Start” button at the top, or “Empty workout”.',
+  'Pierwszy trening: duży przycisk „Pusty trening” u góry.': 'First workout: the big “Empty workout” button at the top.', 'Szablony i plan': 'Templates and plan',
   'Brak serii w tym i poprzednim okresie.': 'No sets in this or the previous period.',
   'Brak serii w tym tygodniu.': 'No sets this week.',
   'więcej niż poprzednio': 'more than before',

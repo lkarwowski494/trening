@@ -1351,6 +1351,8 @@
  "Partie z większą objętością": "ボリュームが増えた部位",
  "Partie z większą objętością niż poprzednio: {list}": "以前よりボリュームが増えた部位：{list}",
  "Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.": "最初のトレーニング：上部の大きな「開始」ボタン、または「空のトレーニング」。",
+ "Pierwszy trening: duży przycisk „Pusty trening” u góry.": "最初のトレーニング：上部の大きな「空のトレーニング」ボタン。",
+ "Szablony i plan": "テンプレートとプラン",
  "Policzone jako trening z {day} — ten dzień jest wolny.": "{day} に予定されていたトレーニングとして数えました。この日は空きです。",
  "Poprzedni tydzień": "先週",
  "Poprzedni tydzień vs 2 tyg. temu": "先週（2週間前との比較）",

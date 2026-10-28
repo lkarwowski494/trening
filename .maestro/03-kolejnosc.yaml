@@ -20,6 +20,10 @@ name: Kolejność ćwiczeń
 - tapOn: "Reorder exercises"
 - extendedWaitUntil: { visible: "Exercise order", timeout: 30000 }
 - takeScreenshot: 07-kolejnosc
+# M1-audytor-generalny-026 (27.10.2026): przyciskowa alternatywa przeciągania — „⋯” przy wierszu → „Move down” (arkusz: tylko możliwe kierunki + Cancel)
+- tapOn: { text: "Exercise options: .*", index: 0 }
+- extendedWaitUntil: { visible: "Move down", timeout: 30000 }
+- tapOn: "Move down"
 - scrollUntilVisible: { element: "Done", direction: DOWN, timeout: 60000 }
 - tapOn: "Done"
 - assertNotVisible: "Exercise order"

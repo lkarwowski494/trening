@@ -90,7 +90,7 @@ export function OwnPlan({ header }: { header?: React.ReactNode }) {
 
         {r || !chosen.length ? <SectionTitle>{t('Podgląd')}</SectionTitle> : null}
         {!chosen.length ? <Muted style={{ ...font('footnote') }}>{t('Wybierz co najmniej jeden szablon.')}</Muted> : !r ? null /* liczba dni spoza zakresu — komunikat pod wyborem dni */ : <>
-          <Txt accessibilityRole="header" style={{ ...font('callout'), marginBottom: 6 }}>{r.days.map((id, i) => (id ? `${wd(i)} ${nameOf(id)}` : null)).filter(Boolean).join(' · ')}</Txt>
+          <Txt accessibilityRole="header" style={{ ...font('callout'), marginBottom: 6 }}>{r.days.map((id, i) => (id ? `${wd(i)} ${nameOf(id)}` : null)).filter(Boolean).join(', ') /* M1-audytor-generalny-029: lista dni — przecinek (wz. 28) */}</Txt>
           {r.seq.length > chosen.length ? <Muted style={{ ...font('footnote'), marginBottom: 6 }}>{t('Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.', { n: r.sessions, k: chosen.length, seq: r.seq.map(nameOf).join(' → ') })}</Muted> : null}
           {ownCounts(r).map(c => <Muted key={c.id} style={{ ...font('footnote') }}>{t('{name}: {n}× w tygodniu', { name: nameOf(c.id), n: c.n })}</Muted>)}
           <Muted style={{ ...font('footnote'), marginTop: 6 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: weeklySetsList(r, true) })}</Muted>

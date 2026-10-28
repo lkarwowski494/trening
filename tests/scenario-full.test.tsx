@@ -58,7 +58,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(st.exercises.length).toBeGreaterThan(500);
     expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); /* UX-12 A (audyt 0.10): „Pierwsze kroki” */
     expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull(); /* bez powtórzenia przy „Pierwszych krokach” */
-    expect(within(screen.getByTestId('first-steps')).getAllByText('Planowanie')).toHaveLength(2); expect(screen.queryByText('+ Nowy szablon')).toBeNull(); /* 11.10.2026 (P4 A): Pierwsze kroki — przyciski Planowanie */ expect(screen.getByText('Pusty trening')).toBeTruthy();
+    expect(within(screen.getByTestId('first-steps')).getAllByText('Planowanie')).toHaveLength(1); expect(within(screen.getByTestId('first-steps')).getAllByText('Szablony i plan')).toHaveLength(1); /* M1-audytor-generalny-025 (27.10.2026): krok 1 „Szablony i plan”, krok 2 „Planowanie” */ expect(screen.queryByText('+ Nowy szablon')).toBeNull(); /* 11.10.2026 (P4 A): Pierwsze kroki — przyciski Planowanie */ expect(screen.getByText('Pusty trening')).toBeTruthy();
     expect(screen.queryByText(/^Powtórz ostatni/)).toBeNull(); expect(screen.queryByLabelText(/^Start: /)).toBeNull();
     for (const tab of ['Trening', 'Plan', 'Postępy', 'Więcej']) expect(screen.getAllByText(tab).length).toBeGreaterThan(0);
     /* pusty trening bez serii → „Brak odhaczonych serii” → odrzucenie; nic nie zostaje w historii */
@@ -97,7 +97,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.queryByText('Wygląd')).toBeNull();
     /* EN: nazwy z biblioteki po angielsku, interfejs po angielsku */
     await go('/exercises'); await flushAll(10); expect(screen.getByPlaceholderText('Search exercises…')).toBeTruthy(); /* 11.10.2026: tytuł ekranu jest w nagłówku stosu (w Jest się nie renderuje) */
-    await go('/'); await flushAll(10); expect(screen.getAllByText('Planning')).toHaveLength(2); expect(screen.getByText('Empty workout')).toBeTruthy();
+    await go('/'); await flushAll(10); expect(screen.getAllByText('Planning')).toHaveLength(1); expect(screen.getAllByText('Templates and plan')).toHaveLength(1); /* M1-audytor-generalny-025 */ expect(screen.getByText('Empty workout')).toBeTruthy();
     /* z powrotem na polski */
     await go('/more/settings'); await flushAll(10);
     await tap(screen.getByText('Language')); await flushAll(10); expect(screen.getByLabelText('English, selected')).toBeTruthy();
@@ -913,7 +913,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(S().workouts).toEqual([]); expect(S().templates).toEqual([]); expect(S().settings.locations).toEqual([]); expect(S().settings.mainLocationId).toBeNull();
     expect(S().settings).toMatchObject({ language: 'auto', unit: 'kg', defaultRest: 90, showRpe: false, theme: 'dark' });
     expect(S().bands.map(b => b.level)).toEqual([2, 4, 6]); expect(S().exercises.some(e => e.name === 'Wiosło z ręcznikiem')).toBe(false);
-    await go('/'); await flushAll(10); expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(screen.getAllByText('Planowanie')).toHaveLength(2);
+    await go('/'); await flushAll(10); expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(screen.getAllByText('Planowanie')).toHaveLength(1); expect(screen.getAllByText('Szablony i plan')).toHaveLength(1);
     /* restart po wyczyszczeniu — nadal pusto */
     await act(async () => { await store.flush(); }); carry = saved(); await boot('/');
     expect(S().workouts).toEqual([]); expect(S().templates).toEqual([]); expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); /* jak po instalacji: „Pierwsze kroki” */
