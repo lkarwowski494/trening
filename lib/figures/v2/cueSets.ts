@@ -47,6 +47,8 @@ export const CUE_REQUIRES: Record<string, { why: string; ok: (v: Variant) => boo
   'rdl.depth': { why: 'zawias stojąc', ok: v => v.family === 'hinge' && (v.p.style === 'rdl' || v.p.style === 'singleLeg' || v.p.style === 'pullThrough') },
   'gm.move': { why: 'sztanga na plecach, zawias', ok: v => v.family === 'hinge' && v.p.style === 'goodMorning' },
   'bp.contact': { why: 'głowa, łopatki i biodra na ławce, stopy na podłodze (nie na podłodze zamiast ławki, nie na wałkach)', ok: v => v.family === 'bench_press' && !v.p.floor && v.p.angle >= 0 },
+  'jm.elbows': { why: 'JM Press: łokcie wysoko, ramię ku stopom (rysunek liczy łokieć z kątów)', ok: v => v.family === 'bench_press' && !!v.p.jm },
+  'dcgsk.elbows': { why: 'dwie fazy: wąskie wyciskanie i prostowanie z nieruchomym ramieniem', ok: v => v.family === 'bench_press' && !!v.p.skull },
   'sq.kneesToes': { why: 'obie stopy na podłodze, kolana w linii palców', ok: v => v.family === 'squat' && !v.p.wall },
   'sq.mis.heels': { why: 'stopa płasko na podłodze', ok: v => v.family === 'squat' && !v.p.wall },
   'sq.mis.kneesIn': { why: 'obie nogi pracują symetrycznie', ok: v => v.family === 'squat' },

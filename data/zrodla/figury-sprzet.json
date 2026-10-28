@@ -135,6 +135,42 @@
    "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
    "zgodnosc": "łańcuchy wiszą na tulejach tuż za zewnętrznym talerzem (talerze do ±72,4 cm = środek 71 + połowa grubości 1,4)",
    "uzycie": "dwa łańcuchy sztangi w widoku z przodu i z góry (±73 cm od osi gryfu)"
+  },
+  "boardLen": {
+   "cm": 18,
+   "status": "konwencja rysunku",
+   "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
+   "uzycie": "długość deski na klatce (Board Press) wzdłuż tułowia"
+  },
+  "boardW": {
+   "cm": 16,
+   "status": "konwencja rysunku",
+   "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
+   "uzycie": "szerokość deski na klatce (Board Press)"
+  },
+  "rackZ": {
+   "cm": 61,
+   "status": "konwencja rysunku",
+   "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość; słupki stoją wewnątrz talerzy (plateZ 66–71, połowa grubości 1,4), żeby gryf nie przechodził przez nie na rysunku z przodu",
+   "uzycie": "połowa rozstawu słupków stojaka z bolcami (Rack Pull, Pin Press, Good Morning off Pins), wewnątrz talerzy"
+  },
+  "rackH": {
+   "cm": 130,
+   "status": "konwencja rysunku",
+   "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
+   "uzycie": "wysokość słupków stojaka"
+  },
+  "pinLen": {
+   "cm": 10,
+   "status": "konwencja rysunku",
+   "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
+   "uzycie": "długość bolca pod gryfem"
+  },
+  "pinW": {
+   "cm": 2.4,
+   "status": "konwencja rysunku",
+   "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
+   "uzycie": "grubość bolca"
   }
  }
 }

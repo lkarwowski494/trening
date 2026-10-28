@@ -275,40 +275,40 @@ Tabela poniżej jest generowana z danych (`UPDATE_CRITICAL=1 npx jest tests/audi
 <!-- gen:krytyczne -->
 | kod | zdanie medyczne | asekuracja (5 kluczy) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd treści krytycznej (Claude, decyzja 21.10.2026) |
 |---|---|---|---|---|---|
-| en | tak | tak | 312/312 | brak zapisu | tak (28.10.2026, API) |
-| cs | tak | tak | 312/312 | tak (05.10.2026) | tak (28.10.2026, API) |
-| sk | tak | tak | 312/312 | tak (05.10.2026) | tak (28.10.2026, API) |
-| hu | tak | tak | 312/312 | tak (05.10.2026) | tak (28.10.2026, API) |
-| ro | tak | tak | 312/312 | tak (05.10.2026) | tak (28.10.2026, API) |
-| bg | tak | tak | 312/312 | tak (05.10.2026) | tak (28.10.2026, API) |
-| hr | tak | tak | 312/312 | tak (05.10.2026) | tak (28.10.2026, API) |
-| sl | tak | tak | 312/312 | tak (05.10.2026) | tak (28.10.2026, API) |
-| sr | tak | tak | 312/312 | tak (05.10.2026) | tak (28.10.2026, API) |
-| lt | tak | tak | 312/312 | tak (05.10.2026) | tak (28.10.2026, API) |
-| lv | tak | tak | 312/312 | tak (05.10.2026) | tak (28.10.2026, API) |
-| et | tak | tak | 312/312 | tak (05.10.2026) | tak (28.10.2026, API) |
-| uk | tak | tak | 312/312 | tak (05.10.2026) | tak (28.10.2026, API) |
-| es | tak | tak | 312/312 | tak (05.10.2026) | tak (28.10.2026, API) |
-| es-419 | tak | tak | 312/312 | brak zapisu | tak (28.10.2026, API) |
-| pt | tak | tak | 312/312 | tak (05.10.2026) | tak (28.10.2026, API) |
-| pt-BR | tak | tak | 312/312 | brak zapisu | tak (28.10.2026, API) |
-| de | tak | tak | 312/312 | tak (07.10.2026) | tak (28.10.2026, API) |
-| fr | tak | tak | 312/312 | tak (07.10.2026) | tak (28.10.2026, API) |
-| it | tak | tak | 312/312 | tak (07.10.2026) | tak (28.10.2026, API) |
-| nl | tak | tak | 312/312 | tak (07.10.2026) | tak (28.10.2026, API) |
-| sv | tak | tak | 312/312 | tak (07.10.2026) | tak (28.10.2026, API) |
-| da | tak | tak | 312/312 | tak (07.10.2026) | tak (28.10.2026, API) |
-| nb | tak | tak | 312/312 | tak (07.10.2026) | tak (28.10.2026, API) |
-| fi | tak | tak | 312/312 | tak (07.10.2026) | tak (28.10.2026, API) |
-| tr | tak | tak | 312/312 | tak (07.10.2026) | tak (28.10.2026, API) |
-| el | tak | tak | 312/312 | tak (07.10.2026) | tak (28.10.2026, API) |
-| id | tak | tak | 312/312 | brak zapisu | tak (28.10.2026, API) |
-| ms | tak | tak | 312/312 | brak zapisu | tak (28.10.2026, API) |
-| vi | tak | tak | 312/312 | brak zapisu | tak (28.10.2026, API) |
-| ru | tak | tak | 312/312 | brak zapisu | tak (28.10.2026, API) |
-| ja | tak | tak | 312/312 | brak zapisu | tak (28.10.2026, API) |
-| ko | tak | tak | 312/312 | brak zapisu | tak (28.10.2026, API) |
-| zh-Hant | tak | tak | 312/312 | brak zapisu | tak (28.10.2026, API) |
+| en | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| cs | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sk | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| hu | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| ro | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| bg | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| hr | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sl | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sr | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| lt | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| lv | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| et | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| uk | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| es | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| es-419 | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| pt | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| pt-BR | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| de | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| fr | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| it | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| nl | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| sv | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| da | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| nb | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| fi | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| tr | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| el | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| id | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| ms | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| vi | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| ru | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| ja | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| ko | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| zh-Hant | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
 <!-- /gen:krytyczne -->
 
 **Stan przeglądu (28.10.2026, M1-audytor-generalny-006):**

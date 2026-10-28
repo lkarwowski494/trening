@@ -461,6 +461,11 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że ćwiczenie ma rysunek z krokiem (wykroki, Step Up) albo pompki (w tym z podwyższeniem)
     - Gdy rysunek odtwarza ruch (każda poza pośrednia co 0,05 przejścia)
     - Wtedy rzut biodra leży nad podstawą podparcia z tolerancją 10 j., biodro nie opada o więcej niż 7 j., gdy stopa krokowa jest w powietrzu, a w pompkach bark w dolnej pozycji jest nie dalej niż 10 j. od dłoni i ciało nie wchodzi w podłoże ani blat; Reverse Lunge łamie regułę, więc jest ukryty w 1.0 (naprawa w 1.0.1 przez czwartą pozycję silnika)
+  - Scenariusz: Rysunek wyciskania i zawiasu zgodny ze sprzętem i regułą przedramion (uwagi ŚREDNIE/NISKIE z ponownej recenzji 27.10.2026, wersja 1.0.1; test `tests/figury-1-0-1-uwagi.test.ts`)
+    - Zakładając, że ćwiczenie to wyciskanie z wąskim chwytem, ławką ujemną, JM Press, Skull Crusher, Board Press, Pin Press, Rack Pull, Good Morning off Pins, Band Squat, Cable Pull Through, drążek sześciokątny albo odmiana „Reverse Band”
+    - Gdy rysunek odtwarza ruch
+    - Wtedy JM Press ma łokcie wysoko (ramię lekko ku stopom na dole, ok. 30–40° od pionu przy stałym chwycie — uproszczenie zgodne z J1–J4, recenzja r3 28.10.2026, odwiedzenie z góry ok. 45° stałe, sztanga ku szyi), a Decline Close-Grip Bench To Skull Crusher pokazuje fazę prostowania (ramię nieruchome 0–15° ku głowie, łokcie na szerokość barków; faza wyciskania pominięta — uproszczenie); dłonie stałe na gryfie; karty tych dwóch ćwiczeń mają własne wskazówki o łokciach (jm.elbows, dcgsk.elbows) zamiast „blisko tułowia”
+    - Wtedy przedramię na dole jest ≤ 10° od pionu, zgięcie łokcia ≤ 149°, deska i bolce stojaka stoją tam, gdzie zatrzymuje się gryf, zaczepy gumy i linki stoją w miejscu, ślad toru przy hantlu leży przy hantlu, Cable Pull Through ma kolana ≤ 27° i tułów 50–80°, tułów na wyproście nie odchyla się do tyłu
   - Scenariusz: Usunięcie własnego ćwiczenia z podglądu (ZM-04, W2 a, 21.10.2026)
     - Zakładając, że użytkownik ogląda podgląd ćwiczenia własnego
     - Gdy stuka „Usuń z biblioteki” na dole ekranu

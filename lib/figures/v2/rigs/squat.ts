@@ -48,6 +48,8 @@ export const SQUAT = {
   /** Wysokość kotwicy gumy „reverse” (górna belka stojaka), cm — nad gryfem stojąc (ok. 138) z zapasem. */
   bandHang: 175,
   landminePivot: 150, cablePulley: [95, 12] as [number, number],
+  /** Band Squat: połowa rozstawu dłoni przy barkach (cm; barki ±19) — uproszczenie ilustracyjne. */
+  bandHandHalf: 15, /** i odsunięcie dolnego końca gumy do środka od osi stopy (cm): guma biegnie między kolanami, nie przez udo */ bandFootIn: 8,
   sit: 9, /* wysokość stawu biodrowego nad siedziskiem (pośladek) */
 } as const;
 
@@ -145,14 +147,17 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
       tau = tauSched(); const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, 0); const bx = hipC()[0] - 11.8; const L = BODY.uarm + BODY.farm + BODY.hand - 1;
       const g: V3 = [bx, sh[1] - Math.sqrt(Math.max(1, L * L - (sh[0] - bx) ** 2 - 25)), 0]; load = g; arms = armsHeld(g, 24, [-0.4, -0.2, 1]); break;
     }
-    default: { /* bodyweight */
-      tau = wallSit ? 0 : tauSched(); const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, 0); const g: V3 = [sh[0] + (wallSit ? 22 : 54), sh[1] - (wallSit ? 22 : 4), 0];
+    default: { /* bodyweight; z gumą (Band Squat): dłonie przy barkach, guma od stóp do dłoni (stoi się na gumie) */
+      tau = wallSit ? 0 : tauSched();
+      if (p.band) { const g = trunkPoint(hipC(), tau, BODY.trunk - 8, 20, 0); load = g; arms = armsHeld(g, SQUAT.bandHandHalf, [0, -1, 0.7]); break; }
+      const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, 0); const g: V3 = [sh[0] + (wallSit ? 22 : 54), sh[1] - (wallSit ? 22 : 4), 0];
       load = g; arms = armsHeld(g, 7, [0, -1, 0.5]);
     }
   }
   const kneeOut0 = p.toeOut * 2; const kneeOut = fault?.m.kneeOutTo !== undefined ? kneeOut0 + (fault.m.kneeOutTo - kneeOut0) * fault.w : kneeOut0;
   const pose: PoseIn = { pelvis: hipC(), trunkPitch: tau, spineBend: (fault?.m.spineBend ?? 0) * (fault?.w ?? 0), legs: { R: { ankle: ankles.R, toeOut: p.toeOut, footPitch: pitch, kneeOut: kneeOut }, L: { ankle: ankles.L, toeOut: p.toeOut, footPitch: pitch, kneeOut: kneeOut } }, arms: arms! };
   info.load = load!; info.hip = hipC(); info.midfoot = [ankleX + mid, 0, 0];
+  if (p.impl === 'db' && p.load === 'dbSides') info.load = [load![0], load![1], BODY.shHalf + 13]; /* hantle po bokach: ślad toru przy hantlu (widok z przodu), nie w osi ciała */
 
   /* sprzęt */
   const c = load!;
@@ -161,11 +166,11 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
   }
   if (p.impl === 'cable' && p.load === 'goblet') props.push({ k: 'cable', from: [SQUAT.cablePulley[0], SQUAT.cablePulley[1], 0], to: c });
   if (p.load === 'belt' && p.impl === 'none') { const w: V3 = [hipC()[0] + 4, Math.max(hipC()[1] - 36, 14), 0]; props.push({ k: 'chain', from: hipC(), to: w }, { k: 'kettlebell', c: [w[0], w[1] + 10, 0], side: 'C', r: 6, held: false }); }
-  if (p.band && p.load === 'bodyweight') props.push({ k: 'band', from: [info.midfoot[0], 0, 0], to: c });
+  if (p.band && p.load === 'bodyweight') for (const sg of [1, -1]) props.push({ k: 'band', from: [info.midfoot[0], 0, sg * (p.stance - SQUAT.bandFootIn)], to: [c[0], c[1], sg * SQUAT.bandHandHalf] }); /* dwie gumy, po jednej na rękę: spod stopy do dłoni przy barku */
   if (p.impl === 'barbell' && p.load !== 'dbSides' && p.load !== 'kbRack' && p.load !== 'landmine') {
     props.push({ k: 'barbell', c, held: p.load !== 'zercher' });
     info.bar = c;
-    if (p.band) props.push(p.reverse ? { k: 'band', from: [c[0], SQUAT.bandHang, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [c[0], 0, 0], bar: true });
+    if (p.band) props.push(p.reverse ? { k: 'band', from: [info.midfoot[0] + barOff, SQUAT.bandHang, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [info.midfoot[0] + barOff, 0, 0], bar: true }); /* dolny zaczep gumy stały */
     if (p.chain) props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
     if (p.smith) props.push({ k: 'rail', x: c[0], h: 200 });
     if (p.load === 'highBar') contacts.push({ body: 'torso', equip: 'bar', tol: 1.6 });

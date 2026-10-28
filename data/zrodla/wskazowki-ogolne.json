@@ -1310,6 +1310,46 @@
    ],
    "twierdzenie": "Pełny zakres zgięcia/wyprostu nadgarstka.",
    "plik": "wskazowki-slownik"
+  },
+  "jm.elbows": {
+   "zrodla": [
+    {
+     "adres": "https://elitefts.com/blogs/training/how-to-perform-the-jm-press-a-step-by-step-guide-from-the-inventor",
+     "miejsce": "The Setup: „Your elbows should be flared out at a 45-degree angle from the midline of your body.”; Step-by-Step Execution: „Your elbows must stay high and pointing towards the ceiling throughout the entire descent.”"
+    },
+    {
+     "adres": "https://www.onnit.com/academy/jm-press",
+     "miejsce": "wykonanie: „Tuck your elbows about 45 degrees from your sides and point them forward (toward your feet). They should stay in front of the bar throughout the exercise.”"
+    },
+    {
+     "adres": "https://fitnessvolt.com/triceps-strength-jm-press/",
+     "miejsce": "How to set up and perform the JM Press: „The elbows are 45 degrees from body and are kept up the entire time.”"
+    }
+   ],
+   "twierdzenie": "Łokcie przez cały ruch wysoko i ok. 45° od tułowia (przedział kąta techniki: 3 zgodne źródła szczebla 4, żadne przeczytane nie przeczy).",
+   "plik": "badacz-jm-skull-2026-10-28"
+  },
+  "dcgsk.elbows": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/",
+     "miejsce": "Step 2: „Your upper arms should remain vertical to the floor as the elbows bend.”; „keep your elbows shoulder-width apart.” (faza prostowania)"
+    },
+    {
+     "adres": "https://weighttraining.guide/exercises/decline-ez-bar-skull-crusher",
+     "miejsce": "„Do not flare your elbows; keep them tucked into your body.”"
+    },
+    {
+     "adres": "https://fitnessvolt.com/23999/decline-skull-crusher/",
+     "miejsce": "„Keep your elbows tucked in while keeping your upper arms still.”"
+    },
+    {
+     "adres": "data:Close Grip Bench Press",
+     "miejsce": "cgbp.elbows („blisko tułowia”) — faza wyciskania, analogia (uproszczenie)"
+    }
+   ],
+   "twierdzenie": "Łokcie wąsko: przy wyciskaniu blisko tułowia, przy prostowaniu nad barkami i na szerokość barków — bez rozchodzenia na boki.",
+   "plik": "badacz-jm-skull-2026-10-28"
   }
  },
  "przypisania": {

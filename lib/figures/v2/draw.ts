@@ -14,6 +14,8 @@ export const EQUIP = {
   dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6,
   benchW: 30, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
   trapW: 29, boxW: 45, postW: 3.5, railW: 1.2, wallW: 3,
+  /* deska na klatce (Board Press): długość wzdłuż tułowia i szerokość (cm) — uproszczenie ilustracyjne; stojak z bolcami: połowa rozstawu słupków (wewnątrz talerzy 64,6–72,4, jak `post` ±64), długość bolca i grubość (cm) */
+  boardLen: 18, boardW: 16, rackZ: 61, rackH: 130, pinLen: 10, pinW: 2.4,
 } as const;
 
 export const proj = (p: V3, v: View): V2 => v === 'side' ? [p[0], p[1]] : v === 'front' ? [-p[2], p[1]] : [-p[2], -p[0]];
@@ -158,6 +160,26 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         if (side) S.push({ k: 'line', a: [pr.x, 0], b: [pr.x, pr.h], w: E.postW, role: 'frame', z: zKey(LAYER.back, -70), id: 'post' });
         else for (const sg of [-1, 1]) S.push({ k: 'line', a: [sg * 64, 0], b: [sg * 64, pr.h], w: E.postW, role: 'frame', z: zKey(LAYER.back, -70), id: 'post' });
         if (pr.hook !== undefined && side) S.push({ k: 'line', a: [pr.x, pr.hook], b: [pr.x + 5, pr.hook], w: 2.4, role: 'frame', z: zKey(LAYER.back, -69), id: 'hook' });
+        break;
+      }
+      case 'board': {
+        const hw = E.boardLen / 2, ww = E.boardW / 2;
+        const pts = side ? rect(pr.x - hw, pr.y, pr.x + hw, pr.y + pr.h) : view === 'front' ? rect(-ww, pr.y, ww, pr.y + pr.h) : rect(-ww, -(pr.x + hw), ww, -(pr.x - hw));
+        S.push({ k: 'poly', pts, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: view === 'top' ? zKey(LAYER.frontEquip, -1) : zKey(LAYER.backEquip, -20), id: 'board' }); break; /* z góry deska leży na tułowiu, więc nad nim */
+      }
+      case 'rack': {
+        /* słupki stojaka (z boku jeden, z przodu i z góry po obu stronach) i bolce pod gryfem na wysokości y; bolec wystaje ku środkowi stojaka */
+        const pw = E.pinLen / 2;
+        if (side) {
+          S.push({ k: 'line', a: [pr.x, 0], b: [pr.x, pr.h], w: E.postW, role: 'frame', z: zKey(LAYER.back, -70), id: 'rackPost' });
+          S.push({ k: 'line', a: [pr.x - pw, pr.y - E.pinW / 2], b: [pr.x + pw, pr.y - E.pinW / 2], w: E.pinW, role: 'frame', z: zKey(LAYER.back, -69), id: 'rackPin' });
+        } else if (view === 'front') for (const sg of [-1, 1]) {
+          S.push({ k: 'line', a: [sg * E.rackZ, 0], b: [sg * E.rackZ, pr.h], w: E.postW, role: 'frame', z: zKey(LAYER.back, -70), id: 'rackPost' });
+          S.push({ k: 'line', a: [sg * E.rackZ, pr.y - E.pinW / 2], b: [sg * (E.rackZ - E.pinLen), pr.y - E.pinW / 2], w: E.pinW, role: 'frame', z: zKey(LAYER.back, -69), id: 'rackPin' });
+        } else for (const sg of [-1, 1]) {
+          S.push({ k: 'poly', pts: rect(sg * E.rackZ - E.postW / 2, -pr.x - E.postW / 2, sg * E.rackZ + E.postW / 2, -pr.x + E.postW / 2), fill: 'frame', close: true, z: zKey(LAYER.back, -70), id: 'rackPost' });
+          S.push({ k: 'line', a: [sg * E.rackZ, -pr.x], b: [sg * (E.rackZ - E.pinLen), -pr.x], w: E.pinW, role: 'frame', z: zKey(LAYER.back, -69), id: 'rackPin' });
+        }
         break;
       }
       case 'box': S.push({ k: 'poly', pts: side ? rect(pr.x0, 0, pr.x1, pr.top) : rect(-(pr.w ?? E.boxW) / 2, 0, (pr.w ?? E.boxW) / 2, pr.top), fill: 'pad', stroke: 'frame', w: 1, close: true, z: zKey(LAYER.backEquip, -40), id: 'box' }); break;
