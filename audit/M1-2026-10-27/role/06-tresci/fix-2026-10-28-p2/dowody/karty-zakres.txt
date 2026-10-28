@@ -1,0 +1,440 @@
+======== Back Extension
+  [move] bext.move: Opuść tułów, zginając się w biodrach mniej więcej do kąta prostego; wróć do linii prostej z nogami.
+      - Andersen i in. (Western Norway University of Applied Sciences) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC8057707/ | Experimental session („until the hip angle was approximately 90 degrees”)
+      - Lyons i in. (University of Central Florida) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC11964695/ | Methods: Session 1 („until a neutral spine angle was achieved”)
+  [tips] hinge.back: Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.
+      - Lyons i in. (University of Central Florida) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC11964695/ | Methods („a neutral spine position throughout the exercise”)
+      - Andersen i in. (Western Norway University of Applied Sciences) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC8057707/ | Experimental session („The back had to be straight with a natural sway throughout the whole movement.”)
+  [tips] bext.noArch: Na górze kończ w linii prostej — bez wyginania lędźwi w łuk.
+      - Lyons i in. (University of Central Florida) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC11964695/ | Methods (unikanie nadmiernego wyginania; koniec w pozycji neutralnej)
+      - Andersen i in. (Western Norway University of Applied Sciences) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC8057707/ | Experimental session (plecy proste, powrót do pozycji wyprostowanej)
+  [tips] llc.control: Ruch płynny w obie strony, bez szarpania.
+      - Andersen i in. (Western Norway University of Applied Sciences) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC8057707/ | Experimental session („self-selected but controlled tempo”)
+      - Lyons i in. (University of Central Florida) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC11964695/ | Methods (tempo z metronomu, 4 s na cykl)
+======== Bieg
+  [tips] run.stride: Nie wydłużaj kroku na siłę — lepiej trochę krótszy niż za długi.
+      - Moore (Cardiff Metropolitan University) L2 https://pmc.ncbi.nlm.nih.gov/articles/PMC4887549/ | Spatiotemporal Factors (zakres od preferowanej długości kroku minus 3 % do preferowanej)
+      - Folland i in. (Loughborough University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC5473370/ | wyniki (krótszy krok i wyższa kadencja wiązały się z lepszą ekonomią; parafraza)
+  [tips] run.bounce: Biegnij płynnie, bez zbędnego podskakiwania w górę.
+      - Moore (Cardiff Metropolitan University) L2 https://pmc.ncbi.nlm.nih.gov/articles/PMC4887549/ | Spatiotemporal Factors („reducing the magnitude of vertical displacement should be encouraged”)
+      - Folland i in. (Loughborough University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC5473370/ | wyniki (mniejsze pionowe przemieszczenie miednicy — najsilniejszy kinematyczny korelat ekonomii; parafraza)
+  [tips] run.under: Stawiaj stopę blisko pod ciałem, nie daleko przed sobą — to ogranicza hamowanie.
+      - NASM L4 https://www.nasm.org/resource-center/blog/training/running-gait-basics-what-personal-trainers-should-screen-for | overstriding („unnecessary braking forces with each step”)
+      - Moore (Cardiff Metropolitan University) L2 https://pmc.ncbi.nlm.nih.gov/articles/PMC4887549/ | mniejsza odległość stopy od środka masy przy kontakcie zmniejszała siły hamujące; parafraza
+      - Folland i in. (Loughborough University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC5473370/ | Discussion („the importance of minimizing braking”)
+======== Box Jump
+  [setup] bj.setup: Stań przed stabilną skrzynią, stopy na szerokość bioder lub węziej; wybierz wysokość, na którą pewnie wskoczysz.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/115/box-jumps/ | Step 1; wskazówka końcowa (height should not exceed your vertical jump)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/box-jumps | Step 1: Setup
+  [move] bj.move: Krótkie ugięcie z zamachem rąk, wybij się, prostując biodra, kolana i stawy skokowe; wyląduj obiema stopami na skrzyni.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/115/box-jumps/ | Step 2; Step 3
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/box-jumps | Step 3: Execute/Drive
+  [tips] bj.land: Ląduj miękko: ugięte kolana, biodra cofnięte w tył.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/115/box-jumps/ | Step 4–6
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/box-jumps | Common Mistakes (landing with straight knees)
+  [tips] bj.height: Zacznij od niskiej skrzyni i podnoś ją dopiero, gdy lądowanie jest pewne.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/115/box-jumps/ | Step 1; Step 7; wskazówka końcowa
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/box-jumps | Common Mistakes; FAQ (box height for beginners)
+  [mistakes] bj.mis.stiff: Lądowanie na sztywnych, wyprostowanych nogach.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/box-jumps | Common Mistakes
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/115/box-jumps/ | Step 5 (avoid locking your knees)
+======== Burpees
+  [move] burpee.down: Z przysiadu oprzyj dłonie o podłogę i wyskocz nogami w tył do podporu jak do pompki.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/squat-thrust-burpees | Execute/Drive („Jump or step your feet backward into a push-up position”)
+      - Polevoy i in. (Moscow Aviation Institute i in.) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC9517252/ | 2.3 Execution Technique („Jump back to a push-up position.”)
+      - ACE L4 https://www.acefitness.org/education-and-resources/lifestyle/exercise-library/306/burpee/ | (wariant z BOSU) wyskok nogami w tył do podporu
+  [move] burpee.up: Wskocz stopami z powrotem do dłoni i wyskocz w górę, prostując biodra i kolana.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/squat-thrust-burpees | powrót stopami do dłoni, wyskok
+      - Polevoy i in. (Moscow Aviation Institute i in.) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC9517252/ | 2.3 („Jump to full hip and knee extension.”)
+======== Cable Fly
+  [setup] cfly.setup: Ustaw bloczki mniej więcej na wysokości barków, chwyć uchwyty i zrób krok w przód, ręce rozłożone na boki.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/160/standing-chest-fly/ | opis
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/cable-crossover | Step 1; Step 2
+  [move] cfly.move: Przy lekko ugiętych łokciach złącz dłonie przed klatką szerokim łukiem; wracaj powoli do rozłożenia rąk.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/160/standing-chest-fly/ | opis
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/cable-crossover | Step 3; Step 4
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralSternal/CBStandingFly | Execution
+  [tips] fly.control: Wracaj powoli — nie pozwól, by ciężar szarpnął ręce w tył.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/cable-crossover | Step 4 (avoid letting the weight stack pull your arms back too quickly)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/160/standing-chest-fly/ | opis (slowly returning the arms)
+  [tips] fly.elbows: Łokcie lekko ugięte, w stałym kącie przez cały ruch.
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralSternal/CBStandingFly | Preparation; Execution (elbows in fixed position)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/160/standing-chest-fly/ | opis (with the elbows slightly bent)
+  [tips] fly.posture: Barki ściągnięte w tył, klatka uniesiona, lekkie pochylenie w przód.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/cable-crossover | Step 2 (shoulders back and down, chest proud, slight forward lean)
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralSternal/CBStandingFly | Preparation; Comments (bend over slightly)
+======== Chest Fly (hantle)
+  [setup] dfly.setup: Połóż się na ławce, hantle nad klatką, łokcie lekko ugięte.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/21/lying-chest-fly/ | Step 1; Step 2
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralSternal/DBFly | Preparation
+  [move] dfly.move: Opuść hantle szerokim łukiem na boki do rozciągnięcia klatki; wróć tym samym łukiem nad klatkę.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/21/lying-chest-fly/ | Step 3; Step 4
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralSternal/DBFly | Execution
+  [tips] fly.elbows: Łokcie lekko ugięte, w stałym kącie przez cały ruch.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/21/lying-chest-fly/ | Step 2–4 (slightly flexed elbows)
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralSternal/DBFly | Comments (keep elbows at fixed angle, only slightly bent)
+  [tips] bp.contact: Głowa, barki i pośladki na ławce, stopy pewnie na podłodze.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/21/lying-chest-fly/ | Step 2; Step 3 (head, shoulder, butt and feet contact)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-bench-press | Step 1 (wyciskanie — ta sama pozycja na ławce)
+======== Crunch
+  [setup] crunch.setup: Połóż się na plecach, kolana ugięte, dłonie przy głowie.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/52/crunch/ | Step 1; Step 2
+      - ExRx.net L4 https://exrx.net/WeightExercises/RectusAbdominis/BWCrunch | Preparation
+  [move] crunch.move: Zbliżaj żebra do miednicy, unosząc łopatki od podłogi; wracaj powoli.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/52/crunch/ | Step 3; Step 4
+      - ExRx.net L4 https://exrx.net/WeightExercises/RectusAbdominis/BWCrunch | Execution
+  [tips] crunch.lowBack: Dolna część pleców zostaje na podłodze.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/52/crunch/ | Step 3 (lower back remains in contact with the mat)
+      - ExRx.net L4 https://exrx.net/WeightExercises/RectusAbdominis/BWCrunch | Execution (keep low back on mat)
+  [tips] crunch.neck: Szyja rozluźniona — nie ciągnij głowy rękami.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/52/crunch/ | Step 3; wskazówka końcowa (neck stays relaxed)
+      - ExRx.net L4 https://exrx.net/WeightExercises/RectusAbdominis/BWCrunch | Comments (neck in neutral position)
+======== Diamond Push Up
+  [setup] diamond.setup: Dłonie razem pod środkiem klatki — kciuki i palce wskazujące stykają się, tworząc romb; ciało proste.
+      - Intziegianni i in. (UCLan Cyprus) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC13029269/ | 2.3 („place their hands under their chest in the midline of their sternum”)
+      - Marcolin i in. (University of Padova) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC4732391/ | Testing Procedures (kciuk i palec wskazujący jednej dłoni stykają się z drugą)
+  [tips] push.rigid: Tułów sztywny — biodra nie opadają i nie unoszą się.
+      - Intziegianni i in. (UCLan Cyprus) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC13029269/ | 2.3 (prosta linia ciała, napięty brzuch)
+      - Marcolin i in. (University of Padova) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC4732391/ | Testing Procedures („A rigid posture with trunk and legs aligned was required for all the variants.”)
+======== Farmer's Walk
+  [setup] carry.two: Weź ciężar w każdą rękę; ręce opuszczone wzdłuż boków, ciężary przy biodrach.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/359/farmer-s-carry/ | opis („allow the arms to rest along the sides of the body so the dumbbells are next to each hip”)
+      - NSCA L4 https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf | s. 52, Exercise Set-Up (równy ciężar w każdej ręce)
+  [move] carry.walk: Idź spokojnym, kontrolowanym krokiem na ustalony dystans albo czas.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/359/farmer-s-carry/ | opis (marsz na ustalony dystans)
+      - NSCA L4 https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf | s. 52 („walk slow and controlled”)
+  [tips] lunge.torso: Plecy proste przez cały ruch.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/359/farmer-s-carry/ | opis (plecy proste)
+      - NSCA L4 https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf | s. 52 („maintain an upright torso”)
+      - NASM L4 https://www.nasm.org/resource-center/blog/training/best-abs-exercises | (wariant: ciężary nierówne) „Maintain a tall posture and level shoulders throughout the carry.”
+======== Hack Squat
+  [setup] hack.setup: Oprzyj plecy o oparcie maszyny, stopy na platformie mniej więcej na szerokość bioder.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/SLHackSquat | Preparation
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/ | Step 1 (prasa — ta sama zasada oparcia)
+  [move] hack.move: Opuść się, uginając biodra i kolana, potem wstań, prostując nogi.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/SLHackSquat | Execution
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/ | Step 2–4
+  [tips] lp.heels: Pchaj całą stopą — pięty nie odrywają się od platformy.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/SLHackSquat | Comments (do not allow heels to raise)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/ | Step 2; Step 3
+  [tips] lp.hips: Nie schodź tak nisko, by miednica odrywała się od oparcia, a dolne plecy zaokrąglały.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/SLHackSquat | Comments (pelvis pulls away from back pad)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/ | Step 3; Step 4
+  [tips] sq.kneesToes: Kolana idą w linii palców stóp — nie zapadają się do środka.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/SLHackSquat | Comments (knees pointed same direction as feet)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/leg-press | Common Mistakes (knees cave inward; prasa — ta sama zasada)
+======== Incline Walk (bieżnia)
+  [tips] walk.rails: Poręczy używaj najwyżej do równowagi — nie podpieraj się na nich mocno i nie odchylaj do tyłu, bo to zmniejsza wysiłek.
+      - Berling i in. (University of Wisconsin–La Crosse) L3 https://europepmc.org/article/MED/17135860 | abstrakt (mocne trzymanie poręczy obniżało tętno i pobór tlenu; parafraza)
+      - Hofmann i in. (Cybex Research Institute) L3 https://digitalcommons.wku.edu/ijes/vol7/iss4/10 | abstrakt („holding the handrails and leaning backward significantly reduces metabolic cost”)
+      - NordicTrack L4 https://www.nordictrack.com/learn/incline-treadmill-benefits-why-it-works-better-than-flat-walking | „It's okay to use the side rails for balance…”
+      - Life Fitness L4 https://lifefitness.com/en-us/customer-support/education-hub/blog/treadmill-calorie-burn-affected-holding-handrails | „…ensure that you keep an upright posture and don’t lean back!”
+      - de Oliveira i in. (Federal University of Paraná) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC7343795/ | wyniki (z podparciem test trwał dłużej, tętno w środkowych etapach niższe; parafraza)
+  [tips] walk.upright: Idź wyprostowany, tułów stabilny.
+      - Life Fitness L4 https://lifefitness.com/en-us/customer-support/education-hub/blog/treadmill-calorie-burn-affected-holding-handrails | „stand up straight” / wyprostowana postawa
+      - NordicTrack L4 https://www.nordictrack.com/learn/incline-treadmill-benefits-why-it-works-better-than-flat-walking | „…try to keep your core tight and your spine neutral.”
+======== Inverted Row
+  [setup] inv.setup: Złap drążek lub uchwyty nad sobą, ciało wyprostowane od głowy do pięt.
+      - ExRx.net L4 https://exrx.net/WeightExercises/BackGeneral/BWSupineRow | Preparation; Execution (keeping body straight)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/84/trx-reg-back-row/ | Step 1; Step 2
+  [move] inv.pull: Przyciągnij klatkę do drążka, łokcie blisko tułowia; opuść się do wyprostu rąk.
+      - ExRx.net L4 https://exrx.net/WeightExercises/BackGeneral/BWSupineRow | Execution
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/84/trx-reg-back-row/ | Step 3; Step 4
+  [tips] inv.rigid: Tułów sztywny: biodra nie opadają w trakcie ruchu.
+      - ExRx.net L4 https://exrx.net/WeightExercises/BackGeneral/BWSupineRow | Execution (keeping body straight)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/84/trx-reg-back-row/ | Step 2; Step 3 (avoid sagging in the low back or hips)
+  [tips] scr.chest: Na końcu ruchu klatka do przodu, łopatki ściągnięte w tył.
+      - ExRx.net L4 https://exrx.net/WeightExercises/BackGeneral/BWSupineRow | Execution (shoulders back, chest high)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/84/trx-reg-back-row/ | Step 1; Step 2 (scapulae retracted)
+======== Leg Curl
+  [move] lcurl.move: Zginaj kolana, przyciągając pięty w stronę pośladków; wracaj powoli do wyprostu.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/seated-leg-curl | Execution; Return (pięty do pośladków, powrót pod kontrolą; parafraza)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/131/prone-lying-hamstrings-curl/ | (wariant: leżąc, z linką) „slowly return your leg back to your starting position”
+  [tips] lcurl.still: Uda i biodra nieruchomo — ruch tylko w kolanach.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/seated-leg-curl | Common Mistakes (przesuwanie lub skręcanie bioder)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/single-leg-seated-leg-curl | Common Mistakes (kolano w miejscu)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/131/prone-lying-hamstrings-curl/ | (wariant: leżąc, z linką) „without moving your thigh (the top of your thigh remains on the mat)”
+  [tips] llc.control: Ruch płynny w obie strony, bez szarpania.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/seated-leg-curl | Common Mistakes (szarpany, niekontrolowany ruch)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/131/prone-lying-hamstrings-curl/ | (wariant) krok 4 (powolny powrót)
+======== Leg Extension
+  [move] lext.range: Prostuj nogi aż do wyprostu kolan; opuszczaj do zgięcia mniej więcej pod kątem prostym.
+      - Plotkin i in. (CUNY Lehman College) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC9528903/ | Methods, Muscle strength-endurance (pełny zakres od zgięcia pod kątem prostym do pełnego wyprostu; parafraza)
+      - Ghigiarelli i in. (Hofstra University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC13517625/ | 2.3 („All repetitions were performed through a full range of motion permitted by the leg extension machine”)
+  [tips] llc.control: Ruch płynny w obie strony, bez szarpania.
+      - Plotkin i in. (CUNY Lehman College) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC9528903/ | Methods (stałe tempo z metronomem)
+      - Ghigiarelli i in. (Hofstra University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC13517625/ | 2.5 (kontrolowane powtórzenia, metronom)
+======== Machine Shoulder Press
+  [setup] msp.seat: Usiądź tak, by uchwyty były mniej więcej na wysokości barków (ustaw siedzisko).
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/186/seated-shoulder-press/ | Setup (siedzisko tak, by uchwyty były na wysokości barków lub tuż nad nimi; parafraza)
+      - Eleiko L4 https://eleiko.inspire360.com/resource/659463af0ba5d8897900b853 | (wariant: hantle siedząc) Setup: ciężary przed barkami
+  [move] ohp.move: Wypchnij ciężar nad głowę do wyprostu rąk; opuść go z powrotem do barków.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/186/seated-shoulder-press/ | Movement (wyciśnięcie nad głowę, powolne opuszczenie)
+      - Eleiko L4 https://eleiko.inspire360.com/resource/659463af0ba5d8897900b853 | (wariant: hantle) Movement
+  [tips] ohp.feet: Stopy pewnie na podłodze.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/186/seated-shoulder-press/ | Setup (stopy na podłodze lub podnóżkach)
+      - Eleiko L4 https://eleiko.inspire360.com/resource/659463af0ba5d8897900b853 | Coaching points (stopy wciskane w podłogę przez całą serię)
+  [tips] ohp.fullExt: Na górze wyprostuj ręce, bez gwałtownego blokowania łokci.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/186/seated-shoulder-press/ | Movement (łokcie prawie proste, nie zablokowane)
+      - Eleiko L4 https://eleiko.inspire360.com/resource/659463af0ba5d8897900b853 | Movement (pełny wyprost rąk)
+======== Medicine Ball Slam
+  [move] slam.move: Unieś piłkę oburącz nad głowę, potem z całej siły rzuć ją prosto w dół, w podłogę.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/182/overhead-slams/ | krok 3–4 (piłka nad głowę, potem rzut z całej siły w podłogę; parafraza)
+      - Tsartsapakis i in. (Aristotle University of Thessaloniki) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC12286126/ | sekcja 3.2 (Controlled Upward Phase → Explosive Downward Phase; parafraza)
+  [tips] hinge.back: Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/182/overhead-slams/ | krok 2 („Maintain a flat back by bending forward at the hips.”)
+      - Tsartsapakis i in. (Aristotle University of Thessaloniki) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC12286126/ | 3.2, Neutral Spine Alignment („Ensure the lumbar and thoracic spine remain neutral throughout the movement…”)
+  [tips] plank.brace: Napnij brzuch, żeby tułów był sztywny.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/182/overhead-slams/ | krok 2–4 (napięty brzuch przez cały ruch; parafraza)
+      - Tsartsapakis i in. (Aristotle University of Thessaloniki) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC12286126/ | 3.2 („Engage the TrA and deep-core stabilizers prior to initiating the slam.”)
+======== Nordic Curl
+  [setup] nordic.setup: Uklęknij na miękkim podłożu; kostki muszą być mocno przytrzymane (partner, wałki albo zaczep).
+      - van der Horst i in. (UMC Utrecht) L3 https://instituteofmotion.com/wp-content/uploads/2018/03/Nordic-hamstring-2015.pdf | s. 2, Intervention („applying pressure to the player’s heels/lower legs”)
+      - Chen, Wu, Guo (Beijing Sport University i in.) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC10624851/ | Methodology, pkt 2 (kostki przytrzymane)
+      - Ripley i in. (University of Salford) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC12225522/ | Materials and Methods (klęk na wyściełanej ławce)
+  [move] nordic.move: Pochylaj się w przód jak najwolniej, hamując ruch tyłem ud.
+      - van der Horst i in. (UMC Utrecht) L3 https://instituteofmotion.com/wp-content/uploads/2018/03/Nordic-hamstring-2015.pdf | s. 2 („as slowly as possible to maximize loading in the eccentric phase”)
+      - Ripley i in. (University of Salford) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC12225522/ | Materials and Methods („as slowly as possible to a prone position”)
+      - Chen, Wu, Guo (Beijing Sport University i in.) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC10624851/ | Methodology (powolne pochylanie z oporem tyłu ud)
+  [tips] nordic.hips: Biodra wyprostowane — tułów i uda w jednej linii, bez zginania w biodrach.
+      - van der Horst i in. (UMC Utrecht) L3 https://instituteofmotion.com/wp-content/uploads/2018/03/Nordic-hamstring-2015.pdf | s. 2 (tułów od kolan w górę sztywny i prosty)
+      - Ripley i in. (University of Salford) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC12225522/ | Materials and Methods (biodra wyprostowane; zgięcie bioder = powtórzenie nieudane)
+  [tips] nordic.catch: Gdy nie dasz rady dalej hamować, złap się dłońmi jak przy pompce.
+      - van der Horst i in. (UMC Utrecht) L3 https://instituteofmotion.com/wp-content/uploads/2018/03/Nordic-hamstring-2015.pdf | s. 2 (ręce hamują upadek i odpychają z powrotem)
+      - Ripley i in. (University of Salford) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC12225522/ | Materials and Methods (po utracie kontroli ręce kontrolują opad jak w pompce)
+======== Pallof Press
+  [setup] pallof.setup: Stań bokiem do wyciągu ustawionego mniej więcej na wysokości klatki; uchwyt trzymaj oburącz przy klatce, linka napięta.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/332/standing-anti-rotation-press/ | opis („The cable pulley should be at approximately chest height.”)
+      - Mullane, Turner, Bishop (Middlesex University) L3 https://repository.mdx.ac.uk/item/89098 | s. 4 („Ensure that the band or cable machine is fixed to approximately the mid-torso level.”)
+      - Eleiko L4 https://eleiko.inspire360.com/resource/659d665daa93b5993f0c90c7 | Setup (bokiem do wyciągu, uchwyt oburącz przy środku tułowia)
+  [move] pallof.move: Wypchnij uchwyt prosto przed siebie do wyprostu rąk, przytrzymaj chwilę i powoli wróć do klatki.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/332/standing-anti-rotation-press/ | opis (wypchnięcie, przytrzymanie, powolny powrót)
+      - Mullane, Turner, Bishop (Middlesex University) L3 https://repository.mdx.ac.uk/item/89098 | s. 4 („slowly extend and press the hands away from the torso, ensuring not to lock out the elbows”)
+  [tips] pallof.noTwist: Nie pozwól, by linka obróciła tułów — tułów i biodra zostają nieruchomo.
+      - NASM L4 https://www.nasm.org/resource-center/blog/training/best-abs-exercises | Pallof Press („The goal is to prevent movement, not create it.”)
+      - Eleiko L4 https://eleiko.inspire360.com/resource/659d665daa93b5993f0c90c7 | Coaching Points („Stay tall through your hips without allowing any movement in your torso.”)
+      - Mullane, Turner, Bishop (Middlesex University) L3 https://repository.mdx.ac.uk/item/89098 | s. 4 (ćwiczenie antyrotacyjne)
+  [tips] plank.brace: Napnij brzuch, żeby tułów był sztywny.
+      - Mullane, Turner, Bishop (Middlesex University) L3 https://repository.mdx.ac.uk/item/89098 | s. 4 (tułów napięty, kręgosłup neutralnie)
+      - Eleiko L4 https://eleiko.inspire360.com/resource/659d665daa93b5993f0c90c7 | Coaching Points (stopy w podłogę, by ustabilizować tułów)
+======== Preacher Curl
+  [setup] preacher.setup: Oprzyj tył ramienia o podpórkę modlitewnika, pachą blisko jej krawędzi.
+      - Havers i in. (IST University of Applied Sciences) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC12621570/ | sekcja 2.5 (ławka 65° odwzorowująca modlitewnik: ramię na ławce, pacha przy krawędzi; parafraza; słabsze — ustawienie testowe)
+      - Nunes i in. (Londrina State University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC7460162/ | 2.3 („The elbow was supported on a padded shelf with the shoulder flexed at an angle of 60°, similar to the preacher bench.”; słabsze — ustawienie testowe)
+  [tips] preacher.range: Pełny zakres: od wyprostu do pełnego zgięcia łokcia.
+      - Nunes i in. (Londrina State University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC7460162/ | 2.5 („in the maximum range of motion”)
+      - Havers i in. (IST University of Applied Sciences) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC12621570/ | 2.3 (pełny zakres)
+  [tips] curl.control: Opuszczaj ciężar powoli, z kontrolą.
+      - Nunes i in. (Londrina State University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC7460162/ | 2.5 (tempo: koncentryczna krótsza, ekscentryczna dłuższa)
+      - Havers i in. (IST University of Applied Sciences) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC12621570/ | 2.3 (ekscentryczna dłuższa niż koncentryczna)
+======== Reverse Crunch
+  [move] rcrunch.move: Zwijaj biodra od podłoża w stronę żeber, potem powoli opuść je z powrotem.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/76/reverse-crunch/ | krok 2–3 („Continue rolling out until your spine and pelvis (hips) contact the mat”)
+      - NASM L4 https://www.nasm.org/resource-center/blog/training/best-abs-exercises | Reverse Crunch (kontrola fazy opuszczania)
+  [tips] rcrunch.hips: Ruch prowadzi miednica — nie wymachuj nogami.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/76/reverse-crunch/ | wskazówka końcowa (unoszenie miednicy; bez zmiany kąta kolan)
+      - NASM L4 https://www.nasm.org/resource-center/blog/training/best-abs-exercises | Reverse Crunch („Focus on lifting the hips rather than simply swinging the legs.”)
+======== Reverse Fly (hantle)
+  [setup] rear.setup: Pochyl tułów prawie poziomo z prostymi plecami (albo oprzyj klatkę o skośną ławkę); hantle zwisają, łokcie lekko ugięte.
+      - ExRx.net L4 https://exrx.net/WeightExercises/DeltoidPosterior/DBRearLateralRaise | Preparation
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/ | Step 1 (chest-supported on an incline bench)
+  [move] rear.move: Unieś ramiona bokiem do wysokości barków, prostopadle do tułowia; opuść powoli.
+      - ExRx.net L4 https://exrx.net/WeightExercises/DeltoidPosterior/DBRearLateralRaise | Execution
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/ | Step 2; Step 3
+  [tips] rear.arms: Ramiona idą w bok, nie w tył — dłonie kończą ruch mniej więcej na linii barków.
+      - ExRx.net L4 https://exrx.net/WeightExercises/DeltoidPosterior/DBRearLateralRaise | Execution; Comments (upper arms perpendicular to torso)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/ | Step 2; wskazówka końcowa (dumbbells in line with the ears, not behind the head)
+  [tips] rear.elbows: Kąt w łokciach stały przez cały ruch.
+      - ExRx.net L4 https://exrx.net/WeightExercises/DeltoidPosterior/DBRearLateralRaise | Execution (fixed elbow position)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/ | Step 1; Step 2 (elbows slightly flexed)
+======== Reverse Pec Deck
+  [setup] rpd.setup: Usiądź przodem do oparcia, klatka przy podporze; uchwyty na wysokości barków.
+      - ExRx.net L4 https://exrx.net/WeightExercises/DeltoidPosterior/LVReverseFlyPronated | Preparation
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/ | Step 1 (face the backrest, torso against it; hantle — ta sama pozycja)
+  [move] rpd.move: Rozciągnij ręce w bok i w tył, aż łokcie znajdą się tuż za linią pleców; wracaj powoli.
+      - ExRx.net L4 https://exrx.net/WeightExercises/DeltoidPosterior/LVRearLateralRaise | Execution
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/353/reverse-fly/ | opis (spread both arms apart; linki — ten sam ruch)
+  [tips] rpd.elbowsHigh: Łokcie wysoko, na wysokości barków.
+      - ExRx.net L4 https://exrx.net/WeightExercises/DeltoidPosterior/LVReverseFlyPronated | Execution; Comments
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/ | Step 2 (arms near level with the shoulders)
+  [tips] rear.elbows: Kąt w łokciach stały przez cały ruch.
+      - ExRx.net L4 https://exrx.net/WeightExercises/DeltoidPosterior/LVRearLateralRaise | Preparation (slightly bend elbows)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/ | Step 1; Step 2
+======== Rower
+  [setup] bike.seat: Ustaw siodełko tak, by w najniższym położeniu pedału noga była prawie prosta — kolano lekko ugięte, nie zablokowane.
+      - Concept2 L4 https://www.concept2.nl/en/node/8909 | „With the ball of your foot on the pedal, your leg should maintain a slight bend at maximum extension.”
+      - HSS L4 https://www.hss.edu/health-library/move-better/set-up-exercise-bike | Seat height („It shouldn't be locked out, just bending noticeably.”)
+      - Bini, Hume, Croft (Auckland University of Technology) L2 https://europepmc.org/article/MED/21615188 | abstrakt (kąt zgięcia kolana przy wyprostowanej nodze; parafraza)
+  [setup] bike.foot: Na pedale opieraj przednią część stopy.
+      - Concept2 L4 https://www.concept2.nl/en/node/8909 | przednia część stopy na pedale
+      - HSS L4 https://www.hss.edu/health-library/move-better/set-up-exercise-bike | Foot position (śródstopie nad pedałem; parafraza)
+======== Russian Twist
+  [setup] rt.setup: Usiądź, odchyl tułów lekko w tył z prostymi plecami, kolana ugięte; ciężar trzymaj przed klatką.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/russian-twist | Step 1; Step 2
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/305/v-twist/ | opis (lean back about 45°, straight back)
+  [move] rt.move: Obracaj tułów raz w jedną, raz w drugą stronę, prowadząc ruch barkami.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/russian-twist | Step 3; Step 4
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/305/v-twist/ | opis (rotate the shoulders from side to side)
+  [tips] rt.back: Plecy proste — nie garb się przy obrocie.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/russian-twist | Common Mistakes (rounding the spine)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/305/v-twist/ | opis (maintaining a straight back)
+  [tips] rt.control: Obracaj się płynnie, bez rzucania ciężarem.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/russian-twist | Common Mistakes (momentum, jerky rotations)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/65/russian-twist/ | opis (twist through the stomach and shoulders; wersja na piłce)
+======== Seated Calf Raise
+  [move] calf.move: Wspinaj się na palce jak najwyżej, potem opuść pięty, aż poczujesz rozciągnięcie łydek.
+      - Kinoshita i in. (Ritsumeikan University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/ | Introduction, ryc. 1 (zakres od zgięcia grzbietowego do podeszwowego, kolana zgięte; parafraza)
+      - Hasani i in. (Monash University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC8152048/ | Tabela 1 (zakres zgięcia grzbietowego i podeszwowego; parafraza)
+  [tips] llc.control: Ruch płynny w obie strony, bez szarpania.
+      - Kinoshita i in. (Ritsumeikan University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/ | Training program (2 s w górę, 2 s w dół, metronom)
+      - Hasani i in. (Monash University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC8152048/ | tempo z metronomu
+      - Plotkin i in. (CUNY Lehman College) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC9528903/ | Methods („controlled fashion… eccentric action of approximately 2 s”)
+      - NASM L4 https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients | „a controlled 2-to-3-second lowering”
+======== Side Plank
+  [setup] splank.setup: Połóż się na boku, łokieć dokładnie pod barkiem, stopy jedna na drugiej.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/303/side-plank/ | opis
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/side-plank | Step 1; Step 2
+  [move] splank.move: Unieś biodra, aż ciało utworzy prostą linię od głowy do stóp; wytrzymaj i zmień stronę.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/303/side-plank/ | opis
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/side-plank | Step 2; Step 3; Step 4
+  [tips] splank.noSag: Biodra nie opadają i nie skręcają się w przód ani w tył.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/side-plank | Step 3; Common Mistakes
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/303/side-plank/ | opis (body in a straight line)
+  [tips] plank.brace: Napnij brzuch, żeby tułów był sztywny.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/303/side-plank/ | opis (squeeze the muscles of the stomach and glutes)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/side-plank | Step 2 (engage your core)
+  [mistakes] splank.mis.elbow: Łokieć wysunięty przed bark albo cofnięty za niego.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/side-plank | Common Mistakes
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/303/side-plank/ | opis (elbow directly under the shoulder)
+======== Straight Arm Pulldown
+  [setup] sapd.setup: Ustaw wyciąg wysoko i chwyć drążek prostymi rękami przed sobą.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/334/straight-arm-pressdown/ | opis (wyciąg w najwyższym położeniu, drążek; parafraza)
+      - Eleiko L4 https://eleiko.inspire360.com/resource/659842f49607aaa1f400b866 | Setup (bloczek na wysokości głowy, ręce proste; parafraza)
+  [move] sapd.move: Prostymi rękami ściągnij drążek w dół, w stronę ud; wróć powoli do góry.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/334/straight-arm-pressdown/ | opis (proste ręce, dłonie do przodu pasa, powolny powrót; parafraza)
+      - Eleiko L4 https://eleiko.inspire360.com/resource/659842f49607aaa1f400b866 | Procedure (drążek w stronę ud prostymi rękami, powrót pod kontrolą; parafraza)
+      - Eleiko L4 https://eleiko.inspire360.com/resource/6598447ec5f892e7790ccbb8 | (wariant: uchwyty) Procedure
+  [tips] sapd.arms: Ręce proste przez cały ruch — nie zginaj łokci.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/334/straight-arm-pressdown/ | opis (ręce proste przez cały ruch; parafraza)
+      - Eleiko L4 https://eleiko.inspire360.com/resource/659842f49607aaa1f400b866 | Procedure (ręce proste; parafraza)
+      - Eleiko L4 https://eleiko.inspire360.com/resource/6598447ec5f892e7790ccbb8 | (wariant: uchwyty) Procedure
+======== Suitcase Carry
+  [setup] carry.one: Weź ciężar w jedną rękę; ręka opuszczona wzdłuż boku, ciężar przy biodrze.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/358/suitcase-carry/ | opis (ciężar w jednej ręce przy biodrze; parafraza)
+      - NSCA L4 https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf | s. 52 (suitcase carry: ciężar po jednej stronie)
+  [move] carry.walk: Idź spokojnym, kontrolowanym krokiem na ustalony dystans albo czas.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/358/suitcase-carry/ | opis (marsz na ustalony dystans)
+      - NSCA L4 https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf | s. 52
+  [tips] carry.noLean: Nie przechylaj się ani w stronę ciężaru, ani od niego — idź wyprostowany.
+      - NASM L4 https://www.nasm.org/resource-center/blog/training/best-abs-exercises | „Clients should walk tall and avoid leaning toward or away from the weight.”
+      - NSCA L4 https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf | s. 52 (bez bocznego zginania kręgosłupa)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/358/suitcase-carry/ | opis (kręgosłup wyprostowany)
+======== Sumo Deadlift
+  [setup] sumo.stance: Stań szeroko — stopy na zewnątrz dłoni, palce i kolana skierowane w tę samą stronę, na zewnątrz.
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/BBSumoDeadlift | Preparation; Comments
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-deadlift/ | Stance Width: Sumo Contrast
+  [setup] sumo.grip: Chwyć sztangę między nogami, mniej więcej na szerokość barków.
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/BBSumoDeadlift | Preparation; Comments (shoulder width grip)
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-deadlift/ | Grip: Sumo Contrast (hands below shoulders)
+  [move] sumo.lift: Podnoś, prostując biodra i kolana; na górze stań prosto, klatka wysoko.
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/BBSumoDeadlift | Execution
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-deadlift/ | Locking out
+  [tips] sumo.kneesOut: Ruszając z podłogi, wypychaj kolana na zewnątrz, w linii palców stóp.
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/BBSumoDeadlift | Comments (push feet out, knees pointed out)
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-deadlift/ | Performing the pull: Sumo Contrast
+  [tips] hinge.back: Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/BBSumoDeadlift | Preparation; Comments (back straight)
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-deadlift/ | Lowering under control (spine extended)
+  [tips] dl.close: Prowadź sztangę blisko nóg przez cały ruch.
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/BBSumoDeadlift | Comments (keep bar close to body)
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-deadlift/ | Bar Path
+======== Wall Sit
+  [setup] wall.setup: Oprzyj plecy o stabilną ścianę, wysuń stopy w przód i zsuń się po ścianie do wybranej wysokości.
+      - Lea, O’Driscoll, Wiles (Canterbury Christ Church University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC10786991/ | Methods, HR-EX: Baseline testing; RPE-EX („lower their back down a sturdy wall”, stopy do wysokości przysiadu)
+      - Ng i in. (Chinese University of Hong Kong) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC13449400/ | Intervention arm (stopy na szerokość barków, plecy i głowa neutralnie / przy ścianie)
+  [tips] wall.back: Plecy oparte o ścianę, tułów wyprostowany.
+      - Lea, O’Driscoll, Wiles (Canterbury Christ Church University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC10786991/ | Methods („a vertical lower limb and an erect trunk”)
+      - Ng i in. (Chinese University of Hong Kong) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC13449400/ | Intervention arm (plecy i głowa neutralnie / przy ścianie)
+  [tips] wall.depth: Im niżej zejdziesz (mniejszy kąt w kolanach), tym trudniej — można zacząć wyżej i obniżać pozycję stopniowo.
+      - Ng i in. (Chinese University of Hong Kong) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC13449400/ | Intervention arm (indywidualna progresja głębokości)
+      - Baffour-Awuah i in. (University of New England) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC10015931/ | Clinical implications, Tabela 4 (intensywność reguluje kąt w kolanach)
+  [tips] wall.breath: Oddychaj normalnie — nie wstrzymuj oddechu.
+      - Lea, O’Driscoll, Wiles (Canterbury Christ Church University) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC10786991/ | Methods (zwykły oddech; miejsce wg docs/research/33 — do potwierdzenia; zespół Wilesa, wspólny autor z pmc-10015931: liczy się jako jedno źródło)
+      - Krobot Cutura i in. (University of Zagreb) L3 https://pmc.ncbi.nlm.nih.gov/articles/PMC11050476/ | sekcja 2.2.2 „Subjects followed a normal breathing pattern”
+======== Wyciskanie na linkach (stojąc)
+  [setup] cpress.setup: Ustaw bloczki mniej więcej na wysokości klatki lub barków, stań tyłem do wyciągu, uchwyty przy barkach.
+      - Eleiko L4 https://eleiko.inspire360.com/resource/65944cf0a15f04fdb30a8c1b | Setup (bloczki na wysokości klatki, tyłem do maszyny, uchwyty przed barkami; parafraza)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/338/single-arm-chest-press/ | (wariant: jednorącz) Setup: bloczek na wysokości barków
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/ | (wariant: siedząc) Step 1 (uchwyty na wysokości barków lub środka klatki)
+  [move] mcp.move: Wypchnij uchwyty przed siebie do wyprostu rąk; wracaj powoli.
+      - Eleiko L4 https://eleiko.inspire360.com/resource/65944cf0a15f04fdb30a8c1b | Movement (wypchnięcie do pełnego wyprostu i powrót)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/ | (wariant: siedząc) Step 2–3 (wyprost bez blokowania, powolny powrót do klatki)
+  [tips] cpress.base: Dociskaj stopy do podłogi i napnij brzuch — tułów stabilny.
+      - Eleiko L4 https://eleiko.inspire360.com/resource/65944cf0a15f04fdb30a8c1b | Coaching points (tułów stabilny, bez nadmiernego skrętu)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/338/single-arm-chest-press/ | (wariant: jednorącz) krok 5 (stopy w podłogę, napięty brzuch)
+======== Pistol Squat
+  [setup] pistol.setup: Stań na jednej nodze, drugą wyprostuj w przód nad podłogą; ręce przed sobą do równowagi.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BWSingleLegSquat | Preparation
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/308/pistol-squat/ | opis
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/single-leg-squat | Step 1; Step 2
+  [move] pistol.move: Zejdź w przysiad na nodze podporowej tak nisko, jak kontrolujesz ruch; wstań do pełnego wyprostu.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BWSingleLegSquat | Execution
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/single-leg-squat | Step 3; Step 4; FAQ (depth)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/308/pistol-squat/ | opis
+  [tips] pistol.knee: Kolano nogi podporowej w linii palców stopy.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BWSingleLegSquat | Execution; Comments
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/single-leg-squat | Common Mistakes (planted knee cave inward)
+  [tips] pistol.assist: Na początek pomagaj sobie podpórką albo zmniejsz zakres ruchu.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BWSingleLegSquat | Comments: Easier (partial reps, self assistance)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/single-leg-squat | Step 1; FAQ (support for beginners)
+  [mistakes] sq.mis.kneesIn: Kolana zapadające się do środka.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/single-leg-squat | Common Mistakes
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BWSingleLegSquat | Comments
+======== Reverse Lunge
+  [setup] lunge.stand: Stań prosto, stopy mniej więcej na szerokość bioder.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/319/reverse-lunge/ | opis (feet about hip-width apart)
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBRearLunge | Preparation
+  [move] lunge.back: Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/319/reverse-lunge/ | opis
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBRearLunge | Execution
+  [tips] lunge.torso: Plecy proste przez cały ruch.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/319/reverse-lunge/ | opis (chest raised)
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBRearLunge | Comments (torso upright)
+  [tips] lunge.knee: Przednie kolano w linii palców stopy.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBRearLunge | Comments (forward knee same direction as foot)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat | Common Mistakes (ten sam wzorzec)
+  [mistakes] lunge.mis.kneeIn: Przednie kolano uciekające do środka.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBRearLunge | Comments
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat | Common Mistakes
+======== Walking Lunges
+  [setup] lunge.dbSetup: Stań prosto, stopy na szerokość bioder, hantle w opuszczonych rękach.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge | Preparation
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/363/lunge/ | opis
+  [move] lunge.walk: Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge | Execution
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/139/walking-lunges-with-twists/ | Step 2–5
+  [tips] lunge.torso: Plecy proste przez cały ruch.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge | Comments (torso upright)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/139/walking-lunges-with-twists/ | Step 3 (keep the spine extended); wskazówka końcowa (tall, straight spine)
+  [tips] lunge.knee: Przednie kolano w linii palców stopy.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge | Comments (lead knee same direction as foot)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat | Common Mistakes (ten sam wzorzec)
+  [mistakes] lunge.mis.kneeIn: Przednie kolano uciekające do środka.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge | Comments
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat | Common Mistakes
+======== Lunges (hantle)
+  [setup] lunge.dbSetup: Stań prosto, stopy na szerokość bioder, hantle w opuszczonych rękach.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/363/lunge/ | opis
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBLunge | Preparation
+  [move] lunge.fwd: Zrób krok w przód i opuść się, aż tylne kolano będzie tuż nad podłogą; odepchnij się przednią nogą do pozycji wyjściowej.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/363/lunge/ | opis
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBLunge | Execution
+  [tips] lunge.torso: Plecy proste przez cały ruch.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/363/lunge/ | opis (back straight)
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBLunge | Comments (torso upright)
+  [tips] lunge.knee: Przednie kolano w linii palców stopy.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBLunge | Comments (lead knee same direction as foot)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat | Common Mistakes (przysiad wykroczny — ten sam wzorzec)
+  [mistakes] lunge.mis.kneeIn: Przednie kolano uciekające do środka.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/DBLunge | Comments
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat | Common Mistakes

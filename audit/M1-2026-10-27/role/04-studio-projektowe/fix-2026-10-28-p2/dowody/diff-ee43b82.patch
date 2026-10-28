@@ -1,0 +1,392 @@
+diff --git a/.maestro/21-subskrypcja.yaml b/.maestro/21-subskrypcja.yaml
+index 4eee8a0..f68dca4 100644
+--- a/.maestro/21-subskrypcja.yaml
++++ b/.maestro/21-subskrypcja.yaml
+@@ -15,6 +15,7 @@
+ #   "We're proud of you!", ".*no ads, no data collection.*"                 ← tekst przy starcie ponad limit (app/paywall.tsx, reason=limit)
+ #   ".*Your plan: yearly.*", "Change plan", ".*Current plan.*", "Switch to this plan"  ← po zakupie planu: karta stanu, przełącznik zwiniętej listy,
+ #       oznaczenie posiadanego planu, przycisk zmiany planu (app/paywall.tsx; DEC-09 a 27.10.2026: lista planów zwinięta pod „Change plan”)
++#   "Manage subscription", "An internet connection is needed\."                    ← przycisk karty stanu i komunikat błędu sklepu (app/paywall.tsx; M1-audytor-generalny-039)
+ #   "Subscribe", "Log a past workout", "Not now", "Close" (id close-modal)
+ #   "Empty workout", "Other workout", "Finish", "Set 1 done.*", "Skip", "Finish workout\?", "Session", "Upper A" ← jak flow 05
+ appId: pl.lukasz.trening
+@@ -89,6 +90,11 @@ name: Subskrypcja — ekran zakupu i limit
+ - assertNotVisible: "Subscribe"
+ - assertNotVisible: ".*Current plan.*"
+ - takeScreenshot: 99-zakup-plan-aktywny
++# M1-audytor-generalny-039 (DEC-11 a, 28.10.2026): karta stanu planu nie jest grupą accessible — „Manage subscription” to osobny element widoczny dla XCTest
++# (i VoiceOver); w grupie tekst przycisku był tylko częścią wspólnej etykiety karty, więc tapOn po pełnej etykiecie nie znajdował elementu. Sztuczny sklep tylko liczy wywołanie.
++- tapOn: "Manage subscription"
++- assertVisible: ".*Your plan: yearly.*"
++- assertNotVisible: "An internet connection is needed\\."
+ - scrollUntilVisible: { element: "Change plan", direction: DOWN, timeout: 60000, centerElement: true }
+ - tapOn: "Change plan"
+ - scrollUntilVisible: { element: "Switch to this plan", direction: DOWN, timeout: 60000 }
+diff --git a/README.md b/README.md
+index bf13a90..46d122a 100644
+--- a/README.md
++++ b/README.md
+@@ -15,7 +15,7 @@
+ [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
+ [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
+ [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
+-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-6063-brightgreen?style=flat)](docs/19-macierz-testow.md)
++[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-6067-brightgreen?style=flat)](docs/19-macierz-testow.md)
+ [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-48-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
+ <!-- /gen:badges-ver -->
+ 
+@@ -62,8 +62,8 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test
+ | Komunikaty i teksty | 1078 (z testem: 1078) | docs/19-macierz-testow.md |
+ | Funkcje biblioteki `lib/` | 1050 (z testem: 1050) | docs/19-macierz-testow.md |
+ | Wymiary (listy wartości i typy-unie) | 146 (z testem: 146) | docs/19-macierz-testow.md |
+-| Pliki testów Jest | 540 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+-| Przypadki testowe (statycznie) | 6063 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
++| Pliki testów Jest | 541 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
++| Przypadki testowe (statycznie) | 6067 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+ | Przepływy użytkownika w katalogu E2E | 158 (Maestro: 129, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 15) | docs/37-katalog-przeplywow.md |
+ | Scenariusze Maestro | 48 (w głównym przebiegu: 45, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
+ <!-- /gen:stats -->
+diff --git a/app/paywall.tsx b/app/paywall.tsx
+index 73d05f6..4ae59ea 100644
+--- a/app/paywall.tsx
++++ b/app/paywall.tsx
+@@ -81,9 +81,11 @@ export default function PaywallScreen() {
+         <Muted>{t('{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.', { app: appName(), date: fmtDate(nextMonthDay()) })}</Muted>
+       </View> : <Text testID="paywall-headline" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold, marginTop: 8, marginBottom: 12 }}>{t('Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Text>}
+ 
+-      {view.active ? <View testID="paywall-owned" accessible accessibilityLanguage={lang()} style={{ borderWidth: 1, borderColor: th.line, borderRadius: RADIUS.group, padding: 12, gap: 4, marginBottom: 12, backgroundColor: th.surface }}>
+-        {/* DEC-09 a (27.10.2026): nagłówek nazywa posiadany plan zamiast ogólnego „Masz pełną wersję”; rodzaj planu, nie nazwa z wyboru (1A, właściciel 28.10.2026) */}
+-        <Text testID="paywall-owned-title" accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{ownedPlanTitle(view.active.plan)}</Text>
++      {view.active ? <View testID="paywall-owned" style={{ borderWidth: 1, borderColor: th.line, borderRadius: RADIUS.group, padding: 12, gap: 4, marginBottom: 12, backgroundColor: th.surface }}>
++        {/* DEC-09 a (27.10.2026): nagłówek nazywa posiadany plan zamiast ogólnego „Masz pełną wersję”; rodzaj planu, nie nazwa z wyboru (1A, właściciel 28.10.2026).
++            DEC-11 a (28.10.2026, M1-audytor-generalny-039): karta NIE jest grupą `accessible` — iOS chowa potomków grupy przed VoiceOver i XCTest, a „Zarządzaj subskrypcją” musi być
++            osobnym przyciskiem; nagłówek, dopiski i przycisk to kolejne elementy w kolejności wizualnej (strażnik S19, tests/interaction-guards.test.ts) */}
++        <Text testID="paywall-owned-title" accessibilityRole="header" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{ownedPlanTitle(view.active.plan)}</Text>
+         {lifetime ? <Muted>{t('Masz dostęp na zawsze')}</Muted> : null}
+         {view.active.source === 'family' ? <Muted>{t('Dostęp z Chmury rodzinnej')}</Muted> : null}
+         {!lifetime && view.active.expiresAt != null ? <Muted>{view.active.source === 'code' ? t('Dostęp z kodu do {date}', { date: fmtDate(view.active.expiresAt) }) : t('Dostęp do {date}', { date: fmtDate(view.active.expiresAt) })}</Muted> : null}
+diff --git a/docs/18-przekazanie.md b/docs/18-przekazanie.md
+index 4bcf27e..85277e8 100644
+--- a/docs/18-przekazanie.md
++++ b/docs/18-przekazanie.md
+@@ -622,7 +622,7 @@ EN Progress Guard · bg Пазач на прогреса · cs Strážce progres
+ - 28.10.2026 rano (właściciel, po poprawce figur): **Reverse Lunge — rysunek ukryty w 1.0, naprawa w 1.0.1 razem z Push Press** przez czwartą pozycję w silniku v1 (tylna stopa musi przejść łukiem w powietrzu, 3 pozycje tego nie oddają); w tej samej zmianie krok drugą nogą w Walking Lunges. Odrzucone: czwarta pozycja przed 1.0 (zmiana silnika, układu klatek i E2E tuż przed wydaniem). [wdrożenie: odłożone → 1.0.1]
+ - 28.10.2026 (właściciel, „Ok a”): **ponowny audyt M1 w nowej sesji, wariant A — 37 zadań planu + przegląd całej różnicy 025a50b..main** (lokalny symbol masy, reguły podparcia i klatki figur v1, poprawki tłumaczeń z przeglądu API, ekran zakupu po uzgodnieniu 1A i DEC-09 a, check:bundle wariant C, check:pochodne w haku). Odrzucone: nowy pełny audyt od zera (pętla, czas). [wdrożenie: bez kodu — proces audytu]
+ - 28.10.2026 (właściciel, STOP 2 reaudytu M1 pętla 1, „2a 3a”): **DEC-10 a — niezależna recenzja treści kart ćwiczeń ze wskazówkami bez zapisu recenzji bramki 4 przed zgłoszeniem 1.0** (31 kart bez figury, karty v2: Sumo Deadlift, Wall Sit, 4 warianty sumo, przypisania zestawów ogólnych) + strażnik „karta ze wskazówkami ⇒ wpis recenzji z aktualnym skrótem wskazówek” (także v2); odrzucone: (b) interpretacja „bramka 4 = tylko ruch figur” — osłabia regułę z 27.10, (c) ukrycie wskazówek w 1.0. [wdrożenie: otwarte → M1-audytor-generalny-038]
+-- 28.10.2026 (właściciel, „3a”): **DEC-11 a — „Zarządzaj subskrypcją” dostępne dla VoiceOver przed 1.0** (karta stanu na ekranie zakupu bez grupowania potomków, przycisk osobnym elementem, strażnik i scenariusz 21); odrzucone: (b) 1.0.1 z obejściem przez Ustawienia iOS — bariera dostępności w progu wydania. [wdrożenie: otwarte → M1-audytor-generalny-039]
++- 28.10.2026 (właściciel, „3a”): **DEC-11 a — „Zarządzaj subskrypcją” dostępne dla VoiceOver przed 1.0** (karta stanu na ekranie zakupu bez grupowania potomków, przycisk osobnym elementem, strażnik i scenariusz 21); odrzucone: (b) 1.0.1 z obejściem przez Ustawienia iOS — bariera dostępności w progu wydania. [wdrożenie: kod] [test: tests/voiceover-grupa-przycisk.test.tsx]
+ - 28.10.2026 (właściciel): **pętla 2 napraw M2 w nowej sesji** po reaudycie M1 pętla 1 (raport na gałęzi audyt-m1-1-0-2026-10-27, stan ZABLOKOWANE: 006, 038, 039). [wdrożenie: bez kodu — proces napraw]
+ - 28.10.2026 (właściciel, STOP start M2 pętla 2, „1. Pełen zakres 2a 3a 4a 5b 6a 7b”): **pętla 2 napraw — pełny zakres 21 zadań przed zgłoszeniem 1.0** (blokery 006, 038, 039; regresje 040–045; P2 009, 011, 012, 017, 021, 023, 032, 034, 046–049); role jako subagenci po kolei; przed push test:fast + hak, CI po każdym push, pełne verify na koniec partii (wyjątek nazwany jak w pętli 1, powód: pełny Jest lokalnie ok. 70 min); odrzucone: (b) partia 3 do 1.0.1, (c) tylko blokery. [wdrożenie: bez kodu — proces napraw]
+ - 28.10.2026 (właściciel, „4a”): **publikacja poprawionej polityki prywatności i strony wsparcia na apps4brew.com przez repo apps4brew-www** (eksport `site/`, PR do akceptacji właściciela) w ramach M1-audytor-generalny-017; odrzucone: publikacja ręczna przez właściciela. [wdrożenie: otwarte → M1-audytor-generalny-017]
+diff --git a/docs/19-macierz-testow.md b/docs/19-macierz-testow.md
+index b44fb0d..b39d221 100644
+--- a/docs/19-macierz-testow.md
++++ b/docs/19-macierz-testow.md
+@@ -20,7 +20,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
+ | Pozycja | Źródło | Testy (pierwsze 3) |
+ |---|---|---|
+ | /history | app/(tabs)/history.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +61 |
+-| / | app/(tabs)/index.tsx | tests/a11y-routes.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +249 |
++| / | app/(tabs)/index.tsx | tests/a11y-routes.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +250 |
+ | /more | app/(tabs)/more.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx +76 |
+ | /progress | app/(tabs)/progress.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +37 |
+ | /adapt | app/adapt.tsx | tests/a11y-routes.ts, tests/adapt-ui.test.tsx, tests/close-button-guard.test.tsx +1 |
+@@ -41,7 +41,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
+ | /more/location | app/more/location/[id].tsx | tests/a11y-routes.ts, tests/audit-0.10-ui.test.tsx, tests/audit-r82c.test.tsx +12 |
+ | /more/locations | app/more/locations.tsx | tests/a11y-routes.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-ui.test.tsx +15 |
+ | /more/settings | app/more/settings.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +47 |
+-| /paywall | app/paywall.tsx | tests/a11y-routes.ts, tests/audit-m1-016-paywall-benefit.test.tsx, tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx +7 |
++| /paywall | app/paywall.tsx | tests/a11y-routes.ts, tests/audit-m1-016-paywall-benefit.test.tsx, tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx +8 |
+ | /pick-template | app/pick-template.tsx | tests/a11y-routes.ts, tests/close-button-guard.test.tsx, tests/matrix-langs-routes-shared.tsx +1 |
+ | /picker | app/picker.tsx | tests/a11y-routes.ts, tests/audit-0.10-lang-ui.test.tsx, tests/audit-k1-fala2b.test.tsx +16 |
+ | /place-once | app/place-once.tsx | tests/a11y-routes.ts, tests/close-button-guard.test.tsx, tests/matrix-langs-routes-shared.tsx +1 |
+@@ -111,7 +111,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
+ | Dni cardio w planie | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
+ | Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych. | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
+ | Dni treningowe w tygodniu | components/OwnPlan.tsx | tests/gen-days-ui.test.tsx, tests/gen-general-ui.test.tsx, tests/generator-ui.test.tsx +1 |
+-| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +317 |
++| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +318 |
+ | Do upadku (F) | app/template/[id].tsx | tests/scenario-full.test.tsx |
+ | dodaj ciężar | components/LoadEditor.tsx | tests/audit-0.10-ui.test.tsx, tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx +1 |
+ | Dodaj notatkę | components/WorkoutBlocks.tsx | tests/scenario-full.test.tsx |
+@@ -193,7 +193,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
+ | np. samopoczucie, ból, sprzęt | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
+ | O aplikacji | app/(tabs)/more.tsx | tests/audit-0.10-data-ui.test.tsx, tests/public-repo.test.ts |
+ | Obciążenie partii (z katalogu) | app/exercise/[id].tsx | tests/catalog-v2.test.ts |
+-| od | components/LoadEditor.tsx | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +344 |
++| od | components/LoadEditor.tsx | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +345 |
+ | Odhacz bez pomiaru | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/m3-p2-board-ui.test.tsx, tests/matrix-tuleja.test.tsx |
+ | Odhacz bez pomiaru: {ex}, seria {n} | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/m3-p2-board-ui.test.tsx |
+ | Odrzuć | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-close2-a.test.tsx +11 |
+@@ -394,7 +394,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
+ | Zapisz zmiany w szablonie | app/history/[id].tsx | tests/adapt-scenario.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts +2 |
+ | Zaplanuj deload od {date} | components/DeloadHint.tsx | tests/deload-ui.test.tsx, tests/guide.test.tsx |
+ | Zapowiedzi głosowe | app/more/settings.tsx | tests/m3-p2-board-ui.test.tsx, tests/m3-p5d-settings-ui.test.tsx, tests/voice-ui.test.tsx +2 |
+-| Zarządzaj subskrypcją | app/paywall.tsx | tests/audit-m1-050-support-subscription.test.ts, tests/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx, tests/subscription-i18n.test.ts |
++| Zarządzaj subskrypcją | app/paywall.tsx | tests/audit-m1-050-support-subscription.test.ts, tests/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx, tests/subscription-i18n.test.ts +1 |
+ | Zastąp | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/locations-audit.test.tsx, tests/matrix-ui.test.tsx +2 |
+ | Zastosuj | components/DayPanel.tsx | tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx, tests/audit-0.10-plan-ui.test.tsx +7 |
+ | Zastosuj: {title} | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-k1-fala2b.test.tsx, tests/places-shift-scenario.test.tsx +2 |
+@@ -449,7 +449,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
+ | {n} km | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/audit-m1-lok07-01-imperial-dist.test.tsx, tests/csv-import-logic.test.ts +13 |
+ | {n} lb | lib/units.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts +127 |
+ | {n} m | lib/state/time.ts | (tylko parametry) |
+-| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +337 |
++| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +338 |
+ | {n} rozgrz. | app/history/edit/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/scenario-full.test.tsx |
+ | {n} s | lib/state/time.ts | (tylko parametry) |
+ | {n} yd | lib/state/time.ts | tests/architecture-limits.test.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +80 |
+@@ -1667,7 +1667,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
+ | entitlement.withEndedAt | lib/entitlement.ts | tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts |
+ | entitlement.refreshEntitlements | lib/entitlement.ts | tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts, tests/entitlement.test.ts, tests/m5s1-dni-zapis.test.ts +2 |
+ | entitlement.initEntitlements | lib/entitlement.ts | tests/audit-m1-012-status.test.ts, tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts, tests/audit-m1-2026-10-27-018-jedno-okno.test.tsx +4 |
+-| entitlement.resetEntitlementsForTests | lib/entitlement.ts | tests/audit-m1-012-status.test.ts, tests/audit-m1-016-paywall-benefit.test.tsx, tests/audit-m1-041-reminder-files.test.tsx +19 |
++| entitlement.resetEntitlementsForTests | lib/entitlement.ts | tests/audit-m1-012-status.test.ts, tests/audit-m1-016-paywall-benefit.test.tsx, tests/audit-m1-041-reminder-files.test.tsx +20 |
+ | entitlement.liveStarts | lib/entitlement.ts | tests/entitlement.test.ts, tests/m5s1-dni-zapis.test.ts, tests/monetyzacja-csv.test.ts |
+ | entitlement.accessNow | lib/entitlement.ts | tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts, tests/entitlement.test.ts, tests/m5s1-dni-zapis.test.ts +2 |
+ | entitlement.useAccess | lib/entitlement.ts | tests/audit-m1-012-status.test.ts, tests/subscription-ui.test.tsx |
+@@ -1924,11 +1924,11 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
+ | i18n.baseLang | lib/i18n.ts | tests/i18n-variants.test.ts, tests/matrix-i18n.test.tsx |
+ | i18n.resolveLang | lib/i18n.ts | tests/i18n-variants.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts +3 |
+ | i18n.detectLang | lib/i18n.ts | tests/i18n-variants.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts +2 |
+-| i18n.applyLang | lib/i18n.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +127 |
++| i18n.applyLang | lib/i18n.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +128 |
+ | i18n.lang | lib/i18n.ts | tests/asc-metadane.test.ts, tests/asc-zrzuty.test.ts, tests/audit-m1-028-delete-menus.test.tsx +34 |
+ | i18n.appName | lib/i18n.ts | tests/audit-m1-004-start-error.test.tsx, tests/audit-m1-2026-10-27-004-ratunek.test.tsx, tests/i18n-locales.test.ts |
+ | i18n.deviceUnit | lib/i18n.ts | tests/audit-0.10-tst.test.ts, tests/audit-0.10-ui.test.tsx, tests/audit-m1-lok07-02-default-system.test.ts +1 |
+-| i18n.locale | lib/i18n.ts | tests/adapt-ui.test.tsx, tests/app.tsx, tests/asc-metadane.test.ts +116 |
++| i18n.locale | lib/i18n.ts | tests/adapt-ui.test.tsx, tests/app.tsx, tests/asc-metadane.test.ts +117 |
+ | i18n.decimalComma | lib/i18n.ts | tests/i18n-variants.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts +7 |
+ | i18n.setPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
+ | i18n.isPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
+@@ -2189,7 +2189,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
+ | store.replaceState | lib/state/boot.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-plan.test.ts, tests/audit-close-d.test.ts +17 |
+ | store.resetAll | lib/state/boot.ts | tests/audit-1-0-a2-reset.test.ts, tests/audit-journey-c.test.tsx, tests/audit-m1-lok07-02-default-system.test.ts +5 |
+ | store.applyCfg | lib/state/core.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-tst.test.ts, tests/helpers.ts +1 |
+-| store.flush | lib/state/core.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +213 |
++| store.flush | lib/state/core.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +214 |
+ | store.flushStrict | lib/state/core.ts | tests/audit-m1-006-import.test.ts |
+ | store.registerDraftStore | lib/state/core.ts | tests/backlog-0.10.1-dane-lib.test.ts |
+ | store.draftsChanged | lib/state/core.ts | tests/backlog-0.10.1-dane-lib.test.ts |
+@@ -2200,7 +2200,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
+ | store.getNewerSchema | lib/state/core.ts | tests/audit-0.10-plan.test.ts |
+ | store.markDraft | lib/state/core.ts | tests/edit-on-demand.test.tsx |
+ | store.isDraftObj | lib/state/core.ts | tests/edit-on-demand.test.tsx, tests/matrix-invariants.test.ts |
+-| store.save | lib/state/core.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +207 |
++| store.save | lib/state/core.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +208 |
+ | store.saveCfg | lib/state/core.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-m1-027-voice-default.test.ts +11 |
+ | store.getState | lib/state/core.ts | tests/a11y-routes.ts, tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx +270 |
+ | store.useStore | lib/state/core.ts | tests/matrix-logic.test.tsx |
+@@ -2436,10 +2436,10 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
+ | stats.setsGoal | lib/stats.ts | tests/audit-m1-044-brd.test.ts, tests/matrix-invariants.test.ts, tests/scenario-full.test.tsx +2 |
+ | stats.weeklyVolumeByMuscle | lib/stats.ts | tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-metrics.test.tsx, tests/matrix-time.test.ts +2 |
+ | stats.volumeByMuscle | lib/stats.ts | tests/progress.test.ts |
+-| store-adapter.setStoreAdapter | lib/store-adapter.ts | tests/audit-m1-012-status.test.ts, tests/audit-m1-016-paywall-benefit.test.tsx, tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx +12 |
++| store-adapter.setStoreAdapter | lib/store-adapter.ts | tests/audit-m1-012-status.test.ts, tests/audit-m1-016-paywall-benefit.test.tsx, tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx +13 |
+ | store-adapter.getStoreAdapter | lib/store-adapter.ts | tests/store-adapter.test.ts |
+-| store-adapter.resetStoreAdapterForTests | lib/store-adapter.ts | tests/audit-m1-012-status.test.ts, tests/audit-m1-016-paywall-benefit.test.tsx, tests/audit-m1-041-reminder-files.test.tsx +19 |
+-| store-fake.createFakeStore | lib/store-fake.ts | tests/audit-m1-016-paywall-benefit.test.tsx, tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx, tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts +12 |
++| store-adapter.resetStoreAdapterForTests | lib/store-adapter.ts | tests/audit-m1-012-status.test.ts, tests/audit-m1-016-paywall-benefit.test.tsx, tests/audit-m1-041-reminder-files.test.tsx +20 |
++| store-fake.createFakeStore | lib/store-fake.ts | tests/audit-m1-016-paywall-benefit.test.tsx, tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx, tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts +13 |
+ | store-native.entitlementFromPurchase | lib/store-native.ts | tests/m5s1-bez-proby.test.ts, tests/store-adapter.test.ts |
+ | store-native.productFromStore | lib/store-native.ts | tests/cena-z-displayprice.test.ts, tests/m5s1-bez-proby.test.ts, tests/store-adapter.test.ts |
+ | store-native.createNativeStore | lib/store-native.ts | tests/audit-m1-012-status.test.ts, tests/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx, tests/store-adapter.test.ts |
+diff --git a/docs/32-wzorce-interakcji.md b/docs/32-wzorce-interakcji.md
+index ac9eee9..0f9595f 100644
+--- a/docs/32-wzorce-interakcji.md
++++ b/docs/32-wzorce-interakcji.md
+@@ -117,6 +117,7 @@ formatowanie dat tylko w `lib/state/time.ts`, `lib/calendar.ts`, `lib/period.ts`
+ 
+ ### 23. Etykiety VoiceOver i role — S13, S14
+ Każdy `Pressable` ma `accessibilityLanguage = lang()` (albo `accessible={false}`); przyciski — `button`; przełączniki — `switch` + `checked`; wybór — `selected`; rozwijanie — `expanded`; usuwanie — akcja dostępności; nagłówki — `header`.
++Grupa `accessible` (jeden element VoiceOver z opisem) nie zawiera przycisków ani innych kontrolek — iOS chowa potomków grupy przed VoiceOver i XCTest; przycisk stoi obok grupy albo karta nie jest grupą (S19; DEC-11 a, 28.10.2026: karta stanu planu na ekranie zakupu, „Zarządzaj subskrypcją”).
+ 
+ ### 24. Seria „do uzupełnienia” i prośba przed „Zakończ” (0.20, decyzja właściciela 13.10.2026)
+ Seria odhaczona na zegarku jako „zrobione inaczej niż w planie” ma w wierszu napis „do uzupełnienia” (słowem, nie samym kolorem) i przycisk „Gotowe”. „Zakończ” z takimi seriami pyta najpierw: tytuł „Serie do uzupełnienia”, przyciski
+@@ -177,7 +178,7 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną
+ - Ikonka dekoracyjna przy tytule (Trening: mała sztanga po napisie) stoi w wierszu tytułu, nie nad nim; ukryta dla VoiceOver, etykieta nagłówka bez zmian.
+ - Przewijanie: `ScrollView`, `FlatList` i `SectionList` tylko z `components/Scroll.tsx`; wskaźnik przewijania (pionowy i poziomy) ukryty na wszystkich ekranach — nie ma „kreski” przy krawędzi w treści.
+ 
+-## Strażniki (S1–S18)
++## Strażniki (S1–S19)
+ | # | Strażnik | Plik | Stan |
+ |---|---|---|---|
+ | S1 | okno modalne / arkusz ma „Anuluj” w nagłówku (render każdego okna, PL/EN, jasny/ciemny) | `tests/close-button-guard.test.tsx` | jest |
+@@ -198,6 +199,7 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną
+ | S16 | arkusze akcji: wyjątki z powodem | j.w. | jest (wyjątki: lista miejsc użytkownika ma zmienną długość; rodzaje serii to 4 + notatka + Anuluj — dwupoziomowy arkusz wydłużyłby najczęstszą akcję treningu) |
+ | S17 | ⓘ: jeden komponent (etykieta, rola, `expanded`, pole 44 pt), teksty przeniesione tylko jako `info=`, widoczny tekst pomocniczy ≤ 100 znaków poza listą wyjątków z powodem, gesty tylko w Przewodniku | j.w. + `tests/info-tip.test.tsx`, `tests/matrix-i18n.test.tsx` (szerokość 320 pt), `.maestro/53-objasnienia-info.yaml` | jest |
+ | S18 | przewijanie: ScrollView/FlatList/SectionList tylko z `components/Scroll.tsx` (wskaźnik ukryty), brak `persistentScrollbar`/`flashScrollIndicators` | `tests/interaction-guards.test.ts`, `tests/trening-naglowek.test.tsx` | jest |
++| S19 | element `accessible` bez roli kontrolki nie ma w drzewie JSX potomka z `onPress`/`onLongPress` (skan AST `app/`, `components/`) | `tests/voiceover-grupa-przycisk.test.tsx`, `.maestro/21-subskrypcja.yaml` | jest (komponent przekazany jako dziecko z `onPress` w środku skan widzi tylko po atrybucie w miejscu użycia) |
+ 
+ ## Słownik terminów
+ Anuluj (rezygnacja; okna i potwierdzenia) · Wróć (strzałka, przycisk „nie ma takiego …”) · Wróć do edycji (tylko odrzucanie zmian) · Zamknij (tylko panel „Co nowego”) · Cofnij (ostatnia zmiana) · Przywróć (usunięte / zarchiwizowane / pominięte) ·
+diff --git a/docs/37-katalog-przeplywow.md b/docs/37-katalog-przeplywow.md
+index ac724de..159ffa5 100644
+--- a/docs/37-katalog-przeplywow.md
++++ b/docs/37-katalog-przeplywow.md
+@@ -179,7 +179,7 @@ Przepływów w katalogu: **158** (realny: 136, brzegowy: 22); pominięte jako te
+ | US-09 | **Odczyt Apple Health — przełącznik wyłączony: żadnej linii Zdrowia w panelach** — Ustawienia → przełącznik odczytu wyłączony (domyślnie) → Panel dnia, „Ten tydzień” i sesja bez linii Apple Health | Ekran jak przed 0.16. | `istniejacy` | realny | Maestro: `.maestro/20-zdrowie-odczyt.yaml` |
+ | US-10 | **Odczyt Apple Health z prawdziwymi danymi (kroki, tętno, kcal, trening z zegarka)** — Włącz odczyt → zezwól w arkuszu → Plan → dzień z aktywnością → linie Zdrowia; sesja: tętno i kcal z zegarka | Dane zgodne z aplikacją Zdrowie; cofnięcie zgody w Zdrowiu usuwa linie. | `istniejacy` | realny | Telefon (lista kontrolna wydania) — Symulator CI nie ma danych Zdrowia (kroków, tętna, zegarka) ani sterowania nimi, a arkusz zgody jest oknem systemowym (docs/29 pkt 7). |
+ | US-11 | **Odmowa zgody na powiadomienia: ostrzeżenie w Ustawieniach i „Otwórz Ustawienia iOS”** — Pierwszy dzień planu → okno przypomnienia → „Zezwól” → systemowe „Nie zezwalaj” → Ustawienia → komunikat o braku zgody i przycisk „Otwórz Ustawienia iOS” | Aplikacja działa bez powiadomień, wyjaśnia skutek i wskazuje drogę naprawy. | `nowy` | realny | Maestro (eksperyment): `.maestro/40-odmowa-powiadomien.yaml` |
+-| US-12 | **Subskrypcja: karta w Ustawieniach, ekran zakupu, ceny, przywracanie, limit, zakup** — Ustawienia → karta „Subskrypcja” (wiersz z dostępem: „Masz plan: {rodzaj planu}”, bez planu: „Zobacz plany Pro”) → ekran zakupu → Panel „Test store”: wygaszenie → ceny → „Przywróć zakupy” → Start ponad limit dni → ekran zakupu → zakup → Po zakupie subskrypcji: nagłówek „Masz plan: {rodzaj planu}”, lista planów zwinięta pod „Zmień plan”, po rozwinięciu „Aktualny plan” przy kupionym i „Przejdź na ten plan” | Dostęp zgodny ze stanem sklepu; zamknięcie ekranu zakupu przyciskiem „Zamknij”; po zakupie ekran nie oferuje kupna posiadanego planu. | `istniejacy` | realny | Maestro: `.maestro/21-subskrypcja.yaml` |
++| US-12 | **Subskrypcja: karta w Ustawieniach, ekran zakupu, ceny, przywracanie, limit, zakup** — Ustawienia → karta „Subskrypcja” (wiersz z dostępem: „Masz plan: {rodzaj planu}”, bez planu: „Zobacz plany Pro”) → ekran zakupu → Panel „Test store”: wygaszenie → ceny → „Przywróć zakupy” → Start ponad limit dni → ekran zakupu → zakup → Po zakupie subskrypcji: nagłówek „Masz plan: {rodzaj planu}”, lista planów zwinięta pod „Zmień plan”, po rozwinięciu „Aktualny plan” przy kupionym i „Przejdź na ten plan” → Po zakupie: „Zarządzaj subskrypcją” na karcie planu jest osobnym przyciskiem (VoiceOver, XCTest) i otwiera arkusz subskrypcji (M1-audytor-generalny-039, DEC-11 a 28.10.2026) | Dostęp zgodny ze stanem sklepu; zamknięcie ekranu zakupu przyciskiem „Zamknij”; po zakupie ekran nie oferuje kupna posiadanego planu. | `istniejacy` | realny | Maestro: `.maestro/21-subskrypcja.yaml` |
+ | US-13 | **Prawdziwy zakup w piaskownicy Apple: każdy plan, przywrócenie, zwrot, Chmura rodzinna, limit dni** — Zainstaluj z TestFlight, konto piaskownicy → Kup, przywróć, sprawdź stan po wygaśnięciu, tryb samolotowy, zwrot, Chmura rodzinna i blokadę po limicie dni | Dostęp zgodny ze stanem sklepu. | `istniejacy` | realny | Telefon (lista kontrolna wydania) — Okna zakupu Apple i konto piaskownicy są poza kontrolą Maestro; build E2E ma sztuczny sklep (EXPO_PUBLIC_STORE_FAKE), więc nie sprawdza prawdziwego StoreKit. |
+ | US-14 | **O aplikacji, licencje open source, wersja** — Więcej → O aplikacji → „Licencje open source” | Lista pakietów i bibliotek natywnych. | `istniejacy` | brzegowy | Maestro: `.maestro/15-masa-licencje.yaml` |
+ | US-15 | **„Napisz do nas” (poczta) i prośba o ocenę w App Store** — Więcej → O aplikacji → „Napisz do nas” → okno poczty → Po kilku treningach — systemowa prośba o ocenę | Poczta z adresem i wersją; prośba o ocenę nie częściej niż pozwala iOS. | `istniejacy` | brzegowy | Telefon (lista kontrolna wydania) — Okno poczty i systemowa prośba o ocenę to okna systemowe, nieobecne w TestFlight/na symulatorze CI. |
+diff --git a/docs/brd/wymagania.md b/docs/brd/wymagania.md
+index 5dec65a..8e04c1a 100644
+--- a/docs/brd/wymagania.md
++++ b/docs/brd/wymagania.md
+@@ -812,6 +812,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
+     - Zakładając, że użytkownik ma aktywną subskrypcję (miesięczną albo roczną; kupioną sam, z kodu albo z Chmury rodzinnej)
+     - Gdy otwiera ekran zakupu
+     - Wtedy zamiast oferty widzi stan swojego planu: nagłówek karty „Masz plan: {rodzaj planu}” (rodzaj planu: miesięczny, roczny albo dożywotni — 1A, właściciel 28.10.2026) i datę, bez wstępu o darmowych dniach, bez listy planów i bez przycisku „Subskrybuj”; lista planów jest zwinięta pod przyciskiem „Zmień plan” (decyzja właściciela DEC-09 a, 27.10.2026; test `tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx`)
++  - Scenariusz: Zarządzanie subskrypcją z VoiceOver
++    - Zakładając, że użytkownik z włączonym VoiceOver ma aktywną subskrypcję (także obok planu dożywotniego)
++    - Gdy przechodzi po karcie stanu planu na ekranie zakupu
++    - Wtedy nagłówek karty, dopiski i przycisk „Zarządzaj subskrypcją” są osobnymi elementami, a przycisk otwiera systemowy arkusz subskrypcji (DEC-11 a, właściciel 28.10.2026; M1-audytor-generalny-039; test `tests/voiceover-grupa-przycisk.test.tsx`, scenariusz `.maestro/21-subskrypcja.yaml`)
+   - Scenariusz: Zmiana planu
+     - Zakładając, że użytkownik ma aktywną subskrypcję i stuka „Zmień plan”
+     - Gdy lista planów się rozwija
+diff --git a/tests/interaction-guards.test.ts b/tests/interaction-guards.test.ts
+index 3d5b7f8..94c3f9a 100644
+--- a/tests/interaction-guards.test.ts
++++ b/tests/interaction-guards.test.ts
+@@ -1,12 +1,13 @@
+ /*
+  * Strażniki wzorców interakcji (właściciel, 13.10.2026: „akcje tego samego typu działają w całej aplikacji tak samo”; katalog: docs/32-wzorce-interakcji.md).
+- * Statyczny skan źródeł app/, components/, lib/ — nowy kod, który łamie wzorzec, robi test czerwonym. Numeracja S1–S16 jak w audycie spójności (docs/32, sekcja „Strażniki”); S17 — wzorzec ⓘ (14.10.2026).
++ * Statyczny skan źródeł app/, components/, lib/ — nowy kod, który łamie wzorzec, robi test czerwonym. Numeracja S1–S16 jak w audycie spójności (docs/32, sekcja „Strażniki”); S17 — wzorzec ⓘ (14.10.2026); S19 — grupa `accessible` bez przycisku w środku (28.10.2026, skan AST).
+  * Zamykanie okien (S1) pilnuje osobno tests/close-button-guard.test.tsx; wzorzec usuwania — tests/swipe-delete.test.tsx.
+  * Pominięte lub częściowe (z powodem): S14 (pole dotyku ≥ 44 pt — Jest nie liczy układu; pilnujemy komponentów wspólnych i zakazu roli „link”), S6 (wybór 1 z 2–4 / boolean —
+  * reguła semantyczna, sprawdzamy miejsca naprawione), S16 (arkusz akcji — lista wyjątków z powodem).
+  */
+ import { readdirSync, readFileSync, statSync } from 'fs';
+ import { join, relative, sep } from 'path';
++import * as ts from 'typescript';
+ 
+ const ROOT = join(__dirname, '..');
+ const walk = (d: string): string[] => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
+@@ -253,3 +254,41 @@ describe('S17: ⓘ — jeden komponent, objaśnienia nie wracają na wierzch', (
+   });
+   test('„Technika ›” to przejście (wzorzec 17), nie ⓘ', () => { const c = src.get('components/ExerciseCues.tsx')!; expect(c).toContain("`${t('Technika')} ›`"); expect(c).not.toMatch(/ⓘ \$\{t\('Technika'\)\}/); });
+ });
++
++/* ---------- S19: grupa VoiceOver bez przycisków w środku (M1-audytor-generalny-039, 04-studio-projektowe-601; DEC-11 a, 28.10.2026; render ekranu zakupu: tests/voiceover-grupa-przycisk.test.tsx) ---------- */
++/** Role, przy których cały element sam jest kontrolką (grupa = jeden przycisk) — wtedy onPress w środku to ta sama akcja, nie ukryty przycisk. */
++const ROLE_KONTROLKI = new Set(['button', 'radio', 'checkbox', 'switch', 'adjustable', 'menuitem', 'tab', 'togglebutton']);
++const ZDARZENIA = new Set(['onPress', 'onLongPress']);
++
++const attr = (el: ts.JsxOpeningLikeElement, name: string) => el.attributes.properties.find((p): p is ts.JsxAttribute => ts.isJsxAttribute(p) && p.name.getText() === name);
++/** `accessible` albo `accessible={true}` (bez `={false}` i bez wyrażeń warunkowych). */
++const grupa = (el: ts.JsxOpeningLikeElement) => { const a = attr(el, 'accessible'); if (!a) return false; if (!a.initializer) return true; return ts.isJsxExpression(a.initializer) && a.initializer.expression?.kind === ts.SyntaxKind.TrueKeyword; };
++const rola = (el: ts.JsxOpeningLikeElement) => { const a = attr(el, 'accessibilityRole'); return a?.initializer && ts.isStringLiteral(a.initializer) ? a.initializer.text : null; };
++
++/** Elementy `accessible` (bez roli kontrolki), w których drzewie JSX jest potomek z onPress/onLongPress — `plik:linia testID`. */
++function grupyZPrzyciskiem(file: string, text: string): string[] {
++  const sf = ts.createSourceFile(file, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX); const out: string[] = [];
++  const maZdarzenie = (n: ts.Node): boolean => { let hit = false; const v = (m: ts.Node) => { if (hit) return; if (ts.isJsxAttribute(m) && ZDARZENIA.has(m.name.getText())) { hit = true; return; } ts.forEachChild(m, v); }; ts.forEachChild(n, v); return hit; };
++  const visit = (n: ts.Node) => {
++    if (ts.isJsxElement(n) && grupa(n.openingElement) && !ROLE_KONTROLKI.has(rola(n.openingElement) ?? '') && !attr(n.openingElement, 'onPress')) {
++      if (n.children.some(maZdarzenie)) { const id = attr(n.openingElement, 'testID')?.initializer?.getText() ?? n.openingElement.tagName.getText(); out.push(`${file}:${sf.getLineAndCharacterOfPosition(n.getStart()).line + 1} ${id}`); }
++    }
++    ts.forEachChild(n, visit);
++  };
++  visit(sf); return out;
++}
++
++describe('S19 (28.10.2026, DEC-11 a): grupa `accessible` nie zawiera przycisku — iOS chowa potomków grupy przed VoiceOver i XCTest', () => {
++  test('żaden element `accessible` w app/ i components/ (bez roli kontrolki) nie ma w drzewie JSX potomka z onPress/onLongPress', () => {
++    const bad = [...src].filter(([f]) => /^(app|components)\/.*\.tsx$/.test(f)).flatMap(([f, s]) => grupyZPrzyciskiem(f, s));
++    expect(bad).toEqual([]);
++  });
++  test('strażnik łapie wzorzec błędu (grupa z przyciskiem w środku) i przepuszcza dozwolone układy', () => {
++    const zly = `const A = () => <View testID="karta" accessible><Text>Plan</Text><Btn title="Zarządzaj" onPress={() => {}} /></View>;`;
++    expect(grupyZPrzyciskiem('x.tsx', zly)).toEqual(['x.tsx:1 "karta"']);
++    expect(grupyZPrzyciskiem('x.tsx', `const A = () => <View accessible={true}><Pressable onLongPress={f}><Text>x</Text></Pressable></View>;`)).toHaveLength(1);
++    expect(grupyZPrzyciskiem('x.tsx', `const A = () => <View><View accessible accessibilityLabel="opis"><Text>Plan</Text></View><Btn title="Zarządzaj" onPress={f} /></View>;`)).toEqual([]);
++    expect(grupyZPrzyciskiem('x.tsx', `const A = () => <View accessible={false}><Btn title="x" onPress={f} /></View>;`)).toEqual([]);
++    expect(grupyZPrzyciskiem('x.tsx', `const A = () => <View accessible accessibilityRole="button" onPress={f}><Text onPress={f}>x</Text></View>;`)).toEqual([]);
++  });
++});
+diff --git a/tests/przeplywy.json b/tests/przeplywy.json
+index f1ba2fa..fb47d8f 100644
+--- a/tests/przeplywy.json
++++ b/tests/przeplywy.json
+@@ -2432,7 +2432,8 @@
+     "Ustawienia → karta „Subskrypcja” (wiersz z dostępem: „Masz plan: {rodzaj planu}”, bez planu: „Zobacz plany Pro”) → ekran zakupu",
+     "Panel „Test store”: wygaszenie → ceny → „Przywróć zakupy”",
+     "Start ponad limit dni → ekran zakupu → zakup",
+-    "Po zakupie subskrypcji: nagłówek „Masz plan: {rodzaj planu}”, lista planów zwinięta pod „Zmień plan”, po rozwinięciu „Aktualny plan” przy kupionym i „Przejdź na ten plan”"
++    "Po zakupie subskrypcji: nagłówek „Masz plan: {rodzaj planu}”, lista planów zwinięta pod „Zmień plan”, po rozwinięciu „Aktualny plan” przy kupionym i „Przejdź na ten plan”",
++    "Po zakupie: „Zarządzaj subskrypcją” na karcie planu jest osobnym przyciskiem (VoiceOver, XCTest) i otwiera arkusz subskrypcji (M1-audytor-generalny-039, DEC-11 a 28.10.2026)"
+    ],
+    "wynik": "Dostęp zgodny ze stanem sklepu; zamknięcie ekranu zakupu przyciskiem „Zamknij”; po zakupie ekran nie oferuje kupna posiadanego planu.",
+    "ekrany": [
+@@ -2442,7 +2443,8 @@
+    "scenariusz": "21-subskrypcja.yaml",
+    "znaczniki": [
+     "Restore purchases",
+-    "Test store: expire access"
++    "Test store: expire access",
++    "Manage subscription"
+    ]
+   },
+   {
+diff --git a/tests/voiceover-grupa-przycisk.test.tsx b/tests/voiceover-grupa-przycisk.test.tsx
+new file mode 100644
+index 0000000..f248f9e
+--- /dev/null
++++ b/tests/voiceover-grupa-przycisk.test.tsx
+@@ -0,0 +1,51 @@
++/*
++ * M1-audytor-generalny-039 (04-studio-projektowe-601; DEC-11 a, właściciel 28.10.2026): „Zarządzaj subskrypcją” niedostępne dla VoiceOver — karta stanu planu
++ * na ekranie zakupu (`paywall-owned`) była grupą `accessible`, a iOS zamienia taką grupę w jeden element (`isAccessibilityElement`) i chowa jej potomków przed
++ * VoiceOver i XCTest (to samo co E2E-11 na tablicy „teraz”, components/NowBoard.tsx). Przycisk w środku nie dawał się wybrać ani aktywować.
++ * Naprawa (a): karta bez `accessible`, nagłówek zostaje nagłówkiem, przycisk osobnym elementem. Scenariusz Maestro: .maestro/21-subskrypcja.yaml stuka „Manage subscription”.
++ * Rodzaje (docs/20): ekran (render karty z aktywnym planem, PL/EN), regresja; niezmiennik S19 (skan AST całego UI) — tests/interaction-guards.test.ts. docs/32 wzorzec 23, tabela strażników S19.
++ */
++import * as store from '@/lib/store';
++import { PAYWALL, type Entitlement } from '@/lib/access';
++import { setStoreAdapter, resetStoreAdapterForTests } from '@/lib/store-adapter';
++import { createFakeStore } from '@/lib/store-fake';
++import { resetEntitlementsForTests } from '@/lib/entitlement';
++import { applyLang } from '@/lib/i18n';
++import { fresh, saved } from './helpers';
++import { renderApp, flushAll, screen, tap, act } from './app';
++
++jest.setTimeout(120000);
++
++/* Na najwyższym poziomie, jak w tests/subscription-ui.test.tsx: hak w describe biegnie PRZED sprzątaniem drzewa przez bibliotekę testową, a powrót do prawdziwych
++ * zegarów przed odmontowaniem zawieszał przebieg (sprawdzone 28.10.2026). */
++afterEach(() => { PAYWALL.ENABLED = false; resetEntitlementsForTests(); resetStoreAdapterForTests(); applyLang('pl'); jest.useRealTimers(); });
++
++describe('ekran zakupu z aktywnym planem: „Zarządzaj subskrypcją” osobnym elementem VoiceOver', () => {
++  const NOW = Date.now(); const DAY = 86400e3;
++  let fake: ReturnType<typeof createFakeStore>;
++  const boot = async (ents: Entitlement[], locale: 'pl' | 'en' = 'pl') => {
++    await fresh(undefined, locale); resetEntitlementsForTests(); PAYWALL.ENABLED = true;
++    fake = createFakeStore(ents); setStoreAdapter(fake); store.save(); await act(async () => { await store.flush(); });
++    await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/paywall?reason=settings' }); for (let i = 0; i < 8; i++) await flushAll(10);
++  };
++  /** Najbliższy natywny przodek `accessible` (grupa VoiceOver). Liczą się tylko elementy natywne (typ-napis, np. View) — komponent Pressable nad własnym hostem nie jest grupą. */
++  const grupaNad = (el: { parent: any; props: any }): string | null => { for (let p = el.parent; p; p = p.parent) if (typeof p.type === 'string' && p.props?.accessible === true) return String(p.props.testID ?? p.props.accessibilityLabel ?? p.type); return null; };
++  /** Natywny host przycisku `Btn` (View z rolą button) nad tekstem etykiety. */
++  const przycisk = (label: string) => { let n: any = screen.getByText(label); while (n && !(typeof n.type === 'string' && n.props?.accessibilityRole === 'button')) n = n.parent; return n; };
++
++  test.each([
++    ['miesięczna', [{ plan: 'monthly', source: 'purchase', expiresAt: NOW + 20 * DAY }] as Entitlement[]],
++    ['dożywotni przy odnawiającej się subskrypcji', [{ plan: 'lifetime', source: 'purchase', expiresAt: null }, { plan: 'yearly', source: 'purchase', expiresAt: NOW + 200 * DAY }] as Entitlement[]],
++  ])('%s: karta stanu nie jest grupą accessible; przycisk ma rolę przycisku, nie leży w grupie i działa; nagłówek karty zostaje nagłówkiem', async (_n, ents) => {
++    await boot(ents);
++    const card = screen.getByTestId('paywall-owned'); expect(card.props.accessible).not.toBe(true);
++    const btn = przycisk('Zarządzaj subskrypcją'); expect(btn).toBeTruthy(); expect(btn.props.accessibilityRole).toBe('button'); expect(grupaNad(btn)).toBeNull();
++    const title = screen.getByTestId('paywall-owned-title'); expect(title.props.accessibilityRole).toBe('header'); expect(grupaNad(title)).toBeNull(); expect(title.props.accessibilityLanguage).toBe('pl');
++    const before = fake.calls.manageSubscriptions; await tap(btn); await flushAll(10); expect(fake.calls.manageSubscriptions).toBe(before + 1);
++  });
++  test('EN: etykieta przycisku „Manage subscription” (ten sam literał stuka scenariusz Maestro 21), język wymowy nagłówka karty en', async () => {
++    await boot([{ plan: 'yearly', source: 'purchase', expiresAt: NOW + 200 * DAY }], 'en');
++    const btn = przycisk('Manage subscription'); expect(btn).toBeTruthy(); expect(grupaNad(btn)).toBeNull();
++    expect(screen.getByTestId('paywall-owned-title').props.accessibilityLanguage).toBe('en');
++  });
++});

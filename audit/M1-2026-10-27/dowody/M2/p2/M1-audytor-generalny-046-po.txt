@@ -1,0 +1,13 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/m1-046-monetyzacja-stany.test.tsx
+PASS iOS tests/monetyzacja-ui.test.tsx (6.809 s)
+PASS iOS tests/subscription-ui.test.tsx (11.228 s)
+PASS iOS tests/voiceover-grupa-przycisk.test.tsx
+PASS iOS tests/m1-044-posiadany-plan-kontrast.test.tsx
+
+Test Suites: 5 passed, 5 total
+Tests:       72 passed, 72 total
+Snapshots:   0 total
+Time:        24.668 s
+Ran all test suites matching /tests\/m1-046-monetyzacja-stany.test.tsx|tests\/monetyzacja-ui.test.tsx|tests\/subscription-ui.test.tsx|tests\/voiceover-grupa-przycisk.test.tsx|tests\/m1-044-posiadany-plan-kontrast.test.tsx|tests\/audit-m1-018*.test.ts*/i.

@@ -1,0 +1,198 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/l048-check-slowniki.test.ts
+  L-048 A: npm run check:slowniki
+    ✕ skrypt w package.json i lista strażników słowników (wszystkie pliki istnieją) (4 ms)
+  L-048 A: check:pochodne uruchamia check:slowniki tylko przy zmianach słowników
+    ✕ krok „strażniki słowników” na liście check:pochodne (40 ms)
+    ✕ zmienione ["lib/locales/el.json"] → uruchom: true (null = nieznane zmiany → bezpiecznie uruchom) (46 ms)
+    ✕ zmienione ["lib/cues/text/pl.json"] → uruchom: true (null = nieznane zmiany → bezpiecznie uruchom) (50 ms)
+    ✕ zmienione ["lib/i18n.en.ts"] → uruchom: true (null = nieznane zmiany → bezpiecznie uruchom) (43 ms)
+    ✕ zmienione ["store/review-notes.md"] → uruchom: true (null = nieznane zmiany → bezpiecznie uruchom) (41 ms)
+    ✕ zmienione ["docs/lokalizacja/slownik-terminow.json"] → uruchom: true (null = nieznane zmiany → bezpiecznie uruchom) (41 ms)
+    ✕ zmienione ["lib/live.ts","docs/40-lekcje.md"] → uruchom: false (null = nieznane zmiany → bezpiecznie uruchom) (36 ms)
+    ✕ zmienione [] → uruchom: false (null = nieznane zmiany → bezpiecznie uruchom) (34 ms)
+    ✕ zmienione null → uruchom: true (null = nieznane zmiany → bezpiecznie uruchom) (34 ms)
+
+  ● L-048 A: npm run check:slowniki › skrypt w package.json i lista strażników słowników (wszystkie pliki istnieją)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "node scripts/slowniki.mjs"
+    Received: undefined
+
+      17 | describe('L-048 A: npm run check:slowniki', () => {
+      18 |   test('skrypt w package.json i lista strażników słowników (wszystkie pliki istnieją)', () => {
+    > 19 |     expect(pkg.scripts['check:slowniki']).toBe('node scripts/slowniki.mjs');
+         |                                           ^
+      20 |     const lista: string[] = esm('scripts/slowniki.mjs', 'm.STRAZNIKI_SLOWNIKOW');
+      21 |     for (const f of ['tests/matrix-i18n.test.tsx', 'tests/i18n-wave2.test.ts', 'tests/i18n-wave3.test.ts', 'tests/i18n-wave4.test.ts', 'tests/i18n-variants.test.ts',
+      22 |       'tests/skroty-przekladu.test.ts', 'tests/slownik-terminow.test.ts', 'tests/i18n-locales.test.ts', 'tests/audit-m1-029-kropka-srodkowa.test.ts', 'tests/units-label.test.ts']) expect(lista).toContain(f);
+
+      at Object.toBe (tests/l048-check-slowniki.test.ts:19:43)
+
+  ● L-048 A: check:pochodne uruchamia check:slowniki tylko przy zmianach słowników › krok „strażniki słowników” na liście check:pochodne
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /strażniki słowników/
+    Received string:  "README
+    macierz testów
+    konteksty tłumaczeń
+    wskazówki (cues)
+    figury v1
+    figury v2
+    schemat figur v2
+    sprzęt
+    katalog przepływów
+    źródła runtime
+    licencje
+    rejestr twierdzeń
+    wektory BRD
+    lib/locales/_source.json
+    pliki zegarka i widżetu + strażniki tekstowe
+    "
+
+      30 | describe('L-048 A: check:pochodne uruchamia check:slowniki tylko przy zmianach słowników', () => {
+      31 |   test('krok „strażniki słowników” na liście check:pochodne', () => {
+    > 32 |     expect(spawnSync(process.execPath, [join(root, 'scripts/pochodne.mjs'), '--lista'], { cwd: root, encoding: 'utf8' }).stdout).toMatch(/strażniki słowników/);
+         |                                                                                                                                  ^
+      33 |   });
+      34 |   test.each([
+      35 |     [['lib/locales/el.json'], true], [['lib/cues/text/pl.json'], true], [['lib/i18n.en.ts'], true], [['store/review-notes.md'], true], [['docs/lokalizacja/slownik-terminow.json'], true],
+
+      at Object.toMatch (tests/l048-check-slowniki.test.ts:32:130)
+
+  ● L-048 A: check:pochodne uruchamia check:slowniki tylko przy zmianach słowników › zmienione ["lib/locales/el.json"] → uruchom: true (null = nieznane zmiany → bezpiecznie uruchom)
+
+    SyntaxError: Unexpected end of JSON input
+        at JSON.parse (<anonymous>)
+
+      12 | const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
+      13 | /** Moduły ESM w osobnym procesie (jak tests/pochodne.test.ts). */
+    > 14 | const esm = (mod: string, expr: string) => JSON.parse(spawnSync(process.execPath, ['--input-type=module', '-e',
+         |                                                 ^
+      15 |   `import * as m from ${JSON.stringify('file://' + join(root, mod))}; process.stdout.write(JSON.stringify(${expr}));`], { cwd: root, encoding: 'utf8' }).stdout);
+      16 |
+      17 | describe('L-048 A: npm run check:slowniki', () => {
+
+      at parse (tests/l048-check-slowniki.test.ts:14:49)
+      at esm (tests/l048-check-slowniki.test.ts:38:12)
+
+  ● L-048 A: check:pochodne uruchamia check:slowniki tylko przy zmianach słowników › zmienione ["lib/cues/text/pl.json"] → uruchom: true (null = nieznane zmiany → bezpiecznie uruchom)
+
+    SyntaxError: Unexpected end of JSON input
+        at JSON.parse (<anonymous>)
+
+      12 | const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
+      13 | /** Moduły ESM w osobnym procesie (jak tests/pochodne.test.ts). */
+    > 14 | const esm = (mod: string, expr: string) => JSON.parse(spawnSync(process.execPath, ['--input-type=module', '-e',
+         |                                                 ^
+      15 |   `import * as m from ${JSON.stringify('file://' + join(root, mod))}; process.stdout.write(JSON.stringify(${expr}));`], { cwd: root, encoding: 'utf8' }).stdout);
+      16 |
+      17 | describe('L-048 A: npm run check:slowniki', () => {
+
+      at parse (tests/l048-check-slowniki.test.ts:14:49)
+      at esm (tests/l048-check-slowniki.test.ts:38:12)
+
+  ● L-048 A: check:pochodne uruchamia check:slowniki tylko przy zmianach słowników › zmienione ["lib/i18n.en.ts"] → uruchom: true (null = nieznane zmiany → bezpiecznie uruchom)
+
+    SyntaxError: Unexpected end of JSON input
+        at JSON.parse (<anonymous>)
+
+      12 | const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
+      13 | /** Moduły ESM w osobnym procesie (jak tests/pochodne.test.ts). */
+    > 14 | const esm = (mod: string, expr: string) => JSON.parse(spawnSync(process.execPath, ['--input-type=module', '-e',
+         |                                                 ^
+      15 |   `import * as m from ${JSON.stringify('file://' + join(root, mod))}; process.stdout.write(JSON.stringify(${expr}));`], { cwd: root, encoding: 'utf8' }).stdout);
+      16 |
+      17 | describe('L-048 A: npm run check:slowniki', () => {
+
+      at parse (tests/l048-check-slowniki.test.ts:14:49)
+      at esm (tests/l048-check-slowniki.test.ts:38:12)
+
+  ● L-048 A: check:pochodne uruchamia check:slowniki tylko przy zmianach słowników › zmienione ["store/review-notes.md"] → uruchom: true (null = nieznane zmiany → bezpiecznie uruchom)
+
+    SyntaxError: Unexpected end of JSON input
+        at JSON.parse (<anonymous>)
+
+      12 | const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
+      13 | /** Moduły ESM w osobnym procesie (jak tests/pochodne.test.ts). */
+    > 14 | const esm = (mod: string, expr: string) => JSON.parse(spawnSync(process.execPath, ['--input-type=module', '-e',
+         |                                                 ^
+      15 |   `import * as m from ${JSON.stringify('file://' + join(root, mod))}; process.stdout.write(JSON.stringify(${expr}));`], { cwd: root, encoding: 'utf8' }).stdout);
+      16 |
+      17 | describe('L-048 A: npm run check:slowniki', () => {
+
+      at parse (tests/l048-check-slowniki.test.ts:14:49)
+      at esm (tests/l048-check-slowniki.test.ts:38:12)
+
+  ● L-048 A: check:pochodne uruchamia check:slowniki tylko przy zmianach słowników › zmienione ["docs/lokalizacja/slownik-terminow.json"] → uruchom: true (null = nieznane zmiany → bezpiecznie uruchom)
+
+    SyntaxError: Unexpected end of JSON input
+        at JSON.parse (<anonymous>)
+
+      12 | const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
+      13 | /** Moduły ESM w osobnym procesie (jak tests/pochodne.test.ts). */
+    > 14 | const esm = (mod: string, expr: string) => JSON.parse(spawnSync(process.execPath, ['--input-type=module', '-e',
+         |                                                 ^
+      15 |   `import * as m from ${JSON.stringify('file://' + join(root, mod))}; process.stdout.write(JSON.stringify(${expr}));`], { cwd: root, encoding: 'utf8' }).stdout);
+      16 |
+      17 | describe('L-048 A: npm run check:slowniki', () => {
+
+      at parse (tests/l048-check-slowniki.test.ts:14:49)
+      at esm (tests/l048-check-slowniki.test.ts:38:12)
+
+  ● L-048 A: check:pochodne uruchamia check:slowniki tylko przy zmianach słowników › zmienione ["lib/live.ts","docs/40-lekcje.md"] → uruchom: false (null = nieznane zmiany → bezpiecznie uruchom)
+
+    SyntaxError: Unexpected end of JSON input
+        at JSON.parse (<anonymous>)
+
+      12 | const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
+      13 | /** Moduły ESM w osobnym procesie (jak tests/pochodne.test.ts). */
+    > 14 | const esm = (mod: string, expr: string) => JSON.parse(spawnSync(process.execPath, ['--input-type=module', '-e',
+         |                                                 ^
+      15 |   `import * as m from ${JSON.stringify('file://' + join(root, mod))}; process.stdout.write(JSON.stringify(${expr}));`], { cwd: root, encoding: 'utf8' }).stdout);
+      16 |
+      17 | describe('L-048 A: npm run check:slowniki', () => {
+
+      at parse (tests/l048-check-slowniki.test.ts:14:49)
+      at esm (tests/l048-check-slowniki.test.ts:38:12)
+
+  ● L-048 A: check:pochodne uruchamia check:slowniki tylko przy zmianach słowników › zmienione [] → uruchom: false (null = nieznane zmiany → bezpiecznie uruchom)
+
+    SyntaxError: Unexpected end of JSON input
+        at JSON.parse (<anonymous>)
+
+      12 | const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
+      13 | /** Moduły ESM w osobnym procesie (jak tests/pochodne.test.ts). */
+    > 14 | const esm = (mod: string, expr: string) => JSON.parse(spawnSync(process.execPath, ['--input-type=module', '-e',
+         |                                                 ^
+      15 |   `import * as m from ${JSON.stringify('file://' + join(root, mod))}; process.stdout.write(JSON.stringify(${expr}));`], { cwd: root, encoding: 'utf8' }).stdout);
+      16 |
+      17 | describe('L-048 A: npm run check:slowniki', () => {
+
+      at parse (tests/l048-check-slowniki.test.ts:14:49)
+      at esm (tests/l048-check-slowniki.test.ts:38:12)
+
+  ● L-048 A: check:pochodne uruchamia check:slowniki tylko przy zmianach słowników › zmienione null → uruchom: true (null = nieznane zmiany → bezpiecznie uruchom)
+
+    SyntaxError: Unexpected end of JSON input
+        at JSON.parse (<anonymous>)
+
+      12 | const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
+      13 | /** Moduły ESM w osobnym procesie (jak tests/pochodne.test.ts). */
+    > 14 | const esm = (mod: string, expr: string) => JSON.parse(spawnSync(process.execPath, ['--input-type=module', '-e',
+         |                                                 ^
+      15 |   `import * as m from ${JSON.stringify('file://' + join(root, mod))}; process.stdout.write(JSON.stringify(${expr}));`], { cwd: root, encoding: 'utf8' }).stdout);
+      16 |
+      17 | describe('L-048 A: npm run check:slowniki', () => {
+
+      at parse (tests/l048-check-slowniki.test.ts:14:49)
+      at esm (tests/l048-check-slowniki.test.ts:38:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       10 failed, 10 total
+Snapshots:   0 total
+Time:        1.8 s
+Ran all test suites matching /tests\/l048-check-slowniki.test.ts/i.

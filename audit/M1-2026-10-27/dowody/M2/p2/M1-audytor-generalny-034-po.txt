@@ -1,0 +1,10 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/nocne-workflowy.test.ts
+PASS iOS tests/mutation-config.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       18 passed, 18 total
+Snapshots:   0 total
+Time:        2.237 s
+Ran all test suites matching /tests\/nocne-workflowy.test.ts|tests\/mutation-config.test.ts/i.

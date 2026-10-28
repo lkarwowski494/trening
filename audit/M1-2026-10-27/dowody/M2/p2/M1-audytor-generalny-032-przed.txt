@@ -1,0 +1,86 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/m1-032-kod-migracja.test.tsx
+  M1-032: kod diagnostyczny przy błędzie migracji i danych z nowszej wersji
+    ✕ wyjątek migracji: e-mail z kodem „start: migrate”, bez treści błędu (471 ms)
+    ✕ dane z nowszej wersji: e-mail z kodem „start: newer” i schematem zapisu (33 ms)
+
+  ● M1-032: kod diagnostyczny przy błędzie migracji i danych z nowszej wersji › wyjątek migracji: e-mail z kodem „start: migrate”, bez treści błędu
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /start: migrate\b[^\n]*schema \d+/
+    Received string:  "·
+    Wersja: — · iOS undefined · Język: pl"
+
+      23 |     await tap(screen.getByText(t('Napisz do nas'))); await flushAll(20);
+      24 |     const url = String(open.mock.calls.at(-1)![0]); const body = bodyOf(url);
+    > 25 |     expect(body).toMatch(/start: migrate\b[^\n]*schema \d+/); expect(decodeURIComponent(url)).not.toContain('boom-migracja'); expect(body).not.toMatch(/defaultRest|"workouts"/);
+         |                  ^
+      26 |   });
+      27 |   test('dane z nowszej wersji: e-mail z kodem „start: newer” i schematem zapisu', async () => {
+      28 |     const state = seedState('pl') as unknown as Record<string, unknown>; state.schemaVersion = 999;
+
+      at Object.toMatch (tests/m1-032-kod-migracja.test.tsx:25:18)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-032: kod diagnostyczny przy błędzie migracji i danych z nowszej wersji › dane z nowszej wersji: e-mail z kodem „start: newer” i schematem zapisu
+
+    Unable to find an element with text: Napisz do nas
+
+    [36m<RNCSafeAreaProvider>[39m
+      [36m<View>[39m
+        [36m<View[39m
+          [33maccessibilityElementsHidden[39m=[32m{false}[39m
+          [33mimportantForAccessibility[39m=[32m"auto"[39m
+        [36m>[39m
+          [36m<View[39m
+            [33mtestID[39m=[32m"newer-data"[39m
+          [36m>[39m
+            [36m<Text[39m
+              [33maccessibilityRole[39m=[32m"header"[39m
+            [36m>[39m
+              [0mDane z nowszej wersji aplikacji — zaktualizuj aplikację[0m
+            [36m</Text>[39m
+            [36m<Text>[39m
+              [0mDane w telefonie zapisała nowsza wersja (schemat 999); ta wersja obsługuje do 19. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.[0m
+            [36m</Text>[39m
+            [36m<View[39m
+              [33maccessibilityRole[39m=[32m"button"[39m
+              [33maccessible[39m=[32m{true}[39m
+            [36m>[39m
+              [36m<Text>[39m
+                [0mWyślij dane[0m
+              [36m</Text>[39m
+            [36m</View>[39m
+            [36m<View[39m
+              [33maccessibilityRole[39m=[32m"button"[39m
+              [33maccessible[39m=[32m{true}[39m
+            [36m>[39m
+              [36m<Text>[39m
+                [0mSpróbuj ponownie[0m
+              [36m</Text>[39m
+            [36m</View>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</View>[39m
+    [36m</RNCSafeAreaProvider>[39m
+
+      29 |     const open = jest.spyOn(Linking, 'openURL').mockResolvedValue(true); spies.push(open);
+      30 |     await renderApp({ saved: state }); await flushAll(50);
+    > 31 |     await tap(screen.getByText(t('Napisz do nas'))); await flushAll(20);
+         |                      ^
+      32 |     expect(bodyOf(String(open.mock.calls.at(-1)![0]))).toMatch(/start: newer\b[^\n]*schema 999/);
+      33 |   });
+      34 | });
+
+      at Object.getByText (tests/m1-032-kod-migracja.test.tsx:31:22)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        3.643 s
+Ran all test suites matching /tests\/m1-032-kod-migracja.test.tsx/i.

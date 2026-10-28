@@ -1,0 +1,12 @@
+
+> trening@1.0.0 verify:docs
+> node scripts/verify-docs.mjs
+
+verify:docs — 1 dokumentów względem origin/main
+verify:docs: npm run check:readme
+
+> trening@1.0.0 check:readme
+> node scripts/readme.mjs --check
+
+README.md nieaktualny — node scripts/readme.mjs --write
+verify:docs — błąd w: npm run check:readme

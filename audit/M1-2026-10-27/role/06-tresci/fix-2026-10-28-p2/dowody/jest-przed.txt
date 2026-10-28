@@ -1,0 +1,273 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/karty-recenzja.test.tsx (5.632 s)
+  zapis recenzji treści kart (M1-audytor-generalny-038, DEC-10 a, 28.10.2026)
+    ✕ każda karta ze wskazówkami (data/zrodla/cues.json) ma wpis recenzji: „karty” albo figura v1 „wyswietlana” (figura i wskazówki recenzowane razem) (9 ms)
+    ✕ każdy zestaw ogólny wyświetlany przy figurze v2 ma wpis w „zestawy” z wzorcem z cue-sets.json (1 ms)
+    ✓ format wpisu: werdykt, data, kto, skrót 12 znaków; „do poprawy” — opis wady i proponowana poprawka (1 ms)
+    ✓ L-047 A (właściciel 28.10.2026): wpis „wyswietlana” z 28.10 — stan „zrecenzowana niezależnie…”, jawny autor i recenzent, autor ≠ recenzent (1 ms)
+    ✓ wpis „wyswietlana” ⇒ skrót = skrót bieżących wskazówek (zmiana tekstu bez nowej recenzji czerwieni test) (1 ms)
+  plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy
+    ✕ karty: w runtime tylko karty z aktualną recenzją; pozostałe na liście „hidden” (2 ms)
+    ✓ zestawy ogólne: na liście „general” tylko zestawy z aktualną recenzją (1 ms)
+    ✕ karta „do poprawy” (Hack Squat) nie ma sekcji „Technika”; zestaw „do poprawy” nie pokazuje wskazówek ogólnych (1 ms)
+    ✓ karta i zestaw z recenzją się pokazują (Sumo Deadlift — własne; Sumo Deadlift with Bands — ogólne z dopiskiem) (2319 ms)
+  regresja: zmiana treści po recenzji unieważnia wpis (generator)
+    ✕ bez zmian: Sumo Deadlift w runtime, 4 warianty sumo na liście „general” (75 ms)
+    ✕ zmiana polskiego tekstu sumo.kneesOut: karta Sumo Deadlift i 4 zestawy ogólne z tą wskazówką wypadają (130 ms)
+    ✕ zmiana przypisania zestawu ogólnego (dodana wskazówka) unieważnia wpis tego ćwiczenia (57 ms)
+    ✕ zmiana zestawu wskazówek karty własnej (usunięty błąd) unieważnia wpis karty (64 ms)
+
+  ● zapis recenzji treści kart (M1-audytor-generalny-038, DEC-10 a, 28.10.2026) › każda karta ze wskazówkami (data/zrodla/cues.json) ma wpis recenzji: „karty” albo figura v1 „wyswietlana” (figura i wskazówki recenzowane razem)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Deadlift (sztanga)",
+    -   true,
+    +   false,
+      ]
+
+      37 |   test('każda karta ze wskazówkami (data/zrodla/cues.json) ma wpis recenzji: „karty” albo figura v1 „wyswietlana” (figura i wskazówki recenzowane razem)', () => {
+      38 |     expect(OWN.length).toBeGreaterThanOrEqual(100);
+    > 39 |     for (const k of OWN) expect([k, !!REC.karty?.[k] || REC.v1[k]?.werdykt === 'wyswietlana']).toEqual([k, true]);
+         |                                                                                                ^
+      40 |   });
+      41 |   test('każdy zestaw ogólny wyświetlany przy figurze v2 ma wpis w „zestawy” z wzorcem z cue-sets.json', () => {
+      42 |     expect(GENERAL_SHOWN.length).toBeGreaterThanOrEqual(60);
+
+      at Object.toEqual (tests/karty-recenzja.test.tsx:39:96)
+
+  ● zapis recenzji treści kart (M1-audytor-generalny-038, DEC-10 a, 28.10.2026) › każdy zestaw ogólny wyświetlany przy figurze v2 ma wpis w „zestawy” z wzorcem z cue-sets.json
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Axle Deadlift",
+    -   "hingeFloor",
+    +   undefined,
+      ]
+
+      41 |   test('każdy zestaw ogólny wyświetlany przy figurze v2 ma wpis w „zestawy” z wzorcem z cue-sets.json', () => {
+      42 |     expect(GENERAL_SHOWN.length).toBeGreaterThanOrEqual(60);
+    > 43 |     for (const k of GENERAL_SHOWN) expect([k, REC.zestawy?.[k]?.rodzina]).toEqual([k, CUE_SETS.items[k].f]);
+         |                                                                           ^
+      44 |   });
+      45 |   test('format wpisu: werdykt, data, kto, skrót 12 znaków; „do poprawy” — opis wady i proponowana poprawka', () => {
+      46 |     for (const [k, e] of [...Object.entries(REC.karty ?? {}), ...Object.entries(REC.zestawy ?? {})]) {
+
+      at Object.toEqual (tests/karty-recenzja.test.tsx:43:75)
+
+  ● plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy › karty: w runtime tylko karty z aktualną recenzją; pozostałe na liście „hidden”
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  0
+    + Received  + 49
+
+      Array [
+    +   "Back Extension",
+    +   "Back Squat",
+        "Barbell Curl",
+    +   "Bench Press (hantle)",
+    +   "Bench Press (sztanga)",
+        "Bent Over Row (hantle)",
+        "Bent Over Row (sztanga)",
+        "Biceps Curl (hantle)",
+    +   "Bieg",
+        "Bird Dog",
+    +   "Box Jump",
+        "Bulgarian Split Squat (hantle)",
+    +   "Burpees",
+        "Cable Curl",
+    +   "Cable Fly",
+        "Cable Lateral Raise",
+        "Cable Overhead Extension",
+        "Calf Press (leg press)",
+    +   "Chest Fly (hantle)",
+        "Chest Supported Row",
+        "Chin Up",
+    +   "Close Grip Bench Press",
+    +   "Crunch",
+        "Dead Bug",
+    +   "Deadlift (hantle)",
+    +   "Deadlift (sztanga)",
+    +   "Diamond Push Up",
+        "EZ Bar Curl",
+        "Face Pull",
+    +   "Farmer's Walk",
+        "Front Raise",
+    +   "Front Squat",
+        "Glute Bridge",
+    +   "Goblet Squat",
+    +   "Good Morning",
+    +   "Hack Squat",
+        "Hammer Curl",
+        "Hip Thrust (hantel)",
+        "Hip Thrust (sztanga)",
+    +   "Incline Bench Press (hantle)",
+    +   "Incline Bench Press (sztanga)",
+        "Incline Push Up",
+    +   "Incline Walk (bieżnia)",
+    +   "Inverted Row",
+        "Kettlebell Swing",
+        "Lat Pulldown",
+        "Lateral Raise (hantle)",
+    +   "Leg Curl",
+    +   "Leg Extension",
+        "Leg Press",
+        "Lunges (hantle)",
+        "Lying Leg Curl",
+        "Machine Chest Press",
+    +   "Machine Shoulder Press",
+    +   "Medicine Ball Slam",
+        "Mountain Climbers",
+        "Neutral Grip Pull Up",
+    +   "Nordic Curl",
+        "One Arm Row (hantle)",
+        "Overhead Press (hantle)",
+        "Overhead Press (sztanga)",
+        "Overhead Triceps Extension (hantel)",
+    +   "Pallof Press",
+    +   "Pendlay Row",
+        "Pistol Squat",
+        "Plank",
+    +   "Preacher Curl",
+    +   "Przysiad z pasem (linki)",
+        "Pull Up",
+    +   "Push Press",
+        "Push Up",
+    +   "RDL (hantle/linki)",
+    +   "RDL (sztanga)",
+    +   "Reverse Crunch",
+    +   "Reverse Fly (hantle)",
+    +   "Reverse Lunge",
+    +   "Reverse Pec Deck",
+    +   "Rower",
+        "Rowing Machine",
+    +   "Russian Twist",
+        "Seated Cable Row",
+    +   "Seated Calf Raise",
+        "Seated Shoulder Press (hantle)",
+        "Shrugs (hantle)",
+        "Shrugs (sztanga)",
+    +   "Side Plank",
+        "Skullcrusher (EZ)",
+        "Standing Calf Raise",
+        "Step Up",
+    +   "Straight Arm Pulldown",
+    +   "Suitcase Carry",
+    +   "Sumo Deadlift",
+        "T-Bar Row",
+    +   "Trap Bar Deadlift",
+        "Triceps Dips (ławka)",
+        "Triceps Pushdown",
+        "Walking Lunges",
+    +   "Wall Sit",
+        "Wiosłowanie na linkach (siedząc)",
+    +   "Wyciskanie na linkach (stojąc)",
+        "Wyciskanie nad głowę (linki)",
+        "Łydki na stopniu",
+      ]
+
+      62 | describe('plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy', () => {
+      63 |   test('karty: w runtime tylko karty z aktualną recenzją; pozostałe na liście „hidden”', () => {
+    > 64 |     expect(Object.keys(RT.exercises).sort()).toEqual(OWN.filter(cardOk).sort());
+         |                                              ^
+      65 |     expect([...(RT.hidden ?? [])].sort()).toEqual(OWN.filter(k => !cardOk(k)).sort());
+      66 |   });
+      67 |   test('zestawy ogólne: na liście „general” tylko zestawy z aktualną recenzją', () => {
+
+      at Object.toEqual (tests/karty-recenzja.test.tsx:64:46)
+
+  ● plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy › karta „do poprawy” (Hack Squat) nie ma sekcji „Technika”; zestaw „do poprawy” nie pokazuje wskazówek ogólnych
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "do poprawy"
+    Received: undefined
+
+      69 |   });
+      70 |   test('karta „do poprawy” (Hack Squat) nie ma sekcji „Technika”; zestaw „do poprawy” nie pokazuje wskazówek ogólnych', () => {
+    > 71 |     expect(REC.karty?.['Hack Squat']?.werdykt).toBe('do poprawy');
+         |                                                ^
+      72 |     render(<ExerciseCues exercise={lib('Hack Squat')} initialOpen />);
+      73 |     expect(screen.queryByTestId('exercise-cues')).toBeNull();
+      74 |     const z = Object.entries(REC.zestawy ?? {}).find(([, e]) => e.werdykt === 'do poprawy')?.[0];
+
+      at Object.toBe (tests/karty-recenzja.test.tsx:71:48)
+
+  ● regresja: zmiana treści po recenzji unieważnia wpis (generator) › bez zmian: Sumo Deadlift w runtime, 4 warianty sumo na liście „general”
+
+    TypeError: Cannot read properties of undefined (reading 'includes')
+
+       98 |     const r = run('');
+       99 |     expect(r.sumo).toBe(true);
+    > 100 |     for (const k of ['Reverse Band Sumo Deadlift', 'Sumo Deadlift (kettlebell)', 'Sumo Deadlift with Bands', 'Sumo Deadlift with Chains']) expect([k, r.general.includes(k)]).toEqual([k, true]);
+          |                                                                                                                                                                 ^
+      101 |   });
+      102 |   test('zmiana polskiego tekstu sumo.kneesOut: karta Sumo Deadlift i 4 zestawy ogólne z tą wskazówką wypadają', () => {
+      103 |     const r = run(`pl['sumo.kneesOut'] += ' (zmiana)';`);
+
+      at Object.includes (tests/karty-recenzja.test.tsx:100:161)
+
+  ● regresja: zmiana treści po recenzji unieważnia wpis (generator) › zmiana polskiego tekstu sumo.kneesOut: karta Sumo Deadlift i 4 zestawy ogólne z tą wskazówką wypadają
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      102 |   test('zmiana polskiego tekstu sumo.kneesOut: karta Sumo Deadlift i 4 zestawy ogólne z tą wskazówką wypadają', () => {
+      103 |     const r = run(`pl['sumo.kneesOut'] += ' (zmiana)';`);
+    > 104 |     expect(r.sumo).toBe(false); expect(r.hidden).toContain('Sumo Deadlift');
+          |                    ^
+      105 |     for (const k of ['Reverse Band Sumo Deadlift', 'Sumo Deadlift (kettlebell)', 'Sumo Deadlift with Bands', 'Sumo Deadlift with Chains']) expect([k, r.general.includes(k)]).toEqual([k, false]);
+      106 |     expect(r.general).toContain('Bodyweight Squat'); /* zestaw bez tej wskazówki zostaje */
+      107 |   });
+
+      at Object.toBe (tests/karty-recenzja.test.tsx:104:20)
+
+  ● regresja: zmiana treści po recenzji unieważnia wpis (generator) › zmiana przypisania zestawu ogólnego (dodana wskazówka) unieważnia wpis tego ćwiczenia
+
+    TypeError: Cannot read properties of undefined (reading 'includes')
+
+      108 |   test('zmiana przypisania zestawu ogólnego (dodana wskazówka) unieważnia wpis tego ćwiczenia', () => {
+      109 |     const r = run(`sets.items['Sumo Deadlift with Bands'].ok.push('rdl.knees');`);
+    > 110 |     expect(r.general.includes('Sumo Deadlift with Bands')).toBe(false);
+          |                      ^
+      111 |     expect(r.general.includes('Sumo Deadlift with Chains')).toBe(true);
+      112 |   });
+      113 |   test('zmiana zestawu wskazówek karty własnej (usunięty błąd) unieważnia wpis karty', () => {
+
+      at Object.includes (tests/karty-recenzja.test.tsx:110:22)
+
+  ● regresja: zmiana treści po recenzji unieważnia wpis (generator) › zmiana zestawu wskazówek karty własnej (usunięty błąd) unieważnia wpis karty
+
+    expect(received).toContain(expected) // indexOf
+
+    Matcher error: received value must not be null nor undefined
+
+    Received has value: undefined
+
+      113 |   test('zmiana zestawu wskazówek karty własnej (usunięty błąd) unieważnia wpis karty', () => {
+      114 |     const r = run(`full.exercises['Wall Sit'].tips.pop();`);
+    > 115 |     expect(r.hidden).toContain('Wall Sit');
+          |                      ^
+      116 |   });
+      117 | });
+      118 |
+
+      at Object.toContain (tests/karty-recenzja.test.tsx:115:22)
+
+Test Suites: 1 failed, 1 total
+Tests:       8 failed, 5 passed, 13 total
+Snapshots:   0 total
+Time:        6.05 s
+Ran all test suites matching /tests\/karty-recenzja.test.tsx/i.

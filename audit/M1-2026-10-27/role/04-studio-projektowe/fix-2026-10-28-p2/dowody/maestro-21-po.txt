@@ -1,0 +1,58 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/maestro-flows.test.tsx (10.026 s)
+  scenariusze Maestro na drzewie dostępności (EN, en-US)
+    ✓ 21-subskrypcja.yaml (7835 ms)
+    ○ skipped 01-trening-z-szablonu.yaml
+    ○ skipped 02-przerwa-po-restarcie.yaml
+    ○ skipped 03-kolejnosc.yaml
+    ○ skipped 04-plank-stoper.yaml
+    ○ skipped 05-edycja-historii.yaml
+    ○ skipped 06-miejsca.yaml
+    ○ skipped 07-zamiana.yaml
+    ○ skipped 08-szablon-wiersze.yaml
+    ○ skipped 09-jezyk-wyglad.yaml
+    ○ skipped 10-gumy.yaml
+    ○ skipped 11-widok-skupiony.yaml
+    ○ skipped 12-usuwanie-gestem.yaml
+    ○ skipped 13-kalendarz-plan.yaml
+    ○ skipped 14-generator.yaml
+    ○ skipped 15-masa-licencje.yaml
+    ○ skipped 16-edycja-na-zadanie.yaml
+    ○ skipped 17-biblioteka-technika.yaml
+    ○ skipped 18-plan-z-moich-szablonow.yaml
+    ○ skipped 19-zakladki.yaml
+    ○ skipped 20-zdrowie-odczyt.yaml
+    ○ skipped 22-dostosuj-do-miejsca.yaml
+    ○ skipped 23-miejsce-jednorazowe.yaml
+    ○ skipped 24-szablony-zarzadzanie.yaml
+    ○ skipped 25-trening-narzedzia.yaml
+    ○ skipped 26-plan-zarzadzanie.yaml
+    ○ skipped 27-biblioteka-cwiczen.yaml
+    ○ skipped 28-dluga-historia.yaml
+    ○ skipped 29-bledne-dane.yaml
+    ○ skipped 31-pierwszy-tydzien.yaml
+    ○ skipped 32-regularny-uzytkownik.yaml
+    ○ skipped 33-aktualizacja-przygotuj.yaml
+    ○ skipped 35-ustawienia-dostepnosc.yaml
+    ○ skipped 36-przerwanie-szkice.yaml
+    ○ skipped 37-jezyk-motyw-trwale.yaml
+    ○ skipped 38-pomoc-powiadomienia.yaml
+    ○ skipped 40-odmowa-powiadomien.yaml
+    ○ skipped 41-tlo-powrot.yaml
+    ○ skipped 42-kopia-przywrocenie.yaml
+    ○ skipped 50-zegarek-do-uzupelnienia.yaml
+    ○ skipped 51-glos-ustawienia.yaml
+    ○ skipped 52-straznik-progresji.yaml
+    ○ skipped 53-objasnienia-info.yaml
+    ○ skipped 54-glos-w-treningu.yaml
+    ○ skipped 56-uczciwe-zasady.yaml
+    ○ skipped 57-grafika-cwiczenia.yaml
+    ○ skipped 58-duzy-tekst.yaml
+
+Test Suites: 1 passed, 1 total
+Tests:       46 skipped, 1 passed, 47 total
+Snapshots:   0 total
+Time:        10.384 s, estimated 12 s
+Ran all test suites matching /tests\/maestro-flows.test.tsx/i with tests matching "21-subskrypcja".
+kod=0

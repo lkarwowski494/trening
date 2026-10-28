@@ -1,0 +1,25 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/karty-recenzja.test.tsx (6.382 s)
+  zapis recenzji treści kart (M1-audytor-generalny-038, DEC-10 a, 28.10.2026)
+    ✓ każda karta ze wskazówkami (data/zrodla/cues.json) ma wpis recenzji: „karty” albo figura v1 „wyswietlana” (figura i wskazówki recenzowane razem) (27 ms)
+    ✓ każdy zestaw ogólny wyświetlany przy figurze v2 ma wpis w „zestawy” z wzorcem z cue-sets.json (14 ms)
+    ✓ format wpisu: werdykt, data, kto, skrót 12 znaków; „do poprawy” — opis wady i proponowana poprawka (17 ms)
+    ✓ L-047 A (właściciel 28.10.2026): wpis „wyswietlana” z 28.10 — stan „zrecenzowana niezależnie…”, jawny autor i recenzent, autor ≠ recenzent (12 ms)
+    ✓ wpis „wyswietlana” ⇒ skrót = skrót bieżących wskazówek (zmiana tekstu bez nowej recenzji czerwieni test) (11 ms)
+  plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy
+    ✓ karty: w runtime tylko karty z aktualną recenzją; pozostałe na liście „hidden” (2 ms)
+    ✓ zestawy ogólne: na liście „general” tylko zestawy z aktualną recenzją (1 ms)
+    ✓ karta „do poprawy” (Hack Squat) nie ma sekcji „Technika”; zestaw „do poprawy” nie pokazuje wskazówek ogólnych (346 ms)
+    ✓ karta i zestaw z recenzją się pokazują (Sumo Deadlift — własne; Sumo Deadlift with Bands — ogólne z dopiskiem) (2279 ms)
+  regresja: zmiana treści po recenzji unieważnia wpis (generator)
+    ✓ bez zmian: Sumo Deadlift w runtime, 4 warianty sumo na liście „general” (81 ms)
+    ✓ zmiana polskiego tekstu sumo.kneesOut: karta Sumo Deadlift i 4 zestawy ogólne z tą wskazówką wypadają (78 ms)
+    ✓ zmiana przypisania zestawu ogólnego (dodana wskazówka) unieważnia wpis tego ćwiczenia (85 ms)
+    ✓ zmiana zestawu wskazówek karty własnej (usunięty błąd) unieważnia wpis karty (77 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       13 passed, 13 total
+Snapshots:   0 total
+Time:        6.836 s
+Ran all test suites matching /tests\/karty-recenzja.test.tsx/i.

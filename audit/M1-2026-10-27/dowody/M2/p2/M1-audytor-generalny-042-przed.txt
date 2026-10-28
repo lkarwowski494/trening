@@ -1,0 +1,29 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/m1-042-migracja-drugi-start.test.tsx
+  M1-042: drugi start po wyjątku migracji — bez komunikatu pętli awarii
+    ✕ dwa zimne starty z wyjątkiem migracji: za każdym razem ekran błędu migracji, licznik 0, „state” bez zmian (963 ms)
+
+  ● M1-042: drugi start po wyjątku migracji — bez komunikatu pętli awarii › dwa zimne starty z wyjątkiem migracji: za każdym razem ekran błędu migracji, licznik 0, „state” bez zmian
+
+    expect(received).toBeNull()
+
+    Received: {"_fiber": {"_debugHookTypes": null, "_debugInfo": null, "_debugNeedsRemount": false, "_debugOwner": [FiberNode], "_debugStack": [Error: react-stack-top-frame], "_debugTask": null, "actualDuration": 0, "actualStartTime": 1793194431026, "alternate": null, "child": [FiberNode], "childLanes": 0, "deletions": null, "dependencies": null, "elementType": "Text", "flags": 0, "index": 0, "key": null, "lanes": 0, "memoizedProps": [Object], "memoizedState": null, "mode": 3, "pendingProps": [Object], "ref": null, "refCleanup": null, "return": [FiberNode], "selfBaseDuration": 0, "sibling": null, "stateNode": [Object], "subtreeFlags": 0, "tag": 5, "treeBaseDuration": 0, "type": "Text", "updateQueue": null}}
+
+      25 |     const stateBefore = kv.state;
+      26 |     await renderApp({ kv }); await flushAll(50); /* drugi zimny start: te same dane w bazie */
+    > 27 |     expect(screen.queryByText(t(LOOP))).toBeNull();
+         |                                         ^
+      28 |     expect(screen.getByText('Nie udało się otworzyć danych.')).toBeTruthy(); expect(screen.getByText('boom-migracja')).toBeTruthy();
+      29 |     expect(global.__kv.get('state')).toBe(stateBefore);
+      30 |     expect(firstStarts).toBe(0);
+
+      at Object.toBeNull (tests/m1-042-migracja-drugi-start.test.tsx:27:41)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.981 s
+Ran all test suites matching /tests\/m1-042-migracja-drugi-start.test.tsx/i.

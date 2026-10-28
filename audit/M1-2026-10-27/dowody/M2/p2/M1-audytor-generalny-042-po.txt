@@ -1,0 +1,12 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/m1-042-migracja-drugi-start.test.tsx
+PASS iOS tests/zk07-pierwszy-start.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx
+PASS iOS tests/audit-m1-003-guard-ui.test.tsx
+
+Test Suites: 4 passed, 4 total
+Tests:       30 passed, 30 total
+Snapshots:   0 total
+Time:        6.648 s, estimated 8 s
+Ran all test suites matching /tests\/m1-042-migracja-drugi-start.test.tsx|tests\/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx|tests\/audit-m1-003-guard-ui.test.tsx|tests\/zk07-pierwszy-start.test.tsx/i.

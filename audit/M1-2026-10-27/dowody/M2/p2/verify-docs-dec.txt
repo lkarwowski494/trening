@@ -1,0 +1,44 @@
+
+> trening@1.0.0 verify:docs
+> node scripts/verify-docs.mjs
+
+verify:docs — 1 dokumentów względem origin/main
+verify:docs: npm run check:readme
+
+> trening@1.0.0 check:readme
+> node scripts/readme.mjs --check
+
+verify:docs: npm run check:matrix
+
+> trening@1.0.0 check:matrix
+> node scripts/test-matrix.mjs --check
+
+macierz: 2660 pozycji (EKRAN 32, UI 354, TEKST 1078, LOGIKA 1050, WYMIAR 146), bez testu: 0, nieaktualne wyjątki: 0
+verify:docs: npm run check:claims
+
+> trening@1.0.0 check:claims
+> node scripts/claims.mjs --check
+
+twierdzenia: 59 wpisów, 41 tekstów dziedzinowych (w tym bez twierdzenia: 7), rejestr zgodny
+verify:docs: npm run check:decyzje
+
+> trening@1.0.0 check:decyzje
+> node scripts/decyzje.mjs --check
+
+check:decyzje — 349 wpisów decyzji, każdy z polem wdrożenia i testem albo powodem
+verify:docs: npm run check:i18n
+
+> trening@1.0.0 check:i18n
+> node scripts/check-i18n.mjs
+
+i18n: 1446 tekstów w kodzie, 1542 w słowniku EN
+verify:docs: jest — 13 testów czytających dokumenty
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+Pakiet musi być „podstawowy” albo „pelny” (jest: czesciowy)
+
+Test Suites: 13 passed, 13 total
+Tests:       213 passed, 213 total
+Snapshots:   0 total
+Time:        19.202 s
+verify:docs — zielone po 37 s

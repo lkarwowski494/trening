@@ -1,0 +1,17 @@
+krytyczne zmienione: 16; wskazówki zmienione: 34
+  lib/locales/da.json Ćwiczenie z hantlami nad głową
+  lib/locales/el.json Ćwiczenie ze sztangą na tułowi
+  lib/locales/el.json Ćwiczenie z hantlami nad głową
+  lib/locales/es.json Ćwiczenie ze sztangą na tułowi
+  lib/locales/fr.json Ćwiczenie z hantlami nad głową
+  lib/locales/id.json Ćwiczenie z hantlami nad głową
+  lib/locales/it.json Ćwiczenie z hantlami nad głową
+  lib/locales/lt.json Ćwiczenie ze sztangą na tułowi
+  lib/locales/ms.json Aplikacja nie udziela porad me
+  lib/locales/ms.json Ćwiczenie ze sztangą na tułowi
+  lib/locales/ms.json Ćwiczenie ze sztangą na tułowi
+  lib/locales/nb.json Ćwiczenie z hantlami nad głową
+  lib/locales/pt-BR.json Ćwiczenie z hantlami nad głową
+  lib/locales/pt.json Ćwiczenie ze sztangą na tułowi
+  lib/locales/pt.json Ćwiczenie z hantlami nad głową
+  lib/locales/zh-Hant.json Ćwiczenie z hantlami nad głową

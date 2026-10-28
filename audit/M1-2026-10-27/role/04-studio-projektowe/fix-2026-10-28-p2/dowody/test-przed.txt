@@ -1,0 +1,163 @@
+kod aplikacji: app/paywall.tsx z HEAD e6114d1 (przed poprawką)
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/voiceover-grupa-przycisk.test.tsx
+  ekran zakupu z aktywnym planem: „Zarządzaj subskrypcją” osobnym elementem VoiceOver
+    ✕ miesięczna: karta stanu nie jest grupą accessible; przycisk ma rolę przycisku, nie leży w grupie i działa; nagłówek karty zostaje nagłówkiem (1249 ms)
+    ✕ dożywotni przy odnawiającej się subskrypcji: karta stanu nie jest grupą accessible; przycisk ma rolę przycisku, nie leży w grupie i działa; nagłówek karty zostaje nagłówkiem (232 ms)
+    ✕ EN: etykieta przycisku „Manage subscription” (ten sam literał stuka scenariusz Maestro 21), język wymowy nagłówka karty en (196 ms)
+
+  ● ekran zakupu z aktywnym planem: „Zarządzaj subskrypcją” osobnym elementem VoiceOver › miesięczna: karta stanu nie jest grupą accessible; przycisk ma rolę przycisku, nie leży w grupie i działa; nagłówek karty zostaje nagłówkiem
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not true
+
+      39 |   ])('%s: karta stanu nie jest grupą accessible; przycisk ma rolę przycisku, nie leży w grupie i działa; nagłówek karty zostaje nagłówkiem', async (_n, ents) => {
+      40 |     await boot(ents);
+    > 41 |     const card = screen.getByTestId('paywall-owned'); expect(card.props.accessible).not.toBe(true);
+         |                                                                                         ^
+      42 |     const btn = przycisk('Zarządzaj subskrypcją'); expect(btn).toBeTruthy(); expect(btn.props.accessibilityRole).toBe('button'); expect(grupaNad(btn)).toBeNull();
+      43 |     const title = screen.getByTestId('paywall-owned-title'); expect(title.props.accessibilityRole).toBe('header'); expect(grupaNad(title)).toBeNull(); expect(title.props.accessibilityLanguage).toBe('pl');
+      44 |     const before = fake.calls.manageSubscriptions; await tap(btn); await flushAll(10); expect(fake.calls.manageSubscriptions).toBe(before + 1);
+
+      at toBe (tests/voiceover-grupa-przycisk.test.tsx:41:89)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● ekran zakupu z aktywnym planem: „Zarządzaj subskrypcją” osobnym elementem VoiceOver › dożywotni przy odnawiającej się subskrypcji: karta stanu nie jest grupą accessible; przycisk ma rolę przycisku, nie leży w grupie i działa; nagłówek karty zostaje nagłówkiem
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not true
+
+      39 |   ])('%s: karta stanu nie jest grupą accessible; przycisk ma rolę przycisku, nie leży w grupie i działa; nagłówek karty zostaje nagłówkiem', async (_n, ents) => {
+      40 |     await boot(ents);
+    > 41 |     const card = screen.getByTestId('paywall-owned'); expect(card.props.accessible).not.toBe(true);
+         |                                                                                         ^
+      42 |     const btn = przycisk('Zarządzaj subskrypcją'); expect(btn).toBeTruthy(); expect(btn.props.accessibilityRole).toBe('button'); expect(grupaNad(btn)).toBeNull();
+      43 |     const title = screen.getByTestId('paywall-owned-title'); expect(title.props.accessibilityRole).toBe('header'); expect(grupaNad(title)).toBeNull(); expect(title.props.accessibilityLanguage).toBe('pl');
+      44 |     const before = fake.calls.manageSubscriptions; await tap(btn); await flushAll(10); expect(fake.calls.manageSubscriptions).toBe(before + 1);
+
+      at toBe (tests/voiceover-grupa-przycisk.test.tsx:41:89)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● ekran zakupu z aktywnym planem: „Zarządzaj subskrypcją” osobnym elementem VoiceOver › EN: etykieta przycisku „Manage subscription” (ten sam literał stuka scenariusz Maestro 21), język wymowy nagłówka karty en
+
+    expect(received).toBeNull()
+
+    Received: "paywall-owned"
+
+      46 |   test('EN: etykieta przycisku „Manage subscription” (ten sam literał stuka scenariusz Maestro 21), język wymowy nagłówka karty en', async () => {
+      47 |     await boot([{ plan: 'yearly', source: 'purchase', expiresAt: NOW + 200 * DAY }], 'en');
+    > 48 |     const btn = przycisk('Manage subscription'); expect(btn).toBeTruthy(); expect(grupaNad(btn)).toBeNull();
+         |                                                                                                  ^
+      49 |     expect(screen.getByTestId('paywall-owned-title').props.accessibilityLanguage).toBe('en');
+      50 |   });
+      51 | });
+
+      at Object.toBeNull (tests/voiceover-grupa-przycisk.test.tsx:48:98)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        4.7 s, estimated 5 s
+Ran all test suites matching /tests\/voiceover-grupa-przycisk.test.tsx/i.
+kod=1
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/interaction-guards.test.ts
+  S18: przewijanie — jedna zasada dla wszystkich ekranów (wskaźnik ukryty)
+    ○ skipped ScrollView, FlatList i SectionList tylko ze wspólnego components/Scroll.tsx (nie z react-native)
+    ○ skipped wspólny komponent ukrywa wskaźniki; żaden ekran ich nie włącza z powrotem
+  S2/S1: nagłówki — przyciski tylko przez wspólne komponenty
+    ○ skipped headerLeft/headerRight tylko w DraftHeader, CloseButton, AddButton, EditHeader (poza resetem `: undefined`)
+    ○ skipped zakaz <Pressable w opcjach nagłówka: wspólne komponenty używają HeaderButton (44 pt, limit powiększenia)
+  S3: edycja na szkicu — zapis tylko w nagłówku, te same etykiety
+    ○ skipped app/template/[id].tsx: <DraftHeader> z cancelLabel i saveLabel; brak drugiego przycisku „Zapisz …” na dole
+    ○ skipped app/exercise/[id].tsx: <DraftHeader> z cancelLabel i saveLabel; brak drugiego przycisku „Zapisz …” na dole
+    ○ skipped app/history/edit/[id].tsx: <DraftHeader> z cancelLabel i saveLabel; brak drugiego przycisku „Zapisz …” na dole
+  S4: dodawanie na listach — „+” w nagłówku, jeden komponent
+    ○ skipped app/templates.tsx: useAddHeader z etykietą „Dodaj szablon”
+    ○ skipped app/exercises.tsx: useAddHeader z etykietą „Dodaj ćwiczenie”
+    ○ skipped app/more/locations.tsx: useAddHeader z etykietą „Dodaj miejsce”
+    ○ skipped app/more/bands.tsx: useAddHeader z etykietą „Dodaj gumę”
+    ○ skipped app/plan.tsx: useAddHeader z etykietą „Dodaj plan”
+    ○ skipped zakaz starych przycisków dodawania na ekranach list
+  S5: potwierdzenia — rezygnacja zawsze „Anuluj” (jedna stała w lib/confirm.ts)
+    ○ skipped style: 'cancel' tylko w lib/confirm.ts (i wyjątek: „Nie teraz” przy prośbie o zgodę na powiadomienia)
+    ○ skipped zakaz słów „Nie” i „Wróć” jako przycisków okien (jedyny wyjątek: „Wróć do edycji” w odrzucaniu zmian)
+  S6: wybór i przełączniki (miejsca naprawione)
+    ○ skipped „Asysta gumą” to SwitchRow; Tydzień/Miesiąc to Segmented (tryb generatora też — przywrócony: DEC-03 c, 23.10.2026); partie mięśni to Chip toggle
+  S7: czas przerwy i formaty
+    ○ skipped przerwa zawsze przez fmtSec (nigdy fmtDur) i etykiety „(s)”
+  S8/S17: informacja zwrotna
+    ○ skipped zakaz accessibilityLiveRegion (Android-only) — tylko lib/announce.ts
+    ○ skipped zakaz ogólnego błędu „Nie udało się” + „Spróbuj ponownie.” bez nazwania, co się nie udało
+    ○ skipped zakaz okna Alert przy starcie z autozapisu — wiersz na ekranie Trening (lib/notices.ts)
+  S9: słownik terminów
+    ○ skipped brak zakazanych wariantów: „anuluj bieżący trening”, „↺ przywróć” (zamiana), pierwsza osoba („ponowię”, „Ponawiam”)
+    ○ skipped cofnięcie zamiany: ta sama akcja ma to samo słowo w treningu i w oknie zamiany
+  S10: puste stany
+    ○ skipped „nie ma takiego …” / „Brak sesji.” zawsze przez <Missing>
+    ○ skipped pusta lista masy ciała to <Empty>
+  S11: rozwijanie — ▸/▾, stan expanded
+    ○ skipped zakaz znaków ⌃ ⌄ ▴ w interfejsie
+    ○ skipped plik z ▸/▾ jako znakiem rozwijania ma accessibilityState expanded (wyjątki: menu „miejsce ▾” z ikoną otwiera arkusz, nie rozwija)
+    ○ skipped Btn/Item mają wspólną właściwość expanded
+  S12: daty — formatery tylko w lib/state/time.ts, lib/calendar.ts, lib/period.ts
+    ○ skipped toLocaleDateString/toLocaleTimeString tylko tam; zakaz month: 'numeric'
+  S13: dostępność — język VoiceOver
+    ○ skipped każdy <Pressable ma accessibilityLanguage albo accessible={false} (poza ui.tsx — tam komponenty bazowe mają własny test A11-09)
+  S14: pola dotyku (częściowo — patrz nagłówek pliku)
+    ○ skipped zakaz roli „link” (przejścia w aplikacji to „button”; zewnętrzne strony — Btn z podpowiedzią)
+  S15: wyszukiwanie — jeden komponent SearchField
+    ○ skipped placeholder „Szukaj …” tylko przez SearchField
+    ○ skipped SearchField: przycisk czyszczenia, limit 80 znaków
+  S16: arkusze akcji — najwyżej 4 opcje (z „Anuluj”) albo wyjątek z powodem
+    ○ skipped wszystkie wywołania ActionSheetIOS są na liście wyjątków z powodem (nowe — czerwony test: najwyżej 4 opcje)
+  N1/N28: ekran zakupu
+    ○ skipped bez nagłówka H1 powtarzającego tytuł nagłówka; zamknięcie przez useCloseHeader
+  S17: ⓘ — jeden komponent, objaśnienia nie wracają na wierzch
+    ○ skipped okrąg „i” (przycisk ⓘ) i etykieta VoiceOver „Więcej informacji” tylko w components/InfoTip.tsx; znak U+24D8 nie służy jako ikona
+    ○ skipped SectionTitle / H2 / Field / SwitchRow: parametr `info` obsługuje wspólny komponent (nie osobna implementacja)
+    ○ skipped teksty przeniesione pod ⓘ występują w kodzie tylko jako `info=` (albo w zmiennej używanej wyłącznie jako `info=`)
+    ○ skipped zmienne pośrednie (goalNote, basis, simplification, bwNote) są używane wyłącznie w `info=`
+    ○ skipped lekkość: widoczny tekst pomocniczy (<Muted>, detail) ma najwyżej 100 znaków poza listą z powodem
+    ○ skipped instrukcje gestów nie wracają na ekrany (są w Przewodniku): stopki treningu, edytora szablonu i edycji sesji
+    ○ skipped „Technika ›” to przejście (wzorzec 17), nie ⓘ
+  S19 (28.10.2026, DEC-11 a): grupa `accessible` nie zawiera przycisku — iOS chowa potomków grupy przed VoiceOver i XCTest
+    ✕ żaden element `accessible` w app/ i components/ (bez roli kontrolki) nie ma w drzewie JSX potomka z onPress/onLongPress (869 ms)
+    ✓ strażnik łapie wzorzec błędu (grupa z przyciskiem w środku) i przepuszcza dozwolone układy (2 ms)
+
+  ● S19 (28.10.2026, DEC-11 a): grupa `accessible` nie zawiera przycisku — iOS chowa potomków grupy przed VoiceOver i XCTest › żaden element `accessible` w app/ i components/ (bez roli kontrolki) nie ma w drzewie JSX potomka z onPress/onLongPress
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "app/paywall.tsx:84 \"paywall-owned\"",
+    + ]
+
+      282 |   test('żaden element `accessible` w app/ i components/ (bez roli kontrolki) nie ma w drzewie JSX potomka z onPress/onLongPress', () => {
+      283 |     const bad = [...src].filter(([f]) => /^(app|components)\/.*\.tsx$/.test(f)).flatMap(([f, s]) => grupyZPrzyciskiem(f, s));
+    > 284 |     expect(bad).toEqual([]);
+          |                 ^
+      285 |   });
+      286 |   test('strażnik łapie wzorzec błędu (grupa z przyciskiem w środku) i przepuszcza dozwolone układy', () => {
+      287 |     const zly = `const A = () => <View testID="karta" accessible><Text>Plan</Text><Btn title="Zarządzaj" onPress={() => {}} /></View>;`;
+
+      at Object.toEqual (tests/interaction-guards.test.ts:284:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 41 skipped, 1 passed, 43 total
+Snapshots:   0 total
+Time:        2.234 s, estimated 3 s
+Ran all test suites matching /tests\/interaction-guards.test.ts/i with tests matching "S19".
+kod=1

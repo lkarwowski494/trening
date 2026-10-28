@@ -1,0 +1,12 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/watch-cue.test.ts
+PASS iOS tests/audit-m1-lok07-01-imperial-dist.test.tsx
+PASS iOS tests/audit-m1-066-pseudo.test.tsx
+PASS iOS tests/m1-040-podpis-dystans.test.ts
+
+Test Suites: 4 passed, 4 total
+Tests:       174 passed, 174 total
+Snapshots:   0 total
+Time:        10.209 s
+Ran all test suites matching /tests\/m1-040-podpis-dystans.test.ts|tests\/watch-cue.test.ts|tests\/audit-m1-lok07-01-imperial-dist.test.tsx|tests\/audit-m1-066-pseudo.test.tsx/i.

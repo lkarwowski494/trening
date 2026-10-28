@@ -1,0 +1,16 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/figures-v2-errors.test.tsx (28.435 s)
+PASS iOS tests/cues.test.tsx
+PASS iOS tests/figures.test.tsx
+PASS iOS tests/figury-recenzja.test.tsx
+PASS iOS tests/zrodla-pelne-cues.test.ts
+PASS iOS tests/cues-014.test.tsx
+PASS iOS tests/figures-v2-cues.test.tsx
+PASS iOS tests/karty-recenzja.test.tsx
+
+Test Suites: 8 passed, 8 total
+Tests:       142 passed, 142 total
+Snapshots:   5 passed, 5 total
+Time:        44.893 s
+Ran all test suites matching /tests\/figures.test.tsx|tests\/figury-recenzja.test.tsx|tests\/zrodla-pelne-cues.test.ts|tests\/cues.test.tsx|tests\/cues-014.test.tsx|tests\/figures-v2-cues.test.tsx|tests\/figures-v2-errors.test.tsx|tests\/karty-recenzja.test.tsx/i.

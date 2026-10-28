@@ -1,0 +1,14 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/store-review-notes.test.ts
+PASS iOS tests/audit-1-0-docs.test.ts
+PASS iOS tests/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts
+PASS iOS tests/m1-045-notatki-sciezka-zakupu.test.ts
+PASS iOS tests/audit-m1-2026-10-27-037-dokumenty-wydania.test.ts
+PASS iOS tests/audit-m1-2026-10-27-023-bramki-dokumenty.test.ts
+
+Test Suites: 6 passed, 6 total
+Tests:       35 passed, 35 total
+Snapshots:   0 total
+Time:        2.666 s, estimated 3 s
+Ran all test suites matching /tests\/m1-045-notatki-sciezka-zakupu.test.ts|tests\/store-review-notes.test.ts|tests\/audit-1-0-docs.test.ts|tests\/audit-m1-2026-10-27-037-dokumenty-wydania.test.ts|tests\/audit-m1-2026-10-27-023-bramki-dokumenty.test.ts|tests\/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts/i.

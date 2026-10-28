@@ -1,0 +1,14 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/voiceover-grupa-przycisk.test.tsx
+  ekran zakupu z aktywnym planem: „Zarządzaj subskrypcją” osobnym elementem VoiceOver
+    ✓ miesięczna: karta stanu nie jest grupą accessible; przycisk ma rolę przycisku, nie leży w grupie i działa; nagłówek karty zostaje nagłówkiem (1065 ms)
+    ✓ dożywotni przy odnawiającej się subskrypcji: karta stanu nie jest grupą accessible; przycisk ma rolę przycisku, nie leży w grupie i działa; nagłówek karty zostaje nagłówkiem (232 ms)
+    ✓ EN: etykieta przycisku „Manage subscription” (ten sam literał stuka scenariusz Maestro 21), język wymowy nagłówka karty en (228 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        4.617 s
+Ran all test suites matching /tests\/voiceover-grupa-przycisk.test.tsx/i.
+kod=0

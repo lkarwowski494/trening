@@ -1,0 +1,12 @@
+### M2-koordynator-napraw-003 · Opis „Standing Gastrocnemius Calf Stretch” w katalogu ma jedno źródło, a niezależne źródła pod tą nazwą opisują wariant przy ścianie
+- Pozycja listy kontrolnej: TRE-07 (rola 06)
+- Poziom: P2 (zasada 2 źródeł szczebla 4 dla wskazówek techniki; nie wykazano błędu szkodliwego)
+- Realność: realny (ćwiczenie widoczne w katalogu 1.0) · Pewność: średnia (relacja badacza sesji 1.1, źródeł nie czytałem sam)
+- Rodzaj: M (rozstrzyga hierarchia źródeł; ewentualna zmiana definicji ćwiczenia — rola 06)
+- Dowód: wiadomość koordynatora 1.1 (session_01T66VBvPuyAg4fmtCyWDTgh) 28.10.2026 ~13:56 UTC: opis („Heel on a step, knee straight, reach for the toes”, sprzęt box, hamstrings 0,25) ma jedno źródło; ACE, Physitrack, MSD Manual, AAOS, NHS pod tą nazwą opisują wariant przy ścianie (duplikat Wall Calf Stretch); wariant na stopniu ma 2 źródła szczebla 4 (ACE Step Stretch, Physitrack). Raport badacza ma trafić na przekazanie-konta (docs/przekazanie/notatki/recenzje-1-1/).
+- Mechanizm: wpis katalogu z importu bez drugiego niezależnego źródła; strażnik źródeł katalogu nie wymaga 2 źródeł dla opisu ćwiczenia (do sprawdzenia w reaudycie).
+- Powraca: nie
+- Kroki w aplikacji: Więcej → Ćwiczenia → „Standing Gastrocnemius Calf Stretch”.
+- Opcje: (a) 1.0: przedefiniować na wariant na stopniu ze źródłami ACE + Physitrack (rola 06, tłumaczenia, katalog); (b) 1.0.1 przez linię 1.1 (badacz już przygotował); Rekomendacja: (b) — zakres pętli 2 zamrożony, P2.
+- Test akceptacyjny: opis ćwiczenia ma 2 przeczytane źródła szczebla 4 opisujące ten sam wariant; brak „hamstrings 0,25” bez podstawy.
+- Status: otwarte (nowe znalezisko M2, bez naprawy — decyzja właściciela)

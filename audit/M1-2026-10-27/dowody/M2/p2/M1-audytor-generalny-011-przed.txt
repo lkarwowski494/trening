@@ -1,0 +1,48 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/m1-011-duzy-tekst-metoda.test.ts
+  M1-011: duży tekst — metoda w BRD i krok telefonu
+    ✕ NFR-DOS-001: metoda = Jest (matrix-a11y, stan pierwszego uruchomienia) + Maestro 58 + telefon (T-04, ZD-03); pliki istnieją (9 ms)
+    ✕ docs/49 T-04: największy tekst — stan „dziś bez treningu” z ikoną startu kolejnego treningu (1 ms)
+
+  ● M1-011: duży tekst — metoda w BRD i krok telefonu › NFR-DOS-001: metoda = Jest (matrix-a11y, stan pierwszego uruchomienia) + Maestro 58 + telefon (T-04, ZD-03); pliki istnieją
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "tests/m1-043-pierwsze-kroki-glyph.test.tsx"
+    Received string:    "### NFR-DOS-001: Skalowanie tekstu systemowego
+    - Miara: największa obsługiwana skala tekstu systemowego (Dynamic Type) w opisach. Próg: 2 (200%, `TEXT_SCALE_MAX` w `lib/theme.ts`). Metoda: test przeglądu dostępności `tests/matrix-a11y.test.tsx`. Znaki-ikony w tekście (›, ▾, ✓, ✕, ⇄…): próg 1,4 (`GLYPH_SCALE_MAX` w `lib/theme.ts`), ten sam test (T-04, telefon 27.10.2026).
+    "
+
+      13 |   test('NFR-DOS-001: metoda = Jest (matrix-a11y, stan pierwszego uruchomienia) + Maestro 58 + telefon (T-04, ZD-03); pliki istnieją', () => {
+      14 |     const b = read('docs/brd/wymagania.md'); const s = b.slice(b.indexOf('### NFR-DOS-001'), b.indexOf('### NFR-WYG-001'));
+    > 15 |     for (const f of ['tests/matrix-a11y.test.tsx', 'tests/m1-043-pierwsze-kroki-glyph.test.tsx', '.maestro/58-duzy-tekst.yaml']) { expect(s).toContain(f); expect(fs.existsSync(path.join(ROOT, f))).toBe(true); }
+         |                                                                                                                                              ^
+      16 |     expect(s).toMatch(/T-04/); expect(s).toMatch(/dziś bez treningu/);
+      17 |   });
+      18 |   test('docs/49 T-04: największy tekst — stan „dziś bez treningu” z ikoną startu kolejnego treningu', () => {
+
+      at Object.toContain (tests/m1-011-duzy-tekst-metoda.test.ts:15:142)
+
+  ● M1-011: duży tekst — metoda w BRD i krok telefonu › docs/49 T-04: największy tekst — stan „dziś bez treningu” z ikoną startu kolejnego treningu
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /dziś bez treningu[^\n]*ikon/
+    Received string:  "- [ ] **T-04 „Pogrubiony tekst” (R-014).** Ustawienia iOS → Dostępność → Rozmiar wyświetlania i tekstu → Pogrubiony tekst. Wróć do aplikacji (zrestartuj ją): treść, przyciski i nagłówki mają być wyraźnie grubsze niż bez opcji. Gdy bez różnicy — wada (przesunięcie wagi w `font()`). Przy okazji największy rozmiar tekstu: trening, plan i ustawienia bez ucięć (ZD-03)."
+
+      18 |   test('docs/49 T-04: największy tekst — stan „dziś bez treningu” z ikoną startu kolejnego treningu', () => {
+      19 |     const t04 = read('docs/49-testflight-1-0.md').split('\n').find((l) => l.includes('**T-04')) ?? '';
+    > 20 |     expect(t04).toMatch(/dziś bez treningu[^\n]*ikon/);
+         |                 ^
+      21 |   });
+      22 | });
+      23 |
+
+      at Object.toMatch (tests/m1-011-duzy-tekst-metoda.test.ts:20:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        1.579 s
+Ran all test suites matching /tests\/m1-011-duzy-tekst-metoda.test.ts/i.

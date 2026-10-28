@@ -1,0 +1,17 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts
+  M1-012: rejestr ryzyk jako bramka wydania
+    ✓ blockingRisks: otwarte i częściowe blokują; zamknięte, zaakceptowane, odroczone decyzją z datą i „sprawdzenie po wydaniu” nie (117 ms)
+    ✓ dodanie wiersza „otwarte” do bieżącego rejestru jest wykryte (test potrafi paść) (52 ms)
+    ✓ bieżący rejestr: każdy wiersz ma stan z datą (dd.mm.rrrr) (20 ms)
+    ✓ krok wydania wywołuje check:release: docs/48 (przed Z-26) i lista wydawcy (2 ms)
+  M1-012 (pętla 2): stan każdego ryzyka z datą, zamknięte z dowodem
+    ✓ docs/40: brak wierszy bez daty i zamkniętych bez dowodu (3 ms)
+    ✓ strażnik potrafi paść: stan bez daty i zamknięte bez dowodu (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       6 passed, 6 total
+Snapshots:   0 total
+Time:        2.124 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts/i.

@@ -1,0 +1,41 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/nocne-workflowy.test.ts
+  tests-tz.yml — zadanie „zmiana-czasu” (A)
+    ✓ zadanie istnieje, biegnie na ubuntu-latest, bez sekretów, z PIN_NOW i TZ z jednej pozycji macierzy (4 ms)
+    ✓ macierz obejmuje zmianę czasu w Europie jesienią i wiosną oraz w USA; każda chwila to ISO w UTC tuż po zmianie (15 ms)
+    ✓ pliki z własnym zegarem są pominięte (scripts/ci/pin-wykluczenia.mjs), a reszta biegnie z przypiętym „teraz” (77 ms)
+    ✓ dawne zadanie jest bez zmian (macierz stref z matrix-time.test.ts) (1 ms)
+  nightly.yml — mutacje po modułach (B)
+    ✕ M1-034: mutacje obejmują dostęp, uprawnienia, strażnik, import CSV i migrację; próg break ma wpis decyzji (2 ms)
+    ✓ macierz modułów = `mutate` ze stryker.config.json (dodanie modułu do konfiguracji bez zadania zostawia go niemierzonym)
+    ✓ moduł podzielony na zakresy wierszy (`plan:od-do`): zakresy przylegają od wiersza 1 i sięgają końca pliku (nic nie zostaje niemierzone) (2 ms)
+    ✓ zadanie modułu: konfiguracja z jednym modułem i bez progu break, limit czasu w granicach, raport jako artefakt (1 ms)
+    ✓ podsumowanie: osobne zadanie zbiera raporty modułów (zgłoszenie nocne czyta wynik zadania „mutacje” — jak dotąd) (1 ms)
+    ✓ M1-047: w nightly.yml nie ma bramki „3 kolejne nocne pełne przebiegi” jako obowiązującej (1 ms)
+  scripts/ci/mutacje-podsumowanie.mjs
+    ✓ sumuje moduły z katalogów artefaktów i całość; wykryte = Killed + Timeout; wszystkie = bez Ignored (62 ms)
+    ✓ moduł bez raportu, wynik poniżej progu i brak raportów — kod 1 z opisem (152 ms)
+
+  ● nightly.yml — mutacje po modułach (B) › M1-034: mutacje obejmują dostęp, uprawnienia, strażnik, import CSV i migrację; próg break ma wpis decyzji
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: "lib/access.ts"
+    Received array: ["lib/units.ts", "lib/stats.ts", "lib/plan.ts", "lib/generator.ts", "lib/deload.ts", "lib/deload-sets.ts", "lib/planReminder.ts", "lib/period.ts", "lib/dashboard.ts", "lib/timer.ts", …]
+
+      38 |    * w nocy; próg break z decyzją w docs/18. */
+      39 |   test('M1-034: mutacje obejmują dostęp, uprawnienia, strażnik, import CSV i migrację; próg break ma wpis decyzji', () => {
+    > 40 |     for (const m of ['lib/access.ts', 'lib/entitlement.ts', 'lib/guard.ts', 'lib/csvimport.ts', 'lib/state/migrate.ts']) expect(conf.mutate).toContain(m);
+         |                                                                                                                                              ^
+      41 |     expect(read('docs/18-przekazanie.md')).toMatch(new RegExp(`próg[^\\n]*break[^\\n]*${conf.thresholds.break}%`));
+      42 |   });
+      43 |   test('macierz modułów = `mutate` ze stryker.config.json (dodanie modułu do konfiguracji bez zadania zostawia go niemierzonym)', () => { expect(moduly).toEqual([...conf.mutate].sort()); });
+
+      at Object.toContain (tests/nocne-workflowy.test.ts:40:142)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 11 passed, 12 total
+Snapshots:   0 total
+Time:        2.356 s
+Ran all test suites matching /tests\/nocne-workflowy.test.ts/i.

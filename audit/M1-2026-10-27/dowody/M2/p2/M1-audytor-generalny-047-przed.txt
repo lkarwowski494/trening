@@ -1,0 +1,828 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/m1-047-otwarte-wskazniki.test.ts
+  M1-047: „otwarte → zadanie” przy zadaniu z commitem naprawy
+    ✕ wskazuje wpisy, których zadanie ma commit naprawy; pomija otwarte zadania i inne pola (77 ms)
+    ✕ zadania z naprawą czytane z komunikatów commitów (git log); repo bez historii → null (sprawdzenie pominięte) (68 ms)
+    ✕ docs/18: brak „otwarte → ID” przy zadaniu z commitem naprawy (gdy historia dostępna) (72 ms)
+  M1-047: dokumenty zgodne z kodem po naprawach (01-601, 01-602, 03-603, 06-601, 10-602)
+    ✕ BRD: kod diagnostyczny z ekranu błędu startu (BR-KON-002) i „Zarządzaj subskrypcją” (BR-ZAK-006) ze scenariuszem i testem (2 ms)
+    ✕ docs/39 ZD-03 odsyła do scenariusza 58 i nazywa, czego nie pokrywa (2 ms)
+    ✕ docs/21: Pendlay Row w backlogu 1.0.1 z zakresem pracy (2 ms)
+    ✕ docs/48 Z-25a: adres „Stop testing a build” z cytatem, bez martwego manage-builds (2 ms)
+    ✕ CLAUDE.md: definicja tekstu dziedzinowego odsyła do scripts/claims.mjs (DOMAIN_WORDS_RE, DOMAIN_KEYS), które istnieją (1 ms)
+
+  ● M1-047: „otwarte → zadanie” przy zadaniu z commitem naprawy › wskazuje wpisy, których zadanie ma commit naprawy; pomija otwarte zadania i inne pola
+
+    file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-p2/[eval1]:1
+    import * as m from "/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-p2/scripts/decyzje.mjs"; console.log(JSON.stringify(await (async () => { return m.nieaktualneWskazniki("## Decyzje\n\n- 01.10.2026 (właściciel): A. [wdrożenie: otwarte → M1-audytor-generalny-006]\n- 02.10.2026 (właściciel): B. [wdrożenie: otwarte → M1-audytor-generalny-038]\n- 03.10.2026 (właściciel): C. [wdrożenie: odłożone → 1.0.1]\n- 04.10.2026 (właściciel): D. [wdrożenie: otwarte → M1-audytor-generalny-009 (K1)]\n- 05.10.2026 (właściciel): E. [wdrożenie: otwarte → M1-audytor-generalny-006 (pętla 2)]\n", ['M1-audytor-generalny-006', 'M1-audytor-generalny-009']); })()));
+                                                                                                                                                                                              ^
+
+    TypeError: m.nieaktualneWskazniki is not a function
+
+      at file:/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-p2/[eval1]:1:187
+      at file:/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-p2/[eval1]:1:679
+      Node.js v22.22.0
+      at wywolaj (tests/m1-047-otwarte-wskazniki.test.ts:14:29)
+      at Object.wywolaj (tests/m1-047-otwarte-wskazniki.test.ts:25:15)
+
+  ● M1-047: „otwarte → zadanie” przy zadaniu z commitem naprawy › zadania z naprawą czytane z komunikatów commitów (git log); repo bez historii → null (sprawdzenie pominięte)
+
+    file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-p2/[eval1]:1
+    import * as m from "/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-p2/scripts/decyzje.mjs"; console.log(JSON.stringify(await (async () => { return m.zadaniaZNaprawa(); })()));
+                                                                                                                                                                                              ^
+
+    TypeError: m.zadaniaZNaprawa is not a function
+
+      at file:/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-p2/[eval1]:1:187
+      at file:/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-p2/[eval1]:1:208
+      Node.js v22.22.0
+      at wywolaj (tests/m1-047-otwarte-wskazniki.test.ts:14:29)
+      at Object.wywolaj (tests/m1-047-otwarte-wskazniki.test.ts:29:17)
+
+  ● M1-047: „otwarte → zadanie” przy zadaniu z commitem naprawy › docs/18: brak „otwarte → ID” przy zadaniu z commitem naprawy (gdy historia dostępna)
+
+    file:///tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-p2/[eval1]:1
+    import * as m from "/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-p2/scripts/decyzje.mjs"; console.log(JSON.stringify(await (async () => { const z = m.zadaniaZNaprawa(); if (!z) return null; const fs = await import('node:fs'); return m.nieaktualneWskazniki(fs.readFileSync('docs/18-przekazanie.md', 'utf8'), z); })()));
+                                                                                                                                                                                                 ^
+
+    TypeError: m.zadaniaZNaprawa is not a function
+
+      at file:/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-p2/[eval1]:1:190
+      at file:/tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-p2/[eval1]:1:353
+      Node.js v22.22.0
+      at wywolaj (tests/m1-047-otwarte-wskazniki.test.ts:14:29)
+      at Object.wywolaj (tests/m1-047-otwarte-wskazniki.test.ts:34:15)
+
+  ● M1-047: dokumenty zgodne z kodem po naprawach (01-601, 01-602, 03-603, 06-601, 10-602) › BRD: kod diagnostyczny z ekranu błędu startu (BR-KON-002) i „Zarządzaj subskrypcją” (BR-ZAK-006) ze scenariuszem i testem
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /Scenariusz: Z ekranu błędu startu/
+    Received string:  "### BR-KON-002: „Napisz do nas”
+    - Przepływ: PR-10
+    - Dowód potrzeby: D-106 (decyzja właściciela 2026-10-13, wariant A); kod `app/more/about.tsx`, `lib/support.ts`
+    - Test: `tests/support-mail.test.tsx`
+    - Kryteria akceptacji:
+      - Scenariusz: Wiadomość z poczty użytkownika
+        - Zakładając, że telefon ma aplikację poczty
+        - Gdy użytkownik w Więcej → O aplikacji stuka „Napisz do nas”
+        - Wtedy otwiera się nowa wiadomość na adres wsparcia z tematem i stopką techniczną (wersja z buildem, iOS, język); aplikacja niczego nie wysyła sama
+      - Scenariusz: Brak poczty
+        - Zakładając, że poczty nie da się otworzyć
+        - Gdy użytkownik stuka „Napisz do nas”
+        - Wtedy okno podaje adres wsparcia·
+    "
+
+      44 |     const b = read('docs/brd/wymagania-uzupelnienie.md');
+      45 |     const kon = b.slice(b.indexOf('### BR-KON-002'), b.indexOf('### BR-KON-003')); const zak = b.slice(b.indexOf('### BR-ZAK-006'), b.indexOf('### BR-ZAK-007'));
+    > 46 |     expect(kon).toMatch(/Scenariusz: Z ekranu błędu startu/); expect(kon).toMatch(/kod diagnostyczny/); expect(kon).toContain('tests/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx');
+         |                 ^
+      47 |     expect(zak).toMatch(/Scenariusz: Zarządzanie subskrypcją/); expect(zak).toContain('tests/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx');
+      48 |   });
+      49 |   test('docs/39 ZD-03 odsyła do scenariusza 58 i nazywa, czego nie pokrywa', () => {
+
+      at Object.toMatch (tests/m1-047-otwarte-wskazniki.test.ts:46:17)
+
+  ● M1-047: dokumenty zgodne z kodem po naprawach (01-601, 01-602, 03-603, 06-601, 10-602) › docs/39 ZD-03 odsyła do scenariusza 58 i nazywa, czego nie pokrywa
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: ".maestro/58-duzy-tekst.yaml"
+    Received string:    "**ZD-03** Powiększony tekst systemowy, VoiceOver na żywo i „Ogranicz ruch”
+      - Co zrobić i czego oczekiwać: Największy rozmiar tekstu (T-04, 27.10.2026: ucięte ikony na ekranie Trening — strażnik znaków-ikon w tests/matrix-a11y.test.tsx; Maestro nie ustawi rozmiaru tekstu systemu, a `xcrun simctl ui content_size` wymagałoby zmiany workflowu): trening, plan i ustawienia czytelne bez ucięć, w tym ikony; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają.
+      - Dlaczego nie automat: Maestro nie przestawia ustawień dostępności systemu.
+      - Pokrycie zastępcze w Jest: `tests/tabs-a11y.test.tsx`, `tests/matrix-a11y.test.tsx`·
+    ## Wersja 0.20 (zegarek i głos) — projekt·
+    - [ ] **W2-04** Głos na żywo: zapowiedź następnego ćwiczenia w AirPods, ściszanie muzyki, tryb cichy *(od 0.20)*
+      - Co zrobić i czego oczekiwać: AirPods + muzyka: odhacz serię → zapowiedź w słuchawkach, muzyka ściszona i wraca; bez słuchawek cisza; przełącznik głośnika: mówi telefon; tryb cichy; odłączenie słuchawek w trakcie; podcast pauzuje i wznawia.
+      - Dlaczego nie automat: Mowa AVSpeechSynthesizer i trasa dźwięku (słuchawki, ściszanie) nie są słyszalne ani mierzalne na symulatorze CI.
+    - [ ] **W2-05** Apple Watch i drugi zegarek (Connect IQ) na prawdziwych zegarkach: parowanie, odliczanie, wibracja, „Połącz z telefonem” *(od 0.20)*
+      - Co zrobić i czego oczekiwać: Wg docs/35 (lista ręczna wydania 0.20): parowanie, pierwsza seria z zegarka, przerwa z wibracją, zasięg w kieszeni, „Cofnij”, „Pomiń”.
+      - Dlaczego nie automat: Zegarek, WatchConnectivity i Connect IQ nie istnieją na symulatorze iPhone’a w CI; Apple Watch bywa tylko wirtualny, zegarek Connect IQ tylko fizyczny.·
+    Razem punktów: **15**.
+    "
+
+      49 |   test('docs/39 ZD-03 odsyła do scenariusza 58 i nazywa, czego nie pokrywa', () => {
+      50 |     const z = read('docs/39-lista-kontrolna-wydania.md'); const s = z.slice(z.indexOf('**ZD-03**'), z.indexOf('**ZD-04**') > 0 ? z.indexOf('**ZD-04**') : undefined);
+    > 51 |     expect(s).toContain('.maestro/58-duzy-tekst.yaml'); expect(s).toMatch(/dziś bez treningu/); expect(s).not.toMatch(/Maestro nie ustawi rozmiaru tekstu/);
+         |               ^
+      52 |     expect(fs.existsSync(path.join(ROOT, '.maestro/58-duzy-tekst.yaml'))).toBe(true);
+      53 |   });
+      54 |   test('docs/21: Pendlay Row w backlogu 1.0.1 z zakresem pracy', () => {
+
+      at Object.toContain (tests/m1-047-otwarte-wskazniki.test.ts:51:15)
+
+  ● M1-047: dokumenty zgodne z kodem po naprawach (01-601, 01-602, 03-603, 06-601, 10-602) › docs/21: Pendlay Row w backlogu 1.0.1 z zakresem pracy
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /\*\*Pendlay Row\*\*[^\n]*źródła[^\n]*recenzj[^\n]*1\.0\.1/
+    Received string:  "# 21. Roadmapa: funkcje offline i odróżnienie od Strong (research 07.10.2026)·
+    Zlecenie właściciela 07.10.2026: „Co jeszcze możemy dodać do aplikacji w wersji offline? Zrób research. Chciałbym też bardziej odróżnić
+    appkę od Strong, bo teraz trochę ją przypomina.” Ten dokument to **propozycje do decyzji**, nie decyzje. Szacunki pracy są domysłem.·
+    Źródła: spis funkcji z kodu (07.10, stan `main` 5a8bcc5), research webowy 07.10 (Strong i konkurencja, możliwości iOS 26, badania).
+    Twierdzenia merytoryczne (B1–B8) mają źródła przeczytane przez agenta researchu na poziomie streszczenia w PubMed albo pełnego tekstu
+    (zaznaczone). Zasada „Merytoryczne podstawy” (CLAUDE.md): **przed wdrożeniem funkcji z twierdzeniem dziedzinowym** cytat i miejsce w źródle
+    sprawdza się jeszcze raz i zapisuje w rejestrze decyzji. Czego nie przeczytano — oznaczone **[OTWARTE]**.·
+    ## 1. Dlaczego przypominamy Strong·
+    Strong w 2026 (https://help.strongapp.io/article/229-my-first-workout, https://apps.apple.com/us/app/id464254577):
+    - trening = lista kart ćwiczeń z wierszami serii (numer, poprzednio, ciężar, powtórzenia, ✓), timer przerwy po odhaczeniu, „Finish”;
+    - szablony, historia, ćwiczenia z zakładkami historia/wykresy/rekordy, 1RM wzorem Brzyckiego;
+    - wymaga konta (Strong Cloud), za darmo 3 szablony; PRO 29,99 $/rok lub 99,99 $ dożywotnio; od 12.08.2026 Live Activity.·
+    My mamy ten sam szkielet: 5 zakładek (Trening, Szablony, Ćwiczenia, Historia, Więcej), karty z wierszami serii i kolumną „Poprzednio”.
+    Ten układ ma też Hevy i większość rynku — to standard, nie cecha Strong. Różnimy się w szczegółach (miejsca i sprzęt, gumy, zamiana
+    z rankingiem, brak konta), ale **nie widać tego na pierwszym ekranie**.·
+    ## 2. Gdzie jest wolne miejsce (wnioski z przeglądu 13 aplikacji)·
+    | Oś | Zajęte przez | Wolne? |
+    |---|---|---|
+    | Plan / mezocykl w centrum | RP Hypertrophy, Boostcamp, Liftosaur, MacroFactor Workouts | nie |
+    | Podpowiedź na każdą serię, generator, AI | Alpha Progression, Fitbod, SmartGym, MacroFactor | nie |
+    | Społeczność | Hevy, Caliber | nie (i wymaga serwera) |
+    | Wykresy w centrum | Setgraph | częściowo |
+    | **Skupienie na bieżącej serii, duże cyfry, jedna ręka** | początki: Liftosaur (v121, 09.2026), Boostcamp (podświetlenie) | **tak — nikt nie zrobił z tego wyróżnika** |
+    | **Sprzęt, miejsce, gumy jako oś** | częściowo MacroFactor (profile siłowni) | **w dużej mierze — to już mamy w kodzie** |
+    | Offline, bez konta | LiftLog, Benchmark, Alpha | coraz tłoczniej; wobec Strong wyraźna różnica |
+    | Pełny eksport **i import** (także ze Strong) | Hevy importuje CSV ze Strong | częściowo |·
+    ## 3. Kierunki odróżnienia — opcje·
+    **A — „Tryb siłowni”: ekran treningu zbudowany wokół bieżącej serii** (rekomendacja)
+    - Na górze jedna duża karta „teraz”: ćwiczenie, seria 2/4, ciężar i powtórzenia wielkimi cyframi, jeden duży przycisk „Zrobione”, pod spodem
+      przerwa. Reszta treningu zwinięta w listę poniżej (do przewinięcia, jak dziś). Czytelne z odległości, obsługa kciukiem.
+    - Plus: najmocniej zmienia pierwsze wrażenie; wolne miejsce na rynku; nie zmienia danych (zero migracji).
+    - Minus: duża zmiana nawyku — lekcja z docs/11 (przeprojektowania zbierają 1–2★) → przełącznik „widok: skupiony / lista” na start.
+    - Koszt (domysł): średni — 1–2 tygodnie z pełnym zakresem testów (docs/20) i nowymi scenariuszami E2E.·
+    **B — „Twój sprzęt, Twoja siłownia”: miejsca i sprzęt na pierwszym planie**
+    - Ekran startowy pokazuje miejsce (Dom / Siłownia / Hotel) i co dziś da się zrobić; kalkulator talerzy z talerzy miejsca; gumy jako pełny typ obciążenia.
+    - Plus: wykorzystuje to, co już jest w kodzie i czego Strong nie ma.
+    - Minus: mniej widoczne dla kogoś, kto trenuje w jednym miejscu.
+    - Koszt: mały–średni (głównie ekran startowy i kalkulator talerzy).·
+    **C — „Przejrzyste podstawy”: każda liczba z wyjaśnieniem i źródłem**
+    - Np. „serie w tygodniu na partię” ze znacznikiem i dopiskiem, skąd próg (ACSM 2026); e1RM z informacją, że to szacunek.
+    - Plus: spójne z zasadą „Merytoryczne podstawy”; wiarygodność. Minus: oś „naukowo” zajmują RP, MacroFactor, Alpha; mało widoczne na zrzutach.
+    - Koszt: mały na funkcję, ale każda wymaga weryfikacji źródła.·
+    **Rekomendacja:** A jako twarz aplikacji + B jako treść (to, co już mamy, wyciągnięte na wierzch). C jako zasada pisania wszystkich
+    funkcji z liczbami, nie jako osobny kierunek. Do tego nowy wygląd (pkt 6).·
+    ## 4. Funkcje offline — katalog z kosztem·
+    Stan z kodu 07.10: edycja historii, trening wstecz i zamiana ćwiczenia **są**. Brakuje m.in.: kalendarza, kalkulatora talerzy i rozgrzewki,
+    mapy mięśni, widżetu na ekran główny, pauzy, „pomiń dziś”, importu ze Strong/Hevy, pomiarów ciała, folderów szablonów, notatki ćwiczenia
+    widocznej w treningu (pole istnieje, ekran treningu go nie pokazuje), pola RIR (jest jedno pole RPE).·
+    ### 4a. Małe, wysoka wartość (dni)
+    | Funkcja | Uwagi | Twierdzenie dziedzinowe? |
+    |---|---|---|
+    | Notatka ćwiczenia widoczna w treningu | pole już jest | nie |
+    | Kalendarz w Historii (miesiąc, dni z treningiem) — **zrobione 07.10.2026** (feature/e2-swap) | | nie |
+    | Kalkulator talerzy (co nałożyć na stronę) | z talerzy miejsca — mamy dane | nie (arytmetyka) |
+    | Pomiń ćwiczenie dziś (bez usuwania z szablonu) — **zrobione 07.10.2026** (feature/e2-swap) | dziś tylko „usuń” | nie |
+    | Foldery / archiwum szablonów — **zrobione 07.10.2026** (feature/e2-swap) | | nie |
+    | Przyciski w Live Activity: „−15/+15 s”, „Pomiń przerwę” — **odłożone do wydania natywnego (4n)** | iOS: przyciski działają po odblokowaniu (Face ID) — https://developer.apple.com/documentation/widgetkit/adding-interactivity-to-widgets-and-live-activities | nie |
+    | Kontrolka w Centrum sterowania „Start przerwy / treningu” — **wydanie natywne (4n)** | https://developer.apple.com/documentation/widgetkit/creating-controls-to-perform-actions-across-the-system | nie |
+    | Widżet na ekran główny (serie w tygodniu / ostatni trening) — **odłożone do wydania natywnego (4n)** | rozszerzenie widżetu już jest | nie |·
+    ### Format CSV Stronga (eksport „Export Workouts”, plik właściciela przejrzany 07.10.2026; bez danych w repo)
+    - Ścieżka w Strong: ustawienia → „Data management” → „Export Workouts” („Export Measurements” — osobno, pomiary).
+    - UTF-8 bez BOM, przecinki, cudzysłowy przy tekstach. Kolumny: `Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE`.
+    - Wiersz = seria; trening = ta sama para (Date, Workout Name). Date `RRRR-MM-DD GG:MM:SS` bez strefy (czas lokalny telefonu). Duration: `52m`, `1h 5m`, `1h`.
+    - Set Order: liczba = seria robocza, `D` = drop, `F` = do upadku (inne pliki mogą mieć `W` — niesprawdzone); `Rest Timer` = osobny wiersz przerwy (Seconds = długość, reszta 0).
+    - Weight/Reps jako liczby z `.0`; **brak jednostki** w pliku. Ćwiczenia na czas: Seconds > 0, Reps 0. Distance i RPE w tym pliku zawsze puste/0.
+    - Nazwy ćwiczeń: standardowe Stronga po angielsku z dopiskiem sprzętu „(Barbell)”, „(Dumbbell)”… + własne użytkownika; dopasowanie po nazwie i zamianie
+      dopisku (Barbell→sztanga, Dumbbell→hantle) objęło 33 ze 134 nazw (~48% serii).·
+    ### Import CSV z popularnych dzienników — zrobione 11.10.2026 (kod: `lib/csvparse.ts`, `lib/csvimport.ts`, ekran `app/more/import.tsx`)
+    Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): **formatA** = eksport Stronga (opis wyżej, plik właściciela 07.10.2026);
+    **formatB** = CSV zgodny z importem FitNotes; trzeci format (Hevy) — **[OTWARTE]**, nieobsługiwany.
+    - **formatA** — nagłówek dokładnie `Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE`.
+      Źródło: przejrzany plik właściciela (07.10.2026, wyżej) i własny eksport aplikacji (`buildCsv`, ten sam układ — import własnego eksportu działa).
+      **[OTWARTE]** oficjalna strona pomocy producenta nie została przeczytana (sam tytuł artykułu Hevy o imporcie CSV ze Strong:
+      https://help.hevyapp.com/hc/en-us/articles/38001424401943 — serwer odrzuca pobranie, 403). Brak jednostki ciężaru w pliku → wybór na podglądzie.
+      Jednostka dystansu w tym formacie nieznana (w pliku wzorcowym zawsze 0) — przyjęto metry jak w eksporcie aplikacji, podgląd to pokazuje.
+      **Eksport własny przy lb (23.10.2026, test na telefonie 1030):** 12 kolumn bez zmian (zgodność), plus na końcu `Weight Unit` (lb) i `Distance Unit` (m) w każdym wierszu; w kg plik jak dotąd.
+      Import własnego pliku z tymi kolumnami (jedna jednostka w całym pliku) przelicza ciężary i nie pyta o jednostkę; mieszane/nieznane → wybór na podglądzie.
+    - **formatB** — źródło: dokumentacja producenta FitNotes iOS, strona „Import Data to FitNotes iOS”, przeczytana 11.10.2026:
+      https://www.getfitnotes.com/docs/migrate-from-other-apps.html — nagłówek „musi być dokładnie”: `Date`, `Exercise`, `Category`, `Weight (kg)`,
+      `Weight (lbs)`, `Reps`, `Distance`, `Distance Unit`, `Time`, `Notes`, `Kind`; „Date must be in `YYYY-mm-dd` format”; waga w osobnych kolumnach kg / lbs
+      (do 2 miejsc po przecinku); jednostki dystansu `m, km, cm, in, ft, yd, mi`; czas `HH:MM:ss` z możliwością pominięcia godzin (`23:59`); `Kind` = litery
+      w, r, d, t; „if there is already a workout in the app database for a date in the CSV, it will be skipped” (duplikat po dniu — przyjęte też u nas).
+      Strona https://www.getfitnotes.com/docs/migrate-from-android.html (przeczytana 11.10.2026): CSV z wersji Android da się zaimportować w iOS
+      („The CSV can be imported the same way as the backup file”), ale **[OTWARTE]**: dokładny nagłówek eksportu z Androida nie jest tam podany —
+      obsługujemy tylko nagłówek z opisu importu; inny nagłówek → komunikat „nieobsługiwany plik”, zero zmian.
+    - **Hevy — [OTWARTE]:** strony pomocy producenta (help.hevyapp.com) zwracają 403 przy pobraniu, a lista kolumn (`title, start_time, end_time, description,
+      exercise_title, superset_id, exercise_notes, set_index, set_type, weight_lbs|weight_kg, reps, distance_miles|distance_km, duration_seconds, rpe`; data
+      w stylu „5 Jan 2026, 17:00”) pochodzi tylko z opisów osób trzecich — nie jest źródłem wg CLAUDE.md. Do dodania po przeczytaniu dokumentacji
+      producenta albo pliku testowego od właściciela.
+    - **Rozszerzenie 1.0 (25.10.2026, decyzja właściciela; kod: układ `generic` w `lib/csvgeneric.ts`, rdzeń `lib/csvcore.ts`):** każdy plik, który nie jest formatA ani formatB, a ma kolumnę daty i kolumnę ćwiczenia pod jednym z aliasów (`CSV_ALIASES`),
+      jest czytany po aliasach nagłówków (separator `,` `;` tab, BOM, cudzysłowy, kg/lb po nagłówku, typy serii, czas z końca − startu, trening = dzień przy braku nazwy, superserie). Układ opisany w sekcji „Hevy — [OTWARTE]” wyżej mieści się w tych aliasach
+      (`title, start_time, end_time, exercise_title, superset_id, set_index, set_type, weight_kg|weight_lbs, reps, distance_km|distance_miles, duration_seconds, rpe`; daty „5 Jan 2026, 17:00” obsługuje), ale **[OTWARTE]**: aliasy pochodzą ze specyfikacji właściciela, nie z przeczytanej dokumentacji producenta
+      (strona pomocy zwraca 403) — obsługa nie jest „potwierdzona”, dopóki nie sprawdzi jej plik testowy od właściciela. Testy na danych syntetycznych: `tests/monetyzacja-csv.test.ts`.
+    - **Zasady importu (domyślne propozycje do akceptacji właściciela, każda widoczna/zmienialna na podglądzie):** (1) jednostka formatA — przełącznik kg/lb,
+      domyślnie jednostka z Ustawień; formatB podaje jednostkę w kolumnach; (2) nazwy ćwiczeń: dokładne dopasowanie, potem znormalizowane (bez wielkości liter,
+      spacji, nawiasów i znaków specjalnych; „(Barbell)” = „(sztanga)”, „(Dumbbell)” = „(hantle)”), reszta → nowe ćwiczenie użytkownika
+      (sprzęt „inne”, metryka z danych); lista „Ćwiczenia z pliku” pozwala zmienić dopasowanie (istniejące z wyszukiwarki albo „Nowe ćwiczenie”);
+      (3) duplikat = istniejący trening o tej samej minucie startu (plik bez godzin: ten sam dzień) — pomijany, liczba na podglądzie; (4) podgląd obowiązkowy
+      (treningi, zakres dat, duplikaty, pominięte wiersze, dopasowane/nowe ćwiczenia) i „Importuj”/„Anuluj”.
+    - **Bezpieczeństwo danych:** błędny/obcy/pusty/za duży plik → komunikat, zero zmian; kandydat (kopia stanu + nowe wpisy) przechodzi przez `migrate`
+      przed zapisem; kopia bezpieczeństwa w Plikach przed zapisem (ta sama pula co import kopii; nieudana → import przerwany); zapis jedną zmianą stanu,
+      istniejące dane i trening w toku nietknięte; ten sam plik drugi raz = 0 nowych treningów i 0 nowych ćwiczeń. Limity w jednym miejscu
+      (`IMPORT_*` w `lib/csvparse.ts`): 25 mln znaków, 400 tys. wierszy, rok ≥ 1990, ciężar ≤ 2000 kg, powtórzenia ≤ `REPS_MAX`. Bez zmiany schematu danych (18).
+    - Bez nowych funkcji poza zakresem: pomiary ciała, szablony i plany z plików nie są importowane.·
+    ### Priorytet (decyzja właściciela 08.10.2026)
+    - **Kalendarz z planowaniem treningów** — „sensowna forma kalendarza (może być też z planowaniem treningów)”. Dziś: kalendarz miesiąca w Historii
+      (tylko przeszłe sesje). Do decyzji właściciela: miejsce w aplikacji, powtarzalny plan tygodnia vs pojedyncze wpisy, przypomnienia. Powiązania:
+      tygodnie deload (już oznaczane), przyszły generator planu tygodnia. Bez twierdzeń dziedzinowych (planowanie = dane użytkownika).
+      **Zrobione 08.10.2026:** zakładka Kalendarz, plan tygodnia, dwa tryby przesuwania, „Dziś” na ekranie treningu, propozycje z regeneracją partii
+      (docs/research/23). Przypomnienie rano w dniu treningu — **zrobione 08.10.2026** (8:00, potwierdzone).
+    - **Deload A+B** (08.10.2026) — podpowiedź „zwykle co 4–6 tyg.” (praktyka) i mniej serii przy starcie w tygodniu deload. **Zrobione 08.10.2026.**
+    - **Generator szablonów i planu** (wariant A) i **kilka planów z aktywnym** (08.10.2026, docs/24). **Zrobione 08.10.2026.**
+    - **„Co nowego”** (08.10.2026) — „i” na ekranie Trening, kropka po aktualizacji, starsze wersje zwinięte. **Zrobione 08.10.2026.**·
+    ### Przed App Store (decyzja właściciela 11.10.2026, wariant A — po analizie raportów rynkowych, docs/research/raporty-rynkowe-2026-10.md)
+    - **Import historii z CSV popularnych dzienników** (Strong, Hevy; FitNotes z Androida — dodane 11.10.2026, pkt 13) — największa bariera przesiadki to utrata historii. Format Stronga niżej;
+      **[OTWARTE]**: format Hevy (plik eksportu do przejrzenia jak przy Strongu), jednostka (CSV bez kg/lb), dopasowanie nazw ćwiczeń, duplikaty,
+      podgląd przed zapisem. W aplikacji i w sklepie bez nazw innych aplikacji (Apple 2.3.7) — „z popularnych dzienników treningowych”.
+    - **Prośba o ocenę w sklepie** — systemowe okno iOS (SKStoreReviewController / expo-store-review), po pozytywnym zdarzeniu (np. nowy rekord
+      albo kilka ukończonych treningów), nigdy w zamian za nagrodę (Apple 5.6.1/3.2.2). **[OTWARTE]**: dokładny moment i odstęp między prośbami.·
+    ### Figury v2 — uwagi ŚREDNIE/NISKIE z ponownej recenzji (27.10.2026), wersja 1.0.1 (nie blokują 1.0)
+    Źródło: ponowne recenzje 1.0 (squat/bench, hinge) na gałęzi `przekazanie-konta`, `docs/przekazanie/notatki/recenzje-1-1/ponowne/`. Oceny realności: realne, ale niskiej szkody (obraz, nie dane ani zdrowie).
+    - **Squat/bench:** Overhead Squat i One-Arm OH Kettlebell Squat — bark 183–198° względem tułowia (A); Board Press i Pin Press bez deski i bolców (A); Band Squat — guma do wyciągniętych rąk (B); wąski chwyt (4 ćwiczenia + Close Grip BP) — przedramię 50° czołowo, chwyt węższy od barków (B); JM Press 152° i Skull Crusher 154° przy limicie kontraktu 149° (C); trzy warianty ławki ujemnej z przedramieniem 12–13° od pionu w płaszczyźnie strzałkowej, decyzja 26.10 mówi ±10° (D); brak polskiego tekstu `bp.elbowsMid` (karty Decline, Smith, Chains, Reverse Band bez wskazówki o łokciach).
+    - **Hinge:** tor ciężaru w kształcie „S” przy kolanach w 9 pozostałych klasycznych martwych ciągach (sztanga max +7 cm przed środkiem stopy; U1 — poprawiony tylko Deadlift (hantle)); Rack Pull (i with Bands) — start +6,3 cm i „hak” toru (U2); brak stojaka/bolców: Rack Pull, Rack Pull with Bands, Good Morning off Pins (A); trap bar / Leverage / Rickshaw — tułów −6,4° na górze (U4); widok z przodu: tor w osi ciała przy hantlach po bokach (U5); Cable Pull Through — kolano 41,5° i tułów 30° na dole, bliżej półprzysiadu niż zawiasu (U6).·
+    ### Backlog 1.0.1 — przekład (recenzja Z-02, 27.10.2026)
+    - Poprawki nieblokujące z recenzji lokalizacji (`docs/przekazanie/notatki/audyt-1-0/Z02-recenzja-lokalizacji.md` na gałęzi `przekazanie-konta`): de „Apple-Account” → „Apple Account” (do sprawdzenia przez native speakera); el „Το Pro αίρει το όριο” → „Με το Pro δεν υπάρχει όριο” oraz okno zgody Zdrowia (NSHealth*) na „σας”; lt „nepadarysi” → „nepadarysite” i „pakeistum” → „pakeistumėte”; cs/sk „máš” → „máte” (2 klucze w każdym języku); id zgoda Zdrowia zegarka „perangkatmu” → „perangkat Anda”; słownik: es-419 „trening” → „Entrenamiento”, zakazane „entreno” (najpierw sprawdzić 4 wystąpienia; wpis z testem).·
+    ### Backlog 1.0.1 — angielskie teksty źródłowe (przegląd tłumaczeń przez API, 28.10.2026)
+    - Uwagi ŚREDNIE/NISKIE do en (raport batcha msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ, opis w docs/16 sekcja 28.10.2026): „Want more? Pro removes…” → „Want to train more often?…”; „Awesome, keep training!” → 1. osoba jak w PL; „Remove place” → „Clear place” (myli się z usunięciem miejsca); „General fitness (for health)” bez „i sprawności”; „Supporting muscles” / „multi-joint” / „assisting” → spójnie „secondary”, „compound/isolation”; wskazówki `calf.edge` (bez „na podwyższeniu”) i `bike.foot` (dopisek „just behind the toes”, którego nie ma w PL) — zmiana wskazówek wymaga recenzji karty (zasada 27.10.2026). Dotyka scenariuszy Maestro 13 i 56 oraz testów selektorów — zmiana z przebiegiem E2E.
+    ### Backlog 1.0.1 — figury: czwarta pozycja w silniku v1 (decyzja właściciela 28.10.2026)
+    - Rysunki ukryte w 1.0 (wskazówki tekstowe zostają), naprawa przez czwartą pozycję w silniku v1 (typ `FrameName`, `FRAME_ORDER` w `scripts/figures/gen.mjs`, podpisy klatek, układ statycznych klatek w `ExerciseFigure.tsx`, testy i selektory Maestro `exercise-figure-frame-*`): **Push Press**, **Reverse Lunge** (zamach tylnej stopy łukiem w powietrzu; reguła podparcia w `tests/figury-podparcie.test.ts` pilnuje, że wraca dopiero po poprawce), **krok drugą nogą w Walking Lunges** (dziś pętla wraca do pozycji wyjściowej). Każda po niezależnej recenzji (bramka 4).·
+    ### Backlog 1.0.1 — figury v1: uwagi NISKIE z recenzji niezależnej po poprawce (28.10.2026)
+    - **Step Up:** ręce z hantlami biegną wzdłuż pochylonego tułowia (w „w trakcie” hantla 19 j. za barkiem) — zgięcie barku równe pochyleniu tułowia; palce tylnej stopy mijają krawędź skrzyni o 0,9 j. przy k≈0,24; reguła środka ciężkości w teście ma uwzględniać ciężar w dłoniach. **Lunges (hantle):** tylna stopa pionowo na palcach w „w trakcie”, przednia stopa przesuwa się o 2,1 j. **Incline Push Up:** dłoń przesuwa się po blacie o 3,2 j., dłonie ok. 7 j. od krawędzi (karta: „o krawędź”). Raporty: katalog audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/.·
+    ### Backlog 1.0.1 — wygląd (plan napraw M2, 28.10.2026)
+    - **Migracja literałów `fontSize`/`borderRadius` na tokeny** (M1-audytor-generalny-030; 08-programista-006, 04-studio-projektowe-008): `components/Dashboard.tsx`, `components/GuardSection.tsx`, `ProgressBars`, `PeriodSummary`, `RecordsCard`, `app/plan.tsx` i stary krój `F.heavy` — w 1.0.1 z porównaniem zrzutów (`docs/design/wzorce-zrzuty/`), nie przed 1.0 (zamrożenie zakresu, ryzyko regresji układu); zapadka `tests/token-baseline.json` / `tests/m3-token-guard.test.ts` pilnuje, żeby liczba nie rosła.·
+    ### Backlog 1.1 — architektura (plan napraw M2, 28.10.2026)
+    - **Podział plików źródłowych ponad 20 KB** (M1-audytor-generalny-035; 05-architekt-004): `lib/seed.ts`, `lib/plan.ts`, `lib/generator.ts`, `lib/equipment.ts`, `lib/stats.ts`, `components/ActiveWorkout.tsx`, `lib/edit.ts`, `components/WorkoutBlocks.tsx`, `app/template/[id].tsx`, `components/ui.tsx`, `lib/state/migrate.ts` i inne z listy wyjątków `tests/architecture-limits.test.ts` — dzielone przy najbliższej zmianie danego pliku w 1.1 (nie przed 1.0: zamrożenie zakresu, ryzyko regresji); nowy plik ponad limit już dziś blokuje verify (strażnik z listą wyjątków).·
+    ### Backlog z audytu M1 — DEC-07 b (właściciel 27.10.2026: „wybrane przed zgłoszeniem 1.0”, reszta tutaj z wersją)
+    Zadanie M1-audytor-generalny-037; do 1.0 weszły: wiersz „Pełna wersja”, dokumenty wydania, test pierwszego użycia, zrzuty we wszystkich lokalizacjach (docs/18, wpis DEC-07 b). Wersje i warunki to propozycja roli 03 z rekomendacji znalezisk — do weta właściciela. Punkt kontrolny = 8 tygodni po premierze (docs/48 Z-35, `docs/monetyzacja.md`).
+    - **Dwa widoki treningu (Skupiony i Lista)** (03-zakres-006) — **Wersja:** 1.1, decyzja w punkcie kontrolnym. **Warunek:** do punktu kontrolnego bez zmian, zbieramy sygnały (wsparcie, recenzje, test pierwszego użycia Z-37); potem właściciel wybiera: usunięcie widoku Lista (migracja ustawienia na Skupiony, dane treningów bez zmian, zdanie w „Co nowego”) albo zostawienie na stałe.
+    - **Kalkulator talerzy** (03-zakres-007; wycięty decyzją DEC-06) — **Wersja:** 1.1, tylko po spełnieniu warunku. **Powrót:** co najmniej 3 niezależne prośby o kalkulator w wsparciu albo recenzjach w ciągu 8 tygodni od premiery; przegląd w punkcie kontrolnym. Forma przy powrocie: przycisk przy bieżącej serii, poza zrzutami do sklepu (powód cięcia z DEC-06).
+    - **Kanały startu poza wyszukiwaniem w sklepie** (11-wzrost-002) — **Wersja:** 1.0.x, po premierze, przed punktem kontrolnym. **Kiedy:** agent marketingu szkicuje prośbę o pisemną zgodę administracji forum (jawnie jako autor, forma: wątek autora), właściciel wysyła (ok. 15 min), wynik w dzienniku zgód `docs/wzrost.md` pkt 3; zasady DEC-02 a i DEC-07 K5 bez zmian.
+    - **Linki kampanii do strony produktu** (11-wzrost-004) — **Wersja:** 1.0.x. **Kiedy:** po pojawieniu się zakładki kampanii w App Analytics właściciel kopiuje `pt`, agent dodaje linki z `ct` na kanał (strona marki, strony Trening, wpis forum po zgodzie) i tabelę linków w `docs/wzrost.md` z testem; do tego czasu źródło „Web Referrer”.
+    - **Pomiar skarg na limit darmowych dni** (02-monetyzacja-005) — **Wersja:** 1.0.x, punkt kontrolny. **Kiedy:** przed punktem kontrolnym dopisać do sekcji „Punkt kontrolny” w `docs/monetyzacja.md` dwie miary z progiem przeglądu: udział ocen ≤ 3★ wspominających limit lub opłatę oraz odsetek osób wracających w kolejnym miesiącu po pierwszej blokadzie (App Analytics); zmiana limitu tylko decyzją właściciela po danych.
+    - **Kontrola cen we wszystkich krajach w `asc-kontrola`** (02-monetyzacja-506, opcja b) — **Wersja:** 1.0.x. **Warunek:** po ręcznym sprawdzeniu Z-10b przed 1.0; rozszerzenie narzędzia (repo narzędzi) o wszystkie terytoria i próg 1,51 € po kursie, z przebiegiem dowodowym.·
+    ### Backlog bez priorytetu (decyzja właściciela 08.10.2026)
+    Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właściciel nie poprosi o listę (CLAUDE.md).
+    - Wydanie natywne — sekcja 4n niżej (przyciski przerwy na ekranie blokady, widżet, kontrolka w Centrum sterowania).
+    - Wydanie Health — biblioteka `@kingstinct/react-native-healthkit` 8 → 16: odczyt aktywnych kcal, ocena wysiłku (`workoutEffortScore`; RPE → ocena **[OTWARTE]**),
+      prawdziwe zdarzenia pauzy z `Workout.pauses`, masa ciała i pomiary ciała.
+    - Import CSV ze Strong i Hevy — **przeniesione do „Przed App Store” (11.10.2026)**, sekcja niżej.
+    - „Skąd to wiemy?” (dodane 13.10.2026, odłożone przez właściciela do backlogu bez priorytetu): przy każdej liczbie i regule merytorycznej
+      przycisk ze źródłem, poziomem pewności i krótkim cytatem (25 miejsc w kodzie; jeden rejestr źródeł generowany z kodu). Specyfikacja: scratchpad
+      koordynatora `spec-zrodla-i-glos.md` (część A) — do przeniesienia do docs przy wznowieniu. Także sposób pokazania cytatów w 35 językach — **[OTWARTE]**.
+    - Nagranie siebie podczas ćwiczenia i ocena AI poprawności ruchu (dodane 08.10.2026). Przed pracą **[OTWARTE]**: źródła dla kryteriów techniki
+      i dokładności oceny z obrazu (w 4c „liczenie powtórzeń kamerą” odłożone z braku udokumentowanej dokładności); granica porad zdrowotnych
+      (ból, kontuzje → specjalista); prywatność nagrań (tylko na telefonie?); koszt modelu (0 zł poza Apple).
+    - Znajomi i wyzwania w grupie (dodane 08.10.2026, właściciel: „sparowanie z kolegami i rzucanie sobie wyzwań w grupie, jak tablica wyników
+      na siłowni”). Przed pracą **[OTWARTE]**: aplikacja jest dziś offline, bez kont i serwera — potrzebny serwer albo synchronizacja (koszt: zasada 0 zł
+      poza Apple; darmowe limity do sprawdzenia, np. iCloud/CloudKit w ramach Apple Developer); prywatność (dane treningowe innych osób, zgoda, RODO);
+      zasady porównań, które nie nagradzają ryzyka (np. wyzwania na regularność / liczbę treningów zamiast samego ciężaru); moderacja zaproszeń.
+      Pomysł właściciela (08.10.2026, **nie decyzja — tylko zapis do odkopania**): grupa jak w Organizerze — stałe ID grupy (9 cyfr, zmienia właściciel), zaproszenie kodem 6 cyfr ważnym 24 h dla wielu
+      osób z limitem nieudanych prób, link https (GitHub Pages + Universal Links), role właściciel/admin/członek, usuwanie grupy do kosza na 30 dni —
+      wzór: organizer `docs/adr/0020-id-grupy-i-kod.md`, `0007-grupy-i-wydarzenia.md`, `0004-zaproszenia-i-usuwanie-konta.md`. Organizer ma backend Supabase
+      (plan Free); **[OTWARTE]**: wspólny projekt Supabase z Organizerem czy osobny (limity planu Free na projekt), konta i logowanie w Treningu (dziś brak),
+      co z danych treningowych trafia do grupy (tylko wyniki wyzwań, nie cała historia).
+    - Układanie treningów według preferencji i celu (dodane 08.10.2026). Przed pracą **[OTWARTE]**: koliduje z decyzją 03.10.2026 („szablony ustawia
+      właściciel — aplikacja ich nie tworzy”) — wymaga nowej decyzji właściciela; zasady układania tylko ze źródeł (ACSM 2026, przeglądy) wg hierarchii.
+    - Generator dokładający ćwiczenia do celu (decyzja właściciela 13.10.2026, 7A) — **wersja: po 0.17**, osobna zmiana (nie wchodzi do paczki „spójność”). Zakres i źródła do ustalenia przy starcie prac (reguły tylko ze źródeł wg hierarchii; wynik do przejrzenia przed zapisem — wyjątek z 08.10.2026).·
+    ### 4n. Wydanie natywne — po najbliższej wersji (decyzja właściciela 07.10.2026 wieczór)
+    Funkcje, których działania agent nie sprawdzi testami automatycznymi (Maestro na symulatorze nie steruje ekranem blokady ani ekranem
+    głównym iOS): wchodzą osobnym buildem, jak wydanie „Health”, po sprawdzeniu przez właściciela na telefonie.
+    | Funkcja | Stan | Co sprawdzić na telefonie |
+    |---|---|---|
+    | Przyciski przerwy −15 / +15 / Pomiń (Live Activity, iOS 17+) | gotowe w commicie 2e08c84 (`feature/e2-swap`), cofnięte | przyciski zmieniają licznik i powiadomienie; aplikacja po powrocie pokazuje ten sam czas |
+    | Widżet „Tydzień treningów” | gotowe w commicie df53ab9 (`feature/e2-swap`), cofnięte | dodanie widżetu, liczby po treningu, zera po końcu tygodnia; grupa aplikacji `group.pl.lukasz.trening` musi dać się podpisać (może wymagać kroku w Apple Developer) |
+    | Kontrolka w Centrum sterowania | niezaczęte | — |·
+    Kompilacja bez podpisu (`ios-unsigned.yml`, 07.10.2026): przyciski — run 37658510716 (2e08c84) OK; widżet z przyciskami — run 37660845798
+    (df53ab9) OK. Działanie na telefonie i podpis z grupą aplikacji — niesprawdzone.·
+    Przywrócenie: `git revert` commitu odwracającego (zapis w docs/18, 07.10 ok. 19:45), potem `npm run verify` i `ios-unsigned.yml`.·
+    ### 4b. Średnie (1–2 tygodnie)
+    | Funkcja | Uwagi | Twierdzenie dziedzinowe? |
+    |---|---|---|
+    | Import CSV ze Strong i Hevy — **odłożony (07.10.2026)**; format Stronga niżej | Strong nie importuje nawet własnego CSV; Hevy importuje ze Strong — https://help.hevyapp.com/hc/en-us/articles/38001424401943 | nie |
+    | Pole RIR obok RPE — **zrobione 08.10.2026** (skala RPE/RIR w ustawieniach) | skala: RPE 10 = 0 RIR, RPE 9 = 1 RIR (Zourdos 2016, streszczenie: https://pubmed.ncbi.nlm.nih.gov/26049792/) | tak — B1 |
+    | Kalkulator rozgrzewki | schemat ustawia użytkownik albo nazwany „przykładem” | **[OTWARTE]** — brak źródła schematu |
+    | Pomiary ciała + odczyt masy ciała z Apple Health | wymaga aktualizacji `@kingstinct/react-native-healthkit` 8 → 16 (osobne wydanie, nie razem ze zmianą schematu — CLAUDE.md) | siła względna = arytmetyka |
+    | Raport tygodnia / miesiąca (podsumowanie po treningu i okresowe) — **zrobione 08.10.2026** (Postępy → Podsumowanie) | | nie, jeśli tylko liczby użytkownika |
+    | Mapa mięśni (rysunek z seriami na partię) — **zrobione 08.10.2026** (Postępy → Podsumowanie) | dane mamy; potrzebna grafika SVG | nie |
+    | Pauza treningu — **zrobione 08.10.2026** (odejmuje się od czasu trwania) | do decyzji: czy pauza odejmuje czas trwania | nie |·
+    ### 4c. Duże (tygodnie) — później
+    | Funkcja | Uwagi |
+    |---|---|
+    | Siri / Skróty / Spotlight (App Intents) | intencje w Swift, `@bacons/apple-targets` już w projekcie — https://developer.apple.com/documentation/appintents |
+    | Apple Watch (niezależna aplikacja) | natywny SwiftUI; u konkurencji największe źródło skarg (synchronizacja) — docs/11 |
+    | Dyktowanie serii („100 kilo, 5 razy”) | SpeechAnalyzer iOS 26; modele językowe pobierane raz z sieci; polski **[NIEZWERYFIKOWANE]** |
+    | Lokalny model Apple (Foundation Models): streszczenie tygodnia, notatka → serie | **polskiego nie ma na liście języków Apple Intelligence** (https://www.apple.com/apple-intelligence/); tylko iPhone 15 Pro i nowsze. Nie teraz. Porad treningowych z LLM nie dajemy (zasada merytoryczna). |
+    | Liczenie powtórzeń kamerą | dokładność przy sztandze nieudokumentowana — nie |·
+    ## 5. Funkcje z liczbami — co wolno twierdzić (do ponownej weryfikacji przed wdrożeniem)·
+    - **B1 RIR/RPE:** Zourdos 2016 (JSCR 30(1):267–75, streszczenie) — RPE 10 = 0 RIR, trafniejsza ocena u doświadczonych. Helms 2016
+      (https://pmc.ncbi.nlm.nih.gov/articles/PMC4961270/, pełny tekst) — początkujący zapisują RIR, ale nie opierają na nim progresji;
+      tabela %1RM↔RIR „nie jest narzędziem przeliczania”. Tabel z artykułu nie odczytano (obrazy) — **liczb z nich nie używać**.
+    - **B2 e1RM:** liczymy Epleyem do 10 powtórzeń (`lib/stats.ts`) — zgodne z Reynolds 2006 (https://pubmed.ncbi.nlm.nih.gov/16937972/:
+      „no more than 10 repetitions … in linear equations”). Publikacje źródłowe Epleya i Brzyckiego nieprzeczytane **[OTWARTE]**.
+    - **B3 serie na partię:** już liczymy pomocnicze jako 0,5 serii — zgodne z Pelland 2026 (Sports Med 56(2):481–505,
+      https://pubmed.ncbi.nlm.nih.gov/41343037/, „fractional” najlepiej). ACSM 2026 (Currier i in., MSSE 58(4),
+      https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823/, sekcja „Improving hypertrophy”): „≥10 sets/wk” sprzyja hipertrofii → możliwy
+      znacznik przy wykresie serii na partię, z podpisem źródła.
+    - **B4 częstotliwość:** przy równej objętości bez wpływu na hipertrofię (ACSM 2026; Schoenfeld 2019) → pokazywać liczbę dni, bez oceny.
+    - **B5 przerwy:** Singer 2024 (https://pubmed.ncbi.nlm.nih.gov/39205815/): mała korzyść >60 s, >90 s bez wyraźnych różnic → domyślna
+      przerwa ≥90 s ma podstawy; dłuższe nie szkodzą.
+    - **B6 progresja:** dzisiejsza podpowiedź „↑” to podwójna progresja; reguła „2–10% przy 1–2 powt. ponad zakres” pochodzi z ACSM 2009
+      (zastąpionego przez ACSM 2026, który mówi, że progresja nie jest konieczna do korzyści) → nazwać uproszczeniem.
+    - **B7 bliskość upadku / B8 deload:** brak podstaw dla „wskaźnika zmęczenia” ani automatycznego deloadu **[OTWARTE]** → co najwyżej ręczne
+      oznaczenie tygodnia jako deload i trend e1RM.·
+    ## 6. Wygląd i grafiki·
+    Uwagi właściciela 07.10.2026: „Fajnie, gdybyśmy zaprojektowali unikatowe grafiki. Na pewno na ikonę. W środku też coś odróżniającego się.
+    Motyw kredy jest fajny, ale wygląda trochę jak typowa prezentacja w PowerPoint robiona przez kogoś młodego.”
+    **Rynek (ikony i zrzuty 12 aplikacji, App Store 07.10.2026):** klisze do omijania — hantel/sztanga (Strong, Alpha, Setgraph, RP),
+    monogram z litery (Hevy, Fitbod, Boostcamp, Ladder, Future), czerwono-pomarańczowe tło „energii” (StrengthLog, RP, Fitbod, Boostcamp),
+    czerń z neonem (Setgraph, Ladder), maskotki (Liftosaur, StrengthLog). Nasz pomarańcz #E8590C jest blisko Gentler Streak i Boostcamp.·
+    **Makiety (artefakt „Trening — kierunki wyglądu”, https://claude.ai/artifact/VcG5ESWeNsPEVYiFA1kEru, prywatny):** ten sam ekran
+    (widok skupiony na bieżącej serii, kierunek A z pkt 3) w trzech stylach, z ikoną w wersji domyślnej, ciemnej i małej:
+    - **A · Tablica wyników** — ciemne tło, bursztynowy sygnał, matrycowy krój cyfr (Handjet) + Geologica; ikona: strzałka ↑ z kropek tablicy.
+      Plus: najczytelniejszy z daleka, wyraźnie inny niż Strong. Minus: ciemny domyślnie (dziś domyślny jest jasny — decyzja 05.10).
+    - **B · Tuleja** — kolory talerzy zawodniczych jako jedyny kolor, zawsze z liczbą na talerzu; Tektur + IBM Plex Mono; ikona: koniec
+      sztangi z talerzami z boku; w aplikacji „co nałożyć na stronę” przy serii (= kalkulator talerzy z pkt 4a).
+      Źródła kolorów: IWF TCRR pkt 3.3.3.6 (wyd. 2019, https://pzpc.pl/download/file/3354; wydanie 2025 **[NIEZWERYFIKOWANE]**),
+      IPF Technical Rules 2026, rozdz. 2.3(b)6 — tylko 15/20/25 kg. Minus: Strong pokazuje kolorowe talerze w kalkulatorze (PRO);
+      czerwony/zielony mylą się przy deuteranomalii → liczba na talerzu obowiązkowa (WCAG 1.4.1).
+    - **C · Dziennik** — papier w linie, czerwony margines, granatowy atrament, Literata + IBM Plex Mono, rekord jako pieczątka; ikona:
+      kartka z kreskami liczenia serii. Plus: ciepły, ludzki, najbliżej Kredy. Minus: ryzyko „staroświecko”, mniej czytelny z daleka.·
+    **Ikona w iOS 26** (HIG App icons, zmiana 08.06.2026): warstwy, warianty domyślny/ciemny/przezroczysty/barwiony; prosta forma z kilku
+    kształtów. Dziś `app.json` ma jeden płaski PNG — do uzupełnienia o warianty ciemny i barwiony (`ios.icon` w Expo) niezależnie od kierunku.
+    Kroje: wszystkie proponowane mają polskie znaki i cyrylicę (sprawdzone w plikach fontów); dzisiejszy problem Archivo bez cyrylicy jest
+    już obsłużony (IBM Plex Sans dla bg/sr/uk, `applyFontsFor`).·
+    **Rekomendacja:** B (Tuleja) — jedyny kierunek, w którym grafika niesie funkcję (talerze = co nałożyć), a ikona jest z dziedziny i nie
+    jest klišą; z ciemnym wariantem. Alternatywa: A, jeśli ważniejsza jest czytelność z daleka niż charakter.·
+    ## 7. Proponowana kolejność (do decyzji właściciela)·
+    1. Wygląd: wybór kierunku i ikony (razem z kierunkiem A — ekran treningu i tak się zmienia).
+    2. Pakiet 4a (małe) — część od razu, bo bez twierdzeń dziedzinowych.
+    3. Kierunek A: widok skupiony z przełącznikiem.
+    4. Import ze Strong/Hevy (argument przy przejściu z konkurencji), RIR, raporty.
+    5. Przed wersją płatną (docs/15): subskrypcja i blokada po wygaśnięciu.
+    6. Później: Siri/Skróty, zegarek, dyktowanie.
+    "
+
+      53 |   });
+      54 |   test('docs/21: Pendlay Row w backlogu 1.0.1 z zakresem pracy', () => {
+    > 55 |     expect(read('docs/21-roadmapa-offline.md')).toMatch(/\*\*Pendlay Row\*\*[^\n]*źródła[^\n]*recenzj[^\n]*1\.0\.1/);
+         |                                                 ^
+      56 |   });
+      57 |   test('docs/48 Z-25a: adres „Stop testing a build” z cytatem, bez martwego manage-builds', () => {
+      58 |     const d = read('docs/48-zgloszenie-1-0.md');
+
+      at Object.toMatch (tests/m1-047-otwarte-wskazniki.test.ts:55:49)
+
+  ● M1-047: dokumenty zgodne z kodem po naprawach (01-601, 01-602, 03-603, 06-601, 10-602) › docs/48 Z-25a: adres „Stop testing a build” z cytatem, bez martwego manage-builds
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "test-a-beta-version/stop-testing-a-build/"
+    Received string:    "# 48. Zgłoszenie wersji 1.0 do App Store — szkic kompletu (stan 25.10.2026)·
+    Szkic przygotowany na polecenie właściciela (25.10.2026, plan na noc): po zakończeniu prac w toku (grafiki ćwiczeń, monetyzacja w 1.0, przekład 33 języków)
+    ma zostać tylko uzupełnienie i kliknięcia właściciela. **Niczego nie wysłano do Apple**, nie zmieniono plików w `store/` ani testów — poniższe teksty to propozycje do decyzji.
+    Dokument nie powtarza kwot ani zasad modelu płatności: tylko `docs/monetyzacja.md`. Poprzednie plany: `docs/41` (droga do sklepu), `docs/42` (plan wydania), `docs/45-formalnosci-asc.md`, `docs/45-widocznosc-w-sklepie.md`;
+    ten plik je porządkuje na dzień zgłoszenia i uzupełnia o pozycje, których tam nie było (patrz „Nowe względem docs/41” niżej).·
+    Wszystkie adresy Apple w tym dokumencie zostały **przeczytane 25.10.2026** (zasada L-028: krok dla właściciela ma źródło sprawdzone u źródła, nie z pamięci).
+    Gdzie dokumentacja Apple czegoś nie mówi, jest to napisane wprost i oznaczone **[OTWARTE]**.·
+    ## Decyzje właściciela (25.10.2026, po przeczytaniu szkicu)·
+    | # | Decyzja | Skutek |
+    |---|---|---|
+    | D1 | Pełny audyt przed App Store obowiązuje (CLAUDE.md) | Z-03 zostaje; audyt obejmuje całość, nie tylko zmiany po audycie M1 |
+    | D2 | Zrzuty wgrywa skrypt z workflow; wyjątek od L-001 jak przy przekładzie (workflow tylko ręczny: scalenie, potem przebieg dowodowy, przy porażce cofnięcie) | gotowe: `.github/workflows/asc-zrzuty.yml`, `scripts/asc/zrzuty.mjs`, `tests/asc-zrzuty.test.ts` — **apply nieuruchomiony**; pierwszy przebieg po scaleniu to dry-run (Z-16) |
+    | D3 | 10 ekranów, karta ćwiczenia z grafiką jako drugi | pkt 5, ekran `cwiczenie` (po wejściu grafik) |
+    | D4 | Opis z trzema wyróżnikami (grafiki, sprawdzone wskazówki, import); PL i EN do akceptacji właściciela; wchodzi, gdy funkcje są w kodzie | pkt 6; brzmienie zdań o pokryciu dopiero po sprawdzeniu w kodzie |
+    | D5 | „Data Not Collected” | pkt 3, wariant B tylko jako zapas |
+    | D6 | Deklaracja wyrobu medycznego: „No” | Z-22 |
+    | D7 | Zrzuty dla wszystkich lokalizacji | Z-16: wszystkie 33 lokalizacje z `store/app-store-names.json` (bez `sl`, L-003; języki bg, et, lt, lv, sr nie mają lokalizacji w sklepie) |·
+    **Uwaga o interfejsie Apple (odczyt 25.10.2026):** dokumentacja App Store Connect API oznacza `appScreenshotSets` i `appScreenshots` jako **przestarzałe**; zrzuty zarządza się przez App Asset Library
+    (<https://developer.apple.com/documentation/appstoreconnectapi/app-asset-library>, <https://developer.apple.com/documentation/appstoreconnectapi/uploading-and-managing-image-assets>,
+    <https://developer.apple.com/documentation/appstoreconnectapi/placing-assets-on-your-app-store-surfaces>). Skrypt używa nowego interfejsu: obraz wgrywany raz do biblioteki, potem „placement” na lokalizacji wersji i jedno żądanie kolejności.
+    Grupę urządzeń wybiera z danych referencyjnych API na podstawie dokładnych wymiarów pliku. **[OTWARTE]**: nazwy pól danych referencyjnych (`featureId`, `groupLimits`) skrypt czyta zgodnie z dokumentacją, ale
+    bez sieci nie sprawdziłem ich na prawdziwej odpowiedzi — rozstrzygnie pierwszy przebieg **dry-run** (tylko odczyt, bezpieczny) i ewentualna poprawka przed `apply`.
+    Skrypt nie usuwa: grupa, która ma już zrzuty, jest pomijana (zmiana zrzutów w gotowej lokalizacji — ręcznie w App Store Connect).·
+    ## 0. Stan wyjściowy i zależności·
+    - `main` (928d0ff, 25.10.2026): `tests.yml` zielony. Wersja aplikacji w `app.json`: 0.20.0 (wersja 1.0.0 dopiero w kroku Z-05).
+    - W toku na innych gałęziach (stan z `docs/18`, wpisy 25.10.2026; grafiki ćwiczeń dla całej biblioteki przeniesione do 1.1 — 26.10.2026): monetyzacja w 1.0 (gałąź `monetyzacja-1-0`: okno „Uczciwe zasady”, karta po imporcie, rozszerzony import CSV),
+      słownik terminów i przekład 33 języków przez API, przywrócony przełącznik trybu w generatorze (DEC-03), ostrzeżenie o asekuracji przy hantlach nad głową (DEC-08), partia 2 audytu (m.in. polityka prywatności bez okresu próbnego).
+      **Zamrożenie zakresu 1.0 jest przesunięte** (decyzja 25.10.2026), nowy termin zgłoszenia — do ustalenia po tych pracach.
+    - Są już gotowe narzędzia: `asc-metadane.yml` (nazwy, podtytuły, słowa kluczowe, opisy, teksty promocyjne, adresy — 33 lokalizacje), `asc-iap-localizations.yml` (lokalizacje zakupów), `asc-kontrola.yml` (tylko odczyt: ceny, oferty,
+      rodzina, kategoria, adresy), `store-screenshots.yml` (zrzuty iPhone z symulatora, ramki i podpisy), `watch-sim.yml` (zrzuty zegarka), `testflight.yml` (build i wysyłka).
+      Skrypt wgrywający zrzuty (`asc-zrzuty.yml`) powstał 25.10.2026 po decyzji D2 — patrz „Decyzje właściciela” i pkt 5.
+    - Rozbieżność w starych dokumentach: `docs/41` (A7, E1) mówi o buildzie 1.0 z nowego repo Apps4Brew, a decyzja D7 z 21.10.2026 (`docs/46`) mówi, że przeniesienie następuje **po wydaniu 1.0 w App Store**.
+      Ten dokument zakłada D7: zgłoszenie idzie ze starego repo (`lkarwowski494/trening`). `docs/41` trafia na Dysk przy przenosinach (D1), więc nie poprawiam go teraz.·
+    ### Nowe względem docs/41 (znalezione przy czytaniu dokumentacji Apple 25.10.2026)·
+    1. **Deklaracja wyrobu medycznego (Regulated Medical Device)** — aplikacje w kategorii Health & Fitness dostępne w UE/EOG, Wielkiej Brytanii lub USA muszą zadeklarować, czy są regulowanym wyrobem medycznym (krok Z-22; odpowiedź: **Nie**).
+    2. **Etykiety dostępności (Accessibility Nutrition Labels)** — na razie dobrowolne; można je opublikować dopiero dla urządzenia, które ma wersję dostępną w sklepie, czyli **po wydaniu** (krok Z-33).
+    3. **Rozmiary zrzutów** — Apple dodał akceptowane rozmiary 1260 × 2736 (duży ekran) oraz sekcję iPhone Duo (wymóg dopiero od kwietnia 2027, dla SDK iOS 27.1 — nie dotyczy 1.0); ustalone rozmiary 1206 × 2622 i 1320 × 2868 nadal obowiązują.
+    4. **Cena aplikacji** — przed zgłoszeniem trzeba ustawić cenę aplikacji (darmowa) w „Pricing and Availability”; płatne treści wymagają przyjęcia Paid Apps Agreement (Z-14).·
+    ## 1. Lista kontrolna zgłoszenia krok po kroku·
+    Podział: **automat** = workflow GitHub Actions (uruchamia agent lub właściciel jednym kliknięciem „Run workflow”, zatwierdzenie środowiska `release` zawsze klika właściciel),
+    **agent** = praca w repo, **właściciel** = czynność w App Store Connect / na telefonie. Czasy: „agent” = praca agenta; „czekanie” = CI i Apple; „właściciel” = jego czas (CLAUDE.md).
+    Właściciela prowadzimy po jednym kroku, nie zbiorczą listą (CLAUDE.md); poniższa tabela to mapa, nie instrukcja do jednorazowego przeczytania.·
+    ### Faza A — gotowy produkt i dowody (bez App Store Connect)·
+    | # | Krok | Kto | Zależy od | Czas | Uwagi |
+    |---|---|---|---|---|---|
+    | Z-01 | Zakres 1.0 zamknięty i scalony do `main` (monetyzacja, przekład, DEC-03, DEC-08, partia 2 audytu; nowe grafiki ćwiczeń przeniesione do 1.1 — docs/18, 26.10.2026) | agent + właściciel (scalenie PR) | prace w toku | zależy od prac | po scaleniu zakres znów zamrożony (CLAUDE.md, audyty pkt 3) |
+    | Z-02 | Ostatni przegląd treści krytycznej po przekładzie (zamyka R-010, pkt 7) | agent (rola tłumacz / badacz) | przekład 33 języków | 1–2 h agenta | musi być **po** ostatniej zmianie tekstów |
+    | Z-03 | Audyt zmian od audytu M1 (decyzja D1 niżej) | agent (audytor) | Z-01 | 2–4 h agenta | próg: tylko KRYTYCZNE i WYSOKIE blokują |
+    | Z-04 | `npm run verify` zielony na commicie wydania (`tests.yml`) | automat | Z-01 | CI ok. 25 min | dziś `main` zielony |
+    | Z-05 | Wersja 1.0.0 w `app.json`, „Co nowego” wyczyszczone, wiersz w dzienniku wydań docs/09 | agent | Z-01 | 0,5–1 h | pole „What's New” nie dotyczy pierwszej wersji (Apple, pkt 8) |
+    | Z-06 | **Jeden pełny katalog E2E** na standardowym iPhonie zielony (jedno ponowienie scenariusza dozwolone) — bramka App Store | automat | Z-05 | CI ok. 1,5 h | **dziś czerwony**: nocne przebiegi pełne na `main` padły 23, 24 i 25.10 (gałąź `naprawa-nocne-2026-10-25` w toku); do ustalenia, czy to błąd aplikacji, czy skryptów (CLAUDE.md) |
+    | Z-07 | Build 1.0 na TestFlight: `testflight.yml` (numer buildu = 1000 + numer przebiegu) | automat; właściciel zatwierdza środowisko `release` | Z-04, Z-06 | CI ok. 1,5 h | strażnik uprawnień, manifest prywatności i mapa źródeł są krokami przebiegu |
+    | Z-08 | Lista kontrolna z telefonu (`docs/39`, ok. 15–20 min) + R-004, R-013, R-014 (pkt 7) | właściciel | Z-07 | 20–30 min | od razu po buildzie (CLAUDE.md, model po L-001, pkt 3) |
+    | Z-09 | Zakup w piaskownicy: każdy plan, przywrócenie, tryb samolotowy, zwrot, Chmura rodzinna (docs/39 US-13) | właściciel | Z-07 | 30–45 min | Apple: aplikacja z TestFlight sama działa w środowisku testowym, **bez** osobnego konta Sandbox (strona 1 poniżej); konto Sandbox służy tylko do scenariuszy specjalnych |
+    | Z-10 | `asc-kontrola.yml` zielone (ceny, brak ofert wprowadzających, rodzina, kategoria, adresy) | automat | — | CI kilka minut | zamyka R-M5-3 przy każdym zgłoszeniu; uruchomić tuż przed Z-26 |
+    | Z-10a | Adresy z aplikacji i z `store/app-store-urls.json` (prywatność, wsparcie, espresso, EULA, marketing) zwracają 200, a treść stron na apps4brew.com = `site/`, w tym znacznik wersji: workflow „Sprawdzenie adresów (ręcznie)” (`check-urls.yml`, skrypt `scripts/check-urls.mjs`). Po zmianie `site/` najpierw eksport do repo strony (`scripts/site/eksport-apps4brew.mjs`), push w apps4brew-www, potem ten krok | automat (agent uruchamia) | Z-05 | kilka minut | zamyka ryzyko R-017 (docs/40); **nie** w `npm run verify` (verify działa offline); uruchomić po każdej zmianie `site/` i tuż przed Z-26 |
+    | Z-10b | **Ceny planu miesięcznego we wszystkich krajach wobec porównania z espresso** (02-monetyzacja-506, DEC-07 b 27.10.2026): App Store Connect → Subskrypcje → plan miesięczny → „Subscription Prices” → „View all prices” (nazwy pól [DO USTALENIA] przy pierwszym przejściu) → zrzut albo eksport listy do scratchpadu koordynatora (nie do repo); agent przelicza każdą cenę na EUR (kurs referencyjny EBC z dnia, data w zapisie) i porównuje z **1,51 €** (górna granica przedziału z przypisu opisu) | właściciel (eksport, ok. 5 min) + agent (porównanie) | Z-10 | ok. 5 min właściciela, 0,5 h agenta | wynik z datą w `docs/research/espresso-mimit-2026-10.md`: wszystkie ≤ 1,51 € albo lista krajów do korekty (inny punkt cenowy albo zdanie z przypisem usunięte w lokalizacji tego kraju — decyzja właściciela); rozszerzenie `asc-kontrola` o wszystkie terytoria — 1.0.x (docs/21) |·
+    Strony Apple dla Z-09: <https://developer.apple.com/help/app-store-connect/test-a-beta-version/testing-subscriptions-and-in-app-purchases-in-testflight/> („Apps downloaded from TestFlight will automatically operate in a sandbox environment.”, odczyt 25.10.2026).·
+    ### Faza B — App Store Connect (kroki właściciela, każdy z adresem Apple)·
+    Wszystkie kroki w <https://appstoreconnect.apple.com> → Apps → Trening. Rola potrzebna do większości: Account Holder, Admin lub App Manager (strony poniżej).·
+    | # | Krok | Kto | Strona Apple (odczyt 25.10.2026) | Czas właściciela |
+    |---|---|---|---|---|
+    | Z-11 | Umowy: Paid Apps Agreement przyjęta, dane bankowe i podatkowe uzupełnione (bez tego aplikacja może być tylko darmowa, a zakupy nie ruszą) | właściciel | <https://developer.apple.com/help/app-store-connect/manage-agreements/sign-and-update-agreements/> oraz <https://developer.apple.com/help/app-store-connect/manage-app-pricing/set-a-price/> („your membership Account Holder will need to accept the Paid Apps Agreement”) | 5 min (sprawdzenie; zapewne zrobione przy zakupach 14.10.2026) |
+    | Z-12 | Small Business Program: potwierdzenie przyjęcia zgłoszenia z 14.10.2026 (prowizja w `docs/monetyzacja.md`) | właściciel | <https://developer.apple.com/app-store/small-business-program/> | 3 min |
+    | Z-13 | Wersja 1.0 w stanie „Prepare for Submission” istnieje (pasek boczny → wersja iOS); numer wersji = 1.0 | właściciel | <https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information/> („Version Number”); dla późniejszych wersji: <https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version/> | 2 min |
+    | Z-14 | **Metadane przez workflow**: GitHub → Actions → „ASC metadane sklepu” → tryb `podglad`, potem `zapis` → „Review deployments → release → Approve” | automat + właściciel (zatwierdzenie) | procedura: `docs/15`, „Wgranie opisów i nazw do App Store Connect”; limity pól: <https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information/> (opis 4000 znaków, tekst promocyjny 170, słowa kluczowe 100 bajtów) | 5 min |
+    | Z-15 | Ręcznie w polach, których workflow nie wypełnia: **Copyright** („2026 …”, imię i nazwisko sprzedawcy; nie wpisujemy do repo), Marketing URL (opcjonalny) | właściciel | to samo (wiersz „Copyright”: „This property is required”) | 2 min |
+    | Z-16 | **Zrzuty ekranu** — wgranie do każdej lokalizacji (iPhone + Apple Watch), po akceptacji zestawu (pkt 5; warunki i kroki koordynatora: pkt 5 ppkt 6 — EN zaakceptowane, przekłady zrecenzowane, decyzja o podpisie pierwszego ekranu) | automat: `asc-zrzuty.yml` (dry-run, potem apply za `release`); właściciel zatwierdza | <https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/> | 5 min (zatwierdzenie `release`); ręcznie tylko zamiana zrzutów w lokalizacji, która już je ma |
+    | Z-17 | **Prywatność aplikacji**: „No, we do not collect data from this app” → Publish (uzasadnienie i ryzyko: pkt 3) | właściciel (wpisane 14.10.2026; zweryfikować, że opublikowane) | <https://developer.apple.com/help/app-store-connect/manage-app-information/manage-app-privacy/> | 3 min |
+    | Z-18 | **Adres polityki prywatności** i adres wsparcia (z `store/app-store-urls.json`); strony muszą być opublikowane w wersji zgodnej z 1.0 | właściciel + agent | ta sama strona co Z-17 („Entering privacy policy information”) oraz Support URL w platform-version-information | 3 min; agent sprawdza treść `site/privacy.html` (test `audit-m1-013`) |
+    | Z-19 | **Ocena wieku**: kwestionariusz (pkt 4), wynik oczekiwany 9+, „Age Categories and Override” = Not Applicable | właściciel | <https://developer.apple.com/help/app-store-connect/manage-app-information/set-an-app-age-rating/> | 5 min |
+    | Z-20 | Kategoria główna Health & Fitness; brak kategorii dodatkowej (`docs/45-widocznosc`) | właściciel (wpisane) | App Information; pola wymagane: <https://developer.apple.com/help/app-store-connect/reference/app-information/required-localizable-and-editable-properties/> | 1 min |
+    | Z-21 | **Cena aplikacji: darmowa**; dostępność (kraje) | właściciel | <https://developer.apple.com/help/app-store-connect/manage-app-pricing/set-a-price/> (cena przed zgłoszeniem) oraz <https://developer.apple.com/help/app-store-connect/manage-your-apps-availability/manage-availability-for-your-app-on-the-app-store/> | 5 min |
+    | Z-22 | **Regulated Medical Device**: „Declare Regulated Medical Device” → **No** (aplikacja nie jest wyrobem medycznym; Apple: jeśli aplikacja „doesn’t provide any health or medical features, or access health data to support non-health features, you should select No” — nasza aplikacja korzysta ze Zdrowia, ale nie diagnozuje i nie leczy; patrz uwaga niżej) | właściciel (Account Holder lub Admin) | <https://developer.apple.com/help/app-store-connect/manage-app-information/declare-regulated-medical-device-status/> | 3 min |
+    | Z-23 | Status tradera (DSA) — zweryfikowany przez Apple 20.10.2026 (docs/18); sprawdzić, że stan nadal „zweryfikowany” | właściciel | <https://developer.apple.com/help/app-store-connect/manage-compliance-information/manage-european-union-digital-services-act-trader-requirements/> | 2 min |
+    | Z-24 | **Zakupy**: dla każdego z trzech produktów komplet (lokalizacje 33 języków — workflow `asc-iap-localizations.yml` tryb `apply`, zrzut ekranu do przeglądu, notatka subskrypcji z `store/review-notes.md`); produkty w stanie gotowym do zgłoszenia | automat + właściciel | <https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-in-app-purchase/> i <https://developer.apple.com/help/app-store-connect/reference/app-information/required-localizable-and-editable-properties/> (sekcje In-App Purchase / Auto-renewable subscription information) | 10 min |
+    | Z-25 | **App Review Information**: kontakt (imię, telefon w formacie międzynarodowym, e-mail — tylko w App Store Connect), Sign-in required **wyłączone**, Notes = wersja EN (pkt 2, limit 4000 bajtów) | właściciel wkleja, agent przygotowuje tekst | <https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information/> (sekcja „App Review information”) | 5 min |
+    | Z-25b | **Bramka wydania (agent)**: `npm run check:release` = kod 0 na commicie kandydata — wyjątek anonimizacji pusty (R-015) i rejestr ryzyk docs/40 bez otwartych pozycji (każda zamknięta z dowodem, zaakceptowana, odroczona decyzją właściciela z datą albo „sprawdzenie po wydaniu”; M1-audytor-generalny-012); kod 1 = zgłoszenia nie robić | agent | `scripts/ci/blokada-wydania.mjs` | 1 min |
+    | Z-25a | **Wygaszenie starszych buildów 1.0 w TestFlight** (M1-audytor-generalny-008): TestFlight → iOS → build 1031 i 1032 (oraz każdy inny 1.0 poza kandydatem) → „Expire Build”; wtedy w Z-26 nie da się wybrać złego buildu | właściciel | <https://developer.apple.com/help/app-store-connect/test-a-beta-version/manage-builds/> | 2 min |
+    | Z-26 | **Build do wersji** — Kandydat: build — · SHA — (przed zgłoszeniem agent wpisuje numer z tagu `v1.0.0-bNNNN` na SHA zatwierdzonym w reaudycie M1 i ten sam wiersz w docs/09; test `tests/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts`): pasek boczny → wersja → sekcja Build → „+” → wybór buildu **o tym numerze** z TestFlight → Done → Save; jeśli „Missing Compliance”, odpowiedzi eksportowe (w aplikacji `ITSAppUsesNonExemptEncryption = false`, pytanie nie powinno się pojawić) | właściciel | <https://developer.apple.com/help/app-store-connect/manage-builds/choose-a-build-to-submit/> | 2 min |
+    | Z-27 | **Opcja wydania: ręcznie** („Manual” — po akceptacji status „Pending Developer Release”; D-5 A) | właściciel | <https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information/> (wiersz „Version Release Settings”) | 1 min |
+    | Z-28 | **Zakupy w tym samym zgłoszeniu co wersja**: pierwsza subskrypcja i pierwszy zakup jednorazowy muszą iść z nową wersją aplikacji; subskrypcje razem z grupą | właściciel | <https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-in-app-purchase/> („must be submitted with a new app version”) | w Z-29 |
+    | Z-29 | **„Add for Review” → wybór: nowe zgłoszenie → dodanie produktów → „Submit for Review”** | właściciel | <https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app/> | 10 min |·
+    Uwagi do kroków:
+    - **Z-22:** dokumentacja Apple mówi, że deklarację składają aplikacje w kategorii Health & Fitness lub Medical albo z odpowiedzią „frequent” w polu Medical or Treatment Information; zdanie o „No” dotyczy aplikacji bez funkcji zdrowotnych albo korzystających ze zdrowia dla funkcji niezdrowotnych.
+      Nasza aplikacja ma funkcje treningowe (kategoria Health & Fitness) i nie rości sobie diagnozowania ani leczenia (odsyła do lekarza; 1.4.1 dotyczy aplikacji diagnostycznych); wybór **No** jest więc właściwy,
+      ale to **deklaracja prawna właściciela** — jeśli chcesz, agent zbierze przed klikiem kryteria z tej strony (certyfikaty, rejestracje) i potwierdzi, że żadne nie zachodzi. **[Do akceptacji właściciela]**
+    - **Z-25 (kontakt recenzenta):** Apple wymaga imienia, e-maila i telefonu; nie wpisujemy ich do repozytorium publicznego (CLAUDE.md).
+    - **B7 (zegarek a zakupy):** Apple: „In-App Purchases and subscriptions aren't supported on Apple Watch. To submit an Apple Watch app version, remove all in-app purchases and subscriptions from the submission.” Nasz zegarek jest częścią aplikacji iOS
+      (jedna wersja iOS ze zgłoszonym zegarkiem), więc spodziewamy się, że zakupy w zgłoszeniu wersji iOS są poprawne — **[OTWARTE]**: dokumentacja nie rozstrzyga wprost przypadku aplikacji towarzyszącej; rozstrzygnie zachowanie Z-29 (komunikat błędu przy dodawaniu).
+      Jeśli ASC zgłosi konflikt, plan awaryjny: zgłosić wersję iOS (zegarek jako część paczki) tak, jak w opisie powyżej, a przy odrzuceniu — pytanie w Resolution Center; nie zmieniamy architektury zegarka na zgadywanie. Wpis do rejestru ryzyk — pkt 7.·
+    ### Faza C — po zgłoszeniu·
+    | # | Krok | Kto | Uwagi |
+    |---|---|---|---|
+    | Z-30 | Recenzja Apple; odpowiedzi w sekcji App Review (Resolution Center) | Apple; agent przygotowuje odpowiedź, właściciel wysyła | czas recenzji **[OTWARTE]** (docs/41 F2 — brak źródła); status zgłoszenia: <https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/overview-of-submitting-for-review/> |
+    | Z-31 | Po akceptacji: ten sam build z TestFlight na telefonie, lista docs/39 (ok. 15–20 min), potem **„Release this version”** w dniu, w którym gotowe są wpisy w społecznościach (docs/42 pkt 2) | właściciel | wada → wiadomość do agenta z numerem punktu; „Release” czeka |
+    | Z-32 | Po wydaniu: sprawdzenie, że aplikacja instaluje się z App Store; tag `v1.0.0-b<numer>` założony przez właściciela w GitHubie (sesja nie wypycha tagów); wiersz „Wydanie” w docs/09 i wpis w docs/18; przeniesienie do Apps4Brew (D7, `docs/46`) | właściciel + agent | tag w tym samym commicie co wiersz dziennika wydań |
+    | Z-33 | Etykiety dostępności (opcjonalne, dobrowolne na dziś) — dopiero po wydaniu | właściciel | <https://developer.apple.com/help/app-store-connect/manage-app-accessibility/manage-accessibility-nutrition-labels/> („You can only publish support for devices that have a live version on the App Store.”); lista funkcji i odpowiedzi — osobne zadanie agenta po audycie VoiceOver/Larger Text (nie zgadujemy) |
+    | Z-36 | Po wydaniu, pierwszy dzień: ekran zakupu w wersji z App Store (polskie konto, bez piaskownicy) pokazuje 4,99 zł / 19,99 zł / 59,99 zł, jak arkusz Apple — zamyka ryzyko R-WAL (docs/40, `docs/waluta-ekranu-zakupu-1031.md`) | właściciel (telefon, 2 min) | USD przy sklepie PL w produkcji = WYSOKIE |
+    | Z-34 | Pierwsza aktualizacja (1.0.1): wydanie stopniowe 7 dni | właściciel | <https://developer.apple.com/help/app-store-connect/update-your-app/release-a-version-update-in-phases/> (docs/42 pkt 3) |
+    | Z-37 | **Test pierwszego użycia z 3–5 osobami bez instrukcji** (03-zakres-008, DEC-07 b 27.10.2026; część B — część A, przejście poznawcze agenta, zrobiona przed 1.0): nowa instalacja, 5 zadań pętli z kartki, nagranie ekranu u właściciela (nie w repo); protokół i miejsce na wynik: `docs/design/test-pierwszego-uzycia.md` | właściciel (ok. 1 h łącznie); agent opracowuje wynik | Z-32 | ok. 1 h właściciela | przed punktem kontrolnym Z-35; porażki → znaleziska SP dla roli 04; pytania otwarte z części A: nazwa zakładki „Plan” dla historii, wybór ćwiczenia w Postępach pod wykresem |
+    | Z-35 | Punkt kontrolny 8 tygodni po premierze (próg pobrań/płacących w `docs/monetyzacja.md`, „Bramka W0”) | agent przygotowuje dane, właściciel decyduje | ten sam termin co decyzja o Androidzie (DEC-26) |·
+    ### Szacunek czasu·
+    - **Agent:** Z-02 1–2 h, Z-03 2–4 h, Z-05 do 1 h, finalizacja notatek recenzenta i opisu z testami ok. 1,5 h, skrypt wgrywania zrzutów (jeśli D2 = skrypt) 2–3 h, przegląd każdego obrazu zrzutów ok. 1 h. Razem ok. 9–13 h pracy agenta, z równoległością krócej.
+    - **Czekanie:** CI (verify ok. 25 min, pełny katalog E2E ok. 1,5 h, build TestFlight ok. 1,5 h, zrzuty 35 języków ok. 2 h zegarowo), kolejka maszyn macOS u GitHuba (ponawiamy przebiegi bez maszyny), **przegląd Apple (czas nieznany)**.
+    - **Właściciel:** telefon po buildzie 45–75 min (lista + zakupy), App Store Connect łącznie ok. 1–1,5 h w kilku podejściach, decyzje D1–D7 ok. 30 min.·
+    ## 2. Notatki dla App Review (EN) — szkic do pola Notes·
+    Źródła: pole Notes „can contain up to 4000 bytes. You can write notes in any language.” (platform-version-information, odczyt 25.10.2026); wytyczna 2.1(a): wersja ma być kompletna, z działającymi adresami i bez tekstów zastępczych, a konto demo podaje się tylko
+    dla aplikacji z logowaniem; 2.1(b): zakupy mają być „complete, up-to-date, visible to the reviewer and functional”, a nieosiągalne pozycje trzeba wyjaśnić w notatkach (<https://developer.apple.com/app-store/review/guidelines/>, odczyt 25.10.2026).
+    Podstawą jest `store/review-notes.md` (wersja 23.10.2026); poniżej wersja na 1.0. Ścieżki ekranów **potwierdzić na buildzie 1.0** (po grafikach i monetyzacji — agent, krok finalizacji); dopiero wtedy tekst trafia do `store/review-notes.md` razem z poprawieniem
+    testu `tests/store-review-notes.test.ts` (zdanie o wersjach 0.11–0.20 przestaje pasować do pierwszego wydania).·
+    Co się zmieniło względem wersji z 23.10.2026:
+    - **Limit 5 dni nie do pokazania w czasie recenzji:** dzień treningowy to trening na żywo trwający ponad 7 minut (`MIN_LIVE_MINUTES_FOR_DAY` w `lib/access.ts`; zmiana z 23.10.2026), więc recenzent nie dojdzie do blokady w krótkiej sesji. Notatka mówi o tym wprost i wskazuje drogę do ekranu zakupu z Ustawień
+      (żadnej ukrytej funkcji do jego wywołania nie dodajemy — wytyczna 2.5.19 zabrania ukrytych funkcji).
+    - Dodany akapit o imporcie i eksporcie CSV (ścieżka z tekstów aplikacji: Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”); recenzent nie ma pliku, więc podajemy sposób: eksport, potem import tego samego pliku.
+    - Usunięte zdanie „od wersji 0.11 do 0.20”; w 1.0 stała wartość subskrypcji (3.1.2(a)) opiera się na regularnych aktualizacjach i alternatywie jednorazowej. Czy dodać konkretne zapowiedzi — decyzja produktowa, nie zgadujemy.
+    - **Bez twierdzenia „Apple testuje zakupy w piaskownicy”:** w przeczytanej dokumentacji nie ma takiego zdania dla przeglądu (jest dla TestFlight), więc go nie wpisujemy.
+    - Okno „Uczciwe zasady” (po pierwszym treningu na żywo) i grafiki ćwiczeń: **do dopisania po scaleniu** — ścieżki z kodu gałęzi, nie z pamięci.·
+    ```text
+    Thank you for reviewing Trening.·
+    NO ACCOUNT, NO SERVER
+    - The app has no sign-in and no backend. Everything is stored on the device; the app makes no network requests of its own. No demo account is needed (Sign-in required is off).
+    - To see the app with data quickly: on the Workout tab tap \"Other workout\", add an exercise and tick a set; or use \"Log a past workout\" to add a session in the past.·
+    IN-APP PURCHASES (one subscription group \"Full version\": monthly and yearly auto-renewable subscriptions plus a one-time lifetime unlock; no introductory offers or free trials)
+    - Where to find them: More > Settings, section \"Subscription\" > \"See Pro plans\" (after a purchase the row reads \"Your plan: monthly\", \"Your plan: yearly\" or \"Your plan: lifetime\"). The purchase screen opens from there at any time, and also when a workout is started after the free limit is used. It shows the price and period from the App Store, \"Restore purchases\", \"Redeem code\", and links to the Privacy Policy and the Terms of Use (Apple's standard EULA).
+    - Free tier: the whole app is free for up to 5 training days per calendar month. A training day is a day with at least one finished live workout longer than 7 minutes (several workouts on the same day count as one day). Because of this rule the limit cannot be reached within a short review session; the purchase screen is therefore reachable from Settings as described above. History, backup, export and logging past workouts always work, with or without a purchase.
+    - Family Sharing is enabled for all three products.
+    - Ongoing value (Guideline 3.1.2(a)): the app is actively developed and updated regularly, and every new feature is included in the subscription. Users who prefer a single payment can choose the one-time lifetime unlock instead.·
+    IMPORT AND EXPORT
+    - More > Backup: \"Export history to CSV\" and \"Import history from a CSV file\". Import shows a preview before anything is saved and never removes existing data. To try it: export your history to CSV first, then import the same file.·
+    APPLE HEALTH (optional, off by default)
+    - More > Settings > \"Save finished workouts to Apple Health\": after the permission sheet, each finished workout is written to Health.
+    - More > Settings > \"Show data from Apple Health\": read-only (steps, workouts, heart rate, active energy), shown in the Plan day panel and in session details. Read data is never stored by the app or sent anywhere.
+    - The simulator has no Health data, so the read view is empty there.·
+    APPLE WATCH (companion app, optional)
+    - The watch app shows the current workout started on the iPhone: exercise, set, weight and reps, and the rest countdown with a haptic at the end. The iPhone app is fully usable without a watch.
+    - To test: an iPhone paired with an Apple Watch, start a workout on the iPhone and open Trening on the watch. Without a workout on the phone the watch shows \"Start a workout on your phone\".·
+    VOICE ANNOUNCEMENTS (optional, off by default)
+    - More > Settings > \"Voice announcements\". At the start of a rest the app announces the next exercise using on-device iOS speech synthesis.·
+    REST TIMER
+    - The rest countdown also appears on the Lock Screen as a Live Activity. The end-of-rest notification is a local, time-sensitive notification. The app does not use push notifications.·
+    CONTACT
+    - Support: support@apps4brew.com (also \"Write to us\" in More > About).
+    ```·
+    Rozmiar: 3280 bajtów (limit 4000); po dopisaniu akapitów o grafikach i oknie „Uczciwe zasady” zostaje ok. 700 bajtów zapasu.
+    Warunki wklejenia (z `store/review-notes.md`, bez zmian): skrzynka support@apps4brew.com działa (docs/41 E4 — DSA zweryfikowane 20.10.2026, **działanie skrzynki sprawdzić**), brak ofert wprowadzających w obu subskrypcjach (kontrola ASC, Z-10).
+    **Pole załącznika** do notatek (zrzut ekranu lub nagranie ekranu zakupu): **[OTWARTE]** — przeczytana strona platform-version-information go nie opisuje; sprawdzić w interfejsie przy Z-25. Nie zakładamy, że jest.·
+    ## 3. App Privacy — „Data Not Collected”?·
+    **Wniosek: tak, odpowiedź „Data Not Collected” (w interfejsie: „No, we do not collect data from this app”) jest zgodna z kodem na `main` 928d0ff i z definicją Apple.** Ryzyko pozostaje w jednym miejscu (wiadomość do wsparcia) — opis niżej.·
+    **Definicja Apple** (<https://developer.apple.com/app-store/app-privacy-details/>, odczyt 25.10.2026): „‘Collect’ refers to transmitting data off the device in a way that allows you and/or your third-party partners to access it for a period longer than what is necessary to service the transmitted request in real time.”;
+    „Data that is processed only on device is not ‘collected’ and does not need to be disclosed in your answers.”; „You are not responsible for disclosing data collected by Apple.”·
+    **Sprawdzenie w kodzie (25.10.2026, `main` 928d0ff):**·
+    | Obszar | Co sprawdzono | Wynik |
+    |---|---|---|
+    | Połączenia sieciowe | wyszukanie `fetch(`, `XMLHttpRequest`, `WebSocket`, `axios` w `lib/`, `app/`, `components/`, `modules/`; `URLSession` i widoków WWW w kodzie Swift (`targets/`, `modules/`) | **brak** |
+    | Analityka, reklamy, awarie, atrybucja | lista `dependencies` w `package.json` (30 pakietów: Expo, React Native, HealthKit, `expo-iap`, bez SDK analityki, reklam, raportów awarii ani atrybucji) | **brak** |
+    | Powiadomienia | tylko lokalne; uprawnienie `aps-environment` jest usuwane wtyczką `plugins/withoutPushEntitlement.js`; Live Activity prosi o `pushType: nil` (`modules/rest-activity`) | brak push, brak tokenów |
+    | Zdrowie (HealthKit) | odczyt i zapis wyłącznie na urządzeniu; opis uprawnienia w `app.json` mówi, że dane nie są wysyłane ani zapisywane w kopii; `docs/29` | lokalnie |
+    | Zegarek | WatchConnectivity: telefon ↔ zegarek na tym samym koncie Apple, bez serwera | lokalnie |
+    | Głos | syntezator mowy iOS na urządzeniu (`modules/voice-cue`) | lokalnie |
+    | Zakupy | `expo-iap` (StoreKit): dane zakupu przetwarza Apple | „data collected by Apple” — nie deklarujemy |
+    | Linki zewnętrzne | `Linking.openURL`: poczta (`lib/support.ts`), polityka i warunki na ekranie zakupu, strony źródeł — otwierają Safari lub Pocztę, aplikacja niczego nie przesyła | brak transferu przez aplikację |
+    | Manifest prywatności | `app.json` → `ios.privacyManifests`: `NSPrivacyTracking = false`, brak domen śledzących, `NSPrivacyCollectedDataTypes = []`, 4 kategorie API z powodami (test `tests/privacy-manifest.test.ts`) | zgodny z odpowiedzią |
+    | Kopie zapasowe i eksport | pliki JSON/CSV w Plikach na telefonie, udostępnianie arkuszem systemowym wybranym przez użytkownika; aplikacja nie używa interfejsów iCloud (wyszukanie `iCloud`, `CloudKit` w kodzie: brak poza tekstami podpowiedzi) | brak transferu przez aplikację |·
+    **Jedyne miejsce ryzyka — „Napisz do nas” / „Poproś o nową funkcję”** (`lib/support.ts`): otwiera Pocztę z gotową wiadomością do wsparcia i stopką techniczną (wersja z numerem buildu, system, język), którą użytkownik widzi i może edytować przed wysłaniem.
+    Decyzja właściciela STOP 2, Q9 A (21.10.2026, `docs/45-formalnosci-asc.md`): zostaje „Data Not Collected” — wiadomość pisze i wysyła użytkownik w swojej aplikacji Poczta, dobrowolnie i rzadko, poza główną funkcją. Apple wymienia wśród warunków wyjątku „Optional disclosure”,
+    że dane są podane „in your app’s interface”; tu wiadomość powstaje w Poczcie, więc recenzent mógłby uznać etykietę za niepełną. **Odwrócenie jest tanie:** Apple pisze, że odpowiedzi można zmienić w dowolnej chwili i nie trzeba do tego nowej wersji
+    („You may update your answers at any time, and you do not need to submit an app update in order to change your answers.”). Wariant zapasowy (B): Contact Info → Email Address oraz User Content → Customer Support, cel: App Functionality, bez śledzenia.
+    Rekomendacja: A teraz, B tylko jeśli Apple zakwestionuje. Do rejestru ryzyk — pkt 7 (R-N2).·
+    Dodatkowo (5.1.3 w wytycznych): „Apps must not write false or inaccurate data into HealthKit … and may not store personal health information in iCloud”. Aplikacja nie korzysta z iCloud, zapisuje do Zdrowia tylko zakończone treningi (`docs/28`);
+    kopia iCloud całego iPhone'a robiona przez system nie jest zapisem aplikacji. Polityka prywatności (`site/privacy.html`) opisuje zegarek, głos i wiadomości do wsparcia; wersja strony musi być ≥ wersji aplikacji (test `audit-m1-013`).·
+    ## 4. Ocena wieku (kwestionariusz Apple 2025/2026)·
+    Źródła (odczyt 25.10.2026): kwestionariusz i kroki — <https://developer.apple.com/help/app-store-connect/manage-app-information/set-an-app-age-rating/>; kategorie i wartości —
+    <https://developer.apple.com/help/app-store-connect/reference/app-information/age-ratings-values-and-definitions/>. Oczekiwane odpowiedzi w repo: `store/asc-odpowiedzi.json` (test `tests/store-asc-odpowiedzi.test.ts`). **Wynik: 9+** (jedyny powód: „Health and wellness topics”).·
+    | Pytanie Apple | Proponowana odpowiedź | Uzasadnienie (definicja Apple → aplikacja) |
+    |---|---|---|
+    | Parental Controls (kontrola rodzicielska w aplikacji) | nie | aplikacja nie ma narzędzi ograniczania treści ani zakupów |
+    | Age Assurance (potwierdzanie wieku) | nie | brak konta, brak weryfikacji wieku, brak Declared Age Range |
+    | Unrestricted Web Access | nie | brak przeglądarki w aplikacji; linki otwierają Safari (wartość 16+ dotyczy dostępu do dowolnych stron w aplikacji) |
+    | User-Generated Content | nie | treści użytkownika (szablony, notatki) zostają na urządzeniu, nie są rozpowszechniane |
+    | Messaging and Chat / Social Media | nie / nie | brak komunikacji między użytkownikami i kanału społecznościowego |
+    | Advertising | nie | brak reklam |
+    | Profanity or Crude Humor; Horror/Fear; Alcohol, Tobacco, Drugs | brak | — |
+    | Medical or Treatment Information | **brak** | definicja: „diagnoses or guidance around the management of medical conditions … medication guidance, emergency medical care, or treatment information”; aplikacja nie diagnozuje i nie leczy, przy bólu odsyła do lekarza; „frequent” oznaczałoby 16+ i deklarację wyrobu medycznego |
+    | **Health or Wellness Topics** | **tak** | definicja: „self-care or lifestyle recommendations … calorie tracking, dieting advice, or exercise recommendations” — plan treningowy, wskazówki techniki, generator planu; to jedyny punkt podnoszący ocenę do 9+ |
+    | Mature or Suggestive Themes; Sexual Content or Nudity; Graphic Sexual Content | brak | rysunki ćwiczeń są schematyczne (figury), bez nagości — **sprawdzić na gotowych grafikach** (Z-03) |
+    | Cartoon/Fantasy Violence; Realistic Violence; Guns or Other Weapons | brak | — |
+    | Gambling; Simulated Gambling; Loot Boxes | brak / brak / nie | zakupy to subskrypcje i dostęp na zawsze, bez losowych nagród |
+    | Contests | brak | definicja obejmuje zawody między użytkownikami (nagrody, rankingi, „achievement of personal goals” w rywalizacji); aplikacja ma własne rekordy i cele, ale nie ma rywalizacji z innymi — odpowiedź „brak” |
+    | Age Categories and Override | Not Applicable | brak kategorii Kids; własna umowa licencyjna z limitem wieku nie istnieje (standardowa licencja Apple) |·
+    Wynik regionalny liczy Apple (m.in. Brazylia, Korea): dla „Health and wellness topics” tabele regionalne dają Brazylia A10 i Korea „All” — do obejrzenia na stronie App Information po zapisaniu; zmiana nie wymaga naszej decyzji.
+    Klucze w `store/asc-odpowiedzi.json` odpowiadają nazwom kategorii ze strony Apple (kontrola rodzicielska, potwierdzanie wieku, dostęp do sieci, treści użytkowników, komunikatory, media społecznościowe, reklamy, tematy zdrowotne itd.); Apple zastrzega, że ocena może zależeć od wersji systemu (iOS 26 i nowsze vs starsze).·
+    ## 5. Zrzuty ekranu·
+    **Rozmiary** (Apple, <https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/>, odczyt 25.10.2026): co najmniej 1, najwyżej 10 zrzutów na rozmiar urządzenia i język, formaty .jpeg/.jpg/.png, **bez kanału alfa i przezroczystości**.·
+    | Urządzenie | Wymagane? | Rozmiary (pionowo) | Nasz zestaw |
+    |---|---|---|---|
+    | iPhone z Dynamic Island, „medium display” (iPhone 17 Pro, 17, 16 Pro…) | **tak** (min. 1 zrzut) | 1206 × 2622 lub 1179 × 2556 | 1206 × 2622 (iPhone 17 Pro) |
+    | iPhone z Dynamic Island, „large display” (17 Pro Max, Air, 16 Plus…) | zalecany: „If screenshots with the accepted sizes aren't provided, scaled screenshots … are used” | 1320 × 2868, 1290 × 2796 lub 1260 × 2736 | 1320 × 2868 (iPhone 17 Pro Max) |
+    | iPad | **nie** (`supportsTablet: false` w `app.json`) | — | — |
+    | Apple Watch | **tak** („Required for Apple Watch apps”; ten sam rozmiar we wszystkich lokalizacjach) | jeden z: 422 × 514, 410 × 502, 416 × 496 (Series 10/11/12), 396 × 484, 368 × 448, 312 × 390 | 416 × 496 (Series 10/11) |
+    | iPhone Duo | od kwietnia 2027 dla SDK iOS 27.1 | — | nie dotyczy 1.0 |·
+    Apple: „If your app’s user interface is consistent across multiple device sizes and localizations, you only need to provide screenshots for the highest required resolution. App Store Connect automatically scales them down.” — wystarczy więc komplet „large”;
+    komplet „medium” zostaje opcją, jeśli przegląd pokaże przeskalowanie gorsze od oryginału.·
+    **Ekrany (scenorys 9 ekranów z 14.10.2026, ciemny wygląd, podpisy w `store/screenshot-captions.json`):** `trening`, `postepy-cwiczenia`, `straznik`, `plan`, `dostosuj`, `progresja`, `historia`, `szablony`, `import`.·
+    **Po wejściu grafik ćwiczeń zrzuty mają je pokazywać.** Propozycja (decyzja D3):
+    - nowy ekran `cwiczenie` — karta ćwiczenia (`app/exercise/[id].tsx`, łącze `trening://exercise/<id>`) z rysunkiem ruchu i wskazówkami techniki, dla jednego flagowego ćwiczenia z danych pokazowych; miejsce: **drugi** (zaraz po ekranie treningu);
+    - ekran `trening` — jeśli grafika pojawi się w widoku bieżącego ćwiczenia, zrobić zrzut tak, aby było ją widać;
+    - podpisy nowego ekranu (PL / EN, do 40 znaków): „Rysunki ruchu i wskazówki techniki” (34) / „Movement drawings and technique cues” (36) — **propozycje**; nie obiecują rysunków „przy każdym” ćwiczeniu, dopóki nie potwierdzi tego liczba z kodu;
+    - razem 10 ekranów (maksimum na rozmiar), więc nowy zrzut zajmuje ostatnie wolne miejsce; wariant bez dokładania — zamiana najsłabszego z dziewięciu.
+    - Zrzut nie może zawierać nazw innych aplikacji, cen ani twierdzeń merytorycznych (wytyczne 2.3.7, `store/screenshot-captions.json`); obudowy urządzeń Apple są zakazane w repo (decyzja D-6).·
+    **Jak wygenerować automatycznie** (mechanizm już istnieje, docs/41 pkt C):
+    1. `store-screenshots.yml` (Run workflow): `jezyki: all` (35 języków), `wyglad: dark`; zadanie `dane` tworzy zmyślone dane, `build` buduje aplikację Release na symulator, `zrzuty` (6,9″ i 6,3″) otwiera ekrany łączem `trening://…`, a akcje (przewinięcie, stuknięcie, wybór pliku CSV) robi Maestro z `scripts/ci/maestro-sklep/`, `ramki` składa podpis i obwódkę (`scripts/ci/store-frames.sh`). Wynik: artefakty `sklep-zrzuty-ramki` (3 dni).
+    2. Zegarek: `watch-sim.yml`, wejście `jezyki_zrzutow: all` (416 × 496).
+    3. Zrzut ekranu zakupu do przeglądu (osobny obraz dla każdego produktu): `store-screenshots.yml` z wejściem `zrzut_zakupu_z_przebiegu` (aplikacja E2E ze sztucznym sklepem) albo zrzut z telefonu po zakupie w piaskownicy.
+    4. Przegląd **każdego** obrazu przez agenta (lekcja L-004 w `docs/40`: zrzuty do sklepu sprawdzamy na obrazach, nie na logach), potem akceptacja zestawu przez właściciela (15 min).
+    5. **Wgranie (D2, zrobione):** workflow `asc-zrzuty.yml` (Run workflow): wejścia `zrzuty_z_przebiegu` (numer przebiegu `store-screenshots.yml`, artefakt `sklep-zrzuty-ramki`), `rozmiar` (6.9 domyślnie), `zegarek_z_przebiegu` (opcjonalnie, `watch-sim.yml`, artefakt `zegarek-zrzuty`), `tryb` (`dry-run` domyślnie, `apply` za środowiskiem `release`).
+       Te same sekrety ASC co `asc-metadane.yml`, żadnych nowych. Wyjątek od L-001 (25.10.2026): po scaleniu pierwszy przebieg to `dry-run`, przy porażce cofnięcie. Angielski zestaw trafia do czterech lokalizacji angielskich (jeden obraz w bibliotece, cztery placementy).
+       **Lokalizacja bez własnych zrzutów (rozstrzygnięte 28.10.2026, M1-037 D):** Apple: „When you add a language to your app, screenshots and the properties for the new language default to those of the primary language, except for the description and keywords.” (<https://developer.apple.com/help/app-store-connect/manage-app-information/localize-app-information/>, odczyt 28.10.2026). Język podstawowy aplikacji to polski (docs/15), więc lokalizacja bez własnego zestawu pokaże **polskie** podpisy — dlatego zestaw dla każdej z 32 lokalizacji (33 z `store/app-store-names.json` bez `sl`, L-003).
+    6. **Podpisy we wszystkich językach (M1-037 D, DEC-07 b 27.10.2026):** `store/screenshot-captions.json` ma podpisy 9 ekranów dla 29 języków aplikacji ze sklepem (PL zaakceptowane 14.10.2026, EN zaakceptowane 28.10.2026 (decyzja 10a), 27 języków — przekład agenta 28.10.2026); strażnik `tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts` (komplet, ≤ 40 znaków, bez cen, znaki w czcionce ramek). **Warunki przed Z-16:** (a) ~~akceptacja EN przez właściciela~~ — zrobione 28.10.2026 (decyzja 10a); (b) recenzja 27 przekładów (rola `recenzent-lokalizacji`, poprawki — tłumacz) i status języka „zrecenzowane DD.MM.RRRR”; (c) ~~decyzja o podpisie pierwszego ekranu~~ — zrobione 28.10.2026 (decyzja 10a, opcja b: „Szybki zapis serii, także z zegarka”; przekład na 27 języków do recenzji). **Kroki koordynatora (macOS, ręcznie, jeden naraz):** `store-screenshots.yml` z `jezyki: all`, `wyglad: dark` (ok. 2 h zegarowo, artefakt `sklep-zrzuty-ramki` 3 dni) → `watch-sim.yml` z `jezyki_zrzutow: all` → przegląd każdego obrazu przez agenta (L-004; m.in. czy podpis mieści się w ramce w każdym języku) → akceptacja zestawu przez właściciela → `asc-zrzuty.yml` `dry-run` (tabela: każda z 32 lokalizacji „wgraj” dla iPhone’a i zegarka) → `apply` za środowiskiem `release`.·
+    Znane ograniczenia zrzutów (docs/41): porównanie miesiąca liczy dni 1–N bieżącego miesiąca (zrzut z początku miesiąca bywa słaby — robić po 10. dniu miesiąca); nazwy szablonów w innych językach niż PL są po angielsku (dane użytkownika).·
+    ## 6. Opis i słowa kluczowe·
+    **Stan w repo** (`store/app-store-metadata.json`, 33 lokalizacje; test `tests/store-metadata.test.ts` i `tests/audit-m1-045-store-description.test.ts` pilnują zgodności z kodem, liczby języków i braku nazw innych aplikacji):
+    podtytuł PL „Serie i przerwy. Bez konta”, EN „Workout tracker. No account.” (decyzja STOP 2 M5, 21.10.2026); słowa kluczowe w granicy 100 bajtów (limit Apple: „up to 100 bytes”, pola nie powielają nazwy aplikacji i nie zawierają nazw innych aplikacji);
+    tekst promocyjny z limitem 170 znaków; opis zawiera: szablony, widok „Skupiony”/„Lista”, timer przerw, Apple Watch, zapowiedzi głosowe, „Dostosuj do miejsca”, generator, odczyt i zapis Apple Health, kopię i eksport JSON/CSV, import CSV, 35 języków, model „darmowe do 5 dni treningowych w miesiącu” i przypis o espresso (bez kwot).·
+    **Nowe wyróżniki 1.0**, których opis jeszcze nie mówi (po zakończeniu prac w toku; korekta 26.10.2026 po audycie 1.0: bez odwołań do źródeł — decyzja „całkiem anonimowo” z 25.10.2026 — i bez rysunków dla pełnej biblioteki, które przechodzą do 1.1, wybór C z 26.10.2026):
+    1. rozszerzony import historii z plików CSV (rozpoznawanie układu pliku, podgląd przed zapisem, brak nadpisywania) oraz karta po imporcie;
+    2. okno „Uczciwe zasady” po pierwszym treningu na żywo (to funkcja aplikacji, w sklepie wystarczy zdanie o modelu, które już jest).
+    Opis ćwiczeń zostaje bez zmian („Biblioteka ćwiczeń z krótkimi wskazówkami techniki”); o rysunkach ruchu w opisie nie wspominamy, dopóki nie obejmą całej biblioteki (1.1).·
+    **Propozycja zmian (do decyzji D4; bez nazw innych aplikacji — wytyczna 2.3.7; liczby tylko z kodu, np. liczba ćwiczeń z `libraryCount` jako stała pilnowana testem, jak `LANGS.length`):**·
+    | Pole | PL | EN |
+    |---|---|---|
+    | Punkt „POSTĘPY / PROGRESS” | bez zmian (zob. wyżej) | bez zmian |
+    | Punkt „TWOJE DANE / YOUR DATA”, zamiast „Import z kopii i z plików CSV popularnych dzienników treningowych” | • Import z kopii i z plików CSV: aplikacja rozpoznaje układ pliku, pokazuje podgląd przed zapisem i niczego nie nadpisuje | • Import from a backup and from CSV files: the app recognises the file layout, shows a preview before saving and never overwrites anything |
+    | Tekst promocyjny (≤ 170 znaków; PL 123, EN 121) | Własne szablony, timer przerw i wskazówki techniki. Offline, bez konta i reklam. Za darmo do 5 dni treningowych w miesiącu. | Your own templates, a rest timer and technique cues. Offline, no account, no ads. Free for up to 5 training days a month. |
+    | Podtytuł | bez zmian (decyzja 21.10.2026) | bez zmian |
+    | Słowa kluczowe | bez zmian (rekomendacja): dobór oparty na badaniu `docs/45-widocznosc-w-sklepie.md`; nowe wyróżniki nie mają mierzalnego popytu na frazy, a pomiar zrobi punkt 8 tygodni po premierze | bez zmian |·
+    Uwagi: (a) zdania o rysunkach ruchu wolno wpisać dopiero, gdy obejmą całą bibliotekę (1.1); zdań o źródłach nie wpisujemy w ogóle (decyzja 25.10.2026); (b) tekst promocyjny można zmieniać bez nowej wersji (Apple: „without requiring an updated submission”) —
+    nadaje się więc do poprawek po premierze; (c) po zmianie opisu trzeba zaktualizować dokładne asercje w `tests/audit-m1-045-store-description.test.ts` i `tests/store-metadata.test.ts` oraz przetłumaczyć nowe zdania na 31 pozostałych lokalizacji (rola tłumacz, recenzent lokalizacji, słownik terminów) — ok. 1,5–2 h agenta;
+    (d) wpis do ASC: `asc-metadane.yml` tryb `podglad` → `zapis` (Z-14).·
+    ## 7. Otwarte ryzyka z docs/40 i co je zamyka·
+    Stan z `docs/40-lekcje.md` na `main` 928d0ff (25.10.2026). **Otwarte ryzyko blokuje wydanie** (zasada L-001, pkt 2); „odroczone decyzją właściciela z datą” jest dozwolone (docs/42 pkt 1).
+    Dowody poniżej sprawdziłem w dziennikach przebiegów GitHub Actions (odczyt 25.10.2026) i **proponuję** zamknięcie — samą zmianę wpisu w `docs/40` robi koordynator.·
+    | id | co | co zamyka | stan dowodów |
+    |---|---|---|---|
+    | R-004 | powiadomienia pilne w trybie skupienia (blokuje 1.0) | automat: strażnik uprawnień w `testflight.yml` (spełniony — build 1030, przebieg 39881352744); **telefon**: docs/47 Test C (profil skupienia bez powiadomień → koniec przerwy daje baner; Ustawienia iOS → Trening → Powiadomienia → „Powiadomienia pilne”) | **wymaga właściciela** (Z-08). Jeśli baner nadal nie przychodzi: decyzja z datą, że 1.0 wychodzi z tym zachowaniem (opis: wibracja i dźwięk działają, baner zależy od ustawień iOS), albo diagnoza dalsza |
+    | R-005 | strażnik pętli awarii a szybkie `stopApp` → `launchApp` | pakiet podstawowy E2E zielony po scaleniu partii 1 **i** brak ekranu awaryjnego w nocnym pełnym przebiegu | pakiet podstawowy zielony na `integracja-2026-10-25` (przebieg 40210326891; przebieg na `main` 928d0ff w chwili sprawdzenia jeszcze trwał); **nocne przebiegi pełne czerwone 3 noce** — nie wiadomo, czy któryś padł przez ekran awaryjny; sprawdzi agent w logach przy Z-06 |
+    | R-006 | testy Swift zegarka (`WatchStoreTests`) nieuruchamiane | zielony krok „Testy logiki zegarka (XCTest)” w `watch-sim.yml` | **spełnione**: `watch-sim.yml` 39380918348 (`audyt-m1`, 20.10.2026) i 39692269068 (redesign, 21.10.2026) zielone; `testflight.yml` 39881352744 (main, f2b0525) wykonał te same testy w kroku „Logika zegarka” (log: `testPersistenceKeepsQueueFromOlderShape` i `testPersistenceRoundTripKeepsCurrentShape` passed). Do zamknięcia wpisu; przed 1.0 powtórzyć na commicie wydania (Z-07 robi to samo) |
+    | R-008 | mapa źródeł JS w `xcodebuild archive` | krok „Mapa źródeł JS” zielony, artefakt `mapy-zrodel-b<N>`; po pierwszym wydaniu test symbolikacji | **spełnione w części (a)**: `testflight.yml` 39881352744 — krok „Mapa źródeł JS” zielony, artefakt `mapy-zrodel-b1030` wysłany. Część (b) „po pierwszym wydaniu” wykonuje się dopiero po Z-32 (mapa przy tagu, `npx metro-symbolicate` na celowym błędzie) — wpis do zamknięcia warunkowo albo rozbić na dwa |
+    | R-010 | treść krytyczna w 34 językach | decyzja 21.10.2026: zamyka **przegląd wykonany przez Claude** z listą sprawdzonych zdań; kolumna „drugi przegląd” w `docs/16` i pkt (2)–(3) wpisu | przegląd API z 22.10.2026 był przed przekładem 33 języków i nowymi wskazówkami z grafik, więc **trzeba go powtórzyć po przekładzie** (Z-02); fr „vous” i tr „siz” (pkt 2) potwierdza test zgodności z rejestrem `docs/16` |
+    | R-013 | ikona zegarka (częściowo spełnione) | wysyłka zielona (spełnione: build 1027, 1030); **ikona widoczna na zegarku** | **wymaga właściciela z zegarkiem** (Z-08; D-7: pożyczony zegarek) |
+    | R-014 | „Pogrubiony tekst” z krojem systemowym | telefon: Ustawienia → Dostępność → Wyświetlanie i rozmiar tekstu → Pogrubiony tekst; treść i przyciski grubsze | **wymaga właściciela** (Z-08, 2 min) |
+    | R-M5-1…5 | model M5 S1 | zamknięte lub zaakceptowane 22–23.10.2026 | bez akcji; R-M5-3 sprawdza ponownie Z-10 |·
+    **Proponowane nowe wpisy do rejestru** (zasada L-001, pkt 2: ryzyko „niepotwierdzone / rozstrzygnie zgłoszenie” ma warunek zamknięcia):·
+    | id (propozycja) | ryzyko | warunek zamknięcia |
+    |---|---|---|
+    | R-N1 | zakupy w zgłoszeniu wersji iOS z zegarkiem w paczce (zdanie Apple o zakupach i Apple Watch dotyczy zgłoszenia wersji zegarka) | Z-29: ASC przyjmuje zgłoszenie z trzema produktami bez błędu; jeśli nie — pytanie do Apple i decyzja właściciela |
+    | R-N2 | etykieta „Data Not Collected” a wiadomość do wsparcia z Poczty (pkt 3) | recenzja Apple nie kwestionuje etykiety; w razie zakwestionowania — wariant B bez nowej wersji |
+    | R-N3 | pełny katalog E2E czerwony w nocy (3 noce) przed bramką App Store | Z-06 zielony na commicie wydania |·
+    **Otwarte akcje z lekcji** (docs/40: „otwarte” przy akcjach, nie w rejestrze ryzyk — koordynator ma je przejrzeć przed wydaniem, CLAUDE.md): `day()` z `new Date()` w pozostałych testach (niska częstość), ciemny motyw w nocnym E2E rzeczywiście ciemny,
+    szybki przebieg scenariuszy 33 i 34 przy zmianie scenariusza lub etykiety, mechanizm „What to Test → scenariusz Maestro”, stałe identyfikatory zamiast tekstów w scenariuszach, reguła kolejki verify przy pracy równoległej. Żadna nie blokuje formalnie; część (ponawianie, tryb ścisły) jest zastąpiona decyzją z 21.10.2026 i wymaga oznaczenia jako nieaktualna.·
+    ## 8. Decyzje do podjęcia przez właściciela·
+    Każda z co najmniej dwiema opcjami; agent nie rozstrzygał żadnej z nich.·
+    | # | Decyzja | Opcje i kompromisy | Rekomendacja |
+    |---|---|---|---|
+    | D1 | Audyt przed zgłoszeniem (zakres po audycie M1 urósł: grafiki, monetyzacja, przekład) | A: audyt zmian od audytu M1 + stała lista (dane, migracje, prywatność), tylko KRYTYCZNE i WYSOKIE blokują, bez pętli — 2–4 h agenta; B: bez nowego audytu, polegamy na testach i E2E — szybciej, ale grafiki (treści z twierdzeniami o mięśniach, torze ruchu, błędach) i import CSV (dane użytkownika) nie miałyby niezależnego przeglądu | A |
+    | D2 (rozstrzygnięte, patrz wyżej) | Wgrywanie zrzutów do App Store Connect | A: ręcznie — bez nowego kodu, ale kilkaset plików (33 lokalizacje × zestaw iPhone + zegarek) i ryzyko pomyłek; B: skrypt + workflow `asc-zrzuty.yml` (podgląd / zapis za `release`) — 2–3 h agenta, nowy workflow zmieniający ASC, potrzebne zastosowanie wyjątku od L-001 z 25.10.2026 albo przebieg dowodowy przed scaleniem; C: ręcznie tylko PL i EN, reszta po premierze — najmniej pracy, ale lokalizacje bez zrzutów mogą nie przejść walidacji **[OTWARTE]** | B |
+    | D3 | Zestaw zrzutów po wejściu grafik | A: 10 ekranów — dodać `cwiczenie` jako drugi (maksimum Apple); B: zamienić najsłabszy z dziewięciu na `cwiczenie`; C: bez zmian (grafiki nie są widoczne w sklepie, tracimy wyróżnik z decyzji 25.10.2026) | A |
+    | D4 | Zakres zmian opisu i tekstu promocyjnego (pkt 6) | A: propozycja z tabeli (rysunki, źródła, import) po potwierdzeniu pokrycia w kodzie; B: tylko tekst promocyjny (zmienialny bez nowej wersji), opis bez zmian do 1.0.1; C: bez zmian — opis mówi „krótkie wskazówki”, nie sprzedaje najmocniejszego wyróżnika | A |
+    | D5 | Etykieta prywatności | A: „Data Not Collected” (decyzja 21.10.2026), wariant B zapasowy; B: od razu zadeklarować e-mail i wsparcie — bezpieczniej wobec definicji „collect”, ale etykieta mniej atrakcyjna i niezgodna z hasłem „bez zbierania danych” | A (odwracalne bez nowej wersji) |
+    | D6 | Deklaracja wyrobu medycznego (Z-22) | A: „No” po krótkim sprawdzeniu kryteriów przez agenta (pkt Z-22); B: najpierw konsultacja prawna — czas i koszt właściciela, brak przesłanek, że aplikacja jest wyrobem medycznym (nie diagnozuje, nie leczy, odsyła do lekarza) | A |
+    | D7 | Lokalizacje zrzutów | A: wszystkie 33 lokalizacje z nazwą (CI ok. 2 h zegarowo); B: PL i EN na start, reszta w 1.0.1 | A |·
+    ## 9. Przeczytane strony Apple (25.10.2026)·
+    - Screenshot specifications — <https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/>
+    - Platform version information (Notes, Keywords, Support URL, Copyright, Version Release Settings, What’s New) — <https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information/>
+    - Required, localizable, and editable properties — <https://developer.apple.com/help/app-store-connect/reference/app-information/required-localizable-and-editable-properties/>
+    - App privacy details — <https://developer.apple.com/app-store/app-privacy-details/>; Manage app privacy — <https://developer.apple.com/help/app-store-connect/manage-app-information/manage-app-privacy/>
+    - Set an app age rating; Age ratings values and definitions — adresy w pkt 4
+    - Declare regulated medical device status — <https://developer.apple.com/help/app-store-connect/manage-app-information/declare-regulated-medical-device-status/>
+    - Set a price — <https://developer.apple.com/help/app-store-connect/manage-app-pricing/set-a-price/>
+    - Submit an app — <https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app/>; Overview of submitting for review — <https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/overview-of-submitting-for-review/>
+    - Submit an In-App Purchase — <https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-in-app-purchase/>
+    - Choose a build to submit — <https://developer.apple.com/help/app-store-connect/manage-builds/choose-a-build-to-submit/>
+    - Testing subscriptions and In-App Purchases in TestFlight — adres w Fazie A; Overview of testing in sandbox — <https://developer.apple.com/help/app-store-connect/test-in-app-purchases/overview-of-testing-in-sandbox/>
+    - Release a version update in phases — <https://developer.apple.com/help/app-store-connect/update-your-app/release-a-version-update-in-phases/>
+    - Overview of Accessibility Nutrition Labels; Manage Accessibility Nutrition Labels — <https://developer.apple.com/help/app-store-connect/manage-app-accessibility/overview-of-accessibility-nutrition-labels/>, <https://developer.apple.com/help/app-store-connect/manage-app-accessibility/manage-accessibility-nutrition-labels/>
+    - App Review Guidelines (1.4.1, 2.1, 2.3.3, 2.3.7, 2.5.1, 3.1.1, 3.1.2, 5.1.3) — <https://developer.apple.com/app-store/review/guidelines/>·
+    Nieprzeczytane: pole **Content Rights** (nie znalazłem jego strony pomocy pod żadnym sprawdzonym adresem) i kategoria podatkowa aplikacji (strona istnieje: <https://developer.apple.com/help/app-store-connect/manage-app-information/set-a-tax-category/>, ale jej treści nie czytałem).
+    Odpowiedzi wpisuje właściciel w interfejsie; punkt wyjścia: aplikacja zawiera tylko własne teksty i grafiki, bez cudzych treści (`CLAUDE.md`, „Treści cudze”). Agent czyta obie strony przy Z-21 **[OTWARTE]**.
+    "
+
+      57 |   test('docs/48 Z-25a: adres „Stop testing a build” z cytatem, bez martwego manage-builds', () => {
+      58 |     const d = read('docs/48-zgloszenie-1-0.md');
+    > 59 |     expect(d).toContain('test-a-beta-version/stop-testing-a-build/'); expect(d).toContain('Click Expire Build.'); expect(d).not.toContain('test-a-beta-version/manage-builds/');
+         |               ^
+      60 |   });
+      61 |   test('CLAUDE.md: definicja tekstu dziedzinowego odsyła do scripts/claims.mjs (DOMAIN_WORDS_RE, DOMAIN_KEYS), które istnieją', () => {
+      62 |     const c = read('CLAUDE.md'); const k = read('scripts/claims.mjs');
+
+      at Object.toContain (tests/m1-047-otwarte-wskazniki.test.ts:59:15)
+
+  ● M1-047: dokumenty zgodne z kodem po naprawach (01-601, 01-602, 03-603, 06-601, 10-602) › CLAUDE.md: definicja tekstu dziedzinowego odsyła do scripts/claims.mjs (DOMAIN_WORDS_RE, DOMAIN_KEYS), które istnieją
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "DOMAIN_WORDS_RE"
+    Received string:    "# Trening — zasady dla agenta·
+    - Repozytorium jest PUBLICZNE (ADR-031). Nigdy nie commituj sekretów (klucze API, tokeny, certyfikaty, .p8/.p12, .env) ani danych
+      osobowych (UDID, e-mail). Przed commitem sprawdź `git diff --cached`. Logi i artefakty CI też są publiczne — nie wypisuj w nich identyfikatorów ani UDID.
+    - Narzędzia: 0 zł poza opłatą Apple. macOS w GitHub Actions jest darmowy tylko dlatego, że repo jest publiczne. Build na telefon i dla
+      testerów: `testflight.yml` (tylko narzędzia Apple; workflowy EAS usunięte 08.10.2026 — docs/18).
+    - Testy przed kodem. Każdy błąd z audytu dostaje test, który go odtwarza (`tests/regress.test.tsx`, plan w `docs/09-plan-testow.md`).
+    - Macierz testów (polecenie właściciela 06.10.2026): każdy ekran, element UI, komunikat, funkcja `lib/` i wartość wymiaru ma test;
+      `npm run check:matrix` (część verify) blokuje braki, `docs/19-macierz-testow.md` generuje `node scripts/test-matrix.mjs --write`.
+      Przy każdej zmianie: nowe zachowanie → test scenariuszowy/macierzowy, nie tylko wzmianka tekstu. Wyjątki tylko z powodem (`tests/matrix-exceptions.json`).
+    - Katalog przepływów użytkownika (właściciel, 14.10.2026): każdy realny przepływ (nowy, istniejący, po aktualizacji, po przywróceniu kopii) ma scenariusz Maestro
+      albo wyjątek z powodem w `tests/przeplywy.json`; nowy ekran lub przepływ bez scenariusza blokuje verify. E2E zastępuje ręczne testy właściciela; poza nimi tylko lista „tylko telefon”.
+    - Definicja ukończenia (zasada właściciela 06.10.2026): każda funkcjonalność przy wdrażaniu ma pełen zakres testów automatycznych —
+      wszystkie przypadki i wszystkie rodzaje z `docs/20-definicja-ukonczenia.md` (logika, ekran, scenariusz, macierz, niezmienniki, dane,
+      języki/wygląd, regresja, E2E Maestro). Rodzaj pominięty tylko z zapisanym powodem w docs/09.
+    - W trakcie pracy: `npm run test:fast` (tylko testy związane ze zmienionymi plikami, ~1 min). Przed wypchnięciem: pełne `npm run verify`
+      (typecheck, check:i18n, jest, `expo export --platform ios`, verify:native; ~12 min) — decyzja właściciela 11.10.2026, wariant B;
+      wyjątek: commit tylko z dokumentami: `npm run verify:docs` (właściciel 21.10.2026; 1–2 min, CI na PR i tak biegnie pełne). Nowe teksty w UI
+      przez `t()` i słownik `lib/i18n.en.ts`. Hak pre-push (`scripts/hooks/pre-push`, instalowany przez `npm ci`; lint, check:readme, check:matrix, ok. 35 s)
+      nie zastępuje verify; po wypchnięciu sprawdź wynik `tests.yml` i czekaj na zielony (L-009); obejście `git push --no-verify` tylko świadomie.
+    - Zasada projektowa (właściciel, 13.10.2026): akcje i elementy tego samego typu działają w całej aplikacji tak samo — sposób wywołania, miejsce, wygląd, etykieta, potwierdzenie, informacja zwrotna, VoiceOver; katalog wzorców: `docs/32-wzorce-interakcji.md`; pilnowane testami-strażnikami (`tests/interaction-guards.test.ts`; zamykanie okien — każde okno wysuwane z dołu/modalne ma widoczny, spójny przycisk „Anuluj” po lewej w nagłówku, gest w dół tylko dodatkowo: `tests/close-button-guard.test.tsx`). Nowa funkcja najpierw sprawdza wzorzec w docs/32.
+    - Liczby (progi, limity, czasy) w jednym miejscu; dokumenty generowane z kodu, nie przepisywane ręcznie (wzór: `gen.mjs --check`).
+    - Dokumentacja w `docs/` (po polsku): stan prac i decyzje właściciela zapisuj tam, z datą. Specyfikacja w toku: E2 —
+      `docs/14-e2-specyfikacja.md` (decyzje: docs/13 A5 i docs/14 pkt 9). Nie zgaduj liczb nieznanego pochodzenia — oznacz jako otwarte.
+      Każdy wpis decyzji w docs/18 ma pole `[wdrożenie: kod | bez kodu — powód | zastąpione DD.MM.RRRR | otwarte → ID | odłożone → wersja]`, a „kod” —
+      `[test: ścieżka]` (test zawiera datę decyzji) albo `[bez testu: powód]`; decyzja odwracająca stan pilnowany testem zmienia ten test w tym samym
+      commicie; `npm run check:decyzje` w verify i verify:docs (DEC-02 a, 27.10.2026; powód: decyzja z 23.10 utknęła bez sygnału, lekcja w docs/40).
+    - Backlog bez priorytetu (decyzja właściciela 08.10.2026, lista w `docs/21`, sekcja „Backlog bez priorytetu”): na pytanie „co dalej” wspominaj
+      o nim tylko zbiorczo jednym zdaniem („mamy też kilka rzeczy w backlogu bez priorytetu — chcesz je przejrzeć?”), bez wymieniania pozycji z nazwy,
+      dopóki właściciel nie poprosi.
+    - Role agentów (decyzja właściciela 11.10.2026, wariant B): `.claude/agents/` — analityk-produktu, badacz-merytoryczny (opus), programista,
+      tlumacz, tester-e2e, wydawca (sonnet), audytor (opus), marketing (opus, 13.10.2026 — dotarcie do kręgów zainteresowanych; niczego nie publikuje sam). recenzent-lokalizacji (opus, 25.10.2026): nowe i zmienione teksty UI oraz wskazówki techniki po tłumaczeniu — zwraca listę poprawek, nie poprawia sam. Teksty naturalne (właściciel, 25.10.2026): opieramy się na źródłach, ale nie pouczamy jak profesorowie — kryterium: czy tak powiedziałby trener albo kolega na siłowni w tym języku. Słownik terminów `docs/lokalizacja/slownik-terminow.json` obowiązuje tłumacza i przekład przez API (strażnik `tests/slownik-terminow.test.ts`). Zlecaj zadanie właściwej roli; źródła wzorców: `docs/research/prompty-standardy-2026-10.md`.
+    - Gemini (subskrypcja właściciela, 11.10.2026): zadania, które pasują do Gemini (research rynku i opinii, przegląd tłumaczeń, wyszukanie adresów na start),
+      zgłaszaj właścicielowi z gotowym promptem w pliku. Źródła i cytaty merytoryczne z Gemini zawsze sprawdza badacz (wnioski z prób: docs/18, 11.10.2026).
+    - **Lekcje po błędach (zasada właściciela 14.10.2026, wszystkie projekty):** gdy coś poszło nie tak (błąd dotarł do właściciela lub testera,
+      nieudane wydanie albo przebieg CI z naszej winy, błędna informacja podana właścicielowi), od razu, w tej samej sesji, dopisz wpis do
+      `docs/40-lekcje.md`: co się stało, przyczyna źródłowa (dlaczego nie złapaliśmy tego wcześniej — dopytuj „dlaczego” aż do mechanizmu),
+      akcje zapobiegawcze i ich stan oraz **ocena zakresu**: *lokalna* (naprawa dotyczy tylko tego przypadku) albo *systemowa* (ta sama luka
+      może wrócić w innej postaci → propozycja zmiany modelu pracy dla właściciela, ≥ 2 opcje z rekomendacją). Akcja ma być
+      mechanizmem (test, strażnik w CI, krok listy kontrolnej, reguła w CLAUDE.md), nie postanowieniem „uważać”. Właściciel dostaje skrót lekcji
+      w odpowiedzi. Przed wydaniem przejrzyj otwarte akcje z `docs/40`. Na gałęzi nowa lekcja ma nagłówek `## L-NNN` (numer nadaje koordynator przy scalaniu do main:
+      `node scripts/numeruj-lekcje.mjs`; właściciel 21.10.2026, L-016).
+    - **Uwagi wizualne dla właściciela (lekcja M3 o makiecie A2 w docs/40, decyzja właściciela 21.10.2026):** różnicę między zrzutami lub wariantami zgłaszasz właścicielowi dopiero po sprawdzeniu plików źródłowych (`cmp`/różnica pikseli albo kadr w pełnej rozdzielczości) i z podaniem ścieżki; podgląd zmniejszonego arkusza nie jest dowodem.
+    - **Aktualne zasady przed planem (właściciel 26.10.2026, lekcja „nieaktualne zasady w długiej sesji” w docs/40):** przed podaniem właścicielowi planu, terminu albo bramki wydania przeczytaj aktualne CLAUDE.md i `docs/48` z gałęzi integracji — nie z pamięci sesji (długie sesje działają na kopii z chwili startu). Hak `SessionStart` (`compact`) w `.claude/settings.json` wczytuje CLAUDE.md po każdym streszczeniu kontekstu.
+    - **Model pracy po lekcji L-001 (decyzja właściciela 14.10.2026, wszystkie projekty):**
+      1. *Przebieg dowodowy CI:* zmiana budowania, podpisu lub wysyłki (workflowy, skrypty CI) trafia do scalenia dopiero po prawdziwym przebiegu,
+         który pokazuje wynik na gotowym produkcie (np. uprawnienia w wyeksportowanym pakiecie); testy samego pliku workflowu nie wystarczą.
+      2. *Rejestr ryzyk z blokadą:* każde ryzyko „niepotwierdzone / rozstrzygnie build” trafia do sekcji „Rejestr ryzyk” w `docs/40-lekcje.md`
+         z warunkiem zamknięcia (automatyczne sprawdzenie albo konkretny krok dla właściciela). Otwarte ryzyko blokuje wydanie.
+      3. *Telefon zaraz po buildzie:* po każdym TestFlight pierwsze zadanie właściciela to krótka lista kontrolna (ok. 5 min, krok po kroku)
+         z punktami, których E2E na symulatorze nie sprawdzi (Zdrowie, ekran blokady, zakup, zegarek) — od razu, nie odkładane.
+    - **Podział pracy na agentów (właściciel, 20.10.2026, wszystkie projekty):** zadanie dziel na niezależne kawałki według obszaru plików
+      (ok. 3–8 powiązanych zadań albo min. ok. 1 h pracy na agenta) i zlecaj je równolegle tylu agentom, ilu nie walczy o te same pliki
+      (każdy we własnym worktree i na własnej gałęzi). Zadanie niepodzielne albo kilka zadań tworzących jedną logikę/proces — jeden agent.
+      Pliki generowane (macierz, README) i pełne verify — raz, po scaleniu gałęzi. Odrzucone: „jak najmniejsze zadania” (narzut startu
+      agenta i scalania przewyższa zysk przy drobnych zadaniach). Cel: krótszy kontekst każdego agenta = mniej tokenów i szybciej.
+    - Decyzje produktowe należą do właściciela: przedstaw co najmniej dwie opcje z kompromisami i rekomendację.
+    - Szacowanie czasu (właściciel, 09.10.2026): estymacje zakładają, że zadanie wykonuje agent (z pracą równoległą), nie człowiek — podawaj
+      czas pracy agenta. Osobno: na co realnie się czeka (CI, E2E, przegląd Apple, kolejka maszyn) i co wymaga czasu właściciela (decyzje,
+      App Store Connect, telefon). Nakład pracy agenta nie jest argumentem przeciw lepszej opcji.
+    - Szablony treningów ustawia właściciel — aplikacja ich nie tworzy ani nie zmienia sama (decyzja 03.10.2026, 08:11). Wyjątek (08.10.2026):
+      opcjonalny generator szablonu i planu tygodnia na wyraźne polecenie użytkownika (cel, miejsce, liczba sesji) — tylko reguły potwierdzone
+      źródłami (hierarchia niżej), wynik do przejrzenia przed zapisem; deload może przeliczać szablony tylko jako propozycja do zatwierdzenia.
+    - Natywnego builda nie da się sprawdzić na Linuksie: `ios-unsigned.yml` (kompilacja), `e2e-ios.yml` (Maestro na symulatorze;
+      zmiana tylko scenariuszy → `aplikacja_z_przebiegu`), `testflight.yml` (telefon, TestFlight). Symulator na `macos-26` bywa wolny —
+      awaria przed pierwszym scenariuszem to maszyna; jedno powtórzenie, potem szukaj przyczyny. Przebieg anulowany bez przydzielonej maszyny
+      („not acquired by Runner”, brak maszyn macOS u GitHuba) — ponawiaj od razu, aż dostanie maszynę (właściciel, 08.10.2026).
+    - E2E — podział (właściciel, 19.10.2026): wydanie TestFlight blokuje **pakiet podstawowy** (`scripts/ci/e2e-podstawowy.json`, wejście
+      `pakiet: podstawowy`, jedno ponowienie pojedynczego scenariusza); **pełny katalog** biegnie w nocy (`nightly.yml`), niewiążąco, z pomiarem
+      niestabilności — przegląd zbiorczo raz dziennie, nie po każdej porażce. Wydanie do App Store blokuje **jeden pełny katalog E2E
+      na standardowym iPhonie** (jedno ponowienie scenariusza dozwolone) + pełny audyt + telefon; noc to sygnał (zgłoszenie `nocne-testy`), nie bramka —
+      porażka: błąd aplikacji → naprawa, błąd skryptu → backlog (właściciel 21.10.2026; zastępuje „3 czyste noce w trybie ścisłym”); to samo w bramce App Store: scenariusz czerwony z winy skryptu (tester-e2e potwierdza logiem/zrzutem, że aplikacja jest w poprawnym stanie) nie blokuje wydania — scenariusz do naprawy (właściciel 26.10.2026). Przed oddaniem
+      pracy: szybki przebieg tylko zmienionych scenariuszy (`tylko_scenariusze`). Pełne verify na tej maszynie przez kolejkę (jeden naraz).
+    - Workflowy (`.github/workflows`): zmiany wypycha koordynator na gałąź funkcji i **scala sam** po prawdziwym przebiegu dowodowym (wynik na gotowym produkcie),
+      bez nowych sekretów i uprawnień, z opisem zmiany w PR; właściciel dostaje informację, nie pytanie (właściciel 21.10.2026; zastępuje zatwierdzanie
+      scaleniem z 14.10.2026). Wysyłka do TestFlight i App Store nadal tylko po zatwierdzeniu właściciela (środowisko `release`). Właściciela prowadzimy zadanie po zadaniu z instrukcją krok po kroku, nie zbiorczą listą.
+    - Gałęzie: praca na gałęzi funkcji od `main` (właściciel 21.10.2026; `integration/0.9.0` usunięta przy sprzątaniu gałęzi); scalenie do `main` tylko na polecenie właściciela. Nie łącz aktualizacji SDK ze zmianą
+      schematu danych w jednym wydaniu.·
+    - **Animacje i karty ćwiczeń — audyt dogłębny (właściciel, 27.10.2026, po zgłoszeniu „Deadlift (hantle)” z TestFlight):** każda animacja ćwiczenia i każda karta ćwiczenia (opis, wskazówki, mięśnie, kąty, tempo, błędy), które trafiają do wydania aplikacji **albo na stronę z ćwiczeniami** (techniqueatlas), przechodzi przed wydaniem niezależną, dogłębną recenzję ruchu i treści (bramka 4, `docs/przekazanie/notatki/53-grafiki-model-pracy.md` na gałęzi przekazanie-konta), także rodziny uznane wcześniej za gotowe. Podwójne ryzyko: ten sam błąd widać w aplikacji i publicznie na stronie. Rodzina bez recenzji = nie wyświetlana (status nie `ready`, strona jej nie eksportuje). Reguły automatyczne tylko chronią przed regresją, nie zastępują recenzji.·
+    ## Audyty i wydania (zasada właściciela 09.10.2026, wariant A)·
+    1. **Próg wydania:** wydanie blokują tylko znaleziska KRYTYCZNE i WYSOKIE: utrata lub zepsucie danych (także migracja, import, kopia),
+       awaria albo funkcja nie do użycia, błędne liczby lub twierdzenia merytoryczne, prywatność/bezpieczeństwo/sekrety/prawa autorskie,
+       bariera dostępności, ryzyko odrzucenia przez Apple. ŚREDNIE i NISKIE → backlog z przypisaną wersją, nie wstrzymują wydania.
+    2. **Jeden audyt na wydanie, bez pętli:** naprawy znalezisk sprawdza test odtwarzający + verify + E2E, nie kolejny audyt. Nowy błąd
+       wykryty przy naprawie oceniany tym samym progiem.
+    3. **Zamrożenie zakresu:** od startu audytu do wydania żadnych nowych funkcji — tylko naprawy blokerów; pomysły do backlogu.
+    4. **Głębokość:** wydanie TestFlight — audyt zmian od poprzedniego wydania + stała lista kontrolna (dane, migracje, prywatność);
+       przed upublicznieniem w App Store i co ok. 3 wydania — pełny głęboki audyt całości.
+    5. **Bez limitu czasu** — audyt i naprawy „na spokojnie”; jeśli bloker wymaga dużej przebudowy, właściciel decyduje: naprawa teraz
+       albo wydanie bez tej funkcji (wyłączona lub cofnięta).
+    6. **Ocena realności znaleziska (właściciel, 11.10.2026, wariant A):** przy każdym błędzie zapisz kroki w aplikacji, które do niego prowadzą,
+       i oceń: **realny** (normalne używanie) → naprawa wg progu; **brzegowy** (możliwy, rzadki) → naprawa, jeśli tania albo dotyczy danych,
+       inaczej backlog; **teoretyczny** (tylko ręczna zmiana danych/kodu, bez drogi przez UI) → bez naprawy, jedna linijka notatki.
+       Utrata danych, prywatność i bezpieczeństwo — ocena zawsze, nawet gdy rzadkie. Dotyczy audytów, agentów i błędów z E2E.·
+    ## Merytoryczne podstawy (zasada właściciela z 4 października 2026, obowiązuje we wszystkich jego aplikacjach)·
+    Wszystko, czego aplikacja uczy albo co twierdzi (treść, liczby, zalecenia, reguły i mechaniki oparte na wiedzy dziedzinowej), musi mieć merytoryczne podstawy. Ta zasada ma pierwszeństwo przed domyślnym sposobem pracy.·
+    - Nie polegaj na jednym źródle (właściciel, 08.10.2026; zmiana 18.10.2026): reguła lub liczba w aplikacji ma kilka niezależnych, wartościowych źródeł
+      (najlepiej szczeble 2–3, różne organizacje i zespoły badawcze). Wyjątek: jedno źródło szczebla 1–2 (rachunek lub wzór sprawdzony niezależnie;
+      przegląd systematyczny, metaanaliza, stanowisko organizacji naukowej), które zawiera to twierdzenie wprost, czyni regułę ustaloną. Jedno źródło
+      szczebla 3–5 — oznaczenie „jedno źródło”, nie „ustalone”. „Uproszczenie” (także analogia do innego ćwiczenia) i „konwencja” oznacza się niezależnie
+      od liczby źródeł. Źródło szczebla 2 tylko zacytowane obok, bez tego twierdzenia, nie liczy się.
+    - BRD (M1-044, DEC-01): `docs/brd/` to katalog spełnianych wymagań odtworzony z kodu i docs (bez ocen wartości). **Nowa funkcja albo zmiana zachowania = aktualizacja BRD w tym samym commicie** (wymaganie BR, a przy liczeniu według wiedzy dziedzinowej — reguła RD z wektorami i `node scripts/kontrola-brd.mjs docs/brd --wektory > tests/wektory/brd.json`); kontrola: `node scripts/kontrola-brd.mjs docs/brd`, test `tests/audit-m1-044-brd.test.ts`.
+    - Rejestr twierdzeń (M1-048, DEC-16): tekst dziedzinowy w interfejsie (powołujący się na źródło albo nazywający swoją wagę: uproszczenie, konwencja, jedno źródło) ma wpis w `docs/research/rejestr-twierdzen.json`; `npm run check:claims` (część verify) blokuje tekst bez wpisu i zmianę brzmienia bez ponownego przeglądu. Nowy albo zmieniony tekst: `node scripts/claims.mjs --stub`, po przeglądzie źródeł `--rehash <ID>`.
+    - Wyjątek dla wskazówek techniki (właściciel, 25.10.2026): ustawienie, przebieg ruchu i częste błędy konkretnego ćwiczenia są ustalone, gdy zgadzają się 2 niezależne źródła szczebla 4 (np. publiczne biblioteki ćwiczeń organizacji szkolących trenerów). Liczby (tempo, obciążenia) i twierdzenia o zdrowiu — bez zmian, wg zasad wyżej; przedziały kątów techniki i proste wskazówki oddechu (bez wstrzymywania oddechu) — 2 zgodne źródła szczebla 4 i żadne przeczytane nie przeczy (właściciel, 25.10.2026).
+    - Źródła publicznie anonimowo (właściciel, 25.10.2026): aplikacja, strony i opis sklepu nie wymieniają źródeł ani organizacji, nawet ogólnie — teksty mówią zwykłym językiem; źródła żyją tylko w wewnętrznym rejestrze w repo (strażnik: `tests/zrodla-wiedzy.test.ts`).
+    - Każde twierdzenie ma **przeczytane** źródło (adres i cytat albo dokładne wskazanie miejsca). Streszczenie z wyszukiwarki nie jest źródłem. Czego nie da się potwierdzić, trafia do otwartych pytań, nie do aplikacji.
+    - Źródła według hierarchii poniżej; przy sprzeczności wygrywa wyższy szczebel. Przy sprzeczności na tym samym szczeblu podaj część wspólną (przedział, „zwykle”) i pokaż różnicę.
+    - Właściciel nie jest ekspertem dziedzinowym i **nie rozstrzyga kwestii merytorycznych**: rozstrzyga je ta hierarchia. Właściciela pytaj o sprawy produktowe (zakres, funkcje, wygląd, koszty, kolejność prac), zawsze z co najmniej dwiema opcjami, kompromisami i rekomendacją.
+    - Każdą decyzję merytoryczną zapisz w rejestrze projektu (dokumentacja na Google Drive) z uzasadnieniem i odrzuconymi alternatywami, żeby dało się ją sprawdzić i cofnąć. Właściciel może każdą zawetować.
+    - Uproszczenie jest dozwolone, gdy kierunkowo zgadza się z wyższymi szczeblami i jest nazwane uproszczeniem.·
+    ### Hierarchia źródeł dla treningu i zdrowia·
+    1. Rachunek i wzory z publikacji źródłowych (np. e1RM Epley, objętość), sprawdzone niezależnie.
+    2. Przeglądy systematyczne i metaanalizy oraz stanowiska organizacji naukowych (np. ACSM, NSCA, ISSN).
+    3. Pojedyncze badania z recenzowanych czasopism (najlepiej RCT) i książki uznanych autorów (np. Helms i in. „The Muscle and Strength Pyramids”, Israetel i in. „Scientific Principles of Hypertrophy Training”, Zatsiorsky i Kraemer „Science and Practice of Strength Training”).
+    4. Uznane serwisy specjalistyczne (np. Stronger by Science) oraz dokumentacja producentów sprzętu i aplikacji.
+    5. Praktyka i opinie trenerów tylko jako wskazówka, wyraźnie oznaczona.·
+    Aplikacja nie udziela porad medycznych; tam, gdzie chodzi o zdrowie (ból, kontuzje, choroby), odsyła do specjalisty.·
+    Dokumentacja projektu: Google Drive, folder „Trening App” (m.in. 03 Rejestr decyzji, 04 Backlog).·
+    ## Treści cudze i nazwy innych firm (zasada właściciela 09.10.2026)·
+    - Research konkurencji i inne zebrane cudze treści (cytaty ze stron, opisy innych aplikacji, pobrane strony) trzymaj **na Dysku**, w folderze
+      „Trening App” (podfolder „05 Research konkurencji”), nie w repozytorium. W repo tylko własne wnioski z linkiem do dokumentu na Dysku.
+      Agenci sięgają po te materiały na Dysk.
+    - W repo cytat ze źródła najwyżej 1–2 zdania z adresem i miejscem (prawo cytatu) — test pilnuje długości cytatów w `docs/research`.
+    - Nazwy innych aplikacji i marek: nie w kodzie ani w komentarzach (opis neutralny, np. „popularne aplikacje treningowe”, „format CSV
+      zgodny z popularnymi dziennikami”), nie w tekstach aplikacji, nie w opisie App Store (wytyczne Apple 2.3.7, 5.2.1). Wyjątek: dokumenty
+      na Dysku.
+    - W aplikacji tylko własne teksty i grafiki; nie kopiuj cudzych zdań, zdjęć ani filmów.
+    "
+
+      61 |   test('CLAUDE.md: definicja tekstu dziedzinowego odsyła do scripts/claims.mjs (DOMAIN_WORDS_RE, DOMAIN_KEYS), które istnieją', () => {
+      62 |     const c = read('CLAUDE.md'); const k = read('scripts/claims.mjs');
+    > 63 |     for (const n of ['DOMAIN_WORDS_RE', 'DOMAIN_KEYS']) { expect(c).toContain(n); expect(k).toMatch(new RegExp(`export const ${n}\\b`)); }
+         |                                                                     ^
+      64 |   });
+      65 | });
+      66 |
+
+      at Object.toContain (tests/m1-047-otwarte-wskazniki.test.ts:63:69)
+
+Test Suites: 1 failed, 1 total
+Tests:       8 failed, 8 total
+Snapshots:   0 total
+Time:        2.035 s, estimated 4 s
+Ran all test suites matching /tests\/m1-047-otwarte-wskazniki.test.ts/i.

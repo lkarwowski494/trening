@@ -1,0 +1,522 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/m1-048-podpis-szablony.test.ts
+  M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów
+    ✓ stan startowy aplikacji nie ma szablonów (założenie podpisu) (4 ms)
+    ✕ PL i EN — brzmienie zatwierdzone przez właściciela 28.10.2026 (4 ms)
+    ✕ pl: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+    ✕ en: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (2 ms)
+    ✕ cs: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ sk: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ hu: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ ro: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+    ✕ hr: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ uk: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ es: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ es-419: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ pt: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ pt-BR: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ de: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ fr: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ it: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ nl: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ sv: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ da: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ nb: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ fi: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ tr: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ el: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ id: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ ms: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ vi: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026 (1 ms)
+    ✕ ru: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+    ✕ ja: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+    ✕ ko: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+    ✕ zh-Hant: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › PL i EN — brzmienie zatwierdzone przez właściciela 28.10.2026
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Twoje szablony w folderach"
+    Received: "Gotowe szablony albo własne"
+
+      18 |   });
+      19 |   test('PL i EN — brzmienie zatwierdzone przez właściciela 28.10.2026', () => {
+    > 20 |     expect(cap().podpisy.pl.szablony).toBe('Twoje szablony w folderach'); expect(cap().podpisy.en.szablony).toBe('Your templates in folders');
+         |                                       ^
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+      23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+
+      at Object.toBe (tests/m1-048-podpis-szablony.test.ts:20:39)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › pl: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Gotowe szablony albo własne"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › en: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Ready-made templates or your own"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › cs: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Hotové šablony, nebo vlastní"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › sk: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Hotové šablóny alebo vlastné"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › hu: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Kész sablonok vagy saját"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › ro: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Șabloane gata făcute sau proprii"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › hr: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Gotovi predlošci ili vlastiti"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › uk: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Готові шаблони або власні"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › es: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Plantillas listas o las tuyas"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › es-419: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Plantillas listas o las tuyas"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › pt: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Modelos prontos ou os seus"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › pt-BR: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Modelos prontos ou os seus"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › de: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Fertige Vorlagen oder eigene"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › fr: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Modèles prêts à l’emploi ou les vôtres"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › it: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Schede pronte o create da te"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › nl: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Kant-en-klare sjablonen of je eigen"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › sv: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Färdiga mallar eller dina egna"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › da: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Færdige skabeloner eller dine egne"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › nb: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Ferdige maler eller dine egne"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › fi: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Valmiit pohjat tai omasi"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › tr: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Hazır ya da kendi şablonlarınız"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › el: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Έτοιμα πρότυπα ή δικά σας"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › id: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Templat siap pakai atau buatan sendiri"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › ms: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Templat sedia ada atau milik anda"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › vi: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Mẫu có sẵn hoặc của riêng bạn"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › ru: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "Готовые шаблоны или свои"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › ja: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "既製のテンプレートか自分で作成"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › ko: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "준비된 루틴 또는 나만의 루틴"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+  ● M1-048: podpis zrzutu „szablony” bez obietnicy gotowych szablonów › zh-Hant: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "現成範本或自訂範本"
+
+      21 |   });
+      22 |   test.each(Object.keys(STARE))('%s: podpis zmieniony (nie stary sens „gotowe albo własne”), status z datą 28.10.2026', (l) => {
+    > 23 |     const c = cap(); expect(c.podpisy[l].szablony).not.toBe(STARE[l]); expect(c.podpisy[l].szablony).not.toMatch(/gotow|ready-made/i);
+         |                                                        ^
+      24 |     if (l !== 'pl' && l !== 'en') expect(c.status[l]).toMatch(/szablony[^,;]*28\.10\.2026|28\.10\.2026[^;]*szablony/);
+      25 |   });
+      26 | });
+
+      at toBe (tests/m1-048-podpis-szablony.test.ts:23:56)
+
+Test Suites: 1 failed, 1 total
+Tests:       30 failed, 1 passed, 31 total
+Snapshots:   0 total
+Time:        1.689 s
+Ran all test suites matching /tests\/m1-048-podpis-szablony.test.ts/i.

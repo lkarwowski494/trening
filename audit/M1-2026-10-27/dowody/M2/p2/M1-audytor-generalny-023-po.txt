@@ -1,0 +1,13 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-023-bramki-dokumenty.test.ts
+PASS iOS tests/maestro-failures.test.ts (7.114 s)
+Pakiet musi być „podstawowy” albo „pelny” (jest: czesciowy)
+PASS iOS tests/e2e-pakiet.test.ts
+PASS iOS tests/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts
+
+Test Suites: 4 passed, 4 total
+Tests:       35 passed, 35 total
+Snapshots:   0 total
+Time:        11.302 s, estimated 12 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-023-bramki-dokumenty.test.ts|tests\/e2e-pakiet.test.ts|tests\/maestro-failures.test.ts|tests\/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts/i.

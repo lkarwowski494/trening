@@ -1,0 +1,35 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/m1-043-pierwsze-kroki-glyph.test.tsx
+  M1-043: T-04 — znaki-ikony w stanie pierwszego uruchomienia („Pierwsze kroki”)
+    ✕ każdy znak-ikona na ekranie Trening bez treningów ma limit ≤ GLYPH_SCALE_MAX (1099 ms)
+
+  ● M1-043: T-04 — znaki-ikony w stanie pierwszego uruchomienia („Pierwsze kroki”) › każdy znak-ikona na ekranie Trening bez treningów ma limit ≤ GLYPH_SCALE_MAX
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "„›” (2)",
+    + ]
+
+      39 |     }
+      40 |     expect(glyphs).toBeGreaterThan(0);
+    > 41 |     expect(bad).toEqual([]);
+         |                 ^
+      42 |   });
+      43 | });
+      44 |
+
+      at Object.toEqual (tests/m1-043-pierwsze-kroki-glyph.test.tsx:41:17)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.675 s
+Ran all test suites matching /tests\/m1-043-pierwsze-kroki-glyph.test.tsx/i.

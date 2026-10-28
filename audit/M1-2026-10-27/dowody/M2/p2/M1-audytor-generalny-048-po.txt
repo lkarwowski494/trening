@@ -1,0 +1,12 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/zrodla-wiedzy.test.ts (9.256 s)
+PASS iOS tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts
+PASS iOS tests/slownik-terminow.test.ts
+PASS iOS tests/m1-048-podpis-szablony.test.ts
+
+Test Suites: 4 passed, 4 total
+Tests:       195 passed, 195 total
+Snapshots:   0 total
+Time:        15.899 s
+Ran all test suites matching /tests\/m1-048-podpis-szablony.test.ts|tests\/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts|tests\/zrodla-wiedzy.test.ts|tests\/slownik-terminow.test.ts/i.

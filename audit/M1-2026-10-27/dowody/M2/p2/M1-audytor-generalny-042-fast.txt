@@ -1,0 +1,14 @@
+
+> trening@1.0.0 test:fast
+> node scripts/test-fast.mjs
+
+test:fast — 2 plików względem HEAD
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+(node:27987) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Test Suites: 387 passed, 387 total
+Tests:       2 skipped, 7471 passed, 7473 total
+Snapshots:   5 passed, 5 total
+Time:        1535.631 s

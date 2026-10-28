@@ -1,0 +1,800 @@
+{
+ "https://digitalcommons.wku.edu/ijes/vol7/iss4/10": {
+  "plik": "90949c5363.txt",
+  "kod": "200",
+  "zrodlo": "https://digitalcommons.wku.edu/ijes/vol7/iss4/10",
+  "znaki": 4310
+ },
+ "https://eleiko.inspire360.com/resource/65944cf0a15f04fdb30a8c1b": {
+  "plik": "0893a01b36.txt",
+  "kod": "200",
+  "zrodlo": "https://eleiko.inspire360.com/resource/65944cf0a15f04fdb30a8c1b",
+  "znaki": 835
+ },
+ "https://eleiko.inspire360.com/resource/659463af0ba5d8897900b853": {
+  "plik": "547dee6299.txt",
+  "kod": "200",
+  "zrodlo": "https://eleiko.inspire360.com/resource/659463af0ba5d8897900b853",
+  "znaki": 797
+ },
+ "https://eleiko.inspire360.com/resource/659842f49607aaa1f400b866": {
+  "plik": "d0407298d8.txt",
+  "kod": "200",
+  "zrodlo": "https://eleiko.inspire360.com/resource/659842f49607aaa1f400b866",
+  "znaki": 814
+ },
+ "https://eleiko.inspire360.com/resource/6598447ec5f892e7790ccbb8": {
+  "plik": "e6f20d598c.txt",
+  "kod": "200",
+  "zrodlo": "https://eleiko.inspire360.com/resource/6598447ec5f892e7790ccbb8",
+  "znaki": 815
+ },
+ "https://eleiko.inspire360.com/resource/659d665daa93b5993f0c90c7": {
+  "plik": "68a1e0616b.txt",
+  "kod": "200",
+  "zrodlo": "https://eleiko.inspire360.com/resource/659d665daa93b5993f0c90c7",
+  "znaki": 1038
+ },
+ "https://europepmc.org/article/MED/17135860": {
+  "plik": "4193b19cf4.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:17135860%20AND%20SRC:MED&resultType=core&format=json",
+  "znaki": 2081
+ },
+ "https://europepmc.org/article/MED/21615188": {
+  "plik": "dd03eebe35.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:21615188%20AND%20SRC:MED&resultType=core&format=json",
+  "znaki": 2870
+ },
+ "https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow": {
+  "plik": "217232fe26.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/BackGeneral/BWSupineRow": {
+  "plik": "450679bc8c.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/BackGeneral/BWSupineRow",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/DeltoidPosterior/DBRearLateralRaise": {
+  "plik": "a67064c9e5.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/DeltoidPosterior/DBRearLateralRaise",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/DeltoidPosterior/LVRearLateralRaise": {
+  "plik": "dc2a7ee48c.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/DeltoidPosterior/LVRearLateralRaise",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/DeltoidPosterior/LVReverseFlyPronated": {
+  "plik": "5b567a530d.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/DeltoidPosterior/LVReverseFlyPronated",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/ErectorSpinae/BBDeadlift": {
+  "plik": "1351c2e7a1.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/ErectorSpinae/BBDeadlift",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/ErectorSpinae/BBSumoDeadlift": {
+  "plik": "4e394c5660.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/ErectorSpinae/BBSumoDeadlift",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/ErectorSpinae/TBDeadlift": {
+  "plik": "5a56860bcf.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/ErectorSpinae/TBDeadlift",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning": {
+  "plik": "e668b6bed5.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/Hamstrings/DBStraightLegDeadlift": {
+  "plik": "16fab258e8.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/Hamstrings/DBStraightLegDeadlift",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/OlympicLifts/PushPress": {
+  "plik": "b50500b7fc.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/OlympicLifts/PushPress",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift": {
+  "plik": "63962b645b.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/PectoralClavicular/BBInclineBenchPress": {
+  "plik": "c907721bd2.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/PectoralClavicular/BBInclineBenchPress",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/PectoralClavicular/DBInclineBenchPress": {
+  "plik": "8e3fce94a2.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/PectoralClavicular/DBInclineBenchPress",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/PectoralSternal/BBBenchPress": {
+  "plik": "7d91741264.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/PectoralSternal/BBBenchPress",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/PectoralSternal/CBStandingFly": {
+  "plik": "3a367633e2.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/PectoralSternal/CBStandingFly",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/PectoralSternal/DBBenchPress": {
+  "plik": "dd57ce213d.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/PectoralSternal/DBBenchPress",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/PectoralSternal/DBFly": {
+  "plik": "9878f5594e.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/PectoralSternal/DBFly",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/Quadriceps/BBFrontSquat": {
+  "plik": "498307bb1d.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/Quadriceps/BBFrontSquat",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/Quadriceps/BBFullSquat": {
+  "plik": "5bf986570b.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/Quadriceps/BWSingleLegSquat": {
+  "plik": "dedd9e391f.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/Quadriceps/BWSingleLegSquat",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/Quadriceps/CBSquatBelt": {
+  "plik": "1709b748f2.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/Quadriceps/CBSquatBelt",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/Quadriceps/DBLunge": {
+  "plik": "dfc4010a21.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/Quadriceps/DBLunge",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/Quadriceps/DBRearLunge": {
+  "plik": "286274944b.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/Quadriceps/DBRearLunge",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge": {
+  "plik": "41042a4ba0.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/Quadriceps/SLHackSquat": {
+  "plik": "3d2e06929a.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/Quadriceps/SLHackSquat",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/RectusAbdominis/BWCrunch": {
+  "plik": "511fe4a835.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/RectusAbdominis/BWCrunch",
+  "znaki": 0
+ },
+ "https://exrx.net/WeightExercises/Triceps/BBCloseGripBenchPress": {
+  "plik": "785e390f95.txt",
+  "kod": "000",
+  "zrodlo": "https://web.archive.org/web/2025id_/https://exrx.net/WeightExercises/Triceps/BBCloseGripBenchPress",
+  "znaki": 0
+ },
+ "https://instituteofmotion.com/wp-content/uploads/2018/03/Nordic-hamstring-2015.pdf": {
+  "plik": "e179ae7f31.txt",
+  "kod": "200",
+  "zrodlo": "https://instituteofmotion.com/wp-content/uploads/2018/03/Nordic-hamstring-2015.pdf",
+  "znaki": 61431
+ },
+ "https://lifefitness.com/en-us/customer-support/education-hub/blog/treadmill-calorie-burn-affected-holding-handrails": {
+  "plik": "5b5452b89d.txt",
+  "kod": "200",
+  "zrodlo": "https://lifefitness.com/en-us/customer-support/education-hub/blog/treadmill-calorie-burn-affected-holding-handrails",
+  "znaki": 6812
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC10015931/": {
+  "plik": "4c10391aeb.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10015931/fullTextXML",
+  "znaki": 59756
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC10624851/": {
+  "plik": "553d4cc9f5.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10624851/fullTextXML",
+  "znaki": 44324
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/": {
+  "plik": "9f0afffb0b.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10753835/fullTextXML",
+  "znaki": 35592
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC10786991/": {
+  "plik": "5f6b096b2b.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10786991/fullTextXML",
+  "znaki": 50971
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC11050476/": {
+  "plik": "e878aad3c2.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11050476/fullTextXML",
+  "znaki": 37860
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC11964695/": {
+  "plik": "687599c34a.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11964695/fullTextXML",
+  "znaki": 48009
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC12225522/": {
+  "plik": "8faf973274.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12225522/fullTextXML",
+  "znaki": 48881
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC12286126/": {
+  "plik": "9da1184001.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12286126/fullTextXML",
+  "znaki": 79655
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC12621570/": {
+  "plik": "4c9895bbd8.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12621570/fullTextXML",
+  "znaki": 50981
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC13029269/": {
+  "plik": "8bb9446e20.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13029269/fullTextXML",
+  "znaki": 52696
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC13449400/": {
+  "plik": "a063e89627.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13449400/fullTextXML",
+  "znaki": 62917
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC13517625/": {
+  "plik": "c00814308c.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13517625/fullTextXML",
+  "znaki": 58372
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC4732391/": {
+  "plik": "d6529b4660.txt",
+  "kod": "500",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4732391/fullTextXML",
+  "znaki": 150
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC4887549/": {
+  "plik": "67feffb0ca.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4887549/fullTextXML",
+  "znaki": 95472
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC5473370/": {
+  "plik": "bcaccc088d.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5473370/fullTextXML",
+  "znaki": 64018
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC7343795/": {
+  "plik": "31e0e60e1c.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7343795/fullTextXML",
+  "znaki": 45442
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC7460162/": {
+  "plik": "4b12cd20cd.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7460162/fullTextXML",
+  "znaki": 33458
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC8057707/": {
+  "plik": "db18274fb8.txt",
+  "kod": "500",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8057707/fullTextXML",
+  "znaki": 150
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC8152048/": {
+  "plik": "0b6dfb2655.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8152048/fullTextXML",
+  "znaki": 63851
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC9517252/": {
+  "plik": "761d5f8020.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9517252/fullTextXML",
+  "znaki": 29972
+ },
+ "https://pmc.ncbi.nlm.nih.gov/articles/PMC9528903/": {
+  "plik": "d51b0831d7.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9528903/fullTextXML",
+  "znaki": 56435
+ },
+ "https://pubmed.ncbi.nlm.nih.gov/14636100/": {
+  "plik": "ced96630b6.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:14636100%20AND%20SRC:MED&resultType=core&format=json",
+  "znaki": 1654
+ },
+ "https://pubmed.ncbi.nlm.nih.gov/21659894/": {
+  "plik": "ce217108fd.txt",
+  "kod": "200",
+  "zrodlo": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:21659894%20AND%20SRC:MED&resultType=core&format=json",
+  "znaki": 1679
+ },
+ "https://repository.mdx.ac.uk/item/89098": {
+  "plik": "6565d42052.txt",
+  "kod": "405",
+  "zrodlo": "https://repository.mdx.ac.uk/item/89098",
+  "znaki": 24
+ },
+ "https://www.acefitness.org/education-and-resources/lifestyle/exercise-library/306/burpee/": {
+  "plik": "59f49bd472.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/education-and-resources/lifestyle/exercise-library/306/burpee/",
+  "znaki": 7361
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/": {
+  "plik": "0fb945dbfe.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/",
+  "znaki": 7709
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/115/box-jumps/": {
+  "plik": "7a46c383e1.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/115/box-jumps/",
+  "znaki": 9599
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/": {
+  "plik": "e0b9e91e6b.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/",
+  "znaki": 7318
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/131/prone-lying-hamstrings-curl/": {
+  "plik": "9f3032b5d6.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/131/prone-lying-hamstrings-curl/",
+  "znaki": 8399
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/": {
+  "plik": "c4c44d3c10.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/",
+  "znaki": 9140
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/139/walking-lunges-with-twists/": {
+  "plik": "1f2f808822.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/139/walking-lunges-with-twists/",
+  "znaki": 11531
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/": {
+  "plik": "419b261bb4.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/",
+  "znaki": 8686
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/160/standing-chest-fly/": {
+  "plik": "f2bf45ddba.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/160/standing-chest-fly/",
+  "znaki": 7286
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/": {
+  "plik": "cd45c43d9c.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/",
+  "znaki": 8876
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/182/overhead-slams/": {
+  "plik": "281e2373da.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/182/overhead-slams/",
+  "znaki": 9089
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/186/seated-shoulder-press/": {
+  "plik": "08de5784e6.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/186/seated-shoulder-press/",
+  "znaki": 9058
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/": {
+  "plik": "4752e0f0ca.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/",
+  "znaki": 9026
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/21/lying-chest-fly/": {
+  "plik": "369039a94e.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/21/lying-chest-fly/",
+  "znaki": 8754
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/22/front-squat/": {
+  "plik": "7a2d075457.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/22/front-squat/",
+  "znaki": 9344
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/24/push-press/": {
+  "plik": "8f90b82ffe.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/24/push-press/",
+  "znaki": 7680
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/": {
+  "plik": "04f40a4897.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/",
+  "znaki": 8980
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/303/side-plank/": {
+  "plik": "c30ecd79ad.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/303/side-plank/",
+  "znaki": 7435
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/305/v-twist/": {
+  "plik": "4f095c6b87.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/305/v-twist/",
+  "znaki": 7130
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/308/pistol-squat/": {
+  "plik": "01ccd35b52.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/308/pistol-squat/",
+  "znaki": 7406
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/311/close-grip-bench-press/": {
+  "plik": "92530a7280.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/311/close-grip-bench-press/",
+  "znaki": 7301
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/": {
+  "plik": "9c481c94fa.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/",
+  "znaki": 7301
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/319/reverse-lunge/": {
+  "plik": "7920fde819.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/319/reverse-lunge/",
+  "znaki": 7665
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/332/standing-anti-rotation-press/": {
+  "plik": "dfefc8a298.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/332/standing-anti-rotation-press/",
+  "znaki": 7525
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/334/straight-arm-pressdown/": {
+  "plik": "3aabfb42a1.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/334/straight-arm-pressdown/",
+  "znaki": 7393
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/338/single-arm-chest-press/": {
+  "plik": "da43a6e446.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/338/single-arm-chest-press/",
+  "znaki": 7400
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/": {
+  "plik": "586aab5bc2.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/",
+  "znaki": 8160
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/353/reverse-fly/": {
+  "plik": "6b43a63e21.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/353/reverse-fly/",
+  "znaki": 7399
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/358/suitcase-carry/": {
+  "plik": "12b92662d9.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/358/suitcase-carry/",
+  "znaki": 7282
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/359/farmer-s-carry/": {
+  "plik": "72dc241bd6.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/359/farmer-s-carry/",
+  "znaki": 7241
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/362/goblet-squat/": {
+  "plik": "ddcfafe5f8.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/362/goblet-squat/",
+  "znaki": 7260
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/363/lunge/": {
+  "plik": "31d95710f2.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/363/lunge/",
+  "znaki": 7439
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/5/chest-press/": {
+  "plik": "67b371ab9d.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/5/chest-press/",
+  "znaki": 7387
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/52/crunch/": {
+  "plik": "7b2b210015.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/52/crunch/",
+  "znaki": 8555
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/": {
+  "plik": "7dacd9801b.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/",
+  "znaki": 7752
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/65/russian-twist/": {
+  "plik": "a5ec891b2d.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/65/russian-twist/",
+  "znaki": 7351
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/76/reverse-crunch/": {
+  "plik": "e33b6304df.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/76/reverse-crunch/",
+  "znaki": 8683
+ },
+ "https://www.acefitness.org/resources/everyone/exercise-library/84/trx-reg-back-row/": {
+  "plik": "4b7545e019.txt",
+  "kod": "200",
+  "zrodlo": "https://www.acefitness.org/resources/everyone/exercise-library/84/trx-reg-back-row/",
+  "znaki": 8954
+ },
+ "https://www.concept2.nl/en/node/8909": {
+  "plik": "55cad1f52d.txt",
+  "kod": "200",
+  "zrodlo": "https://www.concept2.nl/en/node/8909",
+  "znaki": 5666
+ },
+ "https://www.hss.edu/health-library/move-better/set-up-exercise-bike": {
+  "plik": "4584b3713e.txt",
+  "kod": "200",
+  "zrodlo": "https://www.hss.edu/health-library/move-better/set-up-exercise-bike",
+  "znaki": 6793
+ },
+ "https://www.nasm.org/resource-center/blog/training/best-abs-exercises": {
+  "plik": "e0e94b03b3.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+  "znaki": 24378
+ },
+ "https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients": {
+  "plik": "d3f4458bba.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients",
+  "znaki": 7707
+ },
+ "https://www.nasm.org/resource-center/blog/training/running-gait-basics-what-personal-trainers-should-screen-for": {
+  "plik": "283cd2879a.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/blog/training/running-gait-basics-what-personal-trainers-should-screen-for",
+  "znaki": 8783
+ },
+ "https://www.nasm.org/resource-center/exercise-library/barbell-bench-press": {
+  "plik": "43a6f24fc6.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/barbell-bench-press",
+  "znaki": 4199
+ },
+ "https://www.nasm.org/resource-center/exercise-library/barbell-deadlift": {
+  "plik": "a8d0eb5773.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/barbell-deadlift",
+  "znaki": 4137
+ },
+ "https://www.nasm.org/resource-center/exercise-library/box-jumps": {
+  "plik": "9223faac79.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/box-jumps",
+  "znaki": 4077
+ },
+ "https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat": {
+  "plik": "955ee77ef3.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat",
+  "znaki": 5518
+ },
+ "https://www.nasm.org/resource-center/exercise-library/cable-crossover": {
+  "plik": "914060b1ba.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/cable-crossover",
+  "znaki": 4099
+ },
+ "https://www.nasm.org/resource-center/exercise-library/close-grip-bench-press": {
+  "plik": "c769c241e6.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/close-grip-bench-press",
+  "znaki": 4056
+ },
+ "https://www.nasm.org/resource-center/exercise-library/dumbbell-front-squat": {
+  "plik": "afd261c8ab.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/dumbbell-front-squat",
+  "znaki": 4315
+ },
+ "https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift": {
+  "plik": "a6e59dbcd0.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift",
+  "znaki": 5386
+ },
+ "https://www.nasm.org/resource-center/exercise-library/goblet-squat": {
+  "plik": "579bdcd2f5.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/goblet-squat",
+  "znaki": 5247
+ },
+ "https://www.nasm.org/resource-center/exercise-library/good-mornings": {
+  "plik": "784311fd11.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/good-mornings",
+  "znaki": 3949
+ },
+ "https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press": {
+  "plik": "b47bfeb15f.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press",
+  "znaki": 4166
+ },
+ "https://www.nasm.org/resource-center/exercise-library/kettlebell-deadlift": {
+  "plik": "d6e0159155.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/kettlebell-deadlift",
+  "znaki": 3943
+ },
+ "https://www.nasm.org/resource-center/exercise-library/leg-press": {
+  "plik": "d9e154015d.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/leg-press",
+  "znaki": 3931
+ },
+ "https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell": {
+  "plik": "294a7cad61.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell",
+  "znaki": 4422
+ },
+ "https://www.nasm.org/resource-center/exercise-library/russian-twist": {
+  "plik": "d7bef5a309.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/russian-twist",
+  "znaki": 4173
+ },
+ "https://www.nasm.org/resource-center/exercise-library/seated-leg-curl": {
+  "plik": "d4e6cc92f5.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/seated-leg-curl",
+  "znaki": 5535
+ },
+ "https://www.nasm.org/resource-center/exercise-library/side-plank": {
+  "plik": "8d7c748aa9.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/side-plank",
+  "znaki": 4130
+ },
+ "https://www.nasm.org/resource-center/exercise-library/single-leg-seated-leg-curl": {
+  "plik": "b1abd44914.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/single-leg-seated-leg-curl",
+  "znaki": 4185
+ },
+ "https://www.nasm.org/resource-center/exercise-library/single-leg-squat": {
+  "plik": "c73c27110e.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/single-leg-squat",
+  "znaki": 4351
+ },
+ "https://www.nasm.org/resource-center/exercise-library/squat-thrust-burpees": {
+  "plik": "c405ce3012.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/squat-thrust-burpees",
+  "znaki": 4460
+ },
+ "https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band": {
+  "plik": "50b04346af.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band",
+  "znaki": 4814
+ },
+ "https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press": {
+  "plik": "1a4697490e.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press",
+  "znaki": 4750
+ },
+ "https://www.nordictrack.com/learn/incline-treadmill-benefits-why-it-works-better-than-flat-walking": {
+  "plik": "09641a67d0.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nordictrack.com/learn/incline-treadmill-benefits-why-it-works-better-than-flat-walking",
+  "znaki": 20347
+ },
+ "https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf": {
+  "plik": "fda6bff528.txt",
+  "kod": "200",
+  "zrodlo": "https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf",
+  "znaki": 23450
+ },
+ "https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf": {
+  "plik": "1eebde9eda.txt",
+  "kod": "403",
+  "zrodlo": "https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf",
+  "znaki": 0
+ },
+ "https://www.strongerbyscience.com/how-to-bench/": {
+  "plik": "7fabbc8782.txt",
+  "kod": "200",
+  "zrodlo": "https://www.strongerbyscience.com/how-to-bench/",
+  "znaki": 93862
+ },
+ "https://www.strongerbyscience.com/how-to-deadlift/": {
+  "plik": "6a62ac5332.txt",
+  "kod": "200",
+  "zrodlo": "https://www.strongerbyscience.com/how-to-deadlift/",
+  "znaki": 193206
+ },
+ "https://www.strongerbyscience.com/how-to-squat/": {
+  "plik": "46117d523a.txt",
+  "kod": "200",
+  "zrodlo": "https://www.strongerbyscience.com/how-to-squat/",
+  "znaki": 144170
+ }
+}

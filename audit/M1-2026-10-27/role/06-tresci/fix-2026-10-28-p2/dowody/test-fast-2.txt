@@ -1,0 +1,38 @@
+
+> trening@1.0.0 test:fast
+> node scripts/test-fast.mjs --maxWorkers=1
+
+test:fast — 14 plików względem HEAD
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+
+Summary of all failing tests
+FAIL tests/zrodla-pelne-figury.test.ts
+  ● plik runtime lib/figures/data.json = funkcja pełnych danych, bez nazw › figury identyczne z pełnymi danymi poza figurami bez aktualnej recenzji bramki 4 (te są na liście otwartej); granice stawów te same (min/max) bez pola src; brak pola note w rom
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Pistol Squat",
+    -   "ukryta",
+    +   "wyswietlana",
+      ]
+
+      28 |     const rec: { v1: Record<string, { werdykt: string }> } = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/figury-recenzja.json'), 'utf8'));
+      29 |     const hidden = KEYS.filter(k => !(k in FIG_DATA.exercises));
+    > 30 |     for (const k of hidden) expect([k, rec.v1[k]?.werdykt]).toEqual([k, 'ukryta']);
+         |                                                             ^
+      31 |     expect(FIG_DATA.exercises).toEqual(Object.fromEntries(KEYS.filter(k => !hidden.includes(k)).map(k => [k, FIG_FULL.exercises[k]])));
+      32 |     for (const v of ['side', 'front'] as const) expect(FIG_DATA.rom[v]).toEqual(Object.fromEntries(Object.entries(FIG_FULL.rom[v]).map(([j, r]) => [j, { min: r.min, max: r.max }])));
+      33 |     expect(FIG_DATA.open).toEqual([...Object.keys(FIG_FULL.open), ...hidden]);
+
+      at Object.toEqual (tests/zrodla-pelne-figury.test.ts:30:61)
+
+
+Test Suites: 1 failed, 39 passed, 40 total
+Tests:       1 failed, 989 passed, 990 total
+Snapshots:   5 passed, 5 total
+Time:        255.73 s

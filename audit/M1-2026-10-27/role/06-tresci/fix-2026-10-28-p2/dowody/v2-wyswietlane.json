@@ -1,0 +1,1931 @@
+{
+ "Axle Deadlift": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "dl.lift",
+   "hinge.back",
+   "dl.close"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ]
+  }
+ },
+ "Back Squat": {
+  "fam": "squat",
+  "b": "own",
+  "p": {
+   "load": "highBar",
+   "impl": "barbell",
+   "depth": 120,
+   "stance": 20,
+   "toeOut": 15
+  }
+ },
+ "Band Bench Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "bp.blades",
+   "bp.control"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "band",
+   "angle": 0,
+   "grip": 33,
+   "touch": 33,
+   "vert": true
+  }
+ },
+ "Band Good Morning": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "rdl",
+  "ok": [
+   "gm.move",
+   "hinge.back"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "goodMorning",
+   "impl": "barbell",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ],
+   "band": true
+  }
+ },
+ "Band Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.down",
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn",
+   "sq.mis.heels"
+  ],
+  "p": {
+   "load": "bodyweight",
+   "impl": "none",
+   "depth": 125,
+   "stance": 20,
+   "toeOut": 15,
+   "band": true
+  }
+ },
+ "Barbell Guillotine Bench Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "bp.blades",
+   "bp.control"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "barbell",
+   "angle": 0,
+   "grip": 42,
+   "touch": 50,
+   "touchB": 9
+  }
+ },
+ "Barbell Hack Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "hinge.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "load": "behind",
+   "impl": "barbell",
+   "depth": 110,
+   "stance": 20,
+   "toeOut": 15
+  }
+ },
+ "Bench Press (hantle)": {
+  "fam": "bench_press",
+  "b": "own",
+  "p": {
+   "impl": "db",
+   "angle": 0,
+   "grip": 32,
+   "touch": 32,
+   "gripTop": 22,
+   "vert": true
+  }
+ },
+ "Bench Press (sztanga)": {
+  "fam": "bench_press",
+  "b": "own",
+  "p": {
+   "impl": "barbell",
+   "angle": 0,
+   "grip": 35,
+   "touch": 34,
+   "vert": true
+  }
+ },
+ "Bench Press with Chains": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "bp.blades",
+   "bp.control",
+   "bp.elbowsMid"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "chain",
+   "angle": 0,
+   "grip": 33,
+   "touch": 33,
+   "vert": true
+  }
+ },
+ "Board Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "bp.blades",
+   "bp.control"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "barbell",
+   "angle": 0,
+   "grip": 33,
+   "touch": 33,
+   "touchB": 17.5,
+   "vert": true
+  }
+ },
+ "Bodyweight Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.down",
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn",
+   "sq.mis.heels"
+  ],
+  "p": {
+   "load": "bodyweight",
+   "impl": "none",
+   "depth": 125,
+   "stance": 20,
+   "toeOut": 15
+  }
+ },
+ "Box Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.back",
+   "sq.kneesToes",
+   "sq.down"
+  ],
+  "err": [
+   "sq.mis.kneesIn",
+   "sq.mis.heels"
+  ],
+  "p": {
+   "load": "highBar",
+   "impl": "barbell",
+   "depth": 120,
+   "stance": 20,
+   "toeOut": 15,
+   "box": 45
+  }
+ },
+ "Box Squat with Bands": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.back",
+   "sq.kneesToes",
+   "sq.down"
+  ],
+  "err": [
+   "sq.mis.kneesIn"
+  ],
+  "p": {
+   "load": "highBar",
+   "impl": "barbell",
+   "depth": 120,
+   "stance": 20,
+   "toeOut": 15,
+   "box": 45,
+   "band": true
+  }
+ },
+ "Box Squat with Chains": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.back",
+   "sq.kneesToes",
+   "sq.down"
+  ],
+  "err": [
+   "sq.mis.kneesIn"
+  ],
+  "p": {
+   "load": "highBar",
+   "impl": "barbell",
+   "depth": 120,
+   "stance": 20,
+   "toeOut": 15,
+   "box": 45,
+   "chain": true
+  }
+ },
+ "Cable Deadlift": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "dl.lift",
+   "hinge.back"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "cable",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ],
+   "yStart": 20
+  }
+ },
+ "Cable Pull Through": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "rdl",
+  "ok": [
+   "hinge.back",
+   "rdl.depth"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "pullThrough",
+   "impl": "cable",
+   "yEnd": 62,
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 6,
+   "shin": {
+    "stand": 2,
+    "perKnee": 0.06,
+    "max": 8
+   },
+   "sx": [
+    -2,
+    -2
+   ],
+   "pull": true
+  }
+ },
+ "Cable Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.down",
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn",
+   "sq.mis.heels"
+  ],
+  "p": {
+   "load": "goblet",
+   "impl": "cable",
+   "depth": 120,
+   "stance": 20,
+   "toeOut": 15
+  }
+ },
+ "Chain Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "bp.blades",
+   "bp.control",
+   "bp.elbowsMid"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "chain",
+   "angle": 0,
+   "grip": 33,
+   "touch": 33,
+   "vert": true
+  }
+ },
+ "Clean Deadlift": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "dl.lift",
+   "hinge.back",
+   "dl.close"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ]
+  }
+ },
+ "Close Grip Bench Press": {
+  "fam": "bench_press",
+  "b": "own",
+  "p": {
+   "impl": "barbell",
+   "angle": 0,
+   "grip": 12,
+   "touch": 30
+  }
+ },
+ "Close-Grip Dumbbell Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "cgbp.elbows",
+   "bp.control"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "db",
+   "angle": 0,
+   "grip": 10,
+   "touch": 30
+  }
+ },
+ "Close-Grip EZ-Bar Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "cgbp.elbows",
+   "bp.control"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "barbell",
+   "angle": 0,
+   "grip": 12,
+   "touch": 30
+  }
+ },
+ "Deadlift (hantle)": {
+  "fam": "hinge",
+  "b": "own",
+  "p": {
+   "style": "floor",
+   "impl": "db",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 30,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ]
+  }
+ },
+ "Deadlift (sztanga)": {
+  "fam": "hinge",
+  "b": "own",
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ]
+  }
+ },
+ "Deadlift with Bands": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "dl.lift",
+   "hinge.back",
+   "dl.close"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ],
+   "band": true
+  }
+ },
+ "Deadlift with Chains": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "dl.lift",
+   "hinge.back",
+   "dl.close"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ],
+   "chain": true
+  }
+ },
+ "Decline Bench Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.blades",
+   "bp.control",
+   "bp.elbowsMid"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "barbell",
+   "angle": -15,
+   "grip": 33,
+   "touch": 28,
+   "vert": true
+  }
+ },
+ "Decline Bench Press (hantle)": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.blades",
+   "bp.control",
+   "bp.elbowsMid"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "db",
+   "angle": -15,
+   "grip": 32,
+   "touch": 28,
+   "gripTop": 22,
+   "vert": true
+  }
+ },
+ "Decline Close-Grip Bench To Skull Crusher": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "triLying",
+  "ok": [
+   "cgbp.elbows",
+   "skull.upperArm"
+  ],
+  "err": [
+   "mis.jerk"
+  ],
+  "p": {
+   "impl": "barbell",
+   "angle": -15,
+   "grip": 12,
+   "touch": 54,
+   "touchB": 12
+  }
+ },
+ "Deficit Deadlift": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "dl.lift",
+   "hinge.back",
+   "dl.close"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ],
+   "platform": 6
+  }
+ },
+ "Dip Belt Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.down",
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn",
+   "sq.mis.heels"
+  ],
+  "p": {
+   "load": "belt",
+   "impl": "none",
+   "depth": 115,
+   "stance": 20,
+   "toeOut": 15
+  }
+ },
+ "Double Kettlebell Front Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.down",
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn",
+   "sq.mis.heels"
+  ],
+  "p": {
+   "load": "kbRack",
+   "impl": "kb",
+   "depth": 120,
+   "stance": 20,
+   "toeOut": 15
+  }
+ },
+ "Dumbbell Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.down",
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn",
+   "sq.mis.heels"
+  ],
+  "p": {
+   "load": "dbSides",
+   "impl": "db",
+   "depth": 115,
+   "stance": 18,
+   "toeOut": 8
+  }
+ },
+ "Floor Press (hantle)": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.blades",
+   "bp.control"
+  ],
+  "err": [
+   "mis.jerk"
+  ],
+  "p": {
+   "impl": "db",
+   "angle": 0,
+   "grip": 32,
+   "touch": 33,
+   "floor": true,
+   "gripTop": 22,
+   "vert": true
+  }
+ },
+ "Floor Press (sztanga)": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.blades",
+   "bp.control"
+  ],
+  "err": [
+   "mis.jerk"
+  ],
+  "p": {
+   "impl": "barbell",
+   "angle": 0,
+   "grip": 33,
+   "touch": 33,
+   "floor": true,
+   "vert": true
+  }
+ },
+ "Floor Press with Chains": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.blades",
+   "bp.control"
+  ],
+  "err": [
+   "mis.jerk"
+  ],
+  "p": {
+   "impl": "chain",
+   "angle": 0,
+   "grip": 33,
+   "touch": 33,
+   "floor": true,
+   "vert": true
+  }
+ },
+ "Front Squat": {
+  "fam": "squat",
+  "b": "own",
+  "p": {
+   "load": "frontBar",
+   "impl": "barbell",
+   "depth": 120,
+   "stance": 20,
+   "toeOut": 15
+  }
+ },
+ "Goblet Squat": {
+  "fam": "squat",
+  "b": "own",
+  "p": {
+   "load": "goblet",
+   "impl": "db",
+   "depth": 130,
+   "stance": 20,
+   "toeOut": 15
+  }
+ },
+ "Good Morning": {
+  "fam": "hinge",
+  "b": "own",
+  "p": {
+   "style": "goodMorning",
+   "impl": "barbell",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ]
+  }
+ },
+ "Good Morning off Pins": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "rdl",
+  "ok": [
+   "gm.move",
+   "hinge.back"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "goodMorning",
+   "impl": "barbell",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ]
+  }
+ },
+ "Incline Bench Press (hantle)": {
+  "fam": "bench_press",
+  "b": "own",
+  "p": {
+   "impl": "db",
+   "angle": 30,
+   "grip": 32,
+   "touch": 40,
+   "gripTop": 22,
+   "vert": true
+  }
+ },
+ "Incline Bench Press (sztanga)": {
+  "fam": "bench_press",
+  "b": "own",
+  "p": {
+   "impl": "barbell",
+   "angle": 30,
+   "grip": 35,
+   "touch": 40,
+   "vert": true
+  }
+ },
+ "JM Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "bp.control",
+   "cgbp.elbows"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "barbell",
+   "angle": 0,
+   "grip": 12,
+   "touch": 60,
+   "touchB": 10,
+   "flare": 0.8
+  }
+ },
+ "Landmine Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.down",
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn",
+   "sq.mis.heels"
+  ],
+  "p": {
+   "load": "landmine",
+   "impl": "barbell",
+   "depth": 120,
+   "stance": 20,
+   "toeOut": 15
+  }
+ },
+ "Leverage Deadlift": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "dl.lift",
+   "hinge.back"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "trapbar",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 29,
+   "shin": {
+    "stand": 3,
+    "perKnee": 0.32,
+    "max": 28
+   },
+   "sx": [
+    2,
+    -6
+   ],
+   "yStart": 24
+  }
+ },
+ "One Arm Dumbbell Bench Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "bp.blades",
+   "bp.control"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "db",
+   "angle": 0,
+   "grip": 32,
+   "touch": 33,
+   "oneArm": true,
+   "vert": true
+  }
+ },
+ "One-Arm Kettlebell Floor Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.blades",
+   "bp.control"
+  ],
+  "err": [
+   "mis.jerk"
+  ],
+  "p": {
+   "impl": "kb",
+   "angle": 0,
+   "grip": 30,
+   "touch": 33,
+   "floor": true,
+   "oneArm": true,
+   "vert": true
+  }
+ },
+ "One-Arm Overhead Kettlebell Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn"
+  ],
+  "p": {
+   "load": "kbOverhead1",
+   "impl": "kb",
+   "depth": 115,
+   "stance": 20,
+   "toeOut": 15
+  }
+ },
+ "One-Arm Side Deadlift": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "dl.lift",
+   "hinge.back"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ],
+   "oneArm": true
+  }
+ },
+ "Overhead Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn",
+   "sq.mis.heels"
+  ],
+  "p": {
+   "load": "overhead",
+   "impl": "barbell",
+   "depth": 130,
+   "stance": 20,
+   "toeOut": 15
+  }
+ },
+ "Pin Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "bp.blades"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "barbell",
+   "angle": 0,
+   "grip": 33,
+   "touch": 33,
+   "touchB": 19,
+   "vert": true
+  }
+ },
+ "Przysiad z pasem (linki)": {
+  "fam": "squat",
+  "b": "own",
+  "p": {
+   "load": "belt",
+   "impl": "cable",
+   "depth": 115,
+   "stance": 20,
+   "toeOut": 15
+  }
+ },
+ "Rack Pull": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "dl.lift",
+   "hinge.back",
+   "dl.close"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ],
+   "yStart": 45
+  }
+ },
+ "Rack Pull with Bands": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "dl.lift",
+   "hinge.back",
+   "dl.close"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ],
+   "yStart": 45,
+   "band": true
+  }
+ },
+ "RDL (hantle/linki)": {
+  "fam": "hinge",
+  "b": "own",
+  "p": {
+   "style": "rdl",
+   "impl": "db",
+   "yEnd": 55,
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 18,
+   "shin": {
+    "stand": 2,
+    "perKnee": 0.06,
+    "max": 8
+   },
+   "sx": [
+    -2,
+    25
+   ]
+  }
+ },
+ "RDL (sztanga)": {
+  "fam": "hinge",
+  "b": "own",
+  "p": {
+   "style": "rdl",
+   "impl": "barbell",
+   "yEnd": 55,
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 2,
+    "perKnee": 0.06,
+    "max": 8
+   },
+   "sx": [
+    -2,
+    25
+   ]
+  }
+ },
+ "Reverse Band Bench Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "bp.blades",
+   "bp.control",
+   "bp.elbowsMid"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "barbell",
+   "angle": 0,
+   "grip": 33,
+   "touch": 33,
+   "band": true,
+   "reverse": true,
+   "vert": true
+  }
+ },
+ "Reverse Band Box Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.back",
+   "sq.kneesToes",
+   "sq.down"
+  ],
+  "err": [
+   "sq.mis.kneesIn"
+  ],
+  "p": {
+   "load": "highBar",
+   "impl": "barbell",
+   "depth": 120,
+   "stance": 20,
+   "toeOut": 15,
+   "box": 45,
+   "band": true,
+   "reverse": true
+  }
+ },
+ "Reverse Band Deadlift": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "dl.lift",
+   "hinge.back",
+   "dl.close"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ],
+   "band": true,
+   "reverse": true
+  }
+ },
+ "Reverse Band Power Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.down",
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn",
+   "sq.mis.heels"
+  ],
+  "p": {
+   "load": "highBar",
+   "impl": "barbell",
+   "depth": 120,
+   "stance": 20,
+   "toeOut": 15,
+   "band": true,
+   "reverse": true
+  }
+ },
+ "Reverse Band Sumo Deadlift": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "sumo.kneesOut",
+   "hinge.back",
+   "dl.close"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 34,
+   "toeOut": 40,
+   "grip": 12,
+   "shin": {
+    "stand": 3,
+    "perKnee": 0.28,
+    "max": 24
+   },
+   "sx": [
+    3,
+    -9
+   ],
+   "band": true,
+   "reverse": true
+  }
+ },
+ "Reverse Grip Bench Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "bp.blades",
+   "bp.control"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "barbell",
+   "angle": 0,
+   "grip": 30,
+   "touch": 31,
+   "vert": true
+  }
+ },
+ "Rickshaw Deadlift": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "tb.lift",
+   "hinge.back"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "trapbar",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 29,
+   "shin": {
+    "stand": 3,
+    "perKnee": 0.32,
+    "max": 28
+   },
+   "sx": [
+    2,
+    -6
+   ],
+   "yStart": 26
+  }
+ },
+ "Single Arm RDL (hantel/linka)": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "rdl",
+  "ok": [
+   "hinge.back",
+   "rdl.knees",
+   "rdl.depth"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "rdl",
+   "impl": "db",
+   "yEnd": 55,
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 24,
+   "shin": {
+    "stand": 2,
+    "perKnee": 0.06,
+    "max": 8
+   },
+   "sx": [
+    -2,
+    25
+   ],
+   "oneArm": true
+  }
+ },
+ "Single Leg RDL (hantel)": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "rdl",
+  "ok": [
+   "hinge.back",
+   "rdl.depth"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "singleLeg",
+   "impl": "db",
+   "yEnd": 55,
+   "stance": 8.5,
+   "toeOut": 8,
+   "grip": 13,
+   "shin": {
+    "stand": 2,
+    "perKnee": 0.06,
+    "max": 8
+   },
+   "sx": [
+    -2,
+    25
+   ]
+  }
+ },
+ "Single Leg RDL (linki)": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "rdl",
+  "ok": [
+   "hinge.back",
+   "rdl.depth"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "singleLeg",
+   "impl": "cable",
+   "yEnd": 55,
+   "stance": 8.5,
+   "toeOut": 8,
+   "grip": 13,
+   "shin": {
+    "stand": 2,
+    "perKnee": 0.06,
+    "max": 8
+   },
+   "sx": [
+    -2,
+    25
+   ]
+  }
+ },
+ "Smith Machine Bench Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "bp.blades",
+   "bp.control",
+   "bp.elbowsMid"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "smith",
+   "angle": 0,
+   "grip": 33,
+   "touch": 33,
+   "vert": true
+  }
+ },
+ "Smith Machine Close-Grip Bench Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "cgbp.elbows",
+   "bp.control"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "smith",
+   "angle": 0,
+   "grip": 12,
+   "touch": 30
+  }
+ },
+ "Smith Machine Decline Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.blades",
+   "bp.control",
+   "bp.elbowsMid"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "smith",
+   "angle": -15,
+   "grip": 33,
+   "touch": 28,
+   "vert": true
+  }
+ },
+ "Smith Machine Incline Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "bp.blades",
+   "bp.control"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "smith",
+   "angle": 30,
+   "grip": 33,
+   "touch": 38,
+   "vert": true
+  }
+ },
+ "Smith Machine Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.down",
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn",
+   "sq.mis.heels"
+  ],
+  "p": {
+   "load": "highBar",
+   "impl": "barbell",
+   "depth": 115,
+   "stance": 20,
+   "toeOut": 15,
+   "smith": true
+  }
+ },
+ "Smith Machine Stiff-Legged Deadlift": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "rdl",
+  "ok": [
+   "rdl.knees",
+   "hinge.back",
+   "rdl.depth"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "rdl",
+   "impl": "smith",
+   "yEnd": 48,
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 2,
+    "perKnee": 0.06,
+    "max": 8
+   },
+   "sx": [
+    -2,
+    25
+   ]
+  }
+ },
+ "Snatch Deadlift": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "dl.lift",
+   "hinge.back",
+   "dl.close"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 45,
+   "shin": {
+    "stand": 0,
+    "perKnee": 0.1,
+    "max": 8
+   },
+   "sx": [
+    3,
+    -9
+   ]
+  }
+ },
+ "Squat with Bands": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.down",
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn",
+   "sq.mis.heels"
+  ],
+  "p": {
+   "load": "highBar",
+   "impl": "barbell",
+   "depth": 120,
+   "stance": 20,
+   "toeOut": 15,
+   "band": true
+  }
+ },
+ "Squat with Chains": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.down",
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn",
+   "sq.mis.heels"
+  ],
+  "p": {
+   "load": "highBar",
+   "impl": "barbell",
+   "depth": 120,
+   "stance": 20,
+   "toeOut": 15,
+   "chain": true
+  }
+ },
+ "Squeeze Press (hantle)": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "bp.blades",
+   "bp.control"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "db",
+   "angle": 0,
+   "grip": 7,
+   "touch": 33,
+   "squeeze": true
+  }
+ },
+ "Stiff-Legged Barbell Deadlift": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "rdl",
+  "ok": [
+   "rdl.knees",
+   "hinge.back",
+   "rdl.depth"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "rdl",
+   "impl": "barbell",
+   "yEnd": 48,
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 23,
+   "shin": {
+    "stand": 2,
+    "perKnee": 0.06,
+    "max": 8
+   },
+   "sx": [
+    -2,
+    25
+   ]
+  }
+ },
+ "Sumo Deadlift": {
+  "fam": "hinge",
+  "b": "own",
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 34,
+   "toeOut": 40,
+   "grip": 12,
+   "shin": {
+    "stand": 3,
+    "perKnee": 0.28,
+    "max": 24
+   },
+   "sx": [
+    3,
+    -9
+   ]
+  }
+ },
+ "Sumo Deadlift (kettlebell)": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "sumo.kneesOut",
+   "hinge.back"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "kb",
+   "stance": 34,
+   "toeOut": 40,
+   "grip": 6,
+   "shin": {
+    "stand": 3,
+    "perKnee": 0.28,
+    "max": 24
+   },
+   "sx": [
+    3,
+    -9
+   ],
+   "yStart": 26
+  }
+ },
+ "Sumo Deadlift with Bands": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "sumo.kneesOut",
+   "hinge.back",
+   "dl.close"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 34,
+   "toeOut": 40,
+   "grip": 12,
+   "shin": {
+    "stand": 3,
+    "perKnee": 0.28,
+    "max": 24
+   },
+   "sx": [
+    3,
+    -9
+   ],
+   "band": true
+  }
+ },
+ "Sumo Deadlift with Chains": {
+  "fam": "hinge",
+  "b": "general",
+  "f": "hingeFloor",
+  "ok": [
+   "sumo.kneesOut",
+   "hinge.back",
+   "dl.close"
+  ],
+  "err": [
+   "mis.roundBack"
+  ],
+  "p": {
+   "style": "floor",
+   "impl": "barbell",
+   "stance": 34,
+   "toeOut": 40,
+   "grip": 12,
+   "shin": {
+    "stand": 3,
+    "perKnee": 0.28,
+    "max": 24
+   },
+   "sx": [
+    3,
+    -9
+   ],
+   "chain": true
+  }
+ },
+ "Sumo Squat (hantel)": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.down",
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn"
+  ],
+  "p": {
+   "load": "dbSumo",
+   "impl": "db",
+   "depth": 115,
+   "stance": 32,
+   "toeOut": 40
+  }
+ },
+ "Trap Bar Deadlift": {
+  "fam": "hinge",
+  "b": "own",
+  "p": {
+   "style": "floor",
+   "impl": "trapbar",
+   "stance": 14,
+   "toeOut": 8,
+   "grip": 29,
+   "shin": {
+    "stand": 3,
+    "perKnee": 0.32,
+    "max": 28
+   },
+   "sx": [
+    2,
+    -6
+   ],
+   "yStart": 20
+  }
+ },
+ "Wall Sit": {
+  "fam": "squat",
+  "b": "own",
+  "p": {
+   "load": "bodyweight",
+   "impl": "none",
+   "depth": 90,
+   "stance": 20,
+   "toeOut": 15,
+   "wall": true
+  }
+ },
+ "Wide-Grip Barbell Bench Press": {
+  "fam": "bench_press",
+  "b": "general",
+  "f": "bench",
+  "ok": [
+   "bp.contact",
+   "bp.blades",
+   "bp.control"
+  ],
+  "err": [
+   "bp.mis.arch"
+  ],
+  "p": {
+   "impl": "barbell",
+   "angle": 0,
+   "grip": 45,
+   "touch": 33,
+   "vert": true
+  }
+ },
+ "Zercher Squat": {
+  "fam": "squat",
+  "b": "general",
+  "f": "squat",
+  "ok": [
+   "sq.down",
+   "sq.back",
+   "sq.kneesToes"
+  ],
+  "err": [
+   "sq.mis.kneesIn",
+   "sq.mis.heels"
+  ],
+  "p": {
+   "load": "zercher",
+   "impl": "barbell",
+   "depth": 115,
+   "stance": 20,
+   "toeOut": 15
+  }
+ }
+}

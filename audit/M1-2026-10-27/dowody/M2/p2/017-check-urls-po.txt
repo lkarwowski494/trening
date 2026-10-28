@@ -1,0 +1,8 @@
+OK   https://apps4brew.com/trening/privacy.html  [lib/products.ts PRIVACY_URL]
+OK   https://apps4brew.com/trening/support.html  [lib/products.ts SUPPORT_URL]
+OK   https://apps4brew.com/trening/espresso.html  [lib/products.ts ESPRESSO_URL]
+OK   https://www.apple.com/legal/internet-services/itunes/dev/stdeula/  [lib/products.ts TERMS_URL]
+OK   https://apps4brew.com/  [store/app-store-urls.json marketingUrl]
+
+Wszystkie adresy zwracają 200, treść zgodna z site/.
+kod 0 (11:51:55 UTC, próba 2)

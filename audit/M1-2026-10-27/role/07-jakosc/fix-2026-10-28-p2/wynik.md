@@ -1,0 +1,1 @@
+M1-audytor-generalny-009 / 04-studio-projektowe-003: commit 6a67658; test tests/dec07-odeslanie-docs21.test.ts czerwony (2 z 3) przed, zielony po; docs/21: sekcja Backlog 1.0.1 — DEC-01 a (podgląd liczb) i DEC-04 a (krok importu); check:pochodne i check:decyzje zielone.

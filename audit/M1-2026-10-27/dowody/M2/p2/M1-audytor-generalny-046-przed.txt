@@ -1,0 +1,70 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/m1-046-monetyzacja-stany.test.tsx (6.062 s)
+  M1-046 (02-602): uwaga o odnawianiu po zakupie dożywotniego tylko przy subskrypcji, za którą płaci sama osoba
+    ✕ dożywotni + roczny z Chmury rodzinnej: bez rady „anuluj” (2771 ms)
+    ✓ dożywotni + roczny kupiony samodzielnie: rada „anuluj” jest (200 ms)
+  M1-046 (02-601): bez sieci, pełny dostęp z pamięci — bez oferty dla darmowych
+    ✕ dostęp „full” zapamiętany, sklep nie odpowiada: brak wstępu o darmowych dniach, listy planów i stopki „Bez zakupu” (186 ms)
+  M1-046 (11-601): okno „Pierwszy trening za Tobą!” nie dla byłego subskrybenta
+    ✓ bez zakupów: okno po treningu na żywo (także z wcześniejszymi treningami — MAN-01) (21 ms)
+    ✕ po wygaśnięciu subskrypcji: 21. trening na żywo bez okna (sonda A raportu 11) (15 ms)
+
+  ● M1-046 (02-602): uwaga o odnawianiu po zakupie dożywotniego tylko przy subskrypcji, za którą płaci sama osoba › dożywotni + roczny z Chmury rodzinnej: bez rady „anuluj”
+
+    expect(received).toBeNull()
+
+    Received: {"_fiber": {"_debugHookTypes": null, "_debugInfo": null, "_debugNeedsRemount": false, "_debugOwner": [FiberNode], "_debugStack": [Error: react-stack-top-frame], "_debugTask": null, "actualDuration": 0, "actualStartTime": 1793200287881, "alternate": [FiberNode], "child": [FiberNode], "childLanes": 0, "deletions": null, "dependencies": null, "elementType": "Text", "flags": 4, "index": 0, "key": null, "lanes": 0, "memoizedProps": [Object], "memoizedState": null, "mode": 3, "pendingProps": [Object], "ref": null, "refCleanup": null, "return": [FiberNode], "selfBaseDuration": 0, "sibling": null, "stateNode": [Object], "subtreeFlags": 262144, "tag": 5, "treeBaseDuration": 0, "type": "Text", "updateQueue": null}}
+
+      32 |   test('dożywotni + roczny z Chmury rodzinnej: bez rady „anuluj”', async () => {
+      33 |     await paywall([{ plan: 'lifetime', source: 'purchase', expiresAt: null }, { plan: 'yearly', source: 'family', expiresAt: NOW + 200 * DAY }]);
+    > 34 |     expect(screen.getByTestId('paywall-owned')).toBeTruthy(); expect(screen.queryByText(ODNAWIA)).toBeNull();
+         |                                                                                                   ^
+      35 |   });
+      36 |   test('dożywotni + roczny kupiony samodzielnie: rada „anuluj” jest', async () => {
+      37 |     await paywall([{ plan: 'lifetime', source: 'purchase', expiresAt: null }, { plan: 'yearly', source: 'purchase', expiresAt: NOW + 200 * DAY }]);
+
+      at Object.toBeNull (tests/m1-046-monetyzacja-stany.test.tsx:34:99)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-046 (02-601): bez sieci, pełny dostęp z pamięci — bez oferty dla darmowych › dostęp „full” zapamiętany, sklep nie odpowiada: brak wstępu o darmowych dniach, listy planów i stopki „Bez zakupu”
+
+    Couldn't find a navigation context. Have you wrapped your app with 'NavigationContainer'? See https://reactnavigation.org/docs/getting-started for setup instructions.
+
+      45 |     fake.offline = true; await act(async () => { await refreshEntitlements(); }); for (let i = 0; i < 6; i++) await flushAll(10);
+      46 |     expect(require('@/lib/entitlement').accessNow(Date.now())).toMatchObject({ level: 'full', active: null });
+    > 47 |     expect(screen.queryByTestId('paywall-headline')).toBeNull();
+         |                                                      ^
+      48 |     expect(screen.queryByText(/^Bez zakupu:/)).toBeNull();
+      49 |     expect(screen.queryByTestId('paywall-buy')).toBeNull(); expect(screen.queryByTestId('paywall-offline')).toBeNull();
+      50 |   });
+
+      at Object.toBeNull (tests/m1-046-monetyzacja-stany.test.tsx:47:54)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-046 (11-601): okno „Pierwszy trening za Tobą!” nie dla byłego subskrybenta › po wygaśnięciu subskrypcji: 21. trening na żywo bez okna (sonda A raportu 11)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      61 |     setStoreAdapter(createFakeStore([{ plan: 'monthly', source: 'purchase', expiresAt: NOW - DAY }])); await refreshEntitlements();
+      62 |     for (let i = 20; i >= 1; i--) live(NOW - i * DAY);
+    > 63 |     expect(fairRulesDue(live(NOW), NOW)).toBe(false);
+         |                                          ^
+      64 |   });
+      65 | });
+      66 |
+
+      at Object.toBe (tests/m1-046-monetyzacja-stany.test.tsx:63:42)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 2 passed, 5 total
+Snapshots:   0 total
+Time:        6.719 s
+Ran all test suites matching /tests\/m1-046-monetyzacja-stany.test.tsx/i.

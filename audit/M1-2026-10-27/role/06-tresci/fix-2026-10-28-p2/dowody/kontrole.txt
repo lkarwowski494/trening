@@ -1,0 +1,55 @@
+
+> trening@1.0.0 typecheck
+> tsc --noEmit
+
+
+/home/user/trening/lib/cues/index.ts
+  31:1  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-var-requires')
+
+/home/user/trening/scripts/zrodla-runtime.mjs
+  0:0  warning  File ignored because of a matching ignore pattern. Use "--no-ignore" to disable file ignore settings or use "--no-warn-ignored" to suppress this warning
+
+/home/user/trening/tests/audit-k1-bl-mer.test.tsx
+  0:0  warning  File ignored because of a matching ignore pattern. Use "--no-ignore" to disable file ignore settings or use "--no-warn-ignored" to suppress this warning
+
+/home/user/trening/tests/cues-014.test.tsx
+  0:0  warning  File ignored because of a matching ignore pattern. Use "--no-ignore" to disable file ignore settings or use "--no-warn-ignored" to suppress this warning
+
+/home/user/trening/tests/cues.test.tsx
+  0:0  warning  File ignored because of a matching ignore pattern. Use "--no-ignore" to disable file ignore settings or use "--no-warn-ignored" to suppress this warning
+
+/home/user/trening/tests/figures-v2-cues.test.tsx
+  0:0  warning  File ignored because of a matching ignore pattern. Use "--no-ignore" to disable file ignore settings or use "--no-warn-ignored" to suppress this warning
+
+/home/user/trening/tests/figures-v2-errors.test.tsx
+  0:0  warning  File ignored because of a matching ignore pattern. Use "--no-ignore" to disable file ignore settings or use "--no-warn-ignored" to suppress this warning
+
+/home/user/trening/tests/figures.test.tsx
+  0:0  warning  File ignored because of a matching ignore pattern. Use "--no-ignore" to disable file ignore settings or use "--no-warn-ignored" to suppress this warning
+
+/home/user/trening/tests/figury-recenzja.test.tsx
+  0:0  warning  File ignored because of a matching ignore pattern. Use "--no-ignore" to disable file ignore settings or use "--no-warn-ignored" to suppress this warning
+
+/home/user/trening/tests/karty-recenzja.test.tsx
+  0:0  warning  File ignored because of a matching ignore pattern. Use "--no-ignore" to disable file ignore settings or use "--no-warn-ignored" to suppress this warning
+
+/home/user/trening/tests/zrodla-pelne-cues.test.ts
+  0:0  warning  File ignored because of a matching ignore pattern. Use "--no-ignore" to disable file ignore settings or use "--no-warn-ignored" to suppress this warning
+
+✖ 11 problems (0 errors, 11 warnings)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+
+
+> trening@1.0.0 check:claims
+> node scripts/claims.mjs --check
+
+twierdzenia: 59 wpisów, 41 tekstów dziedzinowych (w tym bez twierdzenia: 7), rejestr zgodny
+
+> trening@1.0.0 check:zrodla-runtime
+> node scripts/zrodla-runtime.mjs --check
+
+
+> trening@1.0.0 check:cues
+> node scripts/cues/gen.mjs --check
+
+wskazówki: 102 ćwiczeń, dokument aktualny

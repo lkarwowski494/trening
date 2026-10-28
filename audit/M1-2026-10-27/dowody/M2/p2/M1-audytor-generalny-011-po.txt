@@ -1,0 +1,10 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/m1-011-duzy-tekst-metoda.test.ts
+PASS iOS tests/audit-m1-044-brd.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       26 passed, 26 total
+Snapshots:   0 total
+Time:        2.446 s
+Ran all test suites matching /tests\/m1-011-duzy-tekst-metoda.test.ts|tests\/audit-m1-044-brd.test.ts/i.

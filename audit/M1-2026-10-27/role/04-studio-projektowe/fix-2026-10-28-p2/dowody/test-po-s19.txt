@@ -1,0 +1,72 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/interaction-guards.test.ts
+  S18: przewijanie — jedna zasada dla wszystkich ekranów (wskaźnik ukryty)
+    ✓ ScrollView, FlatList i SectionList tylko ze wspólnego components/Scroll.tsx (nie z react-native) (22 ms)
+    ✓ wspólny komponent ukrywa wskaźniki; żaden ekran ich nie włącza z powrotem (36 ms)
+  S2/S1: nagłówki — przyciski tylko przez wspólne komponenty
+    ✓ headerLeft/headerRight tylko w DraftHeader, CloseButton, AddButton, EditHeader (poza resetem `: undefined`) (12 ms)
+    ✓ zakaz <Pressable w opcjach nagłówka: wspólne komponenty używają HeaderButton (44 pt, limit powiększenia) (2 ms)
+  S3: edycja na szkicu — zapis tylko w nagłówku, te same etykiety
+    ✓ app/template/[id].tsx: <DraftHeader> z cancelLabel i saveLabel; brak drugiego przycisku „Zapisz …” na dole (1 ms)
+    ✓ app/exercise/[id].tsx: <DraftHeader> z cancelLabel i saveLabel; brak drugiego przycisku „Zapisz …” na dole (1 ms)
+    ✓ app/history/edit/[id].tsx: <DraftHeader> z cancelLabel i saveLabel; brak drugiego przycisku „Zapisz …” na dole
+  S4: dodawanie na listach — „+” w nagłówku, jeden komponent
+    ✓ app/templates.tsx: useAddHeader z etykietą „Dodaj szablon”
+    ✓ app/exercises.tsx: useAddHeader z etykietą „Dodaj ćwiczenie” (1 ms)
+    ✓ app/more/locations.tsx: useAddHeader z etykietą „Dodaj miejsce” (1 ms)
+    ✓ app/more/bands.tsx: useAddHeader z etykietą „Dodaj gumę”
+    ✓ app/plan.tsx: useAddHeader z etykietą „Dodaj plan”
+    ✓ zakaz starych przycisków dodawania na ekranach list (18 ms)
+  S5: potwierdzenia — rezygnacja zawsze „Anuluj” (jedna stała w lib/confirm.ts)
+    ✓ style: 'cancel' tylko w lib/confirm.ts (i wyjątek: „Nie teraz” przy prośbie o zgodę na powiadomienia) (11 ms)
+    ✓ zakaz słów „Nie” i „Wróć” jako przycisków okien (jedyny wyjątek: „Wróć do edycji” w odrzucaniu zmian) (20 ms)
+  S6: wybór i przełączniki (miejsca naprawione)
+    ✓ „Asysta gumą” to SwitchRow; Tydzień/Miesiąc to Segmented (tryb generatora też — przywrócony: DEC-03 c, 23.10.2026); partie mięśni to Chip toggle (1 ms)
+  S7: czas przerwy i formaty
+    ✓ przerwa zawsze przez fmtSec (nigdy fmtDur) i etykiety „(s)” (56 ms)
+  S8/S17: informacja zwrotna
+    ✓ zakaz accessibilityLiveRegion (Android-only) — tylko lib/announce.ts (12 ms)
+    ✓ zakaz ogólnego błędu „Nie udało się” + „Spróbuj ponownie.” bez nazwania, co się nie udało (9 ms)
+    ✓ zakaz okna Alert przy starcie z autozapisu — wiersz na ekranie Trening (lib/notices.ts)
+  S9: słownik terminów
+    ✓ brak zakazanych wariantów: „anuluj bieżący trening”, „↺ przywróć” (zamiana), pierwsza osoba („ponowię”, „Ponawiam”) (1 ms)
+    ✓ cofnięcie zamiany: ta sama akcja ma to samo słowo w treningu i w oknie zamiany (1 ms)
+  S10: puste stany
+    ✓ „nie ma takiego …” / „Brak sesji.” zawsze przez <Missing> (9 ms)
+    ✓ pusta lista masy ciała to <Empty> (1 ms)
+  S11: rozwijanie — ▸/▾, stan expanded
+    ✓ zakaz znaków ⌃ ⌄ ▴ w interfejsie (8 ms)
+    ✓ plik z ▸/▾ jako znakiem rozwijania ma accessibilityState expanded (wyjątki: menu „miejsce ▾” z ikoną otwiera arkusz, nie rozwija) (4 ms)
+    ✓ Btn/Item mają wspólną właściwość expanded
+  S12: daty — formatery tylko w lib/state/time.ts, lib/calendar.ts, lib/period.ts
+    ✓ toLocaleDateString/toLocaleTimeString tylko tam; zakaz month: 'numeric' (25 ms)
+  S13: dostępność — język VoiceOver
+    ✓ każdy <Pressable ma accessibilityLanguage albo accessible={false} (poza ui.tsx — tam komponenty bazowe mają własny test A11-09) (3 ms)
+  S14: pola dotyku (częściowo — patrz nagłówek pliku)
+    ✓ zakaz roli „link” (przejścia w aplikacji to „button”; zewnętrzne strony — Btn z podpowiedzią) (12 ms)
+  S15: wyszukiwanie — jeden komponent SearchField
+    ✓ placeholder „Szukaj …” tylko przez SearchField (9 ms)
+    ✓ SearchField: przycisk czyszczenia, limit 80 znaków (1 ms)
+  S16: arkusze akcji — najwyżej 4 opcje (z „Anuluj”) albo wyjątek z powodem
+    ✓ wszystkie wywołania ActionSheetIOS są na liście wyjątków z powodem (nowe — czerwony test: najwyżej 4 opcje) (2 ms)
+  N1/N28: ekran zakupu
+    ✓ bez nagłówka H1 powtarzającego tytuł nagłówka; zamknięcie przez useCloseHeader
+  S17: ⓘ — jeden komponent, objaśnienia nie wracają na wierzch
+    ✓ okrąg „i” (przycisk ⓘ) i etykieta VoiceOver „Więcej informacji” tylko w components/InfoTip.tsx; znak U+24D8 nie służy jako ikona (1192 ms)
+    ✓ SectionTitle / H2 / Field / SwitchRow: parametr `info` obsługuje wspólny komponent (nie osobna implementacja) (1 ms)
+    ✓ teksty przeniesione pod ⓘ występują w kodzie tylko jako `info=` (albo w zmiennej używanej wyłącznie jako `info=`) (201 ms)
+    ✓ zmienne pośrednie (goalNote, basis, simplification, bwNote) są używane wyłącznie w `info=` (25 ms)
+    ✓ lekkość: widoczny tekst pomocniczy (<Muted>, detail) ma najwyżej 100 znaków poza listą z powodem (2128 ms)
+    ✓ instrukcje gestów nie wracają na ekrany (są w Przewodniku): stopki treningu, edytora szablonu i edycji sesji (8 ms)
+    ✓ „Technika ›” to przejście (wzorzec 17), nie ⓘ (1 ms)
+  S19 (28.10.2026, DEC-11 a): grupa `accessible` nie zawiera przycisku — iOS chowa potomków grupy przed VoiceOver i XCTest
+    ✓ żaden element `accessible` w app/ i components/ (bez roli kontrolki) nie ma w drzewie JSX potomka z onPress/onLongPress (207 ms)
+    ✓ strażnik łapie wzorzec błędu (grupa z przyciskiem w środku) i przepuszcza dozwolone układy (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       43 passed, 43 total
+Snapshots:   0 total
+Time:        5.378 s
+Ran all test suites matching /tests\/interaction-guards.test.ts/i.
+kod=0

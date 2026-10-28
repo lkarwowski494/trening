@@ -1,0 +1,52 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/m1-041-el-jednostka.test.ts
+  M1-041: krok ± w etykiecie VoiceOver z odmienioną nazwą jednostki, gdy etykieta to słowo
+    ✕ el: hantle, krok 1 → „1 κιλό” (nie „1 κιλά”) (82 ms)
+    ✓ pl: skrót bez zmian (1 kg) (30 ms)
+    ✓ en: skrót bez zmian (1 kg) (19 ms)
+    ✓ ru: skrót bez zmian (1 кг) (28 ms)
+  M1-041: nagłówek kolumny ciężaru zmniejsza krój zamiast ucinać (A11-19)
+    ✕ components/WorkoutBlocks.tsx: nagłówek loadLabelShort ma numberOfLines={1} i adjustsFontSizeToFit (7 ms)
+
+  ● M1-041: krok ± w etykiecie VoiceOver z odmienioną nazwą jednostki, gdy etykieta to słowo › el: hantle, krok 1 → „1 κιλό” (nie „1 κιλά”)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "1 κιλό"
+    Received: "1 κιλά"
+
+      22 |     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (hantle)'));
+      23 |     applyLang('el' as Lang); applyUnit('kg');
+    > 24 |     expect(up()).toBe('1 κιλό');
+         |                  ^
+      25 |   });
+      26 |   test.each([['pl', '1 kg'], ['en', '1 kg'], ['ru', '1 кг']] as [Lang, string][])('%s: skrót bez zmian (%s)', async (l, want) => {
+      27 |     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (hantle)'));
+
+      at Object.toBe (tests/m1-041-el-jednostka.test.ts:24:18)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-041: nagłówek kolumny ciężaru zmniejsza krój zamiast ucinać (A11-19) › components/WorkoutBlocks.tsx: nagłówek loadLabelShort ma numberOfLines={1} i adjustsFontSizeToFit
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /adjustsFontSizeToFit/
+    Received string:  "        {hasWeight(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} numberOfLines={1} style={[s.c, { width: W.w }]}>{loadLabelShort(ex, impl)}</Muted> : null}"
+
+      36 |     const line = src.split('\n').find((l) => l.includes('{loadLabelShort(ex, impl)}')) ?? '';
+      37 |     expect(line).toMatch(/numberOfLines=\{1\}/);
+    > 38 |     expect(line).toMatch(/adjustsFontSizeToFit/);
+         |                  ^
+      39 |   });
+      40 | });
+      41 |
+
+      at Object.toMatch (tests/m1-041-el-jednostka.test.ts:38:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 3 passed, 5 total
+Snapshots:   0 total
+Time:        1.826 s
+Ran all test suites matching /tests\/m1-041-el-jednostka.test.ts/i.

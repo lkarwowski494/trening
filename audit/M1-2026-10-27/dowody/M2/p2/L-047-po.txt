@@ -1,0 +1,11 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/l047-recenzja-niezalezna.test.ts
+PASS iOS tests/karty-recenzja.test.tsx (5.053 s)
+PASS iOS tests/figury-recenzja.test.tsx
+
+Test Suites: 3 passed, 3 total
+Tests:       49 passed, 49 total
+Snapshots:   0 total
+Time:        7.758 s
+Ran all test suites matching /tests\/l047-recenzja-niezalezna.test.ts|tests\/figury-recenzja.test.tsx|tests\/karty-recenzja.test.tsx/i.

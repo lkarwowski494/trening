@@ -1,0 +1,34 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/maestro-tap-tekst-guard.test.ts
+PASS iOS tests/maestro-selectors.test.ts
+PASS iOS tests/interaction-guards.test.ts
+PASS iOS tests/voiceover-grupa-przycisk.test.tsx
+FAIL iOS tests/przeplywy.test.ts
+  ● katalog przepływów — scenariusze Maestro › scenariusz istnieje, a znaczniki kroków występują w jego kodzie (bez komentarzy)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "US-12: w 21-subskrypcja.yaml brak znacznika „Manage subscription”",
+    + ]
+
+      60 |       for (const z of f.znaczniki) if (!code.includes(z)) bad.push(`${f.id}: w ${f.scenariusz} brak znacznika „${z}”`);
+      61 |     }
+    > 62 |     expect(bad).toEqual([]);
+         |                 ^
+      63 |   });
+      64 |   test('każdy scenariusz .maestro/NN-*.yaml jest przypisany do przepływu', () => {
+      65 |     const used = new Set(flows.map(f => f.scenariusz).filter(Boolean));
+
+      at Object.toEqual (tests/przeplywy.test.ts:62:17)
+
+Test Suites: 1 failed, 4 passed, 5 total
+Tests:       1 failed, 105 passed, 106 total
+Snapshots:   0 total
+Time:        11.018 s, estimated 15 s
+Ran all test suites matching /tests\/maestro-tap-tekst-guard.test.ts|tests\/maestro-selectors.test.ts|tests\/voiceover-grupa-przycisk.test.tsx|tests\/interaction-guards.test.ts|tests\/przeplywy.test.ts/i.

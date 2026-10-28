@@ -1,0 +1,11 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/m1-043-pierwsze-kroki-glyph.test.tsx
+PASS iOS tests/dashboard.test.tsx
+PASS iOS tests/audit-m1-025-pierwsze-kroki.test.tsx
+
+Test Suites: 3 passed, 3 total
+Tests:       17 passed, 17 total
+Snapshots:   0 total
+Time:        9.06 s, estimated 14 s
+Ran all test suites matching /tests\/m1-043-pierwsze-kroki-glyph.test.tsx|tests\/audit-m1-025-pierwsze-kroki.test.tsx|tests\/dashboard.test.tsx/i.

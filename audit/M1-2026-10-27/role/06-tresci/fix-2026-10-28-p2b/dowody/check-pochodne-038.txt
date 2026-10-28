@@ -1,0 +1,20 @@
+
+> trening@1.0.0 check:pochodne
+> node scripts/pochodne.mjs
+
+check:pochodne: ok  README (4.3 s)
+check:pochodne: ok  lib/locales/_source.json (4.4 s)
+check:pochodne: ok  konteksty tłumaczeń (0.2 s)
+check:pochodne: ok  wskazówki (cues) (0.1 s)
+check:pochodne: ok  figury v1 (0.1 s)
+check:pochodne: ok  figury v2 (2.0 s)
+check:pochodne: ok  schemat figur v2 (1.8 s)
+check:pochodne: ok  sprzęt (0.1 s)
+check:pochodne: ok  katalog przepływów (0.1 s)
+check:pochodne: ok  źródła runtime (0.2 s)
+check:pochodne: ok  licencje (0.2 s)
+check:pochodne: ok  rejestr twierdzeń (0.6 s)
+check:pochodne: ok  wektory BRD (0.1 s)
+check:pochodne: ok  macierz testów (9.4 s)
+check:pochodne: ok  pliki zegarka i widżetu + strażniki tekstowe (13.8 s)
+check:pochodne: zielone (15 kroków, 14 s)

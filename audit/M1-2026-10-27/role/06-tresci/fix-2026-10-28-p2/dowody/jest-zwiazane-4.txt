@@ -1,0 +1,20 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/matrix-invariants.test.ts (93.994 s)
+PASS iOS tests/figury-1-0-recenzja.test.ts (8.594 s)
+PASS iOS tests/zrodlo-jedno.test.ts
+PASS iOS tests/zrodla-paczka.test.ts (12.905 s)
+PASS iOS tests/figures-v2-mapping.test.ts
+PASS iOS tests/zrodla-pelne-wskazowki-ogolne.test.ts
+PASS iOS tests/figures-v2-contract.test.ts (14.755 s)
+PASS iOS tests/zrodla-wiedzy.test.ts
+PASS iOS tests/figury-podparcie.test.ts
+PASS iOS tests/audit-m1-031-hantle-asekuracja.test.tsx
+PASS iOS tests/cues-lazy.test.ts
+PASS iOS tests/figures-v2-bench-rules.test.ts
+
+Test Suites: 12 passed, 12 total
+Tests:       1 skipped, 224 passed, 225 total
+Snapshots:   0 total
+Time:        141.808 s
+Ran all test suites matching /tests\/figury-1-0-recenzja.test.ts|tests\/figury-podparcie.test.ts|tests\/zrodlo-jedno.test.ts|tests\/audit-m1-031-hantle-asekuracja.test.tsx|tests\/matrix-invariants.test.ts|tests\/figures-v2-mapping.test.ts|tests\/zrodla-paczka.test.ts|tests\/zrodla-pelne-wskazowki-ogolne.test.ts|tests\/cues-lazy.test.ts|tests\/zrodla-wiedzy.test.ts|tests\/figures-v2-contract.test.ts|tests\/figures-v2-bench-rules.test.ts/i.

@@ -1,0 +1,11 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/m1-044-posiadany-plan-kontrast.test.tsx
+PASS iOS tests/voiceover-grupa-przycisk.test.tsx
+PASS iOS tests/subscription-ui.test.tsx (13.267 s)
+
+Test Suites: 3 passed, 3 total
+Tests:       45 passed, 45 total
+Snapshots:   0 total
+Time:        18.018 s
+Ran all test suites matching /tests\/m1-044-posiadany-plan-kontrast.test.tsx|tests\/voiceover-grupa-przycisk.test.tsx|tests\/subscription-ui.test.tsx/i.

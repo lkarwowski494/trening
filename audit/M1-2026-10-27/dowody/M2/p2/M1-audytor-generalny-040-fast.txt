@@ -1,0 +1,61 @@
+
+> trening@1.0.0 test:fast
+> node scripts/test-fast.mjs
+
+test:fast — 3 plików względem HEAD
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+(node:13119) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Summary of all failing tests
+FAIL tests/audit-m1-lok07-01-imperial-dist.test.tsx
+  ● strażnik: teksty dystansu tylko przez helper › t('{n} km') i t('{n} m') (oraz {n} mi / {n} yd) występują tylko w lib/state/time.ts i lib/units.ts (etykiety)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "lib/live.ts",
+    + ]
+
+      88 |     const root = path.join(__dirname, '..'); const bad: string[] = [];
+      89 |     for (const d of ['app', 'components', 'lib']) for (const f of walk(path.join(root, d))) { const src = fs.readFileSync(f, 'utf8'); if (/'\{n\} (km|m|mi|yd)'/.test(src) && !f.endsWith(path.join('lib', 'state', 'time.ts')) && !f.endsWith(path.join('lib', 'units.ts')) /* 28.10.2026 (10a): etykiety jednostek ze słownika (distLabel) żyją w units.ts obok fmtW */) bad.push(path.relative(root, f)); }
+    > 90 |     expect(bad).toEqual([]);
+         |                 ^
+      91 |   });
+      92 |   test('słownik: klucze nowego ustawienia i jednostek są w angielskim słowniku', () => {
+      93 |     const { EN } = require('@/lib/i18n.en'); for (const k of ['System miar', 'metryczny (kg, km, m)', 'imperialny (lb, mi, yd)', '{n} mi', '{n} yd', 'mila|mile|mil', 'mili', 'jard|jardy|jardów', 'jarda']) expect([k, k in EN]).toEqual([k, true]);
+
+      at Object.toEqual (tests/audit-m1-lok07-01-imperial-dist.test.tsx:90:17)
+
+FAIL tests/audit-m1-066-pseudo.test.tsx
+  ● plik kontekstu tłumaczeń › aktualny względem kodu (node scripts/i18n-context.mjs --write)
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "Command failed: node /tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-p2/scripts/i18n-context.mjs --check"
+
+          40 |   });
+          41 |   test('aktualny względem kodu (node scripts/i18n-context.mjs --write)', () => {
+        > 42 |     expect(() => require('child_process').execFileSync('node', [path.join(root, 'scripts/i18n-context.mjs'), '--check'], { stdio: 'pipe' })).not.toThrow();
+             |                                           ^
+          43 |   });
+          44 | });
+          45 |
+
+      at execFileSync (tests/audit-m1-066-pseudo.test.tsx:42:43)
+      at Object.<anonymous> (../../../../../../home/user/trening/node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (../../../../../../home/user/trening/node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (tests/audit-m1-066-pseudo.test.tsx:42:146)
+      at Object.toThrow (tests/audit-m1-066-pseudo.test.tsx:42:146)
+
+
+Test Suites: 2 failed, 293 passed, 295 total
+Tests:       2 failed, 1 skipped, 5109 passed, 5112 total
+Snapshots:   0 total
+Time:        1977.268 s

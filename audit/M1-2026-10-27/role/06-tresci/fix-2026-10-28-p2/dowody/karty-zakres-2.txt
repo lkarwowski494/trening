@@ -1,0 +1,367 @@
+======== Deadlift (sztanga)
+  [setup] dl.feet: Stopy pod sztangą, mniej więcej na szerokość bioder do barków; sztanga tuż przy piszczelach, nad środkiem stopy.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | opis
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-deadlift | Step 1: Setup
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/BBDeadlift | Preparation
+  [setup] dl.grip: Chwyć sztangę nachwytem albo chwytem mieszanym, na szerokość barków lub trochę szerzej.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | opis
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-deadlift | Step 1: Setup; FAQ (grip options)
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/BBDeadlift | Preparation; Comments
+  [move] dl.lift: Podnoś, prostując jednocześnie biodra i kolana; na górze stań prosto, z biodrami w przód.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | opis
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-deadlift | Step 3: Execute/Drive
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/BBDeadlift | Execution
+  [move] dl.lower: Odkładaj sztangę tak samo: biodra w tył, kolana się uginają, plecy proste.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | opis
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-deadlift | Step 4: Return/Descent
+  [tips] hinge.back: Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | opis (straight/flat back)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-deadlift | Step 3; Step 4 (neutral spine)
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/BBDeadlift | Comments (back straight)
+  [tips] dl.close: Prowadź sztangę blisko nóg przez cały ruch.
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/BBDeadlift | Comments (keep bar close to body)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-deadlift | Common Mistakes (bar drifting away)
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-deadlift/ | Bar Path
+  [tips] dl.hipsLow: Na starcie barki mniej więcej nad sztangą, ręce proste.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-deadlift | Step 2 (shoulders over the bar)
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/BBDeadlift | Comments (shoulder slightly behind bar in powerlifting… arms straight)
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-deadlift/ | Bar Path (bar a bit behind the shoulder)
+  [mistakes] mis.roundBack: Zaokrąglanie pleców, żeby dociągnąć ciężar.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-deadlift | Common Mistakes (excessive spinal flexion)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | opis (keep back flat)
+  [mistakes] mis.barAway: Sztanga odjeżdża od ciała.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-deadlift | Common Mistakes
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/BBDeadlift | Comments
+======== Trap Bar Deadlift
+  [setup] tb.inside: Stań w środku ramy sztangi i chwyć uchwyty po bokach.
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/TBDeadlift | Preparation
+      - Swinton i in. (Robert Gordon University) L3 https://pubmed.ncbi.nlm.nih.gov/21659894/ | abstrakt (hexagonal barbell that allowed the lifter to stand within its frame)
+  [move] tb.lift: Podnoś, prostując jednocześnie biodra i kolana, aż staniesz prosto.
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/TBDeadlift | Execution
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-deadlift | Step 3: Execute/Drive (extend hips and knees simultaneously)
+  [tips] hinge.back: Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/TBDeadlift | Preparation; Comments (low back taut, back straight)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-deadlift | Step 3; Step 4 (neutral spine)
+  [tips] dl.hipsLow: Na starcie barki mniej więcej nad sztangą, ręce proste.
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/TBDeadlift | Comments (shoulders high, arms straight)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-deadlift | Step 2 (shoulders over the bar)
+  [mistakes] mis.roundBack: Zaokrąglanie pleców, żeby dociągnąć ciężar.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-deadlift | Common Mistakes (excessive spinal flexion)
+      - ExRx.net L4 https://exrx.net/WeightExercises/ErectorSpinae/TBDeadlift | Comments (back straight)
+======== RDL (sztanga)
+  [setup] rdl.setup: Stań prosto ze sztangą przy udach, stopy na szerokość bioder do barków, chwyt na szerokość barków lub trochę szerzej.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/ | opis (barbell resting on the front of the thighs — bez szerokości stóp i chwytu)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell | Step 1; Step 2 (feet hip-width; grip slightly wider than shoulder-width)
+      - ExRx.net L4 https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift | Preparation (shoulder width to wide overhand grip; shoulder width or narrower stance)
+  [move] rdl.move: Cofaj biodra i prowadź sztangę w dół blisko nóg, kolana lekko ugięte; wróć, wypychając biodra w przód.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/ | opis
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell | Step 3; Step 4
+      - ExRx.net L4 https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift | Execution
+  [tips] hinge.back: Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/ | opis (straight back)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell | Step 3 (neutral spine)
+      - ExRx.net L4 https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift | Comments (keep back straight)
+  [tips] rdl.depth: Schodź, dopóki czujesz rozciąganie tyłu ud i utrzymasz proste plecy.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/ | opis (until feeling some tension along the back of the legs)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell | Step 3; FAQ (range of motion)
+      - ExRx.net L4 https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift | Execution (once hamstring is stretched)
+  [tips] dl.close: Prowadź sztangę blisko nóg przez cały ruch.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/ | opis (keeping the bar very close to the body)
+      - ExRx.net L4 https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift | Execution (tracing front contour of legs)
+  [mistakes] mis.roundBack: Zaokrąglanie pleców, żeby dociągnąć ciężar.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell | Common Mistakes
+      - ExRx.net L4 https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift | Comments
+  [mistakes] rdl.knees: Kolana tylko lekko ugięte — to nie przysiad.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell | Common Mistakes (bending the knees too much)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/ | opis (slight bend in both knees)
+======== RDL (hantle/linki)
+  [setup] rdl.dbSetup: Stań prosto z hantlami przed udami lub po bokach, stopy na szerokość bioder.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift | Step 1
+      - ExRx.net L4 https://exrx.net/WeightExercises/Hamstrings/DBStraightLegDeadlift | Preparation
+  [move] rdl.dbMove: Cofaj biodra i opuszczaj ciężar blisko nóg, kolana lekko ugięte; wróć, wypychając biodra w przód.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift | Step 3; Step 4
+      - ExRx.net L4 https://exrx.net/WeightExercises/Hamstrings/DBStraightLegDeadlift | Execution
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/ | opis (sztanga — ten sam ruch)
+  [tips] hinge.back: Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift | Step 2; Step 3
+      - ExRx.net L4 https://exrx.net/WeightExercises/Hamstrings/DBStraightLegDeadlift | Comments
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/ | opis
+  [tips] rdl.depth: Schodź, dopóki czujesz rozciąganie tyłu ud i utrzymasz proste plecy.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift | Step 3; FAQ
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/ | opis
+  [mistakes] mis.roundBack: Zaokrąglanie pleców, żeby dociągnąć ciężar.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift | Common Mistakes
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/ | opis
+  [mistakes] rdl.knees: Kolana tylko lekko ugięte — to nie przysiad.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift | Common Mistakes
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/ | opis
+======== Good Morning
+  [setup] gm.setup: Sztanga na górze pleców, stopy na szerokość bioder, kolana lekko ugięte.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/good-mornings | Step 1; Step 3 (slight knee bend)
+      - ExRx.net L4 https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning | Preparation
+  [move] gm.move: Pochyl tułów w przód, cofając biodra, z prostymi plecami; wróć, wypychając biodra w przód.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/good-mornings | Step 3; Step 4
+      - ExRx.net L4 https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning | Execution
+  [tips] hinge.back: Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/good-mornings | Step 1; Step 3
+      - ExRx.net L4 https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning | Execution; Comments
+  [tips] gm.depth: Schodź tylko do łagodnego rozciągnięcia tyłu ud — nie dalej niż do poziomu tułowia.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning | Execution (until parallel); Comments (mild stretch)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/good-mornings | Step 3; FAQ (forward lean)
+  [tips] gm.light: Zacznij od bardzo lekkiego ciężaru i dokładaj stopniowo.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning | Comments (begin with very light weight)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/good-mornings | Common Mistakes (excessive weight); FAQ
+  [mistakes] mis.roundBack: Zaokrąglanie pleców, żeby dociągnąć ciężar.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/good-mornings | Common Mistakes
+      - ExRx.net L4 https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning | Execution (keeping back straight)
+======== Back Squat
+  [setup] sq.bar: Sztanga na górze pleców, chwyt szerzej niż barki; zdejmij ją ze stojaka i cofnij się o krok lub dwa.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/ | opis
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BBFullSquat | Preparation
+  [setup] sq.stance: Stopy mniej więcej na szerokość barków lub trochę szerzej, palce lekko na zewnątrz.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/ | opis (a little wider than shoulder-width)
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-squat/ | Stance width; Foot Angle
+  [move] sq.down: Schodź, cofając biodra i uginając kolana jednocześnie; wstań, wypychając podłogę całymi stopami.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/ | opis
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BBFullSquat | Execution
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | Step 3; Step 6 (ten sam wzorzec bez obciążenia)
+  [tips] sq.kneesToes: Kolana idą w linii palców stóp — nie zapadają się do środka.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BBFullSquat | Execution; Comments
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-squat/ | Foot Angle; FAQ (knees caving in)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | Step 4; Step 5 (knees aligned over the second toe)
+  [tips] sq.kneesPast: Kolana mogą wyjść trochę przed palce stóp — nie trzeba ich na siłę blokować.
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-squat/ | FAQ: Is it okay if my knees go past my toes?
+      - Fry, Smith, Schilling (University of Memphis) L3 https://pubmed.ncbi.nlm.nih.gov/14636100/ | abstrakt (Practical applications)
+  [tips] sq.depth: Schodź tak nisko, jak pozwala ruchomość przy prostych plecach i całych stopach na podłodze — zwykle co najmniej do równoległego ud.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | Step 4
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-squat/ | Depth
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BBFullSquat | Execution (until knees and hips are fully bent)
+  [tips] sq.back: Plecy proste, klatka uniesiona.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/ | opis (straight back, chest up)
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BBFullSquat | Comments (back straight)
+  [mistakes] sq.mis.kneesIn: Kolana zapadające się do środka.
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-squat/ | FAQ: My knees are caving in
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | Step 4
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BBFullSquat | Comments
+  [mistakes] sq.mis.heels: Odrywanie pięt od podłogi.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | Step 4; Step 6 (heels flat)
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BBFullSquat | Comments (feet flat on floor)
+======== Goblet Squat
+  [setup] gob.hold: Trzymaj hantel lub kettlebell pionowo przy klatce, łokcie blisko tułowia.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/362/goblet-squat/ | opis
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/goblet-squat | Step 1: Setup
+  [setup] gob.stance: Stopy na szerokość bioder do barków.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/362/goblet-squat/ | opis (shoulder-width)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/goblet-squat | Step 1 (hip-width)
+  [move] gob.move: Zejdź w przysiad z uniesioną klatką i ciężarem przy klatce; wstań, wypychając podłogę stopami.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/362/goblet-squat/ | opis
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/goblet-squat | Step 3; Step 4
+  [tips] sq.depth: Schodź tak nisko, jak pozwala ruchomość przy prostych plecach i całych stopach na podłodze — zwykle co najmniej do równoległego ud.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/362/goblet-squat/ | opis (hips below the knees)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/goblet-squat | Step 3 (parallel or deeper if mobility allows)
+  [tips] gob.close: Ciężar blisko ciała, klatka nie opada do przodu.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/goblet-squat | Common Mistakes (drooping the chest, weight drifting away)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/362/goblet-squat/ | opis (elbows close to the rib cage, back straight)
+  [tips] sq.kneesToes: Kolana idą w linii palców stóp — nie zapadają się do środka.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/goblet-squat | Common Mistakes (knees cave inward)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | Step 4 (ten sam wzorzec)
+  [mistakes] sq.mis.kneesIn: Kolana zapadające się do środka.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/goblet-squat | Common Mistakes
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | Step 4
+======== Przysiad z pasem (linki)
+  [setup] sq.stance: Stopy mniej więcej na szerokość barków lub trochę szerzej, palce lekko na zewnątrz.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/CBSquatBelt | Preparation (feet shoulder width or wider)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | Step 1
+  [move] sq.down: Schodź, cofając biodra i uginając kolana jednocześnie; wstań, wypychając podłogę całymi stopami.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/CBSquatBelt | Execution
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | Step 3; Step 6
+  [tips] sq.kneesToes: Kolana idą w linii palców stóp — nie zapadają się do środka.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/CBSquatBelt | Execution; Comments
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | Step 4; Step 5
+  [tips] sq.depth: Schodź tak nisko, jak pozwala ruchomość przy prostych plecach i całych stopach na podłodze — zwykle co najmniej do równoległego ud.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/CBSquatBelt | Execution (thighs just past parallel)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | Step 4
+  [tips] sq.back: Plecy proste, klatka uniesiona.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/CBSquatBelt | Comments (back straight, chest high)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | Step 2; Step 3
+  [mistakes] sq.mis.heels: Odrywanie pięt od podłogi.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/CBSquatBelt | Comments (feet flat)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/ | Step 4; Step 6
+======== Bench Press (sztanga)
+  [setup] bp.contact: Głowa, barki i pośladki na ławce, stopy pewnie na podłodze.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/5/chest-press/ | opis (press the feet into the ground and the hips into the bench)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-bench-press | Step 1: Setup
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-bench/ | Foot position (butt won’t come off the bench)
+  [setup] bp.grip: Chwyć sztangę nieco szerzej niż barki.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/5/chest-press/ | opis (slightly wider than shoulder-width)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-bench-press | Step 2; FAQ (grip width)
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralSternal/BBBenchPress | Preparation
+  [move] bp.move: Opuść sztangę kontrolowanie do klatki, potem wypchnij ją w górę do wyprostu rąk.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/5/chest-press/ | opis
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-bench-press | Step 3; Step 4
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralSternal/BBBenchPress | Execution
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-bench/ | Descent; Ascent
+  [tips] bp.blades: Ściągnij łopatki do siebie i w dół i utrzymaj je tak przez cały ruch.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-bench-press | Step 2 (retract your shoulder blades)
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-bench/ | Scapular position
+  [tips] bp.control: Opuszczaj ciężar powoli — bez odbijania od klatki.
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-bench/ | Descent (lower the bar under control)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-bench-press | Common Mistakes (lowering the bar too quickly)
+  [mistakes] bp.mis.arch: Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-bench-press | Common Mistakes (excessive lower back arching)
+      - Stronger by Science L4 https://www.strongerbyscience.com/how-to-bench/ | Foot position (butt won’t come off the bench)
+      - NSCA L4 https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf | s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)
+======== Incline Bench Press (sztanga)
+  [setup] ibp.setup: Połóż się na ławce skośnej: plecy i pośladki oparte, stopy na podłodze.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press | Step 1: Setup
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralClavicular/BBInclineBenchPress | Preparation
+  [setup] bp.grip: Chwyć sztangę nieco szerzej niż barki.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press | Step 2; FAQ (grip width)
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralClavicular/BBInclineBenchPress | Preparation (wide oblique overhand grip)
+  [move] ibp.move: Opuść sztangę do górnej części klatki, potem wypchnij ją w górę do wyprostu rąk.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press | Step 3; Step 4
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralClavicular/BBInclineBenchPress | Execution
+  [tips] bp.blades: Ściągnij łopatki do siebie i w dół i utrzymaj je tak przez cały ruch.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press | Step 2
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/ | Step 2 (hantle — ta sama zasada)
+  [tips] bp.control: Opuszczaj ciężar powoli — bez odbijania od klatki.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press | Common Mistakes (lowering the bar too quickly)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/ | Step 3 (slowly lower)
+  [mistakes] bp.mis.arch: Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press | Common Mistakes
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/ | Step 3; Step 4 (avoid any arching in the low back)
+      - NSCA L4 https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf | s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)
+======== Incline Bench Press (hantle)
+  [setup] ibp.dbSetup: Usiądź na ławce skośnej z hantlami na udach, połóż się i ustaw hantle przy barkach.
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralClavicular/DBInclineBenchPress | Preparation
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/ | Step 1; Step 2
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press | Step 1; Step 2
+  [move] ibp.dbMove: Wypchnij hantle w górę nad barki do wyprostu rąk; opuść je powoli do boków górnej części klatki.
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralClavicular/DBInclineBenchPress | Execution
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/ | Step 3; Step 4
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press | Step 3; Step 4
+  [tips] bp.blades: Ściągnij łopatki do siebie i w dół i utrzymaj je tak przez cały ruch.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/ | Step 2
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press | Step 2
+  [tips] bp.control: Opuszczaj ciężar powoli — bez odbijania od klatki.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/ | Step 3
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press | Common Mistakes (lowering too quickly or bouncing)
+  [mistakes] bp.mis.arch: Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press | Common Mistakes
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/ | Step 3; Step 4
+      - NSCA L4 https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf | s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)
+======== Close Grip Bench Press
+  [setup] cgbp.grip: Chwyć sztangę na szerokość barków lub trochę węziej — nie bardzo wąsko.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/311/close-grip-bench-press/ | opis (hands directly in line with the shoulders)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/close-grip-bench-press | Step 1; FAQ (grip width)
+      - ExRx.net L4 https://exrx.net/WeightExercises/Triceps/BBCloseGripBenchPress | Preparation; Comments
+  [move] cgbp.move: Opuść sztangę do klatki z łokciami blisko tułowia; wypchnij ją do wyprostu rąk.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/311/close-grip-bench-press/ | opis
+      - ExRx.net L4 https://exrx.net/WeightExercises/Triceps/BBCloseGripBenchPress | Execution
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/close-grip-bench-press | Step 3; Step 4
+  [tips] cgbp.elbows: Łokcie blisko tułowia przez cały ruch.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/311/close-grip-bench-press/ | opis (elbows close to the ribs)
+      - ExRx.net L4 https://exrx.net/WeightExercises/Triceps/BBCloseGripBenchPress | Execution (elbows close to body)
+  [tips] bp.contact: Głowa, barki i pośladki na ławce, stopy pewnie na podłodze.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/311/close-grip-bench-press/ | opis (push the feet into the floor, press the hips into the bench)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/close-grip-bench-press | Step 1 (back firmly against the bench, feet flat)
+======== Bench Press (hantle)
+  [setup] dbp.setup: Usiądź z hantlami na udach, połóż się na ławce i ustaw hantle przy bokach klatki.
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralSternal/DBBenchPress | Preparation
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/ | Step 1; Step 2
+  [setup] bp.contact: Głowa, barki i pośladki na ławce, stopy pewnie na podłodze.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/ | Step 2 (head, shoulders, butt and feet in contact)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band | Step 1; Step 2 (feet firmly planted, flat on the floor)
+  [move] dbp.move: Wypchnij hantle w górę do wyprostu rąk; opuść je powoli do boków klatki.
+      - ExRx.net L4 https://exrx.net/WeightExercises/PectoralSternal/DBBenchPress | Execution
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/ | Step 3; Step 4
+  [tips] bp.blades: Ściągnij łopatki do siebie i w dół i utrzymaj je tak przez cały ruch.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/ | Step 2
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band | Step 2 (retract your shoulders)
+  [tips] bp.control: Opuszczaj ciężar powoli — bez odbijania od klatki.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/ | Step 3 (slowly lower… without bouncing)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band | Step 4 (lower with control)
+  [mistakes] bp.mis.arch: Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/ | Step 3; Step 4 (avoid any arching in the low back)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/barbell-bench-press | Common Mistakes (sztanga — ta sama zasada)
+      - NSCA L4 https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf | s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)
+======== Front Squat
+  [setup] fsq.rack: Sztanga oparta z przodu barków, łokcie wysoko, ramiona mniej więcej poziomo.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BBFrontSquat | Preparation (upper arms parallel to floor)
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/dumbbell-front-squat | Step 1 (elbows high; hantle — ta sama pozycja)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/22/front-squat/ | Step 2 (front edge of the shoulders)
+  [setup] sq.stance: Stopy mniej więcej na szerokość barków lub trochę szerzej, palce lekko na zewnątrz.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/22/front-squat/ | Step 1
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/dumbbell-front-squat | Step 1 (shoulder-width, toes slightly out)
+  [move] sq.down: Schodź, cofając biodra i uginając kolana jednocześnie; wstań, wypychając podłogę całymi stopami.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BBFrontSquat | Execution
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/22/front-squat/ | Step 3; Step 6
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/dumbbell-front-squat | Step 2; Step 3
+  [tips] fsq.elbows: Nie opuszczaj łokci — wtedy ciężar ciągnie tułów w przód.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/dumbbell-front-squat | Common Mistakes (elbows drop)
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BBFrontSquat | Preparation (upper arms parallel to floor)
+  [tips] sq.kneesToes: Kolana idą w linii palców stóp — nie zapadają się do środka.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BBFrontSquat | Execution; Comments
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/22/front-squat/ | Step 4; Step 5
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/dumbbell-front-squat | Common Mistakes
+  [tips] sq.depth: Schodź tak nisko, jak pozwala ruchomość przy prostych plecach i całych stopach na podłodze — zwykle co najmniej do równoległego ud.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BBFrontSquat | Execution (just past parallel)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/22/front-squat/ | Step 4
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/dumbbell-front-squat | Step 3; Common Mistakes
+  [tips] sq.back: Plecy proste, klatka uniesiona.
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BBFrontSquat | Comments (back straight)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/22/front-squat/ | Step 6 (back, chest and head-up position)
+  [mistakes] sq.mis.heels: Odrywanie pięt od podłogi.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/dumbbell-front-squat | Common Mistakes (rising onto the toes)
+      - ExRx.net L4 https://exrx.net/WeightExercises/Quadriceps/BBFrontSquat | Comments (feet flat on floor)
+======== Deadlift (hantle)
+  [setup] dbdl.setup: Stań na szerokość bioder z ciężarem przy nogach; pochyl się w biodrach z prostymi plecami i chwyć go.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/kettlebell-deadlift | Step 1; Step 2 (kettlebell — ten sam wzorzec)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | opis (sztanga — ten sam wzorzec)
+  [move] dl.lift: Podnoś, prostując jednocześnie biodra i kolana; na górze stań prosto, z biodrami w przód.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/kettlebell-deadlift | Step 3
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | opis
+  [move] dl.lower: Odkładaj sztangę tak samo: biodra w tył, kolana się uginają, plecy proste.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/kettlebell-deadlift | Step 4
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | opis
+  [tips] hinge.back: Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/kettlebell-deadlift | Step 2; Step 3; Step 4
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | opis
+  [tips] dbdl.hips: Wstając, wypychaj biodra w przód aż do pełnego wyprostu.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/kettlebell-deadlift | Step 3 (drive your hips forward)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | opis (push the hips forward to move to standing)
+  [mistakes] mis.roundBack: Zaokrąglanie pleców, żeby dociągnąć ciężar.
+      - NASM L4 https://www.nasm.org/resource-center/exercise-library/kettlebell-deadlift | Common Mistakes
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/ | opis
+======== Pendlay Row
+  [setup] row.hinge: Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/ | opis
+      - ExRx.net L4 https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow | Preparation; Comments („Also known as Pendlay Row”)
+  [setup] row.bbGrip: Chwyć sztangę nachwytem, na szerokość barków lub szerzej.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/ | opis
+      - ExRx.net L4 https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow | Preparation
+  [move] row.bbPull: Przyciągnij sztangę do brzucha, potem opuść ją do pełnego wyprostu rąk.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/ | opis
+      - ExRx.net L4 https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow | Execution
+  [tips] hinge.back: Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/ | opis
+      - ExRx.net L4 https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow | Comments
+  [tips] row.fullStretch: Na dole wyprostuj ręce do końca, barki swobodnie w dół.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/ | opis
+      - ExRx.net L4 https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow | Execution
+  [mistakes] mis.roundBack: Zaokrąglanie pleców, żeby dociągnąć ciężar.
+      - ExRx.net L4 https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow | Comments
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/ | opis
+======== Push Press
+  [setup] pp.setup: Sztanga przy przedniej części barków, chwyt mniej więcej na szerokość barków lub trochę szerzej, stopy na szerokość bioder.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/24/push-press/ | opis
+      - ExRx.net L4 https://exrx.net/WeightExercises/OlympicLifts/PushPress | Preparation
+  [move] pp.move: Krótko ugnij kolana, a potem dynamicznie wyprostuj nogi i biodra, wypychając sztangę nad głowę do wyprostu rąk.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/24/push-press/ | opis
+      - ExRx.net L4 https://exrx.net/WeightExercises/OlympicLifts/PushPress | Execution
+  [tips] pp.legs: Siła wybicia idzie z nóg i bioder — ręce kończą ruch.
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/24/push-press/ | opis (power from the hips through the shoulders and arms)
+      - ExRx.net L4 https://exrx.net/WeightExercises/OlympicLifts/PushPress | Execution (explosively drive upward with legs)
+  [tips] pp.dip: Ugięcie krótkie, tułów napięty.
+      - ExRx.net L4 https://exrx.net/WeightExercises/OlympicLifts/PushPress | Preparation; Execution (torso tight; dip slightly)
+      - ACE L4 https://www.acefitness.org/resources/everyone/exercise-library/24/push-press/ | opis (bend at the knees while keeping the back straight)

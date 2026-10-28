@@ -1,0 +1,40 @@
+
+> trening@1.0.0 test:fast
+> node scripts/test-fast.mjs
+
+test:fast — 2 plików względem HEAD
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+(node:17518) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19811) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Summary of all failing tests
+FAIL tests/audit-m1-066-pseudo.test.tsx
+  ● plik kontekstu tłumaczeń › aktualny względem kodu (node scripts/i18n-context.mjs --write)
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "Command failed: node /tmp/claude-0/-home-user-trening/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/wt-p2/scripts/i18n-context.mjs --check"
+
+          40 |   });
+          41 |   test('aktualny względem kodu (node scripts/i18n-context.mjs --write)', () => {
+        > 42 |     expect(() => require('child_process').execFileSync('node', [path.join(root, 'scripts/i18n-context.mjs'), '--check'], { stdio: 'pipe' })).not.toThrow();
+             |                                           ^
+          43 |   });
+          44 | });
+          45 |
+
+      at execFileSync (tests/audit-m1-066-pseudo.test.tsx:42:43)
+      at Object.<anonymous> (../../../../../../home/user/trening/node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (../../../../../../home/user/trening/node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (tests/audit-m1-066-pseudo.test.tsx:42:146)
+      at Object.toThrow (tests/audit-m1-066-pseudo.test.tsx:42:146)
+
+
+Test Suites: 1 failed, 414 passed, 415 total
+Tests:       1 failed, 2 skipped, 8131 passed, 8134 total
+Snapshots:   5 passed, 5 total
+Time:        1600.565 s, estimated 1960 s

@@ -1,0 +1,91 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/karty-recenzja.test.tsx (13.43 s)
+PASS iOS tests/cues.test.tsx
+PASS iOS tests/figures.test.tsx
+FAIL iOS tests/zrodla-pelne-cues.test.ts
+  ● plik runtime lib/cues/data.json = funkcja pełnych danych, bez nazw › generator zrodla-runtime --check: plik aktualny
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "Command failed: node /home/user/trening/scripts/zrodla-runtime.mjs --check
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.knee: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    źródła zestawów ogólnych (M1-audytor-generalny-021): lunge.mis.kneeIn: przy „Lunges (hantle)” w data/zrodla/cues.json brak źródeł z adresem i miejscem
+    "
+
+          70 | describe('plik runtime lib/cues/data.json = funkcja pełnych danych, bez nazw', () => {
+          71 |   test('generator zrodla-runtime --check: plik aktualny', () => {
+        > 72 |     expect(() => execFileSync('node', [path.join(root, 'scripts/zrodla-runtime.mjs'), '--check'], { stdio: 'pipe' })).not.toThrow();
+             |                              ^
+          73 |   });
+          74 |   test('te same ćwiczenia, sekcje i zdania w tej samej kolejności; runtime bez pól sources/orgs/s/partialNote', () => {
+          75 |     /* bramka 4 dla treści kart (M1-audytor-generalny-038, 28.10.2026): karta bez aktualnej recenzji — na liście hidden, nie w runtime (tests/karty-recenzja.test.tsx) */
+
+      at tests/zrodla-pelne-cues.test.ts:72:30
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (tests/zrodla-pelne-cues.test.ts:72:123)
+      at Object.toThrow (tests/zrodla-pelne-cues.test.ts:72:123)
+
+FAIL iOS tests/figury-recenzja.test.tsx
+  ● zapis recenzji (docs/research/figury-recenzja.json) › wyświetlana albo zastąpiona ⇒ skrót recenzji = skrót bieżących danych figury i wskazówek (zmiana bez nowej recenzji czerwieni test)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Pistol Squat",
+    -   "c247eb5bcad8",
+    +   "dd7d203bbc39",
+      ]
+
+      41 |   });
+      42 |   test('wyświetlana albo zastąpiona ⇒ skrót recenzji = skrót bieżących danych figury i wskazówek (zmiana bez nowej recenzji czerwieni test)', () => {
+    > 43 |     for (const [k, e] of Object.entries(REC.v1)) if (SHOWN(e)) expect([k, e.sha]).toEqual([k, NOW.v1[k]]);
+         |                                                                                   ^
+      44 |   });
+      45 |   test('plik runtime: figury = tylko wpisy wyświetlane/zastąpione z aktualnym skrótem; ukryte na liście otwartej (nie renderują się)', () => {
+      46 |     const ok = Object.keys(NOW.v1).filter(k => SHOWN(REC.v1[k]) && REC.v1[k].sha === NOW.v1[k] && !CUE_DATA.hidden.includes(k)); /* karta ukryta po recenzji treści — bez figury (M1-audytor-generalny-038, 28.10.2026) */
+
+      at Object.toEqual (tests/figury-recenzja.test.tsx:43:83)
+
+PASS iOS tests/figures-v2-cues.test.tsx
+
+Test Suites: 2 failed, 4 passed, 6 total
+Tests:       2 failed, 121 passed, 123 total
+Snapshots:   5 passed, 5 total
+Time:        24.285 s
+Ran all test suites matching /tests\/karty-recenzja.test.tsx|tests\/cues.test.tsx|tests\/figures.test.tsx|tests\/figury-recenzja.test.tsx|tests\/figures-v2-cues.test.tsx|tests\/zrodla-pelne-cues.test.ts/i.

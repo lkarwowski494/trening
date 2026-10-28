@@ -1,0 +1,451 @@
+
+> trening@1.0.0 test:fast
+> node scripts/test-fast.mjs --maxWorkers=1
+
+test:fast — 5 plików względem HEAD
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+
+Summary of all failing tests
+FAIL tests/figures.test.tsx (7.845 s)
+  ● dane figur › każde ćwiczenie ze wskazówkami etapu 1 ma figurę albo powód na liście otwartej; figury tylko dla ćwiczeń ze wskazówkami
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Pistol Squat",
+    -   true,
+    +   false,
+      ]
+
+      40 |   test('każde ćwiczenie ze wskazówkami etapu 1 ma figurę albo powód na liście otwartej; figury tylko dla ćwiczeń ze wskazówkami', () => {
+      41 |     for (const k of Object.keys(CUE_DATA.exercises)) expect([k, !!FIG_DATA.exercises[k] !== FIG_DATA.open.includes(k)]).toEqual([k, true]);
+    > 42 |     for (const k of [...KEYS, ...FIG_DATA.open]) expect([k, !!CUE_DATA.exercises[k]]).toEqual([k, true]); /* powody braku figury — tests/zrodla-pelne-figury.test.ts */
+         |                                                                                       ^
+      43 |     expect(KEYS.length).toBeGreaterThanOrEqual(60);
+      44 |   });
+      45 |   test('najczęstsze wzorce mają figurę (przysiad, martwy ciąg, wyciskania, wiosłowanie, podciąganie, wykrok, hip thrust, uginania, prostowania)', () => {
+
+      at Object.toEqual (tests/figures.test.tsx:42:87)
+
+  ● dane figur › najczęstsze wzorce mają figurę (przysiad, martwy ciąg, wyciskania, wiosłowanie, podciąganie, wykrok, hip thrust, uginania, prostowania)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Lunges (hantle)",
+    -   true,
+    +   false,
+      ]
+
+      44 |   });
+      45 |   test('najczęstsze wzorce mają figurę (przysiad, martwy ciąg, wyciskania, wiosłowanie, podciąganie, wykrok, hip thrust, uginania, prostowania)', () => {
+    > 46 |     for (const k of ['Back Squat', 'Deadlift (sztanga)', 'Bench Press (sztanga)', 'Overhead Press (sztanga)', 'Bent Over Row (sztanga)', 'Pull Up', 'Lunges (hantle)', 'Hip Thrust (sztanga)', 'Barbell Curl', 'Triceps Pushdown']) expect([k, figureByKey(k) !== null]).toEqual([k, true]);
+         |                                                                                                                                                                                                                                                                          ^
+      47 |   });
+      48 |   test('każda poza ma 1–3 klatki w kolejności start → (mid) → end i co najmniej jedno odwołanie do zdania wskazówki TEGO ćwiczenia', () => {
+      49 |     for (const k of KEYS) {
+
+      at Object.toEqual (tests/figures.test.tsx:46:266)
+
+  ● dane figur › każda poza ma 1–3 klatki w kolejności start → (mid) → end i co najmniej jedno odwołanie do zdania wskazówki TEGO ćwiczenia
+
+    TypeError: Cannot read properties of null (reading 'frames')
+
+      48 |   test('każda poza ma 1–3 klatki w kolejności start → (mid) → end i co najmniej jedno odwołanie do zdania wskazówki TEGO ćwiczenia', () => {
+      49 |     for (const k of KEYS) {
+    > 50 |       const f = fig(k); expect([k, f.frames.length >= 1 && f.frames.length <= 3]).toEqual([k, true]);
+         |                                      ^
+      51 |       expect([k, f.frames.map(x => x.n)]).toEqual([k, (({ 1: ['start'], 2: ['start', 'end'], 3: ['start', 'mid', 'end'] }) as Record<number, string[]>)[f.frames.length]]);
+      52 |       const ids = cueIdsOf(k);
+      53 |       for (const fr of f.frames) { expect([k, fr.n, fr.why.length > 0]).toEqual([k, fr.n, true]); for (const w of fr.why) expect([k, fr.n, w.c, ids.has(w.c)]).toEqual([k, fr.n, w.c, true]); }
+
+      at Object.frames (tests/figures.test.tsx:50:38)
+
+  ● dane figur › każda poza spełnia swoje sprawdzenia (geometria liczona z kątów — np. „uda równolegle”, „barki nad sztangą”, „łokcie pod nadgarstkami”)
+
+    TypeError: Cannot read properties of null (reading 'frames')
+
+      56 |   test('każda poza spełnia swoje sprawdzenia (geometria liczona z kątów — np. „uda równolegle”, „barki nad sztangą”, „łokcie pod nadgarstkami”)', () => {
+      57 |     const bad: string[] = [];
+    > 58 |     for (const k of KEYS) { const f = fig(k); f.frames.forEach((fr, i) => { const P = framePoints(f, i); for (const w of fr.why) { const r = evalCheck(w, fr.p, f.view, P); if (!r.ok) bad.push(`${k}.${fr.n}.${w.q}.${w.c}=${r.v}`); } }); }
+         |                                                 ^
+      59 |     expect(bad).toEqual([]);
+      60 |   });
+      61 |   test('zakres stawów: każda poza i każda poza pośrednia animacji w granicach anatomicznych (rom w data.json; źródła granic — tests/zrodla-pelne-figury.test.ts)', () => {
+
+      at frames (tests/figures.test.tsx:58:49)
+      at Object._loop (tests/figures.test.tsx:58:25)
+
+  ● dane figur › zakres stawów: każda poza i każda poza pośrednia animacji w granicach anatomicznych (rom w data.json; źródła granic — tests/zrodla-pelne-figury.test.ts)
+
+    TypeError: Cannot read properties of null (reading 'view')
+
+      62 |     const bad: string[] = [];
+      63 |     for (const k of KEYS) {
+    > 64 |       const f = fig(k), R = FIG_DATA.rom[f.view];
+         |                                            ^
+      65 |       for (const { p, tag } of posesOf(f)) for (const [j, v] of Object.entries(jointAngles(p, f.view))) {
+      66 |         const r = R[j.replace(/2$/, '')]; if (!r) { bad.push(`${k}.${tag}: brak granicy ${j}`); continue; }
+      67 |         if (f.armProj && f.view === 'side' && /^(sh|el)/.test(j)) continue;
+
+      at Object.view (tests/figures.test.tsx:64:44)
+
+  ● dane figur › figura nie wchodzi pod podłogę (w żadnej klatce ani pozie pośredniej) i ma skończone współrzędne
+
+    TypeError: Cannot read properties of null (reading 'floor')
+
+      75 |     const bad: string[] = [];
+      76 |     for (const k of KEYS) {
+    > 77 |       const f = fig(k); if (!f.floor) continue;
+         |                                ^
+      78 |       for (const { P, tag } of posesOf(f)) {
+      79 |         for (const [n, q] of Object.entries(P)) { if (!Number.isFinite(q[0]) || !Number.isFinite(q[1])) bad.push(`${k}.${tag}.${n} NaN`); else if (q[1] < -1.5) bad.push(`${k}.${tag}.${n} y=${q[1].toFixed(1)}`); }
+      80 |       }
+
+      at Object.floor (tests/figures.test.tsx:77:32)
+
+  ● dane figur › bez migania: w pętli zmienia się tylko położenie — liczba kształtów, role (kolory) i wypełnienia są stałe
+
+    TypeError: Cannot read properties of null (reading 'frames')
+
+      52 | /** Kształty pozy pośredniej w chwili `ms` pętli. */
+      53 | export function figureAt(f: Figure, ms: number): Shape[] {
+    > 54 |   const { from, to, k } = loopAt(ms, f.frames.length);
+         |                                        ^
+      55 |   const { p, P } = poseBetween(f, from, to, k);
+      56 |   return shapes(p, f.view, P, f.props);
+      57 | }
+
+      at frames (lib/figures/index.ts:54:40)
+      at Object.<anonymous> (tests/figures.test.tsx:87:31)
+
+  ● komponent ExerciseFigure › Ogranicz ruch włączone → statyczne pozycje obok siebie, bez animacji i bez przycisku pauzy
+
+    Unable to find an element with testID: exercise-figure-frame-start
+
+      270 |     render(<ExerciseFigure exercise={lib('Lunges (hantle)')} />); await flush(); /* Push Press — figura ukryta po recenzji bramki 4 (docs/research/figury-recenzja.json) */
+      271 |     expect(screen.queryByTestId('exercise-figure-anim')).toBeNull();
+    > 272 |     for (const n of ['start', 'mid', 'end']) expect(screen.getByTestId(`exercise-figure-frame-${n}`)).toBeTruthy();
+          |                                                            ^
+      273 |     expect(screen.getByText('W trakcie')).toBeTruthy();
+      274 |     expect(screen.queryByRole('button', { name: 'Zatrzymaj animację' })).toBeNull();
+      275 |     const d = pathsOf().join(); await act(async () => { jest.advanceTimersByTime(5000); }); expect(pathsOf().join()).toBe(d);
+
+      at Object.getByTestId (tests/figures.test.tsx:272:60)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+FAIL tests/figury-recenzja.test.tsx
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › niezmiennik wszystkich wyświetlanych figur v1: punkt stały we wszystkich pozach kluczowych (podpora) nie ślizga się w pozach pośrednich o więcej niż 3,5 j.; żaden punkt ciała nie wchodzi w ławkę ani skrzynię głębiej niż 2 j.
+
+    brak figury Pistol Squat
+
+       95 |
+       96 | /* ---------- Regresja: wady ruchu z recenzji 27.10.2026 (liczby z silnika; „było” = dane sprzed poprawki) ---------- */
+    >  97 | const fig = (k: string) => { const f = figureByKey(k); if (!f) throw new Error(`brak figury ${k}`); return f; };
+          |                                                                      ^
+       98 | /** Wszystkie pozy animacji: 21 chwil każdego przejścia między pozycjami kluczowymi. */
+       99 | const all = (f: Figure): Points[] => { const out: Points[] = []; for (let i = 0; i + 1 < f.frames.length; i++) for (let s = 0; s <= 20; s++) out.push(poseBetween(f, i, i + 1, s / 20).P); return out; };
+      100 | const d = (a: Pt, b: Pt) => Math.hypot(a[0] - b[0], a[1] - b[1]);
+
+      at fig (tests/figury-recenzja.test.tsx:97:70)
+      at fig (tests/figury-recenzja.test.tsx:161:17)
+      at Object._loop2 (tests/figury-recenzja.test.tsx:160:52)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Lunges (hantle) — krok w przód: przednia stopa przenoszona w powietrzu, nie sunie po podłodze (było 7,5 j.)
+
+    brak figury Lunges (hantle)
+
+       95 |
+       96 | /* ---------- Regresja: wady ruchu z recenzji 27.10.2026 (liczby z silnika; „było” = dane sprzed poprawki) ---------- */
+    >  97 | const fig = (k: string) => { const f = figureByKey(k); if (!f) throw new Error(`brak figury ${k}`); return f; };
+          |                                                                      ^
+       98 | /** Wszystkie pozy animacji: 21 chwil każdego przejścia między pozycjami kluczowymi. */
+       99 | const all = (f: Figure): Points[] => { const out: Points[] = []; for (let i = 0; i + 1 < f.frames.length; i++) for (let s = 0; s <= 20; s++) out.push(poseBetween(f, i, i + 1, s / 20).P); return out; };
+      100 | const d = (a: Pt, b: Pt) => Math.hypot(a[0] - b[0], a[1] - b[1]);
+
+      at fig (tests/figury-recenzja.test.tsx:97:70)
+      at fig (tests/figury-recenzja.test.tsx:174:15)
+
+  ● regresja: wady ruchu figur v1 z recenzji bramki 4 (27.10.2026) › Walking Lunges — krok w przód: przednia stopa przenoszona w powietrzu, nie sunie po podłodze (było 7,5 j.)
+
+    brak figury Walking Lunges
+
+       95 |
+       96 | /* ---------- Regresja: wady ruchu z recenzji 27.10.2026 (liczby z silnika; „było” = dane sprzed poprawki) ---------- */
+    >  97 | const fig = (k: string) => { const f = figureByKey(k); if (!f) throw new Error(`brak figury ${k}`); return f; };
+          |                                                                      ^
+       98 | /** Wszystkie pozy animacji: 21 chwil każdego przejścia między pozycjami kluczowymi. */
+       99 | const all = (f: Figure): Points[] => { const out: Points[] = []; for (let i = 0; i + 1 < f.frames.length; i++) for (let s = 0; s <= 20; s++) out.push(poseBetween(f, i, i + 1, s / 20).P); return out; };
+      100 | const d = (a: Pt, b: Pt) => Math.hypot(a[0] - b[0], a[1] - b[1]);
+
+      at fig (tests/figury-recenzja.test.tsx:97:70)
+      at fig (tests/figury-recenzja.test.tsx:174:15)
+
+FAIL tests/zrodla-pelne-cues.test.ts
+  ● plik runtime lib/cues/data.json = funkcja pełnych danych, bez nazw › te same ćwiczenia, sekcje i zdania w tej samej kolejności; runtime bez pól sources/orgs/s/partialNote
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 6
+    + Received  + 0
+
+    @@ -32,15 +32,11 @@
+        "Back Squat",
+        "Goblet Squat",
+        "Przysiad z pasem (linki)",
+        "Leg Press",
+        "Bulgarian Split Squat (hantle)",
+    -   "Lunges (hantle)",
+    -   "Walking Lunges",
+    -   "Reverse Lunge",
+        "Step Up",
+    -   "Pistol Squat",
+        "Hip Thrust (sztanga)",
+        "Hip Thrust (hantel)",
+        "Glute Bridge",
+        "Kettlebell Swing",
+        "Standing Calf Raise",
+    @@ -53,11 +49,10 @@
+        "Front Raise",
+        "Reverse Fly (hantle)",
+        "Reverse Pec Deck",
+        "Lying Leg Curl",
+        "Crunch",
+    -   "Hack Squat",
+        "Plank",
+        "Side Plank",
+        "Dead Bug",
+        "Bird Dog",
+        "Russian Twist",
+    @@ -78,11 +73,10 @@
+        "Chest Fly (hantle)",
+        "Front Squat",
+        "Triceps Pushdown",
+        "Overhead Triceps Extension (hantel)",
+        "Cable Overhead Extension",
+    -   "Deadlift (hantle)",
+        "Straight Arm Pulldown",
+        "Wyciskanie na linkach (stojąc)",
+        "Machine Shoulder Press",
+        "Leg Curl",
+        "Nordic Curl",
+
+      73 |   });
+      74 |   test('te same ćwiczenia, sekcje i zdania w tej samej kolejności; runtime bez pól sources/orgs/s/partialNote', () => {
+    > 75 |     expect(Object.keys(CUE_DATA.exercises)).toEqual(Object.keys(CUE_FULL.exercises));
+         |                                             ^
+      76 |     for (const [ex, x] of Object.entries(CUE_FULL.exercises)) for (const sec of Object.keys(x)) expect([ex, sec, CUE_DATA.exercises[ex][sec as 'setup'].map(r => r.c)]).toEqual([ex, sec, x[sec as 'setup'].map(r => r.c)]);
+      77 |     expect(Object.keys(CUE_DATA).sort()).toEqual(['basis', 'exercises', 'open', 'partial']);
+      78 |     expect(JSON.stringify(CUE_DATA.exercises)).not.toMatch(/"s":/);
+
+      at Object.toEqual (tests/zrodla-pelne-cues.test.ts:75:45)
+
+  ● plik runtime lib/cues/data.json = funkcja pełnych danych, bez nazw › podpis (basis) = rodzaje organizacji ze wszystkich odwołań ćwiczenia (też „analogia”), w kolejności CUE_BASIS_KINDS — niezależne przeliczenie
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 1
+
+      Array [
+        "Lunges (hantle)",
+    -   Array [
+    -     "org",
+    -     "site",
+    -   ],
+    +   Array [],
+      ]
+
+      82 |     for (const ex of Object.keys(CUE_FULL.exercises)) {
+      83 |       const kinds = new Set<CueBasisKind>(cueOrgsFull(ex).map(o => CUE_FULL.orgs[o].kind));
+    > 84 |       expect([ex, cueBasis(ex)]).toEqual([ex, CUE_BASIS_KINDS.filter(k => kinds.has(k))]);
+         |                                  ^
+      85 |     }
+      86 |   });
+      87 |   test('cuesFor nadal zwraca podpis i zdania (nic nie zgubione przy przejściu na dane runtime)', () => {
+
+      at toEqual (tests/zrodla-pelne-cues.test.ts:84:34)
+      at Object._loop (tests/zrodla-pelne-cues.test.ts:82:53)
+
+FAIL tests/cues.test.tsx (6.589 s)
+  ● dane wskazówek › każde ćwiczenie bazowe ma wskazówki albo jest na liście otwartych z powodem; poza bazą — nic
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 8
+
+    - Array []
+    + Array [
+    +   "Deadlift (hantle)",
+    +   "Hack Squat",
+    +   "Lunges (hantle)",
+    +   "Walking Lunges",
+    +   "Reverse Lunge",
+    +   "Pistol Squat",
+    + ]
+
+      24 |   test('każde ćwiczenie bazowe ma wskazówki albo jest na liście otwartych z powodem; poza bazą — nic', () => {
+      25 |     const covered = new Set([...Object.keys(CUE_DATA.exercises), ...CUE_DATA.open]);
+    > 26 |     expect([...LIB_BASE_NAMES].filter(n => !covered.has(n))).toEqual([]);
+         |                                                              ^
+      27 |     expect([...covered].filter(n => !LIB_BASE_NAMES.has(n))).toEqual([]);
+      28 |     for (const k of CUE_DATA.open) expect(CUE_DATA.exercises[k]).toBeUndefined(); /* powody otwartych — tests/zrodla-pelne-cues.test.ts */
+      29 |     expect(Object.keys(CUE_DATA.exercises).length).toBeGreaterThanOrEqual(70);
+
+      at Object.toEqual (tests/cues.test.tsx:26:62)
+
+FAIL tests/cues-014.test.tsx
+  ● 0.14.0 wskazówki: dane › 20 nowych ćwiczeń ma wskazówki, nie jest już „otwartych”; łącznie 102
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 102
+    Received: 96
+
+      30 |     expect(NEW.length).toBe(20);
+      31 |     for (const k of NEW) { expect([k, !!CUE_DATA.exercises[k], CUE_DATA.open.includes(k)]).toEqual([k, true, false]); expect(cuesFor(lib(k), 'pl')).not.toBeNull(); }
+    > 32 |     expect(Object.keys(CUE_DATA.exercises).length).toBe(102);
+         |                                                    ^
+      33 |   });
+      34 |   test('otwarte zostają otwarte (powód ≥ 20 znaków, bez wskazówek) — nic spornego nie wdrożono', () => {
+      35 |     expect(STILL_OPEN.length).toBe(22);
+
+      at Object.toBe (tests/cues-014.test.tsx:32:52)
+
+FAIL tests/figures-v2-cues.test.tsx
+  ● dane zestawów wskazówek (cue-sets.json) › 709 ćwiczeń: 102 własne, 538 ogólnych (wariant A), 69 otwartych (grafika bez tekstu); własne = dokładnie ćwiczenia z lib/cues/data.json
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 6
+
+    @@ -21,20 +21,22 @@
+        "Chest Supported Row",
+        "Chin Up",
+        "Close Grip Bench Press",
+        "Crunch",
+        "Dead Bug",
+    +   "Deadlift (hantle)",
+        "Deadlift (sztanga)",
+        "Diamond Push Up",
+        "EZ Bar Curl",
+        "Face Pull",
+        "Farmer's Walk",
+        "Front Raise",
+        "Front Squat",
+        "Glute Bridge",
+        "Goblet Squat",
+        "Good Morning",
+    +   "Hack Squat",
+        "Hammer Curl",
+        "Hip Thrust (hantel)",
+        "Hip Thrust (sztanga)",
+        "Incline Bench Press (hantle)",
+        "Incline Bench Press (sztanga)",
+    @@ -45,10 +47,11 @@
+        "Lat Pulldown",
+        "Lateral Raise (hantle)",
+        "Leg Curl",
+        "Leg Extension",
+        "Leg Press",
+    +   "Lunges (hantle)",
+        "Lying Leg Curl",
+        "Machine Chest Press",
+        "Machine Shoulder Press",
+        "Medicine Ball Slam",
+        "Mountain Climbers",
+    @@ -58,20 +61,22 @@
+        "Overhead Press (hantle)",
+        "Overhead Press (sztanga)",
+        "Overhead Triceps Extension (hantel)",
+        "Pallof Press",
+        "Pendlay Row",
+    +   "Pistol Squat",
+        "Plank",
+        "Preacher Curl",
+        "Przysiad z pasem (linki)",
+        "Pull Up",
+        "Push Press",
+        "Push Up",
+        "RDL (hantle/linki)",
+        "RDL (sztanga)",
+        "Reverse Crunch",
+        "Reverse Fly (hantle)",
+    +   "Reverse Lunge",
+        "Reverse Pec Deck",
+        "Rower",
+        "Rowing Machine",
+        "Russian Twist",
+        "Seated Cable Row",
+    @@ -88,10 +93,11 @@
+        "Sumo Deadlift",
+        "T-Bar Row",
+        "Trap Bar Deadlift",
+        "Triceps Dips (ławka)",
+        "Triceps Pushdown",
+    +   "Walking Lunges",
+        "Wall Sit",
+        "Wiosłowanie na linkach (siedząc)",
+        "Wyciskanie na linkach (stojąc)",
+        "Wyciskanie nad głowę (linki)",
+        "Łydki na stopniu",
+
+      20 |     const n = (b: string) => Object.values(CUE_SETS.items).filter(e => e.b === b).length;
+      21 |     expect([n('own'), n('general'), n('open')]).toEqual([102, 538, 69]);
+    > 22 |     expect(Object.keys(CUE_SETS.items).filter(k => CUE_SETS.items[k].b === 'own').sort()).toEqual(Object.keys(CUE_DATA.exercises).sort());
+         |                                                                                           ^
+      23 |   });
+      24 |   test('każdy zestaw ogólny ma ≥ 1 zalecenie i rodzinę; identyfikatory istnieją w pl.json albo są na liście newIds (teksty od tłumacza); newIds = identyfikatory bez tekstu', () => {
+      25 |     const used = new Set<string>();
+
+      at Object.toEqual (tests/figures-v2-cues.test.tsx:22:91)
+
+FAIL tests/figures-v2-errors.test.tsx (50.411 s)
+  ● pokrycie: każdy błąd ze źródłami ma animację › wszystkie id błędów w ćwiczeniach 87 gotowych: mają mapowanie na błąd pozowy/tempa i są stosowalne albo są nazwanym wyjątkiem z powodem
+
+    TypeError: Cannot read properties of undefined (reading 'mistakes')
+
+      20 |
+      21 | /** Błędy ze źródłami (id wskazówki „częsty błąd”) przypisane ćwiczeniu: własne (lib/cues) albo zestaw ogólny. */
+    > 22 | const errIds = (k: string): string[] => { const e = CUE_SETS.items[k]; return e.b === 'own' ? (CUE_DATA.exercises[k].mistakes ?? []).map(r => r.c) : e.b === 'general' ? e.err ?? [] : []; };
+         |                                                                                                                      ^
+      23 |
+      24 | describe('definicje błędów', () => {
+      25 |   test('każdy błąd: wskazówka źródłowa, powód, deklaracja stawów; błędy pozowe mają zmianę parametrów, błąd tempa ma czasy szybsze niż normalne', () => {
+
+      at mistakes (tests/figures-v2-errors.test.tsx:22:118)
+      at Object.errIds (tests/figures-v2-errors.test.tsx:53:44)
+
+FAIL tests/audit-k1-bl-mer.test.tsx (212.893 s)
+  ● MER2-09: dokumenty i komentarze zgodne z kodem › docs/09: liczba ćwiczeń ze wskazówkami = dane (lib/cues/data.json)
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "data.json`: 96 ćwiczeń bazowych"
+    Received string:    "| Wskazówki techniki, etap 1 (fala 2) | 08.10.2026 | fix-cues c4e8854, 3da520d | **Logika:** `lib/cues` — dane (`data.json`: 102 ćwiczeń bazowych (etap 1: 82, w 0.14.0 doszło 20 — wiersz „Wskazówki techniki, partie 1–2” w docs/09-plan-testow.md), 265 zdań, 178 źródeł) i teksty w 26 językach (`text/<lang>.json`, poza słownikiem UI — jak katalog nazw ćwiczeń); `cuesFor` po kluczu katalogu (przemianowane ćwiczenie biblioteki zachowuje wskazówki, własne → brak), `cueText` (język → en → pl → id), `cueOrgs`. Każde zdanie ma ≥ 2 przeczytane źródła z różnych organizacji z miejscem w źródle: ACE (66), ExRx.net (73, przez Wayback), NASM (33), Stronger by Science (3), Concept2 (1) — szczebel 4; Swinton i in. 2011, Fry i in. 2003 (PubMed) — szczebel 3. 42 ćwiczenia bazowe **otwarte** z powodem (jedno źródło, za mało wspólnych wskazówek albo sprzeczne źródła) — lista i powody w `docs/research/27-wskazowki-zrodla.md`. Bez obietnic zdrowotnych; stopka odsyła przy bólu do lekarza/fizjoterapeuty. **Ekran:** `components/ExerciseCues.tsx` — sekcja „Technika” na ekranie ćwiczenia, domyślnie zwinięta (przycisk z `expanded`, podpowiedź VoiceOver), sekcje Ustawienie / Ruch / Wskazówki / Częste błędy (pusta sekcja znika), stopka „Na podstawie: … Własne sformułowania.” + zdanie medyczne; kolory z motywu; nic dla ćwiczeń własnych i otwartych. **Testy:** `tests/cues.test.tsx` (19): pokrycie bazy (każde bazowe ma wskazówki albo jest otwarte z powodem), ≥ 2 organizacje na zdanie, liczności sekcji, granica medyczna (PL/EN), brak liczb w treści, komponent (zwinięty/rozwinięty, nagłówki, etykiety, stopka, kolory, EN), ekran ćwiczenia przez `renderApp`, dokument `--check`, `verify` uruchamia `check:cues`. **Języki:** 26 języków, prawdziwe tłumaczenia (test: tekst różny od en i pl; sr/uk/bg cyrylicą, el greką); 8 tekstów UI przez `t()` (cs/sk/hu/lt: pełniejsza nazwa zamiast „Technika” identycznej z kluczem). **Macierz:** nowe teksty UI i funkcje `lib/cues` pokryte (`check:matrix`: bez testu 0). **Niezmienniki:** dokument `docs/research/27` generowany z danych (`scripts/cues/gen.mjs --check` w `verify`); walidacja: ≥ 1 ustawienie i ruch, 2–4 wskazówki, 0–4 błędy, ≥ 2 organizacje, brak nieużywanych id i źródeł. **E2E:** pominięte — sekcja to statyczna treść zwinięta pod jednym przyciskiem, pokryta testem ekranu w Jest; scenariusz Maestro do dopisania, gdy ekran ćwiczenia ustabilizuje się po przebudowie (inny agent). |"
+
+      247 |   test('docs/09: liczba ćwiczeń ze wskazówkami = dane (lib/cues/data.json)', () => {
+      248 |     const row = read('docs/09-archiwum-do-0.11.md').split('\n').find(l => l.startsWith('| Wskazówki techniki, etap 1'))!;
+    > 249 |     expect(row).toContain(`data.json\`: ${Object.keys(CUE_DATA.exercises).length} ćwiczeń bazowych`);
+          |                 ^
+      250 |   });
+      251 |   test('lib/seed.ts: komentarz MUSCLE_SOURCES nie mówi „Na razie pusto”, gdy mapa ma wpisy', () => {
+      252 |     const { MUSCLE_SOURCES } = require('@/lib/seed') as typeof import('@/lib/seed');
+
+      at Object.toContain (tests/audit-k1-bl-mer.test.tsx:249:17)
+
+
+Test Suites: 8 failed, 32 passed, 40 total
+Tests:       18 failed, 971 passed, 989 total
+Snapshots:   5 passed, 5 total
+Time:        223.597 s

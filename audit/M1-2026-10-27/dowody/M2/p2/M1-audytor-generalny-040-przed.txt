@@ -1,0 +1,125 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/m1-040-podpis-dystans.test.ts
+  M1-040: podpis przerwy — lokalny symbol dystansu obok lokalnego symbolu masy
+    ✕ ru: „40 <masa>, 30 <dystans>” w piśmie języka (519 ms)
+    ✕ uk: „40 <masa>, 30 <dystans>” w piśmie języka (26 ms)
+    ✕ bg: „40 <masa>, 30 <dystans>” w piśmie języka (35 ms)
+    ✕ sr: „40 <masa>, 30 <dystans>” w piśmie języka (23 ms)
+    ✕ el: „40 <masa>, 30 <dystans>” w piśmie języka (33 ms)
+    ✓ pl i en bez zmian: „40 kg, 30 m” (15 ms)
+  M1-040: strażnik jednostek na sztywno w napisach
+    ✕ brak szablonu „${…} m|kg|lb|km|yd|mi`” w app/, components/, lib/ (30 ms)
+
+  ● M1-040: podpis przerwy — lokalny symbol dystansu obok lokalnego symbolu masy › ru: „40 <masa>, 30 <dystans>” w piśmie języka
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "40 кг, 30 м"
+    Received: "40 кг, 30 m"
+
+      23 |     applyLang(l); applyUnit('kg');
+      24 |     const s = cueLoad(carry(), blank({ weight: 40, distanceM: 30 }));
+    > 25 |     expect(s).toBe(`${t('{n} kg', { n: 40 })}, ${t('{n} m', { n: 30 })}`);
+         |               ^
+      26 |     expect(s).not.toMatch(/30 m$/);
+      27 |   });
+      28 |   test('pl i en bez zmian: „40 kg, 30 m”', () => {
+
+      at toBe (tests/m1-040-podpis-dystans.test.ts:25:15)
+
+  ● M1-040: podpis przerwy — lokalny symbol dystansu obok lokalnego symbolu masy › uk: „40 <masa>, 30 <dystans>” w piśmie języka
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "40 кг, 30 м"
+    Received: "40 кг, 30 m"
+
+      23 |     applyLang(l); applyUnit('kg');
+      24 |     const s = cueLoad(carry(), blank({ weight: 40, distanceM: 30 }));
+    > 25 |     expect(s).toBe(`${t('{n} kg', { n: 40 })}, ${t('{n} m', { n: 30 })}`);
+         |               ^
+      26 |     expect(s).not.toMatch(/30 m$/);
+      27 |   });
+      28 |   test('pl i en bez zmian: „40 kg, 30 m”', () => {
+
+      at toBe (tests/m1-040-podpis-dystans.test.ts:25:15)
+
+  ● M1-040: podpis przerwy — lokalny symbol dystansu obok lokalnego symbolu masy › bg: „40 <masa>, 30 <dystans>” w piśmie języka
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "40 кг, 30 м"
+    Received: "40 кг, 30 m"
+
+      23 |     applyLang(l); applyUnit('kg');
+      24 |     const s = cueLoad(carry(), blank({ weight: 40, distanceM: 30 }));
+    > 25 |     expect(s).toBe(`${t('{n} kg', { n: 40 })}, ${t('{n} m', { n: 30 })}`);
+         |               ^
+      26 |     expect(s).not.toMatch(/30 m$/);
+      27 |   });
+      28 |   test('pl i en bez zmian: „40 kg, 30 m”', () => {
+
+      at toBe (tests/m1-040-podpis-dystans.test.ts:25:15)
+
+  ● M1-040: podpis przerwy — lokalny symbol dystansu obok lokalnego symbolu masy › sr: „40 <masa>, 30 <dystans>” w piśmie języka
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "40 кг, 30 м"
+    Received: "40 кг, 30 m"
+
+      23 |     applyLang(l); applyUnit('kg');
+      24 |     const s = cueLoad(carry(), blank({ weight: 40, distanceM: 30 }));
+    > 25 |     expect(s).toBe(`${t('{n} kg', { n: 40 })}, ${t('{n} m', { n: 30 })}`);
+         |               ^
+      26 |     expect(s).not.toMatch(/30 m$/);
+      27 |   });
+      28 |   test('pl i en bez zmian: „40 kg, 30 m”', () => {
+
+      at toBe (tests/m1-040-podpis-dystans.test.ts:25:15)
+
+  ● M1-040: podpis przerwy — lokalny symbol dystansu obok lokalnego symbolu masy › el: „40 <masa>, 30 <dystans>” w piśmie języka
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "40 κιλά, 30 μ"
+    Received: "40 κιλά, 30 m"
+
+      23 |     applyLang(l); applyUnit('kg');
+      24 |     const s = cueLoad(carry(), blank({ weight: 40, distanceM: 30 }));
+    > 25 |     expect(s).toBe(`${t('{n} kg', { n: 40 })}, ${t('{n} m', { n: 30 })}`);
+         |               ^
+      26 |     expect(s).not.toMatch(/30 m$/);
+      27 |   });
+      28 |   test('pl i en bez zmian: „40 kg, 30 m”', () => {
+
+      at toBe (tests/m1-040-podpis-dystans.test.ts:25:15)
+
+  ● M1-040: strażnik jednostek na sztywno w napisach › brak szablonu „${…} m|kg|lb|km|yd|mi`” w app/, components/, lib/
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "lib/live.ts:108",
+    + ]
+
+      38 |     const hits = ['app', 'components', 'lib'].flatMap(files).flatMap((f) => fs.readFileSync(path.join(ROOT, f), 'utf8').split('\n')
+      39 |       .flatMap((line, i) => (/\$\{[^}]+\} (m|kg|lb|km|yd|mi)`/.test(line) ? [`${f}:${i + 1}`] : [])));
+    > 40 |     expect(hits).toEqual([]);
+         |                  ^
+      41 |   });
+      42 | });
+      43 |
+
+      at Object.toEqual (tests/m1-040-podpis-dystans.test.ts:40:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       6 failed, 1 passed, 7 total
+Snapshots:   0 total
+Time:        2.709 s
+Ran all test suites matching /tests\/m1-040-podpis-dystans.test.ts/i.

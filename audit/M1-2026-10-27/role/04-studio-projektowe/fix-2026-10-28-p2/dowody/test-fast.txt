@@ -1,0 +1,13 @@
+
+> trening@1.0.0 test:fast
+> node scripts/test-fast.mjs
+
+test:fast — 6 plików względem HEAD
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+
+Test Suites: 4 passed, 4 total
+Tests:       106 passed, 106 total
+Snapshots:   0 total
+Time:        442.275 s
+kod=0

@@ -1,0 +1,11 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/m1-041-el-jednostka.test.ts
+PASS iOS tests/m3-p2-board-ui.test.tsx (13.065 s)
+PASS iOS tests/m3-p2-board-logic.test.ts
+
+Test Suites: 3 passed, 3 total
+Tests:       76 passed, 76 total
+Snapshots:   0 total
+Time:        16.141 s, estimated 22 s
+Ran all test suites matching /tests\/m1-041-el-jednostka.test.ts|tests\/m3-p2-board-ui.test.tsx|tests\/m3-p2-board-logic.test.ts/i.

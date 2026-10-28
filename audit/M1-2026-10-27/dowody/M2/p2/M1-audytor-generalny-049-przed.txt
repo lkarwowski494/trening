@@ -1,0 +1,33 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/architecture-limits.test.ts
+  limit rozmiaru plików (M1-054)
+    ✕ obejmuje pliki .ts w lib/figures (kod rysowania figur), także v2 (11 ms)
+    ✓ pliki powyżej 20 KB są na liście wyjątków i nie przekraczają progu (2 ms)
+    ✓ wyjątki dotyczą istniejących plików większych niż limit, z powodem (lista się kurczy) (16 ms)
+  cykle importów w lib/ (M1-054)
+    ✓ lib/ nie ma cykli importów wartości (generator ↔ loadcap rozwiązany stałymi w lib/genconst.ts) (18 ms)
+    ✓ wykrywacz znajduje cykl w sztucznym grafie (1 ms)
+
+  ● limit rozmiaru plików (M1-054) › obejmuje pliki .ts w lib/figures (kod rysowania figur), także v2
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: "lib/figures/geom.ts"
+    Received array: ["lib/a11yPrefs.ts", "lib/access.ts", "lib/adapt.ts", "lib/adaptPick.ts", "lib/announce.ts", "lib/backup.ts", "lib/board.ts", "lib/brandIcon.ts", "lib/calendar.ts", "lib/confirm.ts", …]
+
+      36 |   test('obejmuje pliki .ts w lib/figures (kod rysowania figur), także v2', () => {
+      37 |     const rel = pliki.map(f => relative(ROOT, f));
+    > 38 |     expect(rel).toContain('lib/figures/geom.ts'); expect(rel).toContain('lib/figures/v2/contract.ts');
+         |                 ^
+      39 |   });
+      40 |   test('pliki powyżej 20 KB są na liście wyjątków i nie przekraczają progu', () => {
+      41 |     const zle = pliki.map(f => [relative(ROOT, f), statSync(f).size] as const).filter(([r, n]) => n > (WYJATKI[r]?.[0] ?? LIMIT)).map(([r, n]) => `${r}: ${n}`);
+
+      at Object.toContain (tests/architecture-limits.test.ts:38:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 4 passed, 5 total
+Snapshots:   0 total
+Time:        2.49 s
+Ran all test suites matching /tests\/architecture-limits.test.ts/i.

@@ -1,0 +1,37 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/m1-044-posiadany-plan-kontrast.test.tsx
+  M1-044: posiadany plan bez przezroczystości
+    ✕ plan roczny posiadany: karta „plan-yearly” i przodkowie bez opacity < 1, z „Aktualny plan” (1209 ms)
+
+  ● M1-044: posiadany plan bez przezroczystości › plan roczny posiadany: karta „plan-yearly” i przodkowie bez opacity < 1, z „Aktualny plan”
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 5
+
+    - Array []
+    + Array [
+    +   "plan-yearly: 0.7",
+    +   "plan-yearly: 0.7",
+    +   "plan-yearly: 0.7",
+    + ]
+
+      28 |     const card = screen.getByTestId('plan-yearly');
+      29 |     const zle: string[] = []; for (let n: any = card; n; n = n.parent) { const o = flat(n.props?.style).opacity; if (typeof o === 'number' && o < 1) zle.push(`${String(n.props?.testID ?? n.type)}: ${o}`); }
+    > 30 |     expect(zle).toEqual([]);
+         |                 ^
+      31 |   });
+      32 | });
+      33 |
+
+      at Object.toEqual (tests/m1-044-posiadany-plan-kontrast.test.tsx:30:17)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.85 s
+Ran all test suites matching /tests\/m1-044-posiadany-plan-kontrast.test.tsx/i.

@@ -1,0 +1,6 @@
+odczyt 2026-10-28 (curl, surowy tekst)
+698781402099d66da77c0f509ca6bbc71a32817b9ec39710d780a9991816ae61  /tmp/claude-0/-home-user/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/src021/sbs.html
+465f341b5c2db707a5e9a21fb34a3d510d7157086a05d1d53d8d8dd95553eede  /tmp/claude-0/-home-user/b36608ff-66bc-5613-a921-d96ac9b608e9/scratchpad/src021/p_3d7e77.html
+SBS: "In a “normal” squat for someone near the middle of the anatomical bell curve, that generally means having your toes pointed out 15-20 degrees"
+Squat University: "you should perform barbell squats with your feet turned out anywhere from 10-30 degrees."
+NSCA PDF: przekierowanie na https://www.nsca.com/error/?code=404 (HTTP 403)

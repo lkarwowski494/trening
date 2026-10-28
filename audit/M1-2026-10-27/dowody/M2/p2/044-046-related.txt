@@ -1,0 +1,19 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/m3-p2-board-ui.test.tsx (13.523 s)
+PASS iOS tests/ux.test.tsx (9.742 s)
+PASS iOS tests/idea-request.test.tsx (9.938 s)
+PASS iOS tests/review-run.test.tsx (5.708 s)
+PASS iOS tests/audit-m1-035-notif-denied.test.tsx
+PASS iOS tests/monetyzacja-ui.test.tsx (7.159 s)
+PASS iOS tests/m3-p5d-haptics-done.test.tsx
+PASS iOS tests/m3-p2-matrix.test.tsx
+PASS iOS tests/m1-046-monetyzacja-stany.test.tsx
+PASS iOS tests/m5s1-bez-proby.test.ts
+PASS iOS tests/audit-m1-028-cele-44-compact.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-018-jedno-okno.test.tsx
+
+Test Suites: 12 passed, 12 total
+Tests:       249 passed, 249 total
+Snapshots:   0 total
+Time:        60.303 s, estimated 88 s

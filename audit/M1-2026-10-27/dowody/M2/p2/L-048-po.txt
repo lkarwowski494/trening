@@ -1,0 +1,10 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/pochodne.test.ts
+PASS iOS tests/l048-check-slowniki.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       23 passed, 23 total
+Snapshots:   0 total
+Time:        3.275 s
+Ran all test suites matching /tests\/l048-check-slowniki.test.ts|tests\/pochodne.test.ts/i.
