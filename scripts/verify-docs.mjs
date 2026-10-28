@@ -2,7 +2,7 @@
 // Dokument = plik .md (docs/**, CLAUDE.md, README.md, .claude/agents/*.md), poza makietami w tests/ i watch-fixtures/. Dane i kod w docs/
 // (json, csv, mjs) oraz wszystko inne — kod, testy, skrypty, workflowy, konfiguracja — idą pełnym `npm run verify`.
 // Zmiany liczone względem punktu rozejścia z ref (domyślnie origin/main) razem z nieśledzonymi i niezatwierdzonymi.
-// Uruchamia: check:readme, check:matrix, check:claims, check:i18n (+ kontrola BRD przy zmianie docs/brd) oraz tylko te testy Jest,
+// Uruchamia: check:readme, check:matrix, check:claims, check:i18n, check:pokrycie (+ kontrola BRD przy zmianie docs/brd) oraz tylko te testy Jest,
 // które wymieniają zmieniony dokument (nazwa, ścieżka, katalog) albo przeglądają cały katalog docs. Cel: 1–2 min zamiast 12–15.
 // CI na PR i tak uruchamia pełne testy przed scaleniem.
 // Użycie: npm run verify:docs [-- <ref>]
@@ -64,7 +64,7 @@ if (zm.length === 0) {
   process.exit(0);
 }
 
-const komendy = ['npm run check:readme', 'npm run check:matrix', 'npm run check:claims', 'npm run check:i18n'];
+const komendy = ['npm run check:readme', 'npm run check:matrix', 'npm run check:claims', 'npm run check:i18n', 'npm run check:pokrycie'];
 if (zm.some(f => f.startsWith('docs/brd/'))) komendy.push('node scripts/kontrola-brd.mjs docs/brd');
 const testy = dokumenty ? testyDlaDokumentow(zm) : [];
 

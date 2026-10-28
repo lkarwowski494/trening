@@ -82,3 +82,9 @@ Zasada: odhacz każdy punkt dla wersji, którą wypuszczasz; wada → wiadomoś�
   - Dlaczego nie automat: Zegarek, WatchConnectivity i Connect IQ nie istnieją na symulatorze iPhone’a w CI; Apple Watch bywa tylko wirtualny, zegarek Connect IQ tylko fizyczny.
 
 Razem punktów: **15**.
+
+## Kroki procesu wydania (sprawdza agent, bez telefonu)
+
+- [ ] **PK-01** Pokrycie katalogu: cel wersji osiągnięty (docs/55, sekcja Cele) albo zgoda właściciela z datą
+  - Jak sprawdzić: Uruchom `node scripts/pokrycie-katalogu.mjs --cel <wersja>` (kod 0 = cel osiągnięty); przy kodzie 1 wydanie wymaga zgody właściciela z datą w docs/18. Decyzja właściciela 28.10.2026 (M-B); cele wersji: `docs/research/pokrycie-cele.json`.
+  - Dlaczego to krok wydania: Licznik generuje się z kodu, a zapadka `tests/pokrycie-katalogu.test.ts` pilnuje tylko, żeby pokrycie nie spadało — cel wersji (ile ma przybyć) jest decyzją właściciela, więc sprawdza się go przy wydaniu.
