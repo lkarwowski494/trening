@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, F, TEXT_SCALE_MAX, FW, font, RADIUS } from '@/lib/theme';
 import { t as tr, lang, exName } from '@/lib/i18n';
 import { recordCards, type RecordCard, type RecordStat, type WorkoutPR } from '@/lib/stats';

@@ -1,5 +1,6 @@
 import React, { useMemo, useRef } from 'react';
-import { Pressable, Text } from 'react-native';
+import { Pressable } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, FW, font } from '@/lib/theme';
 import { lang } from '@/lib/i18n';
 import { useOnce } from '@/components/ui';

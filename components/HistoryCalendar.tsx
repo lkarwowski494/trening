@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Pressable } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, font, FW, RADIUS, TEXT_SCALE, TEXT_SCALE_MAX } from '@/lib/theme';
 import { t as tr, tp, lang } from '@/lib/i18n';
 import { regionWeekStart, monthGrid, shiftMonth, weekdayLabels, monthTitle, dayTitle, dayKey } from '@/lib/calendar';
