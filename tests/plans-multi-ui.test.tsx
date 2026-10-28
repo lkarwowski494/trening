@@ -39,7 +39,7 @@ test('„+ Nowy plan” → edycja przed aktywacją → „Inne plany” z opise
   expect(plan.weekPlanDays()[0]).toBe(t[0].id);
   await act(async () => { const { router } = require('expo-router'); router.back(); }); await flushAll(10);
   expect(screen.getByText('Inne plany')).toBeTruthy(); await openInfo('other-plans'); expect(screen.getByText('Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem. Tapnij plan, by zmienić jego nazwę i dni.')).toBeTruthy();
-  expect(screen.getByText('Nowy plan')).toBeTruthy(); expect(screen.getByText(new RegExp(`^pon\\. ${t[2].name} · śr\\. ${t[1].name}$`))).toBeTruthy();
+  expect(screen.getByText('Nowy plan')).toBeTruthy(); expect(screen.getByText(new RegExp(`^pon\\. ${t[2].name}, śr\\. ${t[1].name}$`) /* M1-audytor-generalny-029 */)).toBeTruthy();
   act(() => { plan.setDayPlan('2026-10-09', t[2].id); }); await flushAll(5);
   await tap(screen.getByLabelText('Ustaw jako aktywny: Nowy plan')); await flushAll(5);
   expect(lastAlert('Ustawić „Nowy plan” jako aktywny plan?')!.msg).toBe('Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś (1) — wrócą, gdy znów go ustawisz.');

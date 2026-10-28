@@ -1,0 +1,85 @@
+{
+ "jezyk": "de",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 472,
+ "uwagi": [
+  {
+   "klucz": "Asekuracja",
+   "rodzaj": "krytyczne",
+   "pl": "Asekuracja",
+   "tlumaczenie": "Sicherung",
+   "poprawka": "Absicherung",
+   "powod": "„Sicherung” oznacza w tej aplikacji także kopię zapasową (zob. 50, 72), więc nagłówek jest dwuznaczny. Lepiej „Absicherung”, spójnie ze zdaniem 3.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "rodzaj": "nowe",
+   "pl": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "tlumaczenie": "Cardio außerhalb des Plans: Eine Cardio-Einheit ist ab {k} Tagen pro Woche im Plan, bei weniger Tagen sind alle Krafttage. Für die Gesundheit lohnen sich mindestens {a}–{b} min moderate Bewegung pro Woche (oder {c}–{d} min intensive); moderate Bewegung im Alltag zählt auch, z. B. zügiges Gehen, auch kurz.",
+   "poprawka": "Cardio außerhalb des Plans: Eine Cardio-Einheit ist ab {k} Tagen pro Woche im Plan, bei weniger Tagen sind alle Tage Krafttage. Für die Gesundheit lohnen sich mindestens {a}–{b} min moderate Bewegung pro Woche (oder {c}–{d} min intensive); moderate Bewegung im Alltag zählt auch, z. B. zügiges Gehen, auch in kurzen Abschnitten.",
+   "powod": "„sind alle Krafttage” jest niejasne (brak podmiotu „Tage”). „auch kurz” jest nienaturalne.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).",
+   "rodzaj": "nowe",
+   "pl": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).",
+   "tlumaczenie": "Cardio: ab {k} Tagen pro Woche eine Einheit an einem eigenen Tag; bei weniger Tagen sind alle Krafttage, damit Cardio dem Krafttraining keine Tage wegnimmt (jede große Muskelgruppe an mindestens {n} Tagen).",
+   "poprawka": "Cardio: ab {k} Tagen pro Woche eine Einheit an einem eigenen Tag; bei weniger Tagen sind alle Tage Krafttage, damit Cardio dem Krafttraining keine Tage wegnimmt (jede große Muskelgruppe an mindestens {n} Tagen).",
+   "powod": "„sind alle Krafttage” jest niejasne (brak podmiotu „Tage”).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "rodzaj": "nowe",
+   "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "tlumaczenie": "Automatische Sicherung: Nach jedem Training wird eine JSON-Datei automatisch in „Dateien“ gespeichert (Auf meinem iPhone → {app} → Backup, die letzten {n}). Der Import akzeptiert auch diese Dateien. Diese Kopien werden zusammen mit der App gelöscht — exportiere die Sicherung vor dem Löschen oder einer Installation mit einem anderen Apple-Account an einen anderen Ort.",
+   "poprawka": "Automatisches Backup: Nach jedem Training wird eine JSON-Datei automatisch in „Dateien“ gespeichert (Auf meinem iPhone → {app} → Backup, die letzten {n}). Der Import akzeptiert auch diese Dateien. Diese Kopien werden zusammen mit der App gelöscht — exportiere das Backup vor dem Löschen oder einer Installation mit einem anderen Apple-Account an einen anderen Ort.",
+   "powod": "Niespójna terminologia: gdzie indziej używane jest „Backup” (19, 21, 71, 79), tu „Sicherung”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "rodzaj": "nowe",
+   "pl": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "tlumaczenie": "Lösch die App nicht — mit ihr verschwinden deine Daten und Sicherungen. Tipp zuerst auf „Daten senden“ und speichere die Datei außerhalb deines Telefons.",
+   "poprawka": "Lösch die App nicht — mit ihr verschwinden deine Daten und Backups. Tipp zuerst auf „Daten senden“ und speichere die Datei außerhalb deines Telefons.",
+   "powod": "Niespójna terminologia: w aplikacji kopia zapasowa to „Backup”, a „Sicherungen” koliduje z asekuracją.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "rodzaj": "nowe",
+   "pl": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "tlumaczenie": "{app} wird von einem unabhängigen Entwickler gemacht: ohne Werbung, ohne Datensammlung. Wenn es dir hilft, wähle einen Plan und trainiere ohne Limit. Die kostenlosen Tage kommen am {date} zurück.",
+   "poprawka": "Hinter {app} steht ein unabhängiger Entwickler: ohne Werbung, ohne Datensammlung. Wenn die App dir hilft, wähle einen Plan und trainiere ohne Limit. Deine kostenlosen Tage gibt es wieder ab {date}.",
+   "powod": "„gemacht” i „kommen … zurück” brzmią nienaturalnie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "rodzaj": "nowe",
+   "pl": "Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "tlumaczenie": "Cardio im Plan: {n} min pro Woche. Für die Gesundheit lohnen sich mindestens {a}–{b} min moderate Bewegung pro Woche (oder {c}–{d} min intensive); moderate Bewegung im Alltag zählt auch, z. B. zügiges Gehen, auch kurz.",
+   "poprawka": "Cardio im Plan: {n} min pro Woche. Für die Gesundheit lohnen sich mindestens {a}–{b} min moderate Bewegung pro Woche (oder {c}–{d} min intensive); moderate Bewegung im Alltag zählt auch, z. B. zügiges Gehen, auch in kurzen Abschnitten.",
+   "powod": "„auch kurz” jest nienaturalne.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "Am Ende „Beenden“ in der Kopfzeile (oder „Training beenden“ in der Karte nach dem letzten Satz) — die Einheit landet im Tab „Plan“.",
+   "poprawka": "Tippe am Ende auf „Beenden“ in der Kopfzeile (oder auf „Training beenden“ in der Karte nach dem letzten Satz) — die Einheit landet im Tab „Plan“.",
+   "powod": "Brak czasownika; zdanie brzmi niepełnie.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

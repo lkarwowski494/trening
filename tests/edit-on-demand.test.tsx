@@ -172,7 +172,7 @@ describe('teksty edycji na żądanie, pierwszych kroków i edycji sesji (macierz
     await act(async () => { await store.flush(); }); const before = global.__kv.get('state'); store.save(x); await act(async () => { await store.flush(); }); expect(global.__kv.get('state')).toBe(before);
   });
   test('pierwsze kroki: kroki 1 i 3 z przewodnikiem „Trening i serie” (P4 A: przycisk „Przewodnik”)', async () => {
-    await boot(); expect(screen.getByText('Utwórz pierwszy szablon albo wygeneruj szablony i plan.')).toBeTruthy(); expect(screen.getByText('Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.')).toBeTruthy();
+    await boot(); expect(screen.getByText('Utwórz pierwszy szablon albo wygeneruj szablony i plan.')).toBeTruthy(); expect(screen.getByText('Pierwszy trening: duży przycisk „Pusty trening” u góry.')).toBeTruthy(); /* M1-audytor-generalny-025: bez szablonu duży przycisk to „Pusty trening” */
     await tap(screen.getByLabelText('Przewodnik po funkcjach')); await flushAll(10); expect(headers()).toContain('Przewodnik');
   });
   test('edycja sesji (G4): draftRemoveSet nie usuwa ostatniej serii — blok nigdy nie zostaje bez serii', async () => {

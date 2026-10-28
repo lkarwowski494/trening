@@ -1,4 +1,4 @@
-// Kontekst ekranu dla przekładu i przeglądu przez API (lekcje L-030, L-041): model dostaje przy kluczu informację, CZYM jest tekst
+// Kontekst ekranu dla przekładu i przeglądu przez API (lekcje L-030, L-052): model dostaje przy kluczu informację, CZYM jest tekst
 // (przycisk, nagłówek, faza ruchu, nazwa sprzętu…) i gdzie się pokazuje. Źródło: docs/lokalizacja/konteksty.json
 // (generuje scripts/i18n-context.mjs z miejsc użycia + docs/lokalizacja/konteksty-reczne.json). Bez zależności.
 import { readFileSync, existsSync } from 'node:fs';

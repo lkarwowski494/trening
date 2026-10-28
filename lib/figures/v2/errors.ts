@@ -21,6 +21,8 @@ export type FaultMods = {
   barAway?: number;
   /** Zmiana reguły podudzia (głębsze zgięcie kolan w ruchu zawiasowym). */
   shin?: Partial<ShinRule>;
+  /** Docelowe przesunięcie barku względem gryfu na dole (cm, jak `sx` rigu zawiasu): mniejsze = ręce bardziej pionowo, biodra nie cofają się, kolana się uginają. */
+  shoulderAheadTo?: number;
   /** Czasy animacji w ms (błędy tempa). */
   tempo?: { downMs: number; upMs: number };
 };
@@ -37,7 +39,7 @@ export const ERRORS: Record<ErrorId, ErrorDef> = {
   roundBack: { id: 'roundBack', cue: ['mis.roundBack'], kind: 'pose', mods: { spineBend: 45 }, affects: ['spine', 'hip', 'knee', 'ankle', 'shoulder', 'elbow'], mark: 'back', why: 'plecy zaokrąglone' },
   arch: { id: 'arch', cue: ['bp.mis.arch'], kind: 'pose', mods: { spineBend: -32, archLift: 8 }, affects: ['spine', 'pelvis', 'hip', 'knee', 'ankle', 'shoulder'], mark: 'pelvis', why: 'nadmierne wygięcie lędźwi, miednica odrywa się od ławki' },
   barAway: { id: 'barAway', cue: ['mis.barAway'], kind: 'pose', mods: { barAway: 12 }, affects: ['bar', 'hip', 'shoulder', 'knee', 'ankle', 'elbow'], mark: 'bar', why: 'sztanga odjeżdża od ciała' },
-  kneesBent: { id: 'kneesBent', cue: ['rdl.knees'], kind: 'pose', mods: { shin: { perKnee: 0.3, max: 26 } }, affects: ['knee', 'hip', 'ankle'], mark: 'knees', why: 'kolana ugięte jak w przysiadzie' },
+  kneesBent: { id: 'kneesBent', cue: ['rdl.knees'], kind: 'pose', mods: { shin: { perKnee: 0.3, max: 26 }, shoulderAheadTo: -2 }, affects: ['knee', 'hip', 'ankle', 'shoulder', 'elbow'], mark: 'knees', why: 'kolana ugięte jak w przysiadzie' },
   jerk: { id: 'jerk', cue: ['mis.jerk'], kind: 'tempo', mods: { tempo: { downMs: 450, upMs: 350 } }, affects: [], mark: 'bar', why: 'szarpanie zamiast kontrolowanego ruchu' },
 };
 

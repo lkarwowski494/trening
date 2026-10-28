@@ -1,0 +1,67 @@
+{
+ "jezyk": "uk",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 474,
+ "uwagi": [
+  {
+   "klucz": "{n} mi",
+   "rodzaj": "nowe",
+   "pl": "{n} mi",
+   "tlumaczenie": "{n} ми",
+   "poprawka": "{n} mi",
+   "powod": "Skrót „ми” nie jest przyjętym ukraińskim skrótem mili i czyta się jak zaimek „my”; lepiej zostawić międzynarodowe „mi”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "imperialny (lb, mi, yd)",
+   "rodzaj": "nowe",
+   "pl": "imperialny (lb, mi, yd)",
+   "tlumaczenie": "імперська (фнт, ми, ярд)",
+   "poprawka": "імперська (фнт, mi, ярд)",
+   "powod": "Skrót „ми” jest niejasny (jak zaimek „my”); zachowaj spójność z poprawką zdania 14.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "rodzaj": "nowe",
+   "pl": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "tlumaczenie": "Виділено м’язові групи, у яких обсяг більший, ніж у періоді порівняння; чим насиченіший колір, тим більший приріст. Сірі — без приросту.",
+   "poprawka": "Виділено частини тіла, у яких обсяг більший, ніж у періоді порівняння; чим насиченіший колір, тим більший приріст. Сірі — без приросту.",
+   "powod": "Niespójna terminologia: „partia” tłumaczona w pozostałych tekstach jako „частина тіла”, tu jako „м’язові групи”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "tlumaczenie": "Торкніться позначки підходу, щоб змінити тип; проведіть рядок ліворуч, щоб видалити його. Діапазон повторень необов’язковий — з ним з’являються підказки «↑». «⇅ SS» об’єднує вправу з наступною в суперсет, «✕ SS» виймає її з групи. Порядок: «≡ Порядок».",
+   "poprawka": "Торкніться позначки підходу, щоб змінити тип; проведіть по рядку ліворуч, щоб видалити його. Діапазон повторень необов’язковий — з ним з’являються підказки «↑». «⇅ SS» об’єднує вправу з наступною в суперсет, «✕ SS» виймає її з групи. Порядок: «≡ Порядок».",
+   "powod": "„проведіть рядок” brzmi nienaturalnie; naturalnie „проведіть по рядку”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "Наприкінці «Завершити» у заголовку (або «Завершити тренування» у картці після останнього підходу) — сесія потрапляє на вкладку «План».",
+   "poprawka": "Наприкінці торкніться «Завершити» у заголовку (або «Завершити тренування» у картці після останнього підходу) — сесія потрапить на вкладку «План».",
+   "powod": "Brak czasownika utrudnia odbiór zdania; po ukraińsku naturalniej jest dodać „торкніться”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "cfly.move",
+   "rodzaj": "wskazowka",
+   "pl": "Przy lekko ugiętych łokciach złącz dłonie przed klatką szerokim łukiem; wracaj powoli do rozłożenia rąk.",
+   "tlumaczenie": "Злегка зігнутими ліктями зведи руки перед грудьми широкою дугою; повільно повернися до розведених рук.",
+   "poprawka": "Зі злегка зігнутими ліктями зведи руки перед грудьми широкою дугою; повільно повернися до розведених рук.",
+   "powod": "Konstrukcja „Злегка зігнутими ліктями зведи руки” jest nienaturalna; poprawnie „Зі злегка зігнутими ліктями”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

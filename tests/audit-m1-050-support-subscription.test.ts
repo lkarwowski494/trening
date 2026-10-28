@@ -36,16 +36,19 @@ describe('site/support.html: pytania o subskrypcję (M1-050)', () => {
     expect([...html.matchAll(/(\d+) (?:dni treningowych|training days)/g)].map((m) => Number(m[1])).filter((x) => x !== n)).toEqual([]);
   });
   test('etykiety przycisków z odpowiedzi istnieją w aplikacji (PL = klucz słownika, EN = przekład)', () => {
-    for (const [plLabel, enLabel] of [['Pełna wersja', 'Full version'], ['Zarządzaj subskrypcją', 'Manage subscription'], ['Przywróć zakupy', 'Restore purchases']]) {
+    for (const [plLabel, enLabel] of [['Pełna wersja', 'Full version'], ['Zarządzaj subskrypcją', 'Manage subscription'], ['Przywróć zakupy', 'Restore purchases'], ['Zobacz plany Pro', 'See Pro plans'], ['Subskrypcja', 'Subscription']]) {
       expect(dict).toContain(`'${plLabel}': '${enLabel}'`);
       expect(pl).toContain(plLabel);
       expect(en).toContain(enLabel);
     }
   });
-  test('ścieżka do ekranu zakupu = karta w Ustawieniach (components/SubscriptionCard.tsx, tytuł „Pełna wersja”)', () => {
-    expect(fs.readFileSync(path.join(root, 'components/SubscriptionCard.tsx'), 'utf8')).toContain("t('Pełna wersja')");
-    expect(pl).toContain('Więcej → Ustawienia → Pełna wersja');
-    expect(en).toContain('More → Settings → Full version');
+  test('ścieżka do ekranu zakupu = sekcja „Subskrypcja” w Ustawieniach (components/SubscriptionCard.tsx; tytuł wiersza zależy od stanu — M1-037 A, DEC-07 b 27.10.2026)', () => {
+    const card = fs.readFileSync(path.join(root, 'components/SubscriptionCard.tsx'), 'utf8');
+    for (const k of ["t('Subskrypcja')", "t('Zobacz plany Pro')", "ownedPlanTitle("]) expect(card).toContain(k);
+    expect(dict).toContain("'Masz plan: roczny': 'Your plan: yearly'");
+    expect(pl).toContain('Więcej → Ustawienia → sekcja „Subskrypcja”: bez planu wiersz „Zobacz plany Pro”, po zakupie „Masz plan: …”');
+    expect(en).toContain('More → Settings → “Subscription” section: without a plan the row says “See Pro plans”, after purchase “Your plan: …”');
+    expect(pl).not.toContain('Ustawienia → Pełna wersja'); expect(en).not.toContain('Settings → Full version');
   });
   test('anulowanie w ustawieniach Apple, zwroty u Apple; dane zawsze dostępne; Chmura rodzinna', () => {
     expect(pl).toMatch(/anulujesz w ustawieniach konta Apple/);

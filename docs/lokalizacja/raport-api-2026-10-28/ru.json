@@ -1,0 +1,94 @@
+{
+ "jezyk": "ru",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 471,
+ "uwagi": [
+  {
+   "klucz": "{n} yd",
+   "rodzaj": "nowe",
+   "pl": "{n} yd",
+   "tlumaczenie": "{n} ярд",
+   "poprawka": "{n} ярд.",
+   "powod": "Forma „ярд” przy zmiennej liczbie jest błędna dla 2–4 i 5+ (ярда/ярдов). Skrót „ярд.” jest neutralny.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "rodzaj": "nowe",
+   "pl": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "tlumaczenie": "Черта в разделе «Эта неделя» и в «Прогрессе». Автоматически: {n} подходов. Вручную: ваше число от {min} до {max}.",
+   "poprawka": "Черта в разделе «Эта неделя» и в «Прогрессе». Автоматически: подходов — {n}. Вручную: ваше число от {min} до {max}.",
+   "powod": "„{n} подходов” ma stałą formę dopełniacza l.mn., błędną dla 1 i 2–4. Szyk „подходов — {n}” jest neutralny wobec liczby.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "rodzaj": "nowe",
+   "pl": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "tlumaczenie": "Общая форма (для здоровья и физподготовки): {s} подхода на упражнение, {a}–{b} повторений (дома {c}–{d}), до момента, когда следующее повторение было бы трудным. Для здоровья стоит тренировать все основные мышечные группы не менее {n} дн. в неделю.",
+   "poprawka": "Общая форма (для здоровья и физподготовки): подходов на упражнение — {s}, {a}–{b} повторений (дома {c}–{d}), до момента, когда следующее повторение было бы трудным. Для здоровья стоит тренировать все основные мышечные группы не менее {n} дн. в неделю.",
+   "powod": "„{s} подхода” ma stałą formę, poprawną tylko dla 2–4. Szyk neutralny wobec liczby.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Trenuj {n} dni w miesiącu za darmo, bez końca.",
+   "rodzaj": "nowe",
+   "pl": "Trenuj {n} dni w miesiącu za darmo, bez końca.",
+   "tlumaczenie": "Тренируйтесь бесплатно {n} дней в месяц, без ограничения по сроку.",
+   "poprawka": "Тренируйтесь бесплатно {n} дн. в месяц, без ограничения по сроку.",
+   "powod": "„{n} дней” jest błędne dla 1 i 2–4 (день/дня). Skrót „дн.” jest neutralny i spójny z resztą tekstów.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.",
+   "rodzaj": "nowe",
+   "pl": "Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.",
+   "tlumaczenie": "Импортированные тренировки, рекорды и графики всегда доступны, даже без интернета. Тренируйтесь бесплатно {n} дней в месяц — Pro снимает ограничение, в том числе разовой покупкой навсегда.",
+   "poprawka": "Импортированные тренировки, рекорды и графики всегда доступны, даже без интернета. Тренируйтесь бесплатно {n} дн. в месяц — Pro снимает ограничение, в том числе разовой покупкой навсегда.",
+   "powod": "„{n} дней” jest błędne dla 1 i 2–4. Skrót „дн.” jest neutralny wobec liczby.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "imperialny (lb, mi, yd)",
+   "rodzaj": "nowe",
+   "pl": "imperialny (lb, mi, yd)",
+   "tlumaczenie": "имперская (фнт, ми, ярд)",
+   "poprawka": "имперская (фнт, ми, ярд.)",
+   "powod": "Ujednolicenie skrótu jardów z poprawką w zdaniu 15.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "dl.grip",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć sztangę nachwytem albo chwytem mieszanym, na szerokość barków lub trochę szerzej.",
+   "tlumaczenie": "Возьми гриф прямым или разнохватом на ширине плеч или чуть шире.",
+   "poprawka": "Возьми гриф прямым хватом или разнохватом на ширине плеч или чуть шире.",
+   "powod": "„прямым или разнохватом” jest gramatycznie niepełne — brakuje rzeczownika „хватом” po „прямым”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "fly.posture",
+   "rodzaj": "wskazowka",
+   "pl": "Barki ściągnięte w tył, klatka uniesiona, lekkie pochylenie w przód.",
+   "tlumaczenie": "Плечи отведены назад, грудь вперёд, лёгкий наклон вперёд.",
+   "poprawka": "Плечи отведены назад, грудь поднята, лёгкий наклон вперёд.",
+   "powod": "„klatka uniesiona” to „грудь поднята”, a nie „грудь вперёд”. Obecnie dwa razy pada „вперёд”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "wall.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Oprzyj plecy o stabilną ścianę, wysuń stopy w przód i zsuń się po ścianie do wybranej wysokości.",
+   "tlumaczenie": "Прислонись спиной к прочной стене, шагни стопами вперёд и съезжай по стене до выбранной высоты.",
+   "poprawka": "Прислонись спиной к прочной стене, переставь стопы вперёд и съезжай по стене до выбранной высоты.",
+   "powod": "„шагни стопами вперёд” brzmi nienaturalnie. „переставь стопы вперёд” jest bardziej idiomatyczne.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

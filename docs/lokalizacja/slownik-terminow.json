@@ -3409,7 +3409,8 @@
      "zalecany": "計畫",
      "pewnosc": "srednia"
     }
-   }
+   },
+   "wyklucz": "plan:\\s*(miesięczny|roczny)|aktualny plan|zmień plan|wybierz plan"
   },
   {
    "id": "szablon",
@@ -8253,6 +8254,1160 @@
     "zh-Hant": {
      "zalecany": "下背",
      "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "plan_subskrypcji",
+   "pl": "plan (subskrypcji)",
+   "znaczenie": "wariant płatnej subskrypcji na ekranie zakupu (miesięczny, roczny), nie plan tygodnia",
+   "kanon": null,
+   "wykrywaj": "plan:\\s*(miesięczny|roczny)|aktualny plan|zmień plan|wybierz plan",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Plán",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Plán",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Csomag",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "План",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Paket",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "načrt",
+       "powod": "„Načrt” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Paket”"
+      }
+     ]
+    },
+    "sr": {
+     "zalecany": "План",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Planas",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Plāns",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Pakett",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "plaan",
+       "powod": "„Plaan” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Pakett”"
+      }
+     ]
+    },
+    "uk": {
+     "zalecany": "План",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Plano",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Plano",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Formule",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Piano",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Abonnement",
+     "pewnosc": "srednia",
+     "uwaga": "„Abonnement” nie służy dla zakupu dożywotniego (jednorazowego); dla niego „Eenmalige aankoop”"
+    },
+    "sv": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Tilaus",
+     "pewnosc": "srednia",
+     "uwaga": "„Tilaus” oznacza subskrypcję i nie służy dla zakupu dożywotniego (jednorazowego); dla niego „Pysyvä käyttöoikeus”"
+    },
+    "tr": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Πλάνο",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "πρόγραμμ",
+       "powod": "„Πρόγραμμα” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Πλάνο”"
+      }
+     ]
+    },
+    "id": {
+     "zalecany": "Paket",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Pelan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Gói",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "План",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "プラン",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "요금제",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "플랜",
+       "powod": "„플랜” to plan tygodnia (zakładka Plan); wariant subskrypcji to „요금제”"
+      }
+     ]
+    },
+    "zh-Hant": {
+     "zalecany": "方案",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "plan_dozywotni",
+   "pl": "plan dożywotni",
+   "znaczenie": "wariant zakupu jednorazowego (dostęp bez terminu) na ekranie zakupu, nie subskrypcja",
+   "kanon": null,
+   "wykrywaj": "plan:\\s*dożywotni|dostęp na zawsze",
+   "jezyki": {
+    "pl": {
+     "zalecany": "dożywotni",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "lifetime",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "doživotní",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "doživotný",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "örökös",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "örök(?!ös|re)",
+       "powod": "„Örök” znaczy wieczny (poetycko); plan bez terminu to „örökös”"
+      }
+     ]
+    },
+    "ro": {
+     "zalecany": "pe viață",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "безсрочен",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "doživotni",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "trajni",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "доживотни",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "neterminuotas",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "mūža",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "eluaegne",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "igavene",
+       "powod": "„Igavene” znaczy wieczny (religijnie/poetycko); plan bez terminu to „eluaegne”"
+      }
+     ]
+    },
+    "uk": {
+     "zalecany": "довічний",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "de por vida",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "de por vida",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "vitalício",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "vitalício",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "dauerhaft",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "à vie",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "a vita",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Eenmalige aankoop",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "livstid",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "livstid",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "livstid",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Pysyvä",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "süresiz",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "μόνιμο",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "seumur hidup",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "seumur hidup",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "vĩnh viễn",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "бессрочный",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "買い切り",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "永久版",
+       "powod": "„永久版” brzmi jak wersja edycji; zakup jednorazowy to „買い切り”"
+      }
+     ]
+    },
+    "ko": {
+     "zalecany": "평생",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "영구",
+       "powod": "„영구” brzmi jak trwałe/nieodwracalne; zakup bez terminu to „평생 이용”"
+      }
+     ]
+    },
+    "zh-Hant": {
+     "zalecany": "永久",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "jednostka_masy_kg",
+   "pl": "kg",
+   "znaczenie": "symbol jednostki masy (kilogram) przy liczbach i w polach; wartość logiczna w danych i CSV zostaje „kg”",
+   "kanon": "{n} kg",
+   "wykrywaj": "^\\{n\\} kg$",
+   "jezyki": {
+    "pl": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "en": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "cs": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "sk": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "hu": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "ro": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "bg": {
+     "zalecany": "кг",
+     "pewnosc": "niska",
+     "uwaga": "Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem?"
+    },
+    "hr": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "sl": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "sr": {
+     "zalecany": "кг",
+     "pewnosc": "niska",
+     "uwaga": "Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem?"
+    },
+    "lt": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "lv": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "et": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "uk": {
+     "zalecany": "кг",
+     "pewnosc": "niska",
+     "uwaga": "Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem?"
+    },
+    "es": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "es-419": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "pt": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "pt-BR": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "de": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "fr": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "it": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "nl": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "sv": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "da": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "nb": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "fi": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "tr": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "el": {
+     "zalecany": "κιλά",
+     "pewnosc": "niska",
+     "uwaga": "Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Grecki: „κιλά” (pełne słowo) czy „kg”?"
+    },
+    "id": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "ms": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "vi": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "ru": {
+     "zalecany": "кг",
+     "pewnosc": "niska",
+     "uwaga": "Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem?"
+    },
+    "ja": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "ko": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "zh-Hant": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    }
+   }
+  },
+  {
+   "id": "jednostka_masy_lb",
+   "pl": "lb",
+   "znaczenie": "symbol jednostki masy (funt) przy liczbach i w polach; wartość logiczna w danych i CSV zostaje „lb”",
+   "kanon": "{n} lb",
+   "wykrywaj": "^\\{n\\} lb$",
+   "jezyki": {
+    "pl": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "en": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "cs": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "sk": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "hu": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "ro": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "bg": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "hr": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "sl": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "sr": {
+     "zalecany": "фнт",
+     "pewnosc": "niska",
+     "uwaga": "Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie)"
+    },
+    "lt": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "lv": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "et": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "uk": {
+     "zalecany": "фнт",
+     "pewnosc": "niska",
+     "uwaga": "Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie)"
+    },
+    "es": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "es-419": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "pt": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "pt-BR": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "de": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "fr": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "it": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "nl": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "sv": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "da": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "nb": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "fi": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "tr": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "el": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "id": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "ms": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "vi": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "ru": {
+     "zalecany": "фнт",
+     "pewnosc": "niska",
+     "uwaga": "Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie)"
+    },
+    "ja": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "ko": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "zh-Hant": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    }
+   }
+  },
+  {
+   "id": "jednostka_dystansu_mi",
+   "pl": "mi",
+   "znaczenie": "symbol jednostki dystansu (mila) przy liczbach i w polach; skrót nieodmienny (ten sam tekst stoi po ułamkach i jako nagłówek kolumny); wartość logiczna w danych i CSV zostaje „mi”",
+   "kanon": "{n} mi",
+   "wykrywaj": "^\\{n\\} mi$",
+   "jezyki": {
+    "pl": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "en": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "cs": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "sk": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "hu": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "ro": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "bg": {
+     "zalecany": "мили",
+     "pewnosc": "niska",
+     "uwaga": "Skrót nieodmienny „мили” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „mi”? (recenzja lokalizacji 28.10.2026)"
+    },
+    "hr": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "sl": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "sr": {
+     "zalecany": "миља",
+     "pewnosc": "niska",
+     "uwaga": "Skrót nieodmienny „миља” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „mi”? (recenzja lokalizacji 28.10.2026)"
+    },
+    "lt": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "lv": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "et": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "uk": {
+     "zalecany": "ми",
+     "pewnosc": "niska",
+     "uwaga": "Skrót nieodmienny „ми” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „mi”? (recenzja lokalizacji 28.10.2026)"
+    },
+    "es": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "es-419": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "pt": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "pt-BR": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "de": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "fr": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "it": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "nl": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "sv": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "da": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "nb": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "fi": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "tr": {
+     "zalecany": "mil",
+     "pewnosc": "wysoka"
+    },
+    "el": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "id": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "ms": {
+     "zalecany": "batu",
+     "pewnosc": "wysoka"
+    },
+    "vi": {
+     "zalecany": "dặm",
+     "pewnosc": "wysoka"
+    },
+    "ru": {
+     "zalecany": "ми",
+     "pewnosc": "niska",
+     "uwaga": "Skrót nieodmienny „ми” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „mi”? (recenzja lokalizacji 28.10.2026)"
+    },
+    "ja": {
+     "zalecany": "マイル",
+     "pewnosc": "wysoka"
+    },
+    "ko": {
+     "zalecany": "mi",
+     "pewnosc": "wysoka"
+    },
+    "zh-Hant": {
+     "zalecany": "英里",
+     "pewnosc": "wysoka"
+    }
+   }
+  },
+  {
+   "id": "jednostka_dystansu_yd",
+   "pl": "yd",
+   "znaczenie": "symbol jednostki dystansu (jard) przy liczbach i w polach; skrót nieodmienny (ten sam tekst stoi po ułamkach i jako nagłówek kolumny); wartość logiczna w danych i CSV zostaje „yd”",
+   "kanon": "{n} yd",
+   "wykrywaj": "^\\{n\\} yd$",
+   "jezyki": {
+    "pl": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "en": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "cs": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "sk": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "hu": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "ro": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "bg": {
+     "zalecany": "ярд",
+     "pewnosc": "niska",
+     "uwaga": "Skrót nieodmienny „ярд” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „yd”? (recenzja lokalizacji 28.10.2026)"
+    },
+    "hr": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "sl": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "sr": {
+     "zalecany": "јарда",
+     "pewnosc": "niska",
+     "uwaga": "Skrót nieodmienny „јарда” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „yd”? (recenzja lokalizacji 28.10.2026)"
+    },
+    "lt": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "lv": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "et": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "uk": {
+     "zalecany": "ярд",
+     "pewnosc": "niska",
+     "uwaga": "Skrót nieodmienny „ярд” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „yd”? (recenzja lokalizacji 28.10.2026)"
+    },
+    "es": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "es-419": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "pt": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "pt-BR": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "de": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "fr": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "it": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "nl": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "sv": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "da": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "nb": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "fi": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "tr": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "el": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "id": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "ms": {
+     "zalecany": "ela",
+     "pewnosc": "wysoka"
+    },
+    "vi": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "ru": {
+     "zalecany": "ярд",
+     "pewnosc": "niska",
+     "uwaga": "Skrót nieodmienny „ярд” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „yd”? (recenzja lokalizacji 28.10.2026)"
+    },
+    "ja": {
+     "zalecany": "ヤード",
+     "pewnosc": "wysoka"
+    },
+    "ko": {
+     "zalecany": "yd",
+     "pewnosc": "wysoka"
+    },
+    "zh-Hant": {
+     "zalecany": "碼",
+     "pewnosc": "wysoka"
+    }
+   }
+  },
+  {
+   "id": "zegarek",
+   "pl": "zegarek",
+   "znaczenie": "Apple Watch (zegarek połączony z aplikacją); w ja i ko nazwa ze słownictwa Apple, nie zwykły zegarek na rękę",
+   "kanon": null,
+   "wykrywaj": "zegark|zegarek",
+   "jezyki": {
+    "pl": {
+     "zalecany": "zegarek",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "en": {
+     "zalecany": "watch",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "cs": {
+     "zalecany": "hodinky",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "sk": {
+     "zalecany": "hodinky",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "hu": {
+     "zalecany": "óra",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "ro": {
+     "zalecany": "ceas",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "bg": {
+     "zalecany": "часовник",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "hr": {
+     "zalecany": "sat",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "sl": {
+     "zalecany": "ura",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "sr": {
+     "zalecany": "сат",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "lt": {
+     "zalecany": "laikrodis",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "lv": {
+     "zalecany": "pulkstenis",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "et": {
+     "zalecany": "käekell",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "uk": {
+     "zalecany": "годинник",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "es": {
+     "zalecany": "reloj",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "es-419": {
+     "zalecany": "reloj",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "pt": {
+     "zalecany": "relógio",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "pt-BR": {
+     "zalecany": "relógio",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "de": {
+     "zalecany": "Uhr",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "fr": {
+     "zalecany": "montre",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "it": {
+     "zalecany": "orologio",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "nl": {
+     "zalecany": "horloge",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "sv": {
+     "zalecany": "klocka",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "da": {
+     "zalecany": "ur",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "nb": {
+     "zalecany": "klokke",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "fi": {
+     "zalecany": "kello",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "tr": {
+     "zalecany": "saat",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "el": {
+     "zalecany": "ρολόι",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "id": {
+     "zalecany": "jam tangan",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "ms": {
+     "zalecany": "jam tangan",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "vi": {
+     "zalecany": "đồng hồ",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "ru": {
+     "zalecany": "часы",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    },
+    "ja": {
+     "zalecany": "ウォッチ",
+     "zakazane": [
+      {
+       "wzorzec": "腕時計",
+       "powod": "zwykły zegarek na rękę; dla Apple Watch w aplikacjach treningowych mówi się „ウォッチ”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "워치",
+     "zakazane": [
+      {
+       "wzorzec": "시계",
+       "powod": "zwykły zegar/zegarek; dla Apple Watch w aplikacjach treningowych mówi się „워치”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "手錶",
+     "pewnosc": "niska",
+     "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
     }
    }
   }

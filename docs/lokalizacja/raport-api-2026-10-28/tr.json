@@ -1,0 +1,76 @@
+{
+ "jezyk": "tr",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 473,
+ "uwagi": [
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "Sonunda üstteki “Bitir” düğmesine (veya son setten sonraki kartta “Antrenmanı bitir” düğmesine) dokunun — seans Plan sekmesine düşer.",
+   "poprawka": "Sonunda üstteki “Bitir” düğmesine (veya son setten sonraki kartta “Antrenmanı bitir” düğmesine) dokunun — antrenman Plan sekmesine eklenir.",
+   "powod": "„seans” jest niespójne z terminem „antrenman” używanym dla sesji w pozostałych tekstach. „düşer” brzmi potocznie i nienaturalnie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "rodzaj": "nowe",
+   "pl": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "tlumaczenie": "Vurgulanan kas gruplarının hacmi karşılaştırma dönemine göre daha yüksektir; renk belirginleştikçe artış büyür. Gri — artış yok.",
+   "poprawka": "Vurgulanan vücut bölgelerinin hacmi karşılaştırma dönemine göre daha yüksektir; renk belirginleştikçe artış büyür. Gri — artış yok.",
+   "powod": "Niespójna terminologia: „partia” to w innych tekstach „vücut bölgesi”, a nie „kas grubu”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "+ {n} {w}",
+   "rodzaj": "nowe",
+   "pl": "+ {n} {w}",
+   "tlumaczenie": "{n} {w} daha",
+   "poprawka": "+ {n} {w} daha",
+   "powod": "Pominięto znak „+” obecny w źródle i w tekście angielskim.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.",
+   "rodzaj": "nowe",
+   "pl": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.",
+   "tlumaczenie": "Telefondaki verileri daha yeni bir sürüm kaydetmiş (şema {a}); bu sürüm en fazla {b} şemasını destekliyor. Hiçbir şeyi değiştirmiyorum — App Store'dan en yeni sürümü yükleyin. Verileri dosya olarak da gönderebilirsiniz.",
+   "poprawka": "Telefondaki verileri daha yeni bir sürüm kaydetmiş (şema {a}); bu sürüm en fazla {b} şemasını destekliyor. Hiçbir şeyi değiştirmiyorum — App Store’dan en yeni sürümü yükleyin. Verileri dosya olarak da gönderebilirsiniz.",
+   "powod": "Prosty apostrof zamiast typograficznego (’) używanego w pozostałych tekstach.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "rodzaj": "nowe",
+   "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "tlumaczenie": "Otomatik yedekleme: her antrenmandan sonra bir JSON dosyası kendiliğinden Dosyalar'a kaydedilir (iPhone'umda → {app} → Backup, son {n}). İçe aktarma bu dosyaları da kabul eder. Bu kopyalar uygulamayla birlikte silinir — uygulamayı kaldırmadan veya başka bir Apple hesabıyla yüklemeden önce yedeği başka bir yere aktarın.",
+   "poprawka": "Otomatik yedekleme: her antrenmandan sonra bir JSON dosyası kendiliğinden Dosyalar’a kaydedilir (iPhone’umda → {app} → Backup, son {n}). İçe aktarma bu dosyaları da kabul eder. Bu kopyalar uygulamayla birlikte silinir — uygulamayı kaldırmadan veya başka bir Apple hesabıyla yüklemeden önce yedeği başka bir yere aktarın.",
+   "powod": "Proste apostrofy, niespójne z zapisem „iPhone’umda” w zdaniach 19 i 86.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Pauza",
+   "rodzaj": "nowe",
+   "pl": "Pauza",
+   "tlumaczenie": "Duraklat",
+   "poprawka": "Duraklama",
+   "powod": "Etykieta fazy ruchu (obok „İndirme”, „Kaldırma”) wymaga rzeczownika. „Duraklat” to polecenie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Trening to moje życie",
+   "rodzaj": "nowe",
+   "pl": "Trening to moje życie",
+   "tlumaczenie": "Antrenman hayatım",
+   "poprawka": "Antrenman benim hayatım",
+   "powod": "„Antrenman hayatım” można odczytać jako „moje życie treningowe”. Dodanie „benim” oddaje sens źródła.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

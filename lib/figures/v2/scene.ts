@@ -21,7 +21,7 @@ export const LAYER = { back: -2, backEquip: -1, body: 0, frontEquip: 1, overlay:
 
 /** Rekwizyty w świecie 3D. Gryf leży wzdłuż osi z (prostopadle do płaszczyzny strzałkowej). */
 export type Prop =
-  | { k: 'barbell'; c: V3; plates?: boolean; len?: number; held?: boolean | 'R' | 'L'; id?: string }                        /* sztanga: środek gryfu */
+  | { k: 'barbell'; c: V3; plates?: boolean; len?: number; held?: boolean | 'R' | 'L'; id?: string; /** gryf wzdłuż osi x (przód–tył), np. martwy ciąg jedną ręką z boku; domyślnie wzdłuż z */ axis?: 'x' }                        /* sztanga: środek gryfu */
   | { k: 'trapbar'; c: V3; w?: number }                                                                    /* gryf sześciokątny: środek (uchwyty wzdłuż z) */
   | { k: 'dumbbell'; c: V3; side: 'R' | 'L'; vertical?: boolean; r?: number; held?: boolean }                  /* hantel: środek chwytu */
   | { k: 'kettlebell'; c: V3; side?: 'R' | 'L' | 'C'; r?: number; held?: boolean; bell?: 'down' | 'along' | 'back'; dir?: V3; dnemDoGory?: boolean } /* kettlebell: środek rączki; dir = wersor od rączki do środka dzwonu (domyślnie w dół; bell: tryb wyznaczany ze szkieletu; dnemDoGory: przy bell „along” dzwon obraca się dnem do góry, gdy przedramię jest blisko pionu) */
@@ -46,7 +46,7 @@ export type Prop =
   | { k: 'cable'; from: V3; to: V3; attach?: 'handle' | 'rope' | 'bar' | 'strap'; ends?: V3[]; solid?: boolean; free?: number } /* linka od bloczku (from) do osprzętu (to); ends = miejsca chwytu (dłonie albo kostka); solid = kolider tylko dla danych kontraktu; free = długość odcinka przy osprzęcie bez kolidera (domyślnie EQUIP.cableEnd; taśmy zawieszenia: wzdłuż przedramienia) */
   | { k: 'tower'; x: number; z: number; h: number; solid?: boolean }                                    /* kolumna stacji wyciągów (bloczek na linii x, z) */
   | { k: 'slide'; from: V3; to: V3; dir: V3; len: number }                                                /* prowadnica liniowa maszyny: odcinek skoku od from w kierunku dir (długość len), to = punkt mocowania (platforma, wałek, uchwyt) na prowadnicy */
-  | { k: 'band'; from: V3; to: V3 }
+  | { k: 'band'; from: V3; to: V3; /** guma sztangi: dwie gumy przy końcach gryfu (jak łańcuchy), nie jedna przez środek ciała */ bar?: true; /** odmiana „reverse”: guma zwisa z góry stojaka — `from` to kotwica nad gryfem, `to` to gryf (zamiast od gryfu do podłogi) */ hang?: true }
   | { k: 'chain'; from: V3; to: V3; /** łańcuch sztangi (wisi na obu tulejach); bez tego pola — pojedynczy łańcuch (np. pas z obciążeniem) */ bar?: true }
   | { k: 'floor'; x0: number; x1: number }
   | { k: 'mat'; x0: number; x1: number; h: number }

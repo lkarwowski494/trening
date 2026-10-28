@@ -14,7 +14,7 @@ import {
 import { migrate } from './migrate';
 import { applyPrefs } from './settings';
 import { BOOT_GUARD_KEY, parseBootGuard, decideBoot, type BootMode } from './crashguard';
-import { BOOT_PHASE_KEY, parseBootPhase, describeBootPhase, type BootPhaseName } from './bootphase';
+import { BOOT_PHASE_KEY, parseBootPhase, describeBootPhase, type BootPhaseName, startFailureDiag } from './bootphase';
 import { loadBackupStat } from './backupstat';
 
 /* ZK-07: stan jednego startu (diagnostyka etapów i wyjście do tła przed otwarciem bazy). */
@@ -33,7 +33,16 @@ async function writePhase(phase: BootPhaseName): Promise<void> {
 }
 /** `guard` (start aplikacji z app/_layout.tsx) włącza strażnika pętli awarii (M1-audytor-generalny-003, lib/state/crashguard.ts); `retry` („Spróbuj ponownie”
  * na ekranie błędu) liczy start od zera. Bez opcji (testy, narzędzia) strażnik nie działa. */
+/** M1-audytor-generalny-042: błąd startu obsłużony ekranem (wyjątek migracji, dane z nowszej wersji) to nie awaria — licznik strażnika wraca do 0, żeby
+ * następny start nie pokazywał komunikatu pętli awarii zamiast tej samej przyczyny. Tylko przy włączonym strażniku (start z app/_layout.tsx). */
+async function handledBootFailure(guard: boolean | undefined): Promise<void> {
+  if (guard && db) await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_GUARD_KEY, JSON.stringify({ starts: 0 })).catch(() => {});
+}
+/** M1-032: każdy błąd startu niesie kod diagnostyczny (startFailureDiag w ./bootphase; tryb pętli awarii ma własny). */
 export async function init(opts: { guard?: boolean; retry?: boolean } = {}): Promise<void> {
+  try { await initInner(opts); } catch (e) { startFailureDiag(e, { ms: Math.max(0, Date.now() - bootStartedAt), hadData: !!bootPhaseCtx?.hadData, starts: bootPhaseCtx?.starts ?? 0, schema: SCHEMA_VERSION }); throw e; }
+}
+async function initInner(opts: { guard?: boolean; retry?: boolean }): Promise<void> {
   if (S) return;
   bootStartedAt = Date.now(); stableEarly = false; bootPhaseCtx = null; /* ZK-07: nowy start */
   setDb(await openDb());
@@ -65,7 +74,7 @@ export async function init(opts: { guard?: boolean; retry?: boolean } = {}): Pro
       ver = Number(JSON.parse(row.v)?.schemaVersion) || 0;
     } catch {}
     if (ver > SCHEMA_VERSION) {
-      setNewerSchema(ver);
+      setNewerSchema(ver); await handledBootFailure(opts.guard);
       throw Object.assign(new Error(t('Dane z nowszej wersji aplikacji — zaktualizuj aplikację')), { newerSchema: ver });
     }
   }
@@ -84,11 +93,19 @@ export async function init(opts: { guard?: boolean; retry?: boolean } = {}): Pro
       // PERF-03 (A): nowsza konfiguracja (szablony, ustawienia, plany) z małego klucza „cfg” — zapisanego bez przepisywania całej historii.
       try { const cr = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'cfg'); cfgTxt = cr ? cr.v : null; const c = cr ? JSON.parse(cr.v) : null;
         if (applyCfg(raw, c)) seqAtLeast(Number(c.seq) || 0); } catch {}
-      setS(migrate(raw)); needsPersist = before !== SCHEMA_VERSION;
+      /* M1-audytor-generalny-013: wyjątek w migracji na czytelnych danych to błąd kodu, nie zepsuty zapis — tryb awaryjny (ekran błędu startu), bez odkładania
+       * pod state_corrupt_* i bez zapisu czystego stanu; dane w bazie zostają nietknięte do poprawionej wersji. */
+      let migrated: State;
+      try { migrated = migrate(raw); } catch (e) {
+        if (e instanceof Error && e.message === 'bad state') throw e; /* zły kształt zapisu (migrate: brak exercises/templates) = nieczytelny zapis — ścieżka odkładania niżej */
+        throw Object.assign(new Error(e instanceof Error ? e.message : String(e)), { migrationFailed: true, cause: e });
+      }
+      setS(migrated); needsPersist = before !== SCHEMA_VERSION;
       /* M1-audytor-generalny-002: udana migracja nie może zostawić jedynie zmigrowanego zapisu — surowy zapis sprzed niej (wraz z „live” i „cfg”) czeka
        * w bazie pod kluczem premigrate_<schemat> do upływu PREMIGRATE_KEEP_MS. Bez kopii (np. brak miejsca) zmigrowany stan nie nadpisuje starego „state”. */
       if (needsPersist && !(await savePreMigrate(Number(before) || 0, row.v, liveTxt, cfgTxt))) needsPersist = false;
-    } catch {
+    } catch (e) {
+      if ((e as { migrationFailed?: boolean })?.migrationFailed) { await handledBootFailure(opts.guard); throw e; } /* M1-audytor-generalny-013: nic nie zapisujemy — ekran błędu startu */
       // Nie nadpisujemy jedynej kopii danych: odkładamy ją pod osobny klucz i startujemy od czystego stanu.
       const key = `state_corrupt_${Date.now()}`;
       await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key, row.v);

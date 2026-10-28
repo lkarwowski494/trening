@@ -2,14 +2,14 @@
  * Figury v2 — dane dla warstwy ekranu (poza czystym silnikiem, bo używa lib/cues i aliasów): wskazówki przypisane ćwiczeniu → linie odniesienia i błędy do animacji,
  * mięśnie z legendą i oznaczeniem „uproszczenie”. Wszystko wynika z danych ze źródłami (lib/cues, cue-sets.json, muscleLoad katalogu) — nic nie jest dopisywane ręcznie.
  */
-import { CUE_DATA, CUE_SECTIONS, cueText, hasCues } from '@/lib/cues';
+import { CUE_DATA, CUE_SECTIONS, cueText, generalCuesReviewed, hasCues } from '@/lib/cues';
 import { t, lang } from '@/lib/i18n';
 import { catalogKey, type Exercise } from '@/lib/seed';
 import { REGION_LABEL } from '@/lib/seed';
 import { CUE_SETS } from './cueSets';
 import { CUE_TO_ERROR, ERRORS, dataErrorId, type FigError } from './errors';
 import type { MeasuredJoint } from './poseData';
-import { faultApplicable, figureSpec, frameAt, errorDefOf, markPoints, musclesFor, type FigureSpec } from './figure';
+import { faultApplicable, shownFigureSpec, frameAt, errorDefOf, markPoints, musclesFor, type FigureSpec } from './figure';
 import { BADGE_MAX, okBadges, type Badge } from './badges';
 import { proj } from './draw';
 import type { View } from './scene';
@@ -21,7 +21,7 @@ export function cueIdsOf(key: string): { ids: string[]; errs: string[] } {
   const own = Object.prototype.hasOwnProperty.call(CUE_DATA.exercises, key) ? CUE_DATA.exercises[key] : null;
   if (own) return { ids: CUE_SECTIONS.flatMap(s => (own[s] ?? []).map(r => r.c)), errs: (own.mistakes ?? []).map(r => r.c) };
   const e = Object.prototype.hasOwnProperty.call(CUE_SETS.items, key) ? CUE_SETS.items[key] : null;
-  if (e && e.b === 'general') return { ids: [...(e.ok ?? []), ...(e.err ?? [])], errs: e.err ?? [] };
+  if (e && e.b === 'general' && generalCuesReviewed(key) /* zestaw bez recenzji treści — bez linii i błędów (M1-audytor-generalny-038) */) return { ids: [...(e.ok ?? []), ...(e.err ?? [])], errs: e.err ?? [] };
   return { ids: [], errs: [] };
 }
 
@@ -57,7 +57,7 @@ export const toeAngleApplies = (spec: FigureSpec): boolean => spec.family === 's
 /** Czy przy ćwiczeniu jest sekcja „Technika”: własne wskazówki (lib/cues) albo figura v2 (a z nią zestaw ogólny wzorca; kolejne rodziny — kolejne etapy). */
 export function hasTechnique(e: Pick<Exercise, 'lib' | 'libKey'> | null | undefined): boolean {
   if (hasCues(e)) return true; const key = catalogKey(e); if (!key) return false;
-  return !!figureSpec(key);
+  return !!shownFigureSpec(key);
 }
 
 /**

@@ -38,10 +38,12 @@ describe('blokada wydania: openExceptions', () => {
 
 describe('blokada wydania: skrypt w repozytorium', () => {
   const run = () => spawnSync('node', [SCRIPT], { encoding: 'utf8' });
-  test('kod wyjścia 1 dokładnie wtedy, gdy zestaw przekładu ma wpisy „zmieniony”; komunikat wskazuje R-015 i liczby', () => {
+  test('kod wyjścia 1 dokładnie wtedy, gdy zestaw przekładu ma wpisy „zmieniony” albo rejestr ryzyk ma pozycje blokujące (M1-audytor-generalny-012); komunikat wskazuje R-015 i liczby', () => {
     const pending = PENDING.filter(p => p.rodzaj === 'zmieniony').length;
+    const risks = JSON.parse(execFileSync('node', ['--input-type=module', '-e', `import { blockingRisks } from ${JSON.stringify('file://' + SCRIPT)}; import { readFileSync } from 'node:fs'; process.stdout.write(JSON.stringify(blockingRisks(readFileSync(${JSON.stringify(path.join(root, 'docs/40-lekcje.md'))}, 'utf8'))));`], { encoding: 'utf8' })) as unknown[];
     const r = run();
-    expect(r.status).toBe(pending > 0 ? 1 : 0);
+    expect(r.status).toBe(pending > 0 || risks.length > 0 ? 1 : 0);
+    if (risks.length) expect(r.stderr).toContain('rejestr ryzyk docs/40');
     if (pending > 0) { expect(r.stderr).toContain('R-015'); expect(r.stderr).toContain(`${pending} kluczy`); expect(r.stderr).toContain('WYDANIE ZABLOKOWANE'); }
     else expect(r.stdout).toContain('wyjątek anonimizacji pusty');
   });

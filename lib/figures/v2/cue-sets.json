@@ -171,7 +171,7 @@
   "Deadlift with Chains": {"b":"general","f":"hingeFloor","ok":["dl.lift","hinge.back","dl.close"],"err":["mis.roundBack"]},
   "Decline Bench Press": {"b":"general","f":"bench","ok":["bp.blades","bp.control","bp.elbowsMid"],"err":["bp.mis.arch"]},
   "Decline Bench Press (hantle)": {"b":"general","f":"bench","ok":["bp.blades","bp.control","bp.elbowsMid"],"err":["bp.mis.arch"]},
-  "Decline Close-Grip Bench To Skull Crusher": {"b":"general","f":"triLying","ok":["cgbp.elbows","skull.upperArm"],"err":["mis.jerk"]},
+  "Decline Close-Grip Bench To Skull Crusher": {"b":"general","f":"triLying","ok":["cgbp.elbows"],"err":["mis.jerk"]},
   "Decline Crunch": {"b":"general","f":"crunch","ok":["crunch.neck","crunch.lowBack"],"err":["mis.jerk"]},
   "Decline Dumbbell Fly": {"b":"general","f":"fly","ok":["fly.elbows","fly.control"],"err":["mis.jerk"]},
   "Decline Dumbbell Triceps Extension": {"b":"general","f":"triLying","ok":["skull.upperArm","skull.depthFree"],"err":["mis.jerk"]},

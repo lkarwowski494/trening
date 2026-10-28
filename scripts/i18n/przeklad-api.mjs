@@ -67,7 +67,7 @@ export function stare(root, kod) {
   return existsSync(p) ? czytaj(p) : {};
 }
 
-/** `konteksty` = docs/lokalizacja/konteksty.json (wczytajKonteksty): pozycja dostaje pole „kontekst” (L-030, L-041); null = bez kontekstu. */
+/** `konteksty` = docs/lokalizacja/konteksty.json (wczytajKonteksty): pozycja dostaje pole „kontekst” (L-030, L-052); null = bez kontekstu. */
 export function budujZadanie(kod, pozycje, staraTresc = {}, slownik = null, konteksty = null) {
   const lista = pozycje.map((p) => {
     const o = { id: String(p.id), pl: p.pl, en: p.en };

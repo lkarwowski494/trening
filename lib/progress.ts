@@ -1,7 +1,7 @@
 import { getState, getRev, exById, tplRows, workCount, setVolume, effectiveLoad, startableItem, previousBlockFor, occurrence, occurrences, startLocationId, implAtLoc, srcSetAt, isBW, isDeloadWeek } from '@/lib/store';
 import { dayKeyOf, addDays, dayStatus, pending } from '@/lib/plan';
 import { thisMonday, setsSplitByMuscle, volumeByMuscle, setsGoal } from '@/lib/stats';
-import { addSplitSets, emptySplit, mergeSplits, splitTotals, type SetSplit } from '@/lib/setSplit';
+import { addSplitSets, emptySplit, mergeSplits, splitTotals, SECONDARY_SHARE, type SetSplit } from '@/lib/setSplit';
 import { periodRange, totals } from '@/lib/period';
 import { t } from '@/lib/i18n';
 import { MUSCLES, hasReps, hasWeight, type Muscle, type Template, type WSet } from '@/lib/seed';
@@ -54,7 +54,7 @@ export function estimateTemplate(tpl: Template): Planned {
     out.sets += e.sets; out.volume += e.volume; out.unknownSets += e.unknown;
     addSplitSets(out.bySplit, ex.muscles ?? [], ex.secondaryMuscles ?? [], e.sets);
     (ex.muscles ?? []).forEach(mu => { add(out.byVolume, mu, e.volume); });
-    (ex.secondaryMuscles ?? []).forEach(mu => { add(out.byVolume, mu, e.volume * 0.5); });
+    (ex.secondaryMuscles ?? []).forEach(mu => { add(out.byVolume, mu, e.volume * SECONDARY_SHARE); /* M1-audytor-generalny-030 */ });
   });
   out.bySets = splitTotals(out.bySplit);
   return out;

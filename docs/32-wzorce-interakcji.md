@@ -62,7 +62,7 @@ Ekran szczegółów: tytuł nagłówka = rodzaj obiektu, H1 = nazwa, obok „Edy
 
 ### 9. Wybór z listy — S6 (częściowo)
 1 z 2–4 → `Segmented` (naprawiono: tryb generatora, Tydzień/Miesiąc w podsumowaniu); 1 z wielu krótkich → chipy (`selected`); długa lista / wyszukiwanie → okno modalne z „Anuluj” (wzorzec 1);
-kontekstowy wybór ≤ 3 opcje + Anuluj → arkusz akcji. Stan wybrania zawsze przez `accessibilityState.selected` (nie w etykiecie) — import CSV dostał `selected` na wierszach.
+kontekstowy wybór ≤ 3 opcje + Anuluj → arkusz akcji (np. „⋯” przy wierszu ekranu Kolejność: „Przesuń wyżej / niżej” — przyciskowa alternatywa przeciągania, M1-audytor-generalny-026, 27.10.2026; test `tests/audit-m1-026-kolejnosc-menu.test.tsx`). Stan wybrania zawsze przez `accessibilityState.selected` (nie w etykiecie) — import CSV dostał `selected` na wierszach.
 
 ### 10. Wpisywanie liczb — S7
 `NumInput` (przecinek wg języka, klawiatura numeryczna, przycięcie do limitu). Przerwa: zawsze pole z etykietą „… (s)”; przerwa w treningu — okno z wpisem „Przerwa (s)” (zostaje: ma „Zapamiętaj”). Daty: `DateField` (wzorzec 22).
@@ -101,11 +101,12 @@ Przycisk, który **przechodzi na inny ekran**, ma po tytule „›” (np. „Te
 Zakładki — własne H1; stos — tytuł w nagłówku (ekrany pod Więcej bez H1); szczegóły: tytuł = rodzaj, H1 = nazwa. Ekran zakupu **bez** H1 powtarzającego tytuł. Przyciski w nagłówku: tylko wzorce 1, 3, 4 oraz **wyjątki nazwane z M3 (W1 wariant a, 21.10.2026; docs/18)** — każdy jako jeden wspólny komponent z `HeaderButton` (44 pt, limit powiększenia), dopuszczony przez strażnik S2:
 (a) trening w toku: „⋯” (menu treningu: miejsce, pauza, głos, notatka szablonu; etykieta „Opcje treningu”) i „Zakończ” (wzorzec 30);
 (b) listy z trybem usuwania bez ekranu szczegółów: „Edytuj” / „Gotowe” (wzorzec 5), obok „+” (wzorzec 4) — w trybie edycji „+” znika;
-(c) ekran Trening bez treningu w toku: „Planowanie” (przejście do planu, etykieta „Planowanie”; zastępuje przycisk pod nagłówkiem planu).
+(c) ekran Trening bez treningu w toku: „Planowanie” (przejście do planu, etykieta „Planowanie”; zastępuje przycisk pod nagłówkiem planu) — **w linii tytułu po prawej, jak w zakładce Plan** (DEC-07 K3 a, 23.10.2026; wdrożone 27.10.2026, M1-audytor-generalny-024; test `tests/m3-p2-start.test.tsx`); przy wąskim ekranie i dużym tekście wiersz tytułu się zawija i przycisk przechodzi pod tytuł.
 Odrzucone: „Planowanie” w treści (W1 b). Szczegóły: tytuł środkowy skraca się wielokropkiem, przyciski nie (limit powiększenia przycisków jak dziś w `HeaderButton`: 1,4).
 
 ### 20. Rozwijanie i zwijanie — S11
 Znaki ▸/▾ (zakaz ⌃ ⌄ ▴), `accessibilityState.expanded` (`Btn expanded`, `Item expanded`), etykieta VoiceOver stała (np. „Więcej opcji”, „Cele partii”). Menu otwierające arkusz („📍 Dom ▾”) to nie rozwijanie.
+Stan domyślny sekcji „Technika” w karcie ćwiczenia (decyzja właściciela 27.10.2026, wariant B): rozwinięta; zwinięta w podglądzie otwieranym w kontekście treningu na żywo (`?cues=0`), „Technika ›” (`?cues=1`) rozwija. Przycisk sekcji zwija i rozwija w obu przypadkach.
 
 ### 21. Wyszukiwanie — S15
 `SearchField` (`components/ui.tsx`): „Szukaj {czego}…”, przycisk czyszczenia (`clearButtonMode`), limit 80 znaków, bez autokorekty; autoFocus tylko w oknach wyboru. HIG Text fields: „Display a Clear button in the trailing end of a text field to help people erase their input.”
@@ -116,6 +117,7 @@ formatowanie dat tylko w `lib/state/time.ts`, `lib/calendar.ts`, `lib/period.ts`
 
 ### 23. Etykiety VoiceOver i role — S13, S14
 Każdy `Pressable` ma `accessibilityLanguage = lang()` (albo `accessible={false}`); przyciski — `button`; przełączniki — `switch` + `checked`; wybór — `selected`; rozwijanie — `expanded`; usuwanie — akcja dostępności; nagłówki — `header`.
+Grupa `accessible` (jeden element VoiceOver z opisem) nie zawiera przycisków ani innych kontrolek — iOS chowa potomków grupy przed VoiceOver i XCTest; przycisk stoi obok grupy albo karta nie jest grupą (S19; DEC-11 a, 28.10.2026: karta stanu planu na ekranie zakupu, „Zarządzaj subskrypcją”).
 
 ### 24. Seria „do uzupełnienia” i prośba przed „Zakończ” (0.20, decyzja właściciela 13.10.2026)
 Seria odhaczona na zegarku jako „zrobione inaczej niż w planie” ma w wierszu napis „do uzupełnienia” (słowem, nie samym kolorem) i przycisk „Gotowe”. „Zakończ” z takimi seriami pyta najpierw: tytuł „Serie do uzupełnienia”, przyciski
@@ -155,7 +157,7 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 - **Wyjątki z powodem:** (1) `components/TodayPlan.tsx` — nagłówek bloku „Dziś” i skróty dni tygodnia w pasku (etykiety kolumn, nie zdania); (2) `components/GuardSection.tsx` — tytuł grupy (nagłówek grupy); (3) `lib/state/sets.ts` `shortBand` — jedna litera koloru gumy, nie tekst; (4) **M3 W3 wariant a (21.10.2026, docs/18):** nazwa ćwiczenia na tablicy „teraz” i nagłówek „Dziś: …” na tablicy startu — jak nazwisko na tablicy podejść (przepisy IWF 3.3.6.15), przez `upperText()` (rozstrzelenie 4%, rola `boardName` w tokenach); przy dużym tekście nazwa łamie się na dwa wiersze, nie ucina. Odrzucone: nazwa na tablicy zwykłą pisownią (W3 b). Nowe użycie wymaga zmiany tej decyzji i wpisu tutaj.
 - **„·” (kropka środkowa) tylko dla metadanych o stałej kolejności** (np. licencja · źródło w ekranie Licencje), czytanych jak etykiety. Zdania, powody i wartości zmiennej kolejności lub liczby elementów oddzielamy zwykłym zdaniem, przecinkiem albo osobną linią.
 - **Odrzucone:** wariant B — limit dwóch elementów w liniach pomocniczych ekranu treningu (zmieniałby układ ekranu treningu przed redesignem wyglądu).
-- **Stan kodu:** istniejące ciągi z `join(' · ')` o zmiennej kolejności (np. linie pomocnicze `app/swap.tsx`, `app/adapt.tsx`, `components/ActiveWorkout.tsx`) nie były przeglądane pod tym kątem — **[OTWARTE]** przegląd przy redesignie wyglądu; nowy kod stosuje regułę od 20.10.2026.
+- **Stan kodu (przegląd zamknięty 27.10.2026, M1-audytor-generalny-029; 04-studio-projektowe-011):** każde użycie „·” w kodzie interfejsu (`app/`, `components/`, `lib/` bez słowników) ma wpis z powodem i liczbą wystąpień w `tests/kropka-srodkowa.json`; listy o zmiennej liczbie elementów zmienione na przecinek — powody propozycji zamiany (`lib/swap.ts`), dni planu (`app/plan.tsx`, `app/generator.tsx`, `components/OwnPlan.tsx`), serie w historii ćwiczenia (`components/ExerciseProgress.tsx`), partie mięśni (`app/exercise/[id].tsx`), pobite wartości rekordu (`components/PeriodSummary.tsx`). Podpisy startu (`components/StartPanel.tsx`: „dziś w planie · n ćw.”, „nazwa · data”) to dwa pola metadanych w stałej kolejności — zgodne z regułą. Strażnik: `tests/audit-m1-029-kropka-srodkowa.test.ts` (nowe „·” bez wpisu albo zmiana liczby — czerwony).
 - **Strażnik wersalików:** `tests/audit-m1-063-caps-separators.test.ts` (lista miejsc z `upperText()` / `upper()` i brak `textTransform: 'uppercase'`).
 
 ### 29. Tablica „teraz” — wynik serii, ±, haptyka (M3 ZM-01, ZM-05, ZM-07; decyzje 21.10.2026, docs/18)
@@ -176,7 +178,7 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 - Ikonka dekoracyjna przy tytule (Trening: mała sztanga po napisie) stoi w wierszu tytułu, nie nad nim; ukryta dla VoiceOver, etykieta nagłówka bez zmian.
 - Przewijanie: `ScrollView`, `FlatList` i `SectionList` tylko z `components/Scroll.tsx`; wskaźnik przewijania (pionowy i poziomy) ukryty na wszystkich ekranach — nie ma „kreski” przy krawędzi w treści.
 
-## Strażniki (S1–S18)
+## Strażniki (S1–S19)
 | # | Strażnik | Plik | Stan |
 |---|---|---|---|
 | S1 | okno modalne / arkusz ma „Anuluj” w nagłówku (render każdego okna, PL/EN, jasny/ciemny) | `tests/close-button-guard.test.tsx` | jest |
@@ -197,6 +199,7 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 | S16 | arkusze akcji: wyjątki z powodem | j.w. | jest (wyjątki: lista miejsc użytkownika ma zmienną długość; rodzaje serii to 4 + notatka + Anuluj — dwupoziomowy arkusz wydłużyłby najczęstszą akcję treningu) |
 | S17 | ⓘ: jeden komponent (etykieta, rola, `expanded`, pole 44 pt), teksty przeniesione tylko jako `info=`, widoczny tekst pomocniczy ≤ 100 znaków poza listą wyjątków z powodem, gesty tylko w Przewodniku | j.w. + `tests/info-tip.test.tsx`, `tests/matrix-i18n.test.tsx` (szerokość 320 pt), `.maestro/53-objasnienia-info.yaml` | jest |
 | S18 | przewijanie: ScrollView/FlatList/SectionList tylko z `components/Scroll.tsx` (wskaźnik ukryty), brak `persistentScrollbar`/`flashScrollIndicators` | `tests/interaction-guards.test.ts`, `tests/trening-naglowek.test.tsx` | jest |
+| S19 | element `accessible` bez roli kontrolki nie ma w drzewie JSX potomka z `onPress`/`onLongPress` (skan AST `app/`, `components/`) | `tests/voiceover-grupa-przycisk.test.tsx`, `.maestro/21-subskrypcja.yaml` | jest (komponent przekazany jako dziecko z `onPress` w środku skan widzi tylko po atrybucie w miejscu użycia) |
 
 ## Słownik terminów
 Anuluj (rezygnacja; okna i potwierdzenia) · Wróć (strzałka, przycisk „nie ma takiego …”) · Wróć do edycji (tylko odrzucanie zmian) · Zamknij (tylko panel „Co nowego”) · Cofnij (ostatnia zmiana) · Przywróć (usunięte / zarchiwizowane / pominięte) ·

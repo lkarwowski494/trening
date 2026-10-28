@@ -23,6 +23,8 @@ export function loadV2(outDir) {
   }
   /* pozy z danych (poses/*.json — poseData.ts wczytuje je przez require) */
   for (const f of walk(path.join(root, 'lib', 'figures', 'v2')).filter(x => x.endsWith('.json'))) { const out = path.join(outDir, path.relative(root, f)); fs.mkdirSync(path.dirname(out), { recursive: true }); fs.copyFileSync(f, out); }
+  /* lista rodzin v2 z aktualną recenzją (figure.ts: shownFigureSpec) — lib/figures/data.json */
+  fs.mkdirSync(path.join(outDir, 'lib', 'figures'), { recursive: true }); fs.copyFileSync(path.join(root, 'lib', 'figures', 'data.json'), path.join(outDir, 'lib', 'figures', 'data.json'));
   fs.writeFileSync(path.join(outDir, 'package.json'), '{"type":"commonjs"}');
   const r = createRequire(path.join(outDir, 'x.js'));
   return { v2: r('./lib/figures/v2/index.js'), tokens: r('./lib/tokens.js'), catalog: fs.existsSync(path.join(outDir, 'lib/catalog.generated.js')) ? r('./lib/catalog.generated.js') : null };

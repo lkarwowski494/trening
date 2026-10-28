@@ -1,4 +1,5 @@
 import { locale } from './i18n';
+import { SPACE } from './tokens';
 import type { Workout } from './seed';
 import { wallTs } from './store';
 
@@ -50,4 +51,14 @@ const D = (d: Date | number, o: Intl.DateTimeFormatOptions) => new Date(d).toLoc
 /** „12 paź 2026” */ export const fmtDayMonthYear = (d: Date | number) => D(d, { day: 'numeric', month: 'short', year: 'numeric' });
 /** „poniedziałek, 12 października” */ export const fmtWeekdayDayMonth = (d: Date | number) => D(d, { weekday: 'long', day: 'numeric', month: 'long' });
 /** „pon.” */ export const fmtWeekdayShort = (d: Date | number) => D(d, { weekday: 'short' });
+/** „P” — jednoliterowy skrót dnia (Intl 'narrow'); pasek tygodnia, gdy zwykły skrót się nie mieści (M1-audytor-generalny-027). */ export const fmtWeekdayNarrow = (d: Date | number) => D(d, { weekday: 'narrow' });
+/* Pasek tygodnia na ekranie Trening (M1-audytor-generalny-027, 04-studio-projektowe-010, 27.10.2026): 7 kolumn flex 1 w karcie z wcięciem SPACE.s
+ * i odstępem STRIP_GAP, każda z ramką 2 pt („dziś”). Szerokość skrótu szacujemy zachowawczo: STRIP_CHAR_EM em na znak (wersaliki i kropka, krój
+ * systemowy 600 — przybliżenie, nie pomiar), skrót może się zmniejszyć do STRIP_MIN_SHRINK (adjustsFontSizeToFit, jak nagłówki kolumn A11-19). */
+export const STRIP_GAP = 2; export const STRIP_PAD = SPACE.s; export const STRIP_BORDER = 2;
+export const STRIP_CHAR_EM = 0.62; export const STRIP_MIN_SHRINK = 0.7;
+/** Szerokość treści kolumny dnia (pt) przy szerokości paska `stripW`. */
+export const stripColumnPt = (stripW: number) => (stripW > 0 ? (stripW - 2 * STRIP_PAD - 6 * STRIP_GAP) / 7 - 2 * STRIP_BORDER : 0);
+/** Czy najdłuższy z `labels` mieści się w kolumnie `colPt` przy rozmiarze kroju `fontPt` (po największym dozwolonym zmniejszeniu). */
+export const stripLabelsFit = (labels: readonly string[], colPt: number, fontPt: number) => Math.max(0, ...labels.map(l => [...l].length)) * STRIP_CHAR_EM * fontPt * STRIP_MIN_SHRINK <= colPt;
 /** „12” */ export const fmtDayNum = (d: Date | number) => D(d, { day: 'numeric' });

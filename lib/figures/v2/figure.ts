@@ -38,6 +38,22 @@ export function figureSpec(key: string): FigureSpec | null {
   const lowerFirst = variant.family === 'hinge' ? variant.lowerFirst : true;
   return { key, family, variant, views: viewsOf(key, family), static: variant.family === 'squat' && !!variant.static, lowerFirst };
 }
+/** Ćwiczenia z wariantem, którego rysunek nie jest pokazywany w aplikacji (karta bez rysunku, wskazówki zostają) — ćwiczenie → powód. Silnik i testy geometrii nadal je liczą. */
+export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
+  /* decyzja agenta w nocy 28/29.10.2026 (tryb nocny właściciela, do weta rano; docs/18): rysunek przeczy karcie „łokcie blisko tułowia” — poprawka rigu w 1.0.1 */
+  'JM Press': 'łokieć na dole ok. 25 cm za barkiem w stronę głowy, w połowie ruchu na boki — przeczy wskazówce cgbp.elbows; poprawka rigu w 1.0.1 (docs/21)',
+  'Decline Close-Grip Bench To Skull Crusher': 'łokieć na dole ok. 25 cm za barkiem w stronę głowy, w połowie ruchu na boki — przeczy wskazówce cgbp.elbows; poprawka rigu w 1.0.1 (docs/21)',
+};
+/* eslint-disable-next-line @typescript-eslint/no-var-requires */
+const FIG_V2_SHOWN: readonly string[] = (require('../data.json') as { v2?: string[] }).v2 ?? [];
+/** Rodzina v2 z aktualnym wpisem recenzji ruchu (docs/research/figury-recenzja.json, sekcja v2; bramka 4, fail-closed): bez wpisu albo po zmianie rigu/póz od recenzji rodzina nie jest rysowana — lista w lib/figures/data.json (scripts/zrodla-runtime.mjs). */
+export const familyReviewed = (family: string): boolean => FIG_V2_SHOWN.includes(family);
+/** Figura pokazywana w aplikacji: jak figureSpec, bez wstrzymanych (V2_WSTRZYMANE) i tylko z rodziny z aktualną recenzją ruchu (bramka 4). */
+export function shownFigureSpec(key: string): FigureSpec | null {
+  if (Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, key)) return null;
+  const spec = figureSpec(key);
+  return spec && familyReviewed(spec.family) ? spec : null;
+}
 
 /* Podręczna pamięć klatek: w jednym kroku animacji ta sama klatka jest potrzebna kilka razy (kształty, linie odniesienia, styki, znaczki, oba widoki) — liczymy ją raz. Klatki są niezmienne. */
 const FRAME_CACHE = new Map<string, Frame>(); const FRAME_CACHE_MAX = 48;

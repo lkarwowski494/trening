@@ -124,12 +124,20 @@
   "en": "{n} active kcal"
  },
  {
+  "pl": "{n} kg",
+  "en": "{n} kg"
+ },
+ {
   "pl": "{n} kilokalorii aktywnych",
   "en": "{n} active kilocalories"
  },
  {
   "pl": "{n} km",
   "en": "{n} km"
+ },
+ {
+  "pl": "{n} lb",
+  "en": "{n} lb"
  },
  {
   "pl": "{n} m",
@@ -334,6 +342,10 @@
  {
   "pl": "Akcesoria",
   "en": "Accessories"
+ },
+ {
+  "pl": "Aktualny plan",
+  "en": "Current plan"
  },
  {
   "pl": "aktywny",
@@ -2084,6 +2096,10 @@
   "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → {app} → Backup, last {n}). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple account, export a backup elsewhere."
  },
  {
+  "pl": "Kopia bazy w Plikach",
+  "en": "Database copy in Files"
+ },
+ {
   "pl": "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.",
   "en": "A copy is kept on the phone. Tap to send it, then import a backup."
  },
@@ -2382,6 +2398,18 @@
  {
   "pl": "Masz pełną wersję",
   "en": "You have the full version"
+ },
+ {
+  "pl": "Masz plan: dożywotni",
+  "en": "Your plan: lifetime"
+ },
+ {
+  "pl": "Masz plan: miesięczny",
+  "en": "Your plan: monthly"
+ },
+ {
+  "pl": "Masz plan: roczny",
+  "en": "Your plan: yearly"
  },
  {
   "pl": "maszyna",
@@ -3063,6 +3091,10 @@
   "en": "Couldn't save to Apple Health"
  },
  {
+  "pl": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+  "en": "Don't delete the app — your data and backups go with it. First tap “Send data” and save the file somewhere off your phone."
+ },
+ {
   "pl": "Nie zamieniaj: {name}",
   "en": "Don’t swap: {name}"
  },
@@ -3651,6 +3683,10 @@
   "en": "First workout done!"
  },
  {
+  "pl": "Pierwszy trening: duży przycisk „Pusty trening” u góry.",
+  "en": "First workout: the big “Empty workout” button at the top."
+ },
+ {
   "pl": "Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.",
   "en": "First workout: the big “Start” button at the top, or “Empty workout”."
  },
@@ -3757,6 +3793,10 @@
  {
   "pl": "Plik nie zawiera żadnych poprawnych treningów. Dane nie zostały zmienione.",
   "en": "The file contains no valid workouts. Your data was not changed."
+ },
+ {
+  "pl": "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.",
+  "en": "Files → On My iPhone → {app} → Backup → {folder}. Save this folder somewhere off your phone."
  },
  {
   "pl": "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}",
@@ -4363,6 +4403,10 @@
  {
   "pl": "przedramiona",
   "en": "forearms"
+ },
+ {
+  "pl": "Przejdź na ten plan",
+  "en": "Switch to this plan"
  },
  {
   "pl": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",
@@ -5199,6 +5243,10 @@
  {
   "pl": "Szablony ›",
   "en": "Templates ›"
+ },
+ {
+  "pl": "Szablony i plan",
+  "en": "Templates and plan"
  },
  {
   "pl": "Szablony trafiają do folderu „Wygenerowane”, a plan do „Inne plany” albo od razu jako aktywny.",
@@ -7041,6 +7089,10 @@
   "en": "Reorder: {name}"
  },
  {
+  "pl": "Zmień plan",
+  "en": "Change plan"
+ },
+ {
   "pl": "Zmień szablon",
   "en": "Change template"
  },
@@ -7079,6 +7131,10 @@
  {
   "pl": "Zniknie z list i szablonów.",
   "en": "It disappears from lists and templates."
+ },
+ {
+  "pl": "Zobacz plany Pro",
+  "en": "See Pro plans"
  },
  {
   "pl": "Zobacz plany Pro ›",

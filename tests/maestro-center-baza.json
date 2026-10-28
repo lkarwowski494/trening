@@ -34,7 +34,7 @@
  "11-widok-skupiony.yaml: { element: \"Empty workout\", direction: DOWN",
  "12-usuwanie-gestem.yaml: { element: \"Empty workout\", direction: DOWN",
  "14-generator.yaml: { element: \"General fitness\", direction: UP",
- "14-generator.yaml: { element: \"Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A\", direction: DOWN",
+ "14-generator.yaml: { element: \"Mon.* Full Body A, Wed.* Full Body B, Sat.* Full Body A\", direction: DOWN",
  "14-generator.yaml: { element: \"Plan rules\", direction: DOWN",
  "14-generator.yaml: { element: { id: \"day-0\" }, direction: UP",
  "14-generator.yaml: { element: { id: \"day-4\" }, direction: UP",
@@ -63,6 +63,7 @@
  "35-ustawienia-dostepnosc.yaml: { element: \"Restore purchases\", direction: DOWN",
  "35-ustawienia-dostepnosc.yaml: { element: \"Test store: expire access\", direction: DOWN",
  "53-objasnienia-info.yaml: { element: \"Appearance\", direction: UP",
+ "subflows/generator-plan-duzy-tekst.yaml: { element: \"Save templates and plan\", direction: DOWN",
  "subflows/generator-plan.yaml: { element: \"Saturday, Full Body A\", direction: DOWN",
  "subflows/szablon-testowy.yaml: { element: \"\\\\+ Add exercise\", direction: DOWN"
 ]

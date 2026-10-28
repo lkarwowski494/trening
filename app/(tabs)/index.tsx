@@ -40,10 +40,10 @@ function Home() {
    * (14.10.2026, uwaga właściciela z telefonu: sekcja „Progresja” zniknęła z tego ekranu — jest w Postępach). Lista „Zacznij z szablonu”, karta Planowania i wiersz „Plan: … Planowanie ›” usunięte jako duplikaty. */
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
-      {/* M3 p2 (W1 c, STOP E3): „Planowanie” w nagłówku ekranu — ta sama akcja w tym samym miejscu co w zakładce Plan; bez planu „Ustaw plan”; tylko gdy jest karta planu (jak dotąd) */}
-      {showPlanning ? <View style={{ alignItems: 'flex-end' }}><PlanningButton label={plan ? t('Planowanie') : t('Ustaw plan')} onPress={() => router.push('/plan')} /></View> : null}
       <WhatsNewHeader>{/* 08.10.2026: „i” — Co nowego (decyzja właściciela); 22.10.2026: mała ikonka sztangi po tytule zamiast dużej sylwetki w rogu (nachodziła na wiersz planu) */}
-        <View testID="title-row" style={{ flexDirection: 'row', alignItems: 'center', gap: SPACE.s }}><View style={{ flexShrink: 1 }}><H1>{t('Trening')}</H1></View><TitleBarbell /></View>
+        {/* M3 p2 (W1 c) i DEC-07 K3 a (23.10.2026; M1-audytor-generalny-024): „Planowanie” w linii tytułu po prawej — jak w zakładce Plan (docs/32 wzorzec 19 c);
+         * bez planu „Ustaw plan”; tylko gdy jest karta planu (jak dotąd). Wiersz się zawija: przy wąskim ekranie i dużym tekście przycisk przechodzi pod tytuł. */}
+        <View testID="title-row" style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: SPACE.s }}><View style={{ flexShrink: 1 }}><H1>{t('Trening')}</H1></View><TitleBarbell />{showPlanning ? <View style={{ marginLeft: 'auto' }}><PlanningButton label={plan ? t('Planowanie') : t('Ustaw plan')} onPress={() => router.push('/plan')} /></View> : null}</View>
         <Muted>{fmtWeekdayDayMonth(new Date())}</Muted>
       </WhatsNewHeader>
       <DataBanners />

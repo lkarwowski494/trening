@@ -31,7 +31,7 @@ NO ACCOUNT, NO SERVER
 - To see the app with data quickly: on the Workout tab tap "Other workout", add an exercise and tick a set; or use "Log a past workout" to add a session in the past.
 
 IN-APP PURCHASES (one subscription group "Full version": monthly and yearly auto-renewable subscriptions plus a one-time lifetime unlock; no introductory offers or free trials)
-- Where to find them: More > Settings, section "Subscription" > "Full version". The purchase screen opens from there at any time, and also when a workout is started after the free limit is used. It shows the price and period from the App Store, "Restore purchases", "Redeem code", and links to the Privacy Policy and the Terms of Use (Apple's standard EULA).
+- Where to find them: More > Settings, section "Subscription" > "See Pro plans" (after a purchase the row reads "Your plan: monthly", "Your plan: yearly" or "Your plan: lifetime"). The purchase screen opens from there at any time, and also when a workout is started after the free limit is used. It shows the price and period from the App Store, "Restore purchases", "Redeem code", and links to the Privacy Policy and the Terms of Use (Apple's standard EULA).
 - Free tier: the whole app is free for up to 5 training days per calendar month. A training day is a day with at least one finished live workout longer than 7 minutes (several workouts on the same day count as one day). The limit needs five such days, so it cannot be reached in a short review session; the purchase screen is therefore reachable from Settings as described above. History, backup, export and logging past workouts always work, with or without a purchase.
 - After the first finished live workout (free tier only, shown once) a short window "First workout done!" explains the model in plain words. "See Pro plans ›" opens the purchase screen, "Awesome, keep training!" closes the window, and a link "Why this price? See the espresso index." opens a page on our website.
 - Family Sharing is enabled for all three products.
@@ -70,7 +70,7 @@ BEZ KONTA I BEZ SERWERA
 - Żeby szybko zobaczyć dane: w zakładce Trening „Inny trening”, dodaj ćwiczenie i odhacz serię; albo „Dopisz trening wstecz”.
 
 ZAKUPY W APLIKACJI (grupa subskrypcji „Pełna wersja”: miesięczna i roczna odnawiane automatycznie oraz jednorazowy dostęp dożywotni; bez ofert wprowadzających i okresów próbnych)
-- Gdzie: Więcej → Ustawienia, sekcja „Subskrypcja” → „Pełna wersja”. Ekran zakupu otwiera się stamtąd w każdej chwili, a także przy starcie treningu po wykorzystaniu darmowych dni. Pokazuje cenę i okres z App Store, „Przywróć zakupy”, „Zrealizuj kod” i linki do polityki prywatności oraz warunków (standardowa licencja Apple).
+- Gdzie: Więcej → Ustawienia, sekcja „Subskrypcja” → „Zobacz plany Pro” (po zakupie wiersz „Masz plan: miesięczny”, „Masz plan: roczny” albo „Masz plan: dożywotni”). Ekran zakupu otwiera się stamtąd w każdej chwili, a także przy starcie treningu po wykorzystaniu darmowych dni. Pokazuje cenę i okres z App Store, „Przywróć zakupy”, „Zrealizuj kod” i linki do polityki prywatności oraz warunków (standardowa licencja Apple).
 - Bez zakupu cała aplikacja jest darmowa do 5 dni treningowych w miesiącu kalendarzowym. Dzień treningowy to dzień z co najmniej jednym ukończonym treningiem na żywo dłuższym niż 7 minut (kilka treningów tego samego dnia to jeden dzień). Limit wymaga pięciu takich dni, więc nie da się go osiągnąć w krótkiej recenzji; ekran zakupu jest dostępny z Ustawień. Historia, kopia, eksport i dopisywanie treningów wstecz działają zawsze, z zakupem i bez.
 - Po pierwszym ukończonym treningu na żywo (tylko w wersji darmowej, raz) krótkie okno „Pierwszy trening za Tobą!” tłumaczy model prostymi słowami. „Zobacz plany Pro ›” otwiera ekran zakupu, „Super, trenuję dalej!” zamyka okno, a link „Skąd ta cena? Poznaj indeks espresso.” otwiera stronę na naszej witrynie.
 - Chmura rodzinna włączona we wszystkich trzech produktach.
@@ -102,5 +102,5 @@ KONTAKT
 ## Notatka do każdej subskrypcji (Subscription → App Review Information → Review Notes; opcjonalna — bez ofert wprowadzających)
 
 ```text
-Auto-renewable subscription without introductory offers. Purchase screen: More > Settings > Subscription > Full version (any time), or when starting a workout after the 5 free training days of the month are used. Ongoing value: no monthly limit and all features added in regular updates; a one-time lifetime unlock is offered as an alternative.
+Auto-renewable subscription without introductory offers. Purchase screen: More > Settings > Subscription > See Pro plans (any time), or when starting a workout after the 5 free training days of the month are used. Ongoing value: no monthly limit and all features added in regular updates; a one-time lifetime unlock is offered as an alternative.
 ```

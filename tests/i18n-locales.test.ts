@@ -40,10 +40,7 @@ describe.each(LANGS.filter(l => l !== 'pl' && l !== 'en'))('słownik %s', l => {
     const n = PLURAL_FORMS[l].length;
     expect(src.filter(s => s.plural && d[s.pl] !== undefined && d[s.pl].split('|').length !== n).map(s => `${s.pl} → ${d[s.pl]}`)).toEqual([]);
   });
-  test('bez liter występujących tylko w polskim (przeciek nieprzetłumaczonego tekstu)', () => {
-    const PL_ONLY = l === 'lt' ? /[łńśźżŁŃŚŹŻ]/ : /[ąęłńśźżĄĘŁŃŚŹŻ]/; /* litewski ma ą, ę */
-    expect(src.filter(s => d[s.pl] !== undefined && PL_ONLY.test(d[s.pl])).map(s => `${s.pl} → ${d[s.pl]}`)).toEqual([]);
-  });
+  /* 28.10.2026 [M1-audytor-generalny-031; 09-lokalizacja-007]: test „liter polskich” zastąpiony kontrolą pisma języka w `npm run check:i18n` (tests/check-i18n-script.test.ts). */
 });
 
 test('zestaw do przekładu (23.10.2026): każdy klucz jest w źródle; „nowy” — brak w słownikach (po przekładzie wpis usunąć); „zmieniony” — jest (stare tłumaczenie)', () => {

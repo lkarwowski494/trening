@@ -4630,36 +4630,9 @@
        "Comments (torso upright)"
       ]
      ]
-    },
-    {
-     "c": "lunge.knee",
-     "s": [
-      [
-       "exrx-Quadriceps/DBLunge",
-       "Comments (lead knee same direction as foot)"
-      ],
-      [
-       "nasm-bulgarian-split-squat",
-       "Common Mistakes (przysiad wykroczny — ten sam wzorzec)"
-      ]
-     ]
     }
    ],
-   "mistakes": [
-    {
-     "c": "lunge.mis.kneeIn",
-     "s": [
-      [
-       "exrx-Quadriceps/DBLunge",
-       "Comments"
-      ],
-      [
-       "nasm-bulgarian-split-squat",
-       "Common Mistakes"
-      ]
-     ]
-    }
-   ]
+   "mistakes": []
   },
   "Walking Lunges": {
    "setup": [
@@ -4705,36 +4678,9 @@
        "Step 3 (keep the spine extended); wskazówka końcowa (tall, straight spine)"
       ]
      ]
-    },
-    {
-     "c": "lunge.knee",
-     "s": [
-      [
-       "exrx-Quadriceps/DBWalkingLunge",
-       "Comments (lead knee same direction as foot)"
-      ],
-      [
-       "nasm-bulgarian-split-squat",
-       "Common Mistakes (ten sam wzorzec)"
-      ]
-     ]
     }
    ],
-   "mistakes": [
-    {
-     "c": "lunge.mis.kneeIn",
-     "s": [
-      [
-       "exrx-Quadriceps/DBWalkingLunge",
-       "Comments"
-      ],
-      [
-       "nasm-bulgarian-split-squat",
-       "Common Mistakes"
-      ]
-     ]
-    }
-   ]
+   "mistakes": []
   },
   "Reverse Lunge": {
    "setup": [
@@ -4780,36 +4726,9 @@
        "Comments (torso upright)"
       ]
      ]
-    },
-    {
-     "c": "lunge.knee",
-     "s": [
-      [
-       "exrx-Quadriceps/DBRearLunge",
-       "Comments (forward knee same direction as foot)"
-      ],
-      [
-       "nasm-bulgarian-split-squat",
-       "Common Mistakes (ten sam wzorzec)"
-      ]
-     ]
     }
    ],
-   "mistakes": [
-    {
-     "c": "lunge.mis.kneeIn",
-     "s": [
-      [
-       "exrx-Quadriceps/DBRearLunge",
-       "Comments"
-      ],
-      [
-       "nasm-bulgarian-split-squat",
-       "Common Mistakes"
-      ]
-     ]
-    }
-   ]
+   "mistakes": []
   },
   "Step Up": {
    "setup": [
@@ -4939,21 +4858,7 @@
      ]
     }
    ],
-   "mistakes": [
-    {
-     "c": "sq.mis.kneesIn",
-     "s": [
-      [
-       "nasm-single-leg-squat",
-       "Common Mistakes"
-      ],
-      [
-       "exrx-Quadriceps/BWSingleLegSquat",
-       "Comments"
-      ]
-     ]
-    }
-   ]
+   "mistakes": []
   },
   "Hip Thrust (sztanga)": {
    "setup": [
@@ -7962,19 +7867,6 @@
        "opis"
       ]
      ]
-    },
-    {
-     "c": "dl.lower",
-     "s": [
-      [
-       "nasm-kettlebell-deadlift",
-       "Step 4"
-      ],
-      [
-       "ace-6",
-       "opis"
-      ]
-     ]
     }
    ],
    "tips": [
@@ -9052,7 +8944,10 @@
   "Straight Arm Pulldown",
   "Suitcase Carry",
   "Wall Sit",
-  "Wyciskanie na linkach (stojąc)"
+  "Wyciskanie na linkach (stojąc)",
+  "Lunges (hantle)",
+  "Walking Lunges",
+  "Reverse Lunge"
  ],
  "partialNote": "Ćwiczenia, w których research (docs/research/31, 33) potwierdził mniej niż komplet sekcji (ustawienie, ruch, ≥ 2 wskazówki): łącznie ≥ 2 wskazówki z dwoma niezależnymi źródłami; brakujące sekcje nie są dopisywane z jednego źródła. Lista dotyczy tylko ćwiczeń dodanych w 0.14.0."
 }

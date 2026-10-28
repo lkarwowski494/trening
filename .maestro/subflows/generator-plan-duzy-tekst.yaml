@@ -1,0 +1,17 @@
+# Podprzepływ scenariusza 58 (duży tekst dostępności): jak generator-plan.yaml, ale bez założeń o układzie małego ekranu — przy największym tekście
+# „Preview” i przycisk zapisu leżą poza ekranem (run 40614184684, zrzut: dopiero początek ekranu generatora), więc do nich się przewija; dni zostają domyślne
+# (pon./śr./pt.), bez asercji na konkretne dni. Wspólnego generator-plan.yaml (14, 31, pakiet podstawowy) nie zmieniamy.
+# Koniec na ekranie Trening (po Back z ekranu planu). Wołać na ekranie Trening z widocznym „Planning”.
+appId: pl.lukasz.trening
+---
+- tapOn: "Planning"
+- extendedWaitUntil: { visible: "Generate templates and plan", timeout: 30000 }
+- tapOn: "Generate templates and plan"
+- scrollUntilVisible: { element: "Preview", direction: DOWN, timeout: 60000, centerElement: true }
+- scrollUntilVisible: { element: "Save templates and plan", direction: DOWN, timeout: 60000 }
+- tapOn: "Save templates and plan"
+- tapOn: { text: "Not now", optional: true }
+- extendedWaitUntil: { visible: "The plan .* is now active\\.", timeout: 30000 }
+- swipe: { start: "50%, 20%", end: "50%, 85%", duration: 500 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }

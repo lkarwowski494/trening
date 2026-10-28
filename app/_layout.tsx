@@ -3,8 +3,9 @@ import { Stack, router, type ErrorBoundaryProps } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
 import { ActivityIndicator, View, Text, Pressable } from 'react-native';
-import { wallTs, init, usePrefsTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState, getNewerSchema, markBootStable, BOOT_STABLE_MS, STALE_AUTO_MS } from '@/lib/store';
+import { wallTs, init, usePrefsTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState, getNewerSchema, markBootStable, BOOT_STABLE_MS, STALE_AUTO_MS, getPersistError, useTick } from '@/lib/store';
 import { Alert } from 'react-native';
+import { okButton } from '@/lib/confirm';
 import { onWorkoutSaved, exportRawData, cleanShareLeftovers } from '@/lib/backup';
 import { markDoneEarly } from '@/lib/plan';
 import { retryHealth } from '@/lib/health';
@@ -89,12 +90,25 @@ function askRestored() {
 }
 
 /** Osobny komponent, bo useTick() wymaga zainicjowanego stanu; odświeża tytuły po zmianie języka. */
+/** M1-audytor-generalny-015: nieudany zapis pokazuje okno na bieżącym ekranie (edycja historii, ustawienia itd.), nie tylko baner na zakładce Trening;
+ * jedno okno na epizod błędu (następne dopiero po udanym zapisie i kolejnym błędzie). Dane czekają w pamięci na ponowienie jak dotąd. */
+function PersistErrorAlert() {
+  useTick(); const err = getPersistError(); const shown = useRef(false);
+  useEffect(() => {
+    if (!err) { shown.current = false; return; }
+    if (shown.current) return; shown.current = true;
+    Alert.alert(t('Nie udało się zapisać danych'), undefined, [okButton(), { text: t('Spróbuj ponownie'), onPress: () => { void flush(); } }]);
+  }, [err]);
+  return null;
+}
+
 function Root() {
   const th = useTheme(); usePrefsTick();
   useEffect(() => { const i = setTimeout(askRestored, 600); return () => clearTimeout(i); }, []); /* po komunikacie „Zapisałem trening” (500 ms) */
   return (
     <>
       <StatusBar style="auto" />
+      <PersistErrorAlert />
       <Stack screenOptions={{ headerStyle: { backgroundColor: th.bg }, headerTintColor: th.text, headerTitleStyle: { fontFamily: font('navTitle').fontFamily, fontSize: font('navTitle').fontSize }, headerShadowVisible: false, contentStyle: { backgroundColor: th.bg }, headerBackTitle: t('Wróć') }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="picker" options={{ presentation: 'modal', title: t('Wybierz ćwiczenie') }} />

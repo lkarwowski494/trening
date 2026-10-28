@@ -57,7 +57,7 @@ export function equipColliders(props: Prop[]): Collider[] {
   const c: Collider[] = [];
   for (const p of props) {
     switch (p.k) {
-      case 'barbell': c.push({ k: 'capsule', id: 'bar', a: [p.c[0], p.c[1], -(p.len ?? EQUIP.barLen) / 2], b: [p.c[0], p.c[1], (p.len ?? EQUIP.barLen) / 2], r: EQUIP.barR }); break;
+      case 'barbell': { const h = (p.len ?? EQUIP.barLen) / 2; c.push(p.axis === 'x' ? { k: 'capsule', id: 'bar', a: [p.c[0] - h, p.c[1], p.c[2]], b: [p.c[0] + h, p.c[1], p.c[2]], r: EQUIP.barR } : { k: 'capsule', id: 'bar', a: [p.c[0], p.c[1], -h], b: [p.c[0], p.c[1], h], r: EQUIP.barR }); break; }
       case 'trapbar': for (const sg of [-1, 1]) c.push({ k: 'capsule', id: 'bar', a: [p.c[0] - 7, p.c[1], sg * (p.w ?? EQUIP.trapW)], b: [p.c[0] + 7, p.c[1], sg * (p.w ?? EQUIP.trapW)], r: 1.8 }); break;
       case 'dumbbell': c.push({ k: 'capsule', id: 'db' + p.side, a: p.c, b: p.c, r: p.r ?? EQUIP.dbHeadR }); break;
       case 'kettlebell': { const d = p.dir ?? [0, -1, 0]; const o = p.r === undefined ? 12 : p.r + 2.5; const q: V3 = [p.c[0] + d[0] * o, p.c[1] + d[1] * o, p.c[2] + d[2] * o]; c.push({ k: 'capsule', id: 'kb', a: q, b: q, r: p.r ?? EQUIP.kbBallR }); break; }
@@ -168,7 +168,7 @@ export function holdChecks(f: Frame): { name: string; err: number; tol: number; 
   const out: { name: string; err: number; tol: number; hint?: string }[] = []; const sk = f.sk;
   const seg = (p: V3, a: V3, b: V3): number => distSegSeg(p, p, a, b);
   for (const p of f.props) {
-    if (p.k === 'barbell' && p.held !== false) for (const s of p.held === 'R' ? ['R' as const] : p.held === 'L' ? ['L' as const] : SIDES) out.push({ name: `gryf/${s}`, err: seg(sk.arms[s].grip, [p.c[0], p.c[1], -60], [p.c[0], p.c[1], 60]), tol: 0.6 });
+    if (p.k === 'barbell' && p.held !== false) for (const s of p.held === 'R' ? ['R' as const] : p.held === 'L' ? ['L' as const] : SIDES) out.push({ name: `gryf/${s}`, err: p.axis === 'x' ? seg(sk.arms[s].grip, [p.c[0] - 60, p.c[1], p.c[2]], [p.c[0] + 60, p.c[1], p.c[2]]) : seg(sk.arms[s].grip, [p.c[0], p.c[1], -60], [p.c[0], p.c[1], 60]), tol: 0.6 });
     if (p.k === 'trapbar') for (const s of SIDES) { const z = (s === 'R' ? 1 : -1) * (p.w ?? EQUIP.trapW); out.push({ name: `uchwyt/${s}`, err: seg(sk.arms[s].grip, [p.c[0] - 7, p.c[1], z], [p.c[0] + 7, p.c[1], z]), tol: 0.6, hint: `dłonie na uchwytach gryfu sześciokątnego: z = ±${p.w ?? EQUIP.trapW} cm, x i y wspólne dla obu dłoni (środek gryfu = środek między dłońmi)` }); }
     if (p.k === 'dumbbell' && p.held !== false) for (const s of p.vertical ? SIDES : [p.side]) out.push({ name: `hantel/${s}`, err: dist(sk.arms[s].grip, p.c), tol: p.vertical ? 6.5 : 0.6 });
     if (p.k === 'kettlebell' && p.held !== false) for (const s of p.side === 'R' || p.side === 'L' ? [p.side] : SIDES) out.push({ name: `kettlebell/${s}`, err: dist(sk.arms[s].grip, p.c), tol: 7 });

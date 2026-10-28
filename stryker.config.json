@@ -18,7 +18,12 @@
     "lib/dashboard.ts",
     "lib/timer.ts",
     "lib/whatsnew.ts",
-    "lib/backup.ts"
+    "lib/backup.ts",
+    "lib/access.ts",
+    "lib/entitlement.ts",
+    "lib/guard.ts",
+    "lib/csvimport.ts",
+    "lib/state/migrate.ts"
   ],
   "coverageAnalysis": "perTest",
   "concurrency": 2,

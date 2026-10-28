@@ -137,7 +137,7 @@ export const SYSTEM = [
   '{"poprawka": "<proponowany pełny tekst w języku docelowym>", "powod": "<krótko, po polsku>", "waga": "krytyczna" | "średnia" | "niska"}. Każde zdanie musi mieć wpis.',
 ].join(' ');
 
-/** `konteksty` = docs/lokalizacja/konteksty.json (wczytajKonteksty): zdanie z kluczem słownika (nie wskazówka techniki) dostaje pole „kontekst” (L-030, L-041); null = bez kontekstu. */
+/** `konteksty` = docs/lokalizacja/konteksty.json (wczytajKonteksty): zdanie z kluczem słownika (nie wskazówka techniki) dostaje pole „kontekst” (L-030, L-052); null = bez kontekstu. */
 export function budujZadanie(kod, zdaniaJ, konteksty = null) {
   const lista = zdaniaJ.filter((z) => z.tlum !== null).map((z) => {
     const o = kod === 'en'

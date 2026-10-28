@@ -6,7 +6,7 @@ import { join, dirname, resolve, relative } from 'path';
 
 const ROOT = join(__dirname, '..');
 const LIMIT = 20 * 1024;
-const SKIP_DIRS = new Set(['locales', 'cues', 'figures', 'node_modules']);
+const SKIP_DIRS = new Set(['locales', 'cues', 'node_modules']); /* figures — od M1-049 w limicie (kod rysowania; dane .json i tak poza obchodem) */
 const walk = (d: string): string[] => readdirSync(d).flatMap(n => {
   const p = join(d, n);
   return statSync(p).isDirectory() ? (SKIP_DIRS.has(n) ? [] : walk(p)) : /\.tsx?$/.test(n) ? [p] : [];
@@ -28,10 +28,20 @@ const WYJATKI: Record<string, [number, string]> = {
   'components/ActiveWorkout.tsx': [37632, 'ekran treningu: nagłówek, zakończenie, pytanie o porzucony trening, widok listy i dolny pasek; podział M3 p2 — bloki ćwiczeń i wiersze serii w WorkoutBlocks, tablica „teraz” w NowBoard / BoardControls / BoardFace'],
   'components/WorkoutBlocks.tsx': [35072, 'bloki ćwiczeń z wierszami serii (zamiana, superset, menu serii) — wydzielone z ekranu treningu w M3 p2; dalszy podział wierszy serii osobnym commitem strukturalnym'],
   'app/generator.tsx': [22528, 'ekran — poza zakresem partii 4 (M3)'],
+  /* M1-audytor-generalny-049 (28.10.2026): próg = rozmiar na 2385e75 + 5%; figury v2 prowadzi linia 1.1 (podział tam, osobnym commitem strukturalnym) */
+  'lib/figures/geom.ts': [24576, 'geometria figur v1 (stawy, kąty, rzut) w jednym module; podział razem z silnikiem v1 (1.0.1)'],
+  'lib/figures/v2/contract.ts': [75776, 'kontrakt danych figur v2 (typy, walidacja schematu) — linia 1.1; próg = rozmiar po scaleniu main 28.10.2026 + 5%; podział osobnym commitem strukturalnym (backlog 1.1)'],
+  'lib/figures/v2/draw.ts': [44800, 'rysowanie figur v2 (rigi, warstwy) — linia 1.1; próg = rozmiar po scaleniu main 28.10.2026 + 5%; podział osobnym commitem strukturalnym (backlog 1.1)'],
+  'lib/figures/v2/gear.ts': [72192, 'sprzęt figur v2 (tabela GEAR_KINDS: kontakty, uchwyty, rysowanie) — linia 1.1; próg = rozmiar po scaleniu main 28.10.2026 + 5%; podział tabeli osobnym commitem strukturalnym (backlog 1.1)'],
 };
 
 describe('limit rozmiaru plików (M1-054)', () => {
   const pliki = ['lib', 'app', 'components'].flatMap(d => walk(join(ROOT, d))).filter(f => !generated(f));
+  /* M1-audytor-generalny-049 (05-architekt-601, 28.10.2026): katalog lib/figures zawiera kod rysowania — jego pliki .ts są objęte limitem (dane JSON nie są .ts). */
+  test('obejmuje pliki .ts w lib/figures (kod rysowania figur), także v2', () => {
+    const rel = pliki.map(f => relative(ROOT, f));
+    expect(rel).toContain('lib/figures/geom.ts'); expect(rel).toContain('lib/figures/v2/contract.ts');
+  });
   test('pliki powyżej 20 KB są na liście wyjątków i nie przekraczają progu', () => {
     const zle = pliki.map(f => [relative(ROOT, f), statSync(f).size] as const).filter(([r, n]) => n > (WYJATKI[r]?.[0] ?? LIMIT)).map(([r, n]) => `${r}: ${n}`);
     expect(zle).toEqual([]);

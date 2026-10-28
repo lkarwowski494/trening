@@ -1,0 +1,130 @@
+{
+ "jezyk": "da",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 467,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "tlumaczenie": "Øvelse med håndvægte over hoved eller ansigt: sikring ved en makker anbefales.",
+   "poprawka": "Øvelse med håndvægte over hoved eller ansigt: en spotter anbefales.",
+   "powod": "Niespójna terminologia: w zdaniach 3 i 4 osoba asekurująca to „spotter”, tu „sikring ved en makker”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "rodzaj": "nowe",
+   "pl": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "tlumaczenie": "Kondition uden for planen: En konditionssession kommer med i planen fra {k} dage om ugen; med færre er alle dage styrkedage. For sundheden er det godt at få mindst {a}–{b} min moderat aktivitet om ugen (eller {c}–{d} min hård). Moderat bevægelse i løbet af dagen tæller også, fx rask gang, selv i korte perioder.",
+   "poprawka": "Kondition uden for planen: En konditionssession kommer med i planen fra {k} dage om ugen; med færre er alle dage styrkedage. For sundheden er det godt at få mindst {a}–{b} min moderat aktivitet om ugen (eller {c}–{d} min med høj intensitet). Moderat bevægelse i løbet af dagen tæller også, fx rask gang, selv i korte perioder.",
+   "powod": "„min hård” brzmi nienaturalnie. Dla wysiłku intensywnego naturalne jest „med høj intensitet”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "rodzaj": "nowe",
+   "pl": "Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "tlumaczenie": "Kondition i planen: {n} min om ugen. For sundheden er det godt at få mindst {a}–{b} min moderat aktivitet om ugen (eller {c}–{d} min hård). Moderat bevægelse i løbet af dagen tæller også, fx rask gang, selv i korte perioder.",
+   "poprawka": "Kondition i planen: {n} min om ugen. For sundheden er det godt at få mindst {a}–{b} min moderat aktivitet om ugen (eller {c}–{d} min med høj intensitet). Moderat bevægelse i løbet af dagen tæller også, fx rask gang, selv i korte perioder.",
+   "powod": "„min hård” brzmi nienaturalnie. Dla wysiłku intensywnego naturalne jest „med høj intensitet”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "rodzaj": "nowe",
+   "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "tlumaczenie": "Automatisk sikkerhedskopi: efter hver træning gemmes en JSON-fil af sig selv i Filer (På min iPhone → {app} → Backup, seneste {n}). Import accepterer også disse filer. Kopierne slettes sammen med appen — før du fjerner den eller installerer fra en anden Apple-konto, skal du eksportere en sikkerhedskopi et andet sted hen.",
+   "poprawka": "Automatisk backup: efter hver træning gemmes en JSON-fil af sig selv i Filer (På min iPhone → {app} → Backup, seneste {n}). Import accepterer også disse filer. Kopierne slettes sammen med appen — før du fjerner den eller installerer fra en anden Apple-konto, skal du eksportere en backup et andet sted hen.",
+   "powod": "Niespójna terminologia: w pozostałych tekstach (19, 21, 71, 79) używane jest „backup”, tu „sikkerhedskopi”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "rodzaj": "nowe",
+   "pl": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "tlumaczenie": "Slet ikke appen — dine data og sikkerhedskopier forsvinder med den. Tryk først på “Send dataene” og gem filen uden for din telefon.",
+   "poprawka": "Slet ikke appen — dine data og backups forsvinder med den. Tryk først på “Send dataene” og gem filen uden for din telefon.",
+   "powod": "Niespójna terminologia: „sikkerhedskopier” zamiast używanego w aplikacji „backup”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów.",
+   "tlumaczenie": "Progression: Når du når toppen af dit gent.-interval, så læg vægt på. Gradvist at øge belastningen er det, der holder fremgangen i gang.",
+   "poprawka": "Progression: Når du når toppen af dit gentagelsesinterval, så læg vægt på. Gradvist at øge belastningen er det, der holder fremgangen i gang.",
+   "powod": "Skrót „gent.-interval” w pełnym zdaniu jest nienaturalny i mniej czytelny.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wstawanie",
+   "rodzaj": "nowe",
+   "pl": "Wstawanie",
+   "tlumaczenie": "Rejsning",
+   "poprawka": "At rejse sig",
+   "powod": "„Rejsning” jako etykieta fazy ruchu jest nienaturalna i dwuznaczna (potocznie także „erekcja”).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "rodzaj": "nowe",
+   "pl": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "tlumaczenie": "Gent.-intervaller (muskelmasse {a}–{b}, hjemme og uden ekstern belastning {c}–{d}; ved styrke øvrige øvelser {e}–{f}): Muskler vokser over et bredt spænd af vægte, når sættene er tæt på udmattelse.",
+   "poprawka": "Gentagelsesintervaller (muskelmasse {a}–{b}, hjemme og uden ekstern belastning {c}–{d}; ved styrke øvrige øvelser {e}–{f}): Muskler vokser over et bredt spænd af vægte, når sættene er tæt på udmattelse.",
+   "powod": "Skrót „Gent.-intervaller” w zdaniu opisowym jest nienaturalny.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "zgięcie kolana",
+   "rodzaj": "nowe",
+   "pl": "zgięcie kolana",
+   "tlumaczenie": "knæbøjning",
+   "poprawka": "bøjning i knæet",
+   "powod": "„Knæbøjning” to po duńsku zwykle nazwa ćwiczenia (przysiad), a nie zgięcia stawu. Jako etykieta kąta jest myląca.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "burpee.down",
+   "rodzaj": "wskazowka",
+   "pl": "Z przysiadu oprzyj dłonie o podłogę i wyskocz nogami w tył do podporu jak do pompki.",
+   "tlumaczenie": "Sæt hænderne i gulvet fra en hugsiddende stilling, og hop fødderne tilbage i en push-up-position.",
+   "poprawka": "Sæt hænderne i gulvet fra en hugsiddende stilling, og hop fødderne tilbage til armstrækningsposition.",
+   "powod": "Niespójna terminologia: w aplikacji pompki to „armstrækninger” (40, 77), tu „push-up”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "nordic.catch",
+   "rodzaj": "wskazowka",
+   "pl": "Gdy nie dasz rady dalej hamować, złap się dłońmi jak przy pompce.",
+   "tlumaczenie": "Når du ikke kan bremse mere, så støt dig med hænderne som i en push-up.",
+   "poprawka": "Når du ikke kan bremse mere, så støt dig med hænderne som i en armstrækning.",
+   "powod": "Niespójna terminologia: w aplikacji pompki to „armstrækninger”, tu „push-up”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "db.move",
+   "rodzaj": "wskazowka",
+   "pl": "Powoli opuść przeciwną rękę i nogę w stronę podłogi, nie kładąc ich; wróć i zmień strony.",
+   "tlumaczenie": "Sænk modsatte arm og ben langsomt mod gulvet uden at lægge dem; vend tilbage, og skift side.",
+   "poprawka": "Sænk modsatte arm og ben langsomt mod gulvet uden at lægge dem ned; vend tilbage, og skift side.",
+   "powod": "„uden at lægge dem” brzmi niepełnie; naturalniej „lægge dem ned”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "erg.drive",
+   "rodzaj": "wskazowka",
+   "pl": "Pociągnięcie: najpierw nogi, potem odchylenie tułowia, na końcu ręce.",
+   "tlumaczenie": "Tagets arbejde: først benene, så læner overkroppen sig bagud, og til sidst trækker armene.",
+   "poprawka": "Trækket: først benene, så læner overkroppen sig bagud, og til sidst trækker armene.",
+   "powod": "„Tagets arbejde” brzmi nienaturalnie; chodzi po prostu o fazę pociągnięcia.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

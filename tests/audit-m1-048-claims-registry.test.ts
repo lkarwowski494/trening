@@ -59,6 +59,34 @@ describe('kontrola rejestru twierdzeń (dane sztuczne)', () => {
   });
 });
 
+/*
+ * M1-audytor-generalny-021 (06-tresci-002, DEC-05 a, 27.10.2026): po decyzjach 23.10 (bez oznaczeń wagi) i 25.10 (bez nazw źródeł) wzorzec DOMAIN_RE nie łapał
+ * żadnego tekstu — nowy tekst dziedzinowy przechodził bez wpisu. Teraz tekst dziedzinowy rozpoznaje też słownictwo dziedziny (DOMAIN_WORDS_RE: zapas powtórzeń,
+ * % maksimum, „zwykle”, kąty w stopniach, siła/mięśnie, upadek, regeneracja, cardio…) i jawna lista kluczy (DOMAIN_KEYS, np. tempo faz animacji).
+ * Kandydat bez twierdzenia (tekst interfejsu, rachunek na danych użytkownika) ma wpis w „bezTwierdzenia” z powodem — inaczej błąd.
+ */
+describe('M1-audytor-generalny-021 (27.10.2026): strażnik rozpoznaje teksty dziedzinowe bez nazw źródeł i oznaczeń wagi', () => {
+  const NEW = 'Ciężkie serie 3–5 powtórzeń (ok. 85% maksimum) zwykle najlepiej budują siłę.';
+  test('nowy tekst dziedzinowy bez źródła i bez oznaczenia wagi, bez wpisu → błąd', () => {
+    expect(check({ [NEW]: 'Heavy sets of 3–5 reps (about 85% of max) usually build strength best.' }, { twierdzenia: [] }, docs).join('\n')).toMatch(/bez ID w rejestrze/);
+  });
+  test('tekst z jawnej listy kluczy dziedzinowych (krótki, np. tempo faz animacji) bez wpisu → błąd', () => {
+    expect(check({ '{faza} {n} s': '{faza} {n} s' }, { twierdzenia: [] }, docs).join('\n')).toMatch(/bez ID w rejestrze/);
+  });
+  test('kandydat bez twierdzenia: wpis w „bezTwierdzenia” z powodem przechodzi; bez powodu albo bez tekstu w słowniku → błąd', () => {
+    const ui = 'Tapnij numer serii, by oznaczyć serię do upadku (F) albo dodać notatkę.';
+    expect(check({ [ui]: 'x' }, { twierdzenia: [] }, docs).join('\n')).toMatch(/bez ID w rejestrze/);
+    expect(check({ [ui]: 'x' }, { twierdzenia: [], bezTwierdzenia: [{ kotwica: ui.slice(0, 30), powod: 'pomoc ekranu: oznaczenie typu serii, bez treści dziedzinowej' }] }, docs)).toEqual([]);
+    expect(check({ [ui]: 'x' }, { twierdzenia: [], bezTwierdzenia: [{ kotwica: ui.slice(0, 30), powod: '' }] }, docs).join('\n')).toMatch(/powód/);
+    expect(check({}, { twierdzenia: [], bezTwierdzenia: [{ kotwica: ui.slice(0, 30), powod: 'pomoc ekranu: oznaczenie typu serii, bez treści dziedzinowej' }] }, docs).join('\n')).toMatch(/nie istnieje w słowniku/);
+  });
+  test('wpis twierdzenia z kotwicą równą całemu krótkiemu kluczowi jest dozwolony', () => {
+    const k = '{faza} {n} s';
+    const e = { id: 'T-001', kotwica: k, skrot: hashOf(k), skrotEn: hashOf(k), rodzaje: ['przegląd badań'], zrodla: ['x'], dokument: 'd.md', fraza: 'ACSM 2026', przeglad: '2026-10-27: test' };
+    expect(check({ [k]: k }, { twierdzenia: [e] }, docs)).toEqual([]);
+  });
+});
+
 describe('rejestr twierdzeń: prawdziwy słownik i verify', () => {
   test('npm run check:claims przechodzi (kod 0): każdy tekst dziedzinowy ma wpis, skróty zgodne, dokumenty istnieją', () => {
     const r = spawnSync('node', [script, '--check'], { encoding: 'utf8' });

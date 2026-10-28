@@ -25,7 +25,8 @@ export type ReviewRunResult = 'asked' | ReviewBlockReason | 'unavailable' | 'err
 /** Bramka prośby o ocenę dla świeżo zakończonego treningu — jedna funkcja dla prośby i dla reguły linku „Poproś o funkcję” (kolizja: ocena ma pierwszeństwo). */
 function reviewGate(w: Workout, now: number): 'ask' | ReviewBlockReason {
   const st = getState();
-  return reviewDecision({ now, finishedWorkouts: finishedWorkouts().length, justFinishedHasRecord: prCountOf(workoutPRs(w)) > 0, version: String(Constants.expoConfig?.version ?? ''),
+  /* M1-audytor-generalny-018: liczą się tylko treningi na żywo — import i trening wstecz nie są doświadczeniem z aplikacją (docs/26 zasada 2) */
+  return reviewDecision({ now, finishedWorkouts: finishedWorkouts().filter(x => x.live === true).length, justFinishedHasRecord: prCountOf(workoutPRs(w)) > 0, version: String(Constants.expoConfig?.version ?? ''),
     lastAsked: st.settings.reviewAsked ?? null, workoutActive: !!st.active, blocked: nextStartBlocked(now), ioBusy: false, lastFailed: !!getPersistError() });
 }
 
@@ -60,6 +61,6 @@ export function ideaLinkDue(w: Workout, now: number = Date.now()): boolean {
 export function onSummaryShown(w: Workout, onIdeaLink?: () => void, onFairRules?: () => void): () => void {
   if (!takeJustFinished(w.id)) return () => {};
   let off = false; let timer: ReturnType<typeof setTimeout> | null = null;
-  void Promise.resolve().then(() => { if (off) return; if (onFairRules && fairRulesDue(w)) onFairRules(); if (onIdeaLink && ideaLinkDue(w)) onIdeaLink(); timer = setTimeout(() => { void maybeRequestReview(w); }, STORE_TIMING.REVIEW_DELAY_MS); });
+  void Promise.resolve().then(() => { if (off) return; if (onFairRules && fairRulesDue(w)) { onFairRules(); return; } /* M1-audytor-generalny-018: najwyżej jedno okno na podsumowaniu — „Uczciwe zasady” wyklucza link i prośbę o ocenę */ if (onIdeaLink && ideaLinkDue(w)) onIdeaLink(); timer = setTimeout(() => { void maybeRequestReview(w); }, STORE_TIMING.REVIEW_DELAY_MS); });
   return () => { off = true; if (timer) clearTimeout(timer); };
 }

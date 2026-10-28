@@ -19,7 +19,7 @@ import { GuardSection } from '@/components/GuardSection';
 import { useTheme, font, SPACE } from '@/lib/theme';
 
 import { t, exName, fold, collator } from '@/lib/i18n';
-import { fmtW, volOut, wu, fmtNum, KG_PER_LB } from '@/lib/units';
+import { fmtW, volOut, wu, unitLabel, fmtNum, KG_PER_LB } from '@/lib/units';
 import { fmtDayMonth, fmtDayMonthYear } from '@/lib/calendar';
 
 /*
@@ -106,7 +106,7 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
       <PeriodSummary />
       <GuardSection onLayoutY={y => { guardY.current = y; toGuard(); }} />{/* 14.10.2026: strażnik progresji — „Strażnik progresji” */}
       <ProgressTiles />{/* 11.10.2026: „Progresja” także tu — to samo wejście co z ekranu Trening (/progression) */}
-      <H2 infoId="vol-week" info={[t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.'), ...(weeks.some(w => isDeloadWeek(w.weekStart)) ? [t('D — tydzień oznaczony jako deload.')] : [])]}>{t('Objętość tygodniowo ({u})', { u: wu() })}</H2>
+      <H2 infoId="vol-week" info={[t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.'), ...(weeks.some(w => isDeloadWeek(w.weekStart)) ? [t('D — tydzień oznaczony jako deload.')] : [])]}>{t('Objętość tygodniowo ({u})', { u: unitLabel() })}</H2>
       <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: volOut(w.volume) }))} fmt={v => v >= 1000 ? `${fmtNum(v / 1000, 1)}k` : `${v}`} />
       <H2 style={{ marginTop: 14 }}>{t('Serie robocze tygodniowo')}</H2>
       <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: w.sets }))} fmt={v => `${v}`} height={110} />
@@ -114,7 +114,7 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
       <H2 infoId="sets-part" info={[t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK }), t('Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosną wyraźniej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.', { n: WEEKLY_SETS_MARK }), t('Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).'), t('Drop set liczy się razem z serią, po której jest.'), t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')]}>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
       <MuscleCompare parts={SET_PARTS} curSplit={weeklySplitByMuscle(thisMonday())} prevSplit={weeklySplitByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} markOf={setsGoal} />
       {Object.values(weeklySplitByMuscle(thisMonday())).some(x => x.indirectSets > 0) ? <IndirectLegend /> : null}
-      <H2 infoId="vol-part" info={t('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')}>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: wu() })}</H2>
+      <H2 infoId="vol-part" info={t('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')}>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: unitLabel() })}</H2>
       <MuscleCompare cur={weeklyVolumeByMuscle(thisMonday())} prev={weeklyVolumeByMuscle(thisMonday(-1))} fmt={v => { const x = volOut(v); return x >= 10000 ? `${fmtNum(x / 1000, 1)}k` : fmtNum(Math.round(x)); }} />
       <BodyMassSection />
     </ScrollView>

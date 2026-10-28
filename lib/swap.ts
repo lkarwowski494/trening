@@ -73,7 +73,7 @@ export function reasonText(c: SwapCandidate): string {
   return [c.reasons.includes('pattern') ? t('ten sam ruch') : c.reasons.includes('muscle') ? t('te same mięśnie') : '',
     b ? t(b.equipment) : '',
     c.reasons.includes('swapped') ? t('wcześniej zamieniane') : '',
-    c.sessions > 0 ? t('robione {n}×', { n: c.sessions }) : ''].filter(Boolean).join(' · ');
+    c.sessions > 0 ? t('robione {n}×', { n: c.sessions }) : ''].filter(Boolean).join(', '); /* M1-audytor-generalny-029: powody — przecinek (wz. 28) */
 }
 
 /** Cel arkusza: 'active:<id bloku>' (trening w toku, W1), 'adapt:<id bloku>' (0.18: wybór dla okna „Dostosuj do miejsca” — arkusz zwraca wybór, nie zapisuje)

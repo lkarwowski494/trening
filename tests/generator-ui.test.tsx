@@ -36,7 +36,7 @@ test('domyślnie: masa, 3 sesje, 60 min, bez ograniczeń sprzętu; podgląd zgod
   expect(screen.getByText('Propozycja według Twoich założeń — przejrzysz ją przed zapisem.')).toBeTruthy();
   expect(screen.getByText('Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie 10), 8–12 powtórzeń (w domu 12–20), zwykle 0–3 powtórzenia w zapasie.')).toBeTruthy(); /* audyt 0.10 MER-06: 0–3 — blisko upadku albo 2–3) */
   const r = generate({ goal: 'hypertrophy', locationId: null, sessions: 3, minutes: 60 });
-  expect(screen.getByText(/^pon\.? FBW A · śr\.? FBW B · pt\.? FBW A$/)).toBeTruthy();
+  expect(screen.getByText(/^pon\.? FBW A, śr\.? FBW B, pt\.? FBW A$/)).toBeTruthy();
   const it = r.templates[0].items[0]; expect(screen.getByText(`${exName(store.exById(it.exerciseId))} — 3 × 8–\u206012, przerwa 2:00`)).toBeTruthy();
   expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii\): klatka \d/)).toBeTruthy(); /* MER-17 */
   expect(screen.getByText(`Poniżej celu serii tygodniowo: ${r.below10.map(m => `${m} (${String(r.weeklySets[m]).replace('.', ',')}/${r.goals[m]})`).join(', ')}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.`)).toBeTruthy();
@@ -101,7 +101,7 @@ test('zapis z aktywnym planem: pytanie o aktywację; „Tylko zapisz” — szab
 test('English', async () => {
   await boot('/generator', () => {}, 'en');
   expect(screen.getByText('Muscle')).toBeTruthy(); expect(screen.getByText('Preview')).toBeTruthy(); expect(screen.getByText('Plan rules')).toBeTruthy();
-  expect(screen.getByText(/^Mon\.? Full Body A · Wed\.? Full Body B · Fri\.? Full Body A$/)).toBeTruthy();
+  expect(screen.getByText(/^Mon\.? Full Body A, Wed\.? Full Body B, Fri\.? Full Body A$/) /* M1-audytor-generalny-029: lista dni po przecinku */).toBeTruthy();
   expect(screen.getByText('Save templates and plan')).toBeTruthy(); expect(screen.getByText('No equipment limits')).toBeTruthy();
 });
 test('etykiety pól, tytuł ekranu, nazwy sesji i celów; 4 sesje — góra/dół w podglądzie', async () => {
@@ -113,6 +113,6 @@ test('etykiety pól, tytuł ekranu, nazwy sesji i celów; 4 sesje — góra/dó�
   for (const n of ['Góra A', 'Dół A', 'Góra B', 'Dół B']) expect(screen.getAllByText(n).length).toBeGreaterThan(0);
   const pairs = 'Dzień po dniu te same główne partie: {list}. Zwykle lepiej z dniem przerwy; przy tej samej liczbie serii w tygodniu to też jest w porządku.';
   /* audyt 0.10 LOG-10: 4 sesje — pon/wt/czw/sob, bez par dzień po dniu (było czw–pt: Góra B → Dół B, wspólne plecy) */
-  expect(screen.queryByText(new RegExp('^' + pairs.split('{list}')[0]))).toBeNull(); expect(screen.getByText(/^pon\.? Góra A · wt\.? Dół A · czw\.? Góra B · sob\.? Dół B$/)).toBeTruthy();
+  expect(screen.queryByText(new RegExp('^' + pairs.split('{list}')[0]))).toBeNull(); expect(screen.getByText(/^pon\.? Góra A, wt\.? Dół A, czw\.? Góra B, sob\.? Dół B$/)).toBeTruthy();
   expect([sessionName('fbwA'), sessionName('cardio'), goalLabel('strength'), goalLabel('hypertrophy'), goalLabel('cut')]).toEqual(['FBW A', 'Cardio', 'Siła', 'Masa', 'Redukcja']);
 });

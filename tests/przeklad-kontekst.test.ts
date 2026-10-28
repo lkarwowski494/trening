@@ -1,7 +1,7 @@
 /*
- * Kontekst ekranu w przekładzie i przeglądzie przez API (lekcje L-030, L-041; 27.10.2026): budujZadanie dostaje docs/lokalizacja/konteksty.json
+ * Kontekst ekranu w przekładzie i przeglądzie przez API (lekcje L-030, L-052; 27.10.2026): budujZadanie dostaje docs/lokalizacja/konteksty.json
  * i dodaje do pozycji pole „kontekst” (skrócone do KONTEKST_MAX znaków). Rodzaje (docs/20): logika (moduł kontekst.mjs), scenariusz (budowa żądań),
- * regresja (L-041 „Podciąganie” = faza ruchu; L-030 „Przerwa” = odpoczynek między seriami), dane (wszystkie klucze dynamiczne mają kontekst ręczny).
+ * regresja (L-052 „Podciąganie” = faza ruchu; L-030 „Przerwa” = odpoczynek między seriami), dane (wszystkie klucze dynamiczne mają kontekst ręczny).
  * Bez sieci. Skrypty są modułami ESM — wywołanie przez `node --input-type=module`.
  */
 import * as fs from 'fs';
@@ -49,7 +49,7 @@ describe('przekład API: pole „kontekst” w pozycji', () => {
     const w = run(`import * as m from ${PRZEKLAD}; const z = m.budujZadanie('de', [{ id: 1, rodzaj: 'nowy', pl: 'Podciąganie', en: 'Pull' }]); console.log(JSON.stringify(z.messages[0].content.includes('kontekst"')))`);
     expect(w).toBe(false);
   });
-  test('REGRESJA L-041: faza „Podciąganie” ma w poleceniu opis „faza ruchu, nie nazwa ćwiczenia”', () => {
+  test('REGRESJA L-052: faza „Podciąganie” ma w poleceniu opis „faza ruchu, nie nazwa ćwiczenia”', () => {
     const { lista } = przeklad([{ pl: 'Podciąganie', en: 'Pulling' }, { pl: 'Opuszczanie', en: 'Lowering' }, { pl: '{faza} {n} s', en: '{faza} {n} s' }]);
     expect(lista[0].kontekst).toMatch(/FAZY animacji ruchu/); expect(lista[0].kontekst).toMatch(/NIE nazwa ćwiczenia/);
     expect(lista[1].kontekst).toMatch(/FAZY/); expect(lista[2].kontekst).toMatch(/fazy ruchu \(nie ćwiczenia\)/);

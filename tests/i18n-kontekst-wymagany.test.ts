@@ -1,7 +1,7 @@
 /*
- * Kontekst tłumaczeń wymagany (lekcja L-041, 26.10.2026): klucze krótkie (< 3 słowa) albo z placeholderem, których miejsce użycia jest dynamiczne (dane, listy),
+ * Kontekst tłumaczeń wymagany (lekcja L-052, 26.10.2026): klucze krótkie (< 3 słowa) albo z placeholderem, których miejsce użycia jest dynamiczne (dane, listy),
  * dostają od tłumacza własne tłumaczenie bez wiedzy, CZYM są — 26 języków oddało fazę animacji „Podciąganie” nazwą ćwiczenia. Kontekst ręczny:
- * docs/lokalizacja/konteksty-reczne.json (dopisywany do docs/lokalizacja/konteksty.json przez scripts/i18n-context.mjs). Rodzaje (docs/20): dane, logika (zapadka), regresja (L-041).
+ * docs/lokalizacja/konteksty-reczne.json (dopisywany do docs/lokalizacja/konteksty.json przez scripts/i18n-context.mjs). Rodzaje (docs/20): dane, logika (zapadka), regresja (L-052).
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -12,11 +12,11 @@ const konteksty: Record<string, string> = JSON.parse(fs.readFileSync(path.join(r
 const reczne: Record<string, string> = JSON.parse(fs.readFileSync(path.join(root, 'docs/lokalizacja/konteksty-reczne.json'), 'utf8'));
 const source: { pl: string }[] = JSON.parse(fs.readFileSync(path.join(root, 'lib/locales/_source.json'), 'utf8'));
 const klucze = new Set(source.map(s => s.pl));
-/** Zapadka: liczba kluczy dynamicznych (< 3 słowa albo z placeholderem) bez kontekstu ręcznego — wariant B z L-041: 0 (27.10.2026; było 145) — każdy nowy krótki klucz dynamiczny wymaga kontekstu ręcznego. */
+/** Zapadka: liczba kluczy dynamicznych (< 3 słowa albo z placeholderem) bez kontekstu ręcznego — wariant B z L-052: 0 (27.10.2026; było 145) — każdy nowy krótki klucz dynamiczny wymaga kontekstu ręcznego. */
 export const BEZ_KONTEKSTU_MAX = 0;
 const wymaga = (k: string): boolean => k.split(/\s+/).length < 3 || /\{/.test(k);
 
-describe('kontekst tłumaczeń: ręczny, wymagany dla kluczy bez wyjaśnienia w kodzie (L-041)', () => {
+describe('kontekst tłumaczeń: ręczny, wymagany dla kluczy bez wyjaśnienia w kodzie (L-052)', () => {
   test('każdy wpis ręczny dotyczy istniejącego klucza słownika i ma zdanie wyjaśniające (≥ 30 znaków); w konteksty.json stoi przed miejscem użycia', () => {
     for (const [k, v] of Object.entries(reczne)) { expect([k, klucze.has(k)]).toEqual([k, true]); expect(v.length).toBeGreaterThanOrEqual(30); expect(konteksty[k].startsWith(v)).toBe(true); }
   });

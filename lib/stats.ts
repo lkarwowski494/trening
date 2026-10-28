@@ -1,7 +1,7 @@
 import { t, tp } from './i18n';
 import { fmtW, fmtVol, fmtNum, wu, KG_PER_LB, volOut } from './units';
 import { bodyMassFor, bodyMassLog, wallTs, getState, exById, volume, finishedWorkouts, setSummary, shownLoad, isBW, setLoad, loadOf, effectiveLoad, setVolume, blockMult, setScore, isWorking, workSetCount, repsOf, memoHist, memoHistBy, workoutsWith, volOf, fmtSec, fmtDist } from './store';
-import { addSplitSets, splitTotals, type SetSplit } from './setSplit';
+import { addSplitSets, splitTotals, SECONDARY_SHARE, type SetSplit } from './setSplit';
 import { isSetPart, SETS_GOAL_MIN, SETS_GOAL_MAX, type SetPart } from './setParts';
 import { hasReps, hasWeight, hasTime, hasDistance, catalogKey, own, type Exercise, type Impl, type MetricType, type WSet, type Workout } from './seed';
 
@@ -348,6 +348,6 @@ export function volumeByMuscle(start: number, end: number): Record<string, numbe
   const out: Record<string, number> = {};
   for (const w of finishedWorkouts()) { const x = wallTs(w); if (x < start || x >= end) continue; /* J3 */
     w.exercises.forEach(e => { const ex = exById(e.exerciseId); if (!ex) return; const v = e.sets.filter(isWorking).reduce((a, s) => a + setVolume(ex, s, e.impl), 0); if (!v) return;
-      (ex.muscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + v; }); (ex.secondaryMuscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + v * 0.5; }); }); }
+      (ex.muscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + v; }); (ex.secondaryMuscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + v * SECONDARY_SHARE; }); }); } /* M1-audytor-generalny-030: stała z lib/setSplit.ts */
   return out;
 }

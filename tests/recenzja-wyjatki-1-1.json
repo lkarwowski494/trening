@@ -1,0 +1,8 @@
+{
+ "_opis": "Wyjątki od strażników bramki 4 (tests/figury-recenzja.test.tsx, tests/karty-recenzja.test.tsx) w linii 1.1 po scaleniu main 28.10.2026: zapisy recenzji z 1.0 (docs/research/figury-recenzja.json) mają skróty rysunków i treści z 1.0, a 1.1 je zmieniła (rigi squat/bench_press/hinge, wiosłowanie, wyciskanie z łańcuchami i Smith, rodzina pull_up z danych pozy). Nie dopisujemy sztucznych wpisów: pozycje poniżej są UKRYTE w aplikacji (fail-closed: lib/figures/data.json — lista v2 i figury v1, lib/cues/data.json — lista general) do recenzji niezależnej 1.1. Strażnik tests/recenzja-wyjatki-1-1.test.ts: wyjątek musi być prawdziwy (skrót niezgodny albo brak wpisu) i pozycja musi być niewidoczna w runtime; po nowej recenzji pozycję trzeba stąd usunąć.",
+ "powod": "scalenie main 28.10.2026: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1",
+ "v1": ["Bent Over Row (sztanga)", "Bent Over Row (hantle)", "T-Bar Row", "Skullcrusher (EZ)"],
+ "v2": ["squat", "bench_press", "hinge", "pull_up"],
+ "zestawy_zmienione": ["Bench Press with Chains", "Chain Press", "Decline Bench Press", "Decline Bench Press (hantle)", "Reverse Band Bench Press", "Smith Machine Bench Press", "Smith Machine Decline Press"],
+ "zestawy_bez_wpisu": ["Dead Hang", "Gironda Sternum Chins", "Gorilla Chin/Crunch", "Mixed Grip Chin", "One Arm Chin-Up", "Scapular Pull-Up", "Side To Side Chins", "Wide-Grip Rear Pull-Up"]
+}

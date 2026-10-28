@@ -211,6 +211,8 @@ Test regresji: `tests/cues-podobienstwo.test.ts` (34 klucze mają nowe teksty; t
 | `v0.20.0-b1019` | 1019 | `b8b8a31` | 19 | zielony, id 39306743773; gałąź feature/e2-swap (nie main); zielony, 51 min |
 | `v0.20.0-b1027` | 1027 | `920d917` | 27 | zielony (podejście 3; podejścia 1–2 anulowane bez maszyny macOS), id 39741738792; gałąź podglad-920d917 (build podglądowy redesignu M3, przed scaleniem do main); wysyłka do App Store Connect OK — R-013 |
 | `v0.20.0-b1030` | 1030 | `f2b0525` | 30 | zielony, id 39881352744; build do testu na telefonie (23.10.2026) |
+| `v1.0.0-b1031` | 1031 | `001ecf2` | 31 | zielony, id 40435246644; build 1.0 do testu na telefonie (27.10.2026) — figury z błędami L-042, **nie do zgłoszenia** (M1-audytor-generalny-008) |
+| `v1.0.0-b1032` | 1032 | `025a50b` | 32 | zielony, id 40562930165; commit audytu M1 1.0 (27.10.2026), bez napraw M2 — **nie do zgłoszenia** (kandydat powstanie po reaudycie) |
 
 Przebiegi `testflight.yml` bez tagu `v*-b*`: 1–4 (przed wprowadzeniem tagów; wydanie 1 = build 1004, `ee637da`, patrz „Rundy”), 7 (czerwony, `c9d4c78`), 11 (czerwony, `d2b7c87`, powtórzony jako przebieg 12), 20 (czerwony, `8273448`, scalenie PR #13 na main), 21 (zielony, gałąź `audyt-m1`, `5542a68`, 20.10.2026).
 
@@ -561,3 +563,27 @@ Błąd: ekran blokady w przerwie brał język z systemu (`Locale.preferredLangua
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
 | Język Live Activity | `tests/live-activity-lang.test.ts` (każda z 35 wartości języka → `lang` w starcie; „auto” z tagami systemu: es-MX, es-ES, pt-BR, pt-PT, zh-Hant-TW, zh-HK, zh-Hans-CN, hi-IN; telefon pl + aplikacja en; `update` niesie język; relocalize po zmianie języka; statycznie Swift: pole opcjonalne bez własnego dekodera, moduł, kolejność wyboru etykiety w widżecie, komplet kodów w `RestLabels.swift`); `tests/regress.test.tsx` „Ekran blokady w przerwie: język aplikacji, nie systemu” | logika, języki, regresja, statyczne Swift, macierz | zielone | **rodzaj pominięty: wygląd na ekranie blokady** (symulator CI nie pokazuje Live Activity) — lista „tylko telefon”, PR-17 (docs/39) |
+
+## 27.10.2026 — M1-audytor-generalny-014 (05-architekt-002, DEC-03 b): zmiana normalizacji = podbicie schematu (gałąź `naprawy/M2-koordynator-napraw-2026-10-27-p3`)
+
+Decyzja właściciela (DEC-03 b): reguła „zmiana normalizacji danych = podbicie `SCHEMA_VERSION`”, pilnowana testem (reguła: docs/brd/wymagania.md NFR-DAN-001).
+Kod aplikacji bez zmian; nowy zapis z wydanego builda 1.0 (`v1.0.0-b1032`) w `tests/fixtures/released/`.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| Strażnik odcisków normalizacji | `tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts` (odciski dla bieżącego schematu; każdy zapis z `released/` ma odcisk; wynik startu = odcisk dla 4 zapisów; wzorzec 1.0 ma pola z 0.20–1.0; 7 zmian danych użytkownika wykrytych; katalog i metadane zapisu pominięte; kolejność pól bez znaczenia) | dane, regresja, strażnik | zielone | przed odciskami czerwony (6 testów); celowa zmiana normalizacji w kopii kodu → czerwony, podbity schemat bez odcisków → czerwony, zapis odcisków przy tym samym schemacie → odmowa (dowody w raporcie fix roli 05) |
+| Start na zapisie 1.0 | `tests/migrate-released.test.ts` (3 testy na nowym pliku `state-v1.0.0-b1032-schema19.json`) | dane | zielone | |
+
+Rodzaje pominięte: ekran, scenariusz, macierz, języki, E2E — zmiana bez kodu aplikacji i bez UI (reguła procesu pilnowana testem).
+
+## 28.10.2026 — naprawy M1 (audyt 27.10.2026), zadanie M1-audytor-generalny-037: DEC-07 b (gałąź naprawy partii 3)
+
+Decyzja właściciela 27.10.2026 (docs/18): do 1.0 wiersz „Pełna wersja”, dokumenty wydania, test pierwszego użycia, zrzuty w 33 lokalizacjach; reszta do backlogu z wersją (docs/21).
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| (A) wiersz w Ustawieniach → „Subskrypcja” | `tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx` (darmowy EN/PL: tytuł „Zobacz plany Pro”, licznik w podtytule, rola przycisku, przejście na ekran zakupu; z planem: miesięczny, roczny z Chmury rodzinnej, dożywotni — „Masz plan: {rodzaj planu}” = nagłówek ekranu zakupu; ciemny wygląd; 33 słowniki: tytuł = „Zobacz plany Pro ›” bez „ ›”); `tests/subscription-ui.test.tsx` (karta w Ustawieniach); `tests/audit-m1-050-support-subscription.test.ts` (ścieżka na stronie wsparcia) | ekran, języki, wygląd, VoiceOver, regresja, E2E | zielone (przed: 39 z 40 czerwonych) | E2E: `.maestro/21-subskrypcja.yaml` (tytuł z planem, po wygaśnięciu „See Pro plans”), `.maestro/35`, `.maestro/56`. Przekład: istniejąca, zrecenzowana etykieta „Zobacz plany Pro ›” bez „ ›” (32 słowniki + nakładka pt-BR; es-419 bez różnic). |
+| (B) dokumenty wydania | `tests/audit-m1-2026-10-27-037-dokumenty-wydania.test.ts` (docs/42 pkt 4 bez [DO PRZECZYTANIA], cytaty Apple o wycofaniu ze sprzedaży i przyspieszonej recenzji z adresem i datą; wpis UA 13.10.2026 „zastąpione 27.10.2026”; docs/15 bez [OTWARTE] UA; opis sklepu we wszystkich lokalizacjach bez „tańsze niż espresso”; krok Z-10b); `tests/decyzje-straznik.test.ts` (UA poza tabelą otwartych, osobny test zamknięcia); `tests/audit-m1-068-release-plan.test.ts` (odwrócone: brak znaczników) | dokument, strażnik | zielone (przed: 6 z 6 czerwonych) | Bez ekranu i E2E (tylko dokumenty). Eksport cen z App Store Connect — krok właściciela Z-10b. |
+| (C) test pierwszego użycia | `tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts` (zapis `docs/design/test-pierwszego-uzycia.md`: 5 zadań, Q1–Q4 przy każdym kroku, wynik zadania, porażka ze znaleziskiem, etykiety przejścia istnieją w słowniku, krok Z-37 z protokołem testu z 3–5 osobami) | dokument, strażnik | zielone (przed: 9 z 9 czerwonych) | Przejście na wersji web (zrzuty w katalogu wyniku roli 03, poza repo); okna systemowe ocenione z Maestro 31/42/21. **Rodzaj pominięty: test z ludźmi** — wymaga osób i telefonu, krok właściciela Z-37 po premierze. |
+| (D) zrzuty w 32 lokalizacjach (przygotowanie) | `tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts` (29 języków ze sklepem = 32 lokalizacje bez „sl”; 9 podpisów na język, ≤ 40 znaków, bez cen, bez powtórzeń; znaki pisma łacińskiego, cyrylicy i greki w czcionce ramek — czytnik tabeli cmap; docs/48 pkt 5 z cytatem Apple i warunkami Z-16) | dane, języki, strażnik | zielone (przed: 29 z 32 czerwonych) | **Rodzaj pominięty: obrazy i wgranie** — wymagają macOS (`store-screenshots.yml`, `watch-sim.yml`, `asc-zrzuty.yml`), krok koordynatora po akceptacji EN i recenzji przekładów; przegląd każdego obrazu (L-004). |
+| Backlog z wersją (03-zakres-006, 03-zakres-007, 11-wzrost-002, 11-wzrost-004, 02-monetyzacja-005, 02-monetyzacja-506 b) | `tests/audit-m1-2026-10-27-037-dokumenty-wydania.test.ts` (sekcja „Backlog z audytu M1 — DEC-07 b” w docs/21: każda pozycja z wersją 1.0.x/1.1 i warunkiem; żadna w „Backlogu bez priorytetu”) | dokument, strażnik | zielone (przed: 6 czerwonych) | wersje i warunki — propozycja roli 03 do weta właściciela |

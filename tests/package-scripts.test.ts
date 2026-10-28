@@ -19,6 +19,8 @@ const WYJATKI: Record<string, string> = {
   test: 'skrót do jest; verify woła jest bezpośrednio',
   prepare: 'hak pre-push (L-009): uruchamia go npm ci, nie bramka; instalator nigdy nie wywraca instalacji',
   'check:release': 'blokada wydania R-015 (wyjątek anonimizacji): uruchamia krok wydania i lista wydawcy, nie zwykłe verify (docs/40)',
+  'check:pochodne': 'hak pre-push (decyzja 8a, 28.10.2026): zbiera generatory --check i szybkie strażniki; verify uruchamia je osobno',
+  'check:slowniki': 'hak pre-push warunkowo (L-048 A, check:pochodne przy zmianie słowników); te same testy Jest biegną w pełnym jest w verify',
   'verify:docs': 'szybkie kontrole dla commitu tylko z dokumentami (decyzja 21.10.2026), nie bramka wydania',
 };
 

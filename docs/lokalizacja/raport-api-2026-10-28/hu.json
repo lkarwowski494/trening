@@ -1,0 +1,67 @@
+{
+ "jezyk": "hu",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 474,
+ "uwagi": [
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "A végén „Befejezés” a fejlécben (vagy „Edzés befejezése” az utolsó sorozat utáni kártyán) — az edzés a Terv lapra kerül.",
+   "poprawka": "A végén „Befejezés” a fejlécben (vagy „Edzés befejezése” az utolsó sorozat utáni kártyán) — az edzés a Terv fülre kerül.",
+   "powod": "Niespójna terminologia: tu „lap”, w zdaniu 124 „fül” dla zakładki Plan.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.",
+   "rodzaj": "nowe",
+   "pl": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.",
+   "tlumaczenie": "Edzen havonta {n} napot ingyen. A Pro feloldja a korlátot. Bármikor lemondhatja az Apple-fiókja beállításaiban.",
+   "poprawka": "Eddzen havonta {n} napot ingyen. A Pro feloldja a korlátot. Bármikor lemondhatja az Apple-fiókja beállításaiban.",
+   "powod": "Błąd ortograficzny: poprawna forma trybu rozkazującego to „Eddzen” (jak w zdaniach 8, 125 i 150).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "rodzaj": "nowe",
+   "pl": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "tlumaczenie": "A kiemelt izomcsoportoknál nagyobb a volumen, mint az összehasonlítási időszakban; minél erősebb a szín, annál nagyobb a növekedés. Szürke — nincs növekedés.",
+   "poprawka": "A kiemelt testrészeknél nagyobb a volumen, mint az összehasonlítási időszakban; minél erősebb a szín, annál nagyobb a növekedés. Szürke — nincs növekedés.",
+   "powod": "Niespójna terminologia: „partia” tłumaczona wszędzie jako „testrész”, tu „izomcsoport”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "rodzaj": "nowe",
+   "pl": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "tlumaczenie": "Ne törölje az appot — vele együtt az adatai és a mentései is eltűnnek. Először koppintson az „Adatok küldése” gombra, és mentse a fájlt a telefonon kívülre.",
+   "poprawka": "Ne törölje az alkalmazást — vele együtt az adatai és a mentései is eltűnnek. Először koppintson az „Adatok küldése” gombra, és mentse a fájlt a telefonon kívülre.",
+   "powod": "Potoczne „app” niespójne z używanym wszędzie „alkalmazás”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Płacisz raz i masz na zawsze.",
+   "rodzaj": "nowe",
+   "pl": "Płacisz raz i masz na zawsze.",
+   "tlumaczenie": "Egyszer fizet, és örökre az öné.",
+   "poprawka": "Egyszer fizet, és örökre az Öné.",
+   "powod": "Forma grzecznościowa: zaimek „Ön” pisany wielką literą, tak jak w pozostałych zdaniach („Önre”, „Az Ön csomagja”).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.",
+   "rodzaj": "nowe",
+   "pl": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.",
+   "tlumaczenie": "Sorozatok: gyakorlatonként {s} — az egészségért általában {s}–{b}. Érdemes legalább {m} sorozatot végezni. Egy sorozat is hat, {s}–{b} jobban hathat; kezdőknél és idősebbeknél egy sorozat is elég lehet. A {s} az alsó határ.",
+   "poprawka": "Sorozatok: gyakorlatonként {s} — az egészségért általában {s}–{b}. Érdemes legalább {m} sorozatot végezni. Egy sorozat is hat, {s}–{b} jobban hathat; kezdőknél és idősebbeknél egy sorozat is elég lehet. A(z) {s} az alsó határ.",
+   "powod": "Rodzajnik przed zmienną liczbową powinien mieć formę „A(z)”, jak w innych zdaniach.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

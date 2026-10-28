@@ -6,7 +6,7 @@ import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty, Missing } from 
 import { IconRow } from '@/components/Icon';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
-import { visibleLocations, effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, ssTag, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, loadOf, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
+import { visibleLocations, effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, ssTag, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, SET_NOTE_MAX, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, loadOf, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
 import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, draftSetLocation, dateText, timeText, prefilledOffList, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
@@ -18,7 +18,7 @@ import { DraftHeader, HeaderButton, confirmDiscard } from '@/components/DraftHea
 import { MedicalNote } from '@/components/MedicalNote';
 import { useTheme, NUM_SCALE_MAX, FW, font, RADIUS } from '@/lib/theme';
 import { t, tp, exName, lang } from '@/lib/i18n';
-import { wu, wField, wInKeep, fmtW, dIn, dOut, distUnit } from '@/lib/units';
+import { unitLabel, distLabel, wField, wInKeep, fmtW, dIn, dOut } from '@/lib/units';
 import { cancelButton, okButton } from '@/lib/confirm';
 
 /*
@@ -110,7 +110,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
     const kinds = ['normal', 'warmup', 'drop', 'failure'] as const;
     ActionSheetIOS.showActionSheetWithOptions({ options: opts, cancelButtonIndex: 6, destructiveButtonIndex: 5, title: t('Seria {n}', { n: setLabel(e, si) }) }, i => {
       if (i < 4) { set.kind = kinds[i]; set.warmup = set.kind === 'warmup'; touchDraft(); }
-      else if (i === 4) Alert.prompt?.(t('Notatka do serii'), undefined, [{ ...cancelButton() }, { text: t('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), 300); touchDraft(); } }], 'plain-text', set.note);
+      else if (i === 4) Alert.prompt?.(t('Notatka do serii'), undefined, [{ ...cancelButton() }, { text: t('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), SET_NOTE_MAX); touchDraft(); } }], 'plain-text', set.note);
       else if (i === 5) {
         if (e.sets.length <= 1) { const b = lastSetBlock(); Alert.alert(b.title, b.message, [okButton()]); }
         else confirmDelete({ title: t('Usunąć serię?'), message: nm, onDelete: () => draftRemoveSet(d.key, ei, set.id) });
@@ -122,7 +122,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
    * nowy trening wstecz — jak trening w toku (bez miejsc przyrząd się nie liczy) */
   const impl = d.sourceId ? blockImpl(e, d.w.locationId) : liveBlockImpl(e, d.w.locationId);
   const off = prefilledOffList(d, e); /* MEDIUM 1 / runda 82b: ta sama reguła dopisku co w treningu (store.offListNote) — wartość zostaje */
-  const heads = ['#', ...(hasWeight(m) ? [ex ? loadLabelShort(ex, impl) : wu()] : []), ...(hasReps(m) ? [t('Pow.')] : []), ...(hasDistance(m) ? ['m'] : []), ...(hasTime(m) ? [t('sek.')] : []), ...(showRpe ? [effortLabel()] : [])];
+  const heads = ['#', ...(hasWeight(m) ? [ex ? loadLabelShort(ex, impl) : unitLabel()] : []), ...(hasReps(m) ? [t('Pow.')] : []), ...(hasDistance(m) ? [distLabel()] : []), ...(hasTime(m) ? [t('sek.')] : []), ...(showRpe ? [effortLabel()] : [])];
   return (
     <View style={[s.ex, { borderBottomColor: th.line }]}>
       {/* usuwanie: gest albo „⋯” (04-003) */}
@@ -141,9 +141,9 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
               <Pressable accessibilityLanguage={lang()} {...a11y} onPress={() => setMenu(set, si)} hitSlop={8} accessibilityRole="button" accessibilityHint={`${hint}. ${t('Tapnij, by zmienić typ lub dodać notatkę.')}`} /* A11-18 */ accessibilityLabel={t('Seria {n}, typ: {k}', { n: lbl, k: t(SET_KIND_LABEL[kind]) })} style={{ width: 32, minHeight: 44, justifyContent: 'center' }}>
                 <SetBadge kind={kind} label={lbl} note={!!set.note} /* przegląd 06.10: jak w treningu i szablonie */ />
               </Pressable>
-              {hasWeight(m) ? <View style={s.cell}><NumInput style={numCol} weightTol decimal allowNegative={bw} value={wField(loadFieldValue(ex, set))} stored={loadFieldValue(ex, set)} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* Q-021; audyt 83b (LOW 2): pole pokazuje to samo co ekran sesji (store.loadOf), wpis trafia do pola obecnego sprzętu */ touchDraft(); }} placeholder={bw ? '±0' : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('ciężar')} accessibilityHint={hint} testID={`w-${ei}-${si}`} /* E2E 28 */ /></View> : null}
+              {hasWeight(m) ? <View style={s.cell}><NumInput style={numCol} weightTol decimal allowNegative={bw} value={wField(loadFieldValue(ex, set))} stored={loadFieldValue(ex, set)} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* Q-021; audyt 83b (LOW 2): jak ekran sesji (store.loadOf), zapis do pola obecnego sprzętu */ touchDraft(); }} placeholder={bw ? '±0' : unitLabel()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('ciężar')} accessibilityHint={hint} testID={`w-${ei}-${si}`} /* E2E 28 */ /></View> : null}
               {hasReps(m) ? <View style={s.cell}><NumInput style={numCol} value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.min(REPS_MAX, Math.max(0, Math.floor(v))); touchDraft(); }} placeholder={t('pow.')} accessibilityLabel={t('Powtórzenia')} accessibilityHint={hint} testID={`reps-${ei}-${si}`} /* E2E (Maestro 05) */ /></View> : null}
-              {hasDistance(m) ? <View style={s.cell}><NumInput style={numCol} value={dOut(set.distanceM)} stored={set.distanceM} onNum={(v, keep) => { set.distanceM = dIn(v, keep); touchDraft(); }} placeholder={distUnit()} accessibilityLabel={t('dystans')} accessibilityHint={hint} /></View> : null}
+              {hasDistance(m) ? <View style={s.cell}><NumInput style={numCol} value={dOut(set.distanceM)} stored={set.distanceM} onNum={(v, keep) => { set.distanceM = dIn(v, keep); touchDraft(); }} placeholder={distLabel()} accessibilityLabel={t('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={s.cell}><NumInput style={numCol} value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); touchDraft(); }} placeholder="s" accessibilityLabel={t('czas')} accessibilityHint={hint} /></View> : null}
               {showRpe ? <View style={s.cell}><NumInput style={numCol} decimal value={effortField(set.rpe)} onNum={v => { set.rpe = effortIn(v); touchDraft(); }} placeholder="—" accessibilityLabel={effortLabel()} accessibilityHint={hint} /></View> : null}
               {band ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityHint={`${hint}. ${t('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={t('Guma: {b}', { b: set.bandId ? bandA11y(st.bands.find(b => b.id === set.bandId)) : t('brak') })} onPress={() => cycleBand(set)} style={[s.box, { width: 52, backgroundColor: th.surface2, borderColor: th.line }]}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: set.bandId ? th.band : th.muted, ...font('footnote'), ...FW.semibold }}>{set.bandId ? shortBand(st.bands.find(b => b.id === set.bandId)) : '—'}</Text></Pressable> : null}

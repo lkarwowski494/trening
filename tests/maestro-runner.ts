@@ -269,6 +269,12 @@ export class Runner {
   }
   async blur() { const f = this.focused; this.focused = null; if (!f) return; /* pole zdemontowane wraz z ekranem (np. wyszukiwanie + „Back”) — iOS po prostu zdejmuje fokus */ try { await act(async () => { f.props.onEndEditing?.({ nativeEvent: { text: f.props.value } }); f.props.onBlur?.({ nativeEvent: {} }); }); } catch { /* zdemontowane */ } await this.tick(); }
   async run(cmds: any[], file: string) {
+    /* ScrollView.scrollTo({ y: 0 }) z aplikacji (np. ekran zakupu po zakupie — karta stanu na górze) przewija też model układu interpretera; iOS robi to naprawdę */
+    const proto = (require('react-native').ScrollView as { prototype: { scrollTo?: (o?: { y?: number }) => void } }).prototype; const origScrollTo = proto.scrollTo;
+    proto.scrollTo = (o?: { y?: number }) => { if (o && o.y === 0) this.scrollY = new WeakMap(); origScrollTo?.call(proto, o); };
+    try { await this.runSteps(cmds, file); } finally { proto.scrollTo = origScrollTo; }
+  }
+  async runSteps(cmds: any[], file: string) {
     for (const raw of cmds) { await this.step(raw, file); const d = process.env.MAESTRO_DUMP; if (d && this.log[this.log.length - 1].includes(d)) console.log(`${this.log[this.log.length - 1]}\n  ${this.candidates().map(c => { const b = c.node ? this.screenBox(c.node) : null; return (b ? `[${Math.round(b.x)},${Math.round(b.y)}][${Math.round(b.x + b.w)},${Math.round(b.y + b.h)}] ` : '') + c.texts.join(' | ') + (c.id ? ` #${c.id}` : ''); }).join('\n  ')}`); }
   }
   async step(raw: any, file: string) {

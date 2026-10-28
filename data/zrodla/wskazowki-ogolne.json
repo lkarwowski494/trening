@@ -1,0 +1,4017 @@
+{
+ "_opis": "Źródła wskazówek techniki z zestawów ogólnych figur v2 (lib/figures/v2/cue-sets.json, tryb general) i kąta stóp w przysiadzie — przeniesione 27.10.2026 z plików badacza z 25.10.2026 (wskazowki-cwiczenia-01…08, wskazowki-slownik, wskazowki-slownik-uzupelnienie, katy-oddech; gałąź przekazanie-konta, docs/przekazanie/notatki/badania-figury) — M1-audytor-generalny-021, 06-tresci-003. Tylko wewnętrzny rejestr: aplikacja nie wymienia źródeł (decyzja właściciela 25.10.2026), plik czytają tylko testy (tests/zrodla-pelne-wskazowki-ogolne.test.ts) i check:zrodla-runtime. „wskazowki”: id wskazówki → „cwiczenie” (źródła z adresem i miejscem przy tym ćwiczeniu w data/zrodla/cues.json) albo „zrodla” [{ adres, miejsce }] (≥ 2 źródła, zasada właściciela 25.10.2026 dla wskazówek techniki; miejsce z krótkim cytatem jak w zapisie badacza, odczyt 25.10.2026 przez badacza). „przypisania”: ćwiczenie z zestawem ogólnym → rodzina i zapis badacza, dlaczego zestaw nie przeczy ruchowi (null = zestaw rodziny bez uwag). „katy”: kąt techniki w tekście aplikacji.",
+ "wskazowki": {
+  "bd.level": {
+   "cwiczenie": "Bird Dog",
+   "plik": "wskazowki-slownik"
+  },
+  "bdip.move": {
+   "cwiczenie": "Triceps Dips (ławka)",
+   "plik": "wskazowki-slownik"
+  },
+  "bdip.range": {
+   "cwiczenie": "Triceps Dips (ławka)",
+   "plik": "wskazowki-slownik"
+  },
+  "bext.noArch": {
+   "cwiczenie": "Back Extension",
+   "plik": "wskazowki-slownik"
+  },
+  "bike.foot": {
+   "cwiczenie": "Rower",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "bike.seat": {
+   "cwiczenie": "Rower",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "bj.land": {
+   "cwiczenie": "Box Jump",
+   "plik": "wskazowki-slownik"
+  },
+  "bj.mis.stiff": {
+   "cwiczenie": "Box Jump",
+   "plik": "wskazowki-slownik"
+  },
+  "bp.blades": {
+   "cwiczenie": "Bench Press (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "bp.contact": {
+   "cwiczenie": "Bench Press (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "bp.control": {
+   "cwiczenie": "Bench Press (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "bp.elbowsMid": {
+   "zrodla": [
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/barbell-bench-press",
+     "miejsce": "Common Mistakes: „Positioning elbows too wide or too close…”"
+    },
+    {
+     "adres": "https://www.strongerbyscience.com/how-to-bench/",
+     "miejsce": "FAQ „How much should I tuck my elbows?”: „…around 45-60 degrees.”"
+    }
+   ],
+   "twierdzenie": "Przy wyciskaniu leżąc łokcie ani maksymalnie odwiedzone, ani przyklejone (bez liczby kąta).",
+   "plik": "wskazowki-slownik"
+  },
+  "bp.mis.arch": {
+   "cwiczenie": "Bench Press (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "bss.move": {
+   "cwiczenie": "Bulgarian Split Squat (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "bw.squat": {
+   "zrodla": [
+    {
+     "adres": "https://www.issaonline.com/blog/post/master-the-lateral-band-walk-for-a-stronger-gluteus-medius",
+     "miejsce": "„partial squat position”; „There is no upper body movement”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/pros/expert-articles/6936/6-glute-medius-exercises-for-strength-amp-stability/",
+     "miejsce": "„assume a quarter-squat position… Maintain the squat position while stepping laterally”"
+    }
+   ],
+   "twierdzenie": "Chód z gumą w półprzysiadzie.",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "calf.mis.partial": {
+   "cwiczenie": "Standing Calf Raise",
+   "plik": "wskazowki-slownik"
+  },
+  "calf.move": {
+   "cwiczenie": "Łydki na stopniu",
+   "plik": "wskazowki-slownik"
+  },
+  "calf.pause": {
+   "cwiczenie": "Standing Calf Raise",
+   "plik": "wskazowki-slownik"
+  },
+  "carry.noLean": {
+   "cwiczenie": "Suitcase Carry",
+   "uwaga": "korekta 27.10.2026: zapis badacza wskazywał „Farmer's Walk”, wskazówka ze źródłami jest przy „Suitcase Carry”",
+   "plik": "wskazowki-slownik"
+  },
+  "carry.walk": {
+   "cwiczenie": "Farmer's Walk",
+   "plik": "wskazowki-slownik"
+  },
+  "cc.ribs": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/331/standing-crunch/",
+     "miejsce": "„rolling the rib cage down against the pull of the cable”; „the hips straight…”"
+    },
+    {
+     "adres": "data:Crunch",
+     "miejsce": "crunch.move (ACE #52, ExRx BWCrunch: zbliżanie żeber do miednicy) — analogia"
+    }
+   ],
+   "twierdzenie": "Zgięcie tułowia przeciw oporowi linki bez ruchu w biodrach.",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "cc.slow": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/331/standing-crunch/",
+     "miejsce": "„slowly returning to the top”"
+    },
+    {
+     "adres": "data:Crunch",
+     "miejsce": "crunch.move („wracaj powoli”; ACE #52, ExRx) — analogia"
+    }
+   ],
+   "twierdzenie": "Kontrolowany powrót.",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "cgbp.elbows": {
+   "cwiczenie": "Close Grip Bench Press",
+   "plik": "wskazowki-slownik"
+  },
+  "chop.close": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/108/standing-wood-chop/",
+     "miejsce": "Step 3: „Keep the medicine ball relatively close to your body.”; Step 6: „…remain aligned over your hips.”"
+    },
+    {
+     "adres": "data:Russian Twist",
+     "miejsce": "rt.control (NASM Russian Twist, ACE #65) — ruch rotacyjny, analogia"
+    }
+   ],
+   "twierdzenie": "Kontrola rotacji w ruchach typu drwal.",
+   "plik": "wskazowki-slownik"
+  },
+  "cobra.control": {
+   "zrodla": [
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/floor-prone-cobra",
+     "miejsce": "Step 4: „Lower yourself back to the floor with control.”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/16/cobra-exercise/",
+     "miejsce": "„Gently relax and lower your upper body…”"
+    }
+   ],
+   "twierdzenie": "Kontrolowany powrót.",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "cobra.hips": {
+   "zrodla": [
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/floor-prone-cobra",
+     "miejsce": "Step 2: „Keep your hips and legs relaxed on the floor…”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/16/cobra-exercise/",
+     "miejsce": "„press your hips into the mat… keeping your hips stable”"
+    }
+   ],
+   "twierdzenie": "Wyprost tułowia w leżeniu przodem bez unoszenia bioder.",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "cobra.mis": {
+   "zrodla": [
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/floor-prone-cobra",
+     "miejsce": "Common Mistakes: „Excessive spinal extension…”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/16/cobra-exercise/",
+     "miejsce": "ogranicz wyprost rąk, jeśli biodra odrywają się od maty"
+    }
+   ],
+   "twierdzenie": "Częsty błąd: nadmierny wyprost.",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "cpress.base": {
+   "cwiczenie": "Wyciskanie na linkach (stojąc)",
+   "plik": "wskazowki-slownik"
+  },
+  "crunch.lowBack": {
+   "cwiczenie": "Crunch",
+   "plik": "wskazowki-slownik"
+  },
+  "crunch.move": {
+   "cwiczenie": "Crunch",
+   "plik": "wskazowki-slownik"
+  },
+  "crunch.neck": {
+   "cwiczenie": "Crunch",
+   "plik": "wskazowki-slownik"
+  },
+  "csr.chest": {
+   "cwiczenie": "Chest Supported Row",
+   "plik": "wskazowki-slownik"
+  },
+  "curl.control": {
+   "cwiczenie": "Cable Curl",
+   "plik": "wskazowki-slownik"
+  },
+  "curl.elbows": {
+   "cwiczenie": "Biceps Curl (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "curl.mis.elbows": {
+   "cwiczenie": "Biceps Curl (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "curl.noSwing": {
+   "cwiczenie": "Biceps Curl (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "db.back": {
+   "cwiczenie": "Dead Bug",
+   "plik": "wskazowki-slownik"
+  },
+  "db.slow": {
+   "cwiczenie": "Dead Bug",
+   "plik": "wskazowki-slownik"
+  },
+  "dl.close": {
+   "cwiczenie": "Deadlift (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "dl.lift": {
+   "cwiczenie": "Deadlift (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "dyn.control": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
+     "miejsce": "Step 4: „performing slow, controlled movements”"
+    },
+    {
+     "adres": "https://www.nhs.uk/live-well/exercise/flexibility-exercises/",
+     "miejsce": "Neck rotation: „Slowly turn your head… as far as is comfortable.”; wstęp: „Build up slowly…”"
+    }
+   ],
+   "twierdzenie": "Ćwiczenia ruchomości: powolny, kontrolowany ruch w wygodnym zakresie.",
+   "plik": "wskazowki-slownik"
+  },
+  "dyn.mis.jerk": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
+     "miejsce": "Step 4: „avoid bouncing and control movement…”"
+    },
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/static-butterfly-stretch",
+     "miejsce": "advises against „bouncing”"
+    }
+   ],
+   "twierdzenie": "Częsty błąd: gwałtowny ruch/odbijanie w ćwiczeniach rozciągających.",
+   "plik": "wskazowki-slownik"
+  },
+  "fly.control": {
+   "cwiczenie": "Cable Fly",
+   "plik": "wskazowki-slownik"
+  },
+  "fly.elbows": {
+   "cwiczenie": "Chest Fly (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "fp.chest": {
+   "cwiczenie": "Face Pull",
+   "plik": "wskazowki-slownik"
+  },
+  "fp.elbowsBack": {
+   "cwiczenie": "Face Pull",
+   "plik": "wskazowki-slownik"
+  },
+  "front.elbows": {
+   "cwiczenie": "Front Raise",
+   "plik": "wskazowki-slownik"
+  },
+  "gb.heels": {
+   "cwiczenie": "Glute Bridge",
+   "plik": "wskazowki-slownik"
+  },
+  "gb.move": {
+   "cwiczenie": "Glute Bridge",
+   "plik": "wskazowki-slownik"
+  },
+  "gm.light": {
+   "cwiczenie": "Good Morning",
+   "plik": "wskazowki-slownik"
+  },
+  "gm.move": {
+   "cwiczenie": "Good Morning",
+   "plik": "wskazowki-slownik"
+  },
+  "hab.hips": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/38/side-lying-hip-abduction/",
+     "miejsce": "„The hips should remain vertical to the floor”"
+    },
+    {
+     "adres": "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+     "miejsce": "Sideways leg lift: „…keeping your back and hips straight.”"
+    }
+   ],
+   "twierdzenie": "Odwodzenie bez rotacji/przechylania miednicy.",
+   "plik": "wskazowki-slownik"
+  },
+  "hab.mis.high": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/38/side-lying-hip-abduction/",
+     "miejsce": "„raising the leg too high”; stop when „the hips begin to tilt upwards”"
+    },
+    {
+     "adres": "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+     "miejsce": "„as far as is comfortable, keeping your back and hips straight”"
+    }
+   ],
+   "twierdzenie": "Częsty błąd: zakres większy niż pozwala stabilna miednica.",
+   "plik": "wskazowki-slownik"
+  },
+  "hack.move": {
+   "cwiczenie": "Hack Squat",
+   "plik": "wskazowki-slownik"
+  },
+  "halo.close": {
+   "zrodla": [
+    {
+     "adres": "https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training",
+     "miejsce": "Halo: „keeping the kettlebell as close to your head as possible”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/394/halo/",
+     "miejsce": "„moving the kettlebell around and behind the head”"
+    }
+   ],
+   "twierdzenie": "Ciężar krąży blisko głowy.",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "hang.noSwing": {
+   "zrodla": [
+    {
+     "adres": "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+     "miejsce": "Hanging Knee Raise: „Avoid using momentum to swing the legs upward.”"
+    },
+    {
+     "adres": "data:Pull Up",
+     "miejsce": "pu.noSwing (ACE #191 „avoid swinging”) — zwis na drążku, analogia"
+    }
+   ],
+   "twierdzenie": "Częsty błąd: rozpęd w zwisie.",
+   "plik": "wskazowki-slownik"
+  },
+  "hang.ribs": {
+   "zrodla": [
+    {
+     "adres": "https://www.issaonline.com/blogs/training-tips/5-best-exercises-to-include-in-your-core-workout",
+     "miejsce": "„Keeping the ribcage down… tuck their pelvis… curling the hips up and under”"
+    },
+    {
+     "adres": "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+     "miejsce": "„…maintaining a stable torso throughout each repetition.”"
+    }
+   ],
+   "twierdzenie": "Stabilny tułów, ruch z podwinięciem miednicy.",
+   "plik": "wskazowki-slownik"
+  },
+  "hang.slow": {
+   "zrodla": [
+    {
+     "adres": "https://www.issaonline.com/blogs/training-tips/5-best-exercises-to-include-in-your-core-workout",
+     "miejsce": "Hanging Leg Raises: „…slowly controlled back down into the starting position…”"
+    },
+    {
+     "adres": "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+     "miejsce": "Hanging Knee Raise: „…control both the raising and lowering phases…”"
+    }
+   ],
+   "twierdzenie": "Kontrolowana faza opuszczania w zwisie.",
+   "plik": "wskazowki-slownik"
+  },
+  "hext.mis.arch": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/270/quadruped-bent-knee-hip-extensions/",
+     "miejsce": "„…an increase in lumbar lordosis (low back sagging).”"
+    },
+    {
+     "adres": "data:Bird Dog",
+     "miejsce": "bd.range (NASM Bird Dog) — analogia"
+    }
+   ],
+   "twierdzenie": "Częsty błąd: przeprost lędźwi przy unoszeniu nogi.",
+   "plik": "wskazowki-slownik"
+  },
+  "hext.range": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/270/quadruped-bent-knee-hip-extensions/",
+     "miejsce": "„Only raise the leg to a height where the low back position can be maintained…”"
+    },
+    {
+     "adres": "data:Bird Dog",
+     "miejsce": "bd.range (ACE #14, NASM Bird Dog) — ten sam podpór, analogia"
+    }
+   ],
+   "twierdzenie": "Wyprost biodra ograniczony kontrolą odcinka lędźwiowego.",
+   "plik": "wskazowki-slownik"
+  },
+  "hinge.back": {
+   "cwiczenie": "Deadlift (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "ht.mis.arch": {
+   "cwiczenie": "Hip Thrust (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "ht.rigid": {
+   "cwiczenie": "Hip Thrust (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "jump.drive": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/177/forward-linear-jumps/",
+     "miejsce": "Step 3: „…throwing your arms overhead to achieve triple extension.”"
+    },
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/squat-jump",
+     "miejsce": "Step 3: „Explosively extend your hips, knees, and ankles while swinging your arms upward…”"
+    }
+   ],
+   "twierdzenie": "Wybicie przez wyprost trzech stawów z zamachem ramion.",
+   "plik": "wskazowki-slownik"
+  },
+  "jump.land": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/177/forward-linear-jumps/",
+     "miejsce": "Step 6: „attempt to land softly on the whole foot…”"
+    },
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/squat-jump",
+     "miejsce": "Step 4: „Land softly… and bent knees to absorb impact.”"
+    }
+   ],
+   "twierdzenie": "Miękkie lądowanie z amortyzacją w biodrach i kolanach.",
+   "plik": "wskazowki-slownik"
+  },
+  "jump.mis.stiff": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/177/forward-linear-jumps/",
+     "miejsce": "„do not land with a straight or hyper-extended knee…”"
+    },
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/tuck-jump",
+     "miejsce": "Common Mistakes: „Landing with straight or minimally bent knees…”"
+    }
+   ],
+   "twierdzenie": "Częsty błąd: lądowanie z wyprostowanymi kolanami.",
+   "uwaga": "Uzasadnienie zdrowotne źródeł („injury”) pominięte w tekście.",
+   "plik": "wskazowki-slownik"
+  },
+  "kb.hips": {
+   "cwiczenie": "Kettlebell Swing",
+   "plik": "wskazowki-slownik"
+  },
+  "kb.move": {
+   "cwiczenie": "Kettlebell Swing",
+   "plik": "wskazowki-slownik"
+  },
+  "lat.elbows": {
+   "cwiczenie": "Lateral Raise (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "lat.height": {
+   "cwiczenie": "Lateral Raise (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "lcurl.still": {
+   "cwiczenie": "Leg Curl",
+   "plik": "wskazowki-slownik"
+  },
+  "lext.range": {
+   "cwiczenie": "Leg Extension",
+   "plik": "wskazowki-slownik"
+  },
+  "llc.control": {
+   "cwiczenie": "Lying Leg Curl",
+   "plik": "wskazowki-slownik"
+  },
+  "lp.heels": {
+   "cwiczenie": "Leg Press",
+   "plik": "wskazowki-slownik"
+  },
+  "lp.move": {
+   "cwiczenie": "Leg Press",
+   "plik": "wskazowki-slownik"
+  },
+  "lp.noLock": {
+   "cwiczenie": "Leg Press",
+   "plik": "wskazowki-slownik"
+  },
+  "lpd.fullStretch": {
+   "cwiczenie": "Lat Pulldown",
+   "plik": "wskazowki-slownik"
+  },
+  "lpd.toChest": {
+   "cwiczenie": "Lat Pulldown",
+   "plik": "wskazowki-slownik"
+  },
+  "lunge.back": {
+   "cwiczenie": "Reverse Lunge",
+   "plik": "wskazowki-slownik"
+  },
+  "lunge.knee": {
+   "cwiczenie": "Bulgarian Split Squat (hantle)",
+   "plik": "wskazowki-slownik",
+   "uwaga": "28.10.2026 (M1-audytor-generalny-038): zdanie usunięte z kart wykroków (Lunges (hantle), Walking Lunges, Reverse Lunge) — źródła przy przysiadzie bułgarskim (wzorzec wykroku, zestaw ogólny)"
+  },
+  "lunge.mis.kneeIn": {
+   "cwiczenie": "Bulgarian Split Squat (hantle)",
+   "plik": "wskazowki-slownik",
+   "uwaga": "28.10.2026 (M1-audytor-generalny-038): zdanie usunięte z kart wykroków (Lunges (hantle), Walking Lunges, Reverse Lunge) — źródła przy przysiadzie bułgarskim (wzorzec wykroku, zestaw ogólny)"
+  },
+  "lunge.torso": {
+   "cwiczenie": "Lunges (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "lunge.walk": {
+   "cwiczenie": "Walking Lunges",
+   "plik": "wskazowki-slownik"
+  },
+  "mb.legs": {
+   "zrodla": [
+    {
+     "adres": "https://www.issaonline.com/blogs/strength/10-highly-effective-medicine-ball-exercises",
+     "miejsce": "Wall Underhand Throw: „In one movement, extend the hips, knees, and ankles while underhand throwing the ball…”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/178/overhead-medicine-ball-throws/",
+     "miejsce": "„…create triple extension”"
+    }
+   ],
+   "twierdzenie": "Moc rzutu z wyprostu trzech stawów.",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "mcp.blades": {
+   "cwiczenie": "Machine Chest Press",
+   "plik": "wskazowki-slownik"
+  },
+  "mcp.move": {
+   "cwiczenie": "Machine Chest Press",
+   "plik": "wskazowki-slownik"
+  },
+  "mis.jerk": {
+   "cwiczenie": "Seated Cable Row",
+   "plik": "wskazowki-slownik"
+  },
+  "mis.roundBack": {
+   "cwiczenie": "Deadlift (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "nordic.hips": {
+   "cwiczenie": "Nordic Curl",
+   "plik": "wskazowki-slownik"
+  },
+  "npu.hang": {
+   "cwiczenie": "Neutral Grip Pull Up",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "ohp.elbowsUnder": {
+   "cwiczenie": "Overhead Press (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "ohp.fullExt": {
+   "cwiczenie": "Seated Shoulder Press (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "ohp.mis.lock": {
+   "zrodla": [
+    {
+     "adres": "data:Seated Shoulder Press (hantle)",
+     "miejsce": "ohp.fullExt (ACE #186 Step 3 „fully extended, but not locked”; ExRx/Eleiko)"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/186/seated-shoulder-press/",
+     "miejsce": "Step 3 (przeczytane 25.10.2026)"
+    }
+   ],
+   "twierdzenie": "Na górze pełny wyprost bez gwałtownego blokowania.",
+   "uwaga": "Druga organizacja: Eleiko/ExRx w data.json przy ohp.fullExt.",
+   "plik": "wskazowki-slownik"
+  },
+  "ohp.move": {
+   "cwiczenie": "Overhead Press (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "ohp.seat": {
+   "cwiczenie": "Seated Shoulder Press (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "ohp.tall": {
+   "cwiczenie": "Overhead Press (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "oly.back": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/125/power-clean/",
+     "miejsce": "Step 2: hinge, „straight back and a tall chest”"
+    },
+    {
+     "adres": "https://www.nsca.com/contentassets/7b03489a05aa4f39a01d4c37d5464e0f/a_simple_technique_to_teaching_the_power_clean.pdf",
+     "miejsce": "NSCA TSAC Report 39 (Cruz), s. 43: „the lower back should be flat or slightly concave”"
+    }
+   ],
+   "twierdzenie": "Pozycja startowa podrzutu/rwania: neutralne plecy.",
+   "plik": "wskazowki-slownik"
+  },
+  "oly.close": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/125/power-clean/",
+     "miejsce": "Step 3: „…pulling the bar straight up, close to the body.”"
+    },
+    {
+     "adres": "https://www.nsca.com/contentassets/7b03489a05aa4f39a01d4c37d5464e0f/a_simple_technique_to_teaching_the_power_clean.pdf",
+     "miejsce": "s. 44: „the bar is a magnet for the body”"
+    }
+   ],
+   "twierdzenie": "Tor sztangi blisko ciała.",
+   "plik": "wskazowki-slownik"
+  },
+  "oly.legs": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/125/power-clean/",
+     "miejsce": "Step 3–4: „explosively push the feet into the ground…”, „explosively push the hips forward and up”"
+    },
+    {
+     "adres": "https://www.nsca.com/contentassets/7b03489a05aa4f39a01d4c37d5464e0f/a_simple_technique_to_teaching_the_power_clean.pdf",
+     "miejsce": "s. 44: „The arms should remain fully extended…”"
+    }
+   ],
+   "twierdzenie": "Siła z wyprostu nóg i bioder; ramiona proste w pierwszej fazie.",
+   "plik": "wskazowki-slownik"
+  },
+  "oly.mis": {
+   "zrodla": [
+    {
+     "adres": "https://www.nsca.com/contentassets/7b03489a05aa4f39a01d4c37d5464e0f/a_simple_technique_to_teaching_the_power_clean.pdf",
+     "miejsce": "s. 44: błędy „shooting the hips, rounding the back, or swinging the bar forward”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/125/power-clean/",
+     "miejsce": "Step 2–3 (straight back; bar close)"
+    }
+   ],
+   "twierdzenie": "Częste błędy: oddalanie sztangi, zaokrąglanie pleców.",
+   "plik": "wskazowki-slownik"
+  },
+  "ote.elbowsIn": {
+   "cwiczenie": "Overhead Triceps Extension (hantel)",
+   "plik": "wskazowki-slownik"
+  },
+  "ote.upperArm": {
+   "cwiczenie": "Overhead Triceps Extension (hantel)",
+   "plik": "wskazowki-slownik"
+  },
+  "pistol.assist": {
+   "cwiczenie": "Pistol Squat",
+   "plik": "wskazowki-slownik"
+  },
+  "pistol.knee": {
+   "cwiczenie": "Pistol Squat",
+   "plik": "wskazowki-slownik"
+  },
+  "pistol.move": {
+   "cwiczenie": "Pistol Squat",
+   "plik": "wskazowki-slownik"
+  },
+  "plank.brace": {
+   "cwiczenie": "Plank",
+   "plik": "wskazowki-slownik"
+  },
+  "plank.mis.breath": {
+   "cwiczenie": "Plank",
+   "plik": "wskazowki-slownik"
+  },
+  "plank.mis.sag": {
+   "cwiczenie": "Plank",
+   "plik": "wskazowki-slownik"
+  },
+  "plank.noSag": {
+   "cwiczenie": "Plank",
+   "plik": "wskazowki-slownik"
+  },
+  "po.arms": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/37/lying-pullovers/",
+     "miejsce": "„…keeping the elbows straight”"
+    },
+    {
+     "adres": "https://www.issaonline.com/blogs/training-tips/stability-ball-exercises-build-muscle-balance-endurance",
+     "miejsce": "„With both arms fully extended…”"
+    }
+   ],
+   "twierdzenie": "Pullover na prostych rękach.",
+   "plik": "wskazowki-slownik-uzupelnienie"
+  },
+  "po.slow": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/37/lying-pullovers/",
+     "miejsce": "„slowly stretch the arms up overhead”, „slowly pull the weights back up”"
+    },
+    {
+     "adres": "https://www.issaonline.com/blogs/training-tips/stability-ball-exercises-build-muscle-balance-endurance",
+     "miejsce": "„slowly lower the dumbbell behind the head”"
+    }
+   ],
+   "twierdzenie": "Kontrolowany ruch w obu fazach.",
+   "plik": "wskazowki-slownik-uzupelnienie"
+  },
+  "pp.dip": {
+   "cwiczenie": "Push Press",
+   "plik": "wskazowki-slownik"
+  },
+  "pp.legs": {
+   "cwiczenie": "Push Press",
+   "plik": "wskazowki-slownik"
+  },
+  "preacher.range": {
+   "cwiczenie": "Preacher Curl",
+   "plik": "wskazowki-slownik"
+  },
+  "preacher.setup": {
+   "cwiczenie": "Preacher Curl",
+   "plik": "wskazowki-slownik-uzupelnienie"
+  },
+  "press.noLock": {
+   "cwiczenie": "Machine Chest Press",
+   "plik": "wskazowki-slownik"
+  },
+  "pu.elbowsDown": {
+   "cwiczenie": "Pull Up",
+   "plik": "wskazowki-slownik"
+  },
+  "pu.noSwing": {
+   "cwiczenie": "Pull Up",
+   "plik": "wskazowki-slownik"
+  },
+  "pu.shoulders": {
+   "cwiczenie": "Pull Up",
+   "plik": "wskazowki-slownik"
+  },
+  "push.mis.partial": {
+   "cwiczenie": "Push Up",
+   "plik": "wskazowki-slownik"
+  },
+  "push.rigid": {
+   "cwiczenie": "Push Up",
+   "plik": "wskazowki-slownik"
+  },
+  "push.setup": {
+   "cwiczenie": "Push Up",
+   "plik": "wskazowki-slownik"
+  },
+  "rcrunch.hips": {
+   "cwiczenie": "Reverse Crunch",
+   "plik": "wskazowki-slownik"
+  },
+  "rcrunch.move": {
+   "cwiczenie": "Reverse Crunch",
+   "plik": "wskazowki-slownik"
+  },
+  "rdl.depth": {
+   "cwiczenie": "RDL (hantle/linki)",
+   "plik": "wskazowki-slownik"
+  },
+  "rdl.knees": {
+   "cwiczenie": "RDL (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "rear.arms": {
+   "cwiczenie": "Reverse Fly (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "rear.elbows": {
+   "cwiczenie": "Reverse Fly (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "ro.back": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/309/roll-out/",
+     "miejsce": "„Keep the hips pressed forward and the back straight.”"
+    },
+    {
+     "adres": "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+     "miejsce": "Ab Wheel Rollout: „…the core must work to prevent lumbar extension.”"
+    }
+   ],
+   "twierdzenie": "W rollout tułów sztywny, bez przeprostu lędźwi.",
+   "plik": "wskazowki-slownik"
+  },
+  "rot.elbow": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/352/rotator-cuff-external-rotation/",
+     "miejsce": "„Keep the left elbow tucked in to the body”"
+    },
+    {
+     "adres": "https://www.issaonline.com/blogs/safety-and-injuries/strengthen-your-rotator-cuff",
+     "miejsce": "„…elbow bent at 90 degrees and tucked in close to the body”; „Keeping the upper arm stationary”"
+    }
+   ],
+   "twierdzenie": "Rotacja w barku przy nieruchomym ramieniu.",
+   "plik": "wskazowki-slownik"
+  },
+  "rot.mis.elbowAway": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/352/rotator-cuff-external-rotation/",
+     "miejsce": "„Keep the… elbow tucked in”"
+    },
+    {
+     "adres": "https://www.issaonline.com/blogs/safety-and-injuries/strengthen-your-rotator-cuff",
+     "miejsce": "„tucked in close to the body”"
+    }
+   ],
+   "twierdzenie": "Częsty błąd: ruch ramienia zamiast rotacji.",
+   "uwaga": "Błąd = zaprzeczenie wskazówki z obu źródeł.",
+   "plik": "wskazowki-slownik"
+  },
+  "rot.slow": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/352/rotator-cuff-external-rotation/",
+     "miejsce": "„…slowly lowering the weight”"
+    },
+    {
+     "adres": "https://www.issaonline.com/blogs/safety-and-injuries/strengthen-your-rotator-cuff",
+     "miejsce": "„the movement should be slow and controlled”"
+    }
+   ],
+   "twierdzenie": "Kontrolowana faza powrotu.",
+   "plik": "wskazowki-slownik"
+  },
+  "row.elbowsPast": {
+   "cwiczenie": "Chest Supported Row",
+   "plik": "wskazowki-slownik"
+  },
+  "row.fullStretch": {
+   "cwiczenie": "Bent Over Row (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "row.hinge": {
+   "cwiczenie": "Bent Over Row (sztanga)",
+   "plik": "wskazowki-slownik"
+  },
+  "row1.noTwist": {
+   "cwiczenie": "One Arm Row (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "rt.back": {
+   "cwiczenie": "Russian Twist",
+   "plik": "wskazowki-slownik"
+  },
+  "rt.control": {
+   "cwiczenie": "Russian Twist",
+   "plik": "wskazowki-slownik"
+  },
+  "sb.plane": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
+     "miejsce": "Step 2: „…bend sideways… without rotating your trunk or bending forward.”"
+    },
+    {
+     "adres": "https://www.nhs.uk/live-well/exercise/flexibility-exercises/",
+     "miejsce": "Sideways bend: skłon w bok „as far as is comfortable”"
+    }
+   ],
+   "twierdzenie": "Skłon boczny w płaszczyźnie czołowej.",
+   "uwaga": "Oba źródła opisują skłon bez ciężaru (rozciąganie) — przy skłonach z hantlem/linką to analogia (ogólne).",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "scr.chest": {
+   "cwiczenie": "Seated Cable Row",
+   "plik": "wskazowki-slownik"
+  },
+  "scr.control": {
+   "cwiczenie": "Seated Cable Row",
+   "plik": "wskazowki-slownik"
+  },
+  "shrug.move": {
+   "cwiczenie": "Shrugs (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "shrug.tall": {
+   "cwiczenie": "Shrugs (hantle)",
+   "plik": "wskazowki-slownik"
+  },
+  "skull.depth": {
+   "cwiczenie": "Skullcrusher (EZ)",
+   "plik": "wskazowki-slownik"
+  },
+  "skull.upperArm": {
+   "cwiczenie": "Skullcrusher (EZ)",
+   "plik": "wskazowki-slownik"
+  },
+  "sled.lean": {
+   "zrodla": [
+    {
+     "adres": "https://www.issaonline.com/blog/post/hockey-workouts-for-lower-body-power",
+     "miejsce": "„…maintain a slight forward lean.”"
+    },
+    {
+     "adres": "https://www.acefitness.org/continuing-education/prosource/february-2014/3676/strongman-training-for-your-clients/",
+     "miejsce": "„forward-leaning body position”; „stiff, stable spine”"
+    }
+   ],
+   "twierdzenie": "Pchanie sanek z pochyleniem i sztywnym tułowiem.",
+   "plik": "wskazowki-slownik-uzupelnienie"
+  },
+  "sled.legs": {
+   "zrodla": [
+    {
+     "adres": "https://www.issaonline.com/blog/post/hockey-workouts-for-lower-body-power",
+     "miejsce": "„Drive through the legs, not the upper body.”"
+    },
+    {
+     "adres": "https://www.acefitness.org/continuing-education/prosource/february-2014/3676/strongman-training-for-your-clients/",
+     "miejsce": "„push into the ground one leg at a time”"
+    }
+   ],
+   "twierdzenie": "Napęd z nóg, nie z rąk.",
+   "plik": "wskazowki-slownik-uzupelnienie"
+  },
+  "smr.mis.fast": {
+   "zrodla": [
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/foam-roll-calves",
+     "miejsce": "Common Mistakes: „Rolling too quickly…”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/blog/5624/foam-rolling-101/",
+     "miejsce": "„Slowly roll…”"
+    }
+   ],
+   "twierdzenie": "Częsty błąd: zbyt szybkie rolowanie.",
+   "plik": "wskazowki-slownik"
+  },
+  "smr.slow": {
+   "zrodla": [
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/foam-roll-calves",
+     "miejsce": "Step 3: „Perform slow, controlled rolling motions.”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/blog/5624/foam-rolling-101/",
+     "miejsce": "„Slowly roll the tender areas…”"
+    }
+   ],
+   "twierdzenie": "Rolowanie wolne i kontrolowane.",
+   "plik": "wskazowki-slownik"
+  },
+  "smr.tender": {
+   "zrodla": [
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/foam-roll-adductors",
+     "miejsce": "Step 3: „pausing on tender areas…”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/blog/5624/foam-rolling-101/",
+     "miejsce": "„Slowly roll the tender areas for 30 to 60 seconds.”"
+    }
+   ],
+   "twierdzenie": "Dłużej na miejscach tkliwych.",
+   "plik": "wskazowki-slownik"
+  },
+  "splank.mis.elbow": {
+   "cwiczenie": "Side Plank",
+   "plik": "wskazowki-slownik"
+  },
+  "splank.noSag": {
+   "cwiczenie": "Side Plank",
+   "plik": "wskazowki-slownik"
+  },
+  "sq.back": {
+   "cwiczenie": "Back Squat",
+   "plik": "wskazowki-slownik"
+  },
+  "sq.down": {
+   "cwiczenie": "Back Squat",
+   "plik": "wskazowki-slownik"
+  },
+  "sq.kneesToes": {
+   "cwiczenie": "Back Squat",
+   "plik": "wskazowki-slownik"
+  },
+  "sq.mis.heels": {
+   "cwiczenie": "Back Squat",
+   "plik": "wskazowki-slownik"
+  },
+  "sq.mis.kneesIn": {
+   "cwiczenie": "Back Squat",
+   "plik": "wskazowki-slownik"
+  },
+  "st.breathe": {
+   "zrodla": [
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/static-butterfly-stretch",
+     "miejsce": "Common Mistakes: „Holding the breath during stretching”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
+     "miejsce": "Step 2: „gently exhale and slowly bend sideways”"
+    }
+   ],
+   "twierdzenie": "W rozciąganiu oddychać, nie wstrzymywać oddechu.",
+   "uwaga": "ACE opisuje wydech przy wchodzeniu w rozciąganie — zgodne kierunkowo (oddychanie), nie wprost „nie wstrzymuj”.",
+   "plik": "wskazowki-slownik"
+  },
+  "st.mis.force": {
+   "zrodla": [
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/static-butterfly-stretch",
+     "miejsce": "Common Mistakes: „Overstretching beyond moderate discomfort”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
+     "miejsce": "Step 3: „…do not… push to a point of pain.”"
+    }
+   ],
+   "twierdzenie": "Częsty błąd: przekraczanie umiarkowanego dyskomfortu.",
+   "plik": "wskazowki-slownik"
+  },
+  "st.noBounce": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
+     "miejsce": "Step 3–4: „do not bounce”, „avoid bouncing”"
+    },
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/static-standing-adductor-stretch",
+     "miejsce": "„Avoid bouncing or forcing the stretch beyond mild discomfort.”"
+    }
+   ],
+   "twierdzenie": "W rozciąganiu statycznym bez odbijania.",
+   "plik": "wskazowki-slownik"
+  },
+  "st.tension": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/212/seated-side-straddle-stretch/",
+     "miejsce": "Step 3: „…to the point of tension in the stretch, but do not bounce or push to a point of pain.”"
+    },
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/static-butterfly-stretch",
+     "miejsce": "avoid „forcing the stretch beyond mild discomfort”"
+    }
+   ],
+   "twierdzenie": "Rozciąganie statyczne do odczucia napięcia, bez bólu.",
+   "plik": "wskazowki-slownik"
+  },
+  "stepup.knee": {
+   "cwiczenie": "Step Up",
+   "plik": "wskazowki-slownik"
+  },
+  "stepup.move": {
+   "cwiczenie": "Step Up",
+   "plik": "wskazowki-slownik"
+  },
+  "sumo.kneesOut": {
+   "cwiczenie": "Sumo Deadlift",
+   "plik": "wskazowki-slownik"
+  },
+  "tb.lift": {
+   "cwiczenie": "Trap Bar Deadlift",
+   "plik": "wskazowki-slownik"
+  },
+  "tgu.arm": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/388/turkish-get-up/",
+     "miejsce": "„…hold it straight overhead”"
+    },
+    {
+     "adres": "https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training",
+     "miejsce": "TGU: „Keep the kettlebell over the shoulder joint throughout the entire motion.”"
+    }
+   ],
+   "twierdzenie": "Ciężar utrzymany pionowo nad stawem barkowym.",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "tgu.eyes": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/388/turkish-get-up/",
+     "miejsce": "„Keeping the eyes on the kettlebell throughout the movement”"
+    },
+    {
+     "adres": "https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training",
+     "miejsce": "„keeping your eyes on the kettlebell”"
+    }
+   ],
+   "twierdzenie": "Kontrola wzrokowa ciężaru.",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "tpd.elbows": {
+   "cwiczenie": "Triceps Pushdown",
+   "plik": "wskazowki-slownik"
+  },
+  "ur.elbows": {
+   "zrodla": [
+    {
+     "adres": "https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more",
+     "miejsce": "„Make sure each elbow stays above the forearm.”"
+    },
+    {
+     "adres": "data:Lateral Raise (hantle)",
+     "miejsce": "lat.elbows (ACE #26: elbows rise ahead of forearms; ExRx: elbows above wrists) — analogia"
+    }
+   ],
+   "twierdzenie": "W wiosłowaniu pionowym łokieć nad przedramieniem.",
+   "plik": "wskazowki-slownik-uzupelnienie"
+  },
+  "vup.back": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/242/v-ups/",
+     "miejsce": "Cautions: avoid „arching” or „slumping” your low back"
+    },
+    {
+     "adres": "data:Crunch",
+     "miejsce": "crunch.lowBack (ACE #52, ExRx) — analogia"
+    }
+   ],
+   "twierdzenie": "Neutralne lędźwie w V-up i podobnych.",
+   "plik": "wskazowki-slownik"
+  },
+  "walk.rails": {
+   "cwiczenie": "Incline Walk (bieżnia)",
+   "plik": "wskazowki-slownik"
+  },
+  "walk.upright": {
+   "cwiczenie": "Incline Walk (bieżnia)",
+   "plik": "wskazowki-slownik"
+  },
+  "wm.arm": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/386/high-windmill/",
+     "miejsce": "„Keeping the left arm straight during the movement.”"
+    },
+    {
+     "adres": "https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training",
+     "miejsce": "Windmill: „keeping it straight in the air”"
+    }
+   ],
+   "twierdzenie": "W wiatraku ramię z kettlebellem wyprostowane w pionie.",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "wm.eyes": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/386/high-windmill/",
+     "miejsce": "„Turn to look up at the left hand…”"
+    },
+    {
+     "adres": "https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training",
+     "miejsce": "Windmill: „look at the top hand”"
+    }
+   ],
+   "twierdzenie": "Wzrok na ręce z ciężarem.",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "wr.forearms": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/30/wrist-curl-flexion/",
+     "miejsce": "„…without releasing your grip, extending your arms or leaning…”"
+    },
+    {
+     "adres": "https://www.issaonline.com/blogs/strength/forearm-dumbbell-workouts-to-improve-strength",
+     "miejsce": "„Do not lift your wrists or forearms off your legs.”"
+    }
+   ],
+   "twierdzenie": "Ruch izolowany w nadgarstku.",
+   "plik": "wskazowki-slownik"
+  },
+  "wr.mis.lift": {
+   "zrodla": [
+    {
+     "adres": "https://www.issaonline.com/blogs/strength/forearm-dumbbell-workouts-to-improve-strength",
+     "miejsce": "„Do not lift your wrists or forearms off your legs.”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/30/wrist-curl-flexion/",
+     "miejsce": "„…without… extending your arms or leaning…”"
+    }
+   ],
+   "twierdzenie": "Częsty błąd: pomaganie sobie ramionami.",
+   "plik": "wskazowki-slownik"
+  },
+  "wr.range": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/30/wrist-curl-flexion/",
+     "miejsce": "„allow the wrists to move into extension”"
+    },
+    {
+     "adres": "https://www.issaonline.com/blogs/strength/forearm-dumbbell-workouts-to-improve-strength",
+     "miejsce": "„Begin curling or flexing your wrists upwards.” / „Lower your hands to the starting position…”"
+    }
+   ],
+   "twierdzenie": "Pełny zakres zgięcia/wyprostu nadgarstka.",
+   "plik": "wskazowki-slownik"
+  },
+  "skull.depthFree": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/",
+     "miejsce": "Step 2 (jak skull.depth; zdanie o zakresie, bez słowa o gryfie)"
+    },
+    {
+     "adres": "https://exrx.net/WeightExercises/Triceps/BBLyingTriExt",
+     "miejsce": "Execution (as bar nears head); zakres ten sam przy hantlach i gumie — uogólnienie sprzętowe, uproszczenie"
+    }
+   ],
+   "twierdzenie": "Zakres opuszczania w wyciskaniu francuskim bez gryfu (hantle, guma): to samo zdanie co skull.depth, z „dłońmi” zamiast „gryfu”.",
+   "plik": "cues-zestawy.json (linia 1.1; źródła przeniesione 28.10.2026 przy scaleniu main)"
+  },
+  "ur.height": {
+   "zrodla": [
+    {
+     "adres": "https://www.coachesontario.ca/articles/breaking-down-the-upright-row/",
+     "miejsce": "NSCA Exercise Technique Manual (przedruk), Upward movement: „At the highest bar position, the elbows should be level with or slightly higher than the shoulders and wrists.”"
+    },
+    {
+     "adres": "https://theprehabguys.com/vimeo-video/upright-row-band/",
+     "miejsce": "„Drive your elbows up and out so that they're even with your hands at the top.”"
+    },
+    {
+     "adres": "https://www.ummhealth.org/health-library/upper-body-exercises-upright-row",
+     "miejsce": "„…raise the weights along the midline of your body up to your collarbone.”"
+    }
+   ],
+   "twierdzenie": "Wiosłowanie pionowe: ruch prowadzą łokcie, idą mniej więcej do wysokości barków; dłonie zostają blisko ciała (od dołu mostka do brody/obojczyków).",
+   "plik": "cues-zestawy.json (linia 1.1; źródła przeniesione 28.10.2026 przy scaleniu main)"
+  }
+ },
+ "przypisania": {
+  "Ab Wheel": {
+   "rodzina": "rollout",
+   "sprawdzenie": "rollout z kółkiem = ten sam ruch co ACE #309 (sztanga)",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Adductor-SMR": {
+   "rodzina": "smr",
+   "sprawdzenie": "NASM foam-roll-adductors — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Alternate Heel Touchers": {
+   "rodzina": "crunch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Alternate Leg Diagonal Bound": {
+   "rodzina": "jump",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Alternate Leg Push-Off": {
+   "rodzina": "jump",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Alternating Deltoid Raise": {
+   "rodzina": "raiseSide",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Ankle Circles": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Arm Circles": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Arnold Press": {
+   "rodzina": "ohp",
+   "sprawdzenie": "rotacja dłoni w Arnoldzie nie jest opisana — zdania dotyczą tylko wyciskania nad głowę",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Assault Bike": {
+   "rodzina": "bike",
+   "sprawdzenie": "ustawienie siodełka i stopy na pedale — wspólne z rowerem stacjonarnym (analogia); brak sprawdzonego błędu — ✕ pusty",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Axle Deadlift": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Backward Drag": {
+   "rodzina": "sled",
+   "sprawdzenie": "bez sled.lean (ciągnięcie tyłem); 1 ✓",
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Backward Medicine Ball Throw": {
+   "rodzina": "mbThrow",
+   "sprawdzenie": "1 ✓, brak ✕",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Band Bench Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Band Calf Raise": {
+   "rodzina": "calf",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Band Chest Fly": {
+   "rodzina": "fly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Band Good Morning": {
+   "rodzina": "rdl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Band Hip Adduction": {
+   "rodzina": "hipAbd",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Band Lateral Raise": {
+   "rodzina": "raiseSide",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Band Overhead Triceps Extension": {
+   "rodzina": "triOver",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Band Pull Apart": {
+   "rodzina": "raiseRear",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Band Shoulder Press": {
+   "rodzina": "ohp",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Band Skull Crusher": {
+   "rodzina": "triLying",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Band Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Band Upright Row": {
+   "rodzina": "uprightRow",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Barbell Front Raise to Overhead": {
+   "rodzina": "raiseFront",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Barbell Guillotine Bench Press": {
+   "rodzina": "bench",
+   "sprawdzenie": "bez bp.elbowsMid — łokcie celowo szeroko",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Barbell Hack Squat": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": "sztanga za nogami — bez dl.close/sq.down",
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Barbell Preacher Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Barbell Rear Delt Row": {
+   "rodzina": "rowBent",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Barbell Reverse Wrist Curl": {
+   "rodzina": "wrist",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Barbell Rollout from Bench": {
+   "rodzina": "rollout",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Barbell Seated Calf Raise": {
+   "rodzina": "calf",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Barbell Shrug Behind The Back": {
+   "rodzina": "shrug",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Barbell Side Bend": {
+   "rodzina": "sideBend",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Barbell Side Split Squat": {
+   "rodzina": "lunge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Barbell Snatch": {
+   "rodzina": "oly",
+   "sprawdzenie": "ACE #314 Snatch — możliwe źródło bezpośrednie",
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Barbell Step Up": {
+   "rodzina": "lunge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Barbell Walking Lunge": {
+   "rodzina": "lunge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Barbell Wrist Curl": {
+   "rodzina": "wrist",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Bayesian Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": "bez curl.elbows — ramię cofnięte za tułów",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Behind-the-Back Barbell Wrist Curl": {
+   "rodzina": "wrist",
+   "sprawdzenie": "stojąc, przedramiona nie oparte — bez wr.forearms; 1 ✓",
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Belt Squat Machine": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Bench Jump": {
+   "rodzina": "jump",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Bench Press with Chains": {
+   "rodzina": "bench",
+   "sprawdzenie": "NASM barbell-bench-press-with-chains (sitemap) — bezpośrednie źródło możliwe",
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Bent Over Row (linki)": {
+   "rodzina": "rowBent",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Bent Press": {
+   "rodzina": "windmill",
+   "sprawdzenie": "ruch pod ciężar trzymany nad barkiem — jak wiatrak (analogia)",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Bent-Arm Barbell Pullover": {
+   "rodzina": "pullover",
+   "sprawdzenie": "bez po.arms — łokcie zgięte; 1 ✓",
+   "plik": "wskazowki-cwiczenia-04 (korekty)"
+  },
+  "Bicycle Crunch": {
+   "rodzina": "crunch",
+   "sprawdzenie": "ACE #241 Supine Bicycle Crunches: „Do not pull forward on your head”, „Keep your low back pressed into the floor” — trzecie, bezpośrednie źródło",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Block Clean": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Block Power Clean": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Block Power Snatch": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Block Snatch": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Board Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Bodyweight Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": "ACE #135 Bodyweight Squat jest jednym ze źródeł tych zdań — prawie bezpośrednie",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Bottoms-Up Clean From The Hang Position": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Box Skip": {
+   "rodzina": "jump",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Box Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": "siad na skrzyni nie przeczy tym zdaniom; szczegóły (szeroki rozstaw) — jedno źródło, pominięte",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Box Squat with Bands": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Box Squat with Chains": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Broad Jump": {
+   "rodzina": "jump",
+   "sprawdzenie": "ACE #177 Forward Linear Jumps — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Bulgarian Split Squat (sztanga)": {
+   "rodzina": "lunge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Butterfly Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": "NASM static-butterfly-stretch — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Cable Crunch": {
+   "rodzina": "cableCrunch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Cable Curl (dwie linki)": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Cable Deadlift": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Cable Fly (high to low)": {
+   "rodzina": "fly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Cable Fly (low to high)": {
+   "rodzina": "fly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Cable Front Raise": {
+   "rodzina": "raiseFront",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Cable Hip Abduction": {
+   "rodzina": "hipAbd",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Cable Hip Adduction": {
+   "rodzina": "hipAbd",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Cable Incline Triceps Extension": {
+   "rodzina": "triOver",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Cable Internal Rotation": {
+   "rodzina": "rotCuff",
+   "sprawdzenie": "ACE #351 Rotator Cuff Internal Rotation (linka) — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Cable Judo Flip": {
+   "rodzina": "rotation",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Cable Kickback": {
+   "rodzina": "hipExt",
+   "sprawdzenie": "wyprost biodra w tył przy stabilnych lędźwiach — jak ACE #270 (na czworakach), tu stojąc",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Cable Lying Triceps Extension": {
+   "rodzina": "triLying",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Cable Preacher Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Cable Pull Through": {
+   "rodzina": "rdl",
+   "sprawdzenie": "bez rdl.move/kb.hips — teksty wymieniają sztangę/kettlebell",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Cable Reverse Crunch": {
+   "rodzina": "legRaiseFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Cable Reverse Fly": {
+   "rodzina": "raiseRear",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Cable Rope Rear-Delt Rows": {
+   "rodzina": "faceRow",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Cable Russian Twists": {
+   "rodzina": "rotation",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Cable Seated Crunch": {
+   "rodzina": "cableCrunch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Cable Seated Lateral Raise": {
+   "rodzina": "raiseSide",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Cable Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Cable Woodchop": {
+   "rodzina": "rotation",
+   "sprawdzenie": "ACE #108 Standing Wood Chop — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Cable Wrist Curl": {
+   "rodzina": "wrist",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Cable Y Raise": {
+   "rodzina": "raise",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Calf Raise (linki)": {
+   "rodzina": "calf",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Calf Raise (sztanga)": {
+   "rodzina": "calf",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Calf-Machine Shoulder Shrug": {
+   "rodzina": "shrug",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Calves-SMR": {
+   "rodzina": "smr",
+   "sprawdzenie": "NASM foam-roll-calves — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Car Drivers": {
+   "rodzina": "raiseFront",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Cat-Cow": {
+   "rodzina": "mobility",
+   "sprawdzenie": "ACE #15 Cat-Cow — możliwe źródło bezpośrednie",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Chain Handle Extension": {
+   "rodzina": "triLying",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Chain Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Chest And Front Of Shoulder Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Chest Dip": {
+   "rodzina": "dip",
+   "sprawdzenie": "zakres i ruch łokci jak przy dipach na ławce (analogia); bez zdań o pochyleniu tułowia (jedno źródło, docs/33)",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Chest Stretch on Stability Ball": {
+   "rodzina": "stretch",
+   "sprawdzenie": "NASM static-latissimus-dorsi-ball-stretch — pokrewne",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Child's Pose": {
+   "rodzina": "stretch",
+   "sprawdzenie": "NASM childs-pose i ACE #227 — możliwe źródła bezpośrednie",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Chin To Chest Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": "szyja — NHS Neck stretch (powoli, w wygodnym zakresie); bez porad zdrowotnych",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Clamshell": {
+   "rodzina": "hipAbd",
+   "sprawdzenie": "leżąc bokiem, miednica nie odchyla się w tył (ACE #38 — ta sama pozycja)",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Clean": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Clean and Jerk": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Clean and Press": {
+   "rodzina": "oly",
+   "sprawdzenie": "ACE #383 Clean and Press — bezpośrednie źródło możliwe do dodania",
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Clean Deadlift": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Clean Pull": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Clean Shrug": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Clock Push-Up": {
+   "rodzina": "pushup",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Close-Grip Dumbbell Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Close-Grip EZ-Bar Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Close-Grip Front Lat Pulldown": {
+   "rodzina": "vpull",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Close-Grip Push-Up": {
+   "rodzina": "pushup",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Concentration Curl (hantle)": {
+   "rodzina": "curl",
+   "sprawdzenie": "bez curl.elbows i curl.mis.elbows — łokieć oparty o udo, nie przy boku",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Copenhagen Plank": {
+   "rodzina": "plank",
+   "sprawdzenie": "deska boczna z nogą na ławce — analogia do Side Plank",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Cossack Squat": {
+   "rodzina": "lunge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Cross Body Hammer Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Cross-Body Crunch": {
+   "rodzina": "crunch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Cross-Body Shoulder Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Crossover Reverse Lunge": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Crucifix": {
+   "rodzina": "raiseSide",
+   "sprawdzenie": "przytrzymanie ciężarów w bok na wysokości barków (izometria)",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Crunch - Hands Overhead": {
+   "rodzina": "crunch",
+   "sprawdzenie": "bez crunch.neck — ręce za głową wyprostowane",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Crunch - Legs On Exercise Ball": {
+   "rodzina": "crunch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Curtsy Lunge": {
+   "rodzina": "lunge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Dead Hang": {
+   "rodzina": "vpull",
+   "sprawdzenie": "zwis = pozycja wyjściowa podciągania (analogia); 1 ✓",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Deadlift with Bands": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Deadlift with Chains": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Decline Bench Press": {
+   "rodzina": "bench",
+   "sprawdzenie": "bez bp.contact — na ławce skośnej w dół stopy są zaczepione o wałki, nie na podłodze",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Decline Bench Press (hantle)": {
+   "rodzina": "bench",
+   "sprawdzenie": "bez bp.contact — stopy zaczepione",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Decline Close-Grip Bench To Skull Crusher": {
+   "rodzina": "triLying",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Decline Crunch": {
+   "rodzina": "crunch",
+   "sprawdzenie": "bez crunch.move (mówi o podłodze)",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Decline Dumbbell Fly": {
+   "rodzina": "fly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Decline Dumbbell Triceps Extension": {
+   "rodzina": "triLying",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Decline EZ Bar Triceps Extension": {
+   "rodzina": "triLying",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Decline Oblique Crunch": {
+   "rodzina": "crunch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Decline Push Up": {
+   "rodzina": "pushup",
+   "sprawdzenie": "NASM ma stronę decline-push-up (sitemap) — można dodać jako 3. źródło",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Decline Reverse Crunch": {
+   "rodzina": "legRaiseFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Deficit Deadlift": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Depth Jump": {
+   "rodzina": "jump",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Dip Belt Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Dip Machine": {
+   "rodzina": "dip",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Donkey Calf Raise": {
+   "rodzina": "calf",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Donkey Kick": {
+   "rodzina": "hipExt",
+   "sprawdzenie": "ACE #270 opisuje to ćwiczenie wprost",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Double Kettlebell Clean": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Double Kettlebell Front Rack Carry": {
+   "rodzina": "carry",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Double Kettlebell Front Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": "NASM kettlebell-front-squat (sitemap) — możliwe 3. źródło",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Double Kettlebell Jerk": {
+   "rodzina": "pushPress",
+   "sprawdzenie": "bez ohp.mis.lock — w podrzucie blokuje się łokcie pod ciężarem",
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Double Kettlebell Press": {
+   "rodzina": "ohp",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Double Kettlebell Push Press": {
+   "rodzina": "pushPress",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Double Kettlebell Snatch": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Double Kettlebell Windmill": {
+   "rodzina": "windmill",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Double Leg Butt Kick": {
+   "rodzina": "jump",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Drag Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": "bez curl.elbows — łokcie celowo cofają się",
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Drop Push": {
+   "rodzina": "pushup",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Dumbbell Clean": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Dumbbell Front Raise to Overhead": {
+   "rodzina": "raiseFront",
+   "sprawdzenie": "bez lat.height — ruch kończy się nad głową",
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Dumbbell Lying One-Arm Rear Lateral Raise": {
+   "rodzina": "raiseRear",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Dumbbell One-Arm Triceps Extension": {
+   "rodzina": "triOver",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Dumbbell One-Arm Upright Row": {
+   "rodzina": "uprightRow",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Dumbbell Scaption": {
+   "rodzina": "raiseSide",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Dumbbell Seated Box Jump": {
+   "rodzina": "jump",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Dumbbell Seated One-Leg Calf Raise": {
+   "rodzina": "calf",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Dumbbell Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Dynamic Back Stretch": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Dynamic Chest Stretch": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Elevated Back Lunge": {
+   "rodzina": "lunge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "External Rotation (hantel)": {
+   "rodzina": "rotCuff",
+   "sprawdzenie": "ISSA opisuje wersję leżąc z ciężarem",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "External Rotation (linki)": {
+   "rodzina": "rotCuff",
+   "sprawdzenie": "ACE #352 opisuje wersję z linką — bezpośrednio",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "External Rotation with Band": {
+   "rodzina": "rotCuff",
+   "sprawdzenie": "ISSA opisuje wersję z gumą",
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Farmer's Walk (Farmers Handles)": {
+   "rodzina": "carry",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Farmer's Walk (trap bar)": {
+   "rodzina": "carry",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Fast Skipping": {
+   "rodzina": "jump",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Fire Hydrant": {
+   "rodzina": "hipAbd",
+   "sprawdzenie": "na czworakach, odwodzenie — miednica równo jak w bird dog",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Flat Bench Cable Fly": {
+   "rodzina": "fly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Floor Press (hantle)": {
+   "rodzina": "bench",
+   "sprawdzenie": "na podłodze: bez bp.contact i bp.mis.arch",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Floor Press (sztanga)": {
+   "rodzina": "bench",
+   "sprawdzenie": "jw.",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Floor Press with Chains": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Foam Roll: Hamstrings": {
+   "rodzina": "smr",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Foam Roll: Quadriceps": {
+   "rodzina": "smr",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Foot-SMR": {
+   "rodzina": "smr",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Frog Hops": {
+   "rodzina": "jump",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Frog Pump": {
+   "rodzina": "bridge",
+   "sprawdzenie": "bez gb.move — kolana na boki, inna linia",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Frog Sit-Ups": {
+   "rodzina": "crunch",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Front Cone Hops": {
+   "rodzina": "jump",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Front Incline Dumbbell Raise": {
+   "rodzina": "raiseFront",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Front Plate Raise": {
+   "rodzina": "raiseFront",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Front Raise And Pullover": {
+   "rodzina": "pullover",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04 (korekty)"
+  },
+  "Full Range-Of-Motion Lat Pulldown": {
+   "rodzina": "vpull",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Gironda Sternum Chins": {
+   "rodzina": "vpull",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Glute Bridge (sztanga)": {
+   "rodzina": "bridge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Glute Ham Raise": {
+   "rodzina": "legCurl",
+   "sprawdzenie": "biodra wyprostowane jak w nordic (analogia)",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Good Morning off Pins": {
+   "rodzina": "rdl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Gorilla Chin/Crunch": {
+   "rodzina": "hanging",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Groiners": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Hammer Curl (linki)": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Hang Clean": {
+   "rodzina": "oly",
+   "sprawdzenie": "ACE #312 Hang Clean — możliwe źródło bezpośrednie",
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Hang Snatch": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Hanging Knee Raise": {
+   "rodzina": "hanging",
+   "sprawdzenie": "NASM opisuje wprost Hanging Knee Raise",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Hanging Leg Raise": {
+   "rodzina": "hanging",
+   "sprawdzenie": "ISSA opisuje wprost Hanging Leg Raise",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "High Cable Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": "bez curl.elbows — ramiona uniesione w bok",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "High Knees": {
+   "rodzina": "jump",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Hip Abduction": {
+   "rodzina": "hipAbd",
+   "sprawdzenie": "maszyna siedząc: bez hab.mis.high (przechylanie biodra dotyczy wersji leżąc/stojąc)",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Hip Adduction": {
+   "rodzina": "hipAbd",
+   "sprawdzenie": "przywodzenie — ta sama zasada nieruchomej miednicy (analogia do odwodzenia)",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Hip Circles (Prone)": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Hip Extension with Bands": {
+   "rodzina": "hipExt",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Hollow Hold": {
+   "rodzina": "plank",
+   "sprawdzenie": "leżenie na plecach z lędźwiami przy podłodze — jak dead bug (analogia); bez plank.noSag (inna pozycja)",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Iliotibial Tract-SMR": {
+   "rodzina": "smr",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Inchworm": {
+   "rodzina": "mobility",
+   "sprawdzenie": "ACE #254 Inchworms — możliwe źródło bezpośrednie",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Incline Barbell Triceps Extension": {
+   "rodzina": "triLying",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Incline Cable Chest Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Incline Cable Fly": {
+   "rodzina": "fly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Incline Chest Fly (hantle)": {
+   "rodzina": "fly",
+   "sprawdzenie": "rozpiętki na skosie — ten sam łuk",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Incline Curl (hantle)": {
+   "rodzina": "curl",
+   "sprawdzenie": "ramiona zwisają przy tułowiu oparte o ławkę — łokcie zostają w miejscu, zgodne",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Incline Hammer Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Incline Push-Up Close-Grip": {
+   "rodzina": "pushup",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Incline Push-Up Depth Jump": {
+   "rodzina": "pushup",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Incline Push-Up Reverse Grip": {
+   "rodzina": "pushup",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Intermediate Groin Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Internal Rotation with Band": {
+   "rodzina": "rotCuff",
+   "sprawdzenie": "ISSA: „Resistance band internal rotation” — bezpośrednie; ACE #351",
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Iron Crosses (Stretch)": {
+   "rodzina": "mobility",
+   "sprawdzenie": "NASM iron-cross (sitemap)",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Isometric Wipers": {
+   "rodzina": "pushup",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "IT Band and Glute Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Janda Sit-Up": {
+   "rodzina": "crunch",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Jefferson Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Jerk Dip Squat": {
+   "rodzina": "pushPress",
+   "sprawdzenie": "brak ✕",
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "JM Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Jump Squat": {
+   "rodzina": "jump",
+   "sprawdzenie": "NASM squat-jump — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Jumping Jacks": {
+   "rodzina": "jump",
+   "sprawdzenie": "NASM jumping-jacks: lądowanie bez prostych kolan — bezpośrednie; 1 ✓",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Kettlebell Arnold Press": {
+   "rodzina": "ohp",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Kettlebell Clean": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Kettlebell Halo": {
+   "rodzina": "halo",
+   "sprawdzenie": "ACE #394 i ISSA — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Kettlebell Halo with Overhead Extension": {
+   "rodzina": "halo",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Kettlebell Overhead Triceps Extension": {
+   "rodzina": "triOver",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Kettlebell Press": {
+   "rodzina": "ohp",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Kettlebell Seated Press": {
+   "rodzina": "ohp",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Kettlebell Snatch": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Kettlebell Sumo High Pull": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Kettlebell Thruster": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Kettlebell Windmill": {
+   "rodzina": "windmill",
+   "sprawdzenie": "ACE #386 i ISSA — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Knee Circles": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Kneeling Cable Crunch With Alternating Oblique Twists": {
+   "rodzina": "cableCrunch",
+   "sprawdzenie": "bez cc.ribs (dochodzi skręt); 1 ✓",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Kneeling Cable Triceps Extension": {
+   "rodzina": "triOver",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Kneeling Forearm Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Kneeling High Pulley Row": {
+   "rodzina": "row",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Kneeling Hip Flexor Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": "ACE #142 — bezpośrednie (pozycja); intensywność z ACE #212/NASM",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Landmine Linear Jammer": {
+   "rodzina": "press",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Landmine Press": {
+   "rodzina": "press",
+   "sprawdzenie": "bez ohp.* — tor skośnie w przód, nie pionowo nad głowę",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Landmine Rotation": {
+   "rodzina": "rotation",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Landmine Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Lateral Band Walk": {
+   "rodzina": "bandWalk",
+   "sprawdzenie": "ISSA i ACE — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Lateral Bound": {
+   "rodzina": "jump",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Lateral Box Jump": {
+   "rodzina": "jump",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Lateral Cone Hops": {
+   "rodzina": "jump",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Lateral Lunge": {
+   "rodzina": "lunge",
+   "sprawdzenie": "bez lunge.torso — w wykroku bocznym tułów się pochyla",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Latissimus Dorsi-SMR": {
+   "rodzina": "smr",
+   "sprawdzenie": "NASM foam-roll-latissimus-dorsi — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Leg Curl (hantel)": {
+   "rodzina": "legCurl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Leg Pull-In": {
+   "rodzina": "legRaiseFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Leg Swings (Front-to-Back)": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Leg Swings (Side-to-Side)": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Leverage Deadlift": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Leverage Decline Chest Press": {
+   "rodzina": "machinePress",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Leverage High Row": {
+   "rodzina": "row",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Leverage Incline Chest Press": {
+   "rodzina": "machinePress",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Leverage Shrug": {
+   "rodzina": "shrug",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Lower Back Curl": {
+   "rodzina": "cobra",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Lunge Pass Through": {
+   "rodzina": "lunge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Lunges (sztanga)": {
+   "rodzina": "lunge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Lying Cable Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Lying Close-Grip Bar Curl On High Pulley": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Lying Close-Grip Barbell Triceps Extension Behind The Head": {
+   "rodzina": "triLying",
+   "sprawdzenie": "bez skull.* — gryf za głowę, ramiona skośnie",
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Lying Leg Crossover Swings": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Lying Leg Raise": {
+   "rodzina": "legRaiseFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Lying Machine Squat": {
+   "rodzina": "squatMachine",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Lying Supine Dumbbell Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Lying T-Bar Row": {
+   "rodzina": "row",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Machine Biceps Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Machine Crunch": {
+   "rodzina": "cableCrunch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Machine Glute Kickback": {
+   "rodzina": "hipExt",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Machine Hip Thrust": {
+   "rodzina": "bridge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Machine Lateral Raise": {
+   "rodzina": "raiseSide",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Machine Row": {
+   "rodzina": "row",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Machine Triceps Extension": {
+   "rodzina": "triPush",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Meadows Row": {
+   "rodzina": "rowBent",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Medicine Ball Full Twist": {
+   "rodzina": "rotation",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Medicine Ball Scoop Throw": {
+   "rodzina": "mbThrow",
+   "sprawdzenie": "ISSA Wall Underhand Throw — bezpośrednie; 1 ✓",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Middle Back Shrug": {
+   "rodzina": "row",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Middle Back Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Mixed Grip Chin": {
+   "rodzina": "vpull",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Monster Walk": {
+   "rodzina": "bandWalk",
+   "sprawdzenie": "ACE opisuje Monster Walk wprost",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Muscle Snatch": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Oblique Crunches - On The Floor": {
+   "rodzina": "crunch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "One Arm Chin-Up": {
+   "rodzina": "vpull",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "One Arm Dumbbell Bench Press": {
+   "rodzina": "bench",
+   "sprawdzenie": "NASM single-arm-dumbbell-chest-press (sitemap) — możliwe źródło bezpośrednie",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "One Arm Dumbbell Preacher Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "One Knee To Chest": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "One-Arm Cable Rear Lateral Raise": {
+   "rodzina": "raiseRear",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "One-Arm Dumbbell Reverse Wrist Curl": {
+   "rodzina": "wrist",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "One-Arm Dumbbell Wrist Curl": {
+   "rodzina": "wrist",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "One-Arm Flat Bench Dumbbell Fly": {
+   "rodzina": "fly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "One-Arm High-Pulley Cable Side Bends": {
+   "rodzina": "sideBend",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "One-Arm Incline Lateral Raise": {
+   "rodzina": "raiseSide",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "One-Arm Kettlebell Clean and Jerk": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "One-Arm Kettlebell Floor Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "One-Arm Kettlebell Jerk": {
+   "rodzina": "pushPress",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "One-Arm Kettlebell Push Press": {
+   "rodzina": "pushPress",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "One-Arm Kettlebell Split Jerk": {
+   "rodzina": "pushPress",
+   "sprawdzenie": "bez pp.dip (ugięcie w rozkroku); 1 ✓",
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "One-Arm Kettlebell Swings": {
+   "rodzina": "kbSwing",
+   "sprawdzenie": "ACE #392 Single Arm Swing — możliwe źródło bezpośrednie",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "One-Arm Lateral Raise (hantel)": {
+   "rodzina": "raiseSide",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "One-Arm Lying Dumbbell Triceps Extension": {
+   "rodzina": "triLying",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "One-Arm Medicine Ball Slam": {
+   "rodzina": "mbThrow",
+   "sprawdzenie": "ISSA slam: pełny wyprost przed rzutem; 1 ✓",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "One-Arm Overhead Kettlebell Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": "ACE #393 Single Arm Overhead Squat — możliwe źródło bezpośrednie",
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "One-Arm Side Deadlift": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Orbitrek": {
+   "rodzina": "cardioMachine",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Otis-Up": {
+   "rodzina": "crunch",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Overhead Carry (hantle)": {
+   "rodzina": "carry",
+   "sprawdzenie": "brak sprawdzonego ✕",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Overhead Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Overhead Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Overhead Triceps Extension (EZ)": {
+   "rodzina": "triOver",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Overhead Triceps Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Pallof Press With Rotation": {
+   "rodzina": "rotation",
+   "sprawdzenie": "bez pallof.noTwist — tu rotacja jest celem",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Pec Deck": {
+   "rodzina": "fly",
+   "sprawdzenie": "bez fly.elbows — w wersji z poduszkami łokcie są zgięte pod kątem, nie „lekko ugięte”",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Pendulum Squat": {
+   "rodzina": "squatMachine",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Peroneals Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Peroneals-SMR": {
+   "rodzina": "smr",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Pike Push Up": {
+   "rodzina": "pushup",
+   "sprawdzenie": "tylko 1 ✓ (NASM pike-push-up — jedno źródło dla reszty)",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Pin Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Piriformis-SMR": {
+   "rodzina": "smr",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Plank Shoulder Taps": {
+   "rodzina": "plank",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Plyo Kettlebell Push-Ups": {
+   "rodzina": "pushup",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Plyo Push-Up": {
+   "rodzina": "pushup",
+   "sprawdzenie": "NASM plyometric-push-up (sitemap) — możliwe źródło bezpośrednie",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Posterior Tibialis Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Power Clean": {
+   "rodzina": "oly",
+   "sprawdzenie": "ACE #125 i NSCA TSAC 39 opisują podrzut wprost — tu „ogólne” tylko formalnie; można oznaczyć jako własne",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Power Jerk": {
+   "rodzina": "pushPress",
+   "sprawdzenie": "ACE #313 Push Jerk — możliwe źródło bezpośrednie",
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Power Snatch": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Preacher Curl (EZ)": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Preacher Hammer Dumbbell Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Prone Flutter Kicks": {
+   "rodzina": "hipExt",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Pullover (hantel)": {
+   "rodzina": "pullover",
+   "sprawdzenie": "ACE #37 i ISSA — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-04 (korekty)"
+  },
+  "Push Press - Behind the Neck": {
+   "rodzina": "pushPress",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Push Up to Side Plank": {
+   "rodzina": "pushup",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Push-Up Wide": {
+   "rodzina": "pushup",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Push-Ups With Feet On A Stability Ball": {
+   "rodzina": "pushup",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Rack Pull": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Rack Pull with Bands": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Renegade Row": {
+   "rodzina": "pushup",
+   "sprawdzenie": "podpór jak w pompce + wiosłowanie hantlem bez skrętu tułowia",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Reverse Band Bench Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Reverse Band Box Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Reverse Band Deadlift": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Reverse Band Power Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Reverse Band Sumo Deadlift": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Reverse Cable Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Reverse Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Reverse EZ-Bar Preacher Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Reverse Flyes With External Rotation": {
+   "rodzina": "raiseRear",
+   "sprawdzenie": "bez rear.arms — dochodzi rotacja; 1 ✓",
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Reverse Grip Bench Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Reverse Grip Bent Over Row": {
+   "rodzina": "rowBent",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Reverse Grip Triceps Pushdown": {
+   "rodzina": "triPush",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Reverse Hyperextension": {
+   "rodzina": "hipExt",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Reverse Plate Curls": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Reverse Wrist Curl (hantle)": {
+   "rodzina": "wrist",
+   "sprawdzenie": "ISSA: wersja odwrotna — przedramiona oparte",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Rhomboids-SMR": {
+   "rodzina": "smr",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Rickshaw Carry": {
+   "rodzina": "carry",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Rickshaw Deadlift": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": "uchwyty po bokach jak trap bar (analogia)",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Ring Dips": {
+   "rodzina": "dip",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Rollout (sztanga)": {
+   "rodzina": "rollout",
+   "sprawdzenie": "ACE #309 Roll Out — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Round The World Shoulder Stretch": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Runner's Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Scapular Pull-Up": {
+   "rodzina": "vpull",
+   "sprawdzenie": "ruch to samo opuszczenie łopatek; 1 ✓",
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Scissor Kick": {
+   "rodzina": "legRaiseFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Seal Row (sztanga)": {
+   "rodzina": "row",
+   "sprawdzenie": "klatka na ławce jak w Chest Supported Row",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Seated Band Hamstring Curl": {
+   "rodzina": "legCurl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Seated Barbell Military Press": {
+   "rodzina": "ohp",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Seated Barbell Twist": {
+   "rodzina": "rotation",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Seated Cable Chest Press": {
+   "rodzina": "machinePress",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Seated Cable Shoulder Press": {
+   "rodzina": "ohp",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Seated Calf Raise (hantle)": {
+   "rodzina": "calf",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Seated Calf Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": "NASM static-seated-calf-stretch — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Seated Close-Grip Concentration Barbell Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Seated Flat Bench Leg Pull-In": {
+   "rodzina": "legRaiseFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Seated Floor Hamstring Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Seated Good Mornings": {
+   "rodzina": "rdl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Seated Rotation Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "See-Saw Press (Alternating Side Press)": {
+   "rodzina": "ohp",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Shoulder Circles": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Shrugs (linki)": {
+   "rodzina": "shrug",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Side Hop-Sprint": {
+   "rodzina": "jump",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Side Lying Groin Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Side Neck Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": "NHS Neck stretch — bezpośrednie (ruch powolny, w wygodnym zakresie)",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Side Standing Long Jump": {
+   "rodzina": "jump",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Side to Side Box Shuffle": {
+   "rodzina": "jump",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Side To Side Chins": {
+   "rodzina": "vpull",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Side-Lying Quad Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Single Arm Cable Chest Press": {
+   "rodzina": "cablePress",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Single Arm Cable Fly": {
+   "rodzina": "fly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Single Arm Cable Row": {
+   "rodzina": "row",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Single Arm Lat Pulldown": {
+   "rodzina": "vpull",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Single Arm Overhead Press (hantel)": {
+   "rodzina": "ohp",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Single Arm RDL (hantel/linka)": {
+   "rodzina": "rdl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Single Arm Triceps Pushdown": {
+   "rodzina": "triPush",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Single Dumbbell Front Raise": {
+   "rodzina": "raiseFront",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Single Leg Butt Kick": {
+   "rodzina": "jump",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Single Leg Calf Raise": {
+   "rodzina": "calf",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Single Leg Glute Bridge": {
+   "rodzina": "bridge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Single Leg Hip Thrust": {
+   "rodzina": "bridge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Single Leg Press": {
+   "rodzina": "legPress",
+   "sprawdzenie": "NASM single-leg-press (sitemap) — można dodać jako bezpośrednie źródło",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Single Leg Push-Off": {
+   "rodzina": "jump",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Single Leg RDL (hantel)": {
+   "rodzina": "rdl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Single Leg RDL (linki)": {
+   "rodzina": "rdl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Single-Arm Linear Jammer": {
+   "rodzina": "press",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Single-Arm Push-Up": {
+   "rodzina": "pushup",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Single-Leg High Box Squat": {
+   "rodzina": "pistol",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Single-Leg Hop Progression": {
+   "rodzina": "jump",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Single-Leg Lateral Hop": {
+   "rodzina": "jump",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Single-Leg Leg Extension": {
+   "rodzina": "legExt",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Single-Leg Stride Jump": {
+   "rodzina": "jump",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Sit Up": {
+   "rodzina": "crunch",
+   "sprawdzenie": "bez crunch.lowBack — w siadzie z leżenia plecy odrywają się; tylko 1 ✓",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Skakanka": {
+   "rodzina": "jump",
+   "sprawdzenie": "bez jump.drive — ręce kręcą skakanką, nie robią zamachu; tylko 1 ✓",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Skullcrusher (hantle)": {
+   "rodzina": "triLying",
+   "sprawdzenie": "skull.depth mówi o gryfie nad czołem — przy hantlach: hantle przy głowie; zdanie do dopisku „lub hantle” przy wdrożeniu",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Skullcrusher (sztanga)": {
+   "rodzina": "triLying",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Sled Drag (Harness)": {
+   "rodzina": "sled",
+   "sprawdzenie": "ACE: „whether pulling or pushing” — te same zasady",
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Sled Push": {
+   "rodzina": "sled",
+   "sprawdzenie": "ISSA i ACE — bezpośrednie; brak sprawdzonego ✕",
+   "plik": "wskazowki-cwiczenia-04 (korekty)"
+  },
+  "Slider Hamstring Curl": {
+   "rodzina": "bridge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Slider Reverse Lunge": {
+   "rodzina": "lunge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Smith Machine Behind the Back Shrug": {
+   "rodzina": "shrug",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Smith Machine Bench Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Smith Machine Bent Over Row": {
+   "rodzina": "rowBent",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Smith Machine Bulgarian Split Squat": {
+   "rodzina": "lunge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Smith Machine Calf Raise": {
+   "rodzina": "calf",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Smith Machine Close-Grip Bench Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Smith Machine Decline Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Smith Machine Hip Thrust": {
+   "rodzina": "bridge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Smith Machine Incline Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Smith Machine Leg Press": {
+   "rodzina": "legPress",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Smith Machine One-Arm Upright Row": {
+   "rodzina": "uprightRow",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Smith Machine Pistol Squat": {
+   "rodzina": "pistol",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Smith Machine Shoulder Press": {
+   "rodzina": "ohp",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Smith Machine Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Smith Machine Stiff-Legged Deadlift": {
+   "rodzina": "rdl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Smith Machine Upright Row": {
+   "rodzina": "uprightRow",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Snatch (hantel)": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Snatch Balance": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Snatch Deadlift": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Snatch Pull": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Snatch Shrug": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Spider Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": "bez curl.elbows — ramiona zwisają pionowo przed ławką; zakres jak na modlitewniku (analogia)",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Spider Curl (sztanga)": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Split Clean": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Split Jerk": {
+   "rodzina": "pushPress",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Split Jump": {
+   "rodzina": "jump",
+   "sprawdzenie": "NASM lunge-jump (sitemap) — możliwe źródło bezpośrednie",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Split Snatch": {
+   "rodzina": "oly",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Split Squat": {
+   "rodzina": "lunge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Split Squat (linki)": {
+   "rodzina": "lunge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Squat Jerk": {
+   "rodzina": "pushPress",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Squat with Bands": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Squat with Chains": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Squeeze Press (hantle)": {
+   "rodzina": "bench",
+   "sprawdzenie": "bez bp.elbowsMid — hantle ściśnięte, łokcie blisko",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Stability Ball Crunch": {
+   "rodzina": "crunch",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Stability Ball Hamstring Curl": {
+   "rodzina": "bridge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Stability Ball Hip Bridge": {
+   "rodzina": "bridge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Stability Ball Knee Tuck": {
+   "rodzina": "plank",
+   "sprawdzenie": "ACE #60 — jedno źródło dla reszty; 1 ✓",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Stair Climber": {
+   "rodzina": "cardioMachine",
+   "sprawdzenie": "poręcze tylko do równowagi — jak na bieżni (analogia)",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Standing Barbell Press Behind Neck": {
+   "rodzina": "ohp",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Standing Barbell Rollout": {
+   "rodzina": "rollout",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Standing Biceps Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Standing Cable Leg Curl": {
+   "rodzina": "legCurl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Standing Cable Row": {
+   "rodzina": "row",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Standing Chest Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Standing Concentration Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Standing Dumbbell Reverse Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Standing Elevated Quad Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Standing Gastrocnemius Calf Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Standing Hip Circles": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Standing Inner-Biceps Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Standing Lateral Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": "ACE #212 i NHS „Sideways bend” — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Standing Leg Curl": {
+   "rodzina": "legCurl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Standing Low-Pulley One-Arm Triceps Extension": {
+   "rodzina": "triOver",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Standing One-Arm Cable Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Standing Overhead Barbell Triceps Extension": {
+   "rodzina": "triOver",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Standing Pelvic Tilt": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Standing Rope Crunch": {
+   "rodzina": "cableCrunch",
+   "sprawdzenie": "ACE #331 Standing Crunch — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Standing Soleus And Achilles Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Standing Toe Touches": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Standing Two-Arm Overhead Throw": {
+   "rodzina": "mbThrow",
+   "sprawdzenie": "ACE #178 — bezpośrednie; 1 ✓",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Star Jump": {
+   "rodzina": "jump",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Stiff-Legged Barbell Deadlift": {
+   "rodzina": "rdl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Straight Raises on Incline Bench": {
+   "rodzina": "raiseFront",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Sumo Deadlift (kettlebell)": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Sumo Deadlift with Bands": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Sumo Deadlift with Chains": {
+   "rodzina": "hingeFloor",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Sumo Squat (hantel)": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Superman": {
+   "rodzina": "cobra",
+   "sprawdzenie": "leżenie przodem, unoszenie tułowia — bez zdań „bez wyginania”, tylko „nie na siłę”",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Supine Figure-Four Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Supine Hamstring Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Supine Spinal Twist": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Suspended Fallout": {
+   "rodzina": "rollout",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Suspended Push-Up": {
+   "rodzina": "pushup",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Suspended Reverse Crunch": {
+   "rodzina": "plank",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Suspended Split Squat": {
+   "rodzina": "lunge",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Tate Press": {
+   "rodzina": "bench",
+   "sprawdzenie": "łokcie celowo na boki — bez cgbp/elbowsMid",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "The Straddle": {
+   "rodzina": "stretch",
+   "sprawdzenie": "ACE #212 Seated Side-Straddle Stretch — pokrewne",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Thruster (hantle)": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Toe Touchers": {
+   "rodzina": "crunch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Toes to Bar": {
+   "rodzina": "hanging",
+   "sprawdzenie": "NASM wymienia jako progresję uniesień w zwisie; bez kipu",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Torso Rotation": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Treadmill Walking": {
+   "rodzina": "cardioMachine",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Triceps Dip": {
+   "rodzina": "dip",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Triceps Kickback": {
+   "rodzina": "triPush",
+   "sprawdzenie": "ramię nieruchomo przy boku, pracuje przedramię — zgodne",
+   "plik": "wskazowki-cwiczenia-01"
+  },
+  "Triceps Kickback (linki)": {
+   "rodzina": "triPush",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Tuck Crunch": {
+   "rodzina": "crunch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Tuck Jump": {
+   "rodzina": "jump",
+   "sprawdzenie": "NASM tuck-jump — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Turkish Get Up": {
+   "rodzina": "tgu",
+   "sprawdzenie": "ACE #388 i ISSA — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-08-korekty"
+  },
+  "Two-Arm Dumbbell Kickback": {
+   "rodzina": "triPush",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Underhand Lat Pulldown": {
+   "rodzina": "vpull",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Upper Back Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Upright Row (hantle)": {
+   "rodzina": "uprightRow",
+   "sprawdzenie": "ISSA opisuje wiosłowanie pionowe wprost (łokieć nad przedramieniem, do wysokości barków); ACE #26 — analogia",
+   "plik": "wskazowki-cwiczenia-04 (korekty)"
+  },
+  "Upright Row (linki)": {
+   "rodzina": "uprightRow",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04 (korekty)"
+  },
+  "Upright Row (sztanga)": {
+   "rodzina": "uprightRow",
+   "sprawdzenie": "ISSA opisuje wersję ze sztangą",
+   "plik": "wskazowki-cwiczenia-04 (korekty)"
+  },
+  "V-Bar Pulldown": {
+   "rodzina": "vpull",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "V-Up": {
+   "rodzina": "vup",
+   "sprawdzenie": "ACE #242 V-ups — bezpośrednie",
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Wall Ball": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Wall Calf Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Wall Lat Stretch": {
+   "rodzina": "stretch",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Weighted Ball Hyperextension": {
+   "rodzina": "backExt",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Weighted Ball Side Bend": {
+   "rodzina": "sideBend",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Weighted Jump Squat": {
+   "rodzina": "jump",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-05"
+  },
+  "Weighted Sit-Ups - With Bands": {
+   "rodzina": "crunch",
+   "sprawdzenie": "1 ✓",
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Wide-Grip Barbell Bench Press": {
+   "rodzina": "bench",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-03"
+  },
+  "Wide-Grip Decline Barbell Pullover": {
+   "rodzina": "pullover",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04 (korekty)"
+  },
+  "Wide-Grip Pulldown Behind The Neck": {
+   "rodzina": "vpull",
+   "sprawdzenie": "bez lpd.toChest — drążek za głowę",
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "Wide-Grip Rear Pull-Up": {
+   "rodzina": "vpull",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  },
+  "World's Greatest Stretch": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Wrist Circles": {
+   "rodzina": "mobility",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-07"
+  },
+  "Wrist Curl (hantle)": {
+   "rodzina": "wrist",
+   "sprawdzenie": "ACE #30 i ISSA opisują to ćwiczenie wprost",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Y Raise (hantle)": {
+   "rodzina": "raise",
+   "sprawdzenie": "bez lat.height — ręce idą wyżej niż barki",
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Yoke Walk": {
+   "rodzina": "carry",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-06"
+  },
+  "Zercher Squat": {
+   "rodzina": "squat",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Zottman Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-02"
+  },
+  "Zottman Preacher Curl": {
+   "rodzina": "curl",
+   "sprawdzenie": null,
+   "plik": "wskazowki-cwiczenia-04"
+  }
+ },
+ "katy": {
+  "sq.toesAngle": {
+   "tekst": "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.",
+   "twierdzenie": "Przy zwykłym rozstawie w przysiadzie palce skierowane na zewnątrz ok. 15–20°.",
+   "zrodla": [
+    {
+     "adres": "https://www.strongerbyscience.com/how-to-squat/",
+     "miejsce": "Squatting: The Setup → Foot Angle: „toes pointed out 15-20 degrees” (przy szerokim rozstawie 30–45°)"
+    },
+    {
+     "adres": "https://squatuniversity.com/2016/06/16/the-great-squat-debate-toes-forward-or-angled-out",
+     "miejsce": "„Toes Forward or Angled Out When You Squat?” (A. Horschig, PT, DPT, CSCS): „you should perform barbell squats with your feet turned out anywhere from 10-30 degrees”"
+    }
+   ],
+   "czescWspolna": "SBS: 15–20° (zwykły rozstaw); Squat University: 10–30° → część wspólna 15–20° (tekst „zwykle mniej więcej 15–20°” mieści się w obu).",
+   "sprzecznosci": "Brak sprzeczności. Różnica: Squat University podaje szerszy przedział 10–30° („anywhere”), SBS 15–20° dla zwykłego rozstawu (30–45° przy szerokim). Sprawdzone też wcześniej: ACE #135 Barbell Squat Step 1 („toes turned slightly outwards”, bez liczby); NSCA Basics 2012 s. 49 (0–30°, zapis badacza 25.10) — 28.10.2026 adres PDF przekierowuje na stronę błędu 404, nieotwarte, nie liczone.",
+   "odczyt": [
+    {
+     "adres": "https://www.strongerbyscience.com/how-to-squat/",
+     "data": "2026-10-27",
+     "kto": "06-tresci (fix M2)",
+     "wynik": "cytat „toes pointed out 15-20 degrees” sprawdzony dosłownie na surowym tekście strony"
+    },
+    {
+     "adres": "https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf",
+     "data": "2026-10-27",
+     "kto": "06-tresci (fix M2)",
+     "wynik": "nieotwarte — HTTP 403 dla narzędzi agenta; zapis badacza z 25.10.2026 (wyciąg tekstu koordynatora) niesprawdzony dziś"
+    },
+    {
+     "adres": "https://www.strongerbyscience.com/how-to-squat/",
+     "data": "2026-10-28",
+     "kto": "06-tresci (fix M2, pętla 2)",
+     "wynik": "cytat „toes pointed out 15-20 degrees” sprawdzony dosłownie na surowym tekście (curl), kontekst: „In a “normal” squat for someone near the middle of the anatomical bell curve”"
+    },
+    {
+     "adres": "https://squatuniversity.com/2016/06/16/the-great-squat-debate-toes-forward-or-angled-out",
+     "data": "2026-10-28",
+     "kto": "06-tresci (fix M2, pętla 2)",
+     "wynik": "HTTP 200; cytat „feet turned out anywhere from 10-30 degrees” sprawdzony dosłownie na surowym tekście (curl)"
+    },
+    {
+     "adres": "https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf",
+     "data": "2026-10-28",
+     "kto": "06-tresci (fix M2, pętla 2)",
+     "wynik": "nieotwarte — przekierowanie na stronę błędu (404/403); nie liczone"
+    }
+   ],
+   "status": "potwierdzone",
+   "uwaga": "Potwierdzone 28.10.2026 (M1-audytor-generalny-021, 06-tresci-003): 2 niezależne źródła szczebla 4 przeczytane, żadne przeczytane nie przeczy (zasada właściciela 25.10.2026 dla przedziałów kątów techniki). Uproszczenie: „zwykle 15–20°” = część wspólna; szerszy przedział 10–30° tylko w rejestrze. Rejestr twierdzeń: T-054."
+  }
+ }
+}

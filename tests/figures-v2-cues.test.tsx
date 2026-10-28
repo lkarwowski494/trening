@@ -20,7 +20,7 @@ describe('dane zestawów wskazówek (cue-sets.json)', () => {
     expect(Object.keys(CUE_SETS.items).sort()).toEqual([...KEYS].sort());
     const n = (b: string) => Object.values(CUE_SETS.items).filter(e => e.b === b).length;
     expect([n('own'), n('general'), n('open')]).toEqual([102, 538, 69]);
-    expect(Object.keys(CUE_SETS.items).filter(k => CUE_SETS.items[k].b === 'own').sort()).toEqual(Object.keys(CUE_DATA.exercises).sort());
+    expect(Object.keys(CUE_SETS.items).filter(k => CUE_SETS.items[k].b === 'own').sort()).toEqual([...Object.keys(CUE_DATA.exercises), ...CUE_DATA.hidden].sort()); /* hidden — karty ukryte po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
   });
   /* OTWARTE (27.10.2026, badacz): zdanie o rzucie z nóg (mb.legs) nie pasuje do slamu — zdanie zastępcze do ustalenia; do tego czasu zestaw bez zaleceń (docs/16) */
   const BEZ_ZALECEN = ['One-Arm Medicine Ball Slam'];

@@ -39,10 +39,10 @@ test('LIVE-1 blocks + untick/retick: one badge, same set in history and summary'
   expect([...stats.prMap(w).entries()]).toEqual(live);
   expect((global.__alerts as any[]).filter(x => /rekord/.test(x.title))).toEqual([]); /* 11.10.2026: karta zamiast okienka */
   expect(screen.getByText(/^↑ Objętość 1[\s\u00a0\u202f]?500 kg/)).toBeTruthy();
-  const hist = screen.UNSAFE_root.findAll((n: any) => n.type === 'Text').map((n: any) => [].concat(n.props.children).filter((x: any) => typeof x === 'string').join('')).filter((x: string) => /^PR/.test(x));
+  const hist = screen.UNSAFE_root.findAll((n: any) => n.type === 'Text').map((n: any) => [].concat(n.props.children).filter((x: any) => typeof x === 'string').join('')).filter((x: string) => /^Rekord/.test(x));
   // eslint-disable-next-line no-console
   log('history', JSON.stringify(hist));
-  expect(hist).toEqual(['PR: objętość treningu']);
+  expect(hist).toEqual(['Rekord: objętość treningu']); /* M1-audytor-generalny-030 */
 });
 
 test('LIVE-2 EN summary with e1RM and total', async () => {

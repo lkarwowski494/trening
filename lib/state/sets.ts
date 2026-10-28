@@ -4,7 +4,7 @@
  * Zależy od: ./core, ./time, ./effort; zewnętrzne: ../seed, ../catalog.generated, ../units, ../i18n.
  */
 import { t, tIn, upper, fold, LANGS } from '../i18n';
-import { wu, wOut, KG_PER_LB, fmtW } from '../units';
+import { wu, unitLabel, wOut, KG_PER_LB, fmtW } from '../units';
 import { loadModeFor, loadMult, hasReps, hasWeight, own, type Impl, type SetKind, type Workout, type WSet, type Exercise, catalogKey } from '../seed';
 import { CABLES } from '../catalog.generated';
 import { fmtSec, fmtDist } from './time';
@@ -108,12 +108,12 @@ const dispKg = (kg: number) => wu() === 'lb' ? wOut(kg) * KG_PER_LB : kg;
  * Objętość: Q-024 (blockMult) — ×2 na stacji przy ćwiczeniach na dwie linki. */
 const perSide = (impl: Impl | null | undefined) => impl === 'electric';
 /** Runda 69 (zrzuty): krótka etykieta kolumny tabeli — pełna zostaje dla VoiceOver. */
-export const loadLabelShort = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `±${wu()}`
-    : perSide(impl) ? t('{u}/str.', { u: wu() }) : (ex.loadMode === 'per_dumbbell' ? t('{u}/hant.', { u: wu() })
-    : ex.loadMode === 'unilateral' ? t('{u}/str.', { u: wu() }) : wu());
-export const loadLabel = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `±${wu()}`
-    : perSide(impl) ? t('{u}/stronę', { u: wu() }) : (ex.loadMode === 'per_dumbbell' ? t('{u}/hantel', { u: wu() })
-    : ex.loadMode === 'unilateral' ? t('{u}/strona', { u: wu() }) : wu());
+export const loadLabelShort = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `±${unitLabel()}`
+    : perSide(impl) ? t('{u}/str.', { u: unitLabel() }) : (ex.loadMode === 'per_dumbbell' ? t('{u}/hant.', { u: unitLabel() })
+    : ex.loadMode === 'unilateral' ? t('{u}/str.', { u: unitLabel() }) : unitLabel());
+export const loadLabel = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `±${unitLabel()}`
+    : perSide(impl) ? t('{u}/stronę', { u: unitLabel() }) : (ex.loadMode === 'per_dumbbell' ? t('{u}/hantel', { u: unitLabel() })
+    : ex.loadMode === 'unilateral' ? t('{u}/strona', { u: unitLabel() }) : unitLabel());
 /** Domyślna przerwa dla ćwiczenia: zapamiętana w ćwiczeniu albo globalna. */
 export const restFor = (ex: Exercise | undefined, warmup = false): number => {
   const s = getState().settings;
@@ -149,9 +149,9 @@ export function setSummary(ex: Exercise, s: WSet, load: 'shown' | 'calc' = 'show
   let core: string;
   if (m === 'time') core = fmtSec(Number(s.durationSec) || 0);
   else if (m === 'distance_time') core = `${fmtDist(Number(s.distanceM) || 0)} ${fmtSec(Number(s.durationSec) || 0)}`;
-  else if (m === 'weight_time') core = `${fmtW(l, false)}${wu()}×${fmtSec(Number(s.durationSec) || 0)}`;
+  else if (m === 'weight_time') core = `${fmtW(l, false)}${unitLabel()}×${fmtSec(Number(s.durationSec) || 0)}`;
   else if (m === 'weight_distance')
-    core = `${fmtW(l, false)}${wu()}×${fmtDist(Number(s.distanceM) || 0)}`; /* research biblioteki 09.10.2026: noszenie, sanki */
+    core = `${fmtW(l, false)}${unitLabel()}×${fmtDist(Number(s.distanceM) || 0)}`; /* research biblioteki 09.10.2026: noszenie, sanki */
   else if (m === 'reps') core = `${s.reps || 0}`;
   else { core = isBW(ex) ? `${s.reps || 0}${l ? '@' + (l > 0 ? '+' : '') + fmtW(l, false) : ''}` : `${fmtW(l, false)}×${s.reps || 0}`; }
   return core + (b ? ` (${shortBand(b)})` : '') + (s.rpe !== '' && s.rpe != null
