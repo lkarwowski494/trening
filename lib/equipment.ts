@@ -1,7 +1,7 @@
 import { CATALOG_CAPS, CATALOG_SPOTTER, CATALOG_SPOTTER_DB, type LoadSource } from './catalog.generated';
 import { achievable, noPlates, rangeValues, convertSpec, type LoadSpec, type LoadUnit } from './loads';
 import { lbl, t } from './i18n';
-import { fmtNum, isImperial } from './units';
+import { fmtNum, isImperial, unitName } from './units';
 import type { Exercise, Location, LocEquip, LoadMode, Impl } from './seed';
 
 /*
@@ -251,9 +251,9 @@ export function presetHint(p: LocationPreset, unit: LoadUnit = 'kg'): string {
   if (p === 'home' || p === 'bodyweight') return lbl(LOCATION_PRESET_HINT[p]);
   const eq = presetEquipment(p, unit); const ws = (id: string) => { const l = eq.find(e => e.item === id)?.load; return l?.kind === 'list' ? l.items.map(x => x.w) : []; };
   const db = ws('db_fixed'); const dbA = fmtNum(db[0] ?? 0), dbB = fmtNum(db[db.length - 1] ?? 0);
-  if (p === 'hotel') return t('hantle {a}–{b} {u}, ławka regulowana, mata, ściana, bieżnia, rower', { a: dbA, b: dbB, u: unit });
+  if (p === 'hotel') return t('hantle {a}–{b} {u}, ławka regulowana, mata, ściana, bieżnia, rower', { a: dbA, b: dbB, u: unitName(unit) });
   const bar = eq.find(e => e.item === 'barbell')?.load; const plates = bar?.kind === 'plates' ? bar.plates.map(x => x.w) : [];
-  return t('cały sprzęt; sztanga {bar} {u} + talerze {max}…{min} {u}; hantle {a}–{b} {u} co {step}', { bar: fmtNum(bar?.kind === 'plates' ? bar.base : 0), u: unit, max: fmtNum(Math.max(...plates)), min: fmtNum(Math.min(...plates)), a: dbA, b: dbB, step: fmtNum(db.length > 1 ? db[1] - db[0] : 0) });
+  return t('cały sprzęt; sztanga {bar} {u} + talerze {max}…{min} {u}; hantle {a}–{b} {u} co {step}', { bar: fmtNum(bar?.kind === 'plates' ? bar.base : 0), u: unitName(unit), max: fmtNum(Math.max(...plates)), min: fmtNum(Math.min(...plates)), a: dbA, b: dbB, step: fmtNum(db.length > 1 ? db[1] - db[0] : 0) });
 }
 
 /** Decyzja właściciela 05.10.2026 („1.a”): nowy sprzęt (katalog krok b i pełna baza, 04.10.2026) dopisany RAZ do zapisanych miejsc opartych na

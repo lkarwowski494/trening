@@ -27,6 +27,8 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-TRN-001: Trening z szablonu albo pusty, zapisywany na bieżąco
 - Przepływ: PR-01
 - Dowód potrzeby: J-01 (odtworzone z README.md); kod `components/ActiveWorkout.tsx`
+- Ekrany: `app/(tabs)/index.tsx`, `app/pick-template.tsx`, `app/picker.tsx`
+- Test: `tests/audit-0.10-live.test.tsx`, `.maestro/01-trening-z-szablonu.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Seria zapisuje się po odhaczeniu
     - Zakładając, że trwa trening z szablonu, a w serii wpisano ciężar i powtórzenia
@@ -36,6 +38,14 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że w serii wpisano wynik, ale nie odhaczono jej
     - Gdy użytkownik kończy trening
     - Wtedy aplikacja ostrzega, że nieodhaczone serie z wpisanymi wynikami nie zostaną zapisane
+  - Scenariusz: Kolejność ćwiczeń bez przeciągania (M1-audytor-generalny-026, 27.10.2026)
+    - Zakładając, że użytkownik jest na ekranie Kolejność (szablon albo trening w toku)
+    - Gdy stuka „⋯” przy wierszu (ćwiczenie, superset albo ćwiczenie w supersecie) i wybiera „Przesuń wyżej” albo „Przesuń niżej”
+    - Wtedy kolejność zmienia się tak samo jak po przeciągnięciu uchwytu „≡” o jedno miejsce; arkusz pokazuje tylko możliwe kierunki i „Anuluj”
+  - Scenariusz: „Pierwsze kroki” prowadzą do przycisków, które są na ekranie (M1-audytor-generalny-025, 27.10.2026)
+    - Zakładając, że nowa osoba nie ma jeszcze szablonu z ćwiczeniami ani planu
+    - Gdy patrzy na „Pierwsze kroki” na ekranie Trening
+    - Wtedy krok 1 ma przycisk „Szablony i plan”, krok 2 „Planowanie” (oba otwierają ekran planu), krok 3 wskazuje duży przycisk „Pusty trening” (z szablonem — „Start”), przyciski kroków są jednego rodzaju, a zdanie o „Miejscach i sprzęcie” ma „›”
 
 ### BR-TRN-002: Typy serii: rozgrzewka, drop set, do upadku, notatka
 - Przepływ: PR-01
@@ -49,10 +59,15 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że w ćwiczeniu jest seria typu drop set
     - Gdy liczone są rekordy e1RM
     - Wtedy seria drop set nie daje rekordu e1RM
+  - Scenariusz: Długa notatka serii zostaje cała
+    - Zakładając, że seria ma notatkę dłuższą niż 300 znaków (np. z importu CSV, do 500 znaków)
+    - Gdy użytkownik otwiera „Edytuj notatkę” i zapisuje bez zmian
+    - Wtedy notatka ma tę samą długość — import i okna notatki używają jednej stałej `SET_NOTE_MAX` (test `tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx`)
 
 ### BR-TRN-003: Pauza treningu
 - Przepływ: PR-01
 - Dowód potrzeby: J-01 (odtworzone z README.md); kod `lib/state/pause.ts`
+- Test: `tests/pause.test.tsx`, `.maestro/31-pierwszy-tydzien.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Czas pauzy nie wlicza się
     - Zakładając, że trening w toku jest wstrzymany pozycją „Pauza treningu” w menu „⋯” nagłówka (M3 p2, ZM-02)
@@ -66,6 +81,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-TRN-004: Widok „Skupiony” (jedna seria na ekranie) albo lista
 - Przepływ: PR-01
 - Dowód potrzeby: J-01 (odtworzone z README.md); kod `components/ActiveWorkout.tsx`, ustawienia
+- Test: `tests/m3-p2-board-ui.test.tsx`, `.maestro/11-widok-skupiony.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Wybór widoku w ustawieniach
     - Zakładając, że użytkownik wybrał widok „Lista” w ustawieniach
@@ -77,8 +93,8 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy tablicy „teraz” nie ma, a przerwa jest w dolnym pasku (ZM-01: tablica tylko w widoku „Skupiony”)
 
 ### BR-TRN-009: Tablica „teraz”: wpis i krok ± na tablicy, „Seria zrobiona” bez wartości
-- Przepływ: PR-01
-- Dowód potrzeby: M3 p2 ZM-01 (docs/design/to-be.md, wzorzec 29 w docs/32); kod `lib/board.ts`, `components/NowBoard.tsx`; testy `tests/m3-p2-board-logic.test.ts`, `tests/m3-p2-board-ui.test.tsx`; **krok ± dla czasu (5 s) i dystansu (50 m / 50 yd) to konwencja robocza [DO USTALENIA: badacz]**, krok ciężaru i powtórzeń jak cicha podpowiedź progresji
+- Przepływ: PR-01 · Reguła: RD-14
+- Dowód potrzeby: M3 p2 ZM-01 (docs/design/to-be.md, wzorzec 29 w docs/32); kod `lib/board.ts`, `components/NowBoard.tsx`; testy `tests/m3-p2-board-logic.test.ts`, `tests/m3-p2-board-ui.test.tsx`; **krok ± dla czasu (5 s) i dystansu (50 m / 50 yd) to konwencja robocza bez źródła [DO USTALENIA] (OP-05)**, krok ciężaru i powtórzeń jak cicha podpowiedź progresji (RD-14; D-122)
 - Kryteria akceptacji:
   - Scenariusz: Krok ± ciężaru w miejscu z opisanym sprzętem
     - Zakładając, że bieżąca seria ma ciężar 80 kg, a miejsce treningu ma opisane talerze i sztangę
@@ -114,9 +130,19 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy użytkownik stuka „Zakończ”
     - Wtedy okno pyta o zakończenie i ostrzega o seriach bez wyniku
 
+### BR-TRN-011: Od ekranu treningu do odhaczonej serii najwyżej jedno stuknięcie
+- Przepływ: PR-01
+- Dowód potrzeby: D-107 (decyzja właściciela 2026-10-23, DEC-07 K9, docs/18); test `tests/dec07-k9-stukniecia.test.tsx` (`MAX_TAPS_TO_FIRST_DONE_SET`)
+- Kryteria akceptacji:
+  - Scenariusz: Pierwsza seria z wartościami z szablonu
+    - Zakładając, że trwa trening z szablonu, a pierwsza seria ma ciężar i powtórzenia z szablonu albo z poprzedniego treningu
+    - Gdy użytkownik jest na ekranie treningu i stuka „Seria zrobiona”
+    - Wtedy pierwsza seria jest odhaczona po jednym stuknięciu (D-107)
+
 ### BR-TRN-005: Zamiana ćwiczenia w trakcie treningu
 - Przepływ: PR-01
 - Dowód potrzeby: J-01 (odtworzone z README.md); kod `app/swap.tsx`
+- Test: `tests/swap-ui.test.tsx`, `tests/swap-logic.test.ts`, `.maestro/07-zamiana.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Brak sprzętu
     - Zakładając, że w treningu jest ćwiczenie, do którego brakuje sprzętu albo maszyna jest zajęta
@@ -126,6 +152,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-TRN-006: Porzucony trening: pytanie po 2 h, ciche zakończenie po 6 h
 - Przepływ: PR-01 · Reguła: RD-03
 - Dowód potrzeby: D-008 (decyzja właściciela 2026-10-19, docs/18); kod `lib/state/finish.ts`
+- Test: `tests/audit-stale-ui.test.tsx`, `tests/audit-m1-044-brd.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Pytanie po 2 h
     - Zakładając, że trening w toku ma odhaczoną serię roboczą
@@ -143,15 +170,24 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-TRN-007: Skala wysiłku RPE albo RIR przy serii (opcjonalna)
 - Przepływ: PR-01 · Reguła: RD-02
 - Dowód potrzeby: J-01 (odtworzone z README.md); docs/research/34-rpe-wysilek.md
+- Test: `tests/effort-scale.test.tsx`, `tests/audit-m1-044-brd.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Wpis w skali RIR
     - Zakładając, że w ustawieniach wybrano skalę RIR
     - Gdy użytkownik wpisuje RIR 2
     - Wtedy w danych zapisuje się RPE 8, a ekran pokazuje RIR 2 (RD-02-W1)
-  - Scenariusz: Wpis „lekko”
+  - Scenariusz: Wpis z przedziału 4–6 RIR
     - Zakładając, że wybrano skalę RIR
     - Gdy użytkownik wpisuje RIR 6
-    - Wtedy zapisuje się RPE 4 („lekko”), a ekran pokazuje „6+” (RD-02-W3)
+    - Wtedy zapisuje się RPE 5 (RD-02-W7)
+  - Scenariusz: Wpis „lekko”
+    - Zakładając, że wybrano skalę RIR
+    - Gdy użytkownik wpisuje RIR 7
+    - Wtedy zapisuje się RPE 4 („lekko”), a ekran pokazuje „7+” (RD-02-W9, RD-02-W3)
+  - Scenariusz: Stoper serii i pole RPE na wąskim ekranie (M1-audytor-generalny-028, 27.10.2026)
+    - Zakładając, że ekran ma 320 pt i ćwiczenie na czas z dystansem, a skala wysiłku jest włączona (układ zwarty wiersza serii)
+    - Gdy użytkownik stuka przycisk stopera serii albo pole RPE
+    - Wtedy pole dotyku każdego z nich ma co najmniej 44 pt szerokości (kolumna 40 pt + margines dotyku po bokach), a wiersz nadal mieści się na ekranie
 
 ### BR-TRN-008: Usuwanie serii i ćwiczenia: gest i menu, to samo potwierdzenie
 - Przepływ: PR-01
@@ -165,6 +201,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-PRZ-001: Timer przerwy z powiadomieniem na koniec
 - Przepływ: PR-02
 - Dowód potrzeby: J-01 (odtworzone z README.md); kod `lib/timer.ts`
+- Test: `tests/audit-m1-035-notif-denied.test.tsx`, `tests/audit-final-timer.test.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Koniec przerwy przy zablokowanym ekranie
     - Zakładając, że przerwa trwa, a ekran telefonu jest zablokowany
@@ -182,6 +219,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-PRZ-002: Live Activity z odliczaniem przerwy
 - Przepływ: PR-02
 - Dowód potrzeby: J-01 (odtworzone z README.md); moduł `modules/rest-activity`
+- Test: `tests/live-activity-lang.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Odliczanie na ekranie blokady
     - Zakładając, że przerwa trwa, a Live Activity jest dostępne
@@ -191,6 +229,8 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-SZB-001: Własne szablony w folderach i archiwum
 - Przepływ: PR-01
 - Dowód potrzeby: ZP-01; J-01
+- Ekrany: `app/templates.tsx`, `app/template/[id].tsx`
+- Test: `tests/template-folders.test.tsx`, `tests/template-rows.test.tsx`, `.maestro/24-szablony-zarzadzanie.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Szablon tworzy użytkownik
     - Zakładając, że użytkownik jest na ekranie szablonów
@@ -204,6 +244,8 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-PLN-001: Plan tygodnia z kalendarzem
 - Przepływ: PR-03
 - Dowód potrzeby: J-02; kod `app/plan.tsx`
+- Ekrany: `app/(tabs)/history.tsx`
+- Test: `tests/plan-calendar.test.ts`, `tests/home-plan-header.test.tsx`, `.maestro/13-kalendarz-plan.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Szablony przypisane do dni
     - Zakładając, że użytkownik ma szablony
@@ -213,6 +255,18 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik jest w zakładce Plan
     - Gdy chce przejść do planowania
     - Wtedy przycisk „Planowanie” jest przy tytule, w tym samym miejscu co na ekranie Trening, i otwiera ekran planu
+  - Scenariusz: „Planowanie” w linii tytułu na ekranie Trening (DEC-07 K3 a, 23.10.2026; M1-audytor-generalny-024)
+    - Zakładając, że użytkownik ma plan albo treningi i jest na ekranie Trening bez treningu w toku
+    - Gdy patrzy na nagłówek ekranu
+    - Wtedy przycisk „Planowanie” (bez planu „Ustaw plan”) stoi w linii tytułu „Trening” po prawej, jak w zakładce Plan; przy wąskim ekranie i dużym tekście przechodzi pod tytuł, nic nie jest ucięte
+  - Scenariusz: Listy dni i powodów oddzielone przecinkiem (docs/32 wzorzec 28; M1-audytor-generalny-029, 27.10.2026)
+    - Zakładając, że plan albo podgląd generatora ma kilka dni treningowych, a propozycja zamiany ma kilka powodów
+    - Gdy użytkownik ogląda podsumowanie planu, nagłówek podglądu albo podpis propozycji
+    - Wtedy elementy listy o zmiennej długości są oddzielone przecinkiem (np. „pon. FBW A, śr. FBW B”); „·” zostaje tylko między polami metadanych w stałej kolejności (wykaz z powodami: `tests/kropka-srodkowa.json`)
+  - Scenariusz: Pasek tygodnia na wąskim ekranie przy dużym tekście (M1-audytor-generalny-027, 27.10.2026)
+    - Zakładając, że ekran ma 320 pt (iPhone SE albo „Powiększenie ekranu”), a tekst jest powiększony do limitu skali liczb (stała w `lib/theme.ts`)
+    - Gdy użytkownik patrzy na pasek tygodnia na ekranie Trening
+    - Wtedy każdy skrót dnia stoi w jednej linii w swojej kolumnie (może się zmniejszyć); gdy najdłuższy skrót nie zmieściłby się nawet po zmniejszeniu, pasek pokazuje skróty jednoliterowe (data pod spodem, pełna nazwa dnia w etykiecie VoiceOver bez zmian)
   - Scenariusz: Postęp tygodnia po zmianie planu w trakcie tygodnia (decyzja właściciela 22.10.2026, wariant A; `lib/plan.planChangedInWeek`, `components/WeekStacks`)
     - Zakładając, że użytkownik zmienił plan tygodnia w środku bieżącego tygodnia (nie w poniedziałek), a poprzedni plan miał treningi
     - Gdy ogląda pasek postępu planu tygodnia na ekranie Trening
@@ -221,6 +275,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-PLN-002: Kilka planów z wyborem aktywnego
 - Przepływ: PR-03
 - Dowód potrzeby: J-02; D-004 (funkcja zostaje w aplikacji); docs/18
+- Test: `tests/plans-multi.test.ts`, `tests/plans-multi-ui.test.tsx`, `.maestro/26-plan-zarzadzanie.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Wybór aktywnego planu
     - Zakładając, że użytkownik ma więcej niż jeden plan
@@ -228,8 +283,9 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy kalendarz i ekran Trening korzystają z planu aktywnego
 
 ### BR-PLN-003: Deload: oznaczenie tygodnia i propozycja mniejszej liczby serii
-- Przepływ: PR-03
+- Przepływ: PR-03 · Reguła: RD-10
 - Dowód potrzeby: J-02; docs/research/22-serie-deload-generator.md
+- Test: `tests/deload-plan.test.ts`, `tests/deload-ui.test.tsx`, `tests/audit-m1-044-brd.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Oznaczenie tygodnia
     - Zakładając, że użytkownik ma plan
@@ -241,8 +297,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy aplikacja podpowiada „Zaplanuj deload od …”, nie zmieniając szablonów bez zatwierdzenia
 
 ### BR-GEN-001: Generator szablonu i planu tygodnia na polecenie użytkownika
-- Przepływ: PR-04
+- Przepływ: PR-04 · Reguła: RD-07, RD-08, RD-09, RD-13
 - Dowód potrzeby: ZP-01; D-004; docs/24-generator-i-plany.md
+- Ekrany: `app/generator.tsx`
+- Test: `tests/generator.test.ts`, `tests/generator-ui.test.tsx`, `tests/m1-dec03-przelacznik.test.tsx`, `tests/audit-m1-044-brd.test.ts`, `.maestro/14-generator.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Podgląd przed zapisem
     - Zakładając, że użytkownik wybrał cel, miejsce, liczbę dni i długość sesji
@@ -268,6 +326,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-GEN-002: Plan tygodnia z moich szablonów
 - Przepływ: PR-04
 - Dowód potrzeby: ZP-01; docs/24-generator-i-plany.md
+- Test: `tests/b2-plan-own-templates.test.tsx`, `tests/plan-own-templates.test.ts`, `.maestro/18-plan-z-moich-szablonow.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Szablony bez zmian
     - Zakładając, że użytkownik ma własne szablony
@@ -281,6 +340,8 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-MJS-001: Miejsca i sprzęt: ćwiczenia dobierane do tego, czym użytkownik dysponuje
 - Przepływ: PR-09
 - Dowód potrzeby: J-05; docs/10-miejsca-i-sprzet.md
+- Ekrany: `app/more/locations.tsx`, `app/more/location/[id].tsx`, `app/place-once.tsx`
+- Test: `tests/locations-ui.test.tsx`, `.maestro/06-miejsca.yaml`, `.maestro/23-miejsce-jednorazowe.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Sprzęt w miejscu
     - Zakładając, że użytkownik zdefiniował miejsce ze sprzętem
@@ -290,6 +351,8 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-MJS-002: Dostosuj do miejsca: propozycje do przejrzenia
 - Przepływ: PR-09
 - Dowód potrzeby: J-05; D-004; docs/33-dostosowanie-do-miejsca-spec.md
+- Ekrany: `app/adapt.tsx`
+- Test: `tests/adapt-ui.test.tsx`, `tests/adapt-scenario.test.tsx`, `.maestro/22-dostosuj-do-miejsca.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Propozycje bez automatycznej zamiany
     - Zakładając, że użytkownik zmienia miejsce na takie, w którym brakuje sprzętu do części ćwiczeń
@@ -299,6 +362,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-PST-001: Podsumowanie tygodnia i miesiąca: mapa mięśni i serie na partię
 - Przepływ: PR-05 · Reguła: RD-04
 - Dowód potrzeby: J-03; README.md
+- Test: `tests/period-summary.test.tsx`, `tests/muscle-map.test.tsx`, `tests/audit-m1-044-brd.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Serie na partię
     - Zakładając, że w tygodniu wykonano trzy serie robocze wyciskania sztangą leżąc
@@ -306,8 +370,9 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy partia główna ma 3 serie, a partie pomocnicze po 1,5 (RD-04-W1)
 
 ### BR-PST-002: Rekordy i szacowany maksymalny ciężar (e1RM)
-- Przepływ: PR-05 · Reguła: RD-01
+- Przepływ: PR-05 · Reguła: RD-01, RD-12
 - Dowód potrzeby: J-03; README.md
+- Test: `tests/audit-records-logic.test.ts`, `tests/audit-m1-044-brd.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: e1RM z serii roboczej
     - Zakładając, że ćwiczenie ma serię 100 kg × 5 powtórzeń
@@ -321,6 +386,8 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-PST-003: Porównanie bieżącego okresu z poprzednim (Progresja)
 - Przepływ: PR-05
 - Dowód potrzeby: J-03; README.md; docs/32 wzorzec 25
+- Ekrany: `app/progression.tsx`
+- Test: `tests/progression-ui.test.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Dwa okresy
     - Zakładając, że w obu okresach są zapisane treningi
@@ -330,6 +397,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-PST-005: Postępy: wykres i rekordy wybranego ćwiczenia na górze, wybór pod nimi
 - Przepływ: PR-05
 - Dowód potrzeby: J-03; decyzje właściciela 2026-10-21 (ZM-06, M1-026 = DEC-09, docs/design/to-be.md); testy `tests/m3-p3-postepy-historia.test.tsx`
+- Ekrany: `app/(tabs)/progress.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Wykres i rekordy na górze
     - Zakładając, że użytkownik ma zakończone treningi i nie wybrał ćwiczenia
@@ -347,6 +415,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-HIS-001: Usuwanie sesji z historii: gest na liście i przycisk w szczegółach, to samo potwierdzenie
 - Przepływ: PR-05
 - Dowód potrzeby: decyzja właściciela 2026-10-21 (ZM-04, W2, docs/32 wzorzec 5); testy `tests/swipe-delete.test.tsx`, `tests/m3-p3-postepy-historia.test.tsx`
+- Ekrany: `app/history/[id].tsx`
 - Kryteria akceptacji:
   - Scenariusz: „Usuń sesję” na dole szczegółów
     - Zakładając, że użytkownik otworzył zapisaną sesję
@@ -358,8 +427,9 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy w odpowiedniej komórce widzi „—”, a nie „0” (04-studio-projektowe-010); eksport CSV bez zmian
 
 ### BR-PST-004: Cel serii na partię w tygodniu: automatyczny albo ręczny
-- Przepływ: PR-05
+- Przepływ: PR-05 · Reguła: RD-11
 - Dowód potrzeby: J-03; docs/research/32-serie-na-partie.md
+- Test: `tests/set-goals.test.ts`, `tests/set-goals-ui.test.tsx`, `tests/audit-m1-044-brd.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Cel ręczny
     - Zakładając, że użytkownik ustawił cel ręcznie dla partii
@@ -369,11 +439,28 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-BIB-001: Biblioteka ćwiczeń z krótkimi wskazówkami techniki
 - Przepływ: PR-01
 - Dowód potrzeby: J-01; docs/research/27-wskazowki-zrodla.md (generowany)
+- Ekrany: `app/exercises.tsx`, `app/exercise/[id].tsx`
 - Kryteria akceptacji:
   - Scenariusz: Wskazówki w języku aplikacji
     - Zakładając, że ćwiczenie ma wskazówki techniki
     - Gdy użytkownik otwiera ćwiczenie
     - Wtedy sekcje „Ustawienie”, „Ruch”, „Wskazówki” i „Częste błędy” są po polsku lub w języku aplikacji; nazwa ćwiczenia z biblioteki zostaje po angielsku (decyzja 2026-10-19)
+  - Scenariusz: Sekcja „Technika” w karcie ćwiczenia jest domyślnie rozwinięta (decyzja właściciela 2026-10-27, wariant B; wyjątek od zamrożenia zakresu 1.0)
+    - Zakładając, że ćwiczenie ma wskazówki techniki
+    - Gdy użytkownik otwiera kartę ćwiczenia z biblioteki, z historii albo z Postępów (wejście poza treningiem na żywo)
+    - Wtedy sekcja „Technika” (wskazówki i rysunek ruchu) jest od razu rozwinięta, a przycisk „Technika” zwija ją i rozwija (stan rozwinięcia czytany przez VoiceOver, etykieta bez zmian); w podglądzie otwieranym w kontekście treningu na żywo sekcja zostaje zwinięta, a „Technika ›” rozwija ją
+  - Scenariusz: Rysunek ruchu tylko po recenzji (bramka 4, CLAUDE.md 27.10.2026; decyzja DEC-01 b, 2026-10-27; zapis `docs/research/figury-recenzja.json`, test `tests/figury-recenzja.test.tsx`)
+    - Zakładając, że rysunek ćwiczenia nie ma zapisu niezależnej recenzji ruchu i treści karty albo zmienił się po recenzji (inny skrót danych), albo recenzja go ukryła (np. Push Press, Pendlay Row)
+    - Gdy użytkownik otwiera sekcję „Technika” tego ćwiczenia
+    - Wtedy widzi wskazówki, asekurację i stopkę medyczną bez rysunku; rysunek z aktualną recenzją wyświetla się jak dotąd
+  - Scenariusz: Wskazówki techniki tylko po recenzji treści karty (bramka 4; decyzja DEC-10 a, 2026-10-28; zadanie M1-audytor-generalny-038; zapis `docs/research/figury-recenzja.json`, sekcje „karty” i „zestawy”; test `tests/karty-recenzja.test.tsx`)
+    - Zakładając, że karta ćwiczenia ze wskazówkami (własnymi albo ogólnymi wzorca ruchu przy rysunku v2) nie ma zapisu niezależnej recenzji treści z werdyktem „wyświetlana”, zmieniła się po recenzji (inny skrót wskazówek, tekstów polskich albo przypisania zestawu) albo recenzja oznaczyła ją „do poprawy” (np. Hack Squat, Pistol Squat)
+    - Gdy użytkownik otwiera to ćwiczenie
+    - Wtedy nie widzi wskazówek tej karty ani jej rysunku v1 (zestaw ogólny — także bez dopisku „Ogólne wskazówki dla tego ruchu”); karty z aktualną recenzją wyświetlają się jak dotąd
+  - Scenariusz: Rysunek ruchu z krokiem nie opada bez podparcia (recenzja niezależna 28.10.2026; decyzja właściciela 28.10.2026 „poprawić przed 1.0”; test `tests/figury-podparcie.test.ts`)
+    - Zakładając, że ćwiczenie ma rysunek z krokiem (wykroki, Step Up) albo pompki (w tym z podwyższeniem)
+    - Gdy rysunek odtwarza ruch (każda poza pośrednia co 0,05 przejścia)
+    - Wtedy rzut biodra leży nad podstawą podparcia z tolerancją 10 j., biodro nie opada o więcej niż 7 j., gdy stopa krokowa jest w powietrzu, a w pompkach bark w dolnej pozycji jest nie dalej niż 10 j. od dłoni i ciało nie wchodzi w podłoże ani blat; Reverse Lunge łamie regułę, więc jest ukryty w 1.0 (naprawa w 1.0.1 przez czwartą pozycję silnika)
   - Scenariusz: Usunięcie własnego ćwiczenia z podglądu (ZM-04, W2 a, 21.10.2026)
     - Zakładając, że użytkownik ogląda podgląd ćwiczenia własnego
     - Gdy stuka „Usuń z biblioteki” na dole ekranu
@@ -402,7 +489,8 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07
-- Dowód potrzeby: OG-01; docs/28-healthkit-etap0.md; `site/privacy.html`
+- Dowód potrzeby: OG-01, OG-09; docs/28-healthkit-etap0.md; `site/privacy.html`
+- Test: `tests/health-scenario.test.tsx`, `tests/healthkit-contract.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Zapis po zgodzie
     - Zakładając, że użytkownik włączył zapis i udzielił zgody systemowej
@@ -415,7 +503,8 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-ZDR-002: Opcjonalny odczyt z Apple Health: kroki, treningi, tętno, aktywna energia
 - Przepływ: PR-07
-- Dowód potrzeby: OG-01; D-004; docs/29-zdrowie-odczyt-spec.md; `site/privacy.html`
+- Dowód potrzeby: OG-01, OG-08; D-004; docs/29-zdrowie-odczyt-spec.md; `site/privacy.html`
+- Test: `tests/health-read.test.ts`, `tests/health-read-ui.test.tsx`, `.maestro/20-zdrowie-odczyt.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Odczyt po zgodzie
     - Zakładając, że użytkownik włączył odczyt i udzielił zgody
@@ -428,7 +517,8 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-ZEG-001: Aplikacja na Apple Watch: odhaczanie serii, przerwa, „Cofnij”
 - Przepływ: PR-07
-- Dowód potrzeby: J-01; docs/35-zegarek-apple.md
+- Dowód potrzeby: J-01; docs/35-zegarek-apple.md; D-123 (okno „Cofnij” 5 s, decyzja właściciela 2026-10-14; `WATCH.UNDO_SEC` w `lib/watch/protocol.ts`)
+- Test: `tests/watch-apply.test.ts`, `tests/audit-m1b-028-watch-ack.test.ts`, `tests/watch-protocol.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Seria z zegarka
     - Zakładając, że na telefonie trwa trening, a zegarek jest połączony
@@ -436,7 +526,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy seria jest odhaczona w treningu, a zegarek pokazuje odliczanie przerwy
   - Scenariusz: Cofnięcie
     - Zakładając, że seria została odhaczona z zegarka
-    - Gdy mija mniej niż 5 sekund i użytkownik stuka „Cofnij”
+    - Gdy mija mniej niż 5 sekund (D-123) i użytkownik stuka „Cofnij”
     - Wtedy odhaczenie jest cofnięte
   - Scenariusz: Potwierdzenie dopiero po zapisie (M1-audytor-generalny-028, 23.10.2026)
     - Zakładając, że telefon jest zablokowany, a zegarek wysyła zdarzenie (zrobione inaczej, pominięcie ćwiczenia, start sesji)
@@ -446,6 +536,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-ZEG-002: Zegarek: w trakcie pomiaru serii na czas przycisk główny to „Zakończ serię”
 - Przepływ: PR-07
 - Dowód potrzeby: ZM-05; docs/32-wzorce-interakcji.md (wzorzec 24); docs/design/design-spec.md §10 wiersz 38
+- Test: `tests/watch-snapshot.test.ts`, `tests/watch-apple-i18n.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Pomiar trwa
     - Zakładając, że telefon mierzy stoperem serię na czas, a zegarek jest połączony
@@ -472,6 +563,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-GLS-001: Zapowiedzi głosowe na początku przerwy, domyślnie wyłączone
 - Przepływ: PR-02
 - Dowód potrzeby: ZP-07; D-005; docs/36-glos.md
+- Test: `tests/audit-m1-027-voice-default.test.ts`, `.maestro/51-glos-ustawienia.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Domyślnie cisza
     - Zakładając, że nowa instalacja nie zmieniała ustawienia zapowiedzi
@@ -485,6 +577,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-UST-001: Dźwięk na koniec przerwy i wibracje to dwa osobne przełączniki
 - Przepływ: PR-08
 - Dowód potrzeby: ZM-07 (docs/design/to-be.md); decyzja właściciela 21.10.2026 (docs/18); kod `app/more/settings.tsx`, `lib/haptics.ts`, `components/ActiveWorkout.tsx` (onDone)
+- Test: `tests/m3-p5d-settings-ui.test.tsx`, `tests/m3-p5d-haptics.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Dwa przełączniki w Ustawieniach
     - Zakładając, że użytkownik otwiera Ustawienia
@@ -510,6 +603,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-DAN-001: Dane tylko w telefonie, bez konta
 - Przepływ: PR-06
 - Dowód potrzeby: ZP-05; NFR-PRV-001
+- Test: `tests/public-repo.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Brak konta
     - Zakładając, że użytkownik instaluje aplikację po raz pierwszy
@@ -519,6 +613,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-DAN-002: Kopia zapasowa, eksport i import danych
 - Przepływ: PR-06
 - Dowód potrzeby: J-04; README.md; docs/12-edycja-treningow.md
+- Ekrany: `app/more/backup.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Kopia i odtworzenie
     - Zakładając, że użytkownik ma historię treningów
@@ -532,6 +627,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że zapis importowanych danych do bazy się nie udaje
     - Gdy import się kończy
     - Wtedy aplikacja nie pokazuje komunikatu o sukcesie
+  - Scenariusz: Baza nie otwiera się przy starcie
+    - Zakładając, że aplikacja pokazuje ekran błędu startu, bo baza danych się nie otwiera
+    - Gdy użytkownik czyta ekran i stuka „Wyślij dane”
+    - Wtedy widzi ostrzeżenie, żeby nie usuwać aplikacji (dane i kopie zniknęłyby razem z nią), a komplet plików bazy (z dziennikiem) trafia do Pliki → aplikacja → Backup → Rescue-… z podaniem tego miejsca; oryginał nie jest zmieniany (decyzja właściciela 27.10.2026; test `tests/audit-m1-2026-10-27-004-ratunek.test.tsx`)
 
 ### BR-DAN-003: Aktualizacja aplikacji zachowuje dane
 - Przepływ: PR-06
@@ -541,6 +640,14 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że zapis pochodzi z poprzedniej wersji aplikacji
     - Gdy użytkownik uruchamia nową wersję
     - Wtedy dane są przeniesione do nowego schematu, a kopia zapisu sprzed migracji istnieje
+  - Scenariusz: Błąd kodu migracji na czytelnych danych
+    - Zakładając, że po aktualizacji migracja danych rzuca wyjątek na poprawnym zapisie (błąd w kodzie wersji)
+    - Gdy aplikacja startuje
+    - Wtedy pokazuje ekran błędu startu („Wyślij dane”, „Spróbuj ponownie”, „Napisz do nas”), niczego nie zapisuje ani nie odkłada, a dane w telefonie zostają bajt w bajt do poprawionej wersji; zapis nieczytelny albo o złym kształcie — jak dotąd odłożony z komunikatem (test `tests/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx`)
+  - Scenariusz: Nieudany zapis poza zakładką Trening
+    - Zakładając, że telefon nie ma miejsca i zapis danych się nie udaje
+    - Gdy użytkownik zapisuje zmianę na dowolnym ekranie (np. edycja sesji z historii, ustawienia)
+    - Wtedy od razu widzi okno „Nie udało się zapisać danych” z „Spróbuj ponownie” (jedno na epizod błędu), a zmiana czeka w pamięci na ponowienie (test `tests/audit-m1-2026-10-27-015-blad-zapisu.test.tsx`)
 
 ### BR-DAN-005: „Co nowego” po aktualizacji; w pierwszej wersji sklepowej historia pusta
 - Przepływ: PR-06
@@ -579,6 +686,8 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### BR-JEZ-001: Interfejs w wielu językach
 - Przepływ: PR-08
 - Dowód potrzeby: J-04; docs/16-jezyki-i-marka.md; NFR-JEZ-001
+- Ekrany: `app/more/language.tsx`
+- Test: `tests/i18n-locales.test.ts`, `tests/audit-m1-064-language-ios.test.tsx`, `.maestro/09-jezyk-wyglad.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Język jak w telefonie
     - Zakładając, że użytkownik nie zmieniał języka
@@ -597,49 +706,48 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że wybrano wygląd systemowy
     - Gdy telefon przełącza się na tryb ciemny
     - Wtedy aplikacja przełącza się na ciemny wygląd
+  - Scenariusz: Nowa instalacja startuje w ciemnym wyglądzie (D-120)
+    - Zakładając, że aplikację zainstalowano po raz pierwszy
+    - Gdy uruchamia się pierwszy raz
+    - Wtedy wygląd jest ciemny, a zapisane ustawienie osoby, która już korzysta z aplikacji, zostaje bez zmian (test `tests/domyslny-motyw.test.ts`)
 
-### BR-JEZ-003: Jednostka ciężaru kg albo lb
+### BR-JEZ-003: System miar metryczny albo imperialny
 - Przepływ: PR-08
-- Dowód potrzeby: J-01; OP-02
+- Dowód potrzeby: J-01; D-110 (decyzje właściciela 2026-10-20, docs/18); kod `lib/units.ts`; decyzja właściciela 10a (2026-10-28, symbol masy lokalny w pismach cyrylicy i greki); testy `tests/audit-m1-lok07-01-imperial-dist.test.tsx`, `tests/m1-040-podpis-dystans.test.ts` (podpis przerwy, M1-040), `tests/m1-041-el-jednostka.test.ts` (el: krok ± VoiceOver z odmianą, nagłówek kolumny A11-19, M1-041), `tests/audit-m1-lok07-02-default-system.test.ts`, `tests/units-label.test.ts`
 - Kryteria akceptacji:
-  - Scenariusz: Zmiana jednostki
-    - Zakładając, że użytkownik ma zapisane treningi w kg
-    - Gdy zmienia jednostkę na lb
-    - Wtedy wartości pokazują się w lb, a zapis w danych zostaje w kg
+  - Scenariusz: Zmiana systemu miar
+    - Zakładając, że użytkownik ma zapisane treningi w kg i dystans w metrach
+    - Gdy zmienia system miar na imperialny
+    - Wtedy ciężar pokazuje się w lb, dystans w mi albo yd, a zapis w danych zostaje w kg i metrach (bez migracji)
+  - Scenariusz: Domyślny system nowej instalacji
+    - Zakładając, że aplikację zainstalowano po raz pierwszy w telefonie z regionem, który używa miar imperialnych
+    - Gdy aplikacja startuje
+    - Wtedy system miar jest imperialny; brak danych o regionie daje metryczny, a istniejący użytkownik zostaje przy swoim ustawieniu
+  - Scenariusz: Symbol jednostki w piśmie lokalnym
+    - Zakładając, że język aplikacji to rosyjski, ukraiński, bułgarski, serbski albo grecki
+    - Gdy ekran pokazuje ciężar albo dystans (liczby, pola, nagłówki)
+    - Wtedy jednostka ma symbol lokalny (np. „кг”, „м”, w greckim „κιλά”), a CSV, kopia zapasowa i zapis w danych zostają w „kg”/„lb” i metrach
 
-### BR-JEZ-004: Teksty zwykłym językiem, bez przypisów do źródeł
+### BR-JEZ-004: Teksty zwykłym językiem, bez przypisów i bez oznaczeń pewności
 - Przepływ: PR-08
-- Dowód potrzeby: ZP-09; decyzja właściciela 2026-10-23 (docs/18); `tests/zrodla-wiedzy.test.ts`
+- Dowód potrzeby: ZP-09; D-108, D-109 (decyzje właściciela 2026-10-23 i 2026-10-25, docs/18); `tests/zrodla-wiedzy.test.ts`; `scripts/claims.mjs` (`markerErrors`)
 - Kryteria akceptacji:
   - Scenariusz: Reguła z liczbami bez cytatu
     - Zakładając, że użytkownik otwiera objaśnienie reguły (generator, plan, Postępy, Ustawienia)
     - Gdy objaśnienie się wyświetla
-    - Wtedy tekst jest napisany zwykłym językiem i nie zawiera nazw źródeł, autorów, organizacji, norm ani lat publikacji
-  - Scenariusz: Uproszczenie nazwane wprost
-    - Zakładając, że reguła jest uproszczeniem albo wyborem aplikacji, a nie wynikiem badań
+    - Wtedy tekst jest napisany zwykłym językiem i nie zawiera nazw źródeł, autorów, organizacji, norm, lat publikacji ani odwołań ogólnych typu „na podstawie badań”
+  - Scenariusz: Bez oznaczeń pewności w interfejsie (D-109; zastępuje dawny scenariusz „Uproszczenie nazwane wprost”, ER-03)
+    - Zakładając, że reguła jest uproszczeniem albo wyborem aplikacji
     - Gdy użytkownik czyta jej objaśnienie
-    - Wtedy tekst mówi o tym zwykłymi słowami („uproszczenie”, „nasz wybór”)
+    - Wtedy tekst nie zawiera oznaczeń „uproszczenie”, „nasz wybór”, „jedno źródło”, „konwencja”; waga twierdzenia jest zapisana tylko w rejestrze twierdzeń (`docs/research/rejestr-twierdzen.json`, pole `rodzaje`)
 
 ### BR-ZRO-001: Ekran „Źródła wiedzy” w Ustawieniach
-- Przepływ: PR-08
-- Dowód potrzeby: ZP-02, ZP-09; `app/more/sources.tsx`, `lib/sources.ts`; scenariusz Maestro 55
-- Kryteria akceptacji:
-  - Scenariusz: Wejście z Ustawień
-    - Zakładając, że użytkownik jest w Ustawieniach
-    - Gdy stuka „Źródła wiedzy”
-    - Wtedy otwiera się ekran z listą źródeł pogrupowaną tematami (plan, ruch dla zdrowia, wysiłek, szacowany maksymalny ciężar, lżejszy tydzień, asekuracja), z cytatem i zdaniem, do czego źródło służy, oraz sekcjami o technice ćwiczeń, partiach mięśniowych i uproszczeniach
-  - Scenariusz: Bez sieci
-    - Zakładając, że telefon nie ma połączenia z internetem
-    - Gdy użytkownik otwiera ekran
-    - Wtedy lista jest w pełni widoczna (same teksty, bez adresów i bez przejścia do przeglądarki)
-  - Scenariusz: Powrót
-    - Zakładając, że ekran jest otwarty
-    - Gdy użytkownik stuka strzałkę powrotu w nagłówku
-    - Wtedy wraca do Ustawień
+- Status: wycofane 2026-10-25 (D-108): ekran usunięty z aplikacji razem z wpisem w Ustawieniach i scenariuszem E2E; publicznie bez źródeł, źródła tylko w wewnętrznym rejestrze (ZP-09). Wpis zostaje jako ślad decyzji (ER-02); ID nie wraca.
 
 ### BR-ZAK-001: Model dostępu zgodny z modelem stałym (M5 S1)
-- Przepływ: PR-08
+- Przepływ: PR-08 · Reguła: RD-05
 - Dowód potrzeby: ZP-06; docs/monetyzacja.md; decyzja właściciela 22.10.2026 (docs/18)
+- Test: `tests/m5s1-bez-proby.test.ts`, `tests/access.test.ts`, `tests/audit-m1-044-brd.test.ts`, `.maestro/21-subskrypcja.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Zakupy włączone
     - Zakładając, że build ma `PAYWALL.ENABLED` = true
@@ -655,17 +763,17 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Wtedy nie ma oferty wprowadzającej ani okresu próbnego, a cena za okres jest najwyraźniejszym elementem planu
 
 ### BR-ZAK-002: Dzień treningowy jako jednostka limitu
-- Przepływ: PR-08
-- Dowód potrzeby: ZP-06; docs/monetyzacja-badanie-2026-10.md rozdz. 11
+- Przepływ: PR-08 · Reguła: RD-05, RD-06
+- Dowód potrzeby: ZP-06; D-101, D-102 (decyzje właściciela 2026-10-22 i 2026-10-23, docs/18); docs/monetyzacja-badanie-2026-10.md rozdz. 11
 - Kryteria akceptacji:
   - Scenariusz: Kilka treningów jednego dnia
     - Zakładając, że użytkownik ukończył dwa treningi na żywo tego samego dnia
     - Gdy sprawdza licznik
     - Wtedy zużył jeden dzień, a kolejny trening tego dnia może zacząć nawet przy wyczerpanym limicie
   - Scenariusz: Co się liczy
-    - Zakładając, że użytkownik ma trening wstecz (także z dzisiejszą datą), anulowany, trwający i trening na żywo krótszy niż 7 minut
+    - Zakładając, że użytkownik ma trening wstecz (także z dzisiejszą datą), anulowany, trwający i trening na żywo krótszy niż 7 minut (D-102)
     - Gdy sprawdza licznik
-    - Wtedy żaden z nich nie zużywa dnia i żaden nie jest blokowany; liczy się trening na żywo dłuższy niż 7 minut (bez pauz), zakończony „Zakończ” albo zapisany po 6 godzinach bez aktywności
+    - Wtedy żaden z nich nie zużywa dnia i żaden nie jest blokowany; liczy się trening na żywo dłuższy niż 7 minut (bez pauz; D-102, RD-06), zakończony „Zakończ” albo zapisany po 6 godzinach bez aktywności
   - Scenariusz: Usunięcie treningu
     - Zakładając, że użytkownik zużył dzień treningiem na żywo
     - Gdy usuwa ten trening z historii
@@ -678,10 +786,15 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik jest na darmowym poziomie
     - Gdy otwiera ekran startu treningu
     - Wtedy widzi, ile darmowych dni treningowych zostało w tym miesiącu
+  - Scenariusz: Dni z okresu Pro po wygaśnięciu
+    - Zakładając, że użytkownik trenował w Pro, a subskrypcja wygasła, została zwrócona albo cofnięta (sklep nie zwraca już transakcji)
+    - Gdy zaczyna trening w tym samym miesiącu
+    - Wtedy liczą się tylko dni od chwili, w której aplikacja zobaczyła koniec dostępu (decyzja P3 B, docs/18; test `tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts`); po ponownej instalacji aplikacji ta chwila nie jest znana i liczą się wszystkie dni miesiąca
 
 ### BR-ZAK-003: Ekran zakupu bez presji
 - Przepływ: PR-08
-- Dowód potrzeby: ZP-06; docs/monetyzacja-badanie-2026-10.md rozdz. 11; rejestr twierdzeń T-042, T-043
+- Dowód potrzeby: ZP-06; OG-05, OG-06; docs/monetyzacja-badanie-2026-10.md rozdz. 11; rejestr twierdzeń T-042, T-043
+- Ekrany: `app/paywall.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Start ponad limit
     - Zakładając, że użytkownik zaczyna trening po wykorzystaniu darmowych dni
@@ -695,10 +808,39 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik kończy pierwszy trening
     - Gdy ekran podsumowania się wyświetla
     - Wtedy ekran zakupu nie otwiera się sam
+  - Scenariusz: Kolejność planów i plan domyślny
+    - Zakładając, że użytkownik bez dostępu otwiera ekran zakupu
+    - Gdy ogląda plany
+    - Wtedy plany są w kolejności roczny, miesięczny, dożywotni, a zaznaczony jest roczny (decyzja właściciela 27.10.2026, docs/18; test `tests/paywall-kolejnosc-domyslna.test.ts`)
+  - Scenariusz: Posiadany plan subskrypcji
+    - Zakładając, że użytkownik ma aktywną subskrypcję (miesięczną albo roczną; kupioną sam, z kodu albo z Chmury rodzinnej)
+    - Gdy otwiera ekran zakupu
+    - Wtedy zamiast oferty widzi stan swojego planu: nagłówek karty „Masz plan: {rodzaj planu}” (rodzaj planu: miesięczny, roczny albo dożywotni — 1A, właściciel 28.10.2026) i datę, bez wstępu o darmowych dniach, bez listy planów i bez przycisku „Subskrybuj”; lista planów jest zwinięta pod przyciskiem „Zmień plan” (decyzja właściciela DEC-09 a, 27.10.2026; test `tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx`)
+  - Scenariusz: Zarządzanie subskrypcją z VoiceOver
+    - Zakładając, że użytkownik z włączonym VoiceOver ma aktywną subskrypcję (także obok planu dożywotniego)
+    - Gdy przechodzi po karcie stanu planu na ekranie zakupu
+    - Wtedy nagłówek karty, dopiski i przycisk „Zarządzaj subskrypcją” są osobnymi elementami, a przycisk otwiera systemowy arkusz subskrypcji (DEC-11 a, właściciel 28.10.2026; M1-audytor-generalny-039; test `tests/voiceover-grupa-przycisk.test.tsx`, scenariusz `.maestro/21-subskrypcja.yaml`)
+  - Scenariusz: Zmiana planu
+    - Zakładając, że użytkownik ma aktywną subskrypcję i stuka „Zmień plan”
+    - Gdy lista planów się rozwija
+    - Wtedy posiadany plan jest oznaczony „Aktualny plan” i nie da się go wybrać ani kupić drugi raz, inny plan subskrypcji kupuje przyciskiem „Przejdź na ten plan” z informacją o automatycznym odnawianiu, dożywotni przyciskiem „Kup na zawsze”; drugie stuknięcie „Zmień plan” i udana zmiana planu zwijają listę
+  - Scenariusz: Plan dożywotni
+    - Zakładając, że użytkownik ma plan dożywotni (bez aktywnej subskrypcji)
+    - Gdy otwiera ekran zakupu
+    - Wtedy nagłówek karty to „Masz plan: {rodzaj planu}” z dopiskiem „Masz dostęp na zawsze”, bez listy planów i bez „Zmień plan”
+  - Scenariusz: Wiersz w Ustawieniach
+    - Zakładając, że zakupy są włączone, a użytkownik otwiera Więcej → Ustawienia → sekcja „Subskrypcja”
+    - Gdy ogląda wiersz prowadzący na ekran zakupu
+    - Wtedy bez planu tytuł wiersza to wezwanie do działania „Zobacz plany Pro” (ta sama etykieta co pozostałe wejścia na ekran zakupu) z licznikiem darmowych dni w podtytule, a z planem tytuł nazywa plan „Masz plan: {rodzaj planu}” z datą albo „Masz dostęp na zawsze” w podtytule (DEC-07 b, właściciel 27.10.2026; M1-audytor-generalny-037; test `tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx`)
+  - Scenariusz: Dożywotni przy aktywnej subskrypcji
+    - Zakładając, że użytkownik ma aktywną subskrypcję kupioną sam albo z kodu promocyjnego (po promocji odnawia się płatnie; decyzja 5a, 28.10.2026), nie z Chmury rodzinnej
+    - Gdy rozwija „Zmień plan” i zaznacza plan dożywotni
+    - Wtedy przed przyciskiem „Kup na zawsze” czyta, że subskrypcja dalej się odnawia i trzeba ją anulować, żeby nie płacić podwójnie (docs/27 3.11; test `tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx`)
 
 ### BR-PRV-001: Zastrzeżenie medyczne widoczne w aplikacji
 - Przepływ: PR-01
 - Dowód potrzeby: OG-02; `components/MedicalNote.tsx`
+- Test: `tests/audit-m1-049-critical-content.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Zdanie na ekranie
     - Zakładając, że użytkownik otwiera ekran z zastrzeżeniem (np. generator, trening)
@@ -711,9 +853,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 - Miara: liczba wywołań sieciowych w kodzie aplikacji. Próg: 0. Metoda: test `tests/public-repo.test.ts` (README.md, ZP-05).
 ### NFR-DAN-001: Brak utraty danych przy aktualizacji
 - Miara: liczba zapisów z wydanych wersji, które po migracji tracą dane. Próg: 0. Metoda: testy `tests/migrate-released.test.ts` na zapisach z wydanych buildów (`tests/fixtures/released/`) i `tests/matrix-migrations.test.tsx`.
+- Reguła (DEC-03 b, decyzja właściciela 27.10.2026; M1-audytor-generalny-014): **zmiana normalizacji danych = podbicie `SCHEMA_VERSION`** (`lib/seed.ts`). Normalizacja to każda zmiana kodu startu (`migrate()` i kroki wołane przy wczytaniu), po której zapis z poprzedniego builda wychodzi ze startu inny niż dotąd — także przy tym samym schemacie (uzupełnianie pól z historii, przepisanie wartości, usuwanie wpisów, jednorazowe uzupełnienia ze znacznikiem rewizji, przepięcie odwołań do ćwiczeń). Dlaczego: kopia surowego zapisu `premigrate_<schemat>` powstaje tylko przy innym numerze schematu, a pierwszy zapis po starcie utrwala wynik normalizacji — bez podbicia nie ma czego przywrócić. Nie dotyczy: nowego pola opcjonalnego, którego brak zostaje brakiem (stare zapisy wychodzą ze startu bez zmian), i treści katalogu biblioteki (własne rewizje `CATALOG_REV`, `LIB_EXTRA_REVS`). Koszt podbicia: kopia zapasowa z nowym schematem jest odrzucana przez starsze wersje aplikacji. Pilnuje strażnik `tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts`: odciski wyniku startu na zapisach z `tests/fixtures/released/` w `tests/fixtures/odciski-normalizacji.json` z numerem schematu; inny wynik przy tym samym schemacie = test czerwony, a zapis odcisków przy tym samym schemacie odmawia nadpisania.
 ### NFR-JEZ-001: Kompletność tłumaczeń
 - Miara: liczba kluczy słownika bez tłumaczenia w którymkolwiek języku z `LANGS`. Próg: 0, z jednym nazwanym wyjątkiem (23.10.2026, decyzja właściciela o języku naturalnym): klucze z zestawu `docs/lokalizacja/zestaw-przekladu-2026-10-23.json` czekają na przekład na 33 języki (rodzaj „nowy” — angielski w zastępstwie; „zmieniony” — stare tłumaczenie); po przekładzie zestaw jest pusty i wyjątek znika. Metoda: `npm run check:i18n` oraz `tests/i18n-locales.test.ts`.
 ### NFR-DOS-001: Skalowanie tekstu systemowego
-- Miara: największa obsługiwana skala tekstu systemowego (Dynamic Type) w opisach. Próg: 2 (200%, `TEXT_SCALE_MAX` w `lib/theme.ts`). Metoda: test przeglądu dostępności `tests/matrix-a11y.test.tsx`.
+- Miara: największa obsługiwana skala tekstu systemowego (Dynamic Type) w opisach. Próg: 2 (200%, `TEXT_SCALE_MAX` w `lib/theme.ts`). Metoda: test przeglądu dostępności `tests/matrix-a11y.test.tsx`. Znaki-ikony w tekście (›, ▾, ✓, ✕, ⇄…): próg 1,4 (`GLYPH_SCALE_MAX` w `lib/theme.ts`), ten sam test (T-04, telefon 27.10.2026) oraz stan pierwszego uruchomienia `tests/m1-043-pierwsze-kroki-glyph.test.tsx`. Na symulatorze: scenariusz Maestro `.maestro/58-duzy-tekst.yaml` (wejście `rozmiar_tekstu`, zrzuty ekranu Trening z treningiem przy największym tekście). Na telefonie (docs/49 T-04, docs/39 ZD-03): stan „dziś bez treningu”, plan i ustawienia — czego scenariusz 58 nie pokrywa (M1-audytor-generalny-011).
 ### NFR-WYG-001: Wygląd z jednego modułu tokenów
 - Miara: liczba literałów liczbowych `fontSize` i `borderRadius` w kodzie interfejsu poza `lib/theme.ts` i `lib/tokens.ts`; osobno liczba par barw palet (jasna, ciemna, obie „Zwiększ kontrast”) poniżej progu kontrastu (tekst 4,5:1, duży tekst i elementy 3:1, w „Zwiększ kontrast” tekst pomocniczy i akcent 7:1). Próg: literały — nie więcej niż w wykazie `tests/token-baseline.json` (zapadka, docelowo 0 po partiach p2–p5 redesignu M3); pary poniżej progu — 0 z 210. Metoda: testy `tests/m3-token-guard.test.ts`, `tests/m3-contrast.test.ts`, `tests/m3-theme.test.ts` (decyzje STOP E3 z 21.10.2026, docs/18; M1-036, M1-031). Od 22.10.2026 (uwagi właściciela z telefonu, docs/18): nagłówek ekranu zakładki ze wspólnego `TabHeader` (`HEADER` w tokenach), na starcie mała ikonka sztangi po tytule zamiast sylwetki w rogu (nie nachodzi na tekst; ukryta dla VoiceOver), wskaźnik przewijania ukryty na wszystkich przewijanych ekranach (`components/Scroll.tsx`, strażnik S18; docs/32 wzorzec 31); testy `tests/trening-naglowek.test.tsx`, `tests/interaction-guards.test.ts`.

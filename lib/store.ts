@@ -34,7 +34,7 @@ import * as bootMod from './state/boot';
 import * as backupStatMod from './state/backupstat';
 import * as crashMod from './state/crashguard';
 
-export const { NAME_MAX, REPS_MAX, REST_MAX, DURATION_MAX_SEC, clampName, PREMIGRATE_KEEP_MS } = utilMod;
+export const { NAME_MAX, REPS_MAX, REST_MAX, DURATION_MAX_SEC, clampName, PREMIGRATE_KEEP_MS, SET_NOTE_MAX } = utilMod;
 export const {
   localDateTs, fmtSec, fmtDist, reps, fmtDur, fmtDayKey, fmtDate, fmtTime, localISODate, tzOffsetAt, cleanTz, wallTs, fromWallTs, workoutDay,
   mondayKey
@@ -46,7 +46,7 @@ export const {
   getNewerSchema, markDraft, isDraftObj, save, saveCfg, getState, useStore, useTick, usePrefsTick, getHistRev, getRev, refreshViews,
   useForegroundTick, useHistTick, useCfgTick, memoHist, memoHistBy, setTimerState, isReadyForTests, __resetForTests
 } = coreMod;
-export const { effortScale, effortLabel, RPE_MIN, RPE_MAX, RIR_MAX, RPE_LIGHT, effortOut, effortText, effortIn, effortField } = effortMod;
+export const { effortScale, effortLabel, RPE_MIN, RPE_MAX, RIR_MAX, RPE_LIGHT, RPE_RIR_MIN, effortOut, effortText, effortIn, effortField } = effortMod;
 export const {
   exById, bandById, isBW, repsOf, loadOf, shownLoad, setLoad, loadFieldValue, writeLoad, effectiveLoad, exMult, isWorking, workCount, workSetCount,
   workingSets, setVolume, blockMult, volOf, loadLabelShort, loadLabel, restFor, bandColor, shortBand, bandA11y, setSummary, setScore, setHasValue,

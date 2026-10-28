@@ -17,14 +17,14 @@ import { implLabel } from '@/lib/swap';
 import { visibleLocations, getState, useTick, exById, save, dupTemplate, templateFolders, setTemplateFolder, setTemplateArchived, TEMPLATE_NOTE_MAX, groupLabels, ssTag, ssBtn, linkWithNext, unlink, removeItem, restFor, isBW, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, tplAddRow, tplRemoveRow, tplEditRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps, usesBand, tplCycleBand, bandA11y, shortBand, workCount, tplWorkSets, fmtSec , REPS_MAX , REST_MAX } from '@/lib/store';
 import { beginObjDraft, objDraft, objDirty, discardObjDraft, commitObjDraft, dropUnsavedNew } from '@/lib/draft';
 import { nowParts } from '@/lib/live';
-import { useTheme, FW, font, RADIUS } from '@/lib/theme';
+import { useTheme, FW, font, RADIUS, GLYPH_SCALE_MAX } from '@/lib/theme';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type Template, type TemplateItem, type TRow, type Exercise, type WSet } from '@/lib/seed';
 import { t, tp, exName, exNameLang, lang } from '@/lib/i18n';
 import { startTemplate, workoutInProgressNotice } from '@/lib/start';
 import { templateUsageText, assignNewTemplate, hasPlan, removeTemplate } from '@/lib/plan';
 import { DeleteButton } from '@/components/DeleteButton';
 import { askReminderPermission } from '@/lib/planReminder';
-import { wu, wField, wInKeep, dIn, dOut, distUnit } from '@/lib/units';
+import { unitLabel, distLabel, wField, wInKeep, dIn, dOut } from '@/lib/units';
 import { cancelButton, okButton } from '@/lib/confirm';
 
 /*
@@ -132,7 +132,7 @@ function TemplateEditor({ tpl }: { tpl: Template }) {
               <Txt a11yLang={exNameLang(ex)} style={{ ...FW.semibold }}>{it.groupId ? <Txt style={{ color: th.band, ...FW.semibold }}>{`${ssTag(labels[it.groupId])} · `}</Txt> : null}{exName(ex)}</Txt>
               {open !== it.id ? <Muted style={{ ...font('footnote') }}>{tplSummary(it)}</Muted> : null}
             </View>
-            <Muted style={{ ...font('body') }}>{open === it.id ? '▾' : '▸'}</Muted>
+            <Muted maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ ...font('body') }}>{open === it.id ? '▾' : '▸'}</Muted>
           </Pressable><ExMenuButton testID={`tpl-item-menu-${i}`} name={nm} title={t('Usunąć z szablonu?')} onDelete={() => { const j = tpl.items.indexOf(it); if (j >= 0) removeItem(tpl.items, j, tpl); }} /></View>}</SwipeRow>
           {open === it.id ? <>
             <TplRows tpl={tpl} it={it} ii={i} nm={nm} />
@@ -197,9 +197,9 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
           <SwipeRow key={r.id} testID={`tpl-row-${ii}-${k}`} /* E2E 08 */ disabled={rows.length <= 1} blocked={lastSetBlock()} /* G4 */ label={t('Usuń serię {n} — {ex}', { n: lbl, ex: nm })} title={t('Usunąć serię?')} message={nm} onDelete={() => { if (tplRows(it).length > 1) tplRemoveRow(tpl, it.id, r.id); }}>{a11y => <View style={{ flexDirection: 'row', alignItems: 'center', gap: W.gap, minHeight: 48 }}>
             <Pressable accessibilityLanguage={lang()} {...a11y} onPress={() => menu(r.id, lbl)} hitSlop={8} accessibilityRole="button" accessibilityHint={t('Tapnij, by zmienić typ.')} /* A11-18 */ accessibilityLabel={t('Seria {n}, typ: {k}', { n: lbl, k: t(SET_KIND_LABEL[r.kind]) })} style={{ width: W.idx, minHeight: 44, justifyContent: 'center' }}><SetBadge kind={r.kind} label={lbl} /></Pressable>
             <View style={{ flex: 1 }}>{L.prevInline ? <Muted numberOfLines={1} style={{ ...font('footnote') }}>{prevTxt}</Muted> : null}</View>
-            {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={!!ex && isBW(ex)} value={wField(r.weight)} stored={r.weight} placeholder={ex ? loadLabelShort(ex, impl) : wu()} testID={`tpl-w-${ii}-${k}`} /* E2E (Maestro 08): pole ciężaru wiersza k pozycji ii */ accessibilityLabel={ex ? loadLabel(ex, impl) : wu()} onNum={(v, keep) => tplEditRow(tpl, it.id, r.id, { weight: v === '' ? '' : wInKeep(ex && isBW(ex) ? v : Math.max(0, v), keep) })} /></View> : null}
+            {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={!!ex && isBW(ex)} value={wField(r.weight)} stored={r.weight} placeholder={ex ? loadLabelShort(ex, impl) : unitLabel()} testID={`tpl-w-${ii}-${k}`} /* E2E (Maestro 08): pole ciężaru wiersza k pozycji ii */ accessibilityLabel={ex ? loadLabel(ex, impl) : unitLabel()} onNum={(v, keep) => tplEditRow(tpl, it.id, r.id, { weight: v === '' ? '' : wInKeep(ex && isBW(ex) ? v : Math.max(0, v), keep) })} /></View> : null}
             {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={r.reps} placeholder={it.repMin != null ? reps(it.repMin, it.repMax) : t('pow.')} testID={`tpl-r-${ii}-${k}`} /* E2E (Maestro 08) */ accessibilityLabel={t('Powtórzenia')} onNum={v => tplEditRow(tpl, it.id, r.id, { reps: v === '' ? '' : Math.min(REPS_MAX, Math.max(0, Math.floor(v))) }) /* UI-16 */} /></View> : null}
-            {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={dOut(r.distanceM)} stored={r.distanceM} placeholder={distUnit()} accessibilityLabel={t('dystans')} onNum={(v, keep) => tplEditRow(tpl, it.id, r.id, { distanceM: dIn(v, keep) })} /></View> : null}
+            {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={dOut(r.distanceM)} stored={r.distanceM} placeholder={distLabel()} accessibilityLabel={t('dystans')} onNum={(v, keep) => tplEditRow(tpl, it.id, r.id, { distanceM: dIn(v, keep) })} /></View> : null}
             {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={r.durationSec} placeholder={t('cel s')} accessibilityLabel={t('cel s')} onNum={v => tplEditRow(tpl, it.id, r.id, { durationSec: v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))) })} /></View> : null}
             {band ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityHint={`${nm}. ${t('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={t('Guma: {b}', { b: r.bandId ? bandA11y(bands.find(b => b.id === r.bandId)) : t('brak') })} onPress={() => tplCycleBand(tpl, it.id, r.id)} style={{ width: W.band, minHeight: 40, borderRadius: RADIUS.button, borderWidth: 1, borderColor: th.line, backgroundColor: th.surface2, alignItems: 'center', justifyContent: 'center' }}><Txt style={{ color: r.bandId ? th.band : th.muted, ...font('footnote'), ...FW.semibold }}>{r.bandId ? shortBand(bands.find(b => b.id === r.bandId)) : '—'}</Txt></Pressable> : null}
           </View>}</SwipeRow>); })}

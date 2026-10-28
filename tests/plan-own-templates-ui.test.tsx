@@ -53,7 +53,7 @@ describe('generator: dwa tryby i „Plan z moich szablonów” (przełącznik pr
     await pickDays(ownProposal({ templateIds: [t[0].id, t[2].id], sessions: 3 }));
     const r = ownPlan({ templateIds: [t[0].id, t[2].id], sessions: 3 })!;
     const wd = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString('pl-PL', { weekday: 'short' });
-    expect(screen.getByText(r.days.map((id, i) => (id ? `${wd(i)} ${S().templates.find(x => x.id === id)!.name}` : null)).filter(Boolean).join(' · '))).toBeTruthy();
+    expect(screen.getByText(r.days.map((id, i) => (id ? `${wd(i)} ${S().templates.find(x => x.id === id)!.name}` : null)).filter(Boolean).join(', '))).toBeTruthy();
     expect(screen.getByText(`Dni: 3, szablony: 2 — szablony powtarzają się po kolei: ${t[0].name} → ${t[2].name} → ${t[0].name}. Co tydzień od początku.`)).toBeTruthy();
     expect(screen.getByText(`${t[0].name}: 2× w tygodniu`)).toBeTruthy(); expect(screen.getByText(`${t[2].name}: 1× w tygodniu`)).toBeTruthy();
     expect(screen.getByText(/^Rzadziej niż 2 dni w tygodniu: /)).toBeTruthy(); expect(screen.getByText(/^Poniżej celu serii tygodniowo: .+\. Cel ustawisz w Ustawieniach \(automatycznie dolny próg zalecany przy budowie masy\); serie dodasz w szablonach\.$/)).toBeTruthy();

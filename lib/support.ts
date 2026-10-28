@@ -15,10 +15,11 @@ export type SupportKind = 'feedback' | 'idea';
  * treść pomysłu: dwa krótkie pytania (czego brakuje, w jakiej sytuacji na treningu) i ta sama stopka. Nic więcej:
  * bez danych treningowych, masy ciała, nazw szablonów, identyfikatorów, modelu urządzenia ani kopii. Temat i teksty przez t() (język aplikacji).
  */
-export function buildSupportMailto({ version, os, language, kind = 'feedback' }: { version: string; os: string | number; language: string; kind?: SupportKind }): string {
+export function buildSupportMailto({ version, os, language, kind = 'feedback', extra }: { version: string; os: string | number; language: string; kind?: SupportKind;
+  /** M1-audytor-generalny-032: linia techniczna pod stopką (ekran błędu startu: kod diagnostyczny etapu, bez treści błędu i bez danych treningowych) */ extra?: string }): string {
   const footer = t('Wersja: {v} · iOS {os} · Język: {lang}', { v: version, os: String(os), lang: language });
   const subject = kind === 'idea' ? `${t('Pomysł')}: ` : t('Trening — opinia');
-  const body = kind === 'idea' ? `\n\n${t('Czego brakuje:')}\n\n${t('W jakiej sytuacji na treningu:')}\n\n\n${footer}` : `\n\n${footer}`;
+  const body = (kind === 'idea' ? `\n\n${t('Czego brakuje:')}\n\n${t('W jakiej sytuacji na treningu:')}\n\n\n${footer}` : `\n\n${footer}`) + (extra ? `\n${extra}` : '');
   return `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
@@ -26,8 +27,8 @@ export function buildSupportMailto({ version, os, language, kind = 'feedback' }:
  * Jedna droga otwarcia poczty dla obu przycisków (docs/32 wzorzec 14; decyzja właściciela 13.10.2026): mailto: przez Linking.openURL bez wcześniejszego canOpenURL
  * (nie trzeba LSApplicationQueriesSchemes); brak poczty / odmowa / wyjątek synchroniczny → okno z adresem, a wołający dostaje `onFail` (adres do zaznaczenia na ekranie).
  */
-export function openSupportMail(kind: SupportKind, onFail?: () => void): void {
-  const url = buildSupportMailto({ version: versionLabel(Constants.expoConfig?.version, BUILD_NUMBER), os: Platform.Version, language: lang(), kind });
+export function openSupportMail(kind: SupportKind, onFail?: () => void, extra?: string): void {
+  const url = buildSupportMailto({ version: versionLabel(Constants.expoConfig?.version, BUILD_NUMBER), os: Platform.Version, language: lang(), kind, extra });
   Promise.resolve().then(() => Linking.openURL(url)).catch(() => {
     onFail?.();
     Alert.alert(t('Nie udało się otworzyć poczty'), t('Napisz na: {mail}', { mail: SUPPORT_EMAIL }), [okButton()]);

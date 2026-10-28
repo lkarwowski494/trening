@@ -4,7 +4,7 @@ import { useTheme, NUM_SCALE_MAX, FW, font, RADIUS, SIZE } from '@/lib/theme';
 import { Icon } from '@/components/Icon';
 import { Btn, NumInput, Muted, useOnce } from '@/components/ui';
 import { TechniqueLink } from '@/components/ExerciseCues';
-import { effortLabel, effortField, effortIn, progressionFor, skipExercise, unskipExercise, typeSetValue, bandA11y, clampName, loadLabelShort, getState, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtSec, setSummary, roundRest, addSet, removeSetById, removeExercise, save, loadLabel, ssTag, ssBtn, linkWithNext, unlink, cycleBand, shortBand, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, isDeloadWeek, wallTs, REPS_MAX, REST_MAX } from '@/lib/store';
+import { effortLabel, effortField, effortIn, progressionFor, skipExercise, unskipExercise, typeSetValue, bandA11y, clampName, SET_NOTE_MAX, loadLabelShort, getState, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtSec, setSummary, roundRest, addSet, removeSetById, removeExercise, save, loadLabel, ssTag, ssBtn, linkWithNext, unlink, cycleBand, shortBand, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, isDeloadWeek, wallTs, REPS_MAX, REST_MAX } from '@/lib/store';
 import { setLabel, timedLabel } from '@/lib/live';
 import { availability, missingLabel } from '@/lib/equipment';
 import { SwipeRow, lastSetBlock, confirmDelete } from '@/components/SwipeRow';
@@ -15,7 +15,7 @@ import * as timer from '@/lib/timer';
 import { relabelRest } from '@/lib/setFlow';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet, type Workout } from '@/lib/seed';
 import { t as tr, tp, exName, exNameLang, lang } from '@/lib/i18n';
-import { wu, wField, wInKeep, fmtW, dIn, dOut, distUnit } from '@/lib/units';
+import { unitLabel, distLabel, wField, wInKeep, fmtW, dIn, dOut } from '@/lib/units';
 import { cancelButton, okButton, confirmSkipTimedSet } from '@/lib/confirm';
 
 /*
@@ -50,6 +50,9 @@ const WIDE = { idx: 28, w: 64, reps: 56, dist: 64, time: 56, play: 44, rpe: 46, 
 /** Wariant zwarty dla wąskich ekranów (iPhone SE 1. gen., 320 pt) — gdy szerokie kolumny się nie mieszczą. */
 const COMPACT = { idx: 24, w: 56, reps: 48, dist: 56, time: 50, play: 40, rpe: 40, band: 48, done: 44, gap: 4, prevMin: 70 };
 type Cols = typeof WIDE;
+/** M1-audytor-generalny-028 (04-studio-projektowe-004, 27.10.2026): kolumna węższa niż cel dotyku (COMPACT: stoper i RPE 40 pt) dostaje hitSlop po bokach
+ * do SIZE.hit (44 pt) — pole dotyku bez zmiany układu (odstęp kolumn ≥ 4 pt, więc pola sąsiadów się nie nakładają). */
+const slopTo = (w: number) => { const d = Math.max(0, Math.ceil((SIZE.hit - w) / 2)); return d ? { left: d, right: d } : undefined; };
 const fixedWidth = (W: Cols, m: import('@/lib/seed').MetricType, band: boolean, showRpe: boolean) => {
   const fixed = [W.idx, hasWeight(m) && W.w, hasReps(m) && W.reps, hasDistance(m) && W.dist, hasTime(m) && W.time, hasTime(m) && W.play, showRpe && W.rpe, band && W.band, W.done].filter(Boolean) as number[];
   return fixed.reduce((a, b) => a + b, 0) + W.gap * fixed.length;
@@ -131,7 +134,7 @@ export function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w
     const kinds = ['normal', 'warmup', 'drop', 'failure'] as const;
     ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: labels.length - 1, destructiveButtonIndex: labels.length - 2, title: tr('Seria {n}', { n: setLabel(e, si) }) }, i => {
       if (i < 4) { set.kind = kinds[i]; set.warmup = set.kind === 'warmup'; save(st.active); }
-      else if (i === 4) Alert.prompt?.(tr('Notatka do serii'), undefined, [{ ...cancelButton() }, { text: tr('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), 300); /* runda 49: limit notatki */ save(st.active); } }], 'plain-text', set.note);
+      else if (i === 4) Alert.prompt?.(tr('Notatka do serii'), undefined, [{ ...cancelButton() }, { text: tr('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), SET_NOTE_MAX); /* runda 49: limit notatki */ save(st.active); } }], 'plain-text', set.note);
       else if (i === 5) { /* M1-028: to samo potwierdzenie i ta sama blokada ostatniej serii co przy geście */
         if (e.sets.length <= 1) { const b = lastSetBlock(); Alert.alert(b.title, b.message, [okButton()]); }
         else confirmDelete({ title: tr('Usunąć serię?'), message: set.done ? tr('Seria jest już odhaczona.') : undefined, onDelete: () => deleteSet(set.id) });
@@ -158,9 +161,9 @@ export function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w
       <View style={[s.row, { gap: W.gap }]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" /* A11-18: nagłówki kolumn „#”, „✓”, „▶” — szum dla VoiceOver; każde pole ma własną etykietę (jak w historii) */>
         <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.idx, textAlign: 'left' }]}>#</Muted>
         {prevInline ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} numberOfLines={1} style={[s.c, { flex: 1, textAlign: 'left' }]}>{tr('Poprzednio')}</Muted> : <View style={{ flex: 1 }} />}
-        {hasWeight(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} numberOfLines={1} style={[s.c, { width: W.w }]}>{loadLabelShort(ex, impl)}</Muted> : null}
+        {hasWeight(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} numberOfLines={1} adjustsFontSizeToFit /* A11-19, M1-041: el „κιλά/πλευρά” dłuższe niż kolumna — krój maleje zamiast „…” */ style={[s.c, { width: W.w }]}>{loadLabelShort(ex, impl)}</Muted> : null}
         {hasReps(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.reps }]}>{tr('Pow.')}</Muted> : null}
-        {hasDistance(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.dist }]}>{distUnit()}</Muted> : null}
+        {hasDistance(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.dist }]}>{distLabel()}</Muted> : null}
         {hasTime(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.time }]}>{tr('sek.')}</Muted> : null}
         {hasTime(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.play }]}>▶</Muted> : null}
         {showRpe ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.rpe }]}>{effortLabel()}</Muted> : null}
@@ -179,15 +182,15 @@ export function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w
                 <SetBadge kind={kind} label={lbl} note={!!set.note} />
               </Pressable>
               <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, ...font('footnote'), ...FW.regular /* audyt 0.10 (LIVE-13 / UI-11) */ }}>{prevTxt}</Text> : null}{pr ? <Text accessibilityLanguage={lang()} accessibilityLabel={tr('Rekord: {list}', { list: pr.map(k => tr(k)).join(', ') })} /* A11-18: VoiceOver czyta, jaki rekord, nie „P R” */ maxFontSizeMultiplier={1.3} style={{ color: t.band, ...font('caption'), ...FW.semibold }}>{tr('PR')}</Text> : null}</View>
-              {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { typeSetValue(ei, si, 'load', wInKeep(v, keep)); /* runda 54: ciężar nieujemny (writeLoad); Q-021: ta sama liczba co na ekranie = te same kg; 11.10.2026: kaskada w dół */ }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} testID={`w-${ei}-${si}`} /* E2E 11 */ /></View> : null}
+              {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { typeSetValue(ei, si, 'load', wInKeep(v, keep)); /* runda 54: ciężar nieujemny (writeLoad); Q-021: ta sama liczba co na ekranie = te same kg; 11.10.2026: kaskada w dół */ }} placeholder={bw ? '±0' : unitLabel()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} testID={`w-${ei}-${si}`} /* E2E 11 */ /></View> : null}
               {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={set.reps} onNum={v => { typeSetValue(ei, si, 'reps', v === '' ? '' : Math.min(REPS_MAX, Math.max(0, Math.floor(v)))); /* UI-16; kaskada w dół */ }} placeholder={reps(e.repMin, e.repMax)} style={doneStyle(set)} accessibilityLabel={tr('Powtórzenia')} accessibilityHint={hint} testID={`r-${ei}-${si}`} /></View> : null}
-              {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={dOut(set.distanceM)} stored={set.distanceM} onNum={(v, keep) => { typeSetValue(ei, si, 'distanceM', dIn(v, keep)); /* runda 55/56: pełne metry jak klawiatura; kaskada w dół; LOK07-01: w imperialnym yardy → metry (cm) */ }} placeholder={distUnit()} style={doneStyle(set)} accessibilityLabel={tr('dystans')} accessibilityHint={hint} /></View> : null}
+              {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={dOut(set.distanceM)} stored={set.distanceM} onNum={(v, keep) => { typeSetValue(ei, si, 'distanceM', dIn(v, keep)); /* runda 55/56: pełne metry jak klawiatura; kaskada w dół; LOK07-01: w imperialnym yardy → metry (cm) */ }} placeholder={distLabel()} style={doneStyle(set)} accessibilityLabel={tr('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={set.durationSec} onNum={v => { typeSetValue(ei, si, 'durationSec', v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v)))); /* runda 56: pełne sekundy jak klawiatura; kaskada w dół */ }} placeholder="s" style={doneStyle(set)} accessibilityLabel={tr('czas')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? (
-                <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={running ? tr('Stoper trwa') : tr('Start stopera serii')} accessibilityHint={hint} onPress={() => { if (!running) startTimed(w, e, set, si, onStartSet); }} style={[s.doneBtn, { width: W.play, backgroundColor: running ? t.accent : t.surface2, borderColor: running ? t.accent : t.line }]}>
+                <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={running ? tr('Stoper trwa') : tr('Start stopera serii')} accessibilityHint={hint} onPress={() => { if (!running) startTimed(w, e, set, si, onStartSet); }} hitSlop={slopTo(W.play)} style={[s.doneBtn, { width: W.play, backgroundColor: running ? t.accent : t.surface2, borderColor: running ? t.accent : t.line }]}>
                   <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: running ? t.accentInk : t.text, ...font('callout') }}>{running ? '…' : '▶'}</Text>
                 </Pressable>) : null}
-              {showRpe ? <View style={{ width: W.rpe }}><NumInput decimal value={effortField(set.rpe)} onNum={v => { set.rpe = effortIn(v); tick(); }} placeholder="—" style={doneStyle(set)} accessibilityLabel={effortLabel()} accessibilityHint={hint} /></View> : null}
+              {showRpe ? <View style={{ width: W.rpe }}><NumInput decimal value={effortField(set.rpe)} onNum={v => { set.rpe = effortIn(v); tick(); }} placeholder="—" style={doneStyle(set)} hitSlop={slopTo(W.rpe)} accessibilityLabel={effortLabel()} accessibilityHint={hint} /></View> : null}
               {band ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityHint={`${hint}. ${tr('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={tr('Guma: {b}', { b: set.bandId ? bandA11y(st.bands.find(b => b.id === set.bandId)) : tr('brak') })} onPress={() => cycleBand(set, bw && hasWeight(m))} style={[s.bandBtn, { width: W.band, backgroundColor: t.surface2, borderColor: set.done ? t.doneLine : t.line }]}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: set.bandId ? t.band : t.muted, ...font('footnote'), ...FW.semibold }}>{set.bandId ? shortBand(st.bands.find(b => b.id === set.bandId)) : '—'}</Text></Pressable> : null}
               <Pressable accessibilityLanguage={lang()} accessibilityRole="checkbox" accessibilityState={{ checked: set.done }} accessibilityLabel={tr('Seria {n} zrobiona — {ex}', { n: lbl, ex: nm })} onPress={() => onDone(ei, si)} style={[s.doneBtn, { width: W.done, backgroundColor: set.done ? t.accent : t.surface2, borderColor: set.done ? t.accent : t.ctrlLine /* A11-06 */ }]}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: set.done ? t.accentInk : t.muted, ...font('button') }}>{set.done ? '✓' : ''}</Text></Pressable>
             </View>

@@ -10,6 +10,8 @@ import { fresh, addWorkout, saved } from './helpers';
 import { renderApp, flushAll, screen, go, tap, act } from './app';
 
 jest.setTimeout(60000);
+/* M1-audytor-generalny-034 (07-jakosc-011): zegar przestawiony w teście (np. luty 2027) nie może przeciekać do następnego — testy czytające „teraz” padały w losowej kolejności */
+afterEach(() => { jest.useRealTimers(); });
 afterAll(() => { setLang('pl'); });
 const at = (y: number, m: number, d: number, h = 18) => new Date(y, m, d, h).getTime();
 

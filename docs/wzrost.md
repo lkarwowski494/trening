@@ -57,7 +57,7 @@ Dla Androida repo ma dziś jedną wzmiankę: biblioteka płatności „iOS+Andro
 Opcje metryki (wybiera właściciel; rekomendacja pod listą):
 
 - **A. Pobrania miesięcznie z App Store Connect** (Analityka, docs/15). Plus: dostępne bez dodatkowych narzędzi, powiązane z celem z docs/15. Minus: nie mówi nic o Androidzie, tylko o sile wersji na iOS.
-- **B. Odsetek kupujących po okresie próbnym** (docs/15: „zmierzymy po premierze w App Store Connect”). Plus: bliżej przychodu. Minus: okres próbny trwa 14 dni (`docs/monetyzacja.md`), więc przy małej liczbie pobrań w 8 tygodniach próba może być za mała.
+- **B. Odsetek płacących wśród pobierających** (App Store Connect: zakupy wobec pobrań; model stały M5 S1 z 22.10.2026). Plus: bliżej przychodu. Minus: przy małej liczbie pobrań w 8 tygodniach próba może być za mała.
 - **C. Zgłoszenia użytkowników o wersji na Androida** (wsparcie, opinie), liczone ręcznie. Plus: bezpośrednio o Androidzie, bez kosztów. Minus: zgłasza niewielka część użytkowników; brak metody liczenia w repo.
 
 **Decyzja właściciela (20.10.2026, K-P4-1): A + C** (zgodnie z rekomendacją); próg, minimalna próba i data premiery pozostają otwarte (tabela wyżej). **Rekomendacja:** A jako metryka główna z progiem wpisanym przed premierą, C jako uzupełnienie opisowe; B tylko jeśli liczba pobrań pozwoli na sensowną próbę. To rekomendacja do decyzji właściciela, nie decyzja. **Kolejny krok:** właściciel wybiera metrykę, próg i datę premiery; agent wpisuje je w tabeli powyżej (struktura pól jest pilnowana przez `tests/audit-m1-072-android-decision.test.ts`).

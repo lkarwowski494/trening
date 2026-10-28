@@ -33,6 +33,8 @@ export const darkHC: Theme = DHC;
 /** DEC-10 / A11-07: limity Dynamic Type — te same wartości co dotąd (opisy 200%, liczby w kolumnach 130%); pasek zakładek i tygodnia: TEXT_SCALE.bar. */
 export const TEXT_SCALE_MAX = TEXT_SCALE.text;
 export const NUM_SCALE_MAX = TEXT_SCALE.num;
+/** Znaki-ikony w tekście (strzałki, znaczek zaznaczenia, krzyżyk…): limit powiększenia 1,4 (jak przyciski nagłówka — S2). Bez limitu rosną do 310% („Większe rozmiary dostępności”) i wychodzą poza pole albo są ucinane (T-04, telefon 27.10.2026). Strażnik: tests/matrix-a11y.test.tsx. */
+export const GLYPH_SCALE_MAX = 1.4;
 
 /** Wygląd z ustawień (decyzja 05.10.2026, domyślnie jasny). Bez zmian. */
 export function applyTheme(x: 'light' | 'dark' | 'auto' | undefined) { try { Appearance.setColorScheme(x === 'dark' ? 'dark' : x === 'auto' ? 'unspecified' : 'light'); } catch { /* bez natywnego modułu (web) */ } }

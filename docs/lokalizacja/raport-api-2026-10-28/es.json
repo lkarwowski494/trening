@@ -1,0 +1,67 @@
+{
+ "jezyk": "es",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 474,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "tlumaczenie": "Ejercicio con barra sobre el tronco o por encima de la cabeza y la cara: se recomienda asistencia — un rack con brazos de seguridad y una persona que te asista.",
+   "poprawka": "Ejercicio con barra sobre el tronco o por encima de la cabeza y la cara: se recomiendan medidas de seguridad: un rack con brazos de seguridad y una persona que te asista.",
+   "powod": "„asistencia” oznacza asekurację przez osobę; nie obejmuje stojaków z ramionami asekuracyjnymi. Termin jest niespójny ze źródłem.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "rodzaj": "nowe",
+   "pl": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "tlumaczenie": "Los grupos musculares resaltados tienen más volumen que en el período de comparación; cuanto más intenso el color, mayor el aumento. Gris — sin aumento.",
+   "poprawka": "Las partes del cuerpo resaltadas tienen más volumen que en el período de comparación; cuanto más intenso el color, mayor el aumento. Gris: sin aumento.",
+   "powod": "Niespójna terminologia: „partia” to w pozostałych tekstach „parte del cuerpo”, tu „grupo muscular”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "bp.grip",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć sztangę nieco szerzej niż barki.",
+   "tlumaczenie": "Agarra la barra con un agarre algo más ancho que los hombros.",
+   "poprawka": "Agarra la barra con las manos algo más abiertas que los hombros.",
+   "powod": "Powtórzenie „agarra… agarre” brzmi nienaturalnie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "csr.chest",
+   "rodzaj": "wskazowka",
+   "pl": "Oprzyj klatkę piersiową o podporę i trzymaj ją tam przez cały ruch.",
+   "tlumaczenie": "Apoya el pecho en el respaldo y mantenlo ahí todo el tiempo.",
+   "poprawka": "Apoya el pecho en el soporte y mantenlo ahí todo el tiempo.",
+   "powod": "„respaldo” to oparcie pleców; tu chodzi o podporę pod klatkę.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "lp.hips",
+   "rodzaj": "wskazowka",
+   "pl": "Nie schodź tak nisko, by miednica odrywała się od oparcia, a dolne plecy zaokrąglały.",
+   "tlumaczenie": "No bajes tanto que la pelvis se despegue del asiento y se redondee la zona lumbar.",
+   "poprawka": "No bajes tanto que la pelvis se despegue del respaldo y se redondee la zona lumbar.",
+   "powod": "W źródle „oparcie” (respaldo), nie siedzisko.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "pu.grip",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć drążek nachwytem, trochę szerzej niż barki, i zawiśnij na prostych rękach.",
+   "tlumaczenie": "Agarra la barra en prono, con un agarre algo más ancho que los hombros, y cuélgate con los brazos estirados.",
+   "poprawka": "Agarra la barra en prono, con las manos algo más abiertas que los hombros, y cuélgate con los brazos estirados.",
+   "powod": "Powtórzenie „agarra… agarre” brzmi nienaturalnie.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

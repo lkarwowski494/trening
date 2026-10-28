@@ -2,7 +2,7 @@
 // Dokument = plik .md (docs/**, CLAUDE.md, README.md, .claude/agents/*.md), poza makietami w tests/ i watch-fixtures/. Dane i kod w docs/
 // (json, csv, mjs) oraz wszystko inne — kod, testy, skrypty, workflowy, konfiguracja — idą pełnym `npm run verify`.
 // Zmiany liczone względem punktu rozejścia z ref (domyślnie origin/main) razem z nieśledzonymi i niezatwierdzonymi.
-// Uruchamia: check:readme, check:matrix, check:claims, check:i18n (+ kontrola BRD przy zmianie docs/brd) oraz tylko te testy Jest,
+// Uruchamia: check:readme, check:matrix, check:claims, check:decyzje, check:i18n (+ kontrola BRD przy zmianie docs/brd) oraz tylko te testy Jest,
 // które wymieniają zmieniony dokument (nazwa, ścieżka, katalog) albo przeglądają cały katalog docs. Cel: 1–2 min zamiast 12–15.
 // CI na PR i tak uruchamia pełne testy przed scaleniem.
 // Użycie: npm run verify:docs [-- <ref>]
@@ -64,7 +64,7 @@ if (zm.length === 0) {
   process.exit(0);
 }
 
-const komendy = ['npm run check:readme', 'npm run check:matrix', 'npm run check:claims', 'npm run check:i18n'];
+const komendy = ['npm run check:readme', 'npm run check:matrix', 'npm run check:claims', 'npm run check:decyzje', 'npm run check:i18n'];
 if (zm.some(f => f.startsWith('docs/brd/'))) komendy.push('node scripts/kontrola-brd.mjs docs/brd');
 const testy = dokumenty ? testyDlaDokumentow(zm) : [];
 
@@ -90,3 +90,5 @@ if (testy.length) {
   if (r.status !== 0) { console.error('verify:docs — błąd w testach Jest'); process.exit(r.status ?? 1); }
 }
 console.log(`verify:docs — zielone po ${Math.round((Date.now() - start) / 1000)} s`);
+/* L-049 (opcja A, 28.10.2026): znacznik „dokumenty” dla haka pre-push; nie w trybie testowym (VERIFY_DOCS_CHANGED) ani przy porównaniu z innym ref niż origin/main */
+if (process.env.VERIFY_DOCS_CHANGED === undefined && ref === 'origin/main') spawnSync(process.execPath, [join(root, 'scripts/verify-znacznik.mjs'), '--zapisz', 'dokumenty'], { cwd: root, stdio: 'inherit' });

@@ -1,0 +1,121 @@
+{
+ "jezyk": "en",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 468,
+ "uwagi": [
+  {
+   "klucz": "Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.",
+   "rodzaj": "nowe",
+   "pl": "Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.",
+   "tlumaczenie": "Want more? Pro removes the limit: subscribe, or pay once for good.",
+   "poprawka": "Want to train more often? Pro removes the limit: subscribe, or pay once for good.",
+   "powod": "„Chcesz częściej?” znaczy „częściej trenować”, a nie ogólnie „więcej”; zmiana sensu.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Mięśnie pomocnicze: {lista}",
+   "rodzaj": "nowe",
+   "pl": "Mięśnie pomocnicze: {lista}",
+   "tlumaczenie": "Supporting muscles: {lista}",
+   "poprawka": "Secondary muscles: {lista}",
+   "powod": "Niespójna terminologia: w innych tekstach partia pomocnicza to „secondary”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.",
+   "rodzaj": "nowe",
+   "pl": "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.",
+   "tlumaczenie": "Rest: {b} min after multi-joint exercises, {c} min after single-joint and core; the exact rest length is not fixed.",
+   "poprawka": "Rest: {b} min after compound exercises, {c} min after isolation and core exercises; the exact rest length is not fixed.",
+   "powod": "Niespójna terminologia z zdaniem 102 („compound”/„isolation” vs „multi-joint”/„single-joint”).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Serie na partię w tygodniu (pomocnicza = {h} serii): {list}",
+   "rodzaj": "nowe",
+   "pl": "Serie na partię w tygodniu (pomocnicza = {h} serii): {list}",
+   "tlumaczenie": "Sets per muscle group per week (assisting = {h} set): {list}",
+   "poprawka": "Sets per muscle group per week (secondary = {h} set): {list}",
+   "powod": "Niespójna terminologia: partia pomocnicza raz „assisting”, raz „secondary” (zdanie 81).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Super, trenuję dalej!",
+   "rodzaj": "nowe",
+   "pl": "Super, trenuję dalej!",
+   "tlumaczenie": "Awesome, keep training!",
+   "poprawka": "Awesome, I'll keep training!",
+   "powod": "Źródło jest w 1. osobie („trenuję dalej”), a tłumaczenie brzmi jak polecenie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wyczyść miejsce",
+   "rodzaj": "nowe",
+   "pl": "Wyczyść miejsce",
+   "tlumaczenie": "Remove place",
+   "poprawka": "Clear place",
+   "powod": "„Wyczyść” to wyczyszczenie przypisania; „Remove place” myli się z „Delete place” (usunięcie miejsca).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wyczyść miejsce: {a} – {b}",
+   "rodzaj": "nowe",
+   "pl": "Wyczyść miejsce: {a} – {b}",
+   "tlumaczenie": "Remove place: {a} – {b}",
+   "poprawka": "Clear place: {a} – {b}",
+   "powod": "Jak w 143: „Remove” sugeruje usunięcie miejsca zamiast wyczyszczenia przypisania.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "calf.edge",
+   "rodzaj": "wskazowka",
+   "pl": "Oprzyj przednią część stóp na podwyższeniu, pięty poza krawędzią.",
+   "tlumaczenie": "Put the balls of your feet on the edge, heels hanging off.",
+   "poprawka": "Put the balls of your feet on a raised surface, heels hanging off the edge.",
+   "powod": "Pominięto „na podwyższeniu”; „on the edge” bez kontekstu jest niejasne.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.",
+   "rodzaj": "nowe",
+   "pl": "Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.",
+   "tlumaczenie": "Each major muscle group on at least {n} days a week — that is what is recommended for health. Frequency affects strength, but more days do not have to give proportionally more; with the same number of sets the differences are small. A day when the group only assists counts as {h}. You can pick the split (full body, upper/lower) freely — with the same number of sets it gives similar results.",
+   "poprawka": "Each major muscle group on at least {n} days a week — that is what is recommended for health. Frequency affects strength, but more days do not necessarily give proportionally more; with the same number of sets the differences are small. A day when the group only assists counts as {h}. You can pick the split (full body, upper/lower) freely — with the same number of sets it gives similar results.",
+   "powod": "„do not have to give” brzmi nienaturalnie; „do not necessarily give” lepiej oddaje „nie musi dawać”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "lista serii przewijana",
+   "rodzaj": "nowe",
+   "pl": "lista serii przewijana",
+   "tlumaczenie": "set list scrolls",
+   "poprawka": "Scrollable set list",
+   "powod": "„set list scrolls” to niepełne zdanie; jako etykieta brzmi nienaturalnie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "rodzaj": "nowe",
+   "pl": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "tlumaczenie": "General fitness (for health): {s} sets per exercise, {a}–{b} reps (at home {c}–{d}), until another repetition would be hard. For health it is worth training all major muscle groups on at least {n} days a week.",
+   "poprawka": "General (for health and fitness): {s} sets per exercise, {a}–{b} reps (at home {c}–{d}), until another repetition would be hard. For health it is worth training all major muscle groups on at least {n} days a week.",
+   "powod": "Pominięto „i sprawności”; nazwa celu zmieniona względem źródła.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "bike.foot",
+   "rodzaj": "wskazowka",
+   "pl": "Na pedale opieraj przednią część stopy.",
+   "tlumaczenie": "Pedal with the front part of your foot, just behind the toes.",
+   "poprawka": "Keep the front part of your foot on the pedal.",
+   "powod": "Dodano „just behind the toes”, czego nie ma w źródle.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

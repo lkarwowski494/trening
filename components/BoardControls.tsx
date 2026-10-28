@@ -7,7 +7,7 @@ import { exById, typeSetValue, fmtSec, REPS_MAX, DURATION_MAX_SEC } from '@/lib/
 import { type BoardKey, type Eff } from '@/lib/board';
 import { type Exercise, type Workout } from '@/lib/seed';
 import { t as tr, lang } from '@/lib/i18n';
-import { wu, wField, wInKeep, wOut, dOut, dIn, distUnit, fmtNum } from '@/lib/units';
+import { wu, wField, wInKeep, wOut, dOut, dIn, distLabel, unitLabel, fmtNum } from '@/lib/units';
 
 /* Elementy sterujące tablicy „teraz” (M3 p2): przyciski ±, liczba z wpisem na miejscu, etykiety i teksty liczb — wydzielone z components/NowBoard.tsx. */
 function PlusMinus({ plus, color }: { plus: boolean; color: string }) {
@@ -19,7 +19,7 @@ export function StepBtn({ plus, label, disabled, onPress, testID, th }: { plus: 
 }
 
 /** Jednostka pola (etykieta między ±). */
-export const unitOf = (k: BoardKey): string => k === 'weight' || k === 'addKg' ? wu() : k === 'reps' ? tr('pow.') : k === 'durationSec' ? tr('sek.') : distUnit();
+export const unitOf = (k: BoardKey): string => k === 'weight' || k === 'addKg' ? unitLabel() : k === 'reps' ? tr('pow.') : k === 'durationSec' ? tr('sek.') : distLabel();
 export const stepLabelKey = (k: BoardKey, plus: boolean, amount: string): string => k === 'reps' ? tr(plus ? 'Zwiększ powtórzenia o 1' : 'Zmniejsz powtórzenia o 1')
   : k === 'durationSec' ? tr(plus ? 'Zwiększ czas o {n}' : 'Zmniejsz czas o {n}', { n: amount }) : k === 'distanceM' ? tr(plus ? 'Zwiększ dystans o {n}' : 'Zmniejsz dystans o {n}', { n: amount })
   : tr(plus ? 'Zwiększ ciężar o {n}' : 'Zmniejsz ciężar o {n}', { n: amount });

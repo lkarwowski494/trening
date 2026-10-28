@@ -59,7 +59,7 @@ describe('kolejność i cele', () => {
       expect([String(x), screen.queryAllByText(x).length]).toEqual([String(x), 1]);
     expect(screen.queryByText(/powtórzenia w zapasie/)).toBeNull(); expect(screen.queryByText(/boju głównego/)).toBeNull();
     expect(screen.getByText(SHORT(0))).toBeTruthy(); /* minuty cardio w planie obok zalecenia WHO, także bez cardio */
-    expect(screen.getByText(generate(inp({ days: [1, 3] })).days.map((ti, i) => (ti == null ? null : `${new Date(2024, 0, 1 + i).toLocaleDateString('pl-PL', { weekday: 'short' })} FBW`)).filter(Boolean).join(' · '))).toBeTruthy();
+    expect(screen.getByText(generate(inp({ days: [1, 3] })).days.map((ti, i) => (ti == null ? null : `${new Date(2024, 0, 1 + i).toLocaleDateString('pl-PL', { weekday: 'short' })} FBW`)).filter(Boolean).join(', '))).toBeTruthy();
     expect(screen.getAllByText(/ — 2\s×\s8\D{1,3}12, przerwa /u).length).toBeGreaterThan(5); /* glue: spacje nierozdzielające (A11-19) */
     await goal('Masa'); expect(checkedDays()).toEqual([1, 3]); expect(screen.queryByText(GOAL_NOTE)).toBeNull(); expect(screen.queryByText(WHO(0))).toBeNull();
   });
@@ -92,7 +92,7 @@ describe('przełącznik „Dni cardio w planie”', () => {
     expect(screen.getByText('Dni treningowe w tygodniu (w tym 2 cardio)')).toBeTruthy(); expect(screen.getByTestId('gen-cardio')).toBeTruthy(); expect(screen.getByTestId('gen-fbw')).toBeTruthy(); expect(screen.queryByTestId('gen-upA')).toBeNull();
     expect(screen.getByText(SHORT(120))).toBeTruthy(); expect(screen.queryByText(WHO(120))).toBeNull(); await openInfo('gen-cardio-in'); expect(screen.getByText(WHO(120))).toBeTruthy(); expect(checkedDays()).toEqual([0, 1, 2, 4, 5]);
     const r = generate(inp({ days: [0, 1, 2, 4, 5], cardio: true })); expect(r.backToBack).toEqual([]);
-    expect(screen.getByText(r.days.map((ti, i) => (ti == null ? null : `${new Date(2024, 0, 1 + i).toLocaleDateString('pl-PL', { weekday: 'short' })} ${r.templates[ti].name}`)).filter(Boolean).join(' · '))).toBeTruthy();
+    expect(screen.getByText(r.days.map((ti, i) => (ti == null ? null : `${new Date(2024, 0, 1 + i).toLocaleDateString('pl-PL', { weekday: 'short' })} ${r.templates[ti].name}`)).filter(Boolean).join(', '))).toBeTruthy();
     await pickDays([0, 1, 2, 3, 4, 5]); expect(screen.getByText('Dni treningowe w tygodniu (w tym 3 cardio)')).toBeTruthy(); expect(screen.getByText(SHORT(180))).toBeTruthy();
     await pickDays([0, 2, 4]); expect(screen.queryByTestId(SW)).toBeNull(); expect(screen.getByText('Dni treningowe w tygodniu')).toBeTruthy(); expect(screen.queryByTestId('gen-cardio')).toBeNull(); /* 3 dni — bez przełącznika i bez cardio */
     await pickDays([0, 2, 4, 6]); await goal('Masa'); expect(screen.queryByTestId(SW)).toBeNull(); expect(screen.queryByTestId('gen-cardio')).toBeNull(); /* inny cel — przełącznik pomijany */

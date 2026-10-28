@@ -4,7 +4,7 @@
  * CZYSTY: bez odczytu pliku i bez zapisu stanu.
  */
 import type { SetKind } from './seed';
-import { DURATION_MAX_SEC, REPS_MAX } from './state/util';
+import { DURATION_MAX_SEC, REPS_MAX, SET_NOTE_MAX } from './state/util';
 import { fromWallTs, tzOffsetAt } from './state/time';
 
 /** Limity importu — jedno miejsce (CLAUDE.md: liczby w jednym miejscu). 10 lat historii ≈ 1500 treningów ≈ 40 tys. wierszy. */
@@ -13,7 +13,7 @@ export const IMPORT_MAX_ROWS = 400_000;
 export const IMPORT_MIN_YEAR = 1990;
 export const IMPORT_WEIGHT_MAX_KG = 2000;
 export const IMPORT_DURATION_MAX_S = DURATION_MAX_SEC;
-export const IMPORT_NOTE_MAX = 500;
+export const IMPORT_NOTE_MAX = SET_NOTE_MAX; /* M1-audytor-generalny-003: ta sama wartość co okna notatki serii */
 
 export type CsvFormat = 'formatA' | 'formatB' | 'generic';
 export type ImportErrorCode = 'empty' | 'format' | 'rows' | 'toolarge';

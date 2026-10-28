@@ -1,0 +1,22 @@
+{
+ "jezyk": "id",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 479,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "tlumaczenie": "Gerakan dengan dumbel di atas kepala atau wajah: disarankan ada spotter.",
+   "poprawka": "Latihan dengan dumbel di atas kepala atau wajah: spotter (orang yang berjaga dan siap membantu) dianjurkan.",
+   "powod": "Niespójna terminologia z poz. 3–4 („Gerakan” zamiast „Latihan”, „disarankan” zamiast „dianjurkan”, brak objaśnienia „spotter”)",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

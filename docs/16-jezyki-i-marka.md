@@ -269,51 +269,51 @@ język telefonu (np. zh-Hant na telefonie ja) — React Native nie przekazuje j�
 Treść krytyczna = zdanie medyczne („Aplikacja nie udziela porad medycznych …”), zdanie i etykiety o asekuracji (M1-015) oraz zdania wskazówek techniki (`lib/cues/text`). Języków docelowych jest 34 (`LANGS` bez polskiego).
 Tabela poniżej jest generowana z danych (`UPDATE_CRITICAL=1 npx jest tests/audit-m1-049-critical-content.test.ts`); drift pada w `tests/audit-m1-049-critical-content.test.ts`.
 
-**Co kontrola potwierdza (automatycznie):** zdanie medyczne i pięć kluczy asekuracji (czwarty — wariant „osoba asekurująca”, M1-031, 23.10.2026; drugi przegląd 31 języków wykonany 23.10.2026 przez Claude — rola tłumacz, bez zmian: `docs/lokalizacja/przeglad-m1-031-045-2026-10-23.md`; piąty — hantle nad głową lub twarzą, M1-031 cz. 2, DEC-08: własne tłumaczenie agenta w 31 słownikach, **do przeglądu tłumacza**) są w każdym z 34 języków i różnią się od tekstu źródłowego (nie jest to przeciek polskiego ani zapasowego angielskiego); komplet zdań wskazówek jest w każdym języku
+**Co kontrola potwierdza (automatycznie):** zdanie medyczne i pięć kluczy asekuracji (czwarty — wariant „osoba asekurująca”, M1-031, 23.10.2026; drugi przegląd 31 języków wykonany 23.10.2026 przez Claude — rola tłumacz, bez zmian: `docs/lokalizacja/przeglad-m1-031-045-2026-10-23.md`; piąty — hantle nad głową lub twarzą, M1-031 cz. 2, DEC-08: własne tłumaczenie agenta w 31 słownikach, przejrzane w przeglądzie przez API 28.10.2026 — `docs/lokalizacja/raport-api-2026-10-28/`) są w każdym z 34 języków i różnią się od tekstu źródłowego (nie jest to przeciek polskiego ani zapasowego angielskiego); komplet zdań wskazówek jest w każdym języku
 (warianty es-419 i pt-BR to nakładki na es i pt — liczone po złożeniu). Kontrola **nie ocenia poprawności** tłumaczenia.
 
 <!-- gen:krytyczne -->
-| kod | zdanie medyczne | asekuracja (5 kluczy) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd wskazówek (native speaker) |
+| kod | zdanie medyczne | asekuracja (5 kluczy) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd treści krytycznej (Claude, decyzja 21.10.2026) |
 |---|---|---|---|---|---|
-| en | tak | tak | 306/306 | brak zapisu | niewykonany |
-| cs | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
-| sk | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
-| hu | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
-| ro | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
-| bg | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
-| hr | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
-| sl | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
-| sr | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
-| lt | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
-| lv | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
-| et | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
-| uk | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
-| es | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
-| es-419 | tak | tak | 306/306 | brak zapisu | niewykonany |
-| pt | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
-| pt-BR | tak | tak | 306/306 | brak zapisu | niewykonany |
-| de | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
-| fr | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
-| it | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
-| nl | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
-| sv | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
-| da | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
-| nb | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
-| fi | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
-| tr | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
-| el | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
-| id | tak | tak | 306/306 | brak zapisu | niewykonany |
-| ms | tak | tak | 306/306 | brak zapisu | niewykonany |
-| vi | tak | tak | 306/306 | brak zapisu | niewykonany |
-| ru | tak | tak | 306/306 | brak zapisu | niewykonany |
-| ja | tak | tak | 306/306 | brak zapisu | niewykonany |
-| ko | tak | tak | 306/306 | brak zapisu | niewykonany |
-| zh-Hant | tak | tak | 306/306 | brak zapisu | niewykonany |
+| en | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
+| cs | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sk | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
+| hu | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
+| ro | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
+| bg | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
+| hr | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sl | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sr | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
+| lt | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
+| lv | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
+| et | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
+| uk | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
+| es | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
+| es-419 | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
+| pt | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
+| pt-BR | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
+| de | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
+| fr | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
+| it | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
+| nl | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
+| sv | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
+| da | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
+| nb | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
+| fi | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
+| tr | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
+| el | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
+| id | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
+| ms | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
+| vi | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
+| ru | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
+| ja | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
+| ko | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
+| zh-Hant | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
 <!-- /gen:krytyczne -->
 
-**Czego nie ma (stan na 20.10.2026):**
-- **Drugi przegląd wskazówek techniki: niewykonany** w żadnym języku; w repozytorium nie ma jego zapisu. Tłumaczył agent AI; niezależną recenzję drugim agentem zapisano tylko dla 24 języków (14 z procesu 05.10.2026 i 10 z wariantu B, proces 07.10.2026 — akapity w sekcji „Języki”); dla fal 1–4 (pt-BR, es-419, id, ms, vi, ru, ja, ko, zh-Hant) tylko „bez recenzji native speakera”. Przegląd przez native speakerów jest w backlogu (docs/18) — **[OTWARTE]**.
-- **Forma zwracania się w fr i tr nie jest ujednolicona — [OTWARTE]**, do poprawy przez tłumacza (nie zmieniana w tej partii): rejestr zapisany w tabeli wyżej to „vous” (fr) i „siz” (tr), a zdanie medyczne brzmi w fr „consulte” (forma „tu”), w tr „danış” (forma „sen”), podczas gdy wskazówki techniki w tr używają formy grzecznościowej („kaldırın”), a w fr formy „vous” (np. „Levez”).
+**Stan przeglądu (28.10.2026, M1-audytor-generalny-006):**
+- **Drugi przegląd treści krytycznej: wykonany przez Claude** (decyzja właściciela 21.10.2026, docs/18; wcześniej K-P4-2, 20.10.2026 — bez native speakerów): przegląd przez API 22.10.2026 (`docs/lokalizacja/raport-api-2026-10-22/`) i 28.10.2026 po ostatnich zmianach tekstów (`docs/lokalizacja/raport-api-2026-10-28/`); ostatnia kolumna tabeli wyżej jest generowana z kopii raportu z 28.10. Wcześniejszy zapis (20.10.2026): tłumaczył agent AI, niezależną recenzję drugim agentem zapisano dla 24 języków (14 z procesu 05.10.2026 i 10 z wariantu B, proces 07.10.2026).
+- **Forma zwracania się w fr i tr — ujednolicona** w zdaniu medycznym: fr „consultez” (vous), tr „danışın” (siz), zgodnie z rejestrem w tabeli wyżej (test: `tests/audit-m1-006-r010-zamkniecie.test.ts`).
 - Zdanie asekuracji i zdanie medyczne bez weryfikacji merytorycznej badacza (zdanie asekuracji: „DO WERYFIKACJI BADACZA”, docs/10, sekcja „Asekuracja”).
 
 Ryzyko i warunek zamknięcia: R-010 w `docs/40-lekcje.md` (blokuje wydanie w App Store; TestFlight bez blokady).
@@ -355,6 +355,17 @@ Batch `msgbatch_01HsrjDsBkKt9AEzypNeYU3Y` (Opus 5.5, 34 języki, 342 zdania na j
 - **Otwarte — decyzja właściciela (rejestr wskazówek techniki):** w 13 językach (bg, cs, el, hr, hu, lt, lv, pt, ro, sk, sl, sr, uk) wskazówki techniki mają formę „ty”, a rejestr w tej sekcji to „formalny jak w iOS”. Zmiany nie wprowadzono (decyzja produktowa: ujednolicić całość do „vy/Vi” albo uznać „ty” we wskazówkach za świadomy styl). Liczba zdań wskazówek w formie „ty” według przeglądu: bg 236, cs 236, el 240, hr 239, hu 241, lt 236, lv 224, pt 223, ro 230, sk 235, sl 233, sr 231, uk 232 (razem ok. 3 000); dodatkowo ok. 30 zdań interfejsu (np. „Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik”, opis języka w Ustawieniach iOS, „Zacznij {days} dni za darmo”). Zdanie medyczne ma już formę formalną we wszystkich 13.
 - Do sprawdzenia przez native speakera (nie rozstrzygane tu): el „Γνωστοποιήσεις” vs „Ειδοποιήσεις” (spójnie z resztą aplikacji, Apple może używać drugiego), ms „Di iPhone Saya” vs „Pada iPhone Saya”, fi „Omalla iPhonella”, tr „yastıklı silindirler” i „emperyal”, hr/lv/lt etykiety spotting, hu „Biztonság és segítő”, uk/sr opisy sprzętu.
 - R-010: przegląd modelem wykonany i poprawki naniesione; wpis „drugi przegląd” w tabeli i w docs/40 nie zmienia się (nadal przegląd przez native speakerów jest otwarty).
+
+### Przegląd tłumaczeń przez API — wynik i poprawki (28.10.2026)
+
+Batch `msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ` (Opus 5.5, 34 języki, 480 zdań na język; przebieg `przeglad-tlumaczen.yml` 40642059904). Poprawki naniesiono na gałęzi `naprawy/M2-scalenie-1-0` (słowniki `lib/locales/*.json`, wskazówki `lib/cues/text/*.json`, nakładki es-419 i pt-BR; angielski bez zmian), każdą uwagę oceniono osobno: słownik terminów (`slownik-terminow.json`) ma pierwszeństwo przed propozycją modelu. Formy zwracania się (ty/Pan) we wskazówkach techniki bez zmian (decyzja otwarta z 21.10.2026).
+
+- **Krytyczne (1): 1 poprawiona.** sl „Drop set se šteje skupaj s serijo, ki ji sledi” miało odwrócony kierunek (seria po drop secie zamiast przed nim).
+- **Średnie (149): 101 poprawionych, 40 odrzuconych, 8 dotyczy angielskiego (niezmieniane, lista w notatce wdrożeniowej).** **Niskie (95): 64 poprawione, 27 odrzuconych, 4 dotyczą angielskiego.** Razem naniesiono 165 zmian (wartości kluczy) w 33 językach.
+- **Poprawione (przykłady):** spójność ze słownikiem „partia” (el, es, hr, hu, lt, nl, nb, sr, sv, tr, uk: „części ciała” zamiast „grup mięśniowych”); „sesja” → „trening” w sl (słownik); fiński „Omalla iPhonella” i pt-BR „No Meu iPhone” jak w iOS; „pompka” = „armstrækning”/„armheving” w duńskich i norweskich wskazówkach (da, nb); „Scott-penkki” zamiast kalki (fi); błędy gramatyczne („vsi” → „visi” w sl w 4 wskazówkach, „hver stor” w nb, „com ela” w pt/pt-BR, „jäivät” w fi); zdania bez czasownika (de, es-419, uk: „Na koniec …”); formalny rejestr w komunikatach (ro: 4 zdania); skróty bez sensu w pełnym zdaniu (da, nb: „gent.-interval”, „rep.-området”); „linka wyciągu” = „jeklenica” (sl); „stopy na zewnątrz dłoni” (lt) i „ręce w górę” (sk); „+ {n} {w}” bez „altri” (it); odstęp przy mi/yd w ko; typograficzne apostrofy i cudzysłowy (tr, hr, it, nl); „aplikacja” zamiast potocznego „app” (hu, ms); ruch rąk „kľuky” (sk); „Cardio: umiarkowane” jednolicie (cs, sv); ms „senaman” zamiast „latihan” dla ćwiczenia (słownik). Spójność zalecenia asekuracji (da, nb, el, fr, it, id, pt, pt-BR, zh-Hant) — „osoba asekurująca/spotter” jak w sąsiednich zdaniach.
+- **Odrzucone (przykłady, powód):** jednostki mi/yd/lb (bg, ru, sr, uk) — słownik wymaga tych form (`jednostka_dystansu_*`, `jednostka_masy_lb`), test jakości ru/sr; da/de „Backup” zamiast „Sikkerhedskopi”/„Sicherung” oraz de „Absicherung” — słownik (`kopia_zapasowa`, `asekuracja`); et „väsimus” — słownik „Kuni väsimuseni”; fr „programme” zamiast „plan” — słownik zaleca „plan” (mieszanka w interfejsie już opisana wyżej); tr „oturum” i lv „treniņš” zamiast „sesija” — słownik; el „εφ' όρου ζωής” — słownik („μόνιμο”); ms „jalur rintangan” — słownik „Getah rintangan”; hr „kolotur” — słownik „Sajle”; bg „Архивиране/Показване” — etykiety przycisków w imperatywie, tekst ma być z nimi identyczny; pt-BR „« »” → „“ ”” (cały plik używa „« »”); fr „visez/faites-en” → „il est conseillé” (imperatyw to naturalny ton trenera); pt „+ mais” (zgodne z EN „more”); ru „{n} подходов” (n w praktyce ≥ 10; „дн.” poprawione); lv „locījums” i „visām pēdām” (wątpliwe — do native speakera); ko „휴대폰 외부” (przekład „iPhone 밖” jest zrozumiały).
+- **Do sprawdzenia przez native speakera:** da „Rejse sig” (faza „Wstawanie”; wcześniej „Rejsning” brzmiało dwuznacznie), da/de „Sikkerhedskopi”/„Sicherung” przy jednoczesnej „Sicherung” = asekuracja (de: dwuznaczność nagłówka), bg „мили/ярд” przy liczbie 1 i 2+, lv „locījums” vs „saliekums” (zgięcie stawu) i „palīgmuskulis”, lt „Treniruotė … buvo neaktyvi” (nowe sformułowanie), id „Latihan” vs „Gerakan” dla ćwiczenia (zdania o asekuracji 3–4 używają „Latihan”, słownik „Gerakan”), nl „Pro-opties” zamiast „abonnement” (w tekstach z zakupem dożywotnim) i „espressoindex” (z łącznikiem czy bez), sk/cs „celkem/celkom {s}” vs „z {s}” (sk poprawione, cs bez zmiany), fr „Reste {n} sur {limit}” (szyk), zh-Hant „保護者” jako spotter.
+- R-010: przegląd modelem wykonany i poprawki naniesione; ryzyko **zamknięte 28.10.2026** zgodnie z decyzją właściciela z 21.10.2026 (docs/18: R-010 zamyka przegląd wykonany przez Claude) — trwała kopia raportu: `docs/lokalizacja/raport-api-2026-10-28/` (M1-audytor-generalny-006). Punkty „do sprawdzenia przez native speakera” wyżej to uwagi jakościowe poza warunkiem R-010 (przegląd przez native speakerów odrzucony, K-P4-2, 20.10.2026).
 
 ### Słownik terminów treningowych (decyzja właściciela 25.10.2026)
 

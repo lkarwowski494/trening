@@ -59,6 +59,7 @@ export function NowBoard({ w, onDone, onFinish, onStartSet, onCardY, onRestY }: 
   const running = timer.S.on && timer.S.setId === set.id; const timedIdle = hasTime(m) && !running; const scrolls = fieldLayout(e.sets.length, innerW, 1).scroll;
   /* 04-studio-projektowe-007: przy wąskim ekranie (320 pt) wiersz ± ciaśniej (odstęp 4, etykieta min. 24), żeby prawy „+” nie wychodził poza tablicę */
   const tight = keys.length * (2 * SIZE.stepButton + 2 * SPACE.s + 32) + (keys.length - 1) * SPACE.s > innerW;
+  const sepSize = Math.round(size * 0.45);
   const press = () => {
     const miss = missingKey(w, e, pos.si);
     if (miss) { setReq({ setId: set.id, key: miss, n: Date.now() }); playHaptic('missing'); announce(tr('Wpisz {co}, żeby zapisać serię.', { co: miss === 'weight' || miss === 'addKg' ? tr('ciężar') : miss === 'reps' ? tr('powtórzenia') : miss === 'durationSec' ? tr('czas') : tr('dystans') })); return; }
@@ -79,7 +80,7 @@ export function NowBoard({ w, onDone, onFinish, onStartSet, onCardY, onRestY }: 
           {/* E2E-11: liczby i pole wpisu poza grupą accessible (iOS chowa potomków grupy przed VoiceOver i XCTest); opis tablicy wyżej zawiera te wartości */}
           <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'center', gap: SPACE.xs, flexWrap: 'nowrap' }}>
             {keys.map((k, i) => <React.Fragment key={k}>
-              {i ? <Text accessible={false} maxFontSizeMultiplier={1} style={{ ...font('boardMeta'), fontSize: Math.round(size * 0.45), color: th.boardMuted }}>{k === 'durationSec' && keys[0] === 'distanceM' ? '·' : '×'}</Text> : null}
+              {i ? <Text accessible={false} maxFontSizeMultiplier={1} style={{ ...font('boardMeta'), fontSize: sepSize, lineHeight: Math.round(sepSize * 1.3) /* M2-koordynator-napraw-003: wysokość linii z rozmiaru znaku, nie z tokenu boardMeta (22) — inaczej „×” przy dużych cyfrach jest ucięty */, color: th.boardMuted }}>{k === 'durationSec' && keys[0] === 'distanceM' ? '·' : '×'}</Text> : null}
               <BoardNum w={w} ei={pos.ei} si={pos.si} k={k} eff={eff} size={size} req={req} />
               {k === 'weight' || k === 'distanceM' || (k === 'addKg' && (eff.addKg ?? 0) !== 0) ? <Text accessible={false} maxFontSizeMultiplier={maxScale('stepLabel')} style={{ ...font('stepLabel'), color: th.boardMuted }}>{unitOf(k)}</Text> : null}
             </React.Fragment>)}

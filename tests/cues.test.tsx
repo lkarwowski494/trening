@@ -22,7 +22,7 @@ afterEach(() => { applyLang('pl'); });
 
 describe('dane wskazówek', () => {
   test('każde ćwiczenie bazowe ma wskazówki albo jest na liście otwartych z powodem; poza bazą — nic', () => {
-    const covered = new Set([...Object.keys(CUE_DATA.exercises), ...CUE_DATA.open]);
+    const covered = new Set([...Object.keys(CUE_DATA.exercises), ...CUE_DATA.open, ...CUE_DATA.hidden]); /* hidden — karty ukryte po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
     expect([...LIB_BASE_NAMES].filter(n => !covered.has(n))).toEqual([]);
     expect([...covered].filter(n => !LIB_BASE_NAMES.has(n))).toEqual([]);
     for (const k of CUE_DATA.open) expect(CUE_DATA.exercises[k]).toBeUndefined(); /* powody otwartych — tests/zrodla-pelne-cues.test.ts */
@@ -147,7 +147,8 @@ describe('ekran ćwiczenia', () => {
     const { act } = require('./app');
     await act(async () => { router.push(`/exercise/${ex.id}`); });
     await flushAll();
-    await tap(appScreen.getByRole('button', { name: 'Technika' }));
+    /* 27.10.2026 (wariant B): karta ćwiczenia otwiera się z rozwiniętą sekcją — bez stuknięcia */
+    expect(appScreen.getByRole('button', { name: 'Technika' }).props.accessibilityState).toEqual({ expanded: true });
     expect(appScreen.getByText(`• ${cueText(CUE_DATA.exercises['Back Squat'].setup[0].c, 'pl')}`)).toBeTruthy();
   });
 });

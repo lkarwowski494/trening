@@ -54,7 +54,7 @@ describe('E2E 91: interpreter odtwarza porażki scenariuszy z 224d229 w tym samy
 
   test('17 — „Setup” pod rysunkiem ruchu, poza ekranem bez przewinięcia', async () => {
     /* kroki figury (TST2-05) dopisane po 224d229 przewijają do przycisku pauzy — usunięte, jak w wersji z przebiegu */
-    const fig = (c: Cmd[]) => { const a = c.findIndex(x => same(x, { tapOn: 'Technique' })); const b = c.findIndex(x => same(x, { extendedWaitUntil: { visible: 'Pause animation', timeout: 15000 } })); expect(b).toBeGreaterThan(a); return [...c.slice(0, a + 1), ...c.slice(b + 1)]; };
+    const fig = (c: Cmd[]) => { const a = at(c, { tapOn: 'Technique' }); /* od 27.10.2026 dwa stuknięcia (zwiń, rozwiń) — liczy się ostatnie */ const b = c.findIndex(x => same(x, { extendedWaitUntil: { visible: 'Pause animation', timeout: 15000 } })); expect(b).toBeGreaterThan(a); return [...c.slice(0, a + 1), ...c.slice(b + 1)]; };
     /* audyt kontrolny 1 (UX2-05 B, celowa zmiana): sekcja „Technika” stoi teraz na górze podglądu — „Setup” mieści się pod rysunkiem bez przewijania;
      * ten sam rodzaj porażki (element pod krawędzią bez przewinięcia) sprawdzamy na stopce sekcji (zdanie o poradach medycznych) */
     await failsAt('17-biblioteka-technika.yaml', c => replace({ scrollUntilVisible: { element: 'The app does not give medical advice.*', direction: 'DOWN', timeout: 30000 } }, [{ extendedWaitUntil: { visible: 'The app does not give medical advice.*', timeout: 15000 } }])(replace({ scrollUntilVisible: { element: 'Setup', direction: 'DOWN', timeout: 30000 } }, [])(fig(c))),

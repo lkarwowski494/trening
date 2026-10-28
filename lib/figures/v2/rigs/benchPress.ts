@@ -27,6 +27,8 @@ export type BenchParams = {
   /** Wysokość dotyku nad osią tułowia (cm) — przód klatki / szyi + promień gryfu. */
   touchB?: number;
   floor?: boolean; oneArm?: boolean; squeeze?: boolean; band?: boolean; chain?: boolean;
+  /** Odmiana „reverse”: guma zwisa z góry stojaka do gryfu (zamiast od gryfu do podłogi). */
+  reverse?: boolean;
   /** Siła odchylenia łokci na boki (biegun IK): 0,45 domyślnie; wąski chwyt / JM — łokcie bliżej, ale poza obrysem ławki. */
   flare?: number;
   /** Przedramiona pionowo w płaszczyźnie czołowej (łokieć dokładnie pod dłonią) w całym ruchu: biegun łokcia liczony z geometrii (NSCA Basics 2012 s. 53–55: nadgarstki nad łokciami, przedramiona prostopadle do podłogi). Kąt odwiedzenia łokci wynika wtedy z szerokości chwytu i punktu dotyku. */
@@ -34,6 +36,8 @@ export type BenchParams = {
 };
 
 export const BENCH = {
+  /** Kotwica gumy „reverse” nad najwyższym położeniem gryfu (górna belka stojaka), cm. */
+  bandHangAbove: 35,
   seatTop: 43, declineSeat: 60, padBack: 10.2, backLen: 75, seatLen: 55,
   /** Stopy: odległość kostki od miednicy w stronę stóp (cm) i rozstaw. */
   footBack: 40, footHalf: 24,
@@ -65,20 +69,23 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
   const L = D.uarm + D.farm + BODY.hand - 0.05;
   /* góra: ręce wyprostowane, gryf nad barkiem (lekko w stronę stóp) */
   const dz0 = grip0 - D.shHalf; const x0 = shoulderC[0] + 2;
-  const top: V3 = [x0, shoulderC[1] + Math.sqrt(Math.max(1, L * L - 4 - dz0 * dz0)), 0];
+  let top: V3 = [x0, shoulderC[1] + Math.sqrt(Math.max(1, L * L - 4 - dz0 * dz0)), 0];
   /* dół: dotyk w układzie tułowia (u podłogi: wysokość, przy której łokcie dotykają podłogi) */
   const touchB = p.touchB ?? 11.9 + EQUIP.barR;
   let bottom = trunkPoint(hipT, pitchT, p.touch, touchB, 0);
   const fl = p.flare ?? (p.grip < 20 ? 1.1 : 0.8); const elbowPole: V3 = [0, -1, fl];
+  const underGripAt = (grip: V3): V3 => { const sh: V3 = [shoulderC[0], shoulderC[1], D.shHalf]; return [grip[0] - sh[0], grip[1] - (D.farm + BODY.hand) - sh[1], grip[2] - sh[2]]; };
   if (floorPress) {
-    const f = (y: number): number => { const sh: V3 = [shoulderC[0], shoulderC[1], D.shHalf]; const r = ik2(sh, [bottom[0], y, g], D.uarm, D.farm + BODY.hand, elbowPole); return r.mid[1] - (2 + 4.6); };
+    const f = (y: number): number => { const sh: V3 = [shoulderC[0], shoulderC[1], D.shHalf]; const r = ik2(sh, [bottom[0], y, g], D.uarm, D.farm + BODY.hand, p.vert ? underGripAt([bottom[0], y, g]) : elbowPole); return r.mid[1] - (2 + 4.6); };
     bottom = [bottom[0], solveRoot(f, bottom[1] - 4, bottom[1] + 30), 0];
   }
+  /* maszyna Smitha: gryf jedzie po pionowej szynie — x stały (punkt dotyku), góra = wyprost ramion nad tym x (skan torów 28.10.2026, lekcja w docs/40; było: ukos 15–18 cm, szyna jechała z gryfem) */
+  if (p.impl === 'smith') { const dxs = bottom[0] - shoulderC[0]; top = [bottom[0], shoulderC[1] + Math.sqrt(Math.max(1, L * L - dxs * dxs - dz0 * dz0)), 0]; }
   const k = ease(u);
   const c: V3 = [top[0] + (bottom[0] - top[0]) * k, top[1] + (bottom[1] - top[1]) * k, 0];
 
   /* biegun łokcia ku „łokciowi idealnemu” pod dłonią (przedramię pionowo): IK wybiera na okręgu dozwolonych łokci (długości segmentów stałe) punkt najbliższy pionowemu przedramieniu */
-  const underGrip = (grip: V3): V3 => { const sh: V3 = [shoulderC[0], shoulderC[1], D.shHalf]; return [grip[0] - sh[0], grip[1] - (D.farm + BODY.hand) - sh[1], grip[2] - sh[2]]; };
+  const underGrip = underGripAt;
   const poleR: V3 = p.vert ? underGrip([c[0], c[1], g]) : elbowPole;
   const arms = { R: { grip: [c[0], c[1], g] as V3, elbowPole: poleR }, L: { grip: [c[0], c[1], -g] as V3, elbowPole: [poleR[0], poleR[1], -poleR[2]] as V3 } };
   if (p.oneArm) arms.L = { grip: trunkPoint(hipT, pitchT, 26, 12.5, -7), elbowPole: [0, -0.2, -1] as V3 };
@@ -101,7 +108,7 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
     props.push({ k: 'barbell', c });
     info.bar = c;
     if (p.impl === 'smith') props.push({ k: 'rail', x: c[0], h: 190 });
-    if (p.band || p.impl === 'band') props.push({ k: 'band', from: c, to: [c[0], 0, 0] });
+    if (p.band || p.impl === 'band') props.push(p.reverse ? { k: 'band', from: [c[0], top[1] + BENCH.bandHangAbove, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [c[0], 0, 0], bar: true });
     if (p.chain || p.impl === 'chain') props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
   }
   /* dozwolone kontakty: plecy na oparciu, miednica i uda na siedzisku, gryf/hantle na klatce (tylko na dole) */

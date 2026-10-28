@@ -26,3 +26,13 @@ export function parseBootPhase(raw: string | null | undefined): BootPhase | null
 export function describeBootPhase(p: BootPhase | null): string {
   return p ? `start: ${p.phase}, ${p.ms} ms, ${p.hadData ? 'data' : 'empty'}, schema ${p.schema}, n=${p.starts}` : 'start: -';
 }
+/** M1-audytor-generalny-032 (pętla 2): błąd startu bez własnego kodu dostaje kod etapu do „Napisz do nas” — migracja → „start: migrate”, dane z nowszej
+ * wersji → „start: newer” (schemat zapisu), pozostałe → „start: init”; bez treści błędu (decyzja 7a). Zmienia obiekt błędu (pole bootDiag). */
+export function startFailureDiag(e: unknown, ctx: { ms: number; hadData: boolean; starts: number; schema: number }): void {
+  if (!e || typeof e !== 'object') return;
+  const x = e as { bootDiag?: unknown; migrationFailed?: boolean; newerSchema?: number };
+  if (typeof x.bootDiag === 'string') return;
+  const etap = x.migrationFailed ? 'migrate' : x.newerSchema != null ? 'newer' : 'init';
+  x.bootDiag = `start: ${etap}, ${ctx.ms} ms, ${ctx.hadData ? 'data' : 'empty'}, schema ${x.newerSchema ?? ctx.schema}, n=${ctx.starts}`;
+}
+

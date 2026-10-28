@@ -84,9 +84,9 @@ describe('ekrany: Ustawienia, trening, historia, postępy', () => {
 
 describe('strażnik: teksty dystansu tylko przez helper', () => {
   const walk = (d: string): string[] => fs.readdirSync(d, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(path.join(d, e.name)) : /\.(ts|tsx)$/.test(e.name) && !/i18n(\.en)?\.ts$/.test(e.name) ? [path.join(d, e.name)] : []);
-  test("t('{n} km') i t('{n} m') (oraz {n} mi / {n} yd) występują tylko w lib/state/time.ts", () => {
+  test("t('{n} km') i t('{n} m') (oraz {n} mi / {n} yd) występują tylko w lib/state/time.ts i lib/units.ts (etykiety)", () => {
     const root = path.join(__dirname, '..'); const bad: string[] = [];
-    for (const d of ['app', 'components', 'lib']) for (const f of walk(path.join(root, d))) { const src = fs.readFileSync(f, 'utf8'); if (/'\{n\} (km|m|mi|yd)'/.test(src) && !f.endsWith(path.join('lib', 'state', 'time.ts'))) bad.push(path.relative(root, f)); }
+    for (const d of ['app', 'components', 'lib']) for (const f of walk(path.join(root, d))) { const src = fs.readFileSync(f, 'utf8'); if (/'\{n\} (km|m|mi|yd)'/.test(src) && !f.endsWith(path.join('lib', 'state', 'time.ts')) && !f.endsWith(path.join('lib', 'units.ts')) /* 28.10.2026 (10a): etykiety jednostek ze słownika (distLabel) żyją w units.ts obok fmtW */) bad.push(path.relative(root, f)); }
     expect(bad).toEqual([]);
   });
   test('słownik: klucze nowego ustawienia i jednostek są w angielskim słowniku', () => {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
-import { useTheme, TEXT_SCALE_MAX, FW, font } from '@/lib/theme';
+import { useTheme, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
-import { cuesFor, cueText, type CueSection } from '@/lib/cues';
+import { cuesFor, cueText, generalCuesReviewed, type CueSection } from '@/lib/cues';
 import { catalogKey } from '@/lib/seed';
 import { figureSpec } from '@/lib/figures/v2';
 import { cueSelection, generalCueNote } from '@/lib/figures/v2/cueSets';
@@ -30,14 +30,14 @@ export function ExerciseCues({ exercise, initialOpen }: { exercise: Pick<Exercis
   /* grafiki 1.0 (25.10.2026, wariant A): figura v2 tam, gdzie istnieje rodzina ruchu (zastępuje v1); zestaw ogólny wskazówek wzorca z dopiskiem przy ćwiczeniach-analogiach — na razie tylko dla ćwiczeń z gotową rodziną v2 (reszta rodzin: kolejne etapy) */
   const key = catalogKey(exercise); const v2 = !!key && !!figureSpec(key);
   const sel = key ? cueSelection(key) : null; const note = sel ? generalCueNote(sel) : null;
-  const gen = v2 && sel && sel.mode === 'general' ? ([['tips', sel.ok], ['mistakes', sel.err]] as [CueSection, string[]][]).map(([id, ids]) => ({ id, items: ids.map(x => cueText(x, lang())).filter((x, i) => x !== ids[i]) })).filter(s => s.items.length) : [];
+  const gen = v2 && sel && sel.mode === 'general' && !!key && generalCuesReviewed(key) /* bramka 4 dla treści (M1-audytor-generalny-038) */ ? ([['tips', sel.ok], ['mistakes', sel.err]] as [CueSection, string[]][]).map(([id, ids]) => ({ id, items: ids.map(x => cueText(x, lang())).filter((x, i) => x !== ids[i]) })).filter(s => s.items.length) : [];
   const sections = c ? c.sections : gen;
   if (!c && !v2 && !sections.length) return safety ? <SafetyNote kind={safety} /> : null;
   return (
     <View testID="exercise-cues" style={{ borderTopWidth: 1, borderBottomWidth: 1, borderColor: th.line, marginBottom: 14 }}>
       <Pressable accessibilityLanguage={lang()} testID="exercise-cues-toggle" onPress={() => setOpen(o => !o)} accessibilityRole="button" accessibilityLabel={t('Technika')} accessibilityHint={t('Ustawienie, ruch, wskazówki i częste błędy.')} accessibilityState={{ expanded: open }} hitSlop={4} style={{ minHeight: 44, flexDirection: 'row', alignItems: 'center' }}>
         <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold, flex: 1 }}>{t('Technika')}</Text>
-        <Text importantForAccessibility="no" accessibilityElementsHidden style={{ color: th.muted, ...font('body'), ...FW.regular }}>{open ? '▾' : '▸'}</Text>
+        <Text importantForAccessibility="no" accessibilityElementsHidden maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.muted, ...font('body'), ...FW.regular }}>{open ? '▾' : '▸'}</Text>
       </Pressable>
       {safety ? <SafetyNote kind={safety} inside /> /* widoczne także przy zwiniętej sekcji */ : null}
       {open ? <View style={{ paddingBottom: 12 }}>

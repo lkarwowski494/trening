@@ -8,7 +8,7 @@
 #   "Filter: basic exercises"                        ← 'Filtr: podstawowe ćwiczenia' (accessibilityLabel chipa „Basic ✕”, components/LibScope.tsx)
 #   "Showing all exercises, including niche ones"    ← 'Pokazane wszystkie ćwiczenia, także niszowe' (ten sam chip po zdjęciu filtra)
 #   "Search exercises…" / "Back Squat, barbell.*"             ← jak w 16
-#   "Technique"                                      ← 'Technika' (przycisk sekcji, components/ExerciseCues.tsx)
+#   "Technique"                                      ← 'Technika' (przycisk sekcji, components/ExerciseCues.tsx; od 27.10.2026 karta ćwiczenia otwiera ją rozwiniętą — pierwsze stuknięcie zwija, drugie rozwija)
 #   "Setup" / "The app does not give medical advice.*"  ← 'Ustawienie' / zdanie o poradach medycznych na końcu sekcji (stopka „Na podstawie…” usunięta 23.10.2026 — źródła są w Ustawienia → Źródła wiedzy)
 #   "Movement drawing: .*"                           ← 'Rysunek ruchu: {opis}' (etykieta VoiceOver obrazu figury, components/ExerciseFigure.tsx)
 #   "Pause animation" / "Resume animation"          ← 'Zatrzymaj animację' / 'Wznów animację' (przycisk pod figurą, WCAG 2.2.2)
@@ -41,7 +41,10 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Back Squat, barbell.*"
 - extendedWaitUntil: { visible: "Technique", timeout: 30000 }
-- assertNotVisible: "Setup"
+# 27.10.2026 (wariant B, docs/18): karta ćwiczenia otwiera się z sekcją „Technika” ROZWINIĘTĄ — rysunek widać bez tapnięcia; przycisk zwija i rozwija
+- extendedWaitUntil: { visible: "Movement drawing: .*", timeout: 30000 }
+- tapOn: "Technique"
+- assertNotVisible: "Movement drawing: .*"
 - tapOn: "Technique"
 # TST2-05: figura ruchu nad tekstem sekcji — przycisk pauzy pod rysunkiem (ustawienie „Ogranicz ruch” na symulatorze wyłączone — animacja)
 - scrollUntilVisible: { element: "Pause animation", direction: DOWN, timeout: 30000, centerElement: true }

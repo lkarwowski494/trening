@@ -132,8 +132,8 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     w App Store Connect bez nowej wersji. Wdrożenie: paczka przed App Store, razem z subskrypcją (biblioteka iOS+Android).
   - **ZMIANA CEN (decyzja właściciela 13.10.2026, wariant M1; zapis: docs/18, wpis „cennik … M1”):** miesięczna 0,99 USD/EUR/GBP (PL 3,99 zł — **zmienione 14.10.2026 na 4,99 zł**, bo 3,99 nie ma w siatce Apple; docs/18),
     roczna **4,99** (PL 19,99 zł) = 5 × miesięczna, dożywotnia **14,99** (PL 59,99 zł) = 3 × roczna. Zastępuje ceny z 11.10.2026 (6,99 / 21,99)
-    i „5× roczna” z 10.10.2026. Ukraina: niższy punkt cenowy poniżej ceny espresso — **[OTWARTE]** konkretny punkt (lista punktów w App Store
-    Connect). Poniższy wpis z 11.10.2026 zostaje jako historia decyzji.
+    i „5× roczna” z 10.10.2026. Ukraina: niższy punkt cenowy poniżej ceny espresso — zamknięte 27.10.2026 (DEC-07 b, docs/18): bez osobnego punktu,
+    bo opis od 21.10.2026 mówi „porównywalnej” (1,06–1,51 €); ceny wszystkich krajów wobec 1,51 € — krok Z-10b w docs/48. Poniższy wpis z 11.10.2026 zostaje jako historia decyzji.
   - **ZMIANA CENY ROCZNEJ (decyzja właściciela 20.10.2026; zapis: docs/18):** roczna **6,99 USD** (USD/EUR/GBP; Apple przelicza pozostałe kraje) — **zmiana 21.10.2026 (docs/18): strefa euro 7,99 € (przeliczenie Apple), nie 6,99 €**; aktualne kwoty: docs/monetyzacja.md, zastępuje 4,99 z 13–14.10.2026
     (odrzucone: zostać przy 4,99). Miesięczna 0,99 i dożywotnia 14,99 bez zmian; PL bez zmian (4,99 / 19,99 / 59,99 zł). Proporcje „5× miesięczna” i „3× roczna” z 13.10.2026 nie obowiązują.
     Cenę w App Store Connect ustawia właściciel (krok K-CENA); w kodzie jedno źródło: `FAKE_PRICES` (`lib/store-fake.ts`), zgodność pilnuje `tests/prices-decision.test.ts`.

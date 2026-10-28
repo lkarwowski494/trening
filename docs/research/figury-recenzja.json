@@ -1,0 +1,1936 @@
+{
+ "_opis": "Zapis recenzji bramki 4 (CLAUDE.md, 27.10.2026: każda animacja i karta ćwiczenia w wydaniu przechodzi niezależną recenzję ruchu i treści; rodzina bez recenzji nie jest wyświetlana). Decyzja DEC-01 b (27.10.2026). Pole sha: skrót danych z `node scripts/zrodla-runtime.mjs --skroty` (v1: figura + wskazówki ćwiczenia; v2: rig rodziny). Generator lib/figures/data.json przepuszcza tylko figury v1 z werdyktem „wyswietlana” albo „zastapiona” i aktualnym skrótem; test tests/figury-recenzja.test.tsx. Zmiana figury albo wskazówek = nowa recenzja i nowy skrót. Jednostka „j.” = 1/100 wzrostu figury. Sekcje „karty” i „zestawy” (DEC-10 a, 28.10.2026; M1-audytor-generalny-038): recenzja treści karty własnej (skrót kartaSkrot: id wskazówek w sekcjach + polskie teksty) i zestawu ogólnego przy figurze v2 (zestawSkrot: wzorzec, id ok/err + polskie teksty); bez aktualnego wpisu „wyswietlana” wskazówki nie trafiają do lib/cues/data.json (karta bez wpisu „karty” przechodzi z wpisem v1 „wyswietlana”); test tests/karty-recenzja.test.tsx.",
+ "v1": {
+  "Back Squat": {
+   "rodzina": "squat",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "3022755d9595"
+  },
+  "Front Squat": {
+   "rodzina": "squat",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "410f8093406b"
+  },
+  "Goblet Squat": {
+   "rodzina": "squat",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "110d21f52fbf"
+  },
+  "Przysiad z pasem (linki)": {
+   "rodzina": "squat",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "e11f644a12c8"
+  },
+  "Pistol Squat": {
+   "rodzina": "lunge",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "c247eb5bcad8",
+   "uwagi": "Ruch i karta zgodne. Przysiad na jednej nodze, druga noga wyprostowana w przód nad podłogą, ręce przed sobą; głębokość ilustracyjna. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji). Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian.",
+   "stan": "zrecenzowana niezależnie 28.10.2026 (figura: recenzja z wpisu; treść karty po usunięciu zdań: 06-tresci)"
+  },
+  "Deadlift (sztanga)": {
+   "rodzina": "hinge",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "d5c8bcfccb16"
+  },
+  "Trap Bar Deadlift": {
+   "rodzina": "hinge",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "304a6d2e52b3"
+  },
+  "Deadlift (hantle)": {
+   "rodzina": "hinge",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "0cf26a564848",
+   "uwagi": "Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian."
+  },
+  "RDL (sztanga)": {
+   "rodzina": "hinge",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "2d38e4f523dc"
+  },
+  "RDL (hantle/linki)": {
+   "rodzina": "hinge",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "272eb3e0eb8a"
+  },
+  "Good Morning": {
+   "rodzina": "hinge",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "01d73be6768c"
+  },
+  "Kettlebell Swing": {
+   "rodzina": "kb_ballistic",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "a7fcbadd5b3f",
+   "uwagi": "Ruch i karta zgodne. Zawias z kettlebellem między nogami, wyprost bioder, kettlebell przed sobą (wysokość ilustracyjna), plecy proste. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Bench Press (sztanga)": {
+   "rodzina": "bench_press",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "0faf13f7caef"
+  },
+  "Bench Press (hantle)": {
+   "rodzina": "bench_press",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "9eeb59ea6fed"
+  },
+  "Close Grip Bench Press": {
+   "rodzina": "bench_press",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "3a3c3b872f1e"
+  },
+  "Incline Bench Press (sztanga)": {
+   "rodzina": "bench_press",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "4c083ac5283d"
+  },
+  "Incline Bench Press (hantle)": {
+   "rodzina": "bench_press",
+   "werdykt": "zastapiona",
+   "data": "2026-10-27",
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
+   "sha": "31e502ef3e4d"
+  },
+  "Machine Chest Press": {
+   "rodzina": "chest_press_machine",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "f2eb7ea955da",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie”; odchylenie toru uchwytu ok. 1 j. (było 9,3). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "Uchwyt najpierw opada, potem wznosi się (odchylenie toru 9,3 j.) — uchwyty maszyny jadą po prowadnicy.",
+   "poprawka": "Pozycja pośrednia; odchylenie toru uchwytu ≤ 3 j."
+  },
+  "Push Up": {
+   "rodzina": "pushup_plank",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "f0308b40487d",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie” w połowie głębokości z dłońmi w miejscu; przesunięcie dłoni ok. 1 j. (było 5,7). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "Dłonie ślizgają się po podłodze o ok. 5,7 j. (ok. 10 cm) w trakcie ruchu — dłonie są podporą i stoją w miejscu.",
+   "poprawka": "Pozycja pośrednia w połowie głębokości z dłońmi w tym samym punkcie; przesunięcie ≤ 2,5 j."
+  },
+  "Incline Push Up": {
+   "rodzina": "pushup_plank",
+   "werdykt": "wyswietlana",
+   "stan": "zrecenzowana niezależnie 28.10.2026",
+   "data": "2026-10-28",
+   "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-po-poprawce.md: OK (NISKIE: dłoń przesuwa się po blacie o 3,2 j., dłonie ok. 7 j. od krawędzi) — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
+   "sha": "9cff3cee72d7",
+   "uwagi": "Klatki i położenie podwyższenia zmienione 28.10.2026 po recenzji niezależnej (WYSOKIE: w dolnej pozycji biodra na podwyższeniu, bark 28 j. przed dłońmi, tułów w blacie). Teraz bark w dolnej pozycji 8 j. od dłoni, ramię zgięte 128°, ciało w linii, bez przenikania. Test: tests/figury-podparcie.test.ts.",
+   "autor": "programista (agent; poprawka klatek figury, decyzja właściciela 28.10.2026)",
+   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026)"
+  },
+  "Overhead Press (sztanga)": {
+   "rodzina": "overhead_press",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "bfc74593013f",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie”: gryf nad czubkiem głowy, wcześniej mija twarz z przodu; bez wybiegania przed linię startu. Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "Gryf wybiega łukiem przed linię startu (ok. 8 j.) i wraca — wskazówka: ciężar idzie prosto w górę nad głowę (ohp.tall); łokcie wychodzą do przodu jak w unoszeniu ramion.",
+   "poprawka": "Pozycja pośrednia: gryf mija twarz z przodu, idzie pionowo i nad głową wraca nad barki; bez wybiegania przed linię startu."
+  },
+  "Overhead Press (hantle)": {
+   "rodzina": "overhead_press",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "3e347eb43c85",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie” z łokciami pod nadgarstkami; odchylenie toru 2,5 j. (było 10,9). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "Ciężar łukiem przed twarzą (odchylenie toru 10,9 j., ok. 19 cm) — sprzeczne z „ciężar idzie prosto w górę” (ohp.tall).",
+   "poprawka": "Pozycja pośrednia z łokciami pod nadgarstkami; odchylenie toru ≤ 4 j."
+  },
+  "Seated Shoulder Press (hantle)": {
+   "rodzina": "overhead_press",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "8dbad216d858",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie” z łokciami pod nadgarstkami; odchylenie toru ok. 2 j. (było 10,5). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "Ciężar łukiem przed twarzą (odchylenie toru 10,5 j., ok. 19 cm) — sprzeczne z „ciężar idzie prosto w górę” (ohp.tall).",
+   "poprawka": "Pozycja pośrednia z łokciami pod nadgarstkami; odchylenie toru ≤ 4 j."
+  },
+  "Push Press": {
+   "rodzina": "overhead_press",
+   "werdykt": "ukryta",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "b4d0dd3e05f6",
+   "wada": "Jak w wyciskaniu: gryf łukiem przed twarzą przy wypychaniu; nogi i ręce prostują się jednocześnie, choć wskazówka mówi, że siła idzie z nóg, a ręce kończą ruch (pp.legs). Figura ma już 3 pozycje (limit silnika v1) — nie da się dodać pozycji pośredniej.",
+   "poprawka": "Rodzina v2 overhead_press z fazami ruchu albo czwarta pozycja w silniku v1 (ugięcie → wyprost nóg z gryfem przy barkach → wyciśnięcie). Decyzja właściciela: 1.0 czy 1.0.1."
+  },
+  "Wyciskanie nad głowę (linki)": {
+   "rodzina": "overhead_press",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "9534e3a45245",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie” z łokciami pod nadgarstkami; odchylenie toru 2,5 j. (było 10,9). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "Ciężar łukiem przed twarzą (odchylenie toru 10,9 j., ok. 19 cm) — sprzeczne z „ciężar idzie prosto w górę” (ohp.tall).",
+   "poprawka": "Pozycja pośrednia z łokciami pod nadgarstkami; odchylenie toru ≤ 4 j."
+  },
+  "Bent Over Row (sztanga)": {
+   "rodzina": "row",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "a5b064215f07",
+   "uwagi": "Ruch i karta zgodne. Zawias w biodrach, kolana lekko ugięte (20°), plecy proste; sztanga z wyprostu rąk do brzucha, tor lekko ukośny ku biodrom (6 j.) — zgodny z row.bbPull. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Bent Over Row (hantle)": {
+   "rodzina": "row",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "5798d6fc4ce2",
+   "uwagi": "Ruch i karta zgodne. Jak wiosłowanie sztangą w opadzie (ten sam wzorzec); hantle z wyprostu rąk do brzucha. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Pendlay Row": {
+   "rodzina": "row",
+   "werdykt": "ukryta",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "ff4b2a547df5",
+   "wada": "Figura identyczna z wiosłowaniem sztangą w opadzie (tułów ok. 30° nad poziomem, sztanga zawieszona nad podłogą) — brak cechy rozpoznawczej nazwy (bramka 4, pkt 1 listy recenzenta); wskazówki karty też nie opisują startu z podłogi.",
+   "poprawka": "Wskazówka i poza ze startem z podłogi przy każdym powtórzeniu i tułowiem prawie równoległym do podłogi — po potwierdzeniu w 2 zgodnych źródłach szczebla 4 (strony źródłowe niedostępne 27.10, HTTP 403); do tego czasu bez rysunku, wskazówki zostają."
+  },
+  "T-Bar Row": {
+   "rodzina": "row",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "8d23f078882d",
+   "uwagi": "Ruch i karta zgodne. Zawias jak w wiosłowaniu w opadzie; gryf od osi przy podłodze za ćwiczącym do uchwytu. Kosmetyka (backlog): talerz rysowany tuż przy dłoniach od strony osi zamiast na końcu gryfu. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "One Arm Row (hantle)": {
+   "rodzina": "row",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "9998036bd3a9",
+   "uwagi": "Ruch i karta zgodne. Kolano i dłoń jednej strony na ławce, tułów prawie poziomo; hantel wzdłuż boku do biodra, ramię za linią pleców (row1.top). Dłoń 1,6 j. w obrysie ławki przy starcie ruchu — rzut z boku (hantel obok ławki), bez znaczenia. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Chest Supported Row": {
+   "rodzina": "row",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "ee1ec9a77fde",
+   "uwagi": "Ruch i karta zgodne. Klatka na podporze przez cały ruch, łokcie za linię pleców, ręce proste na dole. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Seated Cable Row": {
+   "rodzina": "cable_row",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "0502282c1ef4",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Bloczek i start na wysokości brzucha, dodana pozycja „w trakcie”; linka do 1,6° od poziomu (było 34,5°). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "Start z rękami na wysokości barków, koniec przy brzuchu: uchwyt jedzie skośnie w dół (linka do 34,5° od poziomu), wbrew notatce figury (linka poziomo) — ruch wygląda jak przyciąganie z góry.",
+   "poprawka": "Bloczek i ręce na starcie na wysokości brzucha (ręce proste skierowane do uchwytu), pozycja pośrednia; linka ≤ 5° od poziomu."
+  },
+  "Wiosłowanie na linkach (siedząc)": {
+   "rodzina": "cable_row",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "0502282c1ef4",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Jak Seated Cable Row (ta sama figura przez „like”). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "Start z rękami na wysokości barków, koniec przy brzuchu: uchwyt jedzie skośnie w dół (linka do 34,5° od poziomu), wbrew notatce figury (linka poziomo) — ruch wygląda jak przyciąganie z góry.",
+   "poprawka": "Bloczek i ręce na starcie na wysokości brzucha (ręce proste skierowane do uchwytu), pozycja pośrednia; linka ≤ 5° od poziomu."
+  },
+  "Face Pull": {
+   "rodzina": "cable_row",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "1251dc39e393",
+   "uwagi": "Ruch i karta zgodne. Lina z wyciągu powyżej barków, przyciąganie do twarzy, łokcie w tył za linię pleców, tułów pionowo. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Lat Pulldown": {
+   "rodzina": "pulldown",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "72f6a47c92d4",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie”: łokieć z przodu, dłoń pod bloczkiem; odchylenie toru 2,7 j. (było 18,9). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "Drążek odjeżdża łukiem do ok. 21 j. (ok. 37 cm) przed pionową linię bloczka — wskazówka: ściągaj drążek w dół przed twarzą (lpd.pull).",
+   "poprawka": "Pozycja pośrednia z dłonią pod bloczkiem; odchylenie toru dłoni ≤ 5 j."
+  },
+  "Pull Up": {
+   "rodzina": "pull_up",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "d3fe671da49d",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie” z biodrem pod drążkiem i tułów na górze odchylony o 14° (ramię w tym samym kierunku): rozrzut biodra 7 j. (było 22). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "W animacji ciało buja się w przód i w tył pod drążkiem: biodro przesuwa się o ok. 22 j. (ok. 38 cm) — sprzeczne ze wskazówką „Bez bujania i wymachów nogami” (pu.noSwing).",
+   "poprawka": "Pozycja pośrednia z biodrem pod drążkiem i lekkie odchylenie tułowia na górze (ramię w tym samym kierunku); rozrzut biodra ≤ 10 j."
+  },
+  "Chin Up": {
+   "rodzina": "pull_up",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "c551131b4f68",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Jak Pull Up: pozycja „w trakcie” z biodrem pod drążkiem, odchylenie tułowia na górze; rozrzut biodra ok. 8 j. (było 22,2). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "W animacji ciało buja się w przód i w tył pod drążkiem: biodro przesuwa się o ok. 22 j. (ok. 38 cm) — sprzeczne ze wskazówką „Bez bujania i wymachów nogami” (pu.noSwing).",
+   "poprawka": "Pozycja pośrednia z biodrem pod drążkiem i lekkie odchylenie tułowia na górze (ramię w tym samym kierunku); rozrzut biodra ≤ 10 j."
+  },
+  "Neutral Grip Pull Up": {
+   "rodzina": "pull_up",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "130597855e6d",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Jak Chin Up. Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "W animacji ciało buja się w przód i w tył pod drążkiem: biodro przesuwa się o ok. 22 j. (ok. 38 cm) — sprzeczne ze wskazówką „Bez bujania i wymachów nogami” (pu.noSwing).",
+   "poprawka": "Pozycja pośrednia z biodrem pod drążkiem i lekkie odchylenie tułowia na górze (ramię w tym samym kierunku); rozrzut biodra ≤ 10 j."
+  },
+  "Lunges (hantle)": {
+   "rodzina": "lunge",
+   "werdykt": "wyswietlana",
+   "stan": "zrecenzowana niezależnie 28.10.2026 (figura: recenzja z wpisu; treść karty po usunięciu zdań: 06-tresci)",
+   "data": "2026-10-28",
+   "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-po-poprawce.md: OK (NISKIE: tylna stopa pionowo na palcach w „w trakcie”, przednia stopa przesuwa się o 2,1 j.) — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
+   "sha": "c4129536dca1",
+   "uwagi": "Klatki zmienione 28.10.2026 po recenzji niezależnej (WYSOKIE: ciało opadało do wykroku, zanim przednia stopa dotknęła podłogi). Pozycja „w trakcie” = krok postawiony (przednia stopa płasko na podłodze, biodra wysoko, tylne palce na podłodze), dopiero potem opuszczenie; wykrok krótszy (przednia kostka ok. 43 j. od tylnych palców). Test: tests/figury-podparcie.test.ts (reguła podparcia). Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian.",
+   "autor": "programista (agent; poprawka klatek figury, decyzja właściciela 28.10.2026)",
+   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026); treść karty po usunięciu zdań: 06-tresci (subagent, 28.10.2026)"
+  },
+  "Walking Lunges": {
+   "rodzina": "lunge",
+   "werdykt": "wyswietlana",
+   "stan": "zrecenzowana niezależnie 28.10.2026 (figura: recenzja z wpisu; treść karty po usunięciu zdań: 06-tresci)",
+   "data": "2026-10-28",
+   "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-po-poprawce.md: ruch jak Lunges — wyświetlana; ŚREDNIE (brak kroku drugą nogą) → backlog 1.0.1 — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
+   "sha": "06e0f4563108",
+   "uwagi": "Klatki zmienione 28.10.2026 jak Lunges (hantle): krok postawiony przed opuszczeniem (WYSOKIE z recenzji niezależnej). Nie poprawiono (ŚREDNIE): pętla wraca do pozycji wyjściowej zamiast kroku drugą nogą — silnik v1 (3 pozycje, ping-pong) tego nie pokaże. Test: tests/figury-podparcie.test.ts. Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian.",
+   "autor": "programista (agent; poprawka klatek figury, decyzja właściciela 28.10.2026)",
+   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026); treść karty po usunięciu zdań: 06-tresci (subagent, 28.10.2026)"
+  },
+  "Reverse Lunge": {
+   "rodzina": "lunge",
+   "werdykt": "ukryta",
+   "data": "2026-10-28",
+   "kto": "06-tresci — recenzja niezależna figur 3a i pełna (audytor, 28.10.2026): pomiary póz pośrednich, arkusze PNG; decyzja właściciela 28.10.2026 „Reverse Lunge ukryć w 1.0”",
+   "sha": "d461a393d415",
+   "wada": "Biodro opada ok. 20 j., gdy tylna stopa jest w powietrzu; środek ciężkości do 8,7 j. za piętą jedynej podpory; przednia stopa unosi się do 3,1 j., palce tylnej jadą po podłodze 22 j. Limit 3 pozycji silnika v1 — łuk stopy w zamachu w tył nie do oddania (próby na 3 pozycjach: tests/figury-podparcie.test.ts).",
+   "poprawka": "Czwarta pozycja w silniku v1 (kolano ugięte w połowie zamachu), razem z Push Press i krokiem drugą nogą w Walking Lunges — wersja 1.0.1 (backlog docs/21). Do tego czasu bez rysunku, wskazówki zostają."
+  },
+  "Bulgarian Split Squat (hantle)": {
+   "rodzina": "lunge",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "55fe0d93470b",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie” z tylną stopą na ławce; przesunięcie stopy ok. 2 j. (było 7,6). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "Tylna stopa odrywa się od ławki o ok. 7,5 j. w połowie ruchu — wskazówka: grzbiet tylnej stopy oparty na ławce (bss.setup).",
+   "poprawka": "Pozycja pośrednia z tylną stopą na ławce; przesunięcie ≤ 2 j."
+  },
+  "Step Up": {
+   "rodzina": "lunge",
+   "werdykt": "wyswietlana",
+   "stan": "zrecenzowana niezależnie 28.10.2026",
+   "data": "2026-10-28",
+   "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-stepup-2.md (druga recenzja po drugiej poprawce): OK (NISKIE: ręce z hantlami za tułowiem w „w trakcie”, palce mijają krawędź skrzyni o 0,9 j.) → backlog 1.0.1 — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
+   "sha": "ce54a060ebde",
+   "uwagi": "Klatki zmienione 28.10.2026 dwukrotnie po recenzji niezależnej (WYSOKIE: upadek w tył). Pierwsza poprawka odrzucona przez recenzję po poprawce (środek ciężkości 6,5–7,4 j. za piętą stopy na skrzyni; reguła z tolerancją 10 j. dla biodra była za luźna). Teraz: start z tułowiem ok. 8° od pionu, „w trakcie” z tułowiem pochylonym ok. 30°, środek ciężkości nad stopą na skrzyni (± 2,5 j.), biodro rośnie. Test: tests/figury-podparcie.test.ts (reguła jednej podpory na środku ciężkości).",
+   "autor": "programista (agent; poprawka klatek figury, decyzja właściciela 28.10.2026)",
+   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026)"
+  },
+  "Hip Thrust (sztanga)": {
+   "rodzina": "hip_bridge",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "cf66415fde99",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Ręce zgięte, dłonie na gryfie w obu pozycjach (było 10–20 j. od gryfu). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "Dłonie 10–20 j. (18–35 cm) od ciężaru, w powietrzu — wskazówka: przytrzymuj ciężar dłońmi (ht.hold).",
+   "poprawka": "Ręce zgięte, dłonie na ciężarze w obu pozycjach (≤ 2 j.)."
+  },
+  "Hip Thrust (hantel)": {
+   "rodzina": "hip_bridge",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "ea79c35cb1c3",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Ręce zgięte, dłonie na hantlu w obu pozycjach. Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "Dłonie 10–20 j. (18–35 cm) od ciężaru, w powietrzu — wskazówka: przytrzymuj ciężar dłońmi (ht.hold).",
+   "poprawka": "Ręce zgięte, dłonie na ciężarze w obu pozycjach (≤ 2 j.)."
+  },
+  "Glute Bridge": {
+   "rodzina": "hip_bridge",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "2086de9fa1a1",
+   "uwagi": "Ruch i karta zgodne. Leżenie, stopy płasko; na górze barki, biodra i kolana w linii (gb.move), bez przeprostu. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Biceps Curl (hantle)": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "7e67ed94d927",
+   "uwagi": "Ruch i karta zgodne. Łokcie przy bokach (ramię 0–10° od pionu), zgięcie łokcia do 140°, tułów nieruchomy; tor dłoni po łuku wokół łokcia. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Barbell Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "121b0a0fed00",
+   "uwagi": "Ruch i karta zgodne. Łokcie przy bokach (ramię 0–14° od pionu), zgięcie do 148° (przedramię prawie pionowo), tułów nieruchomy. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "EZ Bar Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "c4fc06d30004",
+   "uwagi": "Ruch i karta zgodne. Jak uginanie ze sztangą (ten sam ruch, gryf łamany). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Hammer Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "74d34f0d12dc",
+   "uwagi": "Ruch i karta zgodne. Jak uginanie ze sztangą: łokcie przy bokach, przedramię prawie pionowo na górze; chwyt młotkowy niewidoczny z boku (uproszczenie). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Cable Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "3e3abd12ab7c",
+   "uwagi": "Ruch i karta zgodne. Uchwyt dolnego wyciągu, łokcie przy bokach, zgięcie do 140°. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Triceps Pushdown": {
+   "rodzina": "triceps",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "3c1bcf62f94b",
+   "uwagi": "Ruch i karta zgodne. Łokcie przy bokach, prostowanie łokci do 5° (bez blokowania), wyciąg górny przed ćwiczącym. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Overhead Triceps Extension (hantel)": {
+   "rodzina": "triceps",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "cc8b5b5bb492",
+   "uwagi": "Ruch i karta zgodne. Ramiona nad głową nieruchomo, zgięcie łokci do 130° (hantel za głową). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Cable Overhead Extension": {
+   "rodzina": "triceps",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "afce6f30326b",
+   "uwagi": "Ruch i karta zgodne. Jak prostowanie nad głową z hantlem; bloczek dolny za plecami. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Skullcrusher (EZ)": {
+   "rodzina": "triceps",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "6de63df3cc7d",
+   "uwagi": "Ruch i karta zgodne. Ramiona prawie pionowo i nieruchomo, gryf opuszczany do czoła zgięciem łokci. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Triceps Dips (ławka)": {
+   "rodzina": "dip",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "0e72ab5e0fbf",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Nowe pozy: ręce prawie pionowo na górze, biodra 2–8 j. przed krawędzią ławki, pięty w jednym miejscu (ślizg ok. 2,7 j. w pozach pośrednich, było 9,7). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "Pięty przesuwają się po podłodze o ok. 9 j. i odrywają (3,5 j.) między pozycjami; biodra startują ok. 18 j. przed ławką i cofają się pod jej krawędź — ciało ma się opuszczać w dół przy ławce, stopy w miejscu.",
+   "poprawka": "Ręce prawie pionowo na górze, biodra przy krawędzi ławki, pięty w jednym miejscu (≤ 3 j.)."
+  },
+  "Lateral Raise (hantle)": {
+   "rodzina": "delt_raise",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "40131a00c14b",
+   "uwagi": "Ruch i karta zgodne. Widok z przodu: unoszenie bokiem do wysokości barków, łokcie lekko ugięte i wyżej niż dłonie. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Cable Lateral Raise": {
+   "rodzina": "delt_raise",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "ae6901c9352f",
+   "uwagi": "Ruch i karta zgodne. Jak unoszenie hantli bokiem; linka od dolnego bloczka po drugiej stronie ciała. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Front Raise": {
+   "rodzina": "delt_raise",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "46ce7d8f4449",
+   "uwagi": "Ruch i karta zgodne. Unoszenie przed sobą do wysokości barków, łokcie prawie proste przez cały ruch. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Shrugs (sztanga)": {
+   "rodzina": "shrug",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "a7db5492576f",
+   "uwagi": "Ruch i karta zgodne. Widok z przodu: ręce proste, uniesienie barków ok. 5 j., tułów nieruchomy. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Shrugs (hantle)": {
+   "rodzina": "shrug",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "3532f426e071",
+   "uwagi": "Ruch i karta zgodne. Jak szrugsy ze sztangą, hantle przy udach. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Standing Calf Raise": {
+   "rodzina": "calf_raise",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "d783d55dc834",
+   "uwagi": "Ruch i karta zgodne. Przednia część stopy na podwyższeniu, pięty poniżej krawędzi przy rozciągnięciu, wspięcie na palce; kolana proste. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Łydki na stopniu": {
+   "rodzina": "calf_raise",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "c9c064b6d644",
+   "uwagi": "Ruch i karta zgodne. Jak wspięcia stojąc (podparcie dłonią pominięte — uproszczenie opisane w figurze). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Leg Press": {
+   "rodzina": "leg_machine",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "8219dd20f3d3",
+   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Nowe pozy: oparcie odchylone mocniej i równoległe do tułowia, platforma jedzie prostopadle do swojej powierzchni, kolano 89° i biodro 114° na dole, kolano 6° na górze. Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "wada": "Platforma przesuwa się prawie poziomo (−171°), choć jej powierzchnia stoi pod 45° — sanie suwnicy jadą prostopadle do platformy; dół ruchu z biodrem zgiętym 132° (blisko ostrzeżenia lp.hips).",
+   "poprawka": "Pozy z platformą jadącą prostopadle do swojej powierzchni, kolana ok. 90° na dole, biodro ≤ 115°, oparcie równoległe do tułowia."
+  },
+  "Calf Press (leg press)": {
+   "rodzina": "leg_machine",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "f61742f13ca8",
+   "uwagi": "Ruch i karta zgodne. Nogi proste, ruch tylko w stawach skokowych; platforma odsuwa się przy wspięciu. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Lying Leg Curl": {
+   "rodzina": "leg_isolation",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "0889838b0f76",
+   "uwagi": "Ruch i karta zgodne. Leżenie przodem, kolana przy krawędzi ławki (oś maszyny), wałek nad piętami, zgięcie kolan do 110°, biodra na ławce. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Plank": {
+   "rodzina": "pushup_plank",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "bd8e18abe2cd",
+   "uwagi": "Ruch i karta zgodne. Podpór na przedramionach, łokcie pod barkami, ciało w jednej linii; pozycja statyczna. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Dead Bug": {
+   "rodzina": "core_floor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "58829c5e8e87",
+   "uwagi": "Ruch i karta zgodne. Leżenie na plecach, ręce w górę, biodra i kolana 90°; przeciwna ręka i noga opuszczane bez dotykania podłogi. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Bird Dog": {
+   "rodzina": "core_floor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "17a8e896f4c0",
+   "uwagi": "Ruch i karta zgodne. Klęk podparty (dłonie pod barkami, kolana pod biodrami), przeciwna ręka i noga do linii tułowia. Kosmetyka (backlog): dłoń 1,2 j. pod linią podłogi w pozycji wyjściowej i krótki ślizg dłoni i stopy przy odrywaniu. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Mountain Climbers": {
+   "rodzina": "pushup_plank",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "44ae678e70a5",
+   "uwagi": "Ruch i karta zgodne. Podpór na prostych rękach, dłonie pod barkami, nogi zamieniają się; biodra na stałej wysokości. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  },
+  "Rowing Machine": {
+   "rodzina": "cardio",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "sha": "283042f35739",
+   "uwagi": "Ruch i karta zgodne. Trzy pozycje: chwyt (piszczele prawie pionowo), po pracy nóg, koniec (tułów lekko odchylony, uchwyt pod żebrami); uchwyt po linii (odchylenie 3,5 j.). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+  }
+ },
+ "v2": {
+  "squat": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-27",
+   "kto": "recenzja ruchu L-042 (rundy 1–2, agent recenzent, 27.10.2026); poprawki potwierdzone testami tests/figury-1-0-recenzja.test.ts",
+   "sha": "fd142e983e89",
+   "liczba": 25,
+   "uwagi": "Zapis przeniesiony z L-042 (docs/40-lekcje.md); 06-tresci nie powtarzała recenzji v2 — zakres zadania M1-audytor-generalny-005: figury v1."
+  },
+  "bench_press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "kto": "recenzja niezależna ruchu po naprawie torów (agent recenzent, 28.10.2026)",
+   "sha": "39b505a17e9b",
+   "liczba": 30,
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A) — ruch po naprawie torów 9883ada",
+   "autor": "koordynator M2 (naprawa torów, 9883ada)",
+   "recenzent": "agent recenzent ruchu (sesja niezależna)",
+   "uwagi": "Obejrzane kadry u 0/0,25/0,5/0,75/1 z boku (3,2×, ślad toru) i z przodu, przed (f5af3be) i po (9883ada): 4 wyciskania na maszynie Smitha (płasko, wąsko, skos dodatni, skos ujemny) — szyna stoi w punkcie dotyku, gryf jedzie pionowo (było: ukos 15–18 cm, szyna z gryfem), na górze ręce proste nad punktem dotyku, dotyk na klatce zgodny z wariantem; 26 pozostałych ćwiczeń rodziny bez zmian (obraz identyczny bajt w bajt ze stanem zrecenzowanym 27.10.2026). Bez uwag blokujących."
+  },
+  "hinge": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "kto": "recenzja niezależna ruchu po naprawie torów (agent recenzent, 28.10.2026)",
+   "sha": "a97961c2e618",
+   "liczba": 32,
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A) — ruch po naprawie torów 9883ada",
+   "autor": "koordynator M2 (naprawa torów, 9883ada)",
+   "recenzent": "agent recenzent ruchu (sesja niezależna)",
+   "uwagi": "Obejrzane kadry u 0/0,25/0,5/0,75/1, widok z boku (powiększenie 3,2×, ślad toru i pion środka stopy) i z przodu, przed (f5af3be) i po (9883ada), wszystkie 32 ćwiczenia; 20 zmienionych porównane klatka po klatce, 12 bez zmian (obraz identyczny piksel w piksel). Martwe ciągi ze sztangą/linką: „S” usunięte (było 4,2–5,6 cm, 2 zawrócenia; jest gładki łuk 3,1–3,6 cm, 1 zmiana kierunku), start 1,4–2,6 cm przed środkiem stopy, gryf przy goleniach (luz 0,2 cm), bez przenikania; RDL/SLDL/Rack Pull/Single Leg RDL (linki) prawie pionowo (0,3–0,6 cm); Smith SLDL — szyna stoi, gryf na szynie. Uwagi NISKIE (backlog): (1) sumo (4 warianty) i sumo z kettlebellem — tor gładki, ale ukośny w przód ok. 6–8 cm (start ok. 2 cm za pionem środka stopy, wyprost 4–6 cm przed); (2) Reverse Band Deadlift / Reverse Band Sumo — górny zaczep gumy przesuwa się z gryfem (3,4 / 8 cm), Cable Deadlift — bloczek przy podłodze przesuwa się z uchwytem (3,7 cm), ta sama klasa co dawna szyna Smitha, mniej widoczna; (3) Smith SLDL — szyna 7,3 cm przed środkiem stopy, na dole gryf do 6 cm przed goleniami (skutek pionowej szyny, poprawne dla maszyny); (4) RDL/SLDL na dole ramiona odchylone od pionu w przód (stan sprzed zmiany)."
+  }
+ },
+ "karty": {
+  "Back Extension": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "22159fe935b0",
+   "uwagi": "2 badania (szczebel 3) przeczytane: kąt w biodrach ok. 90°, plecy proste, bez wyginania w łuk, tempo kontrolowane — zgodne. Źródło z Western Norway odczytane narzędziem (PMC zwraca 500 dla curl), niesprawdzone dosłownie."
+  },
+  "Back Squat": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "ff6723e03326",
+   "uwagi": "Sztanga na górze pleców, rozstaw, zejście biodra+kolana, kolana nad palcami, kolana mogą wyjść przed palce (badanie 3 + przewodnik), głębokość, plecy proste — przeczytane źródła. ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (sq.mis.heels ma jedno przeczytane źródło — przysiad bez obciążenia, ten sam ruch)."
+  },
+  "Bench Press (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "4d57041596ac",
+   "uwagi": "Ustawienie, kontakt z ławką, ruch, łopatki, bez odbijania, bez wyginania — przeczytane biblioteki (hantle; hantle z taśmą — wariant). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (dbp.setup „hantle na udach”)."
+  },
+  "Bench Press (sztanga)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "2c1ccee149b9",
+   "uwagi": "Kontakt z ławką, chwyt nieco szerzej niż barki, ruch, łopatki, kontrola, błąd wyginania — 2–3 przeczytane źródła o tym ćwiczeniu."
+  },
+  "Bieg": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "4c5c3054eae8",
+   "uwagi": "Przegląd (szczebel 2) i badanie (3) + biblioteka (4): krótszy krok, mniej podskakiwania, stopa pod ciałem ogranicza hamowanie — zgodne; brak liczb na karcie."
+  },
+  "Box Jump": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "b65594ec1c22",
+   "uwagi": "2 biblioteki (4) o tym ćwiczeniu: ustawienie, wybicie, miękkie lądowanie, dobór wysokości, błąd „sztywne nogi” — zgodne."
+  },
+  "Burpees": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "0c4b5839c096",
+   "uwagi": "Biblioteka (4) i badanie (3) o tym ćwiczeniu: wyskok do podporu i powrót z wyskokiem — zgodne (wariant z pompką i z BOSU nie przeczy)."
+  },
+  "Cable Fly": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "8c26991ac3f6",
+   "uwagi": "Bloczki ok. na wysokości barków, łuk, powolny powrót — 2 przeczytane źródła. ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (fly.elbows „stały kąt”, fly.posture)."
+  },
+  "Chest Fly (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "3ff26778cc1d",
+   "uwagi": "Ustawienie i łuk zgodne z przeczytanym źródłem o tym ćwiczeniu (kontakt głowy, barków, pośladków i stóp — wprost). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu."
+  },
+  "Close Grip Bench Press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "57a1d18a5bfb",
+   "uwagi": "Chwyt na szerokość barków lub węziej, łokcie przy tułowiu, kontakt z ławką — 2 przeczytane biblioteki. ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (cgbp.elbows). Uwaga o źródle: sekcja „Common Mistakes” tej strony biblioteki opisuje martwy ciąg (błąd wydawcy) — karta jej nie cytuje."
+  },
+  "Crunch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "13fab3d037f1",
+   "uwagi": "Ustawienie, ruch żebra→miednica, lędźwie na podłodze, rozluźniona szyja — wprost w przeczytanym źródle o tym ćwiczeniu. ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu."
+  },
+  "Deadlift (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty po usunięciu zdań 28.10.2026)",
+   "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
+   "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
+   "sha": "afe9f0fc7ddd",
+   "uwagi": "Usunięte dl.lower („Odkładaj sztangę…” na karcie z hantlami). Zostają: dbdl.setup, dl.lift, hinge.back, dbdl.hips, mis.roundBack — zgodne z przeczytanymi 28.10 źródłami (NASM kettlebell-deadlift Step 1–3 „neutral spine”; ACE #6 „push the hips forward to move to standing”). Ruch bez zdania o odkładaniu — karta krótsza, nic błędnego."
+  },
+  "Deadlift (sztanga)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "ad643e5b486d",
+   "uwagi": "Ustawienie, chwyt, wyprost bioder i kolan, odkładanie, plecy neutralne, sztanga blisko — 2 przeczytane biblioteki (4) o tym ćwiczeniu. ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (mis.barAway i dl.hipsLow mają dziś jedno przeczytane źródło)."
+  },
+  "Diamond Push Up": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "585afa11ece2",
+   "uwagi": "2 badania (3): dłonie pod mostkiem, kciuki i palce wskazujące stykają się, ciało sztywne — zgodne. Drugie źródło odczytane narzędziem (PMC 500 dla curl)."
+  },
+  "Farmer's Walk": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "db13ea14b2b8",
+   "uwagi": "Ciężar w każdej ręce przy biodrach, spokojny krok, wyprostowana postawa — 2 przeczytane źródła (biblioteka; artykuł edukacyjny s. 52)."
+  },
+  "Front Squat": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "16faee14bd32",
+   "uwagi": "Sztanga/hantle z przodu barków, łokcie wysoko, kolana nad palcami, głębokość, pięty na podłodze — 2 przeczytane biblioteki (warianty z hantlami). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu."
+  },
+  "Goblet Squat": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "09d0d7c6238b",
+   "uwagi": "Ciężar pionowo przy klatce, rozstaw, głębokość, ciężar blisko — 2 przeczytane biblioteki o tym ćwiczeniu."
+  },
+  "Good Morning": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "67a1aae7bf72",
+   "uwagi": "Sztanga na górze pleców, zawias z lekko ugiętymi kolanami, plecy neutralne, błędy — przeczytana biblioteka o tym ćwiczeniu. ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (gm.depth „nie dalej niż poziomo”, gm.light „zacznij od lekkiego”)."
+  },
+  "Hack Squat": {
+   "werdykt": "do poprawy",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie — do poprawy (bramka 4, treść karty)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "88c73f16703e",
+   "uwagi": "Podstawa: każde z 5 zdań ma jedno źródło o tym ćwiczeniu (ExRx — niedostępne 28.10) i drugie o innym ćwiczeniu (prasa nóg: „prasa — ta sama zasada”) bez znacznika „analogia”; wg docs/research/27 (MER2-04) analogia nie liczy się do minimum 2 źródeł. Treść kierunkowo poprawna, karta pokazana jako własna (bez dopisku „ogólne”). Też EN lp.hips „seat” — maszyna nie ma siedziska (PL „od oparcia” dobrze).",
+   "poprawka": "Bez zmiany brzmienia PL: drugie przeczytane źródło o hack squat dla hack.setup, hack.move, lp.heels, lp.hips, sq.kneesToes (badacz) i nowa recenzja; do tego czasu karta ukryta. Tłumacz: EN lp.hips „seat” → „backrest/pad” (przy Hack Squat; sprawdzić użycie lp.hips przy Leg Press)."
+  },
+  "Incline Bench Press (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "099c10f1fed3",
+   "uwagi": "Ustawienie, ruch do boków górnej części klatki, łopatki, bez odbijania, bez wyginania — 2 przeczytane biblioteki o tym ćwiczeniu."
+  },
+  "Incline Bench Press (sztanga)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "0e1a412280aa",
+   "uwagi": "Ławka skośna, plecy i stopy oparte, chwyt, sztanga do górnej części klatki, łopatki, kontrola — przeczytana biblioteka o tym ćwiczeniu + hantle (wariant). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu."
+  },
+  "Incline Walk (bieżnia)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "16bfb963e0f0",
+   "uwagi": "Poręcze najwyżej do równowagi, bez odchylania — badania (3) i 2 producenci (4); postawa wyprostowana — zgodne."
+  },
+  "Inverted Row": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "07b9b0286935",
+   "uwagi": "Przyciąganie z łokciami przy tułowiu, sztywny tułów, łopatki ściągnięte — zgodne z przeczytanym źródłem (wiosłowanie w zawieszeniu, wariant). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu („ciało proste od głowy do pięt”)."
+  },
+  "Leg Curl": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "f9681b034104",
+   "uwagi": "Pięty do pośladków, uda i biodra nieruchomo, ruch płynny — 2 biblioteki (maszyna siedząc; wariant leżąc z linką)."
+  },
+  "Leg Extension": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "438254c7031a",
+   "uwagi": "Zakres od ok. 90° do wyprostu i kontrolowane tempo — 2 badania (3) przeczytane."
+  },
+  "Lunges (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty po usunięciu zdań 28.10.2026)",
+   "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
+   "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
+   "sha": "d8366550ad8e",
+   "uwagi": "Usunięte lunge.knee i lunge.mis.kneeIn (analogia z przysiadu bułgarskiego). Zostają: lunge.dbSetup, lunge.fwd, lunge.torso (ACE #363 + ExRx DBLunge); karta na liście partial (1 wskazówka, bez błędów) — zgodnie z partialNote. Nic sprzecznego. Odwołania do ExRx zatwierdzone wcześniej — bez ponownego sprawdzania (decyzja właściciela 28.10.2026, 2a; uwaga tylko w tym wpisie, nie w aplikacji)."
+  },
+  "Machine Shoulder Press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "524d02513230",
+   "uwagi": "Siedzisko z uchwytami na wysokości barków, wyprost bez blokowania, stopy na podłodze — wprost w przeczytanym źródle o tym ćwiczeniu; drugie (hantle siedząc) zgodne."
+  },
+  "Medicine Ball Slam": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "cbe93cfddf5e",
+   "uwagi": "Piłka nad głowę i rzut w podłogę, plecy proste, napięty brzuch — biblioteka (4) i protokół (3) przeczytane."
+  },
+  "Nordic Curl": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "5d7a0e22f41d",
+   "uwagi": "Kostki przytrzymane, pochylanie jak najwolniej, biodra wyprostowane, łapanie się dłońmi — 3 badania (3) przeczytane, zgodne."
+  },
+  "Pallof Press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "ff78fc52665f",
+   "uwagi": "Bokiem do wyciągu ok. na wysokości klatki, wypchnięcie i powrót, bez obrotu tułowia — 2 przeczytane źródła. Repozytorium uczelni zwraca 405 (nieodczytane); „napnij brzuch” — wprost tylko „tułów bez ruchu” w przeczytanym źródle."
+  },
+  "Pendlay Row": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "60840343dff9",
+   "uwagi": "Treść karty = wiosłowanie sztangą w opadzie (przeczytane źródło); nie przeczy ćwiczeniu, ale nie opisuje jego cechy (start z podłogi przy każdym powtórzeniu) — uwaga P2, figura nadal ukryta (wpis v1). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (wg rejestru „Also known as Pendlay Row”)."
+  },
+  "Pistol Squat": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty po usunięciu zdań 28.10.2026)",
+   "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
+   "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
+   "sha": "efdd1757f212",
+   "uwagi": "Usunięte sq.mis.kneesIn (liczba mnoga przy jednej nodze). Zostają: ustawienie, ruch, pistol.knee (kolano nogi podporowej w linii palców — ten sam błąd ujęty poprawnie), pistol.assist; sekcja błędów pusta. Zgodne z przeczytanym 28.10 źródłem o tym ćwiczeniu (NASM single-leg-squat: Step 1 „sturdy support”, Common Mistakes „planted knee to cave inward”) + ExRx z rejestru. Odwołania do ExRx zatwierdzone wcześniej — bez ponownego sprawdzania (decyzja właściciela 28.10.2026, 2a; uwaga tylko w tym wpisie, nie w aplikacji)."
+  },
+  "Preacher Curl": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "558e35a77598",
+   "uwagi": "2 badania (3) z ustawieniem jak na modlitewniku: pacha przy krawędzi, pełny zakres, wolniejsze opuszczanie — zgodne (ustawienia testowe, oznaczone w rejestrze jako słabsze)."
+  },
+  "Przysiad z pasem (linki)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "6350cd00d8b8",
+   "uwagi": "Wzorzec przysiadu (przeczytana biblioteka: przysiad bez obciążenia — ten sam ruch, inny opór). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (jedyne źródło o przysiadzie z pasem) — uwaga: przy ponownym odczycie potwierdzić."
+  },
+  "Push Press": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "177f63f42449",
+   "uwagi": "Sztanga z przodu barków, krótkie ugięcie, wybicie z nóg i bioder, wyciśnięcie nad głowę — przeczytane źródło o tym ćwiczeniu. ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu („ugięcie krótkie”). Figura nadal ukryta (wpis v1)."
+  },
+  "RDL (hantle/linki)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "534a2ce0ca45",
+   "uwagi": "Hantle w opuszczonych rękach, zawias, kolana lekko ugięte, głębokość — przeczytana biblioteka o tym ćwiczeniu + wersja ze sztangą. ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (hantle przed udami)."
+  },
+  "RDL (sztanga)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "d847e65c8952",
+   "uwagi": "Ustawienie, zawias z kolanami lekko ugiętymi, sztanga blisko, głębokość do rozciągnięcia tyłu ud, błędy — 2 przeczytane biblioteki o tym ćwiczeniu."
+  },
+  "Reverse Crunch": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "27f3e7db0c98",
+   "uwagi": "Ruch prowadzi miednica, bez wymachu nóg, powolne opuszczanie — 2 przeczytane źródła, cytaty dosłownie."
+  },
+  "Reverse Fly (hantle)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "3ec9d2eb3305",
+   "uwagi": "Ramiona bokiem do wysokości barków, w linii uszu, łokcie lekko ugięte — przeczytane źródło (z oparciem klatki). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu („tułów prawie poziomo”, „stały kąt”)."
+  },
+  "Reverse Lunge": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty po usunięciu zdań 28.10.2026)",
+   "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
+   "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
+   "sha": "ab65d0011fca",
+   "uwagi": "Usunięte lunge.knee i lunge.mis.kneeIn. Zostają: lunge.stand, lunge.back, lunge.torso (ACE #319 + ExRx DBRearLunge); karta na liście partial. Figura nadal ukryta (wpis v1, decyzja właściciela 28.10.2026). Odwołania do ExRx zatwierdzone wcześniej — bez ponownego sprawdzania (decyzja właściciela 28.10.2026, 2a; uwaga tylko w tym wpisie, nie w aplikacji)."
+  },
+  "Reverse Pec Deck": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "eccc70534217",
+   "uwagi": "Ruch w bok i w tył, łokcie na wysokości barków — przeczytane źródła o tym samym ruchu (hantle z oparciem, linki). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (maszyna)."
+  },
+  "Rower": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "ec0871745e47",
+   "uwagi": "Siodełko: lekko ugięte kolano w dolnym położeniu, przednia część stopy na pedale — 2 przeczytane źródła (producent, szpital) + przegląd (2)."
+  },
+  "Russian Twist": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "9408bbfb2743",
+   "uwagi": "Odchylenie z prostymi plecami, obrót prowadzony barkami, bez rzucania ciężarem — biblioteka o tym ćwiczeniu; drugie źródło to wersje na BOSU i piłce (warianty)."
+  },
+  "Seated Calf Raise": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "391a8cab9dab",
+   "uwagi": "Pełny zakres ze wspięciem i opuszczeniem pięt, tempo kontrolowane — 2 badania (3) i biblioteka (4)."
+  },
+  "Side Plank": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "0aa0fee88efa",
+   "uwagi": "Łokieć pod barkiem, prosta linia, biodra bez opadania i skrętu, błąd łokcia — wprost w przeczytanym źródle; drugie (wersja na BOSU) zgodne."
+  },
+  "Straight Arm Pulldown": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "2e38186de1a0",
+   "uwagi": "Wyciąg wysoko, proste ręce, drążek w stronę ud — 2 przeczytane źródła."
+  },
+  "Suitcase Carry": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "cdf5c579c5c0",
+   "uwagi": "Ciężar w jednej ręce przy biodrze, spokojny krok, bez przechylania — 3 przeczytane źródła."
+  },
+  "Sumo Deadlift": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "dc3cb6f44f71",
+   "uwagi": "Szeroko: stopy na zewnątrz dłoni, kolana w linii palców, chwyt pod barkami, kolana na zewnątrz przy starcie, plecy proste przy opuszczaniu — przeczytany przewodnik (4). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu. „Klatka wysoko” (sumo.lift) i „sztanga blisko nóg” — przewodnik mówi o wyprostowanej postawie i przyciąganiu sztangi do goleni; brzmienie zgodne kierunkowo."
+  },
+  "Trap Bar Deadlift": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "7abba2a68eee",
+   "uwagi": "Stanie w ramie sztangi (badanie, abstrakt), wyprost bioder i kolan, plecy neutralne (biblioteka — martwy ciąg, wariant). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu („uchwyty po bokach”, barki nad sztangą)."
+  },
+  "Walking Lunges": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty po usunięciu zdań 28.10.2026)",
+   "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
+   "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
+   "sha": "1c3bc4015101",
+   "uwagi": "Usunięte lunge.knee i lunge.mis.kneeIn. Zostają: lunge.dbSetup, lunge.walk, lunge.torso (ExRx DBWalkingLunge + ACE #139); karta na liście partial. Uwaga N3 bez zmian: figura wraca krokiem w tył, tekst lunge.walk mówi o kroku drugą nogą (backlog 1.0.1). Odwołania do ExRx zatwierdzone wcześniej — bez ponownego sprawdzania (decyzja właściciela 28.10.2026, 2a; uwaga tylko w tym wpisie, nie w aplikacji)."
+  },
+  "Wall Sit": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "42b2ec360132",
+   "uwagi": "Plecy o ścianę, tułów wyprostowany, głębokość reguluje trudność, oddech normalny — badania (3) przeczytane; „breathe normally” odczytane dosłownie (wcześniej „do potwierdzenia”)."
+  },
+  "Wyciskanie na linkach (stojąc)": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "08c8964e60ab",
+   "uwagi": "Bloczki na wysokości klatki/barków, tyłem do wyciągu, wyprost i powrót, stopy w podłogę i napięty brzuch — 2 przeczytane źródła."
+  }
+ },
+ "zestawy": {
+  "Axle Deadlift": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "da6e441d2361",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Band Bench Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "acd851225cdc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Band Good Morning": {
+   "rodzina": "rdl",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "543dd4716326",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Band Squat": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "9358e2eddadc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Barbell Guillotine Bench Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "acd851225cdc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Barbell Hack Squat": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "e76670c9126d",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Bench Press with Chains": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "0d587fba1aaa",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+  },
+  "Board Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "acd851225cdc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.control „od klatki” — sztanga dochodzi do deski; nie przeczy, uwaga P2."
+  },
+  "Bodyweight Squat": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "9358e2eddadc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Box Squat": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "e4a4960f2f21",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Box Squat with Bands": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "a748f9e63acb",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Box Squat with Chains": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "a748f9e63acb",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Cable Deadlift": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "2c27f1bbb44b",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Cable Pull Through": {
+   "rodzina": "rdl",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "2097ba8dea72",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Cable Squat": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "9358e2eddadc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Chain Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "0d587fba1aaa",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+  },
+  "Clean Deadlift": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "da6e441d2361",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Close-Grip Dumbbell Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "d21d1506d7ab",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Close-Grip EZ-Bar Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "d21d1506d7ab",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Deadlift with Bands": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "da6e441d2361",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Deadlift with Chains": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "da6e441d2361",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Decline Bench Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "cd5b2598cc3d",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+  },
+  "Decline Bench Press (hantle)": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "cd5b2598cc3d",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+  },
+  "Decline Close-Grip Bench To Skull Crusher": {
+   "rodzina": "triLying",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny po usunięciu skull.upperArm 28.10.2026)",
+   "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
+   "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
+   "sha": "ac7ad92b9bfd",
+   "uwagi": "Usunięte skull.upperArm (przeczyło części wyciskania). Zostają: cgbp.elbows „Łokcie blisko tułowia przez cały ruch.” i mis.jerk — zgodne z obiema częściami ruchu i z figurą v2 (wyciskanie na ławce ujemnej)."
+  },
+  "Deficit Deadlift": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "da6e441d2361",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Dip Belt Squat": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "9358e2eddadc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Double Kettlebell Front Squat": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "9358e2eddadc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Dumbbell Squat": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "9358e2eddadc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Floor Press (hantle)": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "99942cfac127",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.control „bez odbijania od klatki” — przy wyciskaniu z podłogi ciężar zwykle nie dochodzi do klatki; nie przeczy, uwaga P2 (lepiej: bez odbijania łokci od podłogi)."
+  },
+  "Floor Press (sztanga)": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "99942cfac127",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). jak Floor Press (hantle) — uwaga P2 do bp.control."
+  },
+  "Floor Press with Chains": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "99942cfac127",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). jak Floor Press (hantle) — uwaga P2 do bp.control."
+  },
+  "Good Morning off Pins": {
+   "rodzina": "rdl",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "543dd4716326",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "JM Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "d7fe41300e57",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Landmine Squat": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "9358e2eddadc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Leverage Deadlift": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "2c27f1bbb44b",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "One Arm Dumbbell Bench Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "acd851225cdc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "One-Arm Kettlebell Floor Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "99942cfac127",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). jak Floor Press (hantle) — uwaga P2 do bp.control."
+  },
+  "One-Arm Overhead Kettlebell Squat": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "fb2f06dff2f5",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "One-Arm Side Deadlift": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "2c27f1bbb44b",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Overhead Squat": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "304e0fc5babd",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Pin Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "60b4ee8e613d",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Rack Pull": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "da6e441d2361",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). dl.lift przy starcie z kołków nad kolanami — wyprost bioder i kolan nadal trafny."
+  },
+  "Rack Pull with Bands": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "da6e441d2361",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). jak Rack Pull."
+  },
+  "Reverse Band Bench Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "0d587fba1aaa",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+  },
+  "Reverse Band Box Squat": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "a748f9e63acb",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Reverse Band Deadlift": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "da6e441d2361",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Reverse Band Power Squat": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "9358e2eddadc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Reverse Band Sumo Deadlift": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "546c36e8b01b",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Reverse Grip Bench Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "acd851225cdc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Rickshaw Deadlift": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "2359888b8b37",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Single Arm RDL (hantel/linka)": {
+   "rodzina": "rdl",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "41f335bcb706",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Single Leg RDL (hantel)": {
+   "rodzina": "rdl",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "2097ba8dea72",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Single Leg RDL (linki)": {
+   "rodzina": "rdl",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "2097ba8dea72",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Smith Machine Bench Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "0d587fba1aaa",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+  },
+  "Smith Machine Close-Grip Bench Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "d21d1506d7ab",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Smith Machine Decline Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "cd5b2598cc3d",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+  },
+  "Smith Machine Incline Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "acd851225cdc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Smith Machine Squat": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "9358e2eddadc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Smith Machine Stiff-Legged Deadlift": {
+   "rodzina": "rdl",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "75d054771e9d",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Snatch Deadlift": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "da6e441d2361",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Squat with Bands": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "9358e2eddadc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Squat with Chains": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "9358e2eddadc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Squeeze Press (hantle)": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "acd851225cdc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Stiff-Legged Barbell Deadlift": {
+   "rodzina": "rdl",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "75d054771e9d",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Sumo Deadlift (kettlebell)": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "14d0fb5c349f",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Sumo Deadlift with Bands": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "546c36e8b01b",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Sumo Deadlift with Chains": {
+   "rodzina": "hingeFloor",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "546c36e8b01b",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: hinge); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Sumo Squat (hantel)": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "e1034221ea32",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Wide-Grip Barbell Bench Press": {
+   "rodzina": "bench",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "acd851225cdc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Zercher Squat": {
+   "rodzina": "squat",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
+   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
+   "sha": "9358e2eddadc",
+   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  }
+ }
+}

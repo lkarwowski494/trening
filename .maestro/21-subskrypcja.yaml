@@ -5,11 +5,17 @@
 # Prawdziwy StoreKit i okna Apple: lista ręczna w piaskownicy (docs/27 7.2).
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "Subscription", "Full version", ".*You have access forever.*", "You have the full version"  ← components/SubscriptionCard.tsx, app/paywall.tsx
+#   "Subscription", ".*You have access forever.*"                           ← components/SubscriptionCard.tsx, app/paywall.tsx
+#   "Your plan: lifetime.*", "See Pro plans.*"                  ← tytuł wiersza w Ustawieniach zależny od stanu: z dostępem 'Masz plan: miesięczny|roczny|dożywotni', darmowy 'Zobacz plany Pro'
+#       (components/SubscriptionCard.tsx; M1-037 A, DEC-07 b 27.10.2026)
+#   ".*Your plan: .*"                                                       ← nagłówek karty stanu po zakupie: 'Masz plan: miesięczny|roczny|dożywotni' (app/paywall.tsx, DEC-09 a 27.10.2026)
 #   "Test store: expire access"                                             ← panel tylko w buildzie E2E (app/paywall.tsx, bez t())
 #   "Train 5 days a month for free.*", "Training is part of my week", "Restore purchases", "No purchases found for this Apple account."
 #   ".*free training days left this month.*"                                ← 'Pozostało {n} z {limit} darmowych dni treningowych w tym miesiącu' (components/StartPanel.tsx)
 #   "We're proud of you!", ".*no ads, no data collection.*"                 ← tekst przy starcie ponad limit (app/paywall.tsx, reason=limit)
+#   ".*Your plan: yearly.*", "Change plan", ".*Current plan.*", "Switch to this plan"  ← po zakupie planu: karta stanu, przełącznik zwiniętej listy,
+#       oznaczenie posiadanego planu, przycisk zmiany planu (app/paywall.tsx; DEC-09 a 27.10.2026: lista planów zwinięta pod „Change plan”)
+#   id "paywall-manage", "An internet connection is needed\."                     ← przycisk karty stanu (po id) i komunikat błędu sklepu (app/paywall.tsx; M1-audytor-generalny-039)
 #   "Subscribe", "Log a past workout", "Not now", "Close" (id close-modal)
 #   "Empty workout", "Other workout", "Finish", "Set 1 done.*", "Skip", "Finish workout\?", "Session", "Upper A" ← jak flow 05
 appId: pl.lukasz.trening
@@ -37,7 +43,7 @@ name: Subskrypcja — ekran zakupu i limit
 - tapOn: "Settings"
 - extendedWaitUntil: { visible: "Subscription", timeout: 30000 }
 - assertVisible: ".*You have access forever.*"
-- tapOn: "Full version.*"
+- tapOn: "Your plan: lifetime.*"
 - extendedWaitUntil: { visible: ".*You have access forever.*", timeout: 30000 }
 - takeScreenshot: 99-zakup-aktywny
 - scrollUntilVisible: { element: "Test store: expire access", direction: DOWN, timeout: 60000 }
@@ -57,6 +63,9 @@ name: Subskrypcja — ekran zakupu i limit
 - assertVisible: { id: "close-modal" }
 - tapOn: { id: "close-modal" }
 - extendedWaitUntil: { visible: "Subscription", timeout: 30000 }
+# M1-037 A: po wygaśnięciu wiersz w Ustawieniach jest wezwaniem do działania, nie nazwą produktu
+- assertVisible: "See Pro plans.*"
+- assertNotVisible: "Your plan: .*"
 - tapOn: "Back"
 # --- start po wygaśnięciu dostępu ponad limit dni (build E2E: limit 0 dni; krótki trening < 20 min nie zużywa dnia): licznik na ekranie startu, potem ekran zakupu zamiast startu ---
 - tapOn: "Workout, tab.*"
@@ -73,7 +82,26 @@ name: Subskrypcja — ekran zakupu i limit
 - scrollUntilVisible: { element: "Subscribe", direction: DOWN, timeout: 60000, centerElement: true }
 - waitForAnimationToEnd
 - tapOn: "Subscribe"
-- extendedWaitUntil: { visible: ".*You have the full version.*", timeout: 30000 }
+- extendedWaitUntil: { visible: ".*Your plan: .*", timeout: 30000 }
+# --- po zakupie subskrypcji (27.10.2026, uwaga z telefonu; DEC-09 a): nagłówek karty nazywa plan, bez wstępu o darmowych dniach i bez oferty;
+#     lista planów zwinięta pod „Change plan”, po rozwinięciu plan posiadany oznaczony, zakup innego planu to „Switch to this plan” ---
+- assertVisible: ".*Your plan: yearly.*"
+- assertNotVisible: "Train 5 days a month for free.*"
+- assertNotVisible: "Subscribe"
+- assertNotVisible: ".*Current plan.*"
+- takeScreenshot: 99-zakup-plan-aktywny
+# M1-audytor-generalny-039 (DEC-11 a, 28.10.2026): karta stanu planu nie jest grupą accessible — „Manage subscription” to osobny element widoczny dla XCTest
+# (i VoiceOver); w grupie tekst przycisku był tylko częścią wspólnej etykiety karty, więc tapOn po pełnej etykiecie nie znajdował elementu. Sztuczny sklep tylko liczy wywołanie.
+- tapOn:
+    id: "paywall-manage"   # po id, nie po tekście (zapadka M1-034, tests/maestro-tap-tekst-guard.test.ts)
+- assertVisible: ".*Your plan: yearly.*"
+- assertNotVisible: "An internet connection is needed\\."
+- scrollUntilVisible: { element: "Change plan", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Change plan"
+- scrollUntilVisible: { element: "Switch to this plan", direction: DOWN, timeout: 60000 }
+- assertVisible: ".*Current plan.*"
+- assertNotVisible: "Subscribe"
+- takeScreenshot: 99-zakup-zmiana-planu
 - scrollUntilVisible: { element: "Not now", direction: DOWN, timeout: 60000 }
 - tapOn: "Not now"
 # --- po zakupie start działa ---

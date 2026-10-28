@@ -27,6 +27,7 @@ export interface IapModule {
   subscriptionStatusIOS(sku: string): Promise<{ state: string; renewalInfo?: { gracePeriodExpirationDate?: number | null } | null }[]>;
   openRedeemOfferCode(): Promise<unknown>;
   deepLinkToSubscriptions(opts?: Record<string, unknown>): Promise<void>;
+  showManageSubscriptionsIOS(): Promise<unknown>;
 }
 let mod: IapModule | null | undefined;
 function iap(): IapModule {
@@ -123,6 +124,7 @@ export function createNativeStore(): StoreAdapter {
       return () => { off = true; subs.forEach(s => s.remove()); subs = []; };
     },
     async redeemCode() { const m = iap(); await withTimeout(connect()); await m.openRedeemOfferCode(); },
-    async manageSubscriptions() { const m = iap(); await m.deepLinkToSubscriptions(); },
+    /* M1-audytor-generalny-016: arkusz systemowy w aplikacji (AppStore.showManageSubscriptions — działa w piaskownicy i TestFlight, docs/27 3.10); strona App Store tylko przy błędzie arkusza */
+    async manageSubscriptions() { const m = iap(); try { await m.showManageSubscriptionsIOS(); } catch { await m.deepLinkToSubscriptions(); } },
   };
 }

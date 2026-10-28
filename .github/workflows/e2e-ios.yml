@@ -7,7 +7,8 @@
 # bez wagi też trafia do jednej części). Test aktualizacji (33–34) wykonuje jedna część. Artefakt porażek: e2e-ios-<numer części>.
 # 19.10.2026 (decyzja właściciela): PAKIET — „podstawowy” (domyślnie; kluczowe przepływy z scripts/ci/e2e-podstawowy.json na 2 maszynach, ~20–25 min; blokuje TestFlight)
 # albo „pelny” (cały katalog na 3 maszynach; nocą w nightly.yml, niewiążąco). Nieudany scenariusz jest ponawiany RAZ (osobne uruchomienie tylko jego); drugi czerwony = porażka.
-# `tryb_scisly` = true: pełny katalog BEZ ponowień (przebiegi wydania do App Store). Podsumowanie przebiegu wypisuje scenariusze zielone dopiero w ponowieniu (niestabilność
+# `tryb_scisly` = true: pełny katalog BEZ ponowień — opcjonalny pomiar niestabilności, nie bramka. Bramka App Store (CLAUDE.md, właściciel 21.10 i 26.10.2026):
+# `pakiet: pelny` w trybie zwykłym na standardowym iPhonie — jedno ponowienie scenariusza dozwolone (M1-audytor-generalny-023). Podsumowanie przebiegu wypisuje scenariusze zielone dopiero w ponowieniu (niestabilność
 # widoczna, nie ukryta) i zapisuje czasy per scenariusz w artefakcie e2e-wyniki (scripts/ci/e2e-wyniki.mjs; pilnuje tests/e2e-pakiet.test.ts).
 name: E2E iOS (symulator)
 # Tytuł przebiegu czyta bramka TestFlight (scripts/ci/bramka-e2e.sh, audyt M1-018): „E2E iOS · <pakiet>” bez dopisków = przebieg pełnowartościowy na tym commicie.
@@ -31,6 +32,10 @@ on:
         description: 'Wygląd systemu symulatora: light albo dark'
         required: false
         default: 'light'
+      rozmiar_tekstu:
+        description: 'Rozmiar tekstu systemu symulatora (simctl ui content_size), np. accessibility-extra-extra-extra-large; pusty = domyślny'
+        required: false
+        default: ''
       poprzednia_wersja_z_przebiegu:
         description: 'Test aktualizacji (scenariusze 33–34): numer przebiegu z aplikacją POPRZEDNIEJ wersji (artefakt trening-sim-app). Pusty = ostatni zielony przebieg na main (artefakty żyją 1 dzień — gdy wygasł, test aktualizacji jest pomijany z ostrzeżeniem); „brak” = bez testu aktualizacji'
         required: false
@@ -45,7 +50,7 @@ on:
         options: [podstawowy, pelny]
         default: podstawowy
       tryb_scisly:
-        description: 'Tryb ścisły (wydanie do App Store): pełny katalog, BEZ ponowień nieudanych scenariuszy'
+        description: 'Tryb ścisły (opcjonalny pomiar, nie bramka App Store): pełny katalog BEZ ponowień. Bramka App Store = pakiet pelny w trybie zwykłym (jedno ponowienie)'
         type: boolean
         default: false
   workflow_call:  # nocny przebieg (nightly.yml, 06.10.2026): inne urządzenie i ciemny wygląd
@@ -53,6 +58,7 @@ on:
       aplikacja_z_przebiegu: { type: string, required: false, default: '' }
       urzadzenie: { type: string, required: false, default: '' }
       wyglad: { type: string, required: false, default: 'light' }
+      rozmiar_tekstu: { type: string, required: false, default: '' }
       poprzednia_wersja_z_przebiegu: { type: string, required: false, default: '' }
       tylko_scenariusze: { type: string, required: false, default: '' }
       pakiet: { type: string, required: false, default: 'podstawowy' }
@@ -166,6 +172,7 @@ jobs:
         env:
           WANT: ${{ inputs.urzadzenie }}
           WYGLAD: ${{ inputs.wyglad }}
+          ROZMIAR_TEKSTU: ${{ inputs.rozmiar_tekstu }}
         run: |
           SDK=$(xcrun --sdk iphonesimulator --show-sdk-version)
           LIST=$(xcrun simctl list devices available | awk -v h="-- iOS $SDK --" '$0 == h { f = 1; next } /^-- / { f = 0 } f')
@@ -182,6 +189,7 @@ jobs:
           xcrun simctl boot "$DEV" || true
           xcrun simctl bootstatus "$DEV" -b
           [ "$WYGLAD" = dark ] && xcrun simctl ui "$DEV" appearance dark || true  # wejście „wyglad” (nocny przebieg)
+          [ -z "$ROZMIAR_TEKSTU" ] || xcrun simctl ui "$DEV" content_size "$ROZMIAR_TEKSTU"  # wejście „rozmiar_tekstu” (duży tekst dostępności, scenariusz 58)
           xcrun simctl install "$DEV" ios/build/Build/Products/Release-iphonesimulator/Trening.app
       - name: Install Maestro
         if: steps.plan.outputs.any == 'true'
@@ -219,7 +227,7 @@ jobs:
             rc=$?
           fi
           # Ponowienie POJEDYNCZEGO nieudanego scenariusza (decyzja właściciela 19.10.2026): raz, osobnym uruchomieniem tylko jego; drugi czerwony = porażka.
-          # Tryb ścisły (wydanie do App Store) — bez ponowień. Wynik (przeszedł / w ponowieniu / padł dwa razy) zbiera krok „Wyniki scenariuszy”.
+          # Tryb ścisły (opcjonalny pomiar niestabilności) — bez ponowień. Wynik (przeszedł / w ponowieniu / padł dwa razy) zbiera krok „Wyniki scenariuszy”.
           if [ "$rc" -ne 0 ] && [ "$STRICT" != "true" ]; then
             FAILED=$(node scripts/ci/e2e-wyniki.mjs nieudane e2e-out/report.xml "$DIR")
             if [ -n "$FAILED" ]; then
@@ -349,6 +357,7 @@ jobs:
         env:
           WANT: ${{ inputs.urzadzenie }}
           WYGLAD: ${{ inputs.wyglad }}
+          ROZMIAR_TEKSTU: ${{ inputs.rozmiar_tekstu }}
         run: |
           SDK=$(xcrun --sdk iphonesimulator --show-sdk-version)
           LIST=$(xcrun simctl list devices available | awk -v h="-- iOS $SDK --" '$0 == h { f = 1; next } /^-- / { f = 0 } f')
@@ -365,6 +374,7 @@ jobs:
           xcrun simctl boot "$DEV" || true
           xcrun simctl bootstatus "$DEV" -b
           [ "$WYGLAD" = dark ] && xcrun simctl ui "$DEV" appearance dark || true  # wejście „wyglad” (nocny przebieg)
+          [ -z "$ROZMIAR_TEKSTU" ] || xcrun simctl ui "$DEV" content_size "$ROZMIAR_TEKSTU"  # wejście „rozmiar_tekstu” (duży tekst dostępności, scenariusz 58)
           xcrun simctl install "$DEV" ios/build/Build/Products/Release-iphonesimulator/Trening.app
       - name: Install Maestro
         # audyt 08.10.2026 (TST-11, SEC-05): wersja w logu; zmienna repozytorium MAESTRO_VERSION przypina wersję (pusta = najnowsza)

@@ -5,7 +5,7 @@ import { Screen, Btn, Muted } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
 import { exportBackup, importBackup, exportCsv, isSafetyError, isPersistError, safetyRecoveryNote, AUTO_KEEP } from '@/lib/backup';
 import { t, appName } from '@/lib/i18n';
-import { wu } from '@/lib/units';
+import { unitLabel } from '@/lib/units';
 import { usePrefsTick, getState } from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { useRouter } from 'expo-router';
@@ -22,7 +22,7 @@ export default function Backup() {
       </InfoTip>
       <Btn title={t('Eksportuj backup (plik JSON)')} kind="primary" block loading={working === 'json'} onPress={() => run('json', exportBackup)} />
       <Btn title={t('Eksportuj historię do CSV')} block loading={working === 'csv'} onPress={() => run('csv', exportCsv)} />
-      <Muted style={font('footnote')}>{t('CSV: ciężar w jednostce z ustawień ({u}), dystans w metrach.', { u: wu() })}</Muted>
+      <Muted style={font('footnote')}>{t('CSV: ciężar w jednostce z ustawień ({u}), dystans w metrach.', { u: unitLabel() })}</Muted>
       <Btn title={t('Importuj backup')} block loading={working === 'import'} onPress={() => Alert.alert(t('Nadpisać dane?'), t('Import zastąpi wszystkie obecne dane zawartością pliku. Obecne dane (także trening w toku) zapiszą się najpierw jako kopia w Plikach: {app} → Backup.', { app: appName() }) + safetyRecoveryNote(), [{ ...cancelButton() }, { text: t('Importuj'), style: 'destructive', onPress: () => { if (busy.current) return; busy.current = true; setWorking('import'); importBackup().finally(() => { busy.current = false; setWorking(null); }).then(ok => { if (!ok) return; timer.resetAll().catch(() => {}); Alert.alert(t('Zaimportowano')); }).catch((e: unknown) => isSafetyError(e) ? Alert.alert(t('Import przerwany'), e.message) /* Q-019 */ : isPersistError(e) ? Alert.alert(t('Nie udało się zapisać danych'), t('Spróbuj ponownie.')) /* M1-audytor-generalny-006 */ : Alert.alert(e instanceof Error && e.message.includes('schem') ? t('Backup z nowszej wersji aplikacji') : t('To nie wygląda na backup z tej apki'), e instanceof Error && e.message.includes('schem') ? e.message : undefined)); } }])} />
       <Btn title={t('Importuj historię z pliku CSV')} block nav onPress={() => router.push('/more/import')} />
       <InfoTip id="backup-csv" label={t('Dopisuje treningi z CSV — bez usuwania danych, z podglądem.')} info={t('Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.')}>

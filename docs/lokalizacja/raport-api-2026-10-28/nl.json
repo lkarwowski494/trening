@@ -1,0 +1,85 @@
+{
+ "jezyk": "nl",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 472,
+ "uwagi": [
+  {
+   "klucz": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "rodzaj": "nowe",
+   "pl": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "tlumaczenie": "{app} wordt gemaakt door een onafhankelijke ontwikkelaar: zonder advertenties en zonder dataverzameling. Als de app je helpt, kies dan een abonnement en train zonder limiet. De gratis dagen komen terug op {date}.",
+   "poprawka": "{app} wordt gemaakt door een onafhankelijke ontwikkelaar: zonder advertenties en zonder dataverzameling. Als de app je helpt, kies dan een Pro-optie en train zonder limiet. De gratis dagen komen terug op {date}.",
+   "powod": "„abonnement” zawęża wybór: w innych zdaniach (np. 28) wyklucza jednorazowy zakup dożywotni, a źródło mówi ogólnie o planie",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+   "rodzaj": "nowe",
+   "pl": "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+   "tlumaczenie": "De training van {d} {s} had {h} uur geen activiteit, dus is automatisch opgeslagen. Einde: {e} (laatste set). Je vindt hem in het tabblad Plan.",
+   "poprawka": "De training van {d} {s} had {h} uur geen activiteit, dus is hij automatisch opgeslagen. Einde: {e} (laatste set). Je vindt hem in het tabblad Plan.",
+   "powod": "Brak podmiotu w zdaniu („dus is automatisch opgeslagen”) — błąd gramatyczny",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "rodzaj": "nowe",
+   "pl": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "tlumaczenie": "Gemarkeerde spiergroepen hebben meer volume dan in de vergelijkingsperiode; hoe sterker de kleur, hoe groter de toename. Grijs — geen toename.",
+   "poprawka": "Gemarkeerde lichaamsdelen hebben meer volume dan in de vergelijkingsperiode; hoe sterker de kleur, hoe groter de toename. Grijs — geen toename.",
+   "powod": "Niespójna terminologia: „partia” jest wszędzie tłumaczona jako „lichaamsdeel”, tu jako „spiergroep”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Masz plan: dożywotni",
+   "rodzaj": "nowe",
+   "pl": "Masz plan: dożywotni",
+   "tlumaczenie": "Eenmalige aankoop",
+   "poprawka": "Je plan: eenmalige aankoop",
+   "powod": "Zgubiono strukturę statusu „Masz plan: …”, przez co etykieta jest niespójna z 56/57",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "rodzaj": "nowe",
+   "pl": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "tlumaczenie": "Verwijder de app niet — je data en back-ups verdwijnen dan mee. Tik eerst op “Gegevens versturen” en bewaar het bestand buiten je telefoon.",
+   "poprawka": "Verwijder de app niet — je gegevens en back-ups verdwijnen dan mee. Tik eerst op ‘Gegevens versturen’ en bewaar het bestand buiten je telefoon.",
+   "powod": "Niespójna terminologia: „data” zamiast używanego w aplikacji „gegevens”; cudzysłowy niespójne z resztą tekstów",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Skąd ta cena? Poznaj indeks espresso.",
+   "rodzaj": "nowe",
+   "pl": "Skąd ta cena? Poznaj indeks espresso.",
+   "tlumaczenie": "Waarom deze prijs? Bekijk de espressoindex.",
+   "poprawka": "Waarom deze prijs? Bekijk de espresso-index.",
+   "powod": "Pisownia złożenia: przy zbiegu samogłosek o-i obowiązuje łącznik (espresso-index)",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zobacz plany Pro",
+   "rodzaj": "nowe",
+   "pl": "Zobacz plany Pro",
+   "tlumaczenie": "Bekijk de Pro-abonnementen",
+   "poprawka": "Bekijk de Pro-opties",
+   "powod": "Lista planów obejmuje też zakup jednorazowy, więc „abonnementen” jest nieścisłe",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zobacz plany Pro ›",
+   "rodzaj": "nowe",
+   "pl": "Zobacz plany Pro ›",
+   "tlumaczenie": "Bekijk de Pro-abonnementen ›",
+   "poprawka": "Bekijk de Pro-opties ›",
+   "powod": "Lista planów obejmuje też zakup jednorazowy, więc „abonnementen” jest nieścisłe",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

@@ -24,9 +24,9 @@ describe('docs/42: plan wydania 1.0', () => {
   test('wydanie 1.0 ręczne (D-5 A) — pierwsze wydanie nie ma etapowania; kontrola na telefonie (docs/39)', () => {
     const d = read(PLAN); expect(d).toMatch(/D-5/); expect(d).toMatch(/docs\/39/); expect(d).toMatch(/Release/);
   });
-  test('zły build: kroki (wstrzymanie etapowania, poprawka, lekcja w docs/40) i oznaczenie nieprzeczytanych zasad Apple jako otwarte', () => {
+  test('zły build: kroki (wstrzymanie etapowania, poprawka, lekcja w docs/40); zasady Apple przeczytane — bez znaczników [DO PRZECZYTANIA]', () => {
     const d = read(PLAN); const s = d.slice(d.indexOf('## 4. Zły build'), d.indexOf('## 5.'));
-    expect(s).toMatch(/Pause Phased Release/); expect(s).toMatch(/docs\/40/); expect(s).toMatch(/testflight\.yml/); expect(s).toMatch(/DO PRZECZYTANIA/);
+    expect(s).toMatch(/Pause Phased Release/); expect(s).toMatch(/docs\/40/); expect(s).toMatch(/testflight\.yml/); expect(s).not.toMatch(/DO PRZECZYTANIA/); /* 27.10.2026 (DEC-07 b, M1-037 B, 10-wydanie-005): oba punkty przeczytane — tests/audit-m1-2026-10-27-037-dokumenty-wydania.test.ts */
   });
   test('bramki: każde otwarte ryzyko z rejestru docs/40 jest wymienione z identyfikatorem', () => {
     const open = read('docs/40-lekcje.md').split('\n').filter((l) => /^\| R-\d{3} \|/.test(l) && !/zamknięte/.test(l.split('|')[4] ?? '')).map((l) => l.split('|')[1].trim());

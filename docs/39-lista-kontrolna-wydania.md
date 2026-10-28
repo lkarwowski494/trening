@@ -27,7 +27,7 @@ Zasada: odhacz każdy punkt dla wersji, którą wypuszczasz; wada → wiadomoś�
   - Dlaczego nie automat: Symulator CI nie ma danych Zdrowia (kroków, tętna, zegarka) ani sterowania nimi, a arkusz zgody jest oknem systemowym (docs/29 pkt 7).
   - Pokrycie zastępcze w Jest: `tests/health-read-ui.test.tsx`, `tests/health-scenario.test.tsx`, `tests/health-query.test.ts`
 - [ ] **US-13** Prawdziwy zakup w piaskownicy Apple: każdy plan, przywrócenie, zwrot, Chmura rodzinna, limit dni
-  - Co zrobić i czego oczekiwać: Model M5 S1 (docs/monetyzacja.md), sześć scenariuszy: (1) kup każdy plan → arkusz Apple pokazuje cenę planu i brak oferty wprowadzającej, po zakupie „Masz pełną wersję” (dożywotni: „Masz dostęp na zawsze”); (2) usuń i zainstaluj ponownie → „Przywróć zakupy” przywraca dostęp; (3) tryb samolotowy po zakupie → dostęp zostaje; (4) zwrot w piaskownicy → dostęp znika po odświeżeniu; (5) Chmura rodzinna: drugie konto z rodziny ma dostęp; (6) bez zakupu po wykorzystaniu darmowego limitu dni treningowych w miesiącu → start treningu w nowym dniu otwiera ekran zakupu, historia i kopia dostępne.
+  - Co zrobić i czego oczekiwać: Model M5 S1 (docs/monetyzacja.md), sześć scenariuszy: (1) kup każdy plan → arkusz Apple pokazuje cenę planu i brak oferty wprowadzającej, po zakupie „Masz plan: {rodzaj planu}” (dożywotni także „Masz dostęp na zawsze”); (2) usuń i zainstaluj ponownie → „Przywróć zakupy” przywraca dostęp; (3) tryb samolotowy po zakupie → dostęp zostaje; (4) zwrot w piaskownicy → dostęp znika po odświeżeniu; (5) Chmura rodzinna: drugie konto z rodziny ma dostęp; (6) bez zakupu po wykorzystaniu darmowego limitu dni treningowych w miesiącu → start treningu w nowym dniu otwiera ekran zakupu, historia i kopia dostępne.
   - Dlaczego nie automat: Okna zakupu Apple i konto piaskownicy są poza kontrolą Maestro; build E2E ma sztuczny sklep (EXPO_PUBLIC_STORE_FAKE), więc nie sprawdza prawdziwego StoreKit.
   - Pokrycie zastępcze w Jest: `tests/store-adapter.test.ts`, `tests/subscription-ui.test.tsx`, `tests/subscription-invariants.test.ts`, `tests/entitlement.test.ts`
 - [ ] **US-15** „Napisz do nas” (poczta) i prośba o ocenę w App Store
@@ -68,8 +68,8 @@ Zasada: odhacz każdy punkt dla wersji, którą wypuszczasz; wada → wiadomoś�
   - Dlaczego nie automat: Podpis, ikona, ekran startowy i środowisko prawdziwego urządzenia istnieją dopiero w buildzie z TestFlight.
   - Pokrycie zastępcze w Jest: `tests/intro.test.tsx`, `tests/smoke.test.tsx`
 - [ ] **ZD-03** Powiększony tekst systemowy, VoiceOver na żywo i „Ogranicz ruch”
-  - Co zrobić i czego oczekiwać: Największy rozmiar tekstu: trening, plan i ustawienia czytelne bez ucięć; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają.
-  - Dlaczego nie automat: Maestro nie przestawia ustawień dostępności systemu.
+  - Co zrobić i czego oczekiwać: Największy rozmiar tekstu (T-04, 27.10.2026: ucięte ikony na ekranie Trening — strażnik znaków-ikon w tests/matrix-a11y.test.tsx; scenariusz Maestro 58 (`.maestro/58-duzy-tekst.yaml`, wejście `rozmiar_tekstu` w e2e-ios.yml) robi zrzuty ekranu Trening z treningiem przy największym tekście — telefon sprawdza to, czego scenariusz nie pokrywa: stan „dziś bez treningu” (ikona startu kolejnego treningu w całości widoczna), plan i ustawienia czytelne bez ucięć, w tym ikony; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają.
+  - Dlaczego nie automat: VoiceOver i „Ogranicz ruch” Maestro nie przestawi; rozmiar tekstu tak (scenariusz 58), ale scenariusz nie obejmuje stanu bez treningu, planu i ustawień (M1-audytor-generalny-047).
   - Pokrycie zastępcze w Jest: `tests/tabs-a11y.test.tsx`, `tests/matrix-a11y.test.tsx`
 
 ## Wersja 0.20 (zegarek i głos) — projekt

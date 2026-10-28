@@ -2178,3 +2178,19 @@ describe('Ekran blokady w przerwie: język aplikacji, nie systemu (26.10.2026, r
     expect(starts().map(x => [x[5], x[6]])).toEqual([['rest|Pause', 'de']]); await timer.stop();
   });
 });
+
+describe('M1-audytor-generalny-020 (06-tresci-004, DEC-04 a, 27.10.2026): RIR 6 → RPE 5, „lekko” od RIR 7', () => {
+  /* Kroki: Ustawienia → Skala wysiłku RIR → seria → wpis 6. Objaw: zapis RPE 4 („lekko”, pokazywane „6+”), a skala RPE-RIR grupuje 4–6 RIR przy
+   * RPE 5–6 (Helms i in. 2016, PMC4961270: „scores of 5–6 were grouped as 4–6 RIR”); opisy słowne („light effort”) są dopiero dla RPE 1–4.
+   * Dane już zapisane się nie zmieniają (RPE 4 zostaje RPE 4). Reguła RD-02 (docs/brd/reguly.md), wektory tests/wektory/brd.json. */
+  const scale = (v: 'rpe' | 'rir') => { const st = store.getState(); st.settings.showRpe = true; st.settings.effortScale = v; store.save(); };
+  beforeEach(async () => { await fresh(); });
+  test('wpis RIR 6 zapisuje RPE 5; RIR powyżej 6 — „lekko” (RPE 4, pokazywane „7+”); RIR 0–5 bez zmian', () => {
+    scale('rir');
+    expect(store.effortIn(6)).toBe(5);
+    expect([0, 2, 4, 5, 5.5, 6, 6.5, 7, 9].map(v => store.effortIn(v))).toEqual([10, 8, 6, 5, 5, 5, 4, 4, 4]);
+    expect([store.effortText(4), store.effortText(5), store.effortOut(4.5)]).toEqual(['7+', '5', 7]);
+    expect(store.RIR_MAX).toBe(6);
+  });
+  /* tekst w Ustawieniach (zakres 0–6, granica RPE 5 z RPE_RIR_MIN, nie 10 − RIR_MAX) — PL i EN: tests/audit-k1-bl-mer.test.tsx („Ustawienia: opis skali RIR …”) */
+});

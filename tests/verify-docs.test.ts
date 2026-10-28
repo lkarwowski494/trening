@@ -71,7 +71,7 @@ describe('verify:docs — komunikat i kody wyjścia', () => {
 describe('verify:docs — co jest uruchamiane dla dokumentów', () => {
   test('szybkie kontrole w stałej kolejności, bez lint, typecheck, jest całości, exportu i verify:native', () => {
     const p = plan(['docs/18-przekazanie.md']);
-    expect(p.komendy.slice(0, 4)).toEqual(['npm run check:readme', 'npm run check:matrix', 'npm run check:claims', 'npm run check:i18n']);
+    expect(p.komendy.slice(0, 5)).toEqual(['npm run check:readme', 'npm run check:matrix', 'npm run check:claims', 'npm run check:decyzje', 'npm run check:i18n']);
     expect(p.komendy.join(' ')).not.toMatch(/lint|typecheck|expo|verify:native|check:licenses|check:cues|check:figures/);
   });
   test('zmiana w docs/brd dodaje kontrolę BRD', () => {

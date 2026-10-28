@@ -33,7 +33,7 @@ const fin = (n: unknown): n is number => typeof n === 'number' && Number.isFinit
 export function parseLastKnown(raw: unknown): LastKnownAccess | null {
   let o: any = raw; if (typeof raw === 'string') { try { o = JSON.parse(raw); } catch { return null; } }
   if (!o || typeof o !== 'object' || (o.level !== 'full' && o.level !== 'free')) return null;
-  if (o.level === 'free') return { level: 'free' };
+  if (o.level === 'free') return fin(o.endedAt) ? { level: 'free', endedAt: o.endedAt } : { level: 'free' };
   if (o.expiresAt === null) return { level: 'full', expiresAt: null };
   return fin(o.expiresAt) ? { level: 'full', expiresAt: o.expiresAt } : null;
 }
@@ -42,6 +42,13 @@ export function lastKnownFrom(list: readonly Entitlement[], now: number): LastKn
   let best: number | null | undefined; /* undefined = nic aktywnego */
   for (const e of list) { if (!entitlementActive(e, now)) continue; const end = entitlementEnd(e); const v = end === Infinity ? null : end; if (v === null) { best = null; break; } if (best === undefined || (best !== null && v! > best)) best = v; }
   return best === undefined ? { level: 'free' } : { level: 'full', expiresAt: best };
+}
+/** M1-audytor-generalny-002 (P3 B): przejście z pełnego dostępu na `free` zapisuje chwilę końca (koniec okresu albo „teraz” przy zwrocie/cofnięciu przed końcem);
+ * kolejne odczyty `free` zachowują zapisany koniec. Ponowny pełny dostęp go czyści (następne wygaśnięcie zapisze nowy). */
+export function withEndedAt(next: LastKnownAccess, prev: LastKnownAccess | null, now: number): LastKnownAccess {
+  if (next.level !== 'free') return next;
+  if (prev?.level === 'full') return { level: 'free', endedAt: prev.expiresAt != null && fin(prev.expiresAt) ? Math.min(prev.expiresAt, now) : now };
+  return prev?.level === 'free' && fin(prev.endedAt) ? { level: 'free', endedAt: prev.endedAt } : next;
 }
 async function persist(v: LastKnownAccess, now: number) {
   try { await db?.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', ACCESS_KEY, JSON.stringify({ ...v, at: now })); } catch { /* brak zapisu nie psuje stanu w pamięci */ }
@@ -53,7 +60,7 @@ async function load() {
 /** Zastosowanie odpowiedzi sklepu: tablica (także pusta) = sklep odpowiedział; null = brak odpowiedzi (`unknown`, ostatni zapamiętany wynik). */
 async function apply(list: Entitlement[] | null, now: number) {
   ent = list;
-  if (list) { lastKnown = lastKnownFrom(list, now); await persist(lastKnown, now); }
+  if (list) { lastKnown = withEndedAt(lastKnownFrom(list, now), lastKnown, now); await persist(lastKnown, now); }
   emit();
 }
 /** Odświeżenie uprawnień ze sklepu (start, powrót z tła, zdarzenie transakcji). Błąd odczytu → `unknown`, nigdy `free` (docs/30 3.3 pułapka 2). Współbieżne wywołania łączą się w jedno. */
@@ -70,6 +77,11 @@ export async function initEntitlements(): Promise<void> {
   await load(); emit();
   unsub = getStoreAdapter().onTransaction(() => { void refreshEntitlements(); });
   await refreshEntitlements();
+}
+/** Tylko panel „Test store” (build E2E, scenariusz Maestro 56) i testy: stan nowej instalacji bez zakupów — zapomina zapamiętany poziom dostępu
+ * (pamięć i kv), żeby następna pusta lista sklepu nie zapisała końca pełnego dostępu (M1-046: były subskrybent nie dostaje okna „Pierwszy trening”). */
+export async function forgetAccessMemory(): Promise<void> {
+  lastKnown = null; try { await db?.runAsync('DELETE FROM kv WHERE k = ?', ACCESS_KEY); } catch { /* brak zapisu nie psuje stanu w pamięci */ }
 }
 /** Tylko testy i wyłączenie przełącznika w trakcie działania: zatrzymuje nasłuch i czyści stan w pamięci. */
 export function resetEntitlementsForTests() { unsub?.(); unsub = null; started = false; ent = null; lastKnown = null; inflight = null; emit(); }

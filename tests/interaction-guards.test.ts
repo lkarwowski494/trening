@@ -1,12 +1,13 @@
 /*
  * Strażniki wzorców interakcji (właściciel, 13.10.2026: „akcje tego samego typu działają w całej aplikacji tak samo”; katalog: docs/32-wzorce-interakcji.md).
- * Statyczny skan źródeł app/, components/, lib/ — nowy kod, który łamie wzorzec, robi test czerwonym. Numeracja S1–S16 jak w audycie spójności (docs/32, sekcja „Strażniki”); S17 — wzorzec ⓘ (14.10.2026).
+ * Statyczny skan źródeł app/, components/, lib/ — nowy kod, który łamie wzorzec, robi test czerwonym. Numeracja S1–S16 jak w audycie spójności (docs/32, sekcja „Strażniki”); S17 — wzorzec ⓘ (14.10.2026); S19 — grupa `accessible` bez przycisku w środku (28.10.2026, skan AST).
  * Zamykanie okien (S1) pilnuje osobno tests/close-button-guard.test.tsx; wzorzec usuwania — tests/swipe-delete.test.tsx.
  * Pominięte lub częściowe (z powodem): S14 (pole dotyku ≥ 44 pt — Jest nie liczy układu; pilnujemy komponentów wspólnych i zakazu roli „link”), S6 (wybór 1 z 2–4 / boolean —
  * reguła semantyczna, sprawdzamy miejsca naprawione), S16 (arkusz akcji — lista wyjątków z powodem).
  */
 import { readdirSync, readFileSync, statSync } from 'fs';
 import { join, relative, sep } from 'path';
+import * as ts from 'typescript';
 
 const ROOT = join(__dirname, '..');
 const walk = (d: string): string[] => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
@@ -146,6 +147,7 @@ describe('S16: arkusze akcji — najwyżej 4 opcje (z „Anuluj”) albo wyjąte
     'app/history/edit/[id].tsx': 'jak w treningu: miejsce sesji i rodzaj serii (ta sama lista)',
     'app/template/[id].tsx': 'rodzaj serii szablonu: 4 rodzaje + „Usuń serię” (jak w treningu, M1-028; 04-studio-projektowe-003) + Anuluj (zamknięty zbiór, bez notatki)',
     'components/ExMenuButton.tsx': 'menu „⋯” ćwiczenia w edytorze szablonu i edycji sesji: jedna pozycja „Usuń ćwiczenie” + Anuluj (jak w treningu, 04-studio-projektowe-003)',
+    'components/DragList.tsx': 'menu „⋯” wiersza na ekranie Kolejność: „Przesuń wyżej” / „Przesuń niżej” (tylko możliwe kierunki) + Anuluj — przyciskowa alternatywa przeciągania (M1-audytor-generalny-026, 27.10.2026)',
   };
   test('wszystkie wywołania ActionSheetIOS są na liście wyjątków z powodem (nowe — czerwony test: najwyżej 4 opcje)', () => {
     const files = hits(/ActionSheetIOS\.showActionSheetWithOptions/); expect(files.sort()).toEqual(Object.keys(EXC).sort()); Object.values(EXC).forEach(v => expect(v.length).toBeGreaterThan(20));
@@ -251,4 +253,42 @@ describe('S17: ⓘ — jeden komponent, objaśnienia nie wracają na wierzch', (
     expect(lines(/Tapnij numer serii|Dotknij etykiety serii|Przesuń serię albo nazwę ćwiczenia w lewo/, ['lib/guide.ts'])).toEqual([]);
   });
   test('„Technika ›” to przejście (wzorzec 17), nie ⓘ', () => { const c = src.get('components/ExerciseCues.tsx')!; expect(c).toContain("`${t('Technika')} ›`"); expect(c).not.toMatch(/ⓘ \$\{t\('Technika'\)\}/); });
+});
+
+/* ---------- S19: grupa VoiceOver bez przycisków w środku (M1-audytor-generalny-039, 04-studio-projektowe-601; DEC-11 a, 28.10.2026; render ekranu zakupu: tests/voiceover-grupa-przycisk.test.tsx) ---------- */
+/** Role, przy których cały element sam jest kontrolką (grupa = jeden przycisk) — wtedy onPress w środku to ta sama akcja, nie ukryty przycisk. */
+const ROLE_KONTROLKI = new Set(['button', 'radio', 'checkbox', 'switch', 'adjustable', 'menuitem', 'tab', 'togglebutton']);
+const ZDARZENIA = new Set(['onPress', 'onLongPress']);
+
+const attr = (el: ts.JsxOpeningLikeElement, name: string) => el.attributes.properties.find((p): p is ts.JsxAttribute => ts.isJsxAttribute(p) && p.name.getText() === name);
+/** `accessible` albo `accessible={true}` (bez `={false}` i bez wyrażeń warunkowych). */
+const grupa = (el: ts.JsxOpeningLikeElement) => { const a = attr(el, 'accessible'); if (!a) return false; if (!a.initializer) return true; return ts.isJsxExpression(a.initializer) && a.initializer.expression?.kind === ts.SyntaxKind.TrueKeyword; };
+const rola = (el: ts.JsxOpeningLikeElement) => { const a = attr(el, 'accessibilityRole'); return a?.initializer && ts.isStringLiteral(a.initializer) ? a.initializer.text : null; };
+
+/** Elementy `accessible` (bez roli kontrolki), w których drzewie JSX jest potomek z onPress/onLongPress — `plik:linia testID`. */
+function grupyZPrzyciskiem(file: string, text: string): string[] {
+  const sf = ts.createSourceFile(file, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX); const out: string[] = [];
+  const maZdarzenie = (n: ts.Node): boolean => { let hit = false; const v = (m: ts.Node) => { if (hit) return; if (ts.isJsxAttribute(m) && ZDARZENIA.has(m.name.getText())) { hit = true; return; } ts.forEachChild(m, v); }; ts.forEachChild(n, v); return hit; };
+  const visit = (n: ts.Node) => {
+    if (ts.isJsxElement(n) && grupa(n.openingElement) && !ROLE_KONTROLKI.has(rola(n.openingElement) ?? '') && !attr(n.openingElement, 'onPress')) {
+      if (n.children.some(maZdarzenie)) { const id = attr(n.openingElement, 'testID')?.initializer?.getText() ?? n.openingElement.tagName.getText(); out.push(`${file}:${sf.getLineAndCharacterOfPosition(n.getStart()).line + 1} ${id}`); }
+    }
+    ts.forEachChild(n, visit);
+  };
+  visit(sf); return out;
+}
+
+describe('S19 (28.10.2026, DEC-11 a): grupa `accessible` nie zawiera przycisku — iOS chowa potomków grupy przed VoiceOver i XCTest', () => {
+  test('żaden element `accessible` w app/ i components/ (bez roli kontrolki) nie ma w drzewie JSX potomka z onPress/onLongPress', () => {
+    const bad = [...src].filter(([f]) => /^(app|components)\/.*\.tsx$/.test(f)).flatMap(([f, s]) => grupyZPrzyciskiem(f, s));
+    expect(bad).toEqual([]);
+  });
+  test('strażnik łapie wzorzec błędu (grupa z przyciskiem w środku) i przepuszcza dozwolone układy', () => {
+    const zly = `const A = () => <View testID="karta" accessible><Text>Plan</Text><Btn title="Zarządzaj" onPress={() => {}} /></View>;`;
+    expect(grupyZPrzyciskiem('x.tsx', zly)).toEqual(['x.tsx:1 "karta"']);
+    expect(grupyZPrzyciskiem('x.tsx', `const A = () => <View accessible={true}><Pressable onLongPress={f}><Text>x</Text></Pressable></View>;`)).toHaveLength(1);
+    expect(grupyZPrzyciskiem('x.tsx', `const A = () => <View><View accessible accessibilityLabel="opis"><Text>Plan</Text></View><Btn title="Zarządzaj" onPress={f} /></View>;`)).toEqual([]);
+    expect(grupyZPrzyciskiem('x.tsx', `const A = () => <View accessible={false}><Btn title="x" onPress={f} /></View>;`)).toEqual([]);
+    expect(grupyZPrzyciskiem('x.tsx', `const A = () => <View accessible accessibilityRole="button" onPress={f}><Text onPress={f}>x</Text></View>;`)).toEqual([]);
+  });
 });
