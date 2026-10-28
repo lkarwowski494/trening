@@ -44,7 +44,7 @@ describe('ZM-01: tablica „teraz” — dane i wpis', () => {
     expect(A().exercises[0].sets[0].weight).toBe(80); expect(A().exercises[0].sets[0].edited).toBe(true); expect(A().exercises[0].sets[1].weight).toBe(80); expect(A().exercises[0].sets[2].weight).toBe(80);
     await tap(screen.getByTestId('board-value-reps')); await typeText(screen.getByTestId('board-input-reps'), '6'); expect(A().exercises[0].sets[0].reps).toBe(6);
   });
-  test('M2-koordynator-napraw-003: znak „×” między ciężarem a powtórzeniami ma wysokość linii wynikającą z rozmiaru znaku (nie ucięta dolna połowa)', async () => {
+  test('M2-koordynator-napraw-003 (decyzja 6a, 28.10.2026): znak „×” między ciężarem a powtórzeniami ma wysokość linii wynikającą z rozmiaru znaku (nie ucięta dolna połowa)', async () => {
     await fresh(); startBench(1); await boot();
     const sep = within(screen.getByTestId('focus-card')).getByText('×'); const st = StyleSheet.flatten(sep.props.style);
     expect(st.fontSize).toBeGreaterThan(0); expect(st.lineHeight).toBeGreaterThanOrEqual(st.fontSize as number);
