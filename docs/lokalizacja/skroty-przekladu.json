@@ -1,7 +1,8 @@
 {
  "wyjatki": {
   "wskazowki:carry.noLean": "zmiana tylko typograficzna w EN (apostrof prosty -> typograficzny), sens bez zmian — przekład nie wymaga poprawki (27.10.2026)",
-  "wskazowki:skull.depth": "zmiana sensu PL/EN („albo wcześniej, jeśli…”) jest w zestawie przekładu docs/lokalizacja/zestaw-przekladu-2026-10-27-wskazowki.json (czeka na przekład, do tego czasu język zastępczy EN); po przekładzie usunąć ten wyjątek i uruchomić UPDATE_SKROTY=1 (27.10.2026)"
+  "wskazowki:skull.depth": "zmiana sensu PL/EN („albo wcześniej, jeśli…”) jest w zestawie przekładu docs/lokalizacja/zestaw-przekladu-2026-10-27-wskazowki.json (czeka na przekład, do tego czasu język zastępczy EN); po przekładzie usunąć ten wyjątek i uruchomić UPDATE_SKROTY=1 (27.10.2026)",
+  "wskazowki:sled.lean": "tekst skrócony do „Pochyl się w przód.” / „Lean forward.” (28.10.2026, wniosek badacza: usunięte „lekko” i „tułów sztywny”); sled.* są tylko w 1.1 i nie mają jeszcze przekładów — zdanie czeka w zestawie przekładu docs/lokalizacja/zestaw-przekladu-2026-10-27-wskazowki.json, do tego czasu język zastępczy EN"
  },
  "wskazowki": {
   "bd.level": {
@@ -11747,7 +11748,7 @@
    }
   },
   "sled.lean": {
-   "s": "88e21cc37f02",
+   "s": "c778e61e253a",
    "t": {
     "cs": "e3b0c44298fc",
     "sk": "e3b0c44298fc",
