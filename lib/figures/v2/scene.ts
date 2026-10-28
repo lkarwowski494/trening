@@ -30,6 +30,8 @@ export type Prop =
   | { k: 'wall'; x: number; h: number }
   | { k: 'rail'; x: number; h: number }                                                        /* prowadnica suwnicy Smitha (pionowa) */
   | { k: 'post'; x: number; h: number; hook?: number }                                         /* słupek stojaka */
+  | { k: 'board'; x: number; y: number; h: number }                                           /* deska na klatce (Board Press): środek x, podstawa y = powierzchnia klatki, grubość h */
+  | { k: 'rack'; x: number; y: number; h: number }                                            /* stojak z bolcem: słupek w x do wysokości h, bolec (podpórka gryfu) na wysokości y — tylko rysunek, bez koliderów */
   | { k: 'cable'; from: V3; to: V3 }
   | { k: 'band'; from: V3; to: V3; /** guma sztangi: dwie gumy przy końcach gryfu (jak łańcuchy), nie jedna przez środek ciała */ bar?: true; /** odmiana „reverse”: guma zwisa z góry stojaka — `from` to kotwica nad gryfem, `to` to gryf (zamiast od gryfu do podłogi) */ hang?: true }
   | { k: 'chain'; from: V3; to: V3; /** łańcuch sztangi (wisi na obu tulejach); bez tego pola — pojedynczy łańcuch (np. pas z obciążeniem) */ bar?: true }

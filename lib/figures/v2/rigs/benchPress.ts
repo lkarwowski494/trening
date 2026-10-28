@@ -29,6 +29,10 @@ export type BenchParams = {
   floor?: boolean; oneArm?: boolean; squeeze?: boolean; band?: boolean; chain?: boolean;
   /** Odmiana „reverse”: guma zwisa z góry stojaka do gryfu (zamiast od gryfu do podłogi). */
   reverse?: boolean;
+  /** Deska na klatce (Board Press): grubość (cm) — gryf zatrzymuje się na desce, więc dotyk jest o tyle wyżej niż na klatce (`touchB` wynika z grubości). */
+  board?: number;
+  /** Bolce w stojaku (Pin Press): gryf opiera się na bolcach w dolnym punkcie ruchu — rysunek bolców i słupków pod gryfem. */
+  pins?: boolean;
   /** Siła odchylenia łokci na boki (biegun IK): 0,45 domyślnie; wąski chwyt / JM — łokcie bliżej, ale poza obrysem ławki. */
   flare?: number;
   /** Przedramiona pionowo w płaszczyźnie czołowej (łokieć dokładnie pod dłonią) w całym ruchu: biegun łokcia liczony z geometrii (NSCA Basics 2012 s. 53–55: nadgarstki nad łokciami, przedramiona prostopadle do podłogi). Kąt odwiedzenia łokci wynika wtedy z szerokości chwytu i punktu dotyku. */
@@ -71,7 +75,7 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
   const dz0 = grip0 - D.shHalf; const x0 = shoulderC[0] + 2;
   let top: V3 = [x0, shoulderC[1] + Math.sqrt(Math.max(1, L * L - 4 - dz0 * dz0)), 0];
   /* dół: dotyk w układzie tułowia (u podłogi: wysokość, przy której łokcie dotykają podłogi) */
-  const touchB = p.touchB ?? 11.9 + EQUIP.barR;
+  const touchB = p.touchB ?? 11.9 + EQUIP.barR + (p.board ?? 0);
   let bottom = trunkPoint(hipT, pitchT, p.touch, touchB, 0);
   const fl = p.flare ?? (p.grip < 20 ? 1.1 : 0.8); const elbowPole: V3 = [0, -1, fl];
   const underGripAt = (grip: V3): V3 => { const sh: V3 = [shoulderC[0], shoulderC[1], D.shHalf]; return [grip[0] - sh[0], grip[1] - (D.farm + BODY.hand) - sh[1], grip[2] - sh[2]]; };
@@ -97,7 +101,7 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
     legs: { R: { ankle: [ankleX, ankleY, BENCH.footHalf], toeOut: 8, kneePole }, L: { ankle: [ankleX, ankleY, -BENCH.footHalf], toeOut: 8, kneePole: [kneePole[0], kneePole[1], -kneePole[2]] } },
     arms,
   };
-  info.load = c; info.hip = hip; info.shoulder = shoulderC; info.top = top; info.bottom = bottom;
+  info.load = p.impl === 'db' ? [c[0], c[1], g] : c; info.hip = hip; info.shoulder = shoulderC; /* hantle: ślad toru przy hantlu (widok z góry), nie w osi ciała */ info.top = top; info.bottom = bottom;
 
   if (p.impl === 'db' || p.impl === 'kb') {
     for (const s of p.oneArm ? ['R'] as const : ['R', 'L'] as const) {
@@ -108,9 +112,12 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
     props.push({ k: 'barbell', c });
     info.bar = c;
     if (p.impl === 'smith') props.push({ k: 'rail', x: c[0], h: 190 });
-    if (p.band || p.impl === 'band') props.push(p.reverse ? { k: 'band', from: [c[0], top[1] + BENCH.bandHangAbove, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [c[0], 0, 0], bar: true });
+    if (p.band || p.impl === 'band') props.push(p.reverse ? { k: 'band', from: [top[0], top[1] + BENCH.bandHangAbove, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [c[0], 0, 0], bar: true });
     if (p.chain || p.impl === 'chain') props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
   }
+  /* deska na klatce: leży na powierzchni klatki w punkcie dotyku (wysokość 11,9 nad osią tułowia), gryf spoczywa na jej górze; bolce: gryf opiera się na nich w dolnym punkcie */
+  if (p.board) { const ch = trunkPoint(hipT, pitchT, p.touch, 11.9, 0); props.push({ k: 'board', x: ch[0], y: ch[1], h: p.board }); }
+  if (p.pins) props.push({ k: 'rack', x: bottom[0], y: bottom[1] - EQUIP.barR, h: EQUIP.rackH });
   /* dozwolone kontakty: plecy na oparciu, miednica i uda na siedzisku, gryf/hantle na klatce (tylko na dole) */
   contacts.push({ body: 'torso', equip: 'benchBack', tol: 1.5 }, { body: 'pelvis', equip: 'benchSeat', tol: 1.5 }, { body: 'pelvis', equip: 'benchBack', tol: 1.5 },
     { body: 'thigh', equip: 'benchSeat', tol: 1.5 }, { body: 'torso', equip: 'benchSeat', tol: 1.5 }, { body: 'uarm', equip: 'benchBack', tol: 6 }, { body: 'uarm', equip: 'benchSeat', tol: 6 }, { body: 'farm', equip: 'benchBack', tol: 2.5 }, { body: 'farm', equip: 'benchSeat', tol: 2.5 }, { body: 'uarm', equip: 'mat', tol: 1.5 },

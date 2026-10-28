@@ -36,6 +36,8 @@ export type HingeParams = {
   platform?: number; band?: boolean; chain?: boolean; oneArm?: boolean; pull?: boolean;
   /** Odmiana „reverse”: guma zwisa z góry stojaka do gryfu (zamiast od gryfu do podłogi). */
   reverse?: boolean;
+  /** Stojak z bolcami (Rack Pull: gryf startuje z bolców; Good Morning off Pins: bolce w dolnym punkcie) — słupki i bolec pod gryfem, stałe w całym ruchu. */
+  rack?: boolean;
 };
 
 export const HINGE = {
@@ -143,7 +145,7 @@ export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
   };
   /** Zgięcie kolana, przy którym bark (ciężar + ręka) leży w długości tułowia od biodra, dla ciężaru w x w chwili uu. */
   const kneeFor = (uu: number, x: number): number => { const a = at(uu); const S: V3 = [x + a.sx, a.y + a.L, 0]; return solveRoot(kk => { const h = chain(kk).hip; return Math.hypot(S[0] - h[0], S[1] - h[1]) - Tl; }, 0, 141); };
-  let K = p.style === 'rdl' ? 20 : 80; let barX = 8;
+  let K = p.style === 'rdl' ? 20 : 80; let barX = 8; let startX = 0;
   if (!sideBar && vertical(p)) {
     const key = JSON.stringify([p, bend]); let path = vertCache.get(key);
     if (path === undefined) {
@@ -157,6 +159,7 @@ export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
       }
       path = xs; vertCache.set(key, path);
     }
+    startX = path[0]; /* zaczepy (stojak, kotwica gumy „reverse”, bloczek linki) stoją w miejscu startu ciężaru — stałe jak szyna Smitha */
     const f = u * 24, i0 = Math.min(23, Math.floor(f)); const xu = path[i0] + (path[i0 + 1] - path[i0]) * (f - i0);
     barX = xu + (fault?.m.barAway ?? 0) * fw; K = kneeFor(u, barX);
   } else for (let it = 0; it < 8; it++) {
@@ -187,15 +190,16 @@ export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
     arms = { R: { grip: g(BODY.hipHalf + 4), elbowPole: [0, -1, 0.2] }, L: { grip: [barX - 8, barY + 14, -BODY.shHalf + 4], elbowPole: [-0.5, -0.3, -1] } };
   }
   const pose: PoseIn = { pelvis: hip, trunkPitch: tau, spineBend: bend, legs, arms };
-  info.load = c; info.hip = hip; info.shoulder = S; info.midfoot = [6.5, 0, 0];
+  info.load = p.impl === 'db' ? g(gripHalf) : c; info.hip = hip; /* hantle po bokach: ślad toru przy hantlu (widok z przodu), nie w osi ciała */ info.shoulder = S; info.midfoot = [6.5, 0, 0];
+  if (p.rack) props.push({ k: 'rack', x: startX, y: y0 - EQUIP.barR, h: EQUIP.rackH });
   if (p.platform) props.push({ k: 'box', x0: -26, x1: 34, top: p.platform, w: 60 });
   if (p.impl === 'barbell' || p.impl === 'smith') { props.push({ k: 'barbell', c, held: p.oneArm ? 'R' : true, axis: sideBar ? 'x' : undefined }); info.bar = c; }
   if (p.impl === 'smith') props.push({ k: 'rail', x: barX, h: 190 });
   if (p.impl === 'trapbar') { props.push({ k: 'trapbar', c, w: p.grip }); info.bar = c; }
   if (p.impl === 'db') for (const s of single || p.oneArm ? ['R'] as const : ['R', 'L'] as const) props.push({ k: 'dumbbell', c: [barX, barY, s === 'R' ? gripHalf : -gripHalf], side: s });
   if (p.impl === 'kb') props.push({ k: 'kettlebell', c, side: 'C' });
-  if (p.impl === 'cable') props.push({ k: 'cable', from: p.pull ? [-HINGE.pulley[0], HINGE.pulley[1], 0] : [barX, 0, 0], to: c });
-  if (p.band) props.push(p.reverse ? { k: 'band', from: [c[0], HINGE.bandHang, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [c[0], 0, 0], bar: true });
+  if (p.impl === 'cable') props.push({ k: 'cable', from: p.pull ? [-HINGE.pulley[0], HINGE.pulley[1], 0] : [startX || barX, 0, 0], to: c });
+  if (p.band) props.push(p.reverse ? { k: 'band', from: [startX || c[0], HINGE.bandHang, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [c[0], 0, 0], bar: true });
   if (p.chain) props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
   if (p.platform) contacts.push({ body: 'foot', equip: 'box', tol: 1.5 });
   contacts.push({ body: 'thigh', equip: 'bar', tol: 1.5 }, { body: 'shank', equip: 'bar', tol: 1.5 }, { body: 'thigh', equip: 'plateNear', tol: 99 });
@@ -205,6 +209,8 @@ export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
 /** Dzień dobry: sztanga na plecach (jak przysiad wysokim gryfem), kolana prawie proste, tułów pochyla się do przodu, gryf nad śródstopiem. */
 function goodMorning(p: HingeParams, u: number, fault?: Fault): Frame {
   const sq: SquatParams = { load: 'highBar', impl: 'barbell', depth: 24, stance: p.stance, toeOut: p.toeOut, shin: { stand: 1, perKnee: 0, max: 1 }, band: p.band, chain: p.chain };
-  return squatFrame(sq, u, fault);
+  const f = squatFrame(sq, u, fault);
+  if (p.rack) { const low = squatFrame(sq, 1).info.bar; f.props.push({ k: 'rack', x: low[0], y: low[1] - EQUIP.barR, h: EQUIP.rackH }); } /* bolce w dolnym punkcie ruchu, stałe w całym ruchu */
+  return f;
 }
 
