@@ -1378,7 +1378,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 **Wskazówki**
 
 - Ramiona prawie nieruchome, mniej więcej pionowo — pracują łokcie. — ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Step 2; wskazówka końcowa (upper arms vertical)); ExRx.net: [BBLyingTriExt](https://web.archive.org/web/20220926203416/https://exrx.net/WeightExercises/Triceps/BBLyingTriExt) (Execution (elbows move back only slightly to clear the head)) `skull.upperArm`
-- Opuszczaj, aż gryf będzie tuż nad czołem albo ramiona zaczną uciekać w tył. — ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Step 2); ExRx.net: [BBLyingTriExt](https://web.archive.org/web/20220926203416/https://exrx.net/WeightExercises/Triceps/BBLyingTriExt) (Execution (as bar nears head)) `skull.depth`
+- Opuszczaj, aż gryf będzie tuż nad czołem — albo wcześniej, jeśli ramiona zaczną uciekać w tył. — ACE: [Lying Barbell Triceps Extensions (#36)](https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/) (Step 2); ExRx.net: [BBLyingTriExt](https://web.archive.org/web/20220926203416/https://exrx.net/WeightExercises/Triceps/BBLyingTriExt) (Execution (as bar nears head)) `skull.depth`
 
 ### Triceps Dips (ławka)
 

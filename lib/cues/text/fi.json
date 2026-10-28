@@ -119,6 +119,7 @@
  "gob.stance": "Jalat lantion–hartioiden levyisesti.",
  "hack.move": "Laskeudu koukistamalla lantio ja polvet ja nouse sitten ojentamalla jalat.",
  "hack.setup": "Nojaa selkä laitteen tyynyä vasten, jalat levyllä noin lantion levyisesti.",
+ "hang.noSwing": "Heiluminen ja jalkojen potkiminen.",
  "hinge.back": "Selkä suorana (neutraalina) koko liikkeen ajan — ei pyöristystä.",
  "ht.dbSetup": "Nojaa yläselkä penkkiin, jalat lattiassa, käsipaino lantiolla käsillä tuettuna.",
  "ht.hold": "Pidä painosta kiinni käsillä, ettei se vieri.",

@@ -11,8 +11,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 |---|---|---|---|
 | EKRAN | 32 | 32 | 0 |
 | UI | 356 | 356 | 0 |
-| TEKST | 1066 | 1066 | 0 |
-| LOGIKA | 1108 | 1108 | 0 |
+| TEKST | 1065 | 1065 | 0 |
+| LOGIKA | 1109 | 1109 | 0 |
 | WYMIAR | 163 | 163 | 0 |
 
 ## EKRAN
@@ -195,7 +195,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | np. samopoczucie, ból, sprzęt | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
 | O aplikacji | app/(tabs)/more.tsx | tests/audit-0.10-data-ui.test.tsx, tests/public-repo.test.ts |
 | Obciążenie partii (z katalogu) | app/exercise/[id].tsx | tests/catalog-v2.test.ts |
-| od | components/LoadEditor.tsx | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +349 |
+| od | components/LoadEditor.tsx | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +350 |
 | Odhacz bez pomiaru | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/m3-p2-board-ui.test.tsx, tests/matrix-tuleja.test.tsx |
 | Odhacz bez pomiaru: {ex}, seria {n} | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/m3-p2-board-ui.test.tsx |
 | Odrzuć | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-close2-a.test.tsx +11 |
@@ -552,7 +552,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Brak zgody na powiadomienia — przypomnienia i koniec przerwy nie przyjdą. Zgodę włączysz w Ustawieniach iOS. | app/more/settings.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-m1-035-notif-denied.test.tsx |
 | Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}. | app/more/settings.tsx | tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts, tests/i18n-wave4.test.ts +1 |
 | brak: {m} | app/adapt.tsx | tests/adapt-ui.test.tsx, tests/audit-m1-015-asekuracja.test.tsx, tests/locations-ui.test.tsx +3 |
-| Bujanie się i wymachy nogami. | lib/figures/v2/ui.ts | tests/figures-v2-data.test.tsx |
 | Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening? | lib/start.ts | tests/audit-0.10-live.test.tsx |
 | Cały rok treningów, rozliczany rocznie. | app/paywall.tsx | tests/subscription-i18n.test.ts, tests/subscription-ui.test.tsx |
 | cały sprzęt; sztanga {bar} {u} + talerze {max}…{min} {u}; hantle {a}–{b} {u} co {step} | lib/equipment.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/scenario-full.test.tsx |
@@ -1765,6 +1764,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/contractExample.dataShapes | lib/figures/v2/contractExample.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-zgodnosc-wsteczna.test.ts +4 |
 | figures/v2/cueSets.cueSelection | lib/figures/v2/cueSets.ts | tests/figures-v2-cues.test.tsx, tests/strona-eksport.test.ts |
 | figures/v2/cueSets.generalCueNote | lib/figures/v2/cueSets.ts | tests/figures-v2-cues.test.tsx |
+| figures/v2/cueSets.cueTextGaps | lib/figures/v2/cueSets.ts | tests/figures-v2-cues.test.tsx |
 | figures/v2/draw.proj | lib/figures/v2/draw.ts | tests/figures-v2-engine.test.ts, tests/figury-p2-r2.test.ts, tests/przeplywy.test.ts |
 | figures/v2/draw.depthOf | lib/figures/v2/draw.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/draw.capsule2 | lib/figures/v2/draw.ts | tests/figures-v2-engine.test.ts |
@@ -2654,7 +2654,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Affects: knee \| ankle \| hip \| spine \| kneeLat \| heel \| pelvis \| bar \| shoulder \| elbow | lib/figures/v2/errors.ts | tests/catalog-full.test.tsx, tests/figures-v2-bench-rules.test.ts, tests/figures-v2-chod-cykliczny.test.tsx +2 |
 | FamilyId: squat \| bench_press \| hinge \| pushup_plank \| dip \| overhead_press \| row \| cable_row \| pull_up \| pulldown \| lunge \| leg_machine \| leg_isolation \| calf_raise \| hip_bridge \| kb_ballistic \| olympic \| back_extension \| curl \| triceps \| delt_raise \| chest_fly \| shrug \| rotator_cuff \| core_floor \| core_hang \| core_standing \| carry \| cardio \| plyo \| sled_throw \| strongman \| glute_floor \| hip_abd_add \| mobility_stand \| mobility_floor \| foam_roll \| neck \| forearm \| thruster \| chest_press_machine \| cable_press \| kneeling_hinge | lib/figures/v2/families.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts +6 |
 | FamilyStatus: ready \| planned | lib/figures/v2/families.ts | tests/audit-0.10-plan.test.ts, tests/figures-v2-chod-cykliczny.test.tsx |
-| FAMILIES (43) | lib/figures/v2/families.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-mapping.test.ts +4 |
+| FAMILIES (43) | lib/figures/v2/families.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-cues.test.tsx, tests/figures-v2-engine.test.ts +5 |
 | DZWIGNIA_BEZ_GLOWY (1) | lib/figures/v2/families.ts | tests/figures-v2-engine.test.ts |
 | GEAR (34) | lib/figures/v2/gear.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts |
 | GEAR_EXTRA_FIELDS (16) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |

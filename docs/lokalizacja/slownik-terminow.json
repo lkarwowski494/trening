@@ -7941,6 +7941,320 @@
      "uwaga": "Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16."
     }
    }
+  },
+  {
+   "id": "kettlebell",
+   "pl": "kettlebell (nie „odważnik”)",
+   "znaczenie": "kula z uchwytem do ćwiczeń (kettlebell); NIE ogólny „odważnik”, NIE hantla, NIE talerz",
+   "kanon": null,
+   "wykrywaj": "kettlebell",
+   "jezyki": {
+    "pl": {
+     "zalecany": "kettlebell",
+     "pewnosc": "wysoka"
+    },
+    "en": {
+     "zalecany": "kettlebell",
+     "pewnosc": "wysoka"
+    },
+    "cs": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "гира",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "kettlebell",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "sl": {
+     "zalecany": "kettlebell",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "sr": {
+     "zalecany": "kettlebell",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "lt": {
+     "zalecany": "kettlebell",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "lv": {
+     "zalecany": "kettlebell",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "et": {
+     "zalecany": "kettlebell",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "uk": {
+     "zalecany": "гиря",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "pesa rusa",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "pesa rusa",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "kahvakuula",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "kettlebell",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "id": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "kettlebell",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "tạ ấm",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "гиря",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "ケトルベル",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "케틀벨",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "壺鈴",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "ledzwie",
+   "pl": "lędźwie (dolna część pleców; ang. lower back)",
+   "znaczenie": "dolny odcinek pleców nad miednicą; jeden termin we wszystkich wskazówkach, NIE „dolna część pleców” raz tak, raz inaczej, NIE biodra",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])lędźw(ie|i|iach|iom|ami|ia)(?![\\p{L}])",
+   "jezyki": {
+    "pl": {
+     "zalecany": "lędźwie",
+     "pewnosc": "wysoka"
+    },
+    "en": {
+     "zalecany": "lower back",
+     "pewnosc": "wysoka"
+    },
+    "cs": {
+     "zalecany": "bedra",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "driek",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "derék",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "zona lombară",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "кръст",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "donji dio leđa",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "sl": {
+     "zalecany": "ledveni del hrbta",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "sr": {
+     "zalecany": "donji deo leđa",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "lt": {
+     "zalecany": "apatinė nugaros dalis",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "lv": {
+     "zalecany": "lejasmugura",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "et": {
+     "zalecany": "alaselg",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "uk": {
+     "zalecany": "поперек",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "zona lumbar",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "zona lumbar",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "lombar",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "lombar",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "unterer Rücken",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "bas du dos",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "zona lombare",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "lage rug",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "ländrygg",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "lænd",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "nb": {
+     "zalecany": "korsrygg",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "alaselkä",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "bel",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "μέση",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "id": {
+     "zalecany": "punggung bawah",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "belakang bawah",
+     "pewnosc": "niska",
+     "uwaga": "Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16)."
+    },
+    "vi": {
+     "zalecany": "lưng dưới",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "поясница",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "腰",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "허리",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "下背",
+     "pewnosc": "srednia"
+    }
+   }
   }
  ]
 }

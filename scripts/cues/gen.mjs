@@ -21,9 +21,12 @@ export const TIPS_MIN = 2, TIPS_MAX = 4, MIN_ORGS = 2;
 export const MARKS = { analogia: 'analogia — inne ćwiczenie; nie liczy się do ≥ 2 źródeł' };
 export const KINDS = { org: 'organizacja szkoleniowa (biblioteka ćwiczeń)', site: 'serwis specjalistyczny', maker: 'producent sprzętu', study: 'badanie (czasopismo recenzowane)' };
 
-export function validate(data, pl) {
+/** id zdań używane przez zestawy ogólne (cue-sets.json). */
+function idsZestawow() { const f = join(root, 'lib/figures/v2/cue-sets.json'); return existsSync(f) ? Object.values(JSON.parse(readFileSync(f, 'utf8')).items).flatMap(e => [...(e.ok ?? []), ...(e.err ?? [])]) : []; }
+/** `extraUsed` — id zdań używane przez zestawy ogólne (lib/figures/v2/cue-sets.json, od 27.10.2026): mają tekst w pl.json, ale nie występują w data.json (własne wskazówki ćwiczeń). */
+export function validate(data, pl, extraUsed = idsZestawow()) {
   const errs = [];
-  const used = new Set(), usedSrc = new Set();
+  const used = new Set(extraUsed), usedSrc = new Set();
   for (const [id, o] of Object.entries(data.orgs ?? {})) if (!o || typeof o.name !== 'string' || ![2, 3, 4].includes(o.level)) errs.push(`orgs.${id}: nazwa i szczebel 2–4`);
   for (const [id, o] of Object.entries(data.orgs ?? {})) if (!o || !Object.prototype.hasOwnProperty.call(KINDS, o.kind)) errs.push(`orgs.${id}: rodzaj (${Object.keys(KINDS).join(', ')})`);
   for (const [id, s] of Object.entries(data.sources ?? {})) {
@@ -103,7 +106,7 @@ export function render(data, pl) {
   L.push('');
   L.push(`## Podsumowanie`);
   L.push('');
-  L.push(`- Ćwiczenia ze wskazówkami: ${exs.length}; zdań (z powtórzeniami między ćwiczeniami): ${nCues}; unikalnych zdań: ${Object.keys(pl).length}; źródeł: ${Object.keys(data.sources).length}.`);
+  L.push(`- Ćwiczenia ze wskazówkami: ${exs.length}; zdań (z powtórzeniami między ćwiczeniami): ${nCues}; unikalnych zdań: ${new Set(exs.flatMap(e => Object.keys(SECTIONS).flatMap(sec => (data.exercises[e][sec] ?? []).map(r => r.c)))).size}; źródeł: ${Object.keys(data.sources).length}.`);
   const open = Object.entries(data.open ?? {});
   L.push(`- Ćwiczenia bazowe bez wskazówek (otwarte): ${open.length}.`);
   if ((data.partial ?? []).length) L.push(`- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): ${data.partial.length} — ${data.partial.map(md).join(', ')}.`);

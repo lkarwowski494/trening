@@ -7,7 +7,7 @@
  * kompletność — testy z pętlą po LANGS (matrix-i18n, matrix-dim-langs*, widget-i18n, i18n-locales, cues) obejmują nowe kody automatycznie.
  */
 import * as fs from 'fs';
-import { PENDING_NEW } from './pending-translation';
+import { PENDING_NEW, PENDING_CUE_IDS } from './pending-translation';
 import * as path from 'path';
 import { LANGS, resolveLang, applyLang, lang, locale, decimalComma, tp, t, detectLang, LANG_NAME, APP_NAME, type Lang } from '@/lib/i18n';
 import { EN } from '@/lib/i18n.en';
@@ -75,7 +75,7 @@ describe('dane: komplet słowników UI i wskazówek techniki', () => {
     expect(src.filter(s => !PENDING_NEW.has(s.pl) && !d[s.pl]?.trim())).toEqual([]);
     expect(src.filter(s => d[s.pl] !== undefined && params(d[s.pl]) !== params(s.pl)).map(s => s.pl)).toEqual([]);
     const en = cueDict('en'), c = cueDict(l);
-    expect(Object.keys(c).sort()).toEqual(Object.keys(en).sort());
+    expect(Object.keys(c).sort()).toEqual(Object.keys(en).filter(k => !PENDING_CUE_IDS.has(k)).sort()); /* wskazówki czekające na przekład: zestaw-przekladu-*-wskazowki.json */
     expect(Object.entries(c).filter(([, v]) => !v.trim())).toEqual([]);
   });
   test('locales/<kod>.json (iOS: nazwa pod ikoną, opisy uprawnień Zdrowia) — po indonezyjsku, malajsku, wietnamsku, z nazwą aplikacji', () => {

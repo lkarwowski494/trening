@@ -119,6 +119,7 @@
  "gob.stance": "Jalad puusade ja õlgade laiuse vahel.",
  "hack.move": "Laskumiseks kõverda puusi ja põlvi, siis tõuse jalgu sirutades.",
  "hack.setup": "Toeta selg masina seljatoele, jalad platvormil umbes puusade laiuselt.",
+ "hang.noSwing": "Kiikumine ja jalgadega vehkimine.",
  "hinge.back": "Selg kogu liigutuse vältel sirge (neutraalses asendis) — ära küüruta.",
  "ht.dbSetup": "Toeta ülaselg pingile, jalad põrandal, hoia vaagnal olevat hantlit kätega.",
  "ht.hold": "Hoia raskust kätega, et see ei veereks.",

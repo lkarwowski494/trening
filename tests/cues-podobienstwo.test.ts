@@ -15,7 +15,7 @@ const NOWE: Record<string, string> = {
   "db.setup": "Lying face up, point both arms at the ceiling and bend your hips and knees to right angles.",
   "sq.down": "Descend by moving your hips back while your knees bend at the same time; rise by pushing the floor away with your whole feet.",
   "burpee.down": "From a squat, put both palms on the floor and hop your feet back so you end up in a push-up position.",
-  "carry.noLean": "Keep your torso upright — don't tip toward the load or away from it; walk tall.",
+  "carry.noLean": "Keep your torso upright — don’t tip toward the load or away from it; walk tall.",
   "curl.elbows": "Hold your elbows still by your sides — only the forearm moves, the upper arm stays put.",
   "lcurl.move": "Bend your knees to pull your heels in toward your buttocks; slowly straighten your legs again.",
   "mc.setup": "Hold yourself up on straight arms with your hands below your shoulders or a little ahead of them; one leg bent under your chest, the other straight behind you.",

@@ -10,3 +10,8 @@ export type Pending = { rodzaj: 'nowy' | 'zmieniony'; pl: string; en: string; po
 export const PENDING: Pending[] = (JSON.parse(fs.readFileSync(PENDING_FILE, 'utf8')) as { klucze: Pending[] }).klucze;
 export const PENDING_NEW = new Set(PENDING.filter(p => p.rodzaj === 'nowy').map(p => p.pl));
 export const PENDING_CHANGED = new Set(PENDING.filter(p => p.rodzaj === 'zmieniony').map(p => p.pl));
+
+/** Id wskazówek techniki czekających na przekład (docs/lokalizacja/zestaw-przekladu-*-wskazowki.json): pl i en mają je od razu, reszta języków — angielski w zastępstwie (cueText). */
+const LOK = path.join(__dirname, '..', 'docs', 'lokalizacja');
+export const PENDING_CUE_IDS = new Set<string>(fs.readdirSync(LOK).filter(f => /^zestaw-przekladu-.*-wskazowki\.json$/.test(f))
+  .flatMap(f => (JSON.parse(fs.readFileSync(path.join(LOK, f), 'utf8')).klucze as { id: string }[]).map(k => k.id)));

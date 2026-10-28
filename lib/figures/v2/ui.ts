@@ -65,7 +65,7 @@ export function hasTechnique(e: Pick<Exercise, 'lib' | 'libKey'> | null | undefi
  * (PL = klucz, EN w lib/i18n.en.ts, pozostałe języki z przekładu) zamiast pokazać gołe id. Wpis słownika wskazówek ma pierwszeństwo.
  */
 const GAP_TEXT: Record<string, () => string> = {
-  'hang.noSwing': () => t('Bujanie się i wymachy nogami.'),
+  /* pusta od 27.10.2026: hang.noSwing przeniesione do słownika wskazówek (lib/cues/text, wszystkie języki) */
 };
 /** Id wskazówek, które mają tekst tylko tutaj (testy: kompletność). */
 export const GAP_CUES: readonly string[] = Object.keys(GAP_TEXT);
