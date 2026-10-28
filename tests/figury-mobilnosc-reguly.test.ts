@@ -160,8 +160,8 @@ export const TRAFIENIA_POZA_MOBILNOSCIA: Record<string, { max: number; ocena: st
   'R6_palce_nie_slizgaja_sie|glute_floor': { max: 3, ocena: 'FAŁSZYWE: noga robocza (kickback) dotyka podłogi palcami w ruchu, to nie podparcie' },
   'R6_palce_nie_slizgaja_sie|hip_abd_add': { max: 1, ocena: 'FAŁSZYWE: noga robocza przy podłodze, nie podparcie' },
   'R6_palce_nie_slizgaja_sie|leg_isolation': { max: 4, ocena: 'FAŁSZYWE: ugięcie nogi (stopa pracująca przy podłodze/podkładce), nie podparcie' },
-  'R6_palce_nie_slizgaja_sie|kb_ballistic': { max: 2, ocena: 'BRZEGOWE: przeskok stóp w podrzucie, ślizg 2,7–6,9 cm' },
-  'R6_palce_nie_slizgaja_sie|plyo': { max: 2, ocena: 'FAŁSZYWE: skoki — stopy w locie i lądowanie, nie podparcie' },
+  'R6_palce_nie_slizgaja_sie|kb_ballistic': { max: 4, ocena: 'BRZEGOWE: przeskok stóp w podrzucie, ślizg 2,7–6,9 cm [zapadka podniesiona przy scaleniu integracji 1.1 z mobilnością 28.10.2026: nowe pozy tych rodzin z integracji, ta sama klasa trafień]' },
+  'R6_palce_nie_slizgaja_sie|plyo': { max: 3, ocena: 'FAŁSZYWE: skoki — stopy w locie i lądowanie, nie podparcie [zapadka podniesiona przy scaleniu integracji 1.1 z mobilnością 28.10.2026: nowe pozy tych rodzin z integracji, ta sama klasa trafień]' },
   'R6_palce_nie_slizgaja_sie|pushup_plank': { max: 1, ocena: 'FAŁSZYWE: ruch nóg w podporze (wspinaczka/przenoszenie), stopa nie jest stałym podparciem' },
   'R6b_zawsze_podparcie|carry': { max: 7, ocena: 'PRAWDZIWE: marsz z ciężarem — obie stopy w powietrzu w 9% ruchu (u 0,15–0,23: podskok zamiast kroku); do poprawy w rodzinie carry razem z R6' },
   'R6b_zawsze_podparcie|pushup_plank': { max: 3, ocena: 'Plank Shoulder Taps: PRAWDZIWE (obie dłonie w powietrzu w 46% ruchu: ręka wraca na podłogę dopiero po zdjęciu drugiej; do poprawy w rodzinie pushup_plank); Plyo Push-Up: FAŁSZYWE (lot dłoni jest istotą ćwiczenia); Standing Barbell Rollout: FAŁSZYWE (palce stoją na granicy progu 0,3 cm, artefakt progu)' },
@@ -171,9 +171,11 @@ export const TRAFIENIA_POZA_MOBILNOSCIA: Record<string, { max: number; ocena: st
   'R6b_zawsze_podparcie|kb_ballistic': { max: 10, ocena: 'BRZEGOWE: szarpnięcia i wyrzuty ciężarka — stopy odrywają się obie (wyskok lub wspięcie na palce, 40–75% ruchu); nie zbadano, czy lot jest zamierzony' },
   'R6b_zawsze_podparcie|leg_isolation': { max: 2, ocena: 'FAŁSZYWE: Leg Extension i Leg Curl na maszynie — stopy zawieszone w powietrzu cały ruch poza początkiem (nie chód)' },
   'R6b_zawsze_podparcie|core_floor': { max: 2, ocena: 'FAŁSZYWE: Superman — leżenie przodem, ręce i nogi w powietrzu (nie podparcie); Alternate Heel Touchers — leżenie na plecach, ręce na zmianę nad podłogą w skłonach bocznych (nie podparcie); trafienie pojawiło się po scaleniu integracji 1.1 z rodzinami mobilności (28.10.2026)' },
+  'R5_chwyt_pomocniczy|pull_up': { max: 1, ocena: 'DO OCENY: Dead Hang (pozycja z integracji) — reguła chwytu pomocniczego z mobilności nie dotyczy zwisu na drążku z dwiema rękami; trafienie ujawnione przy scaleniu integracji 1.1 z mobilnością 28.10.2026' },
   'R6c_bez_cofania|olympic': { max: 3, ocena: 'FAŁSZYWE: Split Clean, Split Snatch i Clean and Jerk — przeskok nóg w rozkrok (jedna stopa do przodu, druga do tyłu), reguła „kierunku marszu” nie dotyczy' },
+  'R6c_bez_cofania|core_floor': { max: 1, ocena: 'FAŁSZYWE: Alternate Heel Touchers — leżenie na plecach, dłonie na zmianę sięgają pięt w skłonach bocznych (nie chód i nie podparcie); trafienie ujawnione przy scaleniu integracji 1.1 z mobilnością 28.10.2026' },
   'R6c_bez_cofania|plyo': { max: 1, ocena: 'FAŁSZYWE: Alternate Leg Diagonal Bound — skok z lądowaniem na zmianę nóg' },
-  'R6_palce_nie_slizgaja_sie|sled_throw': { max: 5, ocena: 'FAŁSZYWE: pchanie sań i rzuty — kroki z poślizgiem są częścią ruchu; wymagają osobnej oceny' },
+  'R6_palce_nie_slizgaja_sie|sled_throw': { max: 7, ocena: 'FAŁSZYWE: pchanie sań i rzuty — kroki z poślizgiem są częścią ruchu; wymagają osobnej oceny [zapadka podniesiona przy scaleniu integracji 1.1 z mobilnością 28.10.2026: nowe pozy tych rodzin z integracji, ta sama klasa trafień]' },
 };
 
 describe('reguły ruchu z recenzji mobilności na wszystkich pozach', () => {
