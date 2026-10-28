@@ -381,9 +381,10 @@
       "przyczyna": null,
       "raport": "role/09-lokalizacja/09-lokalizacja-2026-10-27.md",
       "test_akceptacyjny": "docs/16 i docs/40 R-010 z zapisem przeglądu (data, zakres, wynik) dla treści z tego commitu; R-010 zamknięte albo przegląd wykonany",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": "a38ce270",
-      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — R-010 bez zapisu przeglądu API 28.10 w docs/40:22 (pole stanu), docs/16:368 „przegląd natywny otwarty” sprzeczne z decyzją 21.10 (docs/18:404); lista sprawdzonych zdań tylko w artefakcie CI (wygasa 04.11.2026) — przenieść do repo"
+      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — R-010 bez zapisu przeglądu API 28.10 w docs/40:22 (pole stanu), docs/16:368 „przegląd natywny otwarty” sprzeczne z decyzją 21.10 (docs/18:404); lista sprawdzonych zdań tylko w artefakcie CI (wygasa 04.11.2026) — przenieść do repo",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-007",
@@ -450,9 +451,10 @@
       "przyczyna": "SYS-01",
       "raport": "role/07-jakosc/07-jakosc-2026-10-27.md",
       "test_akceptacyjny": "skrypt w verify: każda decyzja w docs/18 ma pole wdrożenia i test-strażnik albo powód; tabela decyzji 1.0 z audytu zgodna",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": "ee1713b",
-      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — 04-studio-projektowe-003: podgląd liczb 1.0.1 bez wpisu w docs/21; wpis K1 w docs/18 nadal „otwarte → M1-009” (zob. też 07-jakosc-601, 03-zakres-602)"
+      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — 04-studio-projektowe-003: podgląd liczb 1.0.1 bez wpisu w docs/21; wpis K1 w docs/18 nadal „otwarte → M1-009” (zob. też 07-jakosc-601, 03-zakres-602)",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-010",
@@ -501,9 +503,10 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "zrzut AX5 ekranu Trening bez uciętych elementów; scenariusz E2E albo test z największą skalą",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": "4c73243",
-      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — 07-jakosc-009: metoda w NFR-DOS-001 opisuje tylko Jest; stan „dziś bez treningu” przy największym tekście bez kroku na liście telefonu (01, 09)"
+      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — 07-jakosc-009: metoda w NFR-DOS-001 opisuje tylko Jest; stan „dziś bez treningu” przy największym tekście bez kroku na liście telefonu (01, 09)",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-012",
@@ -523,9 +526,10 @@
       "przyczyna": null,
       "raport": "role/07-jakosc/07-jakosc-2026-10-27.md",
       "test_akceptacyjny": "każde ryzyko docs/40 ma stan z datą i dowodem; check:release wywoływany w testflight.yml albo liście wydania",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": "1a95b76",
-      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — R-010 bez stanu z datą i dowodem (zależy od 006); check:release kod 1 — pozostałe otwarte ryzyka R-004, R-005, R-013, R-014, R-RES to kroki telefonu przed zgłoszeniem (bramka działa)"
+      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — R-010 bez stanu z datą i dowodem (zależy od 006); check:release kod 1 — pozostałe otwarte ryzyka R-004, R-005, R-013, R-014, R-RES to kroki telefonu przed zgłoszeniem (bramka działa)",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-013",
@@ -624,9 +628,10 @@
       "przyczyna": null,
       "raport": "role/01-odkrywanie/01-odkrywanie-2026-10-27.md",
       "test_akceptacyjny": "site/ i opublikowane strony zgodne z faktycznym obiegiem poczty; check-urls porównuje treść",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": "d0ae52e",
-      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — site/ poprawione, ale opublikowana polityka i wsparcie (adres z aplikacji) mają starą treść; check-urls.mjs kod 1 — wymaga publikacji strony"
+      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — site/ poprawione, ale opublikowana polityka i wsparcie (adres z aplikacji) mają starą treść; check-urls.mjs kod 1 — wymaga publikacji strony",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-018",
@@ -705,9 +710,10 @@
       "przyczyna": null,
       "raport": "role/06-tresci/06-tresci-2026-10-27.md",
       "test_akceptacyjny": "check:claims rozpoznaje teksty dziedzinowe (test z nowym tekstem pada); wpisy dla ok. 10 tekstów",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": "1cc402f",
-      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — 06-tresci-003: „palce na zewnątrz zwykle 15–20°” wyświetlane z jednym przeczytanym źródłem szczebla 4 (T-054 otwarte; CLAUDE.md wymaga 2 zgodnych)"
+      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — 06-tresci-003: „palce na zewnątrz zwykle 15–20°” wyświetlane z jednym przeczytanym źródłem szczebla 4 (T-054 otwarte; CLAUDE.md wymaga 2 zgodnych)",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-022",
@@ -753,9 +759,10 @@
       "przyczyna": null,
       "raport": "role/07-jakosc/07-jakosc-2026-10-27.md",
       "test_akceptacyjny": "jedno źródło bramek; pozostałe odsyłają",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": "25a72d0e",
-      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — 07-jakosc-008: e2e-ios.yml:52 nadal opisuje bramkę App Store bez ponowień (sprzeczne z CLAUDE.md 21/26.10); wiersz R-015 sprzeczny"
+      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — 07-jakosc-008: e2e-ios.yml:52 nadal opisuje bramkę App Store bez ponowień (sprzeczne z CLAUDE.md 21/26.10); wiersz R-015 sprzeczny",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-024",
@@ -938,9 +945,10 @@
       "przyczyna": null,
       "raport": "role/12-niezawodnosc/12-niezawodnosc-2026-10-27.md",
       "test_akceptacyjny": "treść e-maila zawiera kod startu",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": "dbc9f3b",
-      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — 12-niezawodnosc-003: kod diagnostyczny w e-mailu tylko z ekranu pętli awarii; przy błędzie migracji i nieotwierającej się bazie e-mail bez kodu; test go nie sprawdza"
+      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — 12-niezawodnosc-003: kod diagnostyczny w e-mailu tylko z ekranu pętli awarii; przy błędzie migracji i nieotwierającej się bazie e-mail bez kodu; test go nie sprawdza",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-033",
@@ -980,9 +988,10 @@
       "przyczyna": null,
       "raport": "role/07-jakosc/07-jakosc-2026-10-27.md",
       "test_akceptacyjny": "test kalendarza przechodzi w losowej kolejności; strażnik Maestro",
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": "321d287b",
-      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — 07-jakosc-010: zakres testów mutacyjnych bez zmian"
+      "reaudyt": "pętla 1 (28.10.2026, 2385e75): nadal otwarte — 07-jakosc-010: zakres testów mutacyjnych bez zmian",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-035",
@@ -1063,7 +1072,7 @@
       "zalezy_od": [],
       "decyzja": "DEC-10",
       "przyczyna": null,
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null,
       "tytul": "Karty ćwiczeń ze wskazówkami wyświetlane bez zapisu recenzji bramki 4 (31 bez figury + karty v2)",
       "zrodla": [
@@ -1075,7 +1084,8 @@
       "partia": 1,
       "istnialo_wczesniej": true,
       "raport": "reaudit-2026-10-28/03-zakres/03-zakres-reaudit-2026-10-28.md",
-      "test_akceptacyjny": "wg DEC-10: (a) każde ćwiczenie ze wskazówkami ma wpis recenzji z aktualnym skrótem wskazówek (test w verify, mutacja tekstu wskazówki v2 unieważnia wpis) albo (c) wskazówki bez wpisu nie trafiają do pliku runtime"
+      "test_akceptacyjny": "wg DEC-10: (a) każde ćwiczenie ze wskazówkami ma wpis recenzji z aktualnym skrótem wskazówek (test w verify, mutacja tekstu wskazówki v2 unieważnia wpis) albo (c) wskazówki bez wpisu nie trafiają do pliku runtime",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-039",
@@ -1083,7 +1093,7 @@
       "zalezy_od": [],
       "decyzja": "DEC-11",
       "przyczyna": null,
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null,
       "tytul": "Przycisk „Zarządzaj subskrypcją” niedostępny dla VoiceOver (karta paywall-owned jako jeden element)",
       "zrodla": [
@@ -1095,7 +1105,8 @@
       "partia": 1,
       "istnialo_wczesniej": true,
       "raport": "reaudit-2026-10-28/04-studio-projektowe/04-studio-projektowe-reaudit-2026-10-28.md",
-      "test_akceptacyjny": "strażnik: żaden element accessible nie zawiera potomka z onPress (czerwony na 2385e75); scenariusz 21 stuka „Manage subscription” po zakupie"
+      "test_akceptacyjny": "strażnik: żaden element accessible nie zawiera potomka z onPress (czerwony na 2385e75); scenariusz 21 stuka „Manage subscription” po zakupie",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-040",
@@ -1103,7 +1114,7 @@
       "zalezy_od": [],
       "decyzja": null,
       "przyczyna": null,
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null,
       "tytul": "W ru/uk/bg/sr/el podpis przerwy pokazuje „кг” obok „m” (lib/live.ts:108 na sztywno)",
       "zrodla": [
@@ -1115,7 +1126,8 @@
       "partia": 2,
       "regresja_od": "M1-audytor-generalny-031",
       "raport": "reaudit-2026-10-28/08-programista/08-programista-reaudit-2026-10-28.md",
-      "test_akceptacyjny": "podpis przerwy w ru/uk/bg/sr/el używa lokalnego symbolu dystansu (test dla 5 języków)"
+      "test_akceptacyjny": "podpis przerwy w ru/uk/bg/sr/el używa lokalnego symbolu dystansu (test dla 5 języków)",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-041",
@@ -1123,7 +1135,7 @@
       "zalezy_od": [],
       "decyzja": null,
       "przyczyna": null,
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null,
       "tytul": "Greckie „κιλά” w kroku ± (VoiceOver „1 κιλά”) i nagłówku kolumny ciężaru nie mieści się",
       "zrodla": [
@@ -1135,7 +1147,8 @@
       "partia": 2,
       "regresja_od": "M1-audytor-generalny-031",
       "raport": "reaudit-2026-10-28/09-lokalizacja/09-lokalizacja-reaudit-2026-10-28.md",
-      "test_akceptacyjny": "el: krótka forma w nagłówku kolumny mieści się w 56 pt; etykieta VoiceOver z odmianą"
+      "test_akceptacyjny": "el: krótka forma w nagłówku kolumny mieści się w 56 pt; etykieta VoiceOver z odmianą",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-042",
@@ -1143,7 +1156,7 @@
       "zalezy_od": [],
       "decyzja": null,
       "przyczyna": null,
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null,
       "tytul": "Po błędzie migracji następny zimny start pokazuje mylące „zamknęła się nieoczekiwanie”",
       "zrodla": [
@@ -1155,7 +1168,8 @@
       "partia": 2,
       "regresja_od": "M1-audytor-generalny-013",
       "raport": "reaudit-2026-10-28/12-niezawodnosc/12-niezawodnosc-reaudit-2026-10-28.md",
-      "test_akceptacyjny": "test: po wyjątku migracji kolejny start nie pokazuje komunikatu pętli awarii"
+      "test_akceptacyjny": "test: po wyjątku migracji kolejny start nie pokazuje komunikatu pętli awarii",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-043",
@@ -1163,7 +1177,7 @@
       "zalezy_od": [],
       "decyzja": null,
       "przyczyna": null,
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null,
       "tytul": "„›” w „Pierwszych krokach” z limitem skali 2,0 zamiast 1,4; strażnik T-04 nie renderuje tego stanu",
       "zrodla": [
@@ -1175,7 +1189,8 @@
       "partia": 2,
       "regresja_od": "M1-audytor-generalny-025",
       "raport": "reaudit-2026-10-28/04-studio-projektowe/04-studio-projektowe-reaudit-2026-10-28.md",
-      "test_akceptacyjny": "strażnik GLYPH obejmuje ekran „Pierwsze kroki”"
+      "test_akceptacyjny": "strażnik GLYPH obejmuje ekran „Pierwsze kroki”",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-044",
@@ -1183,7 +1198,7 @@
       "zalezy_od": [],
       "decyzja": null,
       "przyczyna": null,
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null,
       "tytul": "Posiadany plan wyszarzony przezroczystością — kontrast tekstu 3,52:1 / 4,06:1",
       "zrodla": [
@@ -1195,7 +1210,8 @@
       "partia": 2,
       "regresja_od": "M1-audytor-generalny-010",
       "raport": "reaudit-2026-10-28/04-studio-projektowe/04-studio-projektowe-reaudit-2026-10-28.md",
-      "test_akceptacyjny": "tekst pomocniczy posiadanego planu ≥ 4,5:1 w obu motywach (kolor, nie opacity)"
+      "test_akceptacyjny": "tekst pomocniczy posiadanego planu ≥ 4,5:1 w obu motywach (kolor, nie opacity)",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-045",
@@ -1203,7 +1219,7 @@
       "zalezy_od": [],
       "decyzja": null,
       "przyczyna": null,
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null,
       "tytul": "Notatki dla App Review prowadzą do „Full version”, a wiersz ma teraz „See Pro plans”/„Masz plan: …”",
       "zrodla": [
@@ -1215,7 +1231,8 @@
       "partia": 2,
       "regresja_od": "M1-audytor-generalny-037",
       "raport": "reaudit-2026-10-28/10-wydanie/10-wydanie-reaudit-2026-10-28.md",
-      "test_akceptacyjny": "strażnik notatek porównuje ścieżkę z bieżącą etykietą wiersza; docs/49 T-11 aktualne"
+      "test_akceptacyjny": "strażnik notatek porównuje ścieżkę z bieżącą etykietą wiersza; docs/49 T-11 aktualne",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-046",
@@ -1223,7 +1240,7 @@
       "zalezy_od": [],
       "decyzja": null,
       "przyczyna": null,
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null,
       "tytul": "Pozycja zbiorcza (monetyzacja): oferta dla darmowych przy płacącym offline; rada „anuluj subskrypcję” dla członka Chmury rodzinnej po dożywotnim; okno „Pierwszy trening za Tobą!” dla byłego subskrybenta",
       "zrodla": [
@@ -1237,7 +1254,8 @@
       "partia": 3,
       "istnialo_wczesniej": true,
       "raport": "M1-audytor-generalny-reaudit-2026-10-28.md",
-      "test_akceptacyjny": "testy stanów z raportów 02 i 11"
+      "test_akceptacyjny": "testy stanów z raportów 02 i 11",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-047",
@@ -1245,7 +1263,7 @@
       "zalezy_od": [],
       "decyzja": null,
       "przyczyna": null,
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null,
       "tytul": "Pozycja zbiorcza (dokumenty i strażniki): BRD bez kodu diagnostycznego i odświeżenia po „Zarządzaj”; docs/39 ZD-03 nieaktualne; pola „otwarte → ID” po naprawie (strażnik tylko formy); Pendlay Row bez pozycji 1.0.1; CLAUDE.md:109 węższe niż claims.mjs; zły link Apple w Z-25a",
       "zrodla": [
@@ -1263,7 +1281,8 @@
       "partia": 3,
       "istnialo_wczesniej": true,
       "raport": "M1-audytor-generalny-reaudit-2026-10-28.md",
-      "test_akceptacyjny": "check:decyzje wykrywa „otwarte → ID” wskazujące naprawione zadanie; pozostałe dokumenty poprawione"
+      "test_akceptacyjny": "check:decyzje wykrywa „otwarte → ID” wskazujące naprawione zadanie; pozostałe dokumenty poprawione",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-048",
@@ -1271,7 +1290,7 @@
       "zalezy_od": [],
       "decyzja": null,
       "przyczyna": null,
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null,
       "tytul": "Podpis zrzutu „Gotowe szablony albo własne” przeczy kodowi (templates: []) w 29 językach",
       "zrodla": [
@@ -1283,7 +1302,8 @@
       "partia": 3,
       "istnialo_wczesniej": true,
       "raport": "M1-audytor-generalny-reaudit-2026-10-28.md",
-      "test_akceptacyjny": "podpis zgodny z kodem i opisem sklepu w każdym języku"
+      "test_akceptacyjny": "podpis zgodny z kodem i opisem sklepu w każdym języku",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     },
     {
       "id": "M1-audytor-generalny-049",
@@ -1291,7 +1311,7 @@
       "zalezy_od": [],
       "decyzja": null,
       "przyczyna": null,
-      "status": "otwarte",
+      "status": "zatwierdzone",
       "commit": null,
       "tytul": "Strażnik limitu rozmiaru pomija katalog figures (3 pliki > 20 KB bez progu)",
       "zrodla": [
@@ -1303,7 +1323,8 @@
       "partia": 3,
       "istnialo_wczesniej": true,
       "raport": "M1-audytor-generalny-reaudit-2026-10-28.md",
-      "test_akceptacyjny": "strażnik obejmuje lib/figures albo zapisany wyjątek z powodem"
+      "test_akceptacyjny": "strażnik obejmuje lib/figures albo zapisany wyjątek z powodem",
+      "zatwierdzenie": "2026-10-28: 1. Pełen zakres 2a 3a 4a 5b 6a 7b"
     }
   ],
   "wybory": {

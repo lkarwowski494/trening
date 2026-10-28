@@ -1,21 +1,22 @@
 # Postęp napraw M2 — Trening
-Pętla 2 · Zadania: 006, 038, 039, 009, 011, 012, 017, 021, 023, 032, 034, 040–049 (21, wszystkie `otwarte` — czekają na ponowne zatwierdzenie) · Audyt 025a50b · Reaudyt pętli 1: 2385e75 · Baza 4c116d0 (audyt/m1-reaudit-2026-10-28) · Sesje ról: do wyboru (STOP start)
+Pętla 2 · Zadania: 006, 038, 039, 009, 011, 012, 017, 021, 023, 032, 034, 040–049 (21, ponownie zatwierdzone 28.10) · Audyt 025a50b · Reaudyt pętli 1: 2385e75 · Baza 4c116d0 (audyt/m1-reaudit-2026-10-28) · Sesje ról: subagenci po kolei
 Pętla 1: postep-napraw-petla1.md (archiwum). Prompt: złożony własnym skryptem (scratchpad/zloz.mjs; odstępstwo — assemble.mjs zablokowany), biblioteka prompts HEAD klonu 28.10. STOP start: M2-stop-start-p2.md.
 
 ## Zgody
-- 2026-10-28 (zlecenie z sesji reaudytu, polecenie właściciela): „2a 3a — jak zapiszesz to otwórz m2 w nowej sesji” → start M2 pętli 2; zatwierdzenie zadań — na STOP start.
+- 2026-10-28 (zlecenie z sesji reaudytu, polecenie właściciela): „2a 3a — jak zapiszesz to otwórz m2 w nowej sesji” → start M2 pętli 2.
+- 2026-10-28 STOP start: „1. Pełen zakres 2a 3a 4a 5b 6a 7b” → 21 zadań zatwierdzonych ponownie (pole `zatwierdzenie` w planie); wszystkie 3 partie; role jako subagenci po kolei; push: test:fast + hak, CI po każdym push, pełne verify na koniec partii (wyjątek nazwany jak w pętli 1); 017: dołączenie apps4brew-www z prawem zapisu i publikacja przez PR do akceptacji właściciela; 021 bez drugiego źródła → blokada, tekst do 1.0.1; bez STOP przed partią 1; 13 plików prompty/*.polecenie.md usunąć commitem z gałęzi audytu (historia zostaje).
 
 ## Partie
 | Partia | Gałąź | Od | Do | STOP przed | Stan |
 |---|---|---|---|---|---|
-| 1 | naprawy/M2-koordynator-napraw-2026-10-28-p1 | 4c116d0 | — | do decyzji (6) | czeka na STOP start |
+| 1 | naprawy/M2-koordynator-napraw-2026-10-28-p1 | 4c116d0 | — | pominięty (6a) | w toku |
 | 2 | naprawy/M2-koordynator-napraw-2026-10-28-p2 | — | — | nie | czeka |
 | 3 | naprawy/M2-koordynator-napraw-2026-10-28-p3 | — | — | nie (021 M przez rolę) | czeka |
 
 ## Zadania
 | ID | Partia | Krok | Commit | Dowód | Przeczytane reguły | Następny krok |
 |---|---|---|---|---|---|---|
-| 21 zadań | 1–3 | czeka (otwarte) | — | M2-stop-start-p2.md | — | ponowne zatwierdzenie |
+| 21 zadań | 1–3 | czeka (zatwierdzone) | — | M2-stop-start-p2.md | — | wg kolejki |
 
 ## Dziennik
 - 2026-10-28 E0: repo prompts dołączone tylko do odczytu, sklonowane /home/user/prompts; K z origin/audyt-m1-1-0-2026-10-27 (git archive), audit/ w .git/info/exclude:7.
@@ -25,5 +26,4 @@ Pętla 1: postep-napraw-petla1.md (archiwum). Prompt: złożony własnym skrypte
 - 2026-10-28 E0: 017 — Pages wdrożone z 2385e75 (08:32), ale check-urls dziś kod 1: apps4brew.com privacy/support stara treść → publikacja przez repo apps4brew-www (docs/48 Z-10a).
 
 ## Czekające zgody i kroki właściciela
-- STOP start: decyzje 1–7 w M2-stop-start-p2.md.
 - Kroki telefonu i ASC bez zmian (lista w raporcie reaudytu, Werdykt).
