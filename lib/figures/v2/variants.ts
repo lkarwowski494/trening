@@ -33,9 +33,9 @@ const BOARD = 4;
 /** Drążek sześciokątny: bark względem uchwytów na starcie i na wyproście (cm) — na wyproście tułów w pionie (było −6 → tułów −6,4° do tyłu, 1.0.1). */
 const TRAP_SX: [number, number] = [2, -2];
 /** JM Press: sztanga na dole 13 cm za osią barków ku głowie (kąt ramienia wynika), odwiedzenie 45° stałe, zgięcie łokcia 145°, przedramiona lekko zbieżne (uproszczenie ilustracyjne; „ok. 45°” — badacz 28.10.2026, 3 zgodne źródła szczebla 4). */
-const JM = { xb: -13, yb: 14, abd: 45, inward: 1 } as const;
+const JM = { xb: -13, yb: 14, abd: 45 } as const;
 /** Skull Crusher na ławce ujemnej: ramię 3° ku głowie, sztanga 8 cm nad czubkiem głowy, przedramiona lekko zbieżne (uproszczenie ilustracyjne; ramię „pionowo albo lekko ku głowie” — badacz 28.10.2026, D3, D4). */
-const SKULL = { aHead: 3, clear: 8, inward: 0.3 } as const;
+const SKULL = { aHead: 3, clear: 8, inward: 0 } as const;
 const SUMO: Partial<HingeParams> = { stance: 34, toeOut: 40, grip: 12, shin: HINGE.shin.sumo };
 
 /** Klucz katalogu → wariant. Tylko gotowe rodziny (squat, bench_press, hinge). */

@@ -5,7 +5,7 @@
  * data/zrodla/figury-wyciskanie.json); brak podstawy → otwarte pytanie w docs/21, nie liczba w kodzie.
  */
 import { cueSelection } from '@/lib/figures/v2/cueSets';
-import { distSegSeg, bodyColliders, sortShapes, EQUIP, FAMILIES, figureSpec, frameAt, shapesAt, trailFor, assignAll, VARIANTS, jointAngles, checkFrame, type Frame, type V3 } from '@/lib/figures/v2';
+import { staticPositions, distSegSeg, bodyColliders, sortShapes, EQUIP, FAMILIES, figureSpec, frameAt, shapesAt, trailFor, assignAll, VARIANTS, jointAngles, checkFrame, type Frame, type V3 } from '@/lib/figures/v2';
 
 const spec = (k: string) => figureSpec(k)!;
 const fr = (k: string, u: number, e?: 'barAway' | 'kneesBent'): Frame => frameAt(spec(k), u, e);
@@ -175,8 +175,8 @@ describe('recenzja niezależna 28.10.2026 — N5: guma Band Squat nie wchodzi w 
 describe('F1 (badacz 28.10.2026, JM Press): łokcie wysoko, ramię ku stopom, odwiedzenie stałe ok. 45°, sztanga w dół ku szyi (było: łokieć 26 cm za barkiem ku głowie i 10 cm poniżej barku, ramię 110° od pionu; w połowie ruchu odwiedzenie 57°, łokcie do z = 41)', () => {
   const K = 'JM Press';
   const up = (f: Frame, s: 'R' | 'L') => { const a = f.sk.arms[s]; return { dx: a.elbow[0] - a.shoulder[0], dy: a.elbow[1] - a.shoulder[1], dz: Math.abs(a.elbow[2] - a.shoulder[2]) }; };
-  test('na dole ramię nie wskazuje ku głowie: 0–20° od pionu w stronę stóp (+x), łokieć ≥ 25 cm nad barkiem, obie strony', () => {
-    for (const s of ['R', 'L'] as const) { const t = up(fr(K, 1), s); const a = deg(Math.atan2(t.dx, t.dy)); expect([s, a >= 0 && a <= 20, t.dy >= 25]).toEqual([s, true, true]); }
+  test('na dole ramię nie wskazuje ku głowie: 0–40° od pionu w stronę stóp (+x; badacz: 0–20° przy dłoniach ślizgających się — R2-3 wymusiło stały chwyt, więc kąt rośnie), łokieć ≥ 20 cm nad barkiem, obie strony', () => {
+    for (const s of ['R', 'L'] as const) { const t = up(fr(K, 1), s); const a = deg(Math.atan2(t.dx, t.dy)); expect([s, a >= 0 && a <= 40, t.dy >= 20]).toEqual([s, true, true]); }
   });
   test('w całym ruchu łokieć nad barkiem lub nie niżej niż 5 cm pod nim i nigdy za barkiem ku głowie (dx ≥ −1)', () => {
     for (const u of U) for (const s of ['R', 'L'] as const) { const t = up(fr(K, u), s); expect([u, s, t.dy >= -5, t.dx >= -1]).toEqual([u, s, true, true]); }
@@ -191,25 +191,34 @@ describe('F1 (badacz 28.10.2026, JM Press): łokcie wysoko, ramię ku stopom, od
   });
 });
 
-describe('F1 (badacz 28.10.2026, Decline Close-Grip Bench To Skull Crusher): dwie fazy w jednym powtórzeniu — wąskie wyciskanie, potem prostowanie z nieruchomym ramieniem (było: jeden tor, ramię 80–110° od pionu ku głowie, łokcie do z = 43)', () => {
+describe('F1 + R2-2 (badacz i recenzja r2 28.10.2026, Decline Close-Grip Bench To Skull Crusher): figura pokazuje fazę prostowania (klasyczny skull crusher) — jedno powtórzenie = jedno prostowanie w pętli góra → dół → góra (było: dwie fazy na jednej osi u, pętla ping-pong dawała 2 wyciskania na 1 prostowanie; licznik „Opuszczanie” przy ruchu w górę)', () => {
   const K = 'Decline Close-Grip Bench To Skull Crusher';
   const arm = (f: Frame, s: 'R' | 'L' = 'R') => { const a = f.sk.arms[s]; return { dx: a.elbow[0] - a.shoulder[0], dy: a.elbow[1] - a.shoulder[1], dz: a.elbow[2] - a.shoulder[2] }; };
-  test('faza 1 (u = 0,3): wąskie wyciskanie — sztanga na dolnej klatce (jak w Decline Bench Press: dotyk 26), przedramię ≤ 10° od pionu czołowo, łokcie blisko tułowia (odwiedzenie z góry ≤ 25°)', () => {
-    const f = fr(K, 0.3); const t = forearm(f); const a = arm(f); expect([t.front <= 10, deg(Math.atan2(Math.abs(a.dz), Math.abs(a.dx))) <= 25]).toEqual([true, true]);
-    expect(Math.abs((f.info.load as V3)[1] - (f.info.bottom as V3)[1])).toBeLessThan(0.05);
+  test('całe u ∈ [0; 1]: ramię nieruchome — pionowo albo najwyżej 15° ku głowie (−x), zmiana kąta ≤ 15°; łokcie na szerokość barków (|Δz łokcia od barku| ≤ 1 cm); łokieć ≥ 25 cm nad barkiem', () => {
+    const angs = U.map(u => { const a = arm(fr(K, u)); return deg(Math.atan2(-a.dx, a.dy)); }); expect([Math.min(...angs) >= -1, Math.max(...angs) <= 15, Math.max(...angs) - Math.min(...angs) <= 15]).toEqual([true, true, true]);
+    for (const u of U) for (const s of ['R', 'L'] as const) { const a = arm(fr(K, u), s); expect([u, s, Math.abs(a.dz) <= 1, a.dy >= 25]).toEqual([u, s, true, true]); }
   });
-  test('powrót do góry między fazami: u = 0, 0,6 — ręce wyprostowane nad barkami (zgięcie łokcia ≤ 8°)', () => {
-    for (const u of [0, 0.6]) expect([u, jointAngles(fr(K, u).sk, 'R').elbow <= 8]).toEqual([u, true]);
+  test('jedno prostowanie na pętlę: wysokość gryfu maleje monotonicznie od u = 0 do u = 1 (brak drugiego opuszczenia), start z wyprostowanymi rękami (zgięcie łokcia ≤ 8°)', () => {
+    const ys = U.map(u => (fr(K, u).info.load as V3)[1]); for (let i = 1; i < ys.length; i++) expect([i, ys[i] <= ys[i - 1] + 1e-6]).toEqual([i, true]);
+    expect(jointAngles(fr(K, 0).sk, 'R').elbow).toBeLessThanOrEqual(8);
   });
-  test('faza 2 (u ∈ [0,6; 1]): ramię nieruchome — pionowo albo najwyżej 15° ku głowie (−x), zmiana kąta ramienia ≤ 15°; łokcie na szerokość barków (|Δz łokcia od barku| ≤ 4 cm); łokieć ≥ 25 cm nad barkiem', () => {
-    const ang = (u: number) => { const a = arm(fr(K, u)); return deg(Math.atan2(-a.dx, a.dy)); };
-    const angs = U.filter(u => u >= 0.6).map(ang); expect([Math.min(...angs) >= -5, Math.max(...angs) <= 15, Math.max(...angs) - Math.min(...angs) <= 15]).toEqual([true, true, true]);
-    for (const u of U.filter(x => x >= 0.6)) for (const s of ['R', 'L'] as const) { const a = arm(fr(K, u), s); expect([u, s, Math.abs(a.dz) <= 4, a.dy >= 25]).toEqual([u, s, true, true]); }
-  });
-  test('na dole prostowania (u = 1): zgięcie łokcia 60–149°, sztanga ponad głową z odstępem (kontrola geometrii czysta w całym ruchu), przedramię ku głowie (dłoń dalej ku głowie niż łokieć)', () => {
+  test('na dole (u = 1): zgięcie łokcia 60–149°, dłoń dalej ku głowie niż łokieć, sztanga nad głową (kontrola geometrii czysta w całym ruchu)', () => {
     const f = fr(K, 1); const e = jointAngles(f.sk, 'R').elbow; expect([e >= 60 && e <= 149, +e.toFixed(0)]).toEqual([true, +e.toFixed(0)]);
     expect((f.info.load as V3)[0]).toBeLessThan(f.sk.arms.R.elbow[0]);
     for (const u of U) expect([u, checkFrame(fr(K, u)).map(i => i.code)]).toEqual([u, []]);
+  });
+  test('tryb „Ogranicz ruch”: pozycje statyczne 0 i 1 — górę i dół prostowania (jedyna faza figury)', () => {
+    expect(staticPositions(spec(K))).toEqual([0, 1]);
+  });
+});
+
+describe('R2-3, R2-4, R2-5 (recenzja r2 28.10.2026): dłonie stałe na gryfie i ciągłość gryfu w JM Press i Skull Crusher (było: JM z dłoni 19 → 6, Skull Crusher 19 → 10,9 → 12,5, skok gryfu 3,75 cm przy u = 0,6)', () => {
+  test('|z| dłoni stałe (± 0,5 cm) w 41 klatkach, obie dłonie symetrycznie', () => {
+    for (const k of ['JM Press', 'Decline Close-Grip Bench To Skull Crusher']) { const zs = Array.from({ length: 41 }, (_, i) => fr(k, i / 40)).map(f => [f.sk.arms.R.grip[2], f.sk.arms.L.grip[2]]);
+      const r = zs.map(z => z[0]); expect([k, Math.max(...r) - Math.min(...r) <= 1.0, zs.every(z => Math.abs(z[0] + z[1]) < 0.01)]).toEqual([k, true, true]); }
+  });
+  test('ciągłość: gryf i dłonie przesuwają się między sąsiednimi klatkami (Δu = 1/200) o ≤ 1 cm — bez skoków', () => {
+    for (const k of ['JM Press', 'Decline Close-Grip Bench To Skull Crusher']) { let prev = fr(k, 0); for (let i = 1; i <= 200; i++) { const f = fr(k, i / 200); const a = f.info.load as V3, b = prev.info.load as V3; expect([k, i, Math.hypot(a[0] - b[0], a[1] - b[1]) <= 1]).toEqual([k, i, true]); prev = f; } }
   });
 });
 
