@@ -1718,5 +1718,7 @@
  "Masz plan: {name}": "Planınız: {name}",
  "Przejdź na ten plan": "Bu plana geç",
  "Zmień plan": "Planı değiştir",
- "Zobacz plany Pro": "Pro planlarını gör"
+ "Zobacz plany Pro": "Pro planlarını gör",
+ "Plan: miesięczny": "Plan: aylık",
+ "Plan: roczny": "Plan: yıllık"
 }

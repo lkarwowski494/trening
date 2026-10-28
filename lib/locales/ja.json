@@ -1718,5 +1718,7 @@
  "Masz plan: {name}": "ご利用中のプラン: {name}",
  "Przejdź na ten plan": "このプランに変更",
  "Zmień plan": "プランを変更",
- "Zobacz plany Pro": "Pro プランを見る"
+ "Zobacz plany Pro": "Pro プランを見る",
+ "Plan: miesięczny": "プラン：月額",
+ "Plan: roczny": "プラン：年額"
 }

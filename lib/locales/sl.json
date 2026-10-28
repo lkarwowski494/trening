@@ -1637,7 +1637,7 @@
  "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.": "Trenirajte brezplačno {n} dni na mesec. Pro odstrani omejitev. Kadar koli lahko prekličete v nastavitvah računa Apple.",
  "Jesteśmy z Ciebie dumni!": "Ponosni smo na vas!",
  "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Ta mesec trenirate zavzeto in ste porabili vse brezplačne dni treninga ({n}). Odlično!",
- "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} ustvarja neodvisen razvijalec: brez oglasov in brez zbiranja podatkov. Če vam pomaga, izberite načrt in trenirajte brez omejitev. Brezplačni dnevi se vrnejo {date}.",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} ustvarja neodvisen razvijalec: brez oglasov in brez zbiranja podatkov. Če vam pomaga, izberite paket in trenirajte brez omejitev. Brezplačni dnevi se vrnejo {date}.",
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Brez nakupa: do {n} dni treninga na mesec; zgodovina, varnostna kopija in izvoz so vedno na voljo.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Brezplačni dnevi treninga ta mesec: porabljeno {n} od {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} od {limit} brezplačnih dni treninga ta mesec.",
@@ -1718,5 +1718,7 @@
  "Masz plan: {name}": "Vaš paket: {name}",
  "Przejdź na ten plan": "Preklopi na ta paket",
  "Zmień plan": "Zamenjaj paket",
- "Zobacz plany Pro": "Oglejte si pakete Pro"
+ "Zobacz plany Pro": "Oglejte si pakete Pro",
+ "Plan: miesięczny": "Paket: mesečni",
+ "Plan: roczny": "Paket: letni"
 }

@@ -1717,6 +1717,8 @@
  "Aktualny plan": "Текущ план",
  "Masz plan: {name}": "Вашият план: {name}",
  "Przejdź na ten plan": "Премини към този план",
- "Zmień plan": "Смяна на плана",
- "Zobacz plany Pro": "Вижте плановете Pro"
+ "Zmień plan": "Смени плана",
+ "Zobacz plany Pro": "Вижте плановете Pro",
+ "Plan: miesięczny": "План: месечен",
+ "Plan: roczny": "План: годишен"
 }

@@ -1718,5 +1718,7 @@
  "Masz plan: {name}": "Tilauksesi: {name}",
  "Przejdź na ten plan": "Vaihda tähän tilaukseen",
  "Zmień plan": "Vaihda tilausta",
- "Zobacz plany Pro": "Katso Pro-vaihtoehdot"
+ "Zobacz plany Pro": "Katso Pro-vaihtoehdot",
+ "Plan: miesięczny": "Kuukausitilaus",
+ "Plan: roczny": "Vuositilaus"
 }

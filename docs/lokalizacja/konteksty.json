@@ -466,6 +466,8 @@
  "Plan": "app/(tabs)/_layout.tsx:52, app/(tabs)/history.tsx:39",
  "Plan tygodnia": "components/TodayPlan.tsx:51",
  "Plan: {name}": "components/TodayPlan.tsx:51",
+ "Plan: miesięczny": "dynamiczny (lista, etykieta albo dane w kodzie)",
+ "Plan: roczny": "dynamiczny (lista, etykieta albo dane w kodzie)",
  "Planowanie": "app/(tabs)/history.tsx:39, app/(tabs)/index.tsx:46, app/_layout.tsx:125",
  "plecy": "dynamiczny (lista, etykieta albo dane w kodzie)",
  "Podgląd": "app/generator.tsx:145, components/OwnPlan.tsx:91",

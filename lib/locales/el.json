@@ -1718,5 +1718,7 @@
  "Masz plan: {name}": "Το πλάνο σας: {name}",
  "Przejdź na ten plan": "Μετάβαση σε αυτό το πλάνο",
  "Zmień plan": "Αλλαγή πλάνου",
- "Zobacz plany Pro": "Δείτε τα πλάνα Pro"
+ "Zobacz plany Pro": "Δείτε τα πλάνα Pro",
+ "Plan: miesięczny": "Πλάνο: μηνιαίο",
+ "Plan: roczny": "Πλάνο: ετήσιο"
 }

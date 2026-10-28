@@ -1717,6 +1717,8 @@
  "Aktualny plan": "Planul actual",
  "Masz plan: {name}": "Planul dumneavoastră: {name}",
  "Przejdź na ten plan": "Treci la acest plan",
- "Zmień plan": "Schimbarea planului",
- "Zobacz plany Pro": "Vezi planurile Pro"
+ "Zmień plan": "Schimbă planul",
+ "Zobacz plany Pro": "Vezi planurile Pro",
+ "Plan: miesięczny": "Plan: lunar",
+ "Plan: roczny": "Plan: anual"
 }

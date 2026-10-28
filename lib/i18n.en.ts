@@ -821,6 +821,8 @@ export const EN: Record<string, string> = {
   'Inny plan': 'Other plan',
   'Planowanie': 'Planning',
   'Plan: {name}': 'Plan: {name}',
+  'Plan: miesięczny': 'Plan: monthly', /* karta „Masz pełną wersję”: aktywny plan miesięczny (27.10.2026, zamiast poetyckiej nazwy planu) */
+  'Plan: roczny': 'Plan: yearly', /* aktywny plan roczny */
   'dziś w planie · {n} ćw.': 'planned for today · {n} ex.',
   'w planie na: {day} · {n} ćw.': 'planned for: {day} · {n} ex.',
   'Start następnego treningu: {name}': 'Start next workout: {name}',

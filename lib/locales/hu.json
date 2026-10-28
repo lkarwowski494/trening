@@ -1718,5 +1718,7 @@
  "Masz plan: {name}": "Az Ön csomagja: {name}",
  "Przejdź na ten plan": "Váltás erre a csomagra",
  "Zmień plan": "Csomagváltás",
- "Zobacz plany Pro": "A Pro csomagok megtekintése"
+ "Zobacz plany Pro": "A Pro csomagok megtekintése",
+ "Plan: miesięczny": "Csomag: havi",
+ "Plan: roczny": "Csomag: éves"
 }

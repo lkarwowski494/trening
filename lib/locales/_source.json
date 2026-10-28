@@ -3667,6 +3667,14 @@
   "en": "Plan: {name}"
  },
  {
+  "pl": "Plan: miesięczny",
+  "en": "Plan: monthly"
+ },
+ {
+  "pl": "Plan: roczny",
+  "en": "Plan: yearly"
+ },
+ {
   "pl": "Planowanie",
   "en": "Planning"
  },

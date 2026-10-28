@@ -1714,9 +1714,11 @@
  "zgięcie biodra": "髖關節彎曲",
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "組數：每個動作 {s} 組 — 最好至少做 {m} 組；組數越多通常效果稍好，但效益會遞減。",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "{d} {s} 的訓練已有 {h} 小時沒有任何動作，所以自動儲存了。結束時間：{e}（最後一組）。你可以在「計畫」分頁找到它。",
- "Aktualny plan": "目前的方案",
+ "Aktualny plan": "目前方案",
  "Masz plan: {name}": "你的方案：{name}",
  "Przejdź na ten plan": "改用這個方案",
  "Zmień plan": "變更方案",
- "Zobacz plany Pro": "查看 Pro 方案"
+ "Zobacz plany Pro": "查看 Pro 方案",
+ "Plan: miesięczny": "方案：每月",
+ "Plan: roczny": "方案：每年"
 }
