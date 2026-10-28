@@ -10,7 +10,7 @@ import type { Lang } from '@/lib/i18n';
 const L = (l: string) => LOCALES[l as Lang] as Record<string, string>;
 const vals = (l: string) => Object.values(L(l));
 const FORBIDDEN: Record<string, RegExp> = {
-  el: /διάγραψέ|Κατέβασέ|Ενεργοποίησέ|πληρώσεις|ακυρώσεις|θα τη βρεις|έβαλες|κατέγραψες|να προσθέσεις|να επιλέξεις/i,
+  el: /αίρει το όριο|διάγραψέ|Κατέβασέ|Ενεργοποίησέ|πληρώσεις|ακυρώσεις|θα τη βρεις|έβαλες|κατέγραψες|να προσθέσεις|να επιλέξεις/i,
   lt: /nemokėtum(?!\p{L})|neatšauksi(?!\p{L})|atkursi(?!\p{L})|nepadarysi(?!\p{L})|pamatysi(?!\p{L})|neįvesi(?!\p{L})|nekeisi(?!\p{L})|pakeistum(?!\p{L})|pridėtum(?!\p{L})|išjungtum(?!\p{L})/u,
   lv: /atjaunosi\b|pievienosi\b|atkārtosi\b|sāksi tukšu/,
   cs: /\bmáš\b|\bjsi nezapsal|a začni\b/i,
@@ -22,8 +22,8 @@ const FORBIDDEN: Record<string, RegExp> = {
   uk: /проведи її|за твоїм/,
   pt: /desliza o nome|\bTreina em casa|Define a data/,
   ro: /setează alta|Atinge pentru|Verifică conexiunea|Introdu un număr/,
-  da: /gent\.-interval/i, de: /Wdh\.-Bereich/, nb: /rep\.-område/i,
-  'es-419': /entreno\b|copia de seguridad|copias de seguridad|\bAñade\b/,
+  da: /gent\.-interval/i, de: /Wdh\.-Bereich|Apple-Account/, nb: /rep\.-område/i,
+  'es-419': /entrenos?(?![\p{L}])|copia de seguridad|copias de seguridad|\bAñade\b/u,
   'pt-BR': /demasiado|O relógio guarda/,
 };
 
@@ -38,8 +38,8 @@ describe('lokalizacja 1.0.1: znane formy spoza rejestru/wariantu nie wracają', 
     has('el', 'ακυρώστε την για να μην πληρώσετε διπλά'); has('el', 'διαγράψτε το στην εφαρμογή Υγεία'); has('lt', 'kad nemokėtumėte dukart');
     has('cs', 'Máte přístup navždy'); has('sk', 'Máte plnú verziu'); has('sk', 'aby ste neplatili dvakrát'); has('tr', 'Verileriniz değiştirilmedi'); has('id', 'Data Anda tidak diubah');
     has('sr', 'Ваши подаци нису промењени'); has('hu', 'előzményeiben'); has('uk', 'проведіть її назву'); has('pt', 'deslize o nome'); has('ro', 'setați alta');
-    has('es-419', '¡Primer entrenamiento completado!'); has('es-419', 'desde un respaldo'); has('es-419', 'Agrega entrenos desde CSV'); has('pt-BR', 'grande demais');
-    has('de', 'Wiederholungsbereichs'); has('da', 'gentagelsesinterval'); has('nb', 'repetisjonsområdet');
+    has('es-419', '¡Primer entrenamiento completado!'); has('es-419', 'desde un respaldo'); has('pt-BR', 'grande demais');
+    has('de', 'Wiederholungsbereichs'); has('de', 'Apple Account'); has('el', 'Με το Pro δεν υπάρχει όριο'); has('es-419', 'Agrega entrenamientos desde CSV'); has('da', 'gentagelsesinterval'); has('nb', 'repetisjonsområdet');
   });
   test('es-419 i pt-BR: nakładka tylko z kluczami ze źródła i z tymi samymi parametrami', () => {
     const src = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'lib/locales/_source.json'), 'utf8'));
