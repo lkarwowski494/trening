@@ -1710,7 +1710,7 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Серии: {s} на упражнение — добре е да направите поне {m}; повече серии обикновено дават малко повече, но ползата намалява.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Тренировката от {d} {s} е била без активност {h} часа, затова се запази автоматично. Край: {e} (последна серия). Ще я намерите в раздела План.",
  "Aktualny plan": "Текущ план",
- "Zmień plan": "Смяна на плана",
+ "Zmień plan": "Смени плана",
  "Plan: miesięczny": "План: месечен",
  "Plan: roczny": "План: годишен"
 }

@@ -1711,6 +1711,6 @@
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Η προπόνηση της {d} {s} δεν είχε δραστηριότητα για {h} ώρες, γι' αυτό αποθηκεύτηκε αυτόματα. Λήξη: {e} (τελευταίο σετ). Θα τη βρείτε στην καρτέλα Πρόγραμμα.",
  "Aktualny plan": "Τρέχον πλάνο",
  "Zmień plan": "Αλλαγή πλάνου",
- "Plan: miesięczny": "Πρόγραμμα: μηνιαίο",
- "Plan: roczny": "Πρόγραμμα: ετήσιο"
+ "Plan: miesięczny": "Πλάνο: μηνιαίο",
+ "Plan: roczny": "Πλάνο: ετήσιο"
 }

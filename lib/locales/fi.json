@@ -1711,6 +1711,6 @@
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Treeni {d} {s} oli ilman toimintaa {h} tuntia, joten se tallentui itsestään. Päättyi: {e} (viimeinen sarja). Löydät sen Suunnitelma-välilehdeltä.",
  "Aktualny plan": "Nykyinen tilaus",
  "Zmień plan": "Vaihda tilausta",
- "Plan: miesięczny": "Tilaus: kuukausittain",
- "Plan: roczny": "Tilaus: vuosittain"
+ "Plan: miesięczny": "Kuukausitilaus",
+ "Plan: roczny": "Vuositilaus"
 }

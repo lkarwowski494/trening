@@ -3409,6 +3409,180 @@
      "zalecany": "計畫",
      "pewnosc": "srednia"
     }
+   },
+   "wyklucz": "plan:\\s*(miesięczny|roczny)|aktualny plan|zmień plan|wybierz plan"
+  },
+  {
+   "id": "plan_subskrypcji",
+   "pl": "plan (subskrypcji)",
+   "znaczenie": "wariant płatnej subskrypcji na ekranie zakupu (miesięczny, roczny), nie plan tygodnia",
+   "kanon": null,
+   "wykrywaj": "plan:\\s*(miesięczny|roczny)|aktualny plan|zmień plan|wybierz plan",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Plán",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Plán",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Csomag",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "План",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Paket",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "načrt",
+       "powod": "„Načrt” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Paket”"
+      }
+     ]
+    },
+    "sr": {
+     "zalecany": "План",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Planas",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Plāns",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Pakett",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "plaan",
+       "powod": "„Plaan” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Pakett”"
+      }
+     ]
+    },
+    "uk": {
+     "zalecany": "План",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Plano",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Plano",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Formule",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Piano",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Abonnement",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Tilaus",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Πλάνο",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "πρόγραμμ",
+       "powod": "„Πρόγραμμα” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Πλάνο”"
+      }
+     ]
+    },
+    "id": {
+     "zalecany": "Paket",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Pelan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Gói",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "План",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "プラン",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "요금제",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "플랜",
+       "powod": "„플랜” to plan tygodnia (zakładka Plan); wariant subskrypcji to „요금제”"
+      }
+     ]
+    },
+    "zh-Hant": {
+     "zalecany": "方案",
+     "pewnosc": "srednia"
+    }
    }
   },
   {

@@ -31,6 +31,7 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `drop_set` | drop set | seria z obniżaniem ciężaru bez przerwy (oznaczenie D) |
 | `deload` | deload | tydzień z mniejszą objętością dla regeneracji; NIE redukcja masy ciała |
 | `plan` | plan (tygodnia) | przypisanie szablonów do dni tygodnia |
+| `plan_subskrypcji` | plan (subskrypcji) | wariant płatnej subskrypcji na ekranie zakupu (miesięczny, roczny), nie plan tygodnia |
 | `szablon` | szablon (treningu) | zapisany zestaw ćwiczeń, serii i zakresów, z którego startuje trening |
 | `trening` | trening | jedna sesja treningowa (od startu do zakończenia) |
 | `trening_w_toku` | trening w toku | trening rozpoczęty i niezakończony („na żywo”) |
@@ -124,6 +125,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `hr` | `przerwa_robocza` | radni odmor\|radna pauza | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `sl` | `przerwa` | odmor | „odmor” znaczy urlop/wakacje; między seriami „počitek” |
 | `sl` | `przerwa_robocza` | delovni počitek | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `sl` | `plan_subskrypcji` | načrt | „Načrt” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Paket” |
 | `sr` | `przerwa` | пауз | „пауза” to pauza treningu, nie przerwa między seriami (одмор) |
 | `sr` | `przerwa_robocza` | радни одмор\|радна пауза | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `lt` | `przerwa` | pertrauk | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
@@ -133,6 +135,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `et` | `przerwa` | vaheaeg\|vahetund | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `et` | `przerwa_robocza` | tööpaus | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `et` | `pauza_treningu` | paus(?!eeri) | „paus” to przerwa między seriami; pauza treningu to „peata” |
+| `et` | `plan_subskrypcji` | plaan | „Plaan” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Pakett” |
 | `uk` | `przerwa` | перерв | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `uk` | `przerwa_robocza` | відпочинок у робочих | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `uk` | `seria` | серія | „серія” to odcinek; podejście to „підхід” |
@@ -180,6 +183,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `tr` | `przerwa_robocza` | iş molası\|çalışma molası | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `tr` | `seria` | (?<![\p{L}])seri(?![\p{L}]) | „seri” to seria/szybki; podejście to „set” |
 | `el` | `przerwa_robocza` | διάλειμμα εργασίας | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `el` | `plan_subskrypcji` | πρόγραμμ | „Πρόγραμμα” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Πλάνο” |
 | `id` | `przerwa` | jeda | „jeda” to pauza (treningu); między seriami „istirahat” |
 | `id` | `przerwa_robocza` | istirahat kerja | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `id` | `seria` | (?<![\p{L}])seri(?![\p{L}]) | „seri” to serial; podejście to „set” |
@@ -197,6 +201,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ja` | `przerwa_po_rozgrzewce` | 休憩 | 休憩 to przerwa w pracy/szkole; na siłowni インターバル |
 | `ko` | `przerwa` | 점심\|휴게 | dotyczy przerwy obiadowej/pokoju socjalnego |
 | `ko` | `przerwa_robocza` | 업무 휴식 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `ko` | `plan_subskrypcji` | 플랜 | „플랜” to plan tygodnia (zakładka Plan); wariant subskrypcji to „요금제” |
 | `ko` | `szablon` | 템플릿 | w koreańskich siłowniach „루틴” |
 | `zh-Hant` | `przerwa_robocza` | 工作休息\|上班 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `zh-Hant` | `deload` | 減量 | „減量” w tajwańskim żargonie siłowni znaczy odchudzanie (redukcję); deload to „減載” |
