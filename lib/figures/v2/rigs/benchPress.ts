@@ -95,7 +95,7 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
   const k = p.skull ? p1 : ease(u);
   const skAt = (sg: 1 | -1) => {
     const j = p.skull!; const sh: V3 = [shoulderC[0], shoulderC[1], sg * D.shHalf]; const Lf = D.farm + BODY.hand;
-    const headTop = trunkPoint(hipT, pitchT, Tl + BODY.headFromC7, 0, 0)[1] + BODY.headR + j.clear; /* czubek głowy + odstęp */
+    const headTop = trunkPoint(hip, trunkPitch, BODY.trunk + BODY.headFromC7, 0, 0)[1] + BODY.headR + j.clear; /* czubek głowy (poza poprawna, bez błędu) + odstęp */
     const yTop = sh[1] + D.uarm + Lf - 0.05; const ty = yTop + (headTop - yTop) * p2; const a = rad(j.aHead * p2);
     const v: V3 = [-Math.sin(a), Math.cos(a), 0]; const elbow: V3 = [sh[0] + D.uarm * v[0], sh[1] + D.uarm * v[1], sh[2]];
     const w0: V3 = [-Math.cos(a), -Math.sin(a), -sg * j.inward]; const wl = Math.hypot(w0[0], w0[1], w0[2]); const w: V3 = [w0[0] / wl, w0[1] / wl, w0[2] / wl]; const wv = w[0] * v[0] + w[1] * v[1] + w[2] * v[2];

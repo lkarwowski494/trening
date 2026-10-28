@@ -25,7 +25,7 @@ const HG = (style: HingeParams['style'], impl: HingeParams['impl'], o: Partial<H
   return { family: 'hinge', p, lowerFirst: rdl || style === 'goodMorning' };
 };
 /** Wąski chwyt (wskazówka cgbp.grip „na szerokość barków lub trochę węziej”): połowa rozstawu dłoni 18 cm przy barkach 20,5 (BENCH.dims) — przedramię pionowo jak w zwykłym wyciskaniu (docs/50, 1.0.1); dotyk 20 cm poniżej linii stawów (zakres 10–20, figury-wyciskanie.json B5). */
-const CLOSE = { grip: 18, touch: 30 } as const;
+const CLOSE = { grip: 19, touch: 30 } as const;
 /** Ławka ujemna: dotyk niżej na klatce niż płasko (tułów opuszczony), tak by przedramię na dole było ≤ 10° od pionu także strzałkowo (decyzja 26.10.2026 ±10°); uproszczenie ilustracyjne. */
 const DECLINE = { touch: 26, touchDb: 24 } as const;
 /** Grubość deski w Board Press (cm; uproszczenie ilustracyjne — było `touchB` 17,5 = klatka 11,9 + promień gryfu 1,6 + 4). */
