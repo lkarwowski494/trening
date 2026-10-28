@@ -21,7 +21,12 @@ export const TIPS_MIN = 2, TIPS_MAX = 4, MIN_ORGS = 2;
 export const MARKS = { analogia: 'analogia — inne ćwiczenie; nie liczy się do ≥ 2 źródeł' };
 export const KINDS = { org: 'organizacja szkoleniowa (biblioteka ćwiczeń)', site: 'serwis specjalistyczny', maker: 'producent sprzętu', study: 'badanie (czasopismo recenzowane)' };
 
-export function validate(data, pl) {
+/** `ogolne` = id wskazówek używane tylko w zestawach ogólnych figur v2 (lib/figures/v2/cue-sets.json): mają tekst, a źródła w data/zrodla/wskazowki-ogolne.json (kontrola: check:zrodla-runtime). */
+export function ogolneIds() {
+  const sets = JSON.parse(readFileSync(join(root, 'lib/figures/v2/cue-sets.json'), 'utf8'));
+  return new Set(Object.values(sets.items).filter(e => e.b === 'general').flatMap(e => [...(e.ok ?? []), ...(e.err ?? [])]));
+}
+export function validate(data, pl, ogolne = ogolneIds()) {
   const errs = [];
   const used = new Set(), usedSrc = new Set();
   for (const [id, o] of Object.entries(data.orgs ?? {})) if (!o || typeof o.name !== 'string' || ![2, 3, 4].includes(o.level)) errs.push(`orgs.${id}: nazwa i szczebel 2–4`);
@@ -66,7 +71,7 @@ export function validate(data, pl) {
       }
     }
   }
-  for (const k of Object.keys(pl)) { if (!used.has(k)) errs.push(`pl.json: nieużywane zdanie ${k}`); if (typeof pl[k] !== 'string' || !pl[k].trim()) errs.push(`pl.json: puste ${k}`); }
+  for (const k of Object.keys(pl)) { if (!used.has(k) && !ogolne.has(k)) errs.push(`pl.json: nieużywane zdanie ${k}`); if (typeof pl[k] !== 'string' || !pl[k].trim()) errs.push(`pl.json: puste ${k}`); }
   for (const k of Object.keys(data.sources ?? {})) if (!usedSrc.has(k)) errs.push(`sources.${k}: nieużywane źródło`);
   for (const k of Object.keys(data.open ?? {})) { if (data.exercises?.[k]) errs.push(`open.${k}: ćwiczenie ma wskazówki`); if (typeof data.open[k] !== 'string' || !data.open[k].trim()) errs.push(`open.${k}: brak powodu`); }
   return errs;

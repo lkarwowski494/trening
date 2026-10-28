@@ -61,7 +61,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 102; zdań (z powtórzeniami między ćwiczeniami): 457; unikalnych zdań: 306; źródeł: 231.
+- Ćwiczenia ze wskazówkami: 102; zdań (z powtórzeniami między ćwiczeniami): 457; unikalnych zdań: 308; źródeł: 231.
 - Ćwiczenia bazowe bez wskazówek (otwarte): 22.
 - Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 20 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge.
 

@@ -464,6 +464,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Rysunek wyciskania i zawiasu zgodny ze sprzętem i regułą przedramion (uwagi ŚREDNIE/NISKIE z ponownej recenzji 27.10.2026, wersja 1.0.1; test `tests/figury-1-0-1-uwagi.test.ts`)
     - Zakładając, że ćwiczenie to wyciskanie z wąskim chwytem, ławką ujemną, JM Press, Skull Crusher, Board Press, Pin Press, Rack Pull, Good Morning off Pins, Band Squat, Cable Pull Through, drążek sześciokątny albo odmiana „Reverse Band”
     - Gdy rysunek odtwarza ruch
+    - Wtedy JM Press ma łokcie wysoko (ramię 0–20° od pionu ku stopom na dole, odwiedzenie z góry ok. 45° stałe, sztanga ku szyi), a Decline Close-Grip Bench To Skull Crusher dwie fazy w jednym powtórzeniu (wąskie wyciskanie, potem prostowanie z ramieniem nieruchomym 0–15° ku głowie); karty tych dwóch ćwiczeń mają własne wskazówki o łokciach (jm.elbows, dcgsk.elbows) zamiast „blisko tułowia”
     - Wtedy przedramię na dole jest ≤ 10° od pionu, zgięcie łokcia ≤ 149°, deska i bolce stojaka stoją tam, gdzie zatrzymuje się gryf, zaczepy gumy i linki stoją w miejscu, ślad toru przy hantlu leży przy hantlu, Cable Pull Through ma kolana ≤ 27° i tułów 50–80°, tułów na wyproście nie odchyla się do tyłu
   - Scenariusz: Usunięcie własnego ćwiczenia z podglądu (ZM-04, W2 a, 21.10.2026)
     - Zakładając, że użytkownik ogląda podgląd ćwiczenia własnego

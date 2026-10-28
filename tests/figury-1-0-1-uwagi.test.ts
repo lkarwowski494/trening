@@ -4,6 +4,7 @@
  * Każdy test odtwarza pomiar z raportu liczbą z silnika (komentarz „było”) i pilnuje poprawki. Kąty tylko z istniejących zapisów (docs/50, docs/research/28,
  * data/zrodla/figury-wyciskanie.json); brak podstawy → otwarte pytanie w docs/21, nie liczba w kodzie.
  */
+import { cueSelection } from '@/lib/figures/v2/cueSets';
 import { distSegSeg, bodyColliders, sortShapes, EQUIP, FAMILIES, figureSpec, frameAt, shapesAt, trailFor, assignAll, VARIANTS, jointAngles, checkFrame, type Frame, type V3 } from '@/lib/figures/v2';
 
 const spec = (k: string) => figureSpec(k)!;
@@ -209,5 +210,23 @@ describe('F1 (badacz 28.10.2026, Decline Close-Grip Bench To Skull Crusher): dwi
     const f = fr(K, 1); const e = jointAngles(f.sk, 'R').elbow; expect([e >= 60 && e <= 149, +e.toFixed(0)]).toEqual([true, +e.toFixed(0)]);
     expect((f.info.load as V3)[0]).toBeLessThan(f.sk.arms.R.elbow[0]);
     for (const u of U) expect([u, checkFrame(fr(K, u)).map(i => i.code)]).toEqual([u, []]);
+  });
+});
+
+describe('karty (badacz 28.10.2026): JM Press i Decline CG Skull Crusher — własne wskazówki o łokciach zamiast „blisko tułowia” (cgbp.elbows przeczyło rysunkowi)', () => {
+  const PL: Record<string, string> = require('@/lib/cues/text/pl.json');
+  const OGOLNE = require('@/data/zrodla/wskazowki-ogolne.json').wskazowki as Record<string, { zrodla: { adres: string; miejsce: string }[] }>;
+  test('JM Press: jm.elbows, bez cgbp.elbows; Skull Crusher: dcgsk.elbows + skull.upperArm + skull.depth, bez cgbp.elbows; wąskie wyciskanie nadal z cgbp.elbows', () => {
+    const jm = cueSelection('JM Press'); expect([jm.ok.includes('jm.elbows'), jm.ok.includes('cgbp.elbows')]).toEqual([true, false]);
+    const sk = cueSelection('Decline Close-Grip Bench To Skull Crusher'); expect(sk.ok).toEqual(['dcgsk.elbows', 'skull.upperArm', 'skull.depth']);
+    expect(cueSelection('Close-Grip EZ-Bar Press').ok).toContain('cgbp.elbows');
+  });
+  test('teksty PL: jm.elbows mówi o łokciach wysoko i ok. 45°, dcgsk.elbows o fazach wyciskania i prostowania; bez nazw źródeł', () => {
+    expect(PL['jm.elbows']).toMatch(/wysoko/); expect(PL['jm.elbows']).toMatch(/45°/); expect(PL['dcgsk.elbows']).toMatch(/wyciskaniu/); expect(PL['dcgsk.elbows']).toMatch(/prostowaniu/);
+  });
+  test('źródła w rejestrze wewnętrznym: jm.elbows ≥ 3 adresy https (kąt techniki: ≥ 2 zgodne źródła szczebla 4), dcgsk.elbows ≥ 3', () => {
+    expect(OGOLNE['jm.elbows'].zrodla.filter(z => /^https:\/\//.test(z.adres)).length).toBeGreaterThanOrEqual(3);
+    expect(OGOLNE['dcgsk.elbows'].zrodla.filter(z => /^https:\/\//.test(z.adres)).length).toBeGreaterThanOrEqual(3);
+    for (const id of ['jm.elbows', 'dcgsk.elbows']) for (const z of OGOLNE[id].zrodla) expect(z.miejsce.length).toBeGreaterThan(10);
   });
 });
