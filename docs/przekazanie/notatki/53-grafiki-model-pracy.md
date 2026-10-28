@@ -29,6 +29,9 @@ Zasada: żadna poza nie trafia do aplikacji, dopóki nie przejdzie WSZYSTKICH br
 5. **Tabela kątów stawów** (min…max na staw, obie strony; `katy-stawow.md` i `katy_stawow` w manifeście, generowane przez agent-pozy/run.mjs): recenzent porównuje ją z opisem ćwiczenia, nie tylko z obrazem — błędy widoczne w jednym rzucie albo tylko w liczbach (ramię zgięte w płaszczyźnie czołowej, kolano 29° odczytane jako ~95°) umykają samemu obrazowi (recenzja n4). Uwaga: w tym rigu noga „prosta” to ok. 10–18°, bo uda + golenie = 83 cm i każdy 1 cm niedoboru odległości biodro–kostka daje ok. 14° (czułość cosinusa).
 6. **Podgląd ważny tylko z kontrolą manifestu** (mechanizm: znacznik `PODGLAD-WAZNY.txt` albo `PODGLAD-NIEWAZNY.txt` w katalogu podglądu; reguła `podgladWazny` w v2-jakosc.mjs): podgląd bez pola `zgodnosc_manifestu`, bez tabeli kątów albo z niezgodnościami nie trafia do recenzji.
 7. **Sprawdzian przeciw dopasowaniu progów**: nowe reguły uruchamiaj także na pozach, na których progów nie stroiłeś (inne gałęzie rodzin), i raportuj trafienia osobno jako prawdziwe albo fałszywy alarm (`node scripts/figures/jakosc-raport.mjs --root <katalog>`).
+8. **Styk ze sprzętem — zasięg, nie tylko odległość** (recenzje p2 r4/r5, 28.10.2026): stopa/dłoń/plecy mają leżeć na powierzchni sprzętu (odległość) i mieścić się w jej obrysie (pięta i palce w długości płyty, plecy na oparciu); mierz ze współrzędnych dla każdego punktu podparcia (płyta, wałek, poduszka, ławka, podłoga).
+9. **Sprzęt zgodny z danymi i ze sobą**: etykieta sprzętu (`capLabel`) zgodna z trybem i punktem dźwigni w danych; sprzęt nie przenika sprzętu (np. pręt wahadła przez oparcie) — dziś bez bramki, oceniaj wzrokowo i zgłaszaj NISKIE.
+10. **Pary o identycznej tabeli kątów** (np. Hack Squat = Pendulum Squat): sprawdź, czy przybliżenie nie zgubiło cechy rozpoznawczej; wpisz cechę w raporcie albo skieruj ćwiczenie do wyjątku (krok 1).
 
 ## Przebieg dla jednej rodziny
 
