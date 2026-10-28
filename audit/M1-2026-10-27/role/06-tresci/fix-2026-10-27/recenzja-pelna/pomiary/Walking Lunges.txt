@@ -1,0 +1,47 @@
+# Walking Lunges anchor=toe2 level=- lift=false floor=true frames=start/mid/end
+## start -> mid; kontakt start: {"heel":0,"toe":0,"heel2":0,"toe2":0} koniec: {"heel2":0,"toe2":0}
+k    | hip(x,y) | COM(x,y) | kontakty (wys.) | podpora x[min..max] | COM poza podporą | wolne stopy wys. | przenikanie | ślizg kontaktów obu klatek
+0.00 | -11.0,54.0 | -10.8,58.5 | heel,toe,heel2,toe2 | [-14.0..0.0] | 0.0 | heel:0.0 toe:0.0 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.05 | -11.1,54.0 | -10.8,58.5 | heel,toe,heel2,toe2 | [-14.0..0.0] | 0.0 | heel:0.1 toe:-0.0 heel2:0.0 toe2:0.0 | rect 0  floor -0.03 toe | heel2:0.0 toe2:0.0
+0.10 | -11.2,54.0 | -10.8,58.6 | heel,toe,heel2,toe2 | [-14.0..0.0] | 0.0 | heel:0.2 toe:0.0 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.15 | -11.3,54.0 | -10.7,58.6 | heel,toe,heel2,toe2 | [-14.0..0.0] | 0.0 | heel:0.4 toe:0.2 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.20 | -11.4,54.0 | -10.7,58.6 | heel,toe,heel2,toe2 | [-14.0..0.0] | 0.0 | heel:0.7 toe:0.4 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.25 | -11.5,54.0 | -10.6,58.6 | heel,toe,heel2,toe2 | [-14.0..0.0] | 0.0 | heel:1.1 toe:0.7 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.30 | -11.7,54.0 | -10.6,58.6 | toe,heel2,toe2 | [-14.0..0.0] | 0.0 | heel:1.6 toe:1.1 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.35 | -11.8,54.0 | -10.6,58.7 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:2.2 toe:1.6 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.40 | -11.9,54.0 | -10.5,58.7 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:2.8 toe:2.1 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.45 | -12.0,54.0 | -10.5,58.8 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:3.5 toe:2.8 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.50 | -12.1,54.0 | -10.5,58.8 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:4.3 toe:3.5 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.55 | -12.2,54.0 | -10.4,58.9 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:5.2 toe:4.3 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.60 | -12.3,54.0 | -10.4,59.0 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:6.2 toe:5.1 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.65 | -12.4,54.0 | -10.4,59.0 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:7.2 toe:6.1 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.70 | -12.5,54.0 | -10.4,59.1 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:8.3 toe:7.1 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.75 | -12.6,53.9 | -10.3,59.2 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:9.4 toe:8.2 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.80 | -12.7,53.9 | -10.3,59.3 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:10.7 toe:9.3 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.85 | -12.9,53.9 | -10.3,59.4 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:12.0 toe:10.5 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.90 | -13.0,53.9 | -10.3,59.5 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:13.3 toe:11.8 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+0.95 | -13.1,53.9 | -10.3,59.6 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:14.8 toe:13.1 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+1.00 | -13.2,53.9 | -10.3,59.7 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:16.2 toe:14.5 heel2:0.0 toe2:0.0 | rect 0  floor 0  | heel2:0.0 toe2:0.0
+## mid -> end; kontakt start: {"heel2":0,"toe2":0} koniec: {"heel":0.03,"toe":0.03,"toe2":0}
+k    | hip(x,y) | COM(x,y) | kontakty (wys.) | podpora x[min..max] | COM poza podporą | wolne stopy wys. | przenikanie | ślizg kontaktów obu klatek
+0.00 | -13.2,53.9 | -10.3,59.7 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:16.2 toe:14.5 heel2:0.0 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.05 | -10.4,54.6 | -7.6,60.4 | heel2,toe2 | [-14.0..0.0] | 0.0 | heel:17.2 toe:15.6 heel2:1.0 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.10 | -7.6,55.0 | -4.9,60.9 | toe2 | [0.0..0.0] | -4.9 | heel:17.9 toe:16.4 heel2:1.9 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.15 | -4.8,55.2 | -2.2,61.1 | toe2 | [0.0..0.0] | -2.2 | heel:18.4 toe:17.0 heel2:2.9 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.20 | -2.0,55.2 | 0.5,61.2 | toe2 | [0.0..0.0] | 0.5 | heel:18.7 toe:17.3 heel2:3.9 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.25 | 0.8,54.9 | 3.2,61.0 | toe2 | [0.0..0.0] | 3.2 | heel:18.8 toe:17.5 heel2:4.8 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.30 | 3.5,54.4 | 5.8,60.6 | toe2 | [0.0..0.0] | 5.8 | heel:18.6 toe:17.4 heel2:5.7 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.35 | 6.2,53.7 | 8.3,60.0 | toe2 | [0.0..0.0] | 8.3 | heel:18.2 toe:17.1 heel2:6.6 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.40 | 8.7,52.8 | 10.8,59.2 | toe2 | [0.0..0.0] | 10.8 | heel:17.7 toe:16.7 heel2:7.4 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.45 | 11.2,51.7 | 13.2,58.2 | toe2 | [0.0..0.0] | 13.2 | heel:16.9 toe:16.0 heel2:8.2 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.50 | 13.5,50.4 | 15.4,57.0 | toe2 | [0.0..0.0] | 15.4 | heel:16.0 toe:15.2 heel2:9.0 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.55 | 15.7,48.9 | 17.6,55.6 | toe2 | [0.0..0.0] | 17.6 | heel:14.9 toe:14.1 heel2:9.7 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.60 | 17.8,47.2 | 19.5,54.1 | toe2 | [0.0..0.0] | 19.5 | heel:13.7 toe:13.0 heel2:10.4 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.65 | 19.7,45.4 | 21.3,52.4 | toe2 | [0.0..0.0] | 21.3 | heel:12.3 toe:11.7 heel2:11.0 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.70 | 21.4,43.5 | 23.0,50.6 | toe2 | [0.0..0.0] | 23.0 | heel:10.8 toe:10.2 heel2:11.6 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.75 | 22.9,41.4 | 24.4,48.7 | toe2 | [0.0..0.0] | 24.4 | heel:9.1 toe:8.7 heel2:12.1 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.80 | 24.2,39.2 | 25.7,46.7 | toe2 | [0.0..0.0] | 25.7 | heel:7.4 toe:7.1 heel2:12.6 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.85 | 25.4,37.0 | 26.8,44.7 | toe2 | [0.0..0.0] | 26.8 | heel:5.6 toe:5.4 heel2:13.0 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.90 | 26.3,34.7 | 27.6,42.5 | toe2 | [0.0..0.0] | 27.6 | heel:3.8 toe:3.6 heel2:13.3 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+0.95 | 27.0,32.4 | 28.3,40.3 | toe2 | [0.0..0.0] | 28.3 | heel:1.9 toe:1.8 heel2:13.6 toe2:0.0 | rect 0  floor 0  | toe2:0.0
+1.00 | 27.5,30.0 | 28.8,38.1 | heel,toe,toe2 | [0.0..50.6] | 0.0 | heel:0.0 toe:0.0 heel2:13.8 toe2:0.0 | rect 0  floor 0  | toe2:0.0

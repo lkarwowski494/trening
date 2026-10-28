@@ -1,0 +1,24 @@
+start              head(-3.1,92.8) shoulder(-4.6,81.9) hip(-8.7,52.2) knee(16.2,49.9) ankle(1.0,30.0) heel(-2.0,26.0) toe(12.0,26.0) knee2(-6.5,27.3) ankle2(-15.6,4.0) heel2(-18.6,0.0) toe2(-4.6,0.0) elbow(-7.1,64.1) hand(-9.8,44.3) hand2(-9.8,44.3)
+   angles {"hip":92.4,"knee":122,"sh":0,"el":0,"ankle":37.4,"hip2":12.9,"knee2":26.4,"sh2":0,"el2":0,"ankle2":21.3} t=82.2
+start->mid 0.25    head(0.6,97.9) shoulder(-1.9,87.2) hip(-8.9,58.1) knee(15.0,50.7) ankle(1.0,30.0) heel(-2.0,26.0) toe(12.0,26.0) knee2(-3.2,33.7) ankle2(-14.6,11.5) heel2(-18.8,8.8) toe2(-5.7,3.8) elbow(-6.1,69.7) hand(-10.8,50.3) hand2(-10.8,50.3)
+   angles {"hip":86.4,"knee":106.9,"sh":0,"el":0,"ankle":34,"hip2":26.7,"knee2":40.4,"sh2":0,"el2":0,"ankle2":6.4} t=76.5
+start->mid 0.5     head(5.2,102.2) shoulder(1.6,91.9) hip(-8.2,63.5) knee(13.7,51.5) ankle(1.0,30.0) heel(-2.0,26.0) toe(12.0,26.0) knee2(0.9,40.2) ankle2(-12.7,19.3) heel2(-17.6,18.3) toe2(-7.1,9.0) elbow(-4.3,74.9) hand(-10.9,56.0) hand2(-10.9,56.0)
+   angles {"hip":80.5,"knee":91.9,"sh":0,"el":0,"ankle":30.5,"hip2":40.6,"knee2":54.4,"sh2":0,"el2":0,"ankle2":-8.5} t=70.9
+start->mid 0.75    head(10.5,105.6) shoulder(5.9,95.6) hip(-6.7,68.4) knee(12.4,52.3) ankle(1.0,30.0) heel(-2.0,26.0) toe(12.0,26.0) knee2(5.7,46.7) ankle2(-10.0,27.2) heel2(-15.0,28.0) toe2(-8.4,15.6) elbow(-1.6,79.3) hand(-10.0,61.2) hand2(-10.0,61.2)
+   angles {"hip":74.6,"knee":76.9,"sh":0,"el":0,"ankle":27.1,"hip2":54.4,"knee2":68.4,"sh2":0,"el2":0,"ankle2":-23.4} t=65.2
+mid                head(16.4,107.9) shoulder(10.8,98.4) hip(-4.4,72.6) knee(11.0,52.9) ankle(1.0,30.0) heel(-2.0,26.0) toe(12.0,26.0) knee2(10.9,52.8) ankle2(-6.7,35.0) heel2(-11.0,37.5) toe2(-9.3,23.6) elbow(1.7,82.9) hand(-8.4,65.7) hand2(-8.4,65.7)
+   angles {"hip":68.6,"knee":61.8,"sh":0,"el":0,"ankle":23.7,"hip2":68.2,"knee2":82.4,"sh2":0,"el2":0,"ankle2":-38.3} t=59.5
+mid->end 0.25      head(12.6,113.5) shoulder(8.3,103.4) hip(-3.3,75.8) knee(8.6,53.8) ankle(1.0,30.0) heel(-2.0,26.0) toe(12.0,26.0) knee2(13.8,57.6) ankle2(-2.6,38.7) heel2(-7.4,39.9) toe2(-2.0,27.0) elbow(1.3,86.8) hand(-6.4,68.4) hand2(-6.4,68.4)
+   angles {"hip":51.4,"knee":46.4,"sh":0,"el":0,"ankle":17.8,"hip2":66.1,"knee2":84.3,"sh2":0,"el2":0,"ankle2":-26.2} t=67.1
+mid->end 0.5       head(8.8,117.7) shoulder(5.9,107.0) hip(-2.0,78.1) knee(6.1,54.5) ankle(1.0,30.0) heel(-2.0,26.0) toe(12.0,26.0) knee2(16.8,61.6) ankle2(1.6,41.8) heel2(-3.4,41.6) toe2(5.3,30.7) elbow(1.1,89.7) hand(-4.1,70.4) hand2(-4.1,70.4)
+   angles {"hip":34.3,"knee":30.9,"sh":0,"el":0,"ankle":11.8,"hip2":64.1,"knee2":86.2,"sh2":0,"el2":0,"ankle2":-14.2} t=74.8
+mid->end 0.75      head(4.9,120.2) shoulder(3.4,109.3) hip(-0.6,79.5) knee(3.6,54.9) ankle(1.0,30.0) heel(-2.0,26.0) toe(12.0,26.0) knee2(19.8,65.0) ankle2(5.9,44.2) heel2(1.1,42.7) toe2(12.5,34.5) elbow(1.0,91.4) hand(-1.6,71.6) hand2(-1.6,71.6)
+   angles {"hip":17.1,"knee":15.4,"sh":0,"el":0,"ankle":5.9,"hip2":62.1,"knee2":88.1,"sh2":0,"el2":0,"ankle2":-2.1} t=82.4
+end                head(1.0,121.0) shoulder(1.0,110.0) hip(1.0,80.0) knee(1.0,55.0) ankle(1.0,30.0) heel(-2.0,26.0) toe(12.0,26.0) knee2(22.7,67.5) ankle2(10.2,45.8) heel2(6.0,43.1) toe2(19.1,38.3) elbow(1.0,92.0) hand(1.0,72.0) hand2(1.0,72.0)
+   angles {"hip":0,"knee":0,"sh":0,"el":0,"ankle":0,"hip2":60,"knee2":90,"sh2":0,"el2":0,"ankle2":10} t=90.0
+check start stepup.move low true 0.00
+check start lunge.torso horiz true 82.20
+check mid stepup.move low true 0.00
+check end stepup.move joint true 0.00
+check end lunge.torso horiz true 90.00
+anchor toe lift undefined level undefined props [{"k":"rect","x":-2,"y":0,"w":34,"h":26},{"k":"db","at":"hand"},{"k":"db","at":"hand2"}]

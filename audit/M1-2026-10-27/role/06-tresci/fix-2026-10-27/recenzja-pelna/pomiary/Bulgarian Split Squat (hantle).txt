@@ -1,0 +1,47 @@
+# Bulgarian Split Squat (hantle) anchor=toe level=- lift=false floor=true frames=start/mid/end
+## start -> mid; kontakt start: {"heel":0,"toe":0} koniec: {"heel":0,"toe":0}
+k    | hip(x,y) | COM(x,y) | kontakty (wys.) | podpora x[min..max] | COM poza podporą | wolne stopy wys. | przenikanie | ślizg kontaktów obu klatek
+0.00 | -27.2,51.1 | -26.6,56.9 | heel,toe | [-14.0..0.0] | -12.6 | heel:0.0 toe:0.0 heel2:8.9 toe2:2.1 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.05 | -27.6,50.9 | -26.9,56.8 | heel,toe | [-14.0..0.0] | -12.9 | heel:0.0 toe:0.0 heel2:9.1 toe2:2.3 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.10 | -28.0,50.6 | -27.2,56.6 | heel,toe | [-14.0..0.0] | -13.2 | heel:0.0 toe:0.0 heel2:9.2 toe2:2.4 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.15 | -28.4,50.3 | -27.4,56.3 | heel,toe | [-14.0..0.0] | -13.4 | heel:0.0 toe:0.0 heel2:9.4 toe2:2.5 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.20 | -28.8,50.0 | -27.7,56.1 | heel,toe | [-14.0..0.0] | -13.7 | heel:0.0 toe:0.0 heel2:9.5 toe2:2.6 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.25 | -29.1,49.7 | -28.0,55.8 | heel,toe | [-14.0..0.0] | -14.0 | heel:0.0 toe:0.0 heel2:9.6 toe2:2.7 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.30 | -29.5,49.4 | -28.3,55.6 | heel,toe | [-14.0..0.0] | -14.3 | heel:0.0 toe:0.0 heel2:9.7 toe2:2.8 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.35 | -29.8,49.0 | -28.5,55.3 | heel,toe | [-14.0..0.0] | -14.5 | heel:0.0 toe:0.0 heel2:9.8 toe2:2.9 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.40 | -30.1,48.7 | -28.7,55.0 | heel,toe | [-14.0..0.0] | -14.7 | heel:0.0 toe:0.0 heel2:9.8 toe2:2.9 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.45 | -30.5,48.3 | -29.0,54.6 | heel,toe | [-14.0..0.0] | -15.0 | heel:0.0 toe:0.0 heel2:9.9 toe2:2.9 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.50 | -30.8,47.9 | -29.2,54.3 | heel,toe | [-14.0..0.0] | -15.2 | heel:0.0 toe:0.0 heel2:9.9 toe2:3.0 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.55 | -31.1,47.5 | -29.4,54.0 | heel,toe | [-14.0..0.0] | -15.4 | heel:0.0 toe:0.0 heel2:10.0 toe2:3.0 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.60 | -31.3,47.0 | -29.6,53.6 | heel,toe | [-14.0..0.0] | -15.6 | heel:0.0 toe:0.0 heel2:10.0 toe2:3.0 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.65 | -31.6,46.6 | -29.8,53.2 | heel,toe | [-14.0..0.0] | -15.8 | heel:0.0 toe:0.0 heel2:9.9 toe2:2.9 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.70 | -31.8,46.1 | -29.9,52.8 | heel,toe | [-14.0..0.0] | -15.9 | heel:0.0 toe:0.0 heel2:9.9 toe2:2.9 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.75 | -32.1,45.6 | -30.1,52.4 | heel,toe | [-14.0..0.0] | -16.1 | heel:0.0 toe:0.0 heel2:9.9 toe2:2.8 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.80 | -32.3,45.1 | -30.2,52.0 | heel,toe | [-14.0..0.0] | -16.2 | heel:0.0 toe:0.0 heel2:9.8 toe2:2.8 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.85 | -32.5,44.6 | -30.4,51.6 | heel,toe | [-14.0..0.0] | -16.4 | heel:0.0 toe:0.0 heel2:9.8 toe2:2.7 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.90 | -32.7,44.1 | -30.5,51.1 | heel,toe | [-14.0..0.0] | -16.5 | heel:0.0 toe:0.0 heel2:9.7 toe2:2.6 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.95 | -32.9,43.5 | -30.6,50.6 | heel,toe | [-14.0..0.0] | -16.6 | heel:0.0 toe:0.0 heel2:9.6 toe2:2.5 | rect 0  floor 0  | heel:0.0 toe:0.0
+1.00 | -33.0,42.9 | -30.7,50.2 | heel,toe | [-14.0..0.0] | -16.7 | heel:0.0 toe:0.0 heel2:9.5 toe2:2.4 | rect 0  floor 0  | heel:0.0 toe:0.0
+## mid -> end; kontakt start: {"heel":0,"toe":0} koniec: {"heel":0,"toe":0}
+k    | hip(x,y) | COM(x,y) | kontakty (wys.) | podpora x[min..max] | COM poza podporą | wolne stopy wys. | przenikanie | ślizg kontaktów obu klatek
+0.00 | -33.0,42.9 | -30.7,50.2 | heel,toe | [-14.0..0.0] | -16.7 | heel:0.0 toe:0.0 heel2:9.5 toe2:2.4 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.05 | -33.2,42.4 | -30.9,49.7 | heel,toe | [-14.0..0.0] | -16.9 | heel:0.0 toe:0.0 heel2:9.6 toe2:2.4 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.10 | -33.4,41.7 | -31.1,49.1 | heel,toe | [-14.0..0.0] | -17.1 | heel:0.0 toe:0.0 heel2:9.6 toe2:2.5 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.15 | -33.5,41.1 | -31.2,48.6 | heel,toe | [-14.0..0.0] | -17.2 | heel:0.0 toe:0.0 heel2:9.7 toe2:2.6 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.20 | -33.6,40.5 | -31.4,48.0 | heel,toe | [-14.0..0.0] | -17.4 | heel:0.0 toe:0.0 heel2:9.7 toe2:2.6 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.25 | -33.7,39.9 | -31.5,47.5 | heel,toe | [-14.0..0.0] | -17.5 | heel:0.0 toe:0.0 heel2:9.7 toe2:2.7 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.30 | -33.8,39.2 | -31.6,46.9 | heel,toe | [-14.0..0.0] | -17.6 | heel:0.0 toe:0.0 heel2:9.8 toe2:2.7 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.35 | -33.9,38.5 | -31.8,46.4 | heel,toe | [-14.0..0.0] | -17.8 | heel:0.0 toe:0.0 heel2:9.8 toe2:2.8 | rect 0  floor 0  | heel:0.0 toe:0.0
+0.40 | -33.9,37.9 | -31.8,45.8 | heel,toe | [-14.0..0.0] | -17.8 | heel:0.0 toe:0.0 heel2:9.8 toe2:2.8 | rect 0.27 knee2-ankle2@0.65 floor 0  | heel:0.0 toe:0.0
+0.45 | -34.0,37.2 | -31.9,45.2 | heel,toe | [-14.0..0.0] | -17.9 | heel:0.0 toe:0.0 heel2:9.8 toe2:2.8 | rect 0.65 knee2-ankle2@0.65 floor 0  | heel:0.0 toe:0.0
+0.50 | -34.0,36.5 | -32.0,44.6 | heel,toe | [-14.0..0.0] | -18.0 | heel:0.0 toe:0.0 heel2:9.8 toe2:2.8 | rect 1 knee2-ankle2@0.65 floor 0  | heel:0.0 toe:0.0
+0.55 | -34.0,35.8 | -32.0,44.0 | heel,toe | [-14.0..0.0] | -18.0 | heel:0.0 toe:0.0 heel2:9.8 toe2:2.8 | rect 1.31 knee2-ankle2@0.65 floor 0  | heel:0.0 toe:0.0
+0.60 | -33.9,35.1 | -32.0,43.4 | heel,toe | [-14.0..0.0] | -18.0 | heel:0.0 toe:0.0 heel2:9.7 toe2:2.8 | rect 1.59 knee2-ankle2@0.65 floor 0  | heel:0.0 toe:0.0
+0.65 | -33.9,34.4 | -32.0,42.8 | heel,toe | [-14.0..0.0] | -18.0 | heel:0.0 toe:0.0 heel2:9.7 toe2:2.8 | rect 1.83 knee2-ankle2@0.65 floor 0  | heel:0.0 toe:0.0
+0.70 | -33.8,33.7 | -32.0,42.2 | heel,toe | [-14.0..0.0] | -18.0 | heel:0.0 toe:0.0 heel2:9.6 toe2:2.7 | rect 1.7 knee2-ankle2@0.65 floor 0  | heel:0.0 toe:0.0
+0.75 | -33.7,32.9 | -31.9,41.6 | heel,toe | [-14.0..0.0] | -17.9 | heel:0.0 toe:0.0 heel2:9.6 toe2:2.7 | rect 1.54 knee2-ankle2@0.70 floor 0  | heel:0.0 toe:0.0
+0.80 | -33.6,32.2 | -31.9,41.0 | heel,toe | [-14.0..0.0] | -17.9 | heel:0.0 toe:0.0 heel2:9.5 toe2:2.6 | rect 1.79 knee2-ankle2@0.70 floor 0  | heel:0.0 toe:0.0
+0.85 | -33.5,31.5 | -31.8,40.3 | heel,toe | [-14.0..0.0] | -17.8 | heel:0.0 toe:0.0 heel2:9.4 toe2:2.5 | rect 1.97 knee2-ankle2@0.70 floor 0  | heel:0.0 toe:0.0
+0.90 | -33.3,30.7 | -31.7,39.7 | heel,toe | [-14.0..0.0] | -17.7 | heel:0.0 toe:0.0 heel2:9.3 toe2:2.4 | rect 1.72 knee2-ankle2@0.70 floor 0  | heel:0.0 toe:0.0
+0.95 | -33.1,30.0 | -31.6,39.1 | heel,toe | [-14.0..0.0] | -17.6 | heel:0.0 toe:0.0 heel2:9.1 toe2:2.3 | rect 1.46 knee2-ankle2@0.70 floor 0  | heel:0.0 toe:0.0
+1.00 | -32.9,29.2 | -31.4,38.5 | heel,toe | [-14.0..0.0] | -17.4 | heel:0.0 toe:0.0 heel2:9.0 toe2:2.2 | rect 1.65 knee2-ankle2@0.75 floor 0  | heel:0.0 toe:0.0

@@ -1,0 +1,33 @@
+Pull Up COM x [-2.3..4.7] rozrzut 7.0; biodro x [-2.4..4.7]; min odl. obrysu głowy od środka drążka 5.4
+ start+0.00: COMx 4.7 hipx 4.7 headx -1.7 heady -24.4
+ start+0.25: COMx 3.2 hipx 2.9 headx -4.7 heady -23.2
+ start+0.50: COMx 2.3 hipx 1.9 headx -7.0 heady -19.9
+ start+0.75: COMx 2.6 hipx 2.0 headx -8.1 heady -15.1
+ start+1.00: COMx 4.3 hipx 3.7 headx -7.6 heady -9.2
+ mid+0.00: COMx 4.3 hipx 3.7 headx -7.6 heady -9.2
+ mid+0.25: COMx 0.3 hipx -0.2 headx -11.1 heady -5.1
+ mid+0.50: COMx -1.8 hipx -2.2 headx -12.8 heady -0.5
+ mid+0.75: COMx -2.3 hipx -2.3 headx -12.5 heady 3.6
+ mid+1.00: COMx -1.5 hipx -1.0 headx -10.9 heady 6.7
+Chin Up COM x [-3.2..5.4] rozrzut 8.6; biodro x [-3.5..4.7]; min odl. obrysu głowy od środka drążka 5.8
+ start+0.00: COMx 4.7 hipx 4.7 headx -1.7 heady -27.1
+ start+0.25: COMx 3.3 hipx 3.0 headx -4.5 heady -25.3
+ start+0.50: COMx 2.8 hipx 2.2 headx -6.3 heady -21.6
+ start+0.75: COMx 3.5 hipx 2.8 headx -6.8 heady -16.6
+ start+1.00: COMx 5.4 hipx 4.7 headx -5.9 heady -10.8
+ mid+0.00: COMx 5.4 hipx 4.7 headx -5.9 heady -10.8
+ mid+0.25: COMx 1.0 hipx 0.2 headx -10.2 heady -7.3
+ mid+0.50: COMx -2.0 hipx -2.6 headx -12.8 heady -2.8
+ mid+0.75: COMx -3.2 hipx -3.5 headx -13.6 heady 2.0
+ mid+1.00: COMx -2.6 hipx -2.5 headx -12.4 heady 6.4
+Neutral Grip Pull Up COM x [-3.2..5.4] rozrzut 8.6; biodro x [-3.5..4.7]; min odl. obrysu głowy od środka drążka 5.8
+ start+0.00: COMx 4.7 hipx 4.7 headx -1.7 heady -27.1
+ start+0.25: COMx 3.3 hipx 3.0 headx -4.5 heady -25.3
+ start+0.50: COMx 2.8 hipx 2.2 headx -6.3 heady -21.6
+ start+0.75: COMx 3.5 hipx 2.8 headx -6.8 heady -16.6
+ start+1.00: COMx 5.4 hipx 4.7 headx -5.9 heady -10.8
+ mid+0.00: COMx 5.4 hipx 4.7 headx -5.9 heady -10.8
+ mid+0.25: COMx 1.0 hipx 0.2 headx -10.2 heady -7.3
+ mid+0.50: COMx -2.0 hipx -2.6 headx -12.8 heady -2.8
+ mid+0.75: COMx -3.2 hipx -3.5 headx -13.6 heady 2.0
+ mid+1.00: COMx -2.6 hipx -2.5 headx -12.4 heady 6.4

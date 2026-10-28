@@ -1,0 +1,24 @@
+# Leg Press anchor=hip level=- lift=false floor=true frames=start/end
+## start -> end; kontakt start: {} koniec: {}
+k    | hip(x,y) | COM(x,y) | kontakty (wys.) | podpora x[min..max] | COM poza podporą | wolne stopy wys. | przenikanie | ślizg kontaktów obu klatek
+0.00 | 0.0,30.0 | -2.3,41.5 |  | [-..-] | brak kontaktu | heel:49.7 toe:62.8 heel2:49.7 toe2:62.8 | rect 0  floor 0  | 
+0.05 | 0.0,30.0 | -2.4,41.7 |  | [-..-] | brak kontaktu | heel:49.7 toe:62.9 heel2:49.7 toe2:62.9 | rect 0  floor 0  | 
+0.10 | 0.0,30.0 | -2.5,41.8 |  | [-..-] | brak kontaktu | heel:49.7 toe:62.9 heel2:49.7 toe2:62.9 | rect 0  floor 0  | 
+0.15 | 0.0,30.0 | -2.6,41.9 |  | [-..-] | brak kontaktu | heel:49.7 toe:62.9 heel2:49.7 toe2:62.9 | rect 0  floor 0  | 
+0.20 | 0.0,30.0 | -2.7,42.0 |  | [-..-] | brak kontaktu | heel:49.7 toe:62.8 heel2:49.7 toe2:62.8 | rect 0  floor 0  | 
+0.25 | 0.0,30.0 | -2.8,42.1 |  | [-..-] | brak kontaktu | heel:49.6 toe:62.7 heel2:49.6 toe2:62.7 | rect 0  floor 0  | 
+0.30 | 0.0,30.0 | -2.9,42.2 |  | [-..-] | brak kontaktu | heel:49.5 toe:62.6 heel2:49.5 toe2:62.6 | rect 0  floor 0  | 
+0.35 | 0.0,30.0 | -3.0,42.3 |  | [-..-] | brak kontaktu | heel:49.4 toe:62.5 heel2:49.4 toe2:62.5 | rect 0  floor 0  | 
+0.40 | 0.0,30.0 | -3.2,42.4 |  | [-..-] | brak kontaktu | heel:49.2 toe:62.4 heel2:49.2 toe2:62.4 | rect 0  floor 0  | 
+0.45 | 0.0,30.0 | -3.3,42.5 |  | [-..-] | brak kontaktu | heel:49.0 toe:62.2 heel2:49.0 toe2:62.2 | rect 0  floor 0  | 
+0.50 | 0.0,30.0 | -3.5,42.6 |  | [-..-] | brak kontaktu | heel:48.8 toe:61.9 heel2:48.8 toe2:61.9 | rect 0  floor 0  | 
+0.55 | 0.0,30.0 | -3.7,42.6 |  | [-..-] | brak kontaktu | heel:48.5 toe:61.7 heel2:48.5 toe2:61.7 | rect 0  floor 0  | 
+0.60 | 0.0,30.0 | -3.8,42.7 |  | [-..-] | brak kontaktu | heel:48.3 toe:61.4 heel2:48.3 toe2:61.4 | rect 0  floor 0  | 
+0.65 | 0.0,30.0 | -4.0,42.7 |  | [-..-] | brak kontaktu | heel:48.0 toe:61.1 heel2:48.0 toe2:61.1 | rect 0  floor 0  | 
+0.70 | 0.0,30.0 | -4.2,42.8 |  | [-..-] | brak kontaktu | heel:47.6 toe:60.8 heel2:47.6 toe2:60.8 | rect 0  floor 0  | 
+0.75 | 0.0,30.0 | -4.4,42.8 |  | [-..-] | brak kontaktu | heel:47.3 toe:60.4 heel2:47.3 toe2:60.4 | rect 0  floor 0  | 
+0.80 | 0.0,30.0 | -4.6,42.9 |  | [-..-] | brak kontaktu | heel:46.9 toe:60.0 heel2:46.9 toe2:60.0 | rect 0  floor 0  | 
+0.85 | 0.0,30.0 | -4.8,42.9 |  | [-..-] | brak kontaktu | heel:46.4 toe:59.6 heel2:46.4 toe2:59.6 | rect 0  floor 0  | 
+0.90 | 0.0,30.0 | -5.0,42.9 |  | [-..-] | brak kontaktu | heel:46.0 toe:59.2 heel2:46.0 toe2:59.2 | rect 0  floor 0  | 
+0.95 | 0.0,30.0 | -5.2,42.9 |  | [-..-] | brak kontaktu | heel:45.5 toe:58.7 heel2:45.5 toe2:58.7 | rect 0  floor 0  | 
+1.00 | 0.0,30.0 | -5.4,43.0 |  | [-..-] | brak kontaktu | heel:45.0 toe:58.2 heel2:45.0 toe2:58.2 | rect 0  floor 0  | 

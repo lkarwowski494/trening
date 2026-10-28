@@ -1,0 +1,2 @@
+start->mid min odległość osi nogi zakrocznej od skrzyni 2.56 j. przy k 0 ankle2-toe2 pkt -4.6 0.0 | minus pół grubości kreski 2,25 = 0.31
+mid->end min odległość osi nogi zakrocznej od skrzyni 0.92 j. przy k 0.2375 heel2-toe2 pkt -2.4 26.8 | minus pół grubości kreski 2,25 = -1.33

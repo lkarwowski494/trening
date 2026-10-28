@@ -1,0 +1,7 @@
+start            head(24.4,79.1) shoulder(17.2,70.8) hip(-2.5,48.2) knee(-18.9,29.3) ankle(-35.3,10.4) toe(-30.0,0.0) elbow(16.5,52.8) hand(15.8,32.8)
+    {"hip":0,"knee":0,"sh":39,"el":0,"ankle":-2,"hip2":0,"knee2":0,"sh2":39,"el2":0,"ankle2":-2} t=49
+mid              head(42.3,63.7) shoulder(33.3,57.4) hip(8.7,40.2) knee(-11.8,25.8) ankle(-32.2,11.5) toe(-30.0,0.0) elbow(15.8,53.3) hand(17.5,33.4)
+    {"hip":0,"knee":0,"sh":-22,"el":82,"ankle":-4,"hip2":0,"knee2":0,"sh2":-22,"el2":82,"ankle2":-4} t=35
+end              head(54.2,47.3) shoulder(44.0,43.0) hip(16.4,31.2) knee(-6.6,21.5) ankle(-29.6,11.7) toe(-30.0,0.0) elbow(27.2,49.4) hand(15.8,33.0)
+    {"hip":0,"knee":0,"sh":-44,"el":76,"ankle":-5,"hip2":0,"knee2":0,"sh2":-44,"el2":76,"ankle2":-5} t=23
+[{"k":"rect","x":8,"y":0,"w":16,"h":30}]

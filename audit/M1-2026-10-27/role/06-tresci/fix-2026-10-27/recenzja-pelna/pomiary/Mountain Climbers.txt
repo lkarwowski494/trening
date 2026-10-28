@@ -1,0 +1,24 @@
+# Mountain Climbers anchor=hand level=- lift=false floor=true frames=start/end
+## start -> end; kontakt start: {"toe2":0.45,"hand":1.5,"hand2":1.5} koniec: {"toe":0.45,"hand":1.5,"hand2":1.5}
+k    | hip(x,y) | COM(x,y) | kontakty (wys.) | podpora x[min..max] | COM poza podporą | wolne stopy wys. | przenikanie | ślizg kontaktów obu klatek
+0.00 | -29.5,29.2 | -21.3,28.5 | toe2,hand,hand2 | [-77.5..0.0] | 0.0 | heel:21.4 toe:7.4 heel2:14.0 toe2:0.5 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.05 | -29.5,29.2 | -21.4,28.4 | toe2,hand,hand2 | [-77.6..0.0] | 0.0 | heel:20.6 toe:6.6 heel2:13.9 toe2:0.3 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.10 | -29.5,29.2 | -21.5,28.3 | toe2,hand,hand2 | [-77.6..0.0] | 0.0 | heel:19.8 toe:5.9 heel2:13.9 toe2:0.3 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.15 | -29.5,29.2 | -21.6,28.2 | toe2,hand,hand2 | [-77.4..0.0] | 0.0 | heel:19.1 toe:5.1 heel2:13.9 toe2:0.2 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.20 | -29.5,29.2 | -21.7,28.2 | toe2,hand,hand2 | [-77.1..0.0] | 0.0 | heel:18.4 toe:4.4 heel2:14.0 toe2:0.2 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.25 | -29.5,29.2 | -21.8,28.1 | toe2,hand,hand2 | [-76.7..0.0] | 0.0 | heel:17.8 toe:3.8 heel2:14.1 toe2:0.3 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.30 | -29.5,29.2 | -21.8,28.1 | toe2,hand,hand2 | [-76.2..0.0] | 0.0 | heel:17.2 toe:3.2 heel2:14.2 toe2:0.4 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.35 | -29.5,29.2 | -21.9,28.0 | toe2,hand,hand2 | [-75.6..0.0] | 0.0 | heel:16.7 toe:2.7 heel2:14.5 toe2:0.6 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.40 | -29.5,29.2 | -21.9,28.0 | toe2,hand,hand2 | [-74.9..0.0] | 0.0 | heel:16.2 toe:2.2 heel2:14.7 toe2:0.8 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.45 | -29.5,29.2 | -22.0,28.0 | toe2,hand,hand2 | [-74.1..0.0] | 0.0 | heel:15.8 toe:1.8 heel2:15.0 toe2:1.1 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.50 | -29.5,29.2 | -22.0,28.0 | toe,toe2,hand,hand2 | [-73.2..0.0] | 0.0 | heel:15.4 toe:1.4 heel2:15.4 toe2:1.4 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.55 | -29.5,29.2 | -22.0,28.0 | toe,hand,hand2 | [-74.1..0.0] | 0.0 | heel:15.0 toe:1.1 heel2:15.8 toe2:1.8 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.60 | -29.5,29.2 | -21.9,28.0 | toe,hand,hand2 | [-74.9..0.0] | 0.0 | heel:14.7 toe:0.8 heel2:16.2 toe2:2.2 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.65 | -29.5,29.2 | -21.9,28.0 | toe,hand,hand2 | [-75.6..0.0] | 0.0 | heel:14.5 toe:0.6 heel2:16.7 toe2:2.7 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.70 | -29.5,29.2 | -21.8,28.1 | toe,hand,hand2 | [-76.2..0.0] | 0.0 | heel:14.2 toe:0.4 heel2:17.2 toe2:3.2 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.75 | -29.5,29.2 | -21.8,28.1 | toe,hand,hand2 | [-76.7..0.0] | 0.0 | heel:14.1 toe:0.3 heel2:17.8 toe2:3.8 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.80 | -29.5,29.2 | -21.7,28.2 | toe,hand,hand2 | [-77.1..0.0] | 0.0 | heel:14.0 toe:0.2 heel2:18.4 toe2:4.4 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.85 | -29.5,29.2 | -21.6,28.2 | toe,hand,hand2 | [-77.4..0.0] | 0.0 | heel:13.9 toe:0.2 heel2:19.1 toe2:5.1 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.90 | -29.5,29.2 | -21.5,28.3 | toe,hand,hand2 | [-77.6..0.0] | 0.0 | heel:13.9 toe:0.3 heel2:19.8 toe2:5.9 | rect 0  floor 0  | hand:0.0 hand2:0.0
+0.95 | -29.5,29.2 | -21.4,28.4 | toe,hand,hand2 | [-77.6..0.0] | 0.0 | heel:13.9 toe:0.3 heel2:20.6 toe2:6.6 | rect 0  floor 0  | hand:0.0 hand2:0.0
+1.00 | -29.5,29.2 | -21.3,28.5 | toe,hand,hand2 | [-77.5..0.0] | 0.0 | heel:14.0 toe:0.5 heel2:21.4 toe2:7.4 | rect 0  floor 0  | hand:0.0 hand2:0.0

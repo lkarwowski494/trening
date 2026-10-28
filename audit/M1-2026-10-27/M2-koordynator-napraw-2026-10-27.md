@@ -78,3 +78,11 @@ Wszystkie jako subagenci z pełnym promptem roli (assemble.mjs, tryb fix) i pole
   `node <prompts>/tools/assemble.mjs M1-audytor-generalny --tryb reaudit --wyjscie <K> --baza 025a50b96f504ea9d16d573720d1e92dc951a103`
 - Paczka wejściowa: K/plan-napraw.json, ten raport, K/naprawy/, K/role/<rola>/fix-2026-10-27 i fix-2026-10-28
 - Otwarte: 006, 033, 036; decyzje dla właściciela w odpowiedzi porannej; scalenie z main: po reaudycie (rekomendacja)
+
+## Po decyzjach właściciela 28.10.2026 (scalenie do main)
+- Decyzje (docs/18, 28.10.2026): 1a przegląd API Opus (batch msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ; 1 krytyczna poprawiona, 165 średnich/niskich naniesionych, 67 odrzuconych; docs/16) → 006 naprawione (a38ce270, bcb0f2de); 2a Push Press/Pendlay Row → 1.0.1; 3a niezależna próbka → znalazła 5 figur z błędem WYSOKIE → właściciel: poprawić przed 1.0 → Lunges, Walking Lunges, Incline Push Up, Step Up poprawione i zatwierdzone przez niezależną recenzję (Step Up po drugiej poprawce), Reverse Lunge ukryty (1.0.1); reguły podparcia w tests/figury-podparcie.test.ts; 4a hipoteza Androida 8 tygodni po premierze; 5a M2-001 naprawione (dbfa3cd4); 6a M2-003 naprawione (0311996e); 7a M2-002 naprawione (0311996e); 8a check:pochodne (7a0a92e7); 9a eksport figur strony tylko po recenzji — gałąź naprawy/M2-po-decyzjach-eksport-figur od integracja-1-1 (34df69f7, NIE w main, do scalenia z linią 1.1); 10a symbol masy lokalnie w cyrylicy i grece (5ca75778), pierwszy podpis zrzutu; 11a sesja naprawy-1-0 zatrzymana; 12b scalenie do main.
+- Uzgodnienie 1A z DEC-09 a (właściciel): „Masz plan: miesięczny / roczny / dożywotni” (5bbc84ad, recenzja lokalizacji c4434910).
+- Scalone także: naprawy-1-0 (3198fd1, 234f82f), straznik-paczki-skroty (cf5f2287, wariant C).
+- main = 2385e75 (PR #79); tests.yml zielone 40654117335 na 513ea040; E2E zmienionych scenariuszy zielone 40646282170.
+- Lekcje: L-046 (pliki pochodne), L-047 (samoocena figur — propozycja A/B otwarta), L-048 (strażniki słowników — propozycja A/B otwarta).
+- Ponowny audyt: wariant A (właściciel 28.10.2026): 37 zadań + przegląd całej różnicy 025a50b..main.

@@ -1,0 +1,2 @@
+Push Up end shoulder [ '84.7', '12.1' ] sh above surface 12.1 chest approx [ '79.8', '7.0' ] chest above 7.0 sh-hand dx 8.6 elbow [ '68.3', '19.4' ] el flex 137 hand x range 75.2 77.0 hand y range 1.0 1.2
+Incline Push Up end shoulder [ '33.7', '43.8' ] sh above surface 13.8 chest approx [ '31.4', '37.1' ] chest above 7.1 sh-hand dx 8.0 elbow [ '15.9', '46.5' ] el flex 128 hand x range 25.1 28.3 hand y range 29.1 31.2

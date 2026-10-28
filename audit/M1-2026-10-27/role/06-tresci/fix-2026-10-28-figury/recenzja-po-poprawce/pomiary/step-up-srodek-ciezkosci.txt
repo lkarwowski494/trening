@@ -1,0 +1,13 @@
+0.00 rearHeelH 0.0 hip -10.9 COM -8.4 COM+db(27%) -9.0 behind heel(-2): 6.4 7.0
+0.05 rearHeelH 2.8 hip -11.2 COM -8.7 COM+db(27%) -9.3 behind heel(-2): 6.7 7.3
+0.10 rearHeelH 5.6 hip -11.3 COM -8.8 COM+db(27%) -9.4 behind heel(-2): 6.8 7.4
+0.15 rearHeelH 8.4 hip -11.2 COM -8.8 COM+db(27%) -9.4 behind heel(-2): 6.8 7.4
+0.20 rearHeelH 11.3 hip -11.1 COM -8.7 COM+db(27%) -9.3 behind heel(-2): 6.7 7.3
+0.25 rearHeelH 14.1 hip -10.8 COM -8.5 COM+db(27%) -9.1 behind heel(-2): 6.5 7.1
+0.30 rearHeelH 16.9 hip -10.3 COM -8.2 COM+db(27%) -8.8 behind heel(-2): 6.2 6.8
+0.40 rearHeelH 22.5 hip -9.1 COM -7.2 COM+db(27%) -7.7 behind heel(-2): 5.2 5.7
+0.50 rearHeelH 27.8 hip -7.4 COM -5.8 COM+db(27%) -6.3 behind heel(-2): 3.8 4.3
+0.60 rearHeelH 32.8 hip -5.4 COM -4.0 COM+db(27%) -4.5 behind heel(-2): 2.0 2.5
+0.70 rearHeelH 37.4 hip -3.0 COM -2.0 COM+db(27%) -2.4 behind heel(-2): 0.0 0.4
+0.80 rearHeelH 41.6 hip -0.4 COM 0.2 COM+db(27%) -0.1 behind heel(-2): -2.2 -1.9
+1.00 rearHeelH 48.2 hip 5.2 COM 5.0 COM+db(27%) 4.9 behind heel(-2): -7.0 -6.9
