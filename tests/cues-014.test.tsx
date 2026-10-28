@@ -29,7 +29,7 @@ describe('0.14.0 wskazówki: dane', () => {
   test('20 nowych ćwiczeń ma wskazówki, nie jest już „otwartych”; łącznie 102', () => {
     expect(NEW.length).toBe(20);
     for (const k of NEW) { expect([k, !!CUE_DATA.exercises[k], CUE_DATA.open.includes(k)]).toEqual([k, true, false]); expect(cuesFor(lib(k), 'pl')).not.toBeNull(); }
-    expect(Object.keys(CUE_DATA.exercises).length).toBe(102);
+    expect(Object.keys(CUE_DATA.exercises).length + CUE_DATA.hidden.length).toBe(102); /* hidden — karty ukryte po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
   });
   test('otwarte zostają otwarte (powód ≥ 20 znaków, bez wskazówek) — nic spornego nie wdrożono', () => {
     expect(STILL_OPEN.length).toBe(22);

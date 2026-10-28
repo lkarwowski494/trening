@@ -25,9 +25,10 @@ describe('plik runtime lib/figures/data.json = funkcja pełnych danych, bez nazw
   });
   test('figury identyczne z pełnymi danymi poza figurami bez aktualnej recenzji bramki 4 (te są na liście otwartej); granice stawów te same (min/max) bez pola src; brak pola note w rom', () => {
     /* bramka 4 (CLAUDE.md 27.10.2026, DEC-01 b): przepuszczanie po recenzji — szczegóły i strażnik w tests/figury-recenzja.test.tsx */
-    const rec: { v1: Record<string, { werdykt: string }> } = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/figury-recenzja.json'), 'utf8'));
+    const rec: { v1: Record<string, { werdykt: string }>; karty?: Record<string, { werdykt: string }> } = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/figury-recenzja.json'), 'utf8'));
     const hidden = KEYS.filter(k => !(k in FIG_DATA.exercises));
-    for (const k of hidden) expect([k, rec.v1[k]?.werdykt]).toEqual([k, 'ukryta']);
+    /* figura ukryta po recenzji ruchu albo razem z kartą ukrytą po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
+    for (const k of hidden) expect([k, rec.v1[k]?.werdykt === 'ukryta' || rec.karty?.[k]?.werdykt === 'do poprawy']).toEqual([k, true]);
     expect(FIG_DATA.exercises).toEqual(Object.fromEntries(KEYS.filter(k => !hidden.includes(k)).map(k => [k, FIG_FULL.exercises[k]])));
     for (const v of ['side', 'front'] as const) expect(FIG_DATA.rom[v]).toEqual(Object.fromEntries(Object.entries(FIG_FULL.rom[v]).map(([j, r]) => [j, { min: r.min, max: r.max }])));
     expect(FIG_DATA.open).toEqual([...Object.keys(FIG_FULL.open), ...hidden]);

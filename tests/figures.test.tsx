@@ -39,11 +39,11 @@ function posesOf(f: Figure): { p: Pose; P: Points; tag: string }[] {
 describe('dane figur', () => {
   test('każde ćwiczenie ze wskazówkami etapu 1 ma figurę albo powód na liście otwartej; figury tylko dla ćwiczeń ze wskazówkami', () => {
     for (const k of Object.keys(CUE_DATA.exercises)) expect([k, !!FIG_DATA.exercises[k] !== FIG_DATA.open.includes(k)]).toEqual([k, true]);
-    for (const k of [...KEYS, ...FIG_DATA.open]) expect([k, !!CUE_DATA.exercises[k]]).toEqual([k, true]); /* powody braku figury — tests/zrodla-pelne-figury.test.ts */
+    for (const k of [...KEYS, ...FIG_DATA.open]) expect([k, !!CUE_DATA.exercises[k] || CUE_DATA.hidden.includes(k)]).toEqual([k, true]); /* hidden — karta ukryta po recenzji treści (M1-audytor-generalny-038, 28.10.2026), figura razem z nią */ /* powody braku figury — tests/zrodla-pelne-figury.test.ts */
     expect(KEYS.length).toBeGreaterThanOrEqual(60);
   });
   test('najczęstsze wzorce mają figurę (przysiad, martwy ciąg, wyciskania, wiosłowanie, podciąganie, wykrok, hip thrust, uginania, prostowania)', () => {
-    for (const k of ['Back Squat', 'Deadlift (sztanga)', 'Bench Press (sztanga)', 'Overhead Press (sztanga)', 'Bent Over Row (sztanga)', 'Pull Up', 'Lunges (hantle)', 'Hip Thrust (sztanga)', 'Barbell Curl', 'Triceps Pushdown']) expect([k, figureByKey(k) !== null]).toEqual([k, true]);
+    for (const k of ['Back Squat', 'Deadlift (sztanga)', 'Bench Press (sztanga)', 'Overhead Press (sztanga)', 'Bent Over Row (sztanga)', 'Pull Up', 'Bulgarian Split Squat (hantle)', 'Hip Thrust (sztanga)', 'Barbell Curl', 'Triceps Pushdown']) expect([k, figureByKey(k) !== null]).toEqual([k, true]);
   });
   test('każda poza ma 1–3 klatki w kolejności start → (mid) → end i co najmniej jedno odwołanie do zdania wskazówki TEGO ćwiczenia', () => {
     for (const k of KEYS) {
@@ -267,7 +267,7 @@ describe('komponent ExerciseFigure', () => {
   });
   test('Ogranicz ruch włączone → statyczne pozycje obok siebie, bez animacji i bez przycisku pauzy', async () => {
     jest.useFakeTimers(); setReduce(true);
-    render(<ExerciseFigure exercise={lib('Lunges (hantle)')} />); await flush(); /* Push Press — figura ukryta po recenzji bramki 4 (docs/research/figury-recenzja.json) */
+    render(<ExerciseFigure exercise={lib('Step Up')} />); await flush(); /* Push Press — figura ukryta po recenzji bramki 4; Lunges (hantle) — karta ukryta po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
     expect(screen.queryByTestId('exercise-figure-anim')).toBeNull();
     for (const n of ['start', 'mid', 'end']) expect(screen.getByTestId(`exercise-figure-frame-${n}`)).toBeTruthy();
     expect(screen.getByText('W trakcie')).toBeTruthy();

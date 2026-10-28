@@ -453,6 +453,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że rysunek ćwiczenia nie ma zapisu niezależnej recenzji ruchu i treści karty albo zmienił się po recenzji (inny skrót danych), albo recenzja go ukryła (np. Push Press, Pendlay Row)
     - Gdy użytkownik otwiera sekcję „Technika” tego ćwiczenia
     - Wtedy widzi wskazówki, asekurację i stopkę medyczną bez rysunku; rysunek z aktualną recenzją wyświetla się jak dotąd
+  - Scenariusz: Wskazówki techniki tylko po recenzji treści karty (bramka 4; decyzja DEC-10 a, 2026-10-28; zadanie M1-audytor-generalny-038; zapis `docs/research/figury-recenzja.json`, sekcje „karty” i „zestawy”; test `tests/karty-recenzja.test.tsx`)
+    - Zakładając, że karta ćwiczenia ze wskazówkami (własnymi albo ogólnymi wzorca ruchu przy rysunku v2) nie ma zapisu niezależnej recenzji treści z werdyktem „wyświetlana”, zmieniła się po recenzji (inny skrót wskazówek, tekstów polskich albo przypisania zestawu) albo recenzja oznaczyła ją „do poprawy” (np. Hack Squat, Pistol Squat)
+    - Gdy użytkownik otwiera to ćwiczenie
+    - Wtedy nie widzi wskazówek tej karty ani jej rysunku v1 (zestaw ogólny — także bez dopisku „Ogólne wskazówki dla tego ruchu”); karty z aktualną recenzją wyświetlają się jak dotąd
   - Scenariusz: Rysunek ruchu z krokiem nie opada bez podparcia (recenzja niezależna 28.10.2026; decyzja właściciela 28.10.2026 „poprawić przed 1.0”; test `tests/figury-podparcie.test.ts`)
     - Zakładając, że ćwiczenie ma rysunek z krokiem (wykroki, Step Up) albo pompki (w tym z podwyższeniem)
     - Gdy rysunek odtwarza ruch (każda poza pośrednia co 0,05 przejścia)
