@@ -234,7 +234,7 @@ describe('recenzja r2 28.10.2026 — R2-1 i R2-7: zestawy kart', () => {
 describe('karty (badacz 28.10.2026): JM Press i Decline CG Skull Crusher — własne wskazówki o łokciach zamiast „blisko tułowia” (cgbp.elbows przeczyło rysunkowi)', () => {
   const PL: Record<string, string> = require('@/lib/cues/text/pl.json');
   const OGOLNE = require('@/data/zrodla/wskazowki-ogolne.json').wskazowki as Record<string, { zrodla: { adres: string; miejsce: string }[] }>;
-  test('JM Press: jm.elbows, bez cgbp.elbows; Skull Crusher: dcgsk.elbows + skull.upperArm + skull.depth, bez cgbp.elbows; wąskie wyciskanie nadal z cgbp.elbows', () => {
+  test('JM Press: jm.elbows, bez cgbp.elbows; Skull Crusher: tylko dcgsk.elbows (bez skull.upperArm i skull.depth — decyzja 1a, 28.10.2026), bez cgbp.elbows; wąskie wyciskanie nadal z cgbp.elbows', () => {
     const jm = cueSelection('JM Press'); expect([jm.ok.includes('jm.elbows'), jm.ok.includes('cgbp.elbows')]).toEqual([true, false]);
     const sk = cueSelection('Decline Close-Grip Bench To Skull Crusher'); expect(sk.ok).toEqual(['dcgsk.elbows']);
     expect(cueSelection('Close-Grip EZ-Bar Press').ok).toContain('cgbp.elbows');

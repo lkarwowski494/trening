@@ -609,33 +609,39 @@
  "v2": {
   "squat": {
    "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "recenzja ruchu L-042 (rundy 1–2, agent recenzent, 27.10.2026); poprawki potwierdzone testami tests/figury-1-0-recenzja.test.ts",
-   "sha": "fd142e983e89",
+   "data": "2026-10-28",
+   "kto": "audytor — recenzja niezależna ruchu i geometrii figur v2 1.0.1 (bramka 4, L-047, L-050), HEAD 03a7575",
+   "sha": "7383d6d2196e",
    "liczba": 25,
-   "uwagi": "Zapis przeniesiony z L-042 (docs/40-lekcje.md); 06-tresci nie powtarzała recenzji v2 — zakres zadania M1-audytor-generalny-005: figury v1."
+   "uwagi": "Zatwierdzone: zaczepy gum stałe (Squat/Box Squat with Bands), Band Squat — guma przy wewnętrznej krawędzi buta, +0,7 cm od uda (było −3,0). Reszta rodziny bez zmian geometrii od bf18a97 (odciski identyczne); zmiana skrótu w r3 wynika z poszerzenia skrótu o pliki wspólne (R2-6). NISKIE w backlogu 1.0.1 (docs/21): Band Squat łokcie szeroko, Overhead Squat bark 183–198°.",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A) — figury v2 1.0.1, rundy r1–r3 (bf18a97 → 0b2e64e → 03a7575)",
+   "autor": "programista r2/figury-v2",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "rec3 (03a7575): odciski 87 ćwiczeń vs 0b2e64e — 85 identycznych (rodzina squat bez zmian); r2: kadry rec2/png/head-Band-Squat-front.png u 0/0,33/0,6/1, pomiar odstępu gumy od uda i podudzia (rec2/tools/bsq.mjs), zaczepy gum (rec2/tools/band.mjs)"
   },
   "bench_press": {
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "kto": "recenzja niezależna ruchu po naprawie torów (agent recenzent, 28.10.2026)",
-   "sha": "39b505a17e9b",
+   "kto": "audytor — recenzja niezależna ruchu i geometrii figur v2 1.0.1 (bramka 4, L-047, L-050), HEAD 03a7575",
+   "sha": "7417214ebad8",
    "liczba": 30,
-   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A) — ruch po naprawie torów 9883ada",
-   "autor": "koordynator M2 (naprawa torów, 9883ada)",
-   "recenzent": "agent recenzent ruchu (sesja niezależna)",
-   "uwagi": "Obejrzane kadry u 0/0,25/0,5/0,75/1 z boku (3,2×, ślad toru) i z przodu, przed (f5af3be) i po (9883ada): 4 wyciskania na maszynie Smitha (płasko, wąsko, skos dodatni, skos ujemny) — szyna stoi w punkcie dotyku, gryf jedzie pionowo (było: ukos 15–18 cm, szyna z gryfem), na górze ręce proste nad punktem dotyku, dotyk na klatce zgodny z wariantem; 26 pozostałych ćwiczeń rodziny bez zmian (obraz identyczny bajt w bajt ze stanem zrecenzowanym 27.10.2026). Bez uwag blokujących."
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A) — figury v2 1.0.1, rundy r1–r3 (bf18a97 → 0b2e64e → 03a7575)",
+   "autor": "programista r2/figury-v2",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "uwagi": "Zatwierdzone: wąski chwyt ±19 (4 ćw.; przedramię 0,9°/11,5°, kolizje w błędach 14→0), ławka ujemna, Board Press (deska widoczna z góry), Pin Press (stojak wewnątrz talerzy), Band Bench Press (zaczep stały), JM Press (łokcie wysoko: na dole ramię 34° ku stopom, łokieć 22,5 cm nad barkiem, z góry 45° stałe, chwyt ±19 stały, gryf nad szyją; 34° zamiast 0–20° — uproszczenie ze stałego chwytu, zgodne z J1–J4: wysoko, ku stopom, przed gryfem, nad barkami), Decline Close-Grip Bench To Skull Crusher (figura pokazuje tylko fazę prostowania — uproszczenie nazwane w docs/21 i BRD, pełne dwie fazy w 1.1; ramię 0…−3°, łokcie na szerokość barków, chwyt ±20,5 stały, jedna faza na pętlę). NISKIE: BRD nadal „0–20°” dla JM (r3-1), brak informacji w aplikacji o pominiętym wyciskaniu (r3-2), nazwa testu figury-1-0-1-uwagi:237 (r3-3).",
+   "slad": "rec3 (03a7575): odciski 87 ćwiczeń vs 0b2e64e — zmienione tylko JM Press i Skull Crusher; kadry 3× rec3/png (JM bok ze śladem i góra u 0/0,7/1; Skull Crusher bok ze śladem u 0/0,5/1 i góra u 0/1) oraz arkusz czasowy autora figury-v2/po4/czas/slad-0.png (Skull Crusher u co 0,1; miniatury — ocena pętli na pomiarze loop.mjs; czas/slad-1.png nie istnieje); pomiary: JM ramię/łokieć/z dłoni w 21 klatkach (rec3/tools/jm.mjs), ciągłość co Δu 0,0005 (cont.mjs: maks. 0,05 cm), pętla 4 s co 100 ms (loop.mjs: jedno prostowanie, licznik zgodny z kierunkiem), z dłoni stałe (JM ±19, Skull ±20,5); r1/r2: wąski chwyt, ławka ujemna, Board/Pin Press, Band Bench (rec2/png, rec2/tools/cg.mjs, band.mjs)"
   },
   "hinge": {
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "kto": "recenzja niezależna ruchu po naprawie torów (agent recenzent, 28.10.2026)",
-   "sha": "a97961c2e618",
+   "kto": "audytor — recenzja niezależna ruchu i geometrii figur v2 1.0.1 (bramka 4, L-047, L-050), HEAD 03a7575",
+   "sha": "8a00c9653779",
    "liczba": 32,
-   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A) — ruch po naprawie torów 9883ada",
-   "autor": "koordynator M2 (naprawa torów, 9883ada)",
-   "recenzent": "agent recenzent ruchu (sesja niezależna)",
-   "uwagi": "Obejrzane kadry u 0/0,25/0,5/0,75/1, widok z boku (powiększenie 3,2×, ślad toru i pion środka stopy) i z przodu, przed (f5af3be) i po (9883ada), wszystkie 32 ćwiczenia; 20 zmienionych porównane klatka po klatce, 12 bez zmian (obraz identyczny piksel w piksel). Martwe ciągi ze sztangą/linką: „S” usunięte (było 4,2–5,6 cm, 2 zawrócenia; jest gładki łuk 3,1–3,6 cm, 1 zmiana kierunku), start 1,4–2,6 cm przed środkiem stopy, gryf przy goleniach (luz 0,2 cm), bez przenikania; RDL/SLDL/Rack Pull/Single Leg RDL (linki) prawie pionowo (0,3–0,6 cm); Smith SLDL — szyna stoi, gryf na szynie. Uwagi NISKIE (backlog): (1) sumo (4 warianty) i sumo z kettlebellem — tor gładki, ale ukośny w przód ok. 6–8 cm (start ok. 2 cm za pionem środka stopy, wyprost 4–6 cm przed); (2) Reverse Band Deadlift / Reverse Band Sumo — górny zaczep gumy przesuwa się z gryfem (3,4 / 8 cm), Cable Deadlift — bloczek przy podłodze przesuwa się z uchwytem (3,7 cm), ta sama klasa co dawna szyna Smitha, mniej widoczna; (3) Smith SLDL — szyna 7,3 cm przed środkiem stopy, na dole gryf do 6 cm przed goleniami (skutek pionowej szyny, poprawne dla maszyny); (4) RDL/SLDL na dole ramiona odchylone od pionu w przód (stan sprzed zmiany)."
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A) — figury v2 1.0.1, rundy r1–r3 (bf18a97 → 0b2e64e → 03a7575)",
+   "autor": "programista r2/figury-v2",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "uwagi": "Zatwierdzone: stojak z bolcami wewnątrz talerzy (słupki ±61 przy talerzach 64,6–72,4; Rack Pull, Rack Pull with Bands, Good Morning off Pins), dolne zaczepy gum stałe (Deadlift/Sumo/Rack Pull with Bands, Band Good Morning), trap bar/Leverage/Rickshaw, Cable Pull Through, Reverse Band, bloczki. Bez zmian geometrii w r3 (zmiana skrótu: R2-6). NISKIE w backlogu 1.0.1 (docs/21): N3 GM off Pins, N6 kolano na wyproście, sumo tor ukośny, RDL ramiona 23°, łańcuch jedzie z gryfem.",
+   "slad": "r1/r2: kadry rec/png i rec2/png (Rack Pull with Bands przód u 0/1, GM off Pins przód, Trap Bar, Cable Pull Through), pomiar zaczepów i kolizji z bolcami (rec2/tools/band.mjs, dmax.mjs); rec3: odciski vs 0b2e64e identyczne dla całej rodziny"
   }
  },
  "karty": {
@@ -1419,12 +1425,12 @@
    "rodzina": "triLying",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny po usunięciu skull.upperArm 28.10.2026)",
-   "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
-   "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
-   "sha": "ac7ad92b9bfd",
-   "uwagi": "Usunięte skull.upperArm (przeczyło części wyciskania). Zostają: cgbp.elbows „Łokcie blisko tułowia przez cały ruch.” i mis.jerk — zgodne z obiema częściami ruchu i z figurą v2 (wyciskanie na ławce ujemnej)."
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny 1.0.1: dcgsk.elbows + mis.jerk; skull.upperArm i skull.depth nie wracają — decyzja właściciela 1a z 28.10.2026)",
+   "autor": "programista r2/figury-v2",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "kto": "audytor — recenzja niezależna r1–r3 zestawu karty Decline Close-Grip Bench To Skull Crusher (bramka 4, L-047), HEAD 03a7575",
+   "sha": "6ffcc65b01c7",
+   "uwagi": "dcgsk.elbows opisuje obie fazy ćwiczenia; faza prostowania zgodna z figurą (łokcie nad barkami, na szerokość barków) i ze źródłami ACE, weighttraining.guide, Fitness Volt; faza wyciskania — analogia do cgbp.elbows (oznaczona uproszczeniem). Figura pokazuje tylko prostowanie — tekstu nie zawężać (karta opisuje całe wykonywane ćwiczenie, nic w figurze mu nie przeczy). mis.jerk zgodne."
   },
   "Deficit Deadlift": {
    "rodzina": "hingeFloor",
@@ -1518,12 +1524,12 @@
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "d7fe41300e57",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny po zmianie wskazówek 1.0.1: bp.contact + jm.elbows, bez cgbp.elbows i bp.control)",
+   "autor": "programista r2/figury-v2",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "kto": "audytor — recenzja niezależna r1–r3 zestawu karty JM Press (bramka 4, L-047), HEAD 03a7575",
+   "sha": "71c7740b2215",
+   "uwagi": "jm.elbows „Łokcie cały czas wysoko i pod skosem od tułowia — nie opadają w dół ani nie uciekają na boki.” — 3 zgodne źródła szczebla 4 (wskazowki-ogolne.json: J1, J2, J4), bez liczby w tekście, zgodne z figurą (łokcie 19–31 cm nad barkiem, 45° z góry stałe). bp.contact zgodne. bp.control usunięte (gryf nie dotyka klatki, R2-7). Błąd bp.mis.arch bez figury błędu (stan zastany)."
   },
   "Landmine Squat": {
    "rodzina": "squat",
