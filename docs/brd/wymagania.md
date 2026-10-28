@@ -453,6 +453,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że rysunek ćwiczenia nie ma zapisu niezależnej recenzji ruchu i treści karty albo zmienił się po recenzji (inny skrót danych), albo recenzja go ukryła (np. Push Press, Pendlay Row)
     - Gdy użytkownik otwiera sekcję „Technika” tego ćwiczenia
     - Wtedy widzi wskazówki, asekurację i stopkę medyczną bez rysunku; rysunek z aktualną recenzją wyświetla się jak dotąd
+  - Scenariusz: Rysunek ruchu z krokiem nie opada bez podparcia (recenzja niezależna 28.10.2026; decyzja właściciela 28.10.2026 „poprawić przed 1.0”; test `tests/figury-podparcie.test.ts`)
+    - Zakładając, że ćwiczenie ma rysunek z krokiem (wykroki, Step Up) albo pompki (w tym z podwyższeniem)
+    - Gdy rysunek odtwarza ruch (każda poza pośrednia co 0,05 przejścia)
+    - Wtedy rzut biodra leży nad podstawą podparcia z tolerancją 10 j., biodro nie opada o więcej niż 7 j., gdy stopa krokowa jest w powietrzu, a w pompkach bark w dolnej pozycji jest nie dalej niż 10 j. od dłoni i ciało nie wchodzi w podłoże ani blat; Reverse Lunge łamie regułę, więc jest ukryty w 1.0 (naprawa w 1.0.1 przez czwartą pozycję silnika)
   - Scenariusz: Usunięcie własnego ćwiczenia z podglądu (ZM-04, W2 a, 21.10.2026)
     - Zakładając, że użytkownik ogląda podgląd ćwiczenia własnego
     - Gdy stuka „Usuń z biblioteki” na dole ekranu
