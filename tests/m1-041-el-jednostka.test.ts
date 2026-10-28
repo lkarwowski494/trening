@@ -38,3 +38,16 @@ describe('M1-041: nagłówek kolumny ciężaru zmniejsza krój zamiast ucinać (
     expect(line).toMatch(/adjustsFontSizeToFit/);
   });
 });
+
+describe('M1-041: spokenNoun (lib/units.ts) — odmiana nazwy jednostki do głosu i etykiet VoiceOver', () => {
+  const { spokenNoun } = require('@/lib/units') as typeof import('@/lib/units');
+  afterEach(() => { applyLang('pl'); });
+  test('pl: liczba całkowita wg liczby mnogiej, ułamek — forma osobna', () => {
+    applyLang('pl');
+    expect([spokenNoun(1, 'kilogram|kilogramy|kilogramów', 'kilograma'), spokenNoun(2, 'kilogram|kilogramy|kilogramów', 'kilograma'), spokenNoun(5, 'kilogram|kilogramy|kilogramów', 'kilograma'), spokenNoun(2.5, 'kilogram|kilogramy|kilogramów', 'kilograma')])
+      .toEqual(['kilogram', 'kilogramy', 'kilogramów', 'kilograma']);
+  });
+  test('fr: ułamek poniżej 2 w liczbie pojedynczej', () => {
+    applyLang('fr'); expect(spokenNoun(1.5, 'kilogram|kilogramy|kilogramów', 'kilograma')).toBe(spokenNoun(1, 'kilogram|kilogramy|kilogramów', 'kilograma'));
+  });
+});

@@ -25,3 +25,20 @@ describe('M1-032: kod diagnostyczny przy błędzie migracji i danych z nowszej w
     expect(body).toMatch(/start: migrate\b[^\n]*schema \d+/); expect(decodeURIComponent(url)).not.toContain('boom-migracja'); expect(body).not.toMatch(/defaultRest|"workouts"/);
   });
 });
+
+describe('M1-032: startFailureDiag (lib/state/bootphase.ts)', () => {
+  const { startFailureDiag } = require('@/lib/state/bootphase') as typeof import('@/lib/state/bootphase');
+  const ctx = { ms: 120, hadData: true, starts: 1, schema: 19 };
+  test.each([
+    [{ migrationFailed: true }, 'start: migrate, 120 ms, data, schema 19, n=1'],
+    [{ newerSchema: 25 }, 'start: newer, 120 ms, data, schema 25, n=1'],
+    [{}, 'start: init, 120 ms, data, schema 19, n=1'],
+  ] as [Record<string, unknown>, string][])('%j → %s; bez treści błędu', (pola, want) => {
+    const e = Object.assign(new Error('treść-błędu'), pola); startFailureDiag(e, ctx);
+    expect((e as unknown as { bootDiag: string }).bootDiag).toBe(want);
+  });
+  test('kod trybu pętli awarii (bootDiag) zostaje bez zmian; nie-obiekt ignorowany', () => {
+    const e = Object.assign(new Error('x'), { bootDiag: 'start: loaded, 1 ms' }); startFailureDiag(e, ctx);
+    expect((e as unknown as { bootDiag: string }).bootDiag).toBe('start: loaded, 1 ms'); expect(() => startFailureDiag('napis', ctx)).not.toThrow();
+  });
+});
