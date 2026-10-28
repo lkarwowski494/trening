@@ -26,7 +26,7 @@ describe('kolano_zakres_ruch (r4) na prawdziwej pozie: przysiad z danych', () =>
   const q = { nogi: 'obie', min_max_deg: 80, max_min_deg: 15 };
   const jednaNoga = poza([kf(0, { nogi: { R: { kostka: [0, 7, 8.5] }, L: { kostka: [-61, 33, -8.5] } } }), kf(0.5, { miednica: [0, 60, 0], nogi: { R: { kostka: [0, 7, 8.5] }, L: { kostka: [-75, 25, -8.5] } } }), kf(1, { nogi: { R: { kostka: [0, 7, 8.5] }, L: { kostka: [-61, 33, -8.5] } } })]);
   console.log(JSON.stringify({ glebokiDobry: ocen(sq(52), 'kolano_zakres_ruch', q), plytki: ocen(sq(76), 'kolano_zakres_ruch', q),
-    jednaObie: ocen(jednaNoga, 'kolano_zakres_ruch', { nogi: 'obie', min_max_deg: 60 }), jednaJedna: ocen(jednaNoga, 'kolano_zakres_ruch', { nogi: 'co_najmniej_jedna', min_max_deg: 60 }), minMin: ocen(sq(52), 'kolano_zakres_ruch', { nogi: 'obie', min_min_deg: 20 }),
+    jednaObie: ocen(jednaNoga, 'kolano_zakres_ruch', { nogi: 'obie', min_max_deg: 60 }), jednaJedna: ocen(jednaNoga, 'kolano_zakres_ruch', { nogi: 'co_najmniej_jedna', min_max_deg: 60 }), minMin: ocen(sq(52), 'kolano_zakres_ruch', { nogi: 'obie', min_min_deg: 20 }), maxMaxGleboki: ocen(sq(52), 'kolano_zakres_ruch', { nogi: 'obie', max_max_deg: 30 }), maxMaxProsty: ocen(poza([kf(0), kf(1)]), 'kolano_zakres_ruch', { nogi: 'obie', max_max_deg: 30 }),
     maxK: v2.jointAngles(v2.keyframeFrame(sq(52), 0.5).sk, 'R').knee }));`;
   const w = run(kod);
   test('głęboki przysiad (kolano ≥ 80°, prostuje się ≤ 15°) nie łamie reguły; płytki łamie z liczbą (kolano R i L)', () => {
@@ -34,6 +34,9 @@ describe('kolano_zakres_ruch (r4) na prawdziwej pozie: przysiad z danych', () =>
   });
   test('jednonóż: noga wolna prosta — „obie” łamie (kolano L), „co_najmniej_jedna” przechodzi (pracuje noga podporowa)', () => {
     expect(w.jednaObie.join('|')).toContain('kolano L'); expect(w.jednaJedna).toEqual([]);
+  });
+  test('max_max_deg: „lekko ugięte” ma górny próg — głęboki przysiad (kolano > 80°) łamie ≤ 30° z liczbą (kolano R i L), prawie prosta noga nie łamie (recenzja mobilności r4: tylne kolano 58° w „lekkim” zgięciu)', () => {
+    expect(w.maxMaxGleboki.join('|')).toMatch(/kolano R dochodzi do \d+\.\d°, a ma być zawsze ≤ 30° \(lekko ugięte/); expect(w.maxMaxGleboki.join('|')).toContain('kolano L'); expect(w.maxMaxProsty).toEqual([]);
   });
   test('min_min_deg: kolano prawie prosta noga (≈ 10°) — łamie regułę „zawsze lekko ugięte”', () => { expect(w.minMin.join('|')).toMatch(/kolano [RL] schodzi do 10\.0°, a ma być zawsze ≥ 20°/); });
 });

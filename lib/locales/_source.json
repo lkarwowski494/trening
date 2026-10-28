@@ -1677,6 +1677,10 @@
   "en": "Trap (hex) bar + plates"
  },
  {
+  "pl": "Grzbiet w dół",
+  "en": "Arching"
+ },
+ {
   "pl": "guma",
   "en": "band"
  },
@@ -2030,6 +2034,10 @@
  {
   "pl": "kłoda (log)",
   "en": "log bar"
+ },
+ {
+  "pl": "Koci grzbiet",
+  "en": "Rounding"
  },
  {
   "pl": "Kolejność ćwiczeń",

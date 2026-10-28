@@ -1728,6 +1728,74 @@
    "svg": "77f261bfbe8bf1b07948",
    "raw": "fd0f6767f54da620b65c"
   },
+  "mobility_floor/The Straddle": {
+   "svg": "9e2df81c44b4ef0cb019",
+   "raw": "84dbcf228f4b35fd752c"
+  },
+  "mobility_floor/Seated Calf Stretch": {
+   "svg": "ca6715da549095aab760",
+   "raw": "88bf3746ba0ac17bd374"
+  },
+  "mobility_floor/Seated Floor Hamstring Stretch": {
+   "svg": "1946d849592d4012f5a8",
+   "raw": "145669e4ffe4f13ddc80"
+  },
+  "mobility_floor/Butterfly Stretch": {
+   "svg": "7a6a487c8940109cef9b",
+   "raw": "7c5523d8c09b5727748e"
+  },
+  "mobility_floor/Child's Pose": {
+   "svg": "0905a85c55ccf96d3e83",
+   "raw": "82dad32d0e720df6e53b"
+  },
+  "mobility_floor/Kneeling Hip Flexor Stretch": {
+   "svg": "198954e765fa16f25ea0",
+   "raw": "4dc4923d29fc35d6f023"
+  },
+  "mobility_floor/Supine Hamstring Stretch": {
+   "svg": "bd14db6b1d1ed42db22c",
+   "raw": "4a4f8ce0b96fcdbe11aa"
+  },
+  "mobility_floor/Side-Lying Quad Stretch": {
+   "svg": "b27b9142733473a589c7",
+   "raw": "6ed0a7927b7da3b4ca1e"
+  },
+  "mobility_floor/Cat-Cow": {
+   "svg": "05ba28382540baa73169",
+   "raw": "0b4880a49bdf92d7b8ef"
+  },
+  "mobility_stand/Chin To Chest Stretch": {
+   "svg": "1c6317b774d5470930eb",
+   "raw": "59ca6d3295692231e5fc"
+  },
+  "mobility_stand/Side Neck Stretch": {
+   "svg": "f22063c8bf943d0fe518",
+   "raw": "fb2f285c7b69f88c1407"
+  },
+  "mobility_stand/Overhead Triceps Stretch": {
+   "svg": "a4d9ff186a55b81f6735",
+   "raw": "2bd65c640f36c77cdaee"
+  },
+  "mobility_stand/Standing Chest Stretch": {
+   "svg": "36a3ba0726694d023980",
+   "raw": "d0e3587db4f0ab79adfd"
+  },
+  "mobility_stand/Standing Gastrocnemius Calf Stretch": {
+   "svg": "99a886a7c0d230638184",
+   "raw": "6443143e67390481fe37"
+  },
+  "mobility_stand/Wall Calf Stretch": {
+   "svg": "99a886a7c0d230638184",
+   "raw": "6443143e67390481fe37"
+  },
+  "mobility_stand/Standing Soleus And Achilles Stretch": {
+   "svg": "67737e03bf23ff586b3e",
+   "raw": "2a99ff5041de28ffaebc"
+  },
+  "mobility_stand/Standing Lateral Stretch": {
+   "svg": "722cd89dde9aee483947",
+   "raw": "863c8739239817fa1bad"
+  },
   "olympic/Power Clean": {
    "svg": "e8d2749694986d029dcc",
    "raw": "77caeb982b13db3d2a8b"

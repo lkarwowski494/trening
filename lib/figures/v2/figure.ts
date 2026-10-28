@@ -21,7 +21,7 @@ import { phasesOf, walkPhases, TEMPO, type Tempo, type Phase, type PhaseNames } 
 import { ERRORS, isDataError, dataErrorIndex, type ErrorId, type FigError, type AnyErrorDef, type Fault } from './errors';
 import { keyframeFrame, poseLoopSpan, type LoopMode } from './contract';
 import { contactGlows, type ContactId } from './contacts';
-import { DATA_UI, GAIT_UI, ISOMETRIC, MEASURE_UNIT, MIN_MEASURED_ROM, dataUiForPose, lowerFirstOf, poseDataFor, type MeasuredJoint } from './poseData';
+import { DATA_UI, GAIT_UI, PHASES_BY_EXERCISE, ISOMETRIC, MEASURE_UNIT, MIN_MEASURED_ROM, dataUiForPose, lowerFirstOf, poseDataFor, type MeasuredJoint } from './poseData';
 import { ease } from './rigs/common';
 
 export type FigureSpec = { key: string; family: FamilyId; variant: Variant; views: View[]; static: boolean; lowerFirst: boolean };
@@ -169,7 +169,7 @@ export function boxFor(spec: FigureSpec, view: View, errors: FigError[] = []): B
 /** Nazwy faz licznika tempa dla ćwiczenia (klucze t()). */
 export function phaseNames(spec: FigureSpec): PhaseNames {
   const v = spec.variant;
-  if ('data' in v) return dataUiOf(spec)!.names;
+  if ('data' in v) return Object.prototype.hasOwnProperty.call(PHASES_BY_EXERCISE, spec.key) ? PHASES_BY_EXERCISE[spec.key] : dataUiOf(spec)!.names;
   if (v.family === 'bench_press') return { first: 'Opuszczanie', second: 'Wypychanie' };
   if (v.family === 'hinge') return v.p.style === 'floor' ? { first: 'Podnoszenie', second: 'Opuszczanie' } : { first: 'Opuszczanie', second: 'Prostowanie' };
   return { first: 'Opuszczanie', second: 'Wstawanie' };

@@ -101,6 +101,16 @@
    "rodzaj": "nowy",
    "pl": "Marsz",
    "en": "Walking"
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Grzbiet w dół",
+   "en": "Arching"
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Koci grzbiet",
+   "en": "Rounding"
   }
  ]
 }
