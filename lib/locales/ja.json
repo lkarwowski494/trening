@@ -1473,7 +1473,7 @@
  "miesiąc": "月",
  "{price} jednorazowo": "{price}（1回払い）",
  "{price}/{period}": "{price}/{period}",
- "Kup na zawsze": "永久版を購入",
+ "Kup na zawsze": "買い切りで購入",
  "Zacznij trening": "トレーニングを始める",
  "Subskrybuj": "購読する",
  "Czeka na zgodę organizatora rodziny.": "ファミリー管理者の承認待ちです。",
@@ -1718,7 +1718,7 @@
  "Przejdź na ten plan": "このプランに変更",
  "Zmień plan": "プランを変更",
  "Zobacz plany Pro": "Pro プランを見る",
- "Masz plan: miesięczny": "ご利用中のプラン: 月額",
- "Masz plan: roczny": "ご利用中のプラン: 年額",
- "Masz plan: dożywotni": "ご利用中のプラン: 永久版"
+ "Masz plan: miesięczny": "ご利用中のプラン：月額",
+ "Masz plan: roczny": "ご利用中のプラン：年額",
+ "Masz plan: dożywotni": "ご利用中のプラン：買い切り"
 }

@@ -539,7 +539,7 @@
  "Masa ciała musi być większa od zera i nie większa niż {max}.": "Kehakaal peab olema suurem kui 0 ja kuni {max}.",
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Kehakaal: „±“ on lisaraskus (pluss) või abi, nt masinaga (miinus); kumm on eraldi väli koos tasemega. Rekord on abita korduste summa ning maht arvestab ainult lisaraskust.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Lihasmass: seeriaid lihasrühma kohta nädalas kuni sihini jaotisest Seaded (automaatselt {m}), {a}–{b} kordust (kodus {c}–{d}), tavaliselt {r1}–{r2} kordust varus.",
- "Masz dostęp na zawsze": "Sul on igavene juurdepääs",
+ "Masz dostęp na zawsze": "Sul on eluaegne juurdepääs",
  "Masz pełną wersję": "Sul on täisversioon",
  "maszyna": "masin",
  "maszyna belt squat": "belt squat masin",
@@ -1718,7 +1718,7 @@
  "Przejdź na ten plan": "Vaheta sellele paketile",
  "Zmień plan": "Muuda paketti",
  "Zobacz plany Pro": "Vaata Pro pakette",
- "Masz plan: miesięczny": "Sinu pakett: kuine",
- "Masz plan: roczny": "Sinu pakett: aastane",
- "Masz plan: dożywotni": "Sinu pakett: igavene"
+ "Masz plan: miesięczny": "Sinu pakett: igakuine",
+ "Masz plan: roczny": "Sinu pakett: iga-aastane",
+ "Masz plan: dożywotni": "Sinu pakett: eluaegne"
 }

@@ -3517,7 +3517,8 @@
     },
     "nl": {
      "zalecany": "Abonnement",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "uwaga": "„Abonnement” nie służy dla zakupu dożywotniego (jednorazowego); dla niego „Eenmalige aankoop”"
     },
     "sv": {
      "zalecany": "Plan",
@@ -3533,7 +3534,8 @@
     },
     "fi": {
      "zalecany": "Tilaus",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "uwaga": "„Tilaus” oznacza subskrypcję i nie służy dla zakupu dożywotniego (jednorazowego); dla niego „Pysyvä käyttöoikeus”"
     },
     "tr": {
      "zalecany": "Plan",
@@ -3581,6 +3583,179 @@
     },
     "zh-Hant": {
      "zalecany": "方案",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "plan_dozywotni",
+   "pl": "plan dożywotni",
+   "znaczenie": "wariant zakupu jednorazowego (dostęp bez terminu) na ekranie zakupu, nie subskrypcja",
+   "kanon": null,
+   "wykrywaj": "plan:\\s*dożywotni|dostęp na zawsze",
+   "jezyki": {
+    "pl": {
+     "zalecany": "dożywotni",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "lifetime",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "doživotní",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "doživotný",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "örökös",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "örök(?!ös|re)",
+       "powod": "„Örök” znaczy wieczny (poetycko); plan bez terminu to „örökös”"
+      }
+     ]
+    },
+    "ro": {
+     "zalecany": "pe viață",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "безсрочен",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "doživotni",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "trajni",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "доживотни",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "neterminuotas",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "mūža",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "eluaegne",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "igavene",
+       "powod": "„Igavene” znaczy wieczny (religijnie/poetycko); plan bez terminu to „eluaegne”"
+      }
+     ]
+    },
+    "uk": {
+     "zalecany": "довічний",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "de por vida",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "de por vida",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "vitalício",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "vitalício",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "dauerhaft",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "à vie",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "a vita",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Eenmalige aankoop",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "livstid",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "livstid",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "livstid",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Pysyvä",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "süresiz",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "μόνιμο",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "seumur hidup",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "seumur hidup",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "vĩnh viễn",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "бессрочный",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "買い切り",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "永久版",
+       "powod": "„永久版” brzmi jak wersja edycji; zakup jednorazowy to „買い切り”"
+      }
+     ]
+    },
+    "ko": {
+     "zalecany": "평생",
+     "pewnosc": "srednia",
+     "zakazane": [
+      {
+       "wzorzec": "영구",
+       "powod": "„영구” brzmi jak trwałe/nieodwracalne; zakup bez terminu to „평생 이용”"
+      }
+     ]
+    },
+    "zh-Hant": {
+     "zalecany": "永久",
      "pewnosc": "srednia"
     }
    }

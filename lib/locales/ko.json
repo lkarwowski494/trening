@@ -1481,7 +1481,7 @@
  "Nie znaleziono zakupów dla tego konta Apple.": "이 Apple 계정에서 구입 항목을 찾을 수 없습니다.",
  "Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.": "구입 항목을 복원하지 못했습니다. 인터넷 연결을 확인하세요.",
  "Potrzebne połączenie z internetem.": "인터넷 연결이 필요합니다.",
- "Masz dostęp na zawsze": "영구 이용 권한이 있습니다",
+ "Masz dostęp na zawsze": "평생 이용할 수 있습니다",
  "Masz pełną wersję": "전체 버전을 사용 중입니다",
  "Dostęp z Chmury rodzinnej": "가족 공유를 통한 이용",
  "Dostęp z kodu do {date}": "코드로 {date}까지 이용",
@@ -1720,5 +1720,5 @@
  "Zobacz plany Pro": "Pro 요금제 보기",
  "Masz plan: miesięczny": "내 요금제: 월간",
  "Masz plan: roczny": "내 요금제: 연간",
- "Masz plan: dożywotni": "내 요금제: 영구"
+ "Masz plan: dożywotni": "내 요금제: 평생 이용"
 }
