@@ -76,12 +76,19 @@ describe('M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sk
       for (const ch of v) if (!have.has(ch.codePointAt(0)!)) braki.push(`${l}: „${ch}” U+${ch.codePointAt(0)!.toString(16).toUpperCase()}`);
     expect([...new Set(braki)]).toEqual([]);
   });
+  test('decyzja właściciela 10a (28.10.2026): podpis 1. ekranu = zapis serii także z zegarka (zgodnie z DEC-07 K6), EN zaakceptowane, stare hasło zniknęło ze wszystkich języków', () => {
+    expect(c.podpisy.pl.trening).toBe('Szybki zapis serii, także z zegarka');
+    expect(c.podpisy.en.trening).toBe('Log sets fast, even from your watch');
+    expect(c.status.en).toMatch(/^zaakceptowane 28\.10\.2026/);
+    expect(JSON.stringify(c.podpisy)).not.toMatch(/zostaje w Twoim telefonie|stays on your phone/);
+    for (const l of langs) expect({ l, ok: c.podpisy[l].trening !== c.podpisy.en.trening || l === 'en' }).toEqual({ l, ok: true });
+  });
   test('docs/48 pkt 5: lokalizacja bez zrzutów bierze zrzuty języka podstawowego (cytat Apple, odczyt 28.10.2026) i warunki Z-16 przed uruchomieniem workflowów', () => {
     const d = fs.readFileSync(path.join(root, 'docs/48-zgloszenie-1-0.md'), 'utf8');
     expect(d).toContain('screenshots and the properties for the new language default to those of the primary language, except for the description and keywords.');
     expect(d).toContain('https://developer.apple.com/help/app-store-connect/manage-app-information/localize-app-information/');
     expect(d).toMatch(/odczyt 28\.10\.2026/);
-    expect(d).toMatch(/\*\*Warunki przed Z-16:\*\* \(a\) akceptacja EN/);
+    expect(d).toMatch(/\*\*Warunki przed Z-16:\*\* \(a\) ~~akceptacja EN przez właściciela~~ — zrobione 28\.10\.2026 \(decyzja 10a\)/);
     expect(d).toMatch(/`store-screenshots\.yml` z `jezyki: all`/);
     expect(d).not.toMatch(/\*\*\[OTWARTE\]\*\*: czy lokalizacja bez własnych zrzutów dziedziczy/);
   });

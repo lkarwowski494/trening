@@ -1,35 +1,35 @@
 {
-  "_opis": "Podpisy na zrzutach do App Store (decyzja właściciela 14.10.2026, D-6 B — docs/41; scenorys 9 ekranów zaakceptowany 14.10.2026). Jeden podpis na ekran (klucze = nazwy ekranów z scripts/screens/store-seed.test.ts), najwyżej 40 znaków. Status per język: PL — zaakceptowane przez właściciela (scenorys), EN — propozycja agenta do akceptacji razem z obrazami; 27 pozostałych języków ze sklepem (SHOT_LOCALES w scripts/asc/zrzuty.mjs, 32 lokalizacje bez „sl”) — przekład agenta 28.10.2026 (M1-audytor-generalny-037 D, DEC-07 b) do recenzji lokalizacji; zmiana EN albo PL = ponowny przekład zmienionego ekranu. Krok „ramki” pomija język bez podpisów. Bez nazw innych aplikacji (wytyczne Apple 2.3.7), bez cen (2.3.7: zrzuty bez cen) i bez twierdzeń merytorycznych. Kolory ramki z lib/theme.ts — wersja ciemna (`dark`: bg, text, accent), bo wszystkie zrzuty są ciemne (decyzja właściciela 18.10.2026); test: tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts (komplet, długość, ceny, znaki w czcionce ramek).",
+  "_opis": "Podpisy na zrzutach do App Store (decyzja właściciela 14.10.2026, D-6 B — docs/41; scenorys 9 ekranów zaakceptowany 14.10.2026). Jeden podpis na ekran (klucze = nazwy ekranów z scripts/screens/store-seed.test.ts), najwyżej 40 znaków. Status per język: PL — zaakceptowane przez właściciela (scenorys), EN — zaakceptowane 28.10.2026 (decyzja 10a; podpis pierwszego ekranu „Log sets fast, even from your watch” zastąpił „Your training stays on your phone”); 27 pozostałych języków ze sklepem (SHOT_LOCALES w scripts/asc/zrzuty.mjs, 32 lokalizacje bez „sl”) — przekład agenta 28.10.2026 (M1-audytor-generalny-037 D, DEC-07 b) do recenzji lokalizacji; zmiana EN albo PL = ponowny przekład zmienionego ekranu. Krok „ramki” pomija język bez podpisów. Bez nazw innych aplikacji (wytyczne Apple 2.3.7), bez cen (2.3.7: zrzuty bez cen) i bez twierdzeń merytorycznych. Kolory ramki z lib/theme.ts — wersja ciemna (`dark`: bg, text, accent), bo wszystkie zrzuty są ciemne (decyzja właściciela 18.10.2026); test: tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts (komplet, długość, ceny, znaki w czcionce ramek).",
   "status": {
-    "pl": "zaakceptowane 14.10.2026",
-    "en": "propozycja",
-    "cs": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "sk": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "hu": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "ro": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "hr": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "uk": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "es": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "es-419": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "pt": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "pt-BR": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "de": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "fr": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "it": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "nl": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "sv": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "da": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "nb": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "fi": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "tr": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "el": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "id": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "ms": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "vi": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "ru": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "ja": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "ko": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)",
-    "zh-Hant": "propozycja agenta 28.10.2026 (przekład z PL i EN; do recenzji lokalizacji)"
+    "pl": "zaakceptowane 14.10.2026; podpis ekranu „trening” zmieniony 28.10.2026 (decyzja właściciela 10a)",
+    "en": "zaakceptowane 28.10.2026 (decyzja właściciela 10a)",
+    "cs": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "sk": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "hu": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "ro": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "hr": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "uk": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "es": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "es-419": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "pt": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "pt-BR": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "de": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "fr": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "it": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "nl": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "sv": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "da": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "nb": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "fi": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "tr": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "el": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "id": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "ms": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "vi": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "ru": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "ja": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "ko": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)",
+    "zh-Hant": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji)"
   },
   "maxZnakow": 40,
   "kolory": {
@@ -39,7 +39,7 @@
   },
   "podpisy": {
     "pl": {
-      "trening": "Twój trening zostaje w Twoim telefonie",
+      "trening": "Szybki zapis serii, także z zegarka",
       "postepy-cwiczenia": "Każdy rekord i postęp na wykresie",
       "straznik": "Strażnik progresji Twojego tygodnia",
       "plan": "Plan tygodnia — sam albo z naszą pomocą",
@@ -50,7 +50,7 @@
       "import": "Przenieś historię z innego dziennika"
     },
     "en": {
-      "trening": "Your training stays on your phone",
+      "trening": "Log sets fast, even from your watch",
       "postepy-cwiczenia": "Every record and gain on a chart",
       "straznik": "Progress Guard watches your week",
       "plan": "Your weekly plan — solo or with our help",
@@ -61,7 +61,7 @@
       "import": "Bring your history from another log"
     },
     "cs": {
-      "trening": "Váš trénink zůstává ve vašem telefonu",
+      "trening": "Rychlý zápis sérií, i z hodinek",
       "postepy-cwiczenia": "Každý rekord a pokrok v grafu",
       "straznik": "Strážce progrese hlídá váš týden",
       "plan": "Týdenní plán — sami, nebo s naší pomocí",
@@ -72,7 +72,7 @@
       "import": "Přeneste historii z jiného deníku"
     },
     "sk": {
-      "trening": "Váš tréning zostáva vo vašom telefóne",
+      "trening": "Rýchly zápis sérií, aj z hodiniek",
       "postepy-cwiczenia": "Každý rekord a pokrok v grafe",
       "straznik": "Strážca progresu stráži váš týždeň",
       "plan": "Týždenný plán — sami či s našou pomocou",
@@ -83,7 +83,7 @@
       "import": "Preneste históriu z iného denníka"
     },
     "hu": {
-      "trening": "Az edzései a telefonján maradnak",
+      "trening": "Sorozatok gyors rögzítése az óráról is",
       "postepy-cwiczenia": "Minden rekord és fejlődés grafikonon",
       "straznik": "A Fejlődésőr figyeli a hetét",
       "plan": "Heti terv — egyedül vagy velünk",
@@ -94,7 +94,7 @@
       "import": "Hozza át előzményeit más naplóból"
     },
     "ro": {
-      "trening": "Antrenamentele rămân în telefon",
+      "trening": "Notezi rapid seriile, și de pe ceas",
       "postepy-cwiczenia": "Fiecare record și progres pe grafic",
       "straznik": "Paznicul de progres urmărește săptămâna",
       "plan": "Plan săptămânal — singur sau cu noi",
@@ -105,7 +105,7 @@
       "import": "Aduceți istoricul din alt jurnal"
     },
     "hr": {
-      "trening": "Vaš trening ostaje na vašem telefonu",
+      "trening": "Brz zapis serija, i sa sata",
       "postepy-cwiczenia": "Svaki rekord i napredak na grafu",
       "straznik": "Čuvar napretka prati vaš tjedan",
       "plan": "Tjedni plan — sami ili uz našu pomoć",
@@ -116,7 +116,7 @@
       "import": "Prenesite povijest iz drugog dnevnika"
     },
     "uk": {
-      "trening": "Ваші тренування лишаються в телефоні",
+      "trening": "Швидкий запис підходів, і з годинника",
       "postepy-cwiczenia": "Кожен рекорд і прогрес на графіку",
       "straznik": "Вартовий прогресу стежить за тижнем",
       "plan": "Тижневий план — самостійно чи з нами",
@@ -127,7 +127,7 @@
       "import": "Перенесіть історію з іншого щоденника"
     },
     "es": {
-      "trening": "Tu entreno se queda en tu teléfono",
+      "trening": "Anota series rápido, también del reloj",
       "postepy-cwiczenia": "Cada récord y progreso en un gráfico",
       "straznik": "El Guardián de progreso vigila tu semana",
       "plan": "Plan semanal, solo o con nuestra ayuda",
@@ -138,7 +138,7 @@
       "import": "Trae tu historial desde otro registro"
     },
     "es-419": {
-      "trening": "Tu entrenamiento se queda en tu celular",
+      "trening": "Anota series rápido, también del reloj",
       "postepy-cwiczenia": "Cada récord y progreso en un gráfico",
       "straznik": "El Guardián de progreso vigila tu semana",
       "plan": "Plan semanal, solo o con nuestra ayuda",
@@ -149,7 +149,7 @@
       "import": "Trae tu historial desde otro registro"
     },
     "pt": {
-      "trening": "O seu treino fica no seu telemóvel",
+      "trening": "Registo rápido de séries, até no relógio",
       "postepy-cwiczenia": "Cada recorde e progresso num gráfico",
       "straznik": "O Guardião do progresso vigia a semana",
       "plan": "Plano semanal — sozinho ou com ajuda",
@@ -160,7 +160,7 @@
       "import": "Traga o histórico de outro diário"
     },
     "pt-BR": {
-      "trening": "Seu treino fica no seu celular",
+      "trening": "Registre séries rápido, até no relógio",
       "postepy-cwiczenia": "Cada recorde e progresso em um gráfico",
       "straznik": "O Guardião do progresso vigia sua semana",
       "plan": "Plano semanal — sozinho ou com ajuda",
@@ -171,7 +171,7 @@
       "import": "Traga seu histórico de outro diário"
     },
     "de": {
-      "trening": "Dein Training bleibt auf deinem Handy",
+      "trening": "Sätze schnell eintragen, auch per Uhr",
       "postepy-cwiczenia": "Jeder Rekord und Fortschritt im Diagramm",
       "straznik": "Fortschrittswächter für deine Woche",
       "plan": "Wochenplan — selbst oder mit Hilfe",
@@ -182,7 +182,7 @@
       "import": "Verlauf aus einer anderen App übernehmen"
     },
     "fr": {
-      "trening": "Vos séances restent sur votre téléphone",
+      "trening": "Notez vos séries vite, même au poignet",
       "postepy-cwiczenia": "Records et progrès sur un graphique",
       "straznik": "Le Gardien de progrès suit votre semaine",
       "plan": "Plan de la semaine, seul ou aidé",
@@ -193,7 +193,7 @@
       "import": "Importez l’historique d’un autre carnet"
     },
     "it": {
-      "trening": "Il tuo allenamento resta sul telefono",
+      "trening": "Segna le serie al volo, anche dal polso",
       "postepy-cwiczenia": "Ogni record e progresso su un grafico",
       "straznik": "Guardiano progressi per la tua settimana",
       "plan": "Piano settimanale, da solo o con noi",
@@ -204,7 +204,7 @@
       "import": "Porta la cronologia da un altro diario"
     },
     "nl": {
-      "trening": "Je training blijft op je telefoon",
+      "trening": "Sets snel loggen, ook vanaf je horloge",
       "postepy-cwiczenia": "Elk record en elke stap in een grafiek",
       "straznik": "De Voortgangswacht bewaakt je week",
       "plan": "Weekplan — zelf of met onze hulp",
@@ -215,7 +215,7 @@
       "import": "Geschiedenis uit een ander logboek halen"
     },
     "sv": {
-      "trening": "Din träning stannar i din telefon",
+      "trening": "Logga set snabbt, även från klockan",
       "postepy-cwiczenia": "Varje rekord och framsteg i en graf",
       "straznik": "Framstegsvakten håller koll på veckan",
       "plan": "Veckoplan — själv eller med vår hjälp",
@@ -226,7 +226,7 @@
       "import": "Ta med historiken från en annan logg"
     },
     "da": {
-      "trening": "Din træning bliver på din telefon",
+      "trening": "Log sæt hurtigt, også fra dit ur",
       "postepy-cwiczenia": "Hver rekord og fremgang i en graf",
       "straznik": "Fremgangsvagten holder øje med ugen",
       "plan": "Ugeplan — selv eller med vores hjælp",
@@ -237,7 +237,7 @@
       "import": "Tag historikken med fra en anden log"
     },
     "nb": {
-      "trening": "Treningen din blir på telefonen",
+      "trening": "Logg sett raskt, også fra klokka",
       "postepy-cwiczenia": "Hver rekord og fremgang i en graf",
       "straznik": "Fremdriftsvokteren følger uken din",
       "plan": "Ukeplan — selv eller med vår hjelp",
@@ -248,7 +248,7 @@
       "import": "Ta med historikken fra en annen logg"
     },
     "fi": {
-      "trening": "Treenisi pysyy puhelimessasi",
+      "trening": "Kirjaa sarjat nopeasti, myös kellolla",
       "postepy-cwiczenia": "Jokainen ennätys ja kehitys kaaviona",
       "straznik": "Edistymisvartija valvoo viikkoasi",
       "plan": "Viikkosuunnitelma: itse tai avullamme",
@@ -259,7 +259,7 @@
       "import": "Tuo historiasi toisesta päiväkirjasta"
     },
     "tr": {
-      "trening": "Antrenmanlarınız telefonunuzda kalır",
+      "trening": "Setleri hızlı kaydedin, saatten de",
       "postepy-cwiczenia": "Her rekor ve ilerleme grafikte",
       "straznik": "İlerleme Bekçisi haftanızı izler",
       "plan": "Haftalık plan: kendiniz ya da bizimle",
@@ -270,7 +270,7 @@
       "import": "Geçmişinizi başka bir günlükten aktarın"
     },
     "el": {
-      "trening": "Η προπόνησή σας μένει στο τηλέφωνο",
+      "trening": "Γρήγορη καταγραφή σετ, κι από το ρολόι",
       "postepy-cwiczenia": "Κάθε ρεκόρ και πρόοδος σε γράφημα",
       "straznik": "Ο Φρουρός προόδου προσέχει την εβδομάδα",
       "plan": "Εβδομαδιαίο πρόγραμμα, μόνοι ή μαζί μας",
@@ -281,7 +281,7 @@
       "import": "Μεταφέρετε ιστορικό από άλλο ημερολόγιο"
     },
     "id": {
-      "trening": "Latihan Anda tetap di ponsel Anda",
+      "trening": "Catat set cepat, bahkan dari jam tangan",
       "postepy-cwiczenia": "Setiap rekor dan progres dalam grafik",
       "straznik": "Penjaga Progres memantau minggu Anda",
       "plan": "Rencana mingguan, sendiri atau dibantu",
@@ -292,7 +292,7 @@
       "import": "Pindahkan riwayat dari jurnal lain"
     },
     "ms": {
-      "trening": "Latihan anda kekal dalam telefon anda",
+      "trening": "Catat set pantas, juga dari jam tangan",
       "postepy-cwiczenia": "Setiap rekod dan kemajuan dalam graf",
       "straznik": "Pengawal Kemajuan memantau minggu anda",
       "plan": "Pelan mingguan, sendiri atau dibantu",
@@ -303,7 +303,7 @@
       "import": "Bawa sejarah anda dari log lain"
     },
     "vi": {
-      "trening": "Buổi tập của bạn nằm trên điện thoại",
+      "trening": "Ghi hiệp tập nhanh, cả từ đồng hồ",
       "postepy-cwiczenia": "Mọi kỷ lục và tiến bộ trên biểu đồ",
       "straznik": "Giám sát tiến bộ cho tuần của bạn",
       "plan": "Kế hoạch tuần, tự làm hoặc nhờ trợ giúp",
@@ -314,7 +314,7 @@
       "import": "Chuyển lịch sử từ nhật ký khác"
     },
     "ru": {
-      "trening": "Ваши тренировки остаются в телефоне",
+      "trening": "Быстрая запись подходов, даже с часов",
       "postepy-cwiczenia": "Каждый рекорд и прогресс на графике",
       "straznik": "Страж прогресса следит за вашей неделей",
       "plan": "План недели — сами или с нашей помощью",
@@ -325,7 +325,7 @@
       "import": "Перенесите историю из другого дневника"
     },
     "ja": {
-      "trening": "記録はすべてあなたのiPhoneの中に",
+      "trening": "セットをすばやく記録、腕時計からも",
       "postepy-cwiczenia": "自己ベストも進捗もグラフで",
       "straznik": "進捗ガードが1週間を見守る",
       "plan": "週間プランは自分でも、おまかせでも",
@@ -336,7 +336,7 @@
       "import": "他の記録アプリから履歴を移行"
     },
     "ko": {
-      "trening": "운동 기록은 내 휴대폰에",
+      "trening": "세트를 빠르게 기록, 시계에서도",
       "postepy-cwiczenia": "모든 기록과 성장을 그래프로",
       "straznik": "진행 지킴이가 한 주를 지켜봐요",
       "plan": "주간 플랜, 직접 또는 도움받아",
@@ -347,7 +347,7 @@
       "import": "다른 앱의 운동 기록 가져오기"
     },
     "zh-Hant": {
-      "trening": "你的訓練資料留在手機裡",
+      "trening": "快速記錄每組，手錶上也能記",
       "postepy-cwiczenia": "每項紀錄與進步都有圖表",
       "straznik": "進步守護者幫你看顧每週",
       "plan": "每週計畫，自己排或由我們協助",
