@@ -1,0 +1,5 @@
+verify-znacznik: commit HEAD nie ma zielonego verify dla tego stanu plików.
+pusty plik: kod 1
+verify-znacznik: commit HEAD nie ma zielonego verify dla tego stanu plików (znacznik verify:docs, a zmiany to nie same dokumenty).
+znacznik dokumenty, zmiany kodu (brak origin/main): kod 1
+znacznik pelne: kod 0

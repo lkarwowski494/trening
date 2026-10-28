@@ -1,0 +1,8 @@
+
+/tmp/wt04/components/ZzProbe.tsx
+  1:8   error    * import is invalid because 'Text' from 'react-native' is restricted. Importuj Text z '@/components/AppText' (domyślny limit powiększenia tekstu)  no-restricted-imports
+  2:10  error    'Text' import from 'react-native' is restricted. Importuj Text z '@/components/AppText' (domyślny limit powiększenia tekstu)                       no-restricted-imports
+  3:13  warning  A `require()` style import is forbidden                                                                                                            @typescript-eslint/no-require-imports
+
+✖ 3 problems (2 errors, 1 warning)
+

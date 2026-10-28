@@ -1,0 +1,28 @@
+import * as RN from 'react-native';
+import * as store from '@/lib/store';
+import { renderApp, flushAll, screen, go, act } from './app';
+import { richState, routesFor } from './a11y-routes';
+jest.setTimeout(300000);
+type Node = any; // eslint-disable-line
+const flat = (x: unknown): Record<string, any> => (RN.StyleSheet.flatten((typeof x === 'function' ? (x as any)({ pressed: false }) : x) as never) ?? {}) as Record<string, any>; // eslint-disable-line
+const allNodes = (): Node[] => { const out: Node[] = []; const walk = (x: Node) => { if (!x || typeof x !== 'object') return; out.push(x); for (const c of x.children ?? []) walk(c); }; walk(screen.UNSAFE_root); return out; };
+const rawText = (n: Node): string => { const out: string[] = []; const walk = (x: Node) => { if (x == null) return; if (typeof x === 'string' || typeof x === 'number') { out.push(String(x)); return; } if (Array.isArray(x)) { x.forEach(walk); return; } walk(x.children); }; walk(n); return out.join('').trim(); };
+test('sonda', async () => {
+  jest.spyOn(RN.PixelRatio, 'getFontScale').mockReturnValue(2);
+  const dims = RN.Dimensions.get; jest.spyOn(RN.Dimensions, 'get').mockImplementation(((k: 'window' | 'screen') => ({ ...dims(k), fontScale: 2 })) as never);
+  const { s, w, tpl, exId, locId, blockId } = await richState('pl');
+  await renderApp({ saved: s }); await flushAll(10);
+  const nested = new Set<string>(); const fixed = new Set<string>(); const nocap = new Set<string>();
+  const scan = (r: string) => {
+    for (const tx of allNodes().filter(x => x.type === 'Text')) {
+      const m = tx.props.maxFontSizeMultiplier; const g = rawText(tx);
+      let a = tx.parent; while (a && a.type !== 'Text') a = a.parent;
+      if (a) { const am = a.props.maxFontSizeMultiplier; if (typeof am === 'number' && (m === undefined || m > am)) nested.add(`${r}: rodzic ${am} „${rawText(a).slice(0,40)}” dziecko ${m} „${g.slice(0,30)}”`); }
+      if (!(typeof m === 'number' && m >= 1 && m <= 2) && g) nocap.add(`${r}: ${m} „${g.slice(0,30)}”`);
+      let b = tx.parent; for (let d = 0; b && d < 8; d++, b = b.parent) { const st = flat(b.props?.style); if (typeof st.height === 'number' || typeof st.maxHeight === 'number') { if (g.length > 1 && !(typeof m === 'number' && m <= 1.4)) fixed.add(`${r} d=${d}: „${g.slice(0,30)}” m=${m} h=${st.height} mh=${st.maxHeight} type=${b.type?.displayName ?? b.type?.name ?? b.type}`); } }
+    }
+  };
+  for (const r of routesFor(w, tpl, exId, locId, blockId)) { await go(r); await flushAll(10); scan(r); }
+  await act(async () => { (store as any).cancelWorkout(); }); await go('/'); await flushAll(10); scan('/ bez treningu');
+  console.log('NESTED\n' + [...nested].join('\n') + '\nNOCAP\n' + [...nocap].join('\n') + '\nFIXED(do 8 poziomów)\n' + [...fixed].join('\n'));
+});

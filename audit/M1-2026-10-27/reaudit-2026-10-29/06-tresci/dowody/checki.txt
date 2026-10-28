@@ -1,0 +1,15 @@
+== npm run check:claims
+twierdzenia: 59 wpisów, 41 tekstów dziedzinowych (w tym bez twierdzenia: 7), rejestr zgodny
+kod: 0
+== npm run check:cues
+wskazówki: 102 ćwiczeń, dokument aktualny
+kod: 0
+== npm run check:figures
+figury: 71 ćwiczeń, 31 otwartych — dokument aktualny
+kod: 0
+== npm run check:figures-v2
+figury v2: aktualne
+docs/schemas/figury-v2-poza.schema.json aktualny
+kod: 0
+== npm run check:zrodla-runtime
+kod: 0

@@ -1,0 +1,560 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/regress.test.tsx (152.091 s)
+  ● Console
+
+    console.error
+      Error: Unable to find node on an unmounted component.
+          at Error (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:1689:17)
+          at findCurrentFiberUsingSlowPath (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:1761:16)
+          at findCurrentHostFiber (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:15744:19)
+          at findHostInstanceWithWarning (/home/user/trening/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:15860:27)
+          at AnimatedProps._connectAnimatedView2 (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedProps.js:276:42)
+          at AnimatedProps.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedProps.js:257:13)
+          at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedStyle.js:225:5)
+          at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedTransform.js:87:5)
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedInterpolation.js:391:5)
+          at AnimatedTransform.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedTransform.js:85:12)
+          at AnimatedStyle.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedStyle.js:223:12)
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedInterpolation.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedInterpolation.js:391:5)
+          at AnimatedValue.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedWithChildren.js:33:17)
+          at /home/user/trening/node_modules/@babel/runtime/helpers/superPropGet.js:6:14
+          at AnimatedValue.__makeNative (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedValue.js:131:5)
+          at TimingAnimation.__makeNative [as __startAnimationIfNative] (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/Animation.js:137:21)
+          at __startAnimationIfNative (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/TimingAnimation.js:123:36)
+          at TimingAnimation.start (/home/user/trening/node_modules/react-native/Libraries/Animated/animations/TimingAnimation.js:139:7)
+          at AnimatedValue.start [as animate] (/home/user/trening/node_modules/react-native/Libraries/Animated/nodes/AnimatedValue.js:320:15)
+          at animate (/home/user/trening/node_modules/react-native/Libraries/Animated/AnimatedImplementation.js:233:19)
+          at Object.start (/home/user/trening/node_modules/react-native/Libraries/Animated/AnimatedImplementation.js:240:9)
+          at start (/home/user/trening/components/BoardFace.tsx:29:178)
+          at Object.react_stack_bottom_frame (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:15755:20)
+          at runWithFiberInDEV (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+          at commitHookEffectListMount (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9530:29)
+          at commitHookPassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9617:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11205:13)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+          ... collapsed 4 duplicate lines matching above lines ...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          ... collapsed 12 duplicate lines matching above 6 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11225:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11387:17)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11354:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          ... collapsed 4 duplicate lines matching above 2 lines 2 times...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11439:11)
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11)
+          at commitPassiveMountOnFiber (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11197:11)
+          ... collapsed 6 duplicate lines matching above lines ...
+          at recursivelyTraversePassiveMountEffects (/home/user/trening/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:11160:11) {
+        [stack]: [Getter/Setter],
+        [message]: 'Unable to find node on an unmounted component.'
+      }
+      
+      The above error occurred in the <NowBoard> component.
+      
+      React will try to recreate this component tree from scratch using the error boundary you provided, Try.
+
+      107 | // żeby log był czytelny. Pozostałe console.error przechodzą (C9 sprawdza je jawnie).
+      108 | const origError = console.error;
+    > 109 | console.error = (...a) => { if (/not wrapped in act/.test(String(a[0]))) return; origError(...a); };
+          |                                                                                  ^
+      110 |
+      111 | // ActionSheetIOS (menu serii): zapamiętujemy wywołania, test wybiera opcję przez global.__pickSheet(i).
+      112 | global.__sheets = [];
+
+      at console.origError [as error] (tests/setup.js:109:82)
+      at defaultOnCaughtError (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6439:17)
+      at logCaughtError (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6475:9)
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at Try.update.callback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6508:11)
+      at callCallback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4625:16)
+      at commitCallbacks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4645:11)
+      at runWithFiberInDEV (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+      at commitClassCallbacks (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:9658:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10082:25)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10202:17)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10168:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10118:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10010:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10005:11)
+      at recursivelyTraverseLayoutEffects (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10892:11)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10210:11)
+
+PASS iOS tests/scenario-full.test.tsx (93.663 s)
+PASS iOS tests/matrix-invariants.test.ts (161.215 s)
+PASS iOS tests/matrix-ui.test.tsx (43.477 s)
+PASS iOS tests/matrix-logic.test.tsx (57.977 s)
+PASS iOS tests/matrix-i18n.test.tsx (5.393 s)
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:58
+  const t = (tryb === 'vertex' ? CENY_VERTEX : CENY)[model]; if (!t) throw new Error(`nieznany model: ${model} (dozwolone: ${MODELE.join(', ')})`);
+                                                                           ^
+
+Error: nieznany model: gpt-x (dozwolone: gemini-4-argon, gemini-3.1-pro-preview, gemini-3.8-flash)
+    at Module.cena (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:58:76)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:373
+    else if (a === '--rodzina') { o.rodzina = wart(i++, a); if (!/^[a-z][a-z0-9_]{1,40}$/.test(o.rodzina)) throw new Error('--rodzina: oczekiwany identyfikator rodziny (małe litery, cyfry, _)'); }
+                                                                                                                 ^
+
+Error: --rodzina: oczekiwany identyfikator rodziny (małe litery, cyfry, _)
+    at Module.parsujArgumenty (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:373:114)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:373
+    else if (a === '--rodzina') { o.rodzina = wart(i++, a); if (!/^[a-z][a-z0-9_]{1,40}$/.test(o.rodzina)) throw new Error('--rodzina: oczekiwany identyfikator rodziny (małe litery, cyfry, _)'); }
+                                                                                                                 ^
+
+Error: --rodzina: oczekiwany identyfikator rodziny (małe litery, cyfry, _)
+    at Module.parsujArgumenty (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:373:114)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:378
+    else if (a === '--model') { o.model = wart(i++, a); if (!MODELE.includes(o.model)) throw new Error(`nieznany model: ${o.model} (dozwolone: ${MODELE.join(', ')})`); }
+                                                                                             ^
+
+Error: nieznany model: gpt (dozwolone: gemini-4-argon, gemini-3.1-pro-preview, gemini-3.8-flash)
+    at Module.parsujArgumenty (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:378:94)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:379
+    else if (a === '--limit-usd') { o.limitUsd = Number(wart(i++, a)); if (!(o.limitUsd > 0 && o.limitUsd <= 50)) throw new Error('--limit-usd: liczba z przedziału (0, 50]'); }
+                                                                                                                        ^
+
+Error: --limit-usd: liczba z przedziału (0, 50]
+    at Module.parsujArgumenty (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:379:121)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:379
+    else if (a === '--limit-usd') { o.limitUsd = Number(wart(i++, a)); if (!(o.limitUsd > 0 && o.limitUsd <= 50)) throw new Error('--limit-usd: liczba z przedziału (0, 50]'); }
+                                                                                                                        ^
+
+Error: --limit-usd: liczba z przedziału (0, 50]
+    at Module.parsujArgumenty (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:379:121)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:380
+    else if (a === '--proby') { o.proby = Number(wart(i++, a)); if (!Number.isInteger(o.proby) || o.proby < 1 || o.proby > 8) throw new Error('--proby: liczba całkowita 1–8'); }
+                                                                                                                                    ^
+
+Error: --proby: liczba całkowita 1–8
+    at Module.parsujArgumenty (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:380:133)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:385
+    else throw new Error(`nieznany argument: ${a}`);
+               ^
+
+Error: nieznany argument: --nic
+    at Module.parsujArgumenty (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:385:16)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:369
+  const wart = (i, n) => { if (i + 1 >= argv.length) throw new Error(`brak wartości dla ${n}`); return argv[i + 1]; };
+                                                           ^
+
+Error: brak wartości dla --model
+    at wart (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:369:60)
+    at Module.parsujArgumenty (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:378:43)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:84
+  if (i < 0) throw new Error(`rodzina „${rodzina}” nie występuje w ${plik}`);
+                   ^
+
+Error: rodzina „nie_ma” nie występuje w /tmp/gemini-zDz8f8/docs/51-figury-v2-pokrycie.md
+    at Module.cwiczeniaRodziny (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:84:20)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:82
+  if (!existsSync(plik)) throw new Error(`brak ${plik} (jest na gałęzi grafiki-cwiczen; uruchom z tej gałęzi)`);
+                               ^
+
+Error: brak /nie/ma.md (jest na gałęzi grafiki-cwiczen; uruchom z tej gałęzi)
+    at Module.cwiczeniaRodziny (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:82:32)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:374
+    else if (a === '--api') { o.api = wart(i++, a); if (!API_TRYBY.includes(o.api)) throw new Error(`nieznany tryb --api: ${o.api} (dozwolone: ${API_TRYBY.join(', ')})`); }
+                                                                                          ^
+
+Error: nieznany tryb --api: azure (dozwolone: vertex, gemini)
+    at Module.parsujArgumenty (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:374:91)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:369
+  const wart = (i, n) => { if (i + 1 >= argv.length) throw new Error(`brak wartości dla ${n}`); return argv[i + 1]; };
+                                                           ^
+
+Error: brak wartości dla --api
+    at wart (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:369:60)
+    at Module.parsujArgumenty (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:374:39)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:374
+    else if (a === '--api') { o.api = wart(i++, a); if (!API_TRYBY.includes(o.api)) throw new Error(`nieznany tryb --api: ${o.api} (dozwolone: ${API_TRYBY.join(', ')})`); }
+                                                                                          ^
+
+Error: nieznany tryb --api:  (dozwolone: vertex, gemini)
+    at Module.parsujArgumenty (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:374:91)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:375
+    else if (a === '--lokalizacja') { o.lokalizacja = wart(i++, a); if (!LOKALIZACJE.includes(o.lokalizacja)) throw new Error(`nieznana --lokalizacja: ${o.lokalizacja} (dozwolone: ${LOKALIZACJE.join(', ')})`); }
+                                                                                                                    ^
+
+Error: nieznana --lokalizacja: us-central1 (dozwolone: global, us, eu)
+    at Module.parsujArgumenty (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:375:117)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+file:///home/user/trening/scripts/figures/gemini-pozy.mjs:369
+  const wart = (i, n) => { if (i + 1 >= argv.length) throw new Error(`brak wartości dla ${n}`); return argv[i + 1]; };
+                                                           ^
+
+Error: brak wartości dla --lokalizacja
+    at wart (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:369:60)
+    at Module.parsujArgumenty (file:///home/user/trening/scripts/figures/gemini-pozy.mjs:375:55)
+    at file:///home/user/trening/[eval1]:1:76
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+PASS iOS tests/gemini-pozy.test.ts (7.688 s)
+PASS iOS tests/edit-history.test.tsx (12.216 s)
+PASS iOS tests/motyw.test.tsx (10.657 s)
+PASS iOS tests/matrix-data-fuzz.test.ts (94.879 s)
+PASS iOS tests/matrix-time.test.ts (7.361 s)
+PASS iOS tests/public-repo.test.ts
+PASS iOS tests/audit-0.10-plan.test.ts
+PASS iOS tests/audit-0.10-live.test.tsx (17.351 s)
+PASS iOS tests/audit-0.10-ui.test.tsx (15.914 s)
+PASS iOS tests/maestro-selectors.test.ts
+PASS iOS tests/guard.test.ts
+PASS iOS tests/subscription-ui.test.tsx (15.092 s)
+PASS iOS tests/audit-k1-fala2b.test.tsx (13.152 s)
+PASS iOS tests/audit-0.10-plan-ui.test.tsx (15.347 s)
+PASS iOS tests/guard-ui.test.tsx (15.739 s)
+PASS iOS tests/integration-090.test.tsx (7.115 s)
+PASS iOS tests/catalog-library25.test.tsx
+PASS iOS tests/timer-logic.test.ts
+PASS iOS tests/przeglad-tlumaczen.test.ts
+PASS iOS tests/idea-request.test.tsx (10.802 s)
+PASS iOS tests/interaction-guards.test.ts (5.041 s)
+PASS iOS tests/m3-p2-board-ui.test.tsx (16.561 s)
+PASS iOS tests/hak-pre-push.test.ts (24.459 s)
+PASS iOS tests/figures.test.tsx
+PASS iOS tests/audit-0.10-live-logic.test.ts
+PASS iOS tests/swap-logic.test.ts (5.313 s)
+PASS iOS tests/matrix-migrations.test.tsx (49.342 s)
+PASS iOS tests/backlog-0.10.1-dane.test.ts
+PASS iOS tests/matrix-a11y.test.tsx (50.036 s)
+PASS iOS tests/health-query.test.ts
+PASS iOS tests/adapt-logic.test.ts
+PASS iOS tests/audit-0.10-data.test.ts
+PASS iOS tests/swipe-delete.test.tsx (15.64 s)
+PASS iOS tests/adapt-ui.test.tsx (28.914 s)
+PASS iOS tests/audit-k1-bl-mer.test.tsx (182.24 s)
+PASS iOS tests/places-ui.test.tsx (41.474 s)
+PASS iOS tests/decisions-0310.test.tsx
+PASS iOS tests/invariants.test.ts (238.268 s)
+PASS iOS tests/progression-ui.test.tsx (10.793 s)
+PASS iOS tests/i18n-wave4.test.ts
+PASS iOS tests/figures-v2-engine.test.ts
+PASS iOS tests/store-adapter.test.ts
+PASS iOS tests/przeklad-tlumaczen.test.ts
+PASS iOS tests/access.test.ts
+PASS iOS tests/figures-v2-contract.test.ts (13.122 s)
+PASS iOS tests/audit-0.10-lang-ui.test.tsx (31.17 s)
+PASS iOS tests/matrix-dim-metrics.test.tsx (6.166 s)
+PASS iOS tests/health-read.test.ts
+PASS iOS tests/zrodla-wiedzy.test.ts
+PASS iOS tests/mutation-plan.test.ts
+PASS iOS tests/edit-on-demand.test.tsx (11.767 s)
+  ● Console
+
+    console.warn
+      A function to advance timers was called but the timers APIs are not replaced with fake timers. Call `jest.useFakeTimers()` in this test file or enable fake timers for all tests by setting 'fakeTimers': {'enableGlobally': true} in Jest configuration file.
+      Stack Trace:
+      
+            25 |     const d = draft.beginObjDraft<Template>('template', t.id)!; expect(d).not.toBe(t); expect(d.items[0]).not.toBe(t.items[0]); expect(draft.beginObjDraft('template', t.id)).toBe(d);
+            26 |     expect(store.isDraftObj(d)).toBe(true); expect(store.isDraftObj(t)).toBe(false);
+          > 27 |     d.name = 'Zmieniony'; store.tplAddRow(d, 'a', 'warmup'); store.save(d); await act(async () => { jest.advanceTimersByTime(1000); await store.flush(); });
+               |                                                                                                          ^
+            28 |     expect(global.__kv.get('state')).toBe(kv); expect(store.getHistRev()).toBe(hist); expect(t.name).toBe('Push'); expect(store.tplRows(t.items[0]).length).toBe(3);
+            29 |     expect(draft.objDirty('template', t.id)).toBe(true); expect(draft.templateForEdit(t.id)).toBe(d);
+            30 |     draft.discardObjDraft('template', t.id); expect(draft.objDraft('template', t.id)).toBeUndefined(); expect(draft.templateForEdit(t.id)).toBe(t); expect(draft.objDirty('template', t.id)).toBe(false);
+      
+            Error: 
+            at FakeTimers._checkFakeTimers (node_modules/@jest/fake-timers/build/modernFakeTimers.js:158:13)
+            at FakeTimers.advanceTimersByTime (node_modules/@jest/fake-timers/build/modernFakeTimers.js:93:14)
+            at advanceTimersByTime (tests/edit-on-demand.test.tsx:27:106)
+            at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+            at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+            at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+            at node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+            at callback (node_modules/@testing-library/react-native/src/act.ts:31:24)
+            at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:814:22)
+            at actImplementation (node_modules/@testing-library/react-native/src/act.ts:30:25)
+            at Object.<anonymous> (tests/edit-on-demand.test.tsx:27:86)
+            at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+            at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+      25 |     const d = draft.beginObjDraft<Template>('template', t.id)!; expect(d).not.toBe(t); expect(d.items[0]).not.toBe(t.items[0]); expect(draft.beginObjDraft('template', t.id)).toBe(d);
+      26 |     expect(store.isDraftObj(d)).toBe(true); expect(store.isDraftObj(t)).toBe(false);
+    > 27 |     d.name = 'Zmieniony'; store.tplAddRow(d, 'a', 'warmup'); store.save(d); await act(async () => { jest.advanceTimersByTime(1000); await store.flush(); });
+         |                                                                                                          ^
+      28 |     expect(global.__kv.get('state')).toBe(kv); expect(store.getHistRev()).toBe(hist); expect(t.name).toBe('Push'); expect(store.tplRows(t.items[0]).length).toBe(3);
+      29 |     expect(draft.objDirty('template', t.id)).toBe(true); expect(draft.templateForEdit(t.id)).toBe(d);
+      30 |     draft.discardObjDraft('template', t.id); expect(draft.objDraft('template', t.id)).toBeUndefined(); expect(draft.templateForEdit(t.id)).toBe(t); expect(draft.objDirty('template', t.id)).toBe(false);
+
+      at FakeTimers._checkFakeTimers (node_modules/@jest/fake-timers/build/modernFakeTimers.js:152:28)
+      at FakeTimers.advanceTimersByTime (node_modules/@jest/fake-timers/build/modernFakeTimers.js:93:14)
+      at advanceTimersByTime (tests/edit-on-demand.test.tsx:27:106)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at callback (node_modules/@testing-library/react-native/src/act.ts:31:24)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:814:22)
+      at actImplementation (node_modules/@testing-library/react-native/src/act.ts:30:25)
+      at Object.<anonymous> (tests/edit-on-demand.test.tsx:27:86)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+    console.warn
+      A function to advance timers was called but the timers APIs are not replaced with fake timers. Call `jest.useFakeTimers()` in this test file or enable fake timers for all tests by setting 'fakeTimers': {'enableGlobally': true} in Jest configuration file.
+      Stack Trace:
+      
+            34 |     draft.beginObjDraft('template', t.id); expect(draft.commitObjDraft('template', t.id)).toBe(true); expect(t.updatedAt).toBe(ts); /* nic nie zmieniono */
+            35 |     const d = draft.beginObjDraft<Template>('template', t.id)!; delete d.folder; d.note = '  RIR  1 '; d.items.reverse(); (d as Template & { archived?: true }).archived = true;
+          > 36 |     jest.advanceTimersByTime(5); expect(draft.commitObjDraft('template', t.id)).toBe(true);
+               |          ^
+            37 |     expect(S().templates.find(x => x.id === t.id)).toBe(t); expect('folder' in t).toBe(false); expect(t.note).toBe('RIR 1'); expect(t.items.map(i => i.id)).toEqual(['b', 'a']);
+            38 |     expect(t.archived).toBeUndefined(); /* archiwum przełącza się w podglądzie, nie szkicem */ expect(t.updatedAt).toBeGreaterThan(ts); expect(store.isDraftObj(t)).toBe(false);
+            39 |     expect(draft.commitObjDraft('template', t.id)).toBe(false); /* brak szkicu */
+      
+            Error: 
+            at FakeTimers._checkFakeTimers (node_modules/@jest/fake-timers/build/modernFakeTimers.js:158:13)
+            at FakeTimers.advanceTimersByTime (node_modules/@jest/fake-timers/build/modernFakeTimers.js:93:14)
+            at Object.advanceTimersByTime (tests/edit-on-demand.test.tsx:36:10)
+            at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+            at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+      34 |     draft.beginObjDraft('template', t.id); expect(draft.commitObjDraft('template', t.id)).toBe(true); expect(t.updatedAt).toBe(ts); /* nic nie zmieniono */
+      35 |     const d = draft.beginObjDraft<Template>('template', t.id)!; delete d.folder; d.note = '  RIR  1 '; d.items.reverse(); (d as Template & { archived?: true }).archived = true;
+    > 36 |     jest.advanceTimersByTime(5); expect(draft.commitObjDraft('template', t.id)).toBe(true);
+         |          ^
+      37 |     expect(S().templates.find(x => x.id === t.id)).toBe(t); expect('folder' in t).toBe(false); expect(t.note).toBe('RIR 1'); expect(t.items.map(i => i.id)).toEqual(['b', 'a']);
+      38 |     expect(t.archived).toBeUndefined(); /* archiwum przełącza się w podglądzie, nie szkicem */ expect(t.updatedAt).toBeGreaterThan(ts); expect(store.isDraftObj(t)).toBe(false);
+      39 |     expect(draft.commitObjDraft('template', t.id)).toBe(false); /* brak szkicu */
+
+      at FakeTimers._checkFakeTimers (node_modules/@jest/fake-timers/build/modernFakeTimers.js:152:28)
+      at FakeTimers.advanceTimersByTime (node_modules/@jest/fake-timers/build/modernFakeTimers.js:93:14)
+      at Object.advanceTimersByTime (tests/edit-on-demand.test.tsx:36:10)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+PASS iOS tests/i18n-wave2.test.ts
+PASS iOS tests/audit-0.10-stats.test.ts
+PASS iOS tests/audit-0.10-gen.test.ts
+PASS iOS tests/asc-zrzuty.test.ts
+PASS iOS tests/csv-import-logic.test.ts
+PASS iOS tests/health-read-ui.test.tsx (10.121 s)
+PASS iOS tests/stats.test.ts
+PASS iOS tests/intro.test.tsx (20.464 s)
+PASS iOS tests/catalog-v2.test.ts
+PASS iOS tests/monetyzacja-csv.test.ts
+PASS iOS tests/m3-p3-postepy-historia.test.tsx (9.779 s)
+PASS iOS tests/audit-0.10-data-ui.test.tsx (6.552 s)
+PASS iOS tests/nocny-raport.test.ts
+PASS iOS tests/audit-r83.test.tsx (5.912 s)
+Przebieg przerwany restartem kontenera po 71 zestawach (0 FAIL).

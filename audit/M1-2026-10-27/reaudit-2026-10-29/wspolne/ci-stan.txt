@@ -1,0 +1,14 @@
+Stan CI odczytany przez M1 (GitHub API, 28.10.2026 ok. 23:05 UTC):
+- PR #83 (naprawy/duzy-tekst-trening), check „verify” (tests.yml) na głowie: success, przebieg 40780525865 (22:32–22:55 UTC).
+- e2e-ios.yml push main 5d79c3a: przebieg 40776726099 w toku — build success, część 1 Maestro success (aktualizacja w toku), część 2 Maestro w toku, część 3 bez scenariuszy.
+- e2e-ios.yml push main c02f969: 40763725344 failure — job build „cancelled” (maszyna), Maestro nie ruszyło → nie błąd aplikacji.
+- e2e-ios.yml push main 96c2425: 40750767412 failure — przyczyny nie badano (zastąpione późniejszymi przebiegami).
+- e2e-ios.yml tylko wybrane, gałąź duży tekst 623c1ef: 40766078690 success (próba 4); 40766083479 failure (próba 2) — szczegóły u M2.
+- e2e-ios.yml tylko wybrane main b369706: 40772211629 cancelled.
+
+Uzupełnienie (odczyt ok. 23:15 UTC):
+- 40776726099 (push main 5d79c3a, pakiet podstawowy 01 02 05 09 13 20 21 31 33 34 35 36 52 53 — scripts/ci/e2e-podstawowy.json): build success; część 1 — kroki Maestro, Aktualizacja (33/34) i „Wyniki scenariuszy” success, podsumowanie porażki pominięte (brak porażki); konkluzja joba „cancelled” po kroku Complete job (anulowanie przebiegu po zakończeniu kroków — job „wyniki przebiegu” cancelled 23:10:21); część 2 — Maestro success, konkluzja success; część 3 bez scenariuszy.
+- Wniosek M1: scenariusz 21 (039, „Zarządzaj subskrypcją” po id paywall-manage) przeszedł na main 5d79c3a, który zawiera ee43b82 i f8a7806. Do potwierdzenia przez M2 w artefakcie e2e-wyniki (czy 21 nie „w ponowieniu”).
+- PR #85 (docs/48 kolumna „Stan”, R-004 i R-014 zamknięte) otwarty, niescalony (mergeable_state: behind), utworzony 23:06 UTC.
+- Wiadomość M2 (23:16 UTC): w logu e2e-wyniki 40776726099 część 2 „Subskrypcja — ekran zakupu i limit” (21) przeszła za pierwszym razem, 7/7, 0 ponowień; część 1 7/7, 0 ponowień; anulowanie po zapisie wyników (kolejny push do main). main teraz d521fdd (+#83).
+- tests.yml „Testy (każde wypchnięcie)” 40780525865: head_sha 0a566a1848bc44139f27ec2f3fcdc3e49922f901, success (22:30–22:55 UTC) — pełne verify w CI na badanym commicie.

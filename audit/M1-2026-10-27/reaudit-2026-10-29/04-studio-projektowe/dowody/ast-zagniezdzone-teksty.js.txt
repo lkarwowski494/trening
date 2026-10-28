@@ -1,0 +1,19 @@
+const ts = require('/home/user/trening/node_modules/typescript'); const fs = require('fs'); const cp = require('child_process');
+const files = cp.execSync('git ls-files "app/*.tsx" "app/**/*.tsx" "components/*.tsx"', { cwd: '/home/user/trening' }).toString().trim().split('\n');
+const TXT = new Set(['Text', 'Txt']); const out = [];
+for (const f of files) {
+  const src = fs.readFileSync('/home/user/trening/' + f, 'utf8'); const sf = ts.createSourceFile(f, src, 99, true, ts.ScriptKind.TSX);
+  const mfm = el => el.attributes.properties.find(p => ts.isJsxAttribute(p) && p.name.getText() === 'maxFontSizeMultiplier');
+  const visit = (n, parentLimit) => {
+    if (ts.isJsxElement(n) && TXT.has(n.openingElement.tagName.getText())) {
+      const a = mfm(n.openingElement);
+      if (parentLimit && !a) out.push(`${f}:${sf.getLineAndCharacterOfPosition(n.getStart()).line + 1} ${n.openingElement.tagName.getText()} bez limitu w tekście z limitem ${parentLimit}`);
+      const lim = a ? a.initializer.getText() : (parentLimit || null);
+      ts.forEachChild(n, c => visit(c, lim)); return;
+    }
+    if (ts.isJsxSelfClosingElement(n) && TXT.has(n.tagName.getText()) && parentLimit && !mfm(n)) out.push(`${f}:${sf.getLineAndCharacterOfPosition(n.getStart()).line + 1} samozamykający bez limitu w ${parentLimit}`);
+    ts.forEachChild(n, c => visit(c, parentLimit));
+  };
+  visit(sf, null);
+}
+console.log(out.join('\n') || 'brak');

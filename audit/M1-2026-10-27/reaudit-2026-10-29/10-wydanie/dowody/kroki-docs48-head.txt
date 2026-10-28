@@ -1,0 +1,41 @@
+59 Z-01 | kto: agent + właściciel (scalenie PR) | krok: Zakres 1.0 zamknięty i scalony do `main` (monetyzacja, przekład, DEC-03, DEC-08, partia 2  | STAN: **Stan (28.10.2026):** zgoda właściciela na scalenie poprawek pętli 2 napraw M2 do `main` przed reaudytem M1 („3 scalaj teraz”) — scalenie PR z `naprawy/M2-koordynator-napraw-2026-10-28-p2`; ewentualne poprawki z reaudytu osobnym 
+60 Z-02 | kto: agent (rola tłumacz / badacz) | krok: Ostatni przegląd treści krytycznej po przekładzie (zamyka R-010, pkt 7) | STAN: 
+61 Z-03 | kto: agent (audytor) | krok: Audyt zmian od audytu M1 (decyzja D1 niżej) | STAN: **Stan (28.10.2026, nocny tryb — decyzja właściciela):** reaudyt M1 pętli 2 po naprawach torów (#81) i dużego tekstu na ekranie Trening; blokery z reaudytu naprawiane w nocy i scalane do `main` przez agentów po teście, pełnym veri
+62 Z-04 | kto: automat | krok: `npm run verify` zielony na commicie wydania (`tests.yml`) | STAN: 
+63 Z-05 | kto: agent | krok: Wersja 1.0.0 w `app.json`, „Co nowego” wyczyszczone, wiersz w dzienniku wydań docs/09 | STAN: 
+64 Z-06 | kto: automat | krok: Jeden pełny katalog E2E na standardowym iPhonie zielony (jedno ponowienie scenariusza dozw | STAN: 
+65 Z-07 | kto: automat; właściciel zatwierdza środowisko `release` | krok: Build 1.0 na TestFlight: `testflight.yml` (numer buildu = 1000 + numer przebiegu) | STAN: 
+66 Z-08 | kto: właściciel | krok: Lista kontrolna z telefonu (`docs/39`, ok. 15–20 min) + R-004, R-013, R-014 (pkt 7) | STAN: 
+67 Z-09 | kto: właściciel | krok: Zakup w piaskownicy: każdy plan, przywrócenie, tryb samolotowy, zwrot, Chmura rodzinna (do | STAN: 
+68 Z-10 | kto: automat | krok: `asc-kontrola.yml` zielone (ceny, brak ofert wprowadzających, rodzina, kategoria, adresy) | STAN: 
+69 Z-10a | kto: automat (agent uruchamia) | krok: Adresy z aplikacji i z `store/app-store-urls.json` (prywatność, wsparcie, espresso, EULA,  | STAN: 
+70 Z-10b | kto: właściciel (eksport, ok. 5 min) + agent (porównanie) | krok: Ceny planu miesięcznego we wszystkich krajach wobec porównania z espresso (02-monetyzacja- | STAN: **Stan: zrobione 28.10.2026 — decyzja właściciela, wariant A:** zamknięte bez ręcznego eksportu z App Store Connect; cena bazowa planu miesięcznego 0,99 USD, pozostałe terytoria to wyrównanie Apple, właściciel nie zmieniał cen ręc
+80 Z-11 | kto: właściciel | krok: Umowy: Paid Apps Agreement przyjęta, dane bankowe i podatkowe uzupełnione (bez tego aplika | STAN: 
+81 Z-12 | kto: właściciel | krok: Small Business Program: potwierdzenie przyjęcia zgłoszenia z 14.10.2026 (prowizja w `docs/ | STAN: 
+82 Z-13 | kto: właściciel | krok: Wersja 1.0 w stanie „Prepare for Submission” istnieje (pasek boczny → wersja iOS); numer w | STAN: 
+83 Z-14 | kto: automat + właściciel (zatwierdzenie) | krok: Metadane przez workflow: GitHub → Actions → „ASC metadane sklepu” → tryb `podglad`, potem  | STAN: 
+84 Z-15 | kto: właściciel | krok: Ręcznie w polach, których workflow nie wypełnia: Copyright („2026 …”, imię i nazwisko sprz | STAN: **Stan: zrobione 28.10.2026** (potwierdzenie właściciela zrzutem App Store Connect): Copyright i Marketing URL wpisane; danych sprzedawcy nie przepisujemy do repo. 
+85 Z-16 | kto: automat: `asc-zrzuty.yml` (dry-run, potem apply za `release` | krok: Zrzuty ekranu — wgranie do każdej lokalizacji (iPhone + Apple Watch), po akceptacji zestaw | STAN: 
+86 Z-17 | kto: właściciel (wpisane 14.10.2026; zweryfikować, że opublikowan | krok: Prywatność aplikacji: „No, we do not collect data from this app” → Publish (uzasadnienie i | STAN: 
+87 Z-18 | kto: właściciel + agent | krok: Adres polityki prywatności i adres wsparcia (z `store/app-store-urls.json`); strony muszą  | STAN: 
+88 Z-19 | kto: właściciel | krok: Ocena wieku: kwestionariusz (pkt 4), wynik oczekiwany 9+, „Age Categories and Override” =  | STAN: 
+89 Z-20 | kto: właściciel (wpisane) | krok: Kategoria główna Health & Fitness; brak kategorii dodatkowej (`docs/45-widocznosc`) | STAN: 
+90 Z-21 | kto: właściciel | krok: Cena aplikacji: darmowa; dostępność (kraje) | STAN: 
+91 Z-22 | kto: właściciel (Account Holder lub Admin) | krok: Regulated Medical Device: „Declare Regulated Medical Device” → No (aplikacja nie jest wyro | STAN: 
+92 Z-23 | kto: właściciel | krok: Status tradera (DSA) — zweryfikowany przez Apple 20.10.2026 (docs/18); sprawdzić, że stan  | STAN: 
+93 Z-24 | kto: automat + właściciel | krok: Zakupy: dla każdego z trzech produktów komplet (lokalizacje 33 języków — workflow `asc-iap | STAN: 
+94 Z-25 | kto: właściciel wkleja, agent przygotowuje tekst | krok: App Review Information: kontakt (imię, telefon w formacie międzynarodowym, e-mail — tylko  | STAN: **Stan (28.10.2026):** częściowo — „Sign-in required” odznaczone, dane kontaktowe wpisane (potwierdzenie właściciela); **Notes** do wklejenia po scaleniu do `main`, z aktualnego `store/review-notes.md`. 
+95 Z-25b | kto: agent | krok: Bramka wydania (agent): `npm run check:release` = kod 0 na commicie kandydata — wyjątek an | STAN: 
+96 Z-25a | kto: właściciel | krok: Wygaszenie starszych buildów 1.0 w TestFlight (M1-audytor-generalny-008): TestFlight → iOS | STAN: 
+97 Z-26 | kto: właściciel | krok: Build do wersji — Kandydat: build — · SHA — (przed zgłoszeniem agent wpisuje numer z tagu  | STAN: 
+98 Z-27 | kto: właściciel | krok: Opcja wydania: ręcznie („Manual” — po akceptacji status „Pending Developer Release”; D-5 A | STAN: **Stan: zrobione 28.10.2026** — „Manually release this version” ustawione (potwierdzenie właściciela). 
+99 Z-28 | kto: właściciel | krok: Zakupy w tym samym zgłoszeniu co wersja: pierwsza subskrypcja i pierwszy zakup jednorazowy | STAN: 
+100 Z-29 | kto: właściciel | krok: „Add for Review” → wybór: nowe zgłoszenie → dodanie produktów → „Submit for Review” | STAN: 
+115 Z-30 | kto: Apple; agent przygotowuje odpowiedź, właściciel wysyła | krok: Recenzja Apple; odpowiedzi w sekcji App Review (Resolution Center) | STAN: 
+116 Z-31 | kto: właściciel | krok: Po akceptacji: ten sam build z TestFlight na telefonie, lista docs/39 (ok. 15–20 min), pot | STAN: 
+117 Z-32 | kto: właściciel + agent | krok: Po wydaniu: sprawdzenie, że aplikacja instaluje się z App Store; tag `v1.0.0-b<numer>` zał | STAN: 
+118 Z-33 | kto: właściciel | krok: Etykiety dostępności (opcjonalne, dobrowolne na dziś) — dopiero po wydaniu | STAN: 
+119 Z-36 | kto: właściciel (telefon, 2 min) | krok: Po wydaniu, pierwszy dzień: ekran zakupu w wersji z App Store (polskie konto, bez piaskown | STAN: 
+120 Z-34 | kto: właściciel | krok: Pierwsza aktualizacja (1.0.1): wydanie stopniowe 7 dni | STAN: 
+121 Z-37 | kto: właściciel (ok. 1 h łącznie); agent opracowuje wynik | krok: Test pierwszego użycia z 3–5 osobami bez instrukcji (03-zakres-008, DEC-07 b 27.10.2026; c | STAN: 
+122 Z-35 | kto: agent przygotowuje dane, właściciel decyduje | krok: Punkt kontrolny 8 tygodni po premierze (próg pobrań/płacących w `docs/monetyzacja.md`, „Br | STAN: 

@@ -1,0 +1,62 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+  console.log
+    GRUPA
+    
+    NOCAP
+    
+    FIXED
+    
+    GLYPH
+    /history/edit/34c242b5-f79c-4da4-653f-2907f85739ac: „‹” 2
+    /history/edit/34c242b5-f79c-4da4-653f-2907f85739ac: „›” 2
+    /plan: „‹” 2
+    /plan: „›” 2
+    /generator: „‹” 2
+    /generator: „›” 2
+    /guide: „‹” 2
+    /guide: „›” 2
+    /swap?target=active:1c8f1b10-ff03-46a1-d671-1ac4554ddbd3: „‹” 2
+    /swap?target=active:1c8f1b10-ff03-46a1-d671-1ac4554ddbd3: „›” 2
+    /picker?target=active: „‹” 2
+    /picker?target=active: „›” 2
+    /reorder?target=active: „‹” 2
+    /reorder?target=active: „›” 2
+    /history/add: „‹” 2
+    /history/add: „›” 2
+    /more/location/123ac8aa-4b8e-4661-136d-edfe573183ea: „‹” 2
+    /more/location/123ac8aa-4b8e-4661-136d-edfe573183ea: „›” 2
+    /more/bodymass: „‹” 2
+    /more/bodymass: „›” 2
+    /more/about: „‹” 2
+    /more/about: „›” 2
+    /more/licenses: „‹” 2
+    /more/licenses: „›” 2
+    /more/import: „‹” 2
+    /more/import: „›” 2
+    /paywall?reason=limit: „‹” 2
+    /paywall?reason=limit: „›” 2
+    /generator?mode=own: „‹” 2
+    /generator?mode=own: „›” 2
+    /pick-template: „‹” 2
+    /pick-template: „›” 2
+    /progression: „‹” 2
+    /progression: „›” 2
+    /adapt: „‹” 2
+    /adapt: „›” 2
+    /place-once: „‹” 2
+    /place-once: „›” 2
+    / bez treningu w toku: „‹” 2
+    / bez treningu w toku: „›” 2
+
+
+PASS iOS tests/zz-sonda04b.test.tsx (32.647 s)
+  ✓ trasy bogate (27358 ms)
+  ✓ pierwsze uruchomienie (139 ms)
+  ✓ paywall z planem (245 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        33.36 s
+Ran all test suites matching /tests\/zz-sonda04b.test.tsx/i.

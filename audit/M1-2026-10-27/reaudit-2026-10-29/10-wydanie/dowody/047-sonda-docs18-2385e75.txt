@@ -1,0 +1,12 @@
+file:///home/user/trening/[eval1]:1
+import * as m from '/home/user/trening/scripts/decyzje.mjs'; import fs from 'node:fs'; const z=m.zadaniaZNaprawa(); console.log('zadania z naprawa', z.length); console.log(JSON.stringify(m.nieaktualneWskazniki(fs.readFileSync('/tmp/claude-0/-home-user-trening/9b8acf86-c7c7-5d00-811b-b360b5592a91/scratchpad/d18-2385e75.md','utf8'), z).map(x=>[x.linia,x.id])))
+                                                                                                                                                       ^
+
+TypeError: Cannot read properties of null (reading 'length')
+    at file:///home/user/trening/[eval1]:1:152
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0

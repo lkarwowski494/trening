@@ -1,0 +1,3 @@
+WYDANIE ZABLOKOWANE (rejestr ryzyk docs/40): 5 otwartych bez odroczenia decyzją właściciela — R-005, R-004, R-013, R-014, R-RES
+Warunek: każde ryzyko zamknięte z dowodem, zaakceptowane, odroczone decyzją właściciela z datą albo oznaczone „sprawdzenie po wydaniu” (M1-audytor-generalny-012).
+wyjątek anonimizacji pusty — wydanie nie jest blokowane przez R-015

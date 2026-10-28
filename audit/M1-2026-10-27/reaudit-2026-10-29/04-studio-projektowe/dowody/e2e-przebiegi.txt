@@ -1,0 +1,13 @@
+Przebieg e2e-ios.yml 40766078690 (sha 623c1ef, przodek HEAD; różnica do HEAD w app/components: tylko ExerciseCues.tsx, ExerciseFigureV2.tsx)
+2026-10-28T22:39:20.7166390Z   ONLY: 58
+2026-10-28T22:39:24.5298850Z   ROZMIAR_TEKSTU: accessibility-extra-extra-extra-large
+2026-10-28T22:39:33.9024170Z Symulator: iPhone 17  (Shutdown)  (SDK symulatora 26.5)
+2026-10-28T22:39:33.9809100Z Ekran: iPhone 17 — szerokość ekranu 402 pt (próg małego ekranu: 375 pt)
+2026-10-28T22:49:56.0911690Z [Passed] Duży tekst dostępności — ekran Trening (3m 56s)
+2026-10-28T22:50:04.9092710Z Scenariuszy: 1; przeszło za pierwszym razem: 1; w ponowieniu: 0; padło: 0.
+2026-10-28T22:39:21.8165930Z   ONLY: 58
+2026-10-28T22:39:23.2689010Z   ONLY: 58
+2026-10-28T22:50:48.6885967Z Scenariuszy: 1; przeszło za pierwszym razem: 1; w ponowieniu: 0; padło: 0.
+
+Przebieg 40729084387 (scenariusze 21, 56; sha 65bffd8): build cancelled, e2e skipped
+Przebieg 40766083479 (sha 623c1ef): build cancelled, e2e skipped

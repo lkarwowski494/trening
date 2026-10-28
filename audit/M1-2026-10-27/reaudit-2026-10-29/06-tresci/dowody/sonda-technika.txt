@@ -1,0 +1,37 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+  console.log
+    hasTechnique bez sekcji Technika:
+    JM Press | safety=false
+    Decline Close-Grip Bench To Skull Crusher | safety=false
+
+      at Object.log (audit/M1-2026-10-27/reaudit-2026-10-29/06-tresci/dowody/sondy/sonda-technika.test.tsx:19:11)
+
+  console.log
+    TechniqueLink JM Press: przycisk=true
+
+      at Object.log (audit/M1-2026-10-27/reaudit-2026-10-29/06-tresci/dowody/sondy/sonda-technika.test.tsx:22:13)
+
+  console.log
+    TechniqueLink Decline Close-Grip Bench To Skull Crusher: przycisk=true
+
+      at Object.log (audit/M1-2026-10-27/reaudit-2026-10-29/06-tresci/dowody/sondy/sonda-technika.test.tsx:22:13)
+
+  console.log
+    TechniqueLink Hack Squat: przycisk=false
+
+      at Object.log (audit/M1-2026-10-27/reaudit-2026-10-29/06-tresci/dowody/sondy/sonda-technika.test.tsx:22:13)
+
+  console.log
+    hidden: ["Hack Squat"]
+
+      at Object.log (audit/M1-2026-10-27/reaudit-2026-10-29/06-tresci/dowody/sondy/sonda-technika.test.tsx:25:11)
+
+PASS iOS audit/M1-2026-10-27/reaudit-2026-10-29/06-tresci/dowody/sondy/sonda-technika.test.tsx (94.232 s)
+  ✓ sonda: hasTechnique ⇒ sekcja Technika (77536 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        95.749 s
+Ran all test suites matching /audit\/M1-2026-10-27\/reaudit-2026-10-29\/06-tresci\/dowody\/sondy\/sonda-technika.test.tsx/i.

@@ -1,0 +1,27 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/store-adapter.test.ts
+PASS iOS tests/access.test.ts
+PASS iOS tests/entitlement.test.ts
+PASS iOS tests/monetyzacja-ui.test.tsx (14.499 s)
+PASS iOS tests/watch-cue.test.ts
+PASS iOS tests/migrate-idem.test.ts (305.371 s)
+PASS iOS tests/architecture-limits.test.ts
+PASS iOS tests/m1-046-monetyzacja-stany.test.tsx
+PASS iOS tests/audit-m1-004-start-error.test.tsx
+PASS iOS tests/migrate-released.test.ts
+PASS iOS tests/audit-m1-002-premigrate.test.ts
+PASS iOS tests/audit-m1-016-paywall-benefit.test.tsx
+PASS iOS tests/m1-032-kod-migracja.test.tsx
+PASS iOS tests/m1-040-podpis-dystans.test.ts
+PASS iOS tests/m1-042-migracja-drugi-start.test.tsx
+PASS iOS tests/paywall-kolejnosc-domyslna.test.ts
+PASS iOS tests/migrate-unknown.test.ts
+PASS iOS tests/splash-start-error.test.tsx
+PASS iOS tests/m1-041-el-jednostka.test.ts
+
+Test Suites: 19 passed, 19 total
+Tests:       437 passed, 437 total
+Snapshots:   0 total
+Time:        343.576 s
+Ran all test suites matching /tests\/m1-046-monetyzacja-stany.test.tsx|tests\/m1-032-kod-migracja.test.tsx|tests\/m1-042-migracja-drugi-start.test.tsx|tests\/architecture-limits.test.ts|tests\/m1-040-podpis-dystans.test.ts|tests\/m1-041-el-jednostka.test.ts|tests\/watch-cue.test.ts|tests\/access.test.ts|tests\/entitlement.test.ts|tests\/store-adapter.test.ts|tests\/monetyzacja-ui.test.tsx|tests\/audit-m1-016-paywall-benefit.test.tsx|tests\/paywall-kolejnosc-domyslna.test.ts|tests\/audit-m1-004-start-error.test.tsx|tests\/splash-start-error.test.tsx|tests\/audit-m1-002-premigrate.test.ts|tests\/migrate-idem.test.ts|tests\/migrate-released.test.ts|tests\/migrate-unknown.test.ts/i.

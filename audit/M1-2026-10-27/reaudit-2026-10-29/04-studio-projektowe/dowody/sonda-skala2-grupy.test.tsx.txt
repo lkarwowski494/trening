@@ -1,0 +1,45 @@
+import * as RN from 'react-native';
+import * as store from '@/lib/store';
+import { PAYWALL, type Entitlement } from '@/lib/access';
+import { setStoreAdapter, resetStoreAdapterForTests } from '@/lib/store-adapter';
+import { createFakeStore } from '@/lib/store-fake';
+import { resetEntitlementsForTests } from '@/lib/entitlement';
+import { fresh, saved } from './helpers';
+import { renderApp, flushAll, screen, go } from './app';
+import { richState, routesFor } from './a11y-routes';
+jest.setTimeout(400000);
+type Node = any; // eslint-disable-line
+const flat = (x: unknown): Record<string, any> => (RN.StyleSheet.flatten((typeof x === 'function' ? (x as any)({ pressed: false }) : x) as never) ?? {}) as Record<string, any>; // eslint-disable-line
+const allNodes = (): Node[] => { const out: Node[] = []; const walk = (x: Node) => { if (!x || typeof x !== 'object') return; out.push(x); for (const c of x.children ?? []) walk(c); }; walk(screen.UNSAFE_root); return out; };
+const rawText = (n: Node): string => { const out: string[] = []; const walk = (x: Node) => { if (x == null) return; if (typeof x === 'string' || typeof x === 'number') { out.push(String(x)); return; } if (Array.isArray(x)) { x.forEach(walk); return; } walk(x.children); }; walk(n); return out.join('').trim(); };
+const out = { grupa: new Set<string>(), nocap: new Set<string>(), fixed: new Set<string>(), glyph: new Set<string>() };
+const scan = (r: string) => { console.log('SCAN', r, allNodes().filter(x => x.type === 'Text').length, !!screen.queryByTestId('first-steps'), !!screen.queryByTestId('paywall-manage'));
+  for (const n of allNodes()) {
+    if (typeof n.type === 'string' && (typeof n.props?.onPress === 'function' || typeof n.props?.onLongPress === 'function')) {
+      for (let p = n.parent; p; p = p.parent) if (typeof p.type === 'string' && p.props?.accessible === true && typeof p.props?.onPress !== 'function') { out.grupa.add(`${r}: „${rawText(n).slice(0,30)}” (${n.props.testID ?? n.props.accessibilityLabel ?? ''}) w grupie ${p.props.testID ?? p.props.accessibilityLabel ?? p.type}`); break; }
+    }
+    if (n.type !== 'Text') continue;
+    const m = n.props.maxFontSizeMultiplier; const g = rawText(n);
+    if (!(typeof m === 'number' && m >= 1 && m <= 2) && g) out.nocap.add(`${r}: ${m} „${g.slice(0,30)}”`);
+    if (/^[›‹▸▾▴▲▼✓✕✗✦⇄⋯+↑↓←→×▶⏸…]{1,2}$/u.test(g) && !(typeof m === 'number' && m <= 1.4)) out.glyph.add(`${r}: „${g}” ${m}`);
+    let b = n.parent; for (let d = 0; b && d < 8; d++, b = b.parent) { const st = flat(b.props?.style); if (typeof st.height === 'number' || typeof st.maxHeight === 'number') { if (g.length > 1 && !(typeof m === 'number' && m <= 1.4)) out.fixed.add(`${r}: „${g.slice(0,30)}” m=${m} h=${st.height}`); break; } }
+  }
+};
+const dump = () => console.log(Object.entries(out).map(([k, v]) => `${k.toUpperCase()}\n${[...v].join('\n')}`).join('\n'));
+beforeEach(() => { jest.spyOn(RN.PixelRatio, 'getFontScale').mockReturnValue(2); const dims = RN.Dimensions.get; jest.spyOn(RN.Dimensions, 'get').mockImplementation(((k: 'window' | 'screen') => ({ ...dims(k), fontScale: 2 })) as never); });
+afterEach(() => { jest.restoreAllMocks(); PAYWALL.ENABLED = false; resetEntitlementsForTests(); resetStoreAdapterForTests(); });
+test('trasy bogate', async () => {
+  const { s, w, tpl, exId, locId, blockId } = await richState('pl');
+  await renderApp({ saved: s }); await flushAll(10);
+  for (const r of routesFor(w, tpl, exId, locId, blockId)) { await go(r); await flushAll(10); scan(r); }
+  (store as any).cancelWorkout(); await go('/templates'); await flushAll(5); await go('/'); await flushAll(10); scan('/ bez treningu w toku');
+});
+test('pierwsze uruchomienie', async () => {
+  await fresh(undefined, 'pl'); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'pl', url: '/' }); await flushAll(10); scan('/ pierwsze uruchomienie');
+});
+test('paywall z planem', async () => {
+  const ents: Entitlement[] = [{ plan: 'lifetime', source: 'purchase', expiresAt: null }, { plan: 'yearly', source: 'purchase', expiresAt: Date.now() + 200 * 86400e3 }];
+  await fresh(undefined, 'pl'); resetEntitlementsForTests(); PAYWALL.ENABLED = true; setStoreAdapter(createFakeStore(ents)); store.save();
+  await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'pl', url: '/paywall?reason=settings' }); for (let i = 0; i < 8; i++) await flushAll(10); scan('/paywall z planem');
+  dump();
+});

@@ -1,0 +1,1 @@
+check:decyzje — 365 wpisów decyzji, każdy z polem wdrożenia i testem albo powodem

@@ -1,0 +1,6 @@
+Mutacja (worktree /tmp/wt06-tresci na 0a566a1, usunięty po próbie; repo nietknięte):
+1. data/zrodla/cues.json: dodana karta „Nowa Karta Testowa” (kopia Wall Sit), bez wpisu w docs/research/figury-recenzja.json.
+2. node scripts/zrodla-runtime.mjs --check → kod 1 („nieaktualny: lib/cues/data.json”).
+3. Po --write: karta NIE trafia do runtime; hidden = ["Hack Squat","Nowa Karta Testowa"].
+4. npx jest tests/karty-recenzja.test.tsx → 1 czerwony (test „każda karta ze wskazówkami … ma wpis recenzji”), 13 zielonych — wynik: mutacja-nowa-karta.txt.
+Wniosek: strażnik łapie nową kartę bez wpisu na dwóch poziomach (verify i runtime).

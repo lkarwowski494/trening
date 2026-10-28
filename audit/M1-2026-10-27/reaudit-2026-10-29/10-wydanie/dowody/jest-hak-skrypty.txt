@@ -1,0 +1,13 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/hak-pre-push.test.ts (21.641 s)
+PASS iOS tests/store-review-notes.test.ts
+PASS iOS tests/verify-docs.test.ts
+PASS iOS tests/pochodne.test.ts
+PASS iOS tests/l048-check-slowniki.test.ts
+
+Test Suites: 5 passed, 5 total
+Tests:       119 passed, 119 total
+Snapshots:   0 total
+Time:        27.923 s
+Ran all test suites matching /tests\/hak-pre-push.test.ts|tests\/verify-docs.test.ts|tests\/l048-check-slowniki.test.ts|tests\/pochodne.test.ts|tests\/store-review-notes.test.ts|tests\/decyzje.test.ts/i.

@@ -1,0 +1,21 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/zrodla-wiedzy.test.ts (11.235 s)
+PASS iOS tests/figury-1-0-recenzja.test.ts (8.008 s)
+PASS iOS tests/figury-recenzja.test.tsx (5.647 s)
+PASS iOS tests/zrodla-pelne-cues.test.ts
+PASS iOS tests/karty-recenzja.test.tsx (6.024 s)
+PASS iOS tests/cues.test.tsx
+PASS iOS tests/audit-m1-048-claims-registry.test.ts (6.393 s)
+PASS iOS tests/cues-014.test.tsx
+PASS iOS tests/figures-v2-tor.test.ts (10.005 s)
+PASS iOS tests/figures-v2-cues.test.tsx
+PASS iOS tests/zrodla-pelne-wskazowki-ogolne.test.ts
+PASS iOS tests/figures-v2-wstrzymane.test.ts
+PASS iOS tests/l047-recenzja-niezalezna.test.ts
+
+Test Suites: 13 passed, 13 total
+Tests:       178 passed, 178 total
+Snapshots:   0 total
+Time:        60.206 s
+Ran all test suites matching /tests\/karty-recenzja.test.tsx|tests\/figures-v2-tor.test.ts|tests\/figures-v2-wstrzymane.test.ts|tests\/figury-recenzja.test.tsx|tests\/l047-recenzja-niezalezna.test.ts|tests\/zrodla-pelne-wskazowki-ogolne.test.ts|tests\/zrodla-pelne-cues.test.ts|tests\/figury-1-0-recenzja.test.ts|tests\/cues.test.tsx|tests\/cues-014.test.tsx|tests\/figures-v2-cues.test.tsx|tests\/zrodla-wiedzy.test.ts|tests\/audit-m1-048-claims-registry.test.ts/i.

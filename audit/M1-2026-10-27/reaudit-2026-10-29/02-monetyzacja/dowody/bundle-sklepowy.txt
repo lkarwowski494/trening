@@ -1,0 +1,14 @@
+# expo export --platform ios (bez EXPO_PUBLIC_STORE_FAKE/WATCH_FAKE), HEAD 0a566a1, plik entry-0a5ed95c1164be7fee48650b96ecf6b2.hbc
+
+Exported: /tmp/m02-export
+exit 0
+# liczba linii bajtów zawierających łańcuch:
+forgetAccessMemory: 1
+Test store: new user: 1
+fake-new-user: 1
+fake-store-panel: 1
+EXPO_PUBLIC_STORE_FAKE: 0
+setEntitlements: 1
+EXPO_PUBLIC_BUILD_NUMBER: 0
+EXPO_PUBLIC_WATCH_FAKE: 0
+# wniosek: nazwy zmiennych EXPO_PUBLIC_* nie występują w pakiecie => babel-preset-expo wstawił wartość (undefined) w miejsce process.env.EXPO_PUBLIC_STORE_FAKE; isFakeStoreBuild() = (undefined === '1') = false; kod panelu jest w pakiecie (brak usuwania martwego kodu), ale nieosiągalny.

@@ -1,0 +1,301 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/architecture-limits.test.ts
+FAIL iOS tests/m1-046-monetyzacja-stany.test.tsx (39.471 s)
+  ● M1-046 (02-602): uwaga o odnawianiu po zakupie dożywotniego tylko przy subskrypcji, za którą płaci sama osoba › dożywotni + roczny z Chmury rodzinnej: bez rady „anuluj”
+
+    expect(received).toBeNull()
+
+    Received: {"_fiber": {"_debugHookTypes": null, "_debugInfo": null, "_debugNeedsRemount": false, "_debugOwner": [FiberNode], "_debugStack": [Error: react-stack-top-frame], "_debugTask": null, "actualDuration": 0, "actualStartTime": 1793229032957, "alternate": [FiberNode], "child": [FiberNode], "childLanes": 0, "deletions": null, "dependencies": null, "elementType": "Text", "flags": 4, "index": 0, "key": null, "lanes": 0, "memoizedProps": [Object], "memoizedState": null, "mode": 3, "pendingProps": [Object], "ref": null, "refCleanup": null, "return": [FiberNode], "selfBaseDuration": 0, "sibling": null, "stateNode": [Object], "subtreeFlags": 262144, "tag": 5, "treeBaseDuration": 0, "type": "Text", "updateQueue": null}}
+
+      32 |   test('dożywotni + roczny z Chmury rodzinnej: bez rady „anuluj”', async () => {
+      33 |     await paywall([{ plan: 'lifetime', source: 'purchase', expiresAt: null }, { plan: 'yearly', source: 'family', expiresAt: NOW + 200 * DAY }]);
+    > 34 |     expect(screen.getByTestId('paywall-owned')).toBeTruthy(); expect(screen.queryByText(ODNAWIA)).toBeNull();
+         |                                                                                                   ^
+      35 |   });
+      36 |   test('dożywotni + roczny kupiony samodzielnie: rada „anuluj” jest', async () => {
+      37 |     await paywall([{ plan: 'lifetime', source: 'purchase', expiresAt: null }, { plan: 'yearly', source: 'purchase', expiresAt: NOW + 200 * DAY }]);
+
+      at Object.toBeNull (tests/m1-046-monetyzacja-stany.test.tsx:34:99)
+      at asyncGeneratorStep (../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-046 (02-601): bez sieci, pełny dostęp z pamięci — bez oferty dla darmowych › dostęp „full” zapamiętany, sklep nie odpowiada: brak wstępu o darmowych dniach, listy planów i stopki „Bez zakupu”
+
+    Couldn't find a navigation context. Have you wrapped your app with 'NavigationContainer'? See https://reactnavigation.org/docs/getting-started for setup instructions.
+
+      45 |     fake.offline = true; await act(async () => { await refreshEntitlements(); }); for (let i = 0; i < 6; i++) await flushAll(10);
+      46 |     expect(require('@/lib/entitlement').accessNow(Date.now())).toMatchObject({ level: 'full', active: null });
+    > 47 |     expect(screen.queryByTestId('paywall-headline')).toBeNull();
+         |                                                      ^
+      48 |     expect(screen.queryByText(/^Bez zakupu:/)).toBeNull();
+      49 |     expect(screen.queryByTestId('paywall-buy')).toBeNull(); expect(screen.queryByTestId('paywall-offline')).toBeNull();
+      50 |   });
+
+      at Object.toBeNull (tests/m1-046-monetyzacja-stany.test.tsx:47:54)
+      at asyncGeneratorStep (../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-046 (11-601): okno „Pierwszy trening za Tobą!” nie dla byłego subskrybenta › po wygaśnięciu subskrypcji: 21. trening na żywo bez okna (sonda A raportu 11)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      61 |     setStoreAdapter(createFakeStore([{ plan: 'monthly', source: 'purchase', expiresAt: NOW - DAY }])); await refreshEntitlements();
+      62 |     for (let i = 20; i >= 1; i--) live(NOW - i * DAY);
+    > 63 |     expect(fairRulesDue(live(NOW), NOW)).toBe(false);
+         |                                          ^
+      64 |   });
+      65 | });
+      66 |
+
+      at Object.toBe (tests/m1-046-monetyzacja-stany.test.tsx:63:42)
+      at asyncGeneratorStep (../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-046 (11-601): panel „Test store” w buildzie E2E — stan nowego użytkownika bez zakupów (scenariusz Maestro 56) › „expire access” z dostępu startowego = były subskrybent: okna nie ma
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      73 |   test('„expire access” z dostępu startowego = były subskrybent: okna nie ma', async () => {
+      74 |     const fake = await start(); fake.setEntitlements([{ plan: 'monthly', source: 'purchase', expiresAt: Date.now() }]); await refreshEntitlements();
+    > 75 |     expect(fairRulesDue(live(Date.now()), Date.now())).toBe(false);
+         |                                                        ^
+      76 |   });
+      77 |   test('forgetAccessMemory + pusta lista = nowy użytkownik: poziom free bez zapamiętanego końca, okno jest', async () => {
+      78 |     const fake = await start(); await forgetAccessMemory(); fake.setEntitlements([]); await refreshEntitlements();
+
+      at Object.toBe (tests/m1-046-monetyzacja-stany.test.tsx:75:56)
+      at asyncGeneratorStep (../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-046 (11-601): panel „Test store” w buildzie E2E — stan nowego użytkownika bez zakupów (scenariusz Maestro 56) › forgetAccessMemory + pusta lista = nowy użytkownik: poziom free bez zapamiętanego końca, okno jest
+
+    TypeError: (0 , _entitlement.forgetAccessMemory) is not a function
+
+      76 |   });
+      77 |   test('forgetAccessMemory + pusta lista = nowy użytkownik: poziom free bez zapamiętanego końca, okno jest', async () => {
+    > 78 |     const fake = await start(); await forgetAccessMemory(); fake.setEntitlements([]); await refreshEntitlements();
+         |                                                         ^
+      79 |     expect(accessNow(Date.now()).lastKnown).toEqual({ level: 'free' });
+      80 |     expect(fairRulesDue(live(Date.now()), Date.now())).toBe(true);
+      81 |   });
+
+      at Object.<anonymous> (tests/m1-046-monetyzacja-stany.test.tsx:78:57)
+      at asyncGeneratorStep (../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+FAIL iOS tests/m1-032-kod-migracja.test.tsx
+  ● M1-032: kod diagnostyczny przy błędzie migracji i danych z nowszej wersji › wyjątek migracji: e-mail z kodem „start: migrate”, bez treści błędu
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /start: migrate\b[^\n]*schema \d+/
+    Received string:  "·
+    Wersja: — · iOS undefined · Język: pl"
+
+      23 |     await tap(screen.getByText(t('Napisz do nas'))); await flushAll(20);
+      24 |     const url = String(open.mock.calls.at(-1)![0]); const body = bodyOf(url);
+    > 25 |     expect(body).toMatch(/start: migrate\b[^\n]*schema \d+/); expect(decodeURIComponent(url)).not.toContain('boom-migracja'); expect(body).not.toMatch(/defaultRest|"workouts"/);
+         |                  ^
+      26 |   });
+      27 | });
+      28 |
+
+      at Object.toMatch (tests/m1-032-kod-migracja.test.tsx:25:18)
+      at asyncGeneratorStep (../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-032: startFailureDiag (lib/state/bootphase.ts) › {"migrationFailed":true} → start: migrate, 120 ms, data, schema 19, n=1; bez treści błędu
+
+    TypeError: startFailureDiag is not a function
+
+      35 |     [{}, 'start: init, 120 ms, data, schema 19, n=1'],
+      36 |   ] as [Record<string, unknown>, string][])('%j → %s; bez treści błędu', (pola, want) => {
+    > 37 |     const e = Object.assign(new Error('treść-błędu'), pola); startFailureDiag(e, ctx);
+         |                                                              ^
+      38 |     expect((e as unknown as { bootDiag: string }).bootDiag).toBe(want);
+      39 |   });
+      40 |   test('kod trybu pętli awarii (bootDiag) zostaje bez zmian; nie-obiekt ignorowany', () => {
+
+      at startFailureDiag (tests/m1-032-kod-migracja.test.tsx:37:62)
+
+  ● M1-032: startFailureDiag (lib/state/bootphase.ts) › {"newerSchema":25} → start: newer, 120 ms, data, schema 25, n=1; bez treści błędu
+
+    TypeError: startFailureDiag is not a function
+
+      35 |     [{}, 'start: init, 120 ms, data, schema 19, n=1'],
+      36 |   ] as [Record<string, unknown>, string][])('%j → %s; bez treści błędu', (pola, want) => {
+    > 37 |     const e = Object.assign(new Error('treść-błędu'), pola); startFailureDiag(e, ctx);
+         |                                                              ^
+      38 |     expect((e as unknown as { bootDiag: string }).bootDiag).toBe(want);
+      39 |   });
+      40 |   test('kod trybu pętli awarii (bootDiag) zostaje bez zmian; nie-obiekt ignorowany', () => {
+
+      at startFailureDiag (tests/m1-032-kod-migracja.test.tsx:37:62)
+
+  ● M1-032: startFailureDiag (lib/state/bootphase.ts) › {} → start: init, 120 ms, data, schema 19, n=1; bez treści błędu
+
+    TypeError: startFailureDiag is not a function
+
+      35 |     [{}, 'start: init, 120 ms, data, schema 19, n=1'],
+      36 |   ] as [Record<string, unknown>, string][])('%j → %s; bez treści błędu', (pola, want) => {
+    > 37 |     const e = Object.assign(new Error('treść-błędu'), pola); startFailureDiag(e, ctx);
+         |                                                              ^
+      38 |     expect((e as unknown as { bootDiag: string }).bootDiag).toBe(want);
+      39 |   });
+      40 |   test('kod trybu pętli awarii (bootDiag) zostaje bez zmian; nie-obiekt ignorowany', () => {
+
+      at startFailureDiag (tests/m1-032-kod-migracja.test.tsx:37:62)
+
+  ● M1-032: startFailureDiag (lib/state/bootphase.ts) › kod trybu pętli awarii (bootDiag) zostaje bez zmian; nie-obiekt ignorowany
+
+    TypeError: startFailureDiag is not a function
+
+      39 |   });
+      40 |   test('kod trybu pętli awarii (bootDiag) zostaje bez zmian; nie-obiekt ignorowany', () => {
+    > 41 |     const e = Object.assign(new Error('x'), { bootDiag: 'start: loaded, 1 ms' }); startFailureDiag(e, ctx);
+         |                                                                                   ^
+      42 |     expect((e as unknown as { bootDiag: string }).bootDiag).toBe('start: loaded, 1 ms'); expect(() => startFailureDiag('napis', ctx)).not.toThrow();
+      43 |   });
+      44 | });
+
+      at Object.startFailureDiag (tests/m1-032-kod-migracja.test.tsx:41:83)
+
+FAIL iOS tests/m1-040-podpis-dystans.test.ts
+  ● M1-040: podpis przerwy — lokalny symbol dystansu obok lokalnego symbolu masy › ru: „40 <masa>, 30 <dystans>” w piśmie języka
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "40 кг, 30 м"
+    Received: "40 кг, 30 m"
+
+      23 |     applyLang(l); applyUnit('kg');
+      24 |     const s = cueLoad(carry(), blank({ weight: 40, distanceM: 30 }));
+    > 25 |     expect(s).toBe(`${t('{n} kg', { n: 40 })}, ${t('{n} m', { n: 30 })}`);
+         |               ^
+      26 |     expect(s).not.toMatch(/30 m$/);
+      27 |   });
+      28 |   test('pl i en bez zmian: „40 kg, 30 m”', () => {
+
+      at toBe (tests/m1-040-podpis-dystans.test.ts:25:15)
+
+  ● M1-040: podpis przerwy — lokalny symbol dystansu obok lokalnego symbolu masy › uk: „40 <masa>, 30 <dystans>” w piśmie języka
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "40 кг, 30 м"
+    Received: "40 кг, 30 m"
+
+      23 |     applyLang(l); applyUnit('kg');
+      24 |     const s = cueLoad(carry(), blank({ weight: 40, distanceM: 30 }));
+    > 25 |     expect(s).toBe(`${t('{n} kg', { n: 40 })}, ${t('{n} m', { n: 30 })}`);
+         |               ^
+      26 |     expect(s).not.toMatch(/30 m$/);
+      27 |   });
+      28 |   test('pl i en bez zmian: „40 kg, 30 m”', () => {
+
+      at toBe (tests/m1-040-podpis-dystans.test.ts:25:15)
+
+  ● M1-040: podpis przerwy — lokalny symbol dystansu obok lokalnego symbolu masy › bg: „40 <masa>, 30 <dystans>” w piśmie języka
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "40 кг, 30 м"
+    Received: "40 кг, 30 m"
+
+      23 |     applyLang(l); applyUnit('kg');
+      24 |     const s = cueLoad(carry(), blank({ weight: 40, distanceM: 30 }));
+    > 25 |     expect(s).toBe(`${t('{n} kg', { n: 40 })}, ${t('{n} m', { n: 30 })}`);
+         |               ^
+      26 |     expect(s).not.toMatch(/30 m$/);
+      27 |   });
+      28 |   test('pl i en bez zmian: „40 kg, 30 m”', () => {
+
+      at toBe (tests/m1-040-podpis-dystans.test.ts:25:15)
+
+  ● M1-040: podpis przerwy — lokalny symbol dystansu obok lokalnego symbolu masy › sr: „40 <masa>, 30 <dystans>” w piśmie języka
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "40 кг, 30 м"
+    Received: "40 кг, 30 m"
+
+      23 |     applyLang(l); applyUnit('kg');
+      24 |     const s = cueLoad(carry(), blank({ weight: 40, distanceM: 30 }));
+    > 25 |     expect(s).toBe(`${t('{n} kg', { n: 40 })}, ${t('{n} m', { n: 30 })}`);
+         |               ^
+      26 |     expect(s).not.toMatch(/30 m$/);
+      27 |   });
+      28 |   test('pl i en bez zmian: „40 kg, 30 m”', () => {
+
+      at toBe (tests/m1-040-podpis-dystans.test.ts:25:15)
+
+  ● M1-040: podpis przerwy — lokalny symbol dystansu obok lokalnego symbolu masy › el: „40 <masa>, 30 <dystans>” w piśmie języka
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "40 κιλά, 30 μ"
+    Received: "40 κιλά, 30 m"
+
+      23 |     applyLang(l); applyUnit('kg');
+      24 |     const s = cueLoad(carry(), blank({ weight: 40, distanceM: 30 }));
+    > 25 |     expect(s).toBe(`${t('{n} kg', { n: 40 })}, ${t('{n} m', { n: 30 })}`);
+         |               ^
+      26 |     expect(s).not.toMatch(/30 m$/);
+      27 |   });
+      28 |   test('pl i en bez zmian: „40 kg, 30 m”', () => {
+
+      at toBe (tests/m1-040-podpis-dystans.test.ts:25:15)
+
+  ● M1-040: strażnik jednostek na sztywno w napisach › brak szablonu „${…} m|kg|lb|km|yd|mi`” w app/, components/, lib/
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "lib/live.ts:108",
+    + ]
+
+      38 |     const hits = ['app', 'components', 'lib'].flatMap(files).flatMap((f) => fs.readFileSync(path.join(ROOT, f), 'utf8').split('\n')
+      39 |       .flatMap((line, i) => (/\$\{[^}]+\} (m|kg|lb|km|yd|mi)`/.test(line) ? [`${f}:${i + 1}`] : [])));
+    > 40 |     expect(hits).toEqual([]);
+         |                  ^
+      41 |   });
+      42 | });
+      43 |
+
+      at Object.toEqual (tests/m1-040-podpis-dystans.test.ts:40:18)
+
+FAIL iOS tests/m1-042-migracja-drugi-start.test.tsx
+  ● M1-042: drugi start po wyjątku migracji — bez komunikatu pętli awarii › dwa zimne starty z wyjątkiem migracji: za każdym razem ekran błędu migracji, licznik 0, „state” bez zmian
+
+    expect(received).toBeNull()
+
+    Received: {"_fiber": {"_debugHookTypes": null, "_debugInfo": null, "_debugNeedsRemount": false, "_debugOwner": [FiberNode], "_debugStack": [Error: react-stack-top-frame], "_debugTask": null, "actualDuration": 0, "actualStartTime": 1793229038646, "alternate": null, "child": [FiberNode], "childLanes": 0, "deletions": null, "dependencies": null, "elementType": "Text", "flags": 0, "index": 0, "key": null, "lanes": 0, "memoizedProps": [Object], "memoizedState": null, "mode": 3, "pendingProps": [Object], "ref": null, "refCleanup": null, "return": [FiberNode], "selfBaseDuration": 0, "sibling": null, "stateNode": [Object], "subtreeFlags": 0, "tag": 5, "treeBaseDuration": 0, "type": "Text", "updateQueue": null}}
+
+      25 |     const stateBefore = kv.state;
+      26 |     await renderApp({ kv }); await flushAll(50); /* drugi zimny start: te same dane w bazie */
+    > 27 |     expect(screen.queryByText(t(LOOP))).toBeNull();
+         |                                         ^
+      28 |     expect(screen.getByText('Nie udało się otworzyć danych.')).toBeTruthy(); expect(screen.getByText('boom-migracja')).toBeTruthy();
+      29 |     expect(global.__kv.get('state')).toBe(stateBefore);
+      30 |     expect(firstStarts).toBe(0);
+
+      at Object.toBeNull (tests/m1-042-migracja-drugi-start.test.tsx:27:41)
+      at asyncGeneratorStep (../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 4 failed, 1 passed, 5 total
+Tests:       17 failed, 8 passed, 25 total
+Snapshots:   0 total
+Time:        48.115 s
+Ran all test suites matching /tests\/m1-046-monetyzacja-stany.test.tsx|tests\/m1-032-kod-migracja.test.tsx|tests\/m1-042-migracja-drugi-start.test.tsx|tests\/m1-040-podpis-dystans.test.ts|tests\/architecture-limits.test.ts/i.

@@ -1,0 +1,21 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+  console.log
+    NESTED
+    /progress: rodzic 1.4 „1 (poprz. 0)” dziecko 2 „(poprz. 0)”
+    /progress: rodzic 1.4 „2 (poprz. 0)” dziecko 2 „(poprz. 0)”
+    /progress: rodzic 1.4 „576 kg (poprz. 0 kg)” dziecko 2 „(poprz. 0 kg)”
+    /progress: rodzic 1.4 „0 s (poprz. 0 s)” dziecko 2 „(poprz. 0 s)”
+    NOCAP
+    
+    FIXED(do 8 poziomów)
+
+
+PASS iOS tests/zz-sonda04.test.tsx (91.819 s)
+  ✓ sonda (48662 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        93.269 s
+Ran all test suites matching /tests\/zz-sonda04.test.tsx/i.

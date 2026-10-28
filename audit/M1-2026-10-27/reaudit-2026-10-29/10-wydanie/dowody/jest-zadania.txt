@@ -1,0 +1,17 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/nocne-workflowy.test.ts
+PASS iOS tests/m1-047-otwarte-wskazniki.test.ts
+PASS iOS tests/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts
+PASS iOS tests/audit-m1-006-r010-zamkniecie.test.ts
+PASS iOS tests/m1-041-el-jednostka.test.ts
+PASS iOS tests/audit-m1-2026-10-27-023-bramki-dokumenty.test.ts
+PASS iOS tests/m1-048-podpis-szablony.test.ts
+PASS iOS tests/m1-045-notatki-sciezka-zakupu.test.ts
+PASS iOS tests/dec07-odeslanie-docs21.test.ts
+
+Test Suites: 9 passed, 9 total
+Tests:       85 passed, 85 total
+Snapshots:   0 total
+Time:        9.194 s
+Ran all test suites matching /tests\/audit-m1-006-r010-zamkniecie.test.ts|tests\/dec07-odeslanie-docs21.test.ts|tests\/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts|tests\/audit-m1-2026-10-27-023-bramki-dokumenty.test.ts|tests\/nocne-workflowy.test.ts|tests\/m1-041-el-jednostka.test.ts|tests\/m1-045-notatki-sciezka-zakupu.test.ts|tests\/m1-047-otwarte-wskazniki.test.ts|tests\/m1-048-podpis-szablony.test.ts/i.

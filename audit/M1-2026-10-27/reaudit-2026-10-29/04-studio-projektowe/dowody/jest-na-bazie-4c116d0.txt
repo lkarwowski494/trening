@@ -1,0 +1,4 @@
+FAIL iOS tests/voiceover-grupa-przycisk.test.tsx (46.931 s)
+FAIL iOS tests/m1-043-pierwsze-kroki-glyph.test.tsx
+FAIL iOS tests/m1-044-posiadany-plan-kontrast.test.tsx
+Tests:       5 failed, 5 total

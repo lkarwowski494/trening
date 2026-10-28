@@ -1,0 +1,1 @@
+macierz: 2666 pozycji (EKRAN 32, UI 354, TEKST 1078, LOGIKA 1056, WYMIAR 146), bez testu: 0, nieaktualne wyjątki: 0

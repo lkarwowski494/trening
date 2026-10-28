@@ -1,0 +1,45 @@
+diff --git a/.github/workflows/e2e-ios.yml b/.github/workflows/e2e-ios.yml
+index 423e1bc..ed02c19 100644
+--- a/.github/workflows/e2e-ios.yml
++++ b/.github/workflows/e2e-ios.yml
+@@ -7,7 +7,8 @@
+ # bez wagi też trafia do jednej części). Test aktualizacji (33–34) wykonuje jedna część. Artefakt porażek: e2e-ios-<numer części>.
+ # 19.10.2026 (decyzja właściciela): PAKIET — „podstawowy” (domyślnie; kluczowe przepływy z scripts/ci/e2e-podstawowy.json na 2 maszynach, ~20–25 min; blokuje TestFlight)
+ # albo „pelny” (cały katalog na 3 maszynach; nocą w nightly.yml, niewiążąco). Nieudany scenariusz jest ponawiany RAZ (osobne uruchomienie tylko jego); drugi czerwony = porażka.
+-# `tryb_scisly` = true: pełny katalog BEZ ponowień (przebiegi wydania do App Store). Podsumowanie przebiegu wypisuje scenariusze zielone dopiero w ponowieniu (niestabilność
++# `tryb_scisly` = true: pełny katalog BEZ ponowień — opcjonalny pomiar niestabilności, nie bramka. Bramka App Store (CLAUDE.md, właściciel 21.10 i 26.10.2026):
++# `pakiet: pelny` w trybie zwykłym na standardowym iPhonie — jedno ponowienie scenariusza dozwolone (M1-audytor-generalny-023). Podsumowanie przebiegu wypisuje scenariusze zielone dopiero w ponowieniu (niestabilność
+ # widoczna, nie ukryta) i zapisuje czasy per scenariusz w artefakcie e2e-wyniki (scripts/ci/e2e-wyniki.mjs; pilnuje tests/e2e-pakiet.test.ts).
+ name: E2E iOS (symulator)
+ # Tytuł przebiegu czyta bramka TestFlight (scripts/ci/bramka-e2e.sh, audyt M1-018): „E2E iOS · <pakiet>” bez dopisków = przebieg pełnowartościowy na tym commicie.
+@@ -49,7 +50,7 @@ on:
+         options: [podstawowy, pelny]
+         default: podstawowy
+       tryb_scisly:
+-        description: 'Tryb ścisły (wydanie do App Store): pełny katalog, BEZ ponowień nieudanych scenariuszy'
++        description: 'Tryb ścisły (opcjonalny pomiar, nie bramka App Store): pełny katalog BEZ ponowień. Bramka App Store = pakiet pelny w trybie zwykłym (jedno ponowienie)'
+         type: boolean
+         default: false
+   workflow_call:  # nocny przebieg (nightly.yml, 06.10.2026): inne urządzenie i ciemny wygląd
+@@ -225,7 +226,7 @@ jobs:
+             rc=$?
+           fi
+           # Ponowienie POJEDYNCZEGO nieudanego scenariusza (decyzja właściciela 19.10.2026): raz, osobnym uruchomieniem tylko jego; drugi czerwony = porażka.
+-          # Tryb ścisły (wydanie do App Store) — bez ponowień. Wynik (przeszedł / w ponowieniu / padł dwa razy) zbiera krok „Wyniki scenariuszy”.
++          # Tryb ścisły (opcjonalny pomiar niestabilności) — bez ponowień. Wynik (przeszedł / w ponowieniu / padł dwa razy) zbiera krok „Wyniki scenariuszy”.
+           if [ "$rc" -ne 0 ] && [ "$STRICT" != "true" ]; then
+             FAILED=$(node scripts/ci/e2e-wyniki.mjs nieudane e2e-out/report.xml "$DIR")
+             if [ -n "$FAILED" ]; then
+diff --git a/.github/workflows/nightly.yml b/.github/workflows/nightly.yml
+index cad3ab6..12287bd 100644
+--- a/.github/workflows/nightly.yml
++++ b/.github/workflows/nightly.yml
+@@ -74,7 +74,7 @@ jobs:
+       fail-fast: false
+       matrix:
+         # plan.ts w jednym zadaniu przekraczał 5 h (przebieg dowodowy 25.10.2026) — cztery zakresy wierszy (`plan:od-do`), razem cały plik; pilnuje tests/nocne-workflowy.test.ts
+-        modul: [units, stats, 'plan:1-130', 'plan:131-260', 'plan:261-390', 'plan:391-9999', generator, deload, deload-sets, planReminder, period, dashboard, timer, whatsnew, backup]
++        modul: [units, stats, 'plan:1-130', 'plan:131-260', 'plan:261-390', 'plan:391-9999', generator, deload, deload-sets, planReminder, period, dashboard, timer, whatsnew, backup, access, entitlement, guard, csvimport, state/migrate]  # +5 modułów ryzyk wysokich: M1-audytor-generalny-034 (28.10.2026)
+         ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main"]') || format('["{0}"]', github.ref_name)) }}
+     timeout-minutes: 300
+     name: mutacje (${{ matrix.ref }}, ${{ matrix.modul }})

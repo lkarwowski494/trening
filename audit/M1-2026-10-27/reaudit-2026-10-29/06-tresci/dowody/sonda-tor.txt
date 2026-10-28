@@ -1,0 +1,28 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+  console.log
+    RDL (hantle/linki)|side: {"o":4.3,"z":1,"rozrzutX":4.3} load=-
+    Goblet Squat|side: {"o":6.1,"z":3,"rozrzutX":9} load=goblet
+    Przysiad z pasem (linki)|side: {"o":8.6,"z":0,"rozrzutX":22.7} load=belt
+    Single Leg RDL (hantel)|side: {"o":4.4,"z":1,"rozrzutX":4.8} load=-
+    Cable Squat|side: {"o":5.1,"z":2,"rozrzutX":8.2} load=goblet
+    Bodyweight Squat|side: {"o":4.3,"z":1,"rozrzutX":4.6} load=bodyweight
+    Zercher Squat|side: {"o":9.9,"z":0,"rozrzutX":11.6} load=zercher
+    Landmine Squat|side: {"o":4.8,"z":2,"rozrzutX":6.7} load=landmine
+    Sumo Squat (hantel)|side: {"o":7.3,"z":0,"rozrzutX":24.2} load=dbSumo
+    Cable Pull Through|side: {"o":5.5,"z":0,"rozrzutX":8.3} load=-
+    Barbell Hack Squat|side: {"o":8.6,"z":0,"rozrzutX":21.9} load=behind
+    Dumbbell Squat|side: {"o":3.5,"z":3,"rozrzutX":4.4} load=dbSides
+    Dip Belt Squat|side: {"o":8.6,"z":0,"rozrzutX":22.7} load=belt
+    Band Squat|side: {"o":4.3,"z":1,"rozrzutX":4.6} load=bodyweight
+
+      at Object.log (audit/M1-2026-10-27/reaudit-2026-10-29/06-tresci/dowody/sondy/sonda-tor.test.ts:14:11)
+
+PASS iOS audit/M1-2026-10-27/reaudit-2026-10-29/06-tresci/dowody/sondy/sonda-tor.test.ts (8.134 s)
+  ✓ sonda tor wyjątków (1182 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        10.428 s
+Ran all test suites matching /audit\/M1-2026-10-27\/reaudit-2026-10-29\/06-tresci\/dowody\/sondy\/sonda-tor.test.ts/i.

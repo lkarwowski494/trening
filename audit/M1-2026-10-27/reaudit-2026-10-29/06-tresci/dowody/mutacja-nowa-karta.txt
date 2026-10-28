@@ -1,0 +1,49 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/karty-recenzja.test.tsx (39.007 s)
+  zapis recenzji treści kart (M1-audytor-generalny-038, DEC-10 a, 28.10.2026)
+    ✕ każda karta ze wskazówkami (data/zrodla/cues.json) ma wpis recenzji: „karty” albo figura v1 „wyswietlana” (figura i wskazówki recenzowane razem) (47 ms)
+    ✓ każdy zestaw ogólny wyświetlany przy figurze v2 ma wpis w „zestawy” z wzorcem z cue-sets.json (38 ms)
+    ✓ format wpisu: werdykt, data, kto, skrót 12 znaków; „do poprawy” — opis wady i proponowana poprawka (16 ms)
+    ✓ L-047 A (właściciel 28.10.2026): wpis „wyswietlana” z 28.10 — stan „zrecenzowana niezależnie…”, jawny autor i recenzent, autor ≠ recenzent (12 ms)
+    ✓ wpis „wyswietlana” ⇒ skrót = skrót bieżących wskazówek (zmiana tekstu bez nowej recenzji czerwieni test) (13 ms)
+  plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy
+    ✓ karty: w runtime tylko karty z aktualną recenzją; pozostałe na liście „hidden” (1 ms)
+    ✓ zestawy ogólne: na liście „general” tylko zestawy z aktualną recenzją (1 ms)
+    ✓ generalCuesReviewed: prawda tylko dla zestawu z aktualną recenzją (lista „general”) (1 ms)
+    ✓ karta „do poprawy” (Hack Squat) nie ma sekcji „Technika”; zestaw bez aktualnej recenzji nie pokazuje wskazówek ogólnych (17 ms)
+    ✓ karta i zestaw z recenzją się pokazują (Sumo Deadlift — własne; Sumo Deadlift with Bands — ogólne z dopiskiem) (2360 ms)
+  regresja: zmiana treści po recenzji unieważnia wpis (generator)
+    ✓ bez zmian: Sumo Deadlift w runtime, 4 warianty sumo na liście „general” (116 ms)
+    ✓ zmiana polskiego tekstu sumo.kneesOut: karta Sumo Deadlift i 4 zestawy ogólne z tą wskazówką wypadają (101 ms)
+    ✓ zmiana przypisania zestawu ogólnego (dodana wskazówka) unieważnia wpis tego ćwiczenia (138 ms)
+    ✓ zmiana zestawu wskazówek karty własnej (usunięty błąd) unieważnia wpis karty (192 ms)
+
+  ● zapis recenzji treści kart (M1-audytor-generalny-038, DEC-10 a, 28.10.2026) › każda karta ze wskazówkami (data/zrodla/cues.json) ma wpis recenzji: „karty” albo figura v1 „wyswietlana” (figura i wskazówki recenzowane razem)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "Nowa Karta Testowa",
+    -   true,
+    +   false,
+      ]
+
+      37 |   test('każda karta ze wskazówkami (data/zrodla/cues.json) ma wpis recenzji: „karty” albo figura v1 „wyswietlana” (figura i wskazówki recenzowane razem)', () => {
+      38 |     expect(OWN.length).toBeGreaterThanOrEqual(100);
+    > 39 |     for (const k of OWN) expect([k, !!REC.karty?.[k] || REC.v1[k]?.werdykt === 'wyswietlana']).toEqual([k, true]);
+         |                                                                                                ^
+      40 |   });
+      41 |   test('każdy zestaw ogólny wyświetlany przy figurze v2 ma wpis w „zestawy” z wzorcem z cue-sets.json', () => {
+      42 |     expect(GENERAL_SHOWN.length).toBeGreaterThanOrEqual(60);
+
+      at Object.toEqual (tests/karty-recenzja.test.tsx:39:96)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 13 passed, 14 total
+Snapshots:   0 total
+Time:        40.415 s
+Ran all test suites matching /tests\/karty-recenzja.test.tsx/i.

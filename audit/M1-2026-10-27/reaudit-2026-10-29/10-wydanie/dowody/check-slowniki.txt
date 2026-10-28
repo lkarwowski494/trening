@@ -1,0 +1,27 @@
+i18n: 1446 tekstów w kodzie, 1542 w słowniku EN
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/matrix-i18n.test.tsx (13.368 s)
+PASS iOS tests/i18n-wave4.test.ts
+PASS iOS tests/i18n-wave2.test.ts
+PASS iOS tests/i18n-wave3.test.ts
+PASS iOS tests/i18n-variants.test.ts
+PASS iOS tests/slownik-terminow.test.ts
+PASS iOS tests/i18n-locales.test.ts
+PASS iOS tests/units-label.test.ts
+PASS iOS tests/skroty-przekladu.test.ts
+PASS iOS tests/audit-m1-029-kropka-srodkowa.test.ts
+
+Test Suites: 10 passed, 10 total
+Tests:       1265 passed, 1265 total
+Snapshots:   0 total
+Time:        31.482 s
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-k1-bl-mer.test.tsx (5.437 s)
+
+Test Suites: 1 passed, 1 total
+Tests:       20 skipped, 3 passed, 23 total
+Snapshots:   0 total
+Time:        6.141 s
+check:slowniki: zielone (45 s)

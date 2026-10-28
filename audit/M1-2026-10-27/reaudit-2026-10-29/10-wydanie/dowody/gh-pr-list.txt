@@ -1,0 +1,12 @@
+85	open		naprawy/M2-telefon-do-main	main	docs: telefon 28.10 do main — R-004 i R-014 zamknięte, kolumna „Stan” w docs/48, lekcje L-051, L-052
+83	open		naprawy/duzy-tekst-trening	main	Duży tekst systemu: ekran Trening bez ucinania (decyzja właściciela A, 28.10.2026)
+84	closed	2026-10-28T22:01:44Z	naprawy/M2-jm-press-2026-10-28	main	JM Press i Decline CG Skull Crusher bez rysunku w 1.0 (rysunek przeczył karcie)
+82	closed	2026-10-28T21:08:01Z	naprawy/M2-noc-2026-10-28	main	docs: nocny tryb napraw po reaudycie M1 pętli 2 (decyzja właściciela 28.10.2026)
+81	closed	2026-10-28T20:29:17Z	naprawy/M2-tory-2026-10-28	main	Tory ruchu: martwe ciągi bez „S”, szyna Smitha stała, strażnik toru
+80	closed	2026-10-28T19:03:05Z	naprawy/M2-koordynator-napraw-2026-10-28-p2	main	Naprawy M2 pętla 2 przed zgłoszeniem 1.0
+79	closed	2026-10-28T08:32:24Z	naprawy/M2-scalenie-1-0	main	Naprawy M2 przed zgłoszeniem 1.0 (plan z audytu M1 27.10.2026) + naprawy-1-0 + strażnik paczki C
+76	closed	2026-10-27T14:58:59Z	z02-przeklad-1-0	main	Z-02: poprawki przekładu po 26.10 (17 blokujących + 49 do akceptacji) i strażnik ścieżek
+74	closed	2026-10-27T14:58:59Z	technika-rozwinieta-1-0	main	Sekcja „Technika” domyślnie rozwinięta w karcie ćwiczenia (wariant B)
+73	closed	2026-10-27T14:58:59Z	naprawa-figury-1-0	main	Figury v2 w 1.0: naprawy po recenzji ruchu (squat, bench_press, hinge)
+5d79c3a4c8c46b09776954e8c77c4eaaafb10a8e
+{"message":"GitHub access to this repository is not enabled for this session. Use add_repo to request access. If add_repo answers that read access is already available and you need GitHub API or write access, call add_repo again with access:\"push\" to attach the repository with credentials.","documentation_url":"https://docs.anthropic.com/en/docs/claude-code/github-actions"}gh: GitHub access to this repository is not enabled for this session. Use add_repo to request access. If add_repo answers that read access is already available and you need GitHub API or write access, call add_repo again with access:"push" to attach the repository with credentials. (HTTP 403)

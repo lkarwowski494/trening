@@ -1,0 +1,11 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/public-repo.test.ts
+PASS iOS tests/zrodla-wiedzy.test.ts (5.422 s)
+PASS iOS tests/slownik-terminow.test.ts
+
+Test Suites: 3 passed, 3 total
+Tests:       167 passed, 167 total
+Snapshots:   0 total
+Time:        9.782 s, estimated 13 s
+Ran all test suites matching /tests\/public-repo.test.ts|tests\/zrodla-wiedzy.test.ts|tests\/slownik-terminow.test.ts/i.
