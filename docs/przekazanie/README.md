@@ -442,3 +442,4 @@ techniqueatlas: PR https://github.com/lkarwowski494/techniqueatlas/pull/1 (CI zi
 - 05:17 UTC 28.10: (koordynator) właściciel: lista telefonu 1032 po południu 28.10 — nie przypominać wcześniej.
 - 05:22 UTC 28.10: (koordynator) właściciel 28.10: nie pisać do niego, dopóki coś nie będzie potrzebne albo praca nie będzie skończona.
 - 06:27 UTC 28.10: (agent G6b) gałąź integracja-1-1-g6b, SHA c0145bbd — scalone p2, p4b, jakosc-r2 (wyjątki strażników p2 dla 3 póz z innych gałęzi, złote odciski regenerowane); NASTĘPNY KROK: silnik-chod-cykliczny, teksty-wskazowek, strona-filtr-audytu, verify
+- 06:32 UTC 28.10: (koordynator) straznik-paczki-skroty @ cf5f2287 — wariant C wdrożony; verify lokalnie: jest 495/497 (audit-m1-050 lokalne tagi; maestro-flows zabity SIGKILL pod obciążeniem, osobno 46/46), macierz, licencje, eksport + check:bundle czysty, natywne OK; NASTĘPNY KROK: tests.yml, potem wiadomość do sesji M2.
