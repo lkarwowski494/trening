@@ -152,6 +152,9 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 
 - **Pendlay Row** (ukryty w 1.0 decyzją właściciela 28.10.2026 — inny powód niż czwarta pozycja: figura nie ma cechy rozpoznawczej, `docs/research/28-figury.md`): źródła cech Pendlay Row (start z podłogi w każdym powtórzeniu, tułów równolegle do podłogi) — 2 przeczytane źródła szczebla 4, nowa figura (nie kopia wiosłowania sztangą w opadzie), niezależna recenzja bramki 4; wersja 1.0.1 (M1-audytor-generalny-047).
 
+### Backlog 1.0.1 — katalog ćwiczeń: drugie źródło opisu (decyzja właściciela 28.10.2026, M2-koordynator-napraw-003)
+- **Standing Gastrocnemius Calf Stretch** — **Wersja:** 1.0.1 (linia 1.1). **Zakres:** opis w katalogu („pięta na stopniu, kolano proste”, sprzęt: skrzynia, mięśnie dwugłowe uda 0,25) ma jedno źródło, a niezależne źródła pod tą nazwą opisują wariant przy ścianie (duplikat Wall Calf Stretch). Przedefiniować na wariant na stopniu z 2 przeczytanymi źródłami szczebla 4 opisującymi ten sam wariant albo zmienić definicję; bez udziału mięśni dwugłowych uda bez podstawy; tłumaczenia i recenzja niezależna (bramka 4). W 1.0 opis zostaje bez zmian. Decyzja: `docs/18`, wpis z 28.10.2026 „003 → 1.0.1”.
+
 ### Backlog 1.0.1 — figury v1: uwagi NISKIE z recenzji niezależnej po poprawce (28.10.2026)
 - **Step Up:** ręce z hantlami biegną wzdłuż pochylonego tułowia (w „w trakcie” hantla 19 j. za barkiem) — zgięcie barku równe pochyleniu tułowia; palce tylnej stopy mijają krawędź skrzyni o 0,9 j. przy k≈0,24; reguła środka ciężkości w teście ma uwzględniać ciężar w dłoniach. **Lunges (hantle):** tylna stopa pionowo na palcach w „w trakcie”, przednia stopa przesuwa się o 2,1 j. **Incline Push Up:** dłoń przesuwa się po blacie o 3,2 j., dłonie ok. 7 j. od krawędzi (karta: „o krawędź”). Raporty: katalog audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/.
 
