@@ -184,7 +184,7 @@ const ZMIENIONE = new Set([
 ]);
 describe('7. pozostałe pozy sześciu rodzin bez zmian (odciski SVG i kształtów)', () => {
   const baza = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'figury-p2-baza.json'), 'utf8')) as Record<string, { svg: string; raw: string }>;
-  test('baza obejmuje wszystkie 61 póz tych rodzin; zmieniane to 17 ćwiczeń z recenzji (+ Lower Back Curl, Prone Flutter Kicks z niezmiennika kolana; + Leg Press i Belt Squat Machine z rundy 3; + Single Leg Press z rundy 5: platforma pod podeszwą)', () => { expect(Object.keys(baza)).toHaveLength(61); for (const k of ZMIENIONE) expect(baza[k]).toBeDefined(); expect(ZMIENIONE.size).toBe(22); });
+  test('baza obejmuje 60 póz tych rodzin (po wyjątku Calf Press, 28.10.2026: 61 → 60); zmieniane to 17 ćwiczeń z recenzji (+ Lower Back Curl, Prone Flutter Kicks z niezmiennika kolana; + Leg Press i Belt Squat Machine z rundy 3; + Single Leg Press z rundy 5: platforma pod podeszwą)', () => { expect(Object.keys(baza)).toHaveLength(60); for (const k of ZMIENIONE) expect(baza[k]).toBeDefined(); expect(ZMIENIONE.size).toBe(22); });
   test.each(Object.keys(baza).filter(k => !ZMIENIONE.has(k)))('%s: rysunek bez zmian', klucz => { const [r, ...reszta] = klucz.split('/'); expect([klucz, odcisk(poza(r, reszta.join('/')))]).toEqual([klucz, baza[klucz]]); });
   test.each([...ZMIENIONE])('%s: rysunek zmieniony względem bazy (poprawka jest widoczna)', klucz => { const [r, ...reszta] = klucz.split('/'); expect(odcisk(poza(r, reszta.join('/')))).not.toEqual(baza[klucz]); });
 });

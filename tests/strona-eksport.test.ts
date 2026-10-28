@@ -28,19 +28,23 @@ import { SOURCE_NAME_PATTERNS, GENERIC_REFERENCE_PATTERNS } from '@/lib/sources'
 
 const root = path.join(__dirname, '..');
 const SCRIPT = path.join(root, 'scripts/strona/eksport.mjs');
-/** Te testy sprawdzają zgodność eksportu z runtime aplikacji dla wszystkich gotowych rodzin, więc biegną bez filtra audytu (sam filtr: tests/strona-filtr-audytu.test.ts). */
-const run = (out: string, ...extra: string[]) => execFileSync('node', [SCRIPT, '--out', out, '--commit', 'abc1234def', '--bez-filtra-audytu', ...extra], { encoding: 'utf8' });
+/** Zapis recenzji dla eksportu w tym teście: wszystkie rodziny ready z aktualnymi skrótami (bramka 4, decyzja 9a 28.10.2026; sam warunek: tests/strona-eksport-recenzja.test.ts). */
+let REC = '';
+const run = (out: string, ...extra: string[]) => execFileSync('node', [SCRIPT, '--out', out, '--commit', 'abc1234def', '--recenzja', REC, ...extra], { encoding: 'utf8' });
 type Ex = { niche: boolean; musclesApproximate: boolean; id: string; slug: string; name: string; group: string; equipment: string; metric: string; pattern: string; muscles: { main: string[]; aux: string[] }; regions: { id: string; load: number }[]; family: string;
   figure: null | { phases: { name: string; ms: number }[]; errors: { id: string; text: string }[] }; cues: { scope: string; ok?: string[]; mistakes?: string[]; setup?: string[] }; alternatives: string[]; requires: string[][] };
 type ExRoles = { roles: { region: string; text: string }[] };
 type Out = { schema: string; app: { version: string; commit: string; catalogRev: string }; lang: string; meta: { exercises: number; cuesWithoutText: number }; labels: Record<string, Record<string, string>>; exercises: Ex[] };
 
-/** Ćwiczenia z pozą w lib/figures/v2/poses/*.json (rodziny z danych): eksport dołącza ich figury z próbek pozy. */
+/** Ćwiczenia z pozą w lib/figures/v2/poses/*.json (rodziny z danych, także pilotaż bez statusu ready): bez statusu ready eksport ich figur nie dołącza. */
 const DANE_POZ = new Set<string>(fs.readdirSync(path.join(root, 'lib/figures/v2/poses')).filter(f => f.endsWith('.json')).flatMap(f => Object.keys(JSON.parse(fs.readFileSync(path.join(root, 'lib/figures/v2/poses', f), 'utf8')).cwiczenia)));
 let dir = '', dir2 = '';
 const data: Record<string, Out> = {};
 beforeAll(() => {
   dir = fs.mkdtempSync(path.join(os.tmpdir(), 'atlas-')); dir2 = fs.mkdtempSync(path.join(os.tmpdir(), 'atlas-'));
+  const sk = JSON.parse(execFileSync('node', [path.join(root, 'scripts/strona/recenzja-figur.mjs'), '--skroty'], { encoding: 'utf8' })) as { skroty: Record<string, string> };
+  REC = path.join(dir, 'recenzja-test.json');
+  fs.writeFileSync(REC, JSON.stringify({ v2: Object.fromEntries(Object.entries(sk.skroty).map(([f, sha]) => [f, { werdykt: 'wyswietlana', data: '2026-10-28', kto: 'fixture testu', sha, liczba: 1 }])) }));
   run(dir); run(dir2, '--langs', 'pl,en');
   for (const l of LANGS) data[l] = JSON.parse(fs.readFileSync(path.join(dir, `atlas-${l}.json`), 'utf8'));
 }, 240000);
@@ -143,7 +147,7 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
       let n = 0;
       for (const e of data[l].exercises) {
         const spec = figureSpec(e.id);
-        if (!spec) { expect([e.id, e.figure]).toEqual([e.id, DANE_POZ.has(e.id) ? { phases: [], errors: [] } : null]); continue; } /* ćwiczenie z pozą z danych (poses/*.json) bez specyfikacji figury: figura z próbek pozy, bez faz i błędów */
+        if (!spec) { expect([e.id, e.figure]).toEqual([e.id, null]); continue; } /* bez specyfikacji (rodzina bez statusu ready, także z pozą w poses/*.json): bez figury — bramka 4 */
         n++; expect(e.figure!.phases.map(p => p.ms)).toEqual(phasesFor(spec, tempoFor(spec)).map(p => p.ms));
         for (const p of e.figure!.phases) expect(p.name.length).toBeGreaterThan(0);
         for (const x of e.figure!.errors) expect(x.text.length).toBeGreaterThan(0);
@@ -157,7 +161,7 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
     const fig = JSON.parse(fs.readFileSync(path.join(dir, 'figury.json'), 'utf8')) as { figures: Record<string, { frames: { pose: { pelvis: number[] }; props: unknown[] }[]; pose: { kontrakt: string }; tempo: unknown; errors: { id: string; cue: string; kind: string; frames?: unknown[]; tempo?: unknown }[]; views: string[]; family: string }> };
     const withFig = data.en.exercises.filter(e => figureSpec(e.id));
     const zDanych = data.en.exercises.filter(e => !figureSpec(e.id) && DANE_POZ.has(e.id));
-    expect(Object.keys(fig.figures).sort()).toEqual([...withFig, ...zDanych].map(e => e.slug).sort()); expect(zDanych.length).toBeGreaterThan(0);
+    expect(Object.keys(fig.figures).sort()).toEqual(withFig.map(e => e.slug).sort()); expect(zDanych.length).toBeGreaterThan(0); /* pilotaż z poses/*.json bez statusu ready nie wchodzi do figur */
     for (const e of withFig) {
       const spec = figureSpec(e.id)!; const f = fig.figures[e.slug];
       expect([e.id, f.frames.length, f.pose.kontrakt, f.family, f.views]).toEqual([e.id, 25, expect.stringMatching(/^figury-v2\/poza@[12]$/), spec.family, spec.views]);

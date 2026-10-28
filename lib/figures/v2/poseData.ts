@@ -41,7 +41,8 @@ export const MEASURE_UNIT: Record<MeasuredJoint, 'deg' | 'cm'> = { knee: 'deg', 
  * (stopnie albo cm). Poniżej staw „stoi” i liczba byłaby prawdziwa, ale nieistotna (np. kolano przy wznosie bokiem). Jedno miejsce; test: tests/figures-v2-katy-fazy.test.tsx.
  */
 export const MIN_MEASURED_ROM = { deg: 15, cm: 2 } as const;
-export type PhaseOverride = { names?: { first: PhaseName; second: PhaseName }; joints?: readonly MeasuredJoint[]; hideAngle?: true };
+/** `lowerFirst` w wyjątku odwraca kierunek tylko tego ćwiczenia: rodzina z różnym kierunkiem u: 0 → 1 (suwnica: wypychanie, hack: opuszczanie; wejście na stopień: w górę, wykrok: w dół) nie może mieć jednego wpisu dla wszystkich (strażnik: tests/figures-v2-kierunek-u.test.ts). */
+export type PhaseOverride = { names?: { first: PhaseName; second: PhaseName }; joints?: readonly MeasuredJoint[]; hideAngle?: true; lowerFirst?: boolean };
 export type DataUi = {
   /** Nazwy faz licznika: first = faza u: 0 → 1, second = powrót. */
   names: { first: PhaseName; second: PhaseName };
@@ -78,6 +79,8 @@ export const PHASES_BY_EXERCISE: Record<string, { first: PhaseName; second: Phas
   'Cat-Cow': { first: 'Grzbiet w dół', second: 'Koci grzbiet' },
 };
 export const dataUiFor = (family: string): DataUi | null => own(DATA_UI, family) ?? null;
+/** Czy faza u: 0 → 1 ćwiczenia to opuszczanie (dłuższa, 2 s): wyjątek ćwiczenia (`lowerFirst`) wygrywa z wpisem rodziny. */
+export const lowerFirstOf = (ui: DataUi, key: string): boolean => (ui.exceptions && Object.prototype.hasOwnProperty.call(ui.exceptions, key) ? ui.exceptions[key].lowerFirst : undefined) ?? ui.lowerFirst;
 
 /** Ćwiczenia z danymi, które są izometrią (zwis, wytrzymanie): jedna pozycja statyczna bez animacji. Test: pomiar czasu w katalogu (metric „time”). */
 export const ISOMETRIC: ReadonlySet<string> = new Set([

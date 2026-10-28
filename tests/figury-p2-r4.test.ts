@@ -31,7 +31,7 @@ describe('1. B3: Leg Press bez wiersza „kolana do środka” (widok tylko z bo
   });
   test('żadne ćwiczenie nie ma wiersza błędu niewidocznego w swoich widokach (viewsOf) — lista wyjątków nie zawiera suwnic', () => {
     const src = fs.readFileSync(path.join(__dirname, 'figury-p2-r2.test.ts'), 'utf8'); expect(src).not.toMatch(/'leg_machine\/Leg Press\//);
-    for (const f of pliki) for (const [cw, p] of Object.entries(f.cwiczenia)) if (['Leg Press', 'Single Leg Press', 'Calf Press (leg press)'].includes(cw)) p.bledy.forEach((_, i) => expect([cw, Math.max(...viewsOf(cw, f.rodzina as never).map(v => roznicaBledu(p, i, v))) >= MIN_ROZNICA_BLEDU_W_WIDOKU_CM]).toEqual([cw, true]));
+    for (const f of pliki) for (const [cw, p] of Object.entries(f.cwiczenia)) if (['Leg Press', 'Single Leg Press'].includes(cw)) p.bledy.forEach((_, i) => expect([cw, Math.max(...viewsOf(cw, f.rodzina as never).map(v => roznicaBledu(p, i, v))) >= MIN_ROZNICA_BLEDU_W_WIDOKU_CM]).toEqual([cw, true]));
   });
 });
 
@@ -78,6 +78,6 @@ describe('4. podgląd rysuje widoki z aplikacji (viewsOf)', () => {
     const J = await import(${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-jakosc.mjs'))});
     console.log(JSON.stringify([...new Set([...h.html.matchAll(/data-widok="(\\w+)"/g)].map((m) => m[1])), ...J.klatkiZHtml(h.html).uwagi]));
   `], { cwd: ROOT, env: { PATH: process.env.PATH ?? '' } as unknown as NodeJS.ProcessEnv, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }));
-  test.each([['Leg Press'], ['Single Leg Press'], ['Calf Press (leg press)']])('%s: podgląd tylko z boku, bez uwag o niejednolitych klatkach (klatkiZHtml)', cw => { expect(widoki(cw)).toEqual(['side']); });
+  test.each([['Leg Press'], ['Single Leg Press']])('%s: podgląd tylko z boku, bez uwag o niejednolitych klatkach (klatkiZHtml)', cw => { expect(widoki(cw)).toEqual(['side']); });
   test.each([['Hack Squat'], ['Pendulum Squat']])('%s: podgląd z boku i z przodu', cw => { expect(widoki(cw)).toEqual(['side', 'front']); });
 });

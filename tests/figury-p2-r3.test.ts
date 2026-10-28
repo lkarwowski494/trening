@@ -103,7 +103,7 @@ describe('4. B2: Pendulum, Lying Machine Squat, Belt Squat Machine — kolano do
 });
 
 describe('5. U-L1: widoki na poziomie ćwiczenia (suwnice tylko z boku), zgodnie wstecz', () => {
-  const SUWNICE = ['Leg Press', 'Single Leg Press', 'Calf Press (leg press)'];
+  const SUWNICE = ['Leg Press', 'Single Leg Press'];
   test.each(SUWNICE)('%s: tylko bok', cw => { expect(viewsOf(cw, 'leg_machine')).toEqual(['side']); });
   test('reszta rodziny leg_machine i inne rodziny: widoki rodziny (bez zmian)', () => {
     expect(viewsOf('Hack Squat', 'leg_machine')).toEqual(['side', 'front']); expect(viewsOf('Pendulum Squat', 'leg_machine')).toEqual(['side', 'front']);
