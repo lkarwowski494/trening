@@ -1,11 +1,12 @@
 # Okno „Uczciwe zasady” (1.0, decyzja właściciela 25.10.2026; docs/monetyzacja.md): build ze sztucznym sklepem (EXPO_PUBLIC_STORE_FAKE=1 tylko w e2e-ios.yml) startuje z dostępem „na zawsze”,
-# a okno pokazuje się tylko w stanie `free`. Dlatego trening startuje w stanie pełnym, w jego trakcie dostęp wygasa (panel „Test store”; trwający trening nigdy nie jest przerywany),
+# a okno pokazuje się tylko w stanie `free` i nie byłemu subskrybentowi (M1-046, 28.10.2026). Dlatego trening startuje w stanie pełnym, w jego trakcie panel „Test store”
+# przełącza na stan nowego użytkownika bez zakupów („new user, no purchases”: pusta lista i bez pamięci końca dostępu; trwający trening nigdy nie jest przerywany),
 # a po „Finish” (trening na żywo, stan free) na podsumowaniu pojawia się okno: tytuł, przycisk główny i drugorzędny. „See Pro plans” zamyka okno i otwiera ekran zakupu;
 # po jego zamknięciu okna już nie ma (pokazuje się raz). Przycisk główny zamykający okno, pozostałe warunki (full, drugi trening, PL/EN, motywy) i „Cancel” w nagłówku — Jest: tests/monetyzacja-ui.test.tsx.
 # Karta po imporcie CSV nie ma scenariusza (wybór pliku w systemowym oknie — wyjątek DA-08 w tests/przeplywy.json).
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "Subscription", "Your plan: .*", "Test store: expire access"            ← components/SubscriptionCard.tsx (tytuł wiersza z dostępem, M1-037 A), app/paywall.tsx (panel tylko w buildzie E2E, bez t())
+#   "Subscription", "Your plan: .*", "Test store: new user, no purchases"            ← components/SubscriptionCard.tsx (tytuł wiersza z dostępem, M1-037 A), app/paywall.tsx (panel tylko w buildzie E2E, bez t())
 #   "Train 5 days a month for free.*"                                        ← nagłówek ekranu zakupu po wygaśnięciu (jak w 21)
 #   "First workout done!", "Awesome, keep training!", "See Pro plans.*"      ← components/FairRulesSheet.tsx
 #   "Finish", "Finish workout\?", "Session", "Set 1 done.*", "Skip"          ← jak flow 21
@@ -29,8 +30,8 @@ name: Uczciwe zasady — okno po pierwszym treningu
 - tapOn: "Settings"
 - extendedWaitUntil: { visible: "Subscription", timeout: 30000 }
 - tapOn: "Your plan: .*"
-- scrollUntilVisible: { element: "Test store: expire access", direction: DOWN, timeout: 60000, centerElement: true }
-- tapOn: "Test store: expire access"
+- scrollUntilVisible: { element: { id: "fake-new-user" }, direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: { id: "fake-new-user" }
 - scrollUntilVisible: { element: "Train 5 days a month for free.*", direction: UP, timeout: 60000 }
 - assertVisible: "Train 5 days a month for free.*"
 - tapOn: { id: "close-modal" }

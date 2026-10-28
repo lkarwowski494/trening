@@ -3,8 +3,10 @@ import { exById, bandById, isBW, hintFor, prevOfActiveBlock, prevFromOther, offL
 import { usedKeys, isEmpty } from '@/lib/state/setvals';
 import { loadsFor } from '@/lib/equipment';
 import { nextHeavier, LOAD_TOL_KG } from '@/lib/loads';
-import { wu, wOut, wIn, fmtW, fmtNum, dOut, dIn, distLabel, unitLabel } from '@/lib/units';
+import { wu, wOut, wIn, fmtW, fmtNum, dOut, dIn, distLabel, unitLabel, spokenUnit } from '@/lib/units';
 import { SET_FIELDS, SIZE, TEXT_SCALE } from '@/lib/theme';
+/** Krok ± w etykiecie VoiceOver: skrót jednostki („2,5 kg”), a gdy etykieta jednostki w języku jest pełnym słowem (el „κιλά”) — odmieniona nazwa jak w głosie („1 κιλό”), M1-041. */
+const stepAmount = (v: number): string => `${fmtNum(v, 1)} ${unitLabel() === spokenUnit(2) ? spokenUnit(v) : unitLabel()}`;
 
 /*
  * Logika tablicy „teraz” (M3 p2; wzorzec 29 w docs/32, ZM-01; design-spec §1 i §2). Bez interfejsu i bez zapisu danych — zapisuje ekran przez
@@ -87,11 +89,11 @@ export function stepOf(w: Workout, e: WExercise, key: BoardKey, dir: 1 | -1, bas
   if (loc) { const L = loadsFor(ex, loc, pinnedImpl(e));
     if (L.kind === 'loads') {
       const to = dir > 0 ? nextHeavier(L.loads, cur) : cur <= 0 ? null : ([...L.loads].reverse().find(v => v < cur - LOAD_TOL_KG) ?? 0);
-      return { to, amount: fmtW(to == null ? 0 : Math.abs(to - cur)) };
+      return { to, amount: unitLabel() === spokenUnit(2) ? stepAmount(wOut(to == null ? 0 : Math.abs(to - cur))) : fmtW(to == null ? 0 : Math.abs(to - cur)) };
     } }
   const small = ex.equipment === 'hantle' || ex.loadMode === 'per_dumbbell' || ex.loadMode === 'unilateral';
   const step = (bw ? WEIGHT_STEP.bar : small ? WEIGHT_STEP.small : WEIGHT_STEP.bar)[lb ? 'lb' : 'kg']; /* w jednostce wyświetlania */
-  const amount = `${fmtNum(step, 1)} ${unitLabel()}`;
+  const amount = stepAmount(step);
   if (!bw && dir < 0 && cur <= 0) return { to: null, amount };
   let disp = Math.round((wOut(cur) + dir * step) * 100) / 100; if (!bw && disp < 0) disp = 0;
   return { to: Number(wIn(disp)), amount };

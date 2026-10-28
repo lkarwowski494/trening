@@ -1,0 +1,85 @@
+{
+ "jezyk": "hr",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 472,
+ "uwagi": [
+  {
+   "klucz": "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+   "rodzaj": "nowe",
+   "pl": "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+   "tlumaczenie": "{k} dan snage tjedno manje je od preporučenog minimuma (najmanje {n} dana). Za početak je to dobar korak: možete vježbati snagu samo {k} dan tjedno, a s vremenom doći do {n} — malo kretanja bolje je nego ništa.",
+   "poprawka": "{k} dan treninga snage tjedno manje je od preporučenog minimuma (najmanje {n} dana). Za početak je to dobar korak: možete trenirati snagu samo {k} dan tjedno, a s vremenom doći do {n} — malo kretanja bolje je nego ništa.",
+   "powod": "„dan snage” i „vježbati snagu” brzmią nienaturalnie; lepiej „dan treninga snage”, „trenirati snagu”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "rodzaj": "nowe",
+   "pl": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "tlumaczenie": "Kardio izvan plana: kardio sesija je u planu od {k} dana tjedno, uz manje su svi dani snage. Za zdravlje je dobro imati najmanje {a}–{b} min umjerene aktivnosti tjedno (ili {c}–{d} min intenzivne); računa se i umjereno kretanje tijekom dana, npr. brzo hodanje, čak i kratko.",
+   "poprawka": "Kardio izvan plana: kardio sesija je u planu od {k} dana tjedno, a uz manje dana svi su dani posvećeni treningu snage. Za zdravlje je dobro imati najmanje {a}–{b} min umjerene aktivnosti tjedno (ili {c}–{d} min intenzivne); računa se i umjereno kretanje tijekom dana, npr. brzo hodanje, čak i kratko.",
+   "powod": "„uz manje su svi dani snage” jest niejasne i nienaturalne",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).",
+   "rodzaj": "nowe",
+   "pl": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).",
+   "tlumaczenie": "Kardio: od {k} dana tjedno jedna sesija u zasebnom danu; uz manje dana svi su dani snage, da kardio ne uzima dane treningu snage (svaki glavni dio tijela najmanje {n} dana).",
+   "poprawka": "Kardio: od {k} dana tjedno jedna sesija na zaseban dan; uz manje dana svi su dani posvećeni treningu snage, da kardio ne bi oduzimao dane treningu snage (svaki glavni dio tijela najmanje {n} dana).",
+   "powod": "„svi su dani snage” jest nienaturalne; składnia zdania podrzędnego jest niezgrabna",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "rodzaj": "nowe",
+   "pl": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "tlumaczenie": "Opća kondicija (za zdravlje i formu): {s} serije po vježbi, {a}–{b} ponavljanja (kod kuće {c}–{d}), dok sljedeće ponavljanje ne bi bilo teško. Za zdravlje je dobro vježbati sve glavne dijelove tijela najmanje {n} dana tjedno.",
+   "poprawka": "Opća kondicija (za zdravlje i formu): {s} serije po vježbi, {a}–{b} ponavljanja (kod kuće {c}–{d}), do trenutka kad bi sljedeće ponavljanje bilo teško. Za zdravlje je dobro vježbati sve glavne dijelove tijela najmanje {n} dana tjedno.",
+   "powod": "„dok … ne bi bilo teško” jest dwuznaczne (może znaczyć „dopóki nie byłoby trudne”)",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "rodzaj": "nowe",
+   "pl": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "tlumaczenie": "Napor: dok sljedeće ponavljanje ne bi bilo teško — umor, ali ne iscrpljenost. Do otkaza nije potrebno.",
+   "poprawka": "Napor: do trenutka kad bi sljedeće ponavljanje bilo teško — umor, ali ne iscrpljenost. Do otkaza nije potrebno.",
+   "powod": "„dok … ne bi bilo teško” jest dwuznaczne",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "rodzaj": "nowe",
+   "pl": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "tlumaczenie": "Istaknute mišićne skupine imaju veći volumen nego u razdoblju usporedbe; što je boja intenzivnija, to je porast veći. Sivo — bez porasta.",
+   "poprawka": "Istaknuti su dijelovi tijela u kojima je volumen veći nego u razdoblju usporedbe; što je boja intenzivnija, to je porast veći. Sivo — bez porasta.",
+   "powod": "Niespójna terminologia: „mišićne skupine” zamiast „dijelovi tijela” używanego dla „partia” w pozostałych tekstach",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "rodzaj": "nowe",
+   "pl": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "tlumaczenie": "Crta u „Ovaj tjedan“ i u Napretku. Automatski: {n} serija. Ručno: vlastiti broj od {min} do {max}.",
+   "poprawka": "Crta u „Ovaj tjedan” i u Napretku. Automatski: {n} serija. Ručno: vlastiti broj od {min} do {max}.",
+   "powod": "Niespójny cudzysłów zamykający (“ zamiast ” jak w pozostałych tekstach)",
+   "waga": "niska"
+  },
+  {
+   "klucz": "pallof.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Stań bokiem do wyciągu ustawionego mniej więcej na wysokości klatki; uchwyt trzymaj oburącz przy klatce, linka napięta.",
+   "tlumaczenie": "Stani bočno prema užetu namještenom otprilike u visinu prsa; ručku drži objema rukama uz prsa, uže napeto.",
+   "poprawka": "Stani bočno prema koloturu namještenom otprilike u visinu prsa; ručku drži objema rukama uz prsa, uže napeto.",
+   "powod": "„wyciąg” to kolotur, nie „uže”; niespójne z innymi wskazówkami",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

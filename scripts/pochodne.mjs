@@ -4,10 +4,11 @@
 //  - wektory BRD (kontrola-brd --wektory porównane z tests/wektory/brd.json; skrypt nie ma trybu check);
 //  - testy-pliki pochodne: lib/locales/_source.json, pliki zegarka (watch-fixtures, watch-apple-i18n) i widżetu (widget-i18n);
 //  - szybkie strażniki czytające źródła jako tekst (wzorce interakcji, repo publiczne, limity architektury, przepływy, stuknięcia Maestro, tokeny wyglądu).
+//  - strażniki jakości słowników (npm run check:slowniki, L-048 A, właściciel 28.10.2026) — tylko gdy zmiany względem origin/main dotykają tekstów (dotykaSlownikow).
 // Nie wchodzi: check:decyzje (kontrola dokumentu, nie pliku pochodnego), lint, typecheck, pełny jest — to robi verify.
 // Użycie: node scripts/pochodne.mjs [--lista]   (kod 1 = którykolwiek krok czerwony). Test: tests/pochodne.test.ts.
 // Test wstrzykuje własną listę kroków przez POCHODNE_KROKI=<plik.json> (tablica {nazwa, polecenie:[...], jak}); tylko do testów.
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { readFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -36,8 +37,22 @@ export const KROKI = [
   { nazwa: 'rejestr twierdzeń', polecenie: ['node', 'scripts/claims.mjs', '--check'], jak: 'node scripts/claims.mjs --stub (nowy/zmieniony tekst), po przeglądzie źródeł --rehash <ID>.' },
   { nazwa: 'wektory BRD', funkcja: 'wektoryBrd', jak: 'node scripts/kontrola-brd.mjs docs/brd --wektory > tests/wektory/brd.json, potem git add tests/wektory.' },
   { nazwa: 'lib/locales/_source.json', polecenie: [...JEST, 'tests/i18n-locales.test.ts', '-t', '_source.json'], jak: 'UPDATE_I18N=1 npx jest tests/i18n-locales.test.ts -t _source.json, potem git add lib/locales/_source.json.' },
+  { nazwa: 'strażniki słowników (warunkowo)', funkcja: 'slowniki', jak: 'npm run check:slowniki — popraw słownik albo tłumaczenie wskazane przez strażnik (słownik terminów ma pierwszeństwo).' },
   { nazwa: 'pliki zegarka i widżetu + strażniki tekstowe', polecenie: [...JEST, ...POCHODNE_JEST, ...STRAZNIKI], jak: 'zegarek: UPDATE_WATCH=1 UPDATE_WATCH_APPLE=1 npx jest tests/watch-fixtures.test.ts tests/watch-apple-i18n.test.ts; widżet: UPDATE_WIDGET=1 npx jest tests/widget-i18n.test.ts; strażnik tekstowy — popraw kod albo (jeśli zmiana zamierzona) test, po przeczytaniu komunikatu; potem git add.' },
 ];
+
+/** L-048 A: ścieżki tekstów, przy których zmianie biegną strażniki słowników. `pliki` = null (nie da się ustalić zmian) → bezpiecznie uruchom. */
+export const SCIEZKI_SLOWNIKOW = ['lib/locales/', 'lib/cues/text/', 'lib/i18n.en.ts', 'store/', 'docs/lokalizacja/'];
+export const dotykaSlownikow = (pliki) => pliki === null || pliki.some(f => SCIEZKI_SLOWNIKOW.some(s => f === s || f.startsWith(s)));
+/** Pliki zmienione względem origin/main (commity gałęzi i kopia robocza); null, gdy git nie zna origin/main. */
+function zmienionePliki() {
+  const r = spawnSync('git', ['diff', '--name-only', 'origin/main'], { cwd: ROOT, encoding: 'utf8' });
+  return r.status === 0 ? r.stdout.split('\n').filter(Boolean) : null;
+}
+async function slowniki() {
+  if (!dotykaSlownikow(zmienionePliki())) return { ok: true, out: 'pominięte — zmiany nie dotykają słowników' };
+  return uruchom(['node', 'scripts/slowniki.mjs']);
+}
 
 const WSPOLBIEZNOSC = 3; // maszyna bywa współdzielona (4 rdzenie)
 
@@ -57,7 +72,7 @@ async function wektoryBrd() {
   const mam = existsSync(plik) ? readFileSync(plik, 'utf8') : '';
   return { ok: mam.trim() === r.out.trim(), out: 'tests/wektory/brd.json różni się od wyniku kontrola-brd --wektory' };
 }
-const FUNKCJE = { wektoryBrd };
+const FUNKCJE = { wektoryBrd, slowniki };
 
 export async function pochodne(kroki, log = m => process.stderr.write(m + '\n')) {
   const start = Date.now(); const kolejka = [...kroki]; const bledy = [];

@@ -1,0 +1,130 @@
+{
+ "jezyk": "pt-BR",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 467,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "tlumaczenie": "Exercício com halteres acima da cabeça ou do rosto: é recomendado ter alguém dando auxílio.",
+   "poprawka": "Exercício com halteres acima da cabeça ou do rosto: recomenda-se um parceiro que faça a segurança.",
+   "powod": "Niespójna terminologia osoby asekurującej względem zdań 3 i 4 („parceiro que faça a segurança”).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "tlumaczenie": "Toque no rótulo de uma série para mudar o tipo; deslize uma linha para a esquerda para apagá-la. A faixa de repetições é opcional — com ele aparecem as sugestões «↑». «⇅ SS» liga o exercício ao seguinte em uma supersérie, «✕ SS» o retira do grupo. Ordem: «≡ Reordenar».",
+   "poprawka": "Toque no rótulo de uma série para mudar o tipo; deslize uma linha para a esquerda para apagá-la. A faixa de repetições é opcional — com ela aparecem as sugestões “↑”. “⇅ SS” liga o exercício ao seguinte em uma supersérie, “✕ SS” o retira do grupo. Ordem: “≡ Reordenar”.",
+   "powod": "Błąd rodzaju: „faixa” jest żeńska, więc „com ela”, nie „com ele”. Do tego cudzysłowy « » zamiast “ ”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "+ {n} {w}",
+   "rodzaj": "nowe",
+   "pl": "+ {n} {w}",
+   "tlumaczenie": "+ mais {n} {w}",
+   "poprawka": "+ {n} {w}",
+   "powod": "„+ mais” to pleonazm; sam „+” wystarcza, jak w źródle.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "rodzaj": "nowe",
+   "pl": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "tlumaczenie": "Cardio: com {k}–{m} dias, você pode transformar os dias acima de {j} em sessões de cardio moderado («Dias de cardio no plano», desativado por padrão). Mais exercícios de fortalecimento não trazem necessariamente mais benefícios para a saúde, e vale distribuir a atividade aeróbica por vários dias. Duração da sessão de cardio = tempo da sessão.",
+   "poprawka": "Cardio: com {k}–{m} dias, você pode transformar os dias acima de {j} em sessões de cardio moderado (“Dias de cardio no plano”, desativado por padrão). Mais exercícios de fortalecimento não trazem necessariamente mais benefícios para a saúde, e vale distribuir a atividade aeróbica por vários dias. Duração da sessão de cardio = tempo da sessão.",
+   "powod": "Cudzysłowy « » są nietypowe w pt-BR; reszta tekstów używa “ ”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "rodzaj": "nowe",
+   "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "tlumaczenie": "Backup automático: após cada treino, um arquivo JSON é salvo sozinho em Arquivos (No meu iPhone → {app} → Backup, últimos {n}). A importação também aceita esses arquivos. Esses backups são apagados junto com o app — antes de removê-lo ou de instalar com outra conta Apple, exporte um backup para outro lugar.",
+   "poprawka": "Backup automático: após cada treino, um arquivo JSON é salvo sozinho em Arquivos (No Meu iPhone → {app} → Backup, últimos {n}). A importação também aceita esses arquivos. Esses backups são apagados junto com o app — antes de removê-lo ou de instalar com outra conta Apple, exporte um backup para outro lugar.",
+   "powod": "Niespójna nazwa lokalizacji systemowej; Apple i zdanie 19 używają „No Meu iPhone”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "rodzaj": "nowe",
+   "pl": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "tlumaczenie": "A linha em «Esta semana» e em Progresso. Automático: {n} séries. Manual: o seu próprio número, de {min} a {max}.",
+   "poprawka": "A linha em “Esta semana” e em Progresso. Automático: {n} séries. Manual: o seu próprio número, de {min} a {max}.",
+   "powod": "Cudzysłowy « » zamiast “ ”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "rodzaj": "nowe",
+   "pl": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "tlumaczenie": "Menu ⋯ no cabeçalho: «Pausar treino» para o relógio do treino; o tempo de pausa não conta para a duração.",
+   "poprawka": "Menu ⋯ no cabeçalho: “Pausar treino” para o relógio do treino; o tempo de pausa não conta para a duração.",
+   "powod": "Cudzysłowy « » zamiast “ ”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Pierwszy trening: duży przycisk „Pusty trening” u góry.",
+   "rodzaj": "nowe",
+   "pl": "Pierwszy trening: duży przycisk „Pusty trening” u góry.",
+   "tlumaczenie": "Primeiro treino: o botão grande «Treino vazio» em cima.",
+   "poprawka": "Primeiro treino: o botão grande “Treino vazio” em cima.",
+   "powod": "Cudzysłowy « » zamiast “ ”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.",
+   "rodzaj": "nowe",
+   "pl": "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.",
+   "tlumaczenie": "Arquivos → No meu iPhone → {app} → Backup → {folder}. Salve esta pasta fora do celular.",
+   "poprawka": "Arquivos → No Meu iPhone → {app} → Backup → {folder}. Salve esta pasta fora do celular.",
+   "powod": "Niespójna nazwa lokalizacji systemowej; poprawnie „No Meu iPhone”, jak w zdaniu 19.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",
+   "rodzaj": "nowe",
+   "pl": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",
+   "tlumaczenie": "Revise a pré-visualização e «Regras do plano»: nada é salvo até você confirmar.",
+   "poprawka": "Revise a pré-visualização e “Regras do plano”: nada é salvo até você confirmar.",
+   "powod": "Cudzysłowy « » zamiast “ ”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.",
+   "rodzaj": "nowe",
+   "pl": "RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.",
+   "tlumaczenie": "O RIR vai de 0 a {max}; mais de {max} repetições em reserva são salvas como «leve» (RPE {light}), porque abaixo de RPE {min} a escala descreve o esforço com palavras, não com repetições em reserva.",
+   "poprawka": "O RIR vai de 0 a {max}; mais de {max} repetições em reserva são salvas como “leve” (RPE {light}), porque abaixo de RPE {min} a escala descreve o esforço com palavras, não com repetições em reserva.",
+   "powod": "Cudzysłowy « » zamiast “ ”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Wypychanie",
+   "rodzaj": "nowe",
+   "pl": "Wypychanie",
+   "tlumaczenie": "Empurrar",
+   "poprawka": "Empurrada",
+   "powod": "Pozostałe nazwy faz to rzeczowniki (Descida, Subida, Extensão); bezokolicznik łamie spójność.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "curl.hammerSetup",
+   "rodzaj": "wskazowka",
+   "pl": "Hantle przy bokach, dłonie zwrócone do ciała.",
+   "tlumaczenie": "Segure os halteres ao lado do corpo, palmas viradas para você.",
+   "poprawka": "Segure os halteres ao lado do corpo, palmas viradas para o corpo.",
+   "powod": "Źródło mówi „zwrócone do ciała”; „para você” jest niejednoznaczne.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

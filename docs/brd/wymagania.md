@@ -453,6 +453,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że rysunek ćwiczenia nie ma zapisu niezależnej recenzji ruchu i treści karty albo zmienił się po recenzji (inny skrót danych), albo recenzja go ukryła (np. Push Press, Pendlay Row)
     - Gdy użytkownik otwiera sekcję „Technika” tego ćwiczenia
     - Wtedy widzi wskazówki, asekurację i stopkę medyczną bez rysunku; rysunek z aktualną recenzją wyświetla się jak dotąd
+  - Scenariusz: Wskazówki techniki tylko po recenzji treści karty (bramka 4; decyzja DEC-10 a, 2026-10-28; zadanie M1-audytor-generalny-038; zapis `docs/research/figury-recenzja.json`, sekcje „karty” i „zestawy”; test `tests/karty-recenzja.test.tsx`)
+    - Zakładając, że karta ćwiczenia ze wskazówkami (własnymi albo ogólnymi wzorca ruchu przy rysunku v2) nie ma zapisu niezależnej recenzji treści z werdyktem „wyświetlana”, zmieniła się po recenzji (inny skrót wskazówek, tekstów polskich albo przypisania zestawu) albo recenzja oznaczyła ją „do poprawy” (np. Hack Squat, Pistol Squat)
+    - Gdy użytkownik otwiera to ćwiczenie
+    - Wtedy nie widzi wskazówek tej karty ani jej rysunku v1 (zestaw ogólny — także bez dopisku „Ogólne wskazówki dla tego ruchu”); karty z aktualną recenzją wyświetlają się jak dotąd
   - Scenariusz: Rysunek ruchu z krokiem nie opada bez podparcia (recenzja niezależna 28.10.2026; decyzja właściciela 28.10.2026 „poprawić przed 1.0”; test `tests/figury-podparcie.test.ts`)
     - Zakładając, że ćwiczenie ma rysunek z krokiem (wykroki, Step Up) albo pompki (w tym z podwyższeniem)
     - Gdy rysunek odtwarza ruch (każda poza pośrednia co 0,05 przejścia)
@@ -709,7 +713,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-JEZ-003: System miar metryczny albo imperialny
 - Przepływ: PR-08
-- Dowód potrzeby: J-01; D-110 (decyzje właściciela 2026-10-20, docs/18); kod `lib/units.ts`; decyzja właściciela 10a (2026-10-28, symbol masy lokalny w pismach cyrylicy i greki); testy `tests/audit-m1-lok07-01-imperial-dist.test.tsx`, `tests/audit-m1-lok07-02-default-system.test.ts`, `tests/units-label.test.ts`
+- Dowód potrzeby: J-01; D-110 (decyzje właściciela 2026-10-20, docs/18); kod `lib/units.ts`; decyzja właściciela 10a (2026-10-28, symbol masy lokalny w pismach cyrylicy i greki); testy `tests/audit-m1-lok07-01-imperial-dist.test.tsx`, `tests/m1-040-podpis-dystans.test.ts` (podpis przerwy, M1-040), `tests/m1-041-el-jednostka.test.ts` (el: krok ± VoiceOver z odmianą, nagłówek kolumny A11-19, M1-041), `tests/audit-m1-lok07-02-default-system.test.ts`, `tests/units-label.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Zmiana systemu miar
     - Zakładając, że użytkownik ma zapisane treningi w kg i dystans w metrach
@@ -812,6 +816,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik ma aktywną subskrypcję (miesięczną albo roczną; kupioną sam, z kodu albo z Chmury rodzinnej)
     - Gdy otwiera ekran zakupu
     - Wtedy zamiast oferty widzi stan swojego planu: nagłówek karty „Masz plan: {rodzaj planu}” (rodzaj planu: miesięczny, roczny albo dożywotni — 1A, właściciel 28.10.2026) i datę, bez wstępu o darmowych dniach, bez listy planów i bez przycisku „Subskrybuj”; lista planów jest zwinięta pod przyciskiem „Zmień plan” (decyzja właściciela DEC-09 a, 27.10.2026; test `tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx`)
+  - Scenariusz: Zarządzanie subskrypcją z VoiceOver
+    - Zakładając, że użytkownik z włączonym VoiceOver ma aktywną subskrypcję (także obok planu dożywotniego)
+    - Gdy przechodzi po karcie stanu planu na ekranie zakupu
+    - Wtedy nagłówek karty, dopiski i przycisk „Zarządzaj subskrypcją” są osobnymi elementami, a przycisk otwiera systemowy arkusz subskrypcji (DEC-11 a, właściciel 28.10.2026; M1-audytor-generalny-039; test `tests/voiceover-grupa-przycisk.test.tsx`, scenariusz `.maestro/21-subskrypcja.yaml`)
   - Scenariusz: Zmiana planu
     - Zakładając, że użytkownik ma aktywną subskrypcję i stuka „Zmień plan”
     - Gdy lista planów się rozwija
@@ -849,6 +857,6 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### NFR-JEZ-001: Kompletność tłumaczeń
 - Miara: liczba kluczy słownika bez tłumaczenia w którymkolwiek języku z `LANGS`. Próg: 0, z jednym nazwanym wyjątkiem (23.10.2026, decyzja właściciela o języku naturalnym): klucze z zestawu `docs/lokalizacja/zestaw-przekladu-2026-10-23.json` czekają na przekład na 33 języki (rodzaj „nowy” — angielski w zastępstwie; „zmieniony” — stare tłumaczenie); po przekładzie zestaw jest pusty i wyjątek znika. Metoda: `npm run check:i18n` oraz `tests/i18n-locales.test.ts`.
 ### NFR-DOS-001: Skalowanie tekstu systemowego
-- Miara: największa obsługiwana skala tekstu systemowego (Dynamic Type) w opisach. Próg: 2 (200%, `TEXT_SCALE_MAX` w `lib/theme.ts`). Metoda: test przeglądu dostępności `tests/matrix-a11y.test.tsx`. Znaki-ikony w tekście (›, ▾, ✓, ✕, ⇄…): próg 1,4 (`GLYPH_SCALE_MAX` w `lib/theme.ts`), ten sam test (T-04, telefon 27.10.2026).
+- Miara: największa obsługiwana skala tekstu systemowego (Dynamic Type) w opisach. Próg: 2 (200%, `TEXT_SCALE_MAX` w `lib/theme.ts`). Metoda: test przeglądu dostępności `tests/matrix-a11y.test.tsx`. Znaki-ikony w tekście (›, ▾, ✓, ✕, ⇄…): próg 1,4 (`GLYPH_SCALE_MAX` w `lib/theme.ts`), ten sam test (T-04, telefon 27.10.2026) oraz stan pierwszego uruchomienia `tests/m1-043-pierwsze-kroki-glyph.test.tsx`. Na symulatorze: scenariusz Maestro `.maestro/58-duzy-tekst.yaml` (wejście `rozmiar_tekstu`, zrzuty ekranu Trening z treningiem przy największym tekście). Na telefonie (docs/49 T-04, docs/39 ZD-03): stan „dziś bez treningu”, plan i ustawienia — czego scenariusz 58 nie pokrywa (M1-audytor-generalny-011).
 ### NFR-WYG-001: Wygląd z jednego modułu tokenów
 - Miara: liczba literałów liczbowych `fontSize` i `borderRadius` w kodzie interfejsu poza `lib/theme.ts` i `lib/tokens.ts`; osobno liczba par barw palet (jasna, ciemna, obie „Zwiększ kontrast”) poniżej progu kontrastu (tekst 4,5:1, duży tekst i elementy 3:1, w „Zwiększ kontrast” tekst pomocniczy i akcent 7:1). Próg: literały — nie więcej niż w wykazie `tests/token-baseline.json` (zapadka, docelowo 0 po partiach p2–p5 redesignu M3); pary poniżej progu — 0 z 210. Metoda: testy `tests/m3-token-guard.test.ts`, `tests/m3-contrast.test.ts`, `tests/m3-theme.test.ts` (decyzje STOP E3 z 21.10.2026, docs/18; M1-036, M1-031). Od 22.10.2026 (uwagi właściciela z telefonu, docs/18): nagłówek ekranu zakładki ze wspólnego `TabHeader` (`HEADER` w tokenach), na starcie mała ikonka sztangi po tytule zamiast sylwetki w rogu (nie nachodzi na tekst; ukryta dla VoiceOver), wskaźnik przewijania ukryty na wszystkich przewijanych ekranach (`components/Scroll.tsx`, strażnik S18; docs/32 wzorzec 31); testy `tests/trening-naglowek.test.tsx`, `tests/interaction-guards.test.ts`.

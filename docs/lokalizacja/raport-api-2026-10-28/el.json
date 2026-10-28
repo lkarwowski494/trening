@@ -1,0 +1,76 @@
+{
+ "jezyk": "el",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 473,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "tlumaczenie": "Άσκηση με μπάρα στον κορμό ή πάνω από το κεφάλι και το πρόσωπο: συνιστάται ασφάλιση — βάση με βραχίονες ασφαλείας και βοηθός ασφαλείας (spotter).",
+   "poprawka": "Άσκηση με μπάρα στον κορμό ή πάνω από το κεφάλι και το πρόσωπο: συνιστώνται μέσα ασφαλείας — βάση με βραχίονες ασφαλείας και βοηθός ασφαλείας (spotter).",
+   "powod": "„ασφάλιση” po grecku kojarzy się głównie z ubezpieczeniem, więc w zdaniu o bezpieczeństwie jest niejednoznaczne.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "tlumaczenie": "Άσκηση με αλτήρες πάνω από το κεφάλι ή το πρόσωπο: συνιστάται άτομο για spotting.",
+   "poprawka": "Άσκηση με αλτήρες πάνω από το κεφάλι ή το πρόσωπο: συνιστάται βοηθός ασφαλείας (spotter).",
+   "powod": "Niespójna terminologia: w zdaniach 3 i 4 jest „βοηθός ασφαλείας (spotter)”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Powiadamiaj",
+   "rodzaj": "nowe",
+   "pl": "Powiadamiaj",
+   "tlumaczenie": "Ειδοποίησέ με",
+   "poprawka": "Ειδοποίηση",
+   "powod": "Forma „ty” (Ειδοποίησέ με) niezgodna z rejestrem Apple; w przyciskach Apple używa rzeczownika.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "rodzaj": "nowe",
+   "pl": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "tlumaczenie": "Οι επισημασμένες μυϊκές ομάδες έχουν μεγαλύτερο όγκο από ό,τι στην περίοδο σύγκρισης· όσο πιο έντονο το χρώμα, τόσο μεγαλύτερη η αύξηση. Γκρι — χωρίς αύξηση.",
+   "poprawka": "Τα επισημασμένα μέρη σώματος έχουν μεγαλύτερο όγκο από ό,τι στην περίοδο σύγκρισης· όσο πιο έντονο το χρώμα, τόσο μεγαλύτερη η αύξηση. Γκρι — χωρίς αύξηση.",
+   "powod": "Niespójna terminologia: „partia” tłumaczona jest gdzie indziej jako „μέρος σώματος”, nie „μυϊκή ομάδα”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{faza} {n} s",
+   "rodzaj": "nowe",
+   "pl": "{faza} {n} s",
+   "tlumaczenie": "{faza} {n} δ",
+   "poprawka": "{faza} {n} δευτ.",
+   "powod": "Niespójny skrót sekund: w zdaniu 53 użyto „δευτ.”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Masz plan: dożywotni",
+   "rodzaj": "nowe",
+   "pl": "Masz plan: dożywotni",
+   "tlumaczenie": "Το πλάνο σας: μόνιμο",
+   "poprawka": "Το πλάνο σας: εφ' όρου ζωής",
+   "powod": "„μόνιμο” brzmi nienaturalnie; dla zakupu dożywotniego przyjęte jest „εφ' όρου ζωής”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "bext.noArch",
+   "rodzaj": "wskazowka",
+   "pl": "Na górze kończ w linii prostej — bez wyginania lędźwi w łuk.",
+   "tlumaczenie": "Στο πάνω μέρος τελείωσε σε ευθεία γραμμή, χωρίς να καμπυλώσεις την οσφύ.",
+   "poprawka": "Στο πάνω μέρος τελείωσε σε ευθεία γραμμή, χωρίς να κυρτώσεις τη μέση.",
+   "powod": "Niespójna terminologia: w pozostałych wskazówkach lędźwie to „μέση”, nie „οσφύ”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

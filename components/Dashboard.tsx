@@ -110,7 +110,7 @@ export function FirstSteps() {
       {/* 11.10.2026: „Miejsca i sprzęt” — jedno zdanie z odnośnikiem (nie osobny krok); z Ustawień wejście zniknęło */}
       <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')} onPress={once(() => router.push('/more/locations'))} hitSlop={8} style={{ minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
         <View style={{ flexShrink: 1 }}><Muted style={{ fontSize: 13 }}>{t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')}</Muted></View>
-        <Text accessibilityElementsHidden importantForAccessibility="no" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('callout') }}>›</Text>
+        <Text accessibilityElementsHidden importantForAccessibility="no" maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.muted, ...font('callout') }}>›</Text>
       </Pressable>
     </View>);
 }

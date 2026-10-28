@@ -24,7 +24,9 @@ export type CueRef = { c: string };
  * producent sprzętu, badanie w recenzowanym czasopiśmie. Kolejność = kolejność w podpisie. */
 export const CUE_BASIS_KINDS = ['org', 'site', 'maker', 'study'] as const;
 export type CueBasisKind = typeof CUE_BASIS_KINDS[number];
-type CueData = { exercises: Record<string, Record<CueSection, CueRef[]>>; /** rodzaje źródeł ćwiczenia w kolejności CUE_BASIS_KINDS (obliczone z pełnych danych) */ basis: Record<string, CueBasisKind[]>; /** klucze ćwiczeń bez wskazówek (powody — tylko w pełnych danych) */ open: string[]; /** 0.14.0: ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część) */ partial: string[] };
+type CueData = { exercises: Record<string, Record<CueSection, CueRef[]>>; /** rodzaje źródeł ćwiczenia w kolejności CUE_BASIS_KINDS (obliczone z pełnych danych) */ basis: Record<string, CueBasisKind[]>; /** klucze ćwiczeń bez wskazówek (powody — tylko w pełnych danych) */ open: string[]; /** 0.14.0: ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część) */ partial: string[];
+  /** M1-audytor-generalny-038 (DEC-10 a, 28.10.2026): karty ze wskazówkami bez aktualnej recenzji treści (bramka 4) — nie wyświetlane */ hidden: string[];
+  /** ćwiczenia, których zestaw ogólny wskazówek (lib/figures/v2/cue-sets.json) ma aktualną recenzję treści — tylko te zestawy pokazuje ekran */ general: string[] };
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 export const CUE_DATA: CueData = require('./data.json');
@@ -65,5 +67,7 @@ export function cuesFor(e: Pick<Exercise, 'lib' | 'libKey'> | null | undefined, 
   const sections = CUE_SECTIONS.map(id => ({ id, items: (x[id] ?? []).map(r => cueText(r.c, l)) })).filter(s => s.items.length);
   return { key, sections, basis: cueBasis(key) };
 }
+/** Czy zestaw ogólny wskazówek ćwiczenia przeszedł recenzję treści (bramka 4, M1-audytor-generalny-038) — bez tego ekran go nie pokazuje. */
+export const generalCuesReviewed = (key: string): boolean => (CUE_DATA.general ?? []).includes(key);
 /** Rodzaje źródeł wskazówek ćwiczenia (podpis — MER2-07: opis ogólny zamiast nazw), w kolejności CUE_BASIS_KINDS; obliczone przy generowaniu danych runtime. */
 export function cueBasis(key: string): CueBasisKind[] { return own(CUE_DATA.basis, key) ?? []; }

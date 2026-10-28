@@ -830,15 +830,16 @@
    "skrot": "bf0f7804c9",
    "skrotEn": "2d7fbe33ad",
    "rodzaje": [
-    "otwarte"
+    "uproszczenie"
    ],
    "zrodla": [
-    "Stronger by Science „How to Squat”, sekcja Foot Angle (szczebel 4) — odczyt 2026-10-27"
+    "Stronger by Science „How to Squat”, sekcja Foot Angle (szczebel 4) — odczyt 2026-10-27, ponownie 2026-10-28",
+    "Squat University „Toes Forward or Angled Out When You Squat?” (A. Horschig; szczebel 4) — odczyt 2026-10-28"
    ],
    "dokument": "docs/research/przeglad-tresci-2026-10-27.md",
    "fraza": "**T-054**",
-   "uwaga": "[OTWARTE — przedział kąta wymaga 2 zgodnych źródeł szczebla 4 (zasada właściciela 25.10.2026); drugie z zapisu badacza 25.10 (NSCA Basics 2012, s. 49) nieotwarte 27.10.2026 — PDF HTTP 403. Krok: badacz z dostępem do PDF albo inne źródło szczebla 4 z liczbą. Tekst w aplikacji bez zmiany do rozstrzygnięcia.]",
-   "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — Stronger by Science otwarte, cytat 15–20° sprawdzony dosłownie; NSCA Basics 2012 nieotwarte (HTTP 403) — twierdzenie otwarte; docs/research/przeglad-tresci-2026-10-27.md"
+   "uwaga": "Potwierdzone 28.10.2026: 2 zgodne źródła szczebla 4 (SBS: „toes pointed out 15-20 degrees” przy zwykłym rozstawie; Squat University: „anywhere from 10-30 degrees”), żadne przeczytane nie przeczy. Uproszczenie: tekst podaje część wspólną 15–20°, różnica (10–30°) w data/zrodla/wskazowki-ogolne.json. NSCA Basics 2012 nieotwarte (adres PDF → strona błędu), nie liczone.",
+   "przeglad": "28.10.2026: 06-tresci (fix M2 pętla 2, M1-audytor-generalny-021) — SBS i Squat University otwarte, cytaty sprawdzone dosłownie na surowym tekście (curl); tekst w aplikacji bez zmian; data/zrodla/wskazowki-ogolne.json (katy.sq.toesAngle)"
   },
   {
    "id": "T-055",

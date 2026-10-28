@@ -1,0 +1,94 @@
+{
+ "jezyk": "fi",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 471,
+ "uwagi": [
+  {
+   "klucz": "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.",
+   "rodzaj": "nowe",
+   "pl": "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.",
+   "tlumaczenie": "Automaattinen varmuuskopio jokaisen treenin jälkeen: Tiedostot → Omassa iPhonessa → {app} → Backup.",
+   "poprawka": "Automaattinen varmuuskopio jokaisen treenin jälkeen: Tiedostot → Omalla iPhonella → {app} → Backup.",
+   "powod": "Niespójna terminologia: w zdaniach 50 i 86 jest „Omalla iPhonella”, czyli oficjalna nazwa lokalizacji w fińskiej aplikacji Pliki.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "rodzaj": "nowe",
+   "pl": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "tlumaczenie": "Kardio suunnitelman ulkopuolella: kardiokerta on suunnitelmassa, kun treenipäiviä on vähintään {k} viikossa; muuten kaikki päivät ovat voimapäiviä. Terveydelle kannattaa liikkua kohtuullisesti vähintään {a}–{b} min viikossa (tai rasittavasti {c}–{d} min). Myös kohtuullinen liike päivän mittaan lasketaan, esim. reipas kävely, lyhyinäkin pätkinä.",
+   "poprawka": "Kardio suunnitelman ulkopuolella: kardiokerta on suunnitelmassa, kun treenipäiviä on vähintään {k} viikossa; muuten kaikki päivät ovat voimapäiviä. Terveydelle kannattaa liikkua kohtuullisesti vähintään {a}–{b} min viikossa (tai rasittavasti {c}–{d} min). Myös kohtuullinen liike päivän mittaan lasketaan mukaan, esim. reipas kävely, lyhyinäkin pätkinä.",
+   "powod": "Samo „lasketaan” jest dwuznaczne (także „jest obniżany”); „lasketaan mukaan” jednoznacznie znaczy „liczy się”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "rodzaj": "nowe",
+   "pl": "Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "tlumaczenie": "Kardiota suunnitelmassa: {n} min viikossa. Terveydelle kannattaa liikkua kohtuullisesti vähintään {a}–{b} min viikossa (tai rasittavasti {c}–{d} min). Myös kohtuullinen liike päivän mittaan lasketaan, esim. reipas kävely, lyhyinäkin pätkinä.",
+   "poprawka": "Kardiota suunnitelmassa: {n} min viikossa. Terveydelle kannattaa liikkua kohtuullisesti vähintään {a}–{b} min viikossa (tai rasittavasti {c}–{d} min). Myös kohtuullinen liike päivän mittaan lasketaan mukaan, esim. reipas kävely, lyhyinäkin pätkinä.",
+   "powod": "Samo „lasketaan” jest dwuznaczne; „lasketaan mukaan” jednoznacznie znaczy „liczy się”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "rodzaj": "nowe",
+   "pl": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "tlumaczenie": "Kardio: kun päiviä on {k}–{m}, voit muuttaa päivät yli {j} kohtuullisiksi kardiokerroiksi (”Kardiopäivät suunnitelmassa”, oletuksena pois päältä). Lisää lihaskuntotreeniä ei välttämättä tuo lisää terveyshyötyjä, ja kestävyysliikunta kannattaa jakaa useammalle päivälle. Kardiokerran kesto = treenin kesto.",
+   "poprawka": "Kardio: kun päiviä on {k}–{m}, voit muuttaa {j} päivän ylittävät päivät kohtuullisiksi kardiokerroiksi (”Kardiopäivät suunnitelmassa”, oletuksena pois päältä). Lisää lihaskuntotreeniä ei välttämättä tuo lisää terveyshyötyjä, ja kestävyysliikunta kannattaa jakaa useammalle päivälle. Kardiokerran kesto = treenin kesto.",
+   "powod": "„päivät yli {j}” brzmi nienaturalnie i jest niejasne po fińsku.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.",
+   "rodzaj": "nowe",
+   "pl": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.",
+   "tlumaczenie": "Sarjat: {s} liikettä kohden, terveydeksi yleensä {s}–{b}. Tee vähintään {m}. Yksi sarja toimii jo, {s}–{b} voivat toimia paremmin. Aloittelijoille ja ikääntyneille yksi sarja voi riittää. {s} on alaraja.",
+   "poprawka": "Sarjat: {s} liikettä kohden, terveydeksi yleensä {s}–{b}. Kannattaa tehdä vähintään {m}. Yksi sarja toimii jo, {s}–{b} voivat toimia paremmin. Aloittelijoille ja ikääntyneille yksi sarja voi riittää. {s} on alaraja.",
+   "powod": "„Warto zrobić” przetłumaczono jako polecenie „Tee”, co wzmacnia zalecenie; „Kannattaa tehdä” oddaje źródło.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.",
+   "rodzaj": "nowe",
+   "pl": "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.",
+   "tlumaczenie": "Sarjat: {s} liikettä kohden. Tee vähintään {m}. Useampi sarja tuo yleensä vähän lisää, mutta hyöty pienenee.",
+   "poprawka": "Sarjat: {s} liikettä kohden. Kannattaa tehdä vähintään {m}. Useampi sarja tuo yleensä vähän lisää, mutta hyöty pienenee.",
+   "powod": "„Warto zrobić” przetłumaczono jako polecenie „Tee”, co wzmacnia zalecenie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+   "rodzaj": "nowe",
+   "pl": "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+   "tlumaczenie": "Treeni {d} {s} oli ilman toimintaa {h} tuntia, joten se tallentui itsestään. Päättyi: {e} (viimeinen sarja). Löydät sen Suunnitelma-välilehdeltä.",
+   "poprawka": "Treenissä {d} {s} ei ollut toimintaa {h} tuntiin, joten se tallentui itsestään. Päättyi: {e} (viimeinen sarja). Löydät sen Suunnitelma-välilehdeltä.",
+   "powod": "„Treeni … oli ilman toimintaa {h} tuntia” brzmi nienaturalnie po fińsku.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "preacher.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Oprzyj tył ramienia o podpórkę modlitewnika, pachą blisko jej krawędzi.",
+   "tlumaczenie": "Lepuuta olkavarren takaosa saarnaajapenkin tyynyllä, kainalo lähellä reunaa.",
+   "poprawka": "Lepuuta olkavarren takaosa Scott-penkin tyynyllä, kainalo lähellä reunaa.",
+   "powod": "„saarnaajapenkki” to dosłowna kalka z angielskiego; w fińskiej terminologii siłowni używa się nazwy „Scott-penkki”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali.",
+   "rodzaj": "nowe",
+   "pl": "RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali.",
+   "tlumaczenie": "RIR tarkoittaa toistoja, jotka sinulla jäi vielä varastoon: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Tallennetut arvot muunnetaan, kun vaihdat asteikkoa.",
+   "poprawka": "RIR tarkoittaa toistoja, jotka sinulla jäivät vielä varastoon: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Tallennetut arvot muunnetaan, kun vaihdat asteikkoa.",
+   "powod": "Błąd zgody liczby: podmiot „jotka” (toistoja) wymaga formy „jäivät”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

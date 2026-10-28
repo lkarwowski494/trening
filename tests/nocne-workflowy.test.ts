@@ -34,6 +34,12 @@ describe('nightly.yml — mutacje po modułach (B)', () => {
   const conf = JSON.parse(read('stryker.config.json')) as { mutate: string[]; thresholds: { break: number } };
   const wpisy = (/modul:\s*\[([^\]]+)\]/.exec(nightly)?.[1] ?? '').split(',').map(x => x.trim().replace(/['"]/g, ''));
   const moduly = [...new Set(wpisy.map(w => `lib/${w.split(':')[0]}.ts`))].sort();
+  /* M1-audytor-generalny-034 (pętla 2, 28.10.2026; 07-jakosc-010): moduły ryzyk wysokich (dostęp, uprawnienia zakupu, strażnik, import CSV, migracja) mierzone
+   * w nocy; próg break z decyzją w docs/18. */
+  test('M1-034: mutacje obejmują dostęp, uprawnienia, strażnik, import CSV i migrację; próg break ma wpis decyzji', () => {
+    for (const m of ['lib/access.ts', 'lib/entitlement.ts', 'lib/guard.ts', 'lib/csvimport.ts', 'lib/state/migrate.ts']) expect(conf.mutate).toContain(m);
+    expect(read('docs/18-przekazanie.md')).toMatch(new RegExp(`próg[^\\n]*break[^\\n]*${conf.thresholds.break}%`));
+  });
   test('macierz modułów = `mutate` ze stryker.config.json (dodanie modułu do konfiguracji bez zadania zostawia go niemierzonym)', () => { expect(moduly).toEqual([...conf.mutate].sort()); });
   test('moduł podzielony na zakresy wierszy (`plan:od-do`): zakresy przylegają od wiersza 1 i sięgają końca pliku (nic nie zostaje niemierzone)', () => {
     for (const m of new Set(wpisy.filter(w => w.includes(':')).map(w => w.split(':')[0]))) {

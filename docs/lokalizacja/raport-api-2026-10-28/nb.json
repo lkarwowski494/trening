@@ -1,0 +1,94 @@
+{
+ "jezyk": "nb",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 471,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "tlumaczenie": "Øvelse med manualer over hodet eller ansiktet: det anbefales at noen sikrer deg.",
+   "poprawka": "Øvelse med manualer over hodet eller ansiktet: en spotter anbefales.",
+   "powod": "Niespójna terminologia: w zdaniach 3 i 4 osoba asekurująca to „spotter”, tu użyto opisowego „noen sikrer deg”. Znaczenie zachowane.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).",
+   "rodzaj": "nowe",
+   "pl": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).",
+   "tlumaczenie": "Kondisjon: fra {k} dager per uke blir én økt lagt på en egen dag. Med færre dager er alle styrkedager, så kondisjonen ikke tar dager fra styrketreningen (hver store kroppsdel minst {n} dager).",
+   "poprawka": "Kondisjon: fra {k} dager per uke blir én økt lagt på en egen dag. Med færre dager er alle styrkedager, så kondisjonen ikke tar dager fra styrketreningen (hver stor kroppsdel minst {n} dager).",
+   "powod": "Błąd gramatyczny: po „hver” stoi forma nieokreślona („hver stor”), nie „hver store”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.",
+   "rodzaj": "nowe",
+   "pl": "Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.",
+   "tlumaczenie": "Hver store kroppsdel minst {n} dager i uken. Det er anbefalt for helsen. Hyppighet påvirker styrken, men flere dager gir ikke nødvendigvis tilsvarende mer. Med samme antall sett er forskjellene små. En dag der kroppsdelen bare hjelper til, teller som {h}. Inndelingen av økter (helkropp, over-/underkropp) kan du velge fritt. Med samme antall sett gir den lignende resultater.",
+   "poprawka": "Hver stor kroppsdel minst {n} dager i uken. Det er anbefalt for helsen. Hyppighet påvirker styrken, men flere dager gir ikke nødvendigvis tilsvarende mer. Med samme antall sett er forskjellene små. En dag der kroppsdelen bare hjelper til, teller som {h}. Inndelingen av økter (helkropp, over-/underkropp) kan du velge fritt. Med samme antall sett gir den lignende resultater.",
+   "powod": "Błąd gramatyczny: „hver store” zamiast „hver stor”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Pierwszy trening za Tobą!",
+   "rodzaj": "nowe",
+   "pl": "Pierwszy trening za Tobą!",
+   "tlumaczenie": "Første treningsøkt er unnagjort!",
+   "poprawka": "Første treningsøkt er gjennomført!",
+   "powod": "„Unnagjort” sugeruje odhaczenie czegoś nieprzyjemnego. To nie pasuje do gratulacyjnego tonu źródła.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów.",
+   "tlumaczenie": "Progresjon: når du når toppen av rep.-området, øker du vekten. Gradvis økning av vekten er grunnlaget for videre fremgang.",
+   "poprawka": "Progresjon: når du når toppen av repetisjonsområdet, øker du vekten. Gradvis økning av vekten er grunnlaget for videre fremgang.",
+   "powod": "Niespójna terminologia: w zdaniu 34 jest „repetisjonsområdet”, tu skrót „rep.-området”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "rodzaj": "nowe",
+   "pl": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "tlumaczenie": "Rep.-områder (muskelmasse {a}–{b}, hjemme og uten ekstra vekt {c}–{d}; ved styrke andre øvelser {e}–{f}): musklene vokser med et bredt spenn av vekter når settene er nær utmattelse.",
+   "poprawka": "Repetisjonsområder (muskelmasse {a}–{b}, hjemme og uten ekstra vekt {c}–{d}; ved styrke andre øvelser {e}–{f}): musklene vokser med et bredt spenn av vekter når settene er nær utmattelse.",
+   "powod": "Niespójna terminologia: skrót „Rep.-områder” zamiast pełnego terminu z innych zdań.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "rodzaj": "nowe",
+   "pl": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "tlumaczenie": "Markerte muskelgrupper har mer volum enn i sammenligningsperioden; jo kraftigere farge, desto større økning. Grå — ingen økning.",
+   "poprawka": "Markerte kroppsdeler har mer volum enn i sammenligningsperioden; jo kraftigere farge, desto større økning. Grå — ingen økning.",
+   "powod": "Niespójna terminologia: „partia” to w pozostałych zdaniach „kroppsdel”, tu „muskelgrupper”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "burpee.down",
+   "rodzaj": "wskazowka",
+   "pl": "Z przysiadu oprzyj dłonie o podłogę i wyskocz nogami w tył do podporu jak do pompki.",
+   "tlumaczenie": "Sett hendene i gulvet fra huksittende, og hopp føttene bakover til push-up-posisjon.",
+   "poprawka": "Sett hendene i gulvet fra huksittende, og hopp føttene bakover til armhevingsposisjon.",
+   "powod": "Niespójna terminologia: pompki to w aplikacji „armhevinger”, tu anglicyzm „push-up”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "nordic.catch",
+   "rodzaj": "wskazowka",
+   "pl": "Gdy nie dasz rady dalej hamować, złap się dłońmi jak przy pompce.",
+   "tlumaczenie": "Når du ikke klarer å bremse mer, ta imot med hendene som i en push-up.",
+   "poprawka": "Når du ikke klarer å bremse mer, ta imot med hendene som i en armheving.",
+   "powod": "Niespójna terminologia: pompka to w aplikacji „armheving”, tu „push-up”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}
