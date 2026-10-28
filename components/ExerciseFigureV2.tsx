@@ -8,7 +8,7 @@ import { cueText } from '@/lib/cues';
 import { catalogKey, type Exercise } from '@/lib/seed';
 import { useReduceMotion } from '@/components/ExerciseFigure';
 import {
-  figurePalette, figureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, phasesFor, phaseIndexAt, trailFor, guideShapes, measuredAngle, type FigureSpec,
+  figurePalette, shownFigureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, phasesFor, phaseIndexAt, trailFor, guideShapes, measuredAngle, type FigureSpec,
   type View as FView, type ErrorId, type GuideId,
 } from '@/lib/figures/v2';
 import { sortShapes } from '@/lib/figures/v2/draw';
@@ -44,7 +44,7 @@ function ViewSvg({ spec, u, view, box, th, height, error, guides, testID }: { sp
 export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 'lib' | 'libKey'> & { name?: string }; name?: string }) {
   const th = useTheme(); const reduce = useReduceMotion();
   const key = catalogKey(exercise);
-  const spec = useMemo(() => key ? figureSpec(key) : null, [key]);
+  const spec = useMemo(() => key ? shownFigureSpec(key) : null, [key]);
   const errors = useMemo(() => spec ? errorsOf(spec) : [], [spec]);
   const guides = useMemo(() => key ? guidesOf(key) : [], [key]);
   const legend = useMemo(() => key ? legendOf(key) : null, [key]);
