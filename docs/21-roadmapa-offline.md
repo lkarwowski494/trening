@@ -150,6 +150,9 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 ### Backlog 1.0.1 — figury: czwarta pozycja w silniku v1 (decyzja właściciela 28.10.2026)
 - Rysunki ukryte w 1.0 (wskazówki tekstowe zostają), naprawa przez czwartą pozycję w silniku v1 (typ `FrameName`, `FRAME_ORDER` w `scripts/figures/gen.mjs`, podpisy klatek, układ statycznych klatek w `ExerciseFigure.tsx`, testy i selektory Maestro `exercise-figure-frame-*`): **Push Press**, **Reverse Lunge** (zamach tylnej stopy łukiem w powietrzu; reguła podparcia w `tests/figury-podparcie.test.ts` pilnuje, że wraca dopiero po poprawce), **krok drugą nogą w Walking Lunges** (dziś pętla wraca do pozycji wyjściowej). Każda po niezależnej recenzji (bramka 4).
 
+### Backlog 1.0.1 — figury v1: uwagi NISKIE z recenzji niezależnej po poprawce (28.10.2026)
+- **Step Up:** ręce z hantlami biegną wzdłuż pochylonego tułowia (w „w trakcie” hantla 19 j. za barkiem) — zgięcie barku równe pochyleniu tułowia; palce tylnej stopy mijają krawędź skrzyni o 0,9 j. przy k≈0,24; reguła środka ciężkości w teście ma uwzględniać ciężar w dłoniach. **Lunges (hantle):** tylna stopa pionowo na palcach w „w trakcie”, przednia stopa przesuwa się o 2,1 j. **Incline Push Up:** dłoń przesuwa się po blacie o 3,2 j., dłonie ok. 7 j. od krawędzi (karta: „o krawędź”). Raporty: katalog audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/.
+
 ### Backlog 1.0.1 — wygląd (plan napraw M2, 28.10.2026)
 - **Migracja literałów `fontSize`/`borderRadius` na tokeny** (M1-audytor-generalny-030; 08-programista-006, 04-studio-projektowe-008): `components/Dashboard.tsx`, `components/GuardSection.tsx`, `ProgressBars`, `PeriodSummary`, `RecordsCard`, `app/plan.tsx` i stary krój `F.heavy` — w 1.0.1 z porównaniem zrzutów (`docs/design/wzorce-zrzuty/`), nie przed 1.0 (zamrożenie zakresu, ryzyko regresji układu); zapadka `tests/token-baseline.json` / `tests/m3-token-guard.test.ts` pilnuje, żeby liczba nie rosła.
 
