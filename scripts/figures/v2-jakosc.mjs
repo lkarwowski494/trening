@@ -49,6 +49,11 @@ export const PROGI = {
   dlonWysokoscBarkowCm: 15, /* delt_raise (lat.height), układ ŚWIATA: w u = 1 |y dłoni − y barku| ≤ tyle, a przez cały ruch dłoń nie wyżej niż bark + tyle (KONWENCJA rysunku; badacz 27.10.2026: ręce „mniej więcej równolegle do podłogi”, bez liczby w źródłach) */
   zwisPrzedramieDeg: 15, /* leżenie przodem ze sztangą (zwis na prostych rękach): u = 0 przedramię pionowo w dół ± tyle (KONWENCJA) */
   tulowPrzodemFrontY: -0.3, /* leżenie przodem na ławce: składowa pionowa wektora „przód” klatki piersiowej ≤ tyle (klatka zwrócona ku ławce/podłodze; KONWENCJA) */
+  ciezarKg: 16, masaCialaKg: 75, /* środek ciężkości z ciężarem w dłoni (hantel, kettlebell): masa ciężaru na jedną sztukę sprzętu i masa ciała — KONWENCJA RYSUNKU (typowy kettlebell 16 kg, ciało 75 kg; ułamek 0,21), nie twierdzenie merytoryczne; udziały mas segmentów: data/zrodla/figury-masy-segmentow.json */
+  podparcieCiezarMarginesCm: 0, /* stanie z ciężarem w dłoni: rzut środka ciężkości z ciężarem leży w wielokącie podparcia stóp (bez dodatkowego marginesu; podparcieMarginesCm (2 cm do wnętrza) dotyczy podporu na pojedynczych punktach rąk) */
+  stojacaPelwisMinCm: 60, /* poza „stojąca”: miednica w każdej klatce nie niżej niż tyle (wyklucza leżenie, mostek, głęboki przysiad na podłodze) */
+  ciezarPoziomoMaxCm: 15, /* ciężar „stoi” (Bent Press): chwyt przesuwa się w poziomie (x, z) od pozycji w u = 0 najwyżej o tyle — KONWENCJA (ciężar zostaje nad stopami, ciało schodzi pod niego) */
+  przedramiePionDeg: 15, /* ciężar „stoi”: przedramię (łokieć → nadgarstek) odchylone od pionu najwyżej o tyle w całym ruchu — KONWENCJA (przedramię pod ciężarem) */
   stykPodparciaCm: 4.5, /* punkt ciała uznany za podparcie, gdy jego (oś) wysokość ≤ tyle: dłoń, stopa, kolano (promień kończyny) */
 };
 /** Odwiedzenie ramienia widoczne Z PRZODU (stopnie): arcsin(wysunięcie łokcia w bok poza oś barku / PRAWDZIWA długość ramienia 3D, nie długość w rzucie), sprawdzane w KAŻDEJ klatce. To druga linia obrony; pierwsza to geometria (lokiec_nad_nadgarstkiem, rozstaw_dloni).
@@ -80,7 +85,18 @@ export const PRZYCIAGANIE = ['Inverted Row'];
 /** Ćwiczenia „high pull”: łokcie na końcu ruchu wysoko i na boki (reguła high_pull_lokcie). */
 export const HIGH_PULL = ['Kettlebell Sumo High Pull'];
 /** Podpór jednorącz/jednonóż (stabilność): środek ciężkości nad podparciem. */
-export const PODPARCIE_ZMIENNE = ['Single-Arm Push-Up']; /* Plank Shoulder Taps i Mountain Climbers: faza jednej ręki/lotu trwa ułamek ruchu (przybliżenie przejścia) — reguła je mierzy (jakosc-raport), ale ich nie wymusza; powód: ruch dynamiczny, recenzja n2 = OK */
+export const PODPARCIE_ZMIENNE = ['Single-Arm Push-Up'];
+/** Ćwiczenia, w których ciężar w dłoni ma stać nad stopami (ciało schodzi pod niego): chwyt przesuwa się w poziomie najwyżej ciezarPoziomoMaxCm, a przedramię stoi pionowo (przedramiePionDeg). Powód: ponowna recenzja p4b, 27.10.2026 (Bent Press: hantel uciekał 48 cm w przód). */
+export const CIEZAR_STOI = ['Bent Press'];
+/** Reguła „środek ciężkości z ciężarem nad podparciem” obejmuje pozy STOJĄCE z ciężarem w dłoni, quasi-statyczne. Wyłączone: rodziny balistyczne/z lotem (ciężar i ciało w ruchu bezwładnym — równowaga nie jest statyczna: huśtawka, zarzut, skok), sprzęt, na którym ciało siedzi albo leży (ławka, modlitewnik, maszyna, piłka, bosu, rzymska ławka). */
+export const CIEZAR_RODZINY_DYNAMICZNE = ['kb_ballistic', 'plyo'];
+/** Pozy stojące z ciężarem, które reguła słusznie łapie (wg konwencji mas), ale należą do rodzin poza zakresem poprawki p4b r3 i mają zgłoszoną osobną poprawkę: ćwiczenie → powód. Wyjątek wygasa, gdy poza przestanie łamać regułę (test). */
+export const CIEZAR_PODPARCIE_WYJATKI = {
+  'One-Arm Lateral Raise (hantel)': 'rodzina delt_raise: środek ciężkości z hantlem 0,3 cm za krawędzią podparcia w fazie szczytu (u 0,8) — granica; poprawka osobno, odcisk pozy bez zmian w p4b r3',
+  'Y Raise (hantle)': 'rodzina delt_raise: środek ciężkości z hantlami do 1,0 cm za krawędzią podparcia (u 0,65) — granica; poprawka osobno, odcisk pozy bez zmian w p4b r3',
+  'Bent Over Row (hantle)': 'rodzina row: środek ciężkości z hantlami 3,0 cm za piętami (u 0) — pochylony tułów bez cofnięcia miednicy; poprawka osobno, odcisk pozy bez zmian w p4b r3',
+};
+export const CIEZAR_SPRZET_PODPIERA = ['lawka', 'modlitewnik', 'dzwignia', 'pilka_gimnastyczna', 'bosu', 'rzymska']; /* Plank Shoulder Taps i Mountain Climbers: faza jednej ręki/lotu trwa ułamek ruchu (przybliżenie przejścia) — reguła je mierzy (jakosc-raport), ale ich nie wymusza; powód: ruch dynamiczny, recenzja n2 = OK */
 /** Udziały mas segmentów i położenia ich środków mas: jeden komplet (de Leva 1996, zbiór męski; data/zrodla/figury-masy-segmentow.json — źródło i status w pliku). */
 export const MASY = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/figury-masy-segmentow.json'), 'utf8')).segmenty;
 /** Dozwolone obszary zmian rzędu błędu według wskazówki: rząd błędu zmienia wyłącznie to, co opisuje jego wskazówka; kąty stawów spoza listy nie mogą się różnić od pozy poprawnej o więcej niż PROGI.rzadBleduTolDeg
@@ -115,7 +131,7 @@ export const KOLANA_UGIETE = { 'Tuck Crunch': 80, 'Reverse Crunch': 80 };
 export const DLON_NA_WYSOKOSCI_BARKOW_WYJATKI = { 'Car Drivers': 'ruch kołowy kierownicy: podniesiona dłoń leży o promień koła (21 cm, rysunek 16,2 cm) nad osią obrotu; wysokość nie jest „ręce poziomo”' };
 /** Leżenie PRZODEM na ławce skośnej ze zwisem rąk (opis źródłowy: face down, ręce proste, unoszenie przodem). Front Incline Dumbbell Raise: [OTWARTE] — jedno źródło mówi o siadzie tyłem do oparcia, nie dodawać, dopóki nie ma drugiego. */
 export const LEZENIE_PRZODEM = ['Straight Raises on Incline Bench'];
-export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie', 'dzwon_gora_tylko_przy_pionowym_przedramieniu', 'high_pull_lokcie'];
+export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie', 'dzwon_gora_tylko_przy_pionowym_przedramieniu', 'high_pull_lokcie', 'ciezar_stoi_poziomo', 'przedramie_pod_ciezarem'];
 /** Reguły poziomu manifestu podglądu (nie pozy): zgodność manifestu z obrazem i układ podglądu. */
 export const REGULY_MANIFESTU = ['manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
 
@@ -364,12 +380,46 @@ export function punktyPodparcia(s) {
   const o = []; for (const k of ['R', 'L']) { const g = s.arms[k].grip; if (g[1] <= PROGI.stykPodparciaCm) o.push([g[0], g[2]]); for (const q of [s.legs[k].toe, s.legs[k].heel]) if (q[1] <= PROGI.stykPodparciaCm / 2) o.push([q[0], q[2]]); }
   return o;
 }
-/** 17. Środek ciężkości nad podparciem: rzut środka ciężkości na podłogę leży wewnątrz wielokąta podparcia (≥ podparcieMarginesCm od krawędzi) w każdej klatce — podpór jednorącz/jednonóż. */
+/** Ciężary trzymane w dłoni (hantel, kettlebell): [{ rece: ['R'|'L'…] }] — wpis sprzętu z `trzyma` R/L to jedna ręka, `obie` albo brak pola to obie ręce (jeden ciężar w środku chwytów). */
+export function ciezaryWDloni(poza) {
+  return (poza.sprzet ?? []).filter((g) => g.rodzaj === 'hantel' || g.rodzaj === 'kettlebell').map((g) => ({ rece: g.trzyma === 'R' || g.trzyma === 'L' ? [g.trzyma] : ['R', 'L'] }));
+}
+/** Środek ciężkości ciała z ciężarem w dłoni: masy ciała (MASY, suma 1) + każdy ciężar (ciezarKg / masaCialaKg ułamka masy ciała) w środku chwytów jego rąk. Bez ciężarów = srodekCiezkosci(s). */
+/** Poza stojąca z ciężarem w dłoni, do której stosuje się reguła równowagi z ciężarem: hantel/kettlebell w dłoni, rodzina nie jest balistyczna, sprzęt nie podpiera ciała, w każdej klatce obie stopy na podłodze, żadna dłoń nie dotyka podłogi, miednica ≥ stojacaPelwisMinCm. */
+export function stojacaZCiezarem(v2, poza, rodzina) {
+  if (!ciezaryWDloni(poza).length || CIEZAR_RODZINY_DYNAMICZNE.includes(rodzina) || (poza.sprzet ?? []).some((g) => CIEZAR_SPRZET_PODPIERA.includes(g.rodzaj))) return false;
+  for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk;
+    if (s.pelvis[1] < PROGI.stojacaPelwisMinCm || ['R', 'L'].some((k) => s.arms[k].grip[1] <= PROGI.stykPodparciaCm || [s.legs[k].toe, s.legs[k].heel].some((q) => q[1] > PROGI.stykPodparciaCm / 2))) return false; }
+  return true;
+}
+export function srodekCiezkosciZCiezarem(s, ciezary = []) {
+  const c = srodekCiezkosci(s); if (!ciezary.length) return c; const w = PROGI.ciezarKg / PROGI.masaCialaKg; const M = 1 + w * ciezary.length;
+  return [0, 1, 2].map((i) => (c[i] + w * ciezary.reduce((t, z) => t + z.rece.reduce((q, k) => q + s.arms[k].grip[i], 0) / z.rece.length, 0)) / M);
+}
+/** 17. Środek ciężkości nad podparciem: rzut środka ciężkości na podłogę leży wewnątrz wielokąta podparcia (≥ podparcieMarginesCm od krawędzi) w każdej klatce — podpór jednorącz/jednonóż oraz stanie z ciężarem w dłoni
+ * (hantel, kettlebell; masa ciężaru = konwencja PROGI.ciezarKg przy ciele PROGI.masaCialaKg). */
 export function srodekCiezkosciNadPodparciem(v2, poza) {
-  for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; const c = srodekCiezkosci(s); const h = otoczka(punktyPodparcia(s));
+  const ciezary = ciezaryWDloni(poza);
+  for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; const c = srodekCiezkosciZCiezarem(s, ciezary); const h = otoczka(punktyPodparcia(s));
     if (h.length < 3) return [`podparcie w u = ${u} nie tworzy wielokąta (${h.length} p.) — środek ciężkości nie ma nad czym się znaleźć`];
     let min = Infinity; for (let i = 0; i < h.length; i++) { const a = h[i], b = h[(i + 1) % h.length]; const l = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1; min = Math.min(min, ((b[0] - a[0]) * (c[2] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])) / l); }
-    if (min < PROGI.podparcieMarginesCm) return [`rzut środka ciężkości (x = ${f1(c[0])}, z = ${f1(c[2])}) leży ${f1(min)} cm od krawędzi wielokąta podparcia (u = ${u}; ≥ ${PROGI.podparcieMarginesCm} cm wewnątrz) — tułów wypada poza podparcie`]; }
+    const margines = ciezary.length ? PROGI.podparcieCiezarMarginesCm : PROGI.podparcieMarginesCm;
+    if (min < margines) return [`rzut środka ciężkości${ciezary.length ? ' z ciężarem w dłoni' : ''} (x = ${f1(c[0])}, z = ${f1(c[2])}) leży ${f1(min)} cm od krawędzi wielokąta podparcia (u = ${u}; ≥ ${margines} cm wewnątrz) — ${ciezary.length ? 'postać traci równowagę pod ciężarem' : 'tułów wypada poza podparcie'}`]; }
+  return [];
+}
+/** Ręka z ciężarem (pierwszy wpis ciężaru w dłoni; jedna ręka): 'R' | 'L'. */
+const rekaCiezaru = (poza) => ciezaryWDloni(poza).find((z) => z.rece.length === 1)?.rece[0] ?? 'R';
+/** 20. Ciężar stoi w poziomie (Bent Press): chwyt ręki z ciężarem przesuwa się w poziomie (x, z) od położenia w pierwszej klatce najwyżej ciezarPoziomoMaxCm w całym ruchu — ciało schodzi pod ciężar, ciężar nie wędruje w przód ani w bok. */
+export function ciezarStoiPoziomo(v2, poza) {
+  const k = rekaCiezaru(poza); const g0 = v2.keyframeFrame(poza, poza.klatki[0].u).sk.arms[k].grip; let max = 0, uMax = 0;
+  for (const u of siatka(poza)) { const g = v2.keyframeFrame(poza, u).sk.arms[k].grip; const d = Math.hypot(g[0] - g0[0], g[2] - g0[2]); if (d > max) { max = d; uMax = u; } }
+  return max > PROGI.ciezarPoziomoMaxCm ? [`chwyt ${k} przesuwa się w poziomie o ${f1(max)} cm od położenia startowego (u = ${uMax}), a ma ≤ ${PROGI.ciezarPoziomoMaxCm} cm (ciężar stoi nad stopami, ciało schodzi pod niego)`] : [];
+}
+/** 21. Przedramię pod ciężarem: odchylenie przedramienia (łokieć → nadgarstek) od pionu ≤ przedramiePionDeg w każdej klatce (ręka z ciężarem; Bent Press). */
+export function przedramiePodCiezarem(v2, poza) {
+  const k = rekaCiezaru(poza);
+  for (const u of siatka(poza)) { const a = v2.keyframeFrame(poza, u).sk.arms[k]; const d = [a.wrist[0] - a.elbow[0], a.wrist[1] - a.elbow[1], a.wrist[2] - a.elbow[2]]; const kat = (Math.acos(Math.max(-1, Math.min(1, d[1] / (Math.hypot(...d) || 1)))) * 180) / Math.PI;
+    if (kat > PROGI.przedramiePionDeg) return [`przedramię ${k} jest odchylone o ${f1(kat)}° od pionu (u = ${u}), a ma ≤ ${PROGI.przedramiePionDeg}° (przedramię stoi pod ciężarem, łokieć nie ucieka w bok)`]; }
   return [];
 }
 
@@ -475,7 +525,8 @@ export function sprawdzJakosc(poza, ctx) {
   dodaj('widocznosc_bledu_kat', widocznoscBleduKat(v2, poza));
   if (poza.sprzet.some((g) => g.rodzaj === 'kettlebell')) dodaj('dzwon_gora_tylko_przy_pionowym_przedramieniu', dzwonGoraTylkoPrzyPionowymPrzedramieniu(v2, poza));
   if (HIGH_PULL.includes(cwiczenie)) dodaj('high_pull_lokcie', highPullLokcie(v2, poza));
-  if (PODPARCIE_ZMIENNE.includes(cwiczenie)) dodaj('srodek_ciezkosci_podparcie', srodekCiezkosciNadPodparciem(v2, poza));
+  if (PODPARCIE_ZMIENNE.includes(cwiczenie) || CIEZAR_STOI.includes(cwiczenie) || (!(cwiczenie in CIEZAR_PODPARCIE_WYJATKI) && stojacaZCiezarem(v2, poza, rodzina))) dodaj('srodek_ciezkosci_podparcie', srodekCiezkosciNadPodparciem(v2, poza));
+  if (CIEZAR_STOI.includes(cwiczenie)) { dodaj('ciezar_stoi_poziomo', ciezarStoiPoziomo(v2, poza)); dodaj('przedramie_pod_ciezarem', przedramiePodCiezarem(v2, poza)); }
   return out;
 }
 export const wczytajTeksty = (root = ROOT) => { const p = path.join(root, 'lib/cues/text/pl.json'); return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : {}; };

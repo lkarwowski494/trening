@@ -1021,8 +1021,8 @@
    "raw": "e3a3ace5fb6f6422c645"
   },
   "core_hang/Toes to Bar": {
-   "svg": "392ba2049d1946c3db98",
-   "raw": "ef10692e8616399bde20"
+   "svg": "6d64dcd4802179592835",
+   "raw": "509c41a86b9623663a05"
   },
   "core_standing/Barbell Side Bend": {
    "svg": "137e3c93a6cb33c16644",
@@ -1077,16 +1077,16 @@
    "raw": "a15863dc17df95743a45"
   },
   "core_standing/Kettlebell Windmill": {
-   "svg": "69af9c545c72c3ee0625",
-   "raw": "eb17c0e17b2b07ff0103"
+   "svg": "48f8bf17479069d6bdaf",
+   "raw": "e4967eac0bce5c0d4d54"
   },
   "core_standing/Double Kettlebell Windmill": {
-   "svg": "16b2d2c09f9cb1fe5007",
-   "raw": "9a7652bd94e75b47115a"
+   "svg": "27df535ddb72c24e9d10",
+   "raw": "ec42c30d511170272967"
   },
   "core_standing/Bent Press": {
-   "svg": "5b536e9cef71033d303f",
-   "raw": "a41879ecc797ad27ed96"
+   "svg": "7949cfbfaf5a0f468f83",
+   "raw": "b39305fc02343b18214e"
   },
   "curl/Barbell Curl": {
    "svg": "5d203649bca91e74e032",
@@ -1965,24 +1965,24 @@
    "raw": "72cbcf09597639b59a53"
   },
   "plyo/Alternate Leg Push-Off": {
-   "svg": "721b0037069f97908863",
-   "raw": "3f9221506ef561edf0ea"
+   "svg": "b1dc81bf23fd5556c5ed",
+   "raw": "936b26225a8a2e1fbe60"
   },
   "plyo/Single Leg Push-Off": {
-   "svg": "9b350615f7f40fff2a1e",
-   "raw": "c78e793582802c6d96a7"
+   "svg": "f1b7d9029965d78daa11",
+   "raw": "9e2f001913ebf25dec20"
   },
   "plyo/Split Jump": {
-   "svg": "2b93752efa3b1f9cd110",
-   "raw": "a78802ace4b2b6ad8fa6"
+   "svg": "e4cfa9ecb828be01002a",
+   "raw": "62a24ad8d285b6b04e4d"
   },
   "plyo/Alternate Leg Diagonal Bound": {
-   "svg": "da2f58b549fdf90a851a",
-   "raw": "f8cb45775b7b0ef1a9a4"
+   "svg": "348a146cdc9e3592a890",
+   "raw": "97feca898a367321ce35"
   },
   "plyo/Depth Jump": {
-   "svg": "2657b0e308e052866741",
-   "raw": "f24a14552fb630bf2db3"
+   "svg": "e5285f936e89f58a77b1",
+   "raw": "9712b4cfa060ce395b11"
   },
   "plyo/Dumbbell Seated Box Jump": {
    "svg": "358829f36e336f54f695",
@@ -2001,8 +2001,8 @@
    "raw": "0fb49d0695490b3c2ed9"
   },
   "plyo/Lateral Bound": {
-   "svg": "2b58b41a3fdfaa2f82af",
-   "raw": "851ed0e5ad505a9a1cfd"
+   "svg": "0a709f1ebac0998b52f9",
+   "raw": "ee068b38966a7367b6ef"
   },
   "plyo/Single-Leg Lateral Hop": {
    "svg": "1b809710c6b97f613312",
@@ -2013,8 +2013,8 @@
    "raw": "eda0905b5809bdea0af1"
   },
   "plyo/Side to Side Box Shuffle": {
-   "svg": "1e24a55122f8e6af9e4c",
-   "raw": "854e5d9ff7a26b067d38"
+   "svg": "5cf2b52c2e60028a2d91",
+   "raw": "2d487230d0a1b736c081"
   },
   "pull_up/Gironda Sternum Chins": {
    "svg": "623c46ecb8f11308b199",
@@ -2293,16 +2293,16 @@
    "raw": "c72cc6a06799691d32b4"
   },
   "sled_throw/Sled Push": {
-   "svg": "675c40841b611939901f",
-   "raw": "ebe1f96f27cf3208dd09"
+   "svg": "a887635092215ecee5c1",
+   "raw": "e95acebd57a6a53666ac"
   },
   "sled_throw/Sled Drag (Harness)": {
-   "svg": "13cbce258e533fa634de",
-   "raw": "3a190a3dcfcf105dd2d1"
+   "svg": "44f195fe890a30d8ea64",
+   "raw": "cc5df92fe4e4c036442f"
   },
   "strongman/Yoke Walk": {
-   "svg": "7b9872194a139b920990",
-   "raw": "0df3ecea931fedc7de6f"
+   "svg": "4c083a43ef9bb7ba83a2",
+   "raw": "26dc4f11783033593067"
   },
   "thruster/Thruster (hantle)": {
    "svg": "b9a76b3fb96f103614b3",

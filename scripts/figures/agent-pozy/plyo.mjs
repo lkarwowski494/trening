@@ -3,7 +3,7 @@
 // Poza kończy się amortyzacją po lądowaniu (u = 1), więc reguły sensu „lot” i „miękkie lądowanie” da się sprawdzić (wariant A: lot i lądowanie). Ruch jest szybki z natury: ćwiczenia z deklaracją „dynamiczne” w danych sensu.
 // Widok boczny pokazuje ruch w płaszczyźnie strzałkowej; ćwiczenia z przemieszczeniem bocznym mają je w osi z (widać z przodu), a w widoku bocznym tylko wysokość i postawę — przybliżenie w PRZYBLIZENIA.
 import { kostkaNaPalcach } from './model.mjs';
-import { P, Q, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, kostkaZBiodra, biodroZKostki, wyjatkiOpisu } from './dyn.mjs';
+import { P, Q, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, kostkaZBiodra, biodroZKostki, katyNogi, wyjatkiOpisu } from './dyn.mjs';
 
 export const RODZINA = 'plyo';
 export const WYJATKI = {
@@ -11,9 +11,9 @@ export const WYJATKI = {
 };
 export const PRZYBLIZENIA = {
   'Side to Side Box Shuffle': 'jedno przejście z podłogi na niski stopień z boku (seria naprzemienna = powtórzenia)',
-  'Lateral Bound': 'jeden skok boczny jednonóż; lądowanie na tej samej nodze, wolna noga uniesiona',
+  'Lateral Bound': 'jeden skok boczny z nogi na nogę: odbicie z jednej nogi, lądowanie na drugiej po stronie kierunku skoku (miednica przesuwa się w bok), wolna noga uniesiona; seria naprzemienna = powtórzenia',
   'Side Hop-Sprint': 'sam skok boczny; sprint po lądowaniu poza zakresem rysunku',
-  'Alternate Leg Diagonal Bound': 'skok z zamianą nóg w płaszczyźnie strzałkowej (odbicie jedną nogą, lądowanie na drugiej); ukośny tor ciała niewidoczny — model nie przesuwa miednicy w bok',
+  'Alternate Leg Diagonal Bound': 'jeden skok ukośny z nogi na nogę: odbicie z jednej nogi, lądowanie na drugiej, miednica przesuwa się w przód i w bok (ukośny tor widać z przodu i z boku); seria naprzemienna = powtórzenia',
   'Alternate Leg Push-Off': 'przy lądowaniu na drugiej nodze pierwsza zostaje z tyłu (jeden skok zamiast serii naprzemiennej)',
   'Box Skip': 'wolna noga uniesiona przez cały ruch (skip jako jeden skok jednonóż na skrzynię)',
   'Single-Leg Stride Jump': 'jeden skok jednonóż na skrzynię; lądowanie na tej samej nodze',
@@ -61,40 +61,84 @@ function skok(o) {
 }
 
 
-/** Wypchnięcie z podwyższenia (Single / Alternate Leg Push-Off): stopa prowadząca na skrzyni, druga z tyłu na palcach na podłodze; siła z nogi na skrzyni, kolano wolnej nogi w górę, lądowanie na skrzyni
- * (alt: lądowanie na drugiej nodze, pierwsza zostaje z tyłu). */
+/** Wypchnięcie z podwyższenia (Single / Alternate Leg Push-Off): stopa prowadząca na skrzyni, druga z tyłu na palcach na podłodze; siła z nogi na skrzyni, kolano wolnej nogi w górę, lądowanie na skrzyni.
+ * Poprawka po recenzji 27.10.2026: w u = 0 i u = 1 każda stopa stoi (podłoga albo blat skrzyni); Single kończy tym samym układem co na starcie, Alternate z zamienionymi nogami
+ * (lądowanie na drugiej nodze, pierwsza wraca na podłogę z tyłu). Stopa tylna stoi w miejscu aż do oderwania. */
 function pushOff(cw, { alt }) {
-  const top = 30; const bx = 40; const sprz = SPR(BOX(bx - 8, bx + 45, top)); const yT = top + 7;
-  const hipOf = (A, al, k) => biodroZKostki(A, -90 - al + k, k); const Alead = [bx, yT];
+  const top = 30; const bx = 40; const sprz = SPR(BOX(bx - 8, bx + 45, top)); const yT = top + 7; const xl = bx + 2;
+  const hipOf = (A, al, k) => biodroZKostki(A, -90 - al + k, k); const Alead = [xl, yT]; const yRear = yP(-60) + 0.5;
   const st = (hip, aR, aL, extra = {}) => ({ pel: hip, AR: aR, AL: aL, podR: 0, podL: -60, pitch: 12, ra: { psi: -90, th: 40, z: 19 }, zo: 0, ...extra });
-  const h0 = hipOf(Alead, 20, 70), h1 = hipOf(Alead, 28, 95), h2 = hipOf(Alead, 10, 12);
-  const rear = (h, dx, dy = 0) => [h[0] - dx - 2, yP(-60) + 0.5 + dy];
-  const hAir = [h2[0] + 4, h2[1] + 30]; const hLand = hipOf([bx + 2, yT], 8, 24); const hAbs = hipOf([bx + 2, yT], 24, 80);
+  const h0 = hipOf(Alead, 28, 95), h1 = hipOf(Alead, 32, 100), h2 = hipOf(Alead, 10, 12);
+  const rear0 = [h0[0] - 26, yRear]; /* tylna stopa na palcach na podłodze, nie rusza się do oderwania */
+  const hAir = [h2[0] + 4, h2[1] + 30]; const hLand = hipOf([xl, yT], 8, 24); const hAbs = hipOf([xl, yT], 24, 80);
   const knee = (h) => kostkaZBiodra(h, 16, 100); const kd = knee(hAir);
+  const prowadzaca = (extra) => ({ pitch: 14, ...extra });
   const W = [
-    st(h0, Alead, rear(h0, 26), { pitch: 14 }),
-    st(h1, Alead, rear(h1, 22), { pitch: 26, ra: { psi: -105, th: 30, z: 19 } }),
-    st(h2, [bx + 2, yT + yP(-45) - 7 + 3], [h2[0] - 14, 62], { pitch: 6, podR: -45, ra: { psi: 50, th: 25, z: 19 } }),
+    alt ? st(h0, Alead, rear0, prowadzaca()) : st(h0, Alead, rear0, prowadzaca()),
+    st(h1, Alead, rear0, { pitch: 26, ra: { psi: -105, th: 30, z: 19 } }),
+    st(h2, [xl, yT + yP(-45) - 7 + 3], [h2[0] - 14, 62], { pitch: 6, podR: -45, ra: { psi: 50, th: 25, z: 19 } }),
     st(hAir, [bx + 4, yT + yP(-45) - 7 + 26], [kd[0], kd[1]], { pitch: 4, podR: -45, podL: -30, ra: { psi: 60, th: 25, z: 19 } }),
-    alt ? st(hLand, [bx - 30, yP(-45) + 24], [bx + 2, yT + yP(-12) - 7 + 0.5], { podR: -60, podL: -12, ra: { psi: -10, th: 25, z: 19 } }) : st(hLand, [bx + 2, yT + yP(-12) - 7 + 0.5], [hLand[0] - 20, hLand[1] - 40], { podR: -12, podL: -75, ra: { psi: -10, th: 25, z: 19 } }),
-    alt ? st(hAbs, [bx - 34, yP(-60) + 20], [bx + 2, yT], { podR: -60, podL: 0, pitch: 26, ra: { psi: -25, th: 30, z: 19 } }) : st(hAbs, Alead.map((x, i) => (i ? x : bx + 2)), [hAbs[0] - 22, hAbs[1] - 38], { podR: 0, podL: -75, pitch: 26, ra: { psi: -25, th: 30, z: 19 } }),
+    alt ? st(hLand, [bx - 30, yP(-45) + 24], [xl, yT + yP(-12) - 7 + 0.5], { podR: -60, podL: -12, ra: { psi: -10, th: 25, z: 19 } }) : st(hLand, [xl, yT + yP(-12) - 7 + 0.5], [hLand[0] - 20, hLand[1] - 40], { podR: -12, podL: -75, ra: { psi: -10, th: 25, z: 19 } }),
+    alt ? st(hAbs, [bx - 34, yP(-60) + 20], [xl, yT], { podR: -60, podL: 0, pitch: 26, ra: { psi: -25, th: 30, z: 19 } }) : st(hAbs, Alead, [hAbs[0] - 22, hAbs[1] - 38], { podR: 0, podL: -75, pitch: 26, ra: { psi: -25, th: 30, z: 19 } }),
+    /* powrót stopy tylnej na podłogę: układ jak w u = 0 (Single: głębsza amortyzacja, kontrakt wymaga ruchu ≥ 8 cm) albo z zamienionymi nogami (Alternate: lewa prowadzi na skrzyni, prawa z tyłu na palcach) */
+    alt ? st(h0, rear0, Alead, { podR: -60, podL: 0, pitch: 14 }) : st(h1, Alead, rear0, { pitch: 26, ra: { psi: -25, th: 30, z: 19 } }),
   ];
   const r = ruch(W, Q, { rodzina: RODZINA, cw, sprzet: sprz });
   if (process.env.DBG_PLYO) console.error(cw, 'szczyt', r.szczyt.toFixed(1), 'droga', r.suma.toFixed(0));
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: sprz, klatki: r.klatki, bledy: [] });
 }
 
-/** Skok w rozkroku (Split Jump) i naprzemienny skok diagonalny (Alternate Leg Diagonal Bound): wybicie z nóg prostych pod biodrami, lot z zamianą nóg, lądowanie w wykroku. */
-function rozkrok(cw, { diag }) {
-  const sprz = SPR(); const front = 30, back = -30; const yB = yP(-60) + 0.5; const yL = yP(-45) + 3;
+/** Split Jump: wybicie wprost z wykroku (poprawka po recenzji 27.10.2026: stopy stoją w miejscu do oderwania, nie zjeżdżają ku sobie), zamiana nóg w locie, lądowanie w odwrotnym wykroku. */
+function splitJump(cw) {
+  const sprz = SPR(); const front = 30, back = -30; const yB = yP(-60) + 0.5; const yF = yP(-45) + 1.0;
   const mk = (pel, aR, aL, extra = {}) => ({ pel, AR: aR, AL: aL, podR: 0, podL: 0, pitch: 4, ra: { psi: -80, th: 70, z: 19 }, zo: 0, ...extra });
   const W = [
-    mk([diag ? -20 : 0, 80], [diag ? 6 : front, 7], [diag ? -45 : back, yB], { podL: -80, pitch: 6 }),
-    mk([diag ? -14 : 0, 54], [diag ? 10 : front, 7], [diag ? -45 : back, yB], { podL: -80, pitch: 14, ra: { psi: -100, th: 55, z: 19 } }),
-    mk([diag ? -6 : 0, yL + 82.5], [diag ? -1 : 4, yL], [diag ? -11 : -4, yL], { podR: -45, podL: -45, pitch: 4, ra: { psi: 40, th: 55, z: 19 } }),
-    mk([diag ? 30 : 0, 135], [diag ? 62 : back + 8, 70], [diag ? -20 : front + 8, diag ? 90 : 78], { podR: -45, podL: -60, pitch: 6, ra: { psi: 55, th: 50, z: 19 } }),
-    mk([diag ? 62 : 0, 96], [diag ? 80 : back, yB + 4], [diag ? 74 : front, yP(-12) + 1.5], { podR: -62, podL: -12, pitch: 10, ra: { psi: -10, th: 50, z: 19 } }),
-    mk([diag ? 66 : 0, 70], [diag ? 62 : back, yB], [diag ? 80 : front, 7], { podR: -62, podL: 0, pitch: 16, ra: { psi: -25, th: 60, z: 19 } }),
+    mk([0, 80], [front, 7], [back, yB], { podL: -80, pitch: 6 }),
+    mk([0, 54], [front, 7], [back, yB], { podL: -80, pitch: 14, ra: { psi: -100, th: 55, z: 19 } }),
+    mk([3, 76], [front, yP(-22) + 0.6], [back, yB], { podR: -22, podL: -80, pitch: 8, ra: { psi: -20, th: 60, z: 19 } }),
+    mk([6, 95], [front, yF], [back, yB], { podR: -45, podL: -80, pitch: 4, ra: { psi: 40, th: 55, z: 19 } }),
+    mk([0, 135], [back + 8, 70], [front + 8, 78], { podR: -45, podL: -60, pitch: 6, ra: { psi: 55, th: 50, z: 19 } }),
+    mk([0, 96], [back, yB + 4], [front, yP(-12) + 1.5], { podR: -62, podL: -12, pitch: 10, ra: { psi: -10, th: 50, z: 19 } }),
+    mk([0, 70], [back, yB], [front, 7], { podR: -62, podL: 0, pitch: 16, ra: { psi: -25, th: 60, z: 19 } }),
+  ];
+  const r = ruch(W, Q, { rodzina: RODZINA, cw, sprzet: sprz });
+  if (process.env.DBG_PLYO) console.error(cw, 'szczyt', r.szczyt.toFixed(1), 'droga', r.suma.toFixed(0));
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: sprz, klatki: r.klatki, bledy: [] });
+}
+
+/** Stopa w powietrzu: podbicie z kierunku goleni (rozluźnione zgięcie podeszwowe `plant`), nie głębiej niż −85° (schemat). */
+const podPowietrze = (hip, A, plant) => { const k = katyNogi(hip, A); return Math.max(-85, k.t - k.k + 90 - plant); };
+/** Skok „z nogi na nogę” (Lateral Bound, Alternate Leg Diagonal Bound; poprawka po recenzji 27.10.2026): wybicie z lewej nogi, lot, lądowanie na PRAWEJ (przeciwnej do wybicia), przemieszczenie dz w bok (oś z, widać z przodu) i dx w przód.
+ * Stopa wybicia stoi w miejscu do oderwania (w świecie: x = 0, z = −8), stopa lądowania stoi po lądowaniu. Wolna noga: przy skoku w bok idzie bokiem, w ukośnym kolano do przodu. */
+function skokZNogiNaNoge(cw, { dx, dz, sx }) {
+  const sprz = SPR(); const zT = -8; const yG = yP(0) + 0.6; const yTo = yP(-45) + 0.5; const yL = yP(-12) + 0.6;
+  const q = (pel, zo, AR, AL, zRw, zLw, extra = {}) => { const hip = pel; const podR = extra.podR ?? podPowietrze(hip, AR, 25), podL = extra.podL ?? podPowietrze(hip, AL, 25); return { pel, AR, AL, podR, podL, zo, zR: zRw - zo, zL: zo - zLw, bocz: true, pitch: 6, ra: { psi: -90, th: 30, z: 19 }, ...extra, podR, podL }; };
+  const A = (o) => ({ z: 19, ...o });
+  const W = [
+    q([0, 86], 0, [-6, 30], [0, yG], 14, zT, { podL: 0, ra: A({ psi: -90, th: 35 }) }),
+    q([0.03 * dx, 78], 0, [-8, 34], [0, yG], 14, zT, { podL: 0, pitch: 22, ra: A({ psi: -105, th: 30 }) }),
+    q([0.12 * dx, 101.8], 0.12 * dz, [0.12 * dx + 8 * sx, 52], [0, yTo], 0.12 * dz + 22, zT, { podL: -45, pitch: 6, ra: A({ psi: 50, th: 25 }) }),
+    q([0.5 * dx, 124], 0.5 * dz, [0.5 * dx + 24 * sx, 56], [0.5 * dx - 22 * sx, 52], 0.5 * dz + 24, 0.5 * dz - 20, { pitch: 8, ra: A({ psi: 60, th: 25 }) }),
+    q([dx - 4, 88], dz, [dx, yL], [dx - 30 * sx, 44], dz + 6, dz - 26, { podR: -12, pitch: 12, ra: A({ psi: -10, th: 25 }) }),
+    q([dx - 12, 72], dz, [dx, yG], [dx - 22 * sx, 36], dz + 6, dz - 24, { podR: 0, pitch: 26, ra: A({ psi: -25, th: 30 }) }),
+  ];
+  const r = ruch(W, Q, { rodzina: RODZINA, cw, sprzet: sprz });
+  if (process.env.DBG_PLYO) console.error(cw, 'szczyt', r.szczyt.toFixed(1), 'droga', r.suma.toFixed(0));
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: sprz, klatki: r.klatki, bledy: [] });
+}
+
+/** Side to Side Box Shuffle (poprawka po recenzji 27.10.2026): start z lewą stopą na niskiej skrzyni i prawą na podłodze obok, przeskok w bok nad skrzynią z zamianą stóp:
+ * na końcu na skrzyni jest prawa stopa, a lewa stoi na podłodze po drugiej stronie. Skrzynia pod osią (z = 0), figura przesuwa się z +21 do −21 cm. */
+function boxShuffle(cw) {
+  const top = 12; const sprz = SPR(BOX(-25, 25, top, 0)); const yFl = yP(0) + 0.6; const yBx = top + yP(0) + 0.6; const yFl12 = yP(-12) + 0.6; const yBx12 = top + yP(-12) + 0.6; const yFlT = yP(-45) + 0.5; const yBxT = top + yP(-45) + 0.5;
+  const q = (pel, zo, AR, AL, zRw, zLw, extra = {}) => ({ pel, AR, AL, podR: 0, podL: 0, zo, zR: zRw - zo, zL: zo - zLw, bocz: true, pitch: 8, ra: { psi: -90, th: 35, z: 19 }, ...extra });
+  const W = [
+    q([-8, 88], 21, [0, yFl], [0, yBx], 34, 8, { pitch: 8 }),
+    q([-8, 80], 21, [0, yFl], [0, yBx], 34, 8, { pitch: 22, ra: { psi: -105, th: 30, z: 19 } }),
+    q([0, 92], 9, [0, yFlT], [0, yBxT], 34, 8, { podR: -45, podL: -45, pitch: 4, ra: { psi: 45, th: 30, z: 19 } }),
+    q([0, 116], 0, [2, 52], [-2, 56], 14, -14, { podR: -40, podL: -40, pitch: 2, ra: { psi: 55, th: 30, z: 19 } }),
+    q([-8, 88], -21, [0, yBx12], [0, yFl12], -8, -34, { podR: -12, podL: -12, pitch: 10, ra: { psi: -10, th: 30, z: 19 } }),
+    q([-8, 80], -21, [0, yBx], [0, yFl], -8, -34, { pitch: 24, ra: { psi: -25, th: 35, z: 19 } }),
   ];
   const r = ruch(W, Q, { rodzina: RODZINA, cw, sprzet: sprz });
   if (process.env.DBG_PLYO) console.error(cw, 'szczyt', r.szczyt.toFixed(1), 'droga', r.suma.toFixed(0));
@@ -106,7 +150,8 @@ function depth(cw) {
   const top = 50; const sprz = SPR(BOX(-45, 35, top)); const yT = top + 7; const a = { z: 19 };
   const W = [
     { A: [25, yT], al: 3, k: 12, pod: 0, pitch: 0, ra: { psi: -90, th: 25, ...a }, zo: 0 },
-    { A: [45, yT + 0.5], al: 3, k: 16, pod: -10, pitch: 4, ra: { psi: -80, th: 30, ...a }, zo: 0 },
+    { A: [27, top + yP(-8) + 0.6], al: 3, k: 14, pod: -8, pitch: 8, ra: { psi: -85, th: 28, ...a }, zo: 0 }, /* pochylenie do przodu nad stałą stopą (poprawka: stopa nie zsuwa się po blacie) */
+    { A: [45, yT + 10], al: 3, k: 16, pod: -10, pitch: 4, ra: { psi: -80, th: 30, ...a }, zo: 0 }, /* stopa unosi się nad krawędź skrzyni, a dopiero potem idzie do przodu */
     { A: [62, yP(-12) + 1], al: 6, k: 18, pod: -12, pitch: 8, ra: { psi: -60, th: 30, ...a }, zo: 0 },
     { A: [62, 7], al: 26, k: 85, pod: 0, pitch: 30, ra: { psi: -105, th: 22, ...a }, zo: 0 },
     { A: [62, yP(-45) + 4], al: 10, k: 10, pod: -45, pitch: 3, ra: { psi: 60, th: 20, ...a }, zo: 0 },
@@ -164,14 +209,14 @@ export function generuj() {
   G['Lateral Cone Hops'] = bok('Lateral Cone Hops', { zo: 55, H: 14, dip: { k: 60, al: 20, pitch: 20 }, ramiona: { gora: { psi: 10, th: 45 }, gora2: { psi: 15, th: 45 }, tyl: { psi: -95, th: 40 }, stoj: { psi: -90, th: 35 }, przod: { psi: -40, th: 40 }, przod2: { psi: -45, th: 40 } } });
   G['Side Hop-Sprint'] = bok('Side Hop-Sprint', { zo: 60, H: 16, dip: { k: 70, al: 22, pitch: 26 } });
   G['Side Standing Long Jump'] = bok('Side Standing Long Jump', { zo: 110, H: 22, dip: { k: 80, al: 25, pitch: 40 }, ramiona: { stoj: { psi: -95, th: 30 }, tyl: { psi: -100, th: 30 }, gora: { psi: 30, th: 25 }, gora2: { psi: 35, th: 25 } } });
-  G['Lateral Bound'] = bok('Lateral Bound', { single: true, zo: 90, H: 22, dip: { k: 70, al: 22, pitch: 24 }, kAmort: 70, pitchAmort: 24 });
+  G['Lateral Bound'] = () => skokZNogiNaNoge('Lateral Bound', { dx: 0, dz: 90, sx: 0.3 });
   G['Single-Leg Lateral Hop'] = bok('Single-Leg Lateral Hop', { single: true, zo: 45, H: 16, dip: { k: 60, al: 20, pitch: 20 }, kAmort: 60, pitchAmort: 20 });
   G['Lateral Box Jump'] = bok('Lateral Box Jump', { zo: 55, top: 40, sprzet: SPR(BOX(-25, 25, 40, 55)), H: 36, zoApex: 0.4 });
-  G['Side to Side Box Shuffle'] = bok('Side to Side Box Shuffle', { zo: 55, top: 12, H: 20, sprzet: SPR(BOX(-25, 25, 12, 55)), dip: { k: 60, al: 20, pitch: 20 } });
+  G['Side to Side Box Shuffle'] = () => boxShuffle('Side to Side Box Shuffle');
   G['Alternate Leg Push-Off'] = () => pushOff('Alternate Leg Push-Off', { alt: true });
   G['Single Leg Push-Off'] = () => pushOff('Single Leg Push-Off', { alt: false });
-  G['Split Jump'] = () => rozkrok('Split Jump', { diag: false });
-  G['Alternate Leg Diagonal Bound'] = () => rozkrok('Alternate Leg Diagonal Bound', { diag: true });
+  G['Split Jump'] = () => splitJump('Split Jump');
+  G['Alternate Leg Diagonal Bound'] = () => skokZNogiNaNoge('Alternate Leg Diagonal Bound', { dx: 85, dz: 45, sx: 1 });
   G['Depth Jump'] = () => depth('Depth Jump');
   G['Dumbbell Seated Box Jump'] = () => siedzacy('Dumbbell Seated Box Jump');
   return G;

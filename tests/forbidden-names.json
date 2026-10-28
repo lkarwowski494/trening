@@ -108,6 +108,11 @@
    "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki, figury i Zdrowie po kluczu) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts (SEC2-01); tu: wpis LIB i sama mapa nazw"
   },
   {
+   "path": "tests/figury-recenzja-p4b.test.ts",
+   "name": "Bosu",
+   "reason": "klucz katalogu (Exercise.libKey) „Bosu Ball Cable Crunch With Side Bends” — test odcisków póz po kluczu; nazwa wyświetlana ogólna z LIB_DISPLAY_NAME (SEC2-01)"
+  },
+  {
    "path": "lib/seed.ts",
    "name": "Bosu",
    "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki, figury i Zdrowie po kluczu) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts (SEC2-01); tu: wpis LIB i sama mapa nazw"

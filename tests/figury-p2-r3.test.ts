@@ -56,9 +56,14 @@ const WYJATKI_NOGI: Record<string, string> = {
   'lunge/Smith Machine Pistol Squat/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn przesadzony (uda przecinają się)`,
   'lunge/Single-Leg High Box Squat/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn przesadzony (przenikanie ud ok. 3,4 cm)`,
   'pushup_plank/Mountain Climbers/ok': `${POZA_P2}: w pozie poprawnej nogi przecinają się (rodzina pushup_plank)`,
+  'rotator_cuff/External Rotation (hantel)/ok': `${POZA_P2}: w pozie poprawnej uda przenikają się o ok. 1,2 cm (rodzina rotator_cuff; ujawnione przy scaleniu G6b 28.10.2026)`,
   'sled_throw/Wall Ball/sq.mis.kneesIn': `${POZA_P2}: wiersz kneesIn przesadzony (przenikanie ud ok. 9,6 cm)`,
 };
-const WYJATKI_STOPA: Record<string, string> = {};
+const POZA_P2_STOPA = 'wiersz błędu pokazuje właśnie wymach nóg (zwis bez podpory: stopa w pozie poprawnej nieruchoma, w wierszu kołysze się o ok. 22 cm) — strażnik „stopa na podporze” nie dotyczy zwisu; poza zakresem poprawek p2 (rodzina pull_up, p1); ujawnione przy scaleniu G6b 28.10.2026';
+const WYJATKI_STOPA: Record<string, string> = {
+  'pull_up/Dead Hang/pu.noSwing/R': POZA_P2_STOPA,
+  'pull_up/Dead Hang/pu.noSwing/L': POZA_P2_STOPA,
+};
 
 describe('1. segmenty nóg się nie przenikają (udo × udo, goleń × goleń) — wszystkie pozy i wiersze błędów', () => {
   const przypadki = pliki.flatMap(f => Object.entries(f.cwiczenia).flatMap(([cw, d]) => wiersze(d).map(w => ({ klucz: `${f.rodzina}/${cw}/${w === undefined ? 'ok' : d.bledy[w].cue}`, d, w }))));

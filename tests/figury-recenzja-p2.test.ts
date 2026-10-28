@@ -41,7 +41,7 @@ const minKolano = (d: PoseData): number => Math.min(...GRID.flatMap(u => { const
 
 /** Rodziny partii 1 (poprawki-p1 / jakosc-r2) z jeszcze niepoprawionym kolanem w leżeniu przodem: poza zakresem tej gałęzi (nie regenerowane tutaj). Wpis nie jest wymagany: gdy poza naprawiono, test nadal przechodzi. */
 const OCZEKUJACE_KOLANO = new Set([
-  'core_floor/Toe Touchers', 'curl/Spider Curl', 'curl/Spider Curl (sztanga)', 'delt_raise/Front Incline Dumbbell Raise', 'pushup_plank/Decline Push Up',
+  'core_floor/Toe Touchers', 'curl/Spider Curl', 'curl/Spider Curl (sztanga)', 'delt_raise/Front Incline Dumbbell Raise', 'delt_raise/Straight Raises on Incline Bench' /* przeprost ok. 19 cm w leżeniu przodem na ławce skośnej; ujawnione przy scaleniu G6b 28.10.2026, ta sama klasa co pozostałe leżenie przodem; backlog 1.1 */, 'pushup_plank/Decline Push Up',
   'rotator_cuff/Reverse Flyes With External Rotation', 'row/Seal Row (sztanga)', 'row/Lying T-Bar Row', 'row/Chest Supported Row', 'shrug/Middle Back Shrug',
 ]);
 const PRZEPROST_TOL = -1; /* cm: reguła `kolano_w_przod` z recenzji (≥ −1 cm) */
