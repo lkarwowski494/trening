@@ -6,7 +6,7 @@
 | 1 | M1-audytor-generalny-009 | P2 | P | 07-jakosc | rola | 01-odkrywanie-007, 02-monetyzacja-003, 02-monetyzacja-507, 03-zakres-002, 04-studio-projektowe-003, 08-programista-003, 10-wydanie-006, 07-jakosc-005 | — | DEC-02 | naprawione-do-weryfikacji |
 | 1 | M1-audytor-generalny-004 | P1 | D | 12-niezawodnosc | M2 | 12-niezawodnosc-002 | — | — | naprawione-do-weryfikacji |
 | 2 | M1-audytor-generalny-010 | P2 | P | 02-monetyzacja | rola | 04-studio-projektowe-001, 08-programista-002, 02-monetyzacja-001, 02-monetyzacja-504, 03-zakres-005, 07-jakosc-003 | M1-audytor-generalny-001 | DEC-09 | naprawione-do-weryfikacji |
-| 2 | M1-audytor-generalny-011 | P2 | D | 04-studio-projektowe | M2 | 01-odkrywanie-003, 09-lokalizacja-004, 04-studio-projektowe-002, 07-jakosc-004, 07-jakosc-009 | — | — | zatwierdzone |
+| 2 | M1-audytor-generalny-011 | P2 | D | 04-studio-projektowe | M2 | 01-odkrywanie-003, 09-lokalizacja-004, 04-studio-projektowe-002, 07-jakosc-004, 07-jakosc-009 | — | — | naprawione-do-weryfikacji |
 | 2 | M1-audytor-generalny-005 | P1 | P | 06-tresci | rola | 03-zakres-001, 06-tresci-001, 07-jakosc-006 | — | DEC-01 | naprawione-do-weryfikacji |
 | 2 | M1-audytor-generalny-012 | P2 | D | 07-jakosc | M2 | 07-jakosc-001, 07-jakosc-002, 10-wydanie-003 | — | — | naprawione-do-weryfikacji |
 | 2 | M1-audytor-generalny-006 | P1 | D | 09-lokalizacja | M2 | 09-lokalizacja-001 | — | — | zatwierdzone |

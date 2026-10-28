@@ -1,10 +1,10 @@
 # Naprawy M2 — Trening — 2026-10-27/28
-Pętla 1 · Audyt 025a50b · Baza 862f119 (naprawy-1-0) · Gałęzie: naprawy/M2-koordynator-napraw-2026-10-27-p1 (862f119..451862d), -p2 (451862d..4b6df8e), -p3 (8a3f4ec..głowa, zawiera p2), -p2-ax5 (tester-e2e, 011, bez scalania)
+Pętla 1 · Audyt 025a50b · Baza 862f119 (naprawy-1-0) · Gałęzie: naprawy/M2-koordynator-napraw-2026-10-27-p1 (862f119..451862d), -p2 (451862d..4b6df8e), -p3 (8a3f4ec..b3e580e, zawiera p2 i -p2-ax5 testera 011)
 
 ## Podsumowanie
-- Naprawione do weryfikacji: 33 z 37 zadań (statusy i commity w plan-napraw.json; tabela sprawdz-plan w dowody/M2/sprawdz-plan-koniec.txt).
+- Naprawione do weryfikacji: 34 z 37 zadań (statusy i commity w plan-napraw.json; tabela sprawdz-plan w dowody/M2/sprawdz-plan-koniec.txt).
 - Zablokowane: 006 (zgoda właściciela na koszt przeglądu przez API), 033 (próg i data hipotezy Androidu — wybór właściciela), 036 (dane po premierze, punkt kontrolny 8 tygodni).
-- W toku: 011 (tester-e2e: scenariusz 58 przy największym tekście; zrzuty bez planu bez ucięć, stan z planem jeszcze bez zrzutu).
+- 011: scenariusz 58 przy największym tekście zielony (e2e-ios 40624070610); zrzuty 580–589 bez ucięć ekranu Trening; stan „dziś bez treningu” z dużą ikoną startu kolejnego treningu nie pokryty (scenariusz zależy od dnia tygodnia) — krok telefonu T-04 zostaje.
 - Przekazane rolom (sesje subagentów ze świeżym kontekstem): 005 (06), 009 (07), 010 (02), 014 (05), 019+031 (09), 020+021 (06), 022 (01), 024–029 (04), 037 (03), 011 (tester-e2e).
 
 ## Zadania
@@ -37,7 +37,7 @@ Pętla 1 · Audyt 025a50b · Baza 862f119 (naprawy-1-0) · Gałęzie: naprawy/M2
 | 035 | D | M2 | tests/audit-m1-2026-10-27-035-duze-pliki.test.ts | 1/2 → 2/2 | a414b66 | dowody/M2/M1-audytor-generalny-035-przed.txt | naprawione-do-weryfikacji |
 | 037 | P | rola 03 | 4 testy tests/audit-m1-2026-10-27-037-*.test.ts(x) | czerwone → zielone | 848f9b0 | role/03-zakres/fix-2026-10-28/wynik.md | naprawione-do-weryfikacji |
 | 006 | D | M2 | — | — | — | dowody/M2/szacunek-006/szacunek.json | zatwierdzone + blokada |
-| 011 | D | tester-e2e | e2e-ios scenariusz 58 (rozmiar_tekstu) | w toku | gałąź p2-ax5 | role/07-jakosc/fix-2026-10-27/wynik-011-ax5.md | zatwierdzone (w toku) |
+| 011 | D | tester-e2e | e2e-ios scenariusz 58 (rozmiar_tekstu) | brak przebiegu z dużym tekstem → przebieg 40624070610 zielony (1 ponowienie, wyścig skryptu z oknem przypomnienia) | 4c73243 (scalone b3e580e) | role/07-jakosc/fix-2026-10-27/wynik-011-ax5.md | naprawione-do-weryfikacji |
 | 033 | D | M2 | tests/audit-m1-2026-10-27-033-hipoteza-android.test.ts | 2/2 → zielone (część dokumentu) | e2d8f2b | dowody/M2/M1-audytor-generalny-033-przed.txt | zatwierdzone + blokada |
 | 036 | M | rola 02 | — | — | — | — | zatwierdzone + blokada |
 
@@ -57,6 +57,10 @@ Wszystkie jako subagenci z pełnym promptem roli (assemble.mjs, tryb fix) i pole
 ### M2-koordynator-napraw-002 · Treść błędu rysowania ekranu trafia do e-maila „Napisz do nas” i może zawierać fragment tekstu z ekranu
 - Pozycja listy kontrolnej: NIE-06 · Poziom: P2 · Realność: brzegowy · Rodzaj: D
 - Dowód: components/StartError.tsx — `[diag, detail]` w treści wiadomości; użytkownik widzi treść przed wysłaniem. Status: otwarte.
+### M2-koordynator-napraw-003 · Znak „×” między ciężarem a powtórzeniami na tablicy treningu jest ucięty i wygląda jak „^”
+- Pozycja listy kontrolnej: WYG (czytelność) · Poziom: P2 · Realność: realny (prawdopodobnie przy każdym rozmiarze tekstu, nie tylko dużym) · Rodzaj: D
+- Dowód: zrzut zrzuty/M2/ax5/run40624070610-586-trening-w-toku.png (przebieg e2e-ios 40624070610) (kadr w pełnej rozdzielczości 1206×2622: „lb ^ 8”); components/NowBoard.tsx:82 — `fontSize: Math.round(size * 0.45)` przy `lineHeight: 22` z tokenu `boardMeta` (lib/tokens.ts:114), więc dolna połowa znaku wypada poza linię. Kod sprzed audytu (a707a0a, jest w main) — nie regresja napraw.
+- Do potwierdzenia zrzutem przy zwykłym tekście; naprawa tania (wysokość linii liczona z rozmiaru). Status: otwarte (poza planem — do decyzji i reaudytu).
 - Pozostałe nowe znaleziska ról (bez naprawy): 06-tresci-005, 01-odkrywanie-012/013, NZ-037-1/2/4, uwagi P2 roli 04 — w ich wynik.md.
 
 ## Komendy końcowe
@@ -73,4 +77,4 @@ Wszystkie jako subagenci z pełnym promptem roli (assemble.mjs, tryb fix) i pole
 - Nowa sesja (D-015), w repo na gałęzi p3:
   `node <prompts>/tools/assemble.mjs M1-audytor-generalny --tryb reaudit --wyjscie <K> --baza 025a50b96f504ea9d16d573720d1e92dc951a103`
 - Paczka wejściowa: K/plan-napraw.json, ten raport, K/naprawy/, K/role/<rola>/fix-2026-10-27 i fix-2026-10-28
-- Otwarte: 006, 011, 033, 036; decyzje dla właściciela w odpowiedzi porannej; scalenie z main: po reaudycie (rekomendacja)
+- Otwarte: 006, 033, 036; decyzje dla właściciela w odpowiedzi porannej; scalenie z main: po reaudycie (rekomendacja)

@@ -440,8 +440,8 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "zrzut AX5 ekranu Trening bez uciętych elementów; scenariusz E2E albo test z największą skalą",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "4c73243"
     },
     {
       "id": "M1-audytor-generalny-012",
