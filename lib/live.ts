@@ -105,7 +105,7 @@ function loadText(ex: Exercise, set: WSet, spoken: boolean): string {
       out.push(p.num + (p.unit ? ' ' + (spoken ? spokenUnit(wOut(v)) : p.unit) : ''));
     }
   }
-  if (hasDistance(m) && Number(set.distanceM) > 0) out.push(spoken ? spokenDist(Number(set.distanceM)) : isImperial() ? fmtDist(Number(set.distanceM)) : `${set.distanceM} m`);
+  if (hasDistance(m) && Number(set.distanceM) > 0) out.push(spoken ? spokenDist(Number(set.distanceM)) : isImperial() ? fmtDist(Number(set.distanceM)) : `${set.distanceM} ${distLabel()}`); /* M1-040: symbol dystansu w piśmie języka */
   { const n = Number(set.reps); if (hasReps(m) && n > 0) out.push(`${n} ${tp(n, 'powtórzenie|powtórzenia|powtórzeń')}`); }
   if (hasTime(m) && Number(set.durationSec) > 0) out.push(spoken ? spokenDuration(Number(set.durationSec)) : fmtSec(Number(set.durationSec)));
   return out.join(', ');
