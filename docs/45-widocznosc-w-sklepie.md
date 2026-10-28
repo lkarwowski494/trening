@@ -167,3 +167,39 @@ w jedną frazę („plan” + „treningowy”) — ocena pośrednio przy H-51.
 - Tłumaczenia bloku i tekstu promocyjnego (3 grupy, rola tłumacz, 22.10.2026) — do sprawdzenia przez native speakera: odmiana „Pro” (fi, hr, ru, tr), odpowiednik
   „dnia treningowego” (ja, ko, zh-Hant, sl, fi), „dopisywanie treningów wstecz” podane opisowo zamiast nazwy przycisku „Dopisz trening wstecz” (wszystkie poza pl/en),
   skrócone teksty promocyjne fr-FR („pub”) i el.
+
+## Odświeżenie przed 1.0, 28.10.2026
+
+Zlecenie koordynatora po decyzji właściciela 28.10.2026 ~21:55 UTC (wariant A): opis i tekst promocyjny wersji 1.0 mają pokazywać największą nowość —
+animowane rysunki ruchu i rozwiniętą sekcję „Technika” na karcie ćwiczenia (drugi zrzut pokaże kartę z rysunkiem). Zastępuje uwagę (a) z docs/48 pkt 6
+(„o rysunkach ruchu w opisie nie wspominamy, dopóki nie obejmą całej biblioteki”) — tekst nie obiecuje rysunku przy każdym ćwiczeniu. Gałąź `metadane-1-0`.
+
+**Liczba z kodu** (main `b3697068`): w bibliotece 709 ćwiczeń; rysunek ma 140, animowany 138 (figury v2: 87 w rodzinach przysiad, wyciskanie leżąc,
+martwy ciąg — 1 statyczny; figury v1 z ≥ 2 klatkami: 52). Po PR #84 (JM Press i Decline Close-Grip Bench To Skull Crusher bez rysunku w 1.0) — ok. 136.
+Tekst mówi „ponad 100 ćwiczeń”; test `tests/store-metadata.test.ts` liczy z kodu (v2 przez `shownFigureSpec`, gdy istnieje) i pilnuje, że liczba > 100
+i < całej biblioteki. Rysunek v2 pokazuje mięśnie zawsze, częsty błąd w 82 z 87 — stąd „a zwykle i częsty błąd” (test: ≥ 80%).
+
+**Zmiany w opisie (33 lokalizacje):**
+- nowa sekcja TECHNIKA / TECHNIQUE po sekcji TRENING (3 punkty: rysunki przy ponad 100 ćwiczeniach z pauzą animacji; sekcja „Technika”: ustawienie, ruch,
+  wskazówki, częste błędy — nazwy z interfejsu; przy wielu odmianach przysiadu, wyciskania leżąc i martwego ciągu — pracujące mięśnie i zwykle częsty błąd);
+  punkt „Biblioteka ćwiczeń z krótkimi wskazówkami techniki” usunięty (zastąpiony sekcją);
+- zgodność z kodem: w POSTĘPACH dopisany „Strażnik progresji” (funkcja z interfejsu i z trzeciego zrzutu, wcześniej nieopisana); import CSV — „z podglądem
+  przed zapisem” (tekst ustawień importu w aplikacji);
+- uk, ru, ko: usunięta nazwa wzoru e1RM w nawiasie (nazwisko autora wzoru = nazwa źródła; zasada „źródła publicznie anonimowo” 25.10.2026; wzorzec
+  `lib/sources.ts` łapie tylko łacinkę, więc test sklepu sprawdza też cyrylicę i hangul);
+- skróty istniejących zdań bez zmiany sensu w fr-FR, el, it, ro, es-ES, es-MX — po dodaniu sekcji przekraczały limit 4000 znaków (ujawnienia cenowe
+  i zdanie medyczne bez zmian).
+
+**Tekst promocyjny:** pierwsze zdanie zaczyna się od rysunków ruchu i wskazówek techniki (PL „Animowane rysunki ruchu, wskazówki techniki, własne szablony
+i timer przerw. …”); 5 darmowych dni bez zmian. Plan tygodnia i wykresy wypadły z tekstu promocyjnego (zostają w opisie i na zrzutach).
+
+**Słowa kluczowe i podtytuły — bez zmian** (decyzja nocna agenta, do weta właściciela rano). Uzasadnienie: zlecenie dopuszcza frazę o technice/rysunkach
+tylko na podstawie fraz z badania M5; katalog przebiegu z surowymi frazami nie jest w repozytorium ani na tej maszynie, a w tym dokumencie nie ma żadnej
+frazy o technice ani rysunkach — brak danych dla każdego języka. Odrzucone: (a) dopisać „technika”/„form”/„technique” kosztem najsłabszej frazy
+bez danych o ruchu — zgadywanie wbrew metodzie M5 i progom H-51…53; (b) zmienić tylko PL/EN na podstawie intuicji — to samo ryzyko, a pomiar H-51 i tak
+oceni obecny dobór 26.12.2026. Do rozważenia po premierze: fraza o technice w badaniu M5 przy pierwszym przeglądzie (tekst promocyjny i opis można
+zmieniać, słowa kluczowe tylko z nową wersją).
+
+**Tłumaczenia:** PL i EN — agent; 31 pozostałych — przekład agenta z terminami z `docs/lokalizacja/slownik-terminow.json` i nazwami z interfejsu
+(`lib/locales`), przegląd recenzenta lokalizacji (sesja niezależna) — wynik w opisie PR. **Do sprawdzenia przez native speakera:** nazwy ćwiczeń
+w el (καθίσματα, πιέσεις πάγκου, άρσεις θανάτου) i vi; skrócone zdania w fr-FR, el, it, ro, es-ES, es-MX.
