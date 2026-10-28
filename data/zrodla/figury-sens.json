@@ -6731,10 +6731,11 @@
           "cue": "st.tension",
           "parametry": {
             "nogi": "obie",
-            "min_max_deg": 10
+            "min_max_deg": 10,
+            "max_max_deg": 30
           },
           "zrodlo": "ACE #152 krok 4 („To increase the stretch in the soleus, slightly flex (bend) the back knee…”); ACE #214 (wariant na płaszczkowaty: lekko ugięte kolano) — przeczytane 26.10.2026 (jedna organizacja)",
-          "liczba": "konwencja (oba kolana ≥ 10°)",
+          "liczba": "konwencja (oba kolana zgięte co najmniej 10° i co najwyżej 30°: „slightly” ze źródła nie ma liczby; oba progi to konwencja rysunku, górny dodany po recenzji r4 28.10.2026, bo 58° nie jest lekkim zgięciem)",
           "pewnosc": "jedno źródło"
         },
         "glowa_do_klatki": {

@@ -37,6 +37,9 @@ export const ZAPOBIEGANIE = {
   'sens:tulow_pion': 'pochylenieTulowia w poprawnej pozie w {trunkRange}° w każdej klatce; odchylenie tułowia to bujanie.',
   'sens:jedna_reka': 'ćwiczenie jednorącz: na drążku trzyma: "R" albo "L"; wolna dłoń ≥ {freeHand} cm od osi drążka, nie na drążku.',
   'sens:rece_proste_caly_ruch': 'ramiona proste w całym ruchu (łokieć ≤ {armsStraight}°); porusza się tylko obręcz barkowa (miednica o kilka cm w y).',
+  'jakosc:cialo_lezy': 'poza leżąca na boku, plecach albo siedząca LEŻY: obrys tułowia (z boku) i spodenek ≤ {lezyCm} cm nad podłogą w każdej klatce (leżąc na boku miednica ≈ 20 cm, a nie 23: obrys ma szerokość ciała, nie grubość); dolny bark nie wchodzi pod podłogę dzięki obrotowi tułowia ok. −75° (nie −90°) i przechyłowi 2°; głowa leży na podłodze albo na przedramieniu (odstęp ≤ {glowaPodparcieCm} cm).',
+  'jakosc:czesc_ciala_nie_znika': 'żaden kształt części ciała (stopa, goleń, dłoń, tułów) nie ma w rzucie z boku rozmiaru < {znikaCm} cm: stopa obrócona wprost na kamerę (rotacjaStopy 90° przy poziomej goleni) rysuje się jako punkt — ustaw rotacjaStopy 45–70° albo stopę wzdłuż podłogi.',
+  'sens:obie_kolana_lekko': '„lekko ugięte” kolano to {lekkoMin}…{lekkoMax}° (konwencja rysunku): wykrok z kolanem 58° nie jest lekkim zgięciem; odległość biodro–kostka ≈ 81 cm daje kolano ≈ 25° (przy pionowej nodze: miednica ≥ 84 cm nad podłogą).',
   'blad-sens': 'błąd ma łamać TYLKO regułę swojej wskazówki (np. pu.noSwing: przekroczyć limit bujania) i żadnej innej; poza poprawna nie łamie żadnej.',
 };
 
@@ -63,6 +66,7 @@ export function kluczKategorii(kod, szczegol) {
     return `geometria:${t.slice(0, 40)}`;
   }
   if (kod === 'sens') { const m = /reguła „([^”]+)”/.exec(s); return `sens:${m ? m[1].replace(/_x$/, '') : '?'}`; }
+  if (kod === 'jakosc') { const m = /^([a-z0-9_]+): /.exec(s); return m ? `jakosc:${m[1]}` : 'jakosc'; } /* reguły jakości (v2-jakosc.mjs) osobno: komunikat zaczyna się od nazwy reguły */
   return kod;
 }
 
@@ -94,7 +98,7 @@ export const podstaw = (t, liczby) => t.replace(/\{(\w+)\}/g, (m, k) => (k in li
 /** Linie sekcji „Najczęstsze błędy…”: do 10 najczęstszych kategorii; zapobieganie z liczbami z silnika (liczby), a gdy brak reguły — przykład z walidatora. */
 export function liniePolecenia(r, liczby, max = MAX_W_POLECENIU, { rodzina = null, reguly = null } = {}) {
   /* trafne dla rodziny: reguły sensu tylko aktywne w poleceniu, kolizje ze sprzętem tylko z rodzin, które je zgłosiły; reszta (zasięg, zakresy, chwyt, ciągłość…) jest ogólna */
-  const trafna = ([k, e]) => (k.startsWith('sens:') ? !reguly || reguly.has(k.slice(5)) || [...reguly].some((id) => id.replace(/_x$/, '') === k.slice(5)) : /^geometria:\S+ × \S+$/.test(k) ? !rodzina || e.rodziny.includes(rodzina) : true);
+  const trafna = ([k, e]) => (k.startsWith('sens:') ? !reguly || reguly.has(k.slice(5)) || [...reguly].some((id) => id.replace(/_x$/, '') === k.slice(5)) : /^geometria:\S+ × \S+$/.test(k) || k.startsWith('jakosc:') ? !rodzina || e.rodziny.includes(rodzina) : true);
   return Object.entries(r.kategorie).filter(trafna).slice(0, max).map(([k, e]) => {
     const zap = ZAPOBIEGANIE[k] ?? e.zapobieganie;
     return `- (${e.wystapien}×) ${k}: ${zap ? podstaw(zap, liczby) : `unikaj — walidator zgłosił: ${e.przyklad}`}${ZAPOBIEGANIE[k] ? '' : ''}`;

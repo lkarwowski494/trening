@@ -20,6 +20,12 @@ export const PROGI = {
   szyjaMaxDeg: 40, /* kąt osi głowy względem osi tułowia w podporze */
   podstawaMinCm: 28, /* podpór na jednej ręce: rozstaw kostek (szerzej niż biodra ±8,5) */
   receWzdluz: { lokiecNadBarkiemCm: 2, dlonMaxY: 12 }, /* leżąc: łokieć nie wyżej niż bark, dłoń blisko podłogi */
+  lezyCm: 2, /* R9 „ciało leży” (recenzja mobilności r4, 28.10.2026): obrys tułowia (z boku) i — gdy miednica się nie unosi — obrys spodenek najwyżej tyle nad podłogą w każdej klatce. Mierzone z OBRYSU kształtów, nie z kolizorów (kolizor leżącego na boku liczy grubość, nie szerokość ciała) */
+  lezyMiednicaMaxY: 24, /* ciało „leży albo siedzi”: środek miednicy najwyżej tyle nad podłogą w KAŻDEJ klatce (leżenie na boku ≈ 20, na plecach i siad ≈ 10; mostek ≥ 28 i klęk Child's Pose 26 to nie leżenie) */
+  lezyMiednicaRuchCm: 2, /* miednica „stoi” w miejscu, gdy jej oś zmienia wysokość o najwyżej tyle w ruchu (unoszenie miednicy w ruchu, np. Reverse Crunch, jest celowe: jej obrys sprawdzamy tylko, gdy nie unosi się) */
+  lezyTulowDeg: 60, /* tułów „poziomy” (leży), gdy jego oś odchyla się od pionu o co najmniej tyle */
+  glowaPodparcieCm: 1, /* głowa leżącego: leży na podłodze (dolna krawędź kolizora ≤ lezyCm) albo opiera się o ramię/przedramię/dłoń (odstęp kolizorów ≤ tyle) */
+  znikaCm: 1.5, /* „znikająca część ciała”: kształt części ciała (id kości) ma w rzucie z boku albo z przodu w żadnej osi rozmiar mniejszy niż tyle (stopa skierowana wprost na kamerę rysuje się jako punkt) */
   wisiCm: 1, /* ćwiczenie na podłodze: najniższy punkt tułowia/miednicy (oś − promień) najwyżej tyle nad podłogą (leżąc i siedząc ciało leży, nie wisi) */
   lokiecPrzedPlecamiMaxCm: 2, /* przyciąganie (wiosłowanie): na końcu łokieć leży najwyżej tyle PRZED płaszczyzną pleców (po stronie klatki/drążka); łokieć ma kończyć przy tułowiu, za linią pleców, nie nad klatką */
   podparcieMarginesCm: 2, /* podpór jednorącz/jednonóż: rzut środka ciężkości leży wewnątrz wielokąta podparcia o co najmniej tyle */
@@ -102,7 +108,7 @@ export const PODPOR_NA_DLONIACH_KOLANO = ['Mountain Climbers'];
 export const DOL_POMPKI = ['Push Up', 'Push-Up Wide', 'Close-Grip Push-Up', 'Diamond Push Up', 'Decline Push Up', 'Incline Push Up', 'Incline Push-Up Close-Grip'];
 /** R7: najmniejsze zgięcie kolana (w KAŻDEJ klatce) w ćwiczeniach z podkulonymi kolanami. */
 export const KOLANA_UGIETE = { 'Tuck Crunch': 80, 'Reverse Crunch': 80 };
-export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie'];
+export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie', 'cialo_lezy', 'czesc_ciala_nie_znika'];
 /** Reguły poziomu manifestu podglądu (nie pozy): zgodność manifestu z obrazem i układ podglądu. */
 export const REGULY_MANIFESTU = ['manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
 
@@ -212,6 +218,41 @@ export function ledzwiePrzyPodlodze(v2, poza) {
 export function nicNieWisi(v2, poza) {
   const G = v2.GIRTH; for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; const nisko = Math.min(s.pelvis[1], s.shoulderC[1]) - G.trunkCollide; if (nisko > PROGI.wisiCm) return [`najniższy punkt tułowia jest ${f1(nisko)} cm nad podłogą (u = ${u}; ≤ ${PROGI.wisiCm} cm) — ciało leży albo siedzi na podłodze, nie wisi w powietrzu`]; }
   return [];
+}
+
+const dolnaKrawedz = (v2, x) => { const pts = x.k === 'poly' ? x.pts : x.k === 'ellipse' ? v2.ellipsePts(x.c, x.rx, x.ry, x.rot) : x.k === 'circle' ? [[x.c[0], x.c[1] - x.r]] : null; return pts ? Math.min(...pts.map((q) => q[1])) : null; };
+/** Poza leżąca albo siedząca: środek miednicy najwyżej lezyMiednicaMaxY nad podłogą w każdej klatce. */
+export function lezyAlboSiedzi(v2, poza) { return siatka(poza).every((u) => v2.keyframeFrame(poza, u).sk.pelvis[1] <= PROGI.lezyMiednicaMaxY); }
+/** 20. Ciało leży (R9): w pozie leżącej albo siedzącej obrys tułowia (kształt „torso” w rzucie z boku) leży przy podłodze (≤ lezyCm) w każdej klatce, a gdy miednica się nie unosi (zmiana wysokości osi ≤ lezyMiednicaRuchCm), także obrys spodenek (kształty „shortsR/L”);
+ * głowa leży na podłodze albo opiera się o rękę (odstęp kolizorów ≤ glowaPodparcieCm). Obrys, nie kolizory: kolizor ciała leżącego na boku liczy grubość (przód–tył), a rysunek pokazuje szerokość, więc kolizor zaniżał odstęp o 5–10 cm;
+ * odwrotnie, stopa grzbietem do podłogi daje w kolizorze fałszywy odstęp (kapsuła stopy +3,5 cm), więc nóg i stóp ta reguła nie sprawdza. */
+export function cialoLezy(v2, poza, { glowa = false } = {}) {
+  if (!lezyAlboSiedzi(v2, poza)) return []; const o = []; const us = siatka(poza);
+  const ys = us.map((u) => v2.keyframeFrame(poza, u).sk.pelvis[1]); const miednicaStoi = Math.max(...ys) - Math.min(...ys) <= PROGI.lezyMiednicaRuchCm; const zgl = new Set();
+  const zglos = (k, t) => { if (!zgl.has(k)) { zgl.add(k); o.push(t); } };
+  for (const u of us) {
+    const sh = v2.dataShapes(poza, u, 'side'); const nisko = (re) => { const l = sh.filter((x) => re.test(x.id ?? '')).map((x) => dolnaKrawedz(v2, x)).filter((y) => y !== null); return l.length ? Math.min(...l) : null; };
+    const tor = nisko(/^torso$/), mie = nisko(/^shorts[RL]$/);
+    if (tor !== null && tor > PROGI.lezyCm) zglos('tulow', `obrys tułowia (z boku) leży ${f1(tor)} cm nad podłogą (u = ${u}; ≤ ${PROGI.lezyCm} cm) — ciało leży albo siedzi na podłodze, nie wisi`);
+    if (miednicaStoi && mie !== null && mie > PROGI.lezyCm) zglos('miednica', `obrys miednicy (spodenki, z boku) leży ${f1(mie)} cm nad podłogą (u = ${u}; ≤ ${PROGI.lezyCm} cm) — miednica się nie unosi, więc ma leżeć`);
+    if (!glowa) continue; const s = v2.keyframeFrame(poza, u).sk; const leży = Math.acos(Math.max(-1, Math.min(1, (s.shoulderC[1] - s.pelvis[1]) / (Math.hypot(...s.shoulderC.map((x, i) => x - s.pelvis[i])) || 1)))) * 180 / Math.PI >= PROGI.lezyTulowDeg; if (!leży) continue; /* głowa: tylko przy poziomym tułowiu (siad i pozycje ze zwiniętym tułowiem mają głowę nad podłogą z definicji) */
+    const C = v2.bodyColliders(s); const gl = C.find((c) => c.id === 'head'); if (!gl) continue;
+    const odPodlogi = gl.a[1] - gl.r; if (odPodlogi <= PROGI.lezyCm) continue;
+    const odcinek = (P, a, b) => { const ab = b.map((x, i) => x - a[i]); const l2 = ab.reduce((t, x) => t + x * x, 0) || 1; const t = Math.max(0, Math.min(1, P.reduce((q, x, i) => q + (x - a[i]) * ab[i], 0) / l2)); return Math.hypot(...P.map((x, i) => x - a[i] - t * ab[i])); };
+    const odRamienia = Math.min(...C.filter((c) => /^(uarm|farm|hand)[RL]$/.test(c.id)).map((c) => odcinek(gl.a, c.a, c.b) - c.r - gl.r));
+    if (!(odRamienia <= PROGI.glowaPodparcieCm)) zglos('glowa', `głowa leży ${f1(odPodlogi)} cm nad podłogą i ${Number.isFinite(odRamienia) ? f1(odRamienia) : '—'} cm od najbliższego ramienia/dłoni (u = ${u}; ≤ ${PROGI.lezyCm} cm od podłogi albo ≤ ${PROGI.glowaPodparcieCm} cm od ręki) — głowa leżącego jest podparta`);
+  }
+  return o;
+}
+/** 21. Część ciała nie znika: żaden kształt części ciała (id ≠ sprzęt) nie ma w rzucie z boku ani z przodu rozmiaru poniżej znikaCm w każdej osi (stopa skierowana wprost na kamerę rysuje się jako punkt: „noga bez stopy”). */
+export function czescCialaNieZnika(v2, poza) {
+  const o = []; const zgl = new Set(); const widoki = (v2.FAMILY?.[poza.rodzina]?.views ?? ['side', 'front']).filter((w) => w === 'side' || w === 'front'); /* tylko widoki rodziny (mobility_floor, core_floor: sam widok z boku) */
+  for (const view of widoki) for (const u of siatka(poza)) for (const x of v2.dataShapes(poza, u, view)) {
+    if (x.k !== 'poly' || !/^(foot|shank|thigh|farm|uarm|hand|torso|neck|shorts)[RL]?$/.test(x.id ?? '')) continue;
+    const xs = x.pts.map((q) => q[0]), ys = x.pts.map((q) => q[1]); const rozmiar = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys));
+    if (rozmiar < PROGI.znikaCm && !zgl.has(x.id + view)) { zgl.add(x.id + view); o.push(`kształt „${x.id}” w rzucie ${view === 'side' ? 'z boku' : 'z przodu'} ma rozmiar ${f1(rozmiar)} cm (u = ${u}; ≥ ${PROGI.znikaCm} cm) — część ciała znika z rysunku (obrócona wprost na kamerę)`); }
+  }
+  return o;
 }
 /** 15. Rząd błędu zmienia tylko to, co opisuje jego wskazówka: kąty stawów spoza DOTYCZY_BLEDU[cue] różnią się od pozy poprawnej o ≤ rzadBleduTolDeg w każdej klatce (np. „sag” nie zgina kolan). Liczone z kątów, nie z deklaracji `dotyczy` (ta jest wyliczana z tych samych zmian). */
 export function rzadBleduDotyczy(v2, poza) {
@@ -417,6 +458,7 @@ export function sprawdzJakosc(poza, ctx) {
   if (rodzina === 'pushup_plank' && /Push[- ]?Up|Inverted Row/.test(cwiczenie)) dodaj('odwiedzenie_lokcia_przod', odwiedzenieLokciaPrzod(v2, poza));
   if (rodzina === 'core_floor' && !NIE_LEZY.includes(cwiczenie) && !(cwiczenie in LOT)) dodaj('nic_nie_wisi', nicNieWisi(v2, poza));
   if (rodzina === 'core_floor' && !(cwiczenie in LEDZWIE_WYJATKI) && !NIE_LEZY.includes(cwiczenie) && maWskazowkeLedzwie(cwiczenie, teksty ?? {})) dodaj('ledzwie_przy_podlodze', ledzwiePrzyPodlodze(v2, poza));
+  if (rodzina === 'mobility_floor' || rodzina === 'mobility_stand') { dodaj('cialo_lezy', cialoLezy(v2, poza, { glowa: rodzina === 'mobility_floor' })); dodaj('czesc_ciala_nie_znika', czescCialaNieZnika(v2, poza)); }
   dodaj('rzad_bledu_dotyczy', rzadBleduDotyczy(v2, poza));
   if (PRZYCIAGANIE.includes(cwiczenie)) { dodaj('tor_lokcia_przyciaganie', torLokciaPrzyciagania(v2, poza)); dodaj('zwis_startowy', zwisStartowy(v2, poza)); dodaj('tor_lokcia_srodek', torLokciaSrodek(v2, poza)); }
   if (ROLLOUTY.includes(cwiczenie)) dodaj('proste_rece_rollout', prosteReceRollout(v2, poza));

@@ -42,8 +42,9 @@ function standingChest(cw) {
 }
 /** Wykrok łydkowy: tylna noga (L) i przednia (R); tylna prosta (kolano ≤ 15°) albo lekko ugięta. */
 function wykrokLydka({ wall, tylnaProsta }) {
-  const p = wall ? 22 : 8; const m = wall ? [-1, 80, 0] : [-7, 79, 0]; const T = sonda(m, p);
-  const aF = [25, 7, 10]; const aB = tylnaProsta ? prosta(T.hip.L, [-0.47, -0.88, -0.03], { pod: 0 }).a : [-16, 7, -10];
+  const p = wall ? 22 : 8; const m = wall ? [-1, 80, 0] : tylnaProsta ? [-7, 79, 0] : [-7, 84, 0]; const T = sonda(m, p);
+  /* tylna noga lekko ugięta (soleus): kolana ≈ 25–27° (konwencja „lekko” 10–30°, reguła obie_kolana_lekko), pięta tylna na podłodze; odległość biodro–kostka ≈ 81 cm (kolano ≈ 25°) */
+  const aF = tylnaProsta || wall ? [25, 7, 10] : [17, 7, 10]; const aB = tylnaProsta ? prosta(T.hip.L, [-0.47, -0.88, -0.03], { pod: 0 }).a : [-32, 7, -10];
   aB[1] = 7;
   const nogi = { R: { a: aF, pod: 0, rot: 8, pole: [1, 0, 0.1] }, L: { a: aB, pod: 0, rot: 8, pole: [1, 0.1, -0.1] } };
   const rece = wall ? rekiDo(T.sh, { R: [72, 132, 19], L: [72, 132, -19] }, { R: [0, -0.5, 1], L: [0, -0.5, -1] }) : { R: { g: [T.hip.R[0] - 2, T.hip.R[1] + 8, 24], pole: [-0.6, -0.1, 1] }, L: { g: [T.hip.L[0] - 2, T.hip.L[1] + 8, -24], pole: [-0.6, -0.1, -1] } };
@@ -54,7 +55,7 @@ function wallCalf(cw) {
   const o = wykrokLydka({ wall: true, tylnaProsta: true });
   return statyczna(RODZINA, cw, [...SP, { rodzaj: 'sciana', x: 75, h: 250, przed: true }], (u) => ramka(u, { m: o.m, p: o.p, head: 12, nogi: o.nogi, rece: o.rece }));
 }
-/** Standing Soleus And Achilles Stretch: wykrok, oba kolana ugięte, tylna pięta na podłodze, dłonie na biodrach. */
+/** Standing Soleus And Achilles Stretch (ACE #152 krok 4: „slightly flex (bend) the back knee”): wykrok, oba kolana LEKKO ugięte (przednie ≈ 27°, tylne ≈ 25°; „lekko” = konwencja 10–30°, nie 58° jak w przysiadzie wykrocznym), tylna pięta na podłodze, dłonie na biodrach. */
 function soleus(cw) {
   const o = wykrokLydka({ wall: false, tylnaProsta: false });
   return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m: o.m, p: o.p, head: 4, nogi: o.nogi, rece: o.rece }));

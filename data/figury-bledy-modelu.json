@@ -158,6 +158,15 @@
    "przyklad": "Muscle Up: torso × bar: przenikanie 3.78 cm (dopuszczalne 0.3) w fazie u=0.54",
    "zapobieganie": "tułów nie może przenikać drążka: odsuń miednicę w x o ≥ 10 cm od osi drążka w klatkach, w których drążek jest na wysokości klatki piersiowej."
   },
+  "jakosc:cialo_lezy": {
+   "wystapien": 3,
+   "cwiczen": 1,
+   "rodziny": [
+    "mobility_floor"
+   ],
+   "przyklad": "Side-Lying Quad Stretch: cialo_lezy: głowa leży 13.5 cm nad podłogą i 2.9 cm od najbliższego ramienia/dłoni (u = 0; ≤ 2 cm od podłogi albo ≤ 1 cm od ręki) — głowa leżącego jest podparta",
+   "zapobieganie": "poza leżąca na boku, plecach albo siedząca LEŻY: obrys tułowia (z boku) i spodenek ≤ {lezyCm} cm nad podłogą w każdej klatce (leżąc na boku miednica ≈ 20 cm, a nie 23: obrys ma szerokość ciała, nie grubość); dolny bark nie wchodzi pod podłogę dzięki obrotowi tułowia ok. −75° (nie −90°) i przechyłowi 2°; głowa leży na podłodze albo na przedramieniu (odstęp ≤ {glowaPodparcieCm} cm)."
+  },
   "blad-sens": {
    "wystapien": 2,
    "cwiczen": 2,
@@ -184,6 +193,24 @@
    ],
    "przyklad": "One Arm Chin-Up: reguła „jedna_reka” (wskazówka konwencja): ćwiczenie jednorącz, a sprzet[] ma drążek trzymany obiema rękami — ustaw na sztandze trzyma: \"R\" albo \"L\"",
    "zapobieganie": "ćwiczenie jednorącz: na drążku trzyma: \"R\" albo \"L\"; wolna dłoń ≥ {freeHand} cm od osi drążka, nie na drążku."
+  },
+  "sens:obie_kolana_lekko": {
+   "wystapien": 2,
+   "cwiczen": 1,
+   "rodziny": [
+    "mobility_stand"
+   ],
+   "przyklad": "Standing Soleus And Achilles Stretch: reguła „obie_kolana_lekko” (wskazówka st.tension): kolano L dochodzi do 58.1°, a ma być zawsze ≤ 30° (lekko ugięte: górny próg to konwencja rysunku)",
+   "zapobieganie": "„lekko ugięte” kolano to {lekkoMin}…{lekkoMax}° (konwencja rysunku): wykrok z kolanem 58° nie jest lekkim zgięciem; odległość biodro–kostka ≈ 81 cm daje kolano ≈ 25° (przy pionowej nodze: miednica ≥ 84 cm nad podłogą)."
+  },
+  "jakosc:czesc_ciala_nie_znika": {
+   "wystapien": 1,
+   "cwiczen": 1,
+   "rodziny": [
+    "mobility_floor"
+   ],
+   "przyklad": "Side-Lying Quad Stretch: czesc_ciala_nie_znika: kształt „footL” w rzucie z boku ma rozmiar 0.0 cm (u = 0; ≥ 1.5 cm) — część ciała znika z rysunku (obrócona wprost na kamerę)",
+   "zapobieganie": "żaden kształt części ciała (stopa, goleń, dłoń, tułów) nie ma w rzucie z boku rozmiaru < {znikaCm} cm: stopa obrócona wprost na kamerę (rotacjaStopy 90° przy poziomej goleni) rysuje się jako punkt — ustaw rotacjaStopy 45–70° albo stopę wzdłuż podłogi."
   },
   "sprzet": {
    "wystapien": 1,
@@ -303,6 +330,24 @@
    "runda": 2,
    "cwiczen": 4,
    "zaliczone": 1
+  },
+  {
+   "hash": "c7f3e0177341",
+   "data": "2026-10-28",
+   "rodzina": "mobility_floor",
+   "wersja": "recenzja@r4",
+   "runda": 0,
+   "cwiczen": 9,
+   "zaliczone": 8
+  },
+  {
+   "hash": "21af50653cd3",
+   "data": "2026-10-28",
+   "rodzina": "mobility_stand",
+   "wersja": "recenzja@r4",
+   "runda": 0,
+   "cwiczen": 8,
+   "zaliczone": 7
   }
  ]
 }

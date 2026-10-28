@@ -293,6 +293,7 @@ Object.assign(EWALUATORY, {
       if (q.min_max_deg !== undefined && r.max < q.min_max_deg) o.push(`kolano ${side} w ruchu dochodzi tylko do ${f1(r.max)}°, a ma sięgać ≥ ${q.min_max_deg}°`);
       if (q.max_min_deg !== undefined && r.min > q.max_min_deg) o.push(`kolano ${side} w ruchu nie prostuje się poniżej ${f1(r.min)}°, a ma schodzić do ≤ ${q.max_min_deg}°`);
       if (q.min_min_deg !== undefined && r.min < q.min_min_deg) o.push(`kolano ${side} schodzi do ${f1(r.min)}°, a ma być zawsze ≥ ${q.min_min_deg}° (lekko ugięte)`);
+      if (q.max_max_deg !== undefined && r.max > q.max_max_deg) o.push(`kolano ${side} dochodzi do ${f1(r.max)}°, a ma być zawsze ≤ ${q.max_max_deg}° (lekko ugięte: górny próg to konwencja rysunku)`);
       return o; };
     const R = ocena('R'), L = ocena('L');
     if (q.nogi === 'co_najmniej_jedna') return R.length && L.length ? [...R, ...L].map((x) => `${x} (żadna noga nie spełnia: co najmniej jedna ma pracować)`) : [];

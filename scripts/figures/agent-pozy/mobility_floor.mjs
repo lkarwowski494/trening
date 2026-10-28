@@ -83,22 +83,24 @@ function supineHamstring(cw) {
 }
 
 /* ---------- leżenie bokiem (LEWY bok na podłodze, klatka ku −z (od kamery), głowa ku −x; górna noga R jest po stronie kamery) ---------- */
-const PYB = 23;
-const bokRamka = (nogi, rece, ext = { roll: -90 }) => (u) => K({ u, m: [0, PYB, 0], p: -90, head: -90, roll: ext.roll, R: nogi.R, L: nogi.L, hr: rece.R, hl: rece.L });
+const PYB = 20; /* środek miednicy: obrys tułowia i spodenek ≤ 2 cm nad podłogą (reguła „ciało leży”, R9) */
+const SQ_ROLL = -75; /* obrót tułowia: −90 = dokładnie na boku; −75 = lekko odchylony do tyłu (15°). Dolny bark leży wtedy wyżej niż dolna krawędź obrysu tułowia (grubość pleców), więc ramię nie wchodzi pod podłogę, a tułów leży (przy −90 bark 4 cm nad podłogą i tułów 4 cm nad nią albo ramię pod podłogą) */
+const SQ_LEAN = 2; /* przechył tułowia w płaszczyźnie czołowej (stopnie): bark (głowa) wyżej o ok. 1,7 cm niż miednica (lekkie zgięcie boczne kręgosłupa, głowa na ręce) */
+const bokRamka = (nogi, rece, ext = { roll: SQ_ROLL, lean: SQ_LEAN }) => (u) => K({ u, m: [0, PYB, 0], p: -90, head: -90, roll: ext.roll, lean: ext.lean, R: nogi.R, L: nogi.L, hr: rece.R, hl: rece.L });
 /** Side-Lying Quad Stretch (ACE #149: leżenie na boku, biodra i barki jedno nad drugim, dolna ręka zgięta, przedramię pod głową; górne kolano zgięte, pięta ku pośladkowi: „Bend your left knee and pull your left heel up towards your left glute…”, „keeping the left thigh and knee resting on the inside of the right thigh and pointing straight out from the left hip joint”; dolna noga prosta tylko w pozycji wyjściowej: „with your legs extended straight away from your body”):
- * leżymy na LEWYM boku (klatka ku −z, od kamery), górna (prawa) noga: udo w linii tułowia (biodro ≈ 13°, udo spoczywa na dolnym udzie), kolano zgięte ok. 140° (granica modelu) ku tyłowi ciała (+z, do kamery),
- * dłoń górnej ręki (zza pleców) przy kostce (1,3 cm; środek dłoni na odcinku bark–kostka, sięg ręki ≈ 63 cm). */
+ * leżymy na LEWYM boku (klatka ku −z, od kamery, tułów odchylony do tyłu o 15°), górna (prawa) noga: udo w linii tułowia (biodro ≈ 13°, udo spoczywa na dolnym udzie), kolano zgięte ok. 140° (granica modelu) ku tyłowi ciała (+z, do kamery),
+ * dłoń górnej ręki (zza pleców) przy kostce (1,3 cm; środek dłoni na odcinku bark–kostka, sięg ręki ≈ 63 cm); dolna ręka zgięta, przedramię pod głową (głowa na przedramieniu, styk), dolna stopa wzdłuż podłogi (stopa na zewnętrznej krawędzi: nie w osi widoku). */
 const SQ_PSI = 40; const SQ_POD = 45;
 function sideQuad(cw) {
-  const m = [0, PYB, 0]; const T = sonda(m, -90, { ext: { roll: -90 } }); const H = T.hip.R; const B = BODY();
+  const m = [0, PYB, 0]; const T = sonda(m, -90, { ext: { roll: SQ_ROLL, lean: SQ_LEAN } }); const H = T.hip.R; const B = BODY();
   const th = 5 * R; const d1 = [Math.cos(th), -Math.sin(th), 0]; const K1 = add(H, d1, B.thigh);
   const kf = 40 * R; /* kąt wewnętrzny kolana (zgięcie 140°); goleń zawraca ku tyłowi ciała (+z) */
   const psi = SQ_PSI * R; /* płaszczyzna zgięcia kolana: ku tyłowi ciała (+z) i w górę (+y) */
   const aR = add(K1, [-d1[0] * Math.cos(kf), -d1[1] * Math.cos(kf) + Math.sin(kf) * Math.sin(psi), Math.sin(kf) * Math.cos(psi)], B.shank).map(r1);
   const mid = [(H[0] + aR[0]) / 2, (H[1] + aR[1]) / 2, (H[2] + aR[2]) / 2]; const pole = nrm([K1[0] - mid[0], K1[1] - mid[1], K1[2] - mid[2]]).map((x) => r1(x * 100) / 100);
   const aL = [T.hip.L[0] + 82.6, 8, T.hip.L[2]];
-  const nogi = { R: { a: aR, pod: SQ_POD, rot: 0, pole }, L: { a: aL, pod: 0, rot: 90, pole: [0, 1, -0.3] } };
-  const rece = { R: { g: sieganie(T.sh.R, aR), pole: [0, 1, 0.5] }, L: { g: [T.sh.L[0] - 12, 14, T.sh.L[2] - 8], pole: [0, 0.3, -1] } };
+  const nogi = { R: { a: aR, pod: SQ_POD, rot: 0, pole }, L: { a: aL, pod: 0, rot: 60, pole: [0, 1, -0.3] } };
+  const rece = { R: { g: sieganie(T.sh.R, aR), pole: [0, 1, 0.5] }, L: { g: [T.sh.L[0] - 22, 10.8, T.sh.L[2]], pole: [0, 0.3, -1] } };
   return statyczna(RODZINA, cw, SP, bokRamka(nogi, rece));
 }
 
@@ -107,9 +109,9 @@ function sideQuad(cw) {
 /** Cat-Cow (ACE #15: klęk podparty, dłonie pod barkami, kolana pod biodrami; koci grzbiet: brzuch w górę, „Allow your head to fall towards your chest, maintaining alignment with the spine.”; krowa: brzuch opada ku podłodze, kręgosłup wygięty, bez zalecenia dla głowy): głowa idzie za kręgosłupem
  * — przy kocim grzbiecie opuszczona ku klatce (głowa − tułów +28°), w przejściu +14°, przy krowie w linii z tułowiem (0°; źródło nie każe unosić głowy). */
 function catCow(cw) {
-  const B = BODY(); const hx = 60; const Sy = 65.8; const Py = 8.8 + B.thigh;
+  const B = BODY(); const hx = 60; const Sy = 65.8; const PX = 12.9; const Py = 8.8 + B.thigh;
   const fr = (u, bend, glowaWzgTulowia) => {
-    const chord = Math.cos(0.55 * bend * R); const phi = Math.asin((Sy - Py) / (B.trunk * chord)); const p = 90 - phi / R; const P = [hx - B.trunk * chord * Math.cos(phi), Py];
+    const chord = Math.cos(0.55 * bend * R); const phi = Math.asin((Sy - Py) / (B.trunk * chord)); const p = 90 - phi / R; const P = [PX, Py]; /* miednica (i kolana pod nią) stoi w miejscu: kolana nie jeżdżą po podłodze (recenzja r4: 1,6 cm); barki przesuwają się o ≤ 1,5 cm względem dłoni (ręce giętkie) */
     const aK = (s) => { const f = fk([P[0], P[1], POL(s) * HIP()], [0, -1, 0], [Math.cos(165 * R), Math.sin(165 * R), 0]); return { a: [f.ankle[0], f.ankle[1], POL(s) * 10], pod: -90, rot: 10, pole: [0.15, -1, 0] }; };
     return K({ u, m: P, p, bend, head: p + glowaWzgTulowia, R: aK('R'), L: aK('L'), hr: { g: [hx, 2, 19], pole: [-0.5, -1, 0.3] }, hl: { g: [hx, 2, -19], pole: [-0.5, -1, -0.3] } });
   };

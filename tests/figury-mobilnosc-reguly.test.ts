@@ -7,6 +7,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { keyframeFrame, jointAngles, GIRTH, ISOMETRIC } from '@/lib/figures/v2';
 import { metricFor } from '@/lib/seed';
 import { EN } from '@/lib/i18n.en';
@@ -232,5 +233,81 @@ describe('mięśnie karty zgodne z rysunkiem pozy (recenzja mobilności r2: Gast
       expect([p.cwiczenie, wyzej >= 15]).toEqual([p.cwiczenie, true]);
     }
     expect(mieśnie("Child's Pose")).not.toContain('lats');
+  });
+});
+
+/* ---------- recenzja mobilności r4 (28.10.2026): R9 „ciało leży” (z obrysu), R10 „część ciała nie znika”, górny próg „lekko” (kolano) ---------- */
+const ROOT = path.resolve(__dirname, '..');
+const SKAN = `
+import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path';
+import { loadV2 } from ${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-build.mjs'))};
+import * as J from ${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-jakosc.mjs'))};
+import { regulyDla } from ${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-sens.mjs'))};
+const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'skan-mob-')); const { v2 } = loadV2(dir); const D = ${JSON.stringify(DIR)};
+const out = { lezy: [], znika: [], lekko: [], poz: 0, lezacych: 0 };
+for (const f of fs.readdirSync(D).filter((x) => x.endsWith('.json'))) {
+  const d = JSON.parse(fs.readFileSync(path.join(D, f), 'utf8'));
+  for (const [cw, p] of Object.entries(d.cwiczenia)) { out.poz++; if (J.lezyAlboSiedzi(v2, p)) out.lezacych++;
+    const a = J.cialoLezy(v2, p, { glowa: p.rodzina === 'mobility_floor' }); if (a.length) out.lezy.push({ rodzina: p.rodzina, cwiczenie: cw, opisy: a });
+    const b = J.czescCialaNieZnika(v2, p); if (b.length) out.znika.push({ rodzina: p.rodzina, cwiczenie: cw, opisy: b });
+    const rl = regulyDla(p.rodzina, cw).filter((r) => /lekko/i.test(r.id) && ['kolana_max', 'kolano_zakres_ruch'].includes(r.typ));
+    if (rl.length) { let mx = 0; const us = new Set([...Array.from({ length: 41 }, (_, i) => i / 40), ...p.klatki.map((k) => k.u)]);
+      for (const u of us) { const sk = v2.keyframeFrame(p, u).sk; for (const s of ['R', 'L']) mx = Math.max(mx, v2.jointAngles(sk, s).knee); }
+      out.lekko.push({ rodzina: p.rodzina, cwiczenie: cw, reguly: rl.map((r) => r.id), max: Math.round(mx * 10) / 10 }); } }
+}
+console.log(JSON.stringify(out));
+`;
+const skan = ((): { lezy: { rodzina: string; cwiczenie: string; opisy: string[] }[]; znika: { rodzina: string; cwiczenie: string; opisy: string[] }[]; lekko: { rodzina: string; cwiczenie: string; reguly: string[]; max: number }[]; poz: number; lezacych: number } =>
+  JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', SKAN], { cwd: ROOT, env: { PATH: process.env.PATH ?? '' } as unknown as NodeJS.ProcessEnv, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })))();
+
+/** Znane trafienia R9/R10 poza mobilnością (zapadka: nowe pary rodzina|ćwiczenie nie powstają; naprawa pozy tylko zmniejsza listę). Ocena: PRAWDZIWE = poza do poprawy w swojej rodzinie; FAŁSZYWE = reguła nie dotyczy ruchu. */
+export const TRAFIENIA_R9_R10: Record<string, string> = {
+  'cialo_lezy|glute_floor|Clamshell': 'PRAWDZIWE: leżenie na boku jak w Side-Lying Quad Stretch — obrys tułowia 4,3 cm i spodenek 4,6 cm nad podłogą, głowa 13,5 cm bez podparcia; do poprawy w rodzinie glute_floor tym samym sposobem (miednica 20 cm, obrót tułowia −75°, przechył 2°)',
+  'cialo_lezy|leg_isolation|Slider Hamstring Curl': 'FAŁSZYWE: mostek na jednej nodze — miednica uniesiona celowo (środek na 19,9 cm), reguła „miednica leży” zakłada leżenie bez unoszenia',
+  'czesc_ciala_nie_znika|back_extension|Lower Back Curl': 'PRAWDZIWE: obie stopy rysują się w widoku z boku jako punkt (stopa wprost na kamerę); do poprawy w rodzinie back_extension',
+  'czesc_ciala_nie_znika|core_floor|Superman': 'PRAWDZIWE: obie stopy rysują się w widoku z boku jako punkt; do poprawy w rodzinie core_floor',
+  'czesc_ciala_nie_znika|row|Seal Row (sztanga)': 'PRAWDZIWE: obie stopy rysują się w widoku z boku jako punkt; do poprawy w rodzinie row',
+};
+/** Pozy z regułą „lekko” (kolano), w których kolano przekracza 30° (konwencja „lekko” z obie_kolana_lekko): znane, bo ich reguły mają własny, wyższy próg (wiosłowanie w opadzie ≤ 40°). Zapadka. */
+export const LEKKO_PONAD_30 = ['Bent Over Row (sztanga)', 'Bent Over Row (hantle)', 'Reverse Grip Bent Over Row', 'Barbell Rear Delt Row', 'Pendlay Row', 'Bent Over Row (linki)', 'T-Bar Row'];
+
+describe('R9 „ciało leży” (obrys z boku) i R10 „część ciała nie znika” na wszystkich pozach z danych (recenzja mobilności r4, 28.10.2026)', () => {
+  const klucz = (r: string, t: { rodzina: string; cwiczenie: string }) => `${r}|${t.rodzina}|${t.cwiczenie}`;
+  test('skan obejmuje wszystkie pozy z danych, z czego ≥ 25 leżących lub siedzących (reguła nie jest martwa)', () => { expect(skan.poz).toBeGreaterThan(400); expect(skan.lezacych).toBeGreaterThanOrEqual(25); });
+  test('rodziny mobilności: 0 trafień R9 i R10 (Side-Lying Quad Stretch leży: tułów i spodenki ≤ 2 cm, głowa na przedramieniu, stopa widoczna)', () => {
+    expect([...skan.lezy, ...skan.znika].filter((t) => MOB.includes(t.rodzina))).toEqual([]);
+  });
+  test('pozostałe rodziny: trafienia są znane i opisane (zapadka; nowe trafienie = poza do poprawy albo świadomy wpis z oceną)', () => {
+    const znalezione = [...skan.lezy.filter((t) => !MOB.includes(t.rodzina)).map((t) => klucz('cialo_lezy', t)), ...skan.znika.filter((t) => !MOB.includes(t.rodzina)).map((t) => klucz('czesc_ciala_nie_znika', t))];
+    for (const k of znalezione) expect([k, k in TRAFIENIA_R9_R10]).toEqual([k, true]);
+    for (const [k, ocena] of Object.entries(TRAFIENIA_R9_R10)) { expect(ocena).toMatch(/^(PRAWDZIWE|FAŁSZYWE)/); expect(k.split('|').length).toBe(3); }
+  });
+});
+
+describe('„lekko” ma górny próg: kolano ≤ 30° (konwencja) w regule obie_kolana_lekko (recenzja mobilności r4: Standing Soleus And Achilles Stretch miał tylne kolano 58°)', () => {
+  const SENS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/figury-sens.json'), 'utf8')).rodziny as Record<string, { reguly: Record<string, { typ: string; parametry: Record<string, number | string>; liczba: string }> }>;
+  const lekkie = Object.entries(SENS).flatMap(([rodzina, d]) => Object.entries(d.reguly).filter(([id, r]) => /lekko/i.test(id) && ['kolana_max', 'kolano_zakres_ruch'].includes(r.typ)).map(([id, r]) => ({ rodzina, id, r })));
+  test('każda reguła „lekko” (kolano) ma górny próg (max_deg albo max_max_deg), a obie_kolana_lekko ma 30° opisane jako konwencja', () => {
+    expect(lekkie.length).toBeGreaterThanOrEqual(5);
+    for (const { rodzina, id, r } of lekkie) expect([rodzina, id, typeof (r.parametry.max_deg ?? r.parametry.max_max_deg)]).toEqual([rodzina, id, 'number']);
+    const o = SENS.mobility_stand.reguly.obie_kolana_lekko; expect(o.parametry).toEqual({ nogi: 'obie', min_max_deg: 10, max_max_deg: 30 }); expect(o.liczba).toMatch(/konwencja/); expect(o.liczba).toMatch(/30°/);
+  });
+  test('pozy z regułą „lekko”: kolano > 30° tylko w znanych pozach (wiosłowanie w opadzie, reguła ≤ 40°); mobilność i zwis ≤ 30°', () => {
+    const ponad = skan.lekko.filter((x) => x.max > 30).map((x) => x.cwiczenie).sort(); expect(ponad).toEqual([...LEKKO_PONAD_30].sort());
+    for (const x of skan.lekko.filter((y) => MOB.includes(y.rodzina) || y.rodzina === 'core_hang')) expect([x.cwiczenie, x.max <= 30]).toEqual([x.cwiczenie, true]);
+    expect(skan.lekko.some((x) => x.cwiczenie === 'Standing Soleus And Achilles Stretch')).toBe(true);
+  });
+  test('Standing Soleus And Achilles Stretch: oba kolana zgięte 10–30°, tylna pięta na podłodze, kostka tylnej nogi ≥ 20° (R1 nadal spełniona)', () => {
+    const p = wczytaj().find((x) => x.cwiczenie === 'Standing Soleus And Achilles Stretch')!; const s = sk(p, 0);
+    for (const x of ['R', 'L'] as const) { const k = jointAngles(s, x).knee; expect([x, k >= 10 && k <= 30]).toEqual([x, true]); }
+    expect(Math.min(s.legs.R.heel[1], s.legs.L.heel[1])).toBeLessThanOrEqual(PROGI.piętaNaPodlodzeCm); expect(REGULY.R1_kostka_lydki(p)).toEqual([]);
+  });
+});
+
+describe('Cat-Cow: kolana nie jeżdżą po podłodze (recenzja mobilności r4: 1,6 cm między klatkami)', () => {
+  test('środek kolan (x) zmienia się o ≤ 0,5 cm w ruchu, dłonie stoją', () => {
+    const p = wczytaj().find((x) => x.cwiczenie === 'Cat-Cow')!; const kx: number[] = []; const dx: number[] = [];
+    for (const u of siatka(40)) { const s = sk(p, u); kx.push(s.legs.R.knee[0], s.legs.L.knee[0]); dx.push(s.arms.R.grip[0], s.arms.L.grip[0]); }
+    expect(Math.max(...kx) - Math.min(...kx)).toBeLessThanOrEqual(0.5); expect(Math.max(...dx) - Math.min(...dx)).toBeLessThanOrEqual(0.5);
   });
 });
