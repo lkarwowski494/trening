@@ -38,7 +38,20 @@ async function writePhase(phase: BootPhaseName): Promise<void> {
 async function handledBootFailure(guard: boolean | undefined): Promise<void> {
   if (guard && db) await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_GUARD_KEY, JSON.stringify({ starts: 0 })).catch(() => {});
 }
+/** M1-audytor-generalny-032 (pętla 2): każdy błąd startu niesie kod diagnostyczny do „Napisz do nas” (etap, czas, dane, schemat, licznik — bez treści
+ * błędu, decyzja 7a): migracja → „start: migrate”, dane z nowszej wersji → „start: newer”, pozostałe → „start: init”; tryb awaryjny pętli ma własny kod (bootDiag). */
 export async function init(opts: { guard?: boolean; retry?: boolean } = {}): Promise<void> {
+  try { await initInner(opts); } catch (e) {
+    const x = e as { bootDiag?: unknown; migrationFailed?: boolean; newerSchema?: number };
+    if (e && typeof e === 'object' && typeof x.bootDiag !== 'string') {
+      const etap = x.migrationFailed ? 'migrate' : x.newerSchema != null ? 'newer' : 'init';
+      const schema = x.newerSchema ?? SCHEMA_VERSION;
+      x.bootDiag = `start: ${etap}, ${Math.max(0, Date.now() - bootStartedAt)} ms, ${bootPhaseCtx?.hadData ? 'data' : 'empty'}, schema ${schema}, n=${bootPhaseCtx?.starts ?? 0}`;
+    }
+    throw e;
+  }
+}
+async function initInner(opts: { guard?: boolean; retry?: boolean }): Promise<void> {
   if (S) return;
   bootStartedAt = Date.now(); stableEarly = false; bootPhaseCtx = null; /* ZK-07: nowy start */
   setDb(await openDb());
