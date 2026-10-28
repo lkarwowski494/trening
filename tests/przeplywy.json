@@ -2041,7 +2041,7 @@
    ],
    "scenariusz": "28-dluga-historia.yaml",
    "znaczniki": [
-    "PR: .*",
+    "Record: .*",
     "4 sessions"
    ]
   },
