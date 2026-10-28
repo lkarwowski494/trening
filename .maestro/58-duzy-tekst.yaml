@@ -50,5 +50,5 @@ name: Duży tekst dostępności — ekran Trening
 - tapOn: "Back"
 # --- po treningu: ekran Trening z podsumowaniem tygodnia ---
 - tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "This week", timeout: 30000 }
+- scrollUntilVisible: { element: "This week", direction: DOWN, timeout: 60000, centerElement: true }   # przy dużym tekście i z planem podsumowanie tygodnia leży pod kartą dnia (run 40617152627, zrzut run5-step-050)
 - takeScreenshot: 589-po-treningu
