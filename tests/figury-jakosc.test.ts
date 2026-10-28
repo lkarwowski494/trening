@@ -277,7 +277,7 @@ describe('reguły jakości póz (luki z recenzji ruchu): poza spełniająca bez 
   test('ciało leży z obrysu (R9): obrys tułowia i spodenek (miednica się nie unosi) ≤ 2 cm nad podłogą, głowa na podłodze albo na ręce; kolizory nie decydują; siad, klęk i czworak nie są „leżeniem”; miednica unoszona w ruchu (Reverse Crunch) nie jest oceniana; podpięte do mobility_floor w sprawdzJakosc', () => {
     const Z = W.cialo_lezy_zakres as unknown as Record<string, unknown>;
     expect(Z.obrysTulow).toBe(1); expect(Z.obrysMiednica).toBe(1); expect(Z.glowaBezOpcji).toBe(0); expect(Z.glowaZOpcja).toBe(1);
-    expect(Z.rodzajeSiad).toEqual([true, false, false, false]); expect(Z.miednicaUnosiSie).toBe(0); expect(Z.wSprawdzJakosc).toEqual([5, 0]) /* tułów, miednica, dolna noga (udo, goleń), głowa */;
+    expect(Z.rodzajeSiad).toEqual([true, false, false, false]); expect(Z.miednicaUnosiSie).toBe(0); expect(Z.wSprawdzJakosc).toEqual([4, 0]) /* tułów, miednica, dolna noga (udo; goleń w profilu mieści się w 4 cm — backlog figur 28.10.2026: miara profilem i próg 4 cm), głowa */;
   });
   test('środek ciężkości: otoczka punktów i udziały mas sumują się do 1', () => { expect(W.otoczka_i_masy.dobre).toEqual([0, 0, 0]); });
   test('podgląd: HTML ma po jednej komórce na klatkę kluczową w obu widokach (= klatki_u), wiersz bez zawijania, skala maleje przy wielu klatkach', () => { expect(W.podglad_html.dobre).toEqual([0, 0, 0, 0, 0]); });

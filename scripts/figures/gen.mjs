@@ -6,6 +6,7 @@
 import { fileURLToPath } from 'node:url';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { KOLANO_LEKKO_MAX_DEG } from './v2-sens.mjs';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const FIG = join(root, 'data/zrodla/figures.json');
@@ -35,6 +36,7 @@ export function validate(fig, cues, pl) {
   for (const k of Object.keys(fig.exercises)) {
     if (!own(cues.exercises, k)) { errs.push(`${k}: figura bez wskazówek etapu 1`); continue; }
     const f = resolve(fig.exercises, k); if (!f) { errs.push(`${k}: nie da się rozwinąć „like”`); continue; }
+    for (const fr of f.frames) for (const w of fr.why) if (w.q === 'joint' && w.j === 'knee' && w.c === 'row.hinge' && w.eq + w.tol > KOLANO_LEKKO_MAX_DEG) errs.push(`${k}: kolano „lekko ugięte” (${w.c}) sięga ${w.eq + w.tol}° — górna granica to KOLANO_LEKKO_MAX_DEG = ${KOLANO_LEKKO_MAX_DEG}°`);
     const ids = cueIds(cues.exercises[k]);
     if (!['side', 'front'].includes(f.view)) errs.push(`${k}: widok ${f.view}`);
     const order = FRAME_ORDER[f.frames.length];
@@ -87,6 +89,7 @@ export function render(fig, cues, pl) {
   L.push('- Figura powstaje tylko dla ćwiczenia, które ma wskazówki etapu 1; opis dla VoiceOver to zdania „Ruch” z tych wskazówek.');
   L.push('- Każda poza ma co najmniej jedno sprawdzenie powiązane ze zdaniem wskazówki (np. „uda równolegle do podłogi” → odcinek biodro–kolano poziomo ± tolerancja). Test liczy geometrię i sprawdza, że poza spełnia każde z nich.');
   L.push('- Kąty, których żadne zdanie nie podaje (pochylenie tułowia, długość kroku, kąt ławki…), są **uproszczeniem ilustracyjnym** — rysunek nie twierdzi, że to jedyna poprawna wartość. Przy ćwiczeniu podana jest uwaga, co jest ilustracyjne.');
+  L.push(`- Kolano „lekko ugięte” (np. \`row.hinge\`): żadne źródło nie podaje kąta, więc górna granica to jedna stała konwencji **KOLANO_LEKKO_MAX_DEG = ${KOLANO_LEKKO_MAX_DEG}°** (\`scripts/figures/v2-sens.mjs\`), wspólna dla figur i reguł póz z danych (wiosłowanie, zwis, rozciąganie stojąc).`);
   L.push('- Proporcje ciała i przyrządów są schematyczne (uproszczenie ilustracyjne), wszystkie w jednym module `lib/figures/geom.ts`.');
   L.push('- „Rzut ręki” (armProj): ręka odwiedziona w bok (szeroki chwyt, łokcie na boki) w widoku z boku wygląda na krótszą — kąty ręki są wtedy kątami rzutu, nie stawu, i nie podlegają sprawdzeniu zakresu.');
   L.push('- Animacja: pozy pośrednie z interpolacji kątów; „druga podpora” (level) obraca figurę wokół kotwicy, żeby np. dłonie przy pompkach nie schodziły pod podłogę.');

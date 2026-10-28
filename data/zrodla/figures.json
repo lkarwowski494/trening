@@ -283,16 +283,16 @@
       "props": [{"k": "plate", "at": "hand"}],
       "note": "Pochylenie tułowia ilustracyjne — wskazówki mówią tylko „pochyl tułów w biodrach, plecy proste”.",
       "frames": [
-        {"n": "start", "p": {"t": 30, "hip": 95, "knee": 20, "sh": 60, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "row.fullStretch"}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "row.hinge"}]},
-        {"n": "end", "p": {"t": 30, "hip": 95, "knee": 20, "sh": -40, "el": 109}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "row.bbPull", "tb": [9, 7]}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "row.hinge"}]}
+        {"n": "start", "p": {"t": 30, "hip": 95, "knee": 20, "sh": 60, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "row.fullStretch"}, {"q": "joint", "j": "knee", "eq": 20, "tol": 10, "c": "row.hinge"}]},
+        {"n": "end", "p": {"t": 30, "hip": 95, "knee": 20, "sh": -40, "el": 109}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "row.bbPull", "tb": [9, 7]}, {"q": "joint", "j": "knee", "eq": 20, "tol": 10, "c": "row.hinge"}]}
       ]
     },
     "Bent Over Row (hantle)": {
       "like": "Bent Over Row (sztanga)",
       "props": [{"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
       "frames": [
-        {"n": "start", "p": {"t": 30, "hip": 95, "knee": 20, "sh": 60, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "row.fullStretch"}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "row.hinge"}]},
-        {"n": "end", "p": {"t": 30, "hip": 95, "knee": 20, "sh": -40, "el": 109}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "row.dbPull", "tb": [9, 7]}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "row.hinge"}]}
+        {"n": "start", "p": {"t": 30, "hip": 95, "knee": 20, "sh": 60, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "row.fullStretch"}, {"q": "joint", "j": "knee", "eq": 20, "tol": 10, "c": "row.hinge"}]},
+        {"n": "end", "p": {"t": 30, "hip": 95, "knee": 20, "sh": -40, "el": 109}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "row.dbPull", "tb": [9, 7]}, {"q": "joint", "j": "knee", "eq": 20, "tol": 10, "c": "row.hinge"}]}
       ]
     },
     "Pendlay Row": {
@@ -304,8 +304,8 @@
       "props": [{"k": "rod", "a": [-62, 2], "b": "hand", "ext": 4}, {"k": "plate", "at": "hand", "r": 10, "d": [-6, 0]}],
       "note": "Gryf zaczepiony przy podłodze za ćwiczącym (dźwignia); pochylenie tułowia ilustracyjne.",
       "frames": [
-        {"n": "start", "p": {"t": 30, "hip": 95, "knee": 20, "sh": 60, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "row.fullStretch"}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "row.hinge"}]},
-        {"n": "end", "p": {"t": 30, "hip": 95, "knee": 20, "sh": -40, "el": 109}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "tbar.pull", "tb": [9, 7]}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "row.hinge"}]}
+        {"n": "start", "p": {"t": 30, "hip": 95, "knee": 20, "sh": 60, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "row.fullStretch"}, {"q": "joint", "j": "knee", "eq": 20, "tol": 10, "c": "row.hinge"}]},
+        {"n": "end", "p": {"t": 30, "hip": 95, "knee": 20, "sh": -40, "el": 109}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "tbar.pull", "tb": [9, 7]}, {"q": "joint", "j": "knee", "eq": 20, "tol": 10, "c": "row.hinge"}]}
       ]
     },
     "One Arm Row (hantle)": {

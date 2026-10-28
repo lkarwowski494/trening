@@ -26,9 +26,13 @@ export const PROGI = {
   lezyMiednicaMaxY: 24, /* ciało „leży albo siedzi”: środek miednicy najwyżej tyle nad podłogą w KAŻDEJ klatce (leżenie na boku ≈ 20, na plecach i siad ≈ 10; mostek ≥ 28 i klęk Child's Pose 26 to nie leżenie) */
   lezyMiednicaRuchCm: 2, /* miednica „stoi” w miejscu, gdy jej oś zmienia wysokość o najwyżej tyle w ruchu (unoszenie miednicy w ruchu, np. Reverse Crunch, jest celowe: jej obrys sprawdzamy tylko, gdy nie unosi się) */
   lezyTulowDeg: 60, /* tułów „poziomy” (leży), gdy jego oś odchyla się od pionu o co najmniej tyle */
-  lezyBokNogaCm: 3, /* R9 rozszerzone (recenzja mobilności r5, 28.10.2026): leżąc na boku dolna noga (udo, goleń; obrys z boku) leży przy podłodze, najwyżej tyle nad nią w każdej klatce. KONWENCJA RYSUNKU (uproszczenie ilustracyjne): próg 3 cm, a nie 2 jak dla tułowia, bo przekrój uda i goleni jest okrągły, a kolano i staw skokowy wcinają obrys; stopy ta reguła nie sprawdza (stopa grzbietem do podłogi daje fałszywy odstęp) */
+  lezyBokNogaCm: 4, /* R9 rozszerzone (recenzja mobilności r5, 28.10.2026): leżąc na boku dolna noga (udo, goleń; obrys z boku) leży przy podłodze, najwyżej tyle nad nią w każdej klatce. KONWENCJA RYSUNKU (uproszczenie ilustracyjne): próg 4 cm (backlog figur 28.10.2026: noga mierzona PROFILEM, kolumna po kolumnie w środkowej części kształtu, a nie minimum kształtu, które przepuszczało nogę leżącą tylko jednym końcem; profil uda w zatwierdzonym Side-Lying Quad to 3,4 cm przy pochyleniu uda ≈ 2°, a noga z kostką uniesioną o 2 cm ma 4,9 cm — próg 3 → 4 przy zmianie miary), a nie 2 jak dla tułowia, bo przekrój uda i goleni jest okrągły, a kolano i staw skokowy wcinają obrys; stopy ta reguła nie sprawdza (stopa grzbietem do podłogi daje fałszywy odstęp) */
   lezyBokRollDeg: 45, /* leżenie na boku: oś tułowia pozioma (lezyTulowDeg), a obrót tułowia wokół osi długiej co najmniej tyle (|obrotTulowia|; −90 = dokładnie na boku) */
   glowaPodparcieCm: 1, /* głowa leżącego: leży na podłodze (dolna krawędź kolizora ≤ lezyCm) albo opiera się o ramię/przedramię/dłoń (odstęp kolizorów ≤ tyle) */
+  mostekDeg: 5, /* miednica uniesiona CELOWO (mostek, unoszenie bioder): oś barki → miednica opada ku barkom o co najmniej tyle stopni (kąt ze znakiem); obrysu miednicy takiej pozy R9 nie sprawdza (miednica nie leży z założenia) */
+  glowaTulowStalyDeg: 5, /* podparcie głowy sprawdzamy, gdy tułów nie rusza się w ruchu: zmiana kąta tułowia i zgięcia kręgosłupa ≤ tyle (leżenie, w którym pracują tylko kończyny); gdy tułów się unosi albo zwija (brzuszki, Superman, unoszenie tułowia), głowa unosi się z definicji ruchu */
+  podlogaObrysKonczynCm: -2, /* obrys KOŃCZYN (udo, goleń, stopa, ramię, przedramię, dłoń) w pozie leżącej nie schodzi pod linię podłogi bardziej niż tyle (dotąd −2 cm tylko dla osi tułowia i głowy; kolizory kończyn −1,6) */
+  profilBrzegProc: 0.15, /* pomiar nogi leżącej profilem: pomijamy tyle długości kształtu z każdego końca (zaokrąglenie kapsuły przy stawie nie jest „wiszeniem”) */
   znikaCm: 1.5, /* „znikająca część ciała”: kształt części ciała (id kości) ma w rzucie z boku albo z przodu w żadnej osi rozmiar mniejszy niż tyle (stopa skierowana wprost na kamerę rysuje się jako punkt) */
   wisiCm: 1, /* ćwiczenie na podłodze: najniższy punkt tułowia/miednicy (oś − promień) najwyżej tyle nad podłogą (leżąc i siedząc ciało leży, nie wisi) */
   lokiecPrzedPlecamiMaxCm: 2, /* przyciąganie (wiosłowanie): na końcu łokieć leży najwyżej tyle PRZED płaszczyzną pleców (po stronie klatki/drążka); łokieć ma kończyć przy tułowiu, za linią pleców, nie nad klatką */
@@ -276,15 +280,39 @@ export function nicNieWisi(v2, poza) {
   return [];
 }
 
+/** Dolna krawędź kształtu kolumna po kolumnie: najwyższy punkt dolnego obrysu w środkowej części kształtu (bez końców, profilBrzegProc z każdej strony). Minimum kształtu zaniżało odstęp nogi leżącej tylko jednym końcem (druga strona wisiała). */
+const profilKsztaltu = (v2, x) => { const pts = x.k === 'poly' ? x.pts : x.k === 'ellipse' ? v2.ellipsePts(x.c, x.rx, x.ry, x.rot) : null; if (!pts) return null;
+  const xs = pts.map((p) => p[0]); const x0 = Math.min(...xs), x1 = Math.max(...xs); if (x1 - x0 < 1e-6) return Math.min(...pts.map((p) => p[1]));
+  let naj = -Infinity; const N = 12; for (let i = 0; i <= N; i++) { const cx = x0 + (x1 - x0) * (PROGI.profilBrzegProc + (1 - 2 * PROGI.profilBrzegProc) * i / N); let dol = Infinity;
+    for (let j = 0; j < pts.length; j++) { const a = pts[j], b = pts[(j + 1) % pts.length]; if ((a[0] - cx) * (b[0] - cx) > 0 || a[0] === b[0]) continue; const t = (cx - a[0]) / (b[0] - a[0]); dol = Math.min(dol, a[1] + t * (b[1] - a[1])); }
+    if (Number.isFinite(dol)) naj = Math.max(naj, dol); } return Number.isFinite(naj) ? naj : Math.min(...pts.map((p) => p[1])); };
+const profilNisko = (v2, sh, re) => { const l = sh.filter((x) => re.test(x.id ?? '')).map((x) => profilKsztaltu(v2, x)).filter((y) => y !== null); return l.length ? Math.min(...l) : null; };
 const dolnaKrawedz = (v2, x) => { const pts = x.k === 'poly' ? x.pts : x.k === 'ellipse' ? v2.ellipsePts(x.c, x.rx, x.ry, x.rot) : x.k === 'circle' ? [[x.c[0], x.c[1] - x.r]] : null; return pts ? Math.min(...pts.map((q) => q[1])) : null; };
 /** Poza leżąca albo siedząca: środek miednicy najwyżej lezyMiednicaMaxY nad podłogą w każdej klatce. */
 export function lezyAlboSiedzi(v2, poza) { return siatka(poza).every((u) => v2.keyframeFrame(poza, u).sk.pelvis[1] <= PROGI.lezyMiednicaMaxY); }
+/** Podparcie głowy ma sens tylko tam, gdzie tułów nie rusza się w ruchu (leżenie, w którym pracują kończyny): kąt tułowia i zgięcie kręgosłupa zmieniają się o ≤ glowaTulowStalyDeg, a kręgosłup nie jest zwinięty. Rozróżnienie z danych pozy, nie z listy nazw (brzuszki, Superman, Hollow Hold: głowa unosi się z definicji ruchu). */
+export function glowaWymagana(v2, poza) {
+  const k = siatka(poza).map((u) => { const s = v2.keyframeFrame(poza, u).sk; return Math.atan2(s.shoulderC[1] - s.pelvis[1], Math.hypot(s.shoulderC[0] - s.pelvis[0], s.shoulderC[2] - s.pelvis[2])) * 180 / Math.PI; });
+  const kr = poza.klatki.map((x) => Math.abs(x.zgiecieKregoslupa ?? 0));
+  return Math.max(...k) - Math.min(...k) <= PROGI.glowaTulowStalyDeg && Math.max(...kr) <= PROGI.glowaTulowStalyDeg;
+}
+/** Obrys kończyn i tułowia w pozie leżącej albo siedzącej nie schodzi pod linię podłogi (rzut z boku) bardziej niż podlogaObrysKonczynCm w żadnej klatce. */
+export function obrysKonczynPodPodloga(v2, poza) {
+  if (!lezyAlboSiedzi(v2, poza)) return []; const o = []; const zgl = new Set();
+  for (const u of siatka(poza)) for (const x of v2.dataShapes(poza, u, 'side')) {
+    if (!/^(thigh|shank|foot|uarm|farm|hand)[RL]$/.test(x.id ?? '') || zgl.has(x.id)) continue; /* tułów, spodenki i szyja: osobny próg podlogaTulow (−2, oś − promień) i obrys R9 */
+    const y = dolnaKrawedz(v2, x); if (y !== null && y < PROGI.podlogaObrysKonczynCm) { zgl.add(x.id); o.push(`obrys „${x.id}” schodzi ${f1(-y)} cm pod podłogę (u = ${u}; próg ${-PROGI.podlogaObrysKonczynCm} cm) — kończyna leżąca nie wchodzi w podłoże`); }
+  }
+  return o;
+}
 /** 20. Ciało leży (R9): w pozie leżącej albo siedzącej obrys tułowia (kształt „torso” w rzucie z boku) leży przy podłodze (≤ lezyCm) w każdej klatce, a gdy miednica się nie unosi (zmiana wysokości osi ≤ lezyMiednicaRuchCm), także obrys spodenek (kształty „shortsR/L”);
  * głowa leży na podłodze albo opiera się o rękę (odstęp kolizorów ≤ glowaPodparcieCm). Obrys, nie kolizory: kolizor ciała leżącego na boku liczy grubość (przód–tył), a rysunek pokazuje szerokość, więc kolizor zaniżał odstęp o 5–10 cm;
  * odwrotnie, stopa grzbietem do podłogi daje w kolizorze fałszywy odstęp (kapsuła stopy +3,5 cm), więc nóg i stóp ta reguła nie sprawdza. */
 export function cialoLezy(v2, poza, { glowa = false } = {}) {
   if (!lezyAlboSiedzi(v2, poza)) return []; const o = []; const us = siatka(poza);
-  const ys = us.map((u) => v2.keyframeFrame(poza, u).sk.pelvis[1]); const miednicaStoi = Math.max(...ys) - Math.min(...ys) <= PROGI.lezyMiednicaRuchCm; const zgl = new Set();
+  const ys = us.map((u) => v2.keyframeFrame(poza, u).sk.pelvis[1]); const nachyl = (s) => Math.atan2(s.shoulderC[1] - s.pelvis[1], Math.hypot(s.shoulderC[0] - s.pelvis[0], s.shoulderC[2] - s.pelvis[2])) * 180 / Math.PI;
+  const mostek = us.some((u) => nachyl(v2.keyframeFrame(poza, u).sk) <= -PROGI.mostekDeg); /* miednica powyżej barków: unoszona celowo */
+  const miednicaStoi = !mostek && Math.max(...ys) - Math.min(...ys) <= PROGI.lezyMiednicaRuchCm; const zgl = new Set();
   const zglos = (k, t) => { if (!zgl.has(k)) { zgl.add(k); o.push(t); } };
   for (const u of us) {
     const sh = v2.dataShapes(poza, u, 'side'); const nisko = (re) => { const l = sh.filter((x) => re.test(x.id ?? '')).map((x) => dolnaKrawedz(v2, x)).filter((y) => y !== null); return l.length ? Math.min(...l) : null; };
@@ -294,7 +322,7 @@ export function cialoLezy(v2, poza, { glowa = false } = {}) {
     const s = v2.keyframeFrame(poza, u).sk; const leży = Math.acos(Math.max(-1, Math.min(1, (s.shoulderC[1] - s.pelvis[1]) / (Math.hypot(...s.shoulderC.map((x, i) => x - s.pelvis[i])) || 1)))) * 180 / Math.PI >= PROGI.lezyTulowDeg;
     if (leży && Math.abs(v2.jointAngles(s, 'R').trunkRoll ?? 0) >= PROGI.lezyBokRollDeg) { /* L2: leżenie na boku — dolna noga (strona z niższym biodrem) leży: udo i goleń (obrys z boku) ≤ lezyBokNogaCm */
       const d = s.legs.L.hip[1] <= s.legs.R.hip[1] ? 'L' : 'R';
-      for (const [id, nazwa] of [['thigh', 'udo'], ['shank', 'goleń']]) { const y = nisko(new RegExp(`^${id}${d}$`)); if (y !== null && y > PROGI.lezyBokNogaCm) zglos(`noga_${id}`, `dolna noga (${nazwa}) leży ${f1(y)} cm nad podłogą (u = ${u}; ≤ ${PROGI.lezyBokNogaCm} cm, konwencja) — leżąc na boku dolna noga leży na podłodze, nie wisi`); } }
+      for (const [id, nazwa] of [['thigh', 'udo'], ['shank', 'goleń']]) { const y = profilNisko(v2, sh, new RegExp(`^${id}${d}$`)); if (y !== null && y > PROGI.lezyBokNogaCm) zglos(`noga_${id}`, `dolna noga (${nazwa}) leży ${f1(y)} cm nad podłogą (u = ${u}; ≤ ${PROGI.lezyBokNogaCm} cm, konwencja) — leżąc na boku dolna noga leży na podłodze, nie wisi`); } }
     if (!leży) continue; /* głowa: tylko przy poziomym tułowiu (siad i pozycje ze zwiniętym tułowiem mają głowę nad podłogą z definicji) */
     const C = v2.bodyColliders(s); const gl = C.find((c) => c.id === 'head'); if (!gl) continue;
     const odPodlogi = gl.a[1] - gl.r; if (odPodlogi <= PROGI.lezyCm) continue;
@@ -306,6 +334,7 @@ export function cialoLezy(v2, poza, { glowa = false } = {}) {
     }
     else if (glowa) zglos('glowa', `głowa leży ${f1(odPodlogi)} cm nad podłogą i ${Number.isFinite(odRamienia) ? f1(odRamienia) : '—'} cm od najbliższego ramienia/dłoni (u = ${u}; ≤ ${PROGI.lezyCm} cm od podłogi albo ≤ ${PROGI.glowaPodparcieCm} cm od ręki) — głowa leżącego jest podparta`);
   }
+  o.push(...obrysKonczynPodPodloga(v2, poza));
   return o;
 }
 /** 21. Część ciała nie znika: żaden kształt części ciała (id ≠ sprzęt) nie ma w rzucie z boku ani z przodu rozmiaru poniżej znikaCm w każdej osi (stopa skierowana wprost na kamerę rysuje się jako punkt: „noga bez stopy”). */
@@ -733,7 +762,8 @@ export function sprawdzJakosc(poza, ctx) {
   if ((cechy.has('dol_pompki') || cechy.has('linia_ciala')) && /Push[- ]?Up|Inverted Row/.test(cwiczenie)) dodaj('odwiedzenie_lokcia_przod', odwiedzenieLokciaPrzod(v2, poza));
   if (cechy.has('lezenie')) dodaj('nic_nie_wisi', nicNieWisi(v2, poza));
   if (cechy.has('ledzwie_przy_podlodze')) dodaj('ledzwie_przy_podlodze', ledzwiePrzyPodlodze(v2, poza));
-  if (rodzina === 'mobility_floor' || rodzina === 'mobility_stand') { dodaj('cialo_lezy', cialoLezy(v2, poza, { glowa: rodzina === 'mobility_floor' })); dodaj('czesc_ciala_nie_znika', czescCialaNieZnika(v2, poza)); }
+  if (!ctx.zRigu) dodaj('cialo_lezy', cialoLezy(v2, poza, { glowa: glowaWymagana(v2, poza) })); /* pozy z rigów (ctx.zRigu, tylko raport): Floor Press leży na macie 2 cm, której sprzet nie opisuje — rigi mają własne bazy; R9 liczy od podłogi y = 0 */
+  dodaj('czesc_ciala_nie_znika', czescCialaNieZnika(v2, poza)); /* R9 i R10: bramka dla WSZYSTKICH rodzin (backlog figur 28.10.2026; było: tylko mobilność) */
   dodaj('rzad_bledu_dotyczy', rzadBleduDotyczy(v2, poza));
   if (PRZYCIAGANIE.includes(cwiczenie)) { dodaj('tor_lokcia_przyciaganie', torLokciaPrzyciagania(v2, poza)); dodaj('zwis_startowy', zwisStartowy(v2, poza)); dodaj('tor_lokcia_srodek', torLokciaSrodek(v2, poza)); }
   if (rodzina === 'delt_raise' && wskazowkiLatHeight(cwiczenie) && !(cwiczenie in DLON_NA_WYSOKOSCI_BARKOW_WYJATKI)) dodaj('dlon_na_wysokosci_barkow_swiat', dlonNaWysokosciBarkowSwiat(v2, poza));

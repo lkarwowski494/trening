@@ -1,4 +1,10 @@
 {
+  "stale": {
+    "kolano_lekko_max_deg": {
+      "wartosc": 30,
+      "liczba": "konwencja: kolano „lekko ugięte” ≤ 30° (ACE #12, ISSA i ACE #152 nie podają kąta; badacz 28.10.2026, decyzja koordynatora); jedyna definicja — reguły row.kolana_lekko, core_hang.kolana_lekko i mobility_stand.obie_kolana_lekko odwołują się do niej (v2-sens.mjs KOLANO_LEKKO_MAX_DEG); RDL (hinge.kolana_lekko_ugiete, 45°) ma własną podstawę pomiarową (Lee i in. 2018), a kolana „proste” w prostowaniu łydek (calf, ≤ 20°) to nie „lekko”"
+    }
+  },
   "_opis": "Reguły SENSU ruchu per rodzina i ćwiczenie (26.10.2026, decyzja właściciela: sens ruchu zabezpiecza mechanizm, nie przegląd właściciela; docs/53 bramka 3). Pełne dane z odnośnikami do wskazówek techniki i ich źródeł w data/zrodla/cues.json; do paczki aplikacji NIC stąd nie trafia. Czyta je scripts/figures/v2-sens.mjs (walidator: waliduj() → kody „sens” i „blad-sens”; generator poleceń: sekcja „Reguły sensu”). Każda reguła wywodzi się z wskazówki techniki (pole cue — wskazówka ma źródła w cues.json); LICZBA w regule jest uproszczeniem ilustracyjnym (konwencja), chyba że pole liczba mówi inaczej. Poza POPRAWNA nie łamie żadnej reguły ćwiczenia; każdy błąd bledy[] łamie DOKŁADNIE grupę reguł swojej wskazówki (grupy_bledow) i żadnej innej.",
   "rodziny": {
     "pull_up": {
@@ -2478,10 +2484,10 @@
           "grupa": "kolana",
           "cue": "row.hinge",
           "parametry": {
-            "max_deg": 40
+            "max_deg": "@kolano_lekko_max_deg"
           },
           "zrodlo": "row.hinge („przy lekko ugiętych kolanach”): ACE #12 (lekko ugięte kolana); NSCA Basics s. 46 (kolana lekko ugięte) — przeczytane 26.10.2026",
-          "liczba": "uproszczenie (kolano ≤ 40°)",
+          "liczba": "konwencja (kolano ≤ 30°, jedna stała KOLANO_LEKKO_MAX_DEG: źródła nie podają kąta „lekko”; było 40°, ujednolicone 28.10.2026)",
           "pewnosc": "ustalone"
         }
       },
@@ -3937,10 +3943,10 @@
           "grupa": "kolana",
           "cue": "hang.ribs",
           "parametry": {
-            "max_deg": 40
+            "max_deg": "@kolano_lekko_max_deg"
           },
           "zrodlo": "ISSA, Hanging Leg Raises („Keeping the ribcage down and the knees slightly bent”) — przeczytane 26.10.2026",
-          "liczba": "konwencja (≤ 40°)",
+          "liczba": "konwencja (≤ 30°, jedna stała KOLANO_LEKKO_MAX_DEG; było 40°, ujednolicone 28.10.2026)",
           "pewnosc": "jedno źródło"
         },
         "palce_do_drazka": {
@@ -6789,7 +6795,7 @@
           "parametry": {
             "nogi": "obie",
             "min_max_deg": 10,
-            "max_max_deg": 30
+            "max_max_deg": "@kolano_lekko_max_deg"
           },
           "zrodlo": "ACE #152 krok 4 („To increase the stretch in the soleus, slightly flex (bend) the back knee…”); ACE #214 (wariant na płaszczkowaty: lekko ugięte kolano) — przeczytane 26.10.2026 (jedna organizacja)",
           "liczba": "konwencja (oba kolana zgięte co najmniej 10° i co najwyżej 30°: „slightly” ze źródła nie ma liczby; oba progi to konwencja rysunku, górny dodany po recenzji r4 28.10.2026, bo 58° nie jest lekkim zgięciem)",

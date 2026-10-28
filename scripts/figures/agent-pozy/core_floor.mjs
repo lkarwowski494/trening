@@ -3,6 +3,8 @@
 // Układ: leżenie na plecach — głowa w stronę −x, nogi w stronę +x, miednica [0, 8, 0], pochylenieTulowia −90 (poziomo); na brzuchu — głowa +x, pochylenie +90.
 import { wczytajTeksty } from '../v2-jakosc.mjs';
 import { v2, BODY, R, r1, up, dir, klatka, bladZTrajektorii, zbuduj, barki } from './model.mjs';
+/** Rotacja zewnętrzna stóp leżącego przodem (Superman, Lower Back Curl, Seal Row): 70°, nie 90°. Przy 90° stopa leży wprost na kamerę i rysuje się w widoku z boku jako punkt (R10 czesc_ciala_nie_znika; backlog figur 28.10.2026); 70° to uproszczenie ilustracyjne (model stopy nie ma palców skierowanych do tyłu). */
+export const ROT_STOPA_LEZY = 70;
 
 export const RODZINA = 'core_floor';
 const Y0 = 9.5; /* wysokość miednicy i barków leżącej osoby (głowa leży na podłodze: środek ≈ 9,5 = promień) */
@@ -138,7 +140,7 @@ function superman(cw, { bledy = !!wczytajTeksty()['cobra.mis'] } = {}) { /* bł�
   const us = [0, 0.25, 0.5, 0.75, 1];
   const fr = (u, wznios) => { const phi = Math.asin(Math.min(1, wznios / BODY().trunk)) / R; const p = 90 - phi; const S = barki([0, Y0], p); const aR = phi * 0.6 - 2 - 3 * (1 - u); const hz = 15; /* ręce prosto przed sobą, lekko w górę */
     const ank = () => { const y = 16 + 10 * u; /* r4: biodro ze znakiem, zakres −17°…133°: wyprost nogi w Supermanie ≤ ok. 17° */ const a = Math.asin((y - Y0) / D_PROSTA_NOGA); return [-D_PROSTA_NOGA * Math.cos(a), y]; };
-    const nog = (sg) => ({ ankle: ank(), strona: 'dol', pod: 0, rot: 90, z: ZNOG, pole: [0.15, -1, 0.1 * sg] });
+    const nog = (sg) => ({ ankle: ank(), strona: 'dol', pod: 0, rot: ROT_STOPA_LEZY, z: ZNOG, pole: [0.15, -1, 0.1 * sg] });
     return ramka({ u, miednica: [0, Y0], p, glowa: p * 0.92, nogi: { R: nog(1), L: nog(-1) }, rece: { R: { g: chwyt(S, aR, hz), pole: [0, -1, 0.2] }, L: { g: chwyt(S, aR, -hz), pole: [0, -1, -0.2] } } }); };
   const ok = (u) => fr(u, 8 * u); const zle = (u) => fr(u, 5 + 17 * u); /* błąd: klatka uniesiona o 5 cm już w u = 0, o 22 cm na końcu (przeprost lędźwi) */
   return zbuduj1(cw, us.map(ok), bledy ? [bladZTrajektorii({ cue: 'cobra.mis', postawa: true, znacznik: 'back', us, ok, zle })] : []);
@@ -163,7 +165,7 @@ export const WYJATKI = {};
 export const WYJATKI_OPISU = { 'cobra.mis': 'zestaw ogólny „cobra” (cue-sets.json: Superman, Lower Back Curl) odwołuje się do wskazówki bez tekstu w lib/cues/text/*.json; tekst do napisania przez badacza, przekład przez tłumacza' };
 export const PRZYBLIZENIA = {
   'Alternate Heel Touchers': 'skłon boczny tułowia (przechylTulowia, poza@2) jest sztywny w biodrach, nie łukiem; dłoń kończy ruch przy pięcie, bez dotyku',
-  'Superman': 'przybliżenie: stopy skierowane na zewnątrz (rotacja 90°), bo model stopy nie ma palców skierowanych do tyłu',
+  'Superman': 'przybliżenie: stopy skierowane na zewnątrz (rotacja 70°, nie 90°: przy 90° stopa rysowałaby się w widoku z boku jako punkt), bo model stopy nie ma palców skierowanych do tyłu',
   'Tuck Crunch': 'przybliżenie: skrzyżowanie kostek zastąpione zbliżeniem kostek (z = ±3)',
   'Cocoons': 'ruch ramion: z nad głową w stronę kolan (opis katalogu niejednoznaczny)',
 };

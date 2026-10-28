@@ -6,6 +6,7 @@ import { readFileSync, writeFileSync, appendFileSync, mkdirSync, existsSync, rmS
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { waliduj, krawedzPozy, podgladPartia, klatkiPodgladu, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
+import { zbudujZnacznik, sprawdzPodglad } from '../podglad-znacznik.mjs';
 import { zgodnoscManifestu, wczytajTeksty, tabelaKatow, tabelaKatowMd, podgladWazny } from '../v2-jakosc.mjs';
 import { v2 as silnikV2 } from './model.mjs';
 import { opisCwiczenia, silnikCatalog } from '../gemini-polecenia.mjs';
@@ -60,7 +61,9 @@ async function main() {
     /* P1: znacznik ważności podglądu dla recenzji (mechanizm, nie notatka): bez wyniku kontroli manifestu i tabeli kątów podgląd jest NIEWAŻNY */
     const niewazny = podgladWazny(manifest); for (const f of ['PODGLAD-WAZNY.txt', 'PODGLAD-NIEWAZNY.txt']) rmSync(join(dir, f), { force: true });
     if (niewazny.length) { writeFileSync(join(dir, 'PODGLAD-NIEWAZNY.txt'), 'Podgląd NIE trafia do recenzji:\n' + niewazny.map((x) => `- ${x}`).join('\n') + '\n'); console.log('PODGLĄD NIEWAŻNY DLA RECENZJI:'); for (const x of niewazny) console.log(`  - ${x}`); process.exitCode = 1; }
-    else writeFileSync(join(dir, 'PODGLAD-WAZNY.txt'), `Kontrola manifestu (zgodnosc_manifestu) wykonana, bez niezgodności; tabela kątów stawów w manifest.json i katy-stawow.md.\nKlatki na obrazie (odczytane z HTML podglądu, atrybuty data-u) = klatki_u pozy: ${manifest.cwiczenia.map((c) => `${c.cwiczenie} ${c.klatki_na_obrazie.length}`).join('; ')}.\n`);
+    else { writeFileSync(join(dir, 'PODGLAD-WAZNY.txt'), zbudujZnacznik({ rodzina, poze, przyblizenia: manifest.przyblizenia, ekstra: `Kontrola manifestu (zgodnosc_manifestu) wykonana, bez niezgodności; tabela kątów stawów w manifest.json i katy-stawow.md.\nKlatki na obrazie (odczytane z HTML podglądu, atrybuty data-u) = klatki_u pozy: ${manifest.cwiczenia.map((c) => `${c.cwiczenie} ${c.klatki_na_obrazie.length}`).join('; ')}.\n` }));
+      const nieaktualny = await sprawdzPodglad(dir, { generator: mod }); /* znacznik wiąże podgląd z danymi: odciski póz i przybliżeń + zgodność z generatorem teraz (podglad-znacznik.mjs) */
+      if (nieaktualny.length) { rmSync(join(dir, 'PODGLAD-WAZNY.txt'), { force: true }); writeFileSync(join(dir, 'PODGLAD-NIEWAZNY.txt'), 'Podgląd NIE trafia do recenzji:\n' + nieaktualny.map((x) => `- ${x}`).join('\n') + '\n'); console.log('PODGLĄD NIEWAŻNY DLA RECENZJI:'); for (const x of nieaktualny) console.log(`  - ${x}`); process.exitCode = 1; } }
   }
   if (flag('zastosuj') && ok.length) { const r = zastosuj(ROOT, { rodzina, poze }); const plik = join(ROOT, r.plik); const dane = JSON.parse(readFileSync(plik, 'utf8')); const usuniete = Object.keys(mod.WYJATKI ?? {}).filter((k) => k in dane.cwiczenia); for (const k of usuniete) delete dane.cwiczenia[k]; if (usuniete.length) { writeFileSync(plik, JSON.stringify(dane, null, 1) + '\n'); console.log(`usunięto z danych ćwiczenia z wyjątkiem: ${usuniete.join(', ')}`); } console.log(`nałożono: ${r.zapisano.length} → ${r.plik}${r.odrzucone.length ? `; odrzucone: ${r.odrzucone.map((x) => x.cwiczenie).join(', ')}` : ''}`); }
 }

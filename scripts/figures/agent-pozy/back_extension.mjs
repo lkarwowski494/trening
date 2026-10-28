@@ -13,7 +13,7 @@ const POD_STOPY = 15;
 /** Biegun kolana osoby leżącej przodem: kolano zgina się ku PRZODOWI uda (brzuch), czyli w dół, gdy udo jest poziomo; udo opada pod kątem g poniżej poziomu → przód uda obraca się razem z nim (−sin g, −cos g). Poprzednio biegun wskazywał grzbiet (do góry): kolano wygięte do tyłu o 17–33°. */
 const poleLezacy = (g) => [r1(-Math.sin(g * R)), r1(-Math.cos(g * R)), 0];
 
-import { ramka as ramkaPodloga, chwyt as chwytPodloga } from './core_floor.mjs';
+import { ramka as ramkaPodloga, chwyt as chwytPodloga, ROT_STOPA_LEZY } from './core_floor.mjs';
 
 /** Chwyty rąk zwisających do przodu (poza@2 obrotTulowia 180°: prawa strona osoby w −z): ręce opadają ku podłodze, nie niżej niż 6 cm. */
 const rekaZwis = (Sx, delta) => (sg) => ({ g: [Sx[0] + 6 * Math.cos(delta * R), Math.max(6, Sx[1] - 42), -sg * 8], pole: [0.2, -1, -sg * 0.5] });
@@ -48,7 +48,7 @@ export function reverseHyper(cw, o = {}) {
 export function lowerBackCurl(cw) {
   const Y0 = 9.5; const us = [0, 0.25, 0.5, 0.75, 1]; const D = NOGA_PROSTA;
   const fr = us.map((u) => { const phi = lerp(0, 7, ease(u)); const p = 90 - phi; const a = [-D, Y0 + 1.5]; const Sx = [Math.cos(phi * R) * T(), Y0 + Math.sin(phi * R) * T()];
-    const nog = (z) => ({ ankle: a, strona: 'dol', pod: 0, rot: 90, z, pole: [0.15, -1, 0.1 * Math.sign(z || 1)] }); /* leżenie przodem: kolano ku przodowi uda, czyli w dół (nie do tyłu) */
+    const nog = (z) => ({ ankle: a, strona: 'dol', pod: 0, rot: ROT_STOPA_LEZY, z, pole: [0.15, -1, 0.1 * Math.sign(z || 1)] }); /* leżenie przodem: kolano ku przodowi uda, czyli w dół (nie do tyłu) */
     return ramkaPodloga({ u, miednica: [0, Y0], p, glowa: p * 0.9, nogi: { R: nog(9), L: nog(-9) }, rece: { R: { g: [Sx[0] - 50, 6, 24], pole: [0, 0.3, 1] }, L: { g: [Sx[0] - 50, 6, -24], pole: [0, 0.3, -1] } } }); });
   return poza(RODZINA, cw, [PODLOGA(-170, 130)], fr, []);
 }

@@ -10,6 +10,7 @@ Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; et
 - Figura powstaje tylko dla ćwiczenia, które ma wskazówki etapu 1; opis dla VoiceOver to zdania „Ruch” z tych wskazówek.
 - Każda poza ma co najmniej jedno sprawdzenie powiązane ze zdaniem wskazówki (np. „uda równolegle do podłogi” → odcinek biodro–kolano poziomo ± tolerancja). Test liczy geometrię i sprawdza, że poza spełnia każde z nich.
 - Kąty, których żadne zdanie nie podaje (pochylenie tułowia, długość kroku, kąt ławki…), są **uproszczeniem ilustracyjnym** — rysunek nie twierdzi, że to jedyna poprawna wartość. Przy ćwiczeniu podana jest uwaga, co jest ilustracyjne.
+- Kolano „lekko ugięte” (np. `row.hinge`): żadne źródło nie podaje kąta, więc górna granica to jedna stała konwencji **KOLANO_LEKKO_MAX_DEG = 30°** (`scripts/figures/v2-sens.mjs`), wspólna dla figur i reguł póz z danych (wiosłowanie, zwis, rozciąganie stojąc).
 - Proporcje ciała i przyrządów są schematyczne (uproszczenie ilustracyjne), wszystkie w jednym module `lib/figures/geom.ts`.
 - „Rzut ręki” (armProj): ręka odwiedziona w bok (szeroki chwyt, łokcie na boki) w widoku z boku wygląda na krótszą — kąty ręki są wtedy kątami rzutu, nie stawu, i nie podlegają sprawdzeniu zakresu.
 - Animacja: pozy pośrednie z interpolacji kątów; „druga podpora” (level) obraca figurę wokół kotwicy, żeby np. dłonie przy pompkach nie schodziły pod podłogę.
@@ -345,10 +346,10 @@ Widok: z boku; kotwica: przód stopy; przyrządy: plate.
 
 - **pozycja wyjściowa** — t 30, hip 95, knee 20, sh 60, el 0
   - zgięcie łokcia: 0° (±4°) ← `row.fullStretch`: „Na dole wyprostuj ręce do końca, barki swobodnie w dół.”
-  - zgięcie kolana: 20° (±15°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
+  - zgięcie kolana: 20° (±10°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
 - **pozycja końcowa** — t 30, hip 95, knee 20, sh -40, el 109
   - dłoń przy: biodro + [9, 7] w układzie tułowia (≤ 6) ← `row.bbPull`: „Przyciągnij sztangę do brzucha, potem opuść ją do pełnego wyprostu rąk.”
-  - zgięcie kolana: 20° (±15°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
+  - zgięcie kolana: 20° (±10°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Pochylenie tułowia ilustracyjne — wskazówki mówią tylko „pochyl tułów w biodrach, plecy proste”.
 
 ### Bent Over Row (hantle)
@@ -357,10 +358,10 @@ Widok: z boku; kotwica: przód stopy; na wzór: Bent Over Row (sztanga); przyrz�
 
 - **pozycja wyjściowa** — t 30, hip 95, knee 20, sh 60, el 0
   - zgięcie łokcia: 0° (±4°) ← `row.fullStretch`: „Na dole wyprostuj ręce do końca, barki swobodnie w dół.”
-  - zgięcie kolana: 20° (±15°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
+  - zgięcie kolana: 20° (±10°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
 - **pozycja końcowa** — t 30, hip 95, knee 20, sh -40, el 109
   - dłoń przy: biodro + [9, 7] w układzie tułowia (≤ 6) ← `row.dbPull`: „Przyciągnij hantle do brzucha, potem opuść je do pełnego wyprostu rąk.”
-  - zgięcie kolana: 20° (±15°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
+  - zgięcie kolana: 20° (±10°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Pochylenie tułowia ilustracyjne — wskazówki mówią tylko „pochyl tułów w biodrach, plecy proste”.
 
 ### Pendlay Row
@@ -369,10 +370,10 @@ Widok: z boku; kotwica: przód stopy; na wzór: Bent Over Row (sztanga); przyrz�
 
 - **pozycja wyjściowa** — t 30, hip 95, knee 20, sh 60, el 0
   - zgięcie łokcia: 0° (±4°) ← `row.fullStretch`: „Na dole wyprostuj ręce do końca, barki swobodnie w dół.”
-  - zgięcie kolana: 20° (±15°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
+  - zgięcie kolana: 20° (±10°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
 - **pozycja końcowa** — t 30, hip 95, knee 20, sh -40, el 109
   - dłoń przy: biodro + [9, 7] w układzie tułowia (≤ 6) ← `row.bbPull`: „Przyciągnij sztangę do brzucha, potem opuść ją do pełnego wyprostu rąk.”
-  - zgięcie kolana: 20° (±15°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
+  - zgięcie kolana: 20° (±10°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Ta sama figura co wiosłowanie sztangą w opadzie — wskazówki etapu 1 dla obu ćwiczeń są takie same (cechy Pendlaya, np. start z podłogi, nie wynikają z nich).
 
 ### T-Bar Row
@@ -381,10 +382,10 @@ Widok: z boku; kotwica: przód stopy; na wzór: Bent Over Row (sztanga); przyrz�
 
 - **pozycja wyjściowa** — t 30, hip 95, knee 20, sh 60, el 0
   - zgięcie łokcia: 0° (±4°) ← `row.fullStretch`: „Na dole wyprostuj ręce do końca, barki swobodnie w dół.”
-  - zgięcie kolana: 20° (±15°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
+  - zgięcie kolana: 20° (±10°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
 - **pozycja końcowa** — t 30, hip 95, knee 20, sh -40, el 109
   - dłoń przy: biodro + [9, 7] w układzie tułowia (≤ 6) ← `tbar.pull`: „Przyciągnij uchwyty do tułowia, potem opuść do pełnego wyprostu rąk.”
-  - zgięcie kolana: 20° (±15°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
+  - zgięcie kolana: 20° (±10°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Gryf zaczepiony przy podłodze za ćwiczącym (dźwignia); pochylenie tułowia ilustracyjne.
 
 ### One Arm Row (hantle)

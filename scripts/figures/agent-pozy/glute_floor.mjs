@@ -3,6 +3,7 @@
 // Pozy WYLICZONE z modelu: noga z FK w 3D (kierunki uda i goleni → kolano i kostka, biegun kolana z położenia kolana), biodra wg kontraktu poza@2 (przechył miednicy, obrót ciała 90° przy leżeniu bokiem).
 // Błędy z cue: hext.mis.arch (przeprost lędźwi, grupa plecy) i hab.mis.high (miednica ucieka: przechył albo skręt, grupa miednica) — każdy łamie tylko swoją grupę reguł.
 import { v2, BODY, R, r1, lerp, ease, HIP, SH, K, poza, PODLOGA, hipY, dNogi, bledyZOpisem, bladZTrajektorii, delta, dodajDotyczy, tp, S } from './dol.mjs';
+import { bokKlatka, bokSonda, bokDolnaReka, bokNogiUlozone } from './mob.mjs';
 
 export const RODZINA = 'glute_floor';
 const nrm = (v) => { const l = Math.hypot(...v) || 1; return v.map((x) => x / l); };
@@ -19,7 +20,7 @@ const UCHWYT_MASZYNY_Z = 15; /* połowa rozstawu uchwytów maszyny (cm): dolna g
 export const PRZYBLIZENIA = {
   'Hip Extension with Bands': 'przybliżenie: guma w pętli na kostkach (model gumy nie ma zaczepu do kostki), opór rośnie, gdy kostka ucieka do tyłu; ręce na biodrach',
   'Machine Glute Kickback': 'przybliżenie: maszyna schematyczna — uchwyty rysowane jako dwie równoległe poręcze przed klatką (dłonie na nich), bez oparcia klatki i poduszki; dźwignia obraca się wokół biodra i prowadzi kostkę',
-  'Clamshell': 'przybliżenie: zgięcie bioder do przodu (do kamery) jest skrócone w widoku z boku; odwodzenie widać jako uniesienie górnego kolana',
+  'Clamshell': 'przybliżenie: leżenie na lewym boku jak w rozciąganiu na boku (obrót tułowia −75°, nie −90°: dolny bark nie wchodzi pod podłogę; w widoku z boku odchylenia nie widać); głowa na dłoni dolnej ręki; zgięcie bioder do przodu (od kamery) jest skrócone w widoku z boku; odwodzenie widać jako uniesienie górnego kolana',
   'Prone Flutter Kicks': 'przybliżenie: nogi poza końcem ławki (ławka płaska), ruch naprzemienny pokazują dwie fazy skrajne',
 };
 /** Składanie pozy: błędy bez opisu w pl.json odpadają (z powodem w PRZYBLIZENIA), `dod` = etykiety `dotyczy` dla pól spoza delta() (skręt, przechył). */
@@ -58,14 +59,15 @@ function hydrant(cw, o = {}) {
   bl.dod = ['pelvis']; return zloz(cw, [PODLOGA(-120, 120)], US.map(ok), [bl]);
 }
 
-/* ---------- leżenie bokiem (clamshell): prawy bok na podłodze, klatka ku +z, głowa w stronę −x ---------- */
+/* ---------- leżenie bokiem (clamshell): LEWY bok na podłodze, klatka ku −z (od kamery), głowa ku −x; górna noga R po stronie kamery ----------
+ * Jak Side-Lying Quad (mob.mjs BOK): obrys tułowia i spodenek ≤ 2 cm nad podłogą, dolna ręka leży pod głową (głowa podparta), dolna noga ugięta (biodro ≈ 45°, kolano ≈ 90°) leży na podłodze. Górna noga: kolano unosi się o 45° ku górze i przodowi, stopy razem. */
+export const LEZY_BOK_UWAGA = 'leżenie na lewym boku (jak w mobilności, backlog figur 28.10.2026: poprzednia poza wisiała 4–8 cm nad podłogą i miała głowę bez podparcia)';
 function clamshell(cw, o = {}) {
-  const { py = 23, kolanoGora = 45 } = o; const m = [0, py, 0]; const hipR = [0, py - HIP(), 0], hipL = [0, py + HIP(), 0];
-  const dd = nrm([1, 0, 1]), ee = nrm([1, 0, -1]); const R0 = fk3(hipR, dd, ee); const ankR = R0.ankle; const ankL = [ankR[0], ankR[1] + 10, ankR[2]];
-  const S0 = [-BODY().trunk, py]; const hr = (u) => ({ g: [S0[0] - 38, 6, 0], pole: [0, 0.3, 1] }); const hl = { g: [S0[0] + 28, 4, 20], pole: [0.3, 0.3, 1] };
-  const poleU = (u) => nrm([0.15, Math.sin(kolanoGora * a01(u) * R), Math.cos(kolanoGora * a01(u) * R)]);
-  const fr = (u, tw = 0) => K({ u, m, p: -90, head: -90, roll: 90, twist: tw || undefined, R: { a: ankR, pod: null, rot: 10, pole: R0.pole }, L: { a: ankL, pod: null, rot: 10, pole: poleU(u) }, hr: hr(u), hl });
-  const bl = { cue: 'hab.mis.high', znacznik: 'pelvis', dod: ['spine'], klatki: US.map((u) => (u === 0 ? { u: 0 } : { u, skretTulowia: r1(-25 * a01(u)) })) };
+  const { kolanoGora = 45 } = o; const T = bokSonda();
+  const poleU = (u) => nrm([0.15, Math.sin(kolanoGora * a01(u) * R), -Math.cos(kolanoGora * a01(u) * R)]).map((v) => r1(v * 100) / 100);
+  const rece = { L: bokDolnaReka(T), R: { g: [r1(T.sh.R[0] + 22), 3.5, -22], pole: [0, 0.6, 0.4] } };
+  const fr = (u, tw) => bokKlatka(u, bokNogiUlozone(T, poleU(u)), rece, tw === undefined ? {} : { twist: tw });
+  const bl = { cue: 'hab.mis.high', znacznik: 'pelvis', dod: ['spine'], klatki: US.map((u) => (u === 0 ? { u: 0 } : { u, skretTulowia: r1(25 * a01(u)) })) };
   return zloz(cw, [PODLOGA(-120, 120)], US.map((u) => fr(u)), [bl]);
 }
 
