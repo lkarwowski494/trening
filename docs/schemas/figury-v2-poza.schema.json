@@ -169,9 +169,10 @@
       "enum": [
        "dlonie",
        "kostki",
+       "podeszwy",
        "miednica"
       ],
-      "description": "Tylko dzwignia: punkt ciała, do którego mocuje się dźwignia: dlonie (domyślnie), kostki, miednica; trzyma wskazuje stronę (domyślnie R)."
+      "description": "Tylko dzwignia: punkt ciała, do którego mocuje się dźwignia: dlonie (domyślnie), kostki (wałek przy kostce), podeszwy (platforma pod stopą, tylko prowadnica „prosta”), miednica; trzyma wskazuje stronę (domyślnie R)."
      },
      "mocowanie": {
       "type": "string",

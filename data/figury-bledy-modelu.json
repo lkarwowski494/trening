@@ -185,6 +185,15 @@
    "przyklad": "One Arm Chin-Up: reguła „jedna_reka” (wskazówka konwencja): ćwiczenie jednorącz, a sprzet[] ma drążek trzymany obiema rękami — ustaw na sztandze trzyma: \"R\" albo \"L\"",
    "zapobieganie": "ćwiczenie jednorącz: na drążku trzyma: \"R\" albo \"L\"; wolna dłoń ≥ {freeHand} cm od osi drążka, nie na drążku."
   },
+  "sens:stopa_na_platformie": {
+   "wystapien": 2,
+   "cwiczen": 2,
+   "rodziny": [
+    "leg_machine"
+   ],
+   "przyklad": "Leg Press: reguła „stopa_na_platformie” (wskazówka lp.setup): podeszwa nie leży na płycie platformy: odstęp -7.0…-7.0 cm, a ma być w -0.5…1 cm (platforma w kostce; wykryte przez recenzenta ruchu p2-r4, Single Leg Press tak samo)",
+   "zapobieganie": "stopa na platformie maszyny leży NA płycie: płyta jest prostopadła do prowadnicy, a punkt mocowania prowadnicy to PODESZWA (punkt: \"podeszwy\" = kostka + {ankleH} cm wzdłuż prowadnicy), nie kostka; punkt \"kostki\" dotyczy wałka lub poduszki przy kostce (Leg Extension, Leg Curl); odstęp podeszwy od płyty −0,5…+1 cm w każdej klatce."
+  },
   "sprzet": {
    "wystapien": 1,
    "cwiczen": 1,

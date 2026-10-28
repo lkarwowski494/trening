@@ -24,10 +24,10 @@
      "rodzaj": "dzwignia",
      "tryb": "prosta",
      "kat": -15,
-     "punkt": "kostki",
+     "punkt": "podeszwy",
      "trzyma": "obie",
-     "x": 68.5,
-     "y": 52,
+     "x": 75.3,
+     "y": 50.2,
      "z": 0,
      "dlugosc": 28.6
     }
@@ -393,10 +393,10 @@
      "rodzaj": "dzwignia",
      "tryb": "prosta",
      "kat": -15,
-     "punkt": "kostki",
+     "punkt": "podeszwy",
      "trzyma": "R",
-     "x": 68.5,
-     "y": 52,
+     "x": 75.3,
+     "y": 50.2,
      "z": 13,
      "dlugosc": 28.6
     }

@@ -4,7 +4,7 @@
  * sprzętem (macierz: rodzaj × wariant), komunikaty dla generatora. Rodzaje (docs/20): logika, ekran-rysunek, scenariusze, macierz, niezmienniki, dane, motywy.
  */
 import {
-  GEAR, GEAR_KINDS, BENCH_KAT, BAND_MOUNT, SLED_HOLD, LEVER_MODE, LEVER_POINT, benchHip, SOFT_CONTACT, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, CABLE_ATTACH, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, CABLE_Y, requiredGearIssues, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
+  GEAR, GEAR_KINDS, BODY, BENCH_KAT, BAND_MOUNT, SLED_HOLD, LEVER_MODE, LEVER_POINT, benchHip, SOFT_CONTACT, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, CABLE_ATTACH, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, CABLE_Y, requiredGearIssues, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
   CONTRACT, EQUIP, BENCH, hyperPolys, preacherPolys, templateFor, exampleFor, figureSpec, frameAt, rollerAt, poseSchema, describeContract, gearText, hasOwnTemplate, EXT_FIELDS, figurePalette, propShapes, boundsOf, svgDocument, equipColliders, bodyColliders, gap, checkFrame, holdChecks, keyframeFrame, validatePose, dataShapes, solveSkeleton,
   type Gear, type KeyFrame, type PoseData, type Prop, type V3, type RomData, type Frame, type View,
 } from '@/lib/figures/v2';
@@ -256,6 +256,11 @@ describe('propsFrom: rekwizyty ze sprzętu i chwytów (sprzęt trzymany podąża
     const bad = tryb === 'obrot' ? LEGEXT({ dlugosc: 70 }) : SLIDE({}, 8); expect(texts(bad)).toMatch(tryb === 'obrot' ? /\[geometria\] dzwignia: punkt mocowania \d+\.\d cm od osi obrotu, a ramię ma 70 cm \(dopuszczalne ± 3\)/ : /\[geometria\] dźwignia \(prowadnica\): punkt mocowania 8\.0 cm od prowadnicy/);
   });
   test.each([...LEVER_POINT])('dźwignia: punkt mocowania „%s” — komunikaty o geometrii nie zależą od punktu; rekwizyt ma właściwy cel (macierz po LEVER_POINT)', punkt => {
+    if (punkt === 'podeszwy') { /* platforma pod podeszwą: tylko prowadnica „prosta” (p2-r5); obrót odrzucony, prowadnica: kostka + wysokość kostki wzdłuż prowadnicy */
+      expect(texts(LEGEXT({ punkt, trzyma: 'R', dlugosc: 47.5 }))).toContain('„podeszwy”');
+      const fs2 = keyframeFrame(SLIDE({ punkt, trzyma: 'R', kat: 0 }), 0); const sl = fs2.props.find(p => p.k === 'slide') as Extract<Prop, { k: 'slide' }>; const a = fs2.sk.legs.R.ankle;
+      expect(sl.to[0]).toBeCloseTo(a[0] + BODY.ankleH, 6); expect(sl.to[1]).toBeCloseTo(a[1], 6); expect(sl.to[2]).toBeCloseTo(a[2], 6); return;
+    }
     const f = keyframeFrame(LEGEXT({ punkt, trzyma: 'R', dlugosc: 47.5 }), 0); const pv = f.props.find(p => p.k === 'pivot') as Extract<Prop, { k: 'pivot' }>;
     const want = punkt === 'kostki' ? f.sk.legs.R.ankle : punkt === 'miednica' ? f.sk.pelvis : f.sk.arms.R.grip; for (let i = 0; i < 3; i++) expect(pv.to[i]).toBeCloseTo(want[i], 6);
   });

@@ -5709,6 +5709,21 @@
           "liczba": "uproszczenie",
           "pewnosc": "ustalone"
         },
+        "stopa_na_platformie": {
+          "typ": "stopa_na_platformie",
+          "grupa": "platforma",
+          "cue": "lp.setup",
+          "cue_dodatkowe": [
+            "lp.heels"
+          ],
+          "parametry": {
+            "min_cm": -0.5,
+            "max_cm": 1
+          },
+          "zrodlo": "lp.setup („stopy płasko na platformie”) i lp.heels („pchaj całą stopą”): ACE #154 kroki 1–3, NASM Leg Press krok 1, ExRx SL45LegPress — cues.json; tylko suwnice z platformą pod podeszwami (dźwignia „prosta”, punkt „podeszwy”); wałek przy kostce (Leg Extension, Leg Curl, Hip Abduction/Adduction) to inny sprzęt i tej reguły nie dotyczy",
+          "liczba": "uproszczenie (podeszwa — pięta, śródstopie, palce — w odległości −0,5…+1 cm od płaszczyzny płyty w każdej klatce i wierszu; mierzone na modelu, p2-r5)",
+          "pewnosc": "ustalone"
+        },
         "przysiad": {
           "typ": "kolano_biodro_zakres",
           "grupa": "zakres",
@@ -5768,7 +5783,8 @@
           "zakres"
         ],
         "lp.setup": [
-          "zakres"
+          "zakres",
+          "stopa_na_platformie"
         ],
         "lp.noLock": [
           "zakres"
@@ -5783,7 +5799,8 @@
           "miednica_stala"
         ],
         "lp.heels": [
-          "piety"
+          "piety",
+          "stopa_na_platformie"
         ],
         "calf.pressMove": [
           "wspiecie"
@@ -5802,16 +5819,19 @@
         "Leg Press": [
           "zakres",
           "kolana_nad_stopami",
-          "miednica_stala"
+          "miednica_stala",
+          "stopa_na_platformie"
         ],
         "Smith Machine Leg Press": [
           "zakres",
           "kolana_nad_stopami",
-          "miednica_stala"
+          "miednica_stala",
+          "stopa_na_platformie"
         ],
         "Single Leg Press": [
           "zakres_jednonoz",
-          "miednica_stala"
+          "miednica_stala",
+          "stopa_na_platformie"
         ],
         "Hack Squat": [
           "zakres",
@@ -5841,7 +5861,7 @@
       },
       "otwarte": {},
       "otwarte_czesciowo": {
-        "lp.heels na suwnicy (Leg Press, Smith, Single Leg)": "stopy jadą razem z platformą, więc piety_na_podlodze nie pasuje; potrzebny warunek „stopa równoległa do platformy” — bez reguły",
+        "lp.heels na suwnicy (Leg Press, Smith, Single Leg)": "ZAMKNIĘTE p2-r5: reguła stopa_na_platformie (podeszwa na płycie platformy); Smith Machine Leg Press jest wyjątkiem generatora (bez pozy), reguła czeka na pozę",
         "Single Leg Press": "bez reguły kolan w linii stóp — noga wolna może być bardziej zgięta niż pracująca"
       },
       "pomin": {}
@@ -7557,6 +7577,7 @@
     }
   },
   "_typy": {
+    "stopa_na_platformie": "dla dźwigni „prosta” z punktem „podeszwy” (platforma pod podeszwami): odstęp (płaszczyzna płyty − punkt podeszwy) wzdłuż kierunku prowadnicy dla pięty, śródstopia i palców każdej pracującej nogi w każdej klatce ∈ [min_cm, max_cm]; dodatni = podeszwa przed płytą, ujemny = przenika płytę; płyta = rekwizyt slide silnika (prostopadła do prowadnicy w punkcie mocowania)",
     "_uklad": "x przód, y góra, z prawo; cm, stopnie; łokieć/kolano 0° = staw prosty (jak jointAngles); u = 0 początek, u = 1 koniec fazy koncentrycznej; „w ruchu” = wszystkie próbki (klatki kluczowe + siatka 0,05)",
     "kolana_ku_barkom": "d(u) = odległość środka kolan (średnia legs.R.knee, legs.L.knee) od shoulderC; d(0) − d(1) ≥ min_zblizenie_cm",
     "miednica_nieruchoma": "zakres pelvis[1] w ruchu ≤ max_cm (miednica zostaje na podporze — ławka, mata — bez względu na jej wysokość)",

@@ -37,6 +37,7 @@ export const ZAPOBIEGANIE = {
   'sens:tulow_pion': 'pochylenieTulowia w poprawnej pozie w {trunkRange}° w każdej klatce; odchylenie tułowia to bujanie.',
   'sens:jedna_reka': 'ćwiczenie jednorącz: na drążku trzyma: "R" albo "L"; wolna dłoń ≥ {freeHand} cm od osi drążka, nie na drążku.',
   'sens:rece_proste_caly_ruch': 'ramiona proste w całym ruchu (łokieć ≤ {armsStraight}°); porusza się tylko obręcz barkowa (miednica o kilka cm w y).',
+  'sens:stopa_na_platformie': 'stopa na platformie maszyny leży NA płycie: płyta jest prostopadła do prowadnicy, a punkt mocowania prowadnicy to PODESZWA (punkt: "podeszwy" = kostka + {ankleH} cm wzdłuż prowadnicy), nie kostka; punkt "kostki" dotyczy wałka lub poduszki przy kostce (Leg Extension, Leg Curl); odstęp podeszwy od płyty −0,5…+1 cm w każdej klatce.',
   'blad-sens': 'błąd ma łamać TYLKO regułę swojej wskazówki (np. pu.noSwing: przekroczyć limit bujania) i żadnej innej; poza poprawna nie łamie żadnej.',
 };
 
