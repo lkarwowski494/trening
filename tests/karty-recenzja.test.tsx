@@ -69,16 +69,18 @@ describe('plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy', (
   });
   test('generalCuesReviewed: prawda tylko dla zestawu z aktualną recenzją (lista „general”)', () => {
     expect(generalCuesReviewed('Sumo Deadlift with Bands')).toBe(true);
-    expect(generalCuesReviewed('Decline Close-Grip Bench To Skull Crusher')).toBe(false); /* do poprawy */
+    /* decyzja właściciela 28.10.2026 „1a” (M1-audytor-generalny-038): skull.upperArm usunięte z zestawu, nowa recenzja 06-tresci — „wyswietlana” */
+    expect(generalCuesReviewed('Decline Close-Grip Bench To Skull Crusher')).toBe(REC.zestawy?.['Decline Close-Grip Bench To Skull Crusher']?.werdykt === 'wyswietlana');
     expect(generalCuesReviewed('Lateral Lunge')).toBe(false); /* rodzina lunge bez figury v2 — bez recenzji */
     expect(generalCuesReviewed('Back Squat')).toBe(false); /* karta własna, nie zestaw ogólny */
   });
-  test('karta „do poprawy” (Hack Squat) nie ma sekcji „Technika”; zestaw „do poprawy” nie pokazuje wskazówek ogólnych', () => {
+  test('karta „do poprawy” (Hack Squat) nie ma sekcji „Technika”; zestaw bez aktualnej recenzji nie pokazuje wskazówek ogólnych', () => {
     expect(REC.karty?.['Hack Squat']?.werdykt).toBe('do poprawy');
     render(<ExerciseCues exercise={lib('Hack Squat')} initialOpen />);
     expect(screen.queryByTestId('exercise-cues')).toBeNull();
-    const z = Object.entries(REC.zestawy ?? {}).find(([, e]) => e.werdykt === 'do poprawy')?.[0];
-    expect(z).toBeTruthy();
+    /* od 28.10.2026 (decyzja właściciela „1a”, M1-audytor-generalny-038) żaden zestaw nie jest „do poprawy” — wtedy zestaw ogólny bez wpisu recenzji (Lateral Lunge) */
+    const z = Object.entries(REC.zestawy ?? {}).find(([, e]) => e.werdykt === 'do poprawy')?.[0] ?? 'Lateral Lunge';
+    expect(generalCuesReviewed(z)).toBe(false);
     render(<ExerciseCues exercise={lib(z as string)} initialOpen />);
     expect(screen.queryByTestId('exercise-cues-general-note')).toBeNull();
     expect(screen.queryByRole('header', { name: 'Wskazówki' })).toBeNull();

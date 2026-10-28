@@ -34,8 +34,9 @@
    "werdykt": "wyswietlana",
    "data": "2026-10-27",
    "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "dd7d203bbc39",
-   "uwagi": "Ruch i karta zgodne. Przysiad na jednej nodze, druga noga wyprostowana w przód nad podłogą, ręce przed sobą; głębokość ilustracyjna. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+   "sha": "c247eb5bcad8",
+   "uwagi": "Ruch i karta zgodne. Przysiad na jednej nodze, druga noga wyprostowana w przód nad podłogą, ręce przed sobą; głębokość ilustracyjna. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji). Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian.",
+   "stan": "zrecenzowana niezależnie 28.10.2026 (figura: recenzja z wpisu; treść karty po usunięciu zdań: 06-tresci)"
   },
   "Deadlift (sztanga)": {
    "rodzina": "hinge",
@@ -56,7 +57,8 @@
    "werdykt": "zastapiona",
    "data": "2026-10-27",
    "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
-   "sha": "24399bec2401"
+   "sha": "0cf26a564848",
+   "uwagi": "Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian."
   },
   "RDL (sztanga)": {
    "rodzina": "hinge",
@@ -320,20 +322,20 @@
   "Lunges (hantle)": {
    "rodzina": "lunge",
    "werdykt": "wyswietlana",
-   "stan": "zrecenzowana niezależnie 28.10.2026",
+   "stan": "zrecenzowana niezależnie 28.10.2026 (figura: recenzja z wpisu; treść karty po usunięciu zdań: 06-tresci)",
    "data": "2026-10-28",
    "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-po-poprawce.md: OK (NISKIE: tylna stopa pionowo na palcach w „w trakcie”, przednia stopa przesuwa się o 2,1 j.) — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
-   "sha": "d74fb70f1757",
-   "uwagi": "Klatki zmienione 28.10.2026 po recenzji niezależnej (WYSOKIE: ciało opadało do wykroku, zanim przednia stopa dotknęła podłogi). Pozycja „w trakcie” = krok postawiony (przednia stopa płasko na podłodze, biodra wysoko, tylne palce na podłodze), dopiero potem opuszczenie; wykrok krótszy (przednia kostka ok. 43 j. od tylnych palców). Test: tests/figury-podparcie.test.ts (reguła podparcia)."
+   "sha": "c4129536dca1",
+   "uwagi": "Klatki zmienione 28.10.2026 po recenzji niezależnej (WYSOKIE: ciało opadało do wykroku, zanim przednia stopa dotknęła podłogi). Pozycja „w trakcie” = krok postawiony (przednia stopa płasko na podłodze, biodra wysoko, tylne palce na podłodze), dopiero potem opuszczenie; wykrok krótszy (przednia kostka ok. 43 j. od tylnych palców). Test: tests/figury-podparcie.test.ts (reguła podparcia). Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian."
   },
   "Walking Lunges": {
    "rodzina": "lunge",
    "werdykt": "wyswietlana",
-   "stan": "zrecenzowana niezależnie 28.10.2026",
+   "stan": "zrecenzowana niezależnie 28.10.2026 (figura: recenzja z wpisu; treść karty po usunięciu zdań: 06-tresci)",
    "data": "2026-10-28",
    "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-po-poprawce.md: ruch jak Lunges — wyświetlana; ŚREDNIE (brak kroku drugą nogą) → backlog 1.0.1 — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
-   "sha": "9edd0e5450d9",
-   "uwagi": "Klatki zmienione 28.10.2026 jak Lunges (hantle): krok postawiony przed opuszczeniem (WYSOKIE z recenzji niezależnej). Nie poprawiono (ŚREDNIE): pętla wraca do pozycji wyjściowej zamiast kroku drugą nogą — silnik v1 (3 pozycje, ping-pong) tego nie pokaże. Test: tests/figury-podparcie.test.ts."
+   "sha": "06e0f4563108",
+   "uwagi": "Klatki zmienione 28.10.2026 jak Lunges (hantle): krok postawiony przed opuszczeniem (WYSOKIE z recenzji niezależnej). Nie poprawiono (ŚREDNIE): pętla wraca do pozycji wyjściowej zamiast kroku drugą nogą — silnik v1 (3 pozycje, ping-pong) tego nie pokaże. Test: tests/figury-podparcie.test.ts. Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian."
   },
   "Reverse Lunge": {
    "rodzina": "lunge",
@@ -734,15 +736,14 @@
    "uwagi": "Ustawienie, ruch żebra→miednica, lędźwie na podłodze, rozluźniona szyja — wprost w przeczytanym źródle o tym ćwiczeniu. ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu."
   },
   "Deadlift (hantle)": {
-   "werdykt": "do poprawy",
+   "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie — do poprawy (bramka 4, treść karty)",
-   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "1404a1a1de66",
-   "uwagi": "Błąd treści: dl.lower „Odkładaj sztangę tak samo…” na karcie martwego ciągu z hantlami (ciężarem są hantle/kettlebell). Pozostałe zdania zgodne z przeczytanymi źródłami (kettlebell i sztanga — warianty).",
-   "poprawka": "Nowe zdanie dbdl.lower: „Odkładaj ciężar tak samo: biodra w tył, kolana się uginają, plecy proste.” w miejsce dl.lower (źródła: NASM kettlebell-deadlift Step 4 „Hinge at the hips to lower the kettlebell back to the ground with control, maintaining a neutral spine”; ACE deadlift „shifting the weight back into the hips and keep the back straight while allowing the knees to bend”) — wymaga 33 przekładów; albo bez tłumaczenia: usunąć dl.lower z karty."
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty po usunięciu zdań 28.10.2026)",
+   "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
+   "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
+   "sha": "afe9f0fc7ddd",
+   "uwagi": "Usunięte dl.lower („Odkładaj sztangę…” na karcie z hantlami). Zostają: dbdl.setup, dl.lift, hinge.back, dbdl.hips, mis.roundBack — zgodne z przeczytanymi 28.10 źródłami (NASM kettlebell-deadlift Step 1–3 „neutral spine”; ACE #6 „push the hips forward to move to standing”). Ruch bez zdania o odkładaniu — karta krótsza, nic błędnego."
   },
   "Deadlift (sztanga)": {
    "werdykt": "wyswietlana",
@@ -876,15 +877,14 @@
    "uwagi": "Zakres od ok. 90° do wyprostu i kontrolowane tempo — 2 badania (3) przeczytane."
   },
   "Lunges (hantle)": {
-   "werdykt": "do poprawy",
+   "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie — do poprawy (bramka 4, treść karty)",
-   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "a87fb41d2c40",
-   "uwagi": "Podstawa lunge.knee i lunge.mis.kneeIn: jedno źródło o tym ćwiczeniu (ExRx — niedostępne 28.10) + przysiad bułgarski (inne ćwiczenie, „ten sam wzorzec” — analogia, nie liczy się do minimum wg docs/research/27). Przeczytane dziś strony wykroków (biblioteka: lunge, forward lunge) nie mówią o ustawieniu kolana. Pozostałe zdania zgodne.",
-   "poprawka": "Wariant 1 (bez tłumaczenia): usunąć lunge.knee i lunge.mis.kneeIn z karty. Wariant 2: drugie przeczytane źródło o wykroku z ustawieniem kolana (badacz), brzmienie bez zmiany. Potem nowa recenzja (też figury v1 — skrót obejmuje wskazówki)."
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty po usunięciu zdań 28.10.2026)",
+   "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
+   "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
+   "sha": "d8366550ad8e",
+   "uwagi": "Usunięte lunge.knee i lunge.mis.kneeIn (analogia z przysiadu bułgarskiego). Zostają: lunge.dbSetup, lunge.fwd, lunge.torso (ACE #363 + ExRx DBLunge); karta na liście partial (1 wskazówka, bez błędów) — zgodnie z partialNote. Nic sprzecznego. Odwołania do ExRx zatwierdzone wcześniej — bez ponownego sprawdzania (decyzja właściciela 28.10.2026, 2a; uwaga tylko w tym wpisie, nie w aplikacji)."
   },
   "Machine Shoulder Press": {
    "werdykt": "wyswietlana",
@@ -937,15 +937,14 @@
    "uwagi": "Treść karty = wiosłowanie sztangą w opadzie (przeczytane źródło); nie przeczy ćwiczeniu, ale nie opisuje jego cechy (start z podłogi przy każdym powtórzeniu) — uwaga P2, figura nadal ukryta (wpis v1). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (wg rejestru „Also known as Pendlay Row”)."
   },
   "Pistol Squat": {
-   "werdykt": "do poprawy",
+   "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie — do poprawy (bramka 4, treść karty)",
-   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "5e349987aef5",
-   "uwagi": "Błąd sq.mis.kneesIn „Kolana zapadające się do środka.” — liczba mnoga przy przysiadzie na jednej nodze (źródło: „planted knee cave inward”). Pozostałe zdania zgodne z przeczytanym źródłem o tym ćwiczeniu; ExRx niedostępne 28.10.",
-   "poprawka": "Wariant 1 (bez tłumaczenia): usunąć sq.mis.kneesIn z „mistakes” karty — pistol.knee („Kolano nogi podporowej w linii palców stopy.”) już to mówi. Wariant 2: nowe zdanie pistol.mis.kneeIn „Kolano nogi podporowej uciekające do środka.” (źródła: NASM single-leg-squat Common Mistakes „Allowing the planted knee to cave inward”; ExRx BWSingleLegSquat Comments) — wymaga 33 przekładów."
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty po usunięciu zdań 28.10.2026)",
+   "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
+   "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
+   "sha": "efdd1757f212",
+   "uwagi": "Usunięte sq.mis.kneesIn (liczba mnoga przy jednej nodze). Zostają: ustawienie, ruch, pistol.knee (kolano nogi podporowej w linii palców — ten sam błąd ujęty poprawnie), pistol.assist; sekcja błędów pusta. Zgodne z przeczytanym 28.10 źródłem o tym ćwiczeniu (NASM single-leg-squat: Step 1 „sturdy support”, Common Mistakes „planted knee to cave inward”) + ExRx z rejestru. Odwołania do ExRx zatwierdzone wcześniej — bez ponownego sprawdzania (decyzja właściciela 28.10.2026, 2a; uwaga tylko w tym wpisie, nie w aplikacji)."
   },
   "Preacher Curl": {
    "werdykt": "wyswietlana",
@@ -1018,15 +1017,14 @@
    "uwagi": "Ramiona bokiem do wysokości barków, w linii uszu, łokcie lekko ugięte — przeczytane źródło (z oparciem klatki). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu („tułów prawie poziomo”, „stały kąt”)."
   },
   "Reverse Lunge": {
-   "werdykt": "do poprawy",
+   "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie — do poprawy (bramka 4, treść karty)",
-   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "32c16e144a0c",
-   "uwagi": "Jak Lunges (hantle): lunge.knee i lunge.mis.kneeIn bez drugiego źródła o tym ćwiczeniu (analogia). Przeczytane źródło o wykroku w tył (wersja ze sztangą) potwierdza ustawienie, ruch i tułów; ExRx niedostępne. Figura już ukryta (wpis v1).",
-   "poprawka": "Usunąć lunge.knee i lunge.mis.kneeIn albo dodać drugie źródło o wykroku w tył z ustawieniem kolana; potem nowa recenzja."
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty po usunięciu zdań 28.10.2026)",
+   "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
+   "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
+   "sha": "ab65d0011fca",
+   "uwagi": "Usunięte lunge.knee i lunge.mis.kneeIn. Zostają: lunge.stand, lunge.back, lunge.torso (ACE #319 + ExRx DBRearLunge); karta na liście partial. Figura nadal ukryta (wpis v1, decyzja właściciela 28.10.2026). Odwołania do ExRx zatwierdzone wcześniej — bez ponownego sprawdzania (decyzja właściciela 28.10.2026, 2a; uwaga tylko w tym wpisie, nie w aplikacji)."
   },
   "Reverse Pec Deck": {
    "werdykt": "wyswietlana",
@@ -1119,15 +1117,14 @@
    "uwagi": "Stanie w ramie sztangi (badanie, abstrakt), wyprost bioder i kolan, plecy neutralne (biblioteka — martwy ciąg, wariant). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu („uchwyty po bokach”, barki nad sztangą)."
   },
   "Walking Lunges": {
-   "werdykt": "do poprawy",
+   "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie — do poprawy (bramka 4, treść karty)",
-   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "c098c24121f4",
-   "uwagi": "Jak Lunges (hantle): lunge.knee i lunge.mis.kneeIn bez drugiego źródła o tym ćwiczeniu (analogia: przysiad bułgarski). Uwaga N3 (raport 1.1): figura wraca krokiem w tył, a tekst lunge.walk mówi o kroku drugą nogą — przybliżenie bez napisu.",
-   "poprawka": "Jak Lunges (hantle): usunąć lunge.knee i lunge.mis.kneeIn albo dodać drugie źródło o wykroku chodzonym z ustawieniem kolana; potem nowa recenzja karty i figury."
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty po usunięciu zdań 28.10.2026)",
+   "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
+   "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
+   "sha": "1c3bc4015101",
+   "uwagi": "Usunięte lunge.knee i lunge.mis.kneeIn. Zostają: lunge.dbSetup, lunge.walk, lunge.torso (ExRx DBWalkingLunge + ACE #139); karta na liście partial. Uwaga N3 bez zmian: figura wraca krokiem w tył, tekst lunge.walk mówi o kroku drugą nogą (backlog 1.0.1). Odwołania do ExRx zatwierdzone wcześniej — bez ponownego sprawdzania (decyzja właściciela 28.10.2026, 2a; uwaga tylko w tym wpisie, nie w aplikacji)."
   },
   "Wall Sit": {
    "werdykt": "wyswietlana",
@@ -1406,15 +1403,14 @@
   },
   "Decline Close-Grip Bench To Skull Crusher": {
    "rodzina": "triLying",
-   "werdykt": "do poprawy",
+   "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie — do poprawy (bramka 4, przypisanie zestawu ogólnego)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "24e329241ebc",
-   "uwagi": "Przypisanie przeczy części ruchu: skull.upperArm „Ramiona prawie nieruchome, mniej więcej pionowo — pracują łokcie” przy ćwiczeniu łączącym wyciskanie wąsko (ramiona się ruszają) z francuskim; figura v2 pokazuje wyciskanie na ławce ujemnej.",
-   "poprawka": "W cue-sets.json usunąć skull.upperArm z „ok” tego ćwiczenia (zostaje cgbp.elbows i błąd mis.jerk) — bez tłumaczenia; potem nowa recenzja zestawu."
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny po usunięciu skull.upperArm 28.10.2026)",
+   "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
+   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
+   "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
+   "sha": "ac7ad92b9bfd",
+   "uwagi": "Usunięte skull.upperArm (przeczyło części wyciskania). Zostają: cgbp.elbows „Łokcie blisko tułowia przez cały ruch.” i mis.jerk — zgodne z obiema częściami ruchu i z figurą v2 (wyciskanie na ławce ujemnej)."
   },
   "Deficit Deadlift": {
    "rodzina": "hingeFloor",

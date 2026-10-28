@@ -530,12 +530,14 @@
    "plik": "wskazowki-slownik"
   },
   "lunge.knee": {
-   "cwiczenie": "Lunges (hantle)",
-   "plik": "wskazowki-slownik"
+   "cwiczenie": "Bulgarian Split Squat (hantle)",
+   "plik": "wskazowki-slownik",
+   "uwaga": "28.10.2026 (M1-audytor-generalny-038): zdanie usunięte z kart wykroków (Lunges (hantle), Walking Lunges, Reverse Lunge) — źródła przy przysiadzie bułgarskim (wzorzec wykroku, zestaw ogólny)"
   },
   "lunge.mis.kneeIn": {
-   "cwiczenie": "Lunges (hantle)",
-   "plik": "wskazowki-slownik"
+   "cwiczenie": "Bulgarian Split Squat (hantle)",
+   "plik": "wskazowki-slownik",
+   "uwaga": "28.10.2026 (M1-audytor-generalny-038): zdanie usunięte z kart wykroków (Lunges (hantle), Walking Lunges, Reverse Lunge) — źródła przy przysiadzie bułgarskim (wzorzec wykroku, zestaw ogólny)"
   },
   "lunge.torso": {
    "cwiczenie": "Lunges (hantle)",
