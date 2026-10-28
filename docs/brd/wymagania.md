@@ -464,6 +464,19 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy powstaje eksport
     - Wtedy żadna rodzina nie jest eksportowana (brak figur, same teksty)
 
+### BR-BIB-007: Rysunek skoku i rzutu odtwarza całe powtórzenie raz, bez powrotu wstecz (28.10.2026)
+- Przepływ: PR-01
+- Dowód potrzeby: recenzja treści kart plyo i sanie 28.10.2026 (Z2: wahadło odtwarzało w powrocie skok i rzut wstecz — zeskok tyłem ze skrzyni, piłka z podłogi do rąk); testy `tests/figures-v2-petla-jednokierunkowa.test.tsx`, strażnik `tests/figures-v2-kierunek-u.test.ts`; pole `petla: 'jednokierunkowa'` w kontrakcie póz (`lib/figures/v2/contract.ts`), tempo `ONE_WAY` w `lib/figures/v2/anim.ts`
+- Kryteria akceptacji:
+  - Scenariusz: Skok bez cofania
+    - Zakładając, że ćwiczenie plyometryczne albo rzut piłką (Slam, rzut, Wall Ball) ma rysunek podłączony do karty
+    - Gdy rysunek jest animowany
+    - Wtedy ruch biegnie od pozycji wyjściowej do końcowej raz, po krótkiej pauzie wraca skokiem do pozycji wyjściowej (bez odtwarzania ruchu wstecz), a licznik pokazuje jedną fazę („Skok” albo „Rzut”) bez sekund i bez „Pauza”
+  - Scenariusz: Błąd kolan widać z przodu
+    - Zakładając, że ćwiczenie ma błąd „kolana do środka” (Wall Ball)
+    - Gdy użytkownik wybiera ten błąd
+    - Wtedy rysunek ma widok z przodu, w którym zapadanie kolan jest widoczne
+
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07
 - Dowód potrzeby: OG-01; docs/28-healthkit-etap0.md; `site/privacy.html`

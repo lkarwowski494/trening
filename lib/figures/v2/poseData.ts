@@ -71,8 +71,17 @@ export const DATA_UI: Record<string, DataUi> = {
 };
 /** Ustawienia prezentacji ćwiczenia w trybie cyklicznym (marsz) z rodziny bez wpisu w DATA_UI (sled_throw, strongman): licznik „Marsz”, mierzone kolano albo biodro (decyzja właściciela 27.10.2026). */
 export const GAIT_UI: DataUi = { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true };
-/** Wpis prezentacji rodziny; ćwiczenie w trybie cyklicznym w rodzinie bez wpisu dostaje GAIT_UI, inne ćwiczenia takiej rodziny: null (bez figury). */
-export const dataUiForPose = (family: string, data: PoseData): DataUi | null => own(DATA_UI, family) ?? (data.petla === 'cykl_lustro' ? GAIT_UI : null);
+/**
+ * Prezentacja ćwiczeń w pętli jednokierunkowej (`petla: 'jednokierunkowa'`, 28.10.2026): jedna faza bez sekund, nazwa z `names.first` — „Skok” (plyo) albo „Rzut” (sled_throw: Slamy, rzuty, Wall Ball). Kierunek u: 0 → 1 nie dotyczy
+ * (całe powtórzenie w jednym przebiegu, bez opuszczania i podnoszenia), więc `lowerFirst` jest tu nieistotne. Mierzone kolano albo biodro (skok i przysiad piłki). Wpis nie jest DATA_UI: rodzina z jednokierunkowym i innym ruchem
+ * (marsz sanek w sled_throw) zachowuje GAIT_UI dla cyklicznych (dataUiForPose).
+ */
+export const ONE_WAY_UI: Record<string, DataUi> = {
+  plyo: { names: { first: 'Skok', second: 'Skok' }, lowerFirst: false, joints: ['knee', 'hip'] },
+  sled_throw: { names: { first: 'Rzut', second: 'Rzut' }, lowerFirst: false, joints: ['knee', 'hip'] },
+};
+/** Wpis prezentacji rodziny; ćwiczenie w trybie cyklicznym w rodzinie bez wpisu dostaje GAIT_UI, w trybie jednokierunkowym — ONE_WAY_UI rodziny, inne ćwiczenia takiej rodziny: null (bez figury). */
+export const dataUiForPose = (family: string, data: PoseData): DataUi | null => own(DATA_UI, family) ?? (data.petla === 'cykl_lustro' ? GAIT_UI : data.petla === 'jednokierunkowa' ? own(ONE_WAY_UI, family) ?? null : null);
 export const dataUiFor = (family: string): DataUi | null => own(DATA_UI, family) ?? null;
 /** Czy faza u: 0 → 1 ćwiczenia to opuszczanie (dłuższa, 2 s): wyjątek ćwiczenia (`lowerFirst`) wygrywa z wpisem rodziny. */
 export const lowerFirstOf = (ui: DataUi, key: string): boolean => (ui.exceptions && Object.prototype.hasOwnProperty.call(ui.exceptions, key) ? ui.exceptions[key].lowerFirst : undefined) ?? ui.lowerFirst;

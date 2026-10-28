@@ -692,7 +692,7 @@
   "Wall Sit": {"b":"own"},
   "Weighted Ball Hyperextension": {"b":"general","f":"backExt","ok":["bext.noArch"],"err":["mis.jerk"]},
   "Weighted Ball Side Bend": {"b":"general","f":"sideBend","ok":["sb.plane","dyn.control"],"err":["mis.jerk"]},
-  "Weighted Jump Squat": {"b":"general","f":"jump","ok":["jump.drive","jump.land"],"err":["jump.mis.stiff"]},
+  "Weighted Jump Squat": {"b":"general","f":"jump","ok":["jump.land"],"err":["jump.mis.stiff"]},
   "Weighted Sit-Ups - With Bands": {"b":"general","f":"crunch","ok":["crunch.neck"],"err":["mis.jerk"]},
   "Wide-Grip Barbell Bench Press": {"b":"general","f":"bench","ok":["bp.contact","bp.blades","bp.control"],"err":["bp.mis.arch"]},
   "Wide-Grip Decline Barbell Pullover": {"b":"general","f":"pullover","ok":["po.arms","po.slow"],"err":["mis.jerk"]},
@@ -706,7 +706,7 @@
   "Wyciskanie na linkach (stojąc)": {"b":"own"},
   "Wyciskanie nad głowę (linki)": {"b":"own"},
   "Y Raise (hantle)": {"b":"general","f":"raise","ok":["rear.elbows","curl.noSwing"],"err":["mis.jerk"]},
-  "Yoke Walk": {"b":"general","f":"carry","ok":["carry.noLean","carry.walk"],"err":[]},
+  "Yoke Walk": {"b":"general","f":"carry","ok":["carry.walk"],"err":[]},
   "Zercher Squat": {"b":"general","f":"squat","ok":["sq.down","sq.back","sq.kneesToes"],"err":["sq.mis.kneesIn","sq.mis.heels"]},
   "Zottman Curl": {"b":"general","f":"curl","ok":["curl.elbows","curl.noSwing","curl.control"],"err":["curl.mis.elbows"]},
   "Zottman Preacher Curl": {"b":"general","f":"curl","ok":["preacher.setup","preacher.range","curl.control"],"err":["mis.jerk"]}

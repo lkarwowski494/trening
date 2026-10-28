@@ -6,6 +6,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Jump Squat",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -825,6 +826,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Tuck Jump",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -1644,6 +1646,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Double Leg Butt Kick",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -2463,6 +2466,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Star Jump",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -3282,6 +3286,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Box Jump",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -4157,6 +4162,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Bench Jump",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -4982,6 +4988,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Broad Jump",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -5801,6 +5808,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Frog Hops",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -6620,6 +6628,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Front Cone Hops",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -7439,6 +7448,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Single-Leg Hop Progression",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -8258,6 +8268,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Single Leg Butt Kick",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -9077,6 +9088,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Box Skip",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -9902,6 +9914,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Single-Leg Stride Jump",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -10727,6 +10740,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Weighted Jump Squat",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -11558,6 +11572,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Alternate Leg Push-Off",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -12383,6 +12398,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Single Leg Push-Off",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -13208,6 +13224,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Split Jump",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -14027,6 +14044,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Alternate Leg Diagonal Bound",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -14858,6 +14876,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Depth Jump",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -15683,6 +15702,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Dumbbell Seated Box Jump",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -16519,6 +16539,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Lateral Cone Hops",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -17350,6 +17371,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Side Hop-Sprint",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -18181,6 +18203,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Side Standing Long Jump",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -19012,6 +19035,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Lateral Bound",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -19843,6 +19867,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Single-Leg Lateral Hop",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -20674,6 +20699,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Lateral Box Jump",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -21512,6 +21538,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "plyo",
    "cwiczenie": "Side to Side Box Shuffle",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",

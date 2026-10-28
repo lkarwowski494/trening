@@ -4705,6 +4705,10 @@
   "en": "Fewer than {n} days a week: {list} (a day with assisting work only = {h})."
  },
  {
+  "pl": "Rzut",
+  "en": "Throw"
+ },
+ {
   "pl": "sanki",
   "en": "sled"
  },
@@ -4926,6 +4930,10 @@
  {
   "pl": "Sklep chwilowo niedostępny",
   "en": "Store temporarily unavailable"
+ },
+ {
+  "pl": "Skok",
+  "en": "Jump"
  },
  {
   "pl": "skośne brzucha",

@@ -6,6 +6,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "sled_throw",
    "cwiczenie": "Medicine Ball Slam",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -828,6 +829,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "sled_throw",
    "cwiczenie": "One-Arm Medicine Ball Slam",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -1651,6 +1653,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "sled_throw",
    "cwiczenie": "Standing Two-Arm Overhead Throw",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -2473,6 +2476,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "sled_throw",
    "cwiczenie": "Backward Medicine Ball Throw",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -3295,6 +3299,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "sled_throw",
    "cwiczenie": "Medicine Ball Scoop Throw",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -4117,6 +4122,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "sled_throw",
    "cwiczenie": "Wall Ball",
+   "petla": "jednokierunkowa",
    "sprzet": [
     {
      "rodzaj": "podloga",

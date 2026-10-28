@@ -46,8 +46,8 @@ export const CONTRACT = {
 /** Ćwiczenia, w których kolano z założenia przechodzi na drugą stronę osi ciała (ruch poprzeczny): wyjątek od niezmiennika „kolano po swojej stronie”, z powodem. */
 export const KNEE_CROSS: Record<string, string> = {};
 
-/** Tryb animacji ćwiczenia: wahadło (0 → 1 → 0, domyślnie) albo cykl z lustrem (0 → 1, potem ta sama faza z zamienionymi stronami kończyn; marsz bez cofania). */
-export const LOOP_MODES = ['wahadlo', 'cykl_lustro'] as const;
+/** Tryb animacji ćwiczenia: wahadło (0 → 1 → 0, domyślnie), cykl z lustrem (0 → 1, potem ta sama faza z zamienionymi stronami kończyn; marsz bez cofania) albo jednokierunkowa (0 → 1 = całe powtórzenie, np. skok albo rzut; po końcu skok do u = 0, bez cofania ruchu). */
+export const LOOP_MODES = ['wahadlo', 'cykl_lustro', 'jednokierunkowa'] as const;
 export type LoopMode = typeof LOOP_MODES[number];
 
 export const MARKS = ['knees', 'heels', 'back', 'pelvis', 'bar'] as const;
@@ -80,7 +80,7 @@ export type DeltaFrame = {
 export type DataError = { cue: string; znacznik: typeof MARKS[number]; dotyczy: Affects[]; klatki: DeltaFrame[] };
 export type PoseData = {
   kontrakt: string; rodzina: string; cwiczenie: string;
-  /** Opcjonalnie: tryb pętli (domyślnie wahadło). cykl_lustro: pozycje u ∈ (1, 2] to klatki u − 1 z zamienionymi stronami nóg (i rąk, gdy lustroRece). Wymaga, by klatka u = 1 była lustrem klatki u = 0. */ petla?: LoopMode;
+  /** Opcjonalnie: tryb pętli (domyślnie wahadło). jednokierunkowa (skok, rzut): u 0 → 1 zawiera CAŁE powtórzenie, animacja nie wraca po tej samej drodze (pauza i skok do u = 0); zakres u jak w wahadle (0–1), bez lustra. cykl_lustro: pozycje u ∈ (1, 2] to klatki u − 1 z zamienionymi stronami nóg (i rąk, gdy lustroRece). Wymaga, by klatka u = 1 była lustrem klatki u = 0. */ petla?: LoopMode;
   /** Opcjonalnie (tylko z cykl_lustro): ręce też zamieniają strony w drugiej połowie (ruch rąk jest częścią kroku, np. ręka przeciwna do nogi). Domyślnie fałsz: ręce zostają. */ lustroRece?: boolean;
   sprzet: Gear[]; klatki: KeyFrame[]; bledy: DataError[];
 };
@@ -229,7 +229,7 @@ export function poseSchema(family: string, scope?: PromptScope): Sch {
     $schema: 'https://json-schema.org/draft/2020-12/schema', title: `Poza ćwiczenia — rodzina ${family}`, description: t.movement,
     ...obj({
       kontrakt: { type: 'string', enum: [CONTRACT.id] }, /* dane poza@1 przechodzą walidator (CONTRACT.legacy), ale generator dostaje wersję bieżącą */ rodzina: { type: 'string', maxLength: 40 }, cwiczenie: { type: 'string', maxLength: 120 },
-      petla: { type: 'string', enum: [...LOOP_MODES], description: 'OPCJONALNIE: wahadlo (domyślnie: ruch 0 → 1 i z powrotem) albo cykl_lustro (marsz: po u = 1 ta sama faza z zamienionymi nogami, więc klatka u = 1 musi być lustrem klatki u = 0).' },
+      petla: { type: 'string', enum: [...LOOP_MODES], description: 'OPCJONALNIE: wahadlo (domyślnie: ruch 0 → 1 i z powrotem) albo cykl_lustro (marsz: po u = 1 ta sama faza z zamienionymi nogami, więc klatka u = 1 musi być lustrem klatki u = 0) albo jednokierunkowa (skok, rzut: u = 0 → 1 to całe powtórzenie, animacja po końcu skacze do u = 0 bez cofania ruchu).' },
       lustroRece: { type: 'boolean', description: 'OPCJONALNIE, tylko z cykl_lustro: true, gdy ręce też zamieniają strony (ręka przeciwna do nogi); domyślnie false.' },
       sprzet: { type: 'array', items: gear, minItems: 1, maxItems: 8, description: gearText(family, scope) },
       klatki: { type: 'array', items: key, minItems: CONTRACT.frames.min, maxItems: CONTRACT.frames.max, description: 'Klatki kluczowe poprawnej pozy; między nimi interpolacja liniowa, więc dodaj klatki pośrednie, gdy ruch jest zakrzywiony.' },

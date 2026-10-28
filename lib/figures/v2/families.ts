@@ -76,6 +76,7 @@ export const DZWIGNIA_BEZ_GLOWY: readonly string[] = ['leg_machine'];
 export const EXERCISE_VIEWS: Record<string, { family: FamilyId; views: ('side' | 'front' | 'top')[]; reason: string }> = {
   'Leg Press': { family: 'leg_machine', views: ['side'], reason: 'suwnica: z przodu bez platformy stopy i siedzisko wiszą, uda w skrócie' },
   'Single Leg Press': { family: 'leg_machine', views: ['side'], reason: 'suwnica: z przodu bez platformy stopy i siedzisko wiszą, uda w skrócie' },
+  'Wall Ball': { family: 'sled_throw', views: ['side', 'front'], reason: 'błąd „kolana do środka” (kneeLat) widać tylko z przodu; reszta rodziny (sanie, rzuty, uderzenia) zostaje z boku (recenzja treści plyo/sanie 28.10.2026, Z3)' },
 };
 /** Widoki figury ćwiczenia: wyjątek ćwiczenia (EXERCISE_VIEWS), a w jego braku widoki rodziny. */
 export function viewsOf(key: string, family: FamilyId): ('side' | 'front' | 'top')[] {
