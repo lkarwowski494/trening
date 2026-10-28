@@ -21,9 +21,10 @@ export const TIPS_MIN = 2, TIPS_MAX = 4, MIN_ORGS = 2;
 export const MARKS = { analogia: 'analogia — inne ćwiczenie; nie liczy się do ≥ 2 źródeł' };
 export const KINDS = { org: 'organizacja szkoleniowa (biblioteka ćwiczeń)', site: 'serwis specjalistyczny', maker: 'producent sprzętu', study: 'badanie (czasopismo recenzowane)' };
 
-export function validate(data, pl) {
+/** `setIds` = id wskazówek zestawów ogólnych (lib/figures/v2/cue-sets.json: ok + err) — zdanie używane tylko przez zestaw ogólny też jest używane (1.0.1: bp.elbowsMid, rdl.knees). */
+export function validate(data, pl, setIds = []) {
   const errs = [];
-  const used = new Set(), usedSrc = new Set();
+  const used = new Set(setIds), usedSrc = new Set();
   for (const [id, o] of Object.entries(data.orgs ?? {})) if (!o || typeof o.name !== 'string' || ![2, 3, 4].includes(o.level)) errs.push(`orgs.${id}: nazwa i szczebel 2–4`);
   for (const [id, o] of Object.entries(data.orgs ?? {})) if (!o || !Object.prototype.hasOwnProperty.call(KINDS, o.kind)) errs.push(`orgs.${id}: rodzaj (${Object.keys(KINDS).join(', ')})`);
   for (const [id, s] of Object.entries(data.sources ?? {})) {
@@ -141,7 +142,8 @@ export function render(data, pl) {
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const data = JSON.parse(readFileSync(DATA, 'utf8')); const pl = JSON.parse(readFileSync(PL, 'utf8'));
-  const errs = validate(data, pl);
+  const sets = JSON.parse(readFileSync(join(root, 'lib/figures/v2/cue-sets.json'), 'utf8')).items;
+  const errs = validate(data, pl, Object.values(sets).flatMap(e => [...(e.ok ?? []), ...(e.err ?? [])]));
   if (errs.length) { console.error('Błędy danych wskazówek:\n' + errs.map(e => '  ' + e).join('\n')); process.exit(1); }
   const out = render(data, pl);
   if (process.argv.includes('--check')) {

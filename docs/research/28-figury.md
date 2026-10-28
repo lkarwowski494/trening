@@ -134,7 +134,7 @@ Widok: z boku; kotwica: przód stopy; przyrządy: plate.
   - bark – biodro – kostka w jednej linii (±6°) ← `rdl.setup`: „Stań prosto ze sztangą przy udach, stopy na szerokość bioder do barków, chwyt na szerokość barków lub trochę szerzej.”
   - zgięcie łokcia: 0° (±3°) ← `rdl.setup`: „Stań prosto ze sztangą przy udach, stopy na szerokość bioder do barków, chwyt na szerokość barków lub trochę szerzej.”
 - **pozycja końcowa** — t 25, hip 100, knee 18, sh 67, el 0
-  - zgięcie kolana: 15° (±12°) ← `rdl.knees`: „Kolana tylko lekko ugięte — to nie przysiad.”
+  - zgięcie kolana: 15° (±12°) ← `rdl.mis.knees`: „Zbyt mocno ugięte kolana — ruch zamienia się w przysiad.”
   - dłoń w pionie nad/pod: kostka (±9) ← `dl.close`: „Prowadź sztangę blisko nóg przez cały ruch.”
   - zgięcie łokcia: 0° (±3°) ← `rdl.move`: „Cofaj biodra i prowadź sztangę w dół blisko nóg, kolana lekko ugięte; wróć, wypychając biodra w przód.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Głębokość „dopóki czujesz rozciąganie tyłu ud przy prostych plecach” — pochylenie tułowia na rysunku jest ilustracyjne.
@@ -147,7 +147,7 @@ Widok: z boku; kotwica: przód stopy; na wzór: RDL (sztanga); przyrządy: db, d
   - bark – biodro – kostka w jednej linii (±6°) ← `rdl.dbSetup`: „Stań prosto z hantlami przed udami lub po bokach, stopy na szerokość bioder.”
   - zgięcie łokcia: 0° (±3°) ← `rdl.dbSetup`: „Stań prosto z hantlami przed udami lub po bokach, stopy na szerokość bioder.”
 - **pozycja końcowa** — t 25, hip 100, knee 18, sh 67, el 0
-  - zgięcie kolana: 15° (±12°) ← `rdl.knees`: „Kolana tylko lekko ugięte — to nie przysiad.”
+  - zgięcie kolana: 15° (±12°) ← `rdl.mis.knees`: „Zbyt mocno ugięte kolana — ruch zamienia się w przysiad.”
   - dłoń w pionie nad/pod: kostka (±9) ← `rdl.dbMove`: „Cofaj biodra i opuszczaj ciężar blisko nóg, kolana lekko ugięte; wróć, wypychając biodra w przód.”
   - zgięcie łokcia: 0° (±3°) ← `rdl.dbMove`: „Cofaj biodra i opuszczaj ciężar blisko nóg, kolana lekko ugięte; wróć, wypychając biodra w przód.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Głębokość „dopóki czujesz rozciąganie tyłu ud przy prostych plecach” — pochylenie tułowia na rysunku jest ilustracyjne.

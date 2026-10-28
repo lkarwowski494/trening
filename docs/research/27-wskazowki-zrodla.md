@@ -61,7 +61,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 102; zdań (z powtórzeniami między ćwiczeniami): 457; unikalnych zdań: 306; źródeł: 231.
+- Ćwiczenia ze wskazówkami: 102; zdań (z powtórzeniami między ćwiczeniami): 457; unikalnych zdań: 308; źródeł: 231.
 - Ćwiczenia bazowe bez wskazówek (otwarte): 22.
 - Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 20 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge.
 
@@ -499,7 +499,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 **Częste błędy**
 
 - Zaokrąglanie pleców, żeby dociągnąć ciężar. — NASM: [Romanian Deadlift Barbell](https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell) (Common Mistakes); ExRx.net: [RomanianDeadlift](https://web.archive.org/web/20230304211839/https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift) (Comments) `mis.roundBack`
-- Kolana tylko lekko ugięte — to nie przysiad. — NASM: [Romanian Deadlift Barbell](https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell) (Common Mistakes (bending the knees too much)); ACE: [Romanian Deadlift (#317)](https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/) (opis (slight bend in both knees)) `rdl.knees`
+- Zbyt mocno ugięte kolana — ruch zamienia się w przysiad. — NASM: [Romanian Deadlift Barbell](https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell) (Common Mistakes (bending the knees too much)); ACE: [Romanian Deadlift (#317)](https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/) (opis (slight bend in both knees)) `rdl.mis.knees`
 
 ### RDL (hantle/linki)
 
@@ -519,7 +519,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 **Częste błędy**
 
 - Zaokrąglanie pleców, żeby dociągnąć ciężar. — NASM: [Dumbbell Romanian Deadlift](https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift) (Common Mistakes); ACE: [Romanian Deadlift (#317)](https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/) (opis) `mis.roundBack`
-- Kolana tylko lekko ugięte — to nie przysiad. — NASM: [Dumbbell Romanian Deadlift](https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift) (Common Mistakes); ACE: [Romanian Deadlift (#317)](https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/) (opis) `rdl.knees`
+- Zbyt mocno ugięte kolana — ruch zamienia się w przysiad. — NASM: [Dumbbell Romanian Deadlift](https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift) (Common Mistakes); ACE: [Romanian Deadlift (#317)](https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/) (opis) `rdl.mis.knees`
 
 ### Good Morning
 
