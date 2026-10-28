@@ -81,9 +81,11 @@ export default function PaywallScreen() {
         <Muted>{t('{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.', { app: appName(), date: fmtDate(nextMonthDay()) })}</Muted>
       </View> : <Text testID="paywall-headline" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold, marginTop: 8, marginBottom: 12 }}>{t('Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Text>}
 
-      {view.active ? <View testID="paywall-owned" accessible accessibilityLanguage={lang()} style={{ borderWidth: 1, borderColor: th.line, borderRadius: RADIUS.group, padding: 12, gap: 4, marginBottom: 12, backgroundColor: th.surface }}>
-        {/* DEC-09 a (27.10.2026): nagłówek nazywa posiadany plan zamiast ogólnego „Masz pełną wersję”; rodzaj planu, nie nazwa z wyboru (1A, właściciel 28.10.2026) */}
-        <Text testID="paywall-owned-title" accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{ownedPlanTitle(view.active.plan)}</Text>
+      {view.active ? <View testID="paywall-owned" style={{ borderWidth: 1, borderColor: th.line, borderRadius: RADIUS.group, padding: 12, gap: 4, marginBottom: 12, backgroundColor: th.surface }}>
+        {/* DEC-09 a (27.10.2026): nagłówek nazywa posiadany plan zamiast ogólnego „Masz pełną wersję”; rodzaj planu, nie nazwa z wyboru (1A, właściciel 28.10.2026).
+            DEC-11 a (28.10.2026, M1-audytor-generalny-039): karta NIE jest grupą `accessible` — iOS chowa potomków grupy przed VoiceOver i XCTest, a „Zarządzaj subskrypcją” musi być
+            osobnym przyciskiem; nagłówek, dopiski i przycisk to kolejne elementy w kolejności wizualnej (strażnik S19, tests/interaction-guards.test.ts) */}
+        <Text testID="paywall-owned-title" accessibilityRole="header" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{ownedPlanTitle(view.active.plan)}</Text>
         {lifetime ? <Muted>{t('Masz dostęp na zawsze')}</Muted> : null}
         {view.active.source === 'family' ? <Muted>{t('Dostęp z Chmury rodzinnej')}</Muted> : null}
         {!lifetime && view.active.expiresAt != null ? <Muted>{view.active.source === 'code' ? t('Dostęp z kodu do {date}', { date: fmtDate(view.active.expiresAt) }) : t('Dostęp do {date}', { date: fmtDate(view.active.expiresAt) })}</Muted> : null}

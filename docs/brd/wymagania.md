@@ -812,6 +812,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik ma aktywną subskrypcję (miesięczną albo roczną; kupioną sam, z kodu albo z Chmury rodzinnej)
     - Gdy otwiera ekran zakupu
     - Wtedy zamiast oferty widzi stan swojego planu: nagłówek karty „Masz plan: {rodzaj planu}” (rodzaj planu: miesięczny, roczny albo dożywotni — 1A, właściciel 28.10.2026) i datę, bez wstępu o darmowych dniach, bez listy planów i bez przycisku „Subskrybuj”; lista planów jest zwinięta pod przyciskiem „Zmień plan” (decyzja właściciela DEC-09 a, 27.10.2026; test `tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx`)
+  - Scenariusz: Zarządzanie subskrypcją z VoiceOver
+    - Zakładając, że użytkownik z włączonym VoiceOver ma aktywną subskrypcję (także obok planu dożywotniego)
+    - Gdy przechodzi po karcie stanu planu na ekranie zakupu
+    - Wtedy nagłówek karty, dopiski i przycisk „Zarządzaj subskrypcją” są osobnymi elementami, a przycisk otwiera systemowy arkusz subskrypcji (DEC-11 a, właściciel 28.10.2026; M1-audytor-generalny-039; test `tests/voiceover-grupa-przycisk.test.tsx`, scenariusz `.maestro/21-subskrypcja.yaml`)
   - Scenariusz: Zmiana planu
     - Zakładając, że użytkownik ma aktywną subskrypcję i stuka „Zmień plan”
     - Gdy lista planów się rozwija

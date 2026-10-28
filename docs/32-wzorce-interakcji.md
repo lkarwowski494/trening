@@ -117,6 +117,7 @@ formatowanie dat tylko w `lib/state/time.ts`, `lib/calendar.ts`, `lib/period.ts`
 
 ### 23. Etykiety VoiceOver i role — S13, S14
 Każdy `Pressable` ma `accessibilityLanguage = lang()` (albo `accessible={false}`); przyciski — `button`; przełączniki — `switch` + `checked`; wybór — `selected`; rozwijanie — `expanded`; usuwanie — akcja dostępności; nagłówki — `header`.
+Grupa `accessible` (jeden element VoiceOver z opisem) nie zawiera przycisków ani innych kontrolek — iOS chowa potomków grupy przed VoiceOver i XCTest; przycisk stoi obok grupy albo karta nie jest grupą (S19; DEC-11 a, 28.10.2026: karta stanu planu na ekranie zakupu, „Zarządzaj subskrypcją”).
 
 ### 24. Seria „do uzupełnienia” i prośba przed „Zakończ” (0.20, decyzja właściciela 13.10.2026)
 Seria odhaczona na zegarku jako „zrobione inaczej niż w planie” ma w wierszu napis „do uzupełnienia” (słowem, nie samym kolorem) i przycisk „Gotowe”. „Zakończ” z takimi seriami pyta najpierw: tytuł „Serie do uzupełnienia”, przyciski
@@ -177,7 +178,7 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 - Ikonka dekoracyjna przy tytule (Trening: mała sztanga po napisie) stoi w wierszu tytułu, nie nad nim; ukryta dla VoiceOver, etykieta nagłówka bez zmian.
 - Przewijanie: `ScrollView`, `FlatList` i `SectionList` tylko z `components/Scroll.tsx`; wskaźnik przewijania (pionowy i poziomy) ukryty na wszystkich ekranach — nie ma „kreski” przy krawędzi w treści.
 
-## Strażniki (S1–S18)
+## Strażniki (S1–S19)
 | # | Strażnik | Plik | Stan |
 |---|---|---|---|
 | S1 | okno modalne / arkusz ma „Anuluj” w nagłówku (render każdego okna, PL/EN, jasny/ciemny) | `tests/close-button-guard.test.tsx` | jest |
@@ -198,6 +199,7 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 | S16 | arkusze akcji: wyjątki z powodem | j.w. | jest (wyjątki: lista miejsc użytkownika ma zmienną długość; rodzaje serii to 4 + notatka + Anuluj — dwupoziomowy arkusz wydłużyłby najczęstszą akcję treningu) |
 | S17 | ⓘ: jeden komponent (etykieta, rola, `expanded`, pole 44 pt), teksty przeniesione tylko jako `info=`, widoczny tekst pomocniczy ≤ 100 znaków poza listą wyjątków z powodem, gesty tylko w Przewodniku | j.w. + `tests/info-tip.test.tsx`, `tests/matrix-i18n.test.tsx` (szerokość 320 pt), `.maestro/53-objasnienia-info.yaml` | jest |
 | S18 | przewijanie: ScrollView/FlatList/SectionList tylko z `components/Scroll.tsx` (wskaźnik ukryty), brak `persistentScrollbar`/`flashScrollIndicators` | `tests/interaction-guards.test.ts`, `tests/trening-naglowek.test.tsx` | jest |
+| S19 | element `accessible` bez roli kontrolki nie ma w drzewie JSX potomka z `onPress`/`onLongPress` (skan AST `app/`, `components/`) | `tests/voiceover-grupa-przycisk.test.tsx`, `.maestro/21-subskrypcja.yaml` | jest (komponent przekazany jako dziecko z `onPress` w środku skan widzi tylko po atrybucie w miejscu użycia) |
 
 ## Słownik terminów
 Anuluj (rezygnacja; okna i potwierdzenia) · Wróć (strzałka, przycisk „nie ma takiego …”) · Wróć do edycji (tylko odrzucanie zmian) · Zamknij (tylko panel „Co nowego”) · Cofnij (ostatnia zmiana) · Przywróć (usunięte / zarchiwizowane / pominięte) ·

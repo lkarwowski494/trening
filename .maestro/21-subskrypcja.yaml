@@ -15,6 +15,7 @@
 #   "We're proud of you!", ".*no ads, no data collection.*"                 ← tekst przy starcie ponad limit (app/paywall.tsx, reason=limit)
 #   ".*Your plan: yearly.*", "Change plan", ".*Current plan.*", "Switch to this plan"  ← po zakupie planu: karta stanu, przełącznik zwiniętej listy,
 #       oznaczenie posiadanego planu, przycisk zmiany planu (app/paywall.tsx; DEC-09 a 27.10.2026: lista planów zwinięta pod „Change plan”)
+#   "Manage subscription", "An internet connection is needed\."                    ← przycisk karty stanu i komunikat błędu sklepu (app/paywall.tsx; M1-audytor-generalny-039)
 #   "Subscribe", "Log a past workout", "Not now", "Close" (id close-modal)
 #   "Empty workout", "Other workout", "Finish", "Set 1 done.*", "Skip", "Finish workout\?", "Session", "Upper A" ← jak flow 05
 appId: pl.lukasz.trening
@@ -89,6 +90,11 @@ name: Subskrypcja — ekran zakupu i limit
 - assertNotVisible: "Subscribe"
 - assertNotVisible: ".*Current plan.*"
 - takeScreenshot: 99-zakup-plan-aktywny
+# M1-audytor-generalny-039 (DEC-11 a, 28.10.2026): karta stanu planu nie jest grupą accessible — „Manage subscription” to osobny element widoczny dla XCTest
+# (i VoiceOver); w grupie tekst przycisku był tylko częścią wspólnej etykiety karty, więc tapOn po pełnej etykiecie nie znajdował elementu. Sztuczny sklep tylko liczy wywołanie.
+- tapOn: "Manage subscription"
+- assertVisible: ".*Your plan: yearly.*"
+- assertNotVisible: "An internet connection is needed\\."
 - scrollUntilVisible: { element: "Change plan", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "Change plan"
 - scrollUntilVisible: { element: "Switch to this plan", direction: DOWN, timeout: 60000 }

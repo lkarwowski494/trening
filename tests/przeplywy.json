@@ -2432,7 +2432,8 @@
     "Ustawienia → karta „Subskrypcja” (wiersz z dostępem: „Masz plan: {rodzaj planu}”, bez planu: „Zobacz plany Pro”) → ekran zakupu",
     "Panel „Test store”: wygaszenie → ceny → „Przywróć zakupy”",
     "Start ponad limit dni → ekran zakupu → zakup",
-    "Po zakupie subskrypcji: nagłówek „Masz plan: {rodzaj planu}”, lista planów zwinięta pod „Zmień plan”, po rozwinięciu „Aktualny plan” przy kupionym i „Przejdź na ten plan”"
+    "Po zakupie subskrypcji: nagłówek „Masz plan: {rodzaj planu}”, lista planów zwinięta pod „Zmień plan”, po rozwinięciu „Aktualny plan” przy kupionym i „Przejdź na ten plan”",
+    "Po zakupie: „Zarządzaj subskrypcją” na karcie planu jest osobnym przyciskiem (VoiceOver, XCTest) i otwiera arkusz subskrypcji (M1-audytor-generalny-039, DEC-11 a 28.10.2026)"
    ],
    "wynik": "Dostęp zgodny ze stanem sklepu; zamknięcie ekranu zakupu przyciskiem „Zamknij”; po zakupie ekran nie oferuje kupna posiadanego planu.",
    "ekrany": [
@@ -2442,7 +2443,8 @@
    "scenariusz": "21-subskrypcja.yaml",
    "znaczniki": [
     "Restore purchases",
-    "Test store: expire access"
+    "Test store: expire access",
+    "Manage subscription"
    ]
   },
   {
