@@ -325,7 +325,8 @@
       "raport": "role/09-lokalizacja/09-lokalizacja-2026-10-27.md",
       "test_akceptacyjny": "docs/16 i docs/40 R-010 z zapisem przeglądu (data, zakres, wynik) dla treści z tego commitu; R-010 zamknięte albo przegląd wykonany",
       "status": "zatwierdzone",
-      "commit": null
+      "commit": null,
+      "blokada": "R-010: drugi przegląd treści krytycznej w 34 językach po wszystkich zmianach tekstów — przegląd przez API (przeglad-tlumaczen.yml, szacunek ok. 10,7 USD Opus / 5,3 USD Sonnet, dowody/M2/szacunek-006/) czeka na zgodę właściciela na koszt; potem zapis kolumny „drugi przegląd” w docs/16 i stan R-010"
     },
     {
       "id": "M1-audytor-generalny-007",

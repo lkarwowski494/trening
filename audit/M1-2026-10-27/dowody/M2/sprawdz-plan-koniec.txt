@@ -1,0 +1,40 @@
+| Partia | ID | Poziom | Rodzaj | Rola | Wykonawca | Źródła | Zależy od | Decyzja | Status |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | M1-audytor-generalny-001 | P1 | D | 02-monetyzacja | M2 | 02-monetyzacja-503, 01-odkrywanie-002, 10-wydanie-002 | — | — | naprawione-do-weryfikacji |
+| 1 | M1-audytor-generalny-002 | P1 | D | 02-monetyzacja | M2 | 02-monetyzacja-501 | — | — | naprawione-do-weryfikacji |
+| 1 | M1-audytor-generalny-003 | P1 | D | 05-architekt | M2 | 05-architekt-001 | — | — | naprawione-do-weryfikacji |
+| 1 | M1-audytor-generalny-009 | P2 | P | 07-jakosc | rola | 01-odkrywanie-007, 02-monetyzacja-003, 02-monetyzacja-507, 03-zakres-002, 04-studio-projektowe-003, 08-programista-003, 10-wydanie-006, 07-jakosc-005 | — | DEC-02 | naprawione-do-weryfikacji |
+| 1 | M1-audytor-generalny-004 | P1 | D | 12-niezawodnosc | M2 | 12-niezawodnosc-002 | — | — | naprawione-do-weryfikacji |
+| 2 | M1-audytor-generalny-010 | P2 | P | 02-monetyzacja | rola | 04-studio-projektowe-001, 08-programista-002, 02-monetyzacja-001, 02-monetyzacja-504, 03-zakres-005, 07-jakosc-003 | M1-audytor-generalny-001 | DEC-09 | naprawione-do-weryfikacji |
+| 2 | M1-audytor-generalny-011 | P2 | D | 04-studio-projektowe | M2 | 01-odkrywanie-003, 09-lokalizacja-004, 04-studio-projektowe-002, 07-jakosc-004, 07-jakosc-009 | — | — | zatwierdzone |
+| 2 | M1-audytor-generalny-005 | P1 | P | 06-tresci | rola | 03-zakres-001, 06-tresci-001, 07-jakosc-006 | — | DEC-01 | naprawione-do-weryfikacji |
+| 2 | M1-audytor-generalny-012 | P2 | D | 07-jakosc | M2 | 07-jakosc-001, 07-jakosc-002, 10-wydanie-003 | — | — | naprawione-do-weryfikacji |
+| 2 | M1-audytor-generalny-006 | P1 | D | 09-lokalizacja | M2 | 09-lokalizacja-001 | — | — | zatwierdzone |
+| 2 | M1-audytor-generalny-007 | P1 | D | 10-wydanie | M2 | 02-monetyzacja-502, 01-odkrywanie-001, 09-lokalizacja-002 | — | — | naprawione-do-weryfikacji |
+| 2 | M1-audytor-generalny-008 | P1 | D | 10-wydanie | M2 | 10-wydanie-001 | — | — | naprawione-do-weryfikacji |
+| 2 | M1-audytor-generalny-017 | P2 | D | 10-wydanie | M2 | 01-odkrywanie-008 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-022 | P2 | D | 01-odkrywanie | M2 | 01-odkrywanie-004, 01-odkrywanie-005, 01-odkrywanie-006, 01-odkrywanie-009, 01-odkrywanie-010, 01-odkrywanie-011, 03-zakres-003, 03-zakres-004, 03-zakres-009 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-016 | P2 | D | 02-monetyzacja | M2 | 08-programista-001, 02-monetyzacja-505 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-036 | P2 | M | 02-monetyzacja | rola | 02-monetyzacja-004 | — | DEC-08 | zatwierdzone |
+| 3 | M1-audytor-generalny-037 | P2 | P | 03-zakres | rola | 02-monetyzacja-002, 08-programista-005, 04-studio-projektowe-006, 02-monetyzacja-506, 03-zakres-006, 03-zakres-007, 03-zakres-008, 10-wydanie-004, 10-wydanie-005, 11-wzrost-002, 11-wzrost-004, 02-monetyzacja-005 | — | DEC-07 | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-024 | P2 | D | 04-studio-projektowe | M2 | 04-studio-projektowe-005 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-025 | P2 | D | 04-studio-projektowe | M2 | 04-studio-projektowe-007 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-026 | P2 | D | 04-studio-projektowe | M2 | 04-studio-projektowe-009 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-027 | P2 | D | 04-studio-projektowe | M2 | 04-studio-projektowe-010 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-028 | P2 | D | 04-studio-projektowe | M2 | 04-studio-projektowe-004 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-029 | P2 | D | 04-studio-projektowe | M2 | 04-studio-projektowe-011 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-014 | P2 | P | 05-architekt | rola | 05-architekt-002 | — | DEC-03 | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-015 | P2 | D | 05-architekt | M2 | 05-architekt-003 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-035 | P2 | D | 05-architekt | M2 | 05-architekt-004 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-020 | P2 | M | 06-tresci | rola | 06-tresci-004 | — | DEC-04 | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-021 | P2 | M | 06-tresci | rola | 06-tresci-002, 06-tresci-003 | — | DEC-05 | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-023 | P2 | D | 07-jakosc | M2 | 07-jakosc-008 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-034 | P2 | D | 07-jakosc | M2 | 07-jakosc-007, 07-jakosc-010, 07-jakosc-011 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-030 | P2 | D | 08-programista | M2 | 08-programista-004, 08-programista-006, 04-studio-projektowe-008, 09-lokalizacja-008 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-019 | P2 | D | 09-lokalizacja | M2 | 09-lokalizacja-003 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-031 | P2 | D | 09-lokalizacja | M2 | 09-lokalizacja-005, 09-lokalizacja-006, 09-lokalizacja-007 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-018 | P2 | D | 11-wzrost | M2 | 11-wzrost-001 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-033 | P2 | D | 11-wzrost | M2 | 11-wzrost-003 | — | — | zatwierdzone |
+| 3 | M1-audytor-generalny-013 | P2 | D | 12-niezawodnosc | M2 | 12-niezawodnosc-001 | — | — | naprawione-do-weryfikacji |
+| 3 | M1-audytor-generalny-032 | P2 | D | 12-niezawodnosc | M2 | 12-niezawodnosc-003 | — | — | naprawione-do-weryfikacji |
+OK: 37 zadań, 8 decyzji (0 bez wyboru)
