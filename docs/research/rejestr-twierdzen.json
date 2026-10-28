@@ -180,14 +180,14 @@
    "id": "T-012",
    "kotwica": "Serie na partię w tygodniu (pomocnicza = {h} ser",
    "skrot": "eca390066f",
-   "skrotEn": "344afc60b8",
+   "skrotEn": "1658ac112b",
    "rodzaje": [
     "uproszczenie"
    ],
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-012",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: Pelland 2026 (metoda fractional 0,5), uproszczenie; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
+   "przeglad": "28.10.2026: tłumacz (teksty), tylko brzmienie EN; sens zgodny z PL (secondary/compound/isolation, General fitness); wymaga recenzji lokalizacji"
   },
   {
    "id": "T-013",
@@ -359,7 +359,7 @@
    "id": "T-025",
    "kotwica": "Ogólny (dla zdrowia i sprawności): {s} serie na ",
    "skrot": "8b924b4a2b",
-   "skrotEn": "b1d8df3bd5",
+   "skrotEn": "68049d603c",
    "rodzaje": [
     "źródło cytowane w tekście"
    ],
@@ -368,7 +368,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-025",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: WHO 2020 tab. 4, wytyczne USA 2018 rozdz. 4, ACSM 2011 tab. 2; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "28.10.2026: tłumacz (teksty), tylko brzmienie EN; sens zgodny z PL (secondary/compound/isolation, General fitness); wymaga recenzji lokalizacji"
   },
   {
    "id": "T-026",
@@ -408,7 +408,7 @@
    "id": "T-028",
    "kotwica": "Przerwy: {b} min po wielostawowych, {c} min po j",
    "skrot": "d915756ec7",
-   "skrotEn": "80a75c6854",
+   "skrotEn": "4d0b63035a",
    "rodzaje": [
     "uproszczenie",
     "źródło cytowane w tekście"
@@ -418,7 +418,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-028",
-   "przeglad": "25.10.2026: programista — z tekstu usunięte odwołania do badań, zaleceń i organizacji (decyzja właściciela „całkiem anonimowo”, docs/18); treść merytoryczna bez zmian, źródła zostają w rejestrze"
+   "przeglad": "28.10.2026: tłumacz (teksty), tylko brzmienie EN; sens zgodny z PL (secondary/compound/isolation, General fitness); wymaga recenzji lokalizacji"
   },
   {
    "id": "T-029",

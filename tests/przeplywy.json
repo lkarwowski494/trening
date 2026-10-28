@@ -1550,7 +1550,7 @@
    "scenariusz": "13-kalendarz-plan.yaml",
    "znaczniki": [
     "Place for these days",
-    "Remove place"
+    "Clear place"
    ]
   },
   {
@@ -3275,7 +3275,7 @@
    "scenariusz": "56-uczciwe-zasady.yaml",
    "znaczniki": [
     "First workout done!",
-    "Awesome, keep training!",
+    "Awesome, I'll keep training!",
     "See Pro plans"
    ]
   },
