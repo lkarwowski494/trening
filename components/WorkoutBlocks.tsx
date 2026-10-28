@@ -1,4 +1,5 @@
-import { View, Text, Pressable, Alert, StyleSheet, useWindowDimensions, ActionSheetIOS } from 'react-native';
+import { View, Pressable, Alert, StyleSheet, useWindowDimensions, ActionSheetIOS } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useRouter } from 'expo-router';
 import { useTheme, NUM_SCALE_MAX, FW, font, RADIUS, SIZE } from '@/lib/theme';
 import { Icon } from '@/components/Icon';

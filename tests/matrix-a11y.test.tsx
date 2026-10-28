@@ -195,14 +195,14 @@ describe('kontrast palety (WCAG 2.1) — pary używane w kodzie, których nie sp
 
 /* ---------- Dynamic Type ---------- */
 describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności iOS)', () => {
-  let errs: string[] = []; let R: { routes: string[]; inputs: { r: string; m: unknown; multi: boolean }[]; longLow: string[]; techOpen: boolean; monoNoLimit: string[]; btnNoLimit: string[]; btnTexts: number; maxEff: number; glyphNoLimit: string[]; glyphs: number };
+  let errs: string[] = []; let R: { routes: string[]; inputs: { r: string; m: unknown; multi: boolean }[]; longLow: string[]; techOpen: boolean; monoNoLimit: string[]; btnNoLimit: string[]; btnTexts: number; maxEff: number; glyphNoLimit: string[]; glyphs: number; noCap: string[]; fixedBox: string[] };
   beforeAll(async () => {
     jest.spyOn(RN.PixelRatio, 'getFontScale').mockReturnValue(2);
     const dims = RN.Dimensions.get; jest.spyOn(RN.Dimensions, 'get').mockImplementation(((k: 'window' | 'screen') => ({ ...dims(k), fontScale: 2 })) as never);
     jest.spyOn(console, 'error').mockImplementation((...a: unknown[]) => { const m = String(a[0]); if (!/not wrapped in act/.test(m)) errs.push(m.slice(0, 200)); });
     const { s, w, tpl, exId, locId, blockId } = await richState('pl');
     await renderApp({ saved: s }); await flushAll(10);
-    R = { routes: routesFor(w, tpl, exId, locId, blockId), inputs: [], longLow: [], techOpen: false, monoNoLimit: [], btnNoLimit: [], btnTexts: 0, maxEff: 0, glyphNoLimit: [], glyphs: 0 };
+    R = { routes: routesFor(w, tpl, exId, locId, blockId), inputs: [], longLow: [], techOpen: false, monoNoLimit: [], btnNoLimit: [], btnTexts: 0, maxEff: 0, glyphNoLimit: [], glyphs: 0, noCap: [], fixedBox: [] };
     for (const r of R.routes) {
       await go(r); await flushAll(10);
       const tech = r.startsWith('/exercise/') ? screen.queryByRole('button', { name: 'Technika' }) : null; /* A11N-04: sekcja „Technika” rozwinięta (od 27.10.2026 domyślnie już jest — stukamy tylko, gdy zwinięta) */
@@ -212,6 +212,8 @@ describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności i
       for (const tx of allNodes().filter(x => x.type === 'Text')) {
         const g = rawText(tx); const gm = tx.props.maxFontSizeMultiplier; /* T-04 (telefon 27.10.2026): znak-ikona (›, ▾, ✓…) bez limitu rośnie do 310% i wychodzi poza swoje pole albo jest ucinany */
         let bp = tx.parent; while (bp && !(bp.props?.accessibilityRole === 'button' && typeof bp.props?.onPress === 'function')) bp = bp.parent; /* tytuł przycisku Btn (np. „‹” „›” w polu daty) rośnie z przyciskiem do 200% — pole przycisku rośnie razem z nim */
+        if (!(typeof gm === 'number' && gm >= 1 && gm <= TEXT_SCALE_MAX) && g.trim()) R.noCap.push(`${r}: „${g.slice(0, 40)}” (${gm})`); /* 28.10.2026 (telefon, build 1032): tekst bez limitu rośnie do 357% (tabela mnożników RN) — układ liczony na 200% go nie mieści */
+        { let a = tx.parent; for (let d = 0; a && d < 6; d++, a = a.parent) { const as = flat(a.props?.style); if (typeof as.height === 'number' || typeof as.maxHeight === 'number' ) { if (g.trim().length > 1 && !(typeof gm === 'number' && gm <= GLYPH_SCALE_MAX)) R.fixedBox.push(`${r}: „${g.slice(0, 30)}” w ${kind(a)} ${JSON.stringify({ h: as.height, mh: as.maxHeight, o: as.overflow })}`); break; } } } /* stała wysokość wokół (overflow:hidden z wysokością z treści nie ucina) tekstu = ucinanie w pionie przy dużym tekście */
         if (/^[›‹▸▾▴▲▼✓✕✗✦⇄⋯+↑↓←→×▶⏸…]{1,2}$/u.test(g) /* znaki-ikony; „—” i „#” to zwykłe znaki tekstu */ && !(bp && flat(bp.props.style).borderWidth === 1 && flat(bp.props.style).minHeight >= 44 && gm === TEXT_SCALE_MAX) && (R.glyphs++, !(typeof gm === 'number' && gm > 0 && gm <= GLYPH_SCALE_MAX))) R.glyphNoLimit.push(`${r}: „${g}” (${gm})`);
       }
       for (const tx of all.filter(x => x.type === 'Text')) {
@@ -247,6 +249,8 @@ describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności i
   test('liczby krojem mono poza tabelą historii mają limit powiększenia (zasada: ui.tsx, R9-06)', () => { expect(R.monoNoLimit.filter(x => !x.startsWith(R.routes[13] + ':'))).toEqual([]); });
   test('etykiety przycisków Btn rosną do 200% (TEXT_SCALE_MAX — audyt 0.10 A11-07, WCAG 1.4.4; dawniej 1,4)', () => { expect(R.btnTexts).toBeGreaterThan(20); expect(R.btnNoLimit).toEqual([]); });
   test('T-04: znaki-ikony (›, ‹, ▾, ▸, ✓, ✕, ✦, ⇄, +…) mają limit powiększenia ≤ GLYPH_SCALE_MAX (1,4) na każdym ekranie — bez limitu rosną do 310% (Większe rozmiary dostępności) i są ucinane lub zasłaniają treść', () => { expect(R.glyphs).toBeGreaterThan(5); expect([...new Set(R.glyphNoLimit.map(x => x.replace(/^\S+: /, '')))]).toEqual([]); });
+  test('28.10.2026 (telefon, build 1032): każdy tekst na każdym ekranie ma limit powiększenia 1 ≤ max ≤ TEXT_SCALE_MAX (200%) — bez limitu rośnie do 357% (AX5), wychodzi poza ramkę i jest ucinany', () => { expect([...new Set(R.noCap)]).toEqual([]); });
+  test('28.10.2026 (telefon, build 1032): tekst dłuższy niż 1 znak nie leży w kontenerze o stałej wysokości (height/maxHeight; ucinanie w pionie przy dużym tekście)', () => { expect([...new Set(R.fixedBox)]).toEqual([]); });
   test('największy efektywny rozmiar tekstu przy skali 2,0 jest skończony (rozmiar × min(2, limit))', () => { expect(Number.isFinite(R.maxEff) && R.maxEff > 24).toBe(true); });
 });
 

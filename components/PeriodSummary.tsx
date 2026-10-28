@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Pressable } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, F, FW, font, RADIUS } from '@/lib/theme';
 import { InfoTip } from '@/components/InfoTip';
 import { t, exName, locale, lang } from '@/lib/i18n';

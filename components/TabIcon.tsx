@@ -7,7 +7,8 @@
  *  - Więcej: trzy talerze malejąco (zamiast trzech kropek). */
 import React from 'react';
 import Svg, { Path, Rect } from 'react-native-svg';
-import { Text, type ColorValue } from 'react-native';
+import { type ColorValue } from 'react-native';
+import { Text } from '@/components/AppText';
 import { FW, font, maxScale } from '@/lib/theme';
 import { lang } from '@/lib/i18n';
 
