@@ -94,14 +94,14 @@
       "import": "Hozza át előzményeit más naplóból"
     },
     "ro": {
-      "trening": "Antrenamentele rămân pe telefonul dvs.",
+      "trening": "Antrenamentele rămân în telefon",
       "postepy-cwiczenia": "Fiecare record și progres pe grafic",
-      "straznik": "Paznic de progres pentru săptămâna dvs.",
+      "straznik": "Paznicul de progres urmărește săptămâna",
       "plan": "Plan săptămânal — singur sau cu noi",
       "dostosuj": "Altă locație? Schimbare doar azi",
       "progresja": "Săptămâna și luna într-un singur loc",
       "historia": "Tot istoricul, fără cont și reclame",
-      "szablony": "Șabloane gata făcute sau ale dvs.",
+      "szablony": "Șabloane gata făcute sau proprii",
       "import": "Aduceți istoricul din alt jurnal"
     },
     "hr": {
@@ -112,7 +112,7 @@
       "dostosuj": "Drugo mjesto? Promjena samo za danas",
       "progresja": "Tjedan i mjesec na jednom mjestu",
       "historia": "Cijela povijest bez računa i reklama",
-      "szablony": "Gotovi predlošci ili vaši vlastiti",
+      "szablony": "Gotovi predlošci ili vlastiti",
       "import": "Prenesite povijest iz drugog dnevnika"
     },
     "uk": {
@@ -179,11 +179,11 @@
       "progresja": "Woche und Monat an einem Ort",
       "historia": "Ganzer Verlauf, ohne Konto und Werbung",
       "szablony": "Fertige Vorlagen oder eigene",
-      "import": "Verlauf aus anderem Tagebuch übernehmen"
+      "import": "Verlauf aus einer anderen App übernehmen"
     },
     "fr": {
       "trening": "Vos séances restent sur votre téléphone",
-      "postepy-cwiczenia": "Chaque record et progrès en graphique",
+      "postepy-cwiczenia": "Records et progrès sur un graphique",
       "straznik": "Le Gardien de progrès suit votre semaine",
       "plan": "Plan de la semaine, seul ou aidé",
       "dostosuj": "Autre lieu ? Modifiez juste aujourd’hui",
@@ -199,7 +199,7 @@
       "plan": "Piano settimanale, da solo o con noi",
       "dostosuj": "Altro luogo? Cambia solo per oggi",
       "progresja": "Settimana e mese in un unico posto",
-      "historia": "Tutta la cronologia, senza account e ads",
+      "historia": "Cronologia senza account né pubblicità",
       "szablony": "Schede pronte o create da te",
       "import": "Porta la cronologia da un altro diario"
     },
@@ -251,7 +251,7 @@
       "trening": "Treenisi pysyy puhelimessasi",
       "postepy-cwiczenia": "Jokainen ennätys ja kehitys kaaviona",
       "straznik": "Edistymisvartija valvoo viikkoasi",
-      "plan": "Viikkosuunnitelma itse tai avullamme",
+      "plan": "Viikkosuunnitelma: itse tai avullamme",
       "dostosuj": "Eri paikka? Muuta vain tälle päivälle",
       "progresja": "Viikko ja kuukausi samassa paikassa",
       "historia": "Koko historia ilman tiliä ja mainoksia",
@@ -266,7 +266,7 @@
       "dostosuj": "Başka yer mi? Yalnızca bugün değiştirin",
       "progresja": "Hafta ve ay tek bir yerde",
       "historia": "Tüm geçmiş, hesap ve reklam olmadan",
-      "szablony": "Hazır şablonlar ya da kendinizinkiler",
+      "szablony": "Hazır ya da kendi şablonlarınız",
       "import": "Geçmişinizi başka bir günlükten aktarın"
     },
     "el": {
@@ -305,7 +305,7 @@
     "vi": {
       "trening": "Buổi tập của bạn nằm trên điện thoại",
       "postepy-cwiczenia": "Mọi kỷ lục và tiến bộ trên biểu đồ",
-      "straznik": "Giám sát tiến bộ theo dõi tuần của bạn",
+      "straznik": "Giám sát tiến bộ cho tuần của bạn",
       "plan": "Kế hoạch tuần, tự làm hoặc nhờ trợ giúp",
       "dostosuj": "Nơi khác? Chỉ thay đổi cho hôm nay",
       "progresja": "Tuần và tháng ở cùng một nơi",
@@ -317,11 +317,11 @@
       "trening": "Ваши тренировки остаются в телефоне",
       "postepy-cwiczenia": "Каждый рекорд и прогресс на графике",
       "straznik": "Страж прогресса следит за вашей неделей",
-      "plan": "План на неделю — сами или с помощью",
+      "plan": "План недели — сами или с нашей помощью",
       "dostosuj": "Другое место? Изменить только сегодня",
       "progresja": "Неделя и месяц в одном месте",
       "historia": "Вся история без аккаунта и рекламы",
-      "szablony": "Готовые шаблоны или ваши собственные",
+      "szablony": "Готовые шаблоны или свои",
       "import": "Перенесите историю из другого дневника"
     },
     "ja": {
@@ -344,7 +344,7 @@
       "progresja": "주간과 월간을 한곳에서",
       "historia": "계정·광고 없이 전체 기록",
       "szablony": "준비된 루틴 또는 나만의 루틴",
-      "import": "다른 운동 기록에서 가져오기"
+      "import": "다른 앱의 운동 기록 가져오기"
     },
     "zh-Hant": {
       "trening": "你的訓練資料留在手機裡",
