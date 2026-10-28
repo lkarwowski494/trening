@@ -69,7 +69,7 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
   const L = D.uarm + D.farm + BODY.hand - 0.05;
   /* góra: ręce wyprostowane, gryf nad barkiem (lekko w stronę stóp) */
   const dz0 = grip0 - D.shHalf; const x0 = shoulderC[0] + 2;
-  const top: V3 = [x0, shoulderC[1] + Math.sqrt(Math.max(1, L * L - 4 - dz0 * dz0)), 0];
+  let top: V3 = [x0, shoulderC[1] + Math.sqrt(Math.max(1, L * L - 4 - dz0 * dz0)), 0];
   /* dół: dotyk w układzie tułowia (u podłogi: wysokość, przy której łokcie dotykają podłogi) */
   const touchB = p.touchB ?? 11.9 + EQUIP.barR;
   let bottom = trunkPoint(hipT, pitchT, p.touch, touchB, 0);
@@ -79,6 +79,8 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
     const f = (y: number): number => { const sh: V3 = [shoulderC[0], shoulderC[1], D.shHalf]; const r = ik2(sh, [bottom[0], y, g], D.uarm, D.farm + BODY.hand, p.vert ? underGripAt([bottom[0], y, g]) : elbowPole); return r.mid[1] - (2 + 4.6); };
     bottom = [bottom[0], solveRoot(f, bottom[1] - 4, bottom[1] + 30), 0];
   }
+  /* maszyna Smitha: gryf jedzie po pionowej szynie — x stały (punkt dotyku), góra = wyprost ramion nad tym x (skan torów 28.10.2026, lekcja w docs/40; było: ukos 15–18 cm, szyna jechała z gryfem) */
+  if (p.impl === 'smith') { const dxs = bottom[0] - shoulderC[0]; top = [bottom[0], shoulderC[1] + Math.sqrt(Math.max(1, L * L - dxs * dxs - dz0 * dz0)), 0]; }
   const k = ease(u);
   const c: V3 = [top[0] + (bottom[0] - top[0]) * k, top[1] + (bottom[1] - top[1]) * k, 0];
 
