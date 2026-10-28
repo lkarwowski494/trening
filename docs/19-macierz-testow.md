@@ -2669,7 +2669,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | WORKOUT_VIEWS (2) | lib/seed.ts | tests/matrix-tuleja.test.tsx |
 | LIB_MUSCLE_FIXES (2) | lib/seed.ts | tests/catalog-v2.test.ts |
 | LIB (2) | lib/seed.ts | tests/audit-0.10-stats.test.ts, tests/catalog-library25.test.tsx, tests/catalog-v2.test.ts +7 |
-| SOURCE_NAME_PATTERNS (34) | lib/sources.ts | tests/zrodla-paczka.test.ts, tests/zrodla-wiedzy.test.ts |
+| SOURCE_NAME_PATTERNS (36) | lib/sources.ts | tests/zrodla-paczka.test.ts, tests/zrodla-wiedzy.test.ts |
 | GENERIC_REFERENCE_PATTERNS (41) | lib/sources.ts | tests/zrodla-wiedzy.test.ts |
 | CFG_KEYS (11) | lib/state/core.ts | tests/audit-0.10-tst.test.ts |
 | TotalKind: objętość treningu \| suma powtórzeń \| łączny czas \| łączny dystans | lib/stats.ts | tests/audit-final-stats.test.ts, tests/audit-records-logic.test.ts |

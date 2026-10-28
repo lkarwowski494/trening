@@ -3940,12 +3940,12 @@
      "miejsce": "Squatting: The Setup → Foot Angle: „toes pointed out 15-20 degrees” (przy szerokim rozstawie 30–45°)"
     },
     {
-     "adres": "https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf",
-     "miejsce": "rozdz. 4, 1a Back Squat, Foot Position, s. 49: „Point toes out slightly from neutral to 30°”"
+     "adres": "https://squatuniversity.com/2016/06/16/the-great-squat-debate-toes-forward-or-angled-out",
+     "miejsce": "„Toes Forward or Angled Out When You Squat?” (A. Horschig, PT, DPT, CSCS): „you should perform barbell squats with your feet turned out anywhere from 10-30 degrees”"
     }
    ],
-   "czescWspolna": "SBS: 15–20° (zwykły rozstaw); NSCA: 0–30° → część wspólna 15–20°.",
-   "sprzecznosci": "Brak sprzeczności. Sprawdzone: SBS How to Squat (Foot Angle), NSCA Basics s. 49–50, ACE #135 Barbell Squat Step 1 („toes turned slightly outwards”, bez liczby). Uwaga: NSCA s. 50 przy zdejmowaniu sztangi pisze „toes pointed straight ahead”, ale ten sam rozdział s. 49 dopuszcza 0–30° i dodaje, że kąt nie ma znaczenia, jeśli pozycja jest wygodna — nie traktuję tego jako sprzeczności z przedziałem 15–20°.",
+   "czescWspolna": "SBS: 15–20° (zwykły rozstaw); Squat University: 10–30° → część wspólna 15–20° (tekst „zwykle mniej więcej 15–20°” mieści się w obu).",
+   "sprzecznosci": "Brak sprzeczności. Różnica: Squat University podaje szerszy przedział 10–30° („anywhere”), SBS 15–20° dla zwykłego rozstawu (30–45° przy szerokim). Sprawdzone też wcześniej: ACE #135 Barbell Squat Step 1 („toes turned slightly outwards”, bez liczby); NSCA Basics 2012 s. 49 (0–30°, zapis badacza 25.10) — 28.10.2026 adres PDF przekierowuje na stronę błędu 404, nieotwarte, nie liczone.",
    "odczyt": [
     {
      "adres": "https://www.strongerbyscience.com/how-to-squat/",
@@ -3958,10 +3958,28 @@
      "data": "2026-10-27",
      "kto": "06-tresci (fix M2)",
      "wynik": "nieotwarte — HTTP 403 dla narzędzi agenta; zapis badacza z 25.10.2026 (wyciąg tekstu koordynatora) niesprawdzony dziś"
+    },
+    {
+     "adres": "https://www.strongerbyscience.com/how-to-squat/",
+     "data": "2026-10-28",
+     "kto": "06-tresci (fix M2, pętla 2)",
+     "wynik": "cytat „toes pointed out 15-20 degrees” sprawdzony dosłownie na surowym tekście (curl), kontekst: „In a “normal” squat for someone near the middle of the anatomical bell curve”"
+    },
+    {
+     "adres": "https://squatuniversity.com/2016/06/16/the-great-squat-debate-toes-forward-or-angled-out",
+     "data": "2026-10-28",
+     "kto": "06-tresci (fix M2, pętla 2)",
+     "wynik": "HTTP 200; cytat „feet turned out anywhere from 10-30 degrees” sprawdzony dosłownie na surowym tekście (curl)"
+    },
+    {
+     "adres": "https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf",
+     "data": "2026-10-28",
+     "kto": "06-tresci (fix M2, pętla 2)",
+     "wynik": "nieotwarte — przekierowanie na stronę błędu (404/403); nie liczone"
     }
    ],
-   "status": "otwarte",
-   "uwaga": "[OTWARTE — przedział kąta wymaga 2 zgodnych źródeł szczebla 4 przeczytanych (CLAUDE.md, 25.10.2026); drugie źródło do potwierdzenia: badacz z dostępem do PDF NSCA albo inne źródło szczebla 4 z liczbą. Rejestr twierdzeń: T-054.]"
+   "status": "potwierdzone",
+   "uwaga": "Potwierdzone 28.10.2026 (M1-audytor-generalny-021, 06-tresci-003): 2 niezależne źródła szczebla 4 przeczytane, żadne przeczytane nie przeczy (zasada właściciela 25.10.2026 dla przedziałów kątów techniki). Uproszczenie: „zwykle 15–20°” = część wspólna; szerszy przedział 10–30° tylko w rejestrze. Rejestr twierdzeń: T-054."
   }
  }
 }
