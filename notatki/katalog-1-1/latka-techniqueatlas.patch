@@ -1,0 +1,76 @@
+diff --git a/.github/workflows/pages.yml b/.github/workflows/pages.yml
+index d929f93..e592da8 100644
+--- a/.github/workflows/pages.yml
++++ b/.github/workflows/pages.yml
+@@ -25,6 +25,7 @@ jobs:
+       - uses: actions/setup-node@v5
+         with:
+           node-version: 22
++      - run: npm ci
+       - run: npm run dane
+       - run: npm test
+       - run: npm run build
+diff --git a/tests/build.test.mjs b/tests/build.test.mjs
+index aafe194..276ce51 100644
+--- a/tests/build.test.mjs
++++ b/tests/build.test.mjs
+@@ -141,13 +141,19 @@ test('sylwetka mięśni: arkusz assets/sylwetka.svg + klasy stopni partii (bez i
+   }
+   const sq = read(out, 'en/exercises/back-squat/index.html'); assert.match(sq, /class="sylwetki s5-4 s7-2 s11-2"/);
+ });
+-test('role mięśni: sekcja pokazuje zdania o roli mięśnia dopiero, gdy eksport je zawiera (ex.roles, etykieta regionu + zdanie, z ucieczką HTML); bez danych — tylko listy główne / pomocnicze, bez pustej listy', async () => {
++test('role mięśni: sekcja pokazuje zdania o roli z PRAWDZIWEGO eksportu aplikacji (ex.roles = [{id, text}], etykieta regionu z labels.regions + zdanie, z ucieczką HTML); w żadnej stronie nie ma „undefined”; bez ról — tylko listy główne / pomocnicze, bez pustej listy', async () => {
+   const { exercisePage } = await import('../src/pages.mjs'); const { out, ctx } = await buildOnce();
+-  assert.doesNotMatch(read(out, 'en/exercises/back-squat/index.html'), /class="role"/); /* dziś eksport nie ma ról */
+-  const ex = ctx.data.en.exercises.find(e => e.slug === 'back-squat');
+-  const withRoles = exercisePage(ctx, 'en', { ...ex, roles: [{ id: 'quads', text: 'Straightens the knee <when> you stand up.' }, { id: 'glutes', text: 'Helps extend the hip.' }] }).html;
+-  assert.match(withRoles, /<ul class="role"><li><strong>quads<\/strong> — Straightens the knee &lt;when&gt; you stand up\.<\/li><li><strong>glutes<\/strong> — Helps extend the hip\.<\/li><\/ul>/);
+-  assert.ok(withRoles.indexOf('Supporting muscles') < withRoles.indexOf('class="role"') && withRoles.indexOf('class="role"') < withRoles.indexOf('>Tips<'));
++  let z = 0;
++  for (const [l, d] of [['pl', PL], ['en', EN]]) for (const e of d.exercises) {
++    const h = read(out, `${l}/exercises/${e.slug}/index.html`); assert.doesNotMatch(h, /undefined/, `${l}/${e.slug}`);
++    if (!e.roles.length) { assert.doesNotMatch(h, /class="role"/, `${l}/${e.slug}`); continue; }
++    z++; const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
++    const li = e.roles.map(r => `<li><strong>${esc(d.labels.regions[r.id])}</strong> — ${esc(r.text)}</li>`).join('');
++    assert.ok(h.includes(`<ul class="role">${li}</ul>`), `${l}/${e.slug}`);
++  }
++  assert.ok(z > 50, `ćwiczeń z rolami: ${z}`);
++  const ex = ctx.data.en.exercises.find(e => e.roles.length); /* kształt {id, text} z eksportu; stary kształt {region, text} jest błędem (kontrakt), a nie „brakiem danych” */
++  assert.deepEqual(Object.keys(ex.roles[0]).sort(), ['id', 'text']);
+   for (const none of [undefined, []]) assert.doesNotMatch(exercisePage(ctx, 'en', { ...ex, roles: none }).html, /class="role"/);
+ });
+ test('lokalna wyszukiwarka (D11): indeks nazw per język ≤ 25 KB gz, działa z pliku modułu; lista A–Z działa bez JS (pełna lista w HTML, filtry ukryte do uruchomienia skryptu)', async () => {
+diff --git a/tests/kontrakt.test.mjs b/tests/kontrakt.test.mjs
+new file mode 100644
+index 0000000..0838ebc
+--- /dev/null
++++ b/tests/kontrakt.test.mjs
+@@ -0,0 +1,28 @@
++// Kontrakt pól eksportu aplikacji (scripts/strona/kontrakt.json w repo aplikacji) sprawdzany na PRAWDZIWYCH danych z .cache/dane — nie na obiektach napisanych w teście.
++// Aplikacja eksportuje kontrakt i walidator razem z danymi (manifest.contract); brak = PIN.json wskazuje commit sprzed kontraktu (podnieś PIN).
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import { readFileSync, existsSync } from 'node:fs';
++import { join } from 'node:path';
++import { pathToFileURL } from 'node:url';
++import { CACHE, readJson } from '../src/lib.mjs';
++import { requireData } from './pomoc.mjs';
++
++requireData();
++const dane = join(CACHE, 'dane'), man = readJson('.cache/dane/manifest.json');
++test('manifest wskazuje kontrakt i walidator (commit z PIN.json ma kontrakt pól eksportu)', () => {
++  assert.ok(man.contract, 'manifest bez contract — PIN.json wskazuje commit aplikacji sprzed kontraktu pól');
++  for (const f of [man.contract.schema, man.contract.validator]) assert.ok(existsSync(join(dane, f)), f);
++});
++test('każdy zbudowany plik języka z eksportu spełnia kontrakt (role {id, text}, id ma etykietę regionu)', async () => {
++  const { waliduj } = await import(pathToFileURL(join(dane, man.contract.validator)).href);
++  const schema = JSON.parse(readFileSync(join(dane, man.contract.schema), 'utf8')).plik;
++  for (const x of man.languages) assert.deepEqual(waliduj(schema, JSON.parse(readFileSync(join(dane, x.file), 'utf8'))).slice(0, 3), [], x.lang);
++});
++test('brak przekładu = brak zdania: licznik braków w manifeście zgadza się z plikami języków', () => {
++  for (const x of man.languages) {
++    const d = JSON.parse(readFileSync(join(dane, x.file), 'utf8'));
++    assert.equal(x.missing.cues, d.meta.cuesWithoutText, x.lang);
++    assert.deepEqual(x.missing.exercises, Object.fromEntries(d.exercises.filter(e => e.cues.missing).map(e => [e.slug, e.cues.missing])), x.lang);
++  }
++});
