@@ -866,6 +866,24 @@
   "Show common mistake": 1,
   "Hide common mistake": 1
  },
+ "58-duzy-tekst.yaml": {
+  "Other workout": 1,
+  "From a template": 1,
+  "Start: Full Body A": 1,
+  "Not now": 1,
+  "Set 1 done.*": 1,
+  "Skip": 1,
+  "Finish": 2,
+  "Back": 1,
+  "Workout, tab.*": 1
+ },
+ "subflows/generator-plan-duzy-tekst.yaml": {
+  "Planning": 1,
+  "Generate templates and plan": 1,
+  "Save templates and plan": 1,
+  "Not now": 1,
+  "Back": 1
+ },
  "subflows/generator-plan.yaml": {
   "Planning": 1,
   "Generate templates and plan": 1,

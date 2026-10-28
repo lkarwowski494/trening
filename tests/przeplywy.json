@@ -3278,6 +3278,28 @@
    ]
   },
   {
+   "id": "US-21",
+   "tytul": "Duży tekst dostępności: ekran Trening bez planu, z planem i w treningu bez uciętych ikon i przycisków",
+   "stan": "nowy",
+   "wersja": "1.0",
+   "realnosc": "realny",
+   "kroki": [
+    "W systemie: Ustawienia → Dostępność → Rozmiar tekstu → Większe rozmiary dostępności, suwak na maksimum",
+    "Uruchom aplikację → ekran Trening (bez planu), potem z planem tygodnia i z treningiem w toku",
+    "Przewiń ekran Trening i stuknij przycisk startu (zaplanowanego i „Inny trening”)"
+   ],
+   "wynik": "Przy największym tekście systemu przyciski startu, znaki-ikony (›, ▸) i etykiety sterujące są w całości widoczne i da się je stuknąć (limit powiększenia znaków GLYPH_SCALE_MAX).",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "58-duzy-tekst.yaml",
+   "znaczniki": [
+    "Other workout",
+    "Start: Full Body A",
+    "Set 1 done.*"
+   ]
+  },
+  {
    "id": "DA-08",
    "tytul": "Karta „Historia jest już w telefonie” po udanym imporcie CSV w stanie darmowym, przycisk do ekranu zakupu",
    "stan": "kopia",

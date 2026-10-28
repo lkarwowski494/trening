@@ -63,6 +63,7 @@
  "35-ustawienia-dostepnosc.yaml: { element: \"Restore purchases\", direction: DOWN",
  "35-ustawienia-dostepnosc.yaml: { element: \"Test store: expire access\", direction: DOWN",
  "53-objasnienia-info.yaml: { element: \"Appearance\", direction: UP",
+ "subflows/generator-plan-duzy-tekst.yaml: { element: \"Save templates and plan\", direction: DOWN",
  "subflows/generator-plan.yaml: { element: \"Saturday, Full Body A\", direction: DOWN",
  "subflows/szablon-testowy.yaml: { element: \"\\\\+ Add exercise\", direction: DOWN"
 ]
