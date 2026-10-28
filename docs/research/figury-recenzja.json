@@ -64,15 +64,15 @@
    "rodzina": "hinge",
    "werdykt": "zastapiona",
    "data": "2026-10-27",
-   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
-   "sha": "2d38e4f523dc"
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji; skrót przeliczony 28.10.2026 po zmianie id błędu na rdl.mis.knees (1.0.1)",
+   "sha": "d08c77a6346a"
   },
   "RDL (hantle/linki)": {
    "rodzina": "hinge",
    "werdykt": "zastapiona",
    "data": "2026-10-27",
-   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
-   "sha": "272eb3e0eb8a"
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji; skrót przeliczony 28.10.2026 po zmianie id błędu na rdl.mis.knees (1.0.1)",
+   "sha": "2de2689449ea"
   },
   "Good Morning": {
    "rodzina": "hinge",
@@ -987,22 +987,22 @@
   "RDL (hantle/linki)": {
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "534a2ce0ca45",
-   "uwagi": "Hantle w opuszczonych rękach, zawias, kolana lekko ugięte, głębokość — przeczytana biblioteka o tym ćwiczeniu + wersja ze sztangą. ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (hantle przed udami)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "1579524968b9",
+   "uwagi": "Opis błędu rdl.mis.knees zgodny z NASM (Dumbbell RDL) i ACE; animacja kneesBent: 13° zamiast 53°."
   },
   "RDL (sztanga)": {
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "d847e65c8952",
-   "uwagi": "Ustawienie, zawias z kolanami lekko ugiętymi, sztanga blisko, głębokość do rozciągnięcia tyłu ud, błędy — 2 przeczytane biblioteki o tym ćwiczeniu."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "2c2795567ec0",
+   "uwagi": "Opis błędu rdl.mis.knees zgodny z NASM (Common Mistakes) i ACE; animacja kneesBent: kolano 16° zamiast 58° na dole. rdl.knees zostaje jako zalecenie w zestawach ogólnych (źródła w wskazowki-ogolne.json)."
   },
   "Reverse Crunch": {
    "werdykt": "wyswietlana",
@@ -1226,12 +1226,12 @@
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "0d587fba1aaa",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "aadff1efce51",
+   "uwagi": "bp.elbowsMid (łokcie pośrodku, bez liczby) zgodne z NASM i SBS; figura na dole ok. 50–52°; nie przeczy pozostałym wskazówkom zestawu."
   },
   "Board Press": {
    "rodzina": "bench",
@@ -1325,12 +1325,12 @@
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "0d587fba1aaa",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "aadff1efce51",
+   "uwagi": "bp.elbowsMid (łokcie pośrodku, bez liczby) zgodne z NASM i SBS; figura na dole ok. 50–52°; nie przeczy pozostałym wskazówkom zestawu."
   },
   "Clean Deadlift": {
    "rodzina": "hingeFloor",
@@ -1391,23 +1391,23 @@
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "cd5b2598cc3d",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "d4990dcebe38",
+   "uwagi": "bp.elbowsMid (łokcie pośrodku, bez liczby) zgodne z NASM i SBS; figura na dole ok. 50–52°; nie przeczy pozostałym wskazówkom zestawu. Ławka ujemna: przeniesienie z ławki płaskiej, ekran oznacza wskazówki jako ogólne dla ruchu."
   },
   "Decline Bench Press (hantle)": {
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "cd5b2598cc3d",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "d4990dcebe38",
+   "uwagi": "bp.elbowsMid (łokcie pośrodku, bez liczby) zgodne z NASM i SBS; figura na dole ok. 50–52°; nie przeczy pozostałym wskazówkom zestawu. Ławka ujemna: przeniesienie z ławki płaskiej, ekran oznacza wskazówki jako ogólne dla ruchu."
   },
   "Decline Close-Grip Bench To Skull Crusher": {
    "rodzina": "triLying",
@@ -1633,12 +1633,12 @@
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "0d587fba1aaa",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "aadff1efce51",
+   "uwagi": "bp.elbowsMid (łokcie pośrodku, bez liczby) zgodne z NASM i SBS; figura na dole ok. 50–52°; nie przeczy pozostałym wskazówkom zestawu."
   },
   "Reverse Band Box Squat": {
    "rodzina": "squat",
@@ -1743,12 +1743,12 @@
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "0d587fba1aaa",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "aadff1efce51",
+   "uwagi": "bp.elbowsMid (łokcie pośrodku, bez liczby) zgodne z NASM i SBS; figura na dole ok. 50–52°; nie przeczy pozostałym wskazówkom zestawu."
   },
   "Smith Machine Close-Grip Bench Press": {
    "rodzina": "bench",
@@ -1765,12 +1765,12 @@
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "cd5b2598cc3d",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "d4990dcebe38",
+   "uwagi": "bp.elbowsMid (łokcie pośrodku, bez liczby) zgodne z NASM i SBS; figura na dole ok. 50–52°; nie przeczy pozostałym wskazówkom zestawu. Ławka ujemna: przeniesienie z ławki płaskiej, ekran oznacza wskazówki jako ogólne dla ruchu."
   },
   "Smith Machine Incline Press": {
    "rodzina": "bench",

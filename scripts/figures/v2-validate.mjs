@@ -47,7 +47,7 @@ export function przyklad(rodzina) {
   const { v2 } = silnik();
   const f = v2.FAMILIES.find((x) => x.id === rodzina);
   if (!f || f.status !== 'ready') return [];
-  const wzor = { squat: ['Back Squat', { kneesIn: 'sq.mis.kneesIn', heels: 'sq.mis.heels' }], hinge: ['RDL (sztanga)', { kneesBent: 'rdl.knees' }] }[rodzina];
+  const wzor = { squat: ['Back Squat', { kneesIn: 'sq.mis.kneesIn', heels: 'sq.mis.heels' }], hinge: ['RDL (sztanga)', { kneesBent: 'rdl.mis.knees' }] }[rodzina];
   if (!wzor) return [];
   const cw = wzor[0]; const dopuszczone = bledyCwiczenia(cw);
   const bledy = Object.fromEntries(Object.entries(wzor[1]).filter(([, cue]) => dopuszczone.includes(cue)));
