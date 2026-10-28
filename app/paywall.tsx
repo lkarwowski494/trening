@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, Text, Pressable, Linking, ActivityIndicator, Alert } from 'react-native';
+import { View, Pressable, Linking, ActivityIndicator, Alert } from 'react-native';
+import { Text } from '@/components/AppText';
 import { ScrollView } from '@/components/Scroll';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useCloseHeader } from '@/components/CloseButton';

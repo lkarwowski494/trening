@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pressable, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import { Pressable, View, type StyleProp, type ViewStyle } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, TEXT_SCALE_MAX, FW, font, RADIUS } from '@/lib/theme';
 import { lang, t } from '@/lib/i18n';
 

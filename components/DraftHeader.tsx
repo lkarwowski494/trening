@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pressable, Text, Alert, Keyboard } from 'react-native';
+import { Pressable, Alert, Keyboard } from 'react-native';
+import { Text } from '@/components/AppText';
 import { Stack } from 'expo-router';
 import { useTheme, FW, font, SIZE } from '@/lib/theme';
 import { Icon, type IconName } from '@/components/Icon';
