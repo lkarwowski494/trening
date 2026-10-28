@@ -64,9 +64,18 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
   test('skrót v2 = sha256 tekstu rigu rodziny, wspólnego modułu rigów i wariantów (ten sam wzór w skrypcie i w teście)', () => {
     const RIG: Record<string, string> = { squat: 'squat.ts', bench_press: 'benchPress.ts', hinge: 'hinge.ts' };
     for (const f of FAMILIES.filter(x => x.status === 'ready')) {
-      const txt = ['lib/figures/v2/rigs/' + RIG[f.id], 'lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts'].map(p => fs.readFileSync(path.join(root, p), 'utf8')).join('\n');
+      const txt = ['lib/figures/v2/rigs/' + RIG[f.id], 'lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts', 'lib/figures/v2/draw.ts', 'lib/figures/v2/scene.ts', 'lib/figures/v2/skeleton.ts', 'lib/figures/v2/math.ts', 'lib/figures/v2/anim.ts', 'lib/figures/v2/errors.ts', 'lib/figures/v2/figure.ts'].map(p => fs.readFileSync(path.join(root, p), 'utf8')).join('\n');
       expect([f.id, createHash('sha256').update(txt).digest('hex').slice(0, 12)]).toEqual([f.id, NOW.v2[f.id]]);
     }
+  });
+  test('R2-6 (recenzja niezależna 28.10.2026): skrót rodziny v2 obejmuje także draw.ts, scene.ts, skeleton.ts, math.ts, anim.ts, errors.ts i figure.ts — zmiana któregokolwiek zmienia skrót każdej rodziny', () => {
+    const code = `import * as z from ${JSON.stringify(path.join(root, 'scripts/zrodla-runtime.mjs'))}; import { readFileSync } from 'node:fs'; import { join } from 'node:path';
+      const real = p => readFileSync(join(${JSON.stringify(root)}, p), 'utf8'); const out = {};
+      for (const fam of ['squat', 'bench_press', 'hinge']) { const base = z.rodzinaSkrot(fam); out[fam] = z.V2_WSPOLNE.filter(f => z.rodzinaSkrot(fam, p => p === f ? real(p) + '\\n// zmiana' : real(p)) === base); }
+      process.stdout.write(JSON.stringify({ wspolne: z.V2_WSPOLNE, nieczule: out }));`;
+    const r = JSON.parse(execFileSync('node', ['--input-type=module', '-e', code], { encoding: 'utf8' }));
+    for (const f of ['draw.ts', 'scene.ts', 'skeleton.ts', 'math.ts', 'anim.ts', 'errors.ts', 'figure.ts']) expect(r.wspolne).toContain('lib/figures/v2/' + f);
+    expect(r.nieczule).toEqual({ squat: [], bench_press: [], hinge: [] });
   });
   test('generator: figura zmieniona po recenzji (inny skrót) wypada z pliku runtime na listę otwartą', () => {
     const code = `import { buildFigures, recenzja } from ${JSON.stringify(path.join(root, 'scripts/zrodla-runtime.mjs'))};

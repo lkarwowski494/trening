@@ -83,7 +83,10 @@ export function cardReviewed({ rec, pl, fig = JSON.parse(readFileSync(FULL_FIG, 
   };
 }
 /** Skrót recenzji gotowej rodziny v2 (tekst plików rigu). */
-export const rodzinaSkrot = fam => sha12([`lib/figures/v2/rigs/${V2_RIGS[fam]}`, 'lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts'].map(p => readFileSync(join(root, p), 'utf8')).join('\n'));
+/** Pliki wspólne dla rodzin v2, które zmieniają rysunek (R2-6, recenzja niezależna 28.10.2026: wcześniej tylko rig, common i variants — zmiana draw.ts/scene.ts nie unieważniała recenzji):
+ * sprzęt i kształty (draw, scene), szkielet i matematyka (skeleton, math), czas (anim), błędy i figura (errors, figure). */
+export const V2_WSPOLNE = ['lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts', 'lib/figures/v2/draw.ts', 'lib/figures/v2/scene.ts', 'lib/figures/v2/skeleton.ts', 'lib/figures/v2/math.ts', 'lib/figures/v2/anim.ts', 'lib/figures/v2/errors.ts', 'lib/figures/v2/figure.ts'];
+export const rodzinaSkrot = (fam, czytaj = p => readFileSync(join(root, p), 'utf8')) => sha12([`lib/figures/v2/rigs/${V2_RIGS[fam]}`, ...V2_WSPOLNE].map(czytaj).join('\n'));
 export const recenzja = () => JSON.parse(readFileSync(REVIEW, 'utf8'));
 export function skroty(full = JSON.parse(readFileSync(FULL_FIG, 'utf8')), cues = JSON.parse(readFileSync(FULL_CUES, 'utf8')), pl = JSON.parse(readFileSync(PL, 'utf8'))) {
   const sets = JSON.parse(readFileSync(CUE_SETS, 'utf8'));
