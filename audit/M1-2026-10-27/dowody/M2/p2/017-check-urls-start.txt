@@ -1,0 +1,10 @@
+BŁĄD https://apps4brew.com/trening/privacy.html  [lib/products.ts PRIVACY_URL]
+     treść na żywo różni się od site/privacy.html: brak 4 fragmentów, np. „pl: Odbiorcy i podmioty przetwarzające: Google (poczta Google Workspace; Dysk). Nie sprzed”
+BŁĄD https://apps4brew.com/trening/support.html  [lib/products.ts SUPPORT_URL]
+     treść na żywo różni się od site/support.html: brak 4 fragmentów, np. „pl: Więcej → Ustawienia → sekcja „Subskrypcja”: bez planu wiersz „Zobacz plany Pro”, po za”
+OK   https://apps4brew.com/trening/espresso.html  [lib/products.ts ESPRESSO_URL]
+OK   https://www.apple.com/legal/internet-services/itunes/dev/stdeula/  [lib/products.ts TERMS_URL]
+OK   https://apps4brew.com/  [store/app-store-urls.json marketingUrl]
+
+2 adres(y) niezgodne — wydania nie robić (rejestr ryzyk docs/40).
+kod 1

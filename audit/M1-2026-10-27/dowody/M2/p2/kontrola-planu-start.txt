@@ -1,0 +1,1 @@
+OK: 49 zadań, 10 decyzji (0 bez wyboru); statusy {"zweryfikowane":26,"otwarte":21,"zatwierdzone":2}
