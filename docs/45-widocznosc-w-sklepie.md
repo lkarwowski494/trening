@@ -175,7 +175,7 @@ animowane rysunki ruchu i rozwiniętą sekcję „Technika” na karcie ćwiczen
 („o rysunkach ruchu w opisie nie wspominamy, dopóki nie obejmą całej biblioteki”) — tekst nie obiecuje rysunku przy każdym ćwiczeniu. Gałąź `metadane-1-0`.
 
 **Liczba z kodu** (main `b3697068`): w bibliotece 709 ćwiczeń; rysunek ma 140, animowany 138 (figury v2: 87 w rodzinach przysiad, wyciskanie leżąc,
-martwy ciąg — 1 statyczny; figury v1 z ≥ 2 klatkami: 52). Po PR #84 (JM Press i Decline Close-Grip Bench To Skull Crusher bez rysunku w 1.0) — ok. 136.
+martwy ciąg — 1 statyczny; figury v1 z ≥ 2 klatkami: 52). Po PR #84 (JM Press i Decline Close-Grip Bench To Skull Crusher bez rysunku w 1.0; main `5d79c3a4`) — 136 animowanych.
 Tekst mówi „ponad 100 ćwiczeń”; test `tests/store-metadata.test.ts` liczy z kodu (v2 przez `shownFigureSpec`, gdy istnieje) i pilnuje, że liczba > 100
 i < całej biblioteki. Rysunek v2 pokazuje mięśnie zawsze, częsty błąd w 82 z 87 — stąd „a zwykle i częsty błąd” (test: ≥ 80%).
 
@@ -201,5 +201,9 @@ oceni obecny dobór 26.12.2026. Do rozważenia po premierze: fraza o technice w 
 zmieniać, słowa kluczowe tylko z nową wersją).
 
 **Tłumaczenia:** PL i EN — agent; 31 pozostałych — przekład agenta z terminami z `docs/lokalizacja/slownik-terminow.json` i nazwami z interfejsu
-(`lib/locales`), przegląd recenzenta lokalizacji (sesja niezależna) — wynik w opisie PR. **Do sprawdzenia przez native speakera:** nazwy ćwiczeń
-w el (καθίσματα, πιέσεις πάγκου, άρσεις θανάτου) i vi; skrócone zdania w fr-FR, el, it, ro, es-ES, es-MX.
+(`lib/locales`), przegląd roli recenzent lokalizacji w niezależnej sesji (28.10.2026): 21 uwag, naniesione 16 (m.in. es „casi siempre” → „normalmente” — przesada;
+fr „résultat à relire”, „Résumé” jak w interfejsie; it, no, ru, uk, de, id, fi, sl, ms, vi, ro — naturalność; EN „this week vs. last week”);
+odrzucone 5: EN „animated drawings of the movement” / „exercise drawings” (interfejs i podpis zrzutu mówią „Movement drawing(s)”), ms „ilustrasi”
+(interfejs ms: „Lukisan pergerakan”), el „Animation της κίνησης” (zapożyczenie; obecna wersja poprawna). **Do sprawdzenia przez native speakera:**
+sl „aktivne mišice”, ms „lukisan” / „kesilapan lazim”, fi „muunnelmissa” / „lihasryhmittäin”, el „σχέδια με κινούμενη εικόνα” i nazwy ćwiczeń
+(καθίσματα, πιέσεις πάγκου, άρσεις θανάτου), vi „bench press”, ro „împins la piept”; skrócone zdania w fr-FR, el, it, ro, es-ES, es-MX.
