@@ -111,7 +111,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Dni cardio w planie | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych. | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni treningowe w tygodniu | components/OwnPlan.tsx | tests/gen-days-ui.test.tsx, tests/gen-general-ui.test.tsx, tests/generator-ui.test.tsx +1 |
-| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +327 |
+| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +328 |
 | Do upadku (F) | app/template/[id].tsx | tests/scenario-full.test.tsx |
 | dodaj ciężar | components/LoadEditor.tsx | tests/audit-0.10-ui.test.tsx, tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx +1 |
 | Dodaj notatkę | components/WorkoutBlocks.tsx | tests/scenario-full.test.tsx |

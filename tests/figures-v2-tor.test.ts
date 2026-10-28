@@ -73,3 +73,13 @@ describe('zawias: styk ciężaru z nogą (legRadius, contactX)', () => {
     expect(contactX(p, 130, legs)).toBe(-Infinity);
   });
 });
+
+describe('L-050 A (właściciel 28.10.2026): recenzja ruchu z arkuszem śladu toru', () => {
+  test('wpis recenzji v2 od 29.10.2026 ma pole „slad” (co obejrzano: arkusz z nałożonym śladem); CLAUDE.md zapisuje regułę', () => {
+    const rec = JSON.parse(fs.readFileSync(path.join(__dirname, '../docs/research/figury-recenzja.json'), 'utf8')).v2 as Record<string, { data: string; slad?: string }>;
+    const strazniK = (d: Record<string, { data: string; slad?: string }>) => Object.entries(d).filter(([, e]) => e.data >= '2026-10-29' && !(e.slad && e.slad.trim().length > 10)).map(([k]) => k);
+    expect(strazniK(rec)).toEqual([]);
+    expect(strazniK({ a: { data: '2026-10-29' }, b: { data: '2026-10-28' }, c: { data: '2026-11-02', slad: 'arkusz duze-po, ślad toru u 0–1' } })).toEqual(['a']);
+    expect(fs.readFileSync(path.join(__dirname, '../CLAUDE.md'), 'utf8')).toMatch(/arkusz z nałożonym śladem toru[^\n]*tests\/figures-v2-tor\.test\.ts/);
+  });
+});
