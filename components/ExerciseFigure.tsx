@@ -64,7 +64,7 @@ export function ExerciseFigure({ exercise }: { exercise: Pick<Exercise, 'lib' | 
       <View testID="exercise-figure-image" accessible accessibilityRole="image" accessibilityLabel={label} accessibilityLanguage={lang()}>
         {animate
           ? <FigureSvg testID="exercise-figure-anim" list={figureAt(fig, ms)} box={frames.box} floor={fig.floor} height={170} th={th} />
-          : <View testID="exercise-figure-static" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+          : <View testID="exercise-figure-static" style={{ flexDirection: 'row', ...(fig.frames.length > 3 ? { flexWrap: 'wrap' as const } : null), gap: 8 }}>
               {fig.frames.map((fr, i) => (
                 <View key={fr.n} style={{ ...(fig.frames.length > 3 ? { flexBasis: '47%', flexGrow: 1 } : { flex: 1 }), alignItems: 'center' }}>
                   <FigureSvg testID={`exercise-figure-frame-${fr.n}`} list={frames.shapes[i]} box={frames.box} floor={fig.floor} height={fig.frames.length > 3 ? 120 : fig.frames.length > 2 ? 110 : 140} th={th} />

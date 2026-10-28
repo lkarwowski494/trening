@@ -11,7 +11,7 @@ import { render, screen, fireEvent, act } from '@testing-library/react-native';
 import { FIG_DATA, figureFor, figureByKey, figureLabel, frameLabel, figureFrames, figureAt, toSvg, svgPath } from '@/lib/figures';
 import {
   SEG, ANIM, STROKE, PROP_R, side, norm, rawPoints, posePoints, jointAngles, toHorizontal, angleAt, lerpPose, lerpPt, loopAt, loopMs,
-  resolveFigure, framePoints, evalCheck, shapes, bounds, poseBetween, type Figure, type SidePose, type Pose, type Points, type Check, type Shape,
+  resolveFigure, framePoints, evalCheck, FRAME_ORDER, shapes, bounds, poseBetween, type Figure, type SidePose, type Pose, type Points, type Check, type Shape,
 } from '@/lib/figures/geom';
 import { CUE_DATA, CUE_SECTIONS, cueText } from '@/lib/cues';
 import { ExerciseFigure, useReduceMotion } from '@/components/ExerciseFigure';
@@ -45,10 +45,10 @@ describe('dane figur', () => {
   test('najczęstsze wzorce mają figurę (przysiad, martwy ciąg, wyciskania, wiosłowanie, podciąganie, wykrok, hip thrust, uginania, prostowania)', () => {
     for (const k of ['Back Squat', 'Deadlift (sztanga)', 'Bench Press (sztanga)', 'Overhead Press (sztanga)', 'Bent Over Row (sztanga)', 'Pull Up', 'Bulgarian Split Squat (hantle)', 'Hip Thrust (sztanga)', 'Barbell Curl', 'Triceps Pushdown']) expect([k, figureByKey(k) !== null]).toEqual([k, true]);
   });
-  test('każda poza ma 1–3 klatki w kolejności start → (mid) → end i co najmniej jedno odwołanie do zdania wskazówki TEGO ćwiczenia', () => {
+  test('każda poza ma 1–3 klatki w kolejności start → (mid) → (mid2) → end (FRAME_ORDER) i co najmniej jedno odwołanie do zdania wskazówki TEGO ćwiczenia', () => {
     for (const k of KEYS) {
-      const f = fig(k); expect([k, f.frames.length >= 1 && f.frames.length <= 3]).toEqual([k, true]);
-      expect([k, f.frames.map(x => x.n)]).toEqual([k, (({ 1: ['start'], 2: ['start', 'end'], 3: ['start', 'mid', 'end'] }) as Record<number, string[]>)[f.frames.length]]);
+      const f = fig(k); expect([k, f.frames.length >= 1 && f.frames.length <= 4]).toEqual([k, true]);
+      expect([k, f.frames.map(x => x.n)]).toEqual([k, FRAME_ORDER[f.frames.length]]);
       const ids = cueIdsOf(k);
       for (const fr of f.frames) { expect([k, fr.n, fr.why.length > 0]).toEqual([k, fr.n, true]); for (const w of fr.why) expect([k, fr.n, w.c, ids.has(w.c)]).toEqual([k, fr.n, w.c, true]); }
     }
@@ -230,8 +230,12 @@ describe('lib/figures', () => {
     const noLevel = { ...f, level: undefined }; expect(poseBetween(noLevel, 0, 1, 0.5).p).toEqual(lerpPose(f.frames[0].p, f.frames[1].p, 0.5));
   });
   test('poseBetween: lift — przy wykroku w tył figura unosi się zamiast wchodzić stopą pod podłogę; bez lift punkt schodzi poniżej', () => {
-    /* Reverse Lunge jest ukryty po recenzji (28.10.2026, naprawa w 1.0.1) — mechanizm lift sprawdzamy na jego danych źródłowych, nie na wyświetlanej figurze */
-    const f = resolveFigure(JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '../data/zrodla/figures.json'), 'utf8')).exercises, 'Reverse Lunge')!; expect(f.lift).toBe(true);
+    /* Dane sprzed poprawki 1.0.1 (3 pozycje, kolano ugięte w zamachu): mechanizm lift sprawdzamy na nich, bo nowy Reverse Lunge (4 pozycje, łuk stopy) nie schodzi pod podłogę. */
+    const old = { anchor: 'toe', lift: true, frames: [
+      { n: 'start', p: { t: 90, hip: 0, knee: 0, sh: 0, el: 0 }, why: [] },
+      { n: 'mid', p: { t: 90, hip: [12, -12], knee: [12, 75], ft: [0, -117], sh: 0, el: 0 }, why: [] },
+      { n: 'end', p: { t: 90, hip: [80, -3], knee: [110, 102], ft: [0, -80], sh: 0, el: 0 }, why: [] }] };
+    const f = resolveFigure({ R: old } as never, 'R')!; expect(f.lift).toBe(true);
     const lows = (g: Figure) => [1, 2, 3].map(s => Math.min(...Object.values(poseBetween(g, 0, 1, s / 8).P).map(q => q[1])));
     for (const v of lows(f)) expect(v).toBeGreaterThanOrEqual(-1e-9);
     expect(Math.min(...lows({ ...f, lift: false }))).toBeLessThan(0);
@@ -267,7 +271,7 @@ describe('komponent ExerciseFigure', () => {
   });
   test('Ogranicz ruch włączone → statyczne pozycje obok siebie, bez animacji i bez przycisku pauzy', async () => {
     jest.useFakeTimers(); setReduce(true);
-    render(<ExerciseFigure exercise={lib('Step Up')} />); await flush(); /* Push Press — figura ukryta po recenzji bramki 4; Lunges (hantle) — karta ukryta po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
+    render(<ExerciseFigure exercise={lib(KEYS.find(k => fig(k).frames.length === 3)!)} />); await flush(); /* figury poprawione w 1.0.1 (Push Press, Step Up, wykroki…) czekają na recenzję bramki 4 — pierwsza wyświetlana figura z 3 pozycjami */
     expect(screen.queryByTestId('exercise-figure-anim')).toBeNull();
     for (const n of ['start', 'mid', 'end']) expect(screen.getByTestId(`exercise-figure-frame-${n}`)).toBeTruthy();
     expect(screen.getByText('W trakcie')).toBeTruthy();

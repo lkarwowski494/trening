@@ -1181,7 +1181,7 @@
   "Step Up": {
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "treść karty bez zmian od recenzji niezależnej 28.10.2026 (wpis v1 „wyswietlana” obejmował figurę i kartę razem); figura po poprawce 1.0.1 czeka osobno na recenzję bramki 4",
+   "stan": "zrecenzowana niezależnie 28.10.2026 — treść karty bez zmian od tej recenzji (wpis v1 „wyswietlana” obejmował figurę i kartę razem); figura po poprawce 1.0.1 czeka osobno na recenzję bramki 4",
    "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
    "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026)",
    "kto": "przeniesienie recenzji karty z wpisu v1 (wskazówki i teksty nie zmieniły się w 1.0.1; skrót kartaSkrot = skrót treści karty)",
@@ -1191,7 +1191,7 @@
   "Incline Push Up": {
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "treść karty bez zmian od recenzji niezależnej 28.10.2026 (wpis v1 „wyswietlana” obejmował figurę i kartę razem); figura po poprawce 1.0.1 czeka osobno na recenzję bramki 4",
+   "stan": "zrecenzowana niezależnie 28.10.2026 — treść karty bez zmian od tej recenzji (wpis v1 „wyswietlana” obejmował figurę i kartę razem); figura po poprawce 1.0.1 czeka osobno na recenzję bramki 4",
    "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
    "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026)",
    "kto": "przeniesienie recenzji karty z wpisu v1 (wskazówki i teksty nie zmieniły się w 1.0.1; skrót kartaSkrot = skrót treści karty)",
