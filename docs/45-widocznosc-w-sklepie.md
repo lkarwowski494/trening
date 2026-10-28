@@ -187,7 +187,7 @@ i < całej biblioteki. Rysunek v2 pokazuje mięśnie zawsze, częsty błąd w 82
   przed zapisem” (tekst ustawień importu w aplikacji);
 - uk, ru, ko: usunięta nazwa wzoru e1RM w nawiasie (nazwisko autora wzoru = nazwa źródła; zasada „źródła publicznie anonimowo” 25.10.2026; wzorzec
   `lib/sources.ts` łapie tylko łacinkę, więc test sklepu sprawdza też cyrylicę i hangul);
-- skróty istniejących zdań bez zmiany sensu w fr-FR, el, it, ro, es-ES, es-MX — po dodaniu sekcji przekraczały limit 4000 znaków (ujawnienia cenowe
+- skróty istniejących zdań bez zmiany sensu w fr-FR, el, it, ro, es-ES, es-MX (początek zdania o finansowaniu rozwoju bez zmian — test `store-review-notes`) — po dodaniu sekcji przekraczały limit 4000 znaków (ujawnienia cenowe
   i zdanie medyczne bez zmian).
 
 **Tekst promocyjny:** pierwsze zdanie zaczyna się od rysunków ruchu i wskazówek techniki (PL „Animowane rysunki ruchu, wskazówki techniki, własne szablony
