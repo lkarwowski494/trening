@@ -1,0 +1,13 @@
+{
+ "rodzina": "leg_machine",
+ "przeszly": [
+  "Leg Press",
+  "Single Leg Press",
+  "Calf Press (leg press)",
+  "Hack Squat",
+  "Pendulum Squat",
+  "Lying Machine Squat",
+  "Belt Squat Machine"
+ ],
+ "nie": {}
+}
