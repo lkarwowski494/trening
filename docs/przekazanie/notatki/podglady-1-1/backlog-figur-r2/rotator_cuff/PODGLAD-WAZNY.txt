@@ -1,0 +1,7 @@
+Kontrola manifestu (zgodnosc_manifestu) wykonana, bez niezgodności; tabela kątów stawów w manifest.json i katy-stawow.md.
+Klatki na obrazie (odczytane z HTML podglądu, atrybuty data-u) = klatki_u pozy: External Rotation (hantel) 5; External Rotation (linki) 5; External Rotation with Band 5; Internal Rotation with Band 5; Cable Internal Rotation 5; Band Pull Apart 12; Reverse Flyes With External Rotation 9.
+rodzina: rotator_cuff
+odcisk_poz: f5acf441f9a5601c5bb0cf95d435cfda9ce904987d046b63948ea4d6ca5524d8
+odcisk_przyblizen: 2d20c59b6374bf38ecc7dfa3250194514fc9eb29f2db99f4594cac3392c92aab
+commit: 762651a7b0bc63d6ca0f42fa7bf68252d2c0e67a
+drzewo: czyste

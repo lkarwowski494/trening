@@ -1,0 +1,1067 @@
+{
+ "rodzina": "rotator_cuff",
+ "wygenerowano": "2026-10-28T19:19:16.860Z",
+ "wyjatki": {
+  "Cuban Press": "OTWARTE — brak źródła ruchu (zestaw „open”; figury-sens.json → rotator_cuff.otwarte); wstrzymane do czasu źródła"
+ },
+ "przyblizenia": {
+  "External Rotation (hantel)": "przybliżenie: leżenie na lewym boku jak w Clamshell (obrót tułowia −75°, nie −90°: dolny bark nie wchodzi pod podłogę; tułów odchylony do tyłu o 15°, widoczne w widoku z przodu), ręka robocza R górna z hantlem, łokieć 90° przy tułowiu; dolna ręka pod głową; stopy ułożone jedna na drugiej, palcami w stronę kolan",
+  "Cable Internal Rotation": "przybliżenie: wyciąg po stronie roboczej (zewnętrznej), dłoń rusza do środka; druga ręka zwisa przy boku",
+  "External Rotation (linki)": "przybliżenie: wyciąg po przeciwnej stronie, linka przechodzi przed brzuchem; druga ręka zwisa"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "External Rotation (hantel)",
+   "obraz": "External-Rotation-hantel--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 130
+    },
+    {
+     "rodzaj": "hantel",
+     "trzyma": "R"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 41.8,
+     "max": 47.9,
+     "R": {
+      "min": 47.9,
+      "max": 47.9
+     },
+     "L": {
+      "min": 41.8,
+      "max": 41.8
+     }
+    },
+    "knee": {
+     "min": 88.4,
+     "max": 90,
+     "R": {
+      "min": 88.4,
+      "max": 88.4
+     },
+     "L": {
+      "min": 90,
+      "max": 90
+     }
+    },
+    "ankle": {
+     "min": 15.3,
+     "max": 15.8,
+     "R": {
+      "min": 15.3,
+      "max": 15.3
+     },
+     "L": {
+      "min": 15.8,
+      "max": 15.8
+     }
+    },
+    "elbow": {
+     "min": 92.5,
+     "max": 139.9,
+     "R": {
+      "min": 92.5,
+      "max": 102.5
+     },
+     "L": {
+      "min": 139.9,
+      "max": 139.9
+     }
+    },
+    "shSag": {
+     "min": -4,
+     "max": 104.8,
+     "R": {
+      "min": -4,
+      "max": -3.1
+     },
+     "L": {
+      "min": 104.8,
+      "max": 104.8
+     }
+    },
+    "shElev": {
+     "min": 10,
+     "max": 104.5,
+     "R": {
+      "min": 10,
+      "max": 10.8
+     },
+     "L": {
+      "min": 104.5,
+      "max": 104.5
+     }
+    },
+    "shAbd": {
+     "min": 0,
+     "max": 74.8,
+     "R": {
+      "min": 0,
+      "max": 0.8
+     },
+     "L": {
+      "min": 74.8,
+      "max": 74.8
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "rot.mis.elbowAway"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: hantle (sprzet: rodzaj \"hantel\")",
+     "jeden przyrząd (jedna ręka)"
+    ],
+    "ruch": [
+     "Łokieć zgięty i przy boku — obraca się tylko przedramię.",
+     "Wracaj powoli."
+    ],
+    "bledy_wskazowki": [
+     "rot.mis.elbowAway (Łokieć odjeżdża od tułowia.)"
+    ]
+   },
+   "reguly_sensu": [
+    "lokiec_przy_boku",
+    "lokiec_zgiety_staly",
+    "obrot_na_zewnatrz"
+   ],
+   "przyblizenie": "przybliżenie: leżenie na lewym boku jak w Clamshell (obrót tułowia −75°, nie −90°: dolny bark nie wchodzi pod podłogę; tułów odchylony do tyłu o 15°, widoczne w widoku z przodu), ręka robocza R górna z hantlem, łokieć 90° przy tułowiu; dolna ręka pod głową; stopy ułożone jedna na drugiej, palcami w stronę kolan"
+  },
+  {
+   "cwiczenie": "External Rotation (linki)",
+   "obraz": "External-Rotation-linki--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -80,
+     "x1": 130
+    },
+    {
+     "rodzaj": "wyciag",
+     "x": 36,
+     "y": 100,
+     "z": -75,
+     "h": 230,
+     "chwyt": "uchwyt",
+     "trzyma": "R"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.2,
+     "max": 7.2,
+     "R": {
+      "min": 7.2,
+      "max": 7.2
+     },
+     "L": {
+      "min": 7.2,
+      "max": 7.2
+     }
+    },
+    "knee": {
+     "min": 10,
+     "max": 10,
+     "R": {
+      "min": 10,
+      "max": 10
+     },
+     "L": {
+      "min": 10,
+      "max": 10
+     }
+    },
+    "ankle": {
+     "min": 4.4,
+     "max": 4.4,
+     "R": {
+      "min": 4.4,
+      "max": 4.4
+     },
+     "L": {
+      "min": 4.4,
+      "max": 4.4
+     }
+    },
+    "elbow": {
+     "min": 6.7,
+     "max": 92,
+     "R": {
+      "min": 88,
+      "max": 92
+     },
+     "L": {
+      "min": 6.7,
+      "max": 6.7
+     }
+    },
+    "shSag": {
+     "min": -1.1,
+     "max": 3,
+     "R": {
+      "min": -1.1,
+      "max": 0.1
+     },
+     "L": {
+      "min": 3,
+      "max": 3
+     }
+    },
+    "shElev": {
+     "min": 1.6,
+     "max": 6.8,
+     "R": {
+      "min": 1.6,
+      "max": 2.9
+     },
+     "L": {
+      "min": 6.8,
+      "max": 6.8
+     }
+    },
+    "shAbd": {
+     "min": 1.4,
+     "max": 6.1,
+     "R": {
+      "min": 1.4,
+      "max": 2.7
+     },
+     "L": {
+      "min": 6.1,
+      "max": 6.1
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "rot.mis.elbowAway"
+   ],
+   "bledy_wskazowki_id": [
+    "rot.mis.elbowAway"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: wyciąg z bloczkiem na średniej wysokości (sprzet: rodzaj \"wyciag\", bloczek środkowy: y 70–160 cm) albo wyciąg z bloczkiem niskim (sprzet: rodzaj \"wyciag\", bloczek niski: y 5–60 cm)"
+    ],
+    "ruch": [
+     "Łokieć zgięty i przy boku — obraca się tylko przedramię.",
+     "Wracaj powoli."
+    ],
+    "bledy_wskazowki": [
+     "rot.mis.elbowAway (Łokieć odjeżdża od tułowia.)"
+    ]
+   },
+   "reguly_sensu": [
+    "lokiec_przy_boku",
+    "lokiec_zgiety_staly",
+    "obrot_na_zewnatrz"
+   ],
+   "przyblizenie": "przybliżenie: wyciąg po przeciwnej stronie, linka przechodzi przed brzuchem; druga ręka zwisa"
+  },
+  {
+   "cwiczenie": "External Rotation with Band",
+   "obraz": "External-Rotation-with-Band-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -80,
+     "x1": 130
+    },
+    {
+     "rodzaj": "guma",
+     "mocowanie": "zaczep",
+     "x": 36,
+     "y": 100,
+     "z": -75
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.2,
+     "max": 7.2,
+     "R": {
+      "min": 7.2,
+      "max": 7.2
+     },
+     "L": {
+      "min": 7.2,
+      "max": 7.2
+     }
+    },
+    "knee": {
+     "min": 10,
+     "max": 10,
+     "R": {
+      "min": 10,
+      "max": 10
+     },
+     "L": {
+      "min": 10,
+      "max": 10
+     }
+    },
+    "ankle": {
+     "min": 4.4,
+     "max": 4.4,
+     "R": {
+      "min": 4.4,
+      "max": 4.4
+     },
+     "L": {
+      "min": 4.4,
+      "max": 4.4
+     }
+    },
+    "elbow": {
+     "min": 6.7,
+     "max": 92,
+     "R": {
+      "min": 88,
+      "max": 92
+     },
+     "L": {
+      "min": 6.7,
+      "max": 6.7
+     }
+    },
+    "shSag": {
+     "min": -1.1,
+     "max": 3,
+     "R": {
+      "min": -1.1,
+      "max": 0.1
+     },
+     "L": {
+      "min": 3,
+      "max": 3
+     }
+    },
+    "shElev": {
+     "min": 1.6,
+     "max": 6.8,
+     "R": {
+      "min": 1.6,
+      "max": 2.9
+     },
+     "L": {
+      "min": 6.8,
+      "max": 6.8
+     }
+    },
+    "shAbd": {
+     "min": 1.4,
+     "max": 6.1,
+     "R": {
+      "min": 1.4,
+      "max": 2.7
+     },
+     "L": {
+      "min": 6.1,
+      "max": 6.1
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "rot.mis.elbowAway"
+   ],
+   "bledy_wskazowki_id": [
+    "rot.mis.elbowAway"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: guma oporowa (sprzet: rodzaj \"guma\")"
+    ],
+    "ruch": [
+     "Łokieć zgięty i przy boku — obraca się tylko przedramię.",
+     "Wracaj powoli."
+    ],
+    "bledy_wskazowki": [
+     "rot.mis.elbowAway (Łokieć odjeżdża od tułowia.)"
+    ]
+   },
+   "reguly_sensu": [
+    "lokiec_przy_boku",
+    "lokiec_zgiety_staly",
+    "obrot_na_zewnatrz"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Internal Rotation with Band",
+   "obraz": "Internal-Rotation-with-Band-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -80,
+     "x1": 130
+    },
+    {
+     "rodzaj": "guma",
+     "mocowanie": "zaczep",
+     "x": 36,
+     "y": 100,
+     "z": 90
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.2,
+     "max": 7.2,
+     "R": {
+      "min": 7.2,
+      "max": 7.2
+     },
+     "L": {
+      "min": 7.2,
+      "max": 7.2
+     }
+    },
+    "knee": {
+     "min": 10,
+     "max": 10,
+     "R": {
+      "min": 10,
+      "max": 10
+     },
+     "L": {
+      "min": 10,
+      "max": 10
+     }
+    },
+    "ankle": {
+     "min": 4.4,
+     "max": 4.4,
+     "R": {
+      "min": 4.4,
+      "max": 4.4
+     },
+     "L": {
+      "min": 4.4,
+      "max": 4.4
+     }
+    },
+    "elbow": {
+     "min": 6.7,
+     "max": 92,
+     "R": {
+      "min": 88,
+      "max": 92
+     },
+     "L": {
+      "min": 6.7,
+      "max": 6.7
+     }
+    },
+    "shSag": {
+     "min": -1.1,
+     "max": 3,
+     "R": {
+      "min": -1.1,
+      "max": 0.1
+     },
+     "L": {
+      "min": 3,
+      "max": 3
+     }
+    },
+    "shElev": {
+     "min": 1.6,
+     "max": 6.8,
+     "R": {
+      "min": 1.6,
+      "max": 2.9
+     },
+     "L": {
+      "min": 6.8,
+      "max": 6.8
+     }
+    },
+    "shAbd": {
+     "min": 1.4,
+     "max": 6.1,
+     "R": {
+      "min": 1.4,
+      "max": 2.7
+     },
+     "L": {
+      "min": 6.1,
+      "max": 6.1
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "rot.mis.elbowAway"
+   ],
+   "bledy_wskazowki_id": [
+    "rot.mis.elbowAway"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: guma oporowa (sprzet: rodzaj \"guma\")"
+    ],
+    "ruch": [
+     "Łokieć zgięty i przy boku — obraca się tylko przedramię.",
+     "Wracaj powoli."
+    ],
+    "bledy_wskazowki": [
+     "rot.mis.elbowAway (Łokieć odjeżdża od tułowia.)"
+    ]
+   },
+   "reguly_sensu": [
+    "lokiec_przy_boku",
+    "lokiec_zgiety_staly"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Cable Internal Rotation",
+   "obraz": "Cable-Internal-Rotation-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -80,
+     "x1": 130
+    },
+    {
+     "rodzaj": "wyciag",
+     "x": 36,
+     "y": 100,
+     "z": 90,
+     "h": 230,
+     "chwyt": "uchwyt",
+     "trzyma": "R"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.2,
+     "max": 7.2,
+     "R": {
+      "min": 7.2,
+      "max": 7.2
+     },
+     "L": {
+      "min": 7.2,
+      "max": 7.2
+     }
+    },
+    "knee": {
+     "min": 10,
+     "max": 10,
+     "R": {
+      "min": 10,
+      "max": 10
+     },
+     "L": {
+      "min": 10,
+      "max": 10
+     }
+    },
+    "ankle": {
+     "min": 4.4,
+     "max": 4.4,
+     "R": {
+      "min": 4.4,
+      "max": 4.4
+     },
+     "L": {
+      "min": 4.4,
+      "max": 4.4
+     }
+    },
+    "elbow": {
+     "min": 6.7,
+     "max": 92,
+     "R": {
+      "min": 88,
+      "max": 92
+     },
+     "L": {
+      "min": 6.7,
+      "max": 6.7
+     }
+    },
+    "shSag": {
+     "min": -1.1,
+     "max": 3,
+     "R": {
+      "min": -1.1,
+      "max": 0.1
+     },
+     "L": {
+      "min": 3,
+      "max": 3
+     }
+    },
+    "shElev": {
+     "min": 1.6,
+     "max": 6.8,
+     "R": {
+      "min": 1.6,
+      "max": 2.9
+     },
+     "L": {
+      "min": 6.8,
+      "max": 6.8
+     }
+    },
+    "shAbd": {
+     "min": 1.4,
+     "max": 6.1,
+     "R": {
+      "min": 1.4,
+      "max": 2.7
+     },
+     "L": {
+      "min": 6.1,
+      "max": 6.1
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "rot.mis.elbowAway"
+   ],
+   "bledy_wskazowki_id": [
+    "rot.mis.elbowAway"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: wyciąg z bloczkiem niskim (sprzet: rodzaj \"wyciag\", bloczek niski: y 5–60 cm) albo wyciąg z bloczkiem na średniej wysokości (sprzet: rodzaj \"wyciag\", bloczek środkowy: y 70–160 cm)"
+    ],
+    "ruch": [
+     "Łokieć zgięty i przy boku — obraca się tylko przedramię.",
+     "Wracaj powoli."
+    ],
+    "bledy_wskazowki": [
+     "rot.mis.elbowAway (Łokieć odjeżdża od tułowia.)"
+    ]
+   },
+   "reguly_sensu": [
+    "lokiec_przy_boku",
+    "lokiec_zgiety_staly"
+   ],
+   "przyblizenie": "przybliżenie: wyciąg po stronie roboczej (zewnętrznej), dłoń rusza do środka; druga ręka zwisa przy boku"
+  },
+  {
+   "cwiczenie": "Band Pull Apart",
+   "obraz": "Band-Pull-Apart-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -80,
+     "x1": 130
+    },
+    {
+     "rodzaj": "guma",
+     "mocowanie": "dlonie"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.091,
+    0.182,
+    0.273,
+    0.364,
+    0.455,
+    0.545,
+    0.636,
+    0.727,
+    0.818,
+    0.909,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.091,
+    0.182,
+    0.273,
+    0.364,
+    0.455,
+    0.545,
+    0.636,
+    0.727,
+    0.818,
+    0.909,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 7.2,
+     "max": 7.2,
+     "R": {
+      "min": 7.2,
+      "max": 7.2
+     },
+     "L": {
+      "min": 7.2,
+      "max": 7.2
+     }
+    },
+    "knee": {
+     "min": 10,
+     "max": 10,
+     "R": {
+      "min": 10,
+      "max": 10
+     },
+     "L": {
+      "min": 10,
+      "max": 10
+     }
+    },
+    "ankle": {
+     "min": 4.4,
+     "max": 4.4,
+     "R": {
+      "min": 4.4,
+      "max": 4.4
+     },
+     "L": {
+      "min": 4.4,
+      "max": 4.4
+     }
+    },
+    "elbow": {
+     "min": 13.3,
+     "max": 16.5,
+     "R": {
+      "min": 13.3,
+      "max": 16.5
+     },
+     "L": {
+      "min": 13.3,
+      "max": 16.5
+     }
+    },
+    "shSag": {
+     "min": -88.5,
+     "max": 259.5,
+     "R": {
+      "min": -88.5,
+      "max": 259.5
+     },
+     "L": {
+      "min": -88.5,
+      "max": 259.5
+     }
+    },
+    "shElev": {
+     "min": 89.6,
+     "max": 91.2,
+     "R": {
+      "min": 89.6,
+      "max": 91.2
+     },
+     "L": {
+      "min": 89.6,
+      "max": 91.2
+     }
+    },
+    "shAbd": {
+     "min": 8,
+     "max": 89.1,
+     "R": {
+      "min": 8,
+      "max": 89.1
+     },
+     "L": {
+      "min": 8,
+      "max": 89.1
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: guma oporowa (sprzet: rodzaj \"guma\")"
+    ],
+    "ruch": [
+     "Kąt w łokciach stały przez cały ruch.",
+     "Ramiona idą w bok, nie w tył — dłonie kończą ruch mniej więcej na linii barków."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "pa_lokiec_staly",
+    "pa_w_linii_barkow",
+    "pa_w_bok"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Reverse Flyes With External Rotation",
+   "obraz": "Reverse-Flyes-With-External-Rotation-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0,
+     "top": 43,
+     "kat": 45,
+     "dlugosc": 38,
+     "siedzisko": 2
+    },
+    {
+     "rodzaj": "hantel"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -9.4,
+     "max": -9.4,
+     "R": {
+      "min": -9.4,
+      "max": -9.4
+     },
+     "L": {
+      "min": -9.4,
+      "max": -9.4
+     }
+    },
+    "knee": {
+     "min": 6.8,
+     "max": 6.8,
+     "R": {
+      "min": 6.8,
+      "max": 6.8
+     },
+     "L": {
+      "min": 6.8,
+      "max": 6.8
+     }
+    },
+    "ankle": {
+     "min": -59.9,
+     "max": -59.9,
+     "R": {
+      "min": -59.9,
+      "max": -59.9
+     },
+     "L": {
+      "min": -59.9,
+      "max": -59.9
+     }
+    },
+    "elbow": {
+     "min": 34.8,
+     "max": 36.5,
+     "R": {
+      "min": 34.8,
+      "max": 36.5
+     },
+     "L": {
+      "min": 34.8,
+      "max": 36.5
+     }
+    },
+    "shSag": {
+     "min": 28.5,
+     "max": 37.3,
+     "R": {
+      "min": 28.5,
+      "max": 37.3
+     },
+     "L": {
+      "min": 28.5,
+      "max": 37.3
+     }
+    },
+    "shElev": {
+     "min": 29.6,
+     "max": 74,
+     "R": {
+      "min": 29.6,
+      "max": 74
+     },
+     "L": {
+      "min": 29.6,
+      "max": 74
+     }
+    },
+    "shAbd": {
+     "min": 0.8,
+     "max": 71.8,
+     "R": {
+      "min": 0.8,
+      "max": 71.8
+     },
+     "L": {
+      "min": 0.8,
+      "max": 71.8
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: hantle (sprzet: rodzaj \"hantel\") + ławka skośna (głową wyżej) (sprzet: rodzaj \"lawka\", kat 10…90°)",
+     "dwa przyrządy"
+    ],
+    "ruch": [
+     "Kąt w łokciach stały przez cały ruch."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "pa_lokiec_staly"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "zmiany_sprzetu": [
+  {
+   "cwiczenie": "Reverse Flyes With External Rotation",
+   "sprzet_przed": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0,
+     "top": 43,
+     "kat": 45,
+     "dlugosc": 38,
+     "siedzisko": 20
+    },
+    {
+     "rodzaj": "hantel"
+    }
+   ],
+   "sprzet_po": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0,
+     "top": 43,
+     "kat": 45,
+     "dlugosc": 38,
+     "siedzisko": 2
+    },
+    {
+     "rodzaj": "hantel"
+    }
+   ],
+   "cecha_rozpoznawcza_przed_i_po": "DO UZUPEŁNIENIA przez autora poprawki: co odróżnia ćwiczenie od zwykłego wariantu (np. wysokość podwyższenia, położenie zaczepu) i jak ta cecha wygląda przed i po zmianie"
+  }
+ ],
+ "lista_kontrolna": [
+  "P3: każda zmiana sprzętu (wysokość skrzyni, położenie zaczepu, ławka) w poprawce trafia do recenzenta z opisem „dlaczego” i z porównaniem cechy rozpoznawczej przed i po (pole zmiany_sprzetu); recenzent ocenia, czy cecha ćwiczenia została zachowana, nie tylko czy liczba reguły się zgadza"
+ ],
+ "wyjatki_opisu": {
+  "rot.mis.elbowAway": "wskazówka „łokieć odchodzi od tułowia” ma wpis w cue-sets.json bez tekstu w lib/cues/text/*.json; błąd nie jest rysowany do czasu tekstu (badacz pisze, tłumacz przekłada)"
+ },
+ "zgodnosc_manifestu": [],
+ "na_krawedzi": {}
+}

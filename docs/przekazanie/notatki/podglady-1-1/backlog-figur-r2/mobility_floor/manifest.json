@@ -1,0 +1,1154 @@
+{
+ "rodzina": "mobility_floor",
+ "wygenerowano": "2026-10-28T19:19:50.328Z",
+ "wyjatki": {
+  "Intermediate Groin Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Kneeling Forearm Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Middle Back Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Runner's Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Side Lying Groin Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Upper Back Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Supine Figure-Four Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Supine Spinal Twist": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Seated Rotation Stretch": "brak przeczytanego źródła pozycji tego ćwiczenia (figury-sens.json → mobility_floor: tylko reguła „poza nieruchoma” albo pozycja z analogii/konwencji); wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "Downward Facing Balance": "zestaw „open”: ćwiczenie na piłce gimnastycznej bez przeczytanego źródła pozycji; wyjątek bez animacji (decyzja właściciela 27.10.2026)",
+  "IT Band and Glute Stretch": "obrót miednicy przy prostej nodze przełożonej w poprzek ciała nie mieści się w modelu jednocześnie z regułami podłogi (miednica leży, kolano po swojej stronie ciała, kształty nad podłogą) — 12 prób parametrów (obrót −12…−35°, wysokość miednicy 10…13 cm); wyjątek bez animacji, do ponownej próby po rozszerzeniu modelu",
+  "Peroneals Stretch": "istota ćwiczenia (odwrócenie stopy z paskiem) nie jest stopniem swobody modelu, a pozycja nie ma przeczytanego źródła; wyjątek bez animacji (decyzja właściciela 26.10.2026 o ćwiczeniach bez widocznej istoty ruchu; 27.10.2026)",
+  "Posterior Tibialis Stretch": "istota ćwiczenia (nawrócenie stopy z paskiem) nie jest stopniem swobody modelu, a pozycja nie ma przeczytanego źródła; wyjątek bez animacji (decyzja właściciela 26.10.2026 o ćwiczeniach bez widocznej istoty ruchu; 27.10.2026)"
+ },
+ "przyblizenia": {
+  "Child's Pose": "wariant ACE #227 „ręce wzdłuż ciała” (krok 4: „Extend your arms alongside the body with the palms facing upward…”): dłonie na podłodze przy biodrach (palce do góry nie rysujemy); kolana szeroko, bierne zgięcie kolana ≈ 152° i biodra ≈ 139° (wyjątek zakresu: CONTRACT.kneePassiveMaxDeg, hipPassiveMaxDeg); stopy grzbietem na podłodze (podbicie 208°, krok 1: „toes pointing behind you”)",
+  "Seated Calf Stretch": "przybliżenie: stopa pionowo (zgięcie grzbietowe ≈ 0°, maksymalne podbicie modelu to 90°); guma owinięta wokół podeszwy prawej stopy (ACE #214), druga noga bez gumy",
+  "Supine Hamstring Stretch": "poza wg AAOS (dłonie splecione z tyłu uda, druga noga zgięta, stopa na podłodze); wariant ACE #235 z nogą o ścianę nie jest rysowany",
+  "Side-Lying Quad Stretch": "przybliżenie: leżenie na lewym boku, górną (prawą) nogą i dłonią od strony kamery; tułów odchylony do tyłu o 15° (obrót tułowia −75°, nie −90°: przy −90° dolny bark wchodzi pod podłogę albo tułów wisi nad nią; w widoku z boku, jedynym w aplikacji, odchylenia nie widać); głowa opada skłonem bocznym ≈ 20° na dłoń dolnej ręki leżącej na podłodze; dolna noga prosta (kolano ≈ 9°) leży na podłodze; udo górnej nogi w linii tułowia (biodro ≈ 13°), kolano zgięte ≈ 140° (granica modelu), goleń zawraca ku tyłowi ciała i w górę; dłoń 1,3 cm od kostki (sięg ręki ≈ 63 cm); stopa górna: oś w płaszczyźnie biodro–kolano–kostka (podbicie 35°, rotacja 40°: palce ku tyłowi ciała i w górę, jak goleń)"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "The Straddle",
+   "obraz": "The-Straddle-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 119.6,
+     "max": 119.6,
+     "R": {
+      "min": 119.6,
+      "max": 119.6
+     },
+     "L": {
+      "min": 119.6,
+      "max": 119.6
+     }
+    },
+    "knee": {
+     "min": 7.9,
+     "max": 7.9,
+     "R": {
+      "min": 7.9,
+      "max": 7.9
+     },
+     "L": {
+      "min": 7.9,
+      "max": 7.9
+     }
+    },
+    "ankle": {
+     "min": 3.3,
+     "max": 3.3,
+     "R": {
+      "min": 3.3,
+      "max": 3.3
+     },
+     "L": {
+      "min": 3.3,
+      "max": 3.3
+     }
+    },
+    "elbow": {
+     "min": 22.3,
+     "max": 22.3,
+     "R": {
+      "min": 22.3,
+      "max": 22.3
+     },
+     "L": {
+      "min": 22.3,
+      "max": 22.3
+     }
+    },
+    "shSag": {
+     "min": 98,
+     "max": 98,
+     "R": {
+      "min": 98,
+      "max": 98
+     },
+     "L": {
+      "min": 98,
+      "max": 98
+     }
+    },
+    "shElev": {
+     "min": 97.9,
+     "max": 97.9,
+     "R": {
+      "min": 97.9,
+      "max": 97.9
+     },
+     "L": {
+      "min": 97.9,
+      "max": 97.9
+     }
+    },
+    "shAbd": {
+     "min": 6.2,
+     "max": 6.2,
+     "R": {
+      "min": 6.2,
+      "max": 6.2
+     },
+     "L": {
+      "min": 6.2,
+      "max": 6.2
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Wchodź w rozciąganie powoli, aż poczujesz napięcie.",
+     "Trzymaj spokojnie, bez sprężynowania."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "kolana_proste",
+    "plecy_plasko",
+    "sklon_z_bioder"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Seated Calf Stretch",
+   "obraz": "Seated-Calf-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    },
+    {
+     "rodzaj": "guma",
+     "mocowanie": "zaczep",
+     "x": 88.9,
+     "y": 12,
+     "z": 16.7
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 97.4,
+     "max": 97.4,
+     "R": {
+      "min": 97.4,
+      "max": 97.4
+     },
+     "L": {
+      "min": 97.4,
+      "max": 97.4
+     }
+    },
+    "knee": {
+     "min": 6,
+     "max": 6,
+     "R": {
+      "min": 6,
+      "max": 6
+     },
+     "L": {
+      "min": 6,
+      "max": 6
+     }
+    },
+    "ankle": {
+     "min": 5.5,
+     "max": 5.5,
+     "R": {
+      "min": 5.5,
+      "max": 5.5
+     },
+     "L": {
+      "min": 5.5,
+      "max": 5.5
+     }
+    },
+    "elbow": {
+     "min": 121,
+     "max": 121,
+     "R": {
+      "min": 121,
+      "max": 121
+     },
+     "L": {
+      "min": 121,
+      "max": 121
+     }
+    },
+    "shSag": {
+     "min": 34.2,
+     "max": 34.2,
+     "R": {
+      "min": 34.2,
+      "max": 34.2
+     },
+     "L": {
+      "min": 34.2,
+      "max": 34.2
+     }
+    },
+    "shElev": {
+     "min": 51.4,
+     "max": 51.4,
+     "R": {
+      "min": 51.4,
+      "max": 51.4
+     },
+     "L": {
+      "min": 51.4,
+      "max": 51.4
+     }
+    },
+    "shAbd": {
+     "min": 41.1,
+     "max": 41.1,
+     "R": {
+      "min": 41.1,
+      "max": 41.1
+     },
+     "L": {
+      "min": 41.1,
+      "max": 41.1
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Wchodź w rozciąganie powoli, aż poczujesz napięcie.",
+     "Oddychaj spokojnie — nie wstrzymuj oddechu."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "kolana_proste",
+    "siad_prosto"
+   ],
+   "przyblizenie": "przybliżenie: stopa pionowo (zgięcie grzbietowe ≈ 0°, maksymalne podbicie modelu to 90°); guma owinięta wokół podeszwy prawej stopy (ACE #214), druga noga bez gumy"
+  },
+  {
+   "cwiczenie": "Seated Floor Hamstring Stretch",
+   "obraz": "Seated-Floor-Hamstring-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 111.2,
+     "max": 128.4,
+     "R": {
+      "min": 128.4,
+      "max": 128.4
+     },
+     "L": {
+      "min": 111.2,
+      "max": 111.2
+     }
+    },
+    "knee": {
+     "min": 7.5,
+     "max": 136.2,
+     "R": {
+      "min": 7.5,
+      "max": 7.5
+     },
+     "L": {
+      "min": 136.2,
+      "max": 136.2
+     }
+    },
+    "ankle": {
+     "min": -13.1,
+     "max": 11.2,
+     "R": {
+      "min": -13.1,
+      "max": -13.1
+     },
+     "L": {
+      "min": 11.2,
+      "max": 11.2
+     }
+    },
+    "elbow": {
+     "min": 83.9,
+     "max": 102.1,
+     "R": {
+      "min": 102.1,
+      "max": 102.1
+     },
+     "L": {
+      "min": 83.9,
+      "max": 83.9
+     }
+    },
+    "shSag": {
+     "min": 76.6,
+     "max": 77.6,
+     "R": {
+      "min": 77.6,
+      "max": 77.6
+     },
+     "L": {
+      "min": 76.6,
+      "max": 76.6
+     }
+    },
+    "shElev": {
+     "min": 76.8,
+     "max": 80.5,
+     "R": {
+      "min": 80.5,
+      "max": 80.5
+     },
+     "L": {
+      "min": 76.8,
+      "max": 76.8
+     }
+    },
+    "shAbd": {
+     "min": 8.7,
+     "max": 40,
+     "R": {
+      "min": 40,
+      "max": 40
+     },
+     "L": {
+      "min": 8.7,
+      "max": 8.7
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Wchodź w rozciąganie powoli, aż poczujesz napięcie.",
+     "Trzymaj spokojnie, bez sprężynowania."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "jedna_noga_prosta",
+    "plecy_plasko",
+    "sklon_z_bioder"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Butterfly Stretch",
+   "obraz": "Butterfly-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 104.9,
+     "max": 104.9,
+     "R": {
+      "min": 104.9,
+      "max": 104.9
+     },
+     "L": {
+      "min": 104.9,
+      "max": 104.9
+     }
+    },
+    "knee": {
+     "min": 131.4,
+     "max": 131.4,
+     "R": {
+      "min": 131.4,
+      "max": 131.4
+     },
+     "L": {
+      "min": 131.4,
+      "max": 131.4
+     }
+    },
+    "ankle": {
+     "min": 0.8,
+     "max": 0.8,
+     "R": {
+      "min": 0.8,
+      "max": 0.8
+     },
+     "L": {
+      "min": 0.8,
+      "max": 0.8
+     }
+    },
+    "elbow": {
+     "min": 94.6,
+     "max": 94.6,
+     "R": {
+      "min": 94.6,
+      "max": 94.6
+     },
+     "L": {
+      "min": 94.6,
+      "max": 94.6
+     }
+    },
+    "shSag": {
+     "min": 42,
+     "max": 42,
+     "R": {
+      "min": 42,
+      "max": 42
+     },
+     "L": {
+      "min": 42,
+      "max": 42
+     }
+    },
+    "shElev": {
+     "min": 50.1,
+     "max": 50.1,
+     "R": {
+      "min": 50.1,
+      "max": 50.1
+     },
+     "L": {
+      "min": 50.1,
+      "max": 50.1
+     }
+    },
+    "shAbd": {
+     "min": 30.3,
+     "max": 30.3,
+     "R": {
+      "min": 30.3,
+      "max": 30.3
+     },
+     "L": {
+      "min": 30.3,
+      "max": 30.3
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Wchodź w rozciąganie powoli, aż poczujesz napięcie.",
+     "Trzymaj spokojnie, bez sprężynowania."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "nogi_zgiete_siad",
+    "plecy_plasko"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Child's Pose",
+   "obraz": "Child-s-Pose-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 138.5,
+     "max": 138.5,
+     "R": {
+      "min": 138.5,
+      "max": 138.5
+     },
+     "L": {
+      "min": 138.5,
+      "max": 138.5
+     }
+    },
+    "knee": {
+     "min": 151.8,
+     "max": 151.8,
+     "R": {
+      "min": 151.8,
+      "max": 151.8
+     },
+     "L": {
+      "min": 151.8,
+      "max": 151.8
+     }
+    },
+    "ankle": {
+     "min": -54.4,
+     "max": -54.4,
+     "R": {
+      "min": -54.4,
+      "max": -54.4
+     },
+     "L": {
+      "min": -54.4,
+      "max": -54.4
+     }
+    },
+    "elbow": {
+     "min": 60.8,
+     "max": 60.8,
+     "R": {
+      "min": 60.8,
+      "max": 60.8
+     },
+     "L": {
+      "min": 60.8,
+      "max": 60.8
+     }
+    },
+    "shSag": {
+     "min": 15.1,
+     "max": 15.1,
+     "R": {
+      "min": 15.1,
+      "max": 15.1
+     },
+     "L": {
+      "min": 15.1,
+      "max": 15.1
+     }
+    },
+    "shElev": {
+     "min": 36.1,
+     "max": 36.1,
+     "R": {
+      "min": 36.1,
+      "max": 36.1
+     },
+     "L": {
+      "min": 36.1,
+      "max": 36.1
+     }
+    },
+    "shAbd": {
+     "min": 33.1,
+     "max": 33.1,
+     "R": {
+      "min": 33.1,
+      "max": 33.1
+     },
+     "L": {
+      "min": 33.1,
+      "max": 33.1
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Wchodź w rozciąganie powoli, aż poczujesz napięcie.",
+     "Oddychaj spokojnie — nie wstrzymuj oddechu."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "posladki_na_pietach"
+   ],
+   "przyblizenie": "wariant ACE #227 „ręce wzdłuż ciała” (krok 4: „Extend your arms alongside the body with the palms facing upward…”): dłonie na podłodze przy biodrach (palce do góry nie rysujemy); kolana szeroko, bierne zgięcie kolana ≈ 152° i biodra ≈ 139° (wyjątek zakresu: CONTRACT.kneePassiveMaxDeg, hipPassiveMaxDeg); stopy grzbietem na podłodze (podbicie 208°, krok 1: „toes pointing behind you”)"
+  },
+  {
+   "cwiczenie": "Kneeling Hip Flexor Stretch",
+   "obraz": "Kneeling-Hip-Flexor-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -15.7,
+     "max": 103.3,
+     "R": {
+      "min": 103.3,
+      "max": 103.3
+     },
+     "L": {
+      "min": -15.7,
+      "max": -15.7
+     }
+    },
+    "knee": {
+     "min": 81.5,
+     "max": 91.2,
+     "R": {
+      "min": 91.2,
+      "max": 91.2
+     },
+     "L": {
+      "min": 81.5,
+      "max": 81.5
+     }
+    },
+    "ankle": {
+     "min": -0.9,
+     "max": 21.4,
+     "R": {
+      "min": -0.9,
+      "max": -0.9
+     },
+     "L": {
+      "min": 21.4,
+      "max": 21.4
+     }
+    },
+    "elbow": {
+     "min": 95.6,
+     "max": 95.6,
+     "R": {
+      "min": 95.6,
+      "max": 95.6
+     },
+     "L": {
+      "min": 95.6,
+      "max": 95.6
+     }
+    },
+    "shSag": {
+     "min": -38.5,
+     "max": -38.5,
+     "R": {
+      "min": -38.5,
+      "max": -38.5
+     },
+     "L": {
+      "min": -38.5,
+      "max": -38.5
+     }
+    },
+    "shElev": {
+     "min": 57.9,
+     "max": 57.9,
+     "R": {
+      "min": 57.9,
+      "max": 57.9
+     },
+     "L": {
+      "min": 57.9,
+      "max": 57.9
+     }
+    },
+    "shAbd": {
+     "min": 47.3,
+     "max": 47.3,
+     "R": {
+      "min": 47.3,
+      "max": 47.3
+     },
+     "L": {
+      "min": 47.3,
+      "max": 47.3
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Wchodź w rozciąganie powoli, aż poczujesz napięcie.",
+     "Trzymaj spokojnie, bez sprężynowania."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "kolano_tylne_na_podlodze",
+    "przednie_kolano_ugiete",
+    "tulow_wysoko",
+    "ledzwie_bez_luku"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Supine Hamstring Stretch",
+   "obraz": "Supine-Hamstring-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 57.6,
+     "max": 92,
+     "R": {
+      "min": 92,
+      "max": 92
+     },
+     "L": {
+      "min": 57.6,
+      "max": 57.6
+     }
+    },
+    "knee": {
+     "min": 8.6,
+     "max": 128.2,
+     "R": {
+      "min": 8.6,
+      "max": 8.6
+     },
+     "L": {
+      "min": 128.2,
+      "max": 128.2
+     }
+    },
+    "ankle": {
+     "min": -19.8,
+     "max": 5.2,
+     "R": {
+      "min": 5.2,
+      "max": 5.2
+     },
+     "L": {
+      "min": -19.8,
+      "max": -19.8
+     }
+    },
+    "elbow": {
+     "min": 21.8,
+     "max": 22,
+     "R": {
+      "min": 21.8,
+      "max": 21.8
+     },
+     "L": {
+      "min": 22,
+      "max": 22
+     }
+    },
+    "shSag": {
+     "min": 26.8,
+     "max": 27.2,
+     "R": {
+      "min": 26.8,
+      "max": 26.8
+     },
+     "L": {
+      "min": 27.2,
+      "max": 27.2
+     }
+    },
+    "shElev": {
+     "min": 27.2,
+     "max": 28.5,
+     "R": {
+      "min": 27.2,
+      "max": 27.2
+     },
+     "L": {
+      "min": 28.5,
+      "max": 28.5
+     }
+    },
+    "shAbd": {
+     "min": 4.5,
+     "max": 8.7,
+     "R": {
+      "min": 4.5,
+      "max": 4.5
+     },
+     "L": {
+      "min": 8.7,
+      "max": 8.7
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Wchodź w rozciąganie powoli, aż poczujesz napięcie.",
+     "Trzymaj spokojnie, bez sprężynowania."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "jedna_noga_prosta",
+    "lezenie_miednica"
+   ],
+   "przyblizenie": "poza wg AAOS (dłonie splecione z tyłu uda, druga noga zgięta, stopa na podłodze); wariant ACE #235 z nogą o ścianę nie jest rysowany"
+  },
+  {
+   "cwiczenie": "Side-Lying Quad Stretch",
+   "obraz": "Side-Lying-Quad-Stretch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 8.2,
+     "max": 10.9,
+     "R": {
+      "min": 10.9,
+      "max": 10.9
+     },
+     "L": {
+      "min": 8.2,
+      "max": 8.2
+     }
+    },
+    "knee": {
+     "min": 9.3,
+     "max": 140.8,
+     "R": {
+      "min": 140.8,
+      "max": 140.8
+     },
+     "L": {
+      "min": 9.3,
+      "max": 9.3
+     }
+    },
+    "ankle": {
+     "min": -25.3,
+     "max": -1.3,
+     "R": {
+      "min": -1.3,
+      "max": -1.3
+     },
+     "L": {
+      "min": -25.3,
+      "max": -25.3
+     }
+    },
+    "elbow": {
+     "min": 25.5,
+     "max": 139.9,
+     "R": {
+      "min": 25.5,
+      "max": 25.5
+     },
+     "L": {
+      "min": 139.9,
+      "max": 139.9
+     }
+    },
+    "shSag": {
+     "min": -17.4,
+     "max": 104.8,
+     "R": {
+      "min": -17.4,
+      "max": -17.4
+     },
+     "L": {
+      "min": 104.8,
+      "max": 104.8
+     }
+    },
+    "shElev": {
+     "min": 28.2,
+     "max": 104.5,
+     "R": {
+      "min": 28.2,
+      "max": 28.2
+     },
+     "L": {
+      "min": 104.5,
+      "max": 104.5
+     }
+    },
+    "shAbd": {
+     "min": 21,
+     "max": 74.8,
+     "R": {
+      "min": 21,
+      "max": 21
+     },
+     "L": {
+      "min": 74.8,
+      "max": 74.8
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Wchodź w rozciąganie powoli, aż poczujesz napięcie.",
+     "Trzymaj spokojnie, bez sprężynowania."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "poza_nieruchoma",
+    "pieta_do_posladka",
+    "jedna_noga_prosta"
+   ],
+   "przyblizenie": "przybliżenie: leżenie na lewym boku, górną (prawą) nogą i dłonią od strony kamery; tułów odchylony do tyłu o 15° (obrót tułowia −75°, nie −90°: przy −90° dolny bark wchodzi pod podłogę albo tułów wisi nad nią; w widoku z boku, jedynym w aplikacji, odchylenia nie widać); głowa opada skłonem bocznym ≈ 20° na dłoń dolnej ręki leżącej na podłodze; dolna noga prosta (kolano ≈ 9°) leży na podłodze; udo górnej nogi w linii tułowia (biodro ≈ 13°), kolano zgięte ≈ 140° (granica modelu), goleń zawraca ku tyłowi ciała i w górę; dłoń 1,3 cm od kostki (sięg ręki ≈ 63 cm); stopa górna: oś w płaszczyźnie biodro–kolano–kostka (podbicie 35°, rotacja 40°: palce ku tyłowi ciała i w górę, jak goleń)"
+  },
+  {
+   "cwiczenie": "Cat-Cow",
+   "obraz": "Cat-Cow-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 170
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.5,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.5,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 72.2,
+     "max": 72.7,
+     "R": {
+      "min": 72.2,
+      "max": 72.7
+     },
+     "L": {
+      "min": 72.2,
+      "max": 72.7
+     }
+    },
+    "knee": {
+     "min": 105,
+     "max": 105,
+     "R": {
+      "min": 105,
+      "max": 105
+     },
+     "L": {
+      "min": 105,
+      "max": 105
+     }
+    },
+    "ankle": {
+     "min": 15,
+     "max": 15,
+     "R": {
+      "min": 15,
+      "max": 15
+     },
+     "L": {
+      "min": 15,
+      "max": 15
+     }
+    },
+    "elbow": {
+     "min": 6.6,
+     "max": 9.5,
+     "R": {
+      "min": 6.6,
+      "max": 9.5
+     },
+     "L": {
+      "min": 6.6,
+      "max": 9.5
+     }
+    },
+    "shSag": {
+     "min": 68.3,
+     "max": 69.2,
+     "R": {
+      "min": 68.3,
+      "max": 69.2
+     },
+     "L": {
+      "min": 68.3,
+      "max": 69.2
+     }
+    },
+    "shElev": {
+     "min": 68.3,
+     "max": 69.2,
+     "R": {
+      "min": 68.3,
+      "max": 69.2
+     },
+     "L": {
+      "min": 68.3,
+      "max": 69.2
+     }
+    },
+    "shAbd": {
+     "min": 1.8,
+     "max": 2.5,
+     "R": {
+      "min": 1.8,
+      "max": 2.5
+     },
+     "L": {
+      "min": 1.8,
+      "max": 2.5
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Ruszaj się płynnie, a zakres zwiększaj stopniowo.",
+     "Oddychaj spokojnie — nie wstrzymuj oddechu."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "kregoslup_koci_grzbiet",
+    "podpor_rece_proste"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "zmiany_sprzetu": [],
+ "lista_kontrolna": [
+  "P3: każda zmiana sprzętu (wysokość skrzyni, położenie zaczepu, ławka) w poprawce trafia do recenzenta z opisem „dlaczego” i z porównaniem cechy rozpoznawczej przed i po (pole zmiany_sprzetu); recenzent ocenia, czy cecha ćwiczenia została zachowana, nie tylko czy liczba reguły się zgadza"
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": [],
+ "na_krawedzi": {}
+}

@@ -1,0 +1,7 @@
+Kontrola manifestu (zgodnosc_manifestu) wykonana, bez niezgodności; tabela kątów stawów w manifest.json i katy-stawow.md.
+Klatki na obrazie (odczytane z HTML podglądu, atrybuty data-u) = klatki_u pozy: The Straddle 2; Seated Calf Stretch 2; Seated Floor Hamstring Stretch 2; Butterfly Stretch 2; Child's Pose 2; Kneeling Hip Flexor Stretch 2; Supine Hamstring Stretch 2; Side-Lying Quad Stretch 2; Cat-Cow 3.
+rodzina: mobility_floor
+odcisk_poz: c8c033cb78c79b198b396d04ecb8b27ae979332cc8d94b7031af0d54b0ebe61f
+odcisk_przyblizen: 25f61bf267be197882afbcb32a50d168ac3d147422f3503cddf9e846f6fac509
+commit: 762651a7b0bc63d6ca0f42fa7bf68252d2c0e67a
+drzewo: czyste

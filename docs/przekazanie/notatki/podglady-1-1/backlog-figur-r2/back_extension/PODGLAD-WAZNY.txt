@@ -1,0 +1,7 @@
+Kontrola manifestu (zgodnosc_manifestu) wykonana, bez niezgodności; tabela kątów stawów w manifest.json i katy-stawow.md.
+Klatki na obrazie (odczytane z HTML podglądu, atrybuty data-u) = klatki_u pozy: Back Extension 5; Reverse Hyperextension 12; Lower Back Curl 5.
+rodzina: back_extension
+odcisk_poz: 4c520cc573eeb86eb4a2118f1024a9be156ed751811bce1c5ba7b1970ff8cda1
+odcisk_przyblizen: 19d673568a8db7839b0e54753c44dfaf00dd747aac37f8121e30366f0919a44d
+commit: 762651a7b0bc63d6ca0f42fa7bf68252d2c0e67a
+drzewo: czyste

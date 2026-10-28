@@ -1,0 +1,1879 @@
+{
+ "rodzina": "row",
+ "wygenerowano": "2026-10-28T19:19:41.167Z",
+ "wyjatki": {
+  "Meadows Row": "landmine + sztanga jedną ręką jest już obsługiwane (środek gryfu na chwycie trzymającej dłoni), ale tor wiosłowania nie leży na sferze gryfu: oś obrotu landmine może być co najwyżej 30 cm nad podłogą, a dłoń porusza się po łuku o promieniu 200 cm wokół osi (przemieszczenie ≈ 30 cm do tyłu i 45 cm w górę wymagałoby osi ≈ 80 cm nad podłogą i ≈ 120 cm przed osobą); nie da się narysować bez fałszowania toru"
+ },
+ "przyblizenia": {
+  "Bent Over Row (sztanga)": "przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony",
+  "Bent Over Row (hantle)": "przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony",
+  "Reverse Grip Bent Over Row": "przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony",
+  "Barbell Rear Delt Row": "przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony",
+  "Pendlay Row": "przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony",
+  "Smith Machine Bent Over Row": "przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony",
+  "Bent Over Row (linki)": "przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony",
+  "T-Bar Row": "przybliżenie: T-bar jako dźwignia obrotowa z osią przed osobą (schemat; uchwyt na ramieniu dźwigni, bez rysowania talerzy); kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony",
+  "Seal Row (sztanga)": "przybliżenie: ławka płaska na wysokości 80 cm (granica kontraktu), osoba leży przodem głową do przodu (+x), stopy grzbietem w dół, palce do tyłu (podbicie 91…270° silnika), sztanga zwisa pod ławką"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Bent Over Row (sztanga)",
+   "obraz": "Bent-Over-Row-sztanga--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 97.6,
+     "max": 97.6,
+     "R": {
+      "min": 97.6,
+      "max": 97.6
+     },
+     "L": {
+      "min": 97.6,
+      "max": 97.6
+     }
+    },
+    "knee": {
+     "min": 25.7,
+     "max": 25.7,
+     "R": {
+      "min": 25.7,
+      "max": 25.7
+     },
+     "L": {
+      "min": 25.7,
+      "max": 25.7
+     }
+    },
+    "ankle": {
+     "min": -18.6,
+     "max": -18.6,
+     "R": {
+      "min": -18.6,
+      "max": -18.6
+     },
+     "L": {
+      "min": -18.6,
+      "max": -18.6
+     }
+    },
+    "elbow": {
+     "min": 18.2,
+     "max": 118.9,
+     "R": {
+      "min": 18.2,
+      "max": 118.9
+     },
+     "L": {
+      "min": 18.2,
+      "max": 118.9
+     }
+    },
+    "shSag": {
+     "min": -41.1,
+     "max": 52.9,
+     "R": {
+      "min": -41.1,
+      "max": 52.9
+     },
+     "L": {
+      "min": -41.1,
+      "max": 52.9
+     }
+    },
+    "shElev": {
+     "min": 25.5,
+     "max": 53.5,
+     "R": {
+      "min": 25.5,
+      "max": 53.5
+     },
+     "L": {
+      "min": 25.5,
+      "max": 53.5
+     }
+    },
+    "shAbd": {
+     "min": 9.2,
+     "max": 25.7,
+     "R": {
+      "min": 9.2,
+      "max": 25.7
+     },
+     "L": {
+      "min": 9.2,
+      "max": 25.7
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "mis.roundBack"
+   ],
+   "bledy_wskazowki_id": [
+    "mis.roundBack"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [
+     "Przyciągnij sztangę do brzucha, potem opuść ją do pełnego wyprostu rąk."
+    ],
+    "bledy_wskazowki": [
+     "mis.roundBack (Zaokrąglanie pleców, żeby dociągnąć ciężar.)"
+    ]
+   },
+   "reguly_sensu": [
+    "tulow_pochylony",
+    "tulow_stabilny",
+    "plecy_neutralne",
+    "zakres_lokcia",
+    "lokiec_za_plecami",
+    "kolana_lekko"
+   ],
+   "przyblizenie": "przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony"
+  },
+  {
+   "cwiczenie": "Bent Over Row (hantle)",
+   "obraz": "Bent-Over-Row-hantle--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "hantel"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 97.6,
+     "max": 97.6,
+     "R": {
+      "min": 97.6,
+      "max": 97.6
+     },
+     "L": {
+      "min": 97.6,
+      "max": 97.6
+     }
+    },
+    "knee": {
+     "min": 25.7,
+     "max": 25.7,
+     "R": {
+      "min": 25.7,
+      "max": 25.7
+     },
+     "L": {
+      "min": 25.7,
+      "max": 25.7
+     }
+    },
+    "ankle": {
+     "min": -18.6,
+     "max": -18.6,
+     "R": {
+      "min": -18.6,
+      "max": -18.6
+     },
+     "L": {
+      "min": -18.6,
+      "max": -18.6
+     }
+    },
+    "elbow": {
+     "min": 18.4,
+     "max": 117.4,
+     "R": {
+      "min": 18.4,
+      "max": 117.4
+     },
+     "L": {
+      "min": 18.4,
+      "max": 117.4
+     }
+    },
+    "shSag": {
+     "min": -43.1,
+     "max": 53.1,
+     "R": {
+      "min": -43.1,
+      "max": 53.1
+     },
+     "L": {
+      "min": -43.1,
+      "max": 53.1
+     }
+    },
+    "shElev": {
+     "min": 30.9,
+     "max": 54.2,
+     "R": {
+      "min": 30.9,
+      "max": 54.2
+     },
+     "L": {
+      "min": 30.9,
+      "max": 54.2
+     }
+    },
+    "shAbd": {
+     "min": 13.3,
+     "max": 31.2,
+     "R": {
+      "min": 13.3,
+      "max": 31.2
+     },
+     "L": {
+      "min": 13.3,
+      "max": 31.2
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "mis.roundBack"
+   ],
+   "bledy_wskazowki_id": [
+    "mis.roundBack"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: hantle (sprzet: rodzaj \"hantel\") albo kettlebell (sprzet: rodzaj \"kettlebell\")",
+     "dwa przyrządy"
+    ],
+    "ruch": [
+     "Przyciągnij hantle do brzucha, potem opuść je do pełnego wyprostu rąk."
+    ],
+    "bledy_wskazowki": [
+     "mis.roundBack (Zaokrąglanie pleców, żeby dociągnąć ciężar.)"
+    ]
+   },
+   "reguly_sensu": [
+    "tulow_pochylony",
+    "tulow_stabilny",
+    "plecy_neutralne",
+    "zakres_lokcia",
+    "lokiec_za_plecami",
+    "kolana_lekko"
+   ],
+   "przyblizenie": "przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony"
+  },
+  {
+   "cwiczenie": "Reverse Grip Bent Over Row",
+   "obraz": "Reverse-Grip-Bent-Over-Row-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 97.6,
+     "max": 97.6,
+     "R": {
+      "min": 97.6,
+      "max": 97.6
+     },
+     "L": {
+      "min": 97.6,
+      "max": 97.6
+     }
+    },
+    "knee": {
+     "min": 25.7,
+     "max": 25.7,
+     "R": {
+      "min": 25.7,
+      "max": 25.7
+     },
+     "L": {
+      "min": 25.7,
+      "max": 25.7
+     }
+    },
+    "ankle": {
+     "min": -18.6,
+     "max": -18.6,
+     "R": {
+      "min": -18.6,
+      "max": -18.6
+     },
+     "L": {
+      "min": -18.6,
+      "max": -18.6
+     }
+    },
+    "elbow": {
+     "min": 18.4,
+     "max": 118.5,
+     "R": {
+      "min": 18.4,
+      "max": 118.5
+     },
+     "L": {
+      "min": 18.4,
+      "max": 118.5
+     }
+    },
+    "shSag": {
+     "min": -36.7,
+     "max": 52.5,
+     "R": {
+      "min": -36.7,
+      "max": 52.5
+     },
+     "L": {
+      "min": -36.7,
+      "max": 52.5
+     }
+    },
+    "shElev": {
+     "min": 18,
+     "max": 52.6,
+     "R": {
+      "min": 18,
+      "max": 52.6
+     },
+     "L": {
+      "min": 18,
+      "max": 52.6
+     }
+    },
+    "shAbd": {
+     "min": 4.2,
+     "max": 18.2,
+     "R": {
+      "min": 4.2,
+      "max": 18.2
+     },
+     "L": {
+      "min": 4.2,
+      "max": 18.2
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "mis.roundBack"
+   ],
+   "bledy_wskazowki_id": [
+    "mis.roundBack"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [
+     "Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.",
+     "Plecy proste (neutralne) przez cały ruch — bez zaokrąglania."
+    ],
+    "bledy_wskazowki": [
+     "mis.roundBack (Zaokrąglanie pleców, żeby dociągnąć ciężar.)"
+    ]
+   },
+   "reguly_sensu": [
+    "tulow_pochylony",
+    "tulow_stabilny",
+    "plecy_neutralne",
+    "zakres_lokcia",
+    "lokiec_za_plecami",
+    "kolana_lekko"
+   ],
+   "przyblizenie": "przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony"
+  },
+  {
+   "cwiczenie": "Barbell Rear Delt Row",
+   "obraz": "Barbell-Rear-Delt-Row-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 97.6,
+     "max": 97.6,
+     "R": {
+      "min": 97.6,
+      "max": 97.6
+     },
+     "L": {
+      "min": 97.6,
+      "max": 97.6
+     }
+    },
+    "knee": {
+     "min": 25.7,
+     "max": 25.7,
+     "R": {
+      "min": 25.7,
+      "max": 25.7
+     },
+     "L": {
+      "min": 25.7,
+      "max": 25.7
+     }
+    },
+    "ankle": {
+     "min": -18.6,
+     "max": -18.6,
+     "R": {
+      "min": -18.6,
+      "max": -18.6
+     },
+     "L": {
+      "min": -18.6,
+      "max": -18.6
+     }
+    },
+    "elbow": {
+     "min": 18.1,
+     "max": 121.9,
+     "R": {
+      "min": 18.1,
+      "max": 121.9
+     },
+     "L": {
+      "min": 18.1,
+      "max": 121.9
+     }
+    },
+    "shSag": {
+     "min": -88.4,
+     "max": 259.6,
+     "R": {
+      "min": -88.4,
+      "max": 259.6
+     },
+     "L": {
+      "min": -88.4,
+      "max": 259.6
+     }
+    },
+    "shElev": {
+     "min": 64,
+     "max": 91.9,
+     "R": {
+      "min": 64,
+      "max": 91.9
+     },
+     "L": {
+      "min": 64,
+      "max": 91.9
+     }
+    },
+    "shAbd": {
+     "min": 24.9,
+     "max": 85.2,
+     "R": {
+      "min": 24.9,
+      "max": 85.2
+     },
+     "L": {
+      "min": 24.9,
+      "max": 85.2
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "mis.roundBack"
+   ],
+   "bledy_wskazowki_id": [
+    "mis.roundBack"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [
+     "Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.",
+     "Plecy proste (neutralne) przez cały ruch — bez zaokrąglania."
+    ],
+    "bledy_wskazowki": [
+     "mis.roundBack (Zaokrąglanie pleców, żeby dociągnąć ciężar.)"
+    ]
+   },
+   "reguly_sensu": [
+    "tulow_pochylony",
+    "tulow_stabilny",
+    "plecy_neutralne",
+    "zakres_lokcia",
+    "lokiec_za_plecami",
+    "kolana_lekko"
+   ],
+   "przyblizenie": "przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony"
+  },
+  {
+   "cwiczenie": "Pendlay Row",
+   "obraz": "Pendlay-Row-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 120.1,
+     "max": 120.1,
+     "R": {
+      "min": 120.1,
+      "max": 120.1
+     },
+     "L": {
+      "min": 120.1,
+      "max": 120.1
+     }
+    },
+    "knee": {
+     "min": 25.9,
+     "max": 25.9,
+     "R": {
+      "min": 25.9,
+      "max": 25.9
+     },
+     "L": {
+      "min": 25.9,
+      "max": 25.9
+     }
+    },
+    "ankle": {
+     "min": -16.6,
+     "max": -16.6,
+     "R": {
+      "min": -16.6,
+      "max": -16.6
+     },
+     "L": {
+      "min": -16.6,
+      "max": -16.6
+     }
+    },
+    "elbow": {
+     "min": 18.2,
+     "max": 143.1,
+     "R": {
+      "min": 18.2,
+      "max": 143.1
+     },
+     "L": {
+      "min": 18.2,
+      "max": 143.1
+     }
+    },
+    "shSag": {
+     "min": -43.5,
+     "max": 77.8,
+     "R": {
+      "min": -43.5,
+      "max": 77.8
+     },
+     "L": {
+      "min": -43.5,
+      "max": 77.8
+     }
+    },
+    "shElev": {
+     "min": 29.1,
+     "max": 78,
+     "R": {
+      "min": 29.1,
+      "max": 78
+     },
+     "L": {
+      "min": 29.1,
+      "max": 78
+     }
+    },
+    "shAbd": {
+     "min": 9.2,
+     "max": 29.5,
+     "R": {
+      "min": 9.2,
+      "max": 29.5
+     },
+     "L": {
+      "min": 9.2,
+      "max": 29.5
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "mis.roundBack"
+   ],
+   "bledy_wskazowki_id": [
+    "mis.roundBack"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga"
+    ],
+    "ruch": [
+     "Przyciągnij sztangę do brzucha, potem opuść ją do pełnego wyprostu rąk."
+    ],
+    "bledy_wskazowki": [
+     "mis.roundBack (Zaokrąglanie pleców, żeby dociągnąć ciężar.)"
+    ]
+   },
+   "reguly_sensu": [
+    "tulow_pochylony",
+    "tulow_stabilny",
+    "plecy_neutralne",
+    "zakres_lokcia",
+    "lokiec_za_plecami",
+    "kolana_lekko"
+   ],
+   "przyblizenie": "przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony"
+  },
+  {
+   "cwiczenie": "Smith Machine Bent Over Row",
+   "obraz": "Smith-Machine-Bent-Over-Row-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "smith",
+     "x": 11,
+     "h": 200
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 119,
+     "max": 119,
+     "R": {
+      "min": 119,
+      "max": 119
+     },
+     "L": {
+      "min": 119,
+      "max": 119
+     }
+    },
+    "knee": {
+     "min": 29,
+     "max": 29,
+     "R": {
+      "min": 29,
+      "max": 29
+     },
+     "L": {
+      "min": 29,
+      "max": 29
+     }
+    },
+    "ankle": {
+     "min": -14.4,
+     "max": -14.4,
+     "R": {
+      "min": -14.4,
+      "max": -14.4
+     },
+     "L": {
+      "min": -14.4,
+      "max": -14.4
+     }
+    },
+    "elbow": {
+     "min": 17.9,
+     "max": 143.6,
+     "R": {
+      "min": 17.9,
+      "max": 143.6
+     },
+     "L": {
+      "min": 17.9,
+      "max": 143.6
+     }
+    },
+    "shSag": {
+     "min": -27.3,
+     "max": 62.7,
+     "R": {
+      "min": -27.3,
+      "max": 62.7
+     },
+     "L": {
+      "min": -27.3,
+      "max": 62.7
+     }
+    },
+    "shElev": {
+     "min": 28.7,
+     "max": 63,
+     "R": {
+      "min": 28.7,
+      "max": 63
+     },
+     "L": {
+      "min": 28.7,
+      "max": 63
+     }
+    },
+    "shAbd": {
+     "min": 8.1,
+     "max": 29.3,
+     "R": {
+      "min": 8.1,
+      "max": 29.3
+     },
+     "L": {
+      "min": 8.1,
+      "max": 29.3
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "mis.roundBack"
+   ],
+   "bledy_wskazowki_id": [
+    "mis.roundBack"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: suwnica Smitha (sprzet: rodzaj \"smith\" + sztanga podążająca za chwytem)"
+    ],
+    "ruch": [
+     "Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.",
+     "Plecy proste (neutralne) przez cały ruch — bez zaokrąglania."
+    ],
+    "bledy_wskazowki": [
+     "mis.roundBack (Zaokrąglanie pleców, żeby dociągnąć ciężar.)"
+    ]
+   },
+   "reguly_sensu": [
+    "tulow_pochylony",
+    "tulow_stabilny",
+    "plecy_neutralne",
+    "zakres_lokcia",
+    "lokiec_za_plecami",
+    "kolana_lekko"
+   ],
+   "przyblizenie": "przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony"
+  },
+  {
+   "cwiczenie": "Bent Over Row (linki)",
+   "obraz": "Bent-Over-Row-linki--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "wyciag",
+     "x": 40,
+     "y": 15,
+     "z": 50,
+     "h": 230,
+     "chwyt": "uchwyt",
+     "dwa": true
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 97.6,
+     "max": 97.6,
+     "R": {
+      "min": 97.6,
+      "max": 97.6
+     },
+     "L": {
+      "min": 97.6,
+      "max": 97.6
+     }
+    },
+    "knee": {
+     "min": 25.7,
+     "max": 25.7,
+     "R": {
+      "min": 25.7,
+      "max": 25.7
+     },
+     "L": {
+      "min": 25.7,
+      "max": 25.7
+     }
+    },
+    "ankle": {
+     "min": -18.6,
+     "max": -18.6,
+     "R": {
+      "min": -18.6,
+      "max": -18.6
+     },
+     "L": {
+      "min": -18.6,
+      "max": -18.6
+     }
+    },
+    "elbow": {
+     "min": 18.4,
+     "max": 117.4,
+     "R": {
+      "min": 18.4,
+      "max": 117.4
+     },
+     "L": {
+      "min": 18.4,
+      "max": 117.4
+     }
+    },
+    "shSag": {
+     "min": -43.1,
+     "max": 53.1,
+     "R": {
+      "min": -43.1,
+      "max": 53.1
+     },
+     "L": {
+      "min": -43.1,
+      "max": 53.1
+     }
+    },
+    "shElev": {
+     "min": 30.9,
+     "max": 54.2,
+     "R": {
+      "min": 30.9,
+      "max": 54.2
+     },
+     "L": {
+      "min": 30.9,
+      "max": 54.2
+     }
+    },
+    "shAbd": {
+     "min": 13.3,
+     "max": 31.2,
+     "R": {
+      "min": 13.3,
+      "max": 31.2
+     },
+     "L": {
+      "min": 13.3,
+      "max": 31.2
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "mis.roundBack"
+   ],
+   "bledy_wskazowki_id": [
+    "mis.roundBack"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: dwa wyciągi (sprzet: rodzaj \"wyciag\", dwa: true (dwa wyciągi)) + wyciąg z bloczkiem niskim (sprzet: rodzaj \"wyciag\", bloczek niski: y 5–60 cm)"
+    ],
+    "ruch": [
+     "Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.",
+     "Plecy proste (neutralne) przez cały ruch — bez zaokrąglania."
+    ],
+    "bledy_wskazowki": [
+     "mis.roundBack (Zaokrąglanie pleców, żeby dociągnąć ciężar.)"
+    ]
+   },
+   "reguly_sensu": [
+    "tulow_pochylony",
+    "tulow_stabilny",
+    "plecy_neutralne",
+    "zakres_lokcia",
+    "lokiec_za_plecami",
+    "kolana_lekko"
+   ],
+   "przyblizenie": "przybliżenie: kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony"
+  },
+  {
+   "cwiczenie": "One Arm Row (hantle)",
+   "obraz": "One-Arm-Row-hantle--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0,
+     "top": 38,
+     "kat": 0,
+     "dlugosc": 30,
+     "siedzisko": 65
+    },
+    {
+     "rodzaj": "hantel",
+     "trzyma": "R"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 58.9,
+     "max": 87,
+     "R": {
+      "min": 87,
+      "max": 87
+     },
+     "L": {
+      "min": 58.9,
+      "max": 58.9
+     }
+    },
+    "knee": {
+     "min": 22.3,
+     "max": 67.9,
+     "R": {
+      "min": 22.3,
+      "max": 22.3
+     },
+     "L": {
+      "min": 67.9,
+      "max": 67.9
+     }
+    },
+    "ankle": {
+     "min": 6.2,
+     "max": 29.5,
+     "R": {
+      "min": 6.2,
+      "max": 6.2
+     },
+     "L": {
+      "min": 29.5,
+      "max": 29.5
+     }
+    },
+    "elbow": {
+     "min": 17.9,
+     "max": 114.8,
+     "R": {
+      "min": 17.9,
+      "max": 114.8
+     },
+     "L": {
+      "min": 50.6,
+      "max": 50.6
+     }
+    },
+    "shSag": {
+     "min": -40.7,
+     "max": 73.1,
+     "R": {
+      "min": -40.7,
+      "max": 73.1
+     },
+     "L": {
+      "min": 70.3,
+      "max": 70.3
+     }
+    },
+    "shElev": {
+     "min": 25.4,
+     "max": 73.3,
+     "R": {
+      "min": 25.4,
+      "max": 73.3
+     },
+     "L": {
+      "min": 71.7,
+      "max": 71.7
+     }
+    },
+    "shAbd": {
+     "min": 10.1,
+     "max": 25.7,
+     "R": {
+      "min": 10.1,
+      "max": 25.7
+     },
+     "L": {
+      "min": 21.1,
+      "max": 21.1
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: hantle (sprzet: rodzaj \"hantel\") albo kettlebell (sprzet: rodzaj \"kettlebell\")",
+     "jeden przyrząd (jedna ręka)",
+     "JEDNORĄCZ: drążek trzyma jedna dłoń (sprzet: trzyma \"R\"/\"L\"), druga ręka wolna poza drążkiem"
+    ],
+    "ruch": [
+     "Ciągnij hantel w górę wzdłuż boku, łokciem w tył; opuść do pełnego wyprostu ręki."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "tulow_pochylony",
+    "tulow_stabilny",
+    "plecy_neutralne",
+    "zakres_lokcia",
+    "lokiec_za_plecami"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "T-Bar Row",
+   "obraz": "T-Bar-Row-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "obrot",
+     "x": -85,
+     "y": 5,
+     "z": 0,
+     "dlugosc": 101.3,
+     "punkt": "dlonie",
+     "trzyma": "obie"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 97.6,
+     "max": 97.6,
+     "R": {
+      "min": 97.6,
+      "max": 97.6
+     },
+     "L": {
+      "min": 97.6,
+      "max": 97.6
+     }
+    },
+    "knee": {
+     "min": 25.7,
+     "max": 25.7,
+     "R": {
+      "min": 25.7,
+      "max": 25.7
+     },
+     "L": {
+      "min": 25.7,
+      "max": 25.7
+     }
+    },
+    "ankle": {
+     "min": -18.6,
+     "max": -18.6,
+     "R": {
+      "min": -18.6,
+      "max": -18.6
+     },
+     "L": {
+      "min": -18.6,
+      "max": -18.6
+     }
+    },
+    "elbow": {
+     "min": 0,
+     "max": 117.5,
+     "R": {
+      "min": 0,
+      "max": 117.5
+     },
+     "L": {
+      "min": 0,
+      "max": 117.5
+     }
+    },
+    "shSag": {
+     "min": -36.3,
+     "max": 60.8,
+     "R": {
+      "min": -36.3,
+      "max": 60.8
+     },
+     "L": {
+      "min": -36.3,
+      "max": 60.8
+     }
+    },
+    "shElev": {
+     "min": 5.2,
+     "max": 61.1,
+     "R": {
+      "min": 5.2,
+      "max": 61.1
+     },
+     "L": {
+      "min": 5.2,
+      "max": 61.1
+     }
+    },
+    "shAbd": {
+     "min": 0.2,
+     "max": 8.1,
+     "R": {
+      "min": 0.2,
+      "max": 8.1
+     },
+     "L": {
+      "min": 0.2,
+      "max": 8.1
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "mis.roundBack"
+   ],
+   "bledy_wskazowki_id": [
+    "mis.roundBack"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: T-bar (obrót wokół osi przy podłodze, punkt: dłonie) (sprzet: rodzaj \"dzwignia\") albo landmine (sprzet: rodzaj \"landmine\"; gryf to ten pręt, bez osobnej sztangi) + T-bar (obrót wokół osi przy podłodze, punkt: dłonie) (sprzet: rodzaj \"dzwignia\") albo sztanga"
+    ],
+    "ruch": [
+     "Przyciągnij uchwyty do tułowia, potem opuść do pełnego wyprostu rąk."
+    ],
+    "bledy_wskazowki": [
+     "mis.roundBack (Zaokrąglanie pleców, żeby dociągnąć ciężar.)"
+    ]
+   },
+   "reguly_sensu": [
+    "tulow_pochylony",
+    "tulow_stabilny",
+    "plecy_neutralne",
+    "zakres_lokcia",
+    "lokiec_za_plecami",
+    "kolana_lekko"
+   ],
+   "przyblizenie": "przybliżenie: T-bar jako dźwignia obrotowa z osią przed osobą (schemat; uchwyt na ramieniu dźwigni, bez rysowania talerzy); kolano ≤ 30° (konwencja „lekko ugięte”) przy miednicy 76 cm nad podłogą wymaga stóp przesuniętych przed miednicę (o 3–8 cm), więc goleń odchyla się do tyłu o 14–18° od pionu, a kolano jest 4–7 cm za piętą (kostka w zgięciu podeszwowym ≈ 14–19°); pionowa goleń wymagałaby kolana ≈ 40° albo miednicy ok. 10 cm wyżej, co przesunęłoby chwyt i sprzęt; środek ciężkości nad stopami nie został zmierzony"
+  },
+  {
+   "cwiczenie": "Seal Row (sztanga)",
+   "obraz": "Seal-Row-sztanga--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 130
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0,
+     "top": 80,
+     "kat": 0,
+     "dlugosc": 110,
+     "siedzisko": 70
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -10.6,
+     "max": -10.6,
+     "R": {
+      "min": -10.6,
+      "max": -10.6
+     },
+     "L": {
+      "min": -10.6,
+      "max": -10.6
+     }
+    },
+    "knee": {
+     "min": 12.4,
+     "max": 12.4,
+     "R": {
+      "min": 12.4,
+      "max": 12.4
+     },
+     "L": {
+      "min": 12.4,
+      "max": 12.4
+     }
+    },
+    "ankle": {
+     "min": -56.3,
+     "max": -56.3,
+     "R": {
+      "min": -56.3,
+      "max": -56.3
+     },
+     "L": {
+      "min": -56.3,
+      "max": -56.3
+     }
+    },
+    "elbow": {
+     "min": 12.4,
+     "max": 118.1,
+     "R": {
+      "min": 12.4,
+      "max": 118.1
+     },
+     "L": {
+      "min": 12.4,
+      "max": 118.1
+     }
+    },
+    "shSag": {
+     "min": -15.7,
+     "max": 86.8,
+     "R": {
+      "min": -15.7,
+      "max": 86.8
+     },
+     "L": {
+      "min": -15.7,
+      "max": 86.8
+     }
+    },
+    "shElev": {
+     "min": 25.6,
+     "max": 86.9,
+     "R": {
+      "min": 25.6,
+      "max": 86.9
+     },
+     "L": {
+      "min": 25.6,
+      "max": 86.9
+     }
+    },
+    "shAbd": {
+     "min": 8.5,
+     "max": 27.2,
+     "R": {
+      "min": 8.5,
+      "max": 27.2
+     },
+     "L": {
+      "min": 8.5,
+      "max": 27.2
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga + ławka płaska (sprzet: rodzaj \"lawka\", kat -5…5°)"
+    ],
+    "ruch": [
+     "Oprzyj klatkę piersiową o podporę i trzymaj ją tam przez cały ruch.",
+     "Ciągnij, aż łokcie miną linię pleców."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "tulow_stabilny",
+    "zakres_lokcia",
+    "lokiec_za_plecami"
+   ],
+   "przyblizenie": "przybliżenie: ławka płaska na wysokości 80 cm (granica kontraktu), osoba leży przodem głową do przodu (+x), stopy grzbietem w dół, palce do tyłu (podbicie 91…270° silnika), sztanga zwisa pod ławką"
+  },
+  {
+   "cwiczenie": "Lying T-Bar Row",
+   "obraz": "Lying-T-Bar-Row-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0,
+     "top": 43,
+     "kat": 45,
+     "dlugosc": 38,
+     "siedzisko": 2
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "obrot",
+     "x": -81.9,
+     "y": 66.7,
+     "z": 0,
+     "dlugosc": 70,
+     "punkt": "dlonie",
+     "trzyma": "obie"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -9.4,
+     "max": -9.4,
+     "R": {
+      "min": -9.4,
+      "max": -9.4
+     },
+     "L": {
+      "min": -9.4,
+      "max": -9.4
+     }
+    },
+    "knee": {
+     "min": 6.8,
+     "max": 6.8,
+     "R": {
+      "min": 6.8,
+      "max": 6.8
+     },
+     "L": {
+      "min": 6.8,
+      "max": 6.8
+     }
+    },
+    "ankle": {
+     "min": -59.9,
+     "max": -59.9,
+     "R": {
+      "min": -59.9,
+      "max": -59.9
+     },
+     "L": {
+      "min": -59.9,
+      "max": -59.9
+     }
+    },
+    "elbow": {
+     "min": 15,
+     "max": 120.7,
+     "R": {
+      "min": 15,
+      "max": 120.7
+     },
+     "L": {
+      "min": 15,
+      "max": 120.7
+     }
+    },
+    "shSag": {
+     "min": -45.6,
+     "max": 37.3,
+     "R": {
+      "min": -45.6,
+      "max": 37.3
+     },
+     "L": {
+      "min": -45.6,
+      "max": 37.3
+     }
+    },
+    "shElev": {
+     "min": 6.9,
+     "max": 45.9,
+     "R": {
+      "min": 6.9,
+      "max": 45.9
+     },
+     "L": {
+      "min": 6.9,
+      "max": 45.9
+     }
+    },
+    "shAbd": {
+     "min": 5.1,
+     "max": 7.2,
+     "R": {
+      "min": 5.1,
+      "max": 7.2
+     },
+     "L": {
+      "min": 5.1,
+      "max": 7.2
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: T-bar (obrót wokół osi przy podłodze, punkt: dłonie) (sprzet: rodzaj \"dzwignia\")"
+    ],
+    "ruch": [
+     "Oprzyj klatkę piersiową o podporę i trzymaj ją tam przez cały ruch.",
+     "Ciągnij, aż łokcie miną linię pleców."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "tulow_stabilny",
+    "zakres_lokcia",
+    "lokiec_za_plecami"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Chest Supported Row",
+   "obraz": "Chest-Supported-Row-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0,
+     "top": 43,
+     "kat": 45,
+     "dlugosc": 38,
+     "siedzisko": 2
+    },
+    {
+     "rodzaj": "hantel"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -9.4,
+     "max": -9.4,
+     "R": {
+      "min": -9.4,
+      "max": -9.4
+     },
+     "L": {
+      "min": -9.4,
+      "max": -9.4
+     }
+    },
+    "knee": {
+     "min": 6.8,
+     "max": 6.8,
+     "R": {
+      "min": 6.8,
+      "max": 6.8
+     },
+     "L": {
+      "min": 6.8,
+      "max": 6.8
+     }
+    },
+    "ankle": {
+     "min": -59.9,
+     "max": -59.9,
+     "R": {
+      "min": -59.9,
+      "max": -59.9
+     },
+     "L": {
+      "min": -59.9,
+      "max": -59.9
+     }
+    },
+    "elbow": {
+     "min": 15,
+     "max": 120.7,
+     "R": {
+      "min": 15,
+      "max": 120.7
+     },
+     "L": {
+      "min": 15,
+      "max": 120.7
+     }
+    },
+    "shSag": {
+     "min": -45.6,
+     "max": 37.3,
+     "R": {
+      "min": -45.6,
+      "max": 37.3
+     },
+     "L": {
+      "min": -45.6,
+      "max": 37.3
+     }
+    },
+    "shElev": {
+     "min": 7.4,
+     "max": 45.9,
+     "R": {
+      "min": 7.4,
+      "max": 45.9
+     },
+     "L": {
+      "min": 7.4,
+      "max": 45.9
+     }
+    },
+    "shAbd": {
+     "min": 5.1,
+     "max": 7.7,
+     "R": {
+      "min": 5.1,
+      "max": 7.7
+     },
+     "L": {
+      "min": 5.1,
+      "max": 7.7
+     }
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: hantle (sprzet: rodzaj \"hantel\") + ławka skośna (głową wyżej) (sprzet: rodzaj \"lawka\", kat 10…90°)",
+     "dwa przyrządy"
+    ],
+    "ruch": [
+     "Ciągnij łokcie w tył wzdłuż tułowia, potem wyprostuj ręce do końca."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "tulow_stabilny",
+    "zakres_lokcia",
+    "lokiec_za_plecami"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "zmiany_sprzetu": [
+  {
+   "cwiczenie": "Lying T-Bar Row",
+   "sprzet_przed": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0,
+     "top": 43,
+     "kat": 45,
+     "dlugosc": 38,
+     "siedzisko": 20
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "obrot",
+     "x": -81.9,
+     "y": 66.7,
+     "z": 0,
+     "dlugosc": 70,
+     "punkt": "dlonie",
+     "trzyma": "obie"
+    }
+   ],
+   "sprzet_po": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0,
+     "top": 43,
+     "kat": 45,
+     "dlugosc": 38,
+     "siedzisko": 2
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "obrot",
+     "x": -81.9,
+     "y": 66.7,
+     "z": 0,
+     "dlugosc": 70,
+     "punkt": "dlonie",
+     "trzyma": "obie"
+    }
+   ],
+   "cecha_rozpoznawcza_przed_i_po": "DO UZUPEŁNIENIA przez autora poprawki: co odróżnia ćwiczenie od zwykłego wariantu (np. wysokość podwyższenia, położenie zaczepu) i jak ta cecha wygląda przed i po zmianie"
+  },
+  {
+   "cwiczenie": "Chest Supported Row",
+   "sprzet_przed": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0,
+     "top": 43,
+     "kat": 45,
+     "dlugosc": 38,
+     "siedzisko": 20
+    },
+    {
+     "rodzaj": "hantel"
+    }
+   ],
+   "sprzet_po": [
+    {
+     "rodzaj": "podloga",
+     "x0": -110,
+     "x1": 130
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0,
+     "top": 43,
+     "kat": 45,
+     "dlugosc": 38,
+     "siedzisko": 2
+    },
+    {
+     "rodzaj": "hantel"
+    }
+   ],
+   "cecha_rozpoznawcza_przed_i_po": "DO UZUPEŁNIENIA przez autora poprawki: co odróżnia ćwiczenie od zwykłego wariantu (np. wysokość podwyższenia, położenie zaczepu) i jak ta cecha wygląda przed i po zmianie"
+  }
+ ],
+ "lista_kontrolna": [
+  "P3: każda zmiana sprzętu (wysokość skrzyni, położenie zaczepu, ławka) w poprawce trafia do recenzenta z opisem „dlaczego” i z porównaniem cechy rozpoznawczej przed i po (pole zmiany_sprzetu); recenzent ocenia, czy cecha ćwiczenia została zachowana, nie tylko czy liczba reguły się zgadza"
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": [],
+ "na_krawedzi": {
+  "Barbell Rear Delt Row": [
+   "lokiec_za_plecami"
+  ],
+  "Smith Machine Bent Over Row": [
+   "kolana_lekko"
+  ]
+ }
+}

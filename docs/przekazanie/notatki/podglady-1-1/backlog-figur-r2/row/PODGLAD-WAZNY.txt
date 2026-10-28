@@ -1,0 +1,7 @@
+Kontrola manifestu (zgodnosc_manifestu) wykonana, bez niezgodności; tabela kątów stawów w manifest.json i katy-stawow.md.
+Klatki na obrazie (odczytane z HTML podglądu, atrybuty data-u) = klatki_u pozy: Bent Over Row (sztanga) 5; Bent Over Row (hantle) 5; Reverse Grip Bent Over Row 5; Barbell Rear Delt Row 5; Pendlay Row 5; Smith Machine Bent Over Row 5; Bent Over Row (linki) 5; One Arm Row (hantle) 5; T-Bar Row 9; Seal Row (sztanga) 5; Lying T-Bar Row 9; Chest Supported Row 5.
+rodzina: row
+odcisk_poz: c118bedc6480e6ea3453862e65f021f765b2b3dce96e4f3bea5163d1da844d79
+odcisk_przyblizen: 9a35dfe000d6fb588f496188a874de894561c2e5fb00c8e2a75fb054b59a0289
+commit: 762651a7b0bc63d6ca0f42fa7bf68252d2c0e67a
+drzewo: czyste

@@ -1,0 +1,7 @@
+Kontrola manifestu (zgodnosc_manifestu) wykonana, bez niezgodności; tabela kątów stawów w manifest.json i katy-stawow.md.
+Klatki na obrazie (odczytane z HTML podglądu, atrybuty data-u) = klatki_u pozy: Bird Dog 5; Crunch - Hands Overhead 3; Dead Bug 5; Hollow Hold 2; Lying Leg Raise 5; Reverse Crunch 5; Tuck Crunch 3; Alternate Heel Touchers 9; Cocoons 9; Leg Pull-In 5; Superman 5; V-Up 9.
+rodzina: core_floor
+odcisk_poz: 04083c88b70ae249a8f56786a6e1db4324b0f1c79d46768b93d6cf581f235a1a
+odcisk_przyblizen: 411e938ad0f1ff70ee6f39b4a0928f5ad70cc56dc11dd0c311d02c6b5e5f9a5c
+commit: 762651a7b0bc63d6ca0f42fa7bf68252d2c0e67a
+drzewo: czyste

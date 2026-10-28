@@ -1,0 +1,996 @@
+{
+ "rodzina": "glute_floor",
+ "wygenerowano": "2026-10-28T19:19:06.889Z",
+ "wyjatki": {},
+ "przyblizenia": {
+  "Hip Extension with Bands": "przybliżenie: guma w pętli na kostkach (model gumy nie ma zaczepu do kostki), opór rośnie, gdy kostka ucieka do tyłu; ręce na biodrach",
+  "Machine Glute Kickback": "przybliżenie: maszyna schematyczna — uchwyty rysowane jako dwie równoległe poręcze przed klatką (dłonie na nich), bez oparcia klatki i poduszki; dźwignia obraca się wokół biodra i prowadzi kostkę",
+  "Clamshell": "przybliżenie: leżenie na lewym boku jak w rozciąganiu na boku (obrót tułowia −75°, nie −90°: dolny bark nie wchodzi pod podłogę; w widoku z boku odchylenia nie widać, w widoku z przodu tak); głowa na dłoni dolnej ręki; stopa górna idzie za goleniem (podbicie do 30° przy unoszeniu kolana), obie stopy palcami w stronę kolan; zgięcie bioder do przodu (od kamery) jest skrócone w widoku z boku; odwodzenie widać jako uniesienie górnego kolana",
+  "Prone Flutter Kicks": "przybliżenie: nogi poza końcem ławki (ławka płaska), ruch naprzemienny pokazują dwie fazy skrajne"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Donkey Kick",
+   "obraz": "Donkey-Kick-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 120
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 11,
+     "max": 75.5,
+     "R": {
+      "min": 11,
+      "max": 75.5
+     },
+     "L": {
+      "min": 74.6,
+      "max": 74.6
+     }
+    },
+    "knee": {
+     "min": 90,
+     "max": 105,
+     "R": {
+      "min": 90,
+      "max": 105
+     },
+     "L": {
+      "min": 105,
+      "max": 105
+     }
+    },
+    "ankle": {
+     "min": 5.1,
+     "max": 14.7,
+     "R": {
+      "min": 5.1,
+      "max": 5.4
+     },
+     "L": {
+      "min": 14.7,
+      "max": 14.7
+     }
+    },
+    "elbow": {
+     "min": 32.2,
+     "max": 32.2,
+     "R": {
+      "min": 32.2,
+      "max": 32.2
+     },
+     "L": {
+      "min": 32.2,
+      "max": 32.2
+     }
+    },
+    "shSag": {
+     "min": 61,
+     "max": 61,
+     "R": {
+      "min": 61,
+      "max": 61
+     },
+     "L": {
+      "min": 61,
+      "max": 61
+     }
+    },
+    "shElev": {
+     "min": 61.3,
+     "max": 61.3,
+     "R": {
+      "min": 61.3,
+      "max": 61.3
+     },
+     "L": {
+      "min": 61.3,
+      "max": 61.3
+     }
+    },
+    "shAbd": {
+     "min": 8.5,
+     "max": 8.5,
+     "R": {
+      "min": 8.5,
+      "max": 8.5
+     },
+     "L": {
+      "min": 8.5,
+      "max": 8.5
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "hext.mis.arch"
+   ],
+   "bledy_wskazowki_id": [
+    "hext.mis.arch"
+   ],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Unoś nogę tylko tak wysoko, żeby plecy się nie wyginały.",
+     "Napnij brzuch, żeby tułów był sztywny."
+    ],
+    "bledy_wskazowki": [
+     "hext.mis.arch (Plecy wyginają się w łuk, gdy noga idzie w górę.)"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy",
+    "biodro_do_linii"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Fire Hydrant",
+   "obraz": "Fire-Hydrant-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 120
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 72.3,
+     "max": 75.5,
+     "R": {
+      "min": 72.3,
+      "max": 75.5
+     },
+     "L": {
+      "min": 74.6,
+      "max": 74.6
+     }
+    },
+    "knee": {
+     "min": 105,
+     "max": 105.5,
+     "R": {
+      "min": 105,
+      "max": 105.5
+     },
+     "L": {
+      "min": 105,
+      "max": 105
+     }
+    },
+    "ankle": {
+     "min": 3.6,
+     "max": 14.7,
+     "R": {
+      "min": 3.6,
+      "max": 5.3
+     },
+     "L": {
+      "min": 14.7,
+      "max": 14.7
+     }
+    },
+    "elbow": {
+     "min": 32.2,
+     "max": 32.2,
+     "R": {
+      "min": 32.2,
+      "max": 32.2
+     },
+     "L": {
+      "min": 32.2,
+      "max": 32.2
+     }
+    },
+    "shSag": {
+     "min": 61,
+     "max": 61,
+     "R": {
+      "min": 61,
+      "max": 61
+     },
+     "L": {
+      "min": 61,
+      "max": 61
+     }
+    },
+    "shElev": {
+     "min": 61.3,
+     "max": 61.3,
+     "R": {
+      "min": 61.3,
+      "max": 61.3
+     },
+     "L": {
+      "min": 61.3,
+      "max": 61.3
+     }
+    },
+    "shAbd": {
+     "min": 8.5,
+     "max": 8.5,
+     "R": {
+      "min": 8.5,
+      "max": 8.5
+     },
+     "L": {
+      "min": 8.5,
+      "max": 8.5
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "hab.mis.high"
+   ],
+   "bledy_wskazowki_id": [
+    "hab.mis.high"
+   ],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Biodra i tułów nieruchomo — pracuje tylko noga.",
+     "Biodra i barki równolegle do podłogi — bez skręcania tułowia."
+    ],
+    "bledy_wskazowki": [
+     "hab.mis.high (Noga za wysoko — biodro zaczyna się przechylać.)"
+    ]
+   },
+   "reguly_sensu": [
+    "rozstaw_kolan",
+    "miednica_bez_przechylu"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Clamshell",
+   "obraz": "Clamshell-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 120
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 34.4,
+     "max": 47.9,
+     "R": {
+      "min": 34.4,
+      "max": 47.9
+     },
+     "L": {
+      "min": 41.8,
+      "max": 41.8
+     }
+    },
+    "knee": {
+     "min": 88.4,
+     "max": 90,
+     "R": {
+      "min": 88.4,
+      "max": 88.4
+     },
+     "L": {
+      "min": 90,
+      "max": 90
+     }
+    },
+    "ankle": {
+     "min": 15.3,
+     "max": 25,
+     "R": {
+      "min": 15.3,
+      "max": 25
+     },
+     "L": {
+      "min": 15.8,
+      "max": 15.8
+     }
+    },
+    "elbow": {
+     "min": 75.4,
+     "max": 139.9,
+     "R": {
+      "min": 75.4,
+      "max": 75.4
+     },
+     "L": {
+      "min": 139.9,
+      "max": 139.9
+     }
+    },
+    "shSag": {
+     "min": 14.3,
+     "max": 104.8,
+     "R": {
+      "min": 14.3,
+      "max": 14.3
+     },
+     "L": {
+      "min": 104.8,
+      "max": 104.8
+     }
+    },
+    "shElev": {
+     "min": 24.1,
+     "max": 104.5,
+     "R": {
+      "min": 24.1,
+      "max": 24.1
+     },
+     "L": {
+      "min": 104.5,
+      "max": 104.5
+     }
+    },
+    "shAbd": {
+     "min": 18.7,
+     "max": 74.8,
+     "R": {
+      "min": 18.7,
+      "max": 18.7
+     },
+     "L": {
+      "min": 74.8,
+      "max": 74.8
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "hab.mis.high"
+   ],
+   "bledy_wskazowki_id": [
+    "hab.mis.high"
+   ],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Biodra i tułów nieruchomo — pracuje tylko noga.",
+     "Ruch płynny w obie strony, bez szarpania."
+    ],
+    "bledy_wskazowki": [
+     "hab.mis.high (Noga za wysoko — biodro zaczyna się przechylać.)"
+    ]
+   },
+   "reguly_sensu": [
+    "rozstaw_kolan",
+    "miednica_bez_przechylu",
+    "miednica_bez_skretu"
+   ],
+   "przyblizenie": "przybliżenie: leżenie na lewym boku jak w rozciąganiu na boku (obrót tułowia −75°, nie −90°: dolny bark nie wchodzi pod podłogę; w widoku z boku odchylenia nie widać, w widoku z przodu tak); głowa na dłoni dolnej ręki; stopa górna idzie za goleniem (podbicie do 30° przy unoszeniu kolana), obie stopy palcami w stronę kolan; zgięcie bioder do przodu (od kamery) jest skrócone w widoku z boku; odwodzenie widać jako uniesienie górnego kolana"
+  },
+  {
+   "cwiczenie": "Cable Kickback",
+   "obraz": "Cable-Kickback-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 140
+    },
+    {
+     "rodzaj": "wyciag",
+     "x": 86.3,
+     "y": 22,
+     "z": 0,
+     "chwyt": "kostka",
+     "trzyma": "R"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -14,
+     "max": 36.7,
+     "R": {
+      "min": -14,
+      "max": 36.7
+     },
+     "L": {
+      "min": 27.5,
+      "max": 27.5
+     }
+    },
+    "knee": {
+     "min": 3.4,
+     "max": 15.7,
+     "R": {
+      "min": 3.4,
+      "max": 15.7
+     },
+     "L": {
+      "min": 5.6,
+      "max": 5.6
+     }
+    },
+    "ankle": {
+     "min": 2,
+     "max": 11.3,
+     "R": {
+      "min": 2,
+      "max": 11.3
+     },
+     "L": {
+      "min": 2.7,
+      "max": 2.7
+     }
+    },
+    "elbow": {
+     "min": 52.3,
+     "max": 52.3,
+     "R": {
+      "min": 52.3,
+      "max": 52.3
+     },
+     "L": {
+      "min": 52.3,
+      "max": 52.3
+     }
+    },
+    "shSag": {
+     "min": 91.8,
+     "max": 91.8,
+     "R": {
+      "min": 91.8,
+      "max": 91.8
+     },
+     "L": {
+      "min": 91.8,
+      "max": 91.8
+     }
+    },
+    "shElev": {
+     "min": 91.7,
+     "max": 91.7,
+     "R": {
+      "min": 91.7,
+      "max": 91.7
+     },
+     "L": {
+      "min": 91.7,
+      "max": 91.7
+     }
+    },
+    "shAbd": {
+     "min": 20.2,
+     "max": 20.2,
+     "R": {
+      "min": 20.2,
+      "max": 20.2
+     },
+     "L": {
+      "min": 20.2,
+      "max": 20.2
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "hext.mis.arch"
+   ],
+   "bledy_wskazowki_id": [
+    "hext.mis.arch"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: wyciąg z bloczkiem niskim (sprzet: rodzaj \"wyciag\", bloczek niski: y 5–60 cm)"
+    ],
+    "ruch": [
+     "Unoś nogę tylko tak wysoko, żeby plecy się nie wyginały.",
+     "Napnij brzuch, żeby tułów był sztywny."
+    ],
+    "bledy_wskazowki": [
+     "hext.mis.arch (Plecy wyginają się w łuk, gdy noga idzie w górę.)"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Hip Extension with Bands",
+   "obraz": "Hip-Extension-with-Bands-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 140
+    },
+    {
+     "rodzaj": "guma",
+     "mocowanie": "kostki"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -15.7,
+     "max": 21.8,
+     "R": {
+      "min": -15.7,
+      "max": 21.8
+     },
+     "L": {
+      "min": 13.3,
+      "max": 13.3
+     }
+    },
+    "knee": {
+     "min": 2.2,
+     "max": 10.6,
+     "R": {
+      "min": 2.2,
+      "max": 10.6
+     },
+     "L": {
+      "min": 5.6,
+      "max": 5.6
+     }
+    },
+    "ankle": {
+     "min": -0.7,
+     "max": 10.9,
+     "R": {
+      "min": -0.7,
+      "max": 10.9
+     },
+     "L": {
+      "min": 2.7,
+      "max": 2.7
+     }
+    },
+    "elbow": {
+     "min": 138.4,
+     "max": 138.4,
+     "R": {
+      "min": 138.4,
+      "max": 138.4
+     },
+     "L": {
+      "min": 138.4,
+      "max": 138.4
+     }
+    },
+    "shSag": {
+     "min": -20.5,
+     "max": -20.5,
+     "R": {
+      "min": -20.5,
+      "max": -20.5
+     },
+     "L": {
+      "min": -20.5,
+      "max": -20.5
+     }
+    },
+    "shElev": {
+     "min": 68.9,
+     "max": 68.9,
+     "R": {
+      "min": 68.9,
+      "max": 68.9
+     },
+     "L": {
+      "min": 68.9,
+      "max": 68.9
+     }
+    },
+    "shAbd": {
+     "min": 67.3,
+     "max": 67.3,
+     "R": {
+      "min": 67.3,
+      "max": 67.3
+     },
+     "L": {
+      "min": 67.3,
+      "max": 67.3
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "hext.mis.arch"
+   ],
+   "bledy_wskazowki_id": [
+    "hext.mis.arch"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: guma oporowa (sprzet: rodzaj \"guma\")"
+    ],
+    "ruch": [
+     "Unoś nogę tylko tak wysoko, żeby plecy się nie wyginały.",
+     "Napnij brzuch, żeby tułów był sztywny."
+    ],
+    "bledy_wskazowki": [
+     "hext.mis.arch (Plecy wyginają się w łuk, gdy noga idzie w górę.)"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy"
+   ],
+   "przyblizenie": "przybliżenie: guma w pętli na kostkach (model gumy nie ma zaczepu do kostki), opór rośnie, gdy kostka ucieka do tyłu; ręce na biodrach"
+  },
+  {
+   "cwiczenie": "Machine Glute Kickback",
+   "obraz": "Machine-Glute-Kickback-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 140
+    },
+    {
+     "rodzaj": "poreczy",
+     "x0": 67.5,
+     "x1": 97.5,
+     "h": 120.3,
+     "z": 15
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "obrot",
+     "punkt": "kostki",
+     "trzyma": "R",
+     "x": 0,
+     "y": 89.9,
+     "z": 38,
+     "dlugosc": 88.8
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 11.4,
+     "max": 44.3,
+     "R": {
+      "min": 11.4,
+      "max": 44.3
+     },
+     "L": {
+      "min": 35.2,
+      "max": 35.2
+     }
+    },
+    "knee": {
+     "min": 3.4,
+     "max": 15.7,
+     "R": {
+      "min": 3.4,
+      "max": 15.7
+     },
+     "L": {
+      "min": 5.6,
+      "max": 5.6
+     }
+    },
+    "ankle": {
+     "min": 2,
+     "max": 11.3,
+     "R": {
+      "min": 2,
+      "max": 11.3
+     },
+     "L": {
+      "min": 2.7,
+      "max": 2.7
+     }
+    },
+    "elbow": {
+     "min": 52.5,
+     "max": 52.5,
+     "R": {
+      "min": 52.5,
+      "max": 52.5
+     },
+     "L": {
+      "min": 52.5,
+      "max": 52.5
+     }
+    },
+    "shSag": {
+     "min": 99.7,
+     "max": 99.7,
+     "R": {
+      "min": 99.7,
+      "max": 99.7
+     },
+     "L": {
+      "min": 99.7,
+      "max": 99.7
+     }
+    },
+    "shElev": {
+     "min": 99,
+     "max": 99,
+     "R": {
+      "min": 99,
+      "max": 99
+     },
+     "L": {
+      "min": 99,
+      "max": 99
+     }
+    },
+    "shAbd": {
+     "min": 21.2,
+     "max": 21.2,
+     "R": {
+      "min": 21.2,
+      "max": 21.2
+     },
+     "L": {
+      "min": 21.2,
+      "max": 21.2
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "hext.mis.arch"
+   ],
+   "bledy_wskazowki_id": [
+    "hext.mis.arch"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: maszyna do wykopów (pośladki; obrót, punkt: kostki) (sprzet: rodzaj \"dzwignia\")"
+    ],
+    "ruch": [
+     "Unoś nogę tylko tak wysoko, żeby plecy się nie wyginały.",
+     "Napnij brzuch, żeby tułów był sztywny."
+    ],
+    "bledy_wskazowki": [
+     "hext.mis.arch (Plecy wyginają się w łuk, gdy noga idzie w górę.)"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy"
+   ],
+   "przyblizenie": "przybliżenie: maszyna schematyczna — uchwyty rysowane jako dwie równoległe poręcze przed klatką (dłonie na nich), bez oparcia klatki i poduszki; dźwignia obraca się wokół biodra i prowadzi kostkę"
+  },
+  {
+   "cwiczenie": "Prone Flutter Kicks",
+   "obraz": "Prone-Flutter-Kicks-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -170,
+     "x1": 120
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 0,
+     "top": 43,
+     "kat": 0,
+     "dlugosc": 75,
+     "siedzisko": 55
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -15.6,
+     "max": 15.8,
+     "R": {
+      "min": -15.6,
+      "max": 15.8
+     },
+     "L": {
+      "min": -15.6,
+      "max": 15.8
+     }
+    },
+    "knee": {
+     "min": 0,
+     "max": 8.5,
+     "R": {
+      "min": 0,
+      "max": 8.5
+     },
+     "L": {
+      "min": 0,
+      "max": 8.5
+     }
+    },
+    "ankle": {
+     "min": 4.8,
+     "max": 5.1,
+     "R": {
+      "min": 4.8,
+      "max": 5.1
+     },
+     "L": {
+      "min": 4.8,
+      "max": 5.1
+     }
+    },
+    "elbow": {
+     "min": 81.4,
+     "max": 81.4,
+     "R": {
+      "min": 81.4,
+      "max": 81.4
+     },
+     "L": {
+      "min": 81.4,
+      "max": 81.4
+     }
+    },
+    "shSag": {
+     "min": 189.9,
+     "max": 189.9,
+     "R": {
+      "min": 189.9,
+      "max": 189.9
+     },
+     "L": {
+      "min": 189.9,
+      "max": 189.9
+     }
+    },
+    "shElev": {
+     "min": 140.2,
+     "max": 140.2,
+     "R": {
+      "min": 140.2,
+      "max": 140.2
+     },
+     "L": {
+      "min": 140.2,
+      "max": 140.2
+     }
+    },
+    "shAbd": {
+     "min": 38.7,
+     "max": 38.7,
+     "R": {
+      "min": 38.7,
+      "max": 38.7
+     },
+     "L": {
+      "min": 38.7,
+      "max": 38.7
+     }
+    }
+   },
+   "bledy_w_pozie": [
+    "hext.mis.arch"
+   ],
+   "bledy_wskazowki_id": [
+    "hext.mis.arch"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: ławka płaska (sprzet: rodzaj \"lawka\", kat -5…5°)",
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Unoś nogę tylko tak wysoko, żeby plecy się nie wyginały.",
+     "Napnij brzuch, żeby tułów był sztywny."
+    ],
+    "bledy_wskazowki": [
+     "hext.mis.arch (Plecy wyginają się w łuk, gdy noga idzie w górę.)"
+    ]
+   },
+   "reguly_sensu": [
+    "plecy",
+    "miednica_podpora"
+   ],
+   "przyblizenie": "przybliżenie: nogi poza końcem ławki (ławka płaska), ruch naprzemienny pokazują dwie fazy skrajne"
+  }
+ ],
+ "zmiany_sprzetu": [],
+ "lista_kontrolna": [
+  "P3: każda zmiana sprzętu (wysokość skrzyni, położenie zaczepu, ławka) w poprawce trafia do recenzenta z opisem „dlaczego” i z porównaniem cechy rozpoznawczej przed i po (pole zmiany_sprzetu); recenzent ocenia, czy cecha ćwiczenia została zachowana, nie tylko czy liczba reguły się zgadza"
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": [],
+ "na_krawedzi": {}
+}

@@ -1,0 +1,7 @@
+Kontrola manifestu (zgodnosc_manifestu) wykonana, bez niezgodności; tabela kątów stawów w manifest.json i katy-stawow.md.
+Klatki na obrazie (odczytane z HTML podglądu, atrybuty data-u) = klatki_u pozy: Donkey Kick 5; Fire Hydrant 5; Clamshell 5; Cable Kickback 5; Hip Extension with Bands 5; Machine Glute Kickback 5; Prone Flutter Kicks 5.
+rodzina: glute_floor
+odcisk_poz: b922299fb125ab1be5205ecc9407fb30cb7ba5702691077dc1ee86c636c75152
+odcisk_przyblizen: 0fd17b142ce3d5ebbf07e631c81a90311467788216db619756681b19830fb06c
+commit: 762651a7b0bc63d6ca0f42fa7bf68252d2c0e67a
+drzewo: czyste
