@@ -540,6 +540,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Vücut ağırlığı: “±” ek ağırlık (artı) veya yardımdır, ör. bir makine (eksi); bant, seviyesiyle ayrı bir alandır. Rekor yardımsız toplam tekrardır; hacim yalnızca ek ağırlığı kullanır.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Kas: kas grubu başına haftalık set sayısı, Ayarlar bölümündeki hedefe kadar (otomatikte {m}), {a}–{b} tekrar (evde {c}–{d}), genellikle yedekte {r1}–{r2} tekrar.",
  "Masz dostęp na zawsze": "Süresiz erişiminiz var",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Başka bir uygulamada geçmişiniz var mı? CSV dosyasından ekleyebilirsiniz.",
  "Masz pełną wersję": "Tam sürüme sahipsiniz",
  "maszyna": "makine",
  "maszyna belt squat": "belt squat makinesi",

@@ -1482,6 +1482,7 @@
  "Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.": "無法回復購買項目。請檢查網際網路連線。",
  "Potrzebne połączenie z internetem.": "需要網際網路連線。",
  "Masz dostęp na zawsze": "你可永久使用",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "其他 App 裡有紀錄嗎？可以從 CSV 檔加入。",
  "Masz pełną wersję": "你擁有完整版",
  "Dostęp z Chmury rodzinnej": "透過家人共享取得權限",
  "Dostęp z kodu do {date}": "以代碼取得權限至 {date}",

@@ -1482,6 +1482,7 @@
  "Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.": "購入を復元できませんでした。インターネット接続を確認してください。",
  "Potrzebne połączenie z internetem.": "インターネット接続が必要です。",
  "Masz dostęp na zawsze": "ずっと利用できます",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "ほかのアプリに履歴がありますか？CSVファイルから追加できます。",
  "Masz pełną wersję": "フルバージョンをご利用中です",
  "Dostęp z Chmury rodzinnej": "ファミリー共有経由で利用できます",
  "Dostęp z kodu do {date}": "コードによる利用：{date}まで",

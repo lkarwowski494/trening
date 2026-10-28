@@ -27333,16 +27333,18 @@
   ],
   "loadSource": "bodyweight",
   "muscleLoad": {
-   "calves": 0.25,
-   "hamstrings": 0.25
+   "calves": 0.25
   },
   "confidence": "medium",
-  "note": "Heel on a step, knee straight, reach for the toes; any step or curb works.",
+  "note": "Ball of the foot on the edge of a step, heel lowered below the edge, knee straight; any step or curb works.",
   "research": {
    "part": "L3",
-   "confidence": "jedno źródło",
+   "confidence": "mocne",
    "sources": [
-    "L3-S17",
+    "L3-S36",
+    "L3-S37",
+    "L3-S38",
+    "L3-S39",
     "L3-S1",
     "L3-S3",
     "L3-S9"

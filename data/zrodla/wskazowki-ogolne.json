@@ -298,6 +298,70 @@
    "cwiczenie": "Glute Bridge",
    "plik": "wskazowki-slownik"
   },
+  "gcalf.knee": {
+   "zrodla": [
+    {
+     "adres": "https://us.physitrack.com/home-exercise-video/gastrocnemius-stretch-on-step-in-standing",
+     "miejsce": "Instrukcja: „Keeping the knee straight…”"
+    },
+    {
+     "adres": "https://www.shropscommunityhealth.nhs.uk/content/doclib/13861.pdf",
+     "miejsce": "s. 1, How to Stretch: kolana proste — środek łydki; kolana ugięte — „lower down the calf”"
+    },
+    {
+     "adres": "https://www.manualslib.com/manual/797658/Powerline-P1.html?page=51",
+     "miejsce": "s. 51 „Posterior of lower leg”: „With straight legs, lower heels as far as possible.” oraz wariant z ugiętymi kolanami (ścięgno Achillesa) — odczyt badacza 28.10.2026; ponowny odczyt przez koordynatora zablokowany (403)"
+    }
+   ],
+   "twierdzenie": "Kolano proste; ugięcie przenosi rozciąganie niżej w łydce.",
+   "plik": "badacz-1-0-1-2026-10-28"
+  },
+  "gcalf.move": {
+   "zrodla": [
+    {
+     "adres": "https://us.physitrack.com/home-exercise-video/gastrocnemius-stretch-on-step-in-standing",
+     "miejsce": "Instrukcja: „Keeping the knee straight, drop this heel down until you feel a stretch in your calf. Hold this position.”"
+    },
+    {
+     "adres": "https://www.shropscommunityhealth.nhs.uk/content/doclib/13861.pdf",
+     "miejsce": "s. 1, How to Stretch: „stand on the stairs and drop your heels down with the legs straight and feel the stretch in the centre of the calf”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/211/step-stretch/",
+     "miejsce": "Step 2: „Slowly lower the left (back) heel toward the ground…”"
+    }
+   ],
+   "twierdzenie": "Z prostym kolanem opuszczać piętę poniżej krawędzi do odczucia rozciągania łydki i przytrzymać (bez liczby sekund: źródła się różnią).",
+   "plik": "badacz-1-0-1-2026-10-28"
+  },
+  "gcalf.set": {
+   "zrodla": [
+    {
+     "adres": "https://us.physitrack.com/home-exercise-video/gastrocnemius-stretch-on-step-in-standing",
+     "miejsce": "Instrukcja: „Stand on a step and rest the ball of the foot to be stretch on the edge.”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/211/step-stretch/",
+     "miejsce": "Step 1: „…only the ball of the foot is in contact with the step. The heel is off the step.”"
+    }
+   ],
+   "twierdzenie": "Przednia część stopy na krawędzi stopnia, pięta poza krawędzią.",
+   "plik": "badacz-1-0-1-2026-10-28"
+  },
+  "gcalf.support": {
+   "zrodla": [
+    {
+     "adres": "https://us.physitrack.com/home-exercise-video/gastrocnemius-stretch-off-step",
+     "miejsce": "Instrukcja: „You can hold onto a support if you need this for your balance.”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/211/step-stretch/",
+     "miejsce": "Step 1: „Gently place your fingertips on the wall for balance…”"
+    }
+   ],
+   "twierdzenie": "Przytrzymać się stabilnego oparcia (np. ściany) dla równowagi.",
+   "plik": "badacz-1-0-1-2026-10-28"
+  },
   "gm.light": {
    "cwiczenie": "Good Morning",
    "plik": "wskazowki-slownik"
@@ -3601,8 +3665,8 @@
   },
   "Standing Gastrocnemius Calf Stretch": {
    "rodzina": "stretch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
+   "sprawdzenie": "1.0.1 (28.10.2026): wariant na stopniu — Physitrack, ACE #211, ulotka NHS (podiatria), instrukcja producenta sprzętu; bezpośrednie",
+   "plik": "badacz-1-0-1-2026-10-28"
   },
   "Standing Hip Circles": {
    "rodzina": "mobility",

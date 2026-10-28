@@ -622,7 +622,7 @@
   "Standing Concentration Curl": {"b":"general","f":"curl","ok":["curl.control","preacher.range"],"err":["mis.jerk"]},
   "Standing Dumbbell Reverse Curl": {"b":"general","f":"curl","ok":["curl.elbows","curl.noSwing","curl.control"],"err":["curl.mis.elbows"]},
   "Standing Elevated Quad Stretch": {"b":"general","f":"stretch","ok":["st.tension","st.noBounce","st.breathe"],"err":["st.mis.force"]},
-  "Standing Gastrocnemius Calf Stretch": {"b":"general","f":"stretch","ok":["st.tension","st.noBounce","st.breathe"],"err":["st.mis.force"]},
+  "Standing Gastrocnemius Calf Stretch": {"b":"general","f":"stretch","ok":["gcalf.set","gcalf.move","gcalf.support","gcalf.knee"],"err":[]},
   "Standing Hip Circles": {"b":"general","f":"mobility","ok":["dyn.control","st.breathe"],"err":["dyn.mis.jerk"]},
   "Standing Inner-Biceps Curl": {"b":"general","f":"curl","ok":["curl.elbows","curl.noSwing","curl.control"],"err":["curl.mis.elbows"]},
   "Standing Lateral Stretch": {"b":"general","f":"stretch","ok":["sb.plane","st.tension","st.noBounce"],"err":["st.mis.force"]},
