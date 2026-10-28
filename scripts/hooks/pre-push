@@ -2,7 +2,7 @@
 # Hak pre-push (L-009, decyzja właściciela 21.10.2026): zatrzymuje wypchnięcie, gdy lint nie przechodzi albo któryś plik pochodny (README, macierz testów, konteksty, zegarek…) jest nieaktualny.
 # Dwa sprawdzenia, w tej kolejności, przerwanie przy pierwszym błędzie: lint, check:pochodne (README, macierz, konteksty, pliki pochodne, strażniki tekstowe); do tego (L-037) przy zmianach w docs/: numeracja lekcji i testy dokumentów.
 # Wyjątek: gdy zmiany względem origin/main to wyłącznie dokumenty (scripts/verify-docs.mjs --czy-dokumenty), lint jest pomijany.
-# Pełne `npm run verify` jest obowiązkiem przed wypchnięciem (CLAUDE.md), a od L-NNN (opcja A, decyzja właściciela 28.10.2026) pierwszy krok haka to sprawdza:
+# Pełne `npm run verify` jest obowiązkiem przed wypchnięciem (CLAUDE.md), a od L-049 (opcja A, decyzja właściciela 28.10.2026) pierwszy krok haka to sprawdza:
 # drzewo wypychanego commitu musi mieć znacznik zielonego verify (scripts/verify-znacznik.mjs; commit tylko z dokumentami — znacznik verify:docs). Ok. 0,1 s.
 # Instaluje go `npm ci` (skrypt `prepare` → scripts/hooks/instaluj.mjs ustawia core.hooksPath na scripts/hooks; nie w CI i nie w katalogu bez .git).
 # Czas (pomiar 28.10.2026, 4 rdzenie, maszyna współdzielona): lint ok. 25 s + check:pochodne ok. 55 s (kroki równolegle, jest --maxWorkers=1); ok. 35 s przed decyzją 8a.
@@ -29,7 +29,7 @@ fi
 cd "$(git rev-parse --show-toplevel)" || exit 1
 start=$(date +%s)
 
-# L-NNN (opcja A, 28.10.2026): znacznik zielonego verify dla każdego wypychanego commitu (bez danych wejściowych — HEAD).
+# L-049 (opcja A, 28.10.2026): znacznik zielonego verify dla każdego wypychanego commitu (bez danych wejściowych — HEAD).
 [ -n "$refy" ] || refy="$(git rev-parse HEAD) - -
 "
 bez_znacznika=$(printf '%s' "$refy" | while read -r lokalny_sha _ _; do
@@ -38,7 +38,7 @@ bez_znacznika=$(printf '%s' "$refy" | while read -r lokalny_sha _ _; do
 done)
 if [ -n "$bez_znacznika" ]; then
   echo "" >&2
-  echo "hak pre-push: WYPCHNIĘCIE ZATRZYMANE — brak zielonego pełnego verify dla wypychanego stanu plików (L-NNN, decyzja właściciela 28.10.2026)." >&2
+  echo "hak pre-push: WYPCHNIĘCIE ZATRZYMANE — brak zielonego pełnego verify dla wypychanego stanu plików (L-049, decyzja właściciela 28.10.2026)." >&2
   echo "Jak naprawić: zatwierdź wszystkie zmiany i uruchom npm run verify (commit tylko z dokumentami: npm run verify:docs), potem wypchnij ponownie. Obejście (świadome): git push --no-verify" >&2
   exit 1
 fi

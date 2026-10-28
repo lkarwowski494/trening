@@ -1,4 +1,4 @@
-// Znacznik zielonego verify (L-NNN, decyzja właściciela 28.10.2026, opcja A): reguła „pełne verify przed wypchnięciem” z CLAUDE.md jako mechanizm.
+// Znacznik zielonego verify (L-049, decyzja właściciela 28.10.2026, opcja A): reguła „pełne verify przed wypchnięciem” z CLAUDE.md jako mechanizm.
 //   node scripts/verify-znacznik.mjs --zapisz pelne|dokumenty   — koniec `npm run verify` / `npm run verify:docs`: zapisuje drzewo HEAD (git rev-parse HEAD^{tree}),
 //                                                                  tylko przy czystej kopii roboczej (bez zmian i bez nieśledzonych plików); w CI nic nie robi
 //   node scripts/verify-znacznik.mjs --sprawdz <sha>             — hak pre-push: kod 0, gdy drzewo commitu <sha> ma znacznik „pelne” albo „dokumenty”

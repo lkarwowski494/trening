@@ -58,7 +58,7 @@ const zainstaluj = (dir: string, env: NodeJS.ProcessEnv = bezCI()) =>
 const hooksPath = (dir: string) => git(dir, ['config', '--local', '--get', 'core.hooksPath']).stdout.trim();
 const zNpm = (npm: { bin: string; log: string }, fail = '') =>
   ({ ...bezCI(), PATH: `${npm.bin}:${process.env.PATH}`, NPM_LOG: npm.log, NPM_FAIL: fail, VERIFY_ZNACZNIK_PLIK: join(npm.bin, 'znaczniki.json') }) as NodeJS.ProcessEnv;
-/* L-NNN (opcja A, 28.10.2026): znacznik zielonego verify w pliku tymczasowym (VERIFY_ZNACZNIK_PLIK), jak po `npm run verify` w repo `dir` */
+/* L-049 (opcja A, 28.10.2026): znacznik zielonego verify w pliku tymczasowym (VERIFY_ZNACZNIK_PLIK), jak po `npm run verify` w repo `dir` */
 const ZNACZNIK = join(root, 'scripts/verify-znacznik.mjs');
 const oznacz = (dir: string, npm: { bin: string; log: string }, rodzaj = 'pelne') =>
   spawnSync(process.execPath, [ZNACZNIK, '--zapisz', rodzaj], { cwd: dir, env: zNpm(npm), encoding: 'utf8' });
@@ -94,7 +94,7 @@ describe('hak pre-push — plik (L-009)', () => {
 });
 
 describe('hak pre-push — działanie z podstawionym npm', () => {
-  /* prawdziwy commit repo próbnego (bez docs/, bez origin) ze znacznikiem w pliku tymczasowym — hak sprawdza znacznik przed lintem (L-NNN) */
+  /* prawdziwy commit repo próbnego (bez docs/, bez origin) ze znacznikiem w pliku tymczasowym — hak sprawdza znacznik przed lintem (L-049) */
   const PROBA = repoProbne().dir;
   const HEAD = git(PROBA, ['rev-parse', 'HEAD']).stdout.trim();
   const uruchom = (npm: ReturnType<typeof falszywyNpm>, fail = '', input = `refs/heads/x ${HEAD} refs/heads/x 0000000000000000\n`, znacznik = true) => {
@@ -123,7 +123,7 @@ describe('hak pre-push — działanie z podstawionym npm', () => {
     expect(r.stderr).toContain(naprawa);
     expect(r.stderr).toContain('git push --no-verify');
   });
-  test('L-NNN (28.10.2026): bez znacznika zielonego verify dla wypychanego drzewa — zatrzymane przed lintem, po polsku, z obejściem', () => {
+  test('L-049 (28.10.2026): bez znacznika zielonego verify dla wypychanego drzewa — zatrzymane przed lintem, po polsku, z obejściem', () => {
     const npm = falszywyNpm();
     const r = uruchom(npm, '', undefined, false);
     expect(r.status).toBe(1); expect(wywolania(npm.log)).toEqual([]);
@@ -431,7 +431,7 @@ describe('verify sprawdza zainstalowany hak pre-push (L-014)', () => {
   });
 });
 
-describe('L-NNN (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego verify blokuje wypchnięcie', () => {
+describe('L-049 (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego verify blokuje wypchnięcie', () => {
   /** Repo z main wypchniętym (docs/a.md, plik.txt) i gałęzią `g` z jednym commitem: zmiana dokumentu albo kodu. */
   function galaz(zmiana: 'docs' | 'kod') {
     const r = repoProbne(); zainstaluj(r.dir); const npm = falszywyNpm();
