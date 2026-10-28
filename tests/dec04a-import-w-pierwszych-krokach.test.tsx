@@ -43,7 +43,7 @@ describe('DEC-04 a: krok „zaimportuj historię” w Pierwszych krokach', () =>
   });
   test('EN: tekst i przycisk po angielsku', async () => {
     await boot(() => {}, 'en');
-    expect(box().getByText('Got a history in another app? You can add it from a CSV file.')).toBeTruthy();
+    expect(box().getByText('Already logging workouts in another app? You can add your history from a CSV file.')).toBeTruthy();
     expect(box().getByRole('button', { name: 'Import history from a CSV file' })).toBeTruthy();
   });
 });
