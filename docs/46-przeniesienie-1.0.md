@@ -5,6 +5,7 @@ Dokument przygotowawczy (decyzja właściciela 21.10.2026). **Przeniesienia nie 
 ## 1. Cel i zasady
 
 - Nowe, **publiczne** repo w organizacji **Apps4Brew** (plan Free, 0 zł): **jeden początkowy commit**, bez historii obecnego repo `lkarwowski494/trening`.
+- Zasada ogólna (właściciel, 28.10.2026): każdy projekt studia rozwijamy na prywatnym koncie GitHub właściciela do pierwszego wydania na produkcji (aplikacja w App Store albo publikacja strony); do organizacji Apps4Brew przenosimy dopiero po nim — Trening po wydaniu 1.0 w App Store (zgodne z D7 A), wpis w docs/18 z 28.10.2026.
 - Trafiają tam tylko wydania dostępne w App Store (zasada właściciela 21.10.2026: „Tam będą lądowały tylko wydania dostępne w Apple Store”). Obecne repo zostaje jako **prywatne archiwum** (nie usuwać; docs/18, 12.10.2026).
 - Nazwy innych firm i aplikacji usuwamy przy przenosinach (CLAUDE.md „Treści cudze i nazwy innych firm”). Rozwiązuje też S1 z audytu 0.10 (dane osobowe w dawnej historii i refach PR).
 - Niczego nie wypychamy, dopóki **rejestr ryzyk w `docs/40` nie ma otwartych pozycji** (zasada L-001) i nie zapadły decyzje D1–D7 niżej.
