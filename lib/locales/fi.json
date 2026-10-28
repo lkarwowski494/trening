@@ -1715,10 +1715,10 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Sarjat: {s} liikettä kohden. Tee vähintään {m}. Useampi sarja tuo yleensä vähän lisää, mutta hyöty pienenee.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Treeni {d} {s} oli ilman toimintaa {h} tuntia, joten se tallentui itsestään. Päättyi: {e} (viimeinen sarja). Löydät sen Suunnitelma-välilehdeltä.",
  "Aktualny plan": "Nykyinen tilaus",
- "Masz plan: {name}": "Tilauksesi: {name}",
  "Przejdź na ten plan": "Vaihda tähän tilaukseen",
  "Zmień plan": "Vaihda tilausta",
  "Zobacz plany Pro": "Katso Pro-vaihtoehdot",
- "Plan: miesięczny": "Kuukausitilaus",
- "Plan: roczny": "Vuositilaus"
+ "Masz plan: miesięczny": "Tilauksesi: kuukausittainen",
+ "Masz plan: roczny": "Tilauksesi: vuosittainen",
+ "Masz plan: dożywotni": "Tilauksesi: ikuinen"
 }

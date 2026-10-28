@@ -13,7 +13,7 @@ import { getStoreAdapter, type StoreProduct } from '@/lib/store-adapter';
 import type { FakeStoreControl } from '@/lib/store-fake';
 import { useAccess, purchasePlan, restorePurchases, refreshEntitlements, nextMonthDay } from '@/lib/entitlement';
 import { useAnnounce } from '@/lib/announce';
-import { planName } from '@/components/SubscriptionCard';
+import { planName, ownedPlanTitle } from '@/components/SubscriptionCard';
 
 /*
  * Ekran zakupu (docs/27 rozdz. 5; M5 S1, decyzja właściciela 22.10.2026): ceny wyłącznie z App Store (displayPrice), „{cena}/{okres}” albo „{cena} jednorazowo”,
@@ -82,8 +82,8 @@ export default function PaywallScreen() {
       </View> : <Text testID="paywall-headline" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold, marginTop: 8, marginBottom: 12 }}>{t('Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Text>}
 
       {view.active ? <View testID="paywall-owned" accessible accessibilityLanguage={lang()} style={{ borderWidth: 1, borderColor: th.line, borderRadius: RADIUS.group, padding: 12, gap: 4, marginBottom: 12, backgroundColor: th.surface }}>
-        {/* DEC-09 a (27.10.2026): nagłówek nazywa posiadany plan („Masz plan: X”) zamiast ogólnego „Masz pełną wersję” */}
-        <Text testID="paywall-owned-title" accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{t('Masz plan: {name}', { name: planName(view.active.plan) })}</Text>
+        {/* DEC-09 a (27.10.2026): nagłówek nazywa posiadany plan zamiast ogólnego „Masz pełną wersję”; rodzaj planu, nie nazwa z wyboru (1A, właściciel 28.10.2026) */}
+        <Text testID="paywall-owned-title" accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{ownedPlanTitle(view.active.plan)}</Text>
         {lifetime ? <Muted>{t('Masz dostęp na zawsze')}</Muted> : null}
         {view.active.source === 'family' ? <Muted>{t('Dostęp z Chmury rodzinnej')}</Muted> : null}
         {!lifetime && view.active.expiresAt != null ? <Muted>{view.active.source === 'code' ? t('Dostęp z kodu do {date}', { date: fmtDate(view.active.expiresAt) }) : t('Dostęp do {date}', { date: fmtDate(view.active.expiresAt) })}</Muted> : null}

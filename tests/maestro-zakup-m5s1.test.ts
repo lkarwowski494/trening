@@ -1,6 +1,6 @@
 /*
  * Regresja przebiegu E2E 39825973624 (podglad-m5s1): scenariusze 21 i 35 — po stuknięciu „Subscribe” (start ponad limit dni) „You have the full version” niewidoczne.
- * Od DEC-09 a (27.10.2026) nagłówek karty stanu to „Your plan: {name}” — scenariusze czekają na niego.
+ * Od DEC-09 a (27.10.2026) nagłówek karty stanu to „Your plan: monthly|yearly|lifetime” — scenariusze czekają na niego.
  * Ekran zakupu po M5 S1 jest dłuższy (pochwała, opisy planów), zakup robi się na jego dole, a karta „Masz pełną wersję” jest na górze, poza polem widzenia — aplikacja
  * przewija więc po udanym zakupie na początek (tests/subscription-ui.test.tsx), a scenariusz czeka na koniec przewijania przed stuknięciem (stuknięcie w trakcie
  * bezwładności listy tylko ją zatrzymuje). Interpreter nie modeluje bezwładności, więc test pilnuje kolejności kroków.

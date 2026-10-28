@@ -1715,10 +1715,10 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Подходы: {s} на упражнение — стоит делать не менее {m}; больше подходов обычно даёт чуть больше, но с убывающей отдачей.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "В тренировке от {d} {s} не было активности {h} ч, поэтому она сохранилась сама. Конец: {e} (последний подход). Найдёте её во вкладке «План».",
  "Aktualny plan": "Текущий план",
- "Masz plan: {name}": "Ваш план: {name}",
  "Przejdź na ten plan": "Перейти на этот план",
  "Zmień plan": "Сменить план",
  "Zobacz plany Pro": "Смотреть планы Pro",
- "Plan: miesięczny": "План: месячный",
- "Plan: roczny": "План: годовой"
+ "Masz plan: miesięczny": "Ваш план: месячный",
+ "Masz plan: roczny": "Ваш план: годовой",
+ "Masz plan: dożywotni": "Ваш план: навсегда"
 }

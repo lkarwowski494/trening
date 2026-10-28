@@ -2352,8 +2352,16 @@
   "en": "You have the full version"
  },
  {
-  "pl": "Masz plan: {name}",
-  "en": "Your plan: {name}"
+  "pl": "Masz plan: dożywotni",
+  "en": "Your plan: lifetime"
+ },
+ {
+  "pl": "Masz plan: miesięczny",
+  "en": "Your plan: monthly"
+ },
+ {
+  "pl": "Masz plan: roczny",
+  "en": "Your plan: yearly"
  },
  {
   "pl": "maszyna",
@@ -3665,14 +3673,6 @@
  {
   "pl": "Plan: {name}",
   "en": "Plan: {name}"
- },
- {
-  "pl": "Plan: miesięczny",
-  "en": "Plan: monthly"
- },
- {
-  "pl": "Plan: roczny",
-  "en": "Plan: yearly"
  },
  {
   "pl": "Planowanie",

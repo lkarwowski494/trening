@@ -1,7 +1,7 @@
 /*
  * M1-audytor-generalny-010 (audyt 1.0, 27.10.2026; 02-monetyzacja-001, 02-monetyzacja-504, 04-studio-projektowe-001, 08-programista-002, 03-zakres-005,
  * 07-jakosc-003; T-11 z telefonu, build 1031). Decyzja właściciela DEC-09 a (27.10.2026): przy aktywnym planie ekran „Pełna wersja” pokazuje stan
- * „Masz plan: {nazwa}” zamiast oferty — bez wstępu o darmowych dniach, bez „Subskrybuj” przy posiadanym planie, zmiana planu ZWINIĘTA pod przyciskiem
+ * „Masz plan: {rodzaj planu}” (np. „Masz plan: roczny” — 1A, właściciel 28.10.2026) zamiast oferty — bez wstępu o darmowych dniach, bez „Subskrybuj” przy posiadanym planie, zmiana planu ZWINIĘTA pod przyciskiem
  * „Zmień plan” (wzorzec 20 docs/32: `expanded`, etykieta stała, stan niezapamiętywany). BRD: BR-ZAK-003. Rodzaje (docs/20): ekran, języki (PL, EN), VoiceOver.
  */
 import * as store from '@/lib/store';
@@ -23,7 +23,7 @@ async function boot(ents: Entitlement[], locale: 'pl' | 'en' = 'en') {
   await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/paywall?reason=settings' }); jest.setSystemTime(NOW); await settle();
 }
 afterEach(() => { PAYWALL.ENABLED = false; resetEntitlementsForTests(); resetStoreAdapterForTests(); applyLang('pl'); jest.useRealTimers(); });
-const NAME_EN = { monthly: 'Still finding my rhythm', yearly: 'Training is part of my week', lifetime: 'Training is my life' } as const;
+const NAME_EN = { monthly: 'monthly', yearly: 'yearly', lifetime: 'lifetime' } as const; /* rodzaj planu, nie nazwa z wyboru (DEC-09 a + 1A, właściciel 28.10.2026) */
 const PLANS = ['yearly', 'monthly', 'lifetime'] as const;
 const noOffer = () => {
   expect(screen.queryByTestId('paywall-headline')).toBeNull(); expect(screen.queryByText(/^Train 5 days a month for free/)).toBeNull();
@@ -73,9 +73,9 @@ describe('M1-010 / DEC-09 a (27.10.2026): stan „Masz plan X” zamiast oferty,
     expect(screen.getByTestId('paywall-buy').props.accessibilityLabel).toBe('Buy forever'); expect(screen.getByTestId('paywall-lifetime-warning')).toBeTruthy();
   });
 
-  test('PL: „Masz plan: {nazwa}”, „Zmień plan” zwinięty, po rozwinięciu „Przejdź na ten plan”', async () => {
+  test('PL: „Masz plan: roczny”, „Zmień plan” zwinięty, po rozwinięciu „Przejdź na ten plan”', async () => {
     await boot([ent('yearly')], 'pl');
-    expect(screen.getByTestId('paywall-owned-title').props.children).toBe('Masz plan: Trening to część mojego tygodnia');
+    expect(screen.getByTestId('paywall-owned-title').props.children).toBe('Masz plan: roczny');
     expect(screen.queryByText(/^Trenuj 5 dni w miesiącu za darmo/)).toBeNull(); expect(screen.queryByTestId('plan-monthly')).toBeNull();
     expect(screen.getByTestId('paywall-change-plan').props.accessibilityLabel).toBe('Zmień plan'); await tap(screen.getByText('Zmień plan'));
     expect(screen.getByTestId('paywall-buy').props.accessibilityLabel).toBe('Przejdź na ten plan'); expect(screen.queryByText('Subskrybuj')).toBeNull();

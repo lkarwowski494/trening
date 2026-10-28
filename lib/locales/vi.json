@@ -1715,10 +1715,10 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Hiệp: {s} mỗi bài — nên tập ít nhất {m}; nhiều hiệp hơn thường hiệu quả hơn một chút, nhưng lợi ích giảm dần.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Buổi tập ngày {d} {s} không có hoạt động nào trong {h} giờ nên đã được tự động lưu. Kết thúc: {e} (hiệp cuối). Bạn sẽ thấy nó trong tab Kế hoạch.",
  "Aktualny plan": "Gói hiện tại",
- "Masz plan: {name}": "Gói của bạn: {name}",
  "Przejdź na ten plan": "Đổi sang gói này",
  "Zmień plan": "Đổi gói",
  "Zobacz plany Pro": "Xem các gói Pro",
- "Plan: miesięczny": "Gói: hằng tháng",
- "Plan: roczny": "Gói: hằng năm"
+ "Masz plan: miesięczny": "Gói của bạn: hằng tháng",
+ "Masz plan: roczny": "Gói của bạn: hằng năm",
+ "Masz plan: dożywotni": "Gói của bạn: vĩnh viễn"
 }

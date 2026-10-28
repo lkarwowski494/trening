@@ -1715,10 +1715,10 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Set: {s} per gerakan — sebaiknya minimal {m}; set lebih banyak biasanya memberi sedikit lebih banyak hasil, dengan manfaat yang makin kecil.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Latihan dari {d} {s} tidak ada aktivitas selama {h} jam, jadi tersimpan otomatis. Selesai: {e} (set terakhir). Anda bisa menemukannya di tab Rencana.",
  "Aktualny plan": "Paket saat ini",
- "Masz plan: {name}": "Paket Anda: {name}",
  "Przejdź na ten plan": "Ganti ke paket ini",
  "Zmień plan": "Ganti paket",
  "Zobacz plany Pro": "Lihat paket Pro",
- "Plan: miesięczny": "Paket: bulanan",
- "Plan: roczny": "Paket: tahunan"
+ "Masz plan: miesięczny": "Paket Anda: bulanan",
+ "Masz plan: roczny": "Paket Anda: tahunan",
+ "Masz plan: dożywotni": "Paket Anda: selamanya"
 }

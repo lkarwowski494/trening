@@ -1715,10 +1715,10 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Seeriad: {s} harjutuse kohta — tasub teha vähemalt {m}; rohkem seeriaid annab tavaliselt veidi rohkem, kuid kasu väheneb.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Treening kuupäevaga {d} {s} oli {h} tundi tegevuseta, seega salvestus see ise. Lõpp: {e} (viimane seeria). Leiad selle vahekaardilt Plaan.",
  "Aktualny plan": "Praegune pakett",
- "Masz plan: {name}": "Sinu pakett: {name}",
  "Przejdź na ten plan": "Vaheta sellele paketile",
  "Zmień plan": "Muuda paketti",
  "Zobacz plany Pro": "Vaata Pro pakette",
- "Plan: miesięczny": "Pakett: kuine",
- "Plan: roczny": "Pakett: aastane"
+ "Masz plan: miesięczny": "Sinu pakett: kuine",
+ "Masz plan: roczny": "Sinu pakett: aastane",
+ "Masz plan: dożywotni": "Sinu pakett: igavene"
 }

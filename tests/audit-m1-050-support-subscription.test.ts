@@ -44,8 +44,8 @@ describe('site/support.html: pytania o subskrypcję (M1-050)', () => {
   });
   test('ścieżka do ekranu zakupu = sekcja „Subskrypcja” w Ustawieniach (components/SubscriptionCard.tsx; tytuł wiersza zależy od stanu — M1-037 A, DEC-07 b 27.10.2026)', () => {
     const card = fs.readFileSync(path.join(root, 'components/SubscriptionCard.tsx'), 'utf8');
-    for (const k of ["t('Subskrypcja')", "t('Zobacz plany Pro')", "t('Masz plan: {name}'"]) expect(card).toContain(k);
-    expect(dict).toContain("'Masz plan: {name}': 'Your plan: {name}'");
+    for (const k of ["t('Subskrypcja')", "t('Zobacz plany Pro')", "ownedPlanTitle("]) expect(card).toContain(k);
+    expect(dict).toContain("'Masz plan: roczny': 'Your plan: yearly'");
     expect(pl).toContain('Więcej → Ustawienia → sekcja „Subskrypcja”: bez planu wiersz „Zobacz plany Pro”, po zakupie „Masz plan: …”');
     expect(en).toContain('More → Settings → “Subscription” section: without a plan the row says “See Pro plans”, after purchase “Your plan: …”');
     expect(pl).not.toContain('Ustawienia → Pełna wersja'); expect(en).not.toContain('Settings → Full version');

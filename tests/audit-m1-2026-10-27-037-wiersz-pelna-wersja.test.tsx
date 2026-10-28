@@ -4,7 +4,7 @@
  * w stanie darmowym czytał się jak opis posiadanego stanu, nie jak wejście do zakupu. Teraz tytuł zależy od stanu:
  *  - darmowy: „Zobacz plany Pro” — ta sama etykieta co pozostałe wejścia na ekran zakupu (okno „Uczciwe zasady”, karta po imporcie: „Zobacz plany Pro ›”;
  *    zasada CLAUDE.md „akcje tego samego typu — ta sama etykieta”, docs/32 wzorzec 17), podtytuł = licznik darmowych dni;
- *  - z dostępem: „Masz plan: {nazwa planu}” — to samo brzmienie co nagłówek karty stanu na ekranie zakupu (DEC-09 a), podtytuł = data albo „na zawsze”.
+ *  - z dostępem: „Masz plan: {rodzaj planu}” (np. „Masz plan: roczny”, 28.10.2026) — to samo brzmienie co nagłówek karty stanu na ekranie zakupu (DEC-09 a), podtytuł = data albo „na zawsze”.
  * BRD: BR-ZAK-003 (scenariusz „Wiersz w Ustawieniach”). Rodzaje (docs/20): ekran, języki (PL, EN, wszystkie słowniki), VoiceOver, ciemny wygląd.
  * E2E: .maestro/21-subskrypcja.yaml, .maestro/35-ustawienia-dostepnosc.yaml, .maestro/56-uczciwe-zasady.yaml (stukają wiersz po nowym tytule).
  */
@@ -48,9 +48,9 @@ describe('M1-037 A / DEC-07 b: wiersz w sekcji „Subskrypcja” — tytuł zale
     expect(screen.queryByText('Pełna wersja')).toBeNull();
   });
   test.each([
-    ['miesięczny', ent('monthly'), 'Your plan: Still finding my rhythm', /^Your plan: Still finding my rhythm\. Access until /],
-    ['roczny z Chmury rodzinnej', ent('yearly', { source: 'family' }), 'Your plan: Training is part of my week', /^Your plan: Training is part of my week\. Access until /],
-    ['dożywotni', ent('lifetime'), 'Your plan: Training is my life', 'Your plan: Training is my life. You have access forever'],
+    ['miesięczny', ent('monthly'), 'Your plan: monthly', /^Your plan: monthly\. Access until /],
+    ['roczny z Chmury rodzinnej', ent('yearly', { source: 'family' }), 'Your plan: yearly', /^Your plan: yearly\. Access until /],
+    ['dożywotni', ent('lifetime'), 'Your plan: lifetime', 'Your plan: lifetime. You have access forever'],
   ])('z dostępem (%s): tytuł nazywa plan jak nagłówek ekranu zakupu, bez oferty i licznika', async (_n, e, title, want) => {
     await boot({ ents: [e as Entitlement] });
     expect(screen.getByText(title as string)).toBeTruthy();

@@ -1715,10 +1715,10 @@
  "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Sett: {s} per øvelse. Gjør gjerne minst {m}. Flere sett gir vanligvis litt mer, men gevinsten avtar.",
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Økten fra {d} {s} hadde ingen aktivitet på {h} timer, så den ble lagret automatisk. Slutt: {e} (siste sett). Du finner den i fanen Plan.",
  "Aktualny plan": "Nåværende plan",
- "Masz plan: {name}": "Din plan: {name}",
  "Przejdź na ten plan": "Bytt til denne planen",
  "Zmień plan": "Bytt plan",
  "Zobacz plany Pro": "Se Pro-planer",
- "Plan: miesięczny": "Plan: månedlig",
- "Plan: roczny": "Plan: årlig"
+ "Masz plan: miesięczny": "Din plan: månedlig",
+ "Masz plan: roczny": "Din plan: årlig",
+ "Masz plan: dożywotni": "Din plan: for alltid"
 }

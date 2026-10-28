@@ -803,7 +803,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Posiadany plan subskrypcji
     - Zakładając, że użytkownik ma aktywną subskrypcję (miesięczną albo roczną; kupioną sam, z kodu albo z Chmury rodzinnej)
     - Gdy otwiera ekran zakupu
-    - Wtedy zamiast oferty widzi stan swojego planu: nagłówek karty „Masz plan: {nazwa planu}” i datę, bez wstępu o darmowych dniach, bez listy planów i bez przycisku „Subskrybuj”; lista planów jest zwinięta pod przyciskiem „Zmień plan” (decyzja właściciela DEC-09 a, 27.10.2026; test `tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx`)
+    - Wtedy zamiast oferty widzi stan swojego planu: nagłówek karty „Masz plan: {rodzaj planu}” (rodzaj planu: miesięczny, roczny albo dożywotni — 1A, właściciel 28.10.2026) i datę, bez wstępu o darmowych dniach, bez listy planów i bez przycisku „Subskrybuj”; lista planów jest zwinięta pod przyciskiem „Zmień plan” (decyzja właściciela DEC-09 a, 27.10.2026; test `tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx`)
   - Scenariusz: Zmiana planu
     - Zakładając, że użytkownik ma aktywną subskrypcję i stuka „Zmień plan”
     - Gdy lista planów się rozwija
@@ -811,11 +811,11 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Plan dożywotni
     - Zakładając, że użytkownik ma plan dożywotni (bez aktywnej subskrypcji)
     - Gdy otwiera ekran zakupu
-    - Wtedy nagłówek karty to „Masz plan: {nazwa planu}” z dopiskiem „Masz dostęp na zawsze”, bez listy planów i bez „Zmień plan”
+    - Wtedy nagłówek karty to „Masz plan: {rodzaj planu}” z dopiskiem „Masz dostęp na zawsze”, bez listy planów i bez „Zmień plan”
   - Scenariusz: Wiersz w Ustawieniach
     - Zakładając, że zakupy są włączone, a użytkownik otwiera Więcej → Ustawienia → sekcja „Subskrypcja”
     - Gdy ogląda wiersz prowadzący na ekran zakupu
-    - Wtedy bez planu tytuł wiersza to wezwanie do działania „Zobacz plany Pro” (ta sama etykieta co pozostałe wejścia na ekran zakupu) z licznikiem darmowych dni w podtytule, a z planem tytuł nazywa plan „Masz plan: {nazwa planu}” z datą albo „Masz dostęp na zawsze” w podtytule (DEC-07 b, właściciel 27.10.2026; M1-audytor-generalny-037; test `tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx`)
+    - Wtedy bez planu tytuł wiersza to wezwanie do działania „Zobacz plany Pro” (ta sama etykieta co pozostałe wejścia na ekran zakupu) z licznikiem darmowych dni w podtytule, a z planem tytuł nazywa plan „Masz plan: {rodzaj planu}” z datą albo „Masz dostęp na zawsze” w podtytule (DEC-07 b, właściciel 27.10.2026; M1-audytor-generalny-037; test `tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx`)
   - Scenariusz: Dożywotni przy aktywnej subskrypcji
     - Zakładając, że użytkownik ma aktywną subskrypcję kupioną sam albo z kodu promocyjnego (po promocji odnawia się płatnie; decyzja 5a, 28.10.2026), nie z Chmury rodzinnej
     - Gdy rozwija „Zmień plan” i zaznacza plan dożywotni

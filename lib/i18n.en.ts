@@ -821,8 +821,6 @@ export const EN: Record<string, string> = {
   'Inny plan': 'Other plan',
   'Planowanie': 'Planning',
   'Plan: {name}': 'Plan: {name}',
-  'Plan: miesięczny': 'Plan: monthly', /* karta „Masz pełną wersję”: aktywny plan miesięczny (27.10.2026, zamiast poetyckiej nazwy planu) */
-  'Plan: roczny': 'Plan: yearly', /* aktywny plan roczny */
   'dziś w planie · {n} ćw.': 'planned for today · {n} ex.',
   'w planie na: {day} · {n} ćw.': 'planned for: {day} · {n} ex.',
   'Start następnego treningu: {name}': 'Start next workout: {name}',
@@ -967,7 +965,9 @@ export const EN: Record<string, string> = {
   'Subskrybuj': 'Subscribe',
   'Zmień plan': 'Change plan', /* przełącznik zwiniętej listy planów przy aktywnym planie (DEC-09 a, 27.10.2026) */
   'Aktualny plan': 'Current plan', /* plan, który osoba już ma — niewybieralny na ekranie zakupu */
-  'Masz plan: {name}': 'Your plan: {name}', /* DEC-09 a (27.10.2026): nagłówek karty stanu na ekranie zakupu przy aktywnym planie; {name} = nazwa planu */
+  'Masz plan: miesięczny': 'Your plan: monthly', /* DEC-09 a + 1A (28.10.2026): nagłówek karty stanu na ekranie zakupu i tytuł wiersza w Ustawieniach — rodzaj planu, nie nazwa z wyboru planu */
+  'Masz plan: roczny': 'Your plan: yearly',
+  'Masz plan: dożywotni': 'Your plan: lifetime',
   'Przejdź na ten plan': 'Switch to this plan', /* przycisk zakupu innego planu subskrypcji, gdy osoba ma już subskrypcję (arkusz Apple zmiany planu) */
   'Czeka na zgodę organizatora rodziny.': 'Waiting for approval from the family organizer.',
   'Przywrócono zakupy.': 'Purchases restored.',

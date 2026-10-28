@@ -55,7 +55,7 @@ Wynik Z4: **pozytywny** (obserwacja słownictwa NZ-037-2).
 | # | Ekran → działanie → wynik | Zrzut | Q1/Q2/Q3/Q4 | Uwagi |
 |---|---|---|---|---|
 | 1 | „Więcej” → „Ustawienia” → sekcja „Subskrypcja” na górze: wiersz „Zobacz plany Pro — Darmowe dni treningowe w tym miesiącu: wykorzystano 0 z 5” | A-przed-ustawienia-subskrypcja (przed), A-po-ustawienia-subskrypcja (po) | tak/tak/tak/tak | przed częścią A tego zadania: tytuł „Pełna wersja” czytał się jak stan — porażka Q2 (04-studio-projektowe-006, T-11) — **naprawione** (M1-037 A) |
-| 2 | Wiersz → ekran zakupu: plany, „Przywróć zakupy”; z planem „Masz plan: {nazwa}” | — (Maestro 21) | tak/tak/tak/tak | |
+| 2 | Wiersz → ekran zakupu: plany, „Przywróć zakupy”; z planem „Masz plan: {rodzaj planu}” | — (Maestro 21) | tak/tak/tak/tak | |
 
 Wynik Z5: **pozytywny po części A** (przed: negatywny).
 
