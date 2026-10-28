@@ -583,3 +583,4 @@ techniqueatlas: PR https://github.com/lkarwowski494/techniqueatlas/pull/1 (CI zi
 - 21:59 UTC 28.10: (metadane) commit c843c5e (lokalnie); paczka nowych linii do recenzji lokalizacji
 - 22:02 UTC 28.10: (katalog-1-1) od M2: main 5d79c3a4 (PR #84) — JM Press i Decline Close-Grip Bench To Skull Crusher bez rysunku w 1.0 (V2_WSTRZYMANE, shownFigureSpec w lib/figures/v2/figure.ts). TODO po scaleniu main: eksport strony pomija V2_WSTRZYMANE (test). Poprawka rigu — linia 1.0.1 (session_01T66VBxxyN24wY6zscvndih). Scalenie main do integracji obejmie 5d79c3a4 lub nowszy.
 - 22:11 UTC 28.10: (metadane) recenzja lokalizacji: 16/21 naniesione; scalony main z #84 (136 animowanych); start pełnego verify
+- 22:16 UTC 28.10: (agent G6f) integracja-1-1 = fefb2316 (ff z integracja-1-1-g6f), tests.yml 40773122678 zielony; scalenie backlog-figur ZAKOŃCZONE
