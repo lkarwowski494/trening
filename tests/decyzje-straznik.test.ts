@@ -105,7 +105,6 @@ describe(`${D18}: każdy wpis decyzji ma pole wdrożenia i test albo powód (sta
   const NIEWDROZONE: [string, string, string][] = [
     ['2026-10-12', 'P2 B (ekran zakupu raz po pierwszym treningu)', 'M1-audytor-generalny-001'],
     ['2026-10-12', '0.16 (docs/29)', 'M1-audytor-generalny-002'],
-    ['2026-10-13', 'Wyjątek Ukraina', 'M1-audytor-generalny-037'],
     ['2026-10-18', 'po analizie porażek E2E', 'M1-audytor-generalny-034'],
     ['2026-10-21', 'K1–K2 M8', 'M1-audytor-generalny-017'],
     ['2026-10-21', 'STOP 3 przebiegu M3', 'M1-audytor-generalny-024'],
@@ -119,6 +118,10 @@ describe(`${D18}: każdy wpis decyzji ma pole wdrożenia i test albo powód (sta
     const p = pole(w[0]);
     if (/^kod$/.test(p)) expect(w[0].tekst).toMatch(/\[test: /);
     else expect([p.startsWith('otwarte →'), p.includes(id)]).toEqual([true, true]);
+  });
+  test('„Wyjątek Ukraina” z 13.10.2026: zamknięty jako zastąpiony 27.10.2026 (DEC-07 b, M1-audytor-generalny-037; dawniej „otwarte → 037” w tabeli wyżej)', () => {
+    const ua = wpisy.find(x => x.data === '2026-10-13' && x.tekst.includes('Wyjątek Ukraina'))!;
+    expect([pole(ua), /M1-audytor-generalny-037/.test(ua.tekst), /Z-10b/.test(ua.tekst)]).toEqual(['zastąpione 27.10.2026', true, true]);
   });
   test('kolejność planów: wpis z 23.10.2026 zastąpiony 27.10.2026; wpis z 27.10.2026 wskazuje test kolejności i planu domyślnego (02-monetyzacja-003)', () => {
     const z23 = wpisy.find(x => x.data === '2026-10-23' && x.tekst.includes('miesięczny, roczny, dożywotni'))!;

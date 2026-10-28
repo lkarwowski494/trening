@@ -152,7 +152,8 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - tapOn: "Settings"
 - extendedWaitUntil: { visible: "Subscription", timeout: 30000 }
 - assertVisible: ".*You have access forever.*"
-- tapOn: "Full version.*"
+# tytuł wiersza z dostępem: 'Masz plan: {name}' (M1-037 A, DEC-07 b 27.10.2026)
+- tapOn: "Your plan: Training is my life.*"
 - extendedWaitUntil: { visible: ".*You have access forever.*", timeout: 30000 }
 - takeScreenshot: 99-zakup-aktywny
 - scrollUntilVisible: { element: "Test store: expire access", direction: DOWN, timeout: 60000 }

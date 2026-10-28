@@ -5,7 +5,7 @@
 # Karta po imporcie CSV nie ma scenariusza (wybór pliku w systemowym oknie — wyjątek DA-08 w tests/przeplywy.json).
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "Subscription", "Full version.*", "Test store: expire access"           ← components/SubscriptionCard.tsx, app/paywall.tsx (panel tylko w buildzie E2E, bez t())
+#   "Subscription", "Your plan: .*", "Test store: expire access"            ← components/SubscriptionCard.tsx (tytuł wiersza z dostępem, M1-037 A), app/paywall.tsx (panel tylko w buildzie E2E, bez t())
 #   "Train 5 days a month for free.*"                                        ← nagłówek ekranu zakupu po wygaśnięciu (jak w 21)
 #   "First workout done!", "Awesome, keep training!", "See Pro plans.*"      ← components/FairRulesSheet.tsx
 #   "Finish", "Finish workout\?", "Session", "Set 1 done.*", "Skip"          ← jak flow 21
@@ -28,7 +28,7 @@ name: Uczciwe zasady — okno po pierwszym treningu
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
 - extendedWaitUntil: { visible: "Subscription", timeout: 30000 }
-- tapOn: "Full version.*"
+- tapOn: "Your plan: .*"
 - scrollUntilVisible: { element: "Test store: expire access", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "Test store: expire access"
 - scrollUntilVisible: { element: "Train 5 days a month for free.*", direction: UP, timeout: 60000 }

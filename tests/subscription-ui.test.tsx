@@ -128,7 +128,7 @@ describe('ekran zakupu: powód otwarcia', () => {
     expect(screen.getByText(/^Trening tworzy niezależny deweloper: bez reklam, bez zbierania danych\. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu\. Darmowe dni wracają .*1 lis/)).toBeTruthy();
   });
   test('limit: „Nie teraz” zamyka ekran; z Ustawień — nagłówek „Train 5 days a month for free…”, bez tekstu limitu i bez „Nie teraz”; nieznany powód (dawne first) = jak Ustawienia', async () => {
-    await boot({ locale: 'en', live: 5, url: '/more/settings' }); const { router } = require('expo-router'); await act(async () => { router.push('/paywall?reason=limit'); }); await settle(); await tap(screen.getByText('Not now')); await settle(); expect(screen.queryByTestId('paywall-limit')).toBeNull(); expect(screen.getByLabelText(/^Full version\./)).toBeTruthy();
+    await boot({ locale: 'en', live: 5, url: '/more/settings' }); const { router } = require('expo-router'); await act(async () => { router.push('/paywall?reason=limit'); }); await settle(); await tap(screen.getByText('Not now')); await settle(); expect(screen.queryByTestId('paywall-limit')).toBeNull(); expect(screen.getByLabelText(/^See Pro plans\./)).toBeTruthy();
     await act(async () => { router.push('/paywall?reason=first'); }); await settle(); expect(screen.queryByTestId('paywall-limit')).toBeNull(); expect(screen.getByTestId('paywall-headline')).toBeTruthy(); expect(screen.queryByText('Not now')).toBeNull(); expect(screen.queryByText('Log a past workout')).toBeNull();
     await act(async () => { router.back(); }); await act(async () => { router.push('/paywall?reason=settings'); }); await settle(); expect(screen.queryByText('Not now')).toBeNull(); expect(screen.getByText('Train 5 days a month for free. Pro removes the limit. Cancel anytime in your Apple account settings.')).toBeTruthy();
   });
@@ -193,17 +193,17 @@ describe('ekran zakupu: posiadany plan subskrypcji (27.10.2026, uwaga z telefonu
 
 describe('Ustawienia: karta „Subskrypcja”', () => {
   test('przełącznik wyłączony: karty nie ma (Ustawienia jak przed 0.17); sklep nietknięty', async () => {
-    await boot({ on: false, locale: 'en', url: '/more/settings' }); expect(txt(/^Subscription$/i)).toBeNull(); expect(lbl(/^Full version/)).toBeNull(); expect(fake.calls.currentEntitlements).toBe(0);
+    await boot({ on: false, locale: 'en', url: '/more/settings' }); expect(txt(/^Subscription$/i)).toBeNull(); expect(lbl(/^Full version/)).toBeNull(); expect(lbl(/^See Pro plans/)).toBeNull(); expect(fake.calls.currentEntitlements).toBe(0);
   });
-  test('przełącznik włączony, darmowy: licznik „Free training days this month: 2 of 5 used”, wejście na ekran zakupu; PL', async () => {
-    await boot({ locale: 'en', live: 2, url: '/more/settings' }); expect(screen.getByText('Subscription')).toBeTruthy(); expect(lbl('Full version. Free training days this month: 2 of 5 used')).toBeTruthy();
-    await tap(screen.getByLabelText('Full version. Free training days this month: 2 of 5 used')); await settle(); expect(screen.getByTestId('plan-yearly')).toBeTruthy();
-    await boot({ locale: 'pl', live: 1, url: '/more/settings' }); expect(lbl('Pełna wersja. Darmowe dni treningowe w tym miesiącu: wykorzystano 1 z 5')).toBeTruthy();
+  test('przełącznik włączony, darmowy: tytuł „See Pro plans” (M1-037 A), licznik „Free training days this month: 2 of 5 used”, wejście na ekran zakupu; PL', async () => {
+    await boot({ locale: 'en', live: 2, url: '/more/settings' }); expect(screen.getByText('Subscription')).toBeTruthy(); expect(lbl('See Pro plans. Free training days this month: 2 of 5 used')).toBeTruthy();
+    await tap(screen.getByLabelText('See Pro plans. Free training days this month: 2 of 5 used')); await settle(); expect(screen.getByTestId('plan-yearly')).toBeTruthy();
+    await boot({ locale: 'pl', live: 1, url: '/more/settings' }); expect(lbl('Zobacz plany Pro. Darmowe dni treningowe w tym miesiącu: wykorzystano 1 z 5')).toBeTruthy();
   });
   test.each([
-    ['dożywotni', life, 'Full version. You have access forever'], ['subskrypcja', sub(NOW + 9 * DAY), /^Full version\. Access until /],
+    ['dożywotni', life, 'Your plan: Training is my life. You have access forever'], ['subskrypcja', sub(NOW + 9 * DAY), /^Your plan: Still finding my rhythm\. Access until /],
   ])('karta przy pełnym dostępie (%s)', async (_n, e, want) => { await boot({ locale: 'en', ents: [e as Entitlement], url: '/more/settings' }); expect(screen.getByLabelText(want as string | RegExp)).toBeTruthy(); expect(screen.queryByText(/Free training days this month/)).toBeNull(); });
-  test('ciemny wygląd: karta i ekran zakupu renderują się bez błędu', async () => { await boot({ locale: 'en', theme: 'dark', url: '/more/settings' }); expect(screen.getByText('Subscription')).toBeTruthy(); await tap(screen.getByLabelText(/^Full version\./)); await settle(); expect(screen.getByTestId('plan-yearly')).toBeTruthy(); });
+  test('ciemny wygląd: karta i ekran zakupu renderują się bez błędu', async () => { await boot({ locale: 'en', theme: 'dark', url: '/more/settings' }); expect(screen.getByText('Subscription')).toBeTruthy(); await tap(screen.getByLabelText(/^See Pro plans\./)); await settle(); expect(screen.getByTestId('plan-yearly')).toBeTruthy(); });
 });
 
 describe('blokada startu ze wszystkich dróg w interfejsie', () => {
