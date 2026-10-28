@@ -112,7 +112,7 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
     props.push({ k: 'barbell', c });
     info.bar = c;
     if (p.impl === 'smith') props.push({ k: 'rail', x: c[0], h: 190 });
-    if (p.band || p.impl === 'band') props.push(p.reverse ? { k: 'band', from: [top[0], top[1] + BENCH.bandHangAbove, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [c[0], 0, 0], bar: true });
+    if (p.band || p.impl === 'band') props.push(p.reverse ? { k: 'band', from: [top[0], top[1] + BENCH.bandHangAbove, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [top[0], 0, 0], bar: true }); /* dolny zaczep gumy stały (pod gryfem na górze), nie jedzie z gryfem */
     if (p.chain || p.impl === 'chain') props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
   }
   /* deska na klatce: leży na powierzchni klatki w punkcie dotyku (wysokość 11,9 nad osią tułowia), gryf spoczywa na jej górze; bolce: gryf opiera się na nich w dolnym punkcie */

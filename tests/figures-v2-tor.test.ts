@@ -59,6 +59,15 @@ describe('tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)', () => 
   });
 });
 
+describe('gumy kotwiczone na podłodze: dolny koniec stoi w miejscu (recenzja niezależna 28.10.2026, F3; było: jechał z gryfem — Band Bench Press 15 cm, Sumo with Bands 8 cm, Deadlift with Bands 3,3 cm, Rack Pull with Bands 2,5 cm)', () => {
+  test('każda guma sztangi „do podłogi” (bar, bez hang) ma dolny koniec w tym samym x we wszystkich klatkach', () => {
+    const keys = [...new Set(CASES.map(([k]) => k))]; let n = 0;
+    for (const k of keys) { const to = Array.from({ length: 25 }, (_, i) => frameAt(figureSpec(k)!, i / 24).props.find(p => p.k === 'band' && p.bar && !p.hang) as { to: [number, number, number] } | undefined);
+      if (!to[0]) continue; n++; const xs = to.map(b => b!.to[0]); expect([k, +(Math.max(...xs) - Math.min(...xs)).toFixed(2)]).toEqual([k, 0]); }
+    expect(n).toBeGreaterThanOrEqual(7);
+  });
+});
+
 describe('zawias: styk ciężaru z nogą (legRadius, contactX)', () => {
   test('promień nogi jak na rysunku, nie mniej niż promień kolizji: biodro ze spodenkami, kolano i kostka na promieniu kolizji, łydka grubsza', () => {
     expect(legRadius('thigh', 0)).toBeCloseTo(GIRTH.thigh[0] + 0.7, 5);

@@ -199,7 +199,7 @@ export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
   if (p.impl === 'db') for (const s of single || p.oneArm ? ['R'] as const : ['R', 'L'] as const) props.push({ k: 'dumbbell', c: [barX, barY, s === 'R' ? gripHalf : -gripHalf], side: s });
   if (p.impl === 'kb') props.push({ k: 'kettlebell', c, side: 'C' });
   if (p.impl === 'cable') props.push({ k: 'cable', from: p.pull ? [-HINGE.pulley[0], HINGE.pulley[1], 0] : [startX || barX, 0, 0], to: c });
-  if (p.band) props.push(p.reverse ? { k: 'band', from: [startX || c[0], HINGE.bandHang, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [c[0], 0, 0], bar: true });
+  if (p.band) props.push(p.reverse ? { k: 'band', from: [startX || c[0], HINGE.bandHang, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [startX || c[0], 0, 0], bar: true }); /* dolny zaczep gumy stały jak szyna Smitha */
   if (p.chain) props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
   if (p.platform) contacts.push({ body: 'foot', equip: 'box', tol: 1.5 });
   contacts.push({ body: 'thigh', equip: 'bar', tol: 1.5 }, { body: 'shank', equip: 'bar', tol: 1.5 }, { body: 'thigh', equip: 'plateNear', tol: 99 });

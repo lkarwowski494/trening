@@ -14,8 +14,8 @@ export const EQUIP = {
   dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6,
   benchW: 30, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
   trapW: 29, boxW: 45, postW: 3.5, railW: 1.2, wallW: 3,
-  /* deska na klatce (Board Press): długość wzdłuż tułowia i szerokość (cm) — uproszczenie ilustracyjne; stojak z bolcami: połowa rozstawu słupków (jak `post`), długość bolca i grubość (cm) */
-  boardLen: 18, boardW: 16, rackZ: 76, rackH: 130, pinLen: 10, pinW: 2.4,
+  /* deska na klatce (Board Press): długość wzdłuż tułowia i szerokość (cm) — uproszczenie ilustracyjne; stojak z bolcami: połowa rozstawu słupków (wewnątrz talerzy 64,6–72,4, jak `post` ±64), długość bolca i grubość (cm) */
+  boardLen: 18, boardW: 16, rackZ: 61, rackH: 130, pinLen: 10, pinW: 2.4,
 } as const;
 
 export const proj = (p: V3, v: View): V2 => v === 'side' ? [p[0], p[1]] : v === 'front' ? [-p[2], p[1]] : [-p[2], -p[0]];
@@ -165,7 +165,7 @@ export function propShapes(props: Prop[], view: View): Shape[] {
       case 'board': {
         const hw = E.boardLen / 2, ww = E.boardW / 2;
         const pts = side ? rect(pr.x - hw, pr.y, pr.x + hw, pr.y + pr.h) : view === 'front' ? rect(-ww, pr.y, ww, pr.y + pr.h) : rect(-ww, -(pr.x + hw), ww, -(pr.x - hw));
-        S.push({ k: 'poly', pts, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zKey(LAYER.backEquip, -20), id: 'board' }); break;
+        S.push({ k: 'poly', pts, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: view === 'top' ? zKey(LAYER.frontEquip, -1) : zKey(LAYER.backEquip, -20), id: 'board' }); break; /* z góry deska leży na tułowiu, więc nad nim */
       }
       case 'rack': {
         /* słupki stojaka (z boku jeden, z przodu i z góry po obu stronach) i bolce pod gryfem na wysokości y; bolec wystaje ku środkowi stojaka */

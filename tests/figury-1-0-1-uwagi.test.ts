@@ -4,7 +4,7 @@
  * Każdy test odtwarza pomiar z raportu liczbą z silnika (komentarz „było”) i pilnuje poprawki. Kąty tylko z istniejących zapisów (docs/50, docs/research/28,
  * data/zrodla/figury-wyciskanie.json); brak podstawy → otwarte pytanie w docs/21, nie liczba w kodzie.
  */
-import { FAMILIES, figureSpec, frameAt, shapesAt, trailFor, assignAll, VARIANTS, jointAngles, checkFrame, type Frame, type V3 } from '@/lib/figures/v2';
+import { distSegSeg, bodyColliders, sortShapes, EQUIP, FAMILIES, figureSpec, frameAt, shapesAt, trailFor, assignAll, VARIANTS, jointAngles, checkFrame, type Frame, type V3 } from '@/lib/figures/v2';
 
 const spec = (k: string) => figureSpec(k)!;
 const fr = (k: string, u: number, e?: 'barAway' | 'kneesBent'): Frame => frameAt(spec(k), u, e);
@@ -73,9 +73,9 @@ describe('squat: Band Squat — guma od stóp do rąk przy barkach, nie do rąk 
       expect([u, s, Math.abs(dy) <= 20, dx <= 30, jointAngles(f.sk, s).elbow >= 60]).toEqual([u, s, true, true, true]); }
       const b = fr('Bodyweight Squat', u).sk.arms.R; expect(b.grip[0] - b.shoulder[0]).toBeGreaterThan(40); }
   });
-  test('dwie gumy (po jednej na rękę): jeden koniec na podłodze pod stopą (x środka stopy, |z| = rozstaw), drugi w dłoni (≤ 0,1 cm); widoczne w obu widokach (bok, przód)', () => {
+  test('dwie gumy (po jednej na rękę): jeden koniec na podłodze pod stopą (x środka stopy, |z| = rozstaw − 8: pod wewnętrzną częścią stopy, między kolanami), drugi w dłoni (≤ 0,1 cm); widoczne w obu widokach (bok, przód)', () => {
     for (const u of U) { const f = fr('Band Squat', u); const bands = f.props.filter(p => p.k === 'band') as { from: V3; to: V3 }[]; expect([u, bands.length]).toEqual([u, 2]);
-      for (const b of bands) { const s = b.to[2] > 0 ? 'R' : 'L'; const g = f.sk.arms[s].grip; expect([u, b.from[1], Math.abs(b.from[0] - f.info.midfoot[0]) < 1e-6, Math.abs(Math.abs(b.from[2]) - 20) < 1e-6, Math.hypot(b.to[0] - g[0], b.to[1] - g[1], b.to[2] - g[2]) <= 0.1]).toEqual([u, 0, true, true, true]); } }
+      for (const b of bands) { const s = b.to[2] > 0 ? 'R' : 'L'; const g = f.sk.arms[s].grip; expect([u, b.from[1], Math.abs(b.from[0] - f.info.midfoot[0]) < 1e-6, Math.abs(Math.abs(b.from[2]) - 12) < 1e-6, Math.hypot(b.to[0] - g[0], b.to[1] - g[1], b.to[2] - g[2]) <= 0.1]).toEqual([u, 0, true, true, true]); } }
     for (const v of ['side', 'front'] as const) expect([v, shapesAt(spec('Band Squat'), 0.5, v).filter(s => s.id === 'band').length]).toEqual([v, 2]);
   });
 });
@@ -139,5 +139,34 @@ describe('hinge: Rack Pull, Rack Pull with Bands, Good Morning off Pins — stoj
   test('stojak tylko w tych trzech ćwiczeniach; widoczny z boku i z przodu (słupki po obu stronach)', () => {
     expect(Object.entries(fam).filter(([k, f]) => f === 'hinge' && rack(fr(k, 0))).map(([k]) => k).sort()).toEqual(['Good Morning off Pins', 'Rack Pull', 'Rack Pull with Bands']);
     for (const k of ['Rack Pull', 'Good Morning off Pins']) { expect(shapesAt(spec(k), 1, 'side').filter(s => s.id === 'rackPost').length).toBe(1); expect(shapesAt(spec(k), 1, 'front').filter(s => s.id === 'rackPost').length).toBe(2); }
+  });
+});
+
+describe('recenzja niezależna 28.10.2026 — F2: stojak wewnątrz talerzy (było: słupki w |z| = 76 na zewnątrz talerzy 64,6–72,4, bolce pod talerzami)', () => {
+  const RACK = ['Rack Pull', 'Rack Pull with Bands', 'Good Morning off Pins', 'Pin Press'];
+  test('słupki stojaka (|z| + połowa grubości) leżą wewnątrz wewnętrznej krawędzi talerzy; bolec sięga ku środkowi i leży pod gryfem między talerzami', () => {
+    expect(EQUIP.rackZ + EQUIP.postW / 2).toBeLessThan(EQUIP.plateZ[0] - EQUIP.plateW / 2);
+    expect(EQUIP.rackZ - EQUIP.pinLen).toBeGreaterThan(0);
+    for (const k of RACK) for (const v of spec(k).views) { if (v === 'side') continue; const sh = shapesAt(spec(k), 1, v);
+      const posts = sh.filter(s => s.id === 'rackPost'); const pins = sh.filter(s => s.id === 'rackPin' && s.k === 'line');
+      expect([k, v, posts.length, pins.length]).toEqual([k, v, 2, 2]);
+      for (const p of pins) if (p.k === 'line') expect([k, v, Math.max(Math.abs(p.a[0]), Math.abs(p.b[0])) < EQUIP.plateZ[0] - EQUIP.plateW / 2]).toEqual([k, v, true]); }
+  });
+  test('gryf rysowany nad słupkami (kolejność rysowania: gryf wyżej niż słupek)', () => {
+    for (const k of RACK) for (const v of spec(k).views) { const sh = sortShapes(shapesAt(spec(k), 1, v)); const iBar = sh.findIndex(s => s.id === 'bar'); const iPost = sh.findIndex(s => s.id === 'rackPost'); expect([k, v, iBar > iPost]).toEqual([k, v, true]); }
+  });
+});
+
+describe('recenzja niezależna 28.10.2026 — N2: deska Board Press widoczna z góry (było: zasłonięta tułowiem)', () => {
+  test('w widoku z góry deska rysowana nad tułowiem; z boku nadal jest', () => {
+    const sh = sortShapes(shapesAt(spec('Board Press'), 1, 'top')); expect(sh.findIndex(s => s.id === 'board')).toBeGreaterThan(sh.findIndex(s => s.id === 'torso'));
+    expect(shapesAt(spec('Board Press'), 1, 'side').some(s => s.id === 'board')).toBe(true);
+  });
+});
+
+describe('recenzja niezależna 28.10.2026 — N5: guma Band Squat nie wchodzi w nogi (było: 3 cm w udzie przy u ≈ 0,375)', () => {
+  test('odstęp gumy (odcinek stopa–dłoń) od kapsuł ud i podudzi ≥ 0 w każdej klatce', () => {
+    for (const u of U) { const f = fr('Band Squat', u); const legs = bodyColliders(f.sk).filter(b => /^(thigh|shank)/.test(b.id));
+      for (const b of f.props.filter(p => p.k === 'band') as unknown as { from: V3; to: V3 }[]) for (const l of legs) if (l.k === 'capsule') expect([u, l.id, distSegSeg(b.from, b.to, l.a, l.b) - l.r >= 0]).toEqual([u, l.id, true]); }
   });
 });

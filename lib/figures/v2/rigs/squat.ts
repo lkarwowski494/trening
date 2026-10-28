@@ -49,7 +49,7 @@ export const SQUAT = {
   bandHang: 175,
   landminePivot: 150, cablePulley: [95, 12] as [number, number],
   /** Band Squat: połowa rozstawu dłoni przy barkach (cm; barki ±19) — uproszczenie ilustracyjne. */
-  bandHandHalf: 15,
+  bandHandHalf: 15, /** i odsunięcie dolnego końca gumy do środka od osi stopy (cm): guma biegnie między kolanami, nie przez udo */ bandFootIn: 8,
   sit: 9, /* wysokość stawu biodrowego nad siedziskiem (pośladek) */
 } as const;
 
@@ -166,11 +166,11 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
   }
   if (p.impl === 'cable' && p.load === 'goblet') props.push({ k: 'cable', from: [SQUAT.cablePulley[0], SQUAT.cablePulley[1], 0], to: c });
   if (p.load === 'belt' && p.impl === 'none') { const w: V3 = [hipC()[0] + 4, Math.max(hipC()[1] - 36, 14), 0]; props.push({ k: 'chain', from: hipC(), to: w }, { k: 'kettlebell', c: [w[0], w[1] + 10, 0], side: 'C', r: 6, held: false }); }
-  if (p.band && p.load === 'bodyweight') for (const sg of [1, -1]) props.push({ k: 'band', from: [info.midfoot[0], 0, sg * p.stance], to: [c[0], c[1], sg * SQUAT.bandHandHalf] }); /* dwie gumy, po jednej na rękę: spod stopy do dłoni przy barku */
+  if (p.band && p.load === 'bodyweight') for (const sg of [1, -1]) props.push({ k: 'band', from: [info.midfoot[0], 0, sg * (p.stance - SQUAT.bandFootIn)], to: [c[0], c[1], sg * SQUAT.bandHandHalf] }); /* dwie gumy, po jednej na rękę: spod stopy do dłoni przy barku */
   if (p.impl === 'barbell' && p.load !== 'dbSides' && p.load !== 'kbRack' && p.load !== 'landmine') {
     props.push({ k: 'barbell', c, held: p.load !== 'zercher' });
     info.bar = c;
-    if (p.band) props.push(p.reverse ? { k: 'band', from: [info.midfoot[0] + barOff, SQUAT.bandHang, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [c[0], 0, 0], bar: true });
+    if (p.band) props.push(p.reverse ? { k: 'band', from: [info.midfoot[0] + barOff, SQUAT.bandHang, 0], to: c, bar: true, hang: true } : { k: 'band', from: c, to: [info.midfoot[0] + barOff, 0, 0], bar: true }); /* dolny zaczep gumy stały */
     if (p.chain) props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
     if (p.smith) props.push({ k: 'rail', x: c[0], h: 200 });
     if (p.load === 'highBar') contacts.push({ body: 'torso', equip: 'bar', tol: 1.6 });
