@@ -79,9 +79,10 @@ describe('Standing Gastrocnemius Calf Stretch — zdania karty (zestaw ogólny r
     expect(en['gcalf.move']).toMatch(/knee straight/);
     for (const id of IDS) expect(en[id]).not.toMatch(/Physitrack|ACE|NHS|Powerline/);
   });
-  test('zestaw nie jest pokazywany bez recenzji niezależnej (bramka 4): brak wpisu „zestawy” ⇒ ćwiczenie poza listą general w runtime', () => {
-    expect(read('docs/research/figury-recenzja.json').zestawy[KEY]).toBeUndefined();
-    expect(read('lib/cues/data.json').general).not.toContain(KEY);
+  test('zestaw po recenzji niezależnej (bramka 4, 28.10.2026): wpis „zestawy” z autor ≠ recenzent ⇒ ćwiczenie na liście general w runtime', () => {
+    const e = read('docs/research/figury-recenzja.json').zestawy[KEY];
+    expect(e.werdykt).toBe('wyswietlana'); expect(e.autor).not.toBe(e.recenzent); expect(e.recenzent).toMatch(/audytor/);
+    expect(read('lib/cues/data.json').general).toContain(KEY);
   });
 });
 

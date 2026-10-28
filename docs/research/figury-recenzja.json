@@ -1925,6 +1925,17 @@
    "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
    "sha": "9358e2eddadc",
    "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Standing Gastrocnemius Calf Stretch": {
+   "rodzina": "stretch",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: wariant na stopniu, zestaw gcalf.* wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/gastro (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści zestawu (decyzja właściciela 28.10.2026 „003 → 1.0.1”); raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "78c1fe12ffea",
+   "uwagi": "gcalf.set/move/support/knee — każde ≥2 zgodne organizacje szczebla 4, bez liczb i nazw źródeł; err puste (źródła nie podają błędów wariantu). Zestaw pokaże się dopiero z figurą v2 rodziny rozciągania."
   }
  }
 }
