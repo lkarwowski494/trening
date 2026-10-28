@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/gen.mjs` z `data/zrodla/figures.json`, `data/zrodla/cues.json` i `lib/cues/text/pl.json` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/gen.mjs --check` (część `npm run verify`); geometria póz i zakres stawów: `tests/figures.test.tsx`.
 
-Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; etap 2–3 = własne figury SVG (szkielet z kątami stawów, 2–3 pozycje, krótka pętla; przy „Ogranicz ruch” pozycje statycznie). Research: docs/research/26 pkt 7; wskazówki etapu 1: docs/research/27.
+Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; etap 2–3 = własne figury SVG (szkielet z kątami stawów, 2–4 pozycje, krótka pętla; przy „Ogranicz ruch” pozycje statycznie). Research: docs/research/26 pkt 7; wskazówki etapu 1: docs/research/27.
 
 ## Zasady
 
@@ -271,16 +271,17 @@ Widok: z boku; kotwica: przód stopy; druga podpora: dłoń; przyrządy: brak.
 
 Widok: z boku; kotwica: przód stopy; druga podpora: dłoń; przyrządy: rect.
 
-- **pozycja wyjściowa** — t 45, hip 0, knee 0, ft -80.7, sh 40.9, el 2.3
+- **pozycja wyjściowa** — t 46, hip 0, knee 0, ft -76.5, sh 38.3, el 1.5
   - bark – biodro – kostka w jednej linii (±5°) ← `ipush.setup`: „Oprzyj dłonie o krawędź ławki lub stabilnego podwyższenia, trochę szerzej niż barki; stopy cofnięte, ciało proste.”
   - zgięcie łokcia: 0° (±4°) ← `ipush.move`: „Opuść klatkę do krawędzi podwyższenia, potem wypchnij się do wyprostu rąk.”
   - dłoń tuż nad poziomem 30 (do 3) ← `ipush.setup`: „Oprzyj dłonie o krawędź ławki lub stabilnego podwyższenia, trochę szerzej niż barki; stopy cofnięte, ciało proste.”
-- **w trakcie** — t 31.5, hip 0, knee 0, ft -63.8, sh -17.8, el 102.5
+- **w trakcie** — t 31.8, hip 0, knee 0, ft -54.7, sh -19.5, el 96.1
   - bark – biodro – kostka w jednej linii (±5°) ← `push.rigid`: „Tułów sztywny — biodra nie opadają i nie unoszą się.”
-- **pozycja końcowa** — t 26.2, hip 0, knee 0, ft -26.4, sh -34.8, el 128
+- **pozycja końcowa** — t 26.8, hip 0, knee 0, ft -11.4, sh -46.7, el 133.5
   - bark – biodro – kostka w jednej linii (±5°) ← `push.rigid`: „Tułów sztywny — biodra nie opadają i nie unoszą się.”
   - bark tuż nad poziomem 30 (do 14) ← `ipush.move`: „Opuść klatkę do krawędzi podwyższenia, potem wypchnij się do wyprostu rąk.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Wysokość podwyższenia ilustracyjna (zdanie ipush.height: im wyżej, tym łatwiej).
+- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Poprawka 1.0.1 (29.10.2026): uwagi NISKIE z recenzji 28.10 — dłoń przesuwa się po blacie ≤ 2,5 j. (było 3,2), dłonie ≤ 4,5 j. od krawędzi (było ok. 7). Zmiana figury po recenzji — czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.
 
 ### Overhead Press (sztanga)
 
@@ -334,11 +335,14 @@ Widok: z boku; kotwica: przód stopy; rzut ręki (kąty ręki = rzut); przyrząd
 - **w trakcie** — t 90, hip 15, knee 25, sh 29, el 148, ap 0.75, fp 0.75, ft 0
   - odcinek biodro–bark: 90° do poziomu (±5°) ← `pp.dip`: „Ugięcie krótkie, tułów napięty.”
   - zgięcie kolana: 20° (±15°) ← `pp.move`: „Krótko ugnij kolana, a potem dynamicznie wyprostuj nogi i biodra, wypychając sztangę nad głowę do wyprostu rąk.”
+- **w trakcie (druga)** — t 90, hip -2, knee 0, ft 0, sh 99.4, el 115.8, ap 0.8, fp 0.8
+  - zgięcie kolana: 0° (±4°) ← `pp.legs`: „Siła wybicia idzie z nóg i bioder — ręce kończą ruch.”
+  - dłoń wyżej niż poziom 93 ← `pp.legs`: „Siła wybicia idzie z nóg i bioder — ręce kończą ruch.”
 - **pozycja końcowa** — t 95, hip -5, knee 0, sh 171, el 0
   - zgięcie łokcia: 0° (±4°) ← `pp.move`: „Krótko ugnij kolana, a potem dynamicznie wyprostuj nogi i biodra, wypychając sztangę nad głowę do wyprostu rąk.”
   - bark – biodro – kostka w jednej linii (±6°) ← `pp.legs`: „Siła wybicia idzie z nóg i bioder — ręce kończą ruch.”
-- Uproszczenie ilustracyjne: pozostałe kąty. Ugięcie nóg krótkie — głębokość ilustracyjna.
-- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-27, docs/research/figury-recenzja.json): Jak w wyciskaniu: gryf łukiem przed twarzą przy wypychaniu; nogi i ręce prostują się jednocześnie, choć wskazówka mówi, że siła idzie z nóg, a ręce kończą ruch (pp.legs). Figura ma już 3 pozycje (limit silnika v1) — nie da się dodać pozycji pośredniej.
+- Uproszczenie ilustracyjne: pozostałe kąty. Pozycja „w trakcie 1” = krótkie ugięcie nóg; „w trakcie 2” = nogi i biodra wyprostowane, sztanga już nad barkami (ręce jeszcze zgięte); dopiero potem wyciskanie do wyprostu rąk. Głębokość ugięcia ilustracyjna.
+- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Poprawka 1.0.1 (29.10.2026): czwarta pozycja — ugięcie, wyprost nóg z gryfem przy barkach i dopiero wyciskanie; tor dłoni bez łuku (maks. cofnięcie/wysunięcie ≤ 2 j. od toru). Czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.
 
 ### Wyciskanie nad głowę (linki)
 
@@ -528,45 +532,55 @@ Widok: z boku; kotwica: przód stopy (dalsza strona); przyrządy: db, db.
 
 - **pozycja wyjściowa** — t 90, hip 0, knee 0, sh 0, el 0
   - bark – biodro – kostka w jednej linii (±6°) ← `lunge.dbSetup`: „Stań prosto, stopy na szerokość bioder, hantle w opuszczonych rękach.”
-- **w trakcie** — t 89, hip 50/34.5, knee 45/88, ft -1.5/-95, sh 0, el 0
+- **w trakcie** — t 88.7, hip 49.9/26.6, knee 46.5/87.1, ft 0/-70.2, sh 0, el 0
   - pięta tuż nad poziomem 0 (do 1) ← `lunge.fwd`: „Zrób krok w przód i opuść się, aż tylne kolano będzie tuż nad podłogą; odepchnij się przednią nogą do pozycji wyjściowej.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **pozycja końcowa** — t 90, hip 73/1.6, knee 110/105, ft 0/-68, sh 0, el 0
+- **pozycja końcowa** — t 90.1, hip 73.1/3, knee 107.8/101.5, ft 0/-55.2, sh 0, el 0
   - kolano (dalsza strona) tuż nad poziomem 0 (do 8) ← `lunge.fwd`: „Zrób krok w przód i opuść się, aż tylne kolano będzie tuż nad podłogą; odepchnij się przednią nogą do pozycji wyjściowej.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
   - pięta tuż nad poziomem 0 (do 1) ← `lunge.fwd`: „Zrób krok w przód i opuść się, aż tylne kolano będzie tuż nad podłogą; odepchnij się przednią nogą do pozycji wyjściowej.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Długość kroku i ustawienie przedniego podudzia ilustracyjne; pozycja „w trakcie” = krok postawiony (przednia stopa na podłodze, biodra jeszcze wysoko), potem opuszczenie; z boku nie widać ustawienia kolana w linii palców (widok z przodu).
+- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Poprawka 1.0.1 (29.10.2026): uwagi NISKIE z recenzji 28.10 — tylna stopa pod kątem ≤ 72° (nie pionowo), przednia stopa przesuwa się ≤ 1 j. Zmiana figury po recenzji — czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.
 
 ### Walking Lunges
 
-Widok: z boku; kotwica: przód stopy (dalsza strona); na wzór: Lunges (hantle); przyrządy: db, db.
+Widok: z boku; kotwica: przód stopy; na wzór: Lunges (hantle); przyrządy: db, db.
 
-- **pozycja wyjściowa** — t 90, hip 0, knee 0, sh 0, el 0
-  - bark – biodro – kostka w jednej linii (±6°) ← `lunge.dbSetup`: „Stań prosto, stopy na szerokość bioder, hantle w opuszczonych rękach.”
-- **w trakcie** — t 89, hip 50/34.5, knee 45/88, ft -1.5/-95, sh 0, el 0
-  - pięta tuż nad poziomem 0 (do 1) ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”
-  - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **pozycja końcowa** — t 90, hip 73/1.6, knee 110/105, ft 0/-68, sh 0, el 0
+- **pozycja wyjściowa** — t 90.1, hip 73.1/3, knee 107.8/101.5, ft 0/-55.2, sh 0, el 0
   - kolano (dalsza strona) tuż nad poziomem 0 (do 8) ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
   - pięta tuż nad poziomem 0 (do 1) ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”
-- Uproszczenie ilustracyjne: pozostałe kąty. Jeden krok pętli: silnik v1 (3 pozycje, pętla tam i z powrotem) nie pokazuje kroku drugą nogą — po zejściu do wykroku figura wraca do pozycji wyjściowej, a kolejny krok drugą nogą wygląda tak samo (lustrzanie). Długość kroku ilustracyjna.
+- **w trakcie** — t 88.7, hip -6.5/66.1, knee 7.4/91, ft 0/-86.4, sh 0, el 0
+  - przód stopy (dalsza strona) wyżej niż poziom 0 ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”
+  - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
+- **w trakcie (druga)** — t 88.7, hip 26.6/49.9, knee 87.1/46.5, ft -70.2/0, sh 0, el 0
+  - pięta (dalsza strona) tuż nad poziomem 0 (do 1) ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”
+  - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
+- **pozycja końcowa** — t 90.1, hip 3/73.1, knee 101.5/107.8, ft -55.2/0, sh 0, el 0
+  - kolano tuż nad poziomem 0 (do 8) ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”
+  - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
+  - pięta (dalsza strona) tuż nad poziomem 0 (do 1) ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”
+- Uproszczenie ilustracyjne: pozostałe kąty. Jeden krok pętli to krok drugą nogą: z wykroku (przednia noga na podłodze) wstajesz na przedniej nodze, tylna noga przechodzi do przodu (pozycja „w trakcie 1”), staje przed Tobą (pozycja „w trakcie 2”) i opuszczasz się na drugą nogę (pozycja końcowa); pętla wraca tą samą drogą (uproszczenie: w kroku w tył). Długość kroku ilustracyjna.
+- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Poprawka 1.0.1 (29.10.2026): krok drugą nogą (cztery pozycje: wykrok, wstawanie i przejście nogi, krok postawiony, wykrok na drugą nogę); tylna stopa nie pionowo. Zmiana figury po recenzji — czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.
 
 ### Reverse Lunge
 
-Widok: z boku; kotwica: przód stopy; w pozach pośrednich figura unosi się nad podłogę (stopa obraca się wokół kostki — uproszczenie); przyrządy: brak.
+Widok: z boku; kotwica: przód stopy; przyrządy: brak.
 
 - **pozycja wyjściowa** — t 90, hip 0, knee 0, sh 0, el 0
   - bark – biodro – kostka w jednej linii (±6°) ← `lunge.stand`: „Stań prosto, stopy mniej więcej na szerokość bioder.”
-- **w trakcie** — t 90, hip 12/-12, knee 12/75, ft 0/-117, sh 0, el 0
+- **w trakcie** — t 90.3, hip -6.7/-7.9, knee 8.2/61.9, ft 0/-44.9, sh 0, el 0
   - przód stopy (dalsza strona) wyżej niż poziom 0 ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **pozycja końcowa** — t 90, hip 80/-3, knee 110/102, ft 0/-80, sh 0, el 0
+- **w trakcie (druga)** — t 91.9, hip 23.7/-30.9, knee 57.6/21.1, ft 0/-102, sh 0, el 0
+  - przód stopy (dalsza strona) tuż nad poziomem 0 (do 1) ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
+  - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
+- **pozycja końcowa** — t 90, hip 89.8/18.5, knee 99.1/123.5, ft 0/-59.6, sh 0, el 0
   - kolano (dalsza strona) tuż nad poziomem 0 (do 8) ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
   - pięta tuż nad poziomem 0 (do 1) ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
-- Uproszczenie ilustracyjne: pozostałe kąty. Przednia stopa zostaje w miejscu, tylna noga cofa się (pozycja „w trakcie” = krok w tył); długość kroku ilustracyjna.
-- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-28, docs/research/figury-recenzja.json): Biodro opada ok. 20 j., gdy tylna stopa jest w powietrzu; środek ciężkości do 8,7 j. za piętą jedynej podpory; przednia stopa unosi się do 3,1 j., palce tylnej jadą po podłodze 22 j. Limit 3 pozycji silnika v1 — łuk stopy w zamachu w tył nie do oddania (próby na 3 pozycjach: tests/figury-podparcie.test.ts).
+- Uproszczenie ilustracyjne: pozostałe kąty. Przednia stopa zostaje w miejscu, tylna noga cofa się łukiem w powietrzu (pozycja „w trakcie 1”: stopa uniesiona, kolano ugięte), potem palce tylnej stopy lądują za sobą (pozycja „w trakcie 2”: biodra jeszcze wysoko), dopiero wtedy opuszczenie; długość kroku ilustracyjna.
+- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Poprawka 1.0.1 (29.10.2026): czwarta pozycja — tylna stopa łukiem w powietrzu, lądowanie palców, dopiero potem opuszczenie; reguła podparcia spełniona. Czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.
 
 ### Bulgarian Split Squat (hantle)
 
@@ -587,15 +601,16 @@ Widok: z boku; kotwica: przód stopy; przyrządy: rect, line, line, db, db.
 
 Widok: z boku; kotwica: przód stopy; przyrządy: rect, db, db.
 
-- **pozycja wyjściowa** — t 82.2, hip 92.4/12.9, knee 122/26.4, ft 0/0, sh 0, el 0
+- **pozycja wyjściowa** — t 82.2, hip 92.4/12.9, knee 122/26.4, ft 0/0, sh 7.8, el 0
   - pięta tuż nad poziomem 26 (do 1) ← `stepup.move`: „Postaw całą stopę na podwyższeniu i wejdź, prostując tę nogę; zejdź kontrolowanie tą samą drogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **w trakcie** — t 59.5, hip 68.6/68.2, knee 61.8/82.4, ft 0/-83, sh 0, el 0
+- **w trakcie** — t 59.5, hip 68.6/55.7, knee 61.8/88.4, ft 0/-84.4, sh 30.5, el 0
   - pięta tuż nad poziomem 26 (do 1) ← `stepup.move`: „Postaw całą stopę na podwyższeniu i wejdź, prostując tę nogę; zejdź kontrolowanie tą samą drogą.”
 - **pozycja końcowa** — t 90, hip 0/60, knee 0/90, ft 0/-20, sh 0, el 0
   - zgięcie kolana: 0° (±5°) ← `stepup.move`: „Postaw całą stopę na podwyższeniu i wejdź, prostując tę nogę; zejdź kontrolowanie tą samą drogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Wysokość skrzyni ilustracyjna; pozycja „w trakcie” = tułów pochylony ok. 30°, środek ciężkości nad stopą na skrzyni, noga zakroczna oderwana od podłogi; w pozycji końcowej druga noga uniesiona obok (uproszczenie).
+- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Poprawka 1.0.1 (29.10.2026): uwagi NISKIE z recenzji 28.10 — ręce z hantlami pionowo, odstęp stopy nogi zakrocznej od krawędzi skrzyni ≥ 3 j., reguła środka ciężkości z hantlami w dłoniach. Zmiana figury po recenzji — czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.
 
 ### Hip Thrust (sztanga)
 
