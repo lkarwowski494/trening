@@ -7,11 +7,12 @@
 // Pliki: atlas-<język>.json (teksty i dane ćwiczeń), figury.json (dane figur — niezależne od języka, więc raz), manifest.json, wzorce-zrodel.json (lista wzorców dla strażnika
 // w repo strony: ta sama co lib/sources.ts). Figura = próbki klatek (poza + rekwizyty w 25 punktach ruchu, już rozwiązane przez rig albo kontrakt pozy), z których przeglądarka
 // składa kształty silnikiem z silnik-build.mjs; dane pozy w kontrakcie figury-v2/poza@1 (jeśli są) dołączone obok.
-// Użycie: node scripts/strona/eksport.mjs --out <katalog> [--langs pl,en,…] [--commit <sha>]
+// Użycie: node scripts/strona/eksport.mjs --out <katalog> [--langs pl,en,…] [--commit <sha>] [--recenzja <plik>]
 import { execSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { appRequire, repoRoot } from './ts-loader.mjs';
+import { PLIK_RECENZJI, rodzinyZRecenzja } from './recenzja-figur.mjs';
 
 export const SCHEMA = 'techniqueatlas-eksport@1';
 /** Minimalny udział regionu na sylwetce: ten sam próg co lista „główne / pomocnicze” (MUSCLE_MIN_LOAD figur v2). */
@@ -36,7 +37,7 @@ export function makeSlugs(names) {
 function gitCommit() { try { return execSync('git rev-parse HEAD', { cwd: repoRoot, encoding: 'utf8' }).trim(); } catch { return 'unknown'; } }
 
 /** Wczytuje moduły aplikacji i zwraca konstruktor eksportu: buildLang(lang) → obiekt JSON. */
-export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit() } = {}) {
+export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(), recenzja = PLIK_RECENZJI } = {}) {
   const R = appRequire();
   const seed = R('lib/seed.ts'), i18n = R('lib/i18n.ts'), cat = R('lib/catalog.generated.ts'), cues = R('lib/cues/index.ts'), eq = R('lib/equipment.ts');
   const mm = R('lib/musclemap.ts'), MIN_LOAD = R('lib/figures/v2/muscles.ts').MUSCLE_MIN_LOAD;
@@ -63,9 +64,12 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
   };
   const r2 = o => typeof o === 'number' ? Math.round(o * 100) / 100 : Array.isArray(o) ? o.map(r2) : o && typeof o === 'object' ? Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined).map(([k, v]) => [k, r2(v)])) : o;
   const sample = at => Array.from({ length: FRAME_STEPS + 1 }, (_, i) => { const f = at(i / FRAME_STEPS); return r2({ pose: f.pose, props: f.props }); });
-  /** Wpis figury (niezależny od języka). Gotowa rodzina: próbki z rigu (także pozy błędów); poza gotową rodziną: tylko dane pozy z plików, jeśli są (pilotaż). */
+  /** Wpis figury (niezależny od języka). Rodzina ready z aktualną recenzją: próbki z rigu (także pozy błędów) albo z danych pozy; rodzina bez recenzji albo bez statusu ready: brak figury. */
+  /* bramka 4 (CLAUDE.md 27.10.2026, decyzja 9a 28.10.2026): tylko rodziny ready z wpisem recenzji i aktualnym skrótem (scripts/strona/recenzja-figur.mjs) */
+  const zRecenzja = rodzinyZRecenzja(v2.FAMILIES.filter(f => f.status === 'ready').map(f => f.id), recenzja);
   const figureEntry = key => {
-    const spec = v2.figureSpec(key), pose = poseFor(key, spec);
+    const spec = v2.figureSpec(key); if (!zRecenzja.has(spec ? spec.family : v2.familyOf(key))) return null;
+    const pose = poseFor(key, spec);
     if (spec) {
       const errors = ui.errorsOf(spec).map(({ error, cue }) => {
         const def = v2.errorDefOf(spec, error);
@@ -171,8 +175,8 @@ export const serialize = obj => JSON.stringify(obj) + '\n';
 
 if (process.argv[1] && import.meta.url === new URL(process.argv[1], 'file://').href) {
   const a = process.argv.slice(2), arg = n => { const i = a.indexOf(n); return i >= 0 ? a[i + 1] : undefined; };
-  const out = arg('--out'); if (!out) { console.error('użycie: node scripts/strona/eksport.mjs --out <katalog> [--langs pl,en] [--commit <sha>]'); process.exit(2); }
-  const ex = createExporter(arg('--commit') ? { commit: arg('--commit') } : {});
+  const out = arg('--out'); if (!out) { console.error('użycie: node scripts/strona/eksport.mjs --out <katalog> [--langs pl,en] [--commit <sha>] [--recenzja <plik>]'); process.exit(2); }
+  const ex = createExporter({ ...(arg('--commit') ? { commit: arg('--commit') } : {}), ...(arg('--recenzja') ? { recenzja: arg('--recenzja') } : {}) });
   const langs = arg('--langs') ? arg('--langs').split(',') : [...ex.languages];
   mkdirSync(out, { recursive: true });
   const manifest = { schema: SCHEMA, app: ex.app, languages: [], figures: 'figury.json', silhouette: 'sylwetka.json', patterns: 'wzorce-zrodel.json' };
