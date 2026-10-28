@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
 import { cuesFor, cueText, type CueSection } from '@/lib/cues';

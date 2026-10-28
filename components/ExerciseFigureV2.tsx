@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Pressable, Text, View, type TextStyle } from 'react-native';
+import { Pressable, View, type TextStyle } from 'react-native';
+import { Text } from '@/components/AppText';
 import Svg, { Circle, G, Path } from 'react-native-svg';
 import { useTheme, TEXT_SCALE_MAX, FW, font, type Theme } from '@/lib/theme';
 import { t, lang, exName } from '@/lib/i18n';

@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, type LayoutChangeEvent } from 'react-native';
+import { View, type LayoutChangeEvent } from 'react-native';
+import { Text } from '@/components/AppText';
 import Svg, { Polyline, Circle, Line, Rect, Text as SvgText } from 'react-native-svg';
 import { useTheme, FW, font, TYPE } from '@/lib/theme';
 import { t as tr, tp, lang } from '@/lib/i18n';

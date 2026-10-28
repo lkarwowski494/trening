@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Pressable, Text } from 'react-native';
+import { View, Pressable } from 'react-native';
+import { Text } from '@/components/AppText';
 import { confirmDelete } from '@/components/SwipeRow';
 import { useTheme, font, FW, RADIUS, SIZE, SPACE } from '@/lib/theme';
 import { lang } from '@/lib/i18n';
