@@ -55,7 +55,7 @@ export function exerciseParts({ ex, key, setKey, th, shortY }: { ex: Exercise; k
             {/* M1-audytor-generalny-033: data w całości w pierwszym wierszu, podsumowanie pod nią (zawija się), odstęp 8 pt — zamiast rzędu „data | podsumowanie” */}
             <Txt testID={`session-date-${i}`} style={{ ...FW.semibold }}>{fmtDate(s.shown)}</Txt>
             <Muted testID={`session-summary-${i}`} style={{ marginTop: 8 }}>{t('najlepsza')} {setSummary(ex, s.bestSet)}{s.volume ? ` · ${t('obj.')} ${fmtVol(s.volume)}` : ''}{s.bestE1rm ? ` · e1RM ${fmtW(s.bestE1rm, false)}` : ''}</Muted>
-            <Muted style={{ ...font('footnote'), marginTop: SPACE.xs }}>{s.sets.map(x => setSummary(ex, x)).join(' · ')}</Muted>
+            <Muted style={{ ...font('footnote'), marginTop: SPACE.xs }}>{s.sets.map(x => setSummary(ex, x)).join(', ') /* M1-audytor-generalny-029: lista serii — przecinek (wz. 28) */}</Muted>
           </View>))}
       </>;
   return { top, sessions: sessionsList, empty: false };

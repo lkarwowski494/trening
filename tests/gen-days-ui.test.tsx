@@ -29,7 +29,7 @@ const checkedDays = () => [0, 1, 2, 3, 4, 5, 6].filter(d => day(d).props.accessi
 const pickDays = async (ds: number[]) => { const cur = checkedDays(); for (let d = 0; d < 7; d++) if (cur.includes(d) !== ds.includes(d)) await tap(day(d)); await flushAll(5); };
 const inp = (o: Partial<GenInput> = {}): GenInput => ({ goal: 'hypertrophy', locationId: null, sessions: 3, minutes: 60, ...o });
 const wd = (i: number, l = 'pl-PL') => new Date(2024, 0, 1 + i).toLocaleDateString(l, { weekday: 'short' });
-const header = (r: ReturnType<typeof generate>, l = 'pl-PL') => r.days.map((ti, i) => (ti == null ? null : `${wd(i, l)} ${r.templates[ti].name}`)).filter(Boolean).join(' · ');
+const header = (r: ReturnType<typeof generate>, l = 'pl-PL') => r.days.map((ti, i) => (ti == null ? null : `${wd(i, l)} ${r.templates[ti].name}`)).filter(Boolean).join(', ');
 const PL_DAYS = ['poniedziałek', 'wtorek', 'środa', 'czwartek', 'piątek', 'sobota', 'niedziela'];
 
 describe('DayPicker — stałe i pomocnicze', () => {
@@ -60,7 +60,7 @@ describe('generator: wybór dni', () => {
   test('zaznacz / odznacz: podgląd ma dokładnie wybrane dni; liczba dni = sesje (4 → góra/dół); poza zakresem — komunikat, bez podglądu i zapisu', async () => {
     await boot('/generator');
     await tap(day(2)); await flushAll(5); expect(checkedDays()).toEqual([0, 4]);
-    expect(screen.getByText(header(generate(inp({ days: [0, 4] }))))).toBeTruthy(); expect(screen.getByText(/^pon\.? FBW [AB] · pt\.? FBW [AB]$/)).toBeTruthy();
+    expect(screen.getByText(header(generate(inp({ days: [0, 4] }))))).toBeTruthy(); expect(screen.getByText(/^pon\.? FBW [AB], pt\.? FBW [AB]$/)).toBeTruthy();
     await tap(day(1)); await tap(day(3)); await flushAll(5); expect(checkedDays()).toEqual([0, 1, 3, 4]);
     const r4 = generate(inp({ days: [0, 1, 3, 4] })); expect(screen.getByText(header(r4))).toBeTruthy(); expect(r4.templates.map(x => x.key)).toEqual(['upA', 'loA', 'upB', 'loB']);
     await pickDays([6]); expect(screen.queryByTestId('day-picker-range')).toBeNull(); /* 1 dzień — dozwolony (09.10.2026): sesja FBW i ostrzeżenie „oneday” */
@@ -113,7 +113,7 @@ describe('„Plan z moich szablonów”: ten sam wybór dni', () => {
     expect(day(0).props.accessibilityHint).toBe('Dni treningowe w tygodniu');
     await pickDays([0, 2, 3, 5, 6]); const r = ownPlan({ templateIds: ids, sessions: 5, days: [0, 2, 3, 5, 6] })!;
     expect(r.days.flatMap((x, d) => (x ? [d] : []))).toEqual([0, 2, 3, 5, 6]);
-    expect(screen.getByText(r.days.map((id, i) => (id ? `${wd(i)} ${S().templates.find(x => x.id === id)!.name}` : null)).filter(Boolean).join(' · '))).toBeTruthy();
+    expect(screen.getByText(r.days.map((id, i) => (id ? `${wd(i)} ${S().templates.find(x => x.id === id)!.name}` : null)).filter(Boolean).join(', '))).toBeTruthy();
     await tap(screen.getByText('Zapisz plan')); await flushAll(5); await flushAll(10); /* ZM-03 (21.10.2026): bez aktywnego planu zapis aktywuje plan bez pytania */
     expect(plan.weekPlanDays()).toEqual(r.days); expect(plan.planName()).toBe('Moje szablony, 5× w tygodniu');
     await restart('/plan'); expect(plan.weekPlanDays()).toEqual(r.days);

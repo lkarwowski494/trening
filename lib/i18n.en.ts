@@ -472,6 +472,9 @@ export const EN: Record<string, string> = {
   'Dane z nowszej wersji aplikacji — zaktualizuj aplikację': 'Data from a newer app version — update the app',
   'Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.': 'The data on this phone was saved by a newer version (schema {a}); this version supports up to {b}. Nothing is changed — install the latest version from the App Store. You can also send the data as a file.',
   'Wyślij dane': 'Send data',
+  'Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.': 'Don\'t delete the app — your data and backups go with it. First tap “Send data” and save the file somewhere off your phone.',
+  'Kopia bazy w Plikach': 'Database copy in Files',
+  'Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.': 'Files → On My iPhone → {app} → Backup → {folder}. Save this folder somewhere off your phone.',
   'Za dużo zapisanych planów': 'Too many saved plans',
   'W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.': 'There are already {n} plans in “Other plans” — delete one to add a new one.',
   'Brak zgody na powiadomienia — przypomnienia i koniec przerwy nie przyjdą. Zgodę włączysz w Ustawieniach iOS.': 'No notification permission — reminders and end-of-rest alerts will not arrive. You can allow notifications in iOS Settings.',
@@ -678,7 +681,7 @@ export const EN: Record<string, string> = {
   'Circus bell (hantel z grubym uchwytem)': 'Circus bell',
   'max': 'max',
   '{n} h': '{n} h',
-  '{n} km': '{n} km',
+  '{n} km': '{n} km', '{n} kg': '{n} kg', '{n} lb': '{n} lb',
   '{n} m': '{n} m',
   '{n} s': '{n} s',
   'Filtr miejsca wyłączony: {l}': 'Place filter off: {l}',
@@ -923,6 +926,7 @@ export const EN: Record<string, string> = {
   'Otwiera szczegóły Progresji.': 'Opens the Progression details.',
   '{title} ({sub}): objętość {v}, {p}; serie {s}, {d}': '{title} ({sub}): volume {v}, {p}; sets {s}, {d}',
   'Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.': 'First workout: the big “Start” button at the top, or “Empty workout”.',
+  'Pierwszy trening: duży przycisk „Pusty trening” u góry.': 'First workout: the big “Empty workout” button at the top.', 'Szablony i plan': 'Templates and plan',
   'Brak serii w tym i poprzednim okresie.': 'No sets in this or the previous period.',
   'Brak serii w tym tygodniu.': 'No sets this week.',
   'więcej niż poprzednio': 'more than before',
@@ -959,6 +963,12 @@ export const EN: Record<string, string> = {
   '{price}/{period}': '{price}/{period}',
   'Kup na zawsze': 'Buy forever',
   'Subskrybuj': 'Subscribe',
+  'Zmień plan': 'Change plan', /* przełącznik zwiniętej listy planów przy aktywnym planie (DEC-09 a, 27.10.2026) */
+  'Aktualny plan': 'Current plan', /* plan, który osoba już ma — niewybieralny na ekranie zakupu */
+  'Masz plan: miesięczny': 'Your plan: monthly', /* DEC-09 a + 1A (28.10.2026): nagłówek karty stanu na ekranie zakupu i tytuł wiersza w Ustawieniach — rodzaj planu, nie nazwa z wyboru planu */
+  'Masz plan: roczny': 'Your plan: yearly',
+  'Masz plan: dożywotni': 'Your plan: lifetime',
+  'Przejdź na ten plan': 'Switch to this plan', /* przycisk zakupu innego planu subskrypcji, gdy osoba ma już subskrypcję (arkusz Apple zmiany planu) */
   'Czeka na zgodę organizatora rodziny.': 'Waiting for approval from the family organizer.',
   'Przywrócono zakupy.': 'Purchases restored.',
   'Nie znaleziono zakupów dla tego konta Apple.': 'No purchases found for this Apple account.',
@@ -1179,6 +1189,7 @@ export const EN: Record<string, string> = {
   'Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.': 'Want more? Pro removes the limit: subscribe, or pay once for good.',
   'Super, trenuję dalej!': 'Awesome, keep training!',
   'Zobacz plany Pro ›': 'See Pro plans ›',
+  'Zobacz plany Pro': 'See Pro plans', /* M1-037 A (DEC-07 b, 27.10.2026): tytuł wiersza w Ustawieniach → Subskrypcja w stanie darmowym; = „Zobacz plany Pro ›” bez „›” (wiersz dokłada „›” sam) */
   'Historia jest już w telefonie': 'Your history is now on your phone',
   'Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.': 'Imported workouts, records and charts are always available, even offline. Train {n} days a month for free — Pro removes the limit, with a one-time option too.',
   'Skąd ta cena? Poznaj indeks espresso.': 'Why this price? See the espresso index.',

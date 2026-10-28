@@ -1,4 +1,4 @@
-/* L-009 (decyzja właściciela 21.10.2026): hak pre-push w repo (lint + check:readme + check:matrix), instalowany przez `prepare`,
+/* L-009 (decyzja właściciela 21.10.2026): hak pre-push w repo (lint + check:pochodne, wcześniej check:readme + check:matrix), instalowany przez `prepare`,
    plus krok „sprawdź wynik tests.yml po wypchnięciu” w poleceniach dla agentów, które wypychają. Sprawdzamy hak na prawdziwym git push
    (także z worktree), z podstawionym `npm`, żeby nie uruchamiać lintu w teście. */
 import { chmodSync, copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, symlinkSync, writeFileSync } from 'fs';
@@ -67,9 +67,9 @@ describe('hak pre-push — plik (L-009)', () => {
     expect(spawnSync('sh', ['-n', HAK], { encoding: 'utf8' }).status).toBe(0);
     expect(bezKomentarzy(hakTekst())).not.toMatch(/\[\[|\bfunction\b|<<<|\bsource\b|\bshopt\b/); /* bez składni bash */
   });
-  test('uruchamia lint, check:readme, check:matrix — w tej kolejności; przy zmianach w docs/ (L-037) także numeruj-lekcje --sprawdz i dwa testy dokumentów, nic więcej', () => {
+  test('uruchamia lint, check:pochodne (decyzja 8a, 28.10.2026) — w tej kolejności; przy zmianach w docs/ (L-037) także numeruj-lekcje --sprawdz i dwa testy dokumentów, nic więcej', () => {
     const wywolaniaNpm = [...bezKomentarzy(hakTekst()).matchAll(/^\s*sprawdz\s+(\S+)/gm)].map(m => m[1]);
-    expect(wywolaniaNpm).toEqual(['lint', 'check:readme', 'check:matrix']);
+    expect(wywolaniaNpm).toEqual(['lint', 'check:pochodne']);
     expect(bezKomentarzy(hakTekst()).match(/^\s*if ! npm run "\$1" >&2; then$/gm) || []).toHaveLength(1); /* jedyne wywołanie npm */
     const kod = bezKomentarzy(hakTekst());
     expect(kod).not.toMatch(/npm run (jest|verify|typecheck|test)|expo export/);
@@ -92,17 +92,16 @@ describe('hak pre-push — działanie z podstawionym npm', () => {
   const uruchom = (npm: ReturnType<typeof falszywyNpm>, fail = '', input = 'refs/heads/x 1234567890abcdef refs/heads/x 0000000000000000\n') =>
     spawnSync(HAK, [], { cwd: root, env: zNpm(npm, fail), input, encoding: 'utf8' });
 
-  test('zielone: trzy polecenia w kolejności, kod 0, czas w komunikacie', () => {
+  test('zielone: dwa polecenia (lint, check:pochodne) w kolejności, kod 0, czas w komunikacie', () => {
     const npm = falszywyNpm();
     const r = uruchom(npm);
     expect(r.status).toBe(0);
-    expect(wywolania(npm.log)).toEqual(['run lint', 'run check:readme', 'run check:matrix']);
+    expect(wywolania(npm.log)).toEqual(['run lint', 'run check:pochodne']);
     expect(r.stderr).toMatch(/zielone po \d+ s/);
   });
   test.each([
     ['lint', ['run lint'], 'npm run lint'],
-    ['check:readme', ['run lint', 'run check:readme'], 'node scripts/readme.mjs --write'],
-    ['check:matrix', ['run lint', 'run check:readme', 'run check:matrix'], 'node scripts/test-matrix.mjs --write'],
+    ['check:pochodne', ['run lint', 'run check:pochodne'], 'UPDATE_*=1'],
   ])('błąd w %s: przerywa tutaj, kod 1, po polsku mówi jak naprawić', (nazwa, oczekiwane, naprawa) => {
     const npm = falszywyNpm();
     const r = uruchom(npm, nazwa);
@@ -124,7 +123,7 @@ describe('hak pre-push — działanie z podstawionym npm', () => {
     const npm = falszywyNpm();
     const r = uruchom(npm, '', '(delete) 0000 refs/heads/a 1234\nrefs/heads/b 1234567890 refs/heads/b 0000\n');
     expect(r.status).toBe(0);
-    expect(wywolania(npm.log)).toHaveLength(3);
+    expect(wywolania(npm.log)).toHaveLength(2);
   });
 });
 
@@ -228,20 +227,20 @@ describe('hak na prawdziwym git push (także z worktree)', () => {
     const npm = falszywyNpm();
     const dobry = git(dir, ['push', '-u', 'origin', 'main'], zNpm(npm));
     expect(dobry.status).toBe(0);
-    expect(wywolania(npm.log)).toEqual(['run lint', 'run check:readme', 'run check:matrix']);
+    expect(wywolania(npm.log)).toEqual(['run lint', 'run check:pochodne']);
     expect(gałęzieZdalne(zdalne)).toEqual(['main']);
 
     git(dir, ['checkout', '-q', '-b', 'zla']);
-    const zly = git(dir, ['push', 'origin', 'zla'], zNpm(npm, 'check:readme'));
+    const zly = git(dir, ['push', 'origin', 'zla'], zNpm(npm, 'check:pochodne'));
     expect(zly.status).not.toBe(0);
-    expect(zly.stderr).toContain('node scripts/readme.mjs --write');
+    expect(zly.stderr).toContain('Jak naprawić');
     expect(gałęzieZdalne(zdalne)).toEqual(['main']);
 
-    const obejscie = git(dir, ['push', '--no-verify', 'origin', 'zla'], zNpm(npm, 'check:readme'));
+    const obejscie = git(dir, ['push', '--no-verify', 'origin', 'zla'], zNpm(npm, 'check:pochodne'));
     expect(obejscie.status).toBe(0);
     expect(gałęzieZdalne(zdalne).sort()).toEqual(['main', 'zla']);
   });
-  test('zmiany tylko w dokumentach (względem origin/main) pomijają lint; zmiana kodu przywraca wszystkie trzy', () => {
+  test('zmiany tylko w dokumentach (względem origin/main) pomijają lint; zmiana kodu przywraca oba sprawdzenia', () => {
     const { dir } = repoProbne();
     zainstaluj(dir);
     const npm = falszywyNpm();
@@ -254,13 +253,13 @@ describe('hak na prawdziwym git push (także z worktree)', () => {
     expect(git(dir, ['commit', '-q', '-m', 'dok']).status).toBe(0);
     const dok = git(dir, ['push', 'origin', 'dok'], zNpm(npm));
     expect(dok.status).toBe(0);
-    expect(wywolania(npm.log)).toEqual(['run check:readme', 'run check:matrix', 'npx jest tests/audit-m1-p4b-queue.test.ts tests/verify-docs.test.ts [ref=dok]']); /* L-037: zmiana w docs/ → testy dokumentów */
+    expect(wywolania(npm.log)).toEqual(['run check:pochodne', 'npx jest tests/audit-m1-p4b-queue.test.ts tests/verify-docs.test.ts [ref=dok]']); /* L-037: zmiana w docs/ → testy dokumentów */
     expect(dok.stderr).toContain('tylko w dokumentach');
     writeFileSync(npm.log, '');
     writeFileSync(join(dir, 'plik.txt'), '2\n');
     git(dir, ['commit', '-q', '-am', 'kod']);
     expect(git(dir, ['push', 'origin', 'dok'], zNpm(npm)).status).toBe(0);
-    expect(wywolania(npm.log)).toEqual(['run lint', 'run check:readme', 'run check:matrix']);
+    expect(wywolania(npm.log)).toEqual(['run lint', 'run check:pochodne']);
   });
   test('usunięcie gałęzi na zdalnym nie uruchamia sprawdzeń', () => {
     const { dir, zdalne } = repoProbne();

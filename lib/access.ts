@@ -62,6 +62,9 @@ export interface LastKnownAccess {
   level: AccessLevel;
   /** Koniec ostatnio znanego dostępu (ms); null = bez końca (dożywotni). Dla level 'free' pomijane. */
   expiresAt?: number | null;
+  /** Tylko level 'free': chwila, w której aplikacja zobaczyła koniec pełnego dostępu (ms). Sklep natywny po wygaśnięciu, zwrocie albo cofnięciu nie zwraca
+   * już transakcji, więc bez tego zapisu P3 B nie ma od czego liczyć (M1-audytor-generalny-002). Brak = nigdy nie widziano pełnego dostępu. */
+  endedAt?: number;
 }
 
 /** Kontekst (pierwszy argument `access`): środowisko i pamięć aplikacji. */
@@ -140,6 +143,14 @@ export function freeSince(entitlements: readonly Entitlement[] | null | undefine
     if (since == null || end > since) since = end;
   }
   return since;
+}
+
+/** P3 B z pamięcią aplikacji: koniec uprawnień z listy sklepu albo zapamiętany koniec pełnego dostępu (`lastKnown.endedAt`) — późniejszy z nich.
+ * Aktywne uprawnienie → null (jak freeSince). M1-audytor-generalny-002: sklep natywny nie zwraca wygasłych transakcji. */
+export function freeSinceWithMemory(ctx: AccessContext, entitlements: readonly Entitlement[] | null | undefined, now: number): number | null {
+  if ((entitlements ?? []).some(e => entitlementActive(e, now))) return null;
+  const fromList = freeSince(entitlements, now); const lk = ctx?.lastKnown; const mem = lk?.level === 'free' && finite(lk.endedAt) && lk.endedAt <= now ? lk.endedAt : null;
+  return fromList == null ? mem : mem == null ? fromList : Math.max(fromList, mem);
 }
 
 /* ---------- licznik treningów na żywo ---------- */
@@ -235,7 +246,7 @@ export function canStartLive(
 ): StartDecision {
   const eff = effectiveAccess(ctx, entitlements, now, cfg); const limit = cfg.FREE_TRAINING_DAYS_PER_MONTH;
   if (eff.level === 'full') return { allowed: true, state: eff.state, level: 'full', remaining: Infinity, used: 0, limit, resetsAt: null, silent: false };
-  const days = trainingDays(starts, now, nowOffMin, freeSince(entitlements, now), cfg); const used = days.size;
+  const days = trainingDays(starts, now, nowOffMin, freeSinceWithMemory(ctx, entitlements, now), cfg); const used = days.size;
   const allowed = used < limit || days.has(dayKey(now, nowOffMin));
   return { allowed, state: eff.state, level: 'free', remaining: Math.max(0, limit - used), used, limit, resetsAt: allowed ? null : nextMonthStart(now, nowOffMin), silent: eff.silent && allowed };
 }

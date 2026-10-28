@@ -66,7 +66,7 @@ describe('ekran', () => {
   });
   test('ekran Trening: same zarchiwizowane szablony — jak brak szablonów („Pierwsze kroki” z „Planowaniem”)', async () => {
     await boot(() => { mk('E', 'Siła', true); }, '/');
-    expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(within(screen.getByTestId('first-steps')).getAllByText('Planowanie')).toHaveLength(2); /* UX-12 A, P4 A: „Pierwsze kroki” zamiast komunikatu o braku szablonów */
+    expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(within(screen.getByTestId('first-steps')).getAllByText('Planowanie')).toHaveLength(1); expect(within(screen.getByTestId('first-steps')).getAllByText('Szablony i plan')).toHaveLength(1); /* M1-audytor-generalny-025: krok 1 „Szablony i plan”; UX-12 A, P4 A: „Pierwsze kroki” zamiast komunikatu o braku szablonów */
   });
   test('English', async () => {
     await fresh(undefined, 'en'); mk('A'); mk('E', 'Strength', true); await act(async () => { await store.flush(); });

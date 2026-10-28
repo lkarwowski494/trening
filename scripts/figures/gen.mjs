@@ -12,6 +12,8 @@ const FIG = join(root, 'data/zrodla/figures.json');
 const CUES = join(root, 'data/zrodla/cues.json');
 const PL = join(root, 'lib/cues/text/pl.json');
 const OUT = join(root, 'docs/research/28-figury.md');
+/** Zapis recenzji bramki 4 (CLAUDE.md 27.10.2026): figury ukryte w aplikacji są oznaczone w dokumencie (przepuszczanie: scripts/zrodla-runtime.mjs). */
+const REVIEW = join(root, 'docs/research/figury-recenzja.json');
 
 export const CHECKS = ['horiz', 'joint', 'alignX', 'line', 'low', 'above', 'ahead', 'behind', 'touch'];
 export const PROPS = ['plate', 'db', 'kb', 'grip', 'cable', 'rect', 'line', 'bar', 'rod', 'plank'];
@@ -76,7 +78,7 @@ const md = s => String(s).replace(/\|/g, '\\|');
 const FN = { start: 'pozycja wyjściowa', mid: 'w trakcie', end: 'pozycja końcowa' };
 const pose = p => Object.entries(p).map(([k, v]) => `${k} ${Array.isArray(v) ? v.join('/') : v}`).join(', ');
 
-export function render(fig, cues, pl) {
+export function render(fig, cues, pl, review = existsSync(REVIEW) ? JSON.parse(readFileSync(REVIEW, 'utf8')) : null) {
   const keys = Object.keys(fig.exercises);
   const L = [];
   L.push('# 28 — Figury ruchu (generowane)', '');
@@ -106,7 +108,9 @@ export function render(fig, cues, pl) {
       L.push(`- **${FN[fr.n]}** — ${pose(fr.p)}`);
       for (const w of fr.why) L.push(`  - ${describe(w)} ← \`${w.c}\`: „${md(pl[w.c])}”`);
     }
-    L.push(`- Uproszczenie ilustracyjne: pozostałe kąty${f.note ? `. ${md(f.note)}` : '.'}`, '');
+    L.push(`- Uproszczenie ilustracyjne: pozostałe kąty${f.note ? `. ${md(f.note)}` : '.'}`);
+    const rv = review?.v1?.[k]; if (rv?.werdykt === 'ukryta') L.push(`- **Ukryta w aplikacji** po recenzji bramki 4 (${rv.data}, docs/research/figury-recenzja.json): ${md(rv.wada)}`);
+    L.push('');
   }
   L.push(`## Bez figury — lista otwarta (${Object.keys(fig.open).length})`, '');
   L.push('| Ćwiczenie | Powód |', '|---|---|');

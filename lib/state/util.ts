@@ -40,6 +40,8 @@ export const REST_MAX = 1800;
 export const DURATION_MAX_SEC = 86400;
 /** M1-audytor-generalny-002: jak długo (ms) kopia surowego zapisu sprzed migracji schematu czeka w bazie (30 dni — liczba produktowa, nie merytoryczna). */
 export const PREMIGRATE_KEEP_MS = 30 * 24 * 3600e3;
+/** M1-audytor-generalny-003: maksymalna długość notatki serii — jedna wartość dla importu CSV i okien notatki (edycja historii, trening w toku). */
+export const SET_NOTE_MAX = 500;
 /** Runda 40: przycięcie do n jednostek UTF-16 bez rozcinania emoji (pary zastępczej) i bez spacji na końcu. */
 export const clampName = (s: string, n = NAME_MAX) => {
   let r = s.slice(0, Math.max(0, n));

@@ -71,7 +71,7 @@ export default function HistoryDetail() {
             <View key={s.id}>
               {/* Runda 50: wiersz czytany przez VoiceOver jako całość „nagłówek: wartość” (wcześniej same liczby). */}
               <View accessibilityLanguage={lang()} accessible accessibilityLabel={heads.map((h, k) => `${k === 1 && showW && ex ? loadLabel(ex, impl) : h}: ${spoken[k]}`).join(', ')} style={{ flexDirection: 'row', paddingVertical: 4 }}>{vals.map((v, k) => <React.Fragment key={k}>{cell(v, colFlex(k, vals.length, anyBand))}</React.Fragment>)}</View>
-              {prs.get(s.id) ? <Muted style={{ ...font('footnote'), color: th.band, ...FW.semibold }}>PR: {prs.get(s.id)!.map(k => t(k)).join(', ')}</Muted> : null}
+              {prs.get(s.id) ? <Muted style={{ ...font('footnote'), color: th.band, ...FW.semibold }}>{t('Rekord: {list}', { list: prs.get(s.id)!.map(k => t(k)).join(', ') })}</Muted> : null}
               {s.note ? <Muted style={font('footnote')}>{s.note}</Muted> : null}
             </View>); })}
         </View>); })}

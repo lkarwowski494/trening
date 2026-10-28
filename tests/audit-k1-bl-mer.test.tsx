@@ -63,35 +63,37 @@ describe('MER2-07: podpis wskazówek bez nazw organizacji i marek', () => {
  * MER2-08 (= rekomendacja MER-14): w skali RIR wpis 0–5; więcej niż 5 powtórzeń w zapasie = „lekko”. Helms i in. 2016 (PMC4961270): poniżej RPE 5
  * skala opisuje wysiłek słowami („1–2 RPE = ‘little to no effort,’ 3–4 RPE = ‘light effort’”), nie powtórzeniami w zapasie — RIR 6–9 nie
  * przeliczamy już na RPE 4–1. Zapis „lekko” = RPE_LIGHT (4, górna granica „light effort”); w RIR pokazywane jako „6+”.
+ * Zmiana 27.10.2026 (M1-audytor-generalny-020, DEC-04 a): źródło grupuje 4–6 RIR przy RPE 5–6 („scores of 5–6 were grouped as 4–6 RIR”), więc wpis 0–6,
+ * RIR 6 → RPE 5, „lekko” od RIR 7 (pokazywane „7+”); test zmieniony razem z zachowaniem (tests/regress.test.tsx, RD-02).
  */
-describe('MER2-08: RIR > 5 = „lekko”', () => {
+describe('MER2-08 (zmiana M1-audytor-generalny-020): RIR > 6 = „lekko”', () => {
   const scale = (v: 'rpe' | 'rir') => { const st = store.getState(); st.settings.showRpe = true; st.settings.effortScale = v; store.save(); };
   beforeEach(async () => { await fresh(); });
-  test('logika: RIR 0–5 = 10 − RPE; RIR > 5 zapisuje RPE_LIGHT; RPE < 5 pokazuje się w RIR jako RIR_MAX + 1 („6+”); RPE bez zmian', () => {
-    expect([store.RIR_MAX, store.RPE_LIGHT]).toEqual([5, 4]);
+  test('logika: RIR 0–5 = 10 − RPE; RIR 5–6 → RPE 5; RIR > 6 zapisuje RPE_LIGHT; RPE < 5 pokazuje się w RIR jako RIR_MAX + 1 („7+”); RPE bez zmian', () => {
+    expect([store.RIR_MAX, store.RPE_LIGHT, store.RPE_RIR_MIN]).toEqual([6, 4, 5]);
     scale('rir');
-    expect([0, 2, 5, 5.5, 6, 9, 12].map(v => store.effortIn(v))).toEqual([10, 8, 5, 4, 4, 4, 4]);
-    expect([10, 8, 5, 4.5, 4, 1].map(r => store.effortOut(r))).toEqual([0, 2, 5, 6, 6, 6]);
-    expect([5, 4, 1].map(r => store.effortText(r))).toEqual(['5', '6+', '6+']);
-    expect([store.effortField(4), store.effortField('')]).toEqual([6, '']);
+    expect([0, 2, 5, 5.5, 6, 6.5, 9, 12].map(v => store.effortIn(v))).toEqual([10, 8, 5, 5, 5, 4, 4, 4]);
+    expect([10, 8, 5, 4.5, 4, 1].map(r => store.effortOut(r))).toEqual([0, 2, 5, 7, 7, 7]);
+    expect([5, 4, 1].map(r => store.effortText(r))).toEqual(['5', '7+', '7+']);
+    expect([store.effortField(4), store.effortField('')]).toEqual([7, '']);
     /* niezmiennik: RIR 0–5 co 0,5 → RPE → RIR bez zmian; „lekko” → RPE_LIGHT → „lekko” */
     for (let v = 0; v <= 5; v += 0.5) expect(store.effortOut(store.effortIn(v) as number)).toBe(v);
     expect(store.effortIn(store.effortOut(store.RPE_LIGHT))).toBe(store.RPE_LIGHT);
     scale('rpe'); expect([store.effortIn(3), store.effortOut(3), store.effortText(3), store.effortText(7.5)]).toEqual([3, 3, '3', '7,5']);
   });
-  test('opis serii i ekran historii: RPE 3 w skali RIR — „RIR 6+”', async () => {
+  test('opis serii i ekran historii: RPE 3 w skali RIR — „RIR 7+”', async () => {
     const w = addWorkout(Date.now() - 864e5, [['Back Squat', [{ weight: 100, reps: 5, rpe: 3 }]]]); scale('rir');
-    expect(store.setSummary(ex('Back Squat'), w.exercises[0].sets[0])).toMatch(/ RIR 6\+$/);
+    expect(store.setSummary(ex('Back Squat'), w.exercises[0].sets[0])).toMatch(/ RIR 7\+$/);
     await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: `/history/${w.id}` }); await flushAll(10);
-    expect(appScreen.getByLabelText(/RIR: 6\+/)).toBeTruthy();
+    expect(appScreen.getByLabelText(/RIR: 7\+/)).toBeTruthy();
   });
-  test('Ustawienia: opis skali RIR mówi o zakresie 0–5 i „lekko” (z parametrów RIR_MAX, RPE_LIGHT) — PL i EN', async () => {
+  test('Ustawienia: opis skali RIR mówi o zakresie 0–6 i „lekko” (z parametrów RIR_MAX, RPE_LIGHT, RPE_RIR_MIN) — PL i EN', async () => {
     scale('rpe'); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/more/settings' }); await flushAll(10);
-    await openInfo('effort-scale'); expect(appScreen.getByText('RIR wpisujesz w zakresie 0–5; więcej niż 5 powtórzeń w zapasie zapisze się jako „lekko” (RPE 4), bo poniżej RPE 5 skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.')).toBeTruthy();
+    await openInfo('effort-scale'); expect(appScreen.getByText('RIR wpisujesz w zakresie 0–6; więcej niż 6 powtórzeń w zapasie zapisze się jako „lekko” (RPE 4), bo poniżej RPE 5 skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.')).toBeTruthy();
     applyLang('en'); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/more/settings', locale: 'en' }); await flushAll(10);
-    await openInfo('effort-scale'); expect(appScreen.getByText('Enter RIR from 0 to 5; more than 5 reps in reserve is saved as “light” (RPE 4), because below RPE 5 the scale describes effort in words, not reps in reserve.')).toBeTruthy();
+    await openInfo('effort-scale'); expect(appScreen.getByText('Enter RIR from 0 to 6; more than 6 reps in reserve is saved as “light” (RPE 4), because below RPE 5 the scale describes effort in words, not reps in reserve.')).toBeTruthy();
   });
 });
 

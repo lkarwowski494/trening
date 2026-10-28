@@ -7,11 +7,11 @@ każdy ekran z `app/` występuje w co najmniej jednym przepływie (nowy ekran be
 
 ## Podsumowanie
 
-Przepływów w katalogu: **157** (realny: 135, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
+Przepływów w katalogu: **158** (realny: 136, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
 
 | Stan startowy | Przepływów | Opis |
 |---|---|---|
-| `nowy` | 21 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
+| `nowy` | 22 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
 | `istniejacy` | 115 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
 | `aktualizacja` | 6 | Po aktualizacji z poprzedniej wersji: dane z poprzedniego buildu, nowa wersja zainstalowana na tej samej instalacji (33 → 34). |
 | `kopia` | 5 | Po przywróceniu kopii lub imporcie: dane wczytane z pliku kopii po wyczyszczeniu. |
@@ -19,7 +19,7 @@ Przepływów w katalogu: **157** (realny: 135, brzegowy: 22); pominięte jako te
 
 | Pokrycie | Przepływów |
 |---|---|
-| Maestro | 128 |
+| Maestro | 129 |
 | Maestro (eksperyment) | 4 |
 | Jest | 10 |
 | Telefon | 15 |
@@ -179,7 +179,7 @@ Przepływów w katalogu: **157** (realny: 135, brzegowy: 22); pominięte jako te
 | US-09 | **Odczyt Apple Health — przełącznik wyłączony: żadnej linii Zdrowia w panelach** — Ustawienia → przełącznik odczytu wyłączony (domyślnie) → Panel dnia, „Ten tydzień” i sesja bez linii Apple Health | Ekran jak przed 0.16. | `istniejacy` | realny | Maestro: `.maestro/20-zdrowie-odczyt.yaml` |
 | US-10 | **Odczyt Apple Health z prawdziwymi danymi (kroki, tętno, kcal, trening z zegarka)** — Włącz odczyt → zezwól w arkuszu → Plan → dzień z aktywnością → linie Zdrowia; sesja: tętno i kcal z zegarka | Dane zgodne z aplikacją Zdrowie; cofnięcie zgody w Zdrowiu usuwa linie. | `istniejacy` | realny | Telefon (lista kontrolna wydania) — Symulator CI nie ma danych Zdrowia (kroków, tętna, zegarka) ani sterowania nimi, a arkusz zgody jest oknem systemowym (docs/29 pkt 7). |
 | US-11 | **Odmowa zgody na powiadomienia: ostrzeżenie w Ustawieniach i „Otwórz Ustawienia iOS”** — Pierwszy dzień planu → okno przypomnienia → „Zezwól” → systemowe „Nie zezwalaj” → Ustawienia → komunikat o braku zgody i przycisk „Otwórz Ustawienia iOS” | Aplikacja działa bez powiadomień, wyjaśnia skutek i wskazuje drogę naprawy. | `nowy` | realny | Maestro (eksperyment): `.maestro/40-odmowa-powiadomien.yaml` |
-| US-12 | **Subskrypcja: karta w Ustawieniach, ekran zakupu, ceny, przywracanie, limit, zakup** — Ustawienia → karta „Subskrypcja” → ekran zakupu → Panel „Test store”: wygaszenie → ceny → „Przywróć zakupy” → Start ponad limit dni → ekran zakupu → zakup | Dostęp zgodny ze stanem sklepu; zamknięcie ekranu zakupu przyciskiem „Zamknij”. | `istniejacy` | realny | Maestro: `.maestro/21-subskrypcja.yaml` |
+| US-12 | **Subskrypcja: karta w Ustawieniach, ekran zakupu, ceny, przywracanie, limit, zakup** — Ustawienia → karta „Subskrypcja” (wiersz z dostępem: „Masz plan: {rodzaj planu}”, bez planu: „Zobacz plany Pro”) → ekran zakupu → Panel „Test store”: wygaszenie → ceny → „Przywróć zakupy” → Start ponad limit dni → ekran zakupu → zakup → Po zakupie subskrypcji: nagłówek „Masz plan: {rodzaj planu}”, lista planów zwinięta pod „Zmień plan”, po rozwinięciu „Aktualny plan” przy kupionym i „Przejdź na ten plan” | Dostęp zgodny ze stanem sklepu; zamknięcie ekranu zakupu przyciskiem „Zamknij”; po zakupie ekran nie oferuje kupna posiadanego planu. | `istniejacy` | realny | Maestro: `.maestro/21-subskrypcja.yaml` |
 | US-13 | **Prawdziwy zakup w piaskownicy Apple: każdy plan, przywrócenie, zwrot, Chmura rodzinna, limit dni** — Zainstaluj z TestFlight, konto piaskownicy → Kup, przywróć, sprawdź stan po wygaśnięciu, tryb samolotowy, zwrot, Chmura rodzinna i blokadę po limicie dni | Dostęp zgodny ze stanem sklepu. | `istniejacy` | realny | Telefon (lista kontrolna wydania) — Okna zakupu Apple i konto piaskownicy są poza kontrolą Maestro; build E2E ma sztuczny sklep (EXPO_PUBLIC_STORE_FAKE), więc nie sprawdza prawdziwego StoreKit. |
 | US-14 | **O aplikacji, licencje open source, wersja** — Więcej → O aplikacji → „Licencje open source” | Lista pakietów i bibliotek natywnych. | `istniejacy` | brzegowy | Maestro: `.maestro/15-masa-licencje.yaml` |
 | US-15 | **„Napisz do nas” (poczta) i prośba o ocenę w App Store** — Więcej → O aplikacji → „Napisz do nas” → okno poczty → Po kilku treningach — systemowa prośba o ocenę | Poczta z adresem i wersją; prośba o ocenę nie częściej niż pozwala iOS. | `istniejacy` | brzegowy | Telefon (lista kontrolna wydania) — Okno poczty i systemowa prośba o ocenę to okna systemowe, nieobecne w TestFlight/na symulatorze CI. |
@@ -188,6 +188,7 @@ Przepływów w katalogu: **157** (realny: 135, brzegowy: 22); pominięte jako te
 | US-18 | **Objaśnienie pod ⓘ: rozwiń w miejscu, zwiń, źródło zostaje w tekście** — Ustawienia → przy „Widok treningu” stuknij ⓘ → Przeczytaj opis pod polem; stuknij ⓘ ponownie → To samo przy nagłówku „Cel serii na partię w tygodniu” (źródło ACSM) i przy polu „Zapowiedzi głosowe” | Tekst objaśniający pojawia się pod nagłówkiem i znika po drugim stuknięciu; ⓘ nie zmienia wyboru; na wierzchu zostaje tylko krótki opis; stan nie jest zapamiętywany. | `istniejacy` | realny | Maestro: `.maestro/53-objasnienia-info.yaml` |
 | US-19 | **Usunięcie miejsca przyciskiem na dole ekranu miejsca (okno jak przy geście, Anuluj zostawia)** — Więcej → Miejsca i sprzęt → miejsce → przewiń na dół → „Usuń miejsce” → Okno „Usunąć miejsce?” [Anuluj, Usuń] — to samo co przy geście na liście; „Anuluj” zostawia miejsce | Miejsce da się usunąć bez gestu (miejsca głównego, gdy są inne, nie usuwa się — brak przycisku). | `istniejacy` | realny | Maestro: `.maestro/06-miejsca.yaml` |
 | US-20 | **Okno „Uczciwe zasady” po pierwszym treningu na żywo w stanie darmowym: raz, przyciski główny i drugorzędny** — Trening z szablonu; w trakcie dostęp wygasa (sztuczny sklep) → „Zakończ” → potwierdzenie → Na podsumowaniu okno z tytułem, „Super, trenuję dalej!” i „Zobacz plany Pro ›” → „Zobacz plany Pro ›” → ekran zakupu; po zamknięciu okna już nie ma | Okno pokazuje się raz, tylko w stanie darmowym; drugorzędny przycisk otwiera ekran zakupu. | `istniejacy` | realny | Maestro: `.maestro/56-uczciwe-zasady.yaml` |
+| US-21 | **Duży tekst dostępności: ekran Trening bez planu, z planem i w treningu bez uciętych ikon i przycisków** — W systemie: Ustawienia → Dostępność → Rozmiar tekstu → Większe rozmiary dostępności, suwak na maksimum → Uruchom aplikację → ekran Trening (bez planu), potem z planem tygodnia i z treningiem w toku → Przewiń ekran Trening i stuknij przycisk startu (zaplanowanego i „Inny trening”) | Przy największym tekście systemu przyciski startu, znaki-ikony (›, ▸) i etykiety sterujące są w całości widoczne i da się je stuknąć (limit powiększenia znaków GLYPH_SCALE_MAX). | `nowy` | realny | Maestro: `.maestro/58-duzy-tekst.yaml` |
 
 ## DA — Kopia, eksport, import, czyszczenie danych
 

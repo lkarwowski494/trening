@@ -1,6 +1,7 @@
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
+import { rescueDbCopy, AUTO_DIR } from './rescue';
 import { applyCfg, wallTs, bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, noClock, shownLoad, bandById, localISODate, flush, flushStrict, noteBackup, readRecovery, getRecovery, readRawData } from './store';
 import { t, exName } from './i18n';
 import { wOut, wu } from './units';
@@ -43,7 +44,7 @@ export async function exportBackup(): Promise<void> {
 
 /** Runda 75 (T-012): automatyczna kopia JSON po każdym zapisanym treningu, w katalogu dokumentów aplikacji — widoczna w Plikach
  * (Na moim iPhonie → Trening → Backup) dzięki UIFileSharingEnabled. Trzymamy ostatnie AUTO_KEEP kopii; błąd zapisu nie przerywa niczego. */
-export const AUTO_DIR = 'Backup/'; export const AUTO_KEEP = 10;
+export { AUTO_DIR } from './rescue'; export const AUTO_KEEP = 10;
 /** Kopie po treningu: training-RRRR-MM-DD-GGMMSS[-N].json (do 20.10.2026: trening-…; pula rozpoznaje oba) (grupa 1 = data i godzina — nazwy sortują się chronologicznie; grupa 2 = numer
  * kolejnej kopii z tej samej sekundy, od rundy 83b — LOW 4: wcześniej druga kopia w tej samej sekundzie nadpisywała pierwszą). */
 export const AUTO_RE = /^(?:trening|training)-(\d{4}-\d{2}-\d{2}-\d{6})(?:-(\d{1,3}))?\.json$/;
@@ -206,8 +207,14 @@ export async function exportLatestCopy(): Promise<boolean> {
     await Sharing.shareAsync(dir + files[0][0], { mimeType: 'application/json', dialogTitle: t('Backup treningów') }); return true;
   } catch { return false; }
 }
-/** Ekran błędu startu: najpierw surowe dane z bazy (exportRawData), gdy ich nie ma albo bazy nie da się otworzyć — najnowsza kopia z puli. */
-export async function exportStartData(): Promise<boolean> { return (await exportRawData()) || (await exportLatestCopy()); }
+/** Ekran błędu startu: najpierw surowe dane z bazy (exportRawData); gdy bazy nie da się otworzyć — kopia ratunkowa plików bazy (M1-audytor-generalny-004)
+ * i najnowsza kopia z puli. `rescue` — nazwa folderu kopii ratunkowej w Pliki → Backup (ekran podaje miejsce). */
+export async function exportStartDataDetailed(): Promise<{ ok: boolean; rescue: string | null }> {
+  if (await exportRawData()) return { ok: true, rescue: null };
+  const rescue = await rescueDbCopy(); const shared = await exportLatestCopy();
+  return { ok: shared || rescue != null, rescue };
+}
+export async function exportStartData(): Promise<boolean> { return (await exportStartDataDetailed()).ok; }
 export async function exportRecovery(): Promise<boolean> {
   try { // runda 36: każdy błąd (np. brak miejsca) = false → komunikat „Nie udało się”
     const txt = await readRecovery(); if (!txt) return false;

@@ -6,7 +6,7 @@ import { Alert, View, Linking } from 'react-native';
 import { ScrollView } from '@/components/Scroll';
 import { Screen, Field, NumInput, Btn, Muted, SwitchRow, Segmented, SectionTitle, Item } from '@/components/ui';
 import { useRouter } from 'expo-router';
-import { getState, useTick, save, saveCfg, resetAll, applyPrefs, useForegroundTick, REST_MAX, RIR_MAX, RPE_LIGHT } from '@/lib/store';
+import { getState, useTick, save, saveCfg, resetAll, applyPrefs, useForegroundTick, REST_MAX, RIR_MAX, RPE_LIGHT, RPE_RIR_MIN } from '@/lib/store';
 import { DEFAULT_REST, type ThemeSetting, type WorkoutView } from '@/lib/seed';
 import * as timer from '@/lib/timer';
 import { hapticsEnabled } from '@/lib/haptics';
@@ -52,7 +52,7 @@ export default function SettingsScreen() {
       <SwitchRow label={t('Ekran włączony podczas treningu')} value={s.wakeLock} onChange={v => { s.wakeLock = v; saveCfg(); }} />
       <SwitchRow label={t('RPE / RIR przy serii')} detail={t('opcjonalne pole, nie wpływa na objętość')} value={s.showRpe} onChange={v => { s.showRpe = v; saveCfg(); }} />
       {s.showRpe ? <>
-        <Field label={t('Skala wysiłku')} infoId="effort-scale" info={[t('RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali.'), t('RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.', { max: RIR_MAX, light: RPE_LIGHT, min: 10 - RIR_MAX })]}><Segmented label={t('Skala wysiłku')} testID="effort-scale" options={[['rpe', 'RPE'], ['rir', 'RIR']] as ['rpe' | 'rir', string][]} value={s.effortScale ?? 'rpe'} onChange={v => { if (v === 'rir') s.effortScale = v; else delete s.effortScale; saveCfg(); }} /></Field>
+        <Field label={t('Skala wysiłku')} infoId="effort-scale" info={[t('RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali.'), t('RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.', { max: RIR_MAX, light: RPE_LIGHT, min: RPE_RIR_MIN })]}><Segmented label={t('Skala wysiłku')} testID="effort-scale" options={[['rpe', 'RPE'], ['rir', 'RIR']] as ['rpe' | 'rir', string][]} value={s.effortScale ?? 'rpe'} onChange={v => { if (v === 'rir') s.effortScale = v; else delete s.effortScale; saveCfg(); }} /></Field>
       </> : null}
       <SwitchRow label={t('Podpowiedź progresji')} detail={t('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń')} value={s.progressHint} onChange={v => { s.progressHint = v; saveCfg(); }} />
       {/* 11.10.2026 (docs/22, P5 A): „Masa ciała” przeniesiona do zakładki Postępy (sekcja „Masa ciała”) — z Ustawień wejście zniknęło */}

@@ -82,6 +82,78 @@ describe('niezmiennik: żaden tekst interfejsu ani strony nie ma nazwy źródła
 });
 
 /*
+ * Skróty źródeł (≤ 4 litery: WHO, CDC, ACSM, NSCA, ISSN) w naszych źródłach tekstu — wariant C (właściciel 28.10.2026, docs/40: L-033 → L-039 → drugi nawrót).
+ * Strażnik paczki (scripts/check-bundle.mjs) skrótów nie sprawdza, bo w bajtkodzie nie ma granic słowa; tu granice są pewne, bo to zwykły tekst.
+ * Kryterium listy źródeł (nowy plik nie wypada po cichu — lista wynika z drzewa, nie z ręcznego spisu): (1) każdy literał łańcuchowy (także szablonowy i tekst JSX; bez komentarzy)
+ * w każdym pliku .ts/.tsx pod app/, components/, lib/, modules/ — to jest to, co Metro wkłada do paczki; (2) każdy łańcuch (klucze i wartości; pola „_…” to dokumentacja) w każdym .json pod lib/
+ * (słowniki lib/locales/*.json z _source.json, wskazówki lib/cues, figury) oraz w locales/ i store/ (metadane sklepu). Plik innego rodzaju (.js, .md, .txt, .html, .csv, .yaml…) w tych katalogach
+ * bez wpisu w SHORT_EXEMPT_FILES wywala test. Wyjątki: lib/sources.ts (sama lista wzorców, w aplikacji nieużywana) i stare tłumaczenia kluczy z zestawu do przekładu (PENDING_CHANGED).
+ * Granica słowa (rozstrzygnięcie): przed skrótem nie może stać litera ani cyfra (inaczej to środek innego wyrazu: „ADCDC”); po skrócie dopuszczamy dowolny znak, więc „CDCs”, „WHO's”,
+ * „ACSM-owe” alarmują (to nadal nazwa), a „WHOLE” też — świadomy koszt: fałszywy alarm to przeformułowanie jednego słowa, a nieprzechwycona nazwa jest publiczna.
+ */
+import * as ts from 'typescript';
+const SHORT_NAMES = SOURCE_NAME_PATTERNS.filter(p => /^[A-Za-z]{1,4}$/.test(p));
+export const SHORT_RE = new RegExp(`(?<![\\p{L}\\p{N}])(?:${SHORT_NAMES.join('|')})`, 'u');
+const SHORT_SCAN_DIRS = ['app', 'components', 'lib', 'modules'];
+const SHORT_EXEMPT_FILES = new Set(['lib/sources.ts']);
+const TEXT_EXT = new Set(['.js', '.jsx', '.mjs', '.cjs', '.md', '.txt', '.html', '.csv', '.yaml', '.yml', '.xml', '.svg']);
+const listFiles = (dir: string, out: string[] = []): string[] => { for (const f of fs.readdirSync(path.join(root, dir))) { const rel = `${dir}/${f}`; if (f === 'node_modules') continue; if (fs.statSync(path.join(root, rel)).isDirectory()) listFiles(rel, out); else out.push(rel); } return out; };
+/** Literały tekstowe kodu TS/TSX (bez komentarzy). */
+export const tsStrings = (src: string): string[] => {
+  const out: string[] = []; const sf = ts.createSourceFile('x.tsx', src, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  (function visit(n: ts.Node) { if (ts.isStringLiteral(n) || ts.isNoSubstitutionTemplateLiteral(n) || ts.isTemplateHead(n) || ts.isTemplateMiddle(n) || ts.isTemplateTail(n)) out.push(n.text); else if (ts.isJsxText(n)) out.push(n.getText()); ts.forEachChild(n, visit); })(sf);
+  return out;
+};
+/** Klucze i wartości JSON (poza polami „_…”). */
+const jsonTexts = (o: unknown, out: string[] = []): string[] => { if (typeof o === 'string') out.push(o); else if (Array.isArray(o)) o.forEach(x => jsonTexts(x, out)); else if (o && typeof o === 'object') for (const [k, x] of Object.entries(o)) { if (k.startsWith('_')) continue; out.push(k); jsonTexts(x, out); } return out; };
+export const shortHits = (texts: string[]) => texts.filter(x => SHORT_RE.test(x));
+/** Pliki z tekstem aplikacji: [ścieżka, łańcuchy]. */
+const sourceTexts = (): [string, string[]][] => {
+  const res: [string, string[]][] = [];
+  for (const d of SHORT_SCAN_DIRS) for (const f of listFiles(d)) {
+    const ext = path.extname(f);
+    if (SHORT_EXEMPT_FILES.has(f)) continue;
+    if (ext === '.ts' || ext === '.tsx') res.push([f, tsStrings(read(f))]);
+    else if (ext === '.json' && d === 'lib') res.push([f, jsonTexts(JSON.parse(read(f)))]);
+  }
+  for (const d of ['locales', 'store']) for (const f of listFiles(d)) if (f.endsWith('.json')) res.push([f, jsonTexts(JSON.parse(read(f)))]);
+  return res;
+};
+
+describe('skróty źródeł (WHO, CDC, ACSM, NSCA, ISSN) w źródłach tekstu aplikacji — deterministycznie, z granicą słowa (wariant C, docs/40)', () => {
+  test('lista skrótów wynika z lib/sources.ts (jedno miejsce) i zawiera pięć znanych', () => {
+    expect([...SHORT_NAMES].sort()).toEqual(expect.arrayContaining(['ACSM', 'CDC', 'ISSN', 'NSCA', 'WHO']));
+  });
+  test('granice słowa: skrót w zwykłym tekście alarmuje („według CDC”, „(ACSM)”, „WHO.”, „CDC” jako cały łańcuch), środek innego wyrazu nie; „CDCs”, „WHOLE” alarmują (opis wyżej)', () => {
+    for (const s of ['według CDC', 'CDC zaleca', 'Zgodnie z WHO.', 'dane (ACSM)', 'ISSN, 2018', 'wg NSCA/ACSM', 'CDC', 'CDC-owe zalecenia', 'CDCs', "WHO's", 'WHOLE']) expect([s, SHORT_RE.test(s)]).toEqual([s, true]);
+    for (const s of ['ADCDC', 'XWHO', '3WHO', 'DECDC', 'Zrób 3 serie', 'who', 'cdc', 'Acsm', 'RPE 8 = 2 RIR']) expect([s, SHORT_RE.test(s)]).toEqual([s, false]);
+  });
+  test('skaner literałów TS/TSX: łapie literał, szablon i tekst JSX; pomija komentarze i identyfikatory', () => {
+    const src = "// według CDC w komentarzu\n/* WHO */\nconst WHO_X = 1;\nconst a = 'według CDC';\nconst b = `zalecenie ${1} ACSM`;\nconst c = <Text>wg NSCA</Text>;\nconst d = 'czysty tekst';";
+    expect(shortHits(tsStrings(src)).sort()).toEqual([' ACSM', 'według CDC', 'wg NSCA']);
+  });
+  test('JSON (słownik, wskazówka, sklep): skrót w kluczu albo wartości alarmuje; pola „_…” (dokumentacja) i czyste teksty nie', () => {
+    expect(shortHits(jsonTexts({ 'Zalecenie wg WHO': 'Recommendation', k: { v: 'ok', w: 'as per ACSM' } }))).toEqual(['Zalecenie wg WHO', 'as per ACSM']);
+    expect(shortHits(jsonTexts({ _opis: 'wg CDC', k: 'czysty tekst' }))).toEqual([]);
+  });
+  test('kryterium listy: skanowane są wszystkie .ts/.tsx pod app, components, lib, modules oraz .json pod lib, locales, store (w tym lib/locales/_source.json); pliki tekstowe innego rodzaju nie wypadają po cichu', () => {
+    const scanned = sourceTexts().map(([f]) => f);
+    for (const f of ['lib/i18n.en.ts', 'lib/locales/_source.json', 'lib/locales/de.json', 'lib/cues/data.json', 'lib/cues/text/en.json', 'lib/figures/data.json', 'lib/catalog.generated.ts', 'lib/seed.ts', 'store/app-store-metadata.json', 'locales/pl.json', 'app/_layout.tsx']) expect([f, scanned.includes(f)]).toEqual([f, true]);
+    expect(scanned).not.toContain('lib/sources.ts');
+    const unknown = SHORT_SCAN_DIRS.flatMap(d => listFiles(d)).filter(f => TEXT_EXT.has(path.extname(f)) && !SHORT_EXEMPT_FILES.has(f));
+    expect(unknown).toEqual([]);
+  });
+  test('niezmiennik: żaden tekst aplikacji nie zawiera skrótu źródła (poza starymi tłumaczeniami z zestawu do przekładu)', () => {
+    const bad: string[] = [];
+    for (const [f, texts] of sourceTexts()) {
+      const lang = /^lib\/locales\/([^_/][^/]*)\.json$/.exec(f)?.[1];
+      for (const x of shortHits(texts)) { if (lang && [...PENDING_CHANGED].some(k => (LOCALES[lang as keyof typeof LOCALES] ?? {})[k] === x)) continue; bad.push(`${f}: ${x.slice(0, 70)}`); }
+    }
+    expect(bad).toEqual([]);
+  });
+});
+
+/*
  * Oznaczenia pewności w tekstach UI (decyzja właściciela 23.10.2026, docs/18): „wstępne/potwierdzone”, „jedno źródło”, „uproszczenie”, „nasz wybór”, „konwencja”
  * nie występują w żadnym tekście interfejsu — zostają w rejestrze twierdzeń (pole rodzaje). Wzorce i lista tekstów ekranu: scripts/claims.mjs
  * (MARKER_RE_PL, MARKER_RE_EN, EKRAN_ZRODEL (pusta)); ta sama kontrola biegnie w `npm run check:claims`.

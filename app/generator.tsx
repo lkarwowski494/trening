@@ -143,7 +143,7 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
 
       {ok ? <>{/* liczba dni spoza zakresu — bez podglądu i zapisu (komunikat pod wyborem dni, components/DayPicker) */}
       <SectionTitle>{t('Podgląd')}</SectionTitle>
-      <Txt accessibilityRole="header" style={{ ...font('callout'), marginBottom: 6 }}>{r.days.map((ti, i) => (ti == null ? null : `${wd(i)} ${r.templates[ti].name}`)).filter(Boolean).join(' · ')}</Txt>
+      <Txt accessibilityRole="header" style={{ ...font('callout'), marginBottom: 6 }}>{r.days.map((ti, i) => (ti == null ? null : `${wd(i)} ${r.templates[ti].name}`)).filter(Boolean).join(', ') /* M1-audytor-generalny-029: lista dni — przecinek (wz. 28) */}</Txt>
       {r.templates.map(tp => (
         <View key={tp.key} testID={`gen-${tp.key}`} style={{ marginBottom: 10 }}>
           <H2 style={{ marginBottom: 4 }}>{tp.name}</H2>

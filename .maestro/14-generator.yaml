@@ -2,7 +2,8 @@
 # tests/generator-ui.test.tsx. Tu: prawdziwe stuknięcia na symulatorze — wejście z ekranu planu, podgląd, zapis i aktywacja planu.
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "Planning"                       ← 'Planowanie' (przycisk w „Pierwszych krokach” na ekranie Trening; po pierwszym treningu — w nagłówku planu; otwiera ekran planu app/plan.tsx)
+#   "Templates and plan"             ← 'Szablony i plan' (przycisk kroku 1 w „Pierwszych krokach” na ekranie Trening — M1-audytor-generalny-025, 27.10.2026; otwiera ekran planu app/plan.tsx)
+#   "Planning"                       ← 'Planowanie' (przycisk kroku 2 w „Pierwszych krokach”; po pierwszym treningu — w nagłówku ekranu i zakładki Plan; otwiera ekran planu)
 #   "Generate templates and plan"    ← 'Wygeneruj szablony i plan' (app/templates.tsx, app/plan.tsx)
 #   "New templates and plan", "Plan from my templates" ← 'Nowe szablony i plan', 'Plan z moich szablonów' (przełącznik trybu generatora — DEC-03 c, app/generator.tsx)
 #   "Preview", "Plan rules" ← 'Podgląd', 'Zasady planu' (app/generator.tsx)
@@ -17,10 +18,10 @@
 #   "Choose training days: 1 to 6\." ← 'Wybierz dni treningowe: od {a} do {b}.' (liczba dni poza zakresem, tu 0 — bez podglądu)
 #   "Mon.* Full Body", "One workout a week still brings progress.*" ← 1 dzień (09.10.2026, docs/research/29): sesja 'FBW' → 'Full Body',
 #                                      ostrzeżenie „oneday” (lib/generator.ts loadWarnings)
-#   "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A" ← nagłówek podglądu: skrót dnia (Intl, en-US) + nazwa sesji
+#   "Mon.* Full Body A, Wed.* Full Body B, Sat.* Full Body A" ← nagłówek podglądu: skrót dnia (Intl, en-US) + nazwa sesji
 #   "General fitness", "Muscle"      ← 'Ogólny', 'Masa' — chipy celu pod wyborem dni (decyzja 09.10.2026 B: najpierw dni, potem cel; docs/research/30)
 #   "General fitness \\(for health\\): 2 sets.*" ← opis celu 'Ogólny (dla zdrowia i sprawności): {s} serie…'
-#   "Mon.* Full Body · Wed.* Full Body · Sat.* Full Body" ← „Ogólny” przy 1–3 dniach: pełne FBW ('FBW' → 'Full Body') każdego dnia
+#   "Mon.* Full Body, Wed.* Full Body, Sat.* Full Body" ← „Ogólny” przy 1–3 dniach: pełne FBW ('FBW' → 'Full Body') każdego dnia
 #   "sw-Cardio days in the plan" (id) ← SwitchRow 'Dni cardio w planie' (tylko „Ogólny” przy 4–6 dniach, domyślnie wyłączony)
 #   "Cardio in the plan: 60 min per week.*" ← 'Cardio w planie: {n} min tygodniowo…' (minuty cardio obok zalecenia WHO)
 #   "Monday, Full Body A", "Saturday, Full Body A" ← app/plan.tsx: wiersz dnia '{dzień}, {szablon}' (audyt 0.10 UX-15 A: 7 wierszy; „{dzień}: {szablon}” to chip
@@ -32,9 +33,9 @@ name: Generator szablonów i planu
     clearState: true
     permissions: { all: allow }
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
-# 11.10.2026 (wariant A): Szablony są pod Więcej, więc generator otwieramy z ekranu planu (Trening → „Planning” → „Generate templates and plan”, B9) —
+# 11.10.2026 (wariant A): Szablony są pod Więcej, więc generator otwieramy z ekranu planu (Trening → krok 1 „Templates and plan” → „Generate templates and plan”, B9) —
 # stos: Trening → Planowanie → Generator; „Planning” w oknie „Saved” wraca do planu, a „Back” do zakładek.
-- tapOn: "Planning"
+- tapOn: "Templates and plan"
 - extendedWaitUntil: { visible: "Generate templates and plan", timeout: 30000 }
 - tapOn: "Generate templates and plan"
 - extendedWaitUntil: { visible: "Preview", timeout: 30000 }
@@ -50,7 +51,7 @@ name: Generator szablonów i planu
 # --- wybór dni (09.10.2026 B): propozycja pon/śr/pt → odznacz pt, zaznacz sob; 1 dzień — sesja FBW z ostrzeżeniem; 0 dni — komunikat zamiast podglądu ---
 - tapOn: { id: "day-4" }
 - tapOn: { id: "day-5" }
-- scrollUntilVisible: { element: "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Mon.* Full Body A, Wed.* Full Body B, Sat.* Full Body A", direction: DOWN, timeout: 30000 }
 - tapOn: { id: "day-2" }
 - tapOn: { id: "day-5" }
 - scrollUntilVisible: { element: "Mon.* Full Body", direction: DOWN, timeout: 30000 }
@@ -64,7 +65,7 @@ name: Generator szablonów i planu
 - tapOn: { id: "day-0" }
 - tapOn: { id: "day-2" }
 - tapOn: { id: "day-5" }
-- scrollUntilVisible: { element: "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Mon.* Full Body A, Wed.* Full Body B, Sat.* Full Body A", direction: DOWN, timeout: 30000 }
 # --- cel „Ogólny” (09.10.2026, docs/research/30): pon/śr/sob — pełne FBW każdego dnia, bez przełącznika; + pt (4 dni) → przełącznik cardio → 3 × FBW + cardio ---
 - scrollUntilVisible: { element: "General fitness", direction: UP, timeout: 30000 }
 - tapOn: "General fitness"
@@ -72,7 +73,7 @@ name: Generator szablonów i planu
 - assertVisible: "General fitness \\(for health\\): 2 sets per exercise.*"
 - tapOn: { id: "info-gen-goal" }  # zwinięcie — dalsze kroki jak dotąd
 - assertNotVisible: { id: "sw-Cardio days in the plan" }
-- scrollUntilVisible: { element: "Mon.* Full Body · Wed.* Full Body · Sat.* Full Body", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Mon.* Full Body, Wed.* Full Body, Sat.* Full Body", direction: DOWN, timeout: 30000 }
 - scrollUntilVisible: { element: { id: "day-4" }, direction: UP, timeout: 30000 }
 - tapOn: { id: "day-4" }
 - scrollUntilVisible: { element: { id: "sw-Cardio days in the plan" }, direction: DOWN, timeout: 30000 }
@@ -84,7 +85,7 @@ name: Generator szablonów i planu
 - scrollUntilVisible: { element: { id: "day-4" }, direction: UP, timeout: 30000 }
 - tapOn: { id: "day-4" }
 - tapOn: "Muscle"
-- scrollUntilVisible: { element: "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Mon.* Full Body A, Wed.* Full Body B, Sat.* Full Body A", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 70-generator
 - scrollUntilVisible: { element: "Plan rules", direction: DOWN, timeout: 30000 }
 - tapOn: { id: "info-gen-basis" }  # 14.10.2026: „Zasady planu” — źródła pod ⓘ (treść bez zmian)

@@ -9,7 +9,7 @@ import { isSafetyError, isPersistError } from '@/lib/backup';
 import { pickCsv, commitCsvImport } from '@/lib/csvimport';
 import { analyze, normName, isImportError, type ParsedFile, type ImportErrorCode } from '@/lib/csvparse';
 import { t, exName, exNameLang } from '@/lib/i18n';
-import type { Unit } from '@/lib/units';
+import { unitName, type Unit } from '@/lib/units';
 import { font } from '@/lib/theme';
 
 /** Import historii z CSV (decyzja właściciela 11.10.2026): podgląd przed zapisem jest obowiązkowy; nic się nie zmienia, dopóki nie „Importuj”. */
@@ -55,7 +55,7 @@ export default function ImportCsv() {
           <Muted>{t('Ćwiczenia dopasowane do Twoich: {n}', { n: a.matched })}</Muted>
           <Muted>{t('Nowe ćwiczenia: {n}', { n: a.created })}</Muted>
           {file.weightUnit == null ? <View style={{ gap: 6 }}>
-            <Segmented label={t('Jednostka ciężaru w pliku')} options={[['kg', 'kg'], ['lb', 'lb']]} value={unit} onChange={setUnit} />
+            <Segmented label={t('Jednostka ciężaru w pliku')} options={[['kg', unitName('kg')], ['lb', unitName('lb')]]} value={unit} onChange={setUnit} />
             <Muted style={font('footnote')}>{t('Plik nie podaje, czy ciężary są w kg, czy w lb. Domyślnie: jednostka z Ustawień.')}</Muted></View> : null}
           {file.sessions.some(s => s.dateOnly) ? <Muted style={font('footnote')}>{t('Plik nie podaje godzin treningów — dzień, w którym masz już trening, zostanie pominięty jako duplikat.')}</Muted> : null}
           {file.hasDistance && !file.distanceUnit ? <Muted style={font('footnote')}>{t('Dystans w pliku przyjęto jako metry.')}</Muted> : null}

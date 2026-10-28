@@ -186,13 +186,13 @@ Zakupy: lokalizacje gotowe (`store/iap-localizations.json`).
 - 14.10.2026 (po decyzjach właściciela): D-2 A — `PRIVACY_URL`/`SUPPORT_URL` w lib/products.ts = https://apps4brew.com/trening/privacy.html i …/support.html,
   `store/app-store-urls.json` (dla API), test `tests/store-urls.test.ts`; eksport stron do repo strony marki `scripts/site/export-apps4brew.mjs`
   (test `tests/site-export.test.ts`; źródłem treści zostaje `site/`; po każdej zmianie `site/privacy.html` lub `site/support.html` — ponowny eksport i commit w repo strony).
-- D-6 B — podpisy i ramki: `store/screenshot-captions.json` (8 podpisów PL/EN, status „propozycja”), `scripts/ci/store-frames.sh`, zadanie `ramki`
+- D-6 B — podpisy i ramki: `store/screenshot-captions.json` (podpisy PL/EN; EN zaakceptowane 28.10.2026, decyzja 10a), `scripts/ci/store-frames.sh`, zadanie `ramki`
   w `store-screenshots.yml` (artefakt `sklep-zrzuty-ramki`), test `tests/store-frames.test.ts`.
 - 14.10.2026 (scenorys właściciela, 9 ekranów): dane pokazowe przebudowane (`scripts/screens/store-seed.test.ts`: 12 tygodni Push/Pull/Nogi pon/śr/pt
   z progresją w kg, sobotni FBW w ostatnich 3 tygodniach, plan z dniami wolnymi, trening w toku z przerwą, okno „Dostosuj” w domu, zmyślony CSV
   do podglądu importu; warianty stanu: trening, adapt, jasny, ciemny — ekrany 3 i 7 w ciemnym motywie); akcje na ekranach przez Maestro
   (`scripts/ci/maestro-sklep/`: wykres e1RM, przewinięcie do sylwetki strażnika, poprzedni pełny miesiąc w kalendarzu — `testID` `month-prev`/`month-next`
-  w components/HistoryCalendar.tsx, wybór pliku CSV); podpisy 9 ekranów (PL zaakceptowane, EN propozycja). Opis sklepu PL/EN z funkcją
+  w components/HistoryCalendar.tsx, wybór pliku CSV); podpisy 9 ekranów (PL i EN zaakceptowane). Opis sklepu PL/EN z funkcją
   „Strażnik progresji” i podtytuł D-4 A: `store/app-store-metadata.json` (projekt do akceptacji; test `tests/store-metadata.test.ts`).
   Ograniczenia: porównanie miesiąca liczy dni 1–N bieżącego miesiąca (zrzut z 1.–3. dnia miesiąca byłby słaby); nazwy ćwiczeń biblioteki
   w PL są takie, jak w aplikacji (część po angielsku); nazwy szablonów w innych językach — EN.

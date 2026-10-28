@@ -21,10 +21,10 @@ const boot = async (url: string, fn: (ids: string[]) => void = () => {}, opts: {
 };
 
 describe('regresja (09.10.2026, zmieniona 11.10.2026 przez P4 A): „Pierwsze kroki” przy pustym szablonie — dawniej „Najpierw utwórz szablon.”', () => {
-  test('pusty szablon nie zalicza kroku 1; jeden przycisk „Planowanie” (bez dawnego „Dodaj ćwiczenia…” i „Najpierw utwórz szablon.”); po dodaniu ćwiczenia krok 1 jest zrobiony', async () => {
+  test('pusty szablon nie zalicza kroku 1; jeden przycisk w kroku („Szablony i plan”, M1-audytor-generalny-025; bez dawnego „Dodaj ćwiczenia…” i „Najpierw utwórz szablon.”); po dodaniu ćwiczenia krok 1 jest zrobiony', async () => {
     await boot('/', () => { const x = store.newTemplate(); x.name = 'Test A'; store.save(x); }, { demo: false });
     expect(screen.queryByText('Najpierw utwórz szablon.')).toBeNull(); expect(screen.queryByText(/^Dodaj ćwiczenia do szablonu/)).toBeNull(); expect(screen.queryByText(/^Puste szablony/)).toBeNull();
-    expect(screen.getByLabelText(/^1\. .* do zrobienia$/)).toBeTruthy(); expect(within(screen.getByTestId('first-steps')).getAllByText('Planowanie')).toHaveLength(2);
+    expect(screen.getByLabelText(/^1\. .* do zrobienia$/)).toBeTruthy(); expect(within(screen.getByTestId('first-steps')).getAllByText('Szablony i plan')).toHaveLength(1); expect(within(screen.getByTestId('first-steps')).getAllByText('Planowanie')).toHaveLength(1); /* M1-audytor-generalny-025 (27.10.2026): krok 1 „Szablony i plan”, krok 2 „Planowanie” */
     const x = S().templates[0]; x.items.push({ id: 'i1', exerciseId: store.getState().exercises.find(e => e.name === 'Plank')!.id, sets: 3, repMin: null, repMax: null, restSec: null, startWeight: '', targetSec: '', groupId: null }); store.save(x);
     await act(async () => { await store.flush(); }); await flushAll(10);
     expect(screen.getByLabelText(/^1\. .* zrobione$/)).toBeTruthy(); expect(within(screen.getByTestId('first-steps')).getAllByText('Planowanie')).toHaveLength(1);

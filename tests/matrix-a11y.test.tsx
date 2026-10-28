@@ -9,7 +9,7 @@
  */
 import * as RN from 'react-native';
 import * as store from '@/lib/store';
-import { light, dark, F, TEXT_SCALE_MAX, type Theme } from '@/lib/theme';
+import { light, dark, F, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, type Theme } from '@/lib/theme';
 import { applyLang } from '@/lib/i18n';
 import { EN } from '@/lib/i18n.en';
 import { renderApp, flushAll, screen, go, act, fireEvent } from './app';
@@ -30,6 +30,9 @@ const hides = (x: Node): boolean => { const p = x.props ?? {}; return !!(p.acces
 /** Wszystkie węzły widoczne dla VoiceOver — jedno przejście od korzenia (pomija ukryte poddrzewa). */
 const visibleNodes = (): Node[] => { const out: Node[] = []; const walk = (x: Node) => { if (!x || typeof x !== 'object' || hides(x)) return; out.push(x); for (const c of x.children ?? []) walk(c); }; walk(screen.UNSAFE_root); return out; };
 /** Tekst czytany przez VoiceOver z dzieci (bez elementów accessible={false}). */
+/** Wszystkie węzły, także ukryte przed VoiceOver (znaki-ikony ›, ▾ mają accessible=false — widoczne okiem, więc podlegają skali tekstu). */
+const allNodes = (): Node[] => { const out: Node[] = []; const walk = (x: Node) => { if (!x || typeof x !== 'object') return; out.push(x); for (const c of x.children ?? []) walk(c); }; walk(screen.UNSAFE_root); return out; };
+const rawText = (n: Node): string => { const out: string[] = []; const walk = (x: Node) => { if (x == null) return; if (typeof x === 'string' || typeof x === 'number') { out.push(String(x)); return; } if (Array.isArray(x)) { x.forEach(walk); return; } walk(x.children); }; walk(n); return out.join('').trim(); };
 const textOf = (n: Node): string => { const out: string[] = []; const walk = (x: Node) => { if (x == null) return; if (typeof x === 'string' || typeof x === 'number') { out.push(String(x)); return; } if (Array.isArray(x)) { x.forEach(walk); return; } if (x.props?.accessible === false || x.props?.importantForAccessibility === 'no') return; walk(x.children); }; walk(n); return out.join(' ').replace(/\s+/g, ' ').trim(); };
 const nameOf = (n: Node): string => n.props.accessibilityLabel ?? n.props['aria-label'] ?? textOf(n);
 const PRESSABLE = new Set(['Pressable', 'TouchableOpacity', 'TouchableHighlight', 'TouchableWithoutFeedback', 'Text']);
@@ -192,20 +195,25 @@ describe('kontrast palety (WCAG 2.1) — pary używane w kodzie, których nie sp
 
 /* ---------- Dynamic Type ---------- */
 describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności iOS)', () => {
-  let errs: string[] = []; let R: { routes: string[]; inputs: { r: string; m: unknown; multi: boolean }[]; longLow: string[]; techOpen: boolean; monoNoLimit: string[]; btnNoLimit: string[]; btnTexts: number; maxEff: number };
+  let errs: string[] = []; let R: { routes: string[]; inputs: { r: string; m: unknown; multi: boolean }[]; longLow: string[]; techOpen: boolean; monoNoLimit: string[]; btnNoLimit: string[]; btnTexts: number; maxEff: number; glyphNoLimit: string[]; glyphs: number };
   beforeAll(async () => {
     jest.spyOn(RN.PixelRatio, 'getFontScale').mockReturnValue(2);
     const dims = RN.Dimensions.get; jest.spyOn(RN.Dimensions, 'get').mockImplementation(((k: 'window' | 'screen') => ({ ...dims(k), fontScale: 2 })) as never);
     jest.spyOn(console, 'error').mockImplementation((...a: unknown[]) => { const m = String(a[0]); if (!/not wrapped in act/.test(m)) errs.push(m.slice(0, 200)); });
     const { s, w, tpl, exId, locId, blockId } = await richState('pl');
     await renderApp({ saved: s }); await flushAll(10);
-    R = { routes: routesFor(w, tpl, exId, locId, blockId), inputs: [], longLow: [], techOpen: false, monoNoLimit: [], btnNoLimit: [], btnTexts: 0, maxEff: 0 };
+    R = { routes: routesFor(w, tpl, exId, locId, blockId), inputs: [], longLow: [], techOpen: false, monoNoLimit: [], btnNoLimit: [], btnTexts: 0, maxEff: 0, glyphNoLimit: [], glyphs: 0 };
     for (const r of R.routes) {
       await go(r); await flushAll(10);
       const tech = r.startsWith('/exercise/') ? screen.queryByRole('button', { name: 'Technika' }) : null; /* A11N-04: sekcja „Technika” rozwinięta (od 27.10.2026 domyślnie już jest — stukamy tylko, gdy zwinięta) */
       if (tech) { if (!tech.props.accessibilityState?.expanded) { await act(async () => { fireEvent.press(tech); }); await flushAll(5); } R.techOpen = true; }
       const all: Node[] = visibleNodes();
       for (const i of all.filter(x => x.type === 'TextInput')) R.inputs.push({ r, m: i.props.maxFontSizeMultiplier, multi: !!i.props.multiline });
+      for (const tx of allNodes().filter(x => x.type === 'Text')) {
+        const g = rawText(tx); const gm = tx.props.maxFontSizeMultiplier; /* T-04 (telefon 27.10.2026): znak-ikona (›, ▾, ✓…) bez limitu rośnie do 310% i wychodzi poza swoje pole albo jest ucinany */
+        let bp = tx.parent; while (bp && !(bp.props?.accessibilityRole === 'button' && typeof bp.props?.onPress === 'function')) bp = bp.parent; /* tytuł przycisku Btn (np. „‹” „›” w polu daty) rośnie z przyciskiem do 200% — pole przycisku rośnie razem z nim */
+        if (/^[›‹▸▾▴▲▼✓✕✗✦⇄⋯+↑↓←→×▶⏸…]{1,2}$/u.test(g) /* znaki-ikony; „—” i „#” to zwykłe znaki tekstu */ && !(bp && flat(bp.props.style).borderWidth === 1 && flat(bp.props.style).minHeight >= 44 && gm === TEXT_SCALE_MAX) && (R.glyphs++, !(typeof gm === 'number' && gm > 0 && gm <= GLYPH_SCALE_MAX))) R.glyphNoLimit.push(`${r}: „${g}” (${gm})`);
+      }
       for (const tx of all.filter(x => x.type === 'Text')) {
         const st = flat(tx.props.style); const m = tx.props.maxFontSizeMultiplier; const fs = typeof st.fontSize === 'number' ? st.fontSize : 14;
         if ((st.fontFamily === F.mono || st.fontFamily === F.monoBold) && (st.fontVariant as string[] | undefined)?.includes('tabular-nums') /* M3 (docs/18): F.monoBold = F.heavy (Barlow 700), więc liczby w kolumnach poznajemy po cyfrach tabelarycznych */ && !(m > 0)) R.monoNoLimit.push(`${r}: „${textOf(tx)}”`);
@@ -238,6 +246,7 @@ describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności i
   test('NAPRAWIONE 06.10: liczby krojem mono (tabela serii w historii — app/history/[id].tsx:17) mają limit powiększenia', () => { expect(R.monoNoLimit).toEqual([]); });
   test('liczby krojem mono poza tabelą historii mają limit powiększenia (zasada: ui.tsx, R9-06)', () => { expect(R.monoNoLimit.filter(x => !x.startsWith(R.routes[13] + ':'))).toEqual([]); });
   test('etykiety przycisków Btn rosną do 200% (TEXT_SCALE_MAX — audyt 0.10 A11-07, WCAG 1.4.4; dawniej 1,4)', () => { expect(R.btnTexts).toBeGreaterThan(20); expect(R.btnNoLimit).toEqual([]); });
+  test('T-04: znaki-ikony (›, ‹, ▾, ▸, ✓, ✕, ✦, ⇄, +…) mają limit powiększenia ≤ GLYPH_SCALE_MAX (1,4) na każdym ekranie — bez limitu rosną do 310% (Większe rozmiary dostępności) i są ucinane lub zasłaniają treść', () => { expect(R.glyphs).toBeGreaterThan(5); expect([...new Set(R.glyphNoLimit.map(x => x.replace(/^\S+: /, '')))]).toEqual([]); });
   test('największy efektywny rozmiar tekstu przy skali 2,0 jest skończony (rozmiar × min(2, limit))', () => { expect(Number.isFinite(R.maxEff) && R.maxEff > 24).toBe(true); });
 });
 

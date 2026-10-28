@@ -146,6 +146,7 @@ describe('S16: arkusze akcji — najwyżej 4 opcje (z „Anuluj”) albo wyjąte
     'app/history/edit/[id].tsx': 'jak w treningu: miejsce sesji i rodzaj serii (ta sama lista)',
     'app/template/[id].tsx': 'rodzaj serii szablonu: 4 rodzaje + „Usuń serię” (jak w treningu, M1-028; 04-studio-projektowe-003) + Anuluj (zamknięty zbiór, bez notatki)',
     'components/ExMenuButton.tsx': 'menu „⋯” ćwiczenia w edytorze szablonu i edycji sesji: jedna pozycja „Usuń ćwiczenie” + Anuluj (jak w treningu, 04-studio-projektowe-003)',
+    'components/DragList.tsx': 'menu „⋯” wiersza na ekranie Kolejność: „Przesuń wyżej” / „Przesuń niżej” (tylko możliwe kierunki) + Anuluj — przyciskowa alternatywa przeciągania (M1-audytor-generalny-026, 27.10.2026)',
   };
   test('wszystkie wywołania ActionSheetIOS są na liście wyjątków z powodem (nowe — czerwony test: najwyżej 4 opcje)', () => {
     const files = hits(/ActionSheetIOS\.showActionSheetWithOptions/); expect(files.sort()).toEqual(Object.keys(EXC).sort()); Object.values(EXC).forEach(v => expect(v.length).toBeGreaterThan(20));

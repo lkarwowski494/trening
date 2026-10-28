@@ -1,0 +1,54 @@
+# Duży tekst dostępności (T-04, build 1031, 27.10.2026): przy największym rozmiarze tekstu systemu („Większe rozmiary dostępności”, suwak na max) ekran Trening miał
+# uciętą dużą szarą ikonę startu kolejnego treningu. Poprawka 644c498 (GLYPH_SCALE_MAX) nie miała dotąd przebiegu z dużym tekstem — ten scenariusz robi zrzuty ekranu Trening
+# w trzech stanach (bez planu, z planem, trening w toku), a wejście `rozmiar_tekstu` w e2e-ios.yml ustawia rozmiar systemowy symulatora
+# (`xcrun simctl ui content_size accessibility-extra-extra-extra-large`). Bez wejścia scenariusz przechodzi tak samo przy zwykłym tekście (zrzuty porównawcze).
+# Asercje: elementy sterujące dalej istnieją i dają się przewinąć (ucięcia ikon Maestro nie wykryje — oceniają je zrzuty 580–589, kadr w pełnej rozdzielczości).
+#
+# Literały (EN z lib/i18n.en.ts): jak 31 — "Other workout", "Planning", "From a template", "Start: Full Body A", "Set 1 done.*", "Workout options", "Finish"
+appId: pl.lukasz.trening
+name: Duży tekst dostępności — ekran Trening
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+# --- bez planu: początek ekranu i przewinięcie do końca ---
+- takeScreenshot: 580-bez-planu-gora
+- scrollUntilVisible: { element: "Other workout", direction: DOWN, timeout: 20000, centerElement: true }
+- takeScreenshot: 581-bez-planu-przycisk-startu
+- swipe: { start: "50%, 80%", end: "50%, 15%", duration: 500 }
+- takeScreenshot: 582-bez-planu-dol
+# --- z planem: generator szablonów i planu z kroków startowych (jak 31; bez wspólnego podprzepływu szablonu — jego wybór ćwiczenia w pickerze nie działa przy największym tekście) ---
+# Dzień tygodnia bywa dniem planu albo nie (karta „Dziś” albo „Następny trening”) — asercji na treść karty nie ma, oceniają ją zrzuty 583–585.
+- scrollUntilVisible: { element: "Planning", direction: UP, timeout: 30000, centerElement: true }
+- runFlow: subflows/generator-plan-duzy-tekst.yaml
+- swipe: { start: "50%, 20%", end: "50%, 85%", duration: 500 }
+- takeScreenshot: 583-z-planem-gora
+- swipe: { start: "50%, 80%", end: "50%, 40%", duration: 500 }
+- takeScreenshot: 584-z-planem-srodek
+- swipe: { start: "50%, 80%", end: "50%, 15%", duration: 500 }
+- takeScreenshot: 585-z-planem-dol
+- scrollUntilVisible: { element: "Other workout", direction: UP, timeout: 30000, centerElement: true }
+- tapOn: "Other workout"
+- extendedWaitUntil: { visible: "From a template", timeout: 20000 }
+- tapOn: "From a template"
+- extendedWaitUntil: { visible: "Start: Full Body A", timeout: 30000 }
+- tapOn: "Start: Full Body A"
+- tapOn: { text: "Not now", optional: true }
+# --- trening w toku ---
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- takeScreenshot: 586-trening-w-toku
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- extendedWaitUntil: { visible: "Skip", timeout: 15000 }
+- takeScreenshot: 587-przerwa
+- tapOn: "Skip"
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 15000 }
+- takeScreenshot: 588-zakonczenie
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- tapOn: "Back"
+# --- po treningu: ekran Trening z podsumowaniem tygodnia ---
+- tapOn: "Workout, tab.*"
+- scrollUntilVisible: { element: "This week", direction: DOWN, timeout: 60000, centerElement: true }   # przy dużym tekście i z planem podsumowanie tygodnia leży pod kartą dnia (run 40617152627, zrzut run5-step-050)
+- takeScreenshot: 589-po-treningu

@@ -84,11 +84,19 @@ export async function init(opts: { guard?: boolean; retry?: boolean } = {}): Pro
       // PERF-03 (A): nowsza konfiguracja (szablony, ustawienia, plany) z małego klucza „cfg” — zapisanego bez przepisywania całej historii.
       try { const cr = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'cfg'); cfgTxt = cr ? cr.v : null; const c = cr ? JSON.parse(cr.v) : null;
         if (applyCfg(raw, c)) seqAtLeast(Number(c.seq) || 0); } catch {}
-      setS(migrate(raw)); needsPersist = before !== SCHEMA_VERSION;
+      /* M1-audytor-generalny-013: wyjątek w migracji na czytelnych danych to błąd kodu, nie zepsuty zapis — tryb awaryjny (ekran błędu startu), bez odkładania
+       * pod state_corrupt_* i bez zapisu czystego stanu; dane w bazie zostają nietknięte do poprawionej wersji. */
+      let migrated: State;
+      try { migrated = migrate(raw); } catch (e) {
+        if (e instanceof Error && e.message === 'bad state') throw e; /* zły kształt zapisu (migrate: brak exercises/templates) = nieczytelny zapis — ścieżka odkładania niżej */
+        throw Object.assign(new Error(e instanceof Error ? e.message : String(e)), { migrationFailed: true, cause: e });
+      }
+      setS(migrated); needsPersist = before !== SCHEMA_VERSION;
       /* M1-audytor-generalny-002: udana migracja nie może zostawić jedynie zmigrowanego zapisu — surowy zapis sprzed niej (wraz z „live” i „cfg”) czeka
        * w bazie pod kluczem premigrate_<schemat> do upływu PREMIGRATE_KEEP_MS. Bez kopii (np. brak miejsca) zmigrowany stan nie nadpisuje starego „state”. */
       if (needsPersist && !(await savePreMigrate(Number(before) || 0, row.v, liveTxt, cfgTxt))) needsPersist = false;
-    } catch {
+    } catch (e) {
+      if ((e as { migrationFailed?: boolean })?.migrationFailed) throw e; /* M1-audytor-generalny-013: nic nie zapisujemy — ekran błędu startu */
       // Nie nadpisujemy jedynej kopii danych: odkładamy ją pod osobny klucz i startujemy od czystego stanu.
       const key = `state_corrupt_${Date.now()}`;
       await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key, row.v);

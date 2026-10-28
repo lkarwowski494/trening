@@ -2041,7 +2041,7 @@
    ],
    "scenariusz": "28-dluga-historia.yaml",
    "znaczniki": [
-    "PR: .*",
+    "Record: .*",
     "4 sessions"
    ]
   },
@@ -2429,11 +2429,12 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "Ustawienia → karta „Subskrypcja” → ekran zakupu",
+    "Ustawienia → karta „Subskrypcja” (wiersz z dostępem: „Masz plan: {rodzaj planu}”, bez planu: „Zobacz plany Pro”) → ekran zakupu",
     "Panel „Test store”: wygaszenie → ceny → „Przywróć zakupy”",
-    "Start ponad limit dni → ekran zakupu → zakup"
+    "Start ponad limit dni → ekran zakupu → zakup",
+    "Po zakupie subskrypcji: nagłówek „Masz plan: {rodzaj planu}”, lista planów zwinięta pod „Zmień plan”, po rozwinięciu „Aktualny plan” przy kupionym i „Przejdź na ten plan”"
    ],
-   "wynik": "Dostęp zgodny ze stanem sklepu; zamknięcie ekranu zakupu przyciskiem „Zamknij”.",
+   "wynik": "Dostęp zgodny ze stanem sklepu; zamknięcie ekranu zakupu przyciskiem „Zamknij”; po zakupie ekran nie oferuje kupna posiadanego planu.",
    "ekrany": [
     "/paywall",
     "/more/settings"
@@ -2467,7 +2468,7 @@
      "tests/subscription-invariants.test.ts",
      "tests/entitlement.test.ts"
     ],
-    "kontrola": "Model M5 S1 (docs/monetyzacja.md), sześć scenariuszy: (1) kup każdy plan → arkusz Apple pokazuje cenę planu i brak oferty wprowadzającej, po zakupie „Masz pełną wersję” (dożywotni: „Masz dostęp na zawsze”); (2) usuń i zainstaluj ponownie → „Przywróć zakupy” przywraca dostęp; (3) tryb samolotowy po zakupie → dostęp zostaje; (4) zwrot w piaskownicy → dostęp znika po odświeżeniu; (5) Chmura rodzinna: drugie konto z rodziny ma dostęp; (6) bez zakupu po wykorzystaniu darmowego limitu dni treningowych w miesiącu → start treningu w nowym dniu otwiera ekran zakupu, historia i kopia dostępne."
+    "kontrola": "Model M5 S1 (docs/monetyzacja.md), sześć scenariuszy: (1) kup każdy plan → arkusz Apple pokazuje cenę planu i brak oferty wprowadzającej, po zakupie „Masz plan: {rodzaj planu}” (dożywotni także „Masz dostęp na zawsze”); (2) usuń i zainstaluj ponownie → „Przywróć zakupy” przywraca dostęp; (3) tryb samolotowy po zakupie → dostęp zostaje; (4) zwrot w piaskownicy → dostęp znika po odświeżeniu; (5) Chmura rodzinna: drugie konto z rodziny ma dostęp; (6) bez zakupu po wykorzystaniu darmowego limitu dni treningowych w miesiącu → start treningu w nowym dniu otwiera ekran zakupu, historia i kopia dostępne."
    }
   },
   {
@@ -3048,7 +3049,7 @@
      "tests/tabs-a11y.test.tsx",
      "tests/matrix-a11y.test.tsx"
     ],
-    "kontrola": "Największy rozmiar tekstu: trening, plan i ustawienia czytelne bez ucięć; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają."
+    "kontrola": "Największy rozmiar tekstu (T-04, 27.10.2026: ucięte ikony na ekranie Trening — strażnik znaków-ikon w tests/matrix-a11y.test.tsx; Maestro nie ustawi rozmiaru tekstu systemu, a `xcrun simctl ui content_size` wymagałoby zmiany workflowu): trening, plan i ustawienia czytelne bez ucięć, w tym ikony; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają."
    }
   },
   {
@@ -3274,6 +3275,28 @@
     "First workout done!",
     "Awesome, keep training!",
     "See Pro plans"
+   ]
+  },
+  {
+   "id": "US-21",
+   "tytul": "Duży tekst dostępności: ekran Trening bez planu, z planem i w treningu bez uciętych ikon i przycisków",
+   "stan": "nowy",
+   "wersja": "1.0",
+   "realnosc": "realny",
+   "kroki": [
+    "W systemie: Ustawienia → Dostępność → Rozmiar tekstu → Większe rozmiary dostępności, suwak na maksimum",
+    "Uruchom aplikację → ekran Trening (bez planu), potem z planem tygodnia i z treningiem w toku",
+    "Przewiń ekran Trening i stuknij przycisk startu (zaplanowanego i „Inny trening”)"
+   ],
+   "wynik": "Przy największym tekście systemu przyciski startu, znaki-ikony (›, ▸) i etykiety sterujące są w całości widoczne i da się je stuknąć (limit powiększenia znaków GLYPH_SCALE_MAX).",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "58-duzy-tekst.yaml",
+   "znaczniki": [
+    "Other workout",
+    "Start: Full Body A",
+    "Set 1 done.*"
    ]
   },
   {

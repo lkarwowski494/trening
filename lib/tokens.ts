@@ -116,7 +116,7 @@ export const TYPE: Readonly<Record<TypeRole, TypeToken>> = {
   boardClock: { font: 'title700', size: 112, lineHeight: 106, scale: 'stala', fitWidth: 0.3, tabular: true },
   boardField: { font: 'title700', size: 20, lineHeight: 24, scale: 'liczba', tabular: true },
   boardNext: { font: 'title600', size: 20, lineHeight: 24, scale: 'opis', tabular: true },
-  /** Etykieta jednostki przy ± („kg”, „lb”, „powt.”, „s”, „m”, „yd”) — DEC-28/29: zawsze z wu()/distUnit(), nigdy na sztywno. */
+  /** Etykieta jednostki przy ± („kg”, „lb”, „powt.”, „s”, „m”, „yd”) — DEC-28/29: zawsze z unitLabel()/distLabel(), nigdy na sztywno. */
   stepLabel: { font: 'title600', size: 18, lineHeight: 22, scale: 'opis' },
   /** Liczby w Postępach (rekordy, oś wykresu). */
   stat: { font: 'title700', size: 28, lineHeight: 32, scale: 'liczba', tabular: true },
