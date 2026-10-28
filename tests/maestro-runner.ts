@@ -383,6 +383,9 @@ export class Runner {
           break;
         }
         case 'assertVisible': if (!(await this.waitFor(sel(arg), true, 1500))) this.fail(step, 'Element niewidoczny.'); break;
+        /* DEC-01 a (1.0.1, 28.10.2026): przytrzymanie otwiera systemowy podgląd dużej zawartości (accessibilityShowsLargeContentViewer) — nakładka iOS poza drzewem aplikacji;
+         * w Jest sprawdzamy, że element do przytrzymania istnieje (prawdziwe przytrzymanie robi Maestro na symulatorze, podgląd — telefon). */
+        case 'longPressOn': if (!(await this.waitFor(sel(arg), true, 1500))) this.fail(step, 'Element do przytrzymania niewidoczny.'); break;
         case 'assertNotVisible': if (!(await this.waitFor(sel(arg), false, 1500))) this.fail(step, 'Element widoczny.'); break;
         case 'scrollUntilVisible': {
           const s = sel(arg); let c: Cand | undefined;

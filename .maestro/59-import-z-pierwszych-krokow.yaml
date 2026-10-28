@@ -1,0 +1,15 @@
+# DEC-04 a (1.0.1, 28.10.2026): krok 4 Pierwszych kroków „Masz historię w innej aplikacji?” — samo wejście do istniejącego importu CSV (przepływ NU-15).
+# Osobny scenariusz zamiast kroku w 31: bez powrotu strzałką „Back” (zapadka stuknięć po tekście, M1-034) — sprawdzenie kończy się na ekranie importu.
+# Wyboru pliku (okno systemowe) Maestro nie robi.
+#
+# Literały (EN z lib/i18n.en.ts): "Got a history in another app.*" ← krok 4 (components/Dashboard.tsx), "Choose a CSV file" ← app/more/import.tsx
+appId: pl.lukasz.trening
+name: Pierwsze kroki — wejście do importu historii
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "First steps", timeout: 60000 }
+- scrollUntilVisible: { element: "Got a history in another app.*", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: { id: "first-steps-import" }
+- extendedWaitUntil: { visible: "Choose a CSV file", timeout: 30000 }

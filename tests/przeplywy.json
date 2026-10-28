@@ -340,7 +340,7 @@
     "/",
     "/more/import"
    ],
-   "scenariusz": "31-pierwszy-tydzien.yaml",
+   "scenariusz": "59-import-z-pierwszych-krokow.yaml",
    "znaczniki": [
     "Got a history in another app",
     "Choose a CSV file"

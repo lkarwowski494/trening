@@ -5,7 +5,6 @@
 # od dnia tygodnia ani od północy (dzień uruchomienia bywa poniedziałkiem lub niedzielą; „wczoraj” bywa w poprzednim tygodniu).
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "Got a history in another app.*", "Import history from a CSV file", "Choose a CSV file" ← krok 4 (Dashboard.tsx) i app/more/import.tsx
 #   "First steps", "Create your first template or generate templates and a plan.", "Set a weekly plan.*", "First workout.*" ← components/Dashboard.tsx FirstSteps
 #   "What's new.*", "In this version", "Close"            ← components/WhatsNew.tsx ('Co nowego', 'W tej wersji', 'Zamknij')
 #   "Full Body A", "Full Body B"                           ← szablony z generatora (subflows/generator-plan.yaml)
@@ -24,12 +23,6 @@ name: Pierwszy tydzień nowego użytkownika
 - assertVisible: "Set a weekly plan.*"
 - assertVisible: "First workout.*"
 - takeScreenshot: 80-pierwsze-kroki
-# DEC-04 a (1.0.1): krok 4 „zaimportuj historię” — samo wejście do importu CSV (plik wybiera się w oknie systemowym; tego Maestro nie robi), powrót strzałką
-- scrollUntilVisible: { element: "Got a history in another app.*", direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: "Import history from a CSV file"
-- extendedWaitUntil: { visible: "Choose a CSV file", timeout: 30000 }
-- tapOn: "Back"
-- extendedWaitUntil: { visible: "First steps", timeout: 30000 }
 # „Co nowego”: 1.0.0: historia „Co nowego” pusta (decyzja właściciela 14.10.2026, docs/18) — przycisku ✦ nie ma także dla nowej osoby
 - assertNotVisible: { id: "whats-new-i" }
 - scrollUntilVisible: { element: "Planning", direction: UP, timeout: 30000, centerElement: true }
