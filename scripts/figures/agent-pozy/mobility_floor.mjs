@@ -1,7 +1,7 @@
 // Generator póz rodziny mobility_floor (27.10.2026): rozciąganie i mobilność na podłodze (siad, leżenie, klęk, czworak) — pozy statyczne (dwie identyczne klatki) i Cat-Cow (ruch).
 // Układ: leżenie na plecach — głowa w stronę −x, nogi w +x, miednica [0, 9,6, 0], pochylenie −90; siad — tułów od pionu do przodu (+x); strona R = +z.
 // Reguły sensu: data/zrodla/figury-sens.json → rodziny.mobility_floor (źródła przy regułach); pozycje bez przeczytanego źródła rysujemy tylko z cechą rozpoznawczą z opisu katalogu (PRZYBLIZENIA).
-import { v2, BODY, R, r1, K, PODLOGA, poza, HIP, nrm, add, fk, nogaProsta, statyczna, Y_PODLOGA, kolanoIK, sieganie, kostkaY, sonda } from './mob.mjs';
+import { v2, BODY, R, r1, K, PODLOGA, poza, HIP, nrm, add, fk, nogaProsta, statyczna, Y_PODLOGA, kolanoIK, sieganie, kostkaY, sonda, BOK, bokKlatka } from './mob.mjs';
 
 export const RODZINA = 'mobility_floor';
 const SP = [PODLOGA(-170, 170)];
@@ -83,10 +83,7 @@ function supineHamstring(cw) {
 }
 
 /* ---------- leżenie bokiem (LEWY bok na podłodze, klatka ku −z (od kamery), głowa ku −x; górna noga R jest po stronie kamery) ---------- */
-const PYB = 20; /* środek miednicy: obrys tułowia i spodenek ≤ 2 cm nad podłogą (reguła „ciało leży”, R9) */
-const SQ_ROLL = -75; /* ODSTĘPSTWO OD ŹRÓDŁA wymuszone ograniczeniem rysunku (wpis w PRZYBLIZENIA, kontrola L4): obrót tułowia −90 = dokładnie na boku (biodra i barki jedno nad drugim, ACE #149); −75 = tułów odchylony do tyłu o 15°. Dolny bark leży wtedy wyżej niż dolna krawędź obrysu tułowia (grubość pleców), więc ramię nie wchodzi pod podłogę, a tułów leży (przy −90 bark 4 cm nad podłogą i tułów 4 cm nad nią albo ramię pod podłogą) */
-const SQ_LEAN = 2; /* przechył tułowia w płaszczyźnie czołowej (stopnie): bark (głowa) wyżej o ok. 1,7 cm niż miednica (lekkie zgięcie boczne kręgosłupa, głowa na ręce) */
-const SQ_HEAD_TILT = -20; /* skłon boczny głowy ku dolnemu barkowi (przechylGlowy, − = ucho ku lewemu barkowi): głowa opada na dłoń leżącą na podłodze (r6: dolna ręka leży, więc głowa musi zejść o ok. 6 cm; bez skłonu zawisała nad ręką) */
+const PYB = BOK.PYB, SQ_ROLL = BOK.ROLL, SQ_LEAN = BOK.LEAN, SQ_HEAD_TILT = BOK.HEAD_TILT; /* jedno ustawienie ciała leżącego na boku w mob.mjs (BOK; opis odstępstwa od źródła przy BOK.ROLL) */
 const bokRamka = (nogi, rece, ext = { roll: SQ_ROLL, lean: SQ_LEAN, headTilt: SQ_HEAD_TILT }) => (u) => { const k = K({ u, m: [0, PYB, 0], p: -90, head: -90, roll: ext.roll, lean: ext.lean, R: nogi.R, L: nogi.L, hr: rece.R, hl: rece.L }); if (ext.headTilt !== undefined) k.przechylGlowy = ext.headTilt; return k; };
 /** Side-Lying Quad Stretch (ACE #149: leżenie na boku, biodra i barki jedno nad drugim, dolna ręka zgięta, przedramię pod głową; górne kolano zgięte, pięta ku pośladkowi: „Bend your left knee and pull your left heel up towards your left glute…”, „keeping the left thigh and knee resting on the inside of the right thigh and pointing straight out from the left hip joint”; dolna noga prosta tylko w pozycji wyjściowej: „with your legs extended straight away from your body”):
  * leżymy na LEWYM boku (klatka ku −z, od kamery, tułów odchylony do tyłu o 15°), górna (prawa) noga: udo w linii tułowia (biodro ≈ 13°, udo spoczywa na dolnym udzie), kolano zgięte ok. 140° (granica modelu) ku tyłowi ciała (+z, do kamery),
