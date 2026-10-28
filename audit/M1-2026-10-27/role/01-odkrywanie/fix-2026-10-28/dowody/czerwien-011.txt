@@ -1,0 +1,41 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts
+  M1-022: BRD aktualny wobec decyzji 20–27.10.2026
+    ✕ liczby w wymaganiach (01-odkrywanie-011): znacznik DO USTALENIA / DO WYJAŚNIENIA w każdej postaci ma wpis OP; BR z czasem, liczbą dni lub procentem wskazuje decyzję D-nnn, regułę RD albo OP (16 ms)
+    ○ skipped BR-ZRO-001 wycofane (decyzja 25.10.2026), nazwa usuniętego ekranu tylko w jego nagłówku; ZP-09 bez ekranu źródeł
+    ○ skipped BR-JEZ-004 (decyzja 23.10.2026): interfejs bez oznaczeń pewności — wymaganie nie każe ich pokazywać
+    ○ skipped BR-JEZ-003: system miar (decyzja 20.10.2026) wdrożony; OP-02 zamknięte
+    ○ skipped każda ścieżka pliku wskazana w BRD istnieje (usunięty ekran nie jest wskazywany jako dowód)
+    ○ skipped każdy ekran (trasa w app/) ma aktywne wymaganie BR, które go wskazuje; nowa trasa bez BR zatrzymuje verify (03-zakres-003)
+    ○ skipped funkcje z audytu 27.10.2026 (01-odkrywanie-004, 03-zakres-003, M1-018) mają aktywne BR z kryteriami
+    ○ skipped ograniczenia OG (01-odkrywanie-010): każde OG ma źródło S z adresem, cytatem i datą odczytu albo jest nazwaną zasadą właściciela; S polityk mają termin przeglądu
+    ○ skipped errata: plik z tabelą ER (data, źródło, status)
+
+  ● M1-022: BRD aktualny wobec decyzji 20–27.10.2026 › liczby w wymaganiach (01-odkrywanie-011): znacznik DO USTALENIA / DO WYJAŚNIENIA w każdej postaci ma wpis OP; BR z czasem, liczbą dni lub procentem wskazuje decyzję D-nnn, regułę RD albo OP
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "wymagania.md:85 [DO USTALENIA: badacz]",
+    + ]
+
+      73 |     const bad: string[] = [];
+      74 |     for (const f of files()) read(f).split('\n').forEach((l, i) => { if (/^\| OP-\d{2} \|/.test(l)) return; for (const m of l.matchAll(/\[DO (?:USTALENIA|WYJAŚNIENIA)[^\]]*\](?!\s*\(OP-\d{2}\))/g)) bad.push(`${f}:${i + 1} ${m[0]}`); });
+    > 75 |     expect(bad).toEqual([]);
+         |                 ^
+      76 |     const NUM = /\d+(?:[,.]\d+)? ?(?:s|sekund\w*|minut\w*|min|godzin\w*|h|dni|tygodni\w*|%)(?![\w])/;
+      77 |     for (const s of sections().filter(x => !x.withdrawn && x.id.startsWith('BR-'))) if (NUM.test(s.text.replace(/`[^`]*`/g, ''))) expect([s.id, /\bD-\d{3}\b|\bRD-\d{2}\b|\bOP-\d{2}\b/.test(s.text)]).toEqual([s.id, true]);
+      78 |     expect(sections().find(s => s.id === 'BR-ZEG-001')!.text).toMatch(/5 sekund \(D-123\)/); expect(sections().find(s => s.id === 'BR-ZAK-002')!.text).toMatch(/7 minut \(D-102\)/);
+
+      at Object.toEqual (tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts:75:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 8 skipped, 9 total
+Snapshots:   0 total
+Time:        1.799 s, estimated 2 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-022-brd-aktualny.test.ts/i with tests matching "liczby w wymaganiach".

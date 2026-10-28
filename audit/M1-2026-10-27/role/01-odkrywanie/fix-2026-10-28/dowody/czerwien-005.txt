@@ -1,0 +1,285 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-044-brd.test.ts (9.269 s)
+  BRD (docs/brd): kontrola mechaniczna i pokrycie
+    ✕ kontrola-brd: kod 0, bez błędów; reguły RD z wektorami (79 ms)
+    ✓ funkcje z inwentarza: generator, odczyt Zdrowia, kilka planów, Dostosuj do miejsca (DEC-04) mają wymagania BR (2 ms)
+    ✓ główne moduły aplikacji mają wymagania: trening, plan, szablony, postępy, biblioteka, Zdrowie, zegarek, głos, dane, języki, dostęp (3 ms)
+    ✓ granica aplikacji (DEC-03): dieta, sen, suplementy, trener–podopieczny poza zakresem (2 ms)
+    ✓ decyzja 2 h / 6 h (DEC-08) zapisana w README i w regule RD-03 (1 ms)
+    ✓ brak ocen wartości (bez wartościujących przymiotników) (1 ms)
+    ✓ CLAUDE.md: nowa funkcja = aktualizacja BRD (1 ms)
+    ✓ wektory w tests/wektory/brd.json są zgodne z BRD (generator skryptu) (113 ms)
+  wektory RD uruchomione na kodzie aplikacji
+    ✓ RD-01 e1RM (Epley) (2 ms)
+    ✓ RD-02 RIR a RPE w skali RIR (134 ms)
+    ✓ RD-03 porzucony trening: pytanie po 2 h, ciche zakończenie po 6 h (123 ms)
+    ✕ RD-04 serie na partię: główna 1, pomocnicza 0,5, rozgrzewka poza liczeniem (1 ms)
+  wektory RD-05…RD-15 uruchomione na kodzie aplikacji
+    ✓ każda reguła RD z tests/wektory/brd.json ma tu swój test
+    ✕ RD-05 limit dni treningowych (canStartLive)
+    ✕ RD-06 dzień treningowy: dłużej niż 7 min (qualifiesForDay) (1 ms)
+    ✕ RD-07 zakresy powtórzeń generatora (REPS) (1 ms)
+    ✕ RD-08 przerwy generatora (REST) i domyślna przerwa (DEFAULT_REST) (1 ms)
+    ✕ RD-09 budżet serii z czasu sesji (setsBudget) (1 ms)
+    ✕ RD-10 podpowiedź deloadu po ≥ 4 tygodniach treningu z rzędu (deloadHint) (1 ms)
+    ✕ RD-11 cel serii na partię: ręczny w granicach 1–40 albo automatycznie 10 (clampGoal, setsGoal) (1 ms)
+    ✕ RD-12 udział masy ciała w e1RM (liftedLoad + e1rm) (19 ms)
+    ✕ RD-13 ostrzeżenie: te same główne partie dzień po dniu (backToBack) (1 ms)
+    ✕ RD-14 krok ± na tablicy (stepOf) (1 ms)
+    ✕ RD-15 Strażnik progresji: kierunek partii tydzień do tygodnia (progressGuard) (1 ms)
+
+  ● BRD (docs/brd): kontrola mechaniczna i pokrycie › kontrola-brd: kod 0, bez błędów; reguły RD z wektorami
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /kontrola-brd: \d+ plików, \d+ wymagań BR, 15 reguł RD, \d+ wektorów/
+    Received string:  "UWAGA /home/user/prompts/.claude/worktrees/agent-a78c9b424e0891050/base/docs/brd/reguly.md:64: RD-04: brak wektora błędnych danych
+    kontrola-brd: 5 plików, 49 wymagań BR, 4 reguł RD, 26 wektorów, 4 otwartych pytań · 0 błędów, 1 uwag
+    "
+
+      41 |     const r = spawnSync('node', [SCRIPT, path.join(ROOT, 'docs/brd')], { encoding: 'utf8' });
+      42 |     expect(r.stdout).not.toMatch(/^BŁĄD/m); expect(r.status).toBe(0);
+    > 43 |     expect(r.stdout).toMatch(/kontrola-brd: \d+ plików, \d+ wymagań BR, 15 reguł RD, \d+ wektorów/);
+         |                      ^
+      44 |     expect(Number(/(\d+) wymagań BR/.exec(r.stdout)![1])).toBeGreaterThanOrEqual(30);
+      45 |   });
+      46 |   test('funkcje z inwentarza: generator, odczyt Zdrowia, kilka planów, Dostosuj do miejsca (DEC-04) mają wymagania BR', () => {
+
+      at Object.toMatch (tests/audit-m1-044-brd.test.ts:43:22)
+
+  ● wektory RD uruchomione na kodzie aplikacji › RD-04 serie na partię: główna 1, pomocnicza 0,5, rozgrzewka poza liczeniem
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 5
+    Received:    4
+
+       99 |   });
+      100 |   test('RD-04 serie na partię: główna 1, pomocnicza 0,5, rozgrzewka poza liczeniem', async () => {
+    > 101 |     const vs = forRule('RD-04'); expect(vs.length).toBeGreaterThanOrEqual(5); expect(vs.some(v => v.rodzaj === 'błąd')).toBe(true);
+          |                                                    ^
+      102 |     for (const v of vs) {
+      103 |       await fresh(); const at = new Date(2026, 8, 1, 18).getTime(); const e = ex('Bench Press (sztanga)');
+      104 |       const sets = [...Array.from({ length: inp(v, 'Serie robocze') }, () => ({ weight: 100, reps: 5 })), ...Array.from({ length: inp(v, 'Serie rozgrzewkowe') }, () => ({ weight: 40, reps: 10, kind: 'warmup' as const }))];
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-044-brd.test.ts:101:52)
+      at asyncGeneratorStep (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● wektory RD-05…RD-15 uruchomione na kodzie aplikacji › RD-05 limit dni treningowych (canStartLive)
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 6
+    Received:    0
+
+      117 |   });
+      118 |   test('RD-05 limit dni treningowych (canStartLive)', () => {
+    > 119 |     const vs = forRule('RD-05'); expect(vs.length).toBeGreaterThanOrEqual(6); const NOW = Date.UTC(2026, 10, 15, 12);
+          |                                                    ^
+      120 |     for (const v of vs) {
+      121 |       const today = inp(v, 'Dziś') === 1; const n = inp(v, 'Dni zużyte') - (today ? 1 : 0);
+      122 |       const st: LiveStart[] = [...(today ? [{ startedAt: NOW - 3600e3, tzOffsetMin: 0 }] : []), ...Array.from({ length: n }, (_, i) => ({ startedAt: NOW - (i + 1) * DAY, tzOffsetMin: 0 })),
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-044-brd.test.ts:119:52)
+
+  ● wektory RD-05…RD-15 uruchomione na kodzie aplikacji › RD-06 dzień treningowy: dłużej niż 7 min (qualifiesForDay)
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 5
+    Received:    0
+
+      127 |   });
+      128 |   test('RD-06 dzień treningowy: dłużej niż 7 min (qualifiesForDay)', () => {
+    > 129 |     const vs = forRule('RD-06'); expect(vs.length).toBeGreaterThanOrEqual(5);
+          |                                                    ^
+      130 |     for (const v of vs) expect({ id: v.id, day: qualifiesForDay(inp(v, 'Czas') * 60) ? 1 : 0 }).toEqual({ id: v.id, day: out(v, 'dzień zużyty') });
+      131 |   });
+      132 |   test('RD-07 zakresy powtórzeń generatora (REPS)', () => {
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-044-brd.test.ts:129:52)
+
+  ● wektory RD-05…RD-15 uruchomione na kodzie aplikacji › RD-07 zakresy powtórzeń generatora (REPS)
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 5
+    Received:    0
+
+      131 |   });
+      132 |   test('RD-07 zakresy powtórzeń generatora (REPS)', () => {
+    > 133 |     const vs = forRule('RD-07'); expect(vs.length).toBeGreaterThanOrEqual(5); const R = REPS as Record<string, readonly [number, number] | undefined>;
+          |                                                    ^
+      134 |     for (const v of vs) { const r = R[inp(v, 'Rola')]; expect({ id: v.id, od: r?.[0] ?? null, do: r?.[1] ?? null }).toEqual({ id: v.id, od: out(v, 'od'), do: out(v, 'do') }); }
+      135 |   });
+      136 |   test('RD-08 przerwy generatora (REST) i domyślna przerwa (DEFAULT_REST)', () => {
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-044-brd.test.ts:133:52)
+
+  ● wektory RD-05…RD-15 uruchomione na kodzie aplikacji › RD-08 przerwy generatora (REST) i domyślna przerwa (DEFAULT_REST)
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 5
+    Received:    0
+
+      135 |   });
+      136 |   test('RD-08 przerwy generatora (REST) i domyślna przerwa (DEFAULT_REST)', () => {
+    > 137 |     const vs = forRule('RD-08'); expect(vs.length).toBeGreaterThanOrEqual(5); const R: Record<string, number | undefined> = { ...REST, 'domyślna': DEFAULT_REST };
+          |                                                    ^
+      138 |     for (const v of vs) expect({ id: v.id, rest: R[inp(v, 'Rola')] ?? null }).toEqual({ id: v.id, rest: out(v, 'przerwa') });
+      139 |   });
+      140 |   test('RD-09 budżet serii z czasu sesji (setsBudget)', () => {
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-044-brd.test.ts:137:52)
+
+  ● wektory RD-05…RD-15 uruchomione na kodzie aplikacji › RD-09 budżet serii z czasu sesji (setsBudget)
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 3
+    Received:    0
+
+      139 |   });
+      140 |   test('RD-09 budżet serii z czasu sesji (setsBudget)', () => {
+    > 141 |     const vs = forRule('RD-09'); expect(vs.length).toBeGreaterThanOrEqual(3);
+          |                                                    ^
+      142 |     for (const v of vs) expect({ id: v.id, n: setsBudget(inp(v, 'Cel') as Goal, inp(v, 'Minuty')) }).toEqual({ id: v.id, n: out(v, 'serie') });
+      143 |   });
+      144 |   test('RD-10 podpowiedź deloadu po ≥ 4 tygodniach treningu z rzędu (deloadHint)', async () => {
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-044-brd.test.ts:141:52)
+
+  ● wektory RD-05…RD-15 uruchomione na kodzie aplikacji › RD-10 podpowiedź deloadu po ≥ 4 tygodniach treningu z rzędu (deloadHint)
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 5
+    Received:    0
+
+      143 |   });
+      144 |   test('RD-10 podpowiedź deloadu po ≥ 4 tygodniach treningu z rzędu (deloadHint)', async () => {
+    > 145 |     const vs = forRule('RD-10'); expect(vs.length).toBeGreaterThanOrEqual(5); const NOW = new Date(2026, 9, 8, 9).getTime(); /* czwartek; trening we wtorki */
+          |                                                    ^
+      146 |     for (const v of vs) {
+      147 |       await fresh(); store.getState().deloadSnooze = undefined;
+      148 |       for (let i = 0; i < inp(v, 'Tygodnie'); i++) addWorkout(new Date(2026, 9, 6 - 7 * i, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]);
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-044-brd.test.ts:145:52)
+      at asyncGeneratorStep (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● wektory RD-05…RD-15 uruchomione na kodzie aplikacji › RD-11 cel serii na partię: ręczny w granicach 1–40 albo automatycznie 10 (clampGoal, setsGoal)
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 5
+    Received:    0
+
+      152 |   });
+      153 |   test('RD-11 cel serii na partię: ręczny w granicach 1–40 albo automatycznie 10 (clampGoal, setsGoal)', async () => {
+    > 154 |     const vs = forRule('RD-11'); expect(vs.length).toBeGreaterThanOrEqual(5);
+          |                                                    ^
+      155 |     for (const v of vs) {
+      156 |       await fresh(); const s = store.getState().settings; const m = inp(v, 'Cel ręczny');
+      157 |       if (m == null) delete s.weeklySetGoals; else s.weeklySetGoals = { klatka: clampGoal(m) }; store.save();
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-044-brd.test.ts:154:52)
+      at asyncGeneratorStep (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● wektory RD-05…RD-15 uruchomione na kodzie aplikacji › RD-12 udział masy ciała w e1RM (liftedLoad + e1rm)
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 5
+    Received:    0
+
+      160 |   });
+      161 |   test('RD-12 udział masy ciała w e1RM (liftedLoad + e1rm)', async () => {
+    > 162 |     await fresh(); const vs = forRule('RD-12'); expect(vs.length).toBeGreaterThanOrEqual(5);
+          |                                                                   ^
+      163 |     for (const v of vs) {
+      164 |       const e = ex(inp(v, 'Ćwiczenie')); const reps = inp(v, 'Powtórzenia'); const bm = inp(v, 'Masa ciała') ?? undefined;
+      165 |       const val = e1rm(stats.liftedLoad(e, set({ addKg: inp(v, 'Dociążenie'), reps }), bm), reps);
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-044-brd.test.ts:162:67)
+      at asyncGeneratorStep (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● wektory RD-05…RD-15 uruchomione na kodzie aplikacji › RD-13 ostrzeżenie: te same główne partie dzień po dniu (backToBack)
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4
+    Received:    0
+
+      168 |   });
+      169 |   test('RD-13 ostrzeżenie: te same główne partie dzień po dniu (backToBack)', async () => {
+    > 170 |     const vs = forRule('RD-13'); expect(vs.length).toBeGreaterThanOrEqual(4);
+          |                                                    ^
+      171 |     for (const v of vs) {
+      172 |       await fresh(); const mk = (name: string) => { const t = store.newTemplate(); t.items = [{ id: uid(), exerciseId: ex(name).id, sets: 3, repMin: null, repMax: null, restSec: null, startWeight: '', targetSec: '', groupId: null }]; return t.id; };
+      173 |       const a = mk('Back Squat'); const b = inp(v, 'Wspólna partia') === 1 ? mk('Back Squat') : mk('Bench Press (sztanga)'); store.save();
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-044-brd.test.ts:170:52)
+      at asyncGeneratorStep (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● wektory RD-05…RD-15 uruchomione na kodzie aplikacji › RD-14 krok ± na tablicy (stepOf)
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 5
+    Received:    0
+
+      178 |   });
+      179 |   test('RD-14 krok ± na tablicy (stepOf)', async () => {
+    > 180 |     const vs = forRule('RD-14'); expect(vs.length).toBeGreaterThanOrEqual(5); await fresh();
+          |                                                    ^
+      181 |     const byMetric = (m: string) => store.getState().exercises.find(e => e.metric === m)!.name;
+      182 |     const FIELD: Record<string, [string, BoardKey]> = { sztanga: ['Bench Press (sztanga)', 'weight'], hantle: ['Bench Press (hantle)', 'weight'], 'masa ciała': ['Pull Up', 'addKg'], czas: [byMetric('time'), 'durationSec'], dystans: [byMetric('distance_time'), 'distanceM'] };
+      183 |     for (const v of vs) {
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-044-brd.test.ts:180:52)
+      at asyncGeneratorStep (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+  ● wektory RD-05…RD-15 uruchomione na kodzie aplikacji › RD-15 Strażnik progresji: kierunek partii tydzień do tygodnia (progressGuard)
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 6
+    Received:    0
+
+      188 |   });
+      189 |   test('RD-15 Strażnik progresji: kierunek partii tydzień do tygodnia (progressGuard)', async () => {
+    > 190 |     const vs = forRule('RD-15'); expect(vs.length).toBeGreaterThanOrEqual(6); const NOW = new Date(2026, 9, 8, 9).getTime(); /* czwartek; poprzedni tydzień 28.09–4.10 */
+          |                                                    ^
+      191 |     jest.useFakeTimers({ now: NOW });
+      192 |     try {
+      193 |       for (const v of vs) {
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-044-brd.test.ts:190:52)
+      at asyncGeneratorStep (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at Object.<anonymous> (../../../../../trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       13 failed, 11 passed, 24 total
+Snapshots:   0 total
+Time:        9.754 s
+Ran all test suites matching /tests\/audit-m1-044-brd.test.ts/i.

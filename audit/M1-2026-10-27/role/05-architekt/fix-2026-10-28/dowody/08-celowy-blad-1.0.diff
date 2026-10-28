@@ -1,0 +1,11 @@
+--- ../migrate-live.orig.ts	2026-10-27 23:29:23.777183455 +0000
++++ lib/state/migrate-live.ts	2026-10-27 23:29:23.779761647 +0000
+@@ -16,7 +16,7 @@
+ export function normalizeLiveDays(raw: any): void {
+   const good = Array.isArray(raw.liveDays) && raw.liveDays.every((d: unknown) => isObj(d) && Number.isFinite(d.startedAt) && (d.tzOffsetMin === undefined || Number.isFinite(d.tzOffsetMin)));
+   let list: LiveStart[] = [];
+-  if (good) for (const d of raw.liveDays) list = recordLiveDay(list, { startedAt: d.startedAt, ...(d.tzOffsetMin !== undefined ? { tzOffsetMin: d.tzOffsetMin } : {}) });
++  if (good) for (const d of raw.liveDays) list = recordLiveDay(list, { startedAt: d.startedAt }); /* CELOWY BŁĄD: strefa startu gubiona */
+   else {
+     const nowTs = Date.now(); const cur = monthKey(nowTs, -new Date(nowTs).getTimezoneOffset());
+     for (const w of (Array.isArray(raw.workouts) ? raw.workouts : []) as Workout[]) {

@@ -1,0 +1,19 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts
+  M1-037 C / 03-zakres-008: zapis przejścia poznawczego 5 zadań pętli (27.10.2026)
+    ✓ dokument istnieje, ma datę i metodę (Q1–Q4) oraz odwołanie do decyzji DEC-07 b (5 ms)
+    ✓ Z1: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik” (3 ms)
+    ✓ Z2: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik” (1 ms)
+    ✓ Z3: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik” (1 ms)
+    ✓ Z4: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik” (1 ms)
+    ✓ Z5: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik” (1 ms)
+    ✓ każda porażka („nie”) wskazuje znalezisko (ID roli albo NZ z wyniku roli 03) (1 ms)
+    ✓ etykiety, na których stoi przejście, istnieją w słowniku (zmiana etykiety = ponowne przejście) (4 ms)
+    ✓ część (B) — test z 3–5 osobami bez instrukcji: krok właściciela Z-37 w docs/48 i protokół w dokumencie (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        1.208 s, estimated 2 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts/i.

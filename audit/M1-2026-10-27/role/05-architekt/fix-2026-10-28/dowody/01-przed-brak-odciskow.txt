@@ -1,0 +1,116 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts (9.007 s)
+  ○ skipped zapis odcisków (ODCISKI_ZAPISZ=1): przy niezmienionym schemacie tylko nowe wzorce, zmieniony odcisk = odmowa
+  DEC-03 b (27.10.2026): normalizacja zapisów z wydanych buildów bez zmian przy tym samym SCHEMA_VERSION
+    ✕ odciski istnieją i są zapisane dla bieżącego schematu (6 ms)
+    ✕ każdy zapis z tests/fixtures/released ma odcisk, a każdy odcisk ma swój zapis
+    ✕ wynik startu na state-v0.11.0-b1005-schema18.json = zapisany odcisk
+    ✕ wynik startu na state-v0.18.0-b1017-schema18.json = zapisany odcisk
+    ✕ wynik startu na state-v0.20.0-b1018-schema19.json = zapisany odcisk (1 ms)
+    ✕ wynik startu na state-v1.0.0-b1032-schema19.json = zapisany odcisk
+    ✓ wzorzec 1.0 obejmuje pola dodane bez podbicia schematu (liveDays, trening na żywo, voice, haptics, własne i zmienione ćwiczenie) (8 ms)
+  strażnik potrafi paść: odcisk wychwytuje zmianę danych użytkownika, pomija treść katalogu
+    ✓ nazwa szablonu przycięta → różnica (22 ms)
+    ✓ notatka serii usunięta → różnica (27 ms)
+    ✓ uzupełnienie liveDays z historii → różnica (18 ms)
+    ✓ nowe pole dopisane do starego zapisu → różnica (20 ms)
+    ✓ ustawienie przepisane → różnica (23 ms)
+    ✓ własne ćwiczenie zmienione → różnica (21 ms)
+    ✓ ćwiczenie z biblioteki zmienione przez użytkownika → różnica (18 ms)
+    ✓ treść katalogu (ćwiczenie z biblioteki nieruszone przez użytkownika, kroki katalogu) i metadane zapisu nie zmieniają odcisku (18 ms)
+    ✓ kolejność pól obiektu nie zmienia odcisku (21 ms)
+
+  ● DEC-03 b (27.10.2026): normalizacja zapisów z wydanych buildów bez zmian przy tym samym SCHEMA_VERSION › odciski istnieją i są zapisane dla bieżącego schematu
+
+    expect(received).not.toBeNull()
+
+    Received: null
+
+      93 |   test('odciski istnieją i są zapisane dla bieżącego schematu', () => {
+      94 |     const p = czytaj();
+    > 95 |     expect(p).not.toBeNull();
+         |                   ^
+      96 |     if (p!.schemaVersion !== SCHEMA_VERSION)
+      97 |       throw new Error(`Odciski są dla schematu ${p!.schemaVersion}, a SCHEMA_VERSION = ${SCHEMA_VERSION}. Po podbiciu schematu zapisz odciski: ${KOMENDA}`);
+      98 |   });
+
+      at Object.toBeNull (tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts:95:19)
+
+  ● DEC-03 b (27.10.2026): normalizacja zapisów z wydanych buildów bez zmian przy tym samym SCHEMA_VERSION › każdy zapis z tests/fixtures/released ma odcisk, a każdy odcisk ma swój zapis
+
+    TypeError: Cannot read properties of null (reading 'wzorce')
+
+       99 |   test('każdy zapis z tests/fixtures/released ma odcisk, a każdy odcisk ma swój zapis', () => {
+      100 |     const p = czytaj()!;
+    > 101 |     expect({ bezOdcisku: WZORCE.filter(f => !(f in p.wzorce)), bezZapisu: Object.keys(p.wzorce).filter(f => !WZORCE.includes(f)) }).toEqual({ bezOdcisku: [], bezZapisu: [] });
+          |                                                      ^
+      102 |   });
+      103 |   test.each(WZORCE)('wynik startu na %s = zapisany odcisk', file => {
+      104 |     const p = czytaj()!; if (p.schemaVersion !== SCHEMA_VERSION || !p.wzorce[file]) return; /* zgłaszają to dwa testy wyżej */
+
+      at wzorce (tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts:101:54)
+          at Array.filter (<anonymous>)
+      at Object.filter (tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts:101:33)
+
+  ● DEC-03 b (27.10.2026): normalizacja zapisów z wydanych buildów bez zmian przy tym samym SCHEMA_VERSION › wynik startu na state-v0.11.0-b1005-schema18.json = zapisany odcisk
+
+    TypeError: Cannot read properties of null (reading 'schemaVersion')
+
+      102 |   });
+      103 |   test.each(WZORCE)('wynik startu na %s = zapisany odcisk', file => {
+    > 104 |     const p = czytaj()!; if (p.schemaVersion !== SCHEMA_VERSION || !p.wzorce[file]) return; /* zgłaszają to dwa testy wyżej */
+          |                                ^
+      105 |     const r = roznice(p.wzorce[file], biezace[file]);
+      106 |     if (r.length) throw new Error(`Start aplikacji zmienia zapis z wydanego builda (${file}) inaczej niż przy schemacie ${SCHEMA_VERSION}: ${r.join(', ')}. ${REGULA}`);
+      107 |   });
+
+      at schemaVersion (tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts:104:32)
+
+  ● DEC-03 b (27.10.2026): normalizacja zapisów z wydanych buildów bez zmian przy tym samym SCHEMA_VERSION › wynik startu na state-v0.18.0-b1017-schema18.json = zapisany odcisk
+
+    TypeError: Cannot read properties of null (reading 'schemaVersion')
+
+      102 |   });
+      103 |   test.each(WZORCE)('wynik startu na %s = zapisany odcisk', file => {
+    > 104 |     const p = czytaj()!; if (p.schemaVersion !== SCHEMA_VERSION || !p.wzorce[file]) return; /* zgłaszają to dwa testy wyżej */
+          |                                ^
+      105 |     const r = roznice(p.wzorce[file], biezace[file]);
+      106 |     if (r.length) throw new Error(`Start aplikacji zmienia zapis z wydanego builda (${file}) inaczej niż przy schemacie ${SCHEMA_VERSION}: ${r.join(', ')}. ${REGULA}`);
+      107 |   });
+
+      at schemaVersion (tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts:104:32)
+
+  ● DEC-03 b (27.10.2026): normalizacja zapisów z wydanych buildów bez zmian przy tym samym SCHEMA_VERSION › wynik startu na state-v0.20.0-b1018-schema19.json = zapisany odcisk
+
+    TypeError: Cannot read properties of null (reading 'schemaVersion')
+
+      102 |   });
+      103 |   test.each(WZORCE)('wynik startu na %s = zapisany odcisk', file => {
+    > 104 |     const p = czytaj()!; if (p.schemaVersion !== SCHEMA_VERSION || !p.wzorce[file]) return; /* zgłaszają to dwa testy wyżej */
+          |                                ^
+      105 |     const r = roznice(p.wzorce[file], biezace[file]);
+      106 |     if (r.length) throw new Error(`Start aplikacji zmienia zapis z wydanego builda (${file}) inaczej niż przy schemacie ${SCHEMA_VERSION}: ${r.join(', ')}. ${REGULA}`);
+      107 |   });
+
+      at schemaVersion (tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts:104:32)
+
+  ● DEC-03 b (27.10.2026): normalizacja zapisów z wydanych buildów bez zmian przy tym samym SCHEMA_VERSION › wynik startu na state-v1.0.0-b1032-schema19.json = zapisany odcisk
+
+    TypeError: Cannot read properties of null (reading 'schemaVersion')
+
+      102 |   });
+      103 |   test.each(WZORCE)('wynik startu na %s = zapisany odcisk', file => {
+    > 104 |     const p = czytaj()!; if (p.schemaVersion !== SCHEMA_VERSION || !p.wzorce[file]) return; /* zgłaszają to dwa testy wyżej */
+          |                                ^
+      105 |     const r = roznice(p.wzorce[file], biezace[file]);
+      106 |     if (r.length) throw new Error(`Start aplikacji zmienia zapis z wydanego builda (${file}) inaczej niż przy schemacie ${SCHEMA_VERSION}: ${r.join(', ')}. ${REGULA}`);
+      107 |   });
+
+      at schemaVersion (tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts:104:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       6 failed, 1 skipped, 10 passed, 17 total
+Snapshots:   0 total
+Time:        10.261 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts/i.

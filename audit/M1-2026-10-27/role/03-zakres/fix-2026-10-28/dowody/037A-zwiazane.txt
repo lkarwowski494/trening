@@ -1,0 +1,76 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+
+Summary of all failing tests
+FAIL tests/interaction-guards.test.ts (5.134 s)
+  ● S5: potwierdzenia — rezygnacja zawsze „Anuluj” (jedna stała w lib/confirm.ts) › style: 'cancel' tylko w lib/confirm.ts (i wyjątek: „Nie teraz” przy prośbie o zgodę na powiadomienia)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "app/_layout.tsx:99",
+    + ]
+
+      61 | describe('S5: potwierdzenia — rezygnacja zawsze „Anuluj” (jedna stała w lib/confirm.ts)', () => {
+      62 |   test('style: \'cancel\' tylko w lib/confirm.ts (i wyjątek: „Nie teraz” przy prośbie o zgodę na powiadomienia)', () => {
+    > 63 |     expect(lines(/style: 'cancel'/, ['lib/confirm.ts', 'lib/planReminder.ts'])).toEqual([]);
+         |                                                                                 ^
+      64 |     expect(src.get('lib/planReminder.ts')!.match(/style: 'cancel'/g)).toHaveLength(1); /* wyjątek nazwany: odroczenie pytania o zgodę, nie anulowanie akcji */
+      65 |   });
+      66 |   test('zakaz słów „Nie” i „Wróć” jako przycisków okien (jedyny wyjątek: „Wróć do edycji” w odrzucaniu zmian)', () => {
+
+      at Object.toEqual (tests/interaction-guards.test.ts:63:81)
+
+FAIL tests/audit-m1-066-pseudo.test.tsx
+  ● plik kontekstu tłumaczeń › obejmuje wszystkie klucze słownika o długości ≤ 20 znaków, bez zbędnych
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "Zobacz plany Pro",
+    + ]
+
+      37 |     const short = src.filter(k => [...k].length <= 20);
+      38 |     expect(short.length).toBeGreaterThan(300);
+    > 39 |     expect(short.filter(k => !ctx[k])).toEqual([]); expect(Object.keys(ctx).filter(k => !short.includes(k))).toEqual([]);
+         |                                        ^
+      40 |   });
+      41 |   test('aktualny względem kodu (node scripts/i18n-context.mjs --write)', () => {
+      42 |     expect(() => require('child_process').execFileSync('node', [path.join(root, 'scripts/i18n-context.mjs'), '--check'], { stdio: 'pipe' })).not.toThrow();
+
+      at Object.toEqual (tests/audit-m1-066-pseudo.test.tsx:39:40)
+
+  ● plik kontekstu tłumaczeń › aktualny względem kodu (node scripts/i18n-context.mjs --write)
+
+    expect(received).not.toThrow()
+
+    Error name:    "Error"
+    Error message: "Command failed: node /home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/scripts/i18n-context.mjs --check"
+
+          40 |   });
+          41 |   test('aktualny względem kodu (node scripts/i18n-context.mjs --write)', () => {
+        > 42 |     expect(() => require('child_process').execFileSync('node', [path.join(root, 'scripts/i18n-context.mjs'), '--check'], { stdio: 'pipe' })).not.toThrow();
+             |                                           ^
+          43 |   });
+          44 | });
+          45 |
+
+      at execFileSync (tests/audit-m1-066-pseudo.test.tsx:42:43)
+      at Object.<anonymous> (../../../node_modules/expect/build/toThrowMatchers.js:74:11)
+      at Object.throwingMatcher [as toThrow] (../../../node_modules/expect/build/index.js:320:21)
+      at Object.toThrow (tests/audit-m1-066-pseudo.test.tsx:42:146)
+      at Object.toThrow (tests/audit-m1-066-pseudo.test.tsx:42:146)
+
+
+Test Suites: 2 failed, 22 passed, 24 total
+Tests:       3 failed, 607 passed, 610 total
+Snapshots:   0 total
+Time:        559.08 s

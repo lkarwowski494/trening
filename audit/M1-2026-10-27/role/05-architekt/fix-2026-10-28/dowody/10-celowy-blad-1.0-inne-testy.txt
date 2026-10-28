@@ -1,0 +1,40 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/m5s1-dni-zapis.test.ts
+  ● licznik z magazynu: ukończenie, wstecz, anulowany, trwający, zapis po 6 h, usunięcie › migracja: dni z historii (dane poprzedniej wersji, bez pola liveDays) › idempotentna; poprawne pole zostaje (usunięty trening nie wraca do licznika po kolejnej migracji / restarcie)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 0
+
+      Array [
+        Object {
+          "startedAt": 1793642400000,
+    -     "tzOffsetMin": 60,
+        },
+        Object {
+          "startedAt": 1794222000000,
+    -     "tzOffsetMin": 60,
+        },
+      ]
+
+      105 |     });
+      106 |     test('idempotentna; poprawne pole zostaje (usunięty trening nie wraca do licznika po kolejnej migracji / restarcie)', async () => {
+    > 107 |       const m1 = store.migrate(await legacy()); const m2 = store.migrate(JSON.parse(JSON.stringify(m1))); expect(m2.liveDays).toEqual(m1.liveDays);
+          |                                                                                                                               ^
+      108 |       const kept = JSON.parse(JSON.stringify(m1)); kept.workouts = []; expect(store.migrate(kept).liveDays).toEqual(m1.liveDays);
+      109 |     });
+      110 |     test('uszkodzone pole (nie lista, wpis bez startu) → odtworzone z historii; pusta lista → brak pola', async () => {
+
+      at Object.toEqual (tests/m5s1-dni-zapis.test.ts:107:127)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+PASS iOS tests/migrate-released.test.ts
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       1 failed, 36 passed, 37 total
+Snapshots:   0 total
+Time:        7.47 s
+Ran all test suites matching /tests\/migrate-released.test.ts|tests\/m5s1-dni-zapis.test.ts/i.

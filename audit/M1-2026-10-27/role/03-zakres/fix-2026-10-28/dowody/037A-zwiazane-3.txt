@@ -1,0 +1,7 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+
+Test Suites: 7 passed, 7 total
+Tests:       113 passed, 113 total
+Snapshots:   0 total
+Time:        33.688 s

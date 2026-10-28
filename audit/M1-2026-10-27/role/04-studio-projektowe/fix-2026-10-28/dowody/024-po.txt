@@ -1,0 +1,12 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/m3-p2-start.test.tsx (8.08 s)
+PASS iOS tests/home-b.test.tsx (6.115 s)
+PASS iOS tests/home-plan-header.test.tsx
+PASS iOS tests/trening-naglowek.test.tsx (5.831 s)
+
+Test Suites: 4 passed, 4 total
+Tests:       43 passed, 43 total
+Snapshots:   0 total
+Time:        25.655 s, estimated 47 s
+Ran all test suites matching /tests\/m3-p2-start.test.tsx|tests\/trening-naglowek.test.tsx|tests\/home-plan-header.test.tsx|tests\/home-b.test.tsx/i.

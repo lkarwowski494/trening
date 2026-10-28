@@ -1,0 +1,206 @@
+
+> trening@1.0.0 lint
+> eslint .
+
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/(tabs)/_layout.tsx
+   3:24  warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/store.ts' imported multiple times  import/no-duplicates
+  10:30  warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/store.ts' imported multiple times  import/no-duplicates
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/(tabs)/index.tsx
+   2:22  warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+  11:23  warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/(tabs)/more.tsx
+  2:10  warning  'View' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/_layout.tsx
+   5:58  warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+   7:23  warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+  15:26  warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+  19:32  warning  'FW' is defined but never used                                                                                             @typescript-eslint/no-unused-vars
+  43:33  warning  React Hook useEffect has a missing dependency: 'start'. Either include it or remove the dependency array                   react-hooks/exhaustive-deps
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/exercise/[id].tsx
+   4:49   warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/node_modules/expo-router/build/index.js' imported multiple times  import/no-duplicates
+   8:23   warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/node_modules/expo-router/build/index.js' imported multiple times  import/no-duplicates
+  12:31   warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/seed.ts' imported multiple times                              import/no-duplicates
+  13:193  warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/seed.ts' imported multiple times                              import/no-duplicates
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/exercises.tsx
+  6:29  warning  'Input' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/generator.tsx
+  10:69   warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/store.ts' imported multiple times        import/no-duplicates
+  18:13   warning  'locale' is defined but never used                                                                         @typescript-eslint/no-unused-vars
+  20:33   warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/store.ts' imported multiple times        import/no-duplicates
+  56:162  warning  React Hook useMemo has an unnecessary dependency: 'rev'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/history/[id].tsx
+   2:16  warning  'Alert' is defined but never used   @typescript-eslint/no-unused-vars
+  10:96  warning  'isBW' is defined but never used    @typescript-eslint/no-unused-vars
+  23:24  warning  'fmtNum' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/history/edit/[id].tsx
+   4:43  warning  'Stack' is defined but never used         @typescript-eslint/no-unused-vars
+  17:23  warning  'HeaderButton' is defined but never used  @typescript-eslint/no-unused-vars
+  32:64  warning  'th' is assigned a value but never used   @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/more/bands.tsx
+   2:16  warning  'Alert' is defined but never used          @typescript-eslint/no-unused-vars
+   4:18  warning  'Input' is defined but never used          @typescript-eslint/no-unused-vars
+   4:35  warning  'Btn' is defined but never used            @typescript-eslint/no-unused-vars
+  19:66  warning  'once' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/more/bodymass.tsx
+  5:35  warning  'Input' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/more/import.tsx
+  4:61  warning  'Input' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/more/location/[id].tsx
+   2:16  warning  'Alert' is defined but never used      @typescript-eslint/no-unused-vars
+  11:61  warning  'bandColor' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/pick-template.tsx
+   1:17  warning  'useMemo' is defined but never used      @typescript-eslint/no-unused-vars
+   2:10  warning  'Pressable' is defined but never used    @typescript-eslint/no-unused-vars
+   2:21  warning  'Text' is defined but never used         @typescript-eslint/no-unused-vars
+   5:20  warning  'F' is defined but never used            @typescript-eslint/no-unused-vars
+   6:18  warning  'Input' is defined but never used        @typescript-eslint/no-unused-vars
+   6:36  warning  'Muted' is defined but never used        @typescript-eslint/no-unused-vars
+  10:23  warning  'lang' is defined but never used         @typescript-eslint/no-unused-vars
+  21:20  warning  'th' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/picker.tsx
+   2:10   warning  'Pressable' is defined but never used                                                           @typescript-eslint/no-unused-vars
+   2:21   warning  'Text' is defined but never used                                                                @typescript-eslint/no-unused-vars
+   6:18   warning  'Input' is defined but never used                                                               @typescript-eslint/no-unused-vars
+  16:35   warning  'hasReps' is defined but never used                                                             @typescript-eslint/no-unused-vars
+  17:33   warning  'locale' is defined but never used                                                              @typescript-eslint/no-unused-vars
+  17:47   warning  'lang' is defined but never used                                                                @typescript-eslint/no-unused-vars
+  26:9    warning  'th' is assigned a value but never used                                                         @typescript-eslint/no-unused-vars
+  49:105  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/plan.tsx
+   3:35  warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+   5:40  warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+  15:13  warning  'locale' is defined but never used                                                                                         @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/progression.tsx
+  14:17  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/reorder.tsx
+  4:35  warning  'Empty' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/swap.tsx
+   1:17  warning  'useMemo' is defined but never used      @typescript-eslint/no-unused-vars
+   2:10  warning  'Pressable' is defined but never used    @typescript-eslint/no-unused-vars
+   2:21  warning  'Text' is defined but never used         @typescript-eslint/no-unused-vars
+   5:20  warning  'F' is defined but never used            @typescript-eslint/no-unused-vars
+   6:58  warning  'Input' is defined but never used        @typescript-eslint/no-unused-vars
+  15:33  warning  'locale' is defined but never used       @typescript-eslint/no-unused-vars
+  15:47  warning  'lang' is defined but never used         @typescript-eslint/no-unused-vars
+  30:9   warning  'th' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/template/[id].tsx
+  105:3   warning  React Hook useEffect contains a call to 'setOpen'. Without a list of dependencies, this can lead to an infinite chain of updates. To fix this, pass [tpl.items] as a second argument to the useEffect Hook  react-hooks/exhaustive-deps
+  168:10  warning  'Col' is defined but never used                                                                                                                                                                             @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/app/templates.tsx
+   2:22   warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+   6:27   warning  '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/node_modules/react-native/index.js' imported multiple times  import/no-duplicates
+  16:132  warning  'once' is assigned a value but never used                                                                                  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/components/AddButton.tsx
+  24:153  warning  React Hook useMemo has an unnecessary dependency: 'th'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/components/DayPanel.tsx
+   2:27  warning  'Alert' is defined but never used   @typescript-eslint/no-unused-vars
+  11:13  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/components/DeloadHint.tsx
+  8:13  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/components/OwnPlan.tsx
+  11:13  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/components/PeriodSummary.tsx
+  5:21  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+  9:10  warning  'Chip' is defined but never used    @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/components/Scroll.tsx
+  12:13  warning  'ScrollView' is already defined   @typescript-eslint/no-redeclare
+  17:13  warning  'FlatList' is already defined     @typescript-eslint/no-redeclare
+  22:13  warning  'SectionList' is already defined  @typescript-eslint/no-redeclare
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/components/SwipeRow.tsx
+  72:74  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/components/WhatsNew.tsx
+  8:13  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/docs/design/narzedzia/ikona.mjs
+  34:3  warning  Unused eslint-disable directive (no problems were reported from 'import/no-unresolved')
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/docs/design/narzedzia/warsztat.mjs
+  32:3  warning  Unused eslint-disable directive (no problems were reported from 'import/no-unresolved')
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/docs/design/narzedzia/zrzuty.mjs
+  2:1  warning  Unused eslint-disable directive (no problems were reported from 'import/no-unresolved')
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/backup.ts
+   5:178  warning  'flush' is defined but never used     @typescript-eslint/no-unused-vars
+  10:58   warning  'Exercise' is defined but never used  @typescript-eslint/no-unused-vars
+  10:73   warning  'WSet' is defined but never used      @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/calendar.ts
+  17:19  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/cues/index.ts
+  29:1  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-var-requires')
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/dashboard.ts
+  1:54  warning  'isWorking' is defined but never used  @typescript-eslint/no-unused-vars
+  1:65  warning  'exById' is defined but never used     @typescript-eslint/no-unused-vars
+  2:65  warning  'plannedOn' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/figures/index.ts
+  15:1  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-var-requires')
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/generator.ts
+   4:21  warning  'LIB_BASE_NAMES' is defined but never used  @typescript-eslint/no-unused-vars
+   7:23  warning  'locale' is defined but never used          @typescript-eslint/no-unused-vars
+  12:1   warning  Import in body of module; reorder to top    import/first
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/hkModule.ts
+  34:16  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/i18n.ts
+  65:5   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-var-requires')
+  66:18  warning  A `require()` style import is forbidden                                                                @typescript-eslint/no-require-imports
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/live.ts
+  38:144  warning  'si' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/locales/index.ts
+  4:1  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-var-requires')
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/motif.ts
+  3:59  warning  'weekdayIdx' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/plan.ts
+  3:13  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/review-run.ts
+  17:60  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/store-native.ts
+  34:86  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/lib/swap.ts
+  3:21  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 104 problems (0 errors, 104 warnings)
+  0 errors and 18 warnings potentially fixable with the `--fix` option.
+

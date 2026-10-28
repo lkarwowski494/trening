@@ -1,0 +1,24 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/public-repo.test.ts
+PASS iOS tests/m5s1-dni-zapis.test.ts (25.978 s)
+PASS iOS tests/m3-p5d-haptics.test.ts
+PASS iOS tests/audit-m1-044-brd.test.ts
+PASS iOS tests/verify-docs.test.ts
+PASS iOS tests/audit-m1b-028-watch-ack.test.ts
+PASS iOS tests/audit-m1-027-voice-default.test.ts
+PASS iOS tests/migrate-released.test.ts
+PASS iOS tests/audit-m1-002-premigrate.test.ts
+PASS iOS tests/audit-m1-050-release-log.test.ts
+PASS iOS tests/audit-1-0-docs.test.ts
+PASS iOS tests/audit-m1-lok07-01-migrate-dist.test.ts
+PASS iOS tests/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts
+PASS iOS tests/audit-m1-061-quality-claims.test.ts
+PASS iOS tests/release-1.0.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts
+
+Test Suites: 16 passed, 16 total
+Tests:       1 skipped, 241 passed, 242 total
+Snapshots:   0 total
+Time:        49.466 s
+Ran all test suites matching /tests\/audit-1-0-docs.test.ts|tests\/audit-m1-027-voice-default.test.ts|tests\/audit-m1-044-brd.test.ts|tests\/audit-m1-050-release-log.test.ts|tests\/audit-m1-061-quality-claims.test.ts|tests\/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts|tests\/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts|tests\/audit-m1-lok07-01-migrate-dist.test.ts|tests\/audit-m1b-028-watch-ack.test.ts|tests\/m3-p5d-haptics.test.ts|tests\/m5s1-dni-zapis.test.ts|tests\/migrate-released.test.ts|tests\/verify-docs.test.ts|tests\/release-1.0.test.tsx|tests\/public-repo.test.ts|tests\/audit-m1-002-premigrate.test.ts/i.

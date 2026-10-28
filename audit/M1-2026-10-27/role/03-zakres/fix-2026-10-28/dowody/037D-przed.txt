@@ -1,0 +1,514 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts
+  M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026)
+    ✕ scenorys: 9 ekranów PL, EN ma te same; języki ze sklepem = 29 języków aplikacji (33 lokalizacje sklepu) (10 ms)
+    ✕ cs: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✕ da: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ de: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✕ el: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ en: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (4 ms)
+    ✕ es: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✕ es-419: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ fi: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ fr: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ hr: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✕ hu: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✕ id: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ it: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ ja: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ ko: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ ms: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✕ nb: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ nl: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✓ pl: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✕ pt: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✕ pt-BR: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ ro: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ ru: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✕ sk: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ sv: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ tr: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ uk: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ vi: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✕ zh-Hant: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+    ✕ ten sam podpis nie powtarza się w obrębie języka (każdy ekran ma własne zdanie) (4 ms)
+    ✓ znaki podpisów (poza ja, ko, zh-Hant — czcionka CJK) są w czcionce ramek IBM Plex Sans Bold (2 ms)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › scenorys: 9 ekranów PL, EN ma te same; języki ze sklepem = 29 języków aplikacji (33 lokalizacje sklepu)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 33
+    Received: 32
+
+      52 |     expect(ekrany).toEqual(['trening', 'postepy-cwiczenia', 'straznik', 'plan', 'dostosuj', 'progresja', 'historia', 'szablony', 'import']);
+      53 |     expect(langs).toHaveLength(29);
+    > 54 |     expect(langs.reduce((n, l) => n + loc[l].length, 0)).toBe(33);
+         |                                                          ^
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+      57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+
+      at Object.toBe (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:54:58)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › cs: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › da: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › de: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › el: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › es: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › es-419: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › fi: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › fr: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › hr: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › hu: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › id: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › it: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › ja: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › ko: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › ms: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › nb: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › nl: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › pt: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › pt-BR: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › ro: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › ru: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › sk: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › sv: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › tr: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › uk: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › vi: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › zh-Hant: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      55 |   });
+      56 |   test.each(Object.keys(shotLocales()).filter(l => shotLocales()[l].length > 0).sort())('%s: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu', (l) => {
+    > 57 |     const p = c.podpisy[l]; expect(p).toBeDefined();
+         |                                       ^
+      58 |     expect(Object.keys(p ?? {})).toEqual(ekrany);
+      59 |     for (const [k, v] of Object.entries(p ?? {})) {
+      60 |       expect({ k, ok: typeof v === 'string' && v.trim().length > 0 && [...v].length <= c.maxZnakow }).toEqual({ k, ok: true });
+
+      at toBeDefined (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:57:39)
+
+  ● M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026) › ten sam podpis nie powtarza się w obrębie języka (każdy ekran ma własne zdanie)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "l": "cs",
+    -   "powt": 9,
+    +   "powt": 0,
+      }
+
+      64 |   });
+      65 |   test('ten sam podpis nie powtarza się w obrębie języka (każdy ekran ma własne zdanie)', () => {
+    > 66 |     for (const l of langs) expect({ l, powt: new Set(Object.values(c.podpisy[l] ?? {})).size }).toEqual({ l, powt: ekrany.length });
+         |                                                                                                 ^
+      67 |   });
+      68 |   test('znaki podpisów (poza ja, ko, zh-Hant — czcionka CJK) są w czcionce ramek IBM Plex Sans Bold', () => {
+      69 |     const font = path.join(root, 'node_modules/@expo-google-fonts/ibm-plex-sans/700Bold/IBMPlexSans_700Bold.ttf');
+
+      at Object.toEqual (tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts:66:97)
+
+Test Suites: 1 failed, 1 total
+Tests:       29 failed, 3 passed, 32 total
+Snapshots:   0 total
+Time:        4.018 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts/i.

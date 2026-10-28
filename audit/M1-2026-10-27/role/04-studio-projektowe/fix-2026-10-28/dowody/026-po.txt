@@ -1,0 +1,38 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-026-kolejnosc-menu.test.tsx (7.641 s)
+FAIL iOS tests/interaction-guards.test.ts (6.219 s)
+  ● S5: potwierdzenia — rezygnacja zawsze „Anuluj” (jedna stała w lib/confirm.ts) › style: 'cancel' tylko w lib/confirm.ts (i wyjątek: „Nie teraz” przy prośbie o zgodę na powiadomienia)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "app/_layout.tsx:99",
+    + ]
+
+      61 | describe('S5: potwierdzenia — rezygnacja zawsze „Anuluj” (jedna stała w lib/confirm.ts)', () => {
+      62 |   test('style: \'cancel\' tylko w lib/confirm.ts (i wyjątek: „Nie teraz” przy prośbie o zgodę na powiadomienia)', () => {
+    > 63 |     expect(lines(/style: 'cancel'/, ['lib/confirm.ts', 'lib/planReminder.ts'])).toEqual([]);
+         |                                                                                 ^
+      64 |     expect(src.get('lib/planReminder.ts')!.match(/style: 'cancel'/g)).toHaveLength(1); /* wyjątek nazwany: odroczenie pytania o zgodę, nie anulowanie akcji */
+      65 |   });
+      66 |   test('zakaz słów „Nie” i „Wróć” jako przycisków okien (jedyny wyjątek: „Wróć do edycji” w odrzucaniu zmian)', () => {
+
+      at Object.toEqual (tests/interaction-guards.test.ts:63:81)
+
+PASS iOS tests/i18n-wave2.test.ts
+PASS iOS tests/interaction-patterns.test.tsx (6.756 s)
+PASS iOS tests/reorder-t010.test.tsx (5.951 s)
+PASS iOS tests/m3-p5d-haptics.test.ts
+PASS iOS tests/close-button-guard.test.tsx (5.428 s)
+PASS iOS tests/maestro-flows.test.tsx (435.636 s)
+
+Test Suites: 1 failed, 7 passed, 8 total
+Tests:       1 failed, 253 passed, 254 total
+Snapshots:   0 total
+Time:        472.082 s
+Ran all test suites matching /tests\/audit-m1-026-kolejnosc-menu.test.tsx|tests\/reorder-t010.test.tsx|tests\/m3-p5d-haptics.test.ts|tests\/i18n-wave2.test.ts|tests\/interaction-guards.test.ts|tests\/close-button-guard.test.tsx|tests\/maestro-flows.test.tsx|tests\/interaction-patterns.test.tsx/i.

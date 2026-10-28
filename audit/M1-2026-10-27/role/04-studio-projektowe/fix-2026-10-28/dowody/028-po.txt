@@ -1,0 +1,34 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-028-cele-44-compact.test.tsx
+FAIL iOS tests/m3-token-guard.test.ts
+  ● liczbowe fontSize / borderRadius poza tokenami (lista wyjątków tylko maleje) › żaden plik nie ma więcej literałów niż w wykazie (nowy literał = użyj font(rola) / RADIUS / SPACE z lib/theme.ts)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "components/StartError.tsx: fontSize 4 > 3",
+    + ]
+
+      28 |     const over: string[] = [];
+      29 |     for (const f of FILES) { const c = code(f); for (const key of ['fontSize', 'borderRadius'] as const) { const n = count(c, key); const allowed = base.pliki[f]?.[key] ?? 0; if (n > allowed) over.push(`${f}: ${key} ${n} > ${allowed}`); } }
+    > 30 |     expect(over).toEqual([]);
+         |                  ^
+      31 |   });
+      32 |   test('zapadka: gdy literałów ubyło, wykaz jest obniżony (albo plik usunięty z wykazu przy zerze)', () => {
+      33 |     const stale: string[] = [];
+
+      at Object.toEqual (tests/m3-token-guard.test.ts:30:18)
+
+PASS iOS tests/ux.test.tsx (16.593 s)
+PASS iOS tests/audit-m1-028-delete-menus.test.tsx
+
+Test Suites: 1 failed, 3 passed, 4 total
+Tests:       1 failed, 23 passed, 24 total
+Snapshots:   0 total
+Time:        25.965 s
+Ran all test suites matching /tests\/audit-m1-028-cele-44-compact.test.tsx|tests\/ux.test.tsx|tests\/m3-token-guard.test.ts|tests\/audit-m1-028-delete-menus.test.tsx|tests\/plank-timer.test.tsx/i.

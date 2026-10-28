@@ -1,0 +1,51 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx (10.407 s)
+  M1-016: arkusz zarządzania subskrypcją
+    ✕ adapter natywny: arkusz systemowy, bez strony App Store (14 ms)
+    ✓ arkusz rzuca → zapas: strona App Store (2 ms)
+    ✕ ekran zakupu: po „Zarządzaj subskrypcją” uprawnienia są odświeżane (anulowanie w arkuszu widać od razu) (3285 ms)
+
+  ● M1-016: arkusz zarządzania subskrypcją › adapter natywny: arkusz systemowy, bez strony App Store
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: "showManageSubscriptionsIOS"
+    Received array: ["deepLinkToSubscriptions"]
+
+      22 |   test('adapter natywny: arkusz systemowy, bez strony App Store', async () => {
+      23 |     await createNativeStore().manageSubscriptions(); const names = iap().calls.map((c: unknown[]) => c[0]);
+    > 24 |     expect(names).toContain('showManageSubscriptionsIOS'); expect(names).not.toContain('deepLinkToSubscriptions');
+         |                   ^
+      25 |   });
+      26 |   test('arkusz rzuca → zapas: strona App Store', async () => {
+      27 |     iap().manageFail = 'no scene'; await createNativeStore().manageSubscriptions(); const names = iap().calls.map((c: unknown[]) => c[0]);
+
+      at Object.toContain (tests/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx:24:19)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● M1-016: arkusz zarządzania subskrypcją › ekran zakupu: po „Zarządzaj subskrypcją” uprawnienia są odświeżane (anulowanie w arkuszu widać od razu)
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 1
+    Received:   1
+
+      33 |     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/paywall?reason=settings' }); for (let i = 0; i < 8; i++) await flushAll(10);
+      34 |     const before = fake.calls.currentEntitlements; await tap(screen.getByText(t('Zarządzaj subskrypcją'))); for (let i = 0; i < 8; i++) await flushAll(10);
+    > 35 |     expect(fake.calls.manageSubscriptions ?? 1).toBeGreaterThan(0); expect(fake.calls.currentEntitlements).toBeGreaterThan(before);
+         |                                                                                                            ^
+      36 |   });
+      37 | });
+      38 |
+
+      at Object.toBeGreaterThan (tests/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx:35:108)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 1 passed, 3 total
+Snapshots:   0 total
+Time:        11.052 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx/i.

@@ -1,0 +1,12 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/generator-ui.test.tsx (8.831 s)
+PASS iOS tests/audit-m1-029-kropka-srodkowa.test.ts
+PASS iOS tests/audit-k1-fala2b.test.tsx (15.608 s)
+PASS iOS tests/matrix-a11y.test.tsx (53.802 s)
+PASS iOS tests/adapt-ui.test.tsx (28.416 s)
+PASS iOS tests/gen-general-ui.test.tsx (34.947 s)
+PASS iOS tests/gen-days-ui.test.tsx (21.926 s)
+PASS iOS tests/backlog-0.10.1-dane-ui.test.tsx
+PASS iOS tests/matrix-dim-langs1.test.tsx (140.751 s)
+PASS iOS tests/set-split-ui.test.tsx (9.355 s)

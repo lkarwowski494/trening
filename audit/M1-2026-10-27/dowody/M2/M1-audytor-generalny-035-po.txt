@@ -1,0 +1,12 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-035-duze-pliki.test.ts
+  M1-035: duże pliki źródłowe — backlog z wersją i strażnik
+    ✓ docs/21: pozycja backlogu z wersją 1.1 i ID zadania (5 ms)
+    ✓ strażnik limitu 20 KB z listą wyjątków istnieje (tests/architecture-limits.test.ts)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.089 s, estimated 2 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-035-duze-pliki.test.ts/i.

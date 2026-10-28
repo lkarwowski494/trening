@@ -1,0 +1,46 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/matrix-dim-langs2.test.tsx (123.884 s)
+  LANGS × THEMES — główne ekrany w każdym języku i motywie
+    ✓ en (motyw dark): każdy ekran przetłumaczony, bez polskich tekstów, w kolorach motywu (2803 ms)
+    ✓ ro (motyw auto): każdy ekran przetłumaczony, bez polskich tekstów, w kolorach motywu (1382 ms)
+    ✓ sr (motyw light): każdy ekran przetłumaczony, bez polskich tekstów, w kolorach motywu (1448 ms)
+    ✓ uk (motyw dark): każdy ekran przetłumaczony, bez polskich tekstów, w kolorach motywu (1189 ms)
+    ✓ pt-BR (motyw auto): każdy ekran przetłumaczony, bez polskich tekstów, w kolorach motywu (1422 ms)
+    ✓ nl (motyw light): każdy ekran przetłumaczony, bez polskich tekstów, w kolorach motywu (1293 ms)
+    ✓ fi (motyw dark): każdy ekran przetłumaczony, bez polskich tekstów, w kolorach motywu (1251 ms)
+    ✓ ms (motyw auto): każdy ekran przetłumaczony, bez polskich tekstów, w kolorach motywu (1162 ms)
+    ✓ ko (motyw light): każdy ekran przetłumaczony, bez polskich tekstów, w kolorach motywu (1183 ms)
+    ✓ en (motyw auto) z danymi: trening w toku, historia, szablon, ćwiczenie każdej metryki, postępy — przetłumaczone (11158 ms)
+    ✓ ro (motyw light) z danymi: trening w toku, historia, szablon, ćwiczenie każdej metryki, postępy — przetłumaczone (10747 ms)
+    ✓ sr (motyw dark) z danymi: trening w toku, historia, szablon, ćwiczenie każdej metryki, postępy — przetłumaczone (11609 ms)
+    ✓ uk (motyw auto) z danymi: trening w toku, historia, szablon, ćwiczenie każdej metryki, postępy — przetłumaczone (11077 ms)
+    ✓ pt-BR (motyw light) z danymi: trening w toku, historia, szablon, ćwiczenie każdej metryki, postępy — przetłumaczone (10948 ms)
+    ✓ nl (motyw dark) z danymi: trening w toku, historia, szablon, ćwiczenie każdej metryki, postępy — przetłumaczone (12754 ms)
+    ✓ fi (motyw auto) z danymi: trening w toku, historia, szablon, ćwiczenie każdej metryki, postępy — przetłumaczone (11943 ms)
+    ✓ ms (motyw light) z danymi: trening w toku, historia, szablon, ćwiczenie każdej metryki, postępy — przetłumaczone (11088 ms)
+    ✓ ko (motyw dark) z danymi: trening w toku, historia, szablon, ćwiczenie każdej metryki, postępy — przetłumaczone (16688 ms)
+    ✓ en: wartości domenowe (partie, grupy, sprzęt, metryki, typy serii, tryby liczenia, regiony) mają wpis w słowniku języka (1 ms)
+    ✓ ro: wartości domenowe (partie, grupy, sprzęt, metryki, typy serii, tryby liczenia, regiony) mają wpis w słowniku języka (1 ms)
+    ✓ sr: wartości domenowe (partie, grupy, sprzęt, metryki, typy serii, tryby liczenia, regiony) mają wpis w słowniku języka (1 ms)
+    ✓ uk: wartości domenowe (partie, grupy, sprzęt, metryki, typy serii, tryby liczenia, regiony) mają wpis w słowniku języka
+    ✓ pt-BR: wartości domenowe (partie, grupy, sprzęt, metryki, typy serii, tryby liczenia, regiony) mają wpis w słowniku języka (1 ms)
+    ✓ nl: wartości domenowe (partie, grupy, sprzęt, metryki, typy serii, tryby liczenia, regiony) mają wpis w słowniku języka
+    ✓ fi: wartości domenowe (partie, grupy, sprzęt, metryki, typy serii, tryby liczenia, regiony) mają wpis w słowniku języka (1 ms)
+    ✓ ms: wartości domenowe (partie, grupy, sprzęt, metryki, typy serii, tryby liczenia, regiony) mają wpis w słowniku języka
+    ✓ ko: wartości domenowe (partie, grupy, sprzęt, metryki, typy serii, tryby liczenia, regiony) mają wpis w słowniku języka (1 ms)
+    ✓ en: liczby w opisie serii, ciężarze i CSV — separator dziesiętny języka na ekranie, kropka w CSV; typ serii w CSV jako znacznik popularnych dzienników (F, D) (24 ms)
+    ✓ ro: liczby w opisie serii, ciężarze i CSV — separator dziesiętny języka na ekranie, kropka w CSV; typ serii w CSV jako znacznik popularnych dzienników (F, D) (29 ms)
+    ✓ sr: liczby w opisie serii, ciężarze i CSV — separator dziesiętny języka na ekranie, kropka w CSV; typ serii w CSV jako znacznik popularnych dzienników (F, D) (29 ms)
+    ✓ uk: liczby w opisie serii, ciężarze i CSV — separator dziesiętny języka na ekranie, kropka w CSV; typ serii w CSV jako znacznik popularnych dzienników (F, D) (21 ms)
+    ✓ pt-BR: liczby w opisie serii, ciężarze i CSV — separator dziesiętny języka na ekranie, kropka w CSV; typ serii w CSV jako znacznik popularnych dzienników (F, D) (32 ms)
+    ✓ nl: liczby w opisie serii, ciężarze i CSV — separator dziesiętny języka na ekranie, kropka w CSV; typ serii w CSV jako znacznik popularnych dzienników (F, D) (20 ms)
+    ✓ fi: liczby w opisie serii, ciężarze i CSV — separator dziesiętny języka na ekranie, kropka w CSV; typ serii w CSV jako znacznik popularnych dzienników (F, D) (27 ms)
+    ✓ ms: liczby w opisie serii, ciężarze i CSV — separator dziesiętny języka na ekranie, kropka w CSV; typ serii w CSV jako znacznik popularnych dzienników (F, D) (25 ms)
+    ✓ ko: liczby w opisie serii, ciężarze i CSV — separator dziesiętny języka na ekranie, kropka w CSV; typ serii w CSV jako znacznik popularnych dzienników (F, D) (25 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       36 passed, 36 total
+Snapshots:   0 total
+Time:        124.586 s
+Ran all test suites matching /tests\/matrix-dim-langs2.test.tsx|tests\/swap.test.ts/i.

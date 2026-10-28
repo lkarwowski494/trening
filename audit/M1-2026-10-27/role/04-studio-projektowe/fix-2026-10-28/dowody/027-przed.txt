@@ -1,0 +1,116 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-027-pasek-tygodnia.test.tsx (5.306 s)
+  reguła stripLabelsFit (lib/calendar)
+    ✕ przypadki: szacowana szerokość = znaki × 0,62 em × rozmiar × 0,7 (najmniejsze zmniejszenie) ≤ szerokość kolumny (11 ms)
+    ✕ szerokość kolumny paska: (pasek − 2 × 8 pt wcięcia − 6 × 2 pt odstępu) / 7 − 2 × 2 pt ramki (1 ms)
+    ✕ własność: przy 320 pt i tekście 130 % wybrany zestaw skrótów (zwykłe albo jednoliterowe) mieści się w kolumnie we wszystkich 35 językach (9 ms)
+  pasek tygodnia na ekranie
+    ✕ 320 pt, tekst 130 %: skróty jednoliterowe (polski „NIEDZ.” by się nie zmieścił), jedna linia, zmniejszanie zamiast zawijania (1462 ms)
+    ✕ 390 pt, zwykły tekst: zwykłe skróty („pon.” … „niedz.”, wersaliki stylem), jedna linia (395 ms)
+
+  ● reguła stripLabelsFit (lib/calendar) › przypadki: szacowana szerokość = znaki × 0,62 em × rozmiar × 0,7 (najmniejsze zmniejszenie) ≤ szerokość kolumny
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0.62
+    Received: undefined
+
+      32 | describe('reguła stripLabelsFit (lib/calendar)', () => {
+      33 |   test('przypadki: szacowana szerokość = znaki × 0,62 em × rozmiar × 0,7 (najmniejsze zmniejszenie) ≤ szerokość kolumny', () => {
+    > 34 |     expect(STRIP_CHAR_EM).toBe(0.62); expect(STRIP_MIN_SHRINK).toBe(0.7);
+         |                           ^
+      35 |     expect(stripLabelsFit(['pon.', 'niedz.'], 40, 11)).toBe(true); /* 6 × 0,62 × 11 × 0,7 = 28,6 */
+      36 |     expect(stripLabelsFit(['pon.', 'niedz.'], 28, 11)).toBe(false);
+      37 |     expect(stripLabelsFit(['P', 'N'], 10, 14.3)).toBe(true); expect(stripLabelsFit([], 0, 11)).toBe(true);
+
+      at Object.toBe (tests/audit-m1-027-pasek-tygodnia.test.tsx:34:27)
+
+  ● reguła stripLabelsFit (lib/calendar) › szerokość kolumny paska: (pasek − 2 × 8 pt wcięcia − 6 × 2 pt odstępu) / 7 − 2 × 2 pt ramki
+
+    TypeError: (0 , _calendar.stripColumnPt) is not a function
+
+      38 |   });
+      39 |   test('szerokość kolumny paska: (pasek − 2 × 8 pt wcięcia − 6 × 2 pt odstępu) / 7 − 2 × 2 pt ramki', () => {
+    > 40 |     expect(stripColumnPt(288)).toBeCloseTo((288 - 16 - 12) / 7 - 4, 5); expect(stripColumnPt(0)).toBe(0);
+         |                         ^
+      41 |   });
+      42 |   test('własność: przy 320 pt i tekście 130 % wybrany zestaw skrótów (zwykłe albo jednoliterowe) mieści się w kolumnie we wszystkich 35 językach', () => {
+      43 |     const col = stripColumnPt(320 - 32); const size = capPt(1.3);
+
+      at Object.<anonymous> (tests/audit-m1-027-pasek-tygodnia.test.tsx:40:25)
+
+  ● reguła stripLabelsFit (lib/calendar) › własność: przy 320 pt i tekście 130 % wybrany zestaw skrótów (zwykłe albo jednoliterowe) mieści się w kolumnie we wszystkich 35 językach
+
+    TypeError: (0 , _calendar.stripColumnPt) is not a function
+
+      41 |   });
+      42 |   test('własność: przy 320 pt i tekście 130 % wybrany zestaw skrótów (zwykłe albo jednoliterowe) mieści się w kolumnie we wszystkich 35 językach', () => {
+    > 43 |     const col = stripColumnPt(320 - 32); const size = capPt(1.3);
+         |                              ^
+      44 |     for (const l of LANGS as readonly Lang[]) {
+      45 |       applyLang(l); const short = weekdayLabels(); const narrow = Array.from({ length: 7 }, (_, i) => fmtWeekdayNarrow(new Date(2024, 0, 1 + i)));
+      46 |       const shown = stripLabelsFit(short, col, size) ? short : narrow; expect([l, stripLabelsFit(shown, col, size)]).toEqual([l, true]);
+
+      at Object.<anonymous> (tests/audit-m1-027-pasek-tygodnia.test.tsx:43:30)
+
+  ● pasek tygodnia na ekranie › 320 pt, tekst 130 %: skróty jednoliterowe (polski „NIEDZ.” by się nie zmieścił), jedna linia, zmniejszanie zamiast zawijania
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 7
+    + Received  + 7
+
+      Array [
+    -   "P",
+    -   "W",
+    -   "Ś",
+    -   "C",
+    -   "P",
+    -   "S",
+    -   "N",
+    +   "pon.",
+    +   "wt.",
+    +   "śr.",
+    +   "czw.",
+    +   "pt.",
+    +   "sob.",
+    +   "niedz.",
+      ]
+
+      52 |   test('320 pt, tekst 130 %: skróty jednoliterowe (polski „NIEDZ.” by się nie zmieścił), jedna linia, zmniejszanie zamiast zawijania', async () => {
+      53 |     await boot(320, 1.3); const ls = stripLabels();
+    > 54 |     expect(ls.map(x => String(x.props.children))).toEqual(['P', 'W', 'Ś', 'C', 'P', 'S', 'N']);
+         |                                                   ^
+      55 |     for (const x of ls) { expect(x.props.numberOfLines).toBe(1); expect(x.props.adjustsFontSizeToFit).toBe(true); }
+      56 |     expect(screen.getByTestId('strip-2026-10-11').props.accessibilityLabel).toMatch(/^niedziela, 11 października/); /* pełna nazwa dla VoiceOver bez zmian */
+      57 |   });
+
+      at Object.toEqual (tests/audit-m1-027-pasek-tygodnia.test.tsx:54:51)
+      at asyncGeneratorStep (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+  ● pasek tygodnia na ekranie › 390 pt, zwykły tekst: zwykłe skróty („pon.” … „niedz.”, wersaliki stylem), jedna linia
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: undefined
+
+      60 |     expect(ls.map(x => String(x.props.children))).toEqual(['pon.', 'wt.', 'śr.', 'czw.', 'pt.', 'sob.', 'niedz.']);
+      61 |     expect((StyleSheet.flatten(ls[0].props.style) as { textTransform?: string }).textTransform).toBe('uppercase');
+    > 62 |     for (const x of ls) expect(x.props.numberOfLines).toBe(1);
+         |                                                       ^
+      63 |   });
+      64 | });
+      65 |
+
+      at Object.toBe (tests/audit-m1-027-pasek-tygodnia.test.tsx:62:55)
+      at asyncGeneratorStep (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 5 total
+Snapshots:   0 total
+Time:        5.795 s
+Ran all test suites matching /tests\/audit-m1-027-pasek-tygodnia.test.tsx/i.

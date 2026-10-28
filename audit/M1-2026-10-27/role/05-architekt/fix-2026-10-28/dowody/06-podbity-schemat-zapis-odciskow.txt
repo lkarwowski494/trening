@@ -1,0 +1,28 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts
+  ✓ zapis odcisków (ODCISKI_ZAPISZ=1): przy niezmienionym schemacie tylko nowe wzorce, zmieniony odcisk = odmowa (6 ms)
+  DEC-03 b (27.10.2026): normalizacja zapisów z wydanych buildów bez zmian przy tym samym SCHEMA_VERSION
+    ✓ odciski istnieją i są zapisane dla bieżącego schematu (1 ms)
+    ✓ każdy zapis z tests/fixtures/released ma odcisk, a każdy odcisk ma swój zapis (1 ms)
+    ✓ wynik startu na state-v0.11.0-b1005-schema18.json = zapisany odcisk (1 ms)
+    ✓ wynik startu na state-v0.18.0-b1017-schema18.json = zapisany odcisk
+    ✓ wynik startu na state-v0.20.0-b1018-schema19.json = zapisany odcisk (1 ms)
+    ✓ wynik startu na state-v1.0.0-b1032-schema19.json = zapisany odcisk
+    ✓ wzorzec 1.0 obejmuje pola dodane bez podbicia schematu (liveDays, trening na żywo, voice, haptics, własne i zmienione ćwiczenie) (8 ms)
+  strażnik potrafi paść: odcisk wychwytuje zmianę danych użytkownika, pomija treść katalogu
+    ✓ nazwa szablonu przycięta → różnica (25 ms)
+    ✓ notatka serii usunięta → różnica (24 ms)
+    ✓ uzupełnienie liveDays z historii → różnica (18 ms)
+    ✓ nowe pole dopisane do starego zapisu → różnica (18 ms)
+    ✓ ustawienie przepisane → różnica (24 ms)
+    ✓ własne ćwiczenie zmienione → różnica (18 ms)
+    ✓ ćwiczenie z biblioteki zmienione przez użytkownika → różnica (17 ms)
+    ✓ treść katalogu (ćwiczenie z biblioteki nieruszone przez użytkownika, kroki katalogu) i metadane zapisu nie zmieniają odcisku (18 ms)
+    ✓ kolejność pól obiektu nie zmienia odcisku (22 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       17 passed, 17 total
+Snapshots:   0 total
+Time:        2.231 s, estimated 4 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts/i.

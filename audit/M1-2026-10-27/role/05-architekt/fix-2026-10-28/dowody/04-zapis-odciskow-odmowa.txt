@@ -1,0 +1,98 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts
+  ✕ zapis odcisków (ODCISKI_ZAPISZ=1): przy niezmienionym schemacie tylko nowe wzorce, zmieniony odcisk = odmowa (14 ms)
+  DEC-03 b (27.10.2026): normalizacja zapisów z wydanych buildów bez zmian przy tym samym SCHEMA_VERSION
+    ✓ odciski istnieją i są zapisane dla bieżącego schematu (1 ms)
+    ✓ każdy zapis z tests/fixtures/released ma odcisk, a każdy odcisk ma swój zapis (2 ms)
+    ✕ wynik startu na state-v0.11.0-b1005-schema18.json = zapisany odcisk (1 ms)
+    ✕ wynik startu na state-v0.18.0-b1017-schema18.json = zapisany odcisk (1 ms)
+    ✕ wynik startu na state-v0.20.0-b1018-schema19.json = zapisany odcisk (1 ms)
+    ✕ wynik startu na state-v1.0.0-b1032-schema19.json = zapisany odcisk (1 ms)
+    ✓ wzorzec 1.0 obejmuje pola dodane bez podbicia schematu (liveDays, trening na żywo, voice, haptics, własne i zmienione ćwiczenie) (8 ms)
+  strażnik potrafi paść: odcisk wychwytuje zmianę danych użytkownika, pomija treść katalogu
+    ✓ nazwa szablonu przycięta → różnica (32 ms)
+    ✓ notatka serii usunięta → różnica (26 ms)
+    ✓ uzupełnienie liveDays z historii → różnica (18 ms)
+    ✓ nowe pole dopisane do starego zapisu → różnica (17 ms)
+    ✓ ustawienie przepisane → różnica (25 ms)
+    ✓ własne ćwiczenie zmienione → różnica (18 ms)
+    ✓ ćwiczenie z biblioteki zmienione przez użytkownika → różnica (17 ms)
+    ✓ treść katalogu (ćwiczenie z biblioteki nieruszone przez użytkownika, kroki katalogu) i metadane zapisu nie zmieniają odcisku (18 ms)
+    ✓ kolejność pól obiektu nie zmienia odcisku (21 ms)
+
+  ● zapis odcisków (ODCISKI_ZAPISZ=1): przy niezmienionym schemacie tylko nowe wzorce, zmieniony odcisk = odmowa
+
+    Odmowa zapisu: wynik startu na state-v0.11.0-b1005-schema18.json, state-v0.18.0-b1017-schema18.json, state-v0.20.0-b1018-schema19.json, state-v1.0.0-b1032-schema19.json zmienił się przy tym samym SCHEMA_VERSION 19. Reguła DEC-03 b (27.10.2026, docs/brd/wymagania.md NFR-DAN-001): zmiana normalizacji danych = podbicie SCHEMA_VERSION w lib/seed.ts (wtedy start robi kopię premigrate_<schemat>), potem zapis odcisków: ODCISKI_ZAPISZ=1 npx jest tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts.
+
+      82 |   if (stary && stary.schemaVersion === SCHEMA_VERSION) {
+      83 |     const zle = Object.keys(biezace).filter(f => f in stary.wzorce && roznice(stary.wzorce[f], biezace[f]).length);
+    > 84 |     if (zle.length) throw new Error(`Odmowa zapisu: wynik startu na ${zle.join(', ')} zmienił się przy tym samym SCHEMA_VERSION ${SCHEMA_VERSION}. ${REGULA}`);
+         |                           ^
+      85 |   }
+      86 |   for (const f of Object.keys(biezace)) wzorce[f] ??= biezace[f];
+      87 |   const plik: Plik = { _comment: 'Odciski wyniku startu aplikacji na zapisach z wydanych buildów (tests/fixtures/released). Plik zapisuje wyłącznie '
+
+      at Object.<anonymous> (tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts:84:27)
+
+  ● DEC-03 b (27.10.2026): normalizacja zapisów z wydanych buildów bez zmian przy tym samym SCHEMA_VERSION › wynik startu na state-v0.11.0-b1005-schema18.json = zapisany odcisk
+
+    Start aplikacji zmienia zapis z wydanego builda (state-v0.11.0-b1005-schema18.json) inaczej niż przy schemacie 19: settings (zmieniony). Reguła DEC-03 b (27.10.2026, docs/brd/wymagania.md NFR-DAN-001): zmiana normalizacji danych = podbicie SCHEMA_VERSION w lib/seed.ts (wtedy start robi kopię premigrate_<schemat>), potem zapis odcisków: ODCISKI_ZAPISZ=1 npx jest tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts.
+
+      104 |     const p = czytaj(); if (!p || p.schemaVersion !== SCHEMA_VERSION || !p.wzorce[file]) return; /* zgłaszają to dwa testy wyżej */
+      105 |     const r = roznice(p.wzorce[file], biezace[file]);
+    > 106 |     if (r.length) throw new Error(`Start aplikacji zmienia zapis z wydanego builda (${file}) inaczej niż przy schemacie ${SCHEMA_VERSION}: ${r.join(', ')}. ${REGULA}`);
+          |                         ^
+      107 |   });
+      108 |   test('wzorzec 1.0 obejmuje pola dodane bez podbicia schematu (liveDays, trening na żywo, voice, haptics, własne i zmienione ćwiczenie)', () => {
+      109 |     const fx = JSON.parse(fs.readFileSync(path.join(DIR, 'state-v1.0.0-b1032-schema19.json'), 'utf8'));
+
+      at tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts:106:25
+
+  ● DEC-03 b (27.10.2026): normalizacja zapisów z wydanych buildów bez zmian przy tym samym SCHEMA_VERSION › wynik startu na state-v0.18.0-b1017-schema18.json = zapisany odcisk
+
+    Start aplikacji zmienia zapis z wydanego builda (state-v0.18.0-b1017-schema18.json) inaczej niż przy schemacie 19: settings (zmieniony). Reguła DEC-03 b (27.10.2026, docs/brd/wymagania.md NFR-DAN-001): zmiana normalizacji danych = podbicie SCHEMA_VERSION w lib/seed.ts (wtedy start robi kopię premigrate_<schemat>), potem zapis odcisków: ODCISKI_ZAPISZ=1 npx jest tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts.
+
+      104 |     const p = czytaj(); if (!p || p.schemaVersion !== SCHEMA_VERSION || !p.wzorce[file]) return; /* zgłaszają to dwa testy wyżej */
+      105 |     const r = roznice(p.wzorce[file], biezace[file]);
+    > 106 |     if (r.length) throw new Error(`Start aplikacji zmienia zapis z wydanego builda (${file}) inaczej niż przy schemacie ${SCHEMA_VERSION}: ${r.join(', ')}. ${REGULA}`);
+          |                         ^
+      107 |   });
+      108 |   test('wzorzec 1.0 obejmuje pola dodane bez podbicia schematu (liveDays, trening na żywo, voice, haptics, własne i zmienione ćwiczenie)', () => {
+      109 |     const fx = JSON.parse(fs.readFileSync(path.join(DIR, 'state-v1.0.0-b1032-schema19.json'), 'utf8'));
+
+      at tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts:106:25
+
+  ● DEC-03 b (27.10.2026): normalizacja zapisów z wydanych buildów bez zmian przy tym samym SCHEMA_VERSION › wynik startu na state-v0.20.0-b1018-schema19.json = zapisany odcisk
+
+    Start aplikacji zmienia zapis z wydanego builda (state-v0.20.0-b1018-schema19.json) inaczej niż przy schemacie 19: settings (zmieniony). Reguła DEC-03 b (27.10.2026, docs/brd/wymagania.md NFR-DAN-001): zmiana normalizacji danych = podbicie SCHEMA_VERSION w lib/seed.ts (wtedy start robi kopię premigrate_<schemat>), potem zapis odcisków: ODCISKI_ZAPISZ=1 npx jest tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts.
+
+      104 |     const p = czytaj(); if (!p || p.schemaVersion !== SCHEMA_VERSION || !p.wzorce[file]) return; /* zgłaszają to dwa testy wyżej */
+      105 |     const r = roznice(p.wzorce[file], biezace[file]);
+    > 106 |     if (r.length) throw new Error(`Start aplikacji zmienia zapis z wydanego builda (${file}) inaczej niż przy schemacie ${SCHEMA_VERSION}: ${r.join(', ')}. ${REGULA}`);
+          |                         ^
+      107 |   });
+      108 |   test('wzorzec 1.0 obejmuje pola dodane bez podbicia schematu (liveDays, trening na żywo, voice, haptics, własne i zmienione ćwiczenie)', () => {
+      109 |     const fx = JSON.parse(fs.readFileSync(path.join(DIR, 'state-v1.0.0-b1032-schema19.json'), 'utf8'));
+
+      at tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts:106:25
+
+  ● DEC-03 b (27.10.2026): normalizacja zapisów z wydanych buildów bez zmian przy tym samym SCHEMA_VERSION › wynik startu na state-v1.0.0-b1032-schema19.json = zapisany odcisk
+
+    Start aplikacji zmienia zapis z wydanego builda (state-v1.0.0-b1032-schema19.json) inaczej niż przy schemacie 19: settings (zmieniony). Reguła DEC-03 b (27.10.2026, docs/brd/wymagania.md NFR-DAN-001): zmiana normalizacji danych = podbicie SCHEMA_VERSION w lib/seed.ts (wtedy start robi kopię premigrate_<schemat>), potem zapis odcisków: ODCISKI_ZAPISZ=1 npx jest tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts.
+
+      104 |     const p = czytaj(); if (!p || p.schemaVersion !== SCHEMA_VERSION || !p.wzorce[file]) return; /* zgłaszają to dwa testy wyżej */
+      105 |     const r = roznice(p.wzorce[file], biezace[file]);
+    > 106 |     if (r.length) throw new Error(`Start aplikacji zmienia zapis z wydanego builda (${file}) inaczej niż przy schemacie ${SCHEMA_VERSION}: ${r.join(', ')}. ${REGULA}`);
+          |                         ^
+      107 |   });
+      108 |   test('wzorzec 1.0 obejmuje pola dodane bez podbicia schematu (liveDays, trening na żywo, voice, haptics, własne i zmienione ćwiczenie)', () => {
+      109 |     const fx = JSON.parse(fs.readFileSync(path.join(DIR, 'state-v1.0.0-b1032-schema19.json'), 'utf8'));
+
+      at tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts:106:25
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 12 passed, 17 total
+Snapshots:   0 total
+Time:        2.838 s, estimated 8 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts/i.

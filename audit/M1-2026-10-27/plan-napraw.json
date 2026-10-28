@@ -498,8 +498,8 @@
       "przyczyna": null,
       "raport": "role/05-architekt/05-architekt-2026-10-27.md",
       "test_akceptacyjny": "DEC-03 b: reguła „zmiana normalizacji danych = podbicie numeru schematu” w docs + test-strażnik",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "59fc6d7"
     },
     {
       "id": "M1-audytor-generalny-015",
@@ -537,8 +537,8 @@
       "przyczyna": null,
       "raport": "role/08-programista/08-programista-2026-10-27.md",
       "test_akceptacyjny": "wywołanie arkusza systemowego (showManageSubscriptions) z zapasem na stronę; test",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "f775eb5c"
     },
     {
       "id": "M1-audytor-generalny-017",
@@ -660,8 +660,8 @@
       "przyczyna": null,
       "raport": "role/01-odkrywanie/01-odkrywanie-2026-10-27.md",
       "test_akceptacyjny": "kontrola-brd 0 błędów; BR dla funkcji z listy; BR-ZRO-001 usunięte",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "bc81d06"
     },
     {
       "id": "M1-audytor-generalny-023",
@@ -679,8 +679,8 @@
       "przyczyna": null,
       "raport": "role/07-jakosc/07-jakosc-2026-10-27.md",
       "test_akceptacyjny": "jedno źródło bramek; pozostałe odsyłają",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "25a72d0e"
     },
     {
       "id": "M1-audytor-generalny-024",
@@ -698,8 +698,8 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "zgodnie z decyzją albo zapisana zmiana decyzji; test",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "b41e44d"
     },
     {
       "id": "M1-audytor-generalny-025",
@@ -717,8 +717,8 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "teksty i cele kroków zgodne z ekranami; test",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "b2afd44"
     },
     {
       "id": "M1-audytor-generalny-026",
@@ -736,8 +736,8 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "alternatywa przyciskiem; test",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "e73df05"
     },
     {
       "id": "M1-audytor-generalny-027",
@@ -755,8 +755,8 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "zrzut 320 pt przy dużym tekście bez zlewania",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "b37746a"
     },
     {
       "id": "M1-audytor-generalny-028",
@@ -774,8 +774,8 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "cele dotyku ≥ 44 pt w wąskim układzie; test",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "6729c14"
     },
     {
       "id": "M1-audytor-generalny-029",
@@ -793,8 +793,8 @@
       "przyczyna": null,
       "raport": "role/04-studio-projektowe/04-studio-projektowe-2026-10-27.md",
       "test_akceptacyjny": "przegląd zamknięty; strażnik",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "1dcb400"
     },
     {
       "id": "M1-audytor-generalny-030",
@@ -815,8 +815,8 @@
       "przyczyna": null,
       "raport": "role/08-programista/08-programista-2026-10-27.md",
       "test_akceptacyjny": "stała SECONDARY_SHARE w obu miejscach; tokeny; „PR:” przez t()",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "79857552"
     },
     {
       "id": "M1-audytor-generalny-031",
@@ -875,7 +875,8 @@
       "raport": "role/11-wzrost/11-wzrost-2026-10-27.md",
       "test_akceptacyjny": "hipoteza z progiem i datą; bez okresu próbnego",
       "status": "zatwierdzone",
-      "commit": null
+      "commit": null,
+      "blokada": "część dokumentu poprawiona (4c11a45b); próg (pobrania/mies.) i minimalna liczba zgłoszeń wybiera właściciel (zasada roli 9; opcje w docs/wzrost.md: a — próg teraz, b — H2 wycofana do danych; rekomendacja a), data oceny po ustaleniu daty premiery"
     },
     {
       "id": "M1-audytor-generalny-034",
@@ -895,8 +896,8 @@
       "przyczyna": null,
       "raport": "role/07-jakosc/07-jakosc-2026-10-27.md",
       "test_akceptacyjny": "test kalendarza przechodzi w losowej kolejności; strażnik Maestro",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "321d287b"
     },
     {
       "id": "M1-audytor-generalny-035",
@@ -914,8 +915,8 @@
       "przyczyna": null,
       "raport": "role/05-architekt/05-architekt-2026-10-27.md",
       "test_akceptacyjny": "backlog z wersją",
-      "status": "zatwierdzone",
-      "commit": null
+      "status": "naprawione-do-weryfikacji",
+      "commit": "a414b66b"
     },
     {
       "id": "M1-audytor-generalny-036",
@@ -964,8 +965,8 @@
       "przyczyna": null,
       "raport": "role/03-zakres/03-zakres-2026-10-27.md",
       "test_akceptacyjny": "pozycje zakres_1_0 wykonane z testami wg definicji ukończenia; pozycje backlog wpisane do docs/21 z wersją",
-      "status": "zatwierdzone",
-      "commit": null,
+      "status": "naprawione-do-weryfikacji",
+      "commit": "848f9b0",
       "zakres_1_0": "DEC-07 b (właściciel 27.10): wiersz „Pełna wersja” (02-monetyzacja-002, 08-programista-005, 04-studio-projektowe-006); dokumenty wydania — plan „zły build” (10-wydanie-005) i zamknięcie decyzji UA/espresso (02-monetyzacja-506); test pierwszego użycia (03-zakres-008); zrzuty w 33 lokalizacjach (10-wydanie-004)",
       "backlog": "1.0.1/1.1 z wersją w docs/21: dwa widoki treningu (03-zakres-006), kalkulator talerzy (03-zakres-007), kanały i linki kampanii (11-wzrost-002, 11-wzrost-004), pomiar skarg na limit (02-monetyzacja-005)"
     }

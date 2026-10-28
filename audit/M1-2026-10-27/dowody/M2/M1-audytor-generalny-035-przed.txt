@@ -1,0 +1,29 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-035-duze-pliki.test.ts
+  M1-035: duże pliki źródłowe — backlog z wersją i strażnik
+    ✕ docs/21: pozycja backlogu z wersją 1.1 i ID zadania (6 ms)
+    ✓ strażnik limitu 20 KB z listą wyjątków istnieje (tests/architecture-limits.test.ts) (1 ms)
+
+  ● M1-035: duże pliki źródłowe — backlog z wersją i strażnik › docs/21: pozycja backlogu z wersją 1.1 i ID zadania
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 0
+    Received:    -1
+
+      12 |   test('docs/21: pozycja backlogu z wersją 1.1 i ID zadania', () => {
+      13 |     const lines = read('docs/21-roadmapa-offline.md').split('\n'); const i = lines.findIndex(l => l.includes('M1-audytor-generalny-035'));
+    > 14 |     expect(i).toBeGreaterThanOrEqual(0); expect(lines[i]).toMatch(/1\.1/); expect(lines[i]).toMatch(/20 KB/);
+         |               ^
+      15 |   });
+      16 |   test('strażnik limitu 20 KB z listą wyjątków istnieje (tests/architecture-limits.test.ts)', () => {
+      17 |     const s = read('tests/architecture-limits.test.ts'); expect(s).toMatch(/const LIMIT = 20 \* 1024;/); expect(s).toMatch(/Wyjątki od limitu 20 KB/);
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-2026-10-27-035-duze-pliki.test.ts:14:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        1.462 s, estimated 2 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-035-duze-pliki.test.ts/i.

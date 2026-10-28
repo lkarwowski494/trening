@@ -1,0 +1,20 @@
+S-15 OK
+S-16 OK
+S-17 OK
+S-18 OK
+S-19 OK
+S-20 OK
+S-21 OK
+S-22 OK
+S-23 OK
+S-24 OK
+Last Updated: October 16, 2026 True
+3.1.1 In-App Purchase True
+3.1.2(b) True
+3.1.2(c) True
+2.3.2 If your app True
+5.6.1 App Store Reviews True
+2.3.7 Choose True
+5.2.1 Generally True
+5.1.3 Health True
+2.5.1 Apps may only True

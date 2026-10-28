@@ -1,0 +1,216 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts
+  M1-022: BRD aktualny wobec decyzji 20–27.10.2026
+    ✕ BR-ZRO-001 wycofane (decyzja 25.10.2026), nazwa usuniętego ekranu tylko w jego nagłówku; ZP-09 bez ekranu źródeł (9 ms)
+    ✕ BR-JEZ-004 (decyzja 23.10.2026): interfejs bez oznaczeń pewności — wymaganie nie każe ich pokazywać (2 ms)
+    ✕ BR-JEZ-003: system miar (decyzja 20.10.2026) wdrożony; OP-02 zamknięte (2 ms)
+    ✕ każda ścieżka pliku wskazana w BRD istnieje (usunięty ekran nie jest wskazywany jako dowód) (20 ms)
+    ✕ każdy ekran (trasa w app/) ma aktywne wymaganie BR, które go wskazuje; nowa trasa bez BR zatrzymuje verify (03-zakres-003) (5 ms)
+    ✕ funkcje z audytu 27.10.2026 (01-odkrywanie-004, 03-zakres-003, M1-018) mają aktywne BR z kryteriami (2 ms)
+    ✕ ograniczenia OG (01-odkrywanie-010): każde OG ma źródło S z adresem, cytatem i datą odczytu albo jest nazwaną zasadą właściciela; S polityk mają termin przeglądu (1 ms)
+    ✕ errata: plik z tabelą ER (data, źródło, status)
+
+  ● M1-022: BRD aktualny wobec decyzji 20–27.10.2026 › BR-ZRO-001 wycofane (decyzja 25.10.2026), nazwa usuniętego ekranu tylko w jego nagłówku; ZP-09 bez ekranu źródeł
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      30 | describe('M1-022: BRD aktualny wobec decyzji 20–27.10.2026', () => {
+      31 |   test('BR-ZRO-001 wycofane (decyzja 25.10.2026), nazwa usuniętego ekranu tylko w jego nagłówku; ZP-09 bez ekranu źródeł', () => {
+    > 32 |     const zro = sections().find(s => s.id === 'BR-ZRO-001')!; expect(zro.withdrawn).toBe(true); expect(zro.text).not.toMatch(/Scenariusz:/);
+         |                                                                                     ^
+      33 |     for (const f of files()) read(f).split('\n').forEach((l, i) => { if (l.includes('Źródła wiedzy')) expect(`${f}:${i + 1} ${l}`).toMatch(/### BR-ZRO-001/); });
+      34 |     const zp = read('odkrywanie.md'); const zp9 = zp.slice(zp.indexOf('### ZP-09'), zp.indexOf('## Ograniczenia'));
+      35 |     expect(zp9).toMatch(/D-108/); expect(zp9).not.toMatch(/Ustawienia →/);
+
+      at Object.toBe (tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts:32:85)
+
+  ● M1-022: BRD aktualny wobec decyzji 20–27.10.2026 › BR-JEZ-004 (decyzja 23.10.2026): interfejs bez oznaczeń pewności — wymaganie nie każe ich pokazywać
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /D-109/
+    Received string:  "### BR-JEZ-004: Teksty zwykłym językiem, bez przypisów do źródeł
+    - Przepływ: PR-08
+    - Dowód potrzeby: ZP-09; decyzja właściciela 2026-10-23 (docs/18); `tests/zrodla-wiedzy.test.ts`
+    - Kryteria akceptacji:
+      - Scenariusz: Reguła z liczbami bez cytatu
+        - Zakładając, że użytkownik otwiera objaśnienie reguły (generator, plan, Postępy, Ustawienia)
+        - Gdy objaśnienie się wyświetla
+        - Wtedy tekst jest napisany zwykłym językiem i nie zawiera nazw źródeł, autorów, organizacji, norm ani lat publikacji
+      - Scenariusz: Uproszczenie nazwane wprost
+        - Zakładając, że reguła jest uproszczeniem albo wyborem aplikacji, a nie wynikiem badań
+        - Gdy użytkownik czyta jej objaśnienie
+        - Wtedy tekst mówi o tym zwykłymi słowami („uproszczenie”, „nasz wybór”)
+    "
+
+      36 |   });
+      37 |   test('BR-JEZ-004 (decyzja 23.10.2026): interfejs bez oznaczeń pewności — wymaganie nie każe ich pokazywać', () => {
+    > 38 |     const j = sections().find(s => s.id === 'BR-JEZ-004')!.text; expect(j).toMatch(/D-109/); expect(j).not.toMatch(/Wtedy tekst mówi o tym zwykłymi słowami/);
+         |                                                                            ^
+      39 |   });
+      40 |   test('BR-JEZ-003: system miar (decyzja 20.10.2026) wdrożony; OP-02 zamknięte', () => {
+      41 |     expect(sections().find(s => s.id === 'BR-JEZ-003')!.text).toMatch(/imperialny/); expect(read('README.md')).toMatch(/\| OP-02 \| Zamknięte/);
+
+      at Object.toMatch (tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts:38:76)
+
+  ● M1-022: BRD aktualny wobec decyzji 20–27.10.2026 › BR-JEZ-003: system miar (decyzja 20.10.2026) wdrożony; OP-02 zamknięte
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /imperialny/
+    Received string:  "### BR-JEZ-003: Jednostka ciężaru kg albo lb
+    - Przepływ: PR-08
+    - Dowód potrzeby: J-01; OP-02
+    - Kryteria akceptacji:
+      - Scenariusz: Zmiana jednostki
+        - Zakładając, że użytkownik ma zapisane treningi w kg
+        - Gdy zmienia jednostkę na lb
+        - Wtedy wartości pokazują się w lb, a zapis w danych zostaje w kg
+    "
+
+      39 |   });
+      40 |   test('BR-JEZ-003: system miar (decyzja 20.10.2026) wdrożony; OP-02 zamknięte', () => {
+    > 41 |     expect(sections().find(s => s.id === 'BR-JEZ-003')!.text).toMatch(/imperialny/); expect(read('README.md')).toMatch(/\| OP-02 \| Zamknięte/);
+         |                                                               ^
+      42 |   });
+      43 |   test('każda ścieżka pliku wskazana w BRD istnieje (usunięty ekran nie jest wskazywany jako dowód)', () => {
+      44 |     const missing: string[] = [];
+
+      at Object.toMatch (tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts:41:63)
+
+  ● M1-022: BRD aktualny wobec decyzji 20–27.10.2026 › każda ścieżka pliku wskazana w BRD istnieje (usunięty ekran nie jest wskazywany jako dowód)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "wymagania.md:653 app/more/sources.tsx",
+    + ]
+
+      44 |     const missing: string[] = [];
+      45 |     for (const f of files()) read(f).split('\n').forEach((l, i) => { for (const m of l.matchAll(PATH)) if (!fs.existsSync(path.join(ROOT, m[1]))) missing.push(`${f}:${i + 1} ${m[1]}`); });
+    > 46 |     expect(missing).toEqual([]);
+         |                     ^
+      47 |   });
+      48 |   test('każdy ekran (trasa w app/) ma aktywne wymaganie BR, które go wskazuje; nowa trasa bez BR zatrzymuje verify (03-zakres-003)', () => {
+      49 |     /* trasy techniczne bez działania użytkownika: układy nawigacji, ekran „nie znaleziono”, mapa tras, menu „Więcej” (lista przejść) */
+
+      at Object.toEqual (tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts:46:21)
+
+  ● M1-022: BRD aktualny wobec decyzji 20–27.10.2026 › każdy ekran (trasa w app/) ma aktywne wymaganie BR, które go wskazuje; nowa trasa bez BR zatrzymuje verify (03-zakres-003)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 30
+
+    - Array []
+    + Array [
+    +   "app/(tabs)/history.tsx",
+    +   "app/(tabs)/index.tsx",
+    +   "app/(tabs)/progress.tsx",
+    +   "app/adapt.tsx",
+    +   "app/exercise/[id].tsx",
+    +   "app/exercises.tsx",
+    +   "app/generator.tsx",
+    +   "app/guide.tsx",
+    +   "app/history/[id].tsx",
+    +   "app/history/add.tsx",
+    +   "app/history/edit/[id].tsx",
+    +   "app/more/about.tsx",
+    +   "app/more/backup.tsx",
+    +   "app/more/bands.tsx",
+    +   "app/more/bodymass.tsx",
+    +   "app/more/import.tsx",
+    +   "app/more/language.tsx",
+    +   "app/more/licenses.tsx",
+    +   "app/more/location/[id].tsx",
+    +   "app/more/locations.tsx",
+    +   "app/paywall.tsx",
+    +   "app/pick-template.tsx",
+    +   "app/picker.tsx",
+    +   "app/place-once.tsx",
+    +   "app/progression.tsx",
+    +   "app/reorder.tsx",
+    +   "app/template/[id].tsx",
+    +   "app/templates.tsx",
+    + ]
+
+      51 |     const walk = (d: string): string[] => fs.readdirSync(path.join(ROOT, d)).flatMap(n => { const r = `${d}/${n}`; return fs.statSync(path.join(ROOT, r)).isDirectory() ? walk(r) : /\.tsx$/.test(n) ? [r] : []; });
+      52 |     const active = sections().filter(s => !s.withdrawn).map(s => s.text).join('\n');
+    > 53 |     expect(walk('app').filter(r => !TECH.has(r) && !active.includes(r))).toEqual([]);
+         |                                                                          ^
+      54 |   });
+      55 |   test('funkcje z audytu 27.10.2026 (01-odkrywanie-004, 03-zakres-003, M1-018) mają aktywne BR z kryteriami', () => {
+      56 |     const s = sections().filter(x => !x.withdrawn); const has = (id: string, re: RegExp) => expect([id, re.test(s.find(x => x.id === id)?.text ?? '')]).toEqual([id, true]);
+
+      at Object.toEqual (tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts:53:74)
+
+  ● M1-022: BRD aktualny wobec decyzji 20–27.10.2026 › funkcje z audytu 27.10.2026 (01-odkrywanie-004, 03-zakres-003, M1-018) mają aktywne BR z kryteriami
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "BR-DAN-006",
+    -   true,
+    +   false,
+      ]
+
+      54 |   });
+      55 |   test('funkcje z audytu 27.10.2026 (01-odkrywanie-004, 03-zakres-003, M1-018) mają aktywne BR z kryteriami', () => {
+    > 56 |     const s = sections().filter(x => !x.withdrawn); const has = (id: string, re: RegExp) => expect([id, re.test(s.find(x => x.id === id)?.text ?? '')]).toEqual([id, true]);
+         |                                                                                                                                                         ^
+      57 |     has('BR-DAN-006', /Wyczyść wszystkie dane/); has('BR-HIS-002', /app\/history\/add\.tsx/); has('BR-HIS-003', /app\/history\/edit\/\[id\]\.tsx/);
+      58 |     has('BR-DAN-007', /app\/more\/import\.tsx/); has('BR-DAN-008', /exportCsv/); has('BR-DAN-009', /autoBackup/); has('BR-PLN-004', /lib\/planReminder\.ts/);
+      59 |     has('BR-ZAK-004', /components\/FairRulesSheet\.tsx/); has('BR-ZAK-005', /components\/ImportProCard\.tsx/); has('BR-ZAK-006', /Przywróć zakupy/);
+
+      at toEqual (tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts:56:153)
+      at Object.has (tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts:57:5)
+
+  ● M1-022: BRD aktualny wobec decyzji 20–27.10.2026 › ograniczenia OG (01-odkrywanie-010): każde OG ma źródło S z adresem, cytatem i datą odczytu albo jest nazwaną zasadą właściciela; S polityk mają termin przeglądu
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 10
+    Received:    3
+
+      66 |   test('ograniczenia OG (01-odkrywanie-010): każde OG ma źródło S z adresem, cytatem i datą odczytu albo jest nazwaną zasadą właściciela; S polityk mają termin przeglądu', () => {
+      67 |     const o = read('odkrywanie.md'); const og = o.slice(o.indexOf('## Ograniczenia')).split(/^### /m).slice(1);
+    > 68 |     expect(og.length).toBeGreaterThanOrEqual(10);
+         |                       ^
+      69 |     for (const x of og) expect([x.slice(0, 5), /\[FAKT S-\d\d\]/.test(x) || /Zasada właściciela/.test(x)]).toEqual([x.slice(0, 5), true]);
+      70 |     for (const n of ['3.1.1', '3.1.2(b)', '3.1.2(c)', '2.3.2', '5.1.3(i)', '5.1.3(ii)', '5.6.1']) expect(read('zrodla.md')).toMatch(new RegExp(`punkt ${n.replace(/[().]/g, '\\$&')} .*\\| \\d{4}-\\d\\d-\\d\\d \\| 1 \\| \\d{4}-\\d\\d-\\d\\d \\|`));
+      71 |   });
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts:68:23)
+
+  ● M1-022: BRD aktualny wobec decyzji 20–27.10.2026 › errata: plik z tabelą ER (data, źródło, status)
+
+    ENOENT: no such file or directory, open '/home/user/prompts/.claude/worktrees/agent-a78c9b424e0891050/base/docs/brd/errata.md'
+
+      10 | const DIR = path.join(ROOT, 'docs/brd');
+      11 | const files = () => fs.readdirSync(DIR).filter(f => f.endsWith('.md')).sort();
+    > 12 | const read = (f: string) => fs.readFileSync(path.join(DIR, f), 'utf8');
+         |                                ^
+      13 | /** Sekcje wymagań: nagłówek `### BR-…` aż do następnego nagłówka poziomu 2 albo 3. */
+      14 | function sections(): { id: string; file: string; text: string; withdrawn: boolean }[] {
+      15 |   const out: { id: string; file: string; text: string; withdrawn: boolean }[] = [];
+
+      at readFileSync (tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts:12:32)
+      at Object.read (tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts:73:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       8 failed, 8 total
+Snapshots:   0 total
+Time:        2.352 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-022-brd-aktualny.test.ts/i.

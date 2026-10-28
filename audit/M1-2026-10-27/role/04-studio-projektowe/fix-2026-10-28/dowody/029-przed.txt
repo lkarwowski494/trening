@@ -1,0 +1,129 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-029-kropka-srodkowa.test.ts
+  strażnik „·” (docs/32 wzorzec 28, przegląd zamknięty 27.10.2026)
+    ✕ każdy plik z „·” w kodzie ma wpis z powodem i nie więcej wystąpień niż w wykazie (31 ms)
+    ✕ wykaz aktualny: liczby równe stanowi kodu, pliki istnieją, każdy powód niepusty (≥ 20 znaków) (5 ms)
+    ✕ docs/32 wzorzec 28: przegląd nie jest już „[OTWARTE]”, wskazuje strażnika (2 ms)
+  listy o zmiennej liczbie elementów — przecinek, nie „·”
+    ✕ powody propozycji zamiany (lib/swap reasonText): „ten sam ruch, sztanga, robione 3×” (2 ms)
+    ✕ podsumowanie planu (app/plan planSummary): dni oddzielone przecinkiem (21 ms)
+
+  ● strażnik „·” (docs/32 wzorzec 28, przegląd zamknięty 27.10.2026) › każdy plik z „·” w kodzie ma wpis z powodem i nie więcej wystąpień niż w wykazie
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 10
+
+    - Array []
+    + Array [
+    +   "app/exercise/[id].tsx: 7 > 5",
+    +   "app/generator.tsx: 2 > 1",
+    +   "app/plan.tsx: 2 > 1",
+    +   "components/ExerciseProgress.tsx: 3 > 2",
+    +   "components/OwnPlan.tsx: 1 > 0",
+    +   "components/PeriodSummary.tsx: 2 > 1",
+    +   "components/StartError.tsx: 1 > 0",
+    +   "lib/swap.ts: 1 > 0",
+    + ]
+
+      34 |   test('każdy plik z „·” w kodzie ma wpis z powodem i nie więcej wystąpień niż w wykazie', () => {
+      35 |     const over = src.map(f => [f, count(f)] as const).filter(([f, n]) => n > (wykaz.pliki[f]?.n ?? 0)).map(([f, n]) => `${f}: ${n} > ${wykaz.pliki[f]?.n ?? 0}`);
+    > 36 |     expect(over).toEqual([]);
+         |                  ^
+      37 |   });
+      38 |   test('wykaz aktualny: liczby równe stanowi kodu, pliki istnieją, każdy powód niepusty (≥ 20 znaków)', () => {
+      39 |     const stale = Object.entries(wykaz.pliki).filter(([f, e]) => !fs.existsSync(path.join(ROOT, f)) || count(f) !== e.n || e.powod.trim().length < 20).map(([f, e]) => `${f}: wykaz ${e.n}, kod ${fs.existsSync(path.join(ROOT, f)) ? count(f) : 'brak pliku'}`);
+
+      at Object.toEqual (tests/audit-m1-029-kropka-srodkowa.test.ts:36:18)
+
+  ● strażnik „·” (docs/32 wzorzec 28, przegląd zamknięty 27.10.2026) › wykaz aktualny: liczby równe stanowi kodu, pliki istnieją, każdy powód niepusty (≥ 20 znaków)
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 7
+
+    - Array []
+    + Array [
+    +   "app/exercise/[id].tsx: wykaz 5, kod 7",
+    +   "app/generator.tsx: wykaz 1, kod 2",
+    +   "app/plan.tsx: wykaz 1, kod 2",
+    +   "components/ExerciseProgress.tsx: wykaz 2, kod 3",
+    +   "components/PeriodSummary.tsx: wykaz 1, kod 2",
+    + ]
+
+      38 |   test('wykaz aktualny: liczby równe stanowi kodu, pliki istnieją, każdy powód niepusty (≥ 20 znaków)', () => {
+      39 |     const stale = Object.entries(wykaz.pliki).filter(([f, e]) => !fs.existsSync(path.join(ROOT, f)) || count(f) !== e.n || e.powod.trim().length < 20).map(([f, e]) => `${f}: wykaz ${e.n}, kod ${fs.existsSync(path.join(ROOT, f)) ? count(f) : 'brak pliku'}`);
+    > 40 |     expect(stale).toEqual([]);
+         |                   ^
+      41 |   });
+      42 |   test('docs/32 wzorzec 28: przegląd nie jest już „[OTWARTE]”, wskazuje strażnika', () => {
+      43 |     const doc = read('docs/32-wzorce-interakcji.md'); const sec = doc.slice(doc.indexOf('### 28.'), doc.indexOf('### 29.'));
+
+      at Object.toEqual (tests/audit-m1-029-kropka-srodkowa.test.ts:40:19)
+
+  ● strażnik „·” (docs/32 wzorzec 28, przegląd zamknięty 27.10.2026) › docs/32 wzorzec 28: przegląd nie jest już „[OTWARTE]”, wskazuje strażnika
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /audit-m1-029-kropka-srodkowa/
+    Received string:  "### 28. Wersaliki i ciągi „A · B · C” (decyzja właściciela 20.10.2026, audyt M1-063, DEC-17 wariant a)
+    - **Wersaliki tylko w nagłówkach grup** (`SectionTitle`, tytuł grupy w strażniku progresji). W treści, przyciskach, etykietach wierszy i komunikatach tekst pisany normalnie. Wersaliki robi `upper()` / `upperText()` z regułami języka (A11-02), nigdy `textTransform: 'uppercase'` poza `upperText()` w `components/ui.tsx`.
+    - **Wyjątki z powodem:** (1) `components/TodayPlan.tsx` — nagłówek bloku „Dziś” i skróty dni tygodnia w pasku (etykiety kolumn, nie zdania); (2) `components/GuardSection.tsx` — tytuł grupy (nagłówek grupy); (3) `lib/state/sets.ts` `shortBand` — jedna litera koloru gumy, nie tekst; (4) **M3 W3 wariant a (21.10.2026, docs/18):** nazwa ćwiczenia na tablicy „teraz” i nagłówek „Dziś: …” na tablicy startu — jak nazwisko na tablicy podejść (przepisy IWF 3.3.6.15), przez `upperText()` (rozstrzelenie 4%, rola `boardName` w tokenach); przy dużym tekście nazwa łamie się na dwa wiersze, nie ucina. Odrzucone: nazwa na tablicy zwykłą pisownią (W3 b). Nowe użycie wymaga zmiany tej decyzji i wpisu tutaj.
+    - **„·” (kropka środkowa) tylko dla metadanych o stałej kolejności** (np. licencja · źródło w ekranie Licencje), czytanych jak etykiety. Zdania, powody i wartości zmiennej kolejności lub liczby elementów oddzielamy zwykłym zdaniem, przecinkiem albo osobną linią.
+    - **Odrzucone:** wariant B — limit dwóch elementów w liniach pomocniczych ekranu treningu (zmieniałby układ ekranu treningu przed redesignem wyglądu).
+    - **Stan kodu:** istniejące ciągi z `join(' · ')` o zmiennej kolejności (np. linie pomocnicze `app/swap.tsx`, `app/adapt.tsx`, `components/ActiveWorkout.tsx`) nie były przeglądane pod tym kątem — **[OTWARTE]** przegląd przy redesignie wyglądu; nowy kod stosuje regułę od 20.10.2026.
+    - **Strażnik wersalików:** `tests/audit-m1-063-caps-separators.test.ts` (lista miejsc z `upperText()` / `upper()` i brak `textTransform: 'uppercase'`).·
+    "
+
+      42 |   test('docs/32 wzorzec 28: przegląd nie jest już „[OTWARTE]”, wskazuje strażnika', () => {
+      43 |     const doc = read('docs/32-wzorce-interakcji.md'); const sec = doc.slice(doc.indexOf('### 28.'), doc.indexOf('### 29.'));
+    > 44 |     expect(sec).not.toMatch(/\[OTWARTE\] przegląd/); expect(sec).toMatch(/audit-m1-029-kropka-srodkowa/); expect(sec).toMatch(/28\.10\.2026/);
+         |                                                                  ^
+      45 |   });
+      46 | });
+      47 |
+
+      at Object.toMatch (tests/audit-m1-029-kropka-srodkowa.test.ts:44:66)
+
+  ● listy o zmiennej liczbie elementów — przecinek, nie „·” › powody propozycji zamiany (lib/swap reasonText): „ten sam ruch, sztanga, robione 3×”
+
+    expect(received).not.toMatch(expected)
+
+    Expected pattern: not /·/
+    Received string:      "ten sam ruch · hantle · wcześniej zamieniane · robione 3×"
+
+      51 |     const t = withDemoTemplates(); const exId = t[0].items[0].exerciseId;
+      52 |     const s = reasonText({ exId, reasons: ['pattern', 'swapped'], sessions: 3 } as never);
+    > 53 |     expect(s).not.toMatch(/·/); expect(s.split(', ').length).toBeGreaterThanOrEqual(3);
+         |                   ^
+      54 |   });
+      55 |   test('podsumowanie planu (app/plan planSummary): dni oddzielone przecinkiem', () => {
+      56 |     const t = withDemoTemplates(); const s = planSummary([t[0].id, null, t[1].id, null, t[0].id, null, null]);
+
+      at Object.toMatch (tests/audit-m1-029-kropka-srodkowa.test.ts:53:19)
+
+  ● listy o zmiennej liczbie elementów — przecinek, nie „·” › podsumowanie planu (app/plan planSummary): dni oddzielone przecinkiem
+
+    expect(received).not.toMatch(expected)
+
+    Expected pattern: not /·/
+    Received string:      "pon. Upper A · śr. Upper B · pt. Upper A"
+
+      55 |   test('podsumowanie planu (app/plan planSummary): dni oddzielone przecinkiem', () => {
+      56 |     const t = withDemoTemplates(); const s = planSummary([t[0].id, null, t[1].id, null, t[0].id, null, null]);
+    > 57 |     expect(s).not.toMatch(/·/); expect(s.split(', ')).toHaveLength(3);
+         |                   ^
+      58 |   });
+      59 | });
+      60 |
+
+      at Object.toMatch (tests/audit-m1-029-kropka-srodkowa.test.ts:57:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 5 total
+Snapshots:   0 total
+Time:        4.359 s
+Ran all test suites matching /tests\/audit-m1-029-kropka-srodkowa.test.ts/i.

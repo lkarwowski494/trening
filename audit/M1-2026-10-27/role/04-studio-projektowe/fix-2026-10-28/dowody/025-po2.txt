@@ -1,0 +1,10 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-025-pierwsze-kroki.test.tsx (7.552 s)
+PASS iOS tests/scenario-full.test.tsx (70.434 s)
+
+Test Suites: 2 passed, 2 total
+Tests:       23 passed, 23 total
+Snapshots:   0 total
+Time:        78.979 s
+Ran all test suites matching /tests\/audit-m1-025-pierwsze-kroki.test.tsx|tests\/scenario-full.test.tsx/i.

@@ -1,0 +1,14 @@
+== TZ=UTC
+Tests:       1 skipped, 16 passed, 17 total
+== TZ=Pacific/Kiritimati
+Tests:       1 skipped, 16 passed, 17 total
+== TZ=Pacific/Pago_Pago
+Tests:       1 skipped, 16 passed, 17 total
+== TZ=America/Los_Angeles
+Tests:       1 skipped, 16 passed, 17 total
+== TZ=Asia/Kolkata
+Tests:       1 skipped, 16 passed, 17 total
+== TZ=Australia/Lord_Howe
+Tests:       1 skipped, 16 passed, 17 total
+== TZ=Europe/Warsaw
+Tests:       1 skipped, 16 passed, 17 total

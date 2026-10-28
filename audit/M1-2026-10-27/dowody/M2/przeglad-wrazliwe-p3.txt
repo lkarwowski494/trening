@@ -1,0 +1,11 @@
+Przegląd ścieżek wrażliwych (D-043), partie 2-3 napraw M2, 27.10.2026
+Zakres: git diff 451862d..naprawy/M2-koordynator-napraw-2026-10-27-p3 -- app components lib tests/setup.js
+Wynik: brak uwag P0/P1.
+Sprawdzone:
+- lib/state/boot.ts:87-99 (M1-013): wyjątek migrate() poza 'bad state' rzuca migrationFailed przed setS/savePreMigrate/odkładaniem state_corrupt_*; catch:99 przepuszcza go dalej; app/_layout.tsx:42/65 pokazuje StartError, Root się nie renderuje, S=null -> brak zapisu; ponowienie powtarza start na nietkniętych danych. Zły kształt ('bad state') i błąd JSON nadal idą ścieżką kopii (bez zmian).
+- app/_layout.tsx:94-102 (M1-015): okno tylko informuje, „Spróbuj ponownie” = flush(); dane czekają w pamięci jak dotąd; persistError to tekst, więc jedno okno na epizod.
+- lib/store-native.ts:128 + app/paywall.tsx:89 (M1-016): arkusz showManageSubscriptionsIOS istnieje w expo-iap (ExpoIapModule.swift:286), przy błędzie zapas deepLink; potem refreshEntitlements. Brak nowej drogi zakupu.
+- app/paywall.tsx:54-59,94-95 (M1-010): zakup nadal blokowany dla posiadanych planów (ownedPlans), ostrzeżenie o podwójnej płatności przy dożywotnim zostaje; zwinięcie listy nie omija warunków.
+- lib/state/effort.ts:19-31 (M1-020): zmiana tylko w effortIn (wpis/edycja pola); zapisane RPE bez migracji i bez przepisywania; brak nowej ścieżki utraty wartości względem stanu sprzed zmiany.
+- lib/support.ts:30-34, components/StartError.tsx:35 (M1-032): do e-maila trafia kod etapu i treść błędu, wyłącznie gdy użytkownik sam stuknie „Napisz do nas” i wyśle wiadomość z widoczną treścią; bez danych treningowych/identyfikatorów (uwaga niska, nie P1: komunikat błędu renderowania z granicy błędu może zawierać fragment tekstu z ekranu).
+- lib/review-run.ts, lib/figures/data.json, lokalizacje, tests/setup.js: bez wpływu na dane, płatności, prywatność; brak sekretów i danych osobowych.

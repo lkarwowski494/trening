@@ -1,0 +1,10 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-033-hipoteza-android.test.ts
+PASS iOS tests/audit-m1-072-android-decision.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       7 passed, 7 total
+Snapshots:   0 total
+Time:        1.419 s, estimated 3 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-033-hipoteza-android.test.ts|tests\/audit-m1-072-android-decision.test.ts/i.

@@ -1,0 +1,14 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-023-bramki-dokumenty.test.ts
+  M1-023: bramki wydania w dokumentach zgodne z CLAUDE.md
+    ✓ CLAUDE.md: bramka App Store = pełny katalog z jednym ponowieniem (źródło) (5 ms)
+    ✓ docs/20: wiersz bramki App Store bez „trybu ścisłego” i z odesłaniem do CLAUDE.md
+    ✓ docs/48 i docs/40: stan R-006 zgodny (zamknięte w rejestrze ↔ spełnione na liście zgłoszenia) (2 ms)
+    ✓ docs/18: lista znanych problemów nie opisuje błędu zegara interpretera Maestro usuniętego w tests/maestro-runner.ts (maestroNow) (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        1.105 s, estimated 2 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-023-bramki-dokumenty.test.ts/i.

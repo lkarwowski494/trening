@@ -1,0 +1,13 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-030-liczby-w-kodzie.test.ts
+  M1-030: liczby i etykiety w jednym miejscu
+    ✓ udział partii pomocniczej: bez literału „* 0.5” przy secondaryMuscles; obie miejsca używają SECONDARY_SHARE (6 ms)
+    ✓ szczegóły treningu: etykieta rekordu przez t(„Rekord: {list}”), bez „PR:” wpisanego na sztywno (1 ms)
+    ✓ migracja literałów fontSize/borderRadius na tokeny: pozycja backlogu 1.0.1 z ID zadania (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        1.114 s, estimated 2 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-030-liczby-w-kodzie.test.ts/i.

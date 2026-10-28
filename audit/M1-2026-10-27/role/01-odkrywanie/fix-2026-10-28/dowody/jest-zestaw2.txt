@@ -1,0 +1,14 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/readme.test.ts (14.6 s)
+PASS iOS tests/flows.test.tsx (32.512 s)
+PASS iOS tests/slownik-terminow.test.ts
+PASS iOS tests/research-quotes.test.ts
+PASS iOS tests/package-scripts.test.ts
+PASS iOS tests/readme-ls-files.test.ts
+
+Test Suites: 6 passed, 6 total
+Tests:       166 passed, 166 total
+Snapshots:   0 total
+Time:        50.33 s
+Ran all test suites matching /tests\/readme.test.ts|tests\/readme-ls-files.test.ts|tests\/research-quotes.test.ts|tests\/flows.test.tsx|tests\/package-scripts.test.ts|tests\/slownik-terminow.test.ts/i.

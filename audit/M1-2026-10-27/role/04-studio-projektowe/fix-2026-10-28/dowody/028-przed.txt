@@ -1,0 +1,29 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-028-cele-44-compact.test.tsx
+  ✕ 320 pt, bieg z RPE: układ COMPACT; stoper serii i pole RPE mają pole dotyku ≥ 44 pt (szerokość + hitSlop) (723 ms)
+
+  ● 320 pt, bieg z RPE: układ COMPACT; stoper serii i pole RPE mają pole dotyku ≥ 44 pt (szerokość + hitSlop)
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    40
+
+      27 |   win320(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())), width: 320 }); await flushAll(50);
+      28 |   expect(screen.getAllByLabelText('Start stopera serii').length).toBeGreaterThan(0);
+    > 29 |   const play = screen.getAllByLabelText('Start stopera serii')[0] as unknown as El; expect(width(play) + slopX(play.props.hitSlop)).toBeGreaterThanOrEqual(SIZE.hit);
+         |                                                                                                                                     ^
+      30 |   const rpe = screen.getAllByLabelText('RPE').find(x => x.props.onChangeText) as unknown as El; expect(rpe).toBeTruthy(); expect(width(rpe) + slopX(rpe.props.hitSlop)).toBeGreaterThanOrEqual(SIZE.hit);
+      31 | });
+      32 |
+
+      at Object.toBeGreaterThanOrEqual (tests/audit-m1-028-cele-44-compact.test.tsx:29:133)
+      at asyncGeneratorStep (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.638 s, estimated 5 s
+Ran all test suites matching /tests\/audit-m1-028-cele-44-compact.test.tsx/i.

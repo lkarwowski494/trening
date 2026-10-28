@@ -1,0 +1,18 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/public-repo.test.ts
+PASS iOS tests/zrodla-wiedzy.test.ts
+PASS iOS tests/architecture-limits.test.ts
+PASS iOS tests/forbidden-names.test.ts
+PASS iOS tests/audit-m1-2026-10-27-018-jedno-okno.test.tsx (18.349 s)
+PASS iOS tests/audit-m1-2026-10-27-023-bramki-dokumenty.test.ts
+PASS iOS tests/verify-docs.test.ts
+PASS iOS tests/audit-m1-044-brd.test.ts
+PASS iOS tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts
+PASS iOS tests/audit-1-0-docs.test.ts
+
+Test Suites: 10 passed, 10 total
+Tests:       141 passed, 141 total
+Snapshots:   0 total
+Time:        31.098 s
+Ran all test suites matching /tests\/public-repo.test.ts|tests\/forbidden-names.test.ts|tests\/zrodla-wiedzy.test.ts|tests\/audit-m1-2026-10-27-023-bramki-dokumenty.test.ts|tests\/architecture-limits.test.ts|tests\/audit-m1-2026-10-27-018-jedno-okno.test.tsx|tests\/verify-docs.test.ts|tests\/audit-1-0-docs.test.ts|tests\/audit-m1-044-brd.test.ts|tests\/audit-m1-2026-10-27-022-brd-aktualny.test.ts/i.

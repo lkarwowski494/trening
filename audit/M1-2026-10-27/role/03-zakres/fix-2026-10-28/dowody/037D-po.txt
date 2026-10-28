@@ -1,0 +1,42 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts
+  M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sklepu (DEC-07 b, 27.10.2026)
+    ✓ scenorys: 9 ekranów PL; języki ze sklepem = 29 języków aplikacji = lokalizacje z store/app-store-names.json bez „sl” (L-003, D7 w docs/48) (7 ms)
+    ✓ cs: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (3 ms)
+    ✓ da: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (3 ms)
+    ✓ de: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (6 ms)
+    ✓ el: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ en: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ es: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (7 ms)
+    ✓ es-419: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ fi: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ fr: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ hr: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ hu: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ id: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ it: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ ja: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ ko: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ ms: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ nb: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ nl: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ pl: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ pt: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ pt-BR: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ ro: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ ru: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ sk: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ sv: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ tr: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ uk: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ vi: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ zh-Hant: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ ten sam podpis nie powtarza się w obrębie języka (każdy ekran ma własne zdanie) (3 ms)
+    ✓ znaki podpisów (poza ja, ko, zh-Hant — czcionka CJK) są w czcionce ramek IBM Plex Sans Bold (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       32 passed, 32 total
+Snapshots:   0 total
+Time:        4.121 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts/i.

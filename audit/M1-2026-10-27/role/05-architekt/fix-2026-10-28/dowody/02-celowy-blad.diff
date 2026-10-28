@@ -1,0 +1,10 @@
+--- ../migrate.orig.ts	2026-10-27 23:28:37.587804560 +0000
++++ lib/state/migrate.ts	2026-10-27 23:28:37.593178999 +0000
+@@ -287,6 +287,7 @@
+     for (const l of raw.settings.locations) fillOpts(l);
+     raw.optFill = OPT_FILL.rev;
+   } /* bieżnia: nachylenie (05.10.2026), raz */
++  raw.settings.defaultRest = Math.min(raw.settings.defaultRest, 100); /* CELOWY BŁĄD (dowód strażnika) */
+   normalizeLiveDays(raw); /* M5 S1 (22.10.2026): State.liveDays — poprawne wpisy zostają, brak/uszkodzone → z historii (migrate-live.ts) */
+   raw.ownerId = owner;
+   if (!Number.isFinite(raw.v)) raw.v = 2; if (raw.metaUpdatedAt != null && tsOf(raw.metaUpdatedAt) == null) delete raw.metaUpdatedAt; /* runda 53 */

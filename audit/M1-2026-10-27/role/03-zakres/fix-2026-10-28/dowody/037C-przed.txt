@@ -1,0 +1,165 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts
+  M1-037 C / 03-zakres-008: zapis przejścia poznawczego 5 zadań pętli (27.10.2026)
+    ✕ dokument istnieje, ma datę i metodę (Q1–Q4) oraz odwołanie do decyzji DEC-07 b (8 ms)
+    ✕ Z1: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik” (1 ms)
+    ✕ Z2: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik” (1 ms)
+    ✕ Z3: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik”
+    ✕ Z4: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik”
+    ✕ Z5: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik”
+    ✕ każda porażka („nie”) wskazuje znalezisko (ID roli albo NZ z wyniku roli 03) (1 ms)
+    ✕ etykiety, na których stoi przejście, istnieją w słowniku (zmiana etykiety = ponowne przejście)
+    ✕ część (B) — test z 3–5 osobami bez instrukcji: krok właściciela Z-37 w docs/48 i protokół w dokumencie (1 ms)
+
+  ● M1-037 C / 03-zakres-008: zapis przejścia poznawczego 5 zadań pętli (27.10.2026) › dokument istnieje, ma datę i metodę (Q1–Q4) oraz odwołanie do decyzji DEC-07 b
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      20 | describe('M1-037 C / 03-zakres-008: zapis przejścia poznawczego 5 zadań pętli (27.10.2026)', () => {
+      21 |   test('dokument istnieje, ma datę i metodę (Q1–Q4) oraz odwołanie do decyzji DEC-07 b', () => {
+    > 22 |     expect(fs.existsSync(path.join(root, DOC))).toBe(true);
+         |                                                 ^
+      23 |     const d = doc();
+      24 |     expect(d).toMatch(/27\.10\.2026/); expect(d).toMatch(/DEC-07 b/);
+      25 |     for (const q of ['Q1', 'Q2', 'Q3', 'Q4']) expect(d).toContain(q);
+
+      at Object.toBe (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:22:49)
+
+  ● M1-037 C / 03-zakres-008: zapis przejścia poznawczego 5 zadań pętli (27.10.2026) › Z1: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik”
+
+    ENOENT: no such file or directory, open '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/docs/design/test-pierwszego-uzycia.md'
+
+      10 |
+      11 | const root = path.join(__dirname, '..');
+    > 12 | const read = (f: string) => fs.readFileSync(path.join(root, f), 'utf8');
+         |                                ^
+      13 | const DOC = 'docs/design/test-pierwszego-uzycia.md';
+      14 | const ZADANIA = ['Z1', 'Z2', 'Z3', 'Z4', 'Z5'];
+      15 | const doc = () => read(DOC);
+
+      at readFileSync (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:12:32)
+      at read (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:15:19)
+      at doc (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:28:22)
+
+  ● M1-037 C / 03-zakres-008: zapis przejścia poznawczego 5 zadań pętli (27.10.2026) › Z2: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik”
+
+    ENOENT: no such file or directory, open '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/docs/design/test-pierwszego-uzycia.md'
+
+      10 |
+      11 | const root = path.join(__dirname, '..');
+    > 12 | const read = (f: string) => fs.readFileSync(path.join(root, f), 'utf8');
+         |                                ^
+      13 | const DOC = 'docs/design/test-pierwszego-uzycia.md';
+      14 | const ZADANIA = ['Z1', 'Z2', 'Z3', 'Z4', 'Z5'];
+      15 | const doc = () => read(DOC);
+
+      at readFileSync (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:12:32)
+      at read (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:15:19)
+      at doc (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:28:22)
+
+  ● M1-037 C / 03-zakres-008: zapis przejścia poznawczego 5 zadań pętli (27.10.2026) › Z3: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik”
+
+    ENOENT: no such file or directory, open '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/docs/design/test-pierwszego-uzycia.md'
+
+      10 |
+      11 | const root = path.join(__dirname, '..');
+    > 12 | const read = (f: string) => fs.readFileSync(path.join(root, f), 'utf8');
+         |                                ^
+      13 | const DOC = 'docs/design/test-pierwszego-uzycia.md';
+      14 | const ZADANIA = ['Z1', 'Z2', 'Z3', 'Z4', 'Z5'];
+      15 | const doc = () => read(DOC);
+
+      at readFileSync (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:12:32)
+      at read (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:15:19)
+      at doc (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:28:22)
+
+  ● M1-037 C / 03-zakres-008: zapis przejścia poznawczego 5 zadań pętli (27.10.2026) › Z4: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik”
+
+    ENOENT: no such file or directory, open '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/docs/design/test-pierwszego-uzycia.md'
+
+      10 |
+      11 | const root = path.join(__dirname, '..');
+    > 12 | const read = (f: string) => fs.readFileSync(path.join(root, f), 'utf8');
+         |                                ^
+      13 | const DOC = 'docs/design/test-pierwszego-uzycia.md';
+      14 | const ZADANIA = ['Z1', 'Z2', 'Z3', 'Z4', 'Z5'];
+      15 | const doc = () => read(DOC);
+
+      at readFileSync (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:12:32)
+      at read (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:15:19)
+      at doc (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:28:22)
+
+  ● M1-037 C / 03-zakres-008: zapis przejścia poznawczego 5 zadań pętli (27.10.2026) › Z5: tabela kroków z oceną Q1–Q4 przy każdym kroku i linia „Wynik”
+
+    ENOENT: no such file or directory, open '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/docs/design/test-pierwszego-uzycia.md'
+
+      10 |
+      11 | const root = path.join(__dirname, '..');
+    > 12 | const read = (f: string) => fs.readFileSync(path.join(root, f), 'utf8');
+         |                                ^
+      13 | const DOC = 'docs/design/test-pierwszego-uzycia.md';
+      14 | const ZADANIA = ['Z1', 'Z2', 'Z3', 'Z4', 'Z5'];
+      15 | const doc = () => read(DOC);
+
+      at readFileSync (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:12:32)
+      at read (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:15:19)
+      at doc (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:28:22)
+
+  ● M1-037 C / 03-zakres-008: zapis przejścia poznawczego 5 zadań pętli (27.10.2026) › każda porażka („nie”) wskazuje znalezisko (ID roli albo NZ z wyniku roli 03)
+
+    ENOENT: no such file or directory, open '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/docs/design/test-pierwszego-uzycia.md'
+
+      10 |
+      11 | const root = path.join(__dirname, '..');
+    > 12 | const read = (f: string) => fs.readFileSync(path.join(root, f), 'utf8');
+         |                                ^
+      13 | const DOC = 'docs/design/test-pierwszego-uzycia.md';
+      14 | const ZADANIA = ['Z1', 'Z2', 'Z3', 'Z4', 'Z5'];
+      15 | const doc = () => read(DOC);
+
+      at readFileSync (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:12:32)
+      at read (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:15:19)
+      at Object.doc (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:36:59)
+
+  ● M1-037 C / 03-zakres-008: zapis przejścia poznawczego 5 zadań pętli (27.10.2026) › etykiety, na których stoi przejście, istnieją w słowniku (zmiana etykiety = ponowne przejście)
+
+    ENOENT: no such file or directory, open '/home/user/trening/.claude/worktrees/agent-ab9baab932e7ee5e1/docs/design/test-pierwszego-uzycia.md'
+
+      10 |
+      11 | const root = path.join(__dirname, '..');
+    > 12 | const read = (f: string) => fs.readFileSync(path.join(root, f), 'utf8');
+         |                                ^
+      13 | const DOC = 'docs/design/test-pierwszego-uzycia.md';
+      14 | const ZADANIA = ['Z1', 'Z2', 'Z3', 'Z4', 'Z5'];
+      15 | const doc = () => read(DOC);
+
+      at readFileSync (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:12:32)
+      at read (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:15:19)
+      at Object.doc (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:42:51)
+
+  ● M1-037 C / 03-zakres-008: zapis przejścia poznawczego 5 zadań pętli (27.10.2026) › część (B) — test z 3–5 osobami bez instrukcji: krok właściciela Z-37 w docs/48 i protokół w dokumencie
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /3–5/
+    Received string:  ""
+
+      49 |   test('część (B) — test z 3–5 osobami bez instrukcji: krok właściciela Z-37 w docs/48 i protokół w dokumencie', () => {
+      50 |     const z37 = read('docs/48-zgloszenie-1-0.md').split('\n').find(l => l.startsWith('| Z-37 |')) ?? '';
+    > 51 |     expect(z37).toMatch(/3–5/); expect(z37).toMatch(/bez instrukcji/); expect(z37).toMatch(/właściciel/); expect(z37).toContain(DOC);
+         |                 ^
+      52 |     expect(doc()).toMatch(/## Protokół części \(B\)/);
+      53 |   });
+      54 | });
+
+      at Object.toMatch (tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts:51:17)
+
+Test Suites: 1 failed, 1 total
+Tests:       9 failed, 9 total
+Snapshots:   0 total
+Time:        2.06 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts/i.

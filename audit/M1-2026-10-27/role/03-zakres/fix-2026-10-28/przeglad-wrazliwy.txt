@@ -1,0 +1,11 @@
+Przegląd ścieżki wrażliwej (zakupy) — M1-037 A, diff 321d287b..848f9b0d (app, components, lib), 28.10.2026
+Wynik: brak uwag (brak P0/P1).
+
+Sprawdzone:
+- components/SubscriptionCard.tsx:17,23 — onPress identyczny we wszystkich stanach (router.push('/paywall?reason=settings')): free -> „Zobacz plany Pro”,
+  full z active (zakup, Chmura rodzinna, każdy plan) -> „Masz plan: {nazwa}”, full bez active (np. kod) -> „Pełna wersja” jak dotąd. Każdy stan
+  prowadzi na ekran zakupu z „Przywróć zakupy”; zmienił się tylko tytuł/etykieta VoiceOver, nie stan dostępu.
+- app/paywall.tsx:16,25 — import + re-eksport planName; funkcja przeniesiona bez zmian treści, użycia w paywall (85,100,103) bez zmian.
+  Brak cyklu importów (SubscriptionCard nie importuje paywall). Typ EntitlementPlan z lib/access.ts:43.
+- Nowy klucz „Zobacz plany Pro” w EN, _source.json i 34 słownikach; es-419 to nakładka na es (brak klucza jak przy „Masz plan”).
+- Brak sekretów, danych osobowych, zmian danych i nowych wywołań zakupu.

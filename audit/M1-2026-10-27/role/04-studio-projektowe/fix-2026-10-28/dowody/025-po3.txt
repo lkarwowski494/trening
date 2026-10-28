@@ -1,0 +1,26 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/flows.test.tsx (22.166 s)
+  ✓ B1 pierwszy start: podpowiedź, ZERO szablonów (decyzja 03.10.2026) i droga do pierwszego szablonu (1594 ms)
+  ✓ B1 (EN) first launch without templates: hint, empty state and „+ New template” in English (247 ms)
+  ✓ B1b szablony ustawione przez użytkownika (dane testowe) — wszystkie w wyborze szablonu („Inny trening” → „Z szablonu”) ze „Start” (410 ms)
+  ✓ B2 start szablonu jednym tapnięciem, ✓ → przerwa i powiadomienie (2346 ms)
+  ✓ B3 ciężar z przecinkiem: 12,5 zostaje w polu i trafia do danych (1688 ms)
+  ✓ B4 cofnięcie ✓ starszej serii nie kasuje przerwy z nowszej (2521 ms)
+  ✓ B5 rozgrzewka nie przesuwa „Poprzednio” (1245 ms)
+  ✓ B6 ćwiczenie na czas: ✓ na trwającej serii kończy pomiar, czas ≤ cel (376 ms)
+  ✓ B7 superset: po pierwszym ćwiczeniu brak przerwy, po drugim jest (433 ms)
+  ✓ B8 zakończenie z rekordem: karta (bez okienka) i te same PR w historii (2199 ms)
+  ✓ B9 zakończenie bez serii → odrzucenie, bez pustej sesji (1347 ms)
+  ✓ B10 edytor szablonu: „+ seria / − seria” (05.10.2026: serie jako wiersze, dawne pole „serie”), potwierdzenie usunięcia (684 ms)
+  ✓ B11 usunięcie ćwiczenia z historią: znika z listy, historia zna nazwę (259 ms)
+  ✓ B12 ustawienia: przełącznik po jednym tapnięciu, English, funty (525 ms)
+  ✓ B13 gumy: pusty kolor nie wywraca treningu z gumą (352 ms)
+  ✓ B15 reset danych zatrzymuje timery (1882 ms)
+  ✓ B16 powtórz ostatni pomija usunięte ćwiczenia (169 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       17 passed, 17 total
+Snapshots:   0 total
+Time:        22.833 s
+Ran all test suites matching /tests\/flows.test.tsx/i.

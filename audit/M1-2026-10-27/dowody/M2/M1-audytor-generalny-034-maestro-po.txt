@@ -1,0 +1,14 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/maestro-tap-tekst-guard.test.ts
+  M1-034: zapadka stuknięć po tekście (Maestro)
+    ✓ parser: tekst w cudzysłowie i { text: … } liczone, { id: … } nie (6 ms)
+    ✓ nowe stuknięcie po tekście ponad listę bazową = błąd; usunięte musi zniknąć z listy (lista tylko maleje) (14 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.265 s, estimated 2 s
+Ran all test suites matching /tests\/maestro-tap-tekst-guard.test.ts/i.
+    +   "21-subskrypcja.yaml: \"Nowy przycisk\" 0→1",
+Tests:       1 failed, 1 passed, 2 total

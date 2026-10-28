@@ -1,0 +1,6 @@
+
+> trening@1.0.0 verify:docs
+> node scripts/verify-docs.mjs
+
+verify:docs — zmiany poza dokumentami — uruchom npm run verify
+Pliki poza dokumentami (134): .maestro/21-subskrypcja.yaml, .maestro/35-ustawienia-dostepnosc.yaml, .maestro/56-uczciwe-zasady.yaml, app/_layout.tsx, app/guide.tsx, app/history/edit/[id].tsx, app/more/location/[id].tsx, app/more/settings.tsx, app/paywall.tsx, app/plan.tsx, …
