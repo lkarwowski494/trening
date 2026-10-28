@@ -49,4 +49,4 @@
 | 3 | M1-audytor-generalny-033 | P2 | D | 11-wzrost | M2 | 11-wzrost-003 | — | — | zatwierdzone |
 | 3 | M1-audytor-generalny-013 | P2 | D | 12-niezawodnosc | M2 | 12-niezawodnosc-001 | — | — | zweryfikowane |
 | 3 | M1-audytor-generalny-032 | P2 | D | 12-niezawodnosc | M2 | 12-niezawodnosc-003 | — | — | otwarte |
-OK: 49 zadań, 10 decyzji (2 bez wyboru)
+OK: 49 zadań, 10 decyzji (0 bez wyboru)

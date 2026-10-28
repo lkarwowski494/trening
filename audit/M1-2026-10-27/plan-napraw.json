@@ -212,7 +212,7 @@
       "pytanie": "Karty ćwiczeń ze wskazówkami bez zapisu recenzji bramki 4 (31 kart bez figury + karty v2: Sumo Deadlift, Wall Sit, 4 warianty sumo; przypisania zestawów ogólnych do 70 ćwiczeń) — co przed 1.0?",
       "rozstrzyga": "wlasciciel",
       "rekomendacja": "a",
-      "wybor": null,
+      "wybor": "a",
       "opcje": [
         {
           "id": "a",
@@ -233,14 +233,15 @@
       "zrodla": [
         "03-zakres-601",
         "06-tresci-001"
-      ]
+      ],
+      "zapis": "28.10.2026, właściciel: „2a 3a” (STOP 2 reaudytu pętla 1); docs/18 4c116d0"
     },
     {
       "id": "DEC-11",
       "pytanie": "„Zarządzaj subskrypcją” niedostępne dla VoiceOver (karta stanu jako jeden element) — przed 1.0 czy w 1.0.1?",
       "rozstrzyga": "wlasciciel",
       "rekomendacja": "a",
-      "wybor": null,
+      "wybor": "a",
       "opcje": [
         {
           "id": "a",
@@ -255,7 +256,8 @@
       ],
       "zrodla": [
         "04-studio-projektowe-601"
-      ]
+      ],
+      "zapis": "28.10.2026, właściciel: „2a 3a” (STOP 2 reaudytu pętla 1); docs/18 4c116d0"
     }
   ],
   "zadania": [
