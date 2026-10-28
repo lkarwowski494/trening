@@ -617,19 +617,25 @@
   },
   "bench_press": {
    "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "recenzja ruchu L-042 (rundy 1–2, agent recenzent, 27.10.2026); poprawki potwierdzone testami tests/figury-1-0-recenzja.test.ts",
-   "sha": "286637bfbd22",
+   "data": "2026-10-28",
+   "kto": "recenzja niezależna ruchu po naprawie torów (agent recenzent, 28.10.2026)",
+   "sha": "39b505a17e9b",
    "liczba": 30,
-   "uwagi": "Zapis przeniesiony z L-042 (docs/40-lekcje.md); 06-tresci nie powtarzała recenzji v2 — zakres zadania M1-audytor-generalny-005: figury v1."
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A) — ruch po naprawie torów 9883ada",
+   "autor": "koordynator M2 (naprawa torów, 9883ada)",
+   "recenzent": "agent recenzent ruchu (sesja niezależna)",
+   "uwagi": "Obejrzane kadry u 0/0,25/0,5/0,75/1 z boku (3,2×, ślad toru) i z przodu, przed (f5af3be) i po (9883ada): 4 wyciskania na maszynie Smitha (płasko, wąsko, skos dodatni, skos ujemny) — szyna stoi w punkcie dotyku, gryf jedzie pionowo (było: ukos 15–18 cm, szyna z gryfem), na górze ręce proste nad punktem dotyku, dotyk na klatce zgodny z wariantem; 26 pozostałych ćwiczeń rodziny bez zmian (obraz identyczny bajt w bajt ze stanem zrecenzowanym 27.10.2026). Bez uwag blokujących."
   },
   "hinge": {
    "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "recenzja ruchu L-042 (rundy 1–2, agent recenzent, 27.10.2026); poprawki potwierdzone testami tests/figury-1-0-recenzja.test.ts",
-   "sha": "b8a26c16d090",
+   "data": "2026-10-28",
+   "kto": "recenzja niezależna ruchu po naprawie torów (agent recenzent, 28.10.2026)",
+   "sha": "a97961c2e618",
    "liczba": 32,
-   "uwagi": "Zapis przeniesiony z L-042 (docs/40-lekcje.md); 06-tresci nie powtarzała recenzji v2 — zakres zadania M1-audytor-generalny-005: figury v1."
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A) — ruch po naprawie torów 9883ada",
+   "autor": "koordynator M2 (naprawa torów, 9883ada)",
+   "recenzent": "agent recenzent ruchu (sesja niezależna)",
+   "uwagi": "Obejrzane kadry u 0/0,25/0,5/0,75/1, widok z boku (powiększenie 3,2×, ślad toru i pion środka stopy) i z przodu, przed (f5af3be) i po (9883ada), wszystkie 32 ćwiczenia; 20 zmienionych porównane klatka po klatce, 12 bez zmian (obraz identyczny piksel w piksel). Martwe ciągi ze sztangą/linką: „S” usunięte (było 4,2–5,6 cm, 2 zawrócenia; jest gładki łuk 3,1–3,6 cm, 1 zmiana kierunku), start 1,4–2,6 cm przed środkiem stopy, gryf przy goleniach (luz 0,2 cm), bez przenikania; RDL/SLDL/Rack Pull/Single Leg RDL (linki) prawie pionowo (0,3–0,6 cm); Smith SLDL — szyna stoi, gryf na szynie. Uwagi NISKIE (backlog): (1) sumo (4 warianty) i sumo z kettlebellem — tor gładki, ale ukośny w przód ok. 6–8 cm (start ok. 2 cm za pionem środka stopy, wyprost 4–6 cm przed); (2) Reverse Band Deadlift / Reverse Band Sumo — górny zaczep gumy przesuwa się z gryfem (3,4 / 8 cm), Cable Deadlift — bloczek przy podłodze przesuwa się z uchwytem (3,7 cm), ta sama klasa co dawna szyna Smitha, mniej widoczna; (3) Smith SLDL — szyna 7,3 cm przed środkiem stopy, na dole gryf do 6 cm przed goleniami (skutek pionowej szyny, poprawne dla maszyny); (4) RDL/SLDL na dole ramiona odchylone od pionu w przód (stan sprzed zmiany)."
   }
  },
  "karty": {

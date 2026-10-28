@@ -7,7 +7,7 @@ import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
-import { measuredAngle, measuredJoint, jointAngles, frameAt, SIDES, figurePalette, TEMPO, loopLength, figureSpec, MUSCLE_DATA } from '@/lib/figures/v2';
+import { measuredAngle, measuredJoint, jointAngles, frameAt, SIDES, figurePalette, TEMPO, loopLength, figureSpec, shownFigureSpec, MUSCLE_DATA } from '@/lib/figures/v2';
 import { errorsOf, hasTechnique, toeAngleApplies, guidesOf } from '@/lib/figures/v2/ui';
 import { applyLang } from '@/lib/i18n';
 import { light, dark } from '@/lib/theme';
@@ -102,7 +102,7 @@ describe('komponent ExerciseFigureV2', () => {
   });
   test('błąd tempa (szarpanie) przyspiesza animację; przycisk błędu dostępny również w animacji', async () => {
     jest.useFakeTimers(); setReduce(false);
-    const k = Object.keys(MUSCLE_DATA).find(x => figureSpec(x) && errorsOf(figureSpec(x)!).length === 1 && errorsOf(figureSpec(x)!)[0].error === 'jerk')!;
+    const k = Object.keys(MUSCLE_DATA).find(x => shownFigureSpec(x) && errorsOf(figureSpec(x)!).length === 1 && errorsOf(figureSpec(x)!)[0].error === 'jerk') /* tylko figury pokazywane w aplikacji (V2_WSTRZYMANE, 28.10.2026) */!;
     expect(k).toBeTruthy(); render(<ExerciseFigureV2 exercise={lib(k)} />); await flush(); fireEvent.press(screen.getByRole('button', { name: 'Pokaż częsty błąd' }));
     expect(screen.getByText(/Opuszczanie 0,5 s|Opuszczanie 0,4 s/)).toBeTruthy();
   });

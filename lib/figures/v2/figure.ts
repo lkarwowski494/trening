@@ -32,6 +32,16 @@ export function figureSpec(key: string): FigureSpec | null {
   const lowerFirst = variant.family === 'hinge' ? variant.lowerFirst : true;
   return { key, family, variant, views: fam.views, static: variant.family === 'squat' && !!variant.static, lowerFirst };
 }
+/** Ćwiczenia z wariantem, którego rysunek nie jest pokazywany w aplikacji (karta bez rysunku, wskazówki zostają) — ćwiczenie → powód. Silnik i testy geometrii nadal je liczą. */
+export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
+  /* decyzja agenta w nocy 28/29.10.2026 (tryb nocny właściciela, do weta rano; docs/18): rysunek przeczy karcie „łokcie blisko tułowia” — poprawka rigu w 1.0.1 */
+  'JM Press': 'łokieć na dole ok. 25 cm za barkiem w stronę głowy, w połowie ruchu na boki — przeczy wskazówce cgbp.elbows; poprawka rigu w 1.0.1 (docs/21)',
+  'Decline Close-Grip Bench To Skull Crusher': 'łokieć na dole ok. 25 cm za barkiem w stronę głowy, w połowie ruchu na boki — przeczy wskazówce cgbp.elbows; poprawka rigu w 1.0.1 (docs/21)',
+};
+/** Figura pokazywana w aplikacji: jak figureSpec, bez wstrzymanych (V2_WSTRZYMANE). */
+export function shownFigureSpec(key: string): FigureSpec | null {
+  return Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, key) ? null : figureSpec(key);
+}
 
 /** Klatka figury w pozycji u (0 = wyjściowa, 1 = skrajna). */
 export function frameAt(spec: FigureSpec, u: number, error?: ErrorId): Frame {
