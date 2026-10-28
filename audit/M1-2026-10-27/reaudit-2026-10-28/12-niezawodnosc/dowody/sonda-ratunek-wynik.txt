@@ -1,0 +1,7 @@
+$ node sonda.mjs (Node v22.22.0)
+A: proces zakończony bez zamknięcia bazy, kod 0 | pliki: trening.db, trening.db-wal, trening.db-shm
+A: kopia samego trening.db -> błąd: no such table: kv
+A: kopia kompletu (DB_FILES) -> {"integrity":"ok","rows":25} | oryginał: {"integrity":"ok","rows":25}
+B: kopia kompletu przy otwartym, bezczynnym połączeniu -> {"integrity":"ok","rows":25}
+(Use `node --trace-warnings ...` to show where the warning was created)
+kod wyjścia: 0

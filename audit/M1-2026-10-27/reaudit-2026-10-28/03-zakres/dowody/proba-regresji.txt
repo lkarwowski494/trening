@@ -1,0 +1,14 @@
+== npx jest tests/tuleja.test.tsx --maxWorkers=1
+Test Suites: 1 passed, 1 total
+Tests:       11 passed, 11 total
+kod 0
+== npx jest tests/review.test.ts --maxWorkers=1
+Test Suites: 1 passed, 1 total
+Tests:       42 passed, 42 total
+kod 0
+== npx jest tests/audit-m1-027-voice-default.test.ts --maxWorkers=1
+Test Suites: 1 passed, 1 total
+Tests:       25 passed, 25 total
+kod 0
+== grep MODULES_AVAILABLE lib/seed.ts
+20:export const MODULES_AVAILABLE: ReadonlySet<ModuleId> = new Set<ModuleId>(['training']);

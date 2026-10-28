@@ -1,0 +1,11 @@
+ćwiczenia z figurą v2: 87
+id wskazówek na kartach v2 poza skrótem recenzji v1: 9
+sumo.stance → Sumo Deadlift
+sumo.grip → Sumo Deadlift
+sumo.lift → Sumo Deadlift
+sumo.kneesOut → Sumo Deadlift, Reverse Band Sumo Deadlift, Sumo Deadlift (kettlebell) (+2)
+wall.setup → Wall Sit
+wall.back → Wall Sit
+wall.depth → Wall Sit
+wall.breath → Wall Sit
+bp.elbowsMid → Bench Press with Chains, Chain Press, Decline Bench Press (+4)

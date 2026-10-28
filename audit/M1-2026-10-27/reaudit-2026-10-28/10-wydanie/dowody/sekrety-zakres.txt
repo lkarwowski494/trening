@@ -1,0 +1,6 @@
+$ git log 025a50b..2385e75 -p | grep '^+' | wzorce sekretów (klucz prywatny, AKIA, ghp_, sk-, EXPO_TOKEN=, .p8/.p12/.mobileprovision w nazwach plików)
+commitów w zakresie: 118
+trafienia treści: 0
+pliki kluczy dodane: 0
+workflowy zmienione: .github/workflows/e2e-ios.yml 
+pull_request_target w workflowach: 0

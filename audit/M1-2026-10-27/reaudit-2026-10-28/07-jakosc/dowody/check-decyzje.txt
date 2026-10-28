@@ -1,0 +1,6 @@
+
+> trening@1.0.0 check:decyzje
+> node scripts/decyzje.mjs --check
+
+check:decyzje — 341 wpisów decyzji, każdy z polem wdrożenia i testem albo powodem
+kod 0

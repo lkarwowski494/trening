@@ -1,0 +1,17 @@
+$ git show 025a50b:lib/locales/el.json | grep -n "\"{n} kg\"\|\"{u}/str.\"\|\"{u}/hant.\""
+44: "{u}/hant.": "{u}/αλτ.",
+46: "{u}/str.": "{u}/πλευρά",
+kod: 0
+$ grep -n (2385e75) lib/locales/el.json
+44: "{u}/hant.": "{u}/αλτ.",
+46: "{u}/str.": "{u}/πλευρά",
+455: "kilogram|kilogramy|kilogramów": "κιλό|κιλά",
+1574: "Zwiększ ciężar o {n}": "Αύξηση βάρους κατά {n}",
+1724: "{n} kg": "{n} κιλά",
+$ grep -n lib/board.ts components/BoardControls.tsx components/WorkoutBlocks.tsx
+27:const WEIGHT_STEP = { bar: { kg: 2.5, lb: 5 }, small: { kg: 1, lb: 2.5 } } as const;
+94:  const amount = `${fmtNum(step, 1)} ${unitLabel()}`;
+25:  : tr(plus ? 'Zwiększ ciężar o {n}' : 'Zmniejsz ciężar o {n}', { n: amount });
+164:        {hasWeight(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} numberOfLines={1} style={[s.c, { width: W.w }]}>{loadLabelShort(ex, impl)}</Muted> : null}
+49:const WIDE = { idx: 28, w: 64, reps: 56, dist: 64, time: 56, play: 44, rpe: 46, band: 56, done: 44, gap: 6, prevMin: 70 };
+51:const COMPACT = { idx: 24, w: 56, reps: 48, dist: 56, time: 50, play: 40, rpe: 40, band: 48, done: 44, gap: 4, prevMin: 70 };

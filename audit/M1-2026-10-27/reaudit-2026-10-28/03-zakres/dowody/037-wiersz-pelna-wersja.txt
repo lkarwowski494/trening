@@ -1,0 +1,7 @@
+
+Test Suites: 1 passed, 1 total
+Tests:       43 passed, 43 total
+Snapshots:   0 total
+Time:        6.398 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx/i.
+kod 0

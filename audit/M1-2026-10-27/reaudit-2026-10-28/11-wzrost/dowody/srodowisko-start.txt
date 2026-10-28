@@ -1,0 +1,5 @@
+HEAD: 2385e75aeb3880c0c90ba5edd69145a1c6d80b01
+git status --porcelain (pliki śledzone):
+kod 0
+uname: Linux 6.18.44-fc-v180
+node: v22.22.0

@@ -1,0 +1,125 @@
+| Rodzaj | Gdzie | Co | Funkcja F-nn / decyzja |
+|---|---|---|---|
+| trasa | app/(tabs)/history.tsx | /history | |
+| trasa | app/(tabs)/index.tsx | / | |
+| trasa | app/(tabs)/more.tsx | /more | |
+| trasa | app/(tabs)/progress.tsx | /progress | |
+| ekran techniczny | app/+not-found.tsx | /+not-found | |
+| trasa | app/_sitemap.tsx | /_sitemap | |
+| trasa | app/adapt.tsx | /adapt | |
+| trasa | app/exercise/[id].tsx | /exercise/[id] | |
+| trasa | app/exercises.tsx | /exercises | |
+| trasa | app/generator.tsx | /generator | |
+| trasa | app/guide.tsx | /guide | |
+| trasa | app/history/[id].tsx | /history/[id] | |
+| trasa | app/history/add.tsx | /history/add | |
+| trasa | app/history/edit/[id].tsx | /history/edit/[id] | |
+| trasa | app/more/about.tsx | /more/about | |
+| trasa | app/more/backup.tsx | /more/backup | |
+| trasa | app/more/bands.tsx | /more/bands | |
+| trasa | app/more/bodymass.tsx | /more/bodymass | |
+| trasa | app/more/import.tsx | /more/import | |
+| trasa | app/more/language.tsx | /more/language | |
+| trasa | app/more/licenses.tsx | /more/licenses | |
+| trasa | app/more/location/[id].tsx | /more/location/[id] | |
+| trasa | app/more/locations.tsx | /more/locations | |
+| trasa | app/more/settings.tsx | /more/settings | |
+| trasa | app/paywall.tsx | /paywall | |
+| trasa | app/pick-template.tsx | /pick-template | |
+| trasa | app/picker.tsx | /picker | |
+| trasa | app/place-once.tsx | /place-once | |
+| trasa | app/plan.tsx | /plan | |
+| trasa | app/progression.tsx | /progression | |
+| trasa | app/reorder.tsx | /reorder | |
+| trasa | app/swap.tsx | /swap | |
+| trasa | app/template/[id].tsx | /template/[id] | |
+| trasa | app/templates.tsx | /templates | |
+| ekran nawigatora | app/(tabs)/_layout.tsx:51 | index | |
+| ekran nawigatora | app/(tabs)/_layout.tsx:52 | history | |
+| ekran nawigatora | app/(tabs)/_layout.tsx:53 | progress | |
+| ekran nawigatora | app/(tabs)/_layout.tsx:54 | more | |
+| ekran nawigatora | app/_layout.tsx:113 | (tabs) | |
+| ekran nawigatora | app/_layout.tsx:114 | picker | |
+| ekran nawigatora | app/_layout.tsx:115 | swap | |
+| ekran nawigatora | app/_layout.tsx:116 | adapt | |
+| ekran nawigatora | app/_layout.tsx:117 | place-once | |
+| ekran nawigatora | app/_layout.tsx:118 | pick-template | |
+| ekran nawigatora | app/_layout.tsx:119 | templates | |
+| ekran nawigatora | app/_layout.tsx:120 | exercises | |
+| ekran nawigatora | app/_layout.tsx:121 | progression | |
+| ekran nawigatora | app/_layout.tsx:122 | +not-found | |
+| ekran nawigatora | app/_layout.tsx:123 | _sitemap | |
+| ekran nawigatora | app/_layout.tsx:124 | template/[id] | |
+| ekran nawigatora | app/_layout.tsx:125 | plan | |
+| ekran nawigatora | app/_layout.tsx:126 | generator | |
+| ekran nawigatora | app/_layout.tsx:127 | guide | |
+| ekran nawigatora | app/_layout.tsx:128 | reorder | |
+| ekran nawigatora | app/_layout.tsx:129 | exercise/[id] | |
+| ekran nawigatora | app/_layout.tsx:130 | history/[id] | |
+| ekran nawigatora | app/_layout.tsx:131 | history/add | |
+| ekran nawigatora | app/_layout.tsx:132 | history/edit/[id] | |
+| ekran nawigatora | app/_layout.tsx:133 | paywall | |
+| ekran nawigatora | app/_layout.tsx:134 | more/bands | |
+| ekran nawigatora | app/_layout.tsx:135 | more/settings | |
+| ekran nawigatora | app/_layout.tsx:136 | more/bodymass | |
+| ekran nawigatora | app/_layout.tsx:137 | more/about | |
+| ekran nawigatora | app/_layout.tsx:138 | more/licenses | |
+| ekran nawigatora | app/_layout.tsx:139 | more/backup | |
+| ekran nawigatora | app/_layout.tsx:140 | more/import | |
+| ekran nawigatora | app/_layout.tsx:141 | more/language | |
+| ekran nawigatora | app/_layout.tsx:142 | more/locations | |
+| ekran nawigatora | app/_layout.tsx:143 | more/location/[id] | |
+| link | app/paywall.tsx:54 | const open = (url: string) => { Linking.openURL(url).catch(() => {}); }; | |
+| gest | components/DragList.tsx:2 | import { AccessibilityInfo, ActionSheetIOS, Animated, PanResponder, Platform, Pr | |
+| gest | components/DragList.tsx:93 | const responder = (k: string) => { let r = responders.current.get(k); if (!r) {  | |
+| link | components/FairRulesSheet.tsx:35 | <Btn kind="ghost" small block testID="fair-rules-espresso" title={t('Skąd ta cen | |
+| gest | components/StartPanel.tsx:2 | import { Animated, Modal, PanResponder, Pressable, Text, View } from 'react-nati | |
+| gest | components/StartPanel.tsx:41 | const pan = useRef(PanResponder.create({ | |
+| gest | components/SwipeRow.tsx:2 | import { View, Text, Pressable, Animated, PanResponder, Alert, StyleSheet, type  | |
+| gest | components/SwipeRow.tsx:51 | /* UI-17: PanResponder tworzony raz — aktualne pytanie, akcja i blokada przez re | |
+| gest | components/SwipeRow.tsx:61 | const pan = useRef(PanResponder.create({ | |
+| przełącznik | components/ui.tsx:163 | <Switch accessibilityLanguage={lang()} testID={'sw-' + label} /* E2E (Maestro):  | |
+| udostępnianie / import | lib/backup.ts:2 | import * as Sharing from 'expo-sharing'; | |
+| udostępnianie / import | lib/backup.ts:3 | import * as DocumentPicker from 'expo-document-picker'; | |
+| udostępnianie / import | lib/csvimport.ts:10 | import * as DocumentPicker from 'expo-document-picker'; | |
+| flaga | lib/i18n.ts:105 | let pseudo = typeof __DEV__ !== 'undefined' && __DEV__ && process.env.EXPO_PUBLI | |
+| flaga | lib/i18n.ts:106 | export function setPseudo(on: boolean) { pseudo = on && typeof __DEV__ !== 'unde | |
+| flaga | lib/i18n.ts:107 | export const isPseudo = () => pseudo && typeof __DEV__ !== 'undefined' && __DEV_ | |
+| udostępnianie / import | lib/licenses.generated.ts:3 | export const LICENSES: readonly (readonly [string, string, string, readonly stri | |
+| powiadomienie | lib/planReminder.ts:40 | try { await Notifications.scheduleNotificationAsync({ identifier: idOf(k), conte | |
+| uprawnienie w kodzie | lib/planReminder.ts:77 | { text: t('Nie teraz'), style: 'cancel' }, { text: t('Dalej'), onPress: () => {  | |
+| uprawnienie w kodzie | lib/planReminder.ts:87 | try { await Notifications.requestPermissionsAsync(); } catch { /* błąd iOS: stan | |
+| flaga | lib/products.ts:54 | export const isFakeStoreBuild = (): boolean => process.env.EXPO_PUBLIC_STORE_FAK | |
+| link | lib/support.ts:32 | Promise.resolve().then(() => Linking.openURL(url)).catch(() => { | |
+| link | lib/support.ts:39 | export function openWebPage(url: string): void { Promise.resolve().then(() => Li | |
+| uprawnienie w kodzie | lib/timer.ts:56 | const req = await Notifications.requestPermissionsAsync(); | |
+| powiadomienie | lib/timer.ts:148 | await Notifications.scheduleNotificationAsync({ | |
+| powiadomienie | lib/timer.ts:175 | if (S.targetSec > 0 && left > 0) { try { await Notifications.scheduleNotificatio | |
+| powiadomienie | lib/timer.ts:228 | try { await Notifications.scheduleNotificationAsync({ identifier: STALE_ID, cont | |
+| flaga | lib/version.ts:8 | export const BUILD_NUMBER: string / undefined = process.env.EXPO_PUBLIC_BUILD_NU | |
+| flaga | lib/watch/test-mode.ts:16 | export const isFakeWatchBuild = (): boolean => process.env.EXPO_PUBLIC_WATCH_FAK | |
+| uprawnienie w kodzie | scripts/screens/shims/notifications.js:3 | export const requestPermissionsAsync = async () => ({ granted: true }); | |
+| powiadomienie | scripts/screens/shims/notifications.js:4 | export const scheduleNotificationAsync = async () => 'n'; | |
+| udostępnianie / import | tests/maestro-runner.ts:31 | const FS = jest.requireMock('expo-file-system/legacy'); const DP = jest.requireM | |
+| uprawnienie w kodzie | tests/setup.js:30 | requestPermissionsAsync: async () => { global.__notifPermAsked = (global.__notif | |
+| powiadomienie | tests/setup.js:31 | scheduleNotificationAsync: async (req) => { global.__notifications.push(req); re | |
+| udostępnianie / import | tests/setup.js:44 | jest.mock('expo-sharing', () => ({ isAvailableAsync: async () => true, shareAsyn | |
+| udostępnianie / import | tests/setup.js:45 | jest.mock('expo-document-picker', () => ({ getDocumentAsync: jest.fn(async () => | |
+| schemat linków | app.json | trening | |
+| uprawnienie / tło | app.json | com.apple.developer.usernotifications.time-sensitive | |
+| wtyczka | app.json | ./plugins/withoutPushEntitlement | |
+| wtyczka | app.json | expo-router | |
+| wtyczka | app.json | expo-sqlite | |
+| wtyczka | app.json | expo-notifications | |
+| wtyczka | app.json | expo-asset | |
+| wtyczka | app.json | expo-font | |
+| wtyczka | app.json | @kingstinct/react-native-healthkit | |
+| wtyczka | app.json | @bacons/apple-targets | |
+| wtyczka | app.json | expo-iap | |
+| wtyczka | app.json | expo-localization | |
+| wtyczka | app.json | expo-sharing | |
+| wtyczka | app.json | expo-status-bar | |
+| wtyczka | app.json | expo-splash-screen | |
+
+120 pozycji; app.config.* przejrzyj ręcznie, jeśli istnieje.
+kod 0

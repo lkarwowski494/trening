@@ -1,0 +1,6 @@
+kod 0
+data.json top: ['rom', 'exercises', 'open']
+figury v1 w data.json: 68 ; wpisy recenzji v1: 71
+ukryte w rejestrze: ['Push Press', 'Pendlay Row', 'Reverse Lunge'] ; obecne w data.json: []
+w data.json bez wpisu: []
+Counter({'wyswietlana': 53, 'zastapiona': 15, 'ukryta': 3})

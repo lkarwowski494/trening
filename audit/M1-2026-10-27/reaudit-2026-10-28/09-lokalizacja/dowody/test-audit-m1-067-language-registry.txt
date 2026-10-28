@@ -1,0 +1,22 @@
+$ npx jest tests/audit-m1-067-language-registry.test.ts --maxWorkers=1 (HEAD 2385e75)
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-067-language-registry.test.ts
+  rejestr języków (docs/lokalizacja/jezyki.md)
+    ✓ wiersz dla każdego kodu z LANGS, w tej samej kolejności, bez dodatkowych (29 ms)
+    ✓ nagłówek tabeli ma wszystkie kolumny DEC-21 (23 ms)
+    ✓ nazwa języka w rejestrze = LANG_NAME (10 ms)
+    ✓ nazwa w App Store: kody lokalizacji z store/app-store-names.json albo „brak” dla języków poza ASC (9 ms)
+    ✓ opis w App Store: każdy język z lokalizacją App Store ma opis w store/app-store-metadata.json (M5, 22.10.2026); języki poza ASC — brak (7 ms)
+    ✓ zakupy: tłumaczenie w store/iap-localizations.json; poza ASC: bg sr lt lv et; sl odrzucony 14.10.2026 (5 ms)
+    ✓ kontrole: wymienione pliki testów istnieją; każdy język ma „locales” i „cues” (6 ms)
+    ✓ drugi przegląd (native speaker): niewykonany w żadnym języku; zgodnie z docs/16 (spójne z R-010) (4 ms)
+    ✓ zgodność z kontrolą krytyczną (docs/16): recenzja drugim agentem w rejestrze = kolumna w docs/16 (13 ms)
+    ✓ rejestr zapisuje zasadę: nowy język = nowy wiersz (bez dodawania języków w tym zadaniu) (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        1.838 s
+Ran all test suites matching /tests\/audit-m1-067-language-registry.test.ts/i.
+kod wyjścia: 0

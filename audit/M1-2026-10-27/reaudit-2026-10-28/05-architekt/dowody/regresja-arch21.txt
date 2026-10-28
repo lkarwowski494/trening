@@ -1,0 +1,9 @@
+## ARCH-21: pliki kluczy w git ls-files
+trafień: 0
+## EXPO_PUBLIC_ w kodzie (nazwy zmiennych)
+      3 EXPO_PUBLIC_BUILD_NUMBER
+      2 EXPO_PUBLIC_PSEUDO
+     12 EXPO_PUBLIC_STORE_FAKE
+      6 EXPO_PUBLIC_WATCH_FAKE
+## wzorce kluczy (AKIA, ghp_, sk-, AIza, xox, PRIVATE KEY) w plikach śledzonych poza tests/
+trafień poza tests/: 0

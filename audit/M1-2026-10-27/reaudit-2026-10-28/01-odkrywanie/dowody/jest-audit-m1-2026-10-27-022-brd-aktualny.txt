@@ -1,0 +1,21 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts
+  M1-022: BRD aktualny wobec decyzji 20–27.10.2026
+    ✓ BR-ZRO-001 wycofane (decyzja 25.10.2026), nazwa usuniętego ekranu tylko w jego nagłówku; ZP-09 bez ekranu źródeł (12 ms)
+    ✓ BR-JEZ-004 (decyzja 23.10.2026): interfejs bez oznaczeń pewności — wymaganie nie każe ich pokazywać (11 ms)
+    ✓ BR-JEZ-003: system miar (decyzja 20.10.2026) wdrożony; OP-02 zamknięte (3 ms)
+    ✓ każda ścieżka pliku wskazana w BRD istnieje (usunięty ekran nie jest wskazywany jako dowód) (8 ms)
+    ✓ każdy ekran (trasa w app/) ma aktywne wymaganie BR, które go wskazuje; nowa trasa bez BR zatrzymuje verify (03-zakres-003) (4 ms)
+    ✓ funkcje z audytu 27.10.2026 (01-odkrywanie-004, 03-zakres-003, M1-018) mają aktywne BR z kryteriami (11 ms)
+    ✓ ograniczenia OG (01-odkrywanie-010): każde OG ma źródło S z adresem, cytatem i datą odczytu albo jest nazwaną zasadą właściciela; S polityk mają termin przeglądu (4 ms)
+    ✓ liczby w wymaganiach (01-odkrywanie-011): znacznik DO USTALENIA / DO WYJAŚNIENIA w każdej postaci ma wpis OP; BR z czasem, liczbą dni lub procentem wskazuje decyzję D-nnn, regułę RD albo OP (9 ms)
+    ✓ ślad BR → test (03-zakres-009): każde aktywne BR wskazuje co najmniej jeden istniejący test Jest albo scenariusz Maestro (12 ms)
+    ✓ errata: plik z tabelą ER (data, źródło, status) (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        1.65 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-022-brd-aktualny.test.ts/i.
+exit 0

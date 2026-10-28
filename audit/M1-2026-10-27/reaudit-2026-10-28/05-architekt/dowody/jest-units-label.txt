@@ -1,0 +1,56 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/units-label.test.ts
+  etykieta jednostki masy — macierz języków
+    ✓ pl: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (26 ms)
+    ✓ en: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (2 ms)
+    ✓ cs: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (7 ms)
+    ✓ sk: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (6 ms)
+    ✓ hu: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (7 ms)
+    ✓ ro: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ bg: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (7 ms)
+    ✓ hr: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (8 ms)
+    ✓ sl: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (6 ms)
+    ✓ sr: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (6 ms)
+    ✓ lt: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (6 ms)
+    ✓ lv: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ et: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ uk: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (7 ms)
+    ✓ es: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (4 ms)
+    ✓ es-419: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (3 ms)
+    ✓ pt: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ pt-BR: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (4 ms)
+    ✓ de: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ fr: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ it: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ nl: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ sv: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (8 ms)
+    ✓ da: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ nb: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ fi: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ tr: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ el: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (6 ms)
+    ✓ id: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (4 ms)
+    ✓ ms: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ vi: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ ru: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ ja: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (4 ms)
+    ✓ ko: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (6 ms)
+    ✓ zh-Hant: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ ru: etykiety pól (placeholder, dostępność) używają lokalnego symbolu, nie łacinki (38 ms)
+    ✓ dystans: etykieta pola jak w fmtDist (ru: „м”, imperialny „ярд”) (1 ms)
+  dystans na ekranie blokady i zegarku: etykieta ze słownika (distParts, distLongLabel)
+    ✓ ru i pl, metryczny i imperialny: m / yd / mi lokalnie (2 ms)
+  dane: CSV i kopia zapasowa zostają w kg/lb łacinką niezależnie od języka
+    ✓ ru + kg: CSV bez znaków cyrylicy z jednostką; ru + lb: kolumny „Weight Unit” = lb, „Distance Unit” = m (15 ms)
+    ✓ CSV i kopia są takie same w ru i pl (tylko jednostka wyświetlania wpływa na liczby, nie język) (25 ms)
+  strażnik: wartość logiczna jednostki nie trafia do tekstu ani do t()
+    ✓ wu() wolno tylko w porównaniu z 'lb' (=== / !==); do wyświetlania służy unitLabel() (28 ms)
+    ✓ żaden t()/tr()/tp() nie dostaje wartości logicznej jako klucza ani parametru (20 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       42 passed, 42 total
+Snapshots:   0 total
+Time:        2.191 s
+Ran all test suites matching /tests\/units-label.test.ts/i.
+kod 0

@@ -1,0 +1,12 @@
+== przebieg 2
+Tests:       5 passed, 5 total
+Time:        4.533 s
+kod 0
+== przebieg 3
+Tests:       5 passed, 5 total
+Time:        4.486 s, estimated 5 s
+kod 0
+== przebieg 4
+Tests:       5 passed, 5 total
+Time:        4.731 s, estimated 5 s
+kod 0

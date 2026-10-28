@@ -1,0 +1,22 @@
+== lib
+ROZMIAR backup.ts: 21.3 KB > 20 KB
+ROZMIAR edit.ts: 34.1 KB > 20 KB
+ROZMIAR equipment.ts: 44.4 KB > 20 KB
+ROZMIAR figures/geom.ts: 22.5 KB > 20 KB
+ROZMIAR figures/v2/contract.ts: 32.9 KB > 20 KB
+ROZMIAR figures/v2/draw.ts: 20.5 KB > 20 KB
+ROZMIAR generator.ts: 46.2 KB > 20 KB
+ROZMIAR plan.ts: 47.4 KB > 20 KB
+ROZMIAR seed.ts: 60.2 KB > 20 KB
+ROZMIAR state/migrate.ts: 22.6 KB > 20 KB
+ROZMIAR stats.ts: 36.5 KB > 20 KB
+16 naruszeń w 147 plikach
+== app
+ROZMIAR generator.tsx: 21.0 KB > 20 KB
+ROZMIAR template/[id].tsx: 30.8 KB > 20 KB
+2 naruszeń w 36 plikach
+== components
+ROZMIAR ActiveWorkout.tsx: 35.8 KB > 20 KB
+ROZMIAR WorkoutBlocks.tsx: 33.3 KB > 20 KB
+ROZMIAR ui.tsx: 28.1 KB > 20 KB
+3 naruszeń w 63 plikach

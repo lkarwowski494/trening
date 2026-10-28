@@ -1,0 +1,4 @@
+== grep -n Pendlay docs/21-roadmapa-offline.md (2385e75)
+kod 1 (1 = brak trafień)
+== docs/18-przekazanie.md:611
+- 28.10.2026 rano (właściciel, 2a): **Push Press i Pendlay Row — rysunki ukryte w 1.0, powrót w 1.0.1** (wskazówki tekstowe zostają; odrzucone: naprawa przed 1.0 — czwarta pozycja w silniku v1 i nowe źródła). [wdrożenie: odłożone → 1.0.1]

@@ -1,0 +1,25 @@
+== Mutant A: Step Up, frames[0].p.t 82.2 -> 70 w data/zrodla/figures.json bez nowej recenzji ==
+ data/zrodla/figures.json | 6090 ++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 5879 insertions(+), 211 deletions(-)
+jest figury-recenzja kod 1
+    ✕ wyświetlana albo zastąpiona ⇒ skrót recenzji = skrót bieżących danych figury i wskazówek (zmiana bez nowej recenzji czerwieni test) (8 ms)
+    ✕ plik runtime: figury = tylko wpisy wyświetlane/zastąpione z aktualnym skrótem; ukryte na liście otwartej (nie renderują się) (2 ms)
+Tests:       2 failed, 30 passed, 32 total
+check:zrodla-runtime kod 1
+== Mutant B: app/paywall.tsx:78 'view.active ? null :' -> 'false ? null :' (wstęp o darmowych dniach przy aktywnym planie) ==
+ app/paywall.tsx | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+jest 010 kod 1
+Tests:       8 failed, 2 passed, 10 total
+== Mutant C: blokada-wydania.mjs — 'otwarte|częściowo' -> 'otwarte' (częściowe ryzyka nie blokują) ==
+ scripts/ci/blokada-wydania.mjs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+jest 012 kod 1
+Tests:       1 failed, 3 passed, 4 total
+== Mutant D: nowe stuknięcie po tekście w .maestro/01-*.yaml ==
+ .maestro/01-trening-z-szablonu.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+jest tap-guard kod 1
+Tests:       1 failed, 1 passed, 2 total
+== po mutacjach: git status --porcelain kopii ==
+(puste = przywrócone)

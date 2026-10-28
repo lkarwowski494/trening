@@ -1,0 +1,7 @@
+BRAK jasny muted przy opacity 0.7: 3.52:1 (bez opacity 7.11:1)
+OK   jasny text przy opacity 0.7: 5.97:1 (bez opacity 15.00:1)
+OK   jasny accent przy opacity 0.7: 5.48:1 (bez opacity 13.27:1)
+BRAK ciemny muted przy opacity 0.7: 4.06:1 (bez opacity 6.72:1)
+OK   ciemny text przy opacity 0.7: 7.02:1 (bez opacity 12.79:1)
+OK   ciemny accent przy opacity 0.7: 7.44:1 (bez opacity 13.66:1)
+exit=1

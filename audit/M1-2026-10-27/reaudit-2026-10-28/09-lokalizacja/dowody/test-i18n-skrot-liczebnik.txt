@@ -1,0 +1,28 @@
+$ git rev-parse HEAD: 2385e75aeb3880c0c90ba5edd69145a1c6d80b01
+$ npx jest tests/i18n-skrot-liczebnik.test.ts --maxWorkers=1
+  ✓ lista języków z odmianą obejmuje uk i sl (2 ms)
+  skrót liczebnika ćwiczeń: cs
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (7 ms)
+  skrót liczebnika ćwiczeń: sk
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (6 ms)
+  skrót liczebnika ćwiczeń: ro
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (6 ms)
+  skrót liczebnika ćwiczeń: hr
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (5 ms)
+  skrót liczebnika ćwiczeń: sl
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (6 ms)
+  skrót liczebnika ćwiczeń: sr
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (6 ms)
+  skrót liczebnika ćwiczeń: lt
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (5 ms)
+  skrót liczebnika ćwiczeń: uk
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (6 ms)
+  skrót liczebnika ćwiczeń: ru
+    ✓ każdy klucz „{n} ćw.” kończy się skrótem tego języka (klucz „ćw.”), nie rozwiniętą formą (11 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        3.837 s
+Ran all test suites matching /tests\/i18n-skrot-liczebnik.test.ts/i.
+kod wyjścia: 0

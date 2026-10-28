@@ -1,0 +1,6 @@
+Komenda: python3 — wpisy docs/18-przekazanie.md z [wdrożenie: otwarte → M1-audytor-generalny-NNN] vs status w plan-napraw.json (2385e75)
+docs/18-przekazanie.md:282 otwarte → M1-audytor-generalny-034 ; status w planie: naprawione-do-weryfikacji ; data wpisu: 18.10.2026 (
+docs/18-przekazanie.md:398 otwarte → M1-audytor-generalny-017 ; status w planie: naprawione-do-weryfikacji ; data wpisu: 21.10.2026 (
+docs/18-przekazanie.md:468 otwarte → M1-audytor-generalny-009 ; status w planie: naprawione-do-weryfikacji ; data wpisu: DEC-07 — kar
+docs/18-przekazanie.md:468 otwarte → M1-audytor-generalny-024 ; status w planie: naprawione-do-weryfikacji ; data wpisu: DEC-07 — kar
+docs/18-przekazanie.md:610 otwarte → M1-audytor-generalny-006 ; status w planie: naprawione-do-weryfikacji ; data wpisu: 28.10.2026 r

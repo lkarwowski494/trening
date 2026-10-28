@@ -1,0 +1,14 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx
+  M1-016: arkusz zarządzania subskrypcją
+    ✓ adapter natywny: arkusz systemowy, bez strony App Store (5 ms)
+    ✓ arkusz rzuca → zapas: strona App Store (1 ms)
+    ✓ ekran zakupu: po „Zarządzaj subskrypcją” uprawnienia są odświeżane (anulowanie w arkuszu widać od razu) (790 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        3.107 s, estimated 5 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx/i.
+tests/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx kod 0

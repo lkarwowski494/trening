@@ -1,0 +1,63 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/hak-pre-push.test.ts (11.406 s)
+  hak pre-push — plik (L-009)
+    ✓ istnieje, jest wykonywalny, ma shebang sh i poprawną składnię POSIX (14 ms)
+    ✓ uruchamia lint, check:pochodne (decyzja 8a, 28.10.2026) — w tej kolejności; przy zmianach w docs/ (L-037) także numeruj-lekcje --sprawdz i dwa testy dokumentów, nic więcej (2 ms)
+    ✓ komentarz opisuje świadome obejście `git push --no-verify` i zmierzony czas (1 ms)
+    ✓ skrypt `prepare` wywołuje instalator, a instalator istnieje (5 ms)
+  hak pre-push — działanie z podstawionym npm
+    ✓ zielone: dwa polecenia (lint, check:pochodne) w kolejności, kod 0, czas w komunikacie (75 ms)
+    ✓ błąd w lint: przerywa tutaj, kod 1, po polsku mówi jak naprawić (72 ms)
+    ✓ błąd w check:pochodne: przerywa tutaj, kod 1, po polsku mówi jak naprawić (70 ms)
+    ✓ samo usuwanie gałęzi (same zera) nie uruchamia sprawdzeń (6 ms)
+    ✓ wypchnięcie razem z usunięciem nadal sprawdza (66 ms)
+  hak: zmiany w docs/ — numeracja lekcji i testy dokumentów (L-037, wariant A, właściciel 26.10.2026)
+    ✓ gałąź funkcji: lekcja „L-NNN” dozwolona; testy dokumentów biegną z GITHUB_REF_NAME = gałąź (622 ms)
+    ✓ na integracja-2026-10-26b nienumerowana lekcja zatrzymuje wypchnięcie (numeruj-lekcje --sprawdz), testy dokumentów nie biegną (589 ms)
+    ✓ na main nienumerowana lekcja zatrzymuje wypchnięcie (numeruj-lekcje --sprawdz), testy dokumentów nie biegną (546 ms)
+    ✓ na integracja-* lekcja z numerem przechodzi (numeruj-lekcje --sprawdz zielone, potem testy dokumentów z gałęzią) (604 ms)
+    ✓ czerwony test dokumentów zatrzymuje wypchnięcie i mówi po polsku, co zrobić (590 ms)
+    ✓ zmiana bez docs/ (sam kod) nie uruchamia ani numeracji, ani testów dokumentów (626 ms)
+    ✓ --no-verify omija sprawdzenia docs/ (486 ms)
+  instalator (skrypt `prepare`)
+    ✓ w repozytorium git ustawia core.hooksPath jako ścieżkę względną; powtórzenie nic nie psuje (227 ms)
+    ✓ w CI (zmienna CI) nie robi nic i nie wywraca `npm ci` (180 ms)
+    ✓ w katalogu bez .git (paczka) kończy się kodem 0 i nic nie zapisuje — także gdy wyżej leży inne repo (86 ms)
+    ✓ bez gita w PATH też kończy się kodem 0 (188 ms)
+    ✓ cudzego core.hooksPath nie nadpisuje (176 ms)
+  hak na prawdziwym git push (także z worktree)
+    ✓ zielone sprawdzenia przepuszczają push, czerwone go odrzucają, --no-verify omija (390 ms)
+    ✓ zmiany tylko w dokumentach (względem origin/main) pomijają lint; zmiana kodu przywraca oba sprawdzenia (717 ms)
+    ✓ usunięcie gałęzi na zdalnym nie uruchamia sprawdzeń (252 ms)
+    ✓ worktree współdzieli konfigurację, a hak biegnie z katalogu worktree (ścieżka względna) (327 ms)
+  polecenia agentów, które wypychają: krok o wyniku tests.yml po wypchnięciu (L-009)
+    ✓ lista ról istnieje (1 ms)
+    ✓ programista: po wypchnięciu sprawdza wynik tests.yml i czeka na zielony (1 ms)
+    ✓ tester-e2e: po wypchnięciu sprawdza wynik tests.yml i czeka na zielony
+    ✓ tlumacz: po wypchnięciu sprawdza wynik tests.yml i czeka na zielony
+    ✓ wydawca: po wypchnięciu sprawdza wynik tests.yml i czeka na zielony
+    ✓ każda rola z Bash i bez zakazu pushu jest na liście albo jawnie wyłączona (1 ms)
+  verify sprawdza zainstalowany hak pre-push (L-014)
+    ✓ pierwszy krok skryptu verify to sprawdzenie haka, przed typecheck (1 ms)
+    ✓ hak niezainstalowany: kod 1 i polecenie instalacji (179 ms)
+    ✓ hak zainstalowany (core.hooksPath = scripts/hooks): kod 0 (271 ms)
+    ✓ po poleceniu z komunikatu sprawdzenie przechodzi (272 ms)
+    ✓ hak skopiowany do .git/hooks też się liczy (169 ms)
+    ✓ cudzy core.hooksPath bez haka: kod 1 (156 ms)
+    ✓ worktree współdzieli konfigurację: sprawdzenie przechodzi także tam (241 ms)
+    ✓ w CI (zmienna CI) pomija z komunikatem, kod 0 (186 ms)
+    core.hooksPath bezwzględny, wskazujący na inny worktree (22.10.2026)
+      ✓ hooksPath = scripts/hooks głównego checkoutu (identyczny hak): kontrola w worktree przechodzi (230 ms)
+      ✓ to samo przez dowiązanie symboliczne (realpath) (260 ms)
+      ✓ hooksPath nieustawione: nadal kod 1 w worktree (257 ms)
+      ✓ hooksPath wskazuje katalog bez naszego haka: kod 1 (222 ms)
+      ✓ hooksPath wskazuje hak o innej treści: kod 1 (209 ms)
+      ✓ hak o tej samej treści, ale niewykonywalny: kod 1 (199 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       45 passed, 45 total
+Snapshots:   0 total
+Time:        11.879 s
+Ran all test suites matching /tests\/hak-pre-push.test.ts/i.
+kod 0

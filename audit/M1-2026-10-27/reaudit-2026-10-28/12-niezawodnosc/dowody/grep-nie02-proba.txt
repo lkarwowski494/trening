@@ -1,0 +1,10 @@
+$ grep -rn -E "VACUUM|REINDEX|deleteDatabase|\.recover|deleteAsync" lib app components --include=*.ts --include=*.tsx (2385e75)
+lib/csvimport.ts:23:  } finally { if (FileSystem.cacheDirectory && a.uri.startsWith(FileSystem.cacheDirectory)) await FileSystem.deleteAsync(a.uri, { idempotent: true }).catch(() => {}); /* SEC-09 */ }
+lib/state/db.ts:103:  try { await SQLite.deleteDatabaseAsync('trening.db'); } catch {}
+lib/state/db.ts:108:      await FileSystem.deleteAsync(uri, { idempotent: true }); /* tylko resztki dziennika — bez samej bazy */
+lib/backup.ts:33:  } finally { await FileSystem.deleteAsync(path, { idempotent: true }).catch(() => {}); }
+lib/backup.ts:38:  try { for (const f of await FileSystem.readDirectoryAsync(dir)) if (SHARE_RE.test(f)) { await FileSystem.deleteAsync(dir + f, { idempotent: true }); n++; } } catch {}
+lib/backup.ts:70:  catch (e) { await FileSystem.deleteAsync(dir + name, { idempotent: true }).catch(() => {}); throw e; }
+lib/backup.ts:79:    for (const [f] of old) await FileSystem.deleteAsync(dir + f, { idempotent: true });
+lib/backup.ts:181:  try { txt = await FileSystem.readAsStringAsync(uri); } finally { if (FileSystem.cacheDirectory && uri.startsWith(FileSystem.cacheDirectory)) await FileSystem.deleteAsync(uri, { idempotent: true }).catch(() => {}); /* SEC-09: kopia z wyboru pliku */ }
+kod wyjścia: 0

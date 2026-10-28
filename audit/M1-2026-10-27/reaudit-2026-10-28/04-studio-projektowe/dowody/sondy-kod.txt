@@ -1,0 +1,25 @@
+$ grep -n "›" components/*.tsx | grep -v GLYPH_SCALE_MAX (znaki-ikony bez limitu 1,4)
+components/Dashboard.tsx:112:        <Text accessibilityElementsHidden importantForAccessibility="no" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('callout') }}>›</Text>
+exit=0
+$ git show 025a50b:components/Dashboard.tsx | grep -c "›</Text>"
+0
+$ grep -n "first-steps\|FirstSteps" tests/matrix-a11y.test.tsx tests/a11y-routes.ts*
+exit=1 (1 = brak trafień)
+
+$ grep -n paywall-owned / Zarządzaj (2385e75 i 025a50b)
+84:      {view.active ? <View testID="paywall-owned" accessible accessibilityLanguage={lang()} style={{ borderWidth: 1, 
+91:        {!lifetime || subActive ? <Btn small title={t('Zarządzaj subskrypcją')} style={{ alignSelf: 'flex-start', m
+68:      {view.active ? <View testID="paywall-owned" accessible accessibilityLanguage={lang()} style={{ borderWidth: 1, 
+73:        {!lifetime || subActive ? <Btn small title={t('Zarządzaj subskrypcją')} style={{ alignSelf: 'flex-start', m
+$ grep -rn "Manage subscription" .maestro
+exit=1 (1 = scenariusz nie stuka przycisku)
+80:          {/* E2E-11: liczby i pole wpisu poza grupą accessible (iOS chowa potomków grupy przed VoiceOver i XCTest); opis tablicy wyżej zawiera te wartoś
+
+$ grep scenariusz 58 w pakiecie podstawowym i w nightly
+0
+0
+
+$ grep -n -i "przytrzym" docs/21-roadmapa-offline.md
+exit=1 (1 = brak)
+check:decyzje — 341 wpisów decyzji, każdy z polem wdrożenia i testem albo powodem
+check:decyzje exit=0

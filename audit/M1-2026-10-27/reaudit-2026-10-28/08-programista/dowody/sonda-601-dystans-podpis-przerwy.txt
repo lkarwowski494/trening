@@ -1,0 +1,40 @@
+# Sonda 601 (kopia robocza w scratchpadzie, plik testu nieśledzony, usunięty po sondzie)
+## treść sondy
+import { applyLang, type Lang } from '@/lib/i18n';
+import { applyUnit } from '@/lib/units';
+import { nowParts, cueLoad } from '@/lib/live';
+import { fresh } from './helpers';
+afterEach(() => { applyLang('pl'); applyUnit('kg'); });
+test('sonda 601: dystans w karcie „teraz” vs podpis przerwy', async () => {
+  await fresh();
+  const e = { id: 'probe', name: "Farmer's Walk (trap bar)", group: 'core', equipment: 'sztanga', metric: 'weight_distance', loadMode: 'total', muscles: [], secondaryMuscles: [] } as never as import('@/lib/seed').Exercise;
+  const out: string[] = [];
+  for (const l of ['pl', 'ru', 'uk', 'el', 'bg', 'sr'] as Lang[]) {
+    applyLang(l); applyUnit('kg');
+    const s = { id: 's', weight: 40, reps: '', distanceM: 30, durationSec: '', done: false } as never;
+    const p = nowParts(e, s);
+    out.push(`${l}: metric=${e.metric} nowParts="${p.num} ${p.unit}${p.tail}" cueLoad="${cueLoad(e, s)}"`);
+  }
+  console.log(out.join('\n'));
+});
+
+## 2385e75: npx jest tests/zz-sonda-601.test.ts --ci --maxWorkers=1 → kod 0
+    pl: metric=weight_distance nowParts="40 kg × 30 m" cueLoad="40 kg, 30 m"
+    ru: metric=weight_distance nowParts="40 кг × 30 м" cueLoad="40 кг, 30 m"
+    uk: metric=weight_distance nowParts="40 кг × 30 м" cueLoad="40 кг, 30 m"
+    el: metric=weight_distance nowParts="40 κιλά × 30 μ" cueLoad="40 κιλά, 30 m"
+    bg: metric=weight_distance nowParts="40 кг × 30 м" cueLoad="40 кг, 30 m"
+    sr: metric=weight_distance nowParts="40 кг × 30 м" cueLoad="40 кг, 30 m"
+Tests:       1 passed, 1 total
+
+## 025a50b (baza): to samo → kod 0
+    pl: metric=weight_distance nowParts="40 kg × 30 m" cueLoad="40 kg, 30 m"
+    ru: metric=weight_distance nowParts="40 kg × 30 m" cueLoad="40 kg, 30 m"
+    uk: metric=weight_distance nowParts="40 kg × 30 m" cueLoad="40 kg, 30 m"
+    el: metric=weight_distance nowParts="40 kg × 30 m" cueLoad="40 kg, 30 m"
+    bg: metric=weight_distance nowParts="40 kg × 30 m" cueLoad="40 kg, 30 m"
+    sr: metric=weight_distance nowParts="40 kg × 30 m" cueLoad="40 kg, 30 m"
+Tests:       1 passed, 1 total
+
+## źródło
+108:  if (hasDistance(m) && Number(set.distanceM) > 0) out.push(spoken ? spokenDist(Number(set.distanceM)) : isImperial() ? fmtDist(Number(set.distanceM)) : `${set.distanceM} m`);

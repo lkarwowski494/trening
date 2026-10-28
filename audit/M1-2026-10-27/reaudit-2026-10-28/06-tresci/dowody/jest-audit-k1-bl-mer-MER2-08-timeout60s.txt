@@ -1,0 +1,40 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-k1-bl-mer.test.tsx
+  MER2-07: podpis wskazówek bez nazw organizacji i marek
+    ○ skipped dane: każda organizacja źródeł ma rodzaj (organizacja szkoleniowa, serwis, producent, badanie); cueBasis — rodzaje w stałej kolejności, bez powtórzeń
+    ○ skipped ekran: przy wskazówkach nie ma stopki ze źródłami (decyzja właściciela 23.10.2026 — źródła tylko w Ustawienia → Źródła wiedzy); zostaje zdanie o poradach medycznych
+    ○ skipped regresja: żaden tekst aplikacji (słownik EN, 24 słowniki, wskazówki 26 języków, podpis każdego ćwiczenia w każdym języku) nie zawiera nazw źródeł
+  MER2-08 (zmiana M1-audytor-generalny-020): RIR > 6 = „lekko”
+    ✓ logika: RIR 0–5 = 10 − RPE; RIR 5–6 → RPE 5; RIR > 6 zapisuje RPE_LIGHT; RPE < 5 pokazuje się w RIR jako RIR_MAX + 1 („7+”); RPE bez zmian (39 ms)
+    ✓ opis serii i ekran historii: RPE 3 w skali RIR — „RIR 7+” (710 ms)
+    ✓ Ustawienia: opis skali RIR mówi o zakresie 0–6 i „lekko” (z parametrów RIR_MAX, RPE_LIGHT, RPE_RIR_MIN) — PL i EN (359 ms)
+  MER2-02: najcięższy ciężar w miejscu przy celu „Siła”
+    ○ skipped hotel (hantle 2,5–25 kg), Siła: każdy bój główny z hantlami ma limit 25 kg; ostrzeżenie z liczbą, zakresem powtórzeń i nazwami ćwiczeń
+    ○ skipped bez ostrzeżenia: pełna siłownia (sztanga), Masa i Redukcja w hotelu, Siła bez obciążenia (masa ciała — tam jest ostrzeżenie MER-01)
+    ○ skipped limit z danych miejsca: odznaczone najcięższe hantle → niższa liczba; jednostka lb — „50 lb”; EN
+  A11N-02: rejestr grzecznościowy fr („vous”) i tr („siz”)
+    ○ skipped wskazówki fr: żadne zdanie bez formy „tu” (zaimki i rozkaźnik 2. os. lp.); co najmniej 120 zdań w formie „vous”
+    ○ skipped wskazówki tr: bez rozkaźnika i zaimków 2. os. lp.; forma „siz” (-in/-ın/-un/-ün, -ınız) w co najmniej 150 zdaniach
+    ○ skipped UI fr: żaden tekst słownika w formie „tu” (np. „Séance de ton programme… Ouvre l’app”, „tu verras”, „Touche un programme”)
+    ○ skipped UI tr: zdania w formie „siz” — bez 2. os. lp. („eklersin”, „şablonun yok”, „… seç.”); etykiety przycisków bez zmian
+    ○ skipped bramka działa: dawne zdania („Serre les omoplates…”, „Barı … kavra”, „tu verras”) są wykrywane
+  A11N-03: fr — spacja nierozdzielająca przed ; : ! ? » i po «
+    ○ skipped słownik UI fr i wskazówki fr: żadnej zwykłej spacji przed ; : ! ? » ani po «
+    ○ skipped ekran: wskazówka po francusku ma NBSP („…\u00a0;”)
+    ○ skipped bramka działa
+  A11N-05: terminy we wskazówkach i nagłówek „Ustawienie”
+    ○ skipped w każdym języku nagłówek „Ustawienie” ≠ podpis klatki „Pozycja wyjściowa” / „Pozycja końcowa”; podpowiedź „Technika” zaczyna się od nagłówka
+    ○ skipped el: podciąganie (pu.*, cu.*) — drążek „το μονόζυγο” (termin UI „drążek”), bez „τη μπάρα” i „τη μονόζυγο”; w całych wskazówkach el „την μπάρα”
+    ○ skipped tr: zdania o sztandze (ćwiczenia ze sztangą) używają terminu UI „halter”; drążek do podciągania — „barfiks barı”
+  MER2-09: dokumenty i komentarze zgodne z kodem
+    ○ skipped docs/09: liczba ćwiczeń ze wskazówkami = dane (lib/cues/data.json)
+    ○ skipped lib/seed.ts: komentarz MUSCLE_SOURCES nie mówi „Na razie pusto”, gdy mapa ma wpisy
+    ○ skipped docs/research/masa-ciala-e1rm: masa ciała z datą (bodyMassLog) zamiast „jednej masy z Ustawień”; niejednoznaczność kamizelki w źródle opisana
+
+Test Suites: 1 passed, 1 total
+Tests:       20 skipped, 3 passed, 23 total
+Snapshots:   0 total
+Time:        4.249 s, estimated 143 s
+Ran all test suites matching /tests\/audit-k1-bl-mer.test.tsx/i with tests matching "MER2-08".
+kod wyjścia: 0

@@ -1,0 +1,8 @@
+Rachunek niezależny od kodu (Node, wzory z docs/brd/reguly.md), 2026-10-28
+RD-09-W1 obliczone 15 oczekiwane 15 ZGODNE
+RD-09-W4 obliczone 33 oczekiwane 33 ZGODNE
+RD-05-W3 obliczone 1 oczekiwane 1 ZGODNE
+RD-12-W1 obliczone 93.333333 oczekiwane 93.333333 ZGODNE
+RD-12-W2 obliczone 68.266667 oczekiwane 68.266667 ZGODNE
+RD-12-W3 obliczone 99 oczekiwane 99 ZGODNE
+RD-15-W1 obliczone 1650 oczekiwane 1650 ZGODNE

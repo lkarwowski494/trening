@@ -1,0 +1,16 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/architecture-limits.test.ts
+  limit rozmiaru plików (M1-054)
+    ✓ pliki powyżej 20 KB są na liście wyjątków i nie przekraczają progu (10 ms)
+    ✓ wyjątki dotyczą istniejących plików większych niż limit, z powodem (lista się kurczy) (27 ms)
+  cykle importów w lib/ (M1-054)
+    ✓ lib/ nie ma cykli importów wartości (generator ↔ loadcap rozwiązany stałymi w lib/genconst.ts) (29 ms)
+    ✓ wykrywacz znajduje cykl w sztucznym grafie (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        2.171 s
+Ran all test suites matching /tests\/architecture-limits.test.ts/i.
+kod 0

@@ -1,0 +1,73 @@
+/* Sonda reaudytu 02-monetyzacja (28.10.2026) — tylko w worktree w scratchpadzie, nie w repo. Teksty ekranu zakupu i wiersza Ustawień w stanach dostępu. */
+import * as store from '@/lib/store';
+import { applyLang } from '@/lib/i18n';
+import { PAYWALL, type Entitlement } from '@/lib/access';
+import { setStoreAdapter, resetStoreAdapterForTests } from '@/lib/store-adapter';
+import { createFakeStore } from '@/lib/store-fake';
+import { resetEntitlementsForTests } from '@/lib/entitlement';
+import { fresh, saved } from './helpers';
+import { renderApp, flushAll, screen, tap, act } from './app';
+
+const NOW = new Date(2026, 9, 27, 12, 0).getTime(); const DAY = 86400e3;
+const ent = (plan: Entitlement['plan'], extra: Partial<Entitlement> = {}): Entitlement => ({ plan, source: 'purchase', expiresAt: plan === 'lifetime' ? null : NOW + 9 * DAY, ...extra });
+const settle = async () => { for (let i = 0; i < 8; i++) await flushAll(10); };
+declare const global: any;
+function texts(): string[] {
+  const out: string[] = []; const walk = (n: any) => { if (n == null) return; if (typeof n === 'string') { out.push(n); return; } if (Array.isArray(n)) { n.forEach(walk); return; } if (n.children) walk(n.children); };
+  walk(screen.toJSON()); return out;
+}
+async function boot(ents: Entitlement[] | null, url: string, opts: { offline?: boolean; kv?: string } = {}) {
+  jest.useFakeTimers({ now: NOW }); await fresh(undefined, 'pl'); resetEntitlementsForTests(); PAYWALL.ENABLED = true;
+  const fake = createFakeStore(ents); if (opts.offline) fake.offline = true; setStoreAdapter(fake); store.save(); await act(async () => { await store.flush(); });
+  if (opts.kv) global.__kv.set('access', opts.kv);
+  await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'pl', url }); jest.setSystemTime(NOW); await settle();
+}
+afterEach(() => { PAYWALL.ENABLED = false; resetEntitlementsForTests(); resetStoreAdapterForTests(); applyLang('pl'); jest.useRealTimers(); });
+
+const STANY: [string, Entitlement[] | null, { offline?: boolean; kv?: string }][] = [
+  ['darmowy', [], {}],
+  ['miesięczny (zakup)', [ent('monthly')], {}],
+  ['roczny (zakup)', [ent('yearly')], {}],
+  ['dożywotni', [ent('lifetime')], {}],
+  ['miesięczny z kodu', [ent('monthly', { source: 'code' })], {}],
+  ['roczny z Chmury rodzinnej', [ent('yearly', { source: 'family' })], {}],
+  ['wygasły miesięczny', [ent('monthly', { expiresAt: NOW - DAY })], {}],
+  ['dożywotni + własna subskrypcja', [ent('lifetime'), ent('monthly')], {}],
+  ['dożywotni + subskrypcja z Chmury rodzinnej', [ent('lifetime'), ent('yearly', { source: 'family' })], {}],
+  ['offline, zapamiętany pełny dostęp (miesięczny)', null, { offline: true, kv: JSON.stringify({ level: 'full', expiresAt: NOW + 5 * DAY, at: NOW - DAY }) }],
+];
+
+describe('sonda: ekran zakupu', () => {
+  test.each(STANY)('%s', async (nazwa, ents, o) => {
+    await boot(ents, '/paywall?reason=settings', o);
+    const t = texts().filter(s => s.trim());
+    const rozwin = screen.queryByTestId('paywall-change-plan');
+    let poRozwinieciu: string[] = [];
+    if (rozwin) { await tap(rozwin); await settle(); const lt = screen.queryByTestId('plan-lifetime'); if (lt) { await tap(lt); await settle(); } poRozwinieciu = texts().filter(s => s.trim()); }
+    // eslint-disable-next-line no-console
+    console.log(`EKRAN ZAKUPU | ${nazwa}\n  teksty: ${JSON.stringify(t.slice(0, 40))}\n  „Zmień plan”: ${!!rozwin}\n  po rozwinięciu i wyborze dożywotniego: ${JSON.stringify(poRozwinieciu.filter(s => /odnawia|Przejdź|Subskrybuj|Kup na zawsze/.test(s)))}`);
+  });
+});
+
+describe('sonda: wiersz w Ustawieniach', () => {
+  test.each(STANY)('%s', async (nazwa, ents, o) => {
+    await boot(ents, '/more/settings', o);
+    const t = texts(); const i = t.indexOf('Subskrypcja');
+    // eslint-disable-next-line no-console
+    console.log(`USTAWIENIA | ${nazwa}: ${JSON.stringify(i >= 0 ? t.slice(i, i + 3) : 'brak sekcji')}`);
+  });
+});
+
+import * as entMod from '@/lib/entitlement';
+describe('sonda: utrata sieci przy zapamiętanym pełnym dostępie (unknown)', () => {
+  test.each([['/paywall?reason=settings'], ['/more/settings']])('%s', async (url) => {
+    jest.useFakeTimers({ now: NOW }); await fresh(undefined, 'pl'); resetEntitlementsForTests(); PAYWALL.ENABLED = true;
+    const fake = createFakeStore([ent('monthly')]); setStoreAdapter(fake); store.save(); await act(async () => { await store.flush(); });
+    await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'pl', url }); jest.setSystemTime(NOW); await settle();
+    fake.offline = true; await act(async () => { await entMod.refreshEntitlements(); }); await settle();
+    const v = entMod.accessNow(NOW);
+    const t = texts().filter(s => s.trim()); const i = t.indexOf('Subskrypcja');
+    // eslint-disable-next-line no-console
+    console.log(`OFFLINE ${url} | state=${v.state} level=${v.level} active=${JSON.stringify(v.active)}\n  ${JSON.stringify(url.includes('settings') && i >= 0 && !url.includes('paywall') ? t.slice(i, i + 3) : t.slice(t.indexOf('Więcej') + 1))}`);
+  });
+});

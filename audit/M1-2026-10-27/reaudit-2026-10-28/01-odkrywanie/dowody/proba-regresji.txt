@@ -1,0 +1,20 @@
+Próbka regresji 2026-10-28 na 2385e75 (pliki niezmienione od 025a50b)
+== ODK-12: dane osobowe w docs/brd i docs/research
+git diff --stat 025a50b..2385e75 -- docs/research app.json store/app-store-metadata.json:
+ 5 files changed, 1033 insertions(+), 32 deletions(-)
+(zmienione tylko 5 plików docs/research: 28-figury, espresso-mimit, figury-recenzja.json, przeglad-tresci, rejestr-twierdzen.json; app.json i store/app-store-metadata.json bez zmian)
+e-maile (poza adresem wsparcia aplikacji): 0
+numery telefonów (+48 / 9 cyfr): 0
+UDID (40 hex / 8-16 hex): 0
+== ODK-01: uprawnienia i możliwości z app.json vs BR
+NSSupportsLiveActivities
+entitlements: com.apple.developer.usernotifications.time-sensitive
+BR-ZDR-001: 1 nagłówek
+BR-ZDR-002: 1 nagłówek
+BR-PRZ-001: 1 nagłówek
+BR-PRZ-002: 1 nagłówek
+BR-PLN-004: 1 nagłówek
+BR-DAN-009: 1 nagłówek
+== ODK-02: obietnica 'nigdzie niewysyłane' / bez sieci vs kod
+fetch( / XMLHttpRequest / axios w app components lib (bez testów): 0
+Linking.openURL (otwiera przeglądarkę/pocztę, nie wysyła danych): 5

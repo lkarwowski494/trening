@@ -1,0 +1,29 @@
+/* Sonda reaudytu 05-architekt (scratch, nie w repo): decyzja 10a — etykieta lokalna nie trafia do danych; round-trip CSV i kopii w ru/el/sr, kg i lb. */
+import { applyLang, type Lang } from '@/lib/i18n';
+import { applyUnit, wu } from '@/lib/units';
+import { buildCsv, buildBackup, parseBackup } from '@/lib/backup';
+import { parseImport } from '@/lib/csvparse';
+import * as store from '@/lib/store';
+import { fresh, addWorkout } from './helpers';
+const NONLATIN = /[Ͱ-ϿЀ-ӿ]/;
+afterEach(() => { applyLang('pl'); applyUnit('kg'); });
+describe('sonda 10a', () => {
+  for (const l of ['ru', 'uk', 'el', 'sr', 'bg'] as Lang[]) for (const u of ['kg', 'lb'] as const) test(`${l} ${u}`, async () => {
+    await fresh(); addWorkout(Date.now() - 864e5, [['Back Squat', [{ weight: 100, reps: 5 }, { weight: 102.5, reps: 3 }]]]);
+    store.getState().settings.unit = u; applyUnit(u); applyLang(l);
+    const before = JSON.stringify(store.getState().workouts);
+    const csv = buildCsv(); const head = csv.split('\n')[0];
+    expect(head).not.toMatch(NONLATIN);
+    const rows = csv.split('\n').slice(1).filter(Boolean);
+    for (const r of rows) { const tail = r.split(','); if (u === 'lb') expect(tail.slice(-2)).toEqual(['lb', 'm']); }
+    expect(csv).not.toMatch(/кг|фнт|κιλά|λίβρ|ярд|м,|μ,/);
+    const p = parseImport(csv);
+    expect(p.sessions.length).toBe(1);
+    const env = buildBackup(); const txt = JSON.stringify(env);
+    expect(env.state.settings.unit).toBe(u);
+    const back = parseBackup(txt); expect(back.settings.unit).toBe(u);
+    expect(JSON.stringify(back.workouts)).toBe(before);
+    expect(wu()).toBe(u);
+    console.log(`${l} ${u}: csv wiersze=${rows.length} weightUnit=${p.weightUnit} sesje=${p.sessions.length} kopia.unit=${back.settings.unit} workouts identyczne`);
+  });
+});

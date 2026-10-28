@@ -1,0 +1,16 @@
+    ✓ Hip Thrust (sztanga) — dłonie przytrzymują ciężar (ht.hold): dłoń ≤ 2 j. od środka ciężaru (było do 20) (2 ms)
+    ✓ Hip Thrust (hantel) — dłonie przytrzymują ciężar (ht.hold): dłoń ≤ 2 j. od środka ciężaru (było do 20) (2 ms)
+    ✓ Triceps Dips (ławka) — pięty w miejscu na podłodze (≤ 3 j., było 9,7); biodra przy krawędzi ławki (1–10 j. przed nią) (1 ms)
+    ✓ Leg Press — platforma jedzie prostopadle do swojej powierzchni (wzdłuż prowadnicy), stopa płasko na platformie (było: 36° odchyłki)
+    ✓ Bulgarian Split Squat (hantle) — tylna stopa na ławce przez cały ruch (bss.setup): przesunięcie ≤ 2 j. (było 7,6) (3 ms)
+    ✓ Step Up — stopa nogi zakrocznej nie przechodzi przez skrzynię (było 6 j. w środku) (46 ms)
+    ✓ niezmiennik wszystkich wyświetlanych figur v1: punkt stały we wszystkich pozach kluczowych (podpora) nie ślizga się w pozach pośrednich o więcej niż 3,5 j.; żaden punkt ciała nie wchodzi w ławkę ani skrzynię głębiej niż 2 j. (310 ms)
+    ✓ Lunges (hantle) — krok w przód: przednia stopa przenoszona w powietrzu, nie sunie po podłodze (było 7,5 j.) (5 ms)
+    ✓ Walking Lunges — krok w przód: przednia stopa przenoszona w powietrzu, nie sunie po podłodze (było 7,5 j.) (4 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       32 passed, 32 total
+Snapshots:   0 total
+Time:        23.064 s
+Ran all test suites matching /tests\/figury-recenzja.test.tsx/i.
+kod 0

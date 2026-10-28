@@ -1,0 +1,50 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/verify-docs.test.ts
+  verify:docs — klasyfikacja plików (docs vs kod)
+    ✓ docs/18-przekazanie.md jest dokumentem (93 ms)
+    ✓ docs/40-lekcje.md jest dokumentem (111 ms)
+    ✓ docs/brd/reguly.md jest dokumentem (121 ms)
+    ✓ CLAUDE.md jest dokumentem (107 ms)
+    ✓ README.md jest dokumentem (96 ms)
+    ✓ .claude/agents/programista.md jest dokumentem (99 ms)
+    ✓ lib/plan.ts nie jest dokumentem (35 ms)
+    ✓ app/(tabs)/index.tsx nie jest dokumentem (49 ms)
+    ✓ components/ActiveWorkout.tsx nie jest dokumentem (48 ms)
+    ✓ tests/hak-pre-push.test.ts nie jest dokumentem (48 ms)
+    ✓ scripts/readme.mjs nie jest dokumentem (54 ms)
+    ✓ scripts/verify-docs.mjs nie jest dokumentem (47 ms)
+    ✓ .github/workflows/tests.yml nie jest dokumentem (45 ms)
+    ✓ .maestro/01-start.yaml nie jest dokumentem (49 ms)
+    ✓ package.json nie jest dokumentem (51 ms)
+    ✓ package-lock.json nie jest dokumentem (48 ms)
+    ✓ app.json nie jest dokumentem (50 ms)
+    ✓ site/index.html nie jest dokumentem (45 ms)
+    ✓ docs/research/rejestr-twierdzen.json nie jest dokumentem (42 ms)
+    ✓ docs/research/equipment/catalog.csv nie jest dokumentem (39 ms)
+    ✓ docs/research/25-biblioteka/podsumowanie-L2.mjs nie jest dokumentem (39 ms)
+    ✓ tests/fixtures/released/README.md nie jest dokumentem (38 ms)
+    ✓ watch-fixtures/README.md nie jest dokumentem (35 ms)
+    ✓ lib/locales/pl.json nie jest dokumentem (37 ms)
+    ✓ targets/watch/Info.plist nie jest dokumentem (35 ms)
+    ✓ mieszanka: dokument i kod → nie dokumenty, na liście „poza” tylko kod (38 ms)
+    ✓ brak zmian: nic do sprawdzenia, kod 0, nie jest „tylko dokumentami” (72 ms)
+  verify:docs — komunikat i kody wyjścia
+    ✓ zmiany poza dokumentami: kod 1, komunikat po polsku z listą plików i poleceniem pełnego verify, nic nie jest uruchamiane (35 ms)
+    ✓ --czy-dokumenty: 0 tylko gdy są zmiany i wszystkie są dokumentami (bez wypisywania) (104 ms)
+  verify:docs — co jest uruchamiane dla dokumentów
+    ✓ szybkie kontrole w stałej kolejności, bez lint, typecheck, jest całości, exportu i verify:native (88 ms)
+    ✓ zmiana w docs/brd dodaje kontrolę BRD (209 ms)
+    ✓ testy Jest: te, które wymieniają zmieniony dokument po nazwie, ścieżce albo katalogu (278 ms)
+    ✓ testy przeglądające cały katalog docs są zawsze uwzględnione (91 ms)
+    ✓ lista testów bez powtórzeń, tylko pliki tests/*.test.ts(x), posortowana (93 ms)
+  verify:docs — wpięcie w repozytorium
+    ✓ polecenie npm istnieje i wskazuje na skrypt; nie należy do verify (wyjątek w package-scripts)
+    ✓ CLAUDE.md opisuje wyjątek dla commitu tylko z dokumentami (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       36 passed, 36 total
+Snapshots:   0 total
+Time:        3.939 s
+Ran all test suites matching /tests\/verify-docs.test.ts/i.
+kod 0

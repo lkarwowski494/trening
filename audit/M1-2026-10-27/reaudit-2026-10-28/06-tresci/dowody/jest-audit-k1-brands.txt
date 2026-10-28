@@ -1,0 +1,14 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-k1-brands.test.ts
+  SEC2-01: bez nazw producentów sprzętu w tekstach aplikacji
+    ✓ słowniki: lib/locales/*.json (klucze i tłumaczenia, także _source.json) i lib/i18n.en.ts (658 ms)
+    ✓ etykiety presetów ciężarów i sprzętu w każdym języku — bez marek; id presetów bez zmian (156 ms)
+    ✓ nazwy ogólne, opisowe (PL i EN) (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        2.247 s
+Ran all test suites matching /tests\/audit-k1-brands.test.ts/i.
+kod wyjścia: 0

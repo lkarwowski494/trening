@@ -1,0 +1,28 @@
+$ git rev-parse HEAD: 2385e75aeb3880c0c90ba5edd69145a1c6d80b01
+$ npx jest tests/check-i18n-script.test.ts --maxWorkers=1
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/check-i18n-script.test.ts (9.306 s)
+  ✓ repozytorium: npm run check:i18n przechodzi (kod i słowniki lib/locales) (1591 ms)
+  check:i18n — wywołania t() w każdym zapisie
+    ✓ wzorzec: t('…') ze wpisem w słowniku przechodzi (270 ms)
+    ✓ t("…") w cudzysłowie bez wpisu: błąd (257 ms)
+    ✓ t(`…`) szablon bez podstawień bez wpisu: błąd (255 ms)
+    ✓ tp(n, "…") w cudzysłowie bez wpisu: błąd; tr("…") też (508 ms)
+    ✓ wywołanie przez obiekt (i18n.t("…")) bez wpisu: błąd (270 ms)
+    ✓ wpis słownika w cudzysłowie i użycie w cudzysłowie: przechodzi (słownik czytany składnią, nie wyrażeniem) (342 ms)
+    ✓ klucz z podstawieniem albo sklejany: błąd „nie do sprawdzenia” (548 ms)
+    ✓ zmienna jako klucz (t(x)): bez błędu — wartości dynamiczne sprawdza R39-02 (298 ms)
+    ✓ różne {parametry} w kluczu i wartości EN: błąd (237 ms)
+  check:i18n — pismo języka w słownikach
+    ✓ ru z tekstem łacinką: błąd; ten sam tekst na liście wyjątków: przechodzi (577 ms)
+    ✓ ru: tekst z pismem języka, symbole i parametry bez liter: przechodzi (245 ms)
+    ✓ el, ja, ko, zh-Hant, bg, uk: łacinka bez wyjątku to błąd (1720 ms)
+    ✓ język łaciński (de) z cyrylicą albo greką: błąd; sr z łacinką: przechodzi (948 ms)
+    ✓ polskie litery w słowniku łacińskim nie są już błędem pisma (kontrola „liter polskich” usunięta) (263 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       15 passed, 15 total
+Snapshots:   0 total
+Time:        9.709 s
+Ran all test suites matching /tests\/check-i18n-script.test.ts/i.
+kod wyjścia: 0

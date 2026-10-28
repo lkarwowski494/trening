@@ -1,0 +1,16 @@
+$ npx jest tests/sonda-12-reaudit.test.tsx --maxWorkers=1 (worktree 2385e75)
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+    S1 ekran błędu startu: true | diag na ekranie: false
+    S1 licznik strażnika po BOOT_STABLE_MS: {"starts":1}
+    S1 treść e-maila zawiera „start:”: false | zawiera boom-migracja: false | linie treści: 1
+    S2 komunikat „zamknęła się nieoczekiwanie”: true | diag: start: -
+    S2 po „Spróbuj ponownie”: komunikat pętli: false | treść błędu migracji: true
+PASS iOS tests/sonda-12-reaudit.test.tsx (26.806 s)
+  ✓ start 1: wyjątek migracji → ekran błędu; e-mail bez kodu etapu; licznik strażnika po czasie kamienia (3483 ms)
+  ✓ start 2 (po zamknięciu ekranu błędu z start 1, licznik 1): jaki ekran i komunikat (87 ms)
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        28.174 s
+Ran all test suites matching /tests\/sonda-12-reaudit.test.tsx/i.
+kod wyjścia: 0

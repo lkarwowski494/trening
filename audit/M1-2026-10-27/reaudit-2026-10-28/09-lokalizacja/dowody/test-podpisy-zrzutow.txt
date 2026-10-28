@@ -1,0 +1,17 @@
+$ npx jest tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts --maxWorkers=1
+    ✓ sv: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ tr: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ uk: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ vi: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (2 ms)
+    ✓ zh-Hant: podpis każdego ekranu, ≤ maxZnakow, bez cen; wpis statusu (1 ms)
+    ✓ ten sam podpis nie powtarza się w obrębie języka (każdy ekran ma własne zdanie) (2 ms)
+    ✓ znaki podpisów (poza ja, ko, zh-Hant — czcionka CJK) są w czcionce ramek IBM Plex Sans Bold (3 ms)
+    ✓ decyzja właściciela 10a (28.10.2026): podpis 1. ekranu = zapis serii także z zegarka (zgodnie z DEC-07 K6), EN zaakceptowane, stare hasło zniknęło ze wszystkich języków (4 ms)
+    ✓ docs/48 pkt 5: lokalizacja bez zrzutów bierze zrzuty języka podstawowego (cytat Apple, odczyt 28.10.2026) i warunki Z-16 przed uruchomieniem workflowów (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       34 passed, 34 total
+Snapshots:   0 total
+Time:        2.932 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts/i.
+kod wyjścia: 0

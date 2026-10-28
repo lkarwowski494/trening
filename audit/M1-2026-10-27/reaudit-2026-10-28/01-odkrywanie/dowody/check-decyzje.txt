@@ -1,0 +1,2 @@
+check:decyzje — 341 wpisów decyzji, każdy z polem wdrożenia i testem albo powodem
+exit 0

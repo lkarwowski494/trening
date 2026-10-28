@@ -1,0 +1,11 @@
+## ARCH-15: tryby tła i uprawnienia (app.json bez zmian 025a50b..2385e75)
+trafień w app.json: 0
+## TaskManager.defineTask / expo-location / expo-background-task w kodzie
+trafień: 0
+## zegarek: tryby tła w targets
+targets/watch-app/Info.plist:51:  <key>WKBackgroundModes</key>
+targets/watch-app/Info.plist:53:    <string>workout-processing</string>
+## strażnik w verify-native
+3:// cel widżetu i kolor akcentu, brak UIBackgroundModes, NSSupportsLiveActivities = true, UIFileSharingEnabled i LSSupportsOpeningDocumentsInPlace (kopie w Plikach, runda 75), identyczny RestTimerAttributes.swift
+22:  ok(!plist.includes('UIBackgroundModes'), 'Info.plist: UIBackgroundModes (nieużywany tryb w tle)');
+57:  /* 0.20 (docs/36): moduł głosu VoiceCue linkowany do aplikacji; etap 1 bez trybu audio w tle (UIBackgroundModes sprawdzone wyżej) */

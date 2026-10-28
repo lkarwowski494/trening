@@ -1,0 +1,18 @@
+zmiany w lib/start.ts lib/store-adapter.ts lib/products.ts lib/state/finish.ts od 025a50b: kod 0 (0 = brak)
+5:import { guardLiveStart } from '@/lib/entitlement';
+64:  if (!guardLiveStart(via)) return; /* subskrypcja (docs/27, 0.17): ponad limit darmowych treningów — ekran zakupu zamiast startu; przy PAYWALL.ENABLED = false bez skutku */
+70:  if (!guardLiveStart('repeatLast')) return;
+75:  if (!guardLiveStart('empty')) return false;
+lib/store-adapter.ts:4: *   - sztuczna (lib/store-fake.ts) — Jest i build E2E na symulatorze (zmienna EXPO_PUBLIC_STORE_FAKE=1 tylko w e2e-ios.yml).
+lib/store-adapter.ts:53:/** Adapter bieżącego buildu: sztuczny tylko przy EXPO_PUBLIC_STORE_FAKE=1 (build E2E), w pozostałych przypadkach natywny (StoreKit). */
+lib/products.ts:54:export const isFakeStoreBuild = (): boolean => process.env.EXPO_PUBLIC_STORE_FAKE === '1';
+92:  const st = getState(); st.liveDays = recordLiveDay(st.liveDays ?? [], { startedAt: w.startedAt, ...(w.tzOffsetMin != null ? { tzOffsetMin: w.tzOffsetMin } : {}) }); return true;
+=== npx jest tests/store-adapter.test.ts --maxWorkers=1
+Tests:       39 passed, 39 total
+kod wyjścia: 0
+=== npx jest tests/m5s1-dni-zapis.test.ts --maxWorkers=1
+Tests:       24 passed, 24 total
+kod wyjścia: 0
+=== npx jest tests/cena-z-displayprice.test.ts --maxWorkers=1
+Tests:       8 passed, 8 total
+kod wyjścia: 0

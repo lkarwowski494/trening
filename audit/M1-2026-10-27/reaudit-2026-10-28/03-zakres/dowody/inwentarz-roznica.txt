@@ -1,0 +1,4 @@
+48c48
+<  gest | import { AccessibilityInfo, Animated, PanResponder, Platform, Text, View, type P 
+---
+>  gest | import { AccessibilityInfo, ActionSheetIOS, Animated, PanResponder, Platform, Pr 

@@ -1,0 +1,59 @@
+== JAK-10: wyzwalacze i dane zdarzeń w run: ==
+(kod grep: 1)
+(dane zdarzeń wprost w run:, kod grep: 1)
+-- uses: spoza actions/* bez 40-znakowego SHA --
+127:    uses: ./.github/workflows/e2e-ios.yml
+(kod grep: 0)
+-- uses: actions/* bez SHA --
+100:      - uses: actions/download-artifact@v4
+106:      - uses: actions/download-artifact@v4
+109:      - uses: actions/checkout@v5
+110:        uses: actions/upload-artifact@v4
+110:      - uses: actions/upload-artifact@v4
+-- permissions --
+.github/workflows/asc-iap-localizations.yml:1
+.github/workflows/asc-kontrola.yml:1
+.github/workflows/asc-metadane.yml:1
+.github/workflows/asc-zrzuty.yml:1
+.github/workflows/check-urls.yml:1
+.github/workflows/e2e-ios.yml:1
+.github/workflows/gemini-figury.yml:1
+.github/workflows/ios-unsigned.yml:1
+.github/workflows/nightly.yml:2
+.github/workflows/pages.yml:1
+.github/workflows/przeglad-tlumaczen.yml:1
+.github/workflows/przeklad-tlumaczen.yml:1
+.github/workflows/sprzatanie-galezi.yml:2
+.github/workflows/store-screenshots.yml:1
+.github/workflows/testflight.yml:3
+.github/workflows/tests-tz.yml:1
+.github/workflows/tests.yml:1
+.github/workflows/watch-sim.yml:1
+
+== JAK-06: strefy testów kalendarza ==
+3:# przesunięciem, bez zmiany czasu, z półgodzinnym przesunięciem i z półgodzinną zmianą czasu. TZ ustawiamy przed startem
+22:    name: jest (${{ matrix.ref }}, TZ=${{ matrix.tz }})
+48:        run: TZ=${{ matrix.tz }} npx jest --maxWorkers=2
+80:        run: TZ="${STREFA_CHWILA%%|*}" PIN_NOW="${STREFA_CHWILA##*|}" npx jest --maxWorkers=2 --testPathIgnorePatterns "$(node scripts/ci/pin-wykluczenia.mjs)"
+
+== JAK-08: dane importu z wycinków ==
+catalog-1002-fields.json
+demo-templates.ts
+health-usage-pre016.json
+import-formatA.csv
+import-formatB.csv
+import-obcy.csv
+maestro-out
+odciski-normalizacji.json
+p5d-zapis-starej-wersji.json
+released
+state-090-schema15.json
+watch-app
+web03-backup.json
+README.md
+gen-fixture-1.0.ts.txt
+gen-fixture.ts.txt
+state-v0.11.0-b1005-schema18.json
+state-v0.18.0-b1017-schema18.json
+state-v0.20.0-b1018-schema19.json
+state-v1.0.0-b1032-schema19.json

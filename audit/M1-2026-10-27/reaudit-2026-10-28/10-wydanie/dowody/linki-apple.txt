@@ -1,0 +1,33 @@
+Adresy developer.apple.com w docs/48, docs/42 (2385e75): tytuł strony, odczyt 2026-10-28
+https://developer.apple.com/app-store/app-privacy-details/ -> App Privacy Details - App Store - Apple Developer
+https://developer.apple.com/app-store/review/guidelines/ -> App Review Guidelines - Apple Developer
+https://developer.apple.com/app-store/small-business-program/ -> App Store Small Business Program - Apple Developer
+https://developer.apple.com/distribute/app-review/ -> App Review - Distribute - Apple Developer
+https://developer.apple.com/documentation/appstoreconnectapi/app-asset-library -> App Asset Library | Apple Developer Documentation
+https://developer.apple.com/documentation/appstoreconnectapi/placing-assets-on-your-app-store-surfaces -> Placing assets on your App Store surfaces | Apple Developer Documentation
+https://developer.apple.com/documentation/appstoreconnectapi/uploading-and-managing-image-assets -> Uploading and managing image assets | Apple Developer Documentation
+https://developer.apple.com/help/app-review/after-submitting-for-review/request-expedited-review/ -> Request an expedited review - After submitting for review - App Review - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-agreements/sign-and-update-agreements/ -> Sign and update agreements - Manage agreements - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-app-accessibility/manage-accessibility-nutrition-labels/ -> Manage Accessibility Nutrition Labels - Manage App Accessibility - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-app-accessibility/overview-of-accessibility-nutrition-labels/ -> Overview of Accessibility Nutrition Labels - Manage App Accessibility - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-app-information/declare-regulated-medical-device-status/ -> Declare regulated medical device status - Manage app information - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-app-information/localize-app-information/ -> Localize app information - Manage app information - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-app-information/manage-app-privacy/ -> Manage app privacy - Manage app information - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-app-information/set-a-tax-category/ -> Set a tax category - Manage app information - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-app-information/set-an-app-age-rating/ -> Set an app age rating - Manage app information - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-app-pricing/set-a-price/ -> Set a price - Manage app pricing - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-builds/choose-a-build-to-submit/ -> Choose a build to submit - Manage builds - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-compliance-information/manage-european-union-digital-services-act-trader-requirements/ -> Manage European Union Digital Services Act trader requirements - Manage compliance information - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/overview-of-submitting-for-review/ -> Overview of submitting for review - Manage submissions to App Review - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app/ -> Submit an app - Manage submissions to App Review - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-in-app-purchase/ -> Submit an In-App Purchase - Manage submissions to App Review - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/manage-your-apps-availability/manage-availability-for-your-app-on-the-app-store/ -> Manage availability for your app on the App Store - Manage your app's availability - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/reference/app-information/age-ratings-values-and-definitions/ -> Age ratings values and definitions - App information - Reference - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information/ -> Platform version information - App information - Reference - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/reference/app-information/required-localizable-and-editable-properties/ -> Required, localizable, and editable properties - App information - Reference - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/ -> Screenshot specifications - App information - Reference - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/test-a-beta-version/manage-builds/ -> Page Not Found - Apple Developer
+https://developer.apple.com/help/app-store-connect/test-a-beta-version/testing-subscriptions-and-in-app-purchases-in-testflight/ -> Testing subscriptions and In-App Purchases in TestFlight - Test a beta version - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/test-in-app-purchases/overview-of-testing-in-sandbox/ -> Overview of testing in sandbox - Test In-App Purchases - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version/ -> Create a new version - Update your app - App Store Connect - Help - Apple Developer
+https://developer.apple.com/help/app-store-connect/update-your-app/release-a-version-update-in-phases/ -> Release a version update in phases - Update your app - App Store Connect - Help - Apple Developer

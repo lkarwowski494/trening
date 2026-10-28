@@ -1,0 +1,14 @@
+Wed Oct 28 09:53:16 UTC 2026
+https://developer.apple.com/help/app-store-connect/manage-your-apps-availability/manage-availability-for-your-app-on-the-app-store/ HTTP 200
+  OK: „will continue to receive app updates”
+https://developer.apple.com/help/app-review/after-submitting-for-review/request-expedited-review/ HTTP 200
+  OK: „already been sent to App Review can be expedited”
+https://developer.apple.com/help/app-store-connect/manage-app-information/localize-app-information/ HTTP 200
+  OK: „default to those of the primary language”
+https://developer.apple.com/help/app-store-connect/test-a-beta-version/manage-builds/ HTTP 200
+  BRAK: „Expire”
+
+Z-25a link: https://developer.apple.com/help/app-store-connect/test-a-beta-version/manage-builds/ -> <title>Page Not Found - Apple Developer (HTTP 200 z treścią strony błędu), odczyt 2026-10-28
+Strona właściwa: https://developer.apple.com/help/app-store-connect/test-a-beta-version/stop-testing-a-build/ -> <title>Stop testing a build - Test a beta version - App Store Connect - Help - Apple Developer
+ In the table on the right, in the Build column, click the app icon or build string for the build you want to expire.
+ Click Expire Build.

@@ -1,0 +1,46 @@
+$ grep -rnE "\bunitLabel\(|\bunitName\(|\bdistLabel\(|\bdistLongLabel\(" app components lib --include=*.ts --include=*.tsx (bez lib/units.ts)
+app/progression.tsx:82:        <H2 style={{ marginTop: 16 }}>{t('Objętość per partia ({u})', { u: unitLabel() })}</H2>
+app/history/edit/[id].tsx:125:  const heads = ['#', ...(hasWeight(m) ? [ex ? loadLabelShort(ex, impl) : unitLabel()] : []), ...(hasReps(m) ? [t('Pow.')] : []), ...(hasDistanc
+app/history/edit/[id].tsx:125:e(m) ? [distLabel()] : []), ...(hasTime(m) ? [t('sek.')] : []), ...(showRpe ? 
+app/history/edit/[id].tsx:144:re.loadOf), zapis do pola obecnego sprzętu */ touchDraft(); }} placeholder={bw ? '±0' : unitLabel()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('cięża
+app/history/edit/[id].tsx:146:tanceM} onNum={(v, keep) => { set.distanceM = dIn(v, keep); touchDraft(); }} placeholder={distLabel()} accessibilityLabel={t('dystans')} accessibilityHint={hint
+app/more/import.tsx:58:            <Segmented label={t('Jednostka ciężaru w pliku')} options={[['kg', unitName('kg')], ['lb', unitName('lb')]]} value={unit} onChange={setU
+app/more/backup.tsx:25:t('footnote')}>{t('CSV: ciężar w jednostce z ustawień ({u}), dystans w metrach.', { u: unitLabel() })}</Muted>
+app/more/bodymass.tsx:39:        <View><Field label={t('Masa ciała ({u})', { u: unitLabel() })}><NumInput testID="bodymass-kg" /* E2E: pole masy po id
+app/(tabs)/progress.tsx:109:'D — tydzień oznaczony jako deload.')] : [])]}>{t('Objętość tygodniowo ({u})', { u: unitLabel() })}</H2>
+app/(tabs)/progress.tsx:117:się nie liczą.')}>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: unitLabel() })}</H2>
+app/template/[id].tsx:200:} value={wField(r.weight)} stored={r.weight} placeholder={ex ? loadLabelShort(ex, impl) : unitLabel()} testID={`tpl-w-${ii}-${k}`} /* E2E (Maestro 08): pole ci�
+app/template/[id].tsx:200:�żaru wiersza k pozycji ii */ accessibilityLabel={ex ? loadLabel(ex, impl) : unitLabel()} onNum={(v, keep) => tplEditRow(tpl, it.id, r.id, { weight
+app/template/[id].tsx:202:{{ width: W.dist }}><NumInput value={dOut(r.distanceM)} stored={r.distanceM} placeholder={distLabel()} accessibilityLabel={t('dystans')} onNum={(v, keep) => tpl
+components/LoadEditor.tsx:56:      <Segmented label={lbl(t('Jednostka sprzętu'))} options={[['kg', unitName('kg')], ['lb', unitName('lb')]] as [LoadUnit, string][]} val
+components/LoadEditor.tsx:59:=> <Chip key={x.w + ':' + i} toggle label={`${n(x.w)}`} on={x.on} a11yLabel={`${n(x.w)} ${unitName(spec.unit)}`} a11yHint={name} /* weryfikacja 2: nazwa pozycj
+components/LoadEditor.tsx:73:   Alert.alert(t('Usunąć odznaczone ciężary?'), `${off.map(x => n(x.w)).join(', ')} ${unitName(spec.unit)}\n${name}`, [{ ...cancelButton() }, { text: t('Us
+components/LoadEditor.tsx:77:        <Field label={item.id === 'db_plate' ? t('Uchwyt (jeden, {u})', { u: unitName(spec.unit) }) : t('Gryf ({u})', { u: unitName(spec.unit) })}
+components/LoadEditor.tsx:81:={lbl(t('Usuń talerz'))} title={t('Usunąć talerz?')} message={`${fmtNum(r3(p.w), 3)} ${unitName(spec.unit)} × ${p.n}`} onDelete={() => { if (spec.plates[i]
+components/LoadEditor.tsx:82:            <View style={{ flex: 1 }}><Field label={t('talerz ({u})', { u: unitName(spec.unit) })}><NumInput {...a11y} decimal value={r3(p.w)} o
+components/BoardControls.tsx:22:export const unitOf = (k: BoardKey): string => k === 'weight' || k === 'addKg' ? unitLabel() : k === 'reps' ? tr('pow.') : k === 'durationSec' ? tr('se
+components/BoardControls.tsx:22:k.') : distLabel();
+components/WorkoutBlocks.tsx:166:tance(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.dist }]}>{distLabel()}</Muted> : null}
+components/WorkoutBlocks.tsx:185:a co na ekranie = te same kg; 11.10.2026: kaskada w dół */ }} placeholder={bw ? '±0' : unitLabel()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, 
+components/WorkoutBlocks.tsx:187:wiatura; kaskada w dół; LOK07-01: w imperialnym yardy → metry (cm) */ }} placeholder={distLabel()} style={doneStyle(set)} accessibilityLabel={tr('dystans')}
+lib/tokens.ts:119: ± („kg”, „lb”, „powt.”, „s”, „m”, „yd”) — DEC-28/29: zawsze z unitLabel()/distLabel(), nigdy na sztywno. */
+lib/equipment.ts:254:e {a}–{b} {u}, ławka regulowana, mata, ściana, bieżnia, rower', { a: dbA, b: dbB, u: unitName(unit) });
+lib/equipment.ts:256:hantle {a}–{b} {u} co {step}', { bar: fmtNum(bar?.kind === 'plates' ? bar.base : 0), u: unitName(unit), max: fmtNum(Math.max(...plates)), min: fmtNum(Math.mi
+lib/live.ts:81:  if (!isImperial()) return { num: String(m), unit: distLabel() };
+lib/live.ts:82:  return m >= DIST_LONG_FROM_M.imperial ? { num: fmtNum(m / M_PER_MI, 2), unit: distLongLabel() } : { num: String(Math.round(m / M_PER_YD)), unit: distLab
+lib/live.ts:145:a) num = t('masa ciała'); else { num = (a > 0 ? '+' : '') + fmtNum(wOut(a), dig); unit = unitLabel(); } }
+lib/live.ts:146:mpty(set.weight)) num = '—'; else { num = fmtNum(wOut(Number(set.weight)), dig); unit = unitLabel(); }
+lib/state/sets.ts:111:export const loadLabelShort = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `±${unitLabel()}`
+lib/state/sets.ts:112:    : perSide(impl) ? t('{u}/str.', { u: unitLabel() }) : (ex.loadMode === 'per_dumbbell' ? t('{u}/hant.', { u:
+lib/state/sets.ts:112: unitLabel() })
+lib/state/sets.ts:113:    : ex.loadMode === 'unilateral' ? t('{u}/str.', { u: unitLabel() }) : unitLabel());
+lib/state/sets.ts:114:export const loadLabel = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `±${unitLabel()}`
+lib/state/sets.ts:115:    : perSide(impl) ? t('{u}/stronę', { u: unitLabel() }) : (ex.loadMode === 'per_dumbbell' ? t('{u}/hantel', { u
+lib/state/sets.ts:115:: unitLabel() })
+lib/state/sets.ts:116:    : ex.loadMode === 'unilateral' ? t('{u}/strona', { u: unitLabel() }) : unitLabel());
+lib/state/sets.ts:152:  else if (m === 'weight_time') core = `${fmtW(l, false)}${unitLabel()}×${fmtSec(Number(s.durationSec) || 0)}`;
+lib/state/sets.ts:154:    core = `${fmtW(l, false)}${unitLabel()}×${fmtDist(Number(s.distanceM) || 0)}`; /* research bibli
+lib/board.ts:81:0 && cur <= 0) || to === cur ? null : to, amount: `${fmtNum(Math.abs(nd - d) || st, 0)} ${distLabel()}` };
+lib/board.ts:94:  const amount = `${fmtNum(step, 1)} ${unitLabel()}`;
+lib/board.ts:119:if (hasDistance(m)) parts.push(n(s.distanceM) ? `${fmtNum(Number(dOut(s.distanceM)), 0)}${distLabel()}` : '—');
+kod 0

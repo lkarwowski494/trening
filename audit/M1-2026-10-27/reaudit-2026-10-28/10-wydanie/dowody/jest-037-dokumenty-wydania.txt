@@ -1,0 +1,26 @@
+$ npx jest tests/audit-m1-2026-10-27-037-dokumenty-wydania.test.ts --maxWorkers=1  (worktree 2385e75)
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-037-dokumenty-wydania.test.ts
+  10-wydanie-005: plan „zły build” bez znaczników [DO PRZECZYTANIA] (DEC-07 b, 27.10.2026)
+    ✓ pkt 4 nie ma [DO PRZECZYTANIA] (6 ms)
+    ✓ wycofanie ze sprzedaży: strona Apple, cytat o zainstalowanych kopiach i dacie odczytu (1 ms)
+    ✓ przyspieszona recenzja: strona Apple, warunek „krytyczny błąd” i kroki w notatce (1 ms)
+  02-monetyzacja-506: decyzja „Wyjątek Ukraina” z 13.10.2026 zamknięta (DEC-07 b, 27.10.2026)
+    ✓ wpis z 13.10.2026: pole „zastąpione 27.10.2026” z powodem w treści (1 ms)
+    ✓ docs/15: punkt cenowy UA nie jest już [OTWARTE]; opis sklepu bez „tańsze niż espresso” we wszystkich lokalizacjach (17 ms)
+    ✓ kontrola cen wszystkich krajów wobec 1,51 €: krok Z-10b w docs/48 i zapis w docs/research/espresso-mimit-2026-10.md (1 ms)
+  M1-037 backlog (DEC-07 b, 27.10.2026): pozycje poza 1.0 wpisane do docs/21 z wersją, nie do „Backlogu bez priorytetu”
+    ✓ 03-zakres-006: wiersz z wersją i warunkiem (1 ms)
+    ✓ 03-zakres-007: wiersz z wersją i warunkiem (1 ms)
+    ✓ 11-wzrost-002: wiersz z wersją i warunkiem
+    ✓ 11-wzrost-004: wiersz z wersją i warunkiem
+    ✓ 02-monetyzacja-005: wiersz z wersją i warunkiem
+    ✓ 02-monetyzacja-506: wiersz z wersją i warunkiem
+
+Test Suites: 1 passed, 1 total
+Tests:       12 passed, 12 total
+Snapshots:   0 total
+Time:        1.512 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-037-dokumenty-wydania.test.ts/i.
+kod 0

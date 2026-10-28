@@ -1,0 +1,35 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/figury-podparcie.test.ts
+  dane: zbiór figur objętych regułami
+    ✓ wszystkie figury v1 ze źródeł (≥ 60); figury z krokiem (stopa krokowa) to wykroki, Step Up, Bird Dog, Mountain Climbers; pompki to Push Up i Incline Push Up (217 ms)
+  niezmiennik: podparcie na wszystkich figurach v1
+    ✓ żadna figura (poza ukrytą z wadą) nie łamie reguły podparcia w żadnej pozie pośredniej (co 0,05) (169 ms)
+    ✓ jedna podpora (stopa podporowa stoi całą podeszwą, druga w powietrzu): rzut środka ciężkości w obrębie stopy ± 2,5 j. w każdej pozie — wszystkie figury poza ukrytą z wadą (117 ms)
+    ✓ ukryta figura nie wraca bez poprawki: Reverse Lunge nadal łamie regułę, ma werdykt „ukryta” i nie jest w pliku runtime; każda figura łamiąca regułę jest ukryta (124 ms)
+    ✓ reguła łapie wyłącznie wykroki z recenzji: poza pięcioma figurami z recenzji nie łapie nic (Bird Dog, Mountain Climbers, Pistol Squat, martwe ciągi, wiosłowania, mostki — czyste) (112 ms)
+    ✓ pompki (Push Up, Incline Push Up): bark ≤ 10 j. od dłoni w dolnej pozycji, brak przenikania w podłoże i blat (26 ms)
+  regresja: wady z recenzji niezależnej 28.10.2026 odtworzone na danych sprzed poprawki (czerwone przed, zielone po)
+    ✓ Lunges (hantle) / Walking Lunges — było: ciało opada do wykroku przy przedniej stopie w powietrzu (biodro 24 j. przed jedyną podporą, opadanie 11+ j.) (20 ms)
+    ✓ Step Up — było: biodro 19,5 j. za piętą jedynej podpory (skrzynia), tylna noga w powietrzu od k = 0,1 (9 ms)
+    ✓ Step Up (poprawka 1 z 28.10.2026, odrzucona przez recenzję po poprawce) — było: środek ciężkości 6,5–7,4 j. za piętą stopy na skrzyni aż do k ≈ 0,7, biodro cofa się; walidator z tolerancją 10 j. dla biodra przepuszczał (14 ms)
+    ✓ Reverse Lunge — było i jest: biodro opada ok. 20 j. przy tylnej stopie w powietrzu (ukryta, wymaga czwartej pozycji) (8 ms)
+    ✓ Incline Push Up — było: bark 28 j. przed dłonią w dolnej pozycji i tułów 2,3 j. w blacie; jest: bark ≤ 10 j., bez przenikania (28 ms)
+  scenariusz: wykrok — krok postawiony, potem opuszczenie; Step Up — ciężar na nodze ze skrzyni; Incline Push Up — klatka do krawędzi
+    ✓ Lunges (hantle): w pozycji „w trakcie” przednia stopa płasko na podłodze, biodra wysoko (≥ 40 j.), tylne palce na podłodze; w dolnej pozycji tylne kolano tuż nad podłogą
+    ✓ Walking Lunges: w pozycji „w trakcie” przednia stopa płasko na podłodze, biodra wysoko (≥ 40 j.), tylne palce na podłodze; w dolnej pozycji tylne kolano tuż nad podłogą
+    ✓ Step Up: w pozycji „w trakcie” noga zakroczna oderwana od podłogi, biodro wysoko, stopa na skrzyni; przejście start → mid: biodro rośnie (12 ms)
+    ✓ Incline Push Up: dłoń na wierzchu podwyższenia w całym ruchu (±1,5 j.), w dolnej pozycji ramię zgięte ≥ 80°, klatka (bark) nie wyżej niż 14 j. nad blatem (10 ms)
+  logika reguł (figury syntetyczne)
+    ✓ powierzchnia i styki: podłoga, wierzch skrzyni, punkt nad skrzynią poza zasięgiem; podstawa = przedział x styków; zwis bez styku → null (1 ms)
+    ✓ stopa krokowa: dotyka podłoża w pozie kluczowej i bywa w powietrzu; wolna noga w całym ruchu (Pistol Squat) i stopa na maszynie (Leg Press) — nie (3 ms)
+    ✓ penetration: punkt wewnątrz prostokąta i pod podłogą liczy się; poza — 0
+    ✓ LIM: liczby reguł w jednym miejscu (tolerancja podparcia 10 j., bark–dłoń 10 j., styk 1,5 j., stopa w powietrzu 2 j.)
+    ✓ maxNadmiar poprawionych figur = 0, wyjątku > 0 (35 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       20 passed, 20 total
+Snapshots:   0 total
+Time:        3.458 s
+Ran all test suites matching /tests\/figury-podparcie.test.ts/i.
+kod wyjścia: 0

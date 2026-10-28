@@ -1,0 +1,3 @@
+$ node audit/M1-2026-10-27/reaudit-2026-10-28/sprawdz-raport.mjs audit/M1-2026-10-27/reaudit-2026-10-28/04-studio-projektowe/04-studio-projektowe-reaudit-2026-10-28.md /home/user/trening audit/M1-2026-10-27/reaudit-2026-10-28/04-studio-projektowe --rola 04-studio-projektowe
+OK: odwołania, cytaty, pliki dowodów i sekrety sprawdzone; format raportu 04-studio-projektowe
+exit=0

@@ -1,0 +1,6 @@
+## ARCH-17: execAsync/runAsync/getAllAsync/getFirstAsync z szablonem ${ lub konkatenacją (app lib components modules)
+trafień: 0
+konkatenacja: 0
+execAsync:
+lib/state/db.ts:36:    await next.execAsync(KV);
+lib/state/boot.ts:40:  await db!.execAsync('CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)');

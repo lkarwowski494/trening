@@ -1,0 +1,4 @@
+git show 025a50b:app/paywall.tsx (linie 42, 72):
+  const lifetime = view.active?.plan === 'lifetime'; const subActive = (view.entitlements ?? []).some(e => e.plan !== 'lifetime' && entitlementActive(e, Date.now()));
+      </View> : <Text testID="paywall-headline" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold, marginTop: 8, marginBottom: 12 }}>{t('Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Text>}
+        {lifetime && subActive ? <Muted>{t('Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płacić podwójnie.')}</Muted> : null}

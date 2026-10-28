@@ -1,0 +1,17 @@
+== pliki próbki regresji: zmiany 025a50b..2385e75 (pusty wynik = bez zmian)
+lib/deload.ts: 
+components/MedicalNote.tsx: 
+store/app-store-metadata.json: 
+== lib/deload.ts
+5: * Deload A (decyzja właściciela 08.10.2026): podpowiedź w Kalendarzu „zwykle co 4–6 tygodni”. To opis praktyki trenerów (S5; Bell 2022/2023 i
+6: * Rogerson 2024 — jeden zespół, „5.6 ± 2.3 weeks”), nie wynik badań — tak też jest opisana w aplikacji. Bez wyzwalaczy z danych (spadek e1RM,
+10:export const DELOAD_EVERY: [number, number] = [4, 6];
+30:  const weeks = trainingStreakWeeks(now); return weeks >= DELOAD_EVERY[0] && getState().deloadSnooze !== from ? { kind: 'suggest', weeks, from } : { kind: 'none' };
+32:/** Audyt 0.10 D4 (UX-06): „Nie teraz” — podpowiedź znika do następnego tygodnia (wraca, gdy proponowany tydzień się zmieni). */
+== lib/stats.ts Push Up
+44:export const BW_SHARE: Readonly<Record<string, number>> = { 'Pull Up': 1, 'Chin Up': 1, 'Neutral Grip Pull Up': 1, 'Push Up': 0.64 };
+== components/MedicalNote.tsx
+9:  return <Muted style={[{ ...font('footnote'), marginTop: 4 }, style]}>{t('Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.')}</Muted>;
+== anonimowość: nazwy źródeł w store/ i site/
+store/review-notes.md:38:who
+kod grep: 0

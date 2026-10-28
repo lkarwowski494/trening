@@ -1,0 +1,32 @@
+$ node szer.cjs  # Chromium (Playwright 1.63, globalny), canvas measureText, Liberation Sans 13 px (przybliżenie SF Pro); kolumna ciężaru: WIDE 64 pt, COMPACT 56 pt (components/WorkoutBlocks.tsx:49-51), skala liczb do 130%
+{
+ "13px \"Liberation Sans\"": {
+  "kg": 13.7,
+  "κιλά": 23.2,
+  "kg/αλτ.": 40.1,
+  "κιλά/αλτ.": 49.6,
+  "kg/πλευρά": 60.6,
+  "κιλά/πλευρά": 70.1,
+  "±kg": 20.9,
+  "±κιλά": 30.3,
+  "кг/гант.": 41,
+  "кг/стор.": 44.4,
+  "kg/hant.": 46.3,
+  "kg/str.": 34.7
+ },
+ "bold 13px \"Liberation Sans\"": {
+  "kg": 15.2,
+  "κιλά": 25.9,
+  "kg/αλτ.": 43.4,
+  "κιλά/αλτ.": 54.2,
+  "kg/πλευρά": 65.3,
+  "κιλά/πλευρά": 76,
+  "±kg": 22.3,
+  "±κιλά": 33.1,
+  "кг/гант.": 44.9,
+  "кг/стор.": 48.5,
+  "kg/hant.": 49.8,
+  "kg/str.": 38.3
+ }
+}
+kod wyjścia: 0

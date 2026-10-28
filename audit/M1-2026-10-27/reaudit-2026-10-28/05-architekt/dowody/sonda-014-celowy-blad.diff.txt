@@ -1,0 +1,13 @@
+diff --git a/lib/state/migrate.ts b/lib/state/migrate.ts
+index 615c6c4..ec78fe4 100644
+--- a/lib/state/migrate.ts
++++ b/lib/state/migrate.ts
+@@ -169,7 +169,7 @@ export function migrate(raw: unknown): State {
+   const unknownSettings = Object.fromEntries(Object.keys(s).filter(
+       k => !SETTINGS_KEYS.has(k) && !PROTO_KEYS.has(k) && !legacy.has(k) && !MOVED_SETTINGS.has(k)).map(k => [k, s[k]]));
+   raw.settings = { ...unknownSettings,
+-    defaultRest: (v => v != null && v >= 0 ? Math.min(REST_MAX, Math.round(v)) : d.defaultRest)(parseNum(s.defaultRest)), // runda 17: ten sam limit co wszędzie
++    defaultRest: (v => v != null && v >= 0 ? Math.min(100, Math.round(v)) : d.defaultRest)(parseNum(s.defaultRest)), // runda 17: ten sam limit co wszędzie
+     sound: typeof s.sound === 'boolean' ? s.sound : d.sound,
+     wakeLock: typeof s.wakeLock === 'boolean' ? s.wakeLock : d.wakeLock,
+     showRpe: typeof s.showRpe === 'boolean' ? s.showRpe : d.showRpe,

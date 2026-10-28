@@ -1,0 +1,7 @@
+Wed Oct 28 09:52:25 UTC 2026
+privacy: HTTP 200
+privacy: RÓŻNA od site/privacy.html; diff linii: 85
+support: HTTP 200
+support: RÓŻNA od site/support.html; diff linii: 86
+privacy na żywo zawiera 'Porkbun': 4
+support na żywo zawiera 'Zobacz plany Pro': 0

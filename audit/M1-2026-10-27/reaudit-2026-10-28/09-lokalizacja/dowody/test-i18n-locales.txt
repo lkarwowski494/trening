@@ -1,0 +1,22 @@
+$ npx jest tests/i18n-locales.test.ts --maxWorkers=1 (HEAD 2385e75)
+    ✓ komplet kluczy, niepuste, te same {parametry}, bez kluczy spoza źródła (1 ms)
+    ✓ liczba mnoga: tyle form, ile ma język
+  słownik ru
+    ✓ komplet kluczy, niepuste, te same {parametry}, bez kluczy spoza źródła (2 ms)
+    ✓ liczba mnoga: tyle form, ile ma język
+  słownik ja
+    ✓ komplet kluczy, niepuste, te same {parametry}, bez kluczy spoza źródła (1 ms)
+    ✓ liczba mnoga: tyle form, ile ma język
+  słownik ko
+    ✓ komplet kluczy, niepuste, te same {parametry}, bez kluczy spoza źródła (2 ms)
+    ✓ liczba mnoga: tyle form, ile ma język
+  słownik zh-Hant
+    ✓ komplet kluczy, niepuste, te same {parametry}, bez kluczy spoza źródła (1 ms)
+    ✓ liczba mnoga: tyle form, ile ma język (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       72 passed, 72 total
+Snapshots:   0 total
+Time:        1.799 s
+Ran all test suites matching /tests\/i18n-locales.test.ts/i.
+kod wyjścia: 0

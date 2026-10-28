@@ -1,0 +1,17 @@
+Komenda: grep -c -i <fraza> docs/brd/wymagania.md docs/brd/wymagania-uzupelnienie.md (2385e75); lista z 03-zakres-003
+Uczciwe zasady: 5
+import CSV\|Import historii\|importu CSV: 5
+Strażnik progresji: 2
+Przewodnik: 4
+Pierwsze kroki: 6
+Napisz do nas: 6
+Poproś o nową funkcję: 2
+ocen: 14
+superseri: 3
+Wyczyść wszystkie dane: 1
+automatyczna kopia\|Automatyczna kopia: 2
+ekran włączony\|Ekran włączony\|wygaszan: 2
+Zapisz zmiany w szablonie: 2
+wstecz: 12
+masa ciała\|Masa ciała: 6
+przypomnieni: 7

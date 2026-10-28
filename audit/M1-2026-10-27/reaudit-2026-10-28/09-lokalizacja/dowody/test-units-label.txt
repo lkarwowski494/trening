@@ -1,0 +1,28 @@
+$ git rev-parse HEAD: 2385e75aeb3880c0c90ba5edd69145a1c6d80b01
+$ npx jest tests/units-label.test.ts --maxWorkers=1
+    ✓ tr: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (4 ms)
+    ✓ el: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (6 ms)
+    ✓ id: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (4 ms)
+    ✓ ms: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (4 ms)
+    ✓ vi: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (6 ms)
+    ✓ ru: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (6 ms)
+    ✓ ja: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ ko: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (5 ms)
+    ✓ zh-Hant: kg i lb (etykieta, fmtW, fmtVol); logiczne wu() bez zmian (4 ms)
+    ✓ ru: etykiety pól (placeholder, dostępność) używają lokalnego symbolu, nie łacinki (346 ms)
+    ✓ dystans: etykieta pola jak w fmtDist (ru: „м”, imperialny „ярд”)
+  dystans na ekranie blokady i zegarku: etykieta ze słownika (distParts, distLongLabel)
+    ✓ ru i pl, metryczny i imperialny: m / yd / mi lokalnie (1 ms)
+  dane: CSV i kopia zapasowa zostają w kg/lb łacinką niezależnie od języka
+    ✓ ru + kg: CSV bez znaków cyrylicy z jednostką; ru + lb: kolumny „Weight Unit” = lb, „Distance Unit” = m (13 ms)
+    ✓ CSV i kopia są takie same w ru i pl (tylko jednostka wyświetlania wpływa na liczby, nie język) (24 ms)
+  strażnik: wartość logiczna jednostki nie trafia do tekstu ani do t()
+    ✓ wu() wolno tylko w porównaniu z 'lb' (=== / !==); do wyświetlania służy unitLabel() (27 ms)
+    ✓ żaden t()/tr()/tp() nie dostaje wartości logicznej jako klucza ani parametru (21 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       42 passed, 42 total
+Snapshots:   0 total
+Time:        7.315 s
+Ran all test suites matching /tests\/units-label.test.ts/i.
+kod wyjścia: 0

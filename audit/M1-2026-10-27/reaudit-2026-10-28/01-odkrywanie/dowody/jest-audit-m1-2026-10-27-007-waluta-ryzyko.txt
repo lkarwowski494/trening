@@ -1,0 +1,13 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-007-waluta-ryzyko.test.ts
+  M1-007: ryzyko waluty w rejestrze i krok listy wydania
+    ✓ docs/40: wiersz R-WAL w rejestrze ryzyk ma warunek zamknięcia (ceny w PLN w wersji z App Store, konto PL) i stan (7 ms)
+    ✓ docs/48: krok sprawdzenia cen w zł odsyła do R-WAL; numery kroków Z-NN są jednoznaczne (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.004 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-007-waluta-ryzyko.test.ts/i.
+exit 0

@@ -1,0 +1,31 @@
+$ git diff --stat 025a50b..2385e75 -- lib/i18n.ts lib/planReminder.ts lib/theme.ts app/more/language.tsx app.json locales/
+ lib/theme.ts | 2 ++
+ 1 file changed, 2 insertions(+)
+kod wyjścia: 0
+
+$ grep -n (wybrane linie)
+47:export function resolveLang(tag: string | null | undefined, code?: string | null): Lang {
+/** Runda 55: tylko własne klucze słownika (tekst „constructor” nie zwraca funkcji). */
+const own = (d: Record<string, string> | undefined, k: string): string | undefined => d && Object.prototype.hasOwnProperty.call(d, k) ? d[k] : undefined;
+const dictOf = (l: Lang): Record<string, string> | undefined => l === 'en' ? EN : LOCALES[l];
+/** Tekst w języku `l`: polski — klucz; inne — słownik języka, brak → angielski, brak → polski. */
+function lookup(l: Lang, pl: string): string { return l === 'pl' ? pl : own(dictOf(l), pl) ?? own(EN, pl) ?? pl; }
+const enOf = (k: string): string | undefined => own(EN, k);
+/**
+ * Pseudolokalizacja (M1-audytor-generalny-066, DEC-20): tylko w buildzie deweloperskim (`__DEV__`) każdy tekst z t() jest w nawiasach ⟦…⟧ — tekst bez nawiasów na ekranie omija słownik
+  const early = days.map((_, i) => (dayStatus(addDays(today, i)).early ? i : '')).join('');
+  const places = days.map((_, i) => plannedPlaceName(addDays(today, i))).join(','); /* 0.19: miejsce dnia w treści przypomnienia — przeliczane po zmianie miejsca, jego nazwy i usunięciu */
+  return `${planReminderOn()}|${lang()}|${today}|${dayStatus(today).status}|${activeDay() ?? ''}|${days.join(',')}|${st.templates.map(x => x.id + x.name + (x.items.length ? '' : '∅')).join(',')}|${early}|${places}`; /* 11.10.2026: dni „zrobione wcześniej” — na końcu, by nie przesuwać pozycji pól */
+}
+
+ * bo Barlow ich nie ma. Zakresy wprost (bez \p{scx=…} — pewne w Hermesie): grecki (U+0370–03FF), cyrylica (U+0400–052F), grecki rozszerzony (U+1F00–1FFF),
+ * Jamo, interpunkcja CJK, hiragana, katakana, bopomofo, CJK Ext A, ideogramy, hangul, ideogramy zgodności, formy pełnej szerokości.
+ * Testy tests/matrix-i18n i tests/i18n-wave4 sprawdzają, że każda inna litera jest w kroju Barlow.
+ */
+export const FALLBACK_SCRIPTS = /[Ͱ-ϿЀ-ԯἀ-῿ᄀ-ᇿ　-〿぀-ヿ㄰-㆏ㇰ-ㇿ㐀-䶿一-鿿가-힯豈-﫿＀-￯]/;
+
+export default function LanguageScreen() {
+  useTick(); const s = getState().settings; const router = useRouter(); const cur = (s.language ?? 'auto') as LangSetting;
+  const pick = (k: LangSetting) => { s.language = k; applyPrefs(); save(); timer.refreshScheduled().catch(() => {}); timer.relocalize().catch(() => {}); /* T4b/Q-004: powiadomienia, Live Activity i podpis przerwy w nowym języku */ if (router.canGoBack()) router.back(); };
+  const opts: [LangSetting, string][] = [['auto', t('Jak w telefonie')], ...LANGS.map(l => [l, LANG_NAME[l]] as [LangSetting, string])];
+  return (

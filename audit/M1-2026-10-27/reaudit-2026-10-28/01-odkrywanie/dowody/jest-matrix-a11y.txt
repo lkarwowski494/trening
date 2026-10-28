@@ -1,0 +1,49 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/matrix-a11y.test.tsx (40.801 s)
+  dostępność: dashboard z planem i tygodniem deload, kalendarz, plan (A11-10) — język pl, motyw light
+    ✓ przegląd objął dashboard (karta „Dziś”, kafelki), kalendarz i plan (13 ms)
+    ✓ nazwa i rola każdego elementu naciskanego, bez powtórzeń; pola i przełączniki z etykietą
+    ✓ kontrast WCAG każdego tekstu; teksty interfejsu bez ucinania do jednej linii (1 ms)
+  dostępność: dashboard z planem i tygodniem deload, kalendarz, plan (A11-10) — język en, motyw dark
+    ✓ przegląd objął dashboard (karta „Dziś”, kafelki), kalendarz i plan (8 ms)
+    ✓ nazwa i rola każdego elementu naciskanego, bez powtórzeń; pola i przełączniki z etykietą (1 ms)
+    ✓ kontrast WCAG każdego tekstu; teksty interfejsu bez ucinania do jednej linii
+  dostępność ekranów: język pl, motyw light
+    ✓ przegląd objął wszystkie ekrany i elementy (stan z danymi, właściwy motyw) (34 ms)
+    ✓ każdy element naciskany ma nazwę dostępności (accessibilityLabel albo tekst) (1 ms)
+    ✓ każdy element naciskany ma rolę (przycisk/łącze/przełącznik/pole wyboru/zakładka…)
+    ✓ na jednym ekranie żadne dwa elementy naciskane nie mają tej samej nazwy + podpowiedzi + wartości (1 ms)
+    ✓ każde pole tekstowe ma etykietę (accessibilityLabel albo placeholder); przełączniki — etykietę i rolę switch
+    ✓ kontrast WCAG 2.1 każdego tekstu względem jego tła na ekranie: ≥ 4,5 (zwykły), ≥ 3 (≥ 18 pt albo ≥ 14 pt pogrubiony)
+    ✓ teksty interfejsu (t()) nie są ucinane do jednej linii poza listą dozwolonych (długie tłumaczenia się zawijają)
+  dostępność ekranów: język en, motyw dark
+    ✓ przegląd objął wszystkie ekrany i elementy (stan z danymi, właściwy motyw) (38 ms)
+    ✓ każdy element naciskany ma nazwę dostępności (accessibilityLabel albo tekst) (1 ms)
+    ✓ każdy element naciskany ma rolę (przycisk/łącze/przełącznik/pole wyboru/zakładka…)
+    ✓ na jednym ekranie żadne dwa elementy naciskane nie mają tej samej nazwy + podpowiedzi + wartości
+    ✓ każde pole tekstowe ma etykietę (accessibilityLabel albo placeholder); przełączniki — etykietę i rolę switch
+    ✓ kontrast WCAG 2.1 każdego tekstu względem jego tła na ekranie: ≥ 4,5 (zwykły), ≥ 3 (≥ 18 pt albo ≥ 14 pt pogrubiony)
+    ✓ teksty interfejsu (t()) nie są ucinane do jednej linii poza listą dozwolonych (długie tłumaczenia się zawijają)
+  przegląd dostępności obejmuje każdą trasę z app/
+    ✓ każdy plik ekranu w app/ ma trasę w przeglądzie (routesFor albo DASH_ROUTES); każda trasa przeglądu to istniejący ekran (4 ms)
+  kontrast palety (WCAG 2.1) — pary używane w kodzie, których nie sprawdza C5
+    ✓ light (1 ms)
+    ✓ dark
+  Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności iOS)
+    ✓ wszystkie ekrany renderują się przy skali 2,0 bez błędów Reacta (50 ms)
+    ✓ każde jednowierszowe pole tekstowe na każdym ekranie (nie tylko w treningu — C10) ma limit powiększenia 0 < max ≤ 1,3 (components/ui.tsx Input) (1 ms)
+    ✓ pola wielowierszowe (notatki) rosną do TEXT_SCALE_MAX (200%) (1 ms)
+    ✓ A11N-04: zdania (tekst > 25 znaków z literami) — limit powiększenia co najmniej TEXT_SCALE_MAX, także sekcja „Technika” i podpisy figury
+    ✓ NAPRAWIONE 06.10: liczby krojem mono (tabela serii w historii — app/history/[id].tsx:17) mają limit powiększenia (1 ms)
+    ✓ liczby krojem mono poza tabelą historii mają limit powiększenia (zasada: ui.tsx, R9-06)
+    ✓ etykiety przycisków Btn rosną do 200% (TEXT_SCALE_MAX — audyt 0.10 A11-07, WCAG 1.4.4; dawniej 1,4) (1 ms)
+    ✓ T-04: znaki-ikony (›, ‹, ▾, ▸, ✓, ✕, ✦, ⇄, +…) mają limit powiększenia ≤ GLYPH_SCALE_MAX (1,4) na każdym ekranie — bez limitu rosną do 310% (Większe rozmiary dostępności) i są ucinane lub zasłaniają treść
+    ✓ największy efektywny rozmiar tekstu przy skali 2,0 jest skończony (rozmiar × min(2, limit))
+
+Test Suites: 1 passed, 1 total
+Tests:       32 passed, 32 total
+Snapshots:   0 total
+Time:        41.363 s
+Ran all test suites matching /tests\/matrix-a11y.test.tsx/i.
+exit 0

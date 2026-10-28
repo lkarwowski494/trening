@@ -1,0 +1,58 @@
+=== npx jest tests/decyzje-straznik.test.ts --maxWorkers=1
+Test Suites: 1 passed, 1 total
+Tests:       21 passed, 21 total
+exit=0
+=== npx jest tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx --maxWorkers=1
+    ✕ miesięczny kupiony: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (9708 ms)
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 9 passed, 10 total
+exit=1
+=== npx jest tests/m3-p2-start.test.tsx --maxWorkers=1
+Test Suites: 1 passed, 1 total
+Tests:       11 passed, 11 total
+exit=0
+=== npx jest tests/audit-m1-025-pierwsze-kroki.test.tsx --maxWorkers=1
+Test Suites: 1 passed, 1 total
+Tests:       7 passed, 7 total
+exit=0
+=== npx jest tests/audit-m1-026-kolejnosc-menu.test.tsx --maxWorkers=1
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+exit=0
+=== npx jest tests/audit-m1-027-pasek-tygodnia.test.tsx --maxWorkers=1
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+exit=0
+=== npx jest tests/audit-m1-028-cele-44-compact.test.tsx --maxWorkers=1
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+exit=0
+=== npx jest tests/audit-m1-029-kropka-srodkowa.test.ts --maxWorkers=1
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+exit=0
+=== npx jest tests/audit-m1-2026-10-27-030-liczby-w-kodzie.test.ts --maxWorkers=1
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+exit=0
+=== npx jest tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx --maxWorkers=1
+Test Suites: 1 passed, 1 total
+Tests:       43 passed, 43 total
+exit=0
+=== npx jest tests/m3-p2-board-ui.test.tsx --maxWorkers=1
+Test Suites: 1 passed, 1 total
+Tests:       41 passed, 41 total
+exit=0
+=== npx jest tests/matrix-a11y.test.tsx --maxWorkers=1
+    ✓ T-04: znaki-ikony (›, ‹, ▾, ▸, ✓, ✕, ✦, ⇄, +…) mają limit powiększenia ≤ GLYPH_SCALE_MAX (1,4) na każdym ekranie — bez limitu rosną do 310% (Większe rozmiary dostępności) i są ucinane lub zasłaniają treść
+Test Suites: 1 passed, 1 total
+Tests:       32 passed, 32 total
+exit=0
+=== npx jest tests/m3-token-guard.test.ts --maxWorkers=1
+Test Suites: 1 passed, 1 total
+Tests:       6 passed, 6 total
+exit=0
+=== powtórka: npx jest tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx --maxWorkers=1
+Tests:       10 passed, 10 total
+exit=0
+ 09:44:58 up 16 min,  0 user,  load average: 1.53, 1.37, 0.98

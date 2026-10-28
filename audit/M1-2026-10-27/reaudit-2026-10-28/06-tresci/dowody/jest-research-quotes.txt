@@ -1,0 +1,14 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/research-quotes.test.ts
+  SEC2-04: cytaty w docs/research — najwyżej 1–2 zdania
+    ✓ reguła: limity w jednym miejscu; 2 zdania przechodzą, 3 nie; wielokropek to opuszczenie; za długie jedno zdanie nie przechodzi (12 ms)
+    ✓ każdy plik bez znanego wyjątku przechodzi; plik z wyjątkiem nie ma więcej długich cytatów niż zapisano (1 ms)
+    ✓ znane wyjątki: istniejący plik w docs/research, powód SEC2-03, wciąż potrzebny (inaczej usuń z listy) (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        1.447 s
+Ran all test suites matching /tests\/research-quotes.test.ts/i.
+kod wyjścia: 0

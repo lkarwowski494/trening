@@ -1,0 +1,35 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/zrodla-wiedzy.test.ts (5.406 s)
+  wzorce nazw źródeł i odwołań ogólnych (jedna lista: lib/sources.ts)
+    ✓ rozpoznaje cytaty, skróty i odwołania ogólne w PL i EN, nie łapie zwykłych słów (30 ms)
+    ✓ każde źródło z rejestru twierdzeń (pole zrodla, poza etykietą prywatności sklepu) jest rozpoznawane przez wzorzec nazw (1 ms)
+  niezmiennik: żaden tekst interfejsu ani strony nie ma nazwy źródła ani odwołania do podstaw wiedzy
+    ✓ słownik PL (klucze) i EN (wartości) — bez wyjątków (7 ms)
+    ✓ słowniki 33 języków (poza PL i EN): bez nazw i odwołań; wyjątek tylko stare tłumaczenia kluczy z zestawu do przekładu (213 ms)
+    ✓ wyjątek jest wąski: każdy klucz „zmieniony” z zestawu ma w PL i EN brzmienie bez nazw i odwołań (tylko stare tłumaczenia czekają) (1 ms)
+    ✓ wskazówki techniki (wszystkie języki), etykiety sprzętu, metadane sklepu, uprawnienia iOS i strony www (99 ms)
+    ✓ stopka wskazówek techniki nie wymienia podstawy (tylko zdanie medyczne); klucze stopki usunięte ze słowników (3 ms)
+    ✓ ekran „Źródła wiedzy” usunięty (25.10.2026): brak pliku, wpisu w Ustawieniach i nawigacji, kluczy w słowniku EN (2 ms)
+  skróty źródeł (WHO, CDC, ACSM, NSCA, ISSN) w źródłach tekstu aplikacji — deterministycznie, z granicą słowa (wariant C, docs/40)
+    ✓ lista skrótów wynika z lib/sources.ts (jedno miejsce) i zawiera pięć znanych (1 ms)
+    ✓ granice słowa: skrót w zwykłym tekście alarmuje („według CDC”, „(ACSM)”, „WHO.”, „CDC” jako cały łańcuch), środek innego wyrazu nie; „CDCs”, „WHOLE” alarmują (opis wyżej) (4 ms)
+    ✓ skaner literałów TS/TSX: łapie literał, szablon i tekst JSX; pomija komentarze i identyfikatory (13 ms)
+    ✓ JSON (słownik, wskazówka, sklep): skrót w kluczu albo wartości alarmuje; pola „_…” (dokumentacja) i czyste teksty nie
+    ✓ kryterium listy: skanowane są wszystkie .ts/.tsx pod app, components, lib, modules oraz .json pod lib, locales, store (w tym lib/locales/_source.json); pliki tekstowe innego rodzaju nie wypadają po cichu (1614 ms)
+    ✓ niezmiennik: żaden tekst aplikacji nie zawiera skrótu źródła (poza starymi tłumaczeniami z zestawu do przekładu) (920 ms)
+  niezmiennik: brak oznaczeń pewności w tekstach UI
+    ✓ strażnik rozpoznaje oznaczenia w PL i EN (każde z pięciu) i przepuszcza zwykłe zdania oraz teksty ekranu źródeł (158 ms)
+    ✓ słownik PL (klucze) i EN (wartości): zero tekstów z oznaczeniem pewności  (473 ms)
+    ✓ wskazówka progresji i opisy w Ustawieniach, generatorze, Postępach i ćwiczeniu nie mają oznaczeń (klucze usuniętych oznaczeń nie wracają) (2 ms)
+    ✓ T-029 (decyzja 25.10.2026, „całkiem anonimowo”): zdanie o ćwiczeniach wzmacniających bez odwołania do badań (4 ms)
+    ✓ druga decyzja 25.10.2026: tekst o częstotliwości na partię i podpowiedź deloadu bez słów „dowody”, „trenerzy i zawodnicy”; klucze w zestawie przekładu (zmieniony) i w słownikach 33 języków (4 ms)
+    ✓ nagłówek ⓘ w generatorze i Planie z moich szablonów: „Zasady planu” (nie „Na czym to oparte”) (1 ms)
+    ✓ rejestr twierdzeń zachowuje rodzaje (uproszczenie, konwencja…) i źródła mimo usunięcia z UI; wpisy wycofane z UI mają znacznik i powód (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       21 passed, 21 total
+Snapshots:   0 total
+Time:        5.784 s
+Ran all test suites matching /tests\/zrodla-wiedzy.test.ts/i.
+kod wyjścia: 0

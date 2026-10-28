@@ -1,0 +1,415 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/regress.test.tsx
+  ○ skipped R50-08 wykresy mają streszczenie dla VoiceOver (słupki)
+  ○ skipped R50-09 wykresy mają streszczenie dla VoiceOver (linia)
+  ○ skipped R51-05 → P-001/T-055: zmiana gumy nie rusza ±kg (ani asysty, ani dociążenia)
+  ○ skipped R69-09 start aplikacji z treningiem porzuconym > 6 h: zapis i komunikat; przypomnienie zaplanowane 2 h po serii
+  ○ skipped R69-10 przypomnienie o porzuconym treningu planowane 2 h po ostatniej serii
+  runda 1 — logika
+    ○ skipped R1-01 powiadomienia przerwy/serii mają stałe identyfikatory (anulowalne po restarcie)
+    ○ skipped R1-02 domyślna przerwa 0 s działa i przeżywa restart
+    ○ skipped R1-03 przerwa po rozgrzewce 0 s
+    ○ skipped R1-04 przerwa z pozycji szablonu ma pierwszeństwo
+    ○ skipped R1-05 → P-001/T-055: wybór i zmiana gumy (przycisk gumy — store.cycleBand) nie zmieniają ±kg (także ze starym nominalKg w danych)
+    ○ skipped R1-06 powtórz ostatni porządkuje superset po usuniętym ćwiczeniu
+    ○ skipped R1-07 objętość tygodnia = suma objętości treningów z historii
+    ○ skipped R1-08 CSV bez szumu zmiennoprzecinkowego
+    ○ skipped R1-09 +15 s po końcu przerwy uzbraja alarm na nowo
+    ○ skipped R1-10 odhaczenie nieistniejącej serii nie wywraca aplikacji
+    ○ skipped R1-11 seria bez powtórzeń nie jest rekordem ciężaru
+    ○ skipped R1-12 nowe ćwiczenie własne domyślnie ×1 (nie „hantle ×2”)
+    ○ skipped R1-13 odhaczenie pustej serii bierze wynik z „Poprzednio”
+    ○ skipped R1-14 czas od godziny w formacie h:mm:ss
+    ○ skipped R1-15 Apple Health: odmowa zgody nie włącza zapisu
+  runda 1 — ekrany
+    ○ skipped R1-20 − seria na trwającym stoperze zatrzymuje stoper
+    ○ skipped R1-21 po polsku przecinek w polach wstawionych przez apkę
+    ○ skipped R1-22 puste pole w oknie przerwy nie zeruje przerwy
+    ○ skipped R1-23 (runda 75, Q-001): edytor ćwiczenia z masą ciała nie ma już pola udziału masy ciała
+    ○ skipped R1-24 zakończenie z nagłówka wymaga potwierdzenia i ostrzega o nieodhaczonych wynikach
+    ○ skipped R1-25 plakietka z czasem przerwy na zakładce Trening
+    ○ skipped R1-26 wiersz szablonu w wyborze szablonu („Inny trening” → „Z szablonu”) otwiera podgląd, nie start
+  runda 2 — logika
+    ○ skipped R2-01 cel czasu z szablonu wygrywa z czasem z poprzedniej sesji
+    ○ skipped R2-02 czas serii nie przechodzi na następną serię (nie staje się celem stopera)
+    ○ skipped R2-03 +15 po dawno minionej przerwie liczy od teraz
+    ○ skipped R2-04 piramida: puste serie biorą swoją podpowiedź, nie pierwszej serii
+    ○ skipped R2-05 asysta z podpowiedzi przychodzi razem z gumą
+    ○ skipped R2-06 seria bez podpowiedzi („—”) nie jest uzupełniana ostatnią serią
+    ○ skipped R2-07 pusta przerwa w pozycji szablonu = przerwa z ćwiczenia
+    ○ skipped R2-08 start ±kg z szablonu dla masy ciała
+    ○ skipped R2-09 powtórz ostatni odtwarza faktyczny trening (z ćwiczeniem dodanym w trakcie)
+  runda 2 — ekrany
+    ○ skipped R2-20 ostrzeżenie przy zakończeniu nie liczy wartości z podpowiedzi
+    ○ skipped R2-21 numer serii w dostępności i menu = numer na ekranie (po rozgrzewce)
+    ○ skipped R2-22 pusta nazwa ćwiczenia wraca do domyślnej po edycji
+    ○ skipped R2-23 (05.10.2026: poranny wpis usunięty z ekranu) wpis z BB = 0 i samymi godzinami snu zostaje w danych bez zmian
+    ○ skipped R2-24 pole liczbowe pokazuje po edycji wartość zapisaną (po przycięciu)
+    ○ skipped R2-25 zmiana języka przeformatowuje separator w polach
+    ○ skipped R2-26 nietknięty nowy szablon znika po wyjściu
+    ○ skipped R2-27 plakietka po czasie pokazuje nadwyżkę
+  runda 3
+    ○ skipped R3-01 + seria po zmierzonej serii nie przejmuje jej czasu jako celu
+    ○ skipped R3-02 ręczne ±kg: guma z podpowiedzi nie jest dokładana ani przenoszona
+    ○ skipped R3-03 wybrana guma (bez kg) przechodzi na następną serię
+    ○ skipped R3-04 Start w edytorze szablonu wraca do istniejącego ekranu głównego
+    ○ skipped R3-05 skasowana nazwa wraca do poprzedniej; pusty zapisany szablon nie znika
+    ○ skipped R3-06 zakończenie przy trwającym stoperze zapisuje serię na czas
+    ○ skipped R3-07 ekran błędu startu w języku telefonu
+    ○ skipped R3-08 przecinek dziesiętny: godziny snu, RPE, dystans
+    ○ skipped R3-09 szablon bez ćwiczeń nie ma przycisku Start na ekranie głównym
+    ○ skipped R3-10 pola w edytorze szablonu i porannym wpisie mają opis dla VoiceOver
+    ○ skipped R3-11 szablon bez ćwiczeń nie ma „Duplikuj”
+    ○ skipped R3-12 wywołania Live Activity idą po kolei
+  runda 4
+    ○ skipped R4-01 cofnięcie i ponowne odhaczenie nie przenosi podpowiedzi na następną serię
+    ○ skipped R4-02 stoper dłuższy niż godzina wraca po restarcie aplikacji
+    ○ skipped R4-03 reset tworzy dane w języku widocznym po resecie
+    ○ skipped R4-04 czas z poprzedniej sesji nie jest celem stopera w kolejnym treningu
+    ○ skipped R4-05 odhaczenie bez powtórzeń przy zakresie bierze dolną granicę
+    ○ skipped R4-06 postępy pokazują usunięte ćwiczenie z historią
+    ○ skipped R4-07 serie per partia z przecinkiem
+    ○ skipped R4-08 „Zakończ” → „Wróć” nie przerywa trwającej serii na czas
+    ○ skipped R4-09 wyszukanie usuniętego ćwiczenia pozwala je przywrócić
+  runda 5
+    ○ skipped R5-01 cofnięcie odhaczenia czyści podpowiedzi, ale zostawia pole poprawione ręcznie
+    ○ skipped R5-02 stary format „hinted” (lista) po migracji nie psuje odznaczania
+    ○ skipped R5-03 trwająca seria na czas nie jest liczona jako „nie zostanie zapisana”
+    ○ skipped R5-04 trwająca rozgrzewka na czas nie zawyża liczby serii roboczych
+    ○ skipped R5-05 EN: wyszukanie usuniętego ćwiczenia pokazuje tylko „Restore”, bez „Create”
+    ○ skipped R5-06 zmiana partii: automatyczna partia główna jest podmieniana i nie dubluje pomocniczej
+    ○ skipped R5-07 pola na ekranie gum mają opisy dla VoiceOver
+  runda 6
+    ○ skipped R6-01 objętość w lb zaokrąglana po przeliczeniu (1000 lb, nie 1000,9)
+    ○ skipped R6-02 wolniejszy bieg nie jest rekordem „czas”
+    ○ skipped R6-03 ciężar dropu nie przechodzi na serię roboczą i odwrotnie
+    ○ skipped R6-04 (runda 73) dociążenie: rekordem jest e1RM; ta sama suma powtórzeń nie jest rekordem
+    ○ skipped R6-05 przycisk Start w wyborze szablonu jest osobnym elementem (nie w wierszu)
+    ○ skipped R6-06 przełączniki w ustawieniach mają nazwę i stan
+    ○ skipped R6-07 podwójne „Duplikuj” robi jedną kopię
+    ○ skipped R6-08 podwójne „Zakończ” otwiera jedno okno
+    ○ skipped R6-09 picker z filtrem partii: ćwiczenie z grupy dostaje partię, a istniejące nie jest dublowane
+    ○ skipped R6-10 szablon: start ±kg dla ćwiczenia z masą ciała przyjmuje asystę (ujemne)
+    ○ skipped R6-11 wyszukiwanie bez wyników pokazuje tekst (Ćwiczenia i Postępy, ze spacją na końcu)
+    ○ skipped R6-12 sama rozgrzewka: osobne okno z możliwością odrzucenia
+  runda 7
+    ○ skipped R7-01 start z szablonu nie wstawia wagi drop setu do zwykłych serii
+    ○ skipped R7-02 wykres i rekord objętości w Postępach w tym samym formacie co historia
+    ○ skipped R7-03 Apple Health: objętość zaokrąglona, serie bez rozgrzewek
+    ○ skipped R7-04 CSV w jednostce użytkownika (lb)
+    ○ skipped R7-05 import backupu z BOM
+    ○ skipped R7-06 wiersze list: cały wiersz (min. 52 pt, M3) to pole dotyku, „+” w pickerze dodaje ćwiczenie
+    ○ skipped R7-07 Ćwiczenia: wyszukanie usuniętego pozwala je przywrócić, bez „Utwórz”
+    ○ skipped R7-08 okno „brak odhaczonych” i „tylko rozgrzewka” ostrzega o wpisanych, nieodhaczonych seriach
+  runda 8
+    ○ skipped R8-01 wykres tygodniowy i historia: ta sama objętość (jedno zaokrąglenie)
+    ○ skipped R8-02 to samo ćwiczenie dwa razy: drugi blok bierze drugi blok z poprzedniej sesji
+    ○ skipped R8-03 ekran Backup mówi prawdę o jednostce CSV
+    ○ skipped R8-04 EN: przycisk przerwy „This time only”
+    ○ skipped R8-05 ekran główny bez szablonów prowadzi do tworzenia: „Planowanie” → dzień → „+ Nowy szablon”
+  runda 9
+    ○ skipped R9-01 blok z samą rozgrzewką nie przesuwa numeracji bloków
+    ○ skipped R9-02 odhaczenie pustej zwykłej serii nie bierze wartości z dawnego drop setu
+    ○ skipped R9-03 „Zapamiętaj” przerwę zmienia tylko odpowiadającą pozycję szablonu
+    ○ skipped R9-04 podwójne „+ Nowy” tworzy jeden szablon
+    ○ skipped R9-05 ponowny Start w edytorze szablonu nie pokazuje sprzecznego komunikatu
+    ○ skipped R9-06 teksty w wierszu serii mają limit powiększenia
+    ○ skipped R9-07 Start w edytorze otwartym z zakładki Szablony przechodzi do treningu
+  runda 10
+    ○ skipped R10-01 poprzednio: blok samej rozgrzewki + blok roboczy, dziś ćwiczenie raz → podpowiedź z bloku roboczego
+    ○ skipped R10-02 odhaczenie serii czasowej nie wpisuje powtórzeń ani ciężaru
+    ○ skipped R10-03 podwójne „usuń” ćwiczenia w treningu usuwa jedno
+    ○ skipped R10-04 podwójne „✕” w szablonie usuwa jedną pozycję
+    ○ skipped R10-05 „Zapamiętaj” przerwę w bloku dodanym w trakcie nie zmienia szablonu
+  runda 11
+    ○ skipped R11-01 wyłączona asysta gumą: guma nie wraca z historii
+    ○ skipped R11-02 pominięty blok szablonu nie przesuwa podpowiedzi pozostałych
+    ○ skipped R11-03 przerwa wpisana w treningu ma limit 30:00
+    ○ skipped R11-04 podwójne „Usuń sesję” nie wyrzuca z zakładki Historia
+  runda 12
+    ○ skipped R12-01 jedyny pozostały blok bierze swój blok z poprzedniej sesji (po id pozycji szablonu)
+    ○ skipped R12-02 Postępy pompek bez masy ciała otwierają wykres z danymi
+    ○ skipped R12-03 ▶ i guma mówią, której serii dotyczą
+    ○ skipped R12-04 czas serii od godziny w formacie h:mm:ss
+    ○ skipped R12-05 szczegóły sesji bez objętości nie pokazują „0 kg”
+  runda 13
+    ○ skipped R13-01 ćwiczenie usunięte i dodane na nowo do szablonu dalej ma podpowiedzi
+    ○ skipped R13-02 „najlepsza” seria nie jest serią bez powtórzeń
+    ○ skipped R13-03 etykiety osi wykresu mieszczą się w lewym marginesie
+    ○ skipped R13-04 zakładki bez treningu nie przerysowują się przy wpisach w treningu (useHistTick)
+  runda 14
+    ○ skipped R14-01 data z innego roku pokazuje rok, z bieżącego — nie
+  runda 15
+    ○ skipped R15-01 oś wykresu powtórzeń bez ułamków binarnych
+  runda 16
+    ○ skipped R16-01 migracja naprawia pola ćwiczeń i szablonów z ręcznie edytowanego backupu (idempotentnie)
+    ○ skipped R16-02 wykres ze stałą ujemną wartością ma poprawną oś
+    ○ skipped R16-03 usunięta guma nie przechodzi do nowego treningu
+  runda 17
+    ○ skipped R17-01 migracja: limit przerwy 1800 także dla szablonu i ustawień
+    ○ skipped R17-02 migracja: nieistniejące daty poranne odpadają, jeden wpis na dzień
+    ○ skipped R17-03 poziome rzędy chipów przyjmują tapnięcie przy otwartej klawiaturze
+  runda 18
+    ○ skipped R18-01 CSV zachowuje RPE/RIR 0
+    ○ skipped R18-02 ponowny pomiar odhaczonej serii liczy od nowa; po nim nowa przerwa
+  runda 19
+    ○ skipped R19-01 Live Activity: każdy timer kończy tylko swoją, drugi ją przejmuje
+    ○ skipped R19-02 odhaczenie innej serii w trakcie stopera kończy pomiar (bez ukrytej przerwy w tle)
+  runda 20
+    ○ skipped R20-01 restart: stara Live Activity bez właściciela jest kończona
+    ○ skipped R20-02 ponowny pomiar w supersecie przywraca przerwaną przerwę
+  runda 21
+    ○ skipped R21-01 po ponownym pomiarze w supersecie: pełna przerwa rundy, należąca do zmierzonej serii
+    ○ skipped R21-02 CSV: tekst od „=” nie jest formułą, ujemne liczby zostają liczbami
+  runda 22
+    ○ skipped R22-01 przerwa po ponownym pomiarze ma podpis następnej serii
+    ○ skipped R22-02 „Powtórz ostatni” zachowuje cel czasu z szablonu
+  runda 23
+    ○ skipped R23-01 podpis przerwy w supersecie wskazuje pierwsze ćwiczenie następnej rundy; po odznaczeniu — to, co karta „teraz” (audyt 0.10, LIVE-04)
+  runda 26
+    ○ skipped R26-01 remis e1RM (82,5×6 i 90×3) nie jest rekordem
+    ○ skipped R26-02 wpisanie w lb wartości wyświetlanej z historii nie daje fałszywego rekordu
+    ○ skipped R26-03 picker z powtórzonym parametrem target nie wywraca aplikacji
+  runda 27
+    ○ skipped R27-01 funty: ta sama liczba na ekranie = te same kg (także dla wartości z dwoma miejscami)
+    ○ skipped R27-02 migracja przyciąga stare wartości zapisane z funtów, kg zostają
+    ○ skipped R27-03 link prosto do ekranu ze stosu ma drogę powrotu
+    ○ skipped R27-04 nieznany adres wraca na ekran główny (jeden zestaw zakładek, runda 28)
+  runda 28
+    ○ skipped R28-01 stary zapis w lb (np. 11,75 lb) po migracji = to, co zapisuje dziś wpisanie tej wartości
+    ○ skipped R28-02 asysta gumy po migracji = −nominał (symetria dla wartości ujemnych)
+    ○ skipped R28-03 podpowiedzi w treningu w toku migrują razem z wartościami
+  runda 29
+    ○ skipped R29-01 prawdziwe kg z ≤ 3 miejscami nie są przyciągane jak stare funty
+  runda 30
+    ○ skipped R30-01 powrót z tła następnego dnia odświeża ekran główny
+    ○ skipped R30-02 ekran Backup po imporcie pokazuje język i jednostkę danych
+    ○ skipped R30-03 cofnięty zegar nie daje ujemnej przerwy; cel 0 w szablonie = bez celu
+  runda 31
+    ○ skipped R31-01 Historia po powrocie z tła w nowym roku pokazuje rok przy starych sesjach
+  runda 32
+    ○ skipped R32-02 błąd zapisu widoczny w trakcie treningu
+    ○ skipped R32-03 wyszukiwanie bez polskich znaków
+  runda 33
+    ○ skipped R33-02 import backupu usuwa komunikat o nieczytelnych danych
+  runda 34
+    ○ skipped R34-01 spacja na końcu nazwy nie pozwala utworzyć duplikatu w pickerze
+    ○ skipped R34-02 komunikat o nieczytelnych danych przetrwa ponowne uruchomienie (do importu/resetu)
+  runda 35
+    ○ skipped R35-01 druga awaria danych nie zasłania pierwszej kopii
+    ○ skipped R35-02 Start i Duplikuj używają uporządkowanej nazwy szablonu
+    ○ skipped R35-03 komunikat o nieczytelnych danych można ukryć
+  runda 36
+    ○ skipped R36-01 migracja nadaje pustym nazwom domyślną nazwę w języku z ustawień, nie telefonu
+    ○ skipped R36-02 wysłanie kopii nieczytelnych danych: błąd zapisu kończy się komunikatem
+  runda 37
+    ○ skipped R37-01 etykieta Live Activity w języku aplikacji (nie telefonu)
+  runda 39
+    ○ skipped R39-01 nazwy tworzone przez aplikację mieszczą się w limicie 80 znaków
+    ○ skipped R39-02 słownik EN obejmuje wszystkie wartości domenowe
+  runda 40
+    ○ skipped R40-01 ponowne wybranie tego samego sprzętu nie resetuje ustawień
+    ○ skipped R40-02 kopia szablonu nie rozcina emoji
+    ○ skipped R40-03 ćwiczenie usunięte tylko z bieżącego treningu nie zostaje jako „usunięte z historią”
+  runda 41
+    ○ skipped R41-01 migracja usuwa zarchiwizowane ćwiczenia bez żadnego treningu; archived tylko gdy true; partia/sprzęt ze słownika
+    ○ skipped R41-02 „Przywróć” dla ćwiczenia bez historii nie obiecuje historii
+  runda 42
+    ○ skipped R42-01 usunięcie bloku z treningu usuwa od razu skasowane ćwiczenie bez historii
+    ○ skipped R42-02 edytor nie kasuje „nowego” ćwiczenia, które jest w szablonie
+  runda 43
+    ○ skipped R43-01 migracja usuwa z szablonów pozycje z brakującymi/usuniętymi ćwiczeniami
+  runda 45
+    ○ skipped R45-01 guma przechodzi na następną serię razem z asystą (także gdy szablon wpisał ±0)
+  runda 46
+    ○ skipped R46-01 asysta z podpowiedzi (innej gumy) nie trafia do serii ani nie przechodzi dalej
+    ○ skipped R46-02 seria wykonana poprzednio bez gumy nie dostaje gumy z poprzedniej serii
+  runda 47
+    ○ skipped R47-01 wpisana asysta przechodzi, gdy następna seria ma już tę samą gumę bez asysty
+    ○ skipped R47-02 guma z podpowiedzi przechodzi razem ze swoją asystą
+    ○ skipped R47-03 guma zdjęta cyklem do „—” nie wraca z podpowiedzi po odhaczeniu
+    ○ skipped R47-04 guma nie trafia do serii z własnym obciążeniem (np. asysta −10 z szablonu); ±0 zastępuje asystą gumy
+    ○ skipped R47-05 dociążenie +10 bez gumy nadal przechodzi; guma nie przechodzi do serii zdjętej ręcznie
+    ○ skipped R47-06 migracja: noBand tylko true i tylko bez gumy
+  runda 48
+    ○ skipped R48-01 ujemny ciężar startowy z szablonu (po zmianie sprzętu z masy ciała) nie daje ujemnej objętości
+    ○ skipped R48-02 import: wartości serii tylko liczby albo puste, finishedAt liczba ≥ startu
+    ○ skipped R48-03 zmiana gumy na odhaczonej serii i cofnięcie odhaczenia zostawia asystę nowej gumy
+    ○ skipped R48-04 „+ seria” po zdjęciu gumy nie przywraca jej z podpowiedzi
+    ○ skipped R48-05 usunięcie gumy zdejmuje ją z treningu w toku (P-001: ±kg zostaje)
+    ○ skipped R48-06 zdjęcie gumy o nieznanej asyście zabiera jej asystę; asysta podpowiedzi gumy nie trafia do ćwiczenia bez asysty gumą
+    ○ skipped R48-07 druga instancja ekranu treningu nie wywraca się po zakończeniu
+  runda 49
+    ○ skipped R49-01 start z szablonu i „Powtórz ostatni” nie wnoszą asysty gumy do ćwiczenia bez asysty gumą
+    ○ skipped R49-02 asysta usuniętej gumy nie wraca z „Poprzednio” ani z „Powtórz ostatni”
+    ○ skipped R49-03 import: ogromne liczby nie stają się Infinity; RPE ≤ 10, powtórzenia całkowite; migracja idempotentna
+    ○ skipped R49-04 import: podpowiedzi tylko dla pól wartości i w postaci liczb — cofnięcie nie kasuje id/typu
+    ○ skipped R49-05 import: przerwa pozycji szablonu z tekstu; pola stopera śmieciowe → domyślne
+    ○ skipped R49-06 VoiceOver: kontrolki wiersza szablonu i gumy mówią, czego dotyczą; chip wybranego ćwiczenia; nieaktywne moduły
+    ○ skipped R49-07 pusta nazwa wraca do ostatniej zapisanej, nie do tej sprzed otwarcia ekranu
+  runda 50
+    ○ skipped R50-01 podpowiedź na ekranie odświeża się po edycji szablonu w trakcie treningu (ta sama co przy odhaczeniu)
+    ○ skipped R50-02 zmiana gumy o nieznanej asyście na inną o nieznanej zabiera starą asystę; „62,5” z importu to 62,5
+    ○ skipped R50-03 import z obiektem w porannym wpisie nie wywraca aplikacji; BB i sen 0–100 (ekran wpisu usunięty 05.10.2026)
+    ○ skipped R50-04 moduł włączony w imporcie: sekcja modułów schowana (05.10.2026), import nie wywraca ustawień
+    ○ skipped R50-05 usunięcie nieużywanej gumy nie straszy historią ani treningiem
+    ○ skipped R50-06 historia: wiersz serii czytany jako „nagłówek: wartość”
+    ○ skipped R50-07 import: blok z nieprawidłowym exerciseId odpada, liczbowy zamieniony na tekst
+  runda 51
+    ○ skipped R51-01 import z liczbowymi id: historia, szablony i gumy dalej wskazują swoje ćwiczenia
+    ○ skipped R51-02 import: pola szablonu, ustawień i ćwiczeń jak wartości serii (przecinek, tekst, zakresy, nieskończoność)
+    ○ skipped R51-03 import: daty treningów poza zakresem Date odpadają, tekstowa data startu jest czytana; ranna waga 0 = brak
+    ○ skipped R51-04 po zmianie języka litera gumy zgadza się z nazwą na ekranie Gumy
+  runda 52
+    ○ skipped R52-01 wyczyszczony kolor gumy to puste pole (nie „?” doklejany do nowego tekstu)
+    ○ skipped R52-02 import: czas tekstem (liczba i sama data) czytany; createdAt/updatedAt zawsze liczbą; najnowszy wpis poranny wygrywa
+    ○ skipped R52-03 własne ćwiczenie o nazwie z biblioteki zostaje własne po restarcie
+    ○ skipped R52-04 emoji w kolorze gumy: litera to całe emoji; VoiceOver słyszy pełną nazwę
+    ○ skipped R52-05 guma z podpowiedzi dostaje swoją (już znaną) asystę
+    ○ skipped R52-06 import: przerwa serii i czasy stopera w rozsądnych granicach; tylko tekstowe healthUUID
+    ○ skipped R52-07 zakończenie ostrzega o odhaczonych seriach bez czasu lub dystansu
+  runda 53
+    ○ skipped R53-01 mierzona seria na czas nie dostaje ostrzeżenia o braku czasu; mierzony bieg bez dystansu — dostaje
+    ○ skipped R53-02 kolor gumy przycinany (litera na przycisku); stare dane też
+    ○ skipped R53-03 asysta z podpowiedzi nie trafia do ćwiczenia bez ±kg; cofnięcie zdejmuje gumę razem z poprawioną asystą
+    ○ skipped R53-04 przerwa kończąca się dalej niż cała przerwa (uszkodzony zapis) nie wraca po restarcie
+    ○ skipped R53-05 migracja: v i metaUpdatedAt skończone
+  runda 54
+    ○ skipped R54-01 pola liczbowe mają tę samą granicę co wczytanie; ciężar nieujemny — restart nic nie zmienia
+    ○ skipped R54-02 usunięcie gumy nie zabiera ±kg (P-001); pusty ekran gum ma opis
+    ○ skipped R54-03 link do postępów ćwiczenia przy otwartym ekranie postępów pokazuje to ćwiczenie
+    ○ skipped R54-04 guma w ćwiczeniu bez pola ±kg nie zapisuje ukrytej asysty
+  runda 55
+    ○ skipped R55-01 kg z wieloma miejscami po przecinku zostają po restarcie (przyciąganie funtów tylko dla starych danych)
+    ○ skipped R55-02 nazwy jak „toString”/„constructor”/„__proto__” nie trafiają w Object.prototype
+    ○ skipped R55-04 cel stopera ograniczony do doby (jak po wczytaniu); czas/dystans zaokrąglone, pole bez zapisu wykładniczego
+  runda 56
+    ○ skipped R56-01 przejście ze schematu 10 na 11 nie robi z własnego ćwiczenia ćwiczenia z biblioteki
+    ○ skipped R56-02 wartość przycięta do już zapisanej liczby od razu widoczna w polu (RPE 10 → „100”)
+    ○ skipped R56-03 komunikat o backupie z nowszej wersji nie powtarza tytułu
+  runda 57
+    ○ skipped R57-01 stare ułamkowe sekundy/metry zaokrąglane przy wczytaniu (bez rekordu przy tej samej wyświetlanej wartości); poranne ułamki zostają
+    ○ skipped R57-02 pole pokazuje od razu wartość przyciętą do limitu (store.REPS_MAX, audyt 0.10) i zaokrąglone RPE; „0” na początku „0,5” nie znika
+  runda 58
+    ○ skipped R58-01 ciężar × 0 s (seria na czas z ciężarem) nie jest rekordem ciężaru i nie blokuje prawdziwego
+    ○ skipped R58-02 CI uruchamia natywne sprawdzenia (warstwa D)
+    ○ skipped T-051 CI (SDK 54+): buildy na macOS wybierają najnowszy Xcode 26.x; platforma iOS dla buildów na urządzenie; obraz EAS zgodny z SDK
+    ○ skipped T-051 audyt (NISKIE): zakładki z `expo-router/js-tabs` — `Tabs` z głównego `expo-router` jest przestarzałe od routera 57
+  runda 59
+    ○ skipped R59-01 bieg z samym dystansem może być najlepszą serią sesji
+    ○ skipped R59-02 kg wpisane z 3 miejscami to wartość z ekranu (0,01) — bez fałszywego rekordu
+    ○ skipped R59-03 import: zakończony trening trzyma tylko odhaczone serie (lista i statystyki zgodne)
+    ○ skipped R59-04 postępy ćwiczenia jednostronnego: rekordy „na stronę”; w historii VoiceOver mówi typ serii słownie
+  runda 60
+    ○ skipped R60-01 ten sam dystans: seria z czasem wygrywa z serią bez czasu
+    ○ skipped R60-02 import: kg na siatce 0,01 (bez rekordu przy tej samej liczbie); puste sesje odpadają
+    ○ skipped R60-03 pole kg nie zmienia tekstu w trakcie „62,555”
+    ○ skipped R60-04 npm run verify bez /dev/null i /tmp (Windows)
+  runda 61
+    ○ skipped R61-01 kg z importu: połówki od zera (asysta lustrzana); 0,004 kg masy ciała to brak wpisu od razu
+    ○ skipped R61-02 wykres „max ±” pokazuje sesję bez asysty (0) — dzień bez gumy
+  runda 62
+    ○ skipped R62-01 sesja bez wykonanej serii nie daje punktu 0 na wykresie „max ±”
+    ○ skipped R62-02 stoper bez celu zapisuje najwyżej dobę (jak pole i wczytanie)
+  runda 63
+    ○ skipped R63-01 przycisk numeru serii mówi, którego ćwiczenia dotyczy; szablon: „start kg/hantel”, serie do 50
+  runda 65
+    ○ skipped R65-01 ćwiczenie z masą ciała: objętość i e1RM z samego dociążenia (runda 75: masa ciała poza obliczeniami)
+    ○ skipped R65-02 wyłączona asysta gumą: „+ seria” i odhaczenie nie przenoszą ukrytej gumy ani jej asysty
+  runda 66
+    ○ skipped R66-02 ukryta guma (asysta gumą wyłączona) nie blokuje +kg z podpowiedzi ani z poprzedniej serii
+    ○ skipped R66-03 zmiana dźwięku w trakcie przerwy przeplanowuje powiadomienie
+    ○ skipped R66-04 dwa bloki tego samego ćwiczenia rozróżnialne dla VoiceOver
+  runda 67
+    ○ skipped R67-02 przerwa po czasie: zmiana dźwięku nie planuje drugiego powiadomienia
+    ○ skipped R67-03 dwie pozycje szablonu z tym samym ćwiczeniem rozróżnialne dla VoiceOver
+    ○ skipped R67-04 koniec przerwy kończy Live Activity także poza zakładką Trening
+  runda 69
+    ○ skipped R69-01 zmiana serii w treningu zapisuje tylko mały klucz „live”; restart odtwarza trening z „live”
+    ○ skipped R69-02 „live” starsze niż pełny stan albo uszkodzone — ignorowane
+    ○ skipped R69-03 ćwiczenie zmienione w trakcie treningu trafia do pełnego zapisu
+    ○ skipped R69-04 historia z 300 sesjami: lista renderuje się porcjami
+  runda 69 — porzucony trening
+    ○ skipped R69-05 po 6 h bez aktywności trening zapisuje się sam; koniec = ostatnia odhaczona seria
+    ○ skipped R69-06 bez odhaczonych serii roboczych nic się nie zapisuje samo; pytanie po 2 h, „Kontynuuj” odsuwa je o kolejne 2 h
+    ○ skipped R69-07 ekran pyta o porzucony trening i „Zakończ i zapisz” kończy z godziną ostatniej serii
+    ○ skipped R69-08 migracja: staleAck tylko w treningu w toku
+  runda 68 (testy dopisane)
+    ○ skipped R68-02 tytuły ekranów to nagłówki dla VoiceOver
+    ○ skipped R68-03 stoper z celem po czasie kończy Live Activity także bez ekranu treningu
+  runda 70 (audyt tematyczny T1/T2)
+    ○ skipped R70-01 cofnięty zegar nie gubi treningu w toku (licznik zapisów zamiast godziny)
+    ○ skipped R70-02 awaria między zapisem stanu a „live” nie wskrzesza zakończonego treningu
+    ○ skipped R70-03 nieczytelny stan: kopia do wysłania zawiera też trening w toku z „live”
+    ○ skipped R70-04 trwający stoper serii to aktywność; koniec po czasie nie wcześniej niż ostatnia seria
+    ○ skipped R70-05 przypomnienie po „Kontynuuj” podaje godzinę ostatniej serii
+    ○ skipped R70-06 oś wykresu: w lb etykiety się nie powtarzają, objętość bez powtórzeń, powtórzenia na całkowitych
+  runda 71 (audyt tematyczny T1b/T3)
+    ○ skipped R71-01 zapis timera w trakcie nieudanego pełnego zapisu nie gubi zakończonego treningu i nie gasi banera
+    ○ skipped R71-02 po nieczytelnym stanie stary „live” nie wraca przy kolejnym starcie
+    ○ skipped R71-03 przypomnienie liczone od startu trwającego stopera serii (jak pytanie)
+    ○ skipped R71-04 pytanie bez serii roboczych: inna treść, bez „Zakończ i zapisz”; rozgrzewka ma własny wariant; przypomnienie też
+    ○ skipped R71-05 „Odrzuć” → „Wróć” wraca do pytania; przyciski nie działają na innym treningu
+    ○ skipped R71-06 oś: objętość tylko całkowite kroki, czas kroki zegarowe
+    ○ skipped R71-07 szablon: krótka etykieta ciężaru startowego, pełna dla VoiceOver
+  runda 73 — rekord = suma na treningu + e1RM (decyzja 01.10)
+    ○ skipped R73-01 objętość treningu: odznaka przy serii, która przebiła poprzednią sumę, raz na trening
+    ○ skipped R73-02 to samo ćwiczenie w dwóch blokach — suma liczona łącznie
+    ○ skipped R73-03 e1RM tylko z serii do 10 powtórzeń (standard dla wzorów szacujących 1RM)
+    ○ skipped R73-04 ćwiczenie na czas: łączny czas; na powtórzenia: suma powtórzeń; bieg: łączny dystans
+    ○ skipped R73-05 karta rekordów: pierwszy wiersz to najlepszy trening, drugi e1RM
+  verify 09.10.2026 (migrate-idem, ziarno 994171374): pauza krótsza niż 1 ms po zaokrągleniu
+    ○ skipped cleanPauses zaokrągla przed odrzuceniem pustych — wynik stały przy ponownym czyszczeniu (migracja idempotentna)
+  B1 (build 1004; zmienione 11.10.2026): stała zachęta do planu (bez „Ukryj”), pasek tygodnia bez dat
+    ○ skipped 11.10.2026: zachęta do planu = stały nagłówek „Bez planu tygodnia · Ustaw plan”; bez „Ukryj”, tekstu zachęty i przełącznika w Ustawieniach
+    ○ skipped z planem tygodnia nagłówek karty „Dziś” prowadzi do planu przyciskiem „Planowanie”
+    ○ skipped pasek tygodnia pokazuje numer dnia pod skrótem (pl)
+    ○ skipped pasek tygodnia pokazuje numer dnia pod skrótem (en)
+  bloker audytu 0.13 #1 (12.10.2026): import CSV zapisuje ciężar ćwiczeń z masą ciała w addKg, nie w weight
+    ○ skipped (a) formatA: Pull Up 0×10 i +20×5, Push Up 0×20 — rekordy jak dla treningu wpisanego ręcznie
+    ○ skipped (b)+(c) eksport CSV → import do świeżego stanu: rekordy identyczne, asysta (ujemny) zachowuje znak
+  Q-004 (0.14.0): zmiana języka w trakcie przerwy/stopera odświeża Live Activity, podpis i przypomnienie o porzuconym treningu
+    ○ skipped przerwa: Live Activity startuje od nowa po angielsku (etykieta „rest|Rest”, podpis „next: …”), T.sub w nowym języku
+    ○ skipped przypomnienie o porzuconym treningu jest przeplanowane w nowym języku także bez zamontowanego ekranu treningu
+    ○ skipped stoper z celem: Live Activity serii od nowa po angielsku
+  Q-013 (0.14.0): stoper bez celu, zamknięty razem z aplikacją, liczy się jako aktywność (nie ma cichego zapisu po 6 h od ostatniej serii)
+    ○ skipped stoper bez celu sprzed 3 h, ostatnia seria sprzed 6,5 h: po starcie aplikacji trening NIE zapisuje się po cichu (pytanie), seria stopera nieodhaczona
+    ○ skipped bez stopera trening sprzed 6,5 h nadal zapisuje się po cichu; stoper starszy niż 6 h nie wstrzymuje zapisu
+    ○ skipped stoper bez celu z wpisanym czasem: seria się odhacza (Q-002) i też liczy jako aktywność
+  Q-013 (audyt 0.14.0, NISKIE): zimny start ze stoperem bez celu nie kasuje pauzy treningu
+    ○ skipped pauza po starcie stopera przetrwa zimny start; znacznik aktywności (staleAck) i tak się przesuwa
+  Q-014 (0.14.0): rotacja kopii automatycznych wg czasu zapisu pliku, nie czasu lokalnego z nazwy (zmiana strefy / DST)
+    ○ skipped najświeższa kopia z „wcześniejszą” nazwą zostaje, kasowana jest najstarsza wg czasu zapisu
+    ○ skipped bez czasu zapisu (platforma go nie podaje) zostaje kolejność z nazw
+  Q-016 (0.14.0): dwa bloki tego samego ćwiczenia spoza szablonu — „Poprzednio” idzie za blokiem po zmianie kolejności
+    ○ skipped zamiana kolejności bloków: każdy blok zachowuje swoje „Poprzednio”; powrót do pierwotnej kolejności czyści znacznik
+    ○ skipped przesunięcie obcego ćwiczenia nie ruszy „Poprzednio”; kolejne zamiany (A, potem B) są spójne
+    ○ skipped zakończony trening nie niesie znacznika (tylko trening w toku)
+  audyt 0.13 ŚREDNIE (0.14.0): import bez godzin i czasu — historia nie udaje godziny 12:00 ani czasu trwania (serie × 90 s)
+    ○ skipped formatB: sesja bez czasu (koniec = start), czas trwania 0, nie wlicza się do sum czasu; formatA z czasem trwania bez zmian
+    ○ skipped formatA z godziną, ale bez czasu trwania: też bez szacunku (koniec = start)
+    ○ skipped formatA z godziną, bez Duration: godzina zostaje w Historii i w eksporcie; ponowny import zachowuje godzinę (także z „0m”)
+    ○ skipped sesja z końcem = start o godzinie innej niż 12:00 (cofnięty zegar) zachowuje godzinę; o 12:00:00 — nadal „godzina nieznana” (import samej daty)
+    ○ skipped Historia i szczegóły sesji: „godzina nieznana” zamiast 12:00 i czasu; sesja z godziną — jak dotąd
+    ○ skipped eksport CSV: sesja bez czasu — sama data i puste Duration; ponowny import zachowuje „bez czasu”
+  audyt 0.13 NISKIE (0.14.0): Postępy zachowują wybrane ćwiczenie, szukanie i przewinięcie po powrocie z ekranu stosu
+    ○ skipped wybrane ćwiczenie i przewinięcie listy sesji przeżywają wejście na ekran stosu i powrót (ZM-06: ćwiczenie z danymi jest wybrane od razu, chip „✕” zniknął)
+    ○ skipped wpisana nazwa w szukajce ćwiczeń przeżywa wejście na ekran stosu i powrót
+  Q-026 (0.14.0): edytor historii oznacza ciężar zapisany pod innym sprzętem
+    ○ skipped seria z wartością spod innego sprzętu ma dopisek; seria pusta i ćwiczenie z własnym sprzętem — nie
+    ○ skipped wpisanie ciężaru w polu przenosi go do obecnego sprzętu i dopisek znika
+  TestFlight 0.18/1015 (14.10.2026, WYSOKI): „Nie udało się włączyć Apple Health” — build bez uprawnienia HealthKit
+    ○ skipped wyjątek z requestAuthorization (brak uprawnienia w podpisie) = „failed”, a nie „ok”
+    ○ skipped aplikacja wymaga HealthKit w obu celach (telefon i zegarek) i strażnik .ipa sprawdza dokładnie te cele
+  Ekran blokady w przerwie: język aplikacji, nie systemu (26.10.2026, realny, rzadki)
+    ○ skipped telefon po polsku + aplikacja po angielsku: start Live Activity niesie „en”, a zmiana języka przy trwającej przerwie odświeża ją
+  M1-audytor-generalny-020 (06-tresci-004, DEC-04 a, 27.10.2026): RIR 6 → RPE 5, „lekko” od RIR 7
+    ✓ wpis RIR 6 zapisuje RPE 5; RIR powyżej 6 — „lekko” (RPE 4, pokazywane „7+”); RIR 0–5 bez zmian (56 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       320 skipped, 1 passed, 321 total
+Snapshots:   0 total
+Time:        4.926 s
+Ran all test suites matching /tests\/regress.test.tsx/i with tests matching "M1-audytor-generalny-020".
+kod wyjścia: 0

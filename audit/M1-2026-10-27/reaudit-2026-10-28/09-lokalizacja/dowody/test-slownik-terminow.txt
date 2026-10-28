@@ -1,0 +1,22 @@
+$ npx jest tests/slownik-terminow.test.ts --maxWorkers=1 (HEAD 2385e75)
+    ✓ słownik UI nie używa terminów zakazanych dla pojęć obecnych w polskim tekście (6 ms)
+    ✓ wskazówki techniki nie używają terminów zakazanych (2 ms)
+  słownik terminów: teksty języka ru
+    ✓ słownik UI nie używa terminów zakazanych dla pojęć obecnych w polskim tekście (7 ms)
+    ✓ wskazówki techniki nie używają terminów zakazanych (3 ms)
+  słownik terminów: teksty języka ja
+    ✓ słownik UI nie używa terminów zakazanych dla pojęć obecnych w polskim tekście (8 ms)
+    ✓ wskazówki techniki nie używają terminów zakazanych (3 ms)
+  słownik terminów: teksty języka ko
+    ✓ słownik UI nie używa terminów zakazanych dla pojęć obecnych w polskim tekście (9 ms)
+    ✓ wskazówki techniki nie używają terminów zakazanych (3 ms)
+  słownik terminów: teksty języka zh-Hant
+    ✓ słownik UI nie używa terminów zakazanych dla pojęć obecnych w polskim tekście (6 ms)
+    ✓ wskazówki techniki nie używają terminów zakazanych (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       109 passed, 109 total
+Snapshots:   0 total
+Time:        2.765 s
+Ran all test suites matching /tests\/slownik-terminow.test.ts/i.
+kod wyjścia: 0

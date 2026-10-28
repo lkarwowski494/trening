@@ -1,0 +1,6 @@
+Komenda: gh run list --workflow store-screenshots.yml -L 3 (odczyt, 28.10.2026)
+[{"conclusion":"cancelled","createdAt":"2026-10-27T11:52:24Z","headSha":"4b7d27faba3ff2963072e82e9029e0c57d02a5c4","status":"completed"},{"conclusion":"cancelled","createdAt":"2026-10-27T11:15:26Z","headSha":"4b4b7ff6c3f533757a53b3c9a9a4f3b409f67490","status":"completed"},{"conclusion":"success","createdAt":"2026-10-27T10:16:25Z","headSha":"e61683b5c0d9acfd22185340852d73edbee58490","status":"completed"}]
+kod 0
+Komenda: gh run list --workflow asc-zrzuty.yml -L 3
+[{"conclusion":"success","createdAt":"2026-10-27T11:46:37Z","headSha":"4b4b7ff6c3f533757a53b3c9a9a4f3b409f67490","status":"completed"},{"conclusion":"success","createdAt":"2026-10-26T00:46:02Z","headSha":"f6acd5116747168f8b0c57126c7abf8430f33415","status":"completed"}]
+kod 0

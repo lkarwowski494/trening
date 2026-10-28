@@ -1,0 +1,25 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/pochodne.test.ts
+  check:pochodne — lista kroków (decyzja 8a, 28.10.2026)
+    ✓ skrypt npm check:pochodne wskazuje scripts/pochodne.mjs (6 ms)
+    ✓ zawiera wszystkie generatory w trybie --check, wektory BRD, _source.json, zegarek/widżet i strażniki tekstowe (45 ms)
+    ✓ strażnik tekstowy tests/interaction-guards.test.ts istnieje i jest na liście (1 ms)
+    ✓ strażnik tekstowy tests/public-repo.test.ts istnieje i jest na liście (1 ms)
+    ✓ strażnik tekstowy tests/architecture-limits.test.ts istnieje i jest na liście (1 ms)
+    ✓ strażnik tekstowy tests/przeplywy.test.ts istnieje i jest na liście (1 ms)
+    ✓ strażnik tekstowy tests/maestro-tap-tekst-guard.test.ts istnieje i jest na liście
+    ✓ strażnik tekstowy tests/m3-token-guard.test.ts istnieje i jest na liście (1 ms)
+    ✓ nie wchodzi lint, typecheck ani pełny jest (to robi verify) (1 ms)
+  check:pochodne — działanie na krokach wstrzykniętych
+    ✓ wszystkie kroki zielone: kod 0, komunikat „zielone” (67 ms)
+    ✓ nieaktualny plik pochodny: kod 1, nazwa kroku i „Jak naprawić” po polsku; pozostałe kroki nadal biegną (81 ms)
+    ✓ wynik błędnego kroku (stdout/stderr) jest pokazany (67 ms)
+    ✓ wektory BRD na prawdziwym repo: zielone (114 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       13 passed, 13 total
+Snapshots:   0 total
+Time:        1.936 s
+Ran all test suites matching /tests\/pochodne.test.ts/i.
+kod 0

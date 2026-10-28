@@ -1,0 +1,5 @@
+$ git diff --stat 025a50b..2385e75 -- lib/state/crashguard.ts lib/state/bootphase.ts lib/state/db.ts lib/state/core.ts lib/state/migrate.ts package.json app.json .github/workflows ios/PrivacyInfo.xcprivacy eas.json
+ .github/workflows/e2e-ios.yml | 9 +++++++++
+ package.json                  | 4 +++-
+ 2 files changed, 12 insertions(+), 1 deletion(-)
+kod wyjścia: 0

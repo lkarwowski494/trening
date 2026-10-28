@@ -1,0 +1,16 @@
+== git show 025a50b:store/screenshot-captions.json | grep szablony
+22:      "szablony": "Gotowe szablony albo własne",
+33:      "szablony": "Ready-made templates or your own",
+== 2385e75 store/screenshot-captions.json (liczba języków z podpisem „szablony”)
+29
+49:      "szablony": "Gotowe szablony albo własne",
+60:      "szablony": "Ready-made templates or your own",
+71:      "szablony": "Hotové šablony, nebo vlastní",
+== lib/seed.ts (stan startowy)
+316:/** Stan startowy: biblioteka ćwiczeń i gumy, BEZ szablonów (decyzja właściciela 03.10.2026, 08:11: „Nie prze
+325:    templates: [], workouts: [], active: null, mornings: [], relations: [], feedback: [], instructions: [], timer: b
+== opis sklepu PL/EN (fragment)
+Własne szablony treningów, porządkowane w folderach i archiwum
+Your own workout templates, organized in folders and an archive
+Your own workout templates, organised in folders and an archive
+kod 0

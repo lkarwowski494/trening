@@ -1,0 +1,7 @@
+$ npm run check:i18n
+
+> trening@1.0.0 check:i18n
+> node scripts/check-i18n.mjs
+
+i18n: 1446 tekstów w kodzie, 1542 w słowniku EN
+kod wyjścia: 0

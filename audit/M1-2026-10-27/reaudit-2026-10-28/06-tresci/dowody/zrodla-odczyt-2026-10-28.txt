@@ -1,0 +1,20 @@
+Odczyt 2026-10-28: curl https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4961270/fullTextXML (kod 0), tekst bez znaczników, grep:
+to 4. In addition, scores of 5–6 were grouped as 4–6 RIR as it is easier for athletes to give a range of RIR when RIR is greater than 3. Zourdos et al. also found sub
+ffort for values below 5 (1–2 RPE = “little to no effort,” 3–4 RPE = “light effort”), it could be used to determine if h
+Odczyt 2026-10-28:
+SBS How to Squat: HTTP 200, grep:
+generally means having your toes pointed out 15-20 degrees – not straight ahead, but not turned out a ton
+NSCA Basics PDF: HTTP 403 (curl, UA przeglądarki); web.archive.org: połączenie zerwane przez proxy (kod curl 35) — drugie źródło T-054 nieotwarte
+Odczyt 2026-10-28 (próbka źródeł wskazowki-ogolne.json, ziarno sha256 „06-tresci-reaudit-2026-10-28”, bajty 0–2 mod 52):
+hab.hips — NHS strength exercises: HTTP 200, grep:
+keeping your back and hips straight.
+wr.forearms — ISSA: HTTP 200, grep:
+Do not lift your wrists or forearms off your legs.
+wr.forearms, hab.hips — źródła ACE (acefitness.org) i oly.mis (nsca.com, acefitness.org) nieotwierane: domeny zwracały 403 w audycie 27.10 i w fix; nie powtarzano
+Próbka regresji (odczyt 2026-10-28):
+T-015 van den Tillaar i Ball 2020, PMC7386139 (Europe PMC fullTextXML, curl kod 0):
+This made the relative load from 62.6 to 65.1% of body mass
+T-021 Bell i in. 2023, PMC10511399 (curl kod 0):
+Deloading is generally undertaken every 4–6 weeks (w oryginale spacja niełamliwa przed „weeks”; python str.find, trafienie)
+
+store/review-notes.md:38 — trafienie „who” to angielskie słowo (fałszywe), nie nazwa organizacji

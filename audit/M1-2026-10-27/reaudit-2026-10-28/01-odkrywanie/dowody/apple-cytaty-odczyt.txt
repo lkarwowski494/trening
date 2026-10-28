@@ -1,0 +1,7 @@
+Odczyt 2026-10-28: curl -sS --compressed https://developer.apple.com/app-store/review/guidelines/ (HTTP 200); tekst bez znaczników, apostrofy znormalizowane; grep dosłowny cytatów S-18, S-19, S-20, S-23 z docs/brd/zrodla.md
+Last Updated: October 16, 2026
+OK  should not be able to inadvertently subscribe to multiple variations of the same thing
+OK  you should make sure you have a restore mechanism for any restorable in-app purchases
+OK  may not store personal health information in iCloud
+OK  Before asking a customer to subscribe, you should clearly describe what the user will get for the price
+9b538e5a0bd95290

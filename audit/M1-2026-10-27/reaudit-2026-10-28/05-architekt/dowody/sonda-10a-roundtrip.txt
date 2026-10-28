@@ -1,0 +1,71 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+  console.log
+    ru kg: csv wiersze=2 weightUnit=null sesje=1 kopia.unit=kg workouts identyczne
+
+      at Object.log (tests/zz-sonda-05arch-10a.test.ts:27:13)
+
+  console.log
+    ru lb: csv wiersze=2 weightUnit=kg sesje=1 kopia.unit=lb workouts identyczne
+
+      at Object.log (tests/zz-sonda-05arch-10a.test.ts:27:13)
+
+  console.log
+    uk kg: csv wiersze=2 weightUnit=null sesje=1 kopia.unit=kg workouts identyczne
+
+      at Object.log (tests/zz-sonda-05arch-10a.test.ts:27:13)
+
+  console.log
+    uk lb: csv wiersze=2 weightUnit=kg sesje=1 kopia.unit=lb workouts identyczne
+
+      at Object.log (tests/zz-sonda-05arch-10a.test.ts:27:13)
+
+  console.log
+    el kg: csv wiersze=2 weightUnit=null sesje=1 kopia.unit=kg workouts identyczne
+
+      at Object.log (tests/zz-sonda-05arch-10a.test.ts:27:13)
+
+  console.log
+    el lb: csv wiersze=2 weightUnit=kg sesje=1 kopia.unit=lb workouts identyczne
+
+      at Object.log (tests/zz-sonda-05arch-10a.test.ts:27:13)
+
+  console.log
+    sr kg: csv wiersze=2 weightUnit=null sesje=1 kopia.unit=kg workouts identyczne
+
+      at Object.log (tests/zz-sonda-05arch-10a.test.ts:27:13)
+
+  console.log
+    sr lb: csv wiersze=2 weightUnit=kg sesje=1 kopia.unit=lb workouts identyczne
+
+      at Object.log (tests/zz-sonda-05arch-10a.test.ts:27:13)
+
+  console.log
+    bg kg: csv wiersze=2 weightUnit=null sesje=1 kopia.unit=kg workouts identyczne
+
+      at Object.log (tests/zz-sonda-05arch-10a.test.ts:27:13)
+
+  console.log
+    bg lb: csv wiersze=2 weightUnit=kg sesje=1 kopia.unit=lb workouts identyczne
+
+      at Object.log (tests/zz-sonda-05arch-10a.test.ts:27:13)
+
+PASS iOS tests/zz-sonda-05arch-10a.test.ts
+  sonda 10a
+    ✓ ru kg (102 ms)
+    ✓ ru lb (34 ms)
+    ✓ uk kg (33 ms)
+    ✓ uk lb (30 ms)
+    ✓ el kg (77 ms)
+    ✓ el lb (22 ms)
+    ✓ sr kg (26 ms)
+    ✓ sr lb (31 ms)
+    ✓ bg kg (25 ms)
+    ✓ bg lb (26 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        2.478 s
+Ran all test suites matching /tests\/zz-sonda-05arch-10a.test.ts/i.
+kod 0

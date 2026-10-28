@@ -1,0 +1,57 @@
+HEAD: 2385e75aeb3880c0c90ba5edd69145a1c6d80b01
+
+== M1-006 / 09-lokalizacja-001 (R-010)
+$ grep -n "^| R-010 |" docs/40-lekcje.md | cut -c1-80; grep -c "28.10" w tym wierszu
+22:| R-010 | M1-049: treść krytyczna (zdanie medyczne, asekuracja, zdania wska
+0
+otwarte (20.10.2026)
+$ grep -n "R-010" docs/16-jezyki-i-marka.md docs/18-przekazanie.md (wybrane)
+357:- R-010: przegląd modelem wykonany i poprawki naniesione; wpis „drugi przegląd” w tabeli i w docs/40 nie zmienia się (nadal przegląd przez native speakerów jest otwarty).
+368:- R-010: przegląd modelem wykonany i poprawki naniesione; status wpisu „drugi przegląd” bez zmian (przegląd przez native speakerów nadal otwarty).
+374:*Otwarte (do native speakerów; nie zgadujemy):* lista wpisów z pewnością „niska” w `docs/lokalizacja/slownik-terminow.md` (sekcja „Do potwierdzenia przez native speakera”); przegląd native speakerów nadal niewykonany dla żadnego języka (R-010).
+339:- 20.10.2026 (właściciel, K-P4-2): drugi przegląd treści krytycznej w 34 językach (R-010) robi **wyłącznie Claude (rola tłumacz, potem badacz dla tr
+404:- 21.10.2026 (właściciel): **R-010 (treść krytyczna w 34 językach) zamyka przegląd wykonany przez Claude** — w kroku przeglądu tłumaczeń po redes
+610:- 28.10.2026 rano (właściciel, odpowiedź na raport poranny napraw M2: „1a 2a 3a 4a 5a 6a 7a 8a 9a 10a 11a 12 b potem ponowny audyt w nowej sesji”): (
+$ ls docs/lokalizacja | grep raport-api
+raport-api-2026-10-22
+GitHub (odczyt MCP 28.10.2026): przebieg 40642059904 head_sha 98aa4a2c61f31ce7cbc2d54d8bf54e0eb897e70d, conclusion success; artefakt raport-tlumaczen (64497 B) expires_at 2026-11-04T06:13:01Z
+$ git merge-base --is-ancestor 98aa4a2 2385e75
+kod: 0
+
+== M1-019 / 003
+lib/locales/uk.json:321: "dziś w planie · {n} ćw.": "сьогодні в плані · {n} впр.",
+lib/locales/uk.json:659: "następny po: {name} · {n} ćw.": "наступне після: {name} · {n} впр.",
+lib/locales/uk.json:1338: "w planie na: {day} · {n} ćw.": "у плані на: {day} · {n} впр.",
+lib/locales/sl.json:321: "dziś w planie · {n} ćw.": "danes v načrtu · {n} vaj.",
+lib/locales/sl.json:659: "następny po: {name} · {n} ćw.": "naslednji po: {name} · {n} vaj.",
+lib/locales/sl.json:1338: "w planie na: {day} · {n} ćw.": "v načrtu za: {day} · {n} vaj.",
+
+== M1-030 / 008
+74:              {prs.get(s.id) ? <Muted style={{ ...font('footnote'), color: th.band, ...FW.semibold }}>{t('Rekord: {list}', { list: prs.get(s.id)!.map(k => t(k)).join(', ') })}</Muted> : null}
+0
+
+== M1-031 / 005
+20:export const unitName = (u: Unit): string => bare(u === 'lb' ? t('{n} lb') : t('{n} kg'));
+96:const withLabel = (n: string): string => unit === 'lb' ? t('{n} lb', { n }) : t('{n} kg', { n });
+ru:1724: "{n} kg": "{n} кг",
+uk:1724: "{n} kg": "{n} кг",
+bg:1724: "{n} kg": "{n} кг",
+sr:1724: "{n} kg": "{n} кг",
+el:1724: "{n} kg": "{n} κιλά",
+
+== M1-031 / 006
+$ grep -c -E "\\b(Введи|Вибери|Обери|додаси|твоїм|твій|твоя)\\b" lib/locales/uk.json
+0
+
+== M1-031 / 007
+PL_ONLY trafień: 0
+
+== M1-011 / 004
+GitHub (MCP): e2e-ios 40624070610 head 4c73243, success
+4c73243 przodek 2385e75: kod 0
+191:| US-21 | **Duży tekst dostępności: ekran Trening bez
+37:export const GLYPH_SCALE_MAX = 1.4;
+
+== M1-007 / 002
+35:| R-WAL | Waluta na ekranie zakupu (build 1031, 27.10.202
+119:| Z-36 | Po wydaniu, pierwszy dzień: ekran zakupu w wer

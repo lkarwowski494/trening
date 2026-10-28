@@ -1,0 +1,11 @@
+$ npx jest tests/privacy-manifest.test.ts tests/store-asc-odpowiedzi.test.ts tests/store-review-notes.test.ts tests/store-metadata.test.ts tests/store-urls.test.ts tests/audit-m1-013-privacy.test.ts --maxWorkers=1 (worktree 2385e75)
+PASS iOS tests/store-review-notes.test.ts
+PASS iOS tests/privacy-manifest.test.ts
+PASS iOS tests/store-metadata.test.ts
+PASS iOS tests/audit-m1-013-privacy.test.ts
+PASS iOS tests/store-asc-odpowiedzi.test.ts
+PASS iOS tests/store-urls.test.ts
+Tests:       37 passed, 37 total
+kod 0
+git diff --stat 025a50b..2385e75 -- app.json store/app-store-metadata.json store/app-store-names.json store/asc-odpowiedzi.json store/review-notes.md:
+(puste = bez zmian)

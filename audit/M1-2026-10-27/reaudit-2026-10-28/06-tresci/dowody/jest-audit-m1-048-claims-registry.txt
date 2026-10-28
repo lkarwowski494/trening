@@ -1,0 +1,29 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-048-claims-registry.test.ts
+  kontrola rejestru twierdzeń (dane sztuczne)
+    ✓ zgodny rejestr: brak błędów (144 ms)
+    ✓ tekst dziedzinowy bez ID w rejestrze → błąd (42 ms)
+    ✓ tekst bez znaczników dziedzinowych i krótkie etykiety nie wymagają wpisu (134 ms)
+    ✓ zmiana polskiego brzmienia bez ponownego przeglądu (skrót różny) → błąd (178 ms)
+    ✓ zmiana angielskiego brzmienia (skrót różny) → błąd (262 ms)
+    ✓ wpis bez tekstu w słowniku → błąd (249 ms)
+    ✓ dokument albo fraza nie istnieje → błąd; brak dokumentu wymaga uwagi „[OTWARTE” (639 ms)
+    ✓ cytat autora „Nazwisko i in. RRRR” bez innych znaczników też wymaga wpisu (przegląd badacza 21.10.2026: tekst z Helms i in. 2016 był poza kontrolą) (60 ms)
+    ✓ powtórzone ID i nieznany rodzaj → błąd (301 ms)
+  M1-audytor-generalny-021 (27.10.2026): strażnik rozpoznaje teksty dziedzinowe bez nazw źródeł i oznaczeń wagi
+    ✓ nowy tekst dziedzinowy bez źródła i bez oznaczenia wagi, bez wpisu → błąd (49 ms)
+    ✓ tekst z jawnej listy kluczy dziedzinowych (krótki, np. tempo faz animacji) bez wpisu → błąd (40 ms)
+    ✓ kandydat bez twierdzenia: wpis w „bezTwierdzenia” z powodem przechodzi; bez powodu albo bez tekstu w słowniku → błąd (192 ms)
+    ✓ wpis twierdzenia z kotwicą równą całemu krótkiemu kluczowi jest dozwolony (143 ms)
+  rejestr twierdzeń: prawdziwy słownik i verify
+    ✓ npm run check:claims przechodzi (kod 0): każdy tekst dziedzinowy ma wpis, skróty zgodne, dokumenty istnieją (529 ms)
+    ✓ rejestr ma wpisy ze wszystkimi rodzajami wagi z tekstów (uproszczenie, konwencja, jedno źródło, źródło cytowane) (1 ms)
+    ✓ verify (package.json) wywołuje check:claims; CLAUDE.md ma regułę rejestru (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       16 passed, 16 total
+Snapshots:   0 total
+Time:        4.645 s
+Ran all test suites matching /tests\/audit-m1-048-claims-registry.test.ts/i.
+kod wyjścia: 0

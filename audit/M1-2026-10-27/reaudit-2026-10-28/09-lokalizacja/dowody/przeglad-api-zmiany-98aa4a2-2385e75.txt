@@ -1,0 +1,490 @@
+lib/cues/text/bg.json | hinge.back
+  - Гърбът изправен (в неутрално положение) през цялото движение — без извиване на гръбнака напред.
+  + Гърбът изправен (в неутрално положение) през цялото движение — без изгърбване.
+lib/cues/text/bg.json | mis.roundBack
+  - Изгърбване на гърба, за да вдигнеш тежестта.
+  + Изгърбване, за да довършиш вдигането.
+lib/cues/text/cs.json | calf.edge
+  - Postav přední část chodidel na hranu, paty volně dolů.
+  + Postav přední část chodidel na vyvýšení, paty přes okraj.
+lib/cues/text/da.json | burpee.down
+  - Sæt hænderne i gulvet fra en hugsiddende stilling, og hop fødderne tilbage i en push-up-position.
+  + Sæt hænderne i gulvet fra en hugsiddende stilling, og hop fødderne tilbage til armstrækningsposition.
+lib/cues/text/da.json | db.move
+  - Sænk modsatte arm og ben langsomt mod gulvet uden at lægge dem; vend tilbage, og skift side.
+  + Sænk modsatte arm og ben langsomt mod gulvet uden at lægge dem ned; vend tilbage, og skift side.
+lib/cues/text/da.json | erg.drive
+  - Tagets arbejde: først benene, så læner overkroppen sig bagud, og til sidst trækker armene.
+  + Trækket: først benene, så læner overkroppen sig bagud, og til sidst trækker armene.
+lib/cues/text/da.json | nordic.catch
+  - Når du ikke kan bremse mere, så støt dig med hænderne som i en push-up.
+  + Når du ikke kan bremse mere, så støt dig med hænderne som i en armstrækning.
+lib/cues/text/el.json | bext.noArch
+  - Στο πάνω μέρος τελείωσε σε ευθεία γραμμή, χωρίς να καμπυλώσεις την οσφύ.
+  + Στο πάνω μέρος τελείωσε σε ευθεία γραμμή, χωρίς να κυρτώσεις τη μέση.
+lib/cues/text/es.json | bp.grip
+  - Agarra la barra con un agarre algo más ancho que los hombros.
+  + Agarra la barra con las manos algo más abiertas que los hombros.
+lib/cues/text/es.json | csr.chest
+  - Apoya el pecho en el respaldo y mantenlo ahí todo el tiempo.
+  + Apoya el pecho en el soporte y mantenlo ahí todo el tiempo.
+lib/cues/text/es.json | lp.hips
+  - No bajes tanto que la pelvis se despegue del asiento y se redondee la zona lumbar.
+  + No bajes tanto que la pelvis se despegue del respaldo y se redondee la zona lumbar.
+lib/cues/text/es.json | pu.grip
+  - Agarra la barra en prono, con un agarre algo más ancho que los hombros, y cuélgate con los brazos estirados.
+  + Agarra la barra en prono, con las manos algo más abiertas que los hombros, y cuélgate con los brazos estirados.
+lib/cues/text/fi.json | preacher.setup
+  - Lepuuta olkavarren takaosa saarnaajapenkin tyynyllä, kainalo lähellä reunaa.
+  + Lepuuta olkavarren takaosa Scott-penkin tyynyllä, kainalo lähellä reunaa.
+lib/cues/text/lt.json | dbp.move
+  - Išspausk hantelius aukštyn iki ištiestų rankų; lėtai nuleisk juos krūtinės šonuose.
+  + Išspausk hantelius aukštyn iki ištiestų rankų; lėtai nuleisk juos prie krūtinės šonų.
+lib/cues/text/lt.json | ibp.dbMove
+  - Išspausk hantelius virš pečių iki ištiestų rankų; lėtai nuleisk juos viršutinės krūtinės šonuose.
+  + Išspausk hantelius virš pečių iki ištiestų rankų; lėtai nuleisk juos prie viršutinės krūtinės dalies šonų.
+lib/cues/text/lt.json | sumo.stance
+  - Plati stovėsena — pėdos už rankų, pirštai ir keliai nukreipti ta pačia kryptimi į išorę.
+  + Plati stovėsena — pėdos plačiau nei rankos, pirštai ir keliai nukreipti ta pačia kryptimi į išorę.
+lib/cues/text/nb.json | burpee.down
+  - Sett hendene i gulvet fra huksittende, og hopp føttene bakover til push-up-posisjon.
+  + Sett hendene i gulvet fra huksittende, og hopp føttene bakover til armhevingsposisjon.
+lib/cues/text/nb.json | nordic.catch
+  - Når du ikke klarer å bremse mer, ta imot med hendene som i en push-up.
+  + Når du ikke klarer å bremse mer, ta imot med hendene som i en armheving.
+lib/cues/text/pt.json | bj.height
+  - Começa com uma caixa baixa e sobe-a só quando aterrares com segurança.
+  + Começa com uma caixa baixa e aumenta a altura só quando aterrares com segurança.
+lib/cues/text/pt.json | llc.setup
+  - Deita-te de barriga para baixo com os joelhos alinhados com o eixo da máquina e o rolo na parte de baixo das pernas, acima dos calcanhares.
+  + Deita-te de barriga para baixo com os joelhos alinhados com o eixo da máquina e o rolo na parte de baixo dos gémeos, acima dos calcanhares.
+lib/cues/text/pt.json | rcrunch.move
+  - Enrola as ancas do chão na direção das costelas e depois baixa-as devagar.
+  + Enrola as ancas, levantando-as do chão na direção das costelas, e depois baixa-as devagar.
+lib/cues/text/ru.json | dl.grip
+  - Возьми гриф прямым или разнохватом на ширине плеч или чуть шире.
+  + Возьми гриф прямым хватом или разнохватом на ширине плеч или чуть шире.
+lib/cues/text/ru.json | fly.posture
+  - Плечи отведены назад, грудь вперёд, лёгкий наклон вперёд.
+  + Плечи отведены назад, грудь поднята, лёгкий наклон вперёд.
+lib/cues/text/ru.json | wall.setup
+  - Прислонись спиной к прочной стене, шагни стопами вперёд и съезжай по стене до выбранной высоты.
+  + Прислонись спиной к прочной стене, переставь стопы вперёд и съезжай по стене до выбранной высоты.
+lib/cues/text/sk.json | burpee.down
+  - Z drepu polož dlane na zem a odskoč nohami dozadu do polohy ako na kliky.
+  + Z drepu polož dlane na zem a odskoč nohami dozadu do polohy ako na kľuky.
+lib/cues/text/sk.json | db.setup
+  - Ľahni si na chrbát, ruky vzpažené nahor, bedrá a kolená pokrčené v pravom uhle.
+  + Ľahni si na chrbát, ruky vystreté smerom k stropu, bedrá a kolená pokrčené v pravom uhle.
+lib/cues/text/sk.json | nordic.catch
+  - Keď už nevládzeš brzdiť, zachyť sa dlaňami ako pri kliku.
+  + Keď už nevládzeš brzdiť, zachyť sa dlaňami ako pri kľuku.
+lib/cues/text/sl.json | cu.grip
+  - Drog primi s podprijemom (dlani proti tebi) v širini ramen in vsi na iztegnjenih rokah.
+  + Drog primi s podprijemom (dlani proti tebi) v širini ramen in visi na iztegnjenih rokah.
+lib/cues/text/sl.json | npu.hang
+  - Ročaja primi s celo dlanjo (palca okrog) in vsi na iztegnjenih rokah.
+  + Ročaja primi s celo dlanjo (palca okrog) in visi na iztegnjenih rokah.
+lib/cues/text/sl.json | pallof.noTwist
+  - Ne dovoli, da vrv zasuka trup; trup in boki ostanejo pri miru.
+  + Ne dovoli, da jeklenica zasuka trup; trup in boki ostanejo pri miru.
+lib/cues/text/sl.json | pallof.setup
+  - Stoj bočno proti škripcu, nastavljenemu približno v višino prsi; ročaj drži z obema rokama ob prsih, vrv napeta.
+  + Stoj bočno proti škripcu, nastavljenemu približno v višino prsi; ročaj drži z obema rokama ob prsih, jeklenica napeta.
+lib/cues/text/sl.json | pu.grip
+  - Drog primi z nadprijemom malo širše od ramen in vsi na iztegnjenih rokah.
+  + Drog primi z nadprijemom malo širše od ramen in visi na iztegnjenih rokah.
+lib/cues/text/uk.json | cfly.move
+  - Злегка зігнутими ліктями зведи руки перед грудьми широкою дугою; повільно повернися до розведених рук.
+  + Зі злегка зігнутими ліктями зведи руки перед грудьми широкою дугою; повільно повернися до розведених рук.
+lib/cues/text/vi.json | row1.noTwist
+  - Đừng xoay thân để kéo tạ đơn lên.
+  + Đừng xoay thân để hất tạ đơn lên.
+lib/locales/cs.json | Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.
+  - Nakonec „Dokončit“ v záhlaví (nebo „Dokončit trénink“ v kartě po poslední sérii) — trénink se uloží na kartu Plán.
+  + Nakonec „Dokončit“ v záhlaví (nebo „Dokončit trénink“ v kartě po poslední sérii) — trénink se uloží na záložku Plán.
+lib/locales/cs.json | Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.
+  - Kardio: jeden trénink mírné zátěže v samostatný den; jeho délka = délka tréninku.
+  + Kardio: jeden trénink středně intenzivní zátěže v samostatný den; jeho délka = délka tréninku.
+lib/locales/cs.json | Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.
+  - Kardio: při {k}–{m} dnech můžete dny nad {j} změnit na tréninky mírného kardia („Dny kardia v plánu“, ve výchozím stavu vypnuto). Víc posilování nemusí přinést víc zdravotních přínosů a aerobní pohyb je dobré rozložit do několika dnů. Délka kardio tréninku = délka tréninku.
+  + Kardio: při {k}–{m} dnech můžete dny nad {j} změnit na tréninky středně intenzivního kardia („Dny kardia v plánu“, ve výchozím stavu vypnuto). Víc posilování nemusí přinést víc zdravotních přínosů a aerobní pohyb je dobré rozložit do několika dnů. Délka kardio tréninku = délka tréninku.
+lib/locales/cs.json | Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).
+  - Vedlejší partie cviku se počítá jako půl série (hlavní 1, vedlejší 0,5).
+  + Pomocná partie cviku se počítá jako půl série (hlavní 1, pomocná 0,5).
+lib/locales/da.json | Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.
+  - Kondition uden for planen: En konditionssession kommer med i planen fra {k} dage om ugen; med færre er alle dage styrkedage. For sundheden er det godt at få mindst {a}–{b} min moderat aktivitet om ugen (eller {c}–{d} min hård). Moderat bevægelse i løbet af dagen tæller også, fx rask gang, selv i korte perioder.
+  + Kondition uden for planen: En konditionssession kommer med i planen fra {k} dage om ugen; med færre er alle dage styrkedage. For sundheden er det godt at få mindst {a}–{b} min moderat aktivitet om ugen (eller {c}–{d} min med høj intensitet). Moderat bevægelse i løbet af dagen tæller også, fx rask gang, selv i korte perioder.
+lib/locales/da.json | Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.
+  - Kondition i planen: {n} min om ugen. For sundheden er det godt at få mindst {a}–{b} min moderat aktivitet om ugen (eller {c}–{d} min hård). Moderat bevægelse i løbet af dagen tæller også, fx rask gang, selv i korte perioder.
+  + Kondition i planen: {n} min om ugen. For sundheden er det godt at få mindst {a}–{b} min moderat aktivitet om ugen (eller {c}–{d} min med høj intensitet). Moderat bevægelse i løbet af dagen tæller også, fx rask gang, selv i korte perioder.
+lib/locales/da.json | Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów.
+  - Progression: Når du når toppen af dit gent.-interval, så læg vægt på. Gradvist at øge belastningen er det, der holder fremgangen i gang.
+  + Progression: Når du når toppen af dit gentagelsesinterval, så læg vægt på. Gradvist at øge belastningen er det, der holder fremgangen i gang.
+lib/locales/da.json | Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.
+  - Gent.-intervaller (muskelmasse {a}–{b}, hjemme og uden ekstern belastning {c}–{d}; ved styrke øvrige øvelser {e}–{f}): Muskler vokser over et bredt spænd af vægte, når sættene er tæt på udmattelse.
+  + Gentagelsesintervaller (muskelmasse {a}–{b}, hjemme og uden ekstern belastning {c}–{d}; ved styrke øvrige øvelser {e}–{f}): Muskler vokser over et bredt spænd af vægte, når sættene er tæt på udmattelse.
+lib/locales/da.json | Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.
+  - Øvelse med håndvægte over hoved eller ansigt: sikring ved en makker anbefales.
+  + Øvelse med håndvægte over hoved eller ansigt: en spotter anbefales.
+lib/locales/da.json | Wstawanie
+  - Rejsning
+  + Rejse sig
+lib/locales/da.json | zgięcie kolana
+  - knæbøjning
+  + bøjning i knæet
+lib/locales/de.json | Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.
+  - Am Ende „Beenden“ in der Kopfzeile (oder „Training beenden“ in der Karte nach dem letzten Satz) — die Einheit landet im Tab „Plan“.
+  + Tippe am Ende auf „Beenden“ in der Kopfzeile (oder auf „Training beenden“ in der Karte nach dem letzten Satz) — die Einheit landet im Tab „Plan“.
+lib/locales/de.json | {app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.
+  - {app} wird von einem unabhängigen Entwickler gemacht: ohne Werbung, ohne Datensammlung. Wenn es dir hilft, wähle einen Plan und trainiere ohne Limit. Die kostenlosen Tage kommen am {date} zurück.
+  + Hinter {app} steht ein unabhängiger Entwickler: ohne Werbung, ohne Datensammlung. Wenn die App dir hilft, wähle einen Plan und trainiere ohne Limit. Deine kostenlosen Tage gibt es wieder ab {date}.
+lib/locales/de.json | Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.
+  - Cardio außerhalb des Plans: Eine Cardio-Einheit ist ab {k} Tagen pro Woche im Plan, bei weniger Tagen sind alle Krafttage. Für die Gesundheit lohnen sich mindestens {a}–{b} min moderate Bewegung pro Woche (oder {c}–{d} min intensive); moderate Bewegung im Alltag zählt auch, z. B. zügiges Gehen, auch kurz.
+  + Cardio außerhalb des Plans: Eine Cardio-Einheit ist ab {k} Tagen pro Woche im Plan, bei weniger Tagen sind alle Tage Krafttage. Für die Gesundheit lohnen sich mindestens {a}–{b} min moderate Bewegung pro Woche (oder {c}–{d} min intensive); moderate Bewegung im Alltag zählt auch, z. B. zügiges Gehen, auch in kurzen Abschnitten.
+lib/locales/de.json | Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.
+  - Cardio im Plan: {n} min pro Woche. Für die Gesundheit lohnen sich mindestens {a}–{b} min moderate Bewegung pro Woche (oder {c}–{d} min intensive); moderate Bewegung im Alltag zählt auch, z. B. zügiges Gehen, auch kurz.
+  + Cardio im Plan: {n} min pro Woche. Für die Gesundheit lohnen sich mindestens {a}–{b} min moderate Bewegung pro Woche (oder {c}–{d} min intensive); moderate Bewegung im Alltag zählt auch, z. B. zügiges Gehen, auch in kurzen Abschnitten.
+lib/locales/de.json | Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).
+  - Cardio: ab {k} Tagen pro Woche eine Einheit an einem eigenen Tag; bei weniger Tagen sind alle Krafttage, damit Cardio dem Krafttraining keine Tage wegnimmt (jede große Muskelgruppe an mindestens {n} Tagen).
+  + Cardio: ab {k} Tagen pro Woche eine Einheit an einem eigenen Tag; bei weniger Tagen sind alle Tage Krafttage, damit Cardio dem Krafttraining keine Tage wegnimmt (jede große Muskelgruppe an mindestens {n} Tagen).
+lib/locales/el.json | Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.
+  - Οι επισημασμένες μυϊκές ομάδες έχουν μεγαλύτερο όγκο από ό,τι στην περίοδο σύγκρισης· όσο πιο έντονο το χρώμα, τόσο μεγαλύτερη η αύξηση. Γκρι — χωρίς αύξηση.
+  + Τα επισημασμένα μέρη σώματος έχουν μεγαλύτερο όγκο από ό,τι στην περίοδο σύγκρισης· όσο πιο έντονο το χρώμα, τόσο μεγαλύτερη η αύξηση. Γκρι — χωρίς αύξηση.
+lib/locales/el.json | Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.
+  - Άσκηση με μπάρα στον κορμό ή πάνω από το κεφάλι και το πρόσωπο: συνιστάται ασφάλιση — βάση με βραχίονες ασφαλείας και βοηθός ασφαλείας (spotter).
+  + Άσκηση με μπάρα στον κορμό ή πάνω από το κεφάλι και το πρόσωπο: συνιστώνται μέσα ασφαλείας — βάση με βραχίονες ασφαλείας και βοηθός ασφαλείας (spotter).
+lib/locales/el.json | Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.
+  - Άσκηση με αλτήρες πάνω από το κεφάλι ή το πρόσωπο: συνιστάται άτομο για spotting.
+  + Άσκηση με αλτήρες πάνω από το κεφάλι ή το πρόσωπο: συνιστάται βοηθός ασφαλείας (spotter).
+lib/locales/el.json | {faza} {n} s
+  - {faza} {n} δ
+  + {faza} {n} δευτ.
+lib/locales/es-419.json | Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.
+  - Menú ⋯ en el encabezado: «Pausar entrenamiento» detiene el reloj del entrenamiento; el tiempo de pausa no cuenta en la duración.
+  + Menú ⋯ en el encabezado: «Pausar entrenamiento» detiene el reloj del entrenamiento; el tiempo en pausa no cuenta para la duración.
+lib/locales/es-419.json | Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.
+  - Al final, «Terminar» en el encabezado (o «Terminar entrenamiento» en la tarjeta tras la última serie) — la sesión pasa a la pestaña Plan.
+  + Al final, toca «Terminar» en el encabezado (o «Terminar entrenamiento» en la tarjeta tras la última serie) — la sesión pasa a la pestaña Plan.
+lib/locales/es.json | Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.
+  - Los grupos musculares resaltados tienen más volumen que en el período de comparación; cuanto más intenso el color, mayor el aumento. Gris — sin aumento.
+  + Las partes del cuerpo resaltadas tienen más volumen que en el período de comparación; cuanto más intenso el color, mayor el aumento. Gris — sin aumento.
+lib/locales/es.json | Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.
+  - Ejercicio con barra sobre el tronco o por encima de la cabeza y la cara: se recomienda asistencia — un rack con brazos de seguridad y una persona que te asista.
+  + Ejercicio con barra sobre el tronco o por encima de la cabeza y la cara: se recomiendan medidas de seguridad — un rack con brazos de seguridad y una persona que te asista.
+lib/locales/et.json | {app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.
+  - {app} on sõltumatu arendaja tehtud: ilma reklaamideta ja andmeid kogumata. Kui see sind aitab, vali pakett ja treeni piiranguteta. Tasuta päevad naasevad {date}.
+  + {app} on sõltumatu arendaja tehtud: ilma reklaamideta ja andmeid kogumata. Kui see sind aitab, vali pakett ja treeni piiranguteta. Tasuta päevad tulevad tagasi {date}.
+lib/locales/fi.json | Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.
+  - Automaattinen varmuuskopio jokaisen treenin jälkeen: Tiedostot → Omassa iPhonessa → {app} → Backup.
+  + Automaattinen varmuuskopio jokaisen treenin jälkeen: Tiedostot → Omalla iPhonella → {app} → Backup.
+lib/locales/fi.json | Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.
+  - Kardio suunnitelman ulkopuolella: kardiokerta on suunnitelmassa, kun treenipäiviä on vähintään {k} viikossa; muuten kaikki päivät ovat voimapäiviä. Terveydelle kannattaa liikkua kohtuullisesti vähintään {a}–{b} min viikossa (tai rasittavasti {c}–{d} min). Myös kohtuullinen liike päivän mittaan lasketaan, esim. reipas kävely, lyhyinäkin pätkinä.
+  + Kardio suunnitelman ulkopuolella: kardiokerta on suunnitelmassa, kun treenipäiviä on vähintään {k} viikossa; muuten kaikki päivät ovat voimapäiviä. Terveydelle kannattaa liikkua kohtuullisesti vähintään {a}–{b} min viikossa (tai rasittavasti {c}–{d} min). Myös kohtuullinen liike päivän mittaan lasketaan mukaan, esim. reipas kävely, lyhyinäkin pätkinä.
+lib/locales/fi.json | Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.
+  - Kardiota suunnitelmassa: {n} min viikossa. Terveydelle kannattaa liikkua kohtuullisesti vähintään {a}–{b} min viikossa (tai rasittavasti {c}–{d} min). Myös kohtuullinen liike päivän mittaan lasketaan, esim. reipas kävely, lyhyinäkin pätkinä.
+  + Kardiota suunnitelmassa: {n} min viikossa. Terveydelle kannattaa liikkua kohtuullisesti vähintään {a}–{b} min viikossa (tai rasittavasti {c}–{d} min). Myös kohtuullinen liike päivän mittaan lasketaan mukaan, esim. reipas kävely, lyhyinäkin pätkinä.
+lib/locales/fi.json | Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.
+  - Kardio: kun päiviä on {k}–{m}, voit muuttaa päivät yli {j} kohtuullisiksi kardiokerroiksi (”Kardiopäivät suunnitelmassa”, oletuksena pois päältä). Lisää lihaskuntotreeniä ei välttämättä tuo lisää terveyshyötyjä, ja kestävyysliikunta kannattaa jakaa useammalle päivälle. Kardiokerran kesto = treenin kesto.
+  + Kardio: kun päiviä on {k}–{m}, voit muuttaa {j} päivän ylittävät päivät kohtuullisiksi kardiokerroiksi (”Kardiopäivät suunnitelmassa”, oletuksena pois päältä). Lisää lihaskuntotreeniä ei välttämättä tuo lisää terveyshyötyjä, ja kestävyysliikunta kannattaa jakaa useammalle päivälle. Kardiokerran kesto = treenin kesto.
+lib/locales/fi.json | RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali.
+  - RIR tarkoittaa toistoja, jotka sinulla jäi vielä varastoon: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Tallennetut arvot muunnetaan, kun vaihdat asteikkoa.
+  + RIR tarkoittaa toistoja, jotka sinulla jäivät vielä varastoon: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Tallennetut arvot muunnetaan, kun vaihdat asteikkoa.
+lib/locales/fi.json | Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.
+  - Sarjat: {s} liikettä kohden, terveydeksi yleensä {s}–{b}. Tee vähintään {m}. Yksi sarja toimii jo, {s}–{b} voivat toimia paremmin. Aloittelijoille ja ikääntyneille yksi sarja voi riittää. {s} on alaraja.
+  + Sarjat: {s} liikettä kohden, terveydeksi yleensä {s}–{b}. Kannattaa tehdä vähintään {m}. Yksi sarja toimii jo, {s}–{b} voivat toimia paremmin. Aloittelijoille ja ikääntyneille yksi sarja voi riittää. {s} on alaraja.
+lib/locales/fi.json | Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.
+  - Sarjat: {s} liikettä kohden. Tee vähintään {m}. Useampi sarja tuo yleensä vähän lisää, mutta hyöty pienenee.
+  + Sarjat: {s} liikettä kohden. Kannattaa tehdä vähintään {m}. Useampi sarja tuo yleensä vähän lisää, mutta hyöty pienenee.
+lib/locales/fi.json | Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.
+  - Treeni {d} {s} oli ilman toimintaa {h} tuntia, joten se tallentui itsestään. Päättyi: {e} (viimeinen sarja). Löydät sen Suunnitelma-välilehdeltä.
+  + Treenissä {d} {s} ei ollut toimintaa {h} tuntiin, joten se tallentui itsestään. Päättyi: {e} (viimeinen sarja). Löydät sen Suunnitelma-välilehdeltä.
+lib/locales/fr.json | Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosną wyraźniej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.
+  - Avec au moins {n} séries par groupe musculaire et par semaine, les muscles se développent davantage qu’avec moins de séries ; la musculation sous ses différentes formes fait progresser par rapport à l’absence d’entraînement.
+  + Avec au moins {n} séries par groupe musculaire et par semaine, les muscles se développent davantage qu’avec moins de séries ; la musculation sous ses différentes formes fait gagner du muscle par rapport à l’absence d’entraînement.
+lib/locales/fr.json | Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.
+  - Exercice avec haltères au-dessus de la tête ou du visage : un partenaire pour vous parer est recommandé.
+  + Exercice avec haltères au-dessus de la tête ou du visage : un partenaire qui vous pare est recommandé.
+lib/locales/hr.json | Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.
+  - Istaknute mišićne skupine imaju veći volumen nego u razdoblju usporedbe; što je boja intenzivnija, to je porast veći. Sivo — bez porasta.
+  + Istaknuti su dijelovi tijela u kojima je volumen veći nego u razdoblju usporedbe; što je boja intenzivnija, to je porast veći. Sivo — bez porasta.
+lib/locales/hr.json | {k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.
+  - {k} dan snage tjedno manje je od preporučenog minimuma (najmanje {n} dana). Za početak je to dobar korak: možete vježbati snagu samo {k} dan tjedno, a s vremenom doći do {n} — malo kretanja bolje je nego ništa.
+  + {k} dan treninga snage tjedno manje je od preporučenog minimuma (najmanje {n} dana). Za početak je to dobar korak: možete trenirati snagu samo {k} dan tjedno, a s vremenom doći do {n} — malo kretanja bolje je nego ništa.
+lib/locales/hr.json | Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.
+  - Kardio izvan plana: kardio sesija je u planu od {k} dana tjedno, uz manje su svi dani snage. Za zdravlje je dobro imati najmanje {a}–{b} min umjerene aktivnosti tjedno (ili {c}–{d} min intenzivne); računa se i umjereno kretanje tijekom dana, npr. brzo hodanje, čak i kratko.
+  + Kardio izvan plana: kardio sesija je u planu od {k} dana tjedno, a uz manje dana svi su dani posvećeni treningu snage. Za zdravlje je dobro imati najmanje {a}–{b} min umjerene aktivnosti tjedno (ili {c}–{d} min intenzivne); računa se i umjereno kretanje tijekom dana, npr. brzo hodanje, čak i kratko.
+lib/locales/hr.json | Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).
+  - Kardio: od {k} dana tjedno jedna sesija u zasebnom danu; uz manje dana svi su dani snage, da kardio ne uzima dane treningu snage (svaki glavni dio tijela najmanje {n} dana).
+  + Kardio: od {k} dana tjedno jedna sesija na zaseban dan; uz manje dana svi su dani posvećeni treningu snage, da kardio ne bi oduzimao dane treningu snage (svaki glavni dio tijela najmanje {n} dana).
+lib/locales/hr.json | Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.
+  - Crta u „Ovaj tjedan“ i u Napretku. Automatski: {n} serija. Ručno: vlastiti broj od {min} do {max}.
+  + Crta u „Ovaj tjedan” i u Napretku. Automatski: {n} serija. Ručno: vlastiti broj od {min} do {max}.
+lib/locales/hr.json | Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.
+  - Opća kondicija (za zdravlje i formu): {s} serije po vježbi, {a}–{b} ponavljanja (kod kuće {c}–{d}), dok sljedeće ponavljanje ne bi bilo teško. Za zdravlje je dobro vježbati sve glavne dijelove tijela najmanje {n} dana tjedno.
+  + Opća kondicija (za zdravlje i formu): {s} serije po vježbi, {a}–{b} ponavljanja (kod kuće {c}–{d}), do trenutka kad bi sljedeće ponavljanje bilo teško. Za zdravlje je dobro vježbati sve glavne dijelove tijela najmanje {n} dana tjedno.
+lib/locales/hr.json | Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.
+  - Napor: dok sljedeće ponavljanje ne bi bilo teško — umor, ali ne iscrpljenost. Do otkaza nije potrebno.
+  + Napor: do trenutka kad bi sljedeće ponavljanje bilo teško — umor, ali ne iscrpljenost. Do otkaza nije potrebno.
+lib/locales/hu.json | Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.
+  - Ne törölje az appot — vele együtt az adatai és a mentései is eltűnnek. Először koppintson az „Adatok küldése” gombra, és mentse a fájlt a telefonon kívülre.
+  + Ne törölje az alkalmazást — vele együtt az adatai és a mentései is eltűnnek. Először koppintson az „Adatok küldése” gombra, és mentse a fájlt a telefonon kívülre.
+lib/locales/hu.json | Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.
+  - A kiemelt izomcsoportoknál nagyobb a volumen, mint az összehasonlítási időszakban; minél erősebb a szín, annál nagyobb a növekedés. Szürke — nincs növekedés.
+  + A kiemelt testrészeknél nagyobb a volumen, mint az összehasonlítási időszakban; minél erősebb a szín, annál nagyobb a növekedés. Szürke — nincs növekedés.
+lib/locales/hu.json | Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.
+  - A végén „Befejezés” a fejlécben (vagy „Edzés befejezése” az utolsó sorozat utáni kártyán) — az edzés a Terv lapra kerül.
+  + A végén „Befejezés” a fejlécben (vagy „Edzés befejezése” az utolsó sorozat utáni kártyán) — az edzés a Terv fülre kerül.
+lib/locales/hu.json | Płacisz raz i masz na zawsze.
+  - Egyszer fizet, és örökre az öné.
+  + Egyszer fizet, és örökre az Öné.
+lib/locales/hu.json | Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.
+  - Edzen havonta {n} napot ingyen. A Pro feloldja a korlátot. Bármikor lemondhatja az Apple-fiókja beállításaiban.
+  + Eddzen havonta {n} napot ingyen. A Pro feloldja a korlátot. Bármikor lemondhatja az Apple-fiókja beállításaiban.
+lib/locales/hu.json | Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.
+  - Sorozatok: gyakorlatonként {s} — az egészségért általában {s}–{b}. Érdemes legalább {m} sorozatot végezni. Egy sorozat is hat, {s}–{b} jobban hathat; kezdőknél és idősebbeknél egy sorozat is elég lehet. A {s} az alsó határ.
+  + Sorozatok: gyakorlatonként {s} — az egészségért általában {s}–{b}. Érdemes legalább {m} sorozatot végezni. Egy sorozat is hat, {s}–{b} jobban hathat; kezdőknél és idősebbeknél egy sorozat is elég lehet. A(z) {s} az alsó határ.
+lib/locales/id.json | Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.
+  - Gerakan dengan dumbel di atas kepala atau wajah: disarankan ada spotter.
+  + Gerakan dengan dumbel di atas kepala atau wajah: spotter (orang yang berjaga dan siap membantu) dianjurkan.
+lib/locales/it.json | Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.
+  - Non eliminare l’app: con lei spariscono dati e backup. Prima tocca “Invia i dati” e salva il file fuori dal telefono.
+  + Non eliminare l’app: con lei spariscono dati e backup. Prima tocca «Invia i dati» e salva il file fuori dal telefono.
+lib/locales/it.json | Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.
+  - Generale (per salute e forma fisica): {s} serie per esercizio, {a}–{b} ripetizioni (a casa {c}–{d}), finché un’altra ripetizione diventerebbe difficile. Per la salute conviene allenare tutti i gruppi muscolari principali almeno {n} giorni a settimana.
+  + Generale (per salute e forma fisica): {s} serie per esercizio, {a}–{b} ripetizioni (a casa {c}–{d}), fino al punto in cui un’altra ripetizione sarebbe difficile. Per la salute conviene allenare tutti i gruppi muscolari principali almeno {n} giorni a settimana.
+lib/locales/it.json | RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali.
+  - Il RIR sono le ripetizioni che ti restano di riserva: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). I valori salvati si convertono quando cambi scala.
+  + Il RIR indica le ripetizioni che ti restavano di riserva: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). I valori salvati si convertono quando cambi scala.
+lib/locales/it.json | Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.
+  - Sforzo: finché un’altra ripetizione diventerebbe difficile. Stanchezza, ma non esaurimento. Non serve arrivare a cedimento.
+  + Sforzo: fino al punto in cui un’altra ripetizione sarebbe difficile. Stanchezza, ma non esaurimento. Non serve arrivare a cedimento.
+lib/locales/it.json | Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.
+  - Esercizio con i manubri sopra la testa o il viso: si raccomanda una persona che ti assista.
+  + Esercizio con i manubri sopra la testa o il viso: si raccomanda una persona che assista.
+lib/locales/it.json | Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.
+  - L’allenamento del {d} {s} è rimasto fermo per {h} ore, quindi è stato salvato in automatico. Fine: {e} (ultima serie). Lo trovi nella scheda Piano.
+  + L’allenamento del {d} {s} è rimasto fermo per {h} ore, quindi è stato salvato in automatico. Fine: {e} (ultima serie). Lo trovi nella sezione Piano.
+lib/locales/ja.json | Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.
+  - バンドは、その画面のヘッダーの「編集」から、または左にスワイプして削除できます。
+  + バンドは、バンド画面のヘッダーの「編集」から、または左にスワイプして削除できます。
+lib/locales/ja.json | {app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.
+  - {app} は個人の独立系デベロッパーが作っています。広告なし、データ収集なし。役に立っていると感じたら、プランを選んで制限なしでトレーニングしましょう。無料日は{date}に戻ります。
+  + {app} は個人の独立系デベロッパーが作っています。広告なし、データ収集なし。役に立っていると感じたら、プランを選んで制限なしでトレーニングしましょう。無料のトレーニング日は{date}に再び使えるようになります。
+lib/locales/ja.json | Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.
+  - 健康・体力（健康のため）：1種目{s}セット、{a}–{b}回（自宅では{c}–{d}回）、次の1回がきつくなるところまで。健康のためには、すべての主な部位を週に少なくとも{n}日鍛えましょう。
+  + 一般（健康と体力のため）：1種目{s}セット、{a}–{b}回（自宅では{c}–{d}回）、次の1回がきつくなるところまで。健康のためには、すべての主な部位を週に少なくとも{n}日鍛えましょう。
+lib/locales/lt.json | Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.
+  - Automatinė atsarginė kopija: po kiekvienos treniruotės JSON failas išsaugomas programoje „Failai“ (Mano iPhone → {app} → Backup, paskutiniai {n}). Importuoti galima ir šiuos failus. Šios kopijos ištrinamos kartu su programa — prieš ją pašalindami arba diegdami iš kitos „Apple“ paskyros, eksportuokite atsarginę kopiją kitur.
+  + Automatinė atsarginė kopija: po kiekvienos treniruotės JSON failas išsaugomas programoje „Failai“ (Mano iPhone → {app} → Backup, paskutiniai {n}). Importuoti galima ir šiuos failus. Šios kopijos ištrinamos kartu su programėle — prieš ją pašalindami arba diegdami iš kitos „Apple“ paskyros, eksportuokite atsarginę kopiją kitur.
+lib/locales/lt.json | Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.
+  - Paryškintos raumenų grupės, kurių apimtis didesnė nei lyginamuoju laikotarpiu; kuo ryškesnė spalva, tuo didesnis padidėjimas. Pilkos — be padidėjimo.
+  + Paryškintos kūno dalys, kurių apimtis didesnė nei lyginamuoju laikotarpiu; kuo ryškesnė spalva, tuo didesnis padidėjimas. Pilkos — be padidėjimo.
+lib/locales/lt.json | Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.
+  - Pratimas su štanga ant liemens arba virš galvos ir veido: rekomenduojamas saugojimas — stovas su apsauginiais ramsčiais ir pagalbininkas.
+  + Pratimas su štanga ant liemens arba virš galvos ir veido: rekomenduojama apsauga — stovas su apsauginiais ramsčiais ir pagalbininkas.
+lib/locales/lt.json | Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.
+  - Pabaigoje bakstelėkite „Baigti“ viršuje (arba „Baigti treniruotę“ kortelėje po paskutinės serijos) — sesija pateks į skiltį „Planas“.
+  + Pabaigoje bakstelėkite „Baigti“ viršuje (arba „Baigti treniruotę“ kortelėje po paskutinės serijos) — sesija pateks į skirtuką „Planas“.
+lib/locales/lt.json | Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.
+  - Kardio: esant {k}–{m} dienoms, dienas virš {j} galite paversti vidutinio intensyvumo kardio treniruotėmis („Kardio dienos plane“, numatytai išjungta). Daugiau stiprinamųjų pratimų nebūtinai duoda daugiau naudos sveikatai, o aerobinį judėjimą verta paskirstyti per kelias dienas. Kardio treniruotės trukmė = treniruotės laikas.
+  + Kardio: esant {k}–{m} dienoms, dienas virš {j} galite paversti vidutinio intensyvumo kardio treniruotėmis („Kardio dienos plane“, pagal numatytuosius nustatymus išjungta). Daugiau stiprinamųjų pratimų nebūtinai duoda daugiau naudos sveikatai, o aerobinį judėjimą verta paskirstyti per kelias dienas. Kardio treniruotės trukmė = treniruotės laikas.
+lib/locales/lt.json | Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.
+  - Treniruotė iš {d} {s} {h} val. neturėjo veiklos, todėl buvo išsaugota automatiškai. Pabaiga: {e} (paskutinė serija). Rasite ją skirtuke „Planas“.
+  + {d} {s} treniruotė {h} val. buvo neaktyvi, todėl buvo išsaugota automatiškai. Pabaiga: {e} (paskutinė serija). Rasite ją skirtuke „Planas“.
+lib/locales/lv.json | Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.
+  - Paziņojumi darbojas, ja ieslēgts “Skaņa atpūtas beigās”. To pašu iestatījumu var mainīt arī izvēlnē “⋯” treniņa ekrānā.
+  + Paziņojumi darbojas, ja ir ieslēgta opcija “Skaņa atpūtas beigās”. To pašu iestatījumu var mainīt arī izvēlnē “⋯” treniņa ekrānā.
+lib/locales/lv.json | Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.
+  - Pieskarieties skaitlim uz tāfeles un ievadiet svaru un atkārtojumus (vai izmantojiet + un −), pēc tam “Sērija pabeigta” — atpūta tiek skaitīta pati. Ja trūkst vērtības, “Sērija pabeigta” pārvieto kursoru uz tukšo lauku.
+  + Pieskarieties skaitlim uz tāfeles un ievadiet svaru un atkārtojumus (vai izmantojiet + un −), pēc tam “Sērija pabeigta” — atpūtas laiks tiek atskaitīts automātiski. Ja trūkst vērtības, “Sērija pabeigta” pārvieto kursoru uz tukšo lauku.
+lib/locales/lv.json | Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.
+  - Gumijas var dzēst, to ekrāna galvenē pieskaroties “Rediģēt” vai pavelkot pa kreisi.
+  + Gumijas var dzēst, gumiju ekrāna galvenē pieskaroties “Rediģēt” vai pavelkot pa kreisi.
+lib/locales/lv.json | Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.
+  - Pārskatiet priekšskatījumu un “Plāna noteikumi” — rezultāts tiek saglabāts tikai pēc apstiprināšanas.
+  + Pārskatiet priekšskatījumu un sadaļu “Plāna noteikumi” — rezultāts tiek saglabāts tikai pēc apstiprināšanas.
+lib/locales/ms.json | Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.
+  - Aplikasi ini tidak memberikan nasihat perubatan. Jika anda mengalami sakit, kecederaan atau penyakit, dapatkan nasihat doktor atau ahli fisioterapi.
+  + Aplikasi ini tidak memberikan nasihat perubatan. Jika anda mengalami kesakitan, kecederaan atau penyakit, dapatkan nasihat doktor atau ahli fisioterapi.
+lib/locales/ms.json | Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.
+  - Jangan padam app — data dan sandaran turut hilang. Ketik dahulu “Hantar data” dan simpan fail di luar telefon.
+  + Jangan padam aplikasi — data dan sandaran anda turut hilang bersamanya. Ketik dahulu “Hantar data” dan simpan fail di luar telefon.
+lib/locales/ms.json | Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.
+  - Latihan dengan bar di atas batang badan atau di atas kepala dan muka: pengawasan keselamatan disyorkan — rak dengan palang keselamatan dan spotter.
+  + Senaman dengan bar di atas batang badan atau di atas kepala dan muka: langkah keselamatan disyorkan — rak dengan palang keselamatan dan spotter.
+lib/locales/ms.json | Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.
+  - Latihan dengan bar di atas batang badan atau di atas kepala dan muka: spotter disyorkan.
+  + Senaman dengan bar di atas batang badan atau di atas kepala dan muka: spotter disyorkan.
+lib/locales/ms.json | Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.
+  - Berlatih percuma {n} hari sebulan. Pro menghapuskan had itu. Anda boleh membatalkan pada bila-bila masa dalam tetapan akaun Apple anda.
+  + Berlatih percuma {n} hari sebulan. Pro menghapuskan had itu. Anda boleh membatalkan pada bila-bila masa dalam seting akaun Apple anda.
+lib/locales/ms.json | Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.
+  - Kardio di luar pelan: sesi kardio masuk pelan mulai {k} hari seminggu; jika kurang, semua hari ialah latihan kekuatan. Untuk kesihatan, sebaiknya buat sekurang-kurangnya {a}–{b} min aktiviti sederhana seminggu (atau {c}–{d} min aktiviti berat). Pergerakan sederhana sepanjang hari juga dikira, cth. berjalan pantas, walaupun sekejap.
+  + Kardio di luar pelan: sesi kardio termasuk dalam pelan mulai {k} hari seminggu; jika kurang, semua hari ialah latihan kekuatan. Untuk kesihatan, sebaiknya buat sekurang-kurangnya {a}–{b} min aktiviti sederhana seminggu (atau {c}–{d} min aktiviti berat). Pergerakan sederhana sepanjang hari juga dikira, cth. berjalan pantas, walaupun sekejap.
+lib/locales/nb.json | Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.
+  - Markerte muskelgrupper har mer volum enn i sammenligningsperioden; jo kraftigere farge, desto større økning. Grå — ingen økning.
+  + Markerte kroppsdeler har mer volum enn i sammenligningsperioden; jo kraftigere farge, desto større økning. Grå — ingen økning.
+lib/locales/nb.json | Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).
+  - Kondisjon: fra {k} dager per uke blir én økt lagt på en egen dag. Med færre dager er alle styrkedager, så kondisjonen ikke tar dager fra styrketreningen (hver store kroppsdel minst {n} dager).
+  + Kondisjon: fra {k} dager per uke blir én økt lagt på en egen dag. Med færre dager er alle styrkedager, så kondisjonen ikke tar dager fra styrketreningen (hver stor kroppsdel minst {n} dager).
+lib/locales/nb.json | Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów.
+  - Progresjon: når du når toppen av rep.-området, øker du vekten. Gradvis økning av vekten er grunnlaget for videre fremgang.
+  + Progresjon: når du når toppen av repetisjonsområdet, øker du vekten. Gradvis økning av vekten er grunnlaget for videre fremgang.
+lib/locales/nb.json | Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.
+  - Rep.-områder (muskelmasse {a}–{b}, hjemme og uten ekstra vekt {c}–{d}; ved styrke andre øvelser {e}–{f}): musklene vokser med et bredt spenn av vekter når settene er nær utmattelse.
+  + Repetisjonsområder (muskelmasse {a}–{b}, hjemme og uten ekstra vekt {c}–{d}; ved styrke andre øvelser {e}–{f}): musklene vokser med et bredt spenn av vekter når settene er nær utmattelse.
+lib/locales/nb.json | Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.
+  - Øvelse med manualer over hodet eller ansiktet: det anbefales at noen sikrer deg.
+  + Øvelse med manualer over hodet eller ansiktet: en spotter anbefales.
+lib/locales/nb.json | Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.
+  - Hver store kroppsdel minst {n} dager i uken. Det er anbefalt for helsen. Hyppighet påvirker styrken, men flere dager gir ikke nødvendigvis tilsvarende mer. Med samme antall sett er forskjellene små. En dag der kroppsdelen bare hjelper til, teller som {h}. Inndelingen av økter (helkropp, over-/underkropp) kan du velge fritt. Med samme antall sett gir den lignende resultater.
+  + Hver stor kroppsdel minst {n} dager i uken. Det er anbefalt for helsen. Hyppighet påvirker styrken, men flere dager gir ikke nødvendigvis tilsvarende mer. Med samme antall sett er forskjellene små. En dag der kroppsdelen bare hjelper til, teller som {h}. Inndelingen av økter (helkropp, over-/underkropp) kan du velge fritt. Med samme antall sett gir den lignende resultater.
+lib/locales/nb.json | Pierwszy trening za Tobą!
+  - Første treningsøkt er unnagjort!
+  + Første treningsøkt er gjennomført!
+lib/locales/nl.json | Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.
+  - Verwijder de app niet — je data en back-ups verdwijnen dan mee. Tik eerst op “Gegevens versturen” en bewaar het bestand buiten je telefoon.
+  + Verwijder de app niet — je gegevens en back-ups verdwijnen dan mee. Tik eerst op ‘Gegevens versturen’ en bewaar het bestand buiten je telefoon.
+lib/locales/nl.json | Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.
+  - Gemarkeerde spiergroepen hebben meer volume dan in de vergelijkingsperiode; hoe sterker de kleur, hoe groter de toename. Grijs — geen toename.
+  + Gemarkeerde lichaamsdelen hebben meer volume dan in de vergelijkingsperiode; hoe sterker de kleur, hoe groter de toename. Grijs — geen toename.
+lib/locales/nl.json | {app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.
+  - {app} wordt gemaakt door een onafhankelijke ontwikkelaar: zonder advertenties en zonder dataverzameling. Als de app je helpt, kies dan een abonnement en train zonder limiet. De gratis dagen komen terug op {date}.
+  + {app} wordt gemaakt door een onafhankelijke ontwikkelaar: zonder advertenties en zonder dataverzameling. Als de app je helpt, kies dan een Pro-optie en train zonder limiet. De gratis dagen komen terug op {date}.
+lib/locales/nl.json | Zobacz plany Pro ›
+  - Bekijk de Pro-abonnementen ›
+  + Bekijk de Pro-opties ›
+lib/locales/nl.json | Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.
+  - De training van {d} {s} had {h} uur geen activiteit, dus is automatisch opgeslagen. Einde: {e} (laatste set). Je vindt hem in het tabblad Plan.
+  + De training van {d} {s} had {h} uur geen activiteit, dus is hij automatisch opgeslagen. Einde: {e} (laatste set). Je vindt hem in het tabblad Plan.
+lib/locales/nl.json | Zobacz plany Pro
+  - Bekijk de Pro-abonnementen
+  + Bekijk de Pro-opties
+lib/locales/pt-BR.json | Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.
+  - Toque no rótulo de uma série para mudar o tipo; deslize uma linha para a esquerda para apagá-la. A faixa de repetições é opcional — com ele aparecem as sugestões «↑». «⇅ SS» liga o exercício ao seguinte em uma supersérie, «✕ SS» o retira do grupo. Ordem: «≡ Reordenar».
+  + Toque no rótulo de uma série para mudar o tipo; deslize uma linha para a esquerda para apagá-la. A faixa de repetições é opcional — com ela aparecem as sugestões «↑». «⇅ SS» liga o exercício ao seguinte em uma supersérie, «✕ SS» o retira do grupo. Ordem: «≡ Reordenar».
+lib/locales/pt-BR.json | Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.
+  - Backup automático: após cada treino, um arquivo JSON é salvo sozinho em Arquivos (No meu iPhone → {app} → Backup, últimos {n}). A importação também aceita esses arquivos. Esses backups são apagados junto com o app — antes de removê-lo ou de instalar com outra conta Apple, exporte um backup para outro lugar.
+  + Backup automático: após cada treino, um arquivo JSON é salvo sozinho em Arquivos (No Meu iPhone → {app} → Backup, últimos {n}). A importação também aceita esses arquivos. Esses backups são apagados junto com o app — antes de removê-lo ou de instalar com outra conta Apple, exporte um backup para outro lugar.
+lib/locales/pt-BR.json | Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}
+  - Arquivos → No meu iPhone → {app} → Backup, últimos {n}
+  + Arquivos → No Meu iPhone → {app} → Backup, últimos {n}
+lib/locales/pt-BR.json | Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.
+  - Exercício com halteres acima da cabeça ou do rosto: é recomendado ter alguém dando auxílio.
+  + (brak)
+lib/locales/pt-BR.json | Wypychanie
+  - Empurrar
+  + (brak)
+lib/locales/pt-BR.json | Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.
+  - Arquivos → No meu iPhone → {app} → Backup → {folder}. Salve esta pasta fora do celular.
+  + Arquivos → No Meu iPhone → {app} → Backup → {folder}. Salve esta pasta fora do celular.
+lib/locales/pt.json | Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.
+  - Toque na etiqueta de uma série para mudar o tipo; deslize uma linha para a esquerda para a apagar. A gama de repetições é opcional — com ele surgem as sugestões «↑». «⇅ SS» liga o exercício ao seguinte numa supersérie, «✕ SS» retira-o do grupo. Ordem: «≡ Reordenar».
+  + Toque na etiqueta de uma série para mudar o tipo; deslize uma linha para a esquerda para a apagar. A gama de repetições é opcional — com ela surgem as sugestões «↑». «⇅ SS» liga o exercício ao seguinte numa supersérie, «✕ SS» retira-o do grupo. Ordem: «≡ Reordenar».
+lib/locales/pt.json | Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.
+  - Não elimine a app — os dados e as cópias desaparecem com ela. Primeiro toque em «Enviar dados» e guarde o ficheiro fora do telemóvel.
+  + Não apague a app — os dados e as cópias desaparecem com ela. Primeiro toque em «Enviar dados» e guarde o ficheiro fora do telemóvel.
+lib/locales/pt.json | Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.
+  - Exercício com barra sobre o tronco ou acima da cabeça e do rosto: recomenda-se segurança — um rack com braços de segurança e um parceiro que faça a segurança.
+  + Exercício com barra sobre o tronco ou acima da cabeça e do rosto: recomenda-se o uso de meios de segurança — um rack com braços de segurança e um parceiro que faça a segurança.
+lib/locales/pt.json | Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.
+  - Exercício com halteres acima da cabeça ou do rosto: recomenda-se alguém que dê auxílio e segurança.
+  + Exercício com halteres acima da cabeça ou do rosto: recomenda-se um parceiro que faça a segurança.
+lib/locales/pt.json | Wypychanie
+  - Empurrão
+  + Empurrar
+lib/locales/ro.json | Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.
+  - Datele de pe telefon au fost salvate de o versiune mai nouă (schema {a}); această versiune acceptă până la {b}. Nu modific nimic — instalează cea mai recentă versiune din App Store. Poți trimite datele și ca fișier.
+  + Datele de pe telefon au fost salvate de o versiune mai nouă (schema {a}); această versiune acceptă până la {b}. Nu modific nimic — instalați cea mai recentă versiune din App Store. Puteți trimite datele și ca fișier.
+lib/locales/ro.json | Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.
+  - Copie automată: după fiecare antrenament, un fișier JSON se salvează automat în Fișiere (Pe iPhone-ul meu → {app} → Backup, ultimele {n}). Importul acceptă și aceste fișiere. Aceste copii dispar odată cu aplicația — înainte de a o șterge sau de a o instala dintr-un alt cont Apple, exportă o copie de rezervă în altă parte.
+  + Copie automată: după fiecare antrenament, un fișier JSON se salvează automat în Fișiere (Pe iPhone-ul meu → {app} → Backup, ultimele {n}). Importul acceptă și aceste fișiere. Aceste copii dispar odată cu aplicația — înainte de a o șterge sau de a o instala dintr-un alt cont Apple, exportați o copie de rezervă în altă parte.
+lib/locales/ro.json | Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.
+  - Atingeți numărul de pe tablă și introduceți greutatea și repetările (sau folosiți + și −), apoi „Serie gata” — pauza se numără singură. Dacă lipsește o valoare, „Serie gata” mută cursorul în câmpul gol.
+  + Atingeți numărul de pe tablă și introduceți greutatea și repetările (sau folosiți + și −), apoi „Serie gata” — cronometrul pauzei pornește automat. Dacă lipsește o valoare, „Serie gata” mută cursorul în câmpul gol.
+lib/locales/ro.json | Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.
+  - Antrenamentul din {d} {s} nu a avut activitate de {h} ore, așa că s-a salvat automat. Final: {e} (ultima serie). Îl găsești în fila Plan.
+  + Antrenamentul din {d} {s} nu a avut activitate de {h} ore, așa că s-a salvat automat. Final: {e} (ultima serie). Îl găsiți în fila Plan.
+lib/locales/ru.json | Trenuj {n} dni w miesiącu za darmo, bez końca.
+  - Тренируйтесь бесплатно {n} дней в месяц, без ограничения по сроку.
+  + Тренируйтесь бесплатно {n} дн. в месяц, без ограничения по сроку.
+lib/locales/ru.json | Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.
+  - Импортированные тренировки, рекорды и графики всегда доступны, даже без интернета. Тренируйтесь бесплатно {n} дней в месяц — Pro снимает ограничение, в том числе разовой покупкой навсегда.
+  + Импортированные тренировки, рекорды и графики всегда доступны, даже без интернета. Тренируйтесь бесплатно {n} дн. в месяц — Pro снимает ограничение, в том числе разовой покупкой навсегда.
+lib/locales/sk.json | Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.
+  - Aplikáciu nemažte — zmiznú s ňou dáta aj zálohy. Najprv klepnite na „Odoslať údaje“ a súbor uložte mimo telefónu.
+  + Aplikáciu nemažte — zmiznú s ňou údaje aj zálohy. Najprv klepnite na „Odoslať údaje“ a súbor uložte mimo telefónu.
+lib/locales/sl.json | Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.
+  - Na koncu tapnite »Končaj« v glavi (ali »Končaj trening« v kartici po zadnji seriji) — seja se shrani v zavihek Načrt.
+  + Na koncu tapnite »Končaj« v glavi (ali »Končaj trening« v kartici po zadnji seriji) — trening se shrani v zavihek Načrt.
+lib/locales/sl.json | {k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.
+  - {k} dan za moč na teden je manj od priporočenega minimuma (vsaj {n} dni). Za začetek je to dober korak: na začetku lahko trening moči izvajate le {k} dan na teden in ga sčasoma povečate na {n} — malo gibanja je bolje kot nič.
+  + {k} dan treninga moči na teden je manj od priporočenega minimuma (vsaj {n} dni). Za začetek je to dober korak: na začetku lahko trening moči izvajate le {k} dan na teden in ga sčasoma povečate na {n} — malo gibanja je bolje kot nič.
+lib/locales/sl.json | e1RM liczone z {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie.
+  - e1RM, izračunan iz {p} % telesne teže z dneva treninga (zadnja meritev s tega ali prejšnjega dne) in dodatne teže.
+  + e1RM, izračunan iz {p} % telesne teže z dneva treninga (zadnja meritev s tega dne ali prej) in dodatne teže.
+lib/locales/sl.json | Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała) i w pompkach (ok. {p}% masy ciała). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.
+  - Neobvezno, samo v telefonu. Z njo aplikacija izračuna e1RM pri zgibih (celotna telesna teža) in sklecah (približno {p} % telesne teže). Vsak trening se računa z zadnjo meritvijo s tega ali prejšnjega dne; treningi pred prvo meritvijo — pri teh vajah brez e1RM.
+  + Neobvezno, samo v telefonu. Z njo aplikacija izračuna e1RM pri zgibih (celotna telesna teža) in sklecah (približno {p} % telesne teže). Vsak trening se računa z zadnjo meritvijo s tega dne ali prej; treningi pred prvo meritvijo — pri teh vajah brez e1RM.
+lib/locales/sl.json | Drop set liczy się razem z serią, po której jest.
+  - Drop set se šteje skupaj s serijo, ki ji sledi.
+  + Drop set se šteje skupaj s serijo pred njim.
+lib/locales/sr.json | Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.
+  - Истакнуте мишићне групе имају већи волумен него у периоду поређења; што је боја интензивнија, то је пораст већи. Сиво — без пораста.
+  + Истакнути делови тела имају већи волумен него у периоду поређења; што је боја интензивнија, то је пораст већи. Сиво — без пораста.
+lib/locales/sr.json | Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.
+  - Најаве раде када је укључено „Звук на крају одмора”. Исто подешавање мењате и у менију „⋯” на екрану тренинга.
+  + Најаве раде када је укључен „Звук на крају одмора”. Исто подешавање мењате и у менију „⋯” на екрану тренинга.
+lib/locales/sv.json | Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.
+  - Markerade muskelgrupper har mer volym än i jämförelseperioden; ju kraftigare färg, desto större ökning. Grå — ingen ökning.
+  + Markerade kroppsdelar har mer volym än i jämförelseperioden; ju kraftigare färg, desto större ökning. Grå — ingen ökning.
+lib/locales/sv.json | Wyczyść miejsce
+  - Ta bort plats
+  + Rensa plats
+lib/locales/sv.json | Wyczyść miejsce: {a} – {b}
+  - Ta bort plats: {a} – {b}
+  + Rensa plats: {a} – {b}
+lib/locales/sv.json | Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.
+  - Kondition: med {k}–{m} dagar kan du göra dagarna över {j} till pass med måttlig kondition (”Dagar med kondition i planen”, av som standard). Mer styrketräning ger inte nödvändigtvis mer hälsonytta, och konditionsträning är bäst att sprida över flera dagar. Konditionspassets längd = passets tid.
+  + Kondition: med {k}–{m} dagar kan du göra dagarna över {j} till konditionspass med måttlig intensitet (”Dagar med kondition i planen”, av som standard). Mer styrketräning ger inte nödvändigtvis mer hälsonytta, och konditionsträning är bäst att sprida över flera dagar. Konditionspassets längd = passets tid.
+lib/locales/tr.json | Pauza
+  - Duraklat
+  + Duraklama
+lib/locales/tr.json | Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.
+  - Telefondaki verileri daha yeni bir sürüm kaydetmiş (şema {a}); bu sürüm en fazla {b} şemasını destekliyor. Hiçbir şeyi değiştirmiyorum — App Store'dan en yeni sürümü yükleyin. Verileri dosya olarak da gönderebilirsiniz.
+  + Telefondaki verileri daha yeni bir sürüm kaydetmiş (şema {a}); bu sürüm en fazla {b} şemasını destekliyor. Hiçbir şeyi değiştirmiyorum — App Store’dan en yeni sürümü yükleyin. Verileri dosya olarak da gönderebilirsiniz.
+lib/locales/tr.json | Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.
+  - Otomatik yedekleme: her antrenmandan sonra bir JSON dosyası kendiliğinden Dosyalar'a kaydedilir (iPhone'umda → {app} → Backup, son {n}). İçe aktarma bu dosyaları da kabul eder. Bu kopyalar uygulamayla birlikte silinir — uygulamayı kaldırmadan veya başka bir Apple hesabıyla yüklemeden önce yedeği başka bir yere aktarın.
+  + Otomatik yedekleme: her antrenmandan sonra bir JSON dosyası kendiliğinden Dosyalar’a kaydedilir (iPhone’umda → {app} → Backup, son {n}). İçe aktarma bu dosyaları da kabul eder. Bu kopyalar uygulamayla birlikte silinir — uygulamayı kaldırmadan veya başka bir Apple hesabıyla yüklemeden önce yedeği başka bir yere aktarın.
+lib/locales/tr.json | Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.
+  - Vurgulanan kas gruplarının hacmi karşılaştırma dönemine göre daha yüksektir; renk belirginleştikçe artış büyür. Gri — artış yok.
+  + Vurgulanan vücut bölgelerinin hacmi karşılaştırma dönemine göre daha yüksektir; renk belirginleştikçe artış büyür. Gri — artış yok.
+lib/locales/tr.json | Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.
+  - Sonunda üstteki “Bitir” düğmesine (veya son setten sonraki kartta “Antrenmanı bitir” düğmesine) dokunun — seans Plan sekmesine düşer.
+  + Sonunda üstteki “Bitir” düğmesine (veya son setten sonraki kartta “Antrenmanı bitir” düğmesine) dokunun — seans Plan sekmesine eklenir.
+lib/locales/tr.json | Trening to moje życie
+  - Antrenman hayatım
+  + Antrenman benim hayatım
+lib/locales/uk.json | Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.
+  - Торкніться позначки підходу, щоб змінити тип; проведіть рядок ліворуч, щоб видалити його. Діапазон повторень необов’язковий — з ним з’являються підказки «↑». «⇅ SS» об’єднує вправу з наступною в суперсет, «✕ SS» виймає її з групи. Порядок: «≡ Порядок».
+  + Торкніться позначки підходу, щоб змінити тип; проведіть по рядку ліворуч, щоб видалити його. Діапазон повторень необов’язковий — з ним з’являються підказки «↑». «⇅ SS» об’єднує вправу з наступною в суперсет, «✕ SS» виймає її з групи. Порядок: «≡ Порядок».
+lib/locales/uk.json | Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.
+  - Виділено м’язові групи, у яких обсяг більший, ніж у періоді порівняння; чим насиченіший колір, тим більший приріст. Сірі — без приросту.
+  + Виділено частини тіла, у яких обсяг більший, ніж у періоді порівняння; чим насиченіший колір, тим більший приріст. Сірі — без приросту.
+lib/locales/uk.json | Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.
+  - Наприкінці «Завершити» у заголовку (або «Завершити тренування» у картці після останнього підходу) — сесія потрапляє на вкладку «План».
+  + Наприкінці торкніться «Завершити» у заголовку (або «Завершити тренування» у картці після останнього підходу) — сесія потрапить на вкладку «План».
+lib/locales/vi.json | Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.
+  - Dữ liệu trên điện thoại này được lưu bởi phiên bản mới hơn (lược đồ {a}); phiên bản này hỗ trợ đến {b}. Mình không thay đổi gì cả — hãy cài phiên bản mới nhất từ App Store. Bạn cũng có thể gửi dữ liệu dưới dạng tệp.
+  + Dữ liệu trên điện thoại này được lưu bởi phiên bản mới hơn (lược đồ {a}); phiên bản này hỗ trợ đến {b}. Không có gì bị thay đổi — hãy cài phiên bản mới nhất từ App Store. Bạn cũng có thể gửi dữ liệu dưới dạng tệp.
+lib/locales/vi.json | Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.
+  - Sao lưu tự động: sau mỗi buổi tập, một tệp JSON được tự lưu vào Tệp (Trên iPhone → {app} → Backup, {n} bản gần nhất). Nhập cũng nhận các tệp này. Các bản sao này bị xóa cùng ứng dụng — trước khi gỡ ứng dụng hoặc cài từ tài khoản Apple khác, hãy xuất bản sao lưu ra nơi khác.
+  + Sao lưu tự động: sau mỗi buổi tập, một tệp JSON được tự lưu vào Tệp (Trên iPhone của tôi → {app} → Backup, {n} bản gần nhất). Tính năng Nhập cũng chấp nhận các tệp này. Các bản sao này bị xóa cùng ứng dụng — trước khi gỡ ứng dụng hoặc cài từ tài khoản Apple khác, hãy xuất bản sao lưu ra nơi khác.
+lib/locales/vi.json | Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.
+  - Tệp → Trên iPhone → {app} → Backup → {folder}. Hãy lưu thư mục này ra ngoài điện thoại.
+  + Tệp → Trên iPhone của tôi → {app} → Backup → {folder}. Hãy lưu thư mục này ra ngoài điện thoại.
+lib/locales/zh-Hant.json | Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.
+  - 啞鈴在頭部或臉部上方的動作：建議有人在旁負責安全防護。
+  + 啞鈴在頭部或臉部上方的動作：建議安排一位保護者。
+zmian: 163

@@ -1,0 +1,7 @@
+HEAD: 2385e75aeb3880c0c90ba5edd69145a1c6d80b01
+git status --porcelain:
+kod 0
+/home/user/trening                                                                         2385e75 (detached HEAD)
+/tmp/claude-0/-home-user-trening/e2bee9ef-67d2-522c-b018-8b85ee217055/scratchpad/wt-audyt  6a4a283 [audyt-m1-1-0-2026-10-27]
+/tmp/claude-0/-home-user/e2bee9ef-67d2-522c-b018-8b85ee217055/scratchpad/03-zakres-wt      2385e75 (detached HEAD)
+/tmp/claude-0/-home-user/e2bee9ef-67d2-522c-b018-8b85ee217055/scratchpad/10-wydanie-wt     2385e75 (detached HEAD)

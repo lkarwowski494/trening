@@ -1,0 +1,13 @@
+# DEV-02: commity M2 zmieniające zachowanie w obszarze kodu — czy ten sam commit zmienia test (git show --name-only)
+5ca75778 kod/skrypty: 49, testy: 7 — feat(i18n): lokalny symbol jednostki masy i dystansu w ru, uk, bg, sr, el; wartość logiczna kg/lb 
+79857552 kod/skrypty: 3, testy: 1 — fix(kod): udział partii pomocniczej ze stałej SECONDARY_SHARE, etykieta rekordu przez t(); migracj
+f775eb5c kod/skrypty: 2, testy: 3 — fix(zakup): „Zarządzaj subskrypcją” otwiera arkusz systemowy w aplikacji; strona App Store tyl
+72338f0 kod/skrypty: 35, testy: 5 — fix(zakup): stan „Masz plan: X” zamiast oferty, zmiana planu zwinięta (DEC-09 a) [M1-audytor-ge
+5bbc84ad kod/skrypty: 36, testy: 7 — fix(zakup): nagłówek karty posiadanego planu i wiersz w Ustawieniach — „Masz plan: miesięczny
+ee1713b kod/skrypty: 2, testy: 3 — Strażnik decyzja → wdrożenie → test dla wszystkich wpisów docs/18 (DEC-02 a) [M1-audytor-gene
+a90caba kod/skrypty: 1, testy: 1 — fix(zakup): uwaga o odnawianiu subskrypcji przed zakupem dożywotniego [M1-audytor-generalny-001; 02
+8c12be9 kod/skrypty: 2, testy: 1 — fix(zakup): P3 B działa ze sklepem natywnym — koniec dostępu zapamiętany w aplikacji [M1-audyto
+0311996e kod/skrypty: 3, testy: 2 — Znak × na tablicy bez ucięcia, e-mail z ekranu błędu bez treści błędu [M2-koordynator-napraw-
+dbfa3cd4 kod/skrypty: 1, testy: 1 — fix(zakup): uwaga „subskrypcja nadal się odnawia” przed dożywotnim także przy subskrypcji z k
+59fc6d7 kod/skrypty: 0, testy: 5 — test(dane): strażnik „zmiana normalizacji = podbicie SCHEMA_VERSION” na odciskach zapisów z wy
+ca84668 kod/skrypty: 1, testy: 1 — fix(dane): nieudany zapis pokazuje okno na bieżącym ekranie, nie tylko baner na zakładce Trening 

@@ -1,0 +1,14 @@
+$ git rev-parse HEAD: 2385e75aeb3880c0c90ba5edd69145a1c6d80b01
+$ npx jest tests/i18n-forma-uk.test.ts --maxWorkers=1
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/i18n-forma-uk.test.ts
+  ✓ ukraiński słownik interfejsu: bez formy „ти” (forma grzecznościowa „ви”) (10 ms)
+  ✓ heurystyka rozpoznaje formę „ти” (próby dodatnie) i nie łapie formy „ви” (próby ujemne) (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.508 s
+Ran all test suites matching /tests\/i18n-forma-uk.test.ts/i.
+kod wyjścia: 0

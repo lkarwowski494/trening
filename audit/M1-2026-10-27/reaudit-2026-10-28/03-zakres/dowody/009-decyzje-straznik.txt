@@ -1,0 +1,9 @@
+    ✓ „Wyjątek Ukraina” z 13.10.2026: zamknięty jako zastąpiony 27.10.2026 (DEC-07 b, M1-audytor-generalny-037; dawniej „otwarte → 037” w tabeli wyżej)
+    ✓ kolejność planów: wpis z 23.10.2026 zastąpiony 27.10.2026; wpis z 27.10.2026 wskazuje test kolejności i planu domyślnego (02-monetyzacja-003) (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       21 passed, 21 total
+Snapshots:   0 total
+Time:        2.635 s
+Ran all test suites matching /tests\/decyzje-straznik.test.ts/i.
+kod 0

@@ -1,0 +1,7 @@
+Sonda: utrata sieci przy zapamiętanym pełnym dostępie; -t 'utrata sieci' → kod 0
+    OFFLINE /paywall?reason=settings | state=unknown level=full active=null
+      ["Trenuj 5 dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.","Trening to część mojego tygodnia","$6.99/rok","Cały rok treningów, rozliczany rocznie.","Szukam swojego rytmu","$0.99/miesiąc","Płacisz co miesiąc i kończysz, kiedy chcesz.","Trening to moje życie","$14.99 jednorazowo","Płacisz raz i masz na zawsze.","Subskrybuj","Subskrypcja odnawia się automatycznie, dopóki jej nie anulujesz w ustawieniach konta Apple.","Bez zakupu: do 5 dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.","Przywróć zakupy","Zrealizuj kod","Zakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej.","Warunki korzystania","Prywatność","Anuluj"]
+--
+    OFFLINE /more/settings | state=unknown level=full active=null
+      ["Subskrypcja","Pełna wersja","Masz pełną wersję"]
+Tests:       20 skipped, 2 passed, 22 total

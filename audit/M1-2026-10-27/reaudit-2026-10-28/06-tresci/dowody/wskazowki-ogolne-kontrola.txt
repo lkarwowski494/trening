@@ -1,0 +1,5 @@
+== importy data/zrodla w kodzie aplikacji (app/ components/ lib/):
+kod grep: 1
+== wskazowki-ogolne.json: długości pól miejsce/cytat
+pól: 106 maks. długość: 110 pól z > 2 zdaniami: 0
+klucze główne: [ '_opis', 'wskazowki', 'przypisania', 'katy' ] wskazówek: 177 przypisań: 538

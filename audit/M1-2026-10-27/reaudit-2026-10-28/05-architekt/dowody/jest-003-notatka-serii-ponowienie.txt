@@ -1,0 +1,15 @@
+ 09:34:51 up 6 min,  0 user,  load average: 4.65, 1.73, 0.65
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx
+  M1-003: notatka serii — jedna stała długości
+    ✓ import i oba okna używają tej samej stałej (500); import zachowuje 450 znaków (3 ms)
+    ✓ strażnik: w ekranach i komponentach notatka serii nie jest przycinana liczbą wpisaną na sztywno (6 ms)
+    ✓ scenariusz: seria z notatką 450 znaków (jak po imporcie) → Historia → Edytuj → „Edytuj notatkę” → „Zapisz” bez zmian → „Zapisz sesję” → 450 znaków (1172 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        3.683 s, estimated 34 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-003-notatka-serii.test.tsx/i.
+kod 0

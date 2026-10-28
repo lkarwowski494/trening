@@ -1,0 +1,21 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx
+  M1-010 / DEC-09 a (27.10.2026): stan „Masz plan X” zamiast oferty, zmiana planu zwinięta
+    ✓ miesięczny kupiony: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (1102 ms)
+    ✓ roczny kupiony: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (194 ms)
+    ✓ miesięczny z kodu: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (199 ms)
+    ✓ roczny z Chmury rodzinnej: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (164 ms)
+    ✓ „Zmień plan” rozwija listę: posiadany plan oznaczony i niewybieralny, przycisk zakupu inny niż „Subskrybuj”, drugie stuknięcie zwija (etykieta stała) (228 ms)
+    ✓ zmiana planu po rozwinięciu: zakup wybranego planu, potem karta z nową nazwą i lista znowu zwinięta (167 ms)
+    ✓ dożywotni po rozwinięciu przy aktywnej subskrypcji: „Kup na zawsze” z uwagą o odnawianiu przed zakupem (M1-001 bez zmian) (142 ms)
+    ✓ PL: „Masz plan: roczny”, „Zmień plan” zwinięty, po rozwinięciu „Przejdź na ten plan” (147 ms)
+    ✓ dożywotni: nagłówek z nazwą planu i „Masz dostęp na zawsze”, bez listy i bez „Zmień plan” (150 ms)
+    ✓ bez dostępu: oferta jak dotąd — wstęp o darmowych dniach, lista od razu widoczna, „Subskrybuj”, bez „Zmień plan” i bez karty stanu (186 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        5.256 s, estimated 6 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx/i.
+kod 0

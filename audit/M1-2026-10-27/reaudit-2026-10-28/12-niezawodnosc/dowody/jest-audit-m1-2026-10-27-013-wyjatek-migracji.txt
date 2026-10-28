@@ -1,0 +1,15 @@
+$ npx jest tests/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx --maxWorkers=1 (commit 2385e75)
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx (10.002 s)
+  M1-013: wyjątek migracji przy starcie → tryb awaryjny, dane nietknięte
+    ✓ migrate rzuca na czytelnych danych: ekran błędu startu, „state” bez zmian, brak state_corrupt_*, „Wyślij dane” daje dane z bazy (441 ms)
+    ✓ nieczytelny JSON: jak dotąd — odłożenie pod state_corrupt_* i start z komunikatem (bez ekranu błędu startu) (6124 ms)
+    ✓ zły kształt zapisu (poprawny JSON, migrate: „bad state”) — jak nieczytelny: odłożenie, bez ekranu błędu startu (155 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        10.492 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx/i.
+kod wyjścia: 0

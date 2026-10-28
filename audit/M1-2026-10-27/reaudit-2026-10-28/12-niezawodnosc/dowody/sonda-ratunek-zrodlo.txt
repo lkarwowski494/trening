@@ -1,0 +1,22 @@
+// Sonda: kopia kompletu plików bazy wg lib/rescue.ts (DB_FILES), baza WAL z zapisami po ostatnim checkpoincie.
+import { DatabaseSync } from 'node:sqlite';
+import { mkdirSync, rmSync, existsSync, copyFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+const FILES = ['trening.db', 'trening.db-wal', 'trening.db-shm', 'trening.db-journal'];
+const count = (p) => { const d = new DatabaseSync(p); const ic = d.prepare('PRAGMA integrity_check').get(); const n = d.prepare('SELECT count(*) c FROM kv').get().c; d.close(); return { integrity: Object.values(ic)[0], rows: n }; };
+const copySet = (src, dst, only) => { rmSync(dst, { recursive: true, force: true }); mkdirSync(dst); for (const f of (only ?? FILES)) if (existsSync(`${src}/${f}`)) copyFileSync(`${src}/${f}`, `${dst}/${f}`); };
+// A: awaria procesu z otwartą bazą (zapisy w -wal), potem kopia kompletu przy zamkniętych połączeniach
+rmSync('A', { recursive: true, force: true }); mkdirSync('A');
+const child = `import { DatabaseSync } from 'node:sqlite'; const d = new DatabaseSync('A/trening.db'); d.exec("PRAGMA journal_mode=WAL; PRAGMA wal_autocheckpoint=0; CREATE TABLE kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)"); for (let i=0;i<25;i++) d.prepare('INSERT INTO kv VALUES (?,?)').run('w'+i, 'x'.repeat(100)); process.exit(0);`;
+const r = spawnSync(process.execPath, ['--input-type=module', '-e', child], { encoding: 'utf8' });
+console.log('A: proces zakończony bez zamknięcia bazy, kod', r.status, '| pliki:', FILES.filter(f => existsSync('A/' + f)).join(', '));
+copySet('A', 'A-tylko-db', ['trening.db']); copySet('A', 'A-komplet');
+console.log('A: kopia samego trening.db ->', (() => { try { return JSON.stringify(count('A-tylko-db/trening.db')); } catch (e) { return 'błąd: ' + e.message; } })());
+console.log('A: kopia kompletu (DB_FILES) ->', JSON.stringify(count('A-komplet/trening.db')), '| oryginał:', JSON.stringify(count('A/trening.db')));
+// B: połączenie otwarte i bezczynne (zapisy w -wal), kopia kompletu w trakcie
+rmSync('B', { recursive: true, force: true }); mkdirSync('B');
+const d = new DatabaseSync('B/trening.db'); d.exec("PRAGMA journal_mode=WAL; PRAGMA wal_autocheckpoint=0; CREATE TABLE kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)");
+for (let i = 0; i < 25; i++) d.prepare('INSERT INTO kv VALUES (?,?)').run('w' + i, 'y'.repeat(100));
+copySet('B', 'B-komplet');
+console.log('B: kopia kompletu przy otwartym, bezczynnym połączeniu ->', JSON.stringify(count('B-komplet/trening.db')));
+d.close();

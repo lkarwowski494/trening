@@ -1,0 +1,8 @@
+$ git diff 025a50b..2385e75 -- app components lib modules targets | dodane linie z fetch(/XMLHttpRequest/WebSocket/http(s):// /nowe zależności
+fetch|XMLHttpRequest|WebSocket: 0
+adresy http(s) dodane:
+zależności package.json: 4 zmienionych linii
++    "check:decyzje": "node scripts/decyzje.mjs --check",
+-    "verify": "node scripts/hooks/sprawdz-instalacje.mjs && npm run typecheck && npm run lint && npm run check:i18n && npm run check:cues && npm run check:claims && npm run check:figures && npm run check:figures-v2 && npm run check:zrodla-runtime && npm run check:readme && jest && npm run check:matrix && npm run check:licenses && npx expo export --platform ios --output-dir .expo/verify-export && npm run check:bundle && node -e \"require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})\" && npm run verify:native",
++    "check:pochodne": "node scripts/pochodne.mjs",
++    "verify": "node scripts/hooks/sprawdz-instalacje.mjs && npm run typecheck && npm run lint && npm run check:i18n && npm run check:cues && npm run check:claims && npm run check:decyzje && npm run check:figures && npm run check:figures-v2 && npm run check:zrodla-runtime && npm run check:readme && jest && npm run check:matrix && npm run check:licenses && npx expo export --platform ios --output-dir .expo/verify-export && npm run check:bundle && node -e \"require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})\" && npm run verify:native",

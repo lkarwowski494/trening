@@ -1,0 +1,18 @@
+$ grep -rnE "\bwu\(\)|\bdistUnit\(\)" app components lib (bez lib/units.ts)
+app/(tabs)/progress.tsx:127:(); const log = bodyMassLog(); const b = latestBodyMass(); const lb = wu() === 'lb';
+components/BoardControls.tsx:29:  if (k === 'weight') return fmtNum(wOut(v), wu() === 'lb' ? 1 : 2);
+components/BoardControls.tsx:30:n v === 0 ? tr('masa ciała') : `${v > 0 ? '+' : ''}${fmtNum(wOut(v), wu() === 'lb' ? 1 : 2)}`;
+components/ui.tsx:134: zaczyna „0,5” */ const v = value ?? ''; const tol = weightTol ? (wu() === 'lb' ? 0.06 : 0.005) : 1e-9; /* runda 58: w k
+lib/loads.ts:133:nly number[], x: number) => { if (hasLoad(loads, x)) return true; if (wu() !== 'lb') return false; const sx = wOut(x); retur
+lib/stats.ts:97:  if (k === 'objętość treningu') return a > b + Math.max(1e-9, (wu() === 'lb' ? 0.1 * KG_PER_LB : 0.01) * units) && vo
+lib/stats.ts:120:  const all = allSessions(ex.id + '|' + wu()); return before == null ? all : all.slice(0, coun
+lib/stats.ts:149:  const key = ex.id + '|' + wu(); const all = allSessions(key); const n = before =
+lib/stats.ts:173:  const tol = wu() === 'lb' ? 0.1 * KG_PER_LB - 1e-6 : 0.005; const 
+lib/stats.ts:267:etric ?? 'weight_reps'; const kg = (v: number) => fmtW(v); const lb = wu() === 'lb'; const ws = { scale: lb ? 1 / KG_PER_LB 
+lib/live.ts:62:  return wu() === 'lb' ? spokenNoun(n, 'funt|funty|funtów', 'f
+lib/live.ts:141:ps'; const empty = (v: unknown) => v === '' || v == null; const dig = wu() === 'lb' ? 1 : 2;
+lib/state/history.ts:196:  const top = Math.max(...work.map(x => setLoad(ex, x))); const lb = wu() === 'lb';
+lib/state/sets.ts:103:const dispKg = (kg: number) => wu() === 'lb' ? wOut(kg) * KG_PER_LB : kg;
+lib/backup.ts:132:  const lb = wu() === 'lb';
+lib/board.ts:84:  const lb = wu() === 'lb'; const bw = isBW(ex);
+lib/board.ts:115:  const m = ex.metric ?? 'weight_reps'; const dig = wu() === 'lb' ? 1 : 2; const n = (v: unknown) => !isEm

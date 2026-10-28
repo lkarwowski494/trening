@@ -1,0 +1,49 @@
+# Próbka regresji (pliki niezmienione 025a50b..2385e75: lib/state/db.ts, lib/state/core.ts, components/ActiveWorkout.tsx, lib/watch/)
+$ git diff --stat 025a50b..2385e75 -- lib/state/db.ts lib/state/core.ts components/ActiveWorkout.tsx lib/watch/
+(pusto = bez zmian)
+
+## DEV-05: OR REPLACE / REPLACE INTO / DELETE FROM / withExclusiveTransactionAsync w lib app components
+lib/state/core.ts:85:    if (stateJson != null) await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', 'state', stateJson);
+lib/state/core.ts:86:    if (cfgJson != null) await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', 'cfg', cfgJson);
+lib/state/core.ts:88:    await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', 'live', liveJson);
+lib/state/core.ts:124:      await db.runAsync('DELETE FROM kv WHERE k = ?', DRAFTS_KEY);
+lib/state/core.ts:126:      await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', DRAFTS_KEY, j);
+lib/state/core.ts:141:  db?.runAsync('DELETE FROM kv WHERE k = ?', 'recovery').catch(() => {});
+lib/state/backupstat.ts:26:  db?.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', KEY, JSON.stringify(stat)).catch(() => {});
+lib/state/db.ts:16:    runAsync(q: string, ...p: unknown[]): Promise<unknown>; withTransactionAsync(f: () => Promise<void>): Promise<void>; closeAsync(): Promise<void> };
+lib/state/db.ts:24:  if (rows.length) await next.withTransactionAsync(async () => {
+lib/state/db.ts:25:    for (const r of rows) await next.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', r.k, r.v);
+lib/state/db.ts:32:  const KV = 'CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)';
+lib/state/boot.ts:32:  await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_PHASE_KEY, JSON.stringify(body)).catch(() => {});
+lib/state/boot.ts:40:  await db!.execAsync('CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)');
+lib/state/boot.ts:51:    await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_GUARD_KEY, JSON.stringify(next)).catch(() => {});
+lib/state/boot.ts:102:      await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key, row.v);
+lib/state/boot.ts:110:        await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_live', lv.v);
+lib/state/boot.ts:111:        try { await db!.runAsync('DELETE FROM kv WHERE k = ?', 'live'); } catch {} }
+lib/state/boot.ts:115:        await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_cfg', cv.v);
+lib/state/boot.ts:116:        try { await db!.runAsync('DELETE FROM kv WHERE k = ?', 'cfg'); } catch {} }
+lib/state/boot.ts:123:      await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', 'recovery', JSON.stringify(recovery)).catch(() => {});
+lib/state/boot.ts:168:    await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', preKey(from), JSON.stringify(env));
+lib/state/boot.ts:170:    await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', PREMIGRATE_INDEX, JSON.stringify(idx));
+lib/state/boot.ts:177:    for (const [from, at] of Object.entries(idx)) if (now - at > PREMIGRATE_KEEP_MS) { await db!.runAsync('DELETE FROM kv WHERE k = ?', preKey(Number(from))); delete idx[from]; c
+lib/state/boot.ts:178:    if (changed) await db!.runAsync(Object.keys(idx).length ? 'INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)' : 'DELETE FROM kv WHERE k = ?', PREMIGRATE_INDEX, ...(Object.keys(i
+lib/state/boot.ts:192:  await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_GUARD_KEY, JSON.stringify({ starts: 0 })).catch(() => {});
+lib/state/boot.ts:248:    for (const { k } of rows) if (TECHNICAL_KEY.test(k)) await db.runAsync('DELETE FROM kv WHERE k = ?', k);
+lib/entitlement.ts:54:  try { await db?.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', ACCESS_KEY, JSON.stringify({ ...v, at: now })); } catch { /* brak zapisu nie psuje stanu w pamięci *
+
+## DEV-15: keep-awake i interwały w ActiveWorkout
+5:import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
+52:  useEffect(() => { if (!wake) return; activateKeepAwakeAsync('workout').catch(() => {}); return () => { deactivateKeepAwake('workout').catch(() => {}); }; }, [wake]);
+74:    const i = setInterval(() => { timer.tick(); if (timer.setReached()) finishRef.current().catch(() => {}); }, 500);
+75:    return () => clearInterval(i);
+102:  const [minute, setMinute] = useState(0); useEffect(() => { const i = setInterval(() => setMinute(x => x + 1), 60e3); return () => clearInterval(i); }, []); /* T1: sprawdzenie także przy otwarte
+239:  useEffect(() => { const i = setInterval(() => force(x => x + 1), 1000); return () => clearInterval(i); }, []);
+303:  useEffect(() => { const i = setInterval(() => { if (timer.S.on || timer.T.on) force(x => x + 1); }, 250); return () => clearInterval(i); }, []);
+323:  useEffect(() => { const i = setInterval(() => { if (timer.T.on) force(x => x + 1); }, 250); return () => clearInterval(i); }, []);
+
+## DEV-14: pliki z sekretami w git ls-files
+kod grep 1 (1 = brak trafień)
+$ git grep -nE "-----BEGIN [A-Z ]*PRIVATE|sk-[A-Za-z0-9_-]{20,}|AIza[0-9A-Za-z_-]{30,}|gh[pousr]_[A-Za-z0-9]{30,}" 2385e75
+2385e75:tests/gemini-pozy.test.ts:343:        const linia = JSON.stringify({ custom_id: 'pr-de', result: { type: 'errored', error: { error: { message: 'bad proj
+kod grep: 0
+Ocena trafienia: tests/gemini-pozy.test.ts:343 — napis testowy (29 znaków, po prefiksie 16 liter; prawdziwe klucze są wielokrotnie dłuższe) użyty do sprawdzenia, że skrypty maskują klucz w logach; nie sekret.

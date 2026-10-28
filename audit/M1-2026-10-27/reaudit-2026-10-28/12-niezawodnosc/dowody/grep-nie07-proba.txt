@@ -1,0 +1,30 @@
+$ git diff 025a50b..2385e75 -- package.json
+diff --git a/package.json b/package.json
+index ad022bc..aac830e 100644
+--- a/package.json
++++ b/package.json
+@@ -15,13 +15,15 @@
+     "check:licenses": "node scripts/licenses.mjs --check",
+     "check:cues": "node scripts/cues/gen.mjs --check",
+     "check:claims": "node scripts/claims.mjs --check",
++    "check:decyzje": "node scripts/decyzje.mjs --check",
+     "check:figures": "node scripts/figures/gen.mjs --check",
+     "check:figures-v2": "node scripts/figures/v2-gen.mjs --check && node scripts/figures/v2-validate.mjs --schema --check",
+     "check:zrodla-runtime": "node scripts/zrodla-runtime.mjs --check",
+     "check:bundle": "node scripts/check-bundle.mjs .expo/verify-export",
+     "check:release": "node scripts/ci/blokada-wydania.mjs",
+     "check:readme": "node scripts/readme.mjs --check",
+-    "verify": "node scripts/hooks/sprawdz-instalacje.mjs && npm run typecheck && npm run lint && npm run check:i18n && npm run check:cues && npm run check:claims && npm run check:figures && npm run check:figures-v2 && npm run check:zrodla-runtime && npm run check:readme && jest && npm run check:matrix && npm run check:licenses && npx expo export --platform ios --output-dir .expo/verify-export && npm run check:bundle && node -e \"require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})\" && npm run verify:native",
++    "check:pochodne": "node scripts/pochodne.mjs",
++    "verify": "node scripts/hooks/sprawdz-instalacje.mjs && npm run typecheck && npm run lint && npm run check:i18n && npm run check:cues && npm run check:claims && npm run check:decyzje && npm run check:figures && npm run check:figures-v2 && npm run check:zrodla-runtime && npm run check:readme && jest && npm run check:matrix && npm run check:licenses && npx expo export --platform ios --output-dir .expo/verify-export && npm run check:bundle && node -e \"require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})\" && npm run verify:native",
+     "screens": "node scripts/screens/run.mjs",
+     "mutation": "stryker run",
+     "perf": "jest -c jest.perf.config.js",
+kod wyjścia: 0
+
+$ grep -n -E "sentry|crashlytics|firebase|bugsnag|expo-updates|datadog|amplitude|mixpanel|posthog" package.json app.json (2385e75)
+package.json:105:      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|standard-navigation)"
+kod wyjścia: 0 (jedyne trafienie: wzorzec transformIgnorePatterns konfiguracji jest, nie zależność)
+
+$ grep -rn "fetch(" lib app components --include=*.ts --include=*.tsx
+kod wyjścia: 1 (1 = brak trafień)

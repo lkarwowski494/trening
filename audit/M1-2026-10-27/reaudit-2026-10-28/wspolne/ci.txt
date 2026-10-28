@@ -1,0 +1,5 @@
+CI na 2385e75 (main, odczyt MCP GitHub 28.10.2026):
+- tests.yml 40657525976: completed / success (pełne verify w CI: typy, tłumaczenia, Jest, eksport iOS)
+- pages.yml 40657526064: success
+- e2e-ios.yml (pakiet podstawowy) 40657526205: in_progress w chwili odczytu
+Gałąź audyt/m1-reaudit-2026-10-28 (316b666, tylko docs/18): tests.yml 40658116200 success

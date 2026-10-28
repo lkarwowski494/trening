@@ -1,0 +1,34 @@
+=== powtórka 1: npx jest tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx --maxWorkers=1
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx
+  M1-001: dożywotni przy aktywnej subskrypcji — uwaga przed zakupem
+    ✓ EN: miesięczny kupiony sam → wybór dożywotniego pokazuje uwagę nad „Buy forever”; przy innym planie uwagi nie ma (911 ms)
+    ✓ PL: ta sama uwaga po polsku (194 ms)
+    ✓ bez subskrypcji: dożywotni bez uwagi (147 ms)
+    ✓ subskrypcja z Chmury rodzinnej (płaci organizator): bez sugestii „anuluj” (161 ms)
+    ✓ subskrypcja z kodu promocyjnego: po promocji odnawia się płatnie — ta sama uwaga (decyzja właściciela 5a, 28.10.2026; M2-koordynator-napraw-001) (151 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        4.318 s, estimated 15 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx/i.
+kod wyjścia: 0
+=== powtórka 2: npx jest tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx --maxWorkers=1
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx
+  M1-001: dożywotni przy aktywnej subskrypcji — uwaga przed zakupem
+    ✓ EN: miesięczny kupiony sam → wybór dożywotniego pokazuje uwagę nad „Buy forever”; przy innym planie uwagi nie ma (918 ms)
+    ✓ PL: ta sama uwaga po polsku (169 ms)
+    ✓ bez subskrypcji: dożywotni bez uwagi (156 ms)
+    ✓ subskrypcja z Chmury rodzinnej (płaci organizator): bez sugestii „anuluj” (147 ms)
+    ✓ subskrypcja z kodu promocyjnego: po promocji odnawia się płatnie — ta sama uwaga (decyzja właściciela 5a, 28.10.2026; M2-koordynator-napraw-001) (154 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        3.719 s, estimated 4 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx/i.
+kod wyjścia: 0

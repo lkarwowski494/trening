@@ -1,0 +1,3 @@
+$ grep -rcE "fontSize: *[0-9]+" components app (2385e75 / 025a50b)
+2385e75: 67
+025a50b: 67

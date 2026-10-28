@@ -1,0 +1,16 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/paywall-kolejnosc-domyslna.test.ts
+  ekran zakupu: kolejność planów i plan domyślny (decyzja 27.10.2026)
+    ✓ PLAN_ORDER: roczny, miesięczny, dożywotni (4 ms)
+    ✓ domyślnie zaznaczony plan na ekranie zakupu to pierwszy z PLAN_ORDER (roczny) (1 ms)
+    ✓ lista planów jest wyświetlana w kolejności PLAN_ORDER, nie w kolejności zwróconej przez sklep (1 ms)
+  docs/18: wpis decyzji z 27.10.2026 o kolejności planów
+    ✓ wpis z 27.10.2026 o kolejności planów wskazuje ten plik testu (4 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        1.036 s
+Ran all test suites matching /tests\/paywall-kolejnosc-domyslna.test.ts/i.
+exit 0

@@ -1,0 +1,3 @@
+$ node param.mjs . 98aa4a2   # zmiany z przeglądu API 28.10 (98aa4a2 = baza batcha) do HEAD 2385e75
+zmienionych wartości: 161; rozjazdów: 0
+kod wyjścia: 0

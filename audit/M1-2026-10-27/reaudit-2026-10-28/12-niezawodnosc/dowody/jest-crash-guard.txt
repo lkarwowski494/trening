@@ -1,0 +1,8 @@
+$ npx jest tests/crash-guard.test.ts --maxWorkers=1 (2385e75)
+
+Test Suites: 1 passed, 1 total
+Tests:       19 passed, 19 total
+Snapshots:   0 total
+Time:        1.956 s
+Ran all test suites matching /tests\/crash-guard.test.ts/i.
+kod wyjścia: 0

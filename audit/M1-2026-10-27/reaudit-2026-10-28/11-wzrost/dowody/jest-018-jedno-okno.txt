@@ -1,0 +1,13 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-018-jedno-okno.test.tsx (19.728 s)
+  M1-018: najwyżej jedno okno na podsumowaniu
+    ✓ import 10 treningów + pierwszy na żywo z rekordem (free): okno „Uczciwe zasady”, bez prośby o ocenę (379 ms)
+    ✓ niezmiennik: dla 0–12 importowanych treningów suma okien na jednym podsumowaniu ≤ 1 (96 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        20.69 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-018-jedno-okno.test.tsx/i.
+kod 0

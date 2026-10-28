@@ -1,0 +1,15 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/zrodla-pelne-wskazowki-ogolne.test.ts
+  M1-audytor-generalny-021 (27.10.2026): źródła zestawów ogólnych i kąta stóp w repo
+    ✓ każde id wskazówki z zestawu ogólnego ma wpis źródła z adresem i miejscem; każde ćwiczenie z zestawem ogólnym — przypisanie z plikiem badacza (80 ms)
+    ✓ wyświetlane id bez wpisu źródła → błąd (kontrola potrafi paść) (152 ms)
+    ✓ kąt stóp: tekst z karty ćwiczenia ma wpis źródła z adresem i miejscem; bez wpisu → błąd; stan „otwarte” zgodny z rejestrem twierdzeń (T-054) (55 ms)
+    ✓ verify uruchamia kontrolę (check:zrodla-runtime) i aplikacja nie importuje pliku źródeł (19 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        1.993 s
+Ran all test suites matching /tests\/zrodla-pelne-wskazowki-ogolne.test.ts/i.
+kod wyjścia: 0

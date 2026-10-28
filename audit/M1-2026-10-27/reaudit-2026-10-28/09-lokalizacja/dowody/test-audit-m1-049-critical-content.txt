@@ -1,0 +1,19 @@
+$ npx jest tests/audit-m1-049-critical-content.test.ts --maxWorkers=1 (HEAD 2385e75)
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-049-critical-content.test.ts
+  docs/16: kontrola treści krytycznej w 34 językach
+    ✓ jest 34 języków docelowych (LANGS bez pl) (3 ms)
+    ✓ kontrola automatyczna: zdanie medyczne, asekuracja i komplet zdań wskazówek w każdym języku (172 ms)
+    ✓ tabela w docs/16 zgodna z danymi (UPDATE_CRITICAL=1 przepisuje) (16 ms)
+    ✓ docs/16 zapisuje stan formy zwracania się (fr, tr) jako otwarty i brak drugiego przeglądu (1 ms)
+  docs/40: ryzyko R-010 (treść krytyczna bez drugiego przeglądu)
+    ✓ wiersz R-010 w rejestrze ryzyk z warunkiem zamknięcia (1 ms)
+    ✓ blokuje wydanie w App Store, nie TestFlight (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       6 passed, 6 total
+Snapshots:   0 total
+Time:        1.55 s
+Ran all test suites matching /tests\/audit-m1-049-critical-content.test.ts/i.
+kod wyjścia: 0

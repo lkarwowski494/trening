@@ -1,0 +1,33 @@
+/* Sonda reaudytu 12-niezawodnosc (28.10.2026), tylko w worktree: wyjątek migracji przy starcie — kod diagnostyczny w e-mailu i drugi start. */
+import { Linking } from 'react-native';
+import { t } from '@/lib/i18n';
+import { BOOT_GUARD_KEY, BOOT_STABLE_MS } from '@/lib/state/crashguard';
+import { seedState } from './helpers';
+import { renderApp, flushAll, screen, tap } from './app';
+jest.setTimeout(60000);
+const bodyOf = (u: string) => decodeURIComponent(/body=([^&]*)/.exec(u)![1]);
+const crashMsg = () => t('Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.');
+test('start 1: wyjątek migracji → ekran błędu; e-mail bez kodu etapu; licznik strażnika po czasie kamienia', async () => {
+  const st = seedState('pl');
+  const m = jest.spyOn(require('@/lib/state/migrate'), 'migrate').mockImplementation(() => { throw new Error('boom-migracja'); });
+  const open = jest.spyOn(Linking, 'openURL').mockResolvedValue(true);
+  try {
+    await renderApp({ saved: st, navTimers: false }); await flushAll(50);
+    console.log('S1 ekran błędu startu:', !!screen.queryByText(t('Nie udało się otworzyć danych.')), '| diag na ekranie:', !!screen.queryByTestId('start-error-diag'));
+    await flushAll(BOOT_STABLE_MS + 100);
+    console.log('S1 licznik strażnika po BOOT_STABLE_MS:', global.__kv.get(BOOT_GUARD_KEY));
+    await tap(screen.getByText(t('Napisz do nas'))); await flushAll(20);
+    const body = bodyOf(String(open.mock.calls.at(-1)![0]));
+    console.log('S1 treść e-maila zawiera „start:”:', body.includes('start:'), '| zawiera boom-migracja:', body.includes('boom-migracja'), '| linie treści:', JSON.stringify(body.trim().split('\n').length));
+  } finally { m.mockRestore(); open.mockRestore(); }
+});
+test('start 2 (po zamknięciu ekranu błędu z start 1, licznik 1): jaki ekran i komunikat', async () => {
+  const st = seedState('pl');
+  const m = jest.spyOn(require('@/lib/state/migrate'), 'migrate').mockImplementation(() => { throw new Error('boom-migracja'); });
+  try {
+    await renderApp({ saved: st, navTimers: false, kv: { [BOOT_GUARD_KEY]: JSON.stringify({ starts: 1 }) } }); await flushAll(50);
+    console.log('S2 komunikat „zamknęła się nieoczekiwanie”:', !!screen.queryByText(crashMsg()), '| diag:', screen.queryByTestId('start-error-diag')?.props.children);
+    await tap(screen.getByText(t('Spróbuj ponownie'))); await flushAll(50);
+    console.log('S2 po „Spróbuj ponownie”: komunikat pętli:', !!screen.queryByText(crashMsg()), '| treść błędu migracji:', !!screen.queryByText('boom-migracja'));
+  } finally { m.mockRestore(); }
+});

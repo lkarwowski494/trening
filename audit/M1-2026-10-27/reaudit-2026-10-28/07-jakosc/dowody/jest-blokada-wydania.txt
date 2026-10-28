@@ -1,0 +1,18 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/blokada-wydania.test.ts
+  blokada wydania: openExceptions
+    ✓ liczy tylko wpisy „zmieniony”; „nowy” nie jest wyjątkiem anonimizacji; zlicza stare tłumaczenia i te z nazwami źródeł (306 ms)
+    ✓ pusty zestaw (po przekładzie) → brak wyjątków (288 ms)
+  blokada wydania: skrypt w repozytorium
+    ✓ kod wyjścia 1 dokładnie wtedy, gdy zestaw przekładu ma wpisy „zmieniony” albo rejestr ryzyk ma pozycje blokujące (M1-audytor-generalny-012); komunikat wskazuje R-015 i liczby (443 ms)
+    ✓ npm run check:release istnieje i NIE jest częścią verify (zwykła praca ma prawo mieć wyjątek; blokuje krok wydania) (2 ms)
+  rejestr ryzyk: R-015
+    ✓ wiersz R-015: opis ryzyka, automatyczny warunek zamknięcia (check:release) i stan „otwarte”, dopóki zestaw ma wpisy „zmieniony” (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        2.528 s
+Ran all test suites matching /tests\/blokada-wydania.test.ts/i.
+kod 0

@@ -1,0 +1,777 @@
+=== npx jest tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx --maxWorkers=1
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx (14.021 s)
+  M1-001: dożywotni przy aktywnej subskrypcji — uwaga przed zakupem
+    ✕ EN: miesięczny kupiony sam → wybór dożywotniego pokazuje uwagę nad „Buy forever”; przy innym planie uwagi nie ma (9341 ms)
+    ✕ PL: ta sama uwaga po polsku (322 ms)
+    ✓ bez subskrypcji: dożywotni bez uwagi (261 ms)
+    ✓ subskrypcja z Chmury rodzinnej (płaci organizator): bez sugestii „anuluj” (194 ms)
+    ✓ subskrypcja z kodu promocyjnego: po promocji odnawia się płatnie — ta sama uwaga (decyzja właściciela 5a, 28.10.2026; M2-koordynator-napraw-001) (321 ms)
+
+  ● M1-001: dożywotni przy aktywnej subskrypcji — uwaga przed zakupem › EN: miesięczny kupiony sam → wybór dożywotniego pokazuje uwagę nad „Buy forever”; przy innym planie uwagi nie ma
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      26 |
+      27 | describe('M1-001: dożywotni przy aktywnej subskrypcji — uwaga przed zakupem', () => {
+    > 28 |   test('EN: miesięczny kupiony sam → wybór dożywotniego pokazuje uwagę nad „Buy forever”; przy innym planie uwagi nie ma', async () => {
+         |   ^
+      29 |     await boot([sub()], 'en'); await tap(screen.getByTestId('paywall-change-plan')); /* DEC-09 a (27.10.2026): przy aktywnym planie lista pod „Zmień plan” */
+      30 |     expect(screen.queryByTestId('paywall-lifetime-warning')).toBeNull();
+      31 |     await tap(screen.getByTestId('plan-lifetime'));
+
+      at test (tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx:28:3)
+      at Object.describe (tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx:27:1)
+
+  ● M1-001: dożywotni przy aktywnej subskrypcji — uwaga przed zakupem › PL: ta sama uwaga po polsku
+
+    Unable to find an element with testID: plan-lifetime
+
+    [36m<RNCSafeAreaProvider>[39m
+      [36m<View>[39m
+        [36m<View[39m
+          [33maccessibilityElementsHidden[39m=[32m{false}[39m
+          [33mimportantForAccessibility[39m=[32m"auto"[39m
+        [36m>[39m
+          [36m<View>[39m
+            [36m<RNSScreenStack>[39m
+              [36m<RNSScreen[39m
+                [33maria-hidden[39m=[32m{true}[39m
+              [36m>[39m
+                [36m<RNSScreenContentWrapper>[39m
+                  [36m<View>[39m
+                    [36m<RNSScreenNavigationContainer>[39m
+                      [36m<RNSScreen>[39m
+                        [36m<View[39m
+                          [33maria-hidden[39m=[32m{false}[39m
+                        [36m>[39m
+                          [36m<View>[39m
+                            [36m<RNCSafeAreaView>[39m
+                              [36m<View>[39m
+                                [36m<RCTScrollView>[39m
+                                  [36m<View>[39m
+                                    [36m<View[39m
+                                      [33mtestID[39m=[32m"tab-header"[39m
+                                    [36m>[39m
+                                      [36m<View>[39m
+                                        [36m<View[39m
+                                          [33mtestID[39m=[32m"title-row"[39m
+                                        [36m>[39m
+                                          [36m<View>[39m
+                                            [36m<Text[39m
+                                              [33maccessibilityRole[39m=[32m"header"[39m
+                                            [36m>[39m
+                                              [0mTrening[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                            [33mimportantForAccessibility[39m=[32m"no-hide-descendants"[39m
+                                            [33mtestID[39m=[32m"title-barbell"[39m
+                                          [36m>[39m
+                                            [36m<RNSVGSvgView[39m
+                                              [33maccessible[39m=[32m{false}[39m
+                                            [36m>[39m
+                                              [36m<RNSVGGroup>[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                                [36m<RNSVGRect />[39m
+                                              [36m</RNSVGGroup>[39m
+                                            [36m</RNSVGSvgView>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                        [36m<Text>[39m
+                                          [0mwtorek, 27 października[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                    [36m<View[39m
+                                      [33mtestID[39m=[32m"start-panel"[39m
+                                    [36m>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"Pusty trening"[39m
+                                        [33maccessibilityRole[39m=[32m"button"[39m
+                                        [33maccessible[39m=[32m{true}[39m
+                                        [33mtestID[39m=[32m"start-main"[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mPusty trening[0m
+                                          [36m</Text>[39m
+                                          [36m<Text>[39m
+                                            [0mćwiczenia dodasz w trakcie[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<Text[39m
+                                          [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                          [33mimportantForAccessibility[39m=[32m"no"[39m
+                                        [36m>[39m
+                                          [0m›[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityHint[39m=[32m"Inny z planu, powtórz ostatni, z szablonu albo pusty."[39m
+                                        [33maccessibilityLabel[39m=[32m"Inny trening"[39m
+                                        [33maccessibilityRole[39m=[32m"button"[39m
+                                        [33maccessible[39m=[32m{true}[39m
+                                      [36m>[39m
+                                        [36m<Text>[39m
+                                          [0mInny trening[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                    [36m<View[39m
+                                      [33mtestID[39m=[32m"first-steps"[39m
+                                    [36m>[39m
+                                      [36m<Text[39m
+                                        [33maccessibilityRole[39m=[32m"header"[39m
+                                      [36m>[39m
+                                        [0mPierwsze kroki[0m
+                                      [36m</Text>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia"[39m
+                                        [33maccessible[39m=[32m{false}[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0m1[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mUtwórz pierwszy szablon albo wygeneruj szablony i plan.[0m
+                                          [36m</Text>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityLabel[39m=[32m"Szablony i plan"[39m
+                                            [33maccessibilityRole[39m=[32m"button"[39m
+                                            [33maccessible[39m=[32m{true}[39m
+                                          [36m>[39m
+                                            [36m<Text>[39m
+                                              [0mSzablony i plan[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"2. Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie. do zrobienia"[39m
+                                        [33maccessible[39m=[32m{false}[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0m2[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mUstaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.[0m
+                                          [36m</Text>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityLabel[39m=[32m"Planowanie"[39m
+                                            [33maccessibilityRole[39m=[32m"button"[39m
+                                            [33maccessible[39m=[32m{true}[39m
+                                          [36m>[39m
+                                            [36m<Text>[39m
+                                              [0mPlanowanie[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"3. Pierwszy trening: duży przycisk „Pusty trening” u góry. do zrobienia"[39m
+                                        [33maccessible[39m=[32m{false}[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0m3[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mPierwszy trening: duży przycisk „Pusty trening” u góry.[0m
+                                          [36m</Text>[39m
+                                          [36m<View[39m
+                                            [33maccessibilityLabel[39m=[32m"Przewodnik po funkcjach"[39m
+                                            [33maccessibilityRole[39m=[32m"button"[39m
+                                            [33maccessible[39m=[32m{true}[39m
+                                          [36m>[39m
+                                            [36m<Text>[39m
+                                              [0mPrzewodnik[0m
+                                            [36m</Text>[39m
+                                          [36m</View>[39m
+                                        [36m</View>[39m
+                                      [36m</View>[39m
+                                      [36m<View[39m
+                                        [33maccessibilityLabel[39m=[32m"Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”."[39m
+                                        [33maccessibilityRole[39m=[32m"button"[39m
+                                        [33maccessible[39m=[32m{true}[39m
+                                      [36m>[39m
+                                        [36m<View>[39m
+                                          [36m<Text>[39m
+                                            [0mĆwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.[0m
+                                          [36m</Text>[39m
+                                        [36m</View>[39m
+                                        [36m<Text[39m
+                                          [33maccessibilityElementsHidden[39m=[32m{true}[39m
+                                          [33mimportantForAccessibility[39m=[32m"no"[39m
+                                        [36m>[39m
+                                          [0m›[0m
+                                        [36m</Text>[39m
+                                      [36m</View>[39m
+                                    [36m</View>[39m
+                                  [36m</View>[39m
+                                [36m</RCTScrollView>[39m
+                              [36m</View>[39m
+                            [36m</RNCSafeAreaView>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</RNSScreen>[39m
+                    [36m</RNSScreenNavigationContainer>[39m
+                    [36m<View>[39m
+                      [36m<View />[39m
+                      [36m<View[39m
+                        [33mrole[39m=[32m"tablist"[39m
+                      [36m>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Trening, zakładka, 1 z 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": true,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mTrening[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Plan, zakładka, 2 z 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGPath />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mPlan[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Postępy, zakładka, 3 z 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mPostępy[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                        [36m<View>[39m
+                          [36m<View[39m
+                            [33maccessibilityLabel[39m=[32m"Więcej, zakładka, 4 z 4"[39m
+                            [33maccessibilityState[39m=[32m{
+                              {
+                                "selected": false,
+                              }
+                            }[39m
+                            [33maccessible[39m=[32m{true}[39m
+                            [33mrole[39m=[32m"button"[39m
+                          [36m>[39m
+                            [36m<View>[39m
+                              [36m<View[39m
+                                [33mstyle[39m=[32m{
+                                  {
+                                    "opacity": 0,
+                                  }
+                                }[39m
+                              [36m>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                              [36m<View>[39m
+                                [36m<RNSVGSvgView[39m
+                                  [33maccessible[39m=[32m{false}[39m
+                                [36m>[39m
+                                  [36m<RNSVGGroup>[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                    [36m<RNSVGRect />[39m
+                                  [36m</RNSVGGroup>[39m
+                                [36m</RNSVGSvgView>[39m
+                              [36m</View>[39m
+                            [36m</View>[39m
+                            [36m<Text>[39m
+                              [0mWięcej[0m
+                            [36m</Text>[39m
+                          [36m</View>[39m
+                        [36m</View>[39m
+                      [36m</View>[39m
+                    [36m</View>[39m
+                  [36m</View>[39m
+                [36m</RNSScreenContentWrapper>[39m
+                [36m<RNSScreenStackHeaderConfig[39m
+                  [33mpointerEvents[39m=[32m"box-none"[39m
+                  [33mtitle[39m=[32m"(tabs)"[39m
+                [36m/>[39m
+              [36m</RNSScreen>[39m
+              [36m<RNSModalScreen[39m
+                [33maria-hidden[39m=[32m{false}[39m
+              [36m>[39m
+                [36m<RNSScreenStack>[39m
+                  [36m<RNSScreen>[39m
+                    [36m<View[39m
+                      [33mpointerEvents[39m=[32m"box-none"[39m
+                    [36m>[39m
+                      [36m<View[39m
+                        [33mpointerEvents[39m=[32m"box-none"[39m
+                      [36m>[39m
+                        [36m<RNSScreenContentWrapper>[39m
+                          [36m<View>[39m
+                            [36m<RCTScrollView[39m
+                              [33mtestID[39m=[32m"paywall-scroll"[39m
+                            [36m>[39m
+                              [36m<View>[39m
+                                [36m<View[39m
+                                  [33maccessible[39m=[32m{true}[39m
+                                  [33mtestID[39m=[32m"paywall-owned"[39m
+                                [36m>[39m
+                                  [36m<Text[39m
+                                    [33maccessibilityRole[39m=[32m"header"[39m
+                                    [33mtestID[39m=[32m"paywall-owned-title"[39m
+                                  [36m>[39m
+                                    [0mMasz plan: miesięczny[0m
+                                  [36m</Text>[39m
+                                  [36m<Text>[39m
+                                    [0mDostęp do czw., 5 lis[0m
+                                  [36m</Text>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Zarządzaj subskrypcją"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mZarządzaj subskrypcją[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<View[39m
+                                  [33maccessibilityLabel[39m=[32m"Zmień plan"[39m
+                                  [33maccessibilityRole[39m=[32m"button"[39m
+                                  [33maccessibilityState[39m=[32m{
+                                    {
+                                      "expanded": false,
+                                    }
+                                  }[39m
+                                  [33maccessible[39m=[32m{true}[39m
+                                  [33mtestID[39m=[32m"paywall-change-plan"[39m
+                                [36m>[39m
+                                  [36m<Text>[39m
+                                    [0mZmień plan[0m
+                                  [36m</Text>[39m
+                                [36m</View>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Przywróć zakupy"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mPrzywróć zakupy[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityLabel[39m=[32m"Zrealizuj kod"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mZrealizuj kod[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                                [36m<Text>[39m
+                                  [0mZakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej.[0m
+                                [36m</Text>[39m
+                                [36m<View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityHint[39m=[32m"Otwiera stronę w przeglądarce."[39m
+                                    [33maccessibilityLabel[39m=[32m"Warunki korzystania"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mWarunki korzystania[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                  [36m<View[39m
+                                    [33maccessibilityHint[39m=[32m"Otwiera stronę w przeglądarce."[39m
+                                    [33maccessibilityLabel[39m=[32m"Prywatność"[39m
+                                    [33maccessibilityRole[39m=[32m"button"[39m
+                                    [33maccessible[39m=[32m{true}[39m
+                                  [36m>[39m
+                                    [36m<Text>[39m
+                                      [0mPrywatność[0m
+                                    [36m</Text>[39m
+                                  [36m</View>[39m
+                                [36m</View>[39m
+                              [36m</View>[39m
+                            [36m</RCTScrollView>[39m
+                          [36m</View>[39m
+                        [36m</RNSScreenContentWrapper>[39m
+                      [36m</View>[39m
+                    [36m</View>[39m
+                    [36m<RNSScreenStackHeaderConfig[39m
+                      [33mpointerEvents[39m=[32m"box-none"[39m
+                      [33mtitle[39m=[32m"Pełna wersja"[39m
+                    [36m>[39m
+                      [36m<RNSScreenStackHeaderSubview>[39m
+                        [36m<View[39m
+                          [33maccessibilityLabel[39m=[32m"Anuluj"[39m
+                          [33maccessibilityRole[39m=[32m"button"[39m
+                          [33maccessible[39m=[32m{true}[39m
+                          [33mtestID[39m=[32m"close-modal"[39m
+                        [36m>[39m
+                          [36m<Text>[39m
+                            [0mAnuluj[0m
+                          [36m</Text>[39m
+                        [36m</View>[39m
+                      [36m</RNSScreenStackHeaderSubview>[39m
+                    [36m</RNSScreenStackHeaderConfig>[39m
+                  [36m</RNSScreen>[39m
+                [36m</RNSScreenStack>[39m
+              [36m</RNSModalScreen>[39m
+            [36m</RNSScreenStack>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</View>[39m
+    [36m</RNCSafeAreaProvider>[39m
+
+      35 |   });
+      36 |   test('PL: ta sama uwaga po polsku', async () => {
+    > 37 |     await boot([sub()], 'pl'); await tap(screen.getByTestId('paywall-change-plan')); await tap(screen.getByTestId('plan-lifetime'));
+         |                                                                                                       ^
+      38 |     expect(screen.getByTestId('paywall-lifetime-warning').props.children).toBe(PL);
+      39 |   });
+      40 |   test('bez subskrypcji: dożywotni bez uwagi', async () => {
+
+      at Object.getByTestId (tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx:37:103)
+      at asyncGeneratorStep (node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 3 passed, 5 total
+Snapshots:   0 total
+Time:        14.889 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx/i.
+kod wyjścia: 1
+=== npx jest tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts --maxWorkers=1
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts
+  M1-002: P3 B na kształcie danych sklepu natywnego
+    ✓ źródło purchase, restart false: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony (48 ms)
+    ✓ źródło purchase, restart true: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony (26 ms)
+    ✓ źródło family, restart false: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony (20 ms)
+    ✓ źródło code, restart true: 7 dni w Pro → po wygaśnięciu used=0, start dozwolony (17 ms)
+    ✓ dni po wygaśnięciu liczą się dalej (limit działa): 5 dni po 21.11 → szósty nowy dzień zablokowany (37 ms)
+    ✓ ktoś, kto nigdy nie miał Pro: wszystkie dni miesiąca się liczą (bez zmian) (18 ms)
+  M1-002: funkcje (logika)
+    ✓ freeSinceWithMemory: aktywne → null; pusta lista + pamięć → pamięć; lista z wygasłym + pamięć → późniejszy; pamięć z przyszłości pomijana; brak obu → null (1 ms)
+    ✓ withEndedAt: full → free zapisuje koniec okresu albo „teraz” przy zwrocie przed końcem; free → free zachowuje; full czyści; brak poprzedniego → bez końca (2 ms)
+    ✓ parseLastKnown: free z endedAt zachowany; zły endedAt pominięty (dane z kv) (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        3.588 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts/i.
+kod wyjścia: 0
+=== npx jest tests/audit-m1-2026-10-27-007-waluta-ryzyko.test.ts --maxWorkers=1
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-007-waluta-ryzyko.test.ts
+  M1-007: ryzyko waluty w rejestrze i krok listy wydania
+    ✓ docs/40: wiersz R-WAL w rejestrze ryzyk ma warunek zamknięcia (ceny w PLN w wersji z App Store, konto PL) i stan (8 ms)
+    ✓ docs/48: krok sprawdzenia cen w zł odsyła do R-WAL; numery kroków Z-NN są jednoznaczne (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.429 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-007-waluta-ryzyko.test.ts/i.
+kod wyjścia: 0
+=== npx jest tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx --maxWorkers=1
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx (5.832 s)
+  M1-010 / DEC-09 a (27.10.2026): stan „Masz plan X” zamiast oferty, zmiana planu zwinięta
+    ✓ miesięczny kupiony: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (1021 ms)
+    ✓ roczny kupiony: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (162 ms)
+    ✓ miesięczny z kodu: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (235 ms)
+    ✓ roczny z Chmury rodzinnej: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (227 ms)
+    ✓ „Zmień plan” rozwija listę: posiadany plan oznaczony i niewybieralny, przycisk zakupu inny niż „Subskrybuj”, drugie stuknięcie zwija (etykieta stała) (336 ms)
+    ✓ zmiana planu po rozwinięciu: zakup wybranego planu, potem karta z nową nazwą i lista znowu zwinięta (232 ms)
+    ✓ dożywotni po rozwinięciu przy aktywnej subskrypcji: „Kup na zawsze” z uwagą o odnawianiu przed zakupem (M1-001 bez zmian) (157 ms)
+    ✓ PL: „Masz plan: roczny”, „Zmień plan” zwinięty, po rozwinięciu „Przejdź na ten plan” (283 ms)
+    ✓ dożywotni: nagłówek z nazwą planu i „Masz dostęp na zawsze”, bez listy i bez „Zmień plan” (203 ms)
+    ✓ bez dostępu: oferta jak dotąd — wstęp o darmowych dniach, lista od razu widoczna, „Subskrybuj”, bez „Zmień plan” i bez karty stanu (198 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        6.334 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx/i.
+kod wyjścia: 0
+=== npx jest tests/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx --maxWorkers=1
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx
+  M1-016: arkusz zarządzania subskrypcją
+    ✓ adapter natywny: arkusz systemowy, bez strony App Store (7 ms)
+    ✓ arkusz rzuca → zapas: strona App Store (2 ms)
+    ✓ ekran zakupu: po „Zarządzaj subskrypcją” uprawnienia są odświeżane (anulowanie w arkuszu widać od razu) (938 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        4.47 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx/i.
+kod wyjścia: 0
+=== npx jest tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx --maxWorkers=1
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx (6.978 s)
+  M1-037 A / DEC-07 b: wiersz w sekcji „Subskrypcja” — tytuł zależny od stanu (akcja w stanie darmowym, plan po zakupie)
+    ✓ darmowy (EN): tytuł „See Pro plans” zamiast nazwy produktu; podtytuł licznik; przycisk prowadzi na ekran zakupu (2156 ms)
+    ✓ darmowy (PL): „Zobacz plany Pro. Darmowe dni treningowe w tym miesiącu: wykorzystano 1 z 5” (314 ms)
+    ✓ z dostępem (miesięczny): tytuł nazywa plan jak nagłówek ekranu zakupu, bez oferty i licznika (232 ms)
+    ✓ z dostępem (roczny z Chmury rodzinnej): tytuł nazywa plan jak nagłówek ekranu zakupu, bez oferty i licznika (256 ms)
+    ✓ z dostępem (dożywotni): tytuł nazywa plan jak nagłówek ekranu zakupu, bez oferty i licznika (269 ms)
+    ✓ PL z dostępem (monthly): tytuł wiersza „Masz plan: miesięczny” — rodzaj planu, nie nazwa z wyboru (właściciel 28.10.2026) (197 ms)
+    ✓ PL z dostępem (yearly): tytuł wiersza „Masz plan: roczny” — rodzaj planu, nie nazwa z wyboru (właściciel 28.10.2026) (175 ms)
+    ✓ PL z dostępem (lifetime): tytuł wiersza „Masz plan: dożywotni” — rodzaj planu, nie nazwa z wyboru (właściciel 28.10.2026) (143 ms)
+    ✓ ciemny wygląd: wiersz w stanie darmowym renderuje się i otwiera ekran zakupu (239 ms)
+  M1-037 A: jedna etykieta wejścia na ekran zakupu we wszystkich językach
+    ✓ EN: „Zobacz plany Pro” = „Zobacz plany Pro ›” bez znaku przejścia (Item dokłada „›” sam) (1 ms)
+    ✓ bg.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (5 ms)
+    ✓ cs.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (3 ms)
+    ✓ da.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (3 ms)
+    ✓ de.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (8 ms)
+    ✓ el.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (3 ms)
+    ✓ es-419.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (1 ms)
+    ✓ es.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (3 ms)
+    ✓ et.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (2 ms)
+    ✓ fi.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (2 ms)
+    ✓ fr.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (3 ms)
+    ✓ hr.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (3 ms)
+    ✓ hu.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (3 ms)
+    ✓ id.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (2 ms)
+    ✓ it.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (3 ms)
+    ✓ ja.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (3 ms)
+    ✓ ko.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (3 ms)
+    ✓ lt.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (2 ms)
+    ✓ lv.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (2 ms)
+    ✓ ms.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (2 ms)
+    ✓ nb.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (2 ms)
+    ✓ nl.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (2 ms)
+    ✓ pt-BR.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (1 ms)
+    ✓ pt.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (2 ms)
+    ✓ ro.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (2 ms)
+    ✓ ru.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (2 ms)
+    ✓ sk.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (2 ms)
+    ✓ sl.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (1 ms)
+    ✓ sr.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (3 ms)
+    ✓ sv.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (2 ms)
+    ✓ tr.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (8 ms)
+    ✓ uk.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (4 ms)
+    ✓ vi.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (3 ms)
+    ✓ zh-Hant.json: tytuł wiersza = etykieta przycisku „Zobacz plany Pro ›” bez „ ›” (ta sama akcja, ta sama nazwa) (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       43 passed, 43 total
+Snapshots:   0 total
+Time:        7.454 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx/i.
+kod wyjścia: 0
+=== npx jest tests/audit-m1-2026-10-27-037-dokumenty-wydania.test.ts --maxWorkers=1
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-037-dokumenty-wydania.test.ts
+  10-wydanie-005: plan „zły build” bez znaczników [DO PRZECZYTANIA] (DEC-07 b, 27.10.2026)
+    ✓ pkt 4 nie ma [DO PRZECZYTANIA] (4 ms)
+    ✓ wycofanie ze sprzedaży: strona Apple, cytat o zainstalowanych kopiach i dacie odczytu (1 ms)
+    ✓ przyspieszona recenzja: strona Apple, warunek „krytyczny błąd” i kroki w notatce
+  02-monetyzacja-506: decyzja „Wyjątek Ukraina” z 13.10.2026 zamknięta (DEC-07 b, 27.10.2026)
+    ✓ wpis z 13.10.2026: pole „zastąpione 27.10.2026” z powodem w treści
+    ✓ docs/15: punkt cenowy UA nie jest już [OTWARTE]; opis sklepu bez „tańsze niż espresso” we wszystkich lokalizacjach (7 ms)
+    ✓ kontrola cen wszystkich krajów wobec 1,51 €: krok Z-10b w docs/48 i zapis w docs/research/espresso-mimit-2026-10.md (1 ms)
+  M1-037 backlog (DEC-07 b, 27.10.2026): pozycje poza 1.0 wpisane do docs/21 z wersją, nie do „Backlogu bez priorytetu”
+    ✓ 03-zakres-006: wiersz z wersją i warunkiem (1 ms)
+    ✓ 03-zakres-007: wiersz z wersją i warunkiem
+    ✓ 11-wzrost-002: wiersz z wersją i warunkiem
+    ✓ 11-wzrost-004: wiersz z wersją i warunkiem (1 ms)
+    ✓ 02-monetyzacja-005: wiersz z wersją i warunkiem
+    ✓ 02-monetyzacja-506: wiersz z wersją i warunkiem (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       12 passed, 12 total
+Snapshots:   0 total
+Time:        1.206 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-037-dokumenty-wydania.test.ts/i.
+kod wyjścia: 0
+=== npx jest tests/decyzje-straznik.test.ts --maxWorkers=1
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/decyzje-straznik.test.ts
+  scripts/decyzje.mjs — wpisy dziennika
+    ✓ wpis = punkt z datą (także pogrubioną i zakresem dni) albo rozdział z datą i własną treścią; rozdział bez treści (same punkty z datą) nie jest wpisem (40 ms)
+    ✓ wpisy przed sekcją „## Decyzje” nie są sprawdzane (47 ms)
+  scripts/decyzje.mjs — reguły pola wdrożenia (próbki)
+    ✓ dopisanie decyzji bez pola wdrożenia czerwieni strażnik (test akceptacyjny 07-jakosc-005) (36 ms)
+    ✓ [wdrożenie: kod] bez testu i bez powodu — czerwony; z [bez testu: powód] — zielony; za krótki powód — czerwony (108 ms)
+    ✓ wskazany test musi istnieć (35 ms)
+    ✓ wskazany test zawiera datę decyzji (07-jakosc-005); wstecz (przed 28.10.2026) wystarczy fragment z pliku testu (178 ms)
+    ✓ od 28.10.2026 fragment nie zastępuje daty: nowy wskazany test musi zawierać datę decyzji (43 ms)
+    ✓ bez kodu — z powodem; zastąpione — data nie wcześniejsza niż wpis; otwarte/odłożone — ze wskazaniem; inne — czerwony; dwa pola — czerwony (426 ms)
+    ✓ pole może stać w dowolnej linii wpisu wieloliniowego i w treści rozdziału (36 ms)
+  docs/18-przekazanie.md: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium)
+    ✓ dziennik bez błędów strażnika (wynik jak `npm run check:decyzje`) (69 ms)
+    ✓ CLI: `npm run check:decyzje` w verify; kod 0 na repozytorium (86 ms)
+    ✓ CLI: dziennik z wpisem bez pola kończy się kodem 1 z linią wpisu (47 ms)
+    ✓ 2026-10-12 „P2 B (ekran zakupu raz po pierwszym treningu)”: otwarte → M1-audytor-generalny-001 albo kod z testem (tabela audytu M1) (1 ms)
+    ✓ 2026-10-12 „0.16 (docs/29)”: otwarte → M1-audytor-generalny-002 albo kod z testem (tabela audytu M1)
+    ✓ 2026-10-18 „po analizie porażek E2E”: otwarte → M1-audytor-generalny-034 albo kod z testem (tabela audytu M1) (1 ms)
+    ✓ 2026-10-21 „K1–K2 M8”: otwarte → M1-audytor-generalny-017 albo kod z testem (tabela audytu M1)
+    ✓ 2026-10-21 „STOP 3 przebiegu M3”: otwarte → M1-audytor-generalny-024 albo kod z testem (tabela audytu M1) (1 ms)
+    ✓ 2026-10-23 „decyzje właściciela po audycie generalnym M1”: otwarte → M1-audytor-generalny-024 albo kod z testem (tabela audytu M1)
+    ✓ 2026-10-27 „po zgłoszeniu z TestFlight”: otwarte → M1-audytor-generalny-005 albo kod z testem (tabela audytu M1)
+    ✓ „Wyjątek Ukraina” z 13.10.2026: zamknięty jako zastąpiony 27.10.2026 (DEC-07 b, M1-audytor-generalny-037; dawniej „otwarte → 037” w tabeli wyżej) (1 ms)
+    ✓ kolejność planów: wpis z 23.10.2026 zastąpiony 27.10.2026; wpis z 27.10.2026 wskazuje test kolejności i planu domyślnego (02-monetyzacja-003)
+
+Test Suites: 1 passed, 1 total
+Tests:       21 passed, 21 total
+Snapshots:   0 total
+Time:        2.207 s, estimated 3 s
+Ran all test suites matching /tests\/decyzje-straznik.test.ts/i.
+kod wyjścia: 0

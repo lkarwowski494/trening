@@ -1,0 +1,3 @@
+figury v2: aktualne
+docs/schemas/figury-v2-poza.schema.json aktualny
+kod wyjścia: 0

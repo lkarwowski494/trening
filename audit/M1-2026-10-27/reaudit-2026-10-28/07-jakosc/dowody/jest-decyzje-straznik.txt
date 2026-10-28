@@ -1,0 +1,34 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/decyzje-straznik.test.ts
+  scripts/decyzje.mjs — wpisy dziennika
+    ✓ wpis = punkt z datą (także pogrubioną i zakresem dni) albo rozdział z datą i własną treścią; rozdział bez treści (same punkty z datą) nie jest wpisem (39 ms)
+    ✓ wpisy przed sekcją „## Decyzje” nie są sprawdzane (36 ms)
+  scripts/decyzje.mjs — reguły pola wdrożenia (próbki)
+    ✓ dopisanie decyzji bez pola wdrożenia czerwieni strażnik (test akceptacyjny 07-jakosc-005) (38 ms)
+    ✓ [wdrożenie: kod] bez testu i bez powodu — czerwony; z [bez testu: powód] — zielony; za krótki powód — czerwony (187 ms)
+    ✓ wskazany test musi istnieć (56 ms)
+    ✓ wskazany test zawiera datę decyzji (07-jakosc-005); wstecz (przed 28.10.2026) wystarczy fragment z pliku testu (186 ms)
+    ✓ od 28.10.2026 fragment nie zastępuje daty: nowy wskazany test musi zawierać datę decyzji (35 ms)
+    ✓ bez kodu — z powodem; zastąpione — data nie wcześniejsza niż wpis; otwarte/odłożone — ze wskazaniem; inne — czerwony; dwa pola — czerwony (406 ms)
+    ✓ pole może stać w dowolnej linii wpisu wieloliniowego i w treści rozdziału (56 ms)
+  docs/18-przekazanie.md: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium)
+    ✓ dziennik bez błędów strażnika (wynik jak `npm run check:decyzje`) (90 ms)
+    ✓ CLI: `npm run check:decyzje` w verify; kod 0 na repozytorium (78 ms)
+    ✓ CLI: dziennik z wpisem bez pola kończy się kodem 1 z linią wpisu (52 ms)
+    ✓ 2026-10-12 „P2 B (ekran zakupu raz po pierwszym treningu)”: otwarte → M1-audytor-generalny-001 albo kod z testem (tabela audytu M1) (1 ms)
+    ✓ 2026-10-12 „0.16 (docs/29)”: otwarte → M1-audytor-generalny-002 albo kod z testem (tabela audytu M1) (4 ms)
+    ✓ 2026-10-18 „po analizie porażek E2E”: otwarte → M1-audytor-generalny-034 albo kod z testem (tabela audytu M1)
+    ✓ 2026-10-21 „K1–K2 M8”: otwarte → M1-audytor-generalny-017 albo kod z testem (tabela audytu M1) (1 ms)
+    ✓ 2026-10-21 „STOP 3 przebiegu M3”: otwarte → M1-audytor-generalny-024 albo kod z testem (tabela audytu M1)
+    ✓ 2026-10-23 „decyzje właściciela po audycie generalnym M1”: otwarte → M1-audytor-generalny-024 albo kod z testem (tabela audytu M1) (2 ms)
+    ✓ 2026-10-27 „po zgłoszeniu z TestFlight”: otwarte → M1-audytor-generalny-005 albo kod z testem (tabela audytu M1)
+    ✓ „Wyjątek Ukraina” z 13.10.2026: zamknięty jako zastąpiony 27.10.2026 (DEC-07 b, M1-audytor-generalny-037; dawniej „otwarte → 037” w tabeli wyżej)
+    ✓ kolejność planów: wpis z 23.10.2026 zastąpiony 27.10.2026; wpis z 27.10.2026 wskazuje test kolejności i planu domyślnego (02-monetyzacja-003) (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       21 passed, 21 total
+Snapshots:   0 total
+Time:        2.674 s
+Ran all test suites matching /tests\/decyzje-straznik.test.ts/i.
+kod 0

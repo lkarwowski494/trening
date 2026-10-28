@@ -1,0 +1,8 @@
+seed 42 kod 0 Tests:       46 passed, 46 total
+seed 7 kod 0 Tests:       46 passed, 46 total
+seed 1 kod 0 Tests:       46 passed, 46 total
+seed 2026 kod 0 Tests:       46 passed, 46 total
+seed 99999 kod 0 Tests:       46 passed, 46 total
+TZ=Europe/Warsaw seed 42 kod 0 Tests:       46 passed, 46 total
+TZ=America/New_York seed 42 kod 0 Tests:       46 passed, 46 total
+TZ=Asia/Kolkata seed 42 kod 0 Tests:       46 passed, 46 total

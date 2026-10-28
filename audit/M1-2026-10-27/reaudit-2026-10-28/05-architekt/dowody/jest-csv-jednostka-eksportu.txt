@@ -1,0 +1,16 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/csv-jednostka-eksportu.test.ts
+  eksport CSV: jednostka ciężaru i dystansu
+    ✓ kg: nagłówek i wiersze dokładnie jak dotąd (12 kolumn), bez kolumn jednostek (52 ms)
+    ✓ lb: te same 12 kolumn + „Weight Unit”, „Distance Unit”; w każdym wierszu lb i m; ciężar w lb (19 ms)
+    ✓ import własnego pliku w lb: jednostka z kolumny (picker niepotrzebny), ciężar wraca w kg niezależnie od ustawienia (13 ms)
+    ✓ import: plik w kg z kolumnami jednostek bez przeliczenia; bez kolumn jak dotąd (wybór użytkownika, weightUnit null) (1 ms)
+    ✓ import: jednostki mieszane albo nieznane w wierszach — nie zgadujemy: wybór użytkownika (weightUnit null), wartości bez zmian (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        2.188 s
+Ran all test suites matching /tests\/csv-jednostka-eksportu.test.ts/i.
+kod 0

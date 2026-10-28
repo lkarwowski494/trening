@@ -1,0 +1,15 @@
+$ npx jest tests/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts --maxWorkers=1  (worktree 2385e75)
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts
+  M1-008: build do zgłoszenia 1.0
+    ✓ docs/09: dziennik wydań ma wiersze 1031 (001ecf2) i 1032 (025a50b) (7 ms)
+    ✓ docs/48 Z-26: pole kandydata z numerem buildu i SHA; numer wypełniony musi być w dzienniku z tym samym SHA (2 ms)
+    ✓ docs/48: krok wygaszenia starszych buildów 1.0 (1031, 1032) w TestFlight przed wyborem buildu (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        3.253 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts/i.
+kod 0

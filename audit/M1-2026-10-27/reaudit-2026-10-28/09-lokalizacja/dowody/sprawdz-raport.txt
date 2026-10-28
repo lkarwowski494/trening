@@ -1,0 +1,4 @@
+$ node sprawdz-raport.mjs 09-lokalizacja/09-lokalizacja-reaudit-2026-10-28.md /home/user/trening /home/user/trening/audit/M1-2026-10-27/reaudit-2026-10-28/09-lokalizacja --rola 09-lokalizacja
+OK: odwołania, cytaty, pliki dowodów i sekrety sprawdzone; format raportu 09-lokalizacja
+kod wyjścia: 0
+git status --porcelain (/home/user/trening): []

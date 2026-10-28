@@ -1,0 +1,9 @@
+    ✓ LIM: liczby reguł w jednym miejscu (tolerancja podparcia 10 j., bark–dłoń 10 j., styk 1,5 j., stopa w powietrzu 2 j.)
+    ✓ maxNadmiar poprawionych figur = 0, wyjątku > 0 (24 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       20 passed, 20 total
+Snapshots:   0 total
+Time:        2.516 s
+Ran all test suites matching /tests\/figury-podparcie.test.ts/i.
+kod 0

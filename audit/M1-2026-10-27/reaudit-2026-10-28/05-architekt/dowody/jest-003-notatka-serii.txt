@@ -1,0 +1,119 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+
+ReferenceError: You are trying to access a property or method of the Jest environment after it has been torn down. From tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx.
+
+      39 | export const type = async (el: Parameters<typeof fireEvent.changeText>[0], text: string) => { await act(async () => { fireEvent.changeText(el, text); }); };
+      40 | /** renderRouter włącza fałszywe timery Jesta — czas przesuwamy ręcznie (setTimeout/setInterval/Date). */
+    > 41 | export const flushAll = async (ms = 0) => { await act(async () => { jest.advanceTimersByTime(ms); await Promise.resolve(); await Promise.resolve(); }); };
+         |                                                                          ^
+      42 | export { screen, act, fireEvent };
+      43 | export const go = async (href: string) => { await act(async () => { router.push(href as never); }); };
+      44 |
+
+      at advanceTimersByTime (tests/app.tsx:41:74)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at callback (../../../../../../home/user/trening/node_modules/@testing-library/react-native/src/act.ts:31:24)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (../../../../../../home/user/trening/node_modules/react/cjs/react.development.js:814:22)
+      at actImplementation (../../../../../../home/user/trening/node_modules/@testing-library/react-native/src/act.ts:30:25)
+      at tests/app.tsx:41:54
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (tests/app.tsx:41:22)
+      at Object.<anonymous> (tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx:31:119)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+  console.warn
+    A function to advance timers was called but the timers APIs are not replaced with fake timers. Call `jest.useFakeTimers()` in this test file or enable fake timers for all tests by setting 'fakeTimers': {'enableGlobally': true} in Jest configuration file.
+    Stack Trace:
+    
+          39 | export const type = async (el: Parameters<typeof fireEvent.changeText>[0], text: string) => { await act(async () => { fireEvent.changeText(el, text); }); };
+          40 | /** renderRouter włącza fałszywe timery Jesta — czas przesuwamy ręcznie (setTimeout/setInterval/Date). */
+        > 41 | export const flushAll = async (ms = 0) => { await act(async () => { jest.advanceTimersByTime(ms); await Promise.resolve(); await Promise.resolve(); }); };
+             |                                                                          ^
+          42 | export { screen, act, fireEvent };
+          43 | export const go = async (href: string) => { await act(async () => { router.push(href as never); }); };
+          44 |
+    
+          Error: 
+          at FakeTimers._checkFakeTimers (../../../../../../home/user/trening/node_modules/@jest/fake-timers/build/modernFakeTimers.js:158:13)
+          at FakeTimers.advanceTimersByTime (../../../../../../home/user/trening/node_modules/@jest/fake-timers/build/modernFakeTimers.js:93:14)
+          at advanceTimersByTime (tests/app.tsx:41:74)
+          at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+          at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+          at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+          at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+          at callback (../../../../../../home/user/trening/node_modules/@testing-library/react-native/src/act.ts:31:24)
+          at Object.<anonymous>.process.env.NODE_ENV.exports.act (../../../../../../home/user/trening/node_modules/react/cjs/react.development.js:814:22)
+          at actImplementation (../../../../../../home/user/trening/node_modules/@testing-library/react-native/src/act.ts:30:25)
+          at tests/app.tsx:41:54
+          at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+          at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+          at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+          at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+          at apply (tests/app.tsx:41:22)
+          at Object.<anonymous> (tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx:31:119)
+          at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+          at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+      39 | export const type = async (el: Parameters<typeof fireEvent.changeText>[0], text: string) => { await act(async () => { fireEvent.changeText(el, text); }); };
+      40 | /** renderRouter włącza fałszywe timery Jesta — czas przesuwamy ręcznie (setTimeout/setInterval/Date). */
+    > 41 | export const flushAll = async (ms = 0) => { await act(async () => { jest.advanceTimersByTime(ms); await Promise.resolve(); await Promise.resolve(); }); };
+         |                                                                          ^
+      42 | export { screen, act, fireEvent };
+      43 | export const go = async (href: string) => { await act(async () => { router.push(href as never); }); };
+      44 |
+
+      at FakeTimers._checkFakeTimers (../../../../../../home/user/trening/node_modules/@jest/fake-timers/build/modernFakeTimers.js:152:28)
+      at FakeTimers.advanceTimersByTime (../../../../../../home/user/trening/node_modules/@jest/fake-timers/build/modernFakeTimers.js:93:14)
+      at advanceTimersByTime (tests/app.tsx:41:74)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at callback (../../../../../../home/user/trening/node_modules/@testing-library/react-native/src/act.ts:31:24)
+      at Object.<anonymous>.process.env.NODE_ENV.exports.act (../../../../../../home/user/trening/node_modules/react/cjs/react.development.js:814:22)
+      at actImplementation (../../../../../../home/user/trening/node_modules/@testing-library/react-native/src/act.ts:30:25)
+      at tests/app.tsx:41:54
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+      at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:22:7
+      at ../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:14:12
+      at apply (tests/app.tsx:41:22)
+      at Object.<anonymous> (tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx:31:119)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+FAIL iOS tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx (33.055 s)
+  M1-003: notatka serii — jedna stała długości
+    ✓ import i oba okna używają tej samej stałej (500); import zachowuje 450 znaków (28 ms)
+    ✓ strażnik: w ekranach i komponentach notatka serii nie jest przycinana liczbą wpisaną na sztywno (10 ms)
+    ✕ scenariusz: seria z notatką 450 znaków (jak po imporcie) → Historia → Edytuj → „Edytuj notatkę” → „Zapisz” bez zmian → „Zapisz sesję” → 450 znaków (9056 ms)
+
+  ● M1-003: notatka serii — jedna stała długości › scenariusz: seria z notatką 450 znaków (jak po imporcie) → Historia → Edytuj → „Edytuj notatkę” → „Zapisz” bez zmian → „Zapisz sesję” → 450 znaków
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      26 |     }
+      27 |   });
+    > 28 |   test('scenariusz: seria z notatką 450 znaków (jak po imporcie) → Historia → Edytuj → „Edytuj notatkę” → „Zapisz” bez zmian → „Zapisz sesję” → 450 znaków', async () => {
+         |   ^
+      29 |     await fresh(); const w = addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5, done: true, note: LONG }]]], 'Import');
+      30 |     store.save(); await act(async () => { await store.flush(); });
+      31 |     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await go(`/history/edit/${w.id}`); await flushAll(20);
+
+      at test (tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx:28:3)
+      at Object.describe (tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx:17:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 2 passed, 3 total
+Snapshots:   0 total
+Time:        34.692 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-003-notatka-serii.test.tsx/i.
+kod 1

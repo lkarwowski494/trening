@@ -1,0 +1,13 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-033-hipoteza-android.test.ts
+  M1-033: hipoteza Androidu bez nieistniejącego okresu próbnego
+    ✓ docs/wzrost.md nie odwołuje się do okresu próbnego (model bez okresu próbnego) (5 ms)
+    ✓ opcja B opisuje kupujących wobec pobrań (model stały M5 S1) (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.483 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-033-hipoteza-android.test.ts/i.
+kod 0

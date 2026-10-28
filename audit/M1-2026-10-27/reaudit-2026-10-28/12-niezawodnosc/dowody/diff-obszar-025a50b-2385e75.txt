@@ -1,0 +1,217 @@
+diff --git a/app/_layout.tsx b/app/_layout.tsx
+index d7ed1fe..da76921 100644
+--- a/app/_layout.tsx
++++ b/app/_layout.tsx
+@@ -3,8 +3,9 @@ import { Stack, router, type ErrorBoundaryProps } from 'expo-router';
+ import { StatusBar } from 'expo-status-bar';
+ import * as SplashScreen from 'expo-splash-screen';
+ import { ActivityIndicator, View, Text, Pressable } from 'react-native';
+-import { wallTs, init, usePrefsTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState, getNewerSchema, markBootStable, BOOT_STABLE_MS, STALE_AUTO_MS } from '@/lib/store';
++import { wallTs, init, usePrefsTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState, getNewerSchema, markBootStable, BOOT_STABLE_MS, STALE_AUTO_MS, getPersistError, useTick } from '@/lib/store';
+ import { Alert } from 'react-native';
++import { okButton } from '@/lib/confirm';
+ import { onWorkoutSaved, exportRawData, cleanShareLeftovers } from '@/lib/backup';
+ import { markDoneEarly } from '@/lib/plan';
+ import { retryHealth } from '@/lib/health';
+@@ -89,12 +90,25 @@ function askRestored() {
+ }
+ 
+ /** Osobny komponent, bo useTick() wymaga zainicjowanego stanu; odświeża tytuły po zmianie języka. */
++/** M1-audytor-generalny-015: nieudany zapis pokazuje okno na bieżącym ekranie (edycja historii, ustawienia itd.), nie tylko baner na zakładce Trening;
++ * jedno okno na epizod błędu (następne dopiero po udanym zapisie i kolejnym błędzie). Dane czekają w pamięci na ponowienie jak dotąd. */
++function PersistErrorAlert() {
++  useTick(); const err = getPersistError(); const shown = useRef(false);
++  useEffect(() => {
++    if (!err) { shown.current = false; return; }
++    if (shown.current) return; shown.current = true;
++    Alert.alert(t('Nie udało się zapisać danych'), undefined, [okButton(), { text: t('Spróbuj ponownie'), onPress: () => { void flush(); } }]);
++  }, [err]);
++  return null;
++}
++
+ function Root() {
+   const th = useTheme(); usePrefsTick();
+   useEffect(() => { const i = setTimeout(askRestored, 600); return () => clearTimeout(i); }, []); /* po komunikacie „Zapisałem trening” (500 ms) */
+   return (
+     <>
+       <StatusBar style="auto" />
++      <PersistErrorAlert />
+       <Stack screenOptions={{ headerStyle: { backgroundColor: th.bg }, headerTintColor: th.text, headerTitleStyle: { fontFamily: font('navTitle').fontFamily, fontSize: font('navTitle').fontSize }, headerShadowVisible: false, contentStyle: { backgroundColor: th.bg }, headerBackTitle: t('Wróć') }}>
+         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+         <Stack.Screen name="picker" options={{ presentation: 'modal', title: t('Wybierz ćwiczenie') }} />
+diff --git a/components/StartError.tsx b/components/StartError.tsx
+index bc0ad87..7a632f5 100644
+--- a/components/StartError.tsx
++++ b/components/StartError.tsx
+@@ -2,10 +2,12 @@ import React from 'react';
+ import { View, Text, Pressable, Alert } from 'react-native';
+ import { useTheme, FW } from '@/lib/theme';
+ import { t, lang, appName } from '@/lib/i18n';
+-import { exportStartData } from '@/lib/backup';
++import { exportStartDataDetailed } from '@/lib/backup';
+ import { openSupportMail } from '@/lib/support';
+ 
+-const DIAG_FONT = 12; /* kod diagnostyczny pod komunikatem — mniejszy od treści, bez tokenów (ekran nie zależy od motywu) */
++const DIAG_FONT = 12;
++/** Przyciski i ostrzeżenie (M1-audytor-generalny-004) — jeden rozmiar, bez tokenów (ekran nie zależy od motywu). */
++const STRONG = { fontSize: 16, ...FW.semibold } as const; /* kod diagnostyczny pod komunikatem — mniejszy od treści, bez tokenów (ekran nie zależy od motywu) */
+ 
+ /*
+  * Ekran zastępczy, gdy aplikacja nie może przejść dalej (M1-audytor-generalny-003 i 004): błąd startu (baza się nie otwiera, wyjątek po wczytaniu danych),
+@@ -15,10 +17,12 @@ const DIAG_FONT = 12; /* kod diagnostyczny pod komunikatem — mniejszy od treś
+  */
+ export function StartError({ title, message, detail, diag, onRetry }: { title: string; message?: string; detail?: string; /** ZK-07: kod diagnostyczny ostatniego startu (lib/state/bootphase.ts), bez tłumaczenia i bez danych osobowych */ diag?: string; onRetry: () => void }) {
+   const th = useTheme();
+-  const send = () => { exportStartData().then(ok => { if (!ok) Alert.alert(t('Nie udało się wysłać danych'), t('Spróbuj ponownie.')); }).catch(() => { Alert.alert(t('Nie udało się wysłać danych'), t('Spróbuj ponownie.')); }); };
++  const fail = () => Alert.alert(t('Nie udało się wysłać danych'), t('Spróbuj ponownie.'));
++  /* M1-audytor-generalny-004: przy bazie, która się nie otwiera, komplet plików bazy trafia do folderu w Plikach — ekran podaje, gdzie go szukać */
++  const send = () => { exportStartDataDetailed().then(r => { if (!r.ok) fail(); else if (r.rescue) Alert.alert(t('Kopia bazy w Plikach'), t('Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.', { app: appName(), folder: r.rescue })); }).catch(fail); };
+   const link = (label: string, onPress: () => void) => (
+     <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={onPress} style={{ padding: 12 }}>
+-      <Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 16, ...FW.semibold }}>{label}</Text>
++      <Text accessibilityLanguage={lang()} style={{ color: th.accent, ...STRONG }}>{label}</Text>
+     </Pressable>);
+   return (
+     <View testID="start-error" style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}>
+@@ -27,9 +31,10 @@ export function StartError({ title, message, detail, diag, onRetry }: { title: s
+       {detail ? <Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center' }}>{detail}</Text> : null}
+       {diag ? <Text testID="start-error-diag" selectable accessibilityLanguage="en" style={{ color: th.muted, textAlign: 'center', fontSize: DIAG_FONT }}>{diag}</Text> : null}
+       <Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center', fontSize: 13 }}>{t('Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.', { app: appName() })}</Text>
++      <Text testID="start-error-warning" accessibilityLanguage={lang()} style={{ color: th.text, textAlign: 'center', ...STRONG }}>{t('Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.')}</Text>
+       {link(t('Wyślij dane'), send)}
+       {link(t('Spróbuj ponownie'), onRetry)}
+-      {link(t('Napisz do nas'), () => openSupportMail('feedback'))}
++      {link(t('Napisz do nas'), () => openSupportMail('feedback', undefined, diag || undefined))}{/* M1-audytor-generalny-032: kod etapu w treści wiadomości; M2-koordynator-napraw-002 (decyzja 7a, 28.10.2026): bez treści błędu — może zawierać fragment tekstu z ekranu (dane użytkownika) */}
+     </View>
+   );
+ }
+diff --git a/lib/backup.ts b/lib/backup.ts
+index 4c200dc..9f08e90 100644
+--- a/lib/backup.ts
++++ b/lib/backup.ts
+@@ -1,6 +1,7 @@
+ import * as FileSystem from 'expo-file-system/legacy';
+ import * as Sharing from 'expo-sharing';
+ import * as DocumentPicker from 'expo-document-picker';
++import { rescueDbCopy, AUTO_DIR } from './rescue';
+ import { applyCfg, wallTs, bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, noClock, shownLoad, bandById, localISODate, flush, flushStrict, noteBackup, readRecovery, getRecovery, readRawData } from './store';
+ import { t, exName } from './i18n';
+ import { wOut, wu } from './units';
+@@ -43,7 +44,7 @@ export async function exportBackup(): Promise<void> {
+ 
+ /** Runda 75 (T-012): automatyczna kopia JSON po każdym zapisanym treningu, w katalogu dokumentów aplikacji — widoczna w Plikach
+  * (Na moim iPhonie → Trening → Backup) dzięki UIFileSharingEnabled. Trzymamy ostatnie AUTO_KEEP kopii; błąd zapisu nie przerywa niczego. */
+-export const AUTO_DIR = 'Backup/'; export const AUTO_KEEP = 10;
++export { AUTO_DIR } from './rescue'; export const AUTO_KEEP = 10;
+ /** Kopie po treningu: training-RRRR-MM-DD-GGMMSS[-N].json (do 20.10.2026: trening-…; pula rozpoznaje oba) (grupa 1 = data i godzina — nazwy sortują się chronologicznie; grupa 2 = numer
+  * kolejnej kopii z tej samej sekundy, od rundy 83b — LOW 4: wcześniej druga kopia w tej samej sekundzie nadpisywała pierwszą). */
+ export const AUTO_RE = /^(?:trening|training)-(\d{4}-\d{2}-\d{2}-\d{6})(?:-(\d{1,3}))?\.json$/;
+@@ -206,8 +207,14 @@ export async function exportLatestCopy(): Promise<boolean> {
+     await Sharing.shareAsync(dir + files[0][0], { mimeType: 'application/json', dialogTitle: t('Backup treningów') }); return true;
+   } catch { return false; }
+ }
+-/** Ekran błędu startu: najpierw surowe dane z bazy (exportRawData), gdy ich nie ma albo bazy nie da się otworzyć — najnowsza kopia z puli. */
+-export async function exportStartData(): Promise<boolean> { return (await exportRawData()) || (await exportLatestCopy()); }
++/** Ekran błędu startu: najpierw surowe dane z bazy (exportRawData); gdy bazy nie da się otworzyć — kopia ratunkowa plików bazy (M1-audytor-generalny-004)
++ * i najnowsza kopia z puli. `rescue` — nazwa folderu kopii ratunkowej w Pliki → Backup (ekran podaje miejsce). */
++export async function exportStartDataDetailed(): Promise<{ ok: boolean; rescue: string | null }> {
++  if (await exportRawData()) return { ok: true, rescue: null };
++  const rescue = await rescueDbCopy(); const shared = await exportLatestCopy();
++  return { ok: shared || rescue != null, rescue };
++}
++export async function exportStartData(): Promise<boolean> { return (await exportStartDataDetailed()).ok; }
+ export async function exportRecovery(): Promise<boolean> {
+   try { // runda 36: każdy błąd (np. brak miejsca) = false → komunikat „Nie udało się”
+     const txt = await readRecovery(); if (!txt) return false;
+diff --git a/lib/rescue.ts b/lib/rescue.ts
+new file mode 100644
+index 0000000..366a3d2
+--- /dev/null
++++ b/lib/rescue.ts
+@@ -0,0 +1,31 @@
++/*
++ * Kopia ratunkowa plików bazy dla ekranu błędu startu (M1-audytor-generalny-004): gdy bazy nie da się otworzyć, komplet jej plików trafia do folderu
++ * widocznego w aplikacji Pliki. Tylko odczyt oryginału. Zależy od: lib/state/db, lib/state/time. Tu mieszka AUTO_DIR (folder kopii w Plikach), bo lib/backup importuje ten moduł — bez cyklu importów.
++ */
++import * as FileSystem from 'expo-file-system/legacy';
++import * as SQLite from 'expo-sqlite';
++import { dbDirectory } from './state/db';
++import { localISODate } from './state/time';
++
++/** Folder kopii w Dokumentach (widoczny w Plikach: Na moim iPhonie → aplikacja → Backup); lib/backup eksportuje go dalej. */
++export const AUTO_DIR = 'Backup/';
++
++/** M1-audytor-generalny-004: pliki bazy, które razem tworzą jej stan (bez dziennika sama baza bywa niespójna — sqlite.org/howtocorrupt.html). */
++export const DB_FILES = ['trening.db', 'trening.db-wal', 'trening.db-shm', 'trening.db-journal'] as const;
++/** Kopia ratunkowa plików bazy, gdy baza się nie otwiera (M1-audytor-generalny-004, decyzja właściciela 27.10.2026 — folder w Plikach): komplet plików bazy
++ * z katalogu bazy do Pliki → {app} → Backup → Rescue-RRRR-MM-DD-GGMM, żeby dało się go zapisać poza telefonem przed ewentualną reinstalacją. Tylko odczyt
++ * oryginału (kopiowanie, nigdy przeniesienie ani usunięcie); bazy nie otwiera. Zwraca nazwę folderu albo null (brak pliku bazy, web, błąd kopiowania).
++ * `dir` i `copy` — do testów na prawdziwych plikach. */
++export async function rescueDbCopy(now: Date = new Date(), dir: string | undefined = dbDirectory(SQLite.defaultDatabaseDirectory),
++  copy: (from: string, to: string) => Promise<void> = (from, to) => FileSystem.copyAsync({ from, to })): Promise<string | null> {
++  try {
++    if (!dir || !FileSystem.documentDirectory) return null;
++    const src = (dir.startsWith('file://') ? dir : 'file://' + dir).replace(/\/$/, '') + '/';
++    if (!(await FileSystem.getInfoAsync(src + DB_FILES[0])).exists) return null;
++    const p2 = (n: number) => String(n).padStart(2, '0');
++    const name = `Rescue-${localISODate(now)}-${p2(now.getHours())}${p2(now.getMinutes())}`; const dest = FileSystem.documentDirectory + AUTO_DIR + name + '/';
++    await FileSystem.makeDirectoryAsync(dest, { intermediates: true });
++    for (const f of DB_FILES) if ((await FileSystem.getInfoAsync(src + f)).exists) await copy(src + f, dest + f);
++    return name;
++  } catch { return null; }
++}
+diff --git a/lib/state/boot.ts b/lib/state/boot.ts
+index ddeb98b..0a1fe3c 100644
+--- a/lib/state/boot.ts
++++ b/lib/state/boot.ts
+@@ -84,11 +84,19 @@ export async function init(opts: { guard?: boolean; retry?: boolean } = {}): Pro
+       // PERF-03 (A): nowsza konfiguracja (szablony, ustawienia, plany) z małego klucza „cfg” — zapisanego bez przepisywania całej historii.
+       try { const cr = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'cfg'); cfgTxt = cr ? cr.v : null; const c = cr ? JSON.parse(cr.v) : null;
+         if (applyCfg(raw, c)) seqAtLeast(Number(c.seq) || 0); } catch {}
+-      setS(migrate(raw)); needsPersist = before !== SCHEMA_VERSION;
++      /* M1-audytor-generalny-013: wyjątek w migracji na czytelnych danych to błąd kodu, nie zepsuty zapis — tryb awaryjny (ekran błędu startu), bez odkładania
++       * pod state_corrupt_* i bez zapisu czystego stanu; dane w bazie zostają nietknięte do poprawionej wersji. */
++      let migrated: State;
++      try { migrated = migrate(raw); } catch (e) {
++        if (e instanceof Error && e.message === 'bad state') throw e; /* zły kształt zapisu (migrate: brak exercises/templates) = nieczytelny zapis — ścieżka odkładania niżej */
++        throw Object.assign(new Error(e instanceof Error ? e.message : String(e)), { migrationFailed: true, cause: e });
++      }
++      setS(migrated); needsPersist = before !== SCHEMA_VERSION;
+       /* M1-audytor-generalny-002: udana migracja nie może zostawić jedynie zmigrowanego zapisu — surowy zapis sprzed niej (wraz z „live” i „cfg”) czeka
+        * w bazie pod kluczem premigrate_<schemat> do upływu PREMIGRATE_KEEP_MS. Bez kopii (np. brak miejsca) zmigrowany stan nie nadpisuje starego „state”. */
+       if (needsPersist && !(await savePreMigrate(Number(before) || 0, row.v, liveTxt, cfgTxt))) needsPersist = false;
+-    } catch {
++    } catch (e) {
++      if ((e as { migrationFailed?: boolean })?.migrationFailed) throw e; /* M1-audytor-generalny-013: nic nie zapisujemy — ekran błędu startu */
+       // Nie nadpisujemy jedynej kopii danych: odkładamy ją pod osobny klucz i startujemy od czystego stanu.
+       const key = `state_corrupt_${Date.now()}`;
+       await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key, row.v);
+diff --git a/lib/support.ts b/lib/support.ts
+index 9495daf..b3b436d 100644
+--- a/lib/support.ts
++++ b/lib/support.ts
+@@ -15,10 +15,11 @@ export type SupportKind = 'feedback' | 'idea';
+  * treść pomysłu: dwa krótkie pytania (czego brakuje, w jakiej sytuacji na treningu) i ta sama stopka. Nic więcej:
+  * bez danych treningowych, masy ciała, nazw szablonów, identyfikatorów, modelu urządzenia ani kopii. Temat i teksty przez t() (język aplikacji).
+  */
+-export function buildSupportMailto({ version, os, language, kind = 'feedback' }: { version: string; os: string | number; language: string; kind?: SupportKind }): string {
++export function buildSupportMailto({ version, os, language, kind = 'feedback', extra }: { version: string; os: string | number; language: string; kind?: SupportKind;
++  /** M1-audytor-generalny-032: linia techniczna pod stopką (ekran błędu startu: kod diagnostyczny etapu, bez treści błędu i bez danych treningowych) */ extra?: string }): string {
+   const footer = t('Wersja: {v} · iOS {os} · Język: {lang}', { v: version, os: String(os), lang: language });
+   const subject = kind === 'idea' ? `${t('Pomysł')}: ` : t('Trening — opinia');
+-  const body = kind === 'idea' ? `\n\n${t('Czego brakuje:')}\n\n${t('W jakiej sytuacji na treningu:')}\n\n\n${footer}` : `\n\n${footer}`;
++  const body = (kind === 'idea' ? `\n\n${t('Czego brakuje:')}\n\n${t('W jakiej sytuacji na treningu:')}\n\n\n${footer}` : `\n\n${footer}`) + (extra ? `\n${extra}` : '');
+   return `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+ }
+ 
+@@ -26,8 +27,8 @@ export function buildSupportMailto({ version, os, language, kind = 'feedback' }:
+  * Jedna droga otwarcia poczty dla obu przycisków (docs/32 wzorzec 14; decyzja właściciela 13.10.2026): mailto: przez Linking.openURL bez wcześniejszego canOpenURL
+  * (nie trzeba LSApplicationQueriesSchemes); brak poczty / odmowa / wyjątek synchroniczny → okno z adresem, a wołający dostaje `onFail` (adres do zaznaczenia na ekranie).
+  */
+-export function openSupportMail(kind: SupportKind, onFail?: () => void): void {
+-  const url = buildSupportMailto({ version: versionLabel(Constants.expoConfig?.version, BUILD_NUMBER), os: Platform.Version, language: lang(), kind });
++export function openSupportMail(kind: SupportKind, onFail?: () => void, extra?: string): void {
++  const url = buildSupportMailto({ version: versionLabel(Constants.expoConfig?.version, BUILD_NUMBER), os: Platform.Version, language: lang(), kind, extra });
+   Promise.resolve().then(() => Linking.openURL(url)).catch(() => {
+     onFail?.();
+     Alert.alert(t('Nie udało się otworzyć poczty'), t('Napisz na: {mail}', { mail: SUPPORT_EMAIL }), [okButton()]);

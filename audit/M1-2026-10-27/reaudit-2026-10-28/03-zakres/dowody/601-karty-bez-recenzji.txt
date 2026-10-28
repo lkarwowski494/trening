@@ -1,0 +1,5 @@
+Komenda: python3 (lib/cues/data.json vs docs/research/figury-recenzja.json) na 2385e75; 025a50b przez git show
+ćwiczenia ze wskazówkami techniki (karta): 2385e75 = 102 ; 025a50b = 102
+karty ze wskazówkami bez wpisu recenzji bramki 4 (v1 obejmuje figurę + wskazówki; v2 obejmuje tylko rig): 31
+Back Extension, Bieg, Box Jump, Burpees, Cable Fly, Chest Fly (hantle), Crunch, Diamond Push Up, Farmer's Walk, Hack Squat, Incline Walk (bieżnia), Inverted Row, Leg Curl, Leg Extension, Machine Shoulder Press, Medicine Ball Slam, Nordic Curl, Pallof Press, Preacher Curl, Reverse Crunch, Reverse Fly (hantle), Reverse Pec Deck, Rower, Russian Twist, Seated Calf Raise, Side Plank, Straight Arm Pulldown, Suitcase Carry, Sumo Deadlift, Wall Sit, Wyciskanie na linkach (stojąc)
+w 025a50b te same ćwiczenia miały wskazówki: 31 z 31

@@ -1,0 +1,37 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-044-brd.test.ts
+  BRD (docs/brd): kontrola mechaniczna i pokrycie
+    ✓ kontrola-brd: kod 0, bez błędów; reguły RD z wektorami (57 ms)
+    ✓ funkcje z inwentarza: generator, odczyt Zdrowia, kilka planów, Dostosuj do miejsca (DEC-04) mają wymagania BR (2 ms)
+    ✓ główne moduły aplikacji mają wymagania: trening, plan, szablony, postępy, biblioteka, Zdrowie, zegarek, głos, dane, języki, dostęp (2 ms)
+    ✓ granica aplikacji (DEC-03): dieta, sen, suplementy, trener–podopieczny poza zakresem (1 ms)
+    ✓ decyzja 2 h / 6 h (DEC-08) zapisana w README i w regule RD-03 (1 ms)
+    ✓ brak ocen wartości (bez wartościujących przymiotników) (1 ms)
+    ✓ CLAUDE.md: nowa funkcja = aktualizacja BRD
+    ✓ wektory w tests/wektory/brd.json są zgodne z BRD (generator skryptu) (69 ms)
+  wektory RD uruchomione na kodzie aplikacji
+    ✓ RD-01 e1RM (Epley) (1 ms)
+    ✓ RD-02 RIR a RPE w skali RIR (41 ms)
+    ✓ RD-03 porzucony trening: pytanie po 2 h, ciche zakończenie po 6 h (146 ms)
+    ✓ RD-04 serie na partię: główna 1, pomocnicza 0,5, rozgrzewka poza liczeniem (94 ms)
+  wektory RD-05…RD-15 uruchomione na kodzie aplikacji
+    ✓ każda reguła RD z tests/wektory/brd.json ma tu swój test (3 ms)
+    ✓ RD-05 limit dni treningowych (canStartLive) (3 ms)
+    ✓ RD-06 dzień treningowy: dłużej niż 7 min (qualifiesForDay) (2 ms)
+    ✓ RD-07 zakresy powtórzeń generatora (REPS) (2 ms)
+    ✓ RD-08 przerwy generatora (REST) i domyślna przerwa (DEFAULT_REST) (2 ms)
+    ✓ RD-09 budżet serii z czasu sesji (setsBudget) (1 ms)
+    ✓ RD-10 podpowiedź deloadu po ≥ 4 tygodniach treningu z rzędu (deloadHint) (79 ms)
+    ✓ RD-11 cel serii na partię: ręczny w granicach 1–40 albo automatycznie 10 (clampGoal, setsGoal) (103 ms)
+    ✓ RD-12 udział masy ciała w e1RM (liftedLoad + e1rm) (17 ms)
+    ✓ RD-13 ostrzeżenie: te same główne partie dzień po dniu (backToBack) (67 ms)
+    ✓ RD-14 krok ± na tablicy (stepOf) (44 ms)
+    ✓ RD-15 Strażnik progresji: kierunek partii tydzień do tygodnia (progressGuard) (87 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       24 passed, 24 total
+Snapshots:   0 total
+Time:        2.866 s
+Ran all test suites matching /tests\/audit-m1-044-brd.test.ts/i.
+exit 0

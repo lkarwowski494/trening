@@ -1,0 +1,13 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/audit-m1-2026-10-27-017-polityka-poczta.test.ts
+  M1-017: odbiorcy poczty w polityce prywatności
+    ✓ bez rejestratora domeny i bez stanu przejściowego „dziś Gmail / po przeniesieniu” (5 ms)
+    ✓ Google Workspace jako dostawca poczty w PL i EN; przekazanie poza EOG wymienia tylko Google (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.403 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-017-polityka-poczta.test.ts/i.
+exit 0

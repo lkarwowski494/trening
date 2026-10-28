@@ -1,0 +1,4 @@
+$ git worktree remove <scratchpad>/08-programista-wt → kod 0
+$ git status --porcelain (koniec)
+(pusty wynik)
+HEAD: 2385e75aeb3880c0c90ba5edd69145a1c6d80b01

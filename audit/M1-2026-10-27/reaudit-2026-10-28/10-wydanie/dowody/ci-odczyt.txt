@@ -1,0 +1,5 @@
+Odczyt MCP GitHub (tylko odczyt), 28.10.2026, repo lkarwowski494/trening:
+- tagi: v1.0.0-b1032 -> 025a50b96f50, v1.0.0-b1031 -> 001ecf28d96e (brak tagu na 2385e75)
+- testflight.yml: ostatni przebieg 40562930165 (nr 32, 025a50b, success); brak przebiegu na 2385e75
+- e2e-ios.yml main: 40657526205 "E2E iOS · podstawowy" push 2385e75 completed/success (2026-10-28 09:48Z)
+- e2e-ios.yml "pelny" ostatni na main: 40423153424 (001ecf28, success, 27.10.2026) — brak pełnego katalogu na 2385e75

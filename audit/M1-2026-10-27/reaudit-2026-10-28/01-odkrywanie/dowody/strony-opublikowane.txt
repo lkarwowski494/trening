@@ -1,0 +1,10 @@
+Odczyt 2026-10-28 ~09:51 UTC: curl -sS https://apps4brew.com/trening/privacy.html i .../support.html (HTTP 200 oba; adres PRIVACY_URL z lib/products.ts:29).
+Nazwa rejestratora domeny zamaskowana jako [REJESTRATOR] (repo publiczne, bez nazw marek).
+Wystąpienia nazwy rejestratora — strona opublikowana: 4 linii; site/privacy.html na 2385e75: 0 linii
+Stan przejściowy poczty ('po przeniesieniu') — strona: 1; repo: 0
+Wiersz odbiorców na stronie (zamaskowany):
+Odbiorcy i podmioty przetwarzające: [DOSTAWCA] (poczta: dziś [POCZTA-PRYWATNA], po przeniesieniu [DOSTAWCA] Workspace; Dysk) oraz [REJESTRATOR] (rejestrator domeny, który przekazuje pocztę do skrzynki).
+Wiersz odbiorców w repo (zamaskowany):
+Odbiorcy i podmioty przetwarzające: [DOSTAWCA] (poczta [DOSTAWCA] Workspace; Dysk).
+support.html: strona zawiera stare 'Więcej → Ustawienia → Pełna wersja.': 1; repo: 0
+Wniosek: site/ w repo poprawione (M1-017), strona pod adresem z aplikacji nadal stara — eksport do repo strony nie wykonany (krok Z-10a docs/48).

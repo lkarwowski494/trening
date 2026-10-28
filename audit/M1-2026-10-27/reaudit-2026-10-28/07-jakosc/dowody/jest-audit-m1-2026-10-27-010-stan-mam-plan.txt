@@ -1,0 +1,39 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx (11.259 s)
+  M1-010 / DEC-09 a (27.10.2026): stan „Masz plan X” zamiast oferty, zmiana planu zwinięta
+    ✕ miesięczny kupiony: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (5654 ms)
+    ✓ roczny kupiony: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (193 ms)
+    ✓ miesięczny z kodu: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (155 ms)
+    ✓ roczny z Chmury rodzinnej: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty (156 ms)
+    ✓ „Zmień plan” rozwija listę: posiadany plan oznaczony i niewybieralny, przycisk zakupu inny niż „Subskrybuj”, drugie stuknięcie zwija (etykieta stała) (205 ms)
+    ✓ zmiana planu po rozwinięciu: zakup wybranego planu, potem karta z nową nazwą i lista znowu zwinięta (170 ms)
+    ✓ dożywotni po rozwinięciu przy aktywnej subskrypcji: „Kup na zawsze” z uwagą o odnawianiu przed zakupem (M1-001 bez zmian) (160 ms)
+    ✓ PL: „Masz plan: roczny”, „Zmień plan” zwinięty, po rozwinięciu „Przejdź na ten plan” (147 ms)
+    ✓ dożywotni: nagłówek z nazwą planu i „Masz dostęp na zawsze”, bez listy i bez „Zmień plan” (137 ms)
+    ✓ bez dostępu: oferta jak dotąd — wstęp o darmowych dniach, lista od razu widoczna, „Subskrybuj”, bez „Zmień plan” i bez karty stanu (145 ms)
+
+  ● M1-010 / DEC-09 a (27.10.2026): stan „Masz plan X” zamiast oferty, zmiana planu zwinięta › miesięczny kupiony: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      37 |     ['miesięczny z kodu', ent('monthly', { source: 'code' })], ['roczny z Chmury rodzinnej', ent('yearly', { source: 'family' })],
+      38 |   ];
+    > 39 |   test.each(cases)('%s: nagłówek karty nazywa plan (VoiceOver: nagłówek w karcie), brak wstępu o darmowych dniach i listy ofert; „Zmień plan” zwinięty', async (_n, e) => {
+         |                   ^
+      40 |     await boot([e]);
+      41 |     const title = screen.getByTestId('paywall-owned-title');
+      42 |     expect(title.props.children).toBe(`Your plan: ${NAME_EN[e.plan]}`); expect(title.props.accessibilityRole).toBe('header');
+
+      at ../../../../../../home/user/trening/node_modules/jest-each/build/bind.js:47:15
+          at Array.forEach (<anonymous>)
+      at tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx:39:19
+      at Object.describe (tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx:34:1)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 9 passed, 10 total
+Snapshots:   0 total
+Time:        11.664 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx/i.
+kod 1

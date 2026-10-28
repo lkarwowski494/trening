@@ -1,0 +1,11 @@
+== mutacja 1: data/zrodla/figures.json, Step Up mid t → 91 (figura zmieniona po recenzji)
+nieaktualny: lib/figures/data.json — uruchom node scripts/zrodla-runtime.mjs --write (figura zmieniona po recenzji bramki 4 wypada z pliku: nowa recenzja i skrót w docs/research/figury-recenzja.json)
+kod wyjścia: 1
+Step Up w runtime po mutacji: false | na liście otwartej: true
+== mutacja 2: lib/cues/text/pl.json, tekst stepup.move zmieniony
+Step Up w runtime po zmianie tekstu karty: false
+== mutacja 3: lib/cues/text/pl.json, tekst sumo.kneesOut (tylko karta v2) zmieniony → skróty v2
+squat skrót fd142e983e89 wpis fd142e983e89 ZGODNY (zmiana niewykryta)
+bench_press skrót 286637bfbd22 wpis 286637bfbd22 ZGODNY (zmiana niewykryta)
+hinge skrót b8a26c16d090 wpis b8a26c16d090 ZGODNY (zmiana niewykryta)
+status worktree po przywróceniu: pusty = czysty

@@ -1,0 +1,18 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/m3-token-guard.test.ts
+  liczbowe fontSize / borderRadius poza tokenami (lista wyjątków tylko maleje)
+    ✓ lista ma powód, a każdy wpis wskazuje istniejący plik (6 ms)
+    ✓ żaden plik nie ma więcej literałów niż w wykazie (nowy literał = użyj font(rola) / RADIUS / SPACE z lib/theme.ts) (22 ms)
+    ✓ zapadka: gdy literałów ubyło, wykaz jest obniżony (albo plik usunięty z wykazu przy zerze) (1 ms)
+    ✓ komponenty wspólne z p1 (design-spec §10) nie mają żadnych literałów (2 ms)
+  krój: bez F.regular / F.semibold i bez IBM Plex w kodzie aplikacji
+    ✓ F.regular i F.semibold tylko w lib/theme.ts (waga jest częścią stylu: FW.regular / FW.semibold albo font(rola)) (15 ms)
+    ✓ brak IBM Plex / @expo-google-fonts w kodzie aplikacji (15 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       6 passed, 6 total
+Snapshots:   0 total
+Time:        1.089 s
+Ran all test suites matching /tests\/m3-token-guard.test.ts/i.
+kod 0

@@ -1,0 +1,27 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/migrate-released.test.ts
+  ✓ są fixture’y z wydanych buildów dla schematów 18 i 19 (23 ms)
+  zapis z wydanego builda: state-v0.11.0-b1005-schema18.json
+    ✓ start bez kopii odzysku; treningi, szablony, trening w toku i plan 1:1; konfiguracja z „cfg” nałożona (97 ms)
+    ✓ kopia sprzed migracji tylko dla starszego schematu i jest surowym zapisem; schemat bieżący nie tworzy kopii (138 ms)
+    ✓ restart po migracji: ten sam stan, drugi start bez nowej kopii (193 ms)
+  zapis z wydanego builda: state-v0.18.0-b1017-schema18.json
+    ✓ start bez kopii odzysku; treningi, szablony, trening w toku i plan 1:1; konfiguracja z „cfg” nałożona (50 ms)
+    ✓ kopia sprzed migracji tylko dla starszego schematu i jest surowym zapisem; schemat bieżący nie tworzy kopii (85 ms)
+    ✓ restart po migracji: ten sam stan, drugi start bez nowej kopii (105 ms)
+  zapis z wydanego builda: state-v0.20.0-b1018-schema19.json
+    ✓ start bez kopii odzysku; treningi, szablony, trening w toku i plan 1:1; konfiguracja z „cfg” nałożona (40 ms)
+    ✓ kopia sprzed migracji tylko dla starszego schematu i jest surowym zapisem; schemat bieżący nie tworzy kopii (26 ms)
+    ✓ restart po migracji: ten sam stan, drugi start bez nowej kopii (104 ms)
+  zapis z wydanego builda: state-v1.0.0-b1032-schema19.json
+    ✓ start bez kopii odzysku; treningi, szablony, trening w toku i plan 1:1; konfiguracja z „cfg” nałożona (37 ms)
+    ✓ kopia sprzed migracji tylko dla starszego schematu i jest surowym zapisem; schemat bieżący nie tworzy kopii (26 ms)
+    ✓ restart po migracji: ten sam stan, drugi start bez nowej kopii (100 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       13 passed, 13 total
+Snapshots:   0 total
+Time:        2.91 s
+Ran all test suites matching /tests\/migrate-released.test.ts/i.
+kod 0

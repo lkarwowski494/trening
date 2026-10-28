@@ -1,0 +1,25 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/zrodla-paczka.test.ts (15.185 s)
+  pliki runtime wskazówek i figur: bez nazw źródeł, adresów i tytułów
+    ✓ lib/cues/data.json i lib/figures/data.json: żaden łańcuch nie pasuje do wzorców nazw (lib/sources.ts), brak adresów https i pól źródeł (11 ms)
+    ✓ wzorce są wykrywalne w bajtach: lista nazw niepusta i rozpoznaje przykłady (kontrola działania strażnika) (1 ms)
+  strażnik paczki (scripts/check-bundle.mjs): wyszukiwanie nazw w bajtach
+    ✓ wykrywa nazwę w utf8, w utf16le (przesunięcie 0 i 1) i wklejoną w ciągły zapis łańcuchów; nie łapie czystego tekstu (4138 ms)
+    ✓ wariant C (docs/40, 28.10.2026): skróty do 4 liter paczka pomija — bajty z logu tests.yml 40567640699 (utf8 i utf16le) nie alarmują (1459 ms)
+    ✓ klasa: losowe bufory z wstrzykniętym skrótem (CDC, WHO, ACSM, NSCA, ISSN), otoczonym bajtami i interpunkcją, w każdym kodowaniu — paczka nie alarmuje (434 ms)
+    ✓ nazwy dłuższe niż 4 litery nadal alarmują, także w ciągłym zapisie łańcuchów i w utf16le (5010 ms)
+    ✓ dozwolone łańcuchy (stare tłumaczenia z zestawu do przekładu) są pomijane, reszta nie (977 ms)
+    ✓ allowedStrings: tylko stare tłumaczenia kluczy „zmieniony” z nazwami; każdy dozwolony łańcuch jest w słowniku języka i ma nazwę (564 ms)
+  strażnik paczki: CLI na sztucznym eksporcie
+    ✓ czysty pakiet → kod 0; nazwa w pakiecie → kod 1 z nazwą i plikiem w komunikacie; brak pakietu JS → kod 1; brak katalogu → kod 1 (1370 ms)
+  wpięcie w verify
+    ✓ check:zrodla-runtime i check:bundle istnieją; verify sprawdza plik runtime przed jestem, a paczkę po expo export i przed usunięciem eksportu (1 ms)
+    ✓ generator: --check przechodzi, --write jest idempotentny (ten sam wynik), brak argumentu → kod 2 (126 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        15.601 s
+Ran all test suites matching /tests\/zrodla-paczka.test.ts/i.
+kod 0

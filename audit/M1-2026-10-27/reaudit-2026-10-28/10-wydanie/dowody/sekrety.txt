@@ -1,0 +1,14 @@
+$ node sprawdz-wydanie.mjs sekrety <worktree 2385e75>  (bez --historia: klon płytki, historii nie sprawdzono)
+BŁĄD IDENTYFIKATOR scripts/asc/iap-localizations.mjs:153: ASC_ISSUER_ID = is…Id
+BŁĄD IDENTYFIKATOR scripts/asc/metadane.mjs:170: ASC_ISSUER_ID = is…Id
+BŁĄD IDENTYFIKATOR scripts/asc/zrzuty.mjs:202: ASC_ISSUER_ID = is…Id
+BŁĄD IDENTYFIKATOR tests/walidacja-apple-bez-wysylki.test.ts:66: ASC_KEY_ID = KI…67
+BŁĄD IDENTYFIKATOR tests/walidacja-apple-bez-wysylki.test.ts:66: ASC_ISSUER_ID = IS…ID
+BŁĘDY: 5
+kod 1
+Ocena trafień (okiem): wszystkie 5 to nazwy zmiennych środowiska / atrapy testowe, nie wartości:
+  scripts/asc/iap-localizations.mjs:153: ASC_ISSUER_ID: issuerId
+  scripts/asc/metadane.mjs:170: ASC_ISSUER_ID: issuerId
+  scripts/asc/zrzuty.mjs:202: ASC_ISSUER_ID: issuerId
+  tests/walidacja-apple-bez-wysylki.test.ts:66: atrapa testowa (wartość zaczyna się od 'KI'/'IS', tekst przykładowy)
+Zmiana względem 025a50b w plikach z trafieniami: 

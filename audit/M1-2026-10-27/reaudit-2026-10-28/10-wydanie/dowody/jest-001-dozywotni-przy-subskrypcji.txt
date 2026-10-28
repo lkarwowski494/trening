@@ -1,0 +1,32 @@
+$ npx jest tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx --maxWorkers=1  (worktree 2385e75)
+                          [36m</Text>[39m
+                        [36m</View>[39m
+                      [36m</RNSScreenStackHeaderSubview>[39m
+                    [36m</RNSScreenStackHeaderConfig>[39m
+                  [36m</RNSScreen>[39m
+                [36m</RNSScreenStack>[39m
+              [36m</RNSModalScreen>[39m
+            [36m</RNSScreenStack>[39m
+          [36m</View>[39m
+        [36m</View>[39m
+      [36m</View>[39m
+    [36m</RNCSafeAreaProvider>[39m
+
+      35 |   });
+      36 |   test('PL: ta sama uwaga po polsku', async () => {
+    > 37 |     await boot([sub()], 'pl'); await tap(screen.getByTestId('paywall-change-plan')); await tap(screen.getByTestId('plan-lifetime'));
+         |                                                                                                       ^
+      38 |     expect(screen.getByTestId('paywall-lifetime-warning').props.children).toBe(PL);
+      39 |   });
+      40 |   test('bez subskrypcji: dożywotni bez uwagi', async () => {
+
+      at Object.getByTestId (tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx:37:103)
+      at asyncGeneratorStep (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+      at _next (../../../../../../home/user/trening/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:9)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 3 passed, 5 total
+Snapshots:   0 total
+Time:        25.569 s
+Ran all test suites matching /tests\/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx/i.
+kod 1

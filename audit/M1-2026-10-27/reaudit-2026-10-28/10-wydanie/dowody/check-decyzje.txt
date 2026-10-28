@@ -1,0 +1,3 @@
+$ npm run check:decyzje (worktree 2385e75)
+check:decyzje — 341 wpisów decyzji, każdy z polem wdrożenia i testem albo powodem
+kod 0

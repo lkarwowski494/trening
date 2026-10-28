@@ -1,0 +1,10 @@
+Odczyt MCP GitHub (actions_get get_workflow_run), 28.10.2026, repo publiczne lkarwowski494/trening
+tests.yml 40657525976 "Testy (każde wypchnięcie)" push main head_sha 2385e75aeb38 — completed / success (08:32–08:50 UTC)
+e2e-ios.yml 40657526205 "E2E iOS · podstawowy" push main head_sha 2385e75aeb38 — completed / success (08:32–09:48 UTC)
+e2e-ios.yml 40646282170 "E2E iOS · podstawowy · tylko wybrane" dispatch, gałąź naprawy/M2-scalenie-1-0, head_sha acb7d72d27e8 — completed / success
+e2e-ios.yml 40624070610 "E2E iOS · podstawowy · tylko wybrane · aplikacja z innego przebiegu" dispatch, gałąź ...-p2-ax5, head_sha 4c7324304c95 — completed / success (scenariusz 58, wg raportu M2 z rozmiar_tekstu; wejść przebiegu narzędzie nie pokazuje)
+4c73243 jest przodkiem 2385e75
+acb7d72 jest przodkiem 2385e75
+513ea040 jest przodkiem 2385e75
+tests-tz.yml: najnowszy 40629551022 (schedule) na 025a50b96f50 — success; na 2385e75 brak przebiegu w chwili odczytu
+nightly.yml: najnowszy 40626206591 (schedule) na 025a50b96f50 — success; na 2385e75 brak przebiegu w chwili odczytu

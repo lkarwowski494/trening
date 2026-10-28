@@ -1,0 +1,14 @@
+Siła: bój główny	dziedzinowy	T-050	Siła: bój główny na początku, {s} × {a}–{b} powtórzeń (ciężko, ok. {p}% maksimum i więcej)
+Jeden trening w tygodniu	dziedzinowy	T-057	Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening
+chroni mięśnie	dziedzinowy	T-047	Redukcja: trening jak na masę (chroni mięśnie) i jedna sesja umiarkowanego cardio.
+chroni mięśnie	dziedzinowy	T-048	Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodni
+Siła też wtedy rośnie	dziedzinowy	T-052	Siła bez obciążenia zewnętrznego (sztanga, hantle, kettlebell, maszyny, wyciągi): ciężkich
+Siła też wtedy rośnie	dziedzinowy	T-056	Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórz
+15–20°	dziedzinowy	T-054	Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.
+{faza} {n} s	dziedzinowy	T-059	{faza} {n} s
+Wysiłek:	dziedzinowy	T-009	Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczb
+Wysiłek:	dziedzinowy	T-053	Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.
+Wysiłek:	dziedzinowy	T-027	Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie
+Wysiłek:	dziedzinowy	T-058	Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne; do upadku nie trzeba.
+Dzień po dniu	dziedzinowy	T-049	Dzień po dniu te same główne partie: {list}. Zwykle lepiej z dniem przerwy; przy tej samej
+kod wyjścia: 0

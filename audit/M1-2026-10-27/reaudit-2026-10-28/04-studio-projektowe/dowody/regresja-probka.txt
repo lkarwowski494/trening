@@ -1,0 +1,17 @@
+=== git diff --stat 025a50b..2385e75 -- components/Intro.tsx components/SwipeRow.tsx components/DeleteButton.tsx assets/fonts app.json lib/a11yPrefs.ts
+(pusty = bez zmian) exit=0
+=== npx jest tests/intro.test.tsx --maxWorkers=1
+Tests:       21 passed, 21 total
+exit=0
+=== npx jest tests/swipe-delete.test.tsx --maxWorkers=1
+    ✓ trening w toku: bez „usuń”, „− seria”, „Usuń sesję”, „Usuń ćwiczenie”, „Usuń”, „✕” gumy (200 ms)
+Tests:       32 passed, 32 total
+exit=0
+=== npx jest tests/close-button-guard.test.tsx --maxWorkers=1
+Tests:       29 passed, 29 total
+exit=0
+=== SP-14
+BarlowCondensed-Bold.ttf
+BarlowCondensed-SemiBold.ttf
+OFL-BarlowCondensed.txt
+32:    AccessibilityInfo.isBoldTextEnabled?.().then(v => setA11yPrefs({ bold: !!v })).catch(() => {});
