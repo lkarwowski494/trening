@@ -2356,6 +2356,10 @@
   "en": "You have access forever"
  },
  {
+  "pl": "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.",
+  "en": "Got a history in another app? You can add it from a CSV file."
+ },
+ {
   "pl": "Masz pełną wersję",
   "en": "You have the full version"
  },

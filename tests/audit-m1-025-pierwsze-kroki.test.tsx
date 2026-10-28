@@ -48,7 +48,7 @@ describe('M1-audytor-generalny-025: „Pierwsze kroki” — przyciski i teksty 
   test('wszystkie przyciski kroków jednego rodzaju (to samo tło i obramowanie co „Planowanie”)', async () => {
     await boot();
     const places = 'Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.';
-    const btns = box().getAllByRole('button').filter(b => b.props.accessibilityLabel !== places); expect(btns.length).toBe(3);
+    const btns = box().getAllByRole('button').filter(b => b.props.accessibilityLabel !== places); expect(btns.length).toBe(4); /* 1.0.1 (DEC-04 a): + „Importuj historię z pliku CSV” */
     const ref = flat(box().getAllByRole('button', { name: 'Planowanie' }).at(-1)!);
     for (const b of btns) { const s = flat(b); expect([b.props.accessibilityLabel, s.backgroundColor, s.borderColor]).toEqual([b.props.accessibilityLabel, ref.backgroundColor, ref.borderColor]); }
   });

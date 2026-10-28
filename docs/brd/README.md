@@ -51,7 +51,7 @@ Oznaczenia `D-nnn` to numery decyzji z audytu M1 (DEC-nn), zapisanych w `docs/18
 | D-114 | deload A: podpowiedź w kalendarzu „zwykle co 4–6 tygodni”, opis praktyki trenerów, bez wyzwalaczy z danych | 2026-10-08 | docs/18-archiwum-do-11.10.md, `lib/deload.ts` |
 | D-115 | sugestie zmian w tygodniu z regeneracją partii; powrót do rutyny po 7–10 dniach (`RETURN_DAYS` = 10) | 2026-10-08 | docs/research/23-regeneracja-partii.md, `lib/plan.ts` |
 | D-116 | „Zapisz zmiany w szablonie” na podsumowaniu zamiast okna po „Zakończ” (8A), tylko zaraz po treningu (1A) | 2026-10-11 | docs/18 |
-| D-117 | „Pierwsze kroki”: 3 kroki, każdy z jednym przyciskiem (Planowanie / Przewodnik) | 2026-10-11 | docs/18 (docs/22 P4 A) |
+| D-117 | „Pierwsze kroki”: 3 kroki, każdy z jednym przyciskiem (Planowanie / Przewodnik); od 1.0.1 (DEC-04 a, 23.10.2026) czwarty, pomijalny krok „zaimportuj historię” | 2026-10-11 | docs/18 (docs/22 P4 A) |
 | D-118 | masa ciała z datą do e1RM ćwiczeń z masą ciała (wariant B, 08.10.2026); sekcja w Postępach (P5 A, 11.10.2026) | 2026-10-08, 2026-10-11 | docs/18, docs/research/masa-ciala-e1rm-2026-10.md |
 | D-122 | ZM-01: wynik serii wpisywany na tablicy „teraz” z ±, „Seria zrobiona” bez wartości przenosi do pola | 2026-10-21 | docs/18 (STOP 2 przebiegu M3), docs/design/to-be.md |
 | D-123 | zegarek: okno „Cofnij” po odhaczeniu serii 5 s | 2026-10-14 | docs/18 (pytania z nocy), `lib/watch/protocol.ts` (`WATCH.UNDO_SEC`) |

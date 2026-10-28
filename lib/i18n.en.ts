@@ -661,6 +661,7 @@ export const EN: Record<string, string> = {
   'W zakładce Plan stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.': 'In the Plan tab, tap a session, then “Edit” — “Save” saves the changes, “Cancel” discards them.',
   '„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w zakładce Plan jest ten sam przycisk.': '“Log a past workout” records a workout you didn’t log at the time; from a day in the Plan tab it is the same button.',
   'Więcej → Kopia zapasowa: eksport wszystkich danych do pliku i import z pliku.': 'More → Backup: export all data to a file and import from a file.',
+  'Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.': 'Got a history in another app? You can add it from a CSV file.',
   'Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.': 'Exercising at home or at a gym? Set your equipment in “Places and equipment”.',
   'Dodane: {list}.': 'Added: {list}.',
   'Usunięte: {list}.': 'Removed: {list}.',

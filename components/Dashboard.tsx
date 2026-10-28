@@ -1,4 +1,5 @@
 import { WeekHealthLine } from '@/components/HealthLines';
+import { fullValueProps } from '@/components/FullValue'; /* DEC-01 a */
 import React from 'react';
 import { View, Pressable, Text } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -18,7 +19,7 @@ import { t, tp, lang } from '@/lib/i18n';
 function Tile({ label, value }: { label: string; value: string }) { /* 11.10.2026: bez „poprz.” — porównania są w Progresji (w Postępach) */
   const th = useTheme();
   return (
-    <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${label}: ${value}`} style={{ flexGrow: 1, flexBasis: '45%' /* 2 × 2 — mieści się przy 320 pt i długich tłumaczeniach */, padding: 10, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
+    <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${label}: ${value}`} {...fullValueProps(label, value)} /* DEC-01 a: podgląd po przytrzymaniu */ style={{ flexGrow: 1, flexBasis: '45%' /* 2 × 2 — mieści się przy 320 pt i długich tłumaczeniach */, padding: 10, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
       <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.heavy, fontSize: 20 }}>{value}</Txt>
       <Muted style={{ fontSize: 12 }}>{label}</Muted>
     </View>);
@@ -69,6 +70,7 @@ export function ProgressTiles() {
         const volA11y = c.unknown ? `${t('co najmniej {n}', { n: fmtVol(c.total.volume) })} (${t('część zaplanowanych serii nie ma ciężaru')})` : vol;
         return (
           <Pressable key={kind} testID={`progress-tile-${kind}`} accessibilityRole="button" accessibilityLanguage={lang()} accessibilityHint={t('Otwiera szczegóły Progresji.')}
+            {...fullValueProps(title, `${vol} ${vp}; ${sets} ${tp(sets, 'seria|serie|serii')} ${sp}`)} /* DEC-01 a: podgląd po przytrzymaniu */
             accessibilityLabel={t('{title} ({sub}): objętość {v}, {p}; serie {s}, {d}', { title, sub, v: volA11y, p: vp, s: c.total.sets, d: sp })}
             onPress={once(() => router.push(`/progression?c=${kind}`))} style={({ pressed }) => ({ padding: 12, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, opacity: pressed ? 0.7 : 1, gap: 2 })}>
             <Muted style={{ fontSize: 12, ...FW.semibold }}>{title}</Muted>
@@ -85,7 +87,7 @@ export function ProgressTiles() {
 
 /** Nowa osoba: kroki do pierwszego treningu (znikają po pierwszym zakończonym treningu). P4 A (decyzja właściciela 11.10.2026, docs/22): trzy kroki, każdy
  * z jednym przyciskiem — „Planowanie” (szablony i plan są w jednym miejscu: + Nowy szablon, Plan z moich szablonów, Wygeneruj) albo „Przewodnik”.
- * P6 B (import z innego dziennika jako czwarty, pomijalny krok „Masz historię z innej aplikacji?”) — po wdrożeniu importu (dziś go nie ma).
+ * P6 B / DEC-04 a (1.0.1): czwarty, pomijalny krok „Masz historię w innej aplikacji?” z przyciskiem do importu CSV (/more/import).
  * M1-audytor-generalny-025 (04-studio-projektowe-007, 27.10.2026): krok 1 ma przycisk nazwany celem („Szablony i plan”, to samo miejsce co „Planowanie”),
  * krok 3 wskazuje duży przycisk, który jest na ekranie (bez szablonu „Pusty trening” — lib/home mainStart), przyciski kroków jednego rodzaju,
  * zdanie o miejscach z „›” (przejście na inny ekran, docs/32 wzorzec 17). */
@@ -106,6 +108,8 @@ export function FirstSteps() {
       {step(f.template, 1, t('Utwórz pierwszy szablon albo wygeneruj szablony i plan.'), !f.template ? toPlan(t('Szablony i plan')) : undefined)}
       {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? toPlan(t('Planowanie')) : undefined)}
       {step(false, 3, noTemplate ? t('Pierwszy trening: duży przycisk „Pusty trening” u góry.') : t('Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.'), <Btn nav small title={t('Przewodnik')} accessibilityLabel={t('Przewodnik po funkcjach')} onPress={() => router.push('/guide?topic=workout')} style={{ alignSelf: 'flex-start' }} />)}
+      {/* DEC-04 a (23.10.2026, wdrożenie 1.0.1): czwarty, pomijalny krok — tylko wejście do istniejącego importu CSV; nigdy „zrobiony” (kroki znikają po pierwszym treningu) */}
+      {step(false, 4, t('Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.'), <Btn nav small title={t('Importuj historię z pliku CSV')} onPress={once(() => router.push('/more/import'))} style={{ alignSelf: 'flex-start' }} />)}
       {/* 11.10.2026: „Miejsca i sprzęt” — jedno zdanie z odnośnikiem (nie osobny krok); z Ustawień wejście zniknęło */}
       <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')} onPress={once(() => router.push('/more/locations'))} hitSlop={8} style={{ minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
         <View style={{ flexShrink: 1 }}><Muted style={{ fontSize: 13 }}>{t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')}</Muted></View>

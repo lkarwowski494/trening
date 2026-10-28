@@ -432,7 +432,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
 ### BR-POM-001: „Pierwsze kroki” dla nowej osoby
 - Przepływ: PR-10
 - Dowód potrzeby: D-117 (decyzja właściciela 2026-10-11, docs/22 P4 A); kod `components/Dashboard.tsx`
-- Test: `tests/first-steps-empty.test.tsx`, `tests/dashboard.test.tsx`, `.maestro/31-pierwszy-tydzien.yaml`
+- Test: `tests/first-steps-empty.test.tsx`, `tests/dashboard.test.tsx`, `tests/dec04a-import-w-pierwszych-krokach.test.tsx`, `.maestro/31-pierwszy-tydzien.yaml`
 - Kryteria akceptacji:
   - Scenariusz: Pierwsze uruchomienie
     - Zakładając, że baza jest pusta (nowa instalacja albo po wyczyszczeniu danych)
@@ -442,6 +442,10 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
     - Zakładając, że użytkownik utworzył szablon i plan
     - Gdy wraca na ekran Trening
     - Wtedy te kroki są oznaczone jako zrobione
+  - Scenariusz: Krok „zaimportuj historię” (DEC-04 a, właściciel 23.10.2026; wersja 1.0.1)
+    - Zakładając, że nowa osoba ma kartę „Pierwsze kroki”
+    - Gdy patrzy na krok 4 „Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.” i stuka „Importuj historię z pliku CSV”
+    - Wtedy otwiera się istniejący ekran importu CSV (podgląd przed zapisem, obecne dane bez zmian); krok jest pomijalny i nigdy nie bywa oznaczony jako zrobiony, a razem z kartą znika po pierwszym zakończonym treningu
 
 ### BR-POM-002: Przewodnik po funkcjach
 - Przepływ: PR-10
