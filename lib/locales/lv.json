@@ -540,6 +540,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Ķermeņa svars: „±” ir papildsvars (plus) vai palīdzība, piem., trenažiera (mīnus); gumija ir atsevišķs lauks ar līmeni. Rekords ir atkārtojumu summa bez palīdzības, bet apjoms tiek aprēķināts tikai no papildsvara.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Muskuļu masa: sērijas uz muskuļu grupu nedēļā līdz mērķim no sadaļas Iestatījumi (automātiski {m}), {a}–{b} atkārtojumi (mājās {c}–{d}), parasti {r1}–{r2} atkārtojumi rezervē.",
  "Masz dostęp na zawsze": "Jums ir piekļuve uz visiem laikiem",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Jums ir vēsture citā lietotnē? To var pievienot no CSV faila.",
  "Masz pełną wersję": "Jums ir pilnā versija",
  "maszyna": "trenažieris",
  "maszyna belt squat": "belt squat trenažieris",

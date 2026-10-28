@@ -540,6 +540,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Kehonpaino: ”±” on lisäpaino (plus) tai avustus, esim. laite (miinus); kuminauha on erillinen kenttä tasoineen. Ennätys on avustamattomien toistojen summa, ja volyymi käyttää vain lisäpainoa.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Lihasmassa: sarjoja lihasryhmää kohden viikossa Asetuksissa olevaan tavoitteeseen asti (automaattisesti {m}), {a}–{b} toistoa (kotona {c}–{d}), yleensä {r1}–{r2} toistoa varastossa.",
  "Masz dostęp na zawsze": "Sinulla on pääsy ikuisesti",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Onko sinulla historiaa toisessa sovelluksessa? Voit lisätä sen CSV-tiedostosta.",
  "Masz pełną wersję": "Sinulla on täysi versio",
  "maszyna": "laite",
  "maszyna belt squat": "belt squat -laite",
