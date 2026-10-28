@@ -1720,5 +1720,7 @@
  "Zmień plan": "Tukar pelan",
  "Zobacz plany Pro": "Lihat pelan Pro",
  "Plan: miesięczny": "Pelan: bulanan",
- "Plan: roczny": "Pelan: tahunan"
+ "Plan: roczny": "Pelan: tahunan",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

@@ -1720,5 +1720,7 @@
  "Zmień plan": "プランを変更",
  "Zobacz plany Pro": "Pro プランを見る",
  "Plan: miesięczny": "プラン：月額",
- "Plan: roczny": "プラン：年額"
+ "Plan: roczny": "プラン：年額",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

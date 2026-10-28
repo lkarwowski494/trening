@@ -1720,5 +1720,7 @@
  "Zmień plan": "Promijeni plan",
  "Zobacz plany Pro": "Pogledajte planove Pro",
  "Plan: miesięczny": "Plan: mjesečni",
- "Plan: roczny": "Plan: godišnji"
+ "Plan: roczny": "Plan: godišnji",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

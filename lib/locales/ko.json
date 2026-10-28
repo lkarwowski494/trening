@@ -1720,5 +1720,7 @@
  "Zmień plan": "요금제 변경",
  "Zobacz plany Pro": "Pro 요금제 보기",
  "Plan: miesięczny": "요금제: 월간",
- "Plan: roczny": "요금제: 연간"
+ "Plan: roczny": "요금제: 연간",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

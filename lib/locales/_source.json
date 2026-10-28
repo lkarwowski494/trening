@@ -124,12 +124,20 @@
   "en": "{n} active kcal"
  },
  {
+  "pl": "{n} kg",
+  "en": "{n} kg"
+ },
+ {
   "pl": "{n} kilokalorii aktywnych",
   "en": "{n} active kilocalories"
  },
  {
   "pl": "{n} km",
   "en": "{n} km"
+ },
+ {
+  "pl": "{n} lb",
+  "en": "{n} lb"
  },
  {
   "pl": "{n} m",

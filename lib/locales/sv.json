@@ -1720,5 +1720,7 @@
  "Zmień plan": "Byt plan",
  "Zobacz plany Pro": "Se Pro-planer",
  "Plan: miesięczny": "Plan: månadsvis",
- "Plan: roczny": "Plan: årsvis"
+ "Plan: roczny": "Plan: årsvis",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

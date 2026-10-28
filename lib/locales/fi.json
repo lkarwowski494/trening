@@ -1720,5 +1720,7 @@
  "Zmień plan": "Vaihda tilausta",
  "Zobacz plany Pro": "Katso Pro-vaihtoehdot",
  "Plan: miesięczny": "Kuukausitilaus",
- "Plan: roczny": "Vuositilaus"
+ "Plan: roczny": "Vuositilaus",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

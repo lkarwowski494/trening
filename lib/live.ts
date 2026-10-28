@@ -1,6 +1,6 @@
 import { exById, focusSet, isBW, fmtSec, fmtDist, occurrence, occurrences } from './store';
 import { t, tp, exName, lang } from './i18n';
-import { wu, wOut, fmtNum, isImperial, DIST_LONG_FROM_M, M_PER_MI, M_PER_YD } from './units';
+import { wu, unitLabel, distLabel, distLongLabel, wOut, fmtNum, isImperial, DIST_LONG_FROM_M, M_PER_MI, M_PER_YD } from './units';
 import { hasWeight, hasReps, hasTime, hasDistance, SET_KIND_MARK, type Exercise, type SetKind, type WExercise, type WSet, type Workout } from './seed';
 
 /*
@@ -78,8 +78,8 @@ export function spokenDist(m: number): string {
 }
 /** Dystans na ekran blokady / do wiersza serii: metryczny jak dotąd (liczba i „m”), imperialny yd albo mi (próg 1 mi). */
 export function distParts(m: number): { num: string; unit: string } {
-  if (!isImperial()) return { num: String(m), unit: 'm' };
-  return m >= DIST_LONG_FROM_M.imperial ? { num: fmtNum(m / M_PER_MI, 2), unit: 'mi' } : { num: String(Math.round(m / M_PER_YD)), unit: 'yd' };
+  if (!isImperial()) return { num: String(m), unit: distLabel() };
+  return m >= DIST_LONG_FROM_M.imperial ? { num: fmtNum(m / M_PER_MI, 2), unit: distLongLabel() } : { num: String(Math.round(m / M_PER_YD)), unit: distLabel() };
 }
 /** Czas do głosu słowami: „45 sekund”, „1 minuta 30 sekund”, „25 minut”, „1 godzina 5 minut” (zamiast „45 s” i zegarowego „25:00”, które syntezator czyta jak skrót lub godzinę). */
 export function spokenDuration(sec: number): string {
@@ -142,8 +142,8 @@ export function nowParts(ex: Exercise, set: WSet): { num: string; unit: string; 
   const reps = empty(set.reps) ? '—' : String(set.reps); const time = empty(set.durationSec) ? '—' : fmtSec(Number(set.durationSec));
   let num: string, unit = ''; const rest: string[] = []; let sep = ' × ';
   if (hasWeight(m)) {
-    if (isBW(ex)) { const a = Number(set.addKg); if (empty(set.addKg) || !a) num = t('masa ciała'); else { num = (a > 0 ? '+' : '') + fmtNum(wOut(a), dig); unit = wu(); } }
-    else if (empty(set.weight)) num = '—'; else { num = fmtNum(wOut(Number(set.weight)), dig); unit = wu(); }
+    if (isBW(ex)) { const a = Number(set.addKg); if (empty(set.addKg) || !a) num = t('masa ciała'); else { num = (a > 0 ? '+' : '') + fmtNum(wOut(a), dig); unit = unitLabel(); } }
+    else if (empty(set.weight)) num = '—'; else { num = fmtNum(wOut(Number(set.weight)), dig); unit = unitLabel(); }
     if (hasReps(m)) rest.push(reps); if (hasDistance(m)) rest.push(empty(set.distanceM) ? '—' : (d => `${d.num} ${d.unit}`)(distParts(Number(set.distanceM)))); /* ciężar + dystans (09.10.2026): „40 kg × 30 m” */ if (hasTime(m)) rest.push(time);
   } else if (hasDistance(m)) { if (empty(set.distanceM)) num = '—'; else { ({ num, unit } = distParts(Number(set.distanceM))); } sep = ' · '; if (hasTime(m)) rest.push(time); }
   else if (hasReps(m)) { num = reps; if (hasTime(m)) rest.push(time); }

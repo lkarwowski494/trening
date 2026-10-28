@@ -705,7 +705,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-JEZ-003: System miar metryczny albo imperialny
 - Przepływ: PR-08
-- Dowód potrzeby: J-01; D-110 (decyzje właściciela 2026-10-20, docs/18); kod `lib/units.ts`; testy `tests/audit-m1-lok07-01-imperial-dist.test.tsx`, `tests/audit-m1-lok07-02-default-system.test.ts`
+- Dowód potrzeby: J-01; D-110 (decyzje właściciela 2026-10-20, docs/18); kod `lib/units.ts`; decyzja właściciela 10a (2026-10-28, symbol masy lokalny w pismach cyrylicy i greki); testy `tests/audit-m1-lok07-01-imperial-dist.test.tsx`, `tests/audit-m1-lok07-02-default-system.test.ts`, `tests/units-label.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Zmiana systemu miar
     - Zakładając, że użytkownik ma zapisane treningi w kg i dystans w metrach
@@ -715,6 +715,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że aplikację zainstalowano po raz pierwszy w telefonie z regionem, który używa miar imperialnych
     - Gdy aplikacja startuje
     - Wtedy system miar jest imperialny; brak danych o regionie daje metryczny, a istniejący użytkownik zostaje przy swoim ustawieniu
+  - Scenariusz: Symbol jednostki w piśmie lokalnym
+    - Zakładając, że język aplikacji to rosyjski, ukraiński, bułgarski, serbski albo grecki
+    - Gdy ekran pokazuje ciężar albo dystans (liczby, pola, nagłówki)
+    - Wtedy jednostka ma symbol lokalny (np. „кг”, „м”, w greckim „κιλά”), a CSV, kopia zapasowa i zapis w danych zostają w „kg”/„lb” i metrach
 
 ### BR-JEZ-004: Teksty zwykłym językiem, bez przypisów i bez oznaczeń pewności
 - Przepływ: PR-08

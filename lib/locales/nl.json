@@ -1720,5 +1720,7 @@
  "Zmień plan": "Abonnement wijzigen",
  "Zobacz plany Pro": "Bekijk de Pro-abonnementen",
  "Plan: miesięczny": "Abonnement: maandelijks",
- "Plan: roczny": "Abonnement: jaarlijks"
+ "Plan: roczny": "Abonnement: jaarlijks",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

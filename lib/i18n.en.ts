@@ -681,7 +681,7 @@ export const EN: Record<string, string> = {
   'Circus bell (hantel z grubym uchwytem)': 'Circus bell',
   'max': 'max',
   '{n} h': '{n} h',
-  '{n} km': '{n} km',
+  '{n} km': '{n} km', '{n} kg': '{n} kg', '{n} lb': '{n} lb',
   '{n} m': '{n} m',
   '{n} s': '{n} s',
   'Filtr miejsca wyłączony: {l}': 'Place filter off: {l}',

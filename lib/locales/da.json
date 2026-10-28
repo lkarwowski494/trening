@@ -1720,5 +1720,7 @@
  "Zmień plan": "Skift plan",
  "Zobacz plany Pro": "Se Pro-planer",
  "Plan: miesięczny": "Plan: månedlig",
- "Plan: roczny": "Plan: årlig"
+ "Plan: roczny": "Plan: årlig",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

@@ -1720,5 +1720,7 @@
  "Zmień plan": "Cambia piano",
  "Zobacz plany Pro": "Vedi i piani Pro",
  "Plan: miesięczny": "Piano: mensile",
- "Plan: roczny": "Piano: annuale"
+ "Plan: roczny": "Piano: annuale",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

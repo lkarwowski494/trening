@@ -11,7 +11,7 @@ import { font } from '@/lib/theme';
 import { useTick, bodyMassLog, addBodyMass, removeBodyMass, localISODate, fmtDate, localDateTs } from '@/lib/store';
 import { BW_SHARE } from '@/lib/stats';
 import { t } from '@/lib/i18n';
-import { wu, wIn, fmtW } from '@/lib/units';
+import { unitLabel, wIn, fmtW } from '@/lib/units';
 import { DateField } from '@/components/WhenFields';
 
 /*
@@ -36,7 +36,7 @@ export default function BodyMassScreen() {
         <Muted style={font('footnote')}>{t('Opcjonalnie, tylko w telefonie. Potrzebna do e1RM w podciąganiu i pompkach.')}</Muted>
       </InfoTip>
       <View /* UX2-11: pola jedno pod drugim — na 320 pt i przy dużym tekście etykiety nie konkurują o szerokość */>
-        <View><Field label={t('Masa ciała ({u})', { u: wu() })}><NumInput testID="bodymass-kg" /* E2E: pole masy po id (UX2-11 — pola jedno pod drugim) */ decimal weightTol value={kg} placeholder="—" onNum={v => setKg(v === '' ? '' : Math.max(0, v))} /></Field></View>
+        <View><Field label={t('Masa ciała ({u})', { u: unitLabel() })}><NumInput testID="bodymass-kg" /* E2E: pole masy po id (UX2-11 — pola jedno pod drugim) */ decimal weightTol value={kg} placeholder="—" onNum={v => setKg(v === '' ? '' : Math.max(0, v))} /></Field></View>
         <View style={{ marginBottom: 12 }}><DateField value={date} onChange={setDate} label={t('Data pomiaru (RRRR-MM-DD)')} placeholder={localISODate()} /></View>
       </View>
       <Btn title={t('Zapisz pomiar')} kind="primary" onPress={add} />

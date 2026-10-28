@@ -1720,5 +1720,7 @@
  "Zmień plan": "Keisti planą",
  "Zobacz plany Pro": "Peržiūrėti Pro planus",
  "Plan: miesięczny": "Planas: mėnesinis",
- "Plan: roczny": "Planas: metinis"
+ "Plan: roczny": "Planas: metinis",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

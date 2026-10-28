@@ -15,7 +15,7 @@ import * as timer from '@/lib/timer';
 import { relabelRest } from '@/lib/setFlow';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet, type Workout } from '@/lib/seed';
 import { t as tr, tp, exName, exNameLang, lang } from '@/lib/i18n';
-import { wu, wField, wInKeep, fmtW, dIn, dOut, distUnit } from '@/lib/units';
+import { unitLabel, distLabel, wField, wInKeep, fmtW, dIn, dOut } from '@/lib/units';
 import { cancelButton, okButton, confirmSkipTimedSet } from '@/lib/confirm';
 
 /*
@@ -163,7 +163,7 @@ export function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w
         {prevInline ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} numberOfLines={1} style={[s.c, { flex: 1, textAlign: 'left' }]}>{tr('Poprzednio')}</Muted> : <View style={{ flex: 1 }} />}
         {hasWeight(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} numberOfLines={1} style={[s.c, { width: W.w }]}>{loadLabelShort(ex, impl)}</Muted> : null}
         {hasReps(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.reps }]}>{tr('Pow.')}</Muted> : null}
-        {hasDistance(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.dist }]}>{distUnit()}</Muted> : null}
+        {hasDistance(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.dist }]}>{distLabel()}</Muted> : null}
         {hasTime(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.time }]}>{tr('sek.')}</Muted> : null}
         {hasTime(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.play }]}>▶</Muted> : null}
         {showRpe ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.rpe }]}>{effortLabel()}</Muted> : null}
@@ -182,9 +182,9 @@ export function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w
                 <SetBadge kind={kind} label={lbl} note={!!set.note} />
               </Pressable>
               <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, ...font('footnote'), ...FW.regular /* audyt 0.10 (LIVE-13 / UI-11) */ }}>{prevTxt}</Text> : null}{pr ? <Text accessibilityLanguage={lang()} accessibilityLabel={tr('Rekord: {list}', { list: pr.map(k => tr(k)).join(', ') })} /* A11-18: VoiceOver czyta, jaki rekord, nie „P R” */ maxFontSizeMultiplier={1.3} style={{ color: t.band, ...font('caption'), ...FW.semibold }}>{tr('PR')}</Text> : null}</View>
-              {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { typeSetValue(ei, si, 'load', wInKeep(v, keep)); /* runda 54: ciężar nieujemny (writeLoad); Q-021: ta sama liczba co na ekranie = te same kg; 11.10.2026: kaskada w dół */ }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} testID={`w-${ei}-${si}`} /* E2E 11 */ /></View> : null}
+              {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { typeSetValue(ei, si, 'load', wInKeep(v, keep)); /* runda 54: ciężar nieujemny (writeLoad); Q-021: ta sama liczba co na ekranie = te same kg; 11.10.2026: kaskada w dół */ }} placeholder={bw ? '±0' : unitLabel()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} testID={`w-${ei}-${si}`} /* E2E 11 */ /></View> : null}
               {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={set.reps} onNum={v => { typeSetValue(ei, si, 'reps', v === '' ? '' : Math.min(REPS_MAX, Math.max(0, Math.floor(v)))); /* UI-16; kaskada w dół */ }} placeholder={reps(e.repMin, e.repMax)} style={doneStyle(set)} accessibilityLabel={tr('Powtórzenia')} accessibilityHint={hint} testID={`r-${ei}-${si}`} /></View> : null}
-              {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={dOut(set.distanceM)} stored={set.distanceM} onNum={(v, keep) => { typeSetValue(ei, si, 'distanceM', dIn(v, keep)); /* runda 55/56: pełne metry jak klawiatura; kaskada w dół; LOK07-01: w imperialnym yardy → metry (cm) */ }} placeholder={distUnit()} style={doneStyle(set)} accessibilityLabel={tr('dystans')} accessibilityHint={hint} /></View> : null}
+              {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={dOut(set.distanceM)} stored={set.distanceM} onNum={(v, keep) => { typeSetValue(ei, si, 'distanceM', dIn(v, keep)); /* runda 55/56: pełne metry jak klawiatura; kaskada w dół; LOK07-01: w imperialnym yardy → metry (cm) */ }} placeholder={distLabel()} style={doneStyle(set)} accessibilityLabel={tr('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={set.durationSec} onNum={v => { typeSetValue(ei, si, 'durationSec', v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v)))); /* runda 56: pełne sekundy jak klawiatura; kaskada w dół */ }} placeholder="s" style={doneStyle(set)} accessibilityLabel={tr('czas')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? (
                 <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={running ? tr('Stoper trwa') : tr('Start stopera serii')} accessibilityHint={hint} onPress={() => { if (!running) startTimed(w, e, set, si, onStartSet); }} hitSlop={slopTo(W.play)} style={[s.doneBtn, { width: W.play, backgroundColor: running ? t.accent : t.surface2, borderColor: running ? t.accent : t.line }]}>

@@ -1720,5 +1720,7 @@
  "Zmień plan": "Muuda paketti",
  "Zobacz plany Pro": "Vaata Pro pakette",
  "Plan: miesięczny": "Pakett: kuine",
- "Plan: roczny": "Pakett: aastane"
+ "Plan: roczny": "Pakett: aastane",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

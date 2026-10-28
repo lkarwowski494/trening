@@ -1720,5 +1720,7 @@
  "Zmień plan": "Mainīt plānu",
  "Zobacz plany Pro": "Skatīt Pro plānus",
  "Plan: miesięczny": "Plāns: mēneša",
- "Plan: roczny": "Plāns: gada"
+ "Plan: roczny": "Plāns: gada",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

@@ -1720,5 +1720,7 @@
  "Zmień plan": "Cambiar de plan",
  "Zobacz plany Pro": "Ver planes Pro",
  "Plan: miesięczny": "Plan: mensual",
- "Plan: roczny": "Plan: anual"
+ "Plan: roczny": "Plan: anual",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

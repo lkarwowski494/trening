@@ -1720,5 +1720,7 @@
  "Zmień plan": "Zamenjaj paket",
  "Zobacz plany Pro": "Oglejte si pakete Pro",
  "Plan: miesięczny": "Paket: mesečni",
- "Plan: roczny": "Paket: letni"
+ "Plan: roczny": "Paket: letni",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

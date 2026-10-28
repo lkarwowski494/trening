@@ -1,4 +1,4 @@
-import { locale } from './i18n';
+import { locale, t } from './i18n';
 
 /*
  * Jednostki (LOC-02, ADR-027). Dane zawsze w kg — funty tylko przy wyświetlaniu i wpisywaniu,
@@ -9,7 +9,16 @@ export type Unit = 'kg' | 'lb';
 export const KG_PER_LB = 0.45359237;
 let unit: Unit = 'kg';
 export const applyUnit = (u: Unit | undefined) => { unit = u === 'lb' ? 'lb' : 'kg'; };
+/**
+ * WARTOŚĆ LOGICZNA jednostki ('kg' | 'lb'): zapis, CSV, kopia, obliczenia i porównania. NIE do wyświetlania i NIE do t() — do tego służy unitLabel()
+ * (decyzja właściciela 10a, 28.10.2026, 09-lokalizacja-005: w ru/uk/bg/sr/el etykieta ma lokalny symbol; strażnik tests/units-label.test.ts).
+ */
 export const wu = (): Unit => unit;
+/** Skrót jednostki ze słownika (klucz „{n} …”): „{n} кг” → „кг”. Jedno źródło etykiet i liczb z jednostką (fmtW, fmtDist). */
+const bare = (s: string): string => s.replace(/\s*\{n\}\s*/, '');
+/** ETYKIETA jednostki masy do wyświetlania (pola, nagłówki, podpisy, opisy VoiceOver) w języku aplikacji: „kg”, w ru „кг”. Dane i eksport używają wu(). */
+export const unitName = (u: Unit): string => bare(u === 'lb' ? t('{n} lb') : t('{n} kg'));
+export const unitLabel = (): string => unitName(unit);
 /*
  * System miar (M2-LOK07-01, DEC-28, 20.10.2026): jedno ustawienie — metryczny (kg, km, m) albo imperialny (lb, mi, yd). Pole `unit` zostaje ('kg' | 'lb'),
  * imperialny = 'lb'; zapis kanoniczny bez zmian: masa w kg, dystans w metrach (bez migracji). Dystans w polach wpisujemy w m / yd (krótka jednostka),
@@ -22,6 +31,10 @@ export const DIST_LONG_FROM_M = { metric: 1000, imperial: M_PER_MI } as const;
 export const isImperial = (): boolean => unit === 'lb';
 /** Krótka jednostka dystansu w polach wpisu: m albo yd. */
 export const distUnit = (): 'm' | 'yd' => unit === 'lb' ? 'yd' : 'm';
+/** ETYKIETA krótkiej jednostki dystansu w polach wpisu (jak w fmtDist, przez słownik): „m” / „yd”, w ru „м” / „ярд”. Wartość logiczna: distUnit(). */
+export const distLabel = (): string => bare(unit === 'lb' ? t('{n} yd') : t('{n} m'));
+/** Etykieta dużej jednostki dystansu (km / mi) ze słownika — do podpisów obok liczby. */
+export const distLongLabel = (): string => bare(unit === 'lb' ? t('{n} mi') : t('{n} km'));
 /** Dystans w metrach → liczba w polu wpisu (m albo pełne yardy). Metryczny: wartość bez zmian. */
 export const dOut = (m: number | '' | undefined | null): number | '' => m === '' || m == null ? '' : unit === 'lb' ? Math.round(Number(m) / M_PER_YD) : Number(m);
 /**
@@ -77,5 +90,7 @@ export const fmtNum = (v: number, maxDec = 2): string => { try { return v.toLoca
 /** Objętość (kg) w jednostce wyświetlania, zaokrąglona do całości już po przeliczeniu (runda 6). */
 /** Objętość jako liczba całkowita w jednostce wyświetlania — jedno zaokrąglenie z kg (wykresy i etykiety zgodne, runda 8). */
 export const volOut = (kg: number): number => Math.round(unit === 'lb' ? kg / KG_PER_LB : kg);
-export const fmtVol = (kg: number): string => `${fmtNum(volOut(kg), 0)} ${unit}`;
-export const fmtW = (kg: number, withUnit = true): string => { const s = fmtNum(wOut(kg), unit === 'lb' ? 1 : 2); return withUnit ? `${s} ${unit}` : s; };
+export const fmtVol = (kg: number): string => withLabel(fmtNum(volOut(kg), 0));
+export const fmtW = (kg: number, withUnit = true): string => { const s = fmtNum(wOut(kg), unit === 'lb' ? 1 : 2); return withUnit ? withLabel(s) : s; };
+/** Liczba z etykietą jednostki masy wg słownika języka (kolejność i spacja jak w słowniku). */
+const withLabel = (n: string): string => unit === 'lb' ? t('{n} lb', { n }) : t('{n} kg', { n });

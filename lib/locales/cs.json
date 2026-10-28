@@ -1720,5 +1720,7 @@
  "Zmień plan": "Změnit plán",
  "Zobacz plany Pro": "Zobrazit plány Pro",
  "Plan: miesięczny": "Plán: měsíční",
- "Plan: roczny": "Plán: roční"
+ "Plan: roczny": "Plán: roční",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

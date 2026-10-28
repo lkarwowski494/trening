@@ -1720,5 +1720,7 @@
  "Zmień plan": "Schimbă planul",
  "Zobacz plany Pro": "Vezi planurile Pro",
  "Plan: miesięczny": "Plan: lunar",
- "Plan: roczny": "Plan: anual"
+ "Plan: roczny": "Plan: anual",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

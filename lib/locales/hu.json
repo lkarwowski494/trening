@@ -1720,5 +1720,7 @@
  "Zmień plan": "Csomagváltás",
  "Zobacz plany Pro": "A Pro csomagok megtekintése",
  "Plan: miesięczny": "Csomag: havi",
- "Plan: roczny": "Csomag: éves"
+ "Plan: roczny": "Csomag: éves",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }
