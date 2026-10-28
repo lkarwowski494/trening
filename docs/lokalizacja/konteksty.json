@@ -561,7 +561,7 @@
  "Pusta nazwa folderu": "app/template/[id].tsx:108",
  "Pusty trening": "app/history/add.tsx:43, app/history/edit/[id].tsx:57, components/StartPanel.tsx:30",
  "Redukcja": "lib/generator.ts:194",
- "Rekord: {list}": "components/WorkoutBlocks.tsx:184",
+ "Rekord: {list}": "app/history/[id].tsx:74, components/WorkoutBlocks.tsx:184",
  "REKORDY": "components/ExerciseProgress.tsx:44",
  "reverse hyper": "dynamiczny (lista, etykieta albo dane w kodzie)",
  "Ręcznie": "app/more/settings.tsx:106",
