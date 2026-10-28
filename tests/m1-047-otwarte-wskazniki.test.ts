@@ -2,7 +2,7 @@
  * M1-audytor-generalny-047 (reaudyt 28.10.2026; 03-zakres-602, 07-jakosc-601): pola „[wdrożenie: otwarte → <zadanie>]” w docs/18 zostawały otwarte po naprawie
  * zadania (docs/18 wiersze dla 006, 017, 034, K1 → 009), a check:decyzje sprawdzał tylko postać pola. Teraz: wpis „otwarte → M1-audytor-generalny-NNN”
  * przy zadaniu, które ma commit naprawy z tym ID w historii git, to błąd check:decyzje (zmień pole na „kod” z testem, „bez kodu — powód” albo wskaż nowe ID).
- * Ograniczenie nazwane: CI pobiera repo bez historii (fetch-depth 1) — tam sprawdzenie się pomija; działa lokalnie (hak, verify, verify:docs).
+ * Ograniczenie nazwane: CI pobiera repo bez historii (fetch-depth 1) — płytka kopia (git rev-parse --is-shallow-repository) zwraca null i sprawdzenie się pomija; działa lokalnie (hak, verify, verify:docs).
  */
 import * as path from 'path';
 import { spawnSync } from 'child_process';
@@ -29,6 +29,17 @@ describe('M1-047: „otwarte → zadanie” przy zadaniu z commitem naprawy', ()
     const ids = wywolaj<string[] | null>('return m.zadaniaZNaprawa();');
     if (ids === null) return; /* CI: fetch-depth 1 */
     expect(ids).toContain('M1-audytor-generalny-006'); /* e6114d1 */
+  });
+  test('płytka kopia repo (CI, fetch-depth 1) → null: niepełna historia nie udaje pełnej (porażka tests.yml 40716367925)', () => {
+    const fs = require('fs') as typeof import('fs'); const os = require('os') as typeof import('os');
+    const d = fs.mkdtempSync(path.join(os.tmpdir(), 'm1-047-'));
+    const git = (...a: string[]) => { const r = spawnSync('git', ['-c', 'user.name=t', '-c', 'user.email=t@example.invalid', ...a], { cwd: d, encoding: 'utf8' }); if (r.status !== 0) throw new Error(r.stderr); return r.stdout.trim(); };
+    git('init', '-q'); git('commit', '-q', '--allow-empty', '-m', 'fix [M1-audytor-generalny-006; x]');
+    const z = (root: string) => wywolaj<string[] | null>(`return m.zadaniaZNaprawa(${JSON.stringify(root)});`);
+    expect(z(d)).toEqual(['M1-audytor-generalny-006']);
+    fs.writeFileSync(path.join(d, '.git', 'shallow'), git('rev-parse', 'HEAD') + '\n');
+    expect(z(d)).toBeNull();
+    fs.rmSync(d, { recursive: true, force: true });
   });
   test('docs/18: brak „otwarte → ID” przy zadaniu z commitem naprawy (gdy historia dostępna)', () => {
     const r = wywolaj<{ linia: number; id: string }[] | null>(`const z = m.zadaniaZNaprawa(); if (!z) return null; const fs = await import('node:fs'); return m.nieaktualneWskazniki(fs.readFileSync('docs/18-przekazanie.md', 'utf8'), z);`);

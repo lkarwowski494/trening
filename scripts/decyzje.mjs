@@ -106,6 +106,9 @@ export function sprawdzWpis(w, czytaj) {
  * na „kod” z testem, „bez kodu — powód” albo wskazać nowe ID; zadanie otwarte ponownie po reaudycie oznacza się „(pętla N)” po ID. Historia git: lokalnie pełna; w CI (fetch-depth 1) tylko ostatni commit — sprawdzenie słabsze. */
 export const AUDYT_OD = '2026-10-27';
 export function zadaniaZNaprawa(root = ROOT) {
+  /* płytka kopia (CI, fetch-depth 1): historia niepełna — null, jak brak historii (porażka tests.yml 40716367925, 28.10.2026) */
+  const sh = spawnSync('git', ['rev-parse', '--is-shallow-repository'], { cwd: root, encoding: 'utf8' });
+  if (sh.status !== 0 || sh.stdout.trim() === 'true') return null;
   const r = spawnSync('git', ['log', `--since=${AUDYT_OD}`, '--format=%B'], { cwd: root, encoding: 'utf8', maxBuffer: 1 << 26 });
   if (r.status !== 0) return null;
   return [...new Set([...r.stdout.matchAll(/\[(M1-audytor-generalny-\d{3})[;\]]/g)].map(m => m[1]))];
