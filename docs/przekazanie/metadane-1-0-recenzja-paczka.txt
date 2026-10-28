@@ -1,0 +1,322 @@
+### pl
+TECHNIKA
+• Animowane rysunki ruchu przy ponad 100 ćwiczeniach; animację możesz zatrzymać
+• Sekcja „Technika” na karcie ćwiczenia: ustawienie, ruch, wskazówki i częste błędy
+• Przy wielu odmianach przysiadu, wyciskania leżąc i martwego ciągu rysunek pokazuje też pracujące mięśnie, a zwykle i częsty błąd
+• „Strażnik progresji”: ten tydzień wobec poprzedniego dla każdej partii mięśni
+• Import z kopii i z plików CSV popularnych dzienników treningowych, z podglądem przed zapisem
+PROMO: Animowane rysunki ruchu, wskazówki techniki, własne szablony i timer przerw. Offline, bez konta i reklam. Za darmo do 5 dni treningowych w miesiącu.
+
+### en-US
+TECHNIQUE
+• Animated movement drawings for over 100 exercises; you can pause the animation
+• "Technique" section on the exercise card: setup, movement, tips and common mistakes
+• For many squat, bench press and deadlift variations, the drawing also shows the working muscles and usually a common mistake
+• "Progress Guard": this week compared with the previous one for each muscle group
+• Import from a backup and from CSV files of popular workout logs, with a preview before saving
+PROMO: Animated movement drawings, technique tips, your own templates and a rest timer. Offline, no account, no ads. Free for up to 5 training days a month.
+
+### cs
+TECHNIKA PROVEDENÍ
+• Animované nákresy pohybu u více než 100 cviků; animaci můžete pozastavit
+• Sekce „Technika provedení“ na kartě cviku: výchozí poloha, pohyb, tipy a časté chyby
+• U mnoha variant dřepu, benchpressu a mrtvého tahu nákres ukazuje i zapojené svaly a obvykle také častou chybu
+• „Strážce progrese“: tento týden ve srovnání s minulým pro každou partii
+• Import ze zálohy a ze souborů CSV oblíbených tréninkových deníků, s náhledem před uložením
+PROMO: Animované nákresy pohybu, tipy k technice, vlastní šablony a časovač pauzy. Offline, bez účtu a reklam. Zdarma až do 5 tréninkových dnů v měsíci.
+
+### sk
+TECHNIKA VYKONANIA
+• Animované nákresy pohybu pri viac ako 100 cvikoch; animáciu môžete pozastaviť
+• Sekcia „Technika vykonania“ na karte cviku: príprava, pohyb, tipy a časté chyby
+• Pri mnohých variantoch drepu, benchpressu a mŕtveho ťahu nákres ukazuje aj zapojené svaly a zvyčajne aj častú chybu
+• „Strážca progresu“: tento týždeň v porovnaní s minulým pre každú partiu
+• Import zo zálohy a zo súborov CSV obľúbených tréningových denníkov, s náhľadom pred uložením
+PROMO: Animované nákresy pohybu, tipy k technike, vlastné šablóny a časovač pauzy. Offline, bez účtu a reklám. Zadarmo až do 5 tréningových dní v mesiaci.
+
+### hu
+KIVITELEZÉS
+• Animált mozdulatrajzok több mint 100 gyakorlathoz; az animáció szüneteltethető
+• „Kivitelezés” rész a gyakorlat adatlapján: beállás, mozgás, tippek és gyakori hibák
+• A guggolás, a fekvenyomás és a felhúzás sok változatánál a rajz a dolgozó izmokat, többnyire pedig egy gyakori hibát is mutat
+• „Fejlődésőr”: az aktuális hét az előzőhöz képest minden testrésznél
+• Importálás mentésből és népszerű edzésnaplók CSV-fájljaiból, mentés előtti előnézettel
+PROMO: Animált mozdulatrajzok, technikai tippek, saját sablonok és pihenőidőzítő. Offline, fiók és reklámok nélkül. Ingyenes havi 5 edzésnapig.
+
+### ro
+Training este un jurnal de antrenament pentru sală și acasă. Notați seriile, greutățile și repetările, iar aplicația calculează restul: volumul, recordurile și greutatea maximă estimată pentru o repetare (e1RM). Totul rămâne pe telefon: fără cont, reclame sau urmărire.
+• Vizualizare antrenament „Concentrat” (seria curentă cu cifre mari deasupra listei) sau „Listă”
+TEHNICĂ
+• Animații ale mișcării la peste 100 de exerciții; puteți pune animația pe pauză
+• Secțiunea „Tehnică” pe fișa exercițiului: poziția de start, mișcarea, sfaturi și greșeli frecvente
+• La multe variante de genuflexiuni, împins la bancă și îndreptări, desenul arată și mușchii implicați, iar de obicei și o greșeală frecventă
+• Plan săptămânal, mutarea antrenamentelor și propuneri de modificări în funcție de refacerea mușchilor
+• Generator opțional de șablon și plan săptămânal: alegeți obiectivul, locul, zilele și durata, apoi verificați rezultatul înainte de salvare
+• „Paznic de progres”: săptămâna aceasta față de cea trecută, pe fiecare grupă musculară
+• Import din copie și din fișiere CSV ale jurnalelor de antrenament populare, cu previzualizare înainte de salvare
+PROMO: Animații ale mișcării, sfaturi de tehnică, șabloane proprii și cronometru de pauză. Offline, fără cont și fără reclame. Gratuit până la 5 zile de antrenament pe lună.
+
+### hr
+TEHNIKA
+• Animirani crteži pokreta za više od 100 vježbi; animaciju možete pauzirati
+• Odjeljak „Tehnika“ na kartici vježbe: priprema, pokret, savjeti i česte pogreške
+• Kod mnogih varijanti čučnja, bench pressa i mrtvog dizanja crtež pokazuje i mišiće koji rade, a obično i čestu pogrešku
+• „Čuvar napretka“: ovaj tjedan u usporedbi s prošlim za svaki dio tijela
+• Uvoz iz sigurnosne kopije i iz CSV datoteka popularnih dnevnika treninga, s pregledom prije spremanja
+PROMO: Animirani crteži pokreta, savjeti za tehniku, vlastiti predlošci i mjerač odmora. Izvan mreže, bez računa i reklama. Besplatno do 5 dana treninga mjesečno.
+
+### sl
+TEHNIKA
+• Animirane risbe giba pri več kot 100 vajah; animacijo lahko začasno ustavite
+• Razdelek „Tehnika“ na kartici vaje: priprava, gib, nasveti in pogoste napake
+• Pri mnogih različicah počepa, potiska s klopi in mrtvega dviga risba pokaže tudi delujoče mišice, običajno pa tudi pogosto napako
+• „Čuvaj napredka“: ta teden v primerjavi s prejšnjim za vsako mišično skupino
+• Uvoz iz kopije in iz datotek CSV priljubljenih dnevnikov vadbe, s predogledom pred shranjevanjem
+PROMO: Animirane risbe giba, nasveti za tehniko, lastne predloge in časovnik počitka. Brez povezave, brez računa in oglasov. Brezplačno do 5 dni vadbe na mesec.
+
+### uk
+Training — це щоденник тренувань для спортзалу й дому. Ви записуєте підходи, ваги та повторення, а застосунок рахує решту: обсяг, рекорди й орієнтовний максимальний вантаж (e1RM). Усе працює лише на телефоні — без облікового запису, реклами та відстеження.
+ТЕХНІКА
+• Анімовані малюнки руху для понад 100 вправ; анімацію можна призупинити
+• Розділ «Техніка» на картці вправи: підготовка, рух, поради й типові помилки
+• Для багатьох варіантів присідань, жиму лежачи й станової тяги малюнок показує також задіяні м’язи, а зазвичай і типову помилку
+• «Вартовий прогресу»: цей тиждень порівняно з минулим для кожної частини тіла
+• Імпорт із копії та з файлів CSV популярних щоденників тренувань, з попереднім переглядом перед збереженням
+PROMO: Анімовані малюнки руху, поради з техніки, власні шаблони й таймер відпочинку. Офлайн, без облікового запису та реклами. Безкоштовно до 5 днів тренувань на місяць.
+
+### es-ES
+Training es un diario de entrenamiento para el gimnasio y para casa. Registras series, pesos y repeticiones, y la app calcula el resto: volumen, récords y peso máximo estimado (e1RM). Todo se queda en tu teléfono: sin cuenta, anuncios ni seguimiento.
+• Vista del entrenamiento «Enfocada» (la serie actual en cifras grandes sobre la lista) o «Lista»
+TÉCNICA
+• Animaciones del movimiento en más de 100 ejercicios; puedes pausarlas
+• Sección «Técnica» en la ficha del ejercicio: preparación, movimiento, consejos y errores frecuentes
+• En muchas variantes de sentadilla, press de banca y peso muerto, el dibujo muestra también los músculos que trabajan y, casi siempre, un error frecuente
+• Plan semanal, entrenamientos que se pueden mover y propuestas de cambio según la recuperación de los músculos
+• Generador opcional de plantilla y plan semanal: eliges objetivo, lugar, días y duración de la sesión, y revisas el resultado antes de guardarlo
+• «Guardián de progreso»: esta semana frente a la anterior en cada parte del cuerpo
+• Importación desde una copia y desde archivos CSV de diarios de entrenamiento populares, con vista previa antes de guardar
+• Lectura opcional de Apple Health (pasos, entrenamientos, frecuencia cardiaca, energía activa): solo se muestran en el teléfono, nunca se envían
+Gratis hasta 5 días de entrenamiento al mes. Pro elimina el límite: plan mensual por un precio parecido al de un espresso en un bar*, plan anual (ambos se renuevan automáticamente; puedes cancelar en los ajustes de tu cuenta de Apple) o acceso vitalicio de pago único. La suscripción financia el desarrollo continuo: la app se actualiza con regularidad y las nuevas funciones no tienen coste adicional. Los precios actuales se muestran en la App Store antes de comprar. Pro y el acceso vitalicio se pueden compartir con tu familia mediante Compartir en familia. Añadir entrenamientos anteriores, el historial, la copia de seguridad y la exportación funcionan siempre, incluso sin Pro.
+PROMO: Animaciones del movimiento, consejos de técnica, plantillas y temporizador de descanso. Sin conexión, sin cuenta ni anuncios. Gratis hasta 5 días de entreno al mes.
+
+### es-MX
+Training es un diario de entrenamiento para el gimnasio y para casa. Registras series, pesos y repeticiones, y la app calcula el resto: volumen, récords y peso máximo estimado (e1RM). Todo se queda en tu celular: sin cuenta, anuncios ni seguimiento.
+• Vista del entrenamiento «Enfocada» (la serie actual en cifras grandes sobre la lista) o «Lista»
+TÉCNICA
+• Animaciones del movimiento en más de 100 ejercicios; puedes pausarlas
+• Sección «Técnica» en la ficha del ejercicio: preparación, movimiento, consejos y errores frecuentes
+• En muchas variantes de sentadilla, press de banca y peso muerto, el dibujo muestra también los músculos que trabajan y, casi siempre, un error frecuente
+• Plan semanal, entrenamientos que se pueden mover y propuestas de cambio según la recuperación de los músculos
+• Generador opcional de plantilla y plan semanal: eliges objetivo, lugar, días y duración de la sesión, y revisas el resultado antes de guardarlo
+• «Guardián de progreso»: esta semana comparada con la anterior en cada parte del cuerpo
+• Importación desde un respaldo y desde archivos CSV de diarios de entrenamiento populares, con vista previa antes de guardar
+• Lectura opcional de Apple Health (pasos, entrenamientos, frecuencia cardíaca, energía activa): solo se muestran en el celular, nunca se envían
+PROMO: Animaciones del movimiento, consejos de técnica, plantillas y temporizador de descanso. Sin conexión, sin cuenta ni anuncios. Gratis hasta 5 días de entrenamiento al mes.
+
+### pt-PT
+TÉCNICA
+• Animações do movimento em mais de 100 exercícios; pode pausá-las
+• Secção «Técnica» na ficha do exercício: preparação, movimento, dicas e erros comuns
+• Em muitas variantes de agachamento, supino e peso morto, o desenho mostra também os músculos envolvidos e, normalmente, um erro comum
+• «Guardião do progresso»: esta semana face à anterior em cada grupo muscular
+• Importação a partir de uma cópia e de ficheiros CSV de diários de treino populares, com pré-visualização antes de guardar
+PROMO: Animações do movimento, dicas de técnica, modelos próprios e temporizador de descanso. Offline, sem conta e sem anúncios. Gratuito até 5 dias de treino por mês.
+
+### pt-BR
+TÉCNICA
+• Animações do movimento em mais de 100 exercícios; você pode pausá-las
+• Seção “Técnica” na tela do exercício: preparação, movimento, dicas e erros comuns
+• Em muitas variações de agachamento, supino e levantamento terra, o desenho também mostra os músculos trabalhados e, geralmente, um erro comum
+• “Guardião do progresso”: esta semana comparada com a anterior em cada grupo muscular
+• Importação a partir de um backup e de arquivos CSV de diários de treino populares, com prévia antes de salvar
+PROMO: Animações do movimento, dicas de técnica, modelos próprios e timer de descanso. Offline, sem conta e sem anúncios. Grátis até 5 dias de treino por mês.
+
+### de-DE
+TECHNIK
+• Animierte Bewegungszeichnungen für über 100 Übungen; die Animation lässt sich anhalten
+• Bereich „Technik“ auf der Übungskarte: Ausgangsposition, Bewegung, Tipps und häufige Fehler
+• Bei vielen Varianten von Kniebeuge, Bankdrücken und Kreuzheben zeigt die Zeichnung auch die beanspruchten Muskeln und meist einen häufigen Fehler
+• „Fortschrittswächter“: diese Woche im Vergleich zur vorigen für jede Muskelgruppe
+• Import aus einer Sicherung und aus CSV-Dateien gängiger Trainingstagebücher, mit Vorschau vor dem Speichern
+PROMO: Animierte Bewegungszeichnungen, Technik-Tipps, eigene Vorlagen und Pausentimer. Offline, ohne Konto und ohne Werbung. Kostenlos bis zu 5 Trainingstage im Monat.
+
+### fr-FR
+Training est un journal d’entraînement pour la salle et la maison. Vous notez séries, charges et répétitions, et l’application calcule le reste : volume, records et charge maximale estimée (e1RM). Tout reste sur votre téléphone : sans compte, sans publicité, sans suivi.
+• Vos modèles de séance, rangés en dossiers et en archives
+• Affichage de la séance « Focus » (la série en cours en grands chiffres au-dessus de la liste) ou « Liste »
+• Minuteur de repos avec notification de fin, aussi sur l’écran verrouillé ; son et vibrations réglables séparément
+• Remplacement d’un exercice en pleine séance si le matériel manque ou qu’une machine est prise
+• « Adapter au lieu » : entraînez-vous ailleurs avec des exercices de remplacement pour aujourd’hui seulement ; modèle et plan inchangés
+• Annonces vocales de l’exercice suivant au début du repos (désactivées par défaut)
+TECHNIQUE
+• Animations du mouvement pour plus de 100 exercices, avec pause possible
+• Section « Technique » de la fiche d’exercice : mise en place, mouvement, conseils, erreurs fréquentes
+• Pour beaucoup de variantes de squat, développé couché et soulevé de terre, le dessin montre aussi les muscles sollicités et souvent une erreur fréquente
+• Plan de la semaine, séances déplaçables et propositions de changements selon la récupération des muscles
+• Générateur en option de modèle et de plan : objectif, lieu, jours et durée au choix, résultat relu avant l’enregistrement
+• Bilan de la semaine et du mois : carte musculaire, séries par groupe musculaire, records de la période
+• « Gardien de progrès » : cette semaine face à la précédente, par groupe musculaire
+• Import depuis une sauvegarde et depuis des fichiers CSV de journaux d’entraînement courants, avec aperçu avant l’enregistrement
+• Lecture en option de Santé (pas, séances, fréquence cardiaque, énergie active) : données affichées seulement sur le téléphone, jamais envoyées
+Gratuit jusqu’à 5 jours d’entraînement par mois. Pro supprime la limite : un forfait mensuel à un prix comparable à celui d’un expresso au comptoir*, un forfait annuel (tous deux à renouvellement automatique ; résiliation dans les réglages de votre compte Apple) ou un accès à vie en paiement unique. L’abonnement finance le développement : l’app est mise à jour régulièrement, sans frais pour les nouvelles fonctions. Les prix en vigueur s’affichent dans l’App Store avant l’achat. Pro et l’accès à vie se partagent via le Partage familial. L’ajout de séances passées, l’historique, la sauvegarde et l’export fonctionnent toujours, même sans Pro.
+PROMO: Animations du mouvement, conseils de technique, modèles personnels et minuteur de repos. Hors ligne, sans compte ni pub. Gratuit jusqu’à 5 jours d’entraînement par mois.
+
+### it
+Training è un diario di allenamento per palestra e casa. Registri serie, carichi e ripetizioni, e l’app calcola il resto: volume, record e massimale stimato (e1RM). Tutto resta sul telefono: niente account, pubblicità o tracciamento.
+• Vista allenamento «Focus» (la serie corrente a grandi cifre sopra l’elenco) oppure «Elenco»
+• Timer di recupero con notifica di fine recupero, anche nella schermata di blocco; suono e vibrazione si attivano separatamente
+• «Adatta al luogo»: ti alleni in un altro posto con esercizi sostitutivi solo per oggi; scheda e piano restano invariati
+• Annunci vocali facoltativi dell’esercizio successivo all’inizio del recupero (disattivati di default)
+TECNICA
+• Animazioni del movimento per oltre 100 esercizi; puoi metterle in pausa
+• Sezione «Tecnica» nella pagina dell’esercizio: preparazione, movimento, consigli ed errori comuni
+• In molte varianti di squat, panca piana e stacco da terra il disegno mostra anche i muscoli coinvolti e, di solito, un errore comune
+• Piano settimanale, allenamenti spostabili e proposte di modifica in base al recupero dei muscoli
+• Generatore facoltativo di scheda e piano settimanale: scegli obiettivo, luogo, giorni e durata delle sessioni e controlli il risultato prima di salvare
+• Riepilogo settimanale e mensile con mappa muscolare, serie per gruppo muscolare e record del periodo
+• «Guardiano progressi»: questa settimana rispetto alla precedente per ogni gruppo muscolare
+• Importazione da un backup e da file CSV di diari di allenamento popolari, con anteprima prima del salvataggio
+• Lettura facoltativa da Apple Health (passi, allenamenti, frequenza cardiaca, energia attiva): dati solo mostrati sul telefono, mai inviati
+PROMO: Animazioni del movimento, consigli di tecnica, schede personali e timer di recupero. Offline, senza account né pubblicità. Gratis fino a 5 giorni di allenamento al mese.
+
+### nl-NL
+TECHNIEK
+• Geanimeerde bewegingstekeningen bij meer dan 100 oefeningen; je kunt de animatie pauzeren
+• Onderdeel ‘Techniek’ op de oefeningskaart: uitgangshouding, beweging, tips en veelgemaakte fouten
+• Bij veel varianten van de squat, het bankdrukken en de deadlift toont de tekening ook de spieren die werken, en meestal een veelgemaakte fout
+• ‘Voortgangswacht’: deze week vergeleken met de vorige, per lichaamsdeel
+• Import vanuit een back-up en vanuit CSV-bestanden van gangbare trainingsdagboeken, met een voorbeeld vóór het opslaan
+PROMO: Geanimeerde bewegingstekeningen, techniektips, eigen sjablonen en rusttimer. Offline, zonder account en zonder advertenties. Gratis tot 5 trainingsdagen per maand.
+
+### sv
+TEKNIK
+• Animerade rörelseteckningar för över 100 övningar; du kan pausa animeringen
+• Avsnittet ”Teknik” på övningskortet: utgångsläge, rörelse, tips och vanliga fel
+• För många varianter av knäböj, bänkpress och marklyft visar teckningen också musklerna som jobbar och oftast ett vanligt fel
+• ”Framstegsvakt”: den här veckan jämfört med förra, för varje kroppsdel
+• Import från en säkerhetskopia och från CSV-filer från vanliga träningsdagböcker, med förhandsvisning innan du sparar
+PROMO: Animerade rörelseteckningar, tekniktips, egna mallar och vilotimer. Offline, utan konto och utan reklam. Gratis upp till 5 träningsdagar per månad.
+
+### da
+TEKNIK
+• Animerede bevægelsestegninger til over 100 øvelser; du kan sætte animationen på pause
+• Afsnittet “Teknik” på øvelseskortet: udgangsstilling, bevægelse, tips og typiske fejl
+• Ved mange varianter af squat, bænkpres og dødløft viser tegningen også de muskler, der arbejder, og som regel en typisk fejl
+• “Fremgangsvagt”: denne uge sammenlignet med sidste for hver muskelgruppe
+• Import fra en sikkerhedskopi og fra CSV-filer fra gængse træningsdagbøger, med forhåndsvisning før du gemmer
+PROMO: Animerede bevægelsestegninger, tekniktips, egne skabeloner og hviletimer. Offline, uden konto og uden reklamer. Gratis op til 5 træningsdage om måneden.
+
+### no
+TEKNIKK
+• Animerte bevegelsestegninger for over 100 øvelser; du kan sette animasjonen på pause
+• Delen «Teknikk» på øvelseskortet: utgangsstilling, bevegelse, tips og vanlige feil
+• For mange varianter av knebøy, benkpress og markløft viser tegningen også musklene som jobber, og som regel en vanlig feil
+• «Fremdriftsvokter»: denne uka sammenlignet med forrige, for hver kroppsdel
+• Import fra en sikkerhetskopi og fra CSV-filer fra vanlige treningsdagbøker, med forhåndsvisning før du lagrer
+PROMO: Animerte bevegelsestegninger, tekniktips, egne maler og hviletimer. Offline, uten konto og uten reklame. Gratis for opptil 5 treningsdager i måneden.
+
+### fi
+TEKNIIKKA
+• Animoidut liikepiirrokset yli 100 liikkeelle; animaation voi keskeyttää
+• ”Tekniikka”-osio liikkeen kortilla: alkuasento, liike, vinkit ja yleiset virheet
+• Monissa kyykyn, penkkipunnerruksen ja maastavedon versioissa piirros näyttää myös työskentelevät lihakset ja yleensä yleisen virheen
+• ”Edistymisvartija”: tämä viikko verrattuna edelliseen jokaiselle lihasryhmälle
+• Tuonti varmuuskopiosta ja yleisten treenipäiväkirjojen CSV-tiedostoista, esikatselu ennen tallennusta
+PROMO: Animoidut liikepiirrokset, tekniikkavinkit, omat pohjat ja palautusajastin. Offline, ilman tiliä ja mainoksia. Ilmaiseksi enintään 5 treenipäivää kuukaudessa.
+
+### tr
+TEKNİK
+• 100’den fazla egzersiz için animasyonlu hareket çizimleri; animasyonu duraklatabilirsiniz
+• Egzersiz kartında “Teknik” bölümü: hazırlık, hareket, ipuçları ve sık yapılan hatalar
+• Birçok squat, bench press ve deadlift varyasyonunda çizim çalışan kasları, çoğu zaman da sık yapılan bir hatayı gösterir
+• “İlerleme Bekçisi”: her vücut bölgesi için bu hafta ile geçen haftanın karşılaştırması
+• Yedekten ve popüler antrenman günlüklerinin CSV dosyalarından içe aktarma, kaydetmeden önce önizlemeyle
+PROMO: Animasyonlu hareket çizimleri, teknik ipuçları, kendi şablonlarınız ve dinlenme sayacı. Çevrimdışı; hesap ve reklam yok. Ayda 5 antrenman gününe kadar ücretsiz.
+
+### el
+Το Training είναι ημερολόγιο προπόνησης για το γυμναστήριο και το σπίτι. Καταγράφετε σετ, βάρη και επαναλήψεις και η εφαρμογή υπολογίζει τα υπόλοιπα: όγκο, ρεκόρ και εκτιμώμενο μέγιστο βάρος μίας επανάληψης (e1RM). Όλα μένουν στο τηλέφωνό σας: χωρίς λογαριασμό, διαφημίσεις και παρακολούθηση.
+• Προβολή προπόνησης «Εστίαση» (το τρέχον σετ με μεγάλα ψηφία πάνω από τη λίστα) ή «Λίστα»
+• Χρονόμετρο διαλείμματος με ειδοποίηση στο τέλος, και στην οθόνη κλειδώματος· ήχος και δόνηση ρυθμίζονται ξεχωριστά
+• «Προσαρμογή στον χώρο»: προπονηθείτε αλλού με αντικαταστάσεις ασκήσεων μόνο για σήμερα — πρότυπο και πρόγραμμα μένουν ίδια
+• Λάστιχα αντίστασης με χρώματα και επίπεδα· μετρικό (kg, km, m) ή αγγλοσαξονικό (lb, mi, yd) σύστημα
+• Προαιρετική φωνητική ανακοίνωση της επόμενης άσκησης στην αρχή του διαλείμματος (ανενεργή από προεπιλογή)
+ΤΕΧΝΙΚΗ
+• Σχέδια κίνησης με κινούμενη εικόνα σε πάνω από 100 ασκήσεις, με δυνατότητα παύσης
+• Ενότητα «Τεχνική» στην καρτέλα άσκησης: αρχική θέση, κίνηση, συμβουλές, συχνά λάθη
+• Σε πολλές παραλλαγές καθισμάτων, πιέσεων πάγκου και άρσεων θανάτου φαίνονται και οι μύες που δουλεύουν, συνήθως και ένα συχνό λάθος
+• Εφαρμογή για Apple Watch: σημειώνετε τα σετ και βλέπετε την αντίστροφη μέτρηση του διαλείμματος στον καρπό (απαιτεί iPhone με το Training)
+• Εβδομαδιαίο πρόγραμμα, μετακίνηση προπονήσεων και προτάσεις αλλαγών με βάση την αποκατάσταση των μυών
+• Προαιρετική γεννήτρια προτύπου και εβδομαδιαίου προγράμματος: επιλέγετε στόχο, χώρο, ημέρες και διάρκεια και ελέγχετε το αποτέλεσμα πριν την αποθήκευση
+• Υπενθύμιση το πρωί της ημέρας μιας προγραμματισμένης προπόνησης
+• «Φρουρός προόδου»: αυτή η εβδομάδα σε σύγκριση με την προηγούμενη, ανά μέρος του σώματος
+• Αυτόματο αντίγραφο ασφαλείας στα Αρχεία μετά από κάθε προπόνηση, χειροκίνητο αντίγραφο και εξαγωγή σε JSON και CSV
+• Εισαγωγή από αντίγραφο ασφαλείας και από αρχεία CSV δημοφιλών ημερολογίων προπόνησης, με προεπισκόπηση πριν την αποθήκευση
+• Προαιρετική ανάγνωση από το Apple Health (βήματα, προπονήσεις, καρδιακός ρυθμός, ενεργή ενέργεια) — εμφανίζονται μόνο στο τηλέφωνο, δεν στέλνονται πουθενά
+Δωρεάν έως 5 ημέρες προπόνησης τον μήνα. Το Pro άρει το όριο: μηνιαίο πρόγραμμα σε τιμή συγκρίσιμη με έναν εσπρέσο στο καφέ* ή ετήσιο πρόγραμμα (και τα δύο ανανεώνονται αυτόματα, ακύρωση από τις ρυθμίσεις του λογαριασμού Apple) ή εφάπαξ πρόσβαση εφ' όρου ζωής. Η συνδρομή χρηματοδοτεί την ανάπτυξη: η εφαρμογή ενημερώνεται τακτικά και οι νέες λειτουργίες δεν έχουν επιπλέον κόστος. Οι τρέχουσες τιμές εμφανίζονται στο App Store πριν από την αγορά. Το Pro και η πρόσβαση εφ' όρου ζωής μπορούν να μοιραστούν μέσω Οικογενειακής κοινής χρήσης. Η καταγραφή παλαιότερων προπονήσεων, το ιστορικό, το αντίγραφο ασφαλείας και η εξαγωγή λειτουργούν πάντα, ακόμη και χωρίς Pro.
+PROMO: Σχέδια κίνησης με κινούμενη εικόνα, συμβουλές τεχνικής, δικά σας πρότυπα, χρονόμετρο. Χωρίς σύνδεση, λογαριασμό, διαφημίσεις. Δωρεάν έως 5 ημέρες προπόνησης τον μήνα.
+
+### id
+TEKNIK
+• Gambar gerakan beranimasi untuk lebih dari 100 gerakan; animasi bisa dijeda
+• Bagian “Teknik” di kartu gerakan: persiapan, pelaksanaan, tips, dan kesalahan umum
+• Pada banyak variasi squat, bench press, dan deadlift, gambar juga menunjukkan otot yang bekerja dan biasanya satu kesalahan umum
+• “Penjaga Progres”: minggu ini dibandingkan minggu lalu untuk setiap kelompok otot
+• Impor dari cadangan dan dari file CSV buku catatan latihan populer, dengan pratinjau sebelum disimpan
+PROMO: Gambar gerakan beranimasi, tips teknik, templat sendiri, dan timer istirahat. Offline, tanpa akun dan tanpa iklan. Gratis hingga 5 hari latihan per bulan.
+
+### ms
+TEKNIK
+• Lukisan pergerakan beranimasi untuk lebih 100 senaman; animasi boleh dijeda
+• Bahagian “Teknik” pada kad senaman: persediaan, pelaksanaan, tip dan kesilapan biasa
+• Bagi banyak variasi squat, bench press dan deadlift, lukisan turut menunjukkan otot yang bekerja dan biasanya satu kesilapan biasa
+• “Pengawal Kemajuan”: minggu ini berbanding minggu lepas bagi setiap kumpulan otot
+• Import daripada sandaran dan daripada fail CSV buku log latihan yang popular, dengan pratonton sebelum disimpan
+PROMO: Lukisan pergerakan beranimasi, tip teknik, templat sendiri dan pemasa rehat. Luar talian, tanpa akaun dan tanpa iklan. Percuma sehingga 5 hari latihan sebulan.
+
+### vi
+KỸ THUẬT
+• Hình minh họa chuyển động dạng hoạt ảnh cho hơn 100 bài tập; có thể tạm dừng
+• Mục “Kỹ thuật” trên thẻ bài tập: chuẩn bị, chuyển động, mẹo và lỗi thường gặp
+• Ở nhiều biến thể squat, đẩy ngực nằm và deadlift, hình minh họa còn cho thấy các cơ đang hoạt động và thường có cả một lỗi thường gặp
+• “Giám sát tiến bộ”: tuần này so với tuần trước cho từng nhóm cơ
+• Nhập từ bản sao lưu và từ tệp CSV của các nhật ký tập luyện phổ biến, có xem trước khi lưu
+PROMO: Hình minh họa động tác dạng hoạt ảnh, mẹo kỹ thuật, mẫu buổi tập riêng, hẹn giờ nghỉ. Ngoại tuyến, không tài khoản, không quảng cáo. Miễn phí tối đa 5 ngày tập mỗi tháng.
+
+### ru
+Training — дневник тренировок для зала и дома. Вы записываете подходы, веса и повторения, а приложение считает остальное: объём, рекорды и расчётный максимальный вес (e1RM). Всё работает только на телефоне — без аккаунта, рекламы и слежки.
+ТЕХНИКА
+• Анимированные рисунки движения для более чем 100 упражнений; анимацию можно остановить
+• Раздел «Техника» в карточке упражнения: подготовка, движение, советы и частые ошибки
+• Для многих вариантов приседаний, жима лёжа и становой тяги рисунок показывает также работающие мышцы, а обычно и частую ошибку
+• «Страж прогресса»: эта неделя по сравнению с прошлой для каждой мышечной группы
+• Импорт из копии и из файлов CSV популярных дневников тренировок, с предпросмотром перед сохранением
+PROMO: Анимированные рисунки движения, советы по технике, свои шаблоны и таймер отдыха. Офлайн, без аккаунта и рекламы. Бесплатно до 5 дней тренировок в месяц.
+
+### ja
+テクニック
+• 100以上の種目に動作のアニメーション図。一時停止もできます
+• 種目のページの「テクニック」：準備、動作、ポイント、よくある間違い
+• スクワット、ベンチプレス、デッドリフトの多くのバリエーションでは、使われる筋肉と、多くの場合よくある間違いも図で表示
+• 「進捗ガード」：部位ごとに今週と先週を比較
+• バックアップや、よく使われるトレーニング日記の CSV ファイルからの読み込み（保存前にプレビュー可能）
+PROMO: 動作のアニメーション図、テクニックのポイント、自分だけのテンプレート、休憩タイマー。オフラインで使え、アカウント登録も広告もありません。1か月に5トレーニング日まで無料。
+
+### ko
+Training은 헬스장과 집에서 하는 운동을 기록하는 운동 일지 앱입니다. 세트, 무게, 반복 횟수를 입력하면 볼륨, 기록, 추정 1회 최대 중량(e1RM)은 앱이 계산합니다. 모든 기능이 iPhone 안에서 작동하며, 계정 가입, 광고, 추적이 없습니다.
+자세
+• 100개가 넘는 종목의 움직이는 동작 그림. 일시정지할 수 있습니다
+• 종목 화면의 ‘자세’ 섹션: 준비 자세, 동작, 팁, 흔한 실수
+• 스쿼트, 벤치프레스, 데드리프트의 여러 변형 종목에서는 쓰이는 근육과, 대개 흔한 실수도 그림으로 보여 줍니다
+• ‘진행 지킴이’: 부위별로 이번 주를 지난주와 비교
+• 백업 파일과 많이 쓰이는 운동 일지의 CSV 파일에서 가져오기 — 저장 전 미리 보기
+PROMO: 움직이는 동작 그림, 자세 팁, 나만의 루틴, 휴식 타이머. 오프라인으로 작동하며 계정과 광고가 없습니다. 한 달에 5 운동일까지 무료.
+
+### zh-Hant
+技巧
+• 超過 100 個動作附有動畫圖示，可隨時暫停
+• 動作頁面的「技巧」區塊：預備、動作、要點與常見錯誤
+• 許多深蹲、臥推與硬舉的變化動作，圖示還會標出發力的肌群，通常也能看到一個常見錯誤
+• 「進步守護者」：依肌群比較本週與上週
+• 從備份以及常見訓練日誌的 CSV 檔匯入（儲存前可預覽）
+PROMO: 動畫動作圖示、技巧要點、專屬範本與休息計時器。離線可用，不需要帳號，也沒有廣告。每月最多 5 個訓練日免費。
+

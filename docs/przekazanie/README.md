@@ -580,3 +580,4 @@ techniqueatlas: PR https://github.com/lkarwowski494/techniqueatlas/pull/1 (CI zi
 - 21:47 UTC 28.10: (katalog-1-1) Właściciel śpi — bez wiadomości do 6:00 czasu polskiego (05:00 UTC 29.10). W nocy: kolejka scaleń etapu 1.
 - 21:49 UTC 28.10: (koordynator) WŁAŚCICIEL ŚPI (28.10 ~22:10 UTC): do 06:00 UTC żadnych wiadomości ani powiadomień — zastępuje 'budź mnie przy kandydacie'. testflight.yml po kandydacie uruchamiany bez powiadomienia (czeka na release rano). O 06:00 UTC jedno podsumowanie.
 - 21:55 UTC 28.10: (metadane) opisy i teksty promocyjne 33 lokalizacji: sekcja Technika (rysunki ruchu >100 ćw. z kodu: 138 animowanych w LIB, po #84 ok. 136), Strażnik progresji, import z podglądem, usunięta nazwa wzoru (uk/ru/ko); słowa kluczowe bez zmian (brak danych M5)
+- 21:59 UTC 28.10: (metadane) commit c843c5e (lokalnie); paczka nowych linii do recenzji lokalizacji
