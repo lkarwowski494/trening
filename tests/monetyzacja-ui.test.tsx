@@ -46,8 +46,8 @@ describe('MAN-01: okno „Uczciwe zasady” po pierwszym ukończonym treningu na
     await boot(); await finish(); expect(win()).toBeTruthy();
     expect(screen.getByText('First workout done!')).toBeTruthy(); expect(screen.getByText('Train 5 days a month for free, no time limit.')).toBeTruthy();
     expect(screen.getByText('Every feature works from day one, with no account and no ads. Your data stays on your phone.')).toBeTruthy();
-    expect(screen.getByText('Want more? Pro removes the limit: subscribe, or pay once for good.')).toBeTruthy();
-    expect(screen.getByText('Awesome, keep training!')).toBeTruthy(); expect(screen.getByText('See Pro plans ›')).toBeTruthy();
+    expect(screen.getByText('Want to train more often? Pro removes the limit: subscribe, or pay once for good.')).toBeTruthy();
+    expect(screen.getByText("Awesome, I'll keep training!")).toBeTruthy(); expect(screen.getByText('See Pro plans ›')).toBeTruthy();
     expect(S().seenFairRulesManifest).toBeUndefined();
     await tap(screen.getByTestId('fair-rules-ok')); await flushAll(10); expect(win()).toBeNull(); expect(S().seenFairRulesManifest).toBe(true); expect(saved().seenFairRulesManifest).toBe(true);
     /* drugi trening na żywo */

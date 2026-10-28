@@ -3470,7 +3470,7 @@
      ]
     },
     {
-     "c": "rdl.knees",
+     "c": "rdl.mis.knees",
      "s": [
       [
        "nasm-romanian-deadlift-barbell",
@@ -3566,7 +3566,7 @@
      ]
     },
     {
-     "c": "rdl.knees",
+     "c": "rdl.mis.knees",
      "s": [
       [
        "nasm-dumbbell-romanian-deadlift",

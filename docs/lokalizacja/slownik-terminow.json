@@ -3993,7 +3993,13 @@
      "pewnosc": "srednia"
     },
     "es-419": {
-     "zalecany": "Entreno",
+     "zalecany": "Entrenamiento",
+     "zakazane": [
+      {
+       "wzorzec": "entrenos?(?![\\p{L}])",
+       "powod": "„entreno” to hiszpańskie (Hiszpania) potoczne skrócenie; w Ameryce Łacińskiej mówi się „entrenamiento”"
+      }
+     ],
      "pewnosc": "srednia"
     },
     "pt": {

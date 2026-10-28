@@ -797,7 +797,17 @@
    "plik": "wskazowki-slownik"
   },
   "rdl.knees": {
-   "cwiczenie": "RDL (sztanga)",
+   "zrodla": [
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell",
+     "miejsce": "Common Mistakes (bending the knees too much)"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/",
+     "miejsce": "opis (slight bend in both knees)"
+    }
+   ],
+   "twierdzenie": "W RDL kolana tylko lekko ugięte, to nie przysiad (źródła przeniesione z karty RDL, w której zdanie było do 28.10.2026 wskazówką w sekcji błędów).",
    "plik": "wskazowki-slownik"
   },
   "rear.arms": {

@@ -125,7 +125,7 @@
       "note": "Głębokość „dopóki czujesz rozciąganie tyłu ud przy prostych plecach” — pochylenie tułowia na rysunku jest ilustracyjne.",
       "frames": [
         {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 5, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "rdl.setup"}, {"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "rdl.setup"}]},
-        {"n": "end", "p": {"t": 25, "hip": 100, "knee": 18, "sh": 67, "el": 0}, "why": [{"q": "joint", "j": "knee", "eq": 15, "tol": 12, "c": "rdl.knees"}, {"q": "alignX", "a": "hand", "b": "ankle", "tol": 9, "c": "dl.close"}, {"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "rdl.move"}]}
+        {"n": "end", "p": {"t": 25, "hip": 100, "knee": 18, "sh": 67, "el": 0}, "why": [{"q": "joint", "j": "knee", "eq": 15, "tol": 12, "c": "rdl.mis.knees"}, {"q": "alignX", "a": "hand", "b": "ankle", "tol": 9, "c": "dl.close"}, {"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "rdl.move"}]}
       ]
     },
     "RDL (hantle/linki)": {
@@ -133,7 +133,7 @@
       "props": [{"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
       "frames": [
         {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 5, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "rdl.dbSetup"}, {"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "rdl.dbSetup"}]},
-        {"n": "end", "p": {"t": 25, "hip": 100, "knee": 18, "sh": 67, "el": 0}, "why": [{"q": "joint", "j": "knee", "eq": 15, "tol": 12, "c": "rdl.knees"}, {"q": "alignX", "a": "hand", "b": "ankle", "tol": 9, "c": "rdl.dbMove"}, {"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "rdl.dbMove"}]}
+        {"n": "end", "p": {"t": 25, "hip": 100, "knee": 18, "sh": 67, "el": 0}, "why": [{"q": "joint", "j": "knee", "eq": 15, "tol": 12, "c": "rdl.mis.knees"}, {"q": "alignX", "a": "hand", "b": "ankle", "tol": 9, "c": "rdl.dbMove"}, {"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "rdl.dbMove"}]}
       ]
     },
     "Good Morning": {

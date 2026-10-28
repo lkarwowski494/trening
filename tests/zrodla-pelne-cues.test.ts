@@ -123,7 +123,7 @@ describe('MER2-04: wskazania źródeł wskazówek', () => {
   const validate = (data: unknown): string[] => JSON.parse(execFileSync('node', ['--input-type=module', '-e',
     `import { validate } from ${JSON.stringify(path.join(root, 'scripts/cues/gen.mjs'))}; import { readFileSync } from 'node:fs';
      const pl = JSON.parse(readFileSync(${JSON.stringify(path.join(root, 'lib/cues/text/pl.json'))}, 'utf8')); let d = ''; process.stdin.on('data', c => d += c);
-     process.stdin.on('end', () => process.stdout.write(JSON.stringify(validate(JSON.parse(d), pl))));`], { input: JSON.stringify(data) }).toString());
+     process.stdin.on('end', () => process.stdout.write(JSON.stringify(validate(JSON.parse(d), pl, Object.values(JSON.parse(readFileSync(${JSON.stringify(path.join(root, 'lib/figures/v2/cue-sets.json'))}, 'utf8')).items).flatMap(e => [...(e.ok ?? []), ...(e.err ?? [])])))));`], { input: JSON.stringify(data) }).toString());
   test('rozstaw jako przedział: OHP (sztanga), Kettlebell Swing, RDL — „na szerokość barków lub trochę szerzej”; stopy w OHP i Leg Press bez szerokości', () => {
     expect(cueText('ohp.bbSetup', 'pl')).toContain('chwyt na szerokość barków lub trochę szerzej');
     expect(cueText('kb.setup', 'pl')).toContain('stopy na szerokość barków lub trochę szerzej');
