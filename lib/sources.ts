@@ -10,7 +10,7 @@ export const SOURCE_NAME_PATTERNS: readonly string[] = [
   'ACSM', 'NSCA', 'WHO', 'CDC', 'ISSN', 'MIMIT', 'Teleborsa', 'Pelland', 'Ramos-Campo', 'Zourdos', 'Helms', 'Bastos', 'Epley', 'Sánchez-Moreno', 'Talaber', 'van den Tillaar', 'Gouvali', 'Rogerson',
   'Robinson (?:i in\\.|et al\\.|\\d{4})', 'Lopez (?:i in\\.|et al\\.|\\d{4})', 'Singer (?:i in\\.|et al\\.|\\d{4})', 'Bell (?:i in\\.|et al\\.|\\d{4})',
   'wytyczne USA', 'US guidelines', 'Physical Activity Guidelines',
-  'Brzycki', 'Mayhew', 'Schoenfeld', 'Israetel', 'Zatsiorsky', 'Stronger by Science', 'ExRx', 'Nuckols',
+  'Brzycki', 'Mayhew', 'Schoenfeld', 'Israetel', 'Zatsiorsky', 'Stronger by Science', 'ExRx', 'Nuckols', 'Squat University', 'Horschig', /* T-054, 28.10.2026 */
   '[A-Z]\\p{L}+(?:-\\p{L}+)* (?:i in\\.|et al\\.) ?\\d{4}', /* cytat „Nazwisko i in. 2016” w dowolnym języku łacińskim */
 ];
 

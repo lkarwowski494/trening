@@ -1,0 +1,112 @@
+{
+ "jezyk": "lv",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 469,
+ "uwagi": [
+  {
+   "klucz": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",
+   "rodzaj": "nowe",
+   "pl": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",
+   "tlumaczenie": "Pārskatiet priekšskatījumu un “Plāna noteikumi” — rezultāts tiek saglabāts tikai pēc apstiprināšanas.",
+   "poprawka": "Pārskatiet priekšskatījumu un sadaļu “Plāna noteikumi” — rezultāts tiek saglabāts tikai pēc apstiprināšanas.",
+   "powod": "Etykieta w mianowniku jako dopełnienie po „pārskatiet” brzmi niegramatycznie. Dodano „sadaļu”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "zgięcie biodra",
+   "rodzaj": "nowe",
+   "pl": "zgięcie biodra",
+   "tlumaczenie": "gūžas locījums",
+   "poprawka": "gūžas saliekums",
+   "powod": "„locījums” to po łotewsku głównie przypadek gramatyczny. Dla zgięcia stawu właściwe jest „saliekums”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "zgięcie kolana",
+   "rodzaj": "nowe",
+   "pl": "zgięcie kolana",
+   "tlumaczenie": "ceļa locījums",
+   "poprawka": "ceļa saliekums",
+   "powod": "„locījums” to po łotewsku głównie przypadek gramatyczny. Dla zgięcia stawu właściwe jest „saliekums”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "zgięcie łokcia",
+   "rodzaj": "nowe",
+   "pl": "zgięcie łokcia",
+   "tlumaczenie": "elkoņa locījums",
+   "poprawka": "elkoņa saliekums",
+   "powod": "„locījums” to po łotewsku głównie przypadek gramatyczny. Dla zgięcia stawu właściwe jest „saliekums”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "sq.depth",
+   "rodzaj": "wskazowka",
+   "pl": "Schodź tak nisko, jak pozwala ruchomość przy prostych plecach i całych stopach na podłodze — zwykle co najmniej do równoległego ud.",
+   "tlumaczenie": "Nolaidies tik dziļi, cik ļauj kustīgums, ar taisnu muguru un visām pēdām uz grīdas — parasti vismaz līdz horizontāliem augšstilbiem.",
+   "poprawka": "Nolaidies tik dziļi, cik ļauj kustīgums, saglabājot taisnu muguru un pēdas pilnībā uz grīdas — parasti vismaz līdz horizontāliem augšstilbiem.",
+   "powod": "„visām pēdām” znaczy „wszystkimi stopami”, a nie „całymi stopami”. Nienaturalne i mylące.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "sq.down",
+   "rodzaj": "wskazowka",
+   "pl": "Schodź, cofając biodra i uginając kolana jednocześnie; wstań, wypychając podłogę całymi stopami.",
+   "tlumaczenie": "Nolaidies, vienlaikus stumjot gurnus atpakaļ un saliecot ceļus; piecelies, atgrūžoties no grīdas ar visām pēdām.",
+   "poprawka": "Nolaidies, vienlaikus stumjot gurnus atpakaļ un saliecot ceļus; piecelies, atgrūžoties no grīdas ar visu pēdu.",
+   "powod": "„ar visām pēdām” znaczy „wszystkimi stopami”. Chodzi o całą powierzchnię stopy.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "rodzaj": "nowe",
+   "pl": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "tlumaczenie": "Gumijas var dzēst, to ekrāna galvenē pieskaroties “Rediģēt” vai pavelkot pa kreisi.",
+   "poprawka": "Gumijas var dzēst, gumiju ekrāna galvenē pieskaroties “Rediģēt” vai pavelkot pa kreisi.",
+   "powod": "„to ekrāna galvenē” jest niejednoznaczne. Lepiej wprost wskazać ekran gum.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "Beigās pieskarieties “Pabeigt” galvenē (vai “Pabeigt treniņu” kartītē pēc pēdējās sērijas) — sesija nonāks cilnē Plāns.",
+   "poprawka": "Beigās pieskarieties “Pabeigt” galvenē (vai “Pabeigt treniņu” kartītē pēc pēdējās sērijas) — treniņš nonāks cilnē Plāns.",
+   "powod": "Niespójna terminologia: w innych tekstach „sesja” tłumaczona jest jako „treniņš”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Serie na partię w tygodniu (pomocnicza = {h} serii): {list}",
+   "rodzaj": "nowe",
+   "pl": "Serie na partię w tygodniu (pomocnicza = {h} serii): {list}",
+   "tlumaczenie": "Sērijas uz muskuļu grupu nedēļā (palīgmuskulis = {h} sērijas): {list}",
+   "poprawka": "Sērijas uz muskuļu grupu nedēļā (palīggrupa = {h} sērijas): {list}",
+   "powod": "„palīgmuskulis” oznacza mięsień, a źródło mówi o partii (grupie mięśniowej) pomocniczej.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.",
+   "rodzaj": "nowe",
+   "pl": "Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.",
+   "tlumaczenie": "Pieskarieties skaitlim uz tāfeles un ievadiet svaru un atkārtojumus (vai izmantojiet + un −), pēc tam “Sērija pabeigta” — atpūta tiek skaitīta pati. Ja trūkst vērtības, “Sērija pabeigta” pārvieto kursoru uz tukšo lauku.",
+   "poprawka": "Pieskarieties skaitlim uz tāfeles un ievadiet svaru un atkārtojumus (vai izmantojiet + un −), pēc tam “Sērija pabeigta” — atpūtas laiks tiek atskaitīts automātiski. Ja trūkst vērtības, “Sērija pabeigta” pārvieto kursoru uz tukšo lauku.",
+   "powod": "„tiek skaitīta pati” nie oddaje odliczania czasu przerwy.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "rodzaj": "nowe",
+   "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "tlumaczenie": "Paziņojumi darbojas, ja ieslēgts “Skaņa atpūtas beigās”. To pašu iestatījumu var mainīt arī izvēlnē “⋯” treniņa ekrānā.",
+   "poprawka": "Paziņojumi darbojas, ja ir ieslēgta opcija “Skaņa atpūtas beigās”. To pašu iestatījumu var mainīt arī izvēlnē “⋯” treniņa ekrānā.",
+   "powod": "Niezgodność rodzaju: „ieslēgts” przy żeńskim „Skaņa”. Dodano „opcija” dla płynności.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

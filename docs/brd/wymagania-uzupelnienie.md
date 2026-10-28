@@ -166,7 +166,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
 ### BR-ZAK-004: Okno „Uczciwe zasady” po pierwszym treningu na żywo
 - Przepływ: PR-11
 - Dowód potrzeby: ZP-06; D-103 (decyzja właściciela 2026-10-25, teksty zatwierdzone 2026-10-25); docs/monetyzacja.md; kod `components/FairRulesSheet.tsx`, `lib/fairrules.ts`
-- Test: `tests/monetyzacja-ui.test.tsx`, `.maestro/56-uczciwe-zasady.yaml`
+- Test: `tests/monetyzacja-ui.test.tsx`, `.maestro/56-uczciwe-zasady.yaml`, `tests/m1-046-monetyzacja-stany.test.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Pierwszy trening na żywo w stanie darmowym
     - Zakładając, że zakupy są włączone, użytkownik jest na darmowym poziomie, a okna jeszcze nie widział
@@ -180,6 +180,10 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
     - Zakładając, że użytkownik ma Pro, stan dostępu jest niepewny bez zapamiętanego wyniku albo zapisano trening wstecz
     - Gdy otwiera się podsumowanie
     - Wtedy okna nie ma
+  - Scenariusz: Były subskrybent (M1-audytor-generalny-046)
+    - Zakładając, że użytkownik miał pełny dostęp, który się skończył (lista sklepu albo zapamiętany koniec dostępu)
+    - Gdy kończy kolejny trening na żywo
+    - Wtedy okna „Pierwszy trening za Tobą!” nie ma
   - Scenariusz: Przejście do planów
     - Zakładając, że okno jest otwarte
     - Gdy użytkownik stuka „Zobacz plany Pro ›”
@@ -202,7 +206,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
 ### BR-ZAK-006: Przywracanie zakupów i realizacja kodu
 - Przepływ: PR-08
 - Dowód potrzeby: ZP-06; OG-04; kod `app/paywall.tsx` („Przywróć zakupy”, „Zrealizuj kod”), `lib/access.ts` (`ALWAYS_AVAILABLE`)
-- Test: `tests/subscription-ui.test.tsx`, `tests/store-adapter.test.ts`, `.maestro/21-subskrypcja.yaml`
+- Test: `tests/subscription-ui.test.tsx`, `tests/store-adapter.test.ts`, `.maestro/21-subskrypcja.yaml`, `tests/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Przywrócenie zakupu
     - Zakładając, że konto Apple ma zakup aplikacji
@@ -220,6 +224,10 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
     - Zakładając, że darmowe dni są wykorzystane
     - Gdy użytkownik otwiera ekran zakupu
     - Wtedy „Przywróć zakupy” i „Zrealizuj kod” działają bez względu na limit
+  - Scenariusz: Zarządzanie subskrypcją (M1-audytor-generalny-016, 047)
+    - Zakładając, że użytkownik ma aktywną subskrypcję
+    - Gdy na ekranie zakupu stuka „Zarządzaj subskrypcją” i zamyka systemowy arkusz subskrypcji
+    - Wtedy aplikacja odświeża dostęp — anulowanie albo zmiana planu w arkuszu widać od razu, bez ponownego uruchomienia
 
 ### BR-ZAK-007: Podsumowanie treningu: najwyżej jedno okno albo link
 - Przepływ: PR-11
@@ -264,7 +272,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
 ### BR-KON-002: „Napisz do nas”
 - Przepływ: PR-10
 - Dowód potrzeby: D-106 (decyzja właściciela 2026-10-13, wariant A); kod `app/more/about.tsx`, `lib/support.ts`
-- Test: `tests/support-mail.test.tsx`
+- Test: `tests/support-mail.test.tsx`, `tests/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Wiadomość z poczty użytkownika
     - Zakładając, że telefon ma aplikację poczty
@@ -274,6 +282,10 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
     - Zakładając, że poczty nie da się otworzyć
     - Gdy użytkownik stuka „Napisz do nas”
     - Wtedy okno podaje adres wsparcia
+  - Scenariusz: Z ekranu błędu startu (decyzja 7a, 28.10.2026; M1-audytor-generalny-047)
+    - Zakładając, że aplikacja nie otworzyła danych i pokazuje ekran błędu startu
+    - Gdy użytkownik stuka „Napisz do nas”
+    - Wtedy wiadomość ma kod diagnostyczny etapu startu pod stopką techniczną, a nie zawiera treści błędu ani danych treningowych; treść błędu zostaje tylko na ekranie
 
 ### BR-KON-003: „Poproś o nową funkcję” i link na podsumowaniu
 - Przepływ: PR-10 · PR-11

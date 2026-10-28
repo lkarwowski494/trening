@@ -73,8 +73,10 @@ describe('rejestr języków (docs/lokalizacja/jezyki.md)', () => {
   test('zgodność z kontrolą krytyczną (docs/16): recenzja drugim agentem w rejestrze = kolumna w docs/16', () => {
     const d16 = read('docs/16-jezyki-i-marka.md');
     for (const x of r.filter((y) => y.kod !== 'pl')) {
-      const line = d16.split('\n').find((l) => l.startsWith(`| ${x.kod} | `) && l.includes('niewykonany'))!;
-      expect(line).toBeDefined(); expect(line.includes('| tak (')).toBe(x.cells[4].startsWith('tak'));
+      /* wiersz tabeli generowanej (blok gen:krytyczne); po M1-006 (28.10.2026) ostatnia kolumna to „tak (28.10.2026, API)”, nie „niewykonany” */
+      const gen = d16.slice(d16.indexOf('<!-- gen:krytyczne -->'), d16.indexOf('<!-- /gen:krytyczne -->'));
+      const line = gen.split('\n').find((l) => l.startsWith(`| ${x.kod} | `))!;
+      expect(line).toBeDefined(); expect(line.split(' | ')[4].startsWith('tak (')).toBe(x.cells[4].startsWith('tak'));
     }
   });
   test('rejestr zapisuje zasadę: nowy język = nowy wiersz (bez dodawania języków w tym zadaniu)', () => {

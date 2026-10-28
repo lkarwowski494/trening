@@ -24,4 +24,15 @@ describe('M1-023: bramki wydania w dokumentach zgodne z CLAUDE.md', () => {
     expect(read('tests/maestro-runner.ts')).toMatch(/export const maestroNow/);
     expect(read('docs/18-przekazanie.md')).not.toMatch(/Interpreter Maestro w Jest \(tests\/maestro-flows\) liczy czas od zegara maszyny/);
   });
+  /* Pętla 2 (M2, 28.10.2026; reaudyt 07-jakosc-008): formularz i komentarze e2e-ios.yml nie przypisują trybu ścisłego (bez ponowień) do wydania App Store,
+   * a warunek R-015 nie wskazuje kroku w testflight.yml (decyzja 27.10.2026: check:release uruchamia lista zgłoszenia i lista wydawcy — blokada-wydania.mjs). */
+  test('e2e-ios.yml: tryb ścisły nie jest opisany jako bramka App Store; bramka = pakiet pełny z jednym ponowieniem', () => {
+    const y = read('.github/workflows/e2e-ios.yml');
+    expect(y).not.toMatch(/wydanie do App Store\)?[^\n]*BEZ ponowień|BEZ ponowień[^\n]*wydani[ae] do App Store|Tryb ścisły \(wydanie do App Store\)|przebiegi wydania do App Store/i);
+    expect(y).toMatch(/bramka App Store[^\n]*pakiet[^\n]*pelny[^\n]*jedno ponowienie|jedno ponowienie[^\n]*bramka App Store/i);
+  });
+  test('docs/40 R-015: warunek bez kroku w testflight.yml (check:release uruchamiają listy zgłoszenia i wydawcy)', () => {
+    const r = read('docs/40-lekcje.md').split('\n').find(l => l.startsWith('| R-015 |'))!;
+    expect(r).not.toMatch(/zadanie przed budową w `testflight\.yml`/); expect(r).toMatch(/docs\/48/); expect(r).toMatch(/`testflight\.yml` jej nie wywołuje/);
+  });
 });

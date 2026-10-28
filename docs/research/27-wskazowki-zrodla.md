@@ -61,9 +61,9 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 102; zdań (z powtórzeniami między ćwiczeniami): 465; unikalnych zdań: 306; źródeł: 231.
+- Ćwiczenia ze wskazówkami: 102; zdań (z powtórzeniami między ćwiczeniami): 457; unikalnych zdań: 306; źródeł: 231.
 - Ćwiczenia bazowe bez wskazówek (otwarte): 22.
-- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 17 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc).
+- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 20 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge.
 
 ## Otwarte — bez wskazówek
 
@@ -748,11 +748,6 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 **Wskazówki**
 
 - Plecy proste przez cały ruch. — ACE: [Lunge (#363)](https://www.acefitness.org/resources/everyone/exercise-library/363/lunge/) (opis (back straight)); ExRx.net: [DBLunge](https://web.archive.org/web/20221218023658/https://exrx.net/WeightExercises/Quadriceps/DBLunge) (Comments (torso upright)) `lunge.torso`
-- Przednie kolano w linii palców stopy. — ExRx.net: [DBLunge](https://web.archive.org/web/20221218023658/https://exrx.net/WeightExercises/Quadriceps/DBLunge) (Comments (lead knee same direction as foot)); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes (przysiad wykroczny — ten sam wzorzec)) `lunge.knee`
-
-**Częste błędy**
-
-- Przednie kolano uciekające do środka. — ExRx.net: [DBLunge](https://web.archive.org/web/20221218023658/https://exrx.net/WeightExercises/Quadriceps/DBLunge) (Comments); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes) `lunge.mis.kneeIn`
 
 ### Walking Lunges
 
@@ -767,11 +762,6 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 **Wskazówki**
 
 - Plecy proste przez cały ruch. — ExRx.net: [DBWalkingLunge](https://web.archive.org/web/20221225223024/https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge) (Comments (torso upright)); ACE: [Walking Lunges With Twists (#139)](https://www.acefitness.org/resources/everyone/exercise-library/139/walking-lunges-with-twists/) (Step 3 (keep the spine extended); wskazówka końcowa (tall, straight spine)) `lunge.torso`
-- Przednie kolano w linii palców stopy. — ExRx.net: [DBWalkingLunge](https://web.archive.org/web/20221225223024/https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge) (Comments (lead knee same direction as foot)); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes (ten sam wzorzec)) `lunge.knee`
-
-**Częste błędy**
-
-- Przednie kolano uciekające do środka. — ExRx.net: [DBWalkingLunge](https://web.archive.org/web/20221225223024/https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge) (Comments); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes) `lunge.mis.kneeIn`
 
 ### Reverse Lunge
 
@@ -786,11 +776,6 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 **Wskazówki**
 
 - Plecy proste przez cały ruch. — ACE: [Reverse Lunge (#319)](https://www.acefitness.org/resources/everyone/exercise-library/319/reverse-lunge/) (opis (chest raised)); ExRx.net: [DBRearLunge](https://web.archive.org/web/20231227040116/https://exrx.net/WeightExercises/Quadriceps/DBRearLunge) (Comments (torso upright)) `lunge.torso`
-- Przednie kolano w linii palców stopy. — ExRx.net: [DBRearLunge](https://web.archive.org/web/20231227040116/https://exrx.net/WeightExercises/Quadriceps/DBRearLunge) (Comments (forward knee same direction as foot)); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes (ten sam wzorzec)) `lunge.knee`
-
-**Częste błędy**
-
-- Przednie kolano uciekające do środka. — ExRx.net: [DBRearLunge](https://web.archive.org/web/20231227040116/https://exrx.net/WeightExercises/Quadriceps/DBRearLunge) (Comments); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes) `lunge.mis.kneeIn`
 
 ### Step Up
 
@@ -821,10 +806,6 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 - Kolano nogi podporowej w linii palców stopy. — ExRx.net: [BWSingleLegSquat](https://web.archive.org/web/20230314202344/https://exrx.net/WeightExercises/Quadriceps/BWSingleLegSquat) (Execution; Comments); NASM: [Single Leg Squat](https://www.nasm.org/resource-center/exercise-library/single-leg-squat) (Common Mistakes (planted knee cave inward)) `pistol.knee`
 - Na początek pomagaj sobie podpórką albo zmniejsz zakres ruchu. — ExRx.net: [BWSingleLegSquat](https://web.archive.org/web/20230314202344/https://exrx.net/WeightExercises/Quadriceps/BWSingleLegSquat) (Comments: Easier (partial reps, self assistance)); NASM: [Single Leg Squat](https://www.nasm.org/resource-center/exercise-library/single-leg-squat) (Step 1; FAQ (support for beginners)) `pistol.assist`
-
-**Częste błędy**
-
-- Kolana zapadające się do środka. — NASM: [Single Leg Squat](https://www.nasm.org/resource-center/exercise-library/single-leg-squat) (Common Mistakes); ExRx.net: [BWSingleLegSquat](https://web.archive.org/web/20230314202344/https://exrx.net/WeightExercises/Quadriceps/BWSingleLegSquat) (Comments) `sq.mis.kneesIn`
 
 ### Hip Thrust (sztanga)
 
@@ -1521,7 +1502,6 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 **Ruch**
 
 - Podnoś, prostując jednocześnie biodra i kolana; na górze stań prosto, z biodrami w przód. — NASM: [Kettlebell Deadlift](https://www.nasm.org/resource-center/exercise-library/kettlebell-deadlift) (Step 3); ACE: [Deadlift (#6)](https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/) (opis) `dl.lift`
-- Odkładaj sztangę tak samo: biodra w tył, kolana się uginają, plecy proste. — NASM: [Kettlebell Deadlift](https://www.nasm.org/resource-center/exercise-library/kettlebell-deadlift) (Step 4); ACE: [Deadlift (#6)](https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/) (opis) `dl.lower`
 
 **Wskazówki**
 

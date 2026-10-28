@@ -1,0 +1,76 @@
+{
+ "jezyk": "sk",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 473,
+ "uwagi": [
+  {
+   "klucz": "burpee.down",
+   "rodzaj": "wskazowka",
+   "pl": "Z przysiadu oprzyj dłonie o podłogę i wyskocz nogami w tył do podporu jak do pompki.",
+   "tlumaczenie": "Z drepu polož dlane na zem a odskoč nohami dozadu do polohy ako na kliky.",
+   "poprawka": "Z drepu polož dlane na zem a odskoč nohami dozadu do polohy ako na kľuky.",
+   "powod": "„kliky” to bohemizm. Po słowacku „kľuky”, jak w pozostałych tekstach aplikacji (zdania 40, 77).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "db.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Połóż się na plecach, ręce wyprostowane w górę, biodra i kolana ugięte pod kątem prostym.",
+   "tlumaczenie": "Ľahni si na chrbát, ruky vzpažené nahor, bedrá a kolená pokrčené v pravom uhle.",
+   "poprawka": "Ľahni si na chrbát, ruky vystreté smerom k stropu, bedrá a kolená pokrčené v pravom uhle.",
+   "powod": "„vzpažené” w leżeniu sugeruje ręce za głową. W oryginale ręce są wyprostowane pionowo w górę, w stronę sufitu.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "nordic.catch",
+   "rodzaj": "wskazowka",
+   "pl": "Gdy nie dasz rady dalej hamować, złap się dłońmi jak przy pompce.",
+   "tlumaczenie": "Keď už nevládzeš brzdiť, zachyť sa dlaňami ako pri kliku.",
+   "poprawka": "Keď už nevládzeš brzdiť, zachyť sa dlaňami ako pri kľuku.",
+   "powod": "„klik” to bohemizm. Po słowacku „kľuk”, zgodnie z terminologią aplikacji.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+   "rodzaj": "nowe",
+   "pl": "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+   "tlumaczenie": "{k} silový deň v týždni je menej ako odporúčané minimum (aspoň {n} dni). Na začiatok je to dobrý krok: spočiatku môžete posilňovať len {k} deň v týždni a postupne sa dostať na {n} — trocha pohybu je lepšia ako nič.",
+   "poprawka": "{k} silový deň v týždni je menej ako odporúčané minimum (aspoň {n} dni). Na začiatok je to dobrý krok: spočiatku môžete posilňovať len {k} deň v týždni a postupne sa dostať na {n} — trocha pohybu je lepšie ako nič.",
+   "powod": "„trocha pohybu“ łączy się z orzecznikiem w rodzaju nijakim: „je lepšie“.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Następna: {x}",
+   "rodzaj": "nowe",
+   "pl": "Następna: {x}",
+   "tlumaczenie": "Ďalej: {x}",
+   "poprawka": "Ďalšia: {x}",
+   "powod": "„Następna” to przymiotnik w rodzaju żeńskim (seria/przerwa). „Ďalej” zmienia część mowy i gubi to odniesienie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "rodzaj": "nowe",
+   "pl": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "tlumaczenie": "Aplikáciu nemažte — zmiznú s ňou dáta aj zálohy. Najprv klepnite na „Odoslať údaje“ a súbor uložte mimo telefónu.",
+   "poprawka": "Aplikáciu nemažte — zmiznú s ňou údaje aj zálohy. Najprv klepnite na „Odoslať údaje“ a súbor uložte mimo telefónu.",
+   "powod": "Niespójna terminologia: w pozostałych zdaniach i w nazwie przycisku jest „údaje”, tu „dáta”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "z {s}",
+   "rodzaj": "nowe",
+   "pl": "z {s}",
+   "tlumaczenie": "celkom {s}",
+   "poprawka": "z {s}",
+   "powod": "„z {s}” oznacza część z całości („3 z 5”). „celkom {s}” zmienia sens na sumę.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

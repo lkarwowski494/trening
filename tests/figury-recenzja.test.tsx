@@ -13,7 +13,7 @@ import { createHash } from 'crypto';
 import { execFileSync } from 'child_process';
 import { render, screen } from '@testing-library/react-native';
 import { FIG_DATA, figureByKey } from '@/lib/figures';
-import { framePoints, poseBetween, type Figure, type Points, type Pt } from '@/lib/figures/geom';
+import { framePoints, poseBetween, resolveFigure, type Figure, type Points, type Pt } from '@/lib/figures/geom';
 import { FAMILIES, assignAll, familyOf, figureSpec } from '@/lib/figures/v2';
 import { CUE_DATA } from '@/lib/cues';
 import { ExerciseCues } from '@/components/ExerciseCues';
@@ -43,7 +43,7 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
     for (const [k, e] of Object.entries(REC.v1)) if (SHOWN(e)) expect([k, e.sha]).toEqual([k, NOW.v1[k]]);
   });
   test('plik runtime: figury = tylko wpisy wyświetlane/zastąpione z aktualnym skrótem; ukryte na liście otwartej (nie renderują się)', () => {
-    const ok = Object.keys(NOW.v1).filter(k => SHOWN(REC.v1[k]) && REC.v1[k].sha === NOW.v1[k]);
+    const ok = Object.keys(NOW.v1).filter(k => SHOWN(REC.v1[k]) && REC.v1[k].sha === NOW.v1[k] && !CUE_DATA.hidden.includes(k)); /* karta ukryta po recenzji treści — bez figury (M1-audytor-generalny-038, 28.10.2026) */
     expect(Object.keys(FIG_DATA.exercises).sort()).toEqual(ok.sort());
     for (const [k, e] of Object.entries(REC.v1)) if (e.werdykt === 'ukryta') { expect([k, FIG_DATA.open.includes(k), figureByKey(k)]).toEqual([k, true, null]); }
   });
@@ -94,7 +94,9 @@ describe('ekran: figura ukryta po recenzji — sekcja „Technika” bez rysunku
 });
 
 /* ---------- Regresja: wady ruchu z recenzji 27.10.2026 (liczby z silnika; „było” = dane sprzed poprawki) ---------- */
-const fig = (k: string) => { const f = figureByKey(k); if (!f) throw new Error(`brak figury ${k}`); return f; };
+/* Karta ukryta po recenzji treści (M1-audytor-generalny-038, 28.10.2026) nie ma figury w runtime — regresja geometrii liczona na pełnych danych figury (data/zrodla/figures.json). */
+const FULL_FIG = JSON.parse(fs.readFileSync(path.join(root, 'data/zrodla/figures.json'), 'utf8')).exercises;
+const fig = (k: string) => { const f = figureByKey(k) ?? (CUE_DATA.hidden.includes(k) ? resolveFigure(FULL_FIG, k) : null); if (!f) throw new Error(`brak figury ${k}`); return f; };
 /** Wszystkie pozy animacji: 21 chwil każdego przejścia między pozycjami kluczowymi. */
 const all = (f: Figure): Points[] => { const out: Points[] = []; for (let i = 0; i + 1 < f.frames.length; i++) for (let s = 0; s <= 20; s++) out.push(poseBetween(f, i, i + 1, s / 20).P); return out; };
 const d = (a: Pt, b: Pt) => Math.hypot(a[0] - b[0], a[1] - b[1]);

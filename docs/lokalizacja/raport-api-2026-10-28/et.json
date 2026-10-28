@@ -1,0 +1,49 @@
+{
+ "jezyk": "et",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 476,
+ "uwagi": [
+  {
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "rodzaj": "nowe",
+   "pl": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "tlumaczenie": "Pingutus: kuni järgmine kordus oleks raske — väsimus, aga mitte kurnatus. Kuni väsimuseni pole vaja minna.",
+   "poprawka": "Pingutus: kuni järgmine kordus oleks raske — väsimus, aga mitte kurnatus. Täieliku lihasväsimuseni (kuni enam ei jõua) pole vaja minna.",
+   "powod": "„upadek” (failure) przetłumaczono jako „väsimus”, które w tym samym zdaniu oznacza zmęczenie. Powstaje sprzeczność: „zmęczenie tak, ale do zmęczenia nie trzeba”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "rodzaj": "nowe",
+   "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "tlumaczenie": "Pingutus: tavaliselt {a}–{b} kordust varus — väsimuse lähedal või {c}–{d}; täpset arvu pole kindlaks tehtud. Kuni väsimuseni pole vaja minna.",
+   "poprawka": "Pingutus: tavaliselt {a}–{b} kordust varus — täieliku lihasväsimuse lähedal või {c}–{d}; täpset arvu pole kindlaks tehtud. Täieliku lihasväsimuseni pole vaja minna.",
+   "powod": "„väsimus” nie oddaje pojęcia „upadek” (failure); niejasne i niespójne z poprawionym terminem",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "rodzaj": "nowe",
+   "pl": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "tlumaczenie": "Korduste vahemikud (lihasmass {a}–{b}, kodus ja välise raskuseta {c}–{d}; jõu puhul lisaharjutused {e}–{f}): lihased kasvavad laias raskuste vahemikus, kui seeriad on väsimuse lähedal.",
+   "poprawka": "Korduste vahemikud (lihasmass {a}–{b}, kodus ja välise raskuseta {c}–{d}; jõu puhul lisaharjutused {e}–{f}): lihased kasvavad laias raskuste vahemikus, kui seeriad on täieliku lihasväsimuse lähedal.",
+   "powod": "Niespójny i niejasny termin dla „upadek” (failure)",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "rodzaj": "nowe",
+   "pl": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "tlumaczenie": "{app} on sõltumatu arendaja tehtud: ilma reklaamideta ja andmeid kogumata. Kui see sind aitab, vali pakett ja treeni piiranguteta. Tasuta päevad naasevad {date}.",
+   "poprawka": "{app} on sõltumatu arendaja tehtud: ilma reklaamideta ja andmeid kogumata. Kui see sind aitab, vali pakett ja treeni piiranguteta. Tasuta päevad tulevad tagasi {date}.",
+   "powod": "„naasevad” brzmi nienaturalnie w odniesieniu do dni; „tulevad tagasi” jest naturalniejsze",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

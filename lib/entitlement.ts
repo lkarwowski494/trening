@@ -78,6 +78,11 @@ export async function initEntitlements(): Promise<void> {
   unsub = getStoreAdapter().onTransaction(() => { void refreshEntitlements(); });
   await refreshEntitlements();
 }
+/** Tylko panel „Test store” (build E2E, scenariusz Maestro 56) i testy: stan nowej instalacji bez zakupów — zapomina zapamiętany poziom dostępu
+ * (pamięć i kv), żeby następna pusta lista sklepu nie zapisała końca pełnego dostępu (M1-046: były subskrybent nie dostaje okna „Pierwszy trening”). */
+export async function forgetAccessMemory(): Promise<void> {
+  lastKnown = null; try { await db?.runAsync('DELETE FROM kv WHERE k = ?', ACCESS_KEY); } catch { /* brak zapisu nie psuje stanu w pamięci */ }
+}
 /** Tylko testy i wyłączenie przełącznika w trakcie działania: zatrzymuje nasłuch i czyści stan w pamięci. */
 export function resetEntitlementsForTests() { unsub?.(); unsub = null; started = false; ent = null; lastKnown = null; inflight = null; emit(); }
 

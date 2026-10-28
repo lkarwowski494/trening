@@ -19,7 +19,7 @@ const POSE_ERRORS = (Object.keys(ERRORS) as ErrorId[]).filter(e => ERRORS[e].kin
 const ANG: Record<Affects, string[]> = { knee: ['knee'], ankle: ['ankle'], hip: ['hip'], shoulder: ['shElev'], elbow: ['elbow'], spine: [], kneeLat: [], heel: [], pelvis: [], bar: [] };
 
 /** Błędy ze źródłami (id wskazówki „częsty błąd”) przypisane ćwiczeniu: własne (lib/cues) albo zestaw ogólny. */
-const errIds = (k: string): string[] => { const e = CUE_SETS.items[k]; return e.b === 'own' ? (CUE_DATA.exercises[k].mistakes ?? []).map(r => r.c) : e.b === 'general' ? e.err ?? [] : []; };
+const errIds = (k: string): string[] => { const e = CUE_SETS.items[k]; return e.b === 'own' ? (CUE_DATA.exercises[k]?.mistakes ?? []) /* karta ukryta po recenzji treści (M1-audytor-generalny-038, 28.10.2026) — bez błędów */.map(r => r.c) : e.b === 'general' ? e.err ?? [] : []; };
 
 describe('definicje błędów', () => {
   test('każdy błąd: wskazówka źródłowa, powód, deklaracja stawów; błędy pozowe mają zmianę parametrów, błąd tempa ma czasy szybsze niż normalne', () => {
