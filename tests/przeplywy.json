@@ -3046,12 +3046,12 @@
    ],
    "wyjatek": {
     "typ": "telefon",
-    "powod": "Maestro nie przestawia ustawień dostępności systemu.",
+    "powod": "VoiceOver i „Ogranicz ruch” Maestro nie przestawi; rozmiar tekstu tak (scenariusz 58), ale scenariusz nie obejmuje stanu bez treningu, planu i ustawień (M1-audytor-generalny-047).",
     "zastepnik": [
      "tests/tabs-a11y.test.tsx",
      "tests/matrix-a11y.test.tsx"
     ],
-    "kontrola": "Największy rozmiar tekstu (T-04, 27.10.2026: ucięte ikony na ekranie Trening — strażnik znaków-ikon w tests/matrix-a11y.test.tsx; Maestro nie ustawi rozmiaru tekstu systemu, a `xcrun simctl ui content_size` wymagałoby zmiany workflowu): trening, plan i ustawienia czytelne bez ucięć, w tym ikony; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają."
+    "kontrola": "Największy rozmiar tekstu (T-04, 27.10.2026: ucięte ikony na ekranie Trening — strażnik znaków-ikon w tests/matrix-a11y.test.tsx; scenariusz Maestro 58 (`.maestro/58-duzy-tekst.yaml`, wejście `rozmiar_tekstu` w e2e-ios.yml) robi zrzuty ekranu Trening z treningiem przy największym tekście — telefon sprawdza to, czego scenariusz nie pokrywa: stan „dziś bez treningu” (ikona startu kolejnego treningu w całości widoczna), plan i ustawienia czytelne bez ucięć, w tym ikony; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają."
    }
   },
   {
