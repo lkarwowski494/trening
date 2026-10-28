@@ -7,6 +7,9 @@
  *  2. ramiona wyprostowane (długość ręki), bark = ciężar + wektor ręki (przesunięcie barku względem gryfu sx),
  *  3. zgięcie kolana K dobrane tak, by odległość biodro–bark = długość tułowia (rozwiązanie bisekcją).
  * Dzięki temu gryf jest zawsze nad śródstopiem w granicach kontaktu z nogami i nie przechodzi przez ciało. Kąty i rozstawy bez źródła = UPROSZCZENIE ILUSTRACYJNE.
+ * Ciężar przed nogami (sztanga, linka, kettlebell; skan torów 28.10.2026, lekcja w docs/40): tor GŁADKI bez zawracania — górna obwiednia wypukła styków z nogami w całym ruchu
+ * (ciężar przy goleniach na starcie i przy udach na wyproście, pomiędzy łuk), nie styk liczony osobno w każdej klatce (było: tor „S” 4–6 cm, 2 zawrócenia przy kolanie).
+ * Maszyna Smitha: szyna stała, tor pionowy (x = najdalszy styk w ruchu; było: szyna jechała z gryfem).
  */
 import { BODY, GIRTH, legJoints, trunkChord } from '../skeleton';
 import type { Fault } from '../errors';
@@ -67,6 +70,40 @@ function items(p: HingeParams, x: number, y: number): Item[] {
   return [{ a: [x, y, -p.grip], b: [x, y, p.grip], r: 2 }];
 }
 
+/** Promień nogi w punkcie t odcinka (0 = staw bliższy) do styku z ciężarem: jak na rysunku (draw.ts: udo 9,2 → 8,6 w t 0,45 → 6,0 przy kolanie, spodenki +0,7 do t 0,52;
+ * podudzie 5,8 → 6,4 w t 0,3 → 4,2), nie mniej niż promień kapsuły kolizji (colliders.ts: średnia) — rysunek i walidator przenikania mówią to samo. */
+const lerp3 = (r: readonly number[], m: number, t: number): number => t <= m ? r[0] + (r[1] - r[0]) * t / m : r[1] + (r[2] - r[1]) * (t - m) / (1 - m);
+export function legRadius(seg: 'thigh' | 'shank', t: number): number {
+  if (seg === 'shank') return Math.max(lerp3(GIRTH.shank, 0.3, t), (GIRTH.shank[0] + GIRTH.shank[2]) / 2);
+  const skin = Math.max(lerp3(GIRTH.thigh, 0.45, t), (GIRTH.thigh[0] + GIRTH.thigh[2]) / 2);
+  return t <= 0.52 ? Math.max(skin, GIRTH.thigh[0] + 0.7 + (GIRTH.thigh[1] - GIRTH.thigh[0]) * t / 0.52) : skin;
+}
+/** Najmniejsze x środka ciężaru (wysokość y) bez przenikania nóg: każdy punkt nogi (41 na odcinek) z promieniem jak na rysunku; elementy ciężaru leżą wzdłuż z. */
+export function contactX(p: HingeParams, y: number, legs: { hip: V3; knee: V3; ankle: V3 }[]): number {
+  let x = -Infinity;
+  for (const it of items(p, 0, y)) {
+    const z0 = Math.min(it.a[2], it.b[2]), z1 = Math.max(it.a[2], it.b[2]), iy = it.a[1];
+    for (const L of legs) for (const [seg, a, b] of [['thigh', L.hip, L.knee], ['shank', L.knee, L.ankle]] as const) for (let i = 0; i <= 40; i++) {
+      const t = i / 40; const q: V3 = [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+      const dz = q[2] < z0 ? z0 - q[2] : q[2] > z1 ? q[2] - z1 : 0; const R = legRadius(seg, t) + it.r;
+      const h = R * R - (iy - q[1]) ** 2 - dz * dz; if (h > 0) x = Math.max(x, q[0] + Math.sqrt(h));
+    }
+  }
+  return x;
+}
+/** Ciężar przed nogami jedzie po pionie (sztanga, Smith, linka, kettlebell; nie: hantle i uchwyty po bokach, gryf z boku, przeciąganie linki między nogami). */
+const vertical = (p: HingeParams): boolean => (p.impl === 'barbell' || p.impl === 'smith' || p.impl === 'cable' || p.impl === 'kb') && !(p.oneArm && p.impl === 'barbell' && p.style === 'floor') && p.style !== 'pullThrough';
+const vertCache = new Map<string, number[]>();
+/** Górna obwiednia wypukła punktów (u, x): tor bez wybrzuszeń — co najwyżej jedna zmiana kierunku w poziomie. */
+function upperHull(us: number[], xs: number[]): number[] {
+  const h: number[] = [];
+  for (let i = 0; i < us.length; i++) {
+    while (h.length >= 2) { const a = h[h.length - 2], b = h[h.length - 1]; if ((xs[b] - xs[a]) * (us[i] - us[a]) <= (xs[i] - xs[a]) * (us[b] - us[a])) h.pop(); else break; }
+    h.push(i);
+  }
+  return us.map(u => { let j = 0; while (j < h.length - 2 && us[h[j + 1]] < u) j++; const a = h[j], b = h[j + 1] ?? a; return b === a ? xs[a] : xs[a] + (xs[b] - xs[a]) * (u - us[a]) / (us[b] - us[a]); });
+}
+
 /** Odstęp ciężaru od nóg (min po kapsułach uda i podudzia obu stron), cm; ujemny = przenikanie. */
 function clearance(p: HingeParams, x: number, y: number, legs: { hip: V3; knee: V3; ankle: V3 }[]): number {
   let m = Infinity;
@@ -95,23 +132,41 @@ export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
   const rdlLike = p.style === 'rdl' || p.style === 'singleLeg' || p.style === 'pullThrough';
   const yTop = legFK(0, p.shin, ankles.R, single ? 0 : dzLeg).hip[1] + BODY.trunk * 0.995 - Math.sqrt(Math.max(1, HINGE.arm ** 2 - p.sx[0] ** 2 - dz * dz));
   const y0 = p.yStart ?? (rdlLike ? yTop : 22.5), y1 = rdlLike ? (p.yEnd ?? 55) : yEnd;
-  const barY = y0 + (y1 - y0) * k;
-  const Larm = Math.sqrt(Math.max(1, HINGE.arm ** 2 - sx * sx - dz * dz));
+  /* wysokość ciężaru, przesunięcie barku i pion ręki w chwili uu */
+  const at = (uu: number) => { const kk = ease(uu); const sxu = p.sx[0] + (p.sx[1] - p.sx[0]) * kk; return { y: y0 + (y1 - y0) * kk, sx: sxu, L: Math.sqrt(Math.max(1, HINGE.arm ** 2 - sxu * sxu - dz * dz)) }; };
+  const barY = at(u).y;
+  const Larm = at(u).L;
   const chain = (K: number) => legFK(K, p.shin, ankles.R, single ? 0 : dzLeg);
   const legsAt = (K: number): { hip: V3; knee: V3; ankle: V3 }[] => {
     const c = chain(K); const pel: V3 = [c.hip[0], c.hip[1], 0];
     return (single ? ['R'] as const : ['R', 'L'] as const).map(s => { const j = legJoints(pel, s, { ankle: ankles[s], toeOut: p.toeOut }); return { hip: j.hip, knee: j.knee, ankle: ankles[s] }; });
   };
+  /** Zgięcie kolana, przy którym bark (ciężar + ręka) leży w długości tułowia od biodra, dla ciężaru w x w chwili uu. */
+  const kneeFor = (uu: number, x: number): number => { const a = at(uu); const S: V3 = [x + a.sx, a.y + a.L, 0]; return solveRoot(kk => { const h = chain(kk).hip; return Math.hypot(S[0] - h[0], S[1] - h[1]) - Tl; }, 0, 141); };
   let K = p.style === 'rdl' ? 20 : 80; let barX = 8;
-  for (let it = 0; it < 8; it++) {
+  if (!sideBar && vertical(p)) {
+    const key = JSON.stringify([p, bend]); let path = vertCache.get(key);
+    if (path === undefined) {
+      const US = Array.from({ length: 25 }, (_, i) => i / 24);
+      const touch = (uu: number): number => { let K0 = K, x = 8; for (let it = 0; it < 8; it++) { x = Math.max(HINGE.xMin, contactX(p, at(uu).y, legsAt(K0)) + 0.25); K0 = kneeFor(uu, x); } return x; };
+      let xs = US.map(touch);
+      for (let r = 0; r < 6; r++) {
+        xs = p.impl === 'smith' ? US.map(() => Math.max(...xs)) : upperHull(US, xs);
+        const need = US.map((uu, i) => Math.max(HINGE.xMin, contactX(p, at(uu).y, legsAt(kneeFor(uu, xs[i]))) + 0.25));
+        if (need.every((n, i) => n <= xs[i] + 0.01)) break; xs = xs.map((x, i) => Math.max(x, need[i]));
+      }
+      path = xs; vertCache.set(key, path);
+    }
+    const f = u * 24, i0 = Math.min(23, Math.floor(f)); const xu = path[i0] + (path[i0 + 1] - path[i0]) * (f - i0);
+    barX = xu + (fault?.m.barAway ?? 0) * fw; K = kneeFor(u, barX);
+  } else for (let it = 0; it < 8; it++) {
     const legs = legsAt(K); barX = 60;
     if (sideBar) barX = HINGE.sideBar[0] + (fault?.m.barAway ?? 0) * fw; /* gryf z boku ciała, wzdłuż x: nie przechodzi przed nogami */
     else {
       while (barX > HINGE.xMin && clearance(p, barX, barY, legs) >= HINGE.clear) barX -= 0.25; /* od przodu: pierwszy kontakt z nogami, nie dalej niż xMin */
       barX += 0.25 + (fault?.m.barAway ?? 0) * fw;
     }
-    const S: V3 = [barX + sx, barY + Larm, 0];
-    K = solveRoot(kk => { const h = chain(kk).hip; return Math.hypot(S[0] - h[0], S[1] - h[1]) - Tl; }, 0, 141);
+    K = kneeFor(u, barX);
   }
   const ch = chain(K); const hip: V3 = [ch.hip[0], ch.hip[1], 0];
   const S: V3 = [barX + sx, barY + Larm, 0]; const tau = Math.atan2(S[0] - hip[0], S[1] - hip[1]) * 180 / Math.PI;
