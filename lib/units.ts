@@ -1,4 +1,4 @@
-import { locale, t } from './i18n';
+import { locale, t, tp, lang } from './i18n';
 
 /*
  * Jednostki (LOC-02, ADR-027). Dane zawsze w kg — funty tylko przy wyświetlaniu i wpisywaniu,
@@ -94,3 +94,19 @@ export const fmtVol = (kg: number): string => withLabel(fmtNum(volOut(kg), 0));
 export const fmtW = (kg: number, withUnit = true): string => { const s = fmtNum(wOut(kg), unit === 'lb' ? 1 : 2); return withUnit ? withLabel(s) : s; };
 /** Liczba z etykietą jednostki masy wg słownika języka (kolejność i spacja jak w słowniku). */
 const withLabel = (n: string): string => unit === 'lb' ? t('{n} lb', { n }) : t('{n} kg', { n });
+/**
+ * Pełna, odmieniona nazwa jednostki ciężaru dla głosu (syntezator mowy literuje skróty „kg”, „lb”): „kilogram|kilogramy|kilogramów”, „funt|funty|funtów”
+ * wg liczby mnogiej `tp()`. Ułamek (62,5) ma w wielu językach własną formę (CLDR, v ≠ 0: pl „62,5 kilograma”, cs/sk „kilogramu”, lt „kilogramo”,
+ * ru/uk „килограмма/кілограма”) — klucze „kilograma” / „funta”; fr i pt-BR czytają ułamek poniżej 2 w liczbie pojedynczej (CLDR: one = i 0..1).
+ * Uproszczenie: hr/sr/lv mają „one” także dla ułamków kończących się na 1 (62,1) — tu forma „other”. `n` = wartość w jednostce aplikacji.
+ */
+export function spokenUnit(n: number): string {
+  return unit === 'lb' ? spokenNoun(n, 'funt|funty|funtów', 'funta') : spokenNoun(n, 'kilogram|kilogramy|kilogramów', 'kilograma');
+}
+/** Nazwa jednostki przy liczbie `n` do głosu: całkowita — `tp(many)`, ułamek — osobna forma `frac` (CLDR, v ≠ 0); fr i pt-BR: ułamek poniżej 2 w liczbie pojedynczej. */
+export function spokenNoun(n: number, many: string, frac: string): string {
+  const a = Math.abs(n);
+  if (Number.isInteger(a)) return tp(a, many);
+  if ((lang() === 'fr' || lang() === 'pt-BR') && a < 2) return tp(1, many);
+  return t(frac);
+}
