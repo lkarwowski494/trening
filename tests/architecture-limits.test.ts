@@ -32,7 +32,7 @@ const WYJATKI: Record<string, [number, string]> = {
   /* M1-audytor-generalny-049 (28.10.2026): próg = rozmiar na 2385e75 + 5%; figury v2 prowadzi linia 1.1 (podział tam, osobnym commitem strukturalnym) */
   'lib/figures/geom.ts': [24576, 'geometria figur v1 (stawy, kąty, rzut) w jednym module; podział razem z silnikiem v1 (1.0.1)'],
   'lib/figures/v2/contract.ts': [35840, 'kontrakt danych figur v2 (typy, walidacja schematu) — linia 1.1'],
-  'lib/figures/v2/draw.ts': [22528, 'rysowanie figur v2 (rigi, warstwy) — linia 1.1'],
+  'lib/figures/v2/draw.ts': [24576, 'rysowanie figur v2 (rigi, warstwy); 1.0.1 dodał deskę i stojak z bolcami (F2, N2, 28.10.2026) — podział (rekwizyty do osobnego pliku) w linii 1.1'],
 };
 
 describe('limit rozmiaru plików (M1-054)', () => {
