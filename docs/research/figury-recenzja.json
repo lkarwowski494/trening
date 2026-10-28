@@ -151,7 +151,9 @@
    "data": "2026-10-28",
    "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-po-poprawce.md: OK (NISKIE: dłoń przesuwa się po blacie o 3,2 j., dłonie ok. 7 j. od krawędzi) — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
    "sha": "9cff3cee72d7",
-   "uwagi": "Klatki i położenie podwyższenia zmienione 28.10.2026 po recenzji niezależnej (WYSOKIE: w dolnej pozycji biodra na podwyższeniu, bark 28 j. przed dłońmi, tułów w blacie). Teraz bark w dolnej pozycji 8 j. od dłoni, ramię zgięte 128°, ciało w linii, bez przenikania. Test: tests/figury-podparcie.test.ts."
+   "uwagi": "Klatki i położenie podwyższenia zmienione 28.10.2026 po recenzji niezależnej (WYSOKIE: w dolnej pozycji biodra na podwyższeniu, bark 28 j. przed dłońmi, tułów w blacie). Teraz bark w dolnej pozycji 8 j. od dłoni, ramię zgięte 128°, ciało w linii, bez przenikania. Test: tests/figury-podparcie.test.ts.",
+   "autor": "programista (agent; poprawka klatek figury, decyzja właściciela 28.10.2026)",
+   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026)"
   },
   "Overhead Press (sztanga)": {
    "rodzina": "overhead_press",
@@ -326,7 +328,9 @@
    "data": "2026-10-28",
    "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-po-poprawce.md: OK (NISKIE: tylna stopa pionowo na palcach w „w trakcie”, przednia stopa przesuwa się o 2,1 j.) — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
    "sha": "c4129536dca1",
-   "uwagi": "Klatki zmienione 28.10.2026 po recenzji niezależnej (WYSOKIE: ciało opadało do wykroku, zanim przednia stopa dotknęła podłogi). Pozycja „w trakcie” = krok postawiony (przednia stopa płasko na podłodze, biodra wysoko, tylne palce na podłodze), dopiero potem opuszczenie; wykrok krótszy (przednia kostka ok. 43 j. od tylnych palców). Test: tests/figury-podparcie.test.ts (reguła podparcia). Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian."
+   "uwagi": "Klatki zmienione 28.10.2026 po recenzji niezależnej (WYSOKIE: ciało opadało do wykroku, zanim przednia stopa dotknęła podłogi). Pozycja „w trakcie” = krok postawiony (przednia stopa płasko na podłodze, biodra wysoko, tylne palce na podłodze), dopiero potem opuszczenie; wykrok krótszy (przednia kostka ok. 43 j. od tylnych palców). Test: tests/figury-podparcie.test.ts (reguła podparcia). Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian.",
+   "autor": "programista (agent; poprawka klatek figury, decyzja właściciela 28.10.2026)",
+   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026); treść karty po usunięciu zdań: 06-tresci (subagent, 28.10.2026)"
   },
   "Walking Lunges": {
    "rodzina": "lunge",
@@ -335,7 +339,9 @@
    "data": "2026-10-28",
    "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-po-poprawce.md: ruch jak Lunges — wyświetlana; ŚREDNIE (brak kroku drugą nogą) → backlog 1.0.1 — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
    "sha": "06e0f4563108",
-   "uwagi": "Klatki zmienione 28.10.2026 jak Lunges (hantle): krok postawiony przed opuszczeniem (WYSOKIE z recenzji niezależnej). Nie poprawiono (ŚREDNIE): pętla wraca do pozycji wyjściowej zamiast kroku drugą nogą — silnik v1 (3 pozycje, ping-pong) tego nie pokaże. Test: tests/figury-podparcie.test.ts. Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian."
+   "uwagi": "Klatki zmienione 28.10.2026 jak Lunges (hantle): krok postawiony przed opuszczeniem (WYSOKIE z recenzji niezależnej). Nie poprawiono (ŚREDNIE): pętla wraca do pozycji wyjściowej zamiast kroku drugą nogą — silnik v1 (3 pozycje, ping-pong) tego nie pokaże. Test: tests/figury-podparcie.test.ts. Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian.",
+   "autor": "programista (agent; poprawka klatek figury, decyzja właściciela 28.10.2026)",
+   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026); treść karty po usunięciu zdań: 06-tresci (subagent, 28.10.2026)"
   },
   "Reverse Lunge": {
    "rodzina": "lunge",
@@ -363,7 +369,9 @@
    "data": "2026-10-28",
    "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-stepup-2.md (druga recenzja po drugiej poprawce): OK (NISKIE: ręce z hantlami za tułowiem w „w trakcie”, palce mijają krawędź skrzyni o 0,9 j.) → backlog 1.0.1 — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
    "sha": "ce54a060ebde",
-   "uwagi": "Klatki zmienione 28.10.2026 dwukrotnie po recenzji niezależnej (WYSOKIE: upadek w tył). Pierwsza poprawka odrzucona przez recenzję po poprawce (środek ciężkości 6,5–7,4 j. za piętą stopy na skrzyni; reguła z tolerancją 10 j. dla biodra była za luźna). Teraz: start z tułowiem ok. 8° od pionu, „w trakcie” z tułowiem pochylonym ok. 30°, środek ciężkości nad stopą na skrzyni (± 2,5 j.), biodro rośnie. Test: tests/figury-podparcie.test.ts (reguła jednej podpory na środku ciężkości)."
+   "uwagi": "Klatki zmienione 28.10.2026 dwukrotnie po recenzji niezależnej (WYSOKIE: upadek w tył). Pierwsza poprawka odrzucona przez recenzję po poprawce (środek ciężkości 6,5–7,4 j. za piętą stopy na skrzyni; reguła z tolerancją 10 j. dla biodra była za luźna). Teraz: start z tułowiem ok. 8° od pionu, „w trakcie” z tułowiem pochylonym ok. 30°, środek ciężkości nad stopą na skrzyni (± 2,5 j.), biodro rośnie. Test: tests/figury-podparcie.test.ts (reguła jednej podpory na środku ciężkości).",
+   "autor": "programista (agent; poprawka klatek figury, decyzja właściciela 28.10.2026)",
+   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026)"
   },
   "Hip Thrust (sztanga)": {
    "rodzina": "hip_bridge",
