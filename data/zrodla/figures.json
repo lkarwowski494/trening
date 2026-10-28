@@ -440,10 +440,10 @@
     "Step Up": {
       "anchor": "toe",
       "props": [{"k": "rect", "x": -2, "y": 0, "w": 34, "h": 26}, {"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
-      "note": "Wysokość skrzyni ilustracyjna; pozycja „w trakcie” = ciężar na nodze ze skrzyni, noga zakroczna oderwana od podłogi za skrzynią; w pozycji końcowej druga noga uniesiona obok (uproszczenie).",
+      "note": "Wysokość skrzyni ilustracyjna; pozycja „w trakcie” = tułów pochylony ok. 30°, środek ciężkości nad stopą na skrzyni, noga zakroczna oderwana od podłogi; w pozycji końcowej druga noga uniesiona obok (uproszczenie).",
       "frames": [
-        {"n": "start", "p": {"t": 87, "hip": [89, -3], "knee": [117.4, 8.7], "ft": [0, 0], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "heel", "y": 26, "tol": 1, "c": "stepup.move"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}], "at": [12, 26]},
-        {"n": "mid", "p": {"t": 84, "hip": [3, -1.3], "knee": [3.6, 61], "ft": [0, -83], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "heel", "y": 26, "tol": 1, "c": "stepup.move"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}], "at": [12, 26]},
+        {"n": "start", "p": {"t": 82.2, "hip": [92.4, 12.9], "knee": [122, 26.4], "ft": [0, 0], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "heel", "y": 26, "tol": 1, "c": "stepup.move"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}], "at": [12, 26]},
+        {"n": "mid", "p": {"t": 59.5, "hip": [68.6, 68.2], "knee": [61.8, 82.4], "ft": [0, -83], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "heel", "y": 26, "tol": 1, "c": "stepup.move"}], "at": [12, 26]},
         {"n": "end", "p": {"t": 90, "hip": [0, 60], "knee": [0, 90], "ft": [0, -20], "sh": 0, "el": 0}, "why": [{"q": "joint", "j": "knee", "eq": 0, "tol": 5, "c": "stepup.move"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}], "at": [12, 26]}
       ]
     },

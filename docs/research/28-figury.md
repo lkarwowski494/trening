@@ -587,16 +587,15 @@ Widok: z boku; kotwica: przód stopy; przyrządy: rect, line, line, db, db.
 
 Widok: z boku; kotwica: przód stopy; przyrządy: rect, db, db.
 
-- **pozycja wyjściowa** — t 87, hip 89/-3, knee 117.4/8.7, ft 0/0, sh 0, el 0
+- **pozycja wyjściowa** — t 82.2, hip 92.4/12.9, knee 122/26.4, ft 0/0, sh 0, el 0
   - pięta tuż nad poziomem 26 (do 1) ← `stepup.move`: „Postaw całą stopę na podwyższeniu i wejdź, prostując tę nogę; zejdź kontrolowanie tą samą drogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **w trakcie** — t 84, hip 3/-1.3, knee 3.6/61, ft 0/-83, sh 0, el 0
+- **w trakcie** — t 59.5, hip 68.6/68.2, knee 61.8/82.4, ft 0/-83, sh 0, el 0
   - pięta tuż nad poziomem 26 (do 1) ← `stepup.move`: „Postaw całą stopę na podwyższeniu i wejdź, prostując tę nogę; zejdź kontrolowanie tą samą drogą.”
-  - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
 - **pozycja końcowa** — t 90, hip 0/60, knee 0/90, ft 0/-20, sh 0, el 0
   - zgięcie kolana: 0° (±5°) ← `stepup.move`: „Postaw całą stopę na podwyższeniu i wejdź, prostując tę nogę; zejdź kontrolowanie tą samą drogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- Uproszczenie ilustracyjne: pozostałe kąty. Wysokość skrzyni ilustracyjna; pozycja „w trakcie” = ciężar na nodze ze skrzyni, noga zakroczna oderwana od podłogi za skrzynią; w pozycji końcowej druga noga uniesiona obok (uproszczenie).
+- Uproszczenie ilustracyjne: pozostałe kąty. Wysokość skrzyni ilustracyjna; pozycja „w trakcie” = tułów pochylony ok. 30°, środek ciężkości nad stopą na skrzyni, noga zakroczna oderwana od podłogi; w pozycji końcowej druga noga uniesiona obok (uproszczenie).
 
 ### Hip Thrust (sztanga)
 

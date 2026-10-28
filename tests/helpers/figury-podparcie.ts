@@ -18,6 +18,8 @@ export const LIM = {
    * Granica 7 j. (ok. 12 cm), nie 0: rozstawienie prostych nóg w kroku samo obniża biodro o kilka j.; wady z recenzji to 11–24 j.
    */
   hipDrop: 7,
+  /** Przy jednej podporze (druga stopa w powietrzu) rzut środka ciężkości mieści się w obrębie stopy podporowej (pięta–palce) z tą tolerancją. */
+  comSingle: 2.5,
   /** Pompki: w dolnej pozycji bark nie dalej niż tyle w poziomie od dłoni. */
   shoulderHand: 10,
   /** Pompki: tułów (odcinki ciała) nie wchodzi w podłoże ani blat głębiej niż tyle. */
@@ -125,5 +127,33 @@ export function pompki(f: Figure): string[] {
   const last = framePoints(f, f.frames.length - 1), dx = Math.abs(last.shoulder[0] - last.hand[0]);
   if (dx > LIM.shoulderHand) bad.push(`dolna pozycja: bark ${dx.toFixed(1)} j. od dłoni w poziomie (limit ${LIM.shoulderHand})`);
   for (const row of transitions(f)) for (const s of row) { const w = penetration(f, s.P); if (w > LIM.penetration) bad.push(`${s.from}→${s.to} k=${s.k.toFixed(2)}: ciało wchodzi w podłoże/blat o ${w.toFixed(1)} j.`); }
+  return bad;
+}
+
+/** Przybliżony środek ciężkości ze stałego podziału mas segmentów (uproszczenie ilustracyjne; ciężar w rękach pominięty). */
+export function srodekCiezkosci(P: Points): Pt {
+  const segs: [string, string, number][] = [['hip', 'shoulder', 0.497], ['head', 'head', 0.081], ['shoulder', 'elbow', 0.028], ['elbow', 'hand', 0.022], ['shoulder', 'elbow2', 0.028], ['elbow2', 'hand2', 0.022],
+    ['hip', 'knee', 0.1], ['knee', 'ankle', 0.0465], ['ankle', 'toe', 0.0145], ['hip', 'knee2', 0.1], ['knee2', 'ankle2', 0.0465], ['ankle2', 'toe2', 0.0145]];
+  let x = 0, y = 0, m = 0;
+  for (const [a, b, w] of segs) { x += w * (P[a][0] + P[b][0]) / 2; y += w * (P[a][1] + P[b][1]) / 2; m += w; }
+  return [x / m, y / m];
+}
+
+/**
+ * Reguła jednej podpory: gdy jedna stopa krokowa jest w powietrzu, a druga stoi na podłożu lub skrzyni, rzut środka ciężkości (nie samego biodra)
+ * mieści się w obrębie stopy podporowej (od pięty do palców) ± LIM.comSingle. Stopa podporowa stoi całą podeszwą (pięta i palce na podłożu) — stopa na palcach
+ * (wykrok: tylna noga z uniesioną piętą) i podpora na rękach/kolanach to ruch dynamiczny z przenoszeniem ciężaru, objęty regułą podparcia (±10 j.).
+ */
+export function jednaPodpora(f: Figure): { opis: string; nadmiar: number }[] {
+  const bad: { opis: string; nadmiar: number }[] = [];
+  const feet = steppingFeet(f); if (!feet.length) return bad;
+  for (const row of transitions(f)) for (const s of row) {
+    const air = FEET.filter(ft => footH(f, s.P, ft) > LIM.airborne), ground = FEET.filter(ft => Math.max(s.P[ft[0]][1] - surface(f, s.P[ft[0]]), s.P[ft[1]][1] - surface(f, s.P[ft[1]])) <= LIM.contact);
+    if (contacts(f, s.P).some(n => !/^(toe|heel)2?$/.test(n))) continue; /* podpora na rękach/kolanach (Bird Dog, Mountain Climbers) — nie ta reguła */
+    if (air.length !== 1 || ground.length !== 1 || !feet.some(ft => ft[0] === air[0][0])) continue;
+    const xs = [s.P[ground[0][0]][0], s.P[ground[0][1]][0]], lo = Math.min(...xs), hi = Math.max(...xs), cx = srodekCiezkosci(s.P)[0];
+    const out = cx < lo - LIM.comSingle ? lo - LIM.comSingle - cx : cx > hi + LIM.comSingle ? cx - hi - LIM.comSingle : 0;
+    if (out > 0) bad.push({ opis: `${s.from}→${s.to} k=${s.k.toFixed(2)}: środek ciężkości x=${cx.toFixed(1)} poza stopą podporową [${lo.toFixed(1)}; ${hi.toFixed(1)}] o ${out.toFixed(1)} ponad tolerancję`, nadmiar: out });
+  }
   return bad;
 }

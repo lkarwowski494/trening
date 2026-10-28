@@ -11,7 +11,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { resolveFigure, framePoints, poseBetween, type FigDef, type Figure, type Points } from '../lib/figures/geom';
 import { FIG_DATA } from '../lib/figures';
-import { LIM, contacts, base, steppingFeet, podparcie, podparcieMiary, pompki, jestPompka, penetration, surface, transitions } from './helpers/figury-podparcie';
+import { LIM, contacts, base, steppingFeet, podparcie, podparcieMiary, jednaPodpora, srodekCiezkosci, pompki, jestPompka, penetration, surface, transitions } from './helpers/figury-podparcie';
 
 const SRC: { exercises: Record<string, FigDef> } = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/zrodla/figures.json'), 'utf8'));
 const fig = (k: string, defs: Record<string, FigDef> = SRC.exercises): Figure => { const f = resolveFigure(defs, k); if (!f) throw new Error(`brak figury ${k}`); return f; };
@@ -41,6 +41,11 @@ describe('niezmiennik: podparcie na wszystkich figurach v1', () => {
   test('żadna figura (poza ukrytą z wadą) nie łamie reguły podparcia w żadnej pozie pośredniej (co 0,05)', () => {
     const bad: string[] = [];
     for (const k of KEYS) if (!UKRYTE_Z_WADA.includes(k)) for (const m of podparcie(fig(k))) bad.push(`${k}: ${m}`);
+    expect(bad).toEqual([]);
+  });
+  test('jedna podpora (stopa podporowa stoi całą podeszwą, druga w powietrzu): rzut środka ciężkości w obrębie stopy ± 2,5 j. w każdej pozie — wszystkie figury poza ukrytą z wadą', () => {
+    const bad: string[] = [];
+    for (const k of KEYS) if (!UKRYTE_Z_WADA.includes(k)) for (const m of jednaPodpora(fig(k))) bad.push(`${k}: ${m.opis}`);
     expect(bad).toEqual([]);
   });
   test('ukryta figura nie wraca bez poprawki: Reverse Lunge nadal łamie regułę, ma werdykt „ukryta” i nie jest w pliku runtime; każda figura łamiąca regułę jest ukryta', () => {
@@ -75,6 +80,14 @@ const LUNGE_OLD: Record<string, FigDef> = {
       { n: 'end', p: { t: 90, hip: [0, 60], knee: [0, 90], ft: [0, -20], sh: 0, el: 0 }, why: [TORSO], at: [12, 26] },
     ],
   },
+  STEP1: {
+    anchor: 'toe', props: [{ k: 'rect', x: -2, y: 0, w: 34, h: 26 }, { k: 'db', at: 'hand' }, { k: 'db', at: 'hand2' }],
+    frames: [
+      { n: 'start', p: { t: 87, hip: [89, -3], knee: [117.4, 8.7], ft: [0, 0], sh: 0, el: 0 }, why: [TORSO], at: [12, 26] },
+      { n: 'mid', p: { t: 84, hip: [3, -1.3], knee: [3.6, 61], ft: [0, -83], sh: 0, el: 0 }, why: [TORSO], at: [12, 26] },
+      { n: 'end', p: { t: 90, hip: [0, 60], knee: [0, 90], ft: [0, -20], sh: 0, el: 0 }, why: [TORSO], at: [12, 26] },
+    ],
+  },
   INCLINE: {
     anchor: 'toe', level: 'hand', props: [{ k: 'rect', x: 8, y: 0, w: 16, h: 30 }],
     frames: [
@@ -100,6 +113,12 @@ describe('regresja: wady z recenzji niezależnej 28.10.2026 odtworzone na danych
     const behind = Math.max(...transitions(f)[0].map(s => (framePoints(f, 0).heel[0]) - s.P.hip[0]));
     expect(r1(behind)).toBeGreaterThan(17); /* było 19,5 j. za piętą */
     expect(podparcie(fig('Step Up'))).toEqual([]);
+  });
+  test('Step Up (poprawka 1 z 28.10.2026, odrzucona przez recenzję po poprawce) — było: środek ciężkości 6,5–7,4 j. za piętą stopy na skrzyni aż do k ≈ 0,7, biodro cofa się; walidator z tolerancją 10 j. dla biodra przepuszczał', () => {
+    const f = fig('STEP1', LUNGE_OLD); expect(podparcie(f)).toEqual([]); /* stara reguła (biodro ±10 j.) przepuszcza */
+    const m = jednaPodpora(f); expect(m.length).toBeGreaterThan(5);
+    const heel = framePoints(f, 0).heel[0], behind = Math.max(...transitions(f)[0].map(x => heel - srodekCiezkosci(x.P)[0]));
+    expect(r1(behind)).toBeGreaterThan(6.5);
   });
   test('Reverse Lunge — było i jest: biodro opada ok. 20 j. przy tylnej stopie w powietrzu (ukryta, wymaga czwartej pozycji)', () => {
     const f = fig('Reverse Lunge'); const m = podparcieMiary(f);
@@ -128,6 +147,8 @@ describe('scenariusz: wykrok — krok postawiony, potem opuszczenie; Step Up —
     expect(Math.min(M.heel2[1], M.toe2[1])).toBeGreaterThan(LIM.airborne);
     expect(M.heel[1]).toBeCloseTo(26, 0);
     const ys = transitions(f)[0].map(s => s.P.hip[1]); expect(ys[ys.length - 1]).toBeGreaterThan(ys[0] + 15);
+    expect((f.frames[1].p as { t: number }).t).toBeLessThanOrEqual(70); /* tułów pochylony ≥ 20° w pozycji „w trakcie” (recenzja po poprawce) */
+    for (const row of transitions(f)) for (const x of row) if (Math.min(x.P.heel2[1], x.P.toe2[1]) > LIM.airborne) expect(srodekCiezkosci(x.P)[0]).toBeGreaterThanOrEqual(framePoints(f, 0).heel[0] - LIM.comSingle);
   });
   test('Incline Push Up: dłoń na wierzchu podwyższenia w całym ruchu (±1,5 j.), w dolnej pozycji ramię zgięte ≥ 80°, klatka (bark) nie wyżej niż 14 j. nad blatem', () => {
     const f = fig('Incline Push Up'); const rect = f.props.find(p => p.k === 'rect') as { x: number; y: number; w: number; h: number };
@@ -159,7 +180,7 @@ describe('logika reguł (figury syntetyczne)', () => {
     expect(penetration(f, clear)).toBeLessThan(1e-9);
   });
   test('LIM: liczby reguł w jednym miejscu (tolerancja podparcia 10 j., bark–dłoń 10 j., styk 1,5 j., stopa w powietrzu 2 j.)', () => {
-    expect([LIM.comTol, LIM.shoulderHand, LIM.contact, LIM.airborne, LIM.penetration, LIM.step]).toEqual([10, 10, 1.5, 2, 1, 0.05]);
+    expect([LIM.comTol, LIM.shoulderHand, LIM.contact, LIM.airborne, LIM.penetration, LIM.step, LIM.comSingle]).toEqual([10, 10, 1.5, 2, 1, 0.05, 2.5]);
     expect(LIM.hipDrop).toBeGreaterThanOrEqual(3); expect(LIM.hipDrop).toBeLessThanOrEqual(8);
   });
   test('maxNadmiar poprawionych figur = 0, wyjątku > 0', () => {

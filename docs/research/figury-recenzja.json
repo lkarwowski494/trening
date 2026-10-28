@@ -360,8 +360,8 @@
    "stan": "do recenzji niezależnej",
    "data": "2026-10-28",
    "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”) — NIE jest recenzją bramki 4; wymaga niezależnej recenzji ruchu i karty przed wydaniem. Poprzednia recenzja 27.10.2026 (06-tresci) dotyczyła poprzednich klatek.",
-   "sha": "3ea9ca2149db",
-   "uwagi": "Klatki zmienione 28.10.2026 po recenzji niezależnej (WYSOKIE: pionowa postać na jednej nodze na skrzyni z biodrem 19,5 j. za piętą, tylna noga w powietrzu od k = 0,1). Start = głęboki krok z tułowiem pochylonym, „w trakcie” = ciężar na nodze ze skrzyni (rzut biodra ≤ 10 j. za piętą, biodro rośnie), noga zakroczna oderwana za skrzynią. Test: tests/figury-podparcie.test.ts."
+   "sha": "ce54a060ebde",
+   "uwagi": "Klatki zmienione 28.10.2026 dwukrotnie po recenzji niezależnej (WYSOKIE: upadek w tył). Pierwsza poprawka odrzucona przez recenzję po poprawce (środek ciężkości 6,5–7,4 j. za piętą stopy na skrzyni; reguła z tolerancją 10 j. dla biodra była za luźna). Teraz: start z tułowiem ok. 8° od pionu, „w trakcie” z tułowiem pochylonym ok. 30°, środek ciężkości nad stopą na skrzyni (± 2,5 j.), biodro rośnie. Test: tests/figury-podparcie.test.ts (reguła jednej podpory na środku ciężkości)."
   },
   "Hip Thrust (sztanga)": {
    "rodzina": "hip_bridge",
