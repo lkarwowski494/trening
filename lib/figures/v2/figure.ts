@@ -21,7 +21,7 @@ import { phasesOf, walkPhases, TEMPO, type Tempo, type Phase, type PhaseNames } 
 import { ERRORS, isDataError, dataErrorIndex, type ErrorId, type FigError, type AnyErrorDef, type Fault } from './errors';
 import { keyframeFrame, poseLoopSpan, type LoopMode } from './contract';
 import { contactGlows, type ContactId } from './contacts';
-import { DATA_UI, GAIT_UI, ISOMETRIC, MEASURE_UNIT, MIN_MEASURED_ROM, dataUiForPose, poseDataFor, type MeasuredJoint } from './poseData';
+import { DATA_UI, GAIT_UI, ISOMETRIC, MEASURE_UNIT, MIN_MEASURED_ROM, dataUiForPose, lowerFirstOf, poseDataFor, type MeasuredJoint } from './poseData';
 import { ease } from './rigs/common';
 
 export type FigureSpec = { key: string; family: FamilyId; variant: Variant; views: View[]; static: boolean; lowerFirst: boolean };
@@ -32,7 +32,7 @@ export function figureSpec(key: string): FigureSpec | null {
   const family = familyOf(key); const fam = FAMILY[family];
   if (fam.status !== 'ready') return null;
   const data = poseDataFor(key, family); const ui = data ? dataUiForPose(family, data) : null;
-  if (data && ui) return { key, family, variant: { family, data } as Variant, views: viewsOf(key, family), static: ISOMETRIC.has(key), lowerFirst: ui.lowerFirst };
+  if (data && ui) return { key, family, variant: { family, data } as Variant, views: viewsOf(key, family), static: ISOMETRIC.has(key), lowerFirst: lowerFirstOf(ui, key) };
   const variant = Object.prototype.hasOwnProperty.call(VARIANTS, key) ? VARIANTS[key] : null;
   if (!variant || variant.family !== family || 'data' in variant) return null;
   const lowerFirst = variant.family === 'hinge' ? variant.lowerFirst : true;
