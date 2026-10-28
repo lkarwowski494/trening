@@ -94,7 +94,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | cel s | app/template/[id].tsx | tests/matrix-invariants.test.ts, tests/scenario-full.test.tsx, tests/set-goals-ui.test.tsx +8 |
 | Cel serii: {part} | app/more/settings.tsx | tests/set-goals-ui.test.tsx, tests/set-goals.test.ts |
 | Cele partii | app/more/settings.tsx | tests/interaction-patterns.test.tsx |
-| co | components/LoadEditor.tsx | tests/access.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +282 |
+| co | components/LoadEditor.tsx | tests/access.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +283 |
 | Co logujesz w serii | app/exercise/[id].tsx | tests/edit-on-demand.test.tsx, tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx +3 |
 | Cofnij | components/DayPanel.tsx | tests/adapt-ui.test.tsx, tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx +5 |
 | Cofnij zamianę: {name} | app/swap.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx, tests/swap-ui.test.tsx |
@@ -131,7 +131,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Edytuj notatkę | components/WorkoutBlocks.tsx | tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx, tests/scenario-full.test.tsx |
 | Edytuj sesję | app/history/[id].tsx | tests/audit-0.10-plan-ui.test.tsx, tests/m3-p3-postepy-historia.test.tsx, tests/scenario-full.test.tsx |
 | Edytuj szablon | app/template/[id].tsx | tests/app.tsx, tests/audit-k1-fala2b.test.tsx, tests/edit-on-demand.test.tsx +2 |
-| Ekran nie mógł się wyświetlić. | app/_layout.tsx | tests/audit-m1-003-boundary.test.tsx |
+| Ekran nie mógł się wyświetlić. | app/_layout.tsx | tests/audit-m1-003-boundary.test.tsx, tests/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx |
 | Ekran włączony podczas treningu | app/more/settings.tsx | tests/i18n-wave2-ui.test.tsx, tests/i18n-wave3-ui.test.tsx, tests/i18n-wave4-ui.test.tsx +3 |
 | Eksportuj backup (plik JSON) | app/more/backup.tsx | tests/interaction-patterns.test.tsx, tests/matrix-ui.test.tsx, tests/public-repo.test.ts +1 |
 | Eksportuj historię do CSV | app/more/backup.tsx | tests/matrix-ui.test.tsx, tests/public-repo.test.ts, tests/scenario-full.test.tsx |
@@ -283,7 +283,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Sprawdź zgodę na powiadomienia | app/more/settings.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Spróbuj ponownie | app/_layout.tsx | tests/audit-m1-003-boundary.test.tsx, tests/audit-m1-003-guard-ui.test.tsx, tests/audit-m1-2026-10-27-015-blad-zapisu.test.tsx +4 |
 | Sprzęt | app/exercise/[id].tsx | tests/audit-0.10-tst.test.ts, tests/edit-on-demand.test.tsx, tests/figures-v2-contract.test.ts +1 |
-| Start | app/pick-template.tsx | tests/app.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-plan-ui.test.tsx +70 |
+| Start | app/pick-template.tsx | tests/app.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-plan-ui.test.tsx +71 |
 | Start stopera: {ex}, seria {n} | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx |
 | Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo. | components/DayPanel.tsx | tests/places-ui.test.tsx |
 | Start zaplanowanego treningu: {name} | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/deload-ui.test.tsx +2 |
@@ -857,7 +857,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | nic więcej do zrobienia | lib/live.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/voice.test.ts +4 |
 | Nic więcej do zrobienia — możesz zakończyć trening. | lib/timer.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst.test.ts, tests/timer-logic.test.ts |
 | Nic więcej do zrobienia (część pominięta) | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/skip-today.test.tsx |
-| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +332 |
+| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +333 |
 | Nie ma nowych treningów do dodania — wszystkie są już w historii. | app/more/import.tsx | tests/csv-import-ui.test.tsx |
 | Nie ma takiego ćwiczenia. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Nie ma takiego miejsca. | app/more/location/[id].tsx | tests/matrix-ui.test.tsx |

@@ -16,7 +16,7 @@ export type SupportKind = 'feedback' | 'idea';
  * bez danych treningowych, masy ciała, nazw szablonów, identyfikatorów, modelu urządzenia ani kopii. Temat i teksty przez t() (język aplikacji).
  */
 export function buildSupportMailto({ version, os, language, kind = 'feedback', extra }: { version: string; os: string | number; language: string; kind?: SupportKind;
-  /** M1-audytor-generalny-032: linia techniczna pod stopką (ekran błędu startu: kod diagnostyczny etapu i treść błędu; bez danych treningowych) */ extra?: string }): string {
+  /** M1-audytor-generalny-032: linia techniczna pod stopką (ekran błędu startu: kod diagnostyczny etapu, bez treści błędu i bez danych treningowych) */ extra?: string }): string {
   const footer = t('Wersja: {v} · iOS {os} · Język: {lang}', { v: version, os: String(os), lang: language });
   const subject = kind === 'idea' ? `${t('Pomysł')}: ` : t('Trening — opinia');
   const body = (kind === 'idea' ? `\n\n${t('Czego brakuje:')}\n\n${t('W jakiej sytuacji na treningu:')}\n\n\n${footer}` : `\n\n${footer}`) + (extra ? `\n${extra}` : '');
