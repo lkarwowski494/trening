@@ -32,6 +32,7 @@ Zasada: żadna poza nie trafia do aplikacji, dopóki nie przejdzie WSZYSTKICH br
 8. **Styk ze sprzętem — zasięg, nie tylko odległość** (recenzje p2 r4/r5, 28.10.2026): stopa/dłoń/plecy mają leżeć na powierzchni sprzętu (odległość) i mieścić się w jej obrysie (pięta i palce w długości płyty, plecy na oparciu); mierz ze współrzędnych dla każdego punktu podparcia (płyta, wałek, poduszka, ławka, podłoga).
 9. **Sprzęt zgodny z danymi i ze sobą**: etykieta sprzętu (`capLabel`) zgodna z trybem i punktem dźwigni w danych; sprzęt nie przenika sprzętu (np. pręt wahadła przez oparcie) — dziś bez bramki, oceniaj wzrokowo i zgłaszaj NISKIE.
 10. **Pary o identycznej tabeli kątów** (np. Hack Squat = Pendulum Squat): sprawdź, czy przybliżenie nie zgubiło cechy rozpoznawczej; wpisz cechę w raporcie albo skieruj ćwiczenie do wyjątku (krok 1).
+11. **Arkusz nałożonego śladu toru — obowiązkowo** (L-050, decyzja właściciela 28.10.2026 ~19:45 UTC, opcja A; po zgłoszeniu z telefonu 1032: tor gryfu martwego ciągu w kształcie „S”): recenzent ogląda ślad sprzętu/kończyny nałożony na wszystkie klatki i sprawdza, czy tor jest gładki, bez zmian kierunku i bez „ucieczki” (np. gryf blisko nóg, szyna Smitha pionowo). Wpis v2 w `docs/research/figury-recenzja.json` ma pole `slad` (strażnik w `tests/figures-v2-tor.test.ts` od 29.10.2026); reguła w CLAUDE.md (main, gałąź `naprawy/M2-tory-2026-10-28`, b704e30).
 
 ## Przebieg dla jednej rodziny
 
