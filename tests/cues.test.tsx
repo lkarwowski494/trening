@@ -43,10 +43,7 @@ describe('dane wskazówek', () => {
     expect(badEn).toEqual([]);
   });
   test('liczby nie są wpisane w treść wskazówek (CLAUDE.md: liczby w jednym miejscu)', () => {
-    /* wyjątek (koordynator 28.10.2026, badacz: przedział kąta techniki — 3 zgodne źródła szczebla 4, żadne nie przeczy; reguła wyjątku z CLAUDE.md 25.10.2026): jm.elbows „ok. 45°”; liczba tylko w tym jednym zdaniu, wpis w data/zrodla/wskazowki-ogolne.json */
-    const LICZBA_Z_ZRODEL = ['jm.elbows'];
-    expect(Object.entries(cueDict('pl')).filter(([k, v]) => /\d/.test(v) && !LICZBA_Z_ZRODEL.includes(k))).toEqual([]);
-    expect(cueDict('pl')['jm.elbows']).toMatch(/45°/);
+    expect(Object.entries(cueDict('pl')).filter(([, v]) => /\d/.test(v))).toEqual([]);
   });
 });
 

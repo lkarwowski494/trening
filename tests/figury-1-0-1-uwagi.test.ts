@@ -221,8 +221,8 @@ describe('karty (badacz 28.10.2026): JM Press i Decline CG Skull Crusher — wł
     const sk = cueSelection('Decline Close-Grip Bench To Skull Crusher'); expect(sk.ok).toEqual(['dcgsk.elbows', 'skull.upperArm', 'skull.depth']);
     expect(cueSelection('Close-Grip EZ-Bar Press').ok).toContain('cgbp.elbows');
   });
-  test('teksty PL: jm.elbows mówi o łokciach wysoko i ok. 45°, dcgsk.elbows o fazach wyciskania i prostowania; bez nazw źródeł', () => {
-    expect(PL['jm.elbows']).toMatch(/wysoko/); expect(PL['jm.elbows']).toMatch(/45°/); expect(PL['dcgsk.elbows']).toMatch(/wyciskaniu/); expect(PL['dcgsk.elbows']).toMatch(/prostowaniu/);
+  test('teksty PL: jm.elbows mówi o łokciach wysoko i pod skosem (bez liczby), dcgsk.elbows o fazach wyciskania i prostowania; bez nazw źródeł', () => {
+    expect(PL['jm.elbows']).toMatch(/wysoko/); expect(PL['jm.elbows']).not.toMatch(/\d/); expect(PL['dcgsk.elbows']).toMatch(/wyciskaniu/); expect(PL['dcgsk.elbows']).toMatch(/prostowaniu/);
   });
   test('źródła w rejestrze wewnętrznym: jm.elbows ≥ 3 adresy https (kąt techniki: ≥ 2 zgodne źródła szczebla 4), dcgsk.elbows ≥ 3', () => {
     expect(OGOLNE['jm.elbows'].zrodla.filter(z => /^https:\/\//.test(z.adres)).length).toBeGreaterThanOrEqual(3);
