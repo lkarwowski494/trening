@@ -110,7 +110,7 @@ test('B8 zakończenie z rekordem: karta (bez okienka) i te same PR w historii', 
   for (let i = 0; i < 2; i++) await tap(screen.getAllByLabelText(new RegExp(`^Seria ${i + 1} zrobiona`))[0]);
   await finishConfirmed();
   expect(global.__alerts.find(x => /rekord/i.test(x.title))).toBeUndefined(); expect(await screen.findByTestId('record-banner')).toBeTruthy(); /* 11.10.2026: karta zamiast okienka */
-  expect(await screen.findAllByText(/^PR:/)).toHaveLength(1); // drugi identyczny zestaw nie jest rekordem
+  expect(await screen.findAllByText(/^Rekord:/)).toHaveLength(1); /* M1-audytor-generalny-030: etykieta przez t(„Rekord: {list}”) */ // drugi identyczny zestaw nie jest rekordem
 });
 
 test('B9 zakończenie bez serii → odrzucenie, bez pustej sesji', async () => {

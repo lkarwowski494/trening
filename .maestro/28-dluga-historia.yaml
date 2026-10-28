@@ -6,7 +6,7 @@
 #   "Log a past workout" / "Previous day" / "From a template"  ← panel Planu i ekran „Trening wstecz” (jak 05, 31, 32)
 #   w-0-0 / reps-0-0                                          ← testID pól ciężaru i powtórzeń pierwszej serii w edytorze sesji (app/history/edit/[id].tsx; ciężar od 13.10.2026)
 #   "Cancel session editing" / "Save session"                 ← nagłówek edytora sesji
-#   "PR: .*"                                                  ← 'PR: {rodzaje}' (wiersz rekordu pod serią w sesji, app/history/[id].tsx)
+#   "Record: .*"                                                ← 'Rekord: {list}' (M1-audytor-generalny-030) (wiersz rekordu pod serią w sesji, app/history/[id].tsx)
 #   session-N / session-N-del / "Delete this session from history\\?" ← testID wiersza listy sesji w Planie (app/(tabs)/history.tsx), przycisk pod nim, pytanie ('Usunąć tę sesję z historii?')
 #   delete-object / "Delete session"                          ← przycisk „Usuń sesję” na dole szczegółów sesji (components/DeleteButton.tsx, app/history/[id].tsx; M3 p3) — to samo okno co gest
 appId: pl.lukasz.trening
@@ -115,7 +115,7 @@ name: Długa historia — kilka sesji, rekordy, usunięcie sesji
 - tapOn: "Save session"
 - tapOn: { text: "Save", below: "Save changes\\?", optional: true }
 - extendedWaitUntil: { visible: "Session", timeout: 30000 }
-- assertVisible: "PR: .*"
+- assertVisible: "Record: .*"
 - takeScreenshot: 96-sesja-z-rekordem
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Log a past workout", timeout: 30000 }

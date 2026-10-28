@@ -17,6 +17,8 @@
  },
  "03-kolejnosc.yaml": {
   "Reorder exercises": 1,
+  "Exercise options: .*": 1,
+  "Move down": 1,
   "Done": 1
  },
  "04-plank-stoper.yaml": {
@@ -268,7 +270,7 @@
   "Start planned workout: Upper A": 1
  },
  "14-generator.yaml": {
-  "Planning": 1,
+  "Templates and plan": 1,
   "Generate templates and plan": 1,
   "Plan from my templates": 1,
   "New templates and plan": 1,
@@ -371,7 +373,7 @@
   "Back": 2,
   "More, tab.*": 1,
   "Settings": 1,
-  "Full version.*": 1,
+  "Your plan: Training is my life.*": 1,
   "Test store: expire access": 1,
   "Restore purchases": 1,
   "Workout, tab.*": 1,
@@ -704,7 +706,7 @@
   "Set 1 done — Bench Press \\\\(Barbell\\\\)": 1,
   "Skip": 1,
   "Finish": 2,
-  "Full version.*": 1,
+  "Your plan: Training is my life.*": 1,
   "Test store: expire access": 1,
   "Restore purchases": 1,
   "Other workout": 2,
@@ -848,7 +850,7 @@
   "Skip": 1,
   "More, tab.*": 1,
   "Settings": 1,
-  "Full version.*": 1,
+  "Your plan: .*": 1,
   "Test store: expire access": 1,
   "Back": 1,
   "Workout, tab.*": 1,

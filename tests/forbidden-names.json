@@ -276,6 +276,16 @@
    "path": "data/zrodla/wskazowki-ogolne.json",
    "name": "Eleiko",
    "reason": "źródło wskazówki techniki w notatce badacza (jak w data/zrodla/cues.json, producent sprzętu) — wewnętrzny rejestr źródeł zestawów ogólnych (M1-audytor-generalny-021), niewyświetlany w aplikacji"
+  },
+  {
+   "path": "tests/fixtures/released/gen-fixture-1.0.ts.txt",
+   "name": "TRX",
+   "reason": "M1-audytor-generalny-014: zapis wzorcowy z wydanego 1.0 — nazwa ćwiczenia własnego wpisana jak przez użytkownika (dane użytkownika, nie tekst aplikacji); zmiana nazwy zmieniłaby odciski strażnika normalizacji"
+  },
+  {
+   "path": "tests/fixtures/released/state-v1.0.0-b1032-schema19.json",
+   "name": "TRX",
+   "reason": "M1-audytor-generalny-014: zapis wzorcowy z wydanego 1.0 — nazwa ćwiczenia własnego wpisana jak przez użytkownika (dane użytkownika, nie tekst aplikacji); zmiana nazwy zmieniłaby odciski strażnika normalizacji"
   }
  ]
 }

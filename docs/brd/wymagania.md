@@ -264,7 +264,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy użytkownik ogląda podsumowanie planu, nagłówek podglądu albo podpis propozycji
     - Wtedy elementy listy o zmiennej długości są oddzielone przecinkiem (np. „pon. FBW A, śr. FBW B”); „·” zostaje tylko między polami metadanych w stałej kolejności (wykaz z powodami: `tests/kropka-srodkowa.json`)
   - Scenariusz: Pasek tygodnia na wąskim ekranie przy dużym tekście (M1-audytor-generalny-027, 27.10.2026)
-    - Zakładając, że ekran ma 320 pt (iPhone SE albo „Powiększenie ekranu”), a tekst jest powiększony (limit liczb 130 %)
+    - Zakładając, że ekran ma 320 pt (iPhone SE albo „Powiększenie ekranu”), a tekst jest powiększony do limitu skali liczb (stała w `lib/theme.ts`)
     - Gdy użytkownik patrzy na pasek tygodnia na ekranie Trening
     - Wtedy każdy skrót dnia stoi w jednej linii w swojej kolumnie (może się zmniejszyć); gdy najdłuższy skrót nie zmieściłby się nawet po zmniejszeniu, pasek pokazuje skróty jednoliterowe (data pod spodem, pełna nazwa dnia w etykiecie VoiceOver bez zmian)
   - Scenariusz: Postęp tygodnia po zmianie planu w trakcie tygodnia (decyzja właściciela 22.10.2026, wariant A; `lib/plan.planChangedInWeek`, `components/WeekStacks`)
