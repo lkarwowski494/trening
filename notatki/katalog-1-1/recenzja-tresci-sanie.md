@@ -1,0 +1,36 @@
+# Recenzja treści kart (bramka 4, część „treść”) — sanie (Sled Push, Sled Drag (Harness)), 28.10.2026
+
+Materiał: integracja-1-1 @ 552df205 (zawiera origin/silnik-chod-cykliczny @ 89c67ab9; worktree tylko do odczytu, usunięty po audycie). Ruch zatwierdzony wcześniej (recenzja „sanie r2”).
+Zakres rodziny: rodzina `sled_throw` (families.ts:57, status `planned`). Figurę (pozy, `petla: cykl_lustro`) mają tylko **Sled Push** i **Sled Drag (Harness)** (poses/sled_throw.json). Pozostałe ćwiczenia z saniami — Backward Drag, Bear Crawl Sled Drag, Sled Forward Drag with Press, Sled Overhead Backward Walk — są OTWARTE (scripts/figures/agent-pozy/sled_throw.mjs:13–16, brak źródła ruchu), a Sled Row / Sled Reverse Flye / Sled Overhead Triceps Extension należą do innych rodzin i mają zestaw `open`. Bez figury i bez własnych wskazówek nie mają sekcji „Technika” (`hasTechnique`, ui.ts:58; zestaw ogólny pokazuje się tylko przy figurze v2, ExerciseCues.tsx:33), więc ich karta jest pusta i zgodna ze stanem „otwarte”.
+Karta = zestaw ogólny `f: sled` (cue-sets.json:562, 566: ok `sled.lean`, `sled.legs`, err pusty) z dopiskiem „Ogólne wskazówki dla tego ruchu”; błędów w pozie brak (`bledy: []`); legenda mięśni (muscles.generated.ts:564, 568); licznik faz GAIT_UI „Marsz” bez sekund, linia kąta kolano/biodro (poseData.ts:72); stopka „bez porad medycznych”.
+Metoda: zrzut treści PL/EN (skrypt scratchpad/dump-sanie.py), render `run-dyn.mjs --rodzina sled_throw --podglad --tylko "Sled Push;Sled Drag (Harness)"` (wygenerowane pozy identyczne z plikiem w repo; PNG 3000×700 i 3335×700 oglądane w wycinkach: scratchpad/sanie-tresc/sled_throw/*-z0..z3.png), odczyt pochylenia tułowia z poz (Push 32,5°, Drag 34°, zgięcie kręgosłupa 0°), sprawdzenie obu źródeł z data/zrodla/cues-zestawy.json:530–557 pod adresem (WebFetch).
+Widoczność: w 1.0 (origin/main) rodzina `planned`, tekstów `sled.*` nie ma w pl.json — nic z tej karty nie jest widoczne w 1.0.
+
+## Werdykty
+
+| Ćwiczenie | Werdykt |
+|---|---|
+| Sled Push | **do poprawy** (Z1 — podstawy/oznaczenie; treść kierunkowo poprawna) |
+| Sled Drag (Harness) | **do poprawy** (Z1) |
+| Backward Drag, Bear Crawl Sled Drag, Sled Forward Drag with Press, Sled Overhead Backward Walk | bez karty (OTWARTE) — nie oceniane treściowo; brak sprzeczności |
+
+## Znaleziska
+
+| # | Poziom | Pewność | Ćwiczenia | Opis | Realność | Widoczne w 1.0 | Dowód |
+|---|---|---|---|---|---|---|---|
+| Z1 | ŚREDNIE | 85% | Sled Push, Sled Drag (Harness) | Podstawy obu wskazówek: każde ćwiczenie ma tylko jedno źródło o TYM ćwiczeniu, drugie opisuje inne ćwiczenie (analogia, nie liczy się do minimum 2 — docs/research/27-wskazowki-zrodla.md:15, MER2-04), a wpis nie ma znacznika analogia/uproszczenie. ISSA (blog hokejowy) opisuje wyłącznie **pchanie** sanek („maintain a slight forward lean”, „Drive through the legs, not the upper body”); ACE ProSource 02.2014 opisuje **ciągnięcie** sanek („Pulling a heavy sled… forward-leaning body position… push into the ground one leg at a time”). Zatem Sled Push: ISSA wprost + ACE analogia; Sled Drag (Harness): ACE wprost + ISSA analogia. Dodatkowo „tułów sztywny / keep your torso tight” ma jedno źródło: cytat ACE „stiff, stable spine” dotyczy pchania/ciągnięcia talerza po podłodze jako zamiennika sanek, a ISSA nic nie mówi o sztywności tułowia. `claim` wpisu to „Pchanie sanek…”, a zestaw jest przypięty też do ciągnięcia w pasie. Treść kierunkowo poprawna i zgodna z rysunkiem — problem dotyczy podstaw i oznaczenia, nie błędnego twierdzenia (precedens: Z3 w recenzji leg_machine/lunge). | realny po podłączeniu rodziny (każde otwarcie karty) | nie | data/zrodla/cues-zestawy.json:530–557 (`sled.lean`, `sled.legs`, bez `uproszczenie`); data/zrodla/figury-sens.json:6206 i :6219 (`sanki_plecy`: „jedno źródło”); cue-sets.json:562, 566; WebFetch 28.10: issaonline.com/blog/post/hockey-workouts-for-lower-body-power (sekcja Sled Push, brak drag/harness), acefitness.org/…/3676/strongman-training-for-your-clients/ (akapit Keogh — sled pull; akapit o talerzu — „stiff, stable spine”) |
+| N1 | NISKIE | 90% | Sled Push, Sled Drag (Harness) | Teksty `sled.lean`, `sled.legs` są tylko w pl.json i en.json; w 33 pozostałych słownikach brak — po podłączeniu karta w np. niemieckim pokaże zdania po angielsku (cueText: fallback en, lib/cues/index.ts:53). Znana luka procesu (meta cue-sets: „pozostałe języki — zestaw-przekladu-wskazowek”), warunek przed `ready`, nie błąd treści. | realny po podłączeniu, dopóki brak przekładu | nie | lib/cues/text/*.json (33× brak kluczy `sled.*`) |
+| N2 | NISKIE | 85% | Sled Push, Sled Drag (Harness) | Legenda mięśni bez żadnego przeczytanego źródła (katalog: „brak źródła — uproszczenie”, notatka L6: „Partie (czworogłowe) bez przeczytanego badania”). UI pokazuje „Dobór mięśni: przybliżony” zgodnie z decyzją z docs/50-figury-v2.md:123 (105 ćwiczeń), więc to sprawa systemowa, nie tej rodziny; kierunkowo (czworogłowe główne, pośladki i łydki pomocnicze) zgodne z powszechnym opisem ćwiczenia. | realny, systemowy | nie (te ćwiczenia) | lib/catalog.generated.ts:2380, 2642; docs/research/25-biblioteka/L6.json; muscles.generated.ts:564, 568 |
+
+Poza zakresem (już w backlogu 1.1, docs/21-roadmapa-offline.md:140–144): linia „Kąt na rysunku” w marszu skacze (rekomendacja `hideAngle` dla `walk`), zamach rąk w Sled Drag jak w sprincie. Pozycja z :144 („brak tekstów sled.lean/sled.legs w pl.json”) jest już nieaktualna — teksty PL i EN są na integracja-1-1 (pl.json:311–312, en.json:311–312); do zamknięcia w backlogu.
+
+## Sprawdzone bez znalezisk
+
+- Karta vs rysunek: Sled Push — pochylenie tułowia 32,5°, kręgosłup prosty (0°), ręce wyprostowane na słupkach sanek, napęd z nogi zakrocznej; Sled Drag (Harness) — tyłem do sanek, pas od bioder do sanek, pochylenie 34° w stronę marszu, kręgosłup prosty. Zgadza się z „pochyl się lekko w przód, tułów sztywny” i „pracuj nogami”. Czy 32–34° to jeszcze „lekko” — granica oceny, pewność < 80% (źródło ISSA mówi „slight”), nie zgłaszam.
+- Nazwy faz i kierunek ruchu: tryb cykliczny, jedna faza „Marsz” / „Walking” bez sekund (GAIT_UI, anim.ts:48) — pasuje do obu ćwiczeń; nie ma faz opuszczania i podnoszenia, które mogłyby mieć odwrócony kierunek; półkroki w lustrze (decyzja 27.10, wariant A).
+- Częste błędy: zestaw nie ma błędów (`err: []`), poza nie ma `bledy` — karta nie pokazuje błędów, więc nie ma sprzeczności z rysunkiem.
+- Liczby i tempo: karta nie podaje liczb (tempa, dystansu, kątów). Pomiar w katalogu `weight_distance` (ciężar + dystans) zamyka wcześniejsze otwarte pytanie z L6. Reguły sensu (10°–75°, kręgosłup −20…10°) są w danych oznaczone jako konwencja/uproszczenie i nie trafiają do UI.
+- Anonimowość i marki: zdania PL/EN nie wymieniają źródeł, organizacji ani marek; „Ogólne wskazówki dla tego ruchu” bez podpisu źródeł.
+- Porady medyczne: brak treści o bólu i urazach; stopka z odesłaniem do specjalisty jest w sekcji.
+- Naturalność PL/EN: „Pochyl się lekko w przód, tułów sztywny.” / „Pracuj nogami — odpychaj się od podłoża przy każdym kroku.” — krótko, po trenersku; EN równoważne („push hard off the ground” dodaje „hard”, akceptowalne). Słownik terminów nie ma haseł kolidujących (tułów, pochyl, podłoże, odpychanie).
+- Ćwiczenia OTWARTE (Backward Drag i trzy pozostałe) nie dostają ani figury, ani zestawu ogólnego — brak karty z tekstem bez rysunku.

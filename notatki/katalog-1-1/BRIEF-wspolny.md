@@ -1,0 +1,20 @@
+# Wspólne zasady dla agentów (koordynator, sesja 27.10.2026, przejęcie po koncie poprzednim)
+
+Projekt: aplikacja iOS „Trening” (Expo/TypeScript), repo PUBLICZNE lkarwowski494/trening. Pisz po polsku.
+
+1. **Zasady projektu:** przeczytaj CLAUDE.md w SWOIM worktree (i CLAUDE.md z `origin/integracja-1-1` — ma regułę z 27.10 o audycie dogłębnym animacji i kart). Sekrety/dane osobowe nigdy do repo; przed commitem `git diff --cached`.
+2. **Worktree:** pracujesz WYŁĄCZNIE w katalogu podanym w zadaniu (`/home/user/wt/<gałąź>`). Nie przełączaj `/home/user/trening` (główny checkout, main). Nie twórz commitów na cudzych gałęziach.
+3. **Instalacja:** w swoim worktree `npm ci` (instaluje hak). Przed verify: `git config --get core.hooksPath` musi zwrócić dokładnie `scripts/hooks` (ścieżka WZGLĘDNA). Jeśli jest pusta albo bezwzględna: `git config core.hooksPath scripts/hooks`. Nigdy nie ustawiaj ścieżki bezwzględnej.
+4. **Verify — DECYZJA WŁAŚCICIELA C (hybryda), 27.10.2026 ~09:10 UTC (zastępuje B):**
+   - Gałęzie 1.0 (do nowego buildu: naprawa-figury-1-0, technika-rozwinieta-1-0, z02-przeklad-1-0, review-notes-1-0, zrzuty-1-0): pełne lokalne `flock /tmp/claude-0/verify.lock npm run verify` przed pushem kodu (w tle, log do `/tmp/claude-0/<gałąź>/`, timeout do 2 h).
+   - Gałęzie robocze 1.1 i pozostałe: lokalnie `npm run test:fast` (+ typecheck/lint, gdy dotyczy), push, bramką jest tests.yml w CI (to samo pełne verify). NIE kolejkuj lokalnego verify.
+   - Przed scaleniem do integracja-1-1 albo main — zawsze pełne verify (robi koordynator).
+   Commit tylko z dokumentami: `npm run verify:docs`. Push `--no-verify` tylko dla stanu pośredniego — napisz to w linii stanu.
+5. **GitHub:** `gh` CLI NIE jest zalogowane. Do CI/PR używaj narzędzi MCP `mcp__github__*` (załaduj przez ToolSearch, np. `select:mcp__github__actions_list,mcp__github__actions_get,mcp__github__actions_run_trigger,mcp__github__get_job_logs,mcp__github__create_pull_request,mcp__github__pull_request_read,mcp__github__update_pull_request`). Listy przebiegów są duże — filtruj po gałęzi (`workflow_runs_filter.branch`) i `perPage` ≤ 5. `git push -u origin <gałąź>`; przy błędzie sieci do 4 ponowień (2/4/8/16 s).
+6. **Czekanie na CI:** nie odpytuj co minutę. Sprawdzaj co ~10–15 min (`sleep` w tle jest zablokowany na pierwszym planie — użyj Bash z `run_in_background` i pętlą `sleep 600` albo narzędzia Monitor). tests.yml trwa ~25–35 min; E2E macOS bywa w kolejce długo — przebieg anulowany „not acquired by Runner” ponów od razu.
+7. **Stan dla następcy (obowiązkowo po każdym kroku):** `/home/user/wt/zapisz-stan.sh "(agent <nazwa>) gałąź X, SHA Y — co zrobione; NASTĘPNY KROK: …"` — skrypt dopisuje linię do `docs/przekazanie/README.md` na gałęzi `przekazanie-konta` pod blokadą. Pliki (np. recenzje, podglądy) dołączasz parami argumentów: `zapisz-stan.sh "linia" /ścieżka/źródło docs/przekazanie/notatki/...cel`. NIE edytuj worktree `/home/user/wt/przekazanie-konta` ręcznie.
+8. **Scalanie:** nic do `main` ani do `integracja-1-1`. PR do main tylko tam, gdzie zadanie każe — bez scalania. Merge, nie rebase; nie przepisuj historii wypchniętych gałęzi.
+9. **Raport:** tylko na końcu albo przy blokadzie. Krótko: SHA, przebiegi CI (ID + wynik), co zostało, decyzje dla właściciela (≥2 opcje, kompromis, rekomendacja). Dowód zamiast deklaracji (wynik testu, ID przebiegu). Nie zgaduj liczb — „[DO USTALENIA]”.
+10. **Lekcje:** gdy coś poszło nie tak z naszej winy (czerwone CI z naszej winy itp.) — wpis `## L-NNN` w docs/40 na swojej gałęzi (numer nada koordynator).
+11. **Ocena realności znaleziska:** realny / brzegowy / teoretyczny (CLAUDE.md, Audyty pkt 6). 1.0 ma zamrożony zakres — tylko blokery (KRYTYCZNE/WYSOKIE); reszta do backlogu z wersją.
+12. **Obciążenie maszyny (koordynator 27.10 10:20 UTC, load ~36 na 4 rdzeniach):** agenci gałęzi 1.1 uruchamiają lokalnie tylko testy celowane, jednym wątkiem: `npx jest <pliki> --maxWorkers=1` (albo `npm run test:fast -- --maxWorkers=1`, jeśli skrypt przekazuje argumenty); bez pełnego `jest` i bez `expo export`. Pełny zestaw sprawdza tests.yml. Gałęzie 1.0 mają pierwszeństwo w CPU.
