@@ -101,7 +101,7 @@ export default function PaywallScreen() {
         {Array.isArray(products) ? PLAN_ORDER.map(plan => products.find(p => p.plan === plan)).filter((p): p is StoreProduct => !!p).map(p => {
           const own = ownedPlans.has(p.plan); const on = !own && p.plan === sel; const line = priceLine(p);
           return <Pressable key={p.plan} testID={`plan-${p.plan}`} accessibilityRole="radio" disabled={own} accessibilityState={{ selected: on, disabled: own }} accessibilityLanguage={lang()} accessibilityLabel={`${planName(p.plan)}, ${line}. ${planBlurb(p.plan)}${own ? `. ${t('Aktualny plan')}` : ''}`} onPress={() => setSel(p.plan)}
-            style={{ borderWidth: on ? 2 : 1, borderColor: on ? th.accent : th.line, borderRadius: RADIUS.group, padding: 12, marginBottom: 8, backgroundColor: th.surface, minHeight: 56, opacity: own ? 0.7 : 1 }}>
+            style={{ borderWidth: on ? 2 : 1, borderColor: on ? th.accent : th.line, borderRadius: RADIUS.group, padding: 12, marginBottom: 8, backgroundColor: th.surface, minHeight: 56 /* M1-044 (A11-16): posiadany plan bez przezroczystości — stan niesie „Aktualny plan” i brak ramki wyboru */ }}>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 8 }}>
               <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('callout'), ...FW.semibold }}>{planName(p.plan)}</Text>
               {own ? <Text testID={`plan-${p.plan}-own`} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.accent, ...font('footnote'), ...FW.semibold }}>{t('Aktualny plan')}</Text> : null}
