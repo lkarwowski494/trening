@@ -5,6 +5,8 @@
  "Wstawanie": "nazwa FAZY animacji ruchu (anim.ts PhaseName), pokazana w „{faza} {n} s”; wstawanie z przysiadu, nie wstawanie z łóżka",
  "Podnoszenie": "nazwa FAZY animacji ruchu (anim.ts PhaseName), pokazana w „{faza} {n} s”; podnoszenie ciężaru, rzeczownik odczasownikowy",
  "Prostowanie": "nazwa FAZY animacji ruchu (anim.ts PhaseName), pokazana w „{faza} {n} s”; prostowanie stawu (biodra, łokcia), rzeczownik odczasownikowy",
+ "Grzbiet w dół": "nazwa FAZY animacji ruchu Cat-Cow (poseData.ts PHASES_BY_EXERCISE), pokazana w „{faza} {n} s”: grzbiet opada w dół ku podłodze, brzuch w dół (krowa); nie nazwa ćwiczenia i nie „wygięcie” w ogólnym sensie",
+ "Koci grzbiet": "nazwa FAZY animacji ruchu Cat-Cow (poseData.ts PHASES_BY_EXERCISE), pokazana w „{faza} {n} s”: grzbiet wypukły ku górze jak u kota (koci grzbiet); nie nazwa ćwiczenia",
  "{faza} {n} s": "linia faz animacji w karcie ćwiczenia, np. „Podciąganie 1 s · Opuszczanie 2 s”: {faza} = nazwa fazy ruchu (nie ćwiczenia), {n} = liczba sekund; „s” = sekundy",
  "Zwiększ ciężar o {n}": "etykieta dostępności (VoiceOver) przycisku „+” przy polu ciężaru w serii: {n} = krok zmiany z jednostką (np. 2,5 kg); tryb rozkazujący",
  "Zmniejsz czas o {n}": "etykieta dostępności (VoiceOver) przycisku „−” przy polu czasu w serii na czas: {n} = krok zmiany w sekundach; tryb rozkazujący",

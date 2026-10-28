@@ -14,7 +14,7 @@ const count = (id: FamilyId): number => KEYS.filter(k => ALL[k] === id).length;
 const EXPECTED: Record<FamilyId, number> = {
   squat: 25, bench_press: 30, hinge: 32, pushup_plank: 30, dip: 5, overhead_press: 23, row: 13, cable_row: 10, pull_up: 13, pulldown: 8, lunge: 24, leg_machine: 8, leg_isolation: 14, calf_raise: 13,
   hip_bridge: 11, kb_ballistic: 17, olympic: 25, back_extension: 4, curl: 36, triceps: 32, delt_raise: 38, chest_fly: 20, shrug: 8, rotator_cuff: 8, core_floor: 44, core_hang: 4, core_standing: 19,
-  carry: 7, cardio: 16, plyo: 28, sled_throw: 19, strongman: 10, glute_floor: 7, hip_abd_add: 8, mobility_stand: 36, mobility_floor: 22, foam_roll: 11, neck: 5, forearm: 12, thruster: 3, chest_press_machine: 5, cable_press: 4, kneeling_hinge: 2,
+  carry: 7, cardio: 16, plyo: 28, sled_throw: 19, strongman: 10, glute_floor: 7, hip_abd_add: 8, mobility_stand: 36, mobility_floor: 22, foam_roll: 10, neck: 5, forearm: 13, thruster: 3, chest_press_machine: 5, cable_press: 4, kneeling_hinge: 2,
 };
 
 describe('rodziny ruchu i przypisanie ćwiczeń', () => {

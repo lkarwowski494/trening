@@ -21,6 +21,10 @@ export const STOPA_GRZBIETEM = { maxNachylenieDeg: 30, palceNaBlacieCm: 3, nachy
 export const CONTRACT = {
   /** poza@2 (26.10.2026): zgodna wstecz z poza@1 — dochodzą wyłącznie pola OPCJONALNE (obrót i skręt tułowia, skłon boczny, przechył miednicy, uniesienie barku, zgiecieNadgarstka, obrót przedramienia); stare pozy działają bez zmian. */
   id: 'figury-v2/poza@2',
+  /** Największe bierne zgięcie kolana, jakie wyjątek `kneeMax` może dopuścić (klęk i siad na piętach: pośladki przy piętach; zakres czynny to rom.side.knee.max = 141°). Uproszczenie ilustracyjne, 27.10.2026; źródło liczby [DO USTALENIA] (recenzent: ok. 155–160°). */
+  kneePassiveMaxDeg: 160,
+  /** Największe bierne zgięcie biodra, jakie wyjątek `hipMax` może dopuścić (tułów złożony na uda w pozie dziecka; zakres czynny to rom.side.hip.max = 133°). Uproszczenie ilustracyjne, 27.10.2026; źródło liczby [DO USTALENIA]. */
+  hipPassiveMaxDeg: 150,
   /** Wcześniejsze wersje kontraktu przyjmowane przez walidator (dane zapisane w lib/figures/v2/poses/ mogą mieć poza@1). */
   legacy: ['figury-v2/poza@1'] as readonly string[],
   /** Liczba klatek kluczowych poprawnej pozy. */
@@ -92,7 +96,7 @@ export type FamilyTemplate = {
   /** Domyślny sprzęt (wzór do skopiowania). */
   defaultGear: Gear[];
   /** Wyjątki od zakresu stawów (uproszczenie ilustracyjne; powód obowiązkowy). */
-  allow?: { elbow?: number; shSag?: number; shElev?: number; ankleMin?: number; ankleMax?: number; hipMin?: number; why: string };
+  allow?: { elbow?: number; shSag?: number; shElev?: number; ankleMin?: number; ankleMax?: number; hipMin?: number; hipMax?: number; kneeMax?: number; why: string };
   /** Opis ruchu do promptu (co ma pokazywać u = 0 i u = 1). */
   movement: string;
   check?: (g: Gear[]) => string[];
@@ -406,7 +410,7 @@ export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
 /* ---------- walidator semantyczny ---------- */
 export type RomData = { side: Record<'hip' | 'knee' | 'ankle' | 'el' | 'sh', { min: number; max: number }>; front: { abd: { min: number; max: number } } };
 export type ValidateCtx = { family: string; exercise: string; /** id wskazówek „częsty błąd” tego ćwiczenia (cue-sets.json albo lib/cues). */ errorCues: string[]; rom: RomData; /** Ćwiczenie izometryczne (decyzja koordynatora 26.10.2026): poza statyczna, wymóg ruchu ≥ minMotionCm nie obowiązuje; błąd jest jedynym ruchem. */ isometric?: boolean;
-  /** Wyjątki zakresu stawów dla TEGO ćwiczenia (deklaracja z powodem w danych sensu: rodziny.<rodzina>.zakres_wyjatki; nadpisuje wyjątek szablonu rodziny). Domyślnie brak (zachowanie bez zmian). */ allow?: { elbow?: number; shSag?: number; shElev?: number; ankleMin?: number; ankleMax?: number; hipMin?: number };
+  /** Wyjątki zakresu stawów dla TEGO ćwiczenia (deklaracja z powodem w danych sensu: rodziny.<rodzina>.zakres_wyjatki; nadpisuje wyjątek szablonu rodziny). Domyślnie brak (zachowanie bez zmian). */ allow?: { elbow?: number; shSag?: number; shElev?: number; ankleMin?: number; ankleMax?: number; hipMin?: number; kneeMax?: number };
   /** Ćwiczenie dynamiczne (wersja 1.1: lot, przechwyt, wymach — deklaracja z powodem w danych sensu): ciągłość z limitem CONTRACT.maxJumpDynamic zamiast CONTRACT.maxJump. Domyślnie fałsz (zachowanie bez zmian). */ dynamic?: boolean };
 
 const f1 = (x: number): string => x.toFixed(1);
@@ -482,7 +486,7 @@ export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
   for (const u of gridU(d)) { const f = keyframeFrame(d, u); for (const s of SIDES) {
     const a = jointAngles(f.sk, s);
     const chk = (n: string, v: number, lo: number, hi: number): void => { if (v < lo - 0.5 || v > hi + 0.5) rg.add(`${n}${s}`, u, uu => `staw ${n} ${s} = ${f1(v)}° poza zakresem ruchu [${lo}°, ${hi}°] w fazie u=${uu} — zmień położenie kostki, miednicy lub chwytu`); };
-    chk('hip', a.hip, al.hipMin ?? r.side.hip.min, r.side.hip.max); chk('knee', a.knee, r.side.knee.min, r.side.knee.max); chk('ankle', a.ankle, al.ankleMin ?? r.side.ankle.min, al.ankleMax ?? r.side.ankle.max);
+    chk('hip', a.hip, al.hipMin ?? r.side.hip.min, Math.min(al.hipMax ?? r.side.hip.max, CONTRACT.hipPassiveMaxDeg)); chk('knee', a.knee, r.side.knee.min, Math.min(al.kneeMax ?? r.side.knee.max, CONTRACT.kneePassiveMaxDeg)); chk('ankle', a.ankle, al.ankleMin ?? r.side.ankle.min, al.ankleMax ?? r.side.ankle.max);
     chk('elbow', a.elbow, r.side.el.min, al.elbow ?? r.side.el.max); chk('shElev', a.shElev, 0, al.shElev ?? r.front.abd.max);
     if (a.shAbd < 30) chk('shSag', a.shSag, r.side.sh.min, al.shSag ?? r.side.sh.max);
     /* poza@2: nowe stopnie swobody (zakresy: EXT_ROM; uproszczenie ilustracyjne). Obrót tułowia (orientacja ciała, nie staw) bez ograniczenia stawowego; skręt, skłon i przechył raz na klatkę. */

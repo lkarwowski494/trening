@@ -21,7 +21,7 @@ import { phasesOf, walkPhases, TEMPO, type Tempo, type Phase, type PhaseNames } 
 import { ERRORS, isDataError, dataErrorIndex, type ErrorId, type FigError, type AnyErrorDef, type Fault } from './errors';
 import { keyframeFrame, poseLoopSpan, type LoopMode } from './contract';
 import { contactGlows, type ContactId } from './contacts';
-import { DATA_UI, GAIT_UI, ISOMETRIC, MEASURE_UNIT, MIN_MEASURED_ROM, dataUiForPose, poseDataFor, type MeasuredJoint } from './poseData';
+import { DATA_UI, GAIT_UI, ISOMETRIC, MEASURE_UNIT, MIN_MEASURED_ROM, PHASES_BY_EXERCISE, dataUiForPose, poseDataFor, type MeasuredJoint } from './poseData';
 import { ease } from './rigs/common';
 
 export type FigureSpec = { key: string; family: FamilyId; variant: Variant; views: View[]; static: boolean; lowerFirst: boolean };
@@ -79,7 +79,7 @@ function faultFor(spec: FigureSpec, error: ErrorId, u: number): Fault { return {
 function dataUiOf(spec: FigureSpec): { names: PhaseNames; joints: readonly MeasuredJoint[]; hideAngle: boolean; walk: boolean } | null {
   if (!('data' in spec.variant)) return null;
   const u = DATA_UI[spec.family] ?? GAIT_UI; const x = u.exceptions && Object.prototype.hasOwnProperty.call(u.exceptions, spec.key) ? u.exceptions[spec.key] : undefined;
-  return { names: x?.names ?? u.names, joints: x?.joints ?? u.joints, hideAngle: !!x?.hideAngle, walk: !!u.walk || loopOf(spec) === 'cykl_lustro' };
+  return { names: x?.names ?? (Object.prototype.hasOwnProperty.call(PHASES_BY_EXERCISE, spec.key) ? PHASES_BY_EXERCISE[spec.key] : u.names), joints: x?.joints ?? u.joints, hideAngle: !!x?.hideAngle, walk: !!u.walk || loopOf(spec) === 'cykl_lustro' };
 }
 /** Pomiar na rysunku (decyzja właściciela 25.10.2026: kąt jako opis figury, nie zalecenie). Rig: przysiad — kolano, wyciskanie — łokieć, zawias — biodro (średnia obu stron). Dane (27.10.2026, S2): spośród stawów rodziny
  * pokazujemy ten, który w ćwiczeniu rusza się najbardziej, i tę stronę, która pracuje (największy zakres; przy równych — prawa), więc ćwiczenie jednoręczne nie dostaje średniej z ręką nieruchomą;

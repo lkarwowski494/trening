@@ -81,6 +81,15 @@ const wisi = klon(RC); for (const k of wisi.klatki) k.miednica[1] += 12;
 const ctxCF = (cw) => ({ reguly: SENS.regulyDla('core_floor', cw, ${JSON.stringify(ROOT)}), root: ${JSON.stringify(ROOT)}, v2, rodzina: 'core_floor', cwiczenie: cw, postural: new Set(), izometryczne: false, teksty: new Proxy({}, { get: () => 'x' }) });
 W.nic_nie_wisi = { dobre: [...J.nicNieWisi(v2, RC), ...J.nicNieWisi(v2, CH)], zle: J.nicNieWisi(v2, wisi) };
 W.nic_nie_wisi_zakres = { dobre: [J.nicNieWisi(v2, BD).length > 0 ? 0 : 1, J.sprawdzJakosc(BD, ctxCF('Bird Dog')).filter((x) => x.regula === 'nic_nie_wisi').length, J.sprawdzJakosc(RC, ctxCF('Reverse Crunch')).filter((x) => x.regula === 'nic_nie_wisi').length], zle: [J.sprawdzJakosc(wisi, ctxCF('Crunch')).filter((x) => x.regula === 'nic_nie_wisi').length] };
+/* 20–21 ciało leży z obrysu (R9) i część ciała nie znika (recenzja mobilności r4, 28.10.2026): poza leżąca na boku z danych (miednica na 20 cm, tułów i spodenki ≤ 2 cm nad podłogą, głowa na przedramieniu) i na plecach spełniają regułę; ta sama poza uniesiona o 4 cm, z ręką z dala od głowy albo ze stopą wprost na kamerę — nie */
+const SQ = poza('mobility_floor', 'Side-Lying Quad Stretch'), SU = poza('mobility_floor', 'Supine Hamstring Stretch'), BF = poza('mobility_floor', 'Butterfly Stretch');
+const sqWisi = klon(SQ); for (const k of sqWisi.klatki) k.miednica[1] += 4;
+const sqGlowa = klon(SQ); for (const k of sqGlowa.klatki) k.rece.L.chwyt = [-20, 6, 10];
+const sqStopa = klon(SQ); for (const k of sqStopa.klatki) k.nogi.L.rotacjaStopy = 90;
+W.cialo_lezy = { dobre: [...J.cialoLezy(v2, SQ, { glowa: true }), ...J.cialoLezy(v2, SU, { glowa: true }), ...J.cialoLezy(v2, BF, { glowa: true })], zle: [...J.cialoLezy(v2, sqWisi), ...J.cialoLezy(v2, sqGlowa, { glowa: true })] };
+W.cialo_lezy_zakres = { obrysTulow: J.cialoLezy(v2, sqWisi).filter((x) => /tułowia/.test(x)).length, obrysMiednica: J.cialoLezy(v2, sqWisi).filter((x) => /miednicy/.test(x)).length, glowaBezOpcji: J.cialoLezy(v2, sqGlowa).length, glowaZOpcja: J.cialoLezy(v2, sqGlowa, { glowa: true }).length, rodzajeSiad: [J.lezyAlboSiedzi(v2, BF), J.lezyAlboSiedzi(v2, poza('mobility_floor', "Child's Pose")), J.lezyAlboSiedzi(v2, poza('mobility_floor', 'Cat-Cow')), J.lezyAlboSiedzi(v2, poza('hip_bridge', 'Glute Bridge'))], miednicaUnosiSie: J.cialoLezy(v2, poza('core_floor', 'Reverse Crunch')).length,
+  wSprawdzJakosc: [J.sprawdzJakosc(sqWisi, { v2, rodzina: 'mobility_floor', cwiczenie: 'Side-Lying Quad Stretch', postural: new Set(), izometryczne: true, teksty: {} }).filter((x) => x.regula === 'cialo_lezy').length, J.sprawdzJakosc(SQ, { v2, rodzina: 'mobility_floor', cwiczenie: 'Side-Lying Quad Stretch', postural: new Set(), izometryczne: true, teksty: {} }).filter((x) => x.regula === 'cialo_lezy').length] };
+W.czesc_ciala_nie_znika = { dobre: [...J.czescCialaNieZnika(v2, SQ), ...J.czescCialaNieZnika(v2, SU)], zle: J.czescCialaNieZnika(v2, sqStopa) };
 /* 15 rząd błędu nie zmienia stawów spoza błędu: „sag” z uniesionymi kostkami zgina kolana */
 const kolana = klon(PL); for (const k of kolana.bledy[0].klatki) k.nogi = { R: { kostka: [0, 12, 0] }, L: { kostka: [0, 12, 0] } };
 W.rzad_bledu_dotyczy = { dobre: J.rzadBleduDotyczy(v2, PL), zle: J.rzadBleduDotyczy(v2, kolana) };
@@ -265,6 +274,11 @@ describe('reguły jakości póz (luki z recenzji ruchu): poza spełniająca bez 
   test('ciężar w dłoni liczy się do środka ciężkości (konwencja 16 kg / 75 kg), podwójny wiatrak ma dwa ciężary', () => { expect(W.ciezar_liczy_sie.dobre).toEqual([0, 0, 0]); });
   test('reguła równowagi z ciężarem: obejmuje pozy stojące quasi-statyczne; wyłącza balistykę, mostek, siad na ławce, wykroki i leżenie', () => { expect(W.ciezar_zakres.dobre).toEqual([0, 0, 0, 0]); expect(W.ciezar_zakres.zle).toEqual([1, 1, 1, 1, 1]); });
   test('wyjątki reguły równowagi z ciężarem mają powód i nadal łamią regułę (wygasają po poprawce pozy)', () => { expect(W.ciezar_wyjatki.dobre).toEqual([0, 0, 0]); });
+  test('ciało leży z obrysu (R9): obrys tułowia i spodenek (miednica się nie unosi) ≤ 2 cm nad podłogą, głowa na podłodze albo na ręce; kolizory nie decydują; siad, klęk i czworak nie są „leżeniem”; miednica unoszona w ruchu (Reverse Crunch) nie jest oceniana; podpięte do mobility_floor w sprawdzJakosc', () => {
+    const Z = W.cialo_lezy_zakres as unknown as Record<string, unknown>;
+    expect(Z.obrysTulow).toBe(1); expect(Z.obrysMiednica).toBe(1); expect(Z.glowaBezOpcji).toBe(0); expect(Z.glowaZOpcja).toBe(1);
+    expect(Z.rodzajeSiad).toEqual([true, false, false, false]); expect(Z.miednicaUnosiSie).toBe(0); expect(Z.wSprawdzJakosc).toEqual([5, 0]) /* tułów, miednica, dolna noga (udo, goleń), głowa */;
+  });
   test('środek ciężkości: otoczka punktów i udziały mas sumują się do 1', () => { expect(W.otoczka_i_masy.dobre).toEqual([0, 0, 0]); });
   test('podgląd: HTML ma po jednej komórce na klatkę kluczową w obu widokach (= klatki_u), wiersz bez zawijania, skala maleje przy wielu klatkach', () => { expect(W.podglad_html.dobre).toEqual([0, 0, 0, 0, 0]); });
   test('naprawa luki „skrajna”: przy remisie odległości bark–kostka oceniana jest także późniejsza klatka', () => { expect(W.skrajna_remis.dobre).toEqual([]); expect(W.skrajna_remis.zle.length).toBeGreaterThan(0); });
