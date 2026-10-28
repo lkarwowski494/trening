@@ -6210,9 +6210,9 @@
             "min_deg": 10,
             "max_deg": 75
           },
-          "zrodlo": "sled.lean, Sled Push: ISSA (hokej, „…maintain a slight forward lean.”), BarBend, The Gym Group; Sled Drag (Harness): ACE ProSource 02.2014 Strongman Training („forward-leaning body position”), Breaking Muscle, Motra, FitMetrics (patrz data/zrodla/cues-zestawy.json, pole cwiczenia)",
+          "zrodlo": "sled.lean, Sled Push: ISSA (hokej, „…maintain a slight forward lean.”), BarBend („Maintain a forward lean…”); Sled Drag (Harness): ACE ProSource 02.2014 Strongman Training („forward-leaning body position”), Breaking Muscle („Aggressively lean away from the sled…”); pomocniczo (szczebel 5, nie liczą się do minimum): The Gym Group, Motra, FitMetrics (patrz data/zrodla/cues-zestawy.json, pola cwiczenia i pomocnicze). Kąt liczony od pionu (0° = pion, 90° = poziomo): przedział 10°–75° nie obejmuje pozycji z BarBend („spine parallel to the ground”, ok. 90°) — progu nie zmieniono bez źródła (otwarte, 28.10.2026)",
           "liczba": "konwencja (pochylenie w przód 10°–75°)",
-          "pewnosc": "ustalone (kierunek)"
+          "pewnosc": "ustalone (kierunek: pochylenie w przód, oba ćwiczenia; stopień — konwencja)"
         },
         "sanki_plecy": {
           "typ": "kregoslup_neutralny",
@@ -6222,9 +6222,9 @@
             "min_deg": -20,
             "max_deg": 10
           },
-          "zrodlo": "Sled Push: The Gym Group („Keep your chest up, spine neutral, and core braced.”), BarBend („…your lower back is flat.”); Sled Drag (Harness): Motra („Lean forward into the harness or grips with neutral spine.”), FitMetrics („…core engaged.”); analogia: ACE ProSource 02.2014 („stiff, stable spine”, talerz po podłodze) — odczytane 28.10.2026, szczebel źródeł do potwierdzenia przez badacza",
+          "zrodlo": "Sled Push: BarBend („…your lower back is flat.”, Sled Push, krok 2) — jedno źródło; Sled Drag (Harness): brak źródła szczebla 4 o kręgosłupie przy ciągnięciu w uprzęży — uproszczenie (analogia z pchania; ACE ProSource 02.2014 „stiff, stable spine” dotyczy pchania talerza po podłodze, nie ciągnięcia sanek); pomocniczo (szczebel 5, nie liczą się do minimum): The Gym Group (pchanie), Motra („neutral spine”, ciągnięcie) — rozstrzygnięte 28.10.2026",
           "liczba": "uproszczenie (jak hinge)",
-          "pewnosc": "ustalone (kierunek: plecy płaskie / kręgosłup neutralny); liczba — uproszczenie"
+          "pewnosc": "Sled Push: jedno źródło (kierunek: plecy płaskie); Sled Drag (Harness): uproszczenie (analogia z pchania); liczba — uproszczenie"
         },
         "rzut_wyprost": {
           "typ": "potrojny_wyprost",

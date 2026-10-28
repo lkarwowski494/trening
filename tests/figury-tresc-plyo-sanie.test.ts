@@ -70,10 +70,29 @@ describe('Z5: sled.lean i sled.legs — podstawy per ćwiczenie (pchanie i ciąg
   test('claim wpisu mówi o pchaniu i o ciągnięciu (nie tylko o pchaniu); claimy per ćwiczenie nazywają właściwy ruch', () => {
     for (const id of ['sled.lean', 'sled.legs']) { expect(W[id].claim).toMatch(/pch/i); expect(W[id].claim).toMatch(/ci[aą]gni/i); expect(W[id].cwiczenia!['Sled Push'].claim).toMatch(/pch/i); expect(W[id].cwiczenia!['Sled Drag (Harness)'].claim).toMatch(/ci[aą]gni/i); }
   });
-  test('reguła sensu sanki_plecy: oznaczenie pewności zgodne z liczbą źródeł o ćwiczeniach (nie „jedno źródło”, gdy oba ćwiczenia mają ≥ 2)', () => {
+  test('reguła sensu sanki_plecy: Sled Push = jedno źródło (BarBend), Sled Drag (Harness) = uproszczenie (analogia z pchania); nie „ustalone”', () => {
     const r = json('data/zrodla/figury-sens.json').rodziny.sled_throw.reguly.sanki_plecy as { pewnosc: string; zrodlo: string };
-    const oba = CW.every(k => W['sled.lean'].cwiczenia![k].pewnosc === 'ustalone');
-    expect(r.pewnosc === 'jedno źródło').toBe(!oba);
-    if (oba) expect(r.zrodlo).toMatch(/Sled Drag/);
+    expect(r.pewnosc).not.toMatch(/^ustalone/);
+    expect(r.pewnosc).toMatch(/Sled Push: jedno źródło/);
+    expect(r.pewnosc).toMatch(/Sled Drag \(Harness\): uproszczenie \(analogia/);
+    expect(r.zrodlo).toMatch(/Sled Drag/);
+  });
+  test('28.10.2026: sled.lean bez „lekko” i bez „tułów sztywny” (sprzeczność źródeł co do stopnia; sztywny tułów bez 2 źródeł szczebla 4) — PL, EN, claim', () => {
+    const pl = json('lib/cues/text/pl.json')['sled.lean'] as string, en = json('lib/cues/text/en.json')['sled.lean'] as string;
+    expect(pl).not.toMatch(/lekk|sztywn|napi/i); expect(en).not.toMatch(/slight|tight|brace|stiff|rigid/i);
+    expect(pl).toMatch(/Pochyl się w przód/); expect(en).toMatch(/Lean forward/);
+    const w = W['sled.lean']; for (const t of [w.claim, w.cwiczenia!['Sled Push'].claim, w.cwiczenia!['Sled Drag (Harness)'].claim]) expect(t).not.toMatch(/lekk|sztywn|płask|kręgosłup|rdzeń|brzuch/i);
+  });
+  test('28.10.2026: szczebel 5 (The Gym Group, Motra, FitMetrics) tylko jako „pomocnicze”, nigdy w src/analogia; ACE „stiff, stable spine” nie opisuje ciągnięcia', () => {
+    const slabe = /thegymgroup\.com|motra\.com|fitmetrics\.ch/;
+    for (const id of ['sled.lean', 'sled.legs']) {
+      const w = W[id] as unknown as { src: [string, string][]; uwaga: string; cwiczenia: Record<string, Per & { pomocnicze?: [string, string][] }> };
+      for (const [u] of w.src) expect(u).not.toMatch(slabe);
+      for (const k of CW) { const p = w.cwiczenia[k]; for (const [u] of [...p.src, ...(p.analogia ?? [])]) expect([id, k, u.match(slabe)]).toEqual([id, k, null]); for (const [u] of p.pomocnicze ?? []) expect(u).toMatch(slabe); }
+      expect(w.uwaga).toMatch(/rozstrzygnięte 28\.10\.2026/); expect(w.uwaga).not.toMatch(/do potwierdzenia przez badacza/);
+    }
+    const txt = JSON.stringify([W['sled.lean'], json('data/zrodla/figury-sens.json').rodziny.sled_throw.reguly]);
+    expect(txt).not.toMatch(/ciągnięcie sanek: „forward-leaning body position”; „stiff, stable spine”/);
+    expect(txt).not.toMatch(/ciągnięcie[^"]{0,40}stiff, stable spine/);
   });
 });
