@@ -42,7 +42,7 @@ function seatedHamstring(cw) {
 /** Butterfly Stretch: siad, podeszwy stóp razem, kolana na boki, tułów pochylony do przodu, dłonie na stopach. */
 function butterfly(cw) {
   const m = [0, Y, 0]; const p = 32; const T = sonda(m, p);
-  const nogi = { R: { a: [34, kostkaY(-12), 3.5], pod: -12, rot: 20, pole: [0, 0.15, 1] }, L: { a: [34, kostkaY(-12), -3.5], pod: -12, rot: 20, pole: [0, 0.15, -1] } };
+  const nogi = { R: { a: [34, kostkaY(-12), 5.1], pod: -12, rot: 20, pole: [0, 0.15, 1] }, L: { a: [34, kostkaY(-12), -5.1], pod: -12, rot: 20, pole: [0, 0.15, -1] } };
   const rece = rekiDo(T.sh, { R: [36, 12, 5], L: [36, 12, -5] }, { R: [0, -0.3, 1], L: [0, -0.3, -1] });
   return statyczna(RODZINA, cw, SP, (u) => ramka(u, { m, p, head: 25, nogi, rece }));
 }

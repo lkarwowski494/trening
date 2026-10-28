@@ -42,6 +42,7 @@ const minKolano = (d: PoseData): number => Math.min(...GRID.flatMap(u => { const
 /** Rodziny partii 1 (poprawki-p1 / jakosc-r2) z jeszcze niepoprawionym kolanem w leżeniu przodem: poza zakresem tej gałęzi (nie regenerowane tutaj). Wpis nie jest wymagany: gdy poza naprawiono, test nadal przechodzi. */
 const OCZEKUJACE_KOLANO = new Set([
   'core_floor/Toe Touchers', 'curl/Spider Curl', 'curl/Spider Curl (sztanga)', 'delt_raise/Front Incline Dumbbell Raise', 'delt_raise/Straight Raises on Incline Bench' /* przeprost ok. 19 cm w leżeniu przodem na ławce skośnej; ujawnione przy scaleniu G6b 28.10.2026, ta sama klasa co pozostałe leżenie przodem; backlog 1.1 */, 'pushup_plank/Decline Push Up',
+  'mobility_floor/Side-Lying Quad Stretch' /* leżenie na boku: przód ciała jest prawie prostopadły do płaszczyzny rysunku, więc miara 2D „kolano przed linią biodro–kostka” nie rozstrzyga (górna noga: pięta do pośladka, kolano ≈ 140° zgięte anatomicznie, ACE #149); nie defekt pozy — backlog: miara 3D */,
   'rotator_cuff/Reverse Flyes With External Rotation', 'row/Seal Row (sztanga)', 'row/Lying T-Bar Row', 'row/Chest Supported Row', 'shrug/Middle Back Shrug',
 ]);
 const PRZEPROST_TOL = -1; /* cm: reguła `kolano_w_przod` z recenzji (≥ −1 cm) */
@@ -180,11 +181,11 @@ function odcisk(d: PoseData): { svg: string; raw: string } {
 const ZMIENIONE = new Set([
   ...STOPIEN.map(c => `calf_raise/${c}`), ...BULGARSKIE.map(c => `lunge/${c}`), ...MASZYNY.map(c => `leg_machine/${c}`),
   'back_extension/Back Extension', 'back_extension/Reverse Hyperextension', 'back_extension/Lower Back Curl', 'glute_floor/Prone Flutter Kicks', 'glute_floor/Machine Glute Kickback', 'leg_isolation/Seated Band Hamstring Curl',
-  'leg_machine/Leg Press', 'leg_machine/Belt Squat Machine', 'leg_machine/Single Leg Press' /* runda 5: platforma pod podeszwą */, /* runda 3 (p2-r3): wiersz „kolana do środka” (B1, B2) */
+  'leg_machine/Leg Press', 'leg_machine/Belt Squat Machine', 'leg_machine/Single Leg Press' /* runda 5: platforma pod podeszwą */, 'glute_floor/Clamshell' /* backlog figur 28.10.2026: leżenie na lewym boku jak Side-Lying Quad (R9 „ciało leży” jako bramka wszystkich rodzin) */, /* runda 3 (p2-r3): wiersz „kolana do środka” (B1, B2) */
 ]);
 describe('7. pozostałe pozy sześciu rodzin bez zmian (odciski SVG i kształtów)', () => {
   const baza = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'figury-p2-baza.json'), 'utf8')) as Record<string, { svg: string; raw: string }>;
-  test('baza obejmuje 60 póz tych rodzin (po wyjątku Calf Press, 28.10.2026: 61 → 60); zmieniane to 17 ćwiczeń z recenzji (+ Lower Back Curl, Prone Flutter Kicks z niezmiennika kolana; + Leg Press i Belt Squat Machine z rundy 3; + Single Leg Press z rundy 5: platforma pod podeszwą)', () => { expect(Object.keys(baza)).toHaveLength(60); for (const k of ZMIENIONE) expect(baza[k]).toBeDefined(); expect(ZMIENIONE.size).toBe(22); });
+  test('baza obejmuje 60 póz tych rodzin (po wyjątku Calf Press, 28.10.2026: 61 → 60); zmieniane to 17 ćwiczeń z recenzji (+ Lower Back Curl, Prone Flutter Kicks z niezmiennika kolana; + Leg Press i Belt Squat Machine z rundy 3; + Single Leg Press z rundy 5: platforma pod podeszwą; + Clamshell z backlogu figur: leżenie na boku)', () => { expect(Object.keys(baza)).toHaveLength(60); for (const k of ZMIENIONE) expect(baza[k]).toBeDefined(); expect(ZMIENIONE.size).toBe(23); });
   test.each(Object.keys(baza).filter(k => !ZMIENIONE.has(k)))('%s: rysunek bez zmian', klucz => { const [r, ...reszta] = klucz.split('/'); expect([klucz, odcisk(poza(r, reszta.join('/')))]).toEqual([klucz, baza[klucz]]); });
   test.each([...ZMIENIONE])('%s: rysunek zmieniony względem bazy (poprawka jest widoczna)', klucz => { const [r, ...reszta] = klucz.split('/'); expect(odcisk(poza(r, reszta.join('/')))).not.toEqual(baza[klucz]); });
 });
