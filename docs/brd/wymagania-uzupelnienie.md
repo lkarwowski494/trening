@@ -166,7 +166,7 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
 ### BR-ZAK-004: Okno „Uczciwe zasady” po pierwszym treningu na żywo
 - Przepływ: PR-11
 - Dowód potrzeby: ZP-06; D-103 (decyzja właściciela 2026-10-25, teksty zatwierdzone 2026-10-25); docs/monetyzacja.md; kod `components/FairRulesSheet.tsx`, `lib/fairrules.ts`
-- Test: `tests/monetyzacja-ui.test.tsx`, `.maestro/56-uczciwe-zasady.yaml`
+- Test: `tests/monetyzacja-ui.test.tsx`, `.maestro/56-uczciwe-zasady.yaml`, `tests/m1-046-monetyzacja-stany.test.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Pierwszy trening na żywo w stanie darmowym
     - Zakładając, że zakupy są włączone, użytkownik jest na darmowym poziomie, a okna jeszcze nie widział
@@ -180,6 +180,10 @@ Funkcje, które działały w kodzie bez wymagania BR (audyt 1.0 z 27.10.2026: 01
     - Zakładając, że użytkownik ma Pro, stan dostępu jest niepewny bez zapamiętanego wyniku albo zapisano trening wstecz
     - Gdy otwiera się podsumowanie
     - Wtedy okna nie ma
+  - Scenariusz: Były subskrybent (M1-audytor-generalny-046)
+    - Zakładając, że użytkownik miał pełny dostęp, który się skończył (lista sklepu albo zapamiętany koniec dostępu)
+    - Gdy kończy kolejny trening na żywo
+    - Wtedy okna „Pierwszy trening za Tobą!” nie ma
   - Scenariusz: Przejście do planów
     - Zakładając, że okno jest otwarte
     - Gdy użytkownik stuka „Zobacz plany Pro ›”

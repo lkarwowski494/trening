@@ -57,6 +57,8 @@ export default function PaywallScreen() {
   /* M1-audytor-generalny-001 (docs/27 3.11): subskrypcja, za którą osoba płaci sama, odnawia się dalej po zakupie dożywotniego — uwaga przed arkuszem Apple, nie dopiero po zakupie;
    * także z kodu promocyjnego (po promocji odnawia się płatnie; decyzja 5a, 28.10.2026), bez Chmury rodzinnej (płaci organizator) */
   const paysSub = (view.entitlements ?? []).some(e => e.plan !== 'lifetime' && e.source !== 'family' && entitlementActive(e, Date.now()));
+  /* M1-046 (02-monetyzacja-601): pełny dostęp z pamięci, a plan nieznany (sklep nie odpowiada) — bez oferty dla darmowych: wstępu, listy planów i stopki */
+  const knownFull = view.level === 'full' && !view.active;
   const buy = async () => {
     if (!chosen || busy || ownedPlans.has(chosen.plan)) return; setBusy(true); setNote(null);
     try {
@@ -75,7 +77,7 @@ export default function PaywallScreen() {
   const fake = isFakeStoreBuild() ? (getStoreAdapter() as unknown as FakeStoreControl) : null;
   return (
     <Screen><Stack.Screen options={headerOpts} /><ScrollView ref={scrollRef} testID="paywall-scroll" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
-      {view.active ? null : reason === 'limit' && view.decision.resetsAt ? <View testID="paywall-limit" style={{ marginTop: 8, marginBottom: 12, gap: 6 }}>{/* wariant B (decyzja właściciela 22.10.2026): pochwała, jawny limit, kim jest autor, kiedy wracają dni */}
+      {view.active || knownFull ? null : reason === 'limit' && view.decision.resetsAt ? <View testID="paywall-limit" style={{ marginTop: 8, marginBottom: 12, gap: 6 }}>{/* wariant B (decyzja właściciela 22.10.2026): pochwała, jawny limit, kim jest autor, kiedy wracają dni */}
         <Text accessibilityRole="header" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{t('Jesteśmy z Ciebie dumni!')}</Text>
         <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold }}>{t('W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Text>
         <Muted>{t('{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.', { app: appName(), date: fmtDate(nextMonthDay()) })}</Muted>
@@ -89,12 +91,12 @@ export default function PaywallScreen() {
         {lifetime ? <Muted>{t('Masz dostęp na zawsze')}</Muted> : null}
         {view.active.source === 'family' ? <Muted>{t('Dostęp z Chmury rodzinnej')}</Muted> : null}
         {!lifetime && view.active.expiresAt != null ? <Muted>{view.active.source === 'code' ? t('Dostęp z kodu do {date}', { date: fmtDate(view.active.expiresAt) }) : t('Dostęp do {date}', { date: fmtDate(view.active.expiresAt) })}</Muted> : null}
-        {lifetime && subActive ? <Muted>{t('Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płacić podwójnie.')}</Muted> : null}
+        {lifetime && paysSub /* M1-046 (02-monetyzacja-602): bez rady „anuluj” przy subskrypcji z Chmury rodzinnej */ ? <Muted>{t('Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płacić podwójnie.')}</Muted> : null}
         {!lifetime || subActive ? <Btn small testID="paywall-manage" title={t('Zarządzaj subskrypcją')} style={{ alignSelf: 'flex-start', marginTop: 6 }} onPress={() => { void store(() => getStoreAdapter().manageSubscriptions().then(() => refreshEntitlements())); /* M1-audytor-generalny-016: zmiana w arkuszu widoczna od razu */ }} /> : null}
       </View> : null}
 
       {!lifetime && view.active ? <Btn small testID="paywall-change-plan" expanded={plansOpen} title={t('Zmień plan')} style={{ alignSelf: 'flex-start', marginBottom: 8 }} onPress={() => setPlansOpen(o => !o)} /> : null}
-      {!lifetime && (!view.active || plansOpen) ? <>
+      {!lifetime && !knownFull && (!view.active || plansOpen) ? <>
         {products === 'loading' ? <View testID="paywall-loading" accessible accessibilityLabel={t('Ładowanie cen…')} accessibilityLanguage={lang()} style={{ paddingVertical: 20, alignItems: 'center', gap: 8 }}><ActivityIndicator color={th.accent} /><Muted>{t('Ładowanie cen…')}</Muted></View> : null}
         {products === 'unavailable' ? <View testID="paywall-offline" style={{ gap: 8, paddingVertical: 8 }}><Muted>{t('Ceny są niedostępne bez połączenia z internetem.')}</Muted><Btn small title={t('Spróbuj ponownie')} style={{ alignSelf: 'flex-start' }} onPress={load} /></View> : null}
         {Array.isArray(products) && !products.length ? <View testID="paywall-empty" style={{ gap: 8, paddingVertical: 8 }}><Muted>{t('Sklep chwilowo niedostępny')}</Muted><Btn small title={t('Spróbuj ponownie')} style={{ alignSelf: 'flex-start' }} onPress={load} /></View> : null}
@@ -115,7 +117,7 @@ export default function PaywallScreen() {
       </> : null}
 
       {note ? <Text testID="paywall-note" accessibilityLanguage={lang()} style={{ color: th.text, marginTop: 10 }}>{note}</Text> : null}
-      {view.active ? null : <Muted style={{ ...font('footnote'), marginTop: 12 }}>{t('Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Muted>}
+      {view.active || knownFull ? null : <Muted style={{ ...font('footnote'), marginTop: 12 }}>{t('Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Muted>}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>
         <Btn small title={t('Przywróć zakupy')} onPress={() => { void restore(); }} />
         <Btn small title={t('Zrealizuj kod')} onPress={() => { void store(() => getStoreAdapter().redeemCode().then(() => refreshEntitlements())); }} />
