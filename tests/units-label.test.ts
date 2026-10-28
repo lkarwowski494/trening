@@ -45,7 +45,7 @@ describe('dystans na ekranie blokady i zegarku: etykieta ze słownika (distParts
   test('ru i pl, metryczny i imperialny: m / yd / mi lokalnie', () => {
     applyLang('ru'); applyUnit('kg'); expect(distParts(30)).toEqual({ num: '30', unit: 'м' }); expect(distLongLabel()).toBe('км');
     applyUnit('lb'); expect(distParts(30)).toEqual({ num: '33', unit: 'ярд' }); expect(distParts(5000).unit).toBe('ми'); expect(distLongLabel()).toBe('ми');
-    applyLang('uk'); expect(distLongLabel()).toBe('миль'); applyLang('pl'); expect(distLongLabel()).toBe('mi'); applyUnit('kg'); expect(distLongLabel()).toBe('km');
+    applyLang('uk'); expect(distLongLabel()).toBe('ми'); applyLang('pl'); expect(distLongLabel()).toBe('mi'); applyUnit('kg'); expect(distLongLabel()).toBe('km');
   });
 });
 

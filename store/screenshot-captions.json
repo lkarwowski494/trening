@@ -94,7 +94,7 @@
       "import": "Hozza át előzményeit más naplóból"
     },
     "ro": {
-      "trening": "Notezi rapid seriile, și de pe ceas",
+      "trening": "Notați rapid seriile, și de pe ceas",
       "postepy-cwiczenia": "Fiecare record și progres pe grafic",
       "straznik": "Paznicul de progres urmărește săptămâna",
       "plan": "Plan săptămânal — singur sau cu noi",
@@ -127,7 +127,7 @@
       "import": "Перенесіть історію з іншого щоденника"
     },
     "es": {
-      "trening": "Anota series rápido, también del reloj",
+      "trening": "Anota series rápido, también en el reloj",
       "postepy-cwiczenia": "Cada récord y progreso en un gráfico",
       "straznik": "El Guardián de progreso vigila tu semana",
       "plan": "Plan semanal, solo o con nuestra ayuda",
@@ -138,7 +138,7 @@
       "import": "Trae tu historial desde otro registro"
     },
     "es-419": {
-      "trening": "Anota series rápido, también del reloj",
+      "trening": "Anota series rápido, también en el reloj",
       "postepy-cwiczenia": "Cada récord y progreso en un gráfico",
       "straznik": "El Guardián de progreso vigila tu semana",
       "plan": "Plan semanal, solo o con nuestra ayuda",
@@ -171,7 +171,7 @@
       "import": "Traga seu histórico de outro diário"
     },
     "de": {
-      "trening": "Sätze schnell eintragen, auch per Uhr",
+      "trening": "Sätze schnell eintragen, auch an der Uhr",
       "postepy-cwiczenia": "Jeder Rekord und Fortschritt im Diagramm",
       "straznik": "Fortschrittswächter für deine Woche",
       "plan": "Wochenplan — selbst oder mit Hilfe",
@@ -182,7 +182,7 @@
       "import": "Verlauf aus einer anderen App übernehmen"
     },
     "fr": {
-      "trening": "Notez vos séries vite, même au poignet",
+      "trening": "Notez vite vos séries, même au poignet",
       "postepy-cwiczenia": "Records et progrès sur un graphique",
       "straznik": "Le Gardien de progrès suit votre semaine",
       "plan": "Plan de la semaine, seul ou aidé",
@@ -303,7 +303,7 @@
       "import": "Bawa sejarah anda dari log lain"
     },
     "vi": {
-      "trening": "Ghi hiệp tập nhanh, cả từ đồng hồ",
+      "trening": "Ghi hiệp tập nhanh, cả trên đồng hồ",
       "postepy-cwiczenia": "Mọi kỷ lục và tiến bộ trên biểu đồ",
       "straznik": "Giám sát tiến bộ cho tuần của bạn",
       "plan": "Kế hoạch tuần, tự làm hoặc nhờ trợ giúp",
@@ -325,7 +325,7 @@
       "import": "Перенесите историю из другого дневника"
     },
     "ja": {
-      "trening": "セットをすばやく記録、腕時計からも",
+      "trening": "セットをすばやく記録、ウォッチからも",
       "postepy-cwiczenia": "自己ベストも進捗もグラフで",
       "straznik": "進捗ガードが1週間を見守る",
       "plan": "週間プランは自分でも、おまかせでも",
@@ -336,7 +336,7 @@
       "import": "他の記録アプリから履歴を移行"
     },
     "ko": {
-      "trening": "세트를 빠르게 기록, 시계에서도",
+      "trening": "세트를 빠르게 기록, 워치에서도",
       "postepy-cwiczenia": "모든 기록과 성장을 그래프로",
       "straznik": "진행 지킴이가 한 주를 지켜봐요",
       "plan": "주간 플랜, 직접 또는 도움받아",
@@ -347,7 +347,7 @@
       "import": "다른 앱의 운동 기록 가져오기"
     },
     "zh-Hant": {
-      "trening": "快速記錄每組，手錶上也能記",
+      "trening": "快速記錄每一組，手錶也能記",
       "postepy-cwiczenia": "每項紀錄與進步都有圖表",
       "straznik": "進步守護者幫你看顧每週",
       "plan": "每週計畫，自己排或由我們協助",
