@@ -213,12 +213,21 @@ describe('F1 (badacz 28.10.2026, Decline Close-Grip Bench To Skull Crusher): dwi
   });
 });
 
+describe('recenzja r2 28.10.2026 — R2-1 i R2-7: zestawy kart', () => {
+  test('R2-1: zestaw Skull Crusher bez skull.upperArm i skull.depth (decyzja właściciela 28.10.2026 „1a”, commit f67c438: skull.upperArm przeczyło części wyciskania); zostaje dcgsk.elbows i błąd mis.jerk', () => {
+    const sk = cueSelection('Decline Close-Grip Bench To Skull Crusher'); expect(sk.ok).not.toContain('skull.upperArm'); expect(sk.ok).not.toContain('skull.depth'); expect(sk.ok).toEqual(['dcgsk.elbows']); expect(sk.err).toEqual(['mis.jerk']);
+  });
+  test('R2-7: zestaw JM Press bez bp.control („bez odbijania od klatki” — gryf nie dotyka klatki); zostaje bp.contact i jm.elbows', () => {
+    const jm = cueSelection('JM Press'); expect(jm.ok).not.toContain('bp.control'); expect(jm.ok).toEqual(['bp.contact', 'jm.elbows']);
+  });
+});
+
 describe('karty (badacz 28.10.2026): JM Press i Decline CG Skull Crusher — własne wskazówki o łokciach zamiast „blisko tułowia” (cgbp.elbows przeczyło rysunkowi)', () => {
   const PL: Record<string, string> = require('@/lib/cues/text/pl.json');
   const OGOLNE = require('@/data/zrodla/wskazowki-ogolne.json').wskazowki as Record<string, { zrodla: { adres: string; miejsce: string }[] }>;
   test('JM Press: jm.elbows, bez cgbp.elbows; Skull Crusher: dcgsk.elbows + skull.upperArm + skull.depth, bez cgbp.elbows; wąskie wyciskanie nadal z cgbp.elbows', () => {
     const jm = cueSelection('JM Press'); expect([jm.ok.includes('jm.elbows'), jm.ok.includes('cgbp.elbows')]).toEqual([true, false]);
-    const sk = cueSelection('Decline Close-Grip Bench To Skull Crusher'); expect(sk.ok).toEqual(['dcgsk.elbows', 'skull.upperArm', 'skull.depth']);
+    const sk = cueSelection('Decline Close-Grip Bench To Skull Crusher'); expect(sk.ok).toEqual(['dcgsk.elbows']);
     expect(cueSelection('Close-Grip EZ-Bar Press').ok).toContain('cgbp.elbows');
   });
   test('teksty PL: jm.elbows mówi o łokciach wysoko i pod skosem (bez liczby), dcgsk.elbows o fazach wyciskania i prostowania; bez nazw źródeł', () => {
