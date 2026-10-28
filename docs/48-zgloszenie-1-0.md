@@ -8,6 +8,21 @@ ten plik je porządkuje na dzień zgłoszenia i uzupełnia o pozycje, których t
 Wszystkie adresy Apple w tym dokumencie zostały **przeczytane 25.10.2026** (zasada L-028: krok dla właściciela ma źródło sprawdzone u źródła, nie z pamięci).
 Gdzie dokumentacja Apple czegoś nie mówi, jest to napisane wprost i oznaczone **[OTWARTE]**.
 
+## Droga do wydania — w skrócie (właściciel, 28.10.2026; aktualizuje agent przy każdej zmianie etapu)
+
+**Teraz: etap 1** (stan 28.10.2026 wieczór). Szczegóły kroków i ich stan: tabele Z-01…Z-37 niżej.
+
+| Etap | Co się dzieje | Kto | Kroki |
+|---|---|---|---|
+| 1 | Naprawy po audycie: pętla 2 M2 i ucinanie dużego tekstu | agenci | Z-01, Z-02 |
+| 2 | Zgoda na scalenie poprawek do `main` | właściciel (jedno słowo) | Z-01 |
+| 3 | Ponowny audyt, pełne testy i pełny katalog E2E; poważne znalezisko → powrót do etapu 1 | agenci + CI | Z-03…Z-06, Z-10…Z-10b |
+| 4 | Build kandydata na TestFlight (ok. 3 h) | właściciel zatwierdza `release` | Z-07 |
+| 5 | Telefon: sprawdzenie poprawek, potem zakupy testowe (ok. 1 h, krok po kroku) | właściciel | Z-08, Z-09 |
+| 6 | App Store Connect: build do wersji, lokalizacje zakupów, „Submit for Review” (ok. 1 h, krok po kroku) | właściciel + agent | Z-14…Z-29 |
+| 7 | Recenzja Apple (czas **[OTWARTE]**) | Apple | Z-30 |
+| 8 | Po akceptacji: krótki test na telefonie i „Release this version” | właściciel | Z-31…Z-32 |
+
 ## Decyzje właściciela (25.10.2026, po przeczytaniu szkicu)
 
 | # | Decyzja | Skutek |
