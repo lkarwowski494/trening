@@ -337,12 +337,12 @@
   },
   "Reverse Lunge": {
    "rodzina": "lunge",
-   "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "werdykt": "ukryta",
+   "data": "2026-10-28",
+   "kto": "06-tresci — recenzja niezależna figur 3a i pełna (audytor, 28.10.2026): pomiary póz pośrednich, arkusze PNG; decyzja właściciela 28.10.2026 „Reverse Lunge ukryć w 1.0”",
    "sha": "d461a393d415",
-   "uwagi": "Ruch i karta zgodne. Krok w tył (pozycja w trakcie), potem zejście do tylnego kolana tuż nad podłogą, tułów pionowo. Kosmetyka (backlog): przednia stopa przesuwa się o 3,1 j. przy unoszeniu figury. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji). Recenzja niezależna 28.10.2026 (pełna): WYSOKIE — biodro opada ok. 20 j., gdy tylna stopa jest w powietrzu; środek ciężkości do 8,7 j. za piętą jedynej podpory; przednia stopa unosi się do 3,1 j., palce tylnej jadą po podłodze 22 j. Poprawka wymaga czwartej pozycji w silniku v1 (kolano ugięte w połowie zamachu); próby na 3 pozycjach: tests/figury-podparcie.test.ts (znany wyjątek).",
-   "stan": "wada WYSOKIE z recenzji niezależnej 28.10.2026 niepoprawiona — silnik v1 (3 pozycje) nie odda ruchu; decyzja koordynatora/właściciela"
+   "wada": "Biodro opada ok. 20 j., gdy tylna stopa jest w powietrzu; środek ciężkości do 8,7 j. za piętą jedynej podpory; przednia stopa unosi się do 3,1 j., palce tylnej jadą po podłodze 22 j. Limit 3 pozycji silnika v1 — łuk stopy w zamachu w tył nie do oddania (próby na 3 pozycjach: tests/figury-podparcie.test.ts).",
+   "poprawka": "Czwarta pozycja w silniku v1 (kolano ugięte w połowie zamachu), razem z Push Press i krokiem drugą nogą w Walking Lunges — wersja 1.0.1 (backlog docs/21). Do tego czasu bez rysunku, wskazówki zostają."
   },
   "Bulgarian Split Squat (hantle)": {
    "rodzina": "lunge",

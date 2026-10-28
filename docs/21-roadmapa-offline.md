@@ -145,6 +145,9 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 ### Backlog 1.0.1 — przekład (recenzja Z-02, 27.10.2026)
 - Poprawki nieblokujące z recenzji lokalizacji (`docs/przekazanie/notatki/audyt-1-0/Z02-recenzja-lokalizacji.md` na gałęzi `przekazanie-konta`): de „Apple-Account” → „Apple Account” (do sprawdzenia przez native speakera); el „Το Pro αίρει το όριο” → „Με το Pro δεν υπάρχει όριο” oraz okno zgody Zdrowia (NSHealth*) na „σας”; lt „nepadarysi” → „nepadarysite” i „pakeistum” → „pakeistumėte”; cs/sk „máš” → „máte” (2 klucze w każdym języku); id zgoda Zdrowia zegarka „perangkatmu” → „perangkat Anda”; słownik: es-419 „trening” → „Entrenamiento”, zakazane „entreno” (najpierw sprawdzić 4 wystąpienia; wpis z testem).
 
+### Backlog 1.0.1 — figury: czwarta pozycja w silniku v1 (decyzja właściciela 28.10.2026)
+- Rysunki ukryte w 1.0 (wskazówki tekstowe zostają), naprawa przez czwartą pozycję w silniku v1 (typ `FrameName`, `FRAME_ORDER` w `scripts/figures/gen.mjs`, podpisy klatek, układ statycznych klatek w `ExerciseFigure.tsx`, testy i selektory Maestro `exercise-figure-frame-*`): **Push Press**, **Reverse Lunge** (zamach tylnej stopy łukiem w powietrzu; reguła podparcia w `tests/figury-podparcie.test.ts` pilnuje, że wraca dopiero po poprawce), **krok drugą nogą w Walking Lunges** (dziś pętla wraca do pozycji wyjściowej). Każda po niezależnej recenzji (bramka 4).
+
 ### Backlog 1.0.1 — wygląd (plan napraw M2, 28.10.2026)
 - **Migracja literałów `fontSize`/`borderRadius` na tokeny** (M1-audytor-generalny-030; 08-programista-006, 04-studio-projektowe-008): `components/Dashboard.tsx`, `components/GuardSection.tsx`, `ProgressBars`, `PeriodSummary`, `RecordsCard`, `app/plan.tsx` i stary krój `F.heavy` — w 1.0.1 z porównaniem zrzutów (`docs/design/wzorce-zrzuty/`), nie przed 1.0 (zamrożenie zakresu, ryzyko regresji układu); zapadka `tests/token-baseline.json` / `tests/m3-token-guard.test.ts` pilnuje, żeby liczba nie rosła.
 

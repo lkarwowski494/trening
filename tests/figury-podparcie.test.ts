@@ -10,6 +10,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { resolveFigure, framePoints, poseBetween, type FigDef, type Figure, type Points } from '../lib/figures/geom';
+import { FIG_DATA } from '../lib/figures';
 import { LIM, contacts, base, steppingFeet, podparcie, podparcieMiary, pompki, jestPompka, penetration, surface, transitions } from './helpers/figury-podparcie';
 
 const SRC: { exercises: Record<string, FigDef> } = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/zrodla/figures.json'), 'utf8'));
@@ -17,14 +18,16 @@ const fig = (k: string, defs: Record<string, FigDef> = SRC.exercises): Figure =>
 const KEYS = Object.keys(SRC.exercises).filter(k => resolveFigure(SRC.exercises, k));
 const r1 = (v: number) => Math.round(v * 10) / 10;
 
-/** Pięć figur z recenzji niezależnej 28.10.2026: poprawione klatkami (Reverse Lunge — znany wyjątek, zob. niżej). */
+/** Figury z recenzji niezależnej 28.10.2026 poprawione klatkami (Reverse Lunge — ukryta, zob. niżej). */
 const POPRAWIONE = ['Lunges (hantle)', 'Walking Lunges', 'Step Up', 'Incline Push Up'];
 /**
- * Znany wyjątek: Reverse Lunge nie da się poprawnie oddać 3 pozycjami silnika v1 (wolna tylna stopa musi przejść łukiem w powietrzu — łuk wymaga pozycji
- * z ugiętym kolanem w połowie zamachu, a poza start → mid → end interpoluje kąty liniowo; każde ułożenie albo sunie palcami po podłodze, albo obniża biodro
- * przy stopie w powietrzu). Wymaga czwartej pozycji w silniku (opis kosztu: docs/18, wpis z 28.10.2026). Test niżej pilnuje, że wyjątek jest nadal prawdziwy.
+ * Reverse Lunge: nie da się poprawnie oddać 3 pozycjami silnika v1 (wolna tylna stopa musi przejść łukiem w powietrzu — łuk wymaga pozycji z ugiętym kolanem
+ * w połowie zamachu, a poza start → mid → end interpoluje kąty liniowo). Decyzja właściciela 28.10.2026: rysunek ukryty w 1.0 (wskazówki zostają), naprawa w 1.0.1
+ * przez czwartą pozycję w silniku v1. Figura łamiąca regułę MUSI być ukryta w docs/research/figury-recenzja.json — nie wraca do wyświetlania bez poprawki.
  */
-const WYJATKI = ['Reverse Lunge'];
+const UKRYTE_Z_WADA = ['Reverse Lunge'];
+const REC: { v1: Record<string, { werdykt: string; stan?: string }> } = JSON.parse(fs.readFileSync(path.join(__dirname, '../docs/research/figury-recenzja.json'), 'utf8'));
+
 
 describe('dane: zbiór figur objętych regułami', () => {
   test('wszystkie figury v1 ze źródeł (≥ 60); figury z krokiem (stopa krokowa) to wykroki, Step Up, Bird Dog, Mountain Climbers; pompki to Push Up i Incline Push Up', () => {
@@ -35,17 +38,18 @@ describe('dane: zbiór figur objętych regułami', () => {
 });
 
 describe('niezmiennik: podparcie na wszystkich figurach v1', () => {
-  test('żadna figura (poza znanym wyjątkiem) nie łamie reguły podparcia w żadnej pozie pośredniej (co 0,05)', () => {
+  test('żadna figura (poza ukrytą z wadą) nie łamie reguły podparcia w żadnej pozie pośredniej (co 0,05)', () => {
     const bad: string[] = [];
-    for (const k of KEYS) if (!WYJATKI.includes(k)) for (const m of podparcie(fig(k))) bad.push(`${k}: ${m}`);
+    for (const k of KEYS) if (!UKRYTE_Z_WADA.includes(k)) for (const m of podparcie(fig(k))) bad.push(`${k}: ${m}`);
     expect(bad).toEqual([]);
   });
-  test('znany wyjątek jest nadal prawdziwy: Reverse Lunge łamie regułę (po poprawce zdjąć z WYJATKI)', () => {
-    for (const k of WYJATKI) expect([k, podparcie(fig(k)).length > 0]).toEqual([k, true]);
+  test('ukryta figura nie wraca bez poprawki: Reverse Lunge nadal łamie regułę, ma werdykt „ukryta” i nie jest w pliku runtime; każda figura łamiąca regułę jest ukryta', () => {
+    for (const k of UKRYTE_Z_WADA) expect([k, podparcie(fig(k)).length > 0, REC.v1[k].werdykt, k in FIG_DATA.exercises, FIG_DATA.open.includes(k)]).toEqual([k, true, 'ukryta', false, true]);
+    for (const k of KEYS) if (podparcie(fig(k)).length > 0) expect([k, REC.v1[k]?.werdykt]).toEqual([k, 'ukryta']);
   });
   test('reguła łapie wyłącznie wykroki z recenzji: poza pięcioma figurami z recenzji nie łapie nic (Bird Dog, Mountain Climbers, Pistol Squat, martwe ciągi, wiosłowania, mostki — czyste)', () => {
     const hit = KEYS.filter(k => podparcie(fig(k)).length > 0);
-    expect(hit).toEqual(WYJATKI);
+    expect(hit).toEqual(UKRYTE_Z_WADA);
   });
   test('pompki (Push Up, Incline Push Up): bark ≤ 10 j. od dłoni w dolnej pozycji, brak przenikania w podłoże i blat', () => {
     for (const k of KEYS.filter(x => jestPompka(fig(x)))) expect([k, pompki(fig(k))]).toEqual([k, []]);
@@ -97,7 +101,7 @@ describe('regresja: wady z recenzji niezależnej 28.10.2026 odtworzone na danych
     expect(r1(behind)).toBeGreaterThan(17); /* było 19,5 j. za piętą */
     expect(podparcie(fig('Step Up'))).toEqual([]);
   });
-  test('Reverse Lunge — było i jest: biodro opada ok. 20 j. przy tylnej stopie w powietrzu (znany wyjątek, wymaga czwartej pozycji)', () => {
+  test('Reverse Lunge — było i jest: biodro opada ok. 20 j. przy tylnej stopie w powietrzu (ukryta, wymaga czwartej pozycji)', () => {
     const f = fig('Reverse Lunge'); const m = podparcieMiary(f);
     expect(m.some(x => /biodro opada o 2\d/.test(x.opis))).toBe(true);
   });
