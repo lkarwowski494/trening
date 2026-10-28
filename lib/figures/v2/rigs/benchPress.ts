@@ -35,6 +35,8 @@ export type BenchParams = {
   pins?: boolean;
   /** JM Press (badacz 28.10.2026, źródła szczebla 4): łokcie przez cały ruch wysoko, sztanga prawie pionowo ku szyi (na dole `xb` cm za osią barków ku głowie i `yb` cm nad nią; kąt ramienia ku stopom i zgięcie łokcia WYNIKAJĄ z tego), odwiedzenie z góry stałe (`abd` stopni od osi tułowia), przedramię opada ku szyi (zgięcie łokcia `flex` na dole, `inward` = zbieżność przedramion). Elbow z geometrii, nie z IK. */
   jm?: { xb: number; yb: number; abd: number; inward: number };
+  /** Decline Close-Grip Bench To Skull Crusher: dwie fazy w jednym powtórzeniu (badacz 28.10.2026). u ∈ [0; 0,3] wąskie wyciskanie w dół do klatki, [0,3; 0,6] z powrotem do góry, [0,6; 1] prostowanie leżąc: ramię nieruchome (`aHead` stopni ku głowie, łokcie na szerokość barków), przedramię opada ku głowie, sztanga nad głowę na wysokość `clear` cm nad czubkiem głowy. */
+  skull?: { aHead: number; clear: number; inward: number };
   /** Siła odchylenia łokci na boki (biegun IK): 0,45 domyślnie; wąski chwyt / JM — łokcie bliżej, ale poza obrysem ławki. */
   flare?: number;
   /** Przedramiona pionowo w płaszczyźnie czołowej (łokieć dokładnie pod dłonią) w całym ruchu: biegun łokcia liczony z geometrii (NSCA Basics 2012 s. 53–55: nadgarstki nad łokciami, przedramiona prostopadle do podłogi). Kąt odwiedzenia łokci wynika wtedy z szerokości chwytu i punktu dotyku. */
@@ -87,7 +89,22 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
   }
   /* maszyna Smitha: gryf jedzie po pionowej szynie — x stały (punkt dotyku), góra = wyprost ramion nad tym x (skan torów 28.10.2026, lekcja w docs/40; było: ukos 15–18 cm, szyna jechała z gryfem) */
   if (p.impl === 'smith') { const dxs = bottom[0] - shoulderC[0]; top = [bottom[0], shoulderC[1] + Math.sqrt(Math.max(1, L * L - dxs * dxs - dz0 * dz0)), 0]; }
-  const k = ease(u);
+  /* skull crusher: fazy 1 (wyciskanie, p1 0→1→0) i 2 (prostowanie, p2 0→1) z jednego u */
+  const p1 = !p.skull ? 0 : u < 0.3 ? ease(u / 0.3) : u < 0.6 ? 1 - ease((u - 0.3) / 0.3) : 0;
+  const p2 = !p.skull || u < 0.6 ? 0 : ease((u - 0.6) / 0.4);
+  const k = p.skull ? p1 : ease(u);
+  const skAt = (sg: 1 | -1) => {
+    const j = p.skull!; const sh: V3 = [shoulderC[0], shoulderC[1], sg * D.shHalf]; const Lf = D.farm + BODY.hand;
+    const headTop = trunkPoint(hipT, pitchT, Tl + BODY.headFromC7, 0, 0)[1] + BODY.headR + j.clear; /* czubek głowy + odstęp */
+    const yTop = sh[1] + D.uarm + Lf - 0.05; const ty = yTop + (headTop - yTop) * p2; const a = rad(j.aHead * p2);
+    const v: V3 = [-Math.sin(a), Math.cos(a), 0]; const elbow: V3 = [sh[0] + D.uarm * v[0], sh[1] + D.uarm * v[1], sh[2]];
+    const w0: V3 = [-Math.cos(a), -Math.sin(a), -sg * j.inward]; const wl = Math.hypot(w0[0], w0[1], w0[2]); const w: V3 = [w0[0] / wl, w0[1] / wl, w0[2] / wl]; const wv = w[0] * v[0] + w[1] * v[1] + w[2] * v[2];
+    const wp: V3 = [w[0] - wv * v[0], w[1] - wv * v[1], w[2] - wv * v[2]]; const wpl = Math.hypot(wp[0], wp[1], wp[2]); const wn: V3 = [wp[0] / wpl, wp[1] / wpl, wp[2] / wpl];
+    const at = (thDeg: number): V3 => { const th = rad(thDeg); return [elbow[0] + Lf * (Math.cos(th) * v[0] + Math.sin(th) * wn[0]), elbow[1] + Lf * (Math.cos(th) * v[1] + Math.sin(th) * wn[1]), elbow[2] + Lf * (Math.cos(th) * v[2] + Math.sin(th) * wn[2])]; };
+    const th = solveRoot(t => at(t)[1] - ty, 0, 149);
+    return { elbow, hand: at(th), sh };
+  };
+  const skR = p.skull && p2 > 0 ? skAt(1) : null, skL = p.skull && p2 > 0 ? skAt(-1) : null;
   /* JM Press: ramię i przedramię z kątów (łokieć nad barkiem, ramię ku stopom, przedramię ku szyi); dłoń wynika z łańcucha bark–łokieć–dłoń */
   const jmAt = (uu: number, sg: 1 | -1) => {
     const j = p.jm!; const kk = ease(uu); const al = rad(j.abd); const sh: V3 = [shoulderC[0], shoulderC[1], sg * D.shHalf];
@@ -106,13 +123,14 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
     return at(aFor(thDeg), thDeg);
   };
   if (p.jm) { top = [jmAt(0, 1).hand[0], jmAt(0, 1).hand[1], 0]; bottom = [jmAt(1, 1).hand[0], jmAt(1, 1).hand[1], 0]; }
-  const c: V3 = p.jm ? [jmAt(u, 1).hand[0], jmAt(u, 1).hand[1], 0] : [top[0] + (bottom[0] - top[0]) * k, top[1] + (bottom[1] - top[1]) * k, 0];
+  const c: V3 = skR ? [skR.hand[0], skR.hand[1], 0] : p.jm ? [jmAt(u, 1).hand[0], jmAt(u, 1).hand[1], 0] : [top[0] + (bottom[0] - top[0]) * k, top[1] + (bottom[1] - top[1]) * k, 0];
 
   /* biegun łokcia ku „łokciowi idealnemu” pod dłonią (przedramię pionowo): IK wybiera na okręgu dozwolonych łokci (długości segmentów stałe) punkt najbliższy pionowemu przedramieniu */
   const underGrip = underGripAt;
   const poleR: V3 = p.vert ? underGrip([c[0], c[1], g]) : elbowPole;
   const arms = { R: { grip: [c[0], c[1], g] as V3, elbowPole: poleR }, L: { grip: [c[0], c[1], -g] as V3, elbowPole: [poleR[0], poleR[1], -poleR[2]] as V3 } };
   if (p.jm) { const R = jmAt(u, 1), L = jmAt(u, -1); arms.R = { grip: R.hand, elbowPole: [R.elbow[0] - shoulderC[0], R.elbow[1] - shoulderC[1], R.elbow[2] - D.shHalf] }; arms.L = { grip: L.hand, elbowPole: [L.elbow[0] - shoulderC[0], L.elbow[1] - shoulderC[1], L.elbow[2] + D.shHalf] }; }
+  if (skR && skL) { arms.R = { grip: skR.hand, elbowPole: [skR.elbow[0] - skR.sh[0], skR.elbow[1] - skR.sh[1], 0.01] }; arms.L = { grip: skL.hand, elbowPole: [skL.elbow[0] - skL.sh[0], skL.elbow[1] - skL.sh[1], -0.01] }; }
   if (p.oneArm) arms.L = { grip: trunkPoint(hipT, pitchT, 26, 12.5, -7), elbowPole: [0, -0.2, -1] as V3 };
   /* nogi: stopy na podłodze (ujemna: na wałkach przy końcu siedziska) */
   const ankleX = decline ? hip[0] + 44 : hip[0] + BENCH.footBack; const ankleY = decline ? seatY + 6 : floorPress ? 2 + BODY.ankleH : BODY.ankleH;

@@ -12,5 +12,6 @@
  "Barbell Hack Squat|side": "stan zastany sprzed skanu torów 28.10.2026 (pozycja „do oceny”, pewność skanu < 80%) — poza zakresem naprawy przed 1.0 wybranym przez właściciela; ocena i naprawa w 1.0.1 (docs/21)",
  "Dumbbell Squat|side": "stan zastany sprzed skanu torów 28.10.2026 (pozycja „do oceny”, pewność skanu < 80%) — poza zakresem naprawy przed 1.0 wybranym przez właściciela; ocena i naprawa w 1.0.1 (docs/21)",
  "Dip Belt Squat|side": "ciężar zawieszony na pasie biodrowym — ślad pokazuje ruch bioder w tył, nie gryf; do oceny recenzji 1.0.1 (docs/21)",
- "Band Squat|side": "guma: ślad rąk przed ciałem, nie toru ciężaru; do oceny recenzji 1.0.1 (docs/21)"
+ "Band Squat|side": "guma: ślad rąk przed ciałem, nie toru ciężaru; do oceny recenzji 1.0.1 (docs/21)",
+ "Decline Close-Grip Bench To Skull Crusher|side": "ćwiczenie złożone z dwóch ruchów w jednym powtórzeniu (wąskie wyciskanie do klatki, potem prostowanie łokci nad głowę): ślad ma z założenia dwa zawrócenia i łuk — nie jest torem jednego ruchu (badacz 28.10.2026, docs/21)"
 }

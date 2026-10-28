@@ -138,8 +138,8 @@ describe('bench_press: przedramiona pionowo na dole we wszystkich wariantach ze 
   test('odwiedzenie łokcia w widoku z góry 25–65° (sztanga) i 25–50° (hantle, kettlebell) — poza przedziałem były szeroko rozłożone łokcie', () => {
     for (const k of ORDINARY) { const a = abd(fr(k, 1), 'R'); const hi = /hantle|Dumbbell|Kettlebell/.test(k) ? 50 : 65; expect([k, a >= 25 && a <= hi, +a.toFixed(0)]).toEqual([k, true, +a.toFixed(0)]); }
   });
-  test('warianty z założenia inne zostają bez zmian (Squeeze, JM, Guillotine, Skull Crusher: bez `vert`); wąski chwyt dostał `vert` w 1.0.1 (tests/figury-1-0-1-uwagi.test.ts)', () => {
-    for (const k of ['Squeeze Press (hantle)', 'JM Press', 'Barbell Guillotine Bench Press', 'Decline Close-Grip Bench To Skull Crusher']) expect([k, (VARIANTS[k] as { p: { vert?: boolean } }).p.vert]).toEqual([k, undefined]);
+  test('warianty z założenia inne zostają bez zmian (Squeeze, JM, Guillotine: bez `vert`); wąski chwyt dostał `vert` w 1.0.1 (tests/figury-1-0-1-uwagi.test.ts)', () => {
+    for (const k of ['Squeeze Press (hantle)', 'JM Press', 'Barbell Guillotine Bench Press']) expect([k, (VARIANTS[k] as { p: { vert?: boolean } }).p.vert]).toEqual([k, undefined]);
   });
   test('floor press: łokieć dotyka podłogi, ale nie przenika maty (kolizje ciała i maty ≤ 1,5 cm)', () => {
     for (const k of ['Floor Press (sztanga)', 'Floor Press (hantle)', 'One-Arm Kettlebell Floor Press', 'Floor Press with Chains']) for (const u of U) { const f = fr(k, u); const B = bodyColliders(f.sk).filter(b => /^uarm/.test(b.id)); const E = equipColliders(f.props).filter(e => e.id === 'mat'); for (const b of B) for (const e of E) expect([k, u, gap(b, e) > -1.5]).toEqual([k, u, true]); }

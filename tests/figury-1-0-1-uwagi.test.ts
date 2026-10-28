@@ -189,3 +189,25 @@ describe('F1 (badacz 28.10.2026, JM Press): łokcie wysoko, ramię ku stopom, od
     for (const u of U) expect([u, checkFrame(fr(K, u)).map(i => i.code)]).toEqual([u, []]);
   });
 });
+
+describe('F1 (badacz 28.10.2026, Decline Close-Grip Bench To Skull Crusher): dwie fazy w jednym powtórzeniu — wąskie wyciskanie, potem prostowanie z nieruchomym ramieniem (było: jeden tor, ramię 80–110° od pionu ku głowie, łokcie do z = 43)', () => {
+  const K = 'Decline Close-Grip Bench To Skull Crusher';
+  const arm = (f: Frame, s: 'R' | 'L' = 'R') => { const a = f.sk.arms[s]; return { dx: a.elbow[0] - a.shoulder[0], dy: a.elbow[1] - a.shoulder[1], dz: a.elbow[2] - a.shoulder[2] }; };
+  test('faza 1 (u = 0,3): wąskie wyciskanie — sztanga na dolnej klatce (jak w Decline Bench Press: dotyk 26), przedramię ≤ 10° od pionu czołowo, łokcie blisko tułowia (odwiedzenie z góry ≤ 25°)', () => {
+    const f = fr(K, 0.3); const t = forearm(f); const a = arm(f); expect([t.front <= 10, deg(Math.atan2(Math.abs(a.dz), Math.abs(a.dx))) <= 25]).toEqual([true, true]);
+    expect(Math.abs((f.info.load as V3)[1] - (f.info.bottom as V3)[1])).toBeLessThan(0.05);
+  });
+  test('powrót do góry między fazami: u = 0, 0,6 — ręce wyprostowane nad barkami (zgięcie łokcia ≤ 8°)', () => {
+    for (const u of [0, 0.6]) expect([u, jointAngles(fr(K, u).sk, 'R').elbow <= 8]).toEqual([u, true]);
+  });
+  test('faza 2 (u ∈ [0,6; 1]): ramię nieruchome — pionowo albo najwyżej 15° ku głowie (−x), zmiana kąta ramienia ≤ 15°; łokcie na szerokość barków (|Δz łokcia od barku| ≤ 4 cm); łokieć ≥ 25 cm nad barkiem', () => {
+    const ang = (u: number) => { const a = arm(fr(K, u)); return deg(Math.atan2(-a.dx, a.dy)); };
+    const angs = U.filter(u => u >= 0.6).map(ang); expect([Math.min(...angs) >= -5, Math.max(...angs) <= 15, Math.max(...angs) - Math.min(...angs) <= 15]).toEqual([true, true, true]);
+    for (const u of U.filter(x => x >= 0.6)) for (const s of ['R', 'L'] as const) { const a = arm(fr(K, u), s); expect([u, s, Math.abs(a.dz) <= 4, a.dy >= 25]).toEqual([u, s, true, true]); }
+  });
+  test('na dole prostowania (u = 1): zgięcie łokcia 60–149°, sztanga ponad głową z odstępem (kontrola geometrii czysta w całym ruchu), przedramię ku głowie (dłoń dalej ku głowie niż łokieć)', () => {
+    const f = fr(K, 1); const e = jointAngles(f.sk, 'R').elbow; expect([e >= 60 && e <= 149, +e.toFixed(0)]).toEqual([true, +e.toFixed(0)]);
+    expect((f.info.load as V3)[0]).toBeLessThan(f.sk.arms.R.elbow[0]);
+    for (const u of U) expect([u, checkFrame(fr(K, u)).map(i => i.code)]).toEqual([u, []]);
+  });
+});

@@ -34,6 +34,8 @@ const BOARD = 4;
 const TRAP_SX: [number, number] = [2, -2];
 /** JM Press: sztanga na dole 13 cm za osią barków ku głowie (kąt ramienia wynika), odwiedzenie 45° stałe, zgięcie łokcia 145°, przedramiona lekko zbieżne (uproszczenie ilustracyjne; „ok. 45°” — badacz 28.10.2026, 3 zgodne źródła szczebla 4). */
 const JM = { xb: -13, yb: 14, abd: 45, inward: 1 } as const;
+/** Skull Crusher na ławce ujemnej: ramię 3° ku głowie, sztanga 8 cm nad czubkiem głowy, przedramiona lekko zbieżne (uproszczenie ilustracyjne; ramię „pionowo albo lekko ku głowie” — badacz 28.10.2026, D3, D4). */
+const SKULL = { aHead: 3, clear: 8, inward: 0.3 } as const;
 const SUMO: Partial<HingeParams> = { stance: 34, toeOut: 40, grip: 12, shin: HINGE.shin.sumo };
 
 /** Klucz katalogu → wariant. Tylko gotowe rodziny (squat, bench_press, hinge). */
@@ -94,7 +96,7 @@ export const VARIANTS: Record<string, Variant> = {
   'Close-Grip EZ-Bar Press': BP('barbell', { grip: CLOSE.grip, touch: CLOSE.touch, vert: true }),
   'Smith Machine Close-Grip Bench Press': BP('smith', { grip: CLOSE.grip, touch: CLOSE.touch, vert: true }),
   'Reverse Grip Bench Press': BP('barbell', { grip: 30, touch: 31, vert: true }),
-  'Decline Close-Grip Bench To Skull Crusher': BP('barbell', { angle: -15, grip: 12, touch: 54, touchB: 16 }),
+  'Decline Close-Grip Bench To Skull Crusher': BP('barbell', { angle: -15, grip: CLOSE.grip, touch: DECLINE.touch - 1, vert: true, skull: SKULL }),
   /* ---- zawias ---- */
   'Deadlift (sztanga)': HG('floor', 'barbell'),
   'Deadlift (hantle)': HG('floor', 'db', { grip: HINGE.dbFloorGrip }),
