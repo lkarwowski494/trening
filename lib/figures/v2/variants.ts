@@ -32,6 +32,8 @@ const DECLINE = { touch: 26, touchDb: 24 } as const;
 const BOARD = 4;
 /** Drążek sześciokątny: bark względem uchwytów na starcie i na wyproście (cm) — na wyproście tułów w pionie (było −6 → tułów −6,4° do tyłu, 1.0.1). */
 const TRAP_SX: [number, number] = [2, -2];
+/** JM Press: sztanga na dole 13 cm za osią barków ku głowie (kąt ramienia wynika), odwiedzenie 45° stałe, zgięcie łokcia 145°, przedramiona lekko zbieżne (uproszczenie ilustracyjne; „ok. 45°” — badacz 28.10.2026, 3 zgodne źródła szczebla 4). */
+const JM = { xb: -13, yb: 14, abd: 45, inward: 1 } as const;
 const SUMO: Partial<HingeParams> = { stance: 34, toeOut: 40, grip: 12, shin: HINGE.shin.sumo };
 
 /** Klucz katalogu → wariant. Tylko gotowe rodziny (squat, bench_press, hinge). */
@@ -75,7 +77,7 @@ export const VARIANTS: Record<string, Variant> = {
   'Squeeze Press (hantle)': BP('db', { grip: 7, squeeze: true }),
   'Smith Machine Bench Press': BP('smith', { vert: true }),
   'Smith Machine Incline Press': BP('smith', { angle: 30, touch: 38, vert: true }),
-  'JM Press': BP('barbell', { grip: 12, touch: 62, touchB: 12, flare: 0.8 }),
+  'JM Press': BP('barbell', { grip: 12, touch: 62, touchB: 12, flare: 0.8, jm: JM }),
   'One-Arm Kettlebell Floor Press': BP('kb', { floor: true, oneArm: true, grip: 30, vert: true }),
   'One Arm Dumbbell Bench Press': BP('db', { oneArm: true, grip: 32, vert: true }),
   'Barbell Guillotine Bench Press': BP('barbell', { grip: 42, touch: 50, touchB: 9 }),

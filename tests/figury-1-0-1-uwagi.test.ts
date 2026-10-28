@@ -170,3 +170,22 @@ describe('recenzja niezależna 28.10.2026 — N5: guma Band Squat nie wchodzi w 
       for (const b of f.props.filter(p => p.k === 'band') as unknown as { from: V3; to: V3 }[]) for (const l of legs) if (l.k === 'capsule') expect([u, l.id, distSegSeg(b.from, b.to, l.a, l.b) - l.r >= 0]).toEqual([u, l.id, true]); }
   });
 });
+
+describe('F1 (badacz 28.10.2026, JM Press): łokcie wysoko, ramię ku stopom, odwiedzenie stałe ok. 45°, sztanga w dół ku szyi (było: łokieć 26 cm za barkiem ku głowie i 10 cm poniżej barku, ramię 110° od pionu; w połowie ruchu odwiedzenie 57°, łokcie do z = 41)', () => {
+  const K = 'JM Press';
+  const up = (f: Frame, s: 'R' | 'L') => { const a = f.sk.arms[s]; return { dx: a.elbow[0] - a.shoulder[0], dy: a.elbow[1] - a.shoulder[1], dz: Math.abs(a.elbow[2] - a.shoulder[2]) }; };
+  test('na dole ramię nie wskazuje ku głowie: 0–20° od pionu w stronę stóp (+x), łokieć ≥ 25 cm nad barkiem, obie strony', () => {
+    for (const s of ['R', 'L'] as const) { const t = up(fr(K, 1), s); const a = deg(Math.atan2(t.dx, t.dy)); expect([s, a >= 0 && a <= 20, t.dy >= 25]).toEqual([s, true, true]); }
+  });
+  test('w całym ruchu łokieć nad barkiem lub nie niżej niż 5 cm pod nim i nigdy za barkiem ku głowie (dx ≥ −1)', () => {
+    for (const u of U) for (const s of ['R', 'L'] as const) { const t = up(fr(K, u), s); expect([u, s, t.dy >= -5, t.dx >= -1]).toEqual([u, s, true, true]); }
+  });
+  test('odwiedzenie z góry stałe ok. 45° (± 8°) w klatkach, gdzie ramię jest odchylone od pionu o ≥ 3 cm (u ≥ 0,3)', () => {
+    for (const u of U.filter(x => x >= 0.3)) for (const s of ['R', 'L'] as const) { const t = up(fr(K, u), s); const ab = deg(Math.atan2(t.dz, Math.abs(t.dx))); expect([u, s, Math.hypot(t.dx, t.dz) >= 3, ab >= 37 && ab <= 53, +ab.toFixed(0)]).toEqual([u, s, true, true, +ab.toFixed(0)]); }
+  });
+  test('sztanga schodzi prawie pionowo ku szyi/podbródkowi: na dole 6–18 cm za barkiem (ku głowie), 0–15 cm nad osią barków; tor od prostej ≤ 4 cm; łokieć 130–149°', () => {
+    const f = fr(K, 1); const sh = f.sk.arms.R.shoulder; const b = f.info.load as V3; expect([b[0] - sh[0] <= -6 && b[0] - sh[0] >= -18, b[1] - sh[1] >= 0 && b[1] - sh[1] <= 15]).toEqual([true, true]);
+    const e = jointAngles(f.sk, 'R').elbow; expect([e >= 130 && e <= 149, +e.toFixed(0)]).toEqual([true, +e.toFixed(0)]);
+    for (const u of U) expect([u, checkFrame(fr(K, u)).map(i => i.code)]).toEqual([u, []]);
+  });
+});
