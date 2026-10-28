@@ -237,6 +237,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik ma plan albo treningi i jest na ekranie Trening bez treningu w toku
     - Gdy patrzy na nagłówek ekranu
     - Wtedy przycisk „Planowanie” (bez planu „Ustaw plan”) stoi w linii tytułu „Trening” po prawej, jak w zakładce Plan; przy wąskim ekranie i dużym tekście przechodzi pod tytuł, nic nie jest ucięte
+  - Scenariusz: Listy dni i powodów oddzielone przecinkiem (docs/32 wzorzec 28; M1-audytor-generalny-029, 27.10.2026)
+    - Zakładając, że plan albo podgląd generatora ma kilka dni treningowych, a propozycja zamiany ma kilka powodów
+    - Gdy użytkownik ogląda podsumowanie planu, nagłówek podglądu albo podpis propozycji
+    - Wtedy elementy listy o zmiennej długości są oddzielone przecinkiem (np. „pon. FBW A, śr. FBW B”); „·” zostaje tylko między polami metadanych w stałej kolejności (wykaz z powodami: `tests/kropka-srodkowa.json`)
   - Scenariusz: Pasek tygodnia na wąskim ekranie przy dużym tekście (M1-audytor-generalny-027, 27.10.2026)
     - Zakładając, że ekran ma 320 pt (iPhone SE albo „Powiększenie ekranu”), a tekst jest powiększony (limit liczb 130 %)
     - Gdy użytkownik patrzy na pasek tygodnia na ekranie Trening

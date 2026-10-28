@@ -35,7 +35,7 @@ const weekdayName = (i: number) => weekdayNames()[i];
 const weekdayShort = (i: number) => weekdayLabels()[i];
 const tplName = (id: string | null) => (id ? getState().templates.find(x => x.id === id && !x.archived)?.name ?? '' : '');
 /** „pon. Upper A · śr. Upper B” — dni z treningiem. */
-export const planSummary = (days: PlanDays) => days.map((id, i) => (tplName(id) ? `${weekdayShort(i)} ${tplName(id)}` : '')).filter(Boolean).join(' · ') || t('bez treningów');
+export const planSummary = (days: PlanDays) => days.map((id, i) => (tplName(id) ? `${weekdayShort(i)} ${tplName(id)}` : '')).filter(Boolean).join(', ') /* M1-audytor-generalny-029: lista dni — przecinek (wz. 28) */ || t('bez treningów');
 const nameOr = (n: string) => n || t('Poprzedni plan');
 /** Ile zapisanych planów widać od razu (reszta po „Pokaż wszystkie”). */
 const OTHER_FIRST = 3;

@@ -603,7 +603,7 @@ describe('/swap', () => {
   test('propozycje z powodem „te same mięśnie”; „Ten sam ruch, inny przyrząd”: „— gryf łamany” zmienia przyrząd bloku', async () => {
     await startIn('gym', ['Chest Dip', 'Upright Row (sztanga)']);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Chest Dip')); await flushAll(20);
-    expect(screen.getAllByText(/^te same mięśnie · /).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/^te same mięśnie, /) /* M1-audytor-generalny-029: powody po przecinku */.length).toBeGreaterThan(0);
     await tap(screen.getByText('Anuluj')); await flushAll(10);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Upright Row (sztanga)')); await flushAll(20);
     expect(screen.getByText('Upright Row (sztanga) — gryf łamany')).toBeTruthy();

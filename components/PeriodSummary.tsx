@@ -74,7 +74,7 @@ export function PeriodSummary() {
       {s.prs.length ? s.prs.map(({ workoutId, at, pr }) => (
         <View key={workoutId + pr.exercise.id + pr.set.id} style={{ paddingVertical: 4 }}>
           <Txt style={{ ...font('callout') }}>{exName(pr.exercise)} <Muted style={{ ...font('footnote') }}>· {short(at)}</Muted></Txt>
-          <Muted style={{ ...font('footnote') }}>{pr.details.join(' · ')}</Muted>
+          <Muted style={{ ...font('footnote') }}>{pr.details.join(', ') /* M1-audytor-generalny-029: lista pobitych wartości — przecinek (wz. 28) */}</Muted>
         </View>))
         : <Muted style={{ ...font('footnote') }}>{s.workouts ? t('Bez nowych rekordów w tym okresie.') : t('Brak treningów w tym okresie.')}</Muted>}
     </View>
