@@ -21,7 +21,7 @@ name: Duży tekst dostępności — ekran Trening
 # --- z planem: generator szablonów i planu z kroków startowych (jak 31; bez wspólnego podprzepływu szablonu — jego wybór ćwiczenia w pickerze nie działa przy największym tekście) ---
 # Dzień tygodnia bywa dniem planu albo nie (karta „Dziś” albo „Następny trening”) — asercji na treść karty nie ma, oceniają ją zrzuty 583–585.
 - scrollUntilVisible: { element: "Planning", direction: UP, timeout: 30000, centerElement: true }
-- runFlow: subflows/generator-plan.yaml
+- runFlow: subflows/generator-plan-duzy-tekst.yaml
 - swipe: { start: "50%, 20%", end: "50%, 85%", duration: 500 }
 - takeScreenshot: 583-z-planem-gora
 - swipe: { start: "50%, 80%", end: "50%, 40%", duration: 500 }
