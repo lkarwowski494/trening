@@ -34,3 +34,20 @@ describe('ekran: komponenty pokazują tylko figury z shownFigureSpec', () => {
     }
   });
 });
+
+describe('ekran karty: bez rysunku znika też zestaw ogólny wskazówek („Łokcie blisko tułowia” nie pasuje do JM Press — badacz linii 1.0.1, 28.10.2026)', () => {
+  const React = require('react') as typeof import('react');
+  const { render } = require('@testing-library/react-native') as typeof import('@testing-library/react-native');
+  const { ExerciseCues } = require('@/components/ExerciseCues') as typeof import('@/components/ExerciseCues');
+  const { applyLang } = require('@/lib/i18n') as typeof import('@/lib/i18n');
+  const ELBOWS = 'Łokcie blisko tułowia przez cały ruch.';
+  beforeAll(() => applyLang('pl'));
+  test.each(KLUCZE)('%s: bez sekcji „Technika”: ani rysunku, ani zdania o łokciach', k => {
+    const r = render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: k }, initialOpen: true }));
+    expect(r.queryByText(ELBOWS)).toBeNull(); expect(r.queryByTestId('exercise-cues')).toBeNull(); /* bez karty i rysunku — sekcja „Technika” znika */
+  });
+  test('kontrast: wyciskanie wąskim chwytem na maszynie Smitha nadal z sekcją „Technika” (rysunek v2)', () => {
+    const r = render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: 'Smith Machine Close-Grip Bench Press' }, initialOpen: true }));
+    expect(r.getByTestId('exercise-cues')).toBeTruthy();
+  });
+});
