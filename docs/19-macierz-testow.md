@@ -11,7 +11,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 |---|---|---|---|
 | EKRAN | 32 | 32 | 0 |
 | UI | 354 | 354 | 0 |
-| TEKST | 1076 | 1074 | 0 |
+| TEKST | 1076 | 1076 | 0 |
 | LOGIKA | 1046 | 1046 | 0 |
 | WYMIAR | 146 | 146 | 0 |
 
@@ -441,7 +441,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | {label} {value}, przyrost {delta} | components/RecordsCard.tsx | tests/records-card.test.tsx |
 | {left} {n} z {limit} darmowych dni treningowych w tym miesiącu. | components/StartPanel.tsx | tests/subscription-i18n.test.ts, tests/subscription-ui.test.tsx |
 | {n} {w} · Dostosuj | components/ActiveWorkout.tsx | tests/adapt-ui.test.tsx, tests/maestro-selectors.test.ts, tests/places-ui.test.tsx |
-| {n} / {goal} serii | components/GuardSection.tsx | tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts, tests/audit-0.10-gen-ui.test.tsx +85 |
+| {n} / {goal} serii | components/GuardSection.tsx | tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts, tests/audit-0.10-gen-ui.test.tsx +86 |
 | {n} h | components/Dashboard.tsx | (tylko parametry) |
 | {n} kcal aktywne | lib/healthRead.ts | tests/health-read-ui.test.tsx, tests/health-read.test.ts, tests/health-scenario.test.tsx |
 | {n} kilokalorii aktywnych | lib/healthRead.ts | tests/health-read-ui.test.tsx, tests/health-read.test.ts |
@@ -780,9 +780,9 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie. | app/generator.tsx | tests/generator-ui.test.tsx, tests/set-split-ui.test.tsx |
 | Masz dostęp na zawsze | app/paywall.tsx | tests/subscription-i18n.test.ts |
 | Masz pełną wersję | components/SubscriptionCard.tsx | tests/subscription-i18n.test.ts |
-| Masz plan: dożywotni | components/SubscriptionCard.tsx | WYJĄTEK: BRAK |
-| Masz plan: miesięczny | components/SubscriptionCard.tsx | WYJĄTEK: BRAK |
-| Masz plan: roczny | components/SubscriptionCard.tsx | tests/audit-m1-050-support-subscription.test.ts, tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx, tests/subscription-ui.test.tsx |
+| Masz plan: dożywotni | components/SubscriptionCard.tsx | tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx |
+| Masz plan: miesięczny | components/SubscriptionCard.tsx | tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx |
+| Masz plan: roczny | components/SubscriptionCard.tsx | tests/audit-m1-050-support-subscription.test.ts, tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx, tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx +1 |
 | maszyna | lib/swap.ts | tests/catalog-library25.test.tsx, tests/invariants.test.ts, tests/locations-audit.test.tsx +4 |
 | max | lib/state/time.ts | tests/asc-zrzuty.test.ts, tests/audit-0.10-lang.test.ts, tests/audit-k1-bl-mer.test.tsx +51 |
 | max ± | lib/stats.ts | tests/i18n-wave2.test.ts, tests/matrix-i18n.test.tsx, tests/regress.test.tsx +1 |
@@ -1115,7 +1115,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Ręcznie | app/more/settings.tsx | tests/matrix-i18n.test.tsx, tests/set-goals-ui.test.tsx, tests/set-goals.test.ts |
 | RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali. | app/more/settings.tsx | tests/effort-scale.test.tsx |
 | RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie. | app/more/settings.tsx | tests/audit-k1-bl-mer.test.tsx |
-| robione {n}× | lib/swap.ts | tests/audit-0.10-plan-ui.test.tsx, tests/dashboard.test.tsx, tests/first-steps-empty.test.tsx +15 |
+| robione {n}× | lib/swap.ts | tests/audit-0.10-plan-ui.test.tsx, tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts, tests/dashboard.test.tsx +16 |
 | rok | app/paywall.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-io-more.test.tsx +42 |
 | rozgrzewka | lib/live.ts | tests/audit-close2-a.test.tsx, tests/audit-stale-ui.test.tsx, tests/matrix-invariants.test.ts +9 |
 | Rozgrzewki: {d} z {n} zrobione | components/BoardFace.tsx | tests/m3-p2-board-ui.test.tsx, tests/m3-p2-matrix.test.tsx |
@@ -1146,7 +1146,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Serie robocze | app/progression.tsx | tests/audit-m1-044-brd.test.ts, tests/m3-p3-postepy-historia.test.tsx, tests/period-summary.test.tsx +2 |
 | Serie robocze tygodniowo | app/(tabs)/progress.tsx | tests/m3-p3-postepy-historia.test.tsx, tests/scenario-full.test.tsx |
 | Serie z tej sesji przepadną. | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
-| Serie: {d} z {n} zrobione | components/BoardFace.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/dashboard.test.tsx, tests/first-steps-empty.test.tsx +13 |
+| Serie: {d} z {n} zrobione | components/BoardFace.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts, tests/dashboard.test.tsx +14 |
 | Serie: {n} | app/more/import.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-m1-048-claims-registry.test.ts, tests/audit011b.test.tsx +7 |
 | Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica. | app/generator.tsx | tests/audit011b.test.tsx, tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx |
@@ -1477,7 +1477,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Zniknie z list i szablonów. | app/exercise/[id].tsx | tests/scenario-full.test.tsx |
 | Zobacz plany Pro | components/SubscriptionCard.tsx | tests/audit-m1-050-support-subscription.test.ts, tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx, tests/monetyzacja-ui.test.tsx +1 |
 | zostaje to ćwiczenie | app/swap.tsx | tests/adapt-ui.test.tsx |
-| zrobione | components/Dashboard.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/dashboard.test.tsx, tests/first-steps-empty.test.tsx +13 |
+| zrobione | components/Dashboard.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts, tests/dashboard.test.tsx +14 |
 | Zrobione inaczej | lib/watch/labels.ts | tests/watch-protocol.test.ts, tests/watch-scenarios.ts |
 | zrobione: {name} | components/TodayPlan.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/motyw.test.tsx, tests/plan-calendar-ui.test.tsx |
 | Zrobione: {name} | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx |

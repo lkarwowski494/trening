@@ -61,6 +61,12 @@ describe('M1-037 A / DEC-07 b: wiersz w sekcji „Subskrypcja” — tytuł zale
     await tap(row); await settle();
     expect(screen.getByTestId('paywall-owned-title').props.children).toBe(title);
   });
+  test.each([
+    ['monthly', 'Masz plan: miesięczny'], ['yearly', 'Masz plan: roczny'], ['lifetime', 'Masz plan: dożywotni'],
+  ] as const)('PL z dostępem (%s): tytuł wiersza „%s” — rodzaj planu, nie nazwa z wyboru (właściciel 28.10.2026)', async (plan, title) => {
+    await boot({ ents: [ent(plan)], locale: 'pl' });
+    expect(screen.getByText(title)).toBeTruthy();
+  });
   test('ciemny wygląd: wiersz w stanie darmowym renderuje się i otwiera ekran zakupu', async () => {
     await boot({ theme: 'dark' });
     await tap(screen.getByLabelText(/^See Pro plans\./)); await settle();
