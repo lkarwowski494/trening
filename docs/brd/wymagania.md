@@ -713,7 +713,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-JEZ-003: System miar metryczny albo imperialny
 - Przepływ: PR-08
-- Dowód potrzeby: J-01; D-110 (decyzje właściciela 2026-10-20, docs/18); kod `lib/units.ts`; decyzja właściciela 10a (2026-10-28, symbol masy lokalny w pismach cyrylicy i greki); testy `tests/audit-m1-lok07-01-imperial-dist.test.tsx`, `tests/m1-040-podpis-dystans.test.ts` (podpis przerwy, M1-040), `tests/audit-m1-lok07-02-default-system.test.ts`, `tests/units-label.test.ts`
+- Dowód potrzeby: J-01; D-110 (decyzje właściciela 2026-10-20, docs/18); kod `lib/units.ts`; decyzja właściciela 10a (2026-10-28, symbol masy lokalny w pismach cyrylicy i greki); testy `tests/audit-m1-lok07-01-imperial-dist.test.tsx`, `tests/m1-040-podpis-dystans.test.ts` (podpis przerwy, M1-040), `tests/m1-041-el-jednostka.test.ts` (el: krok ± VoiceOver z odmianą, nagłówek kolumny A11-19, M1-041), `tests/audit-m1-lok07-02-default-system.test.ts`, `tests/units-label.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Zmiana systemu miar
     - Zakładając, że użytkownik ma zapisane treningi w kg i dystans w metrach
