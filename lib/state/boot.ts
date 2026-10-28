@@ -33,6 +33,11 @@ async function writePhase(phase: BootPhaseName): Promise<void> {
 }
 /** `guard` (start aplikacji z app/_layout.tsx) włącza strażnika pętli awarii (M1-audytor-generalny-003, lib/state/crashguard.ts); `retry` („Spróbuj ponownie”
  * na ekranie błędu) liczy start od zera. Bez opcji (testy, narzędzia) strażnik nie działa. */
+/** M1-audytor-generalny-042: błąd startu obsłużony ekranem (wyjątek migracji, dane z nowszej wersji) to nie awaria — licznik strażnika wraca do 0, żeby
+ * następny start nie pokazywał komunikatu pętli awarii zamiast tej samej przyczyny. Tylko przy włączonym strażniku (start z app/_layout.tsx). */
+async function handledBootFailure(guard: boolean | undefined): Promise<void> {
+  if (guard && db) await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_GUARD_KEY, JSON.stringify({ starts: 0 })).catch(() => {});
+}
 export async function init(opts: { guard?: boolean; retry?: boolean } = {}): Promise<void> {
   if (S) return;
   bootStartedAt = Date.now(); stableEarly = false; bootPhaseCtx = null; /* ZK-07: nowy start */
@@ -65,7 +70,7 @@ export async function init(opts: { guard?: boolean; retry?: boolean } = {}): Pro
       ver = Number(JSON.parse(row.v)?.schemaVersion) || 0;
     } catch {}
     if (ver > SCHEMA_VERSION) {
-      setNewerSchema(ver);
+      setNewerSchema(ver); await handledBootFailure(opts.guard);
       throw Object.assign(new Error(t('Dane z nowszej wersji aplikacji — zaktualizuj aplikację')), { newerSchema: ver });
     }
   }
@@ -96,7 +101,7 @@ export async function init(opts: { guard?: boolean; retry?: boolean } = {}): Pro
        * w bazie pod kluczem premigrate_<schemat> do upływu PREMIGRATE_KEEP_MS. Bez kopii (np. brak miejsca) zmigrowany stan nie nadpisuje starego „state”. */
       if (needsPersist && !(await savePreMigrate(Number(before) || 0, row.v, liveTxt, cfgTxt))) needsPersist = false;
     } catch (e) {
-      if ((e as { migrationFailed?: boolean })?.migrationFailed) throw e; /* M1-audytor-generalny-013: nic nie zapisujemy — ekran błędu startu */
+      if ((e as { migrationFailed?: boolean })?.migrationFailed) { await handledBootFailure(opts.guard); throw e; } /* M1-audytor-generalny-013: nic nie zapisujemy — ekran błędu startu */
       // Nie nadpisujemy jedynej kopii danych: odkładamy ją pod osobny klucz i startujemy od czystego stanu.
       const key = `state_corrupt_${Date.now()}`;
       await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key, row.v);
