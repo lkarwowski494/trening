@@ -65,6 +65,7 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `jednostka_dystansu_mi` | mi | symbol jednostki dystansu (mila) przy liczbach i w polach; skrót nieodmienny (ten sam tekst stoi po ułamkach i jako nagłówek kolumny); wartość logiczna w danych i CSV zostaje „mi” |
 | `jednostka_dystansu_yd` | yd | symbol jednostki dystansu (jard) przy liczbach i w polach; skrót nieodmienny (ten sam tekst stoi po ułamkach i jako nagłówek kolumny); wartość logiczna w danych i CSV zostaje „yd” |
 | `zegarek` | zegarek | Apple Watch (zegarek połączony z aplikacją); w ja i ko nazwa ze słownictwa Apple, nie zwykły zegarek na rękę |
+| `lokcie_otwarte` | łokcie otwarte na boki | łokcie rozstawione szeroko od tułowia przy wyciskaniu (flared elbows); przeciwieństwo łokci przyklejonych do tułowia |
 
 ## Terminy zalecane (rdzeń)
 
@@ -170,6 +171,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `fr` | `przerwa` | pause | „pause” to przerwa w pracy; w sali mówi się „repos” |
 | `fr` | `przerwa_robocza` | pause de travail | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `fr` | `zakres_powtorzen` | intervalle | „intervalle” bywa przerwą; zakres to „plage”/„fourchette” |
+| `fr` | `lokcie_otwarte` | très écartés | „très” znaczy „bardzo”; chodzi o „za bardzo” (trop écartés) |
 | `it` | `przerwa_robocza` | pausa (di )?lavoro | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `it` | `zakres_powtorzen` | intervall | „intervallo” bywa przerwą; zakres powtórzeń to „range” |
 | `it` | `zakres_ruchu` | intervall | „intervallo” bywa przerwą; zakres ruchu to „escursione” |
@@ -210,6 +212,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ja` | `przerwa_po_rozgrzewce` | 休憩 | 休憩 to przerwa w pracy/szkole; na siłowni インターバル |
 | `ja` | `plan_dozywotni` | 永久版 | „永久版” brzmi jak wersja edycji; zakup jednorazowy to „買い切り” |
 | `ja` | `zegarek` | 腕時計 | zwykły zegarek na rękę; dla Apple Watch w aplikacjach treningowych mówi się „ウォッチ” |
+| `ja` | `lokcie_otwarte` | 肘を広げ | o łokciach przy wyciskaniu mówi się 開く (otwierać), nie 広げる (rozkładać) |
 | `ko` | `przerwa` | 점심\|휴게 | dotyczy przerwy obiadowej/pokoju socjalnego |
 | `ko` | `przerwa_robocza` | 업무 휴식 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ko` | `plan_subskrypcji` | 플랜 | „플랜” to plan tygodnia (zakładka Plan); wariant subskrypcji to „요금제” |

@@ -100,6 +100,11 @@ describe('słownik terminów: logika (wykrywanie i naruszenia)', () => {
     expect(S.sprawdz(slownik, 'zh-Hant', 'Deload', '減載')).toEqual([]);
     expect(S.sprawdz(slownik, 'de', 'Seria', 'Serie').length).toBe(1);
     expect(S.sprawdz(slownik, 'de', 'Seria', 'Satz')).toEqual([]);
+    /* 1.0.1, recenzja lokalizacji: „łokcie szeroko na boki” (wyciskanie) — ja: 開く, nie 広げる; fr: trop écartés, nie très écartés */
+    const lok = 'Łokcie ustaw pośrodku — ani przyklejone do tułowia, ani szeroko na boki.';
+    expect(S.wykryte(slownik.pojecia.find(x => x.id === 'lokcie_otwarte'), lok)).toBe(true);
+    expect(S.sprawdz(slownik, 'ja', lok, '肘を広げすぎず').length).toBe(1); expect(S.sprawdz(slownik, 'ja', lok, '肘は開きすぎず')).toEqual([]);
+    expect(S.sprawdz(slownik, 'fr', lok, 'ni très écartés').length).toBe(1); expect(S.sprawdz(slownik, 'fr', lok, 'ni trop écartés')).toEqual([]);
   });
   test('blok promptu: tylko wpisy języka docelowego, z terminem zalecanym i zakazanym', () => {
     const b: string = S.blokPromptu(slownik, 'ja');

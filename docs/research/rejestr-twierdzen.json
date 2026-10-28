@@ -359,7 +359,7 @@
    "id": "T-025",
    "kotwica": "Ogólny (dla zdrowia i sprawności): {s} serie na ",
    "skrot": "8b924b4a2b",
-   "skrotEn": "68049d603c",
+   "skrotEn": "88f775bcd0",
    "rodzaje": [
     "źródło cytowane w tekście"
    ],
@@ -368,7 +368,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-025",
-   "przeglad": "28.10.2026: tłumacz (teksty), tylko brzmienie EN; sens zgodny z PL (secondary/compound/isolation, General fitness); wymaga recenzji lokalizacji"
+   "przeglad": "28.10.2026: tłumacz, tylko brzmienie EN (General fitness: …), sens zgodny z PL"
   },
   {
    "id": "T-026",

@@ -109,7 +109,7 @@ describe('przełącznik „Dni cardio w planie”', () => {
   });
   test('EN: nazwa celu, opis, przełącznik, uwaga przy 1 dniu', async () => {
     await boot('/generator', 'en'); await goal('General fitness');
-    await openInfo('gen-goal'); expect(screen.getByText(/^General \(for health and fitness\): 2 sets per exercise, 8–12 reps/)).toBeTruthy();
+    await openInfo('gen-goal'); expect(screen.getByText(/^General fitness: 2 sets per exercise, 8–12 reps/)).toBeTruthy();
     await pickDays([0, 1, 2, 3]); expect(screen.getByTestId('sw-Cardio days in the plan').props.accessibilityHint).toBe('Days above 3 are moderate cardio sessions instead of strength.');
     await pickDays([3]); expect(screen.getByText(/^1 strength day a week is less than the recommended minimum/)).toBeTruthy();
   });

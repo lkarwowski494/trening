@@ -232,7 +232,7 @@
  "rdl.dbSetup": "Seiso ryhdikkäästi käsipainot reisien edessä tai sivuilla, jalat lantion levyisesti.",
  "rdl.depth": "Mene alas niin kauan kuin tunnet takareisien venytyksen ja pystyt pitämään selän suorana.",
  "rdl.knees": "Polvet vain hieman koukussa — tämä ei ole kyykky.",
- "rdl.mis.knees": "Polvien koukistaminen liikaa, jolloin liikkeestä tulee kyykky.",
+ "rdl.mis.knees": "Polvien liiallinen koukistaminen, jolloin liikkeestä tulee kyykky.",
  "rdl.move": "Työnnä lantiota taakse ja liu’uta tanko alas lähellä jalkoja polvet hieman koukussa; nouse viemällä lantio eteen.",
  "rdl.setup": "Seiso ryhdikkäästi tanko reisiä vasten, jalat lantion–hartioiden levyisesti, ote hartioiden levyinen tai hieman leveämpi.",
  "rear.arms": "Kädet liikkuvat sivuille, eivät taakse — kädet päätyvät suunnilleen hartioiden linjaan.",

@@ -1654,7 +1654,7 @@
  "e1RM liczone z {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie.": "e1RM 以訓練當天體重（當天或更早的最新測量值）的 {p}% 計算，再加上額外負重。",
  "Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia przerwa {r} s) = {n}; ćwiczeń = serie / {k} (co najmniej {e}). To szacunek.": "由訓練時長計算組數：（分鐘 − 熱身 {w} 分鐘）× 60 /（每組 {s} 秒 + 平均休息 {r} 秒）= {n}；動作數 = 組數 / {k}（至少 {e}）。這是估算值。",
  "Zasady planu": "計畫規則",
- "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.": "一般體能（為了健康與體能）：每個動作 {s} 組，{a}–{b} 下（在家 {c}–{d} 下），做到下一下會很吃力為止。為了健康，最好每週至少 {n} 天練到所有主要肌群。",
+ "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.": "健康體能：每個動作 {s} 組，{a}–{b} 下（在家 {c}–{d} 下），做到下一下會很吃力為止。為了健康，最好每週至少 {n} 天練到所有主要肌群。",
  "Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała) i w pompkach (ok. {p}% masy ciała). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.": "選填，只保存在這支手機上。填寫後，App 會計算引體向上（全部體重）與伏地挺身（約體重的 {p}%）的 e1RM。每次訓練使用當天或更早的最新測量值；第一次測量之前的訓練，這些動作沒有 e1RM。",
  "Powtórzenia: {a}–{b}; w domu i bez obciążenia {c}–{d} — lżejszy ciężar, więcej powtórzeń.": "次數：{a}–{b} 下；在家且無負重時 {c}–{d} 下 — 較輕的重量、較多的次數。",
  "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów.": "漸進：做到次數範圍上限時就加重量。逐步加重是持續進步的基礎。",
