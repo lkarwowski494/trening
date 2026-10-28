@@ -41,29 +41,41 @@ describe('strażnik paczki (scripts/check-bundle.mjs): wyszukiwanie nazw w bajta
       ['utf8', Buffer.from('xxThe Definitive Guide (Greg Nuckols)yy', 'utf8')],
       ['ciągły', Buffer.from('nazwaNuckolskolejna', 'utf8')],
       ['utf16 0', Buffer.from('Pelland i in. 2020', 'utf16le')],
-      ['utf16 1', Buffer.concat([Buffer.from([0x7f]), Buffer.from(' ACSM ', 'utf16le')])],
+      ['utf16 1', Buffer.concat([Buffer.from([0x7f]), Buffer.from(' Zourdos ', 'utf16le')])],
       ['cytat', Buffer.from('Kowalski i in. 2016', 'utf8')],
     ];
     for (const [nazwa, buf] of cases) expect([nazwa, hits(buf) > 0]).toEqual([nazwa, true]);
     for (const clean of ['Wyciskanie sztangi leżąc', 'Przysiad ze sztangą — plecy proste', 'Dumbbell row']) for (const enc of ['utf8', 'utf16le'] as const) expect([clean, enc, hits(Buffer.from(clean, enc))]).toEqual([clean, enc, 0]);
   });
-  test('nawrót L-033: krótki skrót (do 4 liter) liczy się tylko na tle tekstu — sąsiad to spacja lub interpunkcja; przypadkowy ciąg liter i bajtów nie alarmuje, prawdziwy tekst tak', () => {
-    const noise = Buffer.concat([Buffer.from([0x59, 0x72, 0x98, 0x8b, 0xee, 0x5b, 0x43, 0x87, 0x53, 0x8f, 0xa4, 0x44, 0xa4]), Buffer.from('DECDC', 'latin1'), Buffer.from([0xa1, 0x4e, 0x07, 0x96, 0x48])]);
-    expect(hits(noise)).toBe(0);
-    /* nawrót L-033: ciąg z logu tests.yml 40379990056 ("CWCTC7CDC·CKCGCPC;CE" w widoku UTF-16) — długi bieg liter, ale bez granic słowa; klasa: litery A–Z przeplatane bajtami */
-    const log = Buffer.from('CWCTC7CDC\u0001CKCGCPC;CE', 'utf8');
-    expect(hits(log)).toBe(0);
-    expect(hits(Buffer.from(log.toString('utf8'), 'utf16le'))).toBe(0);
-    for (const junk of ['ACWACSMCKCGCPC;CE', 'CWCTC7ISSN\u0001CKCGCPC', 'QWHOQ\u0002abcdefgh', 'ab7NSCA\u0003cdefgh']) expect([junk, hits(Buffer.from(junk, 'utf8'))]).toEqual([junk, 0]);
-    for (const real of ['według CDC', 'CDC zaleca', 'Zgodnie z WHO.', 'dane (ACSM)', 'ISSN, 2018', 'wg NSCA/ACSM', 'tekst CDC i dalszy tekst']) for (const enc of ['utf8', 'utf16le'] as const) expect([real, enc, hits(Buffer.from(real, enc)) > 0]).toEqual([real, enc, true]);
-    expect(hits(Buffer.from('pole.CDC.pole', 'utf8'))).toBeGreaterThan(0);
-    expect(hits(Buffer.from('xxZourdosyy', 'utf8'))).toBeGreaterThan(0); /* nazwy dłuższe niż 4 litery: bez wyjątku, także w ciągłym zapisie */
-    expect(hits(Buffer.from('nazwaPellandkolejna', 'utf8'))).toBeGreaterThan(0);
+  test('wariant C (docs/40, 28.10.2026): skróty do 4 liter paczka pomija — bajty z logu tests.yml 40567640699 (utf8 i utf16le) nie alarmują', () => {
+    const log = Buffer.concat([Buffer.from('B\\CKC.CDC', 'utf8'), Buffer.from([0xef, 0xbf, 0xbd]), Buffer.from('j>/', 'utf8')]); /* „B\CKC.CDC<U+FFFD>j>/” */
+    const raw = Buffer.concat([Buffer.from('B\\CKC.CDC', 'latin1'), Buffer.from([0xa4, 0x6a, 0x3e, 0x2f])]); /* te same bajty przed dekodowaniem (bajt nie-UTF-8) */
+    for (const [nazwa, buf] of [['utf8', log], ['utf16le', Buffer.from(log.toString('utf8'), 'utf16le')], ['surowe', raw], ['utf16 od 1', Buffer.concat([Buffer.from([0x7f]), Buffer.from(log.toString('utf8'), 'utf16le')])]] as [string, Buffer][]) expect([nazwa, hits(buf)]).toEqual([nazwa, 0]);
+  });
+  test('klasa: losowe bufory z wstrzykniętym skrótem (CDC, WHO, ACSM, NSCA, ISSN), otoczonym bajtami i interpunkcją, w każdym kodowaniu — paczka nie alarmuje', () => {
+    let seed = 20261028; const rnd = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+    const rb = (n: number) => Buffer.from(Array.from({ length: n }, () => Math.floor(rnd() * 256)));
+    const punct = ['.', ',', ';', ':', ' ', '(', ')', '/', '\\', '-', '·', '\u0001'];
+    const bufs: [string, Buffer][] = [];
+    for (let i = 0; i < 300; i++) {
+      const abbr = ['CDC', 'WHO', 'ACSM', 'NSCA', 'ISSN'][i % 5], p1 = punct[Math.floor(rnd() * punct.length)], p2 = punct[Math.floor(rnd() * punct.length)];
+      const buf = Buffer.concat([rb(Math.floor(rnd() * 40)), Buffer.from(rnd() < 0.5 ? p1 : ''), Buffer.from(abbr), Buffer.from(rnd() < 0.5 ? p2 : ''), rb(Math.floor(rnd() * 40))]);
+      bufs.push([`${i} ${abbr} utf8`, buf], [`${i} ${abbr} utf16`, Buffer.from(buf.toString('latin1'), 'utf16le')]);
+    }
+    for (const real of ['według CDC', 'Zgodnie z WHO.', 'dane (ACSM)', 'wg NSCA/ACSM', 'ISSN, 2018', 'xxCDCyy']) for (const enc of ['utf8', 'utf16le'] as const) bufs.push([`${real} ${enc}`, Buffer.from(real, enc)]);
+    /* jedno wywołanie node na całą serię (setki procesów byłyby wolne); ziarno stałe, więc wynik deterministyczny */
+    const counts = viaGuard<number[]>('return JSON.parse(A[0]).map(b => g.findNames(Buffer.from(b, "base64"), re, []).length)', JSON.stringify(bufs.map(([, b]) => b64(b))));
+    expect(bufs.map(([n], i) => [n, counts[i]])).toEqual(bufs.map(([n]) => [n, 0]));
+  });
+  test('nazwy dłuższe niż 4 litery nadal alarmują, także w ciągłym zapisie łańcuchów i w utf16le', () => {
+    for (const s of ['xxZourdosyy', 'nazwaPellandkolejna', 'według Epley', 'Stronger by Science', 'Sánchez-Moreno', 'wytyczne USA']) for (const enc of ['utf8', 'utf16le'] as const) expect([s, enc, hits(Buffer.from(s, enc)) > 0]).toEqual([s, enc, true]);
+    expect(hits(Buffer.concat([Buffer.from([0x7f]), Buffer.from('xxHelmsyy', 'utf16le')]))).toBeGreaterThan(0);
+    expect(viaGuard<number>('return g.SHORT_MAX')).toBe(4);
   });
   test('dozwolone łańcuchy (stare tłumaczenia z zestawu do przekładu) są pomijane, reszta nie', () => {
     const old = 'Návrh podle směrnice USA 2018 (WHO, ACSM)';
     expect(hits(Buffer.from(`a${old}b`, 'utf8'), [old])).toBe(0);
-    expect(hits(Buffer.from(`a${old}b${old}c ACSM`, 'utf8'), [old])).toBeGreaterThan(0);
+    expect(hits(Buffer.from(`a${old}b${old}c Zourdos`, 'utf8'), [old])).toBeGreaterThan(0);
     expect(hits(Buffer.from(old, 'utf16le'), [old])).toBe(0);
   });
   test('allowedStrings: tylko stare tłumaczenia kluczy „zmieniony” z nazwami; każdy dozwolony łańcuch jest w słowniku języka i ma nazwę', () => {
