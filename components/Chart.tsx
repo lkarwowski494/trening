@@ -36,7 +36,7 @@ export function LineChart({ points, fmt, height = 180, color, scale = 1, minStep
   const t = useTheme(); const [w, setW] = React.useState(0);
   const onLayout = (e: LayoutChangeEvent) => setW(e.nativeEvent.layout.width);
   const c = color ?? t.accent;
-  if (points.length < 2) return <View onLayout={onLayout} style={{ height, justifyContent: 'center' }}><Text accessibilityLanguage={lang()} style={{ color: t.muted, textAlign: 'center', ...font('footnote'), ...FW.regular }}>{points.length === 1 ? tr('Jedna sesja: {v}. Wykres pojawi się po drugiej.', { v: fmt(points[0].y) }) : tr('Brak danych do wykresu.')}</Text></View>;
+  if (points.length < 2) return <View onLayout={onLayout} style={{ minHeight: height /* duży tekst: pusty stan rośnie z tekstem */, justifyContent: 'center' }}><Text accessibilityLanguage={lang()} style={{ color: t.muted, textAlign: 'center', ...font('footnote'), ...FW.regular }}>{points.length === 1 ? tr('Jedna sesja: {v}. Wykres pojawi się po drugiej.', { v: fmt(points[0].y) }) : tr('Brak danych do wykresu.')}</Text></View>;
   const padR = 12, padT = 14, padB = 26;
   // Runda 69: podziałki liczone w jednostkach wyświetlanych (lb!), krok nie mniejszy niż rozdzielczość etykiet,
   // dla serii całkowitych (powtórzenia, sekundy) tylko kroki całkowite 1/2/5×10^k — etykiety się nie powtarzają i odpowiadają liniom.
