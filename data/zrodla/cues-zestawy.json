@@ -555,8 +555,8 @@
        "„Maintain a forward lean and push through the balls of your feet.” (Sled Push, step 3); „…your lower back is flat.” (step 2)"
       ],
       [
-       "https://www.strengthlog.com/sled-push/",
-       "„Lean slightly forward, keeping your back flat and core tight.” (5-step instructions)"
+       "https://www.thegymgroup.com/exercises/sled-push-and-pull/",
+       "„Drive through the lower body and lean forward slightly to push the sled steadily.”; „Keep your chest up, spine neutral, and core braced.” (Sled Push)"
       ]
      ],
      "analogia": [
@@ -595,7 +595,7 @@
      ]
     }
    },
-   "uwaga": "28.10.2026: źródła BarBend, Strengthlog, Breaking Muscle, Motra i FitMetrics odczytane pod adresem (WebFetch, nie streszczenie wyszukiwarki); ich szczebel (4: serwis specjalistyczny albo biblioteka ćwiczeń aplikacji) do potwierdzenia przez badacza. Wpis najwyższego poziomu (src) = pierwotne dwa źródła; wiążące są wpisy w polu cwiczenia (osobno pchanie i ciągnięcie; analogia nie liczy się do minimum 2)."
+   "uwaga": "28.10.2026: źródła BarBend, The Gym Group, Breaking Muscle, Motra i FitMetrics odczytane pod adresem (WebFetch, nie streszczenie wyszukiwarki); ich szczebel (4: serwis specjalistyczny albo biblioteka ćwiczeń aplikacji) do potwierdzenia przez badacza. Wpis najwyższego poziomu (src) = pierwotne dwa źródła; wiążące są wpisy w polu cwiczenia (osobno pchanie i ciągnięcie; analogia nie liczy się do minimum 2)."
   },
   "sled.legs": {
    "pl": "Pracuj nogami — odpychaj się od podłoża przy każdym kroku.",
@@ -625,8 +625,8 @@
        "„Keep your arms locked and begin aggressively driving forward with your legs.” (step 3)"
       ],
       [
-       "https://www.strengthlog.com/sled-push/",
-       "„Drive through your legs and push the sled forward.” (5-step instructions)"
+       "https://www.thegymgroup.com/exercises/sled-push-and-pull/",
+       "„Drive with your legs.” (Form)"
       ]
      ],
      "analogia": [
@@ -661,7 +661,7 @@
      ]
     }
    },
-   "uwaga": "28.10.2026: źródła BarBend, Strengthlog, Breaking Muscle, Motra i FitMetrics odczytane pod adresem (WebFetch, nie streszczenie wyszukiwarki); ich szczebel (4: serwis specjalistyczny albo biblioteka ćwiczeń aplikacji) do potwierdzenia przez badacza. Wpis najwyższego poziomu (src) = pierwotne dwa źródła; wiążące są wpisy w polu cwiczenia (osobno pchanie i ciągnięcie; analogia nie liczy się do minimum 2)."
+   "uwaga": "28.10.2026: źródła BarBend, The Gym Group, Breaking Muscle, Motra i FitMetrics odczytane pod adresem (WebFetch, nie streszczenie wyszukiwarki); ich szczebel (4: serwis specjalistyczny albo biblioteka ćwiczeń aplikacji) do potwierdzenia przez badacza. Wpis najwyższego poziomu (src) = pierwotne dwa źródła; wiążące są wpisy w polu cwiczenia (osobno pchanie i ciągnięcie; analogia nie liczy się do minimum 2)."
   },
   "smr.mis.fast": {
    "pl": "Za szybkie rolowanie.",

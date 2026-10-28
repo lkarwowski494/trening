@@ -6204,7 +6204,7 @@
             "min_deg": 10,
             "max_deg": 75
           },
-          "zrodlo": "sled.lean, Sled Push: ISSA (hokej, „…maintain a slight forward lean.”), BarBend, Strengthlog; Sled Drag (Harness): ACE ProSource 02.2014 Strongman Training („forward-leaning body position”), Breaking Muscle, Motra, FitMetrics (patrz data/zrodla/cues-zestawy.json, pole cwiczenia)",
+          "zrodlo": "sled.lean, Sled Push: ISSA (hokej, „…maintain a slight forward lean.”), BarBend, The Gym Group; Sled Drag (Harness): ACE ProSource 02.2014 Strongman Training („forward-leaning body position”), Breaking Muscle, Motra, FitMetrics (patrz data/zrodla/cues-zestawy.json, pole cwiczenia)",
           "liczba": "konwencja (pochylenie w przód 10°–75°)",
           "pewnosc": "ustalone (kierunek)"
         },
@@ -6216,7 +6216,7 @@
             "min_deg": -20,
             "max_deg": 10
           },
-          "zrodlo": "Sled Push: Strengthlog („…keeping your back flat and core tight.”), BarBend („…your lower back is flat.”); Sled Drag (Harness): Motra („Lean forward into the harness or grips with neutral spine.”), FitMetrics („…core engaged.”); analogia: ACE ProSource 02.2014 („stiff, stable spine”, talerz po podłodze) — odczytane 28.10.2026, szczebel źródeł do potwierdzenia przez badacza",
+          "zrodlo": "Sled Push: The Gym Group („Keep your chest up, spine neutral, and core braced.”), BarBend („…your lower back is flat.”); Sled Drag (Harness): Motra („Lean forward into the harness or grips with neutral spine.”), FitMetrics („…core engaged.”); analogia: ACE ProSource 02.2014 („stiff, stable spine”, talerz po podłodze) — odczytane 28.10.2026, szczebel źródeł do potwierdzenia przez badacza",
           "liczba": "uproszczenie (jak hinge)",
           "pewnosc": "ustalone (kierunek: plecy płaskie / kręgosłup neutralny); liczba — uproszczenie"
         },
