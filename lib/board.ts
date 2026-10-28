@@ -3,7 +3,7 @@ import { exById, bandById, isBW, hintFor, prevOfActiveBlock, prevFromOther, offL
 import { usedKeys, isEmpty } from '@/lib/state/setvals';
 import { loadsFor } from '@/lib/equipment';
 import { nextHeavier, LOAD_TOL_KG } from '@/lib/loads';
-import { wu, wOut, wIn, fmtW, fmtNum, dOut, dIn, distUnit } from '@/lib/units';
+import { wu, wOut, wIn, fmtW, fmtNum, dOut, dIn, distLabel, unitLabel } from '@/lib/units';
 import { SET_FIELDS, SIZE, TEXT_SCALE } from '@/lib/theme';
 
 /*
@@ -78,7 +78,7 @@ export function stepOf(w: Workout, e: WExercise, key: BoardKey, dir: 1 | -1, bas
   }
   if (key === 'distanceM') {
     const st = BOARD_STEPS.distDisplay; const d = Number(dOut(cur)) || 0; const nd = Math.max(0, d + dir * st); const to = Number(dIn(nd));
-    return { to: (dir < 0 && cur <= 0) || to === cur ? null : to, amount: `${fmtNum(Math.abs(nd - d) || st, 0)} ${distUnit()}` };
+    return { to: (dir < 0 && cur <= 0) || to === cur ? null : to, amount: `${fmtNum(Math.abs(nd - d) || st, 0)} ${distLabel()}` };
   }
   const ex = exById(e.exerciseId); if (!ex) return { to: null, amount: '' };
   const lb = wu() === 'lb'; const bw = isBW(ex);
@@ -91,7 +91,7 @@ export function stepOf(w: Workout, e: WExercise, key: BoardKey, dir: 1 | -1, bas
     } }
   const small = ex.equipment === 'hantle' || ex.loadMode === 'per_dumbbell' || ex.loadMode === 'unilateral';
   const step = (bw ? WEIGHT_STEP.bar : small ? WEIGHT_STEP.small : WEIGHT_STEP.bar)[lb ? 'lb' : 'kg']; /* w jednostce wyświetlania */
-  const amount = `${fmtNum(step, 1)} ${wu()}`;
+  const amount = `${fmtNum(step, 1)} ${unitLabel()}`;
   if (!bw && dir < 0 && cur <= 0) return { to: null, amount };
   let disp = Math.round((wOut(cur) + dir * step) * 100) / 100; if (!bw && disp < 0) disp = 0;
   return { to: Number(wIn(disp)), amount };
@@ -116,7 +116,7 @@ export function compactResult(ex: Exercise, s: Pick<WSet, 'weight' | 'addKg' | '
   const load = hasWeight(m) ? (isBW(ex) ? (n(s.addKg) && Number(s.addKg) ? `${Number(s.addKg) > 0 ? '+' : ''}${fmtNum(wOut(Number(s.addKg)), dig)}` : '') : n(s.weight) ? fmtNum(wOut(Number(s.weight)), dig) : '—') : '';
   const parts: string[] = [];
   if (hasWeight(m) && load) parts.push(load);
-  if (hasDistance(m)) parts.push(n(s.distanceM) ? `${fmtNum(Number(dOut(s.distanceM)), 0)}${distUnit()}` : '—');
+  if (hasDistance(m)) parts.push(n(s.distanceM) ? `${fmtNum(Number(dOut(s.distanceM)), 0)}${distLabel()}` : '—');
   if (hasReps(m)) parts.push(n(s.reps) ? String(s.reps) : '—');
   if (hasTime(m)) parts.push(n(s.durationSec) ? fmtSec(Number(s.durationSec)) : '—');
   if (parts.every(p => p === '—')) return '—';

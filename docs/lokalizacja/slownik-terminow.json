@@ -7805,6 +7805,312 @@
      "pewnosc": "srednia"
     }
    }
+  },
+  {
+   "id": "jednostka_masy_kg",
+   "pl": "kg",
+   "znaczenie": "symbol jednostki masy (kilogram) przy liczbach i w polach; wartość logiczna w danych i CSV zostaje „kg”",
+   "kanon": "{n} kg",
+   "wykrywaj": "^\\{n\\} kg$",
+   "jezyki": {
+    "pl": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "en": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "cs": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "sk": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "hu": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "ro": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "bg": {
+     "zalecany": "кг",
+     "pewnosc": "niska",
+     "uwaga": "Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem?"
+    },
+    "hr": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "sl": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "sr": {
+     "zalecany": "кг",
+     "pewnosc": "niska",
+     "uwaga": "Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem?"
+    },
+    "lt": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "lv": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "et": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "uk": {
+     "zalecany": "кг",
+     "pewnosc": "niska",
+     "uwaga": "Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem?"
+    },
+    "es": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "es-419": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "pt": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "pt-BR": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "de": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "fr": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "it": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "nl": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "sv": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "da": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "nb": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "fi": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "tr": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "el": {
+     "zalecany": "κιλά",
+     "pewnosc": "niska",
+     "uwaga": "Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Grecki: „κιλά” (pełne słowo) czy „kg”?"
+    },
+    "id": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "ms": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "vi": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "ru": {
+     "zalecany": "кг",
+     "pewnosc": "niska",
+     "uwaga": "Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem?"
+    },
+    "ja": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "ko": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    },
+    "zh-Hant": {
+     "zalecany": "kg",
+     "pewnosc": "wysoka"
+    }
+   }
+  },
+  {
+   "id": "jednostka_masy_lb",
+   "pl": "lb",
+   "znaczenie": "symbol jednostki masy (funt) przy liczbach i w polach; wartość logiczna w danych i CSV zostaje „lb”",
+   "kanon": "{n} lb",
+   "wykrywaj": "^\\{n\\} lb$",
+   "jezyki": {
+    "pl": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "en": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "cs": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "sk": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "hu": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "ro": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "bg": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "hr": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "sl": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "sr": {
+     "zalecany": "фнт",
+     "pewnosc": "niska",
+     "uwaga": "Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie)"
+    },
+    "lt": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "lv": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "et": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "uk": {
+     "zalecany": "фнт",
+     "pewnosc": "niska",
+     "uwaga": "Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie)"
+    },
+    "es": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "es-419": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "pt": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "pt-BR": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "de": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "fr": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "it": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "nl": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "sv": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "da": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "nb": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "fi": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "tr": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "el": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "id": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "ms": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "vi": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "ru": {
+     "zalecany": "фнт",
+     "pewnosc": "niska",
+     "uwaga": "Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie)"
+    },
+    "ja": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "ko": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    },
+    "zh-Hant": {
+     "zalecany": "lb",
+     "pewnosc": "wysoka"
+    }
+   }
   }
  ]
 }

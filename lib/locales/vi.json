@@ -1720,5 +1720,7 @@
  "Zobacz plany Pro": "Xem các gói Pro",
  "Masz plan: miesięczny": "Gói của bạn: hằng tháng",
  "Masz plan: roczny": "Gói của bạn: hằng năm",
- "Masz plan: dożywotni": "Gói của bạn: vĩnh viễn"
+ "Masz plan: dożywotni": "Gói của bạn: vĩnh viễn",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

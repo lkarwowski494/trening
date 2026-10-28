@@ -1720,5 +1720,7 @@
  "Zobacz plany Pro": "查看 Pro 方案",
  "Masz plan: miesięczny": "你的方案：每月",
  "Masz plan: roczny": "你的方案：每年",
- "Masz plan: dożywotni": "你的方案：永久"
+ "Masz plan: dożywotni": "你的方案：永久",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

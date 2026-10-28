@@ -1720,5 +1720,7 @@
  "Zobacz plany Pro": "Pro-Pläne ansehen",
  "Masz plan: miesięczny": "Dein Plan: monatlich",
  "Masz plan: roczny": "Dein Plan: jährlich",
- "Masz plan: dożywotni": "Dein Plan: dauerhaft"
+ "Masz plan: dożywotni": "Dein Plan: dauerhaft",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

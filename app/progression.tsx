@@ -7,7 +7,7 @@ import { useTick } from '@/lib/store';
 import { compareCached, pctText, signedNum, type CmpKind, type Comparison } from '@/lib/progress';
 import { periodTitle } from '@/lib/period';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
-import { fmtVol, wu } from '@/lib/units';
+import { fmtVol, unitLabel } from '@/lib/units';
 import { MuscleMap } from '@/components/MuscleMap';
 import { MuscleRows, IndirectLegend, SegBar, SegLegend, HatchBar, PeriodLine, setBars, volumeBars } from '@/components/ProgressBars';
 import { useTheme, F, TEXT_SCALE_MAX, font, RADIUS } from '@/lib/theme';
@@ -79,7 +79,7 @@ export default function ProgressionScreen() {
         <MuscleMap sets={improved} title={t('Partie z większą objętością')} legend={false}
           label={Object.keys(improved).length ? t('Partie z większą objętością niż poprzednio: {list}', { list: c.rows.filter(r => r.volumeUp).map(r => t(r.muscle)).join(', ') }) : t('Żadna partia nie ma większej objętości niż poprzednio.')}
           caption={t('Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.')} />
-        <H2 style={{ marginTop: 16 }}>{t('Objętość per partia ({u})', { u: wu() })}</H2>
+        <H2 style={{ marginTop: 16 }}>{t('Objętość per partia ({u})', { u: unitLabel() })}</H2>
         <MuscleRows rows={volumeBars(c.rows)} metric="volume" names={periods} />
         <H2 style={{ marginTop: 10 }} infoId="prog-sets" info={kind === 'week'
           ? t('Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.')

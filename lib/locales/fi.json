@@ -1720,5 +1720,7 @@
  "Zobacz plany Pro": "Katso Pro-vaihtoehdot",
  "Masz plan: miesięczny": "Tilauksesi: kuukausittainen",
  "Masz plan: roczny": "Tilauksesi: vuosittainen",
- "Masz plan: dożywotni": "Pysyvä käyttöoikeus"
+ "Masz plan: dożywotni": "Pysyvä käyttöoikeus",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

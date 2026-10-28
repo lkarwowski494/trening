@@ -1720,5 +1720,7 @@
  "Zobacz plany Pro": "Pogledajte planove Pro",
  "Masz plan: miesięczny": "Vaš plan: mjesečni",
  "Masz plan: roczny": "Vaš plan: godišnji",
- "Masz plan: dożywotni": "Vaš plan: doživotni"
+ "Masz plan: dożywotni": "Vaš plan: doživotni",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

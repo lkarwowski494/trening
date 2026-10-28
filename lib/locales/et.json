@@ -1720,5 +1720,7 @@
  "Zobacz plany Pro": "Vaata Pro pakette",
  "Masz plan: miesięczny": "Sinu pakett: igakuine",
  "Masz plan: roczny": "Sinu pakett: iga-aastane",
- "Masz plan: dożywotni": "Sinu pakett: eluaegne"
+ "Masz plan: dożywotni": "Sinu pakett: eluaegne",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

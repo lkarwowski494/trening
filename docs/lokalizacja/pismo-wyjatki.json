@@ -1,7 +1,9 @@
 {
- "opis": "Teksty w słownikach języków spoza łaciny (bg, ru, uk, el, ja, ko, zh-Hant), które zostają łacinką: nazwy własne i skróty (Apple Health, GHD, e1RM, PR, SS, OK), nazwy sprzętu używane w całym świecie siłowni w oryginale oraz symbole jednostek dystansu (m, km, mi, yd — spójne z kg/lb łacinką, patrz 09-lokalizacja-005 w audit/M1-2026-10-27). Lista wartości dla scripts/check-i18n.mjs (kontrola pisma języka, 09-lokalizacja-007); nowy tekst łacinką w takim języku wymaga wpisu z powodem w docs/lokalizacja/jezyki.md.",
+ "opis": "Teksty w słownikach języków spoza łaciny (bg, ru, uk, el, ja, ko, zh-Hant), które zostają łacinką: nazwy własne i skróty (Apple Health, GHD, e1RM, PR, SS, OK), nazwy sprzętu używane w całym świecie siłowni w oryginale oraz symbole jednostek masy i dystansu zostające łacinką tam, gdzie tak się pisze (ja, ko: kg, lb, km, m, mi, yd; bg, el: lb — decyzja właściciela 10a z 28.10.2026, 09-lokalizacja-005: w ru, uk, bg, sr, el kg i dystans mają symbol lokalny, patrz docs/lokalizacja/slownik-terminow.json, pojęcia jednostka_masy_kg i jednostka_masy_lb). Lista wartości dla scripts/check-i18n.mjs (kontrola pisma języka, 09-lokalizacja-007); nowy tekst łacinką w takim języku wymaga wpisu z powodem w docs/lokalizacja/jezyki.md.",
  "wartosci": [
+  "{n} kg",
   "{n} km",
+  "{n} lb",
   "{n} m",
   "{n} mi",
   "{n} yd",

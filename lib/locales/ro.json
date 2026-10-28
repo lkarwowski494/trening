@@ -1720,5 +1720,7 @@
  "Zobacz plany Pro": "Vezi planurile Pro",
  "Masz plan: miesięczny": "Planul dvs.: lunar",
  "Masz plan: roczny": "Planul dvs.: anual",
- "Masz plan: dożywotni": "Planul dvs.: pe viață"
+ "Masz plan: dożywotni": "Planul dvs.: pe viață",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

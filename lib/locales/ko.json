@@ -1720,5 +1720,7 @@
  "Zobacz plany Pro": "Pro 요금제 보기",
  "Masz plan: miesięczny": "내 요금제: 월간",
  "Masz plan: roczny": "내 요금제: 연간",
- "Masz plan: dożywotni": "내 요금제: 평생 이용"
+ "Masz plan: dożywotni": "내 요금제: 평생 이용",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

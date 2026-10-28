@@ -9,7 +9,7 @@ import { restCue, restLabel, spokenLoad, cueLoad, spokenUnit, spokenMeters, spok
 import { completeSet } from '@/lib/setFlow';
 import { METRICS, type Exercise, type MetricType, type WSet } from '@/lib/seed';
 import { LANGS, applyLang, t } from '@/lib/i18n';
-import { applyUnit } from '@/lib/units';
+import { applyUnit, unitName } from '@/lib/units';
 import { ex } from './helpers';
 import { world, A, sid, teardownWorld } from './watch-world';
 
@@ -69,7 +69,7 @@ describe('spokenUnit: pełna, odmieniona nazwa jednostki do głosu (nie skrót k
       for (const n of [1, 2, 5, 22, 62.5]) {
         const v = spokenLoad(e, blank({ weight: n * (u === 'lb' ? 0.45359237 : 1) }));
         expect(v).not.toMatch(/\b(kg|lb)\b/i); expect(v).toMatch(/^\d/); expect(v.length).toBeGreaterThan(String(n).length + 1);
-        expect(cueLoad(e, blank({ weight: n * (u === 'lb' ? 0.45359237 : 1) }))).toMatch(new RegExp(`\\b${u}$`));
+        expect(cueLoad(e, blank({ weight: n * (u === 'lb' ? 0.45359237 : 1) }))).toMatch(new RegExp(`(?<![\\p{L}])${unitName(u)}$`, 'u')); /* ekran: etykieta lokalna (10a, 28.10.2026), nie wartość logiczna */
       }
       expect(spokenUnit(1).length).toBeGreaterThan(0);
     }

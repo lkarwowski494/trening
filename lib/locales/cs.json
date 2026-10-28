@@ -1720,5 +1720,7 @@
  "Zobacz plany Pro": "Zobrazit plány Pro",
  "Masz plan: miesięczny": "Váš plán: měsíční",
  "Masz plan: roczny": "Váš plán: roční",
- "Masz plan: dożywotni": "Váš plán: doživotní"
+ "Masz plan: dożywotni": "Váš plán: doživotní",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

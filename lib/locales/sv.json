@@ -1720,5 +1720,7 @@
  "Zobacz plany Pro": "Se Pro-planer",
  "Masz plan: miesięczny": "Din plan: månadsvis",
  "Masz plan: roczny": "Din plan: årsvis",
- "Masz plan: dożywotni": "Din plan: livstid"
+ "Masz plan: dożywotni": "Din plan: livstid",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

@@ -1720,5 +1720,7 @@
  "Zobacz plany Pro": "Pro planlarını gör",
  "Masz plan: miesięczny": "Planınız: aylık",
  "Masz plan: roczny": "Planınız: yıllık",
- "Masz plan: dożywotni": "Planınız: süresiz"
+ "Masz plan: dożywotni": "Planınız: süresiz",
+ "{n} kg": "{n} kg",
+ "{n} lb": "{n} lb"
 }

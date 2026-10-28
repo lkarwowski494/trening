@@ -60,6 +60,8 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `kopia_zapasowa` | kopia zapasowa | plik z danymi treningu do przywrócenia |
 | `zacznij_trening` | zacznij trening | przycisk rozpoczęcia treningu |
 | `zakoncz_trening` | zakończ trening | przycisk zakończenia treningu |
+| `jednostka_masy_kg` | kg | symbol jednostki masy (kilogram) przy liczbach i w polach; wartość logiczna w danych i CSV zostaje „kg” |
+| `jednostka_masy_lb` | lb | symbol jednostki masy (funt) przy liczbach i w polach; wartość logiczna w danych i CSV zostaje „lb” |
 
 ## Terminy zalecane (rdzeń)
 
@@ -211,7 +213,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `zh-Hant` | `przerwa_robocza` | 工作休息\|上班 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `zh-Hant` | `deload` | 減量 | „減量” w tajwańskim żargonie siłowni znaczy odchudzanie (redukcję); deload to „減載” |
 
-## Do potwierdzenia przez native speakera (24)
+## Do potwierdzenia przez native speakera (32)
 
 Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym języku? Jeśli nie — jak mówi się naprawdę? (Lista z docs/16.)
 
@@ -221,14 +223,19 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `hu` | `asekuracja` | Biztosítás | „biztosítás” bywa ubezpieczeniem — do potwierdzenia |
 | `ro` | `do_upadku` | Până la epuizare | w siłowniach też „până la cedare”; do potwierdzenia |
 | `ro` | `asekuracja` | Siguranță și asigurare | do potwierdzenia przez native speakera |
+| `bg` | `jednostka_masy_kg` | кг | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem? |
 | `hr` | `asekuracja` | Sigurnost i asistencija | do potwierdzenia przez native speakera |
 | `sr` | `asekuracja` | Асистенција и безбедност | do potwierdzenia przez native speakera |
+| `sr` | `jednostka_masy_kg` | кг | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem? |
+| `sr` | `jednostka_masy_lb` | фнт | Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie) |
 | `lt` | `zakres_powtorzen` | pakartojimų intervalas | „intervalas” bywa przerwą; w siłowniach też „diapazonas” — do potwierdzenia |
 | `lt` | `do_upadku` | Iki nesėkmės | do potwierdzenia przez native speakera |
 | `lt` | `asekuracja` | Pagalba ir saugumas | do potwierdzenia przez native speakera |
 | `lv` | `seria` | Sērija | „sērija” = seria/odcinek; w siłowniach też „pieeja” — do potwierdzenia |
 | `et` | `do_upadku` | Kuni väsimuseni | „väsimuseni” = do zmęczenia; do potwierdzenia |
 | `uk` | `asekuracja` | Страхування | „страхування” bywa ubezpieczeniem; w siłowniach też „страховка”/„спотінг” — do potwierdzenia |
+| `uk` | `jednostka_masy_kg` | кг | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem? |
+| `uk` | `jednostka_masy_lb` | фнт | Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie) |
 | `pt` | `zakres_powtorzen` | gama de repetições | w Portugalii „intervalo” = przerwa między seriami, więc „gama”; do potwierdzenia przez native speakera |
 | `pt` | `szablon` | Modelo | „modelo” jest ogólne; w siłowniach „ficha/plano de treino” — do potwierdzenia |
 | `pt-BR` | `szablon` | Modelo | „modelo” jest ogólne; w siłowniach „ficha” — do potwierdzenia |
@@ -236,8 +243,11 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `fi` | `do_upadku` | Uupumukseen | do potwierdzenia przez native speakera |
 | `tr` | `do_upadku` | Tükenişe kadar | do potwierdzenia przez native speakera |
 | `el` | `do_upadku` | Έως αποτυχία | do potwierdzenia przez native speakera |
+| `el` | `jednostka_masy_kg` | κιλά | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Grecki: „κιλά” (pełne słowo) czy „kg”? |
 | `vi` | `seria` | Hiệp | „hiệp” (też runda w boksie) obok „set” — do potwierdzenia |
 | `vi` | `asekuracja` | Hỗ trợ và an toàn | do potwierdzenia przez native speakera |
+| `ru` | `jednostka_masy_kg` | кг | Symbol masy w piśmie lokalnym (decyzja właściciela 10a, 28.10.2026; zmienia M1-039): czy tak piszą ludzie na siłowni w tym języku? Czy „кг” jest właściwym skrótem? |
+| `ru` | `jednostka_masy_lb` | фнт | Skrót funta w piśmie lokalnym: czy „фнт” jest używany, czy ludzie piszą „lb”? (imperialny rzadko w tym regionie) |
 | `ja` | `zakres_powtorzen` | レップ範囲 | „レップ” to żargon siłowni; do potwierdzenia |
 | `ja` | `szablon` | テンプレート | „テンプレート” vs „メニュー” w siłowniach — do potwierdzenia |
 | `zh-Hant` | `szablon` | 範本 | „範本” brzmi jak szablon dokumentu; w siłowniach tajwańskich „課表” — do potwierdzenia |
