@@ -24,7 +24,7 @@ describe('dane zestawów wskazówek (cue-sets.json)', () => {
   test('każdy zestaw ogólny ma ≥ 1 zalecenie i rodzinę; identyfikatory istnieją w pl.json albo są na liście newIds (teksty od tłumacza); newIds = identyfikatory bez tekstu', () => {
     const used = new Set<string>();
     for (const [k, e] of Object.entries(CUE_SETS.items)) if (e.b === 'general') { expect([k, (e.ok ?? []).length >= 1, !!e.f]).toEqual([k, true, true]); [...(e.ok ?? []), ...(e.err ?? [])].forEach(i => used.add(i)); }
-    const missing = [...used].filter(i => !PL[i]).sort(); expect(missing).toEqual([...CUE_SETS.meta.newIds].sort()); expect(CUE_SETS.meta.newIds.length).toBe(52);
+    const missing = [...used].filter(i => !PL[i]).sort(); expect(missing).toEqual([...CUE_SETS.meta.newIds].sort()); expect(CUE_SETS.meta.newIds.length).toBe(51); /* 1.0.1 (28.10.2026): bp.elbowsMid ma już tekst PL */
   });
 });
 
