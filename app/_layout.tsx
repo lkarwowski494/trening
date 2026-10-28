@@ -5,6 +5,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { ActivityIndicator, View, Text, Pressable } from 'react-native';
 import { wallTs, init, usePrefsTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState, getNewerSchema, markBootStable, BOOT_STABLE_MS, STALE_AUTO_MS, getPersistError, useTick } from '@/lib/store';
 import { Alert } from 'react-native';
+import { okButton } from '@/lib/confirm';
 import { onWorkoutSaved, exportRawData, cleanShareLeftovers } from '@/lib/backup';
 import { markDoneEarly } from '@/lib/plan';
 import { retryHealth } from '@/lib/health';
@@ -96,7 +97,7 @@ function PersistErrorAlert() {
   useEffect(() => {
     if (!err) { shown.current = false; return; }
     if (shown.current) return; shown.current = true;
-    Alert.alert(t('Nie udało się zapisać danych'), undefined, [{ text: t('OK'), style: 'cancel' }, { text: t('Spróbuj ponownie'), onPress: () => { void flush(); } }]);
+    Alert.alert(t('Nie udało się zapisać danych'), undefined, [okButton(), { text: t('Spróbuj ponownie'), onPress: () => { void flush(); } }]);
   }, [err]);
   return null;
 }
