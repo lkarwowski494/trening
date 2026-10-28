@@ -1,7 +1,7 @@
 /*
  * M1-audytor-generalny-001 (audyt 1.0, 27.10.2026; 02-monetyzacja-503): przy aktywnej subskrypcji wybór planu dożywotniego pokazuje PRZED arkuszem Apple
  * uwagę o odnawianiu subskrypcji (docs/27 3.11: „Na ekranie zakupu przy aktywnej subskrypcji ta sama uwaga przed zakupem”). Subskrypcja z Chmury rodzinnej
- * albo z kodu: osoba nie płaci sama — bez sugestii „anuluj”. Rodzaje (docs/20): ekran, języki (PL, EN), VoiceOver (tekst w drzewie dostępności).
+ * (płaci organizator) — bez sugestii „anuluj”; z kodu promocyjnego po promocji odnawia się płatnie — z uwagą (decyzja 5a, 28.10.2026). Rodzaje (docs/20): ekran, języki (PL, EN), VoiceOver (tekst w drzewie dostępności).
  */
 import * as store from '@/lib/store';
 import { applyLang } from '@/lib/i18n';
@@ -40,10 +40,12 @@ describe('M1-001: dożywotni przy aktywnej subskrypcji — uwaga przed zakupem',
   test('bez subskrypcji: dożywotni bez uwagi', async () => {
     await boot([], 'en'); await tap(screen.getByTestId('plan-lifetime')); expect(screen.queryByTestId('paywall-lifetime-warning')).toBeNull();
   });
-  test('subskrypcja z Chmury rodzinnej albo z kodu (osoba nie płaci sama): bez sugestii „anuluj”', async () => {
-    for (const source of ['family', 'code'] as const) {
-      await boot([sub({ source })], 'en'); await tap(screen.getByTestId('paywall-change-plan')); await tap(screen.getByTestId('plan-lifetime'));
-      expect(screen.queryByTestId('paywall-lifetime-warning')).toBeNull(); expect(screen.queryByText(EN)).toBeNull();
-    }
+  test('subskrypcja z Chmury rodzinnej (płaci organizator): bez sugestii „anuluj”', async () => {
+    await boot([sub({ source: 'family' })], 'en'); await tap(screen.getByTestId('paywall-change-plan')); await tap(screen.getByTestId('plan-lifetime'));
+    expect(screen.queryByTestId('paywall-lifetime-warning')).toBeNull(); expect(screen.queryByText(EN)).toBeNull();
+  });
+  test('subskrypcja z kodu promocyjnego: po promocji odnawia się płatnie — ta sama uwaga (decyzja właściciela 5a, 28.10.2026; M2-koordynator-napraw-001)', async () => {
+    await boot([sub({ source: 'code' })], 'en'); await tap(screen.getByTestId('paywall-change-plan')); await tap(screen.getByTestId('plan-lifetime'));
+    expect(screen.getByTestId('paywall-lifetime-warning').props.children).toBe(EN);
   });
 });

@@ -54,8 +54,9 @@ export default function PaywallScreen() {
   const open = (url: string) => { Linking.openURL(url).catch(() => {}); };
   const lifetime = view.active?.plan === 'lifetime'; const subActive = (view.entitlements ?? []).some(e => e.plan !== 'lifetime' && entitlementActive(e, Date.now()));
   const chosen = Array.isArray(products) ? products.find(p => p.plan === sel && !ownedPlans.has(p.plan)) : undefined; const hasSub = SUBSCRIPTION_PLANS.some(p => ownedPlans.has(p));
-  /* M1-audytor-generalny-001 (docs/27 3.11): subskrypcja, za którą osoba płaci sama, odnawia się dalej po zakupie dożywotniego — uwaga przed arkuszem Apple, nie dopiero po zakupie */
-  const paysSub = (view.entitlements ?? []).some(e => e.plan !== 'lifetime' && e.source === 'purchase' && entitlementActive(e, Date.now()));
+  /* M1-audytor-generalny-001 (docs/27 3.11): subskrypcja, za którą osoba płaci sama, odnawia się dalej po zakupie dożywotniego — uwaga przed arkuszem Apple, nie dopiero po zakupie;
+   * także z kodu promocyjnego (po promocji odnawia się płatnie; decyzja 5a, 28.10.2026), bez Chmury rodzinnej (płaci organizator) */
+  const paysSub = (view.entitlements ?? []).some(e => e.plan !== 'lifetime' && e.source !== 'family' && entitlementActive(e, Date.now()));
   const buy = async () => {
     if (!chosen || busy || ownedPlans.has(chosen.plan)) return; setBusy(true); setNote(null);
     try {

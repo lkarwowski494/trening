@@ -817,7 +817,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy ogląda wiersz prowadzący na ekran zakupu
     - Wtedy bez planu tytuł wiersza to wezwanie do działania „Zobacz plany Pro” (ta sama etykieta co pozostałe wejścia na ekran zakupu) z licznikiem darmowych dni w podtytule, a z planem tytuł nazywa plan „Masz plan: {nazwa planu}” z datą albo „Masz dostęp na zawsze” w podtytule (DEC-07 b, właściciel 27.10.2026; M1-audytor-generalny-037; test `tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx`)
   - Scenariusz: Dożywotni przy aktywnej subskrypcji
-    - Zakładając, że użytkownik sam płaci za aktywną subskrypcję (nie z Chmury rodzinnej ani z kodu)
+    - Zakładając, że użytkownik ma aktywną subskrypcję kupioną sam albo z kodu promocyjnego (po promocji odnawia się płatnie; decyzja 5a, 28.10.2026), nie z Chmury rodzinnej
     - Gdy rozwija „Zmień plan” i zaznacza plan dożywotni
     - Wtedy przed przyciskiem „Kup na zawsze” czyta, że subskrypcja dalej się odnawia i trzeba ją anulować, żeby nie płacić podwójnie (docs/27 3.11; test `tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx`)
 
