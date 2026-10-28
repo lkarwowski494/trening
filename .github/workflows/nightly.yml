@@ -74,7 +74,7 @@ jobs:
       fail-fast: false
       matrix:
         # plan.ts w jednym zadaniu przekraczał 5 h (przebieg dowodowy 25.10.2026) — cztery zakresy wierszy (`plan:od-do`), razem cały plik; pilnuje tests/nocne-workflowy.test.ts
-        modul: [units, stats, 'plan:1-130', 'plan:131-260', 'plan:261-390', 'plan:391-9999', generator, deload, deload-sets, planReminder, period, dashboard, timer, whatsnew, backup]
+        modul: [units, stats, 'plan:1-130', 'plan:131-260', 'plan:261-390', 'plan:391-9999', generator, deload, deload-sets, planReminder, period, dashboard, timer, whatsnew, backup, access, entitlement, guard, csvimport, state/migrate]  # +5 modułów ryzyk wysokich: M1-audytor-generalny-034 (28.10.2026)
         ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main"]') || format('["{0}"]', github.ref_name)) }}
     timeout-minutes: 300
     name: mutacje (${{ matrix.ref }}, ${{ matrix.modul }})
