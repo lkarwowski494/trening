@@ -62,3 +62,16 @@ describe('02-monetyzacja-506: decyzja „Wyjątek Ukraina” z 13.10.2026 zamkni
     expect(read('docs/research/espresso-mimit-2026-10.md')).toMatch(/Z-10b/);
   });
 });
+
+describe('M1-037 backlog (DEC-07 b, 27.10.2026): pozycje poza 1.0 wpisane do docs/21 z wersją, nie do „Backlogu bez priorytetu”', () => {
+  const d = read('docs/21-roadmapa-offline.md');
+  const s = sekcja(d, '### Backlog z audytu M1 — DEC-07 b', '\n### ');
+  const bezPriorytetu = sekcja(d, '### Backlog bez priorytetu', '\n### ');
+  test.each(['03-zakres-006', '03-zakres-007', '11-wzrost-002', '11-wzrost-004', '02-monetyzacja-005', '02-monetyzacja-506'])('%s: wiersz z wersją i warunkiem', (id) => {
+    const w = s.split('\n').find(l => l.includes(id)) ?? '';
+    expect(w).toMatch(/\*\*Wersja:\*\* (1\.0\.1|1\.0\.x|1\.1)/);
+    expect(w).toMatch(/Warunek|Powrót|Kiedy/);
+    expect(bezPriorytetu).not.toContain(id);
+  });
+});
+
