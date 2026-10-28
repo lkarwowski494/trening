@@ -1,0 +1,94 @@
+{
+ "jezyk": "lt",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 471,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "tlumaczenie": "Pratimas su štanga ant liemens arba virš galvos ir veido: rekomenduojamas saugojimas — stovas su apsauginiais ramsčiais ir pagalbininkas.",
+   "poprawka": "Pratimas su štanga ant liemens arba virš galvos ir veido: rekomenduojama apsauga — stovas su apsauginiais ramsčiais ir pagalbininkas.",
+   "powod": "„saugojimas” to nienaturalny termin dla asekuracji. „apsauga” jest jasne i lepiej współgra z „saugumas” w nagłówku (zd. 2).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "rodzaj": "nowe",
+   "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "tlumaczenie": "Automatinė atsarginė kopija: po kiekvienos treniruotės JSON failas išsaugomas programoje „Failai“ (Mano iPhone → {app} → Backup, paskutiniai {n}). Importuoti galima ir šiuos failus. Šios kopijos ištrinamos kartu su programa — prieš ją pašalindami arba diegdami iš kitos „Apple“ paskyros, eksportuokite atsarginę kopiją kitur.",
+   "poprawka": "Automatinė atsarginė kopija: po kiekvienos treniruotės JSON failas išsaugomas programoje „Failai“ (Mano iPhone → {app} → Backup, paskutiniai {n}). Importuoti galima ir šiuos failus. Šios kopijos ištrinamos kartu su programėle — prieš ją pašalindami arba diegdami iš kitos „Apple“ paskyros, eksportuokite atsarginę kopiją kitur.",
+   "powod": "Niespójna terminologia: o tej aplikacji wszędzie mowa „programėlė”, tu „programa”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+   "rodzaj": "nowe",
+   "pl": "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+   "tlumaczenie": "Treniruotė iš {d} {s} {h} val. neturėjo veiklos, todėl buvo išsaugota automatiškai. Pabaiga: {e} (paskutinė serija). Rasite ją skirtuke „Planas“.",
+   "poprawka": "{d} {s} pradėta treniruotė {h} val. buvo neaktyvi, todėl buvo išsaugota automatiškai. Pabaiga: {e} (paskutinė serija). Rasite ją skirtuke „Planas“.",
+   "powod": "„Treniruotė iš {d} {s}” i „neturėjo veiklos” to nienaturalne kalki.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "rodzaj": "nowe",
+   "pl": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "tlumaczenie": "Paryškintos raumenų grupės, kurių apimtis didesnė nei lyginamuoju laikotarpiu; kuo ryškesnė spalva, tuo didesnis padidėjimas. Pilkos — be padidėjimo.",
+   "poprawka": "Paryškintos kūno dalys, kurių apimtis didesnė nei lyginamuoju laikotarpiu; kuo ryškesnė spalva, tuo didesnis padidėjimas. Pilkos — be padidėjimo.",
+   "powod": "Niespójna terminologia: „partia” wszędzie jako „kūno dalis”, tu „raumenų grupės”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "sumo.stance",
+   "rodzaj": "wskazowka",
+   "pl": "Stań szeroko — stopy na zewnątrz dłoni, palce i kolana skierowane w tę samą stronę, na zewnątrz.",
+   "tlumaczenie": "Plati stovėsena — pėdos už rankų, pirštai ir keliai nukreipti ta pačia kryptimi į išorę.",
+   "poprawka": "Plati stovėsena — pėdos plačiau nei rankos, pirštai ir keliai nukreipti ta pačia kryptimi į išorę.",
+   "powod": "„pėdos už rankų” jest dwuznaczne (może znaczyć „za rękami”); w źródle chodzi o stopy na zewnątrz dłoni.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "rodzaj": "nowe",
+   "pl": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "tlumaczenie": "Kardio: esant {k}–{m} dienoms, dienas virš {j} galite paversti vidutinio intensyvumo kardio treniruotėmis („Kardio dienos plane“, numatytai išjungta). Daugiau stiprinamųjų pratimų nebūtinai duoda daugiau naudos sveikatai, o aerobinį judėjimą verta paskirstyti per kelias dienas. Kardio treniruotės trukmė = treniruotės laikas.",
+   "poprawka": "Kardio: esant {k}–{m} dienoms, dienas virš {j} galite paversti vidutinio intensyvumo kardio treniruotėmis („Kardio dienos plane“, pagal numatytuosius nustatymus išjungta). Daugiau stiprinamųjų pratimų nebūtinai duoda daugiau naudos sveikatai, o aerobinį judėjimą verta paskirstyti per kelias dienas. Kardio treniruotės trukmė = treniruotės laikas.",
+   "powod": "„numatytai išjungta” brzmi nienaturalnie; standard iOS to „pagal numatytuosius nustatymus”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "Pabaigoje bakstelėkite „Baigti“ viršuje (arba „Baigti treniruotę“ kortelėje po paskutinės serijos) — sesija pateks į skiltį „Planas“.",
+   "poprawka": "Pabaigoje bakstelėkite „Baigti“ viršuje (arba „Baigti treniruotę“ kortelėje po paskutinės serijos) — sesija pateks į skirtuką „Planas“.",
+   "powod": "Zakładka to „skirtukas” (jak w zd. 124), a nie „skiltis”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "dbp.move",
+   "rodzaj": "wskazowka",
+   "pl": "Wypchnij hantle w górę do wyprostu rąk; opuść je powoli do boków klatki.",
+   "tlumaczenie": "Išspausk hantelius aukštyn iki ištiestų rankų; lėtai nuleisk juos krūtinės šonuose.",
+   "poprawka": "Išspausk hantelius aukštyn iki ištiestų rankų; lėtai nuleisk juos prie krūtinės šonų.",
+   "powod": "„krūtinės šonuose” sugeruje miejsce wewnątrz; kierunek ruchu to „prie krūtinės šonų”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "ibp.dbMove",
+   "rodzaj": "wskazowka",
+   "pl": "Wypchnij hantle w górę nad barki do wyprostu rąk; opuść je powoli do boków górnej części klatki.",
+   "tlumaczenie": "Išspausk hantelius virš pečių iki ištiestų rankų; lėtai nuleisk juos viršutinės krūtinės šonuose.",
+   "poprawka": "Išspausk hantelius virš pečių iki ištiestų rankų; lėtai nuleisk juos prie viršutinės krūtinės dalies šonų.",
+   "powod": "Jak w zd. 253: kierunek „prie … šonų” zamiast „šonuose”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

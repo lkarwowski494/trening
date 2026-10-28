@@ -1,0 +1,40 @@
+{
+ "jezyk": "es-419",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 477,
+ "uwagi": [
+  {
+   "klucz": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "rodzaj": "nowe",
+   "pl": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+   "tlumaczenie": "Los grupos musculares resaltados tienen más volumen que en el período de comparación; cuanto más intenso el color, mayor el aumento. Gris — sin aumento.",
+   "poprawka": "Las partes del cuerpo resaltadas tienen más volumen que en el período de comparación; cuanto más intenso el color, mayor el aumento. Gris: sin aumento.",
+   "powod": "Niespójna terminologia: „partia” wszędzie indziej to „parte del cuerpo”, tu „grupos musculares”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "rodzaj": "nowe",
+   "pl": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "tlumaczenie": "Menú ⋯ en el encabezado: «Pausar entrenamiento» detiene el reloj del entrenamiento; el tiempo de pausa no cuenta en la duración.",
+   "poprawka": "Menú ⋯ en el encabezado: «Pausar entrenamiento» detiene el reloj del entrenamiento; el tiempo en pausa no cuenta para la duración.",
+   "powod": "„no cuenta en la duración” brzmi nienaturalnie; naturalniej „no cuenta para la duración”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "Al final, «Terminar» en el encabezado (o «Terminar entrenamiento» en la tarjeta tras la última serie) — la sesión pasa a la pestaña Plan.",
+   "poprawka": "Al final, toca «Terminar» en el encabezado (o «Terminar entrenamiento» en la tarjeta tras la última serie): la sesión pasa a la pestaña Plan.",
+   "powod": "Zdanie bez czasownika brzmi urywanie; dodano „toca” jak w tekście angielskim.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

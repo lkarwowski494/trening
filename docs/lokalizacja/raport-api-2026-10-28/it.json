@@ -1,0 +1,76 @@
+{
+ "jezyk": "it",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 473,
+ "uwagi": [
+  {
+   "klucz": "+ {n} {w}",
+   "rodzaj": "nowe",
+   "pl": "+ {n} {w}",
+   "tlumaczenie": "altri {n} {w}",
+   "poprawka": "+ {n} {w}",
+   "powod": "„altri” ma stały rodzaj męski i liczbę mnogą, więc nie zgadza się z {w} rodzaju żeńskiego (np. „serie”) ani z {n}=1. Brakuje też znaku „+” ze źródła.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "rodzaj": "nowe",
+   "pl": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "tlumaczenie": "Generale (per salute e forma fisica): {s} serie per esercizio, {a}–{b} ripetizioni (a casa {c}–{d}), finché un’altra ripetizione diventerebbe difficile. Per la salute conviene allenare tutti i gruppi muscolari principali almeno {n} giorni a settimana.",
+   "poprawka": "Generale (per salute e forma fisica): {s} serie per esercizio, {a}–{b} ripetizioni (a casa {c}–{d}), fino al punto in cui un’altra ripetizione sarebbe difficile. Per la salute conviene allenare tutti i gruppi muscolari principali almeno {n} giorni a settimana.",
+   "powod": "Konstrukcja „finché … diventerebbe” (tryb warunkowy po „finché”) brzmi nienaturalnie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+   "rodzaj": "nowe",
+   "pl": "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+   "tlumaczenie": "L’allenamento del {d} {s} è rimasto fermo per {h} ore, quindi è stato salvato in automatico. Fine: {e} (ultima serie). Lo trovi nella scheda Piano.",
+   "poprawka": "L’allenamento del {d} {s} è rimasto fermo per {h} ore, quindi è stato salvato in automatico. Fine: {e} (ultima serie). Lo trovi nella sezione Piano.",
+   "powod": "„scheda” oznacza w aplikacji szablon, więc „scheda Piano” jest dwuznaczne. Zdanie 67 używa „sezione Piano” dla zakładki.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "rodzaj": "nowe",
+   "pl": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "tlumaczenie": "Sforzo: finché un’altra ripetizione diventerebbe difficile. Stanchezza, ma non esaurimento. Non serve arrivare a cedimento.",
+   "poprawka": "Sforzo: fino al punto in cui un’altra ripetizione sarebbe difficile. Stanchezza, ma non esaurimento. Non serve arrivare a cedimento.",
+   "powod": "Konstrukcja „finché … diventerebbe” brzmi nienaturalnie; niespójna też z poprawką w zdaniu 74.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "tlumaczenie": "Esercizio con i manubri sopra la testa o il viso: si raccomanda una persona che ti assista.",
+   "poprawka": "Esercizio con i manubri sopra la testa o il viso: si raccomanda una persona che assista.",
+   "powod": "Niespójne sformułowanie zalecenia asekuracji względem zdań 3 i 4 („una persona che assista”).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "rodzaj": "nowe",
+   "pl": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "tlumaczenie": "Non eliminare l’app: con lei spariscono dati e backup. Prima tocca “Invia i dati” e salva il file fuori dal telefono.",
+   "poprawka": "Non eliminare l’app: con lei spariscono dati e backup. Prima tocca «Invia i dati» e salva il file fuori dal telefono.",
+   "powod": "Cudzysłów “ ” niespójny z « » używanym w pozostałych tekstach.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali.",
+   "rodzaj": "nowe",
+   "pl": "RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali.",
+   "tlumaczenie": "Il RIR sono le ripetizioni che ti restano di riserva: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). I valori salvati si convertono quando cambi scala.",
+   "poprawka": "Il RIR indica le ripetizioni che ti restavano di riserva: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). I valori salvati si convertono quando cambi scala.",
+   "powod": "„Il RIR sono le ripetizioni” jest niezgrabne gramatycznie (brak zgody podmiotu z orzeczeniem).",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

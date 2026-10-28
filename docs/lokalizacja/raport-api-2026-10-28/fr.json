@@ -1,0 +1,112 @@
+{
+ "jezyk": "fr",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 469,
+ "uwagi": [
+  {
+   "klucz": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "rodzaj": "nowe",
+   "pl": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "tlumaczenie": "Cardio hors plan : une séance de cardio figure dans le plan à partir de {k} jours par semaine ; avec moins, tous les jours sont consacrés à la force. Pour la santé, visez au moins {a}–{b} min d’activité modérée par semaine (ou {c}–{d} min d’activité intense) ; le mouvement modéré dans la journée compte aussi, p. ex. la marche rapide, même brève.",
+   "poprawka": "Cardio hors programme : une séance de cardio figure dans le programme à partir de {k} jours par semaine ; avec moins, tous les jours sont consacrés à la force. Pour la santé, il est conseillé de faire au moins {a}–{b} min d’activité modérée par semaine (ou {c}–{d} min d’activité intense) ; le mouvement modéré dans la journée compte aussi, p. ex. la marche rapide, même brève.",
+   "powod": "Rozkaźnik „visez” wzmacnia łagodne „warto”. Do tego „plan” jest niespójny z „programme” w zdaniach 27, 85, 120 i 131.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "rodzaj": "nowe",
+   "pl": "Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "tlumaczenie": "Cardio dans le plan : {n} min par semaine. Pour la santé, visez au moins {a}–{b} min d’activité modérée par semaine (ou {c}–{d} min d’activité intense) ; le mouvement modéré dans la journée compte aussi, p. ex. la marche rapide, même brève.",
+   "poprawka": "Cardio dans le programme : {n} min par semaine. Pour la santé, il est conseillé de faire au moins {a}–{b} min d’activité modérée par semaine (ou {c}–{d} min d’activité intense) ; le mouvement modéré dans la journée compte aussi, p. ex. la marche rapide, même brève.",
+   "powod": "Rozkaźnik „visez” wzmacnia łagodne „warto”. Do tego „plan” jest niespójny z „programme”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "rodzaj": "nowe",
+   "pl": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "tlumaczenie": "Forme générale (santé et condition physique) : {s} séries par exercice, {a}–{b} répétitions (à la maison {c}–{d}), jusqu’à ce qu’une répétition de plus soit difficile. Pour la santé, travaillez tous les grands groupes musculaires au moins {n} jours par semaine.",
+   "poprawka": "Forme générale (santé et condition physique) : {s} séries par exercice, {a}–{b} répétitions (à la maison {c}–{d}), jusqu’à ce qu’une répétition de plus soit difficile. Pour la santé, il est conseillé de travailler tous les grands groupes musculaires au moins {n} jours par semaine.",
+   "powod": "Rozkaźnik „travaillez” wzmacnia łagodne „warto ćwiczyć”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",
+   "rodzaj": "nowe",
+   "pl": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",
+   "tlumaczenie": "Vérifiez l’aperçu et « Règles du plan » — rien n’est enregistré avant votre confirmation.",
+   "poprawka": "Vérifiez l’aperçu et « Règles du programme » — rien n’est enregistré avant votre confirmation.",
+   "powod": "Niespójna terminologia: plan treningowy to w innych miejscach „programme”. Etykieta musi być zgodna ze zdaniem 155.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosną wyraźniej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosną wyraźniej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Avec au moins {n} séries par groupe musculaire et par semaine, les muscles se développent davantage qu’avec moins de séries ; la musculation sous ses différentes formes fait progresser par rapport à l’absence d’entraînement.",
+   "poprawka": "Avec au moins {n} séries par groupe musculaire et par semaine, les muscles se développent davantage qu’avec moins de séries ; la musculation sous ses différentes formes fait gagner du muscle par rapport à l’absence d’entraînement.",
+   "powod": "„Fait progresser” jest zbyt ogólne. Źródło mówi o przyroście mięśni („daje przyrost”).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.",
+   "rodzaj": "nowe",
+   "pl": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.",
+   "tlumaczenie": "Séries : {s} par exercice — pour la santé, en général {s}–{b}. Faites-en au moins {m}. Une série est déjà efficace, {s}–{b} peuvent l’être davantage ; chez les débutants et les personnes âgées, une série peut suffire. {s}, c’est la limite basse.",
+   "poprawka": "Séries : {s} par exercice — pour la santé, en général {s}–{b}. Il est conseillé d’en faire au moins {m}. Une série est déjà efficace, {s}–{b} peuvent l’être davantage ; chez les débutants et les personnes âgées, une série peut suffire. {s}, c’est la limite basse.",
+   "powod": "Rozkaźnik „Faites-en” wzmacnia łagodne „warto zrobić”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.",
+   "rodzaj": "nowe",
+   "pl": "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.",
+   "tlumaczenie": "Séries : {s} par exercice — faites-en au moins {m} ; plus de séries apportent en général un peu plus, avec un gain qui diminue.",
+   "poprawka": "Séries : {s} par exercice — il est conseillé d’en faire au moins {m} ; plus de séries apportent en général un peu plus, avec un gain qui diminue.",
+   "powod": "Rozkaźnik „faites-en” wzmacnia łagodne „warto zrobić”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zasady planu",
+   "rodzaj": "nowe",
+   "pl": "Zasady planu",
+   "tlumaczenie": "Règles du plan",
+   "poprawka": "Règles du programme",
+   "powod": "Niespójna terminologia: plan treningowy to w innych miejscach „programme”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "tlumaczenie": "Exercice avec haltères au-dessus de la tête ou du visage : un partenaire pour vous parer est recommandé.",
+   "poprawka": "Exercice avec haltères au-dessus de la tête ou du visage : un partenaire qui vous pare est recommandé.",
+   "powod": "Niespójna terminologia asekuracji. W zdaniach 3 i 4 jest „un partenaire qui vous pare”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.",
+   "rodzaj": "nowe",
+   "pl": "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.",
+   "tlumaczenie": "{left} {n} sur {limit} jours d’entraînement gratuits ce mois-ci.",
+   "poprawka": "{left} {n} jours d’entraînement gratuits sur {limit} ce mois-ci.",
+   "powod": "Szyk „{n} sur {limit} jours” jest nienaturalny po francusku.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "+ {n} {w}",
+   "rodzaj": "nowe",
+   "pl": "+ {n} {w}",
+   "tlumaczenie": "+ {n} {w} de plus",
+   "poprawka": "+ {n} {w}",
+   "powod": "Znak „+” i „de plus” powtarzają tę samą informację, co jest nienaturalne.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

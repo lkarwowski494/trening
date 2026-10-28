@@ -1,0 +1,40 @@
+{
+ "jezyk": "ja",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01CVC1PzCUxnhgZPrJQnHzJZ",
+ "zdan": 480,
+ "ok": 477,
+ "uwagi": [
+  {
+   "klucz": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "rodzaj": "nowe",
+   "pl": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "tlumaczenie": "{app} は個人の独立系デベロッパーが作っています。広告なし、データ収集なし。役に立っていると感じたら、プランを選んで制限なしでトレーニングしましょう。無料日は{date}に戻ります。",
+   "poprawka": "{app} は個人の独立系デベロッパーが作っています。広告なし、データ収集なし。役に立っていると感じたら、プランを選んで制限なしでトレーニングしましょう。無料のトレーニング日は{date}に再び使えるようになります。",
+   "powod": "„無料日は…に戻ります” brzmi nienaturalnie; lepiej „znów będą dostępne”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "rodzaj": "nowe",
+   "pl": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "tlumaczenie": "バンドは、その画面のヘッダーの「編集」から、または左にスワイプして削除できます。",
+   "poprawka": "バンドは、バンド画面のヘッダーの「編集」から、または左にスワイプして削除できます。",
+   "powod": "„その画面” jest niejasne; źródło mówi wprost o ekranie gum.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "rodzaj": "nowe",
+   "pl": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "tlumaczenie": "健康・体力（健康のため）：1種目{s}セット、{a}–{b}回（自宅では{c}–{d}回）、次の1回がきつくなるところまで。健康のためには、すべての主な部位を週に少なくとも{n}日鍛えましょう。",
+   "poprawka": "一般（健康と体力のため）：1種目{s}セット、{a}–{b}回（自宅では{c}–{d}回）、次の1回がきつくなるところまで。健康のためには、すべての主な部位を週に少なくとも{n}日鍛えましょう。",
+   "powod": "Zgubiono „Ogólny” i powtórzono „zdrowie” (健康・体力（健康のため）); nazwa celu jest niejasna.",
+   "waga": "średnia"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

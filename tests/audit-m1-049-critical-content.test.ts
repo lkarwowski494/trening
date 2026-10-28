@@ -3,7 +3,8 @@
  * przeglądu wskazówek nie było. Test: (1) tabela „Treść krytyczna” w docs/16 jest generowana z danych (UPDATE_CRITICAL=1 przepisuje) — drift pada;
  * (2) kontrola automatyczna: każdy z 34 języków ma przetłumaczone zdanie medyczne i pięć kluczy asekuracji (czwarty: M1-031, piąty: M1-031 cz. 2) oraz komplet zdań wskazówek;
  * (3) ryzyko R-010 w rejestrze docs/40 z warunkiem zamknięcia i blokadą wydania w App Store (nie TestFlight).
- * Drugiego przeglądu tłumaczeń ten test nie zastępuje — to osobne zadanie (tłumacz / native speaker).
+ * Drugiego przeglądu tłumaczeń ten test nie zastępuje. Stan po M1-audytor-generalny-006 (28.10.2026, decyzja właściciela 21.10.2026): drugi przegląd robi Claude
+ * przez API; ostatnia kolumna tabeli czyta trwałą kopię raportu `docs/lokalizacja/raport-api-2026-10-28/`, R-010 zamknięte (tests/audit-m1-006-r010-zamkniecie.test.ts).
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -24,6 +25,9 @@ const SAFETY = [
 /** Języki, w których w docs/16 zapisano niezależną recenzję drugim agentem po tłumaczeniu: 14 języków (proces 05.10.2026) i 10 języków wariantu B (proces 07.10.2026). */
 const REVIEWED_0510: readonly Lang[] = ['cs', 'sk', 'hu', 'ro', 'bg', 'hr', 'sl', 'sr', 'lt', 'lv', 'et', 'uk', 'es', 'pt'];
 const REVIEWED_0710: readonly Lang[] = ['de', 'fr', 'it', 'nl', 'sv', 'da', 'nb', 'fi', 'tr', 'el'];
+const API_DIR = 'docs/lokalizacja/raport-api-2026-10-28';
+/** Drugi przegląd przez API (28.10.2026): język ma plik w kopii raportu z odpowiedzią modelu. */
+const apiReviewed = (l: string) => { const f = path.join(ROOT, API_DIR, `${l}.json`); if (!fs.existsSync(f)) return false; const r = JSON.parse(fs.readFileSync(f, 'utf8')); return r.zdan > 0 && (r.brak_odpowiedzi ?? []).length === 0 && !r.blad; };
 const START = '<!-- gen:krytyczne -->'; const END = '<!-- /gen:krytyczne -->';
 const TARGETS = LANGS.filter((l) => l !== 'pl');
 
@@ -38,9 +42,9 @@ function row(l: Lang): string {
   const med = present(l, MEDICAL) ? 'tak' : 'BRAK';
   const saf = SAFETY.every((k) => present(l, k)) ? 'tak' : 'BRAK';
   const c = cues(l); const have = plCueIds.filter((id) => typeof c[id] === 'string' && c[id].trim() !== '').length;
-  return `| ${l} | ${med} | ${saf} | ${have}/${plCueIds.length} | ${REVIEWED_0510.includes(l) ? 'tak (05.10.2026)' : REVIEWED_0710.includes(l) ? 'tak (07.10.2026)' : 'brak zapisu'} | niewykonany |`;
+  return `| ${l} | ${med} | ${saf} | ${have}/${plCueIds.length} | ${REVIEWED_0510.includes(l) ? 'tak (05.10.2026)' : REVIEWED_0710.includes(l) ? 'tak (07.10.2026)' : 'brak zapisu'} | ${apiReviewed(l) ? 'tak (28.10.2026, API)' : 'niewykonany'} |`;
 }
-const table = () => ['| kod | zdanie medyczne | asekuracja (5 kluczy) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd wskazówek (native speaker) |', '|---|---|---|---|---|---|', ...TARGETS.map(row)].join('\n');
+const table = () => ['| kod | zdanie medyczne | asekuracja (5 kluczy) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd treści krytycznej (Claude, decyzja 21.10.2026) |', '|---|---|---|---|---|---|', ...TARGETS.map(row)].join('\n');
 
 describe('docs/16: kontrola treści krytycznej w 34 językach', () => {
   test('jest 34 języków docelowych (LANGS bez pl)', () => { expect(TARGETS).toHaveLength(34); });
@@ -56,10 +60,11 @@ describe('docs/16: kontrola treści krytycznej w 34 językach', () => {
     expect(a).toBeGreaterThan(-1); expect(b).toBeGreaterThan(a);
     expect(d.slice(a + START.length, b).trim()).toBe(table());
   });
-  test('docs/16 zapisuje stan formy zwracania się (fr, tr) jako otwarty i brak drugiego przeglądu', () => {
+  test('docs/16 zapisuje stan formy zwracania się (fr, tr) i drugiego przeglądu (M1-006, 28.10.2026)', () => {
     const d = read('docs/16-jezyki-i-marka.md'); const a = d.indexOf('## Treść krytyczna');
     expect(a).toBeGreaterThan(-1); const s = d.slice(a);
-    expect(s).toMatch(/fr[^\n]*tr[^\n]*OTWARTE|OTWARTE[^\n]*fr[^\n]*tr/); expect(s).toMatch(/drugi przegląd[^\n]*niewykonany|niewykonany[^\n]*drugi przegląd/i);
+    expect(s).toMatch(/Forma zwracania się w fr i tr — ujednolicona/); expect(s).toMatch(/Drugi przegląd treści krytycznej: wykonany przez Claude/);
+    expect(TARGETS.filter((l) => !apiReviewed(l))).toEqual([]);
   });
 });
 
@@ -70,7 +75,7 @@ describe('docs/40: ryzyko R-010 (treść krytyczna bez drugiego przeglądu)', ()
     expect(line).toMatch(/M1-049/); expect(line).toMatch(/drugi przegląd/i); expect(line).toMatch(/fr/); expect(line).toMatch(/tr/);
     expect(line.split('|').length).toBeGreaterThanOrEqual(5);
   });
-  test('blokuje wydanie w App Store, nie TestFlight', () => {
-    expect(line).toMatch(/blokuje[^|]*App Store/i); expect(line).toMatch(/nie[^|]*TestFlight/i); expect(line).toMatch(/otwarte/i);
+  test('zamknięte 28.10.2026 (M1-006); historia zachowuje, że blokowało App Store, nie TestFlight', () => {
+    expect(line).toMatch(/zamknięte \(28\.10\.2026\)/); expect(line).toMatch(/blokowało App Store, nie TestFlight/);
   });
 });
