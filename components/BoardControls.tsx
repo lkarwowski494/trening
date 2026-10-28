@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Text, Pressable } from 'react-native';
+import { Pressable } from 'react-native';
+import { Text } from '@/components/AppText';
 import Svg, { Path } from 'react-native-svg';
 import { useTheme, font, RADIUS, SIZE, type Theme } from '@/lib/theme';
 import { NumInput, monoSafe } from '@/components/ui';

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, TEXT_SCALE_MAX, FW, font } from '@/lib/theme';
 import { weekProgress, type WeekProgress } from '@/lib/motif';
 import { t as tr, lang } from '@/lib/i18n';
