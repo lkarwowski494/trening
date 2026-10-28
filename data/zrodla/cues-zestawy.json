@@ -529,7 +529,7 @@
   },
   "sled.lean": {
    "pl": "Pochyl się lekko w przód, tułów sztywny.",
-   "claim": "Pchanie sanek z pochyleniem i sztywnym tułowiem.",
+   "claim": "Sanie: lekkie pochylenie w przód i sztywny tułów — przy pchaniu sanek i przy ciągnięciu ich w pasie.",
    "src": [
     [
      "https://www.issaonline.com/blog/post/hockey-workouts-for-lower-body-power",
@@ -540,11 +540,66 @@
      "„forward-leaning body position”; „stiff, stable spine”"
     ]
    ],
-   "status": "wdrozony"
+   "status": "wdrozony",
+   "cwiczenia": {
+    "Sled Push": {
+     "claim": "Pchanie sanek: pochylenie w przód, plecy płaskie, brzuch napięty.",
+     "pewnosc": "ustalone",
+     "src": [
+      [
+       "https://www.issaonline.com/blog/post/hockey-workouts-for-lower-body-power",
+       "„…maintain a slight forward lean.”"
+      ],
+      [
+       "https://barbend.com/sled-push/",
+       "„Maintain a forward lean and push through the balls of your feet.” (Sled Push, step 3); „…your lower back is flat.” (step 2)"
+      ],
+      [
+       "https://www.thegymgroup.com/exercises/sled-push-and-pull/",
+       "„Drive through the lower body and lean forward slightly to push the sled steadily.”; „Keep your chest up, spine neutral, and core braced.” (Sled Push)"
+      ]
+     ],
+     "analogia": [
+      [
+       "https://www.acefitness.org/continuing-education/prosource/february-2014/3676/strongman-training-for-your-clients/",
+       "ciągnięcie sanek: „forward-leaning body position”; „stiff, stable spine” (talerz po podłodze)"
+      ]
+     ]
+    },
+    "Sled Drag (Harness)": {
+     "claim": "Ciągnięcie sanek w pasie: pochylenie w przód, tułów sztywny (rdzeń napięty, kręgosłup neutralny).",
+     "pewnosc": "ustalone",
+     "src": [
+      [
+       "https://www.acefitness.org/continuing-education/prosource/february-2014/3676/strongman-training-for-your-clients/",
+       "„forward-leaning body position” (ciągnięcie ciężkich sanek)"
+      ],
+      [
+       "https://breakingmuscle.com/sled-workouts/",
+       "„Aggressively lean away from the sled as you walk forward…” (Heavy Sled Drag)"
+      ],
+      [
+       "https://www.motra.com/exercises/sledDrag",
+       "„Lean forward into the harness or grips with neutral spine.”; „Keep core tight and chest up throughout the drag.”"
+      ],
+      [
+       "https://www.fitmetrics.ch/en/exercise/6733d76d71a2c-forward-sled-drag",
+       "„Lean slightly forward with knees bent and core engaged.” (Instructions)"
+      ]
+     ],
+     "analogia": [
+      [
+       "https://www.issaonline.com/blog/post/hockey-workouts-for-lower-body-power",
+       "pchanie sanek: „…maintain a slight forward lean.”"
+      ]
+     ]
+    }
+   },
+   "uwaga": "28.10.2026: źródła BarBend, The Gym Group, Breaking Muscle, Motra i FitMetrics odczytane pod adresem (WebFetch, nie streszczenie wyszukiwarki); ich szczebel (4: serwis specjalistyczny albo biblioteka ćwiczeń aplikacji) do potwierdzenia przez badacza. Wpis najwyższego poziomu (src) = pierwotne dwa źródła; wiążące są wpisy w polu cwiczenia (osobno pchanie i ciągnięcie; analogia nie liczy się do minimum 2)."
   },
   "sled.legs": {
    "pl": "Pracuj nogami — odpychaj się od podłoża przy każdym kroku.",
-   "claim": "Napęd z nóg, nie z rąk.",
+   "claim": "Sanie: napęd z nóg, nie z rąk — przy pchaniu sanek i przy ciągnięciu ich w pasie.",
    "src": [
     [
      "https://www.issaonline.com/blog/post/hockey-workouts-for-lower-body-power",
@@ -555,7 +610,58 @@
      "„push into the ground one leg at a time”"
     ]
    ],
-   "status": "wdrozony"
+   "status": "wdrozony",
+   "cwiczenia": {
+    "Sled Push": {
+     "claim": "Pchanie sanek: napęd z nóg, ręce tylko prowadzą sanie.",
+     "pewnosc": "ustalone",
+     "src": [
+      [
+       "https://www.issaonline.com/blog/post/hockey-workouts-for-lower-body-power",
+       "„Drive through the legs, not the upper body.”"
+      ],
+      [
+       "https://barbend.com/sled-push/",
+       "„Keep your arms locked and begin aggressively driving forward with your legs.” (step 3)"
+      ],
+      [
+       "https://www.thegymgroup.com/exercises/sled-push-and-pull/",
+       "„Drive with your legs.” (Form)"
+      ]
+     ],
+     "analogia": [
+      [
+       "https://www.acefitness.org/continuing-education/prosource/february-2014/3676/strongman-training-for-your-clients/",
+       "ciągnięcie sanek: „push into the ground one leg at a time”"
+      ]
+     ]
+    },
+    "Sled Drag (Harness)": {
+     "claim": "Ciągnięcie sanek w pasie: napęd z nóg, kroki odpychające się od podłoża.",
+     "pewnosc": "ustalone",
+     "src": [
+      [
+       "https://www.acefitness.org/continuing-education/prosource/february-2014/3676/strongman-training-for-your-clients/",
+       "„push into the ground one leg at a time” (ciągnięcie sanek)"
+      ],
+      [
+       "https://breakingmuscle.com/sled-workouts/",
+       "„…driving through your hip, knee, and ankle one leg at a time.” (Heavy Sled Drag)"
+      ],
+      [
+       "https://www.motra.com/exercises/sledDrag",
+       "„Drive through glutes and hamstrings to take powerful steps forward.” (How to Perform)"
+      ]
+     ],
+     "analogia": [
+      [
+       "https://www.issaonline.com/blog/post/hockey-workouts-for-lower-body-power",
+       "pchanie sanek: „Drive through the legs, not the upper body.”"
+      ]
+     ]
+    }
+   },
+   "uwaga": "28.10.2026: źródła BarBend, The Gym Group, Breaking Muscle, Motra i FitMetrics odczytane pod adresem (WebFetch, nie streszczenie wyszukiwarki); ich szczebel (4: serwis specjalistyczny albo biblioteka ćwiczeń aplikacji) do potwierdzenia przez badacza. Wpis najwyższego poziomu (src) = pierwotne dwa źródła; wiążące są wpisy w polu cwiczenia (osobno pchanie i ciągnięcie; analogia nie liczy się do minimum 2)."
   },
   "smr.mis.fast": {
    "pl": "Za szybkie rolowanie.",

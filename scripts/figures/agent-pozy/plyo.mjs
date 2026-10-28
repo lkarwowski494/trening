@@ -3,7 +3,7 @@
 // Poza kończy się amortyzacją po lądowaniu (u = 1), więc reguły sensu „lot” i „miękkie lądowanie” da się sprawdzić (wariant A: lot i lądowanie). Ruch jest szybki z natury: ćwiczenia z deklaracją „dynamiczne” w danych sensu.
 // Widok boczny pokazuje ruch w płaszczyźnie strzałkowej; ćwiczenia z przemieszczeniem bocznym mają je w osi z (widać z przodu), a w widoku bocznym tylko wysokość i postawę — przybliżenie w PRZYBLIZENIA.
 import { kostkaNaPalcach } from './model.mjs';
-import { P, Q, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, kostkaZBiodra, biodroZKostki, katyNogi, wyjatkiOpisu } from './dyn.mjs';
+import { P, Q, ruch, bladZRuchu, zbuduj, jednokierunkowa, PODLOGA, bledyZOpisem, kostkaZBiodra, biodroZKostki, katyNogi, wyjatkiOpisu } from './dyn.mjs';
 
 export const RODZINA = 'plyo';
 export const WYJATKI = {
@@ -219,5 +219,6 @@ export function generuj() {
   G['Alternate Leg Diagonal Bound'] = () => skokZNogiNaNoge('Alternate Leg Diagonal Bound', { dx: 85, dz: 45, sx: 1 });
   G['Depth Jump'] = () => depth('Depth Jump');
   G['Dumbbell Seated Box Jump'] = () => siedzacy('Dumbbell Seated Box Jump');
+  for (const k of Object.keys(G)) { const f = G[k]; G[k] = () => jednokierunkowa(f()); } /* cały skok w jednej pętli 0 → 1, bez powrotu (recenzja treści 28.10.2026, Z2) */
   return G;
 }

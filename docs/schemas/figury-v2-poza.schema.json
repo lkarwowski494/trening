@@ -22,9 +22,10 @@
    "type": "string",
    "enum": [
     "wahadlo",
-    "cykl_lustro"
+    "cykl_lustro",
+    "jednokierunkowa"
    ],
-   "description": "OPCJONALNIE: wahadlo (domyślnie: ruch 0 → 1 i z powrotem) albo cykl_lustro (marsz: po u = 1 ta sama faza z zamienionymi nogami, więc klatka u = 1 musi być lustrem klatki u = 0)."
+   "description": "OPCJONALNIE: wahadlo (domyślnie: ruch 0 → 1 i z powrotem) albo cykl_lustro (marsz: po u = 1 ta sama faza z zamienionymi nogami, więc klatka u = 1 musi być lustrem klatki u = 0) albo jednokierunkowa (skok, rzut: u = 0 → 1 to całe powtórzenie, animacja po końcu skacze do u = 0 bez cofania ruchu)."
   },
   "lustroRece": {
    "type": "boolean",

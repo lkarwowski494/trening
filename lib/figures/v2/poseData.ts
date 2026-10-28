@@ -71,8 +71,17 @@ export const DATA_UI: Record<string, DataUi> = {
 };
 /** Ustawienia prezentacji ćwiczenia w trybie cyklicznym (marsz) z rodziny bez wpisu w DATA_UI (sled_throw, strongman): licznik „Marsz”, mierzone kolano albo biodro (decyzja właściciela 27.10.2026). */
 export const GAIT_UI: DataUi = { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true };
-/** Wpis prezentacji rodziny; ćwiczenie w trybie cyklicznym w rodzinie bez wpisu dostaje GAIT_UI, inne ćwiczenia takiej rodziny: null (bez figury). */
-export const dataUiForPose = (family: string, data: PoseData): DataUi | null => own(DATA_UI, family) ?? (data.petla === 'cykl_lustro' ? GAIT_UI : null);
+/**
+ * Prezentacja ćwiczeń w pętli jednokierunkowej (`petla: 'jednokierunkowa'`, 28.10.2026): jedna faza bez sekund, nazwa z `names.first` — „Skok” (plyo) albo „Rzut” (sled_throw: Slamy, rzuty, Wall Ball). Kierunek u: 0 → 1 nie dotyczy
+ * (całe powtórzenie w jednym przebiegu, bez opuszczania i podnoszenia), więc `lowerFirst` jest tu nieistotne. Mierzone kolano albo biodro (skok i przysiad piłki). Wpis nie jest DATA_UI: rodzina z jednokierunkowym i innym ruchem
+ * (marsz sanek w sled_throw) zachowuje GAIT_UI dla cyklicznych (dataUiForPose).
+ */
+export const ONE_WAY_UI: Record<string, DataUi> = {
+  plyo: { names: { first: 'Skok', second: 'Skok' }, lowerFirst: false, joints: ['knee', 'hip'] },
+  sled_throw: { names: { first: 'Rzut', second: 'Rzut' }, lowerFirst: false, joints: ['knee', 'hip'] },
+};
+/** Wpis prezentacji rodziny; ćwiczenie w trybie cyklicznym w rodzinie bez wpisu dostaje GAIT_UI, w trybie jednokierunkowym — ONE_WAY_UI rodziny, inne ćwiczenia takiej rodziny: null (bez figury). */
+export const dataUiForPose = (family: string, data: PoseData): DataUi | null => own(DATA_UI, family) ?? (data.petla === 'cykl_lustro' ? GAIT_UI : data.petla === 'jednokierunkowa' ? own(ONE_WAY_UI, family) ?? null : null);
 /** Nazwy faz licznika dla ruchów rodzin z poza statycznymi: wpis po ćwiczeniu ma pierwszeństwo przed DATA_UI rodziny (Cat-Cow nie jest Opuszczaniem/Wstawaniem). Teksty przez t() (lib/i18n.en.ts). */
 export const PHASES_BY_EXERCISE: Record<string, { first: PhaseName; second: PhaseName }> = {
   /* u = 0 koci grzbiet → u = 1 krowa */

@@ -1,0 +1,5 @@
+{
+  "_opis": "Błędy z katalogu wskazówek, które mają tekst w lib/cues/text/pl.json, ale NIE są jeszcze w zatwierdzonym pliku póz rodziny. Generator ich nie rysuje (inaczej run.mjs --zastosuj dopisałby nierecenzowane pozy błędów, a przy niektórych ćwiczeniach poza błędu nie przechodzi walidacji). Wpis zdejmuje się razem z recenzją pozy błędu (bramka 3c/4, docs/53); podgląd takiej pozy: POZY_BLEDY_WSTRZYMANE=zwolnij. Strażnik: tests/figury-generator-odtwarza.test.ts.",
+  "jump.mis.stiff": "poza błędu (lądowanie na prostych nogach) nie jest w zatwierdzonym pliku póz plyo; Single-Leg Lateral Hop: poza błędu nie łamie reguły miekkie_ladowanie (walidator) — do recenzji i naprawy przed zdjęciem wstrzymania",
+  "hang.noSwing": "poza błędu (bujanie) nie jest w zatwierdzonym pliku póz core_hang; Toes to Bar: cel poza zasięgiem o 0,74 cm w fazie u = 0,81 (walidator) — do recenzji i naprawy przed zdjęciem wstrzymania"
+}

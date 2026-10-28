@@ -4,7 +4,7 @@
 import { kostkaNaPalcach } from './model.mjs';
 import { bledyCwiczenia } from '../v2-validate.mjs';
 import { wczytajTeksty } from '../v2-jakosc.mjs';
-import { P, Q, ruch, bladZRuchu, bladKolana, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, kostkaZBiodra, katyNogi, wyjatkiOpisu, cyklLustro } from './dyn.mjs';
+import { P, Q, ruch, bladZRuchu, bladKolana, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, kostkaZBiodra, katyNogi, wyjatkiOpisu, cyklLustro, jednokierunkowa } from './dyn.mjs';
 
 export const RODZINA = 'sled_throw';
 const OTW = (powod) => `ćwiczenie otwarte: ${powod} (data/zrodla/figury-sens.json → sled_throw.otwarte); poza wróci po opisie ruchu przez badacza`;
@@ -108,6 +108,7 @@ export function generuj() {
   G['Backward Medicine Ball Throw'] = () => rzut('Backward Medicine Ball Throw', 'tyl');
   G['Medicine Ball Scoop Throw'] = () => rzut('Medicine Ball Scoop Throw', 'scoop');
   G['Wall Ball'] = () => wallBall('Wall Ball');
+  for (const k of Object.keys(G)) { const f = G[k]; G[k] = () => jednokierunkowa(f()); } /* cały rzut w jednej pętli 0 → 1, bez powrotu piłki (recenzja treści 28.10.2026, Z2); sanie zostają cykliczne */
   G['Sled Push'] = () => sledPush('Sled Push');
   G['Sled Drag (Harness)'] = () => sledDrag('Sled Drag (Harness)');
   return G;

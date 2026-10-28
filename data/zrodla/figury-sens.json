@@ -2983,7 +2983,8 @@
         "Kneeling Jump Squat": "brak wskazówek (zestaw „open”); nie badane"
       },
       "otwarte_czesciowo": {
-        "Weighted Jump Squat, Dumbbell Seated Box Jump": "zestaw ma jump.drive z „zamachem rąk”, a ręce trzymają ciężar — reguła zamach_rak pominięta; zestaw wskazówek do korekty (badacz wskazówek)",
+        "Weighted Jump Squat": "ZAMKNIĘTE 28.10.2026: sztanga na barkach, ręce trzymają gryf — zestaw ogólny bez jump.drive („z zamachem rąk”), zostaje jump.land; reguła zamach_rak pominięta (brak zamachu)",
+        "Dumbbell Seated Box Jump": "zestaw ma jump.drive z „zamachem rąk”, a ręce trzymają hantle i zamachują nimi (rysunek) — reguła zamach_rak pominięta; zestaw zgodny z rysunkiem (recenzja treści 28.10.2026)",
         "WYMÓG KONTRAKTU": "reguły miekkie_ladowanie i faza_lotu wymagają, by poza skoku w przedziale u 0…1 zawierała lot i lądowanie (u = 1 = pozycja po amortyzacji); jeśli animacja ma pokazywać tylko wybicie, tej reguły nie da się sprawdzić — decyzja koordynatora"
       },
       "pomin": {}
@@ -6203,7 +6204,7 @@
             "min_deg": 10,
             "max_deg": 75
           },
-          "zrodlo": "sled.lean: ISSA (hokej, „…maintain a slight forward lean.”), ACE ProSource 02.2014 Strongman Training („forward-leaning body position”) — słownik badacza",
+          "zrodlo": "sled.lean, Sled Push: ISSA (hokej, „…maintain a slight forward lean.”), BarBend, The Gym Group; Sled Drag (Harness): ACE ProSource 02.2014 Strongman Training („forward-leaning body position”), Breaking Muscle, Motra, FitMetrics (patrz data/zrodla/cues-zestawy.json, pole cwiczenia)",
           "liczba": "konwencja (pochylenie w przód 10°–75°)",
           "pewnosc": "ustalone (kierunek)"
         },
@@ -6215,9 +6216,9 @@
             "min_deg": -20,
             "max_deg": 10
           },
-          "zrodlo": "ACE ProSource 02.2014 („stiff, stable spine”) — słownik badacza",
+          "zrodlo": "Sled Push: The Gym Group („Keep your chest up, spine neutral, and core braced.”), BarBend („…your lower back is flat.”); Sled Drag (Harness): Motra („Lean forward into the harness or grips with neutral spine.”), FitMetrics („…core engaged.”); analogia: ACE ProSource 02.2014 („stiff, stable spine”, talerz po podłodze) — odczytane 28.10.2026, szczebel źródeł do potwierdzenia przez badacza",
           "liczba": "uproszczenie (jak hinge)",
-          "pewnosc": "jedno źródło"
+          "pewnosc": "ustalone (kierunek: plecy płaskie / kręgosłup neutralny); liczba — uproszczenie"
         },
         "rzut_wyprost": {
           "typ": "potrojny_wyprost",

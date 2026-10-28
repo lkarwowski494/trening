@@ -111,8 +111,11 @@ describe('5. U-L1: widoki na poziomie ćwiczenia (suwnice tylko z boku), zgodnie
     for (const f of FAMILIES) expect(viewsOf('Nieistniejące ćwiczenie', f.id)).toEqual(f.views);
   });
   test('wyjątki widoków ćwiczeń są jawne: tylko suwnice, z powodem, i tylko podzbiór widoków rodziny', () => {
-    expect(Object.keys(EXERCISE_VIEWS).sort()).toEqual([...SUWNICE].sort());
-    for (const [cw, v] of Object.entries(EXERCISE_VIEWS)) { expect(v.reason.length).toBeGreaterThan(20); for (const x of v.views) expect(FAMILY[v.family].views).toContain(x); expect(cw.length).toBeGreaterThan(0); }
+    /* rozszerzenie widoków (28.10.2026, recenzja treści plyo/sanie Z3): Wall Ball dostaje widok z przodu, bo błąd „kolana do środka” widać tylko z przodu; reszta rodziny sled_throw zostaje z boku */
+    const ROZSZERZENIA = ['Wall Ball'];
+    expect(Object.keys(EXERCISE_VIEWS).sort()).toEqual([...SUWNICE, ...ROZSZERZENIA].sort());
+    for (const [cw, v] of Object.entries(EXERCISE_VIEWS)) { expect(v.reason.length).toBeGreaterThan(20); if (!ROZSZERZENIA.includes(cw)) for (const x of v.views) expect(FAMILY[v.family].views).toContain(x); expect(cw.length).toBeGreaterThan(0); }
+    for (const cw of ROZSZERZENIA) expect(EXERCISE_VIEWS[cw].views).toEqual([...FAMILY[EXERCISE_VIEWS[cw].family].views, 'front']);
   });
 });
 

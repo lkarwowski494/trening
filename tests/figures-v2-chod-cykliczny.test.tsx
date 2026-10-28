@@ -85,9 +85,9 @@ describe('logika: lustro klatki kluczowej (mirrorKey)', () => {
 
 describe('kontrakt: pole petla (schemat i walidator)', () => {
   test('schemat dopuszcza petla ∈ {wahadlo, cykl_lustro} i lustroRece (boolean), reszta jak dotąd; wartość spoza listy odrzucona', () => {
-    expect([...LOOP_MODES]).toEqual(['wahadlo', 'cykl_lustro']);
+    expect([...LOOP_MODES]).toEqual(['wahadlo', 'cykl_lustro', 'jednokierunkowa']);
     const s = poseSchema('generic'); const p = s.properties as Record<string, { type?: string; enum?: string[] }>;
-    expect(p.petla.enum).toEqual(['wahadlo', 'cykl_lustro']); expect(p.lustroRece.type).toBe('boolean'); expect((s.required as string[]).includes('petla')).toBe(false);
+    expect(p.petla.enum).toEqual(['wahadlo', 'cykl_lustro', 'jednokierunkowa']); expect(p.lustroRece.type).toBe('boolean'); expect((s.required as string[]).includes('petla')).toBe(false);
     const d = dane('carry', "Farmer's Walk");
     expect(checkSchema({ ...d, petla: 'cykl_lustro' }, s)).toEqual([]); expect(checkSchema({ ...d, petla: 'wahadlo', lustroRece: true }, s)).toEqual([]); expect(checkSchema({ ...d, petla: 'inna' }, s).length).toBeGreaterThan(0);
     expect(checkSchema({ ...d, nieznane: 1 }, s).length).toBeGreaterThan(0);
@@ -112,7 +112,7 @@ describe('kontrakt: pole petla (schemat i walidator)', () => {
 
 describe('dane: 10 ćwiczeń marszowych w trybie cyklicznym', () => {
   test('dokładnie 10 ćwiczeń ma petla = cykl_lustro (7 carry, Sled Push, Sled Drag (Harness), Yoke Walk); żadne inne ćwiczenie z plików sled_throw, strongman, carry nie ma pola', () => {
-    const z: string[] = []; for (const f of Object.keys(POZY)) for (const [k, d] of Object.entries(POZY[f].cwiczenia)) if (d.petla !== undefined) z.push(`${f}/${k}`);
+    const z: string[] = []; for (const f of Object.keys(POZY)) for (const [k, d] of Object.entries(POZY[f].cwiczenia)) if (d.petla === 'cykl_lustro') z.push(`${f}/${k}`);
     expect(z.sort()).toEqual(CYKLICZNE.map(([f, k]) => `${f}/${k}`).sort()); expect(Object.keys(POZY.carry.cwiczenia).length).toBe(7);
     for (const [f, k] of CYKLICZNE) expect([k, dane(f, k).petla]).toEqual([k, 'cykl_lustro']);
   });
@@ -216,7 +216,7 @@ describe('figura: tryb cykliczny w specyfikacji (silnik)', () => {
 describe('prezentacja: wpis UI dla ćwiczenia marszowego z rodziny bez DATA_UI', () => {
   test('dataUiForPose: ćwiczenie cykliczne dostaje GAIT_UI (Marsz, kolano/biodro), niecykliczne ćwiczenie rodziny bez wpisu — null; rodzina z wpisem (carry) zachowuje swój', () => {
     expect(dataUiForPose('sled_throw', dane('sled_throw', 'Sled Push'))).toBe(GAIT_UI); expect(dataUiForPose('strongman', dane('strongman', 'Yoke Walk'))).toBe(GAIT_UI);
-    expect(dataUiForPose('sled_throw', dane('sled_throw', 'Wall Ball'))).toBeNull(); expect(GAIT_UI).toMatchObject({ names: { first: 'Marsz', second: 'Marsz' }, walk: true, joints: ['knee', 'hip'] });
+    expect(dataUiForPose('sled_throw', { ...dane('sled_throw', 'Wall Ball'), petla: undefined })).toBeNull(); /* bez pola petla (rzuty mają teraz jednokierunkową: ONE_WAY_UI) */ expect(GAIT_UI).toMatchObject({ names: { first: 'Marsz', second: 'Marsz' }, walk: true, joints: ['knee', 'hip'] });
     expect(dataUiForPose('carry', dane('carry', "Farmer's Walk"))?.walk).toBe(true);
   });
 });
@@ -224,7 +224,7 @@ describe('prezentacja: wpis UI dla ćwiczenia marszowego z rodziny bez DATA_UI',
 describe('niezmienniki: pozostałe ćwiczenia nie zmieniły trybu', () => {
   test('ćwiczenia sled_throw i strongman poza trzema marszowymi, oraz wszystkie rodziny z pliku poses, nie mają pola petla (domyślnie wahadło)', () => {
     const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path'); const dir = path.join(__dirname, '..', 'lib/figures/v2/poses'); let n = 0, z = 0;
-    for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.json'))) { const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as PoseFile; for (const d of Object.values(j.cwiczenia)) { n++; if (d.petla !== undefined) z++; } }
+    for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.json'))) { const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as PoseFile; for (const d of Object.values(j.cwiczenia)) { n++; if (d.petla === 'cykl_lustro') z++; } }
     expect(n).toBeGreaterThan(400); expect(z).toBe(10);
   });
 });

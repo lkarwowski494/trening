@@ -17,11 +17,11 @@ import type { Frame, Shape, View } from './scene';
 import { SIDES, jointAngles, type Side } from './skeleton';
 import type { V3 } from './math';
 import { GUIDES, trailShapes, type GuideId } from './guides';
-import { phasesOf, walkPhases, TEMPO, type Tempo, type Phase, type PhaseNames } from './anim';
+import { phasesOf, walkPhases, oneWayPhases, TEMPO, type Tempo, type Phase, type PhaseNames } from './anim';
 import { ERRORS, isDataError, dataErrorIndex, type ErrorId, type FigError, type AnyErrorDef, type Fault } from './errors';
 import { keyframeFrame, poseLoopSpan, type LoopMode } from './contract';
 import { contactGlows, type ContactId } from './contacts';
-import { DATA_UI, GAIT_UI, PHASES_BY_EXERCISE, ISOMETRIC, MEASURE_UNIT, MIN_MEASURED_ROM, dataUiForPose, lowerFirstOf, poseDataFor, type MeasuredJoint } from './poseData';
+import { DATA_UI, GAIT_UI, PHASES_BY_EXERCISE, ONE_WAY_UI, ISOMETRIC, MEASURE_UNIT, MIN_MEASURED_ROM, dataUiForPose, lowerFirstOf, poseDataFor, type MeasuredJoint } from './poseData';
 import { ease } from './rigs/common';
 
 export type FigureSpec = { key: string; family: FamilyId; variant: Variant; views: View[]; static: boolean; lowerFirst: boolean };
@@ -78,7 +78,7 @@ function faultFor(spec: FigureSpec, error: ErrorId, u: number): Fault { return {
 /** Ustawienia prezentacji ćwiczenia z danych: wpis rodziny (DATA_UI) z wyjątkiem ćwiczenia; null dla rodzin z rigiem. */
 function dataUiOf(spec: FigureSpec): { names: PhaseNames; joints: readonly MeasuredJoint[]; hideAngle: boolean; walk: boolean } | null {
   if (!('data' in spec.variant)) return null;
-  const u = DATA_UI[spec.family] ?? GAIT_UI; const x = u.exceptions && Object.prototype.hasOwnProperty.call(u.exceptions, spec.key) ? u.exceptions[spec.key] : undefined;
+  const u = DATA_UI[spec.family] ?? (loopOf(spec) === 'jednokierunkowa' ? ONE_WAY_UI[spec.family] : undefined) ?? GAIT_UI; const x = u.exceptions && Object.prototype.hasOwnProperty.call(u.exceptions, spec.key) ? u.exceptions[spec.key] : undefined;
   return { names: x?.names ?? u.names, joints: x?.joints ?? u.joints, hideAngle: !!x?.hideAngle, walk: !!u.walk || loopOf(spec) === 'cykl_lustro' };
 }
 /** Pomiar na rysunku (decyzja właściciela 25.10.2026: kąt jako opis figury, nie zalecenie). Rig: przysiad — kolano, wyciskanie — łokieć, zawias — biodro (średnia obu stron). Dane (27.10.2026, S2): spośród stawów rodziny
@@ -108,8 +108,8 @@ export function measuredAngle(spec: FigureSpec, u: number, error?: FigError): { 
   return { joint: m.joint, deg: a.reduce((x, y) => x + y, 0) / a.length, unit: MEASURE_UNIT[m.joint] };
 }
 
-/** Tryb pętli figury: cykl_lustro tylko dla ćwiczeń z danych z polem `petla` (marsz); reszta wahadło. */
-export const loopOf = (spec: FigureSpec): LoopMode => 'data' in spec.variant && spec.variant.data.petla === 'cykl_lustro' ? 'cykl_lustro' : 'wahadlo';
+/** Tryb pętli figury: cykl_lustro (marsz) i jednokierunkowa (skok, rzut) tylko dla ćwiczeń z danych z polem `petla`; reszta wahadło. */
+export const loopOf = (spec: FigureSpec): LoopMode => { if (!('data' in spec.variant)) return 'wahadlo'; const p = spec.variant.data.petla; return p === 'cykl_lustro' || p === 'jednokierunkowa' ? p : 'wahadlo'; };
 /** Zakres pozycji u pętli: 2 w trybie cyklicznym (druga połowa w lustrze), 1 w wahadle. */
 export const loopSpan = (spec: FigureSpec): number => 'data' in spec.variant ? poseLoopSpan(spec.variant.data) : 1;
 
@@ -177,7 +177,7 @@ export function phaseNames(spec: FigureSpec): PhaseNames {
 /** Fazy pętli ćwiczenia z czasami (tempo ilustracyjne; błąd tempa podaje własne czasy). */
 /** Tempo figury: z błędu tempa albo domyślne; przysiad bez pauzy na dole (NSCA Basics 2012 s. 49–50; pauza 0,5 s to konwencja bez źródła). */
 export const tempoFor = (spec: FigureSpec, error?: FigError): Tempo => ({ ...(error && !isDataError(error) ? ERRORS[error].mods.tempo : undefined) ?? TEMPO, ...(spec.family === 'squat' && !spec.static ? { holdLowMs: 0 } : {}) });
-export const phasesFor = (spec: FigureSpec, tempo?: Tempo): Phase[] => dataUiOf(spec)?.walk ? walkPhases(tempo) : phasesOf(phaseNames(spec), spec.lowerFirst, tempo);
+export const phasesFor = (spec: FigureSpec, tempo?: Tempo): Phase[] => loopOf(spec) === 'jednokierunkowa' ? oneWayPhases(phaseNames(spec).first) : dataUiOf(spec)?.walk ? walkPhases(tempo) : phasesOf(phaseNames(spec), spec.lowerFirst, tempo);
 
 const trailCache = new Map<string, Shape[]>();
 /** Tor ruchu środka ciężaru/dłoni w widoku (próbkowanie co 1/24; cache). */

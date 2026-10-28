@@ -794,6 +794,8 @@ export const EN: Record<string, string> = {
   'Marsz': 'Walking',
   'Grzbiet w dół': 'Arching',
   'Koci grzbiet': 'Rounding',
+  'Skok': 'Jump',
+  'Rzut': 'Throw',
   '{faza} {n} s': '{faza} {n} s',
   'Pokaż częsty błąd': 'Show common mistake',
   'Ukryj częsty błąd': 'Hide common mistake',

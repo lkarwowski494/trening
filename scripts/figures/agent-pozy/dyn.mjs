@@ -4,11 +4,14 @@
 // Wejście: wyłącznie liczby z modelu i wskazówki z katalogu (docs/53, bramka 11); żadnych cudzych obrazów.
 import { v2, silnik, BODY, R, r1, up, front, klatka, bladZTrajektorii, zbuduj, barki, przeciecie, delta } from './model.mjs';
 import { wczytajTeksty } from '../v2-jakosc.mjs';
+import { powodWstrzymania } from './bledy-wstrzymane.mjs';
 import { bledyCwiczenia } from '../v2-validate.mjs';
 export { v2, BODY, R, r1, up, front, klatka, bladZTrajektorii, zbuduj, barki, przeciecie, delta };
 
 /** Tryb cykliczny pętli (27.10.2026, marsz): po fazie 0 → 1 ta sama faza z zamienionymi nogami (i rękami, gdy `rece`); klatka u = 1 MUSI być lustrem klatki u = 0 (walidator, kod „petla”). Pole po „cwiczenie”. */
 export function cyklLustro(poza, { rece = false } = {}) { const { sprzet, klatki, bledy, ...head } = poza; return { ...head, petla: 'cykl_lustro', ...(rece ? { lustroRece: true } : {}), sprzet, klatki, bledy }; }
+/** Tryb jednokierunkowy pętli (28.10.2026, skoki i rzuty): u 0 → 1 to CAŁE powtórzenie (stanie → ugięcie → lot → lądowanie; przysiad → rzut), animacja po końcu skacze do u = 0 zamiast odtwarzać ruch wstecz (silnik: oneWayAt). Pole po „cwiczenie”. */
+export function jednokierunkowa(poza) { const { sprzet, klatki, bledy, ...head } = poza; return { ...head, petla: 'jednokierunkowa', sprzet, klatki, bledy }; }
 export const lerp = (a, b, t) => a + (b - a) * t;
 export const lerpV = (a, b, t) => a.map((x, i) => lerp(x, b[i], t));
 export const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
@@ -21,7 +24,7 @@ const sgn = (s) => (s === 'R' ? 1 : -1);
 /** Błędy z katalogu wskazówek, które mają opis w lib/cues/text/pl.json (reguła jakości etykieta_bledu); pozostałe nie są rysowane, powód trafia do `rejestr` (ćwiczenie → powód). */
 export function bledyZOpisem(cw, bledy, rejestr = {}) {
   const t = wczytajTeksty();
-  return bledy.filter((b) => { if (t[b.cue] || process.env.POZY_TEKSTY_BLEDOW === 'wszystkie') return true; rejestr[cw] = `błąd „${b.cue}” bez opisu w lib/cues/text/pl.json — nie rysowany (reguła jakości etykieta_bledu); generator narysuje go po wdrożeniu tekstu`; return false; });
+  return bledy.filter((b) => { const w = powodWstrzymania(b.cue); if (w) { rejestr[cw] = `błąd „${b.cue}” wstrzymany: ${w}`; return false; } if (t[b.cue] || process.env.POZY_TEKSTY_BLEDOW === 'wszystkie') return true; rejestr[cw] = `błąd „${b.cue}” bez opisu w lib/cues/text/pl.json — nie rysowany (reguła jakości etykieta_bledu); generator narysuje go po wdrożeniu tekstu`; return false; });
 }
 
 /** Wyjątki opisu (manifest): id błędu z katalogu wskazówek ćwiczeń rodziny, który nie ma tekstu w lib/cues/text/pl.json → powód (tekst wdroży tłumacz; błąd nierysowany). */

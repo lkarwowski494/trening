@@ -171,5 +171,7 @@
  "barki w górę": "etykieta POMIARU w linii „Przesunięcie na rysunku: {staw} {n} cm” (szrugsy): barki uniesione ku uszom, w centymetrach",
  "barki w dół": "etykieta POMIARU w linii „Przesunięcie na rysunku: {staw} {n} cm”: barki opuszczone poniżej pozycji spoczynkowej, w centymetrach",
  "barki do przodu": "etykieta POMIARU w linii „Przesunięcie na rysunku: {staw} {n} cm”: barki wysunięte do przodu, w centymetrach",
- "barki do tyłu": "etykieta POMIARU w linii „Przesunięcie na rysunku: {staw} {n} cm”: barki (łopatki) cofnięte do tyłu, w centymetrach"
+ "barki do tyłu": "etykieta POMIARU w linii „Przesunięcie na rysunku: {staw} {n} cm”: barki (łopatki) cofnięte do tyłu, w centymetrach",
+ "Skok": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names / ONE_WAY_UI), pokazana jako jedyna faza, bez sekund: rzeczownik odczasownikowy jak „Opuszczanie”, „Marsz”; NIE nazwa ćwiczenia; jeden skok (plyometria: skok obunóż, jednonóż, w bok, na skrzynię); jedyna faza, bez sekund",
+ "Rzut": "nazwa FAZY animacji ruchu w karcie ćwiczenia (DATA_UI.names / ONE_WAY_UI), pokazana jako jedyna faza, bez sekund: rzeczownik odczasownikowy jak „Opuszczanie”, „Marsz”; NIE nazwa ćwiczenia; jeden rzut piłką lekarską (rzut, uderzenie o podłogę, Wall Ball); jedyna faza, bez sekund"
 }
