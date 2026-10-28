@@ -1,0 +1,9 @@
+tests.yml 40713824057 (p1 ab54392): FAIL tests/cues-014.test.tsx (1 failed / 542 suites) — lista partial bez trzech wykroków po decyzji 1a.
+tests.yml 40716367925 (p2 6a67658): 4 failed / 556 suites:
+  - tests/cues-014.test.tsx (jak wyżej)
+  - tests/m1-047-otwarte-wskazniki.test.ts: Expected "M1-audytor-generalny-006", Received ["M1-audytor-generalny-009"] (CI fetch-depth 1)
+  - tests/package-scripts.test.ts: bezDrogi = ["check:slowniki"]
+  - tests/maestro-flows.test.tsx › 56-uczciwe-zasady.yaml: extendedWaitUntil "First workout done!" — element nie pojawił się (po M1-046 b)
+Lokalnie przed poprawką (nowe testy, wt-p2 po rebase na a41cdbc): 3 failed, 17 passed (m1-046 panel E2E, m1-047 płytka kopia, package-scripts).
+Po: 161/161 (m1-046, m1-047, package-scripts, maestro-tap-tekst-guard, maestro-center-guard, przeplywy, store-adapter, numeruj-lekcje, audit-m1-049, monetyzacja-ui, entitlement); maestro-flows -t 56-uczciwe: 1 passed; check:pochodne zielone (16 kroków, 24 s).
+p1 po a41cdbc: npx jest cues-014 cues karty-recenzja → 39 passed.

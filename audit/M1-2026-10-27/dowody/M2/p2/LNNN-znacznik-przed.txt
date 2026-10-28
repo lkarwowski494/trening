@@ -1,0 +1,153 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+FAIL iOS tests/hak-pre-push.test.ts (6.666 s)
+  hak pre-push — plik (L-009)
+    ○ skipped istnieje, jest wykonywalny, ma shebang sh i poprawną składnię POSIX
+    ○ skipped uruchamia lint, check:pochodne (decyzja 8a, 28.10.2026) — w tej kolejności; przy zmianach w docs/ (L-037) także numeruj-lekcje --sprawdz i dwa testy dokumentów, nic więcej
+    ○ skipped komentarz opisuje świadome obejście `git push --no-verify` i zmierzony czas
+    ○ skipped skrypt `prepare` wywołuje instalator, a instalator istnieje
+  hak pre-push — działanie z podstawionym npm
+    ✕ L-NNN (28.10.2026): bez znacznika zielonego verify dla wypychanego drzewa — zatrzymane przed lintem, po polsku, z obejściem (88 ms)
+    ○ skipped zielone: dwa polecenia (lint, check:pochodne) w kolejności, kod 0, czas w komunikacie
+    ○ skipped błąd w lint: przerywa tutaj, kod 1, po polsku mówi jak naprawić
+    ○ skipped błąd w check:pochodne: przerywa tutaj, kod 1, po polsku mówi jak naprawić
+    ○ skipped samo usuwanie gałęzi (same zera) nie uruchamia sprawdzeń
+    ○ skipped wypchnięcie razem z usunięciem nadal sprawdza
+  hak: zmiany w docs/ — numeracja lekcji i testy dokumentów (L-037, wariant A, właściciel 26.10.2026)
+    ✓ gałąź funkcji: lekcja „L-NNN” dozwolona; testy dokumentów biegną z GITHUB_REF_NAME = gałąź (692 ms)
+    ○ skipped na integracja-2026-10-26b nienumerowana lekcja zatrzymuje wypchnięcie (numeruj-lekcje --sprawdz), testy dokumentów nie biegną
+    ○ skipped na main nienumerowana lekcja zatrzymuje wypchnięcie (numeruj-lekcje --sprawdz), testy dokumentów nie biegną
+    ○ skipped na integracja-* lekcja z numerem przechodzi (numeruj-lekcje --sprawdz zielone, potem testy dokumentów z gałęzią)
+    ○ skipped czerwony test dokumentów zatrzymuje wypchnięcie i mówi po polsku, co zrobić
+    ○ skipped zmiana bez docs/ (sam kod) nie uruchamia ani numeracji, ani testów dokumentów
+    ○ skipped --no-verify omija sprawdzenia docs/
+  instalator (skrypt `prepare`)
+    ○ skipped w repozytorium git ustawia core.hooksPath jako ścieżkę względną; powtórzenie nic nie psuje
+    ○ skipped w CI (zmienna CI) nie robi nic i nie wywraca `npm ci`
+    ○ skipped w katalogu bez .git (paczka) kończy się kodem 0 i nic nie zapisuje — także gdy wyżej leży inne repo
+    ○ skipped bez gita w PATH też kończy się kodem 0
+    ○ skipped cudzego core.hooksPath nie nadpisuje
+  hak na prawdziwym git push (także z worktree)
+    ○ skipped zielone sprawdzenia przepuszczają push, czerwone go odrzucają, --no-verify omija
+    ○ skipped zmiany tylko w dokumentach (względem origin/main) pomijają lint; zmiana kodu przywraca oba sprawdzenia
+    ○ skipped usunięcie gałęzi na zdalnym nie uruchamia sprawdzeń
+    ○ skipped worktree współdzieli konfigurację, a hak biegnie z katalogu worktree (ścieżka względna)
+  polecenia agentów, które wypychają: krok o wyniku tests.yml po wypchnięciu (L-009)
+    ○ skipped lista ról istnieje
+    ○ skipped programista: po wypchnięciu sprawdza wynik tests.yml i czeka na zielony
+    ○ skipped tester-e2e: po wypchnięciu sprawdza wynik tests.yml i czeka na zielony
+    ○ skipped tlumacz: po wypchnięciu sprawdza wynik tests.yml i czeka na zielony
+    ○ skipped wydawca: po wypchnięciu sprawdza wynik tests.yml i czeka na zielony
+    ○ skipped każda rola z Bash i bez zakazu pushu jest na liście albo jawnie wyłączona
+  verify sprawdza zainstalowany hak pre-push (L-014)
+    ○ skipped pierwszy krok skryptu verify to sprawdzenie haka, przed typecheck
+    ○ skipped hak niezainstalowany: kod 1 i polecenie instalacji
+    ○ skipped hak zainstalowany (core.hooksPath = scripts/hooks): kod 0
+    ○ skipped po poleceniu z komunikatu sprawdzenie przechodzi
+    ○ skipped hak skopiowany do .git/hooks też się liczy
+    ○ skipped cudzy core.hooksPath bez haka: kod 1
+    ○ skipped worktree współdzieli konfigurację: sprawdzenie przechodzi także tam
+    ○ skipped w CI (zmienna CI) pomija z komunikatem, kod 0
+    core.hooksPath bezwzględny, wskazujący na inny worktree (22.10.2026)
+      ○ skipped hooksPath = scripts/hooks głównego checkoutu (identyczny hak): kontrola w worktree przechodzi
+      ○ skipped to samo przez dowiązanie symboliczne (realpath)
+      ○ skipped hooksPath nieustawione: nadal kod 1 w worktree
+      ○ skipped hooksPath wskazuje katalog bez naszego haka: kod 1
+      ○ skipped hooksPath wskazuje hak o innej treści: kod 1
+      ○ skipped hak o tej samej treści, ale niewykonywalny: kod 1
+  L-NNN (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego verify blokuje wypchnięcie
+    ✓ verify zielone dla tego drzewa → przechodzi (715 ms)
+    ✕ commit po verify (inne drzewo) → zatrzymane, gałąź nie trafia na zdalne (818 ms)
+    ✕ verify przy niezatwierdzonych albo nieśledzonych plikach nie zapisuje znacznika (680 ms)
+    ✕ znacznik verify:docs wystarcza tylko, gdy zmiany od origin/main to same dokumenty (1326 ms)
+    ✓ świadome obejście --no-verify nadal działa (609 ms)
+    ✕ npm run verify kończy się zapisem znacznika „pelne”; verify:docs zapisuje „dokumenty” poza trybem testowym (1 ms)
+    ✓ w CI zapis nic nie robi (verify w tests.yml nie zostawia znaczników) (626 ms)
+
+  ● hak pre-push — działanie z podstawionym npm › L-NNN (28.10.2026): bez znacznika zielonego verify dla wypychanego drzewa — zatrzymane przed lintem, po polsku, z obejściem
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      127 |     const npm = falszywyNpm();
+      128 |     const r = uruchom(npm, '', undefined, false);
+    > 129 |     expect(r.status).toBe(1); expect(wywolania(npm.log)).toEqual([]);
+          |                      ^
+      130 |     expect(r.stderr).toContain('WYPCHNIĘCIE ZATRZYMANE'); expect(r.stderr).toContain('npm run verify'); expect(r.stderr).toContain('git push --no-verify');
+      131 |   });
+      132 |   test('samo usuwanie gałęzi (same zera) nie uruchamia sprawdzeń', () => {
+
+      at Object.toBe (tests/hak-pre-push.test.ts:129:22)
+
+  ● L-NNN (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego verify blokuje wypchnięcie › commit po verify (inne drzewo) → zatrzymane, gałąź nie trafia na zdalne
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not 0
+
+      451 |     const x = galaz('kod'); oznacz(x.dir, x.npm);
+      452 |     writeFileSync(join(x.dir, 'plik.txt'), 'c\n'); git(x.dir, ['commit', '-q', '-am', 'po verify']);
+    > 453 |     const r = pchnij(x); expect(r.status).not.toBe(0); expect(r.stderr).toContain('brak zielonego pełnego verify'); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');
+          |                                               ^
+      454 |   });
+      455 |   test('verify przy niezatwierdzonych albo nieśledzonych plikach nie zapisuje znacznika', () => {
+      456 |     const x = galaz('kod'); writeFileSync(join(x.dir, 'nowy.test.ts'), 'x\n');
+
+      at Object.toBe (tests/hak-pre-push.test.ts:453:47)
+
+  ● L-NNN (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego verify blokuje wypchnięcie › verify przy niezatwierdzonych albo nieśledzonych plikach nie zapisuje znacznika
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not 0
+
+      456 |     const x = galaz('kod'); writeFileSync(join(x.dir, 'nowy.test.ts'), 'x\n');
+      457 |     const z = oznacz(x.dir, x.npm); expect(z.status).toBe(0); expect(z.stderr).toContain('NIE zapisany');
+    > 458 |     rmSync(join(x.dir, 'nowy.test.ts')); expect(pchnij(x).status).not.toBe(0);
+          |                                                                       ^
+      459 |   });
+      460 |   test('znacznik verify:docs wystarcza tylko, gdy zmiany od origin/main to same dokumenty', () => {
+      461 |     const d = galaz('docs'); oznacz(d.dir, d.npm, 'dokumenty'); expect(pchnij(d).status).toBe(0);
+
+      at Object.toBe (tests/hak-pre-push.test.ts:458:71)
+
+  ● L-NNN (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego verify blokuje wypchnięcie › znacznik verify:docs wystarcza tylko, gdy zmiany od origin/main to same dokumenty
+
+    expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not 0
+
+      461 |     const d = galaz('docs'); oznacz(d.dir, d.npm, 'dokumenty'); expect(pchnij(d).status).toBe(0);
+      462 |     const k = galaz('kod'); oznacz(k.dir, k.npm, 'dokumenty'); const r = pchnij(k);
+    > 463 |     expect(r.status).not.toBe(0); expect(r.stderr).toContain('znacznik verify:docs');
+          |                          ^
+      464 |   });
+      465 |   test('świadome obejście --no-verify nadal działa', () => {
+      466 |     const x = galaz('kod'); expect(git(x.dir, ['push', '--no-verify', 'origin', 'g'], zNpm(x.npm)).status).toBe(0);
+
+      at Object.toBe (tests/hak-pre-push.test.ts:463:26)
+
+  ● L-NNN (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego verify blokuje wypchnięcie › npm run verify kończy się zapisem znacznika „pelne”; verify:docs zapisuje „dokumenty” poza trybem testowym
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /&& node scripts\/verify-znacznik\.mjs --zapisz pelne$/
+    Received string:  "node scripts/hooks/sprawdz-instalacje.mjs && npm run typecheck && npm run lint && npm run check:i18n && npm run check:cues && npm run check:claims && npm run check:decyzje && npm run check:figures && npm run check:figures-v2 && npm run check:zrodla-runtime && npm run check:readme && jest && npm run check:matrix && npm run check:licenses && npx expo export --platform ios --output-dir .expo/verify-export && npm run check:bundle && node -e \"require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})\" && npm run verify:native"
+
+      467 |   });
+      468 |   test('npm run verify kończy się zapisem znacznika „pelne”; verify:docs zapisuje „dokumenty” poza trybem testowym', () => {
+    > 469 |     expect(pkg.scripts.verify).toMatch(/&& node scripts\/verify-znacznik\.mjs --zapisz pelne$/);
+          |                                ^
+      470 |     const vd = readFileSync(join(root, 'scripts/verify-docs.mjs'), 'utf8');
+      471 |     expect(vd).toContain("'--zapisz', 'dokumenty'"); expect(vd).toMatch(/VERIFY_DOCS_CHANGED === undefined/);
+      472 |   });
+
+      at Object.toMatch (tests/hak-pre-push.test.ts:469:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 44 skipped, 4 passed, 53 total
+Snapshots:   0 total
+Time:        7.12 s, estimated 19 s
+Ran all test suites matching /tests\/hak-pre-push.test.ts/i with tests matching "L-NNN".

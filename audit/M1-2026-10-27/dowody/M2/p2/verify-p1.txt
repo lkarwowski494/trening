@@ -844,3 +844,532 @@ PASS iOS tests/places-oneoff-logic.test.ts
 PASS iOS tests/cascade-sets.test.tsx
 PASS iOS tests/backlog-0.10.1-dane-ui.test.tsx (5.06 s)
 PASS iOS tests/audit-r82.test.tsx (6.014 s)
+PASS iOS tests/csv-import-ui.test.tsx (5.033 s)
+PASS iOS tests/home-b.test.tsx (5.565 s)
+PASS iOS tests/matrix-dim-equipment.test.tsx
+PASS iOS tests/audit-r83b.test.tsx
+PASS iOS tests/audit-m1-workflows.test.ts
+PASS iOS tests/swap-alternates.test.tsx
+PASS iOS tests/plan-own-templates.test.ts
+PASS iOS tests/set-goals-ui.test.tsx (5.371 s)
+PASS iOS tests/watch-link-module.test.ts
+PASS iOS tests/m3-theme.test.ts
+PASS iOS tests/template-rows.test.tsx
+PASS iOS tests/store-stale.test.ts
+PASS iOS tests/audit-0.10-stats-ui.test.tsx (5.882 s)
+PASS iOS tests/swap-history.test.tsx
+PASS iOS tests/maestro-e2e38563.test.tsx (204.603 s)
+PASS iOS tests/locations-catalog.test.ts
+PASS iOS tests/matrix-dim-catalog.test.tsx
+PASS iOS tests/voice-ui.test.tsx (7.793 s)
+PASS iOS tests/locations-ui.test.tsx (10.835 s)
+PASS iOS tests/pick-template.test.tsx (6.009 s)
+PASS iOS tests/plan-calendar.test.ts
+PASS iOS tests/store-toggle.test.ts
+PASS iOS tests/m3-p5d-haptics.test.ts
+PASS iOS tests/swap-schema16.test.ts
+PASS iOS tests/set-split-ui.test.tsx (6.659 s)
+PASS iOS tests/audit-backlog-r75.test.tsx
+PASS iOS tests/audit-0.10-lang.test.ts
+PASS iOS tests/db-location.test.ts
+PASS iOS tests/matrix-dim-langs1.test.tsx (112.965 s)
+PASS iOS tests/matrix-dim-langs2.test.tsx (101.348 s)
+PASS iOS tests/info-tip.test.tsx
+PASS iOS tests/matrix-dim-langs3.test.tsx (106.557 s)
+PASS iOS tests/set-goals.test.ts
+PASS iOS tests/places-migrate.test.ts
+PASS iOS tests/pause.test.tsx
+PASS iOS tests/locations-loads.test.ts
+PASS iOS tests/m3-p5-delete.test.tsx
+PASS iOS tests/watch-client.test.ts
+PASS iOS tests/set-split.test.ts
+PASS iOS tests/m3-p2-start.test.tsx
+PASS iOS tests/dashboard.test.tsx
+PASS iOS tests/karta-sprzet.test.tsx
+PASS iOS tests/swap-ui.test.tsx
+PASS iOS tests/e2e-shards.test.ts
+PASS iOS tests/audit-m1-2026-10-27-014-normalizacja-schemat.test.ts
+(node:19443) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS iOS tests/db-real-sqlite.test.ts
+PASS iOS tests/whats-new.test.tsx
+PASS iOS tests/matrix-dim-langs4.test.tsx (79.275 s)
+PASS iOS tests/generator.test.ts
+PASS iOS tests/audit-prephone.test.tsx
+PASS iOS tests/audit-persist.test.ts
+PASS iOS tests/home-plan-header.test.tsx
+PASS iOS tests/audit-perf-equiv.test.ts
+PASS iOS tests/m3-p5d-settings-ui.test.tsx
+PASS iOS tests/maestro-e2e91.test.tsx (51.002 s)
+PASS iOS tests/m3-system.test.tsx
+PASS iOS tests/ux2-08-gen-replace-active.test.tsx
+PASS iOS tests/tuleja.test.tsx
+PASS iOS tests/history-calendar.test.tsx
+PASS iOS tests/catalog-full.test.tsx
+PASS iOS tests/plan-new-template-day.test.tsx (5.05 s)
+PASS iOS tests/zk07-pierwszy-start.test.tsx
+PASS iOS tests/audit-m1-lok07-01-imperial-dist.test.tsx
+PASS iOS tests/records-card.test.tsx
+PASS iOS tests/watch-test-mode.test.tsx (5.875 s)
+PASS iOS tests/template-folders.test.tsx
+PASS iOS tests/deload-ui.test.tsx (6.674 s)
+PASS iOS tests/maestro-failures.test.ts (6.925 s)
+PASS iOS tests/motyw-miesiac.test.tsx
+PASS iOS tests/m3-p4-generator.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-022-brd-aktualny.test.ts
+PASS iOS tests/audit-r72-d.test.ts
+PASS iOS tests/plan-wczesniej-ui.test.tsx
+PASS iOS tests/audit-journey-c.test.tsx (31.964 s)
+PASS iOS tests/watch-protocol.test.ts
+PASS iOS tests/audit-k1-log.test.ts
+PASS iOS tests/skip-today.test.tsx
+PASS iOS tests/audit-r72-a.test.ts (33.962 s)
+PASS iOS tests/places-scenario.test.tsx
+PASS iOS tests/live-activity-lang.test.ts
+PASS iOS tests/plan-reminder.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-010-stan-mam-plan.test.tsx
+file:///home/user/trening/scripts/przeniesienie-1.0.mjs:54
+  if (bledy.length) throw new Error(`lista przeniesienia niepoprawna:\n- ${bledy.join('\n- ')}`);
+                          ^
+
+Error: lista przeniesienia niepoprawna:
+- lista nie ma wpisów
+    at Module.zbudujPlan (file:///home/user/trening/scripts/przeniesienie-1.0.mjs:54:27)
+    at file:///home/user/trening/[eval1]:1:122
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:272:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:268:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0
+PASS iOS tests/przeniesienie-1.0.test.ts
+PASS iOS tests/store-rest.test.ts
+PASS iOS tests/support-mail.test.tsx
+PASS iOS tests/store-review-notes.test.ts
+PASS iOS tests/audit-0.10-tst-ui.test.tsx
+PASS iOS tests/plans-multi-ui.test.tsx
+PASS iOS tests/watch-health.test.ts
+PASS iOS tests/muscle-map.test.tsx
+PASS iOS tests/close-button-guard.test.tsx
+PASS iOS tests/audit-close2-a.test.tsx (6.883 s)
+PASS iOS tests/audit-r72-b.test.ts
+PASS iOS tests/audit-m1-2026-10-27-037-podpisy-zrzutow.test.ts
+PASS iOS tests/audit-m1-026-kolejnosc-menu.test.tsx
+PASS iOS tests/period-summary.test.tsx
+PASS iOS tests/migrate-idem.test.ts (195.238 s)
+(node:19844) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS iOS tests/audit-m1-2026-10-27-004-ratunek.test.tsx
+PASS iOS tests/health-permissions.test.ts
+PASS iOS tests/audit-m1-062-update.test.ts
+PASS iOS tests/rm-signing.test.tsx
+PASS iOS tests/audit-training.test.ts
+PASS iOS tests/b2-plan-own-templates.test.tsx
+PASS iOS tests/review.test.ts
+PASS iOS tests/nocne-workflowy.test.ts
+PASS iOS tests/audit-m1-2026-10-27-037-wiersz-pelna-wersja.test.tsx
+PASS iOS tests/adapt-scenario.test.tsx
+PASS iOS tests/locations-verify2.test.tsx
+PASS iOS tests/asc-kontrola.test.ts
+PASS iOS tests/m5s1-dni-treningowe.test.ts
+PASS iOS tests/scenario-0.10.test.tsx (8.181 s)
+PASS iOS tests/audit-m1-065-week-start.test.tsx
+PASS iOS tests/live-marker.test.ts
+PASS iOS tests/backlog-0410.test.tsx
+PASS iOS tests/watch-availability.test.ts
+PASS iOS tests/audit-m1-2026-10-27-002-limit-po-wygasnieciu.test.ts
+PASS iOS tests/health-scenario.test.tsx
+PASS iOS tests/audit-backlog-q.test.tsx (6.093 s)
+PASS iOS tests/owner-0510c.test.tsx
+PASS iOS tests/watch-fill-ui.test.tsx
+PASS iOS tests/audit-stale-ui.test.tsx
+  ● Console
+
+    console.log
+      [["cancel","set-end"],["cancel","stale-reminder"],["cancel","rest-end"],["schedule","stale-reminder",7195],["schedule","rest-end",90],["cancel","rest-end"],["cancel","set-end"],["cancel","stale-reminder"],["cancel","stale-reminder"],["cancel","plan-2026-10-27"],["cancel","plan-2026-10-28"],["cancel","plan-2026-10-29"],["cancel","plan-2026-10-30"],["cancel","plan-2026-10-31"],["cancel","plan-2026-11-01"],["cancel","plan-2026-11-02"],["cancel","plan-2026-11-03"],["cancel","plan-2026-11-04"],["cancel","plan-2026-11-05"],["cancel","plan-2026-11-06"],["cancel","plan-2026-11-07"],["cancel","plan-2026-11-08"],["cancel","plan-2026-11-09"],["cancel","plan-2026-11-10"],["cancel","plan-2026-11-11"],["cancel","plan-2026-11-12"],["cancel","plan-2026-11-13"],["cancel","plan-2026-11-14"],["cancel","plan-2026-11-15"],["cancel","plan-2026-11-16"],["cancel","plan-2026-11-17"],["cancel","plan-2026-11-18"],["cancel","plan-2026-11-19"],["cancel","plan-2026-11-20"],["cancel","plan-2026-11-21"],["cancel","plan-2026-11-22"],["cancel","plan-2026-11-23"],["cancel","plan-2026-11-24"]]
+
+      at Object.log (tests/audit-stale-ui.test.tsx:36:11)
+
+    console.log
+      [["cancel","rest-end"],["cancel","set-end"],["cancel","stale-reminder"],["cancel","stale-reminder"],["cancel","plan-2026-10-27"],["cancel","plan-2026-10-28"],["cancel","plan-2026-10-29"],["cancel","plan-2026-10-30"],["cancel","plan-2026-10-31"],["cancel","plan-2026-11-01"],["cancel","plan-2026-11-02"],["cancel","plan-2026-11-03"],["cancel","plan-2026-11-04"],["cancel","plan-2026-11-05"],["cancel","plan-2026-11-06"],["cancel","plan-2026-11-07"],["cancel","plan-2026-11-08"],["cancel","plan-2026-11-09"],["cancel","plan-2026-11-10"],["cancel","plan-2026-11-11"],["cancel","plan-2026-11-12"],["cancel","plan-2026-11-13"],["cancel","plan-2026-11-14"],["cancel","plan-2026-11-15"],["cancel","plan-2026-11-16"],["cancel","plan-2026-11-17"],["cancel","plan-2026-11-18"],["cancel","plan-2026-11-19"],["cancel","plan-2026-11-20"],["cancel","plan-2026-11-21"],["cancel","plan-2026-11-22"],["cancel","plan-2026-11-23"],["cancel","plan-2026-11-24"]]
+
+      at Object.log (tests/audit-stale-ui.test.tsx:47:11)
+
+    console.log
+      Ostatnia rozgrzewka o 13:36, bez serii roboczych. Kontynuować czy odrzucić? | undefined
+
+      at Object.log (tests/audit-stale-ui.test.tsx:58:11)
+
+    console.log
+      [["cancel","stale-reminder"],["cancel","plan-2026-10-27"],["cancel","plan-2026-10-28"],["cancel","plan-2026-10-29"],["cancel","plan-2026-10-30"],["cancel","plan-2026-10-31"],["cancel","plan-2026-11-01"],["cancel","plan-2026-11-02"],["cancel","plan-2026-11-03"],["cancel","plan-2026-11-04"],["cancel","plan-2026-11-05"],["cancel","plan-2026-11-06"],["cancel","plan-2026-11-07"],["cancel","plan-2026-11-08"],["cancel","plan-2026-11-09"],["cancel","plan-2026-11-10"],["cancel","plan-2026-11-11"],["cancel","plan-2026-11-12"],["cancel","plan-2026-11-13"],["cancel","plan-2026-11-14"],["cancel","plan-2026-11-15"],["cancel","plan-2026-11-16"],["cancel","plan-2026-11-17"],["cancel","plan-2026-11-18"],["cancel","plan-2026-11-19"],["cancel","plan-2026-11-20"],["cancel","plan-2026-11-21"],["cancel","plan-2026-11-22"],["cancel","plan-2026-11-23"],["cancel","plan-2026-11-24"]]
+
+      at Object.log (tests/audit-stale-ui.test.tsx:74:11)
+
+    console.log
+      Ostatnia seria o 18:49. Otwórz, by zakończyć albo kontynuować. | expected: Ostatnia seria o 18:49. Otwórz, by zakończyć albo kontynuować.
+
+      at Object.log (tests/audit-stale-ui.test.tsx:86:11)
+
+PASS iOS tests/i18n-locales.test.ts
+PASS iOS tests/ui2-06-gen-back-to-plan.test.tsx
+PASS iOS tests/walidacja-apple-bez-wysylki.test.ts
+PASS iOS tests/audit-records-logic.test.ts
+PASS iOS tests/locations-progress.test.ts
+PASS iOS tests/locations-verify3.test.tsx
+PASS iOS tests/check-urls.test.ts
+PASS iOS tests/subscription-invariants.test.ts
+PASS iOS tests/audit-k1-catalog-step.test.ts
+PASS iOS tests/units-label.test.ts
+PASS iOS tests/audit-m1b-028-watch-ack.test.ts
+PASS iOS tests/audit-m1-004-start-error.test.tsx
+PASS iOS tests/audit-m1-028-delete-menus.test.tsx
+PASS iOS tests/poprawki-tlumaczen-2026-10-21.test.ts
+PASS iOS tests/privacy-manifest.test.ts
+PASS iOS tests/trening-naglowek.test.tsx
+PASS iOS tests/xcheck-0610b.test.tsx
+PASS iOS tests/audit-final-timer.test.tsx
+PASS iOS tests/m3-p4-delete.test.tsx
+PASS iOS tests/licenses-native.test.tsx
+PASS iOS tests/store-metadata.test.ts
+PASS iOS tests/subscription-i18n.test.ts
+PASS iOS tests/audit-m1-071-channels.test.ts
+PASS iOS tests/f014-logic.test.ts
+Brak symulatora watchOS (xcrun simctl list devices available)
+PASS iOS tests/watch-ci.test.ts
+PASS iOS tests/xcheck-0610.test.tsx
+PASS iOS tests/effort-scale.test.tsx
+PASS iOS tests/m3-contrast.test.ts
+PASS iOS tests/maestro-zycie.test.tsx (145.282 s)
+PASS iOS tests/postep-tygodnia-zmiana-planu.test.tsx
+PASS iOS tests/watch-apple-link.test.ts
+PASS iOS tests/audit-k1-data.test.ts
+PASS iOS tests/audit-m1-025-pierwsze-kroki.test.tsx
+PASS iOS tests/audit-io-more.test.tsx
+PASS iOS tests/check-i18n-script.test.ts (9.108 s)
+PASS iOS tests/healthkit-contract.test.ts
+PASS iOS tests/pochodne.test.ts
+PASS iOS tests/audit-m1-031-contrast.test.tsx
+PASS iOS tests/audit-m1-024-bold.test.tsx
+PASS iOS tests/blokada-wydania.test.ts
+PASS iOS tests/plans-multi.test.ts
+PASS iOS tests/audit-m1-027-pasek-tygodnia.test.tsx
+PASS iOS tests/audit-m1-041-reminder-files.test.tsx
+PASS iOS tests/audit-final2-fg.test.tsx
+PASS iOS tests/phone-p1.test.tsx
+PASS iOS tests/audit-close2-b.test.tsx (5.951 s)
+PASS iOS tests/watch-invariants.test.ts
+PASS iOS tests/audit-m1-050-support-subscription.test.ts
+PASS iOS tests/deload-week.test.tsx
+PASS iOS tests/swap-top3.test.ts
+PASS iOS tests/figures-v2-sprzet-geometria.test.ts (16.894 s)
+PASS iOS tests/maestro-e2e105.test.tsx (7.916 s)
+PASS iOS tests/deload-plan.test.ts
+PASS iOS tests/m1-dec03-przelacznik.test.tsx
+PASS iOS tests/i18n-multi.test.ts
+PASS iOS tests/audit-m1-027-voice-default.test.ts
+PASS iOS tests/migrate-released.test.ts
+PASS iOS tests/audit-records-misc.test.tsx
+PASS iOS tests/audit-m1-006-import.test.ts
+PASS iOS tests/watch-last-rest.test.ts
+PASS iOS tests/audit-m1-047-store-docs.test.ts
+PASS iOS tests/audit-k1-mer.test.tsx
+PASS iOS tests/audit-m1-012-status.test.ts
+PASS iOS tests/i18n-variants-ui.test.tsx
+PASS iOS tests/sets-mark.test.tsx
+PASS iOS tests/crash-guard.test.ts
+PASS iOS tests/audit-m1-029-kropka-srodkowa.test.ts
+PASS iOS tests/audit-k1-muscleload.test.tsx
+PASS iOS tests/audit-m1-032-total-bars.test.tsx
+PASS iOS tests/audit-m1-025-muscle-caption.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-001-dozywotni-przy-subskrypcji.test.tsx
+PASS iOS tests/audit-journey-a.test.tsx (5.811 s)
+PASS iOS tests/ui2-01-draft-equipment.test.tsx (8.451 s)
+PASS iOS tests/set-flow.test.ts
+PASS iOS tests/limits-single-source.test.ts
+PASS iOS tests/prop-seed.test.ts
+PASS iOS tests/finish-single-button.test.tsx
+PASS iOS tests/first-steps-empty.test.tsx
+PASS iOS tests/audit-m1-038-exname-lang.test.tsx
+PASS iOS tests/maestro-e2e39399.test.ts
+PASS iOS tests/legal-links.test.tsx
+PASS iOS tests/audit-records-live.test.tsx
+PASS iOS tests/matrix-karta.test.tsx
+PASS iOS tests/csv-jednostka-eksportu.test.ts
+PASS iOS tests/sprzatanie-galezi.test.ts
+PASS iOS tests/audit-m1-2026-10-27-037-pierwsze-uzycie.test.ts
+PASS iOS tests/audit-m1-002-premigrate.test.ts
+PASS iOS tests/matrix-tuleja.test.tsx (17.092 s)
+PASS iOS tests/audit-final2-auto.test.ts
+PASS iOS tests/audit-journey-b.test.tsx
+PASS iOS tests/provenance-guard.test.ts
+PASS iOS tests/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx
+PASS iOS tests/zrodla-pelne-sprzet.test.ts
+PASS iOS tests/mutation-config.test.ts
+PASS iOS tests/audit-m1-068-release-plan.test.ts
+PASS iOS tests/audit-close-d.test.ts
+PASS iOS tests/health-use.test.tsx
+PASS iOS tests/q024.test.ts
+PASS iOS tests/audit-records-ui.test.tsx (5.386 s)
+PASS iOS tests/audit-io-flows.test.tsx
+PASS iOS tests/audit-m1-046-047-claims.test.tsx
+PASS iOS tests/audit-1-0-a1-csv-time.test.ts
+PASS iOS tests/audit-perf-ui.test.tsx
+PASS iOS tests/audit-m1-033-session-row.test.tsx
+PASS iOS tests/places-shift-scenario.test.tsx
+PASS iOS tests/e2e-paths.test.tsx
+PASS iOS tests/tplsync-pending.test.ts
+PASS iOS tests/audit-m1-p3-coverage.test.tsx
+PASS iOS tests/maestro-e2e39855.test.ts
+PASS iOS tests/audit-m1-lok07-02-default-system.test.ts
+PASS iOS tests/watch-health-consent.test.ts
+PASS iOS tests/audit-close2-c.test.tsx
+PASS iOS tests/audit-m1-063-caps-separators.test.ts
+PASS iOS tests/audit-m1-066-pseudo.test.tsx
+PASS iOS tests/audit-m1-016-paywall-benefit.test.tsx
+PASS iOS tests/audit-m1-009-watch-edit.test.ts
+PASS iOS tests/audit-m1-2026-10-27-018-jedno-okno.test.tsx
+PASS iOS tests/audit011-gen.test.tsx
+PASS iOS tests/audit-m1-042-plural-guard.test.ts
+PASS iOS tests/maestro-maly-ekran-2026-10-26.test.ts
+PASS iOS tests/audit-m1-2026-10-27-013-wyjatek-migracji.test.tsx
+PASS iOS tests/template-cards.test.tsx
+PASS iOS tests/maestro-przebieg-39427683836.test.ts
+PASS iOS tests/units.test.ts
+PASS iOS tests/band-exercises.test.tsx
+PASS iOS tests/morning-removed.test.tsx
+PASS iOS tests/audit-close-c.test.tsx
+PASS iOS tests/audit-r72-ui.test.tsx
+PASS iOS tests/audit-final-stats.test.ts
+PASS iOS tests/ui2-08-saved-plan-title.test.tsx
+PASS iOS tests/audit-m1-003-guard-ui.test.tsx
+PASS iOS tests/audit-final2-ui.test.tsx
+PASS iOS tests/audit-m1-013-privacy.test.ts
+PASS iOS tests/audit-m1-005-watch-reset.test.ts
+PASS iOS tests/dzwiek-telefon-1030.test.ts
+PASS iOS tests/audit-m1-040-band-colors.test.ts
+PASS iOS tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx
+PASS iOS tests/audit-1-0-teksty.test.ts
+PASS iOS tests/cena-z-displayprice.test.ts
+PASS iOS tests/audit-m1-006-import-ui.test.tsx
+PASS iOS tests/audit-m1-050-release-log.test.ts
+PASS iOS tests/audit-m1-034-hit-areas.test.tsx
+PASS iOS tests/voice-native.test.ts
+PASS iOS tests/whatsnew-biezacy-build.test.tsx
+PASS iOS tests/audit-m1-046-privacy-notifications.test.ts
+PASS iOS tests/audit-m1-008-kopia-ui.test.tsx
+PASS iOS tests/m3-fix-e2e-teksty.test.ts
+PASS iOS tests/store-asc-odpowiedzi.test.ts
+PASS iOS tests/audit-m1-037-ss-pr-dict.test.ts
+PASS iOS tests/maestro-script.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-015-blad-zapisu.test.tsx
+PASS iOS tests/store-hint.test.ts
+PASS iOS tests/package-scripts.test.ts
+PASS iOS tests/backlog-0.10.1-dane-lib.test.ts
+PASS iOS tests/audit-1-0-docs.test.ts
+PASS iOS tests/audit-m1-029-no-emoji.test.ts
+PASS iOS tests/tryb-cichy-wskazowka.test.tsx
+PASS iOS tests/sciezki-nawigacji-i18n.test.ts
+PASS iOS tests/audit-m1-064-language-ios.test.tsx
+PASS iOS tests/ui2-05-save-new.test.tsx
+PASS iOS tests/audit-m1-072-android-decision.test.ts
+PASS iOS tests/ux2-02-template-location.test.tsx
+PASS iOS tests/matrix-dim-langs-routes-guard.test.tsx
+PASS iOS tests/audit-records-perf.test.ts
+PASS iOS tests/audit-journey-d.test.tsx (5.564 s)
+PASS iOS tests/i18n-forma-uk.test.ts
+PASS iOS tests/audit-close-a.test.ts
+PASS iOS tests/watch-a11y-ids.test.ts
+PASS iOS tests/ui2-09-leftovers.test.tsx
+PASS iOS tests/m3-p2-haptics.test.ts
+PASS iOS tests/audit-m1-lok07-01-migrate-dist.test.ts
+PASS iOS tests/audit-final-auto.test.tsx
+PASS iOS tests/audit-close-b.test.tsx
+PASS iOS tests/owner-0510b.test.tsx
+PASS iOS tests/maestro-e2e-modal.test.tsx (20.545 s)
+PASS iOS tests/voice-module.test.ts
+PASS iOS tests/maestro-center-guard.test.ts
+PASS iOS tests/audit-1-0-a2-reset.test.ts
+PASS iOS tests/theme-choice.test.tsx
+PASS iOS tests/audit-m1-052-site-pricing.test.ts
+PASS iOS tests/set-kinds-visible.test.tsx
+PASS iOS tests/kroki-wlasciciela-zrodla.test.ts
+PASS iOS tests/audit-m1-2026-10-27-008-build-do-zgloszenia.test.ts
+PASS iOS tests/audit-m1-2026-10-27-030-liczby-w-kodzie.test.ts
+PASS iOS tests/roundtrip.test.ts (5.168 s)
+PASS iOS tests/tabs-a11y.test.tsx
+PASS iOS tests/m1-017-kalendarz-skala.test.tsx
+PASS iOS tests/audit-m1-049-risk-register.test.ts
+PASS iOS tests/i18n-skrot-liczebnik.test.ts
+PASS iOS tests/e2e-rozmiar-tekstu.test.ts
+PASS iOS tests/audit-m1-008-backupstat.test.ts
+PASS iOS tests/pin-now.test.ts
+PASS iOS tests/test-fast.test.ts
+PASS iOS tests/slot-height.test.ts
+PASS iOS tests/audit-m1-003-boundary.test.tsx
+PASS iOS tests/audit-m1-043-support-page.test.ts
+PASS iOS tests/audit-m1-2026-10-27-007-waluta-ryzyko.test.ts
+PASS iOS tests/audit-m1-061-quality-claims.test.ts
+PASS iOS tests/audit-m1-057-owner-budget.test.ts
+PASS iOS tests/readme-ls-files.test.ts
+PASS iOS tests/audit-m1-039-ru-units.test.ts
+PASS iOS tests/numeruj-lekcje.test.ts
+PASS iOS tests/store-urls.test.ts
+PASS iOS tests/domyslny-motyw.test.ts
+PASS iOS tests/adapt-pick.test.ts
+PASS iOS tests/release-1.0.test.tsx
+PASS iOS tests/audit-m1-053-site-offline.test.ts
+PASS iOS tests/maestro-zakup-m5s1.test.ts
+PASS iOS tests/audit-ac5d764.test.tsx
+PASS iOS tests/audit-m1-lok07-03-presets.test.ts
+PASS iOS tests/dec07-k9-stukniecia.test.tsx
+PASS iOS tests/no-wallclock-asserts.test.ts
+PASS iOS tests/migrate-unknown.test.ts
+PASS iOS tests/audit-m1-023-turquoise.test.ts
+PASS iOS tests/bar-no-plates.test.tsx
+PASS iOS tests/m1-013-sklep-niedostepny-jezyki.test.ts
+PASS iOS tests/version-label.test.tsx
+PASS iOS tests/ux2-11-bodymass-se.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-017-polityka-poczta.test.ts
+PASS iOS tests/e2e-102-reminder.test.tsx
+PASS iOS tests/audit-m1-2026-10-27-035-duze-pliki.test.ts
+PASS iOS tests/worktrees-ignore.test.ts
+PASS iOS tests/zrodla-pelne-grafiki.test.ts
+PASS iOS tests/maestro-e2e40261879791.test.ts
+PASS iOS tests/audit-m1-2026-10-27-033-hipoteza-android.test.ts
+PASS iOS tests/audit-final-ss.test.ts
+PASS iOS tests/splash-start-error.test.tsx
+PASS iOS tests/maestro-zegar.test.ts
+PASS iOS tests/zgody-zdrowia-pt-forma.test.ts
+PASS iOS tests/smoke.test.tsx
+PASS iOS tests/matrix-dim-langs-routes1.test.tsx (76.447 s)
+PASS iOS tests/matrix-dim-langs-routes4.test.tsx (77.278 s)
+PASS iOS tests/audit-r72-c.test.ts (213.885 s)
+PASS iOS tests/matrix-dim-langs-routes6.test.tsx (61.543 s)
+PASS iOS tests/matrix-dim-langs-routes2.test.tsx (71.197 s)
+PASS iOS tests/matrix-dim-langs-routes5.test.tsx (62.533 s)
+PASS iOS tests/matrix-dim-langs-routes3.test.tsx (73.66 s)
+PASS iOS tests/figures-v2-geometry.test.ts (36.403 s)
+PASS iOS tests/matrix-invariants.test.ts (94.113 s)
+PASS iOS tests/figures-v2-errors.test.tsx (27.597 s)
+PASS iOS tests/figures-v2-contract.test.ts (13.387 s)
+PASS iOS tests/audit-k1-bl-mer.test.tsx (142.805 s)
+PASS iOS tests/audit-0.10-lang-ui.test.tsx (26.361 s)
+PASS iOS tests/ux.test.tsx (13.874 s)
+PASS iOS tests/audit-k1-fala2b.test.tsx (9.535 s)
+PASS iOS tests/m3-p2-board-ui.test.tsx (15.21 s)
+PASS iOS tests/figures-v2-ui.test.tsx (9.981 s)
+PASS iOS tests/readme.test.ts (10.038 s)
+PASS iOS tests/i18n-wave4-ui.test.tsx (8.129 s)
+PASS iOS tests/i18n-wave2-ui.test.tsx
+PASS iOS tests/figury-1-0-recenzja.test.ts (8.344 s)
+PASS iOS tests/zrodla-paczka.test.ts (12.588 s)
+PASS iOS tests/audit-m1-035-notif-denied.test.tsx
+PASS iOS tests/m3-p5d-haptics-done.test.tsx (5.508 s)
+Pakiet musi być „podstawowy” albo „pelny” (jest: czesciowy)
+PASS iOS tests/e2e-pakiet.test.ts
+PASS iOS tests/i18n-wave3-ui.test.tsx (6.315 s)
+PASS iOS tests/interaction-guards.test.ts
+PASS iOS tests/karty-recenzja.test.tsx
+PASS iOS tests/audit-m1-031-asekuracja-zakres.test.tsx
+PASS iOS tests/audit-m1-015-asekuracja.test.tsx
+PASS iOS tests/m5s1-bez-proby.test.ts
+PASS iOS tests/audit-m1-2026-10-27-016-arkusz-subskrypcji.test.tsx
+PASS iOS tests/m3-p2-matrix.test.tsx
+PASS iOS tests/zrodlo-jedno.test.ts
+PASS iOS tests/voiceover-grupa-przycisk.test.tsx
+PASS iOS tests/cues.test.tsx
+PASS iOS tests/zrodla-wiedzy.test.ts
+PASS iOS tests/verify-docs.test.ts
+PASS iOS tests/audit-m1-031-hantle-asekuracja.test.tsx
+PASS iOS tests/audit-m1-048-claims-registry.test.ts
+PASS iOS tests/decyzje-straznik.test.ts
+PASS iOS tests/slownik-terminow.test.ts
+PASS iOS tests/forbidden-names.test.ts
+PASS iOS tests/przeglad-tlumaczen.test.ts
+PASS iOS tests/sec2-01-names.test.ts
+PASS iOS tests/maestro-selectors.test.ts
+PASS iOS tests/figury-podparcie.test.ts
+PASS iOS tests/research-quotes.test.ts
+PASS iOS tests/audit-m1-028-cele-44-compact.test.tsx
+PASS iOS tests/figures.test.tsx
+PASS iOS tests/watch-fixtures.test.ts
+FAIL iOS tests/cues-014.test.tsx
+  ● 0.14.0 wskazówki: dane › lista „partial”: tylko nowe ćwiczenia, każde naprawdę niekompletne; reszta ma komplet sekcji (etap 1 bez zmian)
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: "Lunges (hantle)"
+    Received array: ["Straight Arm Pulldown", "Wyciskanie na linkach (stojąc)", "Machine Shoulder Press", "Leg Curl", "Nordic Curl", "Wall Sit", "Back Extension", "Preacher Curl", "Diamond Push Up", "Pallof Press", …]
+
+      39 |     const partial = CUE_DATA.partial;
+      40 |     expect(partial.length).toBeGreaterThan(0);
+    > 41 |     for (const k of partial) { expect(NEW).toContain(k); const x = CUE_DATA.exercises[k]; expect([k, x.setup.length >= 1 && x.move.length >= 1 && x.tips.length >= 2]).toEqual([k, false]); expect(x.setup.length + x.move.length + x.tips.length).toBeGreaterThanOrEqual(2); }
+         |                                            ^
+      42 |     for (const [k, x] of Object.entries(CUE_DATA.exercises)) if (!partial.includes(k)) expect([k, x.setup.length >= 1, x.move.length >= 1, x.tips.length >= 2]).toEqual([k, true, true, true]);
+      43 |     for (const k of ['Machine Shoulder Press', 'Nordic Curl', 'Pallof Press']) expect(partial).not.toContain(k);
+      44 |   });
+
+      at Object.toContain (tests/cues-014.test.tsx:41:44)
+
+PASS iOS tests/figury-recenzja.test.tsx
+PASS iOS tests/public-repo.test.ts
+PASS iOS tests/i18n-variants.test.ts
+PASS iOS tests/audit-k1-brands.test.ts
+PASS iOS tests/cues-lazy.test.ts
+PASS iOS tests/audit-m1-045-store-description.test.ts
+PASS iOS tests/audit-m1-049-critical-content.test.ts
+PASS iOS tests/audit-m1-006-r010-zamkniecie.test.ts
+PASS iOS tests/audit-m1-067-language-registry.test.ts
+PASS iOS tests/i18n-wave2.test.ts
+PASS iOS tests/zrodla-pelne-cues.test.ts
+PASS iOS tests/audit-m1-p4b-queue.test.ts
+PASS iOS tests/figures-v2-guides.test.tsx
+PASS iOS tests/i18n-wave3.test.ts
+PASS iOS tests/skroty-przekladu.test.ts
+PASS iOS tests/watch-apple-i18n.test.ts
+PASS iOS tests/zrodla-pelne-figury.test.ts
+PASS iOS tests/i18n-wave4.test.ts
+PASS iOS tests/figures-v2-cues.test.tsx
+PASS iOS tests/figures-v2-bench-rules.test.ts
+PASS iOS tests/prices-decision.test.ts
+PASS iOS tests/zrodla-pelne-wskazowki-ogolne.test.ts
+PASS iOS tests/cues-podobienstwo.test.ts
+PASS iOS tests/figures-v2-mapping.test.ts
+PASS iOS tests/widget-i18n.test.ts
+PASS iOS tests/przeplywy.test.ts
+PASS iOS tests/audit-m1-2026-10-27-037-dokumenty-wydania.test.ts
+PASS iOS tests/architecture-limits.test.ts
+PASS iOS tests/audit-m1-055-promo-rules.test.ts
+PASS iOS tests/audit-m1-2026-10-27-023-bramki-dokumenty.test.ts
+PASS iOS tests/audit-m1-2026-10-27-012-rejestr-ryzyk-bramka.test.ts
+PASS iOS tests/maestro-tap-tekst-guard.test.ts
+PASS iOS tests/m3-token-guard.test.ts
+PASS iOS tests/paywall-kolejnosc-domyslna.test.ts
+PASS iOS tests/maestro-flows.test.tsx (309.215 s)
+
+Summary of all failing tests
+FAIL tests/cues-014.test.tsx
+  ● 0.14.0 wskazówki: dane › lista „partial”: tylko nowe ćwiczenia, każde naprawdę niekompletne; reszta ma komplet sekcji (etap 1 bez zmian)
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: "Lunges (hantle)"
+    Received array: ["Straight Arm Pulldown", "Wyciskanie na linkach (stojąc)", "Machine Shoulder Press", "Leg Curl", "Nordic Curl", "Wall Sit", "Back Extension", "Preacher Curl", "Diamond Push Up", "Pallof Press", …]
+
+      39 |     const partial = CUE_DATA.partial;
+      40 |     expect(partial.length).toBeGreaterThan(0);
+    > 41 |     for (const k of partial) { expect(NEW).toContain(k); const x = CUE_DATA.exercises[k]; expect([k, x.setup.length >= 1 && x.move.length >= 1 && x.tips.length >= 2]).toEqual([k, false]); expect(x.setup.length + x.move.length + x.tips.length).toBeGreaterThanOrEqual(2); }
+         |                                            ^
+      42 |     for (const [k, x] of Object.entries(CUE_DATA.exercises)) if (!partial.includes(k)) expect([k, x.setup.length >= 1, x.move.length >= 1, x.tips.length >= 2]).toEqual([k, true, true, true]);
+      43 |     for (const k of ['Machine Shoulder Press', 'Nordic Curl', 'Pallof Press']) expect(partial).not.toContain(k);
+      44 |   });
+
+      at Object.toContain (tests/cues-014.test.tsx:41:44)
+
+
+Test Suites: 1 failed, 541 passed, 542 total
+Tests:       1 failed, 2 skipped, 10754 passed, 10757 total
+Snapshots:   5 passed, 5 total
+Time:        1658.517 s
+Ran all test suites.
+kod 1

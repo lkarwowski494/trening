@@ -9,4 +9,4 @@
 - Kroki w aplikacji: Więcej → Ćwiczenia → „Standing Gastrocnemius Calf Stretch”.
 - Opcje: (a) 1.0: przedefiniować na wariant na stopniu ze źródłami ACE + Physitrack (rola 06, tłumaczenia, katalog); (b) 1.0.1 przez linię 1.1 (badacz już przygotował); Rekomendacja: (b) — zakres pętli 2 zamrożony, P2.
 - Test akceptacyjny: opis ćwiczenia ma 2 przeczytane źródła szczebla 4 opisujące ten sam wariant; brak „hamstrings 0,25” bez podstawy.
-- Status: otwarte (nowe znalezisko M2, bez naprawy — decyzja właściciela)
+- Status: odłożone → 1.0.1 (decyzja właściciela 28.10.2026: „003 → 1.0.1, działaj dalej”; docs/18 i docs/21 w commicie 4e1ef08; wykonanie — linia 1.1)

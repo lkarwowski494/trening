@@ -1,0 +1,71 @@
+
+testy własności (fast-check): PROP_SEED=20261006 (stałe; odtworzenie: PROP_SEED=20261006 npx jest <plik>)
+PASS iOS tests/hak-pre-push.test.ts (17.506 s)
+  hak pre-push — plik (L-009)
+    ✓ istnieje, jest wykonywalny, ma shebang sh i poprawną składnię POSIX (9 ms)
+    ✓ uruchamia lint, check:pochodne (decyzja 8a, 28.10.2026) — w tej kolejności; przy zmianach w docs/ (L-037) także numeruj-lekcje --sprawdz i dwa testy dokumentów, nic więcej (3 ms)
+    ✓ komentarz opisuje świadome obejście `git push --no-verify` i zmierzony czas (1 ms)
+    ✓ skrypt `prepare` wywołuje instalator, a instalator istnieje (1 ms)
+  hak pre-push — działanie z podstawionym npm
+    ✓ zielone: dwa polecenia (lint, check:pochodne) w kolejności, kod 0, czas w komunikacie (157 ms)
+    ✓ błąd w lint: przerywa tutaj, kod 1, po polsku mówi jak naprawić (176 ms)
+    ✓ błąd w check:pochodne: przerywa tutaj, kod 1, po polsku mówi jak naprawić (164 ms)
+    ✓ L-NNN (28.10.2026): bez znacznika zielonego verify dla wypychanego drzewa — zatrzymane przed lintem, po polsku, z obejściem (59 ms)
+    ✓ samo usuwanie gałęzi (same zera) nie uruchamia sprawdzeń (66 ms)
+    ✓ wypchnięcie razem z usunięciem nadal sprawdza (255 ms)
+  hak: zmiany w docs/ — numeracja lekcji i testy dokumentów (L-037, wariant A, właściciel 26.10.2026)
+    ✓ gałąź funkcji: lekcja „L-NNN” dozwolona; testy dokumentów biegną z GITHUB_REF_NAME = gałąź (687 ms)
+    ✓ na integracja-2026-10-26b nienumerowana lekcja zatrzymuje wypchnięcie (numeruj-lekcje --sprawdz), testy dokumentów nie biegną (724 ms)
+    ✓ na main nienumerowana lekcja zatrzymuje wypchnięcie (numeruj-lekcje --sprawdz), testy dokumentów nie biegną (761 ms)
+    ✓ na integracja-* lekcja z numerem przechodzi (numeruj-lekcje --sprawdz zielone, potem testy dokumentów z gałęzią) (807 ms)
+    ✓ czerwony test dokumentów zatrzymuje wypchnięcie i mówi po polsku, co zrobić (700 ms)
+    ✓ zmiana bez docs/ (sam kod) nie uruchamia ani numeracji, ani testów dokumentów (740 ms)
+    ✓ --no-verify omija sprawdzenia docs/ (541 ms)
+  instalator (skrypt `prepare`)
+    ✓ w repozytorium git ustawia core.hooksPath jako ścieżkę względną; powtórzenie nic nie psuje (227 ms)
+    ✓ w CI (zmienna CI) nie robi nic i nie wywraca `npm ci` (194 ms)
+    ✓ w katalogu bez .git (paczka) kończy się kodem 0 i nic nie zapisuje — także gdy wyżej leży inne repo (78 ms)
+    ✓ bez gita w PATH też kończy się kodem 0 (177 ms)
+    ✓ cudzego core.hooksPath nie nadpisuje (191 ms)
+  hak na prawdziwym git push (także z worktree)
+    ✓ zielone sprawdzenia przepuszczają push, czerwone go odrzucają, --no-verify omija (700 ms)
+    ✓ zmiany tylko w dokumentach (względem origin/main) pomijają lint; zmiana kodu przywraca oba sprawdzenia (1217 ms)
+    ✓ usunięcie gałęzi na zdalnym nie uruchamia sprawdzeń (272 ms)
+    ✓ worktree współdzieli konfigurację, a hak biegnie z katalogu worktree (ścieżka względna) (425 ms)
+  polecenia agentów, które wypychają: krok o wyniku tests.yml po wypchnięciu (L-009)
+    ✓ lista ról istnieje
+    ✓ programista: po wypchnięciu sprawdza wynik tests.yml i czeka na zielony (1 ms)
+    ✓ tester-e2e: po wypchnięciu sprawdza wynik tests.yml i czeka na zielony
+    ✓ tlumacz: po wypchnięciu sprawdza wynik tests.yml i czeka na zielony
+    ✓ wydawca: po wypchnięciu sprawdza wynik tests.yml i czeka na zielony (1 ms)
+    ✓ każda rola z Bash i bez zakazu pushu jest na liście albo jawnie wyłączona
+  verify sprawdza zainstalowany hak pre-push (L-014)
+    ✓ pierwszy krok skryptu verify to sprawdzenie haka, przed typecheck (1 ms)
+    ✓ hak niezainstalowany: kod 1 i polecenie instalacji (163 ms)
+    ✓ hak zainstalowany (core.hooksPath = scripts/hooks): kod 0 (238 ms)
+    ✓ po poleceniu z komunikatu sprawdzenie przechodzi (262 ms)
+    ✓ hak skopiowany do .git/hooks też się liczy (155 ms)
+    ✓ cudzy core.hooksPath bez haka: kod 1 (165 ms)
+    ✓ worktree współdzieli konfigurację: sprawdzenie przechodzi także tam (258 ms)
+    ✓ w CI (zmienna CI) pomija z komunikatem, kod 0 (182 ms)
+    core.hooksPath bezwzględny, wskazujący na inny worktree (22.10.2026)
+      ✓ hooksPath = scripts/hooks głównego checkoutu (identyczny hak): kontrola w worktree przechodzi (273 ms)
+      ✓ to samo przez dowiązanie symboliczne (realpath) (180 ms)
+      ✓ hooksPath nieustawione: nadal kod 1 w worktree (164 ms)
+      ✓ hooksPath wskazuje katalog bez naszego haka: kod 1 (201 ms)
+      ✓ hooksPath wskazuje hak o innej treści: kod 1 (295 ms)
+      ✓ hak o tej samej treści, ale niewykonywalny: kod 1 (267 ms)
+  L-NNN (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego verify blokuje wypchnięcie
+    ✓ verify zielone dla tego drzewa → przechodzi (706 ms)
+    ✓ commit po verify (inne drzewo) → zatrzymane, gałąź nie trafia na zdalne (670 ms)
+    ✓ verify przy niezatwierdzonych albo nieśledzonych plikach nie zapisuje znacznika (515 ms)
+    ✓ znacznik verify:docs wystarcza tylko, gdy zmiany od origin/main to same dokumenty (1254 ms)
+    ✓ świadome obejście --no-verify nadal działa (510 ms)
+    ✓ npm run verify kończy się zapisem znacznika „pelne”; verify:docs zapisuje „dokumenty” poza trybem testowym (1 ms)
+    ✓ w CI zapis nic nie robi (verify w tests.yml nie zostawia znaczników) (472 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       53 passed, 53 total
+Snapshots:   0 total
+Time:        17.869 s
+Ran all test suites matching /tests\/hak-pre-push.test.ts/i.
