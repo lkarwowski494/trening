@@ -47,6 +47,8 @@ appId: pl.lukasz.trening
 - inputText: "Bench Press"
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
+# duży tekst dostępności (scenariusz 58): wiersze są wysokie, wynik leży poza ekranem — przewinięcie do niego (przy zwykłym tekście nic nie robi)
+- scrollUntilVisible: { element: "Bench Press \\(Dumbbell\\), dumbbells", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "Bench Press \\(Dumbbell\\), dumbbells"
 - extendedWaitUntil: { visible: "Bench Press \\(Dumbbell\\)", timeout: 30000 }
 # --- ćwiczenie 2 ---
@@ -57,6 +59,8 @@ appId: pl.lukasz.trening
 - inputText: "Bent Over Row"
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
+# duży tekst dostępności (scenariusz 58): wiersze są wysokie, wynik leży poza ekranem — przewinięcie do niego (przy zwykłym tekście nic nie robi)
+- scrollUntilVisible: { element: "Bent Over Row \\(Dumbbell\\), dumbbells", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "Bent Over Row \\(Dumbbell\\), dumbbells"
 - extendedWaitUntil: { visible: "Bent Over Row \\(Dumbbell\\)", timeout: 30000 }
 - takeScreenshot: 00-szablon-testowy
