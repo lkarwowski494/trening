@@ -22,8 +22,10 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 const DICT = join(root, 'lib/i18n.en.ts');
 const REG = join(root, 'docs/research/rejestr-twierdzen.json');
 
-/** Wzorzec tekstu dziedzinowego (jedno miejsce). Minimalna długość odsiewa etykiety („Zalecenia”, „e1RM (Epley, per hantel)”). */
-export const DOMAIN_RE = /ACSM|\bWHO\b|Zourdos|Pelland|Mayhew|Epley|Brzycki|wytyczn|stanowisk|metaanaliz|przegląd(?:y|u|ów)? badań|uproszczeni|konwencj|jedno źródło|nie ustalon|ankiet|zalecen|nasz wybór|wstępn|\bi in\. \d{4}/i;
+/** Wzorzec tekstu dziedzinowego (jedno miejsce). Minimalna długość odsiewa etykiety („Zalecenia”, „e1RM (Epley, per hantel)”).
+ * Od 1.0.1 (audyt 1.0, C-2) także LICZBY twierdzeń: stopnie („15–20°”), przedziały ułamków („1/3–1/2”) i procenty — po anonimizacji (25.10.2026) nazwy źródeł
+ * zniknęły z tekstów, więc sama liczba bez wpisu przechodziła niezauważona. Parametry sprzętu (kg, lb) i formaty (tempo „3-1-1”) nie są twierdzeniami. */
+export const DOMAIN_RE = /ACSM|\bWHO\b|Zourdos|Pelland|Mayhew|Epley|Brzycki|wytyczn|stanowisk|metaanaliz|przegląd(?:y|u|ów)? badań|uproszczeni|konwencj|jedno źródło|nie ustalon|ankiet|zalecen|nasz wybór|wstępn|\bi in\. \d{4}|\d\s?°|\d\/\d\s?[–-]\s?\d\/\d|\d\s?%/i;
 export const MIN_LEN = 30;
 /** Słownictwo dziedziny (klucz polski): zapas powtórzeń i skale wysiłku, % maksimum, uogólnienie „zwykle”, kąty w stopniach, siła i mięśnie, upadek,
  * regeneracja, cardio, zalecenia. Fałszywe trafienia (teksty interfejsu) trafiają do „bezTwierdzenia” z powodem. */

@@ -475,3 +475,19 @@ Przegląd rolą `recenzent-lokalizacji` (26.10.2026, gałąź `recenzja-lok-2026
 12. **uk** „Тривалість кардіотренування = заданий час тренування” — „заданий” (ustawiony) nie występuje w PL/EN; zostawić czy usunąć? (ru: „длительность тренировки”, bez dopisku.) **ru** „при цели «сила»” w zakresach powtórzeń — doprecyzowanie spoza PL, do potwierdzenia.
 13. **hu** „perc”/„mp” zamiast „min”/„s” w tekstach przerw i formuły; **tr** przyciski w trybie rozkazującym „gör/bitir” przy zdaniach w formie „siz” — zgodne z istniejącą konwencją, ale bez recenzji native speakera.
 14. **es-419** w starej notatce wydania (poza zestawem 71 kluczy) nazwa ekranu „Entreno” — słowo zakazane w wariancie, ale to nazwa taba w starej notatce; do decyzji, czy zmienić na „Training” jak w es.
+
+### Wersja 1.0.1: przegląd lokalizacji Z-02, pozycje nieblokujące (26.10.2026)
+
+*Wprowadzone* (test `tests/lokalizacja-1-0-1.test.ts`, strażnik znanych form „ty” w ekranach języków formalnych): rejestr formalny w el, lt, lv, cs, sk, tr, id, sr, hu, uk, pt, ro (zdania na ekranach, także zakup i import; wskazówki techniki dalej „ty”); es-419 (entrenamiento, respaldo, Agrega, InfoPlist „respaldos” i „ningún lado”); pt-BR (grande demais, salva); el InfoPlist „σας”; rozwinięte skróty w zdaniach pomocy da/de/nb.
+
+*Celowo niezmienione — pytania do native speakerów (nie zgadujemy):*
+1. ko „Jesteśmy z Ciebie dumni!”: „정말 자랑스러워요!” czy „정말 잘하셨어요!”; ko „Cały rok treningów, rozliczany rocznie.” (zdanie sztuczne).
+2. zh-Hant podpis stopera serii: „本組 {s} 秒” czy „這組 {s} 秒” (dziś „每組” = „każda seria”).
+3. el: formalnie wszędzie (w tym okno zgody iOS)? Zrobione tak dla zdań zgłoszonych i pokrewnych; przyciski w trybie rozkazującym (Ορίστε…) zostają.
+4. ja: dwukropek półszerokości „:” czy pełnej „：” (ok. 159 tekstów); jeden termin trybu cichego (消音モード).
+5. da/nb/sv: „cardio” czy „kondition/kondisjon” w całej aplikacji.
+6. cs: zapowiedź głosowa rozgrzewki „zahřívací série” czy „rozcvička”.
+7. hr, ro, uk, pt: napisy przycisków w trybie rozkazującym 2 os. l. poj. („Odaberi vježbu”, „Alege exercițiul”, „Вибери…”, „Escolhe…”) obok zdań formalnych — wzorzec przycisków w tych językach u producenta systemu; zdania poprawione, przyciski zostają do decyzji native speakera.
+8. uk: „програма” czy „застосунок” (14 vs 22 użyć); tr: „Apple Sağlık” czy „Sağlık uygulaması”; sl: pytania w 1. osobie czy „Želite …?”.
+9. es-419 InfoPlist i reszta zgłoszona jako „średnia pewność” — tylko to, co dotyczy słownika wariantu, zostało zmienione.
+*Nie wykonane (zmiana tekstu źródłowego PL/EN, dotyka 35 języków):* „Apple ID” → „konto Apple” (2 teksty), „(TestFlight)” → App Store w komunikacie o nowszych danych, liczba „6 godzin” z `STALE_AUTO_MS` zamiast wpisanej w tekst — do osobnego zadania z przekładem.

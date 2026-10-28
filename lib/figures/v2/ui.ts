@@ -40,7 +40,11 @@ export function legendOf(key: string): MuscleLegend | null {
 }
 
 /** Opis ustawienia stóp w przysiadzie („palce lekko na zewnątrz, zwykle 15–20°”): zwykły rozstaw obu stóp na podłodze (nie szeroki/sumo, nie ściana); źródła: Stronger by Science „How to Squat” (Foot Angle) i NSCA Basics 2012 s. 49 — część wspólna przedziałów (docs/research, 25.10.2026, szczebel 4, dwa zgodne źródła). */
-export const toeAngleApplies = (spec: FigureSpec): boolean => spec.family === 'squat' && faultApplicable(spec, 'kneesIn');
+export const toeAngleApplies = (spec: FigureSpec): boolean =>
+  spec.family === 'squat' && faultApplicable(spec, 'kneesIn') && !(spec.variant.family === 'squat' && TOE_ANGLE_EXCLUDED_LOADS.includes(spec.variant.p.load));
+/** Obciążenia, przy których rysunek NIE pokazuje palców w 15–20°, więc opisu nie ma (audyt 1.0, C-3): hantle opuszczone po bokach — przy palcach 15–20° kolana wychodzą
+ * na zewnątrz i przenikają hantle (test geometrii), dlatego rig ma tu 8°; rozsunięcie rąk dla zgodności z opisem odrzucone (nie do sprawdzenia wzrokowo na Linuksie). */
+export const TOE_ANGLE_EXCLUDED_LOADS: readonly string[] = ['dbSides'];
 
 /** Czy przy ćwiczeniu jest sekcja „Technika”: własne wskazówki (lib/cues) albo figura v2 (a z nią zestaw ogólny wzorca; kolejne rodziny — kolejne etapy). */
 export function hasTechnique(e: Pick<Exercise, 'lib' | 'libKey'> | null | undefined): boolean {

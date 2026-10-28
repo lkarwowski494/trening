@@ -332,4 +332,41 @@ final class WatchStoreTests: XCTestCase {
     transport.autoReply = true; transport.setReachable(true); await settle()
     XCTAssertTrue(s.state.queue.isEmpty)
   }
+
+  // MARK: - Pauza telefonu → pauza sesji zegarka (B-04, 1.0.1)
+
+  /// Pauza i wznowienie na telefonie wstrzymują i wznawiają sesję zegarka (czas w Zdrowiu liczy się tak samo, kto by trening nie zapisał); powtórzona migawka nie woła sesji drugi raz.
+  func testPhonePauseAndResumePauseAndResumeTheWatchSession() async {
+    let s = makeStore()
+    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set-first")); transport.deliver(json: session("start")); await settle()
+    XCTAssertEqual(workout.pauseCalls, [], "bez pauzy na telefonie sesja nie jest wstrzymywana")
+    transport.deliver(json: Fixtures.snapshotJSON("paused")); await settle()
+    XCTAssertEqual(workout.pauseCalls, [true])
+    transport.deliver(json: Fixtures.snapshotJSON("paused")); await settle()
+    XCTAssertEqual(workout.pauseCalls, [true], "powtórzona migawka z pauzą: bez drugiego wstrzymania")
+    transport.deliver(json: Fixtures.snapshotJSON("set-first")); await settle()
+    XCTAssertEqual(workout.pauseCalls, [true, false], "wznowienie na telefonie wznawia sesję")
+  }
+
+  /// Pauza zaczęła się przed startem sesji zegarka (np. zegarek był poza zasięgiem): po starcie sesja od razu jest wstrzymana.
+  func testSessionStartedDuringPhonePauseIsPausedRightAway() async {
+    let s = makeStore()
+    s.start(); transport.deliver(json: Fixtures.snapshotJSON("paused")); await settle()
+    XCTAssertEqual(workout.pauseCalls, [], "bez sesji nie ma czego wstrzymać")
+    transport.deliver(json: session("start")); await settle()
+    XCTAssertEqual(workout.pauseCalls, [true])
+  }
+
+  /// Koniec treningu w pauzie nie przenosi pauzy na kolejny trening: migawka „brak treningu” wznawia sesję, a nowa sesja przy migawce bez pauzy nie jest wstrzymywana.
+  func testPauseDoesNotCarryOverToNextWorkoutSession() async {
+    let s = makeStore()
+    s.start(); transport.deliver(json: Fixtures.snapshotJSON("paused")); transport.deliver(json: session("start")); await settle()
+    XCTAssertEqual(workout.pauseCalls, [true])
+    transport.deliver(json: Fixtures.snapshotJSON("idle")); transport.deliver(json: session("end", save: true)); await settle()
+    XCTAssertEqual(workout.pauseCalls, [true, false])
+    XCTAssertFalse(s.sessionActive)
+    transport.deliver(json: Fixtures.snapshotJSON("set-first")); transport.deliver(json: session("start", id: "workout-2")); await settle()
+    XCTAssertTrue(s.sessionActive)
+    XCTAssertEqual(workout.pauseCalls, [true, false], "nowa sesja bez pauzy na telefonie nie jest wstrzymywana")
+  }
 }
