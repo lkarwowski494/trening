@@ -111,7 +111,7 @@ export function liczbyZSilnika(rodzina = 'pull_up') {
   const { v2 } = silnik(); const C = v2.CONTRACT; const B = v2.BODY; const rom = czytaj(join(ROOT, 'lib/figures/data.json')).rom; const al = v2.templateFor(rodzina).allow ?? {};
   const reach = B.uarm + B.farm + B.hand; const s = wczytajSens().rodziny?.pull_up?.reguly ?? {};
   const par = (id, k, d) => s[id]?.parametry?.[k] ?? d;
-  return { gripTol: 0.6, reach, reachAim: reach - 0.5, trunk: B.trunk, shHalf: B.shHalf, ankleMax: rom.side.ankle.max, ankleSafe: '−20…−5°', elbowMax: rom.side.el.max, elbowAim: 140, shSagMax: rom.side.sh.max, shElevMax: rom.front.abd.max, shSagAllow: al.shSag ?? rom.side.sh.max,
+  return { gripTol: 0.6, reach, reachAim: reach - 0.5, trunk: B.trunk, ankleH: B.ankleH, shHalf: B.shHalf, ankleMax: rom.side.ankle.max, ankleSafe: '−20…−5°', elbowMax: rom.side.el.max, elbowAim: 140, shSagMax: rom.side.sh.max, shElevMax: rom.front.abd.max, shSagAllow: al.shSag ?? rom.side.sh.max,
     hipMin: rom.side.hip.min, hipMax: rom.side.hip.max, kneeMax: rom.side.knee.max, pen: v2.TOL.pen, maxJump: C.maxJump, step: C.step, perFrame: C.maxJump * C.step, gap10: Math.floor((C.maxJump * C.step) / 20), minMotion: C.minMotionCm,
     undeclared: C.undeclaredDeg, visibleCm: C.visibleCm, visibleDeg: C.visibleDeg, chinMargin: par('broda_nad_drazkiem', 'margines_cm', 2), armsStraight: par('dol_rece_proste', 'max_lokiec_deg', 25), swingPelvis: par('miednica_nie_buja', 'max_cm', 3),
     ankleRel: `${par('nogi_nieruchome', 'min_cm', -10)}…${par('nogi_nieruchome', 'max_cm', 5)}`, trunkRange: `${par('tulow_pion', 'min_deg', -12)}…${par('tulow_pion', 'max_deg', 3)}`, freeHand: par('jedna_reka', 'min_wolna_od_osi_cm', 15) };
@@ -259,6 +259,7 @@ const OPIS_TYPU = {
   zawias_biodrowy: (q) => `ruch prowadzą biodra: biodro (${q.noga ?? 'srednia'}) w ruchu dochodzi do ≥ ${q.min_biodro_deg}°, a jego zakres ≥ ${q.min_stosunek} × zakres kolana`,
   klatka_przy_dloniach: (q) => `w najniższym punkcie klatka (bark) jest ≤ ${q.max_cm} cm nad dłońmi (klatka nisko, przy podłodze)`,
   piety_na_podlodze: (q) => `pięta każdej nogi zmienia wysokość o ≤ ${q.max_cm} cm (pięty na podłodze)`,
+  stopa_na_platformie: (q) => `podeszwa każdej pracującej nogi (pięta, śródstopie, palce) leży ${q.min_cm}…${q.max_cm} cm od płaszczyzny płyty platformy w każdej klatce (stopa płasko NA platformie: płyta jest prostopadła do prowadnicy w punkcie „podeszwy”, a kostka leży 7 cm przed nią)`,
   kolano_biodro_zakres: (q) => `w ruchu średnie kolano sięga ≥ ${q.kolano_min_max_deg}° i prostuje się do ≤ ${q.kolano_max_min_deg}°, a biodro sięga ≥ ${q.biodro_min_max_deg}°`,
   udo_rownolegle_na_dole: (q) => `w najniższym punkcie (najniższa miednica) udo każdej nogi jest ≤ ${q.max_deg}° nad poziomem (równolegle albo niżej)`,
   stanie_wyprost: (q) => `w którejś klatce kolana ≤ ${q.max_kolano_deg}°, biodra ≤ ${q.max_biodro_deg}° i |pochylenieTulowia| ≤ ${q.max_tulow_deg}° (pełny wyprost)`,

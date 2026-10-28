@@ -3,7 +3,8 @@
  * Statyczne (izometria, np. siad przy ścianie) = jedna pozycja końcowa bez animacji.
  */
 import { CATALOG } from '../../catalog.generated';
-import { FAMILY, familyOf, type FamilyId } from './families';
+import { FAMILY, familyOf, viewsOf, type FamilyId } from './families';
+import { dzwigniaPrzezGlowe } from './leverGuard';
 import { VARIANTS, type Variant } from './variants';
 import { squatFrame } from './rigs/squat';
 import { benchFrame } from './rigs/benchPress';
@@ -31,11 +32,11 @@ export function figureSpec(key: string): FigureSpec | null {
   const family = familyOf(key); const fam = FAMILY[family];
   if (fam.status !== 'ready') return null;
   const data = poseDataFor(key, family); const ui = DATA_UI[family];
-  if (data && ui) return { key, family, variant: { family, data } as Variant, views: fam.views, static: ISOMETRIC.has(key), lowerFirst: ui.lowerFirst };
+  if (data && ui) return { key, family, variant: { family, data } as Variant, views: viewsOf(key, family), static: ISOMETRIC.has(key), lowerFirst: ui.lowerFirst };
   const variant = Object.prototype.hasOwnProperty.call(VARIANTS, key) ? VARIANTS[key] : null;
   if (!variant || variant.family !== family || 'data' in variant) return null;
   const lowerFirst = variant.family === 'hinge' ? variant.lowerFirst : true;
-  return { key, family, variant, views: fam.views, static: variant.family === 'squat' && !!variant.static, lowerFirst };
+  return { key, family, variant, views: viewsOf(key, family), static: variant.family === 'squat' && !!variant.static, lowerFirst };
 }
 
 /* Podręczna pamięć klatek: w jednym kroku animacji ta sama klatka jest potrzebna kilka razy (kształty, linie odniesienia, styki, znaczki, oba widoki) — liczymy ją raz. Klatki są niezmienne. */
@@ -115,7 +116,7 @@ export function musclesFor(key: string): MuscleEntry | null { return Object.prot
 
 /** Kształty klatki w widoku (ciało + sprzęt + opcjonalnie podświetlenie mięśni; nieposortowane — sortuje renderer). */
 export function shapesAt(spec: FigureSpec, u: number, view: View, muscles = false, error?: FigError): Shape[] {
-  const f = frameAt(spec, u, error); const out = [...bodyShapes(f.sk, view), ...propShapes(f.props, view)];
+  const f = frameAt(spec, u, error); const out = [...bodyShapes(f.sk, view), ...propShapes(f.props, view, 'data' in spec.variant && dzwigniaPrzezGlowe(spec.variant.data))];
   if (muscles) { const m = musclesFor(spec.key); if (m) out.push(...muscleShapes(f.sk, view, m.load)); }
   if (error) out.push(...errorMarks(f, view, error, spec));
   return out;

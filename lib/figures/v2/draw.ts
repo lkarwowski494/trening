@@ -2,7 +2,7 @@
  * Figury v2 — rysunek: szkielet 3D + rekwizyty → kształty 2D (widok z boku albo z przodu). Kapsuły kończyn, kontur tułowia, głowa, stopy w butach,
  * sprzęt. Brak kolorów — tylko role (palette.ts). Liczby wymiarów sprzętu w EQUIP (jedno miejsce).
  */
-import { add, mul, norm, sub, rad, type V2, type V3 } from './math';
+import { add, mul, norm, sub, rad, distSegSeg, type V2, type V3 } from './math';
 import { BODY, GIRTH, SIDES, type Skeleton } from './skeleton';
 import { LAYER, type Prop, type Role, type Shape, type View } from './scene';
 
@@ -163,14 +163,22 @@ export function bodyShapes(sk: Skeleton, view: View): Shape[] {
 
 const rect = (x0: number, y0: number, x1: number, y1: number): V2[] => [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
 
+/** Położenie nóg pod oparciem maszyny (ułamek długości oparcia od zawiasu). */
+const BACK_FRAME_T: [number, number] = [0.08, 0.75];
+
 /** Wielokąty ławki w widoku z boku: siedzisko, oparcie (górna krawędź = powierzchnia, na której leży osoba) i x nóg. Wspólne dla rysunku i kolizji. */
-export function benchPolys(pr: Extract<Prop, { k: 'bench' }>): { seat: V2[]; back: V2[]; legs: number[] } {
+export function benchPolys(pr: Extract<Prop, { k: 'bench' }>): { seat: V2[]; back: V2[]; legs: number[]; legTops: number[] } {
   const T = EQUIP.benchPad; const [sx0, sy] = pr.seatFrom, [hx, hy] = pr.hinge, [bx, by] = pr.backTo;
   const dir: V2 = [bx - hx, by - hy]; const L = Math.hypot(dir[0], dir[1]) || 1; let n: V2 = [-dir[1] / L, dir[0] / L]; if (n[1] < 0) n = [-n[0], -n[1]]; /* normalna w górę */
+  const back: V2[] = [[hx, hy - T], [bx - n[0] * T, by - n[1] * T], [bx, by], [hx, hy]];
+  /* Oparcie bez siedziska (maszyny: backFrame): nogi stoją pod spodem oparcia i dochodzą do niego (nie wiszą pod zawiasem) — jedna przy zawiasie, druga w trzech czwartych długości. */
+  const pod = (t: number): V2 => [back[0][0] + (back[1][0] - back[0][0]) * t, back[0][1] + (back[1][1] - back[0][1]) * t];
+  const frame = pr.backFrame ? [pod(BACK_FRAME_T[0]), pod(BACK_FRAME_T[1])] : null; const seatTop = Math.max(sy - EQUIP.benchPad, 0);
   return {
     seat: [[sx0, sy - T], [hx, hy - T], [hx, hy], [sx0, sy]],
-    back: [[hx, hy - T], [bx - n[0] * T, by - n[1] * T], [bx, by], [hx, hy]],
-    legs: [sx0 + Math.sign(hx - sx0) * 8, bx + Math.sign(hx - bx) * 6],
+    back,
+    legs: frame ? frame.map(p => p[0]) : [sx0 + Math.sign(hx - sx0) * 8, bx + Math.sign(hx - bx) * 6],
+    legTops: frame ? frame.map(p => p[1]) : [seatTop, seatTop],
   };
 }
 
@@ -191,8 +199,13 @@ export function hyperPolys(pr: Extract<Prop, { k: 'hyper' }>): { pad: V2[] } {
 /** Środek wałków na nogi ławki ujemnej (x, y w widoku z boku): nad kostkami przy końcu siedziska. */
 export const rollerAt = (pr: Extract<Prop, { k: 'bench' }>): V2 => [pr.seatFrom[0] + EQUIP.rollerDx, pr.seatFrom[1] + EQUIP.rollerDy];
 
-/** Kształty rekwizytów. */
-export function propShapes(props: Prop[], view: View): Shape[] {
+/** Czy rzut dźwigni maszyny w widoku z przodu przechodzi przez głowę w tej klatce (odcinek dźwigni bliżej środka głowy niż promień głowy + 1,4 cm). Ruch jako całość ocenia `dzwigniaPrzezGlowe` (leverGuard.ts). */
+export function dzwigniaDotykaGlowy(props: Prop[], sk: Skeleton): boolean {
+  const h = proj(sk.head, 'front');
+  return props.some(pr => pr.k === 'pivot' && pr.label === 'dzwignia' && distSegSeg([...proj(pr.from, 'front'), 0] as V3, [...proj(pr.to, 'front'), 0] as V3, [h[0], h[1], 0], [h[0], h[1], 0]) < BODY.headR + 1.4);
+}
+/** Kształty rekwizytów. `hideLever`: nie rysuj dźwigni maszyny w widoku z przodu (decyzja na cały ruch, patrz `dzwigniaPrzezGlowe`). */
+export function propShapes(props: Prop[], view: View, hideLever = false): Shape[] {
   const S: Shape[] = []; const side = view === 'side';
   const E = EQUIP;
   for (const pr of props) {
@@ -213,7 +226,7 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         if (side) {
           S.push({ k: 'poly', pts: bp.seat, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-30), id: 'benchSeat' });
           S.push({ k: 'poly', pts: bp.back, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-29), id: 'benchBack' });
-          for (const x of bp.legs) S.push({ k: 'line', a: [x, 0], b: [x, Math.max(pr.seatFrom[1] - E.benchPad, 0)], w: E.benchLegW, role: 'frame', z: zb(-31), id: 'benchLeg' });
+          bp.legs.forEach((x, i) => S.push({ k: 'line', a: [x, 0], b: [x, bp.legTops[i]], w: E.benchLegW, role: 'frame', z: zb(-31), id: 'benchLeg' }));
           if (pr.rollers) S.push({ k: 'circle', c: ro, r: E.rollerR, fill: 'pad', stroke: 'frame', w: 0.8, z: zb(-28), id: 'benchRoller' });
         } else if (view === 'top') {
           S.push({ k: 'poly', pts: rect(-w / 2, pr.seatFrom[0], w / 2, pr.backTo[0]), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-30), id: 'benchSeat' });
@@ -338,7 +351,10 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         else S.push({ k: 'circle', c: b, r: 3, fill: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'slidePad' });
         break;
       }
-      case 'pivot': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 2.8, role: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'landmine' }); S.push({ k: 'circle', c: a, r: 3, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pivot' }); break; }
+      case 'pivot': { const a = proj(pr.from, view), b = proj(pr.to, view);
+        /* dźwignia maszyny leży w płaszczyźnie ruchu, więc z przodu rzutuje się na pionową kreskę przez środek ciała; gdy przechodzi przez głowę w którejkolwiek klatce ruchu (Lying Machine Squat, Hack Squat: pręt przez twarz, recenzja p2-r2 U-L2, p2-r3 U-H1), nie rysujemy jej (ani punktu obrotu) w całym ruchu — decyzja jest stała, żeby pręt nie migał (hideLever liczy dźwigniaPrzezGlowe) */
+        if (view === 'front' && pr.label === 'dzwignia' && hideLever) break;
+        S.push({ k: 'line', a, b, w: 2.8, role: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'landmine' }); S.push({ k: 'circle', c: a, r: 3, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pivot' }); break; }
       case 'barbell': {
         const c = pr.c; const o = proj(c, view);
         if (side) {

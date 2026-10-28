@@ -20,7 +20,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `pull_up` | gotowa | 13 | side, front | — | Podciąganie i zwis (drążek, kółka, lina) — pozy z danych (poses/pull_up.json); ćwiczenia bez wpisu w danych bez figury v2 |
 | `pulldown` | do zrobienia | 8 | side, front | 2 | Ściąganie drążka (wyciąg górny) |
 | `lunge` | do zrobienia | 24 | side, front | 5 | Wykroki, przysiad bułgarski, wejścia na stopień, pistolet |
-| `leg_machine` | do zrobienia | 8 | side | 3 | Suwnice i maszyny nóg (leg press, hack, wahadło) |
+| `leg_machine` | do zrobienia | 8 | side, front | 3 | Suwnice i maszyny nóg (leg press, hack, wahadło) |
 | `leg_isolation` | do zrobienia | 14 | side | 3 | Prostowanie i uginanie nóg, nordic, sissy |
 | `calf_raise` | do zrobienia | 13 | side | 2 | Wspięcia na palce |
 | `hip_bridge` | do zrobienia | 11 | side | 3 | Hip thrust i mostki |

@@ -2111,7 +2111,7 @@
     {
      "rodzaj": "podloga",
      "x0": -60,
-     "x1": 140
+     "x1": 160
     },
     {
      "rodzaj": "skrzynia",
@@ -2120,8 +2120,17 @@
      "top": 38.6
     },
     {
+     "rodzaj": "slupek",
+     "x": 125,
+     "h": 60
+    },
+    {
      "rodzaj": "guma",
-     "mocowanie": "kostki"
+     "mocowanie": "zaczep_kostki",
+     "trzyma": "R",
+     "x": 125,
+     "y": 14,
+     "z": 10
     }
    ],
    "klatki": [

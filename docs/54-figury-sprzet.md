@@ -63,13 +63,13 @@ Polecenia: ćwiczenia z hantlem, kettlebell, talerzem i piłką lekarską nie s�
 
 | Rodzaj | Pola | Możliwości katalogu | Uwagi |
 |---|---|---|---|
-| `lawka` | `x` (zawias), `top` (siedzisko: 43, ujemna 60), `kat` (−45…90°), `dlugosc` oparcia (75), `walki` (wałki na nogi) | bench.flat, bench.incline, bench.decline | geometria i kontakty jak w rigu wyciskania leżąc (BENCH): plecy/miednica/uda/głowa 1,5 cm, ramię 6, przedramię 2,5, sztanga na klatce 2,6/2,2; kąt musi odpowiadać możliwości katalogu (płaska ±5°, skośna ≥ 10°, ujemna ≤ −5°); skrzynia nie jest już ławką płaską |
+| `lawka` | `x` (zawias), `top` (siedzisko: 43, ujemna 60), `kat` (−45…90°), `dlugosc` oparcia (75), `siedzisko` (długość siedziska 2–70; 2 = samo oparcie maszyny, np. hack squat), `walki` (wałki na nogi) | bench.flat, bench.incline, bench.decline | geometria i kontakty jak w rigu wyciskania leżąc (BENCH): plecy/miednica/uda/głowa 1,5 cm, ramię 6, przedramię 2,5, sztanga na klatce 2,6/2,2; kąt musi odpowiadać możliwości katalogu (płaska ±5°, skośna ≥ 10°, ujemna ≤ −5°); skrzynia nie jest już ławką płaską |
 
 ### 2.5 Guma oporowa
 
 | Rodzaj | Pola | Możliwości katalogu | Uwagi |
 |---|---|---|---|
-| `guma` | `mocowanie` (zaczep / stopy / kostki / dlonie / sztanga), `x`, `y`, `z` (punkt zaczepu), `trzyma` | bands | linia przerywana od punktu mocowania do dłoni (po jednej na dłoń), między kostkami, między dłońmi albo od końców gryfu; bez kolidera i limitu długości (guma się rozciąga); kierunek oporu = linia |
+| `guma` | `mocowanie` (zaczep / zaczep_kostki / stopy / kostki / dlonie / sztanga), `x`, `y`, `z` (punkt zaczepu), `trzyma` | bands | linia przerywana od punktu mocowania do dłoni (po jednej na dłoń), od zaczepu do kostki (`zaczep_kostki`, 27.10.2026: guma rozciąga się, gdy kostka oddala się od zaczepu), między kostkami, między dłońmi albo od końców gryfu; bez kolidera i limitu długości (guma się rozciąga); kierunek oporu = linia |
 
 ### 2.6 Piłka gimnastyczna i wałek piankowy
 

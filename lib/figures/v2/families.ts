@@ -35,7 +35,7 @@ export const FAMILIES: Family[] = [
   { id: 'pull_up', status: 'ready', label: 'Podciąganie i zwis (drążek, kółka, lina)', views: ['side', 'front'], effort: 0, note: 'pozy z danych (poses/pull_up.json); ćwiczenia bez wpisu w danych bez figury v2' },
   { id: 'pulldown', status: 'planned', label: 'Ściąganie drążka (wyciąg górny)', views: ['side', 'front'], effort: 2 },
   { id: 'lunge', status: 'planned', label: 'Wykroki, przysiad bułgarski, wejścia na stopień, pistolet', views: ['side', 'front'], effort: 5 },
-  { id: 'leg_machine', status: 'planned', label: 'Suwnice i maszyny nóg (leg press, hack, wahadło)', views: ['side'], effort: 3 },
+  { id: 'leg_machine', status: 'planned', label: 'Suwnice i maszyny nóg (leg press, hack, wahadło)', views: ['side', 'front'], effort: 3 },
   { id: 'leg_isolation', status: 'planned', label: 'Prostowanie i uginanie nóg, nordic, sissy', views: ['side'], effort: 3 },
   { id: 'calf_raise', status: 'planned', label: 'Wspięcia na palce', views: ['side'], effort: 2 },
   { id: 'hip_bridge', status: 'planned', label: 'Hip thrust i mostki', views: ['side'], effort: 3 },
@@ -69,6 +69,20 @@ export const FAMILIES: Family[] = [
   { id: 'kneeling_hinge', status: 'planned', label: 'Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad)', views: ['side'], effort: 1 },
 ];
 export const FAMILY: Record<FamilyId, Family> = Object.fromEntries(FAMILIES.map(f => [f.id, f])) as Record<FamilyId, Family>;
+
+/** Rodziny, w których dźwignia maszyny nie jest rysowana w widoku z przodu, gdy jej rzut przechodzi przez głowę (draw.ts, case 'pivot'; recenzja p2-r2, U-L2: Lying Machine Squat). Rodziny z tym samym defektem, których nie przeglądano w tej rundzie (cable_row, chest_press_machine, leg_isolation), czekają w backlogu 1.1 (docs/21): ich rysunek bez zmian. */
+export const DZWIGNIA_BEZ_GLOWY: readonly string[] = ['leg_machine'];
+/** Widoki ustawione na poziomie ćwiczenia (nadpisują widoki rodziny). Suwnice pokazujemy tylko z boku (recenzja p2-r2, U-L1, decyzja koordynatora 27.10.2026): z przodu uda są w skrócie, platforma nie jest rysowana, więc stopy i siedzisko wiszą w powietrzu, a ruch w kostce jest niewidoczny. */
+export const EXERCISE_VIEWS: Record<string, { family: FamilyId; views: ('side' | 'front' | 'top')[]; reason: string }> = {
+  'Leg Press': { family: 'leg_machine', views: ['side'], reason: 'suwnica: z przodu bez platformy stopy i siedzisko wiszą, uda w skrócie' },
+  'Single Leg Press': { family: 'leg_machine', views: ['side'], reason: 'suwnica: z przodu bez platformy stopy i siedzisko wiszą, uda w skrócie' },
+  'Calf Press (leg press)': { family: 'leg_machine', views: ['side'], reason: 'suwnica: z przodu nogi prawie proste, ruch w kostce niewidoczny' },
+};
+/** Widoki figury ćwiczenia: wyjątek ćwiczenia (EXERCISE_VIEWS), a w jego braku widoki rodziny. */
+export function viewsOf(key: string, family: FamilyId): ('side' | 'front' | 'top')[] {
+  const x = Object.prototype.hasOwnProperty.call(EXERCISE_VIEWS, key) ? EXERCISE_VIEWS[key] : undefined;
+  return x && x.family === family ? x.views : FAMILY[family].views;
+}
 
 const has = (n: string, ...parts: string[]): boolean => parts.some(p => n.includes(p));
 

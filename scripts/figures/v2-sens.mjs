@@ -217,6 +217,17 @@ Object.assign(EWALUATORY, {
       const nazewnatrz = (side === 'R' ? 1 : -1) * ((fx * kz - fz * kx) / n); worst = Math.min(worst, nazewnatrz); }
     const lim = q.max_do_srodka_cm; return worst < -lim ? [`środek kolana leży ${f1(-worst)} cm przyśrodkowo od osi stopy (pięta–palce), a ma ≤ ${lim} cm (kolana w linii palców; liczone przy zgięciu ≥ ${q.min_zgiecie_deg}°)`] : []; },
   piety_na_podlodze: ({ p, parametry: q }) => { const o = []; for (const side of ['R', 'L']) { const r = zakres(p.map((s) => s.f.sk.legs[side].heel[1])); if (r.span > q.max_cm) o.push(`pięta ${side} zmienia wysokość o ${f1(r.span)} cm, a ma ≤ ${q.max_cm} cm (pięty na podłodze)`); } return o; },
+  /* p2-r5: stopa leży na platformie suwnicy (pomiar, nie ocena na oko). Płaszczyzna płyty = ta, którą rysuje silnik: przechodzi przez punkt mocowania prowadnicy (props[slide].to), normalna = kierunek prowadnicy.
+     Odstęp = (płyta − punkt podeszwy) · kierunek prowadnicy: dodatni = podeszwa przed płytą (po stronie ćwiczącego), ujemny = podeszwa przechodzi przez płytę. Punkty podeszwy: pięta i palce (śródstopie = środek między nimi). */
+  stopa_na_platformie: ({ d, p, parametry: q }) => {
+    const g = (d.sprzet ?? []).find((x) => x.rodzaj === 'dzwignia' && x.tryb === 'prosta' && (x.punkt === 'kostki' || x.punkt === 'podeszwy')); if (!g) return ['brak platformy pod stopami: wymagana dźwignia „prosta” z punktem „podeszwy” (wałek przy kostce to inny sprzęt)'];
+    const strony = g.trzyma === 'R' || g.trzyma === 'L' ? [g.trzyma] : ['R', 'L']; const o = []; const poza = []; let lo = Infinity, hi = -Infinity;
+    for (const s of p) { const sl = (s.f.props ?? []).find((x) => x.k === 'slide'); if (!sl) continue;
+      for (const side of strony) { const l = s.f.sk.legs[side]; const mid = [(l.heel[0] + l.toe[0]) / 2, (l.heel[1] + l.toe[1]) / 2, (l.heel[2] + l.toe[2]) / 2];
+        for (const [nm, pt] of [['pięta', l.heel], ['śródstopie', mid], ['palce', l.toe]]) { const odl = (sl.to[0] - pt[0]) * sl.dir[0] + (sl.to[1] - pt[1]) * sl.dir[1] + (sl.to[2] - pt[2]) * sl.dir[2]; lo = Math.min(lo, odl); hi = Math.max(hi, odl); if ((odl < q.min_cm || odl > q.max_cm) && poza.length < 3) poza.push(`${nm} ${side} w u = ${s.u.toFixed(2)}: ${f1(odl)} cm od płyty`); } } }
+    if (lo === Infinity) return ['brak rekwizytu prowadnicy w klatkach'];
+    if (poza.length) o.push(`podeszwa nie leży na płycie platformy: odstęp ${f1(lo)}…${f1(hi)} cm, a ma być w ${q.min_cm}…${q.max_cm} cm (np. ${poza.join('; ')}) — stopa płasko NA platformie, nie przez nią`);
+    return o; },
   kolano_biodro_zakres: ({ v2, p, parametry: q }) => { const o = []; const kn = p.map((s) => srK(v2, s.f.sk, 'knee')), bi = p.map((s) => srK(v2, s.f.sk, 'hip'));
     if (Math.max(...kn) < q.kolano_min_max_deg) o.push(`kolano w ruchu dochodzi tylko do ${f1(Math.max(...kn))}°, a ma sięgać ≥ ${q.kolano_min_max_deg}°`); if (Math.max(...bi) < q.biodro_min_max_deg) o.push(`biodro w ruchu dochodzi tylko do ${f1(Math.max(...bi))}°, a ma sięgać ≥ ${q.biodro_min_max_deg}°`);
     if (Math.min(...kn) > q.kolano_max_min_deg) o.push(`kolano w ruchu nie prostuje się poniżej ${f1(Math.min(...kn))}°, a ma schodzić do ≤ ${q.kolano_max_min_deg}°`); return o; },

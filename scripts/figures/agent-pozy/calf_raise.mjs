@@ -8,8 +8,15 @@ const ZS = 10;
 const POD_GORA = -45; /* podbicie na górze wspięcia (palce): kąt kostki ≈ −45° */
 const POD_GORA_SIEDZ = -34; /* w siadzie goleń odchyla się do przodu, więc podbicie mniejsze (kąt kostki ≈ −48°) */
 const POD_PLYTKO = -10; /* błąd: płytkie wspięcie (kąt kostki > −15°) */
+/** Stopień: krawędź blatu pod głowami kości śródstopia (70% długości stopy od pięty, czyli 7,5 cm od czubka palców); blat sięga od niej 1 cm w głąb przodostopia, pięta wisi poza krawędzią (recenzja 1.1, partia 2, nr 1). */
+export const STOPIEN_X0 = (xT) => r1(xT - 0.3 * (BODY().heelBack + BODY().toeFwd) - 1);
 /** Kostka (x, y) stopy obracającej się wokół czubka palców stojącego w punkcie (xT, top): podbicie pod (stopnie, ujemne = pięta w górze). */
-export const kostkaZPalcow = (xT, top, pod) => { const f = pod * R; return [xT - 19 * Math.cos(f) - 7 * Math.sin(f), top + 7 * Math.cos(f) - 19 * Math.sin(f)]; };
+export const kostkaZPalcow = (xT, top, pod, xE = null) => {
+  const f = pod * R;
+  /* stopień (xE = krawędź blatu): przy piętach poniżej poziomu (podbicie > 0) stopa obraca się wokół krawędzi (głowy kości śródstopia na krawędzi, pięta wisi), przy wspięciu wokół czubka palców */
+  if (xE !== null && pod > 0) { const vx = xT - 19 - xE, vy = 7; return [xE + vx * Math.cos(f) - vy * Math.sin(f), top + vx * Math.sin(f) + vy * Math.cos(f)]; }
+  return [xT - 19 * Math.cos(f) - 7 * Math.sin(f), top + 7 * Math.cos(f) - 19 * Math.sin(f)];
+};
 
 /** Ręce wg wariantu: tryb 'sztanga' (sztanga na plecach), 'hantle' (przy bokach), 'biodra', 'maszyna' (uchwyty przy klatce), 'sciana' (ręka na ścianie przed osobą) itd. */
 function rece(tryb, m, p, o = {}) {
@@ -25,7 +32,7 @@ function rece(tryb, m, p, o = {}) {
     default: return rece('biodra', m, p, o);
   }
 }
-const stopy = (xT, top, pod) => kostkaZPalcow(xT, top, pod);
+const stopy = (xT, top, pod, stopien = false) => kostkaZPalcow(xT, top, pod, stopien ? STOPIEN_X0(xT) : null);
 /** Klatka: nogi proste (kolano ~ k0), miednica nad kostkami w stałym x (pierwsza klatka wyznacza x). */
 function klatka(u, { xT = 0, top = 0, pod, x, k0 = 6, p = 0, tryb = 'bok', jednonoz = false, wolna = null, rece: rr = null, mfun = null }) {
   const aR = stopy(xT, top, pod); const aL = jednonoz ? null : stopy(xT, top, pod);
@@ -39,12 +46,12 @@ function klatka(u, { xT = 0, top = 0, pod, x, k0 = 6, p = 0, tryb = 'bok', jedno
 export function stojac(cw, o = {}) {
   const { tryb = 'bok', blok = 0, x = 0, sprzetFn = null, pod0 = blok ? 10 : 0, bledy = true, jednonoz = false, recFn = null, p = 0, wolnaFn = null } = o;
   const xT = x + 8; const us = [0, 0.25, 0.5, 0.75, 1];
-  const mk = (u, podGora) => { const pod = lerp(pod0, podGora, ease(u)); const aR = stopy(xT, blok, pod); const ar = [aR[0], aR[1], ZS];
+  const mk = (u, podGora) => { const pod = lerp(pod0, podGora, ease(u)); const aR = stopy(xT, blok, pod, blok > 0); const ar = [aR[0], aR[1], ZS];
     const al = jednonoz ? null : [aR[0], aR[1], -ZS]; const y = jednonoz ? hipY(ar, x, HIP(), 6) : Math.min(hipY(ar, x, HIP(), 6), hipY(al, x, -HIP(), 6)); const m = [x, y];
     const w = jednonoz ? wolnaFn(m) : null; const rr = (recFn ?? rece)(tryb, m, p, { u });
     return { f: K({ u, m, p, head: p * 0.3, R: { a: ar, pod, rot: 10, odch: 6 }, L: { a: jednonoz ? w.a : al, pod: jednonoz ? w.pod : pod, rot: 10, odch: 6, pole: jednonoz ? w.pole : undefined }, hr: rr.hr, hl: rr.hl }), o: rr, m }; };
   const fr = us.map((u) => mk(u, POD_GORA)); const zle = us.map((u) => mk(u, POD_PLYTKO));
-  const spr = [PODLOGA(-120, 160), ...fr[0].o.sprzet, ...(blok ? [{ rodzaj: 'skrzynia', x0: r1(xT - 0.3), x1: r1(xT + 40), top: blok }] : []), ...(sprzetFn ? sprzetFn(fr) : [])];
+  const spr = [PODLOGA(-120, 160), ...fr[0].o.sprzet, ...(blok ? [{ rodzaj: 'skrzynia', x0: STOPIEN_X0(xT), x1: r1(xT + 40), top: blok }] : []), ...(sprzetFn ? sprzetFn(fr) : [])];
   const b = bledy ? [bladZTrajektorii({ cue: 'calf.mis.partial', znacznik: 'heels', us, ok: (u) => fr[us.indexOf(u)].f, zle: (u) => zle[us.indexOf(u)].f })] : [];
   return poza(RODZINA, cw, spr, fr.map((r) => r.f), b);
 }

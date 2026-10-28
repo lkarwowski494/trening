@@ -1750,6 +1750,13 @@
      "x1": 140
     },
     {
+     "rodzaj": "poreczy",
+     "x0": 67.5,
+     "x1": 97.5,
+     "h": 120.3,
+     "z": 15
+    },
+    {
      "rodzaj": "dzwignia",
      "tryb": "obrot",
      "punkt": "kostki",
@@ -1805,7 +1812,7 @@
        "chwyt": [
         82.5,
         120.3,
-        14
+        15
        ],
        "biegunLokcia": [
         0,
@@ -1817,7 +1824,7 @@
        "chwyt": [
         82.5,
         120.3,
-        -14
+        -15
        ],
        "biegunLokcia": [
         0,
@@ -1871,7 +1878,7 @@
        "chwyt": [
         82.5,
         120.3,
-        14
+        15
        ],
        "biegunLokcia": [
         0,
@@ -1883,7 +1890,7 @@
        "chwyt": [
         82.5,
         120.3,
-        -14
+        -15
        ],
        "biegunLokcia": [
         0,
@@ -1937,7 +1944,7 @@
        "chwyt": [
         82.5,
         120.3,
-        14
+        15
        ],
        "biegunLokcia": [
         0,
@@ -1949,7 +1956,7 @@
        "chwyt": [
         82.5,
         120.3,
-        -14
+        -15
        ],
        "biegunLokcia": [
         0,
@@ -2003,7 +2010,7 @@
        "chwyt": [
         82.5,
         120.3,
-        14
+        15
        ],
        "biegunLokcia": [
         0,
@@ -2015,7 +2022,7 @@
        "chwyt": [
         82.5,
         120.3,
-        -14
+        -15
        ],
        "biegunLokcia": [
         0,
@@ -2069,7 +2076,7 @@
        "chwyt": [
         82.5,
         120.3,
-        14
+        15
        ],
        "biegunLokcia": [
         0,
@@ -2081,7 +2088,7 @@
        "chwyt": [
         82.5,
         120.3,
-        -14
+        -15
        ],
        "biegunLokcia": [
         0,
@@ -2134,7 +2141,7 @@
        "rotacjaStopy": 10,
        "biegunKolana": [
         0,
-        1,
+        -1,
         0.1
        ]
       },
@@ -2147,7 +2154,7 @@
        "rotacjaStopy": 10,
        "biegunKolana": [
         0,
-        1,
+        -1,
         -0.1
        ]
       }
@@ -2199,7 +2206,7 @@
        "rotacjaStopy": 10,
        "biegunKolana": [
         0,
-        1,
+        -1,
         0.1
        ]
       },
@@ -2212,7 +2219,7 @@
        "rotacjaStopy": 10,
        "biegunKolana": [
         0,
-        1,
+        -1,
         -0.1
        ]
       }
@@ -2264,7 +2271,7 @@
        "rotacjaStopy": 10,
        "biegunKolana": [
         0,
-        1,
+        -1,
         0.1
        ]
       },
@@ -2277,7 +2284,7 @@
        "rotacjaStopy": 10,
        "biegunKolana": [
         0,
-        1,
+        -1,
         -0.1
        ]
       }
@@ -2329,7 +2336,7 @@
        "rotacjaStopy": 10,
        "biegunKolana": [
         0,
-        1,
+        -1,
         0.1
        ]
       },
@@ -2342,7 +2349,7 @@
        "rotacjaStopy": 10,
        "biegunKolana": [
         0,
-        1,
+        -1,
         -0.1
        ]
       }
@@ -2394,7 +2401,7 @@
        "rotacjaStopy": 10,
        "biegunKolana": [
         0,
-        1,
+        -1,
         0.1
        ]
       },
@@ -2407,7 +2414,7 @@
        "rotacjaStopy": 10,
        "biegunKolana": [
         0,
-        1,
+        -1,
         -0.1
        ]
       }

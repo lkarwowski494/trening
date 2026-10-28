@@ -9,12 +9,14 @@
 import { add, dist, type V3 } from './math';
 import { BODY, EXT_ROM, SIDES, hipPoint, jointAngles, legJoints, type LegIn, type ArmIn, type PoseIn, type Side } from './skeleton';
 import type { Frame, Prop } from './scene';
-import { GEAR, GEAR_KINDS, BELL_MODES, CABLE_ATTACH, BENCH_KAT, BAND_MOUNT, LEVER_MODE, LEVER_POINT, SLED_HOLD, contactsFrom, gearFieldIssues, gearSetIssues, propsFrom, resolveBells, type Gear } from './gear';
+import { GEAR, GEAR_KINDS, SEAT_LEN, BELL_MODES, CABLE_ATTACH, BENCH_KAT, BAND_MOUNT, LEVER_MODE, LEVER_POINT, SLED_HOLD, contactsFrom, gearFieldIssues, gearSetIssues, propsFrom, resolveBells, type Gear } from './gear';
 import { checkFrame } from './colliders';
 import { mkFrame } from './rigs/common';
 import { FAMILY } from './families';
 import type { Affects } from './errors';
 
+/** Konwencja: tylna stopa leżąca grzbietem na ławce (przysiad bułgarski; decyzja właściciela 27.10.2026; źródła: docs/przekazanie/notatki/badania/sprzecznosci-tekst-rysunek.md pkt 3). Oś kostka→palce opada najwyżej o maxNachylenieDeg do siedziska, palce (punkt stopy) leżą na blacie ± palceNaBlacieCm. */
+export const STOPA_GRZBIETEM = { maxNachylenieDeg: 30, palceNaBlacieCm: 3, nachylenieDeg: 30, palceNadBlatemCm: 2 } as const;
 export const CONTRACT = {
   /** poza@2 (26.10.2026): zgodna wstecz z poza@1 — dochodzą wyłącznie pola OPCJONALNE (obrót i skręt tułowia, skłon boczny, przechył miednicy, uniesienie barku, zgiecieNadgarstka, obrót przedramienia); stare pozy działają bez zmian. */
   id: 'figury-v2/poza@2',
@@ -110,7 +112,7 @@ const vec = (description: string, lim: number = CONTRACT.coord): Sch => ({ type:
 const obj = (properties: Record<string, Sch>, required: string[], description?: string): Sch => ({ type: 'object', properties, required, additionalProperties: false, ...(description ? { description } : {}) });
 const legProps = (d: boolean): Record<string, Sch> => ({
   kostka: vec(d ? 'Zmiana położenia kostki [dx, dy, dz] w cm.' : 'Środek stawu skokowego [x, y, z] w cm (x = przód, y = góra, z = prawa strona osoby).', d ? CONTRACT.deltaCoord : CONTRACT.coord),
-  podbicie: num(-90, 90, d ? 'Zmiana pochylenia stopy w stopniach.' : 'Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (dodatnie = palce wyżej niż pięta). NIE PODAWAJ, gdy stopa nie jest istotą ruchu (np. leżenie, zwis): wtedy stopa ustawia się sama neutralnie względem goleni (kąt kostki ≈ 5°). Podaj tylko tam, gdzie stopa jest ruchem lub podporą: wspięcia, stanie na palcach (np. −60).'),
+  podbicie: num(-90, d ? 90 : 270, d ? 'Zmiana pochylenia stopy w stopniach.' : 'Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (dodatnie = palce wyżej niż pięta; 91…270 = stopa skierowana do tyłu: 180 = palce do tyłu poziomo, 180 + a = palce opadają o a stopni; tak leży tylna stopa na ławce grzbietem w dół — przysiad bułgarski). NIE PODAWAJ, gdy stopa nie jest istotą ruchu (np. leżenie, zwis): wtedy stopa ustawia się sama neutralnie względem goleni (kąt kostki ≈ 5°). Podaj tylko tam, gdzie stopa jest ruchem lub podporą: wspięcia, stanie na palcach (np. −60).'),
   rotacjaStopy: num(-90, 90, d ? 'Zmiana rotacji zewnętrznej stopy w stopniach.' : 'Rotacja zewnętrzna stopy, stopnie. Domyślnie 10.'),
   odchylenieKolana: num(-90, 90, d ? 'Zmiana odchylenia kolana na zewnątrz (stopnie; ujemne = do środka).' : 'Odchylenie kolana na zewnątrz w poziomie, stopnie. Domyślnie 2 × rotacja stopy.'),
   ...(d ? {} : { biegunKolana: vec('Kierunek zgięcia kolana [x, y, z] (wektor kierunku, nie cm). Domyślnie do przodu i na zewnątrz (stojąc). Przy leżeniu na plecach i unoszonych nogach WSKAŻ [0.15, 1, 0] (kolano w górę, nie w podłogę); na czworaka i na brzuchu [0.15, -1, 0] (kolano opiera się o podłogę). Gdy podane, odchylenieKolana jest ignorowane.', 10) }),
@@ -182,10 +184,10 @@ export function poseSchema(family: string, scope?: PromptScope): Sch {
     z: num(-CONTRACT.coord, CONTRACT.coord, 'Położenie w z (cm; domyślnie 0): oś obrotu landmine, oś obrotu albo początek prowadnicy dźwigni maszyny, środek piłki/wałka, kolumna wyciągu, zaczep taśm, lina pionowa; poręcze: połowa rozstawu.'),
     trzymanie: { type: 'string', enum: [...SLED_HOLD], description: 'Tylko sanie: slupki (dłonie na słupkach, domyślnie) albo lina (lina od przodu sań do dłoni).' },
     tryb: { type: 'string', enum: [...LEVER_MODE], description: 'Tylko dzwignia (maszyna): obrot (sztywne ramię wokół osi, domyślnie) albo prosta (prowadnica liniowa pod kątem kat).' },
-    punkt: { type: 'string', enum: [...LEVER_POINT], description: 'Tylko dzwignia: punkt ciała, do którego mocuje się dźwignia: dlonie (domyślnie), kostki, miednica; trzyma wskazuje stronę (domyślnie R).' },
-    mocowanie: { type: 'string', enum: [...BAND_MOUNT], description: 'Tylko guma: zaczep (stały punkt x, y, z), stopy (guma pod stopami), kostki (pętla między kostkami), dlonie (guma między dłońmi), sztanga (od końców gryfu do punktu pod/nad).' },
+    punkt: { type: 'string', enum: [...LEVER_POINT], description: 'Tylko dzwignia: punkt ciała, do którego mocuje się dźwignia: dlonie (domyślnie), kostki (wałek przy kostce), podeszwy (platforma pod stopą, tylko prowadnica „prosta”), miednica; trzyma wskazuje stronę (domyślnie R).' },
+    mocowanie: { type: 'string', enum: [...BAND_MOUNT], description: 'Tylko guma: zaczep (stały punkt x, y, z → dłonie), zaczep_kostki (stały punkt x, y, z → kostki), stopy (guma pod stopami), kostki (pętla między kostkami), dlonie (guma między dłońmi), sztanga (od końców gryfu do punktu pod/nad).' },
     kat: num(BENCH_KAT.min, BENCH_KAT.max, 'Kąt w stopniach od poziomu. Lawka: kąt oparcia (0 = płaska, dodatni = skos głową wyżej, ujemny = ławka ujemna). Dzwignia w trybie prosta: kąt prowadnicy (0 = do przodu +x, 90 = w górę). Modlitewnik: kąt podpórki od poziomu (30–80).'),
-    siedzisko: num(20, 70, 'Tylko lawka: długość siedziska od zawiasu w stronę +x w cm (domyślnie 55; maszyny i ławki do siedzenia ok. 40–45).'),
+    siedzisko: num(SEAT_LEN.min, SEAT_LEN.max, 'Tylko lawka: długość siedziska od zawiasu w stronę +x w cm (domyślnie 55; maszyny i ławki do siedzenia ok. 40–45; 2 = samo oparcie maszyny bez siedziska).'),
     walki: { type: 'boolean', description: 'Tylko lawka: true = wałki na nogi (ławka ujemna).' },
     dwa: { type: 'boolean', description: 'Tylko wyciag: true = dwa wyciągi (kolumny i bloczki w z = ±|z|, po jednej lince na dłoń); domyślnie false = jeden wyciąg.' },
     chwyt: { type: 'string', enum: [...CABLE_ATTACH], description: 'Tylko wyciag: osprzęt linki: uchwyt (domyślnie), lina, drazek, kostka (opaska na kostkę; nogę wskazuje trzyma).' },
@@ -285,9 +287,14 @@ export function deltaAt(frames: DeltaFrame[], u: number): DeltaFrame {
 }
 const plus = (a: V3, d: V3 | undefined): V3 => d ? add(a, d) : a;
 const plusN = (a: number | undefined, d: number | undefined, base = 0): number | undefined => d === undefined ? a : (a ?? base) + d;
+/** Delta odchylenia kolana przy jawnym kierunku zgięcia (biegunKolana): obraca kierunek w poziomie o dOut stopni na zewnątrz (ujemne = do środka); bez jawnego kierunku odchylenie liczy IK (odchylenieKolana), bez delty kierunek bez zmian. Dotąd delta była przy jawnym kierunku ignorowana, więc wiersz „kolana do środka” suwnicy (kierunek z pozy) nic nie zmieniał (recenzja p2-r2, B1). */
+const poleZDelta = (pole: V3 | undefined, dOut: number | undefined, s: Side): V3 | undefined => {
+  if (!pole || dOut === undefined || dOut === 0) return pole;
+  const h = Math.hypot(pole[0], pole[1]) || 1; return [pole[0], pole[1], pole[2] + (s === 'R' ? 1 : -1) * Math.tan(dOut * Math.PI / 180) * h];
+};
 /** Poza z nałożoną deltą. */
 export function applyDelta(k: KeyFrame, d: DeltaFrame): KeyFrame {
-  const leg = (s: Side): LegData => { const l = k.nogi[s], x = d.nogi?.[s]; const toe = l.rotacjaStopy ?? 10; return { biegunKolana: l.biegunKolana, kostka: plus(l.kostka, x?.kostka), podbicie: plusN(l.podbicie, x?.podbicie), rotacjaStopy: plusN(l.rotacjaStopy, x?.rotacjaStopy, 10), odchylenieKolana: plusN(l.odchylenieKolana, x?.odchylenieKolana, toe * 2) }; };
+  const leg = (s: Side): LegData => { const l = k.nogi[s], x = d.nogi?.[s]; const toe = l.rotacjaStopy ?? 10; return { biegunKolana: poleZDelta(l.biegunKolana, x?.odchylenieKolana, s), kostka: plus(l.kostka, x?.kostka), podbicie: plusN(l.podbicie, x?.podbicie), rotacjaStopy: plusN(l.rotacjaStopy, x?.rotacjaStopy, 10), odchylenieKolana: plusN(l.odchylenieKolana, x?.odchylenieKolana, toe * 2) }; };
   const sumExt = <K extends string>(keys: readonly K[], base: Partial<Record<K, number>>, dd: Partial<Record<K, number>> | undefined): Partial<Record<K, number>> => { const o: Partial<Record<K, number>> = {}; for (const key of keys) { const x = plusN(base[key], dd?.[key]); if (x !== undefined) o[key] = x; } return o; };
   const arm = (s: Side): ArmData => ({ ...k.rece[s], chwyt: plus(k.rece[s].chwyt, d.rece?.[s]?.chwyt), ...sumExt(ARM_EXT, k.rece[s], d.rece?.[s]) });
   return { ...k, ...sumExt(TRUNK_EXT, k, d), miednica: plus(k.miednica, d.miednica), pochylenieTulowia: k.pochylenieTulowia + (d.pochylenieTulowia ?? 0), zgiecieKregoslupa: plusN(k.zgiecieKregoslupa, d.zgiecieKregoslupa), pochylenieGlowy: d.pochylenieGlowy === undefined ? k.pochylenieGlowy : (k.pochylenieGlowy ?? Math.max(-20, Math.min(60, k.pochylenieTulowia * 0.4))) + d.pochylenieGlowy, nogi: { R: leg('R'), L: leg('L') }, rece: { R: arm('R'), L: arm('L') } };

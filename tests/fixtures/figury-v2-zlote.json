@@ -701,16 +701,16 @@
  },
  "dane": {
   "back_extension/Back Extension": {
-   "svg": "d76aab2b872edaad73ce",
-   "raw": "adaaa9ae600fd5a264ab"
+   "svg": "afefed1488234ae4b0c0",
+   "raw": "2b233888d2284de7a5ad"
   },
   "back_extension/Reverse Hyperextension": {
-   "svg": "19fb64e3ceb3f3ed7469",
-   "raw": "70218270fca657de1eba"
+   "svg": "352ca06753eeaddb3fe3",
+   "raw": "2c59dca58600a2597bd7"
   },
   "back_extension/Lower Back Curl": {
-   "svg": "10ba0bbdeb970a16cbf2",
-   "raw": "7545a46ee077e11449da"
+   "svg": "9975f151445c5a400863",
+   "raw": "859e5b4b73be42fa28ef"
   },
   "cable_press/Wyciskanie na linkach (stojąc)": {
    "svg": "12307afa01fdcf6cc668",
@@ -765,36 +765,36 @@
    "raw": "6e83b918b85a94f9c868"
   },
   "calf_raise/Łydki na stopniu": {
-   "svg": "11557441e9afbeb63a85",
-   "raw": "1fd032f276a61239731f"
+   "svg": "726211ca60b8b98beb4e",
+   "raw": "35996d8dc814552e160e"
   },
   "calf_raise/Standing Calf Raise": {
-   "svg": "d3b2835d6270766c6ae9",
-   "raw": "563dae4ca245f14a56c9"
+   "svg": "c5a23c8105a6f5fba486",
+   "raw": "d44c5f316f7c57b79353"
   },
   "calf_raise/Smith Machine Calf Raise": {
-   "svg": "1bc0fdca82e702ebf2da",
-   "raw": "b588579d43ec88c1cc1b"
+   "svg": "2ff9652649f53e6184c5",
+   "raw": "3659604944b992a68a73"
   },
   "calf_raise/Calf Raise (sztanga)": {
-   "svg": "f848e066dced24137472",
-   "raw": "9f0ee0b873292ba903fe"
+   "svg": "0f8d5550f27f1332399f",
+   "raw": "3d9c8a0308e6e7f24a68"
   },
   "calf_raise/Calf Raise (linki)": {
    "svg": "154bafa7966130fccb17",
    "raw": "d589a4901b890d7c0061"
   },
   "calf_raise/Donkey Calf Raise": {
-   "svg": "ed8a64362beb14eed17f",
-   "raw": "fb40e610773f7a672c51"
+   "svg": "ae1421f73b0674f37324",
+   "raw": "b4d38428f5e5831d6ed4"
   },
   "calf_raise/Band Calf Raise": {
    "svg": "0fef00d2ef543390b60a",
    "raw": "cdd2140296f4eb583e22"
   },
   "calf_raise/Single Leg Calf Raise": {
-   "svg": "e78641fdfa829409927d",
-   "raw": "69cdd32d0355ab6719a6"
+   "svg": "2aa47d7cf0cb6f2bbd54",
+   "raw": "285e58254aec446ebf3a"
   },
   "calf_raise/Seated Calf Raise": {
    "svg": "9b30958a77f8b9db3fcb",
@@ -1437,12 +1437,12 @@
    "raw": "b72e088c7ac1c7eb904e"
   },
   "glute_floor/Machine Glute Kickback": {
-   "svg": "529ac269435664d11a70",
-   "raw": "48004010f822cfe62106"
+   "svg": "de0c75661120052b660d",
+   "raw": "c50626578ae956f522e8"
   },
   "glute_floor/Prone Flutter Kicks": {
-   "svg": "b0357e15e2832c5da67c",
-   "raw": "d37a08a5e8d5eec9c791"
+   "svg": "6c327fce31eac8ac8e5f",
+   "raw": "37c6dfa1c881e83f95d1"
   },
   "hip_abd_add/Hip Abduction": {
    "svg": "352d9e6a0863298017a5",
@@ -1601,40 +1601,40 @@
    "raw": "2c8a3e23dfbdcdc93237"
   },
   "leg_isolation/Seated Band Hamstring Curl": {
-   "svg": "d46275b04bcf1f8baf88",
-   "raw": "a2118a6ba4052966e9ab"
+   "svg": "db0fdb7b6d5abd9ee16a",
+   "raw": "5b0f40961ff5f97aa816"
   },
   "leg_isolation/Slider Hamstring Curl": {
    "svg": "1b6edff0a73c09ce579f",
    "raw": "045b12c58dc6dd42e42e"
   },
   "leg_machine/Leg Press": {
-   "svg": "14c5af97d8056a8b8e6f",
-   "raw": "a4dcf57628cb641049b9"
+   "svg": "ccc2766320658e03b999",
+   "raw": "16d44f762312867ce873"
   },
   "leg_machine/Single Leg Press": {
-   "svg": "c515fec6659b775320b6",
-   "raw": "5926a169286d8063f260"
+   "svg": "9d9f20ae83725b72d602",
+   "raw": "3cac691c9aebea1db87a"
   },
   "leg_machine/Calf Press (leg press)": {
    "svg": "7b0bcb7df0101c72b4c7",
    "raw": "d2d196c8f33e1bb0c38d"
   },
   "leg_machine/Hack Squat": {
-   "svg": "e50c89860cff8a33120e",
-   "raw": "767166d7b0ef1475fe8f"
+   "svg": "91d23dec72840f0740f5",
+   "raw": "2b922b267d22fcd50424"
   },
   "leg_machine/Pendulum Squat": {
-   "svg": "7129fd9005449a53bac5",
-   "raw": "4439af32a0d94b69b9c8"
+   "svg": "195c39a6bb4bc355b4e1",
+   "raw": "d130560c454e442647cb"
   },
   "leg_machine/Lying Machine Squat": {
-   "svg": "85b24ceb9a81c76f888f",
-   "raw": "7fc3083121e8fc292121"
+   "svg": "6bed11c10acdef00474e",
+   "raw": "62efcd76ac1cacdd4061"
   },
   "leg_machine/Belt Squat Machine": {
-   "svg": "c6d2890c53adc44b8220",
-   "raw": "f2842d398ef432bcb4b7"
+   "svg": "8c69c38a9e3bb8847b0a",
+   "raw": "e4bee6794364904d1462"
   },
   "lunge/Split Squat": {
    "svg": "ec7d561d94c2b8e64f2f",
@@ -1705,20 +1705,20 @@
    "raw": "da698ababd731474718d"
   },
   "lunge/Bulgarian Split Squat (hantle)": {
-   "svg": "9a87ed5ec6037a0dbaa1",
-   "raw": "7fe2b7b5025913b2254b"
+   "svg": "693de40a72475faff17a",
+   "raw": "ef9d687630d73a16d830"
   },
   "lunge/Bulgarian Split Squat (sztanga)": {
-   "svg": "70d96677f7d1c085c3ca",
-   "raw": "a8b001b28df93c5d793f"
+   "svg": "a02e5ee7a8eeb3a69fdd",
+   "raw": "9c4bc26fc993786a3a1f"
   },
   "lunge/Smith Machine Bulgarian Split Squat": {
-   "svg": "2d56708ff9c78a941324",
-   "raw": "6afbb3afbf397d3d2604"
+   "svg": "412f67ee5eeb734d9e96",
+   "raw": "fc5be1c451d826e52079"
   },
   "lunge/Suspended Split Squat": {
-   "svg": "70db428a2c3696fba2a1",
-   "raw": "215f3fbef1e2adde9085"
+   "svg": "d3ab7ad59e047433b78e",
+   "raw": "d789b7b1455dfec72ea7"
   },
   "lunge/Lateral Lunge": {
    "svg": "e2be793e556bbf73aaa0",
