@@ -19,7 +19,7 @@ const nowyKatalog = (p: string) => { const d = mkdtempSync(join(tmpdir(), p)); t
 afterAll(() => { for (const d of tmp) rmSync(d, { recursive: true, force: true }); });
 
 const GIT_ENV = { GIT_AUTHOR_NAME: 't', GIT_AUTHOR_EMAIL: 't@example.invalid', GIT_COMMITTER_NAME: 't', GIT_COMMITTER_EMAIL: 't@example.invalid' };
-const bezCI = () => { const e = { ...process.env, ...GIT_ENV } as Record<string, string | undefined>; delete e.CI; return e as NodeJS.ProcessEnv; };
+const bezCI = () => { const e = { ...process.env, ...GIT_ENV } as Record<string, string | undefined>; delete e.CI; delete e.VERIFY_DOCS_CHANGED; return e as NodeJS.ProcessEnv; };
 const git = (cwd: string, args: string[], env: NodeJS.ProcessEnv = bezCI()) => spawnSync('git', args, { cwd, env, encoding: 'utf8' });
 
 /* Podstawiony `npm`: dopisuje argumenty do $NPM_LOG i kończy się kodem 1 dla polecenia z $NPM_FAIL. */
@@ -89,8 +89,10 @@ describe('hak pre-push — plik (L-009)', () => {
 });
 
 describe('hak pre-push — działanie z podstawionym npm', () => {
-  const uruchom = (npm: ReturnType<typeof falszywyNpm>, fail = '', input = 'refs/heads/x 1234567890abcdef refs/heads/x 0000000000000000\n') =>
-    spawnSync(HAK, [], { cwd: root, env: zNpm(npm, fail), input, encoding: 'utf8' });
+  /* Hak biegnie w prawdziwym repo, więc wynik `verify-docs.mjs --czy-dokumenty` podstawiamy (VERIFY_DOCS_CHANGED) — inaczej na gałęzi z samymi
+     dokumentami hak pomija lint i testy padały (28.10.2026, gałąź telefon-2026-10-28). Domyślnie zmiana w kodzie. */
+  const uruchom = (npm: ReturnType<typeof falszywyNpm>, fail = '', input = 'refs/heads/x 1234567890abcdef refs/heads/x 0000000000000000\n', zmienione = 'lib/kod.ts') =>
+    spawnSync(HAK, [], { cwd: root, env: { ...zNpm(npm, fail), VERIFY_DOCS_CHANGED: zmienione }, input, encoding: 'utf8' });
 
   test('zielone: dwa polecenia (lint, check:pochodne) w kolejności, kod 0, czas w komunikacie', () => {
     const npm = falszywyNpm();
@@ -124,6 +126,13 @@ describe('hak pre-push — działanie z podstawionym npm', () => {
     const r = uruchom(npm, '', '(delete) 0000 refs/heads/a 1234\nrefs/heads/b 1234567890 refs/heads/b 0000\n');
     expect(r.status).toBe(0);
     expect(wywolania(npm.log)).toHaveLength(2);
+  });
+  test('zmiany tylko w dokumentach: lint pominięty, check:pochodne biegnie — niezależnie od stanu prawdziwego repo (28.10.2026)', () => {
+    const npm = falszywyNpm();
+    const r = uruchom(npm, 'lint', undefined, 'docs/09-plan-testow.md');
+    expect(r.status).toBe(0);
+    expect(wywolania(npm.log)).toEqual(['run check:pochodne']);
+    expect(r.stderr).toContain('pomijam lint');
   });
 });
 
