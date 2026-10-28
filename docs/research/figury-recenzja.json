@@ -145,12 +145,11 @@
   "Incline Push Up": {
    "rodzina": "pushup_plank",
    "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "d59dce15e612",
-   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie” w połowie głębokości; przesunięcie dłoni ok. 2 j. (było 6). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
-   "wada": "Dłonie ślizgają się po krawędzi podwyższenia o ok. 6 j. (ok. 10 cm) w trakcie ruchu — dłonie są podporą i stoją w miejscu.",
-   "poprawka": "Pozycja pośrednia w połowie głębokości z dłońmi w tym samym punkcie; przesunięcie ≤ 2,5 j."
+   "stan": "do recenzji niezależnej",
+   "data": "2026-10-28",
+   "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”) — NIE jest recenzją bramki 4; wymaga niezależnej recenzji ruchu i karty przed wydaniem. Poprzednia recenzja 27.10.2026 (06-tresci) dotyczyła poprzednich klatek.",
+   "sha": "9cff3cee72d7",
+   "uwagi": "Klatki i położenie podwyższenia zmienione 28.10.2026 po recenzji niezależnej (WYSOKIE: w dolnej pozycji biodra na podwyższeniu, bark 28 j. przed dłońmi, tułów w blacie). Teraz bark w dolnej pozycji 8 j. od dłoni, ramię zgięte 128°, ciało w linii, bez przenikania. Test: tests/figury-podparcie.test.ts."
   },
   "Overhead Press (sztanga)": {
    "rodzina": "overhead_press",
@@ -321,22 +320,20 @@
   "Lunges (hantle)": {
    "rodzina": "lunge",
    "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "aeaca44154c1",
-   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie”: stanie na tylnej nodze z uniesioną przednią (krok), stopa ląduje na końcu. Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
-   "wada": "Przednia stopa sunie po podłodze do przodu zamiast kroku (na podłodze przesuwa się o ok. 7,5 j.) — wskazówka: zrób krok w przód.",
-   "poprawka": "Pozycja pośrednia z uniesioną przednią nogą (krok); stopa ląduje na końcu."
+   "stan": "do recenzji niezależnej",
+   "data": "2026-10-28",
+   "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”) — NIE jest recenzją bramki 4; wymaga niezależnej recenzji ruchu i karty przed wydaniem. Poprzednia recenzja 27.10.2026 (06-tresci) dotyczyła poprzednich klatek.",
+   "sha": "d74fb70f1757",
+   "uwagi": "Klatki zmienione 28.10.2026 po recenzji niezależnej (WYSOKIE: ciało opadało do wykroku, zanim przednia stopa dotknęła podłogi). Pozycja „w trakcie” = krok postawiony (przednia stopa płasko na podłodze, biodra wysoko, tylne palce na podłodze), dopiero potem opuszczenie; wykrok krótszy (przednia kostka ok. 43 j. od tylnych palców). Test: tests/figury-podparcie.test.ts (reguła podparcia)."
   },
   "Walking Lunges": {
    "rodzina": "lunge",
    "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "19e96baa7bf3",
-   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Jak Lunges (hantle): dodana pozycja kroku. Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
-   "wada": "Przednia stopa sunie po podłodze do przodu zamiast kroku (na podłodze przesuwa się o ok. 7,5 j.) — wskazówka: zrób krok w przód.",
-   "poprawka": "Pozycja pośrednia z uniesioną przednią nogą (krok); stopa ląduje na końcu."
+   "stan": "do recenzji niezależnej",
+   "data": "2026-10-28",
+   "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”) — NIE jest recenzją bramki 4; wymaga niezależnej recenzji ruchu i karty przed wydaniem. Poprzednia recenzja 27.10.2026 (06-tresci) dotyczyła poprzednich klatek.",
+   "sha": "9edd0e5450d9",
+   "uwagi": "Klatki zmienione 28.10.2026 jak Lunges (hantle): krok postawiony przed opuszczeniem (WYSOKIE z recenzji niezależnej). Nie poprawiono (ŚREDNIE): pętla wraca do pozycji wyjściowej zamiast kroku drugą nogą — silnik v1 (3 pozycje, ping-pong) tego nie pokaże. Test: tests/figury-podparcie.test.ts."
   },
   "Reverse Lunge": {
    "rodzina": "lunge",
@@ -344,7 +341,8 @@
    "data": "2026-10-27",
    "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
    "sha": "d461a393d415",
-   "uwagi": "Ruch i karta zgodne. Krok w tył (pozycja w trakcie), potem zejście do tylnego kolana tuż nad podłogą, tułów pionowo. Kosmetyka (backlog): przednia stopa przesuwa się o 3,1 j. przy unoszeniu figury. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+   "uwagi": "Ruch i karta zgodne. Krok w tył (pozycja w trakcie), potem zejście do tylnego kolana tuż nad podłogą, tułów pionowo. Kosmetyka (backlog): przednia stopa przesuwa się o 3,1 j. przy unoszeniu figury. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji). Recenzja niezależna 28.10.2026 (pełna): WYSOKIE — biodro opada ok. 20 j., gdy tylna stopa jest w powietrzu; środek ciężkości do 8,7 j. za piętą jedynej podpory; przednia stopa unosi się do 3,1 j., palce tylnej jadą po podłodze 22 j. Poprawka wymaga czwartej pozycji w silniku v1 (kolano ugięte w połowie zamachu); próby na 3 pozycjach: tests/figury-podparcie.test.ts (znany wyjątek).",
+   "stan": "wada WYSOKIE z recenzji niezależnej 28.10.2026 niepoprawiona — silnik v1 (3 pozycje) nie odda ruchu; decyzja koordynatora/właściciela"
   },
   "Bulgarian Split Squat (hantle)": {
    "rodzina": "lunge",
@@ -359,12 +357,11 @@
   "Step Up": {
    "rodzina": "lunge",
    "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "4b81bd6e1da5",
-   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie” z nogą zakroczną uniesioną za skrzynią; stopa nie wchodzi w skrzynię (było 6 j.). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
-   "wada": "Stopa nogi zakrocznej przechodzi przez skrzynię (do 6 j. w środku).",
-   "poprawka": "Pozycja pośrednia z nogą zakroczną uniesioną za skrzynią; bez wejścia w skrzynię."
+   "stan": "do recenzji niezależnej",
+   "data": "2026-10-28",
+   "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”) — NIE jest recenzją bramki 4; wymaga niezależnej recenzji ruchu i karty przed wydaniem. Poprzednia recenzja 27.10.2026 (06-tresci) dotyczyła poprzednich klatek.",
+   "sha": "3ea9ca2149db",
+   "uwagi": "Klatki zmienione 28.10.2026 po recenzji niezależnej (WYSOKIE: pionowa postać na jednej nodze na skrzyni z biodrem 19,5 j. za piętą, tylna noga w powietrzu od k = 0,1). Start = głęboki krok z tułowiem pochylonym, „w trakcie” = ciężar na nodze ze skrzyni (rzut biodra ≤ 10 j. za piętą, biodro rośnie), noga zakroczna oderwana za skrzynią. Test: tests/figury-podparcie.test.ts."
   },
   "Hip Thrust (sztanga)": {
    "rodzina": "hip_bridge",
