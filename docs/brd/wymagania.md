@@ -447,18 +447,22 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy rysunek jest animowany
     - Wtedy ruch pozostaje wahadłowy (pole pętli ma domyślną wartość)
 
-### BR-BIB-006: Strona z ćwiczeniami pokazuje tylko figury rodzin po niezależnym audycie
+### BR-BIB-006: Strona z ćwiczeniami pokazuje tylko figury rodzin z aktualną recenzją
 - Przepływ: PR-01
-- Dowód potrzeby: decyzja właściciela 2026-10-27 (CLAUDE.md, „Animacje i karty ćwiczeń — audyt dogłębny”); `data/figury-audyt.json`; `scripts/strona/audyt.mjs`; testy `tests/strona-filtr-audytu.test.ts`, `tests/strona-eksport.test.ts`
+- Dowód potrzeby: decyzja właściciela 9a (2026-10-28; CLAUDE.md 27.10.2026: rodzina bez recenzji = nie wyświetlana, strona jej nie eksportuje); sekcja `v2` pliku `docs/research/figury-recenzja.json`; `scripts/strona/recenzja-figur.mjs`; testy `tests/strona-eksport-recenzja.test.ts`, `tests/strona-eksport.test.ts`
 - Kryteria akceptacji:
-  - Scenariusz: Rodzina bez audytu
-    - Zakładając, że rodzina figur ma w pliku audytu stan „do poprawy” albo „brak” (bez niezależnej recenzji ruchu i treści karty)
+  - Scenariusz: Rodzina bez recenzji albo z nieaktualnym skrótem
+    - Zakładając, że rodzina figur nie ma wpisu „wyswietlana” w sekcji `v2` pliku recenzji albo jej skrót różni się od bieżącego (dane rodziny zmieniono po recenzji)
     - Gdy powstaje eksport dla strony z ćwiczeniami
     - Wtedy ćwiczenie tej rodziny zostaje z tekstem (opis, wskazówki, mięśnie), ale bez figury; w eksporcie nie ma jej próbek ani pola figury
-  - Scenariusz: Rodzina zatwierdzona
-    - Zakładając, że rodzina ma stan „zatwierdzona” z datą oraz istniejącymi plikami recenzji ruchu i treści karty
+  - Scenariusz: Rodzina z aktualną recenzją
+    - Zakładając, że rodzina ma status gotowej i wpis „wyswietlana” ze skrótem równym bieżącemu
     - Gdy powstaje eksport
-    - Wtedy figury jej ćwiczeń trafiają do eksportu; plik audytu bez daty albo z odnośnikiem do nieistniejącej recenzji przerywa eksport
+    - Wtedy figury jej ćwiczeń trafiają do eksportu
+  - Scenariusz: Brak pliku recenzji
+    - Zakładając, że pliku recenzji nie ma albo nie ma w nim sekcji `v2`
+    - Gdy powstaje eksport
+    - Wtedy żadna rodzina nie jest eksportowana (brak figur, same teksty)
 
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07

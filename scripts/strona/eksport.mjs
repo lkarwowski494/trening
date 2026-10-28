@@ -89,7 +89,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
   };
   const silhouette = { sprite: mm.silhouetteSprite(), vars: { body: mm.SILHOUETTE_VARS.body, part: mm.SILHOUETTE_VARS.part, muscle: seed.MUSCLES.map(mm.SILHOUETTE_VARS.muscle) }, muscles: [...seed.MUSCLES], levels: Object.fromEntries(keys.map(k => [slugs[k], levelsOf(k)])) };
   const figures = {};
-  for (const k of keys) { if (approved && !approved.has(v2.familyOf(k))) continue; const fe = figureEntry(k); if (fe) figures[slugs[k]] = fe; }
+  for (const k of keys) { const fe = figureEntry(k); if (fe) figures[slugs[k]] = fe; }
   const cueTextIn = (l, id) => { const a = cues.cueDict(l)[id] ?? cues.cueDict('en')[id] ?? cues.cueDict('pl')[id]; return a; };
 
   /* zamienniki: kandydaci i punkty (niezależne od języka) liczone kodem aplikacji (lib/swapScore.ts), kolejność jak w arkuszu zamiany dla NOWEGO użytkownika (bez miejsca i historii) —
