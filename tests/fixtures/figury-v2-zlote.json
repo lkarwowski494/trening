@@ -701,8 +701,8 @@
  },
  "dane": {
   "back_extension/Back Extension": {
-   "svg": "afefed1488234ae4b0c0",
-   "raw": "2b233888d2284de7a5ad"
+   "svg": "8e6bd3ce2c5b0b417e05",
+   "raw": "6b57d5eabee99c388fa1"
   },
   "back_extension/Reverse Hyperextension": {
    "svg": "352ca06753eeaddb3fe3",
@@ -965,8 +965,8 @@
    "raw": "663623b84b4aee64caf9"
   },
   "core_floor/Bird Dog": {
-   "svg": "434e1d382116ecd7c37b",
-   "raw": "391f795e0550724aeb6d"
+   "svg": "9fefde6a6a5f0b4c8f8b",
+   "raw": "12d526b8799402804d9e"
   },
   "core_floor/Crunch - Hands Overhead": {
    "svg": "5f531246b21c667cd584",
@@ -985,20 +985,20 @@
    "raw": "dbe097f348265777c96f"
   },
   "core_floor/Reverse Crunch": {
-   "svg": "de4c5249e58cb7405048",
-   "raw": "61b30f121288ad1004e1"
+   "svg": "9b2810a18ed22978afab",
+   "raw": "0784c72831a47c5e5c6a"
   },
   "core_floor/Tuck Crunch": {
-   "svg": "b04fae939ce1fe370777",
-   "raw": "06254ed01e29c48ae97c"
+   "svg": "aebf00081519c456da7c",
+   "raw": "04e4b346b1538bf47cb7"
   },
   "core_floor/Cocoons": {
-   "svg": "6df3a2a90d42eb917001",
-   "raw": "31925ae082eb25acf1b7"
+   "svg": "a6bc0d7b29919814d97d",
+   "raw": "2d40442aed87d7623ad8"
   },
   "core_floor/Leg Pull-In": {
-   "svg": "800bb96127c78035b203",
-   "raw": "0b73b2fcfdd7a0388a1a"
+   "svg": "af95be7807e2e857b06e",
+   "raw": "7a7e2049dafc60c0e0c0"
   },
   "core_floor/Superman": {
    "svg": "c15471c1c8f8e79e94a5",
@@ -1009,8 +1009,8 @@
    "raw": "4d51e49e97ec31f61d6b"
   },
   "core_floor/Alternate Heel Touchers": {
-   "svg": "b06fd3939766458d5dfa",
-   "raw": "b82d42289e3e9471d60c"
+   "svg": "612b1afe8f1e636295e7",
+   "raw": "785c723cb9e344578512"
   },
   "core_hang/Hanging Knee Raise": {
    "svg": "276b9354f8be782c8218",
@@ -1025,24 +1025,24 @@
    "raw": "509c41a86b9623663a05"
   },
   "core_standing/Barbell Side Bend": {
-   "svg": "137e3c93a6cb33c16644",
-   "raw": "cc5da1b70e94a19fa267"
+   "svg": "7020a38c01a33ea45a6d",
+   "raw": "db653842af6d6ef8b8dc"
   },
   "core_standing/Side Bend (hantel)": {
-   "svg": "5c47722e977a50e0edf2",
-   "raw": "3e298c6f00d0e340a8ce"
+   "svg": "cd2f69033015751c379a",
+   "raw": "b4a0e2cc755a6b3a11da"
   },
   "core_standing/One-Arm High-Pulley Cable Side Bends": {
-   "svg": "7300c3b98afcaf3999d4",
-   "raw": "3e5ae9839b78adb55c56"
+   "svg": "830a0e0c9bb1ff628470",
+   "raw": "6dd11600dab39e3d403c"
   },
   "core_standing/Weighted Ball Side Bend": {
-   "svg": "2675582ed946d27b9a21",
-   "raw": "7c18ddca97645a2c32ea"
+   "svg": "13bc7fd64770a377ee4d",
+   "raw": "2b9069584ac9da69b175"
   },
   "core_standing/Bosu Ball Cable Crunch With Side Bends": {
-   "svg": "0ff1742694181bce9b0c",
-   "raw": "89bdae65e26faa989e6d"
+   "svg": "251c45ef925293be1769",
+   "raw": "eb9b4fa67d4ce4f57efb"
   },
   "core_standing/Russian Twist": {
    "svg": "660978d6e213e774e8ed",
@@ -1065,8 +1065,8 @@
    "raw": "988d4326d5611628af67"
   },
   "core_standing/Cable Woodchop": {
-   "svg": "bafa43013700c6696d77",
-   "raw": "9fd3e3f091381335af3d"
+   "svg": "2cf0261cf13e7d421ef4",
+   "raw": "5348384da106c17c409c"
   },
   "core_standing/Cable Judo Flip": {
    "svg": "b76484d434eea5e08bc6",
@@ -1077,16 +1077,16 @@
    "raw": "a15863dc17df95743a45"
   },
   "core_standing/Kettlebell Windmill": {
-   "svg": "48f8bf17479069d6bdaf",
-   "raw": "e4967eac0bce5c0d4d54"
+   "svg": "9d7f192a4f8be5fba32c",
+   "raw": "0b6c0d50979cbd8175e1"
   },
   "core_standing/Double Kettlebell Windmill": {
-   "svg": "27df535ddb72c24e9d10",
-   "raw": "ec42c30d511170272967"
+   "svg": "1332ff49047696fb884a",
+   "raw": "1835e633d9e44533198c"
   },
   "core_standing/Bent Press": {
-   "svg": "7949cfbfaf5a0f468f83",
-   "raw": "b39305fc02343b18214e"
+   "svg": "6d1f9986c5b3ee049de4",
+   "raw": "de74a56680d95ef995f4"
   },
   "curl/Barbell Curl": {
    "svg": "5d203649bca91e74e032",
@@ -2109,8 +2109,8 @@
    "raw": "28dd9df0cd32b527c894"
   },
   "pushup_plank/Decline Push Up": {
-   "svg": "bdd5880335335483bdaa",
-   "raw": "3c794b8f7139d94ad02f"
+   "svg": "c6dfbfb6596b6de9e946",
+   "raw": "1b459e06c407383c30cb"
   },
   "pushup_plank/Incline Push Up": {
    "svg": "4ed6b0310a44c2db79fd",
@@ -2121,16 +2121,16 @@
    "raw": "d098acc8165b6fcbdcc8"
   },
   "pushup_plank/Single-Arm Push-Up": {
-   "svg": "e9b8fef5e65f257897a7",
-   "raw": "ba2be3ed501b3c551c83"
+   "svg": "d812d2a8ae6ce1ca0ea4",
+   "raw": "f45c038b5e5f81b85df0"
   },
   "pushup_plank/Plank": {
    "svg": "1703621db7d2f9e60165",
    "raw": "69a1fa1fbac9452bf442"
   },
   "pushup_plank/Mountain Climbers": {
-   "svg": "45e60130f6ec69587a7e",
-   "raw": "e4bee1c198167f540464"
+   "svg": "0a8ec53827bfc5b49ccc",
+   "raw": "e7c5a0ea35a79d4d700d"
   },
   "pushup_plank/Plank Shoulder Taps": {
    "svg": "b307ba1d52f8aab7613f",
@@ -2141,24 +2141,24 @@
    "raw": "5906ccd959176700ed4e"
   },
   "pushup_plank/Rollout (sztanga)": {
-   "svg": "3d8f3a41eacc0084c511",
-   "raw": "26e3024e1fd873604c12"
+   "svg": "4fafc51e38683a43bec8",
+   "raw": "8325f0eb0ee4a4ed898e"
   },
   "pushup_plank/Barbell Rollout from Bench": {
-   "svg": "fa36bf12bd9b63d33af9",
-   "raw": "a05d96871a93ffeda13d"
+   "svg": "5221dcf2eda89ff5c72c",
+   "raw": "d074f9d06a23980a24c5"
   },
   "pushup_plank/Standing Barbell Rollout": {
-   "svg": "1a4a21b7465fe2c12564",
-   "raw": "b7ef757cc33ee0760cd6"
+   "svg": "b66c050a1197b6bb074c",
+   "raw": "f9bd8e07f50e86012618"
   },
   "pushup_plank/Suspended Push-Up": {
    "svg": "6a4bf249ea428adc85b3",
    "raw": "39cf6f2b12d1249b5387"
   },
   "pushup_plank/Suspended Fallout": {
-   "svg": "f600aafd4b246423196e",
-   "raw": "6b591b4afb3a551b4327"
+   "svg": "b5e6a134a6b6b990eabc",
+   "raw": "75ae531fe362e44a5012"
   },
   "rotator_cuff/External Rotation (hantel)": {
    "svg": "d360734aaa7084da1765",

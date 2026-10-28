@@ -1,0 +1,9 @@
+{
+ "_opis": "Cechy ruchu, których NIE da się wyprowadzić z reguł sensu (figury-sens.json) ani z tekstów wskazówek, a od których zależą reguły jakości póz (scripts/figures/v2-jakosc.mjs): deklaracja z powodem. Cechy wyprowadzane z danych (reguły sensu: ciało w linii, dół pompki, podpór ze stałą miednicą; teksty wskazówek: lędźwie przy podłodze, ręce proste przez cały ruch) są w kodzie. Konwencja rysunku (recenzja n4, 26.10.2026), do potwierdzenia przez badacza. Do paczki aplikacji nic stąd nie trafia.",
+ "cechy": {
+  "kolana_podkulone": { "regula": "kolana_ugiete_min", "cwiczenia": ["Tuck Crunch", "Reverse Crunch"], "wzorce_nazw": ["\\bTuck\\b"], "wzorce_rodziny": ["core_floor"], "powod": "ruch z podkulonymi kolanami (kolana ≥ 80° w każdej klatce); wskazówki ćwiczeń nie mówią o kącie kolan" },
+  "podparcie_kolan_lawka": { "regula": "podparcie_kolan", "cwiczenia": ["Barbell Rollout from Bench"], "wzorce_nazw": [], "powod": "opis ćwiczenia: klęk obiema nogami na ławce; kolana i golenie opierają się o blat (kolano ≤ 11 cm nad blatem w każdej klatce)" },
+  "podparcie_kolan_podloga": { "regula": "podparcie_kolan", "cwiczenia": ["Rollout (sztanga)"], "wzorce_nazw": [], "powod": "opis ćwiczenia: klęk na podłodze; kolana opierają się o podłogę (kolano ≤ 11 cm nad podłogą w każdej klatce)" },
+  "rece_proste_wzdluz": { "regula": "rece_proste", "cwiczenia": ["Lying Leg Raise", "Reverse Crunch", "Leg Pull-In", "Scissor Kick", "Alternate Heel Touchers"], "wzorce_nazw": [], "powod": "ręce leżą wzdłuż ciała albo sięgają prosto (łokieć ≤ 30°); wskazówki ćwiczeń nie mówią o rękach" }
+ }
+}

@@ -5,7 +5,7 @@
 import { readFileSync, writeFileSync, appendFileSync, mkdirSync, existsSync, rmSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { waliduj, podgladPartia, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
+import { waliduj, krawedzPozy, podgladPartia, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
 import { zgodnoscManifestu, wczytajTeksty, tabelaKatow, tabelaKatowMd, podgladWazny } from '../v2-jakosc.mjs';
 import { v2 as silnikV2 } from './model.mjs';
 import { opisCwiczenia, silnikCatalog } from '../gemini-polecenia.mjs';
@@ -25,7 +25,8 @@ async function main() {
     if (tylko && !tylko.includes(cw)) continue;
     if (mod.WYJATKI?.[cw]) { console.log(`  WYJĄTEK ${cw}: ${mod.WYJATKI[cw].slice(0, 160)}`); continue; } /* jawny wyjątek z powodem (manifest.wyjatki), nie liczy się jako porażka */
     let poza = null; try { poza = f(); } catch (e) { wyniki[cw] = { ok: false, bledy: [{ kod: 'generator', szczegol: e.message }] }; continue; }
-    const v = waliduj(poza, { rodzina, cwiczenie: cw }); wyniki[cw] = v; if (v.ok) poze[cw] = poza;
+    const v = waliduj(poza, { rodzina, cwiczenie: cw }); if (v.ok) v.krawedz = krawedzPozy(poza, { rodzina, cwiczenie: cw }); wyniki[cw] = v; if (v.ok) poze[cw] = poza;
+    if (v.ok && v.krawedz?.length) console.log(`  NA KRAWĘDZI ${cw}: ${[...new Set(v.krawedz.map((k) => k.regula))].join(', ')}`);
   }
   const n = Object.keys(wyniki).length; const ok = Object.keys(poze);
   const dir = join(wyjscie, rodzina); mkdirSync(dir, { recursive: true });
@@ -48,7 +49,11 @@ async function main() {
       manifest.cwiczenia.push({ cwiczenie: cw, obraz: png ? png.split('/').pop() : null, sprzet: poza.sprzet, klatki_u: poza.klatki.map((k) => k.u), klatki_na_obrazie: obrazy[cw]?.klatki, katy_stawow: tabelaKatow(silnikV2(), poza), bledy_w_pozie: poza.bledy.map((b) => b.cue), bledy_wskazowki_id: bledyCwiczenia(cw, ROOT).filter((id) => !(id in bez)), opis: { sens: op.sens, ruch: op.ruch, bledy_wskazowki: op.bledy }, reguly_sensu: regulyDla(rodzina, cw, ROOT).map((r) => r.id), przyblizenie: mod.PRZYBLIZENIA?.[cw] ?? null });
     }
     if (tylko) { const tylkoPodzbior = (o) => Object.fromEntries(Object.entries(o ?? {}).filter(([k]) => tylko.includes(k))); manifest.wyjatki = tylkoPodzbior(manifest.wyjatki); manifest.przyblizenia = tylkoPodzbior(manifest.przyblizenia); } /* przebieg częściowy: manifest dotyczy tylko wybranych ćwiczeń */
-    manifest.wyjatki_opisu = mod.WYJATKI_OPISU ?? {}; const uwagi = [...zgodnoscManifestu(manifest, wczytajTeksty(ROOT), manifest.wyjatki_opisu), ...Object.entries(obrazy).flatMap(([cw, o]) => o.uwagi.map((szczegol) => ({ regula: 'manifest_klatki', szczegol: `${cw}: ${szczegol}` })))]; manifest.zgodnosc_manifestu = uwagi;
+    /* P3 (recenzja n6, 27.10.2026): zmiana sprzętu w poprawce jest zmianą ćwiczenia. Porównanie sprzętu z pozami w repo (stan sprzed --zastosuj; --przed <plik> wskazuje inną bazę) trafia do manifestu i do recenzenta razem z cechą rozpoznawczą przed i po. */
+    const przedPlik = arg('przed', join(ROOT, 'lib/figures/v2/poses', `${rodzina}.json`)); const przed = existsSync(przedPlik) ? JSON.parse(readFileSync(przedPlik, 'utf8')).cwiczenia ?? {} : {};
+    manifest.zmiany_sprzetu = Object.entries(poze).filter(([cw, poza]) => przed[cw] && JSON.stringify(przed[cw].sprzet) !== JSON.stringify(poza.sprzet)).map(([cw, poza]) => ({ cwiczenie: cw, sprzet_przed: przed[cw].sprzet, sprzet_po: poza.sprzet, cecha_rozpoznawcza_przed_i_po: 'DO UZUPEŁNIENIA przez autora poprawki: co odróżnia ćwiczenie od zwykłego wariantu (np. wysokość podwyższenia, położenie zaczepu) i jak ta cecha wygląda przed i po zmianie' }));
+    manifest.lista_kontrolna = ['P3: każda zmiana sprzętu (wysokość skrzyni, położenie zaczepu, ławka) w poprawce trafia do recenzenta z opisem „dlaczego” i z porównaniem cechy rozpoznawczej przed i po (pole zmiany_sprzetu); recenzent ocenia, czy cecha ćwiczenia została zachowana, nie tylko czy liczba reguły się zgadza'];
+    manifest.wyjatki_opisu = mod.WYJATKI_OPISU ?? {}; const uwagi = [...zgodnoscManifestu(manifest, wczytajTeksty(ROOT), manifest.wyjatki_opisu), ...Object.entries(obrazy).flatMap(([cw, o]) => o.uwagi.map((szczegol) => ({ regula: 'manifest_klatki', szczegol: `${cw}: ${szczegol}` })))]; manifest.zgodnosc_manifestu = uwagi; manifest.na_krawedzi = Object.fromEntries(Object.entries(wyniki).filter(([, w]) => w.ok && w.krawedz?.length).map(([k, w]) => [k, [...new Set(w.krawedz.map((x) => x.regula))]])); /* P2: zapas mniejszy niż 5% progu */
     writeFileSync(join(dir, 'manifest.json'), JSON.stringify(manifest, null, 1) + '\n'); console.log(`podglądy + manifest: ${dir}`);
     writeFileSync(join(dir, 'katy-stawow.md'), `# Kąty stawów (min…max w całym ruchu, obie strony; silnik v2)\n\n` + tabelaKatowMd(manifest.cwiczenia.map((c) => ({ cwiczenie: c.cwiczenie, katy: c.katy_stawow }))));
     if (uwagi.length) { console.log('NIEZGODNOŚĆ MANIFESTU Z OBRAZEM:'); for (const u of uwagi) console.log(`  [${u.regula}] ${u.szczegol}`); }

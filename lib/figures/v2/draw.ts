@@ -58,6 +58,8 @@ function profAt(prof: [number, number][], a: number): number {
 /** Obrót przekroju tułowia na wysokości a (stopnie): obrót ciała + skręt klatki narastający od miednicy (0) do barków (pełny). */
 const sectionYaw = (sk: Skeleton, a: number): number => sk.roll + sk.twist * Math.max(0, Math.min(1, a / BODY.trunk));
 
+/** Długość rzutu osi tułowia (jednostkowej), poniżej której szerokość klatki w rzucie z przodu rysuje się poziomo (tułów leżący). */
+const TORSO_PROJ_MIN = 0.5;
 function torsoPoly(sk: Skeleton, view: View): V2[] {
   const out: V2[] = [];
   const ext = hasTrunkExt(sk);
@@ -77,7 +79,9 @@ function torsoPoly(sk: Skeleton, view: View): V2[] {
     const { p, up } = spineAt(sk, a); const c = proj(p, view);
     if (!ext) { left.push([c[0] - w, c[1]]); right.push([c[0] + w, c[1]]); continue; }
     const y = rad(sectionYaw(sk, a)); const D = (Math.abs(profAt(TORSO_SIDE.map(([x, b, f]) => [x, (f - b) / 2] as [number, number]), a)));
-    const wv = w * Math.abs(Math.cos(y)) + D * Math.abs(Math.sin(y)); const t = proj(up, view); const tl = Math.hypot(t[0], t[1]) || 1; const n: V2 = [t[1] / tl, -t[0] / tl];
+    const wv = w * Math.abs(Math.cos(y)) + D * Math.abs(Math.sin(y)); const t = proj(up, view); const tl = Math.hypot(t[0], t[1]) || 1; let n: V2 = [t[1] / tl, -t[0] / tl];
+    /* tułów leżący (oś tułowia prawie wzdłuż kierunku patrzenia): rzut osi jest bardzo krótki, więc jego normalna jest przypadkowa i szerokość klatki rysowała się pionowo (kształt schodził pod podłogę); wtedy szerokość leży poziomo */
+    if (n[0] < 0) n = [-n[0], -n[1]]; const kk = Math.min(1, tl / TORSO_PROJ_MIN); if (kk < 1) { const bx = kk * n[0] + (1 - kk), by = kk * n[1]; const bl = Math.hypot(bx, by) || 1; n = [bx / bl, by / bl]; }
     left.push([c[0] - wv * n[0], c[1] - wv * n[1]]); right.push([c[0] + wv * n[0], c[1] + wv * n[1]]);
   }
   out.push(...left, ...right.reverse()); return out;

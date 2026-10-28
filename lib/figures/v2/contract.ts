@@ -11,6 +11,7 @@ import { BODY, EXT_ROM, SIDES, hipPoint, jointAngles, legJoints, type LegIn, typ
 import type { Frame, Prop } from './scene';
 import { GEAR, GEAR_KINDS, SEAT_LEN, BELL_MODES, CABLE_ATTACH, BENCH_KAT, BAND_MOUNT, LEVER_MODE, LEVER_POINT, SLED_HOLD, contactsFrom, gearFieldIssues, gearSetIssues, propsFrom, resolveBells, type Gear } from './gear';
 import { checkFrame } from './colliders';
+import { EQUIP } from './draw';
 import { mkFrame } from './rigs/common';
 import { FAMILY } from './families';
 import type { Affects } from './errors';
@@ -36,7 +37,11 @@ export const CONTRACT = {
   minMotionCm: 8,
   coord: 300, angle: 200, deltaCoord: 60, deltaAngle: 90,
   maxIssues: 12,
+  /** Niezmienniki konstrukcyjne (recenzja n5, 26.10.2026; konwencja rysunku): taśma nierozciągliwa — długość zaczep–uchwyt (kostka) zmienia się o ≤ cm w całym ruchu; kolano nie przechodzi za oś ciała — iloczyn znaku z biodra i z kolana ≥ −cm. */
+  tapeLenTol: 3, kneeSideTol: 2, kneeSideHipMin: 4, /* biodro bliżej osi miednicy niż tyle cm (pół odległości biodro–oś ≈ 8,5) nie rozstrzyga strony kolana: ruch na boki, skręt */
 } as const;
+/** Ćwiczenia, w których kolano z założenia przechodzi na drugą stronę osi ciała (ruch poprzeczny): wyjątek od niezmiennika „kolano po swojej stronie”, z powodem. */
+export const KNEE_CROSS: Record<string, string> = {};
 
 export const MARKS = ['knees', 'heels', 'back', 'pelvis', 'bar'] as const;
 export const AFFECTS: Affects[] = ['knee', 'ankle', 'hip', 'spine', 'kneeLat', 'heel', 'pelvis', 'bar', 'shoulder', 'elbow'];
@@ -377,6 +382,19 @@ function geometry(d: PoseData, error: number | undefined, label: string, out: Co
   grip.flush('chwyt', out); agg.flush('geometria', out);
 }
 
+/** Niezmienniki konstrukcyjne pozy (z konstrukcji, nie z progu na jedną wielkość): (1) taśma/lina zawieszenia ma stałą długość — dłoń (kostka) leży na sferze o środku w zaczepie; (2) kolano leży po stronie swojego biodra względem osi ciała (osi miednicy: biodro i kolano liczone względem z miednicy, nie względem z = 0 świata). */
+function invariants(d: PoseData, ctx: { exercise: string }, error: number | undefined, label: string, out: ContractIssue[]): void {
+  const tape = new Agg(); const side = new Agg(); const tapeLens: Record<string, { u: number; len: number }[]> = {};
+  for (const u of gridU(d, error === undefined ? [] : d.bledy[error].klatki.map(k => k.u))) {
+    let f: Frame; try { f = keyframeFrame(d, u, error); } catch { return; } /* błąd obliczenia zgłasza geometry() */
+    d.sprzet.forEach((g, gi) => { if (g.rodzaj !== 'zawieszenie') return; const anchor: V3 = [g.x ?? 0, g.y ?? EQUIP.suspensionY, g.z ?? 0];
+      for (const sd of (g.trzyma === 'R' ? ['R'] : g.trzyma === 'L' ? ['L'] : SIDES) as Side[]) { const p = g.punkt === 'kostki' ? f.sk.legs[sd].ankle : f.sk.arms[sd].grip; const len = dist(anchor, p); (tapeLens[`${error}|${gi}|${sd}`] ??= []).push({ u, len }); } });
+    if (!(ctx.exercise in KNEE_CROSS) && !(error !== undefined && d.bledy[error].dotyczy.includes('kneeLat'))) for (const sd of SIDES) { const hz = f.sk.legs[sd].hip[2] - f.sk.pelvis[2], kz = f.sk.legs[sd].knee[2] - f.sk.pelvis[2]; /* oś ciała = oś miednicy (przesunięcie boczne miednicy przesuwa biodra względem z = 0 świata) */ if (Math.abs(hz) > CONTRACT.kneeSideHipMin && Math.sign(hz) * kz < -CONTRACT.kneeSideTol) side.add(sd, u, uu => `${label}kolano ${sd} (z = ${f1(kz)}) leży po drugiej stronie osi ciała niż biodro (z = ${f1(hz)}) w fazie u=${uu} — kolano ma zostać po swojej stronie (ustaw biegunKolana i kostkę po tej samej stronie)`); }
+  }
+  for (const [k, v] of Object.entries(tapeLens)) { const lo = Math.min(...v.map(x => x.len)), hi = Math.max(...v.map(x => x.len)); if (hi - lo > CONTRACT.tapeLenTol) { const [, gi, sd] = k.split('|'); tape.add(k, v[0].u, () => `${label}taśma zawieszenia (${sd}, sprzęt[${gi}]) zmienia długość z ${f1(lo)} do ${f1(hi)} cm (dopuszczalnie ±${CONTRACT.tapeLenTol} cm; taśma jest nierozciągliwa) — dłoń/kostka ma poruszać się po łuku wokół zaczepu`); } }
+  tape.flush('tasma-dlugosc', out); side.flush('kolano-strona', out);
+}
+
 /** Pełna walidacja danych rodziny: schemat, spójność, geometria (kości, zasięg, podłoga, przenikanie, chwyt), zakres stawów, ciągłość, ruch i błędy jako delty. Komunikaty konkretne (cel: poprawka przez generator). */
 export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
   const out: ContractIssue[] = [];
@@ -396,7 +414,7 @@ export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
   out.push(...(templateFor(ctx.family).check?.(d.sprzet) ?? []).map(szczegol => ({ kod: 'sprzet', szczegol })));
   if (out.length) return out.slice(0, CONTRACT.maxIssues);
 
-  geometry(d, undefined, '', out);
+  geometry(d, undefined, '', out); invariants(d, ctx, undefined, '', out);
   /* zakres stawów */
   const r = ctx.rom; const al = { ...(templateFor(ctx.family).allow ?? { why: '' }), ...(ctx.allow ?? {}) }; const rg = new Agg();
   for (const u of gridU(d)) { const f = keyframeFrame(d, u); for (const s of SIDES) {
@@ -431,7 +449,7 @@ export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
     for (let i = 1; i < eu.length; i++) if (eu[i] <= eu[i - 1]) out.push({ kod: 'blad-u', szczegol: `${L}klatki błędu muszą mieć rosnące u (klatki[${i}].u = ${eu[i]})` });
     if (eu[0] === 0 && deltaMag(e.klatki[0]) > 1e-9) out.push({ kod: 'blad-start', szczegol: `${L}na początku ruchu (u = 0) poza błędu ma być równa pozie poprawnej — delta w pierwszej klatce musi być zerowa` });
     if (out.some(x => x.kod.startsWith('blad-u'))) return;
-    geometry(d, j, L, out);
+    geometry(d, j, L, out); invariants(d, ctx, j, L, out);
     const decl = new Set(e.dotyczy); const an = new Agg(); let vis = 0, visDeg = 0;
     for (const u of gridU(d, eu)) {
       const f0 = keyframeFrame(d, u), f1_ = keyframeFrame(d, u, j);

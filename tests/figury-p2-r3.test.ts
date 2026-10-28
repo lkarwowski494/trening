@@ -55,7 +55,6 @@ const WYJATKI_NOGI: Record<string, string> = {
   'lunge/Pistol Squat/sq.mis.kneesIn': `${POZA_P2}: wiersz kneesIn przesadzony (uda przecinają się)`,
   'lunge/Smith Machine Pistol Squat/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn przesadzony (uda przecinają się)`,
   'lunge/Single-Leg High Box Squat/lunge.mis.kneeIn': `${POZA_P2}: wiersz kneeIn przesadzony (przenikanie ud ok. 3,4 cm)`,
-  'pushup_plank/Mountain Climbers/ok': `${POZA_P2}: w pozie poprawnej nogi przecinają się (rodzina pushup_plank)`,
   'rotator_cuff/External Rotation (hantel)/ok': `${POZA_P2}: w pozie poprawnej uda przenikają się o ok. 1,2 cm (rodzina rotator_cuff; ujawnione przy scaleniu G6b 28.10.2026)`,
   'sled_throw/Wall Ball/sq.mis.kneesIn': `${POZA_P2}: wiersz kneesIn przesadzony (przenikanie ud ok. 9,6 cm)`,
 };
