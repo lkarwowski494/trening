@@ -68,6 +68,10 @@ export const DATA_UI: Record<string, DataUi> = {
     exceptions: { 'Dumbbell Lying Pronation': { names: { first: 'Obrót', second: 'Powrót' } }, 'Dumbbell Lying Supination': { names: { first: 'Obrót', second: 'Powrót' } } } },
   carry: { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true },
 };
+/** Ustawienia prezentacji ćwiczenia w trybie cyklicznym (marsz) z rodziny bez wpisu w DATA_UI (sled_throw, strongman): licznik „Marsz”, mierzone kolano albo biodro (decyzja właściciela 27.10.2026). */
+export const GAIT_UI: DataUi = { names: { first: 'Marsz', second: 'Marsz' }, lowerFirst: false, joints: ['knee', 'hip'], walk: true };
+/** Wpis prezentacji rodziny; ćwiczenie w trybie cyklicznym w rodzinie bez wpisu dostaje GAIT_UI, inne ćwiczenia takiej rodziny: null (bez figury). */
+export const dataUiForPose = (family: string, data: PoseData): DataUi | null => own(DATA_UI, family) ?? (data.petla === 'cykl_lustro' ? GAIT_UI : null);
 export const dataUiFor = (family: string): DataUi | null => own(DATA_UI, family) ?? null;
 
 /** Ćwiczenia z danymi, które są izometrią (zwis, wytrzymanie): jedna pozycja statyczna bez animacji. Test: pomiar czasu w katalogu (metric „time”). */

@@ -7,6 +7,8 @@ import { wczytajTeksty } from '../v2-jakosc.mjs';
 import { bledyCwiczenia } from '../v2-validate.mjs';
 export { v2, BODY, R, r1, up, front, klatka, bladZTrajektorii, zbuduj, barki, przeciecie, delta };
 
+/** Tryb cykliczny pętli (27.10.2026, marsz): po fazie 0 → 1 ta sama faza z zamienionymi nogami (i rękami, gdy `rece`); klatka u = 1 MUSI być lustrem klatki u = 0 (walidator, kod „petla”). Pole po „cwiczenie”. */
+export function cyklLustro(poza, { rece = false } = {}) { const { sprzet, klatki, bledy, ...head } = poza; return { ...head, petla: 'cykl_lustro', ...(rece ? { lustroRece: true } : {}), sprzet, klatki, bledy }; }
 export const lerp = (a, b, t) => a + (b - a) * t;
 export const lerpV = (a, b, t) => a.map((x, i) => lerp(x, b[i], t));
 export const clamp = (x, a, b) => Math.max(a, Math.min(b, x));

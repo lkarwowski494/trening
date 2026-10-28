@@ -1,21 +1,24 @@
 // Generator póz rodziny carry po stronie agenta (wersja 1.1, 26.10.2026): marsz z ciężarem (farmer, suitcase, trap bar, riksza, nad głową, rack).
 // Pozy WYLICZONE z modelu: pełny cykl kroku z 5 klatek (podwójne podparcie — przejście nogi — podwójne podparcie po drugiej stronie — przejście — start), tułów pionowo, miednica nad nogą podporową (hipY), ręce proste (łokieć ≤ 20°) albo zgięte w rack.
 // Rodzina nie ma błędów w katalogu (wskazówki carry.noLean / carry.walk bez błędów): bledy: [].
+import { cyklLustro } from './dyn.mjs';
 import { BODY, R, r1, lerp, HIP, K, poza, PODLOGA, hipY, dNogi, S, kostkaStopyY } from './dol.mjs';
 
 export const RODZINA = 'carry';
-const US = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1];
+const US = [0, 0.03, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 0.97, 1]; /* dodatkowe klatki tuż po starcie i przed końcem: odrywanie i lądowanie stopy bez przesuwu w kontakcie (11 ≤ CONTRACT.frames.max) */
 export const WYJATKI = {};
 export const PRZYBLIZENIA = {
   'Rickshaw Carry': 'przybliżenie: ramę riksza rysujemy jak gryf sześciokątny (rejestr sprzętu: riksza = trap bar)',
 };
 const D_RECE = 63.5; /* odległość bark–chwyt przy prawie prostym łokciu (≤ 20°; zasięg 64) */
 
+/** Wzniesienie kostki nogi przenoszonej ponad wysokość „palce na podłożu” (cm): stopa odrywa się i ląduje „o profilu sin^0,3” (szybki start i miękkie lądowanie), a nie sunie palcami do przodu (reguła sensu marszu, 27.10.2026; wcześniej 7 cm przesuwu w kontakcie). */
+const SWING_LIFT = 6;
 /** Pozycja kostki nogi w fazie chodu φ ∈ [0, 1): podparcie (0…0,5) — pięta, płasko, palce; przenoszenie (0,5…1) — noga leci do przodu. s = połowa długości kroku (cm). Zwraca { a: [x, y], pod, podparcie }. */
 function stopa(phi, s) {
   const yH = (pod) => kostkaStopyY(0, pod);
   if (phi < 0.5) { const t = phi / 0.5; const pod = t < 0.25 ? 14 * (1 - t / 0.25) : t < 0.6 ? 0 : -42 * ((t - 0.6) / 0.4); return { a: [s - 2 * s * t, yH(pod)], pod, podparcie: true }; }
-  const t = (phi - 0.5) / 0.5; const pod = lerp(-42, 14, t); return { a: [-s + 2 * s * t, Math.max(yH(pod), 7 + 14 * Math.sin(Math.PI * t))], pod, podparcie: t > 0.7 };
+  const t = (phi - 0.5) / 0.5; const pod = lerp(-42, 14, t); return { a: [-s + 2 * s * t, Math.max(yH(pod) + SWING_LIFT * Math.pow(Math.sin(Math.PI * t), 0.3), 7 + 14 * Math.sin(Math.PI * t))], pod, podparcie: t > 0.7 };
 }
 const faza = (u, s) => { const z = 9; const ph = 0.5 * u; const r = stopa(ph, s), l = stopa((ph + 0.5) % 1, s); /* pół cyklu: od kroku prawą nogą z przodu do kroku lewą z przodu */ return { R: { a: [r.a[0], r.a[1], z], pod: r.pod, podp: r.podparcie }, L: { a: [l.a[0], l.a[1], -z], pod: l.pod, podp: l.podparcie } }; };
 /** Miednica nad nogą podporową (podwójne podparcie: nad niższą z dwóch), wysokość z hipY dla prawie prostej nogi (zgięcie 6°). */
@@ -32,7 +35,7 @@ const rack = (Sx) => { const f = (sg) => ({ g: [Sx[0] + 34, Sx[1] - 2, sg * 13],
 function marsz(cw, { s = 28, rece, sprzet }) {
   const fr = (u) => { const f = faza(u, s); const m = miednica(f); const Sx = S(m, 0); const g = rece(Sx); const ps = (sg) => [1, 0.15, sg * 0.05];
     return K({ u, m, p: 0, head: 0, R: { a: f.R.a, pod: f.R.pod, rot: 10, pole: ps(1) }, L: { a: f.L.a, pod: f.L.pod, rot: 10, pole: ps(-1) }, hr: g.hr, hl: g.hl }); };
-  return poza(RODZINA, cw, [PODLOGA(-120, 120), ...sprzet], US.map(fr), []);
+  return cyklLustro(poza(RODZINA, cw, [PODLOGA(-120, 120), ...sprzet], US.map(fr), [])); /* pół cyklu kroku: klatka końcowa = lustro początkowej, więc pętla jest cykliczna (27.10.2026) */
 }
 
 export function generuj() {

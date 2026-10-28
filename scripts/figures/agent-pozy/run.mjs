@@ -5,7 +5,7 @@
 import { readFileSync, writeFileSync, appendFileSync, mkdirSync, existsSync, rmSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { waliduj, krawedzPozy, podgladPartia, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
+import { waliduj, krawedzPozy, podgladPartia, klatkiPodgladu, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
 import { zgodnoscManifestu, wczytajTeksty, tabelaKatow, tabelaKatowMd, podgladWazny } from '../v2-jakosc.mjs';
 import { v2 as silnikV2 } from './model.mjs';
 import { opisCwiczenia, silnikCatalog } from '../gemini-polecenia.mjs';
@@ -46,7 +46,7 @@ async function main() {
       const png = obrazy[cw]?.plik ?? null;
       const op = opisCwiczenia(cw, { root: ROOT, bledyCwiczenia, catalog, rodzina });
       const bez = bledyBezAnimacji(rodzina, ROOT);
-      manifest.cwiczenia.push({ cwiczenie: cw, obraz: png ? png.split('/').pop() : null, sprzet: poza.sprzet, klatki_u: poza.klatki.map((k) => k.u), klatki_na_obrazie: obrazy[cw]?.klatki, katy_stawow: tabelaKatow(silnikV2(), poza), bledy_w_pozie: poza.bledy.map((b) => b.cue), bledy_wskazowki_id: bledyCwiczenia(cw, ROOT).filter((id) => !(id in bez)), opis: { sens: op.sens, ruch: op.ruch, bledy_wskazowki: op.bledy }, reguly_sensu: regulyDla(rodzina, cw, ROOT).map((r) => r.id), przyblizenie: mod.PRZYBLIZENIA?.[cw] ?? null });
+      manifest.cwiczenia.push({ cwiczenie: cw, obraz: png ? png.split('/').pop() : null, sprzet: poza.sprzet, klatki_u: klatkiPodgladu(poza), klatki_na_obrazie: obrazy[cw]?.klatki, katy_stawow: tabelaKatow(silnikV2(), poza), bledy_w_pozie: poza.bledy.map((b) => b.cue), bledy_wskazowki_id: bledyCwiczenia(cw, ROOT).filter((id) => !(id in bez)), opis: { sens: op.sens, ruch: op.ruch, bledy_wskazowki: op.bledy }, reguly_sensu: regulyDla(rodzina, cw, ROOT).map((r) => r.id), przyblizenie: mod.PRZYBLIZENIA?.[cw] ?? null });
     }
     if (tylko) { const tylkoPodzbior = (o) => Object.fromEntries(Object.entries(o ?? {}).filter(([k]) => tylko.includes(k))); manifest.wyjatki = tylkoPodzbior(manifest.wyjatki); manifest.przyblizenia = tylkoPodzbior(manifest.przyblizenia); } /* przebieg częściowy: manifest dotyczy tylko wybranych ćwiczeń */
     /* P3 (recenzja n6, 27.10.2026): zmiana sprzętu w poprawce jest zmianą ćwiczenia. Porównanie sprzętu z pozami w repo (stan sprzed --zastosuj; --przed <plik> wskazuje inną bazę) trafia do manifestu i do recenzenta razem z cechą rozpoznawczą przed i po. */

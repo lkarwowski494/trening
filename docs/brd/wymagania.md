@@ -430,6 +430,23 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy użytkownik ogląda licznik faz
     - Wtedy fazy mają nazwy ruchu (Unoszenie, Obrót, Uginanie, Ściąganie, Rozsuwanie) z tempem ilustracyjnym jak w podciąganiu; przy noszeniu licznik pokazuje jedną fazę „Marsz” bez sekund i bez „Opuszczanie” i „Pauza”
 
+### BR-BIB-005: Rysunek ruchu marszowego idzie krok za krokiem, bez chodu tyłem (27.10.2026)
+- Przepływ: PR-01
+- Dowód potrzeby: decyzja właściciela 2026-10-27 (wariant A: tryb cykliczny animacji), recenzja p4b (błąd 2: stopa w kontakcie sunęła do przodu w powrocie wahadła); testy `tests/figures-v2-chod-cykliczny.test.tsx`; pole `petla` w kontrakcie póz (`lib/figures/v2/contract.ts`), tempo kroku `WALK` w `lib/figures/v2/anim.ts`
+- Kryteria akceptacji:
+  - Scenariusz: Marsz bez cofania
+    - Zakładając, że ćwiczenie z marszem (noszenie, sanie, jarzmo) ma rysunek podłączony do karty
+    - Gdy rysunek jest animowany
+    - Wtedy po jednym kroku ta sama faza biegnie z zamienionymi nogami (ręce też, gdy ruch ich dotyczy), bez powrotu wahadłowego, a stopa w kontakcie z podłożem nigdy nie przesuwa się do przodu względem miednicy
+  - Scenariusz: Licznik, kąt, zatrzymanie
+    - Zakładając, że rysunek marszu jest animowany
+    - Gdy użytkownik patrzy na licznik faz i linię kąta albo wybiera „Zatrzymaj animację” lub ma włączone „Ogranicz ruch”
+    - Wtedy licznik pokazuje jedną fazę „Marsz” bez sekund, kąt kolana lub biodra zmienia się ciągle w obu krokach, a zatrzymanie i ograniczenie ruchu działają jak przy pozostałych rysunkach (pozycja wyjściowa i końcowa)
+  - Scenariusz: Pozostałe ćwiczenia bez zmian
+    - Zakładając, że ćwiczenie nie jest marszem
+    - Gdy rysunek jest animowany
+    - Wtedy ruch pozostaje wahadłowy (pole pętli ma domyślną wartość)
+
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07
 - Dowód potrzeby: OG-01; docs/28-healthkit-etap0.md; `site/privacy.html`

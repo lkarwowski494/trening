@@ -19,9 +19,9 @@ import type { V3 } from './math';
 import { GUIDES, trailShapes, type GuideId } from './guides';
 import { phasesOf, walkPhases, TEMPO, type Tempo, type Phase, type PhaseNames } from './anim';
 import { ERRORS, isDataError, dataErrorIndex, type ErrorId, type FigError, type AnyErrorDef, type Fault } from './errors';
-import { keyframeFrame } from './contract';
+import { keyframeFrame, poseLoopSpan, type LoopMode } from './contract';
 import { contactGlows, type ContactId } from './contacts';
-import { DATA_UI, ISOMETRIC, MEASURE_UNIT, MIN_MEASURED_ROM, poseDataFor, type MeasuredJoint } from './poseData';
+import { DATA_UI, GAIT_UI, ISOMETRIC, MEASURE_UNIT, MIN_MEASURED_ROM, dataUiForPose, poseDataFor, type MeasuredJoint } from './poseData';
 import { ease } from './rigs/common';
 
 export type FigureSpec = { key: string; family: FamilyId; variant: Variant; views: View[]; static: boolean; lowerFirst: boolean };
@@ -31,7 +31,7 @@ export function figureSpec(key: string): FigureSpec | null {
   if (!Object.prototype.hasOwnProperty.call(CATALOG, key)) return null;
   const family = familyOf(key); const fam = FAMILY[family];
   if (fam.status !== 'ready') return null;
-  const data = poseDataFor(key, family); const ui = DATA_UI[family];
+  const data = poseDataFor(key, family); const ui = data ? dataUiForPose(family, data) : null;
   if (data && ui) return { key, family, variant: { family, data } as Variant, views: viewsOf(key, family), static: ISOMETRIC.has(key), lowerFirst: ui.lowerFirst };
   const variant = Object.prototype.hasOwnProperty.call(VARIANTS, key) ? VARIANTS[key] : null;
   if (!variant || variant.family !== family || 'data' in variant) return null;
@@ -78,8 +78,8 @@ function faultFor(spec: FigureSpec, error: ErrorId, u: number): Fault { return {
 /** Ustawienia prezentacji ćwiczenia z danych: wpis rodziny (DATA_UI) z wyjątkiem ćwiczenia; null dla rodzin z rigiem. */
 function dataUiOf(spec: FigureSpec): { names: PhaseNames; joints: readonly MeasuredJoint[]; hideAngle: boolean; walk: boolean } | null {
   if (!('data' in spec.variant)) return null;
-  const u = DATA_UI[spec.family]; const x = u.exceptions && Object.prototype.hasOwnProperty.call(u.exceptions, spec.key) ? u.exceptions[spec.key] : undefined;
-  return { names: x?.names ?? u.names, joints: x?.joints ?? u.joints, hideAngle: !!x?.hideAngle, walk: !!u.walk };
+  const u = DATA_UI[spec.family] ?? GAIT_UI; const x = u.exceptions && Object.prototype.hasOwnProperty.call(u.exceptions, spec.key) ? u.exceptions[spec.key] : undefined;
+  return { names: x?.names ?? u.names, joints: x?.joints ?? u.joints, hideAngle: !!x?.hideAngle, walk: !!u.walk || loopOf(spec) === 'cykl_lustro' };
 }
 /** Pomiar na rysunku (decyzja właściciela 25.10.2026: kąt jako opis figury, nie zalecenie). Rig: przysiad — kolano, wyciskanie — łokieć, zawias — biodro (średnia obu stron). Dane (27.10.2026, S2): spośród stawów rodziny
  * pokazujemy ten, który w ćwiczeniu rusza się najbardziej, i tę stronę, która pracuje (największy zakres; przy równych — prawa), więc ćwiczenie jednoręczne nie dostaje średniej z ręką nieruchomą;
@@ -91,7 +91,7 @@ function measureOf(spec: FigureSpec): Measure {
   const ui = dataUiOf(spec); let m: Measure;
   if (!ui) m = { joint: spec.family === 'bench_press' ? 'elbow' : spec.family === 'hinge' ? 'hip' : 'knee', sides: SIDES, shown: true };
   else {
-    const frames = Array.from({ length: MEASURE_SAMPLES + 1 }, (_, i) => computeFrame(spec, i / MEASURE_SAMPLES));
+    const frames = Array.from({ length: MEASURE_SAMPLES + 1 }, (_, i) => computeFrame(spec, loopSpan(spec) * i / MEASURE_SAMPLES));
     const candidates = spec.static ? ui.joints.slice(0, 1) : ui.joints; let best = { joint: ui.joints[0], side: SIDES[0], range: -1 };
     for (const joint of candidates) for (const side of SIDES) { const a = frames.map(f => jointAngles(f.sk, side)[joint]); const range = Math.max(...a) - Math.min(...a); if (range > best.range + 1e-9) best = { joint, side, range }; }
     m = { joint: best.joint, sides: [best.side], shown: !ui.hideAngle && (spec.static || best.range > MIN_MEASURED_ROM[MEASURE_UNIT[best.joint]]) };
@@ -107,6 +107,11 @@ export function measuredAngle(spec: FigureSpec, u: number, error?: FigError): { 
   const f = frameAt(spec, u, error); const m = measureOf(spec); const a = m.sides.map(s => jointAngles(f.sk, s)[m.joint]);
   return { joint: m.joint, deg: a.reduce((x, y) => x + y, 0) / a.length, unit: MEASURE_UNIT[m.joint] };
 }
+
+/** Tryb pętli figury: cykl_lustro tylko dla ćwiczeń z danych z polem `petla` (marsz); reszta wahadło. */
+export const loopOf = (spec: FigureSpec): LoopMode => 'data' in spec.variant && spec.variant.data.petla === 'cykl_lustro' ? 'cykl_lustro' : 'wahadlo';
+/** Zakres pozycji u pętli: 2 w trybie cyklicznym (druga połowa w lustrze), 1 w wahadle. */
+export const loopSpan = (spec: FigureSpec): number => 'data' in spec.variant ? poseLoopSpan(spec.variant.data) : 1;
 
 /** Pozycje u rysowane statycznie (Ogranicz ruch, pauza): start i koniec (jedna dla izometrii). */
 export const staticPositions = (spec: FigureSpec): number[] => spec.static ? [1] : [0, 1];
@@ -157,7 +162,7 @@ const boxCache = new Map<string, Box>();
 /** Wspólny kadr całej pętli (próbkowanie co 1/20; z pozami błędów, żeby przełączenie błędu nie zmieniało kadru): rysunek nie skacze między klatkami. */
 export function boxFor(spec: FigureSpec, view: View, errors: FigError[] = []): Box {
   const id = spec.key + '|' + view + '|' + errors.join(','); const hit = boxCache.get(id); if (hit) return hit;
-  const lists: Shape[][] = []; for (const e of [undefined, ...errors.filter(x => errorDefOf(spec, x)?.kind === 'pose')]) for (let i = 0; i <= 20; i++) lists.push(shapesAt(spec, spec.static ? 1 : i / 20, view, false, e));
+  const lists: Shape[][] = []; for (const e of [undefined, ...errors.filter(x => errorDefOf(spec, x)?.kind === 'pose')]) for (let i = 0; i <= 20; i++) lists.push(shapesAt(spec, spec.static ? 1 : loopSpan(spec) * i / 20, view, false, e));
   const b = boundsOf(lists); boxCache.set(id, b); return b;
 }
 
@@ -178,7 +183,7 @@ const trailCache = new Map<string, Shape[]>();
 /** Tor ruchu środka ciężaru/dłoni w widoku (próbkowanie co 1/24; cache). */
 export function trailFor(spec: FigureSpec, view: View): Shape[] {
   const id = spec.key + '|' + view; const hit = trailCache.get(id); if (hit) return hit;
-  const fr: Frame[] = []; for (let i = 0; i <= 24; i++) fr.push(frameAt(spec, spec.static ? 1 : i / 24));
+  const fr: Frame[] = []; for (let i = 0; i <= 24; i++) fr.push(frameAt(spec, spec.static ? 1 : loopSpan(spec) * i / 24));
   const out = spec.static ? [] : trailShapes(fr, view); trailCache.set(id, out); return out;
 }
 /** Linie odniesienia dla pozycji u (tylko z wskazanych id i widoków, w których linia ma sens). */

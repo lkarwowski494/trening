@@ -6,6 +6,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "carry",
    "cwiczenie": "Farmer's Walk",
+   "petla": "cykl_lustro",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -85,6 +86,73 @@
      }
     },
     {
+     "u": 0.03,
+     "miednica": [
+      0,
+      86.7,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        26.3,
+        8.1,
+        9
+       ],
+       "podbicie": 12.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        -26.3,
+        20.6,
+        -9
+       ],
+       "podbicie": -40.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        73.5,
+        25
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        73.5,
+        -25
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
      "u": 0.125,
      "miednica": [
       0,
@@ -112,7 +180,7 @@
       "L": {
        "kostka": [
         -21,
-        16.6,
+        21.1,
         -9
        ],
        "podbicie": -35,
@@ -179,7 +247,7 @@
       "L": {
        "kostka": [
         -14,
-        16.9,
+        20.5,
         -9
        ],
        "podbicie": -28,
@@ -554,6 +622,73 @@
      }
     },
     {
+     "u": 0.97,
+     "miednica": [
+      0,
+      89.7,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -26.3,
+        17.4,
+        9
+       ],
+       "podbicie": -38.8,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        26.3,
+        11.1,
+        -9
+       ],
+       "podbicie": 12.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        76.5,
+        25
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        76.5,
+        -25
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
      "u": 1,
      "miednica": [
       0,
@@ -627,6 +762,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "carry",
    "cwiczenie": "Farmer's Walk (Farmers Handles)",
+   "petla": "cykl_lustro",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -707,6 +843,73 @@
      }
     },
     {
+     "u": 0.03,
+     "miednica": [
+      0,
+      87.3,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        24.4,
+        8.1,
+        9
+       ],
+       "podbicie": 12.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        -24.4,
+        20.6,
+        -9
+       ],
+       "podbicie": -40.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        74.6,
+        29
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        74.6,
+        -29
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
      "u": 0.125,
      "miednica": [
       0,
@@ -734,7 +937,7 @@
       "L": {
        "kostka": [
         -19.5,
-        16.6,
+        21.1,
         -9
        ],
        "podbicie": -35,
@@ -801,7 +1004,7 @@
       "L": {
        "kostka": [
         -13,
-        16.9,
+        20.5,
         -9
        ],
        "podbicie": -28,
@@ -1165,6 +1368,73 @@
        "chwyt": [
         0,
         80.2,
+        -29
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.97,
+     "miednica": [
+      0,
+      90.3,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -24.4,
+        17.4,
+        9
+       ],
+       "podbicie": -38.8,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        24.4,
+        11.1,
+        -9
+       ],
+       "podbicie": 12.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        77.6,
+        29
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        77.6,
         -29
        ],
        "biegunLokcia": [
@@ -1249,6 +1519,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "carry",
    "cwiczenie": "Farmer's Walk (trap bar)",
+   "petla": "cykl_lustro",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -1328,6 +1599,73 @@
      }
     },
     {
+     "u": 0.03,
+     "miednica": [
+      0,
+      87.3,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        24.4,
+        8.1,
+        9
+       ],
+       "podbicie": 12.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        -24.4,
+        20.6,
+        -9
+       ],
+       "podbicie": -40.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        74.6,
+        29
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        74.6,
+        -29
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
      "u": 0.125,
      "miednica": [
       0,
@@ -1355,7 +1693,7 @@
       "L": {
        "kostka": [
         -19.5,
-        16.6,
+        21.1,
         -9
        ],
        "podbicie": -35,
@@ -1422,7 +1760,7 @@
       "L": {
        "kostka": [
         -13,
-        16.9,
+        20.5,
         -9
        ],
        "podbicie": -28,
@@ -1797,6 +2135,73 @@
      }
     },
     {
+     "u": 0.97,
+     "miednica": [
+      0,
+      90.3,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -24.4,
+        17.4,
+        9
+       ],
+       "podbicie": -38.8,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        24.4,
+        11.1,
+        -9
+       ],
+       "podbicie": 12.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        77.6,
+        29
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        77.6,
+        -29
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
      "u": 1,
      "miednica": [
       0,
@@ -1870,6 +2275,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "carry",
    "cwiczenie": "Rickshaw Carry",
+   "petla": "cykl_lustro",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -1949,6 +2355,73 @@
      }
     },
     {
+     "u": 0.03,
+     "miednica": [
+      0,
+      88.4,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        20.7,
+        8.1,
+        9
+       ],
+       "podbicie": 12.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        -20.7,
+        20.6,
+        -9
+       ],
+       "podbicie": -40.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        75.7,
+        29
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        75.7,
+        -29
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
      "u": 0.125,
      "miednica": [
       0,
@@ -1976,7 +2449,7 @@
       "L": {
        "kostka": [
         -16.5,
-        16.6,
+        21.1,
         -9
        ],
        "podbicie": -35,
@@ -2043,7 +2516,7 @@
       "L": {
        "kostka": [
         -11,
-        16.9,
+        20.5,
         -9
        ],
        "podbicie": -28,
@@ -2418,6 +2891,73 @@
      }
     },
     {
+     "u": 0.97,
+     "miednica": [
+      0,
+      91.3,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -20.7,
+        17.4,
+        9
+       ],
+       "podbicie": -38.8,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        20.7,
+        11.1,
+        -9
+       ],
+       "podbicie": 12.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        78.6,
+        29
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        78.6,
+        -29
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
      "u": 1,
      "miednica": [
       0,
@@ -2491,6 +3031,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "carry",
    "cwiczenie": "Suitcase Carry",
+   "petla": "cykl_lustro",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -2572,6 +3113,73 @@
      }
     },
     {
+     "u": 0.03,
+     "miednica": [
+      0,
+      86.7,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        26.3,
+        8.1,
+        9
+       ],
+       "podbicie": 12.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        -26.3,
+        20.6,
+        -9
+       ],
+       "podbicie": -40.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        74,
+        29
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        73.4,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
      "u": 0.125,
      "miednica": [
       0,
@@ -2599,7 +3207,7 @@
       "L": {
        "kostka": [
         -21,
-        16.6,
+        21.1,
         -9
        ],
        "podbicie": -35,
@@ -2666,7 +3274,7 @@
       "L": {
        "kostka": [
         -14,
-        16.9,
+        20.5,
         -9
        ],
        "podbicie": -28,
@@ -3041,6 +3649,73 @@
      }
     },
     {
+     "u": 0.97,
+     "miednica": [
+      0,
+      89.7,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -26.3,
+        17.4,
+        9
+       ],
+       "podbicie": -38.8,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        26.3,
+        11.1,
+        -9
+       ],
+       "podbicie": 12.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        77,
+        29
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        76.4,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
      "u": 1,
      "miednica": [
       0,
@@ -3114,6 +3789,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "carry",
    "cwiczenie": "Overhead Carry (hantle)",
+   "petla": "cykl_lustro",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -3193,6 +3869,73 @@
      }
     },
     {
+     "u": 0.03,
+     "miednica": [
+      0,
+      87.9,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        22.6,
+        8.1,
+        9
+       ],
+       "podbicie": 12.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        -22.6,
+        20.6,
+        -9
+       ],
+       "podbicie": -40.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        16,
+        199.3,
+        19
+       ],
+       "biegunLokcia": [
+        0.2,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        16,
+        199.3,
+        -19
+       ],
+       "biegunLokcia": [
+        0.2,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
      "u": 0.125,
      "miednica": [
       0,
@@ -3220,7 +3963,7 @@
       "L": {
        "kostka": [
         -18,
-        16.6,
+        21.1,
         -9
        ],
        "podbicie": -35,
@@ -3287,7 +4030,7 @@
       "L": {
        "kostka": [
         -12,
-        16.9,
+        20.5,
         -9
        ],
        "podbicie": -28,
@@ -3662,6 +4405,73 @@
      }
     },
     {
+     "u": 0.97,
+     "miednica": [
+      0,
+      90.8,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -22.6,
+        17.4,
+        9
+       ],
+       "podbicie": -38.8,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        22.6,
+        11.1,
+        -9
+       ],
+       "podbicie": 12.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        16,
+        202.3,
+        19
+       ],
+       "biegunLokcia": [
+        0.2,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        16,
+        202.3,
+        -19
+       ],
+       "biegunLokcia": [
+        0.2,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
      "u": 1,
      "miednica": [
       0,
@@ -3735,6 +4545,7 @@
    "kontrakt": "figury-v2/poza@2",
    "rodzina": "carry",
    "cwiczenie": "Double Kettlebell Front Rack Carry",
+   "petla": "cykl_lustro",
    "sprzet": [
     {
      "rodzaj": "podloga",
@@ -3821,6 +4632,73 @@
      }
     },
     {
+     "u": 0.03,
+     "miednica": [
+      0,
+      87.9,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        22.6,
+        8.1,
+        9
+       ],
+       "podbicie": 12.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        -22.6,
+        20.6,
+        -9
+       ],
+       "podbicie": -40.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        34,
+        135.9,
+        13
+       ],
+       "biegunLokcia": [
+        0,
+        -1,
+        0.4
+       ]
+      },
+      "L": {
+       "chwyt": [
+        34,
+        135.9,
+        -13
+       ],
+       "biegunLokcia": [
+        0,
+        -1,
+        -0.4
+       ]
+      }
+     }
+    },
+    {
      "u": 0.125,
      "miednica": [
       0,
@@ -3848,7 +4726,7 @@
       "L": {
        "kostka": [
         -18,
-        16.6,
+        21.1,
         -9
        ],
        "podbicie": -35,
@@ -3915,7 +4793,7 @@
       "L": {
        "kostka": [
         -12,
-        16.9,
+        20.5,
         -9
        ],
        "podbicie": -28,
@@ -4279,6 +5157,73 @@
        "chwyt": [
         34,
         141.3,
+        -13
+       ],
+       "biegunLokcia": [
+        0,
+        -1,
+        -0.4
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.97,
+     "miednica": [
+      0,
+      90.8,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -22.6,
+        17.4,
+        9
+       ],
+       "podbicie": -38.8,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        22.6,
+        11.1,
+        -9
+       ],
+       "podbicie": 12.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.15,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        34,
+        138.8,
+        13
+       ],
+       "biegunLokcia": [
+        0,
+        -1,
+        0.4
+       ]
+      },
+      "L": {
+       "chwyt": [
+        34,
+        138.8,
         -13
        ],
        "biegunLokcia": [

@@ -6,7 +6,7 @@
 import { readFileSync, writeFileSync, appendFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { waliduj, podgladPartia, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
+import { waliduj, podgladPartia, klatkiPodgladu, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
 import { zgodnoscManifestu, wczytajTeksty } from '../v2-jakosc.mjs';
 import { opisCwiczenia, silnikCatalog } from '../gemini-polecenia.mjs';
 import { regulyDla } from '../v2-sens.mjs';
@@ -44,7 +44,7 @@ async function main() {
     for (const [cw, poza] of Object.entries(poze)) {
       const png = obrazy[cw]?.plik ?? null;
       const op = opisCwiczenia(cw, { root: ROOT, bledyCwiczenia, catalog, rodzina });
-      manifest.cwiczenia.push({ cwiczenie: cw, obraz: png ? png.split('/').pop() : null, sprzet: poza.sprzet, klatki_u: poza.klatki.map((k) => k.u), klatki_na_obrazie: obrazy[cw]?.klatki, bledy_w_pozie: poza.bledy.map((b) => b.cue), bledy_wskazowki_id: bledyCwiczenia(cw, ROOT), opis: { sens: op.sens, ruch: op.ruch, bledy_wskazowki: op.bledy }, reguly_sensu: regulyDla(rodzina, cw, ROOT).map((r) => r.id), przyblizenie: mod.PRZYBLIZENIA?.[cw] ?? null });
+      manifest.cwiczenia.push({ cwiczenie: cw, obraz: png ? png.split('/').pop() : null, sprzet: poza.sprzet, klatki_u: klatkiPodgladu(poza), klatki_na_obrazie: obrazy[cw]?.klatki, bledy_w_pozie: poza.bledy.map((b) => b.cue), bledy_wskazowki_id: bledyCwiczenia(cw, ROOT), opis: { sens: op.sens, ruch: op.ruch, bledy_wskazowki: op.bledy }, reguly_sensu: regulyDla(rodzina, cw, ROOT).map((r) => r.id), przyblizenie: mod.PRZYBLIZENIA?.[cw] ?? null });
     }
     if (tylko) { const pod = (o) => Object.fromEntries(Object.entries(o ?? {}).filter(([k]) => tylko.includes(k))); manifest.wyjatki = pod(manifest.wyjatki); manifest.przyblizenia = pod(manifest.przyblizenia); }
     manifest.wyjatki_opisu = mod.WYJATKI_OPISU ?? {}; const uwagi = [...zgodnoscManifestu(manifest, wczytajTeksty(ROOT), manifest.wyjatki_opisu), ...Object.entries(obrazy).flatMap(([cw, o]) => o.uwagi.map((szczegol) => ({ regula: 'manifest_klatki', szczegol: `${cw}: ${szczegol}` })))]; manifest.zgodnosc_manifestu = uwagi;

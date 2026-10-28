@@ -99,10 +99,11 @@ export const schematRepo = () => JSON.stringify(schematPozy('generic'), null, 1)
 export const PODGLAD_SZEROKOSC = 3000;
 /** HTML podglądu pozy: wiersz = poprawna poza / jeden błąd; w wierszu najpierw widok z boku, potem z przodu, po jednej komórce na KAŻDĄ klatkę kluczową (klatki_u pozy) — wszystkie w jednym wierszu (bez zawijania).
  * Zwraca { html, klatki: [u…] (klatki narysowane), wiersze: [etykieta…], px }. */
+export const klatkiPodgladu = (poza) => { const u = poza.klatki.map((k) => k.u); return poza.petla === 'cykl_lustro' ? [...u, ...u.filter((x) => x > 0).map((x) => 1 + x)] : u; };
 export function htmlPodgladu(poza, motyw) {
   const { v2, tokens } = silnik(); const pal = v2.figurePalette(tokens[motyw]); const widoki = v2.viewsOf(poza.cwiczenie, poza.rodzina); const warianty = [undefined, ...poza.bledy.map((_, i) => i)];
-  const klatki = poza.klatki.map((k) => k.u);
-  const boxy = widoki.map((view) => { const listy = []; for (const x of warianty) for (let i = 0; i <= 20; i++) listy.push(v2.dataShapes(poza, i / 20, view, x)); return v2.boundsOf(listy); });
+  const klatki = klatkiPodgladu(poza); const rozpietosc = poza.petla === 'cykl_lustro' ? 2 : 1; /* tryb cykliczny: druga połowa pętli (u od 1 do 2) w lustrze, klatki całej pętli */
+  const boxy = widoki.map((view) => { const listy = []; for (const x of warianty) for (let i = 0; i <= 20; i++) listy.push(v2.dataShapes(poza, rozpietosc * i / 20, view, x)); return v2.boundsOf(listy); });
   const suma = boxy.reduce((t, b) => t + b.w, 0) * klatki.length; const px = Math.min(1.5, Math.max(0.5, (PODGLAD_SZEROKOSC - 8 * (klatki.length * widoki.length)) / Math.max(1, suma)));
   const etykiety = warianty.map((w) => (w === undefined ? 'poza poprawna' : 'błąd: ' + poza.bledy[w].cue));
   const wiersze = warianty.map((w, n) => {
