@@ -7,7 +7,7 @@
  */
 import * as store from '@/lib/store';
 import { PAYWALL, type Entitlement } from '@/lib/access';
-import { resetEntitlementsForTests, refreshEntitlements } from '@/lib/entitlement';
+import { resetEntitlementsForTests, refreshEntitlements, forgetAccessMemory, accessNow } from '@/lib/entitlement';
 import { setStoreAdapter, resetStoreAdapterForTests } from '@/lib/store-adapter';
 import { createFakeStore } from '@/lib/store-fake';
 import { fairRulesDue } from '@/lib/fairrules';
@@ -61,5 +61,22 @@ describe('M1-046 (11-601): okno „Pierwszy trening za Tobą!” nie dla byłego
     setStoreAdapter(createFakeStore([{ plan: 'monthly', source: 'purchase', expiresAt: NOW - DAY }])); await refreshEntitlements();
     for (let i = 20; i >= 1; i--) live(NOW - i * DAY);
     expect(fairRulesDue(live(NOW), NOW)).toBe(false);
+  });
+});
+
+describe('M1-046 (11-601): panel „Test store” w buildzie E2E — stan nowego użytkownika bez zakupów (scenariusz Maestro 56)', () => {
+  const live = (at: number) => { const w = addWorkout(at, [['Back Squat', [{ weight: 100, reps: 5, done: true }]]], 'A'); w.live = true; return w; };
+  const start = async () => {
+    await fresh(); resetEntitlementsForTests(); PAYWALL.ENABLED = true;
+    const fake = createFakeStore([{ plan: 'lifetime', source: 'code', expiresAt: null }]); setStoreAdapter(fake); await refreshEntitlements(); return fake;
+  };
+  test('„expire access” z dostępu startowego = były subskrybent: okna nie ma', async () => {
+    const fake = await start(); fake.setEntitlements([{ plan: 'monthly', source: 'purchase', expiresAt: Date.now() }]); await refreshEntitlements();
+    expect(fairRulesDue(live(Date.now()), Date.now())).toBe(false);
+  });
+  test('forgetAccessMemory + pusta lista = nowy użytkownik: poziom free bez zapamiętanego końca, okno jest', async () => {
+    const fake = await start(); await forgetAccessMemory(); fake.setEntitlements([]); await refreshEntitlements();
+    expect(accessNow(Date.now()).lastKnown).toEqual({ level: 'free' });
+    expect(fairRulesDue(live(Date.now()), Date.now())).toBe(true);
   });
 });

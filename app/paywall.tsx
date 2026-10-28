@@ -11,7 +11,7 @@ import { PAYWALL, entitlementActive, type EntitlementPlan } from '@/lib/access';
 import { PLAN_ORDER, SUBSCRIPTION_PLANS, PRIVACY_URL, TERMS_URL, isFakeStoreBuild } from '@/lib/products';
 import { getStoreAdapter, type StoreProduct } from '@/lib/store-adapter';
 import type { FakeStoreControl } from '@/lib/store-fake';
-import { useAccess, purchasePlan, restorePurchases, refreshEntitlements, nextMonthDay } from '@/lib/entitlement';
+import { useAccess, purchasePlan, restorePurchases, refreshEntitlements, nextMonthDay, forgetAccessMemory } from '@/lib/entitlement';
 import { useAnnounce } from '@/lib/announce';
 import { planName, ownedPlanTitle } from '@/components/SubscriptionCard';
 
@@ -135,6 +135,7 @@ export default function PaywallScreen() {
       {fake ? <View testID="fake-store-panel" style={{ marginTop: 24, gap: 8 }}>{/* tylko build E2E (EXPO_PUBLIC_STORE_FAKE=1) — sterowanie sztucznym sklepem w Maestro; bez t(), nie trafia do TestFlight */}
         <SectionTitle>Test store</SectionTitle>
         <Btn small title="Test store: expire access" onPress={() => fake.setEntitlements([{ plan: 'monthly', source: 'purchase', expiresAt: Date.now() }])} />{/* wygasa „teraz”: treningi sprzed tej chwili nie liczą się do limitu (P3 B) */}
+        <Btn small testID="fake-new-user" title="Test store: new user, no purchases" onPress={() => { void forgetAccessMemory().then(() => fake.setEntitlements([])); }} />{/* stan nowej instalacji bez zakupów (scenariusz 56; M1-046: po „expire access” okna „Pierwszy trening” już nie ma) */}
         <Btn small title="Test store: go offline" onPress={() => { fake.offline = true; load(); }} />
         <Btn small title="Test store: go online" onPress={() => { fake.offline = false; load(); }} />
       </View> : null}
