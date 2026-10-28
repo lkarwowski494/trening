@@ -1086,15 +1086,15 @@
       "L": {
        "kostka": [
         82.6,
-        8,
+        7.2,
         -2.2
        ],
        "podbicie": 0,
        "rotacjaStopy": 60,
        "biegunKolana": [
         0,
-        1,
-        -0.3
+        0,
+        -1
        ]
       }
      },
@@ -1114,18 +1114,19 @@
       "L": {
        "chwyt": [
         -72.6,
-        10.8,
+        4.5,
         -4.5
        ],
        "biegunLokcia": [
         0,
-        0.3,
+        0.04,
         -1
        ]
       }
      },
      "obrotTulowia": -75,
-     "przechylTulowia": 2
+     "przechylTulowia": 2,
+     "przechylGlowy": -20
     },
     {
      "u": 1,
@@ -1155,15 +1156,15 @@
       "L": {
        "kostka": [
         82.6,
-        8,
+        7.2,
         -2.2
        ],
        "podbicie": 0,
        "rotacjaStopy": 60,
        "biegunKolana": [
         0,
-        1,
-        -0.3
+        0,
+        -1
        ]
       }
      },
@@ -1183,18 +1184,19 @@
       "L": {
        "chwyt": [
         -72.6,
-        10.8,
+        4.5,
         -4.5
        ],
        "biegunLokcia": [
         0,
-        0.3,
+        0.04,
         -1
        ]
       }
      },
      "obrotTulowia": -75,
-     "przechylTulowia": 2
+     "przechylTulowia": 2,
+     "przechylGlowy": -20
     }
    ],
    "bledy": []

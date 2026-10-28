@@ -248,21 +248,32 @@ const out = { lezy: [], znika: [], lekko: [], poz: 0, lezacych: 0 };
 for (const f of fs.readdirSync(D).filter((x) => x.endsWith('.json'))) {
   const d = JSON.parse(fs.readFileSync(path.join(D, f), 'utf8'));
   for (const [cw, p] of Object.entries(d.cwiczenia)) { out.poz++; if (J.lezyAlboSiedzi(v2, p)) out.lezacych++;
-    const a = J.cialoLezy(v2, p, { glowa: p.rodzina === 'mobility_floor' }); if (a.length) out.lezy.push({ rodzina: p.rodzina, cwiczenie: cw, opisy: a });
+    const a = J.cialoLezy(v2, p, { glowa: p.rodzina === 'mobility_floor' }); if (a.length) out.lezy.push({ rodzina: p.rodzina, cwiczenie: cw, opisy: a }); /* L3 (recenzja r5): reguła na pozach WSZYSTKICH rodzin: obrys tułowia i miednicy, kończyny leżące (L1, L2); brak podparcia głowy tylko w mobility_floor (w ćwiczeniach brzucha głowa unosi się z definicji ruchu) */
     const b = J.czescCialaNieZnika(v2, p); if (b.length) out.znika.push({ rodzina: p.rodzina, cwiczenie: cw, opisy: b });
     const rl = regulyDla(p.rodzina, cw).filter((r) => /lekko/i.test(r.id) && ['kolana_max', 'kolano_zakres_ruch'].includes(r.typ));
     if (rl.length) { let mx = 0; const us = new Set([...Array.from({ length: 41 }, (_, i) => i / 40), ...p.klatki.map((k) => k.u)]);
       for (const u of us) { const sk = v2.keyframeFrame(p, u).sk; for (const s of ['R', 'L']) mx = Math.max(mx, v2.jointAngles(sk, s).knee); }
       out.lekko.push({ rodzina: p.rodzina, cwiczenie: cw, reguly: rl.map((r) => r.id), max: Math.round(mx * 10) / 10 }); } }
 }
+const dk = (x) => { const q = x.k === 'poly' ? x.pts : x.k === 'ellipse' ? v2.ellipsePts(x.c, x.rx, x.ry, x.rot) : x.k === 'circle' ? [[x.c[0], x.c[1] - x.r]] : null; return q ? Math.min(...q.map((z) => z[1])) : null; };
+const sq = JSON.parse(fs.readFileSync(path.join(D, 'mobility_floor.json'), 'utf8')).cwiczenia['Side-Lying Quad Stretch'];
+out.sl = {}; for (const u of [0, 1]) { const sh = v2.dataShapes(sq, u, 'side'); const nis = (re) => { const l = sh.filter((x) => re.test(x.id ?? '')).map(dk).filter((y) => y !== null); return l.length ? Math.round(Math.min(...l) * 10) / 10 : null; };
+  const s = v2.keyframeFrame(sq, u).sk; const C = v2.bodyColliders(s); const gl = C.find((c) => c.id === 'head');
+  out.sl[u] = { przedramie: nis(/^farmL$/), dlon: nis(/^handL$/), udo: nis(/^thighL$/), golen: nis(/^shankL$/), stopa: nis(/^footL$/), tulow: nis(/^torso$/), glowaKolizor: Math.round((gl.a[1] - gl.r) * 10) / 10, kolanoDolne: Math.round(v2.jointAngles(s, 'L').knee * 10) / 10, obrotTulowia: v2.jointAngles(s, 'L').trunkRoll }; }
+const klon = () => JSON.parse(JSON.stringify(sq));
+const rekaWisi = klon(); for (const k of rekaWisi.klatki) { k.rece.L.chwyt[1] += 7; delete k.przechylGlowy; } /* dolna ręka wisi 7 cm wyżej, a głowa (bez skłonu bocznego) nadal na niej: dokładnie błąd z recenzji r5 */
+const nogaWisi = klon(); for (const k of nogaWisi.klatki) k.nogi.L.kostka[1] += 6; /* dolna noga podnosi się */
+const wzorzec = klon(); const glowaNaPodlodze = klon(); for (const k of glowaNaPodlodze.klatki) { k.rece.L.chwyt[1] += 7; k.przechylGlowy = -35; k.przechylTulowia = -2; }
+out.mut = { rekaWisi: J.cialoLezy(v2, rekaWisi, { glowa: true }), nogaWisi: J.cialoLezy(v2, nogaWisi, { glowa: true }), wzorzec: J.cialoLezy(v2, wzorzec, { glowa: true }), glowaNaPodlodze: J.cialoLezy(v2, glowaNaPodlodze, { glowa: true }) };
 console.log(JSON.stringify(out));
 `;
-const skan = ((): { lezy: { rodzina: string; cwiczenie: string; opisy: string[] }[]; znika: { rodzina: string; cwiczenie: string; opisy: string[] }[]; lekko: { rodzina: string; cwiczenie: string; reguly: string[]; max: number }[]; poz: number; lezacych: number } =>
+type PomiarSL = { przedramie: number; dlon: number; udo: number; golen: number; stopa: number; tulow: number; glowaKolizor: number; kolanoDolne: number; obrotTulowia: number };
+const skan = ((): { sl: Record<string, PomiarSL>; mut: Record<'rekaWisi' | 'nogaWisi' | 'wzorzec' | 'glowaNaPodlodze', string[]>; lezy: { rodzina: string; cwiczenie: string; opisy: string[] }[]; znika: { rodzina: string; cwiczenie: string; opisy: string[] }[]; lekko: { rodzina: string; cwiczenie: string; reguly: string[]; max: number }[]; poz: number; lezacych: number } =>
   JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', SKAN], { cwd: ROOT, env: { PATH: process.env.PATH ?? '' } as unknown as NodeJS.ProcessEnv, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })))();
 
 /** Znane trafienia R9/R10 poza mobilnością (zapadka: nowe pary rodzina|ćwiczenie nie powstają; naprawa pozy tylko zmniejsza listę). Ocena: PRAWDZIWE = poza do poprawy w swojej rodzinie; FAŁSZYWE = reguła nie dotyczy ruchu. */
 export const TRAFIENIA_R9_R10: Record<string, string> = {
-  'cialo_lezy|glute_floor|Clamshell': 'PRAWDZIWE: leżenie na boku jak w Side-Lying Quad Stretch — obrys tułowia 4,3 cm i spodenek 4,6 cm nad podłogą, głowa 13,5 cm bez podparcia; do poprawy w rodzinie glute_floor tym samym sposobem (miednica 20 cm, obrót tułowia −75°, przechył 2°)',
+  'cialo_lezy|glute_floor|Clamshell': 'PRAWDZIWE: leżenie na boku jak w Side-Lying Quad Stretch — obrys tułowia 4,3 cm i spodenek 4,6 cm nad podłogą, dolna noga: udo 5,3 cm i goleń 8,1 cm nad podłogą (L2), głowa 13,5 cm bez podparcia; do poprawy w rodzinie glute_floor tym samym sposobem (miednica 20 cm, obrót tułowia −75°, przechył 2°, dolna noga kostką na y ≈ 7, głowa skłonem bocznym na dłoń)',
   'cialo_lezy|leg_isolation|Slider Hamstring Curl': 'FAŁSZYWE: mostek na jednej nodze — miednica uniesiona celowo (środek na 19,9 cm), reguła „miednica leży” zakłada leżenie bez unoszenia',
   'czesc_ciala_nie_znika|back_extension|Lower Back Curl': 'PRAWDZIWE: obie stopy rysują się w widoku z boku jako punkt (stopa wprost na kamerę); do poprawy w rodzinie back_extension',
   'czesc_ciala_nie_znika|core_floor|Superman': 'PRAWDZIWE: obie stopy rysują się w widoku z boku jako punkt; do poprawy w rodzinie core_floor',
@@ -280,7 +291,63 @@ describe('R9 „ciało leży” (obrys z boku) i R10 „część ciała nie znik
   test('pozostałe rodziny: trafienia są znane i opisane (zapadka; nowe trafienie = poza do poprawy albo świadomy wpis z oceną)', () => {
     const znalezione = [...skan.lezy.filter((t) => !MOB.includes(t.rodzina)).map((t) => klucz('cialo_lezy', t)), ...skan.znika.filter((t) => !MOB.includes(t.rodzina)).map((t) => klucz('czesc_ciala_nie_znika', t))];
     for (const k of znalezione) expect([k, k in TRAFIENIA_R9_R10]).toEqual([k, true]);
+    for (const k of Object.keys(TRAFIENIA_R9_R10)) expect([k, znalezione.includes(k)]).toEqual([k, true]); /* zapadka tylko maleje: poza naprawiona w swojej rodzinie musi zniknąć z listy */
     for (const [k, ocena] of Object.entries(TRAFIENIA_R9_R10)) { expect(ocena).toMatch(/^(PRAWDZIWE|FAŁSZYWE)/); expect(k.split('|').length).toBe(3); }
+  });
+});
+
+describe('R9 rozszerzone (recenzja mobilności r5, 28.10.2026): kończyna podpierająca głowę i dolna noga leżącego na boku same leżą', () => {
+  test('L1: głowa podparta ręką, która sama wisi 7 cm nad podłogą, jest zgłaszana (głowa na wiszącej dłoni nie jest podparta); głowa na podłodze nie wymaga ręki', () => {
+    expect(skan.mut.rekaWisi.filter((x) => /podpiera|wisi/.test(x)).length).toBeGreaterThan(0);
+    expect(skan.mut.glowaNaPodlodze).toEqual([]);
+  });
+  test('L2: dolna noga podniesiona o 6 cm (udo i goleń nad podłogą) jest zgłaszana; poza wzorcowa (dane) nie ma żadnego zgłoszenia', () => {
+    expect(skan.mut.nogaWisi.filter((x) => /dolna noga|udo|goleń/.test(x)).length).toBeGreaterThan(0);
+    expect(skan.mut.wzorzec).toEqual([]);
+  });
+  test('próg nogi na boku (lezyBokNogaCm) to konwencja 3 cm i jest jedną liczbą w v2-jakosc.mjs; ręka podpierająca głowę używa progu lezyCm (2 cm)', () => {
+    const src = fs.readFileSync(path.join(ROOT, 'scripts/figures/v2-jakosc.mjs'), 'utf8');
+    expect(src).toMatch(/lezyBokNogaCm: 3, \/\* [^*]*konwencja/i);
+    expect(src).toMatch(/lezyCm: 2,/);
+  });
+  test('Side-Lying Quad Stretch (obie klatki): przedramię i dłoń dolnej ręki ≤ 2 cm nad podłogą, udo i goleń dolnej nogi ≤ 3 cm, stopa leży (0…2 cm), głowa na dłoni (kolizor głowy 4…10 cm nad podłogą), tułów ≤ 2 cm', () => {
+    for (const u of ['0', '1']) { const m = skan.sl[u];
+      expect([u, 'przedramię', m.przedramie <= 2]).toEqual([u, 'przedramię', true]); expect([u, 'dłoń', m.dlon <= 2]).toEqual([u, 'dłoń', true]);
+      expect([u, 'udo', m.udo <= 3]).toEqual([u, 'udo', true]); expect([u, 'goleń', m.golen <= 3]).toEqual([u, 'goleń', true]);
+      expect([u, 'stopa', m.stopa >= -0.5 && m.stopa <= 2]).toEqual([u, 'stopa', true]); expect([u, 'tułów', m.tulow <= 2]).toEqual([u, 'tułów', true]);
+      expect([u, 'głowa', m.glowaKolizor >= 2 && m.glowaKolizor <= 10]).toEqual([u, 'głowa', true]); expect([u, 'kolano dolne ≤ 15°', m.kolanoDolne <= 15]).toEqual([u, 'kolano dolne ≤ 15°', true]); }
+  });
+  test('przybliżenie Side-Lying w manifeście nazywa odchylenie tułowia do tyłu o 15° (obrót −75°) i skłon głowy na dłoń (recenzja r5 #3: nie tylko komentarz w kodzie)', () => {
+    const src = fs.readFileSync(path.join(ROOT, 'scripts/figures/agent-pozy/mobility_floor.mjs'), 'utf8');
+    const wpis = src.match(/'Side-Lying Quad Stretch': 'przybliżenie:[^\n]*'/)?.[0] ?? '';
+    expect(wpis).toMatch(/odchylon\w+ do tyłu o 15°/); expect(wpis).toMatch(/−75°/); expect(wpis).toMatch(/głowa opada skłonem bocznym/);
+    expect(skan.sl['0'].obrotTulowia).toBe(-75);
+  });
+});
+
+/** L4 (model pracy, recenzja mobilności r5): zmiana pozy wymuszona ograniczeniem rysunku (modelu) ma wpis w `przyblizenie` manifestu. Kontrola tania, heurystyczna: dla każdego ćwiczenia generatora bierzemy tekst
+ * od końca poprzedniej funkcji do końca funkcji ćwiczenia (stałe i komentarze nad funkcją + doc + ciało) i szukamy słów oznaczających odstępstwo od źródła z powodu ograniczenia (ograniczenie, granica modelu, uproszczenie, model nie ma…);
+ * znalezione słowo bez wpisu w PRZYBLIZENIA (ten sam plik) = czerwone. Nie wykryje odstępstwa opisanego innymi słowami ani bez komentarza — to uzupełnienie recenzji (bramka 4, krok 1), nie jej zamiennik. */
+const ODSTEPSTWO = /ogranicze|granic[aęy] modelu|granicy modelu|uproszcz|obejś|model nie ma|nie mieści się w modelu/i;
+export const odstepstwaBezPrzyblizenia = (zrodlo: string): string[] => {
+  const src = zrodlo.replace(/^(\/\/[^\n]*\n)+/, ''); /* nagłówek pliku (wspólne „uproszczenie ilustracyjne”) nie jest odstępstwem żadnego ćwiczenia */
+  const mapa = [...src.matchAll(/(?:'([^']+)'|"([^"]+)"): \(\) => (\w+)\(/g)].map((m) => ({ cw: m[1] ?? m[2], fn: m[3] }));
+  const blok = src.match(/export const PRZYBLIZENIA = \{([\s\S]*?)\n\};/)?.[1] ?? ''; const maWpis = new Set([...blok.matchAll(/^\s+(?:'([^']+)'|"([^"]+)"):/gm)].map((m) => m[1] ?? m[2]));
+  return mapa.flatMap(({ cw, fn }) => {
+    const start = src.indexOf(`function ${fn}(`); if (start < 0) return []; const poprzedni = src.lastIndexOf('\n}\n', start); const koniec = src.indexOf('\n}\n', start);
+    const tekst = src.slice(poprzedni < 0 ? 0 : poprzedni, koniec < 0 ? src.length : koniec); const slowo = tekst.match(ODSTEPSTWO)?.[0];
+    return slowo && !maWpis.has(cw) ? [`${cw}: w kodzie „${slowo}”, a PRZYBLIZENIA nie ma wpisu`] : [];
+  });
+};
+describe('L4: odstępstwo od źródła z powodu ograniczenia rysunku ma wpis w przyblizenie (manifest)', () => {
+  const gen = (f: string) => fs.readFileSync(path.join(ROOT, 'scripts/figures/agent-pozy', f), 'utf8');
+  test('mobility_floor i mobility_stand: każde ćwiczenie z odstępstwem w komentarzu ma wpis w PRZYBLIZENIA', () => {
+    expect(odstepstwaBezPrzyblizenia(gen('mobility_floor.mjs'))).toEqual([]); expect(odstepstwaBezPrzyblizenia(gen('mobility_stand.mjs'))).toEqual([]);
+  });
+  test('kontrola działa: komentarz „ograniczenie modelu” w funkcji ćwiczenia bez wpisu jest wykrywany, z wpisem nie', () => {
+    const bez = "export const PRZYBLIZENIA = {\n};\nfunction a(cw) {\n  /* obrót −75°: ograniczenie modelu */\n  return 1;\n}\nexport function generuj() { return { 'Ćw A': () => a('Ćw A') }; }\n";
+    expect(odstepstwaBezPrzyblizenia(bez)).toEqual(['Ćw A: w kodzie „ogranicze”, a PRZYBLIZENIA nie ma wpisu']);
+    expect(odstepstwaBezPrzyblizenia(bez.replace('PRZYBLIZENIA = {\n}', "PRZYBLIZENIA = {\n  'Ćw A': 'przybliżenie: x',\n}"))).toEqual([]);
   });
 });
 

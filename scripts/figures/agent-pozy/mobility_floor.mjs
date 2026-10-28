@@ -84,9 +84,10 @@ function supineHamstring(cw) {
 
 /* ---------- leżenie bokiem (LEWY bok na podłodze, klatka ku −z (od kamery), głowa ku −x; górna noga R jest po stronie kamery) ---------- */
 const PYB = 20; /* środek miednicy: obrys tułowia i spodenek ≤ 2 cm nad podłogą (reguła „ciało leży”, R9) */
-const SQ_ROLL = -75; /* obrót tułowia: −90 = dokładnie na boku; −75 = lekko odchylony do tyłu (15°). Dolny bark leży wtedy wyżej niż dolna krawędź obrysu tułowia (grubość pleców), więc ramię nie wchodzi pod podłogę, a tułów leży (przy −90 bark 4 cm nad podłogą i tułów 4 cm nad nią albo ramię pod podłogą) */
+const SQ_ROLL = -75; /* ODSTĘPSTWO OD ŹRÓDŁA wymuszone ograniczeniem rysunku (wpis w PRZYBLIZENIA, kontrola L4): obrót tułowia −90 = dokładnie na boku (biodra i barki jedno nad drugim, ACE #149); −75 = tułów odchylony do tyłu o 15°. Dolny bark leży wtedy wyżej niż dolna krawędź obrysu tułowia (grubość pleców), więc ramię nie wchodzi pod podłogę, a tułów leży (przy −90 bark 4 cm nad podłogą i tułów 4 cm nad nią albo ramię pod podłogą) */
 const SQ_LEAN = 2; /* przechył tułowia w płaszczyźnie czołowej (stopnie): bark (głowa) wyżej o ok. 1,7 cm niż miednica (lekkie zgięcie boczne kręgosłupa, głowa na ręce) */
-const bokRamka = (nogi, rece, ext = { roll: SQ_ROLL, lean: SQ_LEAN }) => (u) => K({ u, m: [0, PYB, 0], p: -90, head: -90, roll: ext.roll, lean: ext.lean, R: nogi.R, L: nogi.L, hr: rece.R, hl: rece.L });
+const SQ_HEAD_TILT = -20; /* skłon boczny głowy ku dolnemu barkowi (przechylGlowy, − = ucho ku lewemu barkowi): głowa opada na dłoń leżącą na podłodze (r6: dolna ręka leży, więc głowa musi zejść o ok. 6 cm; bez skłonu zawisała nad ręką) */
+const bokRamka = (nogi, rece, ext = { roll: SQ_ROLL, lean: SQ_LEAN, headTilt: SQ_HEAD_TILT }) => (u) => { const k = K({ u, m: [0, PYB, 0], p: -90, head: -90, roll: ext.roll, lean: ext.lean, R: nogi.R, L: nogi.L, hr: rece.R, hl: rece.L }); if (ext.headTilt !== undefined) k.przechylGlowy = ext.headTilt; return k; };
 /** Side-Lying Quad Stretch (ACE #149: leżenie na boku, biodra i barki jedno nad drugim, dolna ręka zgięta, przedramię pod głową; górne kolano zgięte, pięta ku pośladkowi: „Bend your left knee and pull your left heel up towards your left glute…”, „keeping the left thigh and knee resting on the inside of the right thigh and pointing straight out from the left hip joint”; dolna noga prosta tylko w pozycji wyjściowej: „with your legs extended straight away from your body”):
  * leżymy na LEWYM boku (klatka ku −z, od kamery, tułów odchylony do tyłu o 15°), górna (prawa) noga: udo w linii tułowia (biodro ≈ 13°, udo spoczywa na dolnym udzie), kolano zgięte ok. 140° (granica modelu) ku tyłowi ciała (+z, do kamery),
  * dłoń górnej ręki (zza pleców) przy kostce (1,3 cm; środek dłoni na odcinku bark–kostka, sięg ręki ≈ 63 cm); dolna ręka zgięta, przedramię pod głową (głowa na przedramieniu, styk), dolna stopa wzdłuż podłogi (stopa na zewnętrznej krawędzi: nie w osi widoku). */
@@ -98,9 +99,9 @@ function sideQuad(cw) {
   const psi = SQ_PSI * R; /* płaszczyzna zgięcia kolana: ku tyłowi ciała (+z) i w górę (+y) */
   const aR = add(K1, [-d1[0] * Math.cos(kf), -d1[1] * Math.cos(kf) + Math.sin(kf) * Math.sin(psi), Math.sin(kf) * Math.cos(psi)], B.shank).map(r1);
   const mid = [(H[0] + aR[0]) / 2, (H[1] + aR[1]) / 2, (H[2] + aR[2]) / 2]; const pole = nrm([K1[0] - mid[0], K1[1] - mid[1], K1[2] - mid[2]]).map((x) => r1(x * 100) / 100);
-  const aL = [T.hip.L[0] + 82.6, 8, T.hip.L[2]];
-  const nogi = { R: { a: aR, pod: SQ_POD, rot: 0, pole }, L: { a: aL, pod: 0, rot: 60, pole: [0, 1, -0.3] } };
-  const rece = { R: { g: sieganie(T.sh.R, aR), pole: [0, 1, 0.5] }, L: { g: [T.sh.L[0] - 22, 10.8, T.sh.L[2]], pole: [0, 0.3, -1] } };
+  const aL = [T.hip.L[0] + 82.6, 7.2, T.hip.L[2]]; /* dolna noga leży: udo i goleń ≤ 3 cm nad podłogą (R9: lezyBokNogaCm), kolano wypchnięte w głąb (−z), nie w górę */
+  const nogi = { R: { a: aR, pod: SQ_POD, rot: 0, pole }, L: { a: aL, pod: 0, rot: 60, pole: [0, 0, -1] } };
+  const rece = { R: { g: sieganie(T.sh.R, aR), pole: [0, 1, 0.5] }, L: { g: [T.sh.L[0] - 22, 4.5, T.sh.L[2]], pole: [0, 0.04, -1] } }; /* dolna ręka leży: łokieć i dłoń przy podłodze (dolna krawędź ≤ 2 cm), przedramię pod głową */
   return statyczna(RODZINA, cw, SP, bokRamka(nogi, rece));
 }
 
@@ -131,7 +132,7 @@ export const PRZYBLIZENIA = {
   "Child's Pose": 'wariant ACE #227 „ręce wzdłuż ciała” (krok 4: „Extend your arms alongside the body with the palms facing upward…”): dłonie na podłodze przy biodrach (palce do góry nie rysujemy); kolana szeroko, bierne zgięcie kolana ≈ 152° i biodra ≈ 139° (wyjątek zakresu: CONTRACT.kneePassiveMaxDeg, hipPassiveMaxDeg); stopy grzbietem na podłodze (podbicie 208°, krok 1: „toes pointing behind you”)',
   'Seated Calf Stretch': 'przybliżenie: stopa pionowo (zgięcie grzbietowe ≈ 0°, maksymalne podbicie modelu to 90°); guma owinięta wokół podeszwy prawej stopy (ACE #214), druga noga bez gumy',
   'Supine Hamstring Stretch': 'poza wg AAOS (dłonie splecione z tyłu uda, druga noga zgięta, stopa na podłodze); wariant ACE #235 z nogą o ścianę nie jest rysowany',
-  'Side-Lying Quad Stretch': 'przybliżenie: leżenie na lewym boku, górną (prawą) nogą i dłonią od strony kamery; udo w linii tułowia (biodro ≈ 13°), kolano zgięte ≈ 140° (granica modelu), goleń zawraca ku tyłowi ciała i w górę; dłoń 1,3 cm od kostki (sięg ręki ≈ 63 cm); stopa pochylona 45° (model nie ma stopy wzdłuż goleni leżącej na boku)',
+  'Side-Lying Quad Stretch': 'przybliżenie: leżenie na lewym boku, górną (prawą) nogą i dłonią od strony kamery; tułów odchylony do tyłu o 15° (obrót tułowia −75°, nie −90°: przy −90° dolny bark wchodzi pod podłogę albo tułów wisi nad nią; w widoku z boku, jedynym w aplikacji, odchylenia nie widać); głowa opada skłonem bocznym ≈ 20° na dłoń dolnej ręki leżącej na podłodze; dolna noga prosta (kolano ≈ 9°) leży na podłodze; udo górnej nogi w linii tułowia (biodro ≈ 13°), kolano zgięte ≈ 140° (granica modelu), goleń zawraca ku tyłowi ciała i w górę; dłoń 1,3 cm od kostki (sięg ręki ≈ 63 cm); stopa pochylona 45° (model nie ma stopy wzdłuż goleni leżącej na boku)',
 };
 export function generuj() {
   const G = {

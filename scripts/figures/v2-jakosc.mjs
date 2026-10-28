@@ -24,6 +24,8 @@ export const PROGI = {
   lezyMiednicaMaxY: 24, /* ciało „leży albo siedzi”: środek miednicy najwyżej tyle nad podłogą w KAŻDEJ klatce (leżenie na boku ≈ 20, na plecach i siad ≈ 10; mostek ≥ 28 i klęk Child's Pose 26 to nie leżenie) */
   lezyMiednicaRuchCm: 2, /* miednica „stoi” w miejscu, gdy jej oś zmienia wysokość o najwyżej tyle w ruchu (unoszenie miednicy w ruchu, np. Reverse Crunch, jest celowe: jej obrys sprawdzamy tylko, gdy nie unosi się) */
   lezyTulowDeg: 60, /* tułów „poziomy” (leży), gdy jego oś odchyla się od pionu o co najmniej tyle */
+  lezyBokNogaCm: 3, /* R9 rozszerzone (recenzja mobilności r5, 28.10.2026): leżąc na boku dolna noga (udo, goleń; obrys z boku) leży przy podłodze, najwyżej tyle nad nią w każdej klatce. KONWENCJA RYSUNKU (uproszczenie ilustracyjne): próg 3 cm, a nie 2 jak dla tułowia, bo przekrój uda i goleni jest okrągły, a kolano i staw skokowy wcinają obrys; stopy ta reguła nie sprawdza (stopa grzbietem do podłogi daje fałszywy odstęp) */
+  lezyBokRollDeg: 45, /* leżenie na boku: oś tułowia pozioma (lezyTulowDeg), a obrót tułowia wokół osi długiej co najmniej tyle (|obrotTulowia|; −90 = dokładnie na boku) */
   glowaPodparcieCm: 1, /* głowa leżącego: leży na podłodze (dolna krawędź kolizora ≤ lezyCm) albo opiera się o ramię/przedramię/dłoń (odstęp kolizorów ≤ tyle) */
   znikaCm: 1.5, /* „znikająca część ciała”: kształt części ciała (id kości) ma w rzucie z boku albo z przodu w żadnej osi rozmiar mniejszy niż tyle (stopa skierowana wprost na kamerę rysuje się jako punkt) */
   wisiCm: 1, /* ćwiczenie na podłodze: najniższy punkt tułowia/miednicy (oś − promień) najwyżej tyle nad podłogą (leżąc i siedząc ciało leży, nie wisi) */
@@ -235,12 +237,20 @@ export function cialoLezy(v2, poza, { glowa = false } = {}) {
     const tor = nisko(/^torso$/), mie = nisko(/^shorts[RL]$/);
     if (tor !== null && tor > PROGI.lezyCm) zglos('tulow', `obrys tułowia (z boku) leży ${f1(tor)} cm nad podłogą (u = ${u}; ≤ ${PROGI.lezyCm} cm) — ciało leży albo siedzi na podłodze, nie wisi`);
     if (miednicaStoi && mie !== null && mie > PROGI.lezyCm) zglos('miednica', `obrys miednicy (spodenki, z boku) leży ${f1(mie)} cm nad podłogą (u = ${u}; ≤ ${PROGI.lezyCm} cm) — miednica się nie unosi, więc ma leżeć`);
-    if (!glowa) continue; const s = v2.keyframeFrame(poza, u).sk; const leży = Math.acos(Math.max(-1, Math.min(1, (s.shoulderC[1] - s.pelvis[1]) / (Math.hypot(...s.shoulderC.map((x, i) => x - s.pelvis[i])) || 1)))) * 180 / Math.PI >= PROGI.lezyTulowDeg; if (!leży) continue; /* głowa: tylko przy poziomym tułowiu (siad i pozycje ze zwiniętym tułowiem mają głowę nad podłogą z definicji) */
+    const s = v2.keyframeFrame(poza, u).sk; const leży = Math.acos(Math.max(-1, Math.min(1, (s.shoulderC[1] - s.pelvis[1]) / (Math.hypot(...s.shoulderC.map((x, i) => x - s.pelvis[i])) || 1)))) * 180 / Math.PI >= PROGI.lezyTulowDeg;
+    if (leży && Math.abs(v2.jointAngles(s, 'R').trunkRoll ?? 0) >= PROGI.lezyBokRollDeg) { /* L2: leżenie na boku — dolna noga (strona z niższym biodrem) leży: udo i goleń (obrys z boku) ≤ lezyBokNogaCm */
+      const d = s.legs.L.hip[1] <= s.legs.R.hip[1] ? 'L' : 'R';
+      for (const [id, nazwa] of [['thigh', 'udo'], ['shank', 'goleń']]) { const y = nisko(new RegExp(`^${id}${d}$`)); if (y !== null && y > PROGI.lezyBokNogaCm) zglos(`noga_${id}`, `dolna noga (${nazwa}) leży ${f1(y)} cm nad podłogą (u = ${u}; ≤ ${PROGI.lezyBokNogaCm} cm, konwencja) — leżąc na boku dolna noga leży na podłodze, nie wisi`); } }
+    if (!leży) continue; /* głowa: tylko przy poziomym tułowiu (siad i pozycje ze zwiniętym tułowiem mają głowę nad podłogą z definicji) */
     const C = v2.bodyColliders(s); const gl = C.find((c) => c.id === 'head'); if (!gl) continue;
     const odPodlogi = gl.a[1] - gl.r; if (odPodlogi <= PROGI.lezyCm) continue;
     const odcinek = (P, a, b) => { const ab = b.map((x, i) => x - a[i]); const l2 = ab.reduce((t, x) => t + x * x, 0) || 1; const t = Math.max(0, Math.min(1, P.reduce((q, x, i) => q + (x - a[i]) * ab[i], 0) / l2)); return Math.hypot(...P.map((x, i) => x - a[i] - t * ab[i])); };
-    const odRamienia = Math.min(...C.filter((c) => /^(uarm|farm|hand)[RL]$/.test(c.id)).map((c) => odcinek(gl.a, c.a, c.b) - c.r - gl.r));
-    if (!(odRamienia <= PROGI.glowaPodparcieCm)) zglos('glowa', `głowa leży ${f1(odPodlogi)} cm nad podłogą i ${Number.isFinite(odRamienia) ? f1(odRamienia) : '—'} cm od najbliższego ramienia/dłoni (u = ${u}; ≤ ${PROGI.lezyCm} cm od podłogi albo ≤ ${PROGI.glowaPodparcieCm} cm od ręki) — głowa leżącego jest podparta`);
+    const ramiona = C.filter((c) => /^(uarm|farm|hand)[RL]$/.test(c.id)).map((c) => ({ id: c.id, odl: odcinek(gl.a, c.a, c.b) - c.r - gl.r })).sort((a, b) => a.odl - b.odl); const odRamienia = ramiona.length ? ramiona[0].odl : Infinity;
+    if (odRamienia <= PROGI.glowaPodparcieCm) { /* L1: kończyna podpierająca głowę sama leży: przedramię i dłoń (albo ramię, gdy głowa na ramieniu) ≤ lezyCm nad podłogą — głowa na wiszącej ręce nie jest podparta */
+      const pd = ramiona[0].id.slice(-1); const ids = ramiona[0].id.startsWith('uarm') ? [`uarm${pd}`] : [`farm${pd}`, `hand${pd}`];
+      for (const id of ids) { const y = nisko(new RegExp(`^${id}$`)); if (y !== null && y > PROGI.lezyCm) { zglos('reka_wisi', `głowę podpiera ${id.startsWith('uarm') ? 'ramię' : id.startsWith('farm') ? 'przedramię' : 'dłoń'} (${id}), która sama wisi ${f1(y)} cm nad podłogą (u = ${u}; ≤ ${PROGI.lezyCm} cm) — kończyna podpierająca głowę leży na podłodze`); break; } }
+    }
+    else if (glowa) zglos('glowa', `głowa leży ${f1(odPodlogi)} cm nad podłogą i ${Number.isFinite(odRamienia) ? f1(odRamienia) : '—'} cm od najbliższego ramienia/dłoni (u = ${u}; ≤ ${PROGI.lezyCm} cm od podłogi albo ≤ ${PROGI.glowaPodparcieCm} cm od ręki) — głowa leżącego jest podparta`);
   }
   return o;
 }
