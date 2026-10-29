@@ -8,4 +8,4 @@
 | Subagenci razem | 583 905 | |
 | M1 (E0, CI, scalanie, plan, raport) | ok. 0,2–0,3 mln [OCENA] | |
 | Razem | ok. 0,8–0,9 mln (plan 1,8–4,1 mln) | |
-Pełny Jest lokalnie: pierwszy przebieg przerwany restartem kontenera (71 zestawów, 0 FAIL), drugi w toku.
+Pełny Jest lokalnie: pierwszy przebieg przerwany restartem kontenera (71 zestawów, 0 FAIL), drugi: kod 0, 558/558 zestawów, 4214 s.

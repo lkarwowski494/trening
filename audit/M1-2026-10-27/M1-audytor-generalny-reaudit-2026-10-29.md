@@ -1,6 +1,6 @@
 # Reaudyt: Audytor Generalny — Trening — 2026-10-29
 Commit: 0a566a1848bc44139f27ec2f3fcdc3e49922f901 (naprawy/duzy-tekst-trening = main 5d79c3a + PR #83; HEAD odłączony) · Baza: 4c116d0 · Tryb: reaudit · Pętla: 2 · Zakres: decyzja właściciela 28.10.2026, tryb nocny (docs/18-przekazanie.md:641), wariant A jak w pętli 1: 20 zadań `naprawione-do-weryfikacji` i 039 oraz cała różnica 4c116d0..0a566a1 (175 plików, 60 commitów) z próbką regresji. Zadania 033 i 036 były poza pętlą.
-Środowisko: Linux w chmurze, Node 22. npm ci, typecheck i lint dały kod 0 (reaudit-2026-10-29/wspolne/). CI na badanym commicie: tests.yml 40780525865 zielone, czyli pełne verify na 0a566a1. E2E pakiet podstawowy 40776726099 na main 5d79c3a: 14 scenariuszy, 0 ponowień (reaudit-2026-10-29/wspolne/ci-stan.txt). Pełny Jest lokalnie: pierwszy przebieg przerwał restart kontenera po 71 zestawach (0 porażek), powtórka trwa (wynik zostanie dopisany). Nie działało: telefon, symulator iOS, Xcode, App Store Connect, Dysk Google, biblioteka promptów (odstępstwo 1).
+Środowisko: Linux w chmurze, Node 22. npm ci, typecheck i lint dały kod 0 (reaudit-2026-10-29/wspolne/). CI na badanym commicie: tests.yml 40780525865 zielone, czyli pełne verify na 0a566a1. E2E pakiet podstawowy 40776726099 na main 5d79c3a: 14 scenariuszy, 0 ponowień (reaudit-2026-10-29/wspolne/ci-stan.txt). Pełny Jest lokalnie `--maxWorkers=1`: kod 0, 558/558 zestawów, 10 878 testów zaliczonych, 2 pominięte, 4214 s (reaudit-2026-10-29/07-jakosc/dowody/jest-pelny.txt). Pierwszy przebieg przerwał restart kontenera po 71 zestawach (0 porażek). Nie działało: telefon, symulator iOS, Xcode, App Store Connect, Dysk Google, biblioteka promptów (odstępstwo 1).
 
 ## Podsumowanie
 
@@ -50,7 +50,7 @@ Kurs: **trafny** · Stan: **GOTOWE Z ZASTRZEŻENIAMI** · Uzasadnienie: próg z 
 | 04-studio-projektowe (04, 11) | skończona | reaudit-2026-10-29/04-studio-projektowe/ | kod 0 | AX1, 375 pt, „dziś bez treningu”, zagnieżdżony tekst na urządzeniu |
 | 06-tresci (06, 03) | skończona | reaudit-2026-10-29/06-tresci/ | kod 0 | ponowna recenzja merytoryczna kart (poza zakresem, audyty pkt 2), tory squat wizualnie, przekłady wskazówek |
 | 10-wydanie (10, 07, 09, 01) | skończona | reaudit-2026-10-29/10-wydanie/ | kod 0 | noc 034, App Store Connect, verify:docs (płytka kopia) |
-| 07 — pełny Jest | M1, w toku po restarcie | reaudit-2026-10-29/07-jakosc/ | — | zastępczo tests.yml 40780525865 zielone na 0a566a1 |
+| 07 — pełny Jest | skończona (M1) | reaudit-2026-10-29/07-jakosc/ | kod 0: 558/558, 10 878 testów | — |
 
 | Obszar krytyczny | Grupy | Wynik |
 |---|---|---|
@@ -90,7 +90,7 @@ W raportach grup, stronach i logach CI nie było poleceń skierowanych do agenta
 
 ## Odstępstwa (zasada 7)
 1. `add_repo` dla biblioteki promptów odrzuciły zasady uprawnień sesji. Bez biblioteki nie dało się złożyć promptu `assemble.mjs` ani modułów ról. Zamiast tego 4 grupy ról zamiast 12, z briefami własnymi (reaudit-2026-10-29/wspolne/ustalenia.md) i szablonem raportu z pętli 1. Skrypty sprawdz-raport.mjs i sprawdz-plan.mjs pochodzą z historii gałęzi audytu (kopie z pętli 1), są w scratchpadzie i nie trafiły do K.
-2. Pełny Jest lokalny przerwany restartem kontenera. Dowód zastępczy: tests.yml na 0a566a1; powtórka trwa.
+2. Pierwszy pełny Jest lokalny przerwany restartem kontenera; powtórka zakończona kodem 0 (558/558).
 3. Wypchnięcie K na gałąź audytu z `--no-verify` (gałąź na starym kodzie, commit tylko z plikami K) — wyjątek nazwany w pętli 1.
 
 ## Kontrola dowodów i sekretów
