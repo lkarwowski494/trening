@@ -271,13 +271,13 @@ Widok: z boku; kotwica: przód stopy; druga podpora: dłoń; przyrządy: brak.
 
 Widok: z boku; kotwica: przód stopy; druga podpora: dłoń; przyrządy: rect.
 
-- **pozycja wyjściowa** — t 46, hip 0, knee 0, ft -76.5, sh 38.3, el 1.5
+- **pozycja wyjściowa** — t 44.4, hip 0, knee 0, ft -78.1, sh 35.5, el 1.6
   - bark – biodro – kostka w jednej linii (±5°) ← `ipush.setup`: „Oprzyj dłonie o krawędź ławki lub stabilnego podwyższenia, trochę szerzej niż barki; stopy cofnięte, ciało proste.”
   - zgięcie łokcia: 0° (±4°) ← `ipush.move`: „Opuść klatkę do krawędzi podwyższenia, potem wypchnij się do wyprostu rąk.”
   - dłoń tuż nad poziomem 30 (do 3) ← `ipush.setup`: „Oprzyj dłonie o krawędź ławki lub stabilnego podwyższenia, trochę szerzej niż barki; stopy cofnięte, ciało proste.”
-- **w trakcie** — t 31.8, hip 0, knee 0, ft -54.7, sh -19.5, el 96.1
+- **w trakcie** — t 33, hip 0, knee 0, ft -53.5, sh -16.5, el 92.1
   - bark – biodro – kostka w jednej linii (±5°) ← `push.rigid`: „Tułów sztywny — biodra nie opadają i nie unoszą się.”
-- **pozycja końcowa** — t 26.8, hip 0, knee 0, ft -11.4, sh -46.7, el 133.5
+- **pozycja końcowa** — t 25.2, hip 0, knee 0, ft -13, sh -48.5, el 136.3
   - bark – biodro – kostka w jednej linii (±5°) ← `push.rigid`: „Tułów sztywny — biodra nie opadają i nie unoszą się.”
   - bark tuż nad poziomem 30 (do 14) ← `ipush.move`: „Opuść klatkę do krawędzi podwyższenia, potem wypchnij się do wyprostu rąk.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Wysokość podwyższenia ilustracyjna (zdanie ipush.height: im wyżej, tym łatwiej).
@@ -572,10 +572,10 @@ Widok: z boku; kotwica: przód stopy; przyrządy: brak.
 - **w trakcie** — t 90.3, hip -6.7/-7.9, knee 8.2/61.9, ft 0/-44.9, sh 0, el 0
   - przód stopy (dalsza strona) wyżej niż poziom 0 ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **w trakcie (druga)** — t 94.7, hip 24.3/-29.6, knee 46.8/26.9, ft 0/-82, sh 0, el 0
+- **w trakcie (druga)** — t 94.7, hip 24.3/-30.7, knee 46.8/27.3, ft 0/-85.5, sh 0, el 0
   - przód stopy (dalsza strona) tuż nad poziomem 0 (do 1) ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **pozycja końcowa** — t 90, hip 81.9/19, knee 97.2/117, ft 0/-81.2, sh 0, el 0
+- **pozycja końcowa** — t 90, hip 82.8/20.2, knee 97.2/120.7, ft 0/-77.7, sh 0, el 0
   - kolano (dalsza strona) tuż nad poziomem 0 (do 8) ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
   - pięta tuż nad poziomem 0 (do 1) ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
