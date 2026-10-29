@@ -68,6 +68,10 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `lokcie_otwarte` | łokcie otwarte na boki | łokcie rozstawione szeroko od tułowia przy wyciskaniu (flared elbows); przeciwieństwo łokci przyklejonych do tułowia |
 | `lokcie_waskie` | łokcie wąsko (przy tułowiu) | łokcie trzymane blisko tułowia, np. przy wąskim wyciskaniu (elbows in); przeciwieństwo łokci otwartych na boki. Dosłowne „wąsko” z polskiego bywa kalką; języki bez wpisu: pytanie do native speakerów w docs/16 (1.0.1) |
 | `pozycja_posrednia` | pozycja pośrednia (podpis środkowej klatki rysunku) | podpis środkowych klatek rysunku ćwiczenia w całej aplikacji: przy trzech pozycjach „Pozycja pośrednia” (bez numeru), przy czterech „Pozycja pośrednia 1/2” (decyzja 29.10.2026), spójny z „Pozycja wyjściowa/końcowa”; NIE „w trakcie / w toku” (słowo statusu) |
+| `animacja_ruchu` | animacja ruchu (podpis rysunku ćwiczenia) | ruchomy rysunek techniki ćwiczenia; w ms termin marketingowy „Animasi pergerakan” (jak w opisie sklepu), w el NIE „κινούμενα σχέδια” (kreskówki) |
+| `przysiad` | przysiad | ćwiczenie przysiad (squat); w el zostaje angielska nazwa używana na siłowni |
+| `wyciskanie_lezac` | wyciskanie leżąc | ćwiczenie wyciskanie leżąc (bench press); w el zostaje angielska nazwa używana na siłowni |
+| `martwy_ciag` | martwy ciąg | ćwiczenie martwy ciąg (deadlift); w el zostaje angielska nazwa używana na siłowni |
 
 ## Terminy zalecane (rdzeń)
 
@@ -201,6 +205,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `tr` | `seria` | (?<![\p{L}])seri(?![\p{L}]) | „seri” to seria/szybki; podejście to „set” |
 | `el` | `przerwa_robocza` | διάλειμμα εργασίας | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `el` | `plan_subskrypcji` | πρόγραμμ | „Πρόγραμμα” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Πλάνο” |
+| `el` | `animacja_ruchu` | κινούμενα σχέδια | „κινούμενα σχέδια” znaczy kreskówki / film animowany, nie rysunek ruchu ćwiczenia |
 | `id` | `przerwa` | jeda | „jeda” to pauza (treningu); między seriami „istirahat” |
 | `id` | `przerwa_robocza` | istirahat kerja | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `id` | `seria` | (?<![\p{L}])seri(?![\p{L}]) | „seri” to serial; podejście to „set” |
@@ -209,6 +214,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ms` | `przerwa_robocza` | rehat kerja | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ms` | `seria` | (?<![\p{L}])siri(?![\p{L}]) | „siri” to serial; podejście to „set” |
 | `ms` | `pozycja_posrednia` | sedang berjalan | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
+| `ms` | `animacja_ruchu` | lukisan pergerakan | termin marketingowy w opisie sklepu to „animasi pergerakan”; „lukisan” to obraz malowany, nie animacja |
 | `vi` | `przerwa` | giải lao | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `vi` | `przerwa_robocza` | nghỉ giải lao\|nghỉ làm việc | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `vi` | `pozycja_posrednia` | đang diễn ra | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |

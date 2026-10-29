@@ -65,9 +65,9 @@ function dokument(slownik) {
   const id = (i, k) => ESC(slownik.pojecia.find((p) => p.id === i).jezyki[k].zalecany);
   for (const k of kody) L.push(`| \`${k}\` | ${id('przerwa', k)} | ${id('seria', k)} | ${id('powtorzenie', k)} | ${id('zakres_powtorzen', k)} | ${id('deload', k)} | ${id('do_upadku', k)} |`);
   L.push('', '## Terminy zakazane (strażnik)', '', '| język | pojęcie | zakazane | powód |', '|---|---|---|---|');
-  for (const k of kody) for (const p of slownik.pojecia) for (const z of p.jezyki[k].zakazane ?? []) L.push(`| \`${k}\` | \`${p.id}\` | ${ESC(CZYSC(z.wzorzec))} | ${ESC(z.powod)} |`);
+  for (const k of kody) for (const p of slownik.pojecia) for (const z of p.jezyki[k]?.zakazane ?? []) L.push(`| \`${k}\` | \`${p.id}\` | ${ESC(CZYSC(z.wzorzec))} | ${ESC(z.powod)} |`);
   const niskie = [];
-  for (const k of kody) for (const p of slownik.pojecia) if (p.jezyki[k].pewnosc === 'niska') niskie.push(`| \`${k}\` | \`${p.id}\` | ${ESC(p.jezyki[k].zalecany)} | ${ESC(p.jezyki[k].uwaga)} |`);
+  for (const k of kody) for (const p of slownik.pojecia) if (p.jezyki[k]?.pewnosc === 'niska') niskie.push(`| \`${k}\` | \`${p.id}\` | ${ESC(p.jezyki[k].zalecany)} | ${ESC(p.jezyki[k].uwaga)} |`);
   L.push('', `## Do potwierdzenia przez native speakera (${niskie.length})`, '', 'Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym języku? Jeśli nie — jak mówi się naprawdę? (Lista z docs/16.)', '', '| język | pojęcie | obecny termin | wątpliwość |', '|---|---|---|---|', ...niskie, '');
   return L.join('\n');
 }
