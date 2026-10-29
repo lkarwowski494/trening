@@ -32,12 +32,19 @@ export const fmtDur = (sec: number) => {
 };
 /** H3 (audyt 0.10 UI-13): dzień „RRRR-MM-DD” w tym samym formacie co fmtDate („pon., 12 paź”; rok, gdy inny niż bieżący) — panel dnia, podpowiedź
  * deload, „Dziś”, okna planu. */
-export const fmtDayKey = (k: string) => { const ts = localDateTs(k); return Number.isFinite(ts) ? fmtDate(ts + 12 * 3600e3) : k; };
+export const fmtDayKey = (k: string, withYear = false) => { const ts = localDateTs(k); return Number.isFinite(ts) ? fmtDate(ts + 12 * 3600e3, withYear) : k; };
+/** 101-16: zakres dni (para tekstów dla szablonu „{a} – {b}”) w jednym formacie obu dat. fmtDate pomija rok bieżący, więc zakres przez granicę roku dawał „26 sie 2025 – 21 lip”;
+ * gdy którakolwiek data ma rok (nie bieżący), rok mają obie. Podgląd importu CSV i okno „Inne miejsce”. */
+export const fmtDayRange = (a: string, b: string): { a: string; b: string } => {
+  const yr = (k: string) => { const ts = localDateTs(k); return Number.isFinite(ts) ? new Date(ts + 12 * 3600e3).getFullYear() : null; };
+  const now = new Date().getFullYear(); const withYear = [yr(a), yr(b)].some(y => y != null && y !== now);
+  return { a: fmtDayKey(a, withYear), b: fmtDayKey(b, withYear) }; /* para do szablonu „{a} – {b}” (tłumaczenia mogą zmienić łącznik) */
+};
 /** Data do list. Runda 14: rok, gdy nie bieżący — sesje sprzed roku nie wyglądają jak tegoroczne. */
-export const fmtDate = (ts: number) => {
+export const fmtDate = (ts: number, withYear = false) => {
   const d = new Date(ts);
   return d.toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'short',
-      ...(d.getFullYear() !== new Date().getFullYear() ? { year: 'numeric' as const } : {}) });
+      ...(withYear || d.getFullYear() !== new Date().getFullYear() ? { year: 'numeric' as const } : {}) });
 };
 export const fmtTime = (ts: number) => new Date(ts).toLocaleTimeString(locale(), { hour: '2-digit', minute: '2-digit' });
 /** Dzisiejsza data w strefie telefonu (RRRR-MM-DD). toISOString() dawało datę UTC — w Polsce po północy „wczoraj”. */

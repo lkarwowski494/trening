@@ -4,7 +4,7 @@ import { ScrollView } from '@/components/Scroll';
 import { Screen, Btn, Muted, Segmented, SectionTitle, Item, Input, SearchField } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
 import { ImportProCard } from '@/components/ImportProCard';
-import { getState, useTick, fmtDayKey } from '@/lib/store';
+import { getState, useTick, fmtDayRange } from '@/lib/store';
 import { isSafetyError, isPersistError } from '@/lib/backup';
 import { pickCsv, commitCsvImport } from '@/lib/csvimport';
 import { analyze, normName, isImportError, type ParsedFile, type ImportErrorCode } from '@/lib/csvparse';
@@ -49,7 +49,7 @@ export default function ImportCsv() {
         <View style={{ gap: 10 }}>
           <SectionTitle>{t('Podgląd importu')}</SectionTitle>
           <Muted>{t('Treningi do dodania: {n}', { n: a.fresh.length })}</Muted>
-          {a.firstDay && a.lastDay ? <Muted>{t('Zakres dat: {a} – {b}', { a: fmtDayKey(a.firstDay), b: fmtDayKey(a.lastDay) })}</Muted> : null}
+          {a.firstDay && a.lastDay ? <Muted>{t('Zakres dat: {a} – {b}', fmtDayRange(a.firstDay, a.lastDay))}</Muted> : null}
           <Muted>{t('Pominięte jako duplikaty: {n}', { n: a.duplicates })}</Muted>
           {a.badRows ? <Muted>{t('Pominięte wiersze (błędne dane): {n}', { n: a.badRows })}</Muted> : null}
           <Muted>{t('Ćwiczenia dopasowane do Twoich: {n}', { n: a.matched })}</Muted>

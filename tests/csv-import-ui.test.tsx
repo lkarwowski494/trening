@@ -130,3 +130,31 @@ describe('ekran importu CSV', () => {
     expect(screen.getByText('Workouts to add: 3')).toBeTruthy(); expect(screen.getByText('Skipped as duplicates: 0')).toBeTruthy(); expect(screen.getByText('Import preview')).toBeTruthy(); void pressAlert;
   });
 });
+
+/* 101-16 (1.0.1): zakres dat w podglądzie — obie daty w tym samym formacie. fmtDate pomija rok bieżący, więc „26 sie 2025 – 21 lip” gubiło rok końca;
+ * teraz, gdy którakolwiek z dat ma rok (nie bieżący), rok mają obie. Ta sama funkcja: okno „Inne miejsce” (zakres dni planu). */
+describe('zakres dat: spójny format obu dat (101-16)', () => {
+  const YEAR = /\b20\d\d\b/;
+  test.each([['pl' as const], ['en' as const]])('%s: przez granicę roku (2025 → bieżący 2026) obie daty mają rok', (lang) => {
+    jest.useFakeTimers({ now: NOW }); applyLang(lang);
+    const r = store.fmtDayRange('2025-08-26', '2026-07-21'); expect(r.a).toMatch(/2025/); expect(r.b).toMatch(/2026/);
+  });
+  test('w jednym roku nie bieżącym obie daty mają rok; w roku bieżącym żadna', () => {
+    jest.useFakeTimers({ now: NOW });
+    const p = store.fmtDayRange('2025-03-02', '2025-09-09'); expect([YEAR.test(p.a), YEAR.test(p.b)]).toEqual([true, true]);
+    const c = store.fmtDayRange('2026-03-02', '2026-03-09'); expect([YEAR.test(c.a), YEAR.test(c.b)]).toEqual([false, false]);
+    expect(c).toEqual({ a: store.fmtDayKey('2026-03-02'), b: store.fmtDayKey('2026-03-09') });
+  });
+  test('początek bez roku (bieżący), koniec w następnym roku: obie z rokiem', () => {
+    jest.useFakeTimers({ now: NOW }); const r = store.fmtDayRange('2026-12-30', '2027-01-02'); expect(r.a).toMatch(/2026/); expect(r.b).toMatch(/2027/);
+  });
+  test('nieprawidłowy klucz dnia: zwraca klucze bez wyjątku (jak fmtDayKey)', () => {
+    expect(store.fmtDayRange('x', 'y')).toEqual({ a: 'x', b: 'y' });
+  });
+  test('ekran importu: plik od 2025 do bieżącego roku — podgląd pokazuje rok przy obu datach', async () => {
+    await boot(); const csv = fx('import-formatA.csv').replace(/2026-03-02/g, '2025-08-26').replace(/2026-03-09/g, '2026-07-21');
+    await choose(csv);
+    expect(screen.getByText(t('Zakres dat: {a} – {b}', { a: store.fmtDayKey('2025-08-26', true), b: store.fmtDayKey('2026-07-21', true) }))).toBeTruthy();
+    expect(screen.getByText(/2025.*–.*2026/)).toBeTruthy();
+  });
+});

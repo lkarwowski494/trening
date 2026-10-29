@@ -132,6 +132,10 @@ describe('B — panel dnia w planie', () => {
     const del = screen.getByLabelText(/^Wyczyść miejsce: /); expect(del.props.accessibilityLabel).toMatch(/ – /); await tap(del); await flushAll(5);
     expect(S().planPlaces).toBeUndefined(); expect(screen.queryByTestId('day-place')).toBeNull(); expect(JSON.stringify(S().templates)).toBe(tpls); expect(JSON.stringify(S().weekPlan)).toBe(wk);
   });
+  test('okno „Inne miejsce” z zakresem przez granicę roku: obie daty mają rok (101-16, wspólna funkcja z podglądem importu)', async () => {
+    await boot({ url: '/place-once?from=2026-12-30&to=2027-01-02', fn: plan3 }); await flushAll(10);
+    expect(screen.getByText(/^Miejsce na dni .*2026 – .*2027\. Wybierz sprzęt/)).toBeTruthy();
+  });
   test('„Inne miejsce…” z panelu: okno dla wybranego zakresu; „Użyj” ustawia miejsce jednorazowe na dni od–do (bez zmiany treningu w toku)', async () => {
     await boot({ url: '/history', fn: plan3 }); await open(); await tap(screen.getByText('Więcej opcji')); await tap(screen.getByText('Miejsce na te dni')); await flushAll(5);
     await tap(screen.getByLabelText('Dzień później')); await tap(screen.getByText('Inne miejsce…')); await flushAll(20);
