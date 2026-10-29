@@ -15,3 +15,4 @@ Repo jest publiczne: bez danych osobowych (imię i nazwisko, e-mail, telefon, UD
 | Gemini: ma subskrypcję (zadania pasujące do Gemini zgłaszać z gotowym promptem) | CLAUDE.md, 11.10.2026 |
 | Na buildzie 1032 sprawdzał odliczanie przerwy na ekranie blokady w języku aplikacji (PR-17) | docs/18, 29.10.2026 |
 | Konto testowe ma plan dożywotni i subskrypcję roczną (piaskownica) — „zakup bez planu” nie da się sprawdzić na jego koncie | docs/18, 29.10.2026 |
+| Obserwacja właściciela: między ok. 15:00 a 24:00 czasu PL maszyn macOS w GitHub Actions zwykle brak (przebiegi czekają i są anulowane); długie przebiegi macOS planować rano | docs/18, 29.10.2026 |
