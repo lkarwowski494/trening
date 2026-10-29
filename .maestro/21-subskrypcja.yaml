@@ -45,6 +45,7 @@ name: Subskrypcja — ekran zakupu i limit
 - assertVisible: ".*You have access forever.*"
 - tapOn: "Your plan: lifetime.*"
 - extendedWaitUntil: { visible: ".*You have access forever.*", timeout: 30000 }
+- assertNotVisible: "Your subscription still renews.*"   # 101-28: ostrzeżenie o odnawianiu tylko przy aktywnej subskrypcji z odnawianiem; atrapa sklepu go nie ustawia (prawdziwy StoreKit: lista ręczna, R-101-28)
 - takeScreenshot: 99-zakup-aktywny
 - scrollUntilVisible: { element: "Test store: expire access", direction: DOWN, timeout: 60000 }
 - tapOn: "Test store: expire access"
