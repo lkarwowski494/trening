@@ -2,6 +2,7 @@
 # Paruje symulator zegarka z symulatorem iPhone'a przed zrzutami (watch-screenshots.sh; docs/35-zegarek-apple). Bez pary watchOS pokazuje obok godziny czerwoną
 # przekreśloną ikonę telefonu („brak połączenia z iPhone'em”) na każdym zrzucie do App Store (decyzja właściciela 29.10.2026, wariant B; przebieg 40868308710).
 # Wybór telefonu: iPhone z najnowszego iOS, z którym watchOS da się sparować (próbujemy od najnowszego). Log CI jest publiczny — wypisujemy tylko stan, bez nazw i identyfikatorów.
+# Wywoływany w watch-sim.yml zaraz po wyborze symulatora, przed instalacją aplikacji.
 # Użycie: bash scripts/ci/watch-pair.sh <UDID_zegarka>
 # Zmienne: DRY_RUN=1 — tylko wypisuje kolejność kandydatów (UDID-y telefonów), nic nie uruchamia (test w Jest podaje `simctl list` w SIMCTL_LIST_JSON).
 set -euo pipefail

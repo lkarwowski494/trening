@@ -21,8 +21,8 @@ bez_alfa() { "$IM" "$1" -alpha off -define png:color-type=2 "$1.tmp.png" && mv "
 # Bez stanu „paused” w zestawie do sklepu (A7, 27.10.2026): podpis „Trening wstrzymany” w pasku nad treścią nachodzi na nagłówek „Przerwa” (RootView.badges) — błąd kosmetyczny
 # aplikacji na zegarku, do naprawy w 1.0.1 (docs/21); zrzut pauzy wróci do zestawu po poprawce. Nazwy plików NN-<stan>.png: kolejność w sklepie = kolejność stanów.
 STATES="set-first rest-after-first last-rest done idle"
-# Para z symulatorem iPhone'a (29.10.2026): bez niej watchOS rysuje obok godziny czerwoną przekreśloną ikonę telefonu na każdym zrzucie (watch-pair.sh).
-[ -n "${WATCH_BEZ_PAROWANIA:-}" ] || bash "$(dirname "$0")/watch-pair.sh" "$UDID"
+# Zegarek musi być sparowany z symulatorem iPhone'a już przy instalacji aplikacji (watch-pair.sh w watch-sim.yml, przed XCUITest): parowanie po instalacji kasuje aplikację
+# (przebieg 40883907827: „Simulator device failed to launch”), a bez pary każdy zrzut ma czerwoną ikonę braku telefonu.
 mkdir -p "$OUT"
 for lang in ${LANGS//,/ }; do
   mkdir -p "$OUT/$lang"; i=0

@@ -52,9 +52,11 @@ describe('scripts/ci/watch-screenshots.sh', () => {
     expect(ui.match(/launchEnvironment\["WATCH_FAKE_UNDO_SEC"\]/g)).toHaveLength(1); /* jedno miejsce uruchamiania: wszystkie testy dostają okno */
     expect(ui).toMatch(/undoSec: Int = 120/);
   });
-  test('przed zrzutami zegarek jest sparowany z iPhone\'em (bez tego czerwona ikona braku telefonu na wszystkich zrzutach; 29.10.2026)', () => {
-    const iPair = sh.indexOf('watch-pair.sh'); expect(iPair).toBeGreaterThan(-1);
-    expect(iPair).toBeLessThan(sh.indexOf('for lang in')); /* para przed pierwszym zrzutem */
+  test('para z iPhone\'em powstaje PRZED instalacją aplikacji (XCUITest), nie przy zrzutach: parowanie po instalacji kasuje aplikację (przebieg 40883907827); 29.10.2026', () => {
+    const wf = fs.readFileSync(path.join(root, '.github/workflows/watch-sim.yml'), 'utf8');
+    const iPair = wf.indexOf('watch-pair.sh'); expect(iPair).toBeGreaterThan(-1);
+    expect(iPair).toBeGreaterThan(wf.indexOf('watch-simulator.sh')); expect(iPair).toBeLessThan(wf.indexOf('xcodebuild test'));
+    expect(sh).not.toContain('watch-pair.sh');
     const pair = fs.readFileSync(script('watch-pair.sh'), 'utf8');
     for (const c of ['simctl pair "$WATCH"', 'pair_activate', 'simctl boot "$PHONE"', 'simctl boot "$WATCH"']) expect(pair).toContain(c);
   });
@@ -87,7 +89,4 @@ describe('scripts/ci/watch-pair.sh', () => {
   const run = (devices: any) => execFileSync('bash', [script('watch-pair.sh'), 'W'], { env: { ...process.env, DRY_RUN: '1', SIMCTL_LIST_JSON: list(devices) }, encoding: 'utf8' }).trim().split('\n');
   test('kandydaci: tylko iPhone\'y, od najnowszego iOS (nie iPad, nie zegarek)', () => { expect(run(D)).toEqual(['P-264', 'P-262', 'P-185']); });
   test('brak iPhone\'a: błąd', () => { expect(() => run({ 'com.apple.CoreSimulator.SimRuntime.watchOS-26-4': D['com.apple.CoreSimulator.SimRuntime.watchOS-26-4'] })).toThrow(); });
-  test('workflow dalej uruchamia zrzuty tym samym skryptem (para jest w nim, nie w osobnym kroku)', () => {
-    expect(fs.readFileSync(path.join(root, '.github/workflows/watch-sim.yml'), 'utf8')).toContain('watch-screenshots.sh');
-  });
 });
