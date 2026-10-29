@@ -36,7 +36,7 @@ const data = { meta: rd('store/app-store-metadata.json'), names: rd('store/app-s
 if (sc.mutate) for (const [path, v] of sc.mutate) { const [, loc, field] = path.split('/'); data.meta.lokalizacje[loc][field] = v; }
 const states = sc.versions ?? [];
 const store = { info: new Map((sc.infoLocs ?? []).map((l, i) => [l.locale, { id: 'il' + i, attributes: { ...l } }])), ver: new Map((sc.verLocs ?? []).map((l, i) => [l.locale, { id: 'vl' + i, attributes: { ...l } }])) };
-const calls = []; let n = 0;
+const calls = []; let n = 0; let verGets = 0;
 const resp = (status, body) => ({ ok: status < 400, status, json: async () => body });
 const fakeFetch = async (url, init = {}) => {
   const m = init.method || 'GET'; const p = new URL(url).pathname; calls.push(m + ' ' + p);
@@ -45,12 +45,17 @@ const fakeFetch = async (url, init = {}) => {
     if (p === '/v1/apps/777/appStoreVersions') return resp(200, { data: states.map((s, i) => ({ id: 'V' + i, attributes: { appStoreState: s } })) });
     if (p === '/v1/apps/777/appInfos') return resp(200, { data: [{ id: 'AI1', attributes: { appStoreState: sc.infoState ?? 'PREPARE_FOR_SUBMISSION' } }] });
     if (p === '/v1/appInfos/AI1/appInfoLocalizations') return resp(200, { data: [...store.info.values()] .map(r => ({ id: r.id, attributes: r.attributes })) });
-    if (/^\\/v1\\/appStoreVersions\\/V\\d\\/appStoreVersionLocalizations$/.test(p)) return resp(200, { data: [...store.ver.values()].map(r => ({ id: r.id, attributes: r.attributes })) });
+    if (/^\\/v1\\/appStoreVersions\\/V\\d\\/appStoreVersionLocalizations$/.test(p)) {
+      verGets++; const hide = verGets <= (sc.hideVerGets ?? 0) ? new Set(sc.hideVer ?? []) : new Set();
+      return resp(200, { data: [...store.ver.values()].filter(r => !hide.has(r.attributes.locale)).map(r => ({ id: r.id, attributes: r.attributes })) });
+    }
     return resp(404, { errors: [] });
   }
   const body = JSON.parse(init.body);
   if (sc.failOn && calls.filter(c => c.startsWith(m)).length === sc.failOn) return resp(409, { errors: [{ code: 'ENTITY_ERROR', title: 'bad', detail: 'SECRET-DETAIL' }] });
   const target = body.data.type === 'appInfoLocalizations' ? store.info : store.ver;
+  if (m === 'POST' && sc.autoVer && body.data.type === 'appStoreVersionLocalizations' && store.ver.has(body.data.attributes.locale)) return resp(409, { errors: [{ code: 'ENTITY_ERROR.ATTRIBUTE.INVALID.DUPLICATE', title: 'duplicate', detail: 'SECRET-DETAIL' }] });
+  if (m === 'POST' && sc.autoVer && body.data.type === 'appInfoLocalizations' && !store.ver.has(body.data.attributes.locale)) store.ver.set(body.data.attributes.locale, { id: 'auto' + (++n), attributes: { locale: body.data.attributes.locale } });
   if (m === 'POST') { target.set(body.data.attributes.locale, { id: 'new' + (++n), attributes: { ...body.data.attributes } }); return resp(201, { data: { id: 'new' + n } }); }
   if (m === 'PATCH') { for (const r of target.values()) if (r.id === body.data.id) Object.assign(r.attributes, body.data.attributes); return resp(200, { data: {} }); }
   return resp(405, {});
@@ -73,7 +78,7 @@ if (sc.mode === 'unit') {
 }
 process.stdout.write(JSON.stringify(out));
 `;
-type Sc = { mode?: string; zapis?: boolean; twice?: boolean; versions?: string[]; infoState?: string; infoLocs?: Record<string, string>[]; verLocs?: Record<string, string>[]; failOn?: number; mutate?: [string, string][] };
+type Sc = { mode?: string; zapis?: boolean; twice?: boolean; versions?: string[]; infoState?: string; infoLocs?: Record<string, string>[]; verLocs?: Record<string, string>[]; failOn?: number; autoVer?: boolean; hideVer?: string[]; hideVerGets?: number; mutate?: [string, string][] };
 const drive = (sc: Sc) => JSON.parse(execFileSync('node', ['--input-type=module', '-e', DRIVER, JSON.stringify(sc)], { encoding: 'utf8', maxBuffer: 50e6 })) as Record<string, any>;
 const mapped = LANGS.filter(l => EXPECTED_MAP[l]);
 const writes = (calls: string[]) => calls.filter(c => !c.startsWith('GET'));
@@ -158,6 +163,27 @@ describe('plan i zapis na atrapie API', () => {
     expect(r.store.ver['no']).toMatchObject({ keywords: meta.lokalizacje.no.keywords, promotionalText: meta.lokalizacje.no.promotionalText });
     expect(r.store.info.sl).toBeUndefined(); expect(r.store.ver.sl).toBeUndefined();
     expect(writes(r.calls2)).toEqual([]); /* idempotentne */
+  });
+  test('101-31: ASC samo tworzy lokalizację wersji przy nowej lokalizacji aplikacji — lista odświeżona, PATCH zamiast drugiego POST (bez 409)', () => {
+    const r = drive({ zapis: true, autoVer: true, versions: ['PREPARE_FOR_SUBMISSION'] });
+    expect(r.code1).toBe(0); expect(r.logs1).not.toContain('BŁĄD');
+    const w = writes(r.calls1) as string[];
+    expect(w.filter(c => c.startsWith('POST /v1/appStoreVersionLocalizations'))).toEqual([]);
+    expect(w.filter(c => c.startsWith('PATCH /v1/appStoreVersionLocalizations'))).toHaveLength(mapped.length);
+    expect(r.store.ver['de-DE']).toMatchObject({ description: meta.lokalizacje['de-DE'].description, keywords: meta.lokalizacje['de-DE'].keywords });
+    expect(r.store.ver.sl).toBeUndefined();
+  });
+  test('101-31: 409 DUPLICATE przy tworzeniu lokalizacji wersji (lista nieświeża) — pobranie istniejącej i PATCH; inny 409 nadal jest błędem', () => {
+    const r = drive({ zapis: true, autoVer: true, hideVer: ['de-DE'], hideVerGets: 2, versions: ['PREPARE_FOR_SUBMISSION'] });
+    expect(r.code1).toBe(0); expect(r.logs1).not.toContain('BŁĄD');
+    expect((writes(r.calls1) as string[]).filter(c => c.startsWith('POST /v1/appStoreVersionLocalizations'))).toHaveLength(1);
+    expect(r.store.ver['de-DE']).toMatchObject({ description: meta.lokalizacje['de-DE'].description });
+    const f = drive({ zapis: true, versions: ['PREPARE_FOR_SUBMISSION'], failOn: 2 });
+    expect(f.code1).toBe(1); expect(f.logs1).toContain('BŁĄD');
+  });
+  test('101-31: podgląd nie wysyła zapisów także w scenariuszu z autoVer', () => {
+    const r = drive({ zapis: false, autoVer: true, versions: ['PREPARE_FOR_SUBMISSION'] });
+    expect(r.code1).toBe(0); expect(writes(r.calls1)).toEqual([]);
   });
   test('zapis nie usuwa lokalizacji spoza repozytorium i nie zmienia ich', () => {
     const r = drive({ zapis: true, versions: ['PREPARE_FOR_SUBMISSION'], infoLocs: [{ locale: 'ar-SA', name: 'x', subtitle: 'y' }], verLocs: [{ locale: 'ar-SA', description: 'x' }] });

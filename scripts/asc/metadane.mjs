@@ -142,13 +142,23 @@ export async function run({ client, data, zapis = false, log = console.log, find
     const fields = part === 'version' && !d.isFirst && Object.values(wanted).some(w => w.version.whatsNew !== undefined) ? [...T.fields, 'whatsNew'] : T.fields;
     const label = part === 'info' ? 'Informacje o aplikacji (appInfoLocalizations)' : 'Wersja (appStoreVersionLocalizations)';
     if (!parent) { log(`### ${label}: brak edytowalnego obiektu — pominięto\n`); continue; }
+    /* 101-31: nowa lokalizacja aplikacji sama tworzy lokalizację wersji w ASC — lista pobrana na starcie jest już nieświeża */
+    if (zapis && part === 'version') d.verLocs = toMap(await c.list(`/v1/appStoreVersions/${d.version.id}/appStoreVersionLocalizations`));
     const { rows, extra } = planLocalizations({ wanted, part, fields, existing: part === 'info' ? d.infoLocs : d.verLocs });
     for (const r of rows) for (const f of fields) if (bad.has(`${r.lang}/${f}`)) r.fields[f] = 'błąd';
     if (zapis) for (const r of rows) {
       if (r.action !== 'utwórz' && r.action !== 'zaktualizuj') continue;
       try {
-        if (r.action === 'utwórz') await c.call('POST', T.path, { data: { type: T.type, attributes: { locale: r.locale, ...r.create }, relationships: T.rel(parent.id) } });
-        else await c.call('PATCH', `${T.path}/${r.id}`, { data: { type: T.type, id: r.id, attributes: r.patch } });
+        if (r.action === 'utwórz') {
+          try { await c.call('POST', T.path, { data: { type: T.type, attributes: { locale: r.locale, ...r.create }, relationships: T.rel(parent.id) } }); }
+          catch (e) {
+            if (e.status !== 409 || !String(e.message).includes('DUPLICATE')) throw e;
+            /* 101-31: odporność — lokalizacja już istnieje (np. wyścig z ASC): pobierz ją i zaktualizuj (PATCH) zamiast zgłaszać błąd */
+            const have = toMap(await c.list(`${part === 'info' ? '/v1/appInfos' : '/v1/appStoreVersions'}/${parent.id}/${T.type}`)).get(r.locale);
+            if (!have) throw e;
+            await c.call('PATCH', `${T.path}/${have.id}`, { data: { type: T.type, id: have.id, attributes: r.create } });
+          }
+        } else await c.call('PATCH', `${T.path}/${r.id}`, { data: { type: T.type, id: r.id, attributes: r.patch } });
         r.written = true;
       } catch (e) { r.error = e.message; code = 1; for (const f of fields) if (r.fields[f] !== undefined) r.fields[f] = 'błąd'; log(`BŁĄD ${r.locale}: ${e.message}`); }
     }
