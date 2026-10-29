@@ -22,9 +22,8 @@ echo "Pliki bazy po pierwszym starcie (nazwa, rozmiar):"
 for f in "$DB"*; do echo "  $(basename "$f") $(( $(wc -c < "$f") )) B"; done
 
 # uszkodzenie: główny plik i pliki dziennika zastąpione tekstem (nie-SQLite); kopie wzorcowe pozwalają porównać zawartość kopii ratunkowej bajt po bajcie
-printf 'NIE-SQLITE R-RES baza\n' > "$DB"
-printf 'NIE-SQLITE R-RES wal\n' > "$DB-wal"
-printf 'NIE-SQLITE R-RES shm\n' > "$DB-shm"
+# 8 KiB tekstu na plik (nie kilka bajtów): przebieg 40838191401 pokazał, że przy 22-bajtowym pliku głównym SQLite sam usuwa -wal i -shm podczas próby otwarcia — realna uszkodzona baza ma rozmiar
+for n in "" -wal -shm; do yes "NIE-SQLITE R-RES baza$n" | head -c 8192 > "$DB$n"; done
 rm -f "$DB-journal"
 mkdir -p "$OUT/oczekiwane"
 for n in trening.db trening.db-wal trening.db-shm; do cp "$DATA/Library/SQLite/$n" "$OUT/oczekiwane/$n"; done

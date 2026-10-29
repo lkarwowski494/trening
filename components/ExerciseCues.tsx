@@ -5,7 +5,7 @@ import { useTheme, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme
 import { t, lang } from '@/lib/i18n';
 import { cuesFor, cueText, generalCuesReviewed, type CueSection } from '@/lib/cues';
 import { catalogKey } from '@/lib/seed';
-import { shownFigureSpec } from '@/lib/figures/v2';
+import { shownFigureSpec, V2_WSTRZYMANE } from '@/lib/figures/v2';
 import { cueSelection, generalCueNote } from '@/lib/figures/v2/cueSets';
 import { hasTechnique } from '@/lib/figures/v2/ui';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
@@ -42,7 +42,7 @@ export function ExerciseCues({ exercise, initialOpen }: { exercise: Pick<Exercis
       </Pressable>
       {safety ? <SafetyNote kind={safety} inside /> /* widoczne także przy zwiniętej sekcji */ : null}
       {open ? <View style={{ paddingBottom: 12 }}>
-        {v2 ? <ExerciseFigureV2 exercise={exercise} /> : <ExerciseFigure exercise={exercise} />}
+        {v2 ? <ExerciseFigureV2 exercise={exercise} /> : key && Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, key) ? null /* wstrzymana v2: bez powrotu do v1 (v1 „zastąpiona”, bez recenzji — figury-recenzja.json; 29.10.2026) */ : <ExerciseFigure exercise={exercise} />}
         {note && sections.length ? <Text testID="exercise-cues-general-note" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('footnote'), ...FW.semibold, marginTop: 8 }}>{note}</Text> : null}
         {sections.map(s => <View key={s.id} style={{ marginTop: 8 }}>
           <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('footnote'), ...FW.semibold, marginBottom: 2 }}>{LABEL[s.id]()}</Text>
