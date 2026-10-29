@@ -9,7 +9,7 @@
 | Fala | Pakiety | Gałęzie | Stan | SHA po scaleniu | verify | tests.yml |
 |---|---|---|---|---|---|---|
 | 0 | 0 (101-00, 101-01) | r101/0 | w toku | — | — | — |
-| 1 | F, E, A | r101/F, r101/E, r101/A | czeka | — | — | — |
+| 1 | F, E, A | r101/F, r101/E, r101/A | F gotowy (fc043c69), E i A czekają na 0 | — | — | — |
 | 2 | B, C, D | r101/B, r101/C, r101/D | czeka | — | — | — |
 | 3 | krok koordynatora (01 wpisy, 25, 26) | wersja-1-0-1-r2 | czeka | — | — | — |
 | 4 | G1–G3 | — | czeka na sygnał „1.0 wysłane do recenzji Apple” | — | — | — |
@@ -21,6 +21,7 @@
 - 29.10 12:03 start sesji; przeczytane CLAUDE.md, PLAN, STAN, fakty właściciela (main); prompt roli złożony ręcznie z plików biblioteki (uruchomienie `assemble.mjs` zablokowane przez zabezpieczenie środowiska — treść ta sama: zasady wspólne, tryb fix, kontrakt, rdzeń, wzorce, szablony).
 - 29.10 12:10 merge-tree `main` 412e063 → r2: 13 plików z konfliktem (zgodnie z PLAN sekcja C, plus `lib/figures/v2/rigs/benchPress.ts`, `store/review-notes.md`).
 - 29.10 12:18 `npm ci` (kod 0). Pakiet 0 zlecony (programista, worktree `r101/0`).
+- 12:15 Pakiet F gotowy: fc043c69 na r101/F (plik źródeł + 4 wpisy docs/18; strażnik cytatów i check:decyzje zielone). Uwagi: 101-19 komentarz przy stałej → pakiet D; Chain Press jedno źródło szczebla 4 → ograniczenie dla B; 101-18 bez miejsca w kodzie (karta nie podaje sekund) — w fali 3 rozstrzygnąć pole wdrożenia.
 
 ## Czekające kroki właściciela
 - brak
