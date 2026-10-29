@@ -82,7 +82,8 @@ describe('store/app-store-metadata.json', () => {
     const v2spec = ((V2 as unknown as { shownFigureSpec?: typeof V2.figureSpec }).shownFigureSpec ?? V2.figureSpec);
     const keys = [...new Set(LIB.map((r) => r[0]))];
     const spec = (k: string) => v2spec(k);
-    const animated = keys.filter((k) => { const s = spec(k); if (s) return !s.static; const f = figureByKey(k); return !!f && f.frames.length > 1; });
+    /* 101-29 (29.10.2026): licznik = to, co widzi użytkownik (components/ExerciseCues.tsx): v2 shownFigureSpec; ćwiczenie wstrzymane (V2_WSTRZYMANE) — bez rysunku, bez powrotu do v1; reszta — v1 */
+    const animated = keys.filter((k) => { const s = spec(k); if (s) return !s.static; if (Object.prototype.hasOwnProperty.call(V2.V2_WSTRZYMANE, k)) return false; const f = figureByKey(k); return !!f && f.frames.length > 1; });
     /* kod lokalizacji sklepu → język aplikacji (słownik interfejsu) */
     const APP: Record<string, string> = { 'es-ES': 'es', 'es-MX': 'es-419', 'pt-PT': 'pt', 'de-DE': 'de', 'fr-FR': 'fr', 'nl-NL': 'nl', no: 'nb' };
     const ui = (l: string, pl: string): string => l === 'pl' ? pl : l.startsWith('en-') ? EN[pl] : (LOCALES as Record<string, Record<string, string>>)[APP[l] ?? l][pl];
@@ -90,6 +91,10 @@ describe('store/app-store-metadata.json', () => {
     test(`liczba z kodu: ponad ${CLAIM} ćwiczeń biblioteki ma animowany rysunek ruchu (tekst „ponad ${CLAIM}”)`, () => {
       expect(animated.length).toBeGreaterThan(CLAIM);
       expect(animated.length).toBeLessThan(keys.length); /* nie cała biblioteka — stąd brak obietnicy „przy każdym ćwiczeniu” */
+    });
+    test('101-29 (29.10.2026): licznik zgodny z aplikacją — żadne wstrzymane ćwiczenie (V2_WSTRZYMANE) nie jest liczone, bo karta nie pokazuje przy nim rysunku', () => {
+      for (const k of Object.keys(V2.V2_WSTRZYMANE)) expect([k, animated.includes(k)]).toEqual([k, false]);
+      for (const k of keys) { const shown = !!V2.shownFigureSpec(k); const hold = Object.prototype.hasOwnProperty.call(V2.V2_WSTRZYMANE, k); if (shown) expect([k, hold]).toEqual([k, false]); }
     });
     test('rodziny wymienione w opisie (przysiad, wyciskanie leżąc, martwy ciąg) są gotowe; rysunek v2 pokazuje mięśnie zawsze, a częsty błąd zwykle (≥ 80%)', () => {
       for (const f of ['squat', 'bench_press', 'hinge'] as const) expect([f, V2.FAMILY[f].status]).toEqual([f, 'ready']);
