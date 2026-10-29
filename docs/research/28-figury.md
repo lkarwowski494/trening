@@ -335,7 +335,7 @@ Widok: z boku; kotwica: przód stopy; rzut ręki (kąty ręki = rzut); przyrząd
 - **w trakcie** — t 90, hip 15, knee 25, sh 29, el 148, ap 0.75, fp 0.75, ft 0
   - odcinek biodro–bark: 90° do poziomu (±5°) ← `pp.dip`: „Ugięcie krótkie, tułów napięty.”
   - zgięcie kolana: 20° (±15°) ← `pp.move`: „Krótko ugnij kolana, a potem dynamicznie wyprostuj nogi i biodra, wypychając sztangę nad głowę do wyprostu rąk.”
-- **w trakcie (druga)** — t 90, hip -2, knee 0, ft 0, sh 99.4, el 115.8, ap 0.8, fp 0.8
+- **w trakcie (druga)** — t 90, hip -2, knee 0, ft 0, sh 99.4, el 113.8, ap 0.8, fp 0.8
   - zgięcie kolana: 0° (±4°) ← `pp.legs`: „Siła wybicia idzie z nóg i bioder — ręce kończą ruch.”
   - dłoń wyżej niż poziom 93 ← `pp.legs`: „Siła wybicia idzie z nóg i bioder — ręce kończą ruch.”
 - **pozycja końcowa** — t 95, hip -5, knee 0, sh 171, el 0

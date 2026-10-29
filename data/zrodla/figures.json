@@ -271,7 +271,7 @@
       "frames": [
         {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 29, "el": 148, "ap": 0.75, "fp": 0.75}, "why": [{"q": "touch", "a": "hand", "b": "shoulder", "tol": 5, "c": "pp.setup", "tb": [-1, 7]}]},
         {"n": "mid", "p": {"t": 90, "hip": 15, "knee": 25, "sh": 29, "el": 148, "ap": 0.75, "fp": 0.75, "ft": 0}, "why": [{"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 5, "c": "pp.dip"}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "pp.move"}]},
-        {"n": "mid2", "p": {"t": 90, "hip": -2, "knee": 0, "ft": 0, "sh": 99.4, "el": 115.8, "ap": 0.8, "fp": 0.8}, "why": [{"q": "joint", "j": "knee", "eq": 0, "tol": 4, "c": "pp.legs"}, {"q": "above", "a": "hand", "c": "pp.legs", "y": 93}]},
+        {"n": "mid2", "p": {"t": 90, "hip": -2, "knee": 0, "ft": 0, "sh": 99.4, "el": 113.8, "ap": 0.8, "fp": 0.8}, "why": [{"q": "joint", "j": "knee", "eq": 0, "tol": 4, "c": "pp.legs"}, {"q": "above", "a": "hand", "c": "pp.legs", "y": 93}]},
         {"n": "end", "p": {"t": 95, "hip": -5, "knee": 0, "sh": 171, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "pp.move"}, {"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "pp.legs"}]}
       ]
     },
