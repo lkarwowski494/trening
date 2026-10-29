@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, F, FW } from '@/lib/theme';
 import { bandHex, type EquipVis } from '@/lib/equipvis';
 import { bandA11y } from '@/lib/store';

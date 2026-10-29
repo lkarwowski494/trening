@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { Animated, Modal, PanResponder, Pressable, Text, View } from 'react-native';
+import { Animated, Modal, PanResponder, Pressable, View } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useRouter } from 'expo-router';
 import { Btn, Item, Muted, useOnce } from '@/components/ui';
 import { useTheme, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, font, RADIUS, SIZE, SPACE } from '@/lib/theme';

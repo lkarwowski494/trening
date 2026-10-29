@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Pressable, useWindowDimensions } from 'react-native';
+import { View, Pressable, useWindowDimensions } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useRouter } from 'expo-router';
 import { Muted, Txt, upperText, useOnce } from '@/components/ui';
 import { IconRow } from '@/components/Icon';

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Pressable, Text } from 'react-native';
+import { View, Pressable } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useRouter } from 'expo-router';
 import { Btn, H2, Muted, Txt, TabHeader } from '@/components/ui';
 import { useTheme, FW, font, RADIUS } from '@/lib/theme';
