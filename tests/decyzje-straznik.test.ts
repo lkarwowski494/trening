@@ -71,6 +71,20 @@ describe('scripts/decyzje.mjs — reguły pola wdrożenia (próbki)', () => {
     expect(bledy(dziennik('- 23.10.2026: x [wdrożenie: wdrożone]'))[0]).toMatch(/nieznane pole wdrożenia/);
     expect(bledy(dziennik('- 23.10.2026: x [wdrożenie: bez kodu — a b c] [wdrożenie: kod]'))[0]).toMatch(/2 pola/);
   });
+  test('[usuwa] (29.10.2026): decyzja usuwająca treść wymaga „kod” z [test: …] pilnującym braku; samo „kod” z [bez testu], „bez kodu” i brak testu — czerwone', () => {
+    const BLAD = /^\[usuwa\] wymaga \[wdrożenie: kod\] z \[test: …\]/;
+    expect(bledy(dziennik(`- 27.10.2026: usunięto zdanie karty [usuwa] [wdrożenie: kod] [test: ${T}]`))).toEqual([]);
+    expect(bledy(dziennik('- 27.10.2026: usunięto zdanie karty [usuwa] [wdrożenie: kod] [bez testu: sprawdza tylko przebieg w CI]'))[0]).toMatch(BLAD);
+    expect(bledy(dziennik('- 27.10.2026: usunięto zdanie karty [usuwa] [wdrożenie: bez kodu — proces]'))[0]).toMatch(BLAD);
+    expect(bledy(dziennik('- 27.10.2026: usunięto zdanie karty [usuwa] [wdrożenie: kod]')).some(e => BLAD.test(e))).toBe(true);
+    expect(bledy(dziennik('- 27.10.2026: usunięto zdanie karty [usuwa]'))).toEqual(['brak pola [wdrożenie: …]']);
+  });
+  test('[usuwa] niewdrożone: otwarte → ID i odłożone → wersja dozwolone (test dopiero przy wdrożeniu); zastąpione też; wpis bez [usuwa] nie podlega regule', () => {
+    expect(bledy(dziennik('- 27.10.2026: usunąć pasek [usuwa] [wdrożenie: otwarte → M1-audytor-generalny-024]'))).toEqual([]);
+    expect(bledy(dziennik('- 27.10.2026: usunąć pasek [usuwa] [wdrożenie: odłożone → 1.0.1]'))).toEqual([]);
+    expect(bledy(dziennik('- 23.10.2026: usunąć pasek [usuwa] [wdrożenie: zastąpione 27.10.2026]'))).toEqual([]);
+    expect(bledy(dziennik('- 27.10.2026: zmiana [wdrożenie: bez kodu — proces wydania]'))).toEqual([]);
+  });
   test('pole może stać w dowolnej linii wpisu wieloliniowego i w treści rozdziału', () => {
     expect(bledy(dziennik('- 27.10.2026: x', '  dalej [wdrożenie: bez kodu — proces wydania]', '## 27.10.2026 — rozdział', 'treść [wdrożenie: bez kodu — zapis stanu]'))).toEqual([]);
   });

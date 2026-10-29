@@ -9,6 +9,10 @@
 //   [wdrożenie: zastąpione DD.MM.RRRR] decyzja zastąpiona późniejszą (data nie wcześniejsza niż wpis)
 //   [wdrożenie: otwarte → ID]         niewdrożona; ID zadania albo znaleziska, które ją prowadzi (np. 03-zakres-002)
 //   [wdrożenie: odłożone → wersja]    świadomie przesunięta (np. 1.0.1), z miejscem w backlogu
+// Znacznik [usuwa] (właściciel, 29.10.2026; lekcja w docs/40 o zdaniu karty usuniętym decyzją 1a i przywróconym zleceniem): decyzja, która usuwa treść
+//   z aplikacji (zdanie karty, tekst, funkcję, rysunek), ma [usuwa] oraz [wdrożenie: kod] z [test: …] pilnującym BRAKU (z datą decyzji). Odrzucone:
+//   [usuwa] z „bez kodu”, „kod” z samym [bez testu: …] albo bez pola. Wolno: [wdrożenie: otwarte → ID] / [odłożone → wersja] (test dopiero przy wdrożeniu)
+//   i [zastąpione DD.MM.RRRR].
 // Test: plik istnieje i zawiera datę decyzji (DD.MM.RRRR albo DD.MM) albo podany fragment (np. nazwę testu). Od 28.10.2026 fragment nie
 // zastępuje daty: nowy wskazany test musi zawierać datę decyzji (07-jakosc-005: test wskazuje decyzję, którą pilnuje).
 // Użycie: node scripts/decyzje.mjs --check [plik…]   (domyślnie docs/18-przekazanie.md; kod 1 przy błędach)
@@ -61,6 +65,7 @@ export function wpisy(tekst) {
 const POLE = /\[wdrożenie: ([^\]]*)\]/g;
 const TEST = /\[test: ([^\]]+)\]/g;
 const BEZ_TESTU = /\[bez testu: ([^\]]*)\]/g;
+const USUWA = /\[usuwa\]/;
 
 /** Wymagane formy daty w pliku testu: DD.MM.RRRR, D.MM.RRRR albo DD.MM (bez roku). */
 export function formyDaty(dataIso) {
@@ -98,6 +103,10 @@ export function sprawdzWpis(w, czytaj) {
   } else if (/^(otwarte|odłożone)\b/.test(pole)) {
     if (!/→\s*\S.{2,}/.test(pole)) b.push(`[wdrożenie: ${pole.split(' ')[0]} → ID/wersja]: brak wskazania, co ją prowadzi`);
   } else b.push(`nieznane pole wdrożenia „${pole}” (kod | bez kodu — powód | zastąpione DD.MM.RRRR | otwarte → ID | odłożone → wersja)`);
+  /* [usuwa] (29.10.2026): wdrożona decyzja usuwająca treść musi mieć test braku; niewdrożona (otwarte/odłożone) i zastąpiona — bez wymogu */
+  if (USUWA.test(w.tekst) && !/^(otwarte|odłożone|zastąpione)\b/.test(pole) && !(pole === 'kod' && testy.length)) {
+    b.push('[usuwa] wymaga [wdrożenie: kod] z [test: …] pilnującym braku treści (albo otwarte/odłożone, gdy jeszcze niewdrożona)');
+  }
   return b;
 }
 
