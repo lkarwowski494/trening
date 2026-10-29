@@ -30,7 +30,7 @@ Sprawdzenia:
 - [ ] **T-15 Szybkie zamknięcie po starcie (R-005).** Usuń aplikację i zainstaluj build z TestFlight, otwórz ją, od razu wyjdź i zamknij ją z przełącznika aplikacji, otwórz ponownie (dwa razy pod rząd): bez ekranu „Coś poszło nie tak”, dane i ustawienia są.
 - [ ] **T-16 Ikona na zegarku (R-013).** Na Apple Watch po instalacji z TestFlight: ikona Treningu na siatce aplikacji (nie pusty krążek) i nazwa w aplikacji Watch na iPhonie.
 
-Po sprawdzeniu: zamknij R-005 (razem z pełnym katalogiem E2E na tym SHA) i R-013 w docs/40 (wynik z datą) albo zgłoś wadę. R-RES (kopia ratunkowa) nie ma kroku na telefonie — zamknięte 29.10.2026 przebiegiem na symulatorze (docs/40, run 40858680407). Otwarte ryzyko blokuje wydanie do App Store.
+Po sprawdzeniu: zamknij R-005 (razem z pełnym katalogiem E2E na tym SHA) i R-013 w docs/40 (wynik z datą) albo zgłoś wadę. R-RES (kopia ratunkowa) nie ma kroku na telefonie — zamknięte 29.10.2026 przebiegiem na symulatorze (docs/40, run 40862280973). Otwarte ryzyko blokuje wydanie do App Store.
 
 ## Metadane en-GB, en-AU, en-CA (przegląd 26.10.2026)
 
