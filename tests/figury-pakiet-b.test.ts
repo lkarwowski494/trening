@@ -67,11 +67,31 @@ describe('101-05 Band Bench Press: guma z uchwytami przełożona pod ławką, be
   });
 });
 
-describe('101-06 Chain Press: dwa uchwyty z łańcuchami, ławka płaska, ruch jak wyciskanie hantli, łokcie do ok. 90° (jedno źródło szczebla 4; docs/research/1-0-1-zrodla-2026-10-29.md pkt 3)', () => {
+describe('101-06 Chain Press: dwa uchwyty z łańcuchami, ławka płaska, ruch jak wyciskanie hantli, dłonie jak w hantlach i łokieć 90° (źródło: jedno źródło szczebla 4, docs/research/1-0-1-zrodla-2026-10-29.md pkt 3)', () => {
   const K = 'Chain Press'; const SZTANGA = 'Bench Press with Chains';
   const lez = (f: Frame, side: 1 | -1) => props(f, 'chain').find(c => c.from[1] === 0 && Math.sign(c.from[2]) === side)!;
   const zwis = (f: Frame, side: 1 | -1) => props(f, 'chain').find(c => c.from[1] > 0 && Math.sign(c.from[2]) === side)!;
-  test('dwie miary: zgięcie łokcia na dole 90° ± 3° (cecha) i uchwyty bez przenikania ciała, odstęp od ciała > 15 cm (styk)', () => {
+  /* J3 (29.10.2026, recenzja niezależna J2: WYSOKIE): oba warunki spełnione naraz — dłonie jak w hantlach (18 cm od barku ku stopom), a zgięcie łokcia 90° ± 3° w mierze silnika (180 − kąt bark–łokieć–uchwyt),
+   * źródło: „Continue until your elbow forms a 90 degree angle” (docs/research/1-0-1-zrodla-2026-10-29.md pkt 3). Przedramię pionowo pod dłonią, ramię poziomo: dłonie ok. 33 cm nad barkiem, łokieć na wysokości barku, rozstaw 48,5 cm od osi. */
+  const HANTLE = 'Bench Press (hantle)';
+  const dloniDol = (k: string, s: 'R' | 'L' = 'R') => { const f = fr(k, 1); return f.sk.arms[s].grip[0] - f.sk.shoulderC[0]; };
+  test('101-06 (29.10.2026, recenzja): Chain Press — dłonie na dole na wysokości klatki, jak w Bench Press (hantle): różnica w osi ku stopom ≤ 3 cm (było 10 cm); druga miara: styk', () => {
+    /* próg 3 cm: rozstaw uchwytów i hantli (40 vs 32 cm) nie zmienia osi ku stopom; 3 cm to około połowy grubości dłoni (BODY.hand) — różnicy poniżej nie widać na rysunku */
+    const m = dwieMiary(K, (k) => Math.abs(dloniDol(k) - dloniDol(HANTLE)));
+    expect(m.styk.maxPrzenikanie).toBe(0); /* wspólna miara (per uchwyt): brak przenikania w 21 kadrach */
+    expect(m.styk.minOdstep).toBeGreaterThan(15);
+    expect(m.cecha).toBeLessThanOrEqual(3);
+    for (const s of ['R', 'L'] as const) expect([s, Math.abs(dloniDol(K, s) - dloniDol(HANTLE, s)) <= 3]).toEqual([s, true]);
+    /* dłonie nad barkiem 24–39 cm (pion przedramienia przy łokciu 90°; hantle 13,5 cm nie spełniają łokcia 90°), łokieć na wysokości barku lub trochę niżej, rozstaw dłoni na dole 44–48,5 cm od osi */
+    const dol = fr(K, 1); const nad = dol.sk.arms.R.grip[1] - dol.sk.shoulderC[1];
+    expect([nad >= 24, nad <= 39]).toEqual([true, true]);
+    for (const s of ['R', 'L'] as const) { const e = dol.sk.arms[s].elbow[1] - dol.sk.shoulderC[1]; expect([s, e <= 1, e >= -10]).toEqual([s, true, true]); expect([s, Math.abs(dol.sk.arms[s].grip[2]) >= 44, Math.abs(dol.sk.arms[s].grip[2]) <= 48.6]).toEqual([s, true, true]); }
+    /* styk: uchwyty (w `info.load` odcinek 2 cm) nie przenikają tułowia ani nóg, odstęp > 15 cm; ławka: łokieć i dłoń nie wchodzą w siedzisko (checkFrame bez uwag) */
+    /* łańcuch zwisa obok ławki, nie przez nią: odstęp od krawędzi ławki ≥ 5 cm w 21 kadrach */
+    for (const u of U) for (const c of props(fr(K, u), 'chain')) expect([u, Math.min(Math.abs(c.from[2]), Math.abs(c.to[2])) - EQUIP.benchW / 2 >= 5]).toEqual([u, true]);
+    for (const u of U) expect([u, checkFrame(fr(K, u)).map(i => i.code)]).toEqual([u, []]);
+  });
+  test('dwie miary: zgięcie łokcia na dole 90° ± 3° (źródło) i uchwyty bez przenikania ciała, odstęp od ciała > 15 cm (styk)', () => {
     const m = dwieMiary(K, (k, kadry) => jointAngles(frameAt(spec(k), kadry[kadry.length - 1]).sk, 'R').elbow);
     expect(Math.abs(m.cecha - 90)).toBeLessThanOrEqual(3);
     expect(m.styk.maxPrzenikanie).toBe(0); expect(m.styk.minOdstep).toBeGreaterThan(15);
