@@ -545,17 +545,17 @@ Widok: z boku; kotwica: przód stopy (dalsza strona); przyrządy: db, db.
 
 Widok: z boku; kotwica: przód stopy; na wzór: Lunges (hantle); przyrządy: db, db.
 
-- **pozycja wyjściowa** — t 90.1, hip 73.1/3, knee 107.8/101.5, ft 0/-55.2, sh 0, el 0
+- **pozycja wyjściowa** — t 87.9, hip 73.1/6.3, knee 108.3/104.3, ft -0.7/-63.7, sh 0, el 0
   - kolano (dalsza strona) tuż nad poziomem 0 (do 8) ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
   - pięta tuż nad poziomem 0 (do 1) ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”
-- **w trakcie** — t 88.7, hip -6.5/66.1, knee 7.4/91, ft 0/-86.4, sh 0, el 0
+- **w trakcie** — t 83.4, hip -1.5/61, knee 2.7/93, ft 3.1/-90.3, sh 0, el 0
   - przód stopy (dalsza strona) wyżej niż poziom 0 ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **w trakcie (druga)** — t 88.7, hip 26.6/49.9, knee 87.1/46.5, ft -70.2/0, sh 0, el 0
+- **w trakcie (druga)** — t 94.9, hip 26.3/47.2, knee 93/44.1, ft -65.7/0.4, sh 0, el 0
   - pięta (dalsza strona) tuż nad poziomem 0 (do 1) ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **pozycja końcowa** — t 90.1, hip 3/73.1, knee 101.5/107.8, ft -55.2/0, sh 0, el 0
+- **pozycja końcowa** — t 87.9, hip 6.3/73.1, knee 104.3/108.3, ft -63.7/-0.7, sh 0, el 0
   - kolano tuż nad poziomem 0 (do 8) ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
   - pięta (dalsza strona) tuż nad poziomem 0 (do 1) ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”

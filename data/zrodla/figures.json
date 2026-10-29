@@ -414,10 +414,10 @@
       "like": "Lunges (hantle)",
       "note": "Jeden krok pętli to krok drugą nogą: z wykroku (przednia noga na podłodze) wstajesz na przedniej nodze, tylna noga przechodzi do przodu (pozycja „w trakcie 1”), staje przed Tobą (pozycja „w trakcie 2”) i opuszczasz się na drugą nogę (pozycja końcowa); pętla wraca tą samą drogą (uproszczenie: w kroku w tył). Długość kroku ilustracyjna.",
       "frames": [
-        {"n": "start", "p": {"t": 90.1, "hip": [73.1, 3], "knee": [107.8, 101.5], "ft": [0, -55.2], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "knee2", "y": 0, "tol": 8, "c": "lunge.walk"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "lunge.walk"}]},
-        {"n": "mid", "p": {"t": 88.7, "hip": [-6.5, 66.1], "knee": [7.4, 91], "ft": [0, -86.4], "sh": 0, "el": 0}, "why": [{"q": "above", "a": "toe2", "c": "lunge.walk", "y": 0}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}]},
-        {"n": "mid2", "p": {"t": 88.7, "hip": [26.6, 49.9], "knee": [87.1, 46.5], "ft": [-70.2, 0], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "heel2", "y": 0, "tol": 1, "c": "lunge.walk"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}]},
-        {"n": "end", "p": {"t": 90.1, "hip": [3, 73.1], "knee": [101.5, 107.8], "ft": [-55.2, 0], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "knee", "y": 0, "tol": 8, "c": "lunge.walk"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}, {"q": "low", "a": "heel2", "y": 0, "tol": 1, "c": "lunge.walk"}]}
+        {"n": "start", "p": {"t": 87.9, "hip": [73.1, 6.3], "knee": [108.3, 104.3], "ft": [-0.7, -63.7], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "knee2", "y": 0, "tol": 8, "c": "lunge.walk"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "lunge.walk"}]},
+        {"n": "mid", "p": {"t": 83.4, "hip": [-1.5, 61], "knee": [2.7, 93], "ft": [3.1, -90.3], "sh": 0, "el": 0}, "why": [{"q": "above", "a": "toe2", "c": "lunge.walk", "y": 0}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}]},
+        {"n": "mid2", "p": {"t": 94.9, "hip": [26.3, 47.2], "knee": [93, 44.1], "ft": [-65.7, 0.4], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "heel2", "y": 0, "tol": 1, "c": "lunge.walk"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}]},
+        {"n": "end", "p": {"t": 87.9, "hip": [6.3, 73.1], "knee": [104.3, 108.3], "ft": [-63.7, -0.7], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "knee", "y": 0, "tol": 8, "c": "lunge.walk"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}, {"q": "low", "a": "heel2", "y": 0, "tol": 1, "c": "lunge.walk"}]}
       ]
     },
     "Reverse Lunge": {
