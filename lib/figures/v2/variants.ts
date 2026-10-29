@@ -36,6 +36,9 @@ const TRAP_SX: [number, number] = [2, -2];
 const JM = { xb: -13, yb: 14, abd: 45 } as const;
 /** Skull Crusher na ławce ujemnej: ramię 3° ku głowie, sztanga 8 cm nad czubkiem głowy, przedramiona lekko zbieżne (uproszczenie ilustracyjne; ramię „pionowo albo lekko ku głowie” — badacz 28.10.2026, D3, D4). */
 const SKULL = { aHead: 3, clear: 8, inward: 0 } as const;
+/** Martwy ciąg z podłogi (101-02, L-056): kolana jako osobna krzywa — podudzie pochylone ku przodowi na starcie (σ 10°), prosto przy kolanach gryfu; barki przed gryfem do końca ruchu i dopiero na wyproście za nim (late 10);
+ * gryf wchodzi w uda za kolanem (jedna zmiana kierunku toru, ≤ HINGE.dev poniżej prostej). Uproszczenie ilustracyjne (kąty bez źródła; wskazówki karty: dl.close, dl.lift). */
+const DL_KOLANA: Partial<HingeParams> = { knees: { s: [10, 0], late: 10, back: 0.15 }, sx: [6, -9] };
 const SUMO: Partial<HingeParams> = { stance: 34, toeOut: 40, grip: 12, shin: HINGE.shin.sumo };
 
 /** Klucz katalogu → wariant. Tylko gotowe rodziny (squat, bench_press, hinge). */
@@ -98,35 +101,35 @@ export const VARIANTS: Record<string, Variant> = {
   'Reverse Grip Bench Press': BP('barbell', { grip: 30, touch: 31, vert: true }),
   'Decline Close-Grip Bench To Skull Crusher': BP('barbell', { angle: -15, grip: CLOSE.grip, touch: DECLINE.touch - 1, vert: true, skull: SKULL }),
   /* ---- zawias ---- */
-  'Deadlift (sztanga)': HG('floor', 'barbell'),
+  'Deadlift (sztanga)': HG('floor', 'barbell', DL_KOLANA),
   'Deadlift (hantle)': HG('floor', 'db', { grip: HINGE.dbFloorGrip }),
   'Sumo Deadlift': HG('floor', 'barbell', SUMO),
   'Trap Bar Deadlift': HG('floor', 'trapbar', { yStart: 20, sx: TRAP_SX }),
   'RDL (sztanga)': HG('rdl', 'barbell'),
   'RDL (hantle/linki)': HG('rdl', 'db'),
   'Good Morning': HG('goodMorning', 'barbell'),
-  'Rack Pull': HG('floor', 'barbell', { yStart: 45, rack: true }),
+  'Rack Pull': HG('floor', 'barbell', { ...DL_KOLANA, knees: { ...DL_KOLANA.knees!, s: [3, 0] }, yStart: 45, rack: true }),
   'Single Leg RDL (hantel)': HG('singleLeg', 'db', { grip: 13 }),
   'Single Leg RDL (linki)': HG('singleLeg', 'cable', { grip: 13 }),
   'Cable Pull Through': HG('pullThrough', 'cable', { grip: 6, pull: true, sx: [-2, HINGE.rdlSxEnd] }),
   'Single Arm RDL (hantel/linka)': HG('rdl', 'db', { oneArm: true, grip: 24 }),
   'Sumo Deadlift (kettlebell)': HG('floor', 'kb', { ...SUMO, yStart: 26, grip: 6 }),
-  'Axle Deadlift': HG('floor', 'barbell'),
-  'Deadlift with Bands': HG('floor', 'barbell', { band: true }),
-  'Deadlift with Chains': HG('floor', 'barbell', { chain: true }),
-  'Deficit Deadlift': HG('floor', 'barbell', { platform: 6 }),
-  'Rack Pull with Bands': HG('floor', 'barbell', { yStart: 45, band: true, rack: true }),
-  'Reverse Band Deadlift': HG('floor', 'barbell', { band: true, reverse: true }),
-  'Cable Deadlift': HG('floor', 'cable', { yStart: 20 }),
+  'Axle Deadlift': HG('floor', 'barbell', DL_KOLANA),
+  'Deadlift with Bands': HG('floor', 'barbell', { ...DL_KOLANA, band: true }),
+  'Deadlift with Chains': HG('floor', 'barbell', { ...DL_KOLANA, chain: true }),
+  'Deficit Deadlift': HG('floor', 'barbell', { ...DL_KOLANA, platform: 6 }),
+  'Rack Pull with Bands': HG('floor', 'barbell', { ...DL_KOLANA, knees: { ...DL_KOLANA.knees!, s: [3, 0] }, yStart: 45, band: true, rack: true }),
+  'Reverse Band Deadlift': HG('floor', 'barbell', { ...DL_KOLANA, band: true, reverse: true }),
+  'Cable Deadlift': HG('floor', 'cable', { ...DL_KOLANA, yStart: 20 }),
   'Leverage Deadlift': HG('floor', 'trapbar', { yStart: 24, sx: TRAP_SX }),
   'One-Arm Side Deadlift': HG('floor', 'barbell', { oneArm: true }),
   'Rickshaw Deadlift': HG('floor', 'trapbar', { yStart: 26, sx: TRAP_SX }),
   'Band Good Morning': HG('goodMorning', 'barbell', { band: true }),
-  'Clean Deadlift': HG('floor', 'barbell'),
+  'Clean Deadlift': HG('floor', 'barbell', DL_KOLANA),
   'Good Morning off Pins': HG('goodMorning', 'barbell', { rack: true }),
   'Reverse Band Sumo Deadlift': HG('floor', 'barbell', { ...SUMO, band: true, reverse: true }),
   'Smith Machine Stiff-Legged Deadlift': HG('rdl', 'smith', { yEnd: 48 }),
-  'Snatch Deadlift': HG('floor', 'barbell', { grip: 45 }),
+  'Snatch Deadlift': HG('floor', 'barbell', { ...DL_KOLANA, sx: [11, -9], grip: 45 }),
   'Stiff-Legged Barbell Deadlift': HG('rdl', 'barbell', { yEnd: 48 }),
   'Sumo Deadlift with Bands': HG('floor', 'barbell', { ...SUMO, band: true }),
   'Sumo Deadlift with Chains': HG('floor', 'barbell', { ...SUMO, chain: true }),

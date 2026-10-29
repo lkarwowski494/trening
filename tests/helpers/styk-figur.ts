@@ -9,14 +9,23 @@ import { figureSpec, frameAt, equipColliders, legRadius, distSegSeg, GIRTH, SIDE
 /** Kadry co 0,05: u = 0, 0,05, … 1 (21 kadrów). */
 export const KADRY_STYKU: readonly number[] = Array.from({ length: 21 }, (_, i) => +(i / 20).toFixed(2));
 
+/**
+ * Progi testu geometrii (nie liczby pokazywane użytkownikowi), 101-02:
+ * - odstęp: wskazówka karty dl.close „Prowadź sztangę blisko nóg” — gryf nie dalej od uda/goleni niż 3,5 cm powierzchnia–powierzchnia (średnica gryfu 3,2 cm: „blisko” = około jednej średnicy gryfu);
+ *   dokładniej nie da się przy torze z jedną zmianą kierunku i odchyleniu ≤ 4 cm od prostej (tests/figures-v2-tor.test.ts): udo cofa się nad kolanem, a tor nie może iść za nim dalej niż o ten margines;
+ * - przenikanie: dopuszczalne jak w checkFrame (TOL.pen = 0,3 cm).
+ */
+export const PROG_STYKU = { odstepCm: 3.5, przenikanieCm: 0.3 } as const;
+
 export type Styk = { u: number; odstep: number; przenikanie: number; czesc: string };
 type Kapsula = { a: V3; b: V3; r: number };
 
-/** Elementy ciężaru klatki: gryf, hantle, kettlebell (kolidery sprzętu) albo — bez nich (linka) — uchwyt w `info.load` jako punkt o promieniu 2 cm. */
+/** Elementy ciężaru klatki: gryf, hantle, kettlebell (kolidery sprzętu) albo — bez nich (linka) — uchwyt w `info.load`: odcinek wzdłuż z o połowie rozstawu dłoni i promieniu 2 cm. */
 export function elementyCiezaru(f: Frame): Kapsula[] {
   const eq = equipColliders(f.props).filter((c): c is Kapsula & { k: 'capsule'; id: string } => c.k === 'capsule' && /^(bar|db|kb)/.test(c.id));
   if (eq.length) return eq.map(c => ({ a: c.a, b: c.b, r: c.r }));
-  return f.info.load ? [{ a: f.info.load, b: f.info.load, r: 2 }] : [];
+  const c = f.info.load; const h = Math.min(Math.abs(f.sk.arms.R.grip[2]), Math.abs(f.sk.arms.L.grip[2])); /* uchwyt linki: odcinek w osi z o połowie rozstawu dłoni (jak items() w rigu hinge) */
+  return [{ a: [c[0], c[1], -h], b: [c[0], c[1], h], r: 2 }];
 }
 
 /** Styk jednej klatki: najmniejszy odstęp powierzchni ciężaru od nóg (promień jak na rysunku, 41 punktów na kość) i od tułowia/miednicy; ujemny odstęp = przenikanie. */
