@@ -62,12 +62,13 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
     const errs = {}; for (const e of ui.errorsOf(spec)) errs[e.error] = e.cue;
     return v2.exampleFor(key, errs);
   };
-  const r2 = o => typeof o === 'number' ? Math.round(o * 100) / 100 : Array.isArray(o) ? o.map(r2) : o && typeof o === 'object' ? Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined).map(([k, v]) => [k, r2(v)])) : o;
+  const r2 = o => typeof o === 'number' ? Math.round(o * 1000) / 1000 : Array.isArray(o) ? o.map(r2) : o && typeof o === 'object' ? Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined).map(([k, v]) => [k, r2(v)])) : o;
   const sample = at => Array.from({ length: FRAME_STEPS + 1 }, (_, i) => { const f = at(i / FRAME_STEPS); return r2({ pose: f.pose, props: f.props }); });
   /** Wpis figury (niezależny od języka). Rodzina ready z aktualną recenzją: próbki z rigu (także pozy błędów) albo z danych pozy; rodzina bez recenzji albo bez statusu ready: brak figury. */
   /* bramka 4 (CLAUDE.md 27.10.2026, decyzja 9a 28.10.2026): tylko rodziny ready z wpisem recenzji i aktualnym skrótem (scripts/strona/recenzja-figur.mjs) */
   const zRecenzja = rodzinyZRecenzja(v2.FAMILIES.filter(f => f.status === 'ready').map(f => f.id), recenzja);
   const figureEntry = key => {
+    if (Object.prototype.hasOwnProperty.call(v2.V2_WSTRZYMANE, key)) return null; /* rysunek wstrzymany w aplikacji (PR #84) — strona go nie eksportuje */
     const spec = v2.figureSpec(key); if (!zRecenzja.has(spec ? spec.family : v2.familyOf(key))) return null;
     const pose = poseFor(key, spec);
     if (spec) {
@@ -125,8 +126,11 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
       ...(l === 'pl' ? { families: Object.fromEntries(v2.FAMILIES.map(f => [f.id, f.label])) } : {}),
       phases: Object.fromEntries(['Opuszczanie', 'Wypychanie', 'Wstawanie', 'Podnoszenie', 'Prostowanie', 'Pauza'].map(p => [p, t(p)])),
     };
-    const figurePhases = key => { const spec = v2.figureSpec(key); return spec ? v2.phasesFor(spec, v2.tempoFor(spec)).map(p => ({ name: t(p.name), ms: p.ms })) : []; };
-    const figureErrors = key => { const spec = v2.figureSpec(key); return spec ? ui.errorsOf(spec).map(e => ({ id: e.error, text: cueTextIn(l, e.cue) ?? null })).filter(e => e.text) : []; };
+    /* figura v2 jak w aplikacji (shownFigureSpec): bez wstrzymanych (V2_WSTRZYMANE) i tylko z rodziny z recenzją ruchu (zRecenzja — w eksporcie z bieżącego zapisu albo pliku --recenzja) */
+    const shownSpec = key => { const spec = v2.figureSpec(key); return spec && !Object.prototype.hasOwnProperty.call(v2.V2_WSTRZYMANE, key) && zRecenzja.has(spec.family) ? spec : null; };
+    const figureShown = key => !!shownSpec(key);
+    const figurePhases = key => { const spec = shownSpec(key); return spec ? v2.phasesFor(spec, v2.tempoFor(spec)).map(p => ({ name: t(p.name), ms: p.ms })) : []; };
+    const figureErrors = key => { const spec = shownSpec(key); return spec ? ui.errorsOf(spec).map(e => ({ id: e.error, text: cueTextIn(l, e.cue) ?? null })).filter(e => e.text) : []; };
     let withoutText = 0;
     const exercises = keys.map(key => {
       const e = exOf[key], entry = cat.CATALOG[key];
@@ -134,8 +138,10 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
       let missing = 0; /* wskazówki tego ćwiczenia bez tekstu w tym języku (pomijane) — strona nie pokazuje sekcji i nie indeksuje ćwiczenia */
       const txt = id => { const s = cueTextIn(l, id); if (s === undefined) { withoutText++; missing++; return null; } return s; };
       let cueBlock;
-      if (sel.mode === 'own') { const o = cues.CUE_DATA.exercises[key]; cueBlock = { scope: 'own', ...Object.fromEntries(SECTIONS.filter(s => (o[s] ?? []).length).map(s => [s, o[s].map(r => txt(r.c)).filter(x => x !== null)])) }; }
-      else if (sel.mode === 'general') cueBlock = { scope: 'general', ok: sel.ok.map(txt).filter(x => x !== null), mistakes: sel.err.map(txt).filter(x => x !== null) };
+      /* eksport kart = to, co aplikacja (bramka 4, CLAUDE.md 27.10.2026; DEC-10 a): karta własna tylko z lib/cues/data.json (ukryta po recenzji treści — brak); zestaw ogólny tylko z aktualną recenzją treści (lista general) i przy figurze v2 pokazywanej w aplikacji (components/ExerciseCues.tsx) */
+      const ownCues = cues.CUE_DATA.exercises[key];
+      if (sel.mode === 'own' && ownCues) cueBlock = { scope: 'own', ...Object.fromEntries(SECTIONS.filter(s => (ownCues[s] ?? []).length).map(s => [s, ownCues[s].map(r => txt(r.c)).filter(x => x !== null)])) };
+      else if (sel.mode === 'general' && cues.generalCuesReviewed(key) && figureShown(key)) cueBlock = { scope: 'general', ok: sel.ok.map(txt).filter(x => x !== null), mistakes: sel.err.map(txt).filter(x => x !== null) };
       else cueBlock = { scope: 'none' };
       if (missing) cueBlock.missing = missing;
       const load = seed.muscleLoadOf(e);

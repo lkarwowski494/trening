@@ -5,6 +5,7 @@
  * logika (geometria, pętla, interpolacja, dziedziczenie „like”), ekran (oba motywy, Ogranicz ruch → statycznie, zmiana ustawienia,
  * pauza WCAG 2.2.2, etykieta VoiceOver), języki (etykiety w 26 językach), zrzut SVG kilku ćwiczeń, dokument (--check, verify).
  */
+jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: test sekcji Technika sprawdza układ z figurą v2 (tests/figure-gate-open.ts) */
 import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
@@ -36,14 +37,15 @@ function posesOf(f: Figure): { p: Pose; P: Points; tag: string }[] {
   return out;
 }
 
+const STALE_11: string[] = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, 'recenzja-wyjatki-1-1.json'), 'utf8')).v1;
 describe('dane figur', () => {
   test('każde ćwiczenie ze wskazówkami etapu 1 ma figurę albo powód na liście otwartej; figury tylko dla ćwiczeń ze wskazówkami', () => {
     for (const k of Object.keys(CUE_DATA.exercises)) expect([k, !!FIG_DATA.exercises[k] !== FIG_DATA.open.includes(k)]).toEqual([k, true]);
     for (const k of [...KEYS, ...FIG_DATA.open]) expect([k, !!CUE_DATA.exercises[k] || CUE_DATA.hidden.includes(k)]).toEqual([k, true]); /* hidden — karta ukryta po recenzji treści (M1-audytor-generalny-038, 28.10.2026), figura razem z nią */ /* powody braku figury — tests/zrodla-pelne-figury.test.ts */
-    expect(KEYS.length).toBeGreaterThanOrEqual(60);
+    expect(KEYS.length).toBeGreaterThanOrEqual(60 - 4); /* −4: wiosłowanie ×2, T-Bar Row, Skullcrusher (EZ) — skrót recenzji 1.0 nie pasuje do rysunku 1.1, figury ukryte do recenzji 1.1 (tests/recenzja-wyjatki-1-1.json, scalenie main 28.10.2026) */
   });
   test('najczęstsze wzorce mają figurę (przysiad, martwy ciąg, wyciskania, wiosłowanie, podciąganie, wykrok, hip thrust, uginania, prostowania)', () => {
-    for (const k of ['Back Squat', 'Deadlift (sztanga)', 'Bench Press (sztanga)', 'Overhead Press (sztanga)', 'Bent Over Row (sztanga)', 'Pull Up', 'Bulgarian Split Squat (hantle)', 'Hip Thrust (sztanga)', 'Barbell Curl', 'Triceps Pushdown']) expect([k, figureByKey(k) !== null]).toEqual([k, true]);
+    for (const k of ['Back Squat', 'Deadlift (sztanga)', 'Bench Press (sztanga)', 'Overhead Press (sztanga)', 'Bent Over Row (sztanga)', 'Pull Up', 'Bulgarian Split Squat (hantle)', 'Hip Thrust (sztanga)', 'Barbell Curl', 'Triceps Pushdown']) expect([k, figureByKey(k) !== null]).toEqual([k, !STALE_11.includes(k)]); /* wiosłowanie ze sztangą: figura ukryta do recenzji 1.1 (skrót 1.0 nie pasuje) */
   });
   test('każda poza ma 1–3 klatki w kolejności start → (mid) → end i co najmniej jedno odwołanie do zdania wskazówki TEGO ćwiczenia', () => {
     for (const k of KEYS) {

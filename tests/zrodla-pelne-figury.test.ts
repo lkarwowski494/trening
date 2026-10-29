@@ -12,6 +12,7 @@ import { FIG_FULL } from './zrodla-pelne';
 const root = path.join(__dirname, '..');
 const KEYS = Object.keys(FIG_FULL.exercises);
 
+const WYJ_11 = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, 'recenzja-wyjatki-1-1.json'), 'utf8')) as { v1: string[] };
 describe('pełne dane figur (data/zrodla/figures.json)', () => {
   test('powód braku rysunku ma ≥ 40 znaków; granice zakresu stawów mają źródło (≥ 20 znaków) i min < max', () => {
     for (const [k, why] of Object.entries(FIG_FULL.open)) expect([k, why.length > 40]).toEqual([k, true]);
@@ -28,11 +29,11 @@ describe('plik runtime lib/figures/data.json = funkcja pełnych danych, bez nazw
     const rec: { v1: Record<string, { werdykt: string }>; karty?: Record<string, { werdykt: string }> } = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/figury-recenzja.json'), 'utf8'));
     const hidden = KEYS.filter(k => !(k in FIG_DATA.exercises));
     /* figura ukryta po recenzji ruchu albo razem z kartą ukrytą po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
-    for (const k of hidden) expect([k, rec.v1[k]?.werdykt === 'ukryta' || rec.karty?.[k]?.werdykt === 'do poprawy']).toEqual([k, true]);
+    for (const k of hidden) expect([k, rec.v1[k]?.werdykt === 'ukryta' || rec.karty?.[k]?.werdykt === 'do poprawy' || WYJ_11.v1.includes(k) /* skrót recenzji 1.0 nie pasuje do rysunku 1.1 — tests/recenzja-wyjatki-1-1.json */]).toEqual([k, true]);
     expect(FIG_DATA.exercises).toEqual(Object.fromEntries(KEYS.filter(k => !hidden.includes(k)).map(k => [k, FIG_FULL.exercises[k]])));
     for (const v of ['side', 'front'] as const) expect(FIG_DATA.rom[v]).toEqual(Object.fromEntries(Object.entries(FIG_FULL.rom[v]).map(([j, r]) => [j, { min: r.min, max: r.max }])));
     expect(FIG_DATA.open).toEqual([...Object.keys(FIG_FULL.open), ...hidden]);
-    expect(Object.keys(FIG_DATA).sort()).toEqual(['exercises', 'open', 'rom']);
+    expect(Object.keys(FIG_DATA).sort()).toEqual(['exercises', 'open', 'replaced', 'rom', 'v2'] /* replaced, v2: bramka 4 dla figur v2 (scalenie main 28.10.2026) — listy kluczy, bez nazw źródeł */);
     expect(Object.keys(FIG_DATA.rom).sort()).toEqual(['front', 'side']);
   });
 });

@@ -104,11 +104,9 @@ export function buildFigures(full, rec = recenzja(), cues = JSON.parse(readFileS
   for (const v of Object.keys(full.rom)) if (v !== 'note') rom[v] = Object.fromEntries(Object.entries(full.rom[v]).map(([j, r]) => [j, { min: r.min, max: r.max }]));
   /* M1-audytor-generalny-038: figura v1 należy do karty — karta ukryta po recenzji treści (lista „hidden” w lib/cues/data.json) nie ma też figury. */
   const card = cardReviewed({ rec, pl, fig: full });
-  /* bramka 4 dla figur v2 (fail-closed): „zastapiona” = ćwiczenie ma rysować figura v2 — gdy jej rodzina nie ma aktualnej recenzji ruchu (zmieniony rig, brak wpisu), nie wracamy po cichu do figury v1, której nikt nie zatwierdził do wyświetlania samodzielnie */
-  const rodzinyOk = new Set(rodzinyZAktualnaRecenzja(rec));
-  const ok = k => { const e = rec.v1?.[k]; return !!e && SHOWN.includes(e.werdykt) && (e.werdykt !== 'zastapiona' || rodzinyOk.has(e.rodzina)) && e.sha === figuraSkrot(full, cues, pl, k) && card(cues, k); };
+  const ok = k => { const e = rec.v1?.[k]; return !!e && SHOWN.includes(e.werdykt) && e.sha === figuraSkrot(full, cues, pl, k) && card(cues, k); };
   const exercises = Object.fromEntries(Object.entries(full.exercises).filter(([k]) => ok(k)));
-  return { rom, exercises, open: [...Object.keys(full.open), ...Object.keys(full.exercises).filter(k => !ok(k))], v2: rodzinyZAktualnaRecenzja(rec) };
+  return { rom, exercises, open: [...Object.keys(full.open), ...Object.keys(full.exercises).filter(k => !ok(k))], v2: rodzinyZAktualnaRecenzja(rec), replaced: Object.keys(exercises).filter(k => rec.v1[k].werdykt === 'zastapiona') /* figura v1 zastąpiona przez v2: nie wraca na ekran, gdy rodzina v2 jest ukryta (ExerciseCues, figureWithheld) */ };
 }
 /** Styki wymagane w pozie poprawnej (reguły sensu, bez źródeł): { rodzina: { wymagane, pomijane_gdy? } }. */
 export function buildStyki(full) {

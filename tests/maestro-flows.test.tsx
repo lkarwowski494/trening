@@ -25,12 +25,23 @@ import { readdirSync } from 'fs';
 import { join } from 'path';
 import { Runner, DIR, load } from './maestro-runner';
 
+/* Bramka 4 (scalenie main 28.10.2026): rysunek v2 pokazuje tylko rodzina z aktualną recenzją ruchu (lib/figures/data.json, pole v2) — do recenzji 1.1 rodziny squat i pull_up są ukryte.
+ * Scenariusz 57 sprawdza WYŁĄCZNIE rysowanie figury (fazy, mięśnie z legendą, częsty błąd), więc w tym interpreterze bramka jest dla niego otwarta; na symulatorze 57 (pełny katalog, noc)
+ * zaczerwieni się, dopóki rodziny nie przejdą recenzji — tests/recenzja-wyjatki-1-1.json. Scenariusz 17 ma kroki rysunku warunkowe i biegnie przy zamkniętej bramce. */
+const FIGURE_GATE_OPEN = ['57-'];
+jest.mock('@/lib/figures/data.json', () => {
+  const actual = jest.requireActual('@/lib/figures/data.json'); const o = { ...actual };
+  Object.defineProperty(o, 'v2', { get: () => { if (!(global as any).__figGateOpen) return actual.v2; const all: string[] = []; all.includes = () => true; return all; } });
+  return o;
+});
+
 jest.setTimeout(240000);
 /* 33 i 34 (docs/31, persona C) to PARA: 34 startuje na danych zostawionych przez 33 (aktualizacja aplikacji) — test pary niżej */
 const flows = readdirSync(DIR).filter(f => /^\d\d-.*\.yaml$/.test(f) && !f.startsWith('34-')).sort();
 describe('scenariusze Maestro na drzewie dostępności (EN, en-US)', () => {
-  afterAll(() => { delete (global as any).__notifPerm; delete (global as any).__sysPrompt; });
+  afterAll(() => { delete (global as any).__figGateOpen; delete (global as any).__notifPerm; delete (global as any).__sysPrompt; });
   test.each(flows)('%s', async f => {
+    (global as any).__figGateOpen = FIGURE_GATE_OPEN.some(p => f.startsWith(p));
     /* 21 (0.17.0): build E2E ze sztucznym sklepem — zmienna ustawiona tylko dla tego scenariusza, adapter i uprawnienia zapomniane przed i po */
     const fake = true; const fakeWatch = true; /* E2E 38563966851: build E2E ma sztuczny sklep i udawany zegarek (panel „Test watch” pod treningiem wydłuża ekran) we WSZYSTKICH scenariuszach — wcześniej Jest włączał je tylko dla 21, 35 i 50 i nie widział przewinięć 07 i 27 */ const { resetStoreAdapterForTests } = require('@/lib/store-adapter'); const { resetEntitlementsForTests } = require('@/lib/entitlement');
     if (fake) process.env.EXPO_PUBLIC_STORE_FAKE = '1'; if (fakeWatch) process.env.EXPO_PUBLIC_WATCH_FAKE = '1'; resetStoreAdapterForTests(); resetEntitlementsForTests();

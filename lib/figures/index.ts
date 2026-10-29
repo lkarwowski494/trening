@@ -11,7 +11,7 @@ import { resolveFigure, framePoints, shapes, bounds, loopAt, poseBetween, type F
  */
 
 export type RomRange = { min: number; max: number };
-type FigData = { rom: { side: Record<string, RomRange>; front: Record<string, RomRange> }; exercises: Record<string, FigDef>; open: string[]; /** rodziny figur v2 z aktualnym wpisem recenzji ruchu (bramka 4) — tylko te są rysowane */ v2: string[] };
+type FigData = { rom: { side: Record<string, RomRange>; front: Record<string, RomRange> }; exercises: Record<string, FigDef>; open: string[]; /** rodziny figur v2 z aktualnym wpisem recenzji ruchu (bramka 4) — tylko te są rysowane */ v2: string[]; /** figury v1 „zastąpione” rysunkiem v2 — nie są pokazywane, gdy rodzina v2 jest ukryta */ replaced: string[] };
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
 export const FIG_DATA: FigData = require('./data.json');
 

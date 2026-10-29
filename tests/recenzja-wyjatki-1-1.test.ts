@@ -55,8 +55,8 @@ describe('generator (scripts/zrodla-runtime.mjs): lista rodzin v2 i figury „za
     ${mutate}
     const out = buildFigures(full, rec);
     console.log(JSON.stringify({ v2: out.v2, deadlift: 'Deadlift (sztanga)' in out.exercises, fam: rodzinyZAktualnaRecenzja(rec) }));`], { encoding: 'utf8' }));
-  test('bieżący stan: brak rodzin z aktualnym wpisem — figury „zastąpione” (Deadlift (sztanga)) nie wracają jako v1', () => {
-    expect(run('')).toEqual({ v2: [], deadlift: false, fam: [] });
+  test('bieżący stan: brak rodzin z aktualnym wpisem; figura v1 „zastąpiona” (Deadlift (sztanga)) zostaje w pliku runtime (testy silnika v1), ale ekran jej nie pokazuje (ExerciseCues: figureWithheld)', () => {
+    expect(run('')).toEqual({ v2: [], deadlift: true, fam: [] });
   });
   test('wpis rodziny hinge z bieżącym skrótem: rodzina na liście, figura v1 „zastąpiona” zostaje w pliku runtime; zły skrót — rodzina znika', () => {
     expect(run("rec.v2.hinge = { ...rec.v2.hinge, werdykt: 'wyswietlana', sha: rodzinaSkrot('hinge') };")).toEqual({ v2: ['hinge'], deadlift: true, fam: ['hinge'] });

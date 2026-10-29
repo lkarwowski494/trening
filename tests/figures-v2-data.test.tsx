@@ -3,6 +3,7 @@
  * Rodzaje (docs/20): logika (figureSpec/frameAt/shapesAt z danych, błędy z bledy[], fazy, staw, izometria), macierz (każde ćwiczenie z danymi × geometria, błędy, oba motywy, oba języki),
  * ekran (licznik faz, „Kąt na rysunku”, legenda, błąd, pauza, Ogranicz ruch), dostępność (etykieta obrazu, przyciski), regresja (tekst błędu bez gołego id), wydajność (budżet kształtów i czasu klatki).
  */
+jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: ten test sprawdza rysowanie, nie recenzję rodziny (tests/figure-gate-open.ts) */
 import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';

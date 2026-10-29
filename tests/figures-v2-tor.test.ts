@@ -12,7 +12,7 @@ import * as path from 'path';
 const WYJATKI: Record<string, string> = JSON.parse(fs.readFileSync(path.join(__dirname, 'tor-wyjatki.json'), 'utf8'));
 const PROG = { odchylenie: 4, zawrocenia: 1 };
 const ready = new Set(FAMILIES.filter(f => f.status === 'ready').map(f => f.id));
-const CASES: [string, View][] = Object.entries(assignAll()).filter(([k, fam]) => ready.has(fam as never) && !figureSpec(k)!.static)
+const CASES: [string, View][] = Object.entries(assignAll()).filter(([k, fam]) => ready.has(fam as never) && !!figureSpec(k) /* rodzina z danych pozy (pull_up, 1.1): ćwiczenia bez wpisu w pliku póz nie mają figury */ && !figureSpec(k)!.static)
   .flatMap(([k, fam]) => FAMILIES.find(f => f.id === fam)!.views.map(v => [k, v] as [string, View]));
 
 /** Odchylenie łamanej od prostej między końcami (cm) i liczba zmian kierunku w poziomie (ruchy < 0,05 cm pomijane). */

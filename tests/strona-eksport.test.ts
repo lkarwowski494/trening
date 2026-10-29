@@ -12,7 +12,8 @@ import { LIB, LIB_DISPLAY_NAME, libExercise } from '@/lib/seed';
 import { CATALOG_REV, CATALOG } from '@/lib/catalog.generated';
 import { CUE_DATA, cueDict } from '@/lib/cues';
 import { cueSelection } from '@/lib/figures/v2/cueSets';
-import { figureSpec, phasesFor, tempoFor, frameAt } from '@/lib/figures/v2/figure';
+import { figureSpec as figureSpecAll, phasesFor, tempoFor, frameAt, V2_WSTRZYMANE } from '@/lib/figures/v2/figure';
+import { generalCuesReviewed } from '@/lib/cues';
 import { errorsOf, legendOf } from '@/lib/figures/v2/ui';
 import { isNiche, MUSCLES, REGION_MUSCLE } from '@/lib/seed';
 import { PARTS, silhouetteSprite, SILHOUETTE_VARS, exerciseMapSets, shadeLevel } from '@/lib/musclemap';
@@ -27,6 +28,8 @@ import { fresh } from './helpers';
 import { SOURCE_NAME_PATTERNS, GENERIC_REFERENCE_PATTERNS } from '@/lib/sources';
 
 const root = path.join(__dirname, '..');
+/** Figura, którą eksport może narysować: jak w aplikacji (shownFigureSpec) przy zapisie recenzji z tego testu (wszystkie rodziny ready z aktualnymi skrótami) — bez rysunków wstrzymanych (V2_WSTRZYMANE, PR #84). */
+const figureSpec = (k: string) => Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, k) ? null : figureSpecAll(k);
 const SCRIPT = path.join(root, 'scripts/strona/eksport.mjs');
 /** Zapis recenzji dla eksportu w tym teście: wszystkie rodziny ready z aktualnymi skrótami (bramka 4, decyzja 9a 28.10.2026; sam warunek: tests/strona-eksport-recenzja.test.ts). */
 let REC = '';
@@ -132,7 +135,9 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
   test('tryb wskazówek jak w aplikacji: 102 własne, reszta ogólne albo brak; teksty z lib/cues w języku pliku', () => {
     for (const l of ['pl', 'en', 'de', 'ja']) {
       const own = data[l].exercises.filter(e => e.cues.scope === 'own'); expect(own).toHaveLength(Object.keys(CUE_DATA.exercises).length);
-      for (const e of data[l].exercises) expect([e.id, e.cues.scope]).toEqual([e.id, cueSelection(e.id).mode]);
+      /* tryb jak w aplikacji (components/ExerciseCues.tsx): własne tylko z lib/cues/data.json (karta ukryta po recenzji treści — brak), ogólne tylko z aktualną recenzją treści (lista general) i przy rysowanej figurze v2 */
+      const appMode = (id: string) => { const m = cueSelection(id).mode; return m === 'own' ? (CUE_DATA.exercises[id] ? 'own' : 'none') : m === 'general' ? (generalCuesReviewed(id) && !!figureSpec(id) ? 'general' : 'none') : 'none'; };
+      for (const e of data[l].exercises) expect([e.id, e.cues.scope]).toEqual([e.id, appMode(e.id)]);
     }
     const sq = data.en.exercises.find(e => e.id === 'Back Squat')!; const first = CUE_DATA.exercises['Back Squat'].setup[0].c;
     expect(sq.cues.setup![0]).toBe(cueDict('en')[first]);
@@ -152,12 +157,12 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
         for (const p of e.figure!.phases) expect(p.name.length).toBeGreaterThan(0);
         for (const x of e.figure!.errors) expect(x.text.length).toBeGreaterThan(0);
       }
-      expect(n).toBe(98); /* 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych */
+      expect(n).toBe(96); /* 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych − 2 wstrzymane (JM Press, Decline Close-Grip Bench To Skull Crusher) */
     }
     expect(data.pl.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).toBe('Opuszczanie');
     expect(data.en.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).not.toBe('Opuszczanie');
   });
-  test('figury.json: wpis na slug ćwiczenia z figurą — 25 próbek klatek, kontrakt pozy, tempo i błędy jak w aplikacji; próbki = klatki rigu (zaokrąglone do 0,01 cm)', () => {
+  test('figury.json: wpis na slug ćwiczenia z figurą — 25 próbek klatek, kontrakt pozy, tempo i błędy jak w aplikacji; próbki = klatki rigu (zaokrąglone do 0,001 cm — zawias z prawie prostymi kolanami jest wrażliwy na zaokrąglenie)', () => {
     const fig = JSON.parse(fs.readFileSync(path.join(dir, 'figury.json'), 'utf8')) as { figures: Record<string, { frames: { pose: { pelvis: number[] }; props: unknown[] }[]; pose: { kontrakt: string }; tempo: unknown; errors: { id: string; cue: string; kind: string; frames?: unknown[]; tempo?: unknown }[]; views: string[]; family: string }> };
     const withFig = data.en.exercises.filter(e => figureSpec(e.id));
     const zDanych = data.en.exercises.filter(e => !figureSpec(e.id) && DANE_POZ.has(e.id));
@@ -169,7 +174,7 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
       expect(f.errors.map(x => [x.id, x.cue])).toEqual(errorsOf(spec).map(x => [x.error, x.cue]));
       for (const x of f.errors) expect(x.kind === 'pose' ? x.frames!.length : x.tempo).toBeTruthy();
     }
-    const sq = fig.figures['back-squat']; const rig = frameAt(figureSpec('Back Squat')!, 0.5);
+    const sq = fig.figures['back-squat']; const rig = frameAt(figureSpecAll('Back Squat')!, 0.5);
     sq.frames[12].pose.pelvis.forEach((v, i) => expect(Math.abs(v - (rig.pose!.pelvis as number[])[i])).toBeLessThan(0.006));
   });
   test('zamienniki: do SWAP_TOP (3), istniejące slugi, nie to samo ćwiczenie, ta sama metryka; ranking = lib/swapScore (te same wagi co aplikacja)', () => {

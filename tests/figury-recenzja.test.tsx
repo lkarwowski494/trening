@@ -45,7 +45,7 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
     for (const [k, e] of Object.entries(REC.v1)) if (SHOWN(e) && !WYJ.v1.includes(k)) expect([k, e.sha]).toEqual([k, NOW.v1[k]]);
   });
   test('plik runtime: figury = tylko wpisy wyświetlane/zastąpione z aktualnym skrótem; ukryte na liście otwartej (nie renderują się)', () => {
-    const ok = Object.keys(NOW.v1).filter(k => SHOWN(REC.v1[k]) && REC.v1[k].sha === NOW.v1[k] && (REC.v1[k].werdykt !== 'zastapiona' || FIG_DATA.v2.includes(REC.v1[k].rodzina)) /* „zastąpiona”: figura v2 jej rodziny musi mieć aktualną recenzję ruchu, inaczej wraca nie zatwierdzona figura v1 */ && !CUE_DATA.hidden.includes(k)); /* karta ukryta po recenzji treści — bez figury (M1-audytor-generalny-038, 28.10.2026) */
+    const ok = Object.keys(NOW.v1).filter(k => SHOWN(REC.v1[k]) && REC.v1[k].sha === NOW.v1[k] && !CUE_DATA.hidden.includes(k)); /* karta ukryta po recenzji treści — bez figury (M1-audytor-generalny-038, 28.10.2026) */
     expect(Object.keys(FIG_DATA.exercises).sort()).toEqual(ok.sort());
     for (const [k, e] of Object.entries(REC.v1)) if (e.werdykt === 'ukryta') { expect([k, FIG_DATA.open.includes(k), figureByKey(k)]).toEqual([k, true, null]); }
   });

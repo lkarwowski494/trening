@@ -4,6 +4,7 @@
  */
 import * as path from 'path';
 import { execFileSync } from 'child_process';
+import { readFileSync } from 'fs';
 
 jest.setTimeout(120000);
 const ROOT = path.join(__dirname, '..');
@@ -22,7 +23,13 @@ describe('pokrycie regułami sensu (bramka 3/5)', () => {
   test('87 gotowych figur (squat, bench_press, hinge) ma reguły sensu (runda 2): lista bez reguł jest pusta; naruszenia figur: zapadka naruszeń = 0 (stan 26.10.2026 po r4: 0 z 87; naprawa parametrami figur, nie luzowaniem progów)', () => {
     expect(p.gotowe_figury).toBe(87); expect(p.gotowe_bez_regul).toEqual([]);
     const n = JSON.parse(execFileSync(process.execPath, [path.join(ROOT, 'scripts/figures/sens-gotowe.mjs'), '--json'], { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 })) as { cwiczenie: string; naruszenia: { regula: string }[] }[];
-    expect(n).toHaveLength(87); const z = n.filter((x) => x.naruszenia.length);
+    expect(n).toHaveLength(87);
+    /* wyjątki linii 1.1 (scalenie main 28.10.2026): tests/sens-wyjatki-1-1.json — rodziny ukryte do recenzji; poza nimi zapadka = 0 */
+    const wyj = (JSON.parse(readFileSync(path.join(ROOT, 'tests/sens-wyjatki-1-1.json'), 'utf8')) as { wyjatki: Record<string, string[]> }).wyjatki;
+    const z = n.filter((x) => x.naruszenia.some((v) => !(wyj[x.cwiczenie] ?? []).includes(v.regula)));
     expect(z.map((x) => x.cwiczenie)).toEqual([]); /* zapadka: każde nowe naruszenie gotowej figury łamie test; naprawa parametrami figury, nie progiem */
+    /* wyjątek musi być prawdziwy: po naprawie rigu pozycję trzeba usunąć z pliku */
+    const stare = Object.entries(wyj).flatMap(([cw, reguly]) => reguly.filter((r) => !n.find((x) => x.cwiczenie === cw)?.naruszenia.some((v) => v.regula === r)).map((r) => `${cw}: ${r}`));
+    expect(stare).toEqual([]);
   });
 });

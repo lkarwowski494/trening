@@ -5,6 +5,7 @@
  * Zakres: 27 ćwiczeń plyo i 6 w sled_throw (oba Slamy, trzy rzuty, Wall Ball); rodziny NIE są podłączone (status planned) — testy ustawiają status tymczasowo, jak tests/figures-v2-chod-cykliczny.test.tsx.
  * Rodzaje (docs/20): logika (czas pętli), kontrakt (schemat, walidator), dane (33 ćwiczenia), silnik (figure.ts), ekran (licznik, pauza, Ogranicz ruch), języki (PL/EN), niezmienniki (wahadło i marsz bez zmian).
  */
+jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: ten test sprawdza rysowanie, nie recenzję rodziny (tests/figure-gate-open.ts) */
 import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, act, fireEvent } from '@testing-library/react-native';

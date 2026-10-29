@@ -1428,45 +1428,7 @@
      }
     }
    ],
-   "bledy": [
-    {
-     "cue": "lunge.mis.kneeIn",
-     "znacznik": "knees",
-     "dotyczy": [
-      "ankle",
-      "kneeLat"
-     ],
-     "klatki": [
-      {
-       "u": 0
-      },
-      {
-       "u": 0.4,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -16
-        }
-       }
-      },
-      {
-       "u": 0.75,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -30
-        }
-       }
-      },
-      {
-       "u": 1,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -40
-        }
-       }
-      }
-     ]
-    }
-   ]
+   "bledy": []
   },
   "Walking Lunges": {
    "kontrakt": "figury-v2/poza@2",
@@ -2124,45 +2086,7 @@
      }
     }
    ],
-   "bledy": [
-    {
-     "cue": "lunge.mis.kneeIn",
-     "znacznik": "knees",
-     "dotyczy": [
-      "ankle",
-      "kneeLat"
-     ],
-     "klatki": [
-      {
-       "u": 0
-      },
-      {
-       "u": 0.4,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -16
-        }
-       }
-      },
-      {
-       "u": 0.75,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -30
-        }
-       }
-      },
-      {
-       "u": 1,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -40
-        }
-       }
-      }
-     ]
-    }
-   ]
+   "bledy": []
   },
   "Lunges (hantle)": {
    "kontrakt": "figury-v2/poza@2",
@@ -2820,45 +2744,7 @@
      }
     }
    ],
-   "bledy": [
-    {
-     "cue": "lunge.mis.kneeIn",
-     "znacznik": "knees",
-     "dotyczy": [
-      "ankle",
-      "kneeLat"
-     ],
-     "klatki": [
-      {
-       "u": 0
-      },
-      {
-       "u": 0.4,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -16
-        }
-       }
-      },
-      {
-       "u": 0.75,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -30
-        }
-       }
-      },
-      {
-       "u": 1,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -40
-        }
-       }
-      }
-     ]
-    }
-   ]
+   "bledy": []
   },
   "Lunges (sztanga)": {
    "kontrakt": "figury-v2/poza@2",
@@ -7054,46 +6940,7 @@
      }
     }
    ],
-   "bledy": [
-    {
-     "cue": "sq.mis.kneesIn",
-     "znacznik": "knees",
-     "dotyczy": [
-      "hip",
-      "ankle",
-      "kneeLat"
-     ],
-     "klatki": [
-      {
-       "u": 0
-      },
-      {
-       "u": 0.4,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -16
-        }
-       }
-      },
-      {
-       "u": 0.7,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -28
-        }
-       }
-      },
-      {
-       "u": 1,
-       "nogi": {
-        "R": {
-         "odchylenieKolana": -40
-        }
-       }
-      }
-     ]
-    }
-   ]
+   "bledy": []
   },
   "Smith Machine Pistol Squat": {
    "kontrakt": "figury-v2/poza@2",

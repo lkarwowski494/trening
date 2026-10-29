@@ -1,0 +1,114 @@
+{
+ "_opis": "Wyjątki od zapadki naruszeń reguł sensu gotowych figur (tests/figury-sens-pokrycie.test.ts, tests/figury-sens-r4-r5.test.ts) w linii 1.1 po scaleniu main 28.10.2026: poprawione tory ciężaru z main (PR #81: martwy ciąg, wyciskanie leżąc, dzień dobry) przesunęły rigi poza progi reguł sensu 1.1 (ciezar_przy_nogach ≤ 15 cm, przedramie_pod_sztanga ≤ 10 cm, wyprost_na_gorze, dzien_dobry_glebokosc). Rodziny squat, bench_press i hinge są w aplikacji UKRYTE do recenzji ruchu 1.1 (tests/recenzja-wyjatki-1-1.json), więc użytkownik tych rysunków nie widzi. Wyjątek musi nadal być prawdziwy (test pilnuje); rozstrzygnięcie (kalibracja rigów albo progów) należy do badacza i recenzji 1.1.",
+ "powod": "scalenie main 28.10.2026: kalibracja torów PR #81 vs progi reguł sensu 1.1 — do kalibracji i recenzji 1.1",
+ "wyjatki": {
+  "Decline Bench Press": [
+   "przedramie_pod_sztanga"
+  ],
+  "Deadlift (sztanga)": [
+   "ciezar_przy_nogach"
+  ],
+  "Sumo Deadlift": [
+   "ciezar_przy_nogach"
+  ],
+  "Good Morning": [
+   "dzien_dobry_glebokosc",
+   "wyprost_na_gorze"
+  ],
+  "Decline Bench Press (hantle)": [
+   "przedramie_pod_sztanga"
+  ],
+  "Floor Press (hantle)": [
+   "przedramie_pod_sztanga"
+  ],
+  "Floor Press (sztanga)": [
+   "przedramie_pod_sztanga"
+  ],
+  "Rack Pull": [
+   "ciezar_przy_nogach"
+  ],
+  "Sumo Deadlift (kettlebell)": [
+   "ciezar_przy_nogach"
+  ],
+  "One-Arm Kettlebell Floor Press": [
+   "przedramie_pod_sztanga"
+  ],
+  "One Arm Dumbbell Bench Press": [
+   "przedramie_pod_sztanga"
+  ],
+  "Band Bench Press": [
+   "przedramie_pod_sztanga"
+  ],
+  "Chain Press": [
+   "przedramie_pod_sztanga"
+  ],
+  "Axle Deadlift": [
+   "ciezar_przy_nogach"
+  ],
+  "Deadlift with Bands": [
+   "ciezar_przy_nogach"
+  ],
+  "Deadlift with Chains": [
+   "ciezar_przy_nogach"
+  ],
+  "Deficit Deadlift": [
+   "ciezar_przy_nogach"
+  ],
+  "Rack Pull with Bands": [
+   "ciezar_przy_nogach"
+  ],
+  "Reverse Band Deadlift": [
+   "ciezar_przy_nogach"
+  ],
+  "Bench Press with Chains": [
+   "przedramie_pod_sztanga"
+  ],
+  "Floor Press with Chains": [
+   "przedramie_pod_sztanga"
+  ],
+  "Reverse Band Bench Press": [
+   "przedramie_pod_sztanga"
+  ],
+  "Board Press": [
+   "przedramie_pod_sztanga"
+  ],
+  "Pin Press": [
+   "przedramie_pod_sztanga"
+  ],
+  "Reverse Grip Bench Press": [
+   "przedramie_pod_sztanga"
+  ],
+  "Cable Deadlift": [
+   "ciezar_przy_nogach"
+  ],
+  "Band Good Morning": [
+   "dzien_dobry_glebokosc",
+   "wyprost_na_gorze"
+  ],
+  "Clean Deadlift": [
+   "ciezar_przy_nogach"
+  ],
+  "Good Morning off Pins": [
+   "dzien_dobry_glebokosc",
+   "wyprost_na_gorze"
+  ],
+  "Reverse Band Sumo Deadlift": [
+   "ciezar_przy_nogach"
+  ],
+  "Smith Machine Stiff-Legged Deadlift": [
+   "ciezar_przy_nogach"
+  ],
+  "Snatch Deadlift": [
+   "ciezar_przy_nogach"
+  ],
+  "Stiff-Legged Barbell Deadlift": [
+   "ciezar_przy_nogach"
+  ],
+  "Sumo Deadlift with Bands": [
+   "ciezar_przy_nogach"
+  ],
+  "Sumo Deadlift with Chains": [
+   "ciezar_przy_nogach"
+  ]
+ }
+}

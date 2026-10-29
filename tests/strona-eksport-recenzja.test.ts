@@ -8,7 +8,8 @@ import { execFileSync } from 'child_process';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import { figureSpec, familyOf } from '@/lib/figures/v2';
+import { figureSpec as figureSpecAll, familyOf } from '@/lib/figures/v2';
+import { V2_WSTRZYMANE } from '@/lib/figures/v2/figure';
 
 const root = path.join(__dirname, '..');
 const SCRIPT = path.join(root, 'scripts/strona/eksport.mjs');
@@ -31,6 +32,8 @@ const eksport = (name: string, recenzja?: object) => {
   node(SCRIPT, ...args);
   return { fig: JSON.parse(fs.readFileSync(path.join(out, 'figury.json'), 'utf8')) as Fig, atlas: JSON.parse(fs.readFileSync(path.join(out, 'atlas-en.json'), 'utf8')) as Atlas };
 };
+/** Figura jak w aplikacji: bez rysunków wstrzymanych (V2_WSTRZYMANE, PR #84) — eksport ich nie rysuje. */
+const figureSpec = (k: string) => Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, k) ? null : figureSpecAll(k);
 /** Ćwiczenia, które eksport mógłby narysować (rodzina ready ze specyfikacją albo poza z pliku danych), z rodziną. */
 const rysowalne = (atlas: Atlas) => atlas.exercises.filter(e => figureSpec(e.id) || POZY.has(e.id)).map(e => ({ slug: e.slug, id: e.id, family: figureSpec(e.id)?.family ?? familyOf(e.id) }));
 

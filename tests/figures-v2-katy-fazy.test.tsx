@@ -3,6 +3,7 @@
  * Rodziny mają status „planned” (nie zmieniamy go): w tym pliku czasowo „gotowe” i obsługiwane z plików poses/<rodzina>.json przez podmienione `poseDataFor`.
  * Rodzaje (docs/20): logika (wybór stawu z geometrii, próg ruchu, nazwy faz), silnik (rotacja barku), dane (63 ćwiczenia), ekran (linia kąta i licznik faz), dostępność, języki (PL/EN), niezmienniki.
  */
+jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: ten test sprawdza rysowanie, nie recenzję rodziny (tests/figure-gate-open.ts) */
 import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, act } from '@testing-library/react-native';

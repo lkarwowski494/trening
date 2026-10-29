@@ -3,6 +3,7 @@
  * reguła sensu (styki wymagane w pozie poprawnej rodziny), ekran (poświaty, znaczki, stuknięcie pokazuje tekst), dostępność (etykiety znaczków), wygląd (kontrast ról, oba motywy), wydajność (budżet).
  * Źródło „pięciu punktów styku” w wyciskaniu: NSCA Basics 2012 (data/zrodla/cues.json, wskazówka bp.contact).
  */
+jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: ten test sprawdza rysowanie, nie recenzję rodziny (tests/figure-gate-open.ts) */
 import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';

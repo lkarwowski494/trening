@@ -50,8 +50,7 @@ name: Figura ruchu v2 - fazy, mięśnie, częsty błąd
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter
 - tapOn: "Pull Up, .*"
-- extendedWaitUntil: { visible: "Technique", timeout: 30000 }
-- tapOn: "Technique"
+- extendedWaitUntil: { visible: "Technique", timeout: 30000 }   # sekcja rozwinięta od razu (27.10.2026, wariant B) — bez tapnięcia (po scaleniu main: stuknięcie zwinęłoby sekcję)
 - scrollUntilVisible: { element: "Movement drawing: .*", direction: DOWN, timeout: 30000, centerElement: true }
 - assertVisible: "Pulling up 1 s.*"
 - assertVisible: "Lowering 2 s"

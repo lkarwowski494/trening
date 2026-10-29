@@ -3,6 +3,7 @@
  * zmiana ustawienia, pauza WCAG 2.2.2), dostępność (jeden obraz z opisem, przycisk pauzy osobno), języki (PL/EN etykiety), niezmienniki treści (żadnych liczb ani kątów
  * na rysunku — kąty bez źródła nie są pokazywane), wygląd (kolory z tokenów motywu), rodziny bez figury → nic.
  */
+jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: ten test sprawdza rysowanie, nie recenzję rodziny (tests/figure-gate-open.ts) */
 import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';

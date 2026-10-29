@@ -5,6 +5,7 @@
  * Rodzaje (docs/20): logika (lustro klatki, czas pętli), kontrakt (pole w schemacie i walidatorze), dane (10 ćwiczeń: ciągłość na styku, reguła sensu na całej pętli), regresja (moonwalk wahadła
  * wykrywany tą samą regułą), ekran (licznik „Marsz”, linia kąta, pauza, „Ogranicz ruch”), języki (PL/EN), niezmienniki (pozostałe 423 ćwiczenia bez pola, odciski bez zmian).
  */
+jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: ten test sprawdza rysowanie, nie recenzję rodziny (tests/figure-gate-open.ts) */
 import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, act, fireEvent } from '@testing-library/react-native';

@@ -5,6 +5,7 @@
  * przechodzi (tests/maestro-flows.test.tsx). Poza zasięgiem interpretera (testy w tests/maestro-selectors.test.ts, „regresja E2E 91”):
  * 07 — tap przy górnej krawędzi trafił w systemowy baner iOS (Ustawienia → Siri), 11 — pole powtórzeń przy krawędzi klawiatury numerycznej.
  */
+jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: ten test sprawdza rysowanie, nie recenzję rodziny (tests/figure-gate-open.ts) */
 import { join } from 'path';
 import { Runner, DIR, load } from './maestro-runner';
 

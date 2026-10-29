@@ -5,6 +5,7 @@
  * rodziny „behind the neck”, zapadka naruszeń gotowych figur = 0, oraz ćwiczenia czekające na kontrakt.
  */
 import * as path from 'path';
+import { readFileSync } from 'fs';
 import { execFileSync } from 'child_process';
 
 jest.setTimeout(240000);
@@ -137,7 +138,9 @@ describe('poprawki badacza i wdrożenie (r4, r5)', () => {
   });
   test('zapadka naruszeń gotowych figur (87) po wdrożeniu r4: 0 — poprawki rigów (Incline DB, Pull Through, Stiff-Legged) i definicji (Single Leg RDL po nodze podporowej)', () => {
     const n = JSON.parse(execFileSync(process.execPath, [path.join(ROOT, 'scripts/figures/sens-gotowe.mjs'), '--json'], { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 })) as { cwiczenie: string; reguly: string[]; naruszenia: unknown[] }[];
-    expect(n).toHaveLength(87); expect(n.filter(x => x.naruszenia.length).map(x => x.cwiczenie)).toEqual([]);
+    expect(n).toHaveLength(87);
+    const wyj = (JSON.parse(readFileSync(path.join(ROOT, 'tests/sens-wyjatki-1-1.json'), 'utf8')) as { wyjatki: Record<string, string[]> }).wyjatki; /* wyjątki linii 1.1 (scalenie main 28.10.2026) — pilnuje ich tests/figury-sens-pokrycie.test.ts */
+    expect(n.filter(x => (x.naruszenia as { regula: string }[]).some(v => !(wyj[x.cwiczenie] ?? []).includes(v.regula))).map(x => x.cwiczenie)).toEqual([]);
     expect(n.find(x => x.cwiczenie === 'Single Leg RDL (hantel)')!.reguly).toEqual(expect.arrayContaining(['zawias_w_biodrach_jednonoz', 'kolana_lekko_ugiete_jednonoz', 'ciezar_przy_nogach_jednonoz']));
   });
 });

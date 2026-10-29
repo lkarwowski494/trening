@@ -42,18 +42,23 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - tapOn: "Back Squat, barbell.*"
 - extendedWaitUntil: { visible: "Technique", timeout: 30000 }
 # 27.10.2026 (wariant B, docs/18): karta ćwiczenia otwiera się z sekcją „Technika” ROZWINIĘTĄ — rysunek widać bez tapnięcia; przycisk zwija i rozwija
-- extendedWaitUntil: { visible: "Movement drawing: .*", timeout: 30000 }
-- tapOn: "Technique"
-- assertNotVisible: "Movement drawing: .*"
-- tapOn: "Technique"
-# TST2-05: figura ruchu nad tekstem sekcji — przycisk pauzy pod rysunkiem (ustawienie „Ogranicz ruch” na symulatorze wyłączone — animacja)
-- scrollUntilVisible: { element: "Pause animation", direction: DOWN, timeout: 30000, centerElement: true }
-- assertVisible: "Movement drawing: .*"
-- tapOn: "Pause animation"
-- extendedWaitUntil: { visible: "Resume animation", timeout: 15000 }
-- takeScreenshot: 82-figura-pauza
-- tapOn: "Resume animation"
-- extendedWaitUntil: { visible: "Pause animation", timeout: 15000 }
+# 29.10.2026 (scalenie main do linii 1.1, bramka 4): rysunek v2 pokazuje tylko rodzina z aktualnym wpisem recenzji ruchu (lib/figures/data.json, pole v2); do czasu
+# recenzji 1.1 rodzina squat jest ukryta, a karta ma same wskazówki tekstowe — kroki rysunku są warunkowe (wracają do twardych po recenzji; docs/18, tests/recenzja-wyjatki-1-1.json)
+- extendedWaitUntil: { visible: "Movement drawing: .*", timeout: 8000, optional: true }
+- runFlow:
+    when: { visible: "Movement drawing: .*" }
+    commands:
+      - tapOn: "Technique"
+      - assertNotVisible: "Movement drawing: .*"
+      - tapOn: "Technique"
+      # TST2-05: figura ruchu nad tekstem sekcji — przycisk pauzy pod rysunkiem (ustawienie „Ogranicz ruch” na symulatorze wyłączone — animacja)
+      - scrollUntilVisible: { element: "Pause animation", direction: DOWN, timeout: 30000, centerElement: true }
+      - assertVisible: "Movement drawing: .*"
+      - tapOn: "Pause animation"
+      - extendedWaitUntil: { visible: "Resume animation", timeout: 15000 }
+      - takeScreenshot: 82-figura-pauza
+      - tapOn: "Resume animation"
+      - extendedWaitUntil: { visible: "Pause animation", timeout: 15000 }
 # E2E 91: sekcja zaczyna się rysunkiem ruchu (wysoki) — „Setup” jest pod krawędzią ekranu
 - scrollUntilVisible: { element: "Setup", direction: DOWN, timeout: 30000 }
 - scrollUntilVisible: { element: "The app does not give medical advice.*", direction: DOWN, timeout: 30000 }
@@ -93,7 +98,8 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - tapOn: "Back Squat, barbell"
 - scrollUntilVisible: { element: "Technique: Back Squat", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Technique: Back Squat"
-- extendedWaitUntil: { visible: "Pause animation", timeout: 30000 }
+# 29.10.2026 (bramka 4): rysunek squat ukryty do recenzji 1.1 — przycisk pauzy tylko przy rysunku; rozwinięcie sekcji potwierdza „Setup” niżej
+- extendedWaitUntil: { visible: "Pause animation", timeout: 8000, optional: true }
 # sekcja rozwinięta bez tapnięcia „Technique” (centerElement — inny krok niż wyżej; tests/maestro-e2e91 podmienia ostatnie „Setup” bez niego)
 - scrollUntilVisible: { element: "Setup", direction: DOWN, timeout: 30000, centerElement: true }
 - takeScreenshot: 84-technika-z-treningu
