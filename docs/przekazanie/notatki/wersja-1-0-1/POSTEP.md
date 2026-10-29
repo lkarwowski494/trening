@@ -12,7 +12,7 @@
 | 1 | F, E, A (+E2) | r101/F, r101/E, r101/A, r101/E2 | scalona | — | — | — |
 | 2 | A2, B, C, D, I, K | r101/* | gotowe, recenzje zatwierdzone; scalenie w toku | — | — | — |
 | 3 | J0, J, J2/J3, M + krok koordynatora (25, docs) | r101/J0, r101/J, r101/J2, r101/M | scalona | f143ffd9 | zielone (11341; 1 OOM ponowiony zielony; znacznik) | zielony 40898719523 |
-| 4 | G1–G3 | — | czeka na sygnał „1.0 wysłane do recenzji Apple” (koordynator 1.0: najpewniej 30.10 rano) | — | — | — |
+| 4 | G1, G1b, G2, G3 (kod na Linuksie, decyzja właściciela 29.10 ~16:55) | r101/G1, r101/G2, r101/G3 | kod scalony; przebiegi dowodowe po sygnale „1.0 wysłane” | c435cef4 | zielone (znacznik) | po pushu |
 
 ## Do zdjęcia z `V2_WSTRZYMANE` (zbiorczo po fali)
 - JM Press, Decline Close-Grip Bench To Skull Crusher (pakiet 0, pomiar wg kart r2; zdjęcie w fali 3)
@@ -68,6 +68,14 @@
 - 29.10 ~16:00 J3 (Chain Press łokieć 90°, dłonie jak w hantlach) — recenzja niezależna przechodzi (8b3a51d3), scalone (7766f093); skróty przeliczone (zmiana formy).
 - 29.10 ~16:10 verify fali 3 (czysta maszyna): 9 porażek realnych — testy places-* po 101-17, figury-sprzet po B (uchwyty), rejestr ryzyk (data/dowód R-101-27/28) → pakiet M + poprawka koordynatora; ponowne verify zielone (f143ffd9, znacznik), tests.yml zielony.
 - 29.10 ~16:40 sygnał fali 4 przesunięty (koordynator 1.0, PR #97): najpewniej 30.10 rano. STAN-2026-10-29-fala3.md zapisany.
+
+- Fala 4 (kod na Linuksie, decyzja właściciela 29.10 ~16:55): G1 (tester-e2e, scenariusze 101-22), G2 (zegarek 101-20 + es-419), G3 (workflowy 101-23/24) zlecone; zakaz uruchamiania workflowów.
+- G3 gotowy (r101/G3: 87926dfc 101-24 jedno uruchomienie Maestro na ekran — plan 4 zamiast 9 wywołań na 3 ekrany; 37921d74 101-23 sim-restart-niedostepny.sh przed istniejącym jednym ponowieniem, limit ponowień bez wzrostu). Uwaga: testy pisane równolegle z kodem (bez czerwonego stanu wyjściowego). Brzmienie „Device became unreachable” niepotwierdzone (wzorzec szeroki) → RYZYKO do rejestru, zamknięcie: przebieg dowodowy. Przegląd ścieżki wrażliwej zlecony.
+- Przegląd G3: brak P0/P1. P2 do przebiegu dowodowego: (a) drugie „dialogi” zrzutu rusza zaraz po akcji — porównać zrzuty z poprzednimi (cmp/piksele), zwłaszcza trening w toku (późne pytanie o powiadomienia, przebieg 39181699626 pl/01); (b) po powtórce „driver not ready” drugi przebieg nie trafia do /tmp/maestro-1.log — restart może się nie włączyć (bramka nie osłabiona); (c) `simctl bootstatus -b` bez limitu czasu. G3 scalony.
+- G2 gotowy (r101/G2: 6b62fb1e 101-20 safeAreaInset zamiast overlay, zrzut paused przywrócony; 2bbc3213 es-419 „celular” w 6 tekstach, reguła słownika telefon_es419). Recenzja lokalizacji zlecona. Do przebiegu: kompilacja watchOS, zrzut 03-paused w pełnej rozdzielczości (fi, de, ja, el, ru), numery zrzutów przesunięte, 41 mm.
+- G2 scalony (33cafb9c; recenzja lokalizacji es-419 6/6 OK, pytanie „tu/el celular” w docs/16). G1 (scenariusze 21, 22) i G1b (testID pola wyszukiwania, karta Deadlift (sztanga) z rysunkiem v2 w scenariuszu 17; M1-034 3 → 1; interpreter: tap w kontener trafia pierwszy przycisk) scalone (c435cef4).
+- 29.10 ~18:00 pełne verify c435cef4 zielone (11068; 2 pliki SIGTERM zielone po ponowieniu; znacznik), push zwykłym `git push` z hakiem.
+- **Po sygnale „1.0 wysłane” (przebiegi dowodowe, kolejno):** (1) `ios-unsigned.yml` + `watch-sim.yml` — kompilacja watchOS (`safeAreaInset`), zrzut 03-paused w pełnej rozdzielczości (fi, de, ja, el, ru), 41 mm, numery zrzutów przesunięte; (2) `e2e-ios.yml` `tylko_scenariusze` 17, 21, 22, 23, 27, 57 + `aplikacja_z_przebiegu` — log restartu przy „unreachable” (jeśli wystąpi), karta Deadlift z rysunkiem; (3) `store-screenshots.yml` (np. pl,en, jeden rozmiar) — „Pomiar: N s na ekran”, porównanie zrzutów cmp/piksele z poprzednimi (trening w toku); (4) `asc-metadane.yml` podgląd, zapis za zgodą właściciela (101-31).
 
 ## Czekające kroki właściciela
 - brak decyzji (D3 → 17°, 101-27 → bez poprawki, 101-17 → B, Reverse Lunge → zatwierdzona wersja widoczna; 29.10.2026)
