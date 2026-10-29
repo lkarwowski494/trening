@@ -9,7 +9,7 @@
  */
 import * as fs from 'fs';
 import * as path from 'path';
-import { resolveFigure, framePoints, poseBetween, jointAngles, type FigDef, type Figure, type Points } from '../lib/figures/geom';
+import { resolveFigure, framePoints, poseBetween, jointAngles, type FigDef, type Figure, type Points, type Pose } from '../lib/figures/geom';
 import { FIG_DATA } from '../lib/figures';
 import { LIM, contacts, base, steppingFeet, podparcie, podparcieMiary, jednaPodpora, srodekCiezkosci, pompki, jestPompka, penetration, surface, transitions } from './helpers/figury-podparcie';
 
@@ -292,5 +292,44 @@ describe('Push Press (4 pozycje): nogi kończą wybicie, zanim ręce wyciskają;
     for (const s of transitions(f)[2]) { const c = a[0] + (b[0] - a[0]) * ((s.P.hand[1] - a[1]) / (b[1] - a[1])); dev = Math.max(dev, Math.abs(s.P.hand[0] - c)); }
     expect(dev).toBeLessThanOrEqual(3.5);
     expect(Math.max(...transitions(f).flat().map(s => s.P.hand[0]))).toBeLessThanOrEqual(K[0].hand[0] + 1.5);
+  });
+});
+
+/* ---------- Recenzja niezależna 1.0.1 (29.10.2026): zakres stawów, ślizg punktów w styku, twarz przy wyciskaniu — testy odtwarzające wady ---------- */
+const ROM_FULL = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/zrodla/figures.json'), 'utf8')).rom as Record<'side' | 'front', Record<string, { min: number; max: number }>>;
+/** Ślizg: punkt w styku z podłogą (≤ 1,5 j.) nie odjeżdża dalej niż `tol` j. od najbliższej pozycji kluczowej, w której ten punkt też leży na podłodze. */
+const slizg = (f: Figure, pts: string[], tol: number) => {
+  const K = keyPts(f); const bad: string[] = [];
+  for (const n of pts) for (const s of poses(f)) {
+    if (s.P[n][1] > LIM.contact) continue;
+    const d = Math.min(...K.filter(Q => Q[n][1] <= LIM.contact).map(Q => Math.abs(s.P[n][0] - Q[n][0])));
+    if (d > tol) bad.push(`${n} ${d.toFixed(1)}`);
+  }
+  return [...new Set(bad.map(b => b.split(' ')[0]))].map(n => `${n} max ${Math.max(...bad.filter(b => b.startsWith(n + ' ')).map(b => +b.split(' ')[1])).toFixed(1)}`);
+};
+describe('zakres stawów poprawionych figur (także ukrytych): kostka i inne stawy w granicach rom w każdej pozie i pozie pośredniej', () => {
+  test.each([...POPRAWIONE, 'Push Press'])('%s', k => {
+    const f = fig(k), R = ROM_FULL[f.view], bad: string[] = [];
+    const ps: Pose[] = []; for (let i = 0; i + 1 < f.frames.length; i++) for (let u = 0; u <= 20; u++) ps.push(poseBetween(f, i, i + 1, u / 20).p);
+    for (const p of ps) for (const [j, v] of Object.entries(jointAngles(p, f.view))) {
+      const r = R[j.replace(/2$/, '')]; if (!r || (f.armProj && f.view === 'side' && /^(sh|el)/.test(j))) continue;
+      if (v < r.min - 0.5 || v > r.max + 0.5) bad.push(`${j}=${v.toFixed(1)}`);
+    }
+    expect([k, [...new Set(bad)].slice(0, 3)]).toEqual([k, []]);
+  });
+});
+describe('ślizg punktów stopy w styku z podłogą ≤ 2 j. od pozycji kluczowej (recenzja niezależna 29.10.2026)', () => {
+  test('Walking Lunges: obie stopy (palce i pięty)', () => { expect(slizg(fig('Walking Lunges'), ['toe', 'toe2', 'heel', 'heel2'], 2)).toEqual([]); });
+  test('Reverse Lunge: palce i pięty obu stóp', () => { expect(slizg(fig('Reverse Lunge'), ['toe', 'toe2', 'heel', 'heel2'], 2)).toEqual([]); });
+  test('Reverse Lunge: po lądowaniu (mid2 → end) palce tylnej stopy nie dalej niż 2 j. od miejsca lądowania', () => {
+    const row = transitions(fig('Reverse Lunge'))[2]; const A = row[0].P;
+    for (const s of row) expect(Math.abs(s.P.toe2[0] - A.toe2[0])).toBeLessThanOrEqual(2);
+  });
+});
+describe('Push Press: gryf mija twarz (jak Overhead Press (sztanga)) — dłoń ≥ 7 j. od środka głowy, gdy jest poniżej jej czubka', () => {
+  test('wszystkie pozy', () => {
+    const f = fig('Push Press'); let md = Infinity;
+    for (const s of poses(f)) if (s.P.hand[1] < s.P.head[1] + 6.5) md = Math.min(md, Math.hypot(s.P.hand[0] - s.P.head[0], s.P.hand[1] - s.P.head[1]));
+    expect(md).toBeGreaterThanOrEqual(7);
   });
 });

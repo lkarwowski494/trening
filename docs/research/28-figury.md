@@ -271,17 +271,17 @@ Widok: z boku; kotwica: przód stopy; druga podpora: dłoń; przyrządy: brak.
 
 Widok: z boku; kotwica: przód stopy; druga podpora: dłoń; przyrządy: rect.
 
-- **pozycja wyjściowa** — t 44.4, hip 0, knee 0, ft -78.1, sh 35.5, el 1.6
+- **pozycja wyjściowa** — t 45.1, hip 0, knee 0, ft -95.3, sh 34.5, el 1.6
   - bark – biodro – kostka w jednej linii (±5°) ← `ipush.setup`: „Oprzyj dłonie o krawędź ławki lub stabilnego podwyższenia, trochę szerzej niż barki; stopy cofnięte, ciało proste.”
   - zgięcie łokcia: 0° (±4°) ← `ipush.move`: „Opuść klatkę do krawędzi podwyższenia, potem wypchnij się do wyprostu rąk.”
   - dłoń tuż nad poziomem 30 (do 3) ← `ipush.setup`: „Oprzyj dłonie o krawędź ławki lub stabilnego podwyższenia, trochę szerzej niż barki; stopy cofnięte, ciało proste.”
-- **w trakcie** — t 33, hip 0, knee 0, ft -53.5, sh -16.5, el 92.1
+- **w trakcie** — t 33, hip 0, knee 0, ft -58.1, sh -14.6, el 92.1
   - bark – biodro – kostka w jednej linii (±5°) ← `push.rigid`: „Tułów sztywny — biodra nie opadają i nie unoszą się.”
-- **pozycja końcowa** — t 25.2, hip 0, knee 0, ft -13, sh -48.5, el 136.3
+- **pozycja końcowa** — t 23.4, hip 0, knee 0, ft -40.5, sh -50.5, el 136.3
   - bark – biodro – kostka w jednej linii (±5°) ← `push.rigid`: „Tułów sztywny — biodra nie opadają i nie unoszą się.”
   - bark tuż nad poziomem 30 (do 14) ← `ipush.move`: „Opuść klatkę do krawędzi podwyższenia, potem wypchnij się do wyprostu rąk.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Wysokość podwyższenia ilustracyjna (zdanie ipush.height: im wyżej, tym łatwiej).
-- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): undefined
+- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Kostka w pozie końcowej (i pośrednich mid→end) 51,8° poza granicą anatomiczną [-60, 37] (strażnik zakresu stawów, 29.10.2026); reszta ruchu zatwierdzona w recenzji niezależnej 1.0.1 (dłoń 2,2 j. po blacie, 2,1–4,3 j. od krawędzi).
 
 ### Overhead Press (sztanga)
 

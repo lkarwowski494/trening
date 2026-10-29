@@ -226,9 +226,9 @@
       "props": [{"k": "rect", "x": 19.5, "y": 0, "w": 16, "h": 30}],
       "note": "Wysokość podwyższenia ilustracyjna (zdanie ipush.height: im wyżej, tym łatwiej).",
       "frames": [
-        {"n": "start", "p": {"t": 44.4, "hip": 0, "knee": 0, "ft": -78.1, "sh": 35.5, "el": 1.6}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 5, "c": "ipush.setup"}, {"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "ipush.move"}, {"q": "low", "a": "hand", "y": 30, "tol": 3, "c": "ipush.setup"}], "at": [-29.3, 0]},
-        {"n": "mid", "p": {"t": 33, "hip": 0, "knee": 0, "ft": -53.5, "sh": -16.5, "el": 92.1}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 5, "c": "push.rigid"}], "at": [-29.1, 0]},
-        {"n": "end", "p": {"t": 25.2, "hip": 0, "knee": 0, "ft": -13, "sh": -48.5, "el": 136.3}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 5, "c": "push.rigid"}, {"q": "low", "a": "shoulder", "y": 30, "tol": 14, "c": "ipush.move"}], "at": [-30.1, 0]}
+        {"n": "start", "p": {"t": 45.1, "hip": 0, "knee": 0, "ft": -95.3, "sh": 34.5, "el": 1.6}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 5, "c": "ipush.setup"}, {"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "ipush.move"}, {"q": "low", "a": "hand", "y": 30, "tol": 3, "c": "ipush.setup"}], "at": [-31.76, 0]},
+        {"n": "mid", "p": {"t": 33, "hip": 0, "knee": 0, "ft": -58.1, "sh": -14.6, "el": 92.1}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 5, "c": "push.rigid"}], "at": [-30.84, 0]},
+        {"n": "end", "p": {"t": 23.4, "hip": 0, "knee": 0, "ft": -40.5, "sh": -50.5, "el": 136.3}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 5, "c": "push.rigid"}, {"q": "low", "a": "shoulder", "y": 30, "tol": 14, "c": "ipush.move"}], "at": [-34.47, 0]}
       ]
     },
     "Overhead Press (sztanga)": {
