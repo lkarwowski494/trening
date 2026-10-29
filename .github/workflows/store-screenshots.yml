@@ -38,6 +38,10 @@ on:
         description: 'Numer przebiegu TEGO workflow, z którego bierzemy gotowe zrzuty (artefakty sklep-zrzuty-<rozmiar>-*, żyją 3 dni); robimy tylko brakujące ekrany, wynik zadań = komplet dla ich języków. Zadania dzielone według brakujących ekranów. Pusty = wszystko od nowa'
         required: false
         default: ''
+      powtorz:
+        description: 'Przy uzupelnij_z_przebiegu: ekrany do zrobienia od nowa mimo gotowego pliku (po przecinku, język/NN-ekran, np. "hu/01-trening"); pusty = żadne'
+        required: false
+        default: ''
       zrzut_zakupu_z_przebiegu:
         description: 'Numer przebiegu e2e-ios.yml (artefakt trening-sim-app, żyje 1 dzień) — zrzut ekranu zakupu do przeglądu zakupów; pusty = bez tego zrzutu'
         required: false
@@ -75,6 +79,11 @@ jobs:
           merge-multiple: true
           run-id: ${{ inputs.uzupelnij_z_przebiegu }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Ekrany do powtórzenia (wejście powtorz) — usunięte z uzupełnienia
+        if: inputs.uzupelnij_z_przebiegu != '' && inputs.powtorz != ''
+        env:
+          POWTORZ: ${{ inputs.powtorz }}
+        run: node scripts/ci/store-powtorz.mjs uzupelnij "$POWTORZ"
       - name: Podział języków na równoległe zadania macOS
         id: podzial
         env:
@@ -171,6 +180,11 @@ jobs:
           merge-multiple: true
           run-id: ${{ inputs.uzupelnij_z_przebiegu }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Ekrany do powtórzenia (wejście powtorz) — usunięte z uzupełnienia
+        if: inputs.uzupelnij_z_przebiegu != '' && inputs.powtorz != ''
+        env:
+          POWTORZ: ${{ inputs.powtorz }}
+        run: node scripts/ci/store-powtorz.mjs uzupelnij "$POWTORZ"
       - name: Rozpakowanie aplikacji
         run: mkdir -p app && unzip -q Trening-sim.zip -d app
       - name: Symulator
