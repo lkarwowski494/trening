@@ -30,7 +30,7 @@ Sprawdzenia:
 - [ ] **T-15 Szybkie zamknięcie po starcie (R-005).** Usuń aplikację i zainstaluj build z TestFlight, otwórz ją, od razu wyjdź i zamknij ją z przełącznika aplikacji, otwórz ponownie (dwa razy pod rząd): bez ekranu „Coś poszło nie tak”, dane i ustawienia są.
 - [ ] **T-16 Ikona na zegarku (R-013).** Na Apple Watch po instalacji z TestFlight: ikona Treningu na siatce aplikacji (nie pusty krążek) i nazwa w aplikacji Watch na iPhonie.
 
-Po sprawdzeniu: zamknij R-005 (razem z pełnym katalogiem E2E na tym SHA) i R-013 w docs/40 (wynik z datą) albo zgłoś wadę. R-RES (kopia ratunkowa) nie ma kroku na telefonie — wymaga podmiany pliku bazy; zamyka je przebieg na symulatorze albo odroczenie decyzją właściciela (docs/48, rejestr ryzyk). Otwarte ryzyko blokuje wydanie do App Store.
+Po sprawdzeniu: zamknij R-005 (razem z pełnym katalogiem E2E na tym SHA) i R-013 w docs/40 (wynik z datą) albo zgłoś wadę. R-RES (kopia ratunkowa) nie ma kroku na telefonie — zamknięte 29.10.2026 przebiegiem na symulatorze (docs/40, run 40862280973). Otwarte ryzyko blokuje wydanie do App Store.
 
 ## Metadane en-GB, en-AU, en-CA (przegląd 26.10.2026)
 
@@ -47,6 +47,8 @@ Do sprawdzenia, w tej kolejności (ok. 45–60 min):
 4. **Zegarek** (T-07, W2-05, T-16, R-013; 8–10 min) — ikona Treningu na siatce (nie pusty krążek) i nazwa w aplikacji Watch; seria odhaczona na zegarku widoczna na telefonie; w przerwie po ostatnim ćwiczeniu raz „Zakończ trening na telefonie”; wibracja na koniec przerwy przy opuszczonej ręce (Test F z docs/47). Powód: c8346e35, 22fb470e, przekłady etykiet; R-013 otwarte.
 5. **Zakupy w piaskownicy** (T-11, US-13, Z-09; 15–25 min) — „Zobacz plany Pro”, zakup planu (cena, brak oferty próbnej), „Masz plan: …” z datą, „Zmień plan” zwinięte, „Zarządzaj subskrypcją” — arkusz Apple w aplikacji i osobny element VoiceOver, uwaga przed zakupem dożywotniego przy aktywnej subskrypcji, tryb samolotowy po ponownym uruchomieniu — dostęp zostaje. Powód: 72338f01, 1a96768a, 5bbc84ad, f775eb5c, ee43b827, a90cabae, dbfa3cd4, 8c12be9e, 71a0e416.
 6. **Ponowna instalacja i szybkie zamknięcie** (T-15, R-005; 5–7 min) — eksport kopii, usunięcie, instalacja z TestFlight, otwarcie i natychmiastowe zamknięcie dwa razy (bez „Coś poszło nie tak”), „Przywróć zakupy”, import kopii. Powód: R-005, c85b71b2, 8f3fb6fe.
-7. **Warunkowo: odliczanie przerwy na ekranie blokady w języku aplikacji** (PR-17, T-02; 1 min) — tylko jeśli nie sprawdzone na 1032 (brak zapisu w docs/18); en „Rest”, de „Pause”. Powód: 168fc797.
+7. **Pominięty (właściciel sprawdzał na 1032, 29.10.2026): odliczanie przerwy na ekranie blokady w języku aplikacji** (PR-17, T-02; 1 min) — tylko jeśli nie sprawdzone na 1032 (brak zapisu w docs/18); en „Rest”, de „Pause”. Powód: 168fc797.
 
 Pominięte (bez zmian kodu od ostatniego testu): T-03 i PR-12 (tryb skupienia, ekran blokady; R-004 zamknięte na 1032), T-04 „Pogrubiony tekst” (R-014 zamknięte na 1032), T-05/T-06 Zdrowie, T-09 „Wyczyść wszystkie dane”, T-12 kopia i CSV, T-13 i ZD-01 głos i dźwięk, T-14 „Napisz do nas”, T-08 okno „Pierwszy trening” (konto właściciela już z subskrypcją; pokrywa E2E 56), ZD-02 instalacja, ZD-03 VoiceOver poza ekranem zakupu. Zwrot i Chmura rodzinna w Z-09 pominięte (decyzja właściciela 29.10.2026, A; docs/18).
+
+Wynik na buildzie 1033 (29.10.2026): kroki 1, 3, 4, 5, 6 — OK; krok 2 — ucięcie tylko po zmianie rozmiaru tekstu przy otwartej aplikacji (decyzja C → 1.0.1); szczegóły w docs/18 i docs/48 Z-08, Z-09.

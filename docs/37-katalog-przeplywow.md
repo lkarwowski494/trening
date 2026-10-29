@@ -7,12 +7,12 @@ każdy ekran z `app/` występuje w co najmniej jednym przepływie (nowy ekran be
 
 ## Podsumowanie
 
-Przepływów w katalogu: **160** (realny: 138, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
+Przepływów w katalogu: **161** (realny: 138, brzegowy: 23); pominięte jako teoretyczne: 5 (na końcu).
 
 | Stan startowy | Przepływów | Opis |
 |---|---|---|
 | `nowy` | 24 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
-| `istniejacy` | 115 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
+| `istniejacy` | 116 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
 | `aktualizacja` | 6 | Po aktualizacji z poprzedniej wersji: dane z poprzedniego buildu, nowa wersja zainstalowana na tej samej instalacji (33 → 34). |
 | `kopia` | 5 | Po przywróceniu kopii lub imporcie: dane wczytane z pliku kopii po wyczyszczeniu. |
 | `jezyk-motyw` | 10 | Po zmianie języka, wyglądu lub jednostki: zmienione w Ustawieniach, sprawdzane też po restarcie. |
@@ -20,7 +20,7 @@ Przepływów w katalogu: **160** (realny: 138, brzegowy: 22); pominięte jako te
 | Pokrycie | Przepływów |
 |---|---|
 | Maestro | 131 |
-| Maestro (eksperyment) | 4 |
+| Maestro (eksperyment) | 5 |
 | Jest | 10 |
 | Telefon | 15 |
 | Projekt 0.20 | 0 |
@@ -105,6 +105,7 @@ Przepływów w katalogu: **160** (realny: 138, brzegowy: 22); pominięte jako te
 | PR-15 | **Bardzo dużo danych: setki sesji, długa lista, wykresy, eksport** — Historia kilku lat (setki sesji, tysiące serii) → Otwórz Plan, Postępy, wykres ćwiczenia, kopię | Ekrany otwierają się bez zawieszenia; wyniki zgodne z danymi. | `istniejacy` | brzegowy | Jest: `tests/audit-perf-equiv.test.ts`, `tests/audit-perf-ui.test.tsx`, `tests/audit-records-perf.test.ts` — Wytworzenie setek sesji przez UI zajęłoby godziny (≈40 s na sesję); 8 sesji przez UI robi scenariusz 28, skalę sprawdzają testy wydajności i równoważności na wygenerowanych danych. |
 | PR-16 | **Dane z nowszej wersji aplikacji i błąd startu bazy (ekrany awaryjne)** — Zainstaluj starszą wersję na danych nowszej (downgrade) albo uszkodzona baza → Ekran „Dane z nowszej wersji” z „Wyślij dane” / „Spróbuj ponownie” | Aplikacja niczego nie nadpisuje i daje wyjście. | `istniejacy` | brzegowy | Jest: `tests/audit-persist.test.ts`, `tests/splash-start-error.test.tsx`, `tests/places-migrate.test.ts` — Wymaga bazy zapisanej przez nowszy schemat albo uszkodzonej; z poziomu UI nie do wywołania, a downgrade przez TestFlight jest nieobsługiwany. |
 | PR-17 | **Ekran blokady w przerwie: Live Activity w języku aplikacji, nie systemu** — Telefon po polsku (lub innym), w aplikacji Więcej → Język → English → Odhacz serię → zablokuj telefon → Na ekranie blokady / w Wyspie etykieta rodzaju po angielsku („Rest”); zmień język w aplikacji w trakcie przerwy — etykieta się zmienia | Live Activity przerwy mówi językiem wybranym w aplikacji, także po zmianie języka w trakcie przerwy. | `jezyk-motyw` | realny | Telefon (lista kontrolna wydania) — Live Activity (ekran blokady, Dynamic Island) działa tylko na prawdziwym iPhonie; symulator CI jej nie pokazuje, a Maestro nie czyta widżetu poza aplikacją. |
+| PR-18 | **Baza, której nie da się otworzyć: „Wyślij dane” robi kopię ratunkową plików bazy w Plikach (R-RES)** — Uruchom aplikację, gdy plik bazy jest uszkodzony (symulator: pliki Library/SQLite/trening.db* zastąpione tekstem przez powłokę CI) → Ekran „Nie udało się otworzyć danych” → „Wyślij dane” → Okno „Kopia bazy w Plikach” z nazwą folderu Rescue-…; w Plikach → Backup folder z kompletem plików bazy | Komplet plików bazy skopiowany do Documents/Backup/Rescue-RRRR-MM-DD-GGMM (zawartość identyczna z oryginałami, oryginały bez zmian); ekran podaje, gdzie szukać kopii. | `istniejacy` | brzegowy | Maestro (eksperyment): `.maestro/60-baza-uszkodzona.yaml` |
 
 ## PL — Plan, kalendarz i generator
 
