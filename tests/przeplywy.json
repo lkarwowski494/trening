@@ -1843,7 +1843,8 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "Ćwiczenie → sekcja „Technika” jest od razu rozwinięta (27.10.2026) → zwiń i rozwiń → „Zatrzymaj animację”"
+    "Ćwiczenie → sekcja „Technika” jest od razu rozwinięta (27.10.2026) → zwiń i rozwiń → „Zatrzymaj animację”",
+    "Ćwiczenia → szukaj „Deadlift (Barbell)” → karta z sekcją „Technika” i rysunkiem ruchu v2 (101-22)"
    ],
    "wynik": "Treść techniki z podpisem źródeł; animację można zatrzymać.",
    "ekrany": [
@@ -1851,7 +1852,8 @@
    ],
    "scenariusz": "17-biblioteka-technika.yaml",
    "znaczniki": [
-    "Pause animation"
+    "Pause animation",
+    "exercise-figure-v2-image"
    ]
   },
   {
