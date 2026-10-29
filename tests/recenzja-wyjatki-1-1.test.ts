@@ -10,7 +10,7 @@ import { execFileSync } from 'child_process';
 import { FIG_DATA } from '@/lib/figures';
 import { CUE_DATA } from '@/lib/cues';
 import { FAMILIES, assignAll, figureSpec, shownFigureSpec } from '@/lib/figures/v2';
-import { familyReviewed } from '@/lib/figures/v2/figure';
+import { familyReviewed, figureWithheld } from '@/lib/figures/v2/figure';
 
 const root = path.join(__dirname, '..');
 const WYJ = JSON.parse(fs.readFileSync(path.join(root, 'tests/recenzja-wyjatki-1-1.json'), 'utf8')) as { powod: string; v1: string[]; v2: string[]; zestawy_zmienione: string[]; zestawy_bez_wpisu: string[] };
@@ -44,6 +44,11 @@ describe('wyjątki bramki 4 linii 1.1 (recenzja-wyjatki-1-1.json)', () => {
     expect(familyReviewed('rodzina_nieistniejaca')).toBe(false);
     expect(figureSpec('Back Squat')).not.toBeNull();
     expect(shownFigureSpec('Back Squat')).toBeNull();
+  });
+  test('figureWithheld: figura v1 „zastąpiona” przez ukrytą rodzinę v2 nie wraca na ekran (Back Squat); v1 „wyswietlana” (Pull Up) i ćwiczenie bez v2 (Crunch) — bez wstrzymania', () => {
+    expect(FIG_DATA.replaced).toContain('Back Squat');
+    expect([figureWithheld('Back Squat'), figureWithheld('Deadlift (sztanga)')]).toEqual([true, true]);
+    expect([figureWithheld('Pull Up'), figureWithheld('Crunch'), figureWithheld('Ćwiczenie własne')]).toEqual([false, false, false]);
   });
 });
 
