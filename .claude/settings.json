@@ -10,6 +10,16 @@
             "timeout": 10
           }
         ]
+      },
+      {
+        "matcher": "startup|resume|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=\"$CLAUDE_PROJECT_DIR/docs/zobowiazania.md\"; [ -f \"$f\" ] && { echo 'Zobowiązania na przyszłość (docs/zobowiazania.md, sekcja Aktywne) — sprawdź warunki przed planem:'; awk '/^## Aktywne/{p=1} /^## Archiwum/{p=0} p' \"$f\"; } || true",
+            "timeout": 10
+          }
+        ]
       }
     ]
   }
