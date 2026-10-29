@@ -95,7 +95,7 @@ describe('store/review-notes.md', () => {
     expect(shownFigureSpec('Back Squat')).not.toBeNull(); /* przykład musi mieć rysunek w kandydacie */
     for (const f of ['squat', 'bench_press', 'hinge'] as const) expect([f, FAMILY[f].status]).toEqual([f, 'ready']);
     expect(shownFigureSpec('Sumo Deadlift')).not.toBeNull(); expect(ex).toContain('Sumo Deadlift');
-    expect(Object.keys(V2_WSTRZYMANE)).toContain('Deadlift (sztanga)'); /* martwy ciąg ze sztangą z podłogi wstrzymany → zdanie nie może mówić o „deadlift” bez zastrzeżenia */
+    expect(shownFigureSpec('Deadlift (sztanga)')).not.toBeNull(); expect(Object.keys(V2_WSTRZYMANE)).not.toContain('Deadlift (sztanga)'); /* 29.10.2026: martwy ciąg ze sztangą zdjęty z V2_WSTRZYMANE po recenzji niezależnej; zdanie sekcji pozostaje bez zmian (store/ poza pakietem J0) */
     expect(ex).not.toMatch(/squat, bench press and deadlift/i); expect(ćw).not.toMatch(/przysiadu, wyciskania leżąc i martwego ciągu/i);
     expect(ex).toMatch(/hip hinge/); expect(ćw).toMatch(/zawiasu biodrowego/);
     expect(ex).toMatch(/does not give medical advice/); expect(ćw).toMatch(/nie udziela porad medycznych/);

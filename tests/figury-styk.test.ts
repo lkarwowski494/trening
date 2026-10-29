@@ -4,7 +4,7 @@
  * 101-02, 101-03, 101-04, 101-12 (hinge): kolano jako osobna krzywa (`knees` w rigu hinge), strażnik odstępu ciężar–noga obok strażnika toru; w teście każdej poprawki dwie miary
  * (naprawiana cecha + styk). Stan „przed” odtwarza ten sam rig bez krzywej kolan (wariant z `knees: undefined`) — strażnik musi na nim paść.
  */
-import { figureSpec, frameAt, hingeFrame, proj, EQUIP, VARIANTS, V2_WSTRZYMANE, HINGE, type HingeParams } from '@/lib/figures/v2';
+import { figureSpec, shownFigureSpec, frameAt, hingeFrame, proj, EQUIP, VARIANTS, V2_WSTRZYMANE, HINGE, type HingeParams } from '@/lib/figures/v2';
 import { KADRY_STYKU, PROG_STYKU, stykKlatki, stykTora, podsumujStyk, dwieMiary, elementyCiezaru } from './helpers/styk-figur';
 
 describe('A1: kadry i miara potrafi paść', () => {
@@ -96,8 +96,8 @@ describe('101-02 (L-056): martwe ciągi z podłogi — strażnik odstępu cięż
   test('rack pull startuje z bolców na wysokości kolan: kolano proste od początku (σ 3° → 0°), tor nadal z jedną zmianą kierunku', () => {
     for (const k of ['Rack Pull', 'Rack Pull with Bands']) { expect(hingeP(k).knees?.s).toEqual([3, 0]); expect(torKlucza(k).zawrocenia).toBeLessThanOrEqual(1); }
   });
-  test('zasada koordynatora: wpisy zostają w V2_WSTRZYMANE do zdjęcia przez koordynatora (zgłoszenie „do zdjęcia”: 11 martwych ciągów z DL_ODSTEP)', () => {
-    for (const k of DL_ODSTEP_KLUCZE) expect([k, k in V2_WSTRZYMANE]).toEqual([k, true]);
+  test('29.10.2026: 11 martwych ciągów zdjętych z V2_WSTRZYMANE po recenzji niezależnej (v2.hinge) — nie ma ich na liście, są z rysunkiem (shownFigureSpec)', () => {
+    for (const k of DL_ODSTEP_KLUCZE) expect([k, k in V2_WSTRZYMANE, shownFigureSpec(k) !== null]).toEqual([k, false, true]);
   });
 });
 

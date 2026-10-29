@@ -1,5 +1,9 @@
 /*
- * Figury v2 wstrzymane w 1.0 (decyzja agenta w nocy 28/29.10.2026 w trybie nocnym właściciela — do zatwierdzenia/weta rano; docs/18): JM Press
+ * 29.10.2026: WSZYSTKIE wpisy V2_WSTRZYMANE zdjęto (18 figur) po poprawionych rigach i niezależnych recenzjach (v2.hinge, v2.bench_press, v2.squat w figury-recenzja.json;
+ * JM Press i Skull Crusher — recenzja r2 z 28.10 + geometria 101-01 niżej). Poniższe opisy wstrzymań to historia; asercje o wstrzymaniu odwrócono (stan pilnowany testem
+ * zmienia test w tym samym commicie). Mechanizm V2_WSTRZYMANE zostaje (pusty) dla przyszłych wstrzymań.
+ *
+ * Historia — figury v2 wstrzymane w 1.0 (decyzja agenta w nocy 28/29.10.2026 w trybie nocnym właściciela — do zatwierdzenia/weta rano; docs/18): JM Press
  * i Decline Close-Grip Bench To Skull Crusher — rysunek przeczy karcie („Łokcie blisko tułowia przez cały ruch”, cgbp.elbows): na dole łokieć ok. 25 cm za barkiem
  * w stronę głowy, w połowie ruchu łokcie odchodzą na boki (z ≈ 41 przy barku 17). Znalezisko WYSOKIE z niezależnej recenzji figur v2 linii 1.0.1.
  * Karta bez rysunku (wskazówki tekstowe zostają), jak Push Press i Pendlay Row; poprawka rigu w 1.0.1. Wariant zostaje w variants.ts (praca 1.0.1).
@@ -8,11 +12,10 @@ import { figureSpec, shownFigureSpec, frameAt, VARIANTS, V2_WSTRZYMANE } from '@
 
 const KLUCZE = ['JM Press', 'Decline Close-Grip Bench To Skull Crusher'];
 
-describe('figury v2 wstrzymane w 1.0 (28.10.2026)', () => {
-  test('oba ćwiczenia bez rysunku w aplikacji (shownFigureSpec), z powodem; silnik i wariant zostają dla poprawki', () => {
+describe('figury v2 (JM Press, Skull Crusher) — wstrzymanie zdjęte 29.10.2026', () => {
+  test('oba ćwiczenia z rysunkiem w aplikacji (shownFigureSpec = figureSpec), poza V2_WSTRZYMANE; wariant istnieje', () => {
     for (const k of KLUCZE) {
-      expect([k, shownFigureSpec(k)]).toEqual([k, null]); expect([k, figureSpec(k) !== null]).toEqual([k, true]);
-      expect([k, (V2_WSTRZYMANE[k] ?? '').length > 20]).toEqual([k, true]);
+      expect([k, shownFigureSpec(k) !== null, shownFigureSpec(k)?.key]).toEqual([k, true, k]); expect([k, k in V2_WSTRZYMANE]).toEqual([k, false]);
       expect([k, !!VARIANTS[k]]).toEqual([k, true]);
     }
   });
@@ -35,16 +38,16 @@ describe('ekran: komponenty pokazują tylko figury z shownFigureSpec', () => {
   });
 });
 
-describe('ekran karty: bez rysunku znika też zestaw ogólny wskazówek („Łokcie blisko tułowia” nie pasuje do JM Press — badacz linii 1.0.1, 28.10.2026)', () => {
+describe('ekran karty (29.10.2026, wstrzymanie zdjęte): JM Press i Skull Crusher mają sekcję „Technika” z rysunkiem; zdanie „Łokcie blisko tułowia” nadal się nie pojawia (nie pasuje do JM Press — badacz linii 1.0.1, 28.10.2026)', () => {
   const React = require('react') as typeof import('react');
   const { render } = require('@testing-library/react-native') as typeof import('@testing-library/react-native');
   const { ExerciseCues } = require('@/components/ExerciseCues') as typeof import('@/components/ExerciseCues');
   const { applyLang } = require('@/lib/i18n') as typeof import('@/lib/i18n');
   const ELBOWS = 'Łokcie blisko tułowia przez cały ruch.';
   beforeAll(() => applyLang('pl'));
-  test.each(KLUCZE)('%s: bez sekcji „Technika”: ani rysunku, ani zdania o łokciach', k => {
+  test.each(KLUCZE)('%s: sekcja „Technika” widoczna z rysunkiem v2, bez zdania o łokciach', k => {
     const r = render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: k }, initialOpen: true }));
-    expect(r.queryByText(ELBOWS)).toBeNull(); expect(r.queryByTestId('exercise-cues')).toBeNull(); /* bez karty i rysunku — sekcja „Technika” znika */
+    expect(r.queryByText(ELBOWS)).toBeNull(); expect(r.getByTestId('exercise-cues')).toBeTruthy(); expect(r.queryByTestId('exercise-figure-v2')).not.toBeNull(); r.unmount();
   });
   test('kontrast: wyciskanie wąskim chwytem na maszynie Smitha nadal z sekcją „Technika” (rysunek v2)', () => {
     const r = render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: 'Smith Machine Close-Grip Bench Press' }, initialOpen: true }));
@@ -52,17 +55,17 @@ describe('ekran karty: bez rysunku znika też zestaw ogólny wskazówek („Łok
   });
 });
 
-describe('reaudyt pętli 2 (06-tresci-701, 28.10.2026): „Technika ›” nie prowadzi do pustego podglądu przy wstrzymanych figurach', () => {
+describe('reaudyt pętli 2 (06-tresci-701, 28.10.2026), odwrócone 29.10.2026: po zdjęciu wstrzymań „Technika ›” prowadzi do podglądu z rysunkiem', () => {
   const { hasTechnique } = require('@/lib/figures/v2/ui') as typeof import('@/lib/figures/v2/ui');
-  test.each(KLUCZE)('%s: hasTechnique = false (brak własnej karty i rysunku)', k => {
-    expect(hasTechnique({ lib: true, libKey: k })).toBe(false);
+  test.each(KLUCZE)('%s: hasTechnique = true (rysunek v2)', k => {
+    expect(hasTechnique({ lib: true, libKey: k })).toBe(true);
   });
   test('kontrast: Smith Machine Close-Grip Bench Press — hasTechnique = true', () => {
     expect(hasTechnique({ lib: true, libKey: 'Smith Machine Close-Grip Bench Press' })).toBe(true);
   });
 });
 
-describe('martwe ciągi z podłogi wstrzymane w 1.0 (decyzja agenta w nocy 29.10.2026, do weta właściciela; recenzja 1.1 hinge B1 WYSOKIE)', () => {
+describe('martwe ciągi z podłogi — wstrzymanie zdjęte 29.10.2026 (wcześniej: decyzja agenta w nocy 29.10.2026; recenzja 1.1 hinge B1 WYSOKIE; teraz recenzja niezależna v2.hinge)', () => {
   const DL = ['Deadlift (sztanga)', 'Axle Deadlift', 'Deadlift with Bands', 'Deadlift with Chains', 'Deficit Deadlift', 'Rack Pull', 'Rack Pull with Bands', 'Reverse Band Deadlift', 'Cable Deadlift', 'Clean Deadlift', 'Snatch Deadlift'];
   const React = require('react') as typeof import('react');
   const { render } = require('@testing-library/react-native') as typeof import('@testing-library/react-native');
@@ -70,29 +73,23 @@ describe('martwe ciągi z podłogi wstrzymane w 1.0 (decyzja agenta w nocy 29.10
   const { hasTechnique } = require('@/lib/figures/v2/ui') as typeof import('@/lib/figures/v2/ui');
   const { applyLang } = require('@/lib/i18n') as typeof import('@/lib/i18n');
   beforeAll(() => applyLang('pl'));
-  test('wszystkie 11 bez rysunku (shownFigureSpec), z powodem; silnik zostaje dla poprawki w 1.0.1', () => {
-    for (const k of DL) {
-      expect([k, shownFigureSpec(k)]).toEqual([k, null]); expect([k, figureSpec(k) !== null]).toEqual([k, true]);
-      expect([k, (V2_WSTRZYMANE[k] ?? '').length > 20]).toEqual([k, true]);
-    }
+  test('wszystkie 11 z rysunkiem (shownFigureSpec), poza V2_WSTRZYMANE', () => {
+    for (const k of DL) { expect([k, shownFigureSpec(k) !== null]).toEqual([k, true]); expect([k, k in V2_WSTRZYMANE]).toEqual([k, false]); }
   });
-  test('karta zostaje z wskazówkami tekstowymi (sekcja „Technika” bez rysunku)', () => {
+  test('karta: sekcja „Technika” z rysunkiem v2 (i wskazówkami tekstowymi)', () => {
     expect(hasTechnique({ lib: true, libKey: 'Deadlift (sztanga)' })).toBe(true);
     const r = render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: 'Deadlift (sztanga)' }, initialOpen: true }));
-    expect(r.getByTestId('exercise-cues')).toBeTruthy(); expect(r.queryByTestId('exercise-figure-v2')).toBeNull(); expect(r.queryByTestId('exercise-figure')).toBeNull();
+    expect(r.getByTestId('exercise-cues')).toBeTruthy(); expect(r.queryByTestId('exercise-figure-v2')).not.toBeNull(); expect(r.queryByTestId('exercise-figure')).toBeNull(); r.unmount();
   });
   test('kontrast: martwy ciąg rumuński i sumo nadal z rysunkiem', () => {
     expect(shownFigureSpec('RDL (sztanga)')).not.toBeNull(); expect(shownFigureSpec('Sumo Deadlift')).not.toBeNull();
   });
 });
 
-describe('wyciskania i przysiady wstrzymane w 1.0 (decyzja agenta w nocy 29.10.2026, do weta właściciela; recenzje bench_press i squat 1.1 — WYSOKIE)', () => {
+describe('wyciskania i przysiady — wstrzymanie zdjęte 29.10.2026 (wcześniej: recenzje bench_press i squat 1.1 — WYSOKIE; teraz recenzje niezależne v2.bench_press i v2.squat)', () => {
   const K = ['Band Bench Press', 'Chain Press', 'Close Grip Bench Press', 'Zercher Squat', 'Sumo Squat (hantel)'];
-  test('wszystkie bez rysunku (shownFigureSpec), z powodem; silnik zostaje', () => {
-    for (const k of K) {
-      expect([k, shownFigureSpec(k)]).toEqual([k, null]); expect([k, figureSpec(k) !== null]).toEqual([k, true]);
-      expect([k, (V2_WSTRZYMANE[k] ?? '').length > 20]).toEqual([k, true]);
-    }
+  test('wszystkie z rysunkiem (shownFigureSpec), poza V2_WSTRZYMANE', () => {
+    for (const k of K) { expect([k, shownFigureSpec(k) !== null]).toEqual([k, true]); expect([k, k in V2_WSTRZYMANE]).toEqual([k, false]); }
   });
   test('odtworzenie wad (silnik na main 9b76ed2): Zercher (naprawiony 29.10.2026, 101-09: na dole gryf ≤ 9 cm od łokcia — dawny rig 18,5 cm); Sumo Squat (naprawiony 29.10.2026, 101-10: ≤ 6 cm w poziomie — dawny rig ≥ 20 cm)', () => {
     /* Chain Press = Bench Press with Chains: poprawione w 101-06 (29.10.2026; uchwyty z łańcuchami zamiast sztangi) — test pilnujący poprawki: tests/figury-pakiet-b.test.ts */
@@ -106,7 +103,7 @@ describe('wyciskania i przysiady wstrzymane w 1.0 (decyzja agenta w nocy 29.10.2
   });
 });
 
-describe('101-01 (29.10.2026): JM Press i Decline Close-Grip Bench To Skull Crusher — rig r2 spełnia kartę r2 (jm.elbows, dcgsk.elbows) na kadrach co 0,05; rig z main nie (do zdjęcia z V2_WSTRZYMANE przez koordynatora)', () => {
+describe('101-01 (29.10.2026): JM Press i Decline Close-Grip Bench To Skull Crusher — rig r2 spełnia kartę r2 (jm.elbows, dcgsk.elbows) na kadrach co 0,05; rig z main nie (wstrzymanie zdjęte 29.10.2026)', () => {
   /* Pomiar jak na main (komentarz na górze pliku: łokieć na dole ok. 25 cm za barkiem ku głowie, w połowie ruchu na boki do z ≈ 41 przy barku ≈ 19). Kryterium to karta r2, nie cgbp.elbows:
    * JM — „łokcie cały czas wysoko i pod skosem od tułowia — nie opadają w dół ani nie uciekają na boki” (ramię ku stopom, odwiedzenie stałe ok. 45°);
    * Skull Crusher — „łokcie wąsko przez cały ruch … przy prostowaniu nad barkami — nie rozchodzą się na boki” (faza prostowania). Na main: JM dx −27, z do 41,8; Skull Crusher dx −25, z do 43,5. */
@@ -133,7 +130,26 @@ describe('101-01 (29.10.2026): JM Press i Decline Close-Grip Bench To Skull Crus
     expect([d1.dx > 10 && d1.dx < 20, d1.dy > 18, s1.dx > -3 && s1.dx < 0]).toEqual([true, true, true]);
     expect(Math.max(...jm.map(p => p.zOut))).toBeLessThan(38); expect(Math.max(...sk.map(p => p.zOut))).toBeLessThan(22);
   });
-  test('zasada koordynatora: wpisy zostają w V2_WSTRZYMANE do zdjęcia przez koordynatora (zgłoszenie „do zdjęcia”: JM Press, Decline Close-Grip Bench To Skull Crusher)', () => {
-    for (const k of KLUCZE) expect([k, k in V2_WSTRZYMANE]).toEqual([k, true]);
+  test('29.10.2026: wpisy zdjęte z V2_WSTRZYMANE (JM Press, Decline Close-Grip Bench To Skull Crusher) — rig r2 spełnia kartę r2, więc rysunek jest pokazywany', () => {
+    for (const k of KLUCZE) expect([k, k in V2_WSTRZYMANE, shownFigureSpec(k) !== null]).toEqual([k, false, true]);
+  });
+});
+
+describe('29.10.2026: 18 figur v2 zdjętych z V2_WSTRZYMANE po recenzjach niezależnych — wszystkie z rysunkiem (shownFigureSpec) i sekcją Technika', () => {
+  const { hasTechnique } = require('@/lib/figures/v2/ui') as typeof import('@/lib/figures/v2/ui');
+  const OSIEMNASCIE = [...KLUCZE,
+    'Deadlift (sztanga)', 'Axle Deadlift', 'Deadlift with Bands', 'Deadlift with Chains', 'Deficit Deadlift', 'Rack Pull', 'Rack Pull with Bands', 'Reverse Band Deadlift', 'Cable Deadlift', 'Clean Deadlift', 'Snatch Deadlift',
+    'Band Bench Press', 'Chain Press', 'Close Grip Bench Press', 'Zercher Squat', 'Sumo Squat (hantel)'];
+  test('18 różnych kluczy; V2_WSTRZYMANE puste', () => {
+    expect(new Set(OSIEMNASCIE).size).toBe(18); expect(Object.keys(V2_WSTRZYMANE)).toEqual([]);
+  });
+  test.each(OSIEMNASCIE)('%s: shownFigureSpec nie null, hasTechnique true, poza V2_WSTRZYMANE', k => {
+    expect(shownFigureSpec(k)).not.toBeNull(); expect(hasTechnique({ lib: true, libKey: k })).toBe(true); expect(k in V2_WSTRZYMANE).toBe(false);
+  });
+  test.each(OSIEMNASCIE)('%s: karta pokazuje sekcję „Technika” z rysunkiem v2', k => {
+    const React = require('react') as typeof import('react'); const { render } = require('@testing-library/react-native') as typeof import('@testing-library/react-native');
+    const { ExerciseCues } = require('@/components/ExerciseCues') as typeof import('@/components/ExerciseCues');
+    const r = render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: k }, initialOpen: true }));
+    expect(r.getByTestId('exercise-cues')).toBeTruthy(); expect(r.queryByTestId('exercise-figure-v2')).not.toBeNull(); r.unmount();
   });
 });
