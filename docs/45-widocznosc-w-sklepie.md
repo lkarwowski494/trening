@@ -175,7 +175,7 @@ animowane rysunki ruchu i rozwiniętą sekcję „Technika” na karcie ćwiczen
 („o rysunkach ruchu w opisie nie wspominamy, dopóki nie obejmą całej biblioteki”) — tekst nie obiecuje rysunku przy każdym ćwiczeniu. Gałąź `metadane-1-0`.
 
 **Liczba z kodu** (main `b3697068`): w bibliotece 709 ćwiczeń; rysunek ma 140, animowany 138 (figury v2: 87 w rodzinach przysiad, wyciskanie leżąc,
-martwy ciąg — 1 statyczny; figury v1 z ≥ 2 klatkami: 52). Po PR #84 (JM Press i Decline Close-Grip Bench To Skull Crusher bez rysunku w 1.0; main `5d79c3a4`) — 136 animowanych.
+martwy ciąg — 1 statyczny; figury v1 z ≥ 2 klatkami: 52). Po PR #84 (JM Press i Decline Close-Grip Bench To Skull Crusher bez rysunku w 1.0; main `5d79c3a4`) — 136 animowanych. **Linia 1.0.1 (29.10.2026, 101-25):** `V2_WSTRZYMANE` puste — 18 figur v2 (JM Press, Decline Close-Grip Bench To Skull Crusher, 11 martwych ciągów z podłogi, Band Bench Press, Chain Press, Close Grip Bench Press, Zercher Squat, Sumo Squat (hantel)) wraca po recenzjach niezależnych; „ponad 100” i rodziny w opisie bez zmian, notatki dla recenzenta (`store/review-notes.md`) wymieniają martwy ciąg; liczbę pilnuje `tests/store-metadata.test.ts` (licznik = to, co pokazuje aplikacja, 101-29).
 Tekst mówi „ponad 100 ćwiczeń”; test `tests/store-metadata.test.ts` liczy z kodu (v2 przez `shownFigureSpec`, gdy istnieje) i pilnuje, że liczba > 100
 i < całej biblioteki. Rysunek v2 pokazuje mięśnie zawsze, częsty błąd w 82 z 87 — stąd „a zwykle i częsty błąd” (test: ≥ 80%).
 

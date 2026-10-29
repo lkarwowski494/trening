@@ -2,7 +2,7 @@
 
 Finalna wersja na wydanie 1.0 (docs/48 pkt 2; zatwierdzona do wklejenia po akceptacji właściciela). Ścieżki i etykiety zgodne z kodem gałęzi `integracja-2026-10-26b`; próg dnia treningowego 7 min z `lib/access.ts` (`MIN_LIVE_MINUTES_FOR_DAY`), limit 5 dni z `PAYWALL.FREE_TRAINING_DAYS_PER_MONTH`. Test: `tests/store-review-notes.test.ts`
 (limit pola, teksty przycisków z `lib/i18n.en.ts`, liczby i stany domyślne z kodu, brak danych osobowych).
-Sekcja „Ćwiczenia i rysunki” i opis zegarka (ZB-016, 29.10.2026) sprawdzone w kodzie gałęzi: rysunki `lib/figures/v2/figure.ts` (`V2_WSTRZYMANE` — martwy ciąg ze sztangą z podłogi wstrzymany, więc zdanie o rysunkach mówi o zawiasie biodrowym, nie o martwym ciągu), `families.ts` (status `ready`), zegarek `lib/watch/labels.ts`, `targets/watch-app/WorkoutController.swift`.
+Sekcja „Ćwiczenia i rysunki” i opis zegarka (ZB-016, 29.10.2026) sprawdzone w kodzie gałęzi: rysunki `lib/figures/v2/figure.ts` (`V2_WSTRZYMANE` — od 1.0.1, 29.10.2026, puste: martwe ciągi z podłogi wróciły po recenzji niezależnej, więc zdanie o rysunkach wymienia martwy ciąg — 101-25), `families.ts` (status `ready`), zegarek `lib/watch/labels.ts`, `targets/watch-app/WorkoutController.swift`.
 
 Do App Store Connect wkleja się **wersję angielską**; wersja polska jest dla właściciela. Bez danych osobowych: aplikacja nie ma konta, więc nie ma
 loginu ani hasła do podania („Sign-in required” wyłączone). Pola „Contact Information” (imię, telefon, e-mail recenzji) właściciel wypełnia sam
@@ -39,7 +39,7 @@ IN-APP PURCHASES (one subscription group "Full version": monthly and yearly auto
 - Ongoing value (Guideline 3.1.2(a)): the app is actively developed and updated regularly, and every new feature is included in the subscription. Users who prefer a single payment can choose the one-time lifetime unlock instead.
 
 EXERCISES AND DRAWINGS
-- More > Exercises, tap an exercise (e.g. Back Squat): the "Technique" section has setup, movement, tips and common mistakes. Many exercises show a simple movement drawing made on the device; squat, bench press and hip hinge variations (e.g. Sumo Deadlift) are animated and mark the main muscles. A note says the app does not give medical advice.
+- More > Exercises, tap an exercise (e.g. Back Squat): the "Technique" section has setup, movement, tips and common mistakes. Many exercises show a simple movement drawing made on the device; squat, bench press and deadlift variations (e.g. Sumo Deadlift) are animated and mark the main muscles. A note says the app does not give medical advice.
 
 BACKUP, IMPORT, ERASE
 - More > Backup: "Export history to CSV" and "Import history from a CSV file". Import shows a preview before anything is saved and never removes existing data. To try it: export, then import the same file.
@@ -80,7 +80,7 @@ ZAKUPY W APLIKACJI (grupa subskrypcji „Pełna wersja”: miesięczna i roczna 
 - Stała wartość subskrypcji (wytyczna 3.1.2(a)): aplikacja jest rozwijana i regularnie aktualizowana, a każda nowa funkcja wchodzi w skład subskrypcji. Kto woli jedną płatność, wybiera jednorazowy dostęp dożywotni.
 
 ĆWICZENIA I RYSUNKI
-- Więcej → Ćwiczenia, stuknij ćwiczenie (np. Back Squat): sekcja „Technika” zawiera ustawienie, ruch, wskazówki i częste błędy. Wiele ćwiczeń ma prosty rysunek ruchu rysowany na urządzeniu; odmiany przysiadu, wyciskania leżąc i zawiasu biodrowego (np. Sumo Deadlift) są animowane i oznaczają mięśnie główne. Notka przypomina, że aplikacja nie udziela porad medycznych.
+- Więcej → Ćwiczenia, stuknij ćwiczenie (np. Back Squat): sekcja „Technika” zawiera ustawienie, ruch, wskazówki i częste błędy. Wiele ćwiczeń ma prosty rysunek ruchu rysowany na urządzeniu; odmiany przysiadu, wyciskania leżąc i martwego ciągu (np. Sumo Deadlift) są animowane i oznaczają mięśnie główne. Notka przypomina, że aplikacja nie udziela porad medycznych.
 
 KOPIA, IMPORT, CZYSZCZENIE
 - Więcej → Kopia zapasowa: „Eksportuj historię do CSV” i „Importuj historię z pliku CSV”. Import pokazuje podgląd przed zapisem i nigdy nie usuwa obecnych danych. Żeby wypróbować: najpierw eksport historii do CSV, potem import tego samego pliku.

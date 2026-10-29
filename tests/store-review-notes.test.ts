@@ -96,8 +96,10 @@ describe('store/review-notes.md', () => {
     for (const f of ['squat', 'bench_press', 'hinge'] as const) expect([f, FAMILY[f].status]).toEqual([f, 'ready']);
     expect(shownFigureSpec('Sumo Deadlift')).not.toBeNull(); expect(ex).toContain('Sumo Deadlift');
     expect(shownFigureSpec('Deadlift (sztanga)')).not.toBeNull(); expect(Object.keys(V2_WSTRZYMANE)).not.toContain('Deadlift (sztanga)'); /* 29.10.2026: martwy ciąg ze sztangą zdjęty z V2_WSTRZYMANE po recenzji niezależnej; zdanie sekcji pozostaje bez zmian (store/ poza pakietem J0) */
-    expect(ex).not.toMatch(/squat, bench press and deadlift/i); expect(ćw).not.toMatch(/przysiadu, wyciskania leżąc i martwego ciągu/i);
-    expect(ex).toMatch(/hip hinge/); expect(ćw).toMatch(/zawiasu biodrowego/);
+    /* 101-25 (29.10.2026, linia 1.0.1): martwe ciągi z podłogi wróciły (V2_WSTRZYMANE puste) — zdanie wymienia martwy ciąg, nie „zawias biodrowy” (stan 1.0 odwrócony w tym samym commicie) */
+    expect(Object.keys(V2_WSTRZYMANE)).toEqual([]);
+    expect(ex).toMatch(/squat, bench press and deadlift variations/); expect(ćw).toMatch(/przysiadu, wyciskania leżąc i martwego ciągu/);
+    expect(ex).not.toMatch(/hip hinge/); expect(ćw).not.toMatch(/zawiasu biodrowego/);
     expect(ex).toMatch(/does not give medical advice/); expect(ćw).toMatch(/nie udziela porad medycznych/);
     expect(EN['Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.' as keyof typeof EN]).toMatch(/does not give medical advice/i);
     expect(EN['Mięśnie główne: {lista}' as keyof typeof EN]).toMatch(/Main muscles/); expect(ex).toMatch(/main muscles/);
