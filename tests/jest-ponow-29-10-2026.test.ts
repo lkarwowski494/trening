@@ -22,7 +22,7 @@ const wynik = (...testResults: { status: string }[]) => ({ success: testResults.
 const FAKE = `
 const fs = require('fs');
 const dir = process.env.FAKE_DIR; const n = fs.readdirSync(dir).filter(f => f.startsWith('call-')).length;
-fs.writeFileSync(dir + '/call-' + n + '.json', JSON.stringify(process.argv.slice(2)));
+fs.writeFileSync(dir + '/call-' + n + '.json', JSON.stringify(process.argv.slice(2).concat('NODE_OPTIONS=' + (process.env.NODE_OPTIONS || ''))));
 const sc = JSON.parse(fs.readFileSync(dir + '/scenariusz.json', 'utf8'));
 const out = process.argv.find(a => a.startsWith('--outputFile=')).slice(13);
 const w = sc[n];
@@ -49,6 +49,8 @@ describe('scripts/jest-ponow.mjs — ponawia tylko przerwania z zewnątrz (decyz
     expect(r.wywolania[0]).toContain('--maxWorkers=2'); /* pierwszy przebieg zachowuje argumenty */
     expect(r.wywolania[1]).toEqual(expect.arrayContaining(['--runInBand', '--runTestsByPath', '/b.test.ts']));
     expect(r.wywolania[1]).not.toContain('/a.test.ts');
+    expect(r.wywolania[1]).toContainEqual(expect.stringMatching(/NODE_OPTIONS=.*--max-old-space-size=4096$/)); /* ponowienie z większą stertą (OOM workera = „SIGTERM”) */
+    expect(r.wywolania[0]).not.toContainEqual(expect.stringMatching(/--max-old-space-size=4096$/));
     expect(r.log).toMatch(/ponawiam TYLKO je/);
     expect(r.log).toContain('/b.test.ts');
     expect(r.log).toMatch(/SIGTERM/);

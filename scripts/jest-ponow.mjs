@@ -11,6 +11,9 @@ import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+/* Ponowienie dostaje większą stertę: ciężki plik (np. regress) potrafi wyczerpać domyślne ~2 GB sterty workera (FATAL ERROR: heap out of memory),
+ * co Jest zgłasza jako SIGTERM — pierwsze ponowienie z domyślną stertą padło tak samo (pomiar 29.10.2026); z 4096 MB regress przechodzi w ok. 66 s. */
+export const STERTA_PONOWIENIA_MB = 4096;
 const PRZERWANIE = /Test suite failed to run[\s\S]*terminated by another process[\s\S]*signal=(?:SIGTERM|SIGKILL)/;
 
 /** Treść błędu pliku testowego z wyniku JSON Jest. */
@@ -38,8 +41,8 @@ export function werdykt(wynik) {
   return { kod: 0, ponow: [], powod: 'brak porażek' };
 }
 
-function uruchom(jest, argumenty, plikWyniku) {
-  const r = spawnSync(process.execPath, [jest, ...argumenty, '--json', `--outputFile=${plikWyniku}`], { cwd: ROOT, stdio: 'inherit' });
+function uruchom(jest, argumenty, plikWyniku, env = {}) {
+  const r = spawnSync(process.execPath, [jest, ...argumenty, '--json', `--outputFile=${plikWyniku}`], { cwd: ROOT, stdio: 'inherit', env: { ...process.env, ...env } });
   let wynik = null;
   try { wynik = JSON.parse(readFileSync(plikWyniku, 'utf8')); } catch { /* brak pliku wyniku — jest nie dokończył */ }
   return { status: r.status, wynik };
@@ -57,7 +60,7 @@ export function main(args) {
     if (!w.ponow.length) { console.error('jest-ponow: Jest zakończył się błędem bez opisanej porażki pliku — czerwone, bez ponawiania'); return 1; }
     console.error(`\njest-ponow: ${w.ponow.length} plików przerwanych z zewnątrz (SIGTERM/SIGKILL workera), ponawiam TYLKO je, raz, osobno (--runInBand):`);
     for (const f of w.ponow) console.error(`  - ${f.replace(ROOT + '/', '')}`);
-    const p2 = uruchom(jest, ['--runInBand', '--runTestsByPath', ...w.ponow], join(dir, 'p2.json'));
+    const p2 = uruchom(jest, ['--runInBand', '--runTestsByPath', ...w.ponow], join(dir, 'p2.json'), { NODE_OPTIONS: `${process.env.NODE_OPTIONS || ''} --max-old-space-size=${STERTA_PONOWIENIA_MB}`.trim() });
     const ok = Boolean(p2.wynik) && p2.status === 0 && p2.wynik.success && (p2.wynik.testResults || []).length === w.ponow.length;
     console.error(ok ? `jest-ponow: wszystkie ${w.ponow.length} ponowień zielone — Jest zielony` : 'jest-ponow: ponowienie czerwone — Jest czerwony');
     return ok ? 0 : 1;
