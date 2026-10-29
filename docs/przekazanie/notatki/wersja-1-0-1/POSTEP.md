@@ -11,8 +11,8 @@
 | 0 | 0 (101-00, 101-01) | r101/0 | scalona | 634139e6 | czerwone 1/11179 (docs/40 kolejność lekcji) → poprawka + kroki po Jest zielone | po pushu |
 | 1 | F, E, A (+E2) | r101/F, r101/E, r101/A, r101/E2 | scalona | — | — | — |
 | 2 | A2, B, C, D, I, K | r101/* | gotowe, recenzje zatwierdzone; scalenie w toku | — | — | — |
-| 3 | J0, J, J2/J3 + krok koordynatora (25, docs) | r101/J0, r101/J, r101/J2 | J0, J scalone; J3 w toku | — | — | 49e258ab w toku |
-| 4 | G1–G3 | — | czeka na sygnał „1.0 wysłane do recenzji Apple” | — | — | — |
+| 3 | J0, J, J2/J3, M + krok koordynatora (25, docs) | r101/J0, r101/J, r101/J2, r101/M | scalona | f143ffd9 | zielone (11341; 1 OOM ponowiony zielony; znacznik) | zielony 40898719523 |
+| 4 | G1–G3 | — | czeka na sygnał „1.0 wysłane do recenzji Apple” (koordynator 1.0: najpewniej 30.10 rano) | — | — | — |
 
 ## Do zdjęcia z `V2_WSTRZYMANE` (zbiorczo po fali)
 - JM Press, Decline Close-Grip Bench To Skull Crusher (pakiet 0, pomiar wg kart r2; zdjęcie w fali 3)
@@ -64,6 +64,10 @@
 - 29.10 ~15:20 Fala 3: J0 (zdjęcie 18 wpisów V2_WSTRZYMANE, 101-29, 101-30) i J (101-17, el) scalone; skróty rodzin v2 przeliczone po zdjęciu (zmiana formy, odciski 87/87 bez zmian); pomocnik styku — osobne uchwyty jako punkty (Band Bench Press czerwony po połączeniu A i B); contract.ts — wyjątek OHS wydzielony do overheadException.ts; 101-25 notatki dla recenzenta i docs/45; docs/21 stan linii.
 - 29.10 ~15:25 J2 (Chain Press dłonie) — recenzja WYSOKIE (łokieć 127° zgięcia = 53° ramię–przedramię, źródło 90°) → J3 (dłonie 18 cm ku stopom i łokieć 90°), r2 bez J2 (wersja z B zatwierdzona).
 - 29.10 ~15:30 tests.yml: 4 czerwone przebiegi (README/docs/19 nieaktualne po wypchnięciach z --no-verify; Jest w CI zielony 11231/11234) — lekcja w docs/40; 49e258ab z regeneracją w toku.
+
+- 29.10 ~16:00 J3 (Chain Press łokieć 90°, dłonie jak w hantlach) — recenzja niezależna przechodzi (8b3a51d3), scalone (7766f093); skróty przeliczone (zmiana formy).
+- 29.10 ~16:10 verify fali 3 (czysta maszyna): 9 porażek realnych — testy places-* po 101-17, figury-sprzet po B (uchwyty), rejestr ryzyk (data/dowód R-101-27/28) → pakiet M + poprawka koordynatora; ponowne verify zielone (f143ffd9, znacznik), tests.yml zielony.
+- 29.10 ~16:40 sygnał fali 4 przesunięty (koordynator 1.0, PR #97): najpewniej 30.10 rano. STAN-2026-10-29-fala3.md zapisany.
 
 ## Czekające kroki właściciela
 - brak decyzji (D3 → 17°, 101-27 → bez poprawki, 101-17 → B, Reverse Lunge → zatwierdzona wersja widoczna; 29.10.2026)
