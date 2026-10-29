@@ -232,9 +232,13 @@ jobs:
             FAILED=$(node scripts/ci/e2e-wyniki.mjs nieudane e2e-out/report.xml "$DIR")
             if [ -n "$FAILED" ]; then
               rc=0; mkdir -p e2e-out/ponowienie
+              APP=ios/build/Build/Products/Release-iphonesimulator/Trening.app
+              # 101-23 (D7 = B, 29.10.2026): „Device became unreachable” w logu → restart symulatora i ponowna instalacja PRZED tym samym, jednym ponowieniem (limit ponowień bez zmian)
+              bash scripts/ci/sim-restart-niedostepny.sh /tmp/maestro-1.log "$SIM" "$APP"
               for f in $FAILED; do
                 echo "::warning::Ponowienie scenariusza $f (jedno, osobno)"
-                guard maestro --device "$SIM" test "$DIR/$f" --format junit --output "e2e-out/ponowienie/${f%.yaml}.xml" --test-output-dir "e2e-out/ponowienie/${f%.yaml}" || rc=1
+                guard maestro --device "$SIM" test "$DIR/$f" --format junit --output "e2e-out/ponowienie/${f%.yaml}.xml" --test-output-dir "e2e-out/ponowienie/${f%.yaml}" 2>&1 | tee /tmp/maestro-ponowienie.log
+                [ "${PIPESTATUS[0]}" -eq 0 ] || { rc=1; bash scripts/ci/sim-restart-niedostepny.sh /tmp/maestro-ponowienie.log "$SIM" "$APP"; }  # niedostępne w ponowieniu: restart tylko dla KOLEJNEGO scenariusza (ten nie dostaje drugiego ponowienia)
               done
             fi
           fi

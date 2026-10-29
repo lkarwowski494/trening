@@ -16,6 +16,16 @@ mkdir -p "$OUT"
 maestro_run() { command -v maestro >/dev/null 2>&1 || { echo "::warning::Brak Maestro — akcja $1 pominięta"; return 0; }
   local log="$OUT/.maestro/${2//\//-}-$1"; mkdir -p "$log"   # dziennik i zrzut porażki Maestro w artefakcie (katalog z kropką — pomijany przez ramki)
   maestro --device "$UDID" test "$FLOWS/$1.yaml" --test-output-dir "$log" > "$log/maestro.log" 2>&1 || { echo "::warning::Akcja $1 nie powiodła się ($2)"; tail -5 "$log/maestro.log" | sed 's/^/    /'; return 1; }; }
+# Jedno uruchomienie Maestro na ekran (101-24, 29.10.2026): dotąd „dialogi” → akcja → „dialogi” to 2–3 osobne uruchomienia (każde ok. 1 min na starcie sterownika XCTest na symulatorze
+# macos-26; L-054: 2,7–3,5 min na ekran). Te same pliki akcji składamy w jeden przepływ (runFlow), więc kroki i zrzut są takie same, a sterownik startuje raz. Przepływ powstaje
+# w katalogu dziennika (nazwa = akcja, np. import.yaml); ścieżki bezwzględne do plików w scripts/ci/maestro-sklep.
+maestro_ekran() {   # $1 = akcja albo pusto, $2 = język/ekran
+  command -v maestro >/dev/null 2>&1 || { echo "::warning::Brak Maestro — ekran $2 pominięty"; return 0; }
+  local act="${1:-dialogi}" log="$OUT/.maestro/${2//\//-}-ekran"; mkdir -p "$log"
+  { printf 'appId: %s\n---\n- runFlow: %s/dialogi.yaml\n- waitForAnimationToEnd\n' "$BUNDLE" "$FLOWS"
+    [ -z "$1" ] || printf -- '- runFlow: %s/%s.yaml\n- waitForAnimationToEnd\n' "$FLOWS" "$1"
+    printf -- '- runFlow: %s/dialogi.yaml\n' "$FLOWS"; } > "$log/$act.yaml"
+  maestro --device "$UDID" test "$log/$act.yaml" --test-output-dir "$log" > "$log/maestro.log" 2>&1 || { echo "::warning::Ekran $2 (akcja ${1:-brak}) nie powiódł się"; tail -5 "$log/maestro.log" | sed 's/^/    /'; return 1; }; }
 # Pasek stanu jak w materiałach Apple: stała godzina, pełna bateria i zasięg (bez nazwy operatora).
 xcrun simctl status_bar "$UDID" override --time "9:41" --dataNetwork wifi --wifiMode active --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100 >/dev/null 2>&1 || echo "::warning::Nie udało się ustawić paska stanu"
 FAILED=""
@@ -41,10 +51,9 @@ db.commit(); db.close()' "$C/Library/SQLite/trening.db" "$OUT/.state.json"
   xcrun simctl launch "$UDID" "$BUNDLE" >/dev/null
   sleep 8   # animacja startowa (tylko zimny start) i wczytanie danych
   [ "$route" = "/" ] || { xcrun simctl openurl "$UDID" "trening://${route#/}"; sleep 2; }
-  maestro_run dialogi "$lang/$name" || true; sleep 2   # „Open in …?” po łączu i pytanie o powiadomienia — zatwierdzone, poza kadrem
-  if [ -n "$action" ]; then maestro_run "$action" "$lang/$name" || ok=1; sleep 1; fi
-  # drugi raz tuż przed zrzutem: pytanie o powiadomienia przy treningu w toku potrafi przyjść po pierwszym zatwierdzaniu (run 39181699626, 6.9 pl/01)
-  maestro_run dialogi "$lang/$name-przed-zrzutem" || true; sleep 1
+  # „Open in …?” po łączu i pytanie o powiadomienia — zatwierdzone poza kadrem; akcja ekranu; ponowne „dialogi” tuż przed zrzutem (pytanie o powiadomienia przy treningu
+  # w toku potrafi przyjść po pierwszym zatwierdzaniu: run 39181699626, 6.9 pl/01) — wszystko w jednym uruchomieniu Maestro
+  maestro_ekran "$action" "$lang/$name" || ok=1; sleep 2
   xcrun simctl io "$UDID" screenshot "$OUT/$lang/$(printf '%02d' "$i")-$name.png" >/dev/null 2>&1
   return $ok
 }
