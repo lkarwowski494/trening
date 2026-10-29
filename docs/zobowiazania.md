@@ -17,7 +17,6 @@ Zasady:
 
 | ID | Kiedy | Akcja | Decyzja | Kto | Stan |
 |---|---|---|---|---|---|
-| ZB-001 | rano 29.10.2026 | Weto lub zatwierdzenie decyzji nocnych agentów: #84 (JM Press i Decline Close-Grip Bench To Skull Crusher bez rysunku w 1.0), zmiany słów kluczowych z odświeżenia metadanych, inne wyjątki „decyzja agenta w nocy” w docs/18 | nocny tryb napraw, właściciel 28.10.2026 ~20:00 i ~20:35 UTC (docs/18) | właściciel, koordynator podaje listę | czeka |
 | ZB-002 | po ogłoszeniu „main kandydat <SHA>” | Build `testflight.yml` na SHA kandydata (czeka na zatwierdzenie `release`; w nocy 28/29.10 bez powiadomień — właściciel zatwierdza po 06:00 UTC); równolegle zrzuty 35 języków i zegarka **na tym samym SHA** (zmiana `main` po kandydacie = zrzuty od nowa) | właściciel 28.10.2026 (~20:00 „powiadom mnie w nocy”, zmienione ~22:10 „nic do 6”; ~21:35 „zrzuty z finalnej wersji”) | koordynator przeglądów | czeka |
 | ZB-003 | po buildzie kandydata | Kroki właściciela do zgłoszenia 1.0 po kolei: docs/48 Z-08, Z-09, Z-16 (akceptacja zrzutów), Z-14, Z-24, Z-25, Z-25a, Z-26, Z-28, Z-29 | docs/48 (kolumna „Stan” = źródło) | właściciel, prowadzi koordynator krok po kroku | czeka |
 | ZB-004 | po wysłaniu 1.0 do recenzji Apple | Przygotowanie przeniesienia do Apps4Brew: konfiguracja `scripts/przeniesienie-1.0.json` wg D1–D7, klasyfikacja plików dodanych po 21.10, poprawa 13 testów czytających usuwane pliki i nazw w dokumentach; podgląd `node scripts/przeniesienie-1.0.mjs --zachowaj --testy` bez błędów | właściciel 28.10.2026 ~21:55 UTC, wariant B (docs/46) | koordynator | czeka |
@@ -38,3 +37,4 @@ Zasady:
 
 | ID | Kiedy | Akcja | Stan |
 |---|---|---|---|
+| ZB-001 | rano 29.10.2026 | Weto lub zatwierdzenie decyzji nocnych agentów: #84 (JM Press i Decline Close-Grip Bench To Skull Crusher bez rysunku w 1.0), zmiany słów kluczowych z odświeżenia metadanych, inne wyjątki „decyzja agenta w nocy” w docs/18 | zrobione 29.10.2026 — wszystkie decyzje nocne zatwierdzone (docs/18) |
