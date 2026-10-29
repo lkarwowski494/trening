@@ -126,3 +126,14 @@ describe('101-12 (squat): wyjątki toru — naprawione albo uzasadnione liczbą'
     const squat = Object.keys(WYJ).filter(k => /Squat|Przysiad/.test(k)).sort(); expect(squat).toEqual(['Barbell Hack Squat|side', 'Dip Belt Squat|side', 'Przysiad z pasem (linki)|side']);
   });
 });
+
+/* 101-09 (29.10.2026): pomocnik rigu Zercher — gryf w zgięciu łokcia: środek gryfu SQUAT.zercherCrook cm od łokcia wzdłuż dwusiecznej (albo dalej w przód, gdy ograniczy go zercherBarFwd), zawsze przed powierzchnią tułowia. */
+describe('zercherCrook (lib/figures/v2/rigs/squat.ts, 101-09)', () => {
+  const { zercherCrook, SQUAT } = require('@/lib/figures/v2/rigs/squat') as typeof import('@/lib/figures/v2/rigs/squat');
+  test('gryf co najmniej zercherBarFwd w przód i w odległości ≥ zercherCrook od łokcia (zgięcie łokcia, nie przedramię)', () => {
+    const { elbow, bar } = zercherCrook();
+    expect(bar[0]).toBeGreaterThanOrEqual(SQUAT.zercherBarFwd);
+    expect(Math.hypot(bar[0] - elbow[0], bar[1] - elbow[1])).toBeGreaterThanOrEqual(SQUAT.zercherCrook - 1e-6);
+    expect(Math.hypot(bar[0] - elbow[0], bar[1] - elbow[1])).toBeLessThanOrEqual(9); /* jak test geometrii Zercher: ≤ 9 cm od łokcia */
+  });
+});

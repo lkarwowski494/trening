@@ -505,3 +505,8 @@ Przegląd rolą `recenzent-lokalizacji` (26.10.2026, gałąź `recenzja-lok-2026
 - Pytania do native speakerów (wpisy `niska` w słowniku): hu — „Köztes helyzet 1” czy „1. köztes helyzet”; ja — „途中の姿勢1” czy „途中の姿勢 1”; zh-Hant — „中間姿勢 1” czy „中間姿勢1”; cs/sk — „Mezipoloha / Medzipoloha” czy „Střední poloha / Stredná poloha”; sr — „Међуположај” czy „Средњи положај”.
 
 - 29.10.2026 (decyzja właściciela, wariant A): także podpis 3 klatek bez numeru „Pozycja pośrednia” / „Mid position” zamiast „W trakcie” (r2/podpis3). Recenzja lokalizacji: 35 tekstów, 0 poprawek. Pytanie do native speakera: lv „Starppozīcija” czy „Vidējā pozīcija” (sąsiednie podpisy dwuwyrazowe: „Sākuma / Beigu pozīcija”).
+
+### Wersja 1.0.1: recenzja lokalizacji pakietu E (101-15) — wprowadzone i pytania (29.10.2026)
+- Wprowadzone: ms „Rysunek ruchu: {opis}” → „Animasi pergerakan: {opis}” (spójnie z opisem sklepu); słownik: el „κινούμενα σχέδια” zakazane, el squat / bench press / deadlift zalecane, ms „animasi pergerakan” termin marketingowy; el „άρσεις” → „deadlift” (kategoria maszyn) i „πιέσεις πάγκου” → „bench press” (pomoc w Postępach) — pakiet J.
+- Pytania do native speakerów: ms — „Rajah skematik” czy „Lukisan skematik” pod figurą ćwiczenia (także „Sudut pada rajah/lukisan”); el — w nawiasie z listą maszyn „deadlift” czy „άρσεις θανάτου” (słownik zakłada „deadlift”, pewność średnia).
+- Po 1.0 (`store/` zamrożone w czasie wydania 1.0): podpis zrzutu ms `store/screenshot-captions.json` „Lukisan gerakan dan petua teknik” → „Animasi pergerakan dan petua teknik” (docs/21).
