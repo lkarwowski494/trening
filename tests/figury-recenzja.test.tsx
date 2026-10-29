@@ -89,7 +89,8 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
 });
 
 describe('ekran: figura ukryta po recenzji — sekcja „Technika” bez rysunku, wskazówki zostają', () => {
-  test.each(['Push Press', 'Pendlay Row'])('%s', k => {
+  /* 29.10.2026 (1.0.1): Push Press po recenzji niezależnej — wyswietlana; ukryte zostają Pendlay Row i Reverse Lunge */
+  test.each(['Pendlay Row', 'Reverse Lunge'])('%s', k => {
     expect(REC.v1[k].werdykt).toBe('ukryta');
     render(<ExerciseCues exercise={lib(k)} initialOpen />);
     expect(screen.queryByTestId('exercise-figure')).toBeNull();
@@ -104,8 +105,10 @@ describe('ekran: figura ukryta po recenzji — sekcja „Technika” bez rysunku
 
 /* ---------- Regresja: wady ruchu z recenzji 27.10.2026 (liczby z silnika; „było” = dane sprzed poprawki) ---------- */
 /* Karta ukryta po recenzji treści (M1-audytor-generalny-038, 28.10.2026) nie ma figury w runtime — regresja geometrii liczona na pełnych danych figury (data/zrodla/figures.json). */
+/* Figury ukryte werdyktem recenzji (docs/research/figury-recenzja.json) też nie są w runtime — geometria z pełnych danych. */
+const FIGURY_UKRYTE = Object.entries(JSON.parse(fs.readFileSync(path.join(root, 'docs/research/figury-recenzja.json'), 'utf8')).v1 as Record<string, { werdykt?: string }>).filter(([, v]) => v.werdykt === 'ukryta').map(([k]) => k);
 const FULL_FIG = JSON.parse(fs.readFileSync(path.join(root, 'data/zrodla/figures.json'), 'utf8')).exercises;
-const fig = (k: string) => { const f = figureByKey(k) ?? (CUE_DATA.hidden.includes(k) ? resolveFigure(FULL_FIG, k) : null); if (!f) throw new Error(`brak figury ${k}`); return f; };
+const fig = (k: string) => { const f = figureByKey(k) ?? (CUE_DATA.hidden.includes(k) || FIGURY_UKRYTE.includes(k) ? resolveFigure(FULL_FIG, k) : null); if (!f) throw new Error(`brak figury ${k}`); return f; };
 /** Wszystkie pozy animacji: 21 chwil każdego przejścia między pozycjami kluczowymi. */
 const all = (f: Figure): Points[] => { const out: Points[] = []; for (let i = 0; i + 1 < f.frames.length; i++) for (let s = 0; s <= 20; s++) out.push(poseBetween(f, i, i + 1, s / 20).P); return out; };
 const d = (a: Pt, b: Pt) => Math.hypot(a[0] - b[0], a[1] - b[1]);

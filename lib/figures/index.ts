@@ -5,7 +5,7 @@ import { resolveFigure, framePoints, shapes, bounds, loopAt, poseBetween, type F
 
 /*
  * Figury ruchu, etap 2–3 (decyzja właściciela 08.10.2026 ok. 23:50 — wariant A etapami; research docs/research/26 pkt 7).
- * Dane: lib/figures/data.json (plik runtime bez nazw źródeł, generuje go scripts/zrodla-runtime.mjs z data/zrodla/figures.json) — dla każdego ćwiczenia 1–3 pozy (kąty stawów) z odwołaniem do zdań wskazówek etapu 1 (lib/cues),
+ * Dane: lib/figures/data.json (plik runtime bez nazw źródeł, generuje go scripts/zrodla-runtime.mjs z data/zrodla/figures.json) — dla każdego ćwiczenia 1–4 pozy (kąty stawów) z odwołaniem do zdań wskazówek etapu 1 (lib/cues),
  * z których wynika poza; reszta kątów to nazwane uproszczenie ilustracyjne. Geometria: ./geom.ts (jeden moduł, bez React).
  * Dokument docs/research/28-figury.md generuje scripts/figures/gen.mjs (--check w verify). Ćwiczenia bez figury: „open” z powodem.
  */
@@ -31,9 +31,11 @@ export function figureLabel(key: string, l: Lang = lang()): string {
   const move = Object.prototype.hasOwnProperty.call(CUE_DATA.exercises, key) ? CUE_DATA.exercises[key].move : [];
   return t('Rysunek ruchu: {opis}', { opis: move.map(r => cueText(r.c, l)).join(' ') });
 }
-/** Podpis klatki przy statycznym widoku (Ogranicz ruch / pauza). */
-export function frameLabel(n: FrameName): string {
-  return n === 'start' ? t('Pozycja wyjściowa') : n === 'mid' ? t('W trakcie') : t('Pozycja końcowa');
+/** Podpis klatki przy statycznym widoku (Ogranicz ruch / pauza). Przy czterech pozycjach dwie środkowe mają numer („W trakcie 1”, „W trakcie 2”); przy trzech — bez zmian. */
+export function frameLabel(n: FrameName, total = 3): string {
+  if (n === 'start') return t('Pozycja wyjściowa');
+  if (n === 'end') return t('Pozycja końcowa');
+  return total > 3 ? t('W trakcie {n}', { n: n === 'mid' ? 1 : 2 }) : t('W trakcie');
 }
 
 /** Kształty wszystkich klatek i wspólny kadr (do statycznego widoku i do stałego kadru animacji). */

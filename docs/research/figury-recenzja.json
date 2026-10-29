@@ -187,12 +187,15 @@
   },
   "Push Press": {
    "rodzina": "overhead_press",
-   "werdykt": "ukryta",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "b4d0dd3e05f6",
-   "wada": "Jak w wyciskaniu: gryf łukiem przed twarzą przy wypychaniu; nogi i ręce prostują się jednocześnie, choć wskazówka mówi, że siła idzie z nóg, a ręce kończą ruch (pp.legs). Figura ma już 3 pozycje (limit silnika v1) — nie da się dodać pozycji pośredniej.",
-   "poprawka": "Rodzina v2 overhead_press z fazami ruchu albo czwarta pozycja w silniku v1 (ugięcie → wyprost nóg z gryfem przy barkach → wyciśnięcie). Decyzja właściciela: 1.0 czy 1.0.1."
+   "werdykt": "wyswietlana",
+   "data": "2026-10-29",
+   "kto": "audytor (sesja 1.0.1, niezależny) — recenzja bramki 4, runda 2 (L-047, L-050): podgląd klatek i póz pośrednich, arkusz śladu toru, pomiar z lib/figures/geom.ts (201 póz na przejście), zakres stawów wobec rom, karta lib/cues (pp.setup, pp.move, pp.legs, pp.dip); raport recenzja-figury-v1-1-0-1.md",
+   "sha": "1a6202fc3925",
+   "uwagi": "Czwarta pozycja silnika (1.0.1): krótkie ugięcie (kolano 25°, tułów pionowo), potem wyprost nóg i bioder z gryfem nad barkami i zgiętymi rękami (kolano 0°, łokieć 113,8°), dopiero potem wyciskanie do wyprostu rąk — zgodnie z kartą „siła z nóg, ręce kończą ruch”. Gryf mija twarz w odległości ≥ 7,2 j. od środka głowy (ten sam próg co Overhead Press (sztanga)), nie wysuwa się przed pozycję startową o więcej niż 1,2 j., w pozycji końcowej nad kostką. Głębokość ugięcia ilustracyjna (nazwana w notatce).",
+   "autor": "programista r2/figury-v1",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "arkusz PNG klatek kluczowych, póz pośrednich i nałożonego śladu toru gryfu (L-050) oraz pomiar odległości gryfu od głowy i toru dłoni z modułu geometrii aplikacji — sesja recenzji 1.0.1, runda 2",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), wersja 1.0.1, 29.10.2026"
   },
   "Wyciskanie nad głowę (linki)": {
    "rodzina": "overhead_press",
@@ -324,33 +327,41 @@
   "Lunges (hantle)": {
    "rodzina": "lunge",
    "werdykt": "wyswietlana",
-   "stan": "zrecenzowana niezależnie 28.10.2026 (figura: recenzja z wpisu; treść karty po usunięciu zdań: 06-tresci)",
-   "data": "2026-10-28",
-   "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-po-poprawce.md: OK (NISKIE: tylna stopa pionowo na palcach w „w trakcie”, przednia stopa przesuwa się o 2,1 j.) — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
+   "data": "2026-10-29",
+   "kto": "audytor (sesja 1.0.1, niezależny) — recenzja bramki 4 (L-047, L-050): dane figury identyczne z 1.0 (wersja-1-0-1-r2, wariant B — przywrócona poza tylnej stopy), skrót bez zmian; podgląd i arkusz śladu toru; raport recenzja-figury-v1-1-0-1.md",
    "sha": "c4129536dca1",
-   "uwagi": "Klatki zmienione 28.10.2026 po recenzji niezależnej (WYSOKIE: ciało opadało do wykroku, zanim przednia stopa dotknęła podłogi). Pozycja „w trakcie” = krok postawiony (przednia stopa płasko na podłodze, biodra wysoko, tylne palce na podłodze), dopiero potem opuszczenie; wykrok krótszy (przednia kostka ok. 43 j. od tylnych palców). Test: tests/figury-podparcie.test.ts (reguła podparcia). Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian.",
-   "autor": "programista (agent; poprawka klatek figury, decyzja właściciela 28.10.2026)",
-   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026); treść karty po usunięciu zdań: 06-tresci (subagent, 28.10.2026)"
+   "uwagi": "Figura bajtowo taka sama jak wyświetlana w 1.0 (ten sam skrót) — nie gorsza. Uwagi NISKIE z 28.10.2026 bez zmian i w backlogu (docs/21): tylna stopa pionowo na palcach w „w trakcie”, przednie palce przesuwają się w styku o 3,2 j. przy odbiciu.",
+   "autor": "programista r2/figury-v1",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "arkusz śladu toru: scratchpad/figury-v1/recenzja/Lunges__hantle_/podglad.png (odświeżony po 64a8145); pomiar: scratchpad/aud/drag.mjs (old = new)",
+   "poprzedniWerdykt": "wyswietlana",
+   "poprzedniaRecenzja": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), wersja 1.0.1, 29.10.2026"
   },
   "Walking Lunges": {
    "rodzina": "lunge",
    "werdykt": "wyswietlana",
-   "stan": "zrecenzowana niezależnie 28.10.2026 (figura: recenzja z wpisu; treść karty po usunięciu zdań: 06-tresci)",
-   "data": "2026-10-28",
-   "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-po-poprawce.md: ruch jak Lunges — wyświetlana; ŚREDNIE (brak kroku drugą nogą) → backlog 1.0.1 — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
-   "sha": "06e0f4563108",
-   "uwagi": "Klatki zmienione 28.10.2026 jak Lunges (hantle): krok postawiony przed opuszczeniem (WYSOKIE z recenzji niezależnej). Nie poprawiono (ŚREDNIE): pętla wraca do pozycji wyjściowej zamiast kroku drugą nogą — silnik v1 (3 pozycje, ping-pong) tego nie pokaże. Test: tests/figury-podparcie.test.ts. Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian.",
-   "autor": "programista (agent; poprawka klatek figury, decyzja właściciela 28.10.2026)",
-   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026); treść karty po usunięciu zdań: 06-tresci (subagent, 28.10.2026)"
+   "data": "2026-10-29",
+   "kto": "audytor (sesja 1.0.1, niezależny) — recenzja bramki 4, runda 2 (L-047, L-050): podgląd klatek i póz pośrednich, arkusz śladu toru, pomiar z lib/figures/geom.ts (101 póz na przejście), zakres stawów wobec rom we wszystkich pozach, karta lib/cues (lunge.dbSetup, lunge.walk, lunge.torso); raport recenzja-figury-v1-1-0-1.md",
+   "sha": "fd687120c1be",
+   "uwagi": "Poprawka 1.0.1 nie gorsza od 1.0 (lepsza): krok drugą nogą zgodnie z kartą (cztery pozycje: wykrok, wstawanie z przejściem tylnej nogi, krok postawiony, wykrok lustrzany do startu) — usuwa ŚREDNIE z 28.10.2026. Stopa bliższa w miejscu przez cały ruch (0 j.), tylne palce przy odbiciu ≤ 1,7 j. przesunięcia w styku (w rundzie 1 było 8,1 j.), przednia stopa po lądowaniu w granicach 2 j., tylne kolano ≤ 8 j. nad podłogą, wszystkie stawy w zakresie. NISKIE (backlog): druga połowa pętli ping-pong pokazuje krok w tył — ograniczenie silnika, nazwane uproszczenie.",
+   "autor": "programista r2/figury-v1",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "arkusz PNG klatek kluczowych, póz pośrednich (0,25 / 0,5 / 0,75) i nałożonego śladu toru punktów (L-050) oraz pomiar punktów stóp, biodra i zakresu stawów z modułu geometrii aplikacji — sesja recenzji 1.0.1, runda 2",
+   "poprzedniWerdykt": "wyswietlana",
+   "poprzedniaRecenzja": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), wersja 1.0.1, 29.10.2026"
   },
   "Reverse Lunge": {
    "rodzina": "lunge",
    "werdykt": "ukryta",
-   "data": "2026-10-28",
+   "data": "2026-10-29",
    "kto": "06-tresci — recenzja niezależna figur 3a i pełna (audytor, 28.10.2026): pomiary póz pośrednich, arkusze PNG; decyzja właściciela 28.10.2026 „Reverse Lunge ukryć w 1.0”",
-   "sha": "d461a393d415",
-   "wada": "Biodro opada ok. 20 j., gdy tylna stopa jest w powietrzu; środek ciężkości do 8,7 j. za piętą jedynej podpory; przednia stopa unosi się do 3,1 j., palce tylnej jadą po podłodze 22 j. Limit 3 pozycji silnika v1 — łuk stopy w zamachu w tył nie do oddania (próby na 3 pozycjach: tests/figury-podparcie.test.ts).",
-   "poprawka": "Czwarta pozycja w silniku v1 (kolano ugięte w połowie zamachu), razem z Push Press i krokiem drugą nogą w Walking Lunges — wersja 1.0.1 (backlog docs/21). Do tego czasu bez rysunku, wskazówki zostają."
+   "sha": "74f7f62d814b",
+   "wada": "Poprawka 1.0.1 (29.10.2026): czwarta pozycja — tylna stopa łukiem w powietrzu, lądowanie palców, dopiero potem opuszczenie; reguła podparcia spełniona. Czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.",
+   "poprawka": "Recenzja niezależna (inny agent niż autor poprawki): podgląd póz i arkusz śladu toru; po akceptacji werdykt „wyswietlana”, nowy skrót, pola autor/recenzent.",
+   "autorPoprawki": "programista (agent, wersja 1.0.1, 29.10.2026) — nie recenzuje własnej pracy (L-047)",
+   "stan": "poprawiona, czeka na recenzję niezależną (bramka 4, arkusz śladu toru L-050)"
   },
   "Bulgarian Split Squat (hantle)": {
    "rodzina": "lunge",
@@ -365,13 +376,16 @@
   "Step Up": {
    "rodzina": "lunge",
    "werdykt": "wyswietlana",
-   "stan": "zrecenzowana niezależnie 28.10.2026",
-   "data": "2026-10-28",
-   "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-stepup-2.md (druga recenzja po drugiej poprawce): OK (NISKIE: ręce z hantlami za tułowiem w „w trakcie”, palce mijają krawędź skrzyni o 0,9 j.) → backlog 1.0.1 — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
-   "sha": "ce54a060ebde",
-   "uwagi": "Klatki zmienione 28.10.2026 dwukrotnie po recenzji niezależnej (WYSOKIE: upadek w tył). Pierwsza poprawka odrzucona przez recenzję po poprawce (środek ciężkości 6,5–7,4 j. za piętą stopy na skrzyni; reguła z tolerancją 10 j. dla biodra była za luźna). Teraz: start z tułowiem ok. 8° od pionu, „w trakcie” z tułowiem pochylonym ok. 30°, środek ciężkości nad stopą na skrzyni (± 2,5 j.), biodro rośnie. Test: tests/figury-podparcie.test.ts (reguła jednej podpory na środku ciężkości).",
-   "autor": "programista (agent; poprawka klatek figury, decyzja właściciela 28.10.2026)",
-   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026)"
+   "data": "2026-10-29",
+   "kto": "audytor (sesja 1.0.1, niezależny) — recenzja bramki 4 (L-047, L-050): podgląd klatek i póz pośrednich, arkusz śladu toru, pomiar z lib/figures/geom.ts (21–101 próbek na przejście), karta lib/cues (stepup.setup, stepup.move, lunge.torso, stepup.knee); raport recenzja-figury-v1-1-0-1.md",
+   "sha": "f4ab0f6bfec7",
+   "uwagi": "Poprawka 1.0.1 nie gorsza od 1.0 (lepsza): dłonie z hantlami pionowo pod barkiem w każdej pozie (|Δx| = 0 j.; było 19 j. za barkiem), stopa nogi zakrocznej ≥ 3 j. od krawędzi skrzyni i nad blatem (palce ≥ 4 j. nad wierzchem w przejściu mid→end), ślizg tylnych palców przy oderwaniu 1,55 j., środek ciężkości z hantlami nad stopą na skrzyni (reguła jednej podpory spełniona). Pozycja końcowa z uniesionym kolanem bez zmian względem 1.0 (nazwane uproszczenie).",
+   "autor": "programista r2/figury-v1",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "arkusz śladu toru: scratchpad/figury-v1/recenzja/Step_Up/podglad.png (pozy kluczowe, pozy pośrednie 0,25/0,5/0,75, nałożony ślad punktów); pomiar: scratchpad/aud/m.mjs, drag.mjs",
+   "poprzedniWerdykt": "wyswietlana",
+   "poprzedniaRecenzja": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), wersja 1.0.1, 29.10.2026"
   },
   "Hip Thrust (sztanga)": {
    "rodzina": "hip_bridge",
@@ -1165,6 +1179,26 @@
    "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
    "sha": "08c8964e60ab",
    "uwagi": "Bloczki na wysokości klatki/barków, tyłem do wyciągu, wyprost i powrót, stopy w podłogę i napięty brzuch — 2 przeczytane źródła."
+  },
+  "Step Up": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie 28.10.2026 — treść karty bez zmian od tej recenzji (wpis v1 „wyswietlana” obejmował figurę i kartę razem); figura po poprawce 1.0.1 czeka osobno na recenzję bramki 4",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026)",
+   "kto": "przeniesienie recenzji karty z wpisu v1 (wskazówki i teksty nie zmieniły się w 1.0.1; skrót kartaSkrot = skrót treści karty)",
+   "sha": "0ff6ccfb7ef9",
+   "uwagi": "Zmieniła się tylko figura (data/zrodla/figures.json); wskazówki i teksty karty bez zmian, więc recenzja treści karty z 28.10.2026 obowiązuje."
+  },
+  "Incline Push Up": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie 28.10.2026 — treść karty bez zmian od tej recenzji (wpis v1 „wyswietlana” obejmował figurę i kartę razem); figura po poprawce 1.0.1 czeka osobno na recenzję bramki 4",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026)",
+   "kto": "przeniesienie recenzji karty z wpisu v1 (wskazówki i teksty nie zmieniły się w 1.0.1; skrót kartaSkrot = skrót treści karty)",
+   "sha": "3092329e53a9",
+   "uwagi": "Zmieniła się tylko figura (data/zrodla/figures.json); wskazówki i teksty karty bez zmian, więc recenzja treści karty z 28.10.2026 obowiązuje."
   }
  },
  "zestawy": {

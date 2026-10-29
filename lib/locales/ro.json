@@ -1723,5 +1723,6 @@
  "Masz plan: roczny": "Planul dvs.: anual",
  "Masz plan: dożywotni": "Planul dvs.: pe viață",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "W trakcie {n}": "În timpul mișcării {n}"
 }

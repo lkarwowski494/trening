@@ -5857,6 +5857,10 @@
   "en": "Midway"
  },
  {
+  "pl": "W trakcie {n}",
+  "en": "Midway {n}"
+ },
+ {
   "pl": "W trwającym treningu guma zniknie z nieodhaczonych serii.",
   "en": "In the current workout the band will be removed from sets not yet ticked."
  },
