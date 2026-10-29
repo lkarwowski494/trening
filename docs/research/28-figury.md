@@ -572,10 +572,10 @@ Widok: z boku; kotwica: przód stopy; przyrządy: brak.
 - **w trakcie** — t 90.3, hip -6.7/-7.9, knee 8.2/61.9, ft 0/-44.9, sh 0, el 0
   - przód stopy (dalsza strona) wyżej niż poziom 0 ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **w trakcie (druga)** — t 91.9, hip 23.7/-30.9, knee 57.6/21.1, ft 0/-102, sh 0, el 0
+- **w trakcie (druga)** — t 96.2, hip 20.8/-33.6, knee 50.3/29.8, ft 0/-81.8, sh 0, el 0
   - przód stopy (dalsza strona) tuż nad poziomem 0 (do 1) ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **pozycja końcowa** — t 90, hip 89.8/18.5, knee 99.1/123.5, ft 0/-59.6, sh 0, el 0
+- **pozycja końcowa** — t 90, hip 80.9/23.6, knee 99.7/117.3, ft 0/-81.5, sh 0, el 0
   - kolano (dalsza strona) tuż nad poziomem 0 (do 8) ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
   - pięta tuż nad poziomem 0 (do 1) ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
