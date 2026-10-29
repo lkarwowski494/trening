@@ -11,7 +11,7 @@
 | 0 | 0 (101-00, 101-01) | r101/0 | scalona | 634139e6 | czerwone 1/11179 (docs/40 kolejność lekcji) → poprawka + kroki po Jest zielone | po pushu |
 | 1 | F, E, A (+E2) | r101/F, r101/E, r101/A, r101/E2 | scalona | — | — | — |
 | 2 | A2, B, C, D, I, K | r101/* | gotowe, recenzje zatwierdzone; scalenie w toku | — | — | — |
-| 3 | krok koordynatora (01 wpisy, 25, 26) | wersja-1-0-1-r2 | czeka | — | — | — |
+| 3 | J0, J, J2/J3 + krok koordynatora (25, docs) | r101/J0, r101/J, r101/J2 | J0, J scalone; J3 w toku | — | — | 49e258ab w toku |
 | 4 | G1–G3 | — | czeka na sygnał „1.0 wysłane do recenzji Apple” | — | — | — |
 
 ## Do zdjęcia z `V2_WSTRZYMANE` (zbiorczo po fali)
@@ -58,9 +58,17 @@
 - Reverse Lunge: D2 niewykonalne (mid2 ≤ 1 j. łamie lądowanie/podparcie). Pierwsze pytanie do właściciela z błędnym założeniem („ukryty”) → korekta, DECYZJA WŁAŚCICIELA 29.10.2026: zrecenzowana wersja r2 widoczna w 1.0.1 (cofnięcie 4917c5ff na r101/D, testy 130/130), uwagi NISKIE + piąta poza → 1.1. LEKCJA L-NNN do docs/40.
 - 29.10 ~15:05 E2 scalony (b254e0a3): m3-theme zielony; fala 1 + E2 wypchnięte (wyjątek: pełne verify fali 1 — 1 realna porażka naprawiona E2, 3 porażki obciążenia zielone osobno; kontrola: pliki osobno + tests.yml).
 
+- Fala 2 scalona (A2 4364875f, B 8e797268, C 96654bec, D b3b6872d, I 6e245f42, K aff33534); konflikty figury-recenzja.json / tor-wyjatki.json / figures-v2-wstrzymane rozwiązane obiema stronami. Odciski: 87/87 ćwiczeń v2 = zatwierdzone gałęzie rodzin.
+- main d8c15d49 (#95, #96) scalony (4973334e); pułapka powtórzona: scalenie main wstawia numerowane lekcje nad L-NNN → poprawione (otwarte: mechanizm — test p4b przed commitem scalenia albo tryb porządku w numeruj-lekcje.mjs).
+- check:pochodne po fali 2: architecture-limits — lib/figures/v2/contract.ts 36239 B > próg 35840 (wyjątek OHS z C) → pakiet L: wydzielenie reguły do osobnego modułu (bez podnoszenia progu). README do regeneracji.
+- 29.10 ~15:20 Fala 3: J0 (zdjęcie 18 wpisów V2_WSTRZYMANE, 101-29, 101-30) i J (101-17, el) scalone; skróty rodzin v2 przeliczone po zdjęciu (zmiana formy, odciski 87/87 bez zmian); pomocnik styku — osobne uchwyty jako punkty (Band Bench Press czerwony po połączeniu A i B); contract.ts — wyjątek OHS wydzielony do overheadException.ts; 101-25 notatki dla recenzenta i docs/45; docs/21 stan linii.
+- 29.10 ~15:25 J2 (Chain Press dłonie) — recenzja WYSOKIE (łokieć 127° zgięcia = 53° ramię–przedramię, źródło 90°) → J3 (dłonie 18 cm ku stopom i łokieć 90°), r2 bez J2 (wersja z B zatwierdzona).
+- 29.10 ~15:30 tests.yml: 4 czerwone przebiegi (README/docs/19 nieaktualne po wypchnięciach z --no-verify; Jest w CI zielony 11231/11234) — lekcja w docs/40; 49e258ab z regeneracją w toku.
+
 ## Czekające kroki właściciela
 - brak decyzji (D3 → 17°, 101-27 → bez poprawki, 101-17 → B, Reverse Lunge → zatwierdzona wersja widoczna; 29.10.2026)
 - Lekcja Reverse Lunge: wybór A/B (stan na bazie w poleceniach figur) — przy okazji
+- Lekcja --no-verify: wybór A/B (PUSH_BEZ_ZNACZNIKA w haku / reguła w CLAUDE.md) — przy okazji
 
 ## Wyjątki nazwane w tej sesji
 - 29.10 12:20 Wypychanie samego `POSTEP.md` przez `git push --no-verify`: hak (L-049) wymaga znacznika verify dla drzewa, a `verify:docs` na gałęzi z kodem odmawia (STAN, pułapki). Kontrola zastępcza: commit zawiera tylko ten plik (`git show --stat`), `tests.yml` biegnie na gałęzi.
