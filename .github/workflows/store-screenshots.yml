@@ -214,6 +214,10 @@ jobs:
           merge-multiple: true
       - name: Podpisy i ramki
         run: bash scripts/ci/store-frames.sh sklep-zrzuty sklep-ramki store/screenshot-captions.json
+      - name: Kontrola kompletu (ekran w .nieudane = czerwony przebieg)
+        run: |
+          N=$(find sklep-zrzuty -path '*/.nieudane/*' -name '*.png' | wc -l | tr -d ' ')
+          if [ "$N" -gt 0 ]; then echo "::error::Ekrany bez zrzutu po dwóch próbach: $N"; find sklep-zrzuty -path '*/.nieudane/*' -name '*.png' | sed 's#.*/\.nieudane/#  #'; exit 1; fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -77,4 +77,7 @@ describe('store-screenshots.yml: macierz z podziału, scalanie artefaktów, powt
   test('skrypt: EKRANY filtruje ekrany, numeracja plików zostaje z pełnego scenorysu', () => {
     expect(sh).toMatch(/i=\$\(\(i \+ 1\)\)\n\s+if \[ -n "\$\{EKRANY:-\}" \] && \[\[ ",\$EKRANY," != \*",\$name,"\* \]\]; then continue; fi/);
   });
+  test('ramki: ekran w .nieudane (akcja Maestro padła dwa razy) = czerwony przebieg, nie zielony z brakującym zrzutem (przebieg 40785697458: brak 08-historia we wszystkich językach przy zielonym wyniku)', () => {
+    expect(wf).toMatch(/name: Podpisy i ramki[\s\S]*?Kontrola kompletu[\s\S]*?\.nieudane[\s\S]*?exit 1[\s\S]*?name: sklep-zrzuty-ramki/); /* po ramkach: komplet ramek zostaje w artefakcie także przy czerwonym wyniku */
+  });
 });
