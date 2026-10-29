@@ -213,6 +213,7 @@ Test regresji: `tests/cues-podobienstwo.test.ts` (34 klucze mają nowe teksty; t
 | `v0.20.0-b1030` | 1030 | `f2b0525` | 30 | zielony, id 39881352744; build do testu na telefonie (23.10.2026) |
 | `v1.0.0-b1031` | 1031 | `001ecf2` | 31 | zielony, id 40435246644; build 1.0 do testu na telefonie (27.10.2026) — figury z błędami L-042, **nie do zgłoszenia** (M1-audytor-generalny-008) |
 | `v1.0.0-b1032` | 1032 | `025a50b` | 32 | zielony, id 40562930165; commit audytu M1 1.0 (27.10.2026), bez napraw M2 — **nie do zgłoszenia** (kandydat powstanie po reaudycie) |
+| `v1.0.0-b1033` | 1033 | `fced34b` | 33 | zielony, id 40855951672; kandydat 1.0 (wybrany do wersji 1.0 w App Store Connect 29.10.2026, docs/48 Z-26) |
 
 Przebiegi `testflight.yml` bez tagu `v*-b*`: 1–4 (przed wprowadzeniem tagów; wydanie 1 = build 1004, `ee637da`, patrz „Rundy”), 7 (czerwony, `c9d4c78`), 11 (czerwony, `d2b7c87`, powtórzony jako przebieg 12), 20 (czerwony, `8273448`, scalenie PR #13 na main), 21 (zielony, gałąź `audyt-m1`, `5542a68`, 20.10.2026).
 
