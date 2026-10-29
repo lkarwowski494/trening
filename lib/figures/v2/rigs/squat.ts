@@ -54,6 +54,8 @@ export const SQUAT = {
   zercherHand: [48, 22, 5] as V3, zercherPole: [-1, 0.8, -0.3] as V3, zercherCrook: 8, zercherBarFwd: 11.5,
   /** Sumo z hantlem (101-10): chwyt pod stawem barkowym — zasięg (barek–środek chwytu) prawie prostych rąk i wysunięcie w przód od osi barków, cm (9 cm = ręce ok. 8° od pionu: hantel przed pachwiną, nie w tułowiu — przy 0 cm przenikał miednicę o 4 cm). Uproszczenie ilustracyjne. */
   sumoReach: BODY.uarm + BODY.farm + BODY.hand - 3, sumoFwd: 9,
+  /** Nad głową (101-11): gryf/kettlebell leży 1,5 cm za środkiem stopy (nadal nad śródstopiem, stopa ma 25 cm) — ramię nie wychodzi więcej niż 5° przed pion (kontrakt wyjątku barku: „przed pionem to błąd”); stałe przesunięcie, więc tor pozostaje pionowy. */
+  overheadBack: 1.5,
   sit: 9, /* wysokość stawu biodrowego nad siedziskiem (pośladek) */
 } as const;
 
@@ -128,7 +130,7 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
     }
     case 'overhead': {
       tau = 8 + 14 * ease(u); const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, 0);
-      const L = BODY.uarm + BODY.farm + BODY.hand - 0.05; const dx = target(0) - sh[0]; const dy = Math.sqrt(Math.max(0, L * L - dx * dx - (gh.overhead - 19) ** 2));
+      const L = BODY.uarm + BODY.farm + BODY.hand - 0.05; const dx = target(-SQUAT.overheadBack) - sh[0]; const dy = Math.sqrt(Math.max(0, L * L - dx * dx - (gh.overhead - 19) ** 2));
       load = [sh[0] + dx, sh[1] + dy, 0]; arms = armsHeld(load, gh.overhead, [0, 0, 0.1]); break;
     }
     case 'goblet': {
@@ -142,7 +144,7 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
     }
     case 'kbOverhead1': {
       tau = tauSched() * 0.7; const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, BODY.shHalf);
-      const L = BODY.uarm + BODY.farm + BODY.hand - 0.05; const dx = (ankX + mid) - sh[0];
+      const L = BODY.uarm + BODY.farm + BODY.hand - 0.05; const dx = (ankX + mid - SQUAT.overheadBack) - sh[0];
       load = [sh[0] + dx, sh[1] + Math.sqrt(Math.max(0, L * L - dx * dx)), BODY.shHalf];
       arms = { R: { grip: load, elbowPole: [0, 0, 0.1] }, L: { grip: add(trunkPoint(hipC(), tau, BODY.trunk - 6, 24, 0), [0, 0, -14]), elbowPole: [0.2, -1, -0.5] } }; break;
     }

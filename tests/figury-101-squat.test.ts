@@ -3,11 +3,12 @@
  * 101-09 Zercher Squat: gryf w zgięciach łokci przez cały ruch. 101-10 Sumo Squat (hantel): pionowy tor pod barkami.
  * 101-11 Overhead Squat / One-Arm Overhead Kettlebell Squat: wyjątek kontraktu barku (reguła zależna od pochylenia tułowia).
  */
-import { figureSpec, frameAt, jointAngles, bodyColliders, equipColliders, gap, distSegSeg, SIDES, type Frame } from '@/lib/figures/v2';
+import { FIG_DATA } from '@/lib/figures';
+import { figureSpec, frameAt, jointAngles, bodyColliders, equipColliders, gap, distSegSeg, SIDES, assignAll, validatePose, exampleFor, overheadShoulderRange, trunkLeanDeg, OVERHEAD_SHOULDER_EXCEPTION, type Frame, type RomData, type Collider } from '@/lib/figures/v2';
 import { KADRY_STYKU, dwieMiary } from './helpers/styk-figur';
 
 const spec = (k: string) => figureSpec(k)!;
-const bar = (f: Frame) => equipColliders(f.props).find(c => c.id === 'bar' && c.k === 'capsule') as { a: [number, number, number]; b: [number, number, number]; r: number };
+const bar = (f: Frame) => equipColliders(f.props).find(c => c.id === 'bar' && c.k === 'capsule') as Extract<Collider, { k: 'capsule' }>;
 
 describe('101-09 Zercher Squat: gryf w zgięciach łokci', () => {
   /** Największa odległość osi gryfu od stawu łokciowego (cm), z obu rąk, na kadrach co 0,05. */
@@ -55,5 +56,39 @@ describe('101-10 Sumo Squat (hantel): pionowy tor pod barkami', () => {
   test('miara potrafi paść: dawny tor (hantel w układzie tułowia: 2 cm w górę, 21 cm w przód od miednicy) odchodzi od pionu przez bark o ponad 10 cm', () => {
     let najgorszy = 0; for (const u of KADRY_STYKU) { const f = frameAt(spec(K), u); const p = f.sk; najgorszy = Math.max(najgorszy, Math.abs(p.pelvis[0] + p.up[0] * 2 + p.front[0] * 21 - p.shoulderC[0])); }
     expect(najgorszy).toBeGreaterThan(10);
+  });
+});
+
+describe('101-11 Overhead Squat i One-Arm Overhead Kettlebell Squat: wyjątek kontraktu barku (D1 = A)', () => {
+  const TE = ['Overhead Squat', 'One-Arm Overhead Kettlebell Squat'];
+  const ROM = FIG_DATA.rom as unknown as RomData;
+  /** Miara 1: dla ręki nad głową (zgięcie barku ≥ 90°) zgięcie mieści się w [180 + θ − 5, 180 + θ + 10] (θ = pochylenie tułowia), zgięcie czołowe ≤ 180; zwraca największe przekroczenie (cm→stopnie, ≤ 0 = ok). */
+  const przekroczenie = (k: string, kadry: readonly number[]): number => Math.max(...kadry.flatMap(u => { const f = frameAt(spec(k), u); const th = trunkLeanDeg(f.sk); const r = overheadShoulderRange(k, th)!;
+    return SIDES.flatMap(s => { const a = jointAngles(f.sk, s); return a.shSag >= 90 ? [r.min - a.shSag, a.shSag - r.max, a.shElev - OVERHEAD_SHOULDER_EXCEPTION.elevMax] : []; }); }));
+  test.each(TE)('%s: na kadrach co 0,05 ręka nad głową mieści się w regule zależnej od θ (kąt 183–198°, θ 2–22°); zgięcie czołowe ≤ 180°', k => {
+    expect(przekroczenie(k, KADRY_STYKU)).toBeLessThanOrEqual(0);
+    const kąty = KADRY_STYKU.flatMap(u => { const a = jointAngles(frameAt(spec(k), u).sk, 'R'); return [a.shSag]; });
+    expect(Math.min(...kąty)).toBeGreaterThan(171); expect(Math.max(...kąty)).toBeLessThanOrEqual(200);
+  });
+  test.each(TE)('%s — miara 2 (styk): hantel/gryf nad głową nie przenika ciała (≤ 0,5 cm); rysunek bez zmiany: kąt 183–198° jak przed wdrożeniem wyjątku', k => {
+    const m = dwieMiary(k, przekroczenie); expect(m.cecha).toBeLessThanOrEqual(0); expect(m.styk.maxPrzenikanie).toBeLessThanOrEqual(0.5);
+  });
+  test('reguła: ramię pionowo → 180° + θ; do 5° przed pionem i 10° za pionem; poza przedziałem (ramię 15° przed pionem) nie przechodzi; bez wyjątku dla innych ćwiczeń', () => {
+    const r = overheadShoulderRange('Overhead Squat', 15)!; expect(r).toEqual({ min: 190, max: 205 });
+    expect(180 + 15 - 15 < r.min).toBe(true); /* ramię 15° przed pionem: 180 + θ − 15 = 180 < 190 */
+    expect(overheadShoulderRange('Back Squat', 15)).toBeUndefined(); expect(overheadShoulderRange('Front Squat', 15)).toBeUndefined();
+    expect(OVERHEAD_SHOULDER_EXCEPTION.keys).toEqual(TE); expect(OVERHEAD_SHOULDER_EXCEPTION.why.length).toBeGreaterThan(40);
+  });
+  test('kontrast: walidator kontraktu przepuszcza bark 183–198° tylko tym dwóm; to samo ułożenie pod inną nazwą (limit ok. 171°) dostaje błąd zakresu barku', () => {
+    const E = { kneesIn: 'sq.mis.kneesIn', heels: 'sq.mis.heels' } as const; const cues = ['sq.mis.kneesIn', 'sq.mis.heels'];
+    const d = exampleFor('Overhead Squat', E)!; expect(d).not.toBeNull();
+    const zakres = (name: string) => validatePose(JSON.parse(JSON.stringify({ ...d, cwiczenie: name })), { family: 'squat', exercise: name, errorCues: cues, rom: ROM }).filter(i => i.kod === 'zakres' && /shSag|barku|staw shSag/.test(i.szczegol));
+    expect(zakres('Overhead Squat')).toEqual([]);
+    expect(zakres('Front Squat').length).toBeGreaterThan(0);
+  });
+  test('inne figury nadal mają limit: Back Squat, Front Squat i pozostałe gotowe rodziny nie przekraczają zgięcia barku 171° (ALLOW w figures-v2-geometry tylko dla czterech wyjątków)', () => {
+    const KEYS = Object.entries(assignAll()).filter(([, f]) => ['squat', 'bench_press', 'hinge'].includes(f)).map(([k]) => k).filter(k => !TE.includes(k) && k !== 'Front Squat' && k !== 'Double Kettlebell Front Squat');
+    let max = 0; for (const k of KEYS) for (const u of [0, 0.25, 0.5, 0.75, 1]) { const f = frameAt(spec(k), u); for (const s of SIDES) { const a = jointAngles(f.sk, s); if (a.shAbd < 30) max = Math.max(max, a.shSag); } }
+    expect(max).toBeLessThanOrEqual(ROM.side.sh.max + 0.5);
   });
 });
