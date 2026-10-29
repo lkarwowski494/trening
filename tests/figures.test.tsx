@@ -311,7 +311,7 @@ describe('komponent ExerciseFigure', () => {
     render(<ExerciseFigure exercise={{ lib: false }} />);
     expect(screen.toJSON()).toBeNull();
   });
-  test('cztery pozycje (Ogranicz ruch): siatka 2×2 w kolejności start, mid, mid2, end; podpisy „W trakcie 1/2”, pętla 4 pozycji dłuższa niż 5 s (pauza WCAG); przy trzech pozycjach bez numerów', async () => {
+  test('cztery pozycje (Ogranicz ruch): siatka 2×2 w kolejności start, mid, mid2, end; podpisy „Pozycja pośrednia 1/2”, pętla 4 pozycji dłuższa niż 5 s (pauza WCAG); przy trzech pozycjach bez numerów', async () => {
     /* Figury 4-pozycyjne są dziś ukryte do recenzji niezależnej (docs/research/figury-recenzja.json) — wstrzykujemy Push Press z danych źródłowych na czas testu. */
     const full = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/zrodla/figures.json'), 'utf8')).exercises as Record<string, FigDef>;
     const had = Object.prototype.hasOwnProperty.call(FIG_DATA.exercises, 'Push Press'); const prev = FIG_DATA.exercises['Push Press'];
@@ -325,9 +325,9 @@ describe('komponent ExerciseFigure', () => {
       expect([flat.flexDirection, flat.flexWrap]).toEqual(['row', 'wrap']);
       for (const n of ['start', 'mid', 'mid2', 'end']) expect(screen.getByTestId(`exercise-figure-frame-${n}`)).toBeTruthy();
       expect(screen.getAllByTestId(/^exercise-figure-frame-/).map(x => x.props.testID)).toEqual(['start', 'mid', 'mid2', 'end'].map(n => `exercise-figure-frame-${n}`));
-      expect(screen.getByText('Pozycja wyjściowa')).toBeTruthy(); expect(screen.getByText('W trakcie 1')).toBeTruthy(); expect(screen.getByText('W trakcie 2')).toBeTruthy(); expect(screen.getByText('Pozycja końcowa')).toBeTruthy();
+      expect(screen.getByText('Pozycja wyjściowa')).toBeTruthy(); expect(screen.getByText('Pozycja pośrednia 1')).toBeTruthy(); expect(screen.getByText('Pozycja pośrednia 2')).toBeTruthy(); expect(screen.getByText('Pozycja końcowa')).toBeTruthy();
       expect(screen.queryByText('W trakcie')).toBeNull();
-      expect([frameLabel('mid', 4), frameLabel('mid2', 4), frameLabel('mid', 3)]).toEqual(['W trakcie 1', 'W trakcie 2', 'W trakcie']);
+      expect([frameLabel('mid', 4), frameLabel('mid2', 4), frameLabel('mid', 3)]).toEqual(['Pozycja pośrednia 1', 'Pozycja pośrednia 2', 'W trakcie']);
       expect(loopMs(4)).toBeGreaterThan(5000);
     } finally { if (had) FIG_DATA.exercises['Push Press'] = prev; else delete FIG_DATA.exercises['Push Press']; }
   });

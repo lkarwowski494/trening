@@ -756,7 +756,6 @@
  "W słuchawkach": "lib/voice.ts:53",
  "W tej wersji": "components/WhatsNew.tsx:16",
  "W trakcie": "lib/figures/index.ts:38",
- "W trakcie {n}": "lib/figures/index.ts:38",
  "w tym tygodniu": "lib/healthRead.ts:146",
  "Warunki korzystania": "app/more/about.tsx:30, app/paywall.tsx:127",
  "wcześniej": "components/GuardSection.tsx:73",

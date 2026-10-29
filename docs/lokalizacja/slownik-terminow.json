@@ -8968,6 +8968,191 @@
      "pewnosc": "srednia"
     }
    }
+  },
+  {
+   "id": "pozycja_posrednia",
+   "pl": "pozycja pośrednia (podpis środkowej klatki rysunku)",
+   "znaczenie": "podpis środkowych klatek rysunku ćwiczenia przy czterech pozycjach („Pozycja pośrednia 1/2”), spójny z „Pozycja wyjściowa/końcowa”; NIE „w trakcie / w toku” (słowo statusu)",
+   "kanon": null,
+   "wykrywaj": "pozycj\\w* pośredni",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Pozycja pośrednia",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Mid position",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Mezipoloha",
+     "pewnosc": "niska",
+     "uwaga": "„Mezipoloha” czy „Střední poloha”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "sk": {
+     "zalecany": "Medzipoloha",
+     "pewnosc": "niska",
+     "uwaga": "„Medzipoloha” czy „Stredná poloha”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "hu": {
+     "zalecany": "Köztes helyzet",
+     "pewnosc": "niska",
+     "uwaga": "Szyk numeru: „Köztes helyzet 1” czy „1. köztes helyzet”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "ro": {
+     "zalecany": "Poziția intermediară",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Междинна позиция",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Međupoložaj",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Vmesni položaj",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Међуположај",
+     "pewnosc": "niska",
+     "uwaga": "„Међуположај” czy „Средњи положај”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "lt": {
+     "zalecany": "Tarpinė padėtis",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Starppozīcija",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Vaheasend",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Проміжне положення",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Posición intermedia",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Posición intermedia",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Posição intermédia",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Posição intermediária",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Zwischenposition",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Position intermédiaire",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Posizione intermedia",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Tussenpositie",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Mellanläge",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Mellemstilling",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Mellomstilling",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Väliasento",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Ara pozisyon",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Ενδιάμεση θέση",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Posisi tengah",
+     "zakazane": [
+      {
+       "wzorzec": "sedang berjalan",
+       "powod": "słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Kedudukan tengah",
+     "zakazane": [
+      {
+       "wzorzec": "sedang berjalan",
+       "powod": "słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Tư thế giữa",
+     "zakazane": [
+      {
+       "wzorzec": "đang diễn ra",
+       "powod": "słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Промежуточное положение",
+     "zakazane": [
+      {
+       "wzorzec": "в процессе",
+       "powod": "słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "途中の姿勢",
+     "pewnosc": "niska",
+     "uwaga": "„途中の姿勢1” czy „途中の姿勢 1” (ze spacją)? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "ko": {
+     "zalecany": "중간 자세",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "中間姿勢",
+     "zakazane": [
+      {
+       "wzorzec": "進行中",
+       "powod": "słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku"
+      }
+     ],
+     "pewnosc": "niska",
+     "uwaga": "„中間姿勢 1” czy „中間姿勢1” (spacja)? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    }
+   }
   }
  ]
 }
