@@ -460,7 +460,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Rysunek ruchu z krokiem nie opada bez podparcia (recenzja niezależna 28.10.2026; decyzja właściciela 28.10.2026 „poprawić przed 1.0”; test `tests/figury-podparcie.test.ts`)
     - Zakładając, że ćwiczenie ma rysunek z krokiem (wykroki, Step Up) albo pompki (w tym z podwyższeniem)
     - Gdy rysunek odtwarza ruch (każda poza pośrednia co 0,05 przejścia)
-    - Wtedy rzut biodra leży nad podstawą podparcia z tolerancją 10 j., biodro nie opada o więcej niż 7 j., gdy stopa krokowa jest w powietrzu, a w pompkach bark w dolnej pozycji jest nie dalej niż 10 j. od dłoni i ciało nie wchodzi w podłoże ani blat; Reverse Lunge łamie regułę, więc jest ukryty w 1.0 (naprawa w 1.0.1 przez czwartą pozycję silnika)
+    - Wtedy rzut biodra leży nad podstawą podparcia z tolerancją 10 j., biodro nie opada o więcej niż 7 j., gdy stopa krokowa jest w powietrzu, a w pompkach bark w dolnej pozycji jest nie dalej niż 10 j. od dłoni i ciało nie wchodzi w podłoże ani blat; Reverse Lunge łamał regułę, więc jest ukryty w 1.0 (naprawa w 1.0.1: czwarta pozycja silnika i prostszy ruch — stopa unosi się pionowo, cofa w powietrzu i staje na palcach; ukryty do recenzji niezależnej)
   - Scenariusz: Rysunek wyciskania i zawiasu zgodny ze sprzętem i regułą przedramion (uwagi ŚREDNIE/NISKIE z ponownej recenzji 27.10.2026, wersja 1.0.1; test `tests/figury-1-0-1-uwagi.test.ts`)
     - Zakładając, że ćwiczenie to wyciskanie z wąskim chwytem, ławką ujemną, JM Press, Skull Crusher, Board Press, Pin Press, Rack Pull, Good Morning off Pins, Band Squat, Cable Pull Through, drążek sześciokątny albo odmiana „Reverse Band”
     - Gdy rysunek odtwarza ruch

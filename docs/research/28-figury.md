@@ -571,18 +571,17 @@ Widok: z boku; kotwica: przód stopy; przyrządy: brak.
 
 - **pozycja wyjściowa** — t 90, hip 0, knee 0, sh 0, el 0
   - bark – biodro – kostka w jednej linii (±6°) ← `lunge.stand`: „Stań prosto, stopy mniej więcej na szerokość bioder.”
-- **w trakcie** — t 90.3, hip -6.7/-7.9, knee 8.2/61.9, ft 0/-44.9, sh 0, el 0
+- **w trakcie** — t 89.4, hip -8/28.9, knee 4.2/79.9, ft 0/-16.8, sh 0, el 0
   - przód stopy (dalsza strona) wyżej niż poziom 0 ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **w trakcie (druga)** — t 94.7, hip 24.3/-30.7, knee 46.8/27.3, ft 0/-85.5, sh 0, el 0
+- **w trakcie (druga)** — t 91, hip 40.2/-6.8, knee 60.5/62.8, ft 0/-64.1, sh 0, el 0
   - przód stopy (dalsza strona) tuż nad poziomem 0 (do 1) ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **pozycja końcowa** — t 90, hip 82.8/20.2, knee 97.2/120.7, ft 0/-77.7, sh 0, el 0
+- **pozycja końcowa** — t 86.9, hip 77.5/11, knee 110.1/110.4, ft 0/-72.8, sh 0, el 0
   - kolano (dalsza strona) tuż nad poziomem 0 (do 8) ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
   - pięta tuż nad poziomem 0 (do 1) ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
-- Uproszczenie ilustracyjne: pozostałe kąty. Przednia stopa zostaje w miejscu, tylna noga cofa się łukiem w powietrzu (pozycja „w trakcie 1”: stopa uniesiona, kolano ugięte), potem palce tylnej stopy lądują za sobą (pozycja „w trakcie 2”: biodra jeszcze wysoko), dopiero wtedy opuszczenie; długość kroku ilustracyjna.
-- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Poprawka 1.0.1 (29.10.2026): czwarta pozycja — tylna stopa łukiem w powietrzu, lądowanie palców, dopiero potem opuszczenie; reguła podparcia spełniona. Czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.
+- Uproszczenie ilustracyjne: pozostałe kąty. Przednia stopa zostaje w miejscu; tylna stopa unosi się niewysoko, prawie pionowo w górę (pozycja „w trakcie 1”), cofa się w powietrzu i staje na palcach za ciałem (pozycja „w trakcie 2”: biodra jeszcze wysoko), dopiero wtedy opuszczenie do wykroku; stopa nie suwa się po podłodze; długość kroku ilustracyjna.
 
 ### Bulgarian Split Squat (hantle)
 

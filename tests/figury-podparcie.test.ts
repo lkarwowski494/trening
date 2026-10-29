@@ -204,7 +204,7 @@ describe('logika reguł (figury syntetyczne)', () => {
 const poses = (f: Figure) => transitions(f).flat();
 const keyPts = (f: Figure) => f.frames.map((_, i) => framePoints(f, i));
 
-describe('Reverse Lunge (4 pozycje): tylna stopa łukiem w powietrzu, potem lądowanie palców, dopiero potem opuszczenie', () => {
+describe('Reverse Lunge (4 pozycje): tylna stopa unosi się niewysoko pionowo w górę, cofa w powietrzu i staje na palcach, dopiero potem opuszczenie (decyzja właściciela 29.10.2026)', () => {
   const f = fig('Reverse Lunge'), K = keyPts(f);
   test('pozycje start → mid → mid2 → end; w „mid” stopa uniesiona ≥ 5 j. (oba punkty), w „mid2” palce tylnej stopy na podłodze (≤ 1,5 j.), w końcu palce na podłodze i kolano tuż nad nią', () => {
     expect(f.frames.map(x => x.n)).toEqual(['start', 'mid', 'mid2', 'end']);
@@ -219,6 +219,17 @@ describe('Reverse Lunge (4 pozycje): tylna stopa łukiem w powietrzu, potem ląd
   test('palce tylnej stopy po lądowaniu stoją w miejscu (mid2 → end: dryf ≤ 4 j. na 21 próbkach, ok. 4,2 j. przy gęstszym próbkowaniu — ograniczenie interpolacji kątów, do oceny recenzenta), przednia stopa nie rusza się (≤ 0,5 j.)', () => {
     const row = transitions(f)[2]; const A = row[0].P;
     for (const s of row) { expect(Math.abs(s.P.toe2[0] - A.toe2[0])).toBeLessThanOrEqual(4); expect(Math.abs(s.P.toe[0] - A.toe[0])).toBeLessThanOrEqual(0.5); }
+  });
+  test('decyzja 29.10.2026: w „mid” kostka tylnej stopy nad miejscem startu (|Δx| ≤ 3 j., pionowo w górę), stopa uniesiona niewysoko (szczyt ≤ 16 j. ≈ 28 cm), a w całym ruchu żaden punkt ciała nie schodzi pod podłogę', () => {
+    expect(Math.abs(K[1].ankle2[0] - K[0].ankle2[0])).toBeLessThanOrEqual(3);
+    const tr = transitions(f).slice(0, 2).flat();
+    expect(Math.max(...tr.map(s => Math.min(s.P.toe2[1], s.P.heel2[1])))).toBeLessThanOrEqual(16);
+    for (const s of poses(f)) for (const q of Object.values(s.P)) expect(q[1]).toBeGreaterThanOrEqual(-0.5);
+  });
+  test('przejście mid2 → end: biodro opada (≥ 12 j.), a stopy stoją — tylna stopa przy lądowaniu nie dalej niż 2 j. od miejsca lądowania (bez sunięcia po podłodze)', () => {
+    const row = transitions(f)[2];
+    expect(row[0].P.hip[1] - row[row.length - 1].P.hip[1]).toBeGreaterThanOrEqual(12);
+    for (const s of row) expect(Math.abs(s.P.toe2[0] - K[2].toe2[0])).toBeLessThanOrEqual(2);
   });
   test('w całym ruchu biodro nie opada o więcej niż LIM.hipDrop, dopóki stopa jest w powietrzu (reguła) i figura nie wchodzi pod podłogę', () => {
     expect(podparcie(f)).toEqual([]); expect(jednaPodpora(f)).toEqual([]);
@@ -318,15 +329,13 @@ describe('zakres stawów poprawionych figur (także ukrytych): kostka i inne sta
     }
     expect([k, [...new Set(bad)].slice(0, 3)]).toEqual([k, []]);
   };
-  test.each([...POPRAWIONE.filter(k => k !== 'Reverse Lunge'), 'Push Press'])('%s', k => romCzerwone(k));
-  /* OTWARTE (1.0.1, recenzja niezależna 29.10.2026): Reverse Lunge — wyprost biodra tylnej nogi ok. −20° (granica −17°) w „W trakcie 2”; figura ukryta, test.failing zamieni się w błąd po poprawce (wtedy zmień na test). */
-  test.failing('Reverse Lunge (ukryta, poprawka otwarta)', () => romCzerwone('Reverse Lunge'));
+  test.each([...POPRAWIONE, 'Push Press'])('%s', k => romCzerwone(k));
 });
 describe('ślizg punktów stopy w styku z podłogą ≤ 2 j. od pozycji kluczowej (recenzja niezależna 29.10.2026)', () => {
   test('Walking Lunges: obie stopy (palce i pięty)', () => { expect(slizg(fig('Walking Lunges'), ['toe', 'toe2', 'heel', 'heel2'], 2)).toEqual([]); });
-  /* OTWARTE: Reverse Lunge ślizga palce ok. 2,5–15 j. przed oderwaniem (ukryta) — test.failing odwróci się po poprawce. */
-  test.failing('Reverse Lunge: palce i pięty obu stóp', () => { expect(slizg(fig('Reverse Lunge'), ['toe', 'toe2', 'heel', 'heel2'], 2)).toEqual([]); });
-  test.failing('Reverse Lunge: po lądowaniu (mid2 → end) palce tylnej stopy nie dalej niż 2 j. od miejsca lądowania', () => {
+  /* Reverse Lunge (ruch uproszczony, decyzja właściciela 29.10.2026): stopa unosi się pionowo, cofa w powietrzu i staje na palcach; test był test.failing do poprawki. */
+  test('Reverse Lunge: palce i pięty obu stóp', () => { expect(slizg(fig('Reverse Lunge'), ['toe', 'toe2', 'heel', 'heel2'], 2)).toEqual([]); });
+  test('Reverse Lunge: po lądowaniu (mid2 → end) palce tylnej stopy nie dalej niż 2 j. od miejsca lądowania', () => {
     const row = transitions(fig('Reverse Lunge'))[2]; const A = row[0].P;
     for (const s of row) expect(Math.abs(s.P.toe2[0] - A.toe2[0])).toBeLessThanOrEqual(2);
   });
