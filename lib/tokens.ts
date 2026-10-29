@@ -148,7 +148,9 @@ export const RADIUS = {
   marker: 3,
   /** Okrągłe: ±, „⋯”, ⓘ — połowa wysokości. */
   round: 999,
-  /* 101-21 (D6 = B): nowe tokeny o dokładnie dzisiejszych wartościach (render bez zmian); ujednolicenie ról — 1.1. */
+} as const;
+/** Wartości przejściowe POZA skalą systemu (M1-036 pilnuje zamkniętej skali RADIUS): wartości sprzed ujednolicenia, D6 = B 29.10.2026, do zastąpienia rolami skali w 1.1. */
+export const RADIUS_PRZEJSCIOWE = {
   /** Kafelek wartości i wiersz Postępów (Dashboard). */
   tile: 10,
   /** Kółko numeru / znaczka 24 pt (lista kroków w Dashboard) — dziś 12, czyli połowa wysokości. */

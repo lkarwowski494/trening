@@ -48,7 +48,8 @@ describe('Dashboard i GuardSection: rozmiary i promienie z tokenów o dzisiejszy
   const tk = require('../lib/theme');
   test('wartości tokenów = dzisiejsze literały', () => {
     expect(tk.TEXT_SIZE).toEqual({ small: 12, medium: 14 });
-    expect(tk.RADIUS).toMatchObject({ group: 12, tile: 10, badge: 12, swatch: 2 });
+    expect(tk.RADIUS_PRZEJSCIOWE).toEqual({ tile: 10, badge: 12, swatch: 2 });
+    expect(tk.RADIUS).not.toHaveProperty('tile');
   });
   test.each(['components/Dashboard.tsx', 'components/GuardSection.tsx'])('%s: żadnego literału fontSize 12/14 ani borderRadius 10/12/2', (f) => {
     const c = code(f);
@@ -56,8 +57,8 @@ describe('Dashboard i GuardSection: rozmiary i promienie z tokenów o dzisiejszy
     expect([f, c.match(/\bborderRadius:\s*(10|12|2)\b/g) ?? []]).toEqual([f, []]);
   });
   test('komponenty używają tokenów (TEXT_SIZE, RADIUS)', () => {
-    expect(code('components/Dashboard.tsx')).toMatch(/TEXT_SIZE\.small/); expect(code('components/Dashboard.tsx')).toMatch(/RADIUS\.tile/);
-    expect(code('components/GuardSection.tsx')).toMatch(/TEXT_SIZE\.medium/); expect(code('components/GuardSection.tsx')).toMatch(/RADIUS\.swatch/);
+    expect(code('components/Dashboard.tsx')).toMatch(/TEXT_SIZE\.small/); expect(code('components/Dashboard.tsx')).toMatch(/RADIUS_PRZEJSCIOWE\.tile/);
+    expect(code('components/GuardSection.tsx')).toMatch(/TEXT_SIZE\.medium/); expect(code('components/GuardSection.tsx')).toMatch(/RADIUS_PRZEJSCIOWE\.swatch/);
   });
 });
 
