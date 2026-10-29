@@ -1,16 +1,9 @@
 {
  "RDL (hantle/linki)|side": "stan zastany sprzed skanu torów 28.10.2026 (pozycja „do oceny”, pewność skanu < 80%) — poza zakresem naprawy przed 1.0 wybranym przez właściciela; ocena i naprawa w 1.0.1 (docs/21)",
- "Goblet Squat|side": "stan zastany sprzed skanu torów 28.10.2026 (pozycja „do oceny”, pewność skanu < 80%) — poza zakresem naprawy przed 1.0 wybranym przez właściciela; ocena i naprawa w 1.0.1 (docs/21)",
- "Przysiad z pasem (linki)|side": "ciężar zawieszony na pasie biodrowym — ślad pokazuje ruch bioder w tył, nie gryf; do oceny recenzji 1.0.1 (docs/21)",
+ "Przysiad z pasem (linki)|side": "ciężar wisi na pasie biodrowym, więc jego ślad to tor bioder (pomiar 29.10.2026: 23 cm w tył przy 41 cm w dół, wybrzuszenie 8,6 cm — biodra najpierw cofają się, potem opadają); fizycznie poprawny, pionowy tor gryfu nie dotyczy tego ćwiczenia; poprawka rigu nie jest potrzebna (101-12)",
  "Single Leg RDL (hantel)|side": "stan zastany sprzed skanu torów 28.10.2026 (pozycja „do oceny”, pewność skanu < 80%) — poza zakresem naprawy przed 1.0 wybranym przez właściciela; ocena i naprawa w 1.0.1 (docs/21)",
- "Cable Squat|side": "stan zastany sprzed skanu torów 28.10.2026 (pozycja „do oceny”, pewność skanu < 80%) — poza zakresem naprawy przed 1.0 wybranym przez właściciela; ocena i naprawa w 1.0.1 (docs/21)",
- "Bodyweight Squat|side": "bez ciężaru: ślad rąk wyciągniętych przed siebie, nie toru ciężaru; do oceny recenzji 1.0.1 (docs/21)",
- "Zercher Squat|side": "stan zastany sprzed skanu torów 28.10.2026 (pozycja „do oceny”, pewność skanu < 80%) — poza zakresem naprawy przed 1.0 wybranym przez właściciela; ocena i naprawa w 1.0.1 (docs/21)",
- "Landmine Squat|side": "stan zastany sprzed skanu torów 28.10.2026 (pozycja „do oceny”, pewność skanu < 80%) — poza zakresem naprawy przed 1.0 wybranym przez właściciela; ocena i naprawa w 1.0.1 (docs/21)",
  "Cable Pull Through|side": "ruch zamierzony po łuku: uchwyt linki przechodzi między nogami i wraca łukiem przed biodra — nie tor pionowy",
- "Barbell Hack Squat|side": "stan zastany sprzed skanu torów 28.10.2026 (pozycja „do oceny”, pewność skanu < 80%) — poza zakresem naprawy przed 1.0 wybranym przez właściciela; ocena i naprawa w 1.0.1 (docs/21)",
- "Dumbbell Squat|side": "stan zastany sprzed skanu torów 28.10.2026 (pozycja „do oceny”, pewność skanu < 80%) — poza zakresem naprawy przed 1.0 wybranym przez właściciela; ocena i naprawa w 1.0.1 (docs/21)",
- "Dip Belt Squat|side": "ciężar zawieszony na pasie biodrowym — ślad pokazuje ruch bioder w tył, nie gryf; do oceny recenzji 1.0.1 (docs/21)",
- "Band Squat|side": "guma: ślad rąk przed ciałem, nie toru ciężaru; do oceny recenzji 1.0.1 (docs/21)",
+ "Barbell Hack Squat|side": "gryf trzymany za nogami toczy się po tylnej powierzchni ud (kontakt, tolerancja 1,5 cm), więc jego tor to tor bioder (pomiar 29.10.2026: 22 cm w tył przy 34 cm w dół, wybrzuszenie 8,6 cm — biodra najpierw cofają się, potem opadają); pion wymagałby oderwania gryfu od nóg — fizyczny, nie błąd rigu (101-12)",
+ "Dip Belt Squat|side": "ciężar wisi na pasie biodrowym, więc jego ślad to tor bioder (pomiar 29.10.2026: 23 cm w tył przy 41 cm w dół, wybrzuszenie 8,6 cm — biodra najpierw cofają się, potem opadają); fizycznie poprawny, pionowy tor gryfu nie dotyczy tego ćwiczenia; poprawka rigu nie jest potrzebna (101-12)",
  "Decline Close-Grip Bench To Skull Crusher|side": "ruch zamierzony po łuku: skull crusher — sztanga schodzi półkolem nad głowę przy nieruchomym ramieniu (przedramię obraca się wokół łokcia), nie tor pionowy (badacz 28.10.2026, docs/21)"
 }

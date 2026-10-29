@@ -4,8 +4,10 @@
  * 101-11 Overhead Squat / One-Arm Overhead Kettlebell Squat: wyjątek kontraktu barku (reguła zależna od pochylenia tułowia).
  */
 import { FIG_DATA } from '@/lib/figures';
-import { figureSpec, frameAt, jointAngles, bodyColliders, equipColliders, gap, distSegSeg, SIDES, assignAll, validatePose, exampleFor, overheadShoulderRange, trunkLeanDeg, OVERHEAD_SHOULDER_EXCEPTION, type Frame, type RomData, type Collider } from '@/lib/figures/v2';
+import { figureSpec, frameAt, proj, jointAngles, bodyColliders, equipColliders, gap, distSegSeg, SIDES, assignAll, validatePose, exampleFor, overheadShoulderRange, trunkLeanDeg, OVERHEAD_SHOULDER_EXCEPTION, type Frame, type RomData, type Collider } from '@/lib/figures/v2';
 import { KADRY_STYKU, dwieMiary } from './helpers/styk-figur';
+import * as fs from 'fs';
+import * as path from 'path';
 
 const spec = (k: string) => figureSpec(k)!;
 const bar = (f: Frame) => equipColliders(f.props).find(c => c.id === 'bar' && c.k === 'capsule') as Extract<Collider, { k: 'capsule' }>;
@@ -90,5 +92,37 @@ describe('101-11 Overhead Squat i One-Arm Overhead Kettlebell Squat: wyjątek ko
     const KEYS = Object.entries(assignAll()).filter(([, f]) => ['squat', 'bench_press', 'hinge'].includes(f)).map(([k]) => k).filter(k => !TE.includes(k) && k !== 'Front Squat' && k !== 'Double Kettlebell Front Squat');
     let max = 0; for (const k of KEYS) for (const u of [0, 0.25, 0.5, 0.75, 1]) { const f = frameAt(spec(k), u); for (const s of SIDES) { const a = jointAngles(f.sk, s); if (a.shAbd < 30) max = Math.max(max, a.shSag); } }
     expect(max).toBeLessThanOrEqual(ROM.side.sh.max + 0.5);
+  });
+});
+
+describe('101-12 (squat): wyjątki toru — naprawione albo uzasadnione liczbą', () => {
+  const WYJ: Record<string, string> = JSON.parse(fs.readFileSync(path.join(__dirname, 'tor-wyjatki.json'), 'utf8'));
+  /** Miara 1: ślad ciężaru z boku (kadry co 0,05): największe odchylenie od prostej między końcami (cm) i liczba zawróceń w poziomie (jak tests/figures-v2-tor.test.ts, ruchy < 0,05 cm pomijane). */
+  const ksztalt = (k: string, kadry: readonly number[] = KADRY_STYKU) => { const pts = kadry.map(u => proj(frameAt(spec(k), u).info.load, 'side') as [number, number]); const [a, b] = [pts[0], pts[pts.length - 1]]; const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy) || 1;
+    let zawr = 0, sg = 0; for (let i = 1; i < pts.length; i++) { const d = pts[i][0] - pts[i - 1][0]; if (Math.abs(d) < 0.05) continue; if (sg && Math.sign(d) !== sg) zawr++; sg = Math.sign(d); }
+    return { odch: Math.max(...pts.map(p => Math.abs((p[0] - a[0]) * dy - (p[1] - a[1]) * dx) / L)), zawr, pion: Math.abs(dy) }; };
+  const NAPRAWIONE: Record<string, { bylo: string }> = {
+    'Goblet Squat': { bylo: '6,1 cm, 3 zawr.' }, 'Cable Squat': { bylo: '5,1 cm, 2 zawr.' }, 'Bodyweight Squat': { bylo: '4,3 cm, 1 zawr. (ślad rąk)' }, 'Zercher Squat': { bylo: '7,6 cm' },
+    'Landmine Squat': { bylo: '4,8 cm, 2 zawr.' }, 'Dumbbell Squat': { bylo: '3,5 cm, 3 zawr.' }, 'Band Squat': { bylo: '5,1 cm, 3 zawr.' },
+  };
+  test.each(Object.keys(NAPRAWIONE))('%s: tor to prosta (odchylenie ≤ 1 cm, bez zawróceń), ruch w pionie ≥ 40 cm, brak wyjątku w tor-wyjatki.json', k => {
+    const t = ksztalt(k); expect(t.odch).toBeLessThanOrEqual(1); expect(t.zawr).toBe(0); expect(t.pion).toBeGreaterThanOrEqual(40); expect(WYJ[`${k}|side`]).toBeUndefined();
+  });
+  test.each(Object.keys(NAPRAWIONE))('%s — miara 2 (styk): ciężar nie przenika ciała (≤ 0,5 cm) i nie oddala się od niego więcej niż przed poprawką', k => {
+    const m = dwieMiary(k, (kk, kadry) => ksztalt(kk, kadry).odch); expect(m.styk.maxPrzenikanie).toBeLessThanOrEqual(0.5); expect(m.styk.maxOdstep).toBeLessThanOrEqual(43);
+  });
+  test('miara potrafi paść: dawny harmonogram pochylenia (3° → 32°, gładka krzywa) dawał łamaną z zawróceniami — goblet: sprawdzenie na łamanej z dawnych kadrów', () => {
+    const stary = [[24, 126], [23, 125], [19, 120], [16, 107], [16, 87], [16, 69], [17, 60]] as [number, number][]; const [a, b] = [stary[0], stary[stary.length - 1]]; const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy);
+    expect(Math.max(...stary.map(p => Math.abs((p[0] - a[0]) * dy - (p[1] - a[1]) * dx) / L))).toBeGreaterThan(4);
+  });
+  test('wyjątki, które zostają (pas biodrowy ×2, Barbell Hack Squat): ślad ciężaru = tor bioder (pas) albo bioder przesunięty o stałe 11,8 cm (gryf za nogami); wybrzuszenie 8–9,5 cm zgodne z podanym w powodzie', () => {
+    for (const k of ['Dip Belt Squat', 'Przysiad z pasem (linki)', 'Barbell Hack Squat']) {
+      expect([k, (WYJ[`${k}|side`] ?? '').length > 120]).toEqual([k, true]); expect(WYJ[`${k}|side`]).toMatch(/pomiar 29\.10\.2026/); expect(WYJ[`${k}|side`]).toMatch(/8,6 cm/);
+      const t = ksztalt(k); expect([k, t.odch >= 8 && t.odch <= 9.5]).toEqual([k, true]);
+    }
+    for (const u of KADRY_STYKU) { const b = frameAt(spec('Dip Belt Squat'), u); expect(b.info.load).toEqual(b.info.hip); const h = frameAt(spec('Barbell Hack Squat'), u); expect(Math.abs(h.info.load[0] - (h.info.hip[0] - 11.8))).toBeLessThan(0.01); }
+  });
+  test('lista wyjątków squat: pozostają tylko trzy (inne rodziny w pliku — nie ta paczka)', () => {
+    const squat = Object.keys(WYJ).filter(k => /Squat|Przysiad/.test(k)).sort(); expect(squat).toEqual(['Barbell Hack Squat|side', 'Dip Belt Squat|side', 'Przysiad z pasem (linki)|side']);
   });
 });
