@@ -5,7 +5,7 @@ import { View, Pressable } from 'react-native';
 import { Text } from '@/components/AppText';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, SectionTitle, useOnce } from '@/components/ui';
-import { useTheme, FONT, TYPE, TEXT_SIZE, RADIUS, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
+import { useTheme, FONT, TYPE, TEXT_SIZE, RADIUS, RADIUS_PRZEJSCIOWE, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
 import { useTick } from '@/lib/store';
 import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
 import { mainStart } from '@/lib/home';
@@ -20,7 +20,7 @@ import { t, tp, lang } from '@/lib/i18n';
 function Tile({ label, value }: { label: string; value: string }) { /* 11.10.2026: bez „poprz.” — porównania są w Progresji (w Postępach) */
   const th = useTheme();
   return (
-    <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${label}: ${value}`} {...fullValueProps(label, value)} /* DEC-01 a: podgląd po przytrzymaniu */ style={{ flexGrow: 1, flexBasis: '45%' /* 2 × 2 — mieści się przy 320 pt i długich tłumaczeniach */, padding: 10, borderRadius: RADIUS.tile, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
+    <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${label}: ${value}`} {...fullValueProps(label, value)} /* DEC-01 a: podgląd po przytrzymaniu */ style={{ flexGrow: 1, flexBasis: '45%' /* 2 × 2 — mieści się przy 320 pt i długich tłumaczeniach */, padding: 10, borderRadius: RADIUS_PRZEJSCIOWE.tile, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
       <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: FONT.title700, fontSize: TYPE.navTitle.size }}>{value}</Txt>
       <Muted style={{ fontSize: TEXT_SIZE.small }}>{label}</Muted>
     </View>);
@@ -73,7 +73,7 @@ export function ProgressTiles() {
           <Pressable key={kind} testID={`progress-tile-${kind}`} accessibilityRole="button" accessibilityLanguage={lang()} accessibilityHint={t('Otwiera szczegóły Progresji.')}
             {...fullValueProps(title, `${vol} ${vp}; ${sets} ${tp(sets, 'seria|serie|serii')} ${sp}`)} /* DEC-01 a: podgląd po przytrzymaniu */
             accessibilityLabel={t('{title} ({sub}): objętość {v}, {p}; serie {s}, {d}', { title, sub, v: volA11y, p: vp, s: c.total.sets, d: sp })}
-            onPress={once(() => router.push(`/progression?c=${kind}`))} style={({ pressed }) => ({ padding: 12, borderRadius: RADIUS.tile, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, opacity: pressed ? 0.7 : 1, gap: 2 })}>
+            onPress={once(() => router.push(`/progression?c=${kind}`))} style={({ pressed }) => ({ padding: 12, borderRadius: RADIUS_PRZEJSCIOWE.tile, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, opacity: pressed ? 0.7 : 1, gap: 2 })}>
             <Muted style={{ fontSize: TEXT_SIZE.small, ...FW.semibold }}>{title}</Muted>
             <Muted style={{ fontSize: TYPE.caption.size }}>{sub}</Muted>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 16, rowGap: 2, marginTop: 4 }}>
@@ -96,7 +96,7 @@ export function FirstSteps() {
   useTick(); const router = useRouter(); const once = useOnce(); const th = useTheme(); const f = firstSteps(); if (!f) return null;
   const step = (done: boolean, n: number, text: string, action?: React.ReactNode) => (
     <View accessibilityLanguage={lang()} key={n} accessible={!action} accessibilityLabel={`${n}. ${text} ${done ? t('zrobione') : t('do zrobienia')}`} style={{ flexDirection: 'row', gap: 10, paddingVertical: 8 }}>
-      <View style={{ width: 24, height: 24, borderRadius: RADIUS.badge, alignItems: 'center', justifyContent: 'center', backgroundColor: done ? th.accent : 'transparent', borderWidth: done ? 0 : 1.5, borderColor: th.line }}>
+      <View style={{ width: 24, height: 24, borderRadius: RADIUS_PRZEJSCIOWE.badge, alignItems: 'center', justifyContent: 'center', backgroundColor: done ? th.accent : 'transparent', borderWidth: done ? 0 : 1.5, borderColor: th.line }}>
         <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} /* A11-07: znak w kółku 22–24 pt */ style={{ fontSize: TEXT_SIZE.small, ...FW.semibold, color: done ? th.accentInk : th.muted }}>{done ? '✓' : String(n)}</Txt>
       </View>
       <View style={{ flex: 1, gap: 6 }}><Txt style={{ fontSize: TEXT_SIZE.medium, color: done ? th.muted : th.text }}>{text}</Txt>{action}</View>

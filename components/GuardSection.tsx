@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Pressable } from 'react-native';
 import { H2, Muted, Txt, monoSafe } from '@/components/ui';
 import { SignChip, SIGN_CHAR, GuardMap, GuardLegend } from '@/components/Guard';
-import { useTheme, F, TYPE, TEXT_SIZE, RADIUS, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW } from '@/lib/theme';
+import { useTheme, F, TYPE, TEXT_SIZE, RADIUS, RADIUS_PRZEJSCIOWE, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW } from '@/lib/theme';
 import { useTick, exById } from '@/lib/store';
 import { guardCached, guardTexts, guardWord, type Guard, type GuardPart, type GuardDir, type SkipReason } from '@/lib/guard';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
@@ -125,8 +125,8 @@ export function GuardSection({ onLayoutY }: { onLayoutY?: (y: number) => void })
             </View>) : null}
         </View>
         <View testID="guard-bar-legend" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ flexDirection: 'row', flexWrap: 'wrap', columnGap: 14, rowGap: 2, marginTop: 8, alignItems: 'center' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}><View style={{ width: 12, height: 8, borderRadius: RADIUS.swatch, backgroundColor: th.accent }} /><Muted style={{ fontSize: TEXT_SIZE.small }}>{t('wykonane')}</Muted></View>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}><View style={{ width: 12, height: 8, borderRadius: RADIUS.swatch, backgroundColor: mixHex(th.surface, th.accent, 0.38) }} /><Muted style={{ fontSize: TEXT_SIZE.small }}>{t('zaplanowane')}</Muted></View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}><View style={{ width: 12, height: 8, borderRadius: RADIUS_PRZEJSCIOWE.swatch, backgroundColor: th.accent }} /><Muted style={{ fontSize: TEXT_SIZE.small }}>{t('wykonane')}</Muted></View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}><View style={{ width: 12, height: 8, borderRadius: RADIUS_PRZEJSCIOWE.swatch, backgroundColor: mixHex(th.surface, th.accent, 0.38) }} /><Muted style={{ fontSize: TEXT_SIZE.small }}>{t('zaplanowane')}</Muted></View>
           <Muted style={{ fontSize: TEXT_SIZE.small }}>{t('Skala do dwukrotności celu, » — więcej.')}</Muted>
         </View>
       </>}
