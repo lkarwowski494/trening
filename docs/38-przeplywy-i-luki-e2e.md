@@ -77,15 +77,16 @@ Nie umie albo jest niesprawdzone: okna systemowe (zgoda na powiadomienia, Health
 
 ## 5. Eksperymenty — rzeczy, których nikt jeszcze nie uruchomił na symulatorze
 
-Trzy scenariusze z tagiem `eksperyment`, poza listą `flows` (główny przebieg ich nie uruchamia; interpreter w Jest przechodzi je w całości, więc logika aplikacji jest sprawdzona):
+Cztery scenariusze z tagiem `eksperyment` (40–42 oraz 60 od 29.10.2026), poza listą `flows` (główny przebieg ich nie uruchamia; interpreter w Jest przechodzi je w całości, więc logika aplikacji jest sprawdzona):
 
 | Plik | Co zakłada o Maestro/iOS | Co daje, gdy zadziała | Jeśli padnie |
 |---|---|---|---|
 | `40-odmowa-powiadomien.yaml` (US-11) | `launchApp: permissions: { all: allow, notifications: deny }` ustawia odmowę z góry | odmowa zgody bez udziału właściciela | wynik eksperymentu: składnia nie działa; wariant z oknem systemowym „Don’t Allow” (z apostrofem typograficznym) |
 | `41-tlo-powrot.yaml` (PR-11) | `pressKey: Home` na iOS i `launchApp: { stopApp: false }` wracają bez restartu; czekanie przez `extendedWaitUntil … optional` | tło i powrót w przerwie bez telefonu | zostaje restart (02, 32) i punkt PR-12 na telefonie |
 | `42-kopia-przywrocenie.yaml` + `subflows/wybierz-plik-kopii.yaml` (DA-04, DA-05) | Maestro widzi okno wyboru plików (Browse → On My iPhone → Trening → Backup) | przywrócenie z pliku — dotąd tylko właściciel na telefonie | punkt DA-02 na telefonie |
+| `60-baza-uszkodzona.yaml` + `scripts/ci/e2e-60-baza-uszkodzona.sh` (PR-18, ryzyko R-RES, 29.10.2026) | powłoka na symulatorze podmienia `Library/SQLite/trening.db*` na pliki nie-SQLite (`simctl get_app_container … data`); Maestro wchodzi na ekran błędu startu i „Send data”; powłoka sprawdza `Documents/Backup/Rescue-…` (`ls`, `cmp`) | dowód, że `expo-file-system` na iOS czyta i kopiuje pliki bazy z `Library/SQLite` (kopia ratunkowa, `lib/rescue.ts`) | błąd aplikacji: opis z logiem i zrzutem, bez poprawki na ślepo |
 
-Uruchamianie: `maestro test .maestro/4X-….yaml` albo zadanie `eksperymenty` z `latki-e2e/przeplywy-e2e-eksperymenty-zadanie.yml` (niewiążące, `continue-on-error`). Awansowanie na zwykły scenariusz
+Uruchamianie: `maestro test .maestro/4X-….yaml` (60 tylko przez skrypt `scripts/ci/e2e-60-baza-uszkodzona.sh`; w `e2e-ios.yml` wejście `tylko_scenariusze: 60` uruchamia samo zadanie eksperymentów) albo zadanie `eksperymenty` z `latki-e2e/przeplywy-e2e-eksperymenty-zadanie.yml` (niewiążące, `continue-on-error`). Awansowanie na zwykły scenariusz
 po trzech zielonych przebiegach: usuń tag, dopisz do `config.yaml`, dopisz wagę w `scripts/ci/e2e-shards.json`. Bramka pilnuje spójności (pkt 2).
 
 ## 6. Wersja 0.20 (zegarek, głos) — projekt, kod po scaleniu
