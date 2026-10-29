@@ -33,7 +33,8 @@ export type Prop =
   | { k: 'board'; x: number; y: number; h: number }                                           /* deska na klatce (Board Press): środek x, podstawa y = powierzchnia klatki, grubość h */
   | { k: 'rack'; x: number; y: number; h: number }                                            /* stojak z bolcem: słupek w x do wysokości h, bolec (podpórka gryfu) na wysokości y — tylko rysunek, bez koliderów */
   | { k: 'cable'; from: V3; to: V3 }
-  | { k: 'band'; from: V3; to: V3; /** guma sztangi: dwie gumy przy końcach gryfu (jak łańcuchy), nie jedna przez środek ciała */ bar?: true; /** odmiana „reverse”: guma zwisa z góry stojaka — `from` to kotwica nad gryfem, `to` to gryf (zamiast od gryfu do podłogi) */ hang?: true }
+  | { k: 'handle'; c: V3; side: 'R' | 'L'; held?: boolean }                                           /* uchwyt (rączka) trzymany w dłoni: środek chwytu; do niego przypięta guma albo łańcuch (Band Bench Press, Chain Press) — tylko rysunek, bez koliderów */
+  | { k: 'band'; from: V3; to: V3; /** odcinek gumy pod ławką (przechodzi pod siedziskiem, zakryty przez ławkę z góry): rysowany za ławką */ under?: true; /** guma sztangi: dwie gumy przy końcach gryfu (jak łańcuchy), nie jedna przez środek ciała */ bar?: true; /** odmiana „reverse”: guma zwisa z góry stojaka — `from` to kotwica nad gryfem, `to` to gryf (zamiast od gryfu do podłogi) */ hang?: true }
   | { k: 'chain'; from: V3; to: V3; /** łańcuch sztangi (wisi na obu tulejach); bez tego pola — pojedynczy łańcuch (np. pas z obciążeniem) */ bar?: true }
   | { k: 'floor'; x0: number; x1: number }
   | { k: 'mat'; x0: number; x1: number; h: number }

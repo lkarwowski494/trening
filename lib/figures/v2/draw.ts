@@ -12,7 +12,7 @@ import { LAYER, type Prop, type Role, type Shape, type View } from './scene';
 export const EQUIP = {
   barR: 1.6, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [66, 71] as [number, number], plateW: 2.8, chainZ: 73,
   dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6,
-  benchW: 30, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
+  handleW: 11, handleR: 2.2, benchW: 30, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
   trapW: 29, boxW: 45, postW: 3.5, railW: 1.2, wallW: 3,
   /* deska na klatce (Board Press): długość wzdłuż tułowia i szerokość (cm) — uproszczenie ilustracyjne; stojak z bolcami: połowa rozstawu słupków (wewnątrz talerzy 64,6–72,4, jak `post` ±64), długość bolca i grubość (cm) */
   boardLen: 18, boardW: 16, rackZ: 61, rackH: 130, pinLen: 10, pinW: 2.4,
@@ -196,6 +196,7 @@ export function propShapes(props: Prop[], view: View): Shape[] {
       case 'cable': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 0.7, role: 'cable', z: zKey(LAYER.frontEquip, 0), id: 'cable' }); S.push({ k: 'circle', c: a, r: 2.6, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pulley' }); break; }
       case 'band': {
         /* guma sztangi (bar): dwie gumy (hang: zwisa z kotwicy nad gryfem — odmiany „reverse”, znacznik kotwicy) przy końcach gryfu w widoku z przodu i z góry (jak łańcuchy); z boku jedna linia. Guma chwytana w dłoniach (bez bar) — jedna. */
+        if (pr.under) { if (!side) S.push({ k: 'line', a: proj(pr.from, view), b: proj(pr.to, view), w: 0.9, role: 'load', dash: [2.5, 2], z: zKey(LAYER.backEquip, -40), id: 'bandUnder' }); break; } /* odcinek pod ławką: z boku jest punktem, z góry i z przodu zakrywa go siedzisko */
         const zs = pr.bar && !side ? [-E.chainZ, E.chainZ] : [pr.from[2]];
         for (const zz of zs) { const a = proj([pr.from[0], pr.from[1], zz], view), b = proj([pr.to[0], pr.to[1], pr.bar && !side ? zz : pr.to[2]], view); S.push({ k: 'line', a, b, w: 0.9, role: 'load', dash: [2.5, 2], z: zKey(LAYER.frontEquip, 0), id: 'band' }); if (pr.hang && view !== 'top') S.push({ k: 'circle', c: a, r: 2.4, fill: 'frame', z: zKey(LAYER.back, -60), id: 'bandAnchor' }); }
         break; }
@@ -249,6 +250,13 @@ export function propShapes(props: Prop[], view: View): Shape[] {
           S.push({ k: 'line', a: [o[0], o[1] - E.dbHandle * 0.75], b: [o[0], o[1] + E.dbHandle * 0.75], w: 2, role: 'steel', z: zz + 0.1, id: 'dbGrip' + pr.side });
         } else if (side) { S.push({ k: 'circle', c: o, r, fill: role, a: near ? 0.85 : 0.55, z: zz, id: 'db' + pr.side }); S.push({ k: 'circle', c: o, r: 1.5, fill: 'steel', z: zz + 0.1, id: 'dbGrip' + pr.side }); }
         else { S.push({ k: 'poly', pts: rect(o[0] - E.dbHandle / 2 - r * 0.6, o[1] - r, o[0] - E.dbHandle / 2 + r * 0.2, o[1] + r), fill: role, a: 0.85, close: true, z: zz, id: 'db' + pr.side }); S.push({ k: 'poly', pts: rect(o[0] + E.dbHandle / 2 - r * 0.2, o[1] - r, o[0] + E.dbHandle / 2 + r * 0.6, o[1] + r), fill: role, a: 0.85, close: true, z: zz, id: 'db' + pr.side }); S.push({ k: 'line', a: [o[0] - E.dbHandle / 2, o[1]], b: [o[0] + E.dbHandle / 2, o[1]], w: 2, role: 'steel', z: zz + 0.1, id: 'dbGrip' + pr.side }); }
+        break;
+      }
+      case 'handle': {
+        /* rączka z uchwytem: z boku przekrój (kółko), z góry i z przodu poprzeczka wzdłuż osi z między dłońmi a gumą/łańcuchem */
+        const o = proj(pr.c, view); const zz = zKey(LAYER.frontEquip, side ? pr.c[2] : pr.c[0]);
+        if (side) S.push({ k: 'circle', c: o, r: E.handleR, fill: 'steel', z: zz, id: 'handle' + pr.side });
+        else S.push({ k: 'line', a: [o[0] - E.handleW / 2, o[1]], b: [o[0] + E.handleW / 2, o[1]], w: E.handleR * 1.6, role: 'steel', z: zz, id: 'handle' + pr.side });
         break;
       }
       case 'kettlebell': {
