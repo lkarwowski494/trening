@@ -235,6 +235,10 @@ Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właścic
 - **Zegarek: podpis „Trening wstrzymany” nachodzi na nagłówek „Przerwa”** (`targets/watch-app/RootView.swift`, `badges` w pasku nad treścią). Kroki: trening z zegarkiem → przerwa trwa → „Wstrzymaj” na telefonie. Realność: **brzegowy** (pauza w trakcie przerwy), kosmetyczny, bez utraty danych. Zrzut stanu „paused” wyłączony z zestawu sklepu do czasu poprawki (`scripts/ci/watch-screenshots.sh`).
 - **Import CSV: zakres dat bez roku przy dacie końcowej** („Aug 26, 2025 – Jul 21”). Kroki: Więcej → Import → wybór pliku → podgląd. Realność: **realny**, kosmetyczny (niespójny format zakresu).
 - **Okno „Dostosuj”: tytuł „Adjust to: …” ucinany wielokropkiem w dłuższych językach (np. el)**. Realność: brzegowy, kosmetyczny.
+- **Baner „przerwa trwa — powiadomić?” zostaje po końcu przerwy** (przegląd zrzutów 29.10.2026, es/01: „descanso terminado” obok banera „El descanso está en curso”). Kroki: trening → seria → przerwa kończy się przy otwartym ekranie bez reakcji na baner. Realność: realny, mylący, kosmetyczny (NISKIE).
+- **Plakietka zakładki Trening ucięta do „+…” po końcu przerwy** (zrzuty hu/01, es/01, 29.10.2026). Realność: realny, kosmetyczny (NISKIE).
+- **Rysunek fi/02: talerz nachodzi na głowę w widoku z boku** (przegląd zrzutów 29.10.2026) — do recenzji ruchu (bramka 4); kosmetyczne (NISKIE).
+- **ko/07: „46.3k” i „119679 kg” na jednym ekranie** (przegląd zrzutów 29.10.2026) — niespójny skrót liczb, do sprawdzenia (NISKIE). Ucięty tytuł okna „Dostosuj” (el/06) — wpis wyżej (101-17).
 - **Zrzuty sklepu: czas przebiegu** — Maestro 2–3 razy na ekran daje ok. 2,7 min na ekran; podział języków na równoległe zadania albo mniej uruchomień Maestro (uprawnienia nadawane z góry).
 
 ### 4n. Wydanie natywne — po najbliższej wersji (decyzja właściciela 07.10.2026 wieczór)
