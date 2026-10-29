@@ -571,10 +571,10 @@ Widok: z boku; kotwica: przód stopy; przyrządy: brak.
 
 - **pozycja wyjściowa** — t 90, hip 0, knee 0, sh 0, el 0
   - bark – biodro – kostka w jednej linii (±6°) ← `lunge.stand`: „Stań prosto, stopy mniej więcej na szerokość bioder.”
-- **w trakcie** — t 89.4, hip -8/28.9, knee 4.2/79.9, ft 0/-16.8, sh 0, el 0
+- **w trakcie** — t 94.1, hip -13.1/18.7, knee 10.7/80.7, ft 0/-20.9, sh 0, el 0
   - przód stopy (dalsza strona) wyżej niż poziom 0 ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **w trakcie (druga)** — t 91, hip 40.2/-6.8, knee 60.5/62.8, ft 0/-64.1, sh 0, el 0
+- **w trakcie (druga)** — t 89.2, hip 40.6/-14.3, knee 66/54.2, ft 0/-55.4, sh 0, el 0
   - przód stopy (dalsza strona) tuż nad poziomem 0 (do 1) ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
 - **pozycja końcowa** — t 86.9, hip 77.5/11, knee 110.1/110.4, ft 0/-72.8, sh 0, el 0

@@ -235,6 +235,21 @@ describe('Reverse Lunge (4 pozycje): tylna stopa unosi się niewysoko pionowo w 
     expect(podparcie(f)).toEqual([]); expect(jednaPodpora(f)).toEqual([]);
     for (const s of poses(f)) expect(penetration(f, s.P)).toBeLessThanOrEqual(LIM.penetration);
   });
+  /* 101-13 (uwagi NISKIE recenzji niezależnej 29.10.2026). Pomiar: „wysokie kolano” dotyczy NOGI TYLNEJ (knee2) w pozie „w trakcie 1”: było 2,1 j. wyżej niż kolano stojące
+     i 15,6 j. przed kolanem przedniej nogi; przedłużone odcinki 0–1 mierzone co 0,01. Płaskie lądowanie: palce tylnej stopy (toe2) przez 3,4 j. drogi (tylko faza lądowania 1 → 2) w pasie 0,8–1,5 j. nad podłogą. */
+  const gesto = (i: number) => Array.from({ length: 101 }, (_, u) => poseBetween(f, i, i + 1, u / 100).P);
+  test('101-13 wysokie kolano: tylne kolano w fazie unoszenia stopy nie wznosi się wyżej niż kolano w staniu (≤ 0,5 j.; było 2,1 j.) ani nie wychodzi przed kolano przedniej nogi bardziej niż dziś (≤ 14 j.; było 15,6 j.)', () => {
+    const lift = [...gesto(0), ...gesto(1)];
+    expect(Math.max(...lift.map(P => P.knee2[1] - K[0].knee[1]))).toBeLessThanOrEqual(0.5);
+    expect(Math.max(...lift.map(P => P.knee2[0] - P.knee[0]))).toBeLessThanOrEqual(14);
+  });
+  test('101-13 płaskie lądowanie: palce tylnej stopy schodzą do podłogi stromo — droga w pasie 0,8–1,5 j. nad podłogą ≤ 1,5 j. (było 3,4 j.), pięta w górze przy dotyku (≥ 8 j.), podparcie i ślizg bez zmian', () => {
+    const tor = gesto(1); let droga = 0;
+    for (let i = 1; i < tor.length; i++) { const a = tor[i - 1].toe2, b = tor[i].toe2; if (a[1] > 0.8 && a[1] <= 1.5 && b[1] > 0.8 && b[1] <= 1.5) droga += Math.hypot(a[0] - b[0], a[1] - b[1]); }
+    expect(droga).toBeLessThanOrEqual(1.5);
+    const dotyk = tor.find(P => P.toe2[1] <= LIM.contact) as Points; expect(dotyk.heel2[1]).toBeGreaterThanOrEqual(8);
+    expect(podparcie(f)).toEqual([]); expect(jednaPodpora(f)).toEqual([]);
+  });
 });
 
 describe('Walking Lunges (4 pozycje): krok drugą nogą', () => {
