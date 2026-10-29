@@ -645,7 +645,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Dostęp z kodu do {date} | app/paywall.tsx | tests/subscription-i18n.test.ts |
 | Dostępne ćwiczenia: {n} z {m} | app/more/location/[id].tsx | tests/locations-ui.test.tsx, tests/scenario-full.test.tsx |
 | dostępne: {n} ({r}) | components/LoadEditor.tsx | tests/locations-ui.test.tsx |
-| Dostosuj do miejsca | app/_layout.tsx | tests/adapt-ui.test.tsx, tests/audit-m1-044-brd.test.ts, tests/audit-m1-045-store-description.test.ts |
+| Dostosuj do miejsca | app/_layout.tsx | tests/adapt-ui.test.tsx, tests/audit-m1-044-brd.test.ts, tests/audit-m1-045-store-description.test.ts +2 |
 | Dostosuj do: {l} | app/adapt.tsx | tests/adapt-ui.test.tsx, tests/maestro-selectors.test.ts, tests/places-scenario.test.tsx +1 |
 | Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”. | lib/guide.ts | tests/guide.test.tsx |
 | Dół A | lib/generator.ts | tests/generator-ui.test.tsx |
