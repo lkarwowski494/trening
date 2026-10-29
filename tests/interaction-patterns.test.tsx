@@ -6,7 +6,7 @@
  */
 import React from 'react';
 import { AccessibilityInfo } from 'react-native';
-import { render, fireEvent, renderHook } from '@testing-library/react-native';
+import { render, fireEvent, renderHook, cleanup } from '@testing-library/react-native';
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import { applyLang } from '@/lib/i18n';
@@ -25,6 +25,10 @@ const boot = async (url: string, locale: 'pl' | 'en' = 'pl', fn: () => void = ()
   jest.useFakeTimers({ now: NOW }); await fresh(seedWithDemo(), locale); fn();
   await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url }); await flushAll(10);
 };
+/* 101-14: pierwszy rozruch aplikacji w pliku to zimne ładowanie wszystkich ekranów (transformacja Babel bez pamięci podręcznej: ok. 6,9 s z `--no-cache`,
+ * ok. 4–6 s pod obciążeniem; z ciepłą pamięcią ok. 0,8 s). Wcześniej płacił je pierwszy test „+” (limit 5 s → niestabilny). Teraz płaci je jawny rozgrzewający
+ * beforeAll z osobnym limitem 60 s, a testy zachowują domyślny limit 5 s. */
+beforeAll(async () => { await boot('/templates'); cleanup(); }, 60000);
 const route = () => { const { store: rs } = require('expo-router/build/global-state/router-store'); let st = rs.navigationRef.getRootState(); while (st.routes[st.index ?? st.routes.length - 1].state) st = st.routes[st.index ?? st.routes.length - 1].state; return st.routes[st.index ?? st.routes.length - 1].name as string; };
 
 describe('lib/confirm: jedno słowo rezygnacji', () => {
