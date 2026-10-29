@@ -30,8 +30,12 @@
 - 13:06 verify po fali 0: Jest 11175/11179, 1 porażka `tests/audit-m1-p4b-queue.test.ts` (lekcje L-NNN pod numerowanymi po scaleniu; `test:fast` agenta jej nie objął) → poprawka docs/40; kroki verify po Jest (macierz, licencje, eksport iOS, pakiet, native) zielone.
 - 13:06 Pakiet A gotowy (r101/A 75b5bf75): 11 DL i 101-03 — odstęp 4–9 cm → 1,5–3,1 cm (próg 3,5 cm), D2 sumo 8,0 → 2,4 cm. D3 (RDL ramiona pionowo) NIEWYKONALNE w progach źródeł (kolano ≤ 27°, tułów 50–80°) → pytanie do właściciela. Rodzina hinge czeka na recenzję niezależną (audytor).
 
+- 13:11 Pakiet H (101-27) gotowy: przebudowa korzenia gubi niezapisany szkic edycji i stan okien → kod za wyłączoną flagą, tylko test (r101/H 27166cca, nie scalony). Pytanie do właściciela (opcje 1–4, rekomendacja 4: bez poprawki w 1.0.1, rejestr ryzyk). Recenzja hinge zlecona (audytor).
+- 13:11 101-28 (koordynator 1.0, NISKIE, brzegowe): paywall — tekst „subskrypcja nadal się odnawia” oparty tylko na `entitlementActive`; zakupy = ścieżka wrażliwa (przegląd niezależny). Fala 2, mały pakiet I.
+
 ## Czekające kroki właściciela
-- brak
+- Decyzja: D3 RDL ramiona (A 23° / B ok. 17° — rekomendacja / C pionowo przeczy źródłom).
+- Decyzja: 101-27 (1 przebudowa z utratą / 2 z zachowaniem szkiców / 3 łatka natywna RN / 4 bez poprawki — rekomendacja).
 
 ## Wyjątki nazwane w tej sesji
 - 29.10 12:20 Wypychanie samego `POSTEP.md` przez `git push --no-verify`: hak (L-049) wymaga znacznika verify dla drzewa, a `verify:docs` na gałęzi z kodem odmawia (STAN, pułapki). Kontrola zastępcza: commit zawiera tylko ten plik (`git show --stat`), `tests.yml` biegnie na gałęzi.
