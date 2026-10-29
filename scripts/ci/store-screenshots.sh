@@ -15,7 +15,10 @@ if [ "$LANGS" = "all" ]; then LANGS=$(ls "$DATA" | sed -n 's/^routes-\(.*\)\.jso
 mkdir -p "$OUT"
 maestro_run() { command -v maestro >/dev/null 2>&1 || { echo "::warning::Brak Maestro — akcja $1 pominięta"; return 0; }
   local log="$OUT/.maestro/${2//\//-}-$1"; mkdir -p "$log"   # dziennik i zrzut porażki Maestro w artefakcie (katalog z kropką — pomijany przez ramki)
-  maestro --device "$UDID" test "$FLOWS/$1.yaml" --test-output-dir "$log" > "$log/maestro.log" 2>&1 || { echo "::warning::Akcja $1 nie powiodła się ($2)"; tail -5 "$log/maestro.log" | sed 's/^/    /'; return 1; }; }
+  # teksty aplikacji w języku zrzutu (teksty-<język>.json z danych pokazowych) → zmienne scenariusza przez -e; znaki wyrażeń regularnych zakodowane (Maestro dopasowuje tekst jako regex)
+  local envargs=() tf="$DATA/teksty-${2%%/*}.json" l
+  if [ -f "$tf" ]; then while IFS= read -r l; do envargs+=(-e "$l"); done < <(node -e 'const t=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); for (const [k,v] of Object.entries(t)) console.log(k+"="+String(v).replace(/[.*+?^${}()|[\]\\]/g,"\\$&"))' "$tf"); fi
+  maestro --device "$UDID" test "$FLOWS/$1.yaml" ${envargs[@]+"${envargs[@]}"} --test-output-dir "$log" > "$log/maestro.log" 2>&1 || { echo "::warning::Akcja $1 nie powiodła się ($2)"; tail -5 "$log/maestro.log" | sed 's/^/    /'; return 1; }; }
 # Pasek stanu jak w materiałach Apple: stała godzina, pełna bateria i zasięg (bez nazwy operatora).
 xcrun simctl status_bar "$UDID" override --time "9:41" --dataNetwork wifi --wifiMode active --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100 >/dev/null 2>&1 || echo "::warning::Nie udało się ustawić paska stanu"
 FAILED=""
