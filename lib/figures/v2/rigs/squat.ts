@@ -52,6 +52,8 @@ export const SQUAT = {
   bandHandHalf: 15, /** i odsunięcie dolnego końca gumy do środka od osi stopy (cm): guma biegnie między kolanami, nie przez udo */ bandFootIn: 8,
   /** Zercher (101-09): dłonie przed górną częścią klatki (układ tułowia: w górę, w przód, bok), biegun łokcia (w przód, w dół, do środka); gryf leży w zgięciach łokci — środek gryfu = łokieć + `zercherCrook` cm wzdłuż dwusiecznej kąta ramię–przedramię, w przód co najmniej `zercherBarFwd` (gryf poza powierzchnią tułowia). Uproszczenie ilustracyjne. */
   zercherHand: [48, 22, 5] as V3, zercherPole: [-1, 0.8, -0.3] as V3, zercherCrook: 8, zercherBarFwd: 11.5,
+  /** Sumo z hantlem (101-10): chwyt pod stawem barkowym — zasięg (barek–środek chwytu) prawie prostych rąk i wysunięcie w przód od osi barków, cm (9 cm = ręce ok. 8° od pionu: hantel przed pachwiną, nie w tułowiu — przy 0 cm przenikał miednicę o 4 cm). Uproszczenie ilustracyjne. */
+  sumoReach: BODY.uarm + BODY.farm + BODY.hand - 3, sumoFwd: 9,
   sit: 9, /* wysokość stawu biodrowego nad siedziskiem (pośladek) */
 } as const;
 
@@ -147,7 +149,7 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
     case 'dbSides': case 'dbSumo': {
       tau = tauSched(); const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, 0);
       if (p.load === 'dbSides') { const g: V3 = [sh[0] + 3, sh[1] - (BODY.uarm + BODY.farm + BODY.hand - 8), 0]; load = g; arms = armsHeld(g, BODY.shHalf + 13, [-0.2, -0.2, 1]); }
-      else { const g = trunkPoint(hipC(), tau, 2, 21, 0); load = g; arms = armsHeld(g, 4, [0.1, -0.2, 1]); }
+      else { const g: V3 = [sh[0] + SQUAT.sumoFwd, sh[1] - SQUAT.sumoReach, 0]; load = g; arms = armsHeld(g, 4, [0.1, -0.2, 1]); } /* 101-10: hantel zwisa pionowo pod barkami na prawie prostych rękach (nie tkwi w układzie tułowia) */
       break;
     }
     case 'landmine': {

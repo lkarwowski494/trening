@@ -94,12 +94,12 @@ describe('wyciskania i przysiady wstrzymane w 1.0 (decyzja agenta w nocy 29.10.2
       expect([k, (V2_WSTRZYMANE[k] ?? '').length > 20]).toEqual([k, true]);
     }
   });
-  test('odtworzenie wad (silnik na main 9b76ed2): Chain Press = Bench Press with Chains; Zercher (naprawiony 29.10.2026, 101-09: na dole gryf ≤ 9 cm od łokcia — dawny rig 18,5 cm); Sumo Squat (hantel) ≥ 20 cm w poziomie', () => {
+  test('odtworzenie wad (silnik na main 9b76ed2): Chain Press = Bench Press with Chains; Zercher (naprawiony 29.10.2026, 101-09: na dole gryf ≤ 9 cm od łokcia — dawny rig 18,5 cm); Sumo Squat (naprawiony 29.10.2026, 101-10: ≤ 6 cm w poziomie — dawny rig ≥ 20 cm)', () => {
     expect(JSON.stringify(frameAt(figureSpec('Chain Press')!, 0.5))).toBe(JSON.stringify(frameAt(figureSpec('Bench Press with Chains')!, 0.5)));
     const z = frameAt(figureSpec('Zercher Squat')!, 1); const el = z.sk.arms.R.elbow;
     expect(Math.hypot(z.info.load[0] - el[0], z.info.load[1] - el[1])).toBeLessThanOrEqual(9); /* 101-09: pilnuje tests/figury-101-squat.test.ts; stan wady (> 15 cm) odwrócony */
     const a = frameAt(figureSpec('Sumo Squat (hantel)')!, 0).info.load, b = frameAt(figureSpec('Sumo Squat (hantel)')!, 1).info.load;
-    expect(Math.abs(a[0] - b[0])).toBeGreaterThan(20);
+    expect(Math.abs(a[0] - b[0])).toBeLessThanOrEqual(6); /* 101-10: pilnuje tests/figury-101-squat.test.ts; stan wady (> 20 cm) odwrócony */
   });
   test('kontrast: Back Squat (zrzut sklepu „ćwiczenie”) i Bench Press (sztanga) nadal z rysunkiem', () => {
     expect(shownFigureSpec('Back Squat')).not.toBeNull(); expect(shownFigureSpec('Bench Press (sztanga)')).not.toBeNull();

@@ -3,7 +3,7 @@
  * 101-09 Zercher Squat: gryf w zgięciach łokci przez cały ruch. 101-10 Sumo Squat (hantel): pionowy tor pod barkami.
  * 101-11 Overhead Squat / One-Arm Overhead Kettlebell Squat: wyjątek kontraktu barku (reguła zależna od pochylenia tułowia).
  */
-import { figureSpec, frameAt, bodyColliders, equipColliders, gap, distSegSeg, SIDES, type Frame } from '@/lib/figures/v2';
+import { figureSpec, frameAt, jointAngles, bodyColliders, equipColliders, gap, distSegSeg, SIDES, type Frame } from '@/lib/figures/v2';
 import { KADRY_STYKU, dwieMiary } from './helpers/styk-figur';
 
 const spec = (k: string) => figureSpec(k)!;
@@ -33,5 +33,27 @@ describe('101-09 Zercher Squat: gryf w zgięciach łokci', () => {
   test('miara potrafi paść: gryf przesunięty o 20 cm w dół (jak na dawnym rigu, na udach) przekracza próg odległości od łokcia', () => {
     const f = frameAt(spec('Zercher Squat'), 1); const b = bar(f); const el = f.sk.arms.R.elbow;
     expect(distSegSeg(el, el, [b.a[0], b.a[1] - 20, b.a[2]], [b.b[0], b.b[1] - 20, b.b[2]])).toBeGreaterThan(9);
+  });
+});
+
+describe('101-10 Sumo Squat (hantel): pionowy tor pod barkami', () => {
+  const K = 'Sumo Squat (hantel)';
+  /** Miara 1: najwyższe odchylenie poziome hantla od osi barków (cm) na kadrach co 0,05 i kąt łączącej pierwszy i ostatni kadr od pionu (stopnie). */
+  const tor = (kadry: readonly number[]) => { const fr = kadry.map(u => frameAt(spec(K), u)); const xs = fr.map(f => f.info.load[0]); const ys = fr.map(f => f.info.load[1]);
+    return { poBarkach: Math.max(...fr.map(f => Math.abs(f.info.load[0] - f.sk.shoulderC[0]))), kat: Math.abs(Math.atan2(xs[xs.length - 1] - xs[0], ys[0] - ys[ys.length - 1]) * 180 / Math.PI), rozrzut: Math.max(...xs) - Math.min(...xs) }; };
+  const m = dwieMiary(K, (_k, kadry) => tor(kadry).poBarkach);
+  test('miara 1 (cecha): hantel najwyżej 10 cm przed osią barków (ręce ≤ 9° od pionu; stałe 9 cm — hantel zwisa przed pachwiną, nie w tułowiu), kąt toru od pionu ≤ 8°, rozrzut poziomy ≤ 6 cm; było ok. 26° od pionu, 24 cm w tył', () => {
+    expect(m.cecha).toBeLessThanOrEqual(10);
+    const t = tor(KADRY_STYKU); expect(t.kat).toBeLessThanOrEqual(8); expect(t.rozrzut).toBeLessThanOrEqual(6);
+  });
+  test('miara 1b: ręce prawie proste (zgięcie łokcia ≤ 35°), hantel pod barkami niżej o 45–65 cm (zasięg rąk 61 cm)', () => {
+    for (const u of KADRY_STYKU) { const f = frameAt(spec(K), u); const d = f.sk.shoulderC[1] - f.info.load[1]; expect([u, d >= 45 && d <= 65]).toEqual([u, true]); expect([u, jointAngles(f.sk, 'R').elbow <= 35]).toEqual([u, true]); }
+  });
+  test('miara 2 (styk): hantel nie przenika ud, podudzi ani tułowia (≤ 0,5 cm) przy szerokim rozstawie', () => {
+    expect(m.styk.maxPrzenikanie).toBeLessThanOrEqual(0.5);
+  });
+  test('miara potrafi paść: dawny tor (hantel w układzie tułowia: 2 cm w górę, 21 cm w przód od miednicy) odchodzi od pionu przez bark o ponad 10 cm', () => {
+    let najgorszy = 0; for (const u of KADRY_STYKU) { const f = frameAt(spec(K), u); const p = f.sk; najgorszy = Math.max(najgorszy, Math.abs(p.pelvis[0] + p.up[0] * 2 + p.front[0] * 21 - p.shoulderC[0])); }
+    expect(najgorszy).toBeGreaterThan(10);
   });
 });
