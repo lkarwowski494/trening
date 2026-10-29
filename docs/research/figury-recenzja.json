@@ -228,9 +228,9 @@
    "werdykt": "ukryta",
    "data": "2026-10-27",
    "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "ff4b2a547df5",
+   "sha": "74a518fe67a5",
    "wada": "Figura identyczna z wiosłowaniem sztangą w opadzie (tułów ok. 30° nad poziomem, sztanga zawieszona nad podłogą) — brak cechy rozpoznawczej nazwy (bramka 4, pkt 1 listy recenzenta); wskazówki karty też nie opisują startu z podłogi.",
-   "poprawka": "Wskazówka i poza ze startem z podłogi przy każdym powtórzeniu i tułowiem prawie równoległym do podłogi — po potwierdzeniu w 2 zgodnych źródłach szczebla 4 (strony źródłowe niedostępne 27.10, HTTP 403); do tego czasu bez rysunku, wskazówki zostają."
+   "poprawka": "Wskazówka i poza ze startem z podłogi przy każdym powtórzeniu i tułowiem prawie równoległym do podłogi — po potwierdzeniu w 2 zgodnych źródłach szczebla 4 (strony źródłowe niedostępne 27.10, HTTP 403); do tego czasu bez rysunku, wskazówki zostają. 29.10.2026 (1.0.1): wykonane przez programistę — nowa figura (4 pozycje, tułów 8° nad poziomem i nieruchomy, talerz na podłodze w pozycji wyjściowej, tor sztangi prawie pionowy) i nowe zdania karty (pendlay.*, 2–3 przeczytane źródła szczebla 4: BarBend, Breaking Muscle, Coach); figura i karta czekają na recenzję niezależną innego agenta (L-047) — do tego czasu wpis zostaje „ukryta”, a karta poza paczką aplikacji (wpis „karty” ze starym skrótem)."
   },
   "T-Bar Row": {
    "rodzina": "row",
@@ -961,14 +961,14 @@
    "uwagi": "Bokiem do wyciągu ok. na wysokości klatki, wypchnięcie i powrót, bez obrotu tułowia — 2 przeczytane źródła. Repozytorium uczelni zwraca 405 (nieodczytane); „napnij brzuch” — wprost tylko „tułów bez ruchu” w przeczytanym źródle."
   },
   "Pendlay Row": {
-   "werdykt": "wyswietlana",
-   "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "60840343dff9",
-   "uwagi": "Treść karty = wiosłowanie sztangą w opadzie (przeczytane źródło); nie przeczy ćwiczeniu, ale nie opisuje jego cechy (start z podłogi przy każdym powtórzeniu) — uwaga P2, figura nadal ukryta (wpis v1). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (wg rejestru „Also known as Pendlay Row”)."
+   "werdykt": "do poprawy",
+   "data": "2026-10-29",
+   "stan": "karta zmieniona 29.10.2026 (1.0.1, nowe zdania pendlay.*) — czeka na recenzję niezależną nowej wersji (L-047); do tego czasu wskazówki poza paczką aplikacji",
+   "autor": "programista (agent; 1.0.1, zadanie Pendlay Row, M1-audytor-generalny-047); źródła: badacz merytoryczny, raport 28.10.2026 sekcja 1",
+   "kto": "programista — zmiana treści karty 29.10.2026 (recenzja poprzedniej wersji: 06-tresci, 28.10.2026)",
+   "sha": "8ed7ee45c7ed",
+   "uwagi": "Poprzednia wersja karty (skrót 60840343dff9, treść = wiosłowanie sztangą w opadzie) zrecenzowana niezależnie 28.10.2026 z uwagą P2: Treść karty = wiosłowanie sztangą w opadzie (przeczytane źródło); nie przeczy ćwiczeniu, ale nie opisuje jego cechy (start z podłogi przy każdym powtórzeniu) — uwaga P2, figura nadal ukryta (wpis v1). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (wg rejestru „Also known as Pendlay Row”).",
+   "poprawka": "Karta ma nowe zdania: ustawienie z podłogi i tułów prawie równolegle (pendlay.setup), dynamiczne przyciągnięcie i odłożenie na podłogę (pendlay.pull), start od nieruchomej sztangi (pendlay.floor), błąd unoszenia tułowia (pendlay.mis.torso); źródła szczebla 4 przeczytane 28.10.2026 (BarBend, Breaking Muscle, Coach). Recenzja niezależna treści karty i nowej figury (podgląd: scratchpad/pendlay) przed statusem „wyswietlana”."
   },
   "Pistol Squat": {
    "werdykt": "wyswietlana",

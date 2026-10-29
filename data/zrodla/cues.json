@@ -199,6 +199,21 @@
    "name": "The Prehab Guys — biblioteka ćwiczeń (theprehabguys.com, fizjoterapeuci)",
    "level": 4,
    "kind": "site"
+  },
+  "BarBend": {
+   "name": "BarBend — Exercise Guides (barbend.com; autor CSCS, weryfikacja NASM-CPT i USAW-L2)",
+   "level": 4,
+   "kind": "site"
+  },
+  "Breaking Muscle": {
+   "name": "Breaking Muscle — Exercise Guides (breakingmuscle.com; serwis specjalistyczny)",
+   "level": 4,
+   "kind": "site"
+  },
+  "Coach": {
+   "name": "Coach (coachweb.com) — How To, ekspert z akredytacją NSCA",
+   "level": 4,
+   "kind": "site"
   }
  },
  "sources": {
@@ -1672,6 +1687,24 @@
    "title": "Heel Raise – Off Step",
    "url": "https://theprehabguys.com/vimeo-video/heel-raise-off-step/",
    "level": 4
+  },
+  "barbend-pendlay-row": {
+   "org": "BarBend",
+   "title": "Pendlay Row",
+   "url": "https://barbend.com/Pendlay-row/",
+   "level": 4
+  },
+  "breakingmuscle-pendlay-row": {
+   "org": "Breaking Muscle",
+   "title": "Pendlay Row",
+   "url": "https://breakingmuscle.com/pendlay-row/",
+   "level": 4
+  },
+  "coach-pendlay-row": {
+   "org": "Coach",
+   "title": "How To Do The Pendlay Row",
+   "url": "https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row",
+   "level": 4
   }
  },
  "exercises": {
@@ -2154,15 +2187,19 @@
   "Pendlay Row": {
    "setup": [
     {
-     "c": "row.hinge",
+     "c": "pendlay.setup",
      "s": [
       [
-       "ace-12",
-       "opis"
+       "barbend-pendlay-row",
+       "How to, Step 1 (barbell on the floor); FAQ (back roughly parallel to the floor)"
       ],
       [
-       "exrx-BackGeneral/BBBentOverRow",
-       "Preparation; Comments („Also known as Pendlay Row”)"
+       "breakingmuscle-pendlay-row",
+       "Step 1 (slight bend in the knees, upper body parallel to the ground)"
+      ],
+      [
+       "coach-pendlay-row",
+       "How To (knees slightly bent, neutral spine; kąt tułowia w źródle 20–30° — część wspólna: prawie równolegle)"
       ]
      ]
     },
@@ -2182,20 +2219,37 @@
    ],
    "move": [
     {
-     "c": "row.bbPull",
+     "c": "pendlay.pull",
      "s": [
       [
-       "ace-12",
-       "opis"
+       "barbend-pendlay-row",
+       "How to, Step 2 (explosively pull the barbell to the base of the chest)"
       ],
       [
-       "exrx-BackGeneral/BBBentOverRow",
-       "Execution"
+       "breakingmuscle-pendlay-row",
+       "Step 2 (explosive pull; bar touches lower chest or upper abdomen, then returns to the ground)"
+      ],
+      [
+       "coach-pendlay-row",
+       "How To (explosively pull the bar towards the stomach)"
       ]
      ]
     }
    ],
    "tips": [
+    {
+     "c": "pendlay.floor",
+     "s": [
+      [
+       "barbend-pendlay-row",
+       "Benefits (each rep is done from a dead stop on the floor)"
+      ],
+      [
+       "breakingmuscle-pendlay-row",
+       "Step 2 (complete rest on the ground before the next rep); Mistakes — Bouncing Off the Floor"
+      ]
+     ]
+    },
     {
      "c": "hinge.back",
      "s": [
@@ -2206,24 +2260,28 @@
       [
        "exrx-BackGeneral/BBBentOverRow",
        "Comments"
-      ]
-     ]
-    },
-    {
-     "c": "row.fullStretch",
-     "s": [
-      [
-       "ace-12",
-       "opis"
       ],
       [
-       "exrx-BackGeneral/BBBentOverRow",
-       "Execution"
+       "coach-pendlay-row",
+       "How To (neutral spine, hinged at the hips with knees slightly bent)"
       ]
      ]
     }
    ],
    "mistakes": [
+    {
+     "c": "pendlay.mis.torso",
+     "s": [
+      [
+       "barbend-pendlay-row",
+       "Common Mistakes — Back Angle (rising during the pull)"
+      ],
+      [
+       "breakingmuscle-pendlay-row",
+       "Mistakes — Moving Your Upper Body (maintain a strict parallel position)"
+      ]
+     ]
+    },
     {
      "c": "mis.roundBack",
      "s": [

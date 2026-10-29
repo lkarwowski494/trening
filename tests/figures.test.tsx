@@ -203,7 +203,7 @@ describe('lib/figures', () => {
     expect(figureFor(lib('Nie ma'))).toBeNull(); expect(figureFor(null)).toBeNull();
     const noCue = CUE_DATA.open[0]; if (noCue) expect(figureFor(lib(noCue))).toBeNull();
     /* Pendlay Row: figura ukryta po recenzji bramki 4 (brak cechy rozpoznawczej — docs/research/figury-recenzja.json); wskazówki zostają */
-    expect(figureByKey('Pendlay Row')).toBeNull(); expect(figureFor(lib('Pendlay Row'))).toBeNull(); expect(CUE_DATA.exercises['Pendlay Row']).toBeTruthy();
+    expect(figureByKey('Pendlay Row')).toBeNull(); expect(figureFor(lib('Pendlay Row'))).toBeNull(); expect(!!CUE_DATA.exercises['Pendlay Row'] || CUE_DATA.hidden.includes('Pendlay Row')).toBe(true); /* 29.10.2026 (1.0.1): karta zmieniona (zdania pendlay.*) czeka na recenzję niezależną — do tego czasu na liście „hidden” (tests/figury-pendlay.test.ts) */
   });
   test('figureLabel: szablon + zdania „Ruch” wskazówek; frameLabel: podpisy klatek', () => {
     const mv = CUE_DATA.exercises['Back Squat'].move.map(r => cueText(r.c, 'pl')).join(' ');
