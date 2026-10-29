@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { View, Text, Animated, Easing, PixelRatio, useWindowDimensions, Keyboard } from 'react-native';
+import { View, Animated, Easing, PixelRatio, useWindowDimensions, Keyboard } from 'react-native';
+import { Text } from '@/components/AppText';
 import { ScrollView } from '@/components/Scroll';
 import Svg, { Circle } from 'react-native-svg';
 import { useTheme, font, maxScale, boardDigitSize, RADIUS, SIZE, SPACE, MOTION, TEXT_SCALE, type Theme } from '@/lib/theme';

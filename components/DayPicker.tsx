@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Pressable, Text, View, useWindowDimensions } from 'react-native';
+import { Pressable, View, useWindowDimensions } from 'react-native';
+import { Text } from '@/components/AppText';
 import { Field } from '@/components/ui';
 import { useTheme, NUM_SCALE_MAX, TEXT_SCALE_MAX, FW, font, RADIUS } from '@/lib/theme';
 import { weekdayLabels, weekdayNames } from '@/lib/calendar';

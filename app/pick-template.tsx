@@ -1,5 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { Pressable, Text } from 'react-native';
+import { Pressable } from 'react-native';
+import { Text } from '@/components/AppText';
 import { ScrollView } from '@/components/Scroll';
 import { useRouter, Stack } from 'expo-router';
 import { useTheme, F } from '@/lib/theme';

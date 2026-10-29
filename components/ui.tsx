@@ -1,5 +1,6 @@
 import React from 'react';
-import { ActivityIndicator, Pressable, Switch, Text, TextInput, View, StyleSheet, useWindowDimensions, type ViewStyle, type TextStyle, type TextInputProps, type StyleProp } from 'react-native';
+import { ActivityIndicator, Pressable, Switch, TextInput, View, StyleSheet, useWindowDimensions, type ViewStyle, type TextStyle, type TextInputProps, type StyleProp } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, FW, font, maxScale, titleMaxScale, TEXT_SCALE_MAX, NUM_SCALE_MAX, GLYPH_SCALE_MAX, RADIUS, SIZE, SPACE, HEADER } from '@/lib/theme';
 import { decimalComma, lang, upper, LOCALE_UPPER, t as tr, type Lang } from '@/lib/i18n';
 import { useRouter } from 'expo-router';

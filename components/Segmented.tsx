@@ -1,5 +1,6 @@
 import React from 'react';
-import { Platform, Pressable, StyleSheet, Text, View, useWindowDimensions, type TextStyle } from 'react-native';
+import { Platform, Pressable, StyleSheet, View, useWindowDimensions, type TextStyle } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, FW, font, TEXT_SCALE_MAX, RADIUS, SIZE, SPACE } from '@/lib/theme';
 import { lang } from '@/lib/i18n';
 

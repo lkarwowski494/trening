@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Pressable, Alert } from 'react-native';
+import { View, Pressable, Alert } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, FW } from '@/lib/theme';
 import { t, lang, appName } from '@/lib/i18n';
 import { exportStartDataDetailed } from '@/lib/backup';

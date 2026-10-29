@@ -8,6 +8,12 @@ import { namesIn } from './forbidden-names';
 import { PRIVACY_URL, TERMS_URL } from '@/lib/products';
 import { LANGS } from '@/lib/i18n';
 import { PAYWALL } from '@/lib/access';
+import { EN } from '@/lib/i18n.en';
+import { LOCALES } from '@/lib/locales';
+import { LIB } from '@/lib/seed';
+import * as V2 from '@/lib/figures/v2';
+import { figureByKey } from '@/lib/figures';
+import { errorsOf, legendOf } from '@/lib/figures/v2/ui';
 
 const read = (f: string) => JSON.parse(fs.readFileSync(path.join(__dirname, '..', f), 'utf8'));
 const names = read('store/app-store-names.json').names as Record<string, string>;
@@ -67,4 +73,53 @@ describe('store/app-store-metadata.json', () => {
       expect({ l, marki: namesIn(all), kwoty: /\d+[,.]\d\d|zł|PLN|USD|EUR|€|\$|£/.test(all) }).toEqual({ l, marki: [], kwoty: false });
     }
   });
+
+  /* Odświeżenie przed 1.0 (decyzja właściciela 28.10.2026, wariant A; docs/45 „Odświeżenie przed 1.0”): opis i tekst promocyjny pokazują rysunki ruchu
+   * i sekcję „Technika”. Rysunki są tylko przy części biblioteki (figury v2 dla gotowych rodzin + figury v1), więc tekst mówi „ponad 100 ćwiczeń” —
+   * liczba z kodu: ćwiczenia biblioteki z rysunkiem animowanym, takim, jaki pokazuje karta (v2: shownFigureSpec po wstrzymaniach, jeśli istnieje; v1: ≥ 2 klatki). */
+  describe('rysunki ruchu i sekcja „Technika” (odświeżenie przed 1.0, 28.10.2026)', () => {
+    const CLAIM = 100; /* „ponad 100” we wszystkich lokalizacjach */
+    const v2spec = ((V2 as unknown as { shownFigureSpec?: typeof V2.figureSpec }).shownFigureSpec ?? V2.figureSpec);
+    const keys = [...new Set(LIB.map((r) => r[0]))];
+    const spec = (k: string) => v2spec(k);
+    const animated = keys.filter((k) => { const s = spec(k); if (s) return !s.static; const f = figureByKey(k); return !!f && f.frames.length > 1; });
+    /* kod lokalizacji sklepu → język aplikacji (słownik interfejsu) */
+    const APP: Record<string, string> = { 'es-ES': 'es', 'es-MX': 'es-419', 'pt-PT': 'pt', 'de-DE': 'de', 'fr-FR': 'fr', 'nl-NL': 'nl', no: 'nb' };
+    const ui = (l: string, pl: string): string => l === 'pl' ? pl : l.startsWith('en-') ? EN[pl] : (LOCALES as Record<string, Record<string, string>>)[APP[l] ?? l][pl];
+    const ANIM = /anim|аним|анім|κινούμεν|hoạt ảnh|動畫|アニメーション|움직이는/i;
+    test(`liczba z kodu: ponad ${CLAIM} ćwiczeń biblioteki ma animowany rysunek ruchu (tekst „ponad ${CLAIM}”)`, () => {
+      expect(animated.length).toBeGreaterThan(CLAIM);
+      expect(animated.length).toBeLessThan(keys.length); /* nie cała biblioteka — stąd brak obietnicy „przy każdym ćwiczeniu” */
+    });
+    test('rodziny wymienione w opisie (przysiad, wyciskanie leżąc, martwy ciąg) są gotowe; rysunek v2 pokazuje mięśnie zawsze, a częsty błąd zwykle (≥ 80%)', () => {
+      for (const f of ['squat', 'bench_press', 'hinge'] as const) expect([f, V2.FAMILY[f].status]).toEqual([f, 'ready']);
+      const v2 = keys.map(spec).filter((s): s is NonNullable<typeof s> => !!s);
+      expect(v2.filter((s) => !legendOf(s.key))).toEqual([]);
+      expect(v2.filter((s) => errorsOf(s).length > 0).length / v2.length).toBeGreaterThanOrEqual(0.8);
+    });
+    test('każda lokalizacja: rysunki ruchu z liczbą, nazwa sekcji i „Strażnika progresji” jak w interfejsie, wzmianka o animacji w tekście promocyjnym', () => {
+      for (const [l, v] of Object.entries(L)) {
+        const d = v.description;
+        expect({ l, liczba: new RegExp(`(^|\\D)${CLAIM}(\\D|$)`).test(d), anim: ANIM.test(d), promo: ANIM.test(v.promotionalText),
+          technika: d.includes(ui(l, 'Technika')), straznik: d.includes(ui(l, 'Strażnik progresji')) })
+          .toEqual({ l, liczba: true, anim: true, promo: true, technika: true, straznik: true });
+      }
+    });
+    test('PL i EN: bez obietnicy rysunku przy każdym ćwiczeniu; dokładne brzmienie punktów', () => {
+      const every = /(każd|wszystk|every|each|\ball\b)[^\n]{0,40}(rysun|animac|drawing|animat)|(rysun|animac|drawing|animat)[^\n]{0,40}(każd\w* ćwicz|wszystk\w* ćwicz|every exercise|each exercise|all exercises)/i;
+      for (const l of ['pl', 'en-US', 'en-GB']) {
+        const bad = L[l].description.split('\n').filter((x) => every.test(x));
+        expect([l, bad]).toEqual([l, []]);
+      }
+      expect(L.pl.description).toContain(`• Animowane rysunki ruchu przy ponad ${CLAIM} ćwiczeniach; animację możesz zatrzymać`);
+      // Brzmienie en po recenzji lokalizacji metadanych 1.0 (decyzja właściciela 29.10.2026, docs/18).
+      expect(L['en-US'].description).toContain(`• Animated drawings of the movement for over ${CLAIM} exercises; you can pause them`);
+      expect(L.pl.promotionalText.startsWith('Animowane rysunki ruchu, wskazówki techniki')).toBe(true);
+      expect(L['en-US'].promotionalText.startsWith('Animated exercise drawings, technique tips')).toBe(true);
+    });
+    test('bez nazwy wzoru e1RM w żadnym alfabecie (źródła publicznie anonimowo, 25.10.2026; wcześniej uk, ru, ko miały ją w nawiasie)', () => {
+      for (const [l, v] of Object.entries(L)) expect([l, /Epley|Эпли|Еплі|엡리|エプリー|艾普利/i.test(v.description + v.promotionalText)]).toEqual([l, false]);
+    });
+  });
 });
+

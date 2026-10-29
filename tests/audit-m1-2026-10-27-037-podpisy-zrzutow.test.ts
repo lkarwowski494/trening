@@ -1,4 +1,5 @@
 /*
+ * Recenzja niezależna 29.10.2026 (recenzent-lokalizacji, decyzja właściciela 29.10.2026 bez native speakerów): 27 języków × 10 podpisów zrecenzowane, 9 poprawek wprowadzonych; status języków w store/screenshot-captions.json.
  * M1-audytor-generalny-037 część D (10-wydanie-004; DEC-07 b, właściciel 27.10.2026: „wybrane przed zgłoszeniem 1.0”; D7 z 25.10.2026: zrzuty dla wszystkich
  * lokalizacji sklepu — 32 z `store/app-store-names.json`, bez „sl”). Podpisy zrzutów były tylko PL i EN, a krok „ramki” (scripts/ci/store-frames.sh) pomija język bez podpisów — 27 lokalizacji dostałoby
  * zrzuty języka podstawowego (PL; Apple: nowy język domyślnie bierze zrzuty języka podstawowego — docs/48 pkt 5, odczyt 28.10.2026).
@@ -48,8 +49,8 @@ describe('M1-037 D / 10-wydanie-004: podpisy zrzutów dla każdej lokalizacji sk
   const c = cap(); const loc = shotLocales();
   const langs = Object.keys(loc).filter(l => loc[l].length > 0).sort();
   const ekrany = Object.keys(c.podpisy.pl);
-  test('scenorys: 9 ekranów PL; języki ze sklepem = 29 języków aplikacji = lokalizacje z store/app-store-names.json bez „sl” (L-003, D7 w docs/48)', () => {
-    expect(ekrany).toEqual(['trening', 'postepy-cwiczenia', 'straznik', 'plan', 'dostosuj', 'progresja', 'historia', 'szablony', 'import']);
+  test('scenorys: 10 ekranów PL (karta ćwiczenia jako 2., D3); języki ze sklepem = 29 języków aplikacji = lokalizacje z store/app-store-names.json bez „sl” (L-003, D7 w docs/48)', () => {
+    expect(ekrany).toEqual(['trening', 'cwiczenie', 'postepy-cwiczenia', 'straznik', 'plan', 'dostosuj', 'progresja', 'historia', 'szablony', 'import']);
     expect(langs).toHaveLength(29);
     const names = Object.keys(JSON.parse(fs.readFileSync(path.join(root, 'store/app-store-names.json'), 'utf8')).names).filter(l => l !== 'sl').sort();
     expect(langs.flatMap(l => loc[l]).sort()).toEqual(names);
