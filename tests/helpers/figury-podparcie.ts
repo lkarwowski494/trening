@@ -27,8 +27,13 @@ export const LIM = {
   /** Podział przejścia na pozy pośrednie (co 0,05). */
   step: 0.05,
   /**
-   * Masa jednego hantla / kettlebella w dłoni względem masy ciała (1,0) w regule środka ciężkości — wartość ilustracyjna (test geometrii rysunku, nie twierdzenie
-   * o obciążeniu; otwarte: brak źródła „typowego” obciążenia, tu 10% masy ciała na rękę), jedno miejsce.
+   * Masa jednego hantla / kettlebella w dłoni względem masy ciała (1,0) w regule środka ciężkości.
+   * Konwencja testu geometrii rysunku, nie twierdzenie o obciążeniu: typowej masy nie ma (zależy od osoby i planu); wartość nie trafia do użytkownika.
+   * Wrażliwość (docs/research/1-0-1-zrodla-2026-10-29.md, pkt 2): ciało ma masę 1,0 (Dempster wg Wintera), więc ciężary przesuwają środek ciężkości
+   * w stronę dłoni o k·d, gdzie d = odległość pozioma dłoń–środek ciężkości ciała, a k = 2m/(1+2m) dla dwóch ciężarów (k = m/(1+m) dla jednego):
+   * m = 0,05 → k = 0,09; m = 0,10 (dziś) → 0,17; m = 0,25 → 0,33 (przy d = 5 j. przesunięcie 0,45 / 0,83 / 1,67 j.).
+   * Reguła jednej podpory przechodzi dla m = 0, 0,05 i 0,1, a dla 0,25 wszędzie poza Walking Lunges (0,4 j. ponad tolerancję) — pilnuje tego test parametryczny
+   * w tests/figury-podparcie.test.ts (101-19, sprawdzenie 29.10.2026); wybór 0,1 nie decyduje więc o wyniku.
    */
   loadMass: 0.1,
 };
@@ -135,7 +140,7 @@ export function pompki(f: Figure): string[] {
   return bad;
 }
 
-/** Przybliżony środek ciężkości ze stałego podziału mas segmentów (uproszczenie ilustracyjne; ciężar w rękach pominięty). */
+/** Przybliżony środek ciężkości ze stałego podziału mas segmentów (uproszczenie ilustracyjne); gdy podano figurę `f`, dolicza ciężar hantli/kettlebelli w dłoniach (LIM.loadMass). */
 export function srodekCiezkosci(P: Points, f?: Figure): Pt {
   const segs: [string, string, number][] = [['hip', 'shoulder', 0.497], ['head', 'head', 0.081], ['shoulder', 'elbow', 0.028], ['elbow', 'hand', 0.022], ['shoulder', 'elbow2', 0.028], ['elbow2', 'hand2', 0.022],
     ['hip', 'knee', 0.1], ['knee', 'ankle', 0.0465], ['ankle', 'toe', 0.0145], ['hip', 'knee2', 0.1], ['knee2', 'ankle2', 0.0465], ['ankle2', 'toe2', 0.0145]];

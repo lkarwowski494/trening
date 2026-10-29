@@ -19,7 +19,7 @@ import { CUE_DATA, CUE_SECTIONS, cueText } from '@/lib/cues';
 import { ExerciseFigure, useReduceMotion } from '@/components/ExerciseFigure';
 import { ExerciseCues } from '@/components/ExerciseCues';
 import { LANGS, applyLang, t } from '@/lib/i18n';
-import { light, dark } from '@/lib/theme';
+import { light, dark, TEXT_SCALE_MAX } from '@/lib/theme';
 
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 const KEYS = Object.keys(FIG_DATA.exercises);
@@ -329,6 +329,39 @@ describe('komponent ExerciseFigure', () => {
       expect(screen.queryByText('Pozycja pośrednia')).toBeNull();
       expect([frameLabel('mid', 4), frameLabel('mid2', 4), frameLabel('mid', 3)]).toEqual(['Pozycja pośrednia 1', 'Pozycja pośrednia 2', 'Pozycja pośrednia']);
       expect(loopMs(4)).toBeGreaterThan(5000);
+    } finally { if (had) FIG_DATA.exercises['Push Press'] = prev; else delete FIG_DATA.exercises['Push Press']; }
+  });
+  test('siatka 2×2 (101-13, 29.10.2026): komórka ma szerokość procentową i mieści się dwa razy w rzędzie przy 320 pt (po odjęciu marginesów strony i karty), trzecia wędruje do następnego rzędu; podpis zawija się (bez stałej szerokości, bez numberOfLines) przy powiększonym tekście we wszystkich językach', async () => {
+    const full = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/zrodla/figures.json'), 'utf8')).exercises as Record<string, FigDef>;
+    const had = Object.prototype.hasOwnProperty.call(FIG_DATA.exercises, 'Push Press'); const prev = FIG_DATA.exercises['Push Press'];
+    FIG_DATA.exercises['Push Press'] = full['Push Press'];
+    try {
+      setReduce(true);
+      render(<ExerciseFigure exercise={lib('Push Press')} />); await flush();
+      const st = screen.getByTestId('exercise-figure-static');
+      const row = RN.StyleSheet.flatten(st.props.style) as { gap: number };
+      type Inst = import('react-test-renderer').ReactTestInstance;
+      const cells = st.children.filter((c): c is Inst => typeof c !== 'string');
+      expect(cells.length).toBe(4);
+      const GUTTERS = 2 * 16 + 2 * 16; /* margines ekranu 16 pt + wypełnienie karty 16 pt po obu stronach — najwęższy przypadek */
+      for (const W of [320 - GUTTERS, 320 - 2 * 16, 375 - GUTTERS]) {
+        for (const c of cells) {
+          const s = RN.StyleSheet.flatten(c.props.style) as { flexBasis: string; width?: number; minWidth?: number; maxWidth?: number };
+          expect([s.flexBasis, s.width, s.minWidth, s.maxWidth]).toEqual(['47%', undefined, undefined, undefined]);
+          const cell = parseFloat(s.flexBasis) / 100 * W;
+          expect(2 * cell + row.gap).toBeLessThanOrEqual(W); /* dwie kolumny nie wychodzą poza ekran */
+          expect(3 * cell + 2 * row.gap).toBeGreaterThan(W); /* trzecia komórka nie mieści się — zawija do drugiego rzędu */
+          expect(cell).toBeGreaterThan(100); /* rysunek o wysokości 120 pt ma sens w komórce nie węższej niż ok. 100 pt */
+        }
+      }
+      for (const l of LANGS) { applyLang(l); for (const n of ['start', 'mid', 'mid2', 'end'] as const) expect([l, n, frameLabel(n, 4).length > 0]).toEqual([l, n, true]); }
+      applyLang('pl');
+      for (const txt of ['Pozycja wyjściowa', 'Pozycja pośrednia 1', 'Pozycja pośrednia 2', 'Pozycja końcowa']) {
+        const label = screen.getByText(txt);
+        expect(label.props.maxFontSizeMultiplier).toBe(TEXT_SCALE_MAX); expect(label.props.numberOfLines).toBeUndefined();
+        const ls = RN.StyleSheet.flatten(label.props.style) as { width?: number; fontSize: number };
+        expect([ls.width, ls.fontSize]).toEqual([undefined, 12]);
+      }
     } finally { if (had) FIG_DATA.exercises['Push Press'] = prev; else delete FIG_DATA.exercises['Push Press']; }
   });
   test('VoiceOver: jeden obraz z opisem ruchu; po angielsku etykiety w języku interfejsu', async () => {

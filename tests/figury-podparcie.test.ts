@@ -279,6 +279,28 @@ describe('Step Up: uwagi NISKIE — ręce z hantlami, krawędź skrzyni, cięża
   });
 });
 
+describe('101-19: reguła jednej podpory nie zależy od wyboru LIM.loadMass (konwencja testu) — przechodzi dla m = 0, 0,05 i 0,1 we wszystkich figurach z ciężarem w dłoniach, a dla 0,25 z jednym znanym nadmiarem 0,4 j. (Walking Lunges)', () => {
+  const zCiezarem = KEYS.filter(k => fig(k).props.some(p => p.k === 'db' || p.k === 'kb') && steppingFeet(fig(k)).length);
+  test('zbiór figur z ciężarem w dłoniach i stopą krokową jest niepusty (Step Up, wykroki)', () => {
+    expect(zCiezarem).toEqual(expect.arrayContaining(['Step Up', 'Lunges (hantle)', 'Walking Lunges']));
+  });
+  /* Wynik sprawdzenia 29.10.2026 (pytanie badacza, docs/research/1-0-1-zrodla-2026-10-29.md pkt 2): przechodzi dla m = 0, 0,05 i 0,1 we wszystkich figurach; przy m = 0,25
+     przekroczenie ma tylko Walking Lunges (start → mid, k = 0,20): 0,4 j. ponad tolerancję 2,5 j. — pomijalne wobec konwencji (przy 0,25 masy ciała na rękę), więc wartość 0,1 zostaje,
+     a nadmiar jest przypięty testem (≤ 0,5 j.), żeby nie rósł bez zauważenia. Żadna inna figura nie zależy od wyboru m. */
+  const NADMIAR_025: Record<string, number> = { 'Walking Lunges': 0.5 };
+  test.each([0, 0.05, 0.1, 0.25])('m = %p: jednaPodpora bez naruszeń (przy 0,25 Walking Lunges ≤ 0,5 j. ponad tolerancję)', m => {
+    const was = LIM.loadMass; LIM.loadMass = m;
+    try {
+      for (const k of zCiezarem) {
+        const bad = jednaPodpora(fig(k)), lim = m === 0.25 ? NADMIAR_025[k] ?? 0 : 0;
+        expect([k, m, bad.filter(x => x.nadmiar > lim).map(x => x.opis)]).toEqual([k, m, []]);
+        if (m < 0.25 || !NADMIAR_025[k]) expect([k, m, bad.length]).toEqual([k, m, 0]);
+      }
+    } finally { LIM.loadMass = was; }
+    expect(LIM.loadMass).toBe(0.1);
+  });
+});
+
 describe('Incline Push Up: uwagi NISKIE — dłoń na blacie w miejscu i przy krawędzi', () => {
   const f = fig('Incline Push Up'), R = f.props.find(p => p.k === 'rect') as { x: number; y: number; w: number; h: number };
   /* 29.10.2026 (1.0.1, decyzja koordynatora A po recenzji r2): dane Incline Push Up z 1.0 (poprawka dłoni przesuwała stopy o 3,6 j.) — uwaga NISKA w backlogu docs/21; po poprawce zamienić na test */
