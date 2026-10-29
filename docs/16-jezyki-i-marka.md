@@ -506,6 +506,10 @@ Przegląd rolą `recenzent-lokalizacji` (26.10.2026, gałąź `recenzja-lok-2026
 
 - 29.10.2026 (decyzja właściciela, wariant A): także podpis 3 klatek bez numeru „Pozycja pośrednia” / „Mid position” zamiast „W trakcie” (r2/podpis3). Recenzja lokalizacji: 35 tekstów, 0 poprawek. Pytanie do native speakera: lv „Starppozīcija” czy „Vidējā pozīcija” (sąsiednie podpisy dwuwyrazowe: „Sākuma / Beigu pozīcija”).
 
+### Wersja 1.0.1: es-419 „celular” (zegarek i telefon, pakiet G2) — wprowadzone i pytania (29.10.2026)
+- Wprowadzone: w es-419 „teléfono” → „celular” w 6 tekstach (etykiety zegarka „Połącz z telefonem”, „Zacznij trening na telefonie”; komunikaty o danych w telefonie, głosie i zapowiedzi przerwy); reguła słownika `telefon_es419`. Recenzja lokalizacji: 6/6 OK; es (Hiszpania) bez zmian.
+- Pytanie do native speakera: zegarek es-419 — „Termina el entrenamiento en tu celular” czy „…en el celular” (pozostałe etykiety mają „el”; rekomendacja recenzenta: „el”).
+
 ### Wersja 1.0.1: recenzja lokalizacji pakietu E (101-15) — wprowadzone i pytania (29.10.2026)
 - Wprowadzone: ms „Rysunek ruchu: {opis}” → „Animasi pergerakan: {opis}” (spójnie z opisem sklepu); słownik: el „κινούμενα σχέδια” zakazane, el squat / bench press / deadlift zalecane, ms „animasi pergerakan” termin marketingowy; el „άρσεις” → „deadlift” (kategoria maszyn) i „πιέσεις πάγκου” → „bench press” (pomoc w Postępach) — pakiet J.
 - Pytania do native speakerów: ms — „Rajah skematik” czy „Lukisan skematik” pod figurą ćwiczenia (także „Sudut pada rajah/lukisan”); el — w nawiasie z listą maszyn „deadlift” czy „άρσεις θανάτου” (słownik zakłada „deadlift”, pewność średnia).
