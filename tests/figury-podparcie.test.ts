@@ -244,15 +244,7 @@ describe('Walking Lunges (4 pozycje): krok drugą nogą', () => {
   });
 });
 
-describe('Lunges (hantle): uwagi NISKIE — tylna stopa nie pionowo, przednia stopa bez ślizgu', () => {
-  const f = fig('Lunges (hantle)');
-  test('w „w trakcie” tylna stopa pod kątem ≤ 72° od poziomu (było 95°, pionowo), przednia stopa przesuwa się między „w trakcie” a końcem o ≤ 1 j. (było 2,1)', () => {
-    expect(Math.abs((f.frames[1].p as { ft: number[] }).ft[1])).toBeLessThanOrEqual(72);
-    const row = transitions(f)[1]; const A = row[0].P; let drift = 0;
-    for (const s of row) for (const n of ['toe', 'heel']) drift = Math.max(drift, Math.abs(s.P[n][0] - A[n][0]));
-    expect(drift).toBeLessThanOrEqual(1);
-  });
-});
+/* Lunges (hantle): uwaga NISKA „tylna stopa pionowo na palcach w «w trakcie»” odłożona do backlogu (docs/21): ≤ 72° i dryf ≤ 1 j. wykluczają się z progiem ślizgu ≤ 2 j. w tests/figury-recenzja.test.tsx (decyzja koordynatora 29.10.2026). */
 
 describe('Step Up: uwagi NISKIE — ręce z hantlami, krawędź skrzyni, ciężar w dłoniach w regule środka ciężkości', () => {
   const f = fig('Step Up'), R = f.props.find(p => p.k === 'rect') as { x: number; y: number; w: number; h: number };

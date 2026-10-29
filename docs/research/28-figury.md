@@ -532,10 +532,10 @@ Widok: z boku; kotwica: przód stopy (dalsza strona); przyrządy: db, db.
 
 - **pozycja wyjściowa** — t 90, hip 0, knee 0, sh 0, el 0
   - bark – biodro – kostka w jednej linii (±6°) ← `lunge.dbSetup`: „Stań prosto, stopy na szerokość bioder, hantle w opuszczonych rękach.”
-- **w trakcie** — t 88.7, hip 49.9/26.6, knee 46.5/87.1, ft 0/-70.2, sh 0, el 0
+- **w trakcie** — t 89, hip 50/34.5, knee 45/88, ft -1.5/-95, sh 0, el 0
   - pięta tuż nad poziomem 0 (do 1) ← `lunge.fwd`: „Zrób krok w przód i opuść się, aż tylne kolano będzie tuż nad podłogą; odepchnij się przednią nogą do pozycji wyjściowej.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
-- **pozycja końcowa** — t 90.1, hip 73.1/3, knee 107.8/101.5, ft 0/-55.2, sh 0, el 0
+- **pozycja końcowa** — t 90, hip 73/1.6, knee 110/105, ft 0/-68, sh 0, el 0
   - kolano (dalsza strona) tuż nad poziomem 0 (do 8) ← `lunge.fwd`: „Zrób krok w przód i opuść się, aż tylne kolano będzie tuż nad podłogą; odepchnij się przednią nogą do pozycji wyjściowej.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
   - pięta tuż nad poziomem 0 (do 1) ← `lunge.fwd`: „Zrób krok w przód i opuść się, aż tylne kolano będzie tuż nad podłogą; odepchnij się przednią nogą do pozycji wyjściowej.”
