@@ -281,7 +281,7 @@ Widok: z boku; kotwica: przód stopy; druga podpora: dłoń; przyrządy: rect.
   - bark – biodro – kostka w jednej linii (±5°) ← `push.rigid`: „Tułów sztywny — biodra nie opadają i nie unoszą się.”
   - bark tuż nad poziomem 30 (do 14) ← `ipush.move`: „Opuść klatkę do krawędzi podwyższenia, potem wypchnij się do wyprostu rąk.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Wysokość podwyższenia ilustracyjna (zdanie ipush.height: im wyżej, tym łatwiej).
-- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Poprawka 1.0.1 (29.10.2026): uwagi NISKIE z recenzji 28.10 — dłoń przesuwa się po blacie ≤ 2,5 j. (było 3,2), dłonie ≤ 4,5 j. od krawędzi (było ok. 7). Zmiana figury po recenzji — czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.
+- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): undefined
 
 ### Overhead Press (sztanga)
 
@@ -540,7 +540,6 @@ Widok: z boku; kotwica: przód stopy (dalsza strona); przyrządy: db, db.
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
   - pięta tuż nad poziomem 0 (do 1) ← `lunge.fwd`: „Zrób krok w przód i opuść się, aż tylne kolano będzie tuż nad podłogą; odepchnij się przednią nogą do pozycji wyjściowej.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Długość kroku i ustawienie przedniego podudzia ilustracyjne; pozycja „w trakcie” = krok postawiony (przednia stopa na podłodze, biodra jeszcze wysoko), potem opuszczenie; z boku nie widać ustawienia kolana w linii palców (widok z przodu).
-- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Poprawka 1.0.1 (29.10.2026): uwagi NISKIE z recenzji 28.10 — tylna stopa pod kątem ≤ 72° (nie pionowo), przednia stopa przesuwa się ≤ 1 j. Zmiana figury po recenzji — czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.
 
 ### Walking Lunges
 
@@ -610,7 +609,6 @@ Widok: z boku; kotwica: przód stopy; przyrządy: rect, db, db.
   - zgięcie kolana: 0° (±5°) ← `stepup.move`: „Postaw całą stopę na podwyższeniu i wejdź, prostując tę nogę; zejdź kontrolowanie tą samą drogą.”
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Wysokość skrzyni ilustracyjna; pozycja „w trakcie” = tułów pochylony ok. 30°, środek ciężkości nad stopą na skrzyni, noga zakroczna oderwana od podłogi; w pozycji końcowej druga noga uniesiona obok (uproszczenie).
-- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Poprawka 1.0.1 (29.10.2026): uwagi NISKIE z recenzji 28.10 — ręce z hantlami pionowo, odstęp stopy nogi zakrocznej od krawędzi skrzyni ≥ 3 j., reguła środka ciężkości z hantlami w dłoniach. Zmiana figury po recenzji — czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.
 
 ### Hip Thrust (sztanga)
 
