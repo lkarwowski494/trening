@@ -357,14 +357,17 @@
   },
   "Reverse Lunge": {
    "rodzina": "lunge",
-   "werdykt": "ukryta",
+   "werdykt": "wyswietlana",
    "data": "2026-10-29",
-   "kto": "06-tresci — recenzja niezależna figur 3a i pełna (audytor, 28.10.2026): pomiary póz pośrednich, arkusze PNG; decyzja właściciela 28.10.2026 „Reverse Lunge ukryć w 1.0”",
+   "kto": "audytor (sesja 1.0.1, niezależny) — recenzja bramki 4 (L-047, L-050) poprawki wg decyzji właściciela 29.10.2026: podgląd klatek i póz pośrednich, arkusz śladu toru, pomiar z lib/figures/geom.ts (101 póz na przejście), zakres stawów wobec rom we wszystkich pozach, podparcie i jedna podpora, karta lib/cues (lunge.stand, lunge.back, lunge.torso); raport recenzja-reverse-lunge.md",
    "sha": "658463b371c2",
-   "wada": "Poprawka 1.0.1 (29.10.2026, decyzja właściciela 29.10.2026 — prostszy ruch bez zamachu łukiem): tylna stopa unosi się niewysoko pionowo w górę, cofa się w powietrzu i staje na palcach za ciałem, dopiero potem opuszczenie do wykroku; bez sunięcia po podłodze (ślizg ≤ 2 j.), zakres stawów w rom. Czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.",
-   "poprawka": "Recenzja niezależna (inny agent niż autor poprawki): podgląd póz i arkusz śladu toru; po akceptacji werdykt „wyswietlana”, nowy skrót, pola autor/recenzent.",
-   "autorPoprawki": "programista (agent, wersja 1.0.1, 29.10.2026) — nie recenzuje własnej pracy (L-047)",
-   "stan": "poprawiona, czeka na recenzję niezależną (bramka 4, arkusz śladu toru L-050)"
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), wersja 1.0.1, 29.10.2026",
+   "uwagi": "Ruch uproszczony wg decyzji właściciela 29.10.2026 (bez zamachu łukiem): tylna stopa unosi się prawie pionowo (kostka 1,5 j. od miejsca startu, palce 8,5 j. nad podłogą), cofa się w powietrzu i staje na palcach 42–44 j. za przednimi, dopiero potem opuszczenie do wykroku (tylne kolano 6,3 j. nad podłogą, tułów 87–91°). Przednia stopa w miejscu (0 j.), tylne palce przy oderwaniu i po lądowaniu ≤ 2 j. od pozy kluczowej, wszystkie stawy w zakresie (wyprost biodra tylnej nogi min. −6,8°), wejście pod podłogę 0,2 j., podparcie i jedna podpora spełnione; zgodne z kartą. NISKIE (backlog): w pozycji „w trakcie 1” tylne kolano wychodzi ok. 16 j. przed przednie („wysokie kolano”, skutek pionowego uniesienia); palce przed lądowaniem przez ok. 3,7 j. drogi 0,8–1,5 j. nad podłogą (płaskie podejście).",
+   "autor": "programista r2/reverse-lunge",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "arkusz PNG klatek kluczowych (start, w trakcie 1, w trakcie 2, koniec), póz pośrednich (0,25 / 0,5 / 0,75) i nałożonego śladu toru punktów (L-050) oraz pomiar punktów stóp, biodra, środka ciężkości i zakresu stawów z modułu geometrii aplikacji — sesja recenzji 1.0.1, Reverse Lunge po decyzji 29.10.2026",
+   "poprzedniWerdykt": "ukryta",
+   "poprzedniaRecenzja": "2026-10-29"
   },
   "Bulgarian Split Squat (hantle)": {
    "rodzina": "lunge",

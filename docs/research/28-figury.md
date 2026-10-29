@@ -582,7 +582,6 @@ Widok: z boku; kotwica: przód stopy; przyrządy: brak.
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
   - pięta tuż nad poziomem 0 (do 1) ← `lunge.back`: „Zrób krok w tył i opuść się, aż tylne kolano będzie tuż nad podłogą; wróć, odpychając się przednią nogą.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Przednia stopa zostaje w miejscu; tylna stopa unosi się niewysoko, prawie pionowo w górę (pozycja „w trakcie 1”), cofa się w powietrzu i staje na palcach za ciałem (pozycja „w trakcie 2”: biodra jeszcze wysoko), dopiero wtedy opuszczenie do wykroku; stopa nie suwa się po podłodze; długość kroku ilustracyjna.
-- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Poprawka 1.0.1 (29.10.2026, decyzja właściciela 29.10.2026 — prostszy ruch bez zamachu łukiem): tylna stopa unosi się niewysoko pionowo w górę, cofa się w powietrzu i staje na palcach za ciałem, dopiero potem opuszczenie do wykroku; bez sunięcia po podłodze (ślizg ≤ 2 j.), zakres stawów w rom. Czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.
 
 ### Bulgarian Split Squat (hantle)
 

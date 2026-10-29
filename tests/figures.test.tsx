@@ -202,8 +202,8 @@ describe('lib/figures', () => {
     expect(figureFor(lib('Crunch'))).toBeNull();
     expect(figureFor(lib('Nie ma'))).toBeNull(); expect(figureFor(null)).toBeNull();
     const noCue = CUE_DATA.open[0]; if (noCue) expect(figureFor(lib(noCue))).toBeNull();
-    /* 29.10.2026 (1.0.1): Pendlay Row po recenzji niezależnej — figura i karta widoczne; ukryty zostaje Reverse Lunge (figura), wskazówki zostają */
-    expect(figureByKey('Pendlay Row')).not.toBeNull(); expect(CUE_DATA.exercises['Pendlay Row']).toBeTruthy(); expect(figureByKey('Reverse Lunge')).toBeNull(); expect(figureFor(lib('Reverse Lunge'))).toBeNull(); expect(CUE_DATA.exercises['Reverse Lunge']).toBeTruthy();
+    /* 29.10.2026 (1.0.1): Pendlay Row po recenzji niezależnej — figura i karta widoczne; Reverse Lunge — po recenzji 29.10.2026 też widoczny */
+    expect(figureByKey('Pendlay Row')).not.toBeNull(); expect(CUE_DATA.exercises['Pendlay Row']).toBeTruthy(); expect(figureByKey('Reverse Lunge')).not.toBeNull(); expect(CUE_DATA.exercises['Reverse Lunge']).toBeTruthy();
   });
   test('figureLabel: szablon + zdania „Ruch” wskazówek; frameLabel: podpisy klatek', () => {
     const mv = CUE_DATA.exercises['Back Squat'].move.map(r => cueText(r.c, 'pl')).join(' ');
