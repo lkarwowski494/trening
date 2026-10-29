@@ -25,6 +25,9 @@
   Każdy wpis decyzji w docs/18 ma pole `[wdrożenie: kod | bez kodu — powód | zastąpione DD.MM.RRRR | otwarte → ID | odłożone → wersja]`, a „kod” —
   `[test: ścieżka]` (test zawiera datę decyzji) albo `[bez testu: powód]`; decyzja odwracająca stan pilnowany testem zmienia ten test w tym samym
   commicie; `npm run check:decyzje` w verify i verify:docs (DEC-02 a, 27.10.2026; powód: decyzja z 23.10 utknęła bez sygnału, lekcja w docs/40).
+  Decyzja, która usuwa treść z aplikacji (zdanie karty, tekst, funkcję, rysunek), ma w docs/18 znacznik `[usuwa]` oraz `[wdrożenie: kod]` z `[test: …]`
+  pilnującym BRAKU tej treści (test zawiera datę decyzji); `check:decyzje` odrzuca `[usuwa]` bez tego (wolno `[wdrożenie: otwarte → ID]` / `odłożone → wersja` — test
+  dopiero przy wdrożeniu; właściciel 29.10.2026, lekcja o przywróconym zdaniu karty „1a” w docs/40).
 - Backlog bez priorytetu (decyzja właściciela 08.10.2026, lista w `docs/21`, sekcja „Backlog bez priorytetu”): na pytanie „co dalej” wspominaj
   o nim tylko zbiorczo jednym zdaniem („mamy też kilka rzeczy w backlogu bez priorytetu — chcesz je przejrzeć?”), bez wymieniania pozycji z nazwy,
   dopóki właściciel nie poprosi.
