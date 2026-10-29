@@ -262,7 +262,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (55)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (56)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -312,6 +312,7 @@ trening/
 - [`docs/50-figury-v2.md`](docs/50-figury-v2.md) — 50 — Figury v2: grafiki ćwiczeń dla całej biblioteki (projekt, etap 1)
 - [`docs/51-figury-v2-pokrycie.md`](docs/51-figury-v2-pokrycie.md) — 51 — Figury v2: rodziny ruchu i pokrycie ćwiczeń (generowane)
 - [`docs/52-gemini-pozy-pilotaz.md`](docs/52-gemini-pozy-pilotaz.md) — 52 — Pilotaż: pozy figur v2 generowane przez API Gemini
+- [`docs/fakty-wlasciciela.md`](docs/fakty-wlasciciela.md) — Fakty o właścicielu i jego środowisku
 - [`docs/m3-stan.md`](docs/m3-stan.md) — M3 Redesigner — stan przebiegu (plik stanu na wypadek utraty kontenera)
 - [`docs/monetyzacja-badanie-2026-10.md`](docs/monetyzacja-badanie-2026-10.md) — Badanie zmiany modelu monetyzacji (rola 02, build) — STOP E2
 - [`docs/monetyzacja.md`](docs/monetyzacja.md) — Monetyzacja — model stały (jedno miejsce)
