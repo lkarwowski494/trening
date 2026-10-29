@@ -1,0 +1,147 @@
+{
+  "opis": "Minimum zapadki pokrycia katalogu (tests/pokrycie-katalogu.test.ts). Liczba „dobra” nie może spaść poniżej minimum. Podniesienie po fali prac: node scripts/pokrycie-katalogu.mjs --podnies-minimum. Obniżka tylko świadomie: zmień `minimum` i dopisz w `obnizenia` wpis { \"powod\": \"…\", \"data\": \"DD.MM.RRRR\" } pod nazwą metryki (rekord zostaje — test wymaga powodu, gdy minimum < rekord).",
+  "minimum": {
+    "figura.v2": 0,
+    "figura.wAplikacji": 49,
+    "figura.zDanymiV2": 449,
+    "animowanyBlad": 0,
+    "wskazowki.wlasne": 97,
+    "wskazowki.wlasneZBledami": 36,
+    "wskazowki.zTekstem": 97,
+    "czesteBledyTekst": 36,
+    "roleMiesni": 509,
+    "pelnaKarta": 0,
+    "recenzjaFigur": 0,
+    "nazwaLokalna.razem": 0,
+    "jezyk.pl.kompletne": 524,
+    "jezyk.en.kompletne": 524,
+    "jezyk.cs.kompletne": 524,
+    "jezyk.sk.kompletne": 524,
+    "jezyk.hu.kompletne": 524,
+    "jezyk.ro.kompletne": 524,
+    "jezyk.bg.kompletne": 524,
+    "jezyk.hr.kompletne": 524,
+    "jezyk.sl.kompletne": 524,
+    "jezyk.sr.kompletne": 524,
+    "jezyk.lt.kompletne": 524,
+    "jezyk.lv.kompletne": 524,
+    "jezyk.et.kompletne": 524,
+    "jezyk.uk.kompletne": 524,
+    "jezyk.es.kompletne": 524,
+    "jezyk.es-419.kompletne": 524,
+    "jezyk.pt.kompletne": 524,
+    "jezyk.pt-BR.kompletne": 524,
+    "jezyk.de.kompletne": 524,
+    "jezyk.fr.kompletne": 524,
+    "jezyk.it.kompletne": 524,
+    "jezyk.nl.kompletne": 524,
+    "jezyk.sv.kompletne": 524,
+    "jezyk.da.kompletne": 524,
+    "jezyk.nb.kompletne": 524,
+    "jezyk.fi.kompletne": 524,
+    "jezyk.tr.kompletne": 524,
+    "jezyk.el.kompletne": 524,
+    "jezyk.id.kompletne": 524,
+    "jezyk.ms.kompletne": 524,
+    "jezyk.vi.kompletne": 524,
+    "jezyk.ru.kompletne": 524,
+    "jezyk.ja.kompletne": 524,
+    "jezyk.ko.kompletne": 524,
+    "jezyk.zh-Hant.kompletne": 524
+  },
+  "rekord": {
+    "figura.v2": 98,
+    "figura.wAplikacji": 151,
+    "figura.zDanymiV2": 536,
+    "animowanyBlad": 92,
+    "wskazowki.wlasne": 102,
+    "wskazowki.wlasneZBledami": 43,
+    "wskazowki.zTekstem": 640,
+    "czesteBledyTekst": 557,
+    "roleMiesni": 509,
+    "pelnaKarta": 17,
+    "recenzjaFigur": 0,
+    "nazwaLokalna.razem": 0,
+    "jezyk.pl.kompletne": 671,
+    "jezyk.en.kompletne": 671,
+    "jezyk.cs.kompletne": 524,
+    "jezyk.sk.kompletne": 524,
+    "jezyk.hu.kompletne": 524,
+    "jezyk.ro.kompletne": 524,
+    "jezyk.bg.kompletne": 524,
+    "jezyk.hr.kompletne": 524,
+    "jezyk.sl.kompletne": 524,
+    "jezyk.sr.kompletne": 524,
+    "jezyk.lt.kompletne": 524,
+    "jezyk.lv.kompletne": 524,
+    "jezyk.et.kompletne": 524,
+    "jezyk.uk.kompletne": 524,
+    "jezyk.es.kompletne": 524,
+    "jezyk.es-419.kompletne": 524,
+    "jezyk.pt.kompletne": 524,
+    "jezyk.pt-BR.kompletne": 524,
+    "jezyk.de.kompletne": 524,
+    "jezyk.fr.kompletne": 524,
+    "jezyk.it.kompletne": 524,
+    "jezyk.nl.kompletne": 524,
+    "jezyk.sv.kompletne": 524,
+    "jezyk.da.kompletne": 524,
+    "jezyk.nb.kompletne": 524,
+    "jezyk.fi.kompletne": 524,
+    "jezyk.tr.kompletne": 524,
+    "jezyk.el.kompletne": 524,
+    "jezyk.id.kompletne": 524,
+    "jezyk.ms.kompletne": 524,
+    "jezyk.vi.kompletne": 524,
+    "jezyk.ru.kompletne": 524,
+    "jezyk.ja.kompletne": 524,
+    "jezyk.ko.kompletne": 524,
+    "jezyk.zh-Hant.kompletne": 524
+  },
+  "obnizenia": {
+    "figura.v2": {
+      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
+      "data": "29.10.2026"
+    },
+    "figura.wAplikacji": {
+      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
+      "data": "29.10.2026"
+    },
+    "figura.zDanymiV2": {
+      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
+      "data": "29.10.2026"
+    },
+    "animowanyBlad": {
+      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
+      "data": "29.10.2026"
+    },
+    "wskazowki.zTekstem": {
+      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
+      "data": "29.10.2026"
+    },
+    "czesteBledyTekst": {
+      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
+      "data": "29.10.2026"
+    },
+    "pelnaKarta": {
+      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
+      "data": "29.10.2026"
+    },
+    "jezyk.pl.kompletne": {
+      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
+      "data": "29.10.2026"
+    },
+    "jezyk.en.kompletne": {
+      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
+      "data": "29.10.2026"
+    },
+    "wskazowki.wlasne": {
+      "powod": "scalenie main: karty ukryte po recenzji treści (bramka 4, DEC-10 a) i zdania błędów usunięte z kart decyzją właściciela 1a 2a (M1-audytor-generalny-038)",
+      "data": "29.10.2026"
+    },
+    "wskazowki.wlasneZBledami": {
+      "powod": "scalenie main: karty ukryte po recenzji treści (bramka 4, DEC-10 a) i zdania błędów usunięte z kart decyzją właściciela 1a 2a (M1-audytor-generalny-038)",
+      "data": "29.10.2026"
+    }
+  }
+}

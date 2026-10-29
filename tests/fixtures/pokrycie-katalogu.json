@@ -1,0 +1,804 @@
+{
+  "schemat": "pokrycie-katalogu@1",
+  "razem": {
+    "cwiczen": 709,
+    "figura": {
+      "v2": 0,
+      "v1": 49,
+      "bezFigury": 660,
+      "daneV2NieWlaczone": 449,
+      "wyjatekBezAnimacji": 38
+    },
+    "animowanyBlad": 0,
+    "wskazowki": {
+      "wlasne": 97,
+      "wlasneZBledami": 36,
+      "ogolne": 0,
+      "bezTekstu": 612
+    },
+    "czesteBledyTekst": 36,
+    "roleMiesni": 509,
+    "pelnaKarta": 0,
+    "recenzjaFigur": 0
+  },
+  "kartZTekstami": 524,
+  "rodziny": {
+    "squat": {
+      "status": "ready",
+      "cwiczen": 25,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 0,
+      "v1": 0,
+      "wlasne": 5,
+      "ogolne": 0,
+      "bezTekstu": 20,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "bench_press": {
+      "status": "ready",
+      "cwiczen": 30,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 0,
+      "v1": 0,
+      "wlasne": 5,
+      "ogolne": 0,
+      "bezTekstu": 25,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "hinge": {
+      "status": "ready",
+      "cwiczen": 32,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 0,
+      "v1": 0,
+      "wlasne": 7,
+      "ogolne": 0,
+      "bezTekstu": 25,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "pushup_plank": {
+      "status": "planned",
+      "cwiczen": 30,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 17,
+      "v1": 4,
+      "wlasne": 7,
+      "ogolne": 0,
+      "bezTekstu": 23,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "dip": {
+      "status": "planned",
+      "cwiczen": 5,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 5,
+      "v1": 1,
+      "wlasne": 1,
+      "ogolne": 0,
+      "bezTekstu": 4,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "overhead_press": {
+      "status": "planned",
+      "cwiczen": 23,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 21,
+      "v1": 4,
+      "wlasne": 5,
+      "ogolne": 0,
+      "bezTekstu": 18,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "row": {
+      "status": "planned",
+      "cwiczen": 13,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 12,
+      "v1": 2,
+      "wlasne": 3,
+      "ogolne": 0,
+      "bezTekstu": 10,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "cable_row": {
+      "status": "planned",
+      "cwiczen": 10,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 9,
+      "v1": 3,
+      "wlasne": 3,
+      "ogolne": 0,
+      "bezTekstu": 7,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "pull_up": {
+      "status": "ready",
+      "cwiczen": 13,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 11,
+      "v1": 3,
+      "wlasne": 3,
+      "ogolne": 0,
+      "bezTekstu": 10,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "pulldown": {
+      "status": "planned",
+      "cwiczen": 8,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 8,
+      "v1": 1,
+      "wlasne": 2,
+      "ogolne": 0,
+      "bezTekstu": 6,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "lunge": {
+      "status": "planned",
+      "cwiczen": 24,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 24,
+      "v1": 5,
+      "wlasne": 6,
+      "ogolne": 0,
+      "bezTekstu": 18,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "leg_machine": {
+      "status": "planned",
+      "cwiczen": 8,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 6,
+      "v1": 2,
+      "wlasne": 2,
+      "ogolne": 0,
+      "bezTekstu": 6,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "leg_isolation": {
+      "status": "planned",
+      "cwiczen": 14,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 8,
+      "v1": 1,
+      "wlasne": 4,
+      "ogolne": 0,
+      "bezTekstu": 10,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "calf_raise": {
+      "status": "planned",
+      "cwiczen": 13,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 12,
+      "v1": 2,
+      "wlasne": 3,
+      "ogolne": 0,
+      "bezTekstu": 10,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "hip_bridge": {
+      "status": "planned",
+      "cwiczen": 11,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 10,
+      "v1": 3,
+      "wlasne": 3,
+      "ogolne": 0,
+      "bezTekstu": 8,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "kb_ballistic": {
+      "status": "planned",
+      "cwiczen": 17,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 16,
+      "v1": 1,
+      "wlasne": 1,
+      "ogolne": 0,
+      "bezTekstu": 16,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "olympic": {
+      "status": "planned",
+      "cwiczen": 25,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 23,
+      "v1": 0,
+      "wlasne": 0,
+      "ogolne": 0,
+      "bezTekstu": 25,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "back_extension": {
+      "status": "planned",
+      "cwiczen": 4,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 3,
+      "v1": 0,
+      "wlasne": 1,
+      "ogolne": 0,
+      "bezTekstu": 3,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "curl": {
+      "status": "planned",
+      "cwiczen": 36,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 36,
+      "v1": 5,
+      "wlasne": 6,
+      "ogolne": 0,
+      "bezTekstu": 30,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "triceps": {
+      "status": "planned",
+      "cwiczen": 32,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 29,
+      "v1": 3,
+      "wlasne": 3,
+      "ogolne": 0,
+      "bezTekstu": 29,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "delt_raise": {
+      "status": "planned",
+      "cwiczen": 38,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 30,
+      "v1": 3,
+      "wlasne": 5,
+      "ogolne": 0,
+      "bezTekstu": 33,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "chest_fly": {
+      "status": "planned",
+      "cwiczen": 20,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 17,
+      "v1": 0,
+      "wlasne": 2,
+      "ogolne": 0,
+      "bezTekstu": 18,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "shrug": {
+      "status": "planned",
+      "cwiczen": 8,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 8,
+      "v1": 2,
+      "wlasne": 2,
+      "ogolne": 0,
+      "bezTekstu": 6,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "rotator_cuff": {
+      "status": "planned",
+      "cwiczen": 8,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 7,
+      "v1": 0,
+      "wlasne": 0,
+      "ogolne": 0,
+      "bezTekstu": 8,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "core_floor": {
+      "status": "planned",
+      "cwiczen": 44,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 21,
+      "v1": 2,
+      "wlasne": 4,
+      "ogolne": 0,
+      "bezTekstu": 40,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "core_hang": {
+      "status": "planned",
+      "cwiczen": 4,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 3,
+      "v1": 0,
+      "wlasne": 0,
+      "ogolne": 0,
+      "bezTekstu": 4,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "core_standing": {
+      "status": "planned",
+      "cwiczen": 19,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 16,
+      "v1": 0,
+      "wlasne": 2,
+      "ogolne": 0,
+      "bezTekstu": 17,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "carry": {
+      "status": "planned",
+      "cwiczen": 7,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 7,
+      "v1": 0,
+      "wlasne": 2,
+      "ogolne": 0,
+      "bezTekstu": 5,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "cardio": {
+      "status": "planned",
+      "cwiczen": 16,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 0,
+      "v1": 1,
+      "wlasne": 5,
+      "ogolne": 0,
+      "bezTekstu": 11,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "plyo": {
+      "status": "planned",
+      "cwiczen": 28,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 27,
+      "v1": 0,
+      "wlasne": 1,
+      "ogolne": 0,
+      "bezTekstu": 27,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "sled_throw": {
+      "status": "planned",
+      "cwiczen": 19,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 8,
+      "v1": 0,
+      "wlasne": 1,
+      "ogolne": 0,
+      "bezTekstu": 18,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "strongman": {
+      "status": "planned",
+      "cwiczen": 10,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 1,
+      "v1": 0,
+      "wlasne": 0,
+      "ogolne": 0,
+      "bezTekstu": 10,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "glute_floor": {
+      "status": "planned",
+      "cwiczen": 7,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 7,
+      "v1": 0,
+      "wlasne": 0,
+      "ogolne": 0,
+      "bezTekstu": 7,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "hip_abd_add": {
+      "status": "planned",
+      "cwiczen": 8,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 6,
+      "v1": 0,
+      "wlasne": 0,
+      "ogolne": 0,
+      "bezTekstu": 8,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "mobility_stand": {
+      "status": "planned",
+      "cwiczen": 36,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 8,
+      "v1": 0,
+      "wlasne": 0,
+      "ogolne": 0,
+      "bezTekstu": 36,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "mobility_floor": {
+      "status": "planned",
+      "cwiczen": 22,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 9,
+      "v1": 0,
+      "wlasne": 0,
+      "ogolne": 0,
+      "bezTekstu": 22,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "foam_roll": {
+      "status": "planned",
+      "cwiczen": 10,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 0,
+      "v1": 0,
+      "wlasne": 0,
+      "ogolne": 0,
+      "bezTekstu": 10,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "neck": {
+      "status": "planned",
+      "cwiczen": 5,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 0,
+      "v1": 0,
+      "wlasne": 0,
+      "ogolne": 0,
+      "bezTekstu": 5,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "forearm": {
+      "status": "planned",
+      "cwiczen": 13,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 11,
+      "v1": 0,
+      "wlasne": 0,
+      "ogolne": 0,
+      "bezTekstu": 13,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "thruster": {
+      "status": "planned",
+      "cwiczen": 3,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 3,
+      "v1": 0,
+      "wlasne": 0,
+      "ogolne": 0,
+      "bezTekstu": 3,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "chest_press_machine": {
+      "status": "planned",
+      "cwiczen": 5,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 5,
+      "v1": 1,
+      "wlasne": 2,
+      "ogolne": 0,
+      "bezTekstu": 3,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "cable_press": {
+      "status": "planned",
+      "cwiczen": 4,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 4,
+      "v1": 0,
+      "wlasne": 1,
+      "ogolne": 0,
+      "bezTekstu": 3,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    },
+    "kneeling_hinge": {
+      "status": "planned",
+      "cwiczen": 2,
+      "figuraV2": 0,
+      "daneV2NieWlaczone": 1,
+      "v1": 0,
+      "wlasne": 0,
+      "ogolne": 0,
+      "bezTekstu": 2,
+      "pelnaKarta": 0,
+      "recenzja": 0
+    }
+  },
+  "jezyki": {
+    "pl": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "en": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "cs": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "sk": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "hu": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "ro": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "bg": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "hr": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "sl": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "sr": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "lt": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "lv": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "et": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "uk": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "es": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "es-419": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "pt": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "pt-BR": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "de": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "fr": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "it": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "nl": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "sv": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "da": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "nb": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "fi": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "tr": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "el": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "id": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "ms": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "vi": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "ru": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "ja": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "ko": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    },
+    "zh-Hant": {
+      "kompletne": 524,
+      "zBrakiem": 0,
+      "brakTekstow": 0,
+      "nazwaLokalna": 0
+    }
+  },
+  "dobre": {
+    "figura.v2": 0,
+    "figura.wAplikacji": 49,
+    "figura.zDanymiV2": 449,
+    "animowanyBlad": 0,
+    "wskazowki.wlasne": 97,
+    "wskazowki.wlasneZBledami": 36,
+    "wskazowki.zTekstem": 97,
+    "czesteBledyTekst": 36,
+    "roleMiesni": 509,
+    "pelnaKarta": 0,
+    "recenzjaFigur": 0,
+    "nazwaLokalna.razem": 0,
+    "jezyk.pl.kompletne": 524,
+    "jezyk.en.kompletne": 524,
+    "jezyk.cs.kompletne": 524,
+    "jezyk.sk.kompletne": 524,
+    "jezyk.hu.kompletne": 524,
+    "jezyk.ro.kompletne": 524,
+    "jezyk.bg.kompletne": 524,
+    "jezyk.hr.kompletne": 524,
+    "jezyk.sl.kompletne": 524,
+    "jezyk.sr.kompletne": 524,
+    "jezyk.lt.kompletne": 524,
+    "jezyk.lv.kompletne": 524,
+    "jezyk.et.kompletne": 524,
+    "jezyk.uk.kompletne": 524,
+    "jezyk.es.kompletne": 524,
+    "jezyk.es-419.kompletne": 524,
+    "jezyk.pt.kompletne": 524,
+    "jezyk.pt-BR.kompletne": 524,
+    "jezyk.de.kompletne": 524,
+    "jezyk.fr.kompletne": 524,
+    "jezyk.it.kompletne": 524,
+    "jezyk.nl.kompletne": 524,
+    "jezyk.sv.kompletne": 524,
+    "jezyk.da.kompletne": 524,
+    "jezyk.nb.kompletne": 524,
+    "jezyk.fi.kompletne": 524,
+    "jezyk.tr.kompletne": 524,
+    "jezyk.el.kompletne": 524,
+    "jezyk.id.kompletne": 524,
+    "jezyk.ms.kompletne": 524,
+    "jezyk.vi.kompletne": 524,
+    "jezyk.ru.kompletne": 524,
+    "jezyk.ja.kompletne": 524,
+    "jezyk.ko.kompletne": 524,
+    "jezyk.zh-Hant.kompletne": 524
+  }
+}

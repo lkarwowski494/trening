@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-6965-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-6986-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-48-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -62,8 +62,8 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Komunikaty i teksty | 1079 (z testem: 1079) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 1131 (z testem: 1131) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 164 (z testem: 164) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 605 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 6965 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Pliki testów Jest | 606 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 6986 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 158 (Maestro: 129, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 15) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 48 (w głównym przebiegu: 45, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -171,15 +171,16 @@ Kroki `npm run verify` (generowane z `package.json`):
 8. `npm run check:figures`
 9. `npm run check:figures-v2`
 10. `npm run check:zrodla-runtime`
-11. `npm run check:readme`
-12. `jest`
-13. `npm run check:matrix`
-14. `npm run check:licenses`
-15. `npx expo export --platform ios --output-dir .expo/verify-export`
-16. `npm run check:bundle`
-17. sprzątanie katalogu tymczasowego eksportu
-18. `npm run verify:native`
-19. `node scripts/verify-znacznik.mjs --zapisz pelne`
+11. `npm run check:pokrycie`
+12. `npm run check:readme`
+13. `jest`
+14. `npm run check:matrix`
+15. `npm run check:licenses`
+16. `npx expo export --platform ios --output-dir .expo/verify-export`
+17. `npm run check:bundle`
+18. sprzątanie katalogu tymczasowego eksportu
+19. `npm run verify:native`
+20. `node scripts/verify-znacznik.mjs --zapisz pelne`
 <!-- /gen:verify-steps -->
 
 Natywnego builda nie da się sprawdzić na Linuksie: kompilacja — `ios-unsigned.yml`, scenariusze na symulatorze — `e2e-ios.yml`, telefon — TestFlight.
@@ -262,7 +263,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (56)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (57)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -314,6 +315,7 @@ trening/
 - [`docs/52-gemini-pozy-pilotaz.md`](docs/52-gemini-pozy-pilotaz.md) — 52 — Pilotaż: pozy figur v2 generowane przez API Gemini
 - [`docs/53-grafiki-model-pracy.md`](docs/53-grafiki-model-pracy.md) — 53. Grafiki ćwiczeń — model pracy (bramki jakości)
 - [`docs/54-figury-sprzet.md`](docs/54-figury-sprzet.md) — 54 — Figury v2: sprzęt w kontrakcie danych
+- [`docs/55-pokrycie-katalogu.md`](docs/55-pokrycie-katalogu.md) — 55. Pokrycie katalogu ćwiczeń (generowane — nie edytować ręcznie)
 - [`docs/m3-stan.md`](docs/m3-stan.md) — M3 Redesigner — stan przebiegu (plik stanu na wypadek utraty kontenera)
 - [`docs/monetyzacja-badanie-2026-10.md`](docs/monetyzacja-badanie-2026-10.md) — Badanie zmiany modelu monetyzacji (rola 02, build) — STOP E2
 - [`docs/monetyzacja.md`](docs/monetyzacja.md) — Monetyzacja — model stały (jedno miejsce)

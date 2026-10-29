@@ -55,6 +55,13 @@ export function renderCatalog() {
   return L.join('\n');
 }
 
+/** Kroki procesu wydania, które sprawdza agent (bez telefonu): nie są przepływami użytkownika, więc nie ma ich w tests/przeplywy.json. Źródło: ten plik. */
+export const KROKI_PROCESU = [
+  { id: 'PK-01', tytul: 'Pokrycie katalogu: cel wersji osiągnięty (docs/55, sekcja Cele) albo zgoda właściciela z datą',
+    kontrola: 'Uruchom `node scripts/pokrycie-katalogu.mjs --cel <wersja>` (kod 0 = cel osiągnięty); przy kodzie 1 wydanie wymaga zgody właściciela z datą w docs/18. Decyzja właściciela 28.10.2026 (M-B); cele wersji: `docs/research/pokrycie-cele.json`.',
+    powod: 'Licznik generuje się z kodu, a zapadka `tests/pokrycie-katalogu.test.ts` pilnuje tylko, żeby pokrycie nie spadało — cel wersji (ile ma przybyć) jest decyzją właściciela, więc sprawdza się go przy wydaniu.' },
+];
+
 export function renderChecklist() {
   const fl = cat.przeplywy.filter(f => f.wyjatek?.typ === 'telefon'); const L = [];
   L.push('# 39. Lista kontrolna wydania dla właściciela (generowana — nie edytować ręcznie)', '');
@@ -70,6 +77,9 @@ export function renderChecklist() {
     L.push('');
   }
   L.push(`Razem punktów: **${n}**.`, '');
+  L.push('## Kroki procesu wydania (sprawdza agent, bez telefonu)', '');
+  for (const k of KROKI_PROCESU) L.push(`- [ ] **${k.id}** ${k.tytul}`, `  - Jak sprawdzić: ${k.kontrola}`, `  - Dlaczego to krok wydania: ${k.powod}`);
+  L.push('');
   return L.join('\n');
 }
 

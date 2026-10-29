@@ -1,5 +1,5 @@
 /*
- * Wyjątki bramki 4 w linii 1.1 (scalenie main 28.10.2026; CLAUDE.md „Animacje i karty ćwiczeń — audyt dogłębny”): tests/recenzja-wyjatki-1-1.json wymienia rysunki i zestawy
+ * Wyjątki bramki 4 w linii 1.1 (scalenie main 28.10.2026, decyzja agenta G6g z 29.10.2026 w docs/18; CLAUDE.md „Animacje i karty ćwiczeń — audyt dogłębny”): tests/recenzja-wyjatki-1-1.json wymienia rysunki i zestawy
  * wskazówek, których wpis recenzji z 1.0 nie pasuje do 1.1 albo nie istnieje. Strażnik pilnuje trzech rzeczy: (1) wyjątek jest prawdziwy (skrót niezgodny albo brak wpisu —
  * po nowej recenzji pozycja musi zniknąć z listy), (2) pozycja jest NIEWIDOCZNA w aplikacji (fail-closed: lista v2 i figury v1 w lib/figures/data.json, lista general w lib/cues/data.json),
  * (3) żadna rodzina v2 rysowana w aplikacji nie jest na liście wyjątków. Rodzaje (docs/20): dane (wykaz), niezmienniki (wyjątek ⇒ ukryte), regresja (wyjątek nieaktualny — czerwony).

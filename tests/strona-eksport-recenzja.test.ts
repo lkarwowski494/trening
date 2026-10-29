@@ -77,7 +77,7 @@ describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją
   });
 });
 
-describe('eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a; BR-BIB-006)', () => {
+describe('eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a; BR-BIB-006, 29.10.2026)', () => {
   /** To, co aplikacja pokazuje przy ćwiczeniu (components/ExerciseCues.tsx): karta własna z lib/cues/data.json, zestaw ogólny — z recenzją treści i przy rysowanej figurze. */
   const tryb = (id: string, maFigure: boolean) => { const m = cueSelection(id).mode; return m === 'own' ? (CUE_DATA.exercises[id] ? 'own' : 'none') : m === 'general' ? (generalCuesReviewed(id) && maFigure ? 'general' : 'none') : 'none'; };
   const fixture = () => { const s = skroty(); return { squat: wpis(s.skroty.squat), bench_press: wpis(s.skroty.bench_press), hinge: wpis(s.skroty.hinge) }; };
