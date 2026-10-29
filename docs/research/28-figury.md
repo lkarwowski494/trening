@@ -271,17 +271,16 @@ Widok: z boku; kotwica: przód stopy; druga podpora: dłoń; przyrządy: brak.
 
 Widok: z boku; kotwica: przód stopy; druga podpora: dłoń; przyrządy: rect.
 
-- **pozycja wyjściowa** — t 45.1, hip 0, knee 0, ft -95.3, sh 34.5, el 1.6
+- **pozycja wyjściowa** — t 45, hip 0, knee 0, ft -80.7, sh 40.9, el 2.3
   - bark – biodro – kostka w jednej linii (±5°) ← `ipush.setup`: „Oprzyj dłonie o krawędź ławki lub stabilnego podwyższenia, trochę szerzej niż barki; stopy cofnięte, ciało proste.”
   - zgięcie łokcia: 0° (±4°) ← `ipush.move`: „Opuść klatkę do krawędzi podwyższenia, potem wypchnij się do wyprostu rąk.”
   - dłoń tuż nad poziomem 30 (do 3) ← `ipush.setup`: „Oprzyj dłonie o krawędź ławki lub stabilnego podwyższenia, trochę szerzej niż barki; stopy cofnięte, ciało proste.”
-- **w trakcie** — t 33, hip 0, knee 0, ft -58.1, sh -14.6, el 92.1
+- **w trakcie** — t 31.5, hip 0, knee 0, ft -63.8, sh -17.8, el 102.5
   - bark – biodro – kostka w jednej linii (±5°) ← `push.rigid`: „Tułów sztywny — biodra nie opadają i nie unoszą się.”
-- **pozycja końcowa** — t 23.4, hip 0, knee 0, ft -40.5, sh -50.5, el 136.3
+- **pozycja końcowa** — t 26.2, hip 0, knee 0, ft -26.4, sh -34.8, el 128
   - bark – biodro – kostka w jednej linii (±5°) ← `push.rigid`: „Tułów sztywny — biodra nie opadają i nie unoszą się.”
   - bark tuż nad poziomem 30 (do 14) ← `ipush.move`: „Opuść klatkę do krawędzi podwyższenia, potem wypchnij się do wyprostu rąk.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Wysokość podwyższenia ilustracyjna (zdanie ipush.height: im wyżej, tym łatwiej).
-- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Kostka w pozie końcowej (i pośrednich mid→end) 51,8° poza granicą anatomiczną [-60, 37] (strażnik zakresu stawów, 29.10.2026); reszta ruchu zatwierdzona w recenzji niezależnej 1.0.1 (dłoń 2,2 j. po blacie, 2,1–4,3 j. od krawędzi).
 
 ### Overhead Press (sztanga)
 
@@ -342,7 +341,6 @@ Widok: z boku; kotwica: przód stopy; rzut ręki (kąty ręki = rzut); przyrząd
   - zgięcie łokcia: 0° (±4°) ← `pp.move`: „Krótko ugnij kolana, a potem dynamicznie wyprostuj nogi i biodra, wypychając sztangę nad głowę do wyprostu rąk.”
   - bark – biodro – kostka w jednej linii (±6°) ← `pp.legs`: „Siła wybicia idzie z nóg i bioder — ręce kończą ruch.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Pozycja „w trakcie 1” = krótkie ugięcie nóg; „w trakcie 2” = nogi i biodra wyprostowane, sztanga już nad barkami (ręce jeszcze zgięte); dopiero potem wyciskanie do wyprostu rąk. Głębokość ugięcia ilustracyjna.
-- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Poprawka 1.0.1 (29.10.2026): czwarta pozycja — ugięcie, wyprost nóg z gryfem przy barkach i dopiero wyciskanie; tor dłoni bez łuku (maks. cofnięcie/wysunięcie ≤ 2 j. od toru). Czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.
 
 ### Wyciskanie nad głowę (linki)
 
@@ -560,7 +558,6 @@ Widok: z boku; kotwica: przód stopy; na wzór: Lunges (hantle); przyrządy: db,
   - odcinek biodro–bark: 90° do poziomu (±8°) ← `lunge.torso`: „Plecy proste przez cały ruch.”
   - pięta (dalsza strona) tuż nad poziomem 0 (do 1) ← `lunge.walk`: „Krok w przód, opuść się, aż tylne kolano będzie tuż nad podłogą; wstań na przedniej nodze i od razu zrób krok drugą.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Jeden krok pętli to krok drugą nogą: z wykroku (przednia noga na podłodze) wstajesz na przedniej nodze, tylna noga przechodzi do przodu (pozycja „w trakcie 1”), staje przed Tobą (pozycja „w trakcie 2”) i opuszczasz się na drugą nogę (pozycja końcowa); pętla wraca tą samą drogą (uproszczenie: w kroku w tył). Długość kroku ilustracyjna.
-- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-29, docs/research/figury-recenzja.json): Poprawka 1.0.1 (29.10.2026): krok drugą nogą (cztery pozycje: wykrok, wstawanie i przejście nogi, krok postawiony, wykrok na drugą nogę); tylna stopa nie pionowo. Zmiana figury po recenzji — czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.
 
 ### Reverse Lunge
 

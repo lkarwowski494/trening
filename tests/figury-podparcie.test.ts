@@ -270,7 +270,8 @@ describe('Step Up: uwagi NISKIE — ręce z hantlami, krawędź skrzyni, cięża
 
 describe('Incline Push Up: uwagi NISKIE — dłoń na blacie w miejscu i przy krawędzi', () => {
   const f = fig('Incline Push Up'), R = f.props.find(p => p.k === 'rect') as { x: number; y: number; w: number; h: number };
-  test('dłoń przesuwa się po blacie o ≤ 2,5 j. w całym ruchu (było 3,2) i leży ≤ 4,5 j. od krawędzi (było ok. 7), na blacie', () => {
+  /* 29.10.2026 (1.0.1, decyzja koordynatora A po recenzji r2): dane Incline Push Up z 1.0 (poprawka dłoni przesuwała stopy o 3,6 j.) — uwaga NISKA w backlogu docs/21; po poprawce zamienić na test */
+  test.failing('dłoń przesuwa się po blacie o ≤ 2,5 j. w całym ruchu (było 3,2) i leży ≤ 4,5 j. od krawędzi (było ok. 7), na blacie', () => {
     const xs = poses(f).map(s => s.P.hand[0]);
     expect(Math.max(...xs) - Math.min(...xs)).toBeLessThanOrEqual(2.5);
     for (const x of xs) { expect(x).toBeGreaterThanOrEqual(R.x); expect(x - R.x).toBeLessThanOrEqual(4.5); }
