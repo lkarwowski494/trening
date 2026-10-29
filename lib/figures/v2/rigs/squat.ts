@@ -8,7 +8,7 @@
  * Kąty bez podanego źródła (K_end, τ, rozstaw) to UPROSZCZENIE ILUSTRACYJNE.
  */
 import { BODY } from '../skeleton';
-import { add, rad, type V3 } from '../math';
+import { add, ik2, norm, rad, sub, type V3 } from '../math';
 import type { Frame, Prop, Contact } from '../scene';
 import { ease, legFK, mkFrame, solveRoot, trunkPoint, type ShinRule } from './common';
 import type { PoseIn } from '../skeleton';
@@ -50,6 +50,12 @@ export const SQUAT = {
   landminePivot: 150, cablePulley: [95, 12] as [number, number],
   /** Band Squat: połowa rozstawu dłoni przy barkach (cm; barki ±19) — uproszczenie ilustracyjne. */
   bandHandHalf: 15, /** i odsunięcie dolnego końca gumy do środka od osi stopy (cm): guma biegnie między kolanami, nie przez udo */ bandFootIn: 8,
+  /** Zercher (101-09): dłonie przed górną częścią klatki (układ tułowia: w górę, w przód, bok), biegun łokcia (w przód, w dół, do środka); gryf leży w zgięciach łokci — środek gryfu = łokieć + `zercherCrook` cm wzdłuż dwusiecznej kąta ramię–przedramię, w przód co najmniej `zercherBarFwd` (gryf poza powierzchnią tułowia). Uproszczenie ilustracyjne. */
+  zercherHand: [48, 22, 5] as V3, zercherPole: [-1, 0.8, -0.3] as V3, zercherCrook: 8, zercherBarFwd: 11.5,
+  /** Sumo z hantlem (101-10): chwyt pod stawem barkowym — zasięg (barek–środek chwytu) prawie prostych rąk i wysunięcie w przód od osi barków, cm (9 cm = ręce ok. 8° od pionu: hantel przed pachwiną, nie w tułowiu — przy 0 cm przenikał miednicę o 4 cm). Uproszczenie ilustracyjne. */
+  sumoReach: BODY.uarm + BODY.farm + BODY.hand - 3, sumoFwd: 9,
+  /** Nad głową (101-11): gryf/kettlebell leży 1,5 cm za środkiem stopy (nadal nad śródstopiem, stopa ma 25 cm) — ramię nie wychodzi więcej niż 5° przed pion (kontrakt wyjątku barku: „przed pionem to błąd”); stałe przesunięcie, więc tor pozostaje pionowy. */
+  overheadBack: 1.5,
   sit: 9, /* wysokość stawu biodrowego nad siedziskiem (pośladek) */
 } as const;
 
@@ -59,6 +65,17 @@ export function legChain(K: number, rule: ShinRule = SHIN, dz = 0, ankleY: numbe
 
 /** Kąt zgięcia kolana, przy którym staw biodrowy jest na wysokości `h` (do skrzyni). */
 export const kneeForHipHeight = (h: number, dz = 0): number => solveRoot(K => legChain(K, SHIN, dz).hip[1] - h, 0, 141);
+
+/** Zercher: łokieć i środek gryfu w układzie tułowia (w górę, w przód) — ramię stałe względem tułowia, więc obliczone raz dla pionowego tułowia (ten sam IK co szkielet). */
+let zercherMemo: { elbow: [number, number]; bar: [number, number] } | undefined;
+export function zercherCrook(): { elbow: [number, number]; bar: [number, number] } {
+  if (zercherMemo) return zercherMemo;
+  const sh: V3 = [0, BODY.trunk, BODY.shHalf]; const h = SQUAT.zercherHand; const pole = SQUAT.zercherPole;
+  const r = ik2(sh, [h[1], h[0], h[2]], BODY.uarm, BODY.farm + BODY.hand, [pole[1], pole[0], pole[2]]); /* tu: x = przód, y = góra */
+  const e = r.mid; const a = norm(sub(sh, e)), b = norm(sub(r.end, e)); const bis = norm([a[0] + b[0], a[1] + b[1], 0]);
+  const barFwd = Math.max(e[0] + SQUAT.zercherCrook * bis[0], SQUAT.zercherBarFwd); const barUp = e[1] + SQUAT.zercherCrook * bis[1];
+  return (zercherMemo = { elbow: [e[1], e[0]], bar: [barUp, barFwd] });
+}
 
 export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
   const wallSit = !!p.wall;
@@ -84,6 +101,16 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
   const hipC = (): V3 => hip;
 
   const tauSched = (): number => SQUAT.tauBody[0] + (SQUAT.tauBody[1] - SQUAT.tauBody[0]) * ease(u);
+  /** 101-12: pochylenie tułowia dla ciężaru niesionego w układzie tułowia (goblet, landmine, hantle, ręce przed sobą, guma): ślad ciężaru ma być PROSTĄ między pozycją na górze (harmonogram) a na dole (bez „kolana” i zawróceń);
+   *  τ w klatkach pośrednich dobiera się tak, by punkt leżał na tej prostej. Bez tego tor był łamaną (szybki ruch w tył w pierwszej połowie, potem pion). */
+  const straightTau = (fn: (h: V3, t: number) => V3, t0: number = SQUAT.tauBody[0], t1: number = SQUAT.tauBody[1]): number => {
+    if (wallSit) return tauSched();
+    const p0 = fn(legChain(0, rule, dzL, ankleY).hip, t0), p1 = fn(legChain(Kend, rule, dzL, ankleY).hip, t1); const ex = p1[0] - p0[0], ey = p1[1] - p0[1];
+    const f = (t: number): number => { const q = fn(hipC(), t); return (q[0] - p0[0]) * ey - (q[1] - p0[1]) * ex; };
+    const guess = t0 + (t1 - t0) * ease(u); /* prosta przecina łuk ciężaru w dwóch punktach — bierzemy pierwiastek najbliższy harmonogramowi */
+    for (let d = 0; d <= 40; d += 0.5) for (const sg of [-1, 1]) { const a = guess + sg * d, b = a + sg * 0.5; if (f(a) === 0) return a; if (f(a) * f(b) < 0) return solveRoot(f, Math.min(a, b), Math.max(a, b)); }
+    return guess;
+  };
   const props: Prop[] = []; const info: Record<string, V3> = {}; const contacts: Contact[] = [];
   props.push({ k: 'floor', x0: -95, x1: 120 });
   let tau = 0; let load: V3 | null = null;
@@ -105,18 +132,21 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
       arms = armsHeld(load, gh.frontBar, SQUAT.frontPole, SQUAT.frontLower); break;
     }
     case 'zercher': {
-      const anc = (t: number) => trunkPoint(hipC(), t, 24, 14.5, 0);
-      tau = balanceTau(anc, 0); load = anc(tau);
-      const hand = trunkPoint(hipC(), tau, 36, 12.5, 0); arms = armsHeld(hand, gh.zercher, [0.6, -1, 0.3]); break;
+      const zc = zercherCrook();
+      const anc = (h: V3, t: number) => trunkPoint(h, t, zc.bar[0], zc.bar[1], 0);
+      /* góra: lekki odchył (−5°, jak dotąd); dół: gryf nad śródstopiem; pomiędzy — prosta (101-12) */
+      tau = straightTau(anc, -5, solveRoot(t => anc(legChain(Kend, rule, dzL, ankleY).hip, t)[0] - target(0), -5, 80)); load = anc(hipC(), tau);
+      const hand = trunkPoint(hipC(), tau, SQUAT.zercherHand[0], SQUAT.zercherHand[1], 0); const pl = trunkPoint([0, 0, 0], tau, SQUAT.zercherPole[0], SQUAT.zercherPole[1], 0);
+      arms = armsHeld(hand, SQUAT.zercherHand[2], [pl[0], pl[1], SQUAT.zercherPole[2]]); break;
     }
     case 'overhead': {
       tau = 8 + 14 * ease(u); const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, 0);
-      const L = BODY.uarm + BODY.farm + BODY.hand - 0.05; const dx = target(0) - sh[0]; const dy = Math.sqrt(Math.max(0, L * L - dx * dx - (gh.overhead - 19) ** 2));
+      const L = BODY.uarm + BODY.farm + BODY.hand - 0.05; const dx = target(-SQUAT.overheadBack) - sh[0]; const dy = Math.sqrt(Math.max(0, L * L - dx * dx - (gh.overhead - 19) ** 2));
       load = [sh[0] + dx, sh[1] + dy, 0]; arms = armsHeld(load, gh.overhead, [0, 0, 0.1]); break;
     }
     case 'goblet': {
-      const anc = (t: number) => trunkPoint(hipC(), t, BODY.trunk - 12, 16.5, 0);
-      tau = wallSit ? 0 : tauSched(); load = anc(tau);
+      const anc = (h: V3, t: number) => trunkPoint(h, t, BODY.trunk - 12, 16.5, 0);
+      tau = wallSit ? 0 : straightTau(anc); load = anc(hipC(), tau);
       arms = armsHeld(load, gh.goblet, [0.2, -1, 0.5]); break;
     }
     case 'kbRack': {
@@ -125,19 +155,20 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
     }
     case 'kbOverhead1': {
       tau = tauSched() * 0.7; const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, BODY.shHalf);
-      const L = BODY.uarm + BODY.farm + BODY.hand - 0.05; const dx = (ankX + mid) - sh[0];
+      const L = BODY.uarm + BODY.farm + BODY.hand - 0.05; const dx = (ankX + mid - SQUAT.overheadBack) - sh[0];
       load = [sh[0] + dx, sh[1] + Math.sqrt(Math.max(0, L * L - dx * dx)), BODY.shHalf];
       arms = { R: { grip: load, elbowPole: [0, 0, 0.1] }, L: { grip: add(trunkPoint(hipC(), tau, BODY.trunk - 6, 24, 0), [0, 0, -14]), elbowPole: [0.2, -1, -0.5] } }; break;
     }
     case 'dbSides': case 'dbSumo': {
-      tau = tauSched(); const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, 0);
-      if (p.load === 'dbSides') { const g: V3 = [sh[0] + 3, sh[1] - (BODY.uarm + BODY.farm + BODY.hand - 8), 0]; load = g; arms = armsHeld(g, BODY.shHalf + 13, [-0.2, -0.2, 1]); }
-      else { const g = trunkPoint(hipC(), tau, 2, 21, 0); load = g; arms = armsHeld(g, 4, [0.1, -0.2, 1]); }
+      const sideG = (h: V3, t: number): V3 => { const q = trunkPoint(h, t, BODY.trunk, 0, 0); return [q[0] + 3, q[1] - (BODY.uarm + BODY.farm + BODY.hand - 8), 0]; };
+      tau = p.load === 'dbSides' ? straightTau(sideG) : tauSched(); const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, 0);
+      if (p.load === 'dbSides') { const g: V3 = sideG(hipC(), tau); load = g; arms = armsHeld(g, BODY.shHalf + 13, [-0.2, -0.2, 1]); }
+      else { const g: V3 = [sh[0] + SQUAT.sumoFwd, sh[1] - SQUAT.sumoReach, 0]; load = g; arms = armsHeld(g, 4, [0.1, -0.2, 1]); } /* 101-10: hantel zwisa pionowo pod barkami na prawie prostych rękach (nie tkwi w układzie tułowia) */
       break;
     }
     case 'landmine': {
-      const anc = (t: number) => trunkPoint(hipC(), t, BODY.trunk - 8, 13, 0);
-      tau = tauSched(); load = anc(tau); arms = armsHeld(load, 5, [0.2, -1, 0.5]); break;
+      const anc = (h: V3, t: number) => trunkPoint(h, t, BODY.trunk - 8, 13, 0);
+      tau = straightTau(anc); load = anc(hipC(), tau); arms = armsHeld(load, 5, [0.2, -1, 0.5]); break;
     }
     case 'belt': {
       tau = tauSched(); const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, 0); const g: V3 = [sh[0] + 22, sh[1] - 8, 0];
@@ -148,8 +179,9 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
       const g: V3 = [bx, sh[1] - Math.sqrt(Math.max(1, L * L - (sh[0] - bx) ** 2 - 25)), 0]; load = g; arms = armsHeld(g, 24, [-0.4, -0.2, 1]); break;
     }
     default: { /* bodyweight; z gumą (Band Squat): dłonie przy barkach, guma od stóp do dłoni (stoi się na gumie) */
-      tau = wallSit ? 0 : tauSched();
-      if (p.band) { const g = trunkPoint(hipC(), tau, BODY.trunk - 8, 20, 0); load = g; arms = armsHeld(g, SQUAT.bandHandHalf, [0, -1, 0.7]); break; }
+      const bwG = (h: V3, t: number): V3 => p.band ? trunkPoint(h, t, BODY.trunk - 8, 20, 0) : (() => { const q = trunkPoint(h, t, BODY.trunk, 0, 0); return [q[0] + 54, q[1] - 4, 0] as V3; })();
+      tau = wallSit ? 0 : straightTau(bwG);
+      if (p.band) { const g = bwG(hipC(), tau); load = g; arms = armsHeld(g, SQUAT.bandHandHalf, [0, -1, 0.7]); break; }
       const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, 0); const g: V3 = [sh[0] + (wallSit ? 22 : 54), sh[1] - (wallSit ? 22 : 4), 0];
       load = g; arms = armsHeld(g, 7, [0, -1, 0.5]);
     }
