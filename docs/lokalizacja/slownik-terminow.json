@@ -3993,7 +3993,13 @@
      "pewnosc": "srednia"
     },
     "es-419": {
-     "zalecany": "Entreno",
+     "zalecany": "Entrenamiento",
+     "zakazane": [
+      {
+       "wzorzec": "entrenos?(?![\\p{L}])",
+       "powod": "„entreno” to hiszpańskie (Hiszpania) potoczne skrócenie; w Ameryce Łacińskiej mówi się „entrenamiento”"
+      }
+     ],
      "pewnosc": "srednia"
     },
     "pt": {
@@ -8609,6 +8615,357 @@
      "zalecany": "手錶",
      "pewnosc": "niska",
      "uwaga": "Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch."
+    }
+   }
+  },
+  {
+   "id": "lokcie_otwarte",
+   "pl": "łokcie otwarte na boki",
+   "znaczenie": "łokcie rozstawione szeroko od tułowia przy wyciskaniu (flared elbows); przeciwieństwo łokci przyklejonych do tułowia",
+   "kanon": null,
+   "wykrywaj": "łokci\\w* (szeroko )?na boki|otwart\\w+ łokci|łokcie[^.]*szeroko na boki",
+   "jezyki": {
+    "pl": {
+     "zalecany": "łokcie rozstawione na boki",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "flared elbows",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "lokty daleko od těla",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "lakte široko od tela",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "szélesre nyitott könyök",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "coate depărtate",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "широко разперени лакти",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "široko razmaknuti laktovi",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "široko razmaknjeni komolci",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "широко раширени лактови",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "plačiai išskėstos alkūnės",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "plaši izplesti elkoņi",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "laiali küünarnukid",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "широко розведені лікті",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "codos muy abiertos",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "codos muy abiertos",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "cotovelos muito abertos",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "cotovelos muito abertos",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "abgespreizte Ellbogen",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "coudes écartés",
+     "zakazane": [
+      {
+       "wzorzec": "très écartés",
+       "powod": "„très” znaczy „bardzo”; chodzi o „za bardzo” (trop écartés)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "gomiti larghi",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "wijd uit elkaar staande ellebogen",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "armbågar långt ut åt sidorna",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "albuer langt ude",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "albuer langt ut",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "kyynärpäät leveästi sivuille",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "yanlara açık dirsekler",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "αγκώνες ανοιχτά προς τα έξω",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "siku melebar",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "siku terlalu luas",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "khuỷu tay mở rộng",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "широко разведённые локти",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "肘を開く",
+     "zakazane": [
+      {
+       "wzorzec": "肘を広げ",
+       "powod": "o łokciach przy wyciskaniu mówi się 開く (otwierać), nie 広げる (rozkładać)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "팔꿈치를 넓게 벌리기",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "手肘張太開",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "lokcie_waskie",
+   "pl": "łokcie wąsko (przy tułowiu)",
+   "znaczenie": "łokcie trzymane blisko tułowia, np. przy wąskim wyciskaniu (elbows in); przeciwieństwo łokci otwartych na boki. Dosłowne „wąsko” z polskiego bywa kalką; języki bez wpisu: pytanie do native speakerów w docs/16 (1.0.1)",
+   "kanon": null,
+   "wykrywaj": "łokci\\w* wąsko|łokcie[^.]*\\bwąsko",
+   "jezyki": {
+    "pl": {
+     "zalecany": "łokcie wąsko",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "elbows in",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "lokty úzko",
+     "pewnosc": "niska",
+     "uwaga": "Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "sk": {
+     "zalecany": "lakte úzko",
+     "pewnosc": "niska",
+     "uwaga": "Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "hu": {
+     "zalecany": "szűk könyök",
+     "pewnosc": "niska",
+     "uwaga": "Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "ro": {
+     "zalecany": "coate strânse",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "прибрани лакти",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "laktove usko",
+     "pewnosc": "niska",
+     "uwaga": "Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "sl": {
+     "zalecany": "komolce ozko",
+     "pewnosc": "niska",
+     "uwaga": "Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "sr": {
+     "zalecany": "лактове уско",
+     "pewnosc": "niska",
+     "uwaga": "Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "lt": {
+     "zalecany": "alkūnes siaurai",
+     "pewnosc": "niska",
+     "uwaga": "Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "lv": {
+     "zalecany": "elkoņus šauri",
+     "pewnosc": "niska",
+     "uwaga": "Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "et": {
+     "zalecany": "küünarnukid kitsalt",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "лікті вузько",
+     "pewnosc": "niska",
+     "uwaga": "O łokciach w wąskim wyciskaniu i prostowaniu: „держи локти узко / тримай лікті вузько” czy „локти собраны, не разводи / лікті зібрані, не розводь”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "es": {
+     "zalecany": "codos cerrados",
+     "zakazane": [
+      {
+       "wzorzec": "codos juntos",
+       "powod": "„juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (cerrados)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "codos cerrados",
+     "zakazane": [
+      {
+       "wzorzec": "codos juntos",
+       "powod": "„juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (cerrados)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "cotovelos fechados",
+     "zakazane": [
+      {
+       "wzorzec": "cotovelos juntos",
+       "powod": "„juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (fechados)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "cotovelos fechados",
+     "zakazane": [
+      {
+       "wzorzec": "cotovelos juntos",
+       "powod": "„juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (fechados)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Ellbogen eng",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "coudes serrés",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "gomiti stretti",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "ellebogen naar binnen",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "armbågarna inne",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "albuerne inde",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "albuene inne",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "kyynärpäät kapeasti",
+     "pewnosc": "niska",
+     "uwaga": "Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "tr": {
+     "zalecany": "dirsekler dar",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "αγκώνες στενά",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "siku rapat",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "siku rapat",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "khép khuỷu tay",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "локти узко",
+     "pewnosc": "niska",
+     "uwaga": "O łokciach w wąskim wyciskaniu i prostowaniu: „держи локти узко / тримай лікті вузько” czy „локти собраны, не разводи / лікті зібрані, не розводь”? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
+    },
+    "ja": {
+     "zalecany": "肘を締める",
+     "zakazane": [
+      {
+       "wzorzec": "肘を狭く",
+       "powod": "kalka z „wąsko”; na siłowni mówi się 肘を締める"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "팔꿈치를 좁게",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "手肘內收",
+     "pewnosc": "srednia"
     }
    }
   }

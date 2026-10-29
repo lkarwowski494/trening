@@ -178,6 +178,14 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 - Ikonka dekoracyjna przy tytule (Trening: mała sztanga po napisie) stoi w wierszu tytułu, nie nad nim; ukryta dla VoiceOver, etykieta nagłówka bez zmian.
 - Przewijanie: `ScrollView`, `FlatList` i `SectionList` tylko z `components/Scroll.tsx`; wskaźnik przewijania (pionowy i poziomy) ukryty na wszystkich ekranach — nie ma „kreski” przy krawędzi w treści.
 
+### 32. Podgląd liczby po przytrzymaniu (DEC-01 a, właściciel 23.10.2026; wdrożenie 1.0.1)
+- **Po co:** przy dużej skali tekstu liczba w ciasnym polu (ciężar, powtórzenia, dystans, czas, RPE, kafelki podsumowań) bywa przycięta — DEC-10 trzyma liczby w polach do 130%, układ nie rośnie. Przytrzymanie pola pokazuje liczbę w całości, układ ekranu bez zmian.
+- **Sposób wywołania:** przytrzymanie palcem pola z liczbą. **Wygląd:** systemowy podgląd dużej zawartości iOS (Large Content Viewer — wybór z `docs/design/design-spec.md` i `to-be.md`, ten sam co na tablicy „teraz” i pasku zakładek): nakładka nad ekranem, tytuł „etykieta: wartość” (np. „Ciężar (kg): 82,5”), zamyka się po puszczeniu palca. To nie jest okno ani arkusz, więc wzorzec 1 („Anuluj”) go nie dotyczy; własny dymek lub okno odrzucone (poniżej).
+- **VoiceOver:** podgląd go nie zastępuje — pole ma własną etykietę i wartość (czyta pełną liczbę niezależnie od skali), kontener podglądu nie jest elementem dostępności (nie dubluje odczytu). Pusta wartość → bez podglądu.
+- **Implementacja:** jeden komponent `components/FullValue.tsx` (`FullValue` jako kontener o dawnym stylu kolumny; `fullValueProps` dla elementu, który już jest dotykalny albo jest grupą VoiceOver — kafelki). Nowe ciasne pole z liczbą używa go; strażnik: `tests/dec01a-podglad-liczb.test.tsx` (każde `<NumInput>` w wierszu serii stoi w `<FullValue>`).
+- **Miejsca:** wiersze serii w treningu w widoku Lista (`components/WorkoutBlocks.tsx`: ciężar, powtórzenia, dystans, czas, RPE), tabela edycji sesji (`app/history/edit/[id].tsx`), kafelki „Ten tydzień” i „Progresja” (`components/Dashboard.tsx`); tablica „teraz” (`components/BoardControls.tsx`) ma to od DEC-10.
+- **Odrzucone:** (b) własny dymek przy polu — wymaga pomiaru położenia i warstwy nad przewijaną listą, ryzyko zasłonięcia klawiatury; (c) małe okno z liczbą — wymaga przycisku „Anuluj” (wzorzec 1) i przesuwa uwagę z treningu. Ograniczenie wybranego wariantu: podgląd systemowy działa, gdy w iOS jest włączony „Podgląd dużej zawartości” (Ustawienia → Dostępność → Wyświetlanie i rozmiar tekstu); czy jest włączony domyślnie przy rozmiarach dostępności, sprawdza się na telefonie (**[OTWARTE]**, nie z dokumentacji z pamięci).
+
 ## Strażniki (S1–S19)
 | # | Strażnik | Plik | Stan |
 |---|---|---|---|

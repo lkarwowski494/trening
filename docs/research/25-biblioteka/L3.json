@@ -1311,15 +1311,22 @@
   "name": "Standing Gastrocnemius Calf Stretch",
   "verdict": "OK",
   "scope": "NISZOWE",
-  "fixes": {},
+  "fixes": {
+   "muscleLoad": {
+    "calves": 0.25
+   }
+  },
   "sources": [
-   "L3-S17",
+   "L3-S36",
+   "L3-S37",
+   "L3-S38",
+   "L3-S39",
    "L3-S1",
    "L3-S3",
    "L3-S9"
   ],
-  "confidence": "jedno źródło",
-  "note": "Pięta na stopniu, przyciąganie palców (S17); ACE Step Stretch (Gastrocnemius) podobny. Regiony łydki + dwugłowe zgodne."
+  "confidence": "mocne",
+  "note": "Przedefiniowane 28.10.2026 (1.0.1): wariant na stopniu — przednia część stopy na krawędzi, pięta opuszczana poniżej krawędzi, kolano proste (S36–S39, 4 niezależne źródła szczebla 4). Dwugłowe uda usunięte: żadne ze źródeł ich nie wymienia (waga 0,25 łydki to konwencja katalogu). Czas przytrzymania: źródła się różnią (10–15 / 15–30 / 30 s) — otwarte."
  },
  {
   "name": "Standing Hamstring and Calf Stretch",

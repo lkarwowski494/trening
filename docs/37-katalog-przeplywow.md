@@ -7,11 +7,11 @@ każdy ekran z `app/` występuje w co najmniej jednym przepływie (nowy ekran be
 
 ## Podsumowanie
 
-Przepływów w katalogu: **158** (realny: 136, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
+Przepływów w katalogu: **160** (realny: 138, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
 
 | Stan startowy | Przepływów | Opis |
 |---|---|---|
-| `nowy` | 22 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
+| `nowy` | 24 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
 | `istniejacy` | 115 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
 | `aktualizacja` | 6 | Po aktualizacji z poprzedniej wersji: dane z poprzedniego buildu, nowa wersja zainstalowana na tej samej instalacji (33 → 34). |
 | `kopia` | 5 | Po przywróceniu kopii lub imporcie: dane wczytane z pliku kopii po wyczyszczeniu. |
@@ -19,7 +19,7 @@ Przepływów w katalogu: **158** (realny: 136, brzegowy: 22); pominięte jako te
 
 | Pokrycie | Przepływów |
 |---|---|
-| Maestro | 129 |
+| Maestro | 131 |
 | Maestro (eksperyment) | 4 |
 | Jest | 10 |
 | Telefon | 15 |
@@ -45,6 +45,7 @@ Przepływów w katalogu: **158** (realny: 136, brzegowy: 22); pominięte jako te
 | NU-12 | **Zakończenie pustego treningu (żadna seria nie odhaczona)** — „Pusty trening” → bez odhaczania serii stuknij „Zakończ” → Okno „Brak odhaczonych serii: Nic do zapisania. Odrzucić ten trening?” → „Anuluj” zostaje w treningu; „Odrzuć trening” wraca na ekran Trening bez sesji | Pusty trening nie zapisuje sesji, nie psuje „Ten tydzień”. | `nowy` | realny | Maestro: `.maestro/29-bledne-dane.yaml` |
 | NU-13 | **Ćwiczenia, którego nie ma w bibliotece: „Utwórz „…”” z wyboru ćwiczenia** — W wyborze ćwiczenia wpisz nieistniejącą nazwę → „Utwórz „…”” → ćwiczenie powstaje i trafia do treningu | Nowe ćwiczenie jest w bibliotece i w treningu. | `nowy` | realny | Maestro: `.maestro/27-biblioteka-cwiczen.yaml` |
 | NU-14 | **Nawigacja po czterech zakładkach: Trening, Plan, Postępy, Więcej; Szablony i Ćwiczenia pod Więcej** — Stuknij każdą zakładkę po kolei → Więcej → Szablony / Ćwiczenia → „Wróć” do listy Więcej z paskiem zakładek | Każda zakładka otwiera właściwy ekran; powrót zawsze możliwy; Masa ciała nie jest już w Ustawieniach. | `nowy` | realny | Maestro: `.maestro/19-zakladki.yaml` |
+| NU-15 | **Pierwsze kroki: krok „masz historię w innej aplikacji?” prowadzi do importu CSV** — Pierwsze uruchomienie (pusta baza), karta „Pierwsze kroki” → Krok 4 „Masz historię w innej aplikacji?” → „Importuj historię z pliku CSV” → Otwiera się ekran importu z „Wybierz plik CSV” → „Wróć” do ekranu Trening | Z karty Pierwsze kroki jednym stuknięciem wchodzi się do istniejącego importu CSV; sam import i formaty bez zmian; krok nie jest nigdy odhaczony (znika razem z kartą po pierwszym treningu). | `nowy` | realny | Maestro: `.maestro/59-import-z-pierwszych-krokow.yaml` |
 
 ## TR — Trening na żywo
 
@@ -189,6 +190,7 @@ Przepływów w katalogu: **158** (realny: 136, brzegowy: 22); pominięte jako te
 | US-19 | **Usunięcie miejsca przyciskiem na dole ekranu miejsca (okno jak przy geście, Anuluj zostawia)** — Więcej → Miejsca i sprzęt → miejsce → przewiń na dół → „Usuń miejsce” → Okno „Usunąć miejsce?” [Anuluj, Usuń] — to samo co przy geście na liście; „Anuluj” zostawia miejsce | Miejsce da się usunąć bez gestu (miejsca głównego, gdy są inne, nie usuwa się — brak przycisku). | `istniejacy` | realny | Maestro: `.maestro/06-miejsca.yaml` |
 | US-20 | **Okno „Uczciwe zasady” po pierwszym treningu na żywo w stanie darmowym: raz, przyciski główny i drugorzędny** — Trening z szablonu; w trakcie dostęp wygasa (sztuczny sklep) → „Zakończ” → potwierdzenie → Na podsumowaniu okno z tytułem, „Super, trenuję dalej!” i „Zobacz plany Pro ›” → „Zobacz plany Pro ›” → ekran zakupu; po zamknięciu okna już nie ma | Okno pokazuje się raz, tylko w stanie darmowym; drugorzędny przycisk otwiera ekran zakupu. | `istniejacy` | realny | Maestro: `.maestro/56-uczciwe-zasady.yaml` |
 | US-21 | **Duży tekst dostępności: ekran Trening bez planu, z planem i w treningu bez uciętych ikon i przycisków** — W systemie: Ustawienia → Dostępność → Rozmiar tekstu → Większe rozmiary dostępności, suwak na maksimum → Uruchom aplikację → ekran Trening (bez planu), potem z planem tygodnia i z treningiem w toku → Przewiń ekran Trening i stuknij przycisk startu (zaplanowanego i „Inny trening”) | Przy największym tekście systemu przyciski startu, znaki-ikony (›, ▸) i etykiety sterujące są w całości widoczne i da się je stuknąć (limit powiększenia znaków GLYPH_SCALE_MAX). | `nowy` | realny | Maestro: `.maestro/58-duzy-tekst.yaml` |
+| US-22 | **Duży tekst: przytrzymanie liczby pokazuje ją w całości (podgląd dużej zawartości), układ bez zmian** — W systemie: duży tekst (Większe rozmiary dostępności) i włączony „Podgląd dużej zawartości” → Trening w toku → przytrzymaj ciężar, powtórzenia albo kafelek podsumowania → Puść palec — podgląd znika, układ ekranu bez zmian | Liczba przycięta w ciasnym polu (ciężar, powtórzenia, dystans, czas, RPE, kafelki) widoczna w całości w podglądzie; VoiceOver czyta pełną wartość z pola. | `nowy` | realny | Maestro: `.maestro/58-duzy-tekst.yaml` |
 
 ## DA — Kopia, eksport, import, czyszczenie danych
 

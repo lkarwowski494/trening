@@ -588,3 +588,4 @@ Decyzja właściciela 27.10.2026 (docs/18): do 1.0 wiersz „Pełna wersja”, d
 | C-3 Dumbbell Squat | `tests/figures-v2-toe-angle.test.ts` | niezmienniki, regresja | zielone |
 | B-04 pauza zegarek | `tests/watch-link.test.ts` (4 nowe), `WatchStoreTests.swift` (3) | scenariusz, logika; Swift: kompilacja w watch-sim.yml po 1.0 | Jest zielone; Swift do uruchomienia |
 | Z-02 lokalizacja | `tests/lokalizacja-1-0-1.test.ts` | języki, regresja | zielone; E2E Maestro: brak (zmiany tylko tekstów) |
+| Standing Gastrocnemius Calf Stretch (wariant na stopniu), przypis `calf.step` | `tests/gastro-calf-stretch-1-0-1.test.ts`, `tests/zrodlo-jedno.test.ts` (licznik 214) | dane, języki, niezmienniki, regresja | zielone; E2E Maestro: brak powodu (zestaw ogólny bez figury nie ma ekranu — pokaże się po figurze v2 i recenzji niezależnej) |

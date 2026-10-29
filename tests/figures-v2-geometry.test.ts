@@ -22,8 +22,6 @@ const ALLOW: Record<string, { elbow?: number; shSag?: number; shElev?: number; w
   'Front Squat': { elbow: 165, shSag: 190, why: 'rack przedni: gryf na barkach, łokcie wysoko — zgięcie łokcia i barku powyżej średniego zakresu (uproszczenie ilustracyjne)' },
   'Double Kettlebell Front Squat': { elbow: 165, why: 'rack kettlebell: dłonie przy barkach, zgięcie łokcia powyżej średniego zakresu (uproszczenie ilustracyjne)' },
   'Overhead Squat': { shSag: 205, why: 'ramiona nad głową przy pochylonym tułowiu: zgięcie barku względem tułowia powyżej średniego zakresu (wyprost piersiowy; uproszczenie ilustracyjne)' },
-  'JM Press': { elbow: 160, shSag: 210, why: 'gryf przy szyi: przedramiona mocno zgięte, ramię względem tułowia powyżej średniego zakresu (uproszczenie ilustracyjne)' },
-  'Decline Close-Grip Bench To Skull Crusher': { elbow: 160, why: 'gryf przy czole: łokcie mocno zgięte, powyżej średniego zakresu (uproszczenie ilustracyjne)' },
   'One-Arm Overhead Kettlebell Squat': { shSag: 205, shElev: 180, why: 'ramię nad głową przy pochylonym tułowiu: zgięcie barku względem tułowia powyżej średniego zakresu (uproszczenie ilustracyjne)' },
 };
 const FAMILY_KEYS = (fam: string) => KEYS.filter(k => assignAll()[k] === fam);
@@ -46,8 +44,8 @@ describe('niezmienniki geometrii (wszystkie warianty gotowych rodzin, 25 pozycji
     } } });
     expect(bad).toEqual([]);
   });
-  test('wyjątki od zakresu mają powód i są nieliczne (nad głową, rack przedni, gryf przy szyi lub czole)', () => {
-    expect(Object.keys(ALLOW).sort()).toEqual(['Decline Close-Grip Bench To Skull Crusher', 'Double Kettlebell Front Squat', 'Front Squat', 'JM Press', 'One-Arm Overhead Kettlebell Squat', 'Overhead Squat']);
+  test('wyjątki od zakresu mają powód i są nieliczne (nad głową, rack przedni)', () => {
+    expect(Object.keys(ALLOW).sort()).toEqual(['Double Kettlebell Front Squat', 'Front Squat', 'One-Arm Overhead Kettlebell Squat', 'Overhead Squat']);
     for (const v of Object.values(ALLOW)) expect(v.why.length).toBeGreaterThan(40);
   });
   test('ciągłość: między sąsiednimi pozycjami (Δu = 1/48) żaden staw nie przeskakuje o więcej niż 6 cm (bez przeskoków IK i skoku ciężaru)', () => {

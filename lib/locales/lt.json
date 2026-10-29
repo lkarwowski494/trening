@@ -540,6 +540,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Kūno svoris: „±“ — tai papildomas svoris (pliusas) arba pagalba, pvz., treniruoklio (minusas); guma — atskiras laukas su lygiu. Rekordas — kartojimų suma be pagalbos, o apimtis skaičiuojama tik pagal papildomą svorį.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Raumenų masė: serijų raumenų grupei per savaitę iki tikslo iš skilties Nustatymai (automatiškai {m}), {a}–{b} pakartojimų (namuose {c}–{d}), paprastai {r1}–{r2} pakartojimai atsargoje.",
  "Masz dostęp na zawsze": "Turite prieigą visam laikui",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Turite istoriją kitoje programėlėje? Galite ją pridėti iš CSV failo.",
  "Masz pełną wersję": "Turite pilną versiją",
  "maszyna": "treniruoklis",
  "maszyna belt squat": "diržinių pritūpimų treniruoklis",

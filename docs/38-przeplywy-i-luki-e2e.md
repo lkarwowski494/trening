@@ -130,6 +130,8 @@ scenariuszy; zastosowany do nowych (szacunek, odświeżyć po pierwszym zielonym
 | 28 długa historia | 122 | 4:37 | | 33+34 (było 4:58) | 140 + 37 | ≈ 6:50 + narzut |
 | 40 / 41 / 42 (eksperymenty, osobno) | 65 / 60 / 91 | 2:51 / 2:55 / 3:39 | | | | |
 | 57 grafika ćwiczeń (figura v2: fazy, mięśnie, błąd; 25.10.2026) | ok. 30 | ok. 1:45 | | | | |
+| 58 duży tekst dostępności (T-04, ekran Trening; 1.0.1: przytrzymanie liczby DEC-01 a) | — | — | | | | |
+| 59 import z Pierwszych kroków (DEC-04 a, 1.0.1, 28.10.2026; czas do zmierzenia po 1.0) | ok. 6 | — | | | | |
 
 Razem zwykłe scenariusze ≈ **128 min** na jednej maszynie (było 82 min). Na jednej maszynie przekroczyłoby to strażnika czasu (`MAESTRO_ALARM` = 6000 s = 100 min) — **podział na części jest
 konieczny**, nie tylko wygodny.

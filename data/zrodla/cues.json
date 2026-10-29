@@ -189,6 +189,16 @@
    "name": "Hofmann i in. (Cybex Research Institute) — badanie, Int J Exerc Sci 2014 (abstrakt; instytut producenta sprzętu)",
    "level": 3,
    "kind": "study"
+  },
+  "Physitrack": {
+   "name": "Physitrack — Exercise library (us.physitrack.com, biblioteka ćwiczeń domowych dla fizjoterapeutów)",
+   "level": 4,
+   "kind": "site"
+  },
+  "The Prehab Guys": {
+   "name": "The Prehab Guys — biblioteka ćwiczeń (theprehabguys.com, fizjoterapeuci)",
+   "level": 4,
+   "kind": "site"
   }
  },
  "sources": {
@@ -1649,6 +1659,18 @@
    "org": "NSCA",
    "title": "Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012",
    "url": "https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf",
+   "level": 4
+  },
+  "physitrack-heel-raise-step": {
+   "org": "Physitrack",
+   "title": "Heel raises on a step",
+   "url": "https://us.physitrack.com/home-exercise-video/heel-raises-on-a-step",
+   "level": 4
+  },
+  "prehab-heel-raise-off-step": {
+   "org": "The Prehab Guys",
+   "title": "Heel Raise – Off Step",
+   "url": "https://theprehabguys.com/vimeo-video/heel-raise-off-step/",
    "level": 4
   }
  },
@@ -3470,7 +3492,7 @@
      ]
     },
     {
-     "c": "rdl.knees",
+     "c": "rdl.mis.knees",
      "s": [
       [
        "nasm-romanian-deadlift-barbell",
@@ -3566,7 +3588,7 @@
      ]
     },
     {
-     "c": "rdl.knees",
+     "c": "rdl.mis.knees",
      "s": [
       [
        "nasm-dumbbell-romanian-deadlift",
@@ -5239,8 +5261,12 @@
        "Preparation; Comments"
       ],
       [
-       "ace-73",
-       "Step 1; Step 2 (hands on the wall for support)"
+       "physitrack-heel-raise-step",
+       "Instrukcja: „Walk your feet back so that your heels are off the edge of the step.” (przytrzymanie się podpory)"
+      ],
+      [
+       "prehab-heel-raise-off-step",
+       "HOW: „Place a step in front of a wall or an object to use for balance. Step onto the box with the balls of your feet on the edge of the box, and your heels off the box.”"
       ]
      ]
     }

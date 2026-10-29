@@ -325,6 +325,28 @@
    ]
   },
   {
+   "id": "NU-15",
+   "tytul": "Pierwsze kroki: krok „masz historię w innej aplikacji?” prowadzi do importu CSV",
+   "stan": "nowy",
+   "wersja": "1.0",
+   "realnosc": "realny",
+   "kroki": [
+    "Pierwsze uruchomienie (pusta baza), karta „Pierwsze kroki”",
+    "Krok 4 „Masz historię w innej aplikacji?” → „Importuj historię z pliku CSV”",
+    "Otwiera się ekran importu z „Wybierz plik CSV” → „Wróć” do ekranu Trening"
+   ],
+   "wynik": "Z karty Pierwsze kroki jednym stuknięciem wchodzi się do istniejącego importu CSV; sam import i formaty bez zmian; krok nie jest nigdy odhaczony (znika razem z kartą po pierwszym treningu).",
+   "ekrany": [
+    "/",
+    "/more/import"
+   ],
+   "scenariusz": "59-import-z-pierwszych-krokow.yaml",
+   "znaczniki": [
+    "Already logging workouts in another app",
+    "Choose a CSV file"
+   ]
+  },
+  {
    "id": "TR-01",
    "tytul": "Start dzisiejszego treningu z planu dużym przyciskiem",
    "stan": "istniejacy",
@@ -1550,7 +1572,7 @@
    "scenariusz": "13-kalendarz-plan.yaml",
    "znaczniki": [
     "Place for these days",
-    "Remove place"
+    "Clear place"
    ]
   },
   {
@@ -3275,7 +3297,7 @@
    "scenariusz": "56-uczciwe-zasady.yaml",
    "znaczniki": [
     "First workout done!",
-    "Awesome, keep training!",
+    "Awesome, I'll keep training!",
     "See Pro plans"
    ]
   },
@@ -3299,6 +3321,27 @@
     "Other workout",
     "Start: Full Body A",
     "Set 1 done.*"
+   ]
+  },
+  {
+   "id": "US-22",
+   "tytul": "Duży tekst: przytrzymanie liczby pokazuje ją w całości (podgląd dużej zawartości), układ bez zmian",
+   "stan": "nowy",
+   "wersja": "1.0",
+   "realnosc": "realny",
+   "kroki": [
+    "W systemie: duży tekst (Większe rozmiary dostępności) i włączony „Podgląd dużej zawartości”",
+    "Trening w toku → przytrzymaj ciężar, powtórzenia albo kafelek podsumowania",
+    "Puść palec — podgląd znika, układ ekranu bez zmian"
+   ],
+   "wynik": "Liczba przycięta w ciasnym polu (ciężar, powtórzenia, dystans, czas, RPE, kafelki) widoczna w całości w podglądzie; VoiceOver czyta pełną wartość z pola.",
+   "ekrany": [
+    "/",
+    "/history/edit/[id]"
+   ],
+   "scenariusz": "58-duzy-tekst.yaml",
+   "znaczniki": [
+    "board-value-weight"
    ]
   },
   {

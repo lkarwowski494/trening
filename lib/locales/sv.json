@@ -540,6 +540,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Kroppsvikt: ”±” är extravikt (plus) eller assistans, t.ex. maskin (minus); band är ett eget fält med nivå. Rekordet är totala reps utan assistans, och volymen använder bara extravikten.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Muskelmassa: set per muskelgrupp och vecka upp till målet från Inställningar (automatiskt {m}), {a}–{b} repetitioner (hemma {c}–{d}), oftast {r1}–{r2} repetitioner i reserv.",
  "Masz dostęp na zawsze": "Du har åtkomst för alltid",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Har du historik i en annan app? Du kan lägga till den från en CSV-fil.",
  "Masz pełną wersję": "Du har den fullständiga versionen",
  "maszyna": "maskin",
  "maszyna belt squat": "belt squat-maskin",

@@ -20,6 +20,7 @@
  "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).": "Cardio: a partir de {k} días a la semana, una sesión en un día aparte; con menos días, todos son de fuerza, para que el cardio no le quite días al entrenamiento de fuerza (cada parte principal del cuerpo al menos {n} días).",
  "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.": "Cardio: con {k}–{m} días puedes convertir los días por encima de {j} en sesiones de cardio moderado («Días de cardio en el plan», desactivado de forma predeterminada). Más ejercicios de fortalecimiento no siempre dan más beneficios para la salud, y conviene repartir la actividad aeróbica en varios días. Duración de la sesión de cardio = tiempo de sesión.",
  "Ciężar serii na stacji wpisuj na stronę — tak, jak pokazuje urządzenie.": "Ingresa los pesos de la estación por lado — tal como los muestra el aparato.",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "¿Tienes historial en otra app? Puedes agregarlo desde un archivo CSV.",
  "Ćwiczenia bez sprzętu": "Ejercicios sin equipo",
  "ćwiczenie bez sprzętu|ćwiczenia bez sprzętu|ćwiczeń bez sprzętu": "ejercicio sin equipo|ejercicios sin equipo",
  "Dane i kopie": "Datos y respaldos",
@@ -29,8 +30,8 @@
  "Dodaj ciężar": "Agregar lastre",
  "Dodaj notatkę": "Agregar nota",
  "Dodane: {list}.": "Agregados: {list}.",
- "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Agrega entrenos desde CSV, sin borrar datos y con vista previa.",
- "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Agrega entrenos desde CSV. No cambia los datos actuales. Vista previa antes de guardar.",
+ "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Agrega entrenamientos desde CSV, sin borrar datos y con vista previa.",
+ "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Agrega entrenamientos desde CSV. No cambia los datos actuales. Vista previa antes de guardar.",
  "Dzień po dniu te same główne partie: {list}. Zwykle lepiej z dniem przerwy; przy tej samej liczbie serii w tygodniu to też jest w porządku.": "Mismos grupos musculares principales en días seguidos: {list}. Suele ser mejor con un día de descanso de por medio; con el mismo número de series semanales también está bien.",
  "Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu.": "Dónde entrenas y qué equipo tienes allí. El selector de ejercicios muestra lo que puedes hacer en el lugar del entrenamiento, y la pista «↑» sugiere pesos que realmente tienes. Eliges el lugar al empezar un entrenamiento.",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "La hora {t} no existe ese día (cambio de horario). Ingresa otra.",
@@ -258,5 +259,9 @@
  "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "El entrenamiento del {d} {s} estuvo {h} horas sin actividad, así que se guardó solo. Fin: {e} (última serie). Lo encontrarás en la pestaña Plan.",
  "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.": "No borres la app: se irán con ella tus datos y respaldos. Primero toca «Enviar datos» y guarda el archivo fuera del celular.",
  "Kopia bazy w Plikach": "Respaldo de la base de datos en Archivos",
- "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.": "Archivos → En mi iPhone → {app} → Backup → {folder}. Guarda esta carpeta fuera del celular."
+ "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.": "Archivos → En mi iPhone → {app} → Backup → {folder}. Guarda esta carpeta fuera del celular.",
+ "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "En la pantalla Entrenamiento, «Planificación» (sin plan: «Configurar plan») abre el plan semanal, que asigna plantillas a los días — el plan se repite cada semana.",
+ "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "En la pantalla Entrenamiento, «Progresión» compara la semana (hecho + planificado) con la anterior y un mes con el mes anterior.",
+ "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.": "En la pantalla Entrenamiento, toca el botón grande «Empezar» (siguiente entrenamiento) u «Otro entrenamiento» — ahí elegirás una plantilla, repetirás el último entrenamiento o empezarás uno vacío.",
+ "Trening": "Entrenamiento"
 }

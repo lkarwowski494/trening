@@ -1,5 +1,5 @@
 {
-"meta": {"zrodlo":"Badacz merytoryczny, 25.10.2026 (pliki wskazowki-cwiczenia-01…07, korekty w meta pliku 04, potem 08-korekty — 08 ma pierwszeństwo). b: own = własne wskazówki ćwiczenia (lib/cues/data.json), general = zestaw ogólny dla ruchu z dopiskiem (decyzja właściciela 25.10.2026, wariant A), open = brak wskazówek (grafika bez tekstu). f: rodzina zestawu ze słownika badacza. ok/err: id wskazówek (teksty: lib/cues/text/pl.json; newIds = id bez tekstu w pl.json — teksty i źródła w słowniku badacza, wdroży tłumacz).","newIds":["bp.elbowsMid","bw.squat","cc.ribs","cc.slow","chop.close","cobra.control","cobra.hips","cobra.mis","dyn.control","dyn.mis.jerk","hab.hips","hab.mis.high","halo.close","hang.noSwing","hang.ribs","hang.slow","hext.mis.arch","hext.range","jump.drive","jump.land","jump.mis.stiff","mb.legs","ohp.mis.lock","oly.back","oly.close","oly.legs","oly.mis","po.arms","po.slow","ro.back","rot.elbow","rot.mis.elbowAway","rot.slow","sb.plane","sled.lean","sled.legs","smr.mis.fast","smr.slow","smr.tender","st.breathe","st.mis.force","st.noBounce","st.tension","tgu.arm","tgu.eyes","ur.elbows","vup.back","wm.arm","wm.eyes","wr.forearms","wr.mis.lift","wr.range"]},
+"meta": {"zrodlo":"Badacz merytoryczny, 25.10.2026 (pliki wskazowki-cwiczenia-01…07, korekty w meta pliku 04, potem 08-korekty — 08 ma pierwszeństwo). b: own = własne wskazówki ćwiczenia (lib/cues/data.json), general = zestaw ogólny dla ruchu z dopiskiem (decyzja właściciela 25.10.2026, wariant A), open = brak wskazówek (grafika bez tekstu). f: rodzina zestawu ze słownika badacza. ok/err: id wskazówek (teksty: lib/cues/text/pl.json; newIds = id bez tekstu w pl.json — teksty i źródła w słowniku badacza, wdroży tłumacz).","newIds":["bw.squat","cc.ribs","cc.slow","chop.close","cobra.control","cobra.hips","cobra.mis","dyn.control","dyn.mis.jerk","hab.hips","hab.mis.high","halo.close","hang.noSwing","hang.ribs","hang.slow","hext.mis.arch","hext.range","jump.drive","jump.land","jump.mis.stiff","mb.legs","ohp.mis.lock","oly.back","oly.close","oly.legs","oly.mis","po.arms","po.slow","ro.back","rot.elbow","rot.mis.elbowAway","rot.slow","sb.plane","sled.lean","sled.legs","smr.mis.fast","smr.slow","smr.tender","st.breathe","st.mis.force","st.noBounce","st.tension","tgu.arm","tgu.eyes","ur.elbows","vup.back","wm.arm","wm.eyes","wr.forearms","wr.mis.lift","wr.range"]},
 "items": {
   "Ab Wheel": {"b":"general","f":"rollout","ok":["ro.back","plank.brace"],"err":["plank.mis.sag"]},
   "Adductor-SMR": {"b":"general","f":"smr","ok":["smr.slow","smr.tender"],"err":["smr.mis.fast"]},
@@ -171,7 +171,7 @@
   "Deadlift with Chains": {"b":"general","f":"hingeFloor","ok":["dl.lift","hinge.back","dl.close"],"err":["mis.roundBack"]},
   "Decline Bench Press": {"b":"general","f":"bench","ok":["bp.blades","bp.control","bp.elbowsMid"],"err":["bp.mis.arch"]},
   "Decline Bench Press (hantle)": {"b":"general","f":"bench","ok":["bp.blades","bp.control","bp.elbowsMid"],"err":["bp.mis.arch"]},
-  "Decline Close-Grip Bench To Skull Crusher": {"b":"general","f":"triLying","ok":["cgbp.elbows"],"err":["mis.jerk"]},
+  "Decline Close-Grip Bench To Skull Crusher": {"b":"general","f":"triLying","ok":["dcgsk.elbows"],"err":["mis.jerk"]},
   "Decline Crunch": {"b":"general","f":"crunch","ok":["crunch.neck","crunch.lowBack"],"err":["mis.jerk"]},
   "Decline Dumbbell Fly": {"b":"general","f":"fly","ok":["fly.elbows","fly.control"],"err":["mis.jerk"]},
   "Decline Dumbbell Triceps Extension": {"b":"general","f":"triLying","ok":["skull.upperArm","skull.depth"],"err":["mis.jerk"]},
@@ -296,7 +296,7 @@
   "Jefferson Squat": {"b":"general","f":"squat","ok":["sq.back","sq.kneesToes"],"err":["sq.mis.kneesIn"]},
   "Jerk Balance": {"b":"open"},
   "Jerk Dip Squat": {"b":"general","f":"pushPress","ok":["pp.dip","pp.legs"],"err":[]},
-  "JM Press": {"b":"general","f":"bench","ok":["bp.contact","bp.control","cgbp.elbows"],"err":["bp.mis.arch"]},
+  "JM Press": {"b":"general","f":"bench","ok":["bp.contact","jm.elbows"],"err":["bp.mis.arch"]},
   "Jump Squat": {"b":"general","f":"jump","ok":["jump.drive","jump.land"],"err":["jump.mis.stiff"]},
   "Jumping Jacks": {"b":"general","f":"jump","ok":["jump.land"],"err":["jump.mis.stiff"]},
   "Keg Load": {"b":"open"},
@@ -622,7 +622,7 @@
   "Standing Concentration Curl": {"b":"general","f":"curl","ok":["curl.control","preacher.range"],"err":["mis.jerk"]},
   "Standing Dumbbell Reverse Curl": {"b":"general","f":"curl","ok":["curl.elbows","curl.noSwing","curl.control"],"err":["curl.mis.elbows"]},
   "Standing Elevated Quad Stretch": {"b":"general","f":"stretch","ok":["st.tension","st.noBounce","st.breathe"],"err":["st.mis.force"]},
-  "Standing Gastrocnemius Calf Stretch": {"b":"general","f":"stretch","ok":["st.tension","st.noBounce","st.breathe"],"err":["st.mis.force"]},
+  "Standing Gastrocnemius Calf Stretch": {"b":"general","f":"stretch","ok":["gcalf.set","gcalf.move","gcalf.support","gcalf.knee"],"err":[]},
   "Standing Hip Circles": {"b":"general","f":"mobility","ok":["dyn.control","st.breathe"],"err":["dyn.mis.jerk"]},
   "Standing Inner-Biceps Curl": {"b":"general","f":"curl","ok":["curl.elbows","curl.noSwing","curl.control"],"err":["curl.mis.elbows"]},
   "Standing Lateral Stretch": {"b":"general","f":"stretch","ok":["sb.plane","st.tension","st.noBounce"],"err":["st.mis.force"]},

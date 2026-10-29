@@ -275,40 +275,40 @@ Tabela poniżej jest generowana z danych (`UPDATE_CRITICAL=1 npx jest tests/audi
 <!-- gen:krytyczne -->
 | kod | zdanie medyczne | asekuracja (5 kluczy) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd treści krytycznej (Claude, decyzja 21.10.2026) |
 |---|---|---|---|---|---|
-| en | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
-| cs | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
-| sk | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
-| hu | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
-| ro | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
-| bg | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
-| hr | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
-| sl | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
-| sr | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
-| lt | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
-| lv | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
-| et | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
-| uk | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
-| es | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
-| es-419 | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
-| pt | tak | tak | 306/306 | tak (05.10.2026) | tak (28.10.2026, API) |
-| pt-BR | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
-| de | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
-| fr | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
-| it | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
-| nl | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
-| sv | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
-| da | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
-| nb | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
-| fi | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
-| tr | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
-| el | tak | tak | 306/306 | tak (07.10.2026) | tak (28.10.2026, API) |
-| id | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
-| ms | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
-| vi | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
-| ru | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
-| ja | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
-| ko | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
-| zh-Hant | tak | tak | 306/306 | brak zapisu | tak (28.10.2026, API) |
+| en | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| cs | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sk | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| hu | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| ro | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| bg | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| hr | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sl | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sr | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| lt | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| lv | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| et | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| uk | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| es | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| es-419 | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| pt | tak | tak | 314/314 | tak (05.10.2026) | tak (28.10.2026, API) |
+| pt-BR | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| de | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| fr | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| it | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| nl | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| sv | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| da | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| nb | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| fi | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| tr | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| el | tak | tak | 314/314 | tak (07.10.2026) | tak (28.10.2026, API) |
+| id | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| ms | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| vi | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| ru | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| ja | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| ko | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
+| zh-Hant | tak | tak | 314/314 | brak zapisu | tak (28.10.2026, API) |
 <!-- /gen:krytyczne -->
 
 **Stan przeglądu (28.10.2026, M1-audytor-generalny-006):**
@@ -491,3 +491,11 @@ Przegląd rolą `recenzent-lokalizacji` (26.10.2026, gałąź `recenzja-lok-2026
 8. uk: „програма” czy „застосунок” (14 vs 22 użyć); tr: „Apple Sağlık” czy „Sağlık uygulaması”; sl: pytania w 1. osobie czy „Želite …?”.
 9. es-419 InfoPlist i reszta zgłoszona jako „średnia pewność” — tylko to, co dotyczy słownika wariantu, zostało zmienione.
 *Nie wykonane (zmiana tekstu źródłowego PL/EN, dotyka 35 języków):* „Apple ID” → „konto Apple” (2 teksty), „(TestFlight)” → App Store w komunikacie o nowszych danych, liczba „6 godzin” z `STALE_AUTO_MS` zamiast wpisanej w tekst — do osobnego zadania z przekładem.
+
+### Wersja 1.0.1: recenzja lokalizacji zmian z 28.10.2026 (r2/teksty) — wprowadzone i pytania
+- Wprowadzone: ro `rdl.mis.knees` (blokująca); poprawki kart w fr, es, tr, zh-Hant, ro, fi, de, cs, sk, bg, uk, hu, da, it, ja (`bp.elbowsMid`, `rdl.mis.knees`); „Chcesz częściej?” → o częstości treningu (bg, el, fr, hr, nb, ro, ru, sl, vi, ja); ja „よし、トレーニングを続けます！”; początek notatki celu ogólnego = nazwa z przełącznika (ja 健康・体力, ko 건강·체력, zh-Hant 健康體能; EN „General fitness:”); el „και με εφάπαξ αγορά για πάντα”; id „Gerakan yang sudah ada di daftar Anda: {n}”. Słownik: pojęcie „łokcie otwarte na boki” (`lokcie_otwarte`) z testem; terminy tego wpisu poza ja/fr — do sprawdzenia przez native speakerów.
+- Pytania do native speakerów (zostawione bez zmiany): ms — „jangan terlalu luas” czy „jangan terlalu kembang” (łokcie); pt (PT) — „até o movimento virar” czy „se tornar”; ja — „肘を開きすぎない” (wprowadzone) czy „広げすぎない”; uk — narzędnik „не притиснутими” (wprowadzone) vs mianownik; hu — „ne is nyisd ki túlságosan” (wprowadzone); id — nowa fraza importu; ja — „もっとトレーニングしたいですか？” i „よし、…続けます！” (wprowadzone). Sprawdzić zrzut 320 pt przy tekście 125% dla es-419 „Entrenamiento” (zakładka).
+
+### Wersja 1.0.1: recenzja lokalizacji r2 (gcalf, krok importu, jm/dcgsk.elbows) — wprowadzone i pytania (28.10.2026)
+- Wprowadzone (r2/lok2): nakładki pt-BR `jm.elbows`/`dcgsk.elbows` i es-419 kroku importu („agregar”); typografia fr (NBSP przed „:”, ’) i it (’); el „στην πίεση”; fi `gcalf.set`; `dcgsk.elbows` bez kalki „wąsko” (en „elbows in”, es/pt „cerrados/fechados”, ja 締める, id/ms „rapat”, vi „khép”, sv/da/nb „inne/inde”, nl „naar binnen”, bg „прибрани”); poprawki `jm.elbows` (bg, ko, ja, zh-Hant), `gcalf` (nl, el, vi, ru, fr); krok importu w de, nl, vi i en („Already logging workouts in another app? You can add your history from a CSV file.” — razem z `.maestro/59`, `tests/przeplywy.json` NU-15, docs/37); sr krok 2 Pierwszych kroków w formie formalnej. Nowy termin słownika `lokcie_waskie` (zakazane: es/pt „juntos”, ja 肘を狭く).
+- Pytania do native speakerów (zostawione bez zmiany, wpisy `niska` w słowniku): ru/uk — „держи локти узко / тримай лікті вузько” czy „локти собраны, не разводи / лікті зібрані, не розводь”; cs/sk/hr/sr/sl/lt/lv/fi/hu — „łokcie wąsko” dosłownie (cs „úzko”, hu „szűken”, lt „siaurai”, lv „šauri”, fi „kapeasti”) czy „łokcie przy sobie/zebrane” (hu „zárt könyök”, fi „kyynärpäät lähellä toisiaan”); it — „cronologia” czy „storico” (cały plik); ms — „menambahkannya” czy „menambahnya”; bg — „на ръба на стъпало” czy dopisać „на стълбите”.

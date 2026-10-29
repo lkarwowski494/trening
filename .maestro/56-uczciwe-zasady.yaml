@@ -8,7 +8,7 @@
 # Literały (EN z lib/i18n.en.ts):
 #   "Subscription", "Your plan: .*", "Test store: new user, no purchases"            ← components/SubscriptionCard.tsx (tytuł wiersza z dostępem, M1-037 A), app/paywall.tsx (panel tylko w buildzie E2E, bez t())
 #   "Train 5 days a month for free.*"                                        ← nagłówek ekranu zakupu po wygaśnięciu (jak w 21)
-#   "First workout done!", "Awesome, keep training!", "See Pro plans.*"      ← components/FairRulesSheet.tsx
+#   "First workout done!", "Awesome, I'll keep training!", "See Pro plans.*"      ← components/FairRulesSheet.tsx
 #   "Finish", "Finish workout\?", "Session", "Set 1 done.*", "Skip"          ← jak flow 21
 appId: pl.lukasz.trening
 name: Uczciwe zasady — okno po pierwszym treningu
@@ -44,7 +44,7 @@ name: Uczciwe zasady — okno po pierwszym treningu
 - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
 - tapOn: { text: "Finish", below: "Finish workout\\?" }
 - extendedWaitUntil: { visible: "First workout done!", timeout: 30000 }
-- assertVisible: "Awesome, keep training!"
+- assertVisible: "Awesome, I'll keep training!"
 - assertVisible: "See Pro plans.*"
 - assertVisible: { id: "close-modal" }
 - takeScreenshot: 99-uczciwe-zasady

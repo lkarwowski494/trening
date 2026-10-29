@@ -3,6 +3,8 @@
  * Rodzaje (docs/20): dane (każdy błąd ze źródłami przypisany ćwiczeniu gotowej rodziny ma animację albo nazwany wyjątek), niezmienniki (poza błędu nie przenika sprzętu,
  * różni się od poprawnej TYLKO w deklarowanych stawach, ale widocznie), logika (waga rośnie z ruchem, tempo błędu), wygląd (znacznik ✕ z tokenu danger).
  */
+import * as fs from 'fs';
+import * as path from 'path';
 import { CUE_DATA } from '@/lib/cues';
 import { CUE_SETS } from '@/lib/figures/v2/cueSets';
 import {
@@ -26,7 +28,19 @@ describe('definicje błędów', () => {
     for (const e of Object.values(ERRORS)) { expect([e.id, e.cue.length > 0, e.why.length > 10]).toEqual([e.id, true, true]); if (e.kind === 'pose') expect(Object.keys(e.mods).length).toBeGreaterThan(0); }
     expect(ERRORS.jerk.mods.tempo!.downMs).toBeLessThan(TEMPO.downMs); expect(ERRORS.jerk.mods.tempo!.upMs).toBeLessThan(TEMPO.upMs); expect(ERRORS.jerk.affects).toEqual([]);
     expect(CUE_TO_ERROR['sq.mis.kneesIn']).toBe('kneesIn'); expect(CUE_TO_ERROR['sq.mis.heels']).toBe('heels'); expect(CUE_TO_ERROR['mis.roundBack']).toBe('roundBack');
-    expect(CUE_TO_ERROR['bp.mis.arch']).toBe('arch'); expect(CUE_TO_ERROR['mis.barAway']).toBe('barAway'); expect(CUE_TO_ERROR['rdl.knees']).toBe('kneesBent'); expect(CUE_TO_ERROR['mis.jerk']).toBe('jerk');
+    expect(CUE_TO_ERROR['bp.mis.arch']).toBe('arch'); expect(CUE_TO_ERROR['mis.barAway']).toBe('barAway'); expect(CUE_TO_ERROR['rdl.mis.knees']).toBe('kneesBent'); expect(CUE_TO_ERROR['mis.jerk']).toBe('jerk');
+  });
+  test('1.0.1: każdy błąd figury wskazuje opis błędu (rodzina „mis”), nie wskazówkę poprawnej techniki; opis jest w każdym języku (RDL: kolana ugięte jak w przysiadzie)', () => {
+    /* RDL kneesBent wskazywał „rdl.knees” („Kolana tylko lekko ugięte — to nie przysiad”): animacja błędu podpisana zaleceniem zamiast opisem błędu. */
+    for (const e of Object.values(ERRORS)) for (const c of e.cue) expect([e.id, c, /(^|\.)mis\./.test(c)]).toEqual([e.id, c, true]);
+    expect(ERRORS.kneesBent.cue).toEqual(['rdl.mis.knees']); expect(CUE_TO_ERROR['rdl.knees']).toBeUndefined();
+    const dir = path.join(__dirname, '..', 'lib/cues/text');
+    for (const f of fs.readdirSync(dir).filter(x => x.endsWith('.json') && x !== 'es-419.json')) {
+      const d = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as Record<string, string>;
+      expect([f, typeof d['rdl.mis.knees'], typeof d['bp.elbowsMid']]).toEqual([f, 'string', 'string']);
+    }
+    const pl = JSON.parse(fs.readFileSync(path.join(dir, 'pl.json'), 'utf8')) as Record<string, string>;
+    expect(pl['rdl.mis.knees']).not.toBe(pl['rdl.knees']); expect(pl['bp.elbowsMid']).toMatch(/Łokcie/);
   });
   test('słownik deklaracji stawów: każdy błąd deklaruje tylko znane wielkości', () => {
     const KNOWN: Affects[] = ['knee', 'ankle', 'hip', 'spine', 'kneeLat', 'heel', 'pelvis', 'bar', 'shoulder', 'elbow'];
