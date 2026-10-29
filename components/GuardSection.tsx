@@ -29,7 +29,7 @@ function GuardBar({ p }: { p: GuardPart }) {
   const th = useTheme(); const max = 2 * p.goal; const pc = (v: number) => Math.max(0, Math.min(100, (100 * v) / max)); const dw = pc(p.done.total); const pw = Math.max(0, pc(p.total) - dw);
   return (
     <View testID={`gbar-${p.part}`} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ marginTop: 7, marginRight: 46 }}>
-      <View style={{ height: 8, backgroundColor: th.line, borderRadius: 4 }}>
+      <View style={{ height: 8, backgroundColor: th.line, borderRadius: RADIUS.field }}>
         <View style={{ flexDirection: 'row', height: 8, borderRadius: RADIUS.field, overflow: 'hidden' }}>
           <View testID={`gbar-${p.part}-done`} style={{ width: `${dw}%`, backgroundColor: th.accent }} />
           {pw > 0 ? <View testID={`gbar-${p.part}-planned`} style={{ width: `${pw}%`, backgroundColor: mixHex(th.surface, th.accent, 0.38) }} /> : null}
@@ -65,15 +65,15 @@ function GuardRow({ p }: { p: GuardPart }) {
       </Pressable>
       {open ? (
         <View testID={`gdet-${p.part}`} style={{ marginBottom: 8, padding: 10, borderRadius: RADIUS.board, backgroundColor: th.bg, gap: 6 }}>
-          <Muted style={{ fontSize: 13 }}>{t('Wykonane: {text}', { text: setsText(p.done) })}</Muted>
-          {p.planned.total > 0 ? <Muted style={{ fontSize: 13 }}>{t('Zaplanowane: {text} ({days})', { text: setsText(p.planned), days: p.plannedDays.map(k => fmtWeekdayShort(dayOf(k))).join(', ') })}</Muted> : null}
+          <Muted style={{ fontSize: TYPE.footnote.size }}>{t('Wykonane: {text}', { text: setsText(p.done) })}</Muted>
+          {p.planned.total > 0 ? <Muted style={{ fontSize: TYPE.footnote.size }}>{t('Zaplanowane: {text} ({days})', { text: setsText(p.planned), days: p.plannedDays.map(k => fmtWeekdayShort(dayOf(k))).join(', ') })}</Muted> : null}
           {p.compared.length ? (
             <View style={{ gap: 4 }}>
               <Muted style={{ fontSize: 12, ...FW.semibold }}>{t('Porównywane ćwiczenia: tonaż/sesję i ciężar roboczy')}</Muted>
               <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 16 }}><Muted style={{ fontSize: TYPE.caption.size, minWidth: 74, textAlign: 'right' }}>{t('teraz')}</Muted><Muted style={{ fontSize: TYPE.caption.size, minWidth: 74, textAlign: 'right' }}>{t('wcześniej')}</Muted></View>
               {p.compared.map(c => (
                 <View key={c.exerciseId} testID={`gex-${p.part}-${c.exerciseId}`} style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8, borderTopWidth: 1, borderTopColor: th.line, paddingTop: 3 }}>
-                  <Txt style={{ fontSize: 13, flexShrink: 1 }}>{exLabel(c.exerciseId)}</Txt>
+                  <Txt style={{ fontSize: TYPE.footnote.size, flexShrink: 1 }}>{exLabel(c.exerciseId)}</Txt>
                   <View style={{ flexDirection: 'row', gap: 16 }}>
                     <View style={{ minWidth: 74, alignItems: 'flex-end' }}><Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontFamily: F.mono, fontVariant: ['tabular-nums'], fontSize: 12 }}>{monoSafe(fmtVol(c.now.perSession))}</Txt><Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: TYPE.caption.size }}>{fmtW(c.now.weight)}</Muted></View>
                     <View style={{ minWidth: 74, alignItems: 'flex-end' }}><Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontFamily: F.mono, fontVariant: ['tabular-nums'], fontSize: 12 }}>{monoSafe(fmtVol(c.before.perSession))}</Txt><Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: TYPE.caption.size }}>{fmtW(c.before.weight)}</Muted></View>
@@ -107,7 +107,7 @@ export function GuardSection({ onLayoutY }: { onLayoutY?: (y: number) => void })
         t('Ten tydzień = wykonane + plan. Plan bez ciężarów (≥) — bez porównania. Tydzień deloadu nie jest porównywany.'),
         [t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK }), t('Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).')].join(' '),
       ]}>{t('Strażnik progresji')}</H2>
-      {!trained ? <Muted style={{ fontSize: 13 }}>{t('Brak serii w tym tygodniu.')}</Muted> : <>
+      {!trained ? <Muted style={{ fontSize: TYPE.footnote.size }}>{t('Brak serii w tym tygodniu.')}</Muted> : <>
         <GuardMap parts={g.parts} label={x.label} testID="guard-map-pg" />
         {x.deload ? <Muted style={{ textAlign: 'center', ...FW.semibold, marginTop: 8 }}>{x.deload}</Muted> : <GuardLegend parts={g.parts} testID="guard-legend-pg" />}
         {x.compared ? <Muted testID="guard-compared-pg" style={{ fontSize: 12, textAlign: 'center', marginTop: 6 }}>{x.compared}</Muted> : null}
