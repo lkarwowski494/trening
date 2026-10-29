@@ -49,7 +49,7 @@ export function WeekStats() {
         {x.less ? <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6 }}><View style={{ marginTop: 2 }}><SignChip dir="down" size={16} /></View><Text testID="guard-less" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...FW.regular, fontSize: TYPE.footnote.size, lineHeight: 19, flexShrink: 1 }}>{x.less}</Text></View> : null}
       </View> : null}
       <Pressable testID="guard-more" accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Szczegóły w Postępach')} accessibilityHint={t('Otwiera Postępy.')} onPress={open} style={({ pressed }: { pressed: boolean }) => ({ minHeight: 44, marginTop: 10, borderTopWidth: 1, borderTopColor: th.line, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', opacity: pressed ? 0.7 : 1 })}>
-        <Txt maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...FW.semibold, fontSize: TYPE.callout.size, color: th.accent }}>{t('Szczegóły w Postępach')}</Txt><Txt maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.accent, fontSize: 20 }}>›</Txt>
+        <Txt maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...FW.semibold, fontSize: TYPE.callout.size, color: th.accent }}>{t('Szczegóły w Postępach')}</Txt><Txt maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.accent, fontSize: TYPE.navTitle.size }}>›</Txt>
       </Pressable>
     </View> : <Muted testID="week-muscles" style={{ fontSize: TYPE.footnote.size, marginTop: 8 }}>{t('Brak serii w tym tygodniu.')}</Muted>}
     {/* „Ostatni trening” usunięty z ekranu głównego (właściciel 09.10.2026 ok. 16:20): informacja zostaje w arkuszu „Inny trening” („Powtórz ostatni”: nazwa · data), w Historii i Kalendarzu */}
@@ -74,7 +74,7 @@ export function ProgressTiles() {
             accessibilityLabel={t('{title} ({sub}): objętość {v}, {p}; serie {s}, {d}', { title, sub, v: volA11y, p: vp, s: c.total.sets, d: sp })}
             onPress={once(() => router.push(`/progression?c=${kind}`))} style={({ pressed }) => ({ padding: 12, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, opacity: pressed ? 0.7 : 1, gap: 2 })}>
             <Muted style={{ fontSize: 12, ...FW.semibold }}>{title}</Muted>
-            <Muted style={{ fontSize: 11 }}>{sub}</Muted>
+            <Muted style={{ fontSize: TYPE.caption.size }}>{sub}</Muted>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 16, rowGap: 2, marginTop: 4 }}>
               {/* osobne teksty: „brak poprzedniego okresu” to zdanie — limit powiększenia TEXT_SCALE_MAX (A11N-04), liczby 1,4 */}
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 6 }}><Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: FONT.title700, fontSize: TYPE.stepLabel.size }}>{vol}</Txt><Muted style={{ fontSize: TYPE.footnote.size }}>{vp}</Muted></View>
