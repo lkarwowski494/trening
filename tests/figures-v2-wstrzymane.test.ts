@@ -61,3 +61,47 @@ describe('reaudyt pętli 2 (06-tresci-701, 28.10.2026): „Technika ›” nie p
     expect(hasTechnique({ lib: true, libKey: 'Smith Machine Close-Grip Bench Press' })).toBe(true);
   });
 });
+
+describe('martwe ciągi z podłogi wstrzymane w 1.0 (decyzja agenta w nocy 29.10.2026, do weta właściciela; recenzja 1.1 hinge B1 WYSOKIE)', () => {
+  const DL = ['Deadlift (sztanga)', 'Axle Deadlift', 'Deadlift with Bands', 'Deadlift with Chains', 'Deficit Deadlift', 'Rack Pull', 'Rack Pull with Bands', 'Reverse Band Deadlift', 'Cable Deadlift', 'Clean Deadlift', 'Snatch Deadlift'];
+  const React = require('react') as typeof import('react');
+  const { render } = require('@testing-library/react-native') as typeof import('@testing-library/react-native');
+  const { ExerciseCues } = require('@/components/ExerciseCues') as typeof import('@/components/ExerciseCues');
+  const { hasTechnique } = require('@/lib/figures/v2/ui') as typeof import('@/lib/figures/v2/ui');
+  const { applyLang } = require('@/lib/i18n') as typeof import('@/lib/i18n');
+  beforeAll(() => applyLang('pl'));
+  test('wszystkie 11 bez rysunku (shownFigureSpec), z powodem; silnik zostaje dla poprawki w 1.0.1', () => {
+    for (const k of DL) {
+      expect([k, shownFigureSpec(k)]).toEqual([k, null]); expect([k, figureSpec(k) !== null]).toEqual([k, true]);
+      expect([k, (V2_WSTRZYMANE[k] ?? '').length > 20]).toEqual([k, true]);
+    }
+  });
+  test('karta zostaje z wskazówkami tekstowymi (sekcja „Technika” bez rysunku)', () => {
+    expect(hasTechnique({ lib: true, libKey: 'Deadlift (sztanga)' })).toBe(true);
+    const r = render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: 'Deadlift (sztanga)' }, initialOpen: true }));
+    expect(r.getByTestId('exercise-cues')).toBeTruthy(); expect(r.queryByTestId('exercise-figure-v2')).toBeNull(); expect(r.queryByTestId('exercise-figure')).toBeNull();
+  });
+  test('kontrast: martwy ciąg rumuński i sumo nadal z rysunkiem', () => {
+    expect(shownFigureSpec('RDL (sztanga)')).not.toBeNull(); expect(shownFigureSpec('Sumo Deadlift')).not.toBeNull();
+  });
+});
+
+describe('wyciskania i przysiady wstrzymane w 1.0 (decyzja agenta w nocy 29.10.2026, do weta właściciela; recenzje bench_press i squat 1.1 — WYSOKIE)', () => {
+  const K = ['Band Bench Press', 'Chain Press', 'Close Grip Bench Press', 'Zercher Squat', 'Sumo Squat (hantel)'];
+  test('wszystkie bez rysunku (shownFigureSpec), z powodem; silnik zostaje', () => {
+    for (const k of K) {
+      expect([k, shownFigureSpec(k)]).toEqual([k, null]); expect([k, figureSpec(k) !== null]).toEqual([k, true]);
+      expect([k, (V2_WSTRZYMANE[k] ?? '').length > 20]).toEqual([k, true]);
+    }
+  });
+  test('odtworzenie wad (silnik na main 9b76ed2): Chain Press = Bench Press with Chains; Zercher na dole ≥ 15 cm od łokcia; Sumo Squat (hantel) ≥ 20 cm w poziomie', () => {
+    expect(JSON.stringify(frameAt(figureSpec('Chain Press')!, 0.5))).toBe(JSON.stringify(frameAt(figureSpec('Bench Press with Chains')!, 0.5)));
+    const z = frameAt(figureSpec('Zercher Squat')!, 1); const el = z.sk.arms.R.elbow;
+    expect(Math.hypot(z.info.load[0] - el[0], z.info.load[1] - el[1])).toBeGreaterThan(15);
+    const a = frameAt(figureSpec('Sumo Squat (hantel)')!, 0).info.load, b = frameAt(figureSpec('Sumo Squat (hantel)')!, 1).info.load;
+    expect(Math.abs(a[0] - b[0])).toBeGreaterThan(20);
+  });
+  test('kontrast: Back Squat (zrzut sklepu „ćwiczenie”) i Bench Press (sztanga) nadal z rysunkiem', () => {
+    expect(shownFigureSpec('Back Squat')).not.toBeNull(); expect(shownFigureSpec('Bench Press (sztanga)')).not.toBeNull();
+  });
+});
