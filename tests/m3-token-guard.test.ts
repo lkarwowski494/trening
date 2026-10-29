@@ -42,7 +42,7 @@ describe('liczbowe fontSize / borderRadius poza tokenami (lista wyjątków tylko
   });
 });
 
-/* 101-21 (1.0.1, decyzja D6 = B, PLAN-1-0-1): literały fontSize 12/14 i borderRadius 10/12/2 w Dashboard i GuardSection → tokeny o DOKŁADNIE dzisiejszych wartościach
+/* 101-21 (1.0.1, decyzja właściciela D6 = B z 29.10.2026, PLAN-1-0-1): literały fontSize 12/14 i borderRadius 10/12/2 w Dashboard i GuardSection → tokeny o DOKŁADNIE dzisiejszych wartościach
  * (render bez zmian: tests/tokeny-odcisk.test.tsx, odcisk niezmieniony). Ujednolicenie ról (jeden rozmiar „podpisu”, jeden promień kafelka) — 1.1. */
 describe('Dashboard i GuardSection: rozmiary i promienie z tokenów o dzisiejszych wartościach (101-21)', () => {
   const tk = require('../lib/theme');
