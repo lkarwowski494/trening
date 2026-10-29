@@ -89,8 +89,8 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
 });
 
 describe('ekran: figura ukryta po recenzji — sekcja „Technika” bez rysunku, wskazówki zostają', () => {
-  /* 29.10.2026 (1.0.1): Push Press po recenzji niezależnej — wyswietlana; ukryte zostają Pendlay Row i Reverse Lunge */
-  test.each(['Pendlay Row', 'Reverse Lunge'])('%s', k => {
+  /* 29.10.2026 (1.0.1): Push Press i Pendlay Row po recenzji niezależnej — wyswietlana; ukryty zostaje Reverse Lunge */
+  test.each(['Reverse Lunge'])('%s', k => {
     expect(REC.v1[k].werdykt).toBe('ukryta');
     render(<ExerciseCues exercise={lib(k)} initialOpen />);
     expect(screen.queryByTestId('exercise-figure')).toBeNull();

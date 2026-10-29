@@ -60,10 +60,13 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | Hofmann i in. (Cybex Research Institute) | Hofmann i in. (Cybex Research Institute) — badanie, Int J Exerc Sci 2014 (abstrakt; instytut producenta sprzętu) | 3 | badanie (czasopismo recenzowane) |
 | Physitrack | Physitrack — Exercise library (us.physitrack.com, biblioteka ćwiczeń domowych dla fizjoterapeutów) | 4 | serwis specjalistyczny |
 | The Prehab Guys | The Prehab Guys — biblioteka ćwiczeń (theprehabguys.com, fizjoterapeuci) | 4 | serwis specjalistyczny |
+| BarBend | BarBend — Exercise Guides (barbend.com; autor CSCS, weryfikacja NASM-CPT i USAW-L2) | 4 | serwis specjalistyczny |
+| Breaking Muscle | Breaking Muscle — Exercise Guides (breakingmuscle.com; serwis specjalistyczny) | 4 | serwis specjalistyczny |
+| Coach | Coach (coachweb.com) — How To, ekspert z akredytacją NSCA | 4 | serwis specjalistyczny |
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 102; zdań (z powtórzeniami między ćwiczeniami): 457; unikalnych zdań: 314; źródeł: 233.
+- Ćwiczenia ze wskazówkami: 102; zdań (z powtórzeniami między ćwiczeniami): 458; unikalnych zdań: 318; źródeł: 236.
 - Ćwiczenia bazowe bez wskazówek (otwarte): 22.
 - Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 20 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge.
 
@@ -198,20 +201,21 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Ustawienie**
 
-- Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Preparation; Comments („Also known as Pendlay Row”)) `row.hinge`
+- Sztanga leży na podłodze. Pochyl tułów prawie równolegle do podłogi, kolana lekko ugięte, plecy proste. — BarBend: [Pendlay Row](https://barbend.com/Pendlay-row/) (How to, Step 1 (barbell on the floor); FAQ (back roughly parallel to the floor)); Breaking Muscle: [Pendlay Row](https://breakingmuscle.com/pendlay-row/) (Step 1 (slight bend in the knees, upper body parallel to the ground)); Coach: [How To Do The Pendlay Row](https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row) (How To (knees slightly bent, neutral spine; kąt tułowia w źródle 20–30° — część wspólna: prawie równolegle)) `pendlay.setup`
 - Chwyć sztangę nachwytem, na szerokość barków lub szerzej. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Preparation) `row.bbGrip`
 
 **Ruch**
 
-- Przyciągnij sztangę do brzucha, potem opuść ją do pełnego wyprostu rąk. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Execution) `row.bbPull`
+- Dynamicznie przyciągnij sztangę do dolnej części klatki albo brzucha, potem odłóż ją na podłogę. — BarBend: [Pendlay Row](https://barbend.com/Pendlay-row/) (How to, Step 2 (explosively pull the barbell to the base of the chest)); Breaking Muscle: [Pendlay Row](https://breakingmuscle.com/pendlay-row/) (Step 2 (explosive pull; bar touches lower chest or upper abdomen, then returns to the ground)); Coach: [How To Do The Pendlay Row](https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row) (How To (explosively pull the bar towards the stomach)) `pendlay.pull`
 
 **Wskazówki**
 
-- Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Comments) `hinge.back`
-- Na dole wyprostuj ręce do końca, barki swobodnie w dół. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Execution) `row.fullStretch`
+- Każde powtórzenie zaczynaj od sztangi nieruchomej na podłodze. — BarBend: [Pendlay Row](https://barbend.com/Pendlay-row/) (Benefits (each rep is done from a dead stop on the floor)); Breaking Muscle: [Pendlay Row](https://breakingmuscle.com/pendlay-row/) (Step 2 (complete rest on the ground before the next rep); Mistakes — Bouncing Off the Floor) `pendlay.floor`
+- Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Comments); Coach: [How To Do The Pendlay Row](https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row) (How To (neutral spine, hinged at the hips with knees slightly bent)) `hinge.back`
 
 **Częste błędy**
 
+- Unoszenie tułowia przy przyciąganiu. — BarBend: [Pendlay Row](https://barbend.com/Pendlay-row/) (Common Mistakes — Back Angle (rising during the pull)); Breaking Muscle: [Pendlay Row](https://breakingmuscle.com/pendlay-row/) (Mistakes — Moving Your Upper Body (maintain a strict parallel position)) `pendlay.mis.torso`
 - Zaokrąglanie pleców, żeby dociągnąć ciężar. — ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Comments); ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis) `mis.roundBack`
 
 ### One Arm Row (hantle)
@@ -1821,10 +1825,13 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | ace-84 | ACE | Trx Reg Back Row (#84) | https://www.acefitness.org/resources/everyone/exercise-library/84/trx-reg-back-row/ | — |
 | aceblog-5881 | ACE | Reap the Benefits of Rowing With 3 Fast and Efficient Workouts (blog, 2016) | https://www.acefitness.org/resources/everyone/blog/5881/reap-the-benefits-of-rowing-with-3-fast-and-efficient-workouts/ | — |
 | acecert-7403 | ACE | Understanding the Barbell Hip Thrust (ACE Certified, XI 2019) | https://www.acefitness.org/continuing-education/certified/november-2019/7403/understanding-the-barbell-hip-thrust/ | — |
+| barbend-pendlay-row | BarBend | Pendlay Row | https://barbend.com/Pendlay-row/ | — |
 | berling-2006 | Berling i in. (University of Wisconsin–La Crosse) | …handrail support on oxygen uptake during steady-state treadmill exercise, J Cardiopulm Rehabil 2006 (abstrakt, Europe PMC) | https://europepmc.org/article/MED/17135860 | — |
 | bini-2011 | Bini, Hume, Croft (Auckland University of Technology) | Effects of bicycle saddle height on knee injury risk and cycling performance, Sports Med 2011 (abstrakt, Europe PMC) | https://europepmc.org/article/MED/21615188 | — |
+| breakingmuscle-pendlay-row | Breaking Muscle | Pendlay Row | https://breakingmuscle.com/pendlay-row/ | — |
 | c2-bikeerg-setup | Concept2 | Setting Up the BikeErg | https://www.concept2.nl/en/node/8909 | — |
 | c2-technique | Concept2 | Indoor Rowing Technique | https://www.concept2.com/training/rowing-technique | — |
+| coach-pendlay-row | Coach | How To Do The Pendlay Row | https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row | — |
 | eleiko-65944cf0 | Eleiko | Horizontal Cable Press – Dual Cable, Standing | https://eleiko.inspire360.com/resource/65944cf0a15f04fdb30a8c1b | — |
 | eleiko-659463af | Eleiko | Overhead Press – Seated, 2 DB | https://eleiko.inspire360.com/resource/659463af0ba5d8897900b853 | — |
 | eleiko-659842f4 | Eleiko | Dual Cable Straight Arm Pulldown – Straight Bar | https://eleiko.inspire360.com/resource/659842f49607aaa1f400b866 | — |

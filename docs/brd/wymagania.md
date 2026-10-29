@@ -466,6 +466,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy rysunek odtwarza ruch
     - Wtedy JM Press ma łokcie wysoko (ramię lekko ku stopom na dole, ok. 30–40° od pionu przy stałym chwycie — uproszczenie zgodne z J1–J4, recenzja r3 28.10.2026, odwiedzenie z góry ok. 45° stałe, sztanga ku szyi), a Decline Close-Grip Bench To Skull Crusher pokazuje fazę prostowania (ramię nieruchome 0–15° ku głowie, łokcie na szerokość barków; faza wyciskania pominięta — uproszczenie); dłonie stałe na gryfie; karty tych dwóch ćwiczeń mają własne wskazówki o łokciach (jm.elbows, dcgsk.elbows) zamiast „blisko tułowia”
     - Wtedy przedramię na dole jest ≤ 10° od pionu, zgięcie łokcia ≤ 149°, deska i bolce stojaka stoją tam, gdzie zatrzymuje się gryf, zaczepy gumy i linki stoją w miejscu, ślad toru przy hantlu leży przy hantlu, Cable Pull Through ma kolana ≤ 27° i tułów 50–80°, tułów na wyproście nie odchyla się do tyłu
+  - Scenariusz: Rysunek Pendlay Row ma własne cechy ćwiczenia (wersja 1.0.1, M1-audytor-generalny-047; test `tests/figury-pendlay.test.ts`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Pendlay Row, a rysunek i karta mają aktualną recenzję niezależną
+    - Gdy rysunek odtwarza ruch
+    - Wtedy sztanga startuje z podłogi w każdym powtórzeniu (dolna krawędź talerza przy podłodze, ±0,5 j.), tułów jest prawie równolegle do podłogi (≤ 15° od poziomu, wyraźnie niżej niż w wiosłowaniu sztangą w opadzie) i nie unosi się w czasie ruchu (zmiana ≤ 5°), kolana są lekko ugięte, stopy nie ślizgają się (≤ 2 j.), a sztanga idzie prawie pionowo do dolnej części klatki lub górnej części brzucha; karta mówi o sztandze leżącej na podłodze, dynamicznym przyciągnięciu, starcie od nieruchomej sztangi i błędzie unoszenia tułowia (bez liczby kąta)
   - Scenariusz: Usunięcie własnego ćwiczenia z podglądu (ZM-04, W2 a, 21.10.2026)
     - Zakładając, że użytkownik ogląda podgląd ćwiczenia własnego
     - Gdy stuka „Usuń z biblioteki” na dole ekranu

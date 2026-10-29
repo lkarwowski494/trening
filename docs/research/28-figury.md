@@ -382,16 +382,22 @@ Widok: z boku; kotwica: przód stopy; na wzór: Bent Over Row (sztanga); przyrz�
 
 ### Pendlay Row
 
-Widok: z boku; kotwica: przód stopy; na wzór: Bent Over Row (sztanga); przyrządy: plate.
+Widok: z boku; kotwica: przód stopy; przyrządy: plate.
 
-- **pozycja wyjściowa** — t 30, hip 95, knee 20, sh 60, el 0
-  - zgięcie łokcia: 0° (±4°) ← `row.fullStretch`: „Na dole wyprostuj ręce do końca, barki swobodnie w dół.”
-  - zgięcie kolana: 20° (±15°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
-- **pozycja końcowa** — t 30, hip 95, knee 20, sh -40, el 109
-  - dłoń przy: biodro + [9, 7] w układzie tułowia (≤ 6) ← `row.bbPull`: „Przyciągnij sztangę do brzucha, potem opuść ją do pełnego wyprostu rąk.”
-  - zgięcie kolana: 20° (±15°) ← `row.hinge`: „Pochyl tułów w biodrach przy lekko ugiętych kolanach; plecy proste.”
-- Uproszczenie ilustracyjne: pozostałe kąty. Ta sama figura co wiosłowanie sztangą w opadzie — wskazówki etapu 1 dla obu ćwiczeń są takie same (cechy Pendlaya, np. start z podłogi, nie wynikają z nich).
-- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-27, docs/research/figury-recenzja.json): Figura identyczna z wiosłowaniem sztangą w opadzie (tułów ok. 30° nad poziomem, sztanga zawieszona nad podłogą) — brak cechy rozpoznawczej nazwy (bramka 4, pkt 1 listy recenzenta); wskazówki karty też nie opisują startu z podłogi.
+- **pozycja wyjściowa** — t 8, hip 126.1, knee 30, sh 71.4, el 0
+  - dłoń tuż nad poziomem 13 (do 0.5) ← `pendlay.floor`: „Każde powtórzenie zaczynaj od sztangi nieruchomej na podłodze.”
+  - odcinek biodro–bark: 8° do poziomu (±7°) ← `pendlay.setup`: „Sztanga leży na podłodze. Pochyl tułów prawie równolegle do podłogi, kolana lekko ugięte, plecy proste.”
+  - zgięcie kolana: 30° (±10°) ← `pendlay.setup`: „Sztanga leży na podłodze. Pochyl tułów prawie równolegle do podłogi, kolana lekko ugięte, plecy proste.”
+- **w trakcie** — t 8, hip 126.1, knee 30, sh 23.5, el 79.3
+  - odcinek biodro–bark: 8° do poziomu (±7°) ← `pendlay.setup`: „Sztanga leży na podłodze. Pochyl tułów prawie równolegle do podłogi, kolana lekko ugięte, plecy proste.”
+  - zgięcie kolana: 30° (±10°) ← `pendlay.setup`: „Sztanga leży na podłodze. Pochyl tułów prawie równolegle do podłogi, kolana lekko ugięte, plecy proste.”
+- **w trakcie (druga)** — t 8, hip 126.1, knee 30, sh -5.7, el 112.7
+  - odcinek biodro–bark: 8° do poziomu (±7°) ← `pendlay.setup`: „Sztanga leży na podłodze. Pochyl tułów prawie równolegle do podłogi, kolana lekko ugięte, plecy proste.”
+  - zgięcie kolana: 30° (±10°) ← `pendlay.setup`: „Sztanga leży na podłodze. Pochyl tułów prawie równolegle do podłogi, kolana lekko ugięte, plecy proste.”
+- **pozycja końcowa** — t 8, hip 126.1, knee 30, sh -41.6, el 135.8
+  - dłoń przy: biodro + [18, 8] w układzie tułowia (≤ 6) ← `pendlay.pull`: „Dynamicznie przyciągnij sztangę do dolnej części klatki albo brzucha, potem odłóż ją na podłogę.”
+  - odcinek biodro–bark: 8° do poziomu (±7°) ← `pendlay.setup`: „Sztanga leży na podłodze. Pochyl tułów prawie równolegle do podłogi, kolana lekko ugięte, plecy proste.”
+- Uproszczenie ilustracyjne: pozostałe kąty. Cechy rozpoznawcze: sztanga startuje z podłogi w każdym powtórzeniu (talerz stoi na podłodze, wysokość talerza = jego promień — konwencja rysunkowa), tułów prawie równolegle do podłogi i nieruchomy (kąt ilustracyjny — źródła mówią „prawie równolegle”, bez liczby), kolana lekko ugięte, sztanga idzie prawie pionowo do dolnej części klatki lub górnej części brzucha. Pozycje „w trakcie 1” i „w trakcie 2” to droga sztangi w górę przy tym samym tułowiu; pętla wraca na podłogę (martwy punkt).
 
 ### T-Bar Row
 

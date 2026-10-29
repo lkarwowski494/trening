@@ -225,12 +225,15 @@
   },
   "Pendlay Row": {
    "rodzina": "row",
-   "werdykt": "ukryta",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "ff4b2a547df5",
-   "wada": "Figura identyczna z wiosłowaniem sztangą w opadzie (tułów ok. 30° nad poziomem, sztanga zawieszona nad podłogą) — brak cechy rozpoznawczej nazwy (bramka 4, pkt 1 listy recenzenta); wskazówki karty też nie opisują startu z podłogi.",
-   "poprawka": "Wskazówka i poza ze startem z podłogi przy każdym powtórzeniu i tułowiem prawie równoległym do podłogi — po potwierdzeniu w 2 zgodnych źródłach szczebla 4 (strony źródłowe niedostępne 27.10, HTTP 403); do tego czasu bez rysunku, wskazówki zostają."
+   "werdykt": "wyswietlana",
+   "data": "2026-10-29",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050), 29.10.2026; poprzednia recenzja „ukryta”: 06-tresci, 27.10.2026",
+   "sha": "74a518fe67a5",
+   "stan": "zrecenzowana niezależnie (bramka 4, 1.0.1: nowa figura v1 — 4 pozycje, tułów prawie poziomo i nieruchomy, start ze sztangą na podłodze)",
+   "autor": "programista r2/pendlay",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "arkusz PNG klatek kluczowych (start, mid, mid2, end), póz pośrednich 0,25/0,5/0,75 każdego przejścia i nałożonego śladu toru punktów (L-050) obok Bent Over Row; pomiar modułem geometrii aplikacji na 4 klatkach i 19 pozach pośrednich każdego przejścia: zakres stawów wobec rom (0 przekroczeń), dolna krawędź talerza na starcie 0,02 j., talerz nigdy pod podłogą, ślizg stóp 0 j., tułów stale 8°, tor gryfu 4,1 j. w poziomie na 27,8 j. w pionie, gryf zawsze przed linią goleni, w końcu 8 j. przed linią pleców w 60% długości tułowia",
+   "uwagi": "Cecha rozpoznawcza wobec wiosłowania w opadzie: tułów prawie poziomo (8°, uproszczenie ilustracyjne; źródła: „równolegle”/„prawie równolegle”, jedno 20–30°) i sztanga z podłogi w każdym powtórzeniu (pętla wraca do talerza na podłodze). Nachodzenie talerza na tułów w końcu — widok z boku, talerz z boku ciała, gryf poza kreską tułowia (jak w wiosłowaniu w opadzie). Podudzie odchylone do tyłu ok. 14° — konwencja rodziny row (to samo w wiosłowaniu w opadzie), uwaga do backlogu rodziny."
   },
   "T-Bar Row": {
    "rodzina": "row",
@@ -962,13 +965,14 @@
   },
   "Pendlay Row": {
    "werdykt": "wyswietlana",
-   "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "60840343dff9",
-   "uwagi": "Treść karty = wiosłowanie sztangą w opadzie (przeczytane źródło); nie przeczy ćwiczeniu, ale nie opisuje jego cechy (start z podłogi przy każdym powtórzeniu) — uwaga P2, figura nadal ukryta (wpis v1). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (wg rejestru „Also known as Pendlay Row”)."
+   "data": "2026-10-29",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty 1.0.1: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 29.10.2026)",
+   "autor": "programista r2/pendlay",
+   "kto": "audytor — recenzja niezależna treści karty (L-047), 29.10.2026; poprzednia wersja (skrót 60840343dff9): 06-tresci, 28.10.2026",
+   "sha": "8ed7ee45c7ed",
+   "uwagi": "Karta lepsza od 1.0 (tam treść wiosłowania w opadzie bez cech Pendlaya). Wszystkie zdania pendlay.* mają ≥ 2 przeczytane źródła szczebla 4 z różnych organizacji; bez liczb i nazw źródeł. Warunek przed wpisem: EN pendlay.floor przeredagowane (było 2 wspólne 5-gramy z BarBend, „a dead stop on the floor”); propozycja „Begin each rep with the bar resting motionless on the floor.” — 0 wspólnych 5-gramów. PL „do dolnej części klatki albo brzucha” nieco szersze niż EN — zgodne ze źródłem (w stronę brzucha).",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "cytaty z rejestru data/zrodla/cues.json porównane dosłownie z tekstem stron BarBend, Breaking Muscle i Coach pobranych 29.10.2026; pomiar podobieństwa EN (najdłuższy wspólny ciąg słów i wspólne 5-gramy, docs/09 sekcja G) dla 7 zdań karty; przegląd przekładów pl, en, de, es, fr, ja"
   },
   "Pistol Squat": {
    "werdykt": "wyswietlana",
