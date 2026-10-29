@@ -6,12 +6,14 @@
  * pauza WCAG 2.2.2, etykieta VoiceOver), języki (etykiety w 26 językach), zrzut SVG kilku ćwiczeń, dokument (--check, verify).
  */
 import React from 'react';
+import * as fs from 'fs';
+import * as path from 'path';
 import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
 import { FIG_DATA, figureFor, figureByKey, figureLabel, frameLabel, figureFrames, figureAt, toSvg, svgPath } from '@/lib/figures';
 import {
   SEG, ANIM, STROKE, PROP_R, side, norm, rawPoints, posePoints, jointAngles, toHorizontal, angleAt, lerpPose, lerpPt, loopAt, loopMs,
-  resolveFigure, framePoints, evalCheck, FRAME_ORDER, shapes, bounds, poseBetween, type Figure, type SidePose, type Pose, type Points, type Check, type Shape,
+  resolveFigure, framePoints, evalCheck, FRAME_ORDER, shapes, bounds, poseBetween, type Figure, type FigDef, type SidePose, type Pose, type Points, type Check, type Shape,
 } from '@/lib/figures/geom';
 import { CUE_DATA, CUE_SECTIONS, cueText } from '@/lib/cues';
 import { ExerciseFigure, useReduceMotion } from '@/components/ExerciseFigure';
@@ -308,6 +310,26 @@ describe('komponent ExerciseFigure', () => {
     expect(screen.toJSON()).toBeNull();
     render(<ExerciseFigure exercise={{ lib: false }} />);
     expect(screen.toJSON()).toBeNull();
+  });
+  test('cztery pozycje (Ogranicz ruch): siatka 2×2 w kolejności start, mid, mid2, end; podpisy „W trakcie 1/2”, pętla 4 pozycji dłuższa niż 5 s (pauza WCAG); przy trzech pozycjach bez numerów', async () => {
+    /* Figury 4-pozycyjne są dziś ukryte do recenzji niezależnej (docs/research/figury-recenzja.json) — wstrzykujemy Push Press z danych źródłowych na czas testu. */
+    const full = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/zrodla/figures.json'), 'utf8')).exercises as Record<string, FigDef>;
+    const had = Object.prototype.hasOwnProperty.call(FIG_DATA.exercises, 'Push Press'); const prev = FIG_DATA.exercises['Push Press'];
+    FIG_DATA.exercises['Push Press'] = full['Push Press'];
+    try {
+      expect(FRAME_ORDER[4]).toEqual(['start', 'mid', 'mid2', 'end']);
+      setReduce(true);
+      render(<ExerciseFigure exercise={lib('Push Press')} />); await flush();
+      const st = screen.getByTestId('exercise-figure-static');
+      const flat = RN.StyleSheet.flatten(st.props.style) as { flexWrap?: string; flexDirection?: string };
+      expect([flat.flexDirection, flat.flexWrap]).toEqual(['row', 'wrap']);
+      for (const n of ['start', 'mid', 'mid2', 'end']) expect(screen.getByTestId(`exercise-figure-frame-${n}`)).toBeTruthy();
+      expect(screen.getAllByTestId(/^exercise-figure-frame-/).map(x => x.props.testID)).toEqual(['start', 'mid', 'mid2', 'end'].map(n => `exercise-figure-frame-${n}`));
+      expect(screen.getByText('Pozycja wyjściowa')).toBeTruthy(); expect(screen.getByText('W trakcie 1')).toBeTruthy(); expect(screen.getByText('W trakcie 2')).toBeTruthy(); expect(screen.getByText('Pozycja końcowa')).toBeTruthy();
+      expect(screen.queryByText('W trakcie')).toBeNull();
+      expect([frameLabel('mid', 4), frameLabel('mid2', 4), frameLabel('mid', 3)]).toEqual(['W trakcie 1', 'W trakcie 2', 'W trakcie']);
+      expect(loopMs(4)).toBeGreaterThan(5000);
+    } finally { if (had) FIG_DATA.exercises['Push Press'] = prev; else delete FIG_DATA.exercises['Push Press']; }
   });
   test('VoiceOver: jeden obraz z opisem ruchu; po angielsku etykiety w języku interfejsu', async () => {
     setReduce(true);
