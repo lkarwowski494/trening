@@ -33,10 +33,25 @@ export function figureSpec(key: string): FigureSpec | null {
   return { key, family, variant, views: fam.views, static: variant.family === 'squat' && !!variant.static, lowerFirst };
 }
 /** Ćwiczenia z wariantem, którego rysunek nie jest pokazywany w aplikacji (karta bez rysunku, wskazówki zostają) — ćwiczenie → powód. Silnik i testy geometrii nadal je liczą. */
+const DL_ODSTEP = 'gryf nad kolanem do 8 cm przed udami (tor po #81) — przeczy wskazówce dl.close „blisko nóg”; nowy ruch kolan w rigu hinge w 1.0.1 (docs/21)';
 export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
   /* decyzja agenta w nocy 28/29.10.2026 (tryb nocny właściciela, do weta rano; docs/18): rysunek przeczy karcie „łokcie blisko tułowia” — poprawka rigu w 1.0.1 */
   'JM Press': 'łokieć na dole ok. 25 cm za barkiem w stronę głowy, w połowie ruchu na boki — przeczy wskazówce cgbp.elbows; poprawka rigu w 1.0.1 (docs/21)',
   'Decline Close-Grip Bench To Skull Crusher': 'łokieć na dole ok. 25 cm za barkiem w stronę głowy, w połowie ruchu na boki — przeczy wskazówce cgbp.elbows; poprawka rigu w 1.0.1 (docs/21)',
+  /* decyzja agenta w nocy 29.10.2026 (tryb nocny właściciela, do weta rano; docs/18): po naprawie toru (#81) gryf odrywa się od ud nad kolanem do 8 cm
+   * (recenzja 1.1 hinge B1 WYSOKIE, pomiar na main 3e6d2ed) — przeczy wskazówce dl.close; przy ≤ 1 zmianie kierunku toru i starcie przy goleniach odstęp ≥ 3,7 cm
+   * wynika z ruchu kolan w rigu (kolano idzie za gryfem), więc poprawka to nowy ruch kolan w 1.0.1 (docs/21). Wskazówki tekstowe karty zostają. */
+  'Deadlift (sztanga)': DL_ODSTEP,
+  'Axle Deadlift': DL_ODSTEP,
+  'Deadlift with Bands': DL_ODSTEP,
+  'Deadlift with Chains': DL_ODSTEP,
+  'Deficit Deadlift': DL_ODSTEP,
+  'Rack Pull': DL_ODSTEP,
+  'Rack Pull with Bands': DL_ODSTEP,
+  'Reverse Band Deadlift': DL_ODSTEP,
+  'Cable Deadlift': DL_ODSTEP,
+  'Clean Deadlift': DL_ODSTEP,
+  'Snatch Deadlift': DL_ODSTEP,
 };
 /** Figura pokazywana w aplikacji: jak figureSpec, bez wstrzymanych (V2_WSTRZYMANE). */
 export function shownFigureSpec(key: string): FigureSpec | null {
