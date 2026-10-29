@@ -144,7 +144,7 @@ export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
   /* reguła pochylenia podudzia w chwili uu: krzywa kolan (p.knees) albo reguła ze zgięcia kolana (p.shin); błąd „kolana jak w przysiadzie” miesza ją z regułą błędu */
   const ruleAt = (uu: number): ShinRule => {
     if (!p.knees) return p.shin;
-    const sg = p.knees.s[0] + (p.knees.s[1] - p.knees.s[0]) * Math.pow(ease(uu), p.knees.back ?? 1); const path: ShinRule = { stand: sg, perKnee: 0, max: 99 };
+    const sg = p.knees.s[0] + (p.knees.s[1] - p.knees.s[0]) * ease(Math.min(1, uu / (p.knees.back ?? 1))); const path: ShinRule = { stand: sg, perKnee: 0, max: 99 };
     return fs ? { stand: path.stand + (p.shin.stand - path.stand) * fw, perKnee: p.shin.perKnee * fw, max: path.max + (p.shin.max - path.max) * fw } : path;
   };
   const ankY = BODY.ankleH + (p.platform ?? 0); const ankles: Record<'R' | 'L', V3> = { R: [0, ankY, p.stance], L: [0, ankY, -p.stance] };

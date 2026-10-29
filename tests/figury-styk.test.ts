@@ -82,8 +82,8 @@ describe('101-02 (L-056): martwe ciągi z podłogi — strażnik odstępu cięż
     expect([k, m.styk.maxPrzenikanie <= PROG_STYKU.przenikanieCm]).toEqual([k, true]);
     expect([k, m.styk.maxOdstep < PRZED[k] - 3]).toEqual([k, true]); /* poprawa o ponad 3 cm względem stanu sprzed */
   });
-  test('Deadlift (sztanga): liczby po zmianie — największy odstęp 2,8 cm przy u = 0,70 (było 7,2 cm przy u = 0,75), tor 3,5 cm od prostej, 1 zmiana kierunku', () => {
-    const p = podsumujStyk(stykTora('Deadlift (sztanga)')); expect([+p.maxOdstep.toFixed(1), p.uMaxOdstep]).toEqual([2.8, 0.7]);
+  test('Deadlift (sztanga): liczby po zmianie — największy odstęp 3,0 cm przy u = 0,70 (A2; było 2,8 przed wygładzeniem startu) (było 7,2 cm przy u = 0,75), tor 3,5 cm od prostej, 1 zmiana kierunku', () => {
+    const p = podsumujStyk(stykTora('Deadlift (sztanga)')); expect([+p.maxOdstep.toFixed(1), p.uMaxOdstep]).toEqual([3.0, 0.7]);
     const t = torKlucza('Deadlift (sztanga)'); expect(+t.odchylenie.toFixed(1)).toBe(3.5); expect(t.zawrocenia).toBe(1);
   });
   test('kolano jako osobna krzywa (nie z położenia gryfu — L-056 pkt 3): pochylenie podudzia ≈ 8,5° (σ 10° w rigu) na starcie, 0° na wyproście, nie rośnie; błąd „gryf odjeżdża” zmienia gryf, nie kolano', () => {
@@ -131,9 +131,9 @@ describe('101-03 (L-056): ten sam pomiar — sumo ×4, martwy na prostych nogach
 });
 
 describe('101-04: sumo — tor ukośny (D2 = A: zostaje, ponowny pomiar z nowym ruchem kolan); RDL — ramiona pionowo (D3 = B: pomiar niewykonalności)', () => {
-  test('D2: przesunięcie gryfu w poziomie od startu do wyprostu — było 8,0 cm (4,5 → 12,5) w sumo ×4, jest 2,4 cm (7,0 → 9,0); sumo z kettlebellem bez zmian 6,1 cm', () => {
+  test('D2: przesunięcie gryfu w poziomie od startu do wyprostu — było 8,0 cm (4,5 → 12,5) w sumo ×4, jest 2,5 cm (6,6 → 9,0); sumo z kettlebellem bez zmian 6,1 cm', () => {
     const dx = (k: string) => frameAt(figureSpec(k)!, 1).info.load[0] - frameAt(figureSpec(k)!, 0).info.load[0];
-    for (const k of SUMO_KLUCZE) { expect(+dx(k).toFixed(1)).toBe(2.4); const st = staryStan(k, [3, -9]); expect(+(hingeFrame(st, 1).info.load[0] - hingeFrame(st, 0).info.load[0]).toFixed(1)).toBeGreaterThanOrEqual(6); }
+    for (const k of SUMO_KLUCZE) { expect(+dx(k).toFixed(1)).toBe(2.5); const st = staryStan(k, [3, -9]); expect(+(hingeFrame(st, 1).info.load[0] - hingeFrame(st, 0).info.load[0]).toFixed(1)).toBeGreaterThanOrEqual(6); }
     expect(+dx('Sumo Deadlift (kettlebell)').toFixed(1)).toBe(6.1);
   });
   test('D3: RDL (sztanga) na dole — ramię 23° od pionu przy kolanie 17° i tułowiu 60° (progi figury-1-0-recenzja: kolano ≤ 27°, tułów 50–80°)', () => {
@@ -157,5 +157,51 @@ describe('101-12 (hinge): wyjątki toru po zmianie — hantle w RDL i na jednej 
       expect([k, m.styk.maxPrzenikanie <= PROG_STYKU.przenikanieCm, m.styk.maxOdstep <= PROG_STYKU.odstepCm]).toEqual([k, true, true]);
       const przed = podsumujStyk(Array.from(KADRY_STYKU, u => stykKlatki(hingeFrame({ ...hingeP(k), knees: undefined }, u), u))); expect([k, przed.maxPrzenikanie > 1.5]).toEqual([k, true]);
     }
+  });
+});
+
+describe('101-02 (A2): start z podłogi bez szarpnięcia — kolana i biodra prostują się razem (wskazówka dl.lift „jednocześnie”), kadry co 0,05', () => {
+  const START_KLUCZE = [...DL_ODSTEP_KLUCZE, ...SUMO_KLUCZE];
+  const kadryStartu = KADRY_STYKU.filter(u => u <= 0.3 + 1e-9); /* pierwsza faza: u 0–0,3 */
+  type Poza = { kolano: number; biodro: number; kneeP: [number, number]; hipP: [number, number] };
+  /** Zgięcie kolana i biodra (° od wyprostu; malejące = prostowanie) oraz położenie kolana i biodra w rzucie bocznym. */
+  const poza = (k: string, u: number): Poza => {
+    const f = frameAt(figureSpec(k)!, u); const L = f.sk.legs.R; const sh = f.info.shoulder, hip = f.info.hip;
+    const kat3 = (a: readonly number[], b: readonly number[], c: readonly number[]) => { const p = [a[0] - b[0], a[1] - b[1], a[2] - b[2]], q = [c[0] - b[0], c[1] - b[1], c[2] - b[2]]; return Math.acos((p[0] * q[0] + p[1] * q[1] + p[2] * q[2]) / Math.hypot(...p) / Math.hypot(...q)) * 180 / Math.PI; };
+    return { kolano: 180 - kat3(L.hip, L.knee, L.ankle), biodro: 180 - kat3(sh, hip, L.knee), kneeP: [L.knee[0], L.knee[1]], hipP: [hip[0], hip[1]] };
+  };
+  const seria = (k: string) => kadryStartu.map(u => poza(k, u));
+  /** Druga miara tej poprawki: przyrost położenia (cm) i kąta kolana (°) w PIERWSZYM kroku 0,05 (szarpnięcie = pierwszy krok większy niż średni następny) oraz stosunek ubytku zgięcia kolana
+   * do ubytku zgięcia biodra w u 0–0,1. */
+  const miary = (k: string) => {
+    const s = seria(k);
+    const poz = (i: number) => Math.max(Math.hypot(s[i].kneeP[0] - s[i - 1].kneeP[0], s[i].kneeP[1] - s[i - 1].kneeP[1]), Math.hypot(s[i].hipP[0] - s[i - 1].hipP[0], s[i].hipP[1] - s[i - 1].hipP[1]));
+    const kat = (i: number) => Math.abs(s[i].kolano - s[i - 1].kolano);
+    const idx = [2, 3, 4, 5, 6]; const sr = (f: (i: number) => number) => idx.reduce((a, i) => a + f(i), 0) / idx.length;
+    return { krok: poz(1), krokKat: kat(1), krokWzgl: poz(1) / sr(poz), krokKatWzgl: kat(1) / sr(kat), stosunek: (s[0].kolano - s[2].kolano) / (s[0].biodro - s[2].biodro), dBiodro: s[0].biodro - s[2].biodro };
+  };
+  /* Progi (uproszczenie ilustracyjne, liczby bez źródła — oznaczone jako otwarte): w pierwszej fazie kolana prostują się szybciej niż biodra, ale nie 6:1 jak przed poprawką
+   * (stosunek 5,8; źródła dl.lift: „prostując jednocześnie biodra i kolana”); stosunek ≤ 3, biodro rusza (≥ 1° w u 0–0,1); brak skoku: pierwszy krok ≤ 1,5 cm i ≤ 3° (było 3,3 cm i 9,8°)
+   * oraz nie większy niż średni następny (start przyspiesza od zera, nie od skoku). */
+  const PROG = { krokCm: 1.5, krokKat: 3, krokWzgl: 1, stosunek: 3, dBiodroMin: 1 } as const;
+  test.each(START_KLUCZE)('%s: brak skoku na starcie i stosunek prostowania kolan do bioder ≤ 3 w u 0–0,1', k => {
+    const m = miary(k);
+    expect([k, +m.krok.toFixed(2), m.krok <= PROG.krokCm]).toEqual([k, +m.krok.toFixed(2), true]);
+    expect([k, +m.krokKat.toFixed(1), m.krokKat <= PROG.krokKat]).toEqual([k, +m.krokKat.toFixed(1), true]);
+    expect([k, +m.krokWzgl.toFixed(2), m.krokWzgl <= PROG.krokWzgl, +m.krokKatWzgl.toFixed(2), m.krokKatWzgl <= PROG.krokWzgl]).toEqual([k, +m.krokWzgl.toFixed(2), true, +m.krokKatWzgl.toFixed(2), true]);
+    expect([k, m.dBiodro >= PROG.dBiodroMin]).toEqual([k, true]);
+    expect([k, +m.stosunek.toFixed(2), m.stosunek <= PROG.stosunek]).toEqual([k, +m.stosunek.toFixed(2), true]);
+  });
+  test('miara potrafi paść: krzywa kolan ze stanu sprzed poprawki (potęga ease^0,15, nieskończona prędkość w u = 0) przekracza próg skoku', () => {
+    const stara = (u: number) => 10 * (1 - Math.pow(u * u * (3 - 2 * u), 0.15)); /* σ(u) = s0 + (s1 − s0)·ease(u)^back dla s = [10, 0] */
+    const nowa = (u: number) => 10 * (1 - (() => { const x = Math.min(1, u / 0.4); return x * x * (3 - 2 * x); })());
+    expect(stara(0) - stara(0.05)).toBeGreaterThan(4); /* ponad połowa zmiany w pierwszym kroku */
+    expect(nowa(0) - nowa(0.05)).toBeLessThan(0.5); /* start łagodny: zerowa prędkość w u = 0 */
+    expect(hingeP('Deadlift (sztanga)').knees?.back).toBe(0.4);
+  });
+  test('Deadlift (sztanga) i sumo: liczby po zmianie (przed: krok 3,3 / 9,8°, stosunek 5,8 dla DL; krok 2,2 dla sumo)', () => {
+    const dl = miary('Deadlift (sztanga)'), su = miary('Sumo Deadlift');
+    expect([+dl.krok.toFixed(1), +dl.krokKat.toFixed(1), +dl.stosunek.toFixed(1)]).toEqual([0.5, 1.1, 2.2]);
+    expect([+su.krok.toFixed(1), +su.krokKat.toFixed(1)]).toEqual([0.3, 0.7]);
   });
 });

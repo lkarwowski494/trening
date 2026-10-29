@@ -38,13 +38,13 @@ const JM = { xb: -13, yb: 14, abd: 45 } as const;
 const SKULL = { aHead: 3, clear: 8, inward: 0 } as const;
 /** Martwy ciąg z podłogi (101-02, L-056): kolana jako osobna krzywa — podudzie pochylone ku przodowi na starcie (σ 10°), prosto przy kolanach gryfu; barki przed gryfem do końca ruchu i dopiero na wyproście za nim (late 10);
  * gryf wchodzi w uda za kolanem (jedna zmiana kierunku toru, ≤ HINGE.dev poniżej prostej). Uproszczenie ilustracyjne (kąty bez źródła; wskazówki karty: dl.close, dl.lift). */
-const DL_KOLANA: Partial<HingeParams> = { knees: { s: [10, 0], late: 10, back: 0.15 }, sx: [6, -9] };
+const DL_KOLANA: Partial<HingeParams> = { knees: { s: [10, 0], late: 10, back: 0.4 }, sx: [6, -9] };
 /** RDL i martwy na prostych nogach ze sztangą i linką (101-03): krzywa kolan — podudzie prawie pionowo (0° → 2°), niezależnie od zgięcia kolana; gryf prowadzony tuż przy udach (tor z jedną zmianą kierunku). Uproszczenie ilustracyjne (kolano ≤ 27° pilnuje figury-1-0-recenzja). */
 const RDL_KOLANA: Partial<HingeParams> = { knees: { s: [0, 2] } };
 const SUMO: Partial<HingeParams> = { stance: 34, toeOut: 40, grip: 12, shin: HINGE.shin.sumo };
 /** Sumo ze sztangą (101-03, 101-04): krzywa kolan jak w martwym ciągu klasycznym, ale podudzie prawie pionowo (σ 6° na starcie), a kolana idą nad palcami (kierunek kolana = rotacja stóp 40°, było 2 × = 80°, czyli w bok) — gryf
  * przylega do goleni i ud (karta sumo.kneesOut: kolana na zewnątrz w linii stóp). Uproszczenie ilustracyjne. */
-const SUMO_SZTANGA: Partial<HingeParams> = { ...SUMO, kneeOut: 40, knees: { s: [6, 0], late: 10, back: 0.15 }, sx: [6, -9] };
+const SUMO_SZTANGA: Partial<HingeParams> = { ...SUMO, kneeOut: 40, knees: { s: [6, 0], late: 10, back: 0.4 }, sx: [6, -9] };
 
 /** Klucz katalogu → wariant. Tylko gotowe rodziny (squat, bench_press, hinge). */
 export const VARIANTS: Record<string, Variant> = {
