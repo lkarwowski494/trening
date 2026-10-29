@@ -1,6 +1,7 @@
 {
  "wyjatki": {
-  "wskazowki:dcgsk.elbows": "28.10.2026 (1.0.1 r2, recenzja lokalizacji): zmiana EN z „narrow” na idiom siłowni „in” bez zmiany sensu (PL bez zmian); przekłady cs sk hu ro hr sl sr lt lv et uk de fi tr ru ko zh-Hant zostają — poprawne lub czekają na native speakera (docs/16, 1.0.1)"
+  "wskazowki:dcgsk.elbows": "28.10.2026 (1.0.1 r2, recenzja lokalizacji): zmiana EN z „narrow” na idiom siłowni „in” bez zmiany sensu (PL bez zmian); przekłady cs sk hu ro hr sl sr lt lv et uk de fi tr ru ko zh-Hant zostają — poprawne lub czekają na native speakera (docs/16, 1.0.1)",
+  "wskazowki:pendlay.floor": "29.10.2026 (1.0.1 r2, pendlay, po recenzji niezależnej): zmiana tylko brzmienia EN (bez ciągu słów ze źródła); PL i sens bez zmian — przekłady z tego samego commitu zostają"
  },
  "wskazowki": {
   "bd.level": {
@@ -7832,7 +7833,7 @@
    }
   },
   "pendlay.floor": {
-   "s": "0bee6ffa5488",
+   "s": "e0e676ff5ca7",
    "t": {
     "cs": "f2d4f45f25ee",
     "sk": "98f9a18b7740",

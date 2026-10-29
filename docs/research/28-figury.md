@@ -398,7 +398,6 @@ Widok: z boku; kotwica: przód stopy; przyrządy: plate.
   - dłoń przy: biodro + [18, 8] w układzie tułowia (≤ 6) ← `pendlay.pull`: „Dynamicznie przyciągnij sztangę do dolnej części klatki albo brzucha, potem odłóż ją na podłogę.”
   - odcinek biodro–bark: 8° do poziomu (±7°) ← `pendlay.setup`: „Sztanga leży na podłodze. Pochyl tułów prawie równolegle do podłogi, kolana lekko ugięte, plecy proste.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Cechy rozpoznawcze: sztanga startuje z podłogi w każdym powtórzeniu (talerz stoi na podłodze, wysokość talerza = jego promień — konwencja rysunkowa), tułów prawie równolegle do podłogi i nieruchomy (kąt ilustracyjny — źródła mówią „prawie równolegle”, bez liczby), kolana lekko ugięte, sztanga idzie prawie pionowo do dolnej części klatki lub górnej części brzucha. Pozycje „w trakcie 1” i „w trakcie 2” to droga sztangi w górę przy tym samym tułowiu; pętla wraca na podłogę (martwy punkt).
-- **Ukryta w aplikacji** po recenzji bramki 4 (2026-10-27, docs/research/figury-recenzja.json): Figura identyczna z wiosłowaniem sztangą w opadzie (tułów ok. 30° nad poziomem, sztanga zawieszona nad podłogą) — brak cechy rozpoznawczej nazwy (bramka 4, pkt 1 listy recenzenta); wskazówki karty też nie opisują startu z podłogi.
 
 ### T-Bar Row
 

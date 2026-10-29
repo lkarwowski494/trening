@@ -89,14 +89,12 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
 });
 
 describe('ekran: figura ukryta po recenzji — sekcja „Technika” bez rysunku, wskazówki zostają', () => {
-  /* 29.10.2026 (1.0.1): Push Press po recenzji niezależnej — wyswietlana; ukryte zostają Pendlay Row i Reverse Lunge */
-  test.each(['Pendlay Row', 'Reverse Lunge'])('%s', k => {
+  /* 29.10.2026 (1.0.1): Push Press i Pendlay Row po recenzji niezależnej — wyswietlana; ukryty zostaje Reverse Lunge */
+  test.each(['Reverse Lunge'])('%s', k => {
     expect(REC.v1[k].werdykt).toBe('ukryta');
     render(<ExerciseCues exercise={lib(k)} initialOpen />);
     expect(screen.queryByTestId('exercise-figure')).toBeNull();
     expect(screen.queryByTestId('exercise-figure-v2')).toBeNull();
-    /* 29.10.2026 (1.0.1): karta Pendlay Row ma nowe zdania i czeka na recenzję niezależną („do poprawy” w sekcji karty) — do tego czasu na liście „hidden”, bez wskazówek */
-    if (CUE_DATA.hidden.includes(k)) { expect(k).toBe('Pendlay Row'); expect(screen.queryByRole('header', { name: 'Ruch' })).toBeNull(); return; }
     expect(screen.getByRole('header', { name: 'Ruch' })).toBeTruthy();
     expect(CUE_DATA.exercises[k]).toBeTruthy();
   });

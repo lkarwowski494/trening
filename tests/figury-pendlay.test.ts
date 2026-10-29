@@ -128,14 +128,14 @@ describe('Pendlay Row: karta (wskazówki) — start od nieruchomej sztangi, tuł
     }
     const pl = read('lib/cues/text/pl.json'), en = read('lib/cues/text/en.json');
     expect(pl['pendlay.setup']).toMatch(/podłodze/); expect(pl['pendlay.setup']).toMatch(/równolegle/); expect(pl['pendlay.floor']).toMatch(/nieruchom/); expect(pl['pendlay.mis.torso']).toMatch(/tułow/i);
-    expect(en['pendlay.setup']).toMatch(/floor/); expect(en['pendlay.floor']).toMatch(/dead stop/); expect(en['pendlay.pull']).toMatch(/explosively/);
+    expect(en['pendlay.setup']).toMatch(/floor/); expect(en['pendlay.floor']).toMatch(/motionless on the floor/); /* 29.10.2026: bez ciągu „a dead stop on the floor” ze źródła (recenzja niezależna, docs/09 sekcja G) */ expect(en['pendlay.pull']).toMatch(/explosively/);
   });
 });
 
-describe('Pendlay Row: recenzja (L-047) — figura ukryta do recenzji niezależnej', () => {
-  test('wpis v1 „ukryta” ze skrótem bieżącej figury i kart; wyświetlana tylko po zapisie recenzji innego agenta (poza zakresem wykonawcy)', () => {
+describe('Pendlay Row: recenzja (L-047) — figura i karta po recenzji niezależnej (29.10.2026)', () => {
+  test('wpisy v1 i karty „wyswietlana” ze skrótem bieżących danych, recenzent ≠ autor; figura w runtime', () => {
     const now = JSON.parse(execFileSync('node', [path.join(root, 'scripts/zrodla-runtime.mjs'), '--skroty'], { encoding: 'utf8' }));
-    expect(REC.v1[KEY].werdykt).toBe('ukryta'); expect(REC.v1[KEY].sha).toBe(now.v1[KEY]);
-    expect(FIG_DATA.exercises[KEY]).toBeUndefined(); expect(FIG_DATA.open).toContain(KEY);
+    for (const s of ['v1', 'karty'] as const) { const e = REC[s][KEY]; expect(e.werdykt).toBe('wyswietlana'); expect(e.sha).toBe(now[s][KEY]); expect(e.autor).not.toBe(e.recenzent); }
+    expect(FIG_DATA.exercises[KEY]).toBeDefined(); expect(FIG_DATA.open).not.toContain(KEY);
   });
 });
