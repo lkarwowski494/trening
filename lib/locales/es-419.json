@@ -11,7 +11,7 @@
  "Bez treningów i poza aktywnym planem: {list}. „Zastąp” je usunie, „Zostaw” doda nowe obok.": "Sin entrenamientos y fuera del plan activo: {list}. «Reemplazar» las elimina, «Conservar» agrega las nuevas al lado.",
  "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Sin entrenamientos: {list}. Esto también reemplaza el plan activo «{plan}», formado solo por estas plantillas: «Reemplazar» las elimina y activa el nuevo plan en su lugar; «Conservar» agrega las nuevas junto a ellas.",
  "Bieżnia": "Caminadora",
- "Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).": "Este teléfono no tiene voz para el idioma de la app. Descarga una en Configuración de iOS (Accesibilidad).",
+ "Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).": "Este celular no tiene voz para el idioma de la app. Descarga una en Configuración de iOS (Accesibilidad).",
  "Brak gum. Dodaj pierwszą, by zapisywać asystę przy podciąganiu.": "Aún no hay bandas. Agrega una para registrar dominadas asistidas.",
  "Brak sprzętu w: {l}. Brakuje: {m}": "Sin equipo en {l}. Falta: {m}",
  "Brak szablonów — dodaj pierwszy.": "Sin plantillas — agrega la primera.",
@@ -26,7 +26,7 @@
  "Dane i kopie": "Datos y respaldos",
  "Dane nie zostały wyczyszczone": "No se borraron los datos",
  "Dane w telefonie": "Datos en este celular",
- "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Los datos del teléfono los guardó una versión más reciente (esquema {a}); esta versión admite hasta {b}. No se cambia nada: instala la versión más reciente desde la App Store. También puedes enviar los datos como archivo.",
+ "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Los datos del celular los guardó una versión más reciente (esquema {a}); esta versión admite hasta {b}. No se cambia nada: instala la versión más reciente desde la App Store. También puedes enviar los datos como archivo.",
  "Dodaj ciężar": "Agregar lastre",
  "Dodaj notatkę": "Agregar nota",
  "Dodane: {list}.": "Agregados: {list}.",
@@ -197,7 +197,7 @@
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un lugar solo para este entrenamiento. Elige el equipo que tienes allí; no hace falta escribir pesos.",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un lugar para {a} – {b}. Elige el equipo que tienes allí; no hace falta escribir pesos.",
  "W słuchawkach": "Con audífonos",
- "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Al empezar el descanso, el teléfono anuncia el siguiente ejercicio, el peso y las repeticiones. Con audífonos: solo con audífonos conectados; También por el altavoz: también sin audífonos, por el altavoz del teléfono (incluso en modo silencio); Desactivados: sin avisos.",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Al empezar el descanso, el celular anuncia el siguiente ejercicio, el peso y las repeticiones. Con audífonos: solo con audífonos conectados; También por el altavoz: también sin audífonos, por el altavoz del celular (incluso en modo silencio); Desactivados: sin avisos.",
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Respaldo automático después de cada entrenamiento: Archivos → En mi iPhone → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "No se pudo guardar el respaldo después del entrenamiento",
  "Ostatnia udana kopia: {date}": "Último respaldo exitoso: {date}",
@@ -263,5 +263,8 @@
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "En la pantalla Entrenamiento, «Planificación» (sin plan: «Configurar plan») abre el plan semanal, que asigna plantillas a los días — el plan se repite cada semana.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "En la pantalla Entrenamiento, «Progresión» compara la semana (hecho + planificado) con la anterior y un mes con el mes anterior.",
  "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.": "En la pantalla Entrenamiento, toca el botón grande «Empezar» (siguiente entrenamiento) u «Otro entrenamiento» — ahí elegirás una plantilla, repetirás el último entrenamiento o empezarás uno vacío.",
- "Trening": "Entrenamiento"
+ "Trening": "Entrenamiento",
+ "Połącz z telefonem": "Conectar con el celular",
+ "Zacznij trening na telefonie": "Empieza un entrenamiento en el celular",
+ "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Tus datos en el celular no han cambiado: puedes enviarlos como archivo."
 }
