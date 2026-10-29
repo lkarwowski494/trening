@@ -96,7 +96,8 @@ describe('K2 (A11-09): VoiceOver czyta głosem języka aplikacji', () => {
     const { richState, routesFor } = require('./a11y-routes');
     const { cuesFor } = require('@/lib/cues'); const { figureFor } = require('@/lib/figures');
     const r = await richState('pl'); r.s.settings.language = 'de'; applyLang('de');
-    const cue = (r.s.exercises as { id: string; lib?: boolean; libKey?: string }[]).find(e => cuesFor(e) && figureFor(e))!; expect(cue).toBeTruthy();
+    const { figureWithheld } = require('@/lib/figures/v2'); const { catalogKey } = require('@/lib/seed');
+    const cue = (r.s.exercises as { id: string; lib?: boolean; libKey?: string }[]).find(e => cuesFor(e) && figureFor(e) && !figureWithheld(catalogKey(e)))!; expect(cue).toBeTruthy(); /* ćwiczenie z rysunkiem pokazywanym w aplikacji (bramka 4: figura v1 „zastąpiona” ukrytą rodziną v2 nie jest rysowana) */
     await renderApp({ saved: r.s }); await flushAll(10);
     const routes: string[] = [...routesFor(r.w, r.tpl, r.exId, r.locId, r.blockId), `/exercise/${cue.id}`];
     const bad: string[] = []; let n = 0;
