@@ -22,8 +22,8 @@
    "fontSize": 3
   },
   "components/GuardSection.tsx": {
-   "fontSize": 25,
-   "borderRadius": 6
+   "fontSize": 16,
+   "borderRadius": 3
   },
   "components/LoadEditor.tsx": {
    "fontSize": 5

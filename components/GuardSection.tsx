@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Pressable } from 'react-native';
 import { H2, Muted, Txt, monoSafe } from '@/components/ui';
 import { SignChip, SIGN_CHAR, GuardMap, GuardLegend } from '@/components/Guard';
-import { useTheme, F, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW } from '@/lib/theme';
+import { useTheme, F, TYPE, RADIUS, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW } from '@/lib/theme';
 import { useTick, exById } from '@/lib/store';
 import { guardCached, guardTexts, guardWord, type Guard, type GuardPart, type GuardDir, type SkipReason } from '@/lib/guard';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
@@ -30,12 +30,12 @@ function GuardBar({ p }: { p: GuardPart }) {
   return (
     <View testID={`gbar-${p.part}`} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ marginTop: 7, marginRight: 46 }}>
       <View style={{ height: 8, backgroundColor: th.line, borderRadius: 4 }}>
-        <View style={{ flexDirection: 'row', height: 8, borderRadius: 4, overflow: 'hidden' }}>
+        <View style={{ flexDirection: 'row', height: 8, borderRadius: RADIUS.field, overflow: 'hidden' }}>
           <View testID={`gbar-${p.part}-done`} style={{ width: `${dw}%`, backgroundColor: th.accent }} />
           {pw > 0 ? <View testID={`gbar-${p.part}-planned`} style={{ width: `${pw}%`, backgroundColor: mixHex(th.surface, th.accent, 0.38) }} /> : null}
         </View>
         <View testID={`gbar-${p.part}-mark`} style={{ position: 'absolute', left: '50%', top: -3, width: 2, height: 14, marginLeft: -1, backgroundColor: th.text }} />
-        {p.total > max ? <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ position: 'absolute', left: '100%', top: -6, paddingLeft: 4, fontSize: 11, fontFamily: F.monoBold, fontVariant: ['tabular-nums'], color: th.muted }}>{`» ${n1(p.total)}`}</Txt> : null}
+        {p.total > max ? <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ position: 'absolute', left: '100%', top: -6, paddingLeft: 4, fontSize: TYPE.caption.size, fontFamily: F.monoBold, fontVariant: ['tabular-nums'], color: th.muted }}>{`» ${n1(p.total)}`}</Txt> : null}
       </View>
     </View>);
 }
@@ -57,26 +57,26 @@ function GuardRow({ p }: { p: GuardPart }) {
     <View testID={`grow-${p.part}`} style={{ paddingHorizontal: 12, paddingVertical: 4, borderTopWidth: 1, borderTopColor: th.line }}>
       <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ expanded: open }} onPress={() => setOpen(!open)} style={({ pressed }) => ({ minHeight: 44, justifyContent: 'center', paddingVertical: 6, opacity: pressed ? 0.7 : 1 })}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', columnGap: 8, flexWrap: 'wrap' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, flexShrink: 1 }}><SignChip dir={p.dir} /><Txt style={{ ...FW.semibold, fontSize: 15, flexShrink: 1 }}>{name}</Txt><Muted maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ fontSize: 13 }}>{open ? '▾' : '▸'}</Muted></View>
-          <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontFamily: F.mono, fontVariant: ['tabular-nums'], fontSize: 13 }}>{monoSafe(series)}</Txt>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, flexShrink: 1 }}><SignChip dir={p.dir} /><Txt style={{ ...FW.semibold, fontSize: TYPE.callout.size, flexShrink: 1 }}>{name}</Txt><Muted maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ fontSize: TYPE.footnote.size }}>{open ? '▾' : '▸'}</Muted></View>
+          <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontFamily: F.mono, fontVariant: ['tabular-nums'], fontSize: TYPE.footnote.size }}>{monoSafe(series)}</Txt>
         </View>
         {line(false) ? <Muted style={{ fontSize: 12, marginTop: 2 }}>{line(false)}</Muted> : null}
         <GuardBar p={p} />
       </Pressable>
       {open ? (
-        <View testID={`gdet-${p.part}`} style={{ marginBottom: 8, padding: 10, borderRadius: 8, backgroundColor: th.bg, gap: 6 }}>
+        <View testID={`gdet-${p.part}`} style={{ marginBottom: 8, padding: 10, borderRadius: RADIUS.board, backgroundColor: th.bg, gap: 6 }}>
           <Muted style={{ fontSize: 13 }}>{t('Wykonane: {text}', { text: setsText(p.done) })}</Muted>
           {p.planned.total > 0 ? <Muted style={{ fontSize: 13 }}>{t('Zaplanowane: {text} ({days})', { text: setsText(p.planned), days: p.plannedDays.map(k => fmtWeekdayShort(dayOf(k))).join(', ') })}</Muted> : null}
           {p.compared.length ? (
             <View style={{ gap: 4 }}>
               <Muted style={{ fontSize: 12, ...FW.semibold }}>{t('Porównywane ćwiczenia: tonaż/sesję i ciężar roboczy')}</Muted>
-              <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 16 }}><Muted style={{ fontSize: 11, minWidth: 74, textAlign: 'right' }}>{t('teraz')}</Muted><Muted style={{ fontSize: 11, minWidth: 74, textAlign: 'right' }}>{t('wcześniej')}</Muted></View>
+              <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 16 }}><Muted style={{ fontSize: TYPE.caption.size, minWidth: 74, textAlign: 'right' }}>{t('teraz')}</Muted><Muted style={{ fontSize: TYPE.caption.size, minWidth: 74, textAlign: 'right' }}>{t('wcześniej')}</Muted></View>
               {p.compared.map(c => (
                 <View key={c.exerciseId} testID={`gex-${p.part}-${c.exerciseId}`} style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8, borderTopWidth: 1, borderTopColor: th.line, paddingTop: 3 }}>
                   <Txt style={{ fontSize: 13, flexShrink: 1 }}>{exLabel(c.exerciseId)}</Txt>
                   <View style={{ flexDirection: 'row', gap: 16 }}>
-                    <View style={{ minWidth: 74, alignItems: 'flex-end' }}><Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontFamily: F.mono, fontVariant: ['tabular-nums'], fontSize: 12 }}>{monoSafe(fmtVol(c.now.perSession))}</Txt><Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: 11 }}>{fmtW(c.now.weight)}</Muted></View>
-                    <View style={{ minWidth: 74, alignItems: 'flex-end' }}><Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontFamily: F.mono, fontVariant: ['tabular-nums'], fontSize: 12 }}>{monoSafe(fmtVol(c.before.perSession))}</Txt><Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: 11 }}>{fmtW(c.before.weight)}</Muted></View>
+                    <View style={{ minWidth: 74, alignItems: 'flex-end' }}><Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontFamily: F.mono, fontVariant: ['tabular-nums'], fontSize: 12 }}>{monoSafe(fmtVol(c.now.perSession))}</Txt><Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: TYPE.caption.size }}>{fmtW(c.now.weight)}</Muted></View>
+                    <View style={{ minWidth: 74, alignItems: 'flex-end' }}><Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontFamily: F.mono, fontVariant: ['tabular-nums'], fontSize: 12 }}>{monoSafe(fmtVol(c.before.perSession))}</Txt><Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: TYPE.caption.size }}>{fmtW(c.before.weight)}</Muted></View>
                   </View>
                 </View>))}
             </View>) : null}
@@ -111,11 +111,11 @@ export function GuardSection({ onLayoutY }: { onLayoutY?: (y: number) => void })
         <GuardMap parts={g.parts} label={x.label} testID="guard-map-pg" />
         {x.deload ? <Muted style={{ textAlign: 'center', ...FW.semibold, marginTop: 8 }}>{x.deload}</Muted> : <GuardLegend parts={g.parts} testID="guard-legend-pg" />}
         {x.compared ? <Muted testID="guard-compared-pg" style={{ fontSize: 12, textAlign: 'center', marginTop: 6 }}>{x.compared}</Muted> : null}
-        <View style={{ marginTop: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, borderRadius: 12, overflow: 'hidden' }}>
+        <View style={{ marginTop: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, borderRadius: RADIUS.group, overflow: 'hidden' }}>
           {guardGroups(g).map(grp => (
             <View key={grp.key} testID={`ggrp-${grp.key}`}>
               <View accessible accessibilityLanguage={lang()} accessibilityRole="header" style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingTop: 10, paddingBottom: 2 }}>
-                {grp.dir ? <SignChip dir={grp.dir} size={14} /> : null}<Muted maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ fontSize: 11, ...FW.semibold, letterSpacing: 0.4, flexShrink: 1 }}>{upper(grp.title)}</Muted>
+                {grp.dir ? <SignChip dir={grp.dir} size={14} /> : null}<Muted maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ fontSize: TYPE.caption.size, ...FW.semibold, letterSpacing: 0.4, flexShrink: 1 }}>{upper(grp.title)}</Muted>
               </View>
               {grp.parts.map(p => <GuardRow key={p.part} p={p} />)}
             </View>))}
