@@ -1,7 +1,8 @@
 {
  "wyjatki": {
   "wskazowki:dcgsk.elbows": "28.10.2026 (1.0.1 r2, recenzja lokalizacji): zmiana EN z „narrow” na idiom siłowni „in” bez zmiany sensu (PL bez zmian); przekłady cs sk hu ro hr sl sr lt lv et uk de fi tr ru ko zh-Hant zostają — poprawne lub czekają na native speakera (docs/16, 1.0.1)",
-  "wskazowki:bike.foot": "29.10.2026 (1.0.1 r2, cues-en): zmiana EN — usunięty dopisek „just behind the toes”, którego nie ma w PL (PL bez zmian: „Na pedale opieraj przednią część stopy.”); przekłady już odpowiadają PL, zostają"
+  "wskazowki:bike.foot": "29.10.2026 (1.0.1 r2, cues-en): zmiana EN — usunięty dopisek „just behind the toes”, którego nie ma w PL (PL bez zmian: „Na pedale opieraj przednią część stopy.”); przekłady już odpowiadają PL, zostają",
+  "wskazowki:calf.edge": "29.10.2026 (1.0.1 r2, cues-en, po recenzji niezależnej): zmiana tylko szyku EN (bez wspólnych 5-gramów ze źródłem); PL i sens bez zmian — przekłady zrobione z nowego PL w tym samym commicie, zostają"
  },
  "wskazowki": {
   "bd.level": {
@@ -1107,7 +1108,7 @@
    }
   },
   "calf.edge": {
-   "s": "c7caf3e240ed",
+   "s": "143247fd6d0a",
    "t": {
     "cs": "6e75d5e05e31",
     "sk": "51496ce1b9c7",

@@ -541,8 +541,8 @@
    "rodzina": "calf_raise",
    "werdykt": "wyswietlana",
    "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "d783d55dc834",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie); skrót przeliczony 29.10.2026 po zmianie tekstu PL calf.edge (dane figury bez zmian; recenzja karty 29.10.2026)",
+   "sha": "9f988839b4bf",
    "uwagi": "Ruch i karta zgodne. Przednia część stopy na podwyższeniu, pięty poniżej krawędzi przy rozciągnięciu, wspięcie na palce; kolana proste. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
   },
   "Łydki na stopniu": {
@@ -1199,6 +1199,16 @@
    "kto": "przeniesienie recenzji karty z wpisu v1 (wskazówki i teksty nie zmieniły się w 1.0.1; skrót kartaSkrot = skrót treści karty)",
    "sha": "3092329e53a9",
    "uwagi": "Zmieniła się tylko figura (data/zrodla/figures.json); wskazówki i teksty karty bez zmian, więc recenzja treści karty z 28.10.2026 obowiązuje."
+  },
+  "Standing Calf Raise": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-29",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 29.10.2026)",
+   "autor": "tlumacz r2/cues-en",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "kto": "audytor — recenzja niezależna treści karty (L-047, bramka 4), 29.10.2026, po zmianie calf.edge (podest)",
+   "sha": "ba118e804b14",
+   "uwagi": "calf.edge (stań przednią częścią stóp na krawędzi podestu, pięty poza krawędzią): NASM Leg Press Calf Raise Step 1 (to samo ustawienie stopy, inne ćwiczenie — analogia) oraz Prehab Guys i Physitrack (wersja na stopniu), przeczytane 29.10.2026; ExRx LVStandingCalfRaise niedostępne (exrx.net — wyzwanie JS, web.archive.org zrywa połączenie), do ponownego odczytu. calf.move, calf.knees, calf.pause, calf.mis.partial: NASM i ACE #51 przeczytane — zgodne. Karta spójna, bez liczb i twierdzeń o zdrowiu."
   }
  },
  "zestawy": {
