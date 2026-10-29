@@ -34,6 +34,10 @@ on:
         description: 'Tylko te ekrany (po przecinku, np. cwiczenie); pusty = wszystkie. Numeracja plików jak w pełnym scenorysie — powtórzenie jednego ekranu we wszystkich językach'
         required: false
         default: ''
+      uzupelnij_z_przebiegu:
+        description: 'Numer przebiegu TEGO workflow, z którego bierzemy gotowe zrzuty (artefakty sklep-zrzuty-<rozmiar>-*, żyją 3 dni); robimy tylko brakujące ekrany, wynik zadań = komplet dla ich języków. Zadania dzielone według brakujących ekranów. Pusty = wszystko od nowa'
+        required: false
+        default: ''
       zrzut_zakupu_z_przebiegu:
         description: 'Numer przebiegu e2e-ios.yml (artefakt trening-sim-app, żyje 1 dzień) — zrzut ekranu zakupu do przeglądu zakupów; pusty = bez tego zrzutu'
         required: false
@@ -62,14 +66,24 @@ jobs:
           STORE_SEED_OUT: ${{ github.workspace }}/sklep-dane
           STORE_SEED_THEME: ${{ inputs.wyglad }}
         run: npx jest --testMatch "**/scripts/screens/store-seed.test.ts"
+      - name: Poprzednie zrzuty do uzupełnienia (tylko przy wejściu uzupelnij_z_przebiegu; podział liczy brakujące ekrany)
+        if: inputs.uzupelnij_z_przebiegu != ''
+        uses: actions/download-artifact@v4
+        with:
+          pattern: sklep-zrzuty-[0-9]*
+          path: uzupelnij
+          merge-multiple: true
+          run-id: ${{ inputs.uzupelnij_z_przebiegu }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Podział języków na równoległe zadania macOS
         id: podzial
         env:
+          UZUPELNIJ_KATALOG: ${{ inputs.uzupelnij_z_przebiegu != '' && 'uzupelnij' || '' }}
           JEZYKI: ${{ inputs.jezyki }}
           ROZMIARY: ${{ inputs.rozmiary }}
           ZADAN: ${{ inputs.zadan }}
         run: |
-          M=$(node scripts/ci/store-shards.mjs "$JEZYKI" "$ROZMIARY" "$ZADAN" sklep-dane)
+          M=$(node scripts/ci/store-shards.mjs "$JEZYKI" "$ROZMIARY" "$ZADAN" sklep-dane "${UZUPELNIJ_KATALOG:-}")
           echo "matrix=$M" >> "$GITHUB_OUTPUT"
           echo "$M" | node -e 'const m=JSON.parse(require("fs").readFileSync(0,"utf8")); for (const j of m.include) console.log(`zadanie ${j.rozmiar} #${j.shard}: ${j.jezyki.split(",").length} języków`)'
       - uses: actions/upload-artifact@v4
@@ -148,6 +162,15 @@ jobs:
         if: inputs.aplikacja_z_przebiegu == ''
         with:
           name: trening-sim-app-sklep
+      - name: Poprzednie zrzuty do uzupełnienia (tylko przy wejściu uzupelnij_z_przebiegu; skrypt pomija ekrany z gotowym plikiem)
+        if: inputs.uzupelnij_z_przebiegu != ''
+        uses: actions/download-artifact@v4
+        with:
+          pattern: sklep-zrzuty-[0-9]*
+          path: uzupelnij
+          merge-multiple: true
+          run-id: ${{ inputs.uzupelnij_z_przebiegu }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Rozpakowanie aplikacji
         run: mkdir -p app && unzip -q Trening-sim.zip -d app
       - name: Symulator
@@ -181,6 +204,7 @@ jobs:
           JEZYKI: ${{ matrix.jezyki }}
           ROZMIAR: ${{ matrix.rozmiar }}
           EKRANY: ${{ inputs.ekrany }}
+          UZUPELNIJ: ${{ inputs.uzupelnij_z_przebiegu != '' && format('{0}/uzupelnij/{1}', github.workspace, matrix.rozmiar) || '' }}
         run: bash scripts/ci/store-screenshots.sh "$SIM" "sklep-zrzuty/$ROZMIAR" sklep-dane "$JEZYKI"
       - uses: actions/upload-artifact@v4
         if: always()

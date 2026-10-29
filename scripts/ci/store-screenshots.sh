@@ -7,6 +7,9 @@
 # W logu tylko nazwy plików i liczby (repo publiczne — bez identyfikatorów urządzeń).
 # Zmienna EKRANY (po przecinku, np. „cwiczenie” albo „cwiczenie,plan”; pusta = wszystkie): tylko te ekrany, numeracja plików zostaje jak w pełnym scenorysie (02-cwiczenie.png) —
 # powtórzenie jednego ekranu we wszystkich językach bez przebiegu całości (27.10.2026; podział języków na zadania: scripts/ci/store-shards.mjs).
+# Zmienna UZUPELNIJ (katalog z zrzutami poprzedniego przebiegu dla tego rozmiaru: <język>/NN-ekran.png; pusta = jak dotąd; 29.10.2026, decyzja właściciela, wariant A): ekran, który ma tam
+# niepusty plik, jest kopiowany do wyniku i NIE jest robiony od nowa — robimy tylko brakujące; pliki z .nieudane poprzedniego przebiegu leżą poza tym katalogiem (nie są gotowe),
+# więc ekran idzie od nowa. Wynik zadania jest kompletem dla jego języków (ramki i asc-zrzuty biorą jeden przebieg). Podział zadań po brakujących ekranach: store-shards.mjs.
 # Użycie: bash scripts/ci/store-screenshots.sh <UDID> <katalog_wyjściowy> <katalog_danych> [języki po przecinku | all]
 set -euo pipefail
 UDID="$1"; OUT="$2"; DATA="$3"; LANGS="${4:-pl,en}"
@@ -51,7 +54,7 @@ db.commit(); db.close()' "$C/Library/SQLite/trening.db" "$OUT/.state.json"
   xcrun simctl io "$UDID" screenshot "$OUT/$lang/$(printf '%02d' "$i")-$name.png" >/dev/null 2>&1
   return $ok
 }
-T0=$(date +%s); N=0   # pomiar czasu na ekran — lekcja z 27.10.2026 (estymata 2 h zamiast zmierzonych ok. 16 h)
+T0=$(date +%s); N=0; REUSED=0   # pomiar czasu na ekran — lekcja z 27.10.2026 (estymata 2 h zamiast zmierzonych ok. 16 h)
 maestro_run przygotuj "zgody" || true
 for lang in ${LANGS//,/ }; do
   ROUTES="$DATA/routes-$lang.json"
@@ -61,6 +64,8 @@ for lang in ${LANGS//,/ }; do
   while IFS=$'\t' read -r name route variant action; do
     i=$((i + 1))
     if [ -n "${EKRANY:-}" ] && [[ ",$EKRANY," != *",$name,"* ]]; then continue; fi
+    PREV="${UZUPELNIJ:+$UZUPELNIJ/$lang/$(printf '%02d' "$i")-$name.png}"
+    if [ -n "$PREV" ] && [ -s "$PREV" ]; then cp "$PREV" "$OUT/$lang/" && REUSED=$((REUSED + 1)); continue; fi   # gotowy z poprzedniego przebiegu
     STATE="$DATA/state-$lang-$variant.json"
     [ -f "$STATE" ] || { echo "::warning::Brak stanu $lang-$variant — pomijam $name"; continue; }
     N=$((N + 1))
@@ -72,6 +77,7 @@ done
 rm -f "$OUT/.state.json"   # dzienniki Maestro zostają w $OUT/.maestro
 xcrun simctl terminate "$UDID" "$BUNDLE" >/dev/null 2>&1 || true
 xcrun simctl status_bar "$UDID" clear >/dev/null 2>&1 || true
+[ "$REUSED" -eq 0 ] || echo "Uzupełnienie: $REUSED ekranów z poprzedniego przebiegu (nie robione od nowa)"
 echo "Zrzuty: $(find "$OUT" -name '*.png' | wc -l | tr -d ' ') plików"
 if [ -n "$FAILED" ]; then M="Ekrany do powtórzenia (akcja nie powiodła się dwukrotnie):$FAILED"; echo "::warning::$M"; [ -z "${GITHUB_STEP_SUMMARY:-}" ] || echo "$M" >> "$GITHUB_STEP_SUMMARY"; fi
 if [ "$N" -gt 0 ]; then SEK=$(( ($(date +%s) - T0) / N )); MSG="Pomiar: ${SEK} s na ekran (${N} ekranów, $(( $(date +%s) - T0 )) s łącznie) — podstawa szacunku czasu kolejnych przebiegów (scripts/ci/store-shards.mjs: PER_SCREEN_MIN)"; echo "$MSG"; [ -z "${GITHUB_STEP_SUMMARY:-}" ] || echo "$MSG" >> "$GITHUB_STEP_SUMMARY"; fi
