@@ -33,9 +33,14 @@
 - 13:11 Pakiet H (101-27) gotowy: przebudowa korzenia gubi niezapisany szkic edycji i stan okien → kod za wyłączoną flagą, tylko test (r101/H 27166cca, nie scalony). Pytanie do właściciela (opcje 1–4, rekomendacja 4: bez poprawki w 1.0.1, rejestr ryzyk). Recenzja hinge zlecona (audytor).
 - 13:11 101-28 (koordynator 1.0, NISKIE, brzegowe): paywall — tekst „subskrypcja nadal się odnawia” oparty tylko na `entitlementActive`; zakupy = ścieżka wrażliwa (przegląd niezależny). Fala 2, mały pakiet I.
 
+- 13:15 Pakiet E scalony (9cd7502b): 101-14, 101-15, 101-16, 101-21 (odcisk tokenów bez zmian). 101-17 bez kodu — docs/32 pkt 19 „tytuł skraca się wielokropkiem” → decyzja właściciela (A zostaje / B tytuł stały + treść „Dostosuj do: {l}”).
+- 13:15 Recenzja lokalizacji E: ms „Animasi pergerakan” OK; do wprowadzenia el:580 „άρσεις” → „deadlift”, el:809 „πιέσεις πάγκου” → „bench press” (zgodne ze słownikiem); ms „Lukisan skematik” → „Rajah skematik” — pytanie do native speakera (docs/16); `store/screenshot-captions.json` ms → po 1.0 (docs/21).
+- 13:15 Fala 2 start: B (r101/B) i C (r101/C); D i I po zwolnieniu miejsca (limit 3 agentów).
+
 ## Czekające kroki właściciela
 - Decyzja: D3 RDL ramiona (A 23° / B ok. 17° — rekomendacja / C pionowo przeczy źródłom).
 - Decyzja: 101-27 (1 przebudowa z utratą / 2 z zachowaniem szkiców / 3 łatka natywna RN / 4 bez poprawki — rekomendacja).
+- Decyzja: 101-17 tytuł okna „Dostosuj” (A wielokropek wg docs/32 / B tytuł stały + zawijana treść).
 
 ## Wyjątki nazwane w tej sesji
 - 29.10 12:20 Wypychanie samego `POSTEP.md` przez `git push --no-verify`: hak (L-049) wymaga znacznika verify dla drzewa, a `verify:docs` na gałęzi z kodem odmawia (STAN, pułapki). Kontrola zastępcza: commit zawiera tylko ten plik (`git show --stat`), `tests.yml` biegnie na gałęzi.
