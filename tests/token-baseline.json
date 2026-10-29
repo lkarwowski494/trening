@@ -8,8 +8,7 @@
    "fontSize": 5
   },
   "components/Dashboard.tsx": {
-   "fontSize": 8,
-   "borderRadius": 3
+   "fontSize": 2
   },
   "components/EquipVisual.tsx": {
    "fontSize": 3,
@@ -20,10 +19,6 @@
   },
   "components/Guard.tsx": {
    "fontSize": 3
-  },
-  "components/GuardSection.tsx": {
-   "fontSize": 12,
-   "borderRadius": 2
   },
   "components/LoadEditor.tsx": {
    "fontSize": 5

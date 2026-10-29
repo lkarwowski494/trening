@@ -4,7 +4,7 @@ import { ScrollView } from '@/components/Scroll';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Chip, Field, Input, SectionTitle, SwitchRow, Missing } from '@/components/ui';
 import { font, SPACE } from '@/lib/theme';
-import { getState, useTick, setActiveLocation, pruneOneOff, NAME_MAX, fmtDayKey } from '@/lib/store';
+import { getState, useTick, setActiveLocation, pruneOneOff, NAME_MAX, fmtDayRange } from '@/lib/store';
 import { useCloseHeader, useDismiss } from '@/components/CloseButton';
 import { addOneOffLocation, ONE_OFF_DEFAULT_NAME, ONE_OFF_PRESETS } from '@/lib/locations';
 import { adaptCandidates, restoreCandidates } from '@/lib/adapt';
@@ -50,7 +50,7 @@ export default function PlaceOnceScreen() {
       <Stack.Screen options={headerOpts} />
       <ScrollView contentContainerStyle={{ paddingBottom: 40 }} keyboardShouldPersistTaps="handled">
         <Muted style={{ marginBottom: 8 }}>{range
-          ? t('Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.', { a: fmtDayKey(range.from), b: fmtDayKey(range.to) })
+          ? t('Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.', fmtDayRange(range.from, range.to))
           : t('Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.')}</Muted>
         <Field label={t('Nazwa')}><Input value={name} onChangeText={setName} placeholder={fallback} maxLength={NAME_MAX} returnKeyType="done" /></Field>
         <SwitchRow label={t('Zapisz jako miejsce')} detail={t('Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).')} value={keep} onChange={setKeep} />

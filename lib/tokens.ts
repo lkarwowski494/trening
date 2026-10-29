@@ -148,7 +148,16 @@ export const RADIUS = {
   marker: 3,
   /** Okrągłe: ±, „⋯”, ⓘ — połowa wysokości. */
   round: 999,
+  /* 101-21 (D6 = B): nowe tokeny o dokładnie dzisiejszych wartościach (render bez zmian); ujednolicenie ról — 1.1. */
+  /** Kafelek wartości i wiersz Postępów (Dashboard). */
+  tile: 10,
+  /** Kółko numeru / znaczka 24 pt (lista kroków w Dashboard) — dziś 12, czyli połowa wysokości. */
+  badge: 12,
+  /** Próbka koloru w legendzie wykresu (GuardSection). */
+  swatch: 2,
 } as const;
+/** 101-21 (D6 = B): rozmiary tekstu bez roli pisma (bez lineHeight i kroju z TYPE) — dokładnie dzisiejsze literały z Dashboard i GuardSection; role — 1.1. */
+export const TEXT_SIZE = { small: 12, medium: 14 } as const;
 
 /** Wysokości i cele dotykowe (pt). Cel ≥ 44 (decyzja studia; minimum HIG 28). */
 export const SIZE = {

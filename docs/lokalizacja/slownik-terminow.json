@@ -9153,6 +9153,87 @@
      "uwaga": "„中間姿勢 1” czy „中間姿勢1” (spacja)? Do sprawdzenia przez native speakera (docs/16, 1.0.1)."
     }
    }
+  },
+  {
+   "id": "animacja_ruchu",
+   "pl": "animacja ruchu (podpis rysunku ćwiczenia)",
+   "tylko": [
+    "el",
+    "ms"
+   ],
+   "znaczenie": "ruchomy rysunek techniki ćwiczenia; w ms termin marketingowy „Animasi pergerakan” (jak w opisie sklepu), w el NIE „κινούμενα σχέδια” (kreskówki)",
+   "kanon": "Rysunek ruchu: {opis}",
+   "wykrywaj": "rysunek ruchu",
+   "jezyki": {
+    "el": {
+     "zalecany": "Σχέδιο της κίνησης",
+     "zakazane": [
+      {
+       "wzorzec": "κινούμενα σχέδια",
+       "powod": "„κινούμενα σχέδια” znaczy kreskówki / film animowany, nie rysunek ruchu ćwiczenia"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Animasi pergerakan",
+     "zakazane": [
+      {
+       "wzorzec": "lukisan pergerakan",
+       "powod": "termin marketingowy w opisie sklepu to „animasi pergerakan”; „lukisan” to obraz malowany, nie animacja"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "przysiad",
+   "pl": "przysiad",
+   "tylko": [
+    "el"
+   ],
+   "znaczenie": "ćwiczenie przysiad (squat); w el zostaje angielska nazwa używana na siłowni",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])przysiad",
+   "jezyki": {
+    "el": {
+     "zalecany": "squat",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "wyciskanie_lezac",
+   "pl": "wyciskanie leżąc",
+   "tylko": [
+    "el"
+   ],
+   "znaczenie": "ćwiczenie wyciskanie leżąc (bench press); w el zostaje angielska nazwa używana na siłowni",
+   "kanon": null,
+   "wykrywaj": "wyciskani\\w* (sztangi |hantli )?leżąc",
+   "jezyki": {
+    "el": {
+     "zalecany": "bench press",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "martwy_ciag",
+   "pl": "martwy ciąg",
+   "tylko": [
+    "el"
+   ],
+   "znaczenie": "ćwiczenie martwy ciąg (deadlift); w el zostaje angielska nazwa używana na siłowni",
+   "kanon": null,
+   "wykrywaj": "martw\\w* ciąg",
+   "jezyki": {
+    "el": {
+     "zalecany": "deadlift",
+     "pewnosc": "srednia"
+    }
+   }
   }
  ]
 }

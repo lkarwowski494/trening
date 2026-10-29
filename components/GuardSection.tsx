@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Pressable } from 'react-native';
 import { H2, Muted, Txt, monoSafe } from '@/components/ui';
 import { SignChip, SIGN_CHAR, GuardMap, GuardLegend } from '@/components/Guard';
-import { useTheme, F, TYPE, RADIUS, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW } from '@/lib/theme';
+import { useTheme, F, TYPE, TEXT_SIZE, RADIUS, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW } from '@/lib/theme';
 import { useTick, exById } from '@/lib/store';
 import { guardCached, guardTexts, guardWord, type Guard, type GuardPart, type GuardDir, type SkipReason } from '@/lib/guard';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
@@ -60,7 +60,7 @@ function GuardRow({ p }: { p: GuardPart }) {
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, flexShrink: 1 }}><SignChip dir={p.dir} /><Txt style={{ ...FW.semibold, fontSize: TYPE.callout.size, flexShrink: 1 }}>{name}</Txt><Muted maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ fontSize: TYPE.footnote.size }}>{open ? '▾' : '▸'}</Muted></View>
           <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontFamily: F.mono, fontVariant: ['tabular-nums'], fontSize: TYPE.footnote.size }}>{monoSafe(series)}</Txt>
         </View>
-        {line(false) ? <Muted style={{ fontSize: 12, marginTop: 2 }}>{line(false)}</Muted> : null}
+        {line(false) ? <Muted style={{ fontSize: TEXT_SIZE.small, marginTop: 2 }}>{line(false)}</Muted> : null}
         <GuardBar p={p} />
       </Pressable>
       {open ? (
@@ -69,20 +69,20 @@ function GuardRow({ p }: { p: GuardPart }) {
           {p.planned.total > 0 ? <Muted style={{ fontSize: TYPE.footnote.size }}>{t('Zaplanowane: {text} ({days})', { text: setsText(p.planned), days: p.plannedDays.map(k => fmtWeekdayShort(dayOf(k))).join(', ') })}</Muted> : null}
           {p.compared.length ? (
             <View style={{ gap: 4 }}>
-              <Muted style={{ fontSize: 12, ...FW.semibold }}>{t('Porównywane ćwiczenia: tonaż/sesję i ciężar roboczy')}</Muted>
+              <Muted style={{ fontSize: TEXT_SIZE.small, ...FW.semibold }}>{t('Porównywane ćwiczenia: tonaż/sesję i ciężar roboczy')}</Muted>
               <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 16 }}><Muted style={{ fontSize: TYPE.caption.size, minWidth: 74, textAlign: 'right' }}>{t('teraz')}</Muted><Muted style={{ fontSize: TYPE.caption.size, minWidth: 74, textAlign: 'right' }}>{t('wcześniej')}</Muted></View>
               {p.compared.map(c => (
                 <View key={c.exerciseId} testID={`gex-${p.part}-${c.exerciseId}`} style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8, borderTopWidth: 1, borderTopColor: th.line, paddingTop: 3 }}>
                   <Txt style={{ fontSize: TYPE.footnote.size, flexShrink: 1 }}>{exLabel(c.exerciseId)}</Txt>
                   <View style={{ flexDirection: 'row', gap: 16 }}>
-                    <View style={{ minWidth: 74, alignItems: 'flex-end' }}><Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontFamily: F.mono, fontVariant: ['tabular-nums'], fontSize: 12 }}>{monoSafe(fmtVol(c.now.perSession))}</Txt><Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: TYPE.caption.size }}>{fmtW(c.now.weight)}</Muted></View>
-                    <View style={{ minWidth: 74, alignItems: 'flex-end' }}><Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontFamily: F.mono, fontVariant: ['tabular-nums'], fontSize: 12 }}>{monoSafe(fmtVol(c.before.perSession))}</Txt><Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: TYPE.caption.size }}>{fmtW(c.before.weight)}</Muted></View>
+                    <View style={{ minWidth: 74, alignItems: 'flex-end' }}><Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontFamily: F.mono, fontVariant: ['tabular-nums'], fontSize: TEXT_SIZE.small }}>{monoSafe(fmtVol(c.now.perSession))}</Txt><Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: TYPE.caption.size }}>{fmtW(c.now.weight)}</Muted></View>
+                    <View style={{ minWidth: 74, alignItems: 'flex-end' }}><Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontFamily: F.mono, fontVariant: ['tabular-nums'], fontSize: TEXT_SIZE.small }}>{monoSafe(fmtVol(c.before.perSession))}</Txt><Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: TYPE.caption.size }}>{fmtW(c.before.weight)}</Muted></View>
                   </View>
                 </View>))}
             </View>) : null}
-          {refItems.length ? <Muted testID={`gskip-ref-${p.part}`} style={{ fontSize: 12 }}>{t('Pominięte (bez punktu odniesienia): {list}', { list: refItems.join('; ') })}</Muted> : null}
-          {noWeightItems.length ? <Muted testID={`gskip-noweight-${p.part}`} style={{ fontSize: 12 }}>{t('Pominięte (bez ciężaru): {list}', { list: noWeightItems.join(', ') })}</Muted> : null}
-          {planItems.length ? <Muted testID={`gskip-plan-${p.part}`} style={{ fontSize: 12 }}>{t('Pominięte (plan bez ciężaru lub powtórzeń): {list}', { list: planItems.join(', ') })}</Muted> : null}
+          {refItems.length ? <Muted testID={`gskip-ref-${p.part}`} style={{ fontSize: TEXT_SIZE.small }}>{t('Pominięte (bez punktu odniesienia): {list}', { list: refItems.join('; ') })}</Muted> : null}
+          {noWeightItems.length ? <Muted testID={`gskip-noweight-${p.part}`} style={{ fontSize: TEXT_SIZE.small }}>{t('Pominięte (bez ciężaru): {list}', { list: noWeightItems.join(', ') })}</Muted> : null}
+          {planItems.length ? <Muted testID={`gskip-plan-${p.part}`} style={{ fontSize: TEXT_SIZE.small }}>{t('Pominięte (plan bez ciężaru lub powtórzeń): {list}', { list: planItems.join(', ') })}</Muted> : null}
         </View>) : null}
     </View>);
 }
@@ -110,7 +110,7 @@ export function GuardSection({ onLayoutY }: { onLayoutY?: (y: number) => void })
       {!trained ? <Muted style={{ fontSize: TYPE.footnote.size }}>{t('Brak serii w tym tygodniu.')}</Muted> : <>
         <GuardMap parts={g.parts} label={x.label} testID="guard-map-pg" />
         {x.deload ? <Muted style={{ textAlign: 'center', ...FW.semibold, marginTop: 8 }}>{x.deload}</Muted> : <GuardLegend parts={g.parts} testID="guard-legend-pg" />}
-        {x.compared ? <Muted testID="guard-compared-pg" style={{ fontSize: 12, textAlign: 'center', marginTop: 6 }}>{x.compared}</Muted> : null}
+        {x.compared ? <Muted testID="guard-compared-pg" style={{ fontSize: TEXT_SIZE.small, textAlign: 'center', marginTop: 6 }}>{x.compared}</Muted> : null}
         <View style={{ marginTop: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, borderRadius: RADIUS.group, overflow: 'hidden' }}>
           {guardGroups(g).map(grp => (
             <View key={grp.key} testID={`ggrp-${grp.key}`}>
@@ -121,13 +121,13 @@ export function GuardSection({ onLayoutY }: { onLayoutY?: (y: number) => void })
             </View>))}
           {none.length ? (
             <View testID="grow-none" accessible accessibilityLanguage={lang()} style={{ flexDirection: 'row', alignItems: 'center', gap: 7, paddingHorizontal: 12, paddingVertical: 12, borderTopWidth: 1, borderTopColor: th.line }}>
-              <SignChip dir="none" /><Muted style={{ fontSize: 14, flexShrink: 1 }}>{t('Bez serii: {list}', { list: none.map(p => t(p.part)).join(', ') })}</Muted>
+              <SignChip dir="none" /><Muted style={{ fontSize: TEXT_SIZE.medium, flexShrink: 1 }}>{t('Bez serii: {list}', { list: none.map(p => t(p.part)).join(', ') })}</Muted>
             </View>) : null}
         </View>
         <View testID="guard-bar-legend" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ flexDirection: 'row', flexWrap: 'wrap', columnGap: 14, rowGap: 2, marginTop: 8, alignItems: 'center' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}><View style={{ width: 12, height: 8, borderRadius: 2, backgroundColor: th.accent }} /><Muted style={{ fontSize: 12 }}>{t('wykonane')}</Muted></View>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}><View style={{ width: 12, height: 8, borderRadius: 2, backgroundColor: mixHex(th.surface, th.accent, 0.38) }} /><Muted style={{ fontSize: 12 }}>{t('zaplanowane')}</Muted></View>
-          <Muted style={{ fontSize: 12 }}>{t('Skala do dwukrotności celu, » — więcej.')}</Muted>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}><View style={{ width: 12, height: 8, borderRadius: RADIUS.swatch, backgroundColor: th.accent }} /><Muted style={{ fontSize: TEXT_SIZE.small }}>{t('wykonane')}</Muted></View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}><View style={{ width: 12, height: 8, borderRadius: RADIUS.swatch, backgroundColor: mixHex(th.surface, th.accent, 0.38) }} /><Muted style={{ fontSize: TEXT_SIZE.small }}>{t('zaplanowane')}</Muted></View>
+          <Muted style={{ fontSize: TEXT_SIZE.small }}>{t('Skala do dwukrotności celu, » — więcej.')}</Muted>
         </View>
       </>}
     </View>);

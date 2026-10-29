@@ -36,7 +36,7 @@ import * as crashMod from './state/crashguard';
 
 export const { NAME_MAX, REPS_MAX, REST_MAX, DURATION_MAX_SEC, clampName, PREMIGRATE_KEEP_MS, SET_NOTE_MAX } = utilMod;
 export const {
-  localDateTs, fmtSec, fmtDist, reps, fmtDur, fmtDayKey, fmtDate, fmtTime, localISODate, tzOffsetAt, cleanTz, wallTs, fromWallTs, workoutDay,
+  localDateTs, fmtSec, fmtDist, reps, fmtDur, fmtDayKey, fmtDayRange, fmtDate, fmtTime, localISODate, tzOffsetAt, cleanTz, wallTs, fromWallTs, workoutDay,
   mondayKey
 } = timeMod;
 export const { dbDirectory, copyKv } = dbMod;
