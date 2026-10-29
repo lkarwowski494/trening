@@ -24,6 +24,9 @@ type Kapsula = { a: V3; b: V3; r: number };
 export function elementyCiezaru(f: Frame): Kapsula[] {
   const eq = equipColliders(f.props).filter((c): c is Kapsula & { k: 'capsule'; id: string } => c.k === 'capsule' && /^(bar|db|kb)/.test(c.id));
   if (eq.length) return eq.map(c => ({ a: c.a, b: c.b, r: c.r }));
+  /* osobne uchwyty w dłoniach (Band Bench Press, Chain Press — 101-05/06): każdy uchwyt to punkt o promieniu 2 cm; odcinek między dłońmi dotyczy tylko uchwytu linki (koordynator 29.10.2026, po scaleniu A i B) */
+  const uchwyty = f.props.filter((p): p is typeof p & { k: 'handle'; c: V3 } => p.k === 'handle' && Array.isArray((p as { c?: unknown }).c));
+  if (uchwyty.length) return uchwyty.map(p => ({ a: p.c, b: p.c, r: 2 }));
   const c = f.info.load; const h = Math.min(Math.abs(f.sk.arms.R.grip[2]), Math.abs(f.sk.arms.L.grip[2])); /* uchwyt linki: odcinek w osi z o połowie rozstawu dłoni (jak items() w rigu hinge) */
   return [{ a: [c[0], c[1], -h], b: [c[0], c[1], h], r: 2 }];
 }

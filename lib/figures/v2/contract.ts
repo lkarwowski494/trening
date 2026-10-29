@@ -7,6 +7,8 @@
  * Liczby (zakresy, tolerancje) w jednym miejscu: CONTRACT. Kąty i rozstawy bez źródła to uproszczenie ilustracyjne (nie pokazujemy ich użytkownikowi).
  */
 import { add, dist, type V3 } from './math';
+import { OVERHEAD_SHOULDER_EXCEPTION, overheadShoulderRange, trunkLeanDeg } from './overheadException';
+export { OVERHEAD_SHOULDER_EXCEPTION, overheadShoulderRange, trunkLeanDeg } from './overheadException';
 import { BODY, SIDES, jointAngles, type LegIn, type ArmIn, type PoseIn, type Side } from './skeleton';
 import type { Frame, Prop } from './scene';
 import { checkFrame } from './colliders';
@@ -79,26 +81,6 @@ export const TEMPLATES: Record<string, FamilyTemplate> = {
   },
 };
 const GENERIC: FamilyTemplate = { gear: 'Sprzęt wg rodzaju ćwiczenia: sztanga (x, y, talerze, podazaZaChwytem), słupek (x, h), podłoga, skrzynia (x0, x1, top).', defaultGear: [{ rodzaj: 'podloga', x0: -120, x1: 120 }], movement: 'u = 0: pozycja wyjściowa, u = 1: pozycja skrajna.' };
-/**
- * 101-11 (decyzja właściciela D1 = A, 29.10.2026; rozstrzygnięcie: docs/research/1-0-1-zrodla-2026-10-29.md pkt 4): WYJĄTEK zakresu barku tylko dla dwóch figur — Overhead Squat i One-Arm Overhead
- * Kettlebell Squat. Powód: cecha rozpoznawcza — ręce pionowo nad głową przy pochylonym tułowiu. Reguła zależna od pochylenia tułowia θ (linia biodro–bark od pionu, stopnie):
- * zgięcie barku w płaszczyźnie strzałkowej (kąt ramię–tułów) = 180° + θ − (odchylenie ramienia od pionu, dodatnie = przed pionem), a ramię może być najwyżej `aheadMax`° PRZED pionem i do `behindMax`° ZA pionem,
- * czyli kąt mieści się w [180 + θ − aheadMax, 180 + θ + behindMax]. (Rachunek, szczebel 1: ramię pionowo → 180° + θ. Notatka badacza podaje też „≤ 180° + θ + 5°”, co przy ramieniu 10° za pionem
- * jest sprzeczne z samą granicą 10° — przyjęto granicę z odchylenia ramienia, nie sztywne +5°.) Liczba > 180° to UPROSZCZENIE (tułów jako odcinek: wyprost odcinka piersiowego liczy się jako kąt w barku),
- * tolerancje 5°/10° to KONWENCJA. Zgięcie barku w płaszczyźnie czołowej (shElev) do 180° (ramię nie dalej niż pion). Inne figury nadal mają limit z ROM (ok. 171°).
- */
-export const OVERHEAD_SHOULDER_EXCEPTION = {
-  keys: ['Overhead Squat', 'One-Arm Overhead Kettlebell Squat'] as readonly string[],
-  aheadMax: 5, behindMax: 10, elevMax: 180,
-  why: 'cecha rozpoznawcza — ręce pionowo nad głową przy pochylonym tułowiu; liczba > 180° to uproszczenie (tułów jako odcinek), tolerancje to konwencja',
-} as const;
-/** Dozwolony przedział zgięcia barku (stopnie) dla ćwiczenia z wyjątkiem przy pochyleniu tułowia θ; `undefined` = brak wyjątku (obowiązuje limit z ROM). */
-export function overheadShoulderRange(exercise: string, thetaDeg: number): { min: number; max: number } | undefined {
-  const x = OVERHEAD_SHOULDER_EXCEPTION; if (!x.keys.includes(exercise)) return undefined;
-  return { min: 180 + thetaDeg - x.aheadMax, max: 180 + thetaDeg + x.behindMax };
-}
-/** Pochylenie tułowia od pionu (stopnie): linia biodro–bark w płaszczyźnie strzałkowej, dodatnie = do przodu. */
-export const trunkLeanDeg = (sk: { pelvis: V3; shoulderC: V3 }): number => Math.atan2(sk.shoulderC[0] - sk.pelvis[0], sk.shoulderC[1] - sk.pelvis[1]) * 180 / Math.PI;
 export const templateFor = (family: string): FamilyTemplate => TEMPLATES[family] ?? GENERIC;
 export const knownFamily = (family: string): boolean => Object.prototype.hasOwnProperty.call(FAMILY, family);
 

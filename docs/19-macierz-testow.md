@@ -1744,8 +1744,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/colliders.gap | lib/figures/v2/colliders.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-geometry.test.ts +10 |
 | figures/v2/colliders.checkFrame | lib/figures/v2/colliders.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-errors.test.tsx +4 |
 | figures/v2/colliders.holdChecks | lib/figures/v2/colliders.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-geometry.test.ts, tests/figury-pakiet-b.test.ts |
-| figures/v2/contract.overheadShoulderRange | lib/figures/v2/contract.ts | tests/figury-101-squat.test.ts |
-| figures/v2/contract.trunkLeanDeg | lib/figures/v2/contract.ts | tests/figury-101-squat.test.ts |
 | figures/v2/contract.templateFor | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
 | figures/v2/contract.knownFamily | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
 | figures/v2/contract.poseSchema | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
@@ -1808,6 +1806,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/math.ik2 | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/math.distSegSeg | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figury-1-0-1-uwagi.test.ts, tests/figury-101-squat.test.ts +2 |
 | figures/v2/muscles.muscleShapes | lib/figures/v2/muscles.ts | tests/figures-v2-engine.test.ts |
+| figures/v2/overheadException.overheadShoulderRange | lib/figures/v2/overheadException.ts | tests/figury-101-squat.test.ts |
+| figures/v2/overheadException.trunkLeanDeg | lib/figures/v2/overheadException.ts | tests/figury-101-squat.test.ts |
 | figures/v2/palette.mixHex | lib/figures/v2/palette.ts | tests/figures-v2-engine.test.ts, tests/muscle-map.test.tsx |
 | figures/v2/palette.luminance | lib/figures/v2/palette.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/palette.contrast | lib/figures/v2/palette.ts | tests/audit-m1-031-contrast.test.tsx, tests/audit-m1-p3-coverage.test.tsx, tests/figures-v2-engine.test.ts +7 |
