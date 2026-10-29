@@ -356,7 +356,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 - Kryteria akceptacji:
   - Scenariusz: Propozycje bez automatycznej zamiany
     - Zakładając, że użytkownik zmienia miejsce na takie, w którym brakuje sprzętu do części ćwiczeń
-    - Gdy otwiera się okno „Dostosuj do: …”
+    - Gdy otwiera się okno „Dostosuj do miejsca” (stały tytuł; pierwszy wiersz treści: „Dostosuj do: …” z pełną nazwą miejsca)
     - Wtedy okno pokazuje propozycje zamiany do przejrzenia; „Anuluj” niczego nie zmienia, a zamiana nigdy nie następuje automatycznie
 
 ### BR-PST-001: Podsumowanie tygodnia i miesiąca: mapa mięśni i serie na partię

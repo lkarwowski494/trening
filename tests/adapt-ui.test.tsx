@@ -9,7 +9,7 @@ import { loc } from './locations-fixtures';
 import { presetEquipment } from '@/lib/equipment';
 
 /** M3 p2 (ZM-02, wzorzec 30): miejsce treningu jest w menu „⋯” (dawny chip „📍 Dom ▾” pod nazwą) — otwiera menu, wybiera pozycję miejsca i zwraca arkusz miejsc */
-const openPlaceSheet = async () => { await tap(screen.getByTestId('more-button')); const m = (global as any).__sheets.at(-1); const i = (m.opts.options as string[]).findIndex(o => /^(Miejsce treningu|Workout place): /.test(o)); await act(async () => { m.cb(i); }); return (global as any).__sheets.at(-1); };
+const openPlaceSheet = async () => { await tap(screen.getByTestId('more-button')); const m = (global as any).__sheets.at(-1); const i = (m.opts.options as string[]).findIndex(o => /^(Miejsce treningu|Workout place|Χώρος προπόνησης): /.test(o)); await act(async () => { m.cb(i); }); return (global as any).__sheets.at(-1); };
 jest.setTimeout(60000);
 const S = () => store.getState();
 const blk = (i: number) => S().active!.exercises[i];
@@ -228,9 +228,22 @@ describe('dopiski wierszy, podpowiedzi i tytuł okna', () => {
     expect(screen.getAllByText('wraca do ćwiczenia z planu')).toHaveLength(2); expect(screen.getAllByText('wpisane wartości zamiennika przepadną')).toHaveLength(1);
     const sw = screen.getAllByRole('switch'); expect(sw).toHaveLength(3); expect(sw[1].props.accessibilityHint).toBe('wpisane wartości zamiennika przepadną');
   });
-  test('tytuł okna: „Dostosuj do: Hotel” przy treningu, „Dostosuj do miejsca” w trasie z układu (bez treningu)', async () => {
+  test('101-17 (29.10.2026, wariant B): tytuł nagłówka jest stały „Dostosuj do miejsca”, a „Dostosuj do: Hotel” to pierwszy wiersz treści', async () => {
     const title = () => require('expo-router/build/global-state/router-store').store.navigationRef.getCurrentOptions().title as string;
-    await boot(); await pickPlace('Hotel'); expect(title()).toBe('Dostosuj do: Hotel');
+    await boot(); await pickPlace('Hotel'); expect(title()).toBe('Dostosuj do miejsca');
+    expect(screen.getByTestId('adapt-place-line').props.children).toBe('Dostosuj do: Hotel');
     await tap(screen.getByTestId('close-modal')); await flushAll(20); await act(async () => { store.cancelWorkout(); }); await flushAll(10); await go('/adapt'); await flushAll(20); expect(title()).toBe('Dostosuj do miejsca');
+  });
+  test.each(['pl', 'en', 'el'] as const)('101-17: tytuł stały, wiersz z pełną (długą) nazwą miejsca zawija się i jest czytany jako tekst (%s)', async (lang) => {
+    const title = () => require('expo-router/build/global-state/router-store').store.navigationRef.getCurrentOptions().title as string;
+    const longName = 'Ξενοδοχείο με γυμναστήριο στην ταράτσα του κτιρίου';
+    const w = await savedWorld(FBW, lang === 'pl' ? 'pl' : 'en'); w.settings.locations[1].name = longName;
+    await renderApp({ saved: w, locale: lang === 'pl' ? 'pl' : 'en', code: lang }); await flushAll(20); await pickPlace(longName);
+    const { t } = require('@/lib/i18n');
+    expect(title()).toBe(t('Dostosuj do miejsca'));
+    const row = screen.getByTestId('adapt-place-line');
+    expect(row.props.children).toBe(t('Dostosuj do: {l}', { l: longName })); expect(String(row.props.children)).toContain(longName);
+    expect(row.props.numberOfLines).toBeUndefined();
+    expect(row.props.accessibilityRole).not.toBe('header'); expect(row.props.accessibilityRole).not.toBe('button'); expect(row.props.accessible).not.toBe(false);
   });
 });
