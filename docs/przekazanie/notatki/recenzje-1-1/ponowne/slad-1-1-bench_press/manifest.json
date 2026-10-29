@@ -1,0 +1,340 @@
+{
+ "commit": "15e3ab45",
+ "klatki_u": [
+  0,
+  0.08333333333333333,
+  0.16666666666666666,
+  0.25,
+  0.3333333333333333,
+  0.4166666666666667,
+  0.5,
+  0.5833333333333334,
+  0.6666666666666666,
+  0.75,
+  0.8333333333333334,
+  0.9166666666666666,
+  1
+ ],
+ "cwiczenia": {
+  "Bench Press (sztanga)": {
+   "plik": "Bench-Press-sztanga-.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Bench Press (hantle)": {
+   "plik": "Bench-Press-hantle-.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Incline Bench Press (sztanga)": {
+   "plik": "Incline-Bench-Press-sztanga-.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Incline Bench Press (hantle)": {
+   "plik": "Incline-Bench-Press-hantle-.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Decline Bench Press": {
+   "plik": "Decline-Bench-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Close Grip Bench Press": {
+   "plik": "Close-Grip-Bench-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Decline Bench Press (hantle)": {
+   "plik": "Decline-Bench-Press-hantle-.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Floor Press (hantle)": {
+   "plik": "Floor-Press-hantle-.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": []
+  },
+  "Floor Press (sztanga)": {
+   "plik": "Floor-Press-sztanga-.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": []
+  },
+  "Squeeze Press (hantle)": {
+   "plik": "Squeeze-Press-hantle-.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Smith Machine Bench Press": {
+   "plik": "Smith-Machine-Bench-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Smith Machine Incline Press": {
+   "plik": "Smith-Machine-Incline-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "JM Press": {
+   "plik": "JM-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": []
+  },
+  "One-Arm Kettlebell Floor Press": {
+   "plik": "One-Arm-Kettlebell-Floor-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": []
+  },
+  "One Arm Dumbbell Bench Press": {
+   "plik": "One-Arm-Dumbbell-Bench-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Barbell Guillotine Bench Press": {
+   "plik": "Barbell-Guillotine-Bench-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Wide-Grip Barbell Bench Press": {
+   "plik": "Wide-Grip-Barbell-Bench-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Smith Machine Decline Press": {
+   "plik": "Smith-Machine-Decline-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Band Bench Press": {
+   "plik": "Band-Bench-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Chain Press": {
+   "plik": "Chain-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Bench Press with Chains": {
+   "plik": "Bench-Press-with-Chains.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Floor Press with Chains": {
+   "plik": "Floor-Press-with-Chains.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": []
+  },
+  "Reverse Band Bench Press": {
+   "plik": "Reverse-Band-Bench-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Board Press": {
+   "plik": "Board-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Pin Press": {
+   "plik": "Pin-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Close-Grip Dumbbell Press": {
+   "plik": "Close-Grip-Dumbbell-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Close-Grip EZ-Bar Press": {
+   "plik": "Close-Grip-EZ-Bar-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Smith Machine Close-Grip Bench Press": {
+   "plik": "Smith-Machine-Close-Grip-Bench-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Reverse Grip Bench Press": {
+   "plik": "Reverse-Grip-Bench-Press.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  },
+  "Decline Close-Grip Bench To Skull Crusher": {
+   "plik": "Decline-Close-Grip-Bench-To-Skull-Crusher.png",
+   "widoki": [
+    "side",
+    "top"
+   ],
+   "klatki": 13,
+   "bledy": [
+    "arch"
+   ]
+  }
+ }
+}
