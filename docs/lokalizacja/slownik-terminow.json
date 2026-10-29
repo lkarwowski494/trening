@@ -9215,6 +9215,7 @@
    "jezyki": {
     "el": {
      "zalecany": "bench press",
+     "zakazane": [{"wzorzec": "πιέσεις\\s+πάγκου", "powod": "„πιέσεις πάγκου” to kalka; w el zalecane bench press, tak mówi się na siłowni"}],
      "pewnosc": "srednia"
     }
    }
@@ -9231,6 +9232,7 @@
    "jezyki": {
     "el": {
      "zalecany": "deadlift",
+     "zakazane": [{"wzorzec": "(?<![\\p{L}])(άρσεις|νεκρή\\s+άρση)(?![\\p{L}])", "powod": "„άρσεις” to ogólne podnoszenia, „νεκρή άρση” to kalka; w el zalecane deadlift"}],
      "pewnosc": "srednia"
     }
    }

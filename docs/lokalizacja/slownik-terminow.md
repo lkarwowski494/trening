@@ -206,6 +206,8 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `el` | `przerwa_robocza` | διάλειμμα εργασίας | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `el` | `plan_subskrypcji` | πρόγραμμ | „Πρόγραμμα” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Πλάνο” |
 | `el` | `animacja_ruchu` | κινούμενα σχέδια | „κινούμενα σχέδια” znaczy kreskówki / film animowany, nie rysunek ruchu ćwiczenia |
+| `el` | `wyciskanie_lezac` | πιέσεις\s+πάγκου | „πιέσεις πάγκου” to kalka; w el zalecane bench press, tak mówi się na siłowni |
+| `el` | `martwy_ciag` | (?<![\p{L}])(άρσεις\|νεκρή\s+άρση)(?![\p{L}]) | „άρσεις” to ogólne podnoszenia, „νεκρή άρση” to kalka; w el zalecane deadlift |
 | `id` | `przerwa` | jeda | „jeda” to pauza (treningu); między seriami „istirahat” |
 | `id` | `przerwa_robocza` | istirahat kerja | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `id` | `seria` | (?<![\p{L}])seri(?![\p{L}]) | „seri” to serial; podejście to „set” |

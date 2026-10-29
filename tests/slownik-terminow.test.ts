@@ -149,6 +149,18 @@ describe('słownik terminów: logika (wykrywanie i naruszenia)', () => {
     const b: string = S.blokPromptu(slownik, 'el'); expect(b).toContain('→ squat'); expect(b).toContain('→ bench press'); expect(b).toContain('→ deadlift');
     expect(S.blokPromptu(slownik, 'ms')).toContain('Animasi pergerakan'); expect(S.blokPromptu(slownik, 'ms')).not.toContain('→ squat');
   });
+  /* 101-17 (recenzja lokalizacji el, 29.10.2026): ogólne „άρσεις” (podnoszenia) i „πιέσεις πάγκου” zamiast zalecanych angielskich deadlift / bench press */
+  test('el: martwy ciąg = deadlift, wyciskanie leżąc = bench press (zakazane: άρσεις, νεκρή άρση, πιέσεις πάγκου); teksty z recenzji poprawione', () => {
+    const el = JSON.parse(fs.readFileSync(path.join(root, 'lib/locales/el.json'), 'utf8')) as Record<string, string>;
+    expect(S.sprawdz(slownik, 'el', 'wyciskanie, martwy ciąg…', 'κωπηλατική, πιέσεις, άρσεις…').length).toBe(1);
+    expect(S.sprawdz(slownik, 'el', 'wyciskanie, martwy ciąg…', 'κωπηλατική, πιέσεις, deadlift…')).toEqual([]);
+    expect(S.sprawdz(slownik, 'el', 'wyciskanie leżąc', 'πιέσεις πάγκου').length).toBe(1);
+    expect(S.sprawdz(slownik, 'el', 'wyciskanie leżąc', 'bench press')).toEqual([]);
+    expect(el['Maszyny dźwigniowe na talerze (wiosłowanie, wyciskanie, martwy ciąg…)']).toContain('deadlift…)');
+    expect(el['Maszyny dźwigniowe na talerze (wiosłowanie, wyciskanie, martwy ciąg…)']).not.toContain('άρσεις');
+    const k = Object.keys(el).find(x => x.startsWith('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie:'))!;
+    expect(el[k]).toContain('π.χ. bench press:'); expect(el[k]).not.toContain('πάγκου');
+  });
   test('blok promptu: tylko wpisy języka docelowego, z terminem zalecanym i zakazanym', () => {
     const b: string = S.blokPromptu(slownik, 'ja');
     expect(b).toContain('インターバル'); expect(b).toContain('休憩'); expect(b).toContain('naturalnie');
