@@ -35,7 +35,7 @@ const round = (v: number, step: number) => (step ? Math.round(v / step) * step :
 function routes(squatId: string): [string, string, string, string][] {
   return [
     ['trening', '/', 'trening', ''],
-    ['cwiczenie', '/exercise/' + squatId + '?cues=1', 'jasny', 'cwiczenie'],
+    ['cwiczenie', '/exercise/' + squatId + '?cues=1', 'jasny', ''],
     ['postepy-cwiczenia', '/progress?ex=' + squatId, 'jasny', 'e1rm'],
     ['straznik', '/progress?s=guard', 'ciemny', 'przewin'],
     ['plan', '/plan', 'jasny', ''],

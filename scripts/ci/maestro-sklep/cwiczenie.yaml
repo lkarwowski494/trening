@@ -1,8 +1,0 @@
-# Zrzuty do sklepu: karta ćwiczenia — animowana figura zatrzymana przed zrzutem. Bez tego kadr zależy od chwili zrzutu (przebieg 40785697458:
-# pl = pozycja stojąca, kąt kolana 1°, en = dół przysiadu 110°), a zestaw 35 języków miałby losowe pozy. Zatrzymana figura pokazuje kolejne pozycje ruchu obok siebie.
-appId: pl.lukasz.trening
----
-- extendedWaitUntil: { visible: { id: "exercise-figure-pause" }, timeout: 20000 }
-- tapOn: { id: "exercise-figure-pause" }
-- waitForAnimationToEnd
-- assertVisible: { id: "exercise-figure-static" }
