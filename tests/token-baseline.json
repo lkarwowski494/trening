@@ -8,8 +8,8 @@
    "fontSize": 5
   },
   "components/Dashboard.tsx": {
-   "fontSize": 18,
-   "borderRadius": 4
+   "fontSize": 8,
+   "borderRadius": 3
   },
   "components/EquipVisual.tsx": {
    "fontSize": 3,

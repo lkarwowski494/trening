@@ -4,7 +4,7 @@ import React from 'react';
 import { View, Pressable, Text } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, SectionTitle, useOnce } from '@/components/ui';
-import { useTheme, F, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
+import { useTheme, FONT, TYPE, RADIUS, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
 import { useTick } from '@/lib/store';
 import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
 import { mainStart } from '@/lib/home';
@@ -20,7 +20,7 @@ function Tile({ label, value }: { label: string; value: string }) { /* 11.10.202
   const th = useTheme();
   return (
     <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${label}: ${value}`} {...fullValueProps(label, value)} /* DEC-01 a: podgląd po przytrzymaniu */ style={{ flexGrow: 1, flexBasis: '45%' /* 2 × 2 — mieści się przy 320 pt i długich tłumaczeniach */, padding: 10, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
-      <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.heavy, fontSize: 20 }}>{value}</Txt>
+      <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: FONT.title700, fontSize: TYPE.navTitle.size }}>{value}</Txt>
       <Muted style={{ fontSize: 12 }}>{label}</Muted>
     </View>);
 }
@@ -45,13 +45,13 @@ export function WeekStats() {
       {x.deload ? <Muted testID="guard-deload" style={{ textAlign: 'center', ...FW.semibold, marginTop: 8 }}>{x.deload}</Muted> : <GuardLegend parts={g.parts} />}
       {x.compared ? <Muted testID="guard-compared" style={{ fontSize: 12, textAlign: 'center', marginTop: 6 }}>{x.compared}</Muted> : null}
       {x.short || x.less ? <View style={{ marginTop: 10, gap: 4 }}>
-        {x.short ? <Text testID="guard-short" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...FW.regular, fontSize: 13, lineHeight: 19 }}>{x.short}</Text> : null}
-        {x.less ? <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6 }}><View style={{ marginTop: 2 }}><SignChip dir="down" size={16} /></View><Text testID="guard-less" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...FW.regular, fontSize: 13, lineHeight: 19, flexShrink: 1 }}>{x.less}</Text></View> : null}
+        {x.short ? <Text testID="guard-short" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...FW.regular, fontSize: TYPE.footnote.size, lineHeight: 19 }}>{x.short}</Text> : null}
+        {x.less ? <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6 }}><View style={{ marginTop: 2 }}><SignChip dir="down" size={16} /></View><Text testID="guard-less" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...FW.regular, fontSize: TYPE.footnote.size, lineHeight: 19, flexShrink: 1 }}>{x.less}</Text></View> : null}
       </View> : null}
       <Pressable testID="guard-more" accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Szczegóły w Postępach')} accessibilityHint={t('Otwiera Postępy.')} onPress={open} style={({ pressed }: { pressed: boolean }) => ({ minHeight: 44, marginTop: 10, borderTopWidth: 1, borderTopColor: th.line, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', opacity: pressed ? 0.7 : 1 })}>
-        <Txt maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...FW.semibold, fontSize: 15, color: th.accent }}>{t('Szczegóły w Postępach')}</Txt><Txt maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.accent, fontSize: 20 }}>›</Txt>
+        <Txt maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...FW.semibold, fontSize: TYPE.callout.size, color: th.accent }}>{t('Szczegóły w Postępach')}</Txt><Txt maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.accent, fontSize: 20 }}>›</Txt>
       </Pressable>
-    </View> : <Muted testID="week-muscles" style={{ fontSize: 13, marginTop: 8 }}>{t('Brak serii w tym tygodniu.')}</Muted>}
+    </View> : <Muted testID="week-muscles" style={{ fontSize: TYPE.footnote.size, marginTop: 8 }}>{t('Brak serii w tym tygodniu.')}</Muted>}
     {/* „Ostatni trening” usunięty z ekranu głównego (właściciel 09.10.2026 ok. 16:20): informacja zostaje w arkuszu „Inny trening” („Powtórz ostatni”: nazwa · data), w Historii i Kalendarzu */}
   </>;
 }
@@ -77,8 +77,8 @@ export function ProgressTiles() {
             <Muted style={{ fontSize: 11 }}>{sub}</Muted>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 16, rowGap: 2, marginTop: 4 }}>
               {/* osobne teksty: „brak poprzedniego okresu” to zdanie — limit powiększenia TEXT_SCALE_MAX (A11N-04), liczby 1,4 */}
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 6 }}><Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.heavy, fontSize: 18 }}>{vol}</Txt><Muted style={{ fontSize: 13 }}>{vp}</Muted></View>
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 6 }}><Txt maxFontSizeMultiplier={1.4} style={{ ...FW.semibold, fontSize: 15 }}>{sets} {tp(sets, 'seria|serie|serii')}</Txt><Muted style={{ fontSize: 12 }}>{sp}</Muted></View>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 6 }}><Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: FONT.title700, fontSize: TYPE.stepLabel.size }}>{vol}</Txt><Muted style={{ fontSize: TYPE.footnote.size }}>{vp}</Muted></View>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 6 }}><Txt maxFontSizeMultiplier={1.4} style={{ ...FW.semibold, fontSize: TYPE.callout.size }}>{sets} {tp(sets, 'seria|serie|serii')}</Txt><Muted style={{ fontSize: 12 }}>{sp}</Muted></View>
             </View>
           </Pressable>); })}
     </View>
@@ -103,8 +103,8 @@ export function FirstSteps() {
   const toPlan = (title: string) => <Btn nav small title={title} onPress={() => router.push('/plan')} style={{ alignSelf: 'flex-start' }} />;
   const noTemplate = mainStart().kind === 'empty';
   return (
-    <View testID="first-steps" style={{ marginTop: 6, padding: 12, borderRadius: 12, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
-      <Txt accessibilityRole="header" style={{ ...FW.semibold, fontSize: 17 }}>{t('Pierwsze kroki')}</Txt>
+    <View testID="first-steps" style={{ marginTop: 6, padding: 12, borderRadius: RADIUS.group, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
+      <Txt accessibilityRole="header" style={{ ...FW.semibold, fontSize: TYPE.body.size }}>{t('Pierwsze kroki')}</Txt>
       {step(f.template, 1, t('Utwórz pierwszy szablon albo wygeneruj szablony i plan.'), !f.template ? toPlan(t('Szablony i plan')) : undefined)}
       {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? toPlan(t('Planowanie')) : undefined)}
       {step(false, 3, noTemplate ? t('Pierwszy trening: duży przycisk „Pusty trening” u góry.') : t('Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.'), <Btn nav small title={t('Przewodnik')} accessibilityLabel={t('Przewodnik po funkcjach')} onPress={() => router.push('/guide?topic=workout')} style={{ alignSelf: 'flex-start' }} />)}
@@ -112,7 +112,7 @@ export function FirstSteps() {
       {step(false, 4, t('Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.'), <Btn nav small testID="first-steps-import" title={t('Importuj historię z pliku CSV')} onPress={once(() => router.push('/more/import'))} style={{ alignSelf: 'flex-start' }} />)}
       {/* 11.10.2026: „Miejsca i sprzęt” — jedno zdanie z odnośnikiem (nie osobny krok); z Ustawień wejście zniknęło */}
       <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')} onPress={once(() => router.push('/more/locations'))} hitSlop={8} style={{ minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-        <View style={{ flexShrink: 1 }}><Muted style={{ fontSize: 13 }}>{t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')}</Muted></View>
+        <View style={{ flexShrink: 1 }}><Muted style={{ fontSize: TYPE.footnote.size }}>{t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')}</Muted></View>
         <Text accessibilityElementsHidden importantForAccessibility="no" maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.muted, ...font('callout') }}>›</Text>
       </Pressable>
     </View>);
