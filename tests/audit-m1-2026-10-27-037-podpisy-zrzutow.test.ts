@@ -1,4 +1,5 @@
 /*
+ * Recenzja niezależna 29.10.2026 (recenzent-lokalizacji, decyzja właściciela 29.10.2026 bez native speakerów): 27 języków × 10 podpisów zrecenzowane, 9 poprawek wprowadzonych; status języków w store/screenshot-captions.json.
  * M1-audytor-generalny-037 część D (10-wydanie-004; DEC-07 b, właściciel 27.10.2026: „wybrane przed zgłoszeniem 1.0”; D7 z 25.10.2026: zrzuty dla wszystkich
  * lokalizacji sklepu — 32 z `store/app-store-names.json`, bez „sl”). Podpisy zrzutów były tylko PL i EN, a krok „ramki” (scripts/ci/store-frames.sh) pomija język bez podpisów — 27 lokalizacji dostałoby
  * zrzuty języka podstawowego (PL; Apple: nowy język domyślnie bierze zrzuty języka podstawowego — docs/48 pkt 5, odczyt 28.10.2026).
