@@ -34,6 +34,7 @@ describe('podpisy ramek: łamanie wierszy i rozmiar czcionki (29.10.2026)', () =
         const lines = t.split('\n');
         expect({ lang, k, lines: lines.length <= 2 }).toEqual({ lang, k, lines: true });
         for (const l of lines) expect({ lang, k, l, start: NO_LINE_START.test(l) }).toEqual({ lang, k, l, start: false });
+        if (lines.length === 2) expect({ lang, k, l: lines[0], jednaLitera: / \p{L}$/u.test(lines[0]) }).toEqual({ lang, k, l: lines[0], jednaLitera: false }); /* cs/03 „a”, hr/02 „i” */
         expect(t.replace(/\s+/g, '')).toBe(caps[lang][k].replace(/\s+/g, '')); /* tekst bez zmian */
         for (const l of lines) expect({ lang, k, l, wTekscie: caps[lang][k].includes(l) }).toEqual({ lang, k, l, wTekscie: true }); /* spacje w wierszu zachowane */
       }

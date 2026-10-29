@@ -34,7 +34,8 @@ export function tokens(lang, text) {
 export function layouts(toks) {
   const join = a => a.map((t, i) => (i ? t.sep : '') + t.w).join('');
   const out = [join(toks)];
-  for (let i = 1; i < toks.length; i++) out.push(`${join(toks.slice(0, i))}\n${join(toks.slice(i))}`);
+  /* Bez podziału zaraz po jednoliterowym słowie („a”, „i”, „v”, „z” — w cs, sk, pl, hr błąd składu; w innych językach też wygląda źle). */
+  for (let i = 1; i < toks.length; i++) if (!/^\p{L}$/u.test(toks[i - 1].w)) out.push(`${join(toks.slice(0, i))}\n${join(toks.slice(i))}`);
   return out;
 }
 
