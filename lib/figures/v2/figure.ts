@@ -52,6 +52,13 @@ export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
   'Cable Deadlift': DL_ODSTEP,
   'Clean Deadlift': DL_ODSTEP,
   'Snatch Deadlift': DL_ODSTEP,
+  /* decyzja agenta w nocy 29.10.2026 (do weta właściciela; docs/18): WYSOKIE z niezależnych recenzji bench_press i squat linii 1.1 (przekazanie-konta e658de53, 8156e28e),
+   * potwierdzone liczbami z silnika na main 9b76ed2 — rysunek przeczy katalogowi albo karcie; poprawki rigów w 1.0.1 (docs/21) */
+  'Band Bench Press': 'rysunek: sztanga z talerzami i gumy do podłogi; katalog: tylko gumy i ławka (bez sztangi) — nowy wariant obciążenia w 1.0.1',
+  'Chain Press': 'rysunek identyczny z Bench Press with Chains (sztanga, łańcuchy na gryfie); katalog: łańcuchy na uchwytach, bez sztangi — nowy wariant w 1.0.1',
+  'Close Grip Bench Press': 'chwyt ±12 cm przy barkach ±19, przedramię ok. 50° od pionu — karta: „na szerokość barków lub trochę węziej, nie bardzo wąsko”; poprawka chwytu w 1.0.1',
+  'Zercher Squat': 'na dole gryf leży na udach, 18,5 cm od łokcia i ok. 12 cm pod przedramionami — znika cecha rozpoznawcza (gryf w zgięciach łokci); poprawka rigu w 1.0.1',
+  'Sumo Squat (hantel)': 'hantel jedzie ukośnie w tył ok. 24 cm przy zejściu ok. 50 cm (ok. 26° od pionu) — ciężar powinien iść pionowo pod barkami; poprawka rigu w 1.0.1',
 };
 /** Figura pokazywana w aplikacji: jak figureSpec, bez wstrzymanych (V2_WSTRZYMANE). */
 export function shownFigureSpec(key: string): FigureSpec | null {
