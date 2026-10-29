@@ -1337,6 +1337,28 @@
    }
   },
   {
+   "id": "PR-18",
+   "tytul": "Baza, której nie da się otworzyć: „Wyślij dane” robi kopię ratunkową plików bazy w Plikach (R-RES)",
+   "stan": "istniejacy",
+   "wersja": "1.0",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Uruchom aplikację, gdy plik bazy jest uszkodzony (symulator: pliki Library/SQLite/trening.db* zastąpione tekstem przez powłokę CI)",
+    "Ekran „Nie udało się otworzyć danych” → „Wyślij dane”",
+    "Okno „Kopia bazy w Plikach” z nazwą folderu Rescue-…; w Plikach → Backup folder z kompletem plików bazy"
+   ],
+   "wynik": "Komplet plików bazy skopiowany do Documents/Backup/Rescue-RRRR-MM-DD-GGMM (zawartość identyczna z oryginałami, oryginały bez zmian); ekran podaje, gdzie szukać kopii.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "59-baza-uszkodzona.yaml",
+   "znaczniki": [
+    "Send data",
+    "Database copy in Files"
+   ],
+   "tryb": "eksperyment"
+  },
+  {
    "id": "PL-01",
    "tytul": "Zmiana szablonu dnia w planie tygodnia i „Wolne”",
    "stan": "istniejacy",

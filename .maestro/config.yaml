@@ -24,6 +24,7 @@
 # 52 (14.10.2026, strażnik progresji): sylwetka w kolorach progresu i zdanie o brakach celu na ekranie Trening → Postępy, sekcja „Strażnik progresji”, rozwinięcie partii.
 # 40–42 (EKSPERYMENTY): odmowa zgody na powiadomienia (40), tło i powrót (41), przywrócenie z pliku kopii (42) — tag `eksperyment`, NIE na liście flows (główny przebieg ich pomija,
 # bo nikt nie sprawdził jeszcze na symulatorze okien systemowych / Home / wyboru pliku); uruchamiane osobno (docs/38 pkt 5).
+# 59 (29.10.2026, R-RES): EKSPERYMENT — ekran błędu startu przy uszkodzonej bazie i kopia ratunkowa Rescue-… w Documents/Backup; tag `eksperyment`, NIE na liście flows, działa tylko ze skryptem scripts/ci/e2e-59-baza-uszkodzona.sh (powłoka psuje bazę przed startem i sprawdza pliki po nim).
 # 13 (08.10.2026): kalendarz z planem tygodnia (plan, przesunięcie planu, konflikt, „Dziś”). 14 (08.10.2026): generator szablonów i planu. Każdy plik .yaml z katalogu musi być tu wpisany (tests/maestro-selectors.test.ts).
 flows:
   - 01-trening-z-szablonu.yaml
