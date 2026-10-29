@@ -43,7 +43,6 @@ export default function AdaptScreen() {
     if (timedSkip) confirmSkipTimedSet(next); else next();
   };
   const headerOpts = useCloseHeader(undefined, n ? { title: t('Zastosuj ({n})', { n }), onPress: apply, testID: 'adapt-apply' } : null);
-  const title = loc ? t('Dostosuj do: {l}', { l: loc.name }) : t('Dostosuj do miejsca');
   if (!a || !loc) return <Screen style={{ paddingTop: 10 }}><Stack.Screen options={headerOpts} /><Missing>{t('Nie ma treningu w toku.')}</Missing></Screen>;
 
   const nameOfBlock = (blockId: string) => { const e = a.exercises.find(x => x.id === blockId); const ex = e ? exById(e.exerciseId) : undefined; return ex ? exName(ex) : t('Usunięte ćwiczenie'); };
@@ -59,8 +58,9 @@ export default function AdaptScreen() {
   };
   return (
     <Screen style={{ paddingTop: 10 }}>
-      <Stack.Screen options={{ ...headerOpts, title }} />
+      <Stack.Screen options={{ ...headerOpts, title: t('Dostosuj do miejsca') }} />
       <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
+        <Muted testID="adapt-place-line" style={{ marginBottom: 4 }}>{t('Dostosuj do: {l}', { l: loc.name })}</Muted>
         <Muted style={{ marginBottom: 4 }}>{t('Zamiany tylko w tym treningu — szablon i plan bez zmian.')}</Muted>
         {rows.length ? <><SectionTitle>{t('Ćwiczenia bez sprzętu')}</SectionTitle>{rows.map(rowView)}</> : null}
         {back.length ? <><SectionTitle>{t('Wraca z planu')}</SectionTitle>
