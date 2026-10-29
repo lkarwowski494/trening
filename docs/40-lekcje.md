@@ -45,7 +45,7 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 - **Ocena zakresu: systemowa** — ta sama luka dotyczy sprzątania gałęzi i PR (w repo kilkanaście gałęzi `naprawy/*`). Propozycja dla właściciela:
   (A, rekomendacja) reguła w CLAUDE.md: rekomendacja zamknięcia PR lub usunięcia gałęzi zawiera wynik `git diff main...gałąź` z listą unikalnych zmian i co się z nimi stanie;
   (B) skrypt `scripts/unikalne-zmiany.mjs` wypisujący pliki i bloki z gałęzi nieobecne w `main` + ta sama reguła (więcej kodu, mechaniczny dowód).
-- **Akcje:** 1. Rekomendacja dla #75 poprawiona w odpowiedzi właścicielowi 29.10.2026 — **zrobione**. 2. Reguła A lub B — **otwarte, decyzja właściciela**.
+- **Akcje:** 1. Rekomendacja dla #75 poprawiona w odpowiedzi właścicielowi 29.10.2026 — **zrobione**. 2. Decyzja właściciela 29.10.2026: **wariant A** — reguła w CLAUDE.md („Zamknięcie PR lub usunięcie gałęzi”) — **zrobione**. 3. PR #75 zamknięty 29.10.2026 (wariant A); sekcje unikalne do przeniesienia — `docs/zobowiazania.md` ZB-016 — **otwarte**.
 
 ## L-055 (27.10.2026, zrzuty 1.0; decyzja właściciela A+C z 27.10.2026) — równoległe zrzuty zajęły wszystkie 5 maszyn macOS na ok. 1,5 h i zablokowały E2E buildu 1.0
 

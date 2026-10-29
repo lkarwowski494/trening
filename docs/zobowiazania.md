@@ -32,6 +32,7 @@ Zasady:
 | ZB-013 | 8 tygodni po premierze 1.0 | Punkt kontrolny W0 (pobrania, płacący); decyzja o Androidzie (DEC-26); odświeżenie bramki opłacalności Kalisteniki danymi Treningu (Kalistenika DK-03 A) | docs/48 Z-35; Kalistenika `docs/decyzje.md` | agent przygotowuje dane, właściciel decyduje | czeka |
 | ZB-014 | po wydaniu 1.1 | Wydzielenie wspólnego silnika (katalog ćwiczeń, figury v2, zapis, zegarek, Zdrowie) jako pakietu dla Kalisteniki | właściciel 26.10.2026 (docs/18) | koordynator / architekt | czeka |
 | ZB-015 | gdy właściciel ma zegarek | Ikona aplikacji na zegarku (zamyka resztę R-013) | docs/40 R-013, docs/48 Z-08 | właściciel | czeka |
+| ZB-016 | po scaleniu `naprawy/M2-hinge-szczelina` do `main` | Przeniesienie z gałęzi `review-notes-1-0` (PR #75, zamknięty) do `store/review-notes.md` sekcji „Exercises and drawings / Ćwiczenia i rysunki” i akcji zegarka, sprawdzonych z kodem (lista rodzin z rysunkiem po wstrzymaniu 18 ćwiczeń, etykiety z `lib/i18n.en.ts`); nowy mały PR przed Z-25 (Notes) | właściciel 29.10.2026, wariant A (docs/18) | koordynator | czeka |
 
 ## Archiwum
 
