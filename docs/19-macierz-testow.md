@@ -1836,7 +1836,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/ui.errorsOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-ui.test.tsx, tests/store-metadata.test.ts |
 | figures/v2/ui.legendOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/store-metadata.test.ts |
 | figures/v2/ui.toeAngleApplies | lib/figures/v2/ui.ts | tests/figures-v2-ui.test.tsx |
-| figures/v2/ui.hasTechnique | lib/figures/v2/ui.ts | tests/figures-v2-ui.test.tsx |
+| figures/v2/ui.hasTechnique | lib/figures/v2/ui.ts | tests/figures-v2-ui.test.tsx, tests/figures-v2-wstrzymane.test.ts |
 | generator.setsFor | lib/generator.ts | tests/gen-general.test.ts |
 | generator.cardioCount | lib/generator.ts | tests/gen-days.test.ts, tests/gen-general.test.ts, tests/generator.test.ts |
 | generator.cardioSwitch | lib/generator.ts | tests/gen-general.test.ts |
