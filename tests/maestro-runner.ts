@@ -40,9 +40,9 @@ function installVirtualFs(clear: boolean) {
     return uri ? { canceled: false, assets: [{ uri, name: uri.split('/').pop() }] } : { canceled: true };
   });
 }
-/** R-RES (29.10.2026): scenariusz 59 startuje na bazie, której nie da się otworzyć (ekran błędu startu). Na symulatorze uszkodzenie robi powłoka (scripts/ci/e2e-59-baza-uszkodzona.sh);
+/** R-RES (29.10.2026): scenariusz 60 startuje na bazie, której nie da się otworzyć (ekran błędu startu). Na symulatorze uszkodzenie robi powłoka (scripts/ci/e2e-60-baza-uszkodzona.sh);
  * interpreter udaje je tak: expo-sqlite rzuca przy otwarciu (global.__dbOpenFail), a wirtualny dysk ma plik bazy w Library/SQLite (global.__dbDir → lib/rescue.ts) i kopiuje pliki (copyAsync). */
-export const BAZA_USZKODZONA = '59-baza-uszkodzona.yaml';
+export const BAZA_USZKODZONA = '60-baza-uszkodzona.yaml';
 export const RESCUE_SRC = 'file:///c/Library/SQLite/trening.db';
 function installBrokenDb() {
   const FS = jest.requireMock('expo-file-system/legacy'); (global as any).__dbOpenFail = true; (global as any).__dbDir = '/c/Documents/SQLite';
@@ -299,7 +299,7 @@ export class Runner {
           /* `stopApp: false` — powrót na wierzch zamiast restartu: aplikacja dostaje 'active' po czasie spędzonym w tle (pressKey: Home), dane i ekran bez zmian */
           if (arg && arg.stopApp === false) { await this.tick(BG_MS); await emitAppState('active'); await this.tick(100); break; }
           captureAppState();
-          const clear = arg?.clearState !== false || this.name === BAZA_USZKODZONA /* scenariusz 59: bez stanu do zachowania — baza i tak się nie otwiera */; let st: unknown;
+          const clear = arg?.clearState !== false || this.name === BAZA_USZKODZONA /* scenariusz 60: bez stanu do zachowania — baza i tak się nie otwiera */; let st: unknown;
           if (!clear) { await act(async () => { await store.flush(); }); st = JSON.parse(JSON.stringify(saved())); }
           /* E2E 91: na symulatorze zgoda na powiadomienia jest nieustalona (`permissions: all: allow` jej nie obejmuje) — okno I1 przy pierwszym dniu planu */
           if (clear) (global as any).__notifPerm = { ...SIM_NOTIF_PERM };

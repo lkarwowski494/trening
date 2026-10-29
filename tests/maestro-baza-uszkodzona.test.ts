@@ -1,8 +1,8 @@
 /*
  * R-RES (rejestr ryzyk docs/40; decyzja właściciela D8 wariant B, 29.10.2026): czy kopia ratunkowa plików bazy (lib/rescue.ts) naprawdę powstaje na iOS, pokazuje przebieg
- * e2e-ios.yml na symulatorze — scenariusz 59 + skrypt scripts/ci/e2e-59-baza-uszkodzona.sh (uszkodzenie bazy i sprawdzenie plików robi powłoka, Maestro nie ma dostępu do plików).
+ * e2e-ios.yml na symulatorze — scenariusz 60 + skrypt scripts/ci/e2e-60-baza-uszkodzona.sh (uszkodzenie bazy i sprawdzenie plików robi powłoka, Maestro nie ma dostępu do plików).
  * Ten plik pilnuje, żeby dowód nie rozsypał się po cichu: scenariusz, skrypt, krok workflow i wpis katalogu przepływów muszą do siebie pasować.
- * Sam przebieg scenariusza w interpreterze: tests/maestro-flows.test.tsx (59-baza-uszkodzona.yaml); logika kopii: tests/audit-m1-2026-10-27-004-ratunek.test.tsx.
+ * Sam przebieg scenariusza w interpreterze: tests/maestro-flows.test.tsx (60-baza-uszkodzona.yaml); logika kopii: tests/audit-m1-2026-10-27-004-ratunek.test.tsx.
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -11,18 +11,18 @@ import { DB_FILES } from '@/lib/rescue';
 const root = path.join(__dirname, '..');
 const read = (f: string) => fs.readFileSync(path.join(root, f), 'utf8');
 const code = (f: string) => read(f).split('\n').filter(l => !/^\s*#/.test(l)).join('\n');
-const flow = '.maestro/59-baza-uszkodzona.yaml'; const script = 'scripts/ci/e2e-59-baza-uszkodzona.sh'; const wf = read('.github/workflows/e2e-ios.yml');
+const flow = '.maestro/60-baza-uszkodzona.yaml'; const script = 'scripts/ci/e2e-60-baza-uszkodzona.sh'; const wf = read('.github/workflows/e2e-ios.yml');
 const exp = wf.slice(wf.indexOf('\n  eksperymenty:'), wf.indexOf('\n  wyniki:'));
 
-describe('R-RES: scenariusz 59 (uszkodzona baza → kopia ratunkowa)', () => {
+describe('R-RES: scenariusz 60 (uszkodzona baza → kopia ratunkowa)', () => {
   test('eksperyment (tag), poza listą flows, bez czyszczenia stanu — baza uszkodzona przez skrypt musi przetrwać start aplikacji', () => {
     expect(read(flow)).toMatch(/^tags:\n\s+- eksperyment\s*$/m);
-    expect(read('.maestro/config.yaml')).not.toMatch(/-\s+59-baza-uszkodzona\.yaml/);
+    expect(read('.maestro/config.yaml')).not.toMatch(/-\s+60-baza-uszkodzona\.yaml/);
     expect(code(flow)).toMatch(/clearState: false/); expect(code(flow)).not.toMatch(/clearState: true/);
   });
   test('kroki: ekran błędu startu → „Send data” → okno „Database copy in Files” z folderem Rescue-… (zrzuty obu ekranów)', () => {
     const c = code(flow);
-    for (const s of ['Could not open your data', 'id: "start-error"', 'text: "Send data"', 'Database copy in Files', 'Rescue-', 'takeScreenshot: 590-', 'takeScreenshot: 591-']) expect([s, c.includes(s)]).toEqual([s, true]);
+    for (const s of ['Could not open your data', 'id: "start-error"', 'text: "Send data"', 'Database copy in Files', 'Rescue-', 'takeScreenshot: 600-', 'takeScreenshot: 601-']) expect([s, c.includes(s)]).toEqual([s, true]);
   });
   test('skrypt ma nazwę scenariusza (krok eksperymentów szuka scripts/ci/e2e-<nazwa>.sh) i jest wykonywalny', () => {
     expect(path.basename(script, '.sh')).toBe('e2e-' + path.basename(flow, '.yaml'));
@@ -49,12 +49,12 @@ describe('R-RES: krok eksperymentów w e2e-ios.yml', () => {
     expect(exp).toMatch(/\[ -f "scripts\/ci\/e2e-\$name\.sh" \]/); expect(exp).toMatch(/bash "scripts\/ci\/e2e-\$name\.sh" "\$SIM" "\$f" "e2e-out\/\$name"/);
     expect(exp).toMatch(/ONLY: \$\{\{ inputs\.tylko_scenariusze \}\}/); expect(exp).toMatch(/printf ' %s ' \$ONLY \| grep -q " \$n "/);
   });
-  test('zadanie startuje też dla `tylko_scenariusze: 59` (przebieg dowodowy), nadal niewiążące; pełny katalog uruchamia je jak dotąd', () => {
-    expect(exp).toMatch(/' 59 '/); expect(exp).toMatch(/continue-on-error: true/);
+  test('zadanie startuje też dla `tylko_scenariusze: 60` (przebieg dowodowy), nadal niewiążące; pełny katalog uruchamia je jak dotąd', () => {
+    expect(exp).toMatch(/' 60 '/); expect(exp).toMatch(/continue-on-error: true/);
     expect(exp).toMatch(/inputs\.tylko_scenariusze == '' && \(inputs\.pakiet == 'pelny' \|\| inputs\.tryb_scisly == true\)/);
   });
-  test('katalog przepływów: PR-18 wskazuje scenariusz 59 w trybie eksperymentu', () => {
+  test('katalog przepływów: PR-18 wskazuje scenariusz 60 w trybie eksperymentu', () => {
     const f = (JSON.parse(read('tests/przeplywy.json')).przeplywy as { id: string; scenariusz?: string; tryb?: string }[]).find(x => x.id === 'PR-18');
-    expect(f?.scenariusz).toBe('59-baza-uszkodzona.yaml'); expect(f?.tryb).toBe('eksperyment');
+    expect(f?.scenariusz).toBe('60-baza-uszkodzona.yaml'); expect(f?.tryb).toBe('eksperyment');
   });
 });

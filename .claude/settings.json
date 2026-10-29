@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "f=\"$CLAUDE_PROJECT_DIR/docs/zobowiazania.md\"; [ -f \"$f\" ] && { echo 'Zobowiązania na przyszłość (docs/zobowiazania.md, sekcja Aktywne) — sprawdź warunki przed planem:'; awk '/^## Aktywne/{p=1} /^## Archiwum/{p=0} p' \"$f\"; } || true",
+            "command": "f=\"$CLAUDE_PROJECT_DIR/docs/zobowiazania.md\"; [ -f \"$f\" ] && { echo 'Zobowiązania na przyszłość (docs/zobowiazania.md, sekcja Aktywne) — sprawdź warunki przed planem:'; awk '/^## Aktywne/{p=1} /^## Archiwum/{p=0} p' \"$f\"; } || true; g=\"$CLAUDE_PROJECT_DIR/docs/fakty-wlasciciela.md\"; [ -f \"$g\" ] && { echo; echo \"Fakty o właścicielu (docs/fakty-wlasciciela.md) — sprawdź przed pytaniem o fakt:\"; cat \"$g\"; } || true",
             "timeout": 10
           }
         ]

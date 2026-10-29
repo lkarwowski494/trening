@@ -6,6 +6,9 @@ import { EN } from '@/lib/i18n.en';
 import { PAYWALL, MIN_LIVE_MINUTES_FOR_DAY } from '@/lib/access';
 import { VOICE_NEW_INSTALL } from '@/lib/voice';
 import { defaultSettings } from '@/lib/seed';
+import { shownFigureSpec, V2_WSTRZYMANE, FAMILY } from '@/lib/figures/v2';
+import { WATCH } from '@/lib/watch/protocol';
+import { WATCH_LABEL_IDS } from '@/lib/watch/labels';
 
 const md = fs.readFileSync(path.join(__dirname, '../store/review-notes.md'), 'utf8');
 const blocks = md.split('```text').slice(1).map(b => b.split('```')[0]);
@@ -82,6 +85,33 @@ describe('store/review-notes.md', () => {
     };
     expect(Object.keys(START)).toHaveLength(28);
     for (const [k, s] of Object.entries(START)) expect([k, L[k].description.includes(s), [...L[k].description].length <= 4000]).toEqual([k, true, true]);
+  });
+  /* ZB-016 (decyzja właściciela 29.10.2026 „5a”): sekcja rysunków i opis zegarka z kodu gałęzi; zdanie o rysunkach nie obiecuje wstrzymanych (V2_WSTRZYMANE, #89) */
+  test('ZB-016: sekcja „Ćwiczenia i rysunki” — ścieżka, przykład z rysunkiem, rodziny gotowe, bez obietnicy wstrzymanych martwych ciągów', () => {
+    const ex = section(en, 'EXERCISES AND DRAWINGS'); const ćw = section(pl, 'ĆWICZENIA I RYSUNKI');
+    expect(ex).toContain('More > Exercises'); expect(ex).toContain('"Technique"'); expect(ćw).toContain('Więcej → Ćwiczenia'); expect(ćw).toContain('„Technika”');
+    expect(EN['Technika' as keyof typeof EN]).toBe('Technique'); expect(EN['Ćwiczenia' as keyof typeof EN]).toBe('Exercises');
+    expect(ex).toContain('Back Squat'); expect(ćw).toContain('Back Squat');
+    expect(shownFigureSpec('Back Squat')).not.toBeNull(); /* przykład musi mieć rysunek w kandydacie */
+    for (const f of ['squat', 'bench_press', 'hinge'] as const) expect([f, FAMILY[f].status]).toEqual([f, 'ready']);
+    expect(shownFigureSpec('Sumo Deadlift')).not.toBeNull(); expect(ex).toContain('Sumo Deadlift');
+    expect(Object.keys(V2_WSTRZYMANE)).toContain('Deadlift (sztanga)'); /* martwy ciąg ze sztangą z podłogi wstrzymany → zdanie nie może mówić o „deadlift” bez zastrzeżenia */
+    expect(ex).not.toMatch(/squat, bench press and deadlift/i); expect(ćw).not.toMatch(/przysiadu, wyciskania leżąc i martwego ciągu/i);
+    expect(ex).toMatch(/hip hinge/); expect(ćw).toMatch(/zawiasu biodrowego/);
+    expect(ex).toMatch(/does not give medical advice/); expect(ćw).toMatch(/nie udziela porad medycznych/);
+    expect(EN['Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.' as keyof typeof EN]).toMatch(/does not give medical advice/i);
+    expect(EN['Mięśnie główne: {lista}' as keyof typeof EN]).toMatch(/Main muscles/); expect(ex).toMatch(/main muscles/);
+  });
+  test('ZB-016: zegarek — „Set done”, „Undo”, sesja treningu i zapis do Zdrowia raz; etykiety z kodu zegarka', () => {
+    const w = section(en, 'APPLE WATCH'); const z = section(pl, 'APPLE WATCH');
+    expect(WATCH_LABEL_IDS).toEqual(expect.arrayContaining(['done', 'undo', 'idle']));
+    expect(EN['Seria zrobiona' as keyof typeof EN]).toBe('Set done'); expect(EN['Cofnij' as keyof typeof EN]).toBe('Undo');
+    expect(w).toContain('"Set done"'); expect(w).toContain('"Undo"'); expect(z).toContain('„Seria zrobiona”'); expect(z).toContain('„Cofnij”');
+    expect(w).toContain(`(${WATCH.UNDO_SEC} seconds)`); expect(z).toContain(`(${WATCH.UNDO_SEC} s)`);
+    expect(w).toContain('workout session'); expect(w).toContain('heart rate'); expect(w).toContain('saved to Health once'); expect(z).toContain('sesję treningu'); expect(z).toContain('trafia do Zdrowia raz');
+    expect(w).not.toMatch(/To test: an iPhone paired/); expect(w).toContain('fully usable without a watch'); expect(w).toContain('"Start a workout on your phone"');
+    const swift = fs.readFileSync(path.join(__dirname, '../targets/watch-app/WorkoutController.swift'), 'utf8');
+    for (const k of ['HKWorkoutSession', 'activeEnergyBurned', 'heartRate', 'HKMetadataKeySyncIdentifier']) expect([k, swift.includes(k)]).toEqual([k, true]);
   });
   test('bez danych osobowych: jedyny adres e-mail to adres wsparcia, bez numerów telefonu i haseł', () => {
     expect([...md.matchAll(/[\w.+-]+@[\w-]+\.[\w.]+/g)].map(m => m[0]).filter(a => a !== 'support@apps4brew.com')).toEqual([]);

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # R-RES (docs/40, decyzja właściciela D8 wariant B, 29.10.2026): dowód na symulatorze, że kopia ratunkowa plików bazy (lib/rescue.ts) naprawdę powstaje.
-# Wywołuje ją krok eksperymentów w e2e-ios.yml zamiast `maestro test` dla scenariusza 59. Uruchomienie: e2e-59-baza-uszkodzona.sh <udid symulatora> <plik scenariusza> <katalog wyjścia>
+# Wywołuje ją krok eksperymentów w e2e-ios.yml zamiast `maestro test` dla scenariusza 60. Uruchomienie: e2e-60-baza-uszkodzona.sh <udid symulatora> <plik scenariusza> <katalog wyjścia>
 # Kroki: 1) pierwszy start aplikacji (tworzy bazę w Library/SQLite), 2) zamknięcie, 3) pliki bazy zastąpione plikami nie-SQLite (kontener z `simctl get_app_container … data`),
 # 4) scenariusz Maestro (ekran błędu startu → „Send data”), 5) sprawdzenie z powłoki: Documents/Backup/Rescue-… z kompletem plików o zawartości oryginałów, oryginały bez zmian.
 # Repo publiczne: do logu trafiają tylko nazwy plików i rozmiary — nigdy ścieżka kontenera ani identyfikatory.

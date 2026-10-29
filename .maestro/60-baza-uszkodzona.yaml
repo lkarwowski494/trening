@@ -1,6 +1,6 @@
 # EKSPERYMENT (katalog przepływów docs/37: PR-18; ryzyko R-RES w docs/40, decyzja właściciela D8 wariant B, 29.10.2026) — ekran błędu startu przy bazie, której nie da się otworzyć,
 # i „Send data”: kopia ratunkowa plików bazy (lib/rescue.ts) ma trafić do Documents/Backup/Rescue-… w kontenerze aplikacji (w Plikach: Na moim iPhonie → Trening → Backup).
-# Ten scenariusz jest tylko połową dowodu: uszkodzenie bazy przed startem i sprawdzenie plików po nim robi powłoka na symulatorze — scripts/ci/e2e-59-baza-uszkodzona.sh
+# Ten scenariusz jest tylko połową dowodu: uszkodzenie bazy przed startem i sprawdzenie plików po nim robi powłoka na symulatorze — scripts/ci/e2e-60-baza-uszkodzona.sh
 # (pierwszy start aplikacji tworzy bazę → zamknięcie → `Library/SQLite/trening.db*` zastąpione plikami nie-SQLite przez `xcrun simctl get_app_container … data` → TEN scenariusz
 # → `ls`/`cmp` na Documents/Backup/Rescue-…: komplet plików i ta sama zawartość co oryginał). Dlatego scenariusz NIE czyści stanu (bez clearState) i działa tylko z tym skryptem
 # (krok „Maestro (eksperymenty…)” w e2e-ios.yml wywołuje skrypt zamiast `maestro test`). Interpreter w Jest (tests/maestro-runner.ts, BAZA_USZKODZONA) udaje nieotwieralną bazę
@@ -21,8 +21,8 @@ name: Kopia ratunkowa przy uszkodzonej bazie
 - extendedWaitUntil: { visible: "Could not open your data\\.", timeout: 90000 }
 - assertVisible: { id: "start-error" }
 - assertVisible: "Don.t delete the app.*"
-- takeScreenshot: 590-blad-startu
+- takeScreenshot: 600-blad-startu
 - tapOn: { text: "Send data", below: { id: "start-error-warning" } }   # etykieta pod ostrzeżeniem (stały testID); bez stuknięcia po samym tekście (zapadka M1-034)
 - extendedWaitUntil: { visible: "Database copy in Files", timeout: 30000 }
 - assertVisible: "Files → On My iPhone → .* → Backup → Rescue-\\d{4}-\\d{2}-\\d{2}-\\d{4}\\..*"
-- takeScreenshot: 591-kopia-ratunkowa   # okno zostaje otwarte do końca scenariusza (zamknięcie wymagałoby stuknięcia po tekście „OK”)
+- takeScreenshot: 601-kopia-ratunkowa   # okno zostaje otwarte do końca scenariusza (zamknięcie wymagałoby stuknięcia po tekście „OK”)

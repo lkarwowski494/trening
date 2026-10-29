@@ -112,9 +112,10 @@ describe('store/app-store-metadata.json', () => {
         expect([l, bad]).toEqual([l, []]);
       }
       expect(L.pl.description).toContain(`• Animowane rysunki ruchu przy ponad ${CLAIM} ćwiczeniach; animację możesz zatrzymać`);
-      expect(L['en-US'].description).toContain(`• Animated movement drawings for over ${CLAIM} exercises; you can pause the animation`);
+      // Brzmienie en po recenzji lokalizacji metadanych 1.0 (decyzja właściciela 29.10.2026, docs/18).
+      expect(L['en-US'].description).toContain(`• Animated drawings of the movement for over ${CLAIM} exercises; you can pause them`);
       expect(L.pl.promotionalText.startsWith('Animowane rysunki ruchu, wskazówki techniki')).toBe(true);
-      expect(L['en-US'].promotionalText.startsWith('Animated movement drawings, technique tips')).toBe(true);
+      expect(L['en-US'].promotionalText.startsWith('Animated exercise drawings, technique tips')).toBe(true);
     });
     test('bez nazwy wzoru e1RM w żadnym alfabecie (źródła publicznie anonimowo, 25.10.2026; wcześniej uk, ru, ko miały ją w nawiasie)', () => {
       for (const [l, v] of Object.entries(L)) expect([l, /Epley|Эпли|Еплі|엡리|エプリー|艾普利/i.test(v.description + v.promotionalText)]).toEqual([l, false]);
