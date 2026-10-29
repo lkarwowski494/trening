@@ -77,6 +77,8 @@
 - 29.10 ~18:00 pełne verify c435cef4 zielone (11068; 2 pliki SIGTERM zielone po ponowieniu; znacznik), push zwykłym `git push` z hakiem.
 - **Po sygnale „1.0 wysłane” (przebiegi dowodowe, kolejno):** (1) `ios-unsigned.yml` + `watch-sim.yml` — kompilacja watchOS (`safeAreaInset`), zrzut 03-paused w pełnej rozdzielczości (fi, de, ja, el, ru), 41 mm, numery zrzutów przesunięte; (2) `e2e-ios.yml` `tylko_scenariusze` 17, 21, 22, 23, 27, 57 + `aplikacja_z_przebiegu` — log restartu przy „unreachable” (jeśli wystąpi), karta Deadlift z rysunkiem; (3) `store-screenshots.yml` (np. pl,en, jeden rozmiar) — „Pomiar: N s na ekran”, porównanie zrzutów cmp/piksele z poprzednimi (trening w toku); (4) `asc-metadane.yml` podgląd, zapis za zgodą właściciela (101-31).
 
+- 29.10 ~18:00 Uwaga koordynatora 1.0 przed kolejnym scaleniem main → r2: gałąź `zrzuty-sklep-jezyki` (L-062, PR #97; `scripts/ci/maestro-sklep/poprzedni-miesiac.yaml`, `import.yaml`, zapewne `scripts/ci/store-screenshots.sh` — konflikt z 101-24) i PR #98 (`watch-sim.yml`, `scripts/ci/watch-pair.sh` — przed 101-20 w `watch-screenshots.sh`). Scalić main przed przebiegami dowodowymi fali 4; konflikty w skryptach zrzutów rozwiązać znaczeniowo (obie zmiany), potem testy `store-screenshots-*`, `watch-*`. Sygnał „1.0 wysłane” — 30.10 ok. południa.
+
 ## Czekające kroki właściciela
 - brak decyzji (D3 → 17°, 101-27 → bez poprawki, 101-17 → B, Reverse Lunge → zatwierdzona wersja widoczna; 29.10.2026)
 - Lekcja Reverse Lunge: wybór A/B (stan na bazie w poleceniach figur) — przy okazji
