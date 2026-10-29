@@ -42,6 +42,13 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 - **Ocena zakresu: lokalna** (jeden strażnik zależny od tagów). Mechanizm: `tests.yml` pobiera tagi (`fetch-tags: true` w checkout) albo krok `testflight.yml`, który tworzy tag, sprawdza wiersz w dzienniku — do linii 1.0.1 (zmiana workflowu z przebiegiem dowodowym).
 - **Akcje:** 1. Wiersz 1033 w docs/09 i pole kandydata w Z-26 — **zrobione** (ten commit). 2. Tagi w `tests.yml` — **otwarte** → linia 1.0.1.
 
+## L-NNN (29.10.2026, koordynator) — parowanie symulatora zegarka zmieniło otoczenie testów XCUITest: „brak telefonu” przestał działać
+
+- **Co się stało:** przebieg dowodowy `watch-sim` 40919638794 (gałąź `zrzuty-zegarka-parowanie`, PR #98) — para zegarek–iPhone zadziałała, ale test `testNoPhoneAndNoWorkoutAsksToConnect` nie znalazł ekranu „Połącz z telefonem” (26 pozostałych testów zielonych); zrzuty się nie wykonały. Koszt: jeden przebieg macOS (~35 min) przed scaleniem; do właściciela nic nie dotarło.
+- **Przyczyna źródłowa:** test bez migawki (`launch(nil)`) korzystał z prawdziwej sesji WatchConnectivity i polegał na tym, że symulator zegarka nie ma pary — „brak telefonu” brał się z otoczenia, nie z testu. Zmiana parowania dotyczyła całego kroku XCUITest, a przegląd zmiany sprawdził tylko zrzuty (cel zmiany), nie testy korzystające z prawdziwej sesji; na Linuksie (verify, tests.yml) testów Swift UI nie da się uruchomić, więc sygnał przyszedł dopiero z przebiegu dowodowego — tak, jak przewiduje model pracy (CLAUDE.md, przebieg dowodowy przed scaleniem).
+- **Ocena zakresu: lokalna** — w testach UI zegarka był jeden test zależny od prawdziwej sesji (`grep launch(nil)` w `targets/watch-ui-tests` — jedyne wystąpienie); mechanizm przebiegu dowodowego przed scaleniem zadziałał.
+- **Akcje:** 1. Test ustawia „brak telefonu” jawnie (fałszywy transport, `reachable: false`, bez migawek) — **zrobione** na `zrzuty-zegarka-parowanie`. 2. Ponowny przebieg dowodowy `watch-sim` — **w toku**.
+
 ## L-062 (29.10.2026, koordynator) — zrzuty App Store: w 17 językach brak ekranów „historia” i „import”, a przebieg zielony
 
 - **Co się stało:** przebieg `store-screenshots` 40861500739 (35 języków, z main 412e063) w zadaniach 1–3 zakończył się sukcesem, ale agent przeglądu (L-004) znalazł w 17 z 18 języków (wszystkie poza en) tylko 8 z 10 zrzutów: `08-historia` i `10-import` trafiły do `.nieudane`, zgłoszone jedynie ostrzeżeniem. Zadania 4–6 nie dostały maszyny (anulowane po ok. 4 h), więc koszt to ok. 11 h maszyn macOS z dziurą w zestawie i przesunięcie wysłania 1.0 z wieczora 29.10 na 30.10.

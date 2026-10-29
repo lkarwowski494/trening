@@ -72,7 +72,9 @@ final class WatchUITests: XCTestCase {
   // MARK: - Stany bez treningu
 
   /// Prawdziwy transport na symulatorze bez sparowanego telefonu: brak osiągalności i brak migawki → „Połącz z telefonem” (model referencyjny: idle tylko przy połączeniu).
-  func testNoPhoneAndNoWorkoutAsksToConnect() { let app = launch(nil); appears(app, "watch.connect") }
+  /* Brak telefonu ustawiony jawnie (fałszywy transport, bez migawek), nie przez otoczenie: od parowania symulatora zegarka z iPhone'em (watch-pair.sh, 29.10.2026)
+     prawdziwa sesja przestała dawać „brak telefonu” i `launch(nil)` nie pokazywał ekranu połączenia (przebieg 40919638794). */
+  func testNoPhoneAndNoWorkoutAsksToConnect() { let app = launch([], reachable: false); appears(app, "watch.connect") }
   func testIdleSnapshot() { let app = launch("idle"); appears(app, "watch.idle") }
   func testDoneSnapshotShowsNothingLeft() { let app = launch("done"); appears(app, "watch.nothing") }
   func testLastSetRestAlreadyElapsedShowsNothingLeft() { let app = launch("last-rest"); appears(app, "watch.nothing") }
