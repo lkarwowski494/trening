@@ -31,6 +31,9 @@
     "ko": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji); podpis „szablony” przełożony 28.10.2026 (M1-audytor-generalny-048; do recenzji lokalizacji)",
     "zh-Hant": "propozycja agenta 28.10.2026 (przekład z PL i EN; podpis ekranu „trening” przełożony ponownie po decyzji 10a; do recenzji lokalizacji); podpis „szablony” przełożony 28.10.2026 (M1-audytor-generalny-048; do recenzji lokalizacji)"
   },
+  "statusEkranow": {
+    "cwiczenie": "PL i EN — propozycja agenta 27.10.2026 (decyzja D3, docs/48 pkt 5), do akceptacji właściciela razem z obrazami; 27 pozostałych języków — przekład agenta 28.10.2026 (zrzuty-1-0), do recenzji lokalizacji"
+  },
   "maxZnakow": 40,
   "kolory": {
     "tlo": "#121316",
@@ -40,6 +43,7 @@
   "podpisy": {
     "pl": {
       "trening": "Szybki zapis serii, także z zegarka",
+      "cwiczenie": "Rysunki ruchu i wskazówki techniki",
       "postepy-cwiczenia": "Każdy rekord i postęp na wykresie",
       "straznik": "Strażnik progresji Twojego tygodnia",
       "plan": "Plan tygodnia — sam albo z naszą pomocą",
@@ -51,6 +55,7 @@
     },
     "en": {
       "trening": "Log sets fast, even from your watch",
+      "cwiczenie": "Movement drawings and technique cues",
       "postepy-cwiczenia": "Every record and gain on a chart",
       "straznik": "Progress Guard watches your week",
       "plan": "Your weekly plan — solo or with our help",
@@ -62,6 +67,7 @@
     },
     "cs": {
       "trening": "Rychlý zápis sérií, i z hodinek",
+      "cwiczenie": "Nákresy pohybu a tipy na techniku",
       "postepy-cwiczenia": "Každý rekord a pokrok v grafu",
       "straznik": "Strážce progrese hlídá váš týden",
       "plan": "Týdenní plán — sami, nebo s naší pomocí",
@@ -73,6 +79,7 @@
     },
     "sk": {
       "trening": "Rýchly zápis sérií, aj z hodiniek",
+      "cwiczenie": "Nákresy pohybu a tipy na techniku",
       "postepy-cwiczenia": "Každý rekord a pokrok v grafe",
       "straznik": "Strážca progresu stráži váš týždeň",
       "plan": "Týždenný plán — sami či s našou pomocou",
@@ -84,6 +91,7 @@
     },
     "hu": {
       "trening": "Sorozatok gyors rögzítése az óráról is",
+      "cwiczenie": "Mozgásrajzok és technikai tippek",
       "postepy-cwiczenia": "Minden rekord és fejlődés grafikonon",
       "straznik": "A Fejlődésőr figyeli a hetét",
       "plan": "Heti terv — egyedül vagy velünk",
@@ -95,6 +103,7 @@
     },
     "ro": {
       "trening": "Notați rapid seriile, și de pe ceas",
+      "cwiczenie": "Desene ale mișcării, sfaturi de tehnică",
       "postepy-cwiczenia": "Fiecare record și progres pe grafic",
       "straznik": "Paznicul de progres urmărește săptămâna",
       "plan": "Plan săptămânal — singur sau cu noi",
@@ -106,6 +115,7 @@
     },
     "hr": {
       "trening": "Brz zapis serija, i sa sata",
+      "cwiczenie": "Crteži pokreta i savjeti za tehniku",
       "postepy-cwiczenia": "Svaki rekord i napredak na grafu",
       "straznik": "Čuvar napretka prati vaš tjedan",
       "plan": "Tjedni plan — sami ili uz našu pomoć",
@@ -117,6 +127,7 @@
     },
     "uk": {
       "trening": "Швидкий запис підходів, і з годинника",
+      "cwiczenie": "Малюнки руху й поради з техніки",
       "postepy-cwiczenia": "Кожен рекорд і прогрес на графіку",
       "straznik": "Вартовий прогресу стежить за тижнем",
       "plan": "Тижневий план — самостійно чи з нами",
@@ -128,6 +139,7 @@
     },
     "es": {
       "trening": "Anota series rápido, también en el reloj",
+      "cwiczenie": "Dibujos del movimiento y claves técnicas",
       "postepy-cwiczenia": "Cada récord y progreso en un gráfico",
       "straznik": "El Guardián de progreso vigila tu semana",
       "plan": "Plan semanal, solo o con nuestra ayuda",
@@ -139,6 +151,7 @@
     },
     "es-419": {
       "trening": "Anota series rápido, también en el reloj",
+      "cwiczenie": "Dibujos del movimiento y tips técnicos",
       "postepy-cwiczenia": "Cada récord y progreso en un gráfico",
       "straznik": "El Guardián de progreso vigila tu semana",
       "plan": "Plan semanal, solo o con nuestra ayuda",
@@ -150,6 +163,7 @@
     },
     "pt": {
       "trening": "Registo rápido de séries, até no relógio",
+      "cwiczenie": "Desenhos do movimento e dicas de técnica",
       "postepy-cwiczenia": "Cada recorde e progresso num gráfico",
       "straznik": "O Guardião do progresso vigia a semana",
       "plan": "Plano semanal — sozinho ou com ajuda",
@@ -161,6 +175,7 @@
     },
     "pt-BR": {
       "trening": "Registre séries rápido, até no relógio",
+      "cwiczenie": "Desenhos do movimento e dicas de técnica",
       "postepy-cwiczenia": "Cada recorde e progresso em um gráfico",
       "straznik": "O Guardião do progresso vigia sua semana",
       "plan": "Plano semanal — sozinho ou com ajuda",
@@ -172,6 +187,7 @@
     },
     "de": {
       "trening": "Sätze schnell eintragen, auch an der Uhr",
+      "cwiczenie": "Bewegungszeichnungen und Technikhinweise",
       "postepy-cwiczenia": "Jeder Rekord und Fortschritt im Diagramm",
       "straznik": "Fortschrittswächter für deine Woche",
       "plan": "Wochenplan — selbst oder mit Hilfe",
@@ -183,6 +199,7 @@
     },
     "fr": {
       "trening": "Notez vite vos séries, même au poignet",
+      "cwiczenie": "Dessins du geste, conseils de technique",
       "postepy-cwiczenia": "Records et progrès sur un graphique",
       "straznik": "Le Gardien de progrès suit votre semaine",
       "plan": "Plan de la semaine, seul ou aidé",
@@ -194,6 +211,7 @@
     },
     "it": {
       "trening": "Segna le serie al volo, anche dal polso",
+      "cwiczenie": "Disegni del gesto e consigli tecnici",
       "postepy-cwiczenia": "Ogni record e progresso su un grafico",
       "straznik": "Guardiano progressi per la tua settimana",
       "plan": "Piano settimanale, da solo o con noi",
@@ -205,6 +223,7 @@
     },
     "nl": {
       "trening": "Sets snel loggen, ook vanaf je horloge",
+      "cwiczenie": "Bewegingstekeningen en techniektips",
       "postepy-cwiczenia": "Elk record en elke stap in een grafiek",
       "straznik": "De Voortgangswacht bewaakt je week",
       "plan": "Weekplan — zelf of met onze hulp",
@@ -216,6 +235,7 @@
     },
     "sv": {
       "trening": "Logga set snabbt, även från klockan",
+      "cwiczenie": "Rörelseritningar och tekniktips",
       "postepy-cwiczenia": "Varje rekord och framsteg i en graf",
       "straznik": "Framstegsvakten håller koll på veckan",
       "plan": "Veckoplan — själv eller med vår hjälp",
@@ -227,6 +247,7 @@
     },
     "da": {
       "trening": "Log sæt hurtigt, også fra dit ur",
+      "cwiczenie": "Bevægelsestegninger og teknikråd",
       "postepy-cwiczenia": "Hver rekord og fremgang i en graf",
       "straznik": "Fremgangsvagten holder øje med ugen",
       "plan": "Ugeplan — selv eller med vores hjælp",
@@ -238,6 +259,7 @@
     },
     "nb": {
       "trening": "Logg sett raskt, også fra klokka",
+      "cwiczenie": "Bevegelsestegninger og teknikktips",
       "postepy-cwiczenia": "Hver rekord og fremgang i en graf",
       "straznik": "Fremdriftsvokteren følger uken din",
       "plan": "Ukeplan — selv eller med vår hjelp",
@@ -249,6 +271,7 @@
     },
     "fi": {
       "trening": "Kirjaa sarjat nopeasti, myös kellolla",
+      "cwiczenie": "Liikepiirrokset ja tekniikkavinkit",
       "postepy-cwiczenia": "Jokainen ennätys ja kehitys kaaviona",
       "straznik": "Edistymisvartija valvoo viikkoasi",
       "plan": "Viikkosuunnitelma: itse tai avullamme",
@@ -260,6 +283,7 @@
     },
     "tr": {
       "trening": "Setleri hızlı kaydedin, saatten de",
+      "cwiczenie": "Hareket çizimleri ve teknik ipuçları",
       "postepy-cwiczenia": "Her rekor ve ilerleme grafikte",
       "straznik": "İlerleme Bekçisi haftanızı izler",
       "plan": "Haftalık plan: kendiniz ya da bizimle",
@@ -271,6 +295,7 @@
     },
     "el": {
       "trening": "Γρήγορη καταγραφή σετ, κι από το ρολόι",
+      "cwiczenie": "Σχέδια κίνησης και συμβουλές τεχνικής",
       "postepy-cwiczenia": "Κάθε ρεκόρ και πρόοδος σε γράφημα",
       "straznik": "Ο Φρουρός προόδου προσέχει την εβδομάδα",
       "plan": "Εβδομαδιαίο πρόγραμμα, μόνοι ή μαζί μας",
@@ -282,6 +307,7 @@
     },
     "id": {
       "trening": "Catat set cepat, bahkan dari jam tangan",
+      "cwiczenie": "Gambar gerakan dan tips teknik",
       "postepy-cwiczenia": "Setiap rekor dan progres dalam grafik",
       "straznik": "Penjaga Progres memantau minggu Anda",
       "plan": "Rencana mingguan, sendiri atau dibantu",
@@ -293,6 +319,7 @@
     },
     "ms": {
       "trening": "Catat set pantas, juga dari jam tangan",
+      "cwiczenie": "Lukisan gerakan dan petua teknik",
       "postepy-cwiczenia": "Setiap rekod dan kemajuan dalam graf",
       "straznik": "Pengawal Kemajuan memantau minggu anda",
       "plan": "Pelan mingguan, sendiri atau dibantu",
@@ -304,6 +331,7 @@
     },
     "vi": {
       "trening": "Ghi hiệp tập nhanh, cả trên đồng hồ",
+      "cwiczenie": "Hình vẽ động tác và gợi ý kỹ thuật",
       "postepy-cwiczenia": "Mọi kỷ lục và tiến bộ trên biểu đồ",
       "straznik": "Giám sát tiến bộ cho tuần của bạn",
       "plan": "Kế hoạch tuần, tự làm hoặc nhờ trợ giúp",
@@ -315,6 +343,7 @@
     },
     "ru": {
       "trening": "Быстрая запись подходов, даже с часов",
+      "cwiczenie": "Рисунки движения и подсказки по технике",
       "postepy-cwiczenia": "Каждый рекорд и прогресс на графике",
       "straznik": "Страж прогресса следит за вашей неделей",
       "plan": "План недели — сами или с нашей помощью",
@@ -326,6 +355,7 @@
     },
     "ja": {
       "trening": "セットをすばやく記録、ウォッチからも",
+      "cwiczenie": "動きのイラストとフォームのヒント",
       "postepy-cwiczenia": "自己ベストも進捗もグラフで",
       "straznik": "進捗ガードが1週間を見守る",
       "plan": "週間プランは自分でも、おまかせでも",
@@ -337,6 +367,7 @@
     },
     "ko": {
       "trening": "세트를 빠르게 기록, 워치에서도",
+      "cwiczenie": "동작 그림과 자세 팁",
       "postepy-cwiczenia": "모든 기록과 성장을 그래프로",
       "straznik": "진행 지킴이가 한 주를 지켜봐요",
       "plan": "주간 플랜, 직접 또는 도움받아",
@@ -348,6 +379,7 @@
     },
     "zh-Hant": {
       "trening": "快速記錄每一組，手錶也能記",
+      "cwiczenie": "動作圖解與技巧提示",
       "postepy-cwiczenia": "每項紀錄與進步都有圖表",
       "straznik": "進步守護者幫你看顧每週",
       "plan": "每週計畫，自己排或由我們協助",

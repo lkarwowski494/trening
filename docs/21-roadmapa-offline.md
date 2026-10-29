@@ -216,6 +216,12 @@ Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właścic
   właściciel — aplikacja ich nie tworzy”) — wymaga nowej decyzji właściciela; zasady układania tylko ze źródeł (ACSM 2026, przeglądy) wg hierarchii.
 - Generator dokładający ćwiczenia do celu (decyzja właściciela 13.10.2026, 7A) — **wersja: po 0.17**, osobna zmiana (nie wchodzi do paczki „spójność”). Zakres i źródła do ustalenia przy starcie prac (reguły tylko ze źródeł wg hierarchii; wynik do przejrzenia przed zapisem — wyjątek z 08.10.2026).
 
+### Backlog 1.0.1 — z przeglądu zrzutów (27.10.2026; zakres 1.0 zamrożony, wszystko poniżej poniżej progu KRYTYCZNE/WYSOKIE)
+- **Zegarek: podpis „Trening wstrzymany” nachodzi na nagłówek „Przerwa”** (`targets/watch-app/RootView.swift`, `badges` w pasku nad treścią). Kroki: trening z zegarkiem → przerwa trwa → „Wstrzymaj” na telefonie. Realność: **brzegowy** (pauza w trakcie przerwy), kosmetyczny, bez utraty danych. Zrzut stanu „paused” wyłączony z zestawu sklepu do czasu poprawki (`scripts/ci/watch-screenshots.sh`).
+- **Import CSV: zakres dat bez roku przy dacie końcowej** („Aug 26, 2025 – Jul 21”). Kroki: Więcej → Import → wybór pliku → podgląd. Realność: **realny**, kosmetyczny (niespójny format zakresu).
+- **Okno „Dostosuj”: tytuł „Adjust to: …” ucinany wielokropkiem w dłuższych językach (np. el)**. Realność: brzegowy, kosmetyczny.
+- **Zrzuty sklepu: czas przebiegu** — Maestro 2–3 razy na ekran daje ok. 2,7 min na ekran; podział języków na równoległe zadania albo mniej uruchomień Maestro (uprawnienia nadawane z góry).
+
 ### 4n. Wydanie natywne — po najbliższej wersji (decyzja właściciela 07.10.2026 wieczór)
 Funkcje, których działania agent nie sprawdzi testami automatycznymi (Maestro na symulatorze nie steruje ekranem blokady ani ekranem
 głównym iOS): wchodzą osobnym buildem, jak wydanie „Health”, po sprawdzeniu przez właściciela na telefonie.

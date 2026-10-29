@@ -9,6 +9,7 @@ import { buildSnapshot, type SnapshotCtx } from '@/lib/watch/snapshot';
 import { completeSet } from '@/lib/setFlow';
 import type { ClientConfig, ClientInput } from '@/lib/watch/client';
 import type { PhoneToWatch, WatchSnapshot } from '@/lib/watch/protocol';
+import { applyLang, type Lang } from '@/lib/i18n';
 import { world, A, NOW } from './watch-world';
 
 export interface Step { at: number; input: ClientInput; note?: string }
@@ -29,10 +30,11 @@ export interface Snaps { idle: WatchSnapshot; set1: WatchSnapshot; skipped: Watc
  * Migawki stanów treningu z prawdziwego telefonu — każdy fragment w osobnym świecie (`world()`), z zegarem ustawionym jak w scenariuszu (zdarzenia z zegarka
  * dochodzą z godziną `at`, więc przerwa liczy się od niej).
  */
-export async function snapshots(): Promise<Snaps> {
-  const take = (rev: number, o: Partial<SnapshotCtx> = {}) => alias(buildSnapshot(A(), { rev, nowMs: Date.now(), rest: null, ...o }), aliasMap());
+export async function snapshots(lang?: Lang): Promise<Snaps> {
+  /* `lang` (zrzuty zegarka, scripts/screens/watch-seed.ts): teksty danych migawki w tym języku; `world()` przywraca polski, więc język ustawiamy tuż przed budową migawki */
+  const take = (rev: number, o: Partial<SnapshotCtx> = {}) => (lang && applyLang(lang), alias(buildSnapshot(A(), { rev, nowMs: Date.now(), rest: null, ...o }), aliasMap()));
   /* świat 1: początek treningu, pominięty blok, odhaczona pierwsza seria (przerwa), seria do uzupełnienia, pauza */
-  await world(); const idle = alias(buildSnapshot(null, { rev: 1, nowMs: Date.now(), rest: null }), aliasMap());
+  await world(); if (lang) applyLang(lang); const idle = alias(buildSnapshot(null, { rev: 1, nowMs: Date.now(), rest: null }), aliasMap());
   const set1 = take(1);
   store.skipExercise(A().exercises[0].id); const skipped = take(2); store.unskipExercise(A().exercises[0].id);
   await completeSet(0, 0); const rest1 = take(2, { rest: rest() });

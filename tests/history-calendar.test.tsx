@@ -70,6 +70,11 @@ describe('ekran Historia', () => {
     await tap(screen.getByText('Pokaż wszystkie')); expect(screen.getByText('Dzień B')).toBeTruthy();
     await tap(screen.getByTestId(`cal-${dayKey(d2)}`)); expect(screen.queryByText('Dzień A')).toBeNull(); await tap(screen.getByTestId(`cal-${dayKey(d2)}`)); expect(screen.getByText('Dzień A')).toBeTruthy();
   });
+  test('strzałki mają stałe testID month-prev / month-next (scenariusz Maestro zrzutów do sklepu: scripts/ci/maestro-sklep/poprzedni-miesiac.yaml; przebieg 40785697458 — brak id = brak zrzutu 08)', async () => {
+    await boot(() => {});
+    expect(screen.getByTestId('month-prev').props.accessibilityLabel).toBe('Poprzedni miesiąc');
+    expect(screen.getByTestId('month-next').props.accessibilityLabel).toBe('Następny miesiąc');
+  });
   test('strzałki: poprzedni i następny miesiąc (także przez koniec roku); trening sprzed miesiąca widać po przejściu wstecz', async () => {
     const now = new Date(); const prev = shiftMonth(now.getFullYear(), now.getMonth(), -1); const old = at(prev.y, prev.m, 15, 9);
     await boot(() => { addWorkout(old, [['Back Squat', [{ weight: 100, reps: 5 }]]]); });
