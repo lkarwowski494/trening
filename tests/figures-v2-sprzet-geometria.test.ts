@@ -10,7 +10,8 @@ const spec = (k: string): FigureSpec => figureSpec(k) as FigureSpec;
 const U = Array.from({ length: 25 }, (_, i) => i / 24);
 const COLLAR = 65.5;                                   /* wewnętrzne kołnierze: odległość 1,31–1,32 m → ±65,5…66 cm */
 const WITH_BAR = KEYS.filter(k => [0, 0.5, 1].some(u => frameAt(spec(k), u).props.some(p => p.k === 'barbell' && p.plates !== false && p.axis !== 'x')));  /* gryf wzdłuż x (martwy ciąg jedną ręką z boku) ma osobny test w figury-1-0-recenzja */
-const WITH_CHAIN = KEYS.filter(k => /Chain/.test(k));
+/* Chain Press (101-06, 29.10.2026): łańcuchy przypięte do dwóch uchwytów, nie do tulei sztangi — poza tym testem, ma własny w tests/figury-pakiet-b.test.ts */
+const WITH_CHAIN = KEYS.filter(k => /Chain/.test(k) && k !== 'Chain Press');
 const xs = (s: Shape): number[] => s.k === 'poly' ? s.pts.map(p => p[0]) : s.k === 'line' ? [s.a[0], s.b[0]] : s.k === 'circle' ? [s.c[0] - s.r, s.c[0] + s.r] : [];
 
 describe('talerze i dłonie na gryfie (wszystkie warianty, 25 klatek)', () => {

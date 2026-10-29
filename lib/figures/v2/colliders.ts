@@ -127,6 +127,7 @@ export function holdChecks(f: Frame): { name: string; err: number; tol: number }
     if (p.k === 'barbell' && p.held !== false) for (const s of p.held === 'R' ? ['R' as const] : SIDES) out.push({ name: `gryf/${s}`, err: p.axis === 'x' ? seg(sk.arms[s].grip, [p.c[0] - 60, p.c[1], p.c[2]], [p.c[0] + 60, p.c[1], p.c[2]]) : seg(sk.arms[s].grip, [p.c[0], p.c[1], -60], [p.c[0], p.c[1], 60]), tol: 0.6 });
     if (p.k === 'trapbar') for (const s of SIDES) { const z = (s === 'R' ? 1 : -1) * (p.w ?? EQUIP.trapW); out.push({ name: `uchwyt/${s}`, err: seg(sk.arms[s].grip, [p.c[0] - 7, p.c[1], z], [p.c[0] + 7, p.c[1], z]), tol: 0.6 }); }
     if (p.k === 'dumbbell' && p.held !== false) for (const s of p.vertical ? SIDES : [p.side]) out.push({ name: `hantel/${s}`, err: dist(sk.arms[s].grip, p.c), tol: p.vertical ? 6.5 : 0.6 });
+    if (p.k === 'handle' && p.held !== false) out.push({ name: `uchwyt/${p.side}`, err: dist(sk.arms[p.side].grip, p.c), tol: 0.6 });
     if (p.k === 'kettlebell' && p.held !== false) for (const s of p.side === 'R' || p.side === 'L' ? [p.side] : SIDES) out.push({ name: `kettlebell/${s}`, err: dist(sk.arms[s].grip, p.c), tol: 7 });
   }
   return out;

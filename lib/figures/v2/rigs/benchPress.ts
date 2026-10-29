@@ -41,11 +41,17 @@ export type BenchParams = {
   flare?: number;
   /** Przedramiona pionowo w płaszczyźnie czołowej (łokieć dokładnie pod dłonią) w całym ruchu: biegun łokcia liczony z geometrii (NSCA Basics 2012 s. 53–55: nadgarstki nad łokciami, przedramiona prostopadle do podłogi). Kąt odwiedzenia łokci wynika wtedy z szerokości chwytu i punktu dotyku. */
   vert?: boolean;
+  /** Dwa uchwyty (rączki) w dłoniach zamiast sztangi (Band Bench Press: guma przypięta do uchwytów i przełożona pod ławką; Chain Press: do każdego uchwytu przypięty łańcuch). */
+  handles?: boolean;
 };
 
 export const BENCH = {
   /** Kotwica gumy „reverse” nad najwyższym położeniem gryfu (górna belka stojaka), cm. */
   bandHangAbove: 35,
+  /** Guma uchwytów przełożona pod ławką (katalog: „band with handles looped under the bench”): wysokość pętli nad podłogą i połowa szerokości, przy której guma schodzi obok ławki (ławka ma 30 cm → 15), cm — uproszczenie ilustracyjne. */
+  bandUnder: { y: 6, z: 16 },
+  /** Łańcuch uchwytów: zwisa pionowo z uchwytu, resztę leży na podłodze. Długość całkowita wynika z tego, że w górnym położeniu leży `chainLieTop` cm (źródło: jedno, szczebel 4; „czy w górze odrywa się całkiem — do ustalenia”, docs/research/1-0-1-zrodla pkt 3); na dole zwisa krócej, więc leży więcej. */
+  chainLieTop: 12,
   seatTop: 43, declineSeat: 60, padBack: 10.2, backLen: 75, seatLen: 55,
   /** Stopy: odległość kostki od miednicy w stronę stóp (cm) i rozstaw. */
   footBack: 40, footHalf: 24,
@@ -142,13 +148,23 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
     legs: { R: { ankle: [ankleX, ankleY, BENCH.footHalf], toeOut: 8, kneePole }, L: { ankle: [ankleX, ankleY, -BENCH.footHalf], toeOut: 8, kneePole: [kneePole[0], kneePole[1], -kneePole[2]] } },
     arms,
   };
-  info.load = p.impl === 'db' ? [c[0], c[1], g] : c; info.hip = hip; info.shoulder = shoulderC; /* hantle: ślad toru przy hantlu (widok z góry), nie w osi ciała */ info.top = top; info.bottom = bottom;
+  info.load = p.impl === 'db' || p.handles ? [c[0], c[1], g] : c; info.hip = hip; info.shoulder = shoulderC; /* hantle: ślad toru przy hantlu (widok z góry), nie w osi ciała */ info.top = top; info.bottom = bottom;
 
   if (p.impl === 'db' || p.impl === 'kb') {
     for (const s of p.oneArm ? ['R'] as const : ['R', 'L'] as const) {
       const cc: V3 = [c[0], c[1], s === 'R' ? g : -g];
       props.push(p.impl === 'db' ? { k: 'dumbbell', c: cc, side: s } : { k: 'kettlebell', c: cc, side: s });
     }
+  } else if (p.handles) {
+    /* dwa uchwyty w dłoniach (ruch jak wyciskanie hantli); pętla gumy pod ławką stoi w miejscu, łańcuch zwisa pionowo z uchwytu, a jego długość na podłodze zmienia się z wysokością dłoni (podłoga = stały punkt styku) */
+    const chainLen = top[1] + BENCH.chainLieTop; const dir = 1; /* leżąca część ciągnie się ku stopom (obok ławki, w jej obrysie) */
+    for (const sg of [1, -1] as const) {
+      const hand: V3 = [c[0], c[1], sg * g];
+      props.push({ k: 'handle', c: hand, side: sg > 0 ? 'R' : 'L' });
+      if (p.impl === 'band') props.push({ k: 'band', from: hand, to: [top[0], BENCH.bandUnder.y, sg * BENCH.bandUnder.z] });
+      else { props.push({ k: 'chain', from: hand, to: [hand[0], 0, hand[2]] }); props.push({ k: 'chain', from: [hand[0], 0, hand[2]], to: [hand[0] + dir * Math.max(0, chainLen - hand[1]), 0, hand[2]] }); }
+    }
+    if (p.impl === 'band') props.push({ k: 'band', from: [top[0], BENCH.bandUnder.y, BENCH.bandUnder.z], to: [top[0], BENCH.bandUnder.y, -BENCH.bandUnder.z], under: true });
   } else {
     props.push({ k: 'barbell', c });
     info.bar = c;

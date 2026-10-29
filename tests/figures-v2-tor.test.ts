@@ -64,7 +64,7 @@ describe('gumy kotwiczone na podłodze: dolny koniec stoi w miejscu (recenzja ni
     const keys = [...new Set(CASES.map(([k]) => k))]; let n = 0;
     for (const k of keys) { const to = Array.from({ length: 25 }, (_, i) => frameAt(figureSpec(k)!, i / 24).props.find(p => p.k === 'band' && p.bar && !p.hang) as { to: [number, number, number] } | undefined);
       if (!to[0]) continue; n++; const xs = to.map(b => b!.to[0]); expect([k, +(Math.max(...xs) - Math.min(...xs)).toFixed(2)]).toEqual([k, 0]); }
-    expect(n).toBeGreaterThanOrEqual(7);
+    expect(n).toBeGreaterThanOrEqual(6); /* było 7: Band Bench Press (101-05, 29.10.2026) nie ma już gumy sztangi — guma przy uchwytach, pętla pod ławką stoi w miejscu (tests/figury-pakiet-b.test.ts) */
   });
 });
 

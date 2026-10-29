@@ -30,6 +30,10 @@ const CLOSE = { grip: 19, touch: 30 } as const;
 const DECLINE = { touch: 26, touchDb: 24 } as const;
 /** Grubość deski w Board Press (cm; uproszczenie ilustracyjne — było `touchB` 17,5 = klatka 11,9 + promień gryfu 1,6 + 4). */
 const BOARD = 4;
+/** Wyciskanie na uchwytach (Band Bench Press, Chain Press): tor jak w wyciskaniu hantli — dłonie szeroko na dole, bliżej na górze (katalog nie podaje; uproszczenie ilustracyjne, jak hantle). */
+const HANDLES = { grip: 32, gripTop: 22, touch: 32 } as const;
+/** Chain Press: łokcie do ok. 90° na dole (jedno źródło szczebla 4: „Continue until your elbow forms a 90 degree angle”, docs/research/1-0-1-zrodla-2026-10-29.md pkt 3) — ramię poziomo na wysokości barku, przedramię pionowo; dłonie 40 cm od osi na dole, 22 na górze (uproszczenie ilustracyjne). */
+const CHAIN_PRESS = { grip: 40, gripTop: 22, touch: 22, touchB: 32 } as const;
 /** Drążek sześciokątny: bark względem uchwytów na starcie i na wyproście (cm) — na wyproście tułów w pionie (było −6 → tułów −6,4° do tyłu, 1.0.1). */
 const TRAP_SX: [number, number] = [2, -2];
 /** JM Press: sztanga na dole 13 cm za osią barków ku głowie (kąt ramienia wynika), odwiedzenie 45° stałe, zgięcie łokcia 145°, przedramiona lekko zbieżne (uproszczenie ilustracyjne; „ok. 45°” — badacz 28.10.2026, 3 zgodne źródła szczebla 4). */
@@ -93,8 +97,8 @@ export const VARIANTS: Record<string, Variant> = {
   'Barbell Guillotine Bench Press': BP('barbell', { grip: 42, touch: 50, touchB: 9 }),
   'Wide-Grip Barbell Bench Press': BP('barbell', { grip: 45, vert: true }),
   'Smith Machine Decline Press': BP('smith', { angle: -15, touch: DECLINE.touch, vert: true }),
-  'Band Bench Press': BP('band', { vert: true }),
-  'Chain Press': BP('chain', { vert: true }),
+  'Band Bench Press': BP('band', { ...HANDLES, vert: true, handles: true }),
+  'Chain Press': BP('chain', { ...CHAIN_PRESS, vert: true, handles: true }),
   'Bench Press with Chains': BP('chain', { vert: true }),
   'Floor Press with Chains': BP('chain', { floor: true, vert: true }),
   'Reverse Band Bench Press': BP('barbell', { band: true, reverse: true, vert: true }),

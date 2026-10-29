@@ -94,8 +94,8 @@ describe('wyciskania i przysiady wstrzymane w 1.0 (decyzja agenta w nocy 29.10.2
       expect([k, (V2_WSTRZYMANE[k] ?? '').length > 20]).toEqual([k, true]);
     }
   });
-  test('odtworzenie wad (silnik na main 9b76ed2): Chain Press = Bench Press with Chains; Zercher na dole ≥ 15 cm od łokcia; Sumo Squat (hantel) ≥ 20 cm w poziomie', () => {
-    expect(JSON.stringify(frameAt(figureSpec('Chain Press')!, 0.5))).toBe(JSON.stringify(frameAt(figureSpec('Bench Press with Chains')!, 0.5)));
+  test('odtworzenie wad (silnik na main 9b76ed2): Zercher na dole ≥ 15 cm od łokcia; Sumo Squat (hantel) ≥ 20 cm w poziomie', () => {
+    /* Chain Press = Bench Press with Chains: poprawione w 101-06 (29.10.2026; uchwyty z łańcuchami zamiast sztangi) — test pilnujący poprawki: tests/figury-pakiet-b.test.ts */
     const z = frameAt(figureSpec('Zercher Squat')!, 1); const el = z.sk.arms.R.elbow;
     expect(Math.hypot(z.info.load[0] - el[0], z.info.load[1] - el[1])).toBeGreaterThan(15);
     const a = frameAt(figureSpec('Sumo Squat (hantel)')!, 0).info.load, b = frameAt(figureSpec('Sumo Squat (hantel)')!, 1).info.load;
