@@ -33,7 +33,56 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 | R-016 | Nazwy aplikacji w sklepie (26.10.2026, decyzja właściciela — wariant A): wstępne sprawdzenie znaków towarowych wskazuje ryzyko niskie (słowa opisowe); rejestry UE, PL, WIPO i UK nie były przeszukane automatycznie (badanie: Dysk, Trening App/05 Research konkurencji) | ręczne sprawdzenie właściciela w TMview, UPRP, WIPO Global Brand Database i USPTO (klasy 9, 41, 42, 44) przed wydaniem w App Store, wynik zapisany w docs/18 z datą | **zamknięte 26.10.2026** — ręczne sprawdzenie właściciela w TMview (obejmuje dane UPRP, WIPO, USPTO), słowa: Training, Trening, Trénink, Tréning, Treino, Träning, Træning, Treeni; klasy 9/41/42/44. Żywe znaki „TRAINING” w naszych klasach: EUIPO 018124951 (graficzny), UK00004089886 (graficzny), DE 3020152290030 (Wort-/Bildmarke, kl. 41) — chronią logo, nie słowo; IT 1993900291640 (kl. 41, rodzaj niesprawdzony; nie oprogramowanie); CN (kl. 9/42) — sprzedaż w Chinach kontynentalnych do decyzji przy dostępności. Treino/Treeni — żywe znaki tylko poza sklepami, w których nazwa jest używana. Decyzja właściciela: nazwy bez zmian. Ocena nie jest opinią prawną. |
 | R-017 | Strony Trening na apps4brew.com (privacy, support, espresso) to kopie `site/` w osobnym repo lkarwowski494/apps4brew-www (pages.yml publikuje `site/` tylko pod github.io/trening/) — rozjazd przy każdej zmianie `site/`; pierwotnie nikt nie sprawdzał, czy adresy z aplikacji w ogóle działają (ESPRESSO_URL zwracał 404, polityka miała starą treść — audyt 1.0, B-01/B-02) | `scripts/check-urls.mjs` (workflow `check-urls.yml`, ręcznie) porównuje treść na żywo z `site/` i sprawdza kod 200 wszystkich adresów; jest krokiem bramki wydania (docs/48 Z-10a); eksport: `scripts/site/eksport-apps4brew.mjs`; przebieg dowodowy zielony na gałęzi wydania | **zamknięte (27.10.2026)** — `check-urls.yml` zielony na commicie wydania 001ecf2 (przebieg 40435249217): wszystkie adresy 200, treść zgodna z `site/`; strony opublikowane w apps4brew-www 96e6bb3. 28.10.2026 (M1-audytor-generalny-017): po poprawce odbiorców poczty w `site/` treść na żywo była stara (`check-urls` kod 1) → eksport i publikacja w apps4brew-www PR #2 (fb85d20, scalił właściciel), `node scripts/check-urls.mjs` kod 0 o 11:51 UTC. Po każdej zmianie `site/` powtórzyć (docs/48 Z-10a) |
 | R-WAL | Waluta na ekranie zakupu (build 1031, 27.10.2026; ocena: **NISKIE** — ryzyko dotyczy środowiska testowego): lista planów pokazała USD ($0.99 / $6.99 / $14.99) przy koncie testerki ze sklepem PL (właściciel 27.10.2026 wieczorem: to było prawdziwe konto z regionem Polska, nie konto piaskownicy; zakup z TestFlight i tak przechodzi przez środowisko testowe Apple), arkusz Apple pokazał PLN. Kod i biblioteka przepisują `displayPrice` StoreKit bez zapasowej waluty, pamięci podręcznej i formatowania (strażnik `tests/cena-z-displayprice.test.ts`); Apple: „The storefront that the user’s device is connected to determines the locale”; RevenueCat i Purchasely opisują USD w metadanych produktów w piaskownicy/TestFlight przy poprawnej walucie arkusza zakupu (docs/waluta-ekranu-zakupu-1031.md). Nie potwierdzone, że w produkcji tego nie ma | pierwszy dzień po wydaniu: właściciel (albo tester z polskim kontem, bez piaskownicy) otwiera ekran zakupu w wersji z App Store i potwierdza ceny w PLN (4,99 zł / 19,99 zł / 59,99 zł) zgodne z arkuszem Apple (punkt listy telefonu po wydaniu); USD przy sklepie PL w produkcji = WYSOKIE, naprawa przed ogłoszeniem | **otwarte** (27.10.2026) — sprawdzenie po wydaniu (Z-36, pierwszy dzień) |
-| R-RES | Kopia ratunkowa plików bazy (M1-audytor-generalny-004, 27.10.2026): czy `expo-file-system` na iPhonie czyta `Library/SQLite/trening.db*` i kopiuje do `Documents/Backup/Rescue-…` (kod w projekcie zapisuje tylko ograniczenia ZAPISU poza Dokumentami, Caches i Application Support — o odczycie nic) | przebieg na symulatorze albo telefonie, w którym kopia ratunkowa powstaje (np. scenariusz z bazą zastąpioną plikiem nie-SQLite) i folder widać w Plikach; do tego czasu ekran działa jak przed zmianą (gdy kopiowanie się nie uda — najnowsza kopia z puli) | otwarte (27.10.2026) |
+| R-RES | Kopia ratunkowa plików bazy (M1-audytor-generalny-004, 27.10.2026): czy `expo-file-system` na iPhonie czyta `Library/SQLite/trening.db*` i kopiuje do `Documents/Backup/Rescue-…` (kod w projekcie zapisuje tylko ograniczenia ZAPISU poza Dokumentami, Caches i Application Support — o odczycie nic) | przebieg na symulatorze albo telefonie, w którym kopia ratunkowa powstaje (np. scenariusz z bazą zastąpioną plikiem nie-SQLite) i folder widać w Plikach; do tego czasu ekran działa jak przed zmianą (gdy kopiowanie się nie uda — najnowsza kopia z puli) | otwarte (27.10.2026; 28.10.2026: bez kroku na telefonie — kopia powstaje tylko, gdy bazy nie da się otworzyć; decyzja właściciela D8 w docs/48: odroczenie z datą albo scenariusz symulatora) |
+
+## L-NNN (27.10.2026, zrzuty 1.0; decyzja właściciela A+C z 27.10.2026) — równoległe zrzuty zajęły wszystkie 5 maszyn macOS na ok. 1,5 h i zablokowały E2E buildu 1.0
+
+- **Co się stało:** przebieg `store-screenshots.yml` (40499391220, `jezyki=all`, 5 zadań) wystartował 5 zadań macOS naraz (11:55–13:45 UTC). Plan darmowy ma 5 równoległych zadań macOS na repozytorium,
+  więc E2E PR #73 i #74 — ścieżka krytyczna buildu 1.0 — stały w kolejce ponad 1,5 h. Koordynator anulował przebieg zrzutów.
+- **Przyczyna źródłowa:** podział zrzutów na równoległe zadania (decyzja właściciela po lekcji o niezmierzonej estymacie) projektowałem pod czas, nie pod wspólny budżet maszyn: plan pracy nie miał
+  limitu równoległości ani priorytetu dla ścieżki krytycznej, a workflowy nie zawierały `max-parallel` (domyślnie GitHub rozdaje wszystkie wolne maszyny jednej macierzy). Limit planu (5) był znany
+  z dokumentacji GitHuba, ale nigdzie w repozytorium zapisany jako ograniczenie, które test mógłby sprawdzić — więc zmiana workflowu przeszła testy i przegląd.
+- **Ocena zakresu: systemowa** — ta sama luka dotyczy każdej macierzy macOS (E2E w częściach, zrzuty, zegarek, przyszłe nocne przebiegi na macOS): każda może zająć wspólną pulę. Decyzja właściciela 27.10.2026
+  (A+C): (A) każde zadanie macOS w macierzy ma `max-parallel` ≤ 3, dwie maszyny z pięciu zawsze zostają dla E2E i buildu; (C) strażnik w testach i lekcja. Odrzucone: ręczne pilnowanie kolejki
+  przez koordynatora (postanowienie, nie mechanizm), priorytety w kolejce GitHuba (nie istnieją w planie darmowym).
+- **Akcje:**
+  1. `strategy.max-parallel: 3` w `store-screenshots.yml` (zrzuty) i `e2e-ios.yml` (części E2E); wartość limitu w jednym miejscu: `MACOS_MAX_PARALLEL` w `scripts/ci/store-shards.mjs` — **zrobione**.
+  2. Strażnik `tests/macos-max-parallel.test.ts` (parsuje YAML wszystkich workflowów: każde zadanie `runs-on: macos-*` w macierzy ma liczbowy `max-parallel` od 1 do limitu; próba na kopii z macierzą
+     bez limitu i z 5 jest czerwona) — **zrobione**.
+  3. Domyślnie 6 zadań zrzutów (po 5–6 języków, ok. 2,7–3,5 h każde), dwie fale po 3 — **zrobione**; przebieg dowodowy zrzutów dopiero po buildzie 1.0 (znak koordynatora) — **w toku**.
+  4. Nowy workflow z macierzą macOS dostaje `max-parallel` od razu (strażnik zatrzyma) — **zrobione** (mechanizm z pkt 2).
+
+## L-NNN (27.10.2026, zrzuty 1.0) — właściciel dostał estymatę „zrzuty 35 języków ok. 2 h zegarowo”; pomiar pokazał ok. 16 h na rozmiar (przebieg 40464544722 anulowany po limicie zadania)
+
+- **Co się stało:** docs/48 (pkt „Czekanie” i decyzja D7) podawał właścicielowi „zrzuty 35 języków ok. 2 h zegarowo”. Przebieg `store-screenshots.yml` z `jezyki: all`
+  (run 40464544722, zrzuty-1-0) po 180 min (limit zadania) miał gotowe ok. 6,5 języka z 35 (2,7 min na ekran, w drugim przebiegu 3,5; Maestro 2–3 razy na ekran, ok. 1 min każde na symulatorze
+  macos-26), czyli ok. 16 h na rozmiar. Przebieg anulowany, poranek stracony; właściciel wybrał wariant A (wszystkie 35 języków) na podstawie błędnej estymaty.
+- **Przyczyna źródłowa:** liczba „1 h na rozmiar” w opisie wejścia workflowu i „2 h” w docs/48 pochodziły z wcześniejszego przebiegu o innym zakresie (kilka języków, mniej
+  akcji Maestro), przeskalowane z pamięci, nie z pomiaru; workflow nie raportował czasu na jednostkę pracy (ekran), więc nic nie zmuszało do przeliczenia przy zmianie zakresu
+  (35 języków, 10 ekranów, dodane przebiegi „dialogi”). Estymata trafiła do właściciela jako decyzyjna (D7), bez znacznika „niezmierzone” — luka tej samej rodziny co L-002
+  (opis z pamięci zamiast z dowodu).
+- **Ocena zakresu: systemowa** — każda estymata czasu przebiegu CI (zrzuty, E2E, build, audyty) może być przepisana z pamięci i trafić do decyzji właściciela.
+  Propozycja zmiany modelu pracy (decyzja właściciela):
+  - **A (rekomendacja):** estymata czasu przebiegu podawana właścicielowi wymaga pomiaru czasu na jednostkę pracy z poprzedniego przebiegu o tym samym kształcie albo próbnego
+    przebiegu na małej próbce (1 język × kilka ekranów) i mnożenia; bez pomiaru — oznaczenie „niezmierzone” i widełki; workflowy długich zadań zapisują pomiar do podsumowania przebiegu.
+    Koszt: minuta pracy agenta + jeden krótki przebieg przed obietnicą; wygrywa, bo błąd estymaty jest tu 8-krotny i dotarł do decyzji.
+  - **B:** tylko oznaczenie „niezmierzone” przy każdej liczbie czasu CI w docs — tanie, ale nie wymusza pomiaru i właściciel dalej dostaje liczby bez podstaw.
+- **Akcje:**
+  1. Pomiar czasu na ekran zapisywany w podsumowaniu przebiegu (`scripts/ci/store-screenshots.sh` → `GITHUB_STEP_SUMMARY`, test w `tests/store-shards.test.ts`) — **zrobione** (zrzuty-1-0).
+  2. Liczba „czas na ekran” w jednym miejscu (`PER_SCREEN_MIN` w `scripts/ci/store-shards.mjs`); plan podziału na zadania i test limitu czasu liczą z niej — **zrobione**.
+  3. Podział języków na równoległe zadania (`store-shards.mjs`, macierz z wyjścia zadania „dane”), limit zadania 330 min ponad zmierzone 3,2–4,1 h na 7 języków — **zrobione**, dowód: przebieg
+     `store-screenshots.yml` na gałęzi (wynik w PR) — **w toku**.
+  4. docs/48: estymata zastąpiona pomiarem („zmierzone 27.10.2026”), test pilnuje, że stare zdanie nie wróciło — **zrobione**.
+  5. Przy okazji (ten sam przebieg pl,en): `pl/10-import` miał otwarte puste okno plików zamiast podglądu importu — skrypt zrzutów tylko ostrzegał o porażce akcji Maestro i zostawiał błędny
+     plik w zestawie. Teraz ekran jest powtarzany raz, a po drugiej porażce zrzut ląduje w `.nieudane` i na liście w podsumowaniu przebiegu (test na atrapach: `tests/store-screenshots-retry.test.ts`) — **zrobione**.
+  6. Reguła w CLAUDE.md (estymata CI dla właściciela = pomiar albo „niezmierzone”) — **propozycja do decyzji właściciela** (zmiana modelu pracy, opcja A powyżej).
+
+## L-053 (28.10.2026, naprawy M2 nocny tryb) — tests.yml czerwony na main po scaleniu PR #83: lekcja bez numeru weszła do main
+
+- **Co się stało:** scaliłem PR #83 (duży tekst, sesja telefonu) do `main` (d521fdd) z lekcją „## L-NNN” w docs/40; tests.yml 40785414419 na `main` czerwony — `tests/audit-m1-p4b-queue.test.ts` („lekcje L-NNN tylko na gałęziach”). Numer tej lekcji nadawał równoległy PR #85, więc uznałem, że wystarczy go scalić po #83 — bez sprawdzenia, że `main` między scaleniami będzie czerwony. Nie dotarło do właściciela ani testerów; naprawia scalenie #85 (L-051).
+- **Przyczyna źródłowa:** (1) numer lekcji nadaje koordynator przy scalaniu (L-016), a sprawdzenie numeracji działa tylko przy wypchnięciu na `main` (hak pre-push i tests.yml z GITHUB_REF_NAME=main) — scalenie PR przez GitHub omija hak, a tests.yml nie biegnie na PR (`on: push`), więc pierwszy sygnał to czerwony `main`; (2) przy kilku PR naraz łatwo założyć, że „numer da inny PR”.
+- **Ocena zakresu: systemowa** — każde scalenie PR z lekcją bez numeru (częste w nocy, wiele sesji) powtórzy błąd.
+- **Akcje:** (1) PR #85 (L-051) scalony zaraz po zielonym CI — **w toku**; (2) **propozycja dla właściciela:** (A, rekomendowana) tests.yml także na `pull_request` do `main` (test numeracji widzi gałąź docelową przez GITHUB_BASE_REF) — numery muszą być nadane przed scaleniem, a czerwony CI na PR blokuje przycisk; koszt: drugi przebieg CI na PR (ok. 25 min, publiczne repo — bez opłat), zmiana workflowu z przebiegiem dowodowym; (B) numer lekcji nadawany od razu na gałęzi (zmiana L-016) — prostsze, ale dwie gałęzie mogą nadać ten sam numer (powód L-016). Decyzja właściciela — **otwarte**.
 
 ## L-052 (28.10.2026, koordynator) — błędna informacja dla właściciela: „scal PR apps4brew-www#2” i kroki App Store Connect jako niezrobione, choć były zrobione
 
@@ -139,48 +188,6 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 - **Druga luka (ta sama przyczyna):** nowy `tests/sciezki-nawigacji-i18n.test.ts` zmienił generowaną macierz, a `docs/19-macierz-testow.md` nie była odświeżona (`check:matrix`, który hak pre-push uruchamia) — odświeżona w osobnym commicie.
 
 - **Nawrót tego samego dnia (koordynator, 27.10.2026 ~12:15 UTC):** tests.yml 40499028034 (589f6c4a) czerwony — poprawka id „Pominąć ćwiczenie?” („latihan” → „gerakan”) bez regeneracji `watch-fixtures/labels/id.json`, `tests/fixtures/watch-app/labels.json` i `targets/watch-app/Core/WatchLabelTable.swift` (`UPDATE_WATCH=1` + `UPDATE_WATCH_APPLE=1`). Drugi raz w ciągu dnia → **ocena zakresu zmieniona na systemową**: przyczyną jest mechanizm (szybkie testy i hak nie obejmują testów zegarka przy zmianie `lib/locales/*.json`, a agenci pracują bez lokalnego pełnego verify — decyzja C), nie pojedyncze przeoczenie. **Akcja-mechanizm (otwarta, gałąź 1.1, nie w 1.0):** `scripts/test-fast.mjs` — zmiana w `lib/locales/`, `lib/watchLabels.ts` lub `lib/watch/` uruchamia `tests/watch-fixtures.test.ts` i `tests/watch-apple-i18n.test.ts`; opcjonalnie hak pre-push sprawdza aktualność plików generowanych zegarka (szybkie, < 10 s). Propozycja dla właściciela przy raporcie: A) mapowanie w test:fast (rek., tanie), B) dodatkowo hak pre-push.
-
-## L-NNN (27.10.2026, zrzuty 1.0; decyzja właściciela A+C z 27.10.2026) — równoległe zrzuty zajęły wszystkie 5 maszyn macOS na ok. 1,5 h i zablokowały E2E buildu 1.0
-
-- **Co się stało:** przebieg `store-screenshots.yml` (40499391220, `jezyki=all`, 5 zadań) wystartował 5 zadań macOS naraz (11:55–13:45 UTC). Plan darmowy ma 5 równoległych zadań macOS na repozytorium,
-  więc E2E PR #73 i #74 — ścieżka krytyczna buildu 1.0 — stały w kolejce ponad 1,5 h. Koordynator anulował przebieg zrzutów.
-- **Przyczyna źródłowa:** podział zrzutów na równoległe zadania (decyzja właściciela po lekcji o niezmierzonej estymacie) projektowałem pod czas, nie pod wspólny budżet maszyn: plan pracy nie miał
-  limitu równoległości ani priorytetu dla ścieżki krytycznej, a workflowy nie zawierały `max-parallel` (domyślnie GitHub rozdaje wszystkie wolne maszyny jednej macierzy). Limit planu (5) był znany
-  z dokumentacji GitHuba, ale nigdzie w repozytorium zapisany jako ograniczenie, które test mógłby sprawdzić — więc zmiana workflowu przeszła testy i przegląd.
-- **Ocena zakresu: systemowa** — ta sama luka dotyczy każdej macierzy macOS (E2E w częściach, zrzuty, zegarek, przyszłe nocne przebiegi na macOS): każda może zająć wspólną pulę. Decyzja właściciela 27.10.2026
-  (A+C): (A) każde zadanie macOS w macierzy ma `max-parallel` ≤ 3, dwie maszyny z pięciu zawsze zostają dla E2E i buildu; (C) strażnik w testach i lekcja. Odrzucone: ręczne pilnowanie kolejki
-  przez koordynatora (postanowienie, nie mechanizm), priorytety w kolejce GitHuba (nie istnieją w planie darmowym).
-- **Akcje:**
-  1. `strategy.max-parallel: 3` w `store-screenshots.yml` (zrzuty) i `e2e-ios.yml` (części E2E); wartość limitu w jednym miejscu: `MACOS_MAX_PARALLEL` w `scripts/ci/store-shards.mjs` — **zrobione**.
-  2. Strażnik `tests/macos-max-parallel.test.ts` (parsuje YAML wszystkich workflowów: każde zadanie `runs-on: macos-*` w macierzy ma liczbowy `max-parallel` od 1 do limitu; próba na kopii z macierzą
-     bez limitu i z 5 jest czerwona) — **zrobione**.
-  3. Domyślnie 6 zadań zrzutów (po 5–6 języków, ok. 2,7–3,5 h każde), dwie fale po 3 — **zrobione**; przebieg dowodowy zrzutów dopiero po buildzie 1.0 (znak koordynatora) — **w toku**.
-  4. Nowy workflow z macierzą macOS dostaje `max-parallel` od razu (strażnik zatrzyma) — **zrobione** (mechanizm z pkt 2).
-
-## L-NNN (27.10.2026, zrzuty 1.0) — właściciel dostał estymatę „zrzuty 35 języków ok. 2 h zegarowo”; pomiar pokazał ok. 16 h na rozmiar (przebieg 40464544722 anulowany po limicie zadania)
-
-- **Co się stało:** docs/48 (pkt „Czekanie” i decyzja D7) podawał właścicielowi „zrzuty 35 języków ok. 2 h zegarowo”. Przebieg `store-screenshots.yml` z `jezyki: all`
-  (run 40464544722, zrzuty-1-0) po 180 min (limit zadania) miał gotowe ok. 6,5 języka z 35 (2,7 min na ekran, w drugim przebiegu 3,5; Maestro 2–3 razy na ekran, ok. 1 min każde na symulatorze
-  macos-26), czyli ok. 16 h na rozmiar. Przebieg anulowany, poranek stracony; właściciel wybrał wariant A (wszystkie 35 języków) na podstawie błędnej estymaty.
-- **Przyczyna źródłowa:** liczba „1 h na rozmiar” w opisie wejścia workflowu i „2 h” w docs/48 pochodziły z wcześniejszego przebiegu o innym zakresie (kilka języków, mniej
-  akcji Maestro), przeskalowane z pamięci, nie z pomiaru; workflow nie raportował czasu na jednostkę pracy (ekran), więc nic nie zmuszało do przeliczenia przy zmianie zakresu
-  (35 języków, 10 ekranów, dodane przebiegi „dialogi”). Estymata trafiła do właściciela jako decyzyjna (D7), bez znacznika „niezmierzone” — luka tej samej rodziny co L-002
-  (opis z pamięci zamiast z dowodu).
-- **Ocena zakresu: systemowa** — każda estymata czasu przebiegu CI (zrzuty, E2E, build, audyty) może być przepisana z pamięci i trafić do decyzji właściciela.
-  Propozycja zmiany modelu pracy (decyzja właściciela):
-  - **A (rekomendacja):** estymata czasu przebiegu podawana właścicielowi wymaga pomiaru czasu na jednostkę pracy z poprzedniego przebiegu o tym samym kształcie albo próbnego
-    przebiegu na małej próbce (1 język × kilka ekranów) i mnożenia; bez pomiaru — oznaczenie „niezmierzone” i widełki; workflowy długich zadań zapisują pomiar do podsumowania przebiegu.
-    Koszt: minuta pracy agenta + jeden krótki przebieg przed obietnicą; wygrywa, bo błąd estymaty jest tu 8-krotny i dotarł do decyzji.
-  - **B:** tylko oznaczenie „niezmierzone” przy każdej liczbie czasu CI w docs — tanie, ale nie wymusza pomiaru i właściciel dalej dostaje liczby bez podstaw.
-- **Akcje:**
-  1. Pomiar czasu na ekran zapisywany w podsumowaniu przebiegu (`scripts/ci/store-screenshots.sh` → `GITHUB_STEP_SUMMARY`, test w `tests/store-shards.test.ts`) — **zrobione** (zrzuty-1-0).
-  2. Liczba „czas na ekran” w jednym miejscu (`PER_SCREEN_MIN` w `scripts/ci/store-shards.mjs`); plan podziału na zadania i test limitu czasu liczą z niej — **zrobione**.
-  3. Podział języków na równoległe zadania (`store-shards.mjs`, macierz z wyjścia zadania „dane”), limit zadania 330 min ponad zmierzone 3,2–4,1 h na 7 języków — **zrobione**, dowód: przebieg
-     `store-screenshots.yml` na gałęzi (wynik w PR) — **w toku**.
-  4. docs/48: estymata zastąpiona pomiarem („zmierzone 27.10.2026”), test pilnuje, że stare zdanie nie wróciło — **zrobione**.
-  5. Przy okazji (ten sam przebieg pl,en): `pl/10-import` miał otwarte puste okno plików zamiast podglądu importu — skrypt zrzutów tylko ostrzegał o porażce akcji Maestro i zostawiał błędny
-     plik w zestawie. Teraz ekran jest powtarzany raz, a po drugiej porażce zrzut ląduje w `.nieudane` i na liście w podsumowaniu przebiegu (test na atrapach: `tests/store-screenshots-retry.test.ts`) — **zrobione**.
-  6. Reguła w CLAUDE.md (estymata CI dla właściciela = pomiar albo „niezmierzone”) — **propozycja do decyzji właściciela** (zmiana modelu pracy, opcja A powyżej).
 
 ## L-039 (26.10.2026, straznik-paczki) — nawrót L-033: `check:bundle` znów zgłosił fałszywe „CDC” w bajtkodzie Hermes (tests.yml 40379990056, jakosc-r2, c171efb)
 

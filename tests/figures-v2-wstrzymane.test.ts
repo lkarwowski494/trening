@@ -51,3 +51,13 @@ describe('ekran karty: bez rysunku znika też zestaw ogólny wskazówek („Łok
     expect(r.getByTestId('exercise-cues')).toBeTruthy();
   });
 });
+
+describe('reaudyt pętli 2 (06-tresci-701, 28.10.2026): „Technika ›” nie prowadzi do pustego podglądu przy wstrzymanych figurach', () => {
+  const { hasTechnique } = require('@/lib/figures/v2/ui') as typeof import('@/lib/figures/v2/ui');
+  test.each(KLUCZE)('%s: hasTechnique = false (brak własnej karty i rysunku)', k => {
+    expect(hasTechnique({ lib: true, libKey: k })).toBe(false);
+  });
+  test('kontrast: Smith Machine Close-Grip Bench Press — hasTechnique = true', () => {
+    expect(hasTechnique({ lib: true, libKey: 'Smith Machine Close-Grip Bench Press' })).toBe(true);
+  });
+});

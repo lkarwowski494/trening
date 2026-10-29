@@ -7,7 +7,7 @@ import { catalogKey, type Exercise } from '@/lib/seed';
 import { REGION_LABEL } from '@/lib/seed';
 import { CUE_SETS } from './cueSets';
 import { CUE_TO_ERROR, type ErrorId } from './errors';
-import { faultApplicable, figureSpec, musclesFor, type FigureSpec } from './figure';
+import { faultApplicable, shownFigureSpec, musclesFor, type FigureSpec } from './figure';
 import { guidesFor, type GuideId } from './guides';
 import { MUSCLE_MIN_LOAD, type MuscleId } from './muscles';
 
@@ -45,5 +45,5 @@ export const toeAngleApplies = (spec: FigureSpec): boolean => spec.family === 's
 /** Czy przy ćwiczeniu jest sekcja „Technika”: własne wskazówki (lib/cues) albo figura v2 (a z nią zestaw ogólny wzorca; kolejne rodziny — kolejne etapy). */
 export function hasTechnique(e: Pick<Exercise, 'lib' | 'libKey'> | null | undefined): boolean {
   if (hasCues(e)) return true; const key = catalogKey(e); if (!key) return false;
-  return !!figureSpec(key);
+  return !!shownFigureSpec(key); /* figury wstrzymane (V2_WSTRZYMANE) bez sekcji — inaczej „Technika ›” otwiera pusty podgląd (reaudyt pętli 2, 06-tresci-701, 28.10.2026) */
 }
