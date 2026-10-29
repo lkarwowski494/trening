@@ -779,7 +779,7 @@ export const EN: Record<string, string> = {
   'Zatrzymaj animację': 'Pause animation',
   'Wznów animację': 'Resume animation',
   'Pozycja wyjściowa': 'Starting position',
-  'W trakcie': 'Midway',
+  'Pozycja pośrednia': 'Mid position',
   'Pozycja pośrednia {n}': 'Mid position {n}',
   'Pozycja końcowa': 'End position',
   'Rysunek schematyczny — pozycje orientacyjne.': 'Schematic drawing — positions are approximate.',

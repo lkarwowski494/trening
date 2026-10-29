@@ -1340,7 +1340,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "V týždennom pláne: {days} — tieto dni budú voľné.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "V Pokroku je označený týždeň vidieť ako písmeno D v grafoch — tam sa nemení.",
  "W tej wersji": "V tejto verzii",
- "W trakcie": "Počas pohybu",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "V prebiehajúcom tréningu guma zmizne z neodškrtnutých sérií.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "V prebiehajúcom tréningu sa označí ako vymazaný.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "V týždni deload ponúknu „Štart“ a „Zopakovať posledný“ „Menej sérií“: {less}; váhy aj šablóna bez zmeny.",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "Váš plán: doživotný",
  "{n} kg": "{n} kg",
  "{n} lb": "{n} lb",
- "Pozycja pośrednia {n}": "Medzipoloha {n}"
+ "Pozycja pośrednia {n}": "Medzipoloha {n}",
+ "Pozycja pośrednia": "Medzipoloha"
 }

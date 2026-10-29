@@ -8972,7 +8972,7 @@
   {
    "id": "pozycja_posrednia",
    "pl": "pozycja pośrednia (podpis środkowej klatki rysunku)",
-   "znaczenie": "podpis środkowych klatek rysunku ćwiczenia przy czterech pozycjach („Pozycja pośrednia 1/2”), spójny z „Pozycja wyjściowa/końcowa”; NIE „w trakcie / w toku” (słowo statusu)",
+   "znaczenie": "podpis środkowych klatek rysunku ćwiczenia w całej aplikacji: przy trzech pozycjach „Pozycja pośrednia” (bez numeru), przy czterech „Pozycja pośrednia 1/2” (decyzja 29.10.2026), spójny z „Pozycja wyjściowa/końcowa”; NIE „w trakcie / w toku” (słowo statusu)",
    "kanon": null,
    "wykrywaj": "pozycj\\w* pośredni",
    "jezyki": {

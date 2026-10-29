@@ -1340,7 +1340,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "В плане на неделю: {days} — эти дни будут выходными.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "В Прогрессе отмеченная неделя видна как буква D на графиках — там её не меняют.",
  "W tej wersji": "В этой версии",
- "W trakcie": "В процессе",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "В текущей тренировке резинка будет убрана из неотмеченных подходов.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "В текущей тренировке будет отмечено как удалённое.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "В разгрузочную неделю «Старт» и «Повторить последнюю» предложат «Меньше подходов»: {less}; веса и шаблон без изменений.",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "Ваш план: бессрочный",
  "{n} kg": "{n} кг",
  "{n} lb": "{n} фнт",
- "Pozycja pośrednia {n}": "Промежуточное положение {n}"
+ "Pozycja pośrednia {n}": "Промежуточное положение {n}",
+ "Pozycja pośrednia": "Промежуточное положение"
 }

@@ -1112,7 +1112,6 @@
  "w planie na: {day} · {n} ćw.": "計畫日：{day} · {n} 個動作",
  "W planie tygodnia: {days} — te dni będą wolne.": "每週計畫中：{days} — 這些天會是休息日。",
  "W tej wersji": "這個版本",
- "W trakcie": "進行中",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "在進行中的訓練裡，尚未勾選的組會移除這條彈力帶。",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "在進行中的訓練裡，會標示為已刪除。",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "在減載週，「開始」和「重複上次」會建議「減少組數」：{less}；重量與範本不變。",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "你的方案：永久",
  "{n} kg": "{n} kg",
  "{n} lb": "{n} lb",
- "Pozycja pośrednia {n}": "中間姿勢 {n}"
+ "Pozycja pośrednia {n}": "中間姿勢 {n}",
+ "Pozycja pośrednia": "中間姿勢"
 }

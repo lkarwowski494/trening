@@ -1112,7 +1112,6 @@
  "w planie na: {day} · {n} ćw.": "theo kế hoạch: {day} · {n} bài",
  "W planie tygodnia: {days} — te dni będą wolne.": "Trong kế hoạch tuần: {days} — những ngày này sẽ là ngày nghỉ.",
  "W tej wersji": "Trong phiên bản này",
- "W trakcie": "Đang diễn ra",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Trong buổi tập đang diễn ra, dây sẽ được bỏ khỏi các hiệp chưa đánh dấu.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Trong buổi tập đang diễn ra, mục này sẽ được đánh dấu là đã xóa.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Trong tuần deload, “Bắt đầu” và “Lặp lại buổi gần nhất” sẽ đề xuất “Ít hiệp hơn”: {less}; mức tạ và mẫu giữ nguyên.",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "Gói của bạn: vĩnh viễn",
  "{n} kg": "{n} kg",
  "{n} lb": "{n} lb",
- "Pozycja pośrednia {n}": "Tư thế giữa {n}"
+ "Pozycja pośrednia {n}": "Tư thế giữa {n}",
+ "Pozycja pośrednia": "Tư thế giữa"
 }

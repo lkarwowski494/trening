@@ -209,7 +209,7 @@ describe('lib/figures', () => {
     const mv = CUE_DATA.exercises['Back Squat'].move.map(r => cueText(r.c, 'pl')).join(' ');
     expect(figureLabel('Back Squat', 'pl')).toBe(`Rysunek ruchu: ${mv}`);
     expect(figureLabel('Nie ma', 'pl')).toBe('Rysunek ruchu: ');
-    expect([frameLabel('start'), frameLabel('mid'), frameLabel('end')]).toEqual(['Pozycja wyjściowa', 'W trakcie', 'Pozycja końcowa']);
+    expect([frameLabel('start'), frameLabel('mid'), frameLabel('end')]).toEqual(['Pozycja wyjściowa', 'Pozycja pośrednia', 'Pozycja końcowa']);
   });
   test('etykiety VoiceOver w 26 językach: przetłumaczony szablon i zdania ruchu w języku interfejsu', () => {
     for (const l of LANGS) {
@@ -221,7 +221,7 @@ describe('lib/figures', () => {
         expect([l, k, lab.startsWith(prefix)]).toEqual([l, k, true]);
         for (const r of CUE_DATA.exercises[k].move) expect([l, k, lab.includes(cueText(r.c, l))]).toEqual([l, k, true]);
       }
-      for (const n of ['start', 'mid', 'end'] as const) if (l !== 'pl') expect([l, frameLabel(n)]).not.toEqual([l, ({ start: 'Pozycja wyjściowa', mid: 'W trakcie', end: 'Pozycja końcowa' })[n]]);
+      for (const n of ['start', 'mid', 'end'] as const) if (l !== 'pl') expect([l, frameLabel(n)]).not.toEqual([l, ({ start: 'Pozycja wyjściowa', mid: 'Pozycja pośrednia', end: 'Pozycja końcowa' })[n]]);
       if (l !== 'pl') for (const k of ['Zatrzymaj animację', 'Wznów animację', 'Rysunek schematyczny — pozycje orientacyjne.']) expect([l, t(k)]).not.toEqual([l, k]);
     }
   });
@@ -276,7 +276,7 @@ describe('komponent ExerciseFigure', () => {
     render(<ExerciseFigure exercise={lib(KEYS.find(k => fig(k).frames.length === 3)!)} />); await flush(); /* figury poprawione w 1.0.1 (Push Press, Step Up, wykroki…) czekają na recenzję bramki 4 — pierwsza wyświetlana figura z 3 pozycjami */
     expect(screen.queryByTestId('exercise-figure-anim')).toBeNull();
     for (const n of ['start', 'mid', 'end']) expect(screen.getByTestId(`exercise-figure-frame-${n}`)).toBeTruthy();
-    expect(screen.getByText('W trakcie')).toBeTruthy();
+    expect(screen.getByText('Pozycja pośrednia')).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Zatrzymaj animację' })).toBeNull();
     const d = pathsOf().join(); await act(async () => { jest.advanceTimersByTime(5000); }); expect(pathsOf().join()).toBe(d);
   });
@@ -326,8 +326,8 @@ describe('komponent ExerciseFigure', () => {
       for (const n of ['start', 'mid', 'mid2', 'end']) expect(screen.getByTestId(`exercise-figure-frame-${n}`)).toBeTruthy();
       expect(screen.getAllByTestId(/^exercise-figure-frame-/).map(x => x.props.testID)).toEqual(['start', 'mid', 'mid2', 'end'].map(n => `exercise-figure-frame-${n}`));
       expect(screen.getByText('Pozycja wyjściowa')).toBeTruthy(); expect(screen.getByText('Pozycja pośrednia 1')).toBeTruthy(); expect(screen.getByText('Pozycja pośrednia 2')).toBeTruthy(); expect(screen.getByText('Pozycja końcowa')).toBeTruthy();
-      expect(screen.queryByText('W trakcie')).toBeNull();
-      expect([frameLabel('mid', 4), frameLabel('mid2', 4), frameLabel('mid', 3)]).toEqual(['Pozycja pośrednia 1', 'Pozycja pośrednia 2', 'W trakcie']);
+      expect(screen.queryByText('Pozycja pośrednia')).toBeNull();
+      expect([frameLabel('mid', 4), frameLabel('mid2', 4), frameLabel('mid', 3)]).toEqual(['Pozycja pośrednia 1', 'Pozycja pośrednia 2', 'Pozycja pośrednia']);
       expect(loopMs(4)).toBeGreaterThan(5000);
     } finally { if (had) FIG_DATA.exercises['Push Press'] = prev; else delete FIG_DATA.exercises['Push Press']; }
   });

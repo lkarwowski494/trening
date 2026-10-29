@@ -1112,7 +1112,6 @@
  "w planie na: {day} · {n} ćw.": "direncanakan untuk: {day} · {n} gerakan",
  "W planie tygodnia: {days} — te dni będą wolne.": "Dalam rencana mingguan: {days} — hari-hari ini akan menjadi hari libur.",
  "W tej wersji": "Di versi ini",
- "W trakcie": "Sedang berjalan",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Di latihan yang sedang berjalan, karet akan dihapus dari set yang belum dicentang.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Di latihan yang sedang berjalan, ini akan ditandai sebagai dihapus.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Di minggu deload, “Mulai” dan “Ulangi yang terakhir” menawarkan “Lebih sedikit set”: {less}; beban dan templat tidak berubah.",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "Paket Anda: seumur hidup",
  "{n} kg": "{n} kg",
  "{n} lb": "{n} lb",
- "Pozycja pośrednia {n}": "Posisi tengah {n}"
+ "Pozycja pośrednia {n}": "Posisi tengah {n}",
+ "Pozycja pośrednia": "Posisi tengah"
 }

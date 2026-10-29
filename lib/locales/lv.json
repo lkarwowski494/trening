@@ -1340,7 +1340,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "Nedēļas plānā: {days} — šīs dienas būs atpūtas dienas.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "Sadaļā Progress atzīmētā nedēļa diagrammās redzama kā burts D — tur to nemaina.",
  "W tej wersji": "Šajā versijā",
- "W trakcie": "Kustības laikā",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Notiekošajā treniņā gumija tiks noņemta no neatzīmētajām sērijām.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Notiekošajā treniņā tas tiks atzīmēts kā dzēsts.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Atslodzes nedēļā “Sākt” un “Atkārtot pēdējo” piedāvā “Mazāk sēriju”: {less}; svari un veidne nemainās.",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "Jūsu plāns: mūža",
  "{n} kg": "{n} kg",
  "{n} lb": "{n} lb",
- "Pozycja pośrednia {n}": "Starppozīcija {n}"
+ "Pozycja pośrednia {n}": "Starppozīcija {n}",
+ "Pozycja pośrednia": "Starppozīcija"
 }

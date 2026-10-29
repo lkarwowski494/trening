@@ -1112,7 +1112,6 @@
  "w planie na: {day} · {n} ćw.": "予定日: {day} · {n} 種目",
  "W planie tygodnia: {days} — te dni będą wolne.": "週間プランでは {days} — これらの日は休みになります。",
  "W tej wersji": "このバージョンでは",
- "W trakcie": "途中",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "進行中のトレーニングでは、まだチェックしていないセットからバンドが外れます。",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "進行中のトレーニングでは、削除済みとして表示されます。",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "ディロード週には「開始」と「前回を繰り返す」で「セット数を減らす」を提案します: {less}；重量とテンプレートは変わりません。",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "ご利用中のプラン：買い切り",
  "{n} kg": "{n} kg",
  "{n} lb": "{n} lb",
- "Pozycja pośrednia {n}": "途中の姿勢{n}"
+ "Pozycja pośrednia {n}": "途中の姿勢{n}",
+ "Pozycja pośrednia": "途中の姿勢"
 }

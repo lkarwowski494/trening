@@ -31,11 +31,11 @@ export function figureLabel(key: string, l: Lang = lang()): string {
   const move = Object.prototype.hasOwnProperty.call(CUE_DATA.exercises, key) ? CUE_DATA.exercises[key].move : [];
   return t('Rysunek ruchu: {opis}', { opis: move.map(r => cueText(r.c, l)).join(' ') });
 }
-/** Podpis klatki przy statycznym widoku (Ogranicz ruch / pauza). Przy czterech pozycjach dwie środkowe mają numer („Pozycja pośrednia 1”, „Pozycja pośrednia 2”); przy trzech — bez zmian. */
+/** Podpis klatki przy statycznym widoku (Ogranicz ruch / pauza). Przy czterech pozycjach dwie środkowe mają numer („Pozycja pośrednia 1”, „Pozycja pośrednia 2”); przy trzech — „Pozycja pośrednia” bez numeru (decyzja 29.10.2026). */
 export function frameLabel(n: FrameName, total = 3): string {
   if (n === 'start') return t('Pozycja wyjściowa');
   if (n === 'end') return t('Pozycja końcowa');
-  return total > 3 ? t('Pozycja pośrednia {n}', { n: n === 'mid' ? 1 : 2 }) : t('W trakcie');
+  return total > 3 ? t('Pozycja pośrednia {n}', { n: n === 'mid' ? 1 : 2 }) : t('Pozycja pośrednia');
 }
 
 /** Kształty wszystkich klatek i wspólny kadr (do statycznego widoku i do stałego kadru animacji). */

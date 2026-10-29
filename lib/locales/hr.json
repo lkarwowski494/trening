@@ -1340,7 +1340,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "U tjednom planu: {days} — ti dani bit će odmor.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "U Napretku se označeni tjedan vidi kao slovo D na grafikonima — tamo se ne mijenja.",
  "W tej wersji": "U ovoj verziji",
- "W trakcie": "Tijekom pokreta",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "U trenutačnom treningu traka će se ukloniti iz još neoznačenih serija.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "U trenutačnom treningu bit će označena kao obrisana.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "U tjednu rasterećenja „Započni” i „Ponovi zadnji” nude „Manje serija”: {less}; težine i predložak bez promjene.",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "Vaš plan: doživotni",
  "{n} kg": "{n} kg",
  "{n} lb": "{n} lb",
- "Pozycja pośrednia {n}": "Međupoložaj {n}"
+ "Pozycja pośrednia {n}": "Međupoložaj {n}",
+ "Pozycja pośrednia": "Međupoložaj"
 }

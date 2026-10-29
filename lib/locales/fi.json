@@ -1340,7 +1340,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "Viikkosuunnitelmassa: {days} — nämä päivät muuttuvat lepopäiviksi.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "Kehityksessä merkitty viikko näkyy kaavioissa D-kirjaimena — sitä ei muuteta siellä.",
  "W tej wersji": "Tässä versiossa",
- "W trakcie": "Liikkeen aikana",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Käynnissä olevassa treenissä kuminauha poistuu merkitsemättömistä sarjoista.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Käynnissä olevassa treenissä se merkitään poistetuksi.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Kevennysviikolla ”Aloita” ja ”Toista viimeisin” tarjoavat ”Vähemmän sarjoja”: {less}; painot ja pohja ennallaan.",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "Pysyvä käyttöoikeus",
  "{n} kg": "{n} kg",
  "{n} lb": "{n} lb",
- "Pozycja pośrednia {n}": "Väliasento {n}"
+ "Pozycja pośrednia {n}": "Väliasento {n}",
+ "Pozycja pośrednia": "Väliasento"
 }

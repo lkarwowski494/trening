@@ -1112,7 +1112,6 @@
  "w planie na: {day} · {n} ćw.": "예정일: {day} · {n}종목",
  "W planie tygodnia: {days} — te dni będą wolne.": "주간 플랜에서: {days} — 이 날들은 휴식일이 됩니다.",
  "W tej wersji": "이번 버전에서",
- "W trakcie": "중간",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "진행 중인 운동에서는 아직 체크하지 않은 세트에서 밴드가 빠집니다.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "진행 중인 운동에서는 삭제됨으로 표시됩니다.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "디로드 주간에는 ‘시작’과 ‘지난번 반복’이 ‘세트 줄이기’를 제안합니다: {less}; 무게와 루틴은 그대로입니다.",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "내 요금제: 평생 이용",
  "{n} kg": "{n} kg",
  "{n} lb": "{n} lb",
- "Pozycja pośrednia {n}": "중간 자세 {n}"
+ "Pozycja pośrednia {n}": "중간 자세 {n}",
+ "Pozycja pośrednia": "중간 자세"
 }

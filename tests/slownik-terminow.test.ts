@@ -116,6 +116,12 @@ describe('słownik terminów: logika (wykrywanie i naruszenia)', () => {
     for (const [k, zle, ok] of [['ru', 'В процессе {n}', 'Промежуточное положение {n}'], ['id', 'Sedang berjalan {n}', 'Posisi tengah {n}'], ['ms', 'Sedang berjalan {n}', 'Kedudukan tengah {n}'], ['vi', 'Đang diễn ra {n}', 'Tư thế giữa {n}'], ['zh-Hant', '進行中 {n}', '中間姿勢 {n}']] as const) {
       expect([k, S.sprawdz(slownik, k, poz, zle).length]).toEqual([k, 1]); expect(S.sprawdz(slownik, k, poz, ok)).toEqual([]);
     }
+    /* decyzja właściciela 29.10.2026: środkowa klatka przy trzech pozycjach to „Pozycja pośrednia” bez numeru (zamiast „W trakcie”) — ta sama forma co z numerem */
+    const poz0 = 'Pozycja pośrednia';
+    expect(S.wykryte(slownik.pojecia.find(x => x.id === 'pozycja_posrednia'), poz0)).toBe(true);
+    for (const [k, zle, ok] of [['ru', 'В процессе', 'Промежуточное положение'], ['id', 'Sedang berjalan', 'Posisi tengah'], ['ms', 'Sedang berjalan', 'Kedudukan tengah'], ['vi', 'Đang diễn ra', 'Tư thế giữa'], ['zh-Hant', '進行中', '中間姿勢']] as const) {
+      expect([k, S.sprawdz(slownik, k, poz0, zle).length]).toEqual([k, 1]); expect(S.sprawdz(slownik, k, poz0, ok)).toEqual([]);
+    }
     expect(S.sprawdz(slownik, 'ja', wsk, '肘を狭く保ちます').length).toBe(1); expect(S.sprawdz(slownik, 'ja', wsk, '肘を締めておきます')).toEqual([]);
   });
   test('blok promptu: tylko wpisy języka docelowego, z terminem zalecanym i zakazanym', () => {

@@ -1340,7 +1340,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "Savaitės plane: {days} — šios dienos taps poilsio dienomis.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "Progrese pažymėta savaitė diagramose matoma kaip raidė D — ten jos nekeisite.",
  "W tej wersji": "Šioje versijoje",
- "W trakcie": "Judesio metu",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Dabartinėje treniruotėje guma bus pašalinta iš dar nepažymėtų serijų.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Dabartinėje treniruotėje jis bus pažymėtas kaip ištrintas.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Iškrovos savaitę „Pradėti“ ir „Kartoti paskutinę“ pasiūlo „Mažiau serijų“: {less}; svoriai ir šablonas nesikeičia.",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "Jūsų planas: neterminuotas",
  "{n} kg": "{n} kg",
  "{n} lb": "{n} lb",
- "Pozycja pośrednia {n}": "Tarpinė padėtis {n}"
+ "Pozycja pośrednia {n}": "Tarpinė padėtis {n}",
+ "Pozycja pośrednia": "Tarpinė padėtis"
 }

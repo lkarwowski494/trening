@@ -1340,7 +1340,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "Nel piano settimanale: {days} — questi giorni diventeranno di riposo.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "In Progressi, una settimana segnata appare come la lettera D nei grafici — lì non si cambia.",
  "W tej wersji": "In questa versione",
- "W trakcie": "Durante il movimento",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Nell’allenamento in corso l’elastico verrà rimosso dalle serie non ancora spuntate.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Nell’allenamento in corso verrà segnato come eliminato.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Nella settimana di scarico «Inizia» e «Ripeti l’ultimo» propongono «Meno serie»: {less}; pesi e scheda invariati.",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "Il tuo piano: a vita",
  "{n} kg": "{n} kg",
  "{n} lb": "{n} lb",
- "Pozycja pośrednia {n}": "Posizione intermedia {n}"
+ "Pozycja pośrednia {n}": "Posizione intermedia {n}",
+ "Pozycja pośrednia": "Posizione intermedia"
 }

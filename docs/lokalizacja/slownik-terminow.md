@@ -67,7 +67,7 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `zegarek` | zegarek | Apple Watch (zegarek połączony z aplikacją); w ja i ko nazwa ze słownictwa Apple, nie zwykły zegarek na rękę |
 | `lokcie_otwarte` | łokcie otwarte na boki | łokcie rozstawione szeroko od tułowia przy wyciskaniu (flared elbows); przeciwieństwo łokci przyklejonych do tułowia |
 | `lokcie_waskie` | łokcie wąsko (przy tułowiu) | łokcie trzymane blisko tułowia, np. przy wąskim wyciskaniu (elbows in); przeciwieństwo łokci otwartych na boki. Dosłowne „wąsko” z polskiego bywa kalką; języki bez wpisu: pytanie do native speakerów w docs/16 (1.0.1) |
-| `pozycja_posrednia` | pozycja pośrednia (podpis środkowej klatki rysunku) | podpis środkowych klatek rysunku ćwiczenia przy czterech pozycjach („Pozycja pośrednia 1/2”), spójny z „Pozycja wyjściowa/końcowa”; NIE „w trakcie / w toku” (słowo statusu) |
+| `pozycja_posrednia` | pozycja pośrednia (podpis środkowej klatki rysunku) | podpis środkowych klatek rysunku ćwiczenia w całej aplikacji: przy trzech pozycjach „Pozycja pośrednia” (bez numeru), przy czterech „Pozycja pośrednia 1/2” (decyzja 29.10.2026), spójny z „Pozycja wyjściowa/końcowa”; NIE „w trakcie / w toku” (słowo statusu) |
 
 ## Terminy zalecane (rdzeń)
 

@@ -1340,7 +1340,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "Στο εβδομαδιαίο πρόγραμμα: {days} — αυτές οι μέρες θα είναι ξεκούραση.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "Στην Πρόοδο, μια σημασμένη εβδομάδα φαίνεται ως το γράμμα D στα γραφήματα — εκεί δεν αλλάζει.",
  "W tej wersji": "Σε αυτή την έκδοση",
- "W trakcie": "Κατά την κίνηση",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Στην τρέχουσα προπόνηση το λάστιχο θα αφαιρεθεί από τα μη σημειωμένα σετ.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Στην τρέχουσα προπόνηση θα σημειωθεί ως διαγραμμένη.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Σε εβδομάδα αποφόρτισης τα «Έναρξη» και «Επανάληψη τελευταίας» προτείνουν «Λιγότερα σετ»: {less}· ίδια βάρη και πρότυπο.",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "Το πλάνο σας: μόνιμο",
  "{n} kg": "{n} κιλά",
  "{n} lb": "{n} lb",
- "Pozycja pośrednia {n}": "Ενδιάμεση θέση {n}"
+ "Pozycja pośrednia {n}": "Ενδιάμεση θέση {n}",
+ "Pozycja pośrednia": "Ενδιάμεση θέση"
 }

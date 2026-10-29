@@ -1340,7 +1340,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "I ugeplanen: {days} — disse dage bliver hviledage.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "I Fremgang vises en markeret uge som bogstavet D i diagrammerne — den ændrer du ikke der.",
  "W tej wersji": "I denne version",
- "W trakcie": "Undervejs",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "I den aktuelle træning fjernes elastikken fra sæt, der ikke er afkrydset endnu.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "I den aktuelle træning markeres den som slettet.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "I en deload-uge tilbyder “Start” og “Gentag seneste” “Færre sæt”: {less}; vægte og skabelon uændret.",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "Din plan: livstid",
  "{n} kg": "{n} kg",
  "{n} lb": "{n} lb",
- "Pozycja pośrednia {n}": "Mellemstilling {n}"
+ "Pozycja pośrednia {n}": "Mellemstilling {n}",
+ "Pozycja pośrednia": "Mellemstilling"
 }

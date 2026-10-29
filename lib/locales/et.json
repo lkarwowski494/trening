@@ -1340,7 +1340,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "Nädalaplaanis: {days} — need päevad jäävad puhkuseks.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "Jaotises Edenemine paistab märgitud nädal diagrammidel tähena D — seal seda ei muudeta.",
  "W tej wersji": "Selles versioonis",
- "W trakcie": "Liigutuse ajal",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Praeguses treeningus eemaldatakse kumm märkimata seeriatest.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Praeguses treeningus märgitakse see kustutatuks.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Kergendusnädalal pakuvad „Alusta“ ja „Korda viimast“ „Vähem seeriaid“: {less}; raskused ja mall jäävad samaks.",
@@ -1724,5 +1723,6 @@
  "Masz plan: dożywotni": "Sinu pakett: eluaegne",
  "{n} kg": "{n} kg",
  "{n} lb": "{n} lb",
- "Pozycja pośrednia {n}": "Vaheasend {n}"
+ "Pozycja pośrednia {n}": "Vaheasend {n}",
+ "Pozycja pośrednia": "Vaheasend"
 }

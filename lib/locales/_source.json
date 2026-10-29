@@ -4140,6 +4140,10 @@
   "en": "End position"
  },
  {
+  "pl": "Pozycja pośrednia",
+  "en": "Mid position"
+ },
+ {
   "pl": "Pozycja pośrednia {n}",
   "en": "Mid position {n}"
  },
@@ -5855,10 +5859,6 @@
  {
   "pl": "W tej wersji",
   "en": "In this version"
- },
- {
-  "pl": "W trakcie",
-  "en": "Midway"
  },
  {
   "pl": "W trwającym treningu guma zniknie z nieodhaczonych serii.",
