@@ -55,6 +55,9 @@ export interface Entitlement {
   graceUntil?: number | null;
   /** Zwrot / cofnięcie (też wyjście z rodziny): od tej chwili uprawnienie nie działa. */
   revokedAt?: number | null;
+  /** 101-28: czy subskrypcja odnowi się po końcu okresu (StoreKit 2 renewalInfo.willAutoRenew). `false` = anulowana, dostęp trwa do końca okresu; brak pola = sklep nie podał
+   * (starszy system, kod promocyjny, brak renewalInfo) — traktowane jak „odnawia się” (bezpieczniej ostrzec o podwójnej opłacie). Pole opcjonalne i tylko w pamięci (uprawnienia nie są zapisywane trwale). */
+  willAutoRenew?: boolean;
 }
 
 /** Ostatni znany wynik sklepu, zapamiętany na telefonie (docs/27 2 „unknown”, 3.6). */
