@@ -48,14 +48,23 @@ describe('zrzuty zegarka: potok', () => {
     expect(SCRIPT).toMatch(/-alpha off/);
     expect(SCRIPT).toMatch(/identify[^\n]*channels|%\[channels\]/); /* po konwersji skrypt sprawdza, że alfy nie ma */
   });
-  test('zestaw do sklepu: bez stanu „paused” (nachodzący podpis), pliki NN-<stan>.png w kolejności', () => {
+  test('zestaw do sklepu: stan „paused” wrócił (101-20), pliki NN-<stan>.png w kolejności', () => {
     const states = SCRIPT.match(/STATES="([^"]+)"/)![1].split(' ');
-    expect(states).not.toContain('paused');
-    expect(states[0]).toBe('set-first');
+    expect(states).toEqual(['set-first', 'rest-after-first', 'paused', 'last-rest', 'done', 'idle']);
+    expect(SCRIPT).not.toMatch(/Bez stanu „paused”/);
     expect(SCRIPT).toMatch(/printf '%02d' "\$i"\)-\$state\.png/);
   });
   test('workflow generuje migawki (jest) i wywołuje skrypt z katalogiem danych', () => {
     expect(WORKFLOW).toMatch(/scripts\/screens\/watch-seed\.test\.ts/);
     expect(WORKFLOW).toMatch(/WATCH_SEED_OUT/);
+  });
+});
+
+describe('zegarek: pasek znaczników nie nachodzi na treść (101-20, 29.10.2026)', () => {
+  const ROOT = fs.readFileSync(path.join(__dirname, '..', 'targets', 'watch-app', 'RootView.swift'), 'utf8');
+  test('badges (offline, „Trening wstrzymany”, sesja) rezerwują miejsce nad treścią zamiast nakładać się na nagłówek „Przerwa”', () => {
+    const body = ROOT.slice(ROOT.indexOf('var body: some View'), ROOT.indexOf('@ViewBuilder private func content'));
+    expect(body).not.toMatch(/\.overlay\([^)]*topTrailing[^)]*\)\s*\{\s*badges/);
+    expect(body).toMatch(/\.safeAreaInset\(edge: \.top[^)]*\)\s*\{\s*badges\(v\)/);
   });
 });

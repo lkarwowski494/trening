@@ -72,6 +72,7 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `przysiad` | przysiad | ćwiczenie przysiad (squat); w el zostaje angielska nazwa używana na siłowni |
 | `wyciskanie_lezac` | wyciskanie leżąc | ćwiczenie wyciskanie leżąc (bench press); w el zostaje angielska nazwa używana na siłowni |
 | `martwy_ciag` | martwy ciąg | ćwiczenie martwy ciąg (deadlift); w el zostaje angielska nazwa używana na siłowni |
+| `telefon_es419` | telefon (urządzenie użytkownika) | telefon użytkownika; w es-419 potocznie „celular” (jak w aplikacji na telefonie), w es zostaje „teléfono” |
 
 ## Terminy zalecane (rdzeń)
 
@@ -162,6 +163,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `es-419` | `przerwa_robocza` | descanso (laboral\|de trabajo) | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `es-419` | `trening` | entrenos?(?![\p{L}]) | „entreno” to hiszpańskie (Hiszpania) potoczne skrócenie; w Ameryce Łacińskiej mówi się „entrenamiento” |
 | `es-419` | `lokcie_waskie` | codos juntos | „juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (cerrados) |
+| `es-419` | `telefon_es419` | teléfono | w Ameryce Łacińskiej mówi się „celular”; „teléfono” brzmi jak wariant z Hiszpanii i rozjeżdża się z resztą aplikacji (101 G2, 29.10.2026) |
 | `pt` | `przerwa` | (?<![\p{L}])pausa(?![\p{L}]) | „pausa” to pauza treningu; między seriami „descanso” |
 | `pt` | `przerwa_robocza` | descanso de trabalho | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `pt` | `zakres_powtorzen` | intervalo | „intervalo” w siłowni to przerwa między seriami; zakres to „gama” |

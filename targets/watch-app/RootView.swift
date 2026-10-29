@@ -12,7 +12,8 @@ struct RootView: View {
       let nowMs = ctx.date.timeIntervalSince1970 * 1000
       let v = store.view(at: nowMs)
       content(v, nowMs: nowMs)
-        .overlay(alignment: .topTrailing) { badges(v) }
+        // Pasek znaczników rezerwuje miejsce nad treścią (101-20): jako overlay „Trening wstrzymany” nachodził na nagłówek „Przerwa”.
+        .safeAreaInset(edge: .top, alignment: .trailing, spacing: 0) { badges(v) }
         #if DEBUG
         .overlay(alignment: .bottomLeading) {
           Color.clear.frame(width: 1, height: 1)

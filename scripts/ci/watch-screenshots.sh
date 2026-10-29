@@ -18,9 +18,8 @@ if [ -z "$IM" ]; then brew install imagemagick >/dev/null 2>&1 || true; for c in
 ID="identify"; [ "$IM" = magick ] && ID="magick identify"
 bez_alfa() { "$IM" "$1" -alpha off -define png:color-type=2 "$1.tmp.png" && mv "$1.tmp.png" "$1"
   local ch; ch=$($ID -format '%[channels]' "$1"); case "$ch" in *a) echo "::error::Zrzut $1 nadal ma kanał alfa ($ch)"; exit 1;; esac; }
-# Bez stanu „paused” w zestawie do sklepu (A7, 27.10.2026): podpis „Trening wstrzymany” w pasku nad treścią nachodzi na nagłówek „Przerwa” (RootView.badges) — błąd kosmetyczny
-# aplikacji na zegarku, do naprawy w 1.0.1 (docs/21); zrzut pauzy wróci do zestawu po poprawce. Nazwy plików NN-<stan>.png: kolejność w sklepie = kolejność stanów.
-STATES="set-first rest-after-first last-rest done idle"
+# Nazwy plików NN-<stan>.png: kolejność w sklepie = kolejność stanów. „paused” wrócił po poprawce 101-20 (pasek znaczników nie nachodzi na nagłówek „Przerwa”).
+STATES="set-first rest-after-first paused last-rest done idle"
 mkdir -p "$OUT"
 for lang in ${LANGS//,/ }; do
   mkdir -p "$OUT/$lang"; i=0

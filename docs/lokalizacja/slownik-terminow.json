@@ -9236,6 +9236,21 @@
      "pewnosc": "srednia"
     }
    }
+  },
+  {
+   "id": "telefon_es419",
+   "pl": "telefon (urządzenie użytkownika)",
+   "tylko": ["es-419"],
+   "znaczenie": "telefon użytkownika; w es-419 potocznie „celular” (jak w aplikacji na telefonie), w es zostaje „teléfono”",
+   "kanon": null,
+   "wykrywaj": "(?<![\\p{L}])telefon(ie|em|u|y|owi|ów|ach)?(?![\\p{L}])",
+   "jezyki": {
+    "es-419": {
+     "zalecany": "celular",
+     "zakazane": [{"wzorzec": "teléfono", "powod": "w Ameryce Łacińskiej mówi się „celular”; „teléfono” brzmi jak wariant z Hiszpanii i rozjeżdża się z resztą aplikacji (101 G2, 29.10.2026)"}],
+     "pewnosc": "srednia"
+    }
+   }
   }
  ]
 }
