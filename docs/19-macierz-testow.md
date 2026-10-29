@@ -1792,7 +1792,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/guides.guidesFor | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx |
 | figures/v2/guides.trailShapes | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx |
 | figures/v2/math.rad | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/motyw.test.tsx |
-| figures/v2/math.deg | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-ui.test.tsx, tests/figury-1-0-1-uwagi.test.ts |
+| figures/v2/math.deg | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-ui.test.tsx, tests/figures-v2-wstrzymane.test.ts +1 |
 | figures/v2/math.clamp | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/math.add | lib/figures/v2/math.ts | tests/architecture-limits.test.ts, tests/audit-0.10-tst.test.ts, tests/audit-k1-fala2b.test.tsx +29 |
 | figures/v2/math.sub | lib/figures/v2/math.ts | tests/access.test.ts, tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx +32 |

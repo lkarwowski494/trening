@@ -105,3 +105,35 @@ describe('wyciskania i przysiady wstrzymane w 1.0 (decyzja agenta w nocy 29.10.2
     expect(shownFigureSpec('Back Squat')).not.toBeNull(); expect(shownFigureSpec('Bench Press (sztanga)')).not.toBeNull();
   });
 });
+
+describe('101-01 (29.10.2026): JM Press i Decline Close-Grip Bench To Skull Crusher — rig r2 spełnia kartę r2 (jm.elbows, dcgsk.elbows) na kadrach co 0,05; rig z main nie (do zdjęcia z V2_WSTRZYMANE przez koordynatora)', () => {
+  /* Pomiar jak na main (komentarz na górze pliku: łokieć na dole ok. 25 cm za barkiem ku głowie, w połowie ruchu na boki do z ≈ 41 przy barku ≈ 19). Kryterium to karta r2, nie cgbp.elbows:
+   * JM — „łokcie cały czas wysoko i pod skosem od tułowia — nie opadają w dół ani nie uciekają na boki” (ramię ku stopom, odwiedzenie stałe ok. 45°);
+   * Skull Crusher — „łokcie wąsko przez cały ruch … przy prostowaniu nad barkami — nie rozchodzą się na boki” (faza prostowania). Na main: JM dx −27, z do 41,8; Skull Crusher dx −25, z do 43,5. */
+  const U = Array.from({ length: 21 }, (_, i) => i / 20);
+  const pom = (k: string) => U.flatMap(u => { const f = frameAt(figureSpec(k)!, u); return (['R', 'L'] as const).map(s => { const a = f.sk.arms[s]; const sg = s === 'R' ? 1 : -1;
+    return { u, s, dx: a.elbow[0] - a.shoulder[0], dy: a.elbow[1] - a.shoulder[1], dzOut: sg * (a.elbow[2] - a.shoulder[2]), zOut: Math.abs(a.elbow[2]), zSh: Math.abs(a.shoulder[2]) }; }); });
+  const deg = (r: number) => r * 180 / Math.PI;
+  test('JM Press: łokieć nigdy za barkiem ku głowie (dx ≥ −1) ani poniżej barku o więcej niż 5 cm — w 21 kadrach, obie strony; na dole ramię ku stopom (dx > 0)', () => {
+    const m = pom('JM Press'); expect(m).toHaveLength(42);
+    for (const p of m) expect([p.u, p.s, p.dx >= -1, p.dy >= -5]).toEqual([p.u, p.s, true, true]);
+    expect(m.filter(p => p.u === 1).every(p => p.dx > 0)).toBe(true);
+  });
+  test('JM Press: łokcie nie uciekają na boki — odległość od osi nigdy większa niż 2 × połowa barków (było 2,2×) i odwiedzenie stałe 37–53° (tam, gdzie wychylenie ≥ 3 cm)', () => {
+    for (const p of pom('JM Press')) { const ab = deg(Math.atan2(p.dzOut, Math.abs(p.dx)));
+      expect([p.u, p.s, p.zOut <= 2 * p.zSh, p.dzOut >= -3, Math.hypot(p.dx, p.dzOut) < 3 || (ab >= 37 && ab <= 53)]).toEqual([p.u, p.s, true, true, true]); }
+  });
+  test('Skull Crusher (faza prostowania): łokcie na szerokość barków (|Δz od barku| ≤ 1 cm), nad barkami (|dx| ≤ 5 cm, dy ≥ 25 cm) w 21 kadrach, obie strony', () => {
+    const m = pom('Decline Close-Grip Bench To Skull Crusher'); expect(m).toHaveLength(42);
+    for (const p of m) expect([p.u, p.s, Math.abs(p.zOut - p.zSh) <= 1, Math.abs(p.dx) <= 5, p.dy >= 25]).toEqual([p.u, p.s, true, true, true]);
+  });
+  test('pomiar na dole (u = 1) i w połowie ruchu: położenie łokcia względem barku — liczby r2 (JM: dx +15, dy +22; Skull Crusher: dx −1,7) zamiast main (dx −26/−25)', () => {
+    const jm = pom('JM Press').filter(p => p.s === 'R'), sk = pom('Decline Close-Grip Bench To Skull Crusher').filter(p => p.s === 'R');
+    const d1 = jm.find(p => p.u === 1)!, s1 = sk.find(p => p.u === 1)!;
+    expect([d1.dx > 10 && d1.dx < 20, d1.dy > 18, s1.dx > -3 && s1.dx < 0]).toEqual([true, true, true]);
+    expect(Math.max(...jm.map(p => p.zOut))).toBeLessThan(38); expect(Math.max(...sk.map(p => p.zOut))).toBeLessThan(22);
+  });
+  test('zasada koordynatora: wpisy zostają w V2_WSTRZYMANE do zdjęcia przez koordynatora (zgłoszenie „do zdjęcia”: JM Press, Decline Close-Grip Bench To Skull Crusher)', () => {
+    for (const k of KLUCZE) expect([k, k in V2_WSTRZYMANE]).toEqual([k, true]);
+  });
+});
