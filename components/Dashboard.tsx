@@ -5,7 +5,7 @@ import { View, Pressable } from 'react-native';
 import { Text } from '@/components/AppText';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, SectionTitle, useOnce } from '@/components/ui';
-import { useTheme, FONT, TYPE, RADIUS, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
+import { useTheme, FONT, TYPE, TEXT_SIZE, RADIUS, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
 import { useTick } from '@/lib/store';
 import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
 import { mainStart } from '@/lib/home';
@@ -20,9 +20,9 @@ import { t, tp, lang } from '@/lib/i18n';
 function Tile({ label, value }: { label: string; value: string }) { /* 11.10.2026: bez „poprz.” — porównania są w Progresji (w Postępach) */
   const th = useTheme();
   return (
-    <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${label}: ${value}`} {...fullValueProps(label, value)} /* DEC-01 a: podgląd po przytrzymaniu */ style={{ flexGrow: 1, flexBasis: '45%' /* 2 × 2 — mieści się przy 320 pt i długich tłumaczeniach */, padding: 10, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
+    <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${label}: ${value}`} {...fullValueProps(label, value)} /* DEC-01 a: podgląd po przytrzymaniu */ style={{ flexGrow: 1, flexBasis: '45%' /* 2 × 2 — mieści się przy 320 pt i długich tłumaczeniach */, padding: 10, borderRadius: RADIUS.tile, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
       <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: FONT.title700, fontSize: TYPE.navTitle.size }}>{value}</Txt>
-      <Muted style={{ fontSize: 12 }}>{label}</Muted>
+      <Muted style={{ fontSize: TEXT_SIZE.small }}>{label}</Muted>
     </View>);
 }
 const hm = (sec: number) => { const m = Math.round(sec / 60); return m >= 60 ? `${t('{n} h', { n: Math.floor(m / 60) })}${m % 60 ? ` ${t('{n} min', { n: m % 60 })}` : ''}` : t('{n} min', { n: m }); }; /* A11-17: jednostki przez t() */
@@ -44,7 +44,7 @@ export function WeekStats() {
     {trained ? <View testID="week-muscles" style={{ marginTop: 6 }} /* jeden przycisk „Szczegóły w Postępach” (≥ 44 pt) prowadzi do Postępów */>
       <GuardMap parts={g.parts} label={x.label} height={170} />
       {x.deload ? <Muted testID="guard-deload" style={{ textAlign: 'center', ...FW.semibold, marginTop: 8 }}>{x.deload}</Muted> : <GuardLegend parts={g.parts} />}
-      {x.compared ? <Muted testID="guard-compared" style={{ fontSize: 12, textAlign: 'center', marginTop: 6 }}>{x.compared}</Muted> : null}
+      {x.compared ? <Muted testID="guard-compared" style={{ fontSize: TEXT_SIZE.small, textAlign: 'center', marginTop: 6 }}>{x.compared}</Muted> : null}
       {x.short || x.less ? <View style={{ marginTop: 10, gap: 4 }}>
         {x.short ? <Text testID="guard-short" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...FW.regular, fontSize: 13, lineHeight: 19 }}>{x.short}</Text> : null}
         {x.less ? <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6 }}><View style={{ marginTop: 2 }}><SignChip dir="down" size={16} /></View><Text testID="guard-less" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...FW.regular, fontSize: 13, lineHeight: 19, flexShrink: 1 }}>{x.less}</Text></View> : null}
@@ -73,13 +73,13 @@ export function ProgressTiles() {
           <Pressable key={kind} testID={`progress-tile-${kind}`} accessibilityRole="button" accessibilityLanguage={lang()} accessibilityHint={t('Otwiera szczegóły Progresji.')}
             {...fullValueProps(title, `${vol} ${vp}; ${sets} ${tp(sets, 'seria|serie|serii')} ${sp}`)} /* DEC-01 a: podgląd po przytrzymaniu */
             accessibilityLabel={t('{title} ({sub}): objętość {v}, {p}; serie {s}, {d}', { title, sub, v: volA11y, p: vp, s: c.total.sets, d: sp })}
-            onPress={once(() => router.push(`/progression?c=${kind}`))} style={({ pressed }) => ({ padding: 12, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, opacity: pressed ? 0.7 : 1, gap: 2 })}>
-            <Muted style={{ fontSize: 12, ...FW.semibold }}>{title}</Muted>
+            onPress={once(() => router.push(`/progression?c=${kind}`))} style={({ pressed }) => ({ padding: 12, borderRadius: RADIUS.tile, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, opacity: pressed ? 0.7 : 1, gap: 2 })}>
+            <Muted style={{ fontSize: TEXT_SIZE.small, ...FW.semibold }}>{title}</Muted>
             <Muted style={{ fontSize: TYPE.caption.size }}>{sub}</Muted>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 16, rowGap: 2, marginTop: 4 }}>
               {/* osobne teksty: „brak poprzedniego okresu” to zdanie — limit powiększenia TEXT_SCALE_MAX (A11N-04), liczby 1,4 */}
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 6 }}><Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: FONT.title700, fontSize: TYPE.stepLabel.size }}>{vol}</Txt><Muted style={{ fontSize: TYPE.footnote.size }}>{vp}</Muted></View>
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 6 }}><Txt maxFontSizeMultiplier={1.4} style={{ ...FW.semibold, fontSize: TYPE.callout.size }}>{sets} {tp(sets, 'seria|serie|serii')}</Txt><Muted style={{ fontSize: 12 }}>{sp}</Muted></View>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 6 }}><Txt maxFontSizeMultiplier={1.4} style={{ ...FW.semibold, fontSize: TYPE.callout.size }}>{sets} {tp(sets, 'seria|serie|serii')}</Txt><Muted style={{ fontSize: TEXT_SIZE.small }}>{sp}</Muted></View>
             </View>
           </Pressable>); })}
     </View>
@@ -96,10 +96,10 @@ export function FirstSteps() {
   useTick(); const router = useRouter(); const once = useOnce(); const th = useTheme(); const f = firstSteps(); if (!f) return null;
   const step = (done: boolean, n: number, text: string, action?: React.ReactNode) => (
     <View accessibilityLanguage={lang()} key={n} accessible={!action} accessibilityLabel={`${n}. ${text} ${done ? t('zrobione') : t('do zrobienia')}`} style={{ flexDirection: 'row', gap: 10, paddingVertical: 8 }}>
-      <View style={{ width: 24, height: 24, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: done ? th.accent : 'transparent', borderWidth: done ? 0 : 1.5, borderColor: th.line }}>
-        <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} /* A11-07: znak w kółku 22–24 pt */ style={{ fontSize: 12, ...FW.semibold, color: done ? th.accentInk : th.muted }}>{done ? '✓' : String(n)}</Txt>
+      <View style={{ width: 24, height: 24, borderRadius: RADIUS.badge, alignItems: 'center', justifyContent: 'center', backgroundColor: done ? th.accent : 'transparent', borderWidth: done ? 0 : 1.5, borderColor: th.line }}>
+        <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} /* A11-07: znak w kółku 22–24 pt */ style={{ fontSize: TEXT_SIZE.small, ...FW.semibold, color: done ? th.accentInk : th.muted }}>{done ? '✓' : String(n)}</Txt>
       </View>
-      <View style={{ flex: 1, gap: 6 }}><Txt style={{ fontSize: 14, color: done ? th.muted : th.text }}>{text}</Txt>{action}</View>
+      <View style={{ flex: 1, gap: 6 }}><Txt style={{ fontSize: TEXT_SIZE.medium, color: done ? th.muted : th.text }}>{text}</Txt>{action}</View>
     </View>);
   const toPlan = (title: string) => <Btn nav small title={title} onPress={() => router.push('/plan')} style={{ alignSelf: 'flex-start' }} />;
   const noTemplate = mainStart().kind === 'empty';
