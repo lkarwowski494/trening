@@ -59,7 +59,7 @@ function fingerprint(): string[] {
   const walk = (n: unknown) => {
     if (!n || typeof n !== 'object') return; const node = n as N;
     const style = StyleSheet.flatten(node.props?.style as never) ?? {};
-    out.push(JSON.stringify([node.type, node.props?.testID ?? '', textOf(node).slice(0, 24), style]));
+    out.push(JSON.stringify([node.type, node.props?.testID ?? '', textOf(node).slice(0, 24), style]).replace(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/g, '<uid>'));
     for (const c of node.children ?? []) walk(c);
   };
   const j = screen.toJSON() as unknown; for (const r of Array.isArray(j) ? j : [j]) walk(r);
