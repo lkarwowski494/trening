@@ -277,7 +277,10 @@ export class Runner {
     if (n.type === 'TextInput') { if (this.focused && this.focused !== n) await this.blur(); this.focused = n; this.kbScroll(n); this.selectAll = !!n.props.selectTextOnFocus; await act(async () => { n.props.onFocus?.({ nativeEvent: {} }); }); await this.tick(); return; }
     if (this.focused) await this.blur();
     if (n.type === 'RCTSwitch' || n.props.onValueChange) { await act(async () => { fireEvent(n as any, 'valueChange', !n.props.value); }); await this.tick(); return; }
-    await act(async () => { fireEvent.press(n as any); }); await this.tick(100);
+    /* 101-22: stuknięcie w środek kontenera (np. wiersz listy z testID na SwipeRow) trafia w jego przycisk — jak palec; tylko gdy sam kontener nie ma onPress */
+    let target: Node = n;
+    if (typeof n.props.onPress !== 'function' && n.props.accessibilityRole !== 'button') { const inner = (n as any).findAll((x: Node) => x.props.accessibilityRole === 'button' && !/-(del|close)$/.test(String(x.props.testID ?? '')))[0] as Node | undefined; if (inner) target = inner; }
+    await act(async () => { fireEvent.press(target as any); }); await this.tick(100);
   }
   async blur() { const f = this.focused; this.focused = null; if (!f) return; /* pole zdemontowane wraz z ekranem (np. wyszukiwanie + „Back”) — iOS po prostu zdejmuje fokus */ try { await act(async () => { f.props.onEndEditing?.({ nativeEvent: { text: f.props.value } }); f.props.onBlur?.({ nativeEvent: {} }); }); } catch { /* zdemontowane */ } await this.tick(); }
   async run(cmds: any[], file: string) {

@@ -96,8 +96,8 @@ export function Input(props: TextInputProps & { center?: boolean }) {
 }
 /** Wzorzec „wyszukiwanie” (docs/32 wzorzec 21; HIG Text fields — przycisk czyszczenia): jedyne pole wyszukiwania w aplikacji — placeholder „Szukaj {czego}…”,
  * przycisk czyszczenia podczas pisania, limit 80 znaków, bez autokorekty; autoFocus tylko w oknach wyboru. Pilnuje tests/interaction-guards.test.ts. */
-export function SearchField({ placeholder, value, onChangeText, autoFocus }: { placeholder: string; value: string; onChangeText: (v: string) => void; autoFocus?: boolean }) {
-  return <Input value={value} onChangeText={onChangeText} placeholder={placeholder} accessibilityLabel={placeholder} maxLength={80} autoCorrect={false} autoFocus={autoFocus} clearButtonMode="while-editing" returnKeyType="search" />;
+export function SearchField({ placeholder, value, onChangeText, autoFocus, testID }: { placeholder: string; value: string; onChangeText: (v: string) => void; autoFocus?: boolean; testID?: string }) {
+  return <Input value={value} onChangeText={onChangeText} placeholder={placeholder} accessibilityLabel={placeholder} maxLength={80} autoCorrect={false} autoFocus={autoFocus} testID={testID} clearButtonMode="while-editing" returnKeyType="search" />;
 }
 /** Audyt cd60eec MEDIUM: wąskie pola (ciężar 56 pt, RPE 40 pt) — krój mono (0,6 em na znak) ucinał „102,5”; krój tekstu z cyframi tabelarycznymi. */
 export const NUM_FONT = { get fontFamily() { return FW.regular.fontFamily; }, get fontWeight() { return FW.regular.fontWeight; } /* M1-024: waga zależy od „Pogrubiony tekst” w chwili renderu */, fontVariant: ['tabular-nums' as const] };

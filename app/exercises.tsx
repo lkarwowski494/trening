@@ -51,7 +51,7 @@ export default function ExercisesScreen() {
       <Stack.Screen options={addHeader} />
       {/* 11.10.2026 (docs/22, wariant A): ekran pod Więcej — tytuł „Ćwiczenia” w nagłówku stosu, liczba ćwiczeń obok przycisku */}
       <View style={{ marginVertical: 10 }}><Muted>{count}</Muted></View>
-      <SearchField value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} />
+      <SearchField testID="exercises-search" /* E2E 57: powrót do pola po Enter przez id, nie przez tekst (M1-034) */ value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} />
       <LibScopeChip all={libAll} hidden={nicheHidden} searching={!!ql} onToggle={() => { const v = !libAll; setLibAll(v); setLibShowAll(v); }} />
       <FlatList testID="exercises-list" data={rows} renderItem={render} keyExtractor={r => r.key} initialNumToRender={EXERCISES_FIRST_RENDER} maxToRenderPerBatch={30} windowSize={11}
         keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }} ListEmptyComponent={empty} />
