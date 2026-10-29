@@ -360,8 +360,8 @@
    "werdykt": "ukryta",
    "data": "2026-10-29",
    "kto": "06-tresci — recenzja niezależna figur 3a i pełna (audytor, 28.10.2026): pomiary póz pośrednich, arkusze PNG; decyzja właściciela 28.10.2026 „Reverse Lunge ukryć w 1.0”",
-   "sha": "74f7f62d814b",
-   "wada": "Poprawka 1.0.1 (29.10.2026): czwarta pozycja — tylna stopa łukiem w powietrzu, lądowanie palców, dopiero potem opuszczenie; reguła podparcia spełniona. Czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.",
+   "sha": "658463b371c2",
+   "wada": "Poprawka 1.0.1 (29.10.2026, decyzja właściciela 29.10.2026 — prostszy ruch bez zamachu łukiem): tylna stopa unosi się niewysoko pionowo w górę, cofa się w powietrzu i staje na palcach za ciałem, dopiero potem opuszczenie do wykroku; bez sunięcia po podłodze (ślizg ≤ 2 j.), zakres stawów w rom. Czeka na niezależną recenzję bramki 4 z arkuszem śladu toru (L-050); do tego czasu bez rysunku.",
    "poprawka": "Recenzja niezależna (inny agent niż autor poprawki): podgląd póz i arkusz śladu toru; po akceptacji werdykt „wyswietlana”, nowy skrót, pola autor/recenzent.",
    "autorPoprawki": "programista (agent, wersja 1.0.1, 29.10.2026) — nie recenzuje własnej pracy (L-047)",
    "stan": "poprawiona, czeka na recenzję niezależną (bramka 4, arkusz śladu toru L-050)"
