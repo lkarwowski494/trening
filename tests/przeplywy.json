@@ -752,7 +752,7 @@
    "realnosc": "realny",
    "kroki": [
     "Chip z ikoną pinezki → inne miejsce z brakami sprzętu",
-    "Okno „Dostosuj do: X” → „Zastosuj” albo „Anuluj”",
+    "Okno „Dostosuj do miejsca” (stały tytuł nagłówka; pierwszy wiersz treści „Dostosuj do: X”) → „Zastosuj” albo „Anuluj”",
     "Powrót na siłownię: sekcja „Wraca z planu”"
    ],
    "wynik": "Zamienniki oznaczone „zamiast: …”; szablon i plan bez zmian.",
@@ -761,6 +761,7 @@
    ],
    "scenariusz": "22-dostosuj-do-miejsca.yaml",
    "znaczniki": [
+    "Adjust to location",
     "Adjust to",
     "Apply"
    ]
@@ -2477,7 +2478,8 @@
     "Panel „Test store”: wygaszenie → ceny → „Przywróć zakupy”",
     "Start ponad limit dni → ekran zakupu → zakup",
     "Po zakupie subskrypcji: nagłówek „Masz plan: {rodzaj planu}”, lista planów zwinięta pod „Zmień plan”, po rozwinięciu „Aktualny plan” przy kupionym i „Przejdź na ten plan”",
-    "Po zakupie: „Zarządzaj subskrypcją” na karcie planu jest osobnym przyciskiem (VoiceOver, XCTest) i otwiera arkusz subskrypcji (M1-audytor-generalny-039, DEC-11 a 28.10.2026)"
+    "Po zakupie: „Zarządzaj subskrypcją” na karcie planu jest osobnym przyciskiem (VoiceOver, XCTest) i otwiera arkusz subskrypcji (M1-audytor-generalny-039, DEC-11 a 28.10.2026)",
+    "Dostęp „na zawsze” z atrapą sklepu: ostrzeżenie „Twoja subskrypcja nadal się odnawia…” się nie pokazuje (atrapa nie ustawia odnawiania); samo ostrzeżenie — tylko telefon (R-101-28, 101-28)"
    ],
    "wynik": "Dostęp zgodny ze stanem sklepu; zamknięcie ekranu zakupu przyciskiem „Zamknij”; po zakupie ekran nie oferuje kupna posiadanego planu.",
    "ekrany": [
@@ -2488,6 +2490,7 @@
    "znaczniki": [
     "Restore purchases",
     "Test store: expire access",
+    "Your subscription still renews",
     "paywall-manage"
    ]
   },
