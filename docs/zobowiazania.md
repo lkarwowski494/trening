@@ -33,6 +33,7 @@ Zasady:
 | ZB-017 | przed startem strony z ćwiczeniami (z 1.1) | Eksport strony techniqueatlas tylko dla rodzin `ready` z aktualnym wpisem recenzji — warunek w eksporcie aplikacji z testem parytetu; dziś decyzja bez wdrożenia (docs/18 „otwarte → 06-tresci eksport strony”); wstrzymane w 1.0 rysunki nie mogą trafić na stronę | właściciel 28.10.2026, 9a (docs/18) | sesja 1.1 | czeka |
 | ZB-018 | po wysłaniu 1.0 do recenzji Apple | Decyzje o procesie z lekcji: (1) `tests.yml` także na `pull_request` do `main` (L-053, A/B); (2) punkty „What to Test” wskazują scenariusz Maestro (L-007, mechanizm albo punkt listy wydawcy) — przedstawić właścicielowi z rekomendacją | właściciel 29.10.2026, A — odłożyć na po wysłaniu 1.0 (docs/18) | koordynator | czeka |
 | ZB-019 | co najmniej 3 tygodnie przed wydaniem 1.1 | Nominacja „App Launch”/featuring dla aktualizacji 1.1 w App Store Connect (Apple zaleca minimum 3 tygodnie wyprzedzenia; strona „Nominate your app for featuring”, odczyt 29.10.2026); agent przygotowuje treść, właściciel wysyła | właściciel 29.10.2026 ~06:15 UTC — bez nominacji przy 1.0 (docs/18) | koordynator + właściciel | czeka |
+| ZB-020 | po wysłaniu 1.0 do recenzji Apple (Z-29) | Sygnał „1.0 wysłane do recenzji Apple” do sesji koordynatora linii 1.0.1 (`send_message`) — start fali 4 (E2E, zegarek, workflowy na macOS) | właściciel 29.10.2026, D0 = B (PLAN-1-0-1 na `wersja-1-0-1-r2`) | koordynator 1.0 | czeka |
 
 ## Archiwum
 
