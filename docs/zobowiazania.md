@@ -37,4 +37,4 @@ Zasady:
 
 | ID | Kiedy | Akcja | Stan |
 |---|---|---|---|
-| ZB-001 | rano 29.10.2026 | Weto lub zatwierdzenie decyzji nocnych agentów: #84 (JM Press i Decline Close-Grip Bench To Skull Crusher bez rysunku w 1.0), zmiany słów kluczowych z odświeżenia metadanych, inne wyjątki „decyzja agenta w nocy” w docs/18 | zrobione 29.10.2026 — wszystkie decyzje nocne zatwierdzone (docs/18) |
+| ZB-001 | rano 29.10.2026 | Weto lub zatwierdzenie decyzji nocnych agentów: #84 (JM Press i Decline Close-Grip Bench To Skull Crusher bez rysunku w 1.0), zmiany słów kluczowych z odświeżenia metadanych, inne wyjątki „decyzja agenta w nocy” w docs/18 | zrobione 2026-10-29 — wszystkie decyzje nocne zatwierdzone (docs/18) |
