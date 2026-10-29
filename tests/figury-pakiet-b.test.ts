@@ -5,7 +5,7 @@
  * Chain Press — rysunek identyczny z Bench Press with Chains (katalog: łańcuchy przypięte do uchwytów, ruch jak hantle, bez sztangi); Close Grip Bench Press — chwyt ±12 przy barkach ±19,
  * przedramię ok. 50° od pionu (karta: „na szerokość barków lub trochę węziej, nie bardzo wąsko”); Board/Pin Press — ŚREDNIE z main „bez deski i bolców”.
  */
-import { distSegSeg, legRadius, GIRTH, SIDES, figureSpec, frameAt, shapesAt, sortShapes, jointAngles, checkFrame, holdChecks, BENCH, EQUIP, type Frame, type Prop, type V3 } from '@/lib/figures/v2';
+import { distSegSeg, figureSpec, frameAt, shapesAt, sortShapes, jointAngles, checkFrame, holdChecks, BENCH, EQUIP, type Frame, type Prop, type V3 } from '@/lib/figures/v2';
 import { dwieMiary, KADRY_STYKU } from './helpers/styk-figur';
 
 const spec = (k: string) => figureSpec(k)!;
@@ -67,42 +67,37 @@ describe('101-05 Band Bench Press: guma z uchwytami przełożona pod ławką, be
   });
 });
 
-describe('101-06 Chain Press: dwa uchwyty z łańcuchami, ławka płaska, ruch jak wyciskanie hantli, łokieć wynika z pozycji jak w hantlach (źródło: ok. 90°, jedno źródło szczebla 4, docs/research/1-0-1-zrodla-2026-10-29.md pkt 3; kompromis w komentarzu testu)', () => {
+describe('101-06 Chain Press: dwa uchwyty z łańcuchami, ławka płaska, ruch jak wyciskanie hantli, dłonie jak w hantlach i łokieć 90° (źródło: jedno źródło szczebla 4, docs/research/1-0-1-zrodla-2026-10-29.md pkt 3)', () => {
   const K = 'Chain Press'; const SZTANGA = 'Bench Press with Chains';
   const lez = (f: Frame, side: 1 | -1) => props(f, 'chain').find(c => c.from[1] === 0 && Math.sign(c.from[2]) === side)!;
   const zwis = (f: Frame, side: 1 | -1) => props(f, 'chain').find(c => c.from[1] > 0 && Math.sign(c.from[2]) === side)!;
-  /* Kompromis (101-06, recenzja 29.10.2026): źródło („Continue until your elbow forms a 90 degree angle”) i „ta sama pozycja co wyciskanie hantli” nie dają się spełnić naraz przy dłoniach na wysokości klatki
-   * (długość ramienia: przy dłoniach 18 cm od barku i 13,5 cm nad nim zgięcie łokcia wynosi ok. 127°, nie 90°). Rozstrzygnięcie recenzenta: dłonie jak w hantlach (to jest wada ŚREDNIA), a łokieć wynika z tej pozycji —
-   * zgięcie na dole 127° ± 3° (dla porównania hantle 135°; szerszy rozstaw dłoni 40 zamiast 32 cm tylko zmniejsza zgięcie, przedramię zostaje pionowo). */
+  /* J3 (29.10.2026, recenzja niezależna J2: WYSOKIE): oba warunki spełnione naraz — dłonie jak w hantlach (18 cm od barku ku stopom), a zgięcie łokcia 90° ± 3° w mierze silnika (180 − kąt bark–łokieć–uchwyt),
+   * źródło: „Continue until your elbow forms a 90 degree angle” (docs/research/1-0-1-zrodla-2026-10-29.md pkt 3). Przedramię pionowo pod dłonią, ramię poziomo: dłonie ok. 33 cm nad barkiem, łokieć na wysokości barku, rozstaw 48,5 cm od osi. */
   const HANTLE = 'Bench Press (hantle)';
-  /* Styk uchwytów liczony osobno dla każdej dłoni (kapsuła 2 cm w punkcie uchwytu): wspólna miara `stykTora` łączy uchwyty odcinkiem w poprzek ciała, a przy dłoniach na wysokości klatki
-   * odcinek ten leży na tułowiu (odstęp 2 cm — artefakt miary, nie rysunku; hantle mają osobne kolidery dłoni: 19,2 cm). Odstęp powierzchnia–powierzchnia od tułowia, miednicy i nóg; ujemny = przenikanie. */
-  const stykUchwytow = (k: string) => { let min = Infinity; for (const u of U) { const f = fr(k, u); for (const h of props(f, 'handle')) {
-    min = Math.min(min, distSegSeg(h.c, h.c, f.sk.pelvis, f.sk.shoulderC) - 2 - GIRTH.trunkCollide, distSegSeg(h.c, h.c, f.sk.pelvis, f.sk.pelvis) - 2 - GIRTH.pelvis);
-    for (const sd of SIDES) { const L = f.sk.legs[sd]; for (const [seg, a, b] of [['thigh', L.hip, L.knee], ['shank', L.knee, L.ankle]] as const) for (let i = 0; i <= 40; i++) { const t = i / 40; const q: V3 = [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t]; min = Math.min(min, distSegSeg(h.c, h.c, q, q) - 2 - legRadius(seg, t)); } }
-  } } return min; };
   const dloniDol = (k: string, s: 'R' | 'L' = 'R') => { const f = fr(k, 1); return f.sk.arms[s].grip[0] - f.sk.shoulderC[0]; };
   test('101-06 (29.10.2026, recenzja): Chain Press — dłonie na dole na wysokości klatki, jak w Bench Press (hantle): różnica w osi ku stopom ≤ 3 cm (było 10 cm); druga miara: styk', () => {
     /* próg 3 cm: rozstaw uchwytów i hantli (40 vs 32 cm) nie zmienia osi ku stopom; 3 cm to około połowy grubości dłoni (BODY.hand) — różnicy poniżej nie widać na rysunku */
     const m = dwieMiary(K, (k) => Math.abs(dloniDol(k) - dloniDol(HANTLE)));
-    expect(m.styk.maxPrzenikanie).toBe(0); /* wspólna miara: brak przenikania w 21 kadrach */
+    expect(m.styk.maxPrzenikanie).toBe(0); /* wspólna miara (per uchwyt): brak przenikania w 21 kadrach */
+    expect(m.styk.minOdstep).toBeGreaterThan(15);
     expect(m.cecha).toBeLessThanOrEqual(3);
     for (const s of ['R', 'L'] as const) expect([s, Math.abs(dloniDol(K, s) - dloniDol(HANTLE, s)) <= 3]).toEqual([s, true]);
-    /* wysokość dłoni nad barkiem też jak w hantlach (klatka, nie górna część brzucha) */
-    expect(Math.abs((fr(K, 1).sk.arms.R.grip[1] - fr(K, 1).sk.shoulderC[1]) - (fr(HANTLE, 1).sk.arms.R.grip[1] - fr(HANTLE, 1).sk.shoulderC[1]))).toBeLessThanOrEqual(3);
+    /* dłonie nad barkiem 24–39 cm (pion przedramienia przy łokciu 90°; hantle 13,5 cm nie spełniają łokcia 90°), łokieć na wysokości barku lub trochę niżej, rozstaw dłoni na dole 44–48,5 cm od osi */
+    const dol = fr(K, 1); const nad = dol.sk.arms.R.grip[1] - dol.sk.shoulderC[1];
+    expect([nad >= 24, nad <= 39]).toEqual([true, true]);
+    for (const s of ['R', 'L'] as const) { const e = dol.sk.arms[s].elbow[1] - dol.sk.shoulderC[1]; expect([s, e <= 1, e >= -10]).toEqual([s, true, true]); expect([s, Math.abs(dol.sk.arms[s].grip[2]) >= 44, Math.abs(dol.sk.arms[s].grip[2]) <= 48.6]).toEqual([s, true, true]); }
     /* styk: uchwyty (w `info.load` odcinek 2 cm) nie przenikają tułowia ani nóg, odstęp > 15 cm; ławka: łokieć i dłoń nie wchodzą w siedzisko (checkFrame bez uwag) */
-    expect(stykUchwytow(K)).toBeGreaterThan(15); /* dłoń w osi z 40 cm od środka, odstęp zmierzony ok. 31 cm (próg 15 cm jak w pozostałych testach rodziny); zero przenikania */
     /* łańcuch zwisa obok ławki, nie przez nią: odstęp od krawędzi ławki ≥ 5 cm w 21 kadrach */
     for (const u of U) for (const c of props(fr(K, u), 'chain')) expect([u, Math.min(Math.abs(c.from[2]), Math.abs(c.to[2])) - EQUIP.benchW / 2 >= 5]).toEqual([u, true]);
     for (const u of U) expect([u, checkFrame(fr(K, u)).map(i => i.code)]).toEqual([u, []]);
   });
-  test('dwie miary: zgięcie łokcia na dole 127° ± 3° (wynika z pozycji jak w hantlach, kompromis wyżej) i uchwyty bez przenikania ciała, odstęp od ciała > 15 cm (styk)', () => {
+  test('dwie miary: zgięcie łokcia na dole 90° ± 3° (źródło) i uchwyty bez przenikania ciała, odstęp od ciała > 15 cm (styk)', () => {
     const m = dwieMiary(K, (k, kadry) => jointAngles(frameAt(spec(k), kadry[kadry.length - 1]).sk, 'R').elbow);
-    expect(Math.abs(m.cecha - 127)).toBeLessThanOrEqual(3);
-    expect(stykUchwytow(K)).toBeGreaterThan(15);
+    expect(Math.abs(m.cecha - 90)).toBeLessThanOrEqual(3);
+    expect(m.styk.maxPrzenikanie).toBe(0); expect(m.styk.minOdstep).toBeGreaterThan(15);
   });
-  test('łokieć obu stron na dole 127° ± 3°, na górze ≤ 8° (wyprost); przedramię na dole ≤ 10° od pionu; ruch monotoniczny: zgięcie rośnie z u', () => {
-    for (const s of ['R', 'L'] as const) { const e1 = jointAngles(fr(K, 1).sk, s).elbow; expect([s, Math.abs(e1 - 127) <= 3]).toEqual([s, true]); expect([s, jointAngles(fr(K, 0).sk, s).elbow <= 8]).toEqual([s, true]); const t = forearm(fr(K, 1), s); expect([s, t.front <= 10, t.sag <= 10]).toEqual([s, true, true]); }
+  test('łokieć obu stron na dole 90° ± 3°, na górze ≤ 8° (wyprost); przedramię na dole ≤ 10° od pionu; ruch monotoniczny: zgięcie rośnie z u', () => {
+    for (const s of ['R', 'L'] as const) { const e1 = jointAngles(fr(K, 1).sk, s).elbow; expect([s, Math.abs(e1 - 90) <= 3]).toEqual([s, true]); expect([s, jointAngles(fr(K, 0).sk, s).elbow <= 8]).toEqual([s, true]); const t = forearm(fr(K, 1), s); expect([s, t.front <= 10, t.sag <= 10]).toEqual([s, true, true]); }
     let prev = -1; for (const u of U) { const e = jointAngles(fr(K, u).sk, 'R').elbow; expect([u, e >= prev - 0.01]).toEqual([u, true]); prev = e; }
   });
   test('bez sztangi w żadnym kadrze; dwa uchwyty dokładnie w dłoniach; ręka nie przenika ławki ani ciała (kontrola geometrii)', () => {

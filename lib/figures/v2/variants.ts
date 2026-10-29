@@ -32,9 +32,10 @@ const DECLINE = { touch: 26, touchDb: 24 } as const;
 const BOARD = 4;
 /** Wyciskanie na uchwytach (Band Bench Press, Chain Press): tor jak w wyciskaniu hantli — dłonie szeroko na dole, bliżej na górze (katalog nie podaje; uproszczenie ilustracyjne, jak hantle). */
 const HANDLES = { grip: 32, gripTop: 22, touch: 32 } as const;
-/** Chain Press (101-06, recenzja 29.10.2026): dłonie na dole na wysokości klatki, jak w wyciskaniu hantli (katalog: „w tej samej pozycji co wyciskanie hantli”; docs/research/1-0-1-zrodla-2026-10-29.md pkt 3) — dotyk i wysokość dotyku jak w `HANDLES` (było `touch` 22 i `touchB` 32 = łokieć 90° na wysokości barku, dłonie o 10 cm niżej w stronę stóp).
- * Źródło mówi też o łokciu ok. 90°, ale przy dłoniach na klatce zgięcie wynika z długości ramienia (ok. 127°; hantle 135°) — pozycja dłoni ma pierwszeństwo (kompromis zapisany w tests/figury-pakiet-b.test.ts); rozstaw 40 cm na dole (szerzej niż hantle 32), 22 na górze (uproszczenie ilustracyjne). */
-const CHAIN_PRESS = { ...HANDLES, grip: 40 } as const;
+/** Chain Press (101-06, recenzje 29.10.2026; J3): dłonie na dole 18 cm od barku ku stopom (jak w wyciskaniu hantli; katalog: „w tej samej pozycji co wyciskanie hantli”), a łokieć zgięty do 90° (źródło: „Continue until your elbow forms a 90 degree angle”;
+ * docs/research/1-0-1-zrodla-2026-10-29.md pkt 3) — oba warunki da się spełnić naraz: przedramię pionowo pod dłonią, ramię poziomo (łokieć na wysokości barku), więc dłonie są ok. 33 cm nad barkiem (`touchB`), a rozstaw na dole 48,5 cm od osi (ramię 33 cm
+ * i 18 cm od barku ku stopom dają w poprzek √(33² − 18²) ≈ 28 cm od barku, czyli 20,5 + 28); 22 na górze (uproszczenie ilustracyjne). Wcześniej: dłonie 28 cm od barku ku stopom (brzuch, J1) i 127° zgięcia (J2 — osłabienie testu). */
+const CHAIN_PRESS = { ...HANDLES, grip: 48.5, touchB: 33 } as const;
 /** Drążek sześciokątny: bark względem uchwytów na starcie i na wyproście (cm) — na wyproście tułów w pionie (było −6 → tułów −6,4° do tyłu, 1.0.1). */
 const TRAP_SX: [number, number] = [2, -2];
 /** JM Press: sztanga na dole 13 cm za osią barków ku głowie (kąt ramienia wynika), odwiedzenie 45° stałe, zgięcie łokcia 145°, przedramiona lekko zbieżne (uproszczenie ilustracyjne; „ok. 45°” — badacz 28.10.2026, 3 zgodne źródła szczebla 4). */
