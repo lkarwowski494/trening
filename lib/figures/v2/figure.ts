@@ -32,34 +32,13 @@ export function figureSpec(key: string): FigureSpec | null {
   const lowerFirst = variant.family === 'hinge' ? variant.lowerFirst : true;
   return { key, family, variant, views: fam.views, static: variant.family === 'squat' && !!variant.static, lowerFirst };
 }
-/** Ćwiczenia z wariantem, którego rysunek nie jest pokazywany w aplikacji (karta bez rysunku, wskazówki zostają) — ćwiczenie → powód. Silnik i testy geometrii nadal je liczą. */
-const DL_ODSTEP = 'gryf nad kolanem do 8 cm przed udami (tor po #81) — przeczy wskazówce dl.close „blisko nóg”; nowy ruch kolan w rigu hinge w 1.0.1 (docs/21)';
-export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
-  /* decyzja agenta w nocy 28/29.10.2026 (tryb nocny właściciela, do weta rano; docs/18): rysunek przeczy karcie „łokcie blisko tułowia” — poprawka rigu w 1.0.1 */
-  'JM Press': 'łokieć na dole ok. 25 cm za barkiem w stronę głowy, w połowie ruchu na boki — przeczy wskazówce cgbp.elbows; poprawka rigu w 1.0.1 (docs/21)',
-  'Decline Close-Grip Bench To Skull Crusher': 'łokieć na dole ok. 25 cm za barkiem w stronę głowy, w połowie ruchu na boki — przeczy wskazówce cgbp.elbows; poprawka rigu w 1.0.1 (docs/21)',
-  /* decyzja agenta w nocy 29.10.2026 (tryb nocny właściciela, do weta rano; docs/18): po naprawie toru (#81) gryf odrywa się od ud nad kolanem do 8 cm
-   * (recenzja 1.1 hinge B1 WYSOKIE, pomiar na main 3e6d2ed) — przeczy wskazówce dl.close; przy ≤ 1 zmianie kierunku toru i starcie przy goleniach odstęp ≥ 3,7 cm
-   * wynika z ruchu kolan w rigu (kolano idzie za gryfem), więc poprawka to nowy ruch kolan w 1.0.1 (docs/21). Wskazówki tekstowe karty zostają. */
-  'Deadlift (sztanga)': DL_ODSTEP,
-  'Axle Deadlift': DL_ODSTEP,
-  'Deadlift with Bands': DL_ODSTEP,
-  'Deadlift with Chains': DL_ODSTEP,
-  'Deficit Deadlift': DL_ODSTEP,
-  'Rack Pull': DL_ODSTEP,
-  'Rack Pull with Bands': DL_ODSTEP,
-  'Reverse Band Deadlift': DL_ODSTEP,
-  'Cable Deadlift': DL_ODSTEP,
-  'Clean Deadlift': DL_ODSTEP,
-  'Snatch Deadlift': DL_ODSTEP,
-  /* decyzja agenta w nocy 29.10.2026 (do weta właściciela; docs/18): WYSOKIE z niezależnych recenzji bench_press i squat linii 1.1 (przekazanie-konta e658de53, 8156e28e),
-   * potwierdzone liczbami z silnika na main 9b76ed2 — rysunek przeczy katalogowi albo karcie; poprawki rigów w 1.0.1 (docs/21) */
-  'Band Bench Press': 'rysunek: sztanga z talerzami i gumy do podłogi; katalog: tylko gumy i ławka (bez sztangi) — nowy wariant obciążenia w 1.0.1',
-  'Chain Press': 'rysunek identyczny z Bench Press with Chains (sztanga, łańcuchy na gryfie); katalog: łańcuchy na uchwytach, bez sztangi — nowy wariant w 1.0.1',
-  'Close Grip Bench Press': 'chwyt ±12 cm przy barkach ±19, przedramię ok. 50° od pionu — karta: „na szerokość barków lub trochę węziej, nie bardzo wąsko”; poprawka chwytu w 1.0.1',
-  'Zercher Squat': 'na dole gryf leży na udach, 18,5 cm od łokcia i ok. 12 cm pod przedramionami — znika cecha rozpoznawcza (gryf w zgięciach łokci); poprawka rigu w 1.0.1',
-  'Sumo Squat (hantel)': 'hantel jedzie ukośnie w tył ok. 24 cm przy zejściu ok. 50 cm (ok. 26° od pionu) — ciężar powinien iść pionowo pod barkami; poprawka rigu w 1.0.1',
-};
+/** Ćwiczenia z wariantem, którego rysunek nie jest pokazywany w aplikacji — ćwiczenie → powód. Silnik i testy geometrii nadal je liczą.
+ * Faktyczne zachowanie wstrzymania (101-30): shownFigureSpec = null → hasTechnique (lib/figures/v2/ui.ts) = false, więc cała sekcja „Technika” znika
+ * (rysunek, zestaw ogólny wskazówek wzorca i przycisk „Technika ›”); a gdy ćwiczenie ma własne wskazówki (lib/cues), sekcja zostaje bez rysunku i bez powrotu do v1
+ * (components/ExerciseCues.tsx). Wskazówki ogólne wzorca zależą od rysunku (v2 = shownFigureSpec), więc same nie zostają.
+ * Stan 29.10.2026: pusty — 18 figur (JM Press, Skull Crusher, 11 martwych ciągów, Band Bench Press, Chain Press, Close Grip Bench Press, Zercher Squat, Sumo Squat z hantlem)
+ * zdjęto po poprawionych rigach i niezależnych recenzjach (docs/research/figury-recenzja.json). Nowy wpis = figura bez recenzji niezależnej albo z wadą WYSOKĄ (bramka 4). */
+export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {};
 /** Figura pokazywana w aplikacji: jak figureSpec, bez wstrzymanych (V2_WSTRZYMANE). */
 export function shownFigureSpec(key: string): FigureSpec | null {
   return Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, key) ? null : figureSpec(key);
