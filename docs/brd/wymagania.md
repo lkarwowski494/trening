@@ -536,7 +536,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-BIB-006: Strona z ćwiczeniami pokazuje tylko figury rodzin z aktualną recenzją
 - Przepływ: PR-01
-- Dowód potrzeby: decyzja właściciela 9a (2026-10-28; CLAUDE.md 27.10.2026: rodzina bez recenzji = nie wyświetlana, strona jej nie eksportuje); sekcja `v2` pliku `docs/research/figury-recenzja.json`; `scripts/strona/recenzja-figur.mjs`; testy `tests/strona-eksport-recenzja.test.ts`, `tests/strona-eksport.test.ts`
+- Dowód potrzeby: decyzja właściciela 9a (2026-10-28; CLAUDE.md 27.10.2026: rodzina bez recenzji = nie wyświetlana, strona jej nie eksportuje); sekcja `v2` pliku `docs/research/figury-recenzja.json`; `scripts/strona/recenzja-figur.mjs`; testy `tests/strona-eksport-recenzja.test.ts` (także karty jak w aplikacji i rysunki wstrzymane), `tests/strona-eksport.test.ts`
 - Kryteria akceptacji:
   - Scenariusz: Rodzina bez recenzji albo z nieaktualnym skrótem
     - Zakładając, że rodzina figur nie ma wpisu „wyswietlana” w sekcji `v2` pliku recenzji albo jej skrót różni się od bieżącego (dane rodziny zmieniono po recenzji)
@@ -550,6 +550,14 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że pliku recenzji nie ma albo nie ma w nim sekcji `v2`
     - Gdy powstaje eksport
     - Wtedy żadna rodzina nie jest eksportowana (brak figur, same teksty)
+  - Scenariusz: Karty jak w aplikacji (29.10.2026)
+    - Zakładając, że karta ćwiczenia jest ukryta w aplikacji po recenzji treści (lista `hidden`), albo zestaw ogólny wskazówek wzorca nie ma aktualnej recenzji treści (lista `general`), albo figura ćwiczenia nie jest rysowana
+    - Gdy powstaje eksport
+    - Wtedy eksport nie zawiera wskazówek własnych ukrytej karty ani zestawu ogólnego (zestaw ogólny tylko z recenzją treści i przy eksportowanej figurze); tryb wskazówek każdego ćwiczenia jest taki jak w aplikacji
+  - Scenariusz: Rysunek wstrzymany w aplikacji (29.10.2026)
+    - Zakładając, że rysunek ćwiczenia jest wstrzymany w aplikacji (`V2_WSTRZYMANE`: JM Press, Decline Close-Grip Bench To Skull Crusher)
+    - Gdy powstaje eksport
+    - Wtedy ćwiczenie zostaje z tekstem, ale bez figury; sąsiednie wyciskania wąskim chwytem mają figurę
 
 ### BR-BIB-007: Rysunek skoku i rzutu odtwarza całe powtórzenie raz, bez powrotu wstecz (28.10.2026)
 - Przepływ: PR-01
@@ -576,6 +584,23 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że rodzina ma wpis „wyswietlana” ze skrótem równym bieżącemu
     - Gdy użytkownik otwiera sekcję „Technika” jej ćwiczenia
     - Wtedy rysunek v2 jest pokazywany (poza rysunkami wstrzymanymi osobno)
+
+### BR-BIB-009: Strona z ćwiczeniami dostaje teksty tylko w swoim języku i w jednym, sprawdzanym kształcie pól (28.10.2026)
+- Przepływ: PR-01
+- Dowód potrzeby: analiza strony 28.10.2026 (C-01, C-02, K-13: na stronach pojawiało się „undefined” przy rolach mięśni i angielskie zdania w 33 językach); `scripts/strona/kontrakt.json`, `scripts/strona/kontrakt.mjs`, `scripts/strona/eksport.mjs`; testy `tests/strona-eksport.test.ts` (kontrakt pól, brak przekładu = brak zdania, licznik w manifeście)
+- Kryteria akceptacji:
+  - Scenariusz: Rola mięśnia ma etykietę
+    - Zakładając, że ćwiczenie ma zdania o roli mięśni
+    - Gdy powstaje eksport
+    - Wtedy każda rola ma klucz regionu i zdanie, a klucz regionu ma etykietę w tym samym pliku języka (strona pokazuje nazwę partii, nigdy „undefined”)
+  - Scenariusz: Zdanie bez przekładu
+    - Zakładając, że zdanie wskazówki nie ma przekładu w języku pliku (np. 53 zdania wersji 1.1 w 33 językach)
+    - Gdy powstaje eksport tego języka
+    - Wtedy zdanie jest pominięte, nie zastąpione angielskim ani polskim; ćwiczenie ma licznik braków, a manifest podaje braki dla języka razem i dla każdego ćwiczenia
+  - Scenariusz: Zmiana kształtu pola
+    - Zakładając, że kształt pola w eksporcie zmienia się bez zmiany kontraktu
+    - Gdy uruchamiane są testy aplikacji (a po stronie strony: testy na prawdziwym eksporcie)
+    - Wtedy test kontraktu zgłasza błąd, zanim strona zostanie zbudowana ze złymi danymi
 
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07

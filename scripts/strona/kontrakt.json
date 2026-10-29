@@ -1,0 +1,42 @@
+{
+  "_opis": "Kontrakt pól pliku atlas-<język>.json, które czyta strona (repo techniqueatlas): jedno źródło prawdy dla eksportu (test tests/strona-eksport.test.ts) i dla szablonów strony (test na prawdziwym eksporcie). Zmiana kształtu pola = zmiana tego pliku i szablonu w tym samym czasie. Pola spoza kontraktu są dozwolone, poza elementami regions i roles (additionalProperties=false: tam strona czyta konkretne klucze). Walidator: kontrakt.mjs (podzbiór JSON Schema + kluczW = klucz z mapy etykiet). Role mięśni: {id, text}, id jak regions[].id i klucz labels.regions (naprawa C-01 z 28.10.2026, rozjazd region/id opisany w docs/40).",
+  "schema": "techniqueatlas-eksport@1",
+  "plik": {
+    "type": "object",
+    "required": ["schema", "app", "lang", "meta", "labels", "exercises"],
+    "properties": {
+      "schema": { "enum": ["techniqueatlas-eksport@1"] },
+      "lang": { "type": "string", "minLength": 2 },
+      "meta": { "type": "object", "required": ["exercises", "cuesWithoutText"], "properties": { "exercises": { "type": "integer", "minimum": 1 }, "cuesWithoutText": { "type": "integer", "minimum": 0 } } },
+      "labels": { "type": "object", "required": ["regions", "ui"], "properties": { "regions": { "type": "object" }, "ui": { "type": "object" } } },
+      "exercises": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["id", "slug", "name", "regions", "roles", "cues", "alternatives"],
+          "properties": {
+            "id": { "type": "string", "minLength": 1 },
+            "slug": { "type": "string", "minLength": 1 },
+            "name": { "type": "string", "minLength": 1 },
+            "regions": { "type": "array", "items": { "type": "object", "required": ["id", "load"], "additionalProperties": false, "properties": { "id": { "type": "string", "kluczW": "labels.regions" }, "load": { "type": "number", "minimum": 0 } } } },
+            "roles": { "type": "array", "items": { "type": "object", "required": ["id", "text"], "additionalProperties": false, "properties": { "id": { "type": "string", "kluczW": "labels.regions" }, "text": { "type": "string", "minLength": 1 } } } },
+            "cues": {
+              "type": "object",
+              "required": ["scope"],
+              "properties": {
+                "scope": { "enum": ["own", "general", "none"] },
+                "missing": { "type": "integer", "minimum": 1 },
+                "setup": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+                "move": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+                "tips": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+                "mistakes": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+                "ok": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+              }
+            },
+            "alternatives": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    }
+  }
+}

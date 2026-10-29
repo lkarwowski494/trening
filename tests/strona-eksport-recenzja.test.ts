@@ -10,6 +10,8 @@ import * as os from 'os';
 import * as path from 'path';
 import { figureSpec as figureSpecAll, familyOf } from '@/lib/figures/v2';
 import { V2_WSTRZYMANE } from '@/lib/figures/v2/figure';
+import { CUE_DATA, generalCuesReviewed } from '@/lib/cues';
+import { cueSelection } from '@/lib/figures/v2/cueSets';
 
 const root = path.join(__dirname, '..');
 const SCRIPT = path.join(root, 'scripts/strona/eksport.mjs');
@@ -21,7 +23,7 @@ const POZY = new Map<string, string>(); /* ćwiczenie → rodzina, dla wszystkic
 for (const f of fs.readdirSync(path.join(root, 'lib/figures/v2/poses')).filter(x => x.endsWith('.json'))) for (const k of Object.keys(JSON.parse(fs.readFileSync(path.join(root, 'lib/figures/v2/poses', f), 'utf8')).cwiczenia)) POZY.set(k, f.replace(/\.json$/, ''));
 
 type Fig = { figures: Record<string, { family: string }> };
-type Atlas = { exercises: { id: string; slug: string; family: string; figure: unknown }[] };
+type Atlas = { exercises: { id: string; slug: string; family: string; figure: unknown; cues: { scope: string } }[] };
 let tmp = '';
 beforeAll(() => { tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'atlas-rec-')); }, 60000);
 afterAll(() => { fs.rmSync(tmp, { recursive: true, force: true }); });
@@ -74,3 +76,37 @@ describe('eksport dla strony: figura tylko z rodziny ready z aktualną recenzją
     for (const f of Object.values(fig.figures)) { expect(s.ready).toContain(f.family); expect(s.eksportowane).toContain(f.family); }
   });
 });
+
+describe('eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a; BR-BIB-006)', () => {
+  /** To, co aplikacja pokazuje przy ćwiczeniu (components/ExerciseCues.tsx): karta własna z lib/cues/data.json, zestaw ogólny — z recenzją treści i przy rysowanej figurze. */
+  const tryb = (id: string, maFigure: boolean) => { const m = cueSelection(id).mode; return m === 'own' ? (CUE_DATA.exercises[id] ? 'own' : 'none') : m === 'general' ? (generalCuesReviewed(id) && maFigure ? 'general' : 'none') : 'none'; };
+  const fixture = () => { const s = skroty(); return { squat: wpis(s.skroty.squat), bench_press: wpis(s.skroty.bench_press), hinge: wpis(s.skroty.hinge) }; };
+  test('tryb wskazówek w eksporcie = tryb w aplikacji dla każdego ćwiczenia (karta własna spoza listy hidden; zestaw ogólny tylko z recenzją treści i przy figurze)', () => {
+    const { atlas } = eksport('karty-fixture', fixture());
+    expect(atlas.exercises.length).toBe(709);
+    for (const e of atlas.exercises) expect([e.id, e.cues.scope]).toEqual([e.id, tryb(e.id, !!e.figure)]);
+    expect(atlas.exercises.filter(e => e.cues.scope === 'general').length).toBeGreaterThan(10); /* są zestawy ogólne z recenzją przy figurach squat/bench/hinge */
+  });
+  test('karta ukryta po recenzji treści (lista hidden) nie trafia do eksportu jako „own”; zestaw ogólny bez recenzji treści nie trafia jako „general”', () => {
+    const { atlas } = eksport('karty-hidden', fixture());
+    expect(CUE_DATA.hidden.length).toBeGreaterThan(0);
+    for (const k of CUE_DATA.hidden) expect([k, atlas.exercises.find(e => e.id === k)!.cues.scope]).toEqual([k, 'none']);
+    const bez = atlas.exercises.filter(e => cueSelection(e.id).mode === 'general' && !generalCuesReviewed(e.id));
+    expect(bez.length).toBeGreaterThan(0);
+    for (const e of bez) expect([e.id, e.cues.scope]).toEqual([e.id, 'none']);
+  });
+  test('bez zapisu recenzji rodzin (fail closed): zero figur, a zestawy ogólne (przy figurze v2) nie są eksportowane', () => {
+    const { fig, atlas } = eksport('karty-brak', {});
+    expect(Object.keys(fig.figures)).toEqual([]);
+    expect(atlas.exercises.filter(e => e.cues.scope === 'general')).toEqual([]);
+    for (const e of atlas.exercises) expect([e.id, e.cues.scope]).toEqual([e.id, tryb(e.id, false)]);
+  });
+  test('rysunki wstrzymane w aplikacji (V2_WSTRZYMANE: JM Press, Decline Close-Grip Bench To Skull Crusher) nie trafiają do figur, a sąsiednie wyciskania wąskim chwytem tak', () => {
+    const { fig, atlas } = eksport('wstrzymane', fixture());
+    const slug = (id: string) => atlas.exercises.find(e => e.id === id)!.slug;
+    expect(Object.keys(V2_WSTRZYMANE).sort()).toEqual(['Decline Close-Grip Bench To Skull Crusher', 'JM Press']);
+    for (const k of Object.keys(V2_WSTRZYMANE)) { expect([k, slug(k) in fig.figures]).toEqual([k, false]); expect([k, atlas.exercises.find(e => e.id === k)!.figure]).toEqual([k, null]); }
+    expect(slug('Smith Machine Close-Grip Bench Press') in fig.figures).toBe(true);
+  });
+});
+

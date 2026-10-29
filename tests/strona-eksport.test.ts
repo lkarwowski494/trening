@@ -7,7 +7,7 @@ import { execFileSync } from 'child_process';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import { LANGS, LANG_NAME, applyLang, exName, tIn } from '@/lib/i18n';
+import { LANGS, LANG_NAME, applyLang, exName, tIn, type Lang } from '@/lib/i18n';
 import { LIB, LIB_DISPLAY_NAME, libExercise } from '@/lib/seed';
 import { CATALOG_REV, CATALOG } from '@/lib/catalog.generated';
 import { CUE_DATA, cueDict } from '@/lib/cues';
@@ -30,13 +30,15 @@ import { SOURCE_NAME_PATTERNS, GENERIC_REFERENCE_PATTERNS } from '@/lib/sources'
 const root = path.join(__dirname, '..');
 /** Figura, którą eksport może narysować: jak w aplikacji (shownFigureSpec) przy zapisie recenzji z tego testu (wszystkie rodziny ready z aktualnymi skrótami) — bez rysunków wstrzymanych (V2_WSTRZYMANE, PR #84). */
 const figureSpec = (k: string) => Object.prototype.hasOwnProperty.call(V2_WSTRZYMANE, k) ? null : figureSpecAll(k);
+const SEKCJE = ['setup', 'move', 'tips', 'mistakes'] as const;
 const SCRIPT = path.join(root, 'scripts/strona/eksport.mjs');
 /** Zapis recenzji dla eksportu w tym teście: wszystkie rodziny ready z aktualnymi skrótami (bramka 4, decyzja 9a 28.10.2026; sam warunek: tests/strona-eksport-recenzja.test.ts). */
 let REC = '';
 const run = (out: string, ...extra: string[]) => execFileSync('node', [SCRIPT, '--out', out, '--commit', 'abc1234def', '--recenzja', REC, ...extra], { encoding: 'utf8' });
 type Ex = { niche: boolean; musclesApproximate: boolean; id: string; slug: string; name: string; group: string; equipment: string; metric: string; pattern: string; muscles: { main: string[]; aux: string[] }; regions: { id: string; load: number }[]; family: string;
-  figure: null | { phases: { name: string; ms: number }[]; errors: { id: string; text: string }[] }; cues: { scope: string; ok?: string[]; mistakes?: string[]; setup?: string[] }; alternatives: string[]; requires: string[][] };
-type ExRoles = { roles: { region: string; text: string }[] };
+  figure: null | { phases: { name: string; ms: number }[]; errors: { id: string; text: string }[] }; cues: Cues; alternatives: string[]; requires: string[][] };
+type Cues = { scope: string; ok?: string[]; mistakes?: string[]; setup?: string[]; move?: string[]; tips?: string[]; missing?: number };
+type ExRoles = { roles: { id: string; text: string }[] };
 type Out = { schema: string; app: { version: string; commit: string; catalogRev: string }; lang: string; meta: { exercises: number; cuesWithoutText: number }; labels: Record<string, Record<string, string>>; exercises: Ex[] };
 
 /** Ćwiczenia z pozą w lib/figures/v2/poses/*.json (rodziny z danych, także pilotaż bez statusu ready): bez statusu ready eksport ich figur nie dołącza. */
@@ -101,14 +103,14 @@ describe('eksport dla strony: komplet i spójność z runtime aplikacji (macierz
       for (const g of e.regions) expect([0.25, 0.5, 1]).toContain(g.load);
     }
   });
-  test('role mięśni (roles): [{region, text}] jak sekcja „Co robią mięśnie” (muscleRoleRows), tylko role wyświetlane, w języku pliku; regiony ⊂ regions; niektóre ćwiczenia mają role, ćwiczenie bez roli ma []', () => {
+  test('role mięśni (roles): [{id, text}] (id = klucz regionu jak regions[].id i labels.regions — kontrakt scripts/strona/kontrakt.json) jak sekcja „Co robią mięśnie” (muscleRoleRows), tylko role wyświetlane, w języku pliku; regiony ⊂ regions; niektóre ćwiczenia mają role, ćwiczenie bez roli ma []', () => {
     for (const l of ['pl', 'en', 'de'] as const) {
       applyLang(l); let z = 0, bez = 0;
       for (const r of LIB) {
         const e = (data[l].exercises.find(x => x.id === r[0]) as unknown as Ex & ExRoles);
-        const oczekiwane = muscleRoleRows(libExercise(r)).filter(x => x.role).map(x => ({ region: x.region, text: x.role }));
+        const oczekiwane = muscleRoleRows(libExercise(r)).filter(x => x.role).map(x => ({ id: x.region, text: x.role }));
         expect([l, r[0], e.roles]).toEqual([l, r[0], oczekiwane]);
-        const regiony = new Set(e.regions.map(g => g.id)); for (const x of e.roles) { expect(regiony.has(x.region)).toBe(true); expect(x.text.length).toBeGreaterThan(5); }
+        const regiony = new Set(e.regions.map(g => g.id)); for (const x of e.roles) { expect(Object.keys(x).sort()).toEqual(['id', 'text']); expect(regiony.has(x.id)).toBe(true); expect(x.id in data[l].labels.regions).toBe(true); expect(x.text.length).toBeGreaterThan(5); }
         if (e.roles.length) z++; else bez++;
       }
       expect(z).toBeGreaterThan(50); expect(bez).toBeGreaterThan(0);
@@ -187,6 +189,86 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
     const scores = data.en.exercises.find(e => e.id === 'Back Squat')!.alternatives.map(s => { const b = LIB.find(r => r[0] === bySlug.get(s)!.id)!; return similarity(a, libExercise(b))!.score; });
     expect([...scores].sort((x, y) => y - x)).toEqual(scores);
     expect(SWAP_WEIGHTS.pattern).toBe(3);
+  });
+});
+
+describe('eksport dla strony: kontrakt pól (scripts/strona/kontrakt.json) — to samo sprawdza strona na prawdziwym eksporcie (L-NNN: rozjazd ról id/region)', () => {
+  const KONTRAKT = path.join(root, 'scripts/strona/kontrakt.json'), WALID = path.join(root, 'scripts/strona/kontrakt.mjs');
+  /** Walidator w osobnym procesie Node (moduł ES — Jest go nie ładuje): wejście = lista plików albo wstrzyknięty obiekt; wynik = błędy per wejście. */
+  const waliduj = (inputs: { label: string; file?: string; value?: unknown }[]): Record<string, string[]> => {
+    const code = `import { waliduj } from ${JSON.stringify('file://' + WALID)}; import fs from 'node:fs';
+      const schema = JSON.parse(fs.readFileSync(${JSON.stringify(KONTRAKT)}, 'utf8')).plik; const out = {};
+      for (const i of JSON.parse(process.argv[1])) out[i.label] = waliduj(schema, i.file ? JSON.parse(fs.readFileSync(i.file, 'utf8')) : i.value);
+      process.stdout.write(JSON.stringify(out));`;
+    return JSON.parse(execFileSync('node', ['--input-type=module', '-e', code, JSON.stringify(inputs)], { encoding: 'utf8', maxBuffer: 1 << 26 }));
+  };
+  test('eksport kopiuje kontrakt do katalogu wyjściowego (strona czyta go z .cache/dane) i wskazuje go w manifeście', () => {
+    expect(fs.readFileSync(path.join(dir, 'kontrakt.json'), 'utf8')).toBe(fs.readFileSync(KONTRAKT, 'utf8'));
+    expect(fs.readFileSync(path.join(dir, 'kontrakt.mjs'), 'utf8')).toBe(fs.readFileSync(WALID, 'utf8'));
+    expect(JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8')).contract).toEqual({ schema: 'kontrakt.json', validator: 'kontrakt.mjs' });
+  });
+  test('wszystkie 35 plików języków spełnia kontrakt (role: {id, text}; regions: {id, load}; id ∈ labels.regions)', () => {
+    const r = waliduj(LANGS.map(l => ({ label: l, file: path.join(dir, `atlas-${l}.json`) })));
+    expect(Object.fromEntries(Object.entries(r).map(([l, e]) => [l, e.slice(0, 3)]))).toEqual(Object.fromEntries(LANGS.map(l => [l, []])));
+  });
+  test('kontrakt odrzuca stary kształt ról {region, text}, nieznany region i brakujący tekst (odtworzenie błędu „undefined” na stronie)', () => {
+    const ex = data.en.exercises.find(e => (e as unknown as ExRoles).roles.length > 0)! as unknown as Ex & ExRoles;
+    const zmien = (roles: unknown) => ({ ...data.en, exercises: [{ ...ex, roles }] });
+    const r = waliduj([
+      { label: 'ok', value: zmien(ex.roles) },
+      { label: 'region', value: zmien(ex.roles.map(x => ({ region: x.id, text: x.text }))) },
+      { label: 'nieznany', value: zmien([{ id: 'nie-ma-takiego', text: 'Zdanie o roli.' }]) },
+      { label: 'bez-tekstu', value: zmien([{ id: ex.roles[0].id }]) },
+    ]);
+    expect(r.ok).toEqual([]);
+    for (const k of ['region', 'nieznany', 'bez-tekstu']) expect([k, r[k].length > 0]).toEqual([k, true]);
+  });
+});
+
+describe('eksport dla strony: brak przekładu zdania = brak zdania, nigdy tekst angielski ani polski (K-13)', () => {
+  /** Id zdań wskazówek ćwiczenia wg trybu (dokładnie te, które eksport próbuje wypisać). */
+  const idsOf = (key: string): string[] => {
+    const sel = cueSelection(key);
+    /* bramka 4 (29.10.2026): jak w aplikacji — karta własna tylko z lib/cues/data.json, zestaw ogólny tylko z recenzją treści i przy eksportowanej figurze */
+    if (sel.mode === 'own') return CUE_DATA.exercises[key] ? Object.values(CUE_DATA.exercises[key]).flatMap(refs => (refs as { c: string }[]).map(r => r.c)) : [];
+    if (sel.mode === 'general' && !(generalCuesReviewed(key) && figureSpec(key))) return [];
+    return [...sel.ok, ...sel.err];
+  };
+  const BRAK = (l: Lang, id: string) => !Object.prototype.hasOwnProperty.call(cueDict(l), id);
+  const manifest = () => JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8')) as { languages: { lang: string; missing: { cues: number; exercises: Record<string, number> } }[] };
+  test('prawdziwy słownik: 53 zdania wersji 1.1 nie mają przekładu w 33 językach (te, które aplikacja pokazuje po angielsku); en i pl mają komplet', () => {
+    const en = Object.keys(cueDict('en')); expect(en).toHaveLength(360);
+    expect(Object.keys(cueDict('pl')).filter(k => !(k in cueDict('en')))).toEqual([]);
+    for (const l of ['de', 'ja', 'cs', 'es', 'zh-Hant'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 53]);
+    for (const l of ['pl', 'en'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 0]);
+  });
+  test.each(['de', 'ja', 'cs', 'es', 'pt-BR', 'es-419', 'zh-Hant', 'pl', 'en'] as Lang[])('język %s: liczba zdań ćwiczenia = id z przekładem w TYM języku; pominięte policzone w cues.missing; tekst zawsze z własnego słownika', l => {
+    let sumMissing = 0, withMissing = 0;
+    for (const e of data[l].exercises) {
+      const ids = idsOf(e.id), exMissing = ids.filter(id => BRAK(l, id)).length, c = e.cues;
+      const texts = c.scope === 'own' ? SEKCJE.flatMap(k => c[k] ?? []) : [...(c.ok ?? []), ...(c.mistakes ?? [])];
+      expect([l, e.id, c.missing ?? 0]).toEqual([l, e.id, exMissing]);
+      expect([l, e.id, texts.length]).toEqual([l, e.id, ids.length - exMissing]);
+      expect([l, e.id, texts.sort()]).toEqual([l, e.id, ids.filter(id => !BRAK(l, id)).map(id => cueDict(l)[id]).sort()]);
+      sumMissing += exMissing; if (exMissing) withMissing++;
+    }
+    expect(data[l].meta.cuesWithoutText).toBe(sumMissing);
+    if (l === 'pl' || l === 'en') expect(sumMissing).toBe(0); else expect(withMissing).toBeGreaterThanOrEqual(0); /* K-13: bramka 4 (29.10.2026) — zdania 1.1 bez przekładu są w zestawach ogólnych bez recenzji treści albo przy ukrytych rodzinach, więc w eksporcie ich nie ma; licznik pilnuje reszty */
+  });
+  test('zdanie bez przekładu nie pojawia się jako tekst angielski w pliku języka (przykład: bw.squat w de)', () => {
+    const ang = cueDict('en')['bw.squat']; expect(ang).toBeTruthy(); expect(BRAK('de', 'bw.squat')).toBe(true);
+    const ex = data.de.exercises.filter(e => idsOf(e.id).includes('bw.squat')); /* zestaw z bw.squat bez recenzji treści nie jest eksportowany (bramka 4) — wtedy zero ćwiczeń, a żadne nie ma tego zdania w ogóle */
+    for (const e of data.de.exercises.filter(x => cueSelection(x.id).ok.includes('bw.squat') && !ex.includes(x))) expect(JSON.stringify(e.cues)).not.toContain(JSON.stringify(ang).slice(1, -1));
+    for (const e of ex) { const c = e.cues; expect(c.missing).toBeGreaterThanOrEqual(1); expect(JSON.stringify(e.cues)).not.toContain(JSON.stringify(ang).slice(1, -1)); }
+  });
+  test('manifest: per język licznik missing {cues, exercises: {slug → liczba}} zgodny z plikiem języka; pl i en: 0', () => {
+    const m = manifest();
+    for (const x of m.languages) {
+      const d = data[x.lang as Lang]; const per = Object.fromEntries(d.exercises.filter(e => e.cues.missing).map(e => [e.slug, e.cues.missing]));
+      expect([x.lang, x.missing]).toEqual([x.lang, { cues: d.meta.cuesWithoutText, exercises: per }]);
+    }
+    expect(m.languages.find(x => x.lang === 'en')!.missing).toEqual({ cues: 0, exercises: {} }); expect(m.languages.find(x => x.lang === 'pl')!.missing).toEqual({ cues: 0, exercises: {} });
+    expect(m.languages.find(x => x.lang === 'de')!.missing.cues).toBe(data.de.meta.cuesWithoutText); /* bramka 4: bez zestawów bez recenzji liczba braków w eksporcie może być 0 */
   });
 });
 
