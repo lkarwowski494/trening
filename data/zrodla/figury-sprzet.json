@@ -171,6 +171,18 @@
    "status": "konwencja rysunku",
    "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
    "uzycie": "grubość bolca"
+  },
+  "handleR": {
+   "cm": 2.2,
+   "status": "konwencja rysunku",
+   "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
+   "uzycie": "promień uchwytu gumy i łańcucha (okrąg z boku, grubość kreski z przodu)"
+  },
+  "handleW": {
+   "cm": 11,
+   "status": "konwencja rysunku",
+   "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
+   "uzycie": "szerokość uchwytu gumy i łańcucha rysowanego z przodu"
   }
  }
 }

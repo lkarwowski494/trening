@@ -45,7 +45,7 @@ test('Hotel piątek–niedziela: ustawienie w panelu dnia → przypomnienie z �
 
   /* start: miejsce dnia, okno samo */
   jest.setSystemTime(SAT.getTime()); await flushAll(10); await startTpl('FBW');
-  expect(S().active!.locationId).toBe('hotel'); expect(top()).toBe('adapt'); expect(require('expo-router/build/global-state/router-store').store.navigationRef.getCurrentOptions().title).toBe('Dostosuj do: Hotel');
+  expect(S().active!.locationId).toBe('hotel'); expect(top()).toBe('adapt'); expect(require('expo-router/build/global-state/router-store').store.navigationRef.getCurrentOptions().title).toBe('Dostosuj do miejsca'); expect(screen.getByTestId('adapt-place-line').props.children).toBe('Dostosuj do: Hotel'); /* 101-17, decyzja właściciela 29.10.2026: tytuł stały, nazwa miejsca w wierszu adapt-place-line */
   const benchTo = (screen.getAllByText(/^Bench Press \(sztanga\) → /)[0].props.children as string).split(' → ')[1];
   await tap(screen.getAllByText(/^Overhead Press \(sztanga\) → /)[0]); await flushAll(20); expect(top()).toBe('swap');
   const props = screen.getAllByLabelText(/^Propozycja \d: /); const k = Math.min(1, props.length - 1); const manual = /^Propozycja \d: ([^,]+)/.exec(props[k].props.accessibilityLabel)![1]; await tap(props[k]); await flushAll(20);
