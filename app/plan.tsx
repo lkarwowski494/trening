@@ -9,7 +9,7 @@ import { Screen, Chip, Muted, Txt, Btn, Item, Field, Input, SectionTitle, Missin
 import { SwipeRow } from '@/components/SwipeRow';
 import { getState, useTick, templateGroups, newTemplate, SAVED_PLANS_MAX } from '@/lib/store';
 import { ownTemplates } from '@/lib/generator';
-import { useTheme, F, FW, font, GLYPH_SCALE_MAX } from '@/lib/theme';
+import { useTheme, FONT, FW, font, GLYPH_SCALE_MAX } from '@/lib/theme';
 import { weekPlanDays, setWeekDay, planName, setPlanName, typePlanName, savedPlans, newPlan, setSavedDay, typeSavedName, renamePlan, activatePlan, deactivatePlan, hasActivePlan, deletePlan, plansFull, activationNote, savedChanges, hasPlan, assignTarget, type PlanDays } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
 import { t, locale, lang } from '@/lib/i18n';
@@ -50,7 +50,7 @@ function PlanToggle({ name, active, onPress }: { name: string; active: boolean; 
       accessibilityHint={active ? t('Kalendarz od dziś będzie pusty.') : t('Pyta o potwierdzenie.')} onPress={onPress}
       style={({ pressed }) => ({ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.6 : 1 })}>
       <View style={{ width: TOGGLE, height: TOGGLE, borderRadius: TOGGLE / 2, borderWidth: 2, borderColor: active ? th.accent : th.text, backgroundColor: active ? th.accent : 'transparent', alignItems: 'center', justifyContent: 'center' }}>
-        {active ? <Txt maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.bg, ...font('callout'), lineHeight: 20 /* ≥ 1,28 × fontSize — diakrytyki (test i18n-wave2) */, fontFamily: F.heavy }}>✓</Txt> : null}
+        {active ? <Txt maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.bg, ...font('callout'), lineHeight: 20 /* ≥ 1,28 × fontSize — diakrytyki (test i18n-wave2) */, fontFamily: FONT.title700 }}>✓</Txt> : null}
       </View>
     </Pressable>);
 }
