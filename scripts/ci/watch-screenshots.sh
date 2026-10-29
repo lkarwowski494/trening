@@ -23,6 +23,17 @@ bez_alfa() { "$IM" "$1" -alpha off -define png:color-type=2 "$1.tmp.png" && mv "
 STATES="set-first rest-after-first last-rest done idle"
 # Zegarek musi być sparowany z symulatorem iPhone'a już przy instalacji aplikacji (osobny krok w watch-sim.yml, przed XCUITest): parowanie po instalacji kasuje aplikację
 # (przebieg 40883907827: „Simulator device failed to launch”), a bez pary każdy zrzut ma czerwoną ikonę braku telefonu.
+# Symulator czasem odmawia uruchomienia aplikacji w połowie zestawu (przebieg 40959920771: FBSOpenApplicationServiceErrorDomain code=4 po ok. 90 zrzutach),
+# a pojedynczy błąd przerywał wszystkie 35 języków — do 3 prób z przerwą, zanim zadanie stanie się czerwone.
+uruchom() {
+  local t
+  for t in 1 2 3; do
+    xcrun simctl terminate "$UDID" "$BUNDLE" >/dev/null 2>&1 || true
+    if SIMCTL_CHILD_WATCH_FAKE_SNAPSHOT_JSON="$1" xcrun simctl launch "$UDID" "$BUNDLE" >/dev/null; then return 0; fi
+    echo "::warning::Uruchomienie aplikacji zegarka nie powiodło się (próba $t z 3)"; sleep 5
+  done
+  return 1
+}
 mkdir -p "$OUT"
 for lang in ${LANGS//,/ }; do
   mkdir -p "$OUT/$lang"; i=0
@@ -30,8 +41,7 @@ for lang in ${LANGS//,/ }; do
     i=$((i + 1)); FILE="$OUT/$lang/$(printf '%02d' "$i")-$state.png"
     SRC="$FIX/snapshots/$state.json"; [ -n "$WATCH_DANE" ] && [ -f "$WATCH_DANE/$lang-$state.json" ] && SRC="$WATCH_DANE/$lang-$state.json"
     JSON=$(node -e 'const o=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); o.lang=process.argv[2]; if(o.rest){const n=Date.now();o.rest.startedAt=n-15000;o.rest.endsAt=n+75000} console.log(JSON.stringify(o))' "$SRC" "$lang")
-    xcrun simctl terminate "$UDID" "$BUNDLE" >/dev/null 2>&1 || true
-    SIMCTL_CHILD_WATCH_FAKE_SNAPSHOT_JSON="$JSON" xcrun simctl launch "$UDID" "$BUNDLE" >/dev/null
+    uruchom "$JSON" || { echo "::error::Aplikacja zegarka nie uruchomiła się ($lang/$state) po 3 próbach"; exit 4; }
     sleep 3
     xcrun simctl io "$UDID" screenshot "$FILE" >/dev/null 2>&1
     bez_alfa "$FILE"
