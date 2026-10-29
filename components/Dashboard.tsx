@@ -1,7 +1,8 @@
 import { WeekHealthLine } from '@/components/HealthLines';
 import { fullValueProps } from '@/components/FullValue'; /* DEC-01 a */
 import React from 'react';
-import { View, Pressable, Text } from 'react-native';
+import { View, Pressable } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, SectionTitle, useOnce } from '@/components/ui';
 import { useTheme, FONT, TYPE, RADIUS, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';

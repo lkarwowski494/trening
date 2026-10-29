@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, Pressable, Text, View } from 'react-native';
+import { AccessibilityInfo, Pressable, View } from 'react-native';
+import { Text } from '@/components/AppText';
 import Svg, { Circle, Line, Path } from 'react-native-svg';
 import { useTheme, TEXT_SCALE_MAX, type Theme, FW } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';

@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-6297-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-6353-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-49-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -60,10 +60,10 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
 | Elementy UI (przyciski, pola, przełączniki) | 354 (z testem: 354) | docs/19-macierz-testow.md |
 | Komunikaty i teksty | 1080 (z testem: 1080) | docs/19-macierz-testow.md |
-| Funkcje biblioteki `lib/` | 1055 (z testem: 1055) | docs/19-macierz-testow.md |
+| Funkcje biblioteki `lib/` | 1056 (z testem: 1056) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 147 (z testem: 147) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 568 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 6297 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Pliki testów Jest | 574 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 6353 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 160 (Maestro: 131, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 15) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 49 (w głównym przebiegu: 46, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -262,7 +262,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (54)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (56)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -312,12 +312,14 @@ trening/
 - [`docs/50-figury-v2.md`](docs/50-figury-v2.md) — 50 — Figury v2: grafiki ćwiczeń dla całej biblioteki (projekt, etap 1)
 - [`docs/51-figury-v2-pokrycie.md`](docs/51-figury-v2-pokrycie.md) — 51 — Figury v2: rodziny ruchu i pokrycie ćwiczeń (generowane)
 - [`docs/52-gemini-pozy-pilotaz.md`](docs/52-gemini-pozy-pilotaz.md) — 52 — Pilotaż: pozy figur v2 generowane przez API Gemini
+- [`docs/fakty-wlasciciela.md`](docs/fakty-wlasciciela.md) — Fakty o właścicielu i jego środowisku
 - [`docs/m3-stan.md`](docs/m3-stan.md) — M3 Redesigner — stan przebiegu (plik stanu na wypadek utraty kontenera)
 - [`docs/monetyzacja-badanie-2026-10.md`](docs/monetyzacja-badanie-2026-10.md) — Badanie zmiany modelu monetyzacji (rola 02, build) — STOP E2
 - [`docs/monetyzacja.md`](docs/monetyzacja.md) — Monetyzacja — model stały (jedno miejsce)
 - [`docs/przekazanie-koordynatora-2026-10-23.md`](docs/przekazanie-koordynatora-2026-10-23.md) — Przekazanie koordynatora — 23.10.2026, ok. 09:00 UTC
 - [`docs/waluta-ekranu-zakupu-1031.md`](docs/waluta-ekranu-zakupu-1031.md) — Waluta na ekranie zakupu — build 1031 (27.10.2026)
 - [`docs/wzrost.md`](docs/wzrost.md) — Wzrost: kanały startu i decyzja o Androidzie
+- [`docs/zobowiazania.md`](docs/zobowiazania.md) — Zobowiązania na przyszłość — rejestr akcji z warunkiem startu
 
 </details>
 <!-- /gen:docs-index -->

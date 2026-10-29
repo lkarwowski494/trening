@@ -38,7 +38,7 @@ Każda publikacja wymaga zgody właściciela zapisanej tutaj **przed** wpisem (d
 
 1. **ASO w lokalizacjach sklepu** — słowa kluczowe i opisy (docs/15); zrzuty po M3 (docs/18, 20.10.2026). Wykonawca: agent (tłumacz), wpis przez właściciela.
 2. **Prośba o ocenę w aplikacji** po kilku treningach (systemowe okno Apple) — wg `docs/26-prosba-o-ocene.md`.
-3. **Fora i grupy — poza planem startu** (DEC-02 a, 23.10.2026): wpis tylko po pisemnej zgodzie administracji, zgodnie z jej regulaminem. Prośbę o zgodę szkicuje agent marketingu, wysyła właściciel; zgoda i ewentualny wpis (z nowego konta twórcy) trafiają do dziennika zgód (pkt 3).
+3. **Fora i grupy — poza planem startu** (DEC-02 a, 23.10.2026): wpis tylko po pisemnej zgodzie administracji, zgodnie z jej regulaminem. **29.10.2026 (właściciel): na start nie piszemy do żadnych administracji** — bez próśb o zgodę; fora i grupy zostają poza planem, „Release” nie czeka na wpisy (docs/48 Z-30a).
 4. **Nominacja „App Launch”** ok. 4 tygodnie przed premierą (docs/41 E6), właściciel.
 5. **Kod ofertowy dla sekcji lub klubu** (docs/18, 13.10.2026: „osobny kod promocyjny na sekcję/klub”, gdy zakupy włączone; mechanizm kodów: `docs/monetyzacja.md`).
 

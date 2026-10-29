@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, Pressable, Animated, PanResponder, Alert, StyleSheet, type StyleProp, type ViewStyle, type AccessibilityActionEvent } from 'react-native';
+import { View, Pressable, Animated, PanResponder, Alert, StyleSheet, type StyleProp, type ViewStyle, type AccessibilityActionEvent } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, FW } from '@/lib/theme';
 import { t as tr, lang } from '@/lib/i18n';
 import { cancelButton, okButton } from '@/lib/confirm';

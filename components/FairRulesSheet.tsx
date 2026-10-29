@@ -1,5 +1,6 @@
 import React from 'react';
-import { Linking, Modal, Pressable, Text, View } from 'react-native';
+import { Linking, Modal, Pressable, View } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useRouter } from 'expo-router';
 import { Btn } from '@/components/ui';
 import { CloseButton } from '@/components/CloseButton';

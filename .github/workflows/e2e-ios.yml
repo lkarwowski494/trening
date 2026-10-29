@@ -127,6 +127,7 @@ jobs:
     runs-on: macos-26
     strategy:
       fail-fast: false  # porażka jednej części nie przerywa pozostałych — wynik wszystkich scenariuszy w jednym przebiegu
+      max-parallel: 3  # decyzja właściciela 27.10.2026 (A+C): najwyżej 3 z 5 maszyn macOS planu darmowego naraz; wartość w scripts/ci/store-shards.mjs (MACOS_MAX_PARALLEL), pilnuje tests/macos-max-parallel.test.ts
       matrix:
         shard: [1, 2, 3]  # liczba części = „czesci” w scripts/ci/e2e-shards.json (pilnuje tests/e2e-shards.test.ts)
     timeout-minutes: 300  # 13.10.2026: scenariusze „z życia” 31–35 (+~20 min) i test aktualizacji — strażnik 100 min na podejście; wcześniej 180: symulator ~8 + 2 × strażnik (11.10.2026: 18 scenariuszy ~50 min — strażnik 50 min uciął ostatni, run 38153866859); przy za małym limicie powtórzenie było ucinane bez podsumowania porażki. Część to ~30 min scenariuszy, limit zostaje zapasowy

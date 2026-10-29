@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Pressable } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, font, FW, RADIUS, TEXT_SCALE, TEXT_SCALE_MAX } from '@/lib/theme';
 import { t as tr, tp, lang } from '@/lib/i18n';
 import { regionWeekStart, monthGrid, shiftMonth, weekdayLabels, monthTitle, dayTitle, dayKey } from '@/lib/calendar';
@@ -36,7 +37,7 @@ export function HistoryCalendar({ byDay, selected, onSelect, onMonth }: { byDay:
   const weekDeload = (w: ReturnType<typeof monthGrid>[number]) => { const c = monCell(w); return isDeloadWeek(new Date(c.y, c.m, c.d, 12).getTime()); };
   const nav = (delta: number) => { const n = shiftMonth(ym.y, ym.m, delta); setYm(n); onMonth?.(n.y, n.m); };
   const arrow = (label: string, glyph: string, delta: number) => (
-    <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label} onPress={() => nav(delta)} hitSlop={8} style={({ pressed }) => ({ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.5 : 1 })}>
+    <Pressable accessibilityLanguage={lang()} testID={delta < 0 ? 'month-prev' : 'month-next'} accessibilityRole="button" accessibilityLabel={label} onPress={() => nav(delta)} hitSlop={8} style={({ pressed }) => ({ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.5 : 1 })}>
       <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.text, ...font('sectionTitle') }}>{glyph}</Text>
     </Pressable>);
   return (
