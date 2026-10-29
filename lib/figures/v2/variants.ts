@@ -110,7 +110,7 @@ export const VARIANTS: Record<string, Variant> = {
   'Deadlift (hantle)': HG('floor', 'db', { grip: HINGE.dbFloorGrip }),
   'Sumo Deadlift': HG('floor', 'barbell', SUMO_SZTANGA),
   'Trap Bar Deadlift': HG('floor', 'trapbar', { yStart: 20, sx: TRAP_SX }),
-  'RDL (sztanga)': HG('rdl', 'barbell', RDL_KOLANA),
+  'RDL (sztanga)': HG('rdl', 'barbell', { ...RDL_KOLANA, sx: [-2, 19] }), /* ramiona ok. 17° od pionu na dole — decyzja właściciela 29.10.2026 (było 23°, sx 25) */
   'RDL (hantle/linki)': HG('rdl', 'db', RDL_KOLANA),
   'Good Morning': HG('goodMorning', 'barbell'),
   'Rack Pull': HG('floor', 'barbell', { ...DL_KOLANA, knees: { ...DL_KOLANA.knees!, s: [3, 0] }, yStart: 45, rack: true }),

@@ -108,10 +108,10 @@ describe('101-03 (L-056): ten sam pomiar — sumo ×4, martwy na prostych nogach
     expect([k, m.styk.maxOdstep <= PROG_STYKU.odstepCm, m.styk.maxPrzenikanie <= PROG_STYKU.przenikanieCm]).toEqual([k, true, true]);
     expect([k, m.styk.maxOdstep < PRZED[k]]).toEqual([k, true]);
   });
-  test('liczby po zmianie (cm): sumo ×4 2,7 (było 7,0); SLDL 3,0 (5,5); RDL sztanga 1,6 (4,1); jedna noga z linką 1,5 (4,0)', () => {
+  test('liczby po zmianie (cm): sumo ×4 2,7 (było 7,0); SLDL 3,0 (5,5); RDL sztanga 2,1 (4,1; po D3 29.10.2026, było 1,6); jedna noga z linką 1,5 (4,0)', () => {
     const po = (k: string) => +podsumujStyk(stykTora(k)).maxOdstep.toFixed(1);
     for (const k of SUMO_KLUCZE) expect([k, po(k)]).toEqual([k, 2.7]);
-    expect(po('Stiff-Legged Barbell Deadlift')).toBe(3.0); expect(po('RDL (sztanga)')).toBe(1.6); expect(po('Single Leg RDL (linki)')).toBe(1.5);
+    expect(po('Stiff-Legged Barbell Deadlift')).toBe(3.0); expect(po('RDL (sztanga)')).toBe(2.1); expect(po('Single Leg RDL (linki)')).toBe(1.5);
   });
   test('sumo: kolana idą nad palcami (kierunek kolana = rotacja stóp 40°, było 2 × = 80°, czyli w bok), stopy bez zmian', () => {
     for (const k of SUMO_KLUCZE) { const p = hingeP(k); expect([k, p.kneeOut, p.toeOut, p.stance]).toEqual([k, 40, 40, 34]); }
@@ -136,10 +136,15 @@ describe('101-04: sumo — tor ukośny (D2 = A: zostaje, ponowny pomiar z nowym 
     for (const k of SUMO_KLUCZE) { expect(+dx(k).toFixed(1)).toBe(2.5); const st = staryStan(k, [3, -9]); expect(+(hingeFrame(st, 1).info.load[0] - hingeFrame(st, 0).info.load[0]).toFixed(1)).toBeGreaterThanOrEqual(6); }
     expect(+dx('Sumo Deadlift (kettlebell)').toFixed(1)).toBe(6.1);
   });
-  test('D3: RDL (sztanga) na dole — ramię 23° od pionu przy kolanie 17° i tułowiu 60° (progi figury-1-0-recenzja: kolano ≤ 27°, tułów 50–80°)', () => {
-    const f = frameAt(figureSpec('RDL (sztanga)')!, 1); const A = f.sk.arms.R;
-    expect(Math.round(Math.abs(Math.atan2(A.grip[0] - A.shoulder[0], A.shoulder[1] - A.grip[1]) * 180 / Math.PI))).toBe(23);
-    expect(Math.round(f.pose!.trunkPitch)).toBe(60);
+  test('D3 (decyzja właściciela 29.10.2026): RDL (sztanga) — ramiona ok. 17° od pionu na dole (było 23°): kąt 15–18°, kolano ≤ 27°, tułów 50–80°; dwie miary: kąt ramienia i styk (odstęp ≤ 3,5 cm, przenikanie ≤ 0,3 cm)', () => {
+    const k = 'RDL (sztanga)'; const f = frameAt(figureSpec(k)!, 1); const A = f.sk.arms.R; const L = f.sk.legs.R;
+    const ramie = Math.abs(Math.atan2(A.grip[0] - A.shoulder[0], A.shoulder[1] - A.grip[1]) * 180 / Math.PI);
+    expect(ramie).toBeGreaterThanOrEqual(15); expect(ramie).toBeLessThanOrEqual(18);
+    const a = [L.hip[0] - L.knee[0], L.hip[1] - L.knee[1], L.hip[2] - L.knee[2]], b = [L.ankle[0] - L.knee[0], L.ankle[1] - L.knee[1], L.ankle[2] - L.knee[2]];
+    const kolano = 180 - Math.acos((a[0] * b[0] + a[1] * b[1] + a[2] * b[2]) / Math.hypot(...a) / Math.hypot(...b)) * 180 / Math.PI;
+    expect(kolano).toBeLessThanOrEqual(27); expect(f.pose!.trunkPitch).toBeGreaterThanOrEqual(50); expect(f.pose!.trunkPitch).toBeLessThanOrEqual(80);
+    const m = dwieMiary(k, odchylenieToru);
+    expect([m.cecha <= 4, torKlucza(k).zawrocenia <= 1, m.styk.maxOdstep <= PROG_STYKU.odstepCm, m.styk.maxPrzenikanie <= PROG_STYKU.przenikanieCm]).toEqual([true, true, true, true]);
   });
   test('D3: ramiona pionowo pod barkami (sx 0 na dole) przy gryfie na wysokości z 1.0 wymuszają kolano ≈ 43° i tułów ≈ 40° — poza progami (kolano ≤ 27°, tułów ≥ 50°); wdrożenie wymaga nowej decyzji', () => {
     const p: HingeParams = { ...hingeP('RDL (sztanga)'), sx: [-2, 0] }; const f = hingeFrame(p, 1); const L = f.sk.legs.R;
