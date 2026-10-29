@@ -33,7 +33,7 @@ describe('R-RES: scenariusz 59 (uszkodzona baza → kopia ratunkowa)', () => {
     expect(s).toMatch(/xcrun simctl get_app_container "\$SIM" "\$APP" data/); expect(s).toMatch(/Library\/SQLite\/trening\.db/);
     expect(s).toMatch(/maestro --device "\$SIM" test "\$FLOW"/); expect(s).toMatch(/Documents\/Backup"\/Rescue-\*/);
     for (const f of DB_FILES.filter(x => x !== 'trening.db-journal')) expect([f, s.includes(f)]).toEqual([f, true]);
-    expect(s).toMatch(/cmp -s "\$RES\/\$n"/); expect(s).toMatch(/cmp -s "\$DATA\/Library\/SQLite\/\$n"/);
+    expect(s).toMatch(/cmp -s "\$RES\/\$n"/); expect(s).toMatch(/cmp -s "\$DATA\/Library\/SQLite\/trening\.db"/);
     expect(s).toMatch(/\[ "\$bad" -eq 0 \] && \[ "\$rc" -eq 0 \]\s*$/); /* kod wyjścia = porównanie plików I scenariusz */
   });
   test('repo publiczne: log nie wypisuje ścieżki kontenera ani identyfikatorów (tylko nazwy plików i rozmiary)', () => {

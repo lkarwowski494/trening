@@ -21,9 +21,10 @@ sleep 2
 echo "Pliki bazy po pierwszym starcie (nazwa, rozmiar):"
 for f in "$DB"*; do echo "  $(basename "$f") $(( $(wc -c < "$f") )) B"; done
 
-# uszkodzenie: główny plik i pliki dziennika zastąpione tekstem (nie-SQLite); kopie wzorcowe pozwalają porównać zawartość kopii ratunkowej bajt po bajcie
-# 8 KiB tekstu na plik (nie kilka bajtów): przebieg 40838191401 pokazał, że przy 22-bajtowym pliku głównym SQLite sam usuwa -wal i -shm podczas próby otwarcia — realna uszkodzona baza ma rozmiar
-for n in "" -wal -shm; do yes "NIE-SQLITE R-RES baza$n" | head -c 8192 > "$DB$n"; done
+# uszkodzenie: główny plik i pliki dziennika zastąpione tekstem 8 KiB (nie-SQLite); kopie wzorcowe pozwalają porównać zawartość kopii ratunkowej bajt po bajcie.
+# Przebiegi 40838191401 i 40851520517: SQLite przy pierwszej (nieudanej) próbie otwarcia sam usuwa nieczytelne -wal i -shm — tylko trening.db jest wymagany w kopii,
+# pliki dziennika sprawdzamy, jeśli przetrwały do „Send data” (ich kopiowanie na realnym SQLite w trybie WAL pokrywa Jest: tests/audit-m1-2026-10-27-004-ratunek.test.tsx).
+for n in "" -wal -shm; do head -c 8192 /dev/zero | tr '\0' 'x' > "$DB$n"; done
 rm -f "$DB-journal"
 mkdir -p "$OUT/oczekiwane"
 for n in trening.db trening.db-wal trening.db-shm; do cp "$DATA/Library/SQLite/$n" "$OUT/oczekiwane/$n"; done
@@ -39,11 +40,12 @@ echo "Pliki w folderze (nazwa, rozmiar):"
 for f in "$RES"/*; do echo "  $(basename "$f") $(( $(wc -c < "$f") )) B"; done
 bad=0
 for n in trening.db trening.db-wal trening.db-shm; do
-  if [ ! -f "$RES/$n" ]; then echo "::error::R-RES: w kopii brak pliku $n"; bad=1
-  elif ! cmp -s "$RES/$n" "$OUT/oczekiwane/$n"; then echo "::error::R-RES: zawartość $n w kopii różni się od oryginału"; bad=1
-  else echo "  $n: zawartość identyczna z oryginałem (cmp)"; fi
-  cmp -s "$DATA/Library/SQLite/$n" "$OUT/oczekiwane/$n" || { echo "::error::R-RES: oryginał $n zmieniony (kopia ma być tylko odczytem)"; bad=1; }
+  if [ -f "$RES/$n" ]; then
+    if cmp -s "$RES/$n" "$OUT/oczekiwane/$n"; then echo "  $n: zawartość identyczna z oryginałem (cmp)"; else echo "::error::R-RES: zawartość $n w kopii różni się od oryginału"; bad=1; fi
+  elif [ "$n" = trening.db ]; then echo "::error::R-RES: w kopii brak pliku $n"; bad=1
+  else echo "  $n: brak w kopii (plik usunięty przez SQLite przy próbie otwarcia, jeszcze przed „Send data”)"; fi
 done
+cmp -s "$DATA/Library/SQLite/trening.db" "$OUT/oczekiwane/trening.db" || { echo "::error::R-RES: oryginał trening.db zmieniony (kopia ma być tylko odczytem)"; bad=1; }
 {
   echo "### R-RES — kopia ratunkowa plików bazy na symulatorze"
   echo "- Folder: \`$(basename "$RES")\` w Documents/Backup"
