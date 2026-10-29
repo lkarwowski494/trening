@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { useTheme, F, TEXT_SCALE_MAX, FW, font, RADIUS } from '@/lib/theme';
+import { useTheme, FONT, TEXT_SCALE_MAX, FW, font, RADIUS } from '@/lib/theme';
 import { t as tr, lang, exName } from '@/lib/i18n';
 import { recordCards, type RecordCard, type RecordStat, type WorkoutPR } from '@/lib/stats';
 
@@ -20,7 +20,7 @@ export function RecordsCard({ count, prs }: { count: number; prs: readonly Worko
   const th = useTheme(); const cards = recordCards(prs); const head = count === 1 ? tr('Nowy rekord!') : tr('Nowe rekordy: {n}', { n: count });
   return (
     <View testID="record-card" style={{ borderRadius: RADIUS.group, borderWidth: 1, borderColor: th.line, backgroundColor: th.surface, marginBottom: 14, padding: 12, gap: 10 }}>
-      <Text testID="record-banner" accessible accessibilityRole="header" accessibilityLanguage={lang()} accessibilityLabel={head} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), fontFamily: F.heavy }}>{head}</Text>
+      <Text testID="record-banner" accessible accessibilityRole="header" accessibilityLanguage={lang()} accessibilityLabel={head} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), fontFamily: FONT.title700 }}>{head}</Text>
       {cards.map(c => (
         <View key={c.exercise.id} testID={`record-ex-${c.exercise.id}`} accessible accessibilityLanguage={lang()} accessibilityLabel={cardLabel(c)} style={{ gap: 2 }}>
           <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold }}>{exName(c.exercise)}</Text>
