@@ -9,7 +9,7 @@ import { cueText } from '@/lib/cues';
 
 const NOWE: Record<string, string> = {
   "erg.handle": "Pull and return the handle along one straight path, toward the flywheel and back.",
-  "bike.foot": "Pedal with the front part of your foot, just behind the toes.",
+  "bike.foot": "Pedal with the front part of your foot.",
   "pallof.setup": "Stand side-on to a cable at roughly chest level; grip the handle in both hands against your chest, with tension on the cable.",
   "bss.move": "Bend at the front hip and knee to descend until the back knee nearly touches the floor; drive through the front leg to rise.",
   "db.setup": "Lying face up, point both arms at the ceiling and bend your hips and knees to right angles.",

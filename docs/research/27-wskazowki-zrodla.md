@@ -885,7 +885,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Ustawienie**
 
-- Oprzyj przednią część stóp na podwyższeniu, pięty poza krawędzią. — ExRx.net: [LVStandingCalfRaise](https://web.archive.org/web/20230407071949/https://exrx.net/WeightExercises/Gastrocnemius/LVStandingCalfRaise) (Preparation); NASM: [Leg Press Calf Raise](https://www.nasm.org/resource-center/exercise-library/leg-press-calf-raise) (Step 1 (forefeet on the platform, heels beyond the edge)) `calf.edge`
+- Stań przednią częścią stóp na krawędzi podestu, pięty poza krawędzią. — ExRx.net: [LVStandingCalfRaise](https://web.archive.org/web/20230407071949/https://exrx.net/WeightExercises/Gastrocnemius/LVStandingCalfRaise) (Preparation); NASM: [Leg Press Calf Raise](https://www.nasm.org/resource-center/exercise-library/leg-press-calf-raise) (Step 1 (forefeet on the platform, heels beyond the edge)) `calf.edge`
 
 **Ruch**
 

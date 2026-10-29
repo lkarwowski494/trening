@@ -1,6 +1,7 @@
 {
  "wyjatki": {
-  "wskazowki:dcgsk.elbows": "28.10.2026 (1.0.1 r2, recenzja lokalizacji): zmiana EN z „narrow” na idiom siłowni „in” bez zmiany sensu (PL bez zmian); przekłady cs sk hu ro hr sl sr lt lv et uk de fi tr ru ko zh-Hant zostają — poprawne lub czekają na native speakera (docs/16, 1.0.1)"
+  "wskazowki:dcgsk.elbows": "28.10.2026 (1.0.1 r2, recenzja lokalizacji): zmiana EN z „narrow” na idiom siłowni „in” bez zmiany sensu (PL bez zmian); przekłady cs sk hu ro hr sl sr lt lv et uk de fi tr ru ko zh-Hant zostają — poprawne lub czekają na native speakera (docs/16, 1.0.1)",
+  "wskazowki:bike.foot": "29.10.2026 (1.0.1 r2, cues-en): zmiana EN — usunięty dopisek „just behind the toes”, którego nie ma w PL (PL bez zmian: „Na pedale opieraj przednią część stopy.”); przekłady już odpowiadają PL, zostają"
  },
  "wskazowki": {
   "bd.level": {
@@ -422,7 +423,7 @@
    }
   },
   "bike.foot": {
-   "s": "b4a098f931fd",
+   "s": "89248d09d85b",
    "t": {
     "cs": "e64e9cc89638",
     "sk": "9c82e306bc10",
@@ -1106,41 +1107,41 @@
    }
   },
   "calf.edge": {
-   "s": "7816886daf7a",
+   "s": "c7caf3e240ed",
    "t": {
-    "cs": "1e917042dbd7",
-    "sk": "10cb49e88c42",
-    "hu": "fadf50b148e9",
-    "ro": "80cf8f9260c3",
-    "bg": "22b2e4f9184b",
-    "hr": "d71b8591f678",
-    "sl": "5390c48f00b3",
-    "sr": "4b316b522700",
-    "lt": "f5ca95c1980c",
-    "lv": "4c8297c1beef",
-    "et": "942a9403a8e7",
-    "uk": "de501fe16c82",
-    "es": "8a327a3900b6",
-    "es-419": "8a327a3900b6",
-    "pt": "95faad64f536",
-    "pt-BR": "bb60ec827d53",
-    "de": "77448e9d2533",
-    "fr": "a9054419955b",
-    "it": "b779a951dd27",
-    "nl": "e18f558f0e78",
-    "sv": "d9066ef70be2",
-    "da": "c931e1075b7a",
-    "nb": "ac831b10a0ab",
-    "fi": "9720d5b8b24c",
-    "tr": "49e7a6fe2b32",
-    "el": "7963ac2c0b6a",
-    "id": "833357b5183d",
-    "ms": "516d483b2cd7",
-    "vi": "e89d88ce0ad3",
-    "ru": "747a78f43cca",
-    "ja": "f4f94287c777",
-    "ko": "030aaec776fa",
-    "zh-Hant": "4b5049ecff75"
+    "cs": "6e75d5e05e31",
+    "sk": "51496ce1b9c7",
+    "hu": "19d059922018",
+    "ro": "35b884f18307",
+    "bg": "0f7c3544f716",
+    "hr": "725657b6f402",
+    "sl": "004f320f073c",
+    "sr": "cb162955685e",
+    "lt": "9b3f8ba849b5",
+    "lv": "e7db6c54a95b",
+    "et": "6bed2e77eb9f",
+    "uk": "3dbc0c5f68bf",
+    "es": "5ded509b543e",
+    "es-419": "5ded509b543e",
+    "pt": "33ea30f9416f",
+    "pt-BR": "3069edb92ef8",
+    "de": "4d0d233230b9",
+    "fr": "4ad73be39ba0",
+    "it": "f4da880757bb",
+    "nl": "6d84961f7404",
+    "sv": "e2f6405cb061",
+    "da": "49d4778477ae",
+    "nb": "8a4b16c59852",
+    "fi": "2d15e825819f",
+    "tr": "bfe28d0becbd",
+    "el": "6ab4d9684b46",
+    "id": "8b6b89b94465",
+    "ms": "50d5bad3ce5b",
+    "vi": "58fc3ff34c81",
+    "ru": "7f1e80879937",
+    "ja": "b40a3bcdc919",
+    "ko": "5efac49ecf23",
+    "zh-Hant": "ea7dbd93f2ff"
    }
   },
   "calf.knees": {
