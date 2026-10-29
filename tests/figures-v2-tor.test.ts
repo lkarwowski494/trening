@@ -5,7 +5,7 @@
  * Maszyna Smitha: szyna stoi w miejscu, gryf na szynie (było: szyna rysowana w bieżącym x gryfu, tor ukośny 15–18 cm).
  * Wyjątki: tests/tor-wyjatki.json („ćwiczenie|widok” → powód); lista tylko maleje — wyjątek, który już spełnia progi, trzeba usunąć.
  */
-import { FAMILIES, figureSpec, frameAt, assignAll, proj, legRadius, contactX, EQUIP, GIRTH, type View, type HingeParams } from '@/lib/figures/v2';
+import { FAMILIES, figureSpec, frameAt, assignAll, proj, legRadius, contactX, EQUIP, GIRTH, HINGE, type View, type HingeParams } from '@/lib/figures/v2';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -90,5 +90,18 @@ describe('L-050 A (właściciel 28.10.2026): recenzja ruchu z arkuszem śladu to
     expect(strazniK(rec)).toEqual([]);
     expect(strazniK({ a: { data: '2026-10-29' }, b: { data: '2026-10-28' }, c: { data: '2026-11-02', slad: 'arkusz duze-po, ślad toru u 0–1' } })).toEqual(['a']);
     expect(fs.readFileSync(path.join(__dirname, '../CLAUDE.md'), 'utf8')).toMatch(/arkusz z nałożonym śladem toru[^\n]*tests\/figures-v2-tor\.test\.ts/);
+  });
+});
+
+describe('101-12 (29.10.2026, hinge): wyjątki toru po krzywej kolan (`knees` w rigu hinge)', () => {
+  test('hantle w RDL i na jednej nodze prowadzone tuż przy udach: wyjątki usunięte; zostaje tylko Cable Pull Through (łuk zamierzony, z powodem)', () => {
+    const hinge = new Set(CASES.filter(([k]) => assignAll()[k] === 'hinge').map(([k, v]) => `${k}|${v}`));
+    const wyjatkiHinge = Object.keys(WYJATKI).filter(id => hinge.has(id));
+    expect(wyjatkiHinge).toEqual(['Cable Pull Through|side']);
+    for (const k of ['RDL (hantle/linki)', 'Single Leg RDL (hantel)']) { expect([k, WYJATKI[`${k}|side`]]).toEqual([k, undefined]); expect([k, ok(tor(k, 'side'))]).toEqual([k, true]); }
+  });
+  test('gryf z krzywą kolan: tor schodzi najwyżej HINGE.dev (3,5 cm) pod prostą między końcami — poniżej progu strażnika (4 cm)', () => {
+    expect(HINGE.dev).toBeLessThan(PROG.odchylenie);
+    for (const k of ['Deadlift (sztanga)', 'Snatch Deadlift', 'Sumo Deadlift', 'RDL (sztanga)']) expect([k, tor(k, 'side').odchylenie <= HINGE.dev + 0.01, tor(k, 'side').zawrocenia <= PROG.zawrocenia]).toEqual([k, true, true]);
   });
 });
