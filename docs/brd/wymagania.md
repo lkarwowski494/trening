@@ -564,6 +564,19 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy użytkownik wybiera ten błąd
     - Wtedy rysunek ma widok z przodu, w którym zapadanie kolan jest widoczne
 
+### BR-BIB-008: Aplikacja rysuje figurę v2 tylko dla rodziny z aktualną recenzją ruchu (29.10.2026)
+- Przepływ: PR-01
+- Dowód potrzeby: CLAUDE.md (27.10.2026: rodzina bez recenzji = nie wyświetlana) i bramka 4 (DEC-01 b); sekcja `v2` pliku `docs/research/figury-recenzja.json`; lista `v2` w `lib/figures/data.json` (`scripts/zrodla-runtime.mjs`); testy `tests/recenzja-wyjatki-1-1.test.ts`, `tests/figury-recenzja.test.tsx`
+- Kryteria akceptacji:
+  - Scenariusz: Rodzina bez aktualnej recenzji
+    - Zakładając, że rodzina figur v2 nie ma wpisu „wyswietlana” w sekcji `v2` pliku recenzji albo jej rig lub plik póz zmieniono po recenzji
+    - Gdy użytkownik otwiera sekcję „Technika” ćwiczenia tej rodziny
+    - Wtedy ćwiczenie nie ma rysunku (ani figury v1 zastąpionej rysunkiem v2), a wskazówki tekstowe z aktualną recenzją treści zostają; zestaw ogólny wskazówek wzorca (dopisek „Ogólne wskazówki dla tego ruchu”) pojawia się tylko przy rysowanej figurze
+  - Scenariusz: Rodzina z aktualną recenzją
+    - Zakładając, że rodzina ma wpis „wyswietlana” ze skrótem równym bieżącemu
+    - Gdy użytkownik otwiera sekcję „Technika” jej ćwiczenia
+    - Wtedy rysunek v2 jest pokazywany (poza rysunkami wstrzymanymi osobno)
+
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07
 - Dowód potrzeby: OG-01, OG-09; docs/28-healthkit-etap0.md; `site/privacy.html`
