@@ -9,8 +9,8 @@
 | Fala | Pakiety | Gałęzie | Stan | SHA po scaleniu | verify | tests.yml |
 |---|---|---|---|---|---|---|
 | 0 | 0 (101-00, 101-01) | r101/0 | scalona | 634139e6 | czerwone 1/11179 (docs/40 kolejność lekcji) → poprawka + kroki po Jest zielone | po pushu |
-| 1 | F, E, A | r101/F, r101/E, r101/A | F gotowy (fc043c69), E i A czekają na 0 | — | — | — |
-| 2 | B, C, D | r101/B, r101/C, r101/D | czeka | — | — | — |
+| 1 | F, E, A (+E2) | r101/F, r101/E, r101/A, r101/E2 | scalona | — | — | — |
+| 2 | A2, B, C, D, I, K | r101/* | gotowe, recenzje zatwierdzone; scalenie w toku | — | — | — |
 | 3 | krok koordynatora (01 wpisy, 25, 26) | wersja-1-0-1-r2 | czeka | — | — | — |
 | 4 | G1–G3 | — | czeka na sygnał „1.0 wysłane do recenzji Apple” | — | — | — |
 
@@ -37,10 +37,30 @@
 - 13:15 Recenzja lokalizacji E: ms „Animasi pergerakan” OK; do wprowadzenia el:580 „άρσεις” → „deadlift”, el:809 „πιέσεις πάγκου” → „bench press” (zgodne ze słownikiem); ms „Lukisan skematik” → „Rajah skematik” — pytanie do native speakera (docs/16); `store/screenshot-captions.json` ms → po 1.0 (docs/21).
 - 13:15 Fala 2 start: B (r101/B) i C (r101/C); D i I po zwolnieniu miejsca (limit 3 agentów).
 
+- 101-29 (koordynator 1.0, NISKIE): tests/store-metadata.test.ts:85 liczy rysunek v1 przy wstrzymanych v2 (122 vs 120 w ExerciseCues.tsx:45) — licznik ma liczyć widoczne. → fala 3 (pakiet J razem z 101-30).
+- 101-30 (koordynator 1.0, NISKIE): wstrzymane v2 tracą całą sekcję „Technika” (z wskazówkami wzorca), wbrew komentarzowi figure.ts:36-44. Znika po odblokowaniu A/B/C; dla ćwiczeń, które zostaną wstrzymane po fali 2 — wskazówki wzorca bez rysunku albo poprawka komentarza. → fala 3 (pakiet J).
+- DECYZJE WŁAŚCICIELA (29.10.2026, odpowiedź w sesji koordynatora 1.0.1): D3 RDL → ramiona ok. 17° od pionu (rekomendacja) → przekazane do A2; 101-27 → bez poprawki w 1.0.1 (rejestr ryzyk, powrót przy aktualizacji SDK; r101/H nie scalany); 101-17 → tytuł stały „Dostosuj do miejsca” + „Dostosuj do: {l}” jako zawijany pierwszy wiersz treści → pakiet J (fala 3).
+- A2 gotowe (r101/A2: f83c25c5 start kolan od zerowej prędkości, DL 3,3 → 0,5 cm; 8344ffed RDL ramiona 23,1° → 17,3°, kolano 22,5°, tułów 54,8°). Recenzja niezależna zlecona.
+- B gotowe (r101/B: bc025765 Band Bench Press i Chain Press bez sztangi; 2ce00814 Close Grip i Board/Pin — tylko testy). Wspólne draw/scene/colliders → skróty wszystkich 3 rodzin (przeliczenie raz po scaleniu fali 2, z notatką i porównaniem klatek). Żaden rysunek widoczny w 1.0 nie zmieniony. Recenzja niezależna zlecona.
+- 101-31 (koordynator 1.0, L-061 z PR #95): `scripts/asc/metadane.mjs` — lista lokalizacji wersji pobierana raz przed zapisem lokalizacji aplikacji; ASC tworzy lokalizację wersji sam → 409 DUPLICATE (przebieg 40873339463). Kod + test na atrapie API → fala 3 (pakiet K); przebieg dowodowy (L-001) → fala 4 / pierwszy zapis 1.0.1.
+- PR #95 (L-057…L-061, R-005/R-013) → main ok. 13:00 UTC 29.10; lekcji nie duplikować — wziąć przy kolejnym scaleniu main → r2 (sygnał od koordynatora 1.0).
+- Recenzja B: przechodzi (d32f8d75 na r101/B; 85/87 ćwiczeń v2 identyczne klatki, skróty squat/hinge przeliczone jako zmiana formy). ŚREDNIE: Chain Press dłonie na dole 28 cm od barku ku stopom (10 cm niżej niż hantle) — tania poprawka parametru → fala 3 (z ponowną recenzją). NISKIE: zwis łańcucha/gumy w osi przedramienia (niewidoczne), miara styku pakietu B bez gumy/łańcucha wobec rąk → docs/21.
+- Pakiet D zlecony.
+- Recenzja A2: przechodzi (a10c991e na r101/A2). 11 martwych ciągów z podłogi DO ODBLOKOWANIA; sumo ×4 i RDL (sztanga) zatwierdzone. 16 ćwiczeń ze zmienionymi klatkami, reszta identyczna; skróty squat/bench przeliczone jako zmiana formy. Backlog: ŚREDNIE Snatch DL tułów 78° (zgodne z kartą), NISKIE test „miara potrafi paść” na samym wzorze, NISKIE Cable DL bez rysowanego uchwytu. Uwaga: 2 czerwone testy raz pod obciążeniem, 2 kolejne przebiegi zielone — obserwować w pełnym verify.
+- Pakiet I gotowy (r101/I ccbce3eb): `willAutoRenew` z expo-iap 5.8.1 (types.d.ts:1487) w Entitlement; `paysSub` wymaga `!== false`; brak informacji → ostrzeżenie zostaje; format zapisu bez zmian. NIEPOTWIERDZONE: czy natywna warstwa wypełnia `renewalInfoIOS` w getAvailablePurchases → RYZYKO do rejestru docs/40, warunek zamknięcia: krok telefonu w piaskownicy (kup miesięczną, anuluj, ekran zakupu → „Kup na zawsze”: bez ostrzeżenia; nieanulowana: z ostrzeżeniem); plan B: `subscriptionStatusIOS(...).renewalInfo.willAutoRenew`. Przegląd ścieżki wrażliwej zlecony.
+- Przegląd ścieżki wrażliwej I: brak uwag P0/P1 (7 zestawów, 231 testów zielonych; jednorazowo czerwony audit-m1-2026-10-27-016 pod obciążeniem, powtórka zielona). I gotowy do scalenia.
+- Pakiet K gotowy (r101/K d7054191): odświeżenie listy lokalizacji wersji po zapisie appInfoLocalizations + 409 DUPLICATE → GET i PATCH; podgląd tylko GET. Testy 37/37. Przebieg dowodowy (fala 4, za zgodą właściciela — środowisko release): asc-metadane.yml tryb podglad, potem zapis przy nowych lokalizacjach aplikacji → brak 409, „zaktualizuj”, kod 0; drugi zapis „bez zmian” (idempotencja).
+- Pakiet C gotowy (r101/C: ad0ec151 Zercher, ec993790 Sumo hantel, b30e21f1 wyjątek barku OHS [180+θ−5, 180+θ+10], 48f23db1 tor prosty ×7; wyjątki toru 11 → 3 z powodem). 8 rysunków widocznych w 1.0 zmienionych → recenzja niezależna zlecona. Otwarte dla badacza: sprzeczność w notatce pkt 4 (≤ 180+θ+5 vs „10° za pionem”) — fala 3.
+- Recenzja C: przechodzi (edf2c5c4 na r101/C). Zercher (8,1 cm od łokcia na wszystkich kadrach) i Sumo (hantel) (ruch poziomy 1,9 cm) DO ODBLOKOWANIA; OHS/One-Arm OHKB w regule [180+θ−5, 180+θ+10]; tor prosty ×6 (≤ 0,09 cm). 20/20 widoków. Backlog NISKIE: poprawić notatkę badacza pkt 4 (usunąć sztywne ≤ 180+θ+5); falowanie tułowia 0,3–1,7° w 5 ćwiczeniach.
+- Pakiet D gotowy (r101/D: 4917c5ff Reverse Lunge, 07707cd3 test siatki 2×2, a418c364 101-19). Uwaga NISKA (tylne kolano 13,6 j. przed przednim) → backlog 1.1 wg progu audytu (bez pytania właściciela). Recenzja: ruch zgodny z kartą, bloker techniczny — mid2 toe2 1,34 j. > reguła low 1 j. → D2 (poprawka danych bez luzowania tolerancji), potem potwierdzenie tego samego recenzenta.
+- Verify po fali 1: Jest 11161/11166; 4 pliki czerwone: m3-theme (REALNY — nowe tokeny E w zamkniętej skali RADIUS, M1-036 → E2), maestro-zycie (limit 240 s pod obciążeniem; osobno 152 s zielony), matrix-dim-langs3/4 (SIGTERM; osobno zielone). Wniosek: pełne verify tylko bez równoległych agentów.
+- PR #95 scalony do main (1e14888e) — do scalenia main → r2 w fali 3. PR #96 (docs): 1.0 dziś, 1.0.1 pierwsza aktualizacja; nowe zadanie backlogu 1.0.1: zegarek es-419 „teléfono”/„celular” w WatchLabelTable.swift → fala 4 (Swift, macOS). Sygnał fali 4: dziś wieczorem.
+- Reverse Lunge: D2 niewykonalne (mid2 ≤ 1 j. łamie lądowanie/podparcie). Pierwsze pytanie do właściciela z błędnym założeniem („ukryty”) → korekta, DECYZJA WŁAŚCICIELA 29.10.2026: zrecenzowana wersja r2 widoczna w 1.0.1 (cofnięcie 4917c5ff na r101/D, testy 130/130), uwagi NISKIE + piąta poza → 1.1. LEKCJA L-NNN do docs/40.
+- 29.10 ~15:05 E2 scalony (b254e0a3): m3-theme zielony; fala 1 + E2 wypchnięte (wyjątek: pełne verify fali 1 — 1 realna porażka naprawiona E2, 3 porażki obciążenia zielone osobno; kontrola: pliki osobno + tests.yml).
+
 ## Czekające kroki właściciela
-- Decyzja: D3 RDL ramiona (A 23° / B ok. 17° — rekomendacja / C pionowo przeczy źródłom).
-- Decyzja: 101-27 (1 przebudowa z utratą / 2 z zachowaniem szkiców / 3 łatka natywna RN / 4 bez poprawki — rekomendacja).
-- Decyzja: 101-17 tytuł okna „Dostosuj” (A wielokropek wg docs/32 / B tytuł stały + zawijana treść).
+- brak decyzji (D3 → 17°, 101-27 → bez poprawki, 101-17 → B, Reverse Lunge → zatwierdzona wersja widoczna; 29.10.2026)
+- Lekcja Reverse Lunge: wybór A/B (stan na bazie w poleceniach figur) — przy okazji
 
 ## Wyjątki nazwane w tej sesji
 - 29.10 12:20 Wypychanie samego `POSTEP.md` przez `git push --no-verify`: hak (L-049) wymaga znacznika verify dla drzewa, a `verify:docs` na gałęzi z kodem odmawia (STAN, pułapki). Kontrola zastępcza: commit zawiera tylko ten plik (`git show --stat`), `tests.yml` biegnie na gałęzi.
