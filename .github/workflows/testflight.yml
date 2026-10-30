@@ -101,6 +101,7 @@ jobs:
         run: |
           if [ -n "${EXPO_PUBLIC_STORE_FAKE:-}" ]; then echo "::error::EXPO_PUBLIC_STORE_FAKE ustawione w buildzie TestFlight"; exit 1; fi
           if [ -n "${EXPO_PUBLIC_WATCH_FAKE:-}" ]; then echo "::error::EXPO_PUBLIC_WATCH_FAKE ustawione w buildzie TestFlight"; exit 1; fi
+          if [ -n "${EXPO_PUBLIC_FIGURA_STOP:-}" ]; then echo "::error::EXPO_PUBLIC_FIGURA_STOP ustawione w buildzie TestFlight (tylko zrzuty sklepu, 101-32)"; exit 1; fi
       - name: Generate native iOS project (expo prebuild)
         run: npx expo prebuild --platform ios --no-install --clean
       - name: Numer buildu (aplikacja, widżet i zegarek ten sam CFBundleVersion)

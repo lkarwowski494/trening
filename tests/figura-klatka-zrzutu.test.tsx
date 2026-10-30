@@ -44,10 +44,14 @@ describe('101-32: figura zatrzymana w buildzie zrzutów (30.10.2026)', () => {
     fireEvent.press(screen.getByRole('button', { name: 'Zatrzymaj animację' }));
     expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy();
   });
-  test('flaga tylko w buildzie zrzutów: store-screenshots.yml tak (krok Build), testflight.yml i e2e-ios.yml nie; otoczenie verify bez flagi', () => {
+  test('flaga tylko w buildzie zrzutów: store-screenshots.yml tak (krok Build), testflight.yml ma straż, e2e-ios.yml nie ustawia; otoczenie verify bez flagi', () => {
     const s = wf('store-screenshots.yml');
     expect(s).toMatch(/- name: Build \(Release, symulator, bez podpisu\)[^\n]*\n\s+env:\n\s+EXPO_PUBLIC_FIGURA_STOP: '1'/);
-    for (const n of ['testflight.yml', 'e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml']) expect(wf(n)).not.toContain('EXPO_PUBLIC_FIGURA_STOP');
+    for (const n of ['e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml']) expect(wf(n)).not.toContain('EXPO_PUBLIC_FIGURA_STOP');
+    /* straż w TestFlight jak STORE_FAKE/WATCH_FAKE (decyzja właściciela 30.10.2026, A1): flaga ustawiona → build przerwany; nigdzie jej nie ustawia */
+    const tf = wf('testflight.yml');
+    expect(tf).toMatch(/if \[ -n "\$\{EXPO_PUBLIC_FIGURA_STOP:-\}" \]; then echo "::error::[^"]*"; exit 1; fi/);
+    expect(tf).not.toMatch(/EXPO_PUBLIC_FIGURA_STOP:\s*'?1/);
     expect(ZEWNETRZNA).toBeUndefined();
   });
 });

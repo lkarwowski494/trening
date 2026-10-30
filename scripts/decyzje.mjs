@@ -13,6 +13,9 @@
 //   z aplikacji (zdanie karty, tekst, funkcję, rysunek), ma [usuwa] oraz [wdrożenie: kod] z [test: …] pilnującym BRAKU (z datą decyzji). Odrzucone:
 //   [usuwa] z „bez kodu”, „kod” z samym [bez testu: …] albo bez pola. Wolno: [wdrożenie: otwarte → ID] / [odłożone → wersja] (test dopiero przy wdrożeniu)
 //   i [zastąpione DD.MM.RRRR].
+// Pole [wykonalność: …] (właściciel 30.10.2026, wariant A; lekcja w docs/40 o zrzucie 02): wpis od WYKONALNOSC_OD z [wdrożenie: otwarte → …] wskazuje
+//   plik:linię (np. components/X.tsx:53) albo przeczytaną stronę (adres https://…), które potwierdzają wykonalność opisanego wariantu,
+//   albo „niesprawdzona — powód”. Kod, bez kodu, zastąpione, odłożone — bez wymogu.
 // Test: plik istnieje i zawiera datę decyzji (DD.MM.RRRR albo DD.MM) albo podany fragment (np. nazwę testu). Od 28.10.2026 fragment nie
 // zastępuje daty: nowy wskazany test musi zawierać datę decyzji (07-jakosc-005: test wskazuje decyzję, którą pilnuje).
 // Użycie: node scripts/decyzje.mjs --check [plik…]   (domyślnie docs/18-przekazanie.md; kod 1 przy błędach)
@@ -26,6 +29,8 @@ export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 export const PLIKI = ['docs/18-przekazanie.md'];
 /** Od tej daty wskazany test musi zawierać datę decyzji (fragment nie wystarcza). */
 export const OD_DATY_W_TESCIE = '2026-10-28';
+/** Od tej daty wpis „otwarte” ma pole [wykonalność: …]. */
+export const WYKONALNOSC_OD = '2026-10-30';
 
 const DATA = /(\d{1,2})(?:[–-]\d{1,2})?\.(\d{2})\.(\d{4})/;
 const START_PUNKTU = /^- (?:\*\*)?\d{1,2}(?:[–-]\d{1,2})?\.\d{2}\.\d{4}/;
@@ -66,6 +71,9 @@ const POLE = /\[wdrożenie: ([^\]]*)\]/g;
 const TEST = /\[test: ([^\]]+)\]/g;
 const BEZ_TESTU = /\[bez testu: ([^\]]*)\]/g;
 const USUWA = /\[usuwa\]/;
+const WYKONALNOSC = /\[wykonalność: ([^\]]*)\]/;
+/** Poprawna treść pola: plik:linia, adres strony albo „niesprawdzona — powód”. */
+const wykonalnoscOk = (v) => /\S+\.\w+:\d+/.test(v) || /https?:\/\/\S+/.test(v) || /^niesprawdzona\s*[—–-]\s*\S.{4,}/.test(v);
 
 /** Wymagane formy daty w pliku testu: DD.MM.RRRR, D.MM.RRRR albo DD.MM (bez roku). */
 export function formyDaty(dataIso) {
@@ -103,6 +111,11 @@ export function sprawdzWpis(w, czytaj) {
   } else if (/^(otwarte|odłożone)\b/.test(pole)) {
     if (!/→\s*\S.{2,}/.test(pole)) b.push(`[wdrożenie: ${pole.split(' ')[0]} → ID/wersja]: brak wskazania, co ją prowadzi`);
   } else b.push(`nieznane pole wdrożenia „${pole}” (kod | bez kodu — powód | zastąpione DD.MM.RRRR | otwarte → ID | odłożone → wersja)`);
+  /* [wykonalność: …] (30.10.2026): decyzja jeszcze niewdrożona ma wskazanie, że opisany wariant da się wykonać */
+  if (/^otwarte\b/.test(pole) && w.data >= WYKONALNOSC_OD) {
+    const m = WYKONALNOSC.exec(w.tekst);
+    if (!m || !wykonalnoscOk(m[1].trim())) b.push('[wdrożenie: otwarte] od 30.10.2026 wymaga [wykonalność: plik:linia | https://… | niesprawdzona — powód] (lekcja w docs/40, zrzut 02)');
+  }
   /* [usuwa] (29.10.2026): wdrożona decyzja usuwająca treść musi mieć test braku; niewdrożona (otwarte/odłożone) i zastąpiona — bez wymogu */
   if (USUWA.test(w.tekst) && !/^(otwarte|odłożone|zastąpione)\b/.test(pole) && !(pole === 'kod' && testy.length)) {
     b.push('[usuwa] wymaga [wdrożenie: kod] z [test: …] pilnującym braku treści (albo otwarte/odłożone, gdy jeszcze niewdrożona)');
