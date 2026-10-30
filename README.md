@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-6520-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-6535-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-50-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -63,7 +63,7 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Funkcje biblioteki `lib/` | 1060 (z testem: 1060) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 147 (z testem: 147) | docs/19-macierz-testow.md |
 | Pliki testów Jest | 588 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 6520 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Przypadki testowe (statycznie) | 6535 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 161 (Maestro: 131, Maestro, eksperymentalne: 5, Jest: 10, lista kontrolna wydania (telefon): 15) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 50 (w głównym przebiegu: 46, eksperymentalne: 4) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -361,7 +361,7 @@ Workflowy (stan każdego z nich pokazują odznaki u góry dla trzech podstawowyc
 | `store-screenshots.yml` | Zrzuty do App Store | ręcznie | zrzuty ekranu do App Store z symulatora (ręcznie) |
 | `testflight.yml` | TestFlight (testy wewnętrzne) | ręcznie | testy, build, podpis i wysyłka do TestFlight narzędziami Apple |
 | `tests-tz.yml` | tests-tz | harmonogram, ręcznie | testy w różnych strefach czasowych |
-| `tests.yml` | Testy (każde wypchnięcie) | wypchnięcie, ręcznie | pełne `npm run verify` przy każdym wypchnięciu |
+| `tests.yml` | Testy (każde wypchnięcie) | wypchnięcie, zgłoszenie zmian, ręcznie | pełne `npm run verify` przy każdym wypchnięciu |
 | `watch-sim.yml` | Zegarek — symulator | wypchnięcie, ręcznie | testy aplikacji na Apple Watch na symulatorze watchOS i zrzuty |
 <!-- /gen:workflows -->
 

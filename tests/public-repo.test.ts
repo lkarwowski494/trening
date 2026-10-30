@@ -22,7 +22,10 @@ describe('workflowy na publicznym repozytorium', () => {
     /* decyzja właściciela 06.10.2026 (wariant A): testy przy każdym wypchnięciu; E2E samo tylko na main i integration/**; nigdy pull_request (forki) */
     const e = wf('e2e-ios.yml'); expect(e).toMatch(/permissions:\n\s+contents: read/); expect(e).not.toMatch(/contents: write|pull_request/);
     expect(e).toMatch(/push:\n\s+branches: \[main, 'integration\/\*\*'\]/); expect(e).toMatch(/workflow_dispatch:/); expect(e).not.toMatch(/secrets\.(?!GITHUB_TOKEN)/);
-    const t = wf('tests.yml'); expect(t).toMatch(/permissions:\n\s+contents: read/); expect(t).not.toMatch(/contents: write|pull_request|secrets\./);
+    /* L-053 (właściciel 30.10.2026, A; zmienia „nigdy pull_request” z 06.10.2026 tylko dla tests.yml): PR do main z tego repozytorium — kod z forków nadal nie biegnie (warunek joba) */
+    const t = wf('tests.yml'); expect(t).toMatch(/permissions:\n\s+contents: read/); expect(t).not.toMatch(/contents: write|pull_request_target|secrets\./);
+    expect(t).toMatch(/\n  pull_request:\n    branches: \[main\]\n/);
+    expect(t).toMatch(/if: github\.event_name != 'pull_request' \|\| github\.event\.pull_request\.head\.repo\.full_name == github\.repository\n/);
     expect(t).toMatch(/on:\n\s+push:/); expect(t).toMatch(/run: npm run verify/);
   });
   test('przebiegi według harmonogramu (nightly.yml, tests-tz.yml; 06.10.2026): tylko harmonogram i ręcznie, odczyt, bez sekretów, artefakty 1 dzień', () => {
