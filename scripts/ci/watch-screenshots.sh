@@ -23,21 +23,23 @@ bez_alfa() { "$IM" "$1" -alpha off -define png:color-type=2 "$1.tmp.png" && mv "
 STATES="set-first rest-after-first last-rest done idle"
 # Zegarek musi być sparowany z symulatorem iPhone'a już przy instalacji aplikacji (osobny krok w watch-sim.yml, przed XCUITest): parowanie po instalacji kasuje aplikację
 # (przebieg 40883907827: „Simulator device failed to launch”), a bez pary każdy zrzut ma czerwoną ikonę braku telefonu.
-# Symulator odmawia uruchomienia aplikacji w połowie zestawu (przebiegi 40959920771 i 40967747778: FBSOpenApplicationServiceErrorDomain code=4 po ok. 90 i 120 zrzutach,
-# dopiero od parowania z iPhone'em; hipoteza: watchOS usuwa aplikację, której nie ma na sparowanym telefonie). Do 3 prób z przerwą; gdy aplikacji nie ma już na zegarku,
-# log to zapisuje i instaluje ją ponownie z wyniku budowania (WATCH_APP albo ios/build/…/Debug-watchsimulator/*.app bez *-Runner.app).
+# Symulator odmawia uruchomienia aplikacji w połowie zestawu (przebiegi 40959920771, 40967747778, 40982724766), dopiero od parowania z iPhone'em. Przyczyna z logu
+# 40982724766: „Application … is installing or uninstalling, and cannot be launched” przez ok. 50 s, ok. 6–8 min po starcie zrzutów — watchOS usuwa aplikację, której nie
+# ma na sparowanym telefonie. Dlatego do 5 prób co 20 s (przeczekanie okna), a gdy aplikacji nie ma już na zegarku — ponowna instalacja z wyniku budowania
+# (WATCH_APP albo ios/build/…/Debug-watchsimulator/*.app bez *-Runner.app).
 WATCH_APP="${WATCH_APP:-$(find ios/build/Build/Products -maxdepth 2 -path '*watchsimulator*' -name '*.app' ! -name '*-Runner.app' 2>/dev/null | head -1)}"
+PROB=5
 uruchom() {
   local t
-  for t in 1 2 3; do
+  for t in $(seq 1 $PROB); do
     xcrun simctl terminate "$UDID" "$BUNDLE" >/dev/null 2>&1 || true
     if SIMCTL_CHILD_WATCH_FAKE_SNAPSHOT_JSON="$1" xcrun simctl launch "$UDID" "$BUNDLE" >/dev/null; then return 0; fi
-    echo "::warning::Uruchomienie aplikacji zegarka nie powiodło się (próba $t z 3)"
+    echo "::warning::Uruchomienie aplikacji zegarka nie powiodło się (próba $t z $PROB)"
+    sleep 20
     if ! xcrun simctl get_app_container "$UDID" "$BUNDLE" >/dev/null 2>&1; then
       echo "::warning::Aplikacji nie ma już na zegarku — instaluję ponownie"
       [ -n "$WATCH_APP" ] && xcrun simctl install "$UDID" "$WATCH_APP" >/dev/null 2>&1 || echo "::warning::Ponowna instalacja nie powiodła się"
     fi
-    sleep 5
   done
   return 1
 }
@@ -48,7 +50,7 @@ for lang in ${LANGS//,/ }; do
     i=$((i + 1)); FILE="$OUT/$lang/$(printf '%02d' "$i")-$state.png"
     SRC="$FIX/snapshots/$state.json"; [ -n "$WATCH_DANE" ] && [ -f "$WATCH_DANE/$lang-$state.json" ] && SRC="$WATCH_DANE/$lang-$state.json"
     JSON=$(node -e 'const o=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); o.lang=process.argv[2]; if(o.rest){const n=Date.now();o.rest.startedAt=n-15000;o.rest.endsAt=n+75000} console.log(JSON.stringify(o))' "$SRC" "$lang")
-    uruchom "$JSON" || { echo "::error::Aplikacja zegarka nie uruchomiła się ($lang/$state) po 3 próbach"; exit 4; }
+    uruchom "$JSON" || { echo "::error::Aplikacja zegarka nie uruchomiła się ($lang/$state) po $PROB próbach"; exit 4; }
     sleep 3
     xcrun simctl io "$UDID" screenshot "$FILE" >/dev/null 2>&1
     bez_alfa "$FILE"
