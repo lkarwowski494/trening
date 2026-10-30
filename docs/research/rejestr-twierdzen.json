@@ -82,9 +82,9 @@
     "Pelland i in. 2026",
     "Ramos-Campo i in. 2024"
    ],
-   "uwaga": "[OTWARTE → ponowny przegląd badacza] Dokument źródłowy docs/research/przeglad-badacza-2026-10-21.md przeniesiony na Dysk (folder „Trening App”) przy przygotowaniu przeniesienia repo (ZB-004, decyzja właściciela P3 B, 30.10.2026); fraza w dokumencie: pole „fraza”. Do potwierdzenia przez badacza: dokument w repo albo uwaga zamknięta.",
-   "fraza": "za mało dowodów",
-   "przeglad": "21.10.2026: badacz-merytoryczny — WHO 2020 tab. 4, ACSM 2026 Discussion ('za mało dowodów'), Pelland 2026 (0,5), Ramos-Campo 2024 (podział); docs/research/przeglad-badacza-2026-10-21.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash) || 25.10.2026: tylko brzmienie (usunięte ogólne odwołania do dowodów i praktyki trenerów; treść merytoryczna bez zmian)"
+   "dokument": "docs/research/przeglad-badacza-2026-10-30.md",
+   "fraza": "Ramos-Campo",
+   "przeglad": "21.10.2026: badacz-merytoryczny — WHO 2020 tab. 4, ACSM 2026 Discussion ('za mało dowodów'), Pelland 2026 (0,5), Ramos-Campo 2024 (podział); docs/research/przeglad-badacza-2026-10-21.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash) || 25.10.2026: tylko brzmienie (usunięte ogólne odwołania do dowodów i praktyki trenerów; treść merytoryczna bez zmian) | 30.10.2026: zmiana dokumentu po przeniesieniu przeglądu z 21.10 na Dysk (ZB-004 P3 B); recenzent: badacz-merytoryczny"
   },
   {
    "id": "T-006",
@@ -584,9 +584,9 @@
    "zrodla": [
     "ACSM 2026"
    ],
-   "uwaga": "[OTWARTE → ponowny przegląd badacza] Dokument źródłowy docs/research/przeglad-badacza-2026-10-21.md przeniesiony na Dysk (folder „Trening App”) przy przygotowaniu przeniesienia repo (ZB-004, decyzja właściciela P3 B, 30.10.2026); fraza w dokumencie: pole „fraza”. Do potwierdzenia przez badacza: dokument w repo albo uwaga zamknięta.",
-   "fraza": "T-039",
-   "przeglad": "21.10.2026: badacz-merytoryczny — ACSM 2026 (PMC12965823) nie podaje kroku ani progu 2–10%; konwencja; docs/research/przeglad-badacza-2026-10-21.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzon…",
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "wielkość kroku",
+   "przeglad": "21.10.2026: badacz-merytoryczny — ACSM 2026 (PMC12965823) nie podaje kroku ani progu 2–10%; konwencja; docs/research/przeglad-badacza-2026-10-21.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzon… | 30.10.2026: zmiana dokumentu po przeniesieniu przeglądu z 21.10 na Dysk (ZB-004 P3 B); recenzent: badacz-merytoryczny",
    "wycofane": "23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzone”, „jedno źródło”, „uproszczenie”, „nasz wybór”) nie występują w tekstach aplikacji; wpis zostaje jako ślad decyzji i rodzaju (pewność przypisania partii jest w katalogu ćwiczeń i na ekranie Źródła wiedzy)"
   },
   {
@@ -600,9 +600,9 @@
    "zrodla": [
     "NSCA 2017 (Standard 3.2)"
    ],
-   "uwaga": "[OTWARTE → ponowny przegląd badacza] Dokument źródłowy docs/research/przeglad-badacza-2026-10-21.md przeniesiony na Dysk (folder „Trening App”) przy przygotowaniu przeniesienia repo (ZB-004, decyzja właściciela P3 B, 30.10.2026); fraza w dokumencie: pole „fraza”. Do potwierdzenia przez badacza: dokument w repo albo uwaga zamknięta.",
+   "dokument": "docs/research/przeglad-badacza-2026-10-23.md",
    "fraza": "Standard 3.2",
-   "przeglad": "21.10.2026: badacz-merytoryczny — NSCA 2017, Standard 3.2 (szczebel 2): sprzęt asekuracyjny i osoba asekurująca łącznie; przeniesienie na trening samodzielny = uproszczenie; docs/research/przeglad-badacza-2026-10-21.md"
+   "przeglad": "21.10.2026: badacz-merytoryczny — NSCA 2017, Standard 3.2 (szczebel 2): sprzęt asekuracyjny i osoba asekurująca łącznie; przeniesienie na trening samodzielny = uproszczenie; docs/research/przeglad-badacza-2026-10-21.md | 30.10.2026: zmiana dokumentu po przeniesieniu przeglądu z 21.10 na Dysk (ZB-004 P3 B); recenzent: badacz-merytoryczny"
   },
   {
    "id": "T-044",

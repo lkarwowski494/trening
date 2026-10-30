@@ -146,3 +146,4 @@ Przygotowanie zrobione **bez przenoszenia**; samo przeniesienie to ZB-005, po wy
 - **P2 = A:** 7 testów, które w nowym repo nie mają przedmiotu (`tests/dokumenty-na-dysk.test.ts`, 057, 068, 071, 072, 033-hipoteza, dec07-odeslanie-docs21), mają akcję „usun”; w tym repozytorium zostają i biegną.
 - **P3 = B:** `docs/research/przeglad-badacza-2026-10-21.md` na Dysk (D4). Wpisy rejestru twierdzeń T-005, T-039, T-040 nie wskazują go już w polu „dokument”; mają uwagę „[OTWARTE → ponowny przegląd badacza]”. Bez `--rehash` — ponowny przegląd robi badacz (autor ≠ recenzent).
 - Po decyzjach lista nie ma pozycji „decyzja”.
+- **Recenzja badacza 30.10.2026** (autor ≠ recenzent, `docs/research/przeglad-badacza-2026-10-30.md`): T-040 → `przeglad-badacza-2026-10-23.md` (fraza „Standard 3.2”), T-039 → `przeglad-badacza-2026-10-21b.md` („wielkość kroku”), T-005 → `przeglad-badacza-2026-10-30.md` („Ramos-Campo”); uwagi [OTWARTE] usunięte, brzmienia bez zmian (bez `--rehash`).
