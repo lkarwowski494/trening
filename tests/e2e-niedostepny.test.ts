@@ -34,6 +34,13 @@ describe('sim-restart-niedostepny.sh', () => {
     const r = run(text);
     expect(r.code).toBe(0); expect(r.calls).toEqual([]); expect(r.out).toMatch(/bez restartu/);
   });
+  // Brzmienie z kodu Maestro 2.12.0 (wersja z logu e2e-ios 41036041281, 30.10.2026): DeviceUnreachableException.kt:56 i drivers/IOSDriver.kt:657 (tag cli-2.12.0).
+  test.each(['Device became unreachable during tap', 'ERROR maestro.drivers.IOSDriver - Device unreachable while processing isScreenStatic command'])('brzmienie Maestro 2.12.0 (%s): restart', text => {
+    expect(run(text).calls).toHaveLength(4);
+  });
+  test.each(["warning: code will never be executed [-Wunreachable-code]", "warning: 'catch' block is unreachable because no errors are thrown in 'do' block"])('ostrzeżenie kompilatora (%s): bez restartu', text => {
+    expect(run(text).calls).toEqual([]);
+  });
   test('brak pliku logu: bez restartu', () => { const r = run(null); expect(r.code).toBe(0); expect(r.calls).toEqual([]); });
   test('restart się nie udał (symulator nie wstał): kod 1 i komunikat błędu, bez instalacji', () => {
     const r = run('Device became unreachable', { bootstatusFails: true });

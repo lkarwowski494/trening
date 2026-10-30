@@ -79,6 +79,9 @@
 
 - 29.10 ~18:00 Uwaga koordynatora 1.0 przed kolejnym scaleniem main → r2: gałąź `zrzuty-sklep-jezyki` (L-062, PR #97; `scripts/ci/maestro-sklep/poprzedni-miesiac.yaml`, `import.yaml`, zapewne `scripts/ci/store-screenshots.sh` — konflikt z 101-24) i PR #98 (`watch-sim.yml`, `scripts/ci/watch-pair.sh` — przed 101-20 w `watch-screenshots.sh`). Scalić main przed przebiegami dowodowymi fali 4; konflikty w skryptach zrzutów rozwiązać znaczeniowo (obie zmiany), potem testy `store-screenshots-*`, `watch-*`. Sygnał „1.0 wysłane” — 30.10 ok. południa.
 
+- 30.10 ~12:20 PL linię przejmuje nowa sesja koordynatora (decyzja właściciela ~12:10, wariant B); potwierdzenie do koordynatora 1.0.
+- 30.10 ~12:45 przebiegi fali 4 na 0e9889d: e2e-ios 41036041281 6/6 za pierwszym razem (17 z kartą Deadlift i obrazem v2, 21, 22, 23, 27, 57); store-screenshots 41036044849 „Pomiar: 108 s na ekran” (przed: 162–210 s); zrzuty pl porównane pikselowo z 40979987052 — różnice tylko zegar/data (01, 07), 101-17 (06), 101-16 (10) i klatka animacji (02, losowa także w zestawie 1.0 → backlog docs/21); „Device became unreachable” nie wystąpiło — brzmienie potwierdzone w kodzie Maestro 2.12.0, test uzupełniony, R-101-23 zamknięte (docs/40). 101-20, 101-22, 101-23, 101-24, es-419 — zamknięte (docs/21). ios-unsigned 41036034159 attempt 2: Jest zielony, kompilacja w toku.
+
 ## Czekające kroki właściciela
 - brak decyzji (D3 → 17°, 101-27 → bez poprawki, 101-17 → B, Reverse Lunge → zatwierdzona wersja widoczna; 29.10.2026)
 - Lekcja Reverse Lunge: wybór A/B (stan na bazie w poleceniach figur) — przy okazji
