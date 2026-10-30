@@ -361,7 +361,7 @@ Workflowy (stan każdego z nich pokazują odznaki u góry dla trzech podstawowyc
 | `store-screenshots.yml` | Zrzuty do App Store | ręcznie | zrzuty ekranu do App Store z symulatora (ręcznie) |
 | `testflight.yml` | TestFlight (testy wewnętrzne) | ręcznie | testy, build, podpis i wysyłka do TestFlight narzędziami Apple |
 | `tests-tz.yml` | tests-tz | harmonogram, ręcznie | testy w różnych strefach czasowych |
-| `tests.yml` | Testy (każde wypchnięcie) | wypchnięcie, ręcznie | pełne `npm run verify` przy każdym wypchnięciu |
+| `tests.yml` | Testy (każde wypchnięcie) | wypchnięcie, zgłoszenie zmian, ręcznie | pełne `npm run verify` przy każdym wypchnięciu |
 | `watch-sim.yml` | Zegarek — symulator | wypchnięcie, ręcznie | testy aplikacji na Apple Watch na symulatorze watchOS i zrzuty |
 <!-- /gen:workflows -->
 
