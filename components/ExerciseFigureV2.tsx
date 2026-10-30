@@ -21,6 +21,10 @@ import { errorsOf, guidesOf, legendOf, toeAngleApplies } from '@/lib/figures/v2/
  * Bez liczb i kątów na rysunku. WCAG 2.2.2: „Zatrzymaj animację”; „Ogranicz ruch” / pauza → pozycje statycznie z podpisami. VoiceOver: jeden obraz z opisem, kontrolki osobno.
  */
 
+/** 101-32: build zrzutów do App Store (store-screenshots.yml, krok Build) ustawia EXPO_PUBLIC_FIGURA_STOP=1 — animacja stoi w pozycji u = 1, zrzut 02 jednakowy we wszystkich językach.
+ * Poza tym buildem flagi nie ma (tests/figura-klatka-zrzutu.test.tsx). Czytana przy renderze (Expo wstawia wartość przy budowaniu). */
+const figuraStop = (): boolean => process.env.EXPO_PUBLIC_FIGURA_STOP === '1';
+
 const JOINT_LABEL = { knee: 'zgięcie kolana', elbow: 'zgięcie łokcia', hip: 'zgięcie biodra' } as const;
 
 function ViewSvg({ spec, u, view, box, th, height, error, guides, testID }: { spec: FigureSpec; u: number; view: FView; box: { x: number; y: number; w: number; h: number }; th: Theme; height: number; error?: ErrorId; guides: GuideId[]; testID?: string }) {
@@ -52,7 +56,7 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
   const [errIdx, setErrIdx] = useState(-1); const [width, setWidth] = useState(320);
   const animate = !!spec && !spec.static && reduce === false && !paused;
   useEffect(() => {
-    if (!animate) return;
+    if (!animate || figuraStop()) return;
     last.current = Date.now();
     const id = setInterval(() => { const n = Date.now(); const d = n - last.current; last.current = n; setMs(m => m + d); }, TEMPO.tickMs);
     return () => clearInterval(id);
@@ -62,12 +66,13 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
   const tempo = tempoFor(spec, errId);
   const label = t('Rysunek ruchu: {opis}', { opis: name ?? exName({ name: exercise.name ?? spec.key, lib: true }) });
   const canPause = !spec.static && reduce === false;
-  const u = animate ? uAt(ms, spec.lowerFirst, tempo) : 0;
+  const stop = animate && figuraStop();
+  const u = stop ? 1 : animate ? uAt(ms, spec.lowerFirst, tempo) : 0;
   const views = spec.views;
   const boxes = views.map(v => boxFor(spec, v, errors.map(e => e.error)));
   const aspects = boxes.map(b => b.w / b.h); const sumA = aspects.reduce((a, b) => a + b, 0);
   const height = Math.max(110, Math.min(200, (width - 8 * (views.length - 1)) / sumA));
-  const measured = measuredAngle(spec, animate ? u : 1, errId); /* statycznie: pozycja końcowa */ const phases = phasesFor(spec, tempo); const cur = animate ? phaseIndexAt(ms, phases) : -1;
+  const measured = measuredAngle(spec, animate ? u : 1, errId); /* statycznie: pozycja końcowa */ const phases = phasesFor(spec, tempo); const cur = stop ? phases.findIndex(p => p.name !== 'Pauza') : animate ? phaseIndexAt(ms, phases) : -1;
   const sec = (x: number): string => String(Math.round(x / 100) / 10).replace('.', ',');
   const shown = phases.filter((p, i) => !(p.name === 'Pauza' && (i === 3 || p.ms === 0)));
   const txt = { color: th.muted, ...font('footnote'), ...FW.regular } as const;

@@ -120,6 +120,8 @@ jobs:
       - name: Platformy iOS i watchOS zgodne z SDK wybranego Xcode
         run: bash scripts/ci/ensure-ios-platform.sh
       - name: Build (Release, symulator, bez podpisu) — jak w App Store, bez sztucznego sklepu i zegarka
+        env:
+          EXPO_PUBLIC_FIGURA_STOP: '1'  # 101-32: jedyna różnica względem App Store — figura v2 zatrzymana w pozycji u = 1 (zrzut 02 jednakowy we wszystkich językach)
         run: |
           set -o pipefail
           cd ios
