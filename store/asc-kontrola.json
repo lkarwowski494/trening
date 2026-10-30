@@ -24,11 +24,11 @@
   "wiek": {},
   "dostepnosc": { "terytoria": null },
   "metadane": {
+    "_opis": "Plik generowany scripts/asc/kontrola-oczekiwane.mjs ze store/app-store-names.json i store/app-store-metadata.json: tylko lokalizacje obsługiwane przez App Store Connect (bez sl, L-003); właściciel 30.10.2026, przebieg 41009108485.",
     "zrodla": [
-      { "plik": "store/app-store-names.json", "korzen": "names", "pola": { "name": null } },
-      { "plik": "store/app-store-metadata.json", "korzen": "lokalizacje", "pola": { "subtitle": "subtitle", "keywords": "keywords" } }
+      { "plik": "store/asc-kontrola-oczekiwane.json", "korzen": "lokalizacje", "pola": { "name": "name", "subtitle": "subtitle", "keywords": "keywords" } }
     ],
     "komunikatBraku": "oczekiwane po scaleniu M5 (store/app-store-metadata.json)"
   },
-  "uwagiRecenzenta": { "plik": "store/review-notes.md", "komunikatBraku": "brak pliku store/review-notes.md na tej gałęzi" }
+  "uwagiRecenzenta": { "_opis": "Tylko blok EN wklejany do pola Notes (docs/48 Z-25), generowany z store/review-notes.md.", "plik": "store/review-notes.en.txt", "komunikatBraku": "brak pliku store/review-notes.md na tej gałęzi" }
 }

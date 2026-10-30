@@ -6,6 +6,7 @@
  */
 import * as fs from 'fs';
 import * as path from 'path';
+import { execFileSync } from 'child_process';
 import { PRODUCT_IDS } from '@/lib/products';
 import { FAKE_PRICES, PLN_PRICES } from '@/lib/store-fake';
 
@@ -46,7 +47,7 @@ describe('store/asc-kontrola.json: oczekiwane wartości zgodne z docs/monetyzacj
     for (const t of ['DEU', 'FRA', 'ITA', 'ESP', 'NLD']) expect(euro).toContain(t);
   });
   test('metadane: źródła opisują rzeczywiste pliki sklepu (kod lokalizacji → nazwa / podtytuł / słowa); gdy plik jest w repo, ścieżki i pola istnieją', () => {
-    expect(config.metadane.zrodla.map((z: any) => z.plik)).toEqual(['store/app-store-names.json', 'store/app-store-metadata.json']);
+    expect(config.metadane.zrodla.map((z: any) => z.plik)).toEqual(['store/asc-kontrola-oczekiwane.json']);
     for (const z of config.metadane.zrodla) {
       if (!fs.existsSync(path.join(ROOT, z.plik))) continue; /* app-store-metadata.json dojdzie ze scaleniem przebiegu M5 (docs/45) */
       const dane = JSON.parse(read(z.plik)); const wpisy = Object.entries(dane[z.korzen]).filter(([k]) => !k.startsWith('_'));
@@ -60,6 +61,23 @@ describe('store/asc-kontrola.json: oczekiwane wartości zgodne z docs/monetyzacj
   });
 });
 
+
+describe('oczekiwane wartości kontroli generowane ze źródeł sklepu (właściciel 30.10.2026, fałszywe RÓŻNICE w przebiegu 41009108485)', () => {
+  test('pliki generowane aktualne: node scripts/asc/kontrola-oczekiwane.mjs --check', () => {
+    expect(() => execFileSync(process.execPath, [path.join(ROOT, 'scripts/asc/kontrola-oczekiwane.mjs'), '--check'], { stdio: 'pipe' })).not.toThrow();
+  });
+  test('lista lokalizacji = lokalizacje obsługiwane przez App Store Connect, bez sl (przebieg 41009108485: „brakuje sl”)', () => {
+    const oczek = JSON.parse(read('store/asc-kontrola-oczekiwane.json')).lokalizacje;
+    expect(oczek).not.toHaveProperty('sl'); expect(Object.keys(oczek)).toHaveLength(32);
+    expect(Object.keys(oczek).sort()).toEqual(Object.keys(JSON.parse(read('store/app-store-names.json')).names).filter(k => k !== 'sl').sort());
+  });
+  test('notatki: kontrola porównuje tylko blok EN wklejany do pola Notes (przebieg 41009108485: „różnią się od pliku”), ≤ 4000 bajtów', () => {
+    expect(config.uwagiRecenzenta.plik).toBe('store/review-notes.en.txt');
+    const en = read('store/review-notes.en.txt');
+    expect(en.startsWith('Thank you for reviewing Trening.')).toBe(true); expect(Buffer.byteLength(en.trim())).toBeLessThanOrEqual(4000);
+    expect(read('store/review-notes.md')).toContain(en.trim()); expect(en).not.toMatch(/Dziękujemy/);
+  });
+});
 
 describe('workflow asc-kontrola.yml: cienka warstwa wywołująca narzędzie studia', () => {
   const cienki = read('.github/workflows/asc-kontrola.yml');

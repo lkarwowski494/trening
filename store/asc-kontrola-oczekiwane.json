@@ -1,0 +1,165 @@
+{
+  "_opis": "PLIK GENEROWANY przez scripts/asc/kontrola-oczekiwane.mjs ze store/app-store-names.json i store/app-store-metadata.json — tylko lokalizacje obsługiwane przez App Store Connect (bez sl). Nie edytować ręcznie.",
+  "lokalizacje": {
+    "pl": {
+      "name": "Trening: dziennik treningowy",
+      "subtitle": "Serie i przerwy. Bez konta",
+      "keywords": "siłownia,plan,timer,ćwiczenia,domu,stoper,progres,hantle,sztanga,rekordy,1RM,offline,gumy"
+    },
+    "en-US": {
+      "name": "Training: Gym Log & Rest Timer",
+      "subtitle": "Workout tracker. No account.",
+      "keywords": "lifting,strength,exercise,journal,planner,routine,barbell,dumbbell,sets,reps,1RM,RPE,RIR,bands,watch"
+    },
+    "en-GB": {
+      "name": "Training: Gym Log & Rest Timer",
+      "subtitle": "Workout tracker. No account.",
+      "keywords": "weights,lifting,strength,exercise,diary,journal,planner,routine,barbell,sets,reps,1RM,RPE,RIR,watch"
+    },
+    "en-AU": {
+      "name": "Training: Gym Log & Rest Timer",
+      "subtitle": "Workout tracker. No account.",
+      "keywords": "weights,lifting,strength,exercise,diary,journal,planner,routine,barbell,sets,reps,1RM,RPE,RIR,watch"
+    },
+    "en-CA": {
+      "name": "Training: Gym Log & Rest Timer",
+      "subtitle": "Workout tracker. No account.",
+      "keywords": "lifting,strength,exercise,journal,planner,routine,barbell,dumbbell,sets,reps,1RM,RPE,RIR,bands,watch"
+    },
+    "cs": {
+      "name": "Trénink: deník z posilovny",
+      "subtitle": "Série, plány a časovač pauzy",
+      "keywords": "cvičení,silový,činky,šablony,kalendář,rekordy,RPE,RIR,gumy,odpočinek,historie,doma,posilovna"
+    },
+    "sk": {
+      "name": "Tréning: denník z posilňovne",
+      "subtitle": "Série, plány a časovač pauzy",
+      "keywords": "cvičenie,silový,činky,šablóny,kalendár,rekordy,RPE,RIR,gumy,odpočinok,posilňovňa,doma,váha"
+    },
+    "hu": {
+      "name": "Training: edzésnapló",
+      "subtitle": "Súlyzós edzés és pihenőidő",
+      "keywords": "konditerem,erősítő,edzésterv,sorozat,ismétlés,rekord,időzítő,otthon,RPE,RIR,e1RM,napló"
+    },
+    "ro": {
+      "name": "Training: jurnal antrenament",
+      "subtitle": "Sală, serii și cronometru",
+      "keywords": "musculatie,forta,haltere,gantere,exercitii,repetari,pauza,timer,record,RPE,RIR,e1RM,acasa"
+    },
+    "hr": {
+      "name": "Trening: dnevnik za teretanu",
+      "subtitle": "Serije, planovi, tajmer pauze",
+      "keywords": "vježbe,vježbanje,snaga,utezi,bučice,kalendar,rekordi,RPE,RIR,gume,povijest,kuće,predlošci"
+    },
+    "uk": {
+      "name": "Training: щоденник тренувань",
+      "subtitle": "Зал, підходи, відпочинок",
+      "keywords": "вправи,силові,план,гантелі,штанга,повторення,таймер,RPE"
+    },
+    "es-ES": {
+      "name": "Training: diario de gimnasio",
+      "subtitle": "Rutinas, series y descansos",
+      "keywords": "musculación,pesas,fuerza,temporizador,entrenamiento,registro,gym,repeticiones,historial,watch"
+    },
+    "es-MX": {
+      "name": "Training: diario de gym",
+      "subtitle": "Rutinas, series y descanso",
+      "keywords": "gimnasio,bitácora,pesas,musculación,entrenamiento,ejercicios,registro,temporizador,historial,watch"
+    },
+    "pt-PT": {
+      "name": "Treino: diário de ginásio",
+      "subtitle": "Séries, cargas e descanso",
+      "keywords": "musculação,registo,temporizador,cronómetro,força,pesos,halteres,histórico,exercícios,watch"
+    },
+    "pt-BR": {
+      "name": "Treino: diário de academia",
+      "subtitle": "Ficha, séries e descanso",
+      "keywords": "musculação,cronômetro,registro,carga,exercícios,timer,peso,halteres,histórico,força,watch"
+    },
+    "de-DE": {
+      "name": "Training: Gym-Tagebuch",
+      "subtitle": "Krafttraining & Pausentimer",
+      "keywords": "workout,trainingstagebuch,trainingsplan,hantel,übungen,satzpause,gewicht,rekorde,rpe,rir,e1rm"
+    },
+    "fr-FR": {
+      "name": "Training: journal de muscu",
+      "subtitle": "Séances, séries et repos",
+      "keywords": "musculation,carnet,suivi,minuteur,entraînement,programme,charges,historique,haltères,watch,chrono"
+    },
+    "it": {
+      "name": "Training: diario allenamento",
+      "subtitle": "Palestra, schede e recupero",
+      "keywords": "pesi,registro,serie,ripetizioni,massimale,forza,esercizi,storico,gym,timer,watch"
+    },
+    "nl-NL": {
+      "name": "Training: gym-logboek",
+      "subtitle": "Krachttraining & rusttimer",
+      "keywords": "workout,tracker,trainingsschema,trainingslogboek,sportschool,halter,oefeningen,records,rpe,e1rm,reps"
+    },
+    "sv": {
+      "name": "Träning: gymdagbok",
+      "subtitle": "Träningsdagbok & vilotimer",
+      "keywords": "styrketräning,träningslogg,träningsschema,gym,workout,tracker,hantlar,övningar,rekord,rpe,reps"
+    },
+    "da": {
+      "name": "Træning: styrkedagbog",
+      "subtitle": "Styrketræning & pausetimer",
+      "keywords": "træningsdagbog,træningslog,træningsprogram,workout,tracker,håndvægte,øvelser,rekorder,rpe,reps"
+    },
+    "no": {
+      "name": "Trening: dagbok for gym",
+      "subtitle": "Treningslogg & pausetimer",
+      "keywords": "styrketrening,treningsdagbok,treningsprogram,workout,tracker,manualer,øvelser,rekorder,rpe,reps"
+    },
+    "fi": {
+      "name": "Treeni: salipäiväkirja",
+      "subtitle": "Voimaharjoittelu & lepoajastin",
+      "keywords": "treenipäiväkirja,salitreeni,treenilogi,workout,tracker,käsipaino,toisto,paino,ennätys,rpe,reps"
+    },
+    "tr": {
+      "name": "Training: spor salonu günlüğü",
+      "subtitle": "Antrenman, set ve dinlenme",
+      "keywords": "tekrar,sayaç,ağırlık,kuvvet,takip,program,egzersiz,kas,rekor,şablon,grafik,zamanlayıcı,gym"
+    },
+    "el": {
+      "name": "Training: καταγραφή προπόνησης",
+      "subtitle": "Σετ, επαναλήψεις, διαλείμματα",
+      "keywords": "γυμναστήριο,βάρη,ασκήσεις,πρόγραμμα,ημερολόγιο,gym,workout"
+    },
+    "id": {
+      "name": "Training: jurnal latihan gym",
+      "subtitle": "Set, repetisi, timer istirahat",
+      "keywords": "catatan,angkat,beban,kekuatan,program,jadwal,riwayat,rekor,rutinitas,otot,grafik,berat"
+    },
+    "ms": {
+      "name": "Training: log latihan gym",
+      "subtitle": "Set, ulangan & pemasa rehat",
+      "keywords": "gim,senaman,catatan,beban,angkat,jadual,program,sejarah,otot,kekuatan,rekod,carta"
+    },
+    "vi": {
+      "name": "Training: nhật ký tập gym",
+      "subtitle": "Ghi set, rep, hẹn giờ nghỉ",
+      "keywords": "thể hình,lịch tập,giáo án,bài tập,sức mạnh,cơ bắp,theo dõi,kỷ lục"
+    },
+    "ru": {
+      "name": "Training: дневник тренировок",
+      "subtitle": "Зал, подходы и таймер отдыха",
+      "keywords": "упражнения,силовые,план,гантели,штанга,повторения,RPE"
+    },
+    "ja": {
+      "name": "Training: 筋トレ記録とタイマー",
+      "subtitle": "重量・回数・セットをオフラインで管理",
+      "keywords": "ジムメニュー,ワークアウト,トレーニングログ,グラフ,1RM,RPE,ダンベル"
+    },
+    "ko": {
+      "name": "Training: 운동 기록과 휴식 타이머",
+      "subtitle": "헬스·홈트 세트와 무게를 오프라인으로",
+      "keywords": "운동일지,헬스장,헬스루틴,웨이트,그래프,캘린더,워치앱,운동일기,1RM"
+    },
+    "zh-Hant": {
+      "name": "Training: 重訓紀錄與休息計時",
+      "subtitle": "離線免帳號，記錄組數、重量與RPE",
+      "keywords": "健身房,健身日誌,健身計畫,訓練課表,訓練日曆,訓練筆記,肌力訓練,手錶計時"
+    }
+  }
+}

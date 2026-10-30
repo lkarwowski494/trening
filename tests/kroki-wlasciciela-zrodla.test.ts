@@ -31,3 +31,17 @@ describe('L-028: kroki dla właściciela w Apple mają źródło', () => {
     for (const h of Object.keys(WYJATKI)) expect(wszystko).toContain(`## ${h}`);
   });
 });
+
+/* Decyzja właściciela 30.10.2026, wariant A (lekcja o krokach zgłoszenia 1.0 w docs/40): w docs/48 żadne „nieprzeczytane” ani otwarte pytanie
+ * ([OTWARTE], [DO USTALENIA]) poza tabelą kroków nie wisi bez kroku Z-NN — Content Rights było „nieprzeczytane” bez kroku i zablokowało „Add for Review”. */
+describe('docs/48: luka bez kroku (30.10.2026)', () => {
+  const linie = fs.readFileSync(path.join(ROOT, 'docs/48-zgloszenie-1-0.md'), 'utf8').split('\n');
+  const KONWENCJA = 'Gdzie dokumentacja Apple czegoś nie mówi'; /* zdanie opisujące samo oznaczenie */
+  test('brak słowa „nieprzeczytane” (przeczytaj stronę Apple albo dodaj krok Z-NN)', () => {
+    expect(linie.filter(l => /nieprzeczytan/i.test(l))).toEqual([]);
+  });
+  test('[OTWARTE] / [DO USTALENIA] poza wierszem tabeli kroków wskazuje krok Z-NN', () => {
+    const bez = linie.filter(l => /\[(OTWARTE|DO USTALENIA)\]/.test(l) && !l.startsWith('| Z-') && !/^\| D\d/.test(l) /* tabela decyzji: opis opcji */ && !/\bZ-\d+/.test(l) && !l.includes(KONWENCJA) && !/wcześniej \[OTWARTE\]/.test(l));
+    expect(bez).toEqual([]);
+  });
+});
