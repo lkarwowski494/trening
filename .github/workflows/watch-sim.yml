@@ -56,6 +56,10 @@ jobs:
         run: |
           UDID=$(bash scripts/ci/watch-simulator.sh ${WZORZEC:+"$WZORZEC"})
           echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+      - name: Para z symulatorem iPhone'a (bez niej zrzuty mają czerwoną ikonę braku połączenia z telefonem)
+        env:
+          UDID: ${{ steps.sim.outputs.udid }}
+        run: bash scripts/ci/watch-pair.sh "$UDID"
       - name: XCUITest (Debug) — seria, przerwa, Cofnij, Pomiń, brak połączenia, 35 języków
         env:
           UDID: ${{ steps.sim.outputs.udid }}

@@ -7,6 +7,9 @@
 # W logu tylko nazwy plików i liczby (repo publiczne — bez identyfikatorów urządzeń).
 # Zmienna EKRANY (po przecinku, np. „cwiczenie” albo „cwiczenie,plan”; pusta = wszystkie): tylko te ekrany, numeracja plików zostaje jak w pełnym scenorysie (02-cwiczenie.png) —
 # powtórzenie jednego ekranu we wszystkich językach bez przebiegu całości (27.10.2026; podział języków na zadania: scripts/ci/store-shards.mjs).
+# Zmienna UZUPELNIJ (katalog z zrzutami poprzedniego przebiegu dla tego rozmiaru: <język>/NN-ekran.png; pusta = jak dotąd; 29.10.2026, decyzja właściciela, wariant A): ekran, który ma tam
+# niepusty plik, jest kopiowany do wyniku i NIE jest robiony od nowa — robimy tylko brakujące; pliki z .nieudane poprzedniego przebiegu leżą poza tym katalogiem (nie są gotowe),
+# więc ekran idzie od nowa. Wynik zadania jest kompletem dla jego języków (ramki i asc-zrzuty biorą jeden przebieg). Podział zadań po brakujących ekranach: store-shards.mjs.
 # Użycie: bash scripts/ci/store-screenshots.sh <UDID> <katalog_wyjściowy> <katalog_danych> [języki po przecinku | all]
 set -euo pipefail
 UDID="$1"; OUT="$2"; DATA="$3"; LANGS="${4:-pl,en}"
@@ -15,7 +18,12 @@ if [ "$LANGS" = "all" ]; then LANGS=$(ls "$DATA" | sed -n 's/^routes-\(.*\)\.jso
 mkdir -p "$OUT"
 maestro_run() { command -v maestro >/dev/null 2>&1 || { echo "::warning::Brak Maestro — akcja $1 pominięta"; return 0; }
   local log="$OUT/.maestro/${2//\//-}-$1"; mkdir -p "$log"   # dziennik i zrzut porażki Maestro w artefakcie (katalog z kropką — pomijany przez ramki)
-  maestro --device "$UDID" test "$FLOWS/$1.yaml" --test-output-dir "$log" > "$log/maestro.log" 2>&1 || { echo "::warning::Akcja $1 nie powiodła się ($2)"; tail -5 "$log/maestro.log" | sed 's/^/    /'; return 1; }; }
+  maestro_env "${2%%/*}"
+  maestro --device "$UDID" test "$FLOWS/$1.yaml" ${ENVARGS[@]+"${ENVARGS[@]}"} --test-output-dir "$log" > "$log/maestro.log" 2>&1 || { echo "::warning::Akcja $1 nie powiodła się ($2)"; tail -5 "$log/maestro.log" | sed 's/^/    /'; return 1; }; }
+# Teksty aplikacji w języku zrzutu (teksty-<język>.json z danych pokazowych) → zmienne scenariusza przez -e; znaki wyrażeń regularnych zakodowane (Maestro dopasowuje tekst jako regex).
+maestro_env() {   # $1 = język; wynik w tablicy ENVARGS
+  ENVARGS=(); local tf="$DATA/teksty-$1.json" l
+  if [ -f "$tf" ]; then while IFS= read -r l; do ENVARGS+=(-e "$l"); done < <(node -e 'const t=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); for (const [k,v] of Object.entries(t)) console.log(k+"="+String(v).replace(/[.*+?^${}()|[\]\\]/g,"\\$&"))' "$tf"); fi; }
 # Jedno uruchomienie Maestro na ekran (101-24, 29.10.2026): dotąd „dialogi” → akcja → „dialogi” to 2–3 osobne uruchomienia (każde ok. 1 min na starcie sterownika XCTest na symulatorze
 # macos-26; L-054: 2,7–3,5 min na ekran). Te same pliki akcji składamy w jeden przepływ (runFlow), więc kroki i zrzut są takie same, a sterownik startuje raz. Przepływ powstaje
 # w katalogu dziennika (nazwa = akcja, np. import.yaml); ścieżki bezwzględne do plików w scripts/ci/maestro-sklep.
@@ -25,7 +33,8 @@ maestro_ekran() {   # $1 = akcja albo pusto, $2 = język/ekran
   { printf 'appId: %s\n---\n- runFlow: %s/dialogi.yaml\n- waitForAnimationToEnd\n' "$BUNDLE" "$FLOWS"
     [ -z "$1" ] || printf -- '- runFlow: %s/%s.yaml\n- waitForAnimationToEnd\n' "$FLOWS" "$1"
     printf -- '- runFlow: %s/dialogi.yaml\n' "$FLOWS"; } > "$log/$act.yaml"
-  maestro --device "$UDID" test "$log/$act.yaml" --test-output-dir "$log" > "$log/maestro.log" 2>&1 || { echo "::warning::Ekran $2 (akcja ${1:-brak}) nie powiódł się"; tail -5 "$log/maestro.log" | sed 's/^/    /'; return 1; }; }
+  maestro_env "${2%%/*}"
+  maestro --device "$UDID" test "$log/$act.yaml" ${ENVARGS[@]+"${ENVARGS[@]}"} --test-output-dir "$log" > "$log/maestro.log" 2>&1 || { echo "::warning::Ekran $2 (akcja ${1:-brak}) nie powiódł się"; tail -5 "$log/maestro.log" | sed 's/^/    /'; return 1; }; }
 # Pasek stanu jak w materiałach Apple: stała godzina, pełna bateria i zasięg (bez nazwy operatora).
 xcrun simctl status_bar "$UDID" override --time "9:41" --dataNetwork wifi --wifiMode active --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100 >/dev/null 2>&1 || echo "::warning::Nie udało się ustawić paska stanu"
 FAILED=""
@@ -57,7 +66,7 @@ db.commit(); db.close()' "$C/Library/SQLite/trening.db" "$OUT/.state.json"
   xcrun simctl io "$UDID" screenshot "$OUT/$lang/$(printf '%02d' "$i")-$name.png" >/dev/null 2>&1
   return $ok
 }
-T0=$(date +%s); N=0   # pomiar czasu na ekran — lekcja z 27.10.2026 (estymata 2 h zamiast zmierzonych ok. 16 h)
+T0=$(date +%s); N=0; REUSED=0   # pomiar czasu na ekran — lekcja z 27.10.2026 (estymata 2 h zamiast zmierzonych ok. 16 h)
 maestro_run przygotuj "zgody" || true
 for lang in ${LANGS//,/ }; do
   ROUTES="$DATA/routes-$lang.json"
@@ -67,6 +76,8 @@ for lang in ${LANGS//,/ }; do
   while IFS=$'\t' read -r name route variant action; do
     i=$((i + 1))
     if [ -n "${EKRANY:-}" ] && [[ ",$EKRANY," != *",$name,"* ]]; then continue; fi
+    PREV="${UZUPELNIJ:+$UZUPELNIJ/$lang/$(printf '%02d' "$i")-$name.png}"
+    if [ -n "$PREV" ] && [ -s "$PREV" ]; then cp "$PREV" "$OUT/$lang/" && REUSED=$((REUSED + 1)); continue; fi   # gotowy z poprzedniego przebiegu
     STATE="$DATA/state-$lang-$variant.json"
     [ -f "$STATE" ] || { echo "::warning::Brak stanu $lang-$variant — pomijam $name"; continue; }
     N=$((N + 1))
@@ -78,6 +89,7 @@ done
 rm -f "$OUT/.state.json"   # dzienniki Maestro zostają w $OUT/.maestro
 xcrun simctl terminate "$UDID" "$BUNDLE" >/dev/null 2>&1 || true
 xcrun simctl status_bar "$UDID" clear >/dev/null 2>&1 || true
+[ "$REUSED" -eq 0 ] || echo "Uzupełnienie: $REUSED ekranów z poprzedniego przebiegu (nie robione od nowa)"
 echo "Zrzuty: $(find "$OUT" -name '*.png' | wc -l | tr -d ' ') plików"
 if [ -n "$FAILED" ]; then M="Ekrany do powtórzenia (akcja nie powiodła się dwukrotnie):$FAILED"; echo "::warning::$M"; [ -z "${GITHUB_STEP_SUMMARY:-}" ] || echo "$M" >> "$GITHUB_STEP_SUMMARY"; fi
 if [ "$N" -gt 0 ]; then SEK=$(( ($(date +%s) - T0) / N )); MSG="Pomiar: ${SEK} s na ekran (${N} ekranów, $(( $(date +%s) - T0 )) s łącznie) — podstawa szacunku czasu kolejnych przebiegów (scripts/ci/store-shards.mjs: PER_SCREEN_MIN)"; echo "$MSG"; [ -z "${GITHUB_STEP_SUMMARY:-}" ] || echo "$MSG" >> "$GITHUB_STEP_SUMMARY"; fi
