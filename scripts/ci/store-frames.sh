@@ -21,9 +21,13 @@ for size_dir in "$IN"/*/; do
     if [ -z "$(q podpisy "$lang" trening)" ]; then echo "::warning::Brak podpisów dla języka $lang — bez ramek (surowe zrzuty w artefakcie)"; continue; fi
     case "$lang" in ja|ko|zh-Hant) FONT="$FONT_CJK" ;; *) FONT="$FONT_LATIN" ;; esac
     mkdir -p "$OUT/$size/$lang"
+    # Jeden rozmiar czcionki i podział wierszy dla całego języka (store-caption-layout.mjs; pole podpisu jak niżej: 86% szerokości, 15% wysokości zrzutu).
+    first=$(ls "$lang_dir"*.png | head -1); read -r W0 H0 < <(identify -format '%w %h\n' "$first")
+    node scripts/ci/store-caption-layout.mjs "$CAP" "$lang" "$FONT" $(( W0 * 86 / 100 )) $(( H0 * 15 / 100 )) > "$TMP/plan.json"
+    PT=$(node -e 'process.stdout.write(String(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).pointsize))' "$TMP/plan.json")
     for shot in "$lang_dir"*.png; do
       file=$(basename "$shot"); screen=${file#[0-9][0-9]-}; screen=${screen%.png}
-      text=$(q podpisy "$lang" "$screen")
+      text=$(node -e 'const p=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).podpisy[process.argv[2]]; process.stdout.write(p==null?"":p)' "$TMP/plan.json" "$screen")
       [ -n "$text" ] || { echo "::warning::Brak podpisu: $lang/$screen — pomijam"; continue; }
       read -r W H < <(identify -format '%w %h\n' "$shot")
       SW=$(( W * 78 / 100 )); SH=$(( H * 78 / 100 )); R=$(( SW * 7 / 100 )); B=$(( W / 120 + 2 ))
@@ -31,7 +35,7 @@ for size_dir in "$IN"/*/; do
       convert "$shot" -resize "${SW}x${SH}!" "$TMP/s.png"
       convert -size "${SW}x${SH}" xc:black -fill white -draw "roundrectangle 0,0,$((SW - 1)),$((SH - 1)),$R,$R" "$TMP/m.png"
       convert "$TMP/s.png" "$TMP/m.png" -alpha off -compose CopyOpacity -composite "$TMP/r.png"
-      convert -background none -fill "$FG" -font "$FONT" -size "$(( W * 86 / 100 ))x$CAPH" -gravity center caption:"$text" "$TMP/c.png"
+      convert -background none -fill "$FG" -font "$FONT" -size "$(( W * 86 / 100 ))x$CAPH" -gravity center -pointsize "$PT" label:"$text" "$TMP/c.png"
       convert -size "${W}x${H}" "xc:$BG" \
         -fill "$LINE" -draw "roundrectangle $((X - B)),$((TOP - B)),$((X + SW - 1 + B)),$((TOP + SH - 1 + B)),$((R + B)),$((R + B))" \
         "$TMP/r.png" -geometry "+$X+$TOP" -compose over -composite \
