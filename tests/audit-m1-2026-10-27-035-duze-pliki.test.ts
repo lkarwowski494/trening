@@ -9,10 +9,6 @@ import * as path from 'path';
 const read = (f: string) => fs.readFileSync(path.join(__dirname, '..', f), 'utf8');
 
 describe('M1-035: duże pliki źródłowe — backlog z wersją i strażnik', () => {
-  test('docs/21: pozycja backlogu z wersją 1.1 i ID zadania', () => {
-    const lines = read('docs/21-roadmapa-offline.md').split('\n'); const i = lines.findIndex(l => l.includes('M1-audytor-generalny-035'));
-    expect(i).toBeGreaterThanOrEqual(0); expect(lines[i]).toMatch(/1\.1/); expect(lines[i]).toMatch(/20 KB/);
-  });
   test('strażnik limitu 20 KB z listą wyjątków istnieje (tests/architecture-limits.test.ts)', () => {
     const s = read('tests/architecture-limits.test.ts'); expect(s).toMatch(/const LIMIT = 20 \* 1024;/); expect(s).toMatch(/Wyjątki od limitu 20 KB/);
   });

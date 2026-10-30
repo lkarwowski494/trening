@@ -7,21 +7,11 @@ import * as path from 'path';
 
 const root = path.join(__dirname, '..');
 const read = (p: string) => fs.readFileSync(path.join(root, p), 'utf8');
-const growth = read('docs/wzrost.md');
 const agent = read('.claude/agents/marketing.md');
-const PRZEKAZ = 'szybki zapis serii, także z zegarka; dane tylko na telefonie; bez konta';
+const PRZEKAZ = 'szybki zapis serii, także z zegarka; dane tylko na telefonie; bez konta'; /* docs/wzrost.md: tests/dokumenty-na-dysk.test.ts */
 
 describe('reguły uczciwej promocji (M1-055)', () => {
-  test('docs/wzrost.md pkt 6: ujawnienie autorstwa, bez próśb o oceny do znajomych, zgoda na e-maile do klubów, zakaz forów', () => {
-    const sec = growth.slice(growth.indexOf('## 6. Reguły uczciwej promocji'));
-    expect(sec).toMatch(/Ujawnienie autorstwa/);
-    expect(sec).toMatch(/Bez próśb o oceny do znajomych i rodziny/);
-    expect(sec).toMatch(/zgod[ay] odbiorcy na kontakt/);
-    expect(sec).toMatch(/zakaz promocji; wpis tylko po pisemnej zgodzie administracji/);
-    expect(sec).toContain('DEC-02');
-  });
-  test('rola marketingu zna te same cztery reguły i odsyła do docs/wzrost.md', () => {
-    expect(agent).toContain('docs/wzrost.md');
+  test('rola marketingu zna te same cztery reguły (odsyłacz do docs/wzrost.md: tests/dokumenty-na-dysk.test.ts)', () => {
     expect(agent).toMatch(/ujawnij autorstwo/);
     expect(agent).toMatch(/nie proponuj próśb o oceny do znajomych/);
     expect(agent).toMatch(/zgodzie odbiorcy na kontakt/);
@@ -33,14 +23,13 @@ describe('reguły uczciwej promocji (M1-055)', () => {
 });
 
 describe('przekaz startowy z zegarkiem (M1-056)', () => {
-  test('nowy przekaz jest w docs/wzrost.md, docs/15, docs/18 i roli marketingu', () => {
-    for (const f of ['docs/wzrost.md', 'docs/15-app-store.md', 'docs/18-przekazanie.md']) expect(read(f)).toContain(PRZEKAZ);
+  test('nowy przekaz jest w docs/15, docs/18 i roli marketingu', () => {
+    for (const f of ['docs/15-app-store.md', 'docs/18-przekazanie.md']) expect(read(f)).toContain(PRZEKAZ);
     expect(agent).toContain(PRZEKAZ);
   });
-  test('stare hasło z 13.10.2026 jest oznaczone jako zastąpione i nie występuje poza historią w docs/18 i docs/wzrost.md', () => {
+  test('stare hasło z 13.10.2026 jest oznaczone jako zastąpione i nie występuje poza historią w docs/18', () => {
     expect(read('docs/18-przekazanie.md')).toMatch(/Bez internetu\.” \(brzmienie do zatwierdzenia; \*\*zastąpione 23\.10\.2026/);
-    expect(growth).toMatch(/Wcześniejsze hasło .* nie obowiązuje/);
-    for (const f of ['docs/15-app-store.md', 'docs/41-droga-do-app-store.md', 'docs/45-widocznosc-w-sklepie.md', 'docs/16-jezyki-i-marka.md', '.claude/agents/marketing.md', 'site/index.html']) {
+    for (const f of ['docs/15-app-store.md', 'docs/45-widocznosc-w-sklepie.md', 'docs/16-jezyki-i-marka.md', '.claude/agents/marketing.md', 'site/index.html']) {
       expect(read(f)).not.toMatch(/Prosty dziennik siłowni|zostaje w Twoim telefonie/);
     }
   });

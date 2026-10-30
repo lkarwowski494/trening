@@ -6,6 +6,8 @@
 // Użycie: node scripts/przeniesienie-1.0.mjs [--lista=<plik>] [--decyzje=zostaw|usun] [--zachowaj] [--json] [--testy[=<wzorzec>]]
 //   --decyzje=zostaw (domyślnie) pozycje „decyzja” zostają; =usun usuwa je (wariant „wszystko co nieustalone znika”).
 //   --zachowaj  nie kasuje katalogu tymczasowego (drzewo/ i na-dysk/ do obejrzenia); wypisuje jego ścieżkę.
+//   Lista może mieć też „zamiany” ({sciezka, z, na}: tekst w drzewie po usunięciach, np. adres repozytorium) i „generatory”
+//   (polecenia „node scripts/….mjs …” uruchamiane w drzewie po zamianach: README i macierz testów są generowane z plików).
 //   --testy     uruchamia Jest w zbudowanym drzewie (node_modules podlinkowane z repo) — ostateczny dowód, które testy padają.
 // Czysta logika (lista → plan, strażnik nazw, odwołania) jest eksportowana i testowana w tests/przeniesienie-1.0.test.ts.
 import { execFileSync, spawnSync } from 'node:child_process';
@@ -32,7 +34,39 @@ export function sprawdzListe(lista) {
     if (widziane.has(w.sciezka)) bledy.push(`${w.sciezka}: powtórzony wpis`);
     widziane.add(w.sciezka);
   }
+  for (const z of lista.zamiany ?? []) {
+    if (!z || typeof z.sciezka !== 'string' || typeof z.z !== 'string' || !z.z || typeof z.na !== 'string') bledy.push(`zamiana niepoprawna: ${JSON.stringify(z)}`);
+    else if (z.sciezka.startsWith('/') || z.sciezka.includes('..')) bledy.push(`zamiana ${z.sciezka}: ścieżka musi być względna`);
+  }
+  for (const x of lista.przepisz ?? []) if (typeof x !== 'string' || !x || x.startsWith('/') || x.includes('..')) bledy.push(`przepisz: ścieżka względna oczekiwana, jest ${JSON.stringify(x)}`);
+  for (const g of lista.generatory ?? []) if (typeof g !== 'string' || !/^node scripts\/[\w./-]+\.mjs( [\w=./-]+)*$/.test(g)) bledy.push(`generator niepoprawny (tylko „node scripts/….mjs [argumenty]”): ${JSON.stringify(g)}`);
   return bledy;
+}
+
+/** Zamiana tekstu w pliku: wszystkie wystąpienia `z` → `na`. Zwraca { tresc, ile }. */
+export function zamien(tresc, z, na) {
+  const ile = tresc.split(z).length - 1;
+  return { tresc: ile ? tresc.split(z).join(na) : tresc, ile };
+}
+
+/**
+ * Odnośniki do dokumentów, których nie ma w nowym repo (usunięte albo na Dysk), zamienione na wzmiankę „Dysk: <nazwa>”:
+ *  - link markdown do usuniętego pliku traci adres (zostaje tekst linku),
+ *  - pełna ścieżka usuniętego pliku docs/… → „Dysk: <ścieżka bez docs/>”, katalog usunięty w całości tak samo,
+ *  - skrót „docs/NN” (numer dokumentu), gdy nie zostało żadne docs/NN-…, → „Dysk: NN”.
+ * usuniete / katalogi / zostaje: ścieżki względne korzenia drzewa. Zwraca { tresc, ile }.
+ */
+export function przepiszOdnosniki(tresc, usuniete, katalogi, zostaje) {
+  const docs = [...usuniete.filter(f => f.startsWith('docs/')), ...katalogi.filter(f => f.startsWith('docs/'))].sort((a, b) => b.length - a.length);
+  let ile = 0;
+  const licz = (re, f) => { tresc = tresc.replace(re, (...m) => { const n = f(...m); if (n !== m[0]) ile++; return n; }); };
+  for (const f of docs) {
+    licz(new RegExp(`\\[([^\\]]*)\\]\\(${esc(f)}(?:#[^)]*)?\\)`, 'g'), (_, t) => t);
+    licz(new RegExp(`(?<![\\w/.-])${esc(f)}`, 'g'), () => `Dysk: ${f.slice('docs/'.length)}`);
+  }
+  const numery = new Set(zostaje.map(f => /^docs\/(\d+[a-z]?)-/.exec(f)?.[1]).filter(Boolean));
+  licz(/(?<![\w/.-])docs\/(\d+[a-z]?)(?![\w./-])/g, (m, n) => (numery.has(n) ? m : `Dysk: ${n}`));
+  return { tresc, ile };
 }
 
 /** Wpis obejmujący plik: dokładna ścieżka albo katalog (ukośnik na końcu); wygrywa najdłuższa ścieżka. */
@@ -125,9 +159,11 @@ export function miekkiPrzeglad(pliki, cfg, { pomin = cfg.exceptions.filter(x => 
 /**
  * Odwołania do usuniętych plików. zrodla = { ścieżka: treść } (testy, skrypty, workflowy, kod).
  * Wzmianka w cudzysłowie/apostrofie w linii z odczytem (read/exists/join/resolve/readdir) = „czyta”; inna = „wzmianka” (komentarz, opis).
+ * Krótka nazwa pliku (bez katalogu) liczy się tylko wtedy, gdy żaden zostający plik nie ma takiej samej nazwy (README.md, Contents.json…).
  * Dla pliku docs/NN-nazwa.md liczy się też skrót „docs/NN” w komentarzach — jako wzmianka numerowa (osobny licznik).
  */
-export function odwolania(zrodla, usuniete) {
+export function odwolania(zrodla, usuniete, zostajace = []) {
+  const zostajaceNazwy = new Set(zostajace.map(f => f.split('/').pop()));
   const wynik = [];
   const czytaRe = /read|exist|join\(|resolve\(|readdir|walk\(|stat/i;
   for (const [plik, tresc] of Object.entries(zrodla)) {
@@ -138,7 +174,7 @@ export function odwolania(zrodla, usuniete) {
       const baza = u.split('/').pop();
       linie.forEach(l => {
         const pelna = l.includes(u);
-        const krotka = !katalog && baza.length > 6 && new RegExp(`['"\`][^'"\`]*${esc(baza)}`).test(l);
+        const krotka = !katalog && baza.length > 6 && !zostajaceNazwy.has(baza) && new RegExp(`['"\`/]${esc(baza)}`).test(l);
         if (!pelna && !krotka) return;
         (czytaRe.test(l) ? czyta : wzmianka).add(u);
       });
@@ -175,7 +211,7 @@ function wypiszPliki(korzen) {
   return wszystkie;
 }
 
-export function raport(plan, straznik, miekki, odw, ostrzezenia = []) {
+export function raport(plan, straznik, miekki, odw, ostrzezenia = [], kroki = { zamiany: [], generatory: [] }) {
   const L = [];
   const pokaz = (naglowek, tab, f) => { L.push(`\n== ${naglowek} (${tab.length}) ==`); tab.slice(0, 80).forEach(x => L.push(`  ${f(x)}`)); if (tab.length > 80) L.push(`  … i ${tab.length - 80} więcej`); };
   const lacznie = plan.zostaje.length + plan.usuniete.length;
@@ -188,6 +224,10 @@ export function raport(plan, straznik, miekki, odw, ostrzezenia = []) {
   pokaz('DECYZJA WŁAŚCICIELA (domyślnie zostają)', plan.decyzje, x => `${x.plik}  [${x.wpis}]`);
   pokaz('DO POPRAWY RĘCZNEJ przed przeniesieniem', plan.popraw, x => `${x.plik} — ${x.powod}`);
   if (plan.wpisyBezPlikow.length) pokaz('WPISY LISTY BEZ PLIKU (literówka albo plik, którego jeszcze nie ma)', plan.wpisyBezPlikow, x => x);
+  pokaz('ODNOŚNIKI DO DOKUMENTÓW NA DYSKU PRZEPISANE NA „Dysk: …” (README, BRD, workflowy; ile odnośników)', (kroki.przepisane ?? []), x => `${String(x.ile).padStart(3)}  ${x.plik}`);
+  pokaz('ZAMIANY WYKONANE W DRZEWIE (adres repozytorium itp.; ile wystąpień)', kroki.zamiany.filter(x => x.ile), x => `${String(x.ile).padStart(3)}  ${x.sciezka}: „${x.z}” → „${x.na}”`);
+  pokaz('ZAMIANY NIEWYKONANE (plik usunięty albo tekst nieobecny — lista nieaktualna, BŁĄD)', kroki.zamiany.filter(x => !x.ile), x => `${x.sciezka}: „${x.z}”`);
+  pokaz('GENERATORY URUCHOMIONE W DRZEWIE (README, macierz testów — kod wyjścia musi być 0)', kroki.generatory, x => `${x.komenda} → kod ${x.kod}`);
   pokaz('NAZWY FIRM W ZAKRESIE STRAŻNIKA, poza wyjątkami (BŁĄD — musi być 0)', straznik.wZakresie, x => `${x.plik}: ${x.nazwa}`);
   const wyjGrup = {};
   for (const x of straznik.zWyjatkiem) (wyjGrup[x.plik] ||= new Set()).add(x.nazwa);
@@ -225,23 +265,50 @@ function main() {
     const plan = zbudujPlan(wypiszPliki(drzewo), lista, { decyzje });
     for (const x of plan.naDysk) { mkdirSync(dirname(join(naDysk, x.plik)), { recursive: true }); cpSync(join(drzewo, x.plik), join(naDysk, x.plik)); }
     for (const x of plan.usuniete) rmSync(join(drzewo, x.plik), { force: true });
+    const kroki = { zamiany: [], generatory: [], przepisane: [] };
+    {
+      const katalogi = lista.wpisy.filter(w => w.sciezka.endsWith('/') && ['usun', 'dysk'].includes(w.akcja) && !plan.zostaje.some(f => f.startsWith(w.sciezka))).map(w => w.sciezka);
+      const cele = new Set();
+      for (const x of lista.przepisz ?? []) for (const f of plan.zostaje) if (f === x || (x.endsWith('/') && f.startsWith(x)) ) if (TEKST.test(f)) cele.add(f);
+      for (const f of [...cele].sort()) {
+        const r = przepiszOdnosniki(readFileSync(join(drzewo, f), 'utf8'), plan.usuniete.map(u => u.plik), katalogi, plan.zostaje);
+        if (r.ile) { writeFileSync(join(drzewo, f), r.tresc); kroki.przepisane.push({ plik: f, ile: r.ile }); }
+      }
+    }
+    for (const z of lista.zamiany ?? []) {
+      const f = join(drzewo, z.sciezka);
+      const r = existsSync(f) ? zamien(readFileSync(f, 'utf8'), z.z, z.na) : { tresc: '', ile: 0 };
+      if (r.ile) writeFileSync(f, r.tresc);
+      kroki.zamiany.push({ ...z, ile: r.ile });
+    }
+    /* Generatory i testy (readme.mjs, readme-ls-files) pytają o listę plików polecenie `git ls-files`: drzewo dostaje własne, puste repozytorium
+       (nic nie jest commitowane ani wypychane; w prawdziwym przeniesieniu to będzie init + jeden commit). node_modules (dowiązanie) zostaje poza indeksem. */
+    const git = (...a) => spawnSync('git', a, { cwd: drzewo, encoding: 'utf8' });
+    if (git('init', '-q').status !== 0) throw new Error('git init w drzewie podglądu nie powiódł się');
+    git('add', '-A');
+    const nm = join(korzen, 'node_modules');
+    if (!existsSync(join(drzewo, 'node_modules')) && existsSync(nm)) symlinkSync(nm, join(drzewo, 'node_modules'));
+    for (const komenda of lista.generatory ?? []) {
+      const [, ...argv] = komenda.split(' ');
+      const r = spawnSync('node', argv, { cwd: drzewo, encoding: 'utf8' });
+      kroki.generatory.push({ komenda, kod: r.status });
+    }
+    git('add', '-A', '--', '.', ':!node_modules');
 
     const pliki = wczytajDrzewo(drzewo);
     const straznik = straznikNazw(pliki, cfg);
     const miekki = miekkiPrzeglad(pliki, cfg);
     const zrodla = Object.fromEntries(Object.entries(pliki).filter(([p]) => /^(tests|scripts|\.github|lib|app|components|modules|plugins|targets|\.maestro)\//.test(p) || p === 'package.json'));
-    const odw = odwolania(zrodla, plan.usuniete.map(x => x.plik).concat(lista.wpisy.filter(w => w.sciezka.endsWith('/') && ['usun', 'dysk'].includes(w.akcja)).map(w => w.sciezka)));
+    const odw = odwolania(zrodla, plan.usuniete.map(x => x.plik).concat(lista.wpisy.filter(w => w.sciezka.endsWith('/') && ['usun', 'dysk'].includes(w.akcja) && !plan.zostaje.some(f => f.startsWith(w.sciezka))).map(w => w.sciezka)), plan.zostaje);
     const ostrzezenia = [];
     if (decyzje === 'zostaw' && plan.decyzje.length) ostrzezenia.push(`${plan.decyzje.length} plików czeka na decyzję właściciela (zostają w podglądzie); sprawdź wariant: --decyzje=usun`);
 
     if (opt('json', false)) {
       console.log(JSON.stringify({ zostaje: plan.zostaje.length, usuniete: plan.usuniete.length, naDysk: plan.naDysk.length, decyzje: plan.decyzje.length, popraw: plan.popraw.length, straznik, miekki, odwolania: odw }, null, 1));
-    } else console.log(raport(plan, straznik, miekki, odw, ostrzezenia));
+    } else console.log(raport(plan, straznik, miekki, odw, ostrzezenia, kroki));
 
     const testy = opt('testy', false);
     if (testy) {
-      const nm = join(korzen, 'node_modules');
-      if (!existsSync(join(drzewo, 'node_modules')) && existsSync(nm)) symlinkSync(nm, join(drzewo, 'node_modules'));
       const wzor = typeof testy === 'string' ? [testy] : [];
       console.log('\n== Jest w zbudowanym drzewie ==');
       const r = spawnSync('npx', ['jest', '--silent', '--ci', ...wzor], { cwd: drzewo, stdio: 'inherit' });

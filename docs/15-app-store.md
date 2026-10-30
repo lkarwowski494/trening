@@ -246,7 +246,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   - Zniknęły: ekran `more/morning`, pozycje na ekranie głównym i w Więcej, dopisek „BB · sen” w nagłówku treningu i przypomnienie o wadze.
   - Przypomnienie zaplanowane przez starszą wersję jest odwoływane przy starcie.
   - Zapisane wpisy (`State.mornings`) **zostają** w danych i w kopii — możliwy powrót.
-  - Przy okazji znika nazwa „Body Battery” (znak towarowy Garmina), która przy recenzji Apple byłaby ryzykiem.
+  - Przy okazji znika nazwa wskaźnika regeneracji (znak towarowy producenta zegarków), która przy recenzji Apple byłaby ryzykiem.
   - Podpowiedź notatki treningu: „np. samopoczucie, ból, sprzęt”.
   - Testy: `tests/morning-removed.test.tsx`.
 
@@ -266,7 +266,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 4. **`ITSAppUsesNonExemptEncryption: false`** w `app.json` (aplikacja nie używa własnego szyfrowania). Do potwierdzenia przy audycie.
 5. **Zrzuty ekranu** (6,9″ i 6,5″) z symulatora — Maestro `takeScreenshot` albo `scripts/screens`. Opis PL/EN.
 6. **Strona polityki prywatności i wsparcia** na GitHub Pages.
-7. **Elementy specyficzne dla właściciela do przejrzenia** przed sklepem: presety ViShape, teksty o „domu właściciela” w podpowiedziach, dane demo.
+7. **Elementy specyficzne dla właściciela do przejrzenia** przed sklepem: presety marki sprzętu, teksty o „domu właściciela” w podpowiedziach, dane demo.
 8. **Prawa autorskie — OBOWIĄZKOWE przed upublicznieniem aplikacji** (polecenie właściciela 09.10.2026). Bez tego nie wysyłamy do App Store:
    - **cytaty w repozytorium:** w `docs/research` było ok. 800 dosłownych fragmentów cudzych stron (najwięcej w `docs/research/kb/` — research
      konkurencji z 03.10, przeniesiony na Dysk 12.10.2026; zostały pliki źródeł researchu biblioteki), niektóre do ~900 znaków. Skrócić do niezbędnego fragmentu (1–2 zdania +
@@ -280,7 +280,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
    - **licencje zależności:** ekran licencji open source (SEC-08) aktualny (`check:licenses`).
    - **decyzje właściciela 09.10.2026 (ok. 06:45):** (1) research konkurencji (`docs/research/kb/` i cytaty w plikach źródeł) → **na Dysk**
      (B), w repo tylko wnioski z linkami — zasada w CLAUDE.md; czysta historia gita (D) — TAK, po wydaniu 1 na TestFlight, przed App Store; zakres i kolejność w docs/18 (09.10, ok. 07:00); (2) nazwy innych
-     aplikacji w komentarzach kodu → neutralne opisy (B); (3) marka ViShape SmartGym w presetach miejsc → nazwa ogólna sprzętu (A), model
+     aplikacji w komentarzach kodu → neutralne opisy (B); (3) marka sprzętu w presetach miejsc → nazwa ogólna sprzętu (A), model
      użytkownik wpisuje sam; (4) w nazwie, podtytule, słowach kluczowych i zrzutach App Store żadnych nazw innych aplikacji ani cudzych
      znaków towarowych (wytyczne Apple 2.3.7 i 5.2.1).
 
