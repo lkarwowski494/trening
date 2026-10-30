@@ -12,7 +12,7 @@
  */
 import * as store from '@/lib/store';
 import * as loc from '@/lib/locations';
-import { LANGS, type Lang } from '@/lib/i18n';
+import { LANGS, applyLang, t, type Lang } from '@/lib/i18n';
 import { base, uid, type Workout, type Template, type TemplateItem, type State } from '@/lib/seed';
 import { localISODate } from '@/lib/state/time';
 import { fresh, set } from '../../tests/helpers';
@@ -155,6 +155,9 @@ test('dane pokazowe do zrzutów App Store (wszystkie języki aplikacji, 4 warian
     fs.writeFileSync(path.join(out, `state-${lng}-adapt.json`), snap({ __sklepSavedAt: now }));
     const r = routes(squat.id); expect(r).toHaveLength(10); /* Apple: najwyżej 10 zrzutów na rozmiar i język */
     fs.writeFileSync(path.join(out, `routes-${lng}.json`), JSON.stringify(r));
+    /* teksty aplikacji, na które czekają scenariusze scripts/ci/maestro-sklep (zmienne ${NAZWA} → skrypt przekazuje je do Maestro przez -e); przebieg 40861500739: scenariusze znały tylko pl/en */
+    const tk = JSON.parse(fs.readFileSync(path.join(__dirname, '../ci/maestro-sklep/teksty.json'), 'utf8')) as Record<string, string>;
+    applyLang(lng); fs.writeFileSync(path.join(out, `teksty-${lng}.json`), JSON.stringify(Object.fromEntries(Object.entries(tk).map(([k, pl]) => [k, t(pl)])))); applyLang('pl');
   }
   fs.writeFileSync(path.join(out, 'trening-historia.csv'), demoCsv(now));
 }, 900e3);
