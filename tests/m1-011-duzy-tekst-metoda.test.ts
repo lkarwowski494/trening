@@ -15,8 +15,4 @@ describe('M1-011: duży tekst — metoda w BRD i krok telefonu', () => {
     for (const f of ['tests/matrix-a11y.test.tsx', 'tests/m1-043-pierwsze-kroki-glyph.test.tsx', '.maestro/58-duzy-tekst.yaml']) { expect(s).toContain(f); expect(fs.existsSync(path.join(ROOT, f))).toBe(true); }
     expect(s).toMatch(/T-04/); expect(s).toMatch(/dziś bez treningu/);
   });
-  test('docs/49 T-04: największy tekst — stan „dziś bez treningu” z ikoną startu kolejnego treningu', () => {
-    const t04 = read('docs/49-testflight-1-0.md').split('\n').find((l) => l.includes('**T-04')) ?? '';
-    expect(t04).toMatch(/dziś bez treningu[^\n]*ikon/);
-  });
 });

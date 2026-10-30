@@ -1,6 +1,6 @@
 /*
  * Treść dokumentów, które przy przeniesieniu repozytorium do Apps4Brew idą na Dysk (docs/46, decyzje D1 i D5 z 21.10.2026; ZB-004, 30.10.2026):
- * docs/21 (backlog), docs/41, docs/42, docs/43, docs/wzrost.md. Asercje WYDZIELONE bez zmiany brzmienia z plików wskazanych w nagłówkach
+ * docs/21 (backlog), docs/41, docs/42, docs/43, docs/45-formalnosci-asc, docs/49, docs/wzrost.md (docs/45-formalnosci i 49: decyzja P1 C, 30.10.2026). Asercje WYDZIELONE bez zmiany brzmienia z plików wskazanych w nagłówkach
  * poniżej — w tym repozytorium biegną tak samo jak dotąd. Ten plik ma w scripts/przeniesienie-1.0.json akcję „usun” (w nowym repo nie ma
  * dokumentów, które sprawdza); pozostałe asercje tamtych testów zostają i przechodzą po przeniesieniu.
  */
@@ -67,7 +67,7 @@ describe('M1-037 backlog (DEC-07 b, 27.10.2026): pozycje poza 1.0 wpisane do doc
 
 
 describe('droga do sklepu — dokumenty strategiczne zgodne z M5 S1 i bramką E2E (M1-047, z audit-m1-047-store-docs)', () => {
-  const FILES_S = ['docs/41-droga-do-app-store.md', 'docs/42-plan-wydania-1.0.md', 'docs/43-przekazanie.md'];
+  const FILES_S = ['docs/41-droga-do-app-store.md', 'docs/42-plan-wydania-1.0.md', 'docs/43-przekazanie.md', 'docs/45-formalnosci-asc.md']; /* docs/45-formalnosci: P1 C, 30.10.2026 */
   const HISTORY = /uchylon|zastąpion|nieaktualn/i;
   const TRIAL = /oferta wprowadzając\w*[^.\n]{0,40}14 dni|14 dni oferty|oferta 14 dni|oferta 1 miesiąc|2 Weeks|2 tygodnie, obie|próba 14 dni|14 dniach próby|sprawdź próbę|próbę i cenę|TRIAL_DAYS = 14|planu, próba/i;
   const E2E_OLD = /3 (kolejn\w+ )?nocn\w+|trybie ścisłym/i;
@@ -122,5 +122,21 @@ describe('L-028 dla docs/43: kroki dla właściciela w Apple mają źródło (z 
   });
   test('wyjątki są aktualne (każdy nagłówek nadal istnieje)', () => {
     for (const h of Object.keys(WYJATKI)) expect(read('docs/43-przekazanie.md')).toContain(`## ${h}`);
+  });
+});
+
+describe('docs/49: lista TestFlight 1.0 dla telefonu (z m1-045-notatki-sciezka-zakupu i m1-011-duzy-tekst-metoda; P1 C, 30.10.2026)', () => {
+  const card = read('components/SubscriptionCard.tsx');
+  const FREE_PL = /: t\('([^']+)'\);\n/.exec(card.slice(card.indexOf('const title =')))![1];
+  const OWNED_PL = [...card.matchAll(/t\('(Masz plan: [^']+)'\)/g)].map((m) => m[1]);
+  test('docs/49 T-11: po zakupie tytuły z ownedPlanTitle, bez zakupu „Zobacz plany Pro”, bez „Masz pełną wersję”', () => {
+    const t11 = read('docs/49-testflight-1-0.md').split('\n').find((l) => l.includes('**T-11')) ?? '';
+    for (const o of OWNED_PL) expect(t11).toContain(o);
+    expect(t11).toContain(`→ „${FREE_PL}”`);
+    expect(t11).not.toMatch(/Masz pełną wersję|→ „Pełna wersja”/);
+  });
+  test('docs/49 T-04: największy tekst — stan „dziś bez treningu” z ikoną startu kolejnego treningu', () => {
+    const t04 = read('docs/49-testflight-1-0.md').split('\n').find((l) => l.includes('**T-04')) ?? '';
+    expect(t04).toMatch(/dziś bez treningu[^\n]*ikon/);
   });
 });

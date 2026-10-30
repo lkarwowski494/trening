@@ -146,6 +146,17 @@ describe('przeniesienie 1.0: lista scripts/przeniesienie-1.0.json i docs/46', ()
     expect(LISTA.przepisz).toEqual(['docs/brd/', '.github/workflows/']);
     expect(LISTA.generatory).toEqual(['node scripts/readme.mjs --write', 'node scripts/test-matrix.mjs --write']);
   });
+  test('decyzje właściciela 30.10.2026 (P1 C, P2 A, P3 B): docs/45-widocznosc i 48 zostają, 45-formalnosci, 47, 49 i przegląd badacza 21.10 na Dysk; 7 testów bez przedmiotu „usun”; rejestr nie wskazuje dokumentu z Dysku', () => {
+    const akcja = (p: string) => LISTA.wpisy.find((x: any) => x.sciezka === p)?.akcja;
+    expect(akcja('docs/45-widocznosc-w-sklepie.md')).toBe('zostaje'); expect(akcja('docs/48-zgloszenie-1-0.md')).toBe('zostaje');
+    for (const p of ['docs/45-formalnosci-asc.md', 'docs/47-instrukcja-testu-dzwieku.md', 'docs/49-testflight-1-0.md', 'docs/research/przeglad-badacza-2026-10-21.md']) expect([p, akcja(p)]).toEqual([p, 'dysk']);
+    for (const t of ['dokumenty-na-dysk.test.ts', 'audit-m1-057-owner-budget.test.ts', 'audit-m1-068-release-plan.test.ts', 'audit-m1-071-channels.test.ts', 'audit-m1-072-android-decision.test.ts', 'audit-m1-2026-10-27-033-hipoteza-android.test.ts', 'dec07-odeslanie-docs21.test.ts']) expect([t, akcja(`tests/${t}`)]).toEqual([t, 'usun']);
+    expect(LISTA.wpisy.filter((x: any) => x.akcja === 'decyzja')).toEqual([]);
+    const rej = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/rejestr-twierdzen.json'), 'utf8')).twierdzenia as { id: string; dokument?: string; uwaga?: string }[];
+    const dysk = new Set(LISTA.wpisy.filter((x: any) => x.akcja === 'dysk' || x.akcja === 'usun').map((x: any) => x.sciezka));
+    expect(rej.filter((t) => t.dokument && dysk.has(t.dokument)).map((t) => t.id)).toEqual([]);
+    for (const id of ['T-005', 'T-039', 'T-040']) expect(rej.find((t) => t.id === id)!.uwaga).toMatch(/^\[OTWARTE → ponowny przegląd badacza\]/);
+  });
   test('klasyfikacja po 21.10.2026 (ZB-004): D5 — zostają tylko tokeny i specyfikacja wyglądu, reszta docs/design/ idzie na Dysk; D2/D3 — „popraw” do podmiany przy przeniesieniu', () => {
     const akcja = (p: string) => LISTA.wpisy.find((x: any) => x.sciezka === p)?.akcja;
     expect(akcja('docs/design/')).toBe('dysk');

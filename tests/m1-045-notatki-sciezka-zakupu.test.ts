@@ -33,10 +33,4 @@ describe('M1-045: ścieżka zakupu w notatkach = bieżąca etykieta wiersza „S
     expect(d48).toContain(`More > Settings, section "Subscription" > "${FREE_EN}"`);
     expect(d48).not.toMatch(/Subscription"? > "?Full version/);
   });
-  test('docs/49 T-11: po zakupie tytuły z ownedPlanTitle, bez zakupu „Zobacz plany Pro”, bez „Masz pełną wersję”', () => {
-    const t11 = read('docs/49-testflight-1-0.md').split('\n').find((l) => l.includes('**T-11')) ?? '';
-    for (const o of OWNED_PL) expect(t11).toContain(o);
-    expect(t11).toContain(`→ „${FREE_PL}”`);
-    expect(t11).not.toMatch(/Masz pełną wersję|→ „Pełna wersja”/);
-  });
 });

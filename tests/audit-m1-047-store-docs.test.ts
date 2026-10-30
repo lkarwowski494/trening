@@ -9,7 +9,7 @@ import * as path from 'path';
 
 const root = path.join(__dirname, '..');
 const read = (f: string) => fs.readFileSync(path.join(root, f), 'utf8');
-const FILES = ['docs/38-przeplywy-i-luki-e2e.md', 'docs/39-lista-kontrolna-wydania.md', 'docs/45-formalnosci-asc.md', 'tests/przeplywy.json']; /* docs/41, 42, 43: tests/dokumenty-na-dysk.test.ts (idą na Dysk przy przeniesieniu, docs/46) */
+const FILES = ['docs/38-przeplywy-i-luki-e2e.md', 'docs/39-lista-kontrolna-wydania.md', 'tests/przeplywy.json']; /* docs/41, 42, 43, 45-formalnosci-asc: tests/dokumenty-na-dysk.test.ts (idą na Dysk przy przeniesieniu, docs/46) */
 const HISTORY = /uchylon|zastąpion|nieaktualn/i;
 const TRIAL = /oferta wprowadzając\w*[^.\n]{0,40}14 dni|14 dni oferty|oferta 14 dni|oferta 1 miesiąc|2 Weeks|2 tygodnie, obie|próba 14 dni|14 dniach próby|sprawdź próbę|próbę i cenę|TRIAL_DAYS = 14|planu, próba/i;
 const E2E_OLD = /3 (kolejn\w+ )?nocn\w+|trybie ścisłym/i;
