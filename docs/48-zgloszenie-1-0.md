@@ -46,7 +46,7 @@ Stan 29.10.2026 rano (koordynator; źródła: `git log origin/main`, przebiegi C
 **Uwaga o interfejsie Apple (odczyt 25.10.2026):** dokumentacja App Store Connect API oznacza `appScreenshotSets` i `appScreenshots` jako **przestarzałe**; zrzuty zarządza się przez App Asset Library
 (<https://developer.apple.com/documentation/appstoreconnectapi/app-asset-library>, <https://developer.apple.com/documentation/appstoreconnectapi/uploading-and-managing-image-assets>,
 <https://developer.apple.com/documentation/appstoreconnectapi/placing-assets-on-your-app-store-surfaces>). Skrypt używa nowego interfejsu: obraz wgrywany raz do biblioteki, potem „placement” na lokalizacji wersji i jedno żądanie kolejności.
-Grupę urządzeń wybiera z danych referencyjnych API na podstawie dokładnych wymiarów pliku. **[OTWARTE]**: nazwy pól danych referencyjnych (`featureId`, `groupLimits`) skrypt czyta zgodnie z dokumentacją, ale
+Grupę urządzeń wybiera z danych referencyjnych API na podstawie dokładnych wymiarów pliku. **rozstrzygnięte 30.10.2026 (Z-16, apply 41023082786 i 41024161040 — grupy urządzeń dobrane poprawnie, podgląd en-US sprawdzony przez właściciela); wcześniej [OTWARTE]**: nazwy pól danych referencyjnych (`featureId`, `groupLimits`) skrypt czyta zgodnie z dokumentacją, ale
 bez sieci nie sprawdziłem ich na prawdziwej odpowiedzi — rozstrzygnie pierwszy przebieg **dry-run** (tylko odczyt, bezpieczny) i ewentualna poprawka przed `apply`.
 Skrypt nie usuwa: grupa, która ma już zrzuty, jest pomijana (zmiana zrzutów w gotowej lokalizacji — ręcznie w App Store Connect).
 
@@ -207,7 +207,7 @@ CONTACT
 
 Rozmiar: 3280 bajtów (limit 4000); po dopisaniu akapitów o grafikach i oknie „Uczciwe zasady” zostaje ok. 700 bajtów zapasu.
 Warunki wklejenia (z `store/review-notes.md`, bez zmian): skrzynka support@apps4brew.com działa (docs/41 E4 — DSA zweryfikowane 20.10.2026, **działanie skrzynki sprawdzić**), brak ofert wprowadzających w obu subskrypcjach (kontrola ASC, Z-10).
-**Pole załącznika** do notatek (zrzut ekranu lub nagranie ekranu zakupu): **[OTWARTE]** — przeczytana strona platform-version-information go nie opisuje; sprawdzić w interfejsie przy Z-25. Nie zakładamy, że jest.
+**Pole załącznika** do notatek (zrzut ekranu lub nagranie ekranu zakupu): **rozstrzygnięte 30.10.2026 (Z-25: w interfejsie pole „Attachment — Choose File (Optional)”, opcjonalne, nie używamy); wcześniej [OTWARTE]** — przeczytana strona platform-version-information go nie opisuje; sprawdzić w interfejsie przy Z-25. Nie zakładamy, że jest.
 
 ## 3. App Privacy — „Data Not Collected”?
 
@@ -384,5 +384,5 @@ Każda z co najmniej dwiema opcjami; agent nie rozstrzygał żadnej z nich.
 - Overview of Accessibility Nutrition Labels; Manage Accessibility Nutrition Labels — <https://developer.apple.com/help/app-store-connect/manage-app-accessibility/overview-of-accessibility-nutrition-labels/>, <https://developer.apple.com/help/app-store-connect/manage-app-accessibility/manage-accessibility-nutrition-labels/>
 - App Review Guidelines (1.4.1, 2.1, 2.3.3, 2.3.7, 2.5.1, 3.1.1, 3.1.2, 5.1.3) — <https://developer.apple.com/app-store/review/guidelines/>
 
-Pole **Content Rights** (przeczytane 30.10.2026: <https://developer.apple.com/help/app-store-connect/reference/app-information/> — „Apps that contain, show, or access third-party content must have all the necessary rights…”; odpowiedź właściciela: Yes + prawa, docs/18) — wcześniej nieprzeczytane i bez kroku, zablokowało „Add for Review” i kategoria podatkowa aplikacji (strona istnieje: <https://developer.apple.com/help/app-store-connect/manage-app-information/set-a-tax-category/>, ale jej treści nie czytałem).
+Pole **Content Rights** (przeczytane 30.10.2026: <https://developer.apple.com/help/app-store-connect/reference/app-information/> — „Apps that contain, show, or access third-party content must have all the necessary rights…”; odpowiedź właściciela: Yes + prawa, docs/18) — wcześniej bez przeczytanej strony i bez kroku, zablokowało „Add for Review” i kategoria podatkowa aplikacji (strona istnieje: <https://developer.apple.com/help/app-store-connect/manage-app-information/set-a-tax-category/>, ale jej treści nie czytałem).
 Odpowiedzi wpisuje właściciel w interfejsie; punkt wyjścia: aplikacja zawiera tylko własne teksty i grafiki, bez cudzych treści (`CLAUDE.md`, „Treści cudze”). Agent czyta obie strony przy Z-21 **[OTWARTE]**.
