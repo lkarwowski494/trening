@@ -44,6 +44,15 @@ describe('przeniesienie 1.0: lista → plan', () => {
     expect(u.zostaje).not.toContain('docs/d.md');
     expect(u.usuniete.map((x: any) => x.plik)).toContain('docs/d.md');
   });
+  test('zamiany i generatory: zamiana zmienia wszystkie wystąpienia i liczy je; niepoprawna zamiana albo polecenie spoza scripts/*.mjs — błąd', () => {
+    expect(wywolaj('m.zamien(d.t, d.z, d.na)', { t: 'a/x b/x a/x', z: 'a/x', na: 'Q/y' })).toEqual({ tresc: 'Q/y b/x Q/y', ile: 2 });
+    expect(wywolaj('m.zamien(d.t, d.z, d.na)', { t: 'bez', z: 'a/x', na: 'Q/y' })).toEqual({ tresc: 'bez', ile: 0 });
+    const ok = { wpisy: [w('a', 'usun')], zamiany: [{ sciezka: 'x.md', z: 'a', na: 'b' }], generatory: ['node scripts/readme.mjs --write'] };
+    expect(wywolaj('m.sprawdzListe(d)', ok)).toEqual([]);
+    expect(wywolaj('m.sprawdzListe(d)', { ...ok, zamiany: [{ sciezka: '../x', z: 'a', na: 'b' }] })[0]).toContain('względna');
+    expect(wywolaj('m.sprawdzListe(d)', { ...ok, zamiany: [{ sciezka: 'x', z: '', na: 'b' }] })[0]).toContain('zamiana niepoprawna');
+    expect(wywolaj('m.sprawdzListe(d)', { ...ok, generatory: ['rm -rf /'] })[0]).toContain('generator niepoprawny');
+  });
   test('lista niepoprawna: nieznana akcja, brak powodu, powtórzenie, ścieżka bezwzględna, pusta — błąd', () => {
     const bledy = (l: unknown) => wywolaj('m.sprawdzListe(d)', l);
     expect(bledy({ wpisy: [w('a', 'kasuj')] })[0]).toContain('nieznana akcja');
@@ -99,11 +108,50 @@ describe('przeniesienie 1.0: odwołania do usuniętych plików', () => {
   });
 });
 
+describe('przeniesienie 1.0: odnośniki do dokumentów na Dysku', () => {
+  const usuniete = ['docs/10-miejsca-i-sprzet.md', 'docs/design/to-be.md', 'docs/audyt-0.10/A11.md', 'docs/audyt-0.10/UX.md'];
+  const zostaje = ['docs/14-e2-specyfikacja.md', 'docs/design/design-spec.md'];
+  const przepisz = (tresc: string) => wywolaj('m.przepiszOdnosniki(d.t, d.u, d.k, d.z)', { t: tresc, u: usuniete, k: ['docs/audyt-0.10/'], z: zostaje });
+  test('link do usuniętego pliku traci adres, ścieżka i katalog dostają „Dysk: …”, skrót „docs/NN” bez pliku też; zostający plik bez zmian', () => {
+    expect(przepisz('Zob. [`docs/10-miejsca-i-sprzet.md`](docs/10-miejsca-i-sprzet.md#4) oraz docs/design/to-be.md i docs/audyt-0.10/UX.md; skrót docs/10 i docs/14; docs/design/design-spec.md'))
+      .toEqual({ tresc: 'Zob. `Dysk: 10-miejsca-i-sprzet.md` oraz Dysk: design/to-be.md i Dysk: audyt-0.10/UX.md; skrót Dysk: 10 i docs/14; docs/design/design-spec.md', ile: 5 });
+  });
+  test('bez odnośników — bez zmian; nazwa jako fragment innej ścieżki nie jest zamieniana', () => {
+    expect(przepisz('nic tu nie ma, a lib/docs/10-miejsca-i-sprzet.md.bak to inna ścieżka')).toEqual({ tresc: 'nic tu nie ma, a lib/docs/10-miejsca-i-sprzet.md.bak to inna ścieżka', ile: 0 });
+  });
+});
+
+describe('przeniesienie 1.0: krótka nazwa pliku w odwołaniach', () => {
+  test('nazwa wspólna z zostającym plikiem (README.md) nie daje fałszywego „czyta”; unikalna nazwa nadal działa', () => {
+    const zrodla = { 'tests/a.test.ts': "const r = fs.readFileSync(path.join(root, 'README.md'), 'utf8'); const x = readFileSync(join(root, 'docs', 'unikalny-plik.md'))" };
+    const usuniete = ['docs/design/kierunki/README.md', 'docs/unikalny-plik.md'];
+    expect(wywolaj('m.odwolania(d.zrodla, d.usuniete, d.zostajace)', { zrodla, usuniete, zostajace: ['README.md'] }))
+      .toEqual([{ plik: 'tests/a.test.ts', czyta: ['docs/unikalny-plik.md'], wzmianka: [] }]);
+  });
+});
+
 describe('przeniesienie 1.0: lista scripts/przeniesienie-1.0.json i docs/46', () => {
-  test('lista jest poprawna i każdy jej wpis wskazuje istniejący plik albo katalog (poza docs/design/ — powstaje po M3)', () => {
+  test('lista jest poprawna i każdy jej wpis wskazuje istniejący plik albo katalog ', () => {
     expect(wywolaj('m.sprawdzListe(d)', LISTA)).toEqual([]);
-    const brak = LISTA.wpisy.filter((x: any) => x.sciezka !== 'docs/design/' && !fs.existsSync(path.join(root, x.sciezka))).map((x: any) => x.sciezka);
+    const brak = LISTA.wpisy.filter((x: any) => !fs.existsSync(path.join(root, x.sciezka))).map((x: any) => x.sciezka);
     expect(brak).toEqual([]);
+  });
+  test('zamiany listy: wskazują istniejące pliki i tekst, który w nich jest (inaczej lista jest nieaktualna); nowy adres = Apps4Brew/trening (D6)', () => {
+    expect(LISTA.zamiany.length).toBeGreaterThan(0);
+    for (const z of LISTA.zamiany) {
+      const f = path.join(root, z.sciezka);
+      expect({ s: z.sciezka, jest: fs.existsSync(f) && fs.readFileSync(f, 'utf8').includes(z.z) }).toEqual({ s: z.sciezka, jest: true });
+      if (z.z.includes('lkarwowski494')) expect(z.na).toMatch(/Apps4Brew\/trening|apps4brew\.github\.io\/trening/);
+    }
+    expect(LISTA.przepisz).toEqual(['docs/brd/', '.github/workflows/']);
+    expect(LISTA.generatory).toEqual(['node scripts/readme.mjs --write', 'node scripts/test-matrix.mjs --write']);
+  });
+  test('klasyfikacja po 21.10.2026 (ZB-004): D5 — zostają tylko tokeny i specyfikacja wyglądu, reszta docs/design/ idzie na Dysk; D2/D3 — „popraw” do podmiany przy przeniesieniu', () => {
+    const akcja = (p: string) => LISTA.wpisy.find((x: any) => x.sciezka === p)?.akcja;
+    expect(akcja('docs/design/')).toBe('dysk');
+    for (const p of ['design-spec.md', 'tokeny.ts', 'tokeny-kontrast.json', 'test-pierwszego-uzycia.md', 'narzedzia/e3-kontrast.mjs']) expect(akcja(`docs/design/${p}`)).toBe('zostaje');
+    for (const p of ['docs/18-przekazanie.md', 'docs/40-lekcje.md', 'CLAUDE.md', '.claude/agents/']) expect(akcja(p)).toBe('popraw');
+    expect(akcja('docs/monetyzacja.md')).toBe('zostaje'); expect(akcja('docs/39-lista-kontrolna-wydania.md')).toBe('zostaje');
   });
   test('każda pozycja „decyzja” ma w docs/46 numer decyzji D1–D6 w powodzie albo osobny opis', () => {
     for (const x of LISTA.wpisy.filter((e: any) => e.akcja === 'decyzja')) {

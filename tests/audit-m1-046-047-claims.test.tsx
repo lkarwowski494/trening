@@ -28,9 +28,11 @@ describe('046: krok podpowiedzi to konwencja (od 23.10.2026 bez oznaczenia w int
   test('zdanie usunięte ze słowników wszystkich języków', () => {
     for (const [l, d] of Object.entries(LOCALES)) expect([l, (d as Record<string, string>)[CONV]]).toEqual([l, undefined]);
   });
-  test('docs/10 pkt 4.4: ACSM 2026 z adresem i datą odczytu; nie ma progu 2–10% przypisanego ACSM 2009', () => {
-    const d = read('docs/10-miejsca-i-sprzet.md'); const i = d.indexOf('4. **Podpowiedź progresji'); const sec = d.slice(i, d.indexOf('\n\n', i) > i ? d.indexOf('\n## ', i) : undefined);
-    expect(sec).toMatch(/PMC12965823/); expect(sec).toMatch(/odczyt/i); expect(sec).not.toMatch(/ACSM 2009: 2–10%/); expect(sec).toMatch(/konwencj/);
+  test('rejestr twierdzeń T-039 (krok podpowiedzi progresji): ACSM 2026 z adresem źródła i datą przeglądu; nie ma progu 2–10% przypisanego ACSM 2009; rodzaj „konwencja”', () => {
+    /* przeniesienie do Apps4Brew (docs/46): docs/10 idzie na Dysk — ta sama prawda jest w rejestrze twierdzeń (zapis przeglądu z 21.10.2026) */
+    const t = (JSON.parse(read('docs/research/rejestr-twierdzen.json')).twierdzenia as { id: string; rodzaje: string[]; zrodla: string[]; przeglad: string }[]).find(x => x.id === 'T-039')!;
+    expect(t.zrodla).toContain('ACSM 2026'); expect(t.rodzaje).toContain('konwencja');
+    expect(t.przeglad).toMatch(/PMC12965823/); expect(t.przeglad).toMatch(/21\.10\.2026/); expect(t.przeglad).not.toMatch(/ACSM 2009: 2–10%/); expect(t.przeglad).toMatch(/konwencj/);
   });
 });
 

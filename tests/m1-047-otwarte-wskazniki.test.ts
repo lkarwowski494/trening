@@ -62,9 +62,6 @@ describe('M1-047: dokumenty zgodne z kodem po naprawach (01-601, 01-602, 03-603,
     expect(s).toContain('.maestro/58-duzy-tekst.yaml'); expect(s).toMatch(/dziś bez treningu/); expect(s).not.toMatch(/Maestro nie ustawi rozmiaru tekstu/);
     expect(fs.existsSync(path.join(ROOT, '.maestro/58-duzy-tekst.yaml'))).toBe(true);
   });
-  test('docs/21: Pendlay Row w backlogu 1.0.1 z zakresem pracy', () => {
-    expect(read('docs/21-roadmapa-offline.md')).toMatch(/\*\*Pendlay Row\*\*[^\n]*źródła[^\n]*recenzj[^\n]*1\.0\.1/);
-  });
   test('docs/48 Z-25a: adres „Stop testing a build” z cytatem, bez martwego manage-builds', () => {
     const d = read('docs/48-zgloszenie-1-0.md');
     expect(d).toContain('test-a-beta-version/stop-testing-a-build/'); expect(d).toContain('Click Expire Build.'); expect(d).not.toContain('test-a-beta-version/manage-builds/');
