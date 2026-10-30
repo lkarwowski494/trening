@@ -30,13 +30,14 @@ export function makeJwt({ keyId, issuerId, keyPem, now = Math.floor(Date.now() /
   return `${head}.${body}.${b64u(sig)}`;
 }
 
-/** Klient API: tylko GET/POST/PATCH; stronicowanie przez links.next; błąd bez treści odpowiedzi (tylko status, kody i tytuły). */
+/** Klient API: tylko GET/POST/PATCH; stronicowanie przez links.next; błąd bez treści odpowiedzi (tylko status, kody i tytuły).
+ *  `token`: tekst albo fabryka `() => tekst` wywoływana przy każdym żądaniu (długie przebiegi odnawiają token; zgodne wstecz ze stałym tokenem). */
 export function makeClient({ fetchFn = fetch, token, sleep = ms => new Promise(r => setTimeout(r, ms)) }) {
   async function call(method, path, body) {
     if (!ALLOWED_METHODS.has(method)) throw new Error(`Niedozwolona metoda ${method} — skrypt nigdy nie usuwa`);
     const url = path.startsWith('http') ? path : API + path;
     for (let attempt = 0; ; attempt++) {
-      const res = await fetchFn(url, { method, headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
+      const res = await fetchFn(url, { method, headers: { Authorization: `Bearer ${typeof token === 'function' ? token() : token}`, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
       if (res.status === 429 && attempt < 3) { await sleep(2000 * (attempt + 1)); continue; }
       let json = null; try { json = await res.json(); } catch { json = null; }
       if (!res.ok) {

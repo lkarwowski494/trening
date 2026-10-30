@@ -29,6 +29,11 @@ on:
         required: false
         type: string
         default: ''
+      jezyki:
+        description: 'Tylko te języki aplikacji, np. cs albo cs,en (kody katalogów artefaktu; pusty = wszystkie) — do przebiegu dowodowego'
+        required: false
+        type: string
+        default: ''
 permissions:
   contents: read
   actions: read
@@ -74,11 +79,13 @@ jobs:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
           ROZMIAR: ${{ inputs.rozmiar }}
+          JEZYKI: ${{ inputs.jezyki }}
         run: |
           set -o pipefail
           export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
           ARGS=(--iphone "sklep-ramki/$ROZMIAR" --dry-run)
           [ -d zegarek-zrzuty ] && ARGS+=(--zegarek zegarek-zrzuty)
+          [ -n "$JEZYKI" ] && ARGS+=(--jezyki "$JEZYKI")
           node scripts/asc/zrzuty.mjs "${ARGS[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Usunięcie klucza z maszyny
         if: always()
@@ -125,11 +132,13 @@ jobs:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
           ROZMIAR: ${{ inputs.rozmiar }}
+          JEZYKI: ${{ inputs.jezyki }}
         run: |
           set -o pipefail
           export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
           ARGS=(--iphone "sklep-ramki/$ROZMIAR" --apply)
           [ -d zegarek-zrzuty ] && ARGS+=(--zegarek zegarek-zrzuty)
+          [ -n "$JEZYKI" ] && ARGS+=(--jezyki "$JEZYKI")
           node scripts/asc/zrzuty.mjs "${ARGS[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Usunięcie klucza z maszyny
         if: always()
