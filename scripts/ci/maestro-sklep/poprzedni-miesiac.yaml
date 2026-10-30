@@ -1,5 +1,7 @@
 # Zrzuty do sklepu: Plan → kalendarz na poprzedni (pełny) miesiąc (strzałka „‹”, testID month-prev w components/HistoryCalendar.tsx).
-# Po zmianie miesiąca pojawia się „Pokaż wszystkie” — dowód, że stuknięcie zadziałało (przebieg 39169554299: stuknięcie bywało gubione).
+# Po zmianie miesiąca pojawia się chip „Pokaż wszystkie” (tekst w języku zrzutu: zmienna POKAZ_WSZYSTKIE z teksty-<język>.json, przekazana przez -e) —
+# dowód, że stuknięcie zadziałało (przebieg 39169554299: stuknięcie bywało gubione). Stukamy tylko wtedy, gdy chipa jeszcze nie widać: nieudana asercja
+# nie cofa kalendarza kolejny raz (przebieg 40861500739: tekst tylko pl/en, w cs retry cofnął kalendarz o 4 miesiące).
 appId: pl.lukasz.trening
 ---
 - extendedWaitUntil: { visible: { id: "month-prev" }, timeout: 20000 }
@@ -7,5 +9,9 @@ appId: pl.lukasz.trening
 - retry:
     maxRetries: 3
     commands:
-      - tapOn: { id: "month-prev" }
-      - assertVisible: "Pokaż wszystkie|Show all"
+      - runFlow:
+          when:
+            notVisible: "${POKAZ_WSZYSTKIE}"
+          commands:
+            - tapOn: { id: "month-prev" }
+      - assertVisible: "${POKAZ_WSZYSTKIE}"
