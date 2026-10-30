@@ -1,0 +1,93 @@
+# rid	nazwa	reguly
+7ad8aef8	Standing Cable Chest Press	W0
+662edea9	Seated Dual-Cable Row	W0,E3
+775db8cc	Cable Belt Squat	W0,S1
+1f02eafa	Dual-Cable Curl	E3,S1
+2368ad5c	Dumbbell or Cable Romanian Deadlift	A1,S1,P?
+6f635cdd	Single-Arm Dumbbell or Cable Romanian Deadlift	A1,S1,P?
+e89a5985	Romanian Deadlift	A1,S2
+f93d6ef4	Single-Leg Dumbbell Romanian Deadlift	A1
+1b164036	Single-Leg Cable Romanian Deadlift	A1
+44ea544b	Bench Dip	S1,L3
+5569dd47	Leg Press Calf Raise	S1
+9e7eaa9e	Low-to-High Cable Fly	S1,H2
+47eded34	High-to-Low Cable Fly	S1,H2
+0c3fae30	Dumbbell Fly	S1,L3
+9bf70689	Incline Dumbbell Fly	S1,L3
+1698f6ee	Dumbbell Curl	S1,L3
+4bb003a0	Trap Bar Farmer's Walk	S1
+1cc1afe1	Farmer's Walk with Handles	S3
+dd6cdae1	Sled Drag with Harness	S3
+2e7bea95	Iron Cross Stretch	S3,L2
+0c03a774	Prone Hip Circles	S3
+ccdd5ed5	Front-to-Back Leg Swings	S3
+abcb0603	Side-to-Side Leg Swings	S3
+d248db72	Alternate-Leg Push-Off	H2
+30c617b6	Single-Leg Push-Off	H3
+ec73c963	Leg Pull-In	—
+bd10f542	Seated Leg Pull-In	K4
+9c5c8269	Mixed-Grip Chin-Up	H1,H2
+76c15d28	Side-to-Side Chin-Up	H1,H2,L2
+afe3a485	Gironda Sternum Chin-Up	H1,L2
+2cfc60fd	Balance Dome Cable Crunch with Side Bend	S1,L2,W1
+2222b356	Crunch with Legs on Stability Ball	S4,E2
+03686829	Oblique Crunch	S4,K4,L2
+66d0cd90	Weighted Sit-Up with Bands	S4,L2,W1
+8a23bdef	Front and Back Isometric Neck Hold	S4
+d4ce5863	Side Isometric Neck Hold	S4
+eca0e693	Crunch with Hands Overhead	S4
+dd0f5355	Push Press Behind the Neck	S4,K3
+a984f904	Single-Arm Dumbbell Fly	H3,K4
+ed1d368f	Incline Reverse-Grip Push-Up	H2,K1
+8cd4a246	Incline Close-Grip Push-Up	H2,K1
+bf2d1c87	Wide-Grip Push-Up	H2,K1
+9c596b89	Decline Wide-Grip Barbell Pullover	K1
+7869708c	Close-Grip Smith Machine Bench Press	K1
+d4b0e33c	Seated Close-Grip Barbell Concentration Curl	K1
+3b3e81a0	Incline Dumbbell Front Raise	K1
+5eef847c	Lying Dumbbell Curl	K4
+75d5b41f	Lying Close-Grip High Cable Curl	E4,K1
+4691a85c	Kneeling High Cable Row	E4
+8eaa2b4d	Single-Arm High Cable Side Bend	E4,H3,L2
+8dc5d40d	Standing Single-Arm Low Cable Triceps Extension	E4,H3,K1
+14b913df	Stiff-Legged Deadlift	S2
+b37aae3e	Wide-Grip Bench Press	S2
+6aa2a1b2	Decline EZ-Bar Triceps Extension	E1
+825f0947	EZ-Bar Curl	E1
+9809553d	Incline Smith Machine Shoulder Raise	E1,K1
+6df50c2d	Machine Deadlift	E5
+04c94607	Machine High Row	E5
+9bfac6b8	Machine Shrug	E5
+1c9abcb6	Decline Machine Chest Press	E5,K1
+aa94afd5	Incline Machine Chest Press	E5,K1
+cf4d620c	Calf Raise Machine Shrug	E5
+95bf2bee	Machine Belt Squat	E5
+7fb124e0	Machine Dip	E5
+af2c053b	Barbell Shrug Behind the Back	W1,K3
+cd8ff968	Barbell Wrist Curl Behind the Back	K3
+77e6e36b	Smith Machine Shrug Behind the Back	K3
+801042da	Standing Barbell Press Behind the Neck	K3
+22910680	Straddle Stretch	W2
+5ce9183e	Straight-Arm Raise on Incline Bench	H2,L2
+20273872	Straight-Arm Pulldown	H2
+16c65d57	Chest-Supported Row	H2
+039fb885	Downward-Facing Balance	H2
+fe035e03	Double-Leg Butt Kick	H2
+19d77038	Alternate-Leg Diagonal Bound	H2
+8b7add2d	Full-Range-of-Motion Lat Pulldown	H2
+a222cb10	Cable Rope Rear Delt Row	L2,H2
+21b82f3e	Power Stairs	—
+3c85132c	Adductor Foam Roll	F1
+2b5a4aa5	Calf Foam Roll	F1
+f38daa87	Hamstring Foam Roll	F1
+7099e219	IT Band Foam Roll	F1
+564a122f	Lat Foam Roll	F1
+90486bc9	Peroneal Foam Roll	F1
+ac9e7cd6	Piriformis Foam Roll	F1
+577cc0a0	Quad Foam Roll	F1
+7deb94b3	Upper Back Foam Roll	F1
+f9dd2033	Foot Roll	F1
+92fe6eee	Gorilla Chin-Up Crunch	H1,W2
+
+6197a61b	Kettlebell Sumo Deadlift	S1
+51003b6d	See-Saw Press	S3
