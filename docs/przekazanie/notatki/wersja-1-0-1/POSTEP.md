@@ -82,6 +82,9 @@
 - 30.10 ~12:20 PL linię przejmuje nowa sesja koordynatora (decyzja właściciela ~12:10, wariant B); potwierdzenie do koordynatora 1.0.
 - 30.10 ~12:45 przebiegi fali 4 na 0e9889d: e2e-ios 41036041281 6/6 za pierwszym razem (17 z kartą Deadlift i obrazem v2, 21, 22, 23, 27, 57); store-screenshots 41036044849 „Pomiar: 108 s na ekran” (przed: 162–210 s); zrzuty pl porównane pikselowo z 40979987052 — różnice tylko zegar/data (01, 07), 101-17 (06), 101-16 (10) i klatka animacji (02, losowa także w zestawie 1.0 → backlog docs/21); „Device became unreachable” nie wystąpiło — brzmienie potwierdzone w kodzie Maestro 2.12.0, test uzupełniony, R-101-23 zamknięte (docs/40). 101-20, 101-22, 101-23, 101-24, es-419 — zamknięte (docs/21). ios-unsigned 41036034159 attempt 2: Jest zielony, kompilacja w toku.
 
+- 30.10 ~13:40 PL ios-unsigned 41036034159 (attempt 2) anulowany limitem zadania 60 min — Jest na macOS 47 min, kompilacja dostała 10 min (nie błąd kodu; kompilacja 0e9889d udowodniona w e2e-ios i store-screenshots). Zmiana: Jest usunięty z ios-unsigned (w całości w tests.yml przy każdym wypchnięciu), strażnik `tests/ios-unsigned-czas.test.ts` (czerwony → zielony); odrzucone: limit 90 min + jest-ponow (45 min macOS dubla na przebieg). Przebieg dowodowy 41058708065 (r101/ios-jest 15e8ac8) zielony: 20 min, typy, tłumaczenia, verify:native, Swift zegarka, manifest prywatności, kompilacja z widżetem i zegarkiem. B-04 (ios-unsigned w fali 4) zamknięte.
+- 30.10 ~13:10 decyzja właściciela: zrzut 02 ze stałą klatką (101-32, docs/18). Scalenie main 748bf972 (PR #102, #103) → konflikty docs/18, docs/40 (obie strony), README/docs/19 (wygenerowane), `store/review-notes.en.txt` przeliczony (`kontrola-oczekiwane.mjs`, notatki 101-25).
+
 ## Czekające kroki właściciela
 - brak decyzji (D3 → 17°, 101-27 → bez poprawki, 101-17 → B, Reverse Lunge → zatwierdzona wersja widoczna; 29.10.2026)
 - Lekcja Reverse Lunge: wybór A/B (stan na bazie w poleceniach figur) — przy okazji
