@@ -49,6 +49,8 @@
 - **Model pracy po lekcji L-001 (decyzja właściciela 14.10.2026, wszystkie projekty):**
   1. *Przebieg dowodowy CI:* zmiana budowania, podpisu lub wysyłki (workflowy, skrypty CI) trafia do scalenia dopiero po prawdziwym przebiegu,
      który pokazuje wynik na gotowym produkcie (np. uprawnienia w wyeksportowanym pakiecie); testy samego pliku workflowu nie wystarczą.
+     Pierwszy zapis nowego albo zmienionego skryptu wysyłki do usługi zewnętrznej (np. App Store Connect) — najpierw na jednym elemencie (wejście zawężające),
+     sprawdzenie wyniku w usłudze, dopiero potem całość; dry-run nie zastępuje tego kroku (właściciel 30.10.2026, wariant A; lekcja o zapisie zrzutów 0/64 w docs/40).
   2. *Rejestr ryzyk z blokadą:* każde ryzyko „niepotwierdzone / rozstrzygnie build” trafia do sekcji „Rejestr ryzyk” w `docs/40-lekcje.md`
      z warunkiem zamknięcia (automatyczne sprawdzenie albo konkretny krok dla właściciela). Otwarte ryzyko blokuje wydanie.
   3. *Telefon zaraz po buildzie:* po każdym TestFlight pierwsze zadanie właściciela to krótka lista kontrolna (ok. 5 min, krok po kroku)
