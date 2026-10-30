@@ -243,6 +243,7 @@ Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właścic
 - **ms: „Senaman baharu” i „Latihan baharu” na jednym ekranie importu** (10-import, oba w znaczeniu „nowe ćwiczenie”) — ujednolicić termin w słowniku ms (NISKIE).
 - **Rysunek ćwiczenia w widoku z boku: półprzezroczysty talerz zasłania głowę** (karta Back Squat, zrzut 02 we wszystkich językach; wcześniej fi/02) — cecha rysunku, nie kadru; do recenzji ruchu i wyglądu (bramka 4) (NISKIE).
 - **Dane pokazowe zrzutów: nazwa miejsca „Home”/„Gym” po angielsku we wszystkich językach poza pl** (`scripts/screens/store-seed.test.ts`, widoczne np. vi/06 „Điều chỉnh theo: Home”) — nazwy miejsc w języku zrzutu (NISKIE, tylko zrzuty).
+- **Podpisy zrzutów ja: mniejsza czcionka niż zh/ko** (jeden rozmiar w języku ogranicza najdłuższy podpis, ekran 05) — skrócić podpis 05 ja w `store/screenshot-captions.json`, recenzja, ramki ja od nowa (właściciel 30.10.2026: zostaje w 1.0) (NISKIE).
 - **Podpisy zrzutów vi: dwusylabowe wyrazy dzielone między wiersze** (np. „tiến / bộ”) — dzielenie wierszy po wietnamsku wymaga słownika wyrazów; ręczne miejsca podziału w podpisach vi (NISKIE).
 - **Zrzuty sklepu: czas przebiegu** — Maestro 2–3 razy na ekran daje ok. 2,7 min na ekran; podział języków na równoległe zadania albo mniej uruchomień Maestro (uprawnienia nadawane z góry).
 
