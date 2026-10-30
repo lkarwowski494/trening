@@ -23,14 +23,21 @@ bez_alfa() { "$IM" "$1" -alpha off -define png:color-type=2 "$1.tmp.png" && mv "
 STATES="set-first rest-after-first last-rest done idle"
 # Zegarek musi być sparowany z symulatorem iPhone'a już przy instalacji aplikacji (osobny krok w watch-sim.yml, przed XCUITest): parowanie po instalacji kasuje aplikację
 # (przebieg 40883907827: „Simulator device failed to launch”), a bez pary każdy zrzut ma czerwoną ikonę braku telefonu.
-# Symulator czasem odmawia uruchomienia aplikacji w połowie zestawu (przebieg 40959920771: FBSOpenApplicationServiceErrorDomain code=4 po ok. 90 zrzutach),
-# a pojedynczy błąd przerywał wszystkie 35 języków — do 3 prób z przerwą, zanim zadanie stanie się czerwone.
+# Symulator odmawia uruchomienia aplikacji w połowie zestawu (przebiegi 40959920771 i 40967747778: FBSOpenApplicationServiceErrorDomain code=4 po ok. 90 i 120 zrzutach,
+# dopiero od parowania z iPhone'em; hipoteza: watchOS usuwa aplikację, której nie ma na sparowanym telefonie). Do 3 prób z przerwą; gdy aplikacji nie ma już na zegarku,
+# log to zapisuje i instaluje ją ponownie z wyniku budowania (WATCH_APP albo ios/build/…/Debug-watchsimulator/*.app bez *-Runner.app).
+WATCH_APP="${WATCH_APP:-$(find ios/build/Build/Products -maxdepth 2 -path '*watchsimulator*' -name '*.app' ! -name '*-Runner.app' 2>/dev/null | head -1)}"
 uruchom() {
   local t
   for t in 1 2 3; do
     xcrun simctl terminate "$UDID" "$BUNDLE" >/dev/null 2>&1 || true
     if SIMCTL_CHILD_WATCH_FAKE_SNAPSHOT_JSON="$1" xcrun simctl launch "$UDID" "$BUNDLE" >/dev/null; then return 0; fi
-    echo "::warning::Uruchomienie aplikacji zegarka nie powiodło się (próba $t z 3)"; sleep 5
+    echo "::warning::Uruchomienie aplikacji zegarka nie powiodło się (próba $t z 3)"
+    if ! xcrun simctl get_app_container "$UDID" "$BUNDLE" >/dev/null 2>&1; then
+      echo "::warning::Aplikacji nie ma już na zegarku — instaluję ponownie"
+      [ -n "$WATCH_APP" ] && xcrun simctl install "$UDID" "$WATCH_APP" >/dev/null 2>&1 || echo "::warning::Ponowna instalacja nie powiodła się"
+    fi
+    sleep 5
   done
   return 1
 }

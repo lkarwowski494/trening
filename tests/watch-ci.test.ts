@@ -52,16 +52,21 @@ describe('scripts/ci/watch-screenshots.sh', () => {
     expect(ui.match(/launchEnvironment\["WATCH_FAKE_UNDO_SEC"\]/g)).toHaveLength(1); /* jedno miejsce uruchamiania: wszystkie testy dostają okno */
     expect(ui).toMatch(/undoSec: Int = 120/);
   });
-  test('nieudane uruchomienie aplikacji na symulatorze jest ponawiane, zamiast przerywać wszystkie języki (przebieg 40959920771, 29.10.2026)', () => {
+  test('nieudane uruchomienie aplikacji na symulatorze jest ponawiane, a zniknięta aplikacja instalowana ponownie, zamiast przerywać wszystkie języki (przebiegi 40959920771, 40967747778; 29.10.2026)', () => {
     /* Fałszywe narzędzia w PATH: xcrun (pierwsze `simctl launch` pada, kolejne się udają; zrzut = pusty plik), magick (kopiuje plik, identify bez alfy), sleep (bez czekania). */
     const bin = fs.mkdtempSync(path.join(os.tmpdir(), 'watch-shots-')); const out = path.join(bin, 'out'); const licznik = path.join(bin, 'launch');
     const w = (n: string, body: string) => { fs.writeFileSync(path.join(bin, n), `#!/usr/bin/env bash\n${body}\n`); fs.chmodSync(path.join(bin, n), 0o755); };
+    const inst = path.join(bin, 'install');
+    /* Pierwsze uruchomienie pada, a aplikacji „nie ma” na zegarku (get_app_container = błąd) — skrypt ma ją zainstalować ponownie z WATCH_APP (przebieg 40967747778). */
     w('xcrun', `if [ "$2" = launch ]; then n=$(cat "${licznik}" 2>/dev/null || echo 0); n=$((n+1)); echo $n > "${licznik}"; [ $n -gt 1 ] || exit 4; fi
+if [ "$2" = get_app_container ]; then [ -f "${inst}" ] || exit 2; fi
+if [ "$2" = install ]; then echo "$4" >> "${inst}"; fi
 if [ "$2" = io ]; then : > "$5"; fi
 exit 0`);
     w('magick', 'if [ "$1" = identify ]; then echo srgb; else cp "$1" "${@: -1}"; fi');
     w('sleep', 'exit 0');
-    const log = execFileSync('bash', [script('watch-screenshots.sh'), 'UDID', out, 'pl'], { cwd: root, env: { ...process.env, PATH: `${bin}:${process.env.PATH}` }, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    const log = execFileSync('bash', [script('watch-screenshots.sh'), 'UDID', out, 'pl'], { cwd: root, env: { ...process.env, PATH: `${bin}:${process.env.PATH}`, WATCH_APP: '/zbudowana/TreningWatch.app' }, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    expect(fs.readFileSync(inst, 'utf8').trim()).toBe('/zbudowana/TreningWatch.app');
     expect(log).toContain('Zrzuty: 5 plików');
     expect(Number(fs.readFileSync(licznik, 'utf8'))).toBe(6); /* 5 stanów + 1 ponowienie */
     expect(sh).not.toMatch(/^\s*SIMCTL_CHILD_WATCH_FAKE_SNAPSHOT_JSON="\$JSON" xcrun simctl launch/m); /* jedyne uruchamianie — przez funkcję z ponowieniem */
