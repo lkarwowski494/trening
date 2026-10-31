@@ -8,14 +8,14 @@ Jesteś koordynatorem wydania 1.0 i linii 1.1 aplikacji Trening (repo lkarwowski
 ## Stan na 31.10 ~22:15 PL (sprawdź u źródła: git ls-remote, tests.yml)
 - 1.0: w recenzji Apple (build 1033). Nic nie dodajemy do 1.0. Przypomnienia planu B ZB-022: 03.11 i 05.11.
 - `integracja-1-1` = 6b3d23d5.
-- `acg/fale-napraw` @ 6330c721 (= da5177b2 + ACG-007 92c1feef + STAN; pełne verify 92c1feef zielone, 15787 testów) — tests.yml dla 6330c721 NIE sprawdzony. Zielony → FF integracji: `git push --no-verify origin 6330c721:refs/heads/integracja-1-1` (wyjątek nazwany: znacznik verify w innym kontenerze, ten sam SHA ma zielony tests.yml) — wpisz wyjątek w STAN-1-1.
-- `slownik/faza-pauza-wip` @ e7ce5f1e (aba31409 + cofnięcie zmiany EN łamiącej DEC-04 a) — wypchnięte z --no-verify, verify NIEDOKOŃCZONE (= słownik faza_pauza, średnie UI 49 tłumaczeń, scalenie fal da5177b2). Najpierw scal do niej `origin/acg/fale-napraw` 6330c721 (dochodzi ACG-007), potem jedno pełne verify → push na `slownik/faza-pauza` → tests.yml → FF integracji.
+- `acg/fale-napraw` @ 6330c721 (= da5177b2 + ACG-007 92c1feef + STAN; pełne verify 92c1feef zielone, 15787) — tests.yml 41243267412. Po FF integracji do e7ce5f1e: scalić integrację do acg/fale-napraw (unikalne tylko 92c1feef + 6330c721), jedno pełne verify, tests.yml, FF integracji.
+- `slownik/faza-pauza` @ e7ce5f1e — pełne verify ZIELONE (15790), wypchnięte normalnie (= słownik faza_pauza + ro Podciąganie + średnie UI + scalenie fal da5177b2; `-wip` zbędna). tests.yml dla e7ce5f1e — sprawdzić. Jest potomkiem integracji 6b3d23d5 → po zielonym FF integracji do e7ce5f1e (`--no-verify`, wyjątek nazwany jak wyżej).
 - ACG-007 (Glute Bridge) ZROBIONE na acg/fale-napraw (92c1feef, recenzja audytora wyswietlana sha 51c837437b08).
 - `audyt/cwiczenia-grafiki-p5` @ b16f61c5 (verify zielone) — scalić z `audyt/cwiczenia-grafiki-2026-10-31`.
 - DECYZJA WŁAŚCICIELA 31.10.2026 ~22:07 PL: rozmiar docs/18 — wariant A (archiwizacja starszych wpisów do `docs/18-archiwum-do-DD.MM.md`, wzór istniejącego docs/18-archiwum-do-11.10.md; check:decyzje i testy czytają też archiwa; liczba wpisów przed = po, dziś 490; wpisy z wdrożeniem otwarte/odłożone zostają; test przypadku gałęzi długo żyjącej wg L-080). Zapisz w docs/18 + zaktualizuj lekcję o ENOBUFS w docs/40. Zrobić PO scaleniu B do integracji (konflikty w docs/18).
 
 ## Kolejka (po kolei)
-1. FF fal (6330c721) → scalenie fal do słownika + verify + FF słownika → archiwizacja docs/18 (decyzja A).
+1. FF integracji do e7ce5f1e (słownik) → scalenie integracji do fal (ACG-007) + verify + FF → archiwizacja docs/18 (decyzja A).
 2. 17 średnich uwag dla wskazówek spoza ACG-003; 10 pytań do native speakera (docs/lokalizacja/srednie-2026-10-31/); 9 odłożonych.
 3. Dalej z STAN koordynatora: recenzje 4 rodzin v2, nazwy EN ZB-025 + ZB-023, K1/K2 ZB-027, przyspieszenie CI ZB-029.
 
