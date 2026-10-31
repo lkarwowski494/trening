@@ -814,3 +814,20 @@ Walidacja 1/1 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszys
 |---|---|---|---|---|---|
 | Kneeling Squat | nie | bez figury | none (open) | — | — |
 | Seated Good Mornings | tak | ok (siad na skrzyni, gryf na karku x −11 przy barku x 2, skłon tułowia 2 → 44°, kręgosłup 0°) | general rdl | tak | — |
+
+## strongman — 10 ćwiczeń, 1 z danymi (karty własne 0; zestawy: `squat` 1, `carry` 1; brak 8) — partia 4E
+
+Walidacja 1/1 bez błędów, `jakosc-raport` 0 naruszeń (z `--styk-wszystkie` R17 na Yoke Walk: 2,5 cm przy u = 0,92 — palce obu stóp 0,4–1 cm nad podłogą, obrys buta; bez wady).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Atlas Stones | nie | bez figury | none (open) | — | — |
+| Circus Bell | nie | bez figury | none (open) | — | — |
+| Conan's Wheel | nie | bez figury | none (open) | — | — |
+| Jefferson Squat | nie | bez figury | general squat | tak | — |
+| Keg Load | nie | bez figury | none (open) | — | — |
+| Log Lift | nie | bez figury | none (open) | — | — |
+| Power Stairs | nie | bez figury | none (open) | — | — |
+| Sandbag Load | nie | bez figury | none (open) | — | — |
+| Tire Flip | nie | bez figury | none (open) | — | — |
+| Yoke Walk | tak | ok (marsz w miejscu, gryf na karku y 134 — jarzmo rysowane jak gryf; tułów 3°) | general carry | tak | sprzęt zastępczy (U-4E-3) |
