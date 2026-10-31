@@ -70,3 +70,5 @@
 ## 22:17 PL
 - B wypchnęła `slownik/faza-pauza-wip` @ aba31409 (--no-verify, verify niedokończone; = słownik + średnie UI + scalenie fal da5177b2). Po resecie: pełne verify aba31409 → push na slownik/faza-pauza → FF integracji. Kolejka B w STAN-1-1 na tej gałęzi.
 - A: czekam na raport (ACG-007).
+## 22:23 PL
+- A raport końcowy: acg/fale-napraw @ 6330c721 (ACG-007 92c1feef, verify zielone 15787) — 0 niewypchniętych. tests.yml 6330c721 niesprawdzony. Decyzja A docs/18 — jeszcze NIE w docs/18. Prompt przejęcia zaktualizowany.
