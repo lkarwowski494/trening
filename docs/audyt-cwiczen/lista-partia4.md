@@ -540,3 +540,23 @@ Pomiary co u = 0,05 i punkty u = 0 / 0,5 / 1: kolano, biodro (`lcurl.still` — 
 | Stability Ball Hamstring Curl | nie | bez figury | general bridge | **nie** (jw., po nazwie) | ACG-019 (teoretyczny — bez figury zestaw niewidoczny) |
 | Standing Cable Leg Curl | tak | ok (mankiet na kostce, wyciąg z przodu x 95, kolano 9 → 95°, biodro stałe 10–12°) | general legCurl | tak | — |
 | Standing Leg Curl | tak | ok (oparcie tułowiem 24°, kolano 9 → 95°, biodro stałe 25–28°) | general legCurl | tak | — |
+
+## row — 13 ćwiczeń, 12 z danymi (karty własne 6, w tym 3 ukryte w 1.1; zestawy: `rowBent` 5, `row` 2; brak 0) — partia 4D
+
+Pomiary co u = 0,05: łokieć, uniesienie i odwiedzenie ramienia, kolano, biodro, tułów, kręgosłup (0° we wszystkich), stopy, chwyt i ciężar; w pozycji górnej odległość łokcia od linii miednica–bark (`row.elbowsPast`, `row1.top`; tułów ma ok. 10 cm grubości od osi). Walidacja 12/12 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`). Karty ukryte w 1.1 (Bent Over Row ×2, T-Bar Row) — rysunek bez wskazówek, w 1.0 karty z figurą v1 (partia 3).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Barbell Rear Delt Row | tak | ok (szeroki chwyt z ±36, łokcie odwiedzone do 85°, gryf do górnej części klatki) | general rowBent | tak | nota: tułów równolegle — w rysunku 55° (jak pozostałe wiosłowania w opadzie); ruch właściwy, bez znaleziska |
+| Bent Over Row (hantle) | tak | ok (tułów 55°, kolano 26°, łokieć 18 → 117°, łokieć w górze 18,6 cm ponad linią pleców) | own (ukryta w 1.1) | — | — |
+| Bent Over Row (linki) | tak | ok (jak hantle, uchwyty z dolnych wyciągów) | general rowBent | tak | — |
+| Bent Over Row (sztanga) | tak | ok (jak hantle, gryf od wyprostu rąk do brzucha) | own (ukryta w 1.1) | — | — |
+| Chest Supported Row | tak | ok (klatka na ławce 45°, hantle z wyprostu rąk, łokcie 22 cm ponad linią pleców) | own | — | karta zgodna |
+| Lying T-Bar Row | tak | ok (ruch jak Chest Supported Row, dźwignia z uchwytem oburącz) | general row | tak | — |
+| Meadows Row | nie | bez figury | general rowBent | tak | — |
+| One Arm Row (hantle) | tak | ok (kolano i dłoń na ławce — kolano 68°, tułów 75°, hantel y 36 → 79, łokieć 18,8 cm ponad linią pleców) | own | — | karta zgodna („mniej więcej równolegle” przy 75°) |
+| Pendlay Row | tak | ok (tułów 80°, gryf startuje z podłogi y 23,2 = promień talerza, łokieć do 143°, tułów stały) | own | — | karta zgodna (`pendlay.floor`, `pendlay.mis.torso`) |
+| Reverse Grip Bent Over Row | tak | ok (podchwyt, ruch jak sztanga) | general rowBent | tak | — |
+| Seal Row (sztanga) | tak | ok (leżenie przodem na wysokiej ławce top 80, nogi na ławce, gryf z y 26 do 65,5) | general row | tak | łokieć w górze 7,7 cm od osi — ok. na linii pleców (`row.elbowsPast` na granicy) |
+| Smith Machine Bent Over Row | tak | ok (tułów 78°, gryf w prowadnicy y 25 → 70) | general rowBent | tak | — |
+| T-Bar Row | tak | ok (dźwignia z końca przy podłodze x −85, tułów 55°) | own (ukryta w 1.1) | — | — |
