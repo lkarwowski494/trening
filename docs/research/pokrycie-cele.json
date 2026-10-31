@@ -2,7 +2,7 @@
   "_opis": "Cele pokrycia katalogu ćwiczeń per wersja (decyzja właściciela 28.10.2026, M-B). min: metryka → minimalna liczba z tests/fixtures/pokrycie-katalogu.json (pole dobre). Sprawdzenie: node scripts/pokrycie-katalogu.mjs --cel <wersja>; krok listy kontrolnej wydania w docs/39.",
   "wersje": {
     "1.1": {
-      "status": "do potwierdzenia przez właściciela",
+      "status": "potwierdzony przez właściciela 31.10.2026 (decyzja 2 = A, docs/18); pełna karta — po zmianie definicji (Z3, ZB-025)",
       "ustalono": "28.10.2026",
       "opis": "Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela.",
       "min": {
