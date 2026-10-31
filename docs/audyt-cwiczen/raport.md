@@ -224,3 +224,62 @@ Razem partia 4B: **KRYTYCZNE 0, WYSOKIE 0, ŚREDNIE 1, NISKIE 1.** ŚREDNIE — 
 |---|---|---|
 | L-F (rozszerzenie: ACG-013) | zestaw z recenzją dla wariantu A przypisany do figury wariantu B; dane figury skopiowane z innego ćwiczenia (Wall Calf Stretch) | do strażnika L-F: zdania ustawienia (`gcalf.set` — „stopień”, „krawędź”) wymagają sprzętu w `sprzet` (skrzynia/stopień) i warunku geometrii (pięta poniżej krawędzi); test czerwony przed na ACG-013 |
 | L-G (ACG-014) | walidacja nie sprawdza, czy narysowany sprzęt podparcia (ławka) ma styk z ciałem | reguła jakości: każdy `lawka`/`skrzynia` w `sprzet` ma w pętli co najmniej jeden styk ciała albo stóp (wyjątek jawny w danych); czerwony przed na Kneeling Cable Triceps Extension |
+
+## 11. Partia 4C — rodziny `planned` plyo, olympic, lunge, overhead_press (31.10.2026, @ 294812ef)
+
+Metoda jak w 4A/4B (kod `lib/`, `scripts/`, `data/` bez zmian — od 4B tylko commity `docs/audyt-cwiczen/`); lista per ćwiczenie: `lista-partia4.md` (sekcje plyo, olympic, lunge, overhead_press). Liczby z kodu: plyo 28 ćwiczeń / 27 figur, olympic 25 / 23, lunge 24 / 24, overhead_press 23 / 21 — razem **100 ćwiczeń, 95 figur**, wszystkie sprawdzone. Walidacja v2: 95/95 bez błędów; `jakosc-raport`: 0 naruszeń (z `--styk-wszystkie` R17 na 53 figurach — wszystkie to lot w skoku, wspięcie na palce w podrywaniu albo stopa w kroku; U-4C-1). Nowe pomiary w tej partii: lot i wybicie w skokach, odstęp gryfu od obrysu ciała i środek ciężkości z gryfem w podrywaniu, kierunek kolana wobec osi stopy w wykrokach, porównanie każdego rysunku z notą ćwiczenia w katalogu. Rodziny niewidoczne (`planned`), więc **nic z tej partii nie dotyczy 1.0**; kroki po włączeniu rodziny w 1.1: Biblioteka → ćwiczenie → Technika ›.
+
+| Rodzina | Ćw. / figur | Walidacja | Wada ruchu w pomiarach | Karta a rysunek | Zestawy pasują (z figurą) | K / W / Ś / N |
+|---|---|---|---|---|---|---|
+| plyo | 28 / 27 | 0 błędów | Dumbbell Seated Box Jump — dwa hantle wymachiwane nad głowę (ACG-015); Bench Jump, Single-Leg Stride Jump — inny wariant (ACG-014) | own 1 (Box Jump): zgodna | 25 z 26 | 0 / 0 / 1 / 0 (+2 do ACG-014) |
+| olympic | 25 / 23 | 0 błędów | — (pytania o odbiór i ugięcie: OP-8) | — (bez kart własnych) | 23 z 23 (2 z uwagą „nie dotyczy”) | 0 / 0 / 0 / 0 |
+| lunge | 24 / 24 | 0 błędów | Walking Lunges, Barbell Walking Lunge — krok i powrót zamiast marszu (ACG-016); Crossover Reverse Lunge, Single-Leg High Box Squat — inny wariant (ACG-014) | own 6: 5 zgodnych, Walking Lunges — ACG-016 | 17 z 18 | 0 / 0 / 0 / 1 (+2 do ACG-014) |
+| overhead_press | 23 / 21 | 0 błędów | Kettlebell Seated Press, See-Saw Press — inny wariant (ACG-014) | own 5: zgodne | 14 z 16 (ACG-017) | 0 / 0 / 0 / 1 (+2 do ACG-014) |
+
+Razem partia 4C: **KRYTYCZNE 0, WYSOKIE 0, ŚREDNIE 1, NISKIE 2** (+6 ćwiczeń dopisanych do ACG-014, NISKIE). ŚREDNIE — **do weryfikacji niezależnej**. Ćwiczenia bez danych (5) nie mają figury — ich zestaw się nie pokaże.
+
+### ACG-015 — Dumbbell Seated Box Jump: dwa hantle wymachiwane nad głowę w skoku na skrzynię
+- **Ćwiczenie:** Dumbbell Seated Box Jump (plyo, zestaw ogólny `jump`). **Perspektywa:** technika rysunku; karta a rysunek; rysunek a nota ćwiczenia. **Status:** do weryfikacji niezależnej.
+- **Waga:** ŚREDNIE (rysunek pokazuje obciążenie w wyprostowanych rękach nad głową w locie na skrzynię — inny i bardziej ryzykowny wariant niż opis ćwiczenia; zdanie zestawu „z zamachem rąk” utrwala ten obraz przy ciężarze). Nie WYSOKIE: brak przeczytanego źródła, że taki wymach jest niebezpieczny — rozstrzyga recenzja. **Pewność:** 90% (pomiar 100%, nota katalogu jednoznaczna). **Widoczne w 1.0:** nie. **Wersja:** 1.1.
+- **Realność:** teoretyczny dziś; realny po włączeniu plyo: Biblioteka → Dumbbell Seated Box Jump → Technika › → animacja (z boku): z siadu na ławce hantle idą łukiem w górę do 256 cm nad podłogą w locie, lądowanie na skrzyni z hantlami w wyciągniętych rękach.
+- **Dowód:** `lib/figures/v2/poses/plyo.json:15701` — dwa hantle (`hantel`, chwyt R i L z ±28), pomiar `keyframeFrame`: u 0 chwyt [8; 35] (przy ławce), u 0,6 [88,8; 255,6] (nad głową, łokcie proste), u 1 [187,9; 125,6]. Nota: „One dumbbell held at the chest, jump from seated on a bench onto a box.” (`docs/research/equipment/catalog.json:21540`). Zestaw `cue-sets.json:211`: `jump.drive` „Wybij się, prostując biodra, kolana i kostki, z zamachem rąk.” (`lib/cues/text/pl.json:163`). Arkusz z boku u = 0 / 0,3 / 0,6 / 0,89 / 1 — poza repo. Poprawka: jeden hantel przy klatce przez cały ruch (wg noty) i zestaw bez `jump.drive` (jak Weighted Jump Squat) — po potwierdzeniu wariantu przez badacza.
+
+### ACG-016 — Walking Lunges, Barbell Walking Lunge: rysunek wraca do startu, zdanie mówi o marszu
+- **Ćwiczenia:** Walking Lunges (lunge, karta własna), Barbell Walking Lunge (zestaw `lunge`). **Perspektywa:** karta a rysunek. **Status:** wymaga potwierdzenia przy recenzji.
+- **Waga:** NISKIE (pokazany ruch to wykrok w przód z powrotem — bliski wariant; zdanie „wstań na przedniej nodze i od razu zrób krok drugą” nie ma odpowiednika w animacji; nie niebezpieczne). **Pewność:** 85%. **Widoczne w 1.0:** nie (w 1.0 karta Walking Lunges z figurą v1 — partia 3). **Wersja:** 1.1.
+- **Realność:** teoretyczny dziś; realny po włączeniu lunge: Biblioteka → Walking Lunges → Technika › → animacja (wahadło): krok prawą w przód (kostka x 0 → 89,4), zejście, potem prawa stopa wraca do x 0.
+- **Dowód:** `lib/figures/v2/poses/lunge.json:1433` (Walking Lunges) i `:3448` (Barbell Walking Lunge) — `klatki` nóg identyczne z Lunges (hantle)/Lunges (sztanga), pętla wahadło; karta `lunge.walk` (`lib/cues/data.json`, Walking Lunges; tekst `lib/cues/text/pl.json:196`), zestaw `cue-sets.json:48`. Poprawka: pętla „marsz” (tylna noga przechodzi do przodu, figura przesuwa się) albo karta z wykrokiem w przód — wybór wariantu przy recenzji.
+
+### ACG-017 — Seated Barbell Military Press, Seated Cable Shoulder Press: zdanie „hantle przy barkach” przy sztandze i linkach
+- **Waga:** NISKIE (jedno zdanie zestawu nazywa inny sprzęt niż rysunek; reszta zdania — oparcie i stopy — pasuje). **Pewność:** 95%. **Widoczne w 1.0:** nie. **Wersja:** 1.1. **Realność:** realny po włączeniu overhead_press i zatwierdzeniu zestawów (dziś bez recenzji w `figury-recenzja.json`, sekcja `zestawy`).
+- **Dowód:** `cue-sets.json:503` i `:507` — `ok` zawiera `ohp.seat`; `lib/cues/text/pl.json:221` „Usiądź z plecami opartymi o oparcie, stopy mocno na podłodze; hantle przy barkach.” (tak samo `en.json:221` „dumbbells at shoulder level” i pozostałe języki). Figury: `overhead_press.json:7245` (sztanga, stojaki) i `:7901` (wyciąg). Poprawka: zdanie siedzenia bez sprzętu albo osobny klucz dla sztangi/uchwytów (z tłumaczeniami) — przy recenzji zestawu.
+
+### ACG-014 — rozszerzenie (klasa „rysunek innego wariantu niż nota ćwiczenia”, NISKIE)
+Te same objawy co w Kneeling Cable Triceps Extension (sekcja 10): rysunek poprawny jako ruch, ale pokazuje inny wariant niż nota w `docs/research/equipment/catalog.json` albo jest kopią danych innego ćwiczenia. Pewność 85–90%, widoczne w 1.0: nie, realne po włączeniu rodziny.
+
+| Ćwiczenie | Rysunek | Nota katalogu | Dowód |
+|---|---|---|---|
+| Bench Jump (plyo) | wskok na skrzynię 40 cm, lądowanie na wierzchu (kopia Box Jump) | „Two-footed jumps over a bench or low box” | `plyo.json:4161`; `catalog.json:21277` |
+| Single-Leg Stride Jump (plyo) | start na jednej nodze na podłodze, lądowanie na skrzyni (jak Box Skip) | „Standing beside a box, inside foot on it; jump up driving the opposite knee” | `plyo.json:9913` (kostka L [−22; 27] — nad podłogą za ciałem, skrzynia x 45–115); `catalog.json:21411` |
+| Crossover Reverse Lunge (lunge) | `klatki` identyczne z Curtsy Lunge, bez skrętu tułowia | „reverse lunge with a torso rotation” | `lunge.json:9165` |
+| Single-Leg High Box Squat (lunge) | stopa na podłodze, siad na skrzyni 43,6 cm za postacią | „standing on a high box, free leg hanging” | `lunge.json:7394` |
+| Kettlebell Seated Press (overhead_press) | siad na ławce z oparciem 85° | „Seated on the floor, legs spread” | `overhead_press.json:6605` |
+| See-Saw Press (overhead_press) | ręce naprzemiennie, skłon boczny tułowia 0° | „press one side while leaning the torso to the opposite side” | `overhead_press.json:3836` |
+
+### Otwarte pytania partii 4C
+- **OP-8 Podrywanie i podrzut — pozycje odbioru i ugięcia:** (a) ugięcie przed wybiciem: Jerk Dip Squat — gryf cofa się o 15,5 cm przy zejściu o 11 cm, środek ciężkości 4,6–5,3 cm za piętami w dole (`olympic.json:15826`); Push Press — tułów 10° w przód w ugięciu (`pp.dip` „tułów napięty”); (b) odbiór nad głową w pełnym przysiadzie (Barbell/Hang/Block Snatch, Squat Jerk, Snatch Balance): gryf 5 cm przed palcami (x 23,7–24,8, palce 18,7), ręce ok. 27° w przód od pionu — środek ciężkości z gryfem mieści się nad stopą dzięki cofniętej miednicy; (c) odbiór wysoki (Power Clean, Block Power Clean, Power Snatch, Block Power Snatch, Power Jerk): środek ciężkości ciała 3,8 cm za piętami, z gryfem 0,2–3,1 cm za piętami. Potrzebne 2 źródła szczebla 4 (tor gryfu w ugięciu, położenie gryfu nad stopą w odbiorze); dopiero wtedy ocena jako wady. Ruch dynamiczny — kryterium statyczne (`srodek_ciezkosci_podparcie`) nie musi obowiązywać w chwili odbioru.
+- **OP-9 Ustawienie stopy w wykroku bocznym:** Lateral Lunge, Barbell Side Split Squat (`rotacjaStopy` −20) i Cossack Squat (−28) mają stopę nogi pracującej skręconą palcami do środka; kolano idzie 29,5° / 41° od osi stopy (R11 26° / 34°, Cossack — wyjątek „do przeglądu przy rodzinie”, `v2-jakosc.mjs:358`), przy zdaniu zestawu `lunge.knee` „Przednie kolano w linii palców stopy” i nocie Side Split Squat „angled lead foot”. Z przodu stopa jest w skrócie, więc niezgodność słabo widać (pewność widocznej sprzeczności < 80%). Potrzebne 2 źródła szczebla 4 na ustawienie stopy w wykroku bocznym i Cossack; potem poprawka `rotacjaStopy` (i zdjęcie wyjątku Cossack) albo zostawienie.
+
+### Uwagi (bez znaleziska)
+- **U-4C-1 — R17 z `--styk-wszystkie` w rodzinach z lotem:** plyo i olympic nie mają wpisów w `LOT` (`v2-jakosc.mjs:108`, słownik pusty), więc każdy lot, podskok przy podsiadzie i stopa w kroku daje „ciało wisi w powietrzu” (53 figury). Rodziny są poza `STYK_RODZINY`, więc domyślny raport milczy; przy włączaniu ich do `STYK_RODZINY` potrzebny wpis lotu z zakresem u (zadanie ACG-T-021).
+- **U-4C-2 — palce odrywają się przed wybiciem:** w skokach obunóż palce unoszą się o 1–4 cm już w fazie prostowania (np. Jump Squat u 0,3–0,6: palce 0,5 → 4,1 cm przy pięcie 21 cm), zanim stopa opuści podłogę — skutek interpolacji kostki; w skali rysunku ledwie widoczne.
+- **U-4C-3 — Pistol Squat:** wolna noga zgięta 31° w kolanie przy `pistol.setup` „drugą wyprostuj w przód” (konwencja prostej nogi v2: 11–17°) — do recenzji ruchu.
+- Depth Jump: nota katalogu mówi o wskoku na drugą skrzynię, rysunek — wyskok w górę po zeskoku (częstszy wariant); Side Hop-Sprint: pokazany tylko przeskok, bez sprintu — uproszczenie bez oznaczenia, pomijalne.
+- Jerk Dip Squat: zestaw `pushPress` z `pp.legs` („ręce kończą ruch”) — figura nie wybija, zdanie nie dotyczy rysunku.
+- Lateral Box Jump: z boku skrzynia (z = 55) rysuje się na sylwetce — rodzina ma widok z przodu, który pokazuje skok poprawnie.
+
+### Luka procesu
+| Luka | Co przepuściło | Mechanizm |
+|---|---|---|
+| L-G (rozszerzenie: ACG-014 × 6, ACG-015) | nic nie porównuje rysunku z notą ćwiczenia w katalogu (sprzęt, liczba ciężarów, pozycja wyjściowa); 3 z 6 przypadków to dane skopiowane z innego ćwiczenia | do strażnika L-G: sprzęt z `requires` noty (np. `box` → stopa na skrzyni, `bench.flat` w siadzie) i liczba ciężarów („one dumbbell”) zgodne z `sprzet` figury; wpis z `klatki` identycznymi z innym ćwiczeniem wymaga jawnego pola „ta sama figura co …” z powodem; czerwony przed na 7 ćwiczeniach |
+| L-H (OP-8) | reguła środka ciężkości (`srodekCiezkosciNadPodparciem`) obejmuje tylko hantel i kettlebell w stojącej pozie — gryf w podrywaniu, podrzucie i ugięciu nie jest liczony | po rozstrzygnięciu OP-8: reguła z gryfem jako masą (konwencja `PROGI.ciezarKg`) dla klatek statycznych (start, ugięcie Jerk Dip Squat, pozycja końcowa odbioru) |
