@@ -52,3 +52,48 @@ Kolumny: Ruch „ok” = walidacja bez błędów i pomiary bez wady; „bez figu
 | Tuck Crunch | tak | ok | general crunch | tak* | ręce skrzyżowane, `crunch.neck` nie dotyczy |
 | V-Up | tak | ok | general vup | tak | — |
 | Weighted Sit-Ups - With Bands | nie | bez figury | general crunch | tak | — |
+
+## delt_raise — 38 ćwiczeń, 30 z danymi (karty własne 5, zestawy 29, brak 4)
+
+Pomiary w pozycji górnej (strona pracująca): dłoń − bark (y), łokieć − dłoń (y), kąt łokcia w ruchu; tułów, miednica i stopy stałe we wszystkich stojących (stopy y = 0, tułów 0° albo stały skłon), siedzące — styk siedziska i oparcia. Arkusze: przód (7) i bok (7).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Alternating Deltoid Raise | tak | rysunek = unoszenie przodem jedną ręką (dane jak Front Raise, lewa ręka w dół), łokieć 8,1 cm pod dłonią | general raiseSide | **nie** | **ACG-010** |
+| Band Lateral Raise | tak | ok (dłoń 9,6 cm pod barkiem, łokieć 8,6 cm nad dłonią, łokieć 6,5–15,7°) | general raiseSide | tak | — |
+| Band Upright Row | tak | ok (łokieć 9,4 cm nad dłonią, 4,1 cm pod barkiem) | general uprightRow | tak | — |
+| Barbell Front Raise to Overhead | tak | ok (ramię do 167°, łokieć 24,9–28,6°, tułów 0°) | general raiseFront | tak | — |
+| Barbell Incline Shoulder Raise | nie | bez figury | none (open) | — | — |
+| Cable Front Raise | tak | ok (jedna ręka, dłoń 8 cm nad barkiem) | general raiseFront | tak | — |
+| Cable Lateral Raise | tak | ok | own | — | — |
+| Cable Reverse Fly | tak | ok (ramiona na wysokości barków 89,5–92°, koniec: dłoń 11 cm za linią barków) | general raiseRear | tak | — |
+| Cable Seated Lateral Raise | tak | ok (siedzisko i oparcie) | general raiseSide | tak | — |
+| Cable Y Raise | tak | ok (ramię do 152°, łokieć stały 13,7–18,5°) | general raise | tak | — |
+| Car Drivers | tak | ok w walidacji; obrót talerza tylko w jedną stronę | general raiseFront | tak* | **ACG-011**; `lat.height` — talerz cały czas na wysokości barków, nic nie jest unoszone |
+| Dumbbell Front Raise to Overhead | tak | ok | general raiseFront | tak | — |
+| Dumbbell Incline Shoulder Raise | nie | bez figury | none (open) | — | — |
+| Dumbbell Lying One-Arm Rear Lateral Raise | nie | bez figury | general raiseRear | tak | — |
+| Dumbbell One-Arm Upright Row | tak | ok | general uprightRow | tak | — |
+| Dumbbell Scaption | tak | ok (dłoń 39 cm przed barkiem — płaszczyzna łopatki, łokieć 4,6 cm nad dłonią) | general raiseSide | tak | — |
+| Front Incline Dumbbell Raise | tak | ok (oparcie 30°, styk pleców i głowy) | general raiseFront | tak | — |
+| Front Plate Raise | tak | ok (łokieć 28,4–31,1°) | general raiseFront | tak | — |
+| Front Raise | tak | ok (obie ręce, dłoń 8 cm nad barkiem) | own | — | — |
+| Kettlebell Halo | nie | bez figury | general halo | tak | — |
+| Kettlebell Halo with Overhead Extension | nie | bez figury | general halo | tak | — |
+| Lateral Raise (hantle) | tak | ok | own | — | — |
+| Machine Lateral Raise | tak | ok | general raiseSide | tak | — |
+| One-Arm Cable Rear Lateral Raise | tak | ok (tułów 68° od pionu, dłoń na linii barków, odwiedzenie 88°) | general raiseRear | tak | — |
+| One-Arm Incline Lateral Raise | nie | bez figury | general raiseSide | tak | — |
+| One-Arm Lateral Raise (hantel) | tak | ok | general raiseSide | tak | — |
+| Reverse Fly (hantle) | tak | ok (tułów 68° od pionu — „prawie poziomo”, dłoń 2,2 cm pod barkiem, ramię prostopadle) | own | — | — |
+| Reverse Pec Deck | tak | ok (łokcie na wysokości barków, koniec: łokieć 13 cm za stawem barkowym) | own | — | — |
+| Single Dumbbell Front Raise | tak | ok | general raiseFront | tak | — |
+| Sled Reverse Flye | nie | bez figury | none (open) | — | — |
+| Smith Incline Shoulder Raise | nie | bez figury | none (open) | — | — |
+| Smith Machine One-Arm Upright Row | tak | ok (gryf pionowo w prowadnicy) | general uprightRow | tak | — |
+| Smith Machine Upright Row | tak | ok | general uprightRow | tak | — |
+| Straight Raises on Incline Bench | tak | ok (przodem do oparcia, sztanga od zwisu do wysokości barków: dłoń −0,1 cm) | general raiseFront | tak | — |
+| Upright Row (hantle) | tak | ok | general uprightRow | tak | — |
+| Upright Row (linki) | tak | ok | general uprightRow | tak | — |
+| Upright Row (sztanga) | tak | ok | general uprightRow | tak | — |
+| Y Raise (hantle) | tak | ok (tułów 45°, ramię do 145°, odwiedzenie 37° — litera Y) | general raise | tak | — |
