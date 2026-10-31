@@ -67,3 +67,6 @@
 - Wysłano A i B: natychmiastowy push wszystkiego (wip z --no-verify jako wyjątek nazwany, gdy verify niedokończone).
 - Po resecie (02.11 22:00 PL lub drugie konto): (1) tests.yml 41241000203 (fale da5177b2) zielony → FF integracja-1-1 do da5177b2 (--no-verify, wyjątek jak 20:32); (2) B: slownik/faza-pauza (aba31409 = fale + słownik + średnie UI) verify → FF; (3) A: ACG-007 (recenzja: wyswietlana) → potem archiwizacja docs/18 (decyzja A właściciela 31.10 ~22:07; liczba wpisów check:decyzje 490 przed=po); (4) p5 b16f61c5 scalić z gałęzią audytu; (5) 17 średnich wskazówek + 10 pytań native; (6) kolejka 3 ze STAN wyżej (recenzje rodzin v2, ZB-025/023, K1/K2, CI).
 - Sesje: A session_01T66VBxtTk5PaUMPE3kVWo7, B session_01T66VBwYbswGyfQ4Q56yzhf — zarchiwizować po raportach.
+## 22:17 PL
+- B wypchnęła `slownik/faza-pauza-wip` @ aba31409 (--no-verify, verify niedokończone; = słownik + średnie UI + scalenie fal da5177b2). Po resecie: pełne verify aba31409 → push na slownik/faza-pauza → FF integracji. Kolejka B w STAN-1-1 na tej gałęzi.
+- A: czekam na raport (ACG-007).
