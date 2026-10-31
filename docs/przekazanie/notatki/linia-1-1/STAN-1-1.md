@@ -1,4 +1,11 @@
-# Linia 1.1 — stan (31.10.2026)
+# Linia 1.1 — stan bieżący (aktualizowany po każdym kroku; ostatnio 31.10.2026 ~09:30 PL)
+
+## Teraz
+- Gałąź `integracja-1-1`: scalenie f3ca16c9 + poprawki 769c95b1, 6f21ce25, 5d9934fc, 5108782e + ten commit. Wypchnięte z nazwanym wyjątkiem `--no-verify` (niżej). Następny krok: `tests.yml` zielony → audyt ćwiczeń i grafik (1 agent, prompt `origin/przekazanie-konta:notatki/katalog-1-1/prompt-audyt-cwiczen-i-grafik.md` z nowym SHA) → raport w `docs/audyt-cwiczen/` → decyzja 2 (z wynikiem audytu) i ścieżka nazw EN (3 opcje) dla właściciela.
+- Przydział limitu: decyzja właściciela 31.10 ~08:35 (docs/18) — priorytet a) push + tests.yml, b) audyt, c) decyzje; fale napraw/recenzje v2/ZB-023 tylko przy zapasie, inaczej prompty dla kolejnej sesji.
+- Wyjątek nazwany (31.10.2026): push bez znacznika pełnego verify. Pełne verify na 6f21ce25 przeszło poza 3 testami (figures-v2-styk — przekroczenie 5 s pod obciążeniem; rejestr ryzyk — R-11-01 bez daty; docs/16 — tabela treści krytycznej nieaktualna); naprawy 5d9934fc i 5108782e (same dokumenty) + trzy testy zielone pojedynczo; tańsza kontrola zamiast drugiego pełnego verify (~55 min): pełny `tests.yml` w CI.
+- Dociągnąć później z `wersja-1-0-1-r2`: 3eb21b5 (wersja 1.0.1) i f36a243 — po audycie.
+
 
 Decyzja właściciela 31.10.2026 ~07:00 PL (PR #107, docs/18): 1.0.1 nie wychodzi osobno; zmiany `wersja-1-0-1-r2` wchodzą do 1.1. Kierunek scalania: `main` → `wersja-1-0-1-r2` → `integracja-1-1`, nigdy odwrotnie. Nic na `main`, żadnego PR do `main`.
 Poprzedni stan: `origin/przekazanie-konta:notatki/katalog-1-1/STAN-2026-10-29.md` (wstrzymanie 29.10).
@@ -16,7 +23,7 @@ Poprzedni stan: `origin/przekazanie-konta:notatki/katalog-1-1/STAN-2026-10-29.md
   - z mięśniami i trybami błędów: 58 identycznych z 1.0.1; reszta różni się głównie widokiem z przodu błędu „pięty” (zmiana 1.1).
   - Wniosek dla decyzji 3: zakres ponownej recenzji ruchu da się zawęzić; bez recenzji nic się nie pokazuje.
 - Testy po scaleniu: wyjątki reguł sensu 1.1 (`tests/sens-wyjatki-1-1.json`) — dopisane 6 ćwiczeń (rigi 1.0.1 vs progi 1.1), usunięte 17 nieaktualnych (martwe ciągi po 101-02/03 spełniają progi 1.1); R11: 4 wyjątki sumo usunięte; wzorzec zgodności wstecznej rysunku odtworzony dla 49 rigów (pozy z danych bez zmian); testy 1.0.1 zakładające widoczne rodziny — bramka otwarta w teście (`figure-gate-open`) albo warunek `familyReviewed`; minimum zapadki pokrycia podniesione, cel startowy 1.1 języków 524 → 525.
-- Pełne verify, SHA, `tests.yml`: w raporcie do koordynatora 1.0 (sekcja niżej uzupełniana po przebiegu).
+- Pełne verify i `tests.yml`: sekcja „Teraz”.
 
 ## Etap 1 b — ZB-010 (SDK w 1.1 a schemat danych)
 - Schemat danych bez zmian: `SCHEMA_VERSION = 19` na `main`, `wersja-1-0-1-r2` i po scaleniu (`lib/seed.ts:12`). Różnice warstwy zapisu względem `main`: tylko formatowanie dat (`lib/state/time.ts:35`), pole `willAutoRenew` w wyniku sklepu (`lib/store-native.ts:53`, kv poza stanem i kopią — `lib/entitlement.ts:17`), eksport funkcji (`lib/store.ts:39`); `lib/state/*` migracje bez zmian.
