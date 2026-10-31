@@ -326,3 +326,34 @@ Pomiary co u = 0,01: start (zgięcie kręgosłupa, pochylenie tułowia, kolano, 
 | Split Jerk | tak | ok (odbiór w nożycach, łokcie 16°) | general pushPress | tak | — |
 | Split Snatch | tak | ok (odbiór w nożycach, łokcie 20°) | general oly | tak | — |
 | Squat Jerk | tak | ok (odbiór w pełnym przysiadzie nad głową, łokcie 14°) | general pushPress | tak | OP-8 (b) |
+
+## lunge — 24 ćwiczenia, 24 z danymi (karty własne 6; zestawy: `lunge` 15, `pistol` 2, `mobility` 1) — partia 4C
+
+Pomiary co u = 0,02: dół = najniższa miednica; noga przednia = większe zgięcie biodra; przednie kolano i biodro, nachylenie goleni, tylne kolano (staw i najniższy punkt obrysu `shank`/`thigh` nad podłogą), kolano przednie wobec kostki i palców (x, z), kierunek stopy (pięta → palce) a kierunek kolana w rzucie na podłogę, R11 (`katOsiStopyOdPlaszczyzny`), tułów i zgięcie kręgosłupa, stopy (pięta/palce y, x, z) na starcie, w dole i na końcu, chwyty; arkusze z boku (Bulgarian Split Squat (hantle), Step Up, Single-Leg High Box Squat, Pistol Squat, Walking Lunges) i z przodu (Lateral Lunge, Cossack Squat, Split Squat, Curtsy Lunge) — PIL, poza repo. Walidacja 24/24 bez błędów, `jakosc-raport` 0 naruszeń; z `--styk-wszystkie` R17 na 5 figurach (stopa w kroku 1,5–4,2 cm nad podłogą, gdy druga stoi na podłodze albo skrzyni) — fałszywy alarm (U-4C-1). Wspólne: tylne kolano w dole 4,4–7 cm nad podłogą (obrys; „tuż nad podłogą” w `lunge.fwd`/`lunge.back`/`lunge.walk`/`bss.move` zgodne), kręgosłup 0°, tułów 6° (`lunge.torso` zgodne), przednie kolano nad stopą w osi (z kolana − z kostki 2,6–3,8 cm, kierunek kolana 5–16° od osi stopy) we wszystkich wykrokach w przód i w tył.
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Barbell Side Split Squat | tak | ok w walidacji (szeroki rozkrok z 30 / −50, zejście w bok na prawą: kolano 100°, lewa prosta; sztanga na plecach) — dane nóg identyczne z Lateral Lunge | general lunge | tak* | OP-9 (stopa prowadząca palcami do środka 20°, kolano 29,5° od osi stopy; nota: „angled lead foot”) |
+| Barbell Step Up | tak | ok (jak Step Up, sztanga na plecach) | general lunge | tak | — |
+| Barbell Walking Lunge | tak | ok w walidacji; krok w przód i powrót do startu (wahadło) — rysunek Lunges (sztanga) | general lunge | **nie** (`lunge.walk` „wstań na przedniej nodze i od razu zrób krok drugą”) | **ACG-016** |
+| Bulgarian Split Squat (hantle) | tak | ok (grzbiet tylnej stopy na ławce 30 cm — palce 32, pięta 44,5; przednia goleń pionowo −0,8°; tylne kolano 6 cm nad podłogą; hantle w dół) | own | — | — |
+| Bulgarian Split Squat (sztanga) | tak | ok (jak wyżej, sztanga na plecach, stojaki) | general lunge | tak | — |
+| Cossack Squat | tak | ok w walidacji (zejście w bok: kolano 112°, druga noga prosta) | general lunge | tak* | OP-9 (stopa pracująca palcami do środka 28°, kolano 41° od osi stopy; R11 34° — wyjątek `OS_STOPY_WYJATKI` „do przeglądu przy rodzinie”, `v2-jakosc.mjs:358`) |
+| Crossover Reverse Lunge | tak | ok w walidacji; dane identyczne z Curtsy Lunge (`klatki` równe), skręt tułowia brak | general mobility | tak | **ACG-014** (klasa: nota „reverse lunge with a torso rotation” — rotacji nie ma); R11 tylnej nogi 54° (wyjątek `v2-jakosc.mjs:357`) |
+| Curtsy Lunge | tak | ok (tylna noga skrzyżowana za przednią: z kostki −10 → 22) | general lunge | tak | R11 tylnej nogi 54° (wyjątek `:356`) — nie dotyczy zdania o przednim kolanie |
+| Elevated Back Lunge | tak | ok (przednia stopa na podwyższeniu 12 cm, krok w tył na podłogę, tylne kolano 4,4 cm) | general lunge | tak | — |
+| Lateral Lunge | tak | ok w walidacji (zejście w bok, druga noga prosta) | general lunge | tak* | OP-9 (jak Barbell Side Split Squat) |
+| Lunge Pass Through | tak | ok (kettlebell przekładany pod przednim udem: chwyt w dole x −15, y 34; tułów 35°) | general lunge | tak | — |
+| Lunges (hantle) | tak | ok (stopy razem z ±10, hantle w dół; krok w przód 89 cm, tylne kolano 4,4 cm, powrót do startu) | own | — | — |
+| Lunges (sztanga) | tak | ok (jak wyżej, sztanga na plecach) | general lunge | tak | — |
+| Pistol Squat | tak | ok (stopa wolnej nogi 4–43 cm nad podłogą, ręce w przód; dół kolano 128°, biodro 126°) | own | — | wolna noga zgięta 31° w kolanie przy `pistol.setup` „drugą wyprostuj” — ponad konwencję prostej nogi v2 (11–17°), pewność niezgodności < 80% (uwaga U-4C-3) |
+| Reverse Lunge | tak | ok (krok w tył 89 cm, tylne kolano 4,4 cm) | own | — | — |
+| Single-Leg High Box Squat | tak | ok w walidacji; stopa podporowa na podłodze, skrzynia 43,6 cm za postacią, w dole siad na skrzyni (miednica 53,4) — przysiad na skrzynię | general pistol | tak | **ACG-014** (klasa: nota „standing on a high box, free leg hanging”) |
+| Slider Reverse Lunge | tak | ok (tylna stopa na ślizgaczu — palce y 2, przesuw 90 cm) | general lunge | tak | — |
+| Smith Machine Bulgarian Split Squat | tak | ok (jak Bulgarian, gryf w suwnicy Smitha) | general lunge | tak | — |
+| Smith Machine Pistol Squat | tak | ok (gryf Smitha na plecach, dół jak Pistol) | general pistol | tak | — |
+| Split Squat | tak | ok (pozycja stała rozkroku, tylne kolano 4,4 cm) | general lunge | tak | — |
+| Split Squat (linki) | tak | ok (uchwyty z dolnych wyciągów w dłoniach) | general lunge | tak | — |
+| Step Up | tak | ok (cała stopa na skrzyni 40 cm, wyprost nogi na skrzyni — miednica 129,8; druga stopa w górze; powrót tą samą drogą) | own | — | — |
+| Suspended Split Squat | tak | ok (tylna stopa w taśmie 20–42 cm, tylne kolano 11,4 cm) | general lunge | tak | — |
+| Walking Lunges | tak | ok w walidacji; dane identyczne z Lunges (hantle) — krok w przód i powrót do startu | own | — | **ACG-016** (`lunge.walk`) |
