@@ -618,3 +618,20 @@ Pomiary co u = 0,25 i punkty u = 0 / 1: biodro, kolano, odchylenie linii bark–
 | Single Leg Hip Thrust | tak | ok (jw., łopatki na ławce) | general bridge | tak | — |
 | Smith Machine Hip Thrust | tak | ok (gryf w prowadnicy x −4) | general bridge | tak | — |
 | Stability Ball Hip Bridge | tak | ok w walidacji (łopatki na piłce r 32,5 — tułów 32 cm od środka przez cały ruch); **w górze kolano 42°** (start 92°), kolano 14 cm za kostką, miednica 6 cm nad linią bark–kolano (14°) | general bridge | tak* | **OP-11** |
+
+## cable_row — 10 ćwiczeń, 9 z danymi (karty własne 3; zestawy: `row` 5, `faceRow` 1; brak 1) — partia 4E
+
+Pomiary u = 0 / 0,5 / 1: łokieć, uniesienie i odwiedzenie ramienia, tułów (0° stały we wszystkich), kolano, stopy, chwyt wobec barku i miednicy, położenie bloczka i kierunek linki, styki (siedzisko, oparcie, podest). Walidacja 9/9 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Cable Rope Rear-Delt Rows | tak | ok (siad, lina do szyi y 101–107 przy barku 103, łokcie szeroko — odwiedzenie 57–74°) | general faceRow | tak | bloczek dolny y 55 — linka skośnie do dłoni (U-4E-2) |
+| Face Pull | tak | ok (bloczek y 150 ≥ bark 140; lina y 147,5 stale — wysokość brody; łokcie w tył x −18 na wysokości barków) | own | — | karta zgodna; przedramiona poziomo, bez rotacji zewnętrznej — do recenzji ruchu |
+| Kneeling High Pulley Row | tak | ok (klęk, bloczek górny y 190, drążek y 104 → 74, łokieć 19 → 123°) | general row | tak | nota „to the chest” — koniec 24 cm nad miednicą (górna część brzucha); start: ręce poziomo przy lince pod kątem ok. 56° (U-4E-2) |
+| Leverage High Row | tak | ok (siad z oparciem, dźwignia: uchwyty y 116 → 81, łokieć 16 → 130°) | general row | tak | — |
+| Machine Row | tak | ok w walidacji; **plecy na oparciu** (ławka 80°, styk `back`), bez podparcia klatki | general row | tak | **ACG-014** (nota: „Chest-supported seated row machine”) |
+| Seated Cable Row | tak | ok (siad, stopy na podeście, kolana 25°, drążek y 85 → 65 do brzucha, łokcie przy tułowiu — odwiedzenie 2–12°) | own | — | karta zgodna |
+| Single Arm Cable Row | tak | ok (stanie, jedna ręka y 137 → 102, druga dłoń przy biodrze) | general row | tak | — |
+| Sled Row | nie | bez figury | none (open) | — | — |
+| Standing Cable Row | tak | ok (stanie, drążek y 137 → 102) | general row | tak | bloczek y 100, start: ręce na wysokości barków (U-4E-2) |
+| Wiosłowanie na linkach (siedząc) | tak | ok (dane jak Seated Cable Row) | own | — | karta zgodna |
