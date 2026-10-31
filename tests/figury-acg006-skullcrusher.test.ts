@@ -36,6 +36,10 @@ describe('ACG-006 Skullcrusher (EZ): gryf w dole nad czołem', () => {
     const a = f.frames[0].p as { sh: number }, b = f.frames[end(f)].p as { sh: number };
     expect(Math.abs(a.sh - b.sh)).toBeLessThanOrEqual(10);
   });
+  it('klatka start: gryf nad czołem na prostych rękach — dłoń w poziomym obrysie głowy (skull.setup)', () => {
+    const f = F(), P = framePoints(f, 0);
+    expect(Math.abs(P.hand[0] - P.head[0])).toBeLessThanOrEqual(SEG.headR); /* sh 100: −36,6 w obrysie; sh 90 dawało −30 (nad barkiem) */
+  });
   it('cały ruch: gryf w żadnej pozie pośredniej nie wchodzi w głowę (odległość od środka głowy ≥ promień głowy)', () => {
     const f = F(); const i = end(f);
     for (let s = 0; s <= 8; s++) { const { P } = poseBetween(f, i - 1, i, s / 8); expect(Math.hypot(P.hand[0] - P.head[0], P.hand[1] - P.head[1])).toBeGreaterThanOrEqual(SEG.headR); }
