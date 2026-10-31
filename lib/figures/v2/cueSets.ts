@@ -10,7 +10,7 @@
  */
 import { t } from '@/lib/i18n';
 import type { Variant } from './variants';
-import { assignAll, type Family } from './families';
+import { assignAll, type Family, type FamilyId } from './families';
 
 type CueSetData = { meta: { newIds: string[] }; items: Record<string, { b: 'own' | 'general' | 'open'; f?: string; ok?: string[]; err?: string[] }> };
 export const CUE_SETS: CueSetData = require('./cue-sets.json');
@@ -38,6 +38,11 @@ export const generalCueNote = (sel: CueSelection): string | null => sel.mode ===
  * Warunki: wskazówka wolno przypisać tylko ćwiczeniu, którego wariant rysunku spełnia predykat (ruch nie przeczy zdaniu). Rozszerzać przy kolejnych rodzinach.
  * Wpisy: id wskazówki → predykat na wariancie. Id bez wpisu = bez ograniczeń w tym stopniu (sprawdza je przegląd merytoryczny).
  */
+/** ACG-001 (audyt ćwiczeń 31.10.2026): zdania, które przeczą kierunkowi ruchu całej rodziny — nie trafiają do żadnego jej ćwiczenia (rodziny bez wariantów rysunku, więc nie przez CUE_REQUIRES).
+ * Strażnik: tests/figures-v2-cues.test.tsx „ACG-001”. */
+export const CUE_NOT_IN_FAMILY: Record<string, { why: string; families: FamilyId[] }> = {
+  'lpd.fullStretch': { why: '„na górze wyprostuj ręce” opisuje ściąganie drążka z góry; w podciąganiu na górze łokcie są zgięte, ręce proste na dole (pu.partial)', families: ['pull_up'] },
+};
 export const CUE_REQUIRES: Record<string, { why: string; ok: (v: Variant) => boolean }> = {
   'dl.lift': { why: 'ciężar zaczyna na podłodze (lub kołkach) i idzie w górę', ok: v => v.family === 'hinge' && v.p.style === 'floor' },
   'dl.close': { why: 'gryf przy nogach — ciężar w rękach przed udami na jednym gryfie', ok: v => v.family === 'hinge' && v.p.style === 'floor' && (v.p.impl === 'barbell' || v.p.impl === 'smith') },
