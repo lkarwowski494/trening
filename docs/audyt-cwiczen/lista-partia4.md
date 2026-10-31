@@ -750,3 +750,15 @@ Pomiary co u = 0,05: łokieć (dół i wyprost), uniesienie ramienia, chwyt wobe
 | Machine Chest Press | tak | ok (siad, oparcie −5°, uchwyty y 98–108,5, x 20 → 67, łokieć 22 → 148°) | own | — | karta zgodna |
 | Machine Shoulder Press | tak | ok (uchwyty y 112 przy barkach → 168 nad głową, łokieć 21 → 146°) | own | — | karta zgodna |
 | Smith Machine Shoulder Press | tak | ok (siad z oparciem, gryf w prowadnicy y 119 → 165, łokieć 15 → 133°) | general ohp | **nie** (`ohp.seat` „hantle przy barkach”) | **ACG-017** (rozszerzenie) |
+
+## dip — 5 ćwiczeń, 5 z danymi (karty własne 1; zestawy: `dip` 4; brak 0) — partia 4E
+
+Pomiary co u = 0,05: łokieć (dół — `bdip.move` „mniej więcej kąt prosty”, góra — wyprost), tułów, miednica, chwyt na poręczach/kółkach/ławce, stopy. Walidacja 5/5 bez błędów, `jakosc-raport` 0 naruszeń (z `--styk-wszystkie` R17 na 3 figurach w podporze na poręczach i kółkach — bez wady).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Chest Dip | tak | ok (poręcze y 115, tułów 28–34° w przód, łokieć 12,5 → 95°) | general dip | tak | R17 — podpór |
+| Dip Machine | tak | ok (siad, uchwyty y 60 → 35, łokieć 21 → 90°) | general dip | tak | — |
+| Ring Dips | tak | ok (kółka z ±28, tułów 24–30°, łokieć 12,5 → 93°) | general dip | tak | R17 — podpór |
+| Triceps Dip | tak | ok (tułów 4° — pionowo, łokieć 12 → 95°) | general dip | tak | R17 — podpór |
+| Triceps Dips (ławka) | tak | ok (dłonie na krawędzi ławki za plecami, miednica y 60 → 43, łokieć 15 → 86°, pięty na podłodze, kolana 37–67°) | own | — | karta zgodna |
