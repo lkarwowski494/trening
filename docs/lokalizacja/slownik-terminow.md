@@ -17,6 +17,7 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `przerwa_po_rozgrzewce` | przerwa po rozgrzewce | odpoczynek po serii rozgrzewkowej |
 | `dzien_wolny` | dzień wolny / odpoczynku | dzień bez treningu w planie tygodnia; NIE pauza treningu |
 | `pauza_treningu` | pauza treningu | wstrzymanie zegara treningu przyciskiem; to nie jest przerwa między seriami |
+| `faza_pauza` | pauza — faza animacji ruchu („Pauza” w linii faz) | nazwa FAZY animacji ruchu w karcie ćwiczenia („Opuszczanie 2 s · Pauza · Wypychanie 1 s”): zatrzymanie w pozycji, rzeczownik jak siostrzane fazy; NIE przycisk wstrzymania (to pojęcie pauza_treningu) |
 | `seria` | seria | jedno podejście: kolejne powtórzenia bez odkładania ciężaru (ang. set) |
 | `seria_robocza` | seria robocza | seria właściwa (nie rozgrzewkowa); ang. working set |
 | `rozgrzewka` | rozgrzewka / seria rozgrzewkowa | lekkie serie przed seriami roboczymi (oznaczenie W) |
@@ -129,40 +130,57 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `cs` | `przerwa_robocza` | pracovní pauza | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `cs` | `dzien_wolny` | pauz | „pauza” to przerwa/pauza, nie dzień wolny |
 | `cs` | `pauza_treningu` | pauz | „pauza” to przerwa między seriami; pauzę treningu opisuje „pozastavit” |
+| `cs` | `faza_pauza` | pauz | rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą |
+| `cs` | `faza_pauza` | pozastav | czasownik/przycisk wstrzymania, a faza to zatrzymanie w pozycji |
 | `sk` | `przerwa` | prestávk | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `sk` | `przerwa_robocza` | pracovná pauza | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `sk` | `dzien_wolny` | pauz | „pauza” to przerwa/pauza, nie dzień wolny |
 | `sk` | `pauza_treningu` | pauz | „pauza” to przerwa między seriami; pauzę treningu opisuje „pozastaviť” |
+| `sk` | `faza_pauza` | pauz | rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą |
+| `sk` | `faza_pauza` | pozastav | czasownik/przycisk wstrzymania, a faza to zatrzymanie w pozycji |
 | `hu` | `przerwa` | szünet | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `hu` | `przerwa_robocza` | munkapihenő\|munkaszünet | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `hu` | `faza_pauza` | szüneteltet | to polecenie przycisku pauzy treningu, a faza jest rzeczownikiem |
 | `hu` | `plan_dozywotni` | örök(?!ös\|re) | „Örök” znaczy wieczny (poetycko); plan bez terminu to „örökös” |
 | `ro` | `przerwa` | recrea[țt]i | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `ro` | `przerwa_robocza` | pauz[ăa] de lucru | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ro` | `dzien_wolny` | pauz | „pauză” to pauza, nie dzień wolny („zi liberă”) |
 | `ro` | `pauza_treningu` | pauz | „pauză” to przerwa między seriami; pauza treningu to „întrerupe” |
+| `ro` | `faza_pauza` | pauz | rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą |
+| `ro` | `faza_pauza` | întrerup | czasownik/przycisk przerwania, a faza to zatrzymanie w pozycji |
+| `ro` | `faza_pauza` | oprire | brzmi jak przycisk stop, a nie zatrzymanie w pozycji |
+| `ro` | `faza_ruchu` | ^\s*trac[țţ]iun[ei]?\s*$ | „tracțiuni” to w ro nazwa ćwiczenia (podciąganie na drążku); faza animacji to rzeczownik odczasownikowy jak Coborâre, Împingere (przegląd API 31.10.2026) |
 | `bg` | `przerwa_robocza` | работна почивка | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `hr` | `przerwa` | pauz | „pauza” to pauza treningu, nie przerwa między seriami (odmor) |
 | `hr` | `przerwa_robocza` | radni odmor\|radna pauza | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `hr` | `faza_pauza` | pauziraj | tryb rozkazujący to przycisk, a faza jest rzeczownikiem |
 | `sl` | `przerwa` | odmor | „odmor” znaczy urlop/wakacje; między seriami „počitek” |
 | `sl` | `przerwa_robocza` | delovni počitek | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `sl` | `plan_subskrypcji` | načrt | „Načrt” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Paket” |
 | `sr` | `przerwa` | пауз | „пауза” to pauza treningu, nie przerwa między seriami (одмор) |
 | `sr` | `przerwa_robocza` | радни одмор\|радна пауза | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `sr` | `faza_pauza` | паузирај | tryb rozkazujący to przycisk, a faza jest rzeczownikiem |
 | `lt` | `przerwa` | pertrauk | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `lt` | `przerwa_robocza` | darbinis poilsis | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `lt` | `faza_pauza` | pristabd | czasownik/przycisk wstrzymania, a faza jest rzeczownikiem |
 | `lv` | `przerwa` | starpbr[īi]\|pārtraukum | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `lv` | `przerwa_robocza` | darba atpūta | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `lv` | `faza_pauza` | aptur | czasownik/przycisk zatrzymania, a faza jest rzeczownikiem |
 | `et` | `przerwa` | vaheaeg\|vahetund | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `et` | `przerwa_robocza` | tööpaus | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `et` | `pauza_treningu` | paus(?!eeri) | „paus” to przerwa między seriami; pauza treningu to „peata” |
+| `et` | `faza_pauza` | paus | rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą |
+| `et` | `faza_pauza` | peat | czasownik/przycisk zatrzymania, a faza to zatrzymanie w pozycji |
 | `et` | `plan_subskrypcji` | plaan | „Plaan” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Pakett” |
 | `et` | `plan_dozywotni` | igavene | „Igavene” znaczy wieczny (religijnie/poetycko); plan bez terminu to „eluaegne” |
 | `uk` | `przerwa` | перерв | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `uk` | `przerwa_robocza` | відпочинок у робочих | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `uk` | `faza_pauza` | призупин | czasownik/przycisk wstrzymania, a faza jest rzeczownikiem |
 | `uk` | `seria` | серія | „серія” to odcinek; podejście to „підхід” |
 | `uk` | `zakres_powtorzen` | інтервал | „інтервал” to przerwa/trening interwałowy; zakres to „діапазон” |
 | `es` | `przerwa` | receso\|laboral | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `es` | `przerwa_robocza` | descanso (laboral\|de trabajo) | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `es` | `faza_pauza` | pausar | bezokolicznik to przycisk, a faza jest rzeczownikiem |
 | `es` | `lokcie_waskie` | codos juntos | „juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (cerrados) |
 | `es-419` | `przerwa` | receso\|laboral | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `es-419` | `przerwa_robocza` | descanso (laboral\|de trabajo) | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
@@ -171,6 +189,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `es-419` | `telefon_es419` | teléfono | w Ameryce Łacińskiej mówi się „celular”; „teléfono” brzmi jak wariant z Hiszpanii i rozjeżdża się z resztą aplikacji (101 G2, 29.10.2026) |
 | `pt` | `przerwa` | (?<![\p{L}])pausa(?![\p{L}]) | „pausa” to pauza treningu; między seriami „descanso” |
 | `pt` | `przerwa_robocza` | descanso de trabalho | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `pt` | `faza_pauza` | pausar | bezokolicznik to przycisk, a faza jest rzeczownikiem |
 | `pt` | `zakres_powtorzen` | intervalo | „intervalo” w siłowni to przerwa między seriami; zakres to „gama” |
 | `pt` | `zakres_ruchu` | intervalo | „intervalo” to przerwa; zakres ruchu to „amplitude” |
 | `pt` | `lokcie_waskie` | cotovelos juntos | „juntos” = łokcie stykają się ze sobą; chodzi o łokcie przy tułowiu (fechados) |
@@ -183,32 +202,42 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `de` | `przerwa` | Unterbrechung\|Arbeitspause | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `de` | `przerwa_robocza` | Arbeitspause | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `de` | `pauza_treningu` | Pause | „Pause” to przerwa między seriami; pauzę treningu opisuje „anhalten” |
+| `de` | `faza_pauza` | pause | rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą |
+| `de` | `faza_pauza` | anhalt\|angehalten | czasownik/przycisk „anhalten”, a faza to zatrzymanie w pozycji |
 | `de` | `seria` | Serie | „Serie” to serial/seria produktów; podejście to „Satz” |
 | `de` | `zakres_powtorzen` | Intervall | „Intervall” to trening interwałowy; zakres to „Bereich” |
 | `fr` | `przerwa` | pause | „pause” to przerwa w pracy; w sali mówi się „repos” |
 | `fr` | `przerwa_robocza` | pause de travail | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `fr` | `faza_pauza` | mettre en pause | polecenie przycisku, a faza jest rzeczownikiem |
 | `fr` | `zakres_powtorzen` | intervalle | „intervalle” bywa przerwą; zakres to „plage”/„fourchette” |
 | `fr` | `lokcie_otwarte` | très écartés | „très” znaczy „bardzo”; chodzi o „za bardzo” (trop écartés) |
 | `it` | `przerwa_robocza` | pausa (di )?lavoro | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `it` | `faza_pauza` | metti in pausa | polecenie przycisku, a faza jest rzeczownikiem |
 | `it` | `zakres_powtorzen` | intervall | „intervallo” bywa przerwą; zakres powtórzeń to „range” |
 | `it` | `zakres_ruchu` | intervall | „intervallo” bywa przerwą; zakres ruchu to „escursione” |
 | `it` | `szablon` | modell | w włoskich siłowniach „scheda” |
 | `nl` | `przerwa` | pauze | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `nl` | `przerwa_robocza` | werkpauze | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `nl` | `faza_pauza` | pauzeren | bezokolicznik to przycisk, a faza jest rzeczownikiem |
 | `nl` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „set” |
 | `nl` | `zakres_powtorzen` | interval | „interval” to trening interwałowy; zakres to „bereik” |
 | `sv` | `przerwa` | (?<![\p{L}])rast(?![\p{L}]) | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `sv` | `przerwa_robocza` | arbetspaus | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `sv` | `faza_pauza` | pausa | bezokolicznik/polecenie przycisku, a faza jest rzeczownikiem |
 | `sv` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „set” |
 | `da` | `przerwa` | frikvarter | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `da` | `przerwa_robocza` | arbejdspause | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `da` | `faza_pauza` | på pause | zwrot przycisku wstrzymania, a faza jest rzeczownikiem |
 | `da` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „sæt” |
 | `nb` | `przerwa` | friminutt\|lunsj | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `nb` | `przerwa_robocza` | arbeidspause | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `nb` | `faza_pauza` | på pause | zwrot przycisku wstrzymania, a faza jest rzeczownikiem |
 | `nb` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „sett” |
 | `fi` | `przerwa_robocza` | työtauko | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `fi` | `faza_pauza` | keskeytä | tryb rozkazujący to przycisk przerwania, a faza jest rzeczownikiem |
 | `tr` | `przerwa` | (?<![\p{L}])mola | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `tr` | `przerwa_robocza` | iş molası\|çalışma molası | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
+| `tr` | `faza_pauza` | duraklat | tryb rozkazujący to przycisk, a faza jest rzeczownikiem |
 | `tr` | `seria` | (?<![\p{L}])seri(?![\p{L}]) | „seri” to seria/szybki; podejście to „set” |
 | `el` | `przerwa_robocza` | διάλειμμα εργασίας | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `el` | `plan_subskrypcji` | πρόγραμμ | „Πρόγραμμα” to plan tygodnia (zakładka Plan); wariant subskrypcji to „Πλάνο” |
@@ -249,7 +278,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `zh-Hant` | `deload` | 減量 | „減量” w tajwańskim żargonie siłowni znaczy odchudzanie (redukcję); deload to „減載” |
 | `zh-Hant` | `pozycja_posrednia` | 進行中 | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 
-## Do potwierdzenia przez native speakera (144)
+## Do potwierdzenia przez native speakera (148)
 
 Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym języku? Jeśli nie — jak mówi się naprawdę? (Lista z docs/16.)
 
@@ -289,6 +318,7 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `hr` | `ledzwie` | donji dio leđa | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `hr` | `zegarek` | sat | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `hr` | `lokcie_waskie` | laktove usko | Dosłowne „wąsko” (kalka z polskiego) czy „łokcie przy sobie/zebrane”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `sl` | `faza_pauza` | Premor | Tłumacz (31.10.2026) proponuje „Pavza” — „premor” bliższy przerwie/odpoczynkowi niż zatrzymaniu w ruchu; przegląd API tego nie zgłosił. Do sprawdzenia przez native speakera; bez zmiany. |
 | `sl` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `sl` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `sl` | `kettlebell` | kettlebell | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
@@ -376,6 +406,7 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `ms` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `ms` | `ledzwie` | belakang bawah | Termin zaproponowany bez recenzji native speakera; do potwierdzenia (lista w docs/16). |
 | `ms` | `zegarek` | jam tangan | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
+| `vi` | `faza_pauza` | Tạm dừng | Tạm dừng to zarazem polecenie przycisku; w tempie ćwiczenia dopuszczalne („tạm dừng ở dưới”) — do sprawdzenia przez native speakera. |
 | `vi` | `seria` | Hiệp | „hiệp” (też runda w boksie) obok „set” — do potwierdzenia |
 | `vi` | `asekuracja` | Hỗ trợ và an toàn | do potwierdzenia przez native speakera |
 | `vi` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
@@ -387,11 +418,13 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `ru` | `jednostka_dystansu_yd` | ярд | Skrót nieodmienny „ярд” (jak w tekstach ekranu: ten sam tekst stoi po ułamkach i jako nagłówek kolumny): czy tak piszą ludzie w tym regionie, czy zostaje „yd”? (recenzja lokalizacji 28.10.2026) |
 | `ru` | `zegarek` | часы | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `ru` | `lokcie_waskie` | локти узко | O łokciach w wąskim wyciskaniu i prostowaniu: „держи локти узко / тримай лікті вузько” czy „локти собраны, не разводи / лікті зібрані, не розводь”? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `ja` | `faza_pauza` | 一時停止 | Brzmi trochę jak przycisk odtwarzacza; trenerzy mówią też 「静止」/「ポーズ」. Do sprawdzenia przez native speakera. |
 | `ja` | `zakres_powtorzen` | レップ範囲 | „レップ” to żargon siłowni; do potwierdzenia |
 | `ja` | `szablon` | テンプレート | „テンプレート” vs „メニュー” w siłowniach — do potwierdzenia |
 | `ja` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `ja` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `ja` | `pozycja_posrednia` | 途中の姿勢 | „途中の姿勢1” czy „途中の姿勢 1” (ze spacją)? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `ko` | `faza_pauza` | 일시정지 | 일시정지 to przycisk odtwarzacza; tłumacz i przegląd API (niska) proponują 멈춤 (rzeczownik tempa). Uwaga niska — bez zmiany do polecenia. |
 | `ko` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `ko` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `zh-Hant` | `szablon` | 範本 | „範本” brzmi jak szablon dokumentu; w siłowniach tajwańskich „課表” — do potwierdzenia |

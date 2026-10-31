@@ -28,6 +28,12 @@
     "et"
    ],
    "powod": "To samo zdanie: „pauza” to wstrzymanie zegara, a przerwa między seriami ma osobne słowo; wzorzec zakazu pauzy dotyczy tylko zdań o samej przerwie."
-  }
+  },
+ {
+  "pl": "pauza",
+  "pojecie": "faza_pauza",
+  "jezyki": "*",
+  "powod": "„pauza” (małą literą) to status wstrzymanego zegara treningu w nagłówku (ActiveWorkout.tsx:244) — pojęcie pauza_treningu, nie faza animacji; wzorce słownika nie rozróżniają wielkości liter."
+ }
  ]
 }

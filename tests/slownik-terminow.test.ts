@@ -161,6 +161,27 @@ describe('słownik terminów: logika (wykrywanie i naruszenia)', () => {
     const k = Object.keys(el).find(x => x.startsWith('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie:'))!;
     expect(el[k]).toContain('π.χ. bench press:'); expect(el[k]).not.toContain('πάγκου');
   });
+  /* Przegląd API 31.10.2026 (krytyczne cs/sk/ro): „Pauza” w linii faz animacji (ExerciseFigureV2.tsx:113) to rzeczownik — zatrzymanie w pozycji —
+     a nie przycisk; zakaz „pauz” z pojęcia pauza_treningu wymuszał czasownik (cs Pozastavit, sk Pozastaviť, ro Întrerupe, de Anhalten, et Peata).
+     Osobne pojęcie faza_pauza; pauza_treningu wyklucza sam tekst „Pauza”. Plus ro faza „Podciąganie”: nie nazwa ćwiczenia „Tracțiune”. */
+  test('31.10.2026: faza animacji „Pauza” odrębna od pauzy treningu i od przerwy (K1); ro „Podciąganie” = „Tragere în sus”', () => {
+    const pt = slownik.pojecia.find(x => x.id === 'pauza_treningu')!; const fp = slownik.pojecia.find(x => x.id === 'faza_pauza')!;
+    expect(fp).toBeDefined();
+    expect(S.wykryte(fp, 'Pauza')).toBe(true); expect(S.wykryte(fp, 'Pauza treningu')).toBe(false);
+    expect(S.wykryte(pt, 'Pauza treningu')).toBe(true); /* wzorce bez rozróżniania wielkości liter: „Pauza” (faza) i „pauza” (status zegara) rozdziela wyjątek na dokładny tekst */
+    expect(wyjatki.some(w => w.pl === 'pauza' && w.pojecie === 'faza_pauza' && w.jezyki === '*')).toBe(true);
+    expect((S.sprawdz(slownik, 'cs', 'pauza', 'pauza') as { pojecie: string }[]).some(n => n.pojecie === 'pauza_treningu')).toBe(true); /* status zegara nadal pod zakazem pauzy treningu */
+    for (const [k, zle, ok] of [['cs', 'Pozastavit', 'Výdrž'], ['sk', 'Pozastaviť', 'Výdrž'], ['ro', 'Întrerupe', 'Menținere'], ['de', 'Anhalten', 'Halten'], ['et', 'Peata', 'Hoidmine']] as const) {
+      expect([k, (S.sprawdz(slownik, k, 'Pauza', zle) as { pojecie: string }[]).filter(n => n.pojecie === 'faza_pauza').length]).toEqual([k, 1]); expect([k, (S.sprawdz(slownik, k, 'Pauza', ok) as { pojecie: string }[]).filter(n => !wyjatek('Pauza', k, n.pojecie))]).toEqual([k, []]);
+      expect([k, (LOCALES[k as Lang] as Record<string, string>)['Pauza']]).toEqual([k, ok]);
+    }
+    expect(S.sprawdz(slownik, 'cs', 'Pauza treningu', 'Pauza tréninku').length).toBe(1); /* przycisk nadal pilnowany */
+    /* K1 (09.10.2026): w cs/sk/ro/et/de „pauza/Pause” to przerwa między seriami — faza nie może jej użyć (wariant zgodny z K1, nie „Pauza” z przeglądu API) */
+    for (const [k, rest] of [['cs', 'Pauza'], ['sk', 'Pauza'], ['ro', 'Pauză'], ['de', 'Pause'], ['et', 'Paus']] as const) expect([k, (S.sprawdz(slownik, k, 'Pauza', rest) as { pojecie: string }[]).some(n => n.pojecie === 'faza_pauza')]).toEqual([k, true]);
+    expect(S.sprawdz(slownik, 'ro', 'Podciąganie', 'Tracțiune').length).toBe(1); expect(S.sprawdz(slownik, 'ro', 'Podciąganie', 'Tragere în sus')).toEqual([]);
+    const ro = LOCALES.ro as Record<string, string>; expect(ro['Podciąganie']).toBe('Tragere în sus');
+    expect(S.sprawdz(slownik, 'ro', 'Podciąganie', 'Tracţiune').length).toBe(1); /* recenzja 31.10.2026: także ţ z cedyllą */
+  });
   test('blok promptu: tylko wpisy języka docelowego, z terminem zalecanym i zakazanym', () => {
     const b: string = S.blokPromptu(slownik, 'ja');
     expect(b).toContain('インターバル'); expect(b).toContain('休憩'); expect(b).toContain('naturalnie');

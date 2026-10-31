@@ -1,6 +1,12 @@
 # Linia 1.1 — stan bieżący (aktualizowany po każdym kroku; ostatnio 31.10.2026 ~09:30 PL)
 
-## Teraz (31.10.2026 ~19:10 PL, koniec sesji wykonawcy 2 — reset kontekstu)
+## Teraz (31.10.2026, wykonawca 3 — gałąź `slownik/faza-pauza` od `ui-krytyczne/przeglad-api` @ 6b3d23d5)
+- **Zrobione (zadanie 1–2):** pojęcie słownika `faza_pauza` (faza animacji „Pauza” ≠ pauza treningu ≠ przerwa, K1); cs/sk „Výdrž”, ro „Menținere”, et „Hoidmine”, de „Halten”; ro faza „Podciąganie” → „Tragere în sus”. Recenzja: `docs/lokalizacja/recenzja-faza-pauza-2026-10-31.md` (bg/lv po recenzji bez zmian). Wpis docs/18 (31.10.2026, faza_pauza). 4 krytyczne z przeglądu API zamknięte (z 8; 4 wcześniejsze w `ui-krytyczne/przeglad-api`).
+- **Do kolejki średnich (zadanie 4):** ro „Zatrzymaj animację” = „Pune animația pe pauză” — „pauză” to w ro przerwa (K1), propozycja recenzenta „Oprește animația” (+ ewentualnie pojęcie słownika dla przycisku animacji); pytania do native speakera: ro Menținere, et Hoidmine, bg Набиране/Издърпване, lv Pievilkšanās, ja/ko/vi nazwa fazy = słowo przycisku (キープ / 버티기 / Giữ).
+- **W toku:** partia 5 audytu ćwiczeń (agent audytor, worktree `/home/user/audyt-p5`, gałąź `audyt/cwiczenia-grafiki-p5` od `audyt/cwiczenia-grafiki-2026-10-31` @ 1a09dbba).
+- Kolejka dalej: 107 średnich uwag z `docs/lokalizacja/raport-api-2026-10-31/` (klucze UI), partiami po języku/obszarze z recenzją; niskie (140) bez polecenia nie.
+
+## Wcześniej (31.10.2026 ~19:10 PL, koniec sesji wykonawcy 2)
 - **Do scalenia:** `ui-krytyczne/przeglad-api` (4 krytyczne poprawki UI + ten wpis) — pełne verify 899d52d7 zielone (15744 testy); po zielonym tests.yml dla HEAD tej gałęzi → fast-forward do `integracja-1-1` (dziś e369cd7e, gałąź jest jej potomkiem). Nic niewypchniętego.
 - **Kolejka (kolejność):** (1) scalenie wyżej; (2) słownik terminów: nowe pojęcie „faza animacji: Pauza” odrębne od `pauza_treningu` (cs/sk/ro dziś czasownik-przycisk w nazwie fazy) i ro `faza_ruchu` „Podciąganie” („Tracțiune” vs „Tragere în sus”) — tłumacz + recenzja, test słownika; (3) 107 średnich i 140 niskich uwag z `docs/lokalizacja/raport-api-2026-10-31/` (klucze UI); (4) partia 5 audytu ćwiczeń (zakres w `docs/audyt-cwiczen/STAN.md` na `audyt/cwiczenia-grafiki-2026-10-31` @ 1a09dbba: rodziny bez danych cardio/foam_roll/neck, 69 ćw. bez wskazówek, treść 100 zestawów przy ćwiczeniach bez figury) — gałąź audytu i figury/karty prowadzi sesja session_01T66VBvQr2aYDfZ5p9AKC57 (weryfikacja ACG-006+ i fale napraw), uzgadniać przez koordynatora.
 - Worktree tej sesji (ulotne): `/home/user/audyt-acg`, `/home/user/audyt-verify`, `/home/user/ui-kryt` — wszystko wypchnięte.

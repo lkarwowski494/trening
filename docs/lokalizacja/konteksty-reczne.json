@@ -1,4 +1,5 @@
 {
+ "Pauza": "nazwa FAZY animacji ruchu (anim.ts PhaseName, ExerciseFigureV2.tsx:113) w linii „Opuszczanie 2 s · Pauza · Wypychanie 1 s”: zatrzymanie w pozycji, rzeczownik; NIE przycisk pauzy treningu i NIE przerwa między seriami (słownik: faza_pauza)",
  "Podciąganie": "nazwa FAZY animacji ruchu (poseData.ts DATA_UI.names.first), pokazana w „{faza} {n} s”: rzeczownik odczasownikowy jak siostrzane fazy „Opuszczanie”, „Wypychanie”; NIE nazwa ćwiczenia „podciąganie na drążku”",
  "Opuszczanie": "nazwa FAZY animacji ruchu (anim.ts PhaseName, poseData.ts), pokazana w „{faza} {n} s”; rzeczownik odczasownikowy jak „Podciąganie”",
  "Wypychanie": "nazwa FAZY animacji ruchu (anim.ts PhaseName), pokazana w „{faza} {n} s”; rzeczownik odczasownikowy jak „Opuszczanie”",
