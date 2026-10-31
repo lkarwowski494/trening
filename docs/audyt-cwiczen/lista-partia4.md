@@ -679,3 +679,17 @@ Pomiary co u = 0,04 (pętla `cykl_lustro`, marsz w miejscu — miednica x 0): tu
 | Overhead Carry (hantle) | tak | ok (hantle nad głową y 199–205, łokieć 14–15°; dłoń 16 cm przed barkiem — ramię 162°) | general carry | tak | do recenzji ruchu (jak przedramię od pionu w 4C) |
 | Rickshaw Carry | tak | ok (rama rysowana jak gryf sześciokątny) | general carry | tak | sprzęt zastępczy (U-4E-3) |
 | Suitcase Carry | tak | ok (kettlebell w prawej dłoni y 73,5–81, druga ręka wolno; tułów 0°) | own | — | karta zgodna („ciężar”; nota: hantel) |
+
+## glute_floor — 7 ćwiczeń, 7 z danymi (karty własne 0; zestawy: `hipExt` 5, `hipAbd` 2; brak 0) — partia 4E
+
+Pomiary u = 0 / 1 i zakresy co u = 0,05: biodro, kolano, kręgosłup (0° we wszystkich), miednica (stała we wszystkich), położenie kolana pracującej nogi, dłonie i kolana podporu wobec barku i biodra, styki. Walidacja 7/7 bez błędów, `jakosc-raport` 0 naruszeń (z `--styk-wszystkie` R17 tylko Prone Flutter Kicks — ciało na ławce).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Cable Kickback | tak | ok (stanie, pochylenie 24°, mankiet na kostce, biodro 36 → −14°) | general hipExt | tak | — |
+| Clamshell | tak | ok (leżenie bokiem, kolana 88–90°, górne kolano y 23 → 43, pięty razem, miednica stała) | general hipAbd | tak | palce górnej stopy unoszą się o 10 cm — drobne |
+| Donkey Kick | tak | ok (dłonie pod barkami x 60, kolana pod biodrem x 11,6; udo do 11° od linii tułowia, kolano 90–105°) | general hipExt | tak | — |
+| Fire Hydrant | tak | ok (kolano w bok z 8,5 → 43 i w górę y 9 → 27, miednica stała) | general hipAbd | tak | — |
+| Hip Extension with Bands | tak | ok (stanie, tułów 8°, biodro 22 → −16°); guma między kostkami | general hipExt | tak | nota: guma z zaczepu na jednej kostce — w rysunku pętla na obu (wariant, bez zdania w zestawie) |
+| Machine Glute Kickback | tak | ok (dłonie na uchwytach, dźwignia na kostce, biodro 44 → 11°) | general hipExt | tak | — |
+| Prone Flutter Kicks | tak | ok (przodem na ławce, biodra przy krawędzi — miednica x −66, koniec ławki x −75; proste nogi ±15,6° naprzemiennie) | general hipExt | tak | R17 — ławka |
