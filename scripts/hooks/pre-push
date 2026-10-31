@@ -1,9 +1,9 @@
 #!/bin/sh
 # Hak pre-push (L-009, decyzja właściciela 21.10.2026): zatrzymuje wypchnięcie, gdy lint nie przechodzi albo któryś plik pochodny (README, macierz testów, konteksty, zegarek…) jest nieaktualny.
 # Dwa sprawdzenia, w tej kolejności, przerwanie przy pierwszym błędzie: lint, check:pochodne (README, macierz, konteksty, pliki pochodne, strażniki tekstowe); do tego (L-037) przy zmianach w docs/: numeracja lekcji i testy dokumentów.
-# Wyjątek: gdy zmiany względem origin/main to wyłącznie dokumenty (scripts/verify-docs.mjs --czy-dokumenty), lint jest pomijany.
+# Wyjątek: gdy zmiany względem origin/main (albo — H1, 31.10.2026 — od najbliższego commitu z pełnym verify) to wyłącznie dokumenty (scripts/verify-docs.mjs --czy-dokumenty), lint jest pomijany.
 # Pełne `npm run verify` jest obowiązkiem przed wypchnięciem (CLAUDE.md), a od L-049 (opcja A, decyzja właściciela 28.10.2026) pierwszy krok haka to sprawdza:
-# drzewo wypychanego commitu musi mieć znacznik zielonego verify (scripts/verify-znacznik.mjs; commit tylko z dokumentami — znacznik verify:docs). Ok. 0,1 s.
+# drzewo wypychanego commitu musi mieć znacznik zielonego verify (scripts/verify-znacznik.mjs; commit tylko z dokumentami — znacznik verify:docs, także po pełnym verify wcześniejszego kodu — H1, 31.10.2026). Ok. 0,1 s.
 # Instaluje go `npm ci` (skrypt `prepare` → scripts/hooks/instaluj.mjs ustawia core.hooksPath na scripts/hooks; nie w CI i nie w katalogu bez .git).
 # Czas (pomiar 28.10.2026, 4 rdzenie, maszyna współdzielona): lint ok. 25 s + check:pochodne ok. 55 s (kroki równolegle, jest --maxWorkers=1); ok. 35 s przed decyzją 8a.
 # Obejście — tylko świadomie (np. wypychasz gałąź roboczą, której i tak nie scalasz): git push --no-verify
