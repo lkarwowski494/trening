@@ -752,8 +752,8 @@ Widok: z boku; kotwica: biodro; przyrządy: rect, line, line, plate.
 - **pozycja wyjściowa** — t 180, sh 100, el 0, hip -3, knee 95
   - zgięcie łokcia: 0° (±4°) ← `skull.setup`: „Połóż się na ławce, chwyć gryf wąsko nachwytem i trzymaj go nad czołem na prostych rękach.”
   - odcinek bark–łokieć: 90° do poziomu (±15°) ← `skull.upperArm`: „Ramiona prawie nieruchome, mniej więcej pionowo — pracują łokcie.”
-- **pozycja końcowa** — t 180, sh 100, el 105, hip -3, knee 95
-  - dłoń przy: głowa + [0, 10] w układzie tułowia (≤ 12) ← `skull.depth`: „Opuszczaj, aż gryf będzie tuż nad czołem — albo wcześniej, jeśli ramiona zaczną uciekać w tył.”
+- **pozycja końcowa** — t 180, sh 90, el 121, hip -3, knee 95
+  - dłoń przy: głowa + [4.5, 8.5] w układzie tułowia (≤ 4) ← `skull.depth`: „Opuszczaj, aż gryf będzie tuż nad czołem — albo wcześniej, jeśli ramiona zaczną uciekać w tył.”
   - odcinek bark–łokieć: 90° do poziomu (±15°) ← `skull.upperArm`: „Ramiona prawie nieruchome, mniej więcej pionowo — pracują łokcie.”
 - Uproszczenie ilustracyjne: pozostałe kąty.
 

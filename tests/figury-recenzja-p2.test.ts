@@ -166,7 +166,8 @@ describe('6. guma: tryb zaczep_kostki (zaczep → kostki) i Seated Band Hamstrin
     for (let i = 1; i < dl.length; i++) expect(dl[i]).toBeGreaterThanOrEqual(dl[i - 1] - 0.05);
     expect(dl[dl.length - 1] - dl[0]).toBeGreaterThanOrEqual(25); expect(Math.min(...dl)).toBeGreaterThan(20); /* guma napięta od początku, nie luźna między stopami */
   });
-  test('zaczep gumy leży przed osobą (za stopami), na wysokości kostek', () => { const g = poza('leg_isolation', 'Seated Band Hamstring Curl').sprzet.find(x => x.rodzaj === 'guma')!; expect(g.x!).toBeGreaterThan(90); expect(g.y!).toBeLessThan(30); });
+  /* ACG-019 (31.10.2026): siad na ławce (udo na siedzisku) — kostki wyżej niż w siadzie na podłodze, więc „na wysokości kostek” mierzone względem kostki w pozycji startowej (±10 cm), nie stałym progiem y < 30 */
+  test('zaczep gumy leży przed osobą (za stopami), na wysokości kostek', () => { const d = poza('leg_isolation', 'Seated Band Hamstring Curl'); const g = d.sprzet.find(x => x.rodzaj === 'guma')!; expect(g.x!).toBeGreaterThan(90); const b = keyframeFrame(d, 0).props.find((p): p is Extract<Prop, { k: 'band' }> => p.k === 'band')!; expect(Math.abs(g.y! - b.to[1])).toBeLessThanOrEqual(10); });
 });
 
 /* ---------- 7. pozostałe pozy bez zmian ---------- */
@@ -181,13 +182,13 @@ function odcisk(d: PoseData): { svg: string; raw: string } {
 /** Ćwiczenia zmieniane tą gałęzią (poprawki recenzji partii 2); wszystkie inne pozy sześciu rodzin mają dawać ten sam rysunek co przed poprawkami. */
 const ZMIENIONE = new Set([
   ...STOPIEN.map(c => `calf_raise/${c}`), ...BULGARSKIE.map(c => `lunge/${c}`), ...MASZYNY.map(c => `leg_machine/${c}`),
-  'back_extension/Back Extension', 'back_extension/Reverse Hyperextension', 'back_extension/Lower Back Curl', 'glute_floor/Prone Flutter Kicks', 'glute_floor/Machine Glute Kickback', 'leg_isolation/Seated Band Hamstring Curl',
+  'back_extension/Back Extension', 'back_extension/Reverse Hyperextension', 'back_extension/Lower Back Curl', 'glute_floor/Prone Flutter Kicks', 'glute_floor/Machine Glute Kickback', 'leg_isolation/Seated Band Hamstring Curl', 'calf_raise/Seated Calf Raise', 'calf_raise/Seated Calf Raise (hantle)', 'calf_raise/Barbell Seated Calf Raise', 'calf_raise/Dumbbell Seated One-Leg Calf Raise' /* ACG-020 (31.10.2026): podest pod przodostopiem w czterech pozach w siadzie */,
   'lunge/Reverse Lunge', 'lunge/Walking Lunges', 'lunge/Lunges (hantle)', 'lunge/Pistol Squat' /* scalenie main 28.10.2026: wiersz błędu „kolana do środka” usunięty z poz razem ze zdaniami z kart (decyzja właściciela 1a 2a, M1-audytor-generalny-038) */,
   'leg_machine/Leg Press', 'leg_machine/Belt Squat Machine', 'leg_machine/Single Leg Press' /* runda 5: platforma pod podeszwą */, 'glute_floor/Fire Hydrant' /* backlog figur r2 28.10.2026: stopa za nogą (R11) */, 'glute_floor/Clamshell' /* backlog figur 28.10.2026: leżenie na lewym boku jak Side-Lying Quad (R9 „ciało leży” jako bramka wszystkich rodzin) */, /* runda 3 (p2-r3): wiersz „kolana do środka” (B1, B2) */
 ]);
 describe('7. pozostałe pozy sześciu rodzin bez zmian (odciski SVG i kształtów)', () => {
   const baza = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'figury-p2-baza.json'), 'utf8')) as Record<string, { svg: string; raw: string }>;
-  test('baza obejmuje 60 póz tych rodzin (po wyjątku Calf Press, 28.10.2026: 61 → 60); zmieniane to 17 ćwiczeń z recenzji (+ Lower Back Curl, Prone Flutter Kicks z niezmiennika kolana; + Leg Press i Belt Squat Machine z rundy 3; + Single Leg Press z rundy 5: platforma pod podeszwą; + Clamshell z backlogu figur: leżenie na boku; + Fire Hydrant z backlogu figur r2: stopa za nogą)', () => { expect(Object.keys(baza)).toHaveLength(60); for (const k of ZMIENIONE) expect(baza[k]).toBeDefined(); expect(ZMIENIONE.size).toBe(28); /* +4: Reverse Lunge, Walking Lunges, Lunges (hantle), Pistol Squat — wiersz błędu usunięty (scalenie main 28.10.2026) */ });
+  test('baza obejmuje 60 póz tych rodzin (po wyjątku Calf Press, 28.10.2026: 61 → 60); zmieniane to 17 ćwiczeń z recenzji (+ Lower Back Curl, Prone Flutter Kicks z niezmiennika kolana; + Leg Press i Belt Squat Machine z rundy 3; + Single Leg Press z rundy 5: platforma pod podeszwą; + Clamshell z backlogu figur: leżenie na boku; + Fire Hydrant z backlogu figur r2: stopa za nogą)', () => { expect(Object.keys(baza)).toHaveLength(60); for (const k of ZMIENIONE) expect(baza[k]).toBeDefined(); expect(ZMIENIONE.size).toBe(32); /* +4 ACG-020 (31.10.2026): cztery wspięcia w siadzie z podestem */ /* +4: Reverse Lunge, Walking Lunges, Lunges (hantle), Pistol Squat — wiersz błędu usunięty (scalenie main 28.10.2026) */ });
   test.each(Object.keys(baza).filter(k => !ZMIENIONE.has(k)))('%s: rysunek bez zmian', klucz => { const [r, ...reszta] = klucz.split('/'); expect([klucz, odcisk(poza(r, reszta.join('/')))]).toEqual([klucz, baza[klucz]]); });
   test.each([...ZMIENIONE])('%s: rysunek zmieniony względem bazy (poprawka jest widoczna)', klucz => { const [r, ...reszta] = klucz.split('/'); expect(odcisk(poza(r, reszta.join('/')))).not.toEqual(baza[klucz]); });
 });

@@ -47,7 +47,8 @@ type Trafienie = { regula: string; cwiczenie: string; rodzina: string; szczegol:
 const R1 = (p: Poza): string[] => {
   if (!/calf stretch|soleus and achilles|gastrocnemius/i.test(p.cwiczenie)) return [];
   const s = sk(p, 0); const stojac = s.pelvis[1] > 50; const prog = stojac ? PROGI.kostkaStojacaDeg : PROGI.kostkaSiedzacaDeg;
-  const ok = (['R', 'L'] as const).some((x) => jointAngles(s, x).ankle >= prog && s.legs[x].heel[1] <= PROGI.piętaNaPodlodzeCm);
+  /* ACG-013 (31.10.2026): wariant na stopniu — pięta poniżej krawędzi (niżej niż palce) zamiast na podłodze */
+  const ok = (['R', 'L'] as const).some((x) => jointAngles(s, x).ankle >= prog && (s.legs[x].heel[1] <= PROGI.piętaNaPodlodzeCm || s.legs[x].heel[1] < s.legs[x].toe[1] - 1));
   return ok ? [] : [`żadna noga nie ma kostki ≥ ${prog}° z piętą na podłodze (kostki ${(['R', 'L'] as const).map((x) => jointAngles(s, x).ankle.toFixed(0)).join('/')}°, pięty y ${(['R', 'L'] as const).map((x) => s.legs[x].heel[1].toFixed(1)).join('/')})`];
 };
 /** R2: ruch kręgosłupa (zmiana zgięcia ≥ próg) → głowa względem tułowia zmienia się w tę samą stronę (zaokrąglenie = głowa niżej względem tułowia). */
@@ -221,10 +222,12 @@ describe('nazwy faz ruchów mobilności (Cat-Cow) — własne klucze t(), nie Op
 describe('mięśnie karty zgodne z rysunkiem pozy (recenzja mobilności r2: Gastrocnemius, Child\'s Pose)', () => {
   const mob = wczytaj().filter((p) => MOB.includes(p.rodzina));
   const mieśnie = (cw: string): string[] => Object.keys(MUSCLE_DATA[cw]?.load ?? {}).sort();
-  test('ćwiczenia o identycznym rysunku mają identyczne mięśnie (Standing Gastrocnemius = Wall Calf)', () => {
+  /* ACG-013 (31.10.2026): Standing Gastrocnemius dostał własny rysunek (na stopniu) — nie jest już kopią Wall Calf; zostaje reguła dla par identycznych, jeśli jakieś są */
+  test('ćwiczenia o identycznym rysunku mają identyczne mięśnie (Standing Gastrocnemius ≠ Wall Calf od 31.10.2026)', () => {
     const grupy: Record<string, string[]> = {};
     for (const p of mob) (grupy[JSON.stringify({ k: p.klatki, s: p.sprzet })] ??= []).push(p.cwiczenie);
-    const wspolne = Object.values(grupy).filter((g) => g.length > 1); expect(wspolne.length).toBeGreaterThan(0);
+    const wspolne = Object.values(grupy).filter((g) => g.length > 1);
+    expect(wspolne.some((g) => g.includes('Standing Gastrocnemius Calf Stretch'))).toBe(false);
     for (const g of wspolne) for (const cw of g) expect([cw, mieśnie(cw)]).toEqual([cw, mieśnie(g[0])]);
     expect(mieśnie('Standing Gastrocnemius Calf Stretch')).toEqual(['calves']);
   });

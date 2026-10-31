@@ -14,15 +14,15 @@ angielski tekst zastępczy nie liczy się jako przekład.
 | Co | Ćwiczeń | Udział |
 |---|---:|---:|
 | Figura v2 w aplikacji (rodzina gotowa) | 0 | 0% |
-| Figura v1 w aplikacji (bez v2) | 52 | 7,3% |
-| Bez figury w aplikacji | 657 | 92,7% |
+| Figura v1 w aplikacji (bez v2) | 53 | 7,5% |
+| Bez figury w aplikacji | 656 | 92,5% |
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 449 | 63,3% |
-| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 35 | 4,9% |
+| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 34 | 4,8% |
 | Animowany błąd | 0 | 0% |
-| Własne wskazówki (źródłowe) | 97 | 13,7% |
+| Własne wskazówki (źródłowe) | 98 | 13,8% |
 | — z czego z częstymi błędami | 36 | 5,1% |
 | Zestaw ogólny wskazówek wzorca ruchu | 0 | 0% |
-| Bez tekstu wskazówek | 612 | 86,3% |
+| Bez tekstu wskazówek | 611 | 86,2% |
 | Częste błędy (własne albo zestaw ogólny) | 36 | 5,1% |
 | Role mięśni | 509 | 71,8% |
 | **Pełna karta** | 0 | 0% |
@@ -41,12 +41,12 @@ Cel osiągnięty: **nie** (36 z 47 liczb).
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
 | figura v2 w aplikacji | 98 | 0 | 98 |
-| figura w aplikacji (v2 albo v1) | 151 | 52 | 99 |
+| figura w aplikacji (v2 albo v1) | 151 | 53 | 98 |
 | ćwiczenia z danymi figury v2 (włączonymi albo nie) | 536 | 449 | 87 |
 | animowany błąd | 92 | 0 | 92 |
-| własne wskazówki | 102 | 97 | 5 |
+| własne wskazówki | 102 | 98 | 4 |
 | własne wskazówki z częstymi błędami | 43 | 36 | 7 |
-| wskazówki (własne lub zestaw ogólny) | 640 | 97 | 543 |
+| wskazówki (własne lub zestaw ogólny) | 640 | 98 | 542 |
 | częste błędy (tekst) | 557 | 36 | 521 |
 | pełna karta | 17 | 0 | 17 |
 | komplet tekstów karty: pl | 671 | 525 | 146 |
@@ -61,7 +61,7 @@ Cel osiągnięty: **nie** (36 z 47 liczb).
 | `curl` | do zrobienia | 36 | 0 | 36 | 5 | 6 | 0 | 30 | 0 | 0 |
 | `mobility_stand` | do zrobienia | 36 | 0 | 8 | 0 | 0 | 0 | 36 | 0 | 0 |
 | `hinge` | gotowa | 32 | 0 | 0 | 0 | 7 | 0 | 25 | 0 | 0 |
-| `triceps` | do zrobienia | 32 | 0 | 29 | 3 | 3 | 0 | 29 | 0 | 0 |
+| `triceps` | do zrobienia | 32 | 0 | 29 | 4 | 4 | 0 | 28 | 0 | 0 |
 | `bench_press` | gotowa | 30 | 0 | 0 | 0 | 5 | 0 | 25 | 0 | 0 |
 | `pushup_plank` | do zrobienia | 30 | 0 | 17 | 4 | 7 | 0 | 23 | 0 | 0 |
 | `plyo` | do zrobienia | 28 | 0 | 27 | 0 | 1 | 0 | 27 | 0 | 0 |
@@ -153,6 +153,6 @@ Pełnych kart: 0. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy d
 | 0 | 0 |
 | 1 | 0 |
 | 2 | 32 |
-| 3 | 54 |
-| 4 | 438 |
+| 3 | 55 |
+| 4 | 437 |
 | 5 | 185 |

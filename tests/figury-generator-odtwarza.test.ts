@@ -17,11 +17,14 @@ const skanDozwolonyKod1 = (rodziny: string[]) => { try { return skan(rodziny); }
 /* Stan z 28.10.2026 (integracja-1-1 @ b2067b8c): rozbieżności w rodzinach poza zakresem sesji tresc-plyo-sanie; do naprawy przez właścicieli rodzin. */
 const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
   core_floor: ['Superman', 'Crunch', 'Frog Sit-Ups', 'Janda Sit-Up', 'Oblique Crunches - On The Floor', 'Sit Up', 'Toe Touchers', 'Bicycle Crunch', 'Cross-Body Crunch', 'Scissor Kick'],
-  curl: ['Spider Curl', 'Spider Curl (sztanga)'],
+  curl: ['Spider Curl', 'Spider Curl (sztanga)', /* ACG-012 31.10.2026 (ręczna poprawka pozy, generator do backlogu) */ 'Barbell Curl', 'EZ Bar Curl', 'Hammer Curl'],
   delt_raise: ['Straight Raises on Incline Bench'],
+  calf_raise: [/* ACG-020 31.10.2026 (podest pod przodostopiem; generator do backlogu) */ 'Seated Calf Raise', 'Seated Calf Raise (hantle)', 'Barbell Seated Calf Raise', 'Dumbbell Seated One-Leg Calf Raise'],
   forearm: ['Barbell Wrist Curl', 'Barbell Reverse Wrist Curl', 'Wrist Curl (hantle)', 'Reverse Wrist Curl (hantle)', 'One-Arm Dumbbell Wrist Curl', 'One-Arm Dumbbell Reverse Wrist Curl', 'Cable Wrist Curl'],
   glute_floor: ['Donkey Kick', 'Fire Hydrant', 'Clamshell', 'Cable Kickback', 'Hip Extension with Bands', 'Machine Glute Kickback', 'Prone Flutter Kicks'],
   hip_abd_add: ['Cable Hip Abduction'],
+  leg_isolation: [/* ACG-019 31.10.2026 */ 'Seated Band Hamstring Curl'],
+  mobility_stand: [/* ACG-013 31.10.2026 (figura na stopniu) */ 'Standing Gastrocnemius Calf Stretch'],
   pull_up: ['Gironda Sternum Chins', 'Chin Up', 'Mixed Grip Chin', 'Neutral Grip Pull Up', 'One Arm Chin-Up', 'Pull Up', 'Side To Side Chins', 'Gorilla Chin/Crunch'],
   rotator_cuff: ['External Rotation (linki)', 'External Rotation with Band', 'Internal Rotation with Band', 'Cable Internal Rotation', 'Reverse Flyes With External Rotation'],
   row: ['Lying T-Bar Row', 'Chest Supported Row'],

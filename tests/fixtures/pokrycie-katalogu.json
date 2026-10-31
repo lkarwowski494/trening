@@ -4,17 +4,17 @@
     "cwiczen": 709,
     "figura": {
       "v2": 0,
-      "v1": 52,
-      "bezFigury": 657,
+      "v1": 53,
+      "bezFigury": 656,
       "daneV2NieWlaczone": 449,
-      "wyjatekBezAnimacji": 35
+      "wyjatekBezAnimacji": 34
     },
     "animowanyBlad": 0,
     "wskazowki": {
-      "wlasne": 97,
+      "wlasne": 98,
       "wlasneZBledami": 36,
       "ogolne": 0,
-      "bezTekstu": 612
+      "bezTekstu": 611
     },
     "czesteBledyTekst": 36,
     "roleMiesni": 509,
@@ -256,10 +256,10 @@
       "cwiczen": 32,
       "figuraV2": 0,
       "daneV2NieWlaczone": 29,
-      "v1": 3,
-      "wlasne": 3,
+      "v1": 4,
+      "wlasne": 4,
       "ogolne": 0,
-      "bezTekstu": 29,
+      "bezTekstu": 28,
       "pelnaKarta": 0,
       "recenzja": 0
     },
@@ -754,12 +754,12 @@
   },
   "dobre": {
     "figura.v2": 0,
-    "figura.wAplikacji": 52,
+    "figura.wAplikacji": 53,
     "figura.zDanymiV2": 449,
     "animowanyBlad": 0,
-    "wskazowki.wlasne": 97,
+    "wskazowki.wlasne": 98,
     "wskazowki.wlasneZBledami": 36,
-    "wskazowki.zTekstem": 97,
+    "wskazowki.zTekstem": 98,
     "czesteBledyTekst": 36,
     "roleMiesni": 509,
     "pelnaKarta": 0,

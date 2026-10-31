@@ -488,10 +488,14 @@
   "Skullcrusher (EZ)": {
    "rodzina": "triceps",
    "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "6de63df3cc7d",
-   "uwagi": "Ruch i karta zgodne. Ramiona prawie pionowo i nieruchomo, gryf opuszczany do czoła zgięciem łokci. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+   "data": "2026-10-31",
+   "kto": "audytor (sesja 1.1, 31.10.2026) — recenzja bramki 4 po ACG-006 (L-047, L-050): arkusz klatek, póz pośrednich i nałożonego śladu toru gryfu, pomiar z lib/figures/geom.ts (200 póz pośrednich), zakres stawów wobec rom, karta lib/cues (skull.setup, skull.move, skull.upperArm, skull.depth), ACE #36 przeczytane 31.10.2026",
+   "sha": "5d6bd6f26542",
+   "uwagi": "Ruch i karta zgodne (ACG-006 naprawione, commit b6b53361). Start: proste ręce, ramię 100° (10° od pionu w stronę głowy), gryf nad twarzą (4,4 j. od środka głowy w poziomie, w obrysie) — skull.setup. Dół: ramię 90°, łokieć 121°, gryf tuż nad czołem (3,46 j. od czoła, 6,1 j. od środka głowy w poziomie, 7,7 j. nad nim) — skull.depth 1,8 przy tolerancji 4. Ramię zmienia kąt o 10° w stronę stóp, nie ucieka w tył — skull.upperArm. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "autor": "programista (sesja 1.1, 31.10.2026)",
+   "recenzent": "audytor (sesja 1.1, 31.10.2026)",
+   "slad": "arkusz PNG przed/po: start, pozy pośrednie 0,25/0,5/0,75, koniec, ślad 21 punktów toru gryfu i punkt czoła (L-050); pomiar 200 póz: tor gryfu gładkim łukiem, gryf ≥ 9,85 j. od środka głowy, przedramię ≥ 9,76 j., talerz ≥ 3,7 j. nad ławką, w dole gryf 3,46 j. od czoła (przed poprawką 7,33 j., 10,3 j. za środkiem głowy w poziomie)",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), linia 1.1, 31.10.2026"
   },
   "Triceps Dips (ławka)": {
    "rodzina": "dip",
