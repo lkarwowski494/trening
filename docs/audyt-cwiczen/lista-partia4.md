@@ -519,3 +519,24 @@ Pomiary co u = 0,05: kolano, łokieć, biodro, tułów, kręgosłup, pięty (wsp
 | One-Arm Kettlebell Split Jerk | tak | ok (odbiór w wykroku: kolana 80° / 96°, miednica y 68) | general pushPress | tak | — |
 | One-Arm Kettlebell Swings | tak | ok (jak Kettlebell Swing, jedna ręka; druga wolno w przód) | general kbSwing | tak | — |
 | Snatch (hantel) | tak | ok (jak Kettlebell Snatch, hantel) | general oly | **nie** („Sztanga…”) | **ACG-017** |
+
+## leg_isolation — 14 ćwiczeń, 8 z danymi (karty własne 4, w tym 1 bez figury; zestawy: `legCurl` 5, `bridge` 2, `legExt` 1; brak 2) — partia 4D
+
+Pomiary co u = 0,05 i punkty u = 0 / 0,5 / 1: kolano, biodro (`lcurl.still` — udo nieruchomo), tułów, stopy, położenie kolana wobec osi dźwigni maszyny, styki (siedzisko, oparcie). Walidacja 8/8 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Glute Ham Raise | nie | bez figury | general legCurl | tak | — |
+| Leg Curl | tak | ok (siad z oparciem 80°, kolano w osi dźwigni x 50,6 y 48, kolano 11 → 100°, biodro stałe 80–83°) | own | — | karta zgodna |
+| Leg Curl (hantel) | nie | bez figury | general legCurl | tak | — |
+| Leg Extension | tak | ok (kolano w osi dźwigni, 90 → 11°, udo stałe) | own | — | karta zgodna |
+| Lying Leg Curl | tak | ok (leżenie przodem, kolano w osi dźwigni x −42, kolano 3 → 100°, biodro 8–9° stałe) | own | — | karta zgodna (`llc.hips`) |
+| Nordic Curl | nie | bez figury | own | — | karta bez figury v2 (partia 3) |
+| Reverse Nordic | nie | bez figury | none (open) | — | — |
+| Seated Band Hamstring Curl | tak | ok w walidacji; **udo opada przy wyproście**: kolano y 49,6 → 31,1 przy biodrze y 48 (biodro 92 → 67°), pięta sunie po podłodze; skrzynia tylko pod pośladkami (x −40…−1) | general legCurl | **nie** (`lcurl.still` „Uda i biodra nieruchomo — ruch tylko w kolanach”) | **ACG-019** |
+| Single-Leg Leg Extension | tak | ok (jak Leg Extension, druga noga zgięta 90°) | general legExt | tak | — |
+| Sissy Squat | nie | bez figury | none (open) | — | — |
+| Slider Hamstring Curl | tak | ok (mostek na barkach, ślizgacze pod piętami x 52 → 81, kolano 12 ↔ 100°, biodro −16 … 28°) | general bridge | **nie** (`ht.rigid` „Ruch tylko w biodrach”; ruch jest głównie w kolanach) | **ACG-019** |
+| Stability Ball Hamstring Curl | nie | bez figury | general bridge | **nie** (jw., po nazwie) | ACG-019 (teoretyczny — bez figury zestaw niewidoczny) |
+| Standing Cable Leg Curl | tak | ok (mankiet na kostce, wyciąg z przodu x 95, kolano 9 → 95°, biodro stałe 10–12°) | general legCurl | tak | — |
+| Standing Leg Curl | tak | ok (oparcie tułowiem 24°, kolano 9 → 95°, biodro stałe 25–28°) | general legCurl | tak | — |
