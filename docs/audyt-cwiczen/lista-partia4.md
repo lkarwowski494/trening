@@ -580,3 +580,23 @@ Pomiary u = 0 / 0,5 / 1: pięta i palce (y) obu stóp — czy pięta schodzi pon
 | Smith Machine Reverse Calf Raise | nie | bez figury | none (open) | — | — |
 | Standing Calf Raise | tak | ok (palce na podeście 6 cm, dźwignia przy miednicy, kolana proste 5°) | own | — | karta zgodna (`calf.edge`, `calf.knees`) |
 | Łydki na stopniu | tak | ok (stopień 8 cm, dłoń przy podporze, pięta 4,3 cm poniżej palców w dole) | own | — | karta zgodna |
+
+## forearm — 13 ćwiczeń, 11 z danymi (karty własne 0; zestawy: `wrist` 8, `curl` 1; brak 4) — partia 4D
+
+Pomiary co u = 0,05: zgięcie nadgarstka (`wristFlex`), rotacja przedramienia, łokieć, ramię, siad (kolano, miednica), chwyt; podparcie przedramienia na udzie u = 0 / 1 (łokieć–nadgarstek poziomo y ≈ 62 nad udem, dłoń za kolanem). Walidacja 11/11 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`). Wspólne dla 7 uginań w siadzie: tułów 43,5°, łokieć stały 117°, przedramię na udzie.
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Barbell Reverse Wrist Curl | tak | ok (nachwyt — rotacja −78°, nadgarstek −48 → 40°) | general wrist | tak | — |
+| Barbell Wrist Curl | tak | ok (podchwyt 78°, nadgarstek −32 → 52°, przedramię na udzie) | general wrist | tak | — |
+| Behind-the-Back Barbell Wrist Curl | tak | ok (stanie, gryf za plecami x −18, nadgarstek −30 → 50°, łokieć 0–22°) | general wrist | tak | — |
+| Cable Wrist Curl | tak | ok (jak Barbell Wrist Curl, drążek z dolnego wyciągu z przodu) | general wrist | tak | — |
+| Dumbbell Lying Pronation | tak | ok w walidacji; **siad z przedramieniem na udzie** (miednica y 53,8, kolano 86°), rotacja −70 ↔ 70° | none (open) | — | **ACG-014** (nota: „Prone on a bench”); dane identyczne z Supination (wahadło pokazuje oba kierunki) |
+| Dumbbell Lying Supination | tak | ok w walidacji; jw. | none (open) | — | **ACG-014** (nota: „Lying on a bench”) |
+| One-Arm Dumbbell Reverse Wrist Curl | tak | ok (jedna ręka, nachwyt) | general wrist | tak | — |
+| One-Arm Dumbbell Wrist Curl | tak | ok (jedna ręka, podchwyt) | general wrist | tak | — |
+| Plate Pinch | nie | bez figury | none (open) | — | — |
+| Reverse Plate Curls | tak | ok (talerz oburącz nachwytem, łokieć 24 → 123°, ramię przy tułowiu 6–8°, nadgarstek 0°) | general curl | tak | — |
+| Reverse Wrist Curl (hantle) | tak | ok (nachwyt, dwa hantle) | general wrist | tak | — |
+| Wrist Curl (hantle) | tak | ok (podchwyt, dwa hantle) | general wrist | tak | — |
+| Wrist Roller | nie | bez figury | none (open) | — | — |
