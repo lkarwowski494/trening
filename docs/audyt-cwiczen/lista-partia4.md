@@ -443,3 +443,29 @@ Pomiary co u = 0,05: łokieć (stały kąt — `fly.elbows`), uniesienie i odwie
 | Single Arm Cable Fly | tak | ok (jedna ręka, druga na biodrze) | general fly | tak | — |
 | Svend Press | nie | bez figury | none (open) | — | — |
 | Wide-Grip Decline Barbell Pullover | tak | ok (ławka ujemna, proste ręce, gryf za głowę) | general pullover | tak | R17 z `--styk-wszystkie` — fałszywy alarm |
+
+## core_standing — 19 ćwiczeń, 16 z danymi (karty własne 2; zestawy: `rotation` 7, `sideBend` 3, `windmill` 3; brak 4) — partia 4D
+
+Pomiary co u = 0,05: skłon boczny (`przechylTulowia`), skręt i pochylenie tułowia z klatek, łokieć, uniesienie ramienia, kolana, stopy, chwyty (strona ruchu wobec wyciągu), miednica; punkty kluczowe u = 0 / 0,5 / 1 (bark, chwyt, głowa, kostki). Walidacja 16/16 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`). Wszystkie skłony i obroty pokazują jedną stronę (pętla wahadło) — jak w zrecenzowanych rodzinach.
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Barbell Side Bend | tak | ok (gryf na karku x −12,8, skłon 0 → 28°, bez skrętu i pochylenia) | general sideBend | tak | — |
+| Bent Press | tak | ok (hantel stoi y 144 → 158, tułów schodzi pod ciężar: miednica w bok x −27, łokieć 146 → 23°; dolna dłoń do y 15) | general windmill | tak | — |
+| Bosu Ball Cable Crunch With Side Bends | tak | ok w walidacji; **siad na kopule Bosu** (miednica y 41, tułów −8 → 24°, skłon 0 → 24°), jedna strona | none (open) | — | **ACG-014** (nota: „Lying on a Bosu”) |
+| Cable Judo Flip | tak | ok (lina z dolnego wyciągu z boku, skręt −28 → 30°, dłonie y 99 → 154) | general rotation | tak | — |
+| Cable Russian Twists | tak | ok w walidacji; **siad prosto na piłce** (miednica y 64,5, biodro 60°, tułów 0°), skręt ±36°, uchwyt oburącz | general rotation | tak | **ACG-014** (nota: „upper back on a stability ball”) |
+| Cable Woodchop | tak | ok (lina z górnego wyciągu: dłonie y 147 → 87 na drugą stronę, skręt 28 → −30°, tułów do 18°) | general rotation | tak | — |
+| Double Kettlebell Windmill | tak | ok (jak Kettlebell Windmill; drugi kettlebell w dolnej dłoni, y 76 → 32) | general windmill | tak | — |
+| Kettlebell Figure 8 | nie | bez figury | none (open) | — | — |
+| Kettlebell Windmill | tak | ok (górna ręka nad barkiem: chwyt 11 cm od pionu nad barkiem w dole, łokieć 6–13°; biodra w tył x −18, dolna dłoń do y 32) | general windmill | tak | `wm.eyes` — kierunek wzroku niezmierzony |
+| Landmine Rotation | tak | ok (koniec gryfu oburącz y 100, skręt ±32°) | general rotation | tak | — |
+| Medicine Ball Full Twist | tak | ok (piłka oburącz, skręt ±40°, stopy stałe) | general rotation | tak | nota: z partnerem — rysunek bez partnera; ruch ten sam, bez znaleziska |
+| One-Arm High-Pulley Cable Side Bends | tak | ok (uchwyt nad głową y 198–202, skłon −26° od wyciągu — wyciąg z +52, dłoń do z −32) | general sideBend | tak | — |
+| Pallof Press | tak | ok (wyciąg z boku z 75 na wysokości klatki, dłonie x 16 → 58 prosto przed siebie, z ±3, skręt 0°) | own | — | karta zgodna |
+| Pallof Press With Rotation | tak | ok (wypchnięcie i obrót −30° od wyciągu) | general rotation | tak | — |
+| Russian Twist | tak | ok w walidacji (siad, tułów −45° w tył, kolana 131°, stopy na podłodze, skręt ±38°); **dłonie złączone bez ciężaru** (`sprzet` tylko podłoga) | own | — | **ACG-018** (`rt.setup` „ciężar trzymaj przed klatką”); „lekko w tył” przy 45° — do recenzji ruchu |
+| Seated Barbell Twist | nie | bez figury | general rotation | tak | — |
+| Side Bend (hantel) | tak | ok (hantel w prawej, skłon 28° w stronę ciężaru, druga dłoń na biodrze) | none (open) | — | figura bez wskazówek |
+| Spell Caster | nie | bez figury | none (open) | — | — |
+| Weighted Ball Side Bend | tak | ok w walidacji; **siad na piłce z hantlem w opuszczonej ręce**, skłon 26° | general sideBend | tak | **ACG-014** (nota: „Side on a stability ball, plate held by the head”) |
