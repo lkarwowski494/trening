@@ -173,8 +173,8 @@ Razem partia 4A: **KRYTYCZNE 0, WYSOKIE 0, ŚREDNIE 4, NISKIE 1.** ŚREDNIE — 
 - **OP-6 „Pełny zakres … do pełnego zgięcia łokcia” (`preacher.range`):** końcowe zgięcie łokcia w figurach z tym zdaniem 107,6–128° (najmniej Lying Close-Grip Bar Curl On High Pulley). Liczba „pełnego zgięcia” w uginaniu wymaga źródła (np. zakres ruchu łokcia), zanim uznamy to za niezgodność.
 
 ### Uwagi (bez znaleziska)
-- core_floor i curl nie mają wpisu w `DATA_UI` (`poseData.ts:56`) — po dodaniu do `LOAD` `figureSpec` zwróci null (fail-closed); strażnik testów wymaga wpisu przy włączeniu.
-- Hollow Hold: pomiar czasu w katalogu, a nie ma go na liście `ISOMETRIC` (`poseData.ts:104`) — test `tests/figures-v2-data.test.tsx:53` zaczerwieni się przy włączeniu core_floor.
+- core_floor i curl nie mają wpisu w `DATA_UI` (`poseData.ts:58`) — po dodaniu do `LOAD` `figureSpec` zwróci null (fail-closed); strażnik testów wymaga wpisu przy włączeniu.
+- Hollow Hold: pomiar czasu w katalogu, a nie ma go na liście `ISOMETRIC` (`poseData.ts:95`) — test `tests/figures-v2-data.test.tsx:53` zaczerwieni się przy włączeniu core_floor.
 - `crunch.neck` („nie ciągnij głowy rękami”) w zestawach ćwiczeń, w których dłonie nie są przy głowie (Frog Sit-Ups, Sit Up, Janda, Alternate Heel Touchers, Tuck Crunch, Bicycle Crunch, Otis-Up) — nie przeczy rysunkowi, ale nie dotyczy go.
 - Decline Crunch / Decline Oblique Crunch: `crunch.lowBack` „na podłodze” przy ławce skośnej — teoretyczne (bez figury zestaw się nie pokazuje).
 - Frog Sit-Ups: stopy pionowo (palce 26 cm nad podłogą) — bez źródła, nie oceniam.
