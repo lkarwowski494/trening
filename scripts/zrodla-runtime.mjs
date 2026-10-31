@@ -90,8 +90,15 @@ export function cardReviewed({ rec, pl, fig = JSON.parse(readFileSync(FULL_FIG, 
 /** Skrót recenzji gotowej rodziny v2 (tekst plików rigu). */
 const plikRodziny = fam => V2_RIGS[fam] ? `lib/figures/v2/rigs/${V2_RIGS[fam]}` : `lib/figures/v2/poses/${fam}.json`; /* rodzina z danych pozy: plik póz zamiast rigu — ten sam wzór co scripts/strona/recenzja-figur.mjs */
 /** Pliki wspólne dla rodzin v2, które zmieniają rysunek (R2-6, recenzja niezależna 28.10.2026: wcześniej tylko rig, common i variants — zmiana draw.ts/scene.ts nie unieważniała recenzji):
- * sprzęt i kształty (draw, scene), szkielet i matematyka (skeleton, math), czas (anim), błędy i figura (errors, figure). */
-export const V2_WSPOLNE = ['lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts', 'lib/figures/v2/draw.ts', 'lib/figures/v2/scene.ts', 'lib/figures/v2/skeleton.ts', 'lib/figures/v2/math.ts', 'lib/figures/v2/anim.ts', 'lib/figures/v2/errors.ts', 'lib/figures/v2/figure.ts'];
+ * sprzęt i kształty (draw, scene), szkielet i matematyka (skeleton, math), czas (anim), błędy i figura (errors, figure).
+ * ACG-002 (audyt ćwiczeń 31.10.2026): także mięśnie, prowadnice, styki i kolidery, kadr, rodziny, dane póz z kontraktem i sprzętem, osłony dźwigni i barku, paleta, znaczki, warstwa UI figury, styki.json —
+ * cała reszta domknięcia importów rysunku (strażnik: tests/figury-recenzja.test.tsx „ACG-002”). Rozszerzenie zmieniło skróty wszystkich rodzin (wpisy recenzji 1.0.1 i tak były nieaktualne po scaleniu 31.10). */
+export const V2_WSPOLNE = ['lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts', 'lib/figures/v2/draw.ts', 'lib/figures/v2/scene.ts', 'lib/figures/v2/skeleton.ts', 'lib/figures/v2/math.ts', 'lib/figures/v2/anim.ts', 'lib/figures/v2/errors.ts', 'lib/figures/v2/figure.ts', 'lib/figures/v2/muscles.ts', 'lib/figures/v2/muscles.generated.ts', 'lib/figures/v2/guides.ts', 'lib/figures/v2/contacts.ts', 'lib/figures/v2/colliders.ts', 'lib/figures/v2/render.ts', 'lib/figures/v2/families.ts', 'lib/figures/v2/poseData.ts', 'lib/figures/v2/contract.ts', 'lib/figures/v2/gear.ts', 'lib/figures/v2/leverGuard.ts', 'lib/figures/v2/overheadException.ts', 'lib/figures/v2/palette.ts', 'lib/figures/v2/badges.ts', 'lib/figures/v2/ui.ts', 'lib/figures/v2/styki.json'];
+/** Pliki z domknięcia importów rysunku celowo poza skrótem rodziny — z powodem (ACG-002, 31.10.2026). */
+export const V2_POZA_SKROTEM = {
+  'lib/figures/v2/cueSets.ts': 'tekst wskazówek przypisany do ćwiczeń (zestawy) — nie zmienia rysunku; ma własny skrót recenzji zestawów (zestawSkrot)',
+  'lib/figures/v2/cue-sets.json': 'dane zestawów wskazówek — nie zmieniają rysunku; własny skrót recenzji zestawów (zestawSkrot)',
+};
 export const rodzinaSkrot = (fam, czytaj = p => readFileSync(join(root, p), 'utf8')) => sha12([plikRodziny(fam), ...V2_WSPOLNE].map(czytaj).join('\n'));
 /** Rodziny v2 z aktualnym wpisem recenzji ruchu (werdykt „wyswietlana”, skrót równy bieżącemu rigowi/plikowi póz). Tylko one są rysowane w aplikacji (bramka 4, fail-closed): rodzina bez wpisu albo zmieniona po recenzji jest ukryta. */
 export const rodzinyZAktualnaRecenzja = rec => Object.keys(rec.v2 ?? {}).filter(f => rec.v2[f].werdykt === 'wyswietlana' && existsSync(join(root, plikRodziny(f))) && rec.v2[f].sha === rodzinaSkrot(f));

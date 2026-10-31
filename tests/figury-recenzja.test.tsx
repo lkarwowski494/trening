@@ -66,7 +66,7 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
   test('skrót v2 = sha256 tekstu rigu rodziny, wspólnego modułu rigów i wariantów (ten sam wzór w skrypcie i w teście)', () => {
     const RIG: Record<string, string> = { squat: 'squat.ts', bench_press: 'benchPress.ts', hinge: 'hinge.ts' };
     for (const f of FAMILIES.filter(x => x.status === 'ready')) {
-      const txt = [RIG[f.id] ? 'lib/figures/v2/rigs/' + RIG[f.id] : `lib/figures/v2/poses/${f.id}.json` /* rodzina z danych pozy */, 'lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts', 'lib/figures/v2/draw.ts', 'lib/figures/v2/scene.ts', 'lib/figures/v2/skeleton.ts', 'lib/figures/v2/math.ts', 'lib/figures/v2/anim.ts', 'lib/figures/v2/errors.ts', 'lib/figures/v2/figure.ts'].map(p => fs.readFileSync(path.join(root, p), 'utf8')).join('\n');
+      const txt = [RIG[f.id] ? 'lib/figures/v2/rigs/' + RIG[f.id] : `lib/figures/v2/poses/${f.id}.json` /* rodzina z danych pozy */, 'lib/figures/v2/rigs/common.ts', 'lib/figures/v2/variants.ts', 'lib/figures/v2/draw.ts', 'lib/figures/v2/scene.ts', 'lib/figures/v2/skeleton.ts', 'lib/figures/v2/math.ts', 'lib/figures/v2/anim.ts', 'lib/figures/v2/errors.ts', 'lib/figures/v2/figure.ts', 'lib/figures/v2/muscles.ts', 'lib/figures/v2/muscles.generated.ts', 'lib/figures/v2/guides.ts', 'lib/figures/v2/contacts.ts', 'lib/figures/v2/colliders.ts', 'lib/figures/v2/render.ts', 'lib/figures/v2/families.ts', 'lib/figures/v2/poseData.ts', 'lib/figures/v2/contract.ts', 'lib/figures/v2/gear.ts', 'lib/figures/v2/leverGuard.ts', 'lib/figures/v2/overheadException.ts', 'lib/figures/v2/palette.ts', 'lib/figures/v2/badges.ts', 'lib/figures/v2/ui.ts', 'lib/figures/v2/styki.json'].map(p => fs.readFileSync(path.join(root, p), 'utf8')).join('\n');
       expect([f.id, createHash('sha256').update(txt).digest('hex').slice(0, 12)]).toEqual([f.id, NOW.v2[f.id]]);
     }
   });
@@ -78,6 +78,25 @@ describe('zapis recenzji (docs/research/figury-recenzja.json)', () => {
     const r = JSON.parse(execFileSync('node', ['--input-type=module', '-e', code], { encoding: 'utf8' }));
     for (const f of ['draw.ts', 'scene.ts', 'skeleton.ts', 'math.ts', 'anim.ts', 'errors.ts', 'figure.ts']) expect(r.wspolne).toContain('lib/figures/v2/' + f);
     expect(r.nieczule).toEqual({ squat: [], bench_press: [], hinge: [] });
+  });
+  test('ACG-002 (audyt ćwiczeń 31.10.2026): skrót rodziny v2 obejmuje każdy plik lib/figures/v2, z którego składa się rysunek (domknięcie importów figure.ts i komponentu figury) — poza plikami jednej rodziny i nazwanymi wyjątkami', () => {
+    const code = `import * as z from ${JSON.stringify(path.join(root, 'scripts/zrodla-runtime.mjs'))}; import * as s from ${JSON.stringify(path.join(root, 'scripts/strona/recenzja-figur.mjs'))};
+      process.stdout.write(JSON.stringify({ wspolne: z.V2_WSPOLNE, poza: z.V2_POZA_SKROTEM, strona: s.WSPOLNE }));`;
+    const r: { wspolne: string[]; poza: Record<string, string>; strona: string[] } = JSON.parse(execFileSync('node', ['--input-type=module', '-e', code], { encoding: 'utf8' }));
+    const V2 = 'lib/figures/v2/';
+    const start = ['lib/figures/v2/figure.ts', ...[...fs.readFileSync(path.join(root, 'components/ExerciseFigureV2.tsx'), 'utf8').matchAll(/from '@\/(lib\/figures\/v2\/[\w./-]+)'/g)].map(m => m[1] + '.ts')];
+    const znajdz = (od: string, spec: string) => { const b = path.posix.normalize(path.posix.join(path.posix.dirname(od), spec)); return [b, b + '.ts', b + '.tsx'].find(c => fs.existsSync(path.join(root, c)) && fs.statSync(path.join(root, c)).isFile()); };
+    const domk = new Set<string>(); const kolejka = [...start];
+    while (kolejka.length) {
+      const f = kolejka.pop()!; if (domk.has(f)) continue; domk.add(f); if (!/\.tsx?$/.test(f)) continue;
+      for (const m of fs.readFileSync(path.join(root, f), 'utf8').matchAll(/(?:from|require\()\s*'(\.{1,2}\/[^']+)'/g)) { const c = znajdz(f, m[1]); if (c && c.startsWith(V2)) kolejka.push(c); }
+    }
+    const rodzinne = (f: string) => /^lib\/figures\/v2\/(rigs\/(squat|benchPress|hinge)\.ts|poses\/[\w-]+\.json)$/.test(f); /* plik jednej rodziny — w skrócie tej rodziny (plikRodziny) */
+    const brak = [...domk].filter(f => !rodzinne(f) && !r.wspolne.includes(f) && !(f in r.poza)).sort();
+    expect(brak).toEqual([]);
+    for (const f of ['muscles.ts', 'muscles.generated.ts', 'guides.ts', 'contacts.ts', 'colliders.ts', 'render.ts', 'families.ts', 'poseData.ts']) expect(r.wspolne).toContain(V2 + f);
+    expect(r.strona).toEqual(r.wspolne); /* eksport strony liczy ten sam skrót */
+    for (const [f, powod] of Object.entries(r.poza)) { expect(domk.has(f) || fs.existsSync(path.join(root, f))).toBe(true); expect(powod.length).toBeGreaterThan(20); expect(r.wspolne).not.toContain(f); }
   });
   test('generator: figura zmieniona po recenzji (inny skrót) wypada z pliku runtime na listę otwartą', () => {
     const code = `import { buildFigures, recenzja } from ${JSON.stringify(path.join(root, 'scripts/zrodla-runtime.mjs'))};
