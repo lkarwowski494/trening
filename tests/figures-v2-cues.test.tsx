@@ -7,7 +7,7 @@
 import { CATALOG } from '@/lib/catalog.generated';
 import { CUE_DATA } from '@/lib/cues';
 import { assignAll, FAMILIES, VARIANTS } from '@/lib/figures/v2';
-import { CUE_SETS, CUE_POLICY, CUE_REQUIRES, cueSelection, cueTextGaps, generalCueNote } from '@/lib/figures/v2/cueSets';
+import { CUE_SETS, CUE_POLICY, CUE_REQUIRES, CUE_NOT_IN_FAMILY, cueSelection, cueTextGaps, generalCueNote } from '@/lib/figures/v2/cueSets';
 import { applyLang, t } from '@/lib/i18n';
 
 const PL: Record<string, string> = require('@/lib/cues/text/pl.json');
@@ -66,6 +66,22 @@ describe('strażnik: wskazówka przypisana do ćwiczenia nie przeczy jego ruchow
     const withJerk = READY.filter(k => [...cueSelection(k).err].includes('mis.jerk')).sort();
     expect(withJerk).toEqual(['Decline Close-Grip Bench To Skull Crusher', 'Floor Press (hantle)', 'Floor Press (sztanga)', 'Floor Press with Chains', 'One-Arm Kettlebell Floor Press']);
     expect(READY.filter(k => VARIANTS[k].family === 'squat' && (VARIANTS[k] as { static?: boolean }).static && cueSelection(k).err.includes('mis.jerk'))).toEqual([]);
+  });
+});
+
+describe('ACG-001 (audyt ćwiczeń 31.10.2026): zdanie zestawu nie przeczy kierunkowi ruchu rodziny', () => {
+  test('„na górze wyprostuj ręce” (lpd.fullStretch — ściąganie drążka) nie trafia do ćwiczeń rodziny pull_up (na górze łokcie zgięte, ręce proste na dole); warunek w CUE_NOT_IN_FAMILY z powodem', () => {
+    const fam = assignAll(); const bad: string[] = [];
+    for (const [k, e] of Object.entries(CUE_SETS.items)) for (const id of [...(e.ok ?? []), ...(e.err ?? [])]) { const r = CUE_NOT_IN_FAMILY[id]; if (r && r.families.includes(fam[k])) bad.push(`${k}: ${id}`); }
+    expect(bad).toEqual([]);
+    expect(CUE_NOT_IN_FAMILY['lpd.fullStretch'].families).toContain('pull_up');
+    for (const r of Object.values(CUE_NOT_IN_FAMILY)) expect(r.why.length).toBeGreaterThan(20);
+  });
+  test('5 podciągań z audytu ma zamiast niego błąd „skracanie ruchu — bez wyprostu rąk na dole” (pu.partial), a ściąganie drążka zachowuje lpd.fullStretch', () => {
+    for (const k of ['Gironda Sternum Chins', 'Mixed Grip Chin', 'One Arm Chin-Up', 'Side To Side Chins', 'Wide-Grip Rear Pull-Up']) {
+      expect([k, CUE_SETS.items[k].ok?.includes('lpd.fullStretch')]).toEqual([k, false]); expect([k, CUE_SETS.items[k].err?.includes('pu.partial')]).toEqual([k, true]);
+    }
+    expect(CUE_SETS.items['V-Bar Pulldown'].ok).toContain('lpd.fullStretch');
   });
 });
 

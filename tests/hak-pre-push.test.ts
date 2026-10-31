@@ -46,6 +46,7 @@ function repoProbne(): { dir: string; zdalne: string } {
   copyFileSync(join(root, 'scripts/verify-docs.mjs'), join(dir, 'scripts/verify-docs.mjs'));
   copyFileSync(join(root, 'scripts/numeruj-lekcje.mjs'), join(dir, 'scripts/numeruj-lekcje.mjs'));
   copyFileSync(ZNACZNIK, join(dir, 'scripts/verify-znacznik.mjs'));
+  copyFileSync(join(root, 'scripts/dokumenty.mjs'), join(dir, 'scripts/dokumenty.mjs'));
   chmodSync(join(dir, 'scripts/hooks/pre-push'), 0o755);
   writeFileSync(join(dir, 'plik.txt'), '1\n');
   git(dir, ['add', '-A']);
@@ -461,6 +462,27 @@ describe('L-049 (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego 
     const d = galaz('docs'); oznacz(d.dir, d.npm, 'dokumenty'); expect(pchnij(d).status).toBe(0);
     const k = galaz('kod'); oznacz(k.dir, k.npm, 'dokumenty'); const r = pchnij(k);
     expect(r.status).not.toBe(0); expect(r.stderr).toContain('znacznik verify:docs');
+  });
+  /* H1 (decyzja właściciela 31.10.2026 ~11:35, ZB-028): gałąź z wcześniejszym kodem — same dokumenty po pełnym verify wystarczą z verify:docs */
+  const dopisz = (x: ReturnType<typeof galaz>, plik: string, tresc: string) => { writeFileSync(join(x.dir, plik), tresc); git(x.dir, ['add', '-A']); git(x.dir, ['commit', '-q', '-m', 'dalej']); };
+  test('H1 (31.10.2026): kod z pełnym verify, potem commit tylko z dokumentami ze znacznikiem verify:docs → przechodzi', () => {
+    const x = galaz('kod'); oznacz(x.dir, x.npm); dopisz(x, 'docs/a.md', 'c\n'); oznacz(x.dir, x.npm, 'dokumenty');
+    expect(pchnij(x).status).toBe(0); expect(gałęzieZdalne(x.zdalne)).toContain('g');
+  });
+  test('H1 (31.10.2026): kod po pełnym verify, potem zmiana kodu tylko z verify:docs → zatrzymane', () => {
+    const x = galaz('kod'); oznacz(x.dir, x.npm); dopisz(x, 'docs/a.md', 'c\n'); dopisz(x, 'plik.txt', 'd\n'); oznacz(x.dir, x.npm, 'dokumenty');
+    const r = pchnij(x); expect(r.status).not.toBe(0); expect(r.stderr).toContain('znacznik verify:docs'); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');
+  });
+  test('H1 (31.10.2026): kod bez znacznika pełnego verify (brak bazy), potem dokumenty z verify:docs → zatrzymane', () => {
+    const x = galaz('kod'); dopisz(x, 'docs/a.md', 'c\n'); oznacz(x.dir, x.npm, 'dokumenty');
+    const r = pchnij(x); expect(r.status).not.toBe(0); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');
+  });
+  test('H1 (31.10.2026): verify:docs na gałęzi z kodem liczy zmiany od commitu z pełnym verify; bez takiego commitu odmawia', () => {
+    const x = galaz('kod'); mkdirSync(join(x.dir, 'tests')); const plan = () => spawnSync(process.execPath, [join(x.dir, 'scripts/verify-docs.mjs'), '--plan'], { cwd: x.dir, env: zNpm(x.npm), encoding: 'utf8' });
+    dopisz(x, 'docs/a.md', 'c\n');
+    let p = JSON.parse(plan().stdout.trim().split('\n').pop()!); expect(p.dokumenty).toBe(false);
+    git(x.dir, ['reset', '-q', '--hard', 'HEAD~1']); oznacz(x.dir, x.npm); dopisz(x, 'docs/a.md', 'c\n');
+    p = JSON.parse(plan().stdout.trim().split('\n').pop()!); expect(p.dokumenty).toBe(true); expect(p.zmienione).toEqual(['docs/a.md']); expect(p.baza).toMatch(/^[0-9a-f]{40}$/);
   });
   test('świadome obejście --no-verify nadal działa', () => {
     const x = galaz('kod'); expect(git(x.dir, ['push', '--no-verify', 'origin', 'g'], zNpm(x.npm)).status).toBe(0);
