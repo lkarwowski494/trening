@@ -5,7 +5,7 @@ Audytor niezależny (nie pisał figur ani kart). Zakres tej sesji: inwentarz ca�
 ## 1. Podsumowanie dla właściciela
 
 - **Partia 3 (karty własne i figury v1):** 101 kart 1.0 / 97 kart 1.1 i 56 figur v1 sprawdzonych w całości; treść kart i źródła bez wady; dwie niezgodności rysunku: Skullcrusher (EZ) — gryf na dole za czubkiem głowy zamiast nad czołem (ACG-006, ŚREDNIE, widoczne w 1.0, w 1.1 ukryte) i Glute Bridge — głowa pod linią podłogi (ACG-007, NISKIE). Szczegóły w sekcji 8.
-- **Partia 4 (rodziny `planned`, sekcje 9–10):** 4A — 118 ćwiczeń / 87 figur (ŚREDNIE 4, NISKIE 1); 4B — mobility_stand, triceps, pushup_plank: 98 ćwiczeń / 54 figury, walidacja bez błędów; ŚREDNIE 1 (ACG-013 — Standing Gastrocnemius Calf Stretch: zestaw „na stopniu”, rysunek przy ścianie), NISKIE 1 (ACG-014). Nic nie dotyczy 1.0 (rodziny ukryte).
+- **Partia 4 (rodziny `planned`, sekcje 9–13, zamknięta):** 36 rodzin, 578 ćwiczeń / 438 figur sprawdzonych bez próbkowania; walidacja v2 bez błędów. Znaleziska: KRYTYCZNE 0, WYSOKIE 0, ŚREDNIE 8 (ACG-008, 009, 010, 012, 013, 015, 019, 020 — do weryfikacji niezależnej), NISKIE 6 (ACG-011, 014, 016, 017, 018, 021); OP-4…OP-12. 4E (sekcja 13): 17 rodzin, 112 ćwiczeń / 93 figury — NISKIE 1 (ACG-021: druga guma do wolnej dłoni w 2 rotacjach) i rozszerzenia ACG-014/016/017/018/019. Nic nie dotyczy 1.0 (rodziny ukryte).
 - **1.0 nic nie blokuje** z tego, co sprawdziłem w partiach 1–2: wszystkie znaleziska dotyczą 1.1 (rodzina pull_up i zestawy rodzin, które w 1.0 nie są pokazywane) albo procesu.
 - **1.1 dziś nie pokazuje żadnej figury v2** (0 z 98): wszystkie 4 rodziny są ukryte, bo pliki wspólne zmieniły się po recenzji 1.0.1. Mechanizm działa tak, jak powinien.
 - **Squat, bench_press, hinge (87):** 62 rysunki są identyczne z wersją zrecenzowaną w 1.0.1. 25 różni się drobno: 16 tylko błędem „pięty” z przodu, 8 sprzętem albo stopą z przodu lub z góry, a 1 (Smith SLDL) torem gryfu. W pomiarach nie znalazłem wady ruchu. Do powrotu wystarczy jedna ponowna recenzja tych 25 z arkuszami i nowe skróty.
@@ -345,3 +345,84 @@ Zestaw `oly` (`oly.close` „Sztanga blisko ciała przez cały ciąg.”, `oly.m
 |---|---|---|
 | L-F (rozszerzenie: ACG-018, ACG-019, ACG-020) | zdania o nieruchomym stawie (`ht.rigid`, `lcurl.still`), zakresie z rozciągnięciem (`calf.move`) i ustawieniu (`fly.posture`, `rt.setup`) nie mają warunku geometrii | do warunków `why` z ACG-T-015/018: `lcurl.still` → zakres biodra ≤ 5°; `ht.rigid` → zakres kolana ≤ 10°; `calf.move` → pięta poniżej palców w dole; `rt.setup` → ciężar w dłoniach; czerwone przed na 7 ćwiczeniach |
 | L-G (rozszerzenie: ACG-014 × 5, ACG-017 × 9) | nazwa sprzętu w zdaniu zestawu i pozycja z noty nie są porównywane z `sprzet` figury | do strażnika L-G: słowo „sztanga/bar” w zdaniu tylko przy figurze ze sztangą; pozycja z noty („lying”, „prone”, „upper back on”) wobec pochylenia tułowia |
+
+## 13. Partia 4E — 17 ostatnich rodzin `planned` z plikiem póz (31.10.2026, @ 2ccd50a6)
+
+Metoda jak w 4A–4D (kod `lib/`, `scripts/`, `data/` bez zmian od 4A — `git diff fbd00673 HEAD -- lib scripts data` pusty); lista per ćwiczenie: `lista-partia4.md` (17 sekcji). Liczby z kodu: **112 ćwiczeń, 93 figury**, wszystkie sprawdzone bez próbkowania. Walidacja v2: 93/93 bez błędów; `jakosc-raport` (domyślny): 0 naruszeń; z `--styk-wszystkie` R17 na 10 figurach — ciało na ławce, siedzisku albo w podporze (Back Extension, Reverse Hyperextension, Leverage Decline Chest Press, Chest Dip, Triceps Dip, Ring Dips, Prone Flutter Kicks, Leg Press), Glute Bridge (sztanga) 1,0 cm (na progu) i Yoke Walk 2,5 cm (obrys buta przy obu stopach na podłodze) — bez wady. Nowe pomiary: linia bark–biodro–kolano w mostkach, styk tułowia z piłką, kierunek oporu (zaczep wyciągu i gumy wobec ruchu) w rotacjach i odwodzeniu, linie gumy do dłoni, łokieć w szrugsach, chwyt wobec barku w ściąganiu drążka, stopy w marszu (zawsze jedna na podłodze). Rodziny niewidoczne (`planned`), więc **nic z tej partii nie dotyczy 1.0**; kroki po włączeniu rodziny w 1.1: Biblioteka → ćwiczenie → Technika ›.
+
+| Rodzina | Ćw. / figur | Walidacja | Wada ruchu w pomiarach | Karta a rysunek | Zestawy pasują (z figurą) | K / W / Ś / N |
+|---|---|---|---|---|---|---|
+| hip_bridge | 11 / 10 | 0 błędów | — (OP-11: Stability Ball Hip Bridge w górze) | own 3: zgodne | 7 z 7 (Stability Ball — tak*) | 0 / 0 / 0 / 0 |
+| cable_row | 10 / 9 | 0 błędów | Machine Row — oparcie pleców zamiast klatki (ACG-014) | own 3: zgodne | 6 z 6 | 0 / 0 / 0 / 0 (+1 do ACG-014) |
+| pulldown | 8 / 8 | 0 błędów | — | own 2: Straight Arm zgodna, Lat Pulldown — ACG-018 | 6 z 6 | 0 / 0 / 0 / 0 (+1 do ACG-018) |
+| shrug | 8 / 8 | 0 błędów | łokcie zginają się 13–17° w 3 szrugsach z maszyny; Calf-Machine — inny wariant | own 2: zgodne | 3 z 6 (ACG-019) | 0 / 0 / 0 / 0 (+3 do ACG-019, +1 do ACG-014) |
+| carry | 7 / 7 | 0 błędów | — (OP-12: front rack) | own 2: zgodne | 5 z 5 | 0 / 0 / 0 / 0 |
+| glute_floor | 7 / 7 | 0 błędów | — | — (bez kart własnych) | 7 z 7 | 0 / 0 / 0 / 0 |
+| rotator_cuff | 8 / 7 | 0 błędów | 2 gumy z linią do wolnej dłoni (ACG-021) | — (bez kart własnych) | 7 z 7 | 0 / 0 / 0 / 1 |
+| hip_abd_add | 8 / 6 | 0 błędów | Lateral Band Walk, Monster Walk — krok i powrót (ACG-016) | — (bez kart własnych) | 6 z 6 (2 × tak*) | 0 / 0 / 0 / 0 (+2 do ACG-016) |
+| leg_machine | 8 / 6 | 0 błędów | — | own 1 pokazywana z figurą (Leg Press): zgodna; Hack Squat ukryta, Calf Press bez figury | 4 z 4 | 0 / 0 / 0 / 0 |
+| chest_press_machine | 5 / 5 | 0 błędów | — | own 2: zgodne | 2 z 3 (ACG-017) | 0 / 0 / 0 / 0 (+1 do ACG-017) |
+| dip | 5 / 5 | 0 błędów | — | own 1: zgodna | 4 z 4 | 0 / 0 / 0 / 0 |
+| cable_press | 4 / 4 | 0 błędów | — | own 1: zgodna | 3 z 3 | 0 / 0 / 0 / 0 |
+| back_extension | 4 / 3 | 0 błędów | — | own 1: zgodna | 2 z 2 | 0 / 0 / 0 / 0 |
+| core_hang | 4 / 3 | 0 błędów | — | — | 3 z 3 | 0 / 0 / 0 / 0 |
+| thruster | 3 / 3 | 0 błędów | Clean and Press — start z zawieszenia (ACG-014) | — | 3 z 3 | 0 / 0 / 0 / 0 (+1 do ACG-014) |
+| kneeling_hinge | 2 / 1 | 0 błędów | — | — | 1 z 1 | 0 / 0 / 0 / 0 |
+| strongman | 10 / 1 | 0 błędów | — | — | 1 z 1 | 0 / 0 / 0 / 0 |
+
+Razem partia 4E: **KRYTYCZNE 0, WYSOKIE 0, ŚREDNIE 0, NISKIE 1** (ACG-021) oraz rozszerzenia istniejących klas: ACG-014 +3, ACG-016 +2, ACG-017 +1, ACG-018 +1, ACG-019 +3 (waga tych trzech: NISKIE). Ćwiczenia bez danych (19) nie mają figury — ich zestaw się nie pokaże.
+
+### ACG-021 — External / Internal Rotation with Band: linia gumy biegnie także do wolnej dłoni
+- **Ćwiczenia:** External Rotation with Band, Internal Rotation with Band (rotator_cuff, zestaw `rotCuff`). **Perspektywa:** technika rysunku (sprzęt). **Status:** do potwierdzenia przy recenzji (NISKIE).
+- **Waga:** NISKIE (ruch i strona oporu poprawne; rysunek pokazuje drugą gumę od zaczepu do lewej dłoni, która spoczywa przy biodrze — wygląda, jakby ćwiczący trzymał drugą gumę; bez wpływu na treść). **Pewność:** 95% (`props` klatki: 2 linie `band`, druga do chwytu lewej dłoni x 3,9 y 75,8 z −22). **Widoczne w 1.0:** nie. **Wersja:** 1.1.
+- **Realność:** teoretyczny dziś; realny po włączeniu rotator_cuff: Biblioteka → External Rotation with Band → Technika › → animacja: przerywana linia gumy od zaczepu (z −75) do prawej dłoni i druga do lewej dłoni przy biodrze.
+- **Dowód:** `lib/figures/v2/poses/rotator_cuff.json:754` i `:1121` — `guma` z `mocowanie: "zaczep"` bez `trzyma`; `lib/figures/v2/gear.ts:243–250` (`sidesOf(g)` bez `trzyma` = obie dłonie; `:65`); te same ćwiczenia z wyciągiem mają `trzyma: "R"` (`rotator_cuff.json`, External Rotation (linki)). Poprawka: `trzyma: "R"` w obu wpisach — przy recenzji rodziny.
+
+### ACG-019 — rozszerzenie (zdanie o nieruchomym stawie przeczy rysunkowi; waga dla tych ćwiczeń NISKIE)
+Zestaw `shrug` (`shrug.tall` „Tułów prosto i nieruchomo — pracują tylko barki.”, `lib/cues/text/pl.json:315`) przy trzech szrugsach, w których łokieć zgina się w trakcie uniesienia: Smith Machine Behind the Back Shrug (21 → 38°, `shrug.json:922`), Leverage Shrug (32 → 45°, `:1155`), Calf-Machine Shoulder Shrug (32 → 45°, `:1388`). Szrugsy ze sztangą, hantlami i linkami: łokieć 3–14° (konwencja „prosto”) — zgodne. Waga NISKIE (13–17°, zakres widoczny, ale ruch barków jest główny; ACG-019 pierwotne — 88° — zostaje ŚREDNIE). Pewność 85%. Poprawka: łokieć stały (ok. 10–15°) w trzech wpisach.
+
+### ACG-014 — rozszerzenie (rysunek innego wariantu niż nota ćwiczenia, NISKIE)
+| Ćwiczenie | Rysunek | Nota katalogu | Dowód |
+|---|---|---|---|
+| Machine Row (cable_row) | siad plecami o oparcie 80° (styk `back`), dźwignia przed sobą | „Chest-supported seated row machine” | `cable_row.json:2251` (`lawka` `kat` 80, oparcie za miednicą) |
+| Calf-Machine Shoulder Shrug (shrug) | dłonie na uchwytach prowadnicy, dane jak Leverage Shrug | „shoulder pads loaded, shrug instead of a calf raise; no grip needed” | `shrug.json:1388` (`dzwignia` `punkt: dlonie`) |
+| Clean and Press (thruster) | start z gryfem 10 cm nad kolanem (y 58, kolano y 48) | „Barbell cleaned from the floor” | `thruster.json:2118`, pomiar u = 0 |
+
+### ACG-016 — rozszerzenie (rysunek wraca do startu, nazwa i zdanie mówią o marszu, NISKIE)
+Lateral Band Walk i Monster Walk (hip_abd_add, zestaw `bandWalk`: `bw.squat` „Zejdź do lekkiego przysiadu i trzymaj go przez cały marsz.”, `pl.json:31`): wahadło — prawa noga robi krok w bok / w przód i wraca, miednica stoi (`hip_abd_add.json:1427`, `:1791`). Zdanie o przysiadzie zgodne (kolano 58°), marszu brak. Pewność 85%.
+
+### ACG-017 — rozszerzenie (zdanie zestawu nazywa inny sprzęt niż rysunek, NISKIE)
+Smith Machine Shoulder Press (chest_press_machine, zestaw `ohp`): `ohp.seat` „…hantle przy barkach” (`pl.json:221`) przy gryfie w prowadnicy Smitha (`chest_press_machine.json:2621`). Pewność 95%.
+
+### ACG-018 — rozszerzenie (zdanie karty własnej nazywa element, którego rysunek nie ma, NISKIE)
+Lat Pulldown (pulldown, karta własna): `lpd.thighs` „Usiądź i ustaw wałki tak, żeby mocno przytrzymywały uda; chwyć drążek.” (`pl.json:187`) — rysunek: ławka z oparciem 85° (styk plecy i głowa), bez wałków (`pulldown.json:5`); model nie ma elementu „wałek na udach” (`contract.ts:198`). W 1.0 karta pokazuje figurę v1 (partia 3: zgodna) — dotyczy 1.1. Pewność 90%.
+
+### Otwarte pytania partii 4E
+- **OP-11 Pozycja górna mostka z barkami na piłce:** Stability Ball Hip Bridge kończy z kolanem 42° (start 92°), kolanem 14 cm za kostką i miednicą 6 cm nad linią bark–kolano (14°); w pozostałych mostkach w górze kolano 82–90°, linia 4–9°. Potrzebne 2 źródła szczebla 4 na typowy kąt kolana i linię w górze (`hip_bridge.json:3489`); dopiero wtedy ocena jako wady.
+- **OP-12 Pozycja „front rack” z kettlebellami w marszu:** Double Kettlebell Front Rack Carry trzyma kettlebelle z łokciem 15,5 cm i dłonią 34 cm przed barkiem (ramię 33° w przód, łokieć 115°), a koniec zarzutu w kb_ballistic (Double Kettlebell Clean) — łokieć pod barkiem, dłoń 22 cm. Potrzebne 2 źródła szczebla 4 na położenie łokcia i kettlebella w tej pozycji (`carry.json:4544`).
+
+### Uwagi (bez znaleziska)
+- **U-4E-1 — próg L-F dla `ht.rigid`:** propozycja z sekcji 12 („zakres kolana ≤ 10°”) dałaby fałszywe alarmy na wszystkich mostkach — zakres kolana 16–19° wynika z geometrii (stopy i barki stoją). Próg do ustalenia na zrecenzowanych figurach (np. ≤ 25° albo kolano względem podudzia).
+- **U-4E-2 — linka a ręce w rozciągnięciu:** Kneeling High Pulley Row (bloczek y 190, ręce poziomo y 104), Standing Cable Row (bloczek y 100, ręce y 137) i Cable Rope Rear-Delt Rows (bloczek y 55, lina y 107): w starcie ręce nie leżą na kierunku linki. Ruch właściwy; do recenzji ruchu.
+- **U-4E-3 — sprzęt zastępczy:** Rickshaw Carry (rama jak gryf sześciokątny), Farmer's Walk (Farmers Handles) (uchwyty jak hantle), Yoke Walk (jarzmo jak gryf). Model nie ma tych przyrządów; uproszczenie warto nazwać przy recenzji.
+- **U-4E-4 — brak podkładek i wałków w modelu:** Lat Pulldown i pozostałe ściągania (bez wałków na udach), Leverage Decline Chest Press (stopy w powietrzu y 59), Hip Abduction/Adduction (dźwignia tylko przy prawej nodze), Calf-Machine Shoulder Shrug (bez wałków na barkach). Tylko Lat Pulldown ma zdanie, któremu to przeczy (ACG-018).
+- Do recenzji ruchu (bez źródła, bez znaleziska): Face Pull (przedramiona poziomo, bez rotacji zewnętrznej), Overhead Carry (dłonie 16 cm przed barkiem), Lower Back Curl (wyprost z biodra, kręgosłup 0°), Frog Pump (pięty razem, palce na zewnątrz), Close-Grip/Underhand/Full ROM Lat Pulldown (dół 17 cm pod barkiem przy `lpd.toChest`), Middle Back Shrug (łokieć 42° przy nocie „straight arms”), szrugsy stojące (tułów 0 → −4,5°).
+
+### Luka procesu
+| Luka | Co przepuściło | Mechanizm |
+|---|---|---|
+| L-I (nowa: ACG-021) | `guma` bez `trzyma` przy ćwiczeniu jednorącz — walidacja nie sprawdza, czy linia gumy kończy się w dłoni, która wykonuje ruch | reguła w `v2-jakosc.mjs`: gdy chwyt jednej dłoni stoi w całej pętli, a guma `zaczep` nie ma `trzyma` — błąd; czerwona przed na 2 figurach rotator_cuff |
+| L-F (rozszerzenie: ACG-019 × 3, ACG-018 Lat Pulldown) | `shrug.tall` („pracują tylko barki”) i `lpd.thighs` (element sprzętu) bez warunku geometrii | `shrug.tall` → zakres łokcia ≤ 5°; zdania nazywające element sprzętu (wałki, podkładka) → wymagany element w `sprzet` albo wyjątek z powodem |
+| L-G (rozszerzenie: ACG-014 × 3, ACG-017 × 1) | nota („chest-supported”, „shoulder pads”, „from the floor”) i nazwa sprzętu w `ohp.seat` nie są porównywane z figurą | do strażnika L-G z ACG-T-021/023 |
+
+### Partia 4 — podsumowanie całości (4A–4E)
+36 rodzin `planned` z plikiem póz: **578 ćwiczeń, 438 figur** (4A 118/87, 4B 98/54, 4C 100/95, 4D 150/109, 4E 112/93), wszystkie sprawdzone bez próbkowania; walidacja v2 438/438 bez błędów, `jakosc-raport` 0 naruszeń w trybie domyślnym. Rodziny są niewidoczne — **nic z partii 4 nie dotyczy 1.0 i nic nie blokuje 1.0**; wszystko dotyczy 1.1 po włączeniu rodziny (status `ready` dopiero po recenzji bramki 4).
+
+| Waga | Liczba | Znaleziska |
+|---|---|---|
+| KRYTYCZNE | 0 | — |
+| WYSOKIE | 0 | — |
+| ŚREDNIE | 8 | ACG-008, ACG-009, ACG-010, ACG-012, ACG-013, ACG-015, ACG-019, ACG-020 — do weryfikacji niezależnej |
+| NISKIE | 6 | ACG-011, ACG-014 (15 ćwiczeń), ACG-016 (4), ACG-017 (12), ACG-018 (3), ACG-021 (2) |
+
+Otwarte pytania: OP-4…OP-12 (9). Luki procesu: L-E…L-I. Zadania: ACG-T-012…025.
