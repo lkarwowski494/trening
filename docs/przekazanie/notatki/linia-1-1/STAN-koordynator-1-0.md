@@ -72,3 +72,4 @@
 - A: czekam na raport (ACG-007).
 ## 22:23 PL
 - A raport końcowy: acg/fale-napraw @ 6330c721 (ACG-007 92c1feef, verify zielone 15787) — 0 niewypchniętych. tests.yml 6330c721 niesprawdzony. Decyzja A docs/18 — jeszcze NIE w docs/18. Prompt przejęcia zaktualizowany.
+- 22:24 PL: B: verify aba31409 czerwone (DEC-04 a, maestro 59) → cofnięte, wip @ e7ce5f1e; verify nowego HEAD w toku. tests.yml 6330c721 (fale) = 41243267412 w toku; da5177b2 anulowany.
