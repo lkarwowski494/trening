@@ -784,3 +784,14 @@ Pomiary u = 0 / 0,5 / 1: biodro, linia bark–biodro–kolano w górze (bez prze
 | Lower Back Curl | tak | ok w walidacji (przodem, miednica na podłodze, barki y 10 → 16, tułów 90 → 83°); wyprost z biodra (−10,6°), kręgosłup 0°; dłonie przy biodrach | general cobra | tak | nota: ramiona w bok, unoszona tylko klatka — wyprost w kręgosłupie, nie w biodrze; do recenzji ruchu |
 | Reverse Hyperextension | tak | ok (tułów na podkładce poziomo, nogi z zwisu — biodro 85° → linia 1°) | general hipExt | tak | R17 — ławka |
 | Weighted Ball Hyperextension | nie | bez figury | general backExt | tak | — |
+
+## core_hang — 4 ćwiczenia, 3 z danymi (karty własne 0; zestawy: `hanging` 3; brak 1) — partia 4E
+
+Pomiary u = 0 / 0,5 / 1: zwis (chwyt na drążku y 230), biodro, kolano, pochylenie miednicy i tułowia (`hang.ribs`), położenie barków (bujanie), stopy wobec drążka. Walidacja 3/3 bez błędów, `jakosc-raport` 0 naruszeń (zwis zadeklarowany).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Hanging Knee Raise | tak | ok (kolana do biodra 100°, kolano 110°, tułów 0 → −10° — podwinięcie miednicy, barki stałe) | general hanging | tak | — |
+| Hanging Leg Raise | tak | ok (proste nogi — kolano 12°, biodro do 83°, tułów do −12°) | general hanging | tak | — |
+| L-Sit | nie | bez figury | none (open) | — | — |
+| Toes to Bar | tak | ok (palce do drążka y 235, barki x −11 → −30, tułów do −55°) | general hanging | tak | odchylenie barków przy palcach do drążka — naturalne, bez znaleziska wobec `hang.noSwing` |
