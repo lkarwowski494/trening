@@ -239,6 +239,7 @@ Odesłanie z wpisu DEC-07 w `docs/18` („1.0.1: podgląd liczb i krok importu �
 - ACG-017 (zestawy `ohp` i `oly` z „hantle”/„Sztanga” przy innym sprzęcie: Seated Barbell Military Press, Seated Cable Shoulder Press, 9 ćwiczeń kettlebell/hantel w `oly`) → 1.1: dobór zestawu wg sprzętu (nowe zdania → rejestr twierdzeń i tłumacz).
 - ACG-018 (karta własna a rysunek: Cable Fly `fly.posture`, Russian Twist `rt.setup`, Lat Pulldown `lpd.thighs`) → 1.1, dane figur.
 - ACG-021 (External Rotation with Band: druga linia gumy do wolnej dłoni) → 1.1, dane figury.
+- Generatory póz (`scripts/figures/agent-pozy/`) nie odtwarzają ręcznych poprawek fal ACG (curl ×3, calf_raise ×4, leg_isolation Seated Band, mobility_stand Gastrocnemius) — wyjątek nazwany 31.10.2026 w `tests/figury-generator-odtwarza.test.ts`; przeniesienie poprawek do generatorów → 1.1, przed regeneracją tych rodzin (ok. 1–2 h agenta).
 - Szrugsy z maszyny (ACG-019 rozszerzenie: Smith Behind the Back, Leverage, Calf-Machine — łokieć 21–45° wbrew `shrug.tall`) → 1.1, stały łokieć w `shrug.json`.
 - ACG-010 (Alternating Deltoid Raise) i ACG-015 (Dumbbell Seated Box Jump): technika ustalona źródłami (`docs/research/acg-010-015-technika-2026-10-31.md`), wdrożenie figur i zestawów → przy włączeniu rodzin delt_raise / plyo (decyzja koordynatora o terminie otwarta).
 
