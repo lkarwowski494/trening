@@ -85,6 +85,19 @@ describe('ACG-001 (audyt ćwiczeń 31.10.2026): zdanie zestawu nie przeczy kieru
   });
 });
 
+describe('ACG-003 (audyt ćwiczeń 31.10.2026): zdania zestawów ogólnych we wszystkich językach aplikacji, nie tylko PL/EN', () => {
+  test('każde id zestawu ogólnego (wszystkie rodziny, także planned — cel 1.1 i strona) ma własny tekst w każdym słowniku bazowym; es-419 i pt-BR dziedziczą', () => {
+    const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path');
+    const dir = path.join(__dirname, '..', 'lib', 'cues', 'text');
+    const base = fs.readdirSync(dir).map(f => f.replace(/\.json$/, '')).filter(l => l !== 'es-419' && l !== 'pt-BR');
+    expect(base.length).toBe(33);
+    const used = new Set<string>(); for (const e of Object.values(CUE_SETS.items)) if (e.b === 'general') [...(e.ok ?? []), ...(e.err ?? [])].forEach(i => used.add(i));
+    const gaps: string[] = [];
+    for (const l of base) { const d = JSON.parse(fs.readFileSync(path.join(dir, `${l}.json`), 'utf8')) as Record<string, string>; for (const id of used) if (!(typeof d[id] === 'string' && d[id].trim())) gaps.push(`${l}: ${id}`); }
+    expect(gaps).toEqual([]);
+  });
+});
+
 describe('strażnik: rodzina gotowa (ready) nie używa identyfikatora wskazówki bez tekstu PL i EN (recenzja treści 1.1, S1: karta pomijała je po cichu albo pokazywała surowe id)', () => {
   test('rodziny ze statusem ready w kodzie: każde id zestawów (ok i err) ma tekst w pl.json i en.json', () => {
     expect(cueTextGaps(FAMILIES, PL, EN)).toEqual([]);
