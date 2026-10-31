@@ -635,3 +635,18 @@ Pomiary u = 0 / 0,5 / 1: łokieć, uniesienie i odwiedzenie ramienia, tułów (0
 | Sled Row | nie | bez figury | none (open) | — | — |
 | Standing Cable Row | tak | ok (stanie, drążek y 137 → 102) | general row | tak | bloczek y 100, start: ręce na wysokości barków (U-4E-2) |
 | Wiosłowanie na linkach (siedząc) | tak | ok (dane jak Seated Cable Row) | own | — | karta zgodna |
+
+## pulldown — 8 ćwiczeń, 8 z danymi (karty własne 2; zestawy: `vpull` 6; brak 0) — partia 4E
+
+Pomiary u = 0 / 1 i co u = 0,05: chwyt w górze i w dole wobec barku (siad: bark y 105), łokieć, odwiedzenie, tułów, styki, położenie wyciągu. Walidacja 8/8 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`). Wszystkie ćwiczenia w siadzie mają ławkę z oparciem 85° (styk plecy i głowa) i nie mają wałków na udach — model nie ma takiego elementu (`contract.ts:198`, lista `rodzaj`).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Close-Grip Front Lat Pulldown | tak | ok (chwyt z ±11, drążek y 167 → 88 — 17 cm pod barkiem, łokieć 19 → 141°) | general vpull | tak | `lpd.toChest` — dół na wysokości środka mostka, granica „górnej części klatki” |
+| Full Range-Of-Motion Lat Pulldown | tak | ok (dwa wyciągi z ±60, uchwyty y 167 → 88, łokcie do boków) | general vpull | tak | nota: uchwyty skrzyżowane — w rysunku każda dłoń ze swojego wyciągu (bez zdania w zestawie) |
+| Lat Pulldown | tak | ok (drążek y 166 → 97 — 8 cm pod barkiem, łokieć 19 → 140°, tułów −5°); **ławka z oparciem, bez wałków na udach** | own | — | **ACG-018** (`lpd.thighs` „ustaw wałki tak, żeby mocno przytrzymywały uda”) |
+| Single Arm Lat Pulldown | tak | ok (jedna ręka, druga dłoń na udzie) | general vpull | tak | — |
+| Straight Arm Pulldown | tak | ok (stanie, tułów 15°, łokieć 12–20° — konwencja „prosto”, drążek y 183 → 77 do ud) | own | — | karta zgodna |
+| Underhand Lat Pulldown | tak | ok (podchwyt z ±18, y 167 → 88) | general vpull | tak | jak Close-Grip |
+| V-Bar Pulldown | tak | ok (uchwyt V z ±7, y 166 → 97) | general vpull | tak | — |
+| Wide-Grip Pulldown Behind The Neck | tak | ok (chwyt z ±42, drążek za głową — x 0 przy środku głowy x 12, dół y 109 na karku) | general vpull | tak | — |
