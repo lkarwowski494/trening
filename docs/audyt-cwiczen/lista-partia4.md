@@ -469,3 +469,29 @@ Pomiary co u = 0,05: skłon boczny (`przechylTulowia`), skręt i pochylenie tuł
 | Side Bend (hantel) | tak | ok (hantel w prawej, skłon 28° w stronę ciężaru, druga dłoń na biodrze) | none (open) | — | figura bez wskazówek |
 | Spell Caster | nie | bez figury | none (open) | — | — |
 | Weighted Ball Side Bend | tak | ok w walidacji; **siad na piłce z hantlem w opuszczonej ręce**, skłon 26° | general sideBend | tak | **ACG-014** (nota: „Side on a stability ball, plate held by the head”) |
+
+## sled_throw — 19 ćwiczeń, 8 z danymi (karty własne 1; zestawy: `mbThrow` 4, `sled` 3, `squat` 1, `tgu` 1; brak 9) — partia 4D
+
+Pomiary co u = 0,05 i tor piłki u = 0 / 0,2 / … / 1 (rzuty: pętla jednokierunkowa; sanie: `cykl_lustro`): łokieć, kolano, biodro, tułów, stopy (wspięcie, wybicie), miednica, chwyt i piłka, kierunek rzutu wobec ustawienia stóp. Walidacja 8/8 bez błędów, `jakosc-raport` 0 naruszeń (z `--styk-wszystkie` R17 na 6 rzutach — 1,1–1,3 cm przy wspięciu na palce w wyrzucie, jak U-4C-1). Model nie ma wypuszczenia przedmiotu — piłka zostaje w dłoniach do końca pętli (U-4D-1).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Backward Drag | nie | bez figury | general sled | tak | — |
+| Backward Medicine Ball Throw | tak | ok (piłka z dołu między nogami y 31 → łukiem przed ciałem → nad głowę x −0,4 y 217,5; przysiad kolano 100° → wyprost i wspięcie, pięty y 21) | general mbThrow | tak | U-4D-1 |
+| Bear Crawl Sled Drag | nie | bez figury | none (open) | — | — |
+| Medicine Ball Chest Pass | nie | bez figury | none (open) | — | — |
+| Medicine Ball Scoop Throw | tak | ok (półprzysiad kolano 102°, piłka y 45 → 201 przed ciałem, wyprost i wspięcie) | general mbThrow | tak | U-4D-1 |
+| Medicine Ball Slam | tak | ok (piłka nad głową y 215 → w dół przed ciałem do y 51; tułów do 52°, kolano do 58°, kręgosłup 0° — plecy proste) | own | — | karta zgodna co do ruchu; „rzuć w podłogę” — piłka nie opuszcza dłoni (U-4D-1) |
+| One-Arm Medicine Ball Slam | tak | ok (jak Medicine Ball Slam, piłka w prawej dłoni) | general mbThrow | — | zestaw bez zdań (`ok` i `err` puste) — nic się nie pokaże; jak ćwiczenie bez wskazówek |
+| Sled Drag (Harness) | tak | ok (marsz w przód, sanie za plecami x −170 na pasie, tułów 34°, kolano 13–129°) | general sled | tak | — |
+| Sled Forward Drag with Press | nie | bez figury | none (open) | — | — |
+| Sled Overhead Backward Walk | nie | bez figury | none (open) | — | — |
+| Sled Push | tak | ok (dłonie na słupkach sań x 75 y 88, tułów 32,5°, łokieć 28°, marsz z lustrem) | general sled | tak | — |
+| Sledgehammer Swings | nie | bez figury | none (open) | — | — |
+| Spider Crawl | nie | bez figury | none (open) | — | — |
+| Standing Two-Arm Overhead Throw | tak | ok (piłka zza głowy x −22 → przed ciało x 70 na wysokości y 184–213, tułów −8 → 18°, wspięcie) | general mbThrow | tak | U-4D-1 |
+| Supine Chest Throw | nie | bez figury | none (open) | — | — |
+| Supine One-Arm Overhead Throw | nie | bez figury | none (open) | — | — |
+| Supine Two-Arm Overhead Throw | nie | bez figury | none (open) | — | — |
+| Turkish Get Up | nie | bez figury | general tgu | tak | — |
+| Wall Ball | tak | ok (piłka przy klatce y 130, przysiad kolano 102°, wstanie i wyrzut nad głowę y 213,5; ściana x 95) | general squat | tak | U-4D-1 (piłka nie dolatuje do ściany) |
