@@ -18,8 +18,8 @@ type Wpis = { linia: number; data: string; rodzaj: string; naglowek: string; tek
 /** Wywołanie funkcji modułu ESM przez node (Jest nie ładuje .mjs wprost). */
 function wywolaj<T>(kod: string): T {
   const r = spawnSync(process.execPath, ['--input-type=module', '-e',
-    `import * as m from ${JSON.stringify(SKRYPT)}; const out = await (async () => { ${kod} })(); console.log(JSON.stringify(out));`], { encoding: 'utf8', cwd: ROOT });
-  if (r.status !== 0) throw new Error(r.stderr);
+    `import * as m from ${JSON.stringify(SKRYPT)}; const out = await (async () => { ${kod} })(); console.log(JSON.stringify(out));`], { encoding: 'utf8', cwd: ROOT, maxBuffer: 64 * 1024 * 1024 /* wynik wpisy(docs/18) > 1 MiB (31.10.2026) — domyślny bufor ucinał proces bez stderr */ });
+  if (r.status !== 0) throw new Error(r.stderr || String(r.error));
   return JSON.parse(r.stdout);
 }
 /** Błędy dla tekstu dziennika (pliki testów czytane z repo). */
