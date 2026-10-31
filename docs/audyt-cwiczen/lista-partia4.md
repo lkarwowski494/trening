@@ -495,3 +495,27 @@ Pomiary co u = 0,05 i tor piłki u = 0 / 0,2 / … / 1 (rzuty: pętla jednokieru
 | Supine Two-Arm Overhead Throw | nie | bez figury | none (open) | — | — |
 | Turkish Get Up | nie | bez figury | general tgu | tak | — |
 | Wall Ball | tak | ok (piłka przy klatce y 130, przysiad kolano 102°, wstanie i wyrzut nad głowę y 213,5; ściana x 95) | general squat | tak | U-4D-1 (piłka nie dolatuje do ściany) |
+
+## kb_ballistic — 17 ćwiczeń, 16 z danymi (karty własne 1; zestawy: `oly` 9, `pushPress` 5, `kbSwing` 1; brak 1) — partia 4D
+
+Pomiary co u = 0,05: kolano, łokieć, biodro, tułów, kręgosłup, pięty (wspięcie), miednica, chwyt i ciężar; przebieg kolana w czasie (ugięcie, wybicie, ponowne ugięcie w podrzucie), kolano wobec osi stopy w rozkroku sumo, położenie kettlebella w zamachu wobec kolan. Wspólne: kręgosłup 0° we wszystkich (plecy proste), zamach — biodro do 86°, kolano do 45°, tułów do 62°. Walidacja 16/16 bez błędów, `jakosc-raport` 0 naruszeń (z `--styk-wszystkie` R17 na 9 figurach — 1,1–1,4 cm przy wspięciu na palce w wybiciu, jak U-4C-1).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Bottoms-Up Clean From The Hang Position | tak | ok (kettlebell dnem do góry — `dzwon` `wzdluz_gora`; z zwisu y 53 do barku y 145, przedramię pionowo) | general oly | **nie** (`oly.close`, `oly.mis` „Sztanga…”) | **ACG-017** (rozszerzenie) |
+| Double Kettlebell Clean | tak | ok (dwa kettlebelle do pozycji przy barkach y 130, łokieć 132°) | general oly | **nie** („Sztanga…”) | **ACG-017** |
+| Double Kettlebell Jerk | tak | ok (ugięcie kolano 35°, wybicie z wspięciem — pięty y 21, ponowne ugięcie pod ciężar do 27° przy prostych rękach y 200) | general pushPress | tak | — |
+| Double Kettlebell Push Press | tak | ok (ugięcie 35°, wybicie, ręce kończą ruch, nogi proste w górze; tułów 2–3°) | general pushPress | tak | różnica z Jerk poprawna (bez ponownego ugięcia) |
+| Double Kettlebell Snatch | tak | ok (dwa kettlebelle z zawieszenia nad głowę y 201, łokieć 8°, wspięcie) | general oly | **nie** („Sztanga…”) | **ACG-017** |
+| Dumbbell Clean | tak | ok (jak Double Kettlebell Clean, hantle) | general oly | **nie** („Sztanga…”) | **ACG-017** |
+| Kettlebell Clean | tak | ok (jedna ręka do pozycji przy barku y 130; druga ręka wolno w przód) | general oly | **nie** („Sztanga…”) | **ACG-017**; start z kettlebellem przed nogami (x 30), bez przejścia między nogami — wariant |
+| Kettlebell Pirate Ships | nie | bez figury | none (open) | — | — |
+| Kettlebell Snatch | tak | ok (jedna ręka nad głowę y 200,7, łokieć 5°, wspięcie pięty y 18) | general oly | **nie** („Sztanga…”) | **ACG-017** |
+| Kettlebell Sumo High Pull | tak | ok (szeroki rozkrok, kolano 20° na zewnątrz osi stopy, kettlebell oburącz y 39 → 148, łokcie wysoko 134°) | general oly | **nie** (`oly.close` „Sztanga…”) | **ACG-017**; `sumo.kneesOut` zgodne z rysunkiem |
+| Kettlebell Swing | tak | ok (zamach: uchwyt między nogami x −7 za linią kolan x 10, y 60 → przed ciałem y 151; biodra wypchnięte, kolana proste w górze, ręce 0–18°) | own | — | karta zgodna; góra 11 cm nad barkiem (wysokość oczu) — mieści się w „unosi się przed tobą” |
+| One-Arm Kettlebell Clean and Jerk | tak | ok (zarzut jedną ręką do barku, potem podrzut z wykrokiem: kolana 80° / 96°) | general oly | **nie** („Sztanga…”) | **ACG-017** |
+| One-Arm Kettlebell Jerk | tak | ok (jak Double Kettlebell Jerk, jedna ręka; ponowne ugięcie do 27°) | general pushPress | tak | — |
+| One-Arm Kettlebell Push Press | tak | ok (jak Double Kettlebell Push Press, jedna ręka) | general pushPress | tak | — |
+| One-Arm Kettlebell Split Jerk | tak | ok (odbiór w wykroku: kolana 80° / 96°, miednica y 68) | general pushPress | tak | — |
+| One-Arm Kettlebell Swings | tak | ok (jak Kettlebell Swing, jedna ręka; druga wolno w przód) | general kbSwing | tak | — |
+| Snatch (hantel) | tak | ok (jak Kettlebell Snatch, hantel) | general oly | **nie** („Sztanga…”) | **ACG-017** |
