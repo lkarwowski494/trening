@@ -723,3 +723,18 @@ Pomiary u = 0 / 1: położenie kolan (z), biodro, kolano, tułów, miednica (sta
 | Hip Flexion with Band | nie | bez figury | none (open) | — | — |
 | Lateral Band Walk | tak | ok w walidacji (półprzysiad: kolano 58°, tułów 20°, guma przy kostkach); **krok w bok i powrót** (miednica stała, wahadło) | general bandWalk | tak* (`bw.squat` „…przez cały marsz”) | **ACG-016** (rozszerzenie) |
 | Monster Walk | tak | ok w walidacji; jw., krok w przód i powrót | general bandWalk | tak* | **ACG-016** (rozszerzenie) |
+
+## leg_machine — 8 ćwiczeń, 6 z danymi (karty własne 3, w tym 1 bez figury i 1 ukryta; zestawy: `squatMachine` 2, `legPress` 2, `squat` 1; brak 0) — partia 4E
+
+Pomiary u = 0 / 1 i co u = 0,05: kolano (dół, góra — przeprost), biodro, tułów i oparcie, miednica (stała przy prasie), kręgosłup (0° we wszystkich), pięty. Walidacja 6/6 bez błędów, `jakosc-raport` 0 naruszeń (z `--styk-wszystkie` R17 tylko Leg Press — siedzisko).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Belt Squat Machine | tak | ok (kolano 8 → 108°, biodro 105°, tułów 30°, pięty na podłodze) | general squat | tak | — |
+| Calf Press (leg press) | nie | bez figury | own | — | karta bez figury v2 |
+| Hack Squat | tak | ok (plecy na oparciu −25°, kolano 21 → 100°, biodro 70°) | own (ukryta w 1.0 i 1.1) | — | rysunek bez wskazówek |
+| Leg Press | tak | ok (siad, oparcie −10°, kolano 86 → 15,5° — bez przeprostu, biodro 124 → 85°, miednica stała) | own | — | karta zgodna (`lp.setup` „mniej więcej pod kątem prostym” — 86°); R17 — siedzisko |
+| Lying Machine Squat | tak | ok (oparcie −48°, kolano 21 → 100°) | general squatMachine | tak | — |
+| Pendulum Squat | tak | ok (dane jak Hack Squat) | general squatMachine | tak | — |
+| Single Leg Press | tak | ok (jedna noga na platformie, druga stopa na podłodze) | general legPress | tak | — |
+| Smith Machine Leg Press | nie | bez figury | general legPress | tak | — |
