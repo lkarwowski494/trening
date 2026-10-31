@@ -137,6 +137,9 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
 - **Prośba o ocenę w sklepie** — systemowe okno iOS (SKStoreReviewController / expo-store-review), po pozytywnym zdarzeniu (np. nowy rekord
   albo kilka ukończonych treningów), nigdy w zamian za nagrodę (Apple 5.6.1/3.2.2). **[OTWARTE]**: dokładny moment i odstęp między prośbami.
 
+### Backlog 1.1 — start aplikacji: wyścig zapisu stabilnego startu w scenariuszu aktualizacji (zgłoszenie koordynatora 1.0, 31.10.2026)
+- E2E 41178429329 na `wersja-1-0-1-r2` @ 3eb21b5 raz pokazał ekran awaryjny startu (tryb „pętla awarii”, `lib/state/boot.ts:60-66`) po scenariuszu 33; ponowienie 41183057069 zielone. Ocena: **brzegowy** (n = 1), dane nietknięte (tryb awaryjny niczego nie zapisuje). Do zbadania przed 1.1, bo dotyczy aktualizacji 1.0 → 1.1: czy zapis licznika startów (`BOOT_GUARD_KEY`) i oznaczenie stabilnego startu mogą się rozminąć przy zamknięciu aplikacji w trakcie startu; najpierw test odtwarzający (kolejność zapisów), potem poprawka. Właściciel: sesja 1.1 (kolejna).
+
 ### Backlog 1.1 — grafiki: tryb cykliczny marszu (ponowna recenzja 27.10.2026, uwagi 2–5; uwaga 1 naprawiona regułą `marsz_zawsze_podparcie`)
 - Sled Drag: zamach rąk jak w sprincie (bark do 104,5°, dłoń z przodu 116 cm), a przy ciężkich saniach zamach bywa mniejszy — NISKIE, pewność 50%.
 - Yoke Walk: kolano nogi podporowej 31–42° i lądowanie stopy wykrocznej na palcach przed piętą — NISKIE, pewność 55%.
