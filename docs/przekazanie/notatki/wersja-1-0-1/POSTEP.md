@@ -92,6 +92,8 @@
 
 - 31.10 ~07:00 PL decyzja właściciela (przez koordynatora 1.0; zapis PR #107, docs/18): 1.0.1 nie wychodzi osobno — zmiany wchodzą do 1.1; bez audytu 1.0→1.0.1; ZB-007 anulowane. Build TestFlight tylko do testu na telefonie (1A): wersja 1.0.1 w app.json/package.json/package-lock.json (wariant A; B — 1.0.0 z kolejnym numerem buildu odrzucony: miesza się z buildem 1.0 w zgłoszeniu), test `tests/release-1.0.test.tsx`; „Co nowego” pusta. Wykonalność przyjęcia buildu 1.0.1 przez App Store Connect przy 1.0 w recenzji — niesprawdzona, rozstrzygnie wysyłka. E2E 41174819085 na e796c7e anulowane (bramka `testflight.yml` wymaga E2E na tym samym commicie, `scripts/ci/bramka-e2e.sh`) — nowe E2E na commicie z wersją.
 
+- 31.10 ~08:10 PL decyzje właściciela (przez koordynatora 1.0): (1) wysyłka TestFlight 1.0.1 od razu, bez przebiegu dowodowego `bez_wysylki` (A — workflow bez zmian, L-001 nie dotyczy; uwaga: zadanie `build` ma `environment: release` także przy `bez_wysylki`, testflight.yml:68); (2) właściciel nie ma konta piaskownicy bez planu → krok R-101-28 usunięty z listy telefonu 1.0.1, zostaje otwarty do testu 1.1. Wersja 1.0.1: 3eb21b5 (verify zielone, 11516); README i `site/privacy.html` zależne od wersji (kopia w repo; strona na żywo z apps4brew-www bez zmian). E2E podstawowy 41178429329 na 3eb21b5.
+
 ## Czekające kroki właściciela
 - brak decyzji (D3 → 17°, 101-27 → bez poprawki, 101-17 → B, Reverse Lunge → zatwierdzona wersja widoczna; 29.10.2026)
 - Lekcja Reverse Lunge: wybór A/B (stan na bazie w poleceniach figur) — przy okazji
