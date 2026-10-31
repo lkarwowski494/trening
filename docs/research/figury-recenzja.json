@@ -416,10 +416,14 @@
   "Glute Bridge": {
    "rodzina": "hip_bridge",
    "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "2086de9fa1a1",
-   "uwagi": "Ruch i karta zgodne. Leżenie, stopy płasko; na górze barki, biodra i kolana w linii (gb.move), bez przeprostu. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+   "data": "2026-10-31",
+   "kto": "audytor (sesja 1.1, 31.10.2026) — recenzja bramki 4 po ACG-007 (L-047, L-050): własny pomiar geometrii z lib/figures/geom.ts w pętli co 0,05, arkusz przed/po ze śladem toru głowy, barku, biodra i kolana",
+   "sha": "51c837437b08",
+   "uwagi": "Poprawiona 31.10.2026 (ACG-007): kąt tułowia klatki end t 203 → 200. Dół obrysu głowy −4,8 → −1,2 j. (najniżej w pętli −1,3 j., limit 2,25 j.); bark 6,0 → 9,1 j.; linia bark–biodro–kolano 180° (gb.move), bez przeprostu; pięty na podłodze w całej pętli; skok punktów ≤ 0,71 j. na 5% pętli. NISKIE: model v1 bez kąta szyi — bark uniesiony o 3 j. względem leżenia (uproszczenie, backlog). Test: tests/figury-podparcie.test.ts (ACG-007).",
+   "autor": "programista (wykonawca ACG, 31.10.2026)",
+   "recenzent": "audytor (recenzja niezależna, 31.10.2026)",
+   "slad": "arkusz SVG/PNG przed/po (t 203 / t 200): pozy 0/0,25/0,5/0,75/1, ślad głowy, barku, biodra i kolana co 0,05, linia podłogi; tory ciągłe, bez załamań",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), linia 1.1, 31.10.2026"
   },
   "Biceps Curl (hantle)": {
    "rodzina": "curl",

@@ -644,7 +644,7 @@ Widok: z boku; kotwica: przód stopy; przyrządy: brak.
 - **pozycja wyjściowa** — t 180, hip 50, knee 108, ft 0, sh -6, el 0
   - pięta tuż nad poziomem 0 (do 1) ← `gb.setup`: „Połóż się na plecach, kolana ugięte, stopy płasko na podłodze na szerokość bioder.”
   - biodro tuż nad poziomem 0 (do 8) ← `gb.setup`: „Połóż się na plecach, kolana ugięte, stopy płasko na podłodze na szerokość bioder.”
-- **pozycja końcowa** — t 203, hip 0, knee 93, ft 0, sh -29, el 0
+- **pozycja końcowa** — t 200, hip 0, knee 93, ft 0, sh -29, el 0
   - bark – biodro – kolano w jednej linii (±8°) ← `gb.move`: „Unieś biodra, napinając pośladki, aż barki, biodra i kolana utworzą linię; opuść powoli.”
   - pięta tuż nad poziomem 0 (do 1) ← `gb.heels`: „Dociskaj stopy, zwłaszcza pięty, do podłogi.”
 - Uproszczenie ilustracyjne: pozostałe kąty.

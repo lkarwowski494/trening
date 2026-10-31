@@ -9,7 +9,7 @@
  */
 import * as fs from 'fs';
 import * as path from 'path';
-import { resolveFigure, framePoints, poseBetween, jointAngles, type FigDef, type Figure, type Points, type Pose } from '../lib/figures/geom';
+import { resolveFigure, framePoints, poseBetween, jointAngles, shapes, STROKE, type FigDef, type Figure, type Points, type Pose } from '../lib/figures/geom';
 import { FIG_DATA } from '../lib/figures';
 import { LIM, contacts, base, steppingFeet, podparcie, podparcieMiary, jednaPodpora, srodekCiezkosci, pompki, jestPompka, penetration, surface, transitions } from './helpers/figury-podparcie';
 
@@ -367,5 +367,38 @@ describe('Push Press: gryf mija twarz (jak Overhead Press (sztanga)) — dłoń 
     const f = fig('Push Press'); let md = Infinity;
     for (const s of poses(f)) if (s.P.hand[1] < s.P.head[1] + 6.5) md = Math.min(md, Math.hypot(s.P.hand[0] - s.P.head[0], s.P.hand[1] - s.P.head[1]));
     expect(md).toBeGreaterThanOrEqual(7);
+  });
+});
+
+/* ---------- ACG-007 (31.10.2026): ciało nie schodzi pod linię podłogi ---------- */
+/** Najniższy punkt obrysu ciała (kreski kończyn i tułowia z połową grubości, wypełniona głowa z promieniem) w pozie pośredniej. */
+function najnizszyObrys(f: Figure, i: number, j: number, k: number): number {
+  const { p, P } = poseBetween(f, i, j, k);
+  let low = Infinity;
+  for (const s of shapes(p, f.view, P, f.props)) {
+    if (s.role !== 'body' && s.role !== 'far') continue;
+    if (s.s === 'circle') low = Math.min(low, s.c[1] - s.r - (s.fill ? 0 : (s.w ?? 0) / 2));
+    else for (const q of s.pts) low = Math.min(low, q[1]); /* oś kreski kończyny/tułowia; kreska stykająca się z podłogą sięga pod linię o połowę grubości z definicji */
+  }
+  return low;
+}
+/** Zejście obrysu ciała pod podłogę (j.) w całej pętli, co LIM.step; dodatnie = pod linią podłogi. */
+const zejscie = (f: Figure): { max: number; k: string } => {
+  let max = 0, kk = '';
+  for (let i = 0; i < f.frames.length - 1; i++) for (let s = 0; s <= 1 + 1e-9; s += LIM.step) {
+    const d = -najnizszyObrys(f, i, i + 1, Math.min(s, 1));
+    if (d > max) { max = d; kk = `${f.frames[i].n}→${f.frames[i + 1].n} k=${r1(s)}`; }
+  }
+  return { max, k: kk };
+};
+describe('ACG-007 (31.10.2026): obrys ciała nie schodzi pod podłogę więcej niż o połowę grubości kreski', () => {
+  test('wszystkie figury v1 z podłogą: głowa i kształty ciała w całej pętli (co 0,05) ≤ połowa grubości kreski kończyny pod linią podłogi', () => {
+    const bad: string[] = [];
+    for (const k of KEYS) { const f = fig(k); if (!f.floor) continue; const z = zejscie(f); if (z.max > STROKE.limb / 2) bad.push(`${k}: ${r1(z.max)} j. pod podłogą (${z.k})`); }
+    expect(bad).toEqual([]);
+  });
+  test('Glute Bridge: głowa w pozycji końcowej leży na podłodze (dół obrysu głowy ≥ −połowa kreski)', () => {
+    const f = fig('Glute Bridge');
+    expect(najnizszyObrys(f, 0, 1, 1)).toBeGreaterThanOrEqual(-STROKE.limb / 2);
   });
 });

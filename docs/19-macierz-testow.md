@@ -1727,7 +1727,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/geom.framePoints | lib/figures/geom.ts | tests/figures.test.tsx, tests/figury-acg006-skullcrusher.test.ts, tests/figury-pendlay.test.ts +3 |
 | figures/geom.poseBetween | lib/figures/geom.ts | tests/figures.test.tsx, tests/figury-acg006-skullcrusher.test.ts, tests/figury-pendlay.test.ts +3 |
 | figures/geom.evalCheck | lib/figures/geom.ts | tests/figures.test.tsx, tests/figury-acg006-skullcrusher.test.ts, tests/figury-pendlay.test.ts |
-| figures/geom.shapes | lib/figures/geom.ts | tests/figures.test.tsx, tests/figury-pendlay.test.ts, tests/muscle-map.test.tsx +2 |
+| figures/geom.shapes | lib/figures/geom.ts | tests/figures.test.tsx, tests/figury-pendlay.test.ts, tests/figury-podparcie.test.ts +3 |
 | figures/geom.bounds | lib/figures/geom.ts | tests/figures.test.tsx |
 | figures/index.figureFor | lib/figures/index.ts | tests/audit-0.10-lang-ui.test.tsx, tests/cues-014.test.tsx, tests/figures.test.tsx +1 |
 | figures/index.figureByKey | lib/figures/index.ts | tests/figures.test.tsx, tests/figury-recenzja.test.tsx, tests/store-metadata.test.ts |
