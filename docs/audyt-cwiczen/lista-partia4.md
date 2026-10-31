@@ -387,3 +387,32 @@ Pomiary co u = 0,02 dla każdej ręki z zakresem łokcia > 20°: łokieć w gór
 | Single-Arm Linear Jammer | tak | ok (jedna ręka, wybicie z nóg) | general press | tak | — |
 | Standing Barbell Press Behind Neck | tak | ok (gryf z karku 13 cm za barkiem, chwyt 92 cm, łokieć 122 → 16°) | general ohp | tak | — |
 | Wyciskanie nad głowę (linki) | tak | ok (uchwyty przy barkach, łokcie w dół) | own | — | — |
+
+## mobility_floor — 22 ćwiczenia, 9 z danymi (karty własne 0; zestawy: `stretch` 20, `mobility` 1; brak 1) — partia 4D @ 9657fde1 (kod jak w 4A)
+
+Pomiary (`keyframeFrame`, u = 0 / 0,5 / 1; 8 póz statycznych z dwóch identycznych klatek, wszystkie na liście `ISOMETRIC`, `poseData.ts:95`): kąty stawów, położenie kolan, kostek, palców, chwytów, barków i głowy, najniższy punkt ciała (−0,3…−2,1 cm — styk z podłogą), nota katalogu (`docs/research/equipment/catalog.json`) a rysunek. Walidacja 9/9 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`). Arkusz z boku — poza repo.
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Butterfly Stretch | tak | ok (stopy razem z ±5, kolana na boki z ±44, dłonie na stopach, tułów 32° w przód — nota „forward lean”) | general stretch | tak | — |
+| Cat-Cow | tak | ok (dłonie pod barkami x 60/59, kolana pod biodrami x 12,9; kręgosłup −16 → 26°, głowa w górę w wygięciu) | general mobility | tak | — |
+| Child's Pose | tak | ok (kolana szeroko z ±28, miednica nad piętami, czoło przy podłodze — głowa y 9,8; ręce wzdłuż ciała, dłonie x −2) | general stretch | tak | wariant z rękami do tyłu — zgodny z notą „sit back on the heels” |
+| Downward Facing Balance | nie | bez figury | none (open) | — | — |
+| IT Band and Glute Stretch | nie | bez figury | general stretch | tak | — |
+| Intermediate Groin Stretch | nie | bez figury | general stretch | tak | — |
+| Kneeling Forearm Stretch | nie | bez figury | general stretch | tak | — |
+| Kneeling Hip Flexor Stretch | tak | ok (przednie kolano 91°, cała stopa na podłodze, tylne kolano na podłodze y 7,9, biodro tylne w wyproście 15,7°) | general stretch | tak | tułów 12° w przód (bark x 10,4 przed miednicą) — zestaw nie mówi o wyprostowanym tułowiu; do recenzji ruchu, bez znaleziska |
+| Middle Back Stretch | nie | bez figury | general stretch | tak | nota: stojąc — rodzina „floor” bez skutku (bez figury) |
+| Peroneals Stretch | nie | bez figury | general stretch | tak | — |
+| Posterior Tibialis Stretch | nie | bez figury | general stretch | tak | — |
+| Runner's Stretch | nie | bez figury | general stretch | tak | — |
+| Seated Calf Stretch | tak | ok (obie nogi proste — kolano 6°, palce w górę, guma z zaczepem na stopach, dłonie trzymają gumę) | general stretch | tak | nota „one leg extended” — obie nogi; wariant równoważny, bez znaleziska |
+| Seated Floor Hamstring Stretch | tak | ok (prawa noga prosta 7,5°, lewa stopa przy wewnętrznej stronie prawego uda z −1…−7, dłonie na goleni x 52) | general stretch | tak | — |
+| Seated Rotation Stretch | nie | bez figury | general stretch | tak | — |
+| Side Lying Groin Stretch | nie | bez figury | general stretch | tak | — |
+| Side-Lying Quad Stretch | tak | ok (górne kolano 141°, dłoń trzyma kostkę — chwyt = kostka, biodro 10,9°; dolna ręka pod głową) | general stretch | tak | — |
+| Supine Figure-Four Stretch | nie | bez figury | general stretch | tak | — |
+| Supine Hamstring Stretch | tak | ok (noga pionowo, kolano 8,6°, stopa 99,7 cm; druga noga zgięta, stopa na podłodze; dłonie na tyle uda y 34) | general stretch | tak | nota: pasek na stopie — rysunek: dłonie na udzie (wariant bez paska, `sprzet` tylko podłoga); bez znaleziska |
+| Supine Spinal Twist | nie | bez figury | general stretch | tak | — |
+| The Straddle | tak | ok (nogi proste 7,9°, rozkrok kostki z ±62, palce w górę, tułów 50° w przód, dłonie na podłodze między nogami) | general stretch | tak | — |
+| Upper Back Stretch | nie | bez figury | general stretch | tak | — |
