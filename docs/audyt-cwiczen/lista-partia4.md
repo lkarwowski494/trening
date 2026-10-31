@@ -738,3 +738,15 @@ Pomiary u = 0 / 1 i co u = 0,05: kolano (dół, góra — przeprost), biodro, tu
 | Pendulum Squat | tak | ok (dane jak Hack Squat) | general squatMachine | tak | — |
 | Single Leg Press | tak | ok (jedna noga na platformie, druga stopa na podłodze) | general legPress | tak | — |
 | Smith Machine Leg Press | nie | bez figury | general legPress | tak | — |
+
+## chest_press_machine — 5 ćwiczeń, 5 z danymi (karty własne 2; zestawy: `machinePress` 2, `ohp` 1; brak 0) — partia 4E
+
+Pomiary co u = 0,05: łokieć (dół i wyprost), uniesienie ramienia, chwyt wobec barku (siad: bark ok. y 105), tułów i oparcie, styki. Walidacja 5/5 bez błędów, `jakosc-raport` 0 naruszeń (z `--styk-wszystkie` R17 tylko Leverage Decline Chest Press — siedzisko).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Leverage Decline Chest Press | tak | ok (tułów −110° — głowa niżej niż biodra, uchwyty x −70 → −48, łokieć 22 → 148°) | general machinePress | tak | stopy w powietrzu y 59 bez wałków (U-4E-4); R17 — siedzisko |
+| Leverage Incline Chest Press | tak | ok (oparcie −40°, wypchnięcie w górę i w przód, łokieć 22 → 148°) | general machinePress | tak | — |
+| Machine Chest Press | tak | ok (siad, oparcie −5°, uchwyty y 98–108,5, x 20 → 67, łokieć 22 → 148°) | own | — | karta zgodna |
+| Machine Shoulder Press | tak | ok (uchwyty y 112 przy barkach → 168 nad głową, łokieć 21 → 146°) | own | — | karta zgodna |
+| Smith Machine Shoulder Press | tak | ok (siad z oparciem, gryf w prowadnicy y 119 → 165, łokieć 15 → 133°) | general ohp | **nie** (`ohp.seat` „hantle przy barkach”) | **ACG-017** (rozszerzenie) |
