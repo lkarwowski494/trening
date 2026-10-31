@@ -91,8 +91,13 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - extendedWaitUntil: { visible: "Deadlift \\(Barbell\\), barbell.*", timeout: 15000 }
 - tapOn: { id: "lib-row-1" }   # jeden wynik wyszukiwania (wzór: 27)
 - extendedWaitUntil: { visible: "Technique", timeout: 30000 }
-- scrollUntilVisible: { element: { id: "exercise-figure-v2-image" }, direction: DOWN, timeout: 30000, centerElement: true }
-- assertVisible: { id: "exercise-figure-v2-image" }
+# 31.10.2026 (scalenie wersja-1-0-1-r2 do linii 1.1): rodzina hinge ukryta do recenzji 1.1 (bramka 4) — krok rysunku warunkowy jak wyżej (wraca do twardego po recenzji)
+- extendedWaitUntil: { visible: "Movement drawing: .*", timeout: 8000, optional: true }
+- runFlow:
+    when: { visible: "Movement drawing: .*" }
+    commands:
+      - scrollUntilVisible: { element: { id: "exercise-figure-v2-image" }, direction: DOWN, timeout: 30000, centerElement: true }
+      - assertVisible: { id: "exercise-figure-v2-image" }
 - takeScreenshot: 87-deadlift-sztanga-technika
 
 # --- UX2-05: „Technika ›” w treningu na żywo → podgląd ćwiczenia z rozwiniętą sekcją ---

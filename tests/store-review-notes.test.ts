@@ -9,6 +9,7 @@ import { defaultSettings } from '@/lib/seed';
 import { shownFigureSpec, V2_WSTRZYMANE, FAMILY } from '@/lib/figures/v2';
 import { WATCH } from '@/lib/watch/protocol';
 import { WATCH_LABEL_IDS } from '@/lib/watch/labels';
+jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: test sprawdza zgodność tekstów sklepu z kodem rysunków; w linii 1.1 rodziny v2 są ukryte do recenzji — ryzyko wydania R-11-01 (docs/40) pilnuje, by opis nie obiecał ukrytych rysunków */
 
 const md = fs.readFileSync(path.join(__dirname, '../store/review-notes.md'), 'utf8');
 const blocks = md.split('```text').slice(1).map(b => b.split('```')[0]);

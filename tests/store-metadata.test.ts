@@ -14,6 +14,7 @@ import { LIB } from '@/lib/seed';
 import * as V2 from '@/lib/figures/v2';
 import { figureByKey } from '@/lib/figures';
 import { errorsOf, legendOf } from '@/lib/figures/v2/ui';
+jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: test sprawdza zgodność tekstów sklepu z kodem rysunków; w linii 1.1 rodziny v2 są ukryte do recenzji — ryzyko wydania R-11-01 (docs/40) pilnuje, by opis nie obiecał ukrytych rysunków */
 
 const read = (f: string) => JSON.parse(fs.readFileSync(path.join(__dirname, '..', f), 'utf8'));
 const names = read('store/app-store-names.json').names as Record<string, string>;

@@ -159,7 +159,7 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
         for (const p of e.figure!.phases) expect(p.name.length).toBeGreaterThan(0);
         for (const x of e.figure!.errors) expect(x.text.length).toBeGreaterThan(0);
       }
-      expect(n).toBe(96); /* 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych − 2 wstrzymane (JM Press, Decline Close-Grip Bench To Skull Crusher) */
+      expect(n).toBe(98); /* 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych; od scalenia 1.0.1 (31.10.2026) bez wstrzymanych — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji */
     }
     expect(data.pl.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).toBe('Opuszczanie');
     expect(data.en.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).not.toBe('Opuszczanie');
@@ -236,10 +236,10 @@ describe('eksport dla strony: brak przekładu zdania = brak zdania, nigdy tekst 
   };
   const BRAK = (l: Lang, id: string) => !Object.prototype.hasOwnProperty.call(cueDict(l), id);
   const manifest = () => JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8')) as { languages: { lang: string; missing: { cues: number; exercises: Record<string, number> } }[] };
-  test('prawdziwy słownik: 53 zdania wersji 1.1 nie mają przekładu w 33 językach (te, które aplikacja pokazuje po angielsku); en i pl mają komplet', () => {
-    const en = Object.keys(cueDict('en')); expect(en).toHaveLength(360);
+  test('prawdziwy słownik: 52 zdania wersji 1.1 (53 bez bp.elbowsMid, przełożonego w 1.0.1) nie mają przekładu w 33 językach (te, które aplikacja pokazuje po angielsku); en i pl mają komplet', () => {
+    const en = Object.keys(cueDict('en')); expect(en).toHaveLength(371); /* 360 + 11 zdań z linii 1.0.1 (gcalf.*, pendlay.*, jm/dcgsk.elbows, rdl.mis.knees) — scalenie 31.10.2026 */
     expect(Object.keys(cueDict('pl')).filter(k => !(k in cueDict('en')))).toEqual([]);
-    for (const l of ['de', 'ja', 'cs', 'es', 'zh-Hant'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 53]);
+    for (const l of ['de', 'ja', 'cs', 'es', 'zh-Hant'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 52]);
     for (const l of ['pl', 'en'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 0]);
   });
   test.each(['de', 'ja', 'cs', 'es', 'pt-BR', 'es-419', 'zh-Hant', 'pl', 'en'] as Lang[])('język %s: liczba zdań ćwiczenia = id z przekładem w TYM języku; pominięte policzone w cues.missing; tekst zawsze z własnego słownika', l => {
