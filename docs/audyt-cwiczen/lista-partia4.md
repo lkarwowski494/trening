@@ -560,3 +560,23 @@ Pomiary co u = 0,05: łokieć, uniesienie i odwiedzenie ramienia, kolano, biodro
 | Seal Row (sztanga) | tak | ok (leżenie przodem na wysokiej ławce top 80, nogi na ławce, gryf z y 26 do 65,5) | general row | tak | łokieć w górze 7,7 cm od osi — ok. na linii pleców (`row.elbowsPast` na granicy) |
 | Smith Machine Bent Over Row | tak | ok (tułów 78°, gryf w prowadnicy y 25 → 70) | general rowBent | tak | — |
 | T-Bar Row | tak | ok (dźwignia z końca przy podłodze x −85, tułów 55°) | own (ukryta w 1.1) | — | — |
+
+## calf_raise — 13 ćwiczeń, 12 z danymi (karty własne 3; zestawy: `calf` 9; brak 1) — partia 4D
+
+Pomiary u = 0 / 0,5 / 1: pięta i palce (y) obu stóp — czy pięta schodzi poniżej palców (rozciągnięcie, `calf.move`), kolano (`calf.knees`), biodro, miednica, chwyt; sprzęt podparcia stóp (skrzynia/stopień). Walidacja 12/12 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`). Na stopniu (6 figur): pięta w dole 4,3 cm poniżej palców, w górze 17,7 cm nad nimi, kolano 5,2–5,6°.
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Band Calf Raise | tak | ok (płaska podłoga, pięta 0 → 17,7, guma pod stopami, uchwyty przy barkach — nota) | general calf | tak* | `calf.move` „opuść pięty, aż poczujesz rozciągnięcie” — na podłodze pięta nie schodzi niżej; wariant bez stopnia zgodny z notą |
+| Barbell Seated Calf Raise | tak | ok w walidacji (siad, gryf na kolanach, kolano 90°); **stopy na podłodze bez podestu**, pięta 0 → 14 | general calf | **nie** (`calf.move` rozciągnięcie, `calf.mis.partial` „Skrócony zakres”) | **ACG-020**; nota: „toes on a block” |
+| Calf Raise (linki) | tak | ok (płaska podłoga, uchwyty z dolnych wyciągów) | general calf | tak* | jak Band Calf Raise |
+| Calf Raise (sztanga) | tak | ok (gryf na karku, palce na skrzyni 6 cm, pięta 4,3 cm poniżej palców w dole) | general calf | tak | — |
+| Donkey Calf Raise | tak | ok (pochylenie w biodrach 78–86°, dłonie na podporze, palce na skrzyni) | general calf | tak | — |
+| Dumbbell Seated One-Leg Calf Raise | tak | ok w walidacji (hantel na prawym kolanie, jedna noga); **bez podestu**, pięta 0 → 14 | general calf | **nie** (jw.) | **ACG-020**; nota: „toes on a block” |
+| Seated Calf Raise | tak | ok w walidacji (maszyna, wałek na kolanach, kolano 90°); **stopy na podłodze bez podestu**, pięta 0 → 14 | own | — | **ACG-020** (`calf.move` „opuść pięty, aż poczujesz rozciągnięcie”) |
+| Seated Calf Raise (hantle) | tak | ok w walidacji (hantle na kolanach); **bez podestu**, pięta 0 → 14 | general calf | **nie** (jw.) | **ACG-020** |
+| Single Leg Calf Raise | tak | ok (jedna noga na stopniu, druga zgięta 86°, dłoń na ścianie) | general calf | tak | — |
+| Smith Machine Calf Raise | tak | ok (dane jak Calf Raise (sztanga), gryf w prowadnicy) | general calf | tak | — |
+| Smith Machine Reverse Calf Raise | nie | bez figury | none (open) | — | — |
+| Standing Calf Raise | tak | ok (palce na podeście 6 cm, dźwignia przy miednicy, kolana proste 5°) | own | — | karta zgodna (`calf.edge`, `calf.knees`) |
+| Łydki na stopniu | tak | ok (stopień 8 cm, dłoń przy podporze, pięta 4,3 cm poniżej palców w dole) | own | — | karta zgodna |
