@@ -294,3 +294,35 @@ Pomiary co u = 0,01 (`keyframeFrame`, kształty `dataShapes` z boku): lot = najn
 | Star Jump | tak | ok (z przodu: ręce i nogi rozchylone w locie, lot 29 cm) | general jump | tak | — |
 | Tuck Jump | tak | ok (kolano do 110,5° w locie, lot 36 cm) | general jump | tak | — |
 | Weighted Jump Squat | tak | ok (sztanga na plecach przez cały ruch, lot 23 cm, stojaki w tle) | general jump | tak | zestaw bez `jump.drive` (zamach rąk) — słusznie |
+
+## olympic — 25 ćwiczeń, 23 z danymi (karty własne 0; zestawy: `oly` 18, `pushPress` 4, `squat` 1; brak 2) — partia 4C
+
+Pomiary co u = 0,01: start (zgięcie kręgosłupa, pochylenie tułowia, kolano, biodro, łokieć), szerokość chwytu wobec barków, odstęp sztangi od obrysu nogi/tułowia w rzucie z boku (kształty `shank`/`thigh`/`shorts`/`torso`/`pelvis` na wysokości osi gryfu), wyprost (najmniejszy kąt biodra przed najwyższym położeniem sztangi) i łokieć w tej chwili, odbiór (najniższa miednica po szczycie): miednica wobec kolana, łokieć, rozkrok; środek ciężkości (`srodekCiezkosci` z `v2-jakosc.mjs`, z gryfem jako dodatkową masą) wobec wielokąta podparcia (`otoczka(punktyPodparcia)`). Arkusz z boku (Jerk Dip Squat, Power Clean, Clean, Barbell Snatch, Snatch Balance; u = 0 / 0,25 / 0,5 / 0,75 / 1) — PIL, poza repo. Walidacja 23/23 bez błędów, `jakosc-raport` 0 naruszeń; z `--styk-wszystkie` R17 na 21 figurach (wspięcie na palce i podskok przy podsiadzie 1,1–1,8 cm, bez wpisu w `LOT`) — fałszywy alarm (U-4C-1). Wspólne dla zestawu `oly`: start z płaskimi plecami (zgięcie kręgosłupa 0, tułów 49–54°), sztanga 2–11 cm od obrysu nóg i bioder przez cały ciąg (`oly.close`), łokcie proste (18–23°) do pełnego wyprostu bioder i kolan, w rwaniu ugięcie zaczyna się w chwili wyprostu (28–45° przy biodrze 5°) — `oly.legs` zgodne; chwyt podrzutowy 50 cm / barki 38, rwaniowy 80 cm.
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Barbell Snatch | tak | ok (z podłogi, odbiór w pełnym przysiadzie: miednica 37,8 < kolano 40,2; łokcie 19°) | general oly | tak | OP-8 (b): gryf w odbiorze 5 cm przed palcami (x 23,7, palce 18,7) |
+| Block Clean | tak | ok (talerze na skrzyniach 29,5 cm — start nad kolanem; odbiór jak Clean) | general oly | tak | — |
+| Block Power Clean | tak | ok (start z bloków, odbiór wysoki: miednica 68,5 > kolano 45,2) | general oly | tak | OP-8 (c) |
+| Block Power Snatch | tak | ok (start z bloków, odbiór wysoki, łokcie 19°) | general oly | tak | OP-8 (c) |
+| Block Snatch | tak | ok (start z bloków, odbiór w pełnym przysiadzie) | general oly | tak | OP-8 (b) |
+| Clean | tak | ok (z podłogi, odbiór w przysiadzie — miednica 40,3 ≈ kolano 41,5; gryf na przednich barkach: 14 cm nad i 12 cm przed stawem barkowym, łokieć 146°) | general oly | tak | — |
+| Clean Pull | tak | ok (bez odbioru, wyprost na palcach, łokcie 19–20°) | general oly | tak | — |
+| Clean Shrug | tak | ok (start z połowy uda — gryf 72 cm, wyprost i wzruszenie barków na palcach) | general oly | tak | — |
+| Clean and Jerk | tak | ok (zarzut w przysiad, podrzut z odbiorem w nożyce: rozkrok 47 cm, łokcie 16°) | general oly | tak | — |
+| Hang Clean | tak | ok (start gryf 72 cm — nad kolanem, odbiór jak Clean) | general oly | tak | — |
+| Hang Snatch | tak | ok (start gryf 76 cm, odbiór w pełnym przysiadzie) | general oly | tak | OP-8 (b) |
+| Jerk Balance | nie | bez figury | none (open) | — | — |
+| Jerk Dip Squat | tak | ok w walidacji; ugięcie kolan 10 → 51°, gryf cofa się o 15,5 cm (x 8,3 → −7,2) przy zejściu o 11 cm; środek ciężkości 4,6–5,3 cm za piętami w dole | general pushPress | tak* | `pp.legs` („ręce kończą ruch”) nie dotyczy — figura nie wybija; OP-8 (a) |
+| Muscle Snatch | tak | ok (kolana nie uginają się ponownie: odbiór kolano 9,7°; ręce ciągną od u 0,34, gryf nad głową, łokcie 19°) | general oly | tak | zestaw bez `oly.legs` — słusznie |
+| Power Clean | tak | ok (odbiór wysoki: miednica 68,5 > kolano 45,2; gryf na barkach) | general oly | tak | OP-8 (c): gryf nad piętą (x −5,7, pięta −5,9), środek ciężkości 2,4–3,1 cm za piętami |
+| Power Jerk | tak | ok (z przedniego podparcia, ugięcie i wybicie, odbiór w półprzysiadzie, łokcie 15°) | general pushPress | tak | OP-8 (c) |
+| Power Snatch | tak | ok (odbiór wysoki, gryf nad stopą x 1) | general oly | tak | OP-8 (c) |
+| Rack Delivery | nie | bez figury | none (open) | — | — |
+| Snatch Balance | tak | ok (gryf z karku, zejście pod gryf do przysiadu nad głową, łokcie 19°) | general squat | tak* | `sq.kneesToes` — tylko widok z boku; OP-8 (b) |
+| Snatch Pull | tak | ok (bez odbioru, chwyt rwaniowy, łokcie 21°) | general oly | tak | — |
+| Snatch Shrug | tak | ok (z połowy uda, chwyt rwaniowy) | general oly | tak | — |
+| Split Clean | tak | ok (odbiór w nożycach: rozkrok 47 cm) | general oly | tak | — |
+| Split Jerk | tak | ok (odbiór w nożycach, łokcie 16°) | general pushPress | tak | — |
+| Split Snatch | tak | ok (odbiór w nożycach, łokcie 20°) | general oly | tak | — |
+| Squat Jerk | tak | ok (odbiór w pełnym przysiadzie nad głową, łokcie 14°) | general pushPress | tak | OP-8 (b) |
