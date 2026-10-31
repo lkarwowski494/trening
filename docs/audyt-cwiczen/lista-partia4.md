@@ -708,3 +708,18 @@ Pomiary u = 0 / 1 i co u = 0,05: łokieć, odwiedzenie i uniesienie ramienia (ł
 | External Rotation with Band | tak | ruch ok (jak linki, zaczep z −75); **druga linia gumy z zaczepu do wolnej lewej dłoni przy biodrze** | general rotCuff | tak | **ACG-021** |
 | Internal Rotation with Band | tak | ruch ok (zaczep z +90, dłoń z 48 → 3); **jw.** | general rotCuff | tak | **ACG-021** |
 | Reverse Flyes With External Rotation | tak | ok (przodem na ławce 45°, ramiona w bok 1 → 72°, rotacja −60 → 0°, łokieć 35–37° stały) | general raiseRear | tak | — |
+
+## hip_abd_add — 8 ćwiczeń, 6 z danymi (karty własne 0; zestawy: `hipAbd` 5, `bandWalk` 2; brak 1) — partia 4E
+
+Pomiary u = 0 / 1: położenie kolan (z), biodro, kolano, tułów, miednica (stała we wszystkich), zaczep wyciągu wobec kierunku ruchu, guma. Walidacja 6/6 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Band Hip Adduction | nie | bez figury | general hipAbd | tak | — |
+| Cable Hip Abduction | tak | ok (stanie, mankiet na prawej kostce, wyciąg z przeciwnej strony z −50, kolano z 9 → 31) | general hipAbd | tak | — |
+| Cable Hip Adduction | tak | ok (wyciąg z boku z +85, noga z 28 → 4 do środka) | general hipAbd | tak | — |
+| Hip Abduction | tak | ok (maszyna w siadzie, kolana z ±14 → ±34) | general hipAbd | tak | dźwignia tylko przy prawej nodze (`trzyma: R`), lewa rusza się bez podkładki — artefakt maszyny dwunożnej (U-4E-4) |
+| Hip Adduction | tak | ok (dane jak Hip Abduction w odwrotnej kolejności) | general hipAbd | tak | jw. |
+| Hip Flexion with Band | nie | bez figury | none (open) | — | — |
+| Lateral Band Walk | tak | ok w walidacji (półprzysiad: kolano 58°, tułów 20°, guma przy kostkach); **krok w bok i powrót** (miednica stała, wahadło) | general bandWalk | tak* (`bw.squat` „…przez cały marsz”) | **ACG-016** (rozszerzenie) |
+| Monster Walk | tak | ok w walidacji; jw., krok w przód i powrót | general bandWalk | tak* | **ACG-016** (rozszerzenie) |
