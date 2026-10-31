@@ -1,14 +1,11 @@
 # Linia 1.1 — stan bieżący (aktualizowany po każdym kroku; ostatnio 31.10.2026 ~09:30 PL)
 
-## Teraz
-- Gałąź `integracja-1-1`: scalenie f3ca16c9 + poprawki 769c95b1, 6f21ce25, 5d9934fc, 5108782e + ten commit. Wypchnięte z nazwanym wyjątkiem `--no-verify` (niżej). Następny krok: `tests.yml` zielony → audyt ćwiczeń i grafik (1 agent, prompt `origin/przekazanie-konta:notatki/katalog-1-1/prompt-audyt-cwiczen-i-grafik.md` z nowym SHA) → raport w `docs/audyt-cwiczen/` → decyzja 2 (z wynikiem audytu) i ścieżka nazw EN (3 opcje) dla właściciela.
-- Przydział limitu: decyzja właściciela 31.10 ~08:35 (docs/18) — priorytet a) push + tests.yml, b) audyt, c) decyzje; fale napraw/recenzje v2/ZB-023 tylko przy zapasie, inaczej prompty dla kolejnej sesji.
-- Wyjątek nazwany (31.10.2026): push bez znacznika pełnego verify. Pełne verify na 6f21ce25 przeszło poza 3 testami (figures-v2-styk — przekroczenie 5 s pod obciążeniem; rejestr ryzyk — R-11-01 bez daty; docs/16 — tabela treści krytycznej nieaktualna); naprawy 5d9934fc i 5108782e (same dokumenty) + trzy testy zielone pojedynczo; tańsza kontrola zamiast drugiego pełnego verify (~55 min): pełny `tests.yml` w CI.
-- Dociągnąć później z `wersja-1-0-1-r2`: 3eb21b5 (wersja 1.0.1) i f36a243 — po audycie.
-
-
-Decyzja właściciela 31.10.2026 ~07:00 PL (PR #107, docs/18): 1.0.1 nie wychodzi osobno; zmiany `wersja-1-0-1-r2` wchodzą do 1.1. Kierunek scalania: `main` → `wersja-1-0-1-r2` → `integracja-1-1`, nigdy odwrotnie. Nic na `main`, żadnego PR do `main`.
-Poprzedni stan: `origin/przekazanie-konta:notatki/katalog-1-1/STAN-2026-10-29.md` (wstrzymanie 29.10).
+## Teraz (31.10.2026 ~10:20 PL)
+- `integracja-1-1` @ 46a8f1cc wypchnięte. `tests.yml` 41184953307 (8f912e0a): 1 porażka z 15736 (lekcje bez numerów na gałęzi integracji) → naprawa 46a8f1cc (L-068..L-079); `tests.yml` 41187563253 w toku.
+- Audyt ćwiczeń i grafik w toku: 1 agent audytor, gałąź `audyt/cwiczenia-grafiki-2026-10-31`, stan w `docs/audyt-cwiczen/STAN.md` tej gałęzi (partie: inwentarz → 4 rodziny ready → widoczne w 1.0 → planned → reszta). Prompt: `origin/przekazanie-konta:notatki/katalog-1-1/prompt-audyt-cwiczen-i-grafik.md` + aktualizacja koordynatora (zakres „tip top” bez próbkowania, decyzje 31.10).
+- Decyzje właściciela 31.10 (docs/18): limit na 1.1; „tip top” wszystkich ćwiczeń; decyzja 2 = A; strona z 1.1 (709 adresów); Z3 pełna karta; nazwy EN — 3 opcje do przygotowania (ZB-025); plan fal W1 (ZB-026); kredyty GCP K1+K2 (ZB-027, sesja na drugim koncie).
+- Wyjątki nazwane: wypchnięcia z `--no-verify` (pełne verify 6f21ce25 bez 3 testów naprawionych dokumentami; zastępuje pełny `tests.yml`).
+- Następne kroki (kolejna sesja, jeśli limit się skończy): wynik audytu → raport do koordynatora 1.0; weryfikacja znalezisk ŚREDNIE+ przez niezależnego agenta; fale napraw KRYT/WYS; recenzje rodzin v2 (bramka 4, ślad toru; odciski z tego STAN zawężają zakres); ZB-023; ZB-025 (definicja pełnej karty + nazwy EN); dociągnięcie r2 (3eb21b5, f36a243).
 
 ## Etap 1 a — scalenie `wersja-1-0-1-r2` (e796c7ed, zawiera `main` 68a18d37) → `integracja-1-1` (było 15e3ab45)
 - 35 plików w konflikcie; rozstrzygnięcia:
