@@ -1,4 +1,4 @@
-# Lista per ćwiczenie — partia 4A: rodziny `planned` core_floor, delt_raise, curl (stan @ fbd00673 = `integracja-1-1` 1c683be3 + docs audytu)
+# Lista per ćwiczenie — partia 4: rodziny `planned` (4A: core_floor, delt_raise, curl @ fbd00673; 4B: mobility_stand, triceps, pushup_plank @ 433289f7 — kod jak w 4A, `integracja-1-1` 1c683be3)
 
 Metoda (audytor niezależny, 31.10.2026): walidacja v2 (`waliduj` z `scripts/figures/v2-validate.mjs`: schemat, geometria, sens, jakość) na każdym wpisie `lib/figures/v2/poses/<rodzina>.json`; `jakosc-raport.mjs --json --styk-wszystkie` (0 naruszeń w 3 rodzinach); pomiary `keyframeFrame` (`contract.ts`) co u = 0,05: kąty stawów (`jointAngles`), stopy (pięta/palce y), najniższe kształty ciała (`dataShapes`, rzut z boku), położenie kolan, chwytów i ciężaru, oś lędźwi, skręt/skłon tułowia; arkusze PNG (rzut z boku, u = 0 / 0,5 / 1; PIL, poza repo) dla wszystkich figur core_floor. Karta: własna (`lib/cues/data.json`) albo zestaw ogólny (`lib/figures/v2/cue-sets.json`, tekst PL). Rodziny są dziś niewidoczne (status `planned`, `poseData.ts` ładuje tylko pull_up), zestawy ogólne pokazują się tylko przy pokazywanej figurze v2 — wszystko poniżej dotyczy 1.1 po włączeniu rodziny.
 
@@ -186,39 +186,76 @@ Wszystkie 8 figur to pozy statyczne (2 identyczne klatki; `poseData.ts:97` — r
 
 ## triceps — 32 ćwiczenia, 29 z danymi (karty własne 4, w tym 1 ukryta; zestawy 25, brak 3)
 
-Pomiary (ręka pracująca): kąt łokcia (0° = prosty) — zakres i najmniejsze zgięcie w wyproście; ramię od pionu i od osi tułowia (Δ — „ramiona nieruchomo”), łokieć poza linią barków (z, „łokcie nie rozchodzą się”), dół wyciskania francuskiego: gryf a obrys głowy (elipsa `head`), tułów, stopy, styki. Walidacja 29/29 bez błędów; `jakosc-raport` 0 naruszeń (z `--styk-wszystkie`: R17 tylko na 2 figurach z ławką ujemną — klasa fałszywych alarmów opisana w `v2-jakosc.mjs:657`). „tak*” przy ACG-014 = zestaw pasuje do ruchu, ale zdanie `press.noLock` „Prostuj ręce do końca” nie zgadza się z pozycją końcową rysunku.
+Pomiary (ręka pracująca): kąt łokcia (0° = prosty) — zakres i najmniejsze zgięcie w wyproście; ramię od pionu i od osi tułowia (Δ — „ramiona nieruchomo”), łokieć poza linią barków (z, „łokcie nie rozchodzą się”), dół wyciskania francuskiego: gryf a obrys głowy (elipsa `head`), tułów, stopy, styki. Walidacja 29/29 bez błędów; `jakosc-raport` 0 naruszeń (z `--styk-wszystkie`: R17 tylko na 2 figurach z ławką ujemną — klasa fałszywych alarmów opisana w `v2-jakosc.mjs:657`). „uwaga W” = najmniejsze zgięcie łokcia w wyproście (raport sekcja 10, uwagi): w modelu v2 „prosta ręka” to ok. 11–16° (zrecenzowany pull_up: zwis 13,8–15,5°, Push Up góra 11,4°), więc wartości 14,5–17,9° są w tej konwencji; 19–24° — wyraźniej ugięte, bez znaleziska (pewność < 80%).
 
 | Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
 |---|---|---|---|---|---|
-| Band Overhead Triceps Extension | tak | ramię 12–14° od pionu (Δ2,4°), łokieć 14,5–124,2°, łokcie ≤ 2,2 cm poza linią barków | general triOver | tak* | **ACG-014** (wyprost 14,5°) |
+| Band Overhead Triceps Extension | tak | ramię 12–14° od pionu (Δ2,4°), łokieć 14,5–124,2°, łokcie ≤ 2,2 cm poza linią barków | general triOver | tak | uwaga W (wyprost 14,5°) |
 | Band Skull Crusher | tak | ok (ramię 8–10° od pionu, łokieć 14,8–109,6°, styk pleców, głowy, siedziska) | general triLying | tak | dół: dłoń nad czubkiem głowy (jak Skullcrusher (sztanga)) |
 | Body-Up | nie | bez figury | none (open) | — | — |
 | Bodyweight Triceps Extension | nie | bez figury | none (open) | — | — |
-| Cable Incline Triceps Extension | tak | ok (oparcie 35°, ramię 8° od pionu, łokieć 20,7–75,9°) | general triOver | tak* | **ACG-014** (wyprost 20,7°) |
-| Cable Lying Triceps Extension | tak | ok (jak Skullcrusher (sztanga), łokieć 17,9–109,1°) | general triLying | tak* | **ACG-014** (17,9°) |
-| Cable Overhead Extension | tak | ramię 12–14° od pionu, łokieć 20,6–122,7° (zgięcie spełnia `cote.move` v1 ≥ 110°) | own | **nie** (`cote.move` „Prostuj łokcie”, `press.noLock`) | **ACG-014** (20,6°; kryterium v1 ≤ 9°) |
-| Chain Handle Extension | tak | ok (łokieć 14,8–109,6°) | general triLying | tak* | **ACG-014** (14,8°) |
+| Cable Incline Triceps Extension | tak | ok (oparcie 35°, ramię 8° od pionu, łokieć 20,7–75,9°) | general triOver | tak | uwaga W (wyprost 20,7°) |
+| Cable Lying Triceps Extension | tak | ok (jak Skullcrusher (sztanga), łokieć 17,9–109,1°) | general triLying | tak | uwaga W (wyprost 17,9°) |
+| Cable Overhead Extension | tak | ramię 12–14° od pionu, łokieć 20,6–122,7° (zgięcie spełnia `cote.move` v1 ≥ 110°) | own | — | uwaga W (wyprost 20,6°; kryterium v1 ≤ 9°) |
+| Chain Handle Extension | tak | ok (łokieć 14,8–109,6°) | general triLying | tak | uwaga W (wyprost 14,8°) |
 | Decline Dumbbell Triceps Extension | tak | ok (ławka −20°, stopy na końcu siedziska y 59 przy wałkach; łokieć 8,3–110,1°) | general triLying | tak | R17 `styk_z_podlozem` tylko z `--styk-wszystkie` — klasa „ławka ujemna” (fałszywy alarm, `v2-jakosc.mjs:657`) |
 | Decline EZ Bar Triceps Extension | tak | ok (jw., łokieć 17,9–109,2°) | general triLying | tak | jw. (R17); zestaw bez `press.noLock` |
-| Dumbbell One-Arm Triceps Extension | tak | ok (jedna ręka, łokieć 14,5–124,2°) | general triOver | tak* | **ACG-014** (14,5°) |
-| Incline Barbell Triceps Extension | tak | ok (oparcie 35°, ramię 8° od pionu, łokieć 17,8–75,5°) | general triLying | tak* | **ACG-014** (17,8°) |
-| Kettlebell Overhead Triceps Extension | tak | ok (łokieć 16,9–119,7°, łokcie 1–3 cm do środka) | general triOver | tak* | **ACG-014** (16,9°) |
-| Kneeling Cable Triceps Extension | tak | **inny wariant**: klęk prosty, tułów 0°, ręce nad głową jak w Cable Overhead Extension (dane identyczne w górnej części), ławka narysowana 1–1,7 m przed ćwiczącym i nieużyta; łokieć 20,6–122,7° | general triOver | tak* (opisuje rysunek) | **ACG-015**; **ACG-014** (20,6°) |
-| Lying Close-Grip Barbell Triceps Extension Behind The Head | tak | ok (ramię 19–20° w tył — gryf za głowę, łokieć 19,2–99,6°, łokcie ≤ 1,4 cm poza barki) | general triLying | tak* | **ACG-014** (19,2°) |
+| Dumbbell One-Arm Triceps Extension | tak | ok (jedna ręka, łokieć 14,5–124,2°) | general triOver | tak | uwaga W (wyprost 14,5°) |
+| Incline Barbell Triceps Extension | tak | ok (oparcie 35°, ramię 8° od pionu, łokieć 17,8–75,5°) | general triLying | tak | uwaga W (wyprost 17,8°) |
+| Kettlebell Overhead Triceps Extension | tak | ok (łokieć 16,9–119,7°, łokcie 1–3 cm do środka) | general triOver | tak | uwaga W (wyprost 16,9°) |
+| Kneeling Cable Triceps Extension | tak | **inny wariant**: klęk prosty, tułów 0°, ręce nad głową jak w Cable Overhead Extension (dane identyczne w górnej części), ławka narysowana przed ćwiczącym (x 55–170, łokcie x 6,5) i nieużyta, uchwyt lina; łokieć 20,6–122,7° | general triOver | tak* (opisuje rysunek) | **ACG-014**; uwaga W (wyprost 20,6°) |
+| Lying Close-Grip Barbell Triceps Extension Behind The Head | tak | ok (ramię 19–20° w tył — gryf za głowę, łokieć 19,2–99,6°, łokcie ≤ 1,4 cm poza barki) | general triLying | tak | uwaga W (wyprost 19,2°) |
 | Machine Triceps Extension | tak | ok (siad, ramię wzdłuż tułowia 8–11°, łokieć 10,2–100,1°) | general triPush | tak | — |
 | One-Arm Lying Dumbbell Triceps Extension | tak | ok (łokieć 7,8–110,1°) | general triLying | tak | — |
-| Overhead Triceps Extension (EZ) | tak | ok (łokieć 17,6–123,5°, łokcie ≤ 2,2 cm poza barki) | general triOver | tak* | **ACG-014** (17,6°) |
-| Overhead Triceps Extension (hantel) | tak | ok (łokieć 16,9–119,7°) | own | **nie** (`ote.setup` „na wyprostowanych rękach”, `ote.move` „wyprostuj ręce”) | **ACG-014** (16,9°) |
-| Reverse Grip Triceps Pushdown | tak | ok (łokcie przy bokach: ramię 8,6–10,5° od tułowia, Δ2,7°; łokieć 19,1–98,5°) | general triPush | tak* | **ACG-014** (19,1°) |
-| Single Arm Triceps Pushdown | tak | ok (łokieć 15,5–98,4°) | general triPush | tak* | **ACG-014** (15,5°) |
+| Overhead Triceps Extension (EZ) | tak | ok (łokieć 17,6–123,5°, łokcie ≤ 2,2 cm poza barki) | general triOver | tak | uwaga W (wyprost 17,6°) |
+| Overhead Triceps Extension (hantel) | tak | ok (łokieć 16,9–119,7°) | own | — | uwaga W (wyprost 16,9°) |
+| Reverse Grip Triceps Pushdown | tak | ok (łokcie przy bokach: ramię 8,6–10,5° od tułowia, Δ2,7°; łokieć 19,1–98,5°) | general triPush | tak | uwaga W (wyprost 19,1°) |
+| Single Arm Triceps Pushdown | tak | ok (łokieć 15,5–98,4°) | general triPush | tak | uwaga W (wyprost 15,5°) |
 | Skullcrusher (EZ) | tak | jak Skullcrusher (sztanga) (dane identyczne) | own — ukryta (`hidden`, brak wpisu w `data.json`) | — | karta ukryta (ACG-006, partia 3); figura v2 bez karty |
 | Skullcrusher (hantle) | tak | ok (łokieć 7,8–110,1°) | general triLying | tak | — |
 | Skullcrusher (sztanga) | tak | ok (ramię 8,5–10° od pionu — „mniej więcej pionowo”; łokieć 17,9–109,1°); dół: gryf [−82,9; 67,9], głowa (elipsa) środek [−72; 53,2], rx 10,6 poziomo — gryf nad czubkiem, ok. 10 cm od obrysu | general triLying | tak | `skull.depth` „tuż nad czołem — albo wcześniej” — kryterium v1 (`touch` tol 12) spełnione na granicy (11,9); bez znaleziska |
 | Sled Overhead Triceps Extension | nie | bez figury | none (open) | — | — |
-| Standing Low-Pulley One-Arm Triceps Extension | tak | ok (łokieć 14,5–124,2°) | general triOver | tak* | **ACG-014** (14,5°) |
-| Standing Overhead Barbell Triceps Extension | tak | ok (łokieć 15,6–123,9°) | general triOver | tak* | **ACG-014** (15,6°) |
+| Standing Low-Pulley One-Arm Triceps Extension | tak | ok (łokieć 14,5–124,2°) | general triOver | tak | uwaga W (wyprost 14,5°) |
+| Standing Overhead Barbell Triceps Extension | tak | ok (łokieć 15,6–123,9°) | general triOver | tak | uwaga W (wyprost 15,6°) |
 | Tate Press | tak | ok (łokcie 9–18 cm poza linią barków — cecha ćwiczenia; łokieć 0–145°, styk 5 punktów) | general bench | tak | — |
 | Triceps Kickback | tak | ok (tułów 68°, ramię równolegle do tułowia 6–7°, Δ3,1°; łokieć 7,3–90,8°) | general triPush | tak | — |
 | Triceps Kickback (linki) | tak | ok (jw.) | general triPush | tak | — |
-| Triceps Pushdown | tak | ok poza dołem: łokcie przy bokach (ramię 8,7–10,3°, Δ2°), łokieć **23,9**–98,5° (góra 98,5° — kryterium v1 `tpd.move` ≥ 100° prawie spełnione) | own | **nie** (`tpd.move` „Prostuj łokcie”, `press.noLock`) | **ACG-014** (23,9°; kryterium v1 ≤ 11°) |
+| Triceps Pushdown | tak | ok poza dołem: łokcie przy bokach (ramię 8,7–10,3°, Δ2°), łokieć **23,9**–98,5° (góra 98,5° — kryterium v1 `tpd.move` ≥ 100° prawie spełnione) | own | — | uwaga W (wyprost 23,9°; kryterium v1 ≤ 11°) |
 | Two-Arm Dumbbell Kickback | tak | ok (jw. jak Triceps Kickback) | general triPush | tak | — |
+
+## pushup_plank — 30 ćwiczeń, 17 z danymi (karty własne 7, w tym 2 bez figury v2; zestawy 23, brak 0)
+
+Pomiary: linia bark–biodro–kostka (kąt w biodrze na rzucie z boku; przy klęku bark–biodro–kolano), łokieć, bark i najniższy punkt tułowia w dole (kształty `torso`/`pelvis`), dłoń względem barku (x) i rozstaw dłoni (z) wobec szerokości barków, kolana, stopy, styki; Incline — odległość klatki od krawędzi skrzyni w dole; Mountain Climbers — faza nóg co u = 0,25. Walidacja 17/17 bez błędów, `jakosc-raport --styk-wszystkie` 0 naruszeń. W modelu v2 „prosta noga” ma kąt kolana ok. 11–17° (stanie: 11,6°) — nie oceniam tego jako ugięcia.
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Ab Wheel | nie | bez figury | general rollout | tak | — |
+| Barbell Rollout from Bench | tak | ok (klęk na ławce: kolano y 52, biodro 128 → 8,4°, na końcu linia bark–biodro–kolano −0,1°, łokieć 9–15°) | general rollout | tak | — |
+| Clock Push-Up | nie | bez figury | general pushup | tak | — |
+| Close-Grip Push-Up | tak | ok (linia bark–biodro–kostka ≤ 0,1°, dłonie 20 cm / barki 38, tułów w dole 5,8 cm nad podłogą, łokieć 11,5–144°) | general pushup | tak | — |
+| Copenhagen Plank | nie | bez figury | general plank | tak | — |
+| Decline Push Up | tak | ok (stopy na skrzyni 43 cm, dłonie na podłodze 44 / 38, linia ≤ 0,1°, tułów w dole 11 cm) | general pushup | tak | — |
+| Diamond Push Up | tak | ok (dłonie 4,5 cm od osi — razem, 6–13 cm za barkami, pod klatką; linia 0°, tułów w dole 2,3 cm) | own | — | — |
+| Drop Push | nie | bez figury | general pushup | tak | — |
+| Incline Push Up | tak | ok (dłonie na skrzyni 45 cm, w dole klatka 1,7 cm od krawędzi, linia ≤ 0,1°, łokieć 12,4–148°) | own | — | — |
+| Incline Push-Up Close-Grip | tak | ok (dłonie 20 cm, klatka 2,4 cm od krawędzi) | general pushup | tak | — |
+| Incline Push-Up Depth Jump | nie | bez figury | general pushup | tak | — |
+| Incline Push-Up Reverse Grip | nie | bez figury | general pushup | tak | — |
+| Inverted Row | nie | bez figury | own | — | karta własna bez rysunku — sprawdzona w partii 3 |
+| Isometric Wipers | nie | bez figury | general pushup | tak | — |
+| Mountain Climbers | tak | ok (dłonie pod barkami 0 cm, nogi naprzemiennie i jednocześnie: kolano 17,7 ↔ 138,5°, tylna noga prosta; bark y stały 65,6–65,7) | own | — | — |
+| Plank | tak | ok (przedramiona: łokieć x −bark 2,4 cm — pod barkiem, łokieć 89,3°; linia −0,1°; poza statyczna) | own | — | — |
+| Plank Shoulder Taps | tak | ok (linia 0°, miednica stała 48,5, dłoń dotyka drugiego barku: rozstaw 38 → 2 cm) | general plank | tak | — |
+| Plyo Kettlebell Push-Ups | nie | bez figury | general pushup | tak | — |
+| Plyo Push-Up | tak | ok (linia ≤ 0,1°, bark do 77,5 — wybicie, tułów w dole 8,8 cm) | general pushup | tak | — |
+| Push Up | tak | ok (dłonie 38 = barki, linia ≤ 0,1°, tułów w dole 7,7 cm — „prawie do podłogi”, łokieć 11,4–144,1°) | own | — | — |
+| Push Up to Side Plank | nie | bez figury | general pushup | tak | — |
+| Push-Up Wide | tak | ok (dłonie 66 / barki 38, tułów w dole 2,3 cm) | general pushup | tak | — |
+| Push-Ups With Feet On A Stability Ball | nie | bez figury | general pushup | tak | — |
+| Renegade Row | nie | bez figury | general pushup | tak | — |
+| Rollout (sztanga) | tak | ok (klęk: kolano y 9,8, start biodro 64°, od u = 0,5 linia bark–biodro–kolano 0°, łokieć 6,7–11,4°) | general rollout | tak | — |
+| Side Plank | nie | bez figury | own | — | karta własna bez rysunku — sprawdzona w partii 3 |
+| Single-Arm Push-Up | tak | ok (jedna ręka pod osią ciała, druga ręka stała; linia 0°; dół płytszy: łokieć do 95°, tułów 25 cm nad podłogą) | general pushup | tak | zestaw nie ma `push.mis.partial` — płytszy dół nie przeczy |
+| Standing Barbell Rollout | tak | ok (stopy na podłodze, biodro 107 → 3,6°, na końcu linia 3,5°, ramię–tułów 148°) | general rollout | tak | — |
+| Suspended Fallout | tak | ok (linia bark–biodro–kolano 5,5–7,6°, ramię 83 → 158°, łokieć 22–24° stały) | general rollout | tak | — |
+| Suspended Push-Up | tak | ok (dłonie w taśmach 45 cm nad podłogą, linia 0°, łokieć 11,4–144,1°) | general pushup | tak | — |
