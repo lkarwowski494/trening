@@ -259,3 +259,38 @@ Pomiary: linia bark–biodro–kostka (kąt w biodrze na rzucie z boku; przy kl�
 | Standing Barbell Rollout | tak | ok (stopy na podłodze, biodro 107 → 3,6°, na końcu linia 3,5°, ramię–tułów 148°) | general rollout | tak | — |
 | Suspended Fallout | tak | ok (linia bark–biodro–kolano 5,5–7,6°, ramię 83 → 158°, łokieć 22–24° stały) | general rollout | tak | — |
 | Suspended Push-Up | tak | ok (dłonie w taśmach 45 cm nad podłogą, linia 0°, łokieć 11,4–144,1°) | general pushup | tak | — |
+
+## plyo — 28 ćwiczeń, 27 z danymi (karty własne 1, zestawy 26 — wszystkie `jump`, brak 1) — partia 4C @ 294812ef (kod jak w 4A/4B)
+
+Pomiary co u = 0,01 (`keyframeFrame`, kształty `dataShapes` z boku): lot = najniższy punkt kształtu stopy nad powierzchnią pod nią (`powierzchniePodparcia`), wybicie = ostatnia klatka przed lotem, lądowanie = pierwsza po locie; kolano, biodro (`jointAngles`), pięta − palce, miednica (x/y/z), chwyt; porównanie z notą ćwiczenia w `docs/research/equipment/catalog.json`. Arkusze (bok: Jump Squat, Split Jump, Broad Jump, Box Jump, Frog Hops, Dumbbell Seated Box Jump, Weighted Jump Squat; przód: Lateral Box Jump, Side to Side Box Shuffle, Star Jump) — PIL, poza repo. Walidacja 27/27 bez błędów, `jakosc-raport` 0 naruszeń; z `--styk-wszystkie` R17 na 26/27 — plyo nie ma wpisów w `LOT` (`v2-jakosc.mjs:108`), więc każdy lot jest „wiszeniem”: fałszywy alarm reguły (uwaga U-4C-1). Zestaw `jump`: `jump.drive` „Wybij się, prostując biodra, kolana i kostki, z zamachem rąk”, `jump.land` „Ląduj miękko, na ugiętych kolanach”, błąd `jump.mis.stiff`. We wszystkich skokach pełny wyprost przed oderwaniem (kolano 8–14°, biodro 7–9°, pięta 21 cm nad palcami) i lądowanie z ugięciem do 85–123° — zdania zestawu zgodne z rysunkiem.
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Alternate Leg Diagonal Bound | tak | ok (odbicie z jednej nogi, lot 30 cm, miednica x 0 → 81, z 0 → 45 — skos; lądowanie na drugą nogę, kolano do 122°) | general jump | tak | — |
+| Alternate Leg Push-Off | tak | ok (prawa stopa na skrzyni 30 cm, lot 25 cm, zmiana nóg w powietrzu, lądowanie lewą na skrzyni) | general jump | tak | — |
+| Bench Jump | tak | ok jako skok na skrzynię 40 cm (lot 43 cm, lądowanie na skrzyni, kolano do 90°) | general jump | tak | **ACG-014** (klasa: inny wariant niż nota — katalog „jumps over a bench or low box”, rysunek: wskok na skrzynię, kopia Box Jump z niższą skrzynią) |
+| Box Jump | tak | ok (stopy 24 cm, lot 52 cm, lądowanie obiema stopami na skrzyni 50 cm, kolano 90°, biodro 93°; błąd `bj.mis.stiff` narysowany) | own | — | — |
+| Box Skip | tak | ok (z jednej nogi na skrzynię 40 cm, druga noga uniesiona) | general jump | tak | — |
+| Broad Jump | tak | ok (lot 25 cm, miednica x −17 → 126 — skok w dal, lądowanie kolano 90°) | general jump | tak | — |
+| Depth Jump | tak | ok (zejście ze skrzyni 50 cm, lądowanie kolano 19 → 84°, wyskok 29 cm, lądowanie na podłodze) | general jump | tak | nota katalogu: wskok na drugą skrzynię — rysunek pokazuje częstszy wariant z wyskokiem w górę (bez znaleziska) |
+| Double Leg Butt Kick | tak | ok (lot 26 cm, kolano do 99° w locie — pięty do pośladków) | general jump | tak | — |
+| Dumbbell Seated Box Jump | tak | **wada**: dwa hantle w wyprostowanych rękach, zamach nad głowę (hantle do 256 cm) w locie; start z ławki 38 cm, lądowanie na skrzyni 50 cm | general jump | **nie** (`jump.drive` „z zamachem rąk” przy hantlu trzymanym przy klatce wg noty) | **ACG-015** |
+| Frog Hops | tak | ok (głęboki przysiad: kolano 118°, biodro 129°, lot 21 cm, przemieszczenie do przodu 81 cm) | general jump | tak | — |
+| Front Cone Hops | tak | ok (lot 17 cm, przemieszczenie 55 cm; pachołki nienarysowane — nota: „not in vocabulary”) | general jump | tak | — |
+| Jump Squat | tak | ok (przysiad kolano 94°, wyprost przed oderwaniem 13,6°, lot 29 cm, lądowanie 21 → 90°) | general jump | tak | — |
+| Kneeling Jump Squat | nie | bez figury | none (open) | — | — |
+| Lateral Bound | tak | ok (z jednej nogi na drugą w bok: miednica z 0 → 90, lot 30 cm; widok z przodu) | general jump | tak | — |
+| Lateral Box Jump | tak | ok (z przodu: skok w bok na skrzynię 40 cm, z = 55; lądowanie na wierzchu) | general jump | tak | z boku skrzynia nakłada się na sylwetkę (rzut; widok z przodu rozstrzyga) |
+| Lateral Cone Hops | tak | ok (lot 17 cm, z 0 → 55) | general jump | tak | — |
+| Side Hop-Sprint | tak | ok jako przeskok w bok (lot 19 cm, z 0 → 60); sprintu brak | general jump | tak | uproszczenie: pokazany tylko przeskok |
+| Side Standing Long Jump | tak | ok (z 0 → 110 — skok w dal w bok, lot 25 cm) | general jump | tak | — |
+| Side to Side Box Shuffle | tak | ok (skrzynia 12 cm, stopa na wierzchu zmienia się, miednica z −21 → 21) | general jump | tak | — |
+| Single Leg Butt Kick | tak | ok (jedna noga, kolano wolnej 66–103°, lot 21 cm) | general jump | tak | — |
+| Single Leg Push-Off | tak | ok (ta sama noga na skrzyni 30 cm przed i po locie) | general jump | tak | — |
+| Single-Leg Hop Progression | tak | ok (jedna noga, lot 19 cm, przemieszczenie 50 cm) | general jump | tak | — |
+| Single-Leg Lateral Hop | tak | ok (jedna noga, z 0 → 45) | general jump | tak | — |
+| Single-Leg Stride Jump | tak | ok w walidacji; start na podłodze na jednej nodze, lądowanie na skrzyni 40 cm — ruch jak Box Skip | general jump | tak | **ACG-014** (klasa: nota „standing beside a box, inside foot on it; jump up driving the opposite knee” — stopa wewnętrzna nie stoi na skrzyni) |
+| Split Jump | tak | ok (wykrok, lot 50 cm, zmiana nóg w powietrzu: przód R x 30 → tył; lądowanie w wykroku) | general jump | tak | — |
+| Star Jump | tak | ok (z przodu: ręce i nogi rozchylone w locie, lot 29 cm) | general jump | tak | — |
+| Tuck Jump | tak | ok (kolano do 110,5° w locie, lot 36 cm) | general jump | tak | — |
+| Weighted Jump Squat | tak | ok (sztanga na plecach przez cały ruch, lot 23 cm, stojaki w tle) | general jump | tak | zestaw bez `jump.drive` (zamach rąk) — słusznie |
