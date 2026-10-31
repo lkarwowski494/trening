@@ -4,12 +4,11 @@ import fs from 'fs';
 import path from 'path';
 
 const ROOT = path.join(__dirname, '..');
-const DOCS = ['docs/43-przekazanie.md', 'docs/15-app-store.md'];
+const DOCS = ['docs/15-app-store.md']; /* docs/43: tests/dokumenty-na-dysk.test.ts (idzie na Dysk przy przeniesieniu, docs/46) */
 const KROK = /App Store Connect →|Ustawienia → App Store|Users and Access/;
 const ZRODLO = /https:\/\/(developer|support)\.apple\.com\//;
 /* sekcje sprzed reguły — nagłówek: powód (zapis decyzji albo pojedyncze pole formularza, nie procedura Apple) */
 const WYJATKI: Record<string, string> = {
-  'K-013. Polityka prywatności: adres w App Store Connect (M1-013)': 'wpisanie adresu w jedno pole formularza ASC, adres pochodzi z repo',
   'Decyzje właściciela': 'zapis decyzji, nie instrukcja krok po kroku',
   'Wzrost i promocja — ustalenia (właściciel 06.10.2026)': 'wzmianka, gdzie szukać liczb po premierze, nie krok',
   'TestFlight — testy wewnętrzne (decyzja właściciela 06.10.2026: „TestFlight — testy wewnętrzne”)': 'procedura jednorazowa wykonana 06–08.10.2026 (aplikacja, klucz API i grupa testerów istnieją)',

@@ -100,7 +100,7 @@ Funkcje na gałęziach `f020-protokol` (protokół zegarka, „do uzupełnienia�
 - `51-glos-ustawienia.yaml` (W2-03): Ustawienia → Trening → przełącznik „Voice also through the phone speaker” (domyślnie wyłączony), „Listen to an example”, wskazówka o braku głosu; stan po restarcie.
   Dźwięku nie da się sprawdzić. ≈ 1,5 min.
 - `53-objasnienia-info.yaml` (US-18, JM-05): Ustawienia → ⓘ przy „Workout view” (Field), „Weekly set goal per muscle group” (SectionTitle) i „Voice also through the phone speaker” (SwitchRow): zwinięte → rozwinięte → zwinięte, ⓘ nie przełącza przełącznika; potem ciemny wygląd. Kroki ⓘ dopisane też w 14 (opis celu, „What this is based on”), 35 (opis widoku) i 51 (opis przełącznika).
-- Garmin (`f020-garmin`) i Apple Watch na prawdziwych zegarkach: tylko telefon (W2-05), lista w `docs/35` gałęzi `f020-protokol`.
+- Drugi zegarek (`f020-garmin`) i Apple Watch na prawdziwych zegarkach: tylko telefon (W2-05), lista w `docs/35` gałęzi `f020-protokol`.
 Gdy gałąź zostanie scalona: dopisać pliki, zamienić wpisy `projekt` na `scenariusz` ze znacznikami (bramka tego wymaga), wagi do `e2e-shards.json`.
 
 ## 7. Zmiany w interpreterze (`tests/maestro-runner.ts`) — przez nie scenariusze są sprawdzalne w Jest

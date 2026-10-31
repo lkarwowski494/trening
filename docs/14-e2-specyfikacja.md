@@ -59,7 +59,7 @@ Miejsca w kodzie: pozycje szablonów `lib/store.ts:230`, bloki treningów `lib/s
 - **Eksport:** `buildBackup` (`lib/backup.ts:14`) zapisuje stan 1:1 — nowe pola trafiają do kopii bez zmian w kodzie; `schemaVersion: 16` w kopercie.
 - **Import kopii 15 i starszych w wersji 16:** `parseBackup` → `migrate` — pola nie istnieją, nic się nie zmienia.
 - **Import kopii 16 w wersji 15:** odrzucony z komunikatem „Plik ma schemat 16, a ta wersja obsługuje do 15. Zaktualizuj aplikację.” (`lib/backup.ts:129-130`; dotyczy też gołego stanu).
-- **CSV** (`buildCsv`): bez zmian — kolumna „Exercise Name” to B; Strong nie ma pola na zamianę.
+- **CSV** (`buildCsv`): bez zmian — kolumna „Exercise Name” to B; popularne dzienniki nie mają pola na zamianę.
 - **Kopia automatyczna po edycji historii** (`onHistoryEdited`, `lib/backup.ts:87`) — bez zmian, obejmuje przepięcia D6.
 
 ### 2.4 Co zrobi starsza wersja aplikacji (schemat 15) z danymi 16 — fakty z kodu
@@ -200,7 +200,7 @@ Zapis: w `item.alternates` wpis `{ locationId: w.locationId, exerciseId: B, rest
 
 ## 5. D6 — zamiana w edytorze historii (przepięcie serii)
 
-Inny sens niż w treningu: **poprawka pomyłki** „zapisałem serie pod złym ćwiczeniem” (jak „Transfer Exercise Data” w Strong). Działa w szkicu (`lib/edit.ts`), zapis jednym ruchem przez `putHistoryWorkout`, „Anuluj” wszystko cofa.
+Inny sens niż w treningu: **poprawka pomyłki** „zapisałem serie pod złym ćwiczeniem” (jak funkcja przenoszenia danych ćwiczenia w popularnych dziennikach). Działa w szkicu (`lib/edit.ts`), zapis jednym ruchem przez `putHistoryWorkout`, „Anuluj” wszystko cofa.
 
 ### 5.1 Zasady
 
