@@ -19,7 +19,7 @@ type Wpis = { linia: number; data: string; rodzaj: string; naglowek: string; tek
 function wywolaj<T>(kod: string): T {
   const r = spawnSync(process.execPath, ['--input-type=module', '-e',
     `import * as m from ${JSON.stringify(SKRYPT)}; const out = await (async () => { ${kod} })(); console.log(JSON.stringify(out));`], { encoding: 'utf8', cwd: ROOT, maxBuffer: 64 * 1024 * 1024 /* 31.10.2026: wynik `wpisy` przekroczył domyślny 1 MiB (dziennik > 360 KB) — proces ucięty, puste stderr */ });
-  if (r.status !== 0) throw new Error(r.stderr);
+  if (r.status !== 0) throw new Error(`${r.stderr}${r.error ? ` ${r.error.message}` : ''}`);
   return JSON.parse(r.stdout);
 }
 /** Błędy dla tekstu dziennika (pliki testów czytane z repo). */
