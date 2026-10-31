@@ -773,3 +773,14 @@ Pomiary co u = 0,05: łokieć, chwyt (start przy barkach, koniec przed sobą), t
 | Seated Cable Chest Press | tak | ok (siad z oparciem, uchwyty y 97–108,5, x 20 → 67) | general machinePress | tak | — |
 | Single Arm Cable Chest Press | tak | ok (stanie, jedna ręka x 16 → 63, druga przy biodrze, tułów 0°) | general cablePress | tak | — |
 | Wyciskanie na linkach (stojąc) | tak | ok (stanie, uchwyty przy barkach y 130–137 → przed siebie x 62, tułów 0°) | own | — | karta zgodna |
+
+## back_extension — 4 ćwiczenia, 3 z danymi (karty własne 1; zestawy: `cobra` 1, `hipExt` 1, `backExt` 1; brak 0) — partia 4E
+
+Pomiary u = 0 / 0,5 / 1: biodro, linia bark–biodro–kolano w górze (bez przeprostu), kręgosłup (0° we wszystkich), miednica na podkładce lub podłodze. Walidacja 3/3 bez błędów, `jakosc-raport` 0 naruszeń (z `--styk-wszystkie` R17 na Back Extension i Reverse Hyperextension — ławka rzymska).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Back Extension | tak | ok (ławka 45°, biodro 10 → 85°, w górze linia z nogami — 3°) | own | — | karta zgodna (sekcja `setup` pusta); R17 — ławka |
+| Lower Back Curl | tak | ok w walidacji (przodem, miednica na podłodze, barki y 10 → 16, tułów 90 → 83°); wyprost z biodra (−10,6°), kręgosłup 0°; dłonie przy biodrach | general cobra | tak | nota: ramiona w bok, unoszona tylko klatka — wyprost w kręgosłupie, nie w biodrze; do recenzji ruchu |
+| Reverse Hyperextension | tak | ok (tułów na podkładce poziomo, nogi z zwisu — biodro 85° → linia 1°) | general hipExt | tak | R17 — ławka |
+| Weighted Ball Hyperextension | nie | bez figury | general backExt | tak | — |
