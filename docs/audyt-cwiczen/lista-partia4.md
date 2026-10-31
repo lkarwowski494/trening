@@ -416,3 +416,30 @@ Pomiary (`keyframeFrame`, u = 0 / 0,5 / 1; 8 póz statycznych z dwóch identyczn
 | Supine Spinal Twist | nie | bez figury | general stretch | tak | — |
 | The Straddle | tak | ok (nogi proste 7,9°, rozkrok kostki z ±62, palce w górę, tułów 50° w przód, dłonie na podłodze między nogami) | general stretch | tak | — |
 | Upper Back Stretch | nie | bez figury | general stretch | tak | — |
+
+## chest_fly — 20 ćwiczeń, 17 z danymi (karty własne 2; zestawy: `fly` 10, `pullover` 4, `raiseSide` 1; brak 3) — partia 4D
+
+Pomiary co u = 0,05: łokieć (stały kąt — `fly.elbows`), uniesienie i odwiedzenie ramienia, chwyt wobec barku (y, x, z), tułów, stopy, najniższy punkt ciała, ciężar; punkty kluczowe u = 0 / 0,5 / 1. Wspólne dla rozpiętek leżących: łokieć 13,7–18,2°, dół — dłonie 8 cm nad barkiem (y 61,2 / bark 53,2), góra — dłonie nad klatką. Walidacja 17/17 bez błędów, `jakosc-raport` 0 naruszeń (z `--styk-wszystkie` R17 tylko na 2 figurach ławki ujemnej — ciało 34–42 cm nad podłogą na ławce, fałszywy alarm jak w 4B).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Around The Worlds | nie | bez figury | none (open) | — | — |
+| Band Chest Fly | tak | ok (dane jak Cable Fly, guma z tyłu na wysokości klatki) | general fly | tak | — |
+| Bent-Arm Barbell Pullover | tak | ok (łokieć stały 50°, ramię 70 → 165°, gryf za głową y 42 — talerze nad podłogą) | general pullover | tak | zestaw bez `po.arms` — słusznie (ręce ugięte) |
+| Cable Fly | tak | ok w walidacji (bloczki na wysokości barków — chwyt y 139,5 = bark; łokieć 13,7–18,2°); **tułów 0° przez cały ruch** | own | — | **ACG-018** (`fly.posture` „lekkie pochylenie w przód”) |
+| Cable Fly (high to low) | tak | ok (dłonie z wysokości barków y 142,6 w dół do 107,6, łokieć 13–19°) | general fly | tak | — |
+| Cable Fly (low to high) | tak | ok w walidacji (dłonie z y 121 do 170,3 — 31 cm nad barkiem, ramię 119° w zgięciu) | general fly | tak | OP-10 (wysokość końca ruchu) |
+| Chest Fly (hantle) | tak | ok (płaska ławka, dół: hantle 8 cm nad barkiem, łokieć 13,7–18,2°, stopy na podłodze) | own | — | karta zgodna |
+| Crucifix | tak | ok, poza statyczna (2 identyczne klatki, ręce w bok 90°, łokieć 10°, hantle) | general raiseSide | tak* | `lat.height` „Unoś…” — w rysunku nic nie jest unoszone (wytrzymanie); nie ma na liście `ISOMETRIC`, katalog `weight_time` — strażnik `tests/figures-v2-data.test.tsx:53` złapie przy włączeniu (jak Hollow Hold) |
+| Decline Dumbbell Fly | tak | ok (ławka ujemna −20°, stopy zaczepione y 59, ramię 70–90°) | general fly | tak | R17 z `--styk-wszystkie` — fałszywy alarm |
+| Flat Bench Cable Fly | tak | ok (ruch jak Chest Fly, uchwyty z dolnych wyciągów) | general fly | tak | — |
+| Front Raise And Pullover | tak | ok (proste ręce: łokieć 6,5–15°, gryf z x 4 nad biodrami za głowę x −113) | general pullover | tak | nota: start z gryfem na udach — w rysunku gryf 34 cm nad miednicą; bez znaczenia dla ruchu |
+| Incline Chest Fly (hantle) | tak | ok (oparcie 35°, ramię 90–145°) | general fly | tak | — |
+| Incline Cable Fly | tak | ok (jak Incline Chest Fly, dolne wyciągi) | general fly | tak | — |
+| Machine Pullover | nie | bez figury | none (open) | — | — |
+| One-Arm Flat Bench Dumbbell Fly | tak | ok (jedna ręka, druga odwiedziona nieruchomo bez ciężaru) | general fly | tak | — |
+| Pec Deck | tak | ok (siad z oparciem 80°, ręce na wysokości barków y 103,8, łokieć 14–17°) | general fly | tak | — |
+| Pullover (hantel) | tak | ok (jeden hantel oburącz, łokieć 11,5–15,2°, ramię 60 → 163°) | general pullover | tak | — |
+| Single Arm Cable Fly | tak | ok (jedna ręka, druga na biodrze) | general fly | tak | — |
+| Svend Press | nie | bez figury | none (open) | — | — |
+| Wide-Grip Decline Barbell Pullover | tak | ok (ławka ujemna, proste ręce, gryf za głowę) | general pullover | tak | R17 z `--styk-wszystkie` — fałszywy alarm |
