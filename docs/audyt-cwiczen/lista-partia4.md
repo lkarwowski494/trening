@@ -795,3 +795,13 @@ Pomiary u = 0 / 0,5 / 1: zwis (chwyt na drążku y 230), biodro, kolano, pochyle
 | Hanging Leg Raise | tak | ok (proste nogi — kolano 12°, biodro do 83°, tułów do −12°) | general hanging | tak | — |
 | L-Sit | nie | bez figury | none (open) | — | — |
 | Toes to Bar | tak | ok (palce do drążka y 235, barki x −11 → −30, tułów do −55°) | general hanging | tak | odchylenie barków przy palcach do drążka — naturalne, bez znaleziska wobec `hang.noSwing` |
+
+## thruster — 3 ćwiczenia, 3 z danymi (karty własne 0; zestawy: `squat` 2, `oly` 1; brak 0) — partia 4E
+
+Pomiary co u = 0,1: kolano (przysiad, odbiór), łokieć, wysokość chwytu, pięty; punkty u = 0 / 0,25 / … / 1. Walidacja 3/3 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Clean and Press | tak | ok w walidacji (zarzut: kolano 50 → 10 → 33° w odbiorze, wyciskanie przy nogach prostych 7°, gryf do y 200); **start z zawieszenia — gryf y 58, 10 cm nad kolanem** | general oly | tak | **ACG-014** (nota: „Barbell cleaned from the floor”) |
+| Kettlebell Thruster | tak | ok (kettlebelle przy barkach y 139, przysiad kolano 93°, wyciśnięcie do y 201, pięty na podłodze) | general squat | tak | — |
+| Thruster (hantle) | tak | ok (jak Kettlebell Thruster, hantle) | general squat | tak | — |
