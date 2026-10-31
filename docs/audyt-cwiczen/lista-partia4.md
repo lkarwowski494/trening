@@ -600,3 +600,21 @@ Pomiary co u = 0,05: zgięcie nadgarstka (`wristFlex`), rotacja przedramienia, �
 | Reverse Wrist Curl (hantle) | tak | ok (nachwyt, dwa hantle) | general wrist | tak | — |
 | Wrist Curl (hantle) | tak | ok (podchwyt, dwa hantle) | general wrist | tak | — |
 | Wrist Roller | nie | bez figury | none (open) | — | — |
+
+## hip_bridge — 11 ćwiczeń, 10 z danymi (karty własne 3; zestawy: `bridge` 7; brak 1) — partia 4E
+
+Pomiary co u = 0,25 i punkty u = 0 / 1: biodro, kolano, odchylenie linii bark–biodro–kolano w górze, kręgosłup (0° we wszystkich), pięty i palce, ciężar wobec miednicy, styk z ławką i piłką (odległość tułowia od środka piłki). Walidacja 10/10 bez błędów, `jakosc-raport` 0 naruszeń (z `--styk-wszystkie` R17 tylko Glute Bridge (sztanga) 1,0 cm — na progu). Zakres kolana we wszystkich mostkach 16–19° (geometria: stopy i barki stoją, miednica się unosi).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Frog Pump | tak | ok (kolana na boki z ±22, pięty razem z ±1,6, palce na zewnątrz z ±16; biodro 43 → −9°, w górze linia 4°) | general bridge | tak | podeszwy nie złączone (pięty razem) — do recenzji ruchu |
+| Glute Bridge | tak | ok (biodro 47 → −10°, w górze miednica 3,5 cm nad linią bark–kolano (9°), stopy płasko) | own | — | karta zgodna (figura v2; ACG-007 dotyczy figury v1) |
+| Glute Bridge (sztanga) | tak | ok (jak Glute Bridge; gryf na biodrach x −14 y 41 przy miednicy x −5 y 31, dłonie na gryfie) | general bridge | tak | R17 1,0 cm — na progu |
+| Hip Thrust (hantel) | tak | ok (łopatki na ławce top 43, biodro 61 → −7°, w górze barki y 53 = miednica y 53, kolano 82°; hantel na biodrach, dłonie na nim) | own | — | karta zgodna (`ht.dbSetup`, `ht.hold`) |
+| Hip Thrust (sztanga) | tak | ok (jak hantel; gryf 13 cm nad miednicą, dłonie na gryfie) | own | — | karta zgodna (podkładka — „najlepiej”) |
+| London Bridges | nie | bez figury | none (open) | — | — |
+| Machine Hip Thrust | tak | ok (jak Hip Thrust; prowadnica, dłonie na uchwytach) | general bridge | tak | — |
+| Single Leg Glute Bridge | tak | ok (prawa stopa na podłodze, lewa noga w górze — kolano 31°) | general bridge | tak | — |
+| Single Leg Hip Thrust | tak | ok (jw., łopatki na ławce) | general bridge | tak | — |
+| Smith Machine Hip Thrust | tak | ok (gryf w prowadnicy x −4) | general bridge | tak | — |
+| Stability Ball Hip Bridge | tak | ok w walidacji (łopatki na piłce r 32,5 — tułów 32 cm od środka przez cały ruch); **w górze kolano 42°** (start 92°), kolano 14 cm za kostką, miednica 6 cm nad linią bark–kolano (14°) | general bridge | tak* | **OP-11** |
