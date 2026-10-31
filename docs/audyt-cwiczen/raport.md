@@ -283,3 +283,65 @@ Te same objawy co w Kneeling Cable Triceps Extension (sekcja 10): rysunek popraw
 |---|---|---|
 | L-G (rozszerzenie: ACG-014 × 6, ACG-015) | nic nie porównuje rysunku z notą ćwiczenia w katalogu (sprzęt, liczba ciężarów, pozycja wyjściowa); 3 z 6 przypadków to dane skopiowane z innego ćwiczenia | do strażnika L-G: sprzęt z `requires` noty (np. `box` → stopa na skrzyni, `bench.flat` w siadzie) i liczba ciężarów („one dumbbell”) zgodne z `sprzet` figury; wpis z `klatki` identycznymi z innym ćwiczeniem wymaga jawnego pola „ta sama figura co …” z powodem; czerwony przed na 7 ćwiczeniach |
 | L-H (OP-8) | reguła środka ciężkości (`srodekCiezkosciNadPodparciem`) obejmuje tylko hantel i kettlebell w stojącej pozie — gryf w podrywaniu, podrzucie i ugięciu nie jest liczony | po rozstrzygnięciu OP-8: reguła z gryfem jako masą (konwencja `PROGI.ciezarKg`) dla klatek statycznych (start, ugięcie Jerk Dip Squat, pozycja końcowa odbioru) |
+
+## 12. Partia 4D — rodziny `planned` mobility_floor, chest_fly, core_standing, sled_throw, kb_ballistic, leg_isolation, row, calf_raise, forearm (31.10.2026, @ 9657fde1)
+
+Metoda jak w 4A–4C (kod `lib/`, `scripts/`, `data/` bez zmian od 4A — od tamtej pory tylko commity `docs/audyt-cwiczen/`); lista per ćwiczenie: `lista-partia4.md` (9 sekcji). Liczby z kodu: **150 ćwiczeń, 109 figur**, wszystkie sprawdzone bez próbkowania. Walidacja v2: 109/109 bez błędów; `jakosc-raport` (domyślny): 0 naruszeń; z `--styk-wszystkie` R17 na 28 figurach — wszystkie to ciało na ławce, siedzisku, stopniu albo podeście (Decline ×2, Leg Curl, Lying Leg Curl, Leg Extension, Seal Row, 7 łydek na stopniu: 2,5–42 cm nad podłogą) albo wspięcie na palce w wyrzucie (6 rzutów, 9 kettlebelli: 1,1–1,4 cm, jak U-4C-1) — bez wady. Nowe pomiary: skłon boczny i skręt wobec strony wyciągu, łokieć wobec linii pleców w wiosłowaniu, przebieg kolana w podrzucie (ponowne ugięcie), pięta wobec palców w wspięciach, oś kolana wobec osi dźwigni maszyny, tor piłki w rzutach. Rodziny niewidoczne (`planned`), więc **nic z tej partii nie dotyczy 1.0**; kroki po włączeniu rodziny w 1.1: Biblioteka → ćwiczenie → Technika ›.
+
+| Rodzina | Ćw. / figur | Walidacja | Wada ruchu w pomiarach | Karta a rysunek | Zestawy pasują (z figurą) | K / W / Ś / N |
+|---|---|---|---|---|---|---|
+| mobility_floor | 22 / 9 | 0 błędów | — | — (bez kart własnych) | 9 z 9 | 0 / 0 / 0 / 0 |
+| chest_fly | 20 / 17 | 0 błędów | — (OP-10: koniec Cable Fly low to high) | own 2: Chest Fly zgodna, Cable Fly — ACG-018 | 15 z 15 (Crucifix z uwagą) | 0 / 0 / 0 / 1 |
+| core_standing | 19 / 16 | 0 błędów | Bosu, Cable Russian Twists, Weighted Ball Side Bend — inny wariant (ACG-014) | own 2: Pallof zgodna, Russian Twist — ACG-018 | 12 z 12 | 0 / 0 / 0 / 0 (+3 do ACG-014, Russian Twist w ACG-018) |
+| sled_throw | 19 / 8 | 0 błędów | — (U-4D-1) | own 1 (Medicine Ball Slam): zgodna co do ruchu | 6 z 6 (One-Arm Slam — zestaw pusty) | 0 / 0 / 0 / 0 |
+| kb_ballistic | 17 / 16 | 0 błędów | — | own 1 (Kettlebell Swing): zgodna | 6 z 15 (9 × „Sztanga…” — ACG-017) | 0 / 0 / 0 / 0 (+9 do ACG-017) |
+| leg_isolation | 14 / 8 | 0 błędów | Seated Band Hamstring Curl — udo opada (ACG-019) | own 3 z figurą: zgodne | 3 z 5 (ACG-019) | 0 / 0 / 1 / 0 |
+| row | 13 / 12 | 0 błędów | — | own 3 pokazywane: zgodne (3 ukryte w 1.1) | 6 z 6 | 0 / 0 / 0 / 0 |
+| calf_raise | 13 / 12 | 0 błędów | 4 wspięcia w siadzie bez podestu — skrócony zakres (ACG-020) | own 3: Standing, Łydki na stopniu zgodne; Seated — ACG-020 | 6 z 9 (ACG-020) | 0 / 0 / 1 / 0 |
+| forearm | 13 / 11 | 0 błędów | Dumbbell Lying Pronation/Supination — siad zamiast leżenia (ACG-014) | — (bez kart własnych) | 9 z 9 | 0 / 0 / 0 / 0 (+2 do ACG-014) |
+
+Razem partia 4D: **KRYTYCZNE 0, WYSOKIE 0, ŚREDNIE 2, NISKIE 1** (+5 ćwiczeń dopisanych do ACG-014 i +9 do ACG-017, NISKIE). ŚREDNIE — **do weryfikacji niezależnej**. Ćwiczenia bez danych (41) nie mają figury — ich zestaw się nie pokaże.
+
+### ACG-019 — Slider Hamstring Curl, Seated Band Hamstring Curl: zdanie zestawu o nieruchomym stawie przeczy rysunkowi
+- **Ćwiczenia:** Slider Hamstring Curl (zestaw `bridge`), Seated Band Hamstring Curl (zestaw `legCurl`); po nazwie także Stability Ball Hamstring Curl (bez figury — teoretyczny). **Perspektywa:** karta a rysunek; technika rysunku (Seated Band). **Status:** do weryfikacji niezależnej.
+- **Waga:** ŚREDNIE (zdanie mówi, który staw ma stać, a rysunek rusza właśnie nim — ta sama klasa wagi co ACG-013; nie niebezpieczne). **Pewność:** 90% (pomiar 100%). **Widoczne w 1.0:** nie. **Wersja:** 1.1.
+- **Realność:** teoretyczny dziś; realny po włączeniu leg_isolation: Biblioteka → Slider Hamstring Curl → Technika › → animacja z boku: mostek, pięty na ślizgaczach jadą x 52 ↔ 81, kolano 12 ↔ 100°, a pod spodem „Ruch tylko w biodrach”. Seated Band Hamstring Curl → udo opada przy wyproście (kolano y 49,6 → 31,1 przy biodrze y 48; biodro 92 → 67°), pod spodem „Uda i biodra nieruchomo — ruch tylko w kolanach”.
+- **Dowód:** `lib/figures/v2/poses/leg_isolation.json:2485` (Slider) i `:2106` (Seated Band; skrzynia `x0 −40…x1 −1` tylko pod pośladkami); `lib/figures/v2/cue-sets.json` (wpisy obu ćwiczeń: `ht.rigid`, `lcurl.still`); `lib/cues/text/pl.json:150` („Ruch tylko w biodrach — na górze nie wyginaj lędźwi w łuk.”) i `:174`. Poprawka: Slider i Stability Ball — zestaw uginania nóg (`legCurl` z `nordic.hips`-podobnym zdaniem o biodrach w górze) albo nowe zdanie; Seated Band — udo na ławce (skrzynia pod udem, ruch tylko w kolanie) — przy recenzji.
+
+### ACG-020 — Seated Calf Raise i 3 warianty w siadzie: rysunek pokazuje skrócony zakres, przed którym ostrzega zestaw
+- **Ćwiczenia:** Seated Calf Raise (karta własna), Seated Calf Raise (hantle), Barbell Seated Calf Raise, Dumbbell Seated One-Leg Calf Raise (zestaw `calf`). **Perspektywa:** karta a rysunek; rysunek a nota. **Status:** do weryfikacji niezależnej.
+- **Waga:** ŚREDNIE (rysunek pokazuje wspięcie z płaskiej podłogi — pięta nigdy nie schodzi poniżej palców — przy zdaniu „opuść pięty, aż poczujesz rozciągnięcie” i błędzie „Skrócony zakres — bez pełnego wspięcia i opuszczenia”; nie niebezpieczne). **Pewność:** 85% (pomiar 100%; czy rozciągnięcie bez podestu jest możliwe w siadzie — niewielkie, stąd 85%). **Widoczne w 1.0:** nie (karta Seated Calf Raise widoczna bez figury). **Wersja:** 1.1.
+- **Realność:** teoretyczny dziś; realny po włączeniu calf_raise: Biblioteka → Seated Calf Raise → Technika › → animacja z boku: palce y 0, pięta 0 → 14 cm i z powrotem do podłogi.
+- **Dowód:** `lib/figures/v2/poses/calf_raise.json:3774`, `:4153`, `:4686`, `:5222` — `sprzet` bez skrzyni pod stopami (skrzynia `x0 −16…x1 22` to siedzisko), pomiar u 0: pięta 0 = palce 0; stojące warianty na stopniu: pięta 4,3 cm poniżej palców. `lib/cues/text/pl.json:35` (`calf.move`), `:34` (`calf.mis.partial`). Noty: Barbell Seated / Dumbbell Seated One-Leg — „toes on a block” (`docs/research/equipment/catalog.json`). Poprawka: podest pod przodostopiem (jak w stojących) — przy recenzji.
+
+### ACG-018 — Cable Fly, Russian Twist: zdanie karty własnej nazywa element, którego rysunek nie ma
+- **Waga:** NISKIE (Cable Fly: `fly.posture` „lekkie pochylenie w przód” — tułów 0° przez cały ruch; Russian Twist: `rt.setup` „ciężar trzymaj przed klatką” — dłonie złączone bez ciężaru, `sprzet` tylko podłoga; reszta kart zgodna). **Pewność:** 90%. **Widoczne w 1.0:** nie (obie karty widoczne bez figury). **Wersja:** 1.1. **Realność:** realny po włączeniu chest_fly / core_standing: Biblioteka → Cable Fly / Russian Twist → Technika ›.
+- **Dowód:** `lib/figures/v2/poses/chest_fly.json:3859` (`pochylenieTulowia` 0 we wszystkich klatkach), `lib/cues/text/pl.json:109`; `lib/figures/v2/poses/core_standing.json:1820`, `lib/cues/text/pl.json:300`. Poprawka: tułów ok. 10–15° w przód w Cable Fly; ciężar (piłka lub talerz) w Russian Twist — przy recenzji. Uwaga: „odchyl tułów lekko w tył” przy 45° w rysunku — do recenzji ruchu, bez znaleziska.
+
+### ACG-017 — rozszerzenie (zdanie zestawu nazywa inny sprzęt niż rysunek, NISKIE)
+Zestaw `oly` (`oly.close` „Sztanga blisko ciała przez cały ciąg.”, `oly.mis` „Sztanga odjeżdża od ciała…”, `oly.legs` „…sztangę wybijają nogi”; `lib/cues/text/pl.json:224–226`, en „bar”) stoi przy 9 ćwiczeniach kb_ballistic z kettlebellem albo hantlem: Bottoms-Up Clean From The Hang Position, Double Kettlebell Clean, Double Kettlebell Snatch, Dumbbell Clean, Kettlebell Clean, Kettlebell Snatch, Kettlebell Sumo High Pull, One-Arm Kettlebell Clean and Jerk, Snatch (hantel). Sens zdań pasuje do ruchu (ciężar blisko ciała), nazwa sprzętu — nie. Pewność 95%, widoczne w 1.0: nie. Poprawka: zdania `oly` bez nazwy sprzętu („Ciężar blisko ciała…”) albo osobne klucze — razem z `ohp.seat` (ACG-T-020).
+
+### ACG-014 — rozszerzenie (rysunek innego wariantu niż nota ćwiczenia, NISKIE)
+| Ćwiczenie | Rysunek | Nota katalogu | Dowód |
+|---|---|---|---|
+| Bosu Ball Cable Crunch With Side Bends (core_standing) | siad na kopule, tułów −8 → 24°, skłon w jedną stronę | „Lying on a Bosu between two low pulleys … alternating side bends” | `core_standing.json` (wpis ćwiczenia), miednica y 41 |
+| Cable Russian Twists (core_standing) | siad prosto na piłce (biodro 60°, tułów 0°) | „upper back on a stability ball” | miednica y 64,5 = szczyt piłki r 27,5 |
+| Weighted Ball Side Bend (core_standing) | siad na piłce, hantel w opuszczonej ręce | „Side on a stability ball, plate held by the head; lateral crunch” | chwyt y 38–52 przy biodrze |
+| Dumbbell Lying Pronation (forearm) | siad, przedramię na udzie | „Prone on a bench” | miednica y 53,8, kolano 86° |
+| Dumbbell Lying Supination (forearm) | jw. (dane identyczne z Pronation) | „Lying on a bench” | jw. |
+
+### Otwarte pytania partii 4D
+- **OP-10 Wysokość końca ruchu w rozpiętkach z wyciągu:** Cable Fly (low to high) kończy z dłońmi 31 cm nad barkiem (y 170,3 przy barku 139,5; ramię 119° w zgięciu — wysokość oczu), Cable Fly (high to low) startuje z dłońmi na wysokości barków (y 142,6) — czyli „z góry” zaczyna tam, gdzie zwykła rozpiętka. Potrzebne 2 źródła szczebla 4 na typowe położenie dłoni na końcu (low to high) i na starcie (high to low); dopiero wtedy ocena jako wady (`chest_fly.json:5113`).
+
+### Uwagi (bez znaleziska)
+- **U-4D-1 — rzuty bez wypuszczenia piłki:** model nie ma przedmiotu w locie, więc w 6 rzutach piłka zostaje w dłoniach do końca pętli (Wall Ball: piłka nad głową x 20,6, ściana x 95; Medicine Ball Slam: piłka w dłoniach do y 51 przy zdaniu „rzuć w podłogę”). Ruch ciała poprawny; uproszczenie warto nazwać w recenzji rodziny.
+- Crucifix: poza statyczna, katalog `weight_time`, brak na liście `ISOMETRIC` — strażnik `tests/figures-v2-data.test.tsx:53` złapie przy włączeniu (jak Hollow Hold w 4A); `lat.height` „Unoś…” przy wytrzymaniu — `tak*`.
+- One-Arm Medicine Ball Slam: zestaw `mbThrow` z pustymi `ok` i `err` — nic się nie pokaże (jak ćwiczenie bez wskazówek).
+- Kneeling Hip Flexor Stretch: tułów 12° w przód; Barbell Rear Delt Row: tułów 55° przy nocie „torso parallel”; Seal Row: łokieć w górze ok. na linii pleców — do recenzji ruchu.
+- Karty ukryte w 1.1 (Bent Over Row ×2, T-Bar Row) — rysunek v2 bez wskazówek; zgodny z kartą z 1.0.
+
+### Luka procesu
+| Luka | Co przepuściło | Mechanizm |
+|---|---|---|
+| L-F (rozszerzenie: ACG-018, ACG-019, ACG-020) | zdania o nieruchomym stawie (`ht.rigid`, `lcurl.still`), zakresie z rozciągnięciem (`calf.move`) i ustawieniu (`fly.posture`, `rt.setup`) nie mają warunku geometrii | do warunków `why` z ACG-T-015/018: `lcurl.still` → zakres biodra ≤ 5°; `ht.rigid` → zakres kolana ≤ 10°; `calf.move` → pięta poniżej palców w dole; `rt.setup` → ciężar w dłoniach; czerwone przed na 7 ćwiczeniach |
+| L-G (rozszerzenie: ACG-014 × 5, ACG-017 × 9) | nazwa sprzętu w zdaniu zestawu i pozycja z noty nie są porównywane z `sprzet` figury | do strażnika L-G: słowo „sztanga/bar” w zdaniu tylko przy figurze ze sztangą; pozycja z noty („lying”, „prone”, „upper back on”) wobec pochylenia tułowia |
