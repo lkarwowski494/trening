@@ -42,7 +42,7 @@ Razem: **KRYTYCZNE 0, WYSOKIE 1, ŚREDNIE 2, NISKIE 2.**
   - `contract.ts` (interpolacja póz rodzin z danymi, `figure.ts:73` `keyframeFrame`) i `gear.ts` (sprzęt z danych);
   - `guides.ts` (ślad toru) i `contacts.ts`/`colliders.ts` (styki) — oba rysowane w `components/ExerciseFigureV2.tsx:29,35`;
   - `muscles.ts`/`muscles.generated.ts` (podświetlenie mięśni, `shapesAt(..., true)`), `poseData.ts`, `overheadException.ts`, `render.ts`.
-  - Od e796c7ed zmieniły się contract.ts (+351/−?), guides.ts (groty na końcach śladu) i muscles.generated.ts (Child's Pose). Gdyby nie zmiana plików z listy, rysunek ze zmienionym śladem byłby pokazany jako zrecenzowany.
+  - Od e796c7ed zmieniły się contract.ts (+286/−65 linii), guides.ts (groty na końcach śladu) i muscles.generated.ts (Child's Pose). Gdyby nie zmiana plików z listy, rysunek ze zmienionym śladem byłby pokazany jako zrecenzowany.
   - `scripts/strona/recenzja-figur.mjs:15` ma tę samą listę, więc luka obejmuje też stronę.
 
 ### ACG-003 — zestawy ogólne bez przekładu na 33 języki
