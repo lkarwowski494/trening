@@ -1,10 +1,11 @@
-# Raport audytu ćwiczeń i grafik — 31.10.2026 (stan `integracja-1-1` @ 46a8f1cc; partie 1–2 z 5)
+# Raport audytu ćwiczeń i grafik — 31.10.2026 (stan `integracja-1-1` @ 46a8f1cc, partia 3 @ 1c683be i build 1.0 `v1.0.0-b1033`; partie 1–3 z 5)
 
-Audytor niezależny (nie pisał figur ani kart). Zakres tej sesji: inwentarz całości i pełna ocena 4 rodzin `ready` (100 ćwiczeń, 98 z figurą). Partie 3–5 (widoczne w 1.0 poza 4 rodzinami, rodziny `planned`, reszta kart i zestawów) — w `STAN.md`. Znaleziska ŚREDNIE i wyższe czekają na weryfikację przez drugiego, niezależnego agenta (zleca koordynator) — do tego czasu status „do weryfikacji”.
+Audytor niezależny (nie pisał figur ani kart). Zakres tej sesji: inwentarz całości i pełna ocena 4 rodzin `ready` (100 ćwiczeń, 98 z figurą). Partia 3 (karty własne i figury v1, widoczne w 1.0 poza 4 rodzinami) — sekcja 8 i `lista-partia3.md`. Partie 4–5 (rodziny `planned`, reszta kart i zestawów) — w `STAN.md`. Znaleziska ŚREDNIE i wyższe czekają na weryfikację przez drugiego, niezależnego agenta (zleca koordynator) — do tego czasu status „do weryfikacji”.
 
 ## 1. Podsumowanie dla właściciela
 
-- **1.0 nic nie blokuje** z tego, co sprawdziłem: wszystkie znaleziska dotyczą 1.1 (rodzina pull_up i zestawy rodzin, które w 1.0 nie są pokazywane) albo procesu.
+- **Partia 3 (karty własne i figury v1):** 101 kart 1.0 / 97 kart 1.1 i 56 figur v1 sprawdzonych w całości; treść kart i źródła bez wady; dwie niezgodności rysunku: Skullcrusher (EZ) — gryf na dole za czubkiem głowy zamiast nad czołem (ACG-006, ŚREDNIE, widoczne w 1.0, w 1.1 ukryte) i Glute Bridge — głowa pod linią podłogi (ACG-007, NISKIE). Szczegóły w sekcji 8.
+- **1.0 nic nie blokuje** z tego, co sprawdziłem w partiach 1–2: wszystkie znaleziska dotyczą 1.1 (rodzina pull_up i zestawy rodzin, które w 1.0 nie są pokazywane) albo procesu.
 - **1.1 dziś nie pokazuje żadnej figury v2** (0 z 98): wszystkie 4 rodziny są ukryte, bo pliki wspólne zmieniły się po recenzji 1.0.1. Mechanizm działa tak, jak powinien.
 - **Squat, bench_press, hinge (87):** 62 rysunki są identyczne z wersją zrecenzowaną w 1.0.1. 25 różni się drobno: 16 tylko błędem „pięty” z przodu, 8 sprzętem albo stopą z przodu lub z góry, a 1 (Smith SLDL) torem gryfu. W pomiarach nie znalazłem wady ruchu. Do powrotu wystarczy jedna ponowna recenzja tych 25 z arkuszami i nowe skróty.
 - **Pull_up (11 figur):** ruch w pomiarach bez wady, ale rodzina nigdy nie przeszła bramki 4. Potrzebna pierwsza recenzja. 5 zestawów wskazówek mówi „na górze wyprostuj ręce”, co przy podciąganiu jest odwrotnie — do poprawy przed pokazaniem.
@@ -89,9 +90,38 @@ Razem: **KRYTYCZNE 0, WYSOKIE 1, ŚREDNIE 2, NISKIE 2.**
 - **OP-3 Barbell Guillotine Bench Press** (gryf do szyi): nie sprawdziłem, czy decyzje w docs/18 wymagają ostrzeżenia przy tym ćwiczeniu.
 - Arkusze PNG z nałożonym śladem (L-050) nie zostały wygenerowane w tej sesji. Ocena wizualna zasłaniania (skrzynia, podest) należy do recenzji z D-1.
 
+## 8. Partia 3 — karty własne i figury v1 (31.10.2026)
+
+Stany: **1.0** = build 1033 (`v1.0.0-b1033`, fced34b — `docs/48` Z-26), **1.1** = `integracja-1-1` @ 1c683be. Widoczność policzona kodem aplikacji w obu drzewach (`CUE_DATA`, `shownFigureSpec`, `V2_WSTRZYMANE`/`figureWithheld`, `figureByKey`). Lista per ćwiczenie i metoda: `lista-partia3.md`.
+
+| Obszar | 1.0 | 1.1 | Wynik |
+|---|---|---|---|
+| Karty własne pokazywane | 101 | 97 (−4: Bent Over Row ×2, T-Bar Row, Skullcrusher (EZ) — wpis v1 nieaktualny) | treść: 0 wad; źródła: każde zdanie ≥ 2 organizacje (452/452, 433/433); 35 języków: brak 0 |
+| Karta ukryta „do poprawy” | Hack Squat | Hack Squat | niewidoczna — bez oceny treści |
+| Figury v1 widoczne | 53 | 52 (+3: Push Press, Pendlay Row, Reverse Lunge) | 56 sprawdzonych: 54 zgodne z kartą, 2 znaleziska |
+| Figury v1 „zastąpione” | — (v2 w 1.0) | 15, niewidoczne | bez oceny |
+| Karty z rysunkiem v2 | 15 | 0 | ocenione w partii 2 |
+| Sprawdzenia `why` figur v1 | 0 niespełnionych | 0 niespełnionych | — |
+
+Razem partia 3: **KRYTYCZNE 0, WYSOKIE 0, ŚREDNIE 1, NISKIE 1.** Nowych otwartych pytań brak. Znane uwagi z backlogu (`docs/21`: Incline Push Up, Lunges (hantle), Step Up 1.0, Walking Lunges 1.0, Pendlay Row 1.0, T-Bar Row — talerz) nie są zgłaszane ponownie.
+
+### ACG-006 — Skullcrusher (EZ): gryf na dole za czubkiem głowy, karta mówi „tuż nad czołem”
+- **Ćwiczenie:** Skullcrusher (EZ) (figura v1, rodzina triceps). **Perspektywa:** karta a rysunek.
+- **Waga:** ŚREDNIE (rysunek przeczy zdaniu karty; pokazany wariant „za głowę” sam w sobie nie jest niebezpieczny). Przy rysunkach v2 ta sama klasa niezgodności (JM Press, Close Grip BP) była oceniana jako WYSOKIE i wstrzymana w 1.0 — wagę rozstrzyga weryfikacja. **Pewność:** 85% (pomiar 100%, ocena „za czubkiem” wobec „nad czołem”). **Widoczne w 1.0:** tak. **W 1.1:** nie (karta i figura ukryte, bo zmieniło się brzmienie `skull.depth`; dane figury bez zmian — `data/zrodla/figures.json:5141`). **Status:** do weryfikacji niezależnej.
+- **Realność:** realny w 1.0: Biblioteka → Skullcrusher (EZ) → Technika › → animacja albo „Pozycja końcowa”. W 1.1 teoretyczny dziś, realny po nowej recenzji karty, jeśli figura wróci bez poprawki.
+- **Dowód:** pozycja końcowa `t 180, sh 100, el 105` (`v1.0.0-b1033:data/zrodla/figures.json:542`, ta sama w 1.1): dłoń (gryf) (−51,3; 39,3), środek głowy (−41; 30), promień głowy 6,5 j. — gryf 10,3 j. od środka głowy w stronę czubka, 3,8 j. poza obrysem głowy i 2,8 j. nad jej górną krawędzią; czoło (górno-przednia część głowy) ok. (−45,6; 34,6) — gryf 7,4 j. (ok. 12 cm) dalej, w stronę czubka. Karta: `skull.setup` „trzymaj go nad czołem”, `skull.move` „opuszczając gryf w stronę czoła”, `skull.depth` „aż gryf będzie tuż nad czołem” (`v1.0.0-b1033:lib/cues/text/pl.json:271`). Sprawdzenie `touch/skull.depth` przechodzi tylko dzięki tolerancji 12 j. (odległość 10,3) przy punkcie celu głowa + [0, 10]. Wykonalność poprawki: przy ramieniu odchylonym 10° w stronę stóp (`sh` ok. 80, w granicy „mniej więcej pionowo” ±15° z `skull.upperArm`) dłoń trafia nad czoło — rachunek na długościach `SEG` (`lib/figures/geom.ts:30`).
+
+### ACG-007 — Glute Bridge: w pozycji końcowej głowa wchodzi pod podłogę
+- **Ćwiczenie:** Glute Bridge (figura v1). **Perspektywa:** technika rysunku.
+- **Waga:** NISKIE (błąd rysunku, nie twierdzenia; karta i linia barki–biodra–kolana zgodne). **Pewność:** 90%. **Widoczne w 1.0:** tak; **w 1.1:** tak. **Realność:** realny: Biblioteka → Glute Bridge → Technika › → animacja / „Pozycja końcowa”.
+- **Dowód:** pozycja końcowa `t 203` (`data/zrodla/figures.json:4512`): głowa ciągnie się w kierunku tułowia, środek głowy y = 1,7, dół obrysu y = −4,8 (37% średnicy głowy pod linią podłogi rysowaną w `components/ExerciseFigure.tsx:38`). Pomiar pętli co 0,05 (`poseBetween` + `shapes`) dla wszystkich 56 figur: inne ciała ≤ 1,2 j. poniżej grubości kreski (pomijalne). Uwaga recenzji v1 („Ruch i karta zgodne”) tego nie wymienia.
+
 ## Aneks: obalone przy sprawdzaniu (jedno zdanie każde)
 
 - Deadlift (hantle) z ciężarem przed stopami: tor −1,7…+0,1 cm od śródstopia, wada usunięta.
 - Belt squat z ciężarem 23 cm za stopą: tym punktem jest miednica, nie gryf, więc to poprawne.
 - Pull Up/Chin Up z identycznym obrotem przedramienia: z boku nie da się tego zmierzyć, nie zgłaszam.
 - Good Morning płytko (tułów 42°): karta mówi „nie dalej niż do poziomu” (`gm.depth`), więc rysunek jest zgodny.
+- (partia 3) Pull Up / Chin Up z ciałem pochylonym w zwisie: środek masy ok. 5 j. przed drążkiem (ok. 4°) — nogi lekko w przód, nie bujanie; poprawione 27.10 (biodro ±7–8 j.).
+- (partia 3) Barbell Curl i pozostałe uginania: łokieć do 14° w przód na górze — recenzja v1 opisała to jako „łokcie przy bokach (0–14°)”; nie zgłaszam.
+- (partia 3) Machine Chest Press: łokieć 3,9 j. za linią oparcia na starcie — rzut z boku przy ramieniu odwiedzonym (`ap` 0,7), oparcie węższe od barków.

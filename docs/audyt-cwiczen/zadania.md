@@ -1,4 +1,4 @@
-# Zadania z audytu ćwiczeń i grafik (31.10.2026, partie 1–2)
+# Zadania z audytu ćwiczeń i grafik (31.10.2026, partie 1–3)
 
 Grupy bez wspólnych plików, do zlecenia równolegle.
 
@@ -12,4 +12,7 @@ Grupy bez wspólnych plików, do zlecenia równolegle.
 | ACG-T-006 | ACG-003 | tłumacz → recenzent lokalizacji | `lib/cues/text/<33 języki>.json` (52 id) | strażnik: wszystkie zdania ćwiczeń z celu 1.1 w 35 językach (czerwony przed); recenzja lokalizacji | 2–3 h | D-2 | 1 |
 | ACG-T-007 | L-C, L-D | programista (1.1) | `lib/figures/v2/cueSets.ts` (`cueTextGaps`), `tests/` | strażnik języków dla celu wydania; test „ready ⇒ wpis v2 albo jawne oczekiwanie” | 1 h | — | 1 |
 | ACG-T-008 | OP-1, OP-2, OP-3 | badacz | `docs/research/` (notatka) | 2 źródła szczebla 4 na ćwiczenie, wynik wpisany do rejestru; ewentualna poprawka → nowe zadanie | 1–2 h | — | 1 |
-| ACG-T-009 | — | następna sesja audytu | `docs/audyt-cwiczen/` | partie 3–5 (`STAN.md`) | 6–10 h | — | 4 |
+| ACG-T-009 | — | następna sesja audytu | `docs/audyt-cwiczen/` | partie 4–5 (`STAN.md`; partia 3 zrobiona 31.10.2026) | 5–8 h | — | 4 |
+| ACG-T-010 | ACG-006 | programista figur → recenzja niezależna (L-047) | `data/zrodla/figures.json` (Skullcrusher (EZ), pozycja końcowa), `docs/research/figury-recenzja.json` (wpis v1), `tests/` | test: w pozycji końcowej gryf ≤ 4 j. od punktu czoła (głowa + ok. [−4,6; 4,6]) i nie poza obrysem głowy w stronę czubka (czerwony przed); ramię ≤ 15° od pionu; nowa recenzja v1 z arkuszem — przed przywróceniem karty w 1.1 | 1 h | — | 1 |
+| ACG-T-011 | ACG-007 | programista figur | `data/zrodla/figures.json` (Glute Bridge, pozycja końcowa — głowa/szyja), `tests/figury-podparcie.test.ts` | test-strażnik dla wszystkich figur v1 z podłogą: obrys głowy i kształty ciała nie schodzą poniżej podłogi o więcej niż połowę grubości kreski w całej pętli (czerwony przed na Glute Bridge); recenzja niezależna zmienionej figury | 1 h | — | 1 |
+
