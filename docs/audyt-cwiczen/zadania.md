@@ -1,4 +1,4 @@
-# Zadania z audytu ćwiczeń i grafik (31.10.2026, partie 1–3)
+# Zadania z audytu ćwiczeń i grafik (31.10.2026, partie 1–4B)
 
 Grupy bez wspólnych plików, do zlecenia równolegle.
 
@@ -21,3 +21,5 @@ Grupy bez wspólnych plików, do zlecenia równolegle.
 | ACG-T-014 | ACG-012 | programista figur → recenzja niezależna | `lib/figures/v2/poses/curl.json` (Barbell, EZ Bar, Hammer Curl) | test: w pozycji górnej przedramię ≤ 20° od pionu (jak `why` v1), ramię ≤ 15° od tułowia (czerwony przed) | 1 h | — | 1 |
 | ACG-T-015 | L-E, L-F | programista (1.1) | `scripts/figures/v2-jakosc.mjs`, `tests/` | reguła kierunku kolana w leżeniu (L-E) i warunki `why` dla kart rodzin v2 (L-F); czerwone przed na ACG-008/009/012 | 2 h | — | 2 |
 | ACG-T-016 | OP-4, OP-5, OP-6 | badacz | `docs/research/` | 2 źródła szczebla 4 na pytanie; wynik do rejestru; ewentualna poprawka → nowe zadanie | 1–2 h | — | 1 |
+| ACG-T-017 | ACG-013, ACG-014, OP-7 | badacz (wariant) + programista figur → recenzja niezależna (L-047) | `lib/figures/v2/poses/mobility_stand.json` (Standing Gastrocnemius Calf Stretch), `lib/figures/v2/poses/triceps.json` (Kneeling Cable Triceps Extension), ewentualnie `lib/figures/v2/cue-sets.json` | Gastrocnemius: figura na stopniu (pięta poniżej krawędzi, kolano proste) albo zestaw wariantu przy ścianie; Kneeling: wariant zgodny ze źródłami (OP-7, 2 źródła szczebla 4) i bez nieużytej ławki; test geometrii czerwony przed | 1–2 h | — | 1 |
+| ACG-T-018 | L-F (rozszerzenie), L-G, uwaga W | programista (1.1) | `scripts/figures/v2-jakosc.mjs`, `tests/` | L-F: zdania ustawienia wymagają sprzętu i warunku geometrii (czerwony przed na ACG-013); L-G: sprzęt podparcia ma styk w pętli (czerwony przed na ACG-014); próg wyprostu łokcia dla zdań „prostuj do końca” liczony względem konwencji modelu v2 (zrecenzowane figury jako odniesienie) | 2 h | ACG-T-015 | 2 |

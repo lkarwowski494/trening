@@ -5,6 +5,7 @@ Audytor niezależny (nie pisał figur ani kart). Zakres tej sesji: inwentarz ca�
 ## 1. Podsumowanie dla właściciela
 
 - **Partia 3 (karty własne i figury v1):** 101 kart 1.0 / 97 kart 1.1 i 56 figur v1 sprawdzonych w całości; treść kart i źródła bez wady; dwie niezgodności rysunku: Skullcrusher (EZ) — gryf na dole za czubkiem głowy zamiast nad czołem (ACG-006, ŚREDNIE, widoczne w 1.0, w 1.1 ukryte) i Glute Bridge — głowa pod linią podłogi (ACG-007, NISKIE). Szczegóły w sekcji 8.
+- **Partia 4 (rodziny `planned`, sekcje 9–10):** 4A — 118 ćwiczeń / 87 figur (ŚREDNIE 4, NISKIE 1); 4B — mobility_stand, triceps, pushup_plank: 98 ćwiczeń / 54 figury, walidacja bez błędów; ŚREDNIE 1 (ACG-013 — Standing Gastrocnemius Calf Stretch: zestaw „na stopniu”, rysunek przy ścianie), NISKIE 1 (ACG-014). Nic nie dotyczy 1.0 (rodziny ukryte).
 - **1.0 nic nie blokuje** z tego, co sprawdziłem w partiach 1–2: wszystkie znaleziska dotyczą 1.1 (rodzina pull_up i zestawy rodzin, które w 1.0 nie są pokazywane) albo procesu.
 - **1.1 dziś nie pokazuje żadnej figury v2** (0 z 98): wszystkie 4 rodziny są ukryte, bo pliki wspólne zmieniły się po recenzji 1.0.1. Mechanizm działa tak, jak powinien.
 - **Squat, bench_press, hinge (87):** 62 rysunki są identyczne z wersją zrecenzowaną w 1.0.1. 25 różni się drobno: 16 tylko błędem „pięty” z przodu, 8 sprzętem albo stopą z przodu lub z góry, a 1 (Smith SLDL) torem gryfu. W pomiarach nie znalazłem wady ruchu. Do powrotu wystarczy jedna ponowna recenzja tych 25 z arkuszami i nowe skróty.
@@ -184,3 +185,42 @@ Razem partia 4A: **KRYTYCZNE 0, WYSOKIE 0, ŚREDNIE 4, NISKIE 1.** ŚREDNIE — 
 |---|---|---|
 | L-E (ACG-009) | walidacja v2 sprawdza styk i podłogę, ale nie kierunek kolana przy leżeniu z ugiętymi nogami; brak `biegunKolana` daje kolano na boki bez sygnału | reguła jakości: w pozie leżącej na plecach ze stopami na podłodze i kolanem < 150° kolano ≥ X cm nad podłogą, chyba że wpis ma `odchylenieKolana` (wyjątek celowy, np. Frog); test czerwony przed na 4 ćwiczeniach |
 | L-F (ACG-008, -010, -012) | zgodność „karta a rysunek” dla rodzin z danymi nie ma odpowiednika sprawdzeń `why` z figur v1 | strażnik: dla kart własnych i zestawów rodzin v2 te same warunki geometryczne co `why` w v1 (np. `curl.bbMove`, `crunch.setup`, `lat.elbows`) liczone na klatkach `keyframeFrame` |
+
+## 10. Partia 4B — rodziny `planned` mobility_stand, triceps, pushup_plank (31.10.2026, @ 433289f7)
+
+Metoda jak w 4A (kod `lib/`, `scripts/`, `data/` bez zmian względem fbd00673 — `git diff --stat` pusty); lista per ćwiczenie: `lista-partia4.md` (sekcje mobility_stand, triceps, pushup_plank). Liczby z kodu: mobility_stand 36 ćwiczeń / 8 figur, triceps 32 / 29, pushup_plank 30 / 17 — razem **98 ćwiczeń, 54 figury**, wszystkie sprawdzone. Walidacja v2: 54/54 bez błędów; `jakosc-raport`: 0 naruszeń (z `--styk-wszystkie` R17 tylko na 2 figurach triceps z ławką ujemną — znana klasa fałszywych alarmów, `scripts/figures/v2-jakosc.mjs:657`; stopy leżą na końcu siedziska przy wałkach). Rodziny niewidoczne (`planned`), więc **nic z tej partii nie dotyczy 1.0**; kroki po włączeniu rodziny w 1.1: Biblioteka → ćwiczenie → Technika ›.
+
+| Rodzina | Ćw. / figur | Walidacja | Wada ruchu w pomiarach | Karta a rysunek | Zestawy pasują (z figurą) | K / W / Ś / N |
+|---|---|---|---|---|---|---|
+| mobility_stand | 36 / 8 | 0 błędów | — (8 póz statycznych) | Standing Gastrocnemius Calf Stretch: zestaw „na stopniu”, rysunek przy ścianie (ACG-013) | 7 z 8 | 0 / 0 / 1 / 0 |
+| triceps | 32 / 29 | 0 błędów | Kneeling Cable Triceps Extension — inny wariant niż w katalogu (ACG-014) | own 3 widoczne: zgodne (uwaga W o wyproście) | 25 z 25 | 0 / 0 / 0 / 1 |
+| pushup_plank | 30 / 17 | 0 błędów | — | own 5 z figurą: zgodne | 12 z 12 | 0 / 0 / 0 / 0 |
+
+Razem partia 4B: **KRYTYCZNE 0, WYSOKIE 0, ŚREDNIE 1, NISKIE 1.** ŚREDNIE — **do weryfikacji niezależnej**. Ćwiczenia bez danych (44) nie mają figury — ich zestaw się nie pokaże.
+
+### ACG-013 — Standing Gastrocnemius Calf Stretch: zestaw opisuje rozciąganie na stopniu, rysunek — przy ścianie
+- **Ćwiczenie:** Standing Gastrocnemius Calf Stretch (mobility_stand, zestaw ogólny `gcalf.*` — jedyny zestaw rodziny z recenzją, 28.10.2026). **Perspektywa:** karta a rysunek (klasa ACG-008/ACG-010). **Status:** do weryfikacji niezależnej.
+- **Waga:** ŚREDNIE (dwa z czterech zdań zestawu przeczą rysunkowi: ustawienie i ruch; wariant z rysunku nie jest niebezpieczny). **Pewność:** 95%. **Widoczne w 1.0:** nie. **Wersja:** 1.1.
+- **Realność:** teoretyczny dziś; realny po włączeniu mobility_stand: Biblioteka → Standing Gastrocnemius Calf Stretch → Technika › → poza obok zdań „Stań przednią częścią stopy na krawędzi stopnia…” i „…opuść piętę poniżej krawędzi”.
+- **Dowód:** `lib/figures/v2/poses/mobility_stand.json:603` — sprzęt: podłoga i ściana (`sciana` x 75), bez stopnia/skrzyni; wykrok przy ścianie: dłonie na ścianie [72; 132], przednie kolano 41,9°, tylne 7,9°, wszystkie pięty i palce y = 0 (pomiar `keyframeFrame`); dane identyczne z Wall Calf Stretch (`:758`). Zestaw: `cue-sets.json:625` (`gcalf.set`, `gcalf.move`, `gcalf.support`, `gcalf.knee`), teksty `lib/cues/text/pl.json:124–125`. Recenzja zestawu (`docs/research/figury-recenzja.json:1992`) zatwierdziła „wariant na stopniu” i zapisała, że zestaw „pokaże się dopiero z figurą v2” — figura v2 pokazuje inny wariant. Poprawka: figura na stopniu (pięta poniżej krawędzi, kolano proste) albo zestaw dla wariantu przy ścianie — decyzja badacza (źródła wariantu na stopniu przeczytane 28.10, `docs/research/1-0-1-zrodla-2026-10-29.md`).
+
+### ACG-014 — Kneeling Cable Triceps Extension: rysunek innego wariantu, ławka narysowana i nieużyta
+- **Waga:** NISKIE (zestaw `triOver` pasuje do tego, co narysowano; rysunek nie przeczy żadnemu zdaniu, ale pokazuje inne ustawienie niż opis ćwiczenia w katalogu). **Pewność:** 85%. **Widoczne w 1.0:** nie. **Wersja:** 1.1. **Realność:** realny po włączeniu triceps (widok z boku).
+- **Dowód:** `lib/figures/v2/poses/triceps.json:10175`: klęk prosty, tułów 0°, ręce nad głową z liną (`chwyt: lina`), górna część ciała identyczna z Cable Overhead Extension; ławka `lawka` x 130 (rysowana x 55–170, wysokość 43) — łokcie w x 6,5, ciało jej nie dotyka. Katalog: „Kneeling facing away from a high pulley, elbows on a bench, straight bar overhead.” (`docs/research/equipment/catalog.json`, nota ćwiczenia; wymaga `bench.flat`). Wariant docelowy do potwierdzenia źródłem — OP-7.
+
+### Otwarte pytania partii 4B
+- **OP-7 Kneeling Cable Triceps Extension:** ustawienie ćwiczenia (łokcie oparte na ławce, tułów pochylony, gryf prosty — wg noty katalogu — czy klęk prosty z liną jak na rysunku). Potrzebne 2 źródła szczebla 4; wynik rozstrzyga poprawkę ACG-014 (figura albo nota katalogu).
+
+### Uwagi (bez znaleziska)
+- **W — wyprost łokcia w triceps:** najmniejsze zgięcie łokcia w wyproście 14,5–23,9° przy zdaniach „Prostuj ręce do końca” (`press.noLock`), „wyprostuj ręce” (`ote.move`), „Prostuj łokcie” (`tpd.move`, `cote.move`). Projekt mierzył to w figurach v1 jako ≤ 11° (Triceps Pushdown) i ≤ 9° (Cable Overhead Extension) (`data/zrodla/figures.json`, `why` `press.noLock`), ale w modelu v2 „prosta ręka” to ok. 11–16° (zrecenzowany pull_up: zwis 13,8–15,5°; Push Up — góra 11,4°). Wyraźniej ugięte: Triceps Pushdown 23,9°, Cable Incline 20,7°, Cable Overhead / Kneeling Cable 20,6°, Lying Close-Grip Behind The Head 19,2°, Reverse Grip Pushdown 19,1° — pewność, że to widoczna niezgodność, < 80%, więc bez znaleziska; do recenzji ruchu i do progu w L-F (kryterium wyprostu v2 względem konwencji modelu, nie v1).
+- **Skullcrusher (sztanga) i pochodne:** w dole gryf nad czubkiem głowy, ok. 10 cm od obrysu (gryf [−82,9; 67,9], głowa — elipsa ze środkiem [−72; 53,2], półoś pozioma 10,6); `skull.depth` dopuszcza „albo wcześniej”, kryterium v1 (`touch` tol 12) spełnione na granicy (11,9). Ta sama tendencja co ACG-006 (v1), ale bez sprzeczności z tekstem — do recenzji ruchu.
+- **Triceps Pushdown:** góra 98,5° — kryterium v1 `tpd.move` (≥ 100°) prawie spełnione.
+- **mobility_stand:** w rodzinie „stojąc” są ćwiczenia leżąc lub w podporze (Hip Circles (Prone), Lying Leg Crossover Swings, Inchworm, Groiners, One Knee To Chest) — bez figur, ważne dopiero przy ich tworzeniu (widok, podłoże).
+- **Overhead Triceps Stretch:** druga ręka wzdłuż ciała (nie dociąga łokcia) — zestaw tego nie opisuje.
+- **Single-Arm Push-Up:** dół płytszy (łokieć do 95°, tułów 25 cm nad podłogą); zestaw bez `push.mis.partial` — nie przeczy.
+
+### Luka procesu
+| Luka | Co przepuściło | Mechanizm |
+|---|---|---|
+| L-F (rozszerzenie: ACG-013) | zestaw z recenzją dla wariantu A przypisany do figury wariantu B; dane figury skopiowane z innego ćwiczenia (Wall Calf Stretch) | do strażnika L-F: zdania ustawienia (`gcalf.set` — „stopień”, „krawędź”) wymagają sprzętu w `sprzet` (skrzynia/stopień) i warunku geometrii (pięta poniżej krawędzi); test czerwony przed na ACG-013 |
+| L-G (ACG-014) | walidacja nie sprawdza, czy narysowany sprzęt podparcia (ławka) ma styk z ciałem | reguła jakości: każdy `lawka`/`skrzynia` w `sprzet` ma w pętli co najmniej jeden styk ciała albo stóp (wyjątek jawny w danych); czerwony przed na Kneeling Cable Triceps Extension |
