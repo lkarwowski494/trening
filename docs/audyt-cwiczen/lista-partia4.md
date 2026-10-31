@@ -344,7 +344,7 @@ Pomiary co u = 0,02: dół = najniższa miednica; noga przednia = większe zgię
 | Elevated Back Lunge | tak | ok (przednia stopa na podwyższeniu 12 cm, krok w tył na podłogę, tylne kolano 4,4 cm) | general lunge | tak | — |
 | Lateral Lunge | tak | ok w walidacji (zejście w bok, druga noga prosta) | general lunge | tak* | OP-9 (jak Barbell Side Split Squat) |
 | Lunge Pass Through | tak | ok (kettlebell przekładany pod przednim udem: chwyt w dole x −15, y 34; tułów 35°) | general lunge | tak | — |
-| Lunges (hantle) | tak | ok (stopy razem z ±10, hantle w dół; krok w przód 89 cm, tylne kolano 4,4 cm, powrót do startu) | own | — | — |
+| Lunges (hantle) | tak | ok (stopy 20 cm — z ±10, hantle w dół; krok w przód 89 cm, tylne kolano 4,4 cm, powrót do startu) | own | — | — |
 | Lunges (sztanga) | tak | ok (jak wyżej, sztanga na plecach) | general lunge | tak | — |
 | Pistol Squat | tak | ok (stopa wolnej nogi 4–43 cm nad podłogą, ręce w przód; dół kolano 128°, biodro 126°) | own | — | wolna noga zgięta 31° w kolanie przy `pistol.setup` „drugą wyprostuj” — ponad konwencję prostej nogi v2 (11–17°), pewność niezgodności < 80% (uwaga U-4C-3) |
 | Reverse Lunge | tak | ok (krok w tył 89 cm, tylne kolano 4,4 cm) | own | — | — |
@@ -357,3 +357,33 @@ Pomiary co u = 0,02: dół = najniższa miednica; noga przednia = większe zgię
 | Step Up | tak | ok (cała stopa na skrzyni 40 cm, wyprost nogi na skrzyni — miednica 129,8; druga stopa w górze; powrót tą samą drogą) | own | — | — |
 | Suspended Split Squat | tak | ok (tylna stopa w taśmie 20–42 cm, tylne kolano 11,4 cm) | general lunge | tak | — |
 | Walking Lunges | tak | ok w walidacji; dane identyczne z Lunges (hantle) — krok w przód i powrót do startu | own | — | **ACG-016** (`lunge.walk`) |
+
+## overhead_press — 23 ćwiczenia, 21 z danymi (karty własne 5; zestawy: `ohp` 12, `press` 3, `pushPress` 1, `pushup` 1; brak 2) — partia 4C
+
+Pomiary co u = 0,02 dla każdej ręki z zakresem łokcia > 20°: łokieć w górze i w dole, chwyt i bark (y, x), odchylenie przedramienia od pionu z boku i z przodu (`ohp.elbowsUnder`), chwyt x − bark (tor ciężaru), rotacja przedramienia (Arnold), pochylenie i skłon boczny tułowia, kolano (ugięcie w podrzucie), stopy, szerokość chwytu wobec barków. Walidacja 21/21 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`). Wspólne dla wariantów stojących: dół — chwyt 14 cm nad stawem barkowym i 22 cm przed nim (przód barków), góra — łokieć 9,2°, chwyt 7 cm przed barkiem i głową (ciężar nad głową, `ohp.move`/`ohp.tall`/`ohp.fullExt` zgodne), przedramię −13…3° od pionu z boku i −5…3° z przodu (`ohp.elbowsUnder` zgodne), tułów 0°, stopy na podłodze. Siedzące: ławka 45 cm, oparcie 85°, tułów −5° (oparty), kolano 78°, stopy na podłodze.
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Arnold Press | tak | ok (rotacja przedramienia −75 → 80°, dłonie z 12 → 24 cm od osi, łokieć 9°) | general ohp | tak | zestaw bez `ohp.elbowsUnder` — słusznie (łokcie z przodu w dole) |
+| Band Shoulder Press | tak | ok (guma, tor jak sztanga) | general ohp | tak | — |
+| Bradford Press | nie | bez figury | none (open) | — | — |
+| Double Kettlebell Press | tak | ok (dwa kettlebelle z przedniego podparcia) | general ohp | tak | — |
+| Handstand Push Up | nie | bez figury | none (open) | — | — |
+| Kettlebell Arnold Press | tak | ok (jedna ręka, rotacja −75 → 80°) | general ohp | tak | — |
+| Kettlebell Press | tak | ok (jedna ręka, druga nieruchomo) | general ohp | tak | — |
+| Kettlebell Seated Press | tak | ok w walidacji; siad na ławce z oparciem 85° (dane jak Seated Shoulder Press), jedna ręka | general ohp | tak | **ACG-014** (klasa: nota „Seated on the floor, legs spread”) |
+| Landmine Press | tak | ok (oburącz, koniec gryfu 16 → 55 cm przed barkiem, łokieć 141 → 16°) | general press | tak | nota: „usually one arm at a time” — oburącz dopuszczalne |
+| Landmine Linear Jammer | tak | ok (wybicie z nóg: kolano 7 → 67 → 7°, tułów do 12°, oburącz) | general press | tak | — |
+| Overhead Press (hantle) | tak | ok (hantle przy barkach, przedramię pionowo) | own | — | — |
+| Overhead Press (sztanga) | tak | ok (chwyt 52 cm / barki 38, gryf przy przedniej części barków, stopy na podłodze) | own | — | — |
+| Pike Push Up | tak | ok (biodra wysoko, dłonie pod barkami, łokieć 15 → 115°, bark y 64,5 → 36,5) | general pushup | tak | — |
+| Push Press | tak | ok (ugięcie kolan do 54°, tułów do 10° w przód w ugięciu, wybicie, łokieć 9°) | own | — | OP-8 (a): tułów pochyla się 10° w przód w ugięciu przy `pp.dip` „tułów napięty” |
+| Push Press - Behind the Neck | tak | ok (gryf z karku: chwyt 13 cm za barkiem, 92 cm szeroko; ugięcie jak Push Press) | general pushPress | tak | — |
+| Seated Barbell Military Press | tak | ok (siad z oparciem, stojaki, sztanga) | general ohp | **nie** (`ohp.seat` „…; hantle przy barkach” przy sztandze) | **ACG-017** |
+| Seated Cable Shoulder Press | tak | ok (siad z oparciem, uchwyty z wyciągów) | general ohp | **nie** (`ohp.seat` „hantle przy barkach” przy linkach) | **ACG-017** |
+| Seated Shoulder Press (hantle) | tak | ok (plecy na oparciu 85°, stopy na podłodze, hantle przy barkach) | own | — | — |
+| See-Saw Press (Alternating Side Press) | tak | ok w walidacji; ręce naprzemiennie, skłon boczny tułowia 0° | general ohp | tak | **ACG-014** (klasa: nota „press one side while leaning the torso to the opposite side” — skłonu nie ma) |
+| Single Arm Overhead Press (hantel) | tak | ok (jedna ręka) | general ohp | tak | — |
+| Single-Arm Linear Jammer | tak | ok (jedna ręka, wybicie z nóg) | general press | tak | — |
+| Standing Barbell Press Behind Neck | tak | ok (gryf z karku 13 cm za barkiem, chwyt 92 cm, łokieć 122 → 16°) | general ohp | tak | — |
+| Wyciskanie nad głowę (linki) | tak | ok (uchwyty przy barkach, łokcie w dół) | own | — | — |
