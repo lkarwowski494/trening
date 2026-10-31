@@ -2397,7 +2397,7 @@
  },
  {
   "pl": "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.",
-  "en": "Already logging workouts in another app? You can add your history from a CSV file."
+  "en": "Got workout history in another app? You can add it from a CSV file."
  },
  {
   "pl": "Masz pełną wersję",
@@ -4896,7 +4896,7 @@
  },
  {
   "pl": "Serie na partię w tygodniu (pomocnicza = {h} serii): {list}",
-  "en": "Sets per muscle group per week (secondary = {h} set): {list}"
+  "en": "Sets per muscle group per week (secondary = {h} sets): {list}"
  },
  {
   "pl": "Serie per partia",

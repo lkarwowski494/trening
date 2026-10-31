@@ -1,0 +1,725 @@
+{
+ "_opis": "Średnie uwagi przeglądu API 31.10.2026 (przebieg 41220388812) dla KLUCZY UI (90 z 107; 17 pozostałych to wskazówki techniki spoza ACG-003). Stan każdej pozycji: otwarte / naniesione / odrzucone z powodem; decyzja: tlumacz, recenzja: recenzent-lokalizacji.",
+ "pozycje": [
+  {
+   "jezyk": "bg",
+   "klucz": "{n} mi",
+   "obecnie": "{n} мили",
+   "propozycja": "{n} mi",
+   "powod": "„мили” jest w liczbie mnogiej, więc przy n=1 forma jest błędna. Jest też niespójne ze skrótem „lb”. Lepiej zachować skrót jednostki.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "{n} yd",
+   "obecnie": "{n} ярд",
+   "propozycja": "{n} yd",
+   "powod": "„ярд” jest w liczbie pojedynczej, więc przy n>1 forma jest błędna. Jest też niespójne ze skrótem „lb”. Lepiej zachować skrót jednostki.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "Podciąganie",
+   "obecnie": "Набиране",
+   "propozycja": "Издърпване",
+   "powod": "„Набиране” brzmi jak nazwa ćwiczenia (podciąganie na drążku). Chodzi o nazwę fazy ruchu, analogiczną do „Спускане”.",
+   "stan": "odrzucone 31.10.2026 po recenzji (recenzja-faza-pauza-2026-10-31.md)"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "Pokaż częsty błąd",
+   "obecnie": "Покажи честата грешка",
+   "propozycja": "Показване на честата грешка",
+   "powod": "Tryb rozkazujący w formie „ty” w zwykłym przycisku. Niespójne z formalnym rejestrem i z innymi przyciskami („Изтриване на…”).",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "Powiadamiaj",
+   "obecnie": "Известявайте ме",
+   "propozycja": "Уведомявай ме",
+   "powod": "„Известявайте ме” brzmi nienaturalnie na przycisku (forma mnoga skierowana do aplikacji).",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "Przejdź na ten plan",
+   "obecnie": "Премини към този план",
+   "propozycja": "Преминаване към този план",
+   "powod": "Tryb rozkazujący w formie „ty” niezgodny z formalnym rejestrem.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "Ukryj częsty błąd",
+   "obecnie": "Скрий честата грешка",
+   "propozycja": "Скриване на честата грешка",
+   "powod": "Tryb rozkazujący w formie „ty” niezgodny z formalnym rejestrem.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "Zmień plan",
+   "obecnie": "Смени плана",
+   "propozycja": "Смяна на плана",
+   "powod": "Tryb rozkazujący w formie „ty” niezgodny z formalnym rejestrem.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "cs",
+   "klucz": "Wypychanie",
+   "obecnie": "Tlak",
+   "propozycja": "Vytlačování",
+   "powod": "Nazwa fazy powinna być rzeczownikiem odczasownikowym, jak sąsiednie fazy („Spouštění”, „Zvedání”). „Tlak” jest niespójny.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "da",
+   "klucz": "Bujanie się i wymachy nogami.",
+   "obecnie": "Svinger og sparker med benene.",
+   "propozycja": "At svinge og sparke med benene.",
+   "powod": "Opis częstego błędu (rzeczownik); forma „Svinger…” czyta się jak czasownik w 3. osobie, niespójna z innymi opisami błędów („At …”).",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "da",
+   "klucz": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "obecnie": "Automatisk sikkerhedskopi: efter hver træning gemmes en JSON-fil af sig selv i Filer (På min iPhone → {app} → Backup, seneste {n}). Import accepterer også disse filer. Kopierne slettes sammen med appen — før du fjerner den eller installerer fra en anden Apple-konto, skal du eksportere en sikkerhedskopi et andet sted hen.",
+   "propozycja": "Automatisk backup: efter hver træning gemmes en JSON-fil af sig selv i Filer (På min iPhone → {app} → Backup, seneste {n}). Import accepterer også disse filer. Kopierne slettes sammen med appen — før du fjerner den eller installerer fra en anden Apple-konto, skal du eksportere en backup et andet sted hen.",
+   "powod": "Niespójna terminologia: w innych tekstach „backup”, tu „sikkerhedskopi”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "da",
+   "klucz": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "obecnie": "Slet ikke appen — dine data og sikkerhedskopier forsvinder med den. Tryk først på “Send dataene” og gem filen uden for din telefon.",
+   "propozycja": "Slet ikke appen — dine data og backups forsvinder med den. Tryk først på “Send dataene” og gem filen uden for din telefon.",
+   "powod": "Niespójna terminologia: „sikkerhedskopier” zamiast używanego gdzie indziej „backup”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "da",
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "obecnie": "Anstrengelse: indtil endnu en gentagelse ville være svær. Træt, men ikke udmattet. Du behøver ikke gå til udmattelse.",
+   "propozycja": "Anstrengelse: indtil endnu en gentagelse ville være svær. Træt, men ikke udmattet. Du behøver ikke træne til failure.",
+   "powod": "„udmattelse” oddaje tu zarówno „wyczerpanie”, jak i „upadek”. Zdanie staje się sprzeczne: „træt, men ikke udmattet” i zaraz „gå til udmattelse”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "de",
+   "klucz": "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).",
+   "obecnie": "„Archivieren“ in der Vorschau blendet die Vorlage aus; löschen kannst du sie mit der Taste „Vorlage löschen“ unten in der Vorschau oder durch Wischen nach links in der Liste (mit Bestätigung).",
+   "propozycja": "„Archivieren“ in der Vorschau blendet die Vorlage aus; löschen kannst du sie mit der Schaltfläche „Vorlage löschen“ unten in der Vorschau oder durch Wischen nach links in der Liste (mit Bestätigung).",
+   "powod": "„Taste“ oznacza fizyczny klawisz; w UI używa się „Schaltfläche“, jak w zdaniu 104 (spójność terminologii).",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "de",
+   "klucz": "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.",
+   "obecnie": "Einen Ort löschst du mit der Taste „Ort löschen“ unten auf seinem Bildschirm oder durch Wischen nach links in der Liste; den Hauptort kannst du nicht löschen, solange es andere gibt.",
+   "propozycja": "Einen Ort löschst du mit der Schaltfläche „Ort löschen“ unten auf seinem Bildschirm oder durch Wischen nach links in der Liste; den Hauptort kannst du nicht löschen, solange es andere gibt.",
+   "powod": "„Taste“ oznacza fizyczny klawisz; w UI używa się „Schaltfläche“ (spójność terminologii).",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "de",
+   "klucz": "Pauza",
+   "obecnie": "Anhalten",
+   "propozycja": "Pause",
+   "powod": "Na linii faz animacji (ExerciseFigureV2.tsx:113) „Pauza“ to nazwa fazy, czyli zatrzymania w pozycji. „Anhalten“ brzmi jak polecenie lub przycisk zatrzymania odtwarzania.",
+   "stan": "naniesione 31.10.2026 inaczej niż propozycja (słownik faza_pauza/faza_ruchu, K1)"
+  },
+  {
+   "jezyk": "el",
+   "klucz": "{n} kg",
+   "obecnie": "{n} κιλά",
+   "propozycja": "{n} kg",
+   "powod": "Przy {n}=1 forma „κιλά” jest niegramatyczna („1 κιλά”). Skrót „kg” jest neutralny co do liczby i spójny z lb/mi/yd.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "el",
+   "klucz": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "obecnie": "Καρδιο: με {k}–{m} ημέρες μπορείτε να κάνετε τις ημέρες πάνω από {j} συνεδρίες μέτριου καρδιο («Ημέρες καρδιο στο πρόγραμμα», απενεργοποιημένο από προεπιλογή). Περισσότερες ασκήσεις ενδυνάμωσης δεν δίνουν απαραίτητα περισσότερα οφέλη για την υγεία, και την αερόβια κίνηση καλό είναι να τη μοιράζετε σε αρκετές ημέρες. Διάρκεια συνεδρίας καρδιο = χρόνος συνεδρίας.",
+   "propozycja": "Καρδιο: με {k}–{m} ημέρες μπορείτε να μετατρέψετε τις ημέρες πάνω από {j} σε συνεδρίες μέτριου καρδιο («Ημέρες καρδιο στο πρόγραμμα», απενεργοποιημένο από προεπιλογή). Περισσότερες ασκήσεις ενδυνάμωσης δεν δίνουν απαραίτητα περισσότερα οφέλη για την υγεία, και την αερόβια κίνηση καλό είναι να τη μοιράζετε σε αρκετές ημέρες. Διάρκεια συνεδρίας καρδιο = χρόνος συνεδρίας.",
+   "powod": "„να κάνετε τις ημέρες … συνεδρίες” jest nienaturalne i niejasne. „Zamienić” to „μετατρέψετε … σε”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "el",
+   "klucz": "Podciąganie",
+   "obecnie": "Έλξη",
+   "propozycja": "Τράβηγμα",
+   "powod": "„Έλξη” w liczbie pojedynczej grecki użytkownik odczyta jako nazwę ćwiczenia (έλξη/έλξεις = podciąganie). Nazwa fazy powinna być rzeczownikiem odczasownikowym jak „Κατέβασμα”, „Σήκωμα”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "el",
+   "klucz": "Powiadamiaj",
+   "obecnie": "Ειδοποίησέ με",
+   "propozycja": "Ειδοποίηση",
+   "powod": "Tryb rozkazujący w formie „ty” („Ειδοποίησέ με”) jest niezgodny z rejestrem Apple. Na przycisku lepiej rzeczownik.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "en",
+   "klucz": "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.",
+   "obecnie": "Already logging workouts in another app? You can add your history from a CSV file.",
+   "propozycja": "Got workout history in another app? You can add it from a CSV file.",
+   "powod": "Zmiana sensu: źródło pyta o posiadanie historii, a nie o bieżące prowadzenie zapisów.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "en",
+   "klucz": "Serie na partię w tygodniu (pomocnicza = {h} serii): {list}",
+   "obecnie": "Sets per muscle group per week (secondary = {h} set): {list}",
+   "propozycja": "Sets per muscle group per week (secondary = {h} sets): {list}",
+   "powod": "{h} to wartość ułamkowa (0.5); po angielsku wymaga liczby mnogiej „sets”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "es-419",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "obecnie": "Color más fuerte: grupo muscular principal; más tenue: secundario.",
+   "propozycja": "Color más intenso: parte del cuerpo principal; más tenue: secundaria.",
+   "powod": "Niespójna terminologia: „partia” oddawana gdzie indziej jako „parte del cuerpo”, tu „grupo muscular”",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "es",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "obecnie": "Color más intenso: grupo muscular principal; más suave: secundario.",
+   "propozycja": "Color más intenso: parte del cuerpo principal; más suave: auxiliar.",
+   "powod": "Niespójna terminologia: w innych tekstach „partia” to „parte del cuerpo”, a „pomocnicza” to „auxiliar”, nie „grupo muscular”/„secundario”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "es",
+   "klucz": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "obecnie": "Este mes entrenas duro y usas todos los días de entrenamiento gratuitos ({n}). ¡Buen trabajo!",
+   "propozycja": "Este mes has entrenado duro y has usado todos los días de entrenamiento gratuitos ({n}). ¡Buen trabajo!",
+   "powod": "Czas teraźniejszy („entrenas… usas”) brzmi nienaturalnie przy podsumowaniu wykorzystanego limitu; lepszy pretérito perfecto.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "es",
+   "klucz": "Wstawanie",
+   "obecnie": "Levantarse",
+   "propozycja": "Subida",
+   "powod": "Nazwa fazy w formie bezokolicznika zwrotnego („Levantarse”) odstaje od rzeczownikowych faz siostrzanych (Bajada, Empuje, Extensión) i może sugerować wstawanie w ogóle.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "et",
+   "klucz": "Pauza",
+   "obecnie": "Peata",
+   "propozycja": "Paus",
+   "powod": "Kontekst wskazuje na nazwę fazy w linii „{faza} {n} s”. Potrzebny jest rzeczownik („Paus”), a nie tryb rozkazujący „Peata” (przycisk „Zatrzymaj”).",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "et",
+   "klucz": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "obecnie": "Pingutus: tavaliselt {a}–{b} kordust varus — väsimuse lähedal või {c}–{d}; täpset arvu pole kindlaks tehtud. Kuni väsimuseni pole vaja minna.",
+   "propozycja": "Pingutus: tavaliselt {a}–{b} kordust varus — täieliku lihasväsimuse lähedal või {c}–{d}; täpset arvu pole kindlaks tehtud. Täieliku lihasväsimuseni pole vaja minna.",
+   "powod": "„Blisko upadku” przetłumaczono jako „blisko zmęczenia”, co jest znacznie słabsze. Potrzebny jest termin oznaczający upadek mięśniowy, spójny z innymi zdaniami.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "et",
+   "klucz": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "obecnie": "Korduste vahemikud (lihasmass {a}–{b}, kodus ja välise raskuseta {c}–{d}; jõu puhul lisaharjutused {e}–{f}): lihased kasvavad laias raskuste vahemikus, kui seeriad on väsimuse lähedal.",
+   "propozycja": "Korduste vahemikud (lihasmass {a}–{b}, kodus ja välise raskuseta {c}–{d}; jõu puhul lisaharjutused {e}–{f}): lihased kasvavad laias raskuste vahemikus, kui seeriad on täieliku lihasväsimuse lähedal.",
+   "powod": "„Blisko upadku” oddano jako „väsimuse lähedal” (blisko zmęczenia). To nieprecyzyjne i niespójne z terminem upadku mięśniowego.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "fi",
+   "klucz": "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.",
+   "obecnie": "Automaattinen varmuuskopio jokaisen treenin jälkeen: Tiedostot → Omalla iPhonella → {app} → Backup.",
+   "propozycja": "Automaattinen varmuuskopio jokaisen treenin jälkeen: Tiedostot → Omassa iPhonessa → {app} → Backup.",
+   "powod": "W fińskim iOS (aplikacja Pliki) ta lokalizacja nazywa się „Omassa iPhonessa”. Ścieżka powinna odpowiadać nazwom w interfejsie systemu.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "fi",
+   "klucz": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "obecnie": "Automaattinen varmuuskopio: jokaisen treenin jälkeen JSON-tiedosto tallentuu Tiedostoihin (Omalla iPhonella → {app} → Backup, viimeiset {n}). Tuonti hyväksyy myös nämä tiedostot. Kopiot poistuvat sovelluksen mukana — ennen sen poistamista tai asentamista toiselta Apple-tililtä vie varmuuskopio muualle.",
+   "propozycja": "Automaattinen varmuuskopio: jokaisen treenin jälkeen JSON-tiedosto tallentuu Tiedostoihin (Omassa iPhonessa → {app} → Backup, viimeiset {n}). Tuonti hyväksyy myös nämä tiedostot. Kopiot poistuvat sovelluksen mukana — ennen sen poistamista tai asentamista toiselta Apple-tililtä vie varmuuskopio muualle.",
+   "powod": "W fińskim iOS ta lokalizacja nazywa się „Omassa iPhonessa”, nie „Omalla iPhonella”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "fi",
+   "klucz": "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.",
+   "obecnie": "Tiedostot → Omalla iPhonella → {app} → Backup → {folder}. Tallenna tämä kansio puhelimen ulkopuolelle.",
+   "propozycja": "Tiedostot → Omassa iPhonessa → {app} → Backup → {folder}. Tallenna tämä kansio puhelimen ulkopuolelle.",
+   "powod": "W fińskim iOS ta lokalizacja nazywa się „Omassa iPhonessa”. Trzeba też zachować spójność z pozostałymi ścieżkami.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "fr",
+   "klucz": "jarda",
+   "obecnie": "yards",
+   "propozycja": "yard",
+   "powod": "Forma ułamkowa (np. 1,5) w języku francuskim wymaga liczby pojedynczej: „1,5 yard”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "fr",
+   "klucz": "mili",
+   "obecnie": "miles",
+   "propozycja": "mile",
+   "powod": "Forma ułamkowa (np. 1,5) w języku francuskim wymaga liczby pojedynczej: „1,5 mile”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "fr",
+   "klucz": "Podciąganie",
+   "obecnie": "Traction",
+   "propozycja": "Montée",
+   "powod": "„Traction” to po francusku przede wszystkim nazwa ćwiczenia (podciąganie na drążku). Tu chodzi o fazę ruchu, więc lepiej pasuje rzeczownik fazy, analogicznie do „Descente”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "fr",
+   "klucz": "Podnoszenie",
+   "obecnie": "Soulevé",
+   "propozycja": "Levée",
+   "powod": "„Soulevé” kojarzy się z nazwą boju (soulevé de terre). Tu chodzi o fazę podnoszenia ciężaru.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "hu",
+   "klucz": "Asekuracja",
+   "obecnie": "Biztosítás",
+   "propozycja": "Biztosítás és biztonság",
+   "powod": "Samo „Biztosítás” w nagłówku kojarzy się głównie z ubezpieczeniem. Dodanie „és biztonság” (jak w en) jednoznacznie wskazuje asekurację na siłowni.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "+ {n} {w}",
+   "obecnie": "altri {n} {w}",
+   "propozycja": "+ {n} {w}",
+   "powod": "„altri” ma rodzaj męski i nie uzgodni się z rzeczownikiem żeńskim w {w} (np. „serie” → „altre”). Lepiej zachować neutralny „+”, jak w oryginale.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "ja",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "obecnie": "色が濃いほうがメインの部位、薄いほうがサブの部位です。",
+   "propozycja": "色が濃いほうが主な部位、薄いほうが補助の部位です。",
+   "powod": "Niespójna terminologia: w innych tekstach partia główna/pomocnicza to 主な部位/補助の部位, a nie メイン/サブ.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "ja",
+   "klucz": "Pauza",
+   "obecnie": "一時停止",
+   "propozycja": "静止",
+   "powod": "„Pauza” to tu faza animacji ruchu (zatrzymanie w pozycji), pokazywana w tym samym miejscu co „{faza} {n} s”. 一時停止 brzmi jak wstrzymanie odtwarzania.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "ko",
+   "klucz": "Jesteśmy z Ciebie dumni!",
+   "obecnie": "저희는 정말 자랑스럽습니다!",
+   "propozycja": "열심히 운동하신 모습이 정말 자랑스럽습니다!",
+   "powod": "Zgubiono „z Ciebie”. Zdanie znaczy „jesteśmy bardzo dumni” bez wskazania, z kogo, i może brzmieć jak duma z siebie. Dodano też „정말”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "obecnie": "Ryškesnė spalva – pagrindinė raumenų grupė, blyškesnė – pagalbinė.",
+   "propozycja": "Ryškesnė spalva – pagrindinė kūno dalis, blyškesnė – pagalbinė.",
+   "powod": "Niespójna terminologia: „partia” tłumaczona w pozostałych tekstach jako „kūno dalis”, tu jako „raumenų grupė”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "Pomaga przyciągać ramię do przodu i do środka, gdy pchasz.",
+   "obecnie": "Padeda pristumti ranką į priekį ir į vidų, kai stumiate.",
+   "propozycja": "Padeda pritraukti ranką į priekį ir į vidų, kai stumiate.",
+   "powod": "„Pristumti” (dosunąć) jest nienaturalne dla przywodzenia ramienia; właściwie „pritraukti”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "Przyciąga ramię do przodu i do środka, gdy pchasz.",
+   "obecnie": "Pristumia ranką į priekį ir į vidų, kai stumiate.",
+   "propozycja": "Pritraukia ranką į priekį ir į vidų, kai stumiate.",
+   "powod": "„Pristumia” jest nienaturalne dla przyciągania ramienia; właściwie „pritraukia”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "Przyciąga ramię do przodu i do środka.",
+   "obecnie": "Pristumia ranką į priekį ir į vidų.",
+   "propozycja": "Pritraukia ranką į priekį ir į vidų.",
+   "powod": "„Pristumia” jest nienaturalne dla przyciągania ramienia; właściwie „pritraukia”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "Wyczyść miejsce",
+   "obecnie": "Pašalinti vietą",
+   "propozycja": "Išvalyti vietą",
+   "powod": "„Wyczyść” to odpięcie miejsca od dni; „Pašalinti vietą” można pomylić z usunięciem miejsca („Ištrinti vietą”).",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "Wyczyść miejsce: {a} – {b}",
+   "obecnie": "Pašalinti vietą: {a} – {b}",
+   "propozycja": "Išvalyti vietą: {a} – {b}",
+   "powod": "„Wyczyść” to odpięcie miejsca od dni; „Pašalinti vietą” można pomylić z usunięciem miejsca.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "lv",
+   "klucz": "Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).",
+   "obecnie": "Vingrinājuma papildu muskuļu grupa tiek skaitīta kā puse sērijas (galvenā 1, papildu 0,5).",
+   "propozycja": "Vingrinājuma palīgmuskuļu grupa tiek skaitīta kā puse sērijas (galvenā 1, palīgmuskuļu 0,5).",
+   "powod": "Niespójna terminologia: gdzie indziej partia pomocnicza to „palīg-” (palīgmuskuļi, palīggrupa), tu „papildu”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "lv",
+   "klucz": "Podciąganie",
+   "obecnie": "Pievilkšanās",
+   "propozycja": "Pievilkšana",
+   "powod": "„Pievilkšanās” to nazwa ćwiczenia (używana tak w innych tekstach); dla fazy ruchu lepszy rzeczownik odczasownikowy zgodny z fazami „Nolaišana”, „Spiešana”.",
+   "stan": "odrzucone 31.10.2026 po recenzji (recenzja-faza-pauza-2026-10-31.md)"
+  },
+  {
+   "jezyk": "ms",
+   "klucz": "Wstawanie",
+   "obecnie": "Berdiri",
+   "propozycja": "Bangun",
+   "powod": "Faza ruchu to wstawanie z przysiadu; „Berdiri” oznacza raczej stanie (pozycję statyczną), a nie ruch wstawania.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "ms",
+   "klucz": "Wyczyść miejsce",
+   "obecnie": "Buang tempat",
+   "propozycja": "Kosongkan tempat",
+   "powod": "„Buang tempat” sugeruje usunięcie miejsca; chodzi o wyczyszczenie przypisania miejsca do dni.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "ms",
+   "klucz": "Wyczyść miejsce: {a} – {b}",
+   "obecnie": "Buang tempat: {a} – {b}",
+   "propozycja": "Kosongkan tempat: {a} – {b}",
+   "powod": "„Buang tempat” sugeruje usunięcie miejsca; chodzi o wyczyszczenie przypisania miejsca do dni.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "nb",
+   "klucz": "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.",
+   "obecnie": "{n} av {limit} gratis treningsdager denne måneden {left}.",
+   "propozycja": "{n} av {limit} gratis treningsdager {left} denne måneden.",
+   "powod": "Szyk: „{left}” (igjen) na końcu po „denne måneden” brzmi nienaturalnie; lepiej przed określeniem czasu.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "nl",
+   "klucz": "Masz plan: dożywotni",
+   "obecnie": "Eenmalige aankoop",
+   "propozycja": "Je plan: levenslang",
+   "powod": "Pominięto „Masz plan:”. Etykieta jest niespójna z siostrzanymi „Je abonnement: maandelijks/jaarlijks”. Zakup dożywotni nie jest abonamentem, stąd „plan”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "nl",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "obecnie": "Fellere kleur: hoofdspiergroep, zachtere: hulpspiergroep.",
+   "propozycja": "Fellere kleur: primair lichaamsdeel, zachtere: ondersteunend.",
+   "powod": "Niespójna terminologia: „partia” to w innych tekstach „lichaamsdeel”, a „pomocnicza” to „ondersteunend”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "pt-BR",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "obecnie": "Cor mais forte: grupo muscular principal; mais fraca: secundário.",
+   "propozycja": "Cor mais forte: grupo muscular principal; mais fraca: auxiliar.",
+   "powod": "Niespójna terminologia: partia pomocnicza to w innych tekstach „auxiliar”, a tu „secundário”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "pt",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "obecnie": "Cor mais forte: grupo muscular principal; cor mais fraca: secundário.",
+   "propozycja": "Cor mais forte: grupo muscular principal; cor mais fraca: auxiliar.",
+   "powod": "Niespójna terminologia: „partia pomocnicza” to w innych tekstach „auxiliar” (np. 75, 165, 167), tu „secundário”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "pt",
+   "klucz": "Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).",
+   "obecnie": "O grupo muscular secundário de um exercício conta como meia série (principal 1, secundário 0,5).",
+   "propozycja": "O grupo muscular auxiliar de um exercício conta como meia série (principal 1, auxiliar 0,5).",
+   "powod": "Niespójna terminologia: „pomocnicza” to w innych tekstach „auxiliar”, tu „secundário”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "ro",
+   "klucz": "Bujanie się i wymachy nogami.",
+   "obecnie": "Balansarea corpului și loviturile cu picioarele.",
+   "propozycja": "Balansarea corpului și a picioarelor.",
+   "powod": "„loviturile cu picioarele” sugeruje kopanie czegoś, a chodzi o wymachy nogami",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "ro",
+   "klucz": "Prostowanie",
+   "obecnie": "Întindere",
+   "propozycja": "Extensie",
+   "powod": "„Întindere” znaczy też rozciąganie (stretching). Chodzi o prostowanie stawu, spójnie z „extinde” w opisach mięśni",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "ro",
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "obecnie": "Efort: până când încă o repetare ar fi grea — oboseală, dar nu extenuare. Nu e nevoie să mergeți până la epuizare.",
+   "propozycja": "Efort: până când încă o repetare ar fi grea — oboseală, dar nu extenuare. Nu e nevoie să mergeți până la eșec muscular.",
+   "powod": "„Upadek” to eșec muscular. „Epuizare” myli się z wyczerpaniem, od którego zdanie właśnie odróżnia upadek",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "ro",
+   "klucz": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "obecnie": "Efort: de obicei {a}–{b} repetări în rezervă — aproape de epuizare sau {c}–{d}; numărul exact nu este stabilit. Nu e nevoie să mergeți până la epuizare.",
+   "propozycja": "Efort: de obicei {a}–{b} repetări în rezervă — aproape de eșecul muscular sau {c}–{d}; numărul exact nu este stabilit. Nu e nevoie să mergeți până la eșec muscular.",
+   "powod": "Termin „upadek” należy oddać jako „eșec muscular”, nie „epuizare”",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "ro",
+   "klucz": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "obecnie": "Intervale de repetări (masă {a}–{b}, acasă și fără greutate externă {c}–{d}; la forță, exercițiile suplimentare {e}–{f}): mușchii cresc într-un interval larg de greutăți când seriile sunt aproape de epuizare.",
+   "propozycja": "Intervale de repetări (masă {a}–{b}, acasă și fără greutate externă {c}–{d}; la forță, exercițiile suplimentare {e}–{f}): mușchii cresc într-un interval larg de greutăți când seriile sunt aproape de eșecul muscular.",
+   "powod": "Termin „upadek” należy oddać jako „eșec muscular”, nie „epuizare”",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "ru",
+   "klucz": "Prostowanie",
+   "obecnie": "Выпрямление",
+   "propozycja": "Разгибание",
+   "powod": "Faza prostowania stawu (biodra, łokcia) to w terminologii ruchu „разгибание”, nie „выпрямление”; spójne z „разгибает” w opisach mięśni",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "ru",
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "obecnie": "Разминка: {d} из {n} выполнено",
+   "propozycja": "Разминочные подходы: выполнено {d} из {n}",
+   "powod": "„Rozgrzewki” to serie rozgrzewkowe; „Разминка … выполнено” ma niezgodność i zmienia sens na ogólną rozgrzewkę",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "ru",
+   "klucz": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.",
+   "obecnie": "Тренируйтесь бесплатно до {n} дней в месяц. Pro снимает ограничение. Отменить можно в любой момент в настройках учётной записи Apple.",
+   "propozycja": "Тренируйтесь бесплатно {n} дн. в месяц. Pro снимает ограничение. Отменить можно в любой момент в настройках учётной записи Apple.",
+   "powod": "Stała forma „дней” przy zmiennej {n} jest błędna dla 1 i 2–4 (gdzie indziej użyto „дн.”); dodane „до” nie występuje w źródle",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "sk",
+   "klucz": "Wyczyść miejsce",
+   "obecnie": "Odstrániť miesto",
+   "propozycja": "Zrušiť výber miesta",
+   "powod": "„Odstrániť miesto” sugeruje usunięcie samego miejsca, co myli się z „Vymazať miesto”. Tu chodzi o wyczyszczenie przypisania miejsca do dni.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "sk",
+   "klucz": "Wyczyść miejsce: {a} – {b}",
+   "obecnie": "Odstrániť miesto: {a} – {b}",
+   "propozycja": "Zrušiť výber miesta: {a} – {b}",
+   "powod": "Jak w 218: tłumaczenie sugeruje usunięcie miejsca zamiast wyczyszczenia przypisania.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "sk",
+   "klucz": "z {s}",
+   "obecnie": "celkom {s}",
+   "propozycja": "z {s}",
+   "powod": "Polskie „z {s}” (np. seria 2 z 4) przełożono jako „celkom {s}” („łącznie”), co zmienia sens etykiety.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "sl",
+   "klucz": "Masz plan: dożywotni",
+   "obecnie": "Vaš paket: trajni",
+   "propozycja": "Vaš paket: doživljenjski",
+   "powod": "„trajni” jest niejasne. Dla zakupu dożywotniego w iOS utarte jest „doživljenjski”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "sl",
+   "klucz": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "obecnie": "Ne izbrišite aplikacije — z njo izginejo podatki in kopije. Najprej se dotaknite »Pošlji podatke« in datoteko shranite zunaj telefona.",
+   "propozycja": "Ne brišite aplikacije — z njo izginejo podatki in kopije. Najprej tapnite »Pošlji podatke« in datoteko shranite zunaj telefona.",
+   "powod": "Przeczenie w trybie rozkazującym wymaga aspektu niedokonanego („Ne brišite”). „se dotaknite” jest niespójne z „Tapnite” używanym w innych tekstach.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "sr",
+   "klucz": "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+   "obecnie": "{k} дан снаге недељно је мање од препорученог минимума (најмање {n} дана). За почетак је то добар корак: можете тренирати снагу само {k} дан недељно, а временом стићи до {n} — мало кретања је боље него ништа.",
+   "propozycja": "{k} дан тренинга снаге недељно је мање од препорученог минимума (најмање {n} дана). За почетак је то добар корак: можете тренирати снагу само {k} дан недељно, а временом стићи до {n} — мало кретања је боље него ништа.",
+   "powod": "„дан снаге” brzmi nienaturalnie; lepiej „дан тренинга снаге”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "sr",
+   "klucz": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "obecnie": "Општи (за здравље и кондицију): {s} серије по вежби, {a}–{b} понављања (код куће {c}–{d}), док следеће понављање не би било тешко. За здравље вреди тренирати све главне делове тела најмање {n} дана недељно.",
+   "propozycja": "Општи (за здравље и кондицију): {s} серије по вежби, {a}–{b} понављања (код куће {c}–{d}), до тренутка када би следеће понављање било тешко. За здравље вреди тренирати све главне делове тела најмање {n} дана недељно.",
+   "powod": "Konstrukcja „док … не би било тешко” jest dwuznaczna (może znaczyć „dopóki nie byłoby trudne”); lepiej jednoznacznie „до тренутка када би…”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "sr",
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "obecnie": "Напор: док следеће понављање не би било тешко — умор, али не исцрпљеност. До отказа није потребно.",
+   "propozycja": "Напор: до тренутка када би следеће понављање било тешко — умор, али не исцрпљеност. Није потребно ићи до отказа.",
+   "powod": "Konstrukcja „док … не би било тешко” jest dwuznaczna; „До отказа није потребно” jest eliptyczne i brzmi nienaturalnie.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "sv",
+   "klucz": "Bujanie się i wymachy nogami.",
+   "obecnie": "Svinga med kroppen och sparka med benen.",
+   "propozycja": "Att gunga med kroppen och sparka med benen.",
+   "powod": "To opis błędu; tryb rozkazujący brzmi jak polecenie wykonania błędu. Inne opisy błędów używają formy „Att …”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "sv",
+   "klucz": "Usuń ćwiczenie",
+   "obecnie": "Ta bort övning",
+   "propozycja": "Radera övning",
+   "powod": "Niespójna terminologia: „Usuń” to w innych przyciskach „Radera” (Radera plats/plan/mall).",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "sv",
+   "klucz": "Usuń serię",
+   "obecnie": "Ta bort set",
+   "propozycja": "Radera set",
+   "powod": "Niespójna terminologia: „Usuń” to w innych przyciskach „Radera”.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "tr",
+   "klucz": "Zakończ trening na telefonie",
+   "obecnie": "Antrenmanı telefonda bitir",
+   "propozycja": "Antrenmanı telefonunuzda bitirin",
+   "powod": "Komunikat-polecenie w formie „sen”; wymagany rejestr „siz”",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "{n} mi",
+   "obecnie": "{n} ми",
+   "propozycja": "{n} mi",
+   "powod": "Skrót „ми” nie jest przyjętym oznaczeniem mili i myli się z zaimkiem „ми” (my); lepiej użyć międzynarodowego symbolu mi",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "imperialny (lb, mi, yd)",
+   "obecnie": "імперська (фнт, ми, ярд)",
+   "propozycja": "імперська (фнт, mi, ярд)",
+   "powod": "Skrót mili musi być spójny z wpisem 14; „ми” jest mylące",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "obecnie": "Риска в розділі «Цей тиждень» і в «Прогресі». Автоматично: {n} підходів. Вручну: ваше число від {min} до {max}.",
+   "propozycja": "Риска в розділі «Цей тиждень» і в «Прогресі». Автоматично: підходів — {n}. Вручну: ваше число від {min} до {max}.",
+   "powod": "Stała forma „підходів” po zmiennej {n} jest błędna dla 1 i 2–4",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "obecnie": "Яскравіший колір: основна група м’язів, блідіший: допоміжна.",
+   "propozycja": "Яскравіший колір: основна частина тіла, блідіший: допоміжна.",
+   "powod": "Termin niespójny z resztą tekstów, gdzie „partia” = „частина тіла”",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).",
+   "obecnie": "Рідше ніж {n} дні на тиждень: {list} (день лише з допоміжною роботою = {h}).",
+   "propozycja": "Рідше ніж {n} дн. на тиждень: {list} (день лише з допоміжною роботою = {h}).",
+   "powod": "Stała forma „дні” po zmiennej {n}; skrót „дн.” jak w pozostałych tekstach",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "Wypychanie",
+   "obecnie": "Жим",
+   "propozycja": "Виштовхування",
+   "powod": "To nazwa fazy ruchu; „Жим” czyta się jak nazwę ćwiczenia, a siostrzane fazy to rzeczowniki odczasownikowe",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "vi",
+   "klucz": "Odciąga ramię do tyłu, gdy przyciągasz.",
+   "obecnie": "Kéo cánh tay ra sau khi bạn kéo.",
+   "propozycja": "Kéo cánh tay về phía sau trong lúc bạn kéo.",
+   "powod": "„ra sau khi bạn kéo” można odczytać jako „po tym, jak przyciągniesz” (sau khi = po). Dwuznaczność.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "vi",
+   "klucz": "Pomaga odciągać ramię do tyłu, gdy przyciągasz.",
+   "obecnie": "Hỗ trợ kéo cánh tay ra sau khi bạn kéo.",
+   "propozycja": "Hỗ trợ kéo cánh tay về phía sau trong lúc bạn kéo.",
+   "powod": "„ra sau khi bạn kéo” można odczytać jako „po tym, jak przyciągniesz”. Dwuznaczność.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "vi",
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "obecnie": "Mức gắng sức: đến khi lần tiếp theo trở nên khó — mệt nhưng chưa kiệt sức. Không cần tập đến kiệt sức.",
+   "propozycja": "Mức gắng sức: đến khi lần tiếp theo trở nên khó — mệt nhưng chưa kiệt sức. Không cần tập đến mức thất bại (không thể làm thêm lần nào).",
+   "powod": "„upadek” (failure) przełożono jako „kiệt sức” (wyczerpanie). Wcześniej w zdaniu „kiệt sức” oznacza wyczerpanie, więc oba pojęcia się mieszają.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "vi",
+   "klucz": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "obecnie": "Mức gắng sức: thường chừa lại {a}–{b} lần — gần kiệt sức hoặc {c}–{d}; con số chính xác chưa được xác định. Không cần tập đến kiệt sức.",
+   "propozycja": "Mức gắng sức: thường chừa lại {a}–{b} lần — gần mức thất bại hoặc {c}–{d}; con số chính xác chưa được xác định. Không cần tập đến mức thất bại.",
+   "powod": "„upadek” (failure) to nie „kiệt sức” (wyczerpanie). Terminologia niespójna z 222.",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "vi",
+   "klucz": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "obecnie": "Khoảng lần lặp (tăng cơ {a}–{b}, ở nhà và không có tạ {c}–{d}; khi tập sức mạnh, các bài khác {e}–{f}): cơ phát triển với nhiều mức tạ khác nhau khi các hiệp gần đến kiệt sức.",
+   "propozycja": "Khoảng lần lặp (tăng cơ {a}–{b}, ở nhà và không có tạ {c}–{d}; khi tập sức mạnh, các bài khác {e}–{f}): cơ phát triển với nhiều mức tạ khác nhau khi các hiệp gần đến mức thất bại.",
+   "powod": "„blisko upadku” = bliskość failure, a nie wyczerpania („kiệt sức”).",
+   "stan": "otwarte"
+  },
+  {
+   "jezyk": "zh-Hant",
+   "klucz": "Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.",
+   "obecnie": "匯入的訓練、新紀錄和圖表隨時可用，沒有網路也可以。每月可免費訓練 {n} 天 — Pro 解除限制，也有一次買斷、永久使用的選項。",
+   "propozycja": "匯入的訓練、個人紀錄和圖表隨時可用，沒有網路也可以。每月可免費訓練 {n} 天 — Pro 解除限制，也有一次買斷、永久使用的選項。",
+   "powod": "„rekordy” to rekordy (osobiste), a nie „nowe rekordy” — w „新紀錄” dodano znaczenie, którego nie ma w źródle.",
+   "stan": "otwarte"
+  }
+ ]
+}

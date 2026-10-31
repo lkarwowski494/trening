@@ -1631,7 +1631,7 @@
  "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} lages av en uavhengig utvikler: uten reklame og uten datainnsamling. Hvis den hjelper deg, velg en plan og tren uten grense. De gratis dagene kommer tilbake {date}.",
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Uten kjøp: opptil {n} treningsdager i måneden; historikk, sikkerhetskopi og eksport er alltid tilgjengelig.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Gratis treningsdager denne måneden: {n} av {limit} brukt",
- "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} av {limit} gratis treningsdager denne måneden {left}.",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} av {limit} gratis treningsdager {left} denne måneden.",
  "Został|Zostały|Zostało": "igjen|igjen",
  "Zakończ trening na telefonie": "Fullfør økten på telefonen",
  "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.": "{k} styrkedag i uken er mindre enn anbefalt minimum (minst {n} dager). Som start er det et godt steg: du kan styrketrene bare {k} dag i uken og etter hvert øke til {n}. Litt bevegelse er bedre enn ingen.",

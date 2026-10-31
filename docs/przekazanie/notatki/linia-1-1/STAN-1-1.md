@@ -3,8 +3,8 @@
 ## Teraz (31.10.2026, wykonawca 3 — gałąź `slownik/faza-pauza` od `ui-krytyczne/przeglad-api` @ 6b3d23d5)
 - **Zrobione (zadanie 1–2):** pojęcie słownika `faza_pauza` (faza animacji „Pauza” ≠ pauza treningu ≠ przerwa, K1); cs/sk „Výdrž”, ro „Menținere”, et „Hoidmine”, de „Halten”; ro faza „Podciąganie” → „Tragere în sus”. Recenzja: `docs/lokalizacja/recenzja-faza-pauza-2026-10-31.md` (bg/lv po recenzji bez zmian). Wpis docs/18 (31.10.2026, faza_pauza). 4 krytyczne z przeglądu API zamknięte (z 8; 4 wcześniejsze w `ui-krytyczne/przeglad-api`).
 - **Do kolejki średnich (zadanie 4):** ro „Zatrzymaj animację” = „Pune animația pe pauză” — „pauză” to w ro przerwa (K1), propozycja recenzenta „Oprește animația” (+ ewentualnie pojęcie słownika dla przycisku animacji); pytania do native speakera: ro Menținere, et Hoidmine, bg Набиране/Издърпване, lv Pievilkšanās, ja/ko/vi nazwa fazy = słowo przycisku (キープ / 버티기 / Giữ).
-- **W toku:** partia 5 audytu ćwiczeń (agent audytor, worktree `/home/user/audyt-p5`, gałąź `audyt/cwiczenia-grafiki-p5` od `audyt/cwiczenia-grafiki-2026-10-31` @ 1a09dbba).
-- Kolejka dalej: 107 średnich uwag z `docs/lokalizacja/raport-api-2026-10-31/` (klucze UI), partiami po języku/obszarze z recenzją; niskie (140) bez polecenia nie.
+- **Zadanie 4 (średnie, klucze UI):** 90 z 107 przejrzane — `docs/lokalizacja/srednie-2026-10-31/` (lista, decyzje A/B, recenzja, wynik-recenzji): naniesione 49 + 2 EN, odrzucone 28, odłożone 9 z powodem (bg/uk mi/yd, sk/it identyczne z PL, sl plan_dozywotni, tr zegarek, el kg/Podciąganie). Zostaje: 17 średnich dla wskazówek spoza ACG-003, 10 pytań do native speakera (recenzja.md); niskie (140) bez polecenia nie.
+- **Audyt partia 5:** commit b16f61c5 na `audyt/cwiczenia-grafiki-p5` (ACG-022 NISKIE, OP-13, L-J, ACG-T-026…027; 709/709).
 
 ## Wcześniej (31.10.2026 ~19:10 PL, koniec sesji wykonawcy 2)
 - **Do scalenia:** `ui-krytyczne/przeglad-api` (4 krytyczne poprawki UI + ten wpis) — pełne verify 899d52d7 zielone (15744 testy); po zielonym tests.yml dla HEAD tej gałęzi → fast-forward do `integracja-1-1` (dziś e369cd7e, gałąź jest jej potomkiem). Nic niewypchniętego.

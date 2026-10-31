@@ -180,14 +180,14 @@
    "id": "T-012",
    "kotwica": "Serie na partię w tygodniu (pomocnicza = {h} ser",
    "skrot": "eca390066f",
-   "skrotEn": "1658ac112b",
+   "skrotEn": "f97325543f",
    "rodzaje": [
     "uproszczenie"
    ],
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-012",
-   "przeglad": "28.10.2026: tłumacz (teksty), tylko brzmienie EN; sens zgodny z PL (secondary/compound/isolation, General fitness); wymaga recenzji lokalizacji"
+   "przeglad": "31.10.2026: tlumacz + recenzent-lokalizacji — EN „{h} set” → „{h} sets” (liczba mnoga, przegląd API; docs/lokalizacja/srednie-2026-10-31/recenzja.md); sens bez zmian"
   },
   {
    "id": "T-013",
