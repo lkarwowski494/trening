@@ -665,3 +665,17 @@ Pomiary co u = 0,05: uniesienie chwytu (barków), łokieć, uniesienie ramienia,
 | Shrugs (linki) | tak | ok (drążek z dolnego wyciągu, dane jak sztanga) | general shrug | tak | — |
 | Shrugs (sztanga) | tak | ok (gryf przed udami x 14–17, uniesienie 8,3 cm, łokieć 4–14°) | own | — | karta zgodna |
 | Smith Machine Behind the Back Shrug | tak | ok w walidacji; gryf w prowadnicy za udami x −15,5, **łokieć 21 → 38°** | general shrug | **nie** (`shrug.tall`) | **ACG-019** (rozszerzenie) |
+
+## carry — 7 ćwiczeń, 7 z danymi (karty własne 2; zestawy: `carry` 5; brak 0) — partia 4E
+
+Pomiary co u = 0,04 (pętla `cykl_lustro`, marsz w miejscu — miednica x 0): tułów (0° we wszystkich), łokieć, chwyt i ciężar wobec barku (y 137,6), stopy (w każdej klatce co najmniej jedna stopa ≤ 1 cm nad podłogą). Walidacja 7/7 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Double Kettlebell Front Rack Carry | tak | ok w walidacji; kettlebelle y 136–142, **łokieć 15,5 cm i dłoń 34 cm przed barkiem** (koniec zarzutu w kb_ballistic: łokieć pod barkiem, dłoń 22 cm) | general carry | tak | **OP-12** |
+| Farmer's Walk | tak | ok (hantle przy biodrach y 73–80, łokieć 13–15°) | own | — | karta zgodna |
+| Farmer's Walk (Farmers Handles) | tak | ok (uchwyty rysowane jak hantle z ±29) | general carry | tak | sprzęt zastępczy (U-4E-3) |
+| Farmer's Walk (trap bar) | tak | ok (gryf sześciokątny y 74–81) | general carry | tak | — |
+| Overhead Carry (hantle) | tak | ok (hantle nad głową y 199–205, łokieć 14–15°; dłoń 16 cm przed barkiem — ramię 162°) | general carry | tak | do recenzji ruchu (jak przedramię od pionu w 4C) |
+| Rickshaw Carry | tak | ok (rama rysowana jak gryf sześciokątny) | general carry | tak | sprzęt zastępczy (U-4E-3) |
+| Suitcase Carry | tak | ok (kettlebell w prawej dłoni y 73,5–81, druga ręka wolno; tułów 0°) | own | — | karta zgodna („ciężar”; nota: hantel) |
