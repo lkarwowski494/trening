@@ -805,3 +805,12 @@ Pomiary co u = 0,1: kolano (przysiad, odbiór), łokieć, wysokość chwytu, pi�
 | Clean and Press | tak | ok w walidacji (zarzut: kolano 50 → 10 → 33° w odbiorze, wyciskanie przy nogach prostych 7°, gryf do y 200); **start z zawieszenia — gryf y 58, 10 cm nad kolanem** | general oly | tak | **ACG-014** (nota: „Barbell cleaned from the floor”) |
 | Kettlebell Thruster | tak | ok (kettlebelle przy barkach y 139, przysiad kolano 93°, wyciśnięcie do y 201, pięty na podłodze) | general squat | tak | — |
 | Thruster (hantle) | tak | ok (jak Kettlebell Thruster, hantle) | general squat | tak | — |
+
+## kneeling_hinge — 2 ćwiczenia, 1 z danymi (karty własne 0; zestawy: `rdl` 1; brak 1) — partia 4E
+
+Walidacja 1/1 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Kneeling Squat | nie | bez figury | none (open) | — | — |
+| Seated Good Mornings | tak | ok (siad na skrzyni, gryf na karku x −11 przy barku x 2, skłon tułowia 2 → 44°, kręgosłup 0°) | general rdl | tak | — |
