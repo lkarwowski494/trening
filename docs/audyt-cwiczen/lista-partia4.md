@@ -762,3 +762,14 @@ Pomiary co u = 0,05: łokieć (dół — `bdip.move` „mniej więcej kąt prost
 | Ring Dips | tak | ok (kółka z ±28, tułów 24–30°, łokieć 12,5 → 93°) | general dip | tak | R17 — podpór |
 | Triceps Dip | tak | ok (tułów 4° — pionowo, łokieć 12 → 95°) | general dip | tak | R17 — podpór |
 | Triceps Dips (ławka) | tak | ok (dłonie na krawędzi ławki za plecami, miednica y 60 → 43, łokieć 15 → 86°, pięty na podłodze, kolana 37–67°) | own | — | karta zgodna |
+
+## cable_press — 4 ćwiczenia, 4 z danymi (karty własne 1; zestawy: `bench` 1, `machinePress` 1, `cablePress` 1; brak 0) — partia 4E
+
+Pomiary co u = 0,05: łokieć, chwyt (start przy barkach, koniec przed sobą), tułów, styki z ławką. Walidacja 4/4 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Incline Cable Chest Press | tak | ok (ławka −35°, styk głowy, pleców, pośladków i stóp; uchwyty z dolnych wyciągów w górę i w przód, łokieć 19 → 146°) | general bench | tak | — |
+| Seated Cable Chest Press | tak | ok (siad z oparciem, uchwyty y 97–108,5, x 20 → 67) | general machinePress | tak | — |
+| Single Arm Cable Chest Press | tak | ok (stanie, jedna ręka x 16 → 63, druga przy biodrze, tułów 0°) | general cablePress | tak | — |
+| Wyciskanie na linkach (stojąc) | tak | ok (stanie, uchwyty przy barkach y 130–137 → przed siebie x 62, tułów 0°) | own | — | karta zgodna |
