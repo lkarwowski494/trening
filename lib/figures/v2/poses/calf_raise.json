@@ -3782,9 +3782,15 @@
      "x1": 130
     },
     {
+     "rodzaj": "skrzynia",
+     "x0": 53.6,
+     "x1": 100,
+     "top": 6
+    },
+    {
      "rodzaj": "lawka",
      "x": -10.2,
-     "top": 37.8,
+     "top": 41.9,
      "kat": 90,
      "siedzisko": 40,
      "dlugosc": 75
@@ -3796,7 +3802,7 @@
      "punkt": "kostki",
      "trzyma": "R",
      "x": 42,
-     "y": 7,
+     "y": 11.1,
      "z": 10,
      "dlugosc": 15.8
     }
@@ -3806,7 +3812,7 @@
      "u": 0,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -3816,10 +3822,10 @@
       "R": {
        "kostka": [
         42,
-        7,
+        11.1,
         10
        ],
-       "podbicie": 0,
+       "podbicie": 10,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -3831,10 +3837,10 @@
       "L": {
        "kostka": [
         42,
-        7,
+        11.1,
         -10
        ],
-       "podbicie": 0,
+       "podbicie": 10,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -3848,7 +3854,7 @@
       "R": {
        "chwyt": [
         30,
-        56,
+        60.1,
         15
        ],
        "biegunLokcia": [
@@ -3860,7 +3866,7 @@
       "L": {
        "chwyt": [
         30,
-        56,
+        60.1,
         -15
        ],
        "biegunLokcia": [
@@ -3875,7 +3881,7 @@
      "u": 0.25,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -3885,7 +3891,7 @@
       "R": {
        "kostka": [
         42.7,
-        8.7,
+        14.7,
         10
        ],
        "podbicie": -5.3,
@@ -3900,7 +3906,7 @@
       "L": {
        "kostka": [
         42.7,
-        8.7,
+        14.7,
         -10
        ],
        "podbicie": -5.3,
@@ -3917,7 +3923,7 @@
       "R": {
        "chwyt": [
         30,
-        56,
+        60.1,
         15
        ],
        "biegunLokcia": [
@@ -3929,7 +3935,7 @@
       "L": {
        "chwyt": [
         30,
-        56,
+        60.1,
         -15
        ],
        "biegunLokcia": [
@@ -3944,7 +3950,7 @@
      "u": 0.5,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -3954,7 +3960,7 @@
       "R": {
        "kostka": [
         44.9,
-        12.2,
+        18.2,
         10
        ],
        "podbicie": -17,
@@ -3969,7 +3975,7 @@
       "L": {
        "kostka": [
         44.9,
-        12.2,
+        18.2,
         -10
        ],
        "podbicie": -17,
@@ -3986,7 +3992,7 @@
       "R": {
        "chwyt": [
         30,
-        56,
+        60.1,
         15
        ],
        "biegunLokcia": [
@@ -3998,7 +4004,7 @@
       "L": {
        "chwyt": [
         30,
-        56,
+        60.1,
         -15
        ],
        "biegunLokcia": [
@@ -4013,7 +4019,7 @@
      "u": 0.75,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -4023,7 +4029,7 @@
       "R": {
        "kostka": [
         47.7,
-        15.3,
+        21.3,
         10
        ],
        "podbicie": -28.7,
@@ -4038,7 +4044,7 @@
       "L": {
        "kostka": [
         47.7,
-        15.3,
+        21.3,
         -10
        ],
        "podbicie": -28.7,
@@ -4055,7 +4061,7 @@
       "R": {
        "chwyt": [
         30,
-        56,
+        60.1,
         15
        ],
        "biegunLokcia": [
@@ -4067,7 +4073,7 @@
       "L": {
        "chwyt": [
         30,
-        56,
+        60.1,
         -15
        ],
        "biegunLokcia": [
@@ -4082,7 +4088,7 @@
      "u": 1,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -4092,7 +4098,7 @@
       "R": {
        "kostka": [
         49.2,
-        16.4,
+        22.4,
         10
        ],
        "podbicie": -34,
@@ -4107,7 +4113,7 @@
       "L": {
        "kostka": [
         49.2,
-        16.4,
+        22.4,
         -10
        ],
        "podbicie": -34,
@@ -4124,7 +4130,7 @@
       "R": {
        "chwyt": [
         30,
-        56,
+        60.1,
         15
        ],
        "biegunLokcia": [
@@ -4136,7 +4142,7 @@
       "L": {
        "chwyt": [
         30,
-        56,
+        60.1,
         -15
        ],
        "biegunLokcia": [
@@ -4161,13 +4167,21 @@
      "x1": 130
     },
     {
+     "rodzaj": "skrzynia",
+     "x0": 53.6,
+     "x1": 100,
+     "top": 6
+    },
+    {
      "rodzaj": "hantel"
     },
     {
-     "rodzaj": "skrzynia",
-     "x0": -16,
-     "x1": 22,
-     "top": 38.6
+     "rodzaj": "lawka",
+     "x": -10.2,
+     "top": 42.7,
+     "kat": 0,
+     "siedzisko": 40,
+     "dlugosc": 75
     }
    ],
    "klatki": [
@@ -4175,7 +4189,7 @@
      "u": 0,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -4185,10 +4199,10 @@
       "R": {
        "kostka": [
         42,
-        7,
+        11.1,
         10
        ],
-       "podbicie": 0,
+       "podbicie": 10,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -4200,10 +4214,10 @@
       "L": {
        "kostka": [
         42,
-        7,
+        11.1,
         -10
        ],
-       "podbicie": 0,
+       "podbicie": 10,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -4217,7 +4231,7 @@
       "R": {
        "chwyt": [
         37,
-        61.9,
+        67.2,
         12
        ],
        "biegunLokcia": [
@@ -4229,7 +4243,7 @@
       "L": {
        "chwyt": [
         37,
-        61.9,
+        67.2,
         -12
        ],
        "biegunLokcia": [
@@ -4244,7 +4258,7 @@
      "u": 0.25,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -4254,7 +4268,7 @@
       "R": {
        "kostka": [
         42.7,
-        8.7,
+        14.7,
         10
        ],
        "podbicie": -5.3,
@@ -4269,7 +4283,7 @@
       "L": {
        "kostka": [
         42.7,
-        8.7,
+        14.7,
         -10
        ],
        "podbicie": -5.3,
@@ -4286,7 +4300,7 @@
       "R": {
        "chwyt": [
         37,
-        63.6,
+        68.9,
         12
        ],
        "biegunLokcia": [
@@ -4298,7 +4312,7 @@
       "L": {
        "chwyt": [
         37,
-        63.6,
+        68.9,
         -12
        ],
        "biegunLokcia": [
@@ -4313,7 +4327,7 @@
      "u": 0.5,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -4323,7 +4337,7 @@
       "R": {
        "kostka": [
         44.9,
-        12.2,
+        18.2,
         10
        ],
        "podbicie": -17,
@@ -4338,7 +4352,7 @@
       "L": {
        "kostka": [
         44.9,
-        12.2,
+        18.2,
         -10
        ],
        "podbicie": -17,
@@ -4355,7 +4369,7 @@
       "R": {
        "chwyt": [
         36.7,
-        67,
+        72.3,
         12
        ],
        "biegunLokcia": [
@@ -4367,7 +4381,7 @@
       "L": {
        "chwyt": [
         36.7,
-        67,
+        72.3,
         -12
        ],
        "biegunLokcia": [
@@ -4382,7 +4396,7 @@
      "u": 0.75,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -4392,7 +4406,7 @@
       "R": {
        "kostka": [
         47.7,
-        15.3,
+        21.3,
         10
        ],
        "podbicie": -28.7,
@@ -4407,7 +4421,7 @@
       "L": {
        "kostka": [
         47.7,
-        15.3,
+        21.3,
         -10
        ],
        "podbicie": -28.7,
@@ -4424,7 +4438,7 @@
       "R": {
        "chwyt": [
         36.3,
-        69.7,
+        75.0,
         12
        ],
        "biegunLokcia": [
@@ -4436,7 +4450,7 @@
       "L": {
        "chwyt": [
         36.3,
-        69.7,
+        75.0,
         -12
        ],
        "biegunLokcia": [
@@ -4451,7 +4465,7 @@
      "u": 1,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -4461,7 +4475,7 @@
       "R": {
        "kostka": [
         49.2,
-        16.4,
+        22.4,
         10
        ],
        "podbicie": -34,
@@ -4476,7 +4490,7 @@
       "L": {
        "kostka": [
         49.2,
-        16.4,
+        22.4,
         -10
        ],
        "podbicie": -34,
@@ -4493,7 +4507,7 @@
       "R": {
        "chwyt": [
         36.1,
-        70.5,
+        75.8,
         12
        ],
        "biegunLokcia": [
@@ -4505,7 +4519,7 @@
       "L": {
        "chwyt": [
         36.1,
-        70.5,
+        75.8,
         -12
        ],
        "biegunLokcia": [
@@ -4694,16 +4708,24 @@
      "x1": 130
     },
     {
+     "rodzaj": "skrzynia",
+     "x0": 53.6,
+     "x1": 100,
+     "top": 6
+    },
+    {
      "rodzaj": "sztanga",
      "talerze": true,
      "podazaZaChwytem": true,
      "dlugosc": 120
     },
     {
-     "rodzaj": "skrzynia",
-     "x0": -16,
-     "x1": 22,
-     "top": 38.6
+     "rodzaj": "lawka",
+     "x": -10.2,
+     "top": 42.7,
+     "kat": 0,
+     "siedzisko": 40,
+     "dlugosc": 75
     }
    ],
    "klatki": [
@@ -4711,7 +4733,7 @@
      "u": 0,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -4721,10 +4743,10 @@
       "R": {
        "kostka": [
         42,
-        7,
+        11.1,
         10
        ],
-       "podbicie": 0,
+       "podbicie": 10,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -4736,10 +4758,10 @@
       "L": {
        "kostka": [
         42,
-        7,
+        11.1,
         -10
        ],
-       "podbicie": 0,
+       "podbicie": 10,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -4753,7 +4775,7 @@
       "R": {
        "chwyt": [
         39,
-        58,
+        63.3,
         30
        ],
        "biegunLokcia": [
@@ -4765,7 +4787,7 @@
       "L": {
        "chwyt": [
         39,
-        58,
+        63.3,
         -30
        ],
        "biegunLokcia": [
@@ -4780,7 +4802,7 @@
      "u": 0.25,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -4790,7 +4812,7 @@
       "R": {
        "kostka": [
         42.7,
-        8.7,
+        14.7,
         10
        ],
        "podbicie": -5.3,
@@ -4805,7 +4827,7 @@
       "L": {
        "kostka": [
         42.7,
-        8.7,
+        14.7,
         -10
        ],
        "podbicie": -5.3,
@@ -4822,7 +4844,7 @@
       "R": {
        "chwyt": [
         39,
-        59.7,
+        65.0,
         30
        ],
        "biegunLokcia": [
@@ -4834,7 +4856,7 @@
       "L": {
        "chwyt": [
         39,
-        59.7,
+        65.0,
         -30
        ],
        "biegunLokcia": [
@@ -4849,7 +4871,7 @@
      "u": 0.5,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -4859,7 +4881,7 @@
       "R": {
        "kostka": [
         44.9,
-        12.2,
+        18.2,
         10
        ],
        "podbicie": -17,
@@ -4874,7 +4896,7 @@
       "L": {
        "kostka": [
         44.9,
-        12.2,
+        18.2,
         -10
        ],
        "podbicie": -17,
@@ -4891,7 +4913,7 @@
       "R": {
        "chwyt": [
         38.7,
-        63.1,
+        68.4,
         30
        ],
        "biegunLokcia": [
@@ -4903,7 +4925,7 @@
       "L": {
        "chwyt": [
         38.7,
-        63.1,
+        68.4,
         -30
        ],
        "biegunLokcia": [
@@ -4918,7 +4940,7 @@
      "u": 0.75,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -4928,7 +4950,7 @@
       "R": {
        "kostka": [
         47.7,
-        15.3,
+        21.3,
         10
        ],
        "podbicie": -28.7,
@@ -4943,7 +4965,7 @@
       "L": {
        "kostka": [
         47.7,
-        15.3,
+        21.3,
         -10
        ],
        "podbicie": -28.7,
@@ -4960,7 +4982,7 @@
       "R": {
        "chwyt": [
         38.3,
-        65.8,
+        71.1,
         30
        ],
        "biegunLokcia": [
@@ -4972,7 +4994,7 @@
       "L": {
        "chwyt": [
         38.3,
-        65.8,
+        71.1,
         -30
        ],
        "biegunLokcia": [
@@ -4987,7 +5009,7 @@
      "u": 1,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -4997,7 +5019,7 @@
       "R": {
        "kostka": [
         49.2,
-        16.4,
+        22.4,
         10
        ],
        "podbicie": -34,
@@ -5012,7 +5034,7 @@
       "L": {
        "kostka": [
         49.2,
-        16.4,
+        22.4,
         -10
        ],
        "podbicie": -34,
@@ -5029,7 +5051,7 @@
       "R": {
        "chwyt": [
         38.1,
-        66.6,
+        71.9,
         30
        ],
        "biegunLokcia": [
@@ -5041,7 +5063,7 @@
       "L": {
        "chwyt": [
         38.1,
-        66.6,
+        71.9,
         -30
        ],
        "biegunLokcia": [
@@ -5230,14 +5252,22 @@
      "x1": 130
     },
     {
+     "rodzaj": "skrzynia",
+     "x0": 53.6,
+     "x1": 100,
+     "top": 6
+    },
+    {
      "rodzaj": "hantel",
      "trzyma": "R"
     },
     {
-     "rodzaj": "skrzynia",
-     "x0": -16,
-     "x1": 22,
-     "top": 38.6
+     "rodzaj": "lawka",
+     "x": -10.2,
+     "top": 42.7,
+     "kat": 0,
+     "siedzisko": 40,
+     "dlugosc": 75
     }
    ],
    "klatki": [
@@ -5245,7 +5275,7 @@
      "u": 0,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -5255,10 +5285,10 @@
       "R": {
        "kostka": [
         42,
-        7,
+        11.1,
         10
        ],
-       "podbicie": 0,
+       "podbicie": 10,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -5270,10 +5300,10 @@
       "L": {
        "kostka": [
         42,
-        7,
+        11.1,
         -10
        ],
-       "podbicie": 0,
+       "podbicie": 10,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -5287,7 +5317,7 @@
       "R": {
        "chwyt": [
         37,
-        61.9,
+        67.2,
         12
        ],
        "biegunLokcia": [
@@ -5299,7 +5329,7 @@
       "L": {
        "chwyt": [
         22,
-        58,
+        63.3,
         -14
        ],
        "biegunLokcia": [
@@ -5314,7 +5344,7 @@
      "u": 0.25,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -5324,7 +5354,7 @@
       "R": {
        "kostka": [
         42.7,
-        8.7,
+        14.7,
         10
        ],
        "podbicie": -5.3,
@@ -5339,10 +5369,10 @@
       "L": {
        "kostka": [
         42,
-        7,
+        11.1,
         -10
        ],
-       "podbicie": 0,
+       "podbicie": 10,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -5356,7 +5386,7 @@
       "R": {
        "chwyt": [
         37,
-        63.6,
+        68.9,
         12
        ],
        "biegunLokcia": [
@@ -5368,7 +5398,7 @@
       "L": {
        "chwyt": [
         22,
-        58,
+        63.3,
         -14
        ],
        "biegunLokcia": [
@@ -5383,7 +5413,7 @@
      "u": 0.5,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -5393,7 +5423,7 @@
       "R": {
        "kostka": [
         44.9,
-        12.2,
+        18.2,
         10
        ],
        "podbicie": -17,
@@ -5408,10 +5438,10 @@
       "L": {
        "kostka": [
         42,
-        7,
+        11.1,
         -10
        ],
-       "podbicie": 0,
+       "podbicie": 10,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -5425,7 +5455,7 @@
       "R": {
        "chwyt": [
         36.7,
-        67,
+        72.3,
         12
        ],
        "biegunLokcia": [
@@ -5437,7 +5467,7 @@
       "L": {
        "chwyt": [
         22,
-        58,
+        63.3,
         -14
        ],
        "biegunLokcia": [
@@ -5452,7 +5482,7 @@
      "u": 0.75,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -5462,7 +5492,7 @@
       "R": {
        "kostka": [
         47.7,
-        15.3,
+        21.3,
         10
        ],
        "podbicie": -28.7,
@@ -5477,10 +5507,10 @@
       "L": {
        "kostka": [
         42,
-        7,
+        11.1,
         -10
        ],
-       "podbicie": 0,
+       "podbicie": 10,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -5494,7 +5524,7 @@
       "R": {
        "chwyt": [
         36.3,
-        69.7,
+        75.0,
         12
        ],
        "biegunLokcia": [
@@ -5506,7 +5536,7 @@
       "L": {
        "chwyt": [
         22,
-        58,
+        63.3,
         -14
        ],
        "biegunLokcia": [
@@ -5521,7 +5551,7 @@
      "u": 1,
      "miednica": [
       0,
-      48,
+      52.1,
       0
      ],
      "pochylenieTulowia": 0,
@@ -5531,7 +5561,7 @@
       "R": {
        "kostka": [
         49.2,
-        16.4,
+        22.4,
         10
        ],
        "podbicie": -34,
@@ -5546,10 +5576,10 @@
       "L": {
        "kostka": [
         42,
-        7,
+        11.1,
         -10
        ],
-       "podbicie": 0,
+       "podbicie": 10,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -5563,7 +5593,7 @@
       "R": {
        "chwyt": [
         36.1,
-        70.5,
+        75.8,
         12
        ],
        "biegunLokcia": [
@@ -5575,7 +5605,7 @@
       "L": {
        "chwyt": [
         22,
-        58,
+        63.3,
         -14
        ],
        "biegunLokcia": [

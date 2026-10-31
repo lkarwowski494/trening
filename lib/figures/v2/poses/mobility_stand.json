@@ -611,6 +611,12 @@
      "x1": 170
     },
     {
+     "rodzaj": "skrzynia",
+     "x0": -21.2,
+     "x1": -5.2,
+     "top": 8
+    },
+    {
      "rodzaj": "sciana",
      "x": 75,
      "h": 250,
@@ -621,8 +627,8 @@
     {
      "u": 0,
      "miednica": [
-      -1,
-      80,
+      4,
+      85,
       0
      ],
      "pochylenieTulowia": 22,
@@ -631,7 +637,7 @@
      "nogi": {
       "R": {
        "kostka": [
-        25,
+        10,
         7,
         10
        ],
@@ -645,11 +651,11 @@
       },
       "L": {
        "kostka": [
-        -40,
-        7,
+        -36.7,
+        12.5,
         -11
        ],
-       "podbicie": 0,
+       "podbicie": 8,
        "rotacjaStopy": 8,
        "biegunKolana": [
         1,
@@ -688,8 +694,8 @@
     {
      "u": 1,
      "miednica": [
-      -1,
-      80,
+      4,
+      85,
       0
      ],
      "pochylenieTulowia": 22,
@@ -698,7 +704,7 @@
      "nogi": {
       "R": {
        "kostka": [
-        25,
+        10,
         7,
         10
        ],
@@ -712,11 +718,11 @@
       },
       "L": {
        "kostka": [
-        -40,
-        7,
+        -36.7,
+        12.5,
         -11
        ],
-       "podbicie": 0,
+       "podbicie": 8,
        "rotacjaStopy": 8,
        "biegunKolana": [
         1,

@@ -2129,7 +2129,7 @@
      "mocowanie": "zaczep_kostki",
      "trzyma": "R",
      "x": 125,
-     "y": 14,
+     "y": 40,
      "z": 10
     }
    ],
@@ -2147,11 +2147,11 @@
      "nogi": {
       "R": {
        "kostka": [
-        72.7,
-        8.6,
+        81.5,
+        39.0,
         10
        ],
-       "podbicie": -5,
+       "podbicie": 46.4,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -2216,11 +2216,11 @@
      "nogi": {
       "R": {
        "kostka": [
-        68,
-        8.6,
+        77.7,
+        29.6,
         10
        ],
-       "podbicie": -5,
+       "podbicie": 36.4,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -2285,11 +2285,11 @@
      "nogi": {
       "R": {
        "kostka": [
-        57.8,
-        8.6,
+        65.2,
+        15.9,
         10
        ],
-       "podbicie": -5,
+       "podbicie": 18.2,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -2354,11 +2354,11 @@
      "nogi": {
       "R": {
        "kostka": [
-        47.6,
-        8.6,
+        50.1,
+        9.4,
         10
        ],
-       "podbicie": -5,
+       "podbicie": 2.1,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
@@ -2423,11 +2423,11 @@
      "nogi": {
       "R": {
        "kostka": [
-        43,
+        43.0,
         8.6,
         10
        ],
-       "podbicie": -5,
+       "podbicie": -5.0,
        "rotacjaStopy": 10,
        "biegunKolana": [
         1,
