@@ -1,0 +1,251 @@
+{
+ "jezyk": "et",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01FTn5u73djiNthhoZY2aV6W",
+ "zdan": 628,
+ "ok": 591,
+ "uwagi": [
+  {
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "rodzaj": "nowe",
+   "pl": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "tlumaczenie": "Pingutus: kuni järgmine kordus oleks raske — väsimus, aga mitte kurnatus. Kuni väsimuseni pole vaja minna.",
+   "poprawka": "Pingutus: kuni järgmine kordus oleks raske — väsimus, aga mitte kurnatus. Täieliku lihasväsimuseni (kuni kordus enam ei õnnestu) pole vaja minna.",
+   "powod": "„Upadek” (failure) oddano jako „väsimus”. Wtedy zdanie przeczy samo sobie: wcześniej mówi o zmęczeniu, a potem, że do zmęczenia nie trzeba dochodzić. Chodzi o upadek mięśniowy.",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Pauza",
+   "rodzaj": "nowe",
+   "pl": "Pauza",
+   "tlumaczenie": "Peata",
+   "poprawka": "Paus",
+   "powod": "Kontekst wskazuje na nazwę fazy w linii „{faza} {n} s”. Potrzebny jest rzeczownik („Paus”), a nie tryb rozkazujący „Peata” (przycisk „Zatrzymaj”).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "rodzaj": "nowe",
+   "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "tlumaczenie": "Pingutus: tavaliselt {a}–{b} kordust varus — väsimuse lähedal või {c}–{d}; täpset arvu pole kindlaks tehtud. Kuni väsimuseni pole vaja minna.",
+   "poprawka": "Pingutus: tavaliselt {a}–{b} kordust varus — täieliku lihasväsimuse lähedal või {c}–{d}; täpset arvu pole kindlaks tehtud. Täieliku lihasväsimuseni pole vaja minna.",
+   "powod": "„Blisko upadku” przetłumaczono jako „blisko zmęczenia”, co jest znacznie słabsze. Potrzebny jest termin oznaczający upadek mięśniowy, spójny z innymi zdaniami.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "rodzaj": "nowe",
+   "pl": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "tlumaczenie": "Korduste vahemikud (lihasmass {a}–{b}, kodus ja välise raskuseta {c}–{d}; jõu puhul lisaharjutused {e}–{f}): lihased kasvavad laias raskuste vahemikus, kui seeriad on väsimuse lähedal.",
+   "poprawka": "Korduste vahemikud (lihasmass {a}–{b}, kodus ja välise raskuseta {c}–{d}; jõu puhul lisaharjutused {e}–{f}): lihased kasvavad laias raskuste vahemikus, kui seeriad on täieliku lihasväsimuse lähedal.",
+   "powod": "„Blisko upadku” oddano jako „väsimuse lähedal” (blisko zmęczenia). To nieprecyzyjne i niespójne z terminem upadku mięśniowego.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "bw.squat",
+   "rodzaj": "wskazowka",
+   "pl": "Zejdź do lekkiego przysiadu i trzymaj go przez cały marsz.",
+   "tlumaczenie": "Laskudu kergesse kükki ja hoia seda kogu kõnni ajal.",
+   "poprawka": "Lasku kergesse kükki ja hoia seda kogu kõnni ajal.",
+   "powod": "„Laskudu” to niepoprawna forma. Tryb rozkazujący od „laskuma” brzmi „lasku”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "cobra.control",
+   "rodzaj": "wskazowka",
+   "pl": "Opuszczaj się powoli.",
+   "tlumaczenie": "Laskudu aeglaselt.",
+   "poprawka": "Lasku aeglaselt.",
+   "powod": "„Laskudu” to niepoprawna forma. Tryb rozkazujący od „laskuma” brzmi „lasku”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "rot.elbow",
+   "rodzaj": "wskazowka",
+   "pl": "Łokieć zgięty i przy boku — obraca się tylko przedramię.",
+   "tlumaczenie": "Küünarnukk kõverdatud ja keha küljes — pöörleb ainult käsivars.",
+   "poprawka": "Küünarnukk kõverdatud ja keha küljes — pöörleb ainult küünarvars.",
+   "powod": "„Käsivars” oznacza zwykle całą rękę. Dla przedramienia w pozostałych wskazówkach używany jest termin „küünarvars”, więc terminologia jest niespójna.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "sled.lean",
+   "rodzaj": "wskazowka",
+   "pl": "Pochyl się w przód.",
+   "tlumaczenie": "Kallutu ette.",
+   "poprawka": "Kaldu ette.",
+   "powod": "„Kallutu” to niepoprawna forma. Tryb rozkazujący od „kalduma” brzmi „kaldu”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "wr.forearms",
+   "rodzaj": "wskazowka",
+   "pl": "Przedramiona oparte — rusza się tylko nadgarstek.",
+   "tlumaczenie": "Käsivarred toetatud — liigub ainult ranne.",
+   "poprawka": "Küünarvarred toetatud — liigub ainult ranne.",
+   "powod": "Przedramię to „küünarvars”, a nie „käsivars”. Termin powinien być spójny z pozostałymi wskazówkami.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "wr.mis.lift",
+   "rodzaj": "wskazowka",
+   "pl": "Przedramiona odrywają się od podparcia.",
+   "tlumaczenie": "Käsivarred tõusevad toelt.",
+   "poprawka": "Küünarvarred tõusevad toelt.",
+   "powod": "Przedramię to „küünarvars”, a nie „käsivars”. Termin powinien być spójny z pozostałymi wskazówkami.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Skąd ta cena? Poznaj indeks espresso.",
+   "rodzaj": "nowe",
+   "pl": "Skąd ta cena? Poznaj indeks espresso.",
+   "tlumaczenie": "Miks selline hind? Vaata espresso indeksit.",
+   "poprawka": "Miks selline hind? Vaata espressoindeksit.",
+   "powod": "Po estońsku ten złożony rzeczownik pisze się łącznie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "pl": "Opuszczaj, aż gryf będzie tuż nad czołem — albo wcześniej, jeśli ramiona zaczną uciekać w tył.",
+   "tlumaczenie": "Langeta, kuni kang on vahetult otsaesise kohal või õlavarred hakkavad taha liikuma.",
+   "poprawka": "Langeta, kuni kang on vahetult otsaesise kohal — või peatu varem, kui õlavarred hakkavad taha liikuma.",
+   "powod": "Pominięto „albo wcześniej” (zatrzymaj się wcześniej). Lepiej oddać to wprost, spójnie ze zdaniem 573.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "st.noBounce",
+   "rodzaj": "wskazowka",
+   "pl": "Trzymaj spokojnie, bez sprężynowania.",
+   "tlumaczenie": "Hoia rahulikult, ilma hüppamata.",
+   "poprawka": "Hoia rahulikult, ilma põrgatamata.",
+   "powod": "„Hüppamata” znaczy „bez skakania”. Chodzi o sprężynowanie, czyli „põrgatamine”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": [
+  {
+   "klucz": "barki do przodu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki do tyłu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Grzbiet w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Koci grzbiet",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Marsz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Obrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia do wewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia na zewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Powrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "ramię odsunięte w bok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rozsuwanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rzut",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Skok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Ściąganie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Uginanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "uniesienie ramienia",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Unoszenie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "wyprost nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "zgięcie nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  }
+ ]
+}

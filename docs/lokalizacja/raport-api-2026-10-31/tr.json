@@ -1,0 +1,206 @@
+{
+ "jezyk": "tr",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01FTn5u73djiNthhoZY2aV6W",
+ "zdan": 628,
+ "ok": 596,
+ "uwagi": [
+  {
+   "klucz": "Zakończ trening na telefonie",
+   "rodzaj": "nowe",
+   "pl": "Zakończ trening na telefonie",
+   "tlumaczenie": "Antrenmanı telefonda bitir",
+   "poprawka": "Antrenmanı telefonunuzda bitirin",
+   "powod": "Komunikat-polecenie w formie „sen”; wymagany rejestr „siz”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "hang.ribs",
+   "rodzaj": "wskazowka",
+   "pl": "Żebra w dół, tułów spokojny — podwijaj miednicę.",
+   "tlumaczenie": "Kaburgalar aşağıda, gövde sabit — leğeninizi yukarı kıvırın.",
+   "poprawka": "Kaburgalar aşağıda, gövde sabit — leğen kemiğinizi yukarı kıvırın.",
+   "powod": "„leğen” bez „kemiği” znaczy „miska”; anatomicznie niepoprawne",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "pp.dip",
+   "rodzaj": "wskazowka",
+   "pl": "Ugięcie krótkie, tułów napięty.",
+   "tlumaczenie": "Kısa bir çöküş, gövde sıkı.",
+   "poprawka": "Dizleri kısa bükün, gövde sıkı.",
+   "powod": "„çöküş” znaczy „zapadnięcie/zawalenie”, nie krótkie ugięcie",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "tlumaczenie": "Türünü değiştirmek için set etiketine dokunun; silmek için satırı sola kaydırın. Tekrar aralığı isteğe bağlıdır — onunla “↑” ipuçları gelir. “⇅ SS” egzersizi sonrakiyle süpersette birleştirir, “✕ SS” gruptan çıkarır. Sıra: “≡ Sırala”.",
+   "poprawka": "Türünü değiştirmek için set etiketine dokunun; silmek için satırı sola kaydırın. Tekrar aralığı isteğe bağlıdır; girilirse “↑” ipuçları gösterilir. “⇅ SS” egzersizi sonrakiyle süpersette birleştirir, “✕ SS” gruptan çıkarır. Sıra: “≡ Sırala”.",
+   "powod": "„onunla … ipuçları gelir” brzmi nienaturalnie",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "rodzaj": "nowe",
+   "pl": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "tlumaczenie": "Dinlenme. Kalan süre: {t}. Toplam: {all}.",
+   "poprawka": "Dinlenme. Kalan süre: {t}. Toplam dinlenme: {all}.",
+   "powod": "Pominięto „przerwa” w „Cała przerwa”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "gm.depth",
+   "rodzaj": "wskazowka",
+   "pl": "Schodź tylko do łagodnego rozciągnięcia tyłu ud — nie dalej niż do poziomu tułowia.",
+   "tlumaczenie": "Yalnızca arka bacakta hafif bir gerilmeye kadar inin — gövde yataydan aşağı inmesin.",
+   "poprawka": "Yalnızca arka uylukta hafif bir gerilmeye kadar inin — gövde yataydan aşağı inmesin.",
+   "powod": "„arka bacak” niejednoznaczne; tył ud to „arka uyluk”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "lp.hips",
+   "rodzaj": "wskazowka",
+   "pl": "Nie schodź tak nisko, by miednica odrywała się od oparcia, a dolne plecy zaokrąglały.",
+   "tlumaczenie": "Leğen kemiğiniz koltuktan kalkacak ve beliniz yuvarlanacak kadar derine inmeyin.",
+   "poprawka": "Leğen kemiğiniz sırtlıktan kalkacak ve beliniz yuvarlanacak kadar derine inmeyin.",
+   "powod": "„oparcie” to oparcie pleców (sırtlık, jak w zd. 440), nie siedzisko",
+   "waga": "niska"
+  },
+  {
+   "klucz": "rdl.depth",
+   "rodzaj": "wskazowka",
+   "pl": "Schodź, dopóki czujesz rozciąganie tyłu ud i utrzymasz proste plecy.",
+   "tlumaczenie": "Arka bacakta gerilmeyi hissettiğiniz ve sırtınızı düz tutabildiğiniz sürece inin.",
+   "poprawka": "Arka uylukta gerilmeyi hissettiğiniz ve sırtınızı düz tutabildiğiniz sürece inin.",
+   "powod": "„arka bacak” niejednoznaczne; tył ud to „arka uyluk”",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": [
+  {
+   "klucz": "barki do przodu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki do tyłu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Grzbiet w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Koci grzbiet",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Marsz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Obrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia do wewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia na zewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Powrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "ramię odsunięte w bok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rozsuwanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rzut",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Skok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Ściąganie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Uginanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "uniesienie ramienia",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Unoszenie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "wyprost nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "zgięcie nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  }
+ ]
+}

@@ -1,0 +1,847 @@
+# Przegląd tłumaczeń przez API
+
+Model: `claude-opus-5-5`, effort: `medium`, batch: `msgbatch_01FTn5u73djiNthhoZY2aV6W`. Języków: 34.
+Raport informacyjny — słowniki nie zostały zmienione. Poprawki nanosi człowiek po przejrzeniu (propozycje modelu bywają błędne).
+
+| język | zdań | ok | krytyczne | średnie | niskie | bez odpowiedzi | kontrola lokalna | błąd |
+|---|---|---|---|---|---|---|---|---|
+| en | 628 | 614 | 0 | 3 | 11 | 0 | 0 |  |
+| bg | 628 | 592 | 0 | 9 | 3 | 0 | 24 |  |
+| cs | 628 | 596 | 1 | 1 | 6 | 0 | 24 |  |
+| da | 628 | 598 | 0 | 5 | 1 | 0 | 24 |  |
+| de | 628 | 598 | 0 | 3 | 3 | 0 | 24 |  |
+| el | 628 | 597 | 0 | 5 | 2 | 0 | 24 |  |
+| es | 628 | 599 | 0 | 3 | 2 | 0 | 24 |  |
+| es-419 | 628 | 597 | 0 | 1 | 6 | 0 | 24 |  |
+| et | 628 | 591 | 1 | 9 | 3 | 0 | 24 |  |
+| fi | 628 | 597 | 0 | 4 | 3 | 0 | 24 |  |
+| fr | 628 | 599 | 0 | 4 | 1 | 0 | 24 |  |
+| hr | 628 | 602 | 0 | 0 | 2 | 0 | 24 |  |
+| hu | 628 | 602 | 0 | 2 | 0 | 0 | 24 |  |
+| id | 628 | 593 | 0 | 0 | 11 | 0 | 24 |  |
+| it | 628 | 598 | 0 | 2 | 4 | 0 | 24 |  |
+| ja | 628 | 602 | 0 | 2 | 0 | 0 | 24 |  |
+| ko | 628 | 592 | 0 | 8 | 4 | 0 | 24 |  |
+| lt | 628 | 592 | 0 | 9 | 3 | 0 | 24 |  |
+| lv | 628 | 594 | 0 | 4 | 6 | 0 | 24 |  |
+| ms | 628 | 596 | 0 | 4 | 4 | 0 | 24 |  |
+| nb | 628 | 598 | 1 | 1 | 4 | 0 | 24 |  |
+| nl | 628 | 597 | 0 | 2 | 5 | 0 | 24 |  |
+| pt | 628 | 593 | 0 | 2 | 9 | 0 | 24 |  |
+| pt-BR | 628 | 586 | 0 | 5 | 13 | 0 | 24 |  |
+| ro | 628 | 586 | 2 | 10 | 6 | 0 | 24 |  |
+| ru | 628 | 594 | 0 | 4 | 6 | 0 | 24 |  |
+| sk | 628 | 597 | 1 | 4 | 2 | 0 | 24 |  |
+| sl | 628 | 591 | 0 | 7 | 6 | 0 | 24 |  |
+| sr | 628 | 591 | 0 | 5 | 8 | 0 | 24 |  |
+| sv | 628 | 592 | 0 | 8 | 4 | 0 | 24 |  |
+| tr | 628 | 596 | 0 | 3 | 5 | 0 | 24 |  |
+| uk | 628 | 590 | 0 | 6 | 8 | 0 | 24 |  |
+| vi | 628 | 592 | 2 | 8 | 2 | 0 | 24 |  |
+| zh-Hant | 628 | 588 | 0 | 5 | 11 | 0 | 24 |  |
+
+## Uwagi krytyczne (8)
+
+- **cs** (nowe) „Pauza” → obecnie „Pozastavit”; propozycja „Pauza”; powód: Tekst stoi w tej samej linii co „{faza} {n} s”, więc jest nazwą fazy ruchu (zatrzymanie). Przełożono go czasownikiem-przyciskiem „Pozastavit”.
+- **et** (nowe) „Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.” → obecnie „Pingutus: kuni järgmine kordus oleks raske — väsimus, aga mitte kurnatus. Kuni väsimuseni pole vaja minna.”; propozycja „Pingutus: kuni järgmine kordus oleks raske — väsimus, aga mitte kurnatus. Täieliku lihasväsimuseni (kuni kordus enam ei õnnestu) pole vaja minna.”; powód: „Upadek” (failure) oddano jako „väsimus”. Wtedy zdanie przeczy samo sobie: wcześniej mówi o zmęczeniu, a potem, że do zmęczenia nie trzeba dochodzić. Chodzi o upadek mięśniowy.
+- **nb** (nowe) „Wstawanie” → obecnie „Reising”; propozycja „Oppreising”; powód: „Reising” po norwesku znaczy przede wszystkim „podróżowanie”; faza ruchu (wstawanie z przysiadu) to „oppreising”.
+- **ro** (nowe) „Pauza” → obecnie „Întrerupe”; propozycja „Pauză”; powód: To nazwa fazy animacji („{faza} {n} s”), a więc rzeczownik. „Întrerupe” to polecenie przycisku i zmienia znaczenie
+- **ro** (nowe) „Podciąganie” → obecnie „Tracțiune”; propozycja „Tragere în sus”; powód: „Tracțiune” kojarzy się z nazwą ćwiczenia (tracțiuni = podciąganie), a chodzi o nazwę fazy ruchu, analogicznie do „Coborâre” i „Împingere”
+- **sk** (nowe) „Pauza” → obecnie „Pozastaviť”; propozycja „Pauza”; powód: Według kontekstu (ExerciseFigureV2.tsx:113, ta sama linia co „{faza} {n} s”) to nazwa fazy ruchu, czyli zatrzymania, a nie polecenie. „Pozastaviť” to czasownik przycisku i zmienia znaczenie.
+- **vi** (krytyczne) „Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.” → obecnie „Bài tập với thanh tạ đặt trên thân mình hoặc nâng qua đầu và mặt: nên có biện pháp bảo hộ — giá có tay đỡ an toàn và người hỗ trợ.”; propozycja „Bài tập với thanh tạ đặt trên thân mình hoặc ở phía trên đầu và mặt: nên có biện pháp bảo hộ — giá có tay đỡ an toàn và người hỗ trợ.”; powód: „nâng qua đầu” oznacza tylko wyciskanie nad głowę. Pomija sztangę nad twarzą (np. wyciskanie leżąc), więc zawęża zakres ostrzeżenia.
+- **vi** (krytyczne) „Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.” → obecnie „Bài tập với thanh tạ đặt trên thân mình hoặc nâng qua đầu và mặt: nên có người hỗ trợ.”; propozycja „Bài tập với thanh tạ đặt trên thân mình hoặc ở phía trên đầu và mặt: nên có người hỗ trợ.”; powód: „nâng qua đầu” zawęża zakres ostrzeżenia do wyciskania nad głowę. Pomija sztangę nad twarzą.
+
+## Kontrola lokalna (bez API) (792)
+
+- **bg** „barki do przodu”: brak tłumaczenia
+- **bg** „barki do tyłu”: brak tłumaczenia
+- **bg** „barki w dół”: brak tłumaczenia
+- **bg** „barki w górę”: brak tłumaczenia
+- **bg** „Grzbiet w dół”: brak tłumaczenia
+- **bg** „Koci grzbiet”: brak tłumaczenia
+- **bg** „Marsz”: brak tłumaczenia
+- **bg** „Obrót”: brak tłumaczenia
+- **bg** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **bg** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **bg** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **bg** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **bg** „Powrót”: brak tłumaczenia
+- **bg** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **bg** „ramię odsunięte w bok”: brak tłumaczenia
+- **bg** „Rozsuwanie”: brak tłumaczenia
+- **bg** „Rzut”: brak tłumaczenia
+- **bg** „Skok”: brak tłumaczenia
+- **bg** „Ściąganie”: brak tłumaczenia
+- **bg** „Uginanie”: brak tłumaczenia
+- **bg** „uniesienie ramienia”: brak tłumaczenia
+- **bg** „Unoszenie”: brak tłumaczenia
+- **bg** „wyprost nadgarstka”: brak tłumaczenia
+- **bg** „zgięcie nadgarstka”: brak tłumaczenia
+- **cs** „barki do przodu”: brak tłumaczenia
+- **cs** „barki do tyłu”: brak tłumaczenia
+- **cs** „barki w dół”: brak tłumaczenia
+- **cs** „barki w górę”: brak tłumaczenia
+- **cs** „Grzbiet w dół”: brak tłumaczenia
+- **cs** „Koci grzbiet”: brak tłumaczenia
+- **cs** „Marsz”: brak tłumaczenia
+- **cs** „Obrót”: brak tłumaczenia
+- **cs** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **cs** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **cs** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **cs** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **cs** „Powrót”: brak tłumaczenia
+- **cs** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **cs** „ramię odsunięte w bok”: brak tłumaczenia
+- **cs** „Rozsuwanie”: brak tłumaczenia
+- **cs** „Rzut”: brak tłumaczenia
+- **cs** „Skok”: brak tłumaczenia
+- **cs** „Ściąganie”: brak tłumaczenia
+- **cs** „Uginanie”: brak tłumaczenia
+- **cs** „uniesienie ramienia”: brak tłumaczenia
+- **cs** „Unoszenie”: brak tłumaczenia
+- **cs** „wyprost nadgarstka”: brak tłumaczenia
+- **cs** „zgięcie nadgarstka”: brak tłumaczenia
+- **da** „barki do przodu”: brak tłumaczenia
+- **da** „barki do tyłu”: brak tłumaczenia
+- **da** „barki w dół”: brak tłumaczenia
+- **da** „barki w górę”: brak tłumaczenia
+- **da** „Grzbiet w dół”: brak tłumaczenia
+- **da** „Koci grzbiet”: brak tłumaczenia
+- **da** „Marsz”: brak tłumaczenia
+- **da** „Obrót”: brak tłumaczenia
+- **da** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **da** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **da** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **da** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **da** „Powrót”: brak tłumaczenia
+- **da** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **da** „ramię odsunięte w bok”: brak tłumaczenia
+- **da** „Rozsuwanie”: brak tłumaczenia
+- **da** „Rzut”: brak tłumaczenia
+- **da** „Skok”: brak tłumaczenia
+- **da** „Ściąganie”: brak tłumaczenia
+- **da** „Uginanie”: brak tłumaczenia
+- **da** „uniesienie ramienia”: brak tłumaczenia
+- **da** „Unoszenie”: brak tłumaczenia
+- **da** „wyprost nadgarstka”: brak tłumaczenia
+- **da** „zgięcie nadgarstka”: brak tłumaczenia
+- **de** „barki do przodu”: brak tłumaczenia
+- **de** „barki do tyłu”: brak tłumaczenia
+- **de** „barki w dół”: brak tłumaczenia
+- **de** „barki w górę”: brak tłumaczenia
+- **de** „Grzbiet w dół”: brak tłumaczenia
+- **de** „Koci grzbiet”: brak tłumaczenia
+- **de** „Marsz”: brak tłumaczenia
+- **de** „Obrót”: brak tłumaczenia
+- **de** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **de** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **de** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **de** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **de** „Powrót”: brak tłumaczenia
+- **de** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **de** „ramię odsunięte w bok”: brak tłumaczenia
+- **de** „Rozsuwanie”: brak tłumaczenia
+- **de** „Rzut”: brak tłumaczenia
+- **de** „Skok”: brak tłumaczenia
+- **de** „Ściąganie”: brak tłumaczenia
+- **de** „Uginanie”: brak tłumaczenia
+- **de** „uniesienie ramienia”: brak tłumaczenia
+- **de** „Unoszenie”: brak tłumaczenia
+- **de** „wyprost nadgarstka”: brak tłumaczenia
+- **de** „zgięcie nadgarstka”: brak tłumaczenia
+- **el** „barki do przodu”: brak tłumaczenia
+- **el** „barki do tyłu”: brak tłumaczenia
+- **el** „barki w dół”: brak tłumaczenia
+- **el** „barki w górę”: brak tłumaczenia
+- **el** „Grzbiet w dół”: brak tłumaczenia
+- **el** „Koci grzbiet”: brak tłumaczenia
+- **el** „Marsz”: brak tłumaczenia
+- **el** „Obrót”: brak tłumaczenia
+- **el** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **el** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **el** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **el** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **el** „Powrót”: brak tłumaczenia
+- **el** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **el** „ramię odsunięte w bok”: brak tłumaczenia
+- **el** „Rozsuwanie”: brak tłumaczenia
+- **el** „Rzut”: brak tłumaczenia
+- **el** „Skok”: brak tłumaczenia
+- **el** „Ściąganie”: brak tłumaczenia
+- **el** „Uginanie”: brak tłumaczenia
+- **el** „uniesienie ramienia”: brak tłumaczenia
+- **el** „Unoszenie”: brak tłumaczenia
+- **el** „wyprost nadgarstka”: brak tłumaczenia
+- **el** „zgięcie nadgarstka”: brak tłumaczenia
+- **es** „barki do przodu”: brak tłumaczenia
+- **es** „barki do tyłu”: brak tłumaczenia
+- **es** „barki w dół”: brak tłumaczenia
+- **es** „barki w górę”: brak tłumaczenia
+- **es** „Grzbiet w dół”: brak tłumaczenia
+- **es** „Koci grzbiet”: brak tłumaczenia
+- **es** „Marsz”: brak tłumaczenia
+- **es** „Obrót”: brak tłumaczenia
+- **es** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **es** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **es** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **es** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **es** „Powrót”: brak tłumaczenia
+- **es** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **es** „ramię odsunięte w bok”: brak tłumaczenia
+- **es** „Rozsuwanie”: brak tłumaczenia
+- **es** „Rzut”: brak tłumaczenia
+- **es** „Skok”: brak tłumaczenia
+- **es** „Ściąganie”: brak tłumaczenia
+- **es** „Uginanie”: brak tłumaczenia
+- **es** „uniesienie ramienia”: brak tłumaczenia
+- **es** „Unoszenie”: brak tłumaczenia
+- **es** „wyprost nadgarstka”: brak tłumaczenia
+- **es** „zgięcie nadgarstka”: brak tłumaczenia
+- **es-419** „barki do przodu”: brak tłumaczenia
+- **es-419** „barki do tyłu”: brak tłumaczenia
+- **es-419** „barki w dół”: brak tłumaczenia
+- **es-419** „barki w górę”: brak tłumaczenia
+- **es-419** „Grzbiet w dół”: brak tłumaczenia
+- **es-419** „Koci grzbiet”: brak tłumaczenia
+- **es-419** „Marsz”: brak tłumaczenia
+- **es-419** „Obrót”: brak tłumaczenia
+- **es-419** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **es-419** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **es-419** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **es-419** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **es-419** „Powrót”: brak tłumaczenia
+- **es-419** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **es-419** „ramię odsunięte w bok”: brak tłumaczenia
+- **es-419** „Rozsuwanie”: brak tłumaczenia
+- **es-419** „Rzut”: brak tłumaczenia
+- **es-419** „Skok”: brak tłumaczenia
+- **es-419** „Ściąganie”: brak tłumaczenia
+- **es-419** „Uginanie”: brak tłumaczenia
+- **es-419** „uniesienie ramienia”: brak tłumaczenia
+- **es-419** „Unoszenie”: brak tłumaczenia
+- **es-419** „wyprost nadgarstka”: brak tłumaczenia
+- **es-419** „zgięcie nadgarstka”: brak tłumaczenia
+- **et** „barki do przodu”: brak tłumaczenia
+- **et** „barki do tyłu”: brak tłumaczenia
+- **et** „barki w dół”: brak tłumaczenia
+- **et** „barki w górę”: brak tłumaczenia
+- **et** „Grzbiet w dół”: brak tłumaczenia
+- **et** „Koci grzbiet”: brak tłumaczenia
+- **et** „Marsz”: brak tłumaczenia
+- **et** „Obrót”: brak tłumaczenia
+- **et** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **et** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **et** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **et** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **et** „Powrót”: brak tłumaczenia
+- **et** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **et** „ramię odsunięte w bok”: brak tłumaczenia
+- **et** „Rozsuwanie”: brak tłumaczenia
+- **et** „Rzut”: brak tłumaczenia
+- **et** „Skok”: brak tłumaczenia
+- **et** „Ściąganie”: brak tłumaczenia
+- **et** „Uginanie”: brak tłumaczenia
+- **et** „uniesienie ramienia”: brak tłumaczenia
+- **et** „Unoszenie”: brak tłumaczenia
+- **et** „wyprost nadgarstka”: brak tłumaczenia
+- **et** „zgięcie nadgarstka”: brak tłumaczenia
+- **fi** „barki do przodu”: brak tłumaczenia
+- **fi** „barki do tyłu”: brak tłumaczenia
+- **fi** „barki w dół”: brak tłumaczenia
+- **fi** „barki w górę”: brak tłumaczenia
+- **fi** „Grzbiet w dół”: brak tłumaczenia
+- **fi** „Koci grzbiet”: brak tłumaczenia
+- **fi** „Marsz”: brak tłumaczenia
+- **fi** „Obrót”: brak tłumaczenia
+- **fi** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **fi** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **fi** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **fi** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **fi** „Powrót”: brak tłumaczenia
+- **fi** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **fi** „ramię odsunięte w bok”: brak tłumaczenia
+- **fi** „Rozsuwanie”: brak tłumaczenia
+- **fi** „Rzut”: brak tłumaczenia
+- **fi** „Skok”: brak tłumaczenia
+- **fi** „Ściąganie”: brak tłumaczenia
+- **fi** „Uginanie”: brak tłumaczenia
+- **fi** „uniesienie ramienia”: brak tłumaczenia
+- **fi** „Unoszenie”: brak tłumaczenia
+- **fi** „wyprost nadgarstka”: brak tłumaczenia
+- **fi** „zgięcie nadgarstka”: brak tłumaczenia
+- **fr** „barki do przodu”: brak tłumaczenia
+- **fr** „barki do tyłu”: brak tłumaczenia
+- **fr** „barki w dół”: brak tłumaczenia
+- **fr** „barki w górę”: brak tłumaczenia
+- **fr** „Grzbiet w dół”: brak tłumaczenia
+- **fr** „Koci grzbiet”: brak tłumaczenia
+- **fr** „Marsz”: brak tłumaczenia
+- **fr** „Obrót”: brak tłumaczenia
+- **fr** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **fr** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **fr** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **fr** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **fr** „Powrót”: brak tłumaczenia
+- **fr** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **fr** „ramię odsunięte w bok”: brak tłumaczenia
+- **fr** „Rozsuwanie”: brak tłumaczenia
+- **fr** „Rzut”: brak tłumaczenia
+- **fr** „Skok”: brak tłumaczenia
+- **fr** „Ściąganie”: brak tłumaczenia
+- **fr** „Uginanie”: brak tłumaczenia
+- **fr** „uniesienie ramienia”: brak tłumaczenia
+- **fr** „Unoszenie”: brak tłumaczenia
+- **fr** „wyprost nadgarstka”: brak tłumaczenia
+- **fr** „zgięcie nadgarstka”: brak tłumaczenia
+- **hr** „barki do przodu”: brak tłumaczenia
+- **hr** „barki do tyłu”: brak tłumaczenia
+- **hr** „barki w dół”: brak tłumaczenia
+- **hr** „barki w górę”: brak tłumaczenia
+- **hr** „Grzbiet w dół”: brak tłumaczenia
+- **hr** „Koci grzbiet”: brak tłumaczenia
+- **hr** „Marsz”: brak tłumaczenia
+- **hr** „Obrót”: brak tłumaczenia
+- **hr** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **hr** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **hr** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **hr** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **hr** „Powrót”: brak tłumaczenia
+- **hr** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **hr** „ramię odsunięte w bok”: brak tłumaczenia
+- **hr** „Rozsuwanie”: brak tłumaczenia
+- **hr** „Rzut”: brak tłumaczenia
+- **hr** „Skok”: brak tłumaczenia
+- **hr** „Ściąganie”: brak tłumaczenia
+- **hr** „Uginanie”: brak tłumaczenia
+- **hr** „uniesienie ramienia”: brak tłumaczenia
+- **hr** „Unoszenie”: brak tłumaczenia
+- **hr** „wyprost nadgarstka”: brak tłumaczenia
+- **hr** „zgięcie nadgarstka”: brak tłumaczenia
+- **hu** „barki do przodu”: brak tłumaczenia
+- **hu** „barki do tyłu”: brak tłumaczenia
+- **hu** „barki w dół”: brak tłumaczenia
+- **hu** „barki w górę”: brak tłumaczenia
+- **hu** „Grzbiet w dół”: brak tłumaczenia
+- **hu** „Koci grzbiet”: brak tłumaczenia
+- **hu** „Marsz”: brak tłumaczenia
+- **hu** „Obrót”: brak tłumaczenia
+- **hu** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **hu** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **hu** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **hu** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **hu** „Powrót”: brak tłumaczenia
+- **hu** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **hu** „ramię odsunięte w bok”: brak tłumaczenia
+- **hu** „Rozsuwanie”: brak tłumaczenia
+- **hu** „Rzut”: brak tłumaczenia
+- **hu** „Skok”: brak tłumaczenia
+- **hu** „Ściąganie”: brak tłumaczenia
+- **hu** „Uginanie”: brak tłumaczenia
+- **hu** „uniesienie ramienia”: brak tłumaczenia
+- **hu** „Unoszenie”: brak tłumaczenia
+- **hu** „wyprost nadgarstka”: brak tłumaczenia
+- **hu** „zgięcie nadgarstka”: brak tłumaczenia
+- **id** „barki do przodu”: brak tłumaczenia
+- **id** „barki do tyłu”: brak tłumaczenia
+- **id** „barki w dół”: brak tłumaczenia
+- **id** „barki w górę”: brak tłumaczenia
+- **id** „Grzbiet w dół”: brak tłumaczenia
+- **id** „Koci grzbiet”: brak tłumaczenia
+- **id** „Marsz”: brak tłumaczenia
+- **id** „Obrót”: brak tłumaczenia
+- **id** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **id** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **id** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **id** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **id** „Powrót”: brak tłumaczenia
+- **id** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **id** „ramię odsunięte w bok”: brak tłumaczenia
+- **id** „Rozsuwanie”: brak tłumaczenia
+- **id** „Rzut”: brak tłumaczenia
+- **id** „Skok”: brak tłumaczenia
+- **id** „Ściąganie”: brak tłumaczenia
+- **id** „Uginanie”: brak tłumaczenia
+- **id** „uniesienie ramienia”: brak tłumaczenia
+- **id** „Unoszenie”: brak tłumaczenia
+- **id** „wyprost nadgarstka”: brak tłumaczenia
+- **id** „zgięcie nadgarstka”: brak tłumaczenia
+- **it** „barki do przodu”: brak tłumaczenia
+- **it** „barki do tyłu”: brak tłumaczenia
+- **it** „barki w dół”: brak tłumaczenia
+- **it** „barki w górę”: brak tłumaczenia
+- **it** „Grzbiet w dół”: brak tłumaczenia
+- **it** „Koci grzbiet”: brak tłumaczenia
+- **it** „Marsz”: brak tłumaczenia
+- **it** „Obrót”: brak tłumaczenia
+- **it** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **it** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **it** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **it** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **it** „Powrót”: brak tłumaczenia
+- **it** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **it** „ramię odsunięte w bok”: brak tłumaczenia
+- **it** „Rozsuwanie”: brak tłumaczenia
+- **it** „Rzut”: brak tłumaczenia
+- **it** „Skok”: brak tłumaczenia
+- **it** „Ściąganie”: brak tłumaczenia
+- **it** „Uginanie”: brak tłumaczenia
+- **it** „uniesienie ramienia”: brak tłumaczenia
+- **it** „Unoszenie”: brak tłumaczenia
+- **it** „wyprost nadgarstka”: brak tłumaczenia
+- **it** „zgięcie nadgarstka”: brak tłumaczenia
+- **ja** „barki do przodu”: brak tłumaczenia
+- **ja** „barki do tyłu”: brak tłumaczenia
+- **ja** „barki w dół”: brak tłumaczenia
+- **ja** „barki w górę”: brak tłumaczenia
+- **ja** „Grzbiet w dół”: brak tłumaczenia
+- **ja** „Koci grzbiet”: brak tłumaczenia
+- **ja** „Marsz”: brak tłumaczenia
+- **ja** „Obrót”: brak tłumaczenia
+- **ja** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **ja** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **ja** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **ja** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **ja** „Powrót”: brak tłumaczenia
+- **ja** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **ja** „ramię odsunięte w bok”: brak tłumaczenia
+- **ja** „Rozsuwanie”: brak tłumaczenia
+- **ja** „Rzut”: brak tłumaczenia
+- **ja** „Skok”: brak tłumaczenia
+- **ja** „Ściąganie”: brak tłumaczenia
+- **ja** „Uginanie”: brak tłumaczenia
+- **ja** „uniesienie ramienia”: brak tłumaczenia
+- **ja** „Unoszenie”: brak tłumaczenia
+- **ja** „wyprost nadgarstka”: brak tłumaczenia
+- **ja** „zgięcie nadgarstka”: brak tłumaczenia
+- **ko** „barki do przodu”: brak tłumaczenia
+- **ko** „barki do tyłu”: brak tłumaczenia
+- **ko** „barki w dół”: brak tłumaczenia
+- **ko** „barki w górę”: brak tłumaczenia
+- **ko** „Grzbiet w dół”: brak tłumaczenia
+- **ko** „Koci grzbiet”: brak tłumaczenia
+- **ko** „Marsz”: brak tłumaczenia
+- **ko** „Obrót”: brak tłumaczenia
+- **ko** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **ko** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **ko** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **ko** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **ko** „Powrót”: brak tłumaczenia
+- **ko** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **ko** „ramię odsunięte w bok”: brak tłumaczenia
+- **ko** „Rozsuwanie”: brak tłumaczenia
+- **ko** „Rzut”: brak tłumaczenia
+- **ko** „Skok”: brak tłumaczenia
+- **ko** „Ściąganie”: brak tłumaczenia
+- **ko** „Uginanie”: brak tłumaczenia
+- **ko** „uniesienie ramienia”: brak tłumaczenia
+- **ko** „Unoszenie”: brak tłumaczenia
+- **ko** „wyprost nadgarstka”: brak tłumaczenia
+- **ko** „zgięcie nadgarstka”: brak tłumaczenia
+- **lt** „barki do przodu”: brak tłumaczenia
+- **lt** „barki do tyłu”: brak tłumaczenia
+- **lt** „barki w dół”: brak tłumaczenia
+- **lt** „barki w górę”: brak tłumaczenia
+- **lt** „Grzbiet w dół”: brak tłumaczenia
+- **lt** „Koci grzbiet”: brak tłumaczenia
+- **lt** „Marsz”: brak tłumaczenia
+- **lt** „Obrót”: brak tłumaczenia
+- **lt** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **lt** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **lt** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **lt** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **lt** „Powrót”: brak tłumaczenia
+- **lt** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **lt** „ramię odsunięte w bok”: brak tłumaczenia
+- **lt** „Rozsuwanie”: brak tłumaczenia
+- **lt** „Rzut”: brak tłumaczenia
+- **lt** „Skok”: brak tłumaczenia
+- **lt** „Ściąganie”: brak tłumaczenia
+- **lt** „Uginanie”: brak tłumaczenia
+- **lt** „uniesienie ramienia”: brak tłumaczenia
+- **lt** „Unoszenie”: brak tłumaczenia
+- **lt** „wyprost nadgarstka”: brak tłumaczenia
+- **lt** „zgięcie nadgarstka”: brak tłumaczenia
+- **lv** „barki do przodu”: brak tłumaczenia
+- **lv** „barki do tyłu”: brak tłumaczenia
+- **lv** „barki w dół”: brak tłumaczenia
+- **lv** „barki w górę”: brak tłumaczenia
+- **lv** „Grzbiet w dół”: brak tłumaczenia
+- **lv** „Koci grzbiet”: brak tłumaczenia
+- **lv** „Marsz”: brak tłumaczenia
+- **lv** „Obrót”: brak tłumaczenia
+- **lv** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **lv** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **lv** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **lv** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **lv** „Powrót”: brak tłumaczenia
+- **lv** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **lv** „ramię odsunięte w bok”: brak tłumaczenia
+- **lv** „Rozsuwanie”: brak tłumaczenia
+- **lv** „Rzut”: brak tłumaczenia
+- **lv** „Skok”: brak tłumaczenia
+- **lv** „Ściąganie”: brak tłumaczenia
+- **lv** „Uginanie”: brak tłumaczenia
+- **lv** „uniesienie ramienia”: brak tłumaczenia
+- **lv** „Unoszenie”: brak tłumaczenia
+- **lv** „wyprost nadgarstka”: brak tłumaczenia
+- **lv** „zgięcie nadgarstka”: brak tłumaczenia
+- **ms** „barki do przodu”: brak tłumaczenia
+- **ms** „barki do tyłu”: brak tłumaczenia
+- **ms** „barki w dół”: brak tłumaczenia
+- **ms** „barki w górę”: brak tłumaczenia
+- **ms** „Grzbiet w dół”: brak tłumaczenia
+- **ms** „Koci grzbiet”: brak tłumaczenia
+- **ms** „Marsz”: brak tłumaczenia
+- **ms** „Obrót”: brak tłumaczenia
+- **ms** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **ms** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **ms** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **ms** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **ms** „Powrót”: brak tłumaczenia
+- **ms** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **ms** „ramię odsunięte w bok”: brak tłumaczenia
+- **ms** „Rozsuwanie”: brak tłumaczenia
+- **ms** „Rzut”: brak tłumaczenia
+- **ms** „Skok”: brak tłumaczenia
+- **ms** „Ściąganie”: brak tłumaczenia
+- **ms** „Uginanie”: brak tłumaczenia
+- **ms** „uniesienie ramienia”: brak tłumaczenia
+- **ms** „Unoszenie”: brak tłumaczenia
+- **ms** „wyprost nadgarstka”: brak tłumaczenia
+- **ms** „zgięcie nadgarstka”: brak tłumaczenia
+- **nb** „barki do przodu”: brak tłumaczenia
+- **nb** „barki do tyłu”: brak tłumaczenia
+- **nb** „barki w dół”: brak tłumaczenia
+- **nb** „barki w górę”: brak tłumaczenia
+- **nb** „Grzbiet w dół”: brak tłumaczenia
+- **nb** „Koci grzbiet”: brak tłumaczenia
+- **nb** „Marsz”: brak tłumaczenia
+- **nb** „Obrót”: brak tłumaczenia
+- **nb** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **nb** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **nb** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **nb** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **nb** „Powrót”: brak tłumaczenia
+- **nb** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **nb** „ramię odsunięte w bok”: brak tłumaczenia
+- **nb** „Rozsuwanie”: brak tłumaczenia
+- **nb** „Rzut”: brak tłumaczenia
+- **nb** „Skok”: brak tłumaczenia
+- **nb** „Ściąganie”: brak tłumaczenia
+- **nb** „Uginanie”: brak tłumaczenia
+- **nb** „uniesienie ramienia”: brak tłumaczenia
+- **nb** „Unoszenie”: brak tłumaczenia
+- **nb** „wyprost nadgarstka”: brak tłumaczenia
+- **nb** „zgięcie nadgarstka”: brak tłumaczenia
+- **nl** „barki do przodu”: brak tłumaczenia
+- **nl** „barki do tyłu”: brak tłumaczenia
+- **nl** „barki w dół”: brak tłumaczenia
+- **nl** „barki w górę”: brak tłumaczenia
+- **nl** „Grzbiet w dół”: brak tłumaczenia
+- **nl** „Koci grzbiet”: brak tłumaczenia
+- **nl** „Marsz”: brak tłumaczenia
+- **nl** „Obrót”: brak tłumaczenia
+- **nl** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **nl** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **nl** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **nl** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **nl** „Powrót”: brak tłumaczenia
+- **nl** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **nl** „ramię odsunięte w bok”: brak tłumaczenia
+- **nl** „Rozsuwanie”: brak tłumaczenia
+- **nl** „Rzut”: brak tłumaczenia
+- **nl** „Skok”: brak tłumaczenia
+- **nl** „Ściąganie”: brak tłumaczenia
+- **nl** „Uginanie”: brak tłumaczenia
+- **nl** „uniesienie ramienia”: brak tłumaczenia
+- **nl** „Unoszenie”: brak tłumaczenia
+- **nl** „wyprost nadgarstka”: brak tłumaczenia
+- **nl** „zgięcie nadgarstka”: brak tłumaczenia
+- **pt** „barki do przodu”: brak tłumaczenia
+- **pt** „barki do tyłu”: brak tłumaczenia
+- **pt** „barki w dół”: brak tłumaczenia
+- **pt** „barki w górę”: brak tłumaczenia
+- **pt** „Grzbiet w dół”: brak tłumaczenia
+- **pt** „Koci grzbiet”: brak tłumaczenia
+- **pt** „Marsz”: brak tłumaczenia
+- **pt** „Obrót”: brak tłumaczenia
+- **pt** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **pt** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **pt** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **pt** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **pt** „Powrót”: brak tłumaczenia
+- **pt** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **pt** „ramię odsunięte w bok”: brak tłumaczenia
+- **pt** „Rozsuwanie”: brak tłumaczenia
+- **pt** „Rzut”: brak tłumaczenia
+- **pt** „Skok”: brak tłumaczenia
+- **pt** „Ściąganie”: brak tłumaczenia
+- **pt** „Uginanie”: brak tłumaczenia
+- **pt** „uniesienie ramienia”: brak tłumaczenia
+- **pt** „Unoszenie”: brak tłumaczenia
+- **pt** „wyprost nadgarstka”: brak tłumaczenia
+- **pt** „zgięcie nadgarstka”: brak tłumaczenia
+- **pt-BR** „barki do przodu”: brak tłumaczenia
+- **pt-BR** „barki do tyłu”: brak tłumaczenia
+- **pt-BR** „barki w dół”: brak tłumaczenia
+- **pt-BR** „barki w górę”: brak tłumaczenia
+- **pt-BR** „Grzbiet w dół”: brak tłumaczenia
+- **pt-BR** „Koci grzbiet”: brak tłumaczenia
+- **pt-BR** „Marsz”: brak tłumaczenia
+- **pt-BR** „Obrót”: brak tłumaczenia
+- **pt-BR** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **pt-BR** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **pt-BR** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **pt-BR** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **pt-BR** „Powrót”: brak tłumaczenia
+- **pt-BR** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **pt-BR** „ramię odsunięte w bok”: brak tłumaczenia
+- **pt-BR** „Rozsuwanie”: brak tłumaczenia
+- **pt-BR** „Rzut”: brak tłumaczenia
+- **pt-BR** „Skok”: brak tłumaczenia
+- **pt-BR** „Ściąganie”: brak tłumaczenia
+- **pt-BR** „Uginanie”: brak tłumaczenia
+- **pt-BR** „uniesienie ramienia”: brak tłumaczenia
+- **pt-BR** „Unoszenie”: brak tłumaczenia
+- **pt-BR** „wyprost nadgarstka”: brak tłumaczenia
+- **pt-BR** „zgięcie nadgarstka”: brak tłumaczenia
+- **ro** „barki do przodu”: brak tłumaczenia
+- **ro** „barki do tyłu”: brak tłumaczenia
+- **ro** „barki w dół”: brak tłumaczenia
+- **ro** „barki w górę”: brak tłumaczenia
+- **ro** „Grzbiet w dół”: brak tłumaczenia
+- **ro** „Koci grzbiet”: brak tłumaczenia
+- **ro** „Marsz”: brak tłumaczenia
+- **ro** „Obrót”: brak tłumaczenia
+- **ro** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **ro** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **ro** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **ro** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **ro** „Powrót”: brak tłumaczenia
+- **ro** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **ro** „ramię odsunięte w bok”: brak tłumaczenia
+- **ro** „Rozsuwanie”: brak tłumaczenia
+- **ro** „Rzut”: brak tłumaczenia
+- **ro** „Skok”: brak tłumaczenia
+- **ro** „Ściąganie”: brak tłumaczenia
+- **ro** „Uginanie”: brak tłumaczenia
+- **ro** „uniesienie ramienia”: brak tłumaczenia
+- **ro** „Unoszenie”: brak tłumaczenia
+- **ro** „wyprost nadgarstka”: brak tłumaczenia
+- **ro** „zgięcie nadgarstka”: brak tłumaczenia
+- **ru** „barki do przodu”: brak tłumaczenia
+- **ru** „barki do tyłu”: brak tłumaczenia
+- **ru** „barki w dół”: brak tłumaczenia
+- **ru** „barki w górę”: brak tłumaczenia
+- **ru** „Grzbiet w dół”: brak tłumaczenia
+- **ru** „Koci grzbiet”: brak tłumaczenia
+- **ru** „Marsz”: brak tłumaczenia
+- **ru** „Obrót”: brak tłumaczenia
+- **ru** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **ru** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **ru** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **ru** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **ru** „Powrót”: brak tłumaczenia
+- **ru** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **ru** „ramię odsunięte w bok”: brak tłumaczenia
+- **ru** „Rozsuwanie”: brak tłumaczenia
+- **ru** „Rzut”: brak tłumaczenia
+- **ru** „Skok”: brak tłumaczenia
+- **ru** „Ściąganie”: brak tłumaczenia
+- **ru** „Uginanie”: brak tłumaczenia
+- **ru** „uniesienie ramienia”: brak tłumaczenia
+- **ru** „Unoszenie”: brak tłumaczenia
+- **ru** „wyprost nadgarstka”: brak tłumaczenia
+- **ru** „zgięcie nadgarstka”: brak tłumaczenia
+- **sk** „barki do przodu”: brak tłumaczenia
+- **sk** „barki do tyłu”: brak tłumaczenia
+- **sk** „barki w dół”: brak tłumaczenia
+- **sk** „barki w górę”: brak tłumaczenia
+- **sk** „Grzbiet w dół”: brak tłumaczenia
+- **sk** „Koci grzbiet”: brak tłumaczenia
+- **sk** „Marsz”: brak tłumaczenia
+- **sk** „Obrót”: brak tłumaczenia
+- **sk** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **sk** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **sk** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **sk** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **sk** „Powrót”: brak tłumaczenia
+- **sk** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **sk** „ramię odsunięte w bok”: brak tłumaczenia
+- **sk** „Rozsuwanie”: brak tłumaczenia
+- **sk** „Rzut”: brak tłumaczenia
+- **sk** „Skok”: brak tłumaczenia
+- **sk** „Ściąganie”: brak tłumaczenia
+- **sk** „Uginanie”: brak tłumaczenia
+- **sk** „uniesienie ramienia”: brak tłumaczenia
+- **sk** „Unoszenie”: brak tłumaczenia
+- **sk** „wyprost nadgarstka”: brak tłumaczenia
+- **sk** „zgięcie nadgarstka”: brak tłumaczenia
+- **sl** „barki do przodu”: brak tłumaczenia
+- **sl** „barki do tyłu”: brak tłumaczenia
+- **sl** „barki w dół”: brak tłumaczenia
+- **sl** „barki w górę”: brak tłumaczenia
+- **sl** „Grzbiet w dół”: brak tłumaczenia
+- **sl** „Koci grzbiet”: brak tłumaczenia
+- **sl** „Marsz”: brak tłumaczenia
+- **sl** „Obrót”: brak tłumaczenia
+- **sl** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **sl** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **sl** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **sl** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **sl** „Powrót”: brak tłumaczenia
+- **sl** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **sl** „ramię odsunięte w bok”: brak tłumaczenia
+- **sl** „Rozsuwanie”: brak tłumaczenia
+- **sl** „Rzut”: brak tłumaczenia
+- **sl** „Skok”: brak tłumaczenia
+- **sl** „Ściąganie”: brak tłumaczenia
+- **sl** „Uginanie”: brak tłumaczenia
+- **sl** „uniesienie ramienia”: brak tłumaczenia
+- **sl** „Unoszenie”: brak tłumaczenia
+- **sl** „wyprost nadgarstka”: brak tłumaczenia
+- **sl** „zgięcie nadgarstka”: brak tłumaczenia
+- **sr** „barki do przodu”: brak tłumaczenia
+- **sr** „barki do tyłu”: brak tłumaczenia
+- **sr** „barki w dół”: brak tłumaczenia
+- **sr** „barki w górę”: brak tłumaczenia
+- **sr** „Grzbiet w dół”: brak tłumaczenia
+- **sr** „Koci grzbiet”: brak tłumaczenia
+- **sr** „Marsz”: brak tłumaczenia
+- **sr** „Obrót”: brak tłumaczenia
+- **sr** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **sr** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **sr** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **sr** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **sr** „Powrót”: brak tłumaczenia
+- **sr** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **sr** „ramię odsunięte w bok”: brak tłumaczenia
+- **sr** „Rozsuwanie”: brak tłumaczenia
+- **sr** „Rzut”: brak tłumaczenia
+- **sr** „Skok”: brak tłumaczenia
+- **sr** „Ściąganie”: brak tłumaczenia
+- **sr** „Uginanie”: brak tłumaczenia
+- **sr** „uniesienie ramienia”: brak tłumaczenia
+- **sr** „Unoszenie”: brak tłumaczenia
+- **sr** „wyprost nadgarstka”: brak tłumaczenia
+- **sr** „zgięcie nadgarstka”: brak tłumaczenia
+- **sv** „barki do przodu”: brak tłumaczenia
+- **sv** „barki do tyłu”: brak tłumaczenia
+- **sv** „barki w dół”: brak tłumaczenia
+- **sv** „barki w górę”: brak tłumaczenia
+- **sv** „Grzbiet w dół”: brak tłumaczenia
+- **sv** „Koci grzbiet”: brak tłumaczenia
+- **sv** „Marsz”: brak tłumaczenia
+- **sv** „Obrót”: brak tłumaczenia
+- **sv** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **sv** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **sv** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **sv** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **sv** „Powrót”: brak tłumaczenia
+- **sv** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **sv** „ramię odsunięte w bok”: brak tłumaczenia
+- **sv** „Rozsuwanie”: brak tłumaczenia
+- **sv** „Rzut”: brak tłumaczenia
+- **sv** „Skok”: brak tłumaczenia
+- **sv** „Ściąganie”: brak tłumaczenia
+- **sv** „Uginanie”: brak tłumaczenia
+- **sv** „uniesienie ramienia”: brak tłumaczenia
+- **sv** „Unoszenie”: brak tłumaczenia
+- **sv** „wyprost nadgarstka”: brak tłumaczenia
+- **sv** „zgięcie nadgarstka”: brak tłumaczenia
+- **tr** „barki do przodu”: brak tłumaczenia
+- **tr** „barki do tyłu”: brak tłumaczenia
+- **tr** „barki w dół”: brak tłumaczenia
+- **tr** „barki w górę”: brak tłumaczenia
+- **tr** „Grzbiet w dół”: brak tłumaczenia
+- **tr** „Koci grzbiet”: brak tłumaczenia
+- **tr** „Marsz”: brak tłumaczenia
+- **tr** „Obrót”: brak tłumaczenia
+- **tr** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **tr** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **tr** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **tr** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **tr** „Powrót”: brak tłumaczenia
+- **tr** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **tr** „ramię odsunięte w bok”: brak tłumaczenia
+- **tr** „Rozsuwanie”: brak tłumaczenia
+- **tr** „Rzut”: brak tłumaczenia
+- **tr** „Skok”: brak tłumaczenia
+- **tr** „Ściąganie”: brak tłumaczenia
+- **tr** „Uginanie”: brak tłumaczenia
+- **tr** „uniesienie ramienia”: brak tłumaczenia
+- **tr** „Unoszenie”: brak tłumaczenia
+- **tr** „wyprost nadgarstka”: brak tłumaczenia
+- **tr** „zgięcie nadgarstka”: brak tłumaczenia
+- **uk** „barki do przodu”: brak tłumaczenia
+- **uk** „barki do tyłu”: brak tłumaczenia
+- **uk** „barki w dół”: brak tłumaczenia
+- **uk** „barki w górę”: brak tłumaczenia
+- **uk** „Grzbiet w dół”: brak tłumaczenia
+- **uk** „Koci grzbiet”: brak tłumaczenia
+- **uk** „Marsz”: brak tłumaczenia
+- **uk** „Obrót”: brak tłumaczenia
+- **uk** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **uk** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **uk** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **uk** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **uk** „Powrót”: brak tłumaczenia
+- **uk** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **uk** „ramię odsunięte w bok”: brak tłumaczenia
+- **uk** „Rozsuwanie”: brak tłumaczenia
+- **uk** „Rzut”: brak tłumaczenia
+- **uk** „Skok”: brak tłumaczenia
+- **uk** „Ściąganie”: brak tłumaczenia
+- **uk** „Uginanie”: brak tłumaczenia
+- **uk** „uniesienie ramienia”: brak tłumaczenia
+- **uk** „Unoszenie”: brak tłumaczenia
+- **uk** „wyprost nadgarstka”: brak tłumaczenia
+- **uk** „zgięcie nadgarstka”: brak tłumaczenia
+- **vi** „barki do przodu”: brak tłumaczenia
+- **vi** „barki do tyłu”: brak tłumaczenia
+- **vi** „barki w dół”: brak tłumaczenia
+- **vi** „barki w górę”: brak tłumaczenia
+- **vi** „Grzbiet w dół”: brak tłumaczenia
+- **vi** „Koci grzbiet”: brak tłumaczenia
+- **vi** „Marsz”: brak tłumaczenia
+- **vi** „Obrót”: brak tłumaczenia
+- **vi** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **vi** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **vi** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **vi** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **vi** „Powrót”: brak tłumaczenia
+- **vi** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **vi** „ramię odsunięte w bok”: brak tłumaczenia
+- **vi** „Rozsuwanie”: brak tłumaczenia
+- **vi** „Rzut”: brak tłumaczenia
+- **vi** „Skok”: brak tłumaczenia
+- **vi** „Ściąganie”: brak tłumaczenia
+- **vi** „Uginanie”: brak tłumaczenia
+- **vi** „uniesienie ramienia”: brak tłumaczenia
+- **vi** „Unoszenie”: brak tłumaczenia
+- **vi** „wyprost nadgarstka”: brak tłumaczenia
+- **vi** „zgięcie nadgarstka”: brak tłumaczenia
+- **zh-Hant** „barki do przodu”: brak tłumaczenia
+- **zh-Hant** „barki do tyłu”: brak tłumaczenia
+- **zh-Hant** „barki w dół”: brak tłumaczenia
+- **zh-Hant** „barki w górę”: brak tłumaczenia
+- **zh-Hant** „Grzbiet w dół”: brak tłumaczenia
+- **zh-Hant** „Koci grzbiet”: brak tłumaczenia
+- **zh-Hant** „Marsz”: brak tłumaczenia
+- **zh-Hant** „Obrót”: brak tłumaczenia
+- **zh-Hant** „obrót przedramienia dłonią w dół”: brak tłumaczenia
+- **zh-Hant** „obrót przedramienia dłonią w górę”: brak tłumaczenia
+- **zh-Hant** „obrót ramienia do wewnątrz”: brak tłumaczenia
+- **zh-Hant** „obrót ramienia na zewnątrz”: brak tłumaczenia
+- **zh-Hant** „Powrót”: brak tłumaczenia
+- **zh-Hant** „Przesunięcie na rysunku: {staw} {n} cm”: brak tłumaczenia
+- **zh-Hant** „ramię odsunięte w bok”: brak tłumaczenia
+- **zh-Hant** „Rozsuwanie”: brak tłumaczenia
+- **zh-Hant** „Rzut”: brak tłumaczenia
+- **zh-Hant** „Skok”: brak tłumaczenia
+- **zh-Hant** „Ściąganie”: brak tłumaczenia
+- **zh-Hant** „Uginanie”: brak tłumaczenia
+- **zh-Hant** „uniesienie ramienia”: brak tłumaczenia
+- **zh-Hant** „Unoszenie”: brak tłumaczenia
+- **zh-Hant** „wyprost nadgarstka”: brak tłumaczenia
+- **zh-Hant** „zgięcie nadgarstka”: brak tłumaczenia

@@ -1,0 +1,188 @@
+{
+ "jezyk": "it",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01FTn5u73djiNthhoZY2aV6W",
+ "zdan": 628,
+ "ok": 598,
+ "uwagi": [
+  {
+   "klucz": "+ {n} {w}",
+   "rodzaj": "nowe",
+   "pl": "+ {n} {w}",
+   "tlumaczenie": "altri {n} {w}",
+   "poprawka": "+ {n} {w}",
+   "powod": "„altri” ma rodzaj męski i nie uzgodni się z rzeczownikiem żeńskim w {w} (np. „serie” → „altre”). Lepiej zachować neutralny „+”, jak w oryginale.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "pl": "Opuszczaj, aż gryf będzie tuż nad czołem — albo wcześniej, jeśli ramiona zaczną uciekać w tył.",
+   "tlumaczenie": "Scendi finché il bilanciere è appena sopra la fronte o le braccia iniziano ad andare indietro.",
+   "poprawka": "Scendi finché il bilanciere è appena sopra la fronte — o fermati prima se le braccia iniziano ad andare indietro.",
+   "powod": "Zgubiono sens „albo wcześniej” (zatrzymaj się wcześniej). Zdanie siostrzane 573 oddaje go poprawnie — warto ujednolicić.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Bujanie się i wymachy nogami.",
+   "rodzaj": "nowe",
+   "pl": "Bujanie się i wymachy nogami.",
+   "tlumaczenie": "Dondolii e calci con le gambe.",
+   "poprawka": "Oscillazioni e calci con le gambe.",
+   "powod": "„Dondolii” brzmi nienaturalnie; w zdaniu 515 użyto „oscillazioni” — warto ujednolicić.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "rodzaj": "nowe",
+   "pl": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "tlumaczenie": "Non eliminare l’app: con lei spariscono dati e backup. Prima tocca «Invia i dati» e salva il file fuori dal telefono.",
+   "poprawka": "Non eliminare l’app: insieme all’app spariscono anche dati e backup. Prima tocca «Invia i dati» e salva il file fuori dal telefono.",
+   "powod": "„con lei” w odniesieniu do rzeczy jest potoczne i niezręczne.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "rodzaj": "nowe",
+   "pl": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "tlumaczenie": "Recupero. Tempo rimanente: {t}. Totale: {all}.",
+   "poprawka": "Recupero. Tempo rimanente: {t}. Recupero totale: {all}.",
+   "powod": "Samo „Totale” jest niejasne. W oryginale: „Cała przerwa”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "hang.noSwing",
+   "rodzaj": "wskazowka",
+   "pl": "Bujanie się i wymachy nogami.",
+   "tlumaczenie": "Dondolii e calci con le gambe.",
+   "poprawka": "Oscillazioni e calci con le gambe.",
+   "powod": "„Dondolii” brzmi nienaturalnie; w zdaniu 515 jest „oscillazioni” — warto ujednolicić.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": [
+  {
+   "klucz": "barki do przodu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki do tyłu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Grzbiet w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Koci grzbiet",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Marsz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Obrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia do wewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia na zewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Powrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "ramię odsunięte w bok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rozsuwanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rzut",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Skok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Ściąganie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Uginanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "uniesienie ramienia",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Unoszenie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "wyprost nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "zgięcie nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  }
+ ]
+}

@@ -1,0 +1,251 @@
+{
+ "jezyk": "sr",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01FTn5u73djiNthhoZY2aV6W",
+ "zdan": 628,
+ "ok": 591,
+ "uwagi": [
+  {
+   "klucz": "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+   "rodzaj": "nowe",
+   "pl": "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+   "tlumaczenie": "{k} дан снаге недељно је мање од препорученог минимума (најмање {n} дана). За почетак је то добар корак: можете тренирати снагу само {k} дан недељно, а временом стићи до {n} — мало кретања је боље него ништа.",
+   "poprawka": "{k} дан тренинга снаге недељно је мање од препорученог минимума (најмање {n} дана). За почетак је то добар корак: можете тренирати снагу само {k} дан недељно, а временом стићи до {n} — мало кретања је боље него ништа.",
+   "powod": "„дан снаге” brzmi nienaturalnie; lepiej „дан тренинга снаге”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "rodzaj": "nowe",
+   "pl": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "tlumaczenie": "Општи (за здравље и кондицију): {s} серије по вежби, {a}–{b} понављања (код куће {c}–{d}), док следеће понављање не би било тешко. За здравље вреди тренирати све главне делове тела најмање {n} дана недељно.",
+   "poprawka": "Општи (за здравље и кондицију): {s} серије по вежби, {a}–{b} понављања (код куће {c}–{d}), до тренутка када би следеће понављање било тешко. За здравље вреди тренирати све главне делове тела најмање {n} дана недељно.",
+   "powod": "Konstrukcja „док … не би било тешко” jest dwuznaczna (może znaczyć „dopóki nie byłoby trudne”); lepiej jednoznacznie „до тренутка када би…”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "rodzaj": "nowe",
+   "pl": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "tlumaczenie": "Напор: док следеће понављање не би било тешко — умор, али не исцрпљеност. До отказа није потребно.",
+   "poprawka": "Напор: до тренутка када би следеће понављање било тешко — умор, али не исцрпљеност. Није потребно ићи до отказа.",
+   "powod": "Konstrukcja „док … не би било тешко” jest dwuznaczna; „До отказа није потребно” jest eliptyczne i brzmi nienaturalnie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "cc.ribs",
+   "rodzaj": "wskazowka",
+   "pl": "Zwijaj tułów, ściągając żebra w dół — biodra zostają w miejscu.",
+   "tlumaczenie": "Заокружи труп повлачећи ребра надоле — кукови остају на месту.",
+   "poprawka": "Савијај труп повлачећи ребра надоле — кукови остају на месту.",
+   "powod": "„Заокружи” znaczy „zatocz koło/zaokrąglij (liczbę)”, nie „zwijaj tułów”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "st.noBounce",
+   "rodzaj": "wskazowka",
+   "pl": "Trzymaj spokojnie, bez sprężynowania.",
+   "tlumaczenie": "Држи мирно, без поскакивања.",
+   "poprawka": "Држи мирно, без трзаја.",
+   "powod": "„поскакивање” znaczy „podskakiwanie”; „sprężynowanie” w rozciąganiu to rytmiczne pogłębianie ruchu, czyli „трзаји”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{n} mi",
+   "rodzaj": "nowe",
+   "pl": "{n} mi",
+   "tlumaczenie": "{n} миља",
+   "poprawka": "{n} mi",
+   "powod": "Pełne słowo „миља” nie odmienia się z liczbą (2 миље, 5 миља); w etykiecie bezpieczniej użyć skrótu, który się nie odmienia.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "{n} yd",
+   "rodzaj": "nowe",
+   "pl": "{n} yd",
+   "tlumaczenie": "{n} јарда",
+   "poprawka": "{n} yd",
+   "powod": "Pełne słowo „јарда” nie odmienia się z liczbą (1 јард, 5 јарди); w etykiecie bezpieczniej użyć skrótu, który się nie odmienia.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.",
+   "rodzaj": "nowe",
+   "pl": "Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.",
+   "tlumaczenie": "Кардио: један тренинг умереног напора у посебном дану; његово трајање = трајање тренинга.",
+   "poprawka": "Кардио: један тренинг умереног напора посебног дана; његово трајање = трајање тренинга.",
+   "powod": "„у посебном дану” jest nienaturalne; naturalnie „посебног дана”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).",
+   "rodzaj": "nowe",
+   "pl": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).",
+   "tlumaczenie": "Кардио: од {k} дана недељно један тренинг у посебном дану; уз мање дана сви су дани снаге, да кардио не би узимао дане тренингу снаге (сваки главни део тела најмање {n} дана).",
+   "poprawka": "Кардио: од {k} дана недељно један тренинг посебног дана; уз мање дана сви су дани снаге, да кардио не би узимао дане тренингу снаге (сваки главни део тела најмање {n} дана).",
+   "powod": "„у посебном дану” jest nienaturalne; naturalnie „посебног дана”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Wypychanie",
+   "rodzaj": "nowe",
+   "pl": "Wypychanie",
+   "tlumaczenie": "Потисак",
+   "poprawka": "Потискивање",
+   "powod": "Nazwa fazy powinna być rzeczownikiem odczasownikowym, spójnym z „Спуштање”, „Подизање”; „Потисак” brzmi jak nazwa ćwiczenia.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "rodzaj": "nowe",
+   "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "tlumaczenie": "Напор: обично {a}–{b} понављања у резерви — близу отказа или {c}–{d}; тачан број није утврђен. До отказа није потребно.",
+   "poprawka": "Напор: обично {a}–{b} понављања у резерви — близу отказа или {c}–{d}; тачан број није утврђен. Није потребно ићи до отказа.",
+   "powod": "„До отказа није потребно” jest eliptyczne i brzmi nienaturalnie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "calf.press",
+   "rodzaj": "wskazowka",
+   "pl": "Usiądź na prasie, oprzyj przednią część stóp na dolnej krawędzi platformy, pięty poza nią; nogi wyprostowane.",
+   "tlumaczenie": "Седи у лег прес, предњи део стопала на доњу ивицу платформе, пете ван ње; ноге опружене.",
+   "poprawka": "Седи у лег прес, предњи део стопала на доњој ивици платформе, пете ван ње; ноге опружене.",
+   "powod": "Błąd przypadka: przy opisie położenia poprawnie „на доњој ивици” (lokativ).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "nordic.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Uklęknij na miękkim podłożu; kostki muszą być mocno przytrzymane (partner, wałki albo zaczep).",
+   "tlumaczenie": "Клекни на меку подлогу; глежњеви морају бити чврсто држани (партнер, ваљци или учвршћење).",
+   "poprawka": "Клекни на меку подлогу; глежњеви морају бити чврсто фиксирани (партнер, ваљци или учвршћење).",
+   "powod": "„чврсто држани” brzmi nienaturalnie; naturalniej „чврсто фиксирани”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": [
+  {
+   "klucz": "barki do przodu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki do tyłu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Grzbiet w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Koci grzbiet",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Marsz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Obrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia do wewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia na zewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Powrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "ramię odsunięte w bok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rozsuwanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rzut",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Skok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Ściąganie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Uginanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "uniesienie ramienia",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Unoszenie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "wyprost nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "zgięcie nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  }
+ ]
+}

@@ -52,7 +52,7 @@
  "clat.setup": "Turi apakšējā trīša rokturi ar nedaudz saliektu elkoni un sasprindzinātu rumpi.",
  "cobra.control": "Nolaidies lēni.",
  "cobra.hips": "Gurni paliek uz grīdas.",
- "cobra.mis": "Muguras piespiedu izliekšana pārāk augstu.",
+ "cobra.mis": "Muguras piespiedu atliekšana pārāk augstu.",
  "cohp.setup": "Stāvi vai sēdi starp apakšējiem trīšiem; rokturi pie pleciem, elkoņi lejā, plaukstu locītavas virs elkoņiem.",
  "cote.move": "Iztaisno elkoņus un izspied rokturi virs galvas; nolaid to aiz galvas, saliecot elkoņus.",
  "cote.setup": "Turi trīša rokturi aiz galvas, elkoņi vērsti uz augšu.",
@@ -369,5 +369,5 @@
  "wm.eyes": "Skaties uz augšējo roku.",
  "wr.forearms": "Apakšdelmi atbalstīti — kustas tikai plaukstas locītava.",
  "wr.mis.lift": "Apakšdelmi paceļas no atbalsta.",
- "wr.range": "Nolaid svaru tik zemu, cik ļauj plaukstas locītava, tad salieki to uz augšu."
+ "wr.range": "Nolaid svaru tik zemu, cik ļauj plaukstas locītava, tad saliec plaukstas locītavu uz augšu."
 }

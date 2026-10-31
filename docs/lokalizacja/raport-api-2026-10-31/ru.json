@@ -1,0 +1,224 @@
+{
+ "jezyk": "ru",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01FTn5u73djiNthhoZY2aV6W",
+ "zdan": 628,
+ "ok": 594,
+ "uwagi": [
+  {
+   "klucz": "Prostowanie",
+   "rodzaj": "nowe",
+   "pl": "Prostowanie",
+   "tlumaczenie": "Выпрямление",
+   "poprawka": "Разгибание",
+   "powod": "Faza prostowania stawu (biodra, łokcia) to w terminologii ruchu „разгибание”, nie „выпрямление”; spójne z „разгибает” w opisach mięśni",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Rozgrzewki: {d} z {n} zrobione",
+   "tlumaczenie": "Разминка: {d} из {n} выполнено",
+   "poprawka": "Разминочные подходы: выполнено {d} из {n}",
+   "powod": "„Rozgrzewki” to serie rozgrzewkowe; „Разминка … выполнено” ma niezgodność i zmienia sens na ogólną rozgrzewkę",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.",
+   "rodzaj": "nowe",
+   "pl": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.",
+   "tlumaczenie": "Тренируйтесь бесплатно до {n} дней в месяц. Pro снимает ограничение. Отменить можно в любой момент в настройках учётной записи Apple.",
+   "poprawka": "Тренируйтесь бесплатно {n} дн. в месяц. Pro снимает ограничение. Отменить можно в любой момент в настройках учётной записи Apple.",
+   "powod": "Stała forma „дней” przy zmiennej {n} jest błędna dla 1 i 2–4 (gdzie indziej użyto „дн.”); dodane „до” nie występuje w źródle",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "cobra.mis",
+   "rodzaj": "wskazowka",
+   "pl": "Wyginanie pleców na siłę, za wysoko.",
+   "tlumaczenie": "Силовой прогиб спины, слишком высоко.",
+   "poprawka": "Прогиб спины через силу, слишком высоко.",
+   "powod": "„Силовой прогиб” jest nienaturalne i niejasne; chodzi o wyginanie na siłę",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "rodzaj": "nowe",
+   "pl": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "tlumaczenie": "Меню ⋯ в заголовке: «Пауза тренировки» останавливает часы тренировки; время паузы не входит в длительность.",
+   "poprawka": "Меню ⋯ в заголовке: «Пауза тренировки» останавливает таймер тренировки; время паузы не входит в длительность.",
+   "powod": "„часы тренировки” brzmi nienaturalnie; w tym znaczeniu mówi się „таймер”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Płacisz raz i masz na zawsze.",
+   "rodzaj": "nowe",
+   "pl": "Płacisz raz i masz na zawsze.",
+   "tlumaczenie": "Вы платите один раз и пользуетесь всегда.",
+   "poprawka": "Вы платите один раз — и пользуетесь навсегда.",
+   "powod": "„пользуетесь всегда” jest nienaturalne; poprawnie „навсегда”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",
+   "rodzaj": "nowe",
+   "pl": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",
+   "tlumaczenie": "Просмотрите предпросмотр и «Правила плана» — результат сохраняется только после подтверждения.",
+   "poprawka": "Проверьте предпросмотр и «Правила плана» — результат сохраняется только после подтверждения.",
+   "powod": "Tautologia „Просмотрите предпросмотр”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "dyn.mis.jerk",
+   "rodzaj": "wskazowka",
+   "pl": "Szarpanie i wymachy na siłę.",
+   "tlumaczenie": "Резкие, силовые махи.",
+   "poprawka": "Рывки и махи через силу.",
+   "powod": "„силовые махи” jest nienaturalne; źródło mówi o szarpaniu i wymachach na siłę",
+   "waga": "niska"
+  },
+  {
+   "klucz": "gcalf.set",
+   "rodzaj": "wskazowka",
+   "pl": "Stań przednią częścią stopy na krawędzi stopnia, pięta poza krawędzią.",
+   "tlumaczenie": "Встань подушечками стоп на край ступеньки, пятка свисает.",
+   "poprawka": "Встань подушечкой стопы на край ступеньки, пятка свисает.",
+   "powod": "Źródło ma jedną stopę (l.poj., jak „пятка”); „подушечками стоп” daje niespójność liczby",
+   "waga": "niska"
+  },
+  {
+   "klucz": "st.mis.force",
+   "rodzaj": "wskazowka",
+   "pl": "Wciskanie się w rozciąganie na siłę.",
+   "tlumaczenie": "Силовое вдавливание в растяжку.",
+   "poprawka": "Попытка войти в растяжку через силу.",
+   "powod": "„Силовое вдавливание” jest nienaturalne i niejasne",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": [
+  {
+   "klucz": "barki do przodu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki do tyłu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Grzbiet w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Koci grzbiet",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Marsz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Obrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia do wewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia na zewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Powrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "ramię odsunięte w bok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rozsuwanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rzut",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Skok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Ściąganie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Uginanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "uniesienie ramienia",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Unoszenie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "wyprost nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "zgięcie nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  }
+ ]
+}

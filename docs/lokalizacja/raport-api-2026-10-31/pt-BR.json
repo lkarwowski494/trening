@@ -1,0 +1,296 @@
+{
+ "jezyk": "pt-BR",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01FTn5u73djiNthhoZY2aV6W",
+ "zdan": 628,
+ "ok": 586,
+ "uwagi": [
+  {
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "rodzaj": "nowe",
+   "pl": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "tlumaczenie": "Cor mais forte: grupo muscular principal; mais fraca: secundário.",
+   "poprawka": "Cor mais forte: grupo muscular principal; mais fraca: auxiliar.",
+   "powod": "Niespójna terminologia: partia pomocnicza to w innych tekstach „auxiliar”, a tu „secundário”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "kb.hips",
+   "rodzaj": "wskazowka",
+   "pl": "Siła idzie z bioder, nie z barków — ręce tylko prowadzą kettlebell.",
+   "tlumaczenie": "A força vem do quadril, não dos ombros — os braços só guiam a kettlebell.",
+   "poprawka": "A força vem do quadril, não dos ombros — os braços só guiam o kettlebell.",
+   "powod": "Niespójny rodzaj: „a kettlebell” tutaj, a „o kettlebell” w innych wskazówkach.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "kb.move",
+   "rodzaj": "wskazowka",
+   "pl": "Cofnij biodra, przepuszczając kettlebell między nogami, potem energicznie wypchnij biodra w przód — kettlebell unosi się przed tobą.",
+   "tlumaczenie": "Leve o quadril para trás enquanto a kettlebell passa entre as pernas e depois projete o quadril para a frente — a kettlebell sobe à sua frente.",
+   "poprawka": "Leve o quadril para trás enquanto o kettlebell passa entre as pernas e depois projete o quadril para a frente — o kettlebell sobe à sua frente.",
+   "powod": "Niespójny rodzaj rzeczownika „kettlebell” względem pozostałych tekstów.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "kb.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Stań za kettlebellem, stopy na szerokość barków lub trochę szerzej; pochyl się w biodrach z prostymi plecami i chwyć uchwyt oburącz.",
+   "tlumaczenie": "Fique atrás da kettlebell, pés na largura dos ombros ou um pouco mais abertos; incline-se a partir do quadril com as costas retas e segure a alça com as duas mãos.",
+   "poprawka": "Fique atrás do kettlebell, pés na largura dos ombros ou um pouco mais abertos; incline-se a partir do quadril com as costas retas e segure a alça com as duas mãos.",
+   "powod": "Niespójny rodzaj rzeczownika „kettlebell” względem pozostałych tekstów.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "pl": "Opuszczaj, aż gryf będzie tuż nad czołem — albo wcześniej, jeśli ramiona zaczną uciekać w tył.",
+   "tlumaczenie": "Desça até a barra ficar logo acima da testa ou os braços começarem a ir para trás.",
+   "poprawka": "Desça até a barra ficar logo acima da testa — ou pare antes se os braços começarem a ir para trás.",
+   "powod": "Zgubiono „albo wcześniej” (polecenie, by przerwać ruch wcześniej); zdanie niejasne i niespójne z bliźniaczym tekstem o dłoniach.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "+ {n} {w}",
+   "rodzaj": "nowe",
+   "pl": "+ {n} {w}",
+   "tlumaczenie": "+ mais {n} {w}",
+   "poprawka": "+ {n} {w}",
+   "powod": "„+” i „mais” znaczą to samo; źródło ma tylko „+”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "rodzaj": "nowe",
+   "pl": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "tlumaczenie": "Cardio: com {k}–{m} dias, você pode transformar os dias acima de {j} em sessões de cardio moderado («Dias de cardio no plano», desativado por padrão). Mais exercícios de fortalecimento não trazem necessariamente mais benefícios para a saúde, e vale distribuir a atividade aeróbica por vários dias. Duração da sessão de cardio = tempo da sessão.",
+   "poprawka": "Cardio: com {k}–{m} dias, você pode transformar os dias acima de {j} em sessões de cardio moderado (“Dias de cardio no plano”, desativado por padrão). Mais exercícios de fortalecimento não trazem necessariamente mais benefícios para a saúde, e vale distribuir a atividade aeróbica por vários dias. Duração da sessão de cardio = tempo da sessão.",
+   "powod": "Cudzysłów «» to konwencja pt-PT. W pt-BR i w pozostałych tekstach używany jest “ ”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "tlumaczenie": "Toque no rótulo de uma série para mudar o tipo; deslize uma linha para a esquerda para apagá-la. A faixa de repetições é opcional — com ela aparecem as sugestões «↑». «⇅ SS» liga o exercício ao seguinte em uma supersérie, «✕ SS» o retira do grupo. Ordem: «≡ Reordenar».",
+   "poprawka": "Toque no rótulo de uma série para mudar o tipo; deslize uma linha para a esquerda para apagá-la. A faixa de repetições é opcional — com ela aparecem as sugestões “↑”. “⇅ SS” liga o exercício ao seguinte em uma supersérie, “✕ SS” o retira do grupo. Ordem: “≡ Reordenar”.",
+   "powod": "Cudzysłów «» niespójny z pt-BR i z resztą tekstów.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "rodzaj": "nowe",
+   "pl": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "tlumaczenie": "A linha em «Esta semana» e em Progresso. Automático: {n} séries. Manual: o seu próprio número, de {min} a {max}.",
+   "poprawka": "A linha em “Esta semana” e em Progresso. Automático: {n} séries. Manual: o seu próprio número, de {min} a {max}.",
+   "powod": "Cudzysłów «» niespójny z pt-BR.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "rodzaj": "nowe",
+   "pl": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "tlumaczenie": "Menu ⋯ no cabeçalho: «Pausar treino» para o relógio do treino; o tempo de pausa não conta para a duração.",
+   "poprawka": "Menu ⋯ no cabeçalho: “Pausar treino” para o relógio do treino; o tempo de pausa não conta para a duração.",
+   "powod": "Cudzysłów «» niespójny z pt-BR.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Pierwszy trening: duży przycisk „Pusty trening” u góry.",
+   "rodzaj": "nowe",
+   "pl": "Pierwszy trening: duży przycisk „Pusty trening” u góry.",
+   "tlumaczenie": "Primeiro treino: o botão grande «Treino vazio» em cima.",
+   "poprawka": "Primeiro treino: o botão grande “Treino vazio” em cima.",
+   "powod": "Cudzysłów «» niespójny z pt-BR.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Pomaga zaciskać dłoń na uchwycie.",
+   "rodzaj": "nowe",
+   "pl": "Pomaga zaciskać dłoń na uchwycie.",
+   "tlumaczenie": "Ajuda a manter a pegada.",
+   "poprawka": "Ajuda a fechar a mão no pegador.",
+   "powod": "„Manter a pegada” zaciera opis funkcji mięśnia (zaciskanie dłoni na uchwycie).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Prostuje plecy i trzyma je prosto.",
+   "rodzaj": "nowe",
+   "pl": "Prostuje plecy i trzyma je prosto.",
+   "tlumaczenie": "Estende as costas e as mantém retas.",
+   "poprawka": "Endireita as costas e as mantém retas.",
+   "powod": "Niespójne z wersją „Ajuda a endireitar as costas”; „estende as costas” brzmi mniej naturalnie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",
+   "rodzaj": "nowe",
+   "pl": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",
+   "tlumaczenie": "Revise a pré-visualização e «Regras do plano»: nada é salvo até você confirmar.",
+   "poprawka": "Revise a pré-visualização e “Regras do plano”: nada é salvo até você confirmar.",
+   "powod": "Cudzysłów «» niespójny z pt-BR.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.",
+   "rodzaj": "nowe",
+   "pl": "RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.",
+   "tlumaczenie": "O RIR vai de 0 a {max}; mais de {max} repetições em reserva são salvas como «leve» (RPE {light}), porque abaixo de RPE {min} a escala descreve o esforço com palavras, não com repetições em reserva.",
+   "poprawka": "O RIR vai de 0 a {max}; mais de {max} repetições em reserva são salvas como “leve” (RPE {light}), porque abaixo de RPE {min} a escala descreve o esforço com palavras, não com repetições em reserva.",
+   "powod": "Cudzysłów «» niespójny z pt-BR.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Wstawanie",
+   "rodzaj": "nowe",
+   "pl": "Wstawanie",
+   "tlumaczenie": "Ficar em pé",
+   "poprawka": "Subida",
+   "powod": "Nazwa fazy w formie czasownikowej („Ficar em pé”), niespójna z rzeczownikowymi fazami siostrzanymi („Descida”, „Extensão”).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Wypychanie",
+   "rodzaj": "nowe",
+   "pl": "Wypychanie",
+   "tlumaczenie": "Empurrar",
+   "poprawka": "Empurrada",
+   "powod": "Bezokolicznik zamiast rzeczownika; niespójne z pozostałymi nazwami faz.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zaciska dłoń na uchwycie.",
+   "rodzaj": "nowe",
+   "pl": "Zaciska dłoń na uchwycie.",
+   "tlumaczenie": "Mantém a pegada.",
+   "poprawka": "Fecha a mão no pegador.",
+   "powod": "„Mantém a pegada” zaciera opis funkcji (zaciskanie dłoni na uchwycie).",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": [
+  {
+   "klucz": "barki do przodu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki do tyłu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Grzbiet w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Koci grzbiet",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Marsz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Obrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia do wewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia na zewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Powrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "ramię odsunięte w bok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rozsuwanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rzut",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Skok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Ściąganie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Uginanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "uniesienie ramienia",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Unoszenie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "wyprost nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "zgięcie nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  }
+ ]
+}

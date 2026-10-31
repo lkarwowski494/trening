@@ -1,0 +1,139 @@
+{
+ "jezyk": "en",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01FTn5u73djiNthhoZY2aV6W",
+ "zdan": 628,
+ "ok": 614,
+ "uwagi": [
+  {
+   "klucz": "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.",
+   "rodzaj": "nowe",
+   "pl": "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.",
+   "tlumaczenie": "Already logging workouts in another app? You can add your history from a CSV file.",
+   "poprawka": "Got workout history in another app? You can add it from a CSV file.",
+   "powod": "Zmiana sensu: źródło pyta o posiadanie historii, a nie o bieżące prowadzenie zapisów.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Serie na partię w tygodniu (pomocnicza = {h} serii): {list}",
+   "rodzaj": "nowe",
+   "pl": "Serie na partię w tygodniu (pomocnicza = {h} serii): {list}",
+   "tlumaczenie": "Sets per muscle group per week (secondary = {h} set): {list}",
+   "poprawka": "Sets per muscle group per week (secondary = {h} sets): {list}",
+   "powod": "{h} to wartość ułamkowa (0.5); po angielsku wymaga liczby mnogiej „sets”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "jump.drive",
+   "rodzaj": "wskazowka",
+   "pl": "Wybij się, prostując biodra, kolana i kostki, z zamachem rąk.",
+   "tlumaczenie": "Swing your arms and drive through your hips, knees and ankles.",
+   "poprawka": "Take off by extending your hips, knees and ankles, with an arm swing.",
+   "powod": "Zgubiono „wybij się” (wybicie do skoku); tłumaczenie nie mówi o odbiciu.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "tlumaczenie": "Barbell exercise with the bar on the trunk or over the head and face: safety equipment is recommended — a rack with safety arms, plus a spotter.",
+   "poprawka": "Barbell exercise with the bar on the trunk or over the head and face: spotting and safety are recommended — a rack with safety arms, plus a spotter.",
+   "powod": "„Asekuracja” obejmuje też osobę asekurującą, a nie tylko sprzęt. „Safety equipment” nie pasuje do spottera.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.",
+   "rodzaj": "nowe",
+   "pl": "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.",
+   "tlumaczenie": "The app closed unexpectedly during the last launches.",
+   "poprawka": "The app closed unexpectedly during recent launches.",
+   "powod": "„during the last launches” brzmi nienaturalnie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.",
+   "rodzaj": "nowe",
+   "pl": "Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.",
+   "tlumaczenie": "Each major muscle group on at least {n} days a week — that is what is recommended for health. Frequency affects strength, but more days do not have to give proportionally more; with the same number of sets the differences are small. A day when the group only assists counts as {h}. You can pick the split (full body, upper/lower) freely — with the same number of sets it gives similar results.",
+   "poprawka": "Each major muscle group on at least {n} days a week — that is what is recommended for health. Frequency affects strength, but more days do not necessarily give proportionally more; with the same number of sets the differences are small. A day when the group only assists counts as {h}. You can pick the split (full body, upper/lower) freely — with the same number of sets it gives similar results.",
+   "powod": "„do not have to give” jest nienaturalne; lepiej „do not necessarily give”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "lista serii przewijana",
+   "rodzaj": "nowe",
+   "pl": "lista serii przewijana",
+   "tlumaczenie": "set list scrolls",
+   "poprawka": "scrollable set list",
+   "powod": "Etykieta opisowa; „set list scrolls” brzmi niezręcznie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "rodzaj": "nowe",
+   "pl": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "tlumaczenie": "Stronger colour: primary muscle group, weaker: secondary.",
+   "poprawka": "Darker colour: main muscle group, lighter: secondary.",
+   "powod": "„Stronger/weaker colour” jest nienaturalne. „Primary” jest niespójne z „Main muscles” w innych tekstach.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "rodzaj": "nowe",
+   "pl": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "tlumaczenie": "General fitness: {s} sets per exercise, {a}–{b} reps (at home {c}–{d}), until another repetition would be hard. For health it is worth training all major muscle groups on at least {n} days a week.",
+   "poprawka": "General (health and fitness): {s} sets per exercise, {a}–{b} reps (at home {c}–{d}), until another repetition would be hard. For health it is worth training all major muscle groups on at least {n} days a week.",
+   "powod": "Pominięto „dla zdrowia” z nazwy celu.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "ramię odsunięte w bok",
+   "rodzaj": "nowe",
+   "pl": "ramię odsunięte w bok",
+   "tlumaczenie": "arm swung out to the side",
+   "poprawka": "arm moved out to the side",
+   "powod": "„swung” sugeruje ruch wymachem; źródło opisuje pozycję (odsunięte).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "rodzaj": "nowe",
+   "pl": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "tlumaczenie": "Rep ranges (muscle {a}–{b}, at home and without external load {c}–{d}; for strength other exercises {e}–{f}): muscles grow across a wide range of loads when sets are close to failure.",
+   "poprawka": "Rep ranges (muscle {a}–{b}, at home and without external load {c}–{d}; for strength, accessory exercises {e}–{f}): muscles grow across a wide range of loads when sets are close to failure.",
+   "powod": "„dodatkowe” to ćwiczenia dodatkowe (akcesoryjne), nie „other”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zmniejsz powtórzenia o 1",
+   "rodzaj": "nowe",
+   "pl": "Zmniejsz powtórzenia o 1",
+   "tlumaczenie": "Remove one rep",
+   "poprawka": "Decrease reps by 1",
+   "powod": "Niespójne z siostrzanymi etykietami „Decrease … by {n}”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zwiększ powtórzenia o 1",
+   "rodzaj": "nowe",
+   "pl": "Zwiększ powtórzenia o 1",
+   "tlumaczenie": "Add one rep",
+   "poprawka": "Increase reps by 1",
+   "powod": "Niespójne z siostrzanymi etykietami „Increase … by {n}”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "sq.bar",
+   "rodzaj": "wskazowka",
+   "pl": "Sztanga na górze pleców, chwyt szerzej niż barki; zdejmij ją ze stojaka i cofnij się o krok lub dwa.",
+   "tlumaczenie": "Bar across your upper back, hands wider than your shoulders; lift it off the rack and step back a step or two.",
+   "poprawka": "Bar across your upper back, hands wider than your shoulders; lift it off the rack and take a step or two back.",
+   "powod": "Powtórzenie „step back a step” brzmi niezręcznie.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}
