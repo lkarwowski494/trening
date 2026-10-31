@@ -650,3 +650,18 @@ Pomiary u = 0 / 1 i co u = 0,05: chwyt w górze i w dole wobec barku (siad: bark
 | Underhand Lat Pulldown | tak | ok (podchwyt z ±18, y 167 → 88) | general vpull | tak | jak Close-Grip |
 | V-Bar Pulldown | tak | ok (uchwyt V z ±7, y 166 → 97) | general vpull | tak | — |
 | Wide-Grip Pulldown Behind The Neck | tak | ok (chwyt z ±42, drążek za głową — x 0 przy środku głowy x 12, dół y 109 na karku) | general vpull | tak | — |
+
+## shrug — 8 ćwiczeń, 8 z danymi (karty własne 2; zestawy: `shrug` 5, `row` 1; brak 0) — partia 4E
+
+Pomiary co u = 0,05: uniesienie chwytu (barków), łokieć, uniesienie ramienia, tułów, stopy, położenie gryfu wobec ud; arkusz z boku (u = 0 / 1) dla Middle Back Shrug, Calf-Machine Shoulder Shrug i Smith (PIL, poza repo). Walidacja 8/8 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`). Stojące ze sztangą, hantlami i linkami: tułów 0 → −4,5° w trakcie uniesienia (drobne wobec `shrug.tall` „nieruchomo”).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Barbell Shrug Behind The Back | tak | ok (gryf za udami x −16, uniesienie 8,6 cm, łokieć 3–14°) | general shrug | tak | — |
+| Calf-Machine Shoulder Shrug | tak | ok w walidacji; **dłonie na uchwytach prowadnicy** (dane jak Leverage Shrug), bez wałków na barkach; **łokieć 32 → 45°** | general shrug | **nie** (`shrug.tall` „pracują tylko barki”) | **ACG-014** (nota: „shoulder pads loaded … no grip needed”), **ACG-019** (rozszerzenie) |
+| Leverage Shrug | tak | ok w walidacji; uchwyty prowadnicy y 78,5 → 87, **łokieć 32 → 45°** | general shrug | **nie** (jw.) | **ACG-019** (rozszerzenie) |
+| Middle Back Shrug | tak | ok (przodem na ławce 45° — ustawienie jak Chest Supported Row; hantle cofają się x −38 → −31 i w górę o 6 cm — ściąganie łopatek; łokieć stały 42°) | general row | tak | nota: proste ręce — w rysunku 42° (bez zdania w zestawie) |
+| Shrugs (hantle) | tak | ok (hantle przy udach, uniesienie 7,8 cm, łokieć 4–13°) | own | — | karta zgodna |
+| Shrugs (linki) | tak | ok (drążek z dolnego wyciągu, dane jak sztanga) | general shrug | tak | — |
+| Shrugs (sztanga) | tak | ok (gryf przed udami x 14–17, uniesienie 8,3 cm, łokieć 4–14°) | own | — | karta zgodna |
+| Smith Machine Behind the Back Shrug | tak | ok w walidacji; gryf w prowadnicy za udami x −15,5, **łokieć 21 → 38°** | general shrug | **nie** (`shrug.tall`) | **ACG-019** (rozszerzenie) |
