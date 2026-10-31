@@ -97,3 +97,46 @@ Pomiary w pozycji górnej (strona pracująca): dłoń − bark (y), łokieć −
 | Upright Row (linki) | tak | ok | general uprightRow | tak | — |
 | Upright Row (sztanga) | tak | ok | general uprightRow | tak | — |
 | Y Raise (hantle) | tak | ok (tułów 45°, ramię do 145°, odwiedzenie 37° — litera Y) | general raise | tak | — |
+
+## curl — 36 ćwiczeń, 36 z danymi (karty własne 6, zestawy 30)
+
+Pomiary (ręka pracująca): kąt łokcia, kąt ramienia od osi tułowia i jego zmiana (Δ — „łokcie przy bokach”), łokieć x − bark, przedramię od pionu w pozycji górnej, obrót przedramienia, tułów i stopy; modlitewnik — odległość ramienia od linii podpórki. Tułów stały (0° albo stały skłon/oparcie) i stopy y = 0 we wszystkich. Arkusze: bok (7).
+
+| Ćwiczenie | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|
+| Barbell Curl | ok poza górą: łokieć 21–135°, ramię Δ2,1°, przedramię na górze **40,4° od pionu** | own | — | **ACG-012** |
+| Barbell Preacher Curl | ok (środek ramienia 2,5–3,1 cm od linii podpórki, łokieć 13,7–126°) | general curl | tak | OP-6 |
+| Bayesian Curl | ok (ramię 35–40° za tułowiem, stałe) | general curl | tak | — |
+| Biceps Curl (hantle) | ok (supinacja 0 → 70° — „obracając dłoń”, łokieć 18–134°) | own | — | — |
+| Cable Curl | ok (Δ2,1°) | own | — | — |
+| Cable Curl (dwie linki) | ok | general curl | tak | — |
+| Cable Preacher Curl | ok | general curl | tak | OP-6 |
+| Concentration Curl (hantle) | ok (tułów 50°, siad, łokieć przy udzie) | general curl | tak | — |
+| Cross Body Hammer Curl | ok (dłoń z 25 → 3 cm — przez tułów, chwyt neutralny) | general curl | tak | — |
+| Drag Curl | ok (łokcie w tył do −11,7 cm, Δ17° — zestaw bez `curl.elbows`, zgodnie z ruchem) | general curl | tak | — |
+| EZ Bar Curl | ok poza górą: przedramię na górze **41,5° od pionu** | own | — | **ACG-012** |
+| Hammer Curl | ok poza górą: przedramię na górze **40,2° od pionu**; chwyt neutralny (obrót 0°) | own | — | **ACG-012** |
+| Hammer Curl (linki) | ok | general curl | tak | — |
+| High Cable Curl | ok (ramiona odwiedzione 96–100°, łokieć 7,6–118°) | general curl | tak | — |
+| Incline Curl (hantle) | ok (oparcie 35°, ramię pionowo, Δ7,5°) | general curl | tak | — |
+| Incline Hammer Curl | ok | general curl | tak | — |
+| Lying Cable Curl | ok (leżenie na podłodze, ramię wzdłuż tułowia) | general curl | tak | OP-6 |
+| Lying Close-Grip Bar Curl On High Pulley | ok (ławka, ramię pionowo do wyciągu, łokieć 18–107,6°) | general curl | tak* | OP-6 (najmniejsze zgięcie końcowe w rodzinie) |
+| Lying Supine Dumbbell Curl | ok | general curl | tak | OP-6 |
+| Machine Biceps Curl | ok | general curl | tak | OP-6 |
+| One Arm Dumbbell Preacher Curl | ok | general curl | tak | OP-6 |
+| Preacher Curl | ok | own | — | OP-6 |
+| Preacher Curl (EZ) | ok | general curl | tak | OP-6 |
+| Preacher Hammer Dumbbell Curl | ok | general curl | tak | OP-6 |
+| Reverse Cable Curl | ok (nachwyt −70°) | general curl | tak | — |
+| Reverse Curl | ok (nachwyt −70°) | general curl | tak | — |
+| Reverse EZ-Bar Preacher Curl | ok | general curl | tak | OP-6 |
+| Seated Close-Grip Concentration Barbell Curl | ok | general curl | tak | — |
+| Spider Curl | ok (klatka na ławce 45°, ramię pionowo, łokieć 1,5–124,6°) | general curl | tak | OP-6 |
+| Spider Curl (sztanga) | ok | general curl | tak | OP-6 |
+| Standing Concentration Curl | ok (skłon 45°, ramię zwisa) | general curl | tak | OP-6 |
+| Standing Dumbbell Reverse Curl | ok | general curl | tak | — |
+| Standing Inner-Biceps Curl | ok (ramię odwiedzione 20–23,5°, supinacja) | general curl | tak | — |
+| Standing One-Arm Cable Curl | ok | general curl | tak | — |
+| Zottman Curl | ok (obrót −60 ↔ 60°) | general curl | tak | — |
+| Zottman Preacher Curl | ok | general curl | tak | OP-6 |
