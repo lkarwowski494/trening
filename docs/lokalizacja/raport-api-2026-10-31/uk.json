@@ -1,0 +1,260 @@
+{
+ "jezyk": "uk",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01FTn5u73djiNthhoZY2aV6W",
+ "zdan": 628,
+ "ok": 590,
+ "uwagi": [
+  {
+   "klucz": "{n} mi",
+   "rodzaj": "nowe",
+   "pl": "{n} mi",
+   "tlumaczenie": "{n} ми",
+   "poprawka": "{n} mi",
+   "powod": "Skrót „ми” nie jest przyjętym oznaczeniem mili i myli się z zaimkiem „ми” (my); lepiej użyć międzynarodowego symbolu mi",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "imperialny (lb, mi, yd)",
+   "rodzaj": "nowe",
+   "pl": "imperialny (lb, mi, yd)",
+   "tlumaczenie": "імперська (фнт, ми, ярд)",
+   "poprawka": "імперська (фнт, mi, ярд)",
+   "powod": "Skrót mili musi być spójny z wpisem 14; „ми” jest mylące",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "rodzaj": "nowe",
+   "pl": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "tlumaczenie": "Риска в розділі «Цей тиждень» і в «Прогресі». Автоматично: {n} підходів. Вручну: ваше число від {min} до {max}.",
+   "poprawka": "Риска в розділі «Цей тиждень» і в «Прогресі». Автоматично: підходів — {n}. Вручну: ваше число від {min} до {max}.",
+   "powod": "Stała forma „підходів” po zmiennej {n} jest błędna dla 1 i 2–4",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "rodzaj": "nowe",
+   "pl": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "tlumaczenie": "Яскравіший колір: основна група м’язів, блідіший: допоміжна.",
+   "poprawka": "Яскравіший колір: основна частина тіла, блідіший: допоміжна.",
+   "powod": "Termin niespójny z resztą tekstów, gdzie „partia” = „частина тіла”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).",
+   "rodzaj": "nowe",
+   "pl": "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).",
+   "tlumaczenie": "Рідше ніж {n} дні на тиждень: {list} (день лише з допоміжною роботою = {h}).",
+   "poprawka": "Рідше ніж {n} дн. на тиждень: {list} (день лише з допоміжною роботою = {h}).",
+   "powod": "Stała forma „дні” po zmiennej {n}; skrót „дн.” jak w pozostałych tekstach",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wypychanie",
+   "rodzaj": "nowe",
+   "pl": "Wypychanie",
+   "tlumaczenie": "Жим",
+   "poprawka": "Виштовхування",
+   "powod": "To nazwa fazy ruchu; „Жим” czyta się jak nazwę ćwiczenia, a siostrzane fazy to rzeczowniki odczasownikowe",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Miejsce na te dni",
+   "rodzaj": "nowe",
+   "pl": "Miejsce na te dni",
+   "tlumaczenie": "Місце на ці дні",
+   "poprawka": "Місце для цих днів",
+   "powod": "„Місце для цих днів” brzmi naturalniej",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu",
+   "rodzaj": "nowe",
+   "pl": "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu",
+   "tlumaczenie": "План змінено: {day} — попередні дні за попереднім планом",
+   "poprawka": "План змінено: {day} — раніші дні йдуть за попереднім планом",
+   "powod": "Powtórzenie „попередні… попереднім” brzmi niezręcznie",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Prostowanie",
+   "rodzaj": "nowe",
+   "pl": "Prostowanie",
+   "tlumaczenie": "Випрямлення",
+   "poprawka": "Розгинання",
+   "powod": "Faza prostowania stawu; „Розгинання” jest spójne z opisami funkcji mięśni („розгинає”)",
+   "waga": "niska"
+  },
+  {
+   "klucz": "System miar",
+   "rodzaj": "nowe",
+   "pl": "System miar",
+   "tlumaczenie": "Система мір",
+   "poprawka": "Система одиниць",
+   "powod": "„Система одиниць” jest naturalniejsze niż „система мір”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "jump.drive",
+   "rodzaj": "wskazowka",
+   "pl": "Wybij się, prostując biodra, kolana i kostki, z zamachem rąk.",
+   "tlumaczenie": "Відштовхнись, випрямляючи таз, коліна й гомілкостопи, з махом рук.",
+   "poprawka": "Відштовхнись, випрямляючи таз, коліна й гомілковостопні суглоби, з махом рук.",
+   "powod": "Potoczne „гомілкостопи”; w innych wskazówkach jest „гомілковостопні суглоби”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "mb.legs",
+   "rodzaj": "wskazowka",
+   "pl": "Rzucaj całym ciałem — prostuj biodra, kolana i kostki razem z wyrzutem.",
+   "tlumaczenie": "Кидай усім тілом — випрямляй таз, коліна й гомілкостопи в момент кидка.",
+   "poprawka": "Кидай усім тілом — випрямляй таз, коліна й гомілковостопні суглоби в момент кидка.",
+   "powod": "Potoczne „гомілкостопи”; termin niespójny z resztą wskazówek",
+   "waga": "niska"
+  },
+  {
+   "klucz": "pendlay.mis.torso",
+   "rodzaj": "wskazowka",
+   "pl": "Unoszenie tułowia przy przyciąganiu.",
+   "tlumaczenie": "Підйом корпуса під час тяги.",
+   "poprawka": "Підйом корпусу під час тяги.",
+   "powod": "Poprawna forma dopełniacza w tym znaczeniu to „корпусу”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "pl": "Opuszczaj, aż gryf będzie tuż nad czołem — albo wcześniej, jeśli ramiona zaczną uciekać w tył.",
+   "tlumaczenie": "Опускай, доки штанга не опиниться над самим чолом або плечі не почнуть відходити назад.",
+   "poprawka": "Опускай, доки штанга не опиниться трохи над чолом — або зупинись раніше, якщо плечі почнуть відходити назад.",
+   "powod": "Zatarto sens „albo wcześniej” (zatrzymaj się wcześniej); niespójne z wpisem 573",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": [
+  {
+   "klucz": "barki do przodu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki do tyłu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Grzbiet w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Koci grzbiet",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Marsz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Obrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia do wewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia na zewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Powrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "ramię odsunięte w bok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rozsuwanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rzut",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Skok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Ściąganie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Uginanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "uniesienie ramienia",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Unoszenie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "wyprost nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "zgięcie nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  }
+ ]
+}

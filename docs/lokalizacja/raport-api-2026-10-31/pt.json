@@ -1,0 +1,233 @@
+{
+ "jezyk": "pt",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01FTn5u73djiNthhoZY2aV6W",
+ "zdan": 628,
+ "ok": 593,
+ "uwagi": [
+  {
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "rodzaj": "nowe",
+   "pl": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "tlumaczenie": "Cor mais forte: grupo muscular principal; cor mais fraca: secundário.",
+   "poprawka": "Cor mais forte: grupo muscular principal; cor mais fraca: auxiliar.",
+   "powod": "Niespójna terminologia: „partia pomocnicza” to w innych tekstach „auxiliar” (np. 75, 165, 167), tu „secundário”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).",
+   "rodzaj": "nowe",
+   "pl": "Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).",
+   "tlumaczenie": "O grupo muscular secundário de um exercício conta como meia série (principal 1, secundário 0,5).",
+   "poprawka": "O grupo muscular auxiliar de um exercício conta como meia série (principal 1, auxiliar 0,5).",
+   "powod": "Niespójna terminologia: „pomocnicza” to w innych tekstach „auxiliar”, tu „secundário”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "+ {n} {w}",
+   "rodzaj": "nowe",
+   "pl": "+ {n} {w}",
+   "tlumaczenie": "+ mais {n} {w}",
+   "poprawka": "+ {n} {w}",
+   "powod": "Znak „+” i „mais” mówią to samo; wystarczy jedno, jak w źródle.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "rodzaj": "nowe",
+   "pl": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "tlumaczenie": "Este mês treina a sério e usa todos os dias de treino gratuitos ({n}). Bom trabalho!",
+   "poprawka": "Este mês treinou a sério e usou todos os dias de treino gratuitos ({n}). Bom trabalho!",
+   "powod": "Czas teraźniejszy brzmi nienaturalnie w komunikacie o wykorzystanym limicie; lepiej czas przeszły.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Wstawanie",
+   "rodzaj": "nowe",
+   "pl": "Wstawanie",
+   "tlumaczenie": "Levantar",
+   "poprawka": "Subida",
+   "powod": "Nazwa fazy powinna być rzeczownikiem, jak siostrzane fazy („Descida”, „Extensão”); bezokolicznik „Levantar” jest niespójny.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Wypychanie",
+   "rodzaj": "nowe",
+   "pl": "Wypychanie",
+   "tlumaczenie": "Empurrar",
+   "poprawka": "Empurrão",
+   "powod": "Nazwa fazy powinna być rzeczownikiem, jak pozostałe fazy; bezokolicznik „Empurrar” jest niespójny.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "halo.close",
+   "rodzaj": "wskazowka",
+   "pl": "Prowadź kettlebell wokół głowy, tuż przy niej.",
+   "tlumaczenie": "Leva o kettlebell à volta da cabeça, bem junto a ela.",
+   "poprawka": "Leva a kettlebell à volta da cabeça, bem junto a ela.",
+   "powod": "Niespójny rodzaj: w 422–424 „a kettlebell” (żeński), tu męski.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "pl": "Opuszczaj, aż gryf będzie tuż nad czołem — albo wcześniej, jeśli ramiona zaczną uciekać w tył.",
+   "tlumaczenie": "Desce até a barra ficar logo acima da testa ou os braços começarem a ir para trás.",
+   "poprawka": "Desce até a barra ficar logo acima da testa — ou para antes se os braços começarem a fugir para trás.",
+   "powod": "Zgubiono „albo wcześniej” (zatrzymaj się wcześniej); struktura niespójna z bliźniaczym zdaniem 573.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "st.noBounce",
+   "rodzaj": "wskazowka",
+   "pl": "Trzymaj spokojnie, bez sprężynowania.",
+   "tlumaczenie": "Mantém a posição com calma, sem balançar.",
+   "poprawka": "Mantém a posição com calma, sem ressaltos.",
+   "powod": "„Sprężynowanie” to odbijanie (bouncing), nie kołysanie; „ressaltos” oddaje to dokładniej.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "tgu.arm",
+   "rodzaj": "wskazowka",
+   "pl": "Kettlebell przez cały czas nad barkiem, ręka prosta.",
+   "tlumaczenie": "O kettlebell sempre por cima do ombro, braço esticado.",
+   "poprawka": "A kettlebell sempre por cima do ombro, braço esticado.",
+   "powod": "Niespójny rodzaj: w 422–424 „a kettlebell” (żeński), tu męski.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "tgu.eyes",
+   "rodzaj": "wskazowka",
+   "pl": "Wzrok na kettlebellu przez cały ruch.",
+   "tlumaczenie": "Os olhos no kettlebell durante todo o movimento.",
+   "poprawka": "Os olhos na kettlebell durante todo o movimento.",
+   "powod": "Niespójny rodzaj: w 422–424 „a kettlebell” (żeński), tu męski.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": [
+  {
+   "klucz": "barki do przodu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki do tyłu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Grzbiet w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Koci grzbiet",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Marsz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Obrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia do wewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia na zewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Powrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "ramię odsunięte w bok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rozsuwanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rzut",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Skok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Ściąganie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Uginanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "uniesienie ramienia",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Unoszenie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "wyprost nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "zgięcie nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  }
+ ]
+}

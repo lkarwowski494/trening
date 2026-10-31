@@ -1,0 +1,233 @@
+{
+ "jezyk": "id",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01FTn5u73djiNthhoZY2aV6W",
+ "zdan": 628,
+ "ok": 593,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "tlumaczenie": "Latihan dengan barbel di atas batang tubuh atau di atas kepala dan wajah: pengamanan dianjurkan — rak dengan lengan pengaman dan spotter (orang yang berjaga dan siap membantu).",
+   "poprawka": "Gerakan dengan barbel di atas batang tubuh atau di atas kepala dan wajah: pengamanan dianjurkan — rak dengan lengan pengaman dan spotter (orang yang berjaga dan siap membantu).",
+   "powod": "Niespójna terminologia: „ćwiczenie” w aplikacji to „gerakan”, a „latihan” oznacza trening (por. zdanie 5).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.",
+   "tlumaczenie": "Latihan dengan barbel di atas batang tubuh atau di atas kepala dan wajah: spotter (orang yang berjaga dan siap membantu) dianjurkan.",
+   "poprawka": "Gerakan dengan barbel di atas batang tubuh atau di atas kepala dan wajah: spotter (orang yang berjaga dan siap membantu) dianjurkan.",
+   "powod": "Niespójna terminologia: „ćwiczenie” w aplikacji to „gerakan”, a „latihan” oznacza trening.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.",
+   "rodzaj": "nowe",
+   "pl": "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.",
+   "tlumaczenie": "Istirahat: {b} mnt setelah gerakan multi-sendi, {c} mnt setelah gerakan satu sendi dan core; lama istirahat yang pasti belum ditetapkan.",
+   "poprawka": "Istirahat: {b} mnt setelah gerakan multi-sendi, {c} mnt setelah gerakan isolasi dan core; lama istirahat yang pasti belum ditetapkan.",
+   "powod": "Niespójna terminologia: w zdaniu 153 „jednostawowe” to „isolasi”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Skręca tułów i pochyla go na bok.",
+   "rodzaj": "nowe",
+   "pl": "Skręca tułów i pochyla go na bok.",
+   "tlumaczenie": "Memutar badan dan membungkukkannya ke samping.",
+   "poprawka": "Memutar badan dan memiringkannya ke samping.",
+   "powod": "„Membungkukkan” sugeruje pochylenie w przód. Skłon boczny lepiej oddaje „memiringkan”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "hext.range",
+   "rodzaj": "wskazowka",
+   "pl": "Unoś nogę tylko tak wysoko, żeby plecy się nie wyginały.",
+   "tlumaczenie": "Angkat kaki hanya setinggi punggung tidak melengkung.",
+   "poprawka": "Angkat kaki hanya setinggi yang memungkinkan punggung tidak melengkung.",
+   "powod": "Konstrukcja „setinggi punggung tidak melengkung” jest nienaturalna.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "llc.hips",
+   "rodzaj": "wskazowka",
+   "pl": "Biodra przyciśnięte do ławki — bez wyginania pleców.",
+   "tlumaczenie": "Jaga pinggul tetap tertekan ke bawah — jangan melengkungkan punggung.",
+   "poprawka": "Jaga pinggul tetap tertekan ke bangku — jangan melengkungkan punggung.",
+   "powod": "Pominięto „do ławki” z polskiego źródła.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "oly.close",
+   "rodzaj": "wskazowka",
+   "pl": "Sztanga blisko ciała przez cały ciąg.",
+   "tlumaczenie": "Barbel tetap dekat dengan badan sepanjang tarikan.",
+   "poprawka": "Batang tetap dekat dengan badan sepanjang tarikan.",
+   "powod": "Niespójna terminologia: sztanga jest w innych wskazówkach tłumaczona jako „batang”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "oly.legs",
+   "rodzaj": "wskazowka",
+   "pl": "Ręce proste jak najdłużej — sztangę wybijają nogi i biodra.",
+   "tlumaczenie": "Lengan lurus selama mungkin — kaki dan pinggul yang mendorong barbel.",
+   "poprawka": "Lengan lurus selama mungkin — kaki dan pinggul yang mendorong batang.",
+   "powod": "Niespójna terminologia: sztanga jest w innych wskazówkach tłumaczona jako „batang”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "oly.mis",
+   "rodzaj": "wskazowka",
+   "pl": "Sztanga odjeżdża od ciała albo plecy się zaokrąglają.",
+   "tlumaczenie": "Barbel menjauh dari badan atau punggung membungkuk.",
+   "poprawka": "Batang menjauh dari badan atau punggung membungkuk.",
+   "powod": "Niespójna terminologia: sztanga jest w innych wskazówkach tłumaczona jako „batang”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "pendlay.mis.torso",
+   "rodzaj": "wskazowka",
+   "pl": "Unoszenie tułowia przy przyciąganiu.",
+   "tlumaczenie": "Mengangkat torso saat menarik.",
+   "poprawka": "Mengangkat badan saat menarik.",
+   "powod": "Niespójna terminologia: tułów jest zwykle tłumaczony jako „badan”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "pl": "Opuszczaj, aż gryf będzie tuż nad czołem — albo wcześniej, jeśli ramiona zaczną uciekać w tył.",
+   "tlumaczenie": "Turunkan hingga batang tepat di atas dahi atau lengan atas mulai bergeser ke belakang.",
+   "poprawka": "Turunkan sampai batang tepat di atas dahi — atau berhenti lebih awal jika lengan atas mulai bergeser ke belakang.",
+   "powod": "Zgubiono konstrukcję „albo wcześniej, jeśli…”, przez co zdanie jest mniej jasne i niespójne ze zdaniem 573.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": [
+  {
+   "klucz": "barki do przodu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki do tyłu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Grzbiet w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Koci grzbiet",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Marsz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Obrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia do wewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia na zewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Powrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "ramię odsunięte w bok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rozsuwanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rzut",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Skok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Ściąganie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Uginanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "uniesienie ramienia",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Unoszenie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "wyprost nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "zgięcie nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  }
+ ]
+}

@@ -1,0 +1,296 @@
+{
+ "jezyk": "ro",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01FTn5u73djiNthhoZY2aV6W",
+ "zdan": 628,
+ "ok": 586,
+ "uwagi": [
+  {
+   "klucz": "Pauza",
+   "rodzaj": "nowe",
+   "pl": "Pauza",
+   "tlumaczenie": "Întrerupe",
+   "poprawka": "Pauză",
+   "powod": "To nazwa fazy animacji („{faza} {n} s”), a więc rzeczownik. „Întrerupe” to polecenie przycisku i zmienia znaczenie",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Podciąganie",
+   "rodzaj": "nowe",
+   "pl": "Podciąganie",
+   "tlumaczenie": "Tracțiune",
+   "poprawka": "Tragere în sus",
+   "powod": "„Tracțiune” kojarzy się z nazwą ćwiczenia (tracțiuni = podciąganie), a chodzi o nazwę fazy ruchu, analogicznie do „Coborâre” i „Împingere”",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Bujanie się i wymachy nogami.",
+   "rodzaj": "nowe",
+   "pl": "Bujanie się i wymachy nogami.",
+   "tlumaczenie": "Balansarea corpului și loviturile cu picioarele.",
+   "poprawka": "Balansarea corpului și a picioarelor.",
+   "powod": "„loviturile cu picioarele” sugeruje kopanie czegoś, a chodzi o wymachy nogami",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Prostowanie",
+   "rodzaj": "nowe",
+   "pl": "Prostowanie",
+   "tlumaczenie": "Întindere",
+   "poprawka": "Extensie",
+   "powod": "„Întindere” znaczy też rozciąganie (stretching). Chodzi o prostowanie stawu, spójnie z „extinde” w opisach mięśni",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "rodzaj": "nowe",
+   "pl": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "tlumaczenie": "Efort: până când încă o repetare ar fi grea — oboseală, dar nu extenuare. Nu e nevoie să mergeți până la epuizare.",
+   "poprawka": "Efort: până când încă o repetare ar fi grea — oboseală, dar nu extenuare. Nu e nevoie să mergeți până la eșec muscular.",
+   "powod": "„Upadek” to eșec muscular. „Epuizare” myli się z wyczerpaniem, od którego zdanie właśnie odróżnia upadek",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "rodzaj": "nowe",
+   "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "tlumaczenie": "Efort: de obicei {a}–{b} repetări în rezervă — aproape de epuizare sau {c}–{d}; numărul exact nu este stabilit. Nu e nevoie să mergeți până la epuizare.",
+   "poprawka": "Efort: de obicei {a}–{b} repetări în rezervă — aproape de eșecul muscular sau {c}–{d}; numărul exact nu este stabilit. Nu e nevoie să mergeți până la eșec muscular.",
+   "powod": "Termin „upadek” należy oddać jako „eșec muscular”, nie „epuizare”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "rodzaj": "nowe",
+   "pl": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "tlumaczenie": "Intervale de repetări (masă {a}–{b}, acasă și fără greutate externă {c}–{d}; la forță, exercițiile suplimentare {e}–{f}): mușchii cresc într-un interval larg de greutăți când seriile sunt aproape de epuizare.",
+   "poprawka": "Intervale de repetări (masă {a}–{b}, acasă și fără greutate externă {c}–{d}; la forță, exercițiile suplimentare {e}–{f}): mușchii cresc într-un interval larg de greutăți când seriile sunt aproape de eșecul muscular.",
+   "powod": "Termin „upadek” należy oddać jako „eșec muscular”, nie „epuizare”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "halo.close",
+   "rodzaj": "wskazowka",
+   "pl": "Prowadź kettlebell wokół głowy, tuż przy niej.",
+   "tlumaczenie": "Trece kettlebell-ul în jurul capului, foarte aproape de el.",
+   "poprawka": "Treci kettlebell-ul în jurul capului, foarte aproape de el.",
+   "powod": "„Trece” to 3. osoba czasu teraźniejszego. Tryb rozkazujący 2. os. lp. brzmi „Treci”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "hang.noSwing",
+   "rodzaj": "wskazowka",
+   "pl": "Bujanie się i wymachy nogami.",
+   "tlumaczenie": "Balansarea corpului și loviturile cu picioarele.",
+   "poprawka": "Balansarea corpului și a picioarelor.",
+   "powod": "„loviturile cu picioarele” sugeruje kopanie czegoś, a chodzi o wymachy nogami",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "oly.close",
+   "rodzaj": "wskazowka",
+   "pl": "Sztanga blisko ciała przez cały ciąg.",
+   "tlumaczenie": "Haltera aproape de corp pe toată tragerea.",
+   "poprawka": "Bara aproape de corp pe toată tragerea.",
+   "powod": "Niespójna terminologia: wszędzie indziej sztanga to „bara”, tu „haltera”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "oly.legs",
+   "rodzaj": "wskazowka",
+   "pl": "Ręce proste jak najdłużej — sztangę wybijają nogi i biodra.",
+   "tlumaczenie": "Brațele întinse cât mai mult timp — picioarele și șoldurile împing haltera.",
+   "poprawka": "Brațele întinse cât mai mult timp — picioarele și șoldurile împing bara.",
+   "powod": "Niespójna terminologia: „haltera” zamiast „bara”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "oly.mis",
+   "rodzaj": "wskazowka",
+   "pl": "Sztanga odjeżdża od ciała albo plecy się zaokrąglają.",
+   "tlumaczenie": "Haltera se îndepărtează de corp sau spatele se rotunjește.",
+   "poprawka": "Bara se îndepărtează de corp sau spatele se rotunjește.",
+   "powod": "Niespójna terminologia: „haltera” zamiast „bara”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+   "rodzaj": "nowe",
+   "pl": "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+   "tlumaczenie": "{k} zi de forță pe săptămână este mai puțin decât minimul recomandat (cel puțin {n} zile). Pentru început e un pas bun: puteți face exerciții de forță doar {k} zi pe săptămână, iar cu timpul să ajungeți la {n} — puțină mișcare e mai bună decât deloc.",
+   "poprawka": "{k} zi de forță pe săptămână este mai puțin decât minimul recomandat (cel puțin {n} zile). Pentru început e un pas bun: puteți face exerciții de forță doar {k} zi pe săptămână, iar cu timpul să ajungeți la {n} — puțină mișcare e mai bună decât nimic.",
+   "powod": "„mai bună decât deloc” jest niegramatyczne, poprawnie „decât nimic”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).",
+   "rodzaj": "nowe",
+   "pl": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).",
+   "tlumaczenie": "Cardio: de la {k} zile pe săptămână, o sesiune într-o zi separată; cu mai puține zile, toate sunt de forță, ca să nu ia cardioul zile din antrenamentul de forță (fiecare grupă musculară principală cel puțin {n} zile).",
+   "poprawka": "Cardio: de la {k} zile pe săptămână, o sesiune într-o zi separată; cu mai puține zile, toate sunt de forță, ca cardioul să nu ia zile de la antrenamentul de forță (fiecare grupă musculară principală cel puțin {n} zile).",
+   "powod": "Nienaturalny szyk zdania podrzędnego",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "rodzaj": "nowe",
+   "pl": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "tlumaczenie": "Cardio: la {k}–{m} zile puteți transforma zilele de peste {j} în sesiuni de cardio moderat („Zile de cardio în plan”, dezactivat implicit). Mai multe exerciții de întărire nu aduc neapărat mai multe beneficii pentru sănătate, iar mișcarea aerobă merită împărțită pe mai multe zile. Durata sesiunii de cardio = durata sesiunii.",
+   "poprawka": "Cardio: la {k}–{m} zile puteți transforma zilele de peste {j} în sesiuni de cardio moderat („Zile de cardio în plan”, dezactivate implicit). Mai multe exerciții de întărire nu aduc neapărat mai multe beneficii pentru sănătate, iar mișcarea aerobă merită împărțită pe mai multe zile. Durata sesiunii de cardio = durata sesiunii.",
+   "powod": "Brak zgodności rodzaju i liczby: „Zile…” wymaga formy „dezactivate”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "rodzaj": "nowe",
+   "pl": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "tlumaczenie": "Pauză. Timp rămas: {t}. Total: {all}.",
+   "poprawka": "Pauză. Timp rămas: {t}. Durata totală a pauzei: {all}.",
+   "powod": "„Total” bez dopowiedzenia jest niejasne w odczycie głosowym",
+   "waga": "niska"
+  },
+  {
+   "klucz": "push.rigid",
+   "rodzaj": "wskazowka",
+   "pl": "Tułów sztywny — biodra nie opadają i nie unoszą się.",
+   "tlumaczenie": "Corpul încordat — șoldurile nu cad și nu le ridici.",
+   "poprawka": "Corpul încordat — șoldurile nici nu cad, nici nu se ridică.",
+   "powod": "Niespójna konstrukcja (zmiana podmiotu w połowie zdania)",
+   "waga": "niska"
+  },
+  {
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "pl": "Opuszczaj, aż gryf będzie tuż nad czołem — albo wcześniej, jeśli ramiona zaczną uciekać w tył.",
+   "tlumaczenie": "Coboară până când bara ajunge chiar deasupra frunții sau brațele încep să se ducă înapoi.",
+   "poprawka": "Coboară până când bara ajunge chiar deasupra frunții — sau oprește-te mai devreme dacă brațele încep să fugă înapoi.",
+   "powod": "Zatarty niuans „albo wcześniej”; ujednolicenie z bliźniaczym zdaniem 573",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": [
+  {
+   "klucz": "barki do przodu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki do tyłu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Grzbiet w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Koci grzbiet",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Marsz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Obrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia do wewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia na zewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Powrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "ramię odsunięte w bok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rozsuwanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rzut",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Skok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Ściąganie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Uginanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "uniesienie ramienia",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Unoszenie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "wyprost nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "zgięcie nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  }
+ ]
+}

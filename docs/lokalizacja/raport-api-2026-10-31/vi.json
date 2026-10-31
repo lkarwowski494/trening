@@ -1,0 +1,242 @@
+{
+ "jezyk": "vi",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01FTn5u73djiNthhoZY2aV6W",
+ "zdan": 628,
+ "ok": 592,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "tlumaczenie": "Bài tập với thanh tạ đặt trên thân mình hoặc nâng qua đầu và mặt: nên có biện pháp bảo hộ — giá có tay đỡ an toàn và người hỗ trợ.",
+   "poprawka": "Bài tập với thanh tạ đặt trên thân mình hoặc ở phía trên đầu và mặt: nên có biện pháp bảo hộ — giá có tay đỡ an toàn và người hỗ trợ.",
+   "powod": "„nâng qua đầu” oznacza tylko wyciskanie nad głowę. Pomija sztangę nad twarzą (np. wyciskanie leżąc), więc zawęża zakres ostrzeżenia.",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.",
+   "tlumaczenie": "Bài tập với thanh tạ đặt trên thân mình hoặc nâng qua đầu và mặt: nên có người hỗ trợ.",
+   "poprawka": "Bài tập với thanh tạ đặt trên thân mình hoặc ở phía trên đầu và mặt: nên có người hỗ trợ.",
+   "powod": "„nâng qua đầu” zawęża zakres ostrzeżenia do wyciskania nad głowę. Pomija sztangę nad twarzą.",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Odciąga ramię do tyłu, gdy przyciągasz.",
+   "rodzaj": "nowe",
+   "pl": "Odciąga ramię do tyłu, gdy przyciągasz.",
+   "tlumaczenie": "Kéo cánh tay ra sau khi bạn kéo.",
+   "poprawka": "Kéo cánh tay về phía sau trong lúc bạn kéo.",
+   "powod": "„ra sau khi bạn kéo” można odczytać jako „po tym, jak przyciągniesz” (sau khi = po). Dwuznaczność.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Pomaga odciągać ramię do tyłu, gdy przyciągasz.",
+   "rodzaj": "nowe",
+   "pl": "Pomaga odciągać ramię do tyłu, gdy przyciągasz.",
+   "tlumaczenie": "Hỗ trợ kéo cánh tay ra sau khi bạn kéo.",
+   "poprawka": "Hỗ trợ kéo cánh tay về phía sau trong lúc bạn kéo.",
+   "powod": "„ra sau khi bạn kéo” można odczytać jako „po tym, jak przyciągniesz”. Dwuznaczność.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "rodzaj": "nowe",
+   "pl": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "tlumaczenie": "Mức gắng sức: đến khi lần tiếp theo trở nên khó — mệt nhưng chưa kiệt sức. Không cần tập đến kiệt sức.",
+   "poprawka": "Mức gắng sức: đến khi lần tiếp theo trở nên khó — mệt nhưng chưa kiệt sức. Không cần tập đến mức thất bại (không thể làm thêm lần nào).",
+   "powod": "„upadek” (failure) przełożono jako „kiệt sức” (wyczerpanie). Wcześniej w zdaniu „kiệt sức” oznacza wyczerpanie, więc oba pojęcia się mieszają.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "rodzaj": "nowe",
+   "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "tlumaczenie": "Mức gắng sức: thường chừa lại {a}–{b} lần — gần kiệt sức hoặc {c}–{d}; con số chính xác chưa được xác định. Không cần tập đến kiệt sức.",
+   "poprawka": "Mức gắng sức: thường chừa lại {a}–{b} lần — gần mức thất bại hoặc {c}–{d}; con số chính xác chưa được xác định. Không cần tập đến mức thất bại.",
+   "powod": "„upadek” (failure) to nie „kiệt sức” (wyczerpanie). Terminologia niespójna z 222.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "rodzaj": "nowe",
+   "pl": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "tlumaczenie": "Khoảng lần lặp (tăng cơ {a}–{b}, ở nhà và không có tạ {c}–{d}; khi tập sức mạnh, các bài khác {e}–{f}): cơ phát triển với nhiều mức tạ khác nhau khi các hiệp gần đến kiệt sức.",
+   "poprawka": "Khoảng lần lặp (tăng cơ {a}–{b}, ở nhà và không có tạ {c}–{d}; khi tập sức mạnh, các bài khác {e}–{f}): cơ phát triển với nhiều mức tạ khác nhau khi các hiệp gần đến mức thất bại.",
+   "powod": "„blisko upadku” = bliskość failure, a nie wyczerpania („kiệt sức”).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "halo.close",
+   "rodzaj": "wskazowka",
+   "pl": "Prowadź kettlebell wokół głowy, tuż przy niej.",
+   "tlumaczenie": "Đưa tạ ấm vòng quanh đầu, sát bên đầu.",
+   "poprawka": "Đưa kettlebell vòng quanh đầu, sát bên đầu.",
+   "powod": "Niespójna terminologia: w innych wskazówkach jest „kettlebell”, tu „tạ ấm”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "tgu.arm",
+   "rodzaj": "wskazowka",
+   "pl": "Kettlebell przez cały czas nad barkiem, ręka prosta.",
+   "tlumaczenie": "Tạ ấm luôn ở trên vai, tay duỗi thẳng.",
+   "poprawka": "Kettlebell luôn ở trên vai, tay duỗi thẳng.",
+   "powod": "Niespójna terminologia: „tạ ấm” zamiast „kettlebell” używanego w pozostałych wskazówkach.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "tgu.eyes",
+   "rodzaj": "wskazowka",
+   "pl": "Wzrok na kettlebellu przez cały ruch.",
+   "tlumaczenie": "Mắt nhìn tạ ấm trong suốt chuyển động.",
+   "poprawka": "Mắt nhìn kettlebell trong suốt chuyển động.",
+   "powod": "Niespójna terminologia: „tạ ấm” zamiast „kettlebell”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{n} mi",
+   "rodzaj": "nowe",
+   "pl": "{n} mi",
+   "tlumaczenie": "{n} dặm",
+   "poprawka": "{n} mi",
+   "powod": "Niespójność: pozostałe jednostki zostały jako skróty (lb, yd), a w 51 jest „mi”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "pl": "Opuszczaj, aż gryf będzie tuż nad czołem — albo wcześniej, jeśli ramiona zaczną uciekać w tył.",
+   "tlumaczenie": "Hạ đến khi đòn ngay trên trán hoặc khi cánh tay trên bắt đầu trôi ra sau.",
+   "poprawka": "Hạ đến khi đòn ở ngay trên trán — hoặc dừng sớm hơn nếu cánh tay trên bắt đầu trôi ra sau.",
+   "powod": "Zgubiono „wcześniej” (zatrzymaj się wcześniej). Brak spójności z bliźniaczym zdaniem 573.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": [
+  {
+   "klucz": "barki do przodu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki do tyłu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Grzbiet w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Koci grzbiet",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Marsz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Obrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia do wewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia na zewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Powrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "ramię odsunięte w bok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rozsuwanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rzut",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Skok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Ściąganie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Uginanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "uniesienie ramienia",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Unoszenie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "wyprost nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "zgięcie nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  }
+ ]
+}

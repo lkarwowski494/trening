@@ -1,0 +1,278 @@
+{
+ "jezyk": "zh-Hant",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01FTn5u73djiNthhoZY2aV6W",
+ "zdan": 628,
+ "ok": 588,
+ "uwagi": [
+  {
+   "klucz": "Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.",
+   "rodzaj": "nowe",
+   "pl": "Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.",
+   "tlumaczenie": "匯入的訓練、新紀錄和圖表隨時可用，沒有網路也可以。每月可免費訓練 {n} 天 — Pro 解除限制，也有一次買斷、永久使用的選項。",
+   "poprawka": "匯入的訓練、個人紀錄和圖表隨時可用，沒有網路也可以。每月可免費訓練 {n} 天 — Pro 解除限制，也有一次買斷、永久使用的選項。",
+   "powod": "„rekordy” to rekordy (osobiste), a nie „nowe rekordy” — w „新紀錄” dodano znaczenie, którego nie ma w źródle.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "hext.mis.arch",
+   "rodzaj": "wskazowka",
+   "pl": "Plecy wyginają się w łuk, gdy noga idzie w górę.",
+   "tlumaczenie": "腿往上時背部拱起。",
+   "poprawka": "腿往上時下背反弓。",
+   "powod": "„拱起” jest dwuznaczne (często znaczy zaokrąglenie pleców); chodzi o wygięcie w łuk, w innych wskazówkach oddawane jako „反弓”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "hext.range",
+   "rodzaj": "wskazowka",
+   "pl": "Unoś nogę tylko tak wysoko, żeby plecy się nie wyginały.",
+   "tlumaczenie": "腿只抬到背部不會拱起的高度。",
+   "poprawka": "腿只抬到下背不會反弓的高度。",
+   "powod": "„拱起” jest dwuznaczne; dla spójności z innymi wskazówkami lepiej „反弓”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "oly.mis",
+   "rodzaj": "wskazowka",
+   "pl": "Sztanga odjeżdża od ciała albo plecy się zaokrąglają.",
+   "tlumaczenie": "槓鈴離開身體，或背部拱起。",
+   "poprawka": "槓鈴離開身體，或圓背。",
+   "powod": "„背部拱起” może być odczytane jako wygięcie w łuk; źródło mówi o zaokrąglaniu pleców (spójnie z id 463: „圓背”).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "vup.back",
+   "rodzaj": "wskazowka",
+   "pl": "Nie wyginaj lędźwi w łuk i nie garb się.",
+   "tlumaczenie": "下背不要拱起，也不要彎曲。",
+   "poprawka": "下背不要反弓，也不要圓背。",
+   "powod": "„拱起” i „彎曲” nie oddają jasno dwóch błędów: wygięcia lędźwi w łuk i garbienia się.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.",
+   "rodzaj": "nowe",
+   "pl": "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.",
+   "tlumaczenie": "不購買也可以：每月最多 {n} 個訓練日；歷史記錄、備份與匯出隨時可用。",
+   "poprawka": "不購買也可以：每月最多 {n} 個訓練日；歷史紀錄、備份與匯出隨時可用。",
+   "powod": "Niespójny zapis: w innych miejscach (np. id 50) jest „紀錄”, a na Tajwanie rzeczownik zapisuje się jako 紀錄.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "rodzaj": "nowe",
+   "pl": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "tlumaczenie": "休息。剩餘時間：{t}。總計：{all}。",
+   "poprawka": "休息。剩餘時間：{t}。休息總長：{all}。",
+   "powod": "„Cała przerwa” oddano samym „總計”, przez co zgubiono odniesienie do przerwy.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "System miar",
+   "rodzaj": "nowe",
+   "pl": "System miar",
+   "tlumaczenie": "度量衡系統",
+   "poprawka": "度量衡單位",
+   "powod": "W tajwańskim iOS to ustawienie nazywa się „度量衡單位”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zmniejsz ciężar o {n}",
+   "rodzaj": "nowe",
+   "pl": "Zmniejsz ciężar o {n}",
+   "tlumaczenie": "重量減少 {n}",
+   "poprawka": "將重量減少 {n}",
+   "powod": "Etykieta przycisku VoiceOver powinna być w trybie rozkazującym; obecna forma brzmi jak stwierdzenie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zmniejsz czas o {n}",
+   "rodzaj": "nowe",
+   "pl": "Zmniejsz czas o {n}",
+   "tlumaczenie": "時間減少 {n}",
+   "poprawka": "將時間減少 {n}",
+   "powod": "Kontekst wymaga trybu rozkazującego; obecna forma brzmi jak stwierdzenie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zmniejsz dystans o {n}",
+   "rodzaj": "nowe",
+   "pl": "Zmniejsz dystans o {n}",
+   "tlumaczenie": "距離減少 {n}",
+   "poprawka": "將距離減少 {n}",
+   "powod": "Etykieta przycisku powinna być w trybie rozkazującym.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zmniejsz powtórzenia o 1",
+   "rodzaj": "nowe",
+   "pl": "Zmniejsz powtórzenia o 1",
+   "tlumaczenie": "次數減少 1",
+   "poprawka": "將次數減少 1",
+   "powod": "Etykieta przycisku powinna być w trybie rozkazującym.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zwiększ ciężar o {n}",
+   "rodzaj": "nowe",
+   "pl": "Zwiększ ciężar o {n}",
+   "tlumaczenie": "重量增加 {n}",
+   "poprawka": "將重量增加 {n}",
+   "powod": "Kontekst wymaga trybu rozkazującego; obecna forma brzmi jak stwierdzenie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zwiększ czas o {n}",
+   "rodzaj": "nowe",
+   "pl": "Zwiększ czas o {n}",
+   "tlumaczenie": "時間增加 {n}",
+   "poprawka": "將時間增加 {n}",
+   "powod": "Kontekst wymaga trybu rozkazującego.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zwiększ dystans o {n}",
+   "rodzaj": "nowe",
+   "pl": "Zwiększ dystans o {n}",
+   "tlumaczenie": "距離增加 {n}",
+   "poprawka": "將距離增加 {n}",
+   "powod": "Etykieta przycisku powinna być w trybie rozkazującym.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zwiększ powtórzenia o 1",
+   "rodzaj": "nowe",
+   "pl": "Zwiększ powtórzenia o 1",
+   "tlumaczenie": "次數增加 1",
+   "poprawka": "將次數增加 1",
+   "powod": "Etykieta przycisku powinna być w trybie rozkazującym.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": [
+  {
+   "klucz": "barki do przodu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki do tyłu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Grzbiet w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Koci grzbiet",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Marsz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Obrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia do wewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia na zewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Powrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "ramię odsunięte w bok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rozsuwanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rzut",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Skok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Ściąganie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Uginanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "uniesienie ramienia",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Unoszenie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "wyprost nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "zgięcie nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  }
+ ]
+}

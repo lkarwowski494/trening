@@ -236,10 +236,10 @@ describe('eksport dla strony: brak przekładu zdania = brak zdania, nigdy tekst 
   };
   const BRAK = (l: Lang, id: string) => !Object.prototype.hasOwnProperty.call(cueDict(l), id);
   const manifest = () => JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8')) as { languages: { lang: string; missing: { cues: number; exercises: Record<string, number> } }[] };
-  test('prawdziwy słownik: 52 zdania wersji 1.1 (53 bez bp.elbowsMid, przełożonego w 1.0.1) nie mają przekładu w 33 językach (te, które aplikacja pokazuje po angielsku); en i pl mają komplet', () => {
+  test('prawdziwy słownik: po przekładzie 52 zdań wersji 1.1 (ACG-003, 31.10.2026) żadnemu językowi nie brakuje zdania; en i pl mają komplet', () => {
     const en = Object.keys(cueDict('en')); expect(en).toHaveLength(371); /* 360 + 11 zdań z linii 1.0.1 (gcalf.*, pendlay.*, jm/dcgsk.elbows, rdl.mis.knees) — scalenie 31.10.2026 */
     expect(Object.keys(cueDict('pl')).filter(k => !(k in cueDict('en')))).toEqual([]);
-    for (const l of ['de', 'ja', 'cs', 'es', 'zh-Hant'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 52]);
+    for (const l of ['de', 'ja', 'cs', 'es', 'zh-Hant'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 0]); /* ACG-003, 31.10.2026: było 52 */
     for (const l of ['pl', 'en'] as Lang[]) expect([l, en.filter(id => BRAK(l, id)).length]).toEqual([l, 0]);
   });
   test.each(['de', 'ja', 'cs', 'es', 'pt-BR', 'es-419', 'zh-Hant', 'pl', 'en'] as Lang[])('język %s: liczba zdań ćwiczenia = id z przekładem w TYM języku; pominięte policzone w cues.missing; tekst zawsze z własnego słownika', l => {
@@ -255,11 +255,9 @@ describe('eksport dla strony: brak przekładu zdania = brak zdania, nigdy tekst 
     expect(data[l].meta.cuesWithoutText).toBe(sumMissing);
     if (l === 'pl' || l === 'en') expect(sumMissing).toBe(0); else expect(withMissing).toBeGreaterThanOrEqual(0); /* K-13: bramka 4 (29.10.2026) — zdania 1.1 bez przekładu są w zestawach ogólnych bez recenzji treści albo przy ukrytych rodzinach, więc w eksporcie ich nie ma; licznik pilnuje reszty */
   });
-  test('zdanie bez przekładu nie pojawia się jako tekst angielski w pliku języka (przykład: bw.squat w de)', () => {
-    const ang = cueDict('en')['bw.squat']; expect(ang).toBeTruthy(); expect(BRAK('de', 'bw.squat')).toBe(true);
-    const ex = data.de.exercises.filter(e => idsOf(e.id).includes('bw.squat')); /* zestaw z bw.squat bez recenzji treści nie jest eksportowany (bramka 4) — wtedy zero ćwiczeń, a żadne nie ma tego zdania w ogóle */
-    for (const e of data.de.exercises.filter(x => cueSelection(x.id).ok.includes('bw.squat') && !ex.includes(x))) expect(JSON.stringify(e.cues)).not.toContain(JSON.stringify(ang).slice(1, -1));
-    for (const e of ex) { const c = e.cues; expect(c.missing).toBeGreaterThanOrEqual(1); expect(JSON.stringify(e.cues)).not.toContain(JSON.stringify(ang).slice(1, -1)); }
+  test('zdanie z przekładem trafia do pliku języka w tym języku, nigdy po angielsku (przykład: bw.squat w de, przełożone 31.10.2026 — ACG-003)', () => {
+    const ang = cueDict('en')['bw.squat'], de = cueDict('de')['bw.squat']; expect(ang).toBeTruthy(); expect(BRAK('de', 'bw.squat')).toBe(false); expect(de).not.toBe(ang);
+    for (const e of data.de.exercises.filter(x => idsOf(x.id).includes('bw.squat'))) { expect(e.cues.missing ?? 0).toBe(0); expect(JSON.stringify(e.cues)).not.toContain(JSON.stringify(ang).slice(1, -1)); }
   });
   test('manifest: per język licznik missing {cues, exercises: {slug → liczba}} zgodny z plikiem języka; pl i en: 0', () => {
     const m = manifest();

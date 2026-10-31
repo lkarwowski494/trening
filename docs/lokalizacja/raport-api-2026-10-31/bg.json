@@ -1,0 +1,242 @@
+{
+ "jezyk": "bg",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01FTn5u73djiNthhoZY2aV6W",
+ "zdan": 628,
+ "ok": 592,
+ "uwagi": [
+  {
+   "klucz": "{n} mi",
+   "rodzaj": "nowe",
+   "pl": "{n} mi",
+   "tlumaczenie": "{n} мили",
+   "poprawka": "{n} mi",
+   "powod": "„мили” jest w liczbie mnogiej, więc przy n=1 forma jest błędna. Jest też niespójne ze skrótem „lb”. Lepiej zachować skrót jednostki.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{n} yd",
+   "rodzaj": "nowe",
+   "pl": "{n} yd",
+   "tlumaczenie": "{n} ярд",
+   "poprawka": "{n} yd",
+   "powod": "„ярд” jest w liczbie pojedynczej, więc przy n>1 forma jest błędna. Jest też niespójne ze skrótem „lb”. Lepiej zachować skrót jednostki.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Podciąganie",
+   "rodzaj": "nowe",
+   "pl": "Podciąganie",
+   "tlumaczenie": "Набиране",
+   "poprawka": "Издърпване",
+   "powod": "„Набиране” brzmi jak nazwa ćwiczenia (podciąganie na drążku). Chodzi o nazwę fazy ruchu, analogiczną do „Спускане”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Pokaż częsty błąd",
+   "rodzaj": "nowe",
+   "pl": "Pokaż częsty błąd",
+   "tlumaczenie": "Покажи честата грешка",
+   "poprawka": "Показване на честата грешка",
+   "powod": "Tryb rozkazujący w formie „ty” w zwykłym przycisku. Niespójne z formalnym rejestrem i z innymi przyciskami („Изтриване на…”).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Powiadamiaj",
+   "rodzaj": "nowe",
+   "pl": "Powiadamiaj",
+   "tlumaczenie": "Известявайте ме",
+   "poprawka": "Уведомявай ме",
+   "powod": "„Известявайте ме” brzmi nienaturalnie na przycisku (forma mnoga skierowana do aplikacji).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Przejdź na ten plan",
+   "rodzaj": "nowe",
+   "pl": "Przejdź na ten plan",
+   "tlumaczenie": "Премини към този план",
+   "poprawka": "Преминаване към този план",
+   "powod": "Tryb rozkazujący w formie „ty” niezgodny z formalnym rejestrem.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ukryj częsty błąd",
+   "rodzaj": "nowe",
+   "pl": "Ukryj częsty błąd",
+   "tlumaczenie": "Скрий честата грешка",
+   "poprawka": "Скриване на честата грешка",
+   "powod": "Tryb rozkazujący w formie „ty” niezgodny z formalnym rejestrem.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zmień plan",
+   "rodzaj": "nowe",
+   "pl": "Zmień plan",
+   "tlumaczenie": "Смени плана",
+   "poprawka": "Смяна на плана",
+   "powod": "Tryb rozkazujący w formie „ty” niezgodny z formalnym rejestrem.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "oly.mis",
+   "rodzaj": "wskazowka",
+   "pl": "Sztanga odjeżdża od ciała albo plecy się zaokrąglają.",
+   "tlumaczenie": "Щангата се отдалечава от тялото или гърбът се извива.",
+   "poprawka": "Щангата се отдалечава от тялото или гърбът се изгърбва.",
+   "powod": "Polskie „zaokrąglają się” oznacza zaokrąglenie pleców, czyli „изгърбва”. „Извива” w innych wskazówkach oznacza wyginanie w łuk, więc tu zmienia znaczenie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "imperialny (lb, mi, yd)",
+   "rodzaj": "nowe",
+   "pl": "imperialny (lb, mi, yd)",
+   "tlumaczenie": "имперска (lb, мили, ярд)",
+   "poprawka": "имперска (lb, mi, yd)",
+   "powod": "Mieszanie skrótów i pełnych słów. Powinny to być skróty jednostek, jak „lb” i jak w wersji metrycznej.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "rodzaj": "nowe",
+   "pl": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "tlumaczenie": "По-наситен цвят: основна мускулна група, по-блед: спомагателна.",
+   "poprawka": "По-наситен цвят: основна мускулна група, по-блед: помощна.",
+   "powod": "Niespójna terminologia: w pozostałych tekstach partia pomocnicza to „помощна”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "ro.back",
+   "rodzaj": "wskazowka",
+   "pl": "Biodra wypchnięte, plecy proste — nie zapadaj się w lędźwiach.",
+   "tlumaczenie": "Таза изпънат, гърбът прав — не оставяй кръста да провисне.",
+   "poprawka": "Ханшът изпънат, гърбът прав — не оставяй кръста да провисне.",
+   "powod": "Błędna forma rodzajnika („Таза” zamiast formy podmiotowej). Niespójne z terminem „ханш” używanym w innych wskazówkach.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": [
+  {
+   "klucz": "barki do przodu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki do tyłu",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "barki w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Grzbiet w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Koci grzbiet",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Marsz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Obrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w dół",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót przedramienia dłonią w górę",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia do wewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "obrót ramienia na zewnątrz",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Powrót",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Przesunięcie na rysunku: {staw} {n} cm",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "ramię odsunięte w bok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rozsuwanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Rzut",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Skok",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Ściąganie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Uginanie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "uniesienie ramienia",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "Unoszenie",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "wyprost nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  },
+  {
+   "klucz": "zgięcie nadgarstka",
+   "problem": "brak tłumaczenia",
+   "waga": "krytyczna"
+  }
+ ]
+}
