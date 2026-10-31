@@ -140,3 +140,46 @@ Pomiary (ręka pracująca): kąt łokcia, kąt ramienia od osi tułowia i jego z
 | Standing One-Arm Cable Curl | ok | general curl | tak | — |
 | Zottman Curl | ok (obrót −60 ↔ 60°) | general curl | tak | — |
 | Zottman Preacher Curl | ok | general curl | tak | OP-6 |
+
+## mobility_stand — 36 ćwiczeń, 8 z danymi (karty własne 0, zestawy 36, brak 0)
+
+Wszystkie 8 figur to pozy statyczne (2 identyczne klatki; `poseData.ts:97` — rozciąganie statyczne bez pętli). Pomiary: kąty stawów, stopy, najniższe kształty (−0,2 cm — grubość kreski), głowa/tułów. Walidacja 8/8 bez błędów, `jakosc-raport --styk-wszystkie` 0 naruszeń.
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Ankle Circles | nie | bez figury | general mobility | tak | — |
+| Arm Circles | nie | bez figury | general mobility | tak | — |
+| Chest And Front Of Shoulder Stretch | nie | bez figury | general stretch | tak | — |
+| Chest Stretch on Stability Ball | nie | bez figury | general stretch | tak | — |
+| Chin To Chest Stretch | tak | ok (poza statyczna, `pochylenieGlowy` 45°, stopy y = 0, tułów 0°) | general stretch | tak | — |
+| Cross-Body Shoulder Stretch | nie | bez figury | general stretch | tak | — |
+| Dynamic Back Stretch | nie | bez figury | general mobility | tak | — |
+| Dynamic Chest Stretch | nie | bez figury | general mobility | tak | — |
+| Groiners | nie | bez figury | general mobility | tak | ćwiczenie leżąc/w podporze w rodzinie „stojąc” — tylko przy tworzeniu figury (teoretyczne) |
+| Hip Circles (Prone) | nie | bez figury | general mobility | tak | ćwiczenie leżąc/w podporze w rodzinie „stojąc” — tylko przy tworzeniu figury (teoretyczne) |
+| Inchworm | nie | bez figury | general mobility | tak | ćwiczenie leżąc/w podporze w rodzinie „stojąc” — tylko przy tworzeniu figury (teoretyczne) |
+| Iron Crosses (Stretch) | nie | bez figury | general mobility | tak | — |
+| Knee Circles | nie | bez figury | general mobility | tak | — |
+| Leg Swings (Front-to-Back) | nie | bez figury | general mobility | tak | — |
+| Leg Swings (Side-to-Side) | nie | bez figury | general mobility | tak | — |
+| Lying Leg Crossover Swings | nie | bez figury | general mobility | tak | ćwiczenie leżąc/w podporze w rodzinie „stojąc” — tylko przy tworzeniu figury (teoretyczne) |
+| One Knee To Chest | nie | bez figury | general stretch | tak | ćwiczenie leżąc/w podporze w rodzinie „stojąc” — tylko przy tworzeniu figury (teoretyczne) |
+| Overhead Stretch | nie | bez figury | general stretch | tak | — |
+| Overhead Triceps Stretch | tak | ok (prawa ręka nad głową: ramię 167°, łokieć 145,7°, dłoń za głową x −12, y 144) | general stretch | tak | druga ręka wzdłuż ciała (nie dociąga łokcia) — zestaw tego nie opisuje, nie przeczy |
+| Round The World Shoulder Stretch | nie | bez figury | general mobility | tak | — |
+| Shoulder Circles | nie | bez figury | general mobility | tak | — |
+| Side Neck Stretch | tak | ok (`przechylGlowy` 25° — widok z przodu) | general stretch | tak | — |
+| Standing Biceps Stretch | nie | bez figury | general stretch | tak | — |
+| Standing Chest Stretch | tak | ok (dłonie splecione za plecami x −24, ramię 29° w tył) | general stretch | tak | — |
+| Standing Elevated Quad Stretch | nie | bez figury | general stretch | tak | — |
+| Standing Gastrocnemius Calf Stretch | tak | ok w walidacji; **rysunek = rozciąganie przy ścianie** (dłonie na ścianie x 72/ściana 75, wykrok: przednie kolano 41,9°, tylne 7,9°, wszystkie pięty i palce y = 0, brak stopnia) — dane identyczne z Wall Calf Stretch | general stretch (gcalf.*, zrecenzowany 28.10) | **nie** | **ACG-013** |
+| Standing Hip Circles | nie | bez figury | general mobility | tak | — |
+| Standing Lateral Stretch | tak | ok (`przechylTulowia` 20°, skręt 0°, pochylenie w przód 0°, lewa ręka nad głową) | general stretch (sb.plane) | tak | — |
+| Standing Pelvic Tilt | nie | bez figury | general mobility | tak | — |
+| Standing Soleus And Achilles Stretch | tak | ok (oba kolana ugięte 25–27°, pięty y = 0) | general stretch | tak | — |
+| Standing Toe Touches | nie | bez figury | general stretch | tak | — |
+| Torso Rotation | nie | bez figury | general mobility | tak | — |
+| Wall Calf Stretch | tak | ok (jw. jak Standing Gastrocnemius — tylna noga prosta, pięta na podłodze) | general stretch | tak | — |
+| Wall Lat Stretch | nie | bez figury | general stretch | tak | — |
+| World's Greatest Stretch | nie | bez figury | general mobility | tak | — |
+| Wrist Circles | nie | bez figury | general mobility | tak | — |
