@@ -183,3 +183,42 @@ Wszystkie 8 figur to pozy statyczne (2 identyczne klatki; `poseData.ts:97` — r
 | Wall Lat Stretch | nie | bez figury | general stretch | tak | — |
 | World's Greatest Stretch | nie | bez figury | general mobility | tak | — |
 | Wrist Circles | nie | bez figury | general mobility | tak | — |
+
+## triceps — 32 ćwiczenia, 29 z danymi (karty własne 4, w tym 1 ukryta; zestawy 25, brak 3)
+
+Pomiary (ręka pracująca): kąt łokcia (0° = prosty) — zakres i najmniejsze zgięcie w wyproście; ramię od pionu i od osi tułowia (Δ — „ramiona nieruchomo”), łokieć poza linią barków (z, „łokcie nie rozchodzą się”), dół wyciskania francuskiego: gryf a obrys głowy (elipsa `head`), tułów, stopy, styki. Walidacja 29/29 bez błędów; `jakosc-raport` 0 naruszeń (z `--styk-wszystkie`: R17 tylko na 2 figurach z ławką ujemną — klasa fałszywych alarmów opisana w `v2-jakosc.mjs:657`). „tak*” przy ACG-014 = zestaw pasuje do ruchu, ale zdanie `press.noLock` „Prostuj ręce do końca” nie zgadza się z pozycją końcową rysunku.
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Band Overhead Triceps Extension | tak | ramię 12–14° od pionu (Δ2,4°), łokieć 14,5–124,2°, łokcie ≤ 2,2 cm poza linią barków | general triOver | tak* | **ACG-014** (wyprost 14,5°) |
+| Band Skull Crusher | tak | ok (ramię 8–10° od pionu, łokieć 14,8–109,6°, styk pleców, głowy, siedziska) | general triLying | tak | dół: dłoń nad czubkiem głowy (jak Skullcrusher (sztanga)) |
+| Body-Up | nie | bez figury | none (open) | — | — |
+| Bodyweight Triceps Extension | nie | bez figury | none (open) | — | — |
+| Cable Incline Triceps Extension | tak | ok (oparcie 35°, ramię 8° od pionu, łokieć 20,7–75,9°) | general triOver | tak* | **ACG-014** (wyprost 20,7°) |
+| Cable Lying Triceps Extension | tak | ok (jak Skullcrusher (sztanga), łokieć 17,9–109,1°) | general triLying | tak* | **ACG-014** (17,9°) |
+| Cable Overhead Extension | tak | ramię 12–14° od pionu, łokieć 20,6–122,7° (zgięcie spełnia `cote.move` v1 ≥ 110°) | own | **nie** (`cote.move` „Prostuj łokcie”, `press.noLock`) | **ACG-014** (20,6°; kryterium v1 ≤ 9°) |
+| Chain Handle Extension | tak | ok (łokieć 14,8–109,6°) | general triLying | tak* | **ACG-014** (14,8°) |
+| Decline Dumbbell Triceps Extension | tak | ok (ławka −20°, stopy na końcu siedziska y 59 przy wałkach; łokieć 8,3–110,1°) | general triLying | tak | R17 `styk_z_podlozem` tylko z `--styk-wszystkie` — klasa „ławka ujemna” (fałszywy alarm, `v2-jakosc.mjs:657`) |
+| Decline EZ Bar Triceps Extension | tak | ok (jw., łokieć 17,9–109,2°) | general triLying | tak | jw. (R17); zestaw bez `press.noLock` |
+| Dumbbell One-Arm Triceps Extension | tak | ok (jedna ręka, łokieć 14,5–124,2°) | general triOver | tak* | **ACG-014** (14,5°) |
+| Incline Barbell Triceps Extension | tak | ok (oparcie 35°, ramię 8° od pionu, łokieć 17,8–75,5°) | general triLying | tak* | **ACG-014** (17,8°) |
+| Kettlebell Overhead Triceps Extension | tak | ok (łokieć 16,9–119,7°, łokcie 1–3 cm do środka) | general triOver | tak* | **ACG-014** (16,9°) |
+| Kneeling Cable Triceps Extension | tak | **inny wariant**: klęk prosty, tułów 0°, ręce nad głową jak w Cable Overhead Extension (dane identyczne w górnej części), ławka narysowana 1–1,7 m przed ćwiczącym i nieużyta; łokieć 20,6–122,7° | general triOver | tak* (opisuje rysunek) | **ACG-015**; **ACG-014** (20,6°) |
+| Lying Close-Grip Barbell Triceps Extension Behind The Head | tak | ok (ramię 19–20° w tył — gryf za głowę, łokieć 19,2–99,6°, łokcie ≤ 1,4 cm poza barki) | general triLying | tak* | **ACG-014** (19,2°) |
+| Machine Triceps Extension | tak | ok (siad, ramię wzdłuż tułowia 8–11°, łokieć 10,2–100,1°) | general triPush | tak | — |
+| One-Arm Lying Dumbbell Triceps Extension | tak | ok (łokieć 7,8–110,1°) | general triLying | tak | — |
+| Overhead Triceps Extension (EZ) | tak | ok (łokieć 17,6–123,5°, łokcie ≤ 2,2 cm poza barki) | general triOver | tak* | **ACG-014** (17,6°) |
+| Overhead Triceps Extension (hantel) | tak | ok (łokieć 16,9–119,7°) | own | **nie** (`ote.setup` „na wyprostowanych rękach”, `ote.move` „wyprostuj ręce”) | **ACG-014** (16,9°) |
+| Reverse Grip Triceps Pushdown | tak | ok (łokcie przy bokach: ramię 8,6–10,5° od tułowia, Δ2,7°; łokieć 19,1–98,5°) | general triPush | tak* | **ACG-014** (19,1°) |
+| Single Arm Triceps Pushdown | tak | ok (łokieć 15,5–98,4°) | general triPush | tak* | **ACG-014** (15,5°) |
+| Skullcrusher (EZ) | tak | jak Skullcrusher (sztanga) (dane identyczne) | own — ukryta (`hidden`, brak wpisu w `data.json`) | — | karta ukryta (ACG-006, partia 3); figura v2 bez karty |
+| Skullcrusher (hantle) | tak | ok (łokieć 7,8–110,1°) | general triLying | tak | — |
+| Skullcrusher (sztanga) | tak | ok (ramię 8,5–10° od pionu — „mniej więcej pionowo”; łokieć 17,9–109,1°); dół: gryf [−82,9; 67,9], głowa (elipsa) środek [−72; 53,2], rx 10,6 poziomo — gryf nad czubkiem, ok. 10 cm od obrysu | general triLying | tak | `skull.depth` „tuż nad czołem — albo wcześniej” — kryterium v1 (`touch` tol 12) spełnione na granicy (11,9); bez znaleziska |
+| Sled Overhead Triceps Extension | nie | bez figury | none (open) | — | — |
+| Standing Low-Pulley One-Arm Triceps Extension | tak | ok (łokieć 14,5–124,2°) | general triOver | tak* | **ACG-014** (14,5°) |
+| Standing Overhead Barbell Triceps Extension | tak | ok (łokieć 15,6–123,9°) | general triOver | tak* | **ACG-014** (15,6°) |
+| Tate Press | tak | ok (łokcie 9–18 cm poza linią barków — cecha ćwiczenia; łokieć 0–145°, styk 5 punktów) | general bench | tak | — |
+| Triceps Kickback | tak | ok (tułów 68°, ramię równolegle do tułowia 6–7°, Δ3,1°; łokieć 7,3–90,8°) | general triPush | tak | — |
+| Triceps Kickback (linki) | tak | ok (jw.) | general triPush | tak | — |
+| Triceps Pushdown | tak | ok poza dołem: łokcie przy bokach (ramię 8,7–10,3°, Δ2°), łokieć **23,9**–98,5° (góra 98,5° — kryterium v1 `tpd.move` ≥ 100° prawie spełnione) | own | **nie** (`tpd.move` „Prostuj łokcie”, `press.noLock`) | **ACG-014** (23,9°; kryterium v1 ≤ 11°) |
+| Two-Arm Dumbbell Kickback | tak | ok (jw. jak Triceps Kickback) | general triPush | tak | — |
