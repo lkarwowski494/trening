@@ -41,6 +41,9 @@ describe('ACG-019 (31.10.2026): Slider / Stability Ball Hamstring Curl — zesta
   test.each([K, 'Stability Ball Hamstring Curl'])('%s: zestaw bez zdań o ruchu tylko w biodrach, unoszeniu bioder i nieruchomych udach; zostają zdania zgodne z rysunkiem', k => {
     const ok = SETS[k].ok ?? [];
     for (const id of ['ht.rigid', 'gb.move', 'lcurl.still']) expect([k, ok.includes(id), id]).toEqual([k, false, id]);
-    expect(ok).toEqual(['gb.heels', 'llc.control']); /* lcurl.move pasowałoby lepiej, ale nie ma wpisu źródeł w wskazowki-ogolne.json — do badacza */
+    expect(ok).toEqual(k === K ? ['gb.heels', 'llc.control'] : ['llc.control']); /* lcurl.move pasowałoby lepiej, ale nie ma wpisu źródeł w wskazowki-ogolne.json — do badacza */
+  });
+  test('Stability Ball Hamstring Curl (recenzja 31.10.2026): bez gb.heels — pięty leżą na piłce, nie na podłodze', () => {
+    expect(SETS['Stability Ball Hamstring Curl'].ok).not.toContain('gb.heels');
   });
 });
