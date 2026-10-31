@@ -693,3 +693,18 @@ Pomiary u = 0 / 1 i zakresy co u = 0,05: biodro, kolano, kręgosłup (0° we wsz
 | Hip Extension with Bands | tak | ok (stanie, tułów 8°, biodro 22 → −16°); guma między kostkami | general hipExt | tak | nota: guma z zaczepu na jednej kostce — w rysunku pętla na obu (wariant, bez zdania w zestawie) |
 | Machine Glute Kickback | tak | ok (dłonie na uchwytach, dźwignia na kostce, biodro 44 → 11°) | general hipExt | tak | — |
 | Prone Flutter Kicks | tak | ok (przodem na ławce, biodra przy krawędzi — miednica x −66, koniec ławki x −75; proste nogi ±15,6° naprzemiennie) | general hipExt | tak | R17 — ławka |
+
+## rotator_cuff — 8 ćwiczeń, 7 z danymi (karty własne 0; zestawy: `rotCuff` 5, `raiseRear` 2; brak 1) — partia 4E
+
+Pomiary u = 0 / 1 i co u = 0,05: łokieć, odwiedzenie i uniesienie ramienia (łokieć przy boku), rotacja przedramienia, położenie chwytu, zaczep wyciągu lub gumy (strona oporu), linie gumy (`props` klatki). Walidacja 7/7 bez błędów, `jakosc-raport` 0 naruszeń (także z `--styk-wszystkie`). Rotacje stojące: łokieć 88–92° przy boku (odwiedzenie 1–3°), dłoń z 3 ↔ 48; strona zaczepu zgodna z kierunkiem (zewnętrzna: od strony brzucha, wewnętrzna: z boku).
+
+| Ćwiczenie | Dane | Ruch | Karta | Zestaw pasuje | Uwagi / znaleziska |
+|---|---|---|---|---|---|
+| Band Pull Apart | tak | ok (dłonie y 131,5 stale, z ±28 → ±82, koniec x −11 — ok. linia barków; łokieć 13,5–16,5°) | general raiseRear | tak | — |
+| Cable Internal Rotation | tak | ok (wyciąg z boku z +90, dłoń z 48 → 3 do brzucha) | general rotCuff | tak | — |
+| Cuban Press | nie | bez figury | none (open) | — | — |
+| External Rotation (hantel) | tak | ok (leżenie bokiem, łokieć przy boku 92–102°, hantel y 40 → 67) | general rotCuff | tak | — |
+| External Rotation (linki) | tak | ok (wyciąg z przeciwnej strony z −75, dłoń z 3 → 48) | general rotCuff | tak | — |
+| External Rotation with Band | tak | ruch ok (jak linki, zaczep z −75); **druga linia gumy z zaczepu do wolnej lewej dłoni przy biodrze** | general rotCuff | tak | **ACG-021** |
+| Internal Rotation with Band | tak | ruch ok (zaczep z +90, dłoń z 48 → 3); **jw.** | general rotCuff | tak | **ACG-021** |
+| Reverse Flyes With External Rotation | tak | ok (przodem na ławce 45°, ramiona w bok 1 → 72°, rotacja −60 → 0°, łokieć 35–37° stały) | general raiseRear | tak | — |
