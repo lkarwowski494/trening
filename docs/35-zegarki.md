@@ -1,6 +1,6 @@
 # 35. Zegarki — protokół telefon ↔ zegarek (0.20 „Zegarki i głos”)
 
-Specyfikacja części wspólnej wydania 0.20: protokół, model zegarka, teksty, zapis do Zdrowia i pliki wzorcowe dla klientów Apple Watch (SwiftUI) i Garmina (Monkey C).
+Specyfikacja części wspólnej wydania 0.20: protokół, model zegarka, teksty, zapis do Zdrowia i pliki wzorcowe dla klientów Apple Watch (SwiftUI) i drugiego zegarka (Connect IQ, Monkey C).
 Powstała z analizy produktowej z 13.10.2026 (research i wyciągi z dokumentacji producentów: materiały robocze na Dysku, folder „Trening App”) i **decyzji właściciela z 13.10.2026**
 (docs/18), które mają pierwszeństwo przed wcześniejszym szkicem. Głos: `docs/36-glos.md`. Wzorce interakcji: `docs/32`.
 
@@ -11,10 +11,10 @@ Powstała z analizy produktowej z 13.10.2026 (research i wyciągi z dokumentacji
 2. **Zdarzenia z zegarka:** „zrobione według planu” (`done`), „zrobione inaczej niż w planie” (`differ`), „pomiń” (`skip`, z potwierdzeniem na zegarku), „cofnij” (`undo`), koniec przerwy (`restEnded`).
    W przerwie przycisk główny odhacza **następną** serię (to zwykłe `done` następnej serii).
 3. **„Zrobione inaczej”:** seria dostaje znacznik **„do uzupełnienia”**; **przed „Zakończ” telefon prosi o uzupełnienie** takich serii; **rekord dla nich liczy się dopiero po uzupełnieniu**.
-4. **Mówi telefon** (zapowiedź na początku przerwy: ćwiczenie, ciężar, liczba powtórzeń — bez talerzy). Garmin nie ma syntezy mowy, Apple Watch dostaje ten sam tekst do wyświetlenia.
+4. **Mówi telefon** (zapowiedź na początku przerwy: ćwiczenie, ciężar, liczba powtórzeń — bez talerzy). Drugi zegarek nie ma syntezy mowy, Apple Watch dostaje ten sam tekst do wyświetlenia.
 5. **Apple Zdrowie:** zapis z zegarka, jeśli prowadził sesję treningu; inaczej z telefonu — **bogatsze źródło z priorytetem, bez duplikatów** (rozdz. 6).
-6. Garmin: „seria zrobiona” na górnym prawym przycisku (START). Apple Watch: przycisk główny i podwójne stuknięcie. Apple Watch testowany tylko wirtualnie; Garmin fēnix 8 na urządzeniu.
-7. Siri odpuszczone; Apple Watch i Garmin budowane równolegle na **jednym protokole**.
+6. Drugi zegarek: „seria zrobiona” na górnym prawym przycisku (START). Apple Watch: przycisk główny i podwójne stuknięcie. Apple Watch testowany tylko wirtualnie; drugi zegarek na urządzeniu.
+7. Siri odpuszczone; Apple Watch i drugi zegarek budowane równolegle na **jednym protokole**.
 
 Odstępstwa od szkicu analityka (zapisane, żeby dało się je cofnąć): (a) opcja „P1-C” (znacznik `fromWatch` na każdej serii z zegarka) zastąpiona decyzją właściciela — znacznik dostaje tylko
 „zrobione inaczej” i nazywa się `toFill`; (b) **zdarzeń „na ślepo” nie ma**: po dwóch odhaczeniach bez telefonu zegarek pokazuje „Połącz z telefonem” i nie przyjmuje kolejnych (nie zgadujemy serii,
@@ -36,8 +36,8 @@ Prawie całą logikę sprawdzają testy Jest na Linuksie; klienty natywne odtwar
 | Atrapa | `lib/watch/fake.ts` | zegarek z modelu + transport (testy, E2E); odtwarza kolejki transportów |
 | Zdrowie | `lib/watch/health.ts`, `lib/health.ts` | kto zapisuje trening |
 
-Transport (WatchConnectivity po stronie Apple, Connect IQ Mobile SDK po stronie Garmina) rejestruje moduł natywny przez `startWatchLink(transport)`; do tego czasu aplikacja działa bez zmian.
-Transport ma trzy metody: `send(msg)`, `onMessage(cb)`, `reachable()`. Komunikat to JSON (obiekt albo tekst); Garmin przesyła słowniki — `decodeWatchMessage` przyjmuje oba.
+Transport (WatchConnectivity po stronie Apple, Connect IQ Mobile SDK po stronie drugiego zegarka) rejestruje moduł natywny przez `startWatchLink(transport)`; do tego czasu aplikacja działa bez zmian.
+Transport ma trzy metody: `send(msg)`, `onMessage(cb)`, `reachable()`. Komunikat to JSON (obiekt albo tekst); drugi zegarek przesyła słowniki — `decodeWatchMessage` przyjmuje oba.
 
 ## 3. Protokół (wersja 1)
 
@@ -120,12 +120,13 @@ Klienty implementują **dokładnie** ten model; `watch-fixtures/scenarios/*.json
 
 Zasada właściciela: **z zegarka, jeśli prowadził sesję treningu (tętno, kcal — bogatsze źródło, ma pierwszeństwo), inaczej z telefonu; bez duplikatów.**
 
-1. `hello.caps.session` — klient zgłasza, że umie prowadzić sesję treningu (Apple: tak; Garmin: nie).
+1. `hello.caps.session` — klient zgłasza, że umie prowadzić sesję treningu (Apple: tak; drugi zegarek: nie).
 2. Telefon wysyła `session start` (`save` = zapis do Zdrowia włączony w Ustawieniach); zegarek odpowiada `sessionStarted`. Sesja jest też środkiem technicznym (praca w tle, wibracja po opuszczeniu ręki).
 3. Po „Zakończ” (albo odrzuceniu) telefon wysyła `session end`; zegarek kończy sesję, zapisuje trening w Zdrowiu tylko gdy `save`, i odpowiada `sessionEnded{saved}`.
 4. Decyzja (`watchHealthPlan`, czysta): sesji nie było → zapis z telefonu; `saved` → **znacznik `healthUUID='watch'`, telefon nie zapisuje**; zegarek nie zapisał → telefon; brak odpowiedzi w `WATCH.HEALTH_WAIT_SEC` → telefon.
 5. Dubel mimo wszystko (zegarek zapisał po upływie czasu): istniejąca reguła `lib/healthRead` (trening z zegarka nakładający się na sesję → własna kopia usuwana po synchronizacji; wymaga włączonego odczytu).
 6. `Workout.watch` żyje tylko do rozstrzygnięcia zapisu (`healthPending`).
+7. **Pauza treningu (B-04, wersja 1.0.1; audyt 1.0):** bez tego czas w Zdrowiu zależał od tego, kto zapisał — zapis z telefonu przesuwa start o sumę pauz (`healthStart`), a sesja zegarka trwała od startu do końca razem z pauzami. Rozwiązanie bez zmiany protokołu (v1): migawka już niesie `paused` i `workoutId`; zegarek (`WatchStore`) przy zmianie `paused` wywołuje `WorkoutDriver.setPaused`, a `WorkoutController` wstrzymuje i wznawia `HKWorkoutSession` (HealthKit zapisuje zdarzenia pauzy, a czas treningu ich nie liczy). Sesja wystartowana w trakcie pauzy jest od razu wstrzymana; koniec treningu (migawka idle) wznawia i kończy sesję. Odrzucone: (a) pauzy w poleceniu `session end` i dopisanie zdarzeń z datami po fakcie (dokładniejsze przy rozłączeniu, ale ręczne zdarzenia w żywym builderze — ryzyko konfliktu, nie do sprawdzenia bez urządzenia); (b) zapis zawsze z telefonu, gdy były pauzy (traci tętno i kcal z zegarka). Ograniczenie: gdy zegarek jest poza zasięgiem w chwili pauzy lub wznowienia, pauza sesji zaczyna się dopiero po odebraniu migawki (różnica w Zdrowiu = czas rozłączenia). Garmin nie prowadzi sesji w Zdrowiu — bez zmian. Testy: `tests/watch-link.test.ts` (migawka z `paused`, kontrakt źródeł Swift), `WatchStoreTests.swift` (3 testy pauzy). **Do wykonania po zielonym 1.0 (maszyny macOS mają pierwszeństwo dla 1.0): uruchomić ręcznie `watch-sim.yml` i `ios-unsigned.yml` na gałęzi `wersja-1-0-1` (kompilacja Swift i `swift test`), a na telefonie z zegarkiem sprawdzić: pauza 2 min w treningu, w Zdrowiu czas treningu = czas w Historii.**
 
 Pełne wdrożenie po stronie Apple Watch (HKWorkoutSession, zapis) należy do osobnego agenta; telefon obsługuje opisany protokół.
 
@@ -133,9 +134,9 @@ Pełne wdrożenie po stronie Apple Watch (HKWorkoutSession, zapis) należy do os
 
 - Zapowiedź i licznik — z `t()` i słownika (35 języków), liczba mnoga powtórzeń przez `tp`; pole puste albo 0 jest pomijane (nie zgadujemy liczby).
 - Stałe etykiety: `lib/watch/labels.ts` (14 identyfikatorów) → `watch-fixtures/labels/<język>.json`. Klienty generują z nich `Localizable.strings` i `strings.xml` (wzór: `tests/widget-i18n.test.ts`).
-  Czcionki Garmina dla alfabetów spoza łacińskiego (grecki, cyrylica, CJK, wietnamski) — do sprawdzenia przy budowie klienta Garmina.
+  Czcionki drugiego zegarka dla alfabetów spoza łacińskiego (grecki, cyrylica, CJK, wietnamski) — do sprawdzenia przy budowie jego klienta.
 - Etykiety jak na telefonie (docs/32): „Seria zrobiona”, „Pomiń”, „Anuluj”, „Cofnij”. VoiceOver na Apple Watch z tymi samymi etykietami; duże czcionki systemowe.
-- Nazwy innych marek nie występują w kodzie ani tekstach (parowanie Garmina pokazuje neutralnie „zegarek” — brak wyjątku w CLAUDE.md; decyzja o nazwie na ekranie parowania: otwarte, rozdz. 10).
+- Nazwy innych marek nie występują w kodzie ani tekstach (parowanie drugiego zegarka pokazuje neutralnie „zegarek” — brak wyjątku w CLAUDE.md; decyzja o nazwie na ekranie parowania: otwarte, rozdz. 10).
 
 ## 8. Pliki wzorcowe (`watch-fixtures/`)
 
@@ -160,7 +161,7 @@ Identyfikatory w plikach to stałe aliasy (`workout-1`, `block-0`, `set-0-0`); c
 | Dane | migracja `toFill` / `watchEvents` / `watch`, eksport → import, zakończenie treningu |
 | Wygląd / języki | 35 języków w migawce i etykietach; ekran „do uzupełnienia” w PL/EN, jasny/ciemny |
 | Regresja | zmieniony tekst podpisu przerwy (wcześniej „dalej: nazwa”) w istniejących testach, z uzasadnieniem w docs/09 |
-| E2E | Maestro nie obsługuje watchOS ani Garmina. Na telefonie: scenariusz z atrapą zegarka (`lib/watch/fake.ts`) — do dopisania razem z klientami; Apple Watch: XCUITest na symulatorze; Garmin: lista właściciela |
+| E2E | Maestro nie obsługuje watchOS ani drugiego zegarka. Na telefonie: scenariusz z atrapą zegarka (`lib/watch/fake.ts`) — do dopisania razem z klientami; Apple Watch: XCUITest na symulatorze; drugi zegarek: lista właściciela |
 
 **Czego nie sprawdzimy wirtualnie:** siła wibracji i wibracja w tle na urządzeniu, podwójne stuknięcie, Always On, `transferUserInfo` (symulator go nie obsługuje), wybudzenie zablokowanego iPhone'a,
 instalacja z TestFlight / sklepu Connect IQ. Zegarek, który nie przejdzie testów, zostaje wyłączony flagą i nie blokuje drugiego (decyzja o wydaniu bez niego należy do właściciela).
@@ -168,8 +169,8 @@ instalacja z TestFlight / sklepu Connect IQ. Zegarek, który nie przejdzie test�
 ## 10. Otwarte pytania (do właściciela, z rekomendacją)
 
 1. **Długość okna „Cofnij” po odhaczeniu** — wartość `WATCH.UNDO_SEC` (dziś 5 s) jest założeniem. Opcje: 5 s (rekomendacja: wystarczy na przypadkowe stuknięcie, nie zostawia „Cofnij” na ekranie podczas przerwy) / 10 s.
-   Sprawdzić w ręku na fēnix 8 (przycisk START łatwo nacisnąć przypadkiem).
-2. **Nazwa zgodnego sprzętu na ekranie parowania Garmina:** A (rekomendacja) neutralnie („zegarek z Connect IQ”, bez nazwy marki — zgodnie z CLAUDE.md i wytycznymi Apple 2.3.7 / 5.2.1) / B wyjątek tylko na ekranie
+   Sprawdzić w ręku na drugim zegarku (przycisk START łatwo nacisnąć przypadkiem).
+2. **Nazwa zgodnego sprzętu na ekranie parowania drugiego zegarka:** A (rekomendacja) neutralnie („zegarek z Connect IQ”, bez nazwy marki — zgodnie z CLAUDE.md i wytycznymi Apple 2.3.7 / 5.2.1) / B wyjątek tylko na ekranie
    parowania. Zależy od badacza (czy nazwa zgodnego sprzętu jest dozwolona).
-3. **Trzecie „zrobione” bez telefonu:** dziś blokada („Połącz z telefonem”). Opcja B: kolejka „na ślepo” — odrzucona w tej wersji (ryzyko złej serii); do ponownej oceny po testach na fēnix 8.
+3. **Trzecie „zrobione” bez telefonu:** dziś blokada („Połącz z telefonem”). Opcja B: kolejka „na ślepo” — odrzucona w tej wersji (ryzyko złej serii); do ponownej oceny po testach na drugim zegarku.
 4. **Zapis do Zdrowia po czasie** (zegarek zapisał po `HEALTH_WAIT_SEC`, telefon już zapisał): dubel usuwa tylko reguła z odczytem (`healthRead`). Opcja: wymagać odczytu przy zegarku (rekomendacja: nie, rzadkie).

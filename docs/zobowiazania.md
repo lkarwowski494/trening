@@ -1,0 +1,48 @@
+# Zobowiązania na przyszłość — rejestr akcji z warunkiem startu
+
+Decyzja właściciela 28.10.2026 (~22:00 UTC): akcje zaplanowane na później (po dacie albo po zdarzeniu, np. „po wydaniu 1.0”) żyją **tutaj**,
+a nie w pamięci sesji. Każda sesja przed ułożeniem planu czyta sekcję „Aktywne” (CLAUDE.md; hak startu sesji wypisuje ją automatycznie)
+i **nie układa planu od nowa** — wykonuje to, co ma spełniony warunek, a nowe ustalenia dopisuje tu od razu.
+
+Zasady:
+- Jeden wiersz = jedna akcja. Pola: **Kiedy** (data `RRRR-MM-DD` albo zdarzenie), **Akcja**, **Decyzja** (data i miejsce zapisu, zwykle docs/18 albo docs/48),
+  **Kto** (rola/sesja albo właściciel), **Stan** (`czeka` / `w toku` / `zrobione RRRR-MM-DD` + dowód).
+- Zrobione wiersze przenosimy do „Archiwum” (dokument roboczy krótki — tylko stan bieżący).
+- Akcja z datą dostaje też zaplanowane zadanie (budzik) w sesji koordynatora; ten plik pozostaje źródłem prawdy.
+- Zmiana albo anulowanie akcji = decyzja właściciela z datą (wpis w docs/18), potem zmiana wiersza tutaj.
+- Kroki zgłoszenia 1.0 mają własną listę ze stanem (`docs/48`, kolumna „Stan”) — tu tylko odwołanie, bez powielania.
+- Backlog bez terminu i warunku (`docs/21`) tu nie trafia; trafia akcja, która ma **kiedy**.
+
+## Aktywne
+
+| ID | Kiedy | Akcja | Decyzja | Kto | Stan |
+|---|---|---|---|---|---|
+| ZB-005 | po wydaniu 1.0 w App Store | Przeniesienie do `Apps4Brew/trening` (jeden commit, stare repo prywatnym archiwum), potem transfer `apps4brew-narzedzia`; kroki właściciela 1–5 z docs/46 pkt 3 (można wcześniej, w czasie recenzji) | D7 A 21.10.2026 (docs/46); zasada „repo na koncie właściciela do wydania na produkcji” 28.10.2026 ~21:50 UTC | właściciel + koordynator | czeka |
+| ZB-006 | po wydaniu 1.0, pierwszy dzień | Ekran zakupu z App Store (polskie konto) pokazuje 4,99 zł / 19,99 zł / 59,99 zł | docs/48 Z-36 | właściciel (telefon, 2 min) | czeka |
+| ZB-007 | po wydaniu 1.0 | Scalenie linii 1.0.1 (`wersja-1-0-1-r2`) do `main` na polecenie właściciela; wydanie 1.0.1 stopniowe 7 dni | docs/48 Z-34; CLAUDE.md (scalenie do main na polecenie) | nowa sesja 1.0.1 (stan na `wersja-1-0-1-r2`; właściciel 29.10.2026, A) + właściciel | czeka |
+| ZB-008 | po wydaniu 1.0 | Etykiety dostępności w App Store Connect (opcjonalne) | docs/48 Z-33 | właściciel | czeka |
+| ZB-009 | po wydaniu 1.0 | Test pierwszego użycia z 3–5 osobami bez instrukcji (część B) | docs/48 Z-37 (DEC-07 b, 27.10.2026) | właściciel | czeka |
+| ZB-010 | 1.0.x, przy aktualizacji SDK | `decode-uri-component` ≥ 0.5 (podatność GHSA-vcc3-ghjq-m6fr; wymuszenie wersji nie zadziałało) — razem z `expo-router` z nowego SDK, nie razem ze zmianą schematu danych | właściciel 28.10.2026 ~19:10 UTC, wariant A (docs/18, docs/21) | sesja 1.0.1 / kolejna linia | czeka |
+| ZB-011 | 1.0.x | Automat odczytu cen wszystkich terytoriów (porównanie z espresso) | właściciel 28.10.2026 ~18:20 UTC, Z-10b A (docs/18) | koordynator | czeka |
+| ZB-012 | 2026-12-26 | Ocena hipotez widoczności H-51 ≥ 50%, H-52 ≥ 30%, H-53 ≥ 40% z App Analytics | docs/45 (decyzja 21.10.2026) | agent przygotowuje dane, właściciel ocenia | czeka |
+| ZB-013 | 8 tygodni po premierze 1.0 | Punkt kontrolny W0 (pobrania, płacący); decyzja o Androidzie (DEC-26); odświeżenie bramki opłacalności Kalisteniki danymi Treningu (Kalistenika DK-03 A) | docs/48 Z-35; Kalistenika `docs/decyzje.md` | agent przygotowuje dane, właściciel decyduje | czeka |
+| ZB-014 | po wydaniu 1.1 | Wydzielenie wspólnego silnika (katalog ćwiczeń, figury v2, zapis, zegarek, Zdrowie) jako pakietu dla Kalisteniki | właściciel 26.10.2026 (docs/18) | koordynator / architekt | czeka |
+| ZB-017 | przed startem strony z ćwiczeniami (z 1.1) | Eksport strony techniqueatlas tylko dla rodzin `ready` z aktualnym wpisem recenzji — warunek w eksporcie aplikacji z testem parytetu; dziś decyzja bez wdrożenia (docs/18 „otwarte → 06-tresci eksport strony”); wstrzymane w 1.0 rysunki nie mogą trafić na stronę | właściciel 28.10.2026, 9a (docs/18) | sesja 1.1 | czeka |
+| ZB-019 | co najmniej 3 tygodnie przed wydaniem 1.1 | Nominacja „App Launch”/featuring dla aktualizacji 1.1 w App Store Connect (Apple zaleca minimum 3 tygodnie wyprzedzenia; strona „Nominate your app for featuring”, odczyt 29.10.2026); agent przygotowuje treść, właściciel wysyła | właściciel 29.10.2026 ~06:15 UTC — bez nominacji przy 1.0 (docs/18) | koordynator + właściciel | czeka |
+| ZB-021 | po scaleniu linii 1.0.1 (`wersja-1-0-1-r2`) do `main` (ZB-007) | Wznowienie linii 1.1: nowa sesja koordynatora 1.1 na zasadach linii 1.0.1 (fale agentów, nic na `main`, raport do koordynatora), najpierw scalenie `main` do `integracja-1-1` (dziś 15e3ab45) i decyzje 2–4 właściciela ze `notatki/katalog-1-1/STAN-2026-10-29.md` (`przekazanie-konta`): liczby celu pokrycia 1.1, audyt ćwiczeń i grafik (na stanie po scaleniu 1.0.1), sesja 1.1 z konektorami GitHub + Dysk; decyzja 1 = A (30.10.2026, docs/18); wyniki przygotowań z 30.10 (reguły figur, przewodnik nazw EN) w `notatki/katalog-1-1/` | właściciel 29.10.2026 ~17:05 PL (docs/18) | koordynator | czeka |
+| ZB-022 | 2026-11-03, 2026-11-05, 2026-11-09 (jeśli 1.0 nadal bez wyniku recenzji) | Plan B przy przedłużającej się recenzji 1.0: 03.11 sprawdzenie statusu („Waiting for Review” → „In Review”); 05.11 przy braku zmiany — szkic krótkiego zapytania o stan zgłoszenia (App Review w App Store Connect albo developer.apple.com/contact), właściciel wysyła; 09.11 — drugie zapytanie i decyzja właściciela o dalszych krokach. Bez wycofania zgłoszenia i bez prośby o przyspieszenie | właściciel 30.10.2026 ~21:00 PL, A (docs/18) | koordynator + właściciel (wysyłka) | czeka |
+| ZB-023 | linia 1.1 (po ZB-021) | Znaczniki pochodzenia także we wskazówkach techniki (`lib/cues`) i danych figur (`lib/figures`) — jak w katalogu ćwiczeń (`tests/provenance-guard.test.ts`); szczegóły znaczników poza repozytorium, u właściciela | właściciel 30.10.2026 ~21:10 PL, A (docs/18) | sesja 1.1 | czeka |
+| ZB-024 | 4 tygodnie po wydaniu 1.0, potem przy ZB-013 | Przegląd App Store pod kątem kopii (nazwa, ikona, zrzuty, treść ćwiczeń); znalezisko → właściciel z opcjami | właściciel 30.10.2026 ~21:10 PL, A (docs/18) | koordynator przygotowuje, właściciel ocenia | czeka |
+
+## Archiwum
+
+| ID | Kiedy | Akcja | Stan |
+|---|---|---|---|
+| ZB-004 | po wysłaniu 1.0 do recenzji Apple | Przygotowanie przeniesienia do Apps4Brew (konfiguracja `scripts/przeniesienie-1.0.json` wg D1–D7, klasyfikacja plików, poprawa testów, podgląd bez błędów) | zrobione 2026-10-30 — PR #105 scalony do `main` (460b7236), decyzje P1–P3 w docs/18; samo przeniesienie: ZB-005 |
+| ZB-018 | po wysłaniu 1.0 do recenzji Apple | Decyzje o procesie z lekcji: (1) `tests.yml` także na `pull_request` do `main` (L-053, A/B); (2) punkty „What to Test” wskazują scenariusz Maestro (L-007, mechanizm albo punkt listy wydawcy) — przedstawić właścicielowi z rekomendacją | zrobione 2026-10-30 — właściciel: (1) L-053 A — tests.yml także na PR do main z tego repo; (2) L-007 A — punkt w instrukcji roli wydawca (docs/18) |
+| ZB-002 | po ogłoszeniu „main kandydat <SHA>” | Build `testflight.yml` na SHA kandydata (czeka na zatwierdzenie `release`; w nocy 28/29.10 bez powiadomień — właściciel zatwierdza po 06:00 UTC); równolegle zrzuty 35 języków i zegarka **na tym samym SHA** (zmiana `main` po kandydacie = zrzuty od nowa) | zrobione 2026-10-30 — build 1033 (fced34b) w TestFlight 29.10; zrzuty z kodu aplikacji = kandydat (store-screenshots 40942847798/40979987052, watch-sim 40991625046) |
+| ZB-003 | po buildzie kandydata | Kroki właściciela do zgłoszenia 1.0 po kolei: docs/48 Z-08, Z-09, Z-16 (akceptacja zrzutów), Z-14, Z-24, Z-25, Z-25a, Z-26, Z-28, Z-29 | zrobione 2026-10-30 ~10:40 PL — zgłoszenie 1.0 wysłane, „Waiting for Review” (docs/48 Z-29) |
+| ZB-020 | po wysłaniu 1.0 do recenzji Apple (Z-29) | Sygnał „1.0 wysłane do recenzji Apple” do sesji koordynatora linii 1.0.1 (`send_message`) — start fali 4 (E2E, zegarek, workflowy na macOS) | zrobione 2026-10-30 — sygnał wysłany do sesji koordynatora 1.0.1 (send_message, ~10:45 PL) |
+| ZB-016 | po scaleniu `naprawy/M2-hinge-szczelina` do `main` | Przeniesienie z gałęzi `review-notes-1-0` (PR #75, zamknięty) do `store/review-notes.md` sekcji „Exercises and drawings / Ćwiczenia i rysunki” i akcji zegarka, sprawdzonych z kodem (lista rodzin z rysunkiem po wstrzymaniu 18 ćwiczeń, etykiety z `lib/i18n.en.ts`); nowy mały PR przed Z-25 (Notes) | zrobione 2026-10-29 — PR #92 (notatki-recenzji-1-0), tests.yml zielony na 52ce616f |
+| ZB-015 | gdy właściciel ma zegarek | Ikona aplikacji na zegarku (zamyka resztę R-013) | anulowane 2026-10-29 — błędny warunek: właściciel ma Apple Watch (test buildu 1030 z zegarkiem, docs/18 23.10.2026); ikona sprawdzana na kandydacie w Z-08 (docs/49 T-16) |
+| ZB-001 | rano 29.10.2026 | Weto lub zatwierdzenie decyzji nocnych agentów: #84 (JM Press i Decline Close-Grip Bench To Skull Crusher bez rysunku w 1.0), zmiany słów kluczowych z odświeżenia metadanych, inne wyjątki „decyzja agenta w nocy” w docs/18 | zrobione 2026-10-29 — wszystkie decyzje nocne zatwierdzone (docs/18) |

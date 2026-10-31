@@ -141,7 +141,7 @@ Zakupy: lokalizacje gotowe (`store/iap-localizations.json`).
 | # | Co | Kto | Wpis | Zależy od | Blokuje | Agent | Właściciel |
 |---|---|---|---|---|---|---|---|
 | F1 | Wersja 1.0 w App Store Connect: build, zrzuty, metadane, zakupy w tym samym zgłoszeniu (B6) → „Add for Review” → „Submit for Review” | właściciel (koordynator przygotowuje przez API) | ręcznie | wszystko z TAK | — | 0,5 h (sprawdzenie kompletności przez API) | 20 min |
-| F2 | Recenzja Apple; po odrzuceniu: odpowiedź w Resolution Center, naprawa wg progu | Apple / agent | — | F1 | — | zależy | czekanie — **czas recenzji: [OTWARTE]**, nie z przeczytanej dokumentacji |
+| F2 | Recenzja Apple; po odrzuceniu: odpowiedź w Resolution Center, naprawa wg progu | Apple / agent | — | F1 | — | zależy | czekanie — czas recenzji wg Apple: co najmniej 50% zgłoszeń < 24 h, 90% < 48 h (<https://developer.apple.com/distribute/app-review/>, odczyt 29.10.2026; docs/48 Z-30) |
 | F3 | Plan wydania 1.0 (`docs/42-plan-wydania-1.0.md`, DEC-22): wydanie ręcznie po kontroli na telefonie, aktualizacje stopniowo 7 dni, postępowanie przy złym buildzie; lista kontrolna wydania 1.0 (punkt 5 planu) | właściciel + agent | ręcznie | F2 | TAK (punkt listy kontrolnej) | 0,5 h (utrzymanie planu) | 10 min |
 
 ## Decyzje właściciela (14.10.2026, przez koordynatora)

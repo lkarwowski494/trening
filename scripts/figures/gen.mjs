@@ -1,5 +1,5 @@
 // Figury ruchu (etap 2–3, decyzja właściciela 08.10.2026 ok. 23:50): generuje docs/research/28-figury.md z data/zrodla/figures.json,
-// data/zrodla/cues.json i lib/cues/text/pl.json oraz sprawdza dane (pokrycie ćwiczeń ze wskazówkami, odwołania do zdań, 1–3 pozy…).
+// data/zrodla/cues.json i lib/cues/text/pl.json oraz sprawdza dane (pokrycie ćwiczeń ze wskazówkami, odwołania do zdań, 1–4 pozy…).
 // Geometrię (zakres stawów, sprawdzenia póz) liczy tests/figures.test.tsx przez lib/figures/geom.ts — tu tylko struktura i dokument.
 // Dokument generowany z danych — nie przepisywać ręcznie (CLAUDE.md; wzór scripts/cues/gen.mjs).
 // Użycie: node scripts/figures/gen.mjs  (zapis) | node scripts/figures/gen.mjs --check  (verify: błędne dane albo nieaktualny dokument → kod 1)
@@ -18,7 +18,7 @@ const REVIEW = join(root, 'docs/research/figury-recenzja.json');
 
 export const CHECKS = ['horiz', 'joint', 'alignX', 'line', 'low', 'above', 'ahead', 'behind', 'touch'];
 export const PROPS = ['plate', 'db', 'kb', 'grip', 'cable', 'rect', 'line', 'bar', 'rod', 'plank'];
-export const FRAME_ORDER = { 1: ['start'], 2: ['start', 'end'], 3: ['start', 'mid', 'end'] };
+export const FRAME_ORDER = { 1: ['start'], 2: ['start', 'end'], 3: ['start', 'mid', 'end'], 4: ['start', 'mid', 'mid2', 'end'] };
 const own = (o, k) => !!o && Object.prototype.hasOwnProperty.call(o, k);
 
 /** Figura po rozwinięciu „like” (jak resolveFigure w lib/figures/geom.ts). */
@@ -42,7 +42,7 @@ export function validate(fig, cues, pl) {
     const ids = cueIds(cues.exercises[k]);
     if (!['side', 'front'].includes(f.view)) errs.push(`${k}: widok ${f.view}`);
     const order = FRAME_ORDER[f.frames.length];
-    if (!order) errs.push(`${k}: ${f.frames.length} pozy (dozwolone 1–3)`);
+    if (!order) errs.push(`${k}: ${f.frames.length} pozy (dozwolone 1–4)`);
     else if (f.frames.map(x => x.n).join() !== order.join()) errs.push(`${k}: kolejność póz ${f.frames.map(x => x.n).join()} — oczekiwano ${order.join()}`);
     for (const fr of f.frames) {
       if (!fr.p || typeof fr.p !== 'object') errs.push(`${k}.${fr.n}: brak pozy`);
@@ -77,7 +77,7 @@ export function describe(w) {
   return w.q;
 }
 const md = s => String(s).replace(/\|/g, '\\|');
-const FN = { start: 'pozycja wyjściowa', mid: 'w trakcie', end: 'pozycja końcowa' };
+const FN = { start: 'pozycja wyjściowa', mid: 'w trakcie', mid2: 'w trakcie (druga)', end: 'pozycja końcowa' };
 const pose = p => Object.entries(p).map(([k, v]) => `${k} ${Array.isArray(v) ? v.join('/') : v}`).join(', ');
 
 export function render(fig, cues, pl, review = existsSync(REVIEW) ? JSON.parse(readFileSync(REVIEW, 'utf8')) : null) {
@@ -86,7 +86,7 @@ export function render(fig, cues, pl, review = existsSync(REVIEW) ? JSON.parse(r
   L.push('# 28 — Figury ruchu (generowane)', '');
   L.push('AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/gen.mjs` z `data/zrodla/figures.json`, `data/zrodla/cues.json` i `lib/cues/text/pl.json` — nie edytować ręcznie.');
   L.push('Sprawdzanie: `node scripts/figures/gen.mjs --check` (część `npm run verify`); geometria póz i zakres stawów: `tests/figures.test.tsx`.', '');
-  L.push('Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; etap 2–3 = własne figury SVG (szkielet z kątami stawów, 2–3 pozycje, krótka pętla; przy „Ogranicz ruch” pozycje statycznie). Research: docs/research/26 pkt 7; wskazówki etapu 1: docs/research/27.', '');
+  L.push('Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; etap 2–3 = własne figury SVG (szkielet z kątami stawów, 2–4 pozycje, krótka pętla; przy „Ogranicz ruch” pozycje statycznie). Research: docs/research/26 pkt 7; wskazówki etapu 1: docs/research/27.', '');
   L.push('## Zasady', '');
   L.push('- Figura powstaje tylko dla ćwiczenia, które ma wskazówki etapu 1; opis dla VoiceOver to zdania „Ruch” z tych wskazówek.');
   L.push('- Każda poza ma co najmniej jedno sprawdzenie powiązane ze zdaniem wskazówki (np. „uda równolegle do podłogi” → odcinek biodro–kolano poziomo ± tolerancja). Test liczy geometrię i sprawdza, że poza spełnia każde z nich.');

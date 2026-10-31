@@ -1,9 +1,11 @@
 import { WeekHealthLine } from '@/components/HealthLines';
+import { fullValueProps } from '@/components/FullValue'; /* DEC-01 a */
 import React from 'react';
-import { View, Pressable, Text } from 'react-native';
+import { View, Pressable } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, SectionTitle, useOnce } from '@/components/ui';
-import { useTheme, F, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
+import { useTheme, FONT, TYPE, TEXT_SIZE, RADIUS, RADIUS_PRZEJSCIOWE, NUM_SCALE_MAX, TEXT_SCALE_MAX, GLYPH_SCALE_MAX, FW, font } from '@/lib/theme';
 import { useTick } from '@/lib/store';
 import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
 import { mainStart } from '@/lib/home';
@@ -18,9 +20,9 @@ import { t, tp, lang } from '@/lib/i18n';
 function Tile({ label, value }: { label: string; value: string }) { /* 11.10.2026: bez „poprz.” — porównania są w Progresji (w Postępach) */
   const th = useTheme();
   return (
-    <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${label}: ${value}`} style={{ flexGrow: 1, flexBasis: '45%' /* 2 × 2 — mieści się przy 320 pt i długich tłumaczeniach */, padding: 10, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
-      <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.heavy, fontSize: 20 }}>{value}</Txt>
-      <Muted style={{ fontSize: 12 }}>{label}</Muted>
+    <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${label}: ${value}`} {...fullValueProps(label, value)} /* DEC-01 a: podgląd po przytrzymaniu */ style={{ flexGrow: 1, flexBasis: '45%' /* 2 × 2 — mieści się przy 320 pt i długich tłumaczeniach */, padding: 10, borderRadius: RADIUS_PRZEJSCIOWE.tile, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
+      <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: FONT.title700, fontSize: TYPE.navTitle.size }}>{value}</Txt>
+      <Muted style={{ fontSize: TEXT_SIZE.small }}>{label}</Muted>
     </View>);
 }
 const hm = (sec: number) => { const m = Math.round(sec / 60); return m >= 60 ? `${t('{n} h', { n: Math.floor(m / 60) })}${m % 60 ? ` ${t('{n} min', { n: m % 60 })}` : ''}` : t('{n} min', { n: m }); }; /* A11-17: jednostki przez t() */
@@ -42,15 +44,15 @@ export function WeekStats() {
     {trained ? <View testID="week-muscles" style={{ marginTop: 6 }} /* jeden przycisk „Szczegóły w Postępach” (≥ 44 pt) prowadzi do Postępów */>
       <GuardMap parts={g.parts} label={x.label} height={170} />
       {x.deload ? <Muted testID="guard-deload" style={{ textAlign: 'center', ...FW.semibold, marginTop: 8 }}>{x.deload}</Muted> : <GuardLegend parts={g.parts} />}
-      {x.compared ? <Muted testID="guard-compared" style={{ fontSize: 12, textAlign: 'center', marginTop: 6 }}>{x.compared}</Muted> : null}
+      {x.compared ? <Muted testID="guard-compared" style={{ fontSize: TEXT_SIZE.small, textAlign: 'center', marginTop: 6 }}>{x.compared}</Muted> : null}
       {x.short || x.less ? <View style={{ marginTop: 10, gap: 4 }}>
         {x.short ? <Text testID="guard-short" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...FW.regular, fontSize: 13, lineHeight: 19 }}>{x.short}</Text> : null}
         {x.less ? <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6 }}><View style={{ marginTop: 2 }}><SignChip dir="down" size={16} /></View><Text testID="guard-less" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...FW.regular, fontSize: 13, lineHeight: 19, flexShrink: 1 }}>{x.less}</Text></View> : null}
       </View> : null}
       <Pressable testID="guard-more" accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Szczegóły w Postępach')} accessibilityHint={t('Otwiera Postępy.')} onPress={open} style={({ pressed }: { pressed: boolean }) => ({ minHeight: 44, marginTop: 10, borderTopWidth: 1, borderTopColor: th.line, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', opacity: pressed ? 0.7 : 1 })}>
-        <Txt maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...FW.semibold, fontSize: 15, color: th.accent }}>{t('Szczegóły w Postępach')}</Txt><Txt maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.accent, fontSize: 20 }}>›</Txt>
+        <Txt maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...FW.semibold, fontSize: TYPE.callout.size, color: th.accent }}>{t('Szczegóły w Postępach')}</Txt><Txt maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.accent, fontSize: TYPE.navTitle.size }}>›</Txt>
       </Pressable>
-    </View> : <Muted testID="week-muscles" style={{ fontSize: 13, marginTop: 8 }}>{t('Brak serii w tym tygodniu.')}</Muted>}
+    </View> : <Muted testID="week-muscles" style={{ fontSize: TYPE.footnote.size, marginTop: 8 }}>{t('Brak serii w tym tygodniu.')}</Muted>}
     {/* „Ostatni trening” usunięty z ekranu głównego (właściciel 09.10.2026 ok. 16:20): informacja zostaje w arkuszu „Inny trening” („Powtórz ostatni”: nazwa · data), w Historii i Kalendarzu */}
   </>;
 }
@@ -69,14 +71,15 @@ export function ProgressTiles() {
         const volA11y = c.unknown ? `${t('co najmniej {n}', { n: fmtVol(c.total.volume) })} (${t('część zaplanowanych serii nie ma ciężaru')})` : vol;
         return (
           <Pressable key={kind} testID={`progress-tile-${kind}`} accessibilityRole="button" accessibilityLanguage={lang()} accessibilityHint={t('Otwiera szczegóły Progresji.')}
+            {...fullValueProps(title, `${vol} ${vp}; ${sets} ${tp(sets, 'seria|serie|serii')} ${sp}`)} /* DEC-01 a: podgląd po przytrzymaniu */
             accessibilityLabel={t('{title} ({sub}): objętość {v}, {p}; serie {s}, {d}', { title, sub, v: volA11y, p: vp, s: c.total.sets, d: sp })}
-            onPress={once(() => router.push(`/progression?c=${kind}`))} style={({ pressed }) => ({ padding: 12, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, opacity: pressed ? 0.7 : 1, gap: 2 })}>
-            <Muted style={{ fontSize: 12, ...FW.semibold }}>{title}</Muted>
-            <Muted style={{ fontSize: 11 }}>{sub}</Muted>
+            onPress={once(() => router.push(`/progression?c=${kind}`))} style={({ pressed }) => ({ padding: 12, borderRadius: RADIUS_PRZEJSCIOWE.tile, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, opacity: pressed ? 0.7 : 1, gap: 2 })}>
+            <Muted style={{ fontSize: TEXT_SIZE.small, ...FW.semibold }}>{title}</Muted>
+            <Muted style={{ fontSize: TYPE.caption.size }}>{sub}</Muted>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 16, rowGap: 2, marginTop: 4 }}>
               {/* osobne teksty: „brak poprzedniego okresu” to zdanie — limit powiększenia TEXT_SCALE_MAX (A11N-04), liczby 1,4 */}
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 6 }}><Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.heavy, fontSize: 18 }}>{vol}</Txt><Muted style={{ fontSize: 13 }}>{vp}</Muted></View>
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 6 }}><Txt maxFontSizeMultiplier={1.4} style={{ ...FW.semibold, fontSize: 15 }}>{sets} {tp(sets, 'seria|serie|serii')}</Txt><Muted style={{ fontSize: 12 }}>{sp}</Muted></View>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 6 }}><Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: FONT.title700, fontSize: TYPE.stepLabel.size }}>{vol}</Txt><Muted style={{ fontSize: TYPE.footnote.size }}>{vp}</Muted></View>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 6 }}><Txt maxFontSizeMultiplier={1.4} style={{ ...FW.semibold, fontSize: TYPE.callout.size }}>{sets} {tp(sets, 'seria|serie|serii')}</Txt><Muted style={{ fontSize: TEXT_SIZE.small }}>{sp}</Muted></View>
             </View>
           </Pressable>); })}
     </View>
@@ -85,7 +88,7 @@ export function ProgressTiles() {
 
 /** Nowa osoba: kroki do pierwszego treningu (znikają po pierwszym zakończonym treningu). P4 A (decyzja właściciela 11.10.2026, docs/22): trzy kroki, każdy
  * z jednym przyciskiem — „Planowanie” (szablony i plan są w jednym miejscu: + Nowy szablon, Plan z moich szablonów, Wygeneruj) albo „Przewodnik”.
- * P6 B (import z innego dziennika jako czwarty, pomijalny krok „Masz historię z innej aplikacji?”) — po wdrożeniu importu (dziś go nie ma).
+ * P6 B / DEC-04 a (1.0.1): czwarty, pomijalny krok „Masz historię w innej aplikacji?” z przyciskiem do importu CSV (/more/import).
  * M1-audytor-generalny-025 (04-studio-projektowe-007, 27.10.2026): krok 1 ma przycisk nazwany celem („Szablony i plan”, to samo miejsce co „Planowanie”),
  * krok 3 wskazuje duży przycisk, który jest na ekranie (bez szablonu „Pusty trening” — lib/home mainStart), przyciski kroków jednego rodzaju,
  * zdanie o miejscach z „›” (przejście na inny ekran, docs/32 wzorzec 17). */
@@ -93,22 +96,24 @@ export function FirstSteps() {
   useTick(); const router = useRouter(); const once = useOnce(); const th = useTheme(); const f = firstSteps(); if (!f) return null;
   const step = (done: boolean, n: number, text: string, action?: React.ReactNode) => (
     <View accessibilityLanguage={lang()} key={n} accessible={!action} accessibilityLabel={`${n}. ${text} ${done ? t('zrobione') : t('do zrobienia')}`} style={{ flexDirection: 'row', gap: 10, paddingVertical: 8 }}>
-      <View style={{ width: 24, height: 24, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: done ? th.accent : 'transparent', borderWidth: done ? 0 : 1.5, borderColor: th.line }}>
-        <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} /* A11-07: znak w kółku 22–24 pt */ style={{ fontSize: 12, ...FW.semibold, color: done ? th.accentInk : th.muted }}>{done ? '✓' : String(n)}</Txt>
+      <View style={{ width: 24, height: 24, borderRadius: RADIUS_PRZEJSCIOWE.badge, alignItems: 'center', justifyContent: 'center', backgroundColor: done ? th.accent : 'transparent', borderWidth: done ? 0 : 1.5, borderColor: th.line }}>
+        <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} /* A11-07: znak w kółku 22–24 pt */ style={{ fontSize: TEXT_SIZE.small, ...FW.semibold, color: done ? th.accentInk : th.muted }}>{done ? '✓' : String(n)}</Txt>
       </View>
-      <View style={{ flex: 1, gap: 6 }}><Txt style={{ fontSize: 14, color: done ? th.muted : th.text }}>{text}</Txt>{action}</View>
+      <View style={{ flex: 1, gap: 6 }}><Txt style={{ fontSize: TEXT_SIZE.medium, color: done ? th.muted : th.text }}>{text}</Txt>{action}</View>
     </View>);
   const toPlan = (title: string) => <Btn nav small title={title} onPress={() => router.push('/plan')} style={{ alignSelf: 'flex-start' }} />;
   const noTemplate = mainStart().kind === 'empty';
   return (
-    <View testID="first-steps" style={{ marginTop: 6, padding: 12, borderRadius: 12, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
-      <Txt accessibilityRole="header" style={{ ...FW.semibold, fontSize: 17 }}>{t('Pierwsze kroki')}</Txt>
+    <View testID="first-steps" style={{ marginTop: 6, padding: 12, borderRadius: RADIUS.group, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
+      <Txt accessibilityRole="header" style={{ ...FW.semibold, fontSize: TYPE.body.size }}>{t('Pierwsze kroki')}</Txt>
       {step(f.template, 1, t('Utwórz pierwszy szablon albo wygeneruj szablony i plan.'), !f.template ? toPlan(t('Szablony i plan')) : undefined)}
       {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? toPlan(t('Planowanie')) : undefined)}
       {step(false, 3, noTemplate ? t('Pierwszy trening: duży przycisk „Pusty trening” u góry.') : t('Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.'), <Btn nav small title={t('Przewodnik')} accessibilityLabel={t('Przewodnik po funkcjach')} onPress={() => router.push('/guide?topic=workout')} style={{ alignSelf: 'flex-start' }} />)}
+      {/* DEC-04 a (23.10.2026, wdrożenie 1.0.1): czwarty, pomijalny krok — tylko wejście do istniejącego importu CSV; nigdy „zrobiony” (kroki znikają po pierwszym treningu) */}
+      {step(false, 4, t('Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.'), <Btn nav small testID="first-steps-import" title={t('Importuj historię z pliku CSV')} onPress={once(() => router.push('/more/import'))} style={{ alignSelf: 'flex-start' }} />)}
       {/* 11.10.2026: „Miejsca i sprzęt” — jedno zdanie z odnośnikiem (nie osobny krok); z Ustawień wejście zniknęło */}
       <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')} onPress={once(() => router.push('/more/locations'))} hitSlop={8} style={{ minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-        <View style={{ flexShrink: 1 }}><Muted style={{ fontSize: 13 }}>{t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')}</Muted></View>
+        <View style={{ flexShrink: 1 }}><Muted style={{ fontSize: TYPE.footnote.size }}>{t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')}</Muted></View>
         <Text accessibilityElementsHidden importantForAccessibility="no" maxFontSizeMultiplier={GLYPH_SCALE_MAX} style={{ color: th.muted, ...font('callout') }}>›</Text>
       </Pressable>
     </View>);

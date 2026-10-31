@@ -144,7 +144,8 @@ export function render(data, pl) {
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const data = JSON.parse(readFileSync(DATA, 'utf8')); const pl = JSON.parse(readFileSync(PL, 'utf8'));
-  const errs = validate(data, pl);
+  const sets = JSON.parse(readFileSync(join(root, 'lib/figures/v2/cue-sets.json'), 'utf8')).items;
+  const errs = validate(data, pl, Object.values(sets).flatMap(e => [...(e.ok ?? []), ...(e.err ?? [])]));
   if (errs.length) { console.error('Błędy danych wskazówek:\n' + errs.map(e => '  ' + e).join('\n')); process.exit(1); }
   const out = render(data, pl);
   if (process.argv.includes('--check')) {

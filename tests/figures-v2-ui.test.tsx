@@ -61,9 +61,9 @@ describe('komponent ExerciseFigureV2', () => {
     const b = render(<ExerciseFigureV2 exercise={{ lib: false }} />); expect(b.toJSON()).toBeNull();
   });
   test('VoiceOver: jeden obraz z opisem „Rysunek ruchu: …” w języku interfejsu; przycisk pauzy osobno', async () => {
-    setReduce(true); render(<ExerciseFigureV2 exercise={lib('Deadlift (sztanga)')} name="Martwy ciąg" />); await flush();
+    setReduce(true); render(<ExerciseFigureV2 exercise={lib('Sumo Deadlift')} name="Martwy ciąg" />); await flush();
     const img = screen.getByTestId('exercise-figure-v2-image'); expect(img.props.accessibilityRole).toBe('image'); expect(img.props.accessible).toBe(true); expect(img.props.accessibilityLabel).toBe('Rysunek ruchu: Martwy ciąg');
-    applyLang('en'); setReduce(false); render(<ExerciseFigureV2 exercise={lib('Deadlift (sztanga)')} name="Deadlift" />); await flush();
+    applyLang('en'); setReduce(false); render(<ExerciseFigureV2 exercise={lib('Sumo Deadlift')} name="Deadlift" />); await flush();
     expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe('Movement drawing: Deadlift'); expect(screen.getByRole('button', { name: 'Pause animation' })).toBeTruthy();
   });
   test('bez kątów na rysunku: żadnego znaku stopnia; cyfry tylko w liczniku faz (tempo w sekundach)', async () => {
@@ -80,7 +80,7 @@ describe('komponent ExerciseFigureV2', () => {
     expect(screen.getByText('Opuszczanie 2 s ·')).toBeTruthy(); expect(screen.queryByText('Pauza ·')).toBeNull(); /* przysiad bez pauzy na dole (NSCA Basics s. 49–50) */ expect(screen.getByText('Wstawanie 1 s')).toBeTruthy(); expect(ph()).toBeTruthy();
     await act(async () => { jest.advanceTimersByTime(TEMPO.holdMs + 500); });
     expect(screen.getByText('Opuszczanie 2 s ·').props.style.color).toBe(light.accent);
-    screen.unmount(); render(<ExerciseFigureV2 exercise={lib('Deadlift (sztanga)')} />); await flush();
+    screen.unmount(); render(<ExerciseFigureV2 exercise={lib('Sumo Deadlift')} />); await flush();
     expect(screen.getByText('Podnoszenie 1 s ·')).toBeTruthy(); expect(screen.getByText('Opuszczanie 2 s')).toBeTruthy(); /* martwy ciąg zachowuje pauzy */ expect(screen.getAllByText(/Pauza/).length).toBeGreaterThan(0);
   });
   test('izometria: bez licznika faz', async () => { setReduce(true); render(<ExerciseFigureV2 exercise={lib('Wall Sit')} />); await flush(); expect(screen.queryByTestId('exercise-figure-v2-phases')).toBeNull(); });
@@ -118,7 +118,7 @@ describe('komponent ExerciseFigureV2', () => {
     const pal = figurePalette(th); for (const c of [pal.skin, pal.cloth, pal.steel]) expect([mode, c, fills.has(c)]).toEqual([mode, c, true]);
     expect(screen.getByText('Pozycja wyjściowa').props.style.color).toBe(th.muted);
   });
-  test.each(['Back Squat', 'Bench Press (sztanga)', 'Deadlift (sztanga)', 'Wall Sit'])('rysunek statyczny jest deterministyczny i niepusty: %s', async k => {
+  test.each(['Back Squat', 'Bench Press (sztanga)', 'Sumo Deadlift', 'Wall Sit'])('rysunek statyczny jest deterministyczny i niepusty: %s', async k => {
     setReduce(true); const a = render(<ExerciseFigureV2 exercise={lib(k)} />); await flush(); const d1 = pathsOf().join('|'); a.unmount();
     render(<ExerciseFigureV2 exercise={lib(k)} />); await flush(); expect(pathsOf().join('|')).toBe(d1); expect(pathsOf().length).toBeGreaterThan(30);
   });

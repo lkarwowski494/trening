@@ -15,7 +15,7 @@ const S = require('../scripts/i18n/slownik.cjs');
 
 type Zak = { wzorzec: string; powod: string };
 type Wpis = { zalecany: string; zakazane?: Zak[]; pewnosc: string; uwaga?: string };
-type Pojecie = { id: string; pl: string; znaczenie: string; kanon: string | null; wykrywaj: string; wyklucz?: string; jezyki: Record<string, Wpis> };
+type Pojecie = { id: string; pl: string; tylko?: string[]; znaczenie: string; kanon: string | null; wykrywaj: string; wyklucz?: string; jezyki: Record<string, Wpis> };
 type Slownik = { pojecia: Pojecie[] };
 type Wyjatek = { pl: string; jezyki: string[] | '*'; pojecie: string; powod: string };
 
@@ -38,6 +38,7 @@ describe('słownik terminów: struktura (dane)', () => {
   });
   test.each(LANGS as readonly string[])('%s: każde pojęcie ma termin zalecany i poprawne wpisy zakazane z powodem', (kod) => {
     for (const p of slownik.pojecia) {
+      if (p.tylko && !p.tylko.includes(kod)) continue; /* 101-15: pojęcie z listą „tylko” dotyczy wskazanych języków (np. termin marketingowy ms, angielskie nazwy ćwiczeń w el) */
       const e = p.jezyki[kod];
       expect([p.id, !!e]).toEqual([p.id, true]);
       expect(e.zalecany.trim().length).toBeGreaterThan(0);
@@ -46,13 +47,19 @@ describe('słownik terminów: struktura (dane)', () => {
       for (const z of e.zakazane ?? []) { expect(() => new RegExp(z.wzorzec, 'iu')).not.toThrow(); expect(z.powod.length).toBeGreaterThan(10); }
     }
   });
+  test('pojęcie z listą „tylko”: wpisy dokładnie dla wskazanych języków, kody istnieją', () => {
+    for (const p of slownik.pojecia.filter(x => x.tylko)) {
+      expect([p.id, Object.keys(p.jezyki).sort()]).toEqual([p.id, [...p.tylko!].sort()]);
+      for (const k of p.tylko!) expect([p.id, k, (LANGS as readonly string[]).includes(k)]).toEqual([p.id, k, true]);
+    }
+  });
   test('termin zalecany występuje w tłumaczeniu klucza kanonicznego (słownik i słowniki UI nie rozjeżdżają się)', () => {
     const bad: string[] = [];
     for (const kod of LANGS) {
       if (kod === 'pl' || kod === 'en') continue;
       const d = LOCALES[kod as Lang] as Record<string, string>;
       for (const p of slownik.pojecia) {
-        if (!p.kanon) continue;
+        if (!p.kanon || !p.jezyki[kod]) continue;
         const t = (d[p.kanon] ?? '').toLowerCase(); const z = p.jezyki[kod].zalecany.toLowerCase();
         if (!t.includes(z)) bad.push(`${kod}/${p.id}: „${p.jezyki[kod].zalecany}” nie ma w „${d[p.kanon]}”`);
       }
@@ -100,6 +107,59 @@ describe('słownik terminów: logika (wykrywanie i naruszenia)', () => {
     expect(S.sprawdz(slownik, 'zh-Hant', 'Deload', '減載')).toEqual([]);
     expect(S.sprawdz(slownik, 'de', 'Seria', 'Serie').length).toBe(1);
     expect(S.sprawdz(slownik, 'de', 'Seria', 'Satz')).toEqual([]);
+    /* 1.0.1, recenzja lokalizacji: „łokcie szeroko na boki” (wyciskanie) — ja: 開く, nie 広げる; fr: trop écartés, nie très écartés */
+    const lok = 'Łokcie ustaw pośrodku — ani przyklejone do tułowia, ani szeroko na boki.';
+    expect(S.wykryte(slownik.pojecia.find(x => x.id === 'lokcie_otwarte'), lok)).toBe(true);
+    expect(S.sprawdz(slownik, 'ja', lok, '肘を広げすぎず').length).toBe(1); expect(S.sprawdz(slownik, 'ja', lok, '肘は開きすぎず')).toEqual([]);
+    expect(S.sprawdz(slownik, 'fr', lok, 'ni très écartés').length).toBe(1); expect(S.sprawdz(slownik, 'fr', lok, 'ni trop écartés')).toEqual([]);
+    /* 1.0.1, recenzja lokalizacji (r2): „łokcie wąsko” — es/pt: cerrados/fechados, nie „juntos” (= stykają się); ja: 締める, nie 狭く */
+    const wsk = 'Łokcie wąsko przez cały ruch: przy wyciskaniu blisko tułowia.';
+    expect(S.wykryte(slownik.pojecia.find(x => x.id === 'lokcie_waskie'), wsk)).toBe(true);
+    expect(S.sprawdz(slownik, 'es', wsk, 'Mantén los codos juntos').length).toBe(1); expect(S.sprawdz(slownik, 'es', wsk, 'Mantén los codos cerrados')).toEqual([]);
+    expect(S.sprawdz(slownik, 'pt-BR', wsk, 'Mantenha os cotovelos juntos').length).toBe(1); expect(S.sprawdz(slownik, 'pt', wsk, 'Mantém os cotovelos fechados')).toEqual([]);
+    /* 1.0.1, recenzja lokalizacji (29.10.2026): podpis środkowych klatek „Pozycja pośrednia {n}” — nie słowo statusu (ru „В процессе”, id/ms „Sedang berjalan”, vi „Đang diễn ra”, zh „進行中”) */
+    const poz = 'Pozycja pośrednia {n}';
+    expect(S.wykryte(slownik.pojecia.find(x => x.id === 'pozycja_posrednia'), poz)).toBe(true);
+    for (const [k, zle, ok] of [['ru', 'В процессе {n}', 'Промежуточное положение {n}'], ['id', 'Sedang berjalan {n}', 'Posisi tengah {n}'], ['ms', 'Sedang berjalan {n}', 'Kedudukan tengah {n}'], ['vi', 'Đang diễn ra {n}', 'Tư thế giữa {n}'], ['zh-Hant', '進行中 {n}', '中間姿勢 {n}']] as const) {
+      expect([k, S.sprawdz(slownik, k, poz, zle).length]).toEqual([k, 1]); expect(S.sprawdz(slownik, k, poz, ok)).toEqual([]);
+    }
+    /* decyzja właściciela 29.10.2026: środkowa klatka przy trzech pozycjach to „Pozycja pośrednia” bez numeru (zamiast „W trakcie”) — ta sama forma co z numerem */
+    const poz0 = 'Pozycja pośrednia';
+    expect(S.wykryte(slownik.pojecia.find(x => x.id === 'pozycja_posrednia'), poz0)).toBe(true);
+    for (const [k, zle, ok] of [['ru', 'В процессе', 'Промежуточное положение'], ['id', 'Sedang berjalan', 'Posisi tengah'], ['ms', 'Sedang berjalan', 'Kedudukan tengah'], ['vi', 'Đang diễn ra', 'Tư thế giữa'], ['zh-Hant', '進行中', '中間姿勢']] as const) {
+      expect([k, S.sprawdz(slownik, k, poz0, zle).length]).toEqual([k, 1]); expect(S.sprawdz(slownik, k, poz0, ok)).toEqual([]);
+    }
+    expect(S.sprawdz(slownik, 'ja', wsk, '肘を狭く保ちます').length).toBe(1); expect(S.sprawdz(slownik, 'ja', wsk, '肘を締めておきます')).toEqual([]);
+  });
+  /* 101-15 (1.0.1, recenzja lokalizacji ms/el): ms „Lukisan pergerakan” (rysunek) zamiast „Animasi pergerakan” użytego w opisie sklepu; el „κινούμενα σχέδια” = kreskówki; el: angielskie nazwy ćwiczeń */
+  test('animacja ruchu: ms „Animasi pergerakan” (nie „Lukisan pergerakan”); el bez „κινούμενα σχέδια” (kreskówki)', () => {
+    const rr = 'Rysunek ruchu: {opis}';
+    expect(S.wykryte(slownik.pojecia.find(x => x.id === 'animacja_ruchu'), rr)).toBe(true);
+    expect(S.wykryte(slownik.pojecia.find(x => x.id === 'animacja_ruchu'), 'Rysunek schematyczny — pozycje orientacyjne.')).toBe(false);
+    expect(S.sprawdz(slownik, 'ms', rr, 'Lukisan pergerakan: {opis}').length).toBe(1); expect(S.sprawdz(slownik, 'ms', rr, 'Animasi pergerakan: {opis}')).toEqual([]);
+    expect(S.sprawdz(slownik, 'el', rr, 'Κινούμενα σχέδια: {opis}').length).toBe(1); expect(S.sprawdz(slownik, 'el', rr, 'Σχέδιο της κίνησης: {opis}')).toEqual([]);
+    expect(slownik.pojecia.find(x => x.id === 'animacja_ruchu')!.jezyki.ms.zalecany).toBe('Animasi pergerakan');
+  });
+  test('el: squat / bench press / deadlift zalecane po angielsku; pojęcia wykrywane w polskim tekście', () => {
+    const zal = (id: string) => slownik.pojecia.find(x => x.id === id)!.jezyki.el.zalecany;
+    expect([zal('przysiad'), zal('wyciskanie_lezac'), zal('martwy_ciag')]).toEqual(['squat', 'bench press', 'deadlift']);
+    expect(S.wykryte(slownik.pojecia.find(x => x.id === 'przysiad'), 'Stojaki do przysiadów')).toBe(true);
+    expect(S.wykryte(slownik.pojecia.find(x => x.id === 'wyciskanie_lezac'), 'wyciskanie leżąc')).toBe(true);
+    expect(S.wykryte(slownik.pojecia.find(x => x.id === 'martwy_ciag'), 'wyciskanie, martwy ciąg…')).toBe(true);
+    const b: string = S.blokPromptu(slownik, 'el'); expect(b).toContain('→ squat'); expect(b).toContain('→ bench press'); expect(b).toContain('→ deadlift');
+    expect(S.blokPromptu(slownik, 'ms')).toContain('Animasi pergerakan'); expect(S.blokPromptu(slownik, 'ms')).not.toContain('→ squat');
+  });
+  /* 101-17 (recenzja lokalizacji el, 29.10.2026): ogólne „άρσεις” (podnoszenia) i „πιέσεις πάγκου” zamiast zalecanych angielskich deadlift / bench press */
+  test('el: martwy ciąg = deadlift, wyciskanie leżąc = bench press (zakazane: άρσεις, νεκρή άρση, πιέσεις πάγκου); teksty z recenzji poprawione', () => {
+    const el = JSON.parse(fs.readFileSync(path.join(root, 'lib/locales/el.json'), 'utf8')) as Record<string, string>;
+    expect(S.sprawdz(slownik, 'el', 'wyciskanie, martwy ciąg…', 'κωπηλατική, πιέσεις, άρσεις…').length).toBe(1);
+    expect(S.sprawdz(slownik, 'el', 'wyciskanie, martwy ciąg…', 'κωπηλατική, πιέσεις, deadlift…')).toEqual([]);
+    expect(S.sprawdz(slownik, 'el', 'wyciskanie leżąc', 'πιέσεις πάγκου').length).toBe(1);
+    expect(S.sprawdz(slownik, 'el', 'wyciskanie leżąc', 'bench press')).toEqual([]);
+    expect(el['Maszyny dźwigniowe na talerze (wiosłowanie, wyciskanie, martwy ciąg…)']).toContain('deadlift…)');
+    expect(el['Maszyny dźwigniowe na talerze (wiosłowanie, wyciskanie, martwy ciąg…)']).not.toContain('άρσεις');
+    const k = Object.keys(el).find(x => x.startsWith('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie:'))!;
+    expect(el[k]).toContain('π.χ. bench press:'); expect(el[k]).not.toContain('πάγκου');
   });
   test('blok promptu: tylko wpisy języka docelowego, z terminem zalecanym i zakazanym', () => {
     const b: string = S.blokPromptu(slownik, 'ja');

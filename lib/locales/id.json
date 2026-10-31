@@ -1110,7 +1110,6 @@
  "w planie na: {day} · {n} ćw.": "direncanakan untuk: {day} · {n} gerakan",
  "W planie tygodnia: {days} — te dni będą wolne.": "Dalam rencana mingguan: {days} — hari-hari ini akan menjadi hari libur.",
  "W tej wersji": "Di versi ini",
- "W trakcie": "Sedang berjalan",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Di latihan yang sedang berjalan, karet akan dihapus dari set yang belum dicentang.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Di latihan yang sedang berjalan, ini akan ditandai sebagai dihapus.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Di minggu deload, “Mulai” dan “Ulangi yang terakhir” menawarkan “Lebih sedikit set”: {less}; beban dan templat tidak berubah.",
@@ -1274,7 +1273,7 @@
  "Zdejmij oznaczenie deload": "Hapus tanda deload",
  "ze skosem w dół": "dengan decline",
  "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.": "Jam latihan berhenti dan jeda tidak dihitung dalam durasi. Timer istirahat tetap berjalan; mencentang set akan melanjutkan latihan.",
- "Zegarek odczytuje tętno i energię aktywną z trwającego treningu. Dane nie są wysyłane poza Twoje urządzenia.": "Jam tangan membaca detak jantung dan energi aktif selama latihan berlangsung. Data tidak dikirim ke luar perangkatmu.",
+ "Zegarek odczytuje tętno i energię aktywną z trwającego treningu. Dane nie są wysyłane poza Twoje urządzenia.": "Jam tangan membaca detak jantung dan energi aktif selama latihan berlangsung. Data tidak dikirim ke luar perangkat Anda.",
  "Zegarek zapisuje zakończony trening siłowy, z tętnem i energią aktywną, w Apple Health.": "Jam tangan menyimpan latihan kekuatan yang selesai, beserta detak jantung dan energi aktif, ke Apple Health.",
  "zębaty przedni": "serratus anterior",
  "zginacze biodra": "fleksor pinggul",
@@ -1391,7 +1390,7 @@
  "e1RM pojawi się po wpisaniu masy ciała w Postępach.": "e1RM akan muncul setelah Anda memasukkan berat badan di Progres.",
  "Plan": "Rencana",
  "Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Progres: ringkasan mingguan atau bulanan dengan periode sebelumnya di sampingnya.",
- "Ćwiczenia dopasowane do Twoich: {n}": "Gerakan yang cocok dengan gerakan Anda: {n}",
+ "Ćwiczenia dopasowane do Twoich: {n}": "Gerakan yang sudah ada di daftar Anda: {n}",
  "Ćwiczenia z pliku": "Gerakan di file",
  "Dodano treningi: {n}, nowe ćwiczenia: {m}.": "Sesi latihan ditambahkan: {n}, gerakan baru: {m}.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Menambahkan sesi latihan dari file CSV buku harian latihan populer — tanpa menghapus data Anda saat ini, dengan pratinjau sebelum disimpan.",
@@ -1475,6 +1474,7 @@
  "Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.": "Pembelian tidak dapat dipulihkan. Periksa koneksi internet Anda.",
  "Potrzebne połączenie z internetem.": "Diperlukan koneksi internet.",
  "Masz dostęp na zawsze": "Anda punya akses selamanya",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Punya riwayat di aplikasi lain? Anda bisa menambahkannya dari file CSV.",
  "Masz pełną wersję": "Anda punya versi lengkap",
  "Dostęp z Chmury rodzinnej": "Akses melalui Keluarga Berbagi",
  "Dostęp z kodu do {date}": "Akses dari kode hingga {date}",
@@ -1777,5 +1777,7 @@
  "Masz plan: roczny": "Paket Anda: tahunan",
  "Masz plan: dożywotni": "Paket Anda: seumur hidup",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "Pozycja pośrednia {n}": "Posisi tengah {n}",
+ "Pozycja pośrednia": "Posisi tengah"
 }

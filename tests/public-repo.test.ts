@@ -4,6 +4,11 @@ import { tmpdir } from 'os';
 import { join } from 'path';
 import { execFileSync } from 'child_process';
 
+/** Adres repozytorium: jedno miejsce — stała REPO w scripts/readme.mjs (przy przeniesieniu do Apps4Brew zmienia się tylko ona i adresy w plikach; docs/46). */
+const REPO = /export const REPO = '([^']+)'/.exec(readFileSync(join(__dirname, '../scripts/readme.mjs'), 'utf8'))![1];
+const OWNER = REPO.split('/')[0];
+const reEsc = (x: string) => x.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&');
+
 const wf = (n: string) => readFileSync(join(__dirname, '../.github/workflows', n), 'utf8');
 
 describe('workflowy na publicznym repozytorium', () => {
@@ -22,7 +27,10 @@ describe('workflowy na publicznym repozytorium', () => {
     /* decyzja właściciela 06.10.2026 (wariant A): testy przy każdym wypchnięciu; E2E samo tylko na main i integration/**; nigdy pull_request (forki) */
     const e = wf('e2e-ios.yml'); expect(e).toMatch(/permissions:\n\s+contents: read/); expect(e).not.toMatch(/contents: write|pull_request/);
     expect(e).toMatch(/push:\n\s+branches: \[main, 'integration\/\*\*'\]/); expect(e).toMatch(/workflow_dispatch:/); expect(e).not.toMatch(/secrets\.(?!GITHUB_TOKEN)/);
-    const t = wf('tests.yml'); expect(t).toMatch(/permissions:\n\s+contents: read/); expect(t).not.toMatch(/contents: write|pull_request|secrets\./);
+    /* L-053 (właściciel 30.10.2026, A; zmienia „nigdy pull_request” z 06.10.2026 tylko dla tests.yml): PR do main z tego repozytorium — kod z forków nadal nie biegnie (warunek joba) */
+    const t = wf('tests.yml'); expect(t).toMatch(/permissions:\n\s+contents: read/); expect(t).not.toMatch(/contents: write|pull_request_target|secrets\./);
+    expect(t).toMatch(/\n  pull_request:\n    branches: \[main\]\n/);
+    expect(t).toMatch(/if: github\.event_name != 'pull_request' \|\| github\.event\.pull_request\.head\.repo\.full_name == github\.repository\n/);
     expect(t).toMatch(/on:\n\s+push:/); expect(t).toMatch(/run: npm run verify/);
   });
   test('przebiegi według harmonogramu (nightly.yml, tests-tz.yml; 06.10.2026): tylko harmonogram i ręcznie, odczyt, bez sekretów, artefakty 1 dzień', () => {
@@ -158,7 +166,7 @@ describe('workflowy na publicznym repozytorium', () => {
     const g = readFileSync(join(__dirname, '../.gitignore'), 'utf8'); for (const p of ['.env*', '*.p8', '*.p12', '*.mobileprovision', '*.cer', 'credentials.json', '*.pem', '*.key', '*.jks', '*.keystore', '*.xcarchive/', 'e2e-out/', '.claude/worktrees/']) expect(g.split('\n')).toContain(p); /* + audyt SEC-07 (08.10.2026) */
   });
   test('podspec modułu wskazuje właściwe repozytorium', () => {
-    expect(readFileSync(join(__dirname, '../modules/rest-activity/RestActivity.podspec'), 'utf8')).toMatch(/s\.homepage\s+= 'https:\/\/github\.com\/lkarwowski494\/trening'/);
+    expect(readFileSync(join(__dirname, '../modules/rest-activity/RestActivity.podspec'), 'utf8')).toMatch(new RegExp(`s\\.homepage\\s+= 'https://github\\.com/${reEsc(REPO)}'`));
   });
 });
 
@@ -217,7 +225,7 @@ describe('publikacja strony: site/ + pages.yml', () => {
   test('docs/15 opisuje źródło „GitHub Actions” i adresy stron; nie każe już włączać „Deploy from a branch /docs”', () => {
     const d = readFileSync(join(root, 'docs/15-app-store.md'), 'utf8');
     expect(d).toContain('Settings → Pages → Source: GitHub Actions');
-    for (const p of ['privacy.html', 'support.html']) expect(d).toContain(`https://lkarwowski494.github.io/trening/${p}`);
+    for (const p of ['privacy.html', 'support.html']) expect(d).toContain(`https://${OWNER.toLowerCase()}.github.io/trening/${p}`);
     expect(d).not.toMatch(/Deploy from a branch\*?\*? → `main` \/ `\/docs`/);
   });
 });
@@ -232,7 +240,7 @@ describe('strona www aplikacji (GitHub Pages)', () => {
     expect(html).toMatch(/<section lang="pl"/); expect(html).toMatch(/<section lang="en"/); expect(html).toContain('href="privacy.html"');
     expect([...html.matchAll(EMAIL_RE)].map(m => m[0]).filter(a => !ALLOWED_EMAILS.includes(a))).toEqual([]); expect([...html.matchAll(/mailto:([^"?]+)/g)].map(m => m[1]).filter(a => a !== 'support@apps4brew.com')).toEqual([]); /* wsparcie 13.10.2026: tylko adres wsparcia */
     expect(html).not.toMatch(/<script/i); expect(html).not.toMatch(/<link\b[^>]*stylesheet/i); expect(html).not.toMatch(/<(img|iframe)\b/i); expect(html).not.toMatch(/@import|url\(/);
-    expect([...html.matchAll(/(?:src|href)="(https?:[^"]+)"/g)].map(m => m[1]).filter(u => !u.startsWith('https://github.com/lkarwowski494/trening/issues'))).toEqual([]);
+    expect([...html.matchAll(/(?:src|href)="(https?:[^"]+)"/g)].map(m => m[1]).filter(u => !u.startsWith(`https://github.com/${REPO}/issues`))).toEqual([]);
     expect(fs.existsSync(join(root, 'site/CNAME'))).toBe(false); expect(fs.existsSync(join(root, 'docs/CNAME'))).toBe(false); /* domena apps4brew.com dopiero po zakupie */
   });
   test('index.html linkuje do wsparcia; liczba języków na obu stronach = LANGS z kodu; kontakt przez GitHub Issues', () => {
@@ -240,7 +248,7 @@ describe('strona www aplikacji (GitHub Pages)', () => {
     expect(idx).toContain('href="support.html"'); expect(idx).toContain('Apps4Brew');
     for (const h of [idx, sup]) expect(h).toContain(`${LANGS.length} języków`);
     expect(idx).toContain(`${LANGS.length} languages`); expect(sup).toContain(`${LANGS.length} languages`);
-    expect(sup).toContain('https://github.com/lkarwowski494/trening/issues'); expect(sup).not.toContain('DO UZUPEŁNIENIA');
+    expect(sup).toContain(`https://github.com/${REPO}/issues`); expect(sup).not.toContain('DO UZUPEŁNIENIA');
   });
   /* proces wsparcia (docs/34, decyzje właściciela 13.10.2026) */
   test('wsparcie PL/EN: adres support@, czas odpowiedzi „w ciągu tygodnia”, co dołączyć (wersja z O aplikacji, bez kopii z danymi), ostrzeżenie o publicznych zgłoszeniach, link do polityki; bez AI w obsłudze wiadomości (decyzja właściciela 21.10.2026, Q8 C)', () => {
@@ -248,7 +256,7 @@ describe('strona www aplikacji (GitHub Pages)', () => {
     for (const w of ['href="mailto:support@apps4brew.com"', 'zwykle w ciągu tygodnia', 'Więcej → O aplikacji', 'Nie dołączaj kopii zapasowej z danymi, chyba że o to poprosimy', 'zgłoszenia tam są publiczne', 'href="privacy.html"']) expect(pl).toContain(w);
     for (const w of ['href="mailto:support@apps4brew.com"', 'usually reply within a week', 'More → About', 'do not attach a backup containing your data unless we ask for it', 'reports there are public', 'href="privacy.html"']) expect(en).toContain(w);
     expect(sup.replace(/<!--[\s\S]*?-->/g, '')).not.toMatch(/\bAI\b|sztuczn|artificial intelligence/i);
-    /* kolejność: najpierw e-mail, GitHub jako opcja */ expect(pl.indexOf('support@apps4brew.com')).toBeLessThan(pl.indexOf('github.com/lkarwowski494'));
+    /* kolejność: najpierw e-mail, GitHub jako opcja */ expect(pl.indexOf('support@apps4brew.com')).toBeLessThan(pl.indexOf(`github.com/${OWNER}`));
   });
   test('polityka: sekcja „Gdy do nas piszesz” / „When you write to us” — art. 13 RODO (M8 21.10.2026): administrator, dane, cel, podstawa art. 6 ust. 1 lit. f, 12 miesięcy, odbiorcy bez AI (Q8 C), przekazanie poza EOG, prawa z ograniczeniem i terminem, dobrowolność, brak decyzji automatycznych, PUODO; raporty awarii Apple, kopia iOS, dzieci; nowa data', () => {
     const h = readFileSync(join(root, 'site/privacy.html'), 'utf8'); const body = h.replace(/<!--[\s\S]*?-->/g, '');

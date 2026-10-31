@@ -538,6 +538,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Власна вага: «±» — це обтяження (плюс) або допомога, напр. тренажера (мінус); резинка — окреме поле з рівнем. Рекорд — сума повторень без допомоги, а обсяг рахується лише з обтяження.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Маса: підходів на м’язову групу на тиждень до цілі з розділу Параметри (автоматично {m}), {a}–{b} повторень (вдома {c}–{d}), зазвичай {r1}–{r2} повторення в запасі.",
  "Masz dostęp na zawsze": "У вас доступ назавжди",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Є історія в іншому застосунку? Її можна додати з файлу CSV.",
  "Masz pełną wersję": "У вас повна версія",
  "maszyna": "тренажер",
  "maszyna belt squat": "тренажер для присіду з поясом",
@@ -1334,7 +1335,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "У тижневому плані: {days} — ці дні стануть відпочинком.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "У Прогресі позначений тиждень видно як літеру D на графіках — там його не змінюють.",
  "W tej wersji": "У цій версії",
- "W trakcie": "Під час руху",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "У поточному тренуванні резинку буде вилучено з ще не позначених підходів.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "У поточному тренуванні її буде позначено як видалену.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "У тиждень розвантаження «Почати» й «Повторити останнє» пропонують «Менше підходів»: {less}; ваги й шаблон без змін.",
@@ -1777,5 +1777,7 @@
  "Masz plan: roczny": "Ваш план: річний",
  "Masz plan: dożywotni": "Ваш план: довічний",
  "{n} kg": "{n} кг",
- "{n} lb": "{n} фнт"
+ "{n} lb": "{n} фнт",
+ "Pozycja pośrednia {n}": "Проміжне положення {n}",
+ "Pozycja pośrednia": "Проміжне положення"
 }

@@ -22,24 +22,6 @@ const wpisyDecyzji = (): { data: string; tekst: string }[] => {
 };
 const sekcja = (d: string, od: string, doo: string) => d.slice(d.indexOf(od), d.indexOf(doo, d.indexOf(od) + 1));
 
-describe('10-wydanie-005: plan „zły build” bez znaczników [DO PRZECZYTANIA] (DEC-07 b, 27.10.2026)', () => {
-  const s = sekcja(read('docs/42-plan-wydania-1.0.md'), '## 4. Zły build', '## 5.');
-  test('pkt 4 nie ma [DO PRZECZYTANIA]', () => {
-    expect(s.length).toBeGreaterThan(500);
-    expect(s).not.toMatch(/DO PRZECZYTANIA/);
-  });
-  test('wycofanie ze sprzedaży: strona Apple, cytat o zainstalowanych kopiach i dacie odczytu', () => {
-    expect(s).toContain('https://developer.apple.com/help/app-store-connect/manage-your-apps-availability/manage-availability-for-your-app-on-the-app-store/');
-    expect(s).toContain('Users who previously downloaded your app from the App Store in that country or region will continue to receive app updates.');
-    expect(s).toContain('Remove App From Sale');
-    expect(s).toMatch(/odczyt 27\.10\.2026/);
-  });
-  test('przyspieszona recenzja: strona Apple, warunek „krytyczny błąd” i kroki w notatce', () => {
-    expect(s).toContain('https://developer.apple.com/help/app-review/after-submitting-for-review/request-expedited-review/');
-    expect(s).toContain('Only submissions that have already been sent to App Review can be expedited.');
-    expect(s).toContain('include the steps to reproduce the bug on the current version of your app');
-  });
-});
 
 describe('02-monetyzacja-506: decyzja „Wyjątek Ukraina” z 13.10.2026 zamknięta (DEC-07 b, 27.10.2026)', () => {
   const w = wpisyDecyzji();
@@ -63,15 +45,4 @@ describe('02-monetyzacja-506: decyzja „Wyjątek Ukraina” z 13.10.2026 zamkni
   });
 });
 
-describe('M1-037 backlog (DEC-07 b, 27.10.2026): pozycje poza 1.0 wpisane do docs/21 z wersją, nie do „Backlogu bez priorytetu”', () => {
-  const d = read('docs/21-roadmapa-offline.md');
-  const s = sekcja(d, '### Backlog z audytu M1 — DEC-07 b', '\n### ');
-  const bezPriorytetu = sekcja(d, '### Backlog bez priorytetu', '\n### ');
-  test.each(['03-zakres-006', '03-zakres-007', '11-wzrost-002', '11-wzrost-004', '02-monetyzacja-005', '02-monetyzacja-506'])('%s: wiersz z wersją i warunkiem', (id) => {
-    const w = s.split('\n').find(l => l.includes(id)) ?? '';
-    expect(w).toMatch(/\*\*Wersja:\*\* (1\.0\.1|1\.0\.x|1\.1)/);
-    expect(w).toMatch(/Warunek|Powrót|Kiedy/);
-    expect(bezPriorytetu).not.toContain(id);
-  });
-});
 

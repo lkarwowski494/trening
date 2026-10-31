@@ -444,6 +444,7 @@
  "Potrzebne połączenie z internetem.": "É necessária uma conexão com a internet.",
  "Powiadamiaj": "Me avisar",
  "Masz dostęp na zawsze": "Você tem acesso para sempre",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Tem histórico em outro app? Você pode adicioná-lo a partir de um arquivo CSV.",
  "Masz pełną wersję": "Você tem a versão completa",
  "Dostęp z Chmury rodzinnej": "Acesso pelo Compartilhamento Familiar",
  "Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płacić podwójnie.": "Sua assinatura continua sendo renovada — cancele para não pagar duas vezes.",
@@ -613,5 +614,7 @@
  "Zobacz plany Pro": "Ver planos Pro",
  "Masz plan: miesięczny": "Seu plano: mensal",
  "Masz plan: roczny": "Seu plano: anual",
- "Masz plan: dożywotni": "Seu plano: vitalício"
+ "Masz plan: dożywotni": "Seu plano: vitalício",
+ "Pozycja pośrednia {n}": "Posição intermediária {n}",
+ "Pozycja pośrednia": "Posição intermediária"
 }

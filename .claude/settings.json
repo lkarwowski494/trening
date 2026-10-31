@@ -1,4 +1,31 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(npx jest:*)",
+      "Bash(node scripts/:*)",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git show:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git merge:*)",
+      "Bash(git fetch:*)",
+      "Bash(git branch:*)",
+      "Bash(git worktree:*)",
+      "Bash(git push -u origin wersja-1-0-1-r2:*)",
+      "Agent",
+      "SendMessage",
+      "mcp__claude-code-remote__send_message",
+      "mcp__claude-code-remote__send_later"
+    ],
+    "deny": [
+      "Bash(git push origin main:*)",
+      "Bash(git push -u origin main:*)",
+      "Bash(git push --force:*)"
+    ]
+  },
   "hooks": {
     "SessionStart": [
       {
@@ -7,6 +34,16 @@
           {
             "type": "command",
             "command": "f=\"$CLAUDE_PROJECT_DIR/CLAUDE.md\"; [ -f \"$f\" ] && { echo 'Aktualne zasady projektu (CLAUDE.md z dysku, po streszczeniu kontekstu — mają pierwszeństwo przed wcześniejszą kopią):'; cat \"$f\"; } || true",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "startup|resume|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=\"$CLAUDE_PROJECT_DIR/docs/zobowiazania.md\"; [ -f \"$f\" ] && { echo 'Zobowiązania na przyszłość (docs/zobowiazania.md, sekcja Aktywne) — sprawdź warunki przed planem:'; awk '/^## Aktywne/{p=1} /^## Archiwum/{p=0} p' \"$f\"; } || true; g=\"$CLAUDE_PROJECT_DIR/docs/fakty-wlasciciela.md\"; [ -f \"$g\" ] && { echo; echo \"Fakty o właścicielu (docs/fakty-wlasciciela.md) — sprawdź przed pytaniem o fakt:\"; cat \"$g\"; } || true",
             "timeout": 10
           }
         ]

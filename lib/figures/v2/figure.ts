@@ -38,12 +38,13 @@ export function figureSpec(key: string): FigureSpec | null {
   const lowerFirst = variant.family === 'hinge' ? variant.lowerFirst : true;
   return { key, family, variant, views: viewsOf(key, family), static: variant.family === 'squat' && !!variant.static, lowerFirst };
 }
-/** Ćwiczenia z wariantem, którego rysunek nie jest pokazywany w aplikacji (karta bez rysunku, wskazówki zostają) — ćwiczenie → powód. Silnik i testy geometrii nadal je liczą. */
-export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {
-  /* decyzja agenta w nocy 28/29.10.2026 (tryb nocny właściciela, do weta rano; docs/18): rysunek przeczy karcie „łokcie blisko tułowia” — poprawka rigu w 1.0.1 */
-  'JM Press': 'łokieć na dole ok. 25 cm za barkiem w stronę głowy, w połowie ruchu na boki — przeczy wskazówce cgbp.elbows; poprawka rigu w 1.0.1 (docs/21)',
-  'Decline Close-Grip Bench To Skull Crusher': 'łokieć na dole ok. 25 cm za barkiem w stronę głowy, w połowie ruchu na boki — przeczy wskazówce cgbp.elbows; poprawka rigu w 1.0.1 (docs/21)',
-};
+/** Ćwiczenia z wariantem, którego rysunek nie jest pokazywany w aplikacji — ćwiczenie → powód. Silnik i testy geometrii nadal je liczą.
+ * Faktyczne zachowanie wstrzymania (101-30): shownFigureSpec = null → hasTechnique (lib/figures/v2/ui.ts) = false, więc cała sekcja „Technika” znika
+ * (rysunek, zestaw ogólny wskazówek wzorca i przycisk „Technika ›”); a gdy ćwiczenie ma własne wskazówki (lib/cues), sekcja zostaje bez rysunku i bez powrotu do v1
+ * (components/ExerciseCues.tsx). Wskazówki ogólne wzorca zależą od rysunku (v2 = shownFigureSpec), więc same nie zostają.
+ * Stan 29.10.2026: pusty — 18 figur (JM Press, Skull Crusher, 11 martwych ciągów, Band Bench Press, Chain Press, Close Grip Bench Press, Zercher Squat, Sumo Squat z hantlem)
+ * zdjęto po poprawionych rigach i niezależnych recenzjach (docs/research/figury-recenzja.json). Nowy wpis = figura bez recenzji niezależnej albo z wadą WYSOKĄ (bramka 4). */
+export const V2_WSTRZYMANE: Readonly<Record<string, string>> = {};
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const figV2Shown = (): readonly string[] => (require('../data.json') as { v2?: string[] }).v2 ?? [];
 /** Rodzina v2 z aktualnym wpisem recenzji ruchu (docs/research/figury-recenzja.json, sekcja v2; bramka 4, fail-closed): bez wpisu albo po zmianie rigu/póz od recenzji rodzina nie jest rysowana — lista w lib/figures/data.json (scripts/zrodla-runtime.mjs). */

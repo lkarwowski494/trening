@@ -64,15 +64,15 @@
    "rodzina": "hinge",
    "werdykt": "zastapiona",
    "data": "2026-10-27",
-   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
-   "sha": "2d38e4f523dc"
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji; skrót przeliczony 28.10.2026 po zmianie id błędu na rdl.mis.knees (1.0.1)",
+   "sha": "d08c77a6346a"
   },
   "RDL (hantle/linki)": {
    "rodzina": "hinge",
    "werdykt": "zastapiona",
    "data": "2026-10-27",
-   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
-   "sha": "272eb3e0eb8a"
+   "kto": "nie recenzowana jako v1 — ćwiczenie wyświetla figurę v2 gotowej rodziny (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji; skrót przeliczony 28.10.2026 po zmianie id błędu na rdl.mis.knees (1.0.1)",
+   "sha": "2de2689449ea"
   },
   "Good Morning": {
    "rodzina": "hinge",
@@ -187,12 +187,15 @@
   },
   "Push Press": {
    "rodzina": "overhead_press",
-   "werdykt": "ukryta",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "b4d0dd3e05f6",
-   "wada": "Jak w wyciskaniu: gryf łukiem przed twarzą przy wypychaniu; nogi i ręce prostują się jednocześnie, choć wskazówka mówi, że siła idzie z nóg, a ręce kończą ruch (pp.legs). Figura ma już 3 pozycje (limit silnika v1) — nie da się dodać pozycji pośredniej.",
-   "poprawka": "Rodzina v2 overhead_press z fazami ruchu albo czwarta pozycja w silniku v1 (ugięcie → wyprost nóg z gryfem przy barkach → wyciśnięcie). Decyzja właściciela: 1.0 czy 1.0.1."
+   "werdykt": "wyswietlana",
+   "data": "2026-10-29",
+   "kto": "audytor (sesja 1.0.1, niezależny) — recenzja bramki 4, runda 2 (L-047, L-050): podgląd klatek i póz pośrednich, arkusz śladu toru, pomiar z lib/figures/geom.ts (201 póz na przejście), zakres stawów wobec rom, karta lib/cues (pp.setup, pp.move, pp.legs, pp.dip); raport recenzja-figury-v1-1-0-1.md",
+   "sha": "1a6202fc3925",
+   "uwagi": "Czwarta pozycja silnika (1.0.1): krótkie ugięcie (kolano 25°, tułów pionowo), potem wyprost nóg i bioder z gryfem nad barkami i zgiętymi rękami (kolano 0°, łokieć 113,8°), dopiero potem wyciskanie do wyprostu rąk — zgodnie z kartą „siła z nóg, ręce kończą ruch”. Gryf mija twarz w odległości ≥ 7,2 j. od środka głowy (ten sam próg co Overhead Press (sztanga)), nie wysuwa się przed pozycję startową o więcej niż 1,2 j., w pozycji końcowej nad kostką. Głębokość ugięcia ilustracyjna (nazwana w notatce).",
+   "autor": "programista r2/figury-v1",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "arkusz PNG klatek kluczowych, póz pośrednich i nałożonego śladu toru gryfu (L-050) oraz pomiar odległości gryfu od głowy i toru dłoni z modułu geometrii aplikacji — sesja recenzji 1.0.1, runda 2",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), wersja 1.0.1, 29.10.2026"
   },
   "Wyciskanie nad głowę (linki)": {
    "rodzina": "overhead_press",
@@ -222,12 +225,15 @@
   },
   "Pendlay Row": {
    "rodzina": "row",
-   "werdykt": "ukryta",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "ff4b2a547df5",
-   "wada": "Figura identyczna z wiosłowaniem sztangą w opadzie (tułów ok. 30° nad poziomem, sztanga zawieszona nad podłogą) — brak cechy rozpoznawczej nazwy (bramka 4, pkt 1 listy recenzenta); wskazówki karty też nie opisują startu z podłogi.",
-   "poprawka": "Wskazówka i poza ze startem z podłogi przy każdym powtórzeniu i tułowiem prawie równoległym do podłogi — po potwierdzeniu w 2 zgodnych źródłach szczebla 4 (strony źródłowe niedostępne 27.10, HTTP 403); do tego czasu bez rysunku, wskazówki zostają."
+   "werdykt": "wyswietlana",
+   "data": "2026-10-29",
+   "kto": "audytor — recenzja niezależna bramki 4 (L-047, L-050), 29.10.2026; poprzednia recenzja „ukryta”: 06-tresci, 27.10.2026",
+   "sha": "74a518fe67a5",
+   "stan": "zrecenzowana niezależnie (bramka 4, 1.0.1: nowa figura v1 — 4 pozycje, tułów prawie poziomo i nieruchomy, start ze sztangą na podłodze)",
+   "autor": "programista r2/pendlay",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "arkusz PNG klatek kluczowych (start, mid, mid2, end), póz pośrednich 0,25/0,5/0,75 każdego przejścia i nałożonego śladu toru punktów (L-050) obok Bent Over Row; pomiar modułem geometrii aplikacji na 4 klatkach i 19 pozach pośrednich każdego przejścia: zakres stawów wobec rom (0 przekroczeń), dolna krawędź talerza na starcie 0,02 j., talerz nigdy pod podłogą, ślizg stóp 0 j., tułów stale 8°, tor gryfu 4,1 j. w poziomie na 27,8 j. w pionie, gryf zawsze przed linią goleni, w końcu 8 j. przed linią pleców w 60% długości tułowia",
+   "uwagi": "Cecha rozpoznawcza wobec wiosłowania w opadzie: tułów prawie poziomo (8°, uproszczenie ilustracyjne; źródła: „równolegle”/„prawie równolegle”, jedno 20–30°) i sztanga z podłogi w każdym powtórzeniu (pętla wraca do talerza na podłodze). Nachodzenie talerza na tułów w końcu — widok z boku, talerz z boku ciała, gryf poza kreską tułowia (jak w wiosłowaniu w opadzie). Podudzie odchylone do tyłu ok. 14° — konwencja rodziny row (to samo w wiosłowaniu w opadzie), uwaga do backlogu rodziny."
   },
   "T-Bar Row": {
    "rodzina": "row",
@@ -324,33 +330,44 @@
   "Lunges (hantle)": {
    "rodzina": "lunge",
    "werdykt": "wyswietlana",
-   "stan": "zrecenzowana niezależnie 28.10.2026 (figura: recenzja z wpisu; treść karty po usunięciu zdań: 06-tresci)",
-   "data": "2026-10-28",
-   "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-po-poprawce.md: OK (NISKIE: tylna stopa pionowo na palcach w „w trakcie”, przednia stopa przesuwa się o 2,1 j.) — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
+   "data": "2026-10-29",
+   "kto": "audytor (sesja 1.0.1, niezależny) — recenzja bramki 4 (L-047, L-050): dane figury identyczne z 1.0 (wersja-1-0-1-r2, wariant B — przywrócona poza tylnej stopy), skrót bez zmian; podgląd i arkusz śladu toru; raport recenzja-figury-v1-1-0-1.md",
    "sha": "c4129536dca1",
-   "uwagi": "Klatki zmienione 28.10.2026 po recenzji niezależnej (WYSOKIE: ciało opadało do wykroku, zanim przednia stopa dotknęła podłogi). Pozycja „w trakcie” = krok postawiony (przednia stopa płasko na podłodze, biodra wysoko, tylne palce na podłodze), dopiero potem opuszczenie; wykrok krótszy (przednia kostka ok. 43 j. od tylnych palców). Test: tests/figury-podparcie.test.ts (reguła podparcia). Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian.",
-   "autor": "programista (agent; poprawka klatek figury, decyzja właściciela 28.10.2026)",
-   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026); treść karty po usunięciu zdań: 06-tresci (subagent, 28.10.2026)"
+   "uwagi": "Figura bajtowo taka sama jak wyświetlana w 1.0 (ten sam skrót) — nie gorsza. Uwagi NISKIE z 28.10.2026 bez zmian i w backlogu (docs/21): tylna stopa pionowo na palcach w „w trakcie”, przednie palce przesuwają się w styku o 3,2 j. przy odbiciu.",
+   "autor": "programista r2/figury-v1",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "arkusz śladu toru: scratchpad/figury-v1/recenzja/Lunges__hantle_/podglad.png (odświeżony po 64a8145); pomiar: scratchpad/aud/drag.mjs (old = new)",
+   "poprzedniWerdykt": "wyswietlana",
+   "poprzedniaRecenzja": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), wersja 1.0.1, 29.10.2026"
   },
   "Walking Lunges": {
    "rodzina": "lunge",
    "werdykt": "wyswietlana",
-   "stan": "zrecenzowana niezależnie 28.10.2026 (figura: recenzja z wpisu; treść karty po usunięciu zdań: 06-tresci)",
-   "data": "2026-10-28",
-   "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-po-poprawce.md: ruch jak Lunges — wyświetlana; ŚREDNIE (brak kroku drugą nogą) → backlog 1.0.1 — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
-   "sha": "06e0f4563108",
-   "uwagi": "Klatki zmienione 28.10.2026 jak Lunges (hantle): krok postawiony przed opuszczeniem (WYSOKIE z recenzji niezależnej). Nie poprawiono (ŚREDNIE): pętla wraca do pozycji wyjściowej zamiast kroku drugą nogą — silnik v1 (3 pozycje, ping-pong) tego nie pokaże. Test: tests/figury-podparcie.test.ts. Skrót zmieniony 28.10.2026 tylko przez usunięcie zdań karty (M1-audytor-generalny-038; autor: koordynator M2, recenzja treści: 06-tresci — sekcja „karty”); dane figury (data/zrodla/figures.json) bez zmian.",
-   "autor": "programista (agent; poprawka klatek figury, decyzja właściciela 28.10.2026)",
-   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026); treść karty po usunięciu zdań: 06-tresci (subagent, 28.10.2026)"
+   "data": "2026-10-29",
+   "kto": "audytor (sesja 1.0.1, niezależny) — recenzja bramki 4, runda 2 (L-047, L-050): podgląd klatek i póz pośrednich, arkusz śladu toru, pomiar z lib/figures/geom.ts (101 póz na przejście), zakres stawów wobec rom we wszystkich pozach, karta lib/cues (lunge.dbSetup, lunge.walk, lunge.torso); raport recenzja-figury-v1-1-0-1.md",
+   "sha": "fd687120c1be",
+   "uwagi": "Poprawka 1.0.1 nie gorsza od 1.0 (lepsza): krok drugą nogą zgodnie z kartą (cztery pozycje: wykrok, wstawanie z przejściem tylnej nogi, krok postawiony, wykrok lustrzany do startu) — usuwa ŚREDNIE z 28.10.2026. Stopa bliższa w miejscu przez cały ruch (0 j.), tylne palce przy odbiciu ≤ 1,7 j. przesunięcia w styku (w rundzie 1 było 8,1 j.), przednia stopa po lądowaniu w granicach 2 j., tylne kolano ≤ 8 j. nad podłogą, wszystkie stawy w zakresie. NISKIE (backlog): druga połowa pętli ping-pong pokazuje krok w tył — ograniczenie silnika, nazwane uproszczenie.",
+   "autor": "programista r2/figury-v1",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "arkusz PNG klatek kluczowych, póz pośrednich (0,25 / 0,5 / 0,75) i nałożonego śladu toru punktów (L-050) oraz pomiar punktów stóp, biodra i zakresu stawów z modułu geometrii aplikacji — sesja recenzji 1.0.1, runda 2",
+   "poprzedniWerdykt": "wyswietlana",
+   "poprzedniaRecenzja": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), wersja 1.0.1, 29.10.2026"
   },
   "Reverse Lunge": {
    "rodzina": "lunge",
-   "werdykt": "ukryta",
-   "data": "2026-10-28",
-   "kto": "06-tresci — recenzja niezależna figur 3a i pełna (audytor, 28.10.2026): pomiary póz pośrednich, arkusze PNG; decyzja właściciela 28.10.2026 „Reverse Lunge ukryć w 1.0”",
-   "sha": "d461a393d415",
-   "wada": "Biodro opada ok. 20 j., gdy tylna stopa jest w powietrzu; środek ciężkości do 8,7 j. za piętą jedynej podpory; przednia stopa unosi się do 3,1 j., palce tylnej jadą po podłodze 22 j. Limit 3 pozycji silnika v1 — łuk stopy w zamachu w tył nie do oddania (próby na 3 pozycjach: tests/figury-podparcie.test.ts).",
-   "poprawka": "Czwarta pozycja w silniku v1 (kolano ugięte w połowie zamachu), razem z Push Press i krokiem drugą nogą w Walking Lunges — wersja 1.0.1 (backlog docs/21). Do tego czasu bez rysunku, wskazówki zostają."
+   "werdykt": "wyswietlana",
+   "data": "2026-10-29",
+   "kto": "audytor (sesja 1.0.1, niezależny) — recenzja bramki 4 (L-047, L-050) poprawki wg decyzji właściciela 29.10.2026: podgląd klatek i póz pośrednich, arkusz śladu toru, pomiar z lib/figures/geom.ts (101 póz na przejście), zakres stawów wobec rom we wszystkich pozach, podparcie i jedna podpora, karta lib/cues (lunge.stand, lunge.back, lunge.torso); raport recenzja-reverse-lunge.md",
+   "sha": "658463b371c2",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), wersja 1.0.1, 29.10.2026",
+   "uwagi": "Ruch uproszczony wg decyzji właściciela 29.10.2026 (bez zamachu łukiem): tylna stopa unosi się prawie pionowo (kostka 1,5 j. od miejsca startu, palce 8,5 j. nad podłogą), cofa się w powietrzu i staje na palcach 42–44 j. za przednimi, dopiero potem opuszczenie do wykroku (tylne kolano 6,3 j. nad podłogą, tułów 87–91°). Przednia stopa w miejscu (0 j.), tylne palce przy oderwaniu i po lądowaniu ≤ 2 j. od pozy kluczowej, wszystkie stawy w zakresie (wyprost biodra tylnej nogi min. −6,8°), wejście pod podłogę 0,2 j., podparcie i jedna podpora spełnione; zgodne z kartą. NISKIE (backlog): w pozycji „w trakcie 1” tylne kolano wychodzi ok. 16 j. przed przednie („wysokie kolano”, skutek pionowego uniesienia); palce przed lądowaniem przez ok. 3,7 j. drogi 0,8–1,5 j. nad podłogą (płaskie podejście).",
+   "autor": "programista r2/reverse-lunge",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "arkusz PNG klatek kluczowych (start, w trakcie 1, w trakcie 2, koniec), póz pośrednich (0,25 / 0,5 / 0,75) i nałożonego śladu toru punktów (L-050) oraz pomiar punktów stóp, biodra, środka ciężkości i zakresu stawów z modułu geometrii aplikacji — sesja recenzji 1.0.1, Reverse Lunge po decyzji 29.10.2026",
+   "poprzedniWerdykt": "ukryta",
+   "poprzedniaRecenzja": "2026-10-29"
   },
   "Bulgarian Split Squat (hantle)": {
    "rodzina": "lunge",
@@ -365,13 +382,16 @@
   "Step Up": {
    "rodzina": "lunge",
    "werdykt": "wyswietlana",
-   "stan": "zrecenzowana niezależnie 28.10.2026",
-   "data": "2026-10-28",
-   "kto": "programista (autor poprawki klatek, decyzja właściciela 28.10.2026 „poprawić przed 1.0”); recenzja niezależna (audytor, inna sesja, 28.10.2026): recenzja-niezalezna-stepup-2.md (druga recenzja po drugiej poprawce): OK (NISKIE: ręce z hantlami za tułowiem w „w trakcie”, palce mijają krawędź skrzyni o 0,9 j.) → backlog 1.0.1 — raporty w katalogu audytu M1-2026-10-27, role/06-tresci/fix-2026-10-28-figury/",
-   "sha": "ce54a060ebde",
-   "uwagi": "Klatki zmienione 28.10.2026 dwukrotnie po recenzji niezależnej (WYSOKIE: upadek w tył). Pierwsza poprawka odrzucona przez recenzję po poprawce (środek ciężkości 6,5–7,4 j. za piętą stopy na skrzyni; reguła z tolerancją 10 j. dla biodra była za luźna). Teraz: start z tułowiem ok. 8° od pionu, „w trakcie” z tułowiem pochylonym ok. 30°, środek ciężkości nad stopą na skrzyni (± 2,5 j.), biodro rośnie. Test: tests/figury-podparcie.test.ts (reguła jednej podpory na środku ciężkości).",
-   "autor": "programista (agent; poprawka klatek figury, decyzja właściciela 28.10.2026)",
-   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026)"
+   "data": "2026-10-29",
+   "kto": "audytor (sesja 1.0.1, niezależny) — recenzja bramki 4 (L-047, L-050): podgląd klatek i póz pośrednich, arkusz śladu toru, pomiar z lib/figures/geom.ts (21–101 próbek na przejście), karta lib/cues (stepup.setup, stepup.move, lunge.torso, stepup.knee); raport recenzja-figury-v1-1-0-1.md",
+   "sha": "f4ab0f6bfec7",
+   "uwagi": "Poprawka 1.0.1 nie gorsza od 1.0 (lepsza): dłonie z hantlami pionowo pod barkiem w każdej pozie (|Δx| = 0 j.; było 19 j. za barkiem), stopa nogi zakrocznej ≥ 3 j. od krawędzi skrzyni i nad blatem (palce ≥ 4 j. nad wierzchem w przejściu mid→end), ślizg tylnych palców przy oderwaniu 1,55 j., środek ciężkości z hantlami nad stopą na skrzyni (reguła jednej podpory spełniona). Pozycja końcowa z uniesionym kolanem bez zmian względem 1.0 (nazwane uproszczenie).",
+   "autor": "programista r2/figury-v1",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "arkusz śladu toru: scratchpad/figury-v1/recenzja/Step_Up/podglad.png (pozy kluczowe, pozy pośrednie 0,25/0,5/0,75, nałożony ślad punktów); pomiar: scratchpad/aud/m.mjs, drag.mjs",
+   "poprzedniWerdykt": "wyswietlana",
+   "poprzedniaRecenzja": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047, L-050), wersja 1.0.1, 29.10.2026"
   },
   "Hip Thrust (sztanga)": {
    "rodzina": "hip_bridge",
@@ -527,8 +547,8 @@
    "rodzina": "calf_raise",
    "werdykt": "wyswietlana",
    "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "d783d55dc834",
+   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie); skrót przeliczony 29.10.2026 po zmianie tekstu PL calf.edge (dane figury bez zmian; recenzja karty 29.10.2026)",
+   "sha": "9f988839b4bf",
    "uwagi": "Ruch i karta zgodne. Przednia część stopy na podwyższeniu, pięty poniżej krawędzi przy rozciągnięciu, wspięcie na palce; kolana proste. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
   },
   "Łydki na stopniu": {
@@ -609,33 +629,39 @@
  "v2": {
   "squat": {
    "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "recenzja ruchu L-042 (rundy 1–2, agent recenzent, 27.10.2026); poprawki potwierdzone testami tests/figury-1-0-recenzja.test.ts",
-   "sha": "fd142e983e89",
+   "data": "2026-10-29",
+   "kto": "audytor — recenzja niezależna ruchu i geometrii figur v2 1.0.1, pakiet C (101-09..12; bramka 4, L-047, L-050, L-056 A), r101/C 48f23db1",
+   "sha": "d2d946b53cf5",
    "liczba": 25,
-   "uwagi": "Zapis przeniesiony z L-042 (docs/40-lekcje.md); 06-tresci nie powtarzała recenzji v2 — zakres zadania M1-audytor-generalny-005: figury v1."
+   "uwagi": "Zatwierdzone (kadry co 0,05, obie miary): 101-09 Zercher — oś gryfu 8,1 cm od łokcia na każdym kadrze (było do 18,5), odstęp gryf–tułów/nogi +0,4 cm, bez przenikania; na dole gryf nad śródstopiem (x 6,5), na górze 8,2 cm przed nim (tor prosty, ok. 9° od pionu; było 11,6). 101-10 Sumo (hantel) — ramię stałe 8,4° od pionu, przesunięcie poziome góra–dół 1,9 cm (było 24,2), odstęp od nóg +0,5…+24,5 cm. 101-11 OHS: ramię od 7,2° za pionem (u 0) do 4,3° przed pionem (u 0,6–0,8), zgięcie barku 191,8–198,4° przy θ 8–22°; One-Arm OHKB: 2,3° za … 4,3° przed, 184,4–199,8°; gryf/kettlebell x 5,0 = 1,5 cm za środkiem stopy (stopa 25 cm) — nadal nad śródstopiem. Reguła kontraktu [180+θ−5, 180+θ+10] zgodna z drugim punktem notatki badacza (ramię 5° przed / 10° za pionem); sztywne „≤ 180+θ+5” jest sprzeczne z tym punktem (OHS u 0: 195,2° > 193°) — do poprawki w notatce badacza (NISKIE, backlog 1.0.1). 101-12: tor jako prosta (odchyłka od cięciwy ≤ 0,09 cm; było 3,6–6,1) dla Goblet, Cable, Bodyweight, Landmine, Dumbbell, Band; pochylenie tułowia faluje najwyżej 1,4° (Goblet), 1,0° (Cable), 0,6° (Band), 0,3° (Landmine), 1,7° (Zercher) w u 0,65–0,85 — na arkuszach niewidoczne, bez skoków (NISKIE, backlog 1.0.1). Stopy płasko (kostka y 7,0 na każdym kadrze), styk dodatni we wszystkich 10. Wyjątki toru (Dip Belt, pas z linkami, Barbell Hack) uzasadnione torem bioder — bez osłabienia; zmiana testu wstrzymanych odwraca stan wady na stan naprawy (próg ≤ 9 cm / ≤ 6 cm), nie osłabia. Zercher Squat i Sumo Squat (hantel) mogą wrócić do aplikacji (zdjęcie z V2_WSTRZYMANE — decyzja koordynatora). Pozostałe 15 ćwiczeń rodziny i rodziny bench_press, hinge: klatki identyczne (skróty v2 bench_press/hinge bez zmian, plik contract.ts poza skrótem). Skrót przeliczony 29.10.2026 przez koordynatora 1.0.1 po scaleniu fali 2 (4b65e0fc0a8c → 9d4c1a8eceea): zmiana samej formy — pliki wspólne v2 (draw/scene/colliders z pakietu B, variants.ts z A2/B/C); klatki wszystkich ćwiczeń rodziny identyczne z gałęzią zatwierdzoną w recenzji (odciski 21 kadrów, 87/87). Skrót przeliczony 29.10.2026 (koordynator 1.0.1) po zdjęciu V2_WSTRZYMANE (J0, figure.ts) 9d4c1a8eceea → 24c3c06f4ca5: zmiana samej formy, klatki 87/87 bez zmian (odciski 21 kadrów). Skrót przeliczony 29.10.2026 (koordynator 1.0.1) po scaleniu J3 24c3c06f4ca5 → d2d946b53cf5: zmiana samej formy (variants.ts Chain Press — zrecenzowane w J3; figure.ts z J0); klatki: zmienił się tylko Chain Press, identyczny z gałęzią zatwierdzoną w recenzji J3 (odciski 21 kadrów).",
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-056 A) — figury v2 1.0.1, pakiet C (r101/C)",
+   "autor": "programista r101/C",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "Arkusze własne (scripts/figures/arkusz-slad.mjs z main na lib r101/C): 10 ćwiczeń × 2 widoki = 20 PNG z nałożonym śladem, kadry u 0…1 co 0,05 (odstęp ciężaru w podpisie), obejrzane w pełnej rozdzielczości, kadry u 0,85/1 Zercher i Goblet powiększone. Pomiar frameAt 21 kadrów: tor, θ, odchylenie ramienia, zgięcie barku, odległość gryf–łokieć, odstęp. Odciski 21 klatek (sha256 frameAt) 87 ćwiczeń v2: 5226488f vs 48f23db1 — 77 identycznych, zmienione tylko 10 zgłoszonych."
   },
   "bench_press": {
    "werdykt": "wyswietlana",
-   "data": "2026-10-28",
-   "kto": "recenzja niezależna ruchu po naprawie torów (agent recenzent, 28.10.2026)",
-   "sha": "39b505a17e9b",
+   "data": "2026-10-29",
+   "kto": "audytor — recenzja niezależna ruchu i geometrii Chain Press po poprawkach 101-06 J2/J3 (bramka 4, L-047, L-050, L-056 A), HEAD 4b66cb68",
+   "sha": "0bb8fc229bf7",
    "liczba": 30,
-   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A) — ruch po naprawie torów 9883ada",
-   "autor": "koordynator M2 (naprawa torów, 9883ada)",
-   "recenzent": "agent recenzent ruchu (sesja niezależna)",
-   "uwagi": "Obejrzane kadry u 0/0,25/0,5/0,75/1 z boku (3,2×, ślad toru) i z przodu, przed (f5af3be) i po (9883ada): 4 wyciskania na maszynie Smitha (płasko, wąsko, skos dodatni, skos ujemny) — szyna stoi w punkcie dotyku, gryf jedzie pionowo (było: ukos 15–18 cm, szyna z gryfem), na górze ręce proste nad punktem dotyku, dotyk na klatce zgodny z wariantem; 26 pozostałych ćwiczeń rodziny bez zmian (obraz identyczny bajt w bajt ze stanem zrecenzowanym 27.10.2026). Bez uwag blokujących."
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A) — pakiet B 1.0.1 (101-05 Band Bench Press, 101-06 Chain Press, 101-07 Close Grip, 101-08 Board/Pin Press), wcześniej rundy r1–r3 (bf18a97 → 0b2e64e → 03a7575)",
+   "autor": "programista r101/J2 (J3)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "uwagi": "29.10.2026, 101-06 J2/J3 (Chain Press): rozstrzygnięcie kąta łokcia — silnik mierzy zgięcie (jointAngles: 180 − kąt bark–łokieć–uchwyt, lib/figures/v2/skeleton.ts:131); przy 90° zgięcie = kąt ramię–przedramię, więc 127° z J2 (53° między ramieniem a przedramieniem) było rzeczywistą sprzecznością ze źródłem („elbow forms a 90 degree angle”, docs/research/1-0-1-zrodla-2026-10-29.md pkt 3), nie różnicą definicji — WYSOKIE, odrzucone; „same position as for a dumbbell press” dotyczy ułożenia na ławce, oba warunki da się spełnić naraz. J3 zatwierdzone: dłonie na dole 18,0 cm od barku ku stopom (jak Bench Press (hantle), ŚREDNIE z pakietu B zamknięte), 33,0 cm nad barkiem; zgięcie łokcia 4,4° → 90,4° monotonicznie, łokieć 0,5 cm pod barkiem, przedramię pionowo; ramię–tułów na dole 57° (wcześniej 35°; mieści się w „łokcie pośrodku”); rozstaw 48,5 cm od osi; uchwyty ≤ 0,6 cm od dłoni, odstęp uchwytów od ciała min. 21,5 cm, bez przenikania (pomiar per uchwyt); łańcuch zwisa pionowo (odchylenie 0), część leżąca rośnie monotonicznie 12 → 45,4 cm, długość stała 131,6 cm, łańcuch ≥ 5 cm od krawędzi ławki; checkFrame bez uwag w 21 kadrach; ciągłość co Δu 0,01 maks. 0,68 cm. Testy łokcia przywrócone do 90° ± 3° (zgodnie ze źródłem). Rysunek wg jednego źródła szczebla 4 (oznaczenie „jedno źródło”). Poprzednio (fe498ac39549, pakiet B, 29.10.2026): 29.10.2026, pakiet B: zatwierdzone Band Bench Press (bez sztangi; dwa uchwyty w dłoniach ≤ 0,6 cm; dwa pasma gumy od uchwytów do stałej pętli pod ławką y 6, z ±16 — 2 punkty zaczepu w 21 kadrach; guma dłuższa na górze; tor jak Bench Press (hantle) — klatki dłoni i łokci identyczne) i Chain Press (bez sztangi; uchwyty z łańcuchem: zwis pionowy z uchwytu do podłogi, część leżąca 12 cm na górze → 46 cm na dole, długość stała; łokieć 4,4° → 90,6° monotonicznie, przedramię pionowo; ramię–tułów na dole 35° (z góry 35°, jak hantle 33°), łokieć na wysokości barku; dłonie na dole 28 cm od barku ku stopom — o 10 cm niżej niż w Bench Press (hantle), ŚREDNIE do backlogu 1.0.1). Chain Press: rysunek wg jednego źródła szczebla 4; czy łańcuch w górze odrywa się całkiem — do ustalenia. Close Grip Bench Press i Board/Pin Press: odciski klatek identyczne z bazą 9cd7502 (rig bez zmian); Close Grip chwyt ±19 = 0,93 × połowa barków ±20,5, zgodny z kartą „na szerokość barków lub trochę węziej”. Ciągłość co Δu 0,01: maks. 0,91 cm (bez skoków). NISKIE (backlog 1.0.1): pionowy zwis łańcucha i pasmo gumy przechodzą przez przedramię/ramię (oś łańcucha w osi przedramienia, kapsuła ramienia −4,5 cm; guma −2,8 cm) — niewidoczne w rysunku (z boku nakładanie rzutu, z góry zwis to punkt pod dłonią); miara styku L-056 A w testach pakietu B mierzy tylko uchwyt wobec nóg i tułowia, nie gumę/łańcuch wobec rąk. Wpisy V2_WSTRZYMANE dla Band Bench Press, Chain Press i Close Grip nadal są na r101/B — zdjęcie wstrzymania to osobny krok. Wcześniej (r1–r3, 28.10.2026): wąski chwyt ±19 (4 ćw.), ławka ujemna, Board Press (deska widoczna z góry), Pin Press (stojak wewnątrz talerzy), JM Press (łokcie wysoko, 34° — uproszczenie ze stałego chwytu), Decline Close-Grip Bench To Skull Crusher (tylko faza prostowania — uproszczenie w docs/21 i BRD); NISKIE r3-1…r3-3 bez zmian. Skrót przeliczony 29.10.2026 (koordynator 1.0.1) po scaleniu J3 a7f182e04b43 → 0bb8fc229bf7: zmiana samej formy (variants.ts Chain Press — zrecenzowane w J3; figure.ts z J0); klatki: zmienił się tylko Chain Press, identyczny z gałęzią zatwierdzoną w recenzji J3 (odciski 21 kadrów).",
+   "slad": "rec-J3 (4b66cb68): własne arkusze arkusz-slad.mjs uruchomione z worktree (kadry co 0,05, ślad toru, odstęp) — Chain Press side i top, PNG w pełnej rozdzielczości; odciski 87 ćwiczeń (21 kadrów frameAt) vs baza aff33534 — 86 identycznych, zmieniony tylko Chain Press; pomiary frameAt u 0/0,5/1 (bark, łokieć, uchwyt, zgięcie, ramię–tułów), łańcuch i ciągłość co Δu 0,01. Poprzednio: rec-B (2ce00814): własne arkusze arkusz-slad.mjs (kadry co 0,05, ślad toru, odstęp) — Band Bench Press, Chain Press, Close Grip Bench Press, Board Press, Pin Press, widoki side i top (10/10, PNG w pełnej rozdzielczości); odciski 87 ćwiczeń (frameAt + sortShapes we wszystkich widokach + checkFrame, 21 kadrów, trailFor, boxFor) vs baza 9cd7502 — 85 identycznych, zmienione tylko Band Bench Press i Chain Press; pomiary frameAt: odstęp łańcucha/gumy od kapsuł rąk i tułowia, kąt łokcia i ramię–tułów u 0,5/0,75/1, ciągłość co Δu 0,01"
   },
   "hinge": {
    "werdykt": "wyswietlana",
-   "data": "2026-10-28",
-   "kto": "recenzja niezależna ruchu po naprawie torów (agent recenzent, 28.10.2026)",
-   "sha": "a97961c2e618",
+   "data": "2026-10-29",
+   "kto": "audytor — recenzja niezależna ruchu i geometrii rodziny hinge v2 (bramka 4, L-047, L-050, L-056 A), pakiet A2 1.0.1 (101-02 start z podłogi, 101-04 D3 ramiona RDL), r101/A2 a264fdf3 → 8344ffed",
+   "sha": "e9af1b06ec31",
    "liczba": 32,
-   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A) — ruch po naprawie torów 9883ada",
-   "autor": "koordynator M2 (naprawa torów, 9883ada)",
-   "recenzent": "agent recenzent ruchu (sesja niezależna)",
-   "uwagi": "Obejrzane kadry u 0/0,25/0,5/0,75/1, widok z boku (powiększenie 3,2×, ślad toru i pion środka stopy) i z przodu, przed (f5af3be) i po (9883ada), wszystkie 32 ćwiczenia; 20 zmienionych porównane klatka po klatce, 12 bez zmian (obraz identyczny piksel w piksel). Martwe ciągi ze sztangą/linką: „S” usunięte (było 4,2–5,6 cm, 2 zawrócenia; jest gładki łuk 3,1–3,6 cm, 1 zmiana kierunku), start 1,4–2,6 cm przed środkiem stopy, gryf przy goleniach (luz 0,2 cm), bez przenikania; RDL/SLDL/Rack Pull/Single Leg RDL (linki) prawie pionowo (0,3–0,6 cm); Smith SLDL — szyna stoi, gryf na szynie. Uwagi NISKIE (backlog): (1) sumo (4 warianty) i sumo z kettlebellem — tor gładki, ale ukośny w przód ok. 6–8 cm (start ok. 2 cm za pionem środka stopy, wyprost 4–6 cm przed); (2) Reverse Band Deadlift / Reverse Band Sumo — górny zaczep gumy przesuwa się z gryfem (3,4 / 8 cm), Cable Deadlift — bloczek przy podłodze przesuwa się z uchwytem (3,7 cm), ta sama klasa co dawna szyna Smitha, mniej widoczna; (3) Smith SLDL — szyna 7,3 cm przed środkiem stopy, na dole gryf do 6 cm przed goleniami (skutek pionowej szyny, poprawne dla maszyny); (4) RDL/SLDL na dole ramiona odchylone od pionu w przód (stan sprzed zmiany)."
+   "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-056 A) — pakiet A2 1.0.1 (101-02, 101-04 D3), r101/A2 a264fdf3 → 8344ffed; wcześniej pakiet A (433421ae)",
+   "autor": "programista r101/A2",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "uwagi": "Zatwierdzone A2. (1) 101-02 start z podłogi: krzywa kolan ease(min(1, u/0,4)) zamiast ease(u)^0,15 — zerowa prędkość w u = 0. Pomiar własny (frameAt): DL u 0→0,05 kolano 0,5 cm (było 3,3), kąt kolana 1,1° (9,8°), stosunek prostowania kolan do bioder w u 0–0,1 2,2 (5,8); szczytowa prędkość biodra/kolana przy starcie spadła ok. 7× i 13× (próbkowanie co 0,005), największa prędkość teraz w środku ruchu przy gryfie (u ≈ 0,55), nie na starcie. DL u 0–0,5: kolano 73° → 36°, biodro 125° → 87°, tułów 67° → 52° — biodra i kolana prostują się razem (dl.lift); barki przed gryfem 6 cm do u 0,5, za gryfem 9 cm na wyproście. Sumo krok 0,3 cm / 0,7°. Styk co 0,05, wszystkie 15 ćwiczeń z podłogi: odstęp max 3,4 cm (Snatch DL u 0,65; DL ×7 3,0 przy u 0,70; Deficit 2,7; Cable 2,8; Rack Pull ×2 2,9–3,0; sumo ×4 2,7), przenikanie 0; tor ≤ 3,5 cm od prostej, 1 zmiana kierunku (bez „S”), kolano nie wchodzi w gryf; tryby błędów: przenikanie ≤ 0,17 cm (Snatch roundBack). (2) 101-04 D3 (decyzja właściciela 29.10.2026): RDL (sztanga) na dole ramiona 17,3° od pionu (było 23°), kolano 23° (≤ 27°; było 16–20°), tułów 55° (50–80°), odstęp max 2,0–2,1 cm, przenikanie 0, 1 zmiana kierunku. Testy: nowy strażnik „start bez szarpnięcia” (krok ≤ 1,5 cm i ≤ 3°, pierwszy krok ≤ średni następny, stosunek ≤ 3, biodro ≥ 1°) to nowa miara, nie osłabienie; zmiany przypiętych liczb (DL 2,8 → 3,0, RDL 1,6 → 2,1, sumo przesunięcie 2,4 → 2,5) są pomiarem po zmianie, progi PROG_STYKU bez zmian i wszystkie wartości pod nimi. Odciski klatek: zmieniło się dokładnie 16 ćwiczeń (11 DL, 4 sumo, RDL sztanga) z 87 v2; pozostałe 16 ćwiczeń hinge oraz squat i bench bez zmian. Wniosek: 11 martwych ciągów z V2_WSTRZYMANE (Deadlift (sztanga), Axle, with Bands, with Chains, Deficit, Rack Pull, Rack Pull with Bands, Reverse Band, Cable, Clean, Snatch Deadlift) MOGĄ WRÓCIĆ do aplikacji — ruch zgodny z kartami dl.close, dl.lift, hinge.back w pełnym przebiegu; zdjęcie wstrzymania to osobna zmiana kodu. Sumo ×4 i RDL (sztanga) — zatwierdzone. ŚREDNIE do backlogu (bez zmiany przez A2): Snatch DL tułów 78° od pionu na starcie i barki 11 cm przed gryfem (karta Snatch nie zawiera dl.hipsLow — bez sprzeczności z kartą); sumo tułów 63° vs klasyczny 67° (z recenzji A). NISKIE: test „miara potrafi paść” sprawdza wzór krzywej, nie rig z dawnym parametrem; Cable Deadlift bez rysowanego uchwytu (jak przed A2). Skrót przeliczony 29.10.2026 przez koordynatora 1.0.1 po scaleniu fali 2 (51c50c0507fa → 6c916e86225f): zmiana samej formy — pliki wspólne v2 (draw/scene/colliders z pakietu B, variants.ts z A2/B/C); klatki wszystkich ćwiczeń rodziny identyczne z gałęzią zatwierdzoną w recenzji (odciski 21 kadrów, 87/87). Skrót przeliczony 29.10.2026 (koordynator 1.0.1) po zdjęciu V2_WSTRZYMANE (J0, figure.ts) 6c916e86225f → 3bdbb481c670: zmiana samej formy, klatki 87/87 bez zmian (odciski 21 kadrów). Skrót przeliczony 29.10.2026 (koordynator 1.0.1) po scaleniu J3 3bdbb481c670 → e9af1b06ec31: zmiana samej formy (variants.ts Chain Press — zrecenzowane w J3; figure.ts z J0); klatki: zmienił się tylko Chain Press, identyczny z gałęzią zatwierdzoną w recenzji J3 (odciski 21 kadrów).",
+   "slad": "Arkusze 32 PNG (16 ćwiczeń × bok/przód: 11 DL, 4 sumo, RDL sztanga; kadry co 0,05, ślad toru, odstęp) wygenerowane niezależnie scripts/figures/arkusz-slad.mjs na r101/A2 8344ffed; wszystkie 32 obejrzane w pełnej rozdzielczości; porównanie z arkuszem bazowym Cable DL sprzed A2. Pomiar własny (osobne skrypty na frameAt z transpilacji lib/figures/v2): odstęp i przenikanie (81 punktów na kość), kąty kolana/biodra/tułowia/ramion, tor i zmiany kierunku, prędkość i przyspieszenie stawów co 0,005, tryby błędów; odciski klatek 87 ćwiczeń v2 przed (a264fdf3) i po."
   }
  },
  "karty": {
@@ -942,13 +968,14 @@
   },
   "Pendlay Row": {
    "werdykt": "wyswietlana",
-   "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "60840343dff9",
-   "uwagi": "Treść karty = wiosłowanie sztangą w opadzie (przeczytane źródło); nie przeczy ćwiczeniu, ale nie opisuje jego cechy (start z podłogi przy każdym powtórzeniu) — uwaga P2, figura nadal ukryta (wpis v1). ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (wg rejestru „Also known as Pendlay Row”)."
+   "data": "2026-10-29",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty 1.0.1: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 29.10.2026)",
+   "autor": "programista r2/pendlay",
+   "kto": "audytor — recenzja niezależna treści karty (L-047), 29.10.2026; poprzednia wersja (skrót 60840343dff9): 06-tresci, 28.10.2026",
+   "sha": "8ed7ee45c7ed",
+   "uwagi": "Karta lepsza od 1.0 (tam treść wiosłowania w opadzie bez cech Pendlaya). Wszystkie zdania pendlay.* mają ≥ 2 przeczytane źródła szczebla 4 z różnych organizacji; bez liczb i nazw źródeł. Warunek przed wpisem: EN pendlay.floor przeredagowane (było 2 wspólne 5-gramy z BarBend, „a dead stop on the floor”); propozycja „Begin each rep with the bar resting motionless on the floor.” — 0 wspólnych 5-gramów. PL „do dolnej części klatki albo brzucha” nieco szersze niż EN — zgodne ze źródłem (w stronę brzucha).",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "slad": "cytaty z rejestru data/zrodla/cues.json porównane dosłownie z tekstem stron BarBend, Breaking Muscle i Coach pobranych 29.10.2026; pomiar podobieństwa EN (najdłuższy wspólny ciąg słów i wspólne 5-gramy, docs/09 sekcja G) dla 7 zdań karty; przegląd przekładów pl, en, de, es, fr, ja"
   },
   "Pistol Squat": {
    "werdykt": "wyswietlana",
@@ -993,22 +1020,22 @@
   "RDL (hantle/linki)": {
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "534a2ce0ca45",
-   "uwagi": "Hantle w opuszczonych rękach, zawias, kolana lekko ugięte, głębokość — przeczytana biblioteka o tym ćwiczeniu + wersja ze sztangą. ExRx niedostępne 28.10.2026 (HTTP 403, kopia w archiwum — zerwane połączenie): te wskazówki potwierdzone dziś drugim przeczytanym źródłem; ExRx do ponownego odczytu (hantle przed udami)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "1579524968b9",
+   "uwagi": "Opis błędu rdl.mis.knees zgodny z NASM (Dumbbell RDL) i ACE; animacja kneesBent: 13° zamiast 53°."
   },
   "RDL (sztanga)": {
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 28.10.2026)",
-   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026, docs/18; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "d847e65c8952",
-   "uwagi": "Ustawienie, zawias z kolanami lekko ugiętymi, sztanga blisko, głębokość do rozciągnięcia tyłu ud, błędy — 2 przeczytane biblioteki o tym ćwiczeniu."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "2c2795567ec0",
+   "uwagi": "Opis błędu rdl.mis.knees zgodny z NASM (Common Mistakes) i ACE; animacja kneesBent: kolano 16° zamiast 58° na dole. rdl.knees zostaje jako zalecenie w zestawach ogólnych (źródła w wskazowki-ogolne.json)."
   },
   "Reverse Crunch": {
    "werdykt": "wyswietlana",
@@ -1159,6 +1186,36 @@
    "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
    "sha": "08c8964e60ab",
    "uwagi": "Bloczki na wysokości klatki/barków, tyłem do wyciągu, wyprost i powrót, stopy w podłogę i napięty brzuch — 2 przeczytane źródła."
+  },
+  "Step Up": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie 28.10.2026 — treść karty bez zmian od tej recenzji (wpis v1 „wyswietlana” obejmował figurę i kartę razem); figura po poprawce 1.0.1 czeka osobno na recenzję bramki 4",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026)",
+   "kto": "przeniesienie recenzji karty z wpisu v1 (wskazówki i teksty nie zmieniły się w 1.0.1; skrót kartaSkrot = skrót treści karty)",
+   "sha": "0ff6ccfb7ef9",
+   "uwagi": "Zmieniła się tylko figura (data/zrodla/figures.json); wskazówki i teksty karty bez zmian, więc recenzja treści karty z 28.10.2026 obowiązuje."
+  },
+  "Incline Push Up": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie 28.10.2026 — treść karty bez zmian od tej recenzji (wpis v1 „wyswietlana” obejmował figurę i kartę razem); figura po poprawce 1.0.1 czeka osobno na recenzję bramki 4",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1 od 08.10.2026; dane data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "audytor (agent, inna sesja, recenzja niezależna 28.10.2026)",
+   "kto": "przeniesienie recenzji karty z wpisu v1 (wskazówki i teksty nie zmieniły się w 1.0.1; skrót kartaSkrot = skrót treści karty)",
+   "sha": "3092329e53a9",
+   "uwagi": "Zmieniła się tylko figura (data/zrodla/figures.json); wskazówki i teksty karty bez zmian, więc recenzja treści karty z 28.10.2026 obowiązuje."
+  },
+  "Standing Calf Raise": {
+   "werdykt": "wyswietlana",
+   "data": "2026-10-29",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty: ustawienie, ruch, wskazówki, błędy wobec źródeł przeczytanych 29.10.2026)",
+   "autor": "tlumacz r2/cues-en",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "kto": "audytor — recenzja niezależna treści karty (L-047, bramka 4), 29.10.2026, po zmianie calf.edge (podest)",
+   "sha": "ba118e804b14",
+   "uwagi": "calf.edge (stań przednią częścią stóp na krawędzi podestu, pięty poza krawędzią): NASM Leg Press Calf Raise Step 1 (to samo ustawienie stopy, inne ćwiczenie — analogia) oraz Prehab Guys i Physitrack (wersja na stopniu), przeczytane 29.10.2026; ExRx LVStandingCalfRaise niedostępne (exrx.net — wyzwanie JS, web.archive.org zrywa połączenie), do ponownego odczytu. calf.move, calf.knees, calf.pause, calf.mis.partial: NASM i ACE #51 przeczytane — zgodne. Karta spójna, bez liczb i twierdzeń o zdrowiu."
   }
  },
  "zestawy": {
@@ -1232,12 +1289,12 @@
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "0d587fba1aaa",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "aadff1efce51",
+   "uwagi": "bp.elbowsMid (łokcie pośrodku, bez liczby) zgodne z NASM i SBS; figura na dole ok. 50–52°; nie przeczy pozostałym wskazówkom zestawu."
   },
   "Board Press": {
    "rodzina": "bench",
@@ -1331,12 +1388,12 @@
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "0d587fba1aaa",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "aadff1efce51",
+   "uwagi": "bp.elbowsMid (łokcie pośrodku, bez liczby) zgodne z NASM i SBS; figura na dole ok. 50–52° (stan 28.10.2026: sztanga); nie przeczy pozostałym wskazówkom zestawu. Aktualizacja 29.10.2026 (recenzja 101-06 J3, po pakiecie B): uchwyty z łańcuchami, łokieć 90° na dole (zgięcie w mierze silnika = kąt ramię–przedramię przy 90°), dłonie jak w wyciskaniu hantli; ramię–tułów na dole ok. 57° — pośrodku, nie przyklejone, nie szeroko; zgodne z bp.elbowsMid."
   },
   "Clean Deadlift": {
    "rodzina": "hingeFloor",
@@ -1397,34 +1454,34 @@
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "cd5b2598cc3d",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "d4990dcebe38",
+   "uwagi": "bp.elbowsMid (łokcie pośrodku, bez liczby) zgodne z NASM i SBS; figura na dole ok. 50–52°; nie przeczy pozostałym wskazówkom zestawu. Ławka ujemna: przeniesienie z ławki płaskiej, ekran oznacza wskazówki jako ogólne dla ruchu."
   },
   "Decline Bench Press (hantle)": {
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "cd5b2598cc3d",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "d4990dcebe38",
+   "uwagi": "bp.elbowsMid (łokcie pośrodku, bez liczby) zgodne z NASM i SBS; figura na dole ok. 50–52°; nie przeczy pozostałym wskazówkom zestawu. Ławka ujemna: przeniesienie z ławki płaskiej, ekran oznacza wskazówki jako ogólne dla ruchu."
   },
   "Decline Close-Grip Bench To Skull Crusher": {
    "rodzina": "triLying",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny po usunięciu skull.upperArm 28.10.2026)",
-   "autor": "koordynator M2 (usunięcie zdań, 28.10.2026)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty po usunięciu zdań, 28.10.2026; nie usuwał zdań)",
-   "kto": "06-tresci — recenzja niezależna treści karty po usunięciu zdań (M1-audytor-generalny-038, decyzja właściciela 28.10.2026 „1a 2a”), 28.10.2026",
-   "sha": "ac7ad92b9bfd",
-   "uwagi": "Usunięte skull.upperArm (przeczyło części wyciskania). Zostają: cgbp.elbows „Łokcie blisko tułowia przez cały ruch.” i mis.jerk — zgodne z obiema częściami ruchu i z figurą v2 (wyciskanie na ławce ujemnej)."
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny 1.0.1: dcgsk.elbows + mis.jerk; skull.upperArm i skull.depth nie wracają — decyzja właściciela 1a z 28.10.2026)",
+   "autor": "programista r2/figury-v2",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "kto": "audytor — recenzja niezależna r1–r3 zestawu karty Decline Close-Grip Bench To Skull Crusher (bramka 4, L-047), HEAD 03a7575",
+   "sha": "6ffcc65b01c7",
+   "uwagi": "dcgsk.elbows opisuje obie fazy ćwiczenia; faza prostowania zgodna z figurą (łokcie nad barkami, na szerokość barków) i ze źródłami ACE, weighttraining.guide, Fitness Volt; faza wyciskania — analogia do cgbp.elbows (oznaczona uproszczeniem). Figura pokazuje tylko prostowanie — tekstu nie zawężać (karta opisuje całe wykonywane ćwiczenie, nic w figurze mu nie przeczy). mis.jerk zgodne."
   },
   "Deficit Deadlift": {
    "rodzina": "hingeFloor",
@@ -1518,12 +1575,12 @@
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "d7fe41300e57",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+   "stan": "zrecenzowana niezależnie (bramka 4, zestaw ogólny po zmianie wskazówek 1.0.1: bp.contact + jm.elbows, bez cgbp.elbows i bp.control)",
+   "autor": "programista r2/figury-v2",
+   "recenzent": "audytor (sesja 1.0.1, niezależny)",
+   "kto": "audytor — recenzja niezależna r1–r3 zestawu karty JM Press (bramka 4, L-047), HEAD 03a7575",
+   "sha": "71c7740b2215",
+   "uwagi": "jm.elbows „Łokcie cały czas wysoko i pod skosem od tułowia — nie opadają w dół ani nie uciekają na boki.” — 3 zgodne źródła szczebla 4 (wskazowki-ogolne.json: J1, J2, J4), bez liczby w tekście, zgodne z figurą (łokcie 19–31 cm nad barkiem, 45° z góry stałe). bp.contact zgodne. bp.control usunięte (gryf nie dotyka klatki, R2-7). Błąd bp.mis.arch bez figury błędu (stan zastany)."
   },
   "Landmine Squat": {
    "rodzina": "squat",
@@ -1639,12 +1696,12 @@
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "0d587fba1aaa",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "aadff1efce51",
+   "uwagi": "bp.elbowsMid (łokcie pośrodku, bez liczby) zgodne z NASM i SBS; figura na dole ok. 50–52°; nie przeczy pozostałym wskazówkom zestawu."
   },
   "Reverse Band Box Squat": {
    "rodzina": "squat",
@@ -1749,12 +1806,12 @@
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "0d587fba1aaa",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "aadff1efce51",
+   "uwagi": "bp.elbowsMid (łokcie pośrodku, bez liczby) zgodne z NASM i SBS; figura na dole ok. 50–52°; nie przeczy pozostałym wskazówkom zestawu."
   },
   "Smith Machine Close-Grip Bench Press": {
    "rodzina": "bench",
@@ -1771,12 +1828,12 @@
    "rodzina": "bench",
    "werdykt": "wyswietlana",
    "data": "2026-10-28",
-   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 28.10.2026)",
-   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
-   "recenzent": "06-tresci (subagent, recenzja niezależna treści karty, 28.10.2026; nie pisał treści)",
-   "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
-   "sha": "cd5b2598cc3d",
-   "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: bench_press); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json). bp.elbowsMid bez tekstu PL — ekran go pomija; dodanie tekstu zmieni skrót (nowa recenzja)."
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: nowe teksty wskazówek wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/teksty (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści karty po zmianie 1.0.1 (rdl.mis.knees, bp.elbowsMid), 28.10.2026; raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "d4990dcebe38",
+   "uwagi": "bp.elbowsMid (łokcie pośrodku, bez liczby) zgodne z NASM i SBS; figura na dole ok. 50–52°; nie przeczy pozostałym wskazówkom zestawu. Ławka ujemna: przeniesienie z ławki płaskiej, ekran oznacza wskazówki jako ogólne dla ruchu."
   },
   "Smith Machine Incline Press": {
    "rodzina": "bench",
@@ -1931,6 +1988,17 @@
    "kto": "06-tresci — recenzja niezależna treści karty (M1-audytor-generalny-038, DEC-10 a), 28.10.2026",
    "sha": "9358e2eddadc",
    "uwagi": "Przypisanie zgodne z ruchem wariantu (figura v2: squat); teksty jak na kartach-wzorcach (źródła data/zrodla/wskazowki-ogolne.json)."
+  },
+  "Standing Gastrocnemius Calf Stretch": {
+   "rodzina": "stretch",
+   "werdykt": "wyswietlana",
+   "data": "2026-10-28",
+   "stan": "zrecenzowana niezależnie (bramka 4, wersja 1.0.1: wariant na stopniu, zestaw gcalf.* wobec źródeł przeczytanych 28.10.2026)",
+   "autor": "tlumacz r2/gastro (agent, 28.10.2026)",
+   "recenzent": "audytor (sesja 1.0.1, niezależny; nie pisał treści)",
+   "kto": "audytor — recenzja niezależna treści zestawu (decyzja właściciela 28.10.2026 „003 → 1.0.1”); raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
+   "sha": "78c1fe12ffea",
+   "uwagi": "gcalf.set/move/support/knee — każde ≥2 zgodne organizacje szczebla 4, bez liczb i nazw źródeł; err puste (źródła nie podają błędów wariantu). Zestaw pokaże się dopiero z figurą v2 rodziny rozciągania."
   }
  }
 }

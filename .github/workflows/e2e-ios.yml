@@ -127,6 +127,7 @@ jobs:
     runs-on: macos-26
     strategy:
       fail-fast: false  # porażka jednej części nie przerywa pozostałych — wynik wszystkich scenariuszy w jednym przebiegu
+      max-parallel: 3  # decyzja właściciela 27.10.2026 (A+C): najwyżej 3 z 5 maszyn macOS planu darmowego naraz; wartość w scripts/ci/store-shards.mjs (MACOS_MAX_PARALLEL), pilnuje tests/macos-max-parallel.test.ts
       matrix:
         shard: [1, 2, 3]  # liczba części = „czesci” w scripts/ci/e2e-shards.json (pilnuje tests/e2e-shards.test.ts)
     timeout-minutes: 300  # 13.10.2026: scenariusze „z życia” 31–35 (+~20 min) i test aktualizacji — strażnik 100 min na podejście; wcześniej 180: symulator ~8 + 2 × strażnik (11.10.2026: 18 scenariuszy ~50 min — strażnik 50 min uciął ostatni, run 38153866859); przy za małym limicie powtórzenie było ucinane bez podsumowania porażki. Część to ~30 min scenariuszy, limit zostaje zapasowy
@@ -231,9 +232,13 @@ jobs:
             FAILED=$(node scripts/ci/e2e-wyniki.mjs nieudane e2e-out/report.xml "$DIR")
             if [ -n "$FAILED" ]; then
               rc=0; mkdir -p e2e-out/ponowienie
+              APP=ios/build/Build/Products/Release-iphonesimulator/Trening.app
+              # 101-23 (D7 = B, 29.10.2026): „Device became unreachable” w logu → restart symulatora i ponowna instalacja PRZED tym samym, jednym ponowieniem (limit ponowień bez zmian)
+              bash scripts/ci/sim-restart-niedostepny.sh /tmp/maestro-1.log "$SIM" "$APP"
               for f in $FAILED; do
                 echo "::warning::Ponowienie scenariusza $f (jedno, osobno)"
-                guard maestro --device "$SIM" test "$DIR/$f" --format junit --output "e2e-out/ponowienie/${f%.yaml}.xml" --test-output-dir "e2e-out/ponowienie/${f%.yaml}" || rc=1
+                guard maestro --device "$SIM" test "$DIR/$f" --format junit --output "e2e-out/ponowienie/${f%.yaml}.xml" --test-output-dir "e2e-out/ponowienie/${f%.yaml}" 2>&1 | tee /tmp/maestro-ponowienie.log
+                [ "${PIPESTATUS[0]}" -eq 0 ] || { rc=1; bash scripts/ci/sim-restart-niedostepny.sh /tmp/maestro-ponowienie.log "$SIM" "$APP"; }  # niedostępne w ponowieniu: restart tylko dla KOLEJNEGO scenariusza (ten nie dostaje drugiego ponowienia)
               done
             fi
           fi
@@ -322,7 +327,8 @@ jobs:
   eksperymenty:
     name: eksperymenty (niewiążące)
     needs: build
-    if: ${{ !cancelled() && (needs.build.result == 'success' || needs.build.result == 'skipped') && inputs.tylko_scenariusze == '' && (inputs.pakiet == 'pelny' || inputs.tryb_scisly == true) }}  # eksperymenty tylko z pełnym katalogiem (nocą, tryb ścisły)
+    # eksperymenty tylko z pełnym katalogiem (nocą, tryb ścisły) ALBO gdy `tylko_scenariusze` wskazuje któryś z nich (29.10.2026, R-RES: przebieg dowodowy samego scenariusza 60)
+    if: ${{ !cancelled() && (needs.build.result == 'success' || needs.build.result == 'skipped') && (inputs.tylko_scenariusze == '' && (inputs.pakiet == 'pelny' || inputs.tryb_scisly == true) || (inputs.tylko_scenariusze != '' && (contains(format(' {0} ', inputs.tylko_scenariusze), ' 40 ') || contains(format(' {0} ', inputs.tylko_scenariusze), ' 41 ') || contains(format(' {0} ', inputs.tylko_scenariusze), ' 42 ') || contains(format(' {0} ', inputs.tylko_scenariusze), ' 60 ')))) }}
     runs-on: macos-26
     continue-on-error: true
     timeout-minutes: 60
@@ -388,12 +394,21 @@ jobs:
         env:
           MAESTRO_DRIVER_STARTUP_TIMEOUT: '480000'
           MAESTRO_CLI_NO_ANALYTICS: '1'
+          ONLY: ${{ inputs.tylko_scenariusze }}  # puste = wszystkie eksperymenty; „60” = tylko ten (przebieg dowodowy)
         run: |
           mkdir -p e2e-out; rc=0
           for f in $(grep -l -E '^  - eksperyment$' .maestro/[0-9][0-9]-*.yaml | sort); do
-            echo "=== EKSPERYMENT $f"; mkdir -p "e2e-out/$(basename "$f" .yaml)"
+            n=$(basename "$f" | cut -d- -f1)
+            if [ -n "$ONLY" ] && ! printf ' %s ' $ONLY | grep -q " $n "; then continue; fi
+            name=$(basename "$f" .yaml)
+            echo "=== EKSPERYMENT $f"; mkdir -p "e2e-out/$name"
             xcrun simctl terminate "$SIM" pl.lukasz.trening || true
-            maestro --device "$SIM" test "$f" --format junit --output "e2e-out/$(basename "$f" .yaml).xml" --test-output-dir "e2e-out/$(basename "$f" .yaml)" || { echo "::warning::Eksperyment $f nie przeszedł (niewiążący)"; rc=1; }
+            # 29.10.2026 (R-RES): scenariusz z własnym skryptem scripts/ci/e2e-<nazwa>.sh (uszkodzenie bazy przed startem i sprawdzenie plików po nim w powłoce) idzie przez skrypt, nie przez samo `maestro test`
+            if [ -f "scripts/ci/e2e-$name.sh" ]; then
+              bash "scripts/ci/e2e-$name.sh" "$SIM" "$f" "e2e-out/$name" || { echo "::warning::Eksperyment $f nie przeszedł (niewiążący)"; rc=1; }
+            else
+              maestro --device "$SIM" test "$f" --format junit --output "e2e-out/$name.xml" --test-output-dir "e2e-out/$name" || { echo "::warning::Eksperyment $f nie przeszedł (niewiążący)"; rc=1; }
+            fi
           done
           exit 0
       - uses: actions/upload-artifact@v4

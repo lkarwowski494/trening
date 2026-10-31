@@ -77,15 +77,16 @@ Nie umie albo jest niesprawdzone: okna systemowe (zgoda na powiadomienia, Health
 
 ## 5. Eksperymenty — rzeczy, których nikt jeszcze nie uruchomił na symulatorze
 
-Trzy scenariusze z tagiem `eksperyment`, poza listą `flows` (główny przebieg ich nie uruchamia; interpreter w Jest przechodzi je w całości, więc logika aplikacji jest sprawdzona):
+Cztery scenariusze z tagiem `eksperyment` (40–42 oraz 60 od 29.10.2026), poza listą `flows` (główny przebieg ich nie uruchamia; interpreter w Jest przechodzi je w całości, więc logika aplikacji jest sprawdzona):
 
 | Plik | Co zakłada o Maestro/iOS | Co daje, gdy zadziała | Jeśli padnie |
 |---|---|---|---|
 | `40-odmowa-powiadomien.yaml` (US-11) | `launchApp: permissions: { all: allow, notifications: deny }` ustawia odmowę z góry | odmowa zgody bez udziału właściciela | wynik eksperymentu: składnia nie działa; wariant z oknem systemowym „Don’t Allow” (z apostrofem typograficznym) |
 | `41-tlo-powrot.yaml` (PR-11) | `pressKey: Home` na iOS i `launchApp: { stopApp: false }` wracają bez restartu; czekanie przez `extendedWaitUntil … optional` | tło i powrót w przerwie bez telefonu | zostaje restart (02, 32) i punkt PR-12 na telefonie |
 | `42-kopia-przywrocenie.yaml` + `subflows/wybierz-plik-kopii.yaml` (DA-04, DA-05) | Maestro widzi okno wyboru plików (Browse → On My iPhone → Trening → Backup) | przywrócenie z pliku — dotąd tylko właściciel na telefonie | punkt DA-02 na telefonie |
+| `60-baza-uszkodzona.yaml` + `scripts/ci/e2e-60-baza-uszkodzona.sh` (PR-18, ryzyko R-RES, 29.10.2026) | powłoka na symulatorze podmienia `Library/SQLite/trening.db*` na pliki nie-SQLite (`simctl get_app_container … data`); Maestro wchodzi na ekran błędu startu i „Send data”; powłoka sprawdza `Documents/Backup/Rescue-…` (`ls`, `cmp`) | dowód, że `expo-file-system` na iOS czyta i kopiuje pliki bazy z `Library/SQLite` (kopia ratunkowa, `lib/rescue.ts`) | błąd aplikacji: opis z logiem i zrzutem, bez poprawki na ślepo |
 
-Uruchamianie: `maestro test .maestro/4X-….yaml` albo zadanie `eksperymenty` z `latki-e2e/przeplywy-e2e-eksperymenty-zadanie.yml` (niewiążące, `continue-on-error`). Awansowanie na zwykły scenariusz
+Uruchamianie: `maestro test .maestro/4X-….yaml` (60 tylko przez skrypt `scripts/ci/e2e-60-baza-uszkodzona.sh`; w `e2e-ios.yml` wejście `tylko_scenariusze: 60` uruchamia samo zadanie eksperymentów) albo zadanie `eksperymenty` z `latki-e2e/przeplywy-e2e-eksperymenty-zadanie.yml` (niewiążące, `continue-on-error`). Awansowanie na zwykły scenariusz
 po trzech zielonych przebiegach: usuń tag, dopisz do `config.yaml`, dopisz wagę w `scripts/ci/e2e-shards.json`. Bramka pilnuje spójności (pkt 2).
 
 ## 6. Wersja 0.20 (zegarek, głos) — projekt, kod po scaleniu
@@ -99,7 +100,7 @@ Funkcje na gałęziach `f020-protokol` (protokół zegarka, „do uzupełnienia�
 - `51-glos-ustawienia.yaml` (W2-03): Ustawienia → Trening → przełącznik „Voice also through the phone speaker” (domyślnie wyłączony), „Listen to an example”, wskazówka o braku głosu; stan po restarcie.
   Dźwięku nie da się sprawdzić. ≈ 1,5 min.
 - `53-objasnienia-info.yaml` (US-18, JM-05): Ustawienia → ⓘ przy „Workout view” (Field), „Weekly set goal per muscle group” (SectionTitle) i „Voice also through the phone speaker” (SwitchRow): zwinięte → rozwinięte → zwinięte, ⓘ nie przełącza przełącznika; potem ciemny wygląd. Kroki ⓘ dopisane też w 14 (opis celu, „What this is based on”), 35 (opis widoku) i 51 (opis przełącznika).
-- Garmin (`f020-garmin`) i Apple Watch na prawdziwych zegarkach: tylko telefon (W2-05), lista w `docs/35` gałęzi `f020-protokol`.
+- Drugi zegarek (`f020-garmin`) i Apple Watch na prawdziwych zegarkach: tylko telefon (W2-05), lista w `docs/35` gałęzi `f020-protokol`.
 Gdy gałąź zostanie scalona: dopisać pliki, zamienić wpisy `projekt` na `scenariusz` ze znacznikami (bramka tego wymaga), wagi do `e2e-shards.json`.
 
 ## 7. Zmiany w interpreterze (`tests/maestro-runner.ts`) — przez nie scenariusze są sprawdzalne w Jest
@@ -130,6 +131,8 @@ scenariuszy; zastosowany do nowych (szacunek, odświeżyć po pierwszym zielonym
 | 28 długa historia | 122 | 4:37 | | 33+34 (było 4:58) | 140 + 37 | ≈ 6:50 + narzut |
 | 40 / 41 / 42 (eksperymenty, osobno) | 65 / 60 / 91 | 2:51 / 2:55 / 3:39 | | | | |
 | 57 grafika ćwiczeń (figura v2: fazy, mięśnie, błąd; 25.10.2026) | ok. 30 | ok. 1:45 | | | | |
+| 58 duży tekst dostępności (T-04, ekran Trening; 1.0.1: przytrzymanie liczby DEC-01 a) | — | — | | | | |
+| 59 import z Pierwszych kroków (DEC-04 a, 1.0.1, 28.10.2026; czas do zmierzenia po 1.0) | ok. 6 | — | | | | |
 
 Razem zwykłe scenariusze ≈ **128 min** na jednej maszynie (było 82 min). Na jednej maszynie przekroczyłoby to strażnika czasu (`MAESTRO_ALARM` = 6000 s = 100 min) — **podział na części jest
 konieczny**, nie tylko wygodny.

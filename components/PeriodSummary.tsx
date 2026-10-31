@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable } from 'react-native';
-import { useTheme, F, FW, font, RADIUS } from '@/lib/theme';
+import { View, Pressable } from 'react-native';
+import { Text } from '@/components/AppText';
+import { useTheme, F, FONT, FW, font, RADIUS } from '@/lib/theme';
 import { InfoTip } from '@/components/InfoTip';
 import { t, exName, locale, lang } from '@/lib/i18n';
 import { fmtSec, isDeloadWeek, useTick } from '@/lib/store';
@@ -56,7 +57,7 @@ export function PeriodSummary() {
       <Segmented label={t('Podsumowanie')} value={kind} onChange={pick} options={[['week', t('Tydzień')], ['month', t('Miesiąc')]]} />
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 6 }}>
         {arrow(t('Poprzedni okres'), '‹', -1)}
-        <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: th.text, ...font('body'), fontFamily: F.heavy, flexShrink: 1, textAlign: 'center' }}>{periodTitle(kind, s.start)}</Text>
+        <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: th.text, ...font('body'), fontFamily: FONT.title700, flexShrink: 1, textAlign: 'center' }}>{periodTitle(kind, s.start)}</Text>
         {arrow(t('Następny okres'), '›', 1, offset >= 0)}
       </View>
       {deload ? <InfoTip id="period-deload" label={t('Tydzień deload (D na wykresach).')} info={t('Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.')} style={{ marginBottom: 8 }}><Muted style={{ ...font('footnote') }}>{t('Tydzień deload (D na wykresach).')}</Muted></InfoTip> : null}{/* 11.10.2026: Postępy pokazują oznaczenie, nie zmieniają (chip „Tydzień deload” usunięty) */}

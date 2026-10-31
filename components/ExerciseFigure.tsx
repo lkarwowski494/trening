@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, Pressable, Text, View } from 'react-native';
+import { AccessibilityInfo, Pressable, View } from 'react-native';
+import { Text } from '@/components/AppText';
 import Svg, { Circle, Line, Path } from 'react-native-svg';
 import { useTheme, TEXT_SCALE_MAX, type Theme, FW } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
@@ -9,6 +10,7 @@ import type { Exercise } from '@/lib/seed';
 
 /*
  * Figura ruchu w sekcji „Technika” (etap 2–3 — decyzja właściciela 08.10.2026 ok. 23:50; dane i geometria: lib/figures).
+ * Układ statyczny: 1–3 pozycje w jednym rzędzie, 4 pozycje (czwarta pozycja, 1.0.1) w siatce 2 × 2.
  * Animacja: pętla między pozycjami kluczowymi (interpolacja kątów stawów, zatrzymanie w każdej pozycji), kolory z motywu, bez migania.
  * WCAG 2.2.2: ruch trwający > 5 s ma przycisk „Zatrzymaj animację”. „Ogranicz ruch” (iOS) albo pauza — pozycje statycznie obok siebie
  * z podpisami. Dopóki ustawienie „Ogranicz ruch” nie jest znane, też statycznie (bez mignięcia animacji przed odczytem).
@@ -63,11 +65,11 @@ export function ExerciseFigure({ exercise }: { exercise: Pick<Exercise, 'lib' | 
       <View testID="exercise-figure-image" accessible accessibilityRole="image" accessibilityLabel={label} accessibilityLanguage={lang()}>
         {animate
           ? <FigureSvg testID="exercise-figure-anim" list={figureAt(fig, ms)} box={frames.box} floor={fig.floor} height={170} th={th} />
-          : <View testID="exercise-figure-static" style={{ flexDirection: 'row', gap: 8 }}>
+          : <View testID="exercise-figure-static" style={{ flexDirection: 'row', ...(fig.frames.length > 3 ? { flexWrap: 'wrap' as const } : null), gap: 8 }}>
               {fig.frames.map((fr, i) => (
-                <View key={fr.n} style={{ flex: 1, alignItems: 'center' }}>
-                  <FigureSvg testID={`exercise-figure-frame-${fr.n}`} list={frames.shapes[i]} box={frames.box} floor={fig.floor} height={fig.frames.length > 2 ? 110 : 140} th={th} />
-                  {fig.frames.length > 1 ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, fontSize: 12, ...FW.regular, marginTop: 2, textAlign: 'center' }}>{frameLabel(fr.n)}</Text> : null}
+                <View key={fr.n} style={{ ...(fig.frames.length > 3 ? { flexBasis: '47%', flexGrow: 1 } : { flex: 1 }), alignItems: 'center' }}>
+                  <FigureSvg testID={`exercise-figure-frame-${fr.n}`} list={frames.shapes[i]} box={frames.box} floor={fig.floor} height={fig.frames.length > 3 ? 120 : fig.frames.length > 2 ? 110 : 140} th={th} />
+                  {fig.frames.length > 1 ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, fontSize: 12, ...FW.regular, marginTop: 2, textAlign: 'center' }}>{frameLabel(fr.n, fig.frames.length)}</Text> : null}
                 </View>
               ))}
             </View>}

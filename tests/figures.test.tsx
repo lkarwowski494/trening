@@ -7,18 +7,20 @@
  */
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: test sekcji Technika sprawdza układ z figurą v2 (tests/figure-gate-open.ts) */
 import React from 'react';
+import * as fs from 'fs';
+import * as path from 'path';
 import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
 import { FIG_DATA, figureFor, figureByKey, figureLabel, frameLabel, figureFrames, figureAt, toSvg, svgPath } from '@/lib/figures';
 import {
   SEG, ANIM, STROKE, PROP_R, side, norm, rawPoints, posePoints, jointAngles, toHorizontal, angleAt, lerpPose, lerpPt, loopAt, loopMs,
-  resolveFigure, framePoints, evalCheck, shapes, bounds, poseBetween, type Figure, type SidePose, type Pose, type Points, type Check, type Shape,
+  resolveFigure, framePoints, evalCheck, FRAME_ORDER, shapes, bounds, poseBetween, type Figure, type FigDef, type SidePose, type Pose, type Points, type Check, type Shape,
 } from '@/lib/figures/geom';
 import { CUE_DATA, CUE_SECTIONS, cueText } from '@/lib/cues';
 import { ExerciseFigure, useReduceMotion } from '@/components/ExerciseFigure';
 import { ExerciseCues } from '@/components/ExerciseCues';
 import { LANGS, applyLang, t } from '@/lib/i18n';
-import { light, dark } from '@/lib/theme';
+import { light, dark, TEXT_SCALE_MAX } from '@/lib/theme';
 
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 const KEYS = Object.keys(FIG_DATA.exercises);
@@ -47,10 +49,10 @@ describe('dane figur', () => {
   test('najczęstsze wzorce mają figurę (przysiad, martwy ciąg, wyciskania, wiosłowanie, podciąganie, wykrok, hip thrust, uginania, prostowania)', () => {
     for (const k of ['Back Squat', 'Deadlift (sztanga)', 'Bench Press (sztanga)', 'Overhead Press (sztanga)', 'Bent Over Row (sztanga)', 'Pull Up', 'Bulgarian Split Squat (hantle)', 'Hip Thrust (sztanga)', 'Barbell Curl', 'Triceps Pushdown']) expect([k, figureByKey(k) !== null]).toEqual([k, !STALE_11.includes(k)]); /* wiosłowanie ze sztangą: figura ukryta do recenzji 1.1 (skrót 1.0 nie pasuje) */
   });
-  test('każda poza ma 1–3 klatki w kolejności start → (mid) → end i co najmniej jedno odwołanie do zdania wskazówki TEGO ćwiczenia', () => {
+  test('każda poza ma 1–3 klatki w kolejności start → (mid) → (mid2) → end (FRAME_ORDER) i co najmniej jedno odwołanie do zdania wskazówki TEGO ćwiczenia', () => {
     for (const k of KEYS) {
-      const f = fig(k); expect([k, f.frames.length >= 1 && f.frames.length <= 3]).toEqual([k, true]);
-      expect([k, f.frames.map(x => x.n)]).toEqual([k, (({ 1: ['start'], 2: ['start', 'end'], 3: ['start', 'mid', 'end'] }) as Record<number, string[]>)[f.frames.length]]);
+      const f = fig(k); expect([k, f.frames.length >= 1 && f.frames.length <= 4]).toEqual([k, true]);
+      expect([k, f.frames.map(x => x.n)]).toEqual([k, FRAME_ORDER[f.frames.length]]);
       const ids = cueIdsOf(k);
       for (const fr of f.frames) { expect([k, fr.n, fr.why.length > 0]).toEqual([k, fr.n, true]); for (const w of fr.why) expect([k, fr.n, w.c, ids.has(w.c)]).toEqual([k, fr.n, w.c, true]); }
     }
@@ -202,14 +204,14 @@ describe('lib/figures', () => {
     expect(figureFor(lib('Crunch'))).toBeNull();
     expect(figureFor(lib('Nie ma'))).toBeNull(); expect(figureFor(null)).toBeNull();
     const noCue = CUE_DATA.open[0]; if (noCue) expect(figureFor(lib(noCue))).toBeNull();
-    /* Pendlay Row: figura ukryta po recenzji bramki 4 (brak cechy rozpoznawczej — docs/research/figury-recenzja.json); wskazówki zostają */
-    expect(figureByKey('Pendlay Row')).toBeNull(); expect(figureFor(lib('Pendlay Row'))).toBeNull(); expect(CUE_DATA.exercises['Pendlay Row']).toBeTruthy();
+    /* 29.10.2026 (1.0.1): Pendlay Row po recenzji niezależnej — figura i karta widoczne; Reverse Lunge — po recenzji 29.10.2026 też widoczny */
+    expect(figureByKey('Pendlay Row')).not.toBeNull(); expect(CUE_DATA.exercises['Pendlay Row']).toBeTruthy(); expect(figureByKey('Reverse Lunge')).not.toBeNull(); expect(CUE_DATA.exercises['Reverse Lunge']).toBeTruthy();
   });
   test('figureLabel: szablon + zdania „Ruch” wskazówek; frameLabel: podpisy klatek', () => {
     const mv = CUE_DATA.exercises['Back Squat'].move.map(r => cueText(r.c, 'pl')).join(' ');
     expect(figureLabel('Back Squat', 'pl')).toBe(`Rysunek ruchu: ${mv}`);
     expect(figureLabel('Nie ma', 'pl')).toBe('Rysunek ruchu: ');
-    expect([frameLabel('start'), frameLabel('mid'), frameLabel('end')]).toEqual(['Pozycja wyjściowa', 'W trakcie', 'Pozycja końcowa']);
+    expect([frameLabel('start'), frameLabel('mid'), frameLabel('end')]).toEqual(['Pozycja wyjściowa', 'Pozycja pośrednia', 'Pozycja końcowa']);
   });
   test('etykiety VoiceOver w 26 językach: przetłumaczony szablon i zdania ruchu w języku interfejsu', () => {
     for (const l of LANGS) {
@@ -221,7 +223,7 @@ describe('lib/figures', () => {
         expect([l, k, lab.startsWith(prefix)]).toEqual([l, k, true]);
         for (const r of CUE_DATA.exercises[k].move) expect([l, k, lab.includes(cueText(r.c, l))]).toEqual([l, k, true]);
       }
-      for (const n of ['start', 'mid', 'end'] as const) if (l !== 'pl') expect([l, frameLabel(n)]).not.toEqual([l, ({ start: 'Pozycja wyjściowa', mid: 'W trakcie', end: 'Pozycja końcowa' })[n]]);
+      for (const n of ['start', 'mid', 'end'] as const) if (l !== 'pl') expect([l, frameLabel(n)]).not.toEqual([l, ({ start: 'Pozycja wyjściowa', mid: 'Pozycja pośrednia', end: 'Pozycja końcowa' })[n]]);
       if (l !== 'pl') for (const k of ['Zatrzymaj animację', 'Wznów animację', 'Rysunek schematyczny — pozycje orientacyjne.']) expect([l, t(k)]).not.toEqual([l, k]);
     }
   });
@@ -232,8 +234,12 @@ describe('lib/figures', () => {
     const noLevel = { ...f, level: undefined }; expect(poseBetween(noLevel, 0, 1, 0.5).p).toEqual(lerpPose(f.frames[0].p, f.frames[1].p, 0.5));
   });
   test('poseBetween: lift — przy wykroku w tył figura unosi się zamiast wchodzić stopą pod podłogę; bez lift punkt schodzi poniżej', () => {
-    /* Reverse Lunge jest ukryty po recenzji (28.10.2026, naprawa w 1.0.1) — mechanizm lift sprawdzamy na jego danych źródłowych, nie na wyświetlanej figurze */
-    const f = resolveFigure(JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '../data/zrodla/figures.json'), 'utf8')).exercises, 'Reverse Lunge')!; expect(f.lift).toBe(true);
+    /* Dane sprzed poprawki 1.0.1 (3 pozycje, kolano ugięte w zamachu): mechanizm lift sprawdzamy na nich, bo nowy Reverse Lunge (4 pozycje, łuk stopy) nie schodzi pod podłogę. */
+    const old = { anchor: 'toe', lift: true, frames: [
+      { n: 'start', p: { t: 90, hip: 0, knee: 0, sh: 0, el: 0 }, why: [] },
+      { n: 'mid', p: { t: 90, hip: [12, -12], knee: [12, 75], ft: [0, -117], sh: 0, el: 0 }, why: [] },
+      { n: 'end', p: { t: 90, hip: [80, -3], knee: [110, 102], ft: [0, -80], sh: 0, el: 0 }, why: [] }] };
+    const f = resolveFigure({ R: old } as never, 'R')!; expect(f.lift).toBe(true);
     const lows = (g: Figure) => [1, 2, 3].map(s => Math.min(...Object.values(poseBetween(g, 0, 1, s / 8).P).map(q => q[1])));
     for (const v of lows(f)) expect(v).toBeGreaterThanOrEqual(-1e-9);
     expect(Math.min(...lows({ ...f, lift: false }))).toBeLessThan(0);
@@ -269,10 +275,10 @@ describe('komponent ExerciseFigure', () => {
   });
   test('Ogranicz ruch włączone → statyczne pozycje obok siebie, bez animacji i bez przycisku pauzy', async () => {
     jest.useFakeTimers(); setReduce(true);
-    render(<ExerciseFigure exercise={lib('Step Up')} />); await flush(); /* Push Press — figura ukryta po recenzji bramki 4; Lunges (hantle) — karta ukryta po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
+    render(<ExerciseFigure exercise={lib(KEYS.find(k => fig(k).frames.length === 3)!)} />); await flush(); /* figury poprawione w 1.0.1 (Push Press, Step Up, wykroki…) czekają na recenzję bramki 4 — pierwsza wyświetlana figura z 3 pozycjami */
     expect(screen.queryByTestId('exercise-figure-anim')).toBeNull();
     for (const n of ['start', 'mid', 'end']) expect(screen.getByTestId(`exercise-figure-frame-${n}`)).toBeTruthy();
-    expect(screen.getByText('W trakcie')).toBeTruthy();
+    expect(screen.getByText('Pozycja pośrednia')).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Zatrzymaj animację' })).toBeNull();
     const d = pathsOf().join(); await act(async () => { jest.advanceTimersByTime(5000); }); expect(pathsOf().join()).toBe(d);
   });
@@ -306,6 +312,59 @@ describe('komponent ExerciseFigure', () => {
     expect(screen.toJSON()).toBeNull();
     render(<ExerciseFigure exercise={{ lib: false }} />);
     expect(screen.toJSON()).toBeNull();
+  });
+  test('cztery pozycje (Ogranicz ruch): siatka 2×2 w kolejności start, mid, mid2, end; podpisy „Pozycja pośrednia 1/2”, pętla 4 pozycji dłuższa niż 5 s (pauza WCAG); przy trzech pozycjach bez numerów', async () => {
+    /* Figury 4-pozycyjne są dziś ukryte do recenzji niezależnej (docs/research/figury-recenzja.json) — wstrzykujemy Push Press z danych źródłowych na czas testu. */
+    const full = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/zrodla/figures.json'), 'utf8')).exercises as Record<string, FigDef>;
+    const had = Object.prototype.hasOwnProperty.call(FIG_DATA.exercises, 'Push Press'); const prev = FIG_DATA.exercises['Push Press'];
+    FIG_DATA.exercises['Push Press'] = full['Push Press'];
+    try {
+      expect(FRAME_ORDER[4]).toEqual(['start', 'mid', 'mid2', 'end']);
+      setReduce(true);
+      render(<ExerciseFigure exercise={lib('Push Press')} />); await flush();
+      const st = screen.getByTestId('exercise-figure-static');
+      const flat = RN.StyleSheet.flatten(st.props.style) as { flexWrap?: string; flexDirection?: string };
+      expect([flat.flexDirection, flat.flexWrap]).toEqual(['row', 'wrap']);
+      for (const n of ['start', 'mid', 'mid2', 'end']) expect(screen.getByTestId(`exercise-figure-frame-${n}`)).toBeTruthy();
+      expect(screen.getAllByTestId(/^exercise-figure-frame-/).map(x => x.props.testID)).toEqual(['start', 'mid', 'mid2', 'end'].map(n => `exercise-figure-frame-${n}`));
+      expect(screen.getByText('Pozycja wyjściowa')).toBeTruthy(); expect(screen.getByText('Pozycja pośrednia 1')).toBeTruthy(); expect(screen.getByText('Pozycja pośrednia 2')).toBeTruthy(); expect(screen.getByText('Pozycja końcowa')).toBeTruthy();
+      expect(screen.queryByText('Pozycja pośrednia')).toBeNull();
+      expect([frameLabel('mid', 4), frameLabel('mid2', 4), frameLabel('mid', 3)]).toEqual(['Pozycja pośrednia 1', 'Pozycja pośrednia 2', 'Pozycja pośrednia']);
+      expect(loopMs(4)).toBeGreaterThan(5000);
+    } finally { if (had) FIG_DATA.exercises['Push Press'] = prev; else delete FIG_DATA.exercises['Push Press']; }
+  });
+  test('siatka 2×2 (101-13, 29.10.2026): komórka ma szerokość procentową i mieści się dwa razy w rzędzie przy 320 pt (po odjęciu marginesów strony i karty), trzecia wędruje do następnego rzędu; podpis zawija się (bez stałej szerokości, bez numberOfLines) przy powiększonym tekście we wszystkich językach', async () => {
+    const full = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/zrodla/figures.json'), 'utf8')).exercises as Record<string, FigDef>;
+    const had = Object.prototype.hasOwnProperty.call(FIG_DATA.exercises, 'Push Press'); const prev = FIG_DATA.exercises['Push Press'];
+    FIG_DATA.exercises['Push Press'] = full['Push Press'];
+    try {
+      setReduce(true);
+      render(<ExerciseFigure exercise={lib('Push Press')} />); await flush();
+      const st = screen.getByTestId('exercise-figure-static');
+      const row = RN.StyleSheet.flatten(st.props.style) as { gap: number };
+      type Inst = import('react-test-renderer').ReactTestInstance;
+      const cells = st.children.filter((c): c is Inst => typeof c !== 'string');
+      expect(cells.length).toBe(4);
+      const GUTTERS = 2 * 16 + 2 * 16; /* margines ekranu 16 pt + wypełnienie karty 16 pt po obu stronach — najwęższy przypadek */
+      for (const W of [320 - GUTTERS, 320 - 2 * 16, 375 - GUTTERS]) {
+        for (const c of cells) {
+          const s = RN.StyleSheet.flatten(c.props.style) as { flexBasis: string; width?: number; minWidth?: number; maxWidth?: number };
+          expect([s.flexBasis, s.width, s.minWidth, s.maxWidth]).toEqual(['47%', undefined, undefined, undefined]);
+          const cell = parseFloat(s.flexBasis) / 100 * W;
+          expect(2 * cell + row.gap).toBeLessThanOrEqual(W); /* dwie kolumny nie wychodzą poza ekran */
+          expect(3 * cell + 2 * row.gap).toBeGreaterThan(W); /* trzecia komórka nie mieści się — zawija do drugiego rzędu */
+          expect(cell).toBeGreaterThan(100); /* rysunek o wysokości 120 pt ma sens w komórce nie węższej niż ok. 100 pt */
+        }
+      }
+      for (const l of LANGS) { applyLang(l); for (const n of ['start', 'mid', 'mid2', 'end'] as const) expect([l, n, frameLabel(n, 4).length > 0]).toEqual([l, n, true]); }
+      applyLang('pl');
+      for (const txt of ['Pozycja wyjściowa', 'Pozycja pośrednia 1', 'Pozycja pośrednia 2', 'Pozycja końcowa']) {
+        const label = screen.getByText(txt);
+        expect(label.props.maxFontSizeMultiplier).toBe(TEXT_SCALE_MAX); expect(label.props.numberOfLines).toBeUndefined();
+        const ls = RN.StyleSheet.flatten(label.props.style) as { width?: number; fontSize: number };
+        expect([ls.width, ls.fontSize]).toEqual([undefined, 12]);
+      }
+    } finally { if (had) FIG_DATA.exercises['Push Press'] = prev; else delete FIG_DATA.exercises['Push Press']; }
   });
   test('VoiceOver: jeden obraz z opisem ruchu; po angielsku etykiety w języku interfejsu', async () => {
     setReduce(true);

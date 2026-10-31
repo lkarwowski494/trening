@@ -108,6 +108,7 @@ Ankle On The Knee, Arm Circles, Calf Stretch Hands Against Wall, Cat Stretch, Ch
 - **Q6:** brak źródeł dla mięśni: High Knees, Jumping Jacks, Stair Climber, Overhead Carry, Double Kettlebell Front Rack Carry, Conan's Wheel, Rickshaw Carry, Assault Bike (ramiona) — zostają jako nazwane uproszczenia.
 - **Q7:** Farmer's Walk — core (RA 8–11 %MVIC, L3-S33) wypada nisko wobec wagi 0,5; nie zmieniam (partie z docs/24), kandydat do przeglądu muscleLoad.
 - **Q8:** rejestr decyzji (Google Drive) — wpisać po akceptacji.
+- **Q9 (1.0.1, 28.10.2026):** po przedefiniowaniu „Standing Gastrocnemius Calf Stretch” na wariant na stopniu scalenie „Standing Hamstring and Calf Stretch” (skłon z prostą nogą przednią, S17) w ten wpis przestaje pasować (inne ćwiczenie: rozciąganie dwugłowych uda + łydki). Nie zmieniam (decyzja katalogowa, migracja historii); opcje w docs/21.
 
 ## 5. Źródła
 
@@ -146,6 +147,10 @@ Ankle On The Knee, Arm Circles, Calf Stretch Hands Against Wall, Cat Stretch, Ch
 - **L3-S33** Ellestad SH i in. The Quantification of Muscle Activation During the Loaded Carry Movement Pattern. Int J Exerc Sci 2024;17(3):480–90. https://pmc.ncbi.nlm.nih.gov/articles/PMC11042841/. **PT**, szczebel 3. Tab. 2 (%MVIC): farmer's carry — longissimus 14–16, multifidus 15–16, RA 8–11, EO ~14; suitcase carry — longissimus 7/29, multifidus 9/21, RA 8/19; plank RA 49–54. „The FC and SC were characterized by increased core muscle activation bilaterally, with the SC exhibiting unique additions to ipsilateral muscle activation.” (użyte w 2 rekordach)
 - **L3-S34** Lipscomb T i in. Agreement of Air Bike and Treadmill Protocols to Assess Maximal Oxygen Uptake. Int J Exerc Sci 2024;17(1):633–47. https://pmc.ncbi.nlm.nih.gov/articles/PMC11166135/. **A**, szczebel 3. air bike jako urządzenie cardio („airbikes (ABs) are increasingly popular exercise machines”); bez danych o mięśniach. (użyte w 1 rekordach)
 - **L3-S35** McGill SM, Marshall LW. Kettlebell swing, snatch, and bottoms-up carry. J Strength Cond Res 2012;26(1):16–27. https://doi.org/10.1519/jsc.0b013e31823a4063. **A**, szczebel 3. „Abdominal muscular pulses together with the muscle bracing associated with carries create kettlebell-specific training opportunities.” (użyte w 1 rekordach)
+- **L3-S36** Physitrack. Exercise library — „Gastrocnemius stretch on step in standing” i „Gastrocnemius stretch off step” (jedna organizacja). https://us.physitrack.com/home-exercise-video/gastrocnemius-stretch-on-step-in-standing, https://us.physitrack.com/home-exercise-video/gastrocnemius-stretch-off-step. **PT**, szczebel 4 (czytane 28.10.2026). „Stand on a step and rest the ball of the foot to be stretch on the edge.” „Keeping the knee straight, drop this heel down until you feel a stretch in your calf.” Podparcie dla równowagi: „You can hold onto a support if you need this for your balance.”
+- **L3-S37** American Council on Exercise (ACE). Exercise Library #211 „Step Stretch” (sprzęt: Raised platform/box). https://www.acefitness.org/resources/everyone/exercise-library/211/step-stretch/. **PT**, szczebel 4 (czytane 28.10.2026). Step 1: „Place your left foot on the back of the step so only the ball of the foot is in contact with the step.” Step 2: „Slowly lower the left (back) heel toward the ground…”. Wariant ACE: druga stopa płasko na stopniu; mięsień nie nazwany w instrukcji.
+- **L3-S38** Shropshire Community Health NHS Trust (Podiatry). Calf Stretching Information Leaflet, s. 1 „How to Stretch”. https://www.shropscommunityhealth.nhs.uk/content/doclib/13861.pdf. **PT**, szczebel 4 (czytane 28.10.2026). „…stand on the stairs and drop your heels down with the legs straight and feel the stretch in the centre of the calf and then try with the knees bent where you should feel the stretch lower down the calf.”
+- **L3-S39** Powerline P1 Owner's Manual (producent sprzętu), s. 51 „Posterior of lower leg”. https://www.manualslib.com/manual/797658/Powerline-P1.html?page=51. **PT**, szczebel 4 (czytane 28.10.2026). „With straight legs, lower heels as far as possible.” „Hold for 10 to 15 seconds.” (czas przytrzymania różni się między źródłami: 10–15 s / ACE 15–30 s / NHS 30 s — otwarte, bez liczby w aplikacji).
 
 ## 6. Tabela (generowana z L3.json)
 
@@ -245,7 +250,7 @@ Ankle On The Knee, Arm Circles, Calf Stretch Hands Against Wall, Cat Stretch, Ch
 | Spinal Stretch | SCALIĆ | SCALIĆ | Middle Back Stretch |  | S17, S1, S3 | jedno źródło |
 | Standing Biceps Stretch | OK | NISZOWE |  |  | S17, S1, S3, S9 | umiarkowane |
 | Standing Elevated Quad Stretch | OK | NISZOWE |  |  | S17, S1, S3, S14 | umiarkowane |
-| Standing Gastrocnemius Calf Stretch | OK | NISZOWE |  |  | S17, S1, S3, S9 | jedno źródło |
+| Standing Gastrocnemius Calf Stretch | OK | NISZOWE |  | muscleLoad: {"calves": 0.25} | S36, S37, S38, S39, S1, S3, S9 | mocne |
 | Standing Hamstring and Calf Stretch | SCALIĆ | SCALIĆ | Standing Gastrocnemius Calf Stretch |  | S17, S1, S3 | jedno źródło |
 | Standing Hip Circles | OK | NISZOWE |  |  | S17, S3, S4, S9 | umiarkowane |
 | Standing Hip Flexors | SCALIĆ | SCALIĆ | Kneeling Hip Flexor |  | S17, S1, S3, S9 | umiarkowane |

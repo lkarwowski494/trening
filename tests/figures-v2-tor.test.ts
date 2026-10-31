@@ -5,7 +5,7 @@
  * Maszyna Smitha: szyna stoi w miejscu, gryf na szynie (było: szyna rysowana w bieżącym x gryfu, tor ukośny 15–18 cm).
  * Wyjątki: tests/tor-wyjatki.json („ćwiczenie|widok” → powód); lista tylko maleje — wyjątek, który już spełnia progi, trzeba usunąć.
  */
-import { FAMILIES, figureSpec, frameAt, assignAll, proj, legRadius, contactX, EQUIP, GIRTH, type View, type HingeParams } from '@/lib/figures/v2';
+import { FAMILIES, figureSpec, frameAt, assignAll, proj, legRadius, contactX, EQUIP, GIRTH, HINGE, type View, type HingeParams } from '@/lib/figures/v2';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -59,6 +59,15 @@ describe('tor ciężaru bez wybrzuszeń (gotowe rodziny v2, 28.10.2026)', () => 
   });
 });
 
+describe('gumy kotwiczone na podłodze: dolny koniec stoi w miejscu (recenzja niezależna 28.10.2026, F3; było: jechał z gryfem — Band Bench Press 15 cm, Sumo with Bands 8 cm, Deadlift with Bands 3,3 cm, Rack Pull with Bands 2,5 cm)', () => {
+  test('każda guma sztangi „do podłogi” (bar, bez hang) ma dolny koniec w tym samym x we wszystkich klatkach', () => {
+    const keys = [...new Set(CASES.map(([k]) => k))]; let n = 0;
+    for (const k of keys) { const to = Array.from({ length: 25 }, (_, i) => frameAt(figureSpec(k)!, i / 24).props.find(p => p.k === 'band' && p.bar && !p.hang) as { to: [number, number, number] } | undefined);
+      if (!to[0]) continue; n++; const xs = to.map(b => b!.to[0]); expect([k, +(Math.max(...xs) - Math.min(...xs)).toFixed(2)]).toEqual([k, 0]); }
+    expect(n).toBeGreaterThanOrEqual(6); /* było 7: Band Bench Press (101-05, 29.10.2026) nie ma już gumy sztangi — guma przy uchwytach, pętla pod ławką stoi w miejscu (tests/figury-pakiet-b.test.ts) */
+  });
+});
+
 describe('zawias: styk ciężaru z nogą (legRadius, contactX)', () => {
   test('promień nogi jak na rysunku, nie mniej niż promień kolizji: biodro ze spodenkami, kolano i kostka na promieniu kolizji, łydka grubsza', () => {
     expect(legRadius('thigh', 0)).toBeCloseTo(GIRTH.thigh[0] + 0.7, 5);
@@ -81,5 +90,18 @@ describe('L-050 A (właściciel 28.10.2026): recenzja ruchu z arkuszem śladu to
     expect(strazniK(rec)).toEqual([]);
     expect(strazniK({ a: { data: '2026-10-29' }, b: { data: '2026-10-28' }, c: { data: '2026-11-02', slad: 'arkusz duze-po, ślad toru u 0–1' } })).toEqual(['a']);
     expect(fs.readFileSync(path.join(__dirname, '../CLAUDE.md'), 'utf8')).toMatch(/arkusz z nałożonym śladem toru[^\n]*tests\/figures-v2-tor\.test\.ts/);
+  });
+});
+
+describe('101-12 (29.10.2026, hinge): wyjątki toru po krzywej kolan (`knees` w rigu hinge)', () => {
+  test('hantle w RDL i na jednej nodze prowadzone tuż przy udach: wyjątki usunięte; zostaje tylko Cable Pull Through (łuk zamierzony, z powodem)', () => {
+    const hinge = new Set(CASES.filter(([k]) => assignAll()[k] === 'hinge').map(([k, v]) => `${k}|${v}`));
+    const wyjatkiHinge = Object.keys(WYJATKI).filter(id => hinge.has(id));
+    expect(wyjatkiHinge).toEqual(['Cable Pull Through|side']);
+    for (const k of ['RDL (hantle/linki)', 'Single Leg RDL (hantel)']) { expect([k, WYJATKI[`${k}|side`]]).toEqual([k, undefined]); expect([k, ok(tor(k, 'side'))]).toEqual([k, true]); }
+  });
+  test('gryf z krzywą kolan: tor schodzi najwyżej HINGE.dev (3,5 cm) pod prostą między końcami — poniżej progu strażnika (4 cm)', () => {
+    expect(HINGE.dev).toBeLessThan(PROG.odchylenie);
+    for (const k of ['Deadlift (sztanga)', 'Snatch Deadlift', 'Sumo Deadlift', 'RDL (sztanga)']) expect([k, tor(k, 'side').odchylenie <= HINGE.dev + 0.01, tor(k, 'side').zawrocenia <= PROG.zawrocenia]).toEqual([k, true, true]);
   });
 });

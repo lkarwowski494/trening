@@ -26,6 +26,16 @@ export const LIM = {
   penetration: 1,
   /** Podział przejścia na pozy pośrednie (co 0,05). */
   step: 0.05,
+  /**
+   * Masa jednego hantla / kettlebella w dłoni względem masy ciała (1,0) w regule środka ciężkości.
+   * Konwencja testu geometrii rysunku, nie twierdzenie o obciążeniu: typowej masy nie ma (zależy od osoby i planu); wartość nie trafia do użytkownika.
+   * Wrażliwość (docs/research/1-0-1-zrodla-2026-10-29.md, pkt 2): ciało ma masę 1,0 (Dempster wg Wintera), więc ciężary przesuwają środek ciężkości
+   * w stronę dłoni o k·d, gdzie d = odległość pozioma dłoń–środek ciężkości ciała, a k = 2m/(1+2m) dla dwóch ciężarów (k = m/(1+m) dla jednego):
+   * m = 0,05 → k = 0,09; m = 0,10 (dziś) → 0,17; m = 0,25 → 0,33 (przy d = 5 j. przesunięcie 0,45 / 0,83 / 1,67 j.).
+   * Reguła jednej podpory przechodzi dla m = 0, 0,05 i 0,1, a dla 0,25 wszędzie poza Walking Lunges (0,4 j. ponad tolerancję) — pilnuje tego test parametryczny
+   * w tests/figury-podparcie.test.ts (101-19, sprawdzenie 29.10.2026); wybór 0,1 nie decyduje więc o wyniku.
+   */
+  loadMass: 0.1,
 };
 
 type Rect = { x: number; y: number; w: number; h: number };
@@ -130,17 +140,19 @@ export function pompki(f: Figure): string[] {
   return bad;
 }
 
-/** Przybliżony środek ciężkości ze stałego podziału mas segmentów (uproszczenie ilustracyjne; ciężar w rękach pominięty). */
-export function srodekCiezkosci(P: Points): Pt {
+/** Przybliżony środek ciężkości ze stałego podziału mas segmentów (uproszczenie ilustracyjne); gdy podano figurę `f`, dolicza ciężar hantli/kettlebelli w dłoniach (LIM.loadMass). */
+export function srodekCiezkosci(P: Points, f?: Figure): Pt {
   const segs: [string, string, number][] = [['hip', 'shoulder', 0.497], ['head', 'head', 0.081], ['shoulder', 'elbow', 0.028], ['elbow', 'hand', 0.022], ['shoulder', 'elbow2', 0.028], ['elbow2', 'hand2', 0.022],
     ['hip', 'knee', 0.1], ['knee', 'ankle', 0.0465], ['ankle', 'toe', 0.0145], ['hip', 'knee2', 0.1], ['knee2', 'ankle2', 0.0465], ['ankle2', 'toe2', 0.0145]];
   let x = 0, y = 0, m = 0;
   for (const [a, b, w] of segs) { x += w * (P[a][0] + P[b][0]) / 2; y += w * (P[a][1] + P[b][1]) / 2; m += w; }
+  /* ciężar w dłoniach (hantle, kettlebell): masa LIM.loadMass w punkcie dłoni (uwaga 28.10.2026: reguła uwzględnia ciężar niesiony w rękach) */
+  if (f) for (const pr of f.props) if ((pr.k === 'db' || pr.k === 'kb') && P[pr.at]) { x += LIM.loadMass * P[pr.at][0]; y += LIM.loadMass * P[pr.at][1]; m += LIM.loadMass; }
   return [x / m, y / m];
 }
 
 /**
- * Reguła jednej podpory: gdy jedna stopa krokowa jest w powietrzu, a druga stoi na podłożu lub skrzyni, rzut środka ciężkości (nie samego biodra)
+ * Reguła jednej podpory: gdy jedna stopa krokowa jest w powietrzu, a druga stoi na podłożu lub skrzyni, rzut środka ciężkości (nie samego biodra; z ciężarem hantli/kettlebelli w dłoniach)
  * mieści się w obrębie stopy podporowej (od pięty do palców) ± LIM.comSingle. Stopa podporowa stoi całą podeszwą (pięta i palce na podłożu) — stopa na palcach
  * (wykrok: tylna noga z uniesioną piętą) i podpora na rękach/kolanach to ruch dynamiczny z przenoszeniem ciężaru, objęty regułą podparcia (±10 j.).
  */
@@ -151,7 +163,7 @@ export function jednaPodpora(f: Figure): { opis: string; nadmiar: number }[] {
     const air = FEET.filter(ft => footH(f, s.P, ft) > LIM.airborne), ground = FEET.filter(ft => Math.max(s.P[ft[0]][1] - surface(f, s.P[ft[0]]), s.P[ft[1]][1] - surface(f, s.P[ft[1]])) <= LIM.contact);
     if (contacts(f, s.P).some(n => !/^(toe|heel)2?$/.test(n))) continue; /* podpora na rękach/kolanach (Bird Dog, Mountain Climbers) — nie ta reguła */
     if (air.length !== 1 || ground.length !== 1 || !feet.some(ft => ft[0] === air[0][0])) continue;
-    const xs = [s.P[ground[0][0]][0], s.P[ground[0][1]][0]], lo = Math.min(...xs), hi = Math.max(...xs), cx = srodekCiezkosci(s.P)[0];
+    const xs = [s.P[ground[0][0]][0], s.P[ground[0][1]][0]], lo = Math.min(...xs), hi = Math.max(...xs), cx = srodekCiezkosci(s.P, f)[0];
     const out = cx < lo - LIM.comSingle ? lo - LIM.comSingle - cx : cx > hi + LIM.comSingle ? cx - hi - LIM.comSingle : 0;
     if (out > 0) bad.push({ opis: `${s.from}→${s.to} k=${s.k.toFixed(2)}: środek ciężkości x=${cx.toFixed(1)} poza stopą podporową [${lo.toFixed(1)}; ${hi.toFixed(1)}] o ${out.toFixed(1)} ponad tolerancję`, nadmiar: out });
   }

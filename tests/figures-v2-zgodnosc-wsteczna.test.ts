@@ -7,6 +7,7 @@
  * Zmiana celowa 27.10.2026 (poprawki p2, runda 3): odciski 8 póz — Leg Press, Pendulum Squat, Lying Machine Squat, Belt Squat Machine (wiersz „kolana do środka”, Leg Press także kolana nad stopami), Hack Squat (dźwignia z przodu nie przechodzi przez głowę, jak w Lying) i 3 × Bulgarian Split Squat (mniejsze „kolano do środka”, bez przenikania ud).
  * Zmiana celowa 27.10.2026 (poprawki p2, runda 4): odciski 7 póz — Leg Press (bez wiersza „kolana do środka”), Pendulum Squat, Lying Machine Squat (kolano do środka −6,4°), Hack Squat (dźwignia z przodu ukryta w całym ruchu, nie miga) i 3 × Bulgarian Split Squat (kolano do środka −11°, z ≈ +4,5 cm).
  * Zmiana celowa 28.10.2026 (scalenie main do linii 1.1, PR #81: poprawione tory ciężaru w rigach hinge, bench_press i squat połączone ze zmianami 1.1): odciski rigów i przykładów z rigów odtworzone na scalonym silniku (53 rigi, 48 przykładów różniły się od wzorca 1.1); pozy z danych bez zmian
+ * Zmiana celowa 31.10.2026 (scalenie wersja-1-0-1-r2 do linii 1.1): odciski 49 rigów i 45 przykładów z rigów odtworzone — poprawki rigów 1.0.1 zrecenzowane niezależnie (docs/research/figury-recenzja.json v2: start z podłogi, gryf przy nogach, wąski chwyt, JM/Skull Crusher, Band/Chain Press, Zercher, Sumo hantel, OHS); pozy z danych (lib/figures/v2/poses) bajtowo bez zmian.
  * Odtworzenie wzorca (tylko świadomie, gdy rysunek ma się zmienić): ZLOTE_ZAPISZ=1 npx jest tests/figures-v2-zgodnosc-wsteczna.test.ts
  */
 import * as fs from 'fs';

@@ -52,6 +52,33 @@ describe('scripts/ci/watch-screenshots.sh', () => {
     expect(ui.match(/launchEnvironment\["WATCH_FAKE_UNDO_SEC"\]/g)).toHaveLength(1); /* jedno miejsce uruchamiania: wszystkie testy dostają okno */
     expect(ui).toMatch(/undoSec: Int = 120/);
   });
+  test('nieudane uruchomienie aplikacji na symulatorze jest ponawiane, a zniknięta aplikacja instalowana ponownie, zamiast przerywać wszystkie języki (przebiegi 40959920771, 40967747778; 29.10.2026)', () => {
+    /* Fałszywe narzędzia w PATH: xcrun (pierwsze `simctl launch` pada, kolejne się udają; zrzut = pusty plik), magick (kopiuje plik, identify bez alfy), sleep (bez czekania). */
+    const bin = fs.mkdtempSync(path.join(os.tmpdir(), 'watch-shots-')); const out = path.join(bin, 'out'); const licznik = path.join(bin, 'launch');
+    const w = (n: string, body: string) => { fs.writeFileSync(path.join(bin, n), `#!/usr/bin/env bash\n${body}\n`); fs.chmodSync(path.join(bin, n), 0o755); };
+    const inst = path.join(bin, 'install');
+    /* Pierwsze uruchomienie pada, a aplikacji „nie ma” na zegarku (get_app_container = błąd) — skrypt ma ją zainstalować ponownie z WATCH_APP (przebieg 40967747778). */
+    w('xcrun', `if [ "$2" = launch ]; then n=$(cat "${licznik}" 2>/dev/null || echo 0); n=$((n+1)); echo $n > "${licznik}"; [ $n -gt 1 ] || exit 4; fi
+if [ "$2" = get_app_container ]; then [ -f "${inst}" ] || exit 2; fi
+if [ "$2" = install ]; then echo "$4" >> "${inst}"; fi
+if [ "$2" = io ]; then : > "$5"; fi
+exit 0`);
+    w('magick', 'if [ "$1" = identify ]; then echo srgb; else cp "$1" "${@: -1}"; fi');
+    w('sleep', 'exit 0');
+    const log = execFileSync('bash', [script('watch-screenshots.sh'), 'UDID', out, 'pl'], { cwd: root, env: { ...process.env, PATH: `${bin}:${process.env.PATH}`, WATCH_APP: '/zbudowana/TreningWatch.app' }, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    expect(fs.readFileSync(inst, 'utf8').trim()).toBe('/zbudowana/TreningWatch.app');
+    expect(log).toContain('Zrzuty: 6 plików'); /* 101-20 (29.10.2026): stan „paused” wrócił do zestawu — 6 stanów */
+    expect(Number(fs.readFileSync(licznik, 'utf8'))).toBe(7); /* 6 stanów + 1 ponowienie */
+    expect(sh).not.toMatch(/^\s*SIMCTL_CHILD_WATCH_FAKE_SNAPSHOT_JSON="\$JSON" xcrun simctl launch/m); /* jedyne uruchamianie — przez funkcję z ponowieniem */
+  });
+  test('para z iPhone\'em powstaje PRZED instalacją aplikacji (XCUITest), nie przy zrzutach: parowanie po instalacji kasuje aplikację (przebieg 40883907827); 29.10.2026', () => {
+    const wf = fs.readFileSync(path.join(root, '.github/workflows/watch-sim.yml'), 'utf8');
+    const iPair = wf.indexOf('watch-pair.sh'); expect(iPair).toBeGreaterThan(-1);
+    expect(iPair).toBeGreaterThan(wf.indexOf('watch-simulator.sh')); expect(iPair).toBeLessThan(wf.indexOf('xcodebuild test'));
+    expect(sh).not.toContain('watch-pair.sh');
+    const pair = fs.readFileSync(script('watch-pair.sh'), 'utf8');
+    for (const c of ['simctl pair "$WATCH"', 'pair_activate', 'simctl boot "$PHONE"', 'simctl boot "$WATCH"']) expect(pair).toContain(c);
+  });
   test('"all" bierze języki z labels.json (35)', () => {
     const labels = JSON.parse(fs.readFileSync(path.join(root, 'tests/fixtures/watch-app/labels.json'), 'utf8')); expect(Object.keys(labels)).toHaveLength(35);
     expect(sh).toContain('labels.json');
@@ -69,4 +96,16 @@ describe('zabezpieczenie wydania: sztuczny transport zegarka nie trafia do Relea
       }
     }
   });
+});
+
+describe('scripts/ci/watch-pair.sh', () => {
+  const D = {
+    'com.apple.CoreSimulator.SimRuntime.iOS-18-5': [{ name: 'iPhone 16', udid: 'P-185' }],
+    'com.apple.CoreSimulator.SimRuntime.iOS-26-2': [{ name: 'iPhone 17', udid: 'P-262' }, { name: 'iPad Pro', udid: 'IPAD' }],
+    'com.apple.CoreSimulator.SimRuntime.iOS-26-4': [{ name: 'iPhone 17 Pro', udid: 'P-264' }],
+    'com.apple.CoreSimulator.SimRuntime.watchOS-26-4': [{ name: 'Apple Watch Series 11 (46mm)', udid: 'W' }],
+  };
+  const run = (devices: any) => execFileSync('bash', [script('watch-pair.sh'), 'W'], { env: { ...process.env, DRY_RUN: '1', SIMCTL_LIST_JSON: list(devices) }, encoding: 'utf8' }).trim().split('\n');
+  test('kandydaci: tylko iPhone\'y, od najnowszego iOS (nie iPad, nie zegarek)', () => { expect(run(D)).toEqual(['P-264', 'P-262', 'P-185']); });
+  test('brak iPhone\'a: błąd', () => { expect(() => run({ 'com.apple.CoreSimulator.SimRuntime.watchOS-26-4': D['com.apple.CoreSimulator.SimRuntime.watchOS-26-4'] })).toThrow(); });
 });

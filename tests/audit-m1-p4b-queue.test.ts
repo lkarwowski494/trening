@@ -27,7 +27,8 @@ describe('docs/18 i docs/40 po przeniesieniu kolejki', () => {
     expect(naglowki.slice(0, ostatniaRobocza + 1).every((n) => n === 'NNN')).toBe(true);
     /* L-031: wypchnięcie do main jest pierwszym przebiegiem po scaleniu PR — nienumerowana lekcja wchodziła tam niezauważona.
        Gałąź integracyjna (integracja-*) idzie do main, więc numery musi mieć już na niej. */
-    const ref = process.env.GITHUB_REF_NAME ?? '';
+    /* L-053 (właściciel 30.10.2026, A): tests.yml biegnie też na PR do main — wtedy gałąź docelowa jest w GITHUB_BASE_REF (GITHUB_REF_NAME = „NN/merge”). */
+    const ref = process.env.GITHUB_BASE_REF || (process.env.GITHUB_REF_NAME ?? '');
     if (ref === 'main' || ref.startsWith('integracja-')) expect(ostatniaRobocza).toBe(-1);
   });
 });

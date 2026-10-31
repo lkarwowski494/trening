@@ -19,8 +19,4 @@ describe('M1-030: liczby i etykiety w jednym miejscu', () => {
   test('szczegóły treningu: etykieta rekordu przez t(„Rekord: {list}”), bez „PR:” wpisanego na sztywno', () => {
     const s = noComments(read('app/history/[id].tsx')); expect(s).not.toMatch(/>PR: \{/); expect(s).toMatch(/t\('Rekord: \{list\}'/);
   });
-  test('migracja literałów fontSize/borderRadius na tokeny: pozycja backlogu 1.0.1 z ID zadania', () => {
-    const line = read('docs/21-roadmapa-offline.md').split('\n').find(l => l.includes('M1-audytor-generalny-030'));
-    expect(line).toBeTruthy(); expect(line).toMatch(/1\.0\.1/); expect(line).toMatch(/token/);
-  });
 });

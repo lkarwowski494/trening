@@ -178,6 +178,18 @@
       "zgodnosc": "promień uchwytu na rysunku",
       "uzycie": "wyciąg: uchwyt, koniec liny"
     },
+    "gripHandleR": {
+      "cm": 2.2,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
+      "uzycie": "promień uchwytu gumy i łańcucha (okrąg z boku, grubość kreski z przodu)"
+    },
+    "gripHandleW": {
+      "cm": 11,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
+      "uzycie": "szerokość uchwytu gumy i łańcucha rysowanego z przodu"
+    },
     "strapR": {
       "cm": 3.4,
       "status": "konwencja rysunku",
@@ -586,6 +598,42 @@
       "status": "konwencja rysunku",
       "zgodnosc": "grubość ściany na rysunku",
       "uzycie": "ściana"
+    },
+    "boardLen": {
+      "cm": 18,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
+      "uzycie": "długość deski na klatce (Board Press) wzdłuż tułowia"
+    },
+    "boardW": {
+      "cm": 16,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
+      "uzycie": "szerokość deski na klatce (Board Press)"
+    },
+    "rackZ": {
+      "cm": 61,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość; słupki stoją wewnątrz talerzy (plateZ 66–71, połowa grubości 1,4), żeby gryf nie przechodził przez nie na rysunku z przodu",
+      "uzycie": "połowa rozstawu słupków stojaka z bolcami (Rack Pull, Pin Press, Good Morning off Pins), wewnątrz talerzy"
+    },
+    "rackH": {
+      "cm": 130,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
+      "uzycie": "wysokość słupków stojaka"
+    },
+    "pinLen": {
+      "cm": 10,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
+      "uzycie": "długość bolca pod gryfem"
+    },
+    "pinW": {
+      "cm": 2.4,
+      "status": "konwencja rysunku",
+      "zgodnosc": "wymiar ilustracyjny bez źródła w dokumentach — rysunek nie twierdzi, że to jedyna poprawna wartość",
+      "uzycie": "grubość bolca"
     }
   }
 }

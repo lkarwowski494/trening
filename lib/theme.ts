@@ -12,7 +12,7 @@ import {
   light as L, dark as D, lightHC as LHC, darkHC as DHC, TYPE, FONT, TEXT_SCALE, type Palette, type TypeRole,
 } from './tokens';
 
-export { TYPE, FONT, TEXT_SCALE, RADIUS, SPACE, HEADER, SIZE, MOTION, HAPTICS, MOTIF, SET_FIELDS, ICON } from './tokens';
+export { TYPE, FONT, TEXT_SCALE, TEXT_SIZE, RADIUS, RADIUS_PRZEJSCIOWE, SPACE, HEADER, SIZE, MOTION, HAPTICS, MOTIF, SET_FIELDS, ICON } from './tokens';
 export type { Palette, PaletteKey, TypeRole, TypeToken, HapticEvent } from './tokens';
 
 /*

@@ -35,12 +35,12 @@ describe('dane: pewność przypisania partii po zmianie zasady „jedno źródł
     for (const k of ANALOGIE) { expect([k, R[k][1]]).toEqual([k, 'uproszczenie (analogia)']); expect(R[k][2].length).toBeGreaterThan(0); }
     expect(new Set([...USTALONE, ...ANALOGIE]).size).toBe(12);
   });
-  test('213 ćwiczeń zostaje „jedno źródło” (w tym 11 − 2 analogii) i 2 niejasne z oznaczeniem; razem 215 (było 227)', () => {
+  test('212 ćwiczeń zostaje „jedno źródło” (w tym 11 − 2 analogii) i 2 niejasne z oznaczeniem; razem 214 (było 227; −1: Standing Gastrocnemius Calf Stretch → „mocne”, 1.0.1)', () => {
     const wszystkie = Object.keys(R).filter(ONE);
-    expect(wszystkie.length).toBe(215);
+    expect(wszystkie.length).toBe(214);
     for (const k of NIEJASNE) expect([k, R[k][1]]).toEqual([k, 'jedno źródło']);
     const zostaje = wszystkie.filter(k => !NIEJASNE.includes(k));
-    expect(zostaje.length).toBe(213);
+    expect(zostaje.length).toBe(212);
     expect(zostaje.filter(k => [...USTALONE, ...ANALOGIE].includes(k))).toEqual([]);
     expect(wszystkie.filter(k => R[k][1] === 'jedno źródło (analogia)').length).toBe(9); /* było 11: Cable Deadlift i Leverage Deadlift przeszły na „uproszczenie (analogia)” */
   });

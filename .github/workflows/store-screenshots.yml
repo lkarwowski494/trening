@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       jezyki:
-        description: 'Języki aplikacji po przecinku (np. "pl,en,de") albo "all" (35 języków, ok. 1 h na rozmiar)'
+        description: 'Języki aplikacji po przecinku (np. "pl,en,de") albo "all" (35 języków; dzielone na równoległe zadania — wejście zadan; pomiar 27.10.2026: 2,7–3,5 min na ekran)'
         required: false
         default: 'pl,en'
       wyglad:
@@ -20,6 +20,26 @@ on:
         default: 'dark'
       aplikacja_z_przebiegu:
         description: 'Numer przebiegu TEGO workflow z gotową aplikacją (artefakt trening-sim-app-sklep, żyje 3 dni); pusty = zbuduj od nowa (~40 min)'
+        required: false
+        default: ''
+      rozmiary:
+        description: 'Rozmiary iPhone po przecinku: 6.9 (wystarcza — Apple skaluje w dół, docs/48 pkt 5) i/albo 6.3'
+        required: false
+        default: '6.9'
+      zadan:
+        description: 'Na ile zadań podzielić języki (na rozmiar; 1–8). Naraz biegną najwyżej 3 (max-parallel; 2 maszyny macOS z 5 zostają dla E2E i buildu), reszta czeka w kolejce. Pomiar 27.10.2026: 2,7–3,5 min na ekran → 35 języków w 6 zadaniach po 5–6 języków ok. 2,5–3,5 h każde, dwie fale'
+        required: false
+        default: '6'
+      ekrany:
+        description: 'Tylko te ekrany (po przecinku, np. cwiczenie); pusty = wszystkie. Numeracja plików jak w pełnym scenorysie — powtórzenie jednego ekranu we wszystkich językach'
+        required: false
+        default: ''
+      uzupelnij_z_przebiegu:
+        description: 'Numer przebiegu TEGO workflow, z którego bierzemy gotowe zrzuty (artefakty sklep-zrzuty-<rozmiar>-*, żyją 3 dni); robimy tylko brakujące ekrany, wynik zadań = komplet dla ich języków. Zadania dzielone według brakujących ekranów. Pusty = wszystko od nowa'
+        required: false
+        default: ''
+      powtorz:
+        description: 'Przy uzupelnij_z_przebiegu: ekrany do zrobienia od nowa mimo gotowego pliku (po przecinku, język/NN-ekran, np. "hu/01-trening"); pusty = żadne'
         required: false
         default: ''
       zrzut_zakupu_z_przebiegu:
@@ -36,6 +56,8 @@ jobs:
   dane:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    outputs:
+      matrix: ${{ steps.podzial.outputs.matrix }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -48,6 +70,31 @@ jobs:
           STORE_SEED_OUT: ${{ github.workspace }}/sklep-dane
           STORE_SEED_THEME: ${{ inputs.wyglad }}
         run: npx jest --testMatch "**/scripts/screens/store-seed.test.ts"
+      - name: Poprzednie zrzuty do uzupełnienia (tylko przy wejściu uzupelnij_z_przebiegu; podział liczy brakujące ekrany)
+        if: inputs.uzupelnij_z_przebiegu != ''
+        uses: actions/download-artifact@v4
+        with:
+          pattern: sklep-zrzuty-[0-9]*
+          path: uzupelnij
+          merge-multiple: true
+          run-id: ${{ inputs.uzupelnij_z_przebiegu }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Ekrany do powtórzenia (wejście powtorz) — usunięte z uzupełnienia
+        if: inputs.uzupelnij_z_przebiegu != '' && inputs.powtorz != ''
+        env:
+          POWTORZ: ${{ inputs.powtorz }}
+        run: node scripts/ci/store-powtorz.mjs uzupelnij "$POWTORZ"
+      - name: Podział języków na równoległe zadania macOS
+        id: podzial
+        env:
+          UZUPELNIJ_KATALOG: ${{ inputs.uzupelnij_z_przebiegu != '' && 'uzupelnij' || '' }}
+          JEZYKI: ${{ inputs.jezyki }}
+          ROZMIARY: ${{ inputs.rozmiary }}
+          ZADAN: ${{ inputs.zadan }}
+        run: |
+          M=$(node scripts/ci/store-shards.mjs "$JEZYKI" "$ROZMIARY" "$ZADAN" sklep-dane "${UZUPELNIJ_KATALOG:-}")
+          echo "matrix=$M" >> "$GITHUB_OUTPUT"
+          echo "$M" | node -e 'const m=JSON.parse(require("fs").readFileSync(0,"utf8")); for (const j of m.include) console.log(`zadanie ${j.rozmiar} #${j.shard}: ${j.jezyki.split(",").length} języków`)'
       - uses: actions/upload-artifact@v4
         with:
           name: sklep-dane
@@ -73,6 +120,8 @@ jobs:
       - name: Platformy iOS i watchOS zgodne z SDK wybranego Xcode
         run: bash scripts/ci/ensure-ios-platform.sh
       - name: Build (Release, symulator, bez podpisu) — jak w App Store, bez sztucznego sklepu i zegarka
+        env:
+          EXPO_PUBLIC_FIGURA_STOP: '1'  # 101-32: jedyna różnica względem App Store — figura v2 zatrzymana w pozycji u = 1 (zrzut 02 jednakowy we wszystkich językach)
         run: |
           set -o pipefail
           cd ios
@@ -94,19 +143,15 @@ jobs:
           retention-days: 3
           path: ios/xcodebuild.log
   zrzuty:
-    name: zrzuty (${{ matrix.rozmiar }})
+    name: 'zrzuty (${{ matrix.rozmiar }}, zadanie ${{ matrix.shard }})'   # w cudzysłowie: " #" w YAML zaczyna komentarz (przebieg 40499391220 pokazał nazwę „zrzuty (6.9”)
     needs: [dane, build]
     if: ${{ !cancelled() && needs.dane.result == 'success' && (needs.build.result == 'success' || needs.build.result == 'skipped') }}
     runs-on: macos-26
-    timeout-minutes: 180
+    timeout-minutes: 330   # pomiar 27.10.2026: 2,7–3,5 min na ekran; 6 języków × 10 ekranów ≈ 2,7–3,5 h (limit zadania 360 min)
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - rozmiar: '6.9'   # iPhone with Dynamic Island (large display), 1320 × 2868
-            wzorzec: 'iPhone 17 Pro Max \('
-          - rozmiar: '6.3'   # iPhone with Dynamic Island (medium display) — wymagany, 1206 × 2622
-            wzorzec: 'iPhone 17 Pro \('
+      max-parallel: 3  # decyzja właściciela 27.10.2026 (A+C): najwyżej 3 z 5 maszyn macOS planu darmowego naraz (2 zostają dla E2E i buildu — przebieg 40499391220 zajął wszystkie 5 na ok. 1,5 h); wartość w scripts/ci/store-shards.mjs (MACOS_MAX_PARALLEL)
+      matrix: ${{ fromJSON(needs.dane.outputs.matrix) }}   # {rozmiar, wzorzec, shard, jezyki} z scripts/ci/store-shards.mjs (6.9 = iPhone 17 Pro Max 1320 × 2868, 6.3 = iPhone 17 Pro 1206 × 2622)
     steps:
       - uses: actions/checkout@v5
       - name: Select Xcode 26.x
@@ -128,6 +173,20 @@ jobs:
         if: inputs.aplikacja_z_przebiegu == ''
         with:
           name: trening-sim-app-sklep
+      - name: Poprzednie zrzuty do uzupełnienia (tylko przy wejściu uzupelnij_z_przebiegu; skrypt pomija ekrany z gotowym plikiem)
+        if: inputs.uzupelnij_z_przebiegu != ''
+        uses: actions/download-artifact@v4
+        with:
+          pattern: sklep-zrzuty-[0-9]*
+          path: uzupelnij
+          merge-multiple: true
+          run-id: ${{ inputs.uzupelnij_z_przebiegu }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Ekrany do powtórzenia (wejście powtorz) — usunięte z uzupełnienia
+        if: inputs.uzupelnij_z_przebiegu != '' && inputs.powtorz != ''
+        env:
+          POWTORZ: ${{ inputs.powtorz }}
+        run: node scripts/ci/store-powtorz.mjs uzupelnij "$POWTORZ"
       - name: Rozpakowanie aplikacji
         run: mkdir -p app && unzip -q Trening-sim.zip -d app
       - name: Symulator
@@ -158,13 +217,15 @@ jobs:
         env:
           MAESTRO_DRIVER_STARTUP_TIMEOUT: '480000'
           MAESTRO_CLI_NO_ANALYTICS: '1'
-          JEZYKI: ${{ inputs.jezyki }}
+          JEZYKI: ${{ matrix.jezyki }}
           ROZMIAR: ${{ matrix.rozmiar }}
+          EKRANY: ${{ inputs.ekrany }}
+          UZUPELNIJ: ${{ inputs.uzupelnij_z_przebiegu != '' && format('{0}/uzupelnij/{1}', github.workspace, matrix.rozmiar) || '' }}
         run: bash scripts/ci/store-screenshots.sh "$SIM" "sklep-zrzuty/$ROZMIAR" sklep-dane "$JEZYKI"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: sklep-zrzuty-${{ matrix.rozmiar }}
+          name: sklep-zrzuty-${{ matrix.rozmiar }}-${{ matrix.shard }}
           retention-days: 3
           if-no-files-found: ignore
           include-hidden-files: true  # dzienniki Maestro w sklep-zrzuty/<rozmiar>/.maestro (przebieg 39155596330: bez nich nie było widać przyczyny porażki akcji)
@@ -193,6 +254,10 @@ jobs:
           merge-multiple: true
       - name: Podpisy i ramki
         run: bash scripts/ci/store-frames.sh sklep-zrzuty sklep-ramki store/screenshot-captions.json
+      - name: Kontrola kompletu (ekran w .nieudane = czerwony przebieg)
+        run: |
+          N=$(find sklep-zrzuty -path '*/.nieudane/*' -name '*.png' | wc -l | tr -d ' ')
+          if [ "$N" -gt 0 ]; then echo "::error::Ekrany bez zrzutu po dwóch próbach: $N"; find sklep-zrzuty -path '*/.nieudane/*' -name '*.png' | sed 's#.*/\.nieudane/#  #'; exit 1; fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -2,7 +2,7 @@
  "_opis": "Źródła nowych wskazówek zestawów ogólnych (id z cue-sets.json meta.newIds, tekst wdrożony 27.10.2026). Wpis: tekst PL, twierdzenie, ≥ 2 przeczytane źródła (adres + miejsce) ze słownika badacza z 25.10.2026. Poza paczką aplikacji (data/zrodla), tylko wewnętrzny rejestr. Status „wstrzymany” = tekstu nie ma w aplikacji (powód w polu powod).",
  "wskazowki": {
   "bp.elbowsMid": {
-   "pl": "Łokcie trochę bliżej tułowia — nie rozkładaj ich szeroko na boki.",
+   "pl": "Łokcie ustaw pośrodku — ani przyklejone do tułowia, ani szeroko na boki.",
    "claim": "Przy wyciskaniu leżąc łokcie ani maksymalnie odwiedzone, ani przyklejone (bez liczby kąta).",
    "src": [
     [

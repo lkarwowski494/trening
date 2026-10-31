@@ -82,9 +82,9 @@
     "Pelland i in. 2026",
     "Ramos-Campo i in. 2024"
    ],
-   "dokument": "docs/research/przeglad-badacza-2026-10-21.md",
-   "fraza": "za mało dowodów",
-   "przeglad": "21.10.2026: badacz-merytoryczny — WHO 2020 tab. 4, ACSM 2026 Discussion ('za mało dowodów'), Pelland 2026 (0,5), Ramos-Campo 2024 (podział); docs/research/przeglad-badacza-2026-10-21.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash) || 25.10.2026: tylko brzmienie (usunięte ogólne odwołania do dowodów i praktyki trenerów; treść merytoryczna bez zmian)"
+   "dokument": "docs/research/przeglad-badacza-2026-10-30.md",
+   "fraza": "Ramos-Campo",
+   "przeglad": "21.10.2026: badacz-merytoryczny — WHO 2020 tab. 4, ACSM 2026 Discussion ('za mało dowodów'), Pelland 2026 (0,5), Ramos-Campo 2024 (podział); docs/research/przeglad-badacza-2026-10-21.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash) || 25.10.2026: tylko brzmienie (usunięte ogólne odwołania do dowodów i praktyki trenerów; treść merytoryczna bez zmian) | 30.10.2026: zmiana dokumentu po przeniesieniu przeglądu z 21.10 na Dysk (ZB-004 P3 B); recenzent: badacz-merytoryczny"
   },
   {
    "id": "T-006",
@@ -180,14 +180,14 @@
    "id": "T-012",
    "kotwica": "Serie na partię w tygodniu (pomocnicza = {h} ser",
    "skrot": "eca390066f",
-   "skrotEn": "344afc60b8",
+   "skrotEn": "1658ac112b",
    "rodzaje": [
     "uproszczenie"
    ],
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-012",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: Pelland 2026 (metoda fractional 0,5), uproszczenie; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
+   "przeglad": "28.10.2026: tłumacz (teksty), tylko brzmienie EN; sens zgodny z PL (secondary/compound/isolation, General fitness); wymaga recenzji lokalizacji"
   },
   {
    "id": "T-013",
@@ -359,7 +359,7 @@
    "id": "T-025",
    "kotwica": "Ogólny (dla zdrowia i sprawności): {s} serie na ",
    "skrot": "8b924b4a2b",
-   "skrotEn": "b1d8df3bd5",
+   "skrotEn": "88f775bcd0",
    "rodzaje": [
     "źródło cytowane w tekście"
    ],
@@ -368,7 +368,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-025",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: WHO 2020 tab. 4, wytyczne USA 2018 rozdz. 4, ACSM 2011 tab. 2; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "28.10.2026: tłumacz, tylko brzmienie EN (General fitness: …), sens zgodny z PL"
   },
   {
    "id": "T-026",
@@ -408,7 +408,7 @@
    "id": "T-028",
    "kotwica": "Przerwy: {b} min po wielostawowych, {c} min po j",
    "skrot": "d915756ec7",
-   "skrotEn": "80a75c6854",
+   "skrotEn": "4d0b63035a",
    "rodzaje": [
     "uproszczenie",
     "źródło cytowane w tekście"
@@ -418,7 +418,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-028",
-   "przeglad": "25.10.2026: programista — z tekstu usunięte odwołania do badań, zaleceń i organizacji (decyzja właściciela „całkiem anonimowo”, docs/18); treść merytoryczna bez zmian, źródła zostają w rejestrze"
+   "przeglad": "28.10.2026: tłumacz (teksty), tylko brzmienie EN; sens zgodny z PL (secondary/compound/isolation, General fitness); wymaga recenzji lokalizacji"
   },
   {
    "id": "T-029",
@@ -584,9 +584,9 @@
    "zrodla": [
     "ACSM 2026"
    ],
-   "dokument": "docs/research/przeglad-badacza-2026-10-21.md",
-   "fraza": "T-039",
-   "przeglad": "21.10.2026: badacz-merytoryczny — ACSM 2026 (PMC12965823) nie podaje kroku ani progu 2–10%; konwencja; docs/research/przeglad-badacza-2026-10-21.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzon…",
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "wielkość kroku",
+   "przeglad": "21.10.2026: badacz-merytoryczny — ACSM 2026 (PMC12965823) nie podaje kroku ani progu 2–10%; konwencja; docs/research/przeglad-badacza-2026-10-21.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzon… | 30.10.2026: zmiana dokumentu po przeniesieniu przeglądu z 21.10 na Dysk (ZB-004 P3 B); recenzent: badacz-merytoryczny",
    "wycofane": "23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzone”, „jedno źródło”, „uproszczenie”, „nasz wybór”) nie występują w tekstach aplikacji; wpis zostaje jako ślad decyzji i rodzaju (pewność przypisania partii jest w katalogu ćwiczeń i na ekranie Źródła wiedzy)"
   },
   {
@@ -600,9 +600,9 @@
    "zrodla": [
     "NSCA 2017 (Standard 3.2)"
    ],
-   "dokument": "docs/research/przeglad-badacza-2026-10-21.md",
+   "dokument": "docs/research/przeglad-badacza-2026-10-23.md",
    "fraza": "Standard 3.2",
-   "przeglad": "21.10.2026: badacz-merytoryczny — NSCA 2017, Standard 3.2 (szczebel 2): sprzęt asekuracyjny i osoba asekurująca łącznie; przeniesienie na trening samodzielny = uproszczenie; docs/research/przeglad-badacza-2026-10-21.md"
+   "przeglad": "21.10.2026: badacz-merytoryczny — NSCA 2017, Standard 3.2 (szczebel 2): sprzęt asekuracyjny i osoba asekurująca łącznie; przeniesienie na trening samodzielny = uproszczenie; docs/research/przeglad-badacza-2026-10-21.md | 30.10.2026: zmiana dokumentu po przeniesieniu przeglądu z 21.10 na Dysk (ZB-004 P3 B); recenzent: badacz-merytoryczny"
   },
   {
    "id": "T-044",
@@ -924,6 +924,21 @@
    "fraza": "**T-059**",
    "uwaga": "Tempo faz animacji figury v2 (lib/figures/v2/anim.ts TEMPO: 2 s opuszczanie, 1 s podnoszenie): przerost podobny przy czasie powtórzenia 0,5–8 s; konkretne 2 s / 1 s = konwencja ilustracji w tym przedziale.",
    "przeglad": "27.10.2026: 06-tresci (fix, M1-audytor-generalny-021) — źródła otwarte i cytaty sprawdzone dosłownie na surowym tekście tego dnia; docs/research/przeglad-tresci-2026-10-27.md"
+  },
+  {
+   "id": "T-060",
+   "kotwica": "o około 1/3–1/2 mniej serii (np. {k} z {n}; ćwic",
+   "skrot": "e345e987bd",
+   "skrotEn": "0b9d96d7e0",
+   "rodzaje": [
+    "uproszczenie",
+    "przegląd badań"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/22-serie-deload-generator.md",
+   "fraza": "Krótkie zmniejszenie objętości przy utrzymanym ciężarze nie odbiera efektów",
+   "uwaga": "Liczba „1/3–1/2” = skutek reguły ceil(n/2) w lib/deload-sets.ts (cięcie 33–50%) — uproszczenie we wspólnym przedziale źródeł o taperze (30–70%) i praktyki trenerów (25–>50%); deload jako propozycja do zatwierdzenia. Wpis dodany, bo od 1.0.1 check:claims pilnuje liczb (C-2).",
+   "przeglad": "26.10.2026: programista — audyt 1.0 C-2; wpis zrobiony z istniejącego opisu w docs/research/22 sekcja 2 (źródła tam), bez nowej oceny źródeł; do przeglądu badacza przy najbliższym przeglądzie rejestru."
   }
  ],
  "bezTwierdzenia": [

@@ -93,3 +93,10 @@ test('M3 p6 / ZM-05: etykieta zegarka `finish` = „Zakończ serię” z tego sa
   for (const l of LANGS) { applyLang(l); const w = watchLabels().finish; const p = t('Zakończ serię'); applyLang('pl'); expect([l, w]).toEqual([l, p]); }
   expect(watchLabels().finish).toBe('Zakończ serię');
 });
+
+test('101 G2 (29.10.2026): w es-419 wszystkie etykiety zegarka mówią „celular”, żadna „teléfono” (jak aplikacja na telefonie); es zostaje z „teléfono”', () => {
+  const tel = ['connect', 'idle', 'finishOnPhone'] as const;
+  applyLang('es-419'); const l419 = watchLabels(); applyLang('es'); const l = watchLabels(); applyLang('pl');
+  for (const k of WATCH_LABEL_KEYS) expect([k, /teléfono/i.test(l419[k])]).toEqual([k, false]);
+  for (const k of tel) { expect([k, /celular/.test(l419[k])]).toEqual([k, true]); expect([k, /teléfono/.test(l[k])]).toEqual([k, true]); }
+});

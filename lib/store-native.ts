@@ -48,7 +48,10 @@ export function entitlementFromPurchase(p: unknown): Entitlement | null {
   const offerType = String(((x.offerIOS ?? {}) as Rec).type ?? '').toLowerCase();
   const source = String(x.ownershipTypeIOS ?? '').toLowerCase() === 'family_shared' ? 'family' : offerType === 'code' ? 'code' : 'purchase';
   const exp = num(x.expirationDateIOS);
-  return { plan, source, expiresAt: plan === 'lifetime' ? null : exp, revokedAt: num(x.revocationDateIOS) };
+  const out: Entitlement = { plan, source, expiresAt: plan === 'lifetime' ? null : exp, revokedAt: num(x.revocationDateIOS) };
+  /* 101-28: stan odnawiania tylko dla subskrypcji i tylko gdy sklep go podał (boolean); inaczej pole pomijamy = nieznane */
+  const willAutoRenew = ((x.renewalInfoIOS ?? {}) as Rec).willAutoRenew; if (plan !== 'lifetime' && typeof willAutoRenew === 'boolean') out.willAutoRenew = willAutoRenew;
+  return out;
 }
 /** Wiersz z fetchProducts → produkt aplikacji (cena wyłącznie `displayPrice` Apple); obce identyfikatory pomijane. */
 export function productFromStore(p: unknown): StoreProduct | null {

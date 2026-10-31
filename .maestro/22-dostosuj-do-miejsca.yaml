@@ -7,7 +7,8 @@
 #   "Empty workout", "\+ Add exercise", "Search exercises…" ← jak 07
 #   "Bench Press \(Barbell\),.*"     ← Item pickera „{title}, {sub}” (07)
 #   "Workout options" / "Workout place: X" ← menu „⋯” w nagłówku ('Opcje treningu') i jego pozycja 'Miejsce treningu: {l}' (M3 p2, ZM-02: dawny chip „📍 X ▾”); stuknięcie → arkusz miejsc z nazwami miejsc
-#   "Adjust to: X"                   ← 'Dostosuj do: {l}' (tytuł okna app/adapt.tsx)
+#   "Adjust to location"             ← 'Dostosuj do miejsca' (STAŁY tytuł nagłówka okna app/adapt.tsx od 101-17; nie zawiera nazwy miejsca)
+#   "Adjust to: X"                   ← 'Dostosuj do: {l}' (pierwszy wiersz treści okna, testID adapt-place-line — nie tytuł nagłówka)
 #   "Swaps apply to this workout only — your template and plan stay as they are." ← stała linijka okna
 #   "Exercises without equipment", "Back to your plan" ← nagłówki sekcji okna ('Ćwiczenia bez sprzętu', 'Wraca z planu')
 #   "Bench Press \(Barbell\) → .*"   ← Item wiersza okna „A → B” (B = pierwsza propozycja rankingu w Hotelu)
@@ -67,6 +68,7 @@ name: Dostosowanie treningu do miejsca (0.18)
 - extendedWaitUntil: { visible: "Hotel", timeout: 30000 }
 - tapOn: "Hotel"
 - extendedWaitUntil: { visible: "Adjust to: Hotel", timeout: 30000 }
+- assertVisible: "Adjust to location"   # 101-17: stały tytuł nagłówka (nazwa miejsca jest w pierwszym wierszu treści)
 - assertVisible: "Swaps apply to this workout only — your template and plan stay as they are."
 - assertVisible: "Exercises without equipment"
 - assertVisible: "Bench Press \\(Barbell\\) → .*"
@@ -91,6 +93,7 @@ name: Dostosowanie treningu do miejsca (0.18)
 - extendedWaitUntil: { visible: "Full gym", timeout: 30000 }
 - tapOn: "Full gym"
 - extendedWaitUntil: { visible: "Adjust to: Full gym", timeout: 30000 }
+- assertVisible: "Adjust to location"   # 101-17: tytuł nagłówka nie zmienia się z miejscem
 - assertVisible: "Back to your plan"
 - assertVisible: "Apply \\(1\\)"
 - takeScreenshot: 42-wraca-z-planu

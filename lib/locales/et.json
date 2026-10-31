@@ -538,6 +538,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Kehakaal: „±“ on lisaraskus (pluss) või abi, nt masinaga (miinus); kumm on eraldi väli koos tasemega. Rekord on abita korduste summa ning maht arvestab ainult lisaraskust.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Lihasmass: seeriaid lihasrühma kohta nädalas kuni sihini jaotisest Seaded (automaatselt {m}), {a}–{b} kordust (kodus {c}–{d}), tavaliselt {r1}–{r2} kordust varus.",
  "Masz dostęp na zawsze": "Sul on eluaegne juurdepääs",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Kas sul on ajalugu mõnes teises rakenduses? Saad selle lisada CSV-failist.",
  "Masz pełną wersję": "Sul on täisversioon",
  "maszyna": "masin",
  "maszyna belt squat": "belt squat masin",
@@ -1334,7 +1335,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "Nädalaplaanis: {days} — need päevad jäävad puhkuseks.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "Jaotises Edenemine paistab märgitud nädal diagrammidel tähena D — seal seda ei muudeta.",
  "W tej wersji": "Selles versioonis",
- "W trakcie": "Liigutuse ajal",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Praeguses treeningus eemaldatakse kumm märkimata seeriatest.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Praeguses treeningus märgitakse see kustutatuks.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Kergendusnädalal pakuvad „Alusta“ ja „Korda viimast“ „Vähem seeriaid“: {less}; raskused ja mall jäävad samaks.",
@@ -1777,5 +1777,7 @@
  "Masz plan: roczny": "Sinu pakett: iga-aastane",
  "Masz plan: dożywotni": "Sinu pakett: eluaegne",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "Pozycja pośrednia {n}": "Vaheasend {n}",
+ "Pozycja pośrednia": "Vaheasend"
 }

@@ -797,7 +797,17 @@
    "plik": "wskazowki-slownik"
   },
   "rdl.knees": {
-   "cwiczenie": "RDL (sztanga)",
+   "zrodla": [
+    {
+     "adres": "https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell",
+     "miejsce": "Common Mistakes (bending the knees too much)"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/",
+     "miejsce": "opis (slight bend in both knees)"
+    }
+   ],
+   "twierdzenie": "W RDL kolana tylko lekko ugięte, to nie przysiad (źródła przeniesione z karty RDL, w której zdanie było do 28.10.2026 wskazówką w sekcji błędów).",
    "plik": "wskazowki-slownik"
   },
   "rear.arms": {
@@ -1268,6 +1278,110 @@
    ],
    "twierdzenie": "Wiosłowanie pionowe: ruch prowadzą łokcie, idą mniej więcej do wysokości barków; dłonie zostają blisko ciała (od dołu mostka do brody/obojczyków).",
    "plik": "cues-zestawy.json (linia 1.1; źródła przeniesione 28.10.2026 przy scaleniu main)"
+  },
+  "gcalf.knee": {
+   "zrodla": [
+    {
+     "adres": "https://us.physitrack.com/home-exercise-video/gastrocnemius-stretch-on-step-in-standing",
+     "miejsce": "Instrukcja: „Keeping the knee straight…”"
+    },
+    {
+     "adres": "https://www.shropscommunityhealth.nhs.uk/content/doclib/13861.pdf",
+     "miejsce": "s. 1, How to Stretch: kolana proste — środek łydki; kolana ugięte — „lower down the calf”"
+    },
+    {
+     "adres": "https://www.manualslib.com/manual/797658/Powerline-P1.html?page=51",
+     "miejsce": "s. 51 „Posterior of lower leg”: „With straight legs, lower heels as far as possible.” oraz wariant z ugiętymi kolanami (ścięgno Achillesa) — odczyt badacza 28.10.2026; ponowny odczyt przez koordynatora zablokowany (403)"
+    }
+   ],
+   "twierdzenie": "Kolano proste; ugięcie przenosi rozciąganie niżej w łydce.",
+   "plik": "badacz-1-0-1-2026-10-28"
+  },
+  "gcalf.move": {
+   "zrodla": [
+    {
+     "adres": "https://us.physitrack.com/home-exercise-video/gastrocnemius-stretch-on-step-in-standing",
+     "miejsce": "Instrukcja: „Keeping the knee straight, drop this heel down until you feel a stretch in your calf. Hold this position.”"
+    },
+    {
+     "adres": "https://www.shropscommunityhealth.nhs.uk/content/doclib/13861.pdf",
+     "miejsce": "s. 1, How to Stretch: „stand on the stairs and drop your heels down with the legs straight and feel the stretch in the centre of the calf”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/211/step-stretch/",
+     "miejsce": "Step 2: „Slowly lower the left (back) heel toward the ground…”"
+    }
+   ],
+   "twierdzenie": "Z prostym kolanem opuszczać piętę poniżej krawędzi do odczucia rozciągania łydki i przytrzymać (bez liczby sekund: źródła się różnią).",
+   "plik": "badacz-1-0-1-2026-10-28"
+  },
+  "gcalf.set": {
+   "zrodla": [
+    {
+     "adres": "https://us.physitrack.com/home-exercise-video/gastrocnemius-stretch-on-step-in-standing",
+     "miejsce": "Instrukcja: „Stand on a step and rest the ball of the foot to be stretch on the edge.”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/211/step-stretch/",
+     "miejsce": "Step 1: „…only the ball of the foot is in contact with the step. The heel is off the step.”"
+    }
+   ],
+   "twierdzenie": "Przednia część stopy na krawędzi stopnia, pięta poza krawędzią.",
+   "plik": "badacz-1-0-1-2026-10-28"
+  },
+  "gcalf.support": {
+   "zrodla": [
+    {
+     "adres": "https://us.physitrack.com/home-exercise-video/gastrocnemius-stretch-off-step",
+     "miejsce": "Instrukcja: „You can hold onto a support if you need this for your balance.”"
+    },
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/211/step-stretch/",
+     "miejsce": "Step 1: „Gently place your fingertips on the wall for balance…”"
+    }
+   ],
+   "twierdzenie": "Przytrzymać się stabilnego oparcia (np. ściany) dla równowagi.",
+   "plik": "badacz-1-0-1-2026-10-28"
+  },
+  "jm.elbows": {
+   "zrodla": [
+    {
+     "adres": "https://elitefts.com/blogs/training/how-to-perform-the-jm-press-a-step-by-step-guide-from-the-inventor",
+     "miejsce": "The Setup: „Your elbows should be flared out at a 45-degree angle from the midline of your body.”; Step-by-Step Execution: „Your elbows must stay high and pointing towards the ceiling throughout the entire descent.”"
+    },
+    {
+     "adres": "https://www.onnit.com/academy/jm-press",
+     "miejsce": "wykonanie: „Tuck your elbows about 45 degrees from your sides and point them forward (toward your feet). They should stay in front of the bar throughout the exercise.”"
+    },
+    {
+     "adres": "https://fitnessvolt.com/triceps-strength-jm-press/",
+     "miejsce": "How to set up and perform the JM Press: „The elbows are 45 degrees from body and are kept up the entire time.”"
+    }
+   ],
+   "twierdzenie": "Łokcie przez cały ruch wysoko i ok. 45° od tułowia (przedział kąta techniki: 3 zgodne źródła szczebla 4, żadne przeczytane nie przeczy).",
+   "plik": "badacz-jm-skull-2026-10-28"
+  },
+  "dcgsk.elbows": {
+   "zrodla": [
+    {
+     "adres": "https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/",
+     "miejsce": "Step 2: „Your upper arms should remain vertical to the floor as the elbows bend.”; „keep your elbows shoulder-width apart.” (faza prostowania)"
+    },
+    {
+     "adres": "https://weighttraining.guide/exercises/decline-ez-bar-skull-crusher",
+     "miejsce": "„Do not flare your elbows; keep them tucked into your body.”"
+    },
+    {
+     "adres": "https://fitnessvolt.com/23999/decline-skull-crusher/",
+     "miejsce": "„Keep your elbows tucked in while keeping your upper arms still.”"
+    },
+    {
+     "adres": "data:Close Grip Bench Press",
+     "miejsce": "cgbp.elbows („blisko tułowia”) — faza wyciskania, analogia (uproszczenie)"
+    }
+   ],
+   "twierdzenie": "Łokcie wąsko: przy wyciskaniu blisko tułowia, przy prostowaniu nad barkami i na szerokość barków — bez rozchodzenia na boki.",
+   "plik": "badacz-jm-skull-2026-10-28"
   }
  },
  "przypisania": {
@@ -3623,8 +3737,8 @@
   },
   "Standing Gastrocnemius Calf Stretch": {
    "rodzina": "stretch",
-   "sprawdzenie": null,
-   "plik": "wskazowki-cwiczenia-07"
+   "sprawdzenie": "1.0.1 (28.10.2026): wariant na stopniu — Physitrack, ACE #211, ulotka NHS (podiatria), instrukcja producenta sprzętu; bezpośrednie",
+   "plik": "badacz-1-0-1-2026-10-28"
   },
   "Standing Hip Circles": {
    "rodzina": "mobility",

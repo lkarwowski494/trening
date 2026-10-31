@@ -42,6 +42,26 @@ describe('liczbowe fontSize / borderRadius poza tokenami (lista wyjątków tylko
   });
 });
 
+/* 101-21 (1.0.1, decyzja właściciela D6 = B z 29.10.2026, PLAN-1-0-1): literały fontSize 12/14 i borderRadius 10/12/2 w Dashboard i GuardSection → tokeny o DOKŁADNIE dzisiejszych wartościach
+ * (render bez zmian: tests/tokeny-odcisk.test.tsx, odcisk niezmieniony). Ujednolicenie ról (jeden rozmiar „podpisu”, jeden promień kafelka) — 1.1. */
+describe('Dashboard i GuardSection: rozmiary i promienie z tokenów o dzisiejszych wartościach (101-21)', () => {
+  const tk = require('../lib/theme');
+  test('wartości tokenów = dzisiejsze literały', () => {
+    expect(tk.TEXT_SIZE).toEqual({ small: 12, medium: 14 });
+    expect(tk.RADIUS_PRZEJSCIOWE).toEqual({ tile: 10, badge: 12, swatch: 2 });
+    expect(tk.RADIUS).not.toHaveProperty('tile');
+  });
+  test.each(['components/Dashboard.tsx', 'components/GuardSection.tsx'])('%s: żadnego literału fontSize 12/14 ani borderRadius 10/12/2', (f) => {
+    const c = code(f);
+    expect([f, c.match(/\bfontSize:\s*1[24]\b/g) ?? []]).toEqual([f, []]);
+    expect([f, c.match(/\bborderRadius:\s*(10|12|2)\b/g) ?? []]).toEqual([f, []]);
+  });
+  test('komponenty używają tokenów (TEXT_SIZE, RADIUS)', () => {
+    expect(code('components/Dashboard.tsx')).toMatch(/TEXT_SIZE\.small/); expect(code('components/Dashboard.tsx')).toMatch(/RADIUS_PRZEJSCIOWE\.tile/);
+    expect(code('components/GuardSection.tsx')).toMatch(/TEXT_SIZE\.medium/); expect(code('components/GuardSection.tsx')).toMatch(/RADIUS_PRZEJSCIOWE\.swatch/);
+  });
+});
+
 describe('krój: bez F.regular / F.semibold i bez IBM Plex w kodzie aplikacji', () => {
   test('F.regular i F.semibold tylko w lib/theme.ts (waga jest częścią stylu: FW.regular / FW.semibold albo font(rola))', () => {
     const found = FILES.filter(f => /\bF\.(regular|semibold)\b/.test(code(f)));

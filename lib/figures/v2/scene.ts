@@ -43,10 +43,13 @@ export type Prop =
   | { k: 'wall'; x: number; h: number; front?: boolean }                                      /* ściana: lita po stronie −x od powierzchni x (za osobą); front: lita po stronie +x (przed osobą; w widoku z przodu przekrój) */
   | { k: 'rail'; x: number; h: number }                                                        /* prowadnica suwnicy Smitha (pionowa) */
   | { k: 'post'; x: number; h: number; hook?: number }                                         /* słupek stojaka */
+  | { k: 'board'; x: number; y: number; h: number }                                           /* deska na klatce (Board Press): środek x, podstawa y = powierzchnia klatki, grubość h */
+  | { k: 'rack'; x: number; y: number; h: number }                                            /* stojak z bolcem: słupek w x do wysokości h, bolec (podpórka gryfu) na wysokości y — tylko rysunek, bez koliderów */
   | { k: 'cable'; from: V3; to: V3; attach?: 'handle' | 'rope' | 'bar' | 'strap'; ends?: V3[]; solid?: boolean; free?: number } /* linka od bloczku (from) do osprzętu (to); ends = miejsca chwytu (dłonie albo kostka); solid = kolider tylko dla danych kontraktu; free = długość odcinka przy osprzęcie bez kolidera (domyślnie EQUIP.cableEnd; taśmy zawieszenia: wzdłuż przedramienia) */
   | { k: 'tower'; x: number; z: number; h: number; solid?: boolean }                                    /* kolumna stacji wyciągów (bloczek na linii x, z) */
   | { k: 'slide'; from: V3; to: V3; dir: V3; len: number }                                                /* prowadnica liniowa maszyny: odcinek skoku od from w kierunku dir (długość len), to = punkt mocowania (platforma, wałek, uchwyt) na prowadnicy */
-  | { k: 'band'; from: V3; to: V3; /** guma sztangi: dwie gumy przy końcach gryfu (jak łańcuchy), nie jedna przez środek ciała */ bar?: true; /** odmiana „reverse”: guma zwisa z góry stojaka — `from` to kotwica nad gryfem, `to` to gryf (zamiast od gryfu do podłogi) */ hang?: true }
+  | { k: 'handle'; c: V3; side: 'R' | 'L'; held?: boolean }                                           /* uchwyt (rączka) trzymany w dłoni: środek chwytu; do niego przypięta guma albo łańcuch (Band Bench Press, Chain Press) — tylko rysunek, bez koliderów */
+  | { k: 'band'; from: V3; to: V3; /** odcinek gumy pod ławką (przechodzi pod siedziskiem, zakryty przez ławkę z góry): rysowany za ławką */ under?: true; /** guma sztangi: dwie gumy przy końcach gryfu (jak łańcuchy), nie jedna przez środek ciała */ bar?: true; /** odmiana „reverse”: guma zwisa z góry stojaka — `from` to kotwica nad gryfem, `to` to gryf (zamiast od gryfu do podłogi) */ hang?: true }
   | { k: 'chain'; from: V3; to: V3; /** łańcuch sztangi (wisi na obu tulejach); bez tego pola — pojedynczy łańcuch (np. pas z obciążeniem) */ bar?: true }
   | { k: 'floor'; x0: number; x1: number }
   | { k: 'mat'; x0: number; x1: number; h: number }

@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Pressable, Text, View, type TextStyle } from 'react-native';
+import { Pressable, View, type TextStyle } from 'react-native';
+import { Text } from '@/components/AppText';
 import Svg, { Circle, G, Path } from 'react-native-svg';
 import { useTheme, TEXT_SCALE_MAX, FW, font, type Theme } from '@/lib/theme';
 import { t, lang, exName } from '@/lib/i18n';
@@ -18,6 +19,10 @@ import { badgesFor, measureLine, errorsOf, errorText, guidesOf, legendOf, toeAng
  * (2 s / pauza / 1 s — ACSM 2009, docs/50), linie odniesienia tylko przy wskazówkach ze źródłem, przełącznik „Pokaż częsty błąd” (poza błędu jako modyfikacja pozy poprawnej, znacznik ✕).
  * Bez liczb i kątów na rysunku. WCAG 2.2.2: „Zatrzymaj animację”; „Ogranicz ruch” / pauza → pozycje statycznie z podpisami. VoiceOver: jeden obraz z opisem, kontrolki osobno.
  */
+
+/** 101-32: build zrzutów do App Store (store-screenshots.yml, krok Build) ustawia EXPO_PUBLIC_FIGURA_STOP=1 — animacja stoi w pozycji u = 1, zrzut 02 jednakowy we wszystkich językach.
+ * Poza tym buildem flagi nie ma (tests/figura-klatka-zrzutu.test.tsx). Czytana przy renderze (Expo wstawia wartość przy budowaniu). */
+const figuraStop = (): boolean => process.env.EXPO_PUBLIC_FIGURA_STOP === '1';
 
 function ViewSvg({ spec, u, view, box, th, height, error, guides, testID, onBadge }: { spec: FigureSpec; u: number; view: FView; box: { x: number; y: number; w: number; h: number }; th: Theme; height: number; error?: FigError; guides: GuideId[]; testID?: string; onBadge?: (b: Badge) => void }) {
   const pal = useMemo(() => figurePalette(th), [th]);
@@ -62,7 +67,7 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
   const [errIdx, setErrIdx] = useState(-1); const [width, setWidth] = useState(320); const [sel, setSel] = useState<{ cue: string; kind: 'ok' | 'err' } | null>(null);
   const animate = !!spec && !spec.static && reduce === false && !paused;
   useEffect(() => {
-    if (!animate) return;
+    if (!animate || figuraStop()) return;
     last.current = Date.now();
     const id = setInterval(() => { const n = Date.now(); const d = n - last.current; last.current = n; setMs(m => m + d); }, TEMPO.tickMs);
     return () => clearInterval(id);
@@ -74,12 +79,13 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
   const onBadge = (b: Badge) => { setPaused(true); setSel({ cue: b.cue, kind: b.kind }); };
   const label = t('Rysunek ruchu: {opis}', { opis: name ?? exName({ name: exercise.name ?? spec.key, lib: true }) });
   const canPause = !spec.static && reduce === false;
-  const loop = loopOf(spec); const u = animate ? (loop === 'cykl_lustro' ? cycleAt(ms) : loop === 'jednokierunkowa' ? oneWayAt(ms) : uAt(ms, spec.lowerFirst, tempo)) : 0; /* marsz: pozycja 0–2 (druga połowa w lustrze, bez cofania); skok i rzut: 0 → 1 i skok do 0 */
+  const stop = animate && figuraStop();
+  const loop = loopOf(spec); const u = stop ? 1 : animate ? (loop === 'cykl_lustro' ? cycleAt(ms) : loop === 'jednokierunkowa' ? oneWayAt(ms) : uAt(ms, spec.lowerFirst, tempo)) : 0; /* marsz: pozycja 0–2 (druga połowa w lustrze, bez cofania); skok i rzut: 0 → 1 i skok do 0 */
   const views = spec.views;
   const boxes = views.map(v => boxFor(spec, v, errors.map(e => e.error)));
   const aspects = boxes.map(b => b.w / b.h); const sumA = aspects.reduce((a, b) => a + b, 0);
   const height = Math.max(110, Math.min(200, (width - 8 * (views.length - 1)) / sumA));
-  const measured = measuredAngle(spec, animate ? u : 1, errId); /* statycznie: pozycja końcowa */ const phases = phasesFor(spec, tempo); const cur = animate ? phaseIndexAt(ms, phases) : -1;
+  const measured = measuredAngle(spec, animate ? u : 1, errId); /* statycznie: pozycja końcowa */ const phases = phasesFor(spec, tempo); const cur = stop ? phases.findIndex(p => p.name !== 'Pauza') : animate ? phaseIndexAt(ms, phases) : -1;
   const sec = (x: number): string => String(Math.round(x / 100) / 10).replace('.', ',');
   const shown = phases.filter((p, i) => !(p.name === 'Pauza' && (i === 3 || p.ms === 0)));
   const txt = { color: th.muted, ...font('footnote'), ...FW.regular } as const;

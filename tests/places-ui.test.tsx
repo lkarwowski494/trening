@@ -60,7 +60,7 @@ describe('A4 — arkusz „📍” i okno „Inne miejsce”', () => {
   test('zestaw „Tylko masa ciała” + „Użyj”: miejsce jednorazowe „Tylko dziś”, trening przechodzi tam, okno „Dostosuj do: Tylko dziś” otwiera się samo z propozycjami', async () => {
     await boot({ start: true }); await pick(await sheetOpts(), ONCE); await tap(screen.getAllByText('Tylko masa ciała')[0]); await tap(screen.getByTestId('place-once-use')); await flushAll(20);
     const l = S().settings.locations.find(x => x.oneOff)!; expect(l).toMatchObject({ name: 'Tylko dziś', oneOff: true }); expect(l.equipment.map(e => e.item).sort()).toEqual(['floor_mat', 'wall']);
-    expect(S().active!.locationId).toBe(l.id); expect(top()).toBe('adapt'); expect(title()).toBe('Dostosuj do: Tylko dziś');
+    expect(S().active!.locationId).toBe(l.id); expect(top()).toBe('adapt'); expect(title()).toBe('Dostosuj do miejsca'); expect(screen.getByTestId('adapt-place-line').props.children).toBe('Dostosuj do: Tylko dziś'); /* 101-17, decyzja właściciela 29.10.2026: tytuł stały, nazwa miejsca w wierszu adapt-place-line */
     expect(S().active!.exercises.map(e => e.exerciseId)).toEqual(FBW.map(([n]) => ex(n).id)); /* nic nie zamienione samo (P4 A) */
     await tap(screen.getByTestId('close-modal')); await flushAll(20); expect(await placeInMenu()).toBe('Miejsce treningu: Tylko dziś'); /* M3 p2: miejsce w menu „⋯” */
   });
@@ -132,6 +132,10 @@ describe('B — panel dnia w planie', () => {
     const del = screen.getByLabelText(/^Wyczyść miejsce: /); expect(del.props.accessibilityLabel).toMatch(/ – /); await tap(del); await flushAll(5);
     expect(S().planPlaces).toBeUndefined(); expect(screen.queryByTestId('day-place')).toBeNull(); expect(JSON.stringify(S().templates)).toBe(tpls); expect(JSON.stringify(S().weekPlan)).toBe(wk);
   });
+  test('okno „Inne miejsce” z zakresem przez granicę roku: obie daty mają rok (101-16, wspólna funkcja z podglądem importu)', async () => {
+    await boot({ url: '/place-once?from=2026-12-30&to=2027-01-02', fn: plan3 }); await flushAll(10);
+    expect(screen.getByText(/^Miejsce na dni .*2026 – .*2027\. Wybierz sprzęt/)).toBeTruthy();
+  });
   test('„Inne miejsce…” z panelu: okno dla wybranego zakresu; „Użyj” ustawia miejsce jednorazowe na dni od–do (bez zmiany treningu w toku)', async () => {
     await boot({ url: '/history', fn: plan3 }); await open(); await tap(screen.getByText('Więcej opcji')); await tap(screen.getByText('Miejsce na te dni')); await flushAll(5);
     await tap(screen.getByLabelText('Dzień później')); await tap(screen.getByText('Inne miejsce…')); await flushAll(20);
@@ -153,7 +157,7 @@ describe('B — panel dnia w planie', () => {
 describe('B — start w dniu z miejscem (P4 A)', () => {
   test('start z ekranu głównego w dniu z Hotelem: trening w Hotelu, okno „Dostosuj do: Hotel” otwiera się samo, ćwiczenia niezamienione do „Zastosuj”', async () => {
     await boot({ fn: () => { plan.setPlanPlace('2026-10-08', '2026-10-09', HOTEL); } }); await startTpl('FBW');
-    expect(S().active!.locationId).toBe(HOTEL); expect(top()).toBe('adapt'); expect(title()).toBe('Dostosuj do: Hotel'); expect(S().active!.exercises.map(e => e.exerciseId)).toEqual(FBW.map(([n]) => ex(n).id));
+    expect(S().active!.locationId).toBe(HOTEL); expect(top()).toBe('adapt'); expect(title()).toBe('Dostosuj do miejsca'); expect(screen.getByTestId('adapt-place-line').props.children).toBe('Dostosuj do: Hotel'); /* 101-17, decyzja właściciela 29.10.2026: tytuł stały, nazwa miejsca w wierszu adapt-place-line */ expect(S().active!.exercises.map(e => e.exerciseId)).toEqual(FBW.map(([n]) => ex(n).id));
     expect(screen.getByTestId('adapt-apply').props.accessibilityLabel).toBe('Zastosuj (3)'); /* zaznaczone propozycje, jedno „Zastosuj” */
     await tap(screen.getByTestId('close-modal')); await flushAll(20); expect(top()).toBe('(tabs)'); expect(S().active!.exercises.map(e => e.exerciseId)).toEqual(FBW.map(([n]) => ex(n).id)); expect(screen.getByTestId('adapt-line')).toBeTruthy();
   });
@@ -190,7 +194,7 @@ describe('języki i wygląd (docs/20 rodzaj 7)', () => {
   });
   test('najdłuższa nazwa miejsca jednorazowego (80 znaków) w chipie, tytule okna „Dostosuj” i w kopii — bez błędu, nazwa przycięta tylko do NAME_MAX', async () => {
     await boot({ start: true }); const long = 'Ł'.repeat(120); await pick(await sheetOpts(), ONCE); await type(screen.getByPlaceholderText('Tylko dziś'), long); await tap(screen.getAllByText('Tylko masa ciała')[0]);
-    await tap(screen.getByTestId('place-once-use')); await flushAll(20); const l = S().settings.locations.find(x => x.oneOff)!; expect(l.name).toHaveLength(store.NAME_MAX); expect(title()).toBe(`Dostosuj do: ${l.name}`);
+    await tap(screen.getByTestId('place-once-use')); await flushAll(20); const l = S().settings.locations.find(x => x.oneOff)!; expect(l.name).toHaveLength(store.NAME_MAX); expect(title()).toBe('Dostosuj do miejsca'); expect(screen.getByTestId('adapt-place-line').props.children).toBe(`Dostosuj do: ${l.name}`); /* 101-17, decyzja właściciela 29.10.2026: tytuł stały, nazwa miejsca w wierszu adapt-place-line */
     await tap(screen.getByTestId('close-modal')); await flushAll(20); expect(await placeInMenu()).toBe(`Miejsce treningu: ${l.name}`);
   });
   test('ciemny motyw: okno „Inne miejsce” i panel miejsca na dni renderują się (motyw z Ustawień)', async () => {

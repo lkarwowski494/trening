@@ -624,7 +624,7 @@ export const MUSCLE_DATA: Readonly<Record<string, MuscleEntry>> = {
   "Standing Concentration Curl": {load:{biceps:1,forearms:0.25},confidence:"umiarkowane"},
   "Standing Dumbbell Reverse Curl": {load:{biceps:1,forearms:1},confidence:"umiarkowane"},
   "Standing Elevated Quad Stretch": {load:{quads:0.25},confidence:"umiarkowane"},
-  "Standing Gastrocnemius Calf Stretch": {load:{calves:0.25},confidence:"jedno źródło"},
+  "Standing Gastrocnemius Calf Stretch": {load:{calves:0.25},confidence:"mocne"},
   "Standing Hip Circles": {load:{abductors:0.25,adductors:0.25,glutes:0.25},confidence:"umiarkowane"},
   "Standing Inner-Biceps Curl": {load:{biceps:1,forearms:0.25},confidence:"umiarkowane"},
   "Standing Lateral Stretch": {load:{lats:0.25,obliques:0.25},confidence:"umiarkowane"},

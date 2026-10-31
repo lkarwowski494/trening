@@ -108,7 +108,7 @@ describe('wpięcie w verify', () => {
     expect(s['check:bundle']).toBe('node scripts/check-bundle.mjs .expo/verify-export');
     const v = s.verify;
     expect(v.indexOf('npm run check:zrodla-runtime')).toBeGreaterThan(-1);
-    expect(v.indexOf('npm run check:zrodla-runtime')).toBeLessThan(v.indexOf(' jest '));
+    expect(v.indexOf('npm run check:zrodla-runtime')).toBeLessThan(v.indexOf('node scripts/jest-ponow.mjs'));
     const exp = v.indexOf('expo export --platform ios --output-dir .expo/verify-export'), chk = v.indexOf('npm run check:bundle'), rm = v.indexOf('rmSync(');
     expect(exp).toBeGreaterThan(-1); expect(chk).toBeGreaterThan(exp); expect(rm).toBeGreaterThan(chk);
   });

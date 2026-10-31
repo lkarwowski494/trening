@@ -101,12 +101,17 @@ describe('eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a
     expect(atlas.exercises.filter(e => e.cues.scope === 'general')).toEqual([]);
     for (const e of atlas.exercises) expect([e.id, e.cues.scope]).toEqual([e.id, tryb(e.id, false)]);
   });
-  test('rysunki wstrzymane w aplikacji (V2_WSTRZYMANE: JM Press, Decline Close-Grip Bench To Skull Crusher) nie trafiają do figur, a sąsiednie wyciskania wąskim chwytem tak', () => {
+  test('rysunki wstrzymane w aplikacji (V2_WSTRZYMANE) nie trafiają do figur; od 1.0.1 (scalenie 31.10.2026) lista jest pusta — JM Press i Decline Close-Grip Bench To Skull Crusher po poprawce i recenzji trafiają do figur jak sąsiednie wyciskania wąskim chwytem', () => {
     const { fig, atlas } = eksport('wstrzymane', fixture());
     const slug = (id: string) => atlas.exercises.find(e => e.id === id)!.slug;
-    expect(Object.keys(V2_WSTRZYMANE).sort()).toEqual(['Decline Close-Grip Bench To Skull Crusher', 'JM Press']);
+    expect(Object.keys(V2_WSTRZYMANE)).toEqual([]);
     for (const k of Object.keys(V2_WSTRZYMANE)) { expect([k, slug(k) in fig.figures]).toEqual([k, false]); expect([k, atlas.exercises.find(e => e.id === k)!.figure]).toEqual([k, null]); }
-    expect(slug('Smith Machine Close-Grip Bench Press') in fig.figures).toBe(true);
+    for (const k of ['JM Press', 'Decline Close-Grip Bench To Skull Crusher', 'Smith Machine Close-Grip Bench Press']) expect([k, slug(k) in fig.figures]).toEqual([k, true]);
+  });
+  test('31.10.2026 (scalenie wersja-1-0-1-r2): skrót rodziny strony = skrót aplikacji (scripts/zrodla-runtime.mjs, z plikami wspólnymi R2-6) — strona nie eksportuje rodziny, której aplikacja nie pokazuje', () => {
+    const app = JSON.parse(execFileSync('node', [path.join(root, 'scripts/zrodla-runtime.mjs'), '--skroty'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })) as { v2: Record<string, string> };
+    const s = skroty();
+    for (const f of Object.keys(s.skroty)) expect([f, s.skroty[f]]).toEqual([f, app.v2[f]]);
+    expect(Object.keys(s.skroty).length).toBeGreaterThanOrEqual(4);
   });
 });
-

@@ -841,7 +841,7 @@
  },
  {
   "pl": "Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.",
-  "en": "Want more? Pro removes the limit: subscribe, or pay once for good."
+  "en": "Want to train more often? Pro removes the limit: subscribe, or pay once for good."
  },
  {
   "pl": "Ciemny",
@@ -2396,6 +2396,10 @@
   "en": "You have access forever"
  },
  {
+  "pl": "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.",
+  "en": "Already logging workouts in another app? You can add your history from a CSV file."
+ },
+ {
   "pl": "Masz pełną wersję",
   "en": "You have the full version"
  },
@@ -2710,7 +2714,7 @@
  },
  {
   "pl": "Mięśnie pomocnicze: {lista}",
-  "en": "Supporting muscles: {lista}"
+  "en": "Secondary muscles: {lista}"
  },
  {
   "pl": "mila|mile|mil",
@@ -3428,7 +3432,7 @@
  },
  {
   "pl": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
-  "en": "General fitness (for health): {s} sets per exercise, {a}–{b} reps (at home {c}–{d}), until another repetition would be hard. For health it is worth training all major muscle groups on at least {n} days a week."
+  "en": "General fitness: {s} sets per exercise, {a}–{b} reps (at home {c}–{d}), until another repetition would be hard. For health it is worth training all major muscle groups on at least {n} days a week."
  },
  {
   "pl": "OK",
@@ -4288,6 +4292,14 @@
   "en": "End position"
  },
  {
+  "pl": "Pozycja pośrednia",
+  "en": "Mid position"
+ },
+ {
+  "pl": "Pozycja pośrednia {n}",
+  "en": "Mid position {n}"
+ },
+ {
   "pl": "pozycja sprzętu|pozycje sprzętu|pozycji sprzętu",
   "en": "equipment item|equipment items",
   "plural": true
@@ -4490,7 +4502,7 @@
  },
  {
   "pl": "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.",
-  "en": "Rest: {b} min after multi-joint exercises, {c} min after single-joint and core; the exact rest length is not fixed."
+  "en": "Rest: {b} min after compound exercises, {c} min after isolation and core exercises; the exact rest length is not fixed."
  },
  {
   "pl": "Przesunięcie na rysunku: {staw} {n} cm",
@@ -4754,7 +4766,7 @@
  },
  {
   "pl": "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).",
-  "en": "Fewer than {n} days a week: {list} (a day with assisting work only = {h})."
+  "en": "Fewer than {n} days a week: {list} (a day with secondary work only = {h})."
  },
  {
   "pl": "Rzut",
@@ -4884,7 +4896,7 @@
  },
  {
   "pl": "Serie na partię w tygodniu (pomocnicza = {h} serii): {list}",
-  "en": "Sets per muscle group per week (assisting = {h} set): {list}"
+  "en": "Sets per muscle group per week (secondary = {h} set): {list}"
  },
  {
   "pl": "Serie per partia",
@@ -5161,7 +5173,7 @@
  },
  {
   "pl": "Super, trenuję dalej!",
-  "en": "Awesome, keep training!"
+  "en": "Awesome, I'll keep training!"
  },
  {
   "pl": "superset",
@@ -6129,10 +6141,6 @@
   "en": "In this version"
  },
  {
-  "pl": "W trakcie",
-  "en": "Midway"
- },
- {
   "pl": "W trwającym treningu guma zniknie z nieodhaczonych serii.",
   "en": "In the current workout the band will be removed from sets not yet ticked."
  },
@@ -6474,11 +6482,11 @@
  },
  {
   "pl": "Wyczyść miejsce",
-  "en": "Remove place"
+  "en": "Clear place"
  },
  {
   "pl": "Wyczyść miejsce: {a} – {b}",
-  "en": "Remove place: {a} – {b}"
+  "en": "Clear place: {a} – {b}"
  },
  {
   "pl": "Wyczyść wszystkie dane",

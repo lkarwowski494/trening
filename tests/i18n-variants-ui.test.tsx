@@ -52,8 +52,8 @@ describe('„Jak w telefonie”: telefon z Brazylii / Meksyku', () => {
     expect(lang()).toBe('pt-BR');
     expect(screen.getAllByText(t('Trening')).length).toBeGreaterThan(0);
   });
-  test('es-419 na telefonie z Meksyku: lang() = es-419, nagłówek „Entreno” (krótka forma — zakładka 320 pt, tests/matrix-i18n)', async () => {
+  test('es-419 na telefonie z Meksyku: lang() = es-419, nagłówek „Entrenamiento” (Z-02, 1.0.1, 28.10.2026: słownik es-419 bez „entreno”; szerokość zakładki 320 pt pilnuje tests/matrix-i18n)', async () => {
     await renderApp(); global.__locales = [{ languageCode: 'es', languageTag: 'es-MX' }]; S().settings.language = 'auto'; store.applyPrefs(); await go('/'); await flushAll(5);
-    expect(lang()).toBe('es-419'); expect(screen.getAllByText('Entreno').length).toBeGreaterThan(0);
+    expect(lang()).toBe('es-419'); expect(screen.getAllByText('Entrenamiento').length).toBeGreaterThan(0); expect(screen.queryAllByText('Entreno')).toHaveLength(0);
   });
 });

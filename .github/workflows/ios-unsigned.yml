@@ -27,8 +27,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Checks (TypeScript, tłumaczenia, testy logiki)
-        run: npm run typecheck && npm run check:i18n && npm test -- --maxWorkers=2  # 7 GB RAM na maszynie — mniej procesów Jesta
+      - name: Checks (TypeScript, tłumaczenia)
+        # Bez Jesta (30.10.2026): przebieg 41036034159 przerwany limitem 60 min — Jest na macOS 47 min; wszystkie testy Jest biegną
+        # w tests.yml (npm run verify) przy każdym wypchnięciu (tests/ios-unsigned-czas.test.ts).
+        run: npm run typecheck && npm run check:i18n
       - name: Natywna konfiguracja (warstwa D planu testów — runda 58)
         run: npm run verify:native
       - name: Logika zegarka — testy jednostkowe Swift (targets/watch-tests, bez symulatora)

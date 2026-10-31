@@ -27,11 +27,12 @@ const WYJATKI: Record<string, [number, string]> = {
   'components/ui.tsx': [30720, 'wspólne elementy interfejsu — poza zakresem partii 4 (M3)'],
   'components/ActiveWorkout.tsx': [37632, 'ekran treningu: nagłówek, zakończenie, pytanie o porzucony trening, widok listy i dolny pasek; podział M3 p2 — bloki ćwiczeń i wiersze serii w WorkoutBlocks, tablica „teraz” w NowBoard / BoardControls / BoardFace'],
   'components/WorkoutBlocks.tsx': [35072, 'bloki ćwiczeń z wierszami serii (zamiana, superset, menu serii) — wydzielone z ekranu treningu w M3 p2; dalszy podział wierszy serii osobnym commitem strukturalnym'],
+  'app/history/edit/[id].tsx': [21504, 'ekran edycji sesji; DEC-01 a (1.0.1) dodał opakowania FullValue przy polach serii — podział (wiersz serii do osobnego komponentu) w 1.1, osobnym commitem strukturalnym'],
   'app/generator.tsx': [22528, 'ekran — poza zakresem partii 4 (M3)'],
   /* M1-audytor-generalny-049 (28.10.2026): próg = rozmiar na 2385e75 + 5%; figury v2 prowadzi linia 1.1 (podział tam, osobnym commitem strukturalnym) */
   'lib/figures/geom.ts': [24576, 'geometria figur v1 (stawy, kąty, rzut) w jednym module; podział razem z silnikiem v1 (1.0.1)'],
   'lib/figures/v2/contract.ts': [75776, 'kontrakt danych figur v2 (typy, walidacja schematu) — linia 1.1; próg = rozmiar po scaleniu main 28.10.2026 + 5%; podział osobnym commitem strukturalnym (backlog 1.1)'],
-  'lib/figures/v2/draw.ts': [44800, 'rysowanie figur v2 (rigi, warstwy) — linia 1.1; próg = rozmiar po scaleniu main 28.10.2026 + 5%; podział osobnym commitem strukturalnym (backlog 1.1)'],
+  'lib/figures/v2/draw.ts': [48128, 'rysowanie figur v2 (rigi, warstwy) — linia 1.1; próg = rozmiar po scaleniu wersja-1-0-1-r2 31.10.2026 (deska, stojak z bolcami, rączki z 1.0.1) + 5%; podział osobnym commitem strukturalnym (backlog 1.1)'],
   'lib/figures/v2/gear.ts': [72192, 'sprzęt figur v2 (tabela GEAR_KINDS: kontakty, uchwyty, rysowanie) — linia 1.1; próg = rozmiar po scaleniu main 28.10.2026 + 5%; podział tabeli osobnym commitem strukturalnym (backlog 1.1)'],
 };
 

@@ -11,6 +11,7 @@
 #   "Technique"                                      ← 'Technika' (przycisk sekcji, components/ExerciseCues.tsx; od 27.10.2026 karta ćwiczenia otwiera ją rozwiniętą — pierwsze stuknięcie zwija, drugie rozwija)
 #   "Setup" / "The app does not give medical advice.*"  ← 'Ustawienie' / zdanie o poradach medycznych na końcu sekcji (stopka „Na podstawie…” usunięta 23.10.2026 — źródła są w Ustawienia → Źródła wiedzy)
 #   "Movement drawing: .*"                           ← 'Rysunek ruchu: {opis}' (etykieta VoiceOver obrazu figury, components/ExerciseFigure.tsx)
+#   lib-row-1 / exercises-search / exercise-cues / exercise-figure-v2-image  ← testID: wiersz listy Ćwiczenia (jeden wynik), pole wyszukiwania (app/exercises.tsx), sekcja Technika, obraz figury v2 (101-22: Deadlift (Barbell))
 #   "Pause animation" / "Resume animation"          ← 'Zatrzymaj animację' / 'Wznów animację' (przycisk pod figurą, WCAG 2.2.2)
 # Audyt kontrolny 1, fala 2b (09.10.2026):
 #   UX2-01 — dawna nazwa z katalogu znajduje obecne ćwiczenie: "Back Squat, barbell · formerly: Narrow Stance Squats" ← 'dawniej: {n}' (dopisek wiersza
@@ -34,7 +35,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - tapOn: "Showing all exercises, including niche ones"
 - extendedWaitUntil: { visible: "Filter: basic exercises", timeout: 15000 }
 
-- tapOn: "Search exercises…"
+- tapOn: { id: "exercises-search" }   # 101-22: pole listy Ćwiczenia po id (M1-034)
 - inputText: "Back Squat"
 - pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
@@ -72,7 +73,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - tapOn: "More, tab.*"
 - tapOn: "Exercises"  # 11.10.2026: Ćwiczenia to ekran pod Więcej (bez własnej zakładki)
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
-- tapOn: "Search exercises…"
+- tapOn: { id: "exercises-search" }
 - inputText: "Narrow Stance Squats"
 - pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
@@ -80,6 +81,19 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - extendedWaitUntil: { visible: "Back Squat, barbell · formerly: Narrow Stance Squats", timeout: 15000 }
 - assertNotVisible: "Create .*"
 - takeScreenshot: 83-dawna-nazwa
+
+# --- 101-22: karta Deadlift (sztanga) z rysunkiem v2 (rodzina „zawias biodrowy”); pole listy po id, wiersz wyniku po id (M1-034) ---
+- tapOn: { id: "exercises-search" }
+- eraseText: 40
+- inputText: "Deadlift (Barbell)"
+- pressKey: Enter   # reguła: po wpisie w wyszukiwarce zawsze Enter
+- pressKey: Enter   # chowa klawiaturę (L-013)
+- extendedWaitUntil: { visible: "Deadlift \\(Barbell\\), barbell.*", timeout: 15000 }
+- tapOn: { id: "lib-row-1" }   # jeden wynik wyszukiwania (wzór: 27)
+- extendedWaitUntil: { visible: "Technique", timeout: 30000 }
+- scrollUntilVisible: { element: { id: "exercise-figure-v2-image" }, direction: DOWN, timeout: 30000, centerElement: true }
+- assertVisible: { id: "exercise-figure-v2-image" }
+- takeScreenshot: 87-deadlift-sztanga-technika
 
 # --- UX2-05: „Technika ›” w treningu na żywo → podgląd ćwiczenia z rozwiniętą sekcją ---
 - stopApp

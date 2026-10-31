@@ -38,6 +38,11 @@ name: Duży tekst dostępności — ekran Trening
 # --- trening w toku ---
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
 - takeScreenshot: 586-trening-w-toku
+# DEC-01 a (1.0.1): przytrzymanie liczby na tablicy — systemowy podgląd dużej zawartości (Large Content Viewer) nie zmienia układu; sam podgląd to nakładka systemu, której Maestro
+# nie widzi (kontrola na telefonie), więc asercja sprawdza tylko, że po przytrzymaniu ekran treningu działa dalej (zrzut 590 — kadr w pełnej rozdzielczości)
+- longPressOn: { id: "board-value-weight" }
+- takeScreenshot: 590-po-przytrzymaniu-liczby
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 15000 }
 - tapOn: { text: "Set 1 done.*", index: 0 }
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
 - takeScreenshot: 587-przerwa

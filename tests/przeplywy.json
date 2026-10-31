@@ -325,6 +325,28 @@
    ]
   },
   {
+   "id": "NU-15",
+   "tytul": "Pierwsze kroki: krok „masz historię w innej aplikacji?” prowadzi do importu CSV",
+   "stan": "nowy",
+   "wersja": "1.0",
+   "realnosc": "realny",
+   "kroki": [
+    "Pierwsze uruchomienie (pusta baza), karta „Pierwsze kroki”",
+    "Krok 4 „Masz historię w innej aplikacji?” → „Importuj historię z pliku CSV”",
+    "Otwiera się ekran importu z „Wybierz plik CSV” → „Wróć” do ekranu Trening"
+   ],
+   "wynik": "Z karty Pierwsze kroki jednym stuknięciem wchodzi się do istniejącego importu CSV; sam import i formaty bez zmian; krok nie jest nigdy odhaczony (znika razem z kartą po pierwszym treningu).",
+   "ekrany": [
+    "/",
+    "/more/import"
+   ],
+   "scenariusz": "59-import-z-pierwszych-krokow.yaml",
+   "znaczniki": [
+    "Already logging workouts in another app",
+    "Choose a CSV file"
+   ]
+  },
+  {
    "id": "TR-01",
    "tytul": "Start dzisiejszego treningu z planu dużym przyciskiem",
    "stan": "istniejacy",
@@ -730,7 +752,7 @@
    "realnosc": "realny",
    "kroki": [
     "Chip z ikoną pinezki → inne miejsce z brakami sprzętu",
-    "Okno „Dostosuj do: X” → „Zastosuj” albo „Anuluj”",
+    "Okno „Dostosuj do miejsca” (stały tytuł nagłówka; pierwszy wiersz treści „Dostosuj do: X”) → „Zastosuj” albo „Anuluj”",
     "Powrót na siłownię: sekcja „Wraca z planu”"
    ],
    "wynik": "Zamienniki oznaczone „zamiast: …”; szablon i plan bez zmian.",
@@ -739,6 +761,7 @@
    ],
    "scenariusz": "22-dostosuj-do-miejsca.yaml",
    "znaczniki": [
+    "Adjust to location",
     "Adjust to",
     "Apply"
    ]
@@ -1337,6 +1360,28 @@
    }
   },
   {
+   "id": "PR-18",
+   "tytul": "Baza, której nie da się otworzyć: „Wyślij dane” robi kopię ratunkową plików bazy w Plikach (R-RES)",
+   "stan": "istniejacy",
+   "wersja": "1.0",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Uruchom aplikację, gdy plik bazy jest uszkodzony (symulator: pliki Library/SQLite/trening.db* zastąpione tekstem przez powłokę CI)",
+    "Ekran „Nie udało się otworzyć danych” → „Wyślij dane”",
+    "Okno „Kopia bazy w Plikach” z nazwą folderu Rescue-…; w Plikach → Backup folder z kompletem plików bazy"
+   ],
+   "wynik": "Komplet plików bazy skopiowany do Documents/Backup/Rescue-RRRR-MM-DD-GGMM (zawartość identyczna z oryginałami, oryginały bez zmian); ekran podaje, gdzie szukać kopii.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "60-baza-uszkodzona.yaml",
+   "znaczniki": [
+    "Send data",
+    "Database copy in Files"
+   ],
+   "tryb": "eksperyment"
+  },
+  {
    "id": "PL-01",
    "tytul": "Zmiana szablonu dnia w planie tygodnia i „Wolne”",
    "stan": "istniejacy",
@@ -1550,7 +1595,7 @@
    "scenariusz": "13-kalendarz-plan.yaml",
    "znaczniki": [
     "Place for these days",
-    "Remove place"
+    "Clear place"
    ]
   },
   {
@@ -1798,7 +1843,8 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "Ćwiczenie → sekcja „Technika” jest od razu rozwinięta (27.10.2026) → zwiń i rozwiń → „Zatrzymaj animację”"
+    "Ćwiczenie → sekcja „Technika” jest od razu rozwinięta (27.10.2026) → zwiń i rozwiń → „Zatrzymaj animację”",
+    "Ćwiczenia → szukaj „Deadlift (Barbell)” → karta z sekcją „Technika” i rysunkiem ruchu v2 (101-22)"
    ],
    "wynik": "Treść techniki z podpisem źródeł; animację można zatrzymać.",
    "ekrany": [
@@ -1806,7 +1852,8 @@
    ],
    "scenariusz": "17-biblioteka-technika.yaml",
    "znaczniki": [
-    "Pause animation"
+    "Pause animation",
+    "exercise-figure-v2-image"
    ]
   },
   {
@@ -2433,7 +2480,8 @@
     "Panel „Test store”: wygaszenie → ceny → „Przywróć zakupy”",
     "Start ponad limit dni → ekran zakupu → zakup",
     "Po zakupie subskrypcji: nagłówek „Masz plan: {rodzaj planu}”, lista planów zwinięta pod „Zmień plan”, po rozwinięciu „Aktualny plan” przy kupionym i „Przejdź na ten plan”",
-    "Po zakupie: „Zarządzaj subskrypcją” na karcie planu jest osobnym przyciskiem (VoiceOver, XCTest) i otwiera arkusz subskrypcji (M1-audytor-generalny-039, DEC-11 a 28.10.2026)"
+    "Po zakupie: „Zarządzaj subskrypcją” na karcie planu jest osobnym przyciskiem (VoiceOver, XCTest) i otwiera arkusz subskrypcji (M1-audytor-generalny-039, DEC-11 a 28.10.2026)",
+    "Dostęp „na zawsze” z atrapą sklepu: ostrzeżenie „Twoja subskrypcja nadal się odnawia…” się nie pokazuje (atrapa nie ustawia odnawiania); samo ostrzeżenie — tylko telefon (R-101-28, 101-28)"
    ],
    "wynik": "Dostęp zgodny ze stanem sklepu; zamknięcie ekranu zakupu przyciskiem „Zamknij”; po zakupie ekran nie oferuje kupna posiadanego planu.",
    "ekrany": [
@@ -2444,6 +2492,7 @@
    "znaczniki": [
     "Restore purchases",
     "Test store: expire access",
+    "Your subscription still renews",
     "paywall-manage"
    ]
   },
@@ -3275,7 +3324,7 @@
    "scenariusz": "56-uczciwe-zasady.yaml",
    "znaczniki": [
     "First workout done!",
-    "Awesome, keep training!",
+    "Awesome, I'll keep training!",
     "See Pro plans"
    ]
   },
@@ -3299,6 +3348,27 @@
     "Other workout",
     "Start: Full Body A",
     "Set 1 done.*"
+   ]
+  },
+  {
+   "id": "US-22",
+   "tytul": "Duży tekst: przytrzymanie liczby pokazuje ją w całości (podgląd dużej zawartości), układ bez zmian",
+   "stan": "nowy",
+   "wersja": "1.0",
+   "realnosc": "realny",
+   "kroki": [
+    "W systemie: duży tekst (Większe rozmiary dostępności) i włączony „Podgląd dużej zawartości”",
+    "Trening w toku → przytrzymaj ciężar, powtórzenia albo kafelek podsumowania",
+    "Puść palec — podgląd znika, układ ekranu bez zmian"
+   ],
+   "wynik": "Liczba przycięta w ciasnym polu (ciężar, powtórzenia, dystans, czas, RPE, kafelki) widoczna w całości w podglądzie; VoiceOver czyta pełną wartość z pola.",
+   "ekrany": [
+    "/",
+    "/history/edit/[id]"
+   ],
+   "scenariusz": "58-duzy-tekst.yaml",
+   "znaczniki": [
+    "board-value-weight"
    ]
   },
   {

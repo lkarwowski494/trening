@@ -1,13 +1,7 @@
 {
- "_opis": "Zestaw wskazówek techniki (lib/cues/text) czekających na przekład na 33 języki poza PL i EN (G7b, API). Id zdań bez tekstu w tych językach: aplikacja pokazuje angielski (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Format jak zestaw-przekladu-2026-10-23.json, plus pole id (klucz w lib/cues/text/<język>.json — wynik trafia do słowników wskazówek, nie do lib/locales). Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków). Wpis rodzaju 'nowy' nie blokuje wydania (blokuje tylko 'zmieniony'); mimo to G7b ma go domknąć przed 1.1. Zdanie st.tension wdrożone 27.10.2026 (bez słowa o bólu) i jest na liście.",
+ "_opis": "Zestaw wskazówek techniki (lib/cues/text) czekających na przekład na 33 języki poza PL i EN (G7b, API). Id zdań bez tekstu w tych językach: aplikacja pokazuje angielski (cueText: język → angielski → polski); wyjątek testu kompletności tests/cues.test.tsx. Format jak zestaw-przekladu-2026-10-23.json, plus pole id (klucz w lib/cues/text/<język>.json — wynik trafia do słowników wskazówek, nie do lib/locales). Po przekładzie: dopisać zdania do lib/cues/text/<język>.json i usunąć wpisy (pusta lista = brak wyjątków). Wpis rodzaju 'nowy' nie blokuje wydania (blokuje tylko 'zmieniony'); mimo to G7b ma go domknąć przed 1.1. Zdanie st.tension wdrożone 27.10.2026 (bez słowa o bólu) i jest na liście. 31.10.2026 (scalenie wersja-1-0-1-r2): bp.elbowsMid usunięte z zestawu — linia 1.0.1 ustaliła brzmienie „Łokcie ustaw pośrodku…” i przełożyła je na 33 języki (d069206e).",
  "data": "2026-10-27",
  "klucze": [
-  {
-   "rodzaj": "nowy",
-   "id": "bp.elbowsMid",
-   "pl": "Łokcie trochę bliżej tułowia — nie rozkładaj ich szeroko na boki.",
-   "en": "Elbows a bit closer to your body — don’t flare them out wide."
-  },
   {
    "rodzaj": "nowy",
    "id": "bw.squat",

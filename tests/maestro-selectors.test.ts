@@ -264,11 +264,11 @@ test('23 (0.19): scenariusz „Inne miejsce (tylko dziś)” — angielskie lite
   const adjust = at(/visible: "Adjust to: Today only"/, use); const apply = at(/tapOn: "Apply /, adjust); const instead = at(/visible: "instead of: Bench Press/, apply); const list = at(/tapOn: "Places and equipment"/, instead); at(/assertNotVisible: ".\*Today only\.\*"/, list);
 });
 
-test('13 (0.19): miejsce na zakres dni w planie — Hotel w panelu dnia, linijka „Workout place: Hotel”, „Remove place” po „Set place”; scrollUntilVisible przed przyciskami pod krawędzią', () => {
+test('13 (0.19): miejsce na zakres dni w planie — Hotel w panelu dnia, linijka „Workout place: Hotel”, „Clear place” po „Set place”; scrollUntilVisible przed przyciskami pod krawędzią', () => {
   const { EN } = require('@/lib/i18n.en'); const s = readFileSync(join(dir, '13-kalendarz-plan.yaml'), 'utf8').split('\n').filter((l: string) => /^\s*- /.test(l)).map((l: string) => l.trim()); const at = (re: RegExp, from = 0) => { const i = s.findIndex((l: string, k: number) => k >= from && re.test(l)); expect(i).toBeGreaterThanOrEqual(from); return i; };
-  expect(EN['Miejsce na te dni']).toBe('Place for these days'); expect(EN['Ustaw miejsce']).toBe('Set place'); expect(EN['Wyczyść miejsce']).toBe('Remove place'); expect(EN['Miejsce treningu: {l}'].replace('{l}', 'Hotel')).toBe('Workout place: Hotel');
+  expect(EN['Miejsce na te dni']).toBe('Place for these days'); expect(EN['Ustaw miejsce']).toBe('Set place'); expect(EN['Wyczyść miejsce']).toBe('Clear place'); expect(EN['Miejsce treningu: {l}'].replace('{l}', 'Hotel')).toBe('Workout place: Hotel');
   const open = at(/tapOn: "Place for these days"/); const set = at(/tapOn: "Set place"/, open); expect(s[set - 1]).toMatch(/scrollUntilVisible: \{ element: "Set place"/); const line = at(/visible: "Workout place: Hotel"/, set);
-  const reopen = at(/tapOn: "Place for these days"/, line); const rm = at(/tapOn: "Remove place"/, reopen); expect(s[rm - 1]).toMatch(/scrollUntilVisible: \{ element: "Remove place"/); at(/assertNotVisible: "Workout place: Hotel"/, rm);
+  const reopen = at(/tapOn: "Place for these days"/, line); const rm = at(/tapOn: "Clear place"/, reopen); expect(s[rm - 1]).toMatch(/scrollUntilVisible: \{ element: "Clear place"/); at(/assertNotVisible: "Workout place: Hotel"/, rm);
   expect(at(/tapOn: "Full gym,\.\*"/)).toBeLessThan(at(/tapOn: "Monday, Rest"/)); /* miejsca tworzone przed planem; główne = pełna siłownia, więc start „Upper A” bez okna */
 });
 
@@ -318,13 +318,13 @@ describe('regresja nocnego run 39537208004 (L-013): klawiatura schowana po wpisa
   });
   /* Pierwszy przebieg dowodowy na gałęzi (run 39578355425, 390 pt): po poprawce klawiatury wyszły trzy dalsze przyczyny małego ekranu — element przy dolnej krawędzi albo pod nią,
    * a stuknięcie trafiało w pasek zakładek / panel nie był widoczny. Zrzuty: 32 — zakładka „More” po stuknięciu „Set 2 done”; 13 — edytor miejsca pod krawędzią; 08 — ⓘ zakresu przy krawędzi. */
-  test('08, 13, 32 (run 39578355425): stuknięcia przy dolnej krawędzi poprzedza przewinięcie z wyśrodkowaniem; „Remove place” i rozwinięty zakres szukane przewinięciem, nie samym oczekiwaniem', () => {
+  test('08, 13, 32 (run 39578355425): stuknięcia przy dolnej krawędzi poprzedza przewinięcie z wyśrodkowaniem; „Clear place” i rozwinięty zakres szukane przewinięciem, nie samym oczekiwaniem', () => {
     const s32 = stepsOf(join(dir, '32-regularny-uzytkownik.yaml')); const set2 = '- tapOn: { text: "Set 2 done — Bench Press \\\\(Dumbbell\\\\)" }';
     const i = s32.indexOf(set2); expect(i).toBeGreaterThan(0);
     expect(s32[i - 1]).toBe('- scrollUntilVisible: { element: "Set 2 done — Bench Press \\\\(Dumbbell\\\\)", direction: DOWN, timeout: 30000, centerElement: true }');
     const s13 = stepsOf(join(dir, '13-kalendarz-plan.yaml'));
-    expect(s13.filter(l => /extendedWaitUntil: \{ visible: "Remove place"/.test(l))).toEqual([]);
-    expect(s13.filter(l => /^- scrollUntilVisible: \{ element: "Remove place", direction: DOWN, timeout: 30000, centerElement: true \}$/.test(l)).length).toBe(1);
+    expect(s13.filter(l => /extendedWaitUntil: \{ visible: "Clear place"/.test(l))).toEqual([]);
+    expect(s13.filter(l => /^- scrollUntilVisible: \{ element: "Clear place", direction: DOWN, timeout: 30000, centerElement: true \}$/.test(l)).length).toBe(1);
     const s08 = stepsOf(join(dir, '08-szablon-wiersze.yaml')); const tap = s08.findIndex(l => l === '- tapOn: { id: "info-range-.*" }');
     expect(s08[tap - 1]).toBe('- assertNotVisible: "Rep range: 8.12 — when.*"'); expect(s08[tap - 2]).toMatch(/Range 8\.12: when all sets last time had\.\*", direction: DOWN, timeout: 30000, centerElement: true \}$/);
     expect(s08[tap + 1]).toBe('- scrollUntilVisible: { element: "Rep range: 8.12 — when.*", direction: DOWN, timeout: 30000 }');

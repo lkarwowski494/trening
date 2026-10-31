@@ -1,6 +1,7 @@
 /* Etykieta serii — wspólna dla treningu i szablonu (decyzja 05.10.2026: typ serii widoczny, nie ukryty pod cyfrą). */
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, FW, font, RADIUS } from '@/lib/theme';
 import { type SetKind } from '@/lib/seed';
 import { setMarkOf } from '@/lib/live';

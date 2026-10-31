@@ -1,0 +1,36 @@
+Thank you for reviewing Trening.
+
+NO ACCOUNT, NO SERVER
+- No sign-in and no backend. Everything is stored on the device; the app makes no network requests of its own. No demo account is needed.
+- To see data quickly: on the Workout tab tap "Other workout", add an exercise and tick a set; or use "Log a past workout" to add a session in the past.
+
+IN-APP PURCHASES (one subscription group "Full version": monthly and yearly auto-renewable subscriptions plus a one-time lifetime unlock; no introductory offers or free trials)
+- Where to find them: More > Settings, section "Subscription" > "See Pro plans" (after a purchase the row reads "Your plan: monthly", "Your plan: yearly" or "Your plan: lifetime"). The purchase screen opens from there at any time, and also when a workout is started after the free limit is used. It shows the price and period from the App Store, "Restore purchases", "Redeem code", and links to the Privacy Policy and the Terms of Use (Apple's standard EULA).
+- Free tier: the whole app is free for up to 5 training days per calendar month. A training day is a day with at least one finished live workout longer than 7 minutes (several workouts on the same day count as one day). The limit cannot be reached in a short review session, so use Settings as above. History, backup, export and logging past workouts always work.
+- After the first finished live workout (free tier only, shown once) a window "First workout done!" explains the model. "See Pro plans ›" opens the purchase screen, "Awesome, I'll keep training!" closes the window, and a link "Why this price? See the espresso index." opens a page on our website.
+- Family Sharing is enabled for all three products.
+- Ongoing value (Guideline 3.1.2(a)): the app is actively developed and updated regularly, and every new feature is included in the subscription. Users who prefer a single payment can choose the one-time lifetime unlock instead.
+
+EXERCISES AND DRAWINGS
+- More > Exercises, tap an exercise (e.g. Back Squat): the "Technique" section has setup, movement, tips and common mistakes. Many exercises show a simple movement drawing made on the device; squat, bench press and deadlift variations (e.g. Sumo Deadlift) are animated and mark the main muscles. A note says the app does not give medical advice.
+
+BACKUP, IMPORT, ERASE
+- More > Backup: "Export history to CSV" and "Import history from a CSV file". Import shows a preview before anything is saved and never removes existing data. To try it: export, then import the same file.
+- More > Settings, bottom: "Erase all data" asks for confirmation and first saves the current data as a backup file in Files.
+
+APPLE HEALTH (optional, off by default)
+- More > Settings > "Save finished workouts to Apple Health": after the permission sheet, each finished workout is written to Health.
+- More > Settings > "Show data from Apple Health": read-only (steps, workouts, heart rate, active energy), shown in the Plan day panel and in session details. Read data is never stored by the app or sent anywhere.
+- The simulator has no Health data.
+
+APPLE WATCH (companion app, optional)
+- Shows the workout started on the iPhone (exercise, set, weight, reps); "Set done" and "Undo" (5 seconds) work on the watch, and the rest countdown ends with a haptic. The watch runs a workout session (heart rate, active energy); with Health saving on, the workout is saved to Health once. Without a workout on the phone it shows "Start a workout on your phone". The iPhone app is fully usable without a watch.
+
+VOICE ANNOUNCEMENTS (optional, off by default)
+- More > Settings > "Voice announcements". At the start of a rest the app announces the next exercise using on-device iOS speech synthesis.
+
+REST TIMER
+- The rest countdown also appears on the Lock Screen as a Live Activity. The end-of-rest notification is a local, time-sensitive notification. The app does not use push notifications.
+
+CONTACT
+- Support: support@apps4brew.com (also "Write to us" in More > About).

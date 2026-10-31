@@ -275,40 +275,40 @@ Tabela poniżej jest generowana z danych (`UPDATE_CRITICAL=1 npx jest tests/audi
 <!-- gen:krytyczne -->
 | kod | zdanie medyczne | asekuracja (5 kluczy) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd treści krytycznej (Claude, decyzja 21.10.2026) |
 |---|---|---|---|---|---|
-| en | tak | tak | 307/307 | brak zapisu | tak (28.10.2026, API) |
-| cs | tak | tak | 307/307 | tak (05.10.2026) | tak (28.10.2026, API) |
-| sk | tak | tak | 307/307 | tak (05.10.2026) | tak (28.10.2026, API) |
-| hu | tak | tak | 307/307 | tak (05.10.2026) | tak (28.10.2026, API) |
-| ro | tak | tak | 307/307 | tak (05.10.2026) | tak (28.10.2026, API) |
-| bg | tak | tak | 307/307 | tak (05.10.2026) | tak (28.10.2026, API) |
-| hr | tak | tak | 307/307 | tak (05.10.2026) | tak (28.10.2026, API) |
-| sl | tak | tak | 307/307 | tak (05.10.2026) | tak (28.10.2026, API) |
-| sr | tak | tak | 307/307 | tak (05.10.2026) | tak (28.10.2026, API) |
-| lt | tak | tak | 307/307 | tak (05.10.2026) | tak (28.10.2026, API) |
-| lv | tak | tak | 307/307 | tak (05.10.2026) | tak (28.10.2026, API) |
-| et | tak | tak | 307/307 | tak (05.10.2026) | tak (28.10.2026, API) |
-| uk | tak | tak | 307/307 | tak (05.10.2026) | tak (28.10.2026, API) |
-| es | tak | tak | 307/307 | tak (05.10.2026) | tak (28.10.2026, API) |
-| es-419 | tak | tak | 307/307 | brak zapisu | tak (28.10.2026, API) |
-| pt | tak | tak | 307/307 | tak (05.10.2026) | tak (28.10.2026, API) |
-| pt-BR | tak | tak | 307/307 | brak zapisu | tak (28.10.2026, API) |
-| de | tak | tak | 307/307 | tak (07.10.2026) | tak (28.10.2026, API) |
-| fr | tak | tak | 307/307 | tak (07.10.2026) | tak (28.10.2026, API) |
-| it | tak | tak | 307/307 | tak (07.10.2026) | tak (28.10.2026, API) |
-| nl | tak | tak | 307/307 | tak (07.10.2026) | tak (28.10.2026, API) |
-| sv | tak | tak | 307/307 | tak (07.10.2026) | tak (28.10.2026, API) |
-| da | tak | tak | 307/307 | tak (07.10.2026) | tak (28.10.2026, API) |
-| nb | tak | tak | 307/307 | tak (07.10.2026) | tak (28.10.2026, API) |
-| fi | tak | tak | 307/307 | tak (07.10.2026) | tak (28.10.2026, API) |
-| tr | tak | tak | 307/307 | tak (07.10.2026) | tak (28.10.2026, API) |
-| el | tak | tak | 307/307 | tak (07.10.2026) | tak (28.10.2026, API) |
-| id | tak | tak | 307/307 | brak zapisu | tak (28.10.2026, API) |
-| ms | tak | tak | 307/307 | brak zapisu | tak (28.10.2026, API) |
-| vi | tak | tak | 307/307 | brak zapisu | tak (28.10.2026, API) |
-| ru | tak | tak | 307/307 | brak zapisu | tak (28.10.2026, API) |
-| ja | tak | tak | 307/307 | brak zapisu | tak (28.10.2026, API) |
-| ko | tak | tak | 307/307 | brak zapisu | tak (28.10.2026, API) |
-| zh-Hant | tak | tak | 307/307 | brak zapisu | tak (28.10.2026, API) |
+| en | tak | tak | 318/318 | brak zapisu | tak (28.10.2026, API) |
+| cs | tak | tak | 318/318 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sk | tak | tak | 318/318 | tak (05.10.2026) | tak (28.10.2026, API) |
+| hu | tak | tak | 318/318 | tak (05.10.2026) | tak (28.10.2026, API) |
+| ro | tak | tak | 318/318 | tak (05.10.2026) | tak (28.10.2026, API) |
+| bg | tak | tak | 318/318 | tak (05.10.2026) | tak (28.10.2026, API) |
+| hr | tak | tak | 318/318 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sl | tak | tak | 318/318 | tak (05.10.2026) | tak (28.10.2026, API) |
+| sr | tak | tak | 318/318 | tak (05.10.2026) | tak (28.10.2026, API) |
+| lt | tak | tak | 318/318 | tak (05.10.2026) | tak (28.10.2026, API) |
+| lv | tak | tak | 318/318 | tak (05.10.2026) | tak (28.10.2026, API) |
+| et | tak | tak | 318/318 | tak (05.10.2026) | tak (28.10.2026, API) |
+| uk | tak | tak | 318/318 | tak (05.10.2026) | tak (28.10.2026, API) |
+| es | tak | tak | 318/318 | tak (05.10.2026) | tak (28.10.2026, API) |
+| es-419 | tak | tak | 318/318 | brak zapisu | tak (28.10.2026, API) |
+| pt | tak | tak | 318/318 | tak (05.10.2026) | tak (28.10.2026, API) |
+| pt-BR | tak | tak | 318/318 | brak zapisu | tak (28.10.2026, API) |
+| de | tak | tak | 318/318 | tak (07.10.2026) | tak (28.10.2026, API) |
+| fr | tak | tak | 318/318 | tak (07.10.2026) | tak (28.10.2026, API) |
+| it | tak | tak | 318/318 | tak (07.10.2026) | tak (28.10.2026, API) |
+| nl | tak | tak | 318/318 | tak (07.10.2026) | tak (28.10.2026, API) |
+| sv | tak | tak | 318/318 | tak (07.10.2026) | tak (28.10.2026, API) |
+| da | tak | tak | 318/318 | tak (07.10.2026) | tak (28.10.2026, API) |
+| nb | tak | tak | 318/318 | tak (07.10.2026) | tak (28.10.2026, API) |
+| fi | tak | tak | 318/318 | tak (07.10.2026) | tak (28.10.2026, API) |
+| tr | tak | tak | 318/318 | tak (07.10.2026) | tak (28.10.2026, API) |
+| el | tak | tak | 318/318 | tak (07.10.2026) | tak (28.10.2026, API) |
+| id | tak | tak | 318/318 | brak zapisu | tak (28.10.2026, API) |
+| ms | tak | tak | 318/318 | brak zapisu | tak (28.10.2026, API) |
+| vi | tak | tak | 318/318 | brak zapisu | tak (28.10.2026, API) |
+| ru | tak | tak | 318/318 | brak zapisu | tak (28.10.2026, API) |
+| ja | tak | tak | 318/318 | brak zapisu | tak (28.10.2026, API) |
+| ko | tak | tak | 318/318 | brak zapisu | tak (28.10.2026, API) |
+| zh-Hant | tak | tak | 318/318 | brak zapisu | tak (28.10.2026, API) |
 <!-- /gen:krytyczne -->
 
 **Stan przeglądu (28.10.2026, M1-audytor-generalny-006):**
@@ -496,3 +496,42 @@ Przegląd rolą `recenzent-lokalizacji` (26.10.2026, gałąź `recenzja-lok-2026
 - OTWARTE (badacz): `mb.legs` usunięte z One-Arm Medicine Ball Slam (zdanie o rzucie z nóg nie pasuje do uderzenia piłką w dół) — zastępcze zdanie dla slamu; ćwiczenie ma na razie zestaw ogólny bez wskazówki „ok”.
 - OTWARTE (badacz): `hab.hips` („pracuje tylko noga”) usunięte z Monster Walk i Lateral Band Walk (ruszają się obie nogi naprzemiennie) — zastępcze zdanie; zostaje `bw.squat`.
 - Nowe terminy w słowniku (`lędźwie`/lower back, `kettlebell`): dla 33 języków poza PL i EN propozycje bez recenzji native speakera (pewność „srednia” albo „niska”) — do potwierdzenia.
+
+### Wersja 1.0.1: przegląd lokalizacji Z-02, pozycje nieblokujące (26.10.2026)
+
+*Wprowadzone* (test `tests/lokalizacja-1-0-1.test.ts`, strażnik znanych form „ty” w ekranach języków formalnych): rejestr formalny w el, lt, lv, cs, sk, tr, id, sr, hu, uk, pt, ro (zdania na ekranach, także zakup i import; wskazówki techniki dalej „ty”); es-419 (entrenamiento, respaldo, Agrega, InfoPlist „respaldos” i „ningún lado”); pt-BR (grande demais, salva); el InfoPlist „σας”; rozwinięte skróty w zdaniach pomocy da/de/nb.
+
+*Celowo niezmienione — pytania do native speakerów (nie zgadujemy):*
+1. ko „Jesteśmy z Ciebie dumni!”: „정말 자랑스러워요!” czy „정말 잘하셨어요!”; ko „Cały rok treningów, rozliczany rocznie.” (zdanie sztuczne).
+2. zh-Hant podpis stopera serii: „本組 {s} 秒” czy „這組 {s} 秒” (dziś „每組” = „każda seria”).
+3. el: formalnie wszędzie (w tym okno zgody iOS)? Zrobione tak dla zdań zgłoszonych i pokrewnych; przyciski w trybie rozkazującym (Ορίστε…) zostają.
+4. ja: dwukropek półszerokości „:” czy pełnej „：” (ok. 159 tekstów); jeden termin trybu cichego (消音モード).
+5. da/nb/sv: „cardio” czy „kondition/kondisjon” w całej aplikacji.
+6. cs: zapowiedź głosowa rozgrzewki „zahřívací série” czy „rozcvička”.
+7. hr, ro, uk, pt: napisy przycisków w trybie rozkazującym 2 os. l. poj. („Odaberi vježbu”, „Alege exercițiul”, „Вибери…”, „Escolhe…”) obok zdań formalnych — wzorzec przycisków w tych językach u producenta systemu; zdania poprawione, przyciski zostają do decyzji native speakera.
+8. uk: „програма” czy „застосунок” (14 vs 22 użyć); tr: „Apple Sağlık” czy „Sağlık uygulaması”; sl: pytania w 1. osobie czy „Želite …?”.
+9. es-419 InfoPlist i reszta zgłoszona jako „średnia pewność” — tylko to, co dotyczy słownika wariantu, zostało zmienione.
+*Nie wykonane (zmiana tekstu źródłowego PL/EN, dotyka 35 języków):* „Apple ID” → „konto Apple” (2 teksty), „(TestFlight)” → App Store w komunikacie o nowszych danych, liczba „6 godzin” z `STALE_AUTO_MS` zamiast wpisanej w tekst — do osobnego zadania z przekładem.
+
+### Wersja 1.0.1: recenzja lokalizacji zmian z 28.10.2026 (r2/teksty) — wprowadzone i pytania
+- Wprowadzone: ro `rdl.mis.knees` (blokująca); poprawki kart w fr, es, tr, zh-Hant, ro, fi, de, cs, sk, bg, uk, hu, da, it, ja (`bp.elbowsMid`, `rdl.mis.knees`); „Chcesz częściej?” → o częstości treningu (bg, el, fr, hr, nb, ro, ru, sl, vi, ja); ja „よし、トレーニングを続けます！”; początek notatki celu ogólnego = nazwa z przełącznika (ja 健康・体力, ko 건강·체력, zh-Hant 健康體能; EN „General fitness:”); el „και με εφάπαξ αγορά για πάντα”; id „Gerakan yang sudah ada di daftar Anda: {n}”. Słownik: pojęcie „łokcie otwarte na boki” (`lokcie_otwarte`) z testem; terminy tego wpisu poza ja/fr — do sprawdzenia przez native speakerów.
+- Pytania do native speakerów (zostawione bez zmiany): ms — „jangan terlalu luas” czy „jangan terlalu kembang” (łokcie); pt (PT) — „até o movimento virar” czy „se tornar”; ja — „肘を開きすぎない” (wprowadzone) czy „広げすぎない”; uk — narzędnik „не притиснутими” (wprowadzone) vs mianownik; hu — „ne is nyisd ki túlságosan” (wprowadzone); id — nowa fraza importu; ja — „もっとトレーニングしたいですか？” i „よし、…続けます！” (wprowadzone). Sprawdzić zrzut 320 pt przy tekście 125% dla es-419 „Entrenamiento” (zakładka).
+
+### Wersja 1.0.1: recenzja lokalizacji r2 (gcalf, krok importu, jm/dcgsk.elbows) — wprowadzone i pytania (28.10.2026)
+- Wprowadzone (r2/lok2): nakładki pt-BR `jm.elbows`/`dcgsk.elbows` i es-419 kroku importu („agregar”); typografia fr (NBSP przed „:”, ’) i it (’); el „στην πίεση”; fi `gcalf.set`; `dcgsk.elbows` bez kalki „wąsko” (en „elbows in”, es/pt „cerrados/fechados”, ja 締める, id/ms „rapat”, vi „khép”, sv/da/nb „inne/inde”, nl „naar binnen”, bg „прибрани”); poprawki `jm.elbows` (bg, ko, ja, zh-Hant), `gcalf` (nl, el, vi, ru, fr); krok importu w de, nl, vi i en („Already logging workouts in another app? You can add your history from a CSV file.” — razem z `.maestro/59`, `tests/przeplywy.json` NU-15, docs/37); sr krok 2 Pierwszych kroków w formie formalnej. Nowy termin słownika `lokcie_waskie` (zakazane: es/pt „juntos”, ja 肘を狭く).
+- Pytania do native speakerów (zostawione bez zmiany, wpisy `niska` w słowniku): ru/uk — „держи локти узко / тримай лікті вузько” czy „локти собраны, не разводи / лікті зібрані, не розводь”; cs/sk/hr/sr/sl/lt/lv/fi/hu — „łokcie wąsko” dosłownie (cs „úzko”, hu „szűken”, lt „siaurai”, lv „šauri”, fi „kapeasti”) czy „łokcie przy sobie/zebrane” (hu „zárt könyök”, fi „kyynärpäät lähellä toisiaan”); it — „cronologia” czy „storico” (cały plik); ms — „menambahkannya” czy „menambahnya”; bg — „на ръба на стъпало” czy dopisać „на стълбите”.
+
+### Wersja 1.0.1: podpis „Pozycja pośrednia {n}” (środkowe klatki rysunku przy czterech pozycjach) — wprowadzone i pytania (29.10.2026)
+- Wprowadzone (r2/podpis): „W trakcie {n}” / „Midway {n}” → „Pozycja pośrednia {n}” / „Mid position {n}” w źródle, `lib/i18n.en.ts` i 31 słownikach (nakładka pt-BR „Posição intermediária {n}”; es-419 dziedziczy es). Wersja trzyklatkowa „W trakcie” bez zmian. Powód: wyrażenie okolicznikowe z numerem brzmiało jak „ruch nr 1”, a ru/id/ms/vi/zh-Hant miały słowo statusu („w toku”). Hasło `pozycja_posrednia` w słowniku terminów (formy zakazane: ru „в процессе”, id/ms „sedang berjalan”, vi „đang diễn ra”, zh-Hant „進行中”); test w `tests/slownik-terminow.test.ts`.
+- Pytania do native speakerów (wpisy `niska` w słowniku): hu — „Köztes helyzet 1” czy „1. köztes helyzet”; ja — „途中の姿勢1” czy „途中の姿勢 1”; zh-Hant — „中間姿勢 1” czy „中間姿勢1”; cs/sk — „Mezipoloha / Medzipoloha” czy „Střední poloha / Stredná poloha”; sr — „Међуположај” czy „Средњи положај”.
+
+- 29.10.2026 (decyzja właściciela, wariant A): także podpis 3 klatek bez numeru „Pozycja pośrednia” / „Mid position” zamiast „W trakcie” (r2/podpis3). Recenzja lokalizacji: 35 tekstów, 0 poprawek. Pytanie do native speakera: lv „Starppozīcija” czy „Vidējā pozīcija” (sąsiednie podpisy dwuwyrazowe: „Sākuma / Beigu pozīcija”).
+
+### Wersja 1.0.1: es-419 „celular” (zegarek i telefon, pakiet G2) — wprowadzone i pytania (29.10.2026)
+- Wprowadzone: w es-419 „teléfono” → „celular” w 6 tekstach (etykiety zegarka „Połącz z telefonem”, „Zacznij trening na telefonie”; komunikaty o danych w telefonie, głosie i zapowiedzi przerwy); reguła słownika `telefon_es419`. Recenzja lokalizacji: 6/6 OK; es (Hiszpania) bez zmian.
+- Pytanie do native speakera: zegarek es-419 — „Termina el entrenamiento en tu celular” czy „…en el celular” (pozostałe etykiety mają „el”; rekomendacja recenzenta: „el”).
+
+### Wersja 1.0.1: recenzja lokalizacji pakietu E (101-15) — wprowadzone i pytania (29.10.2026)
+- Wprowadzone: ms „Rysunek ruchu: {opis}” → „Animasi pergerakan: {opis}” (spójnie z opisem sklepu); słownik: el „κινούμενα σχέδια” zakazane, el squat / bench press / deadlift zalecane, ms „animasi pergerakan” termin marketingowy; el „άρσεις” → „deadlift” (kategoria maszyn) i „πιέσεις πάγκου” → „bench press” (pomoc w Postępach) — pakiet J.
+- Pytania do native speakerów: ms — „Rajah skematik” czy „Lukisan skematik” pod figurą ćwiczenia (także „Sudut pada rajah/lukisan”); el — w nawiasie z listą maszyn „deadlift” czy „άρσεις θανάτου” (słownik zakłada „deadlift”, pewność średnia).
+- Po 1.0 (`store/` zamrożone w czasie wydania 1.0): podpis zrzutu ms `store/screenshot-captions.json` „Lukisan gerakan dan petua teknik” → „Animasi pergerakan dan petua teknik” (docs/21).

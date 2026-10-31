@@ -1110,7 +1110,6 @@
  "w planie na: {day} · {n} ćw.": "theo kế hoạch: {day} · {n} bài",
  "W planie tygodnia: {days} — te dni będą wolne.": "Trong kế hoạch tuần: {days} — những ngày này sẽ là ngày nghỉ.",
  "W tej wersji": "Trong phiên bản này",
- "W trakcie": "Đang diễn ra",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Trong buổi tập đang diễn ra, dây sẽ được bỏ khỏi các hiệp chưa đánh dấu.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Trong buổi tập đang diễn ra, mục này sẽ được đánh dấu là đã xóa.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Trong tuần deload, “Bắt đầu” và “Lặp lại buổi gần nhất” sẽ đề xuất “Ít hiệp hơn”: {less}; mức tạ và mẫu giữ nguyên.",
@@ -1475,6 +1474,7 @@
  "Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.": "Không thể khôi phục giao dịch mua. Hãy kiểm tra kết nối internet.",
  "Potrzebne połączenie z internetem.": "Cần có kết nối internet.",
  "Masz dostęp na zawsze": "Bạn có quyền truy cập vĩnh viễn",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Bạn có lịch sử tập ở ứng dụng khác không? Bạn có thể thêm từ tệp CSV.",
  "Masz pełną wersję": "Bạn có phiên bản đầy đủ",
  "Dostęp z Chmury rodzinnej": "Truy cập qua Chia sẻ trong gia đình",
  "Dostęp z kodu do {date}": "Truy cập bằng mã đến {date}",
@@ -1676,7 +1676,7 @@
  "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Bạn chưa có mẫu nào có bài tập. Hãy tạo mẫu hoặc chọn “Mẫu và kế hoạch mới”.",
  "Sklep chwilowo niedostępny": "Cửa hàng tạm thời không khả dụng",
  "Nowe szablony i plan": "Mẫu và kế hoạch mới",
- "Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.": "Muốn tập nhiều hơn? Pro gỡ bỏ giới hạn: đăng ký gói hoặc mua một lần dùng mãi mãi.",
+ "Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.": "Muốn tập thường xuyên hơn? Pro gỡ bỏ giới hạn: đăng ký gói hoặc mua một lần dùng mãi mãi.",
  "Historia jest już w telefonie": "Lịch sử của bạn giờ đã có trên điện thoại",
  "Pierwszy trening za Tobą!": "Bạn đã xong buổi tập đầu tiên!",
  "Super, trenuję dalej!": "Tuyệt, tập tiếp thôi!",
@@ -1777,5 +1777,7 @@
  "Masz plan: roczny": "Gói của bạn: hằng năm",
  "Masz plan: dożywotni": "Gói của bạn: vĩnh viễn",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "Pozycja pośrednia {n}": "Tư thế giữa {n}",
+ "Pozycja pośrednia": "Tư thế giữa"
 }

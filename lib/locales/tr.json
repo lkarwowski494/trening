@@ -538,6 +538,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Vücut ağırlığı: “±” ek ağırlık (artı) veya yardımdır, ör. bir makine (eksi); bant, seviyesiyle ayrı bir alandır. Rekor yardımsız toplam tekrardır; hacim yalnızca ek ağırlığı kullanır.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Kas: kas grubu başına haftalık set sayısı, Ayarlar bölümündeki hedefe kadar (otomatikte {m}), {a}–{b} tekrar (evde {c}–{d}), genellikle yedekte {r1}–{r2} tekrar.",
  "Masz dostęp na zawsze": "Süresiz erişiminiz var",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Başka bir uygulamada geçmişiniz var mı? CSV dosyasından ekleyebilirsiniz.",
  "Masz pełną wersję": "Tam sürüme sahipsiniz",
  "maszyna": "makine",
  "maszyna belt squat": "belt squat makinesi",
@@ -1334,7 +1335,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "Haftalık planda: {days} — bu günler dinlenme olacak.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "İlerleme’de işaretli hafta grafiklerde D harfi olarak görünür — orada değiştirilmez.",
  "W tej wersji": "Bu sürümde",
- "W trakcie": "Hareket sırasında",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Mevcut antrenmanda bant, işaretlenmemiş setlerden kaldırılacak.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Mevcut antrenmanda silinmiş olarak işaretlenecek.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Deload haftasında “Başlat” ve “Sonuncuyu tekrarla”, “Daha az set” seçeneğini sunar: {less}; ağırlıklar ve şablon aynı kalır.",
@@ -1777,5 +1777,7 @@
  "Masz plan: roczny": "Planınız: yıllık",
  "Masz plan: dożywotni": "Planınız: süresiz",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "Pozycja pośrednia {n}": "Ara pozisyon {n}",
+ "Pozycja pośrednia": "Ara pozisyon"
 }

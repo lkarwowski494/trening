@@ -7,6 +7,8 @@
  * Liczby (zakresy, tolerancje) w jednym miejscu: CONTRACT. Kąty i rozstawy bez źródła to uproszczenie ilustracyjne (nie pokazujemy ich użytkownikowi).
  */
 import { add, dist, type V3 } from './math';
+import { OVERHEAD_SHOULDER_EXCEPTION, overheadShoulderRange, trunkLeanDeg } from './overheadException';
+export { OVERHEAD_SHOULDER_EXCEPTION, overheadShoulderRange, trunkLeanDeg } from './overheadException';
 import { BODY, EXT_ROM, SIDES, hipPoint, jointAngles, legJoints, type LegIn, type ArmIn, type PoseIn, type Side } from './skeleton';
 import type { Frame, Prop } from './scene';
 import { GEAR, GEAR_KINDS, SEAT_LEN, BELL_MODES, CABLE_ATTACH, BENCH_KAT, BAND_MOUNT, LEVER_MODE, LEVER_POINT, SLED_HOLD, contactsFrom, gearFieldIssues, gearSetIssues, propsFrom, resolveBells, type Gear } from './gear';
@@ -487,8 +489,9 @@ export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
     const a = jointAngles(f.sk, s);
     const chk = (n: string, v: number, lo: number, hi: number): void => { if (v < lo - 0.5 || v > hi + 0.5) rg.add(`${n}${s}`, u, uu => `staw ${n} ${s} = ${f1(v)}° poza zakresem ruchu [${lo}°, ${hi}°] w fazie u=${uu} — zmień położenie kostki, miednicy lub chwytu`); };
     chk('hip', a.hip, al.hipMin ?? r.side.hip.min, Math.min(al.hipMax ?? r.side.hip.max, CONTRACT.hipPassiveMaxDeg)); chk('knee', a.knee, r.side.knee.min, Math.min(al.kneeMax ?? r.side.knee.max, CONTRACT.kneePassiveMaxDeg)); chk('ankle', a.ankle, al.ankleMin ?? r.side.ankle.min, al.ankleMax ?? r.side.ankle.max);
-    chk('elbow', a.elbow, r.side.el.min, al.elbow ?? r.side.el.max); chk('shElev', a.shElev, 0, al.shElev ?? r.front.abd.max);
-    if (a.shAbd < 30) chk('shSag', a.shSag, r.side.sh.min, al.shSag ?? r.side.sh.max);
+    const ox = overheadShoulderRange(ctx.exercise, trunkLeanDeg(f.sk));
+    chk('elbow', a.elbow, r.side.el.min, al.elbow ?? r.side.el.max); chk('shElev', a.shElev, 0, ox && a.shElev >= 90 ? OVERHEAD_SHOULDER_EXCEPTION.elevMax : al.shElev ?? r.front.abd.max);
+    if (a.shAbd < 30) { if (ox && a.shSag >= 90) chk('shSag', a.shSag, ox.min, ox.max); else chk('shSag', a.shSag, r.side.sh.min, al.shSag ?? r.side.sh.max); }
     /* poza@2: nowe stopnie swobody (zakresy: EXT_ROM; uproszczenie ilustracyjne). Obrót tułowia (orientacja ciała, nie staw) bez ograniczenia stawowego; skręt, skłon i przechył raz na klatkę. */
     const ex = (n: string, v: number, lim: { min: number; max: number }, unit: string): void => { if (v < lim.min - 0.5 || v > lim.max + 0.5) rg.add(n, u, uu => `pole ${n} = ${f1(v)}${unit} poza zakresem [${lim.min}${unit}, ${lim.max}${unit}] w fazie u=${uu} — zmniejsz tę wartość w klatkach kluczowych`); };
     if (s === 'R') { ex('skretTulowia', a.trunkTwist, EXT_ROM.twist, '°'); ex('przechylTulowia', a.trunkLean, EXT_ROM.lean, '°'); ex('przechylMiednicy', a.pelvisTilt, EXT_ROM.tilt, '°'); ex('przechylGlowy', a.headTilt, EXT_ROM.headTilt, '°'); }

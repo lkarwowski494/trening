@@ -538,6 +538,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Tjelesna težina: „±“ je dodatna težina (plus) ili pomoć, npr. sprava (minus); traka je zasebno polje s razinom. Rekord je ukupan broj ponavljanja bez pomoći, a volumen koristi samo dodatnu težinu.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Masa: serije po mišićnoj skupini tjedno do cilja iz Postavki (automatski {m}), {a}–{b} ponavljanja (kod kuće {c}–{d}), obično {r1}–{r2} ponavljanja u rezervi.",
  "Masz dostęp na zawsze": "Imate pristup zauvijek",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Imate povijest u drugoj aplikaciji? Možete je dodati iz CSV datoteke.",
  "Masz pełną wersję": "Imate punu verziju",
  "maszyna": "sprava",
  "maszyna belt squat": "sprava za belt čučanj",
@@ -1334,7 +1335,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "U tjednom planu: {days} — ti dani bit će odmor.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "U Napretku se označeni tjedan vidi kao slovo D na grafikonima — tamo se ne mijenja.",
  "W tej wersji": "U ovoj verziji",
- "W trakcie": "Tijekom pokreta",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "U trenutačnom treningu traka će se ukloniti iz još neoznačenih serija.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "U trenutačnom treningu bit će označena kao obrisana.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "U tjednu rasterećenja „Započni” i „Ponovi zadnji” nude „Manje serija”: {less}; težine i predložak bez promjene.",
@@ -1676,7 +1676,7 @@
  "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Nemate predložaka s vježbama. Izradite predložak ili odaberite „Novi predlošci i plan”.",
  "Sklep chwilowo niedostępny": "Trgovina je privremeno nedostupna",
  "Nowe szablony i plan": "Novi predlošci i plan",
- "Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.": "Želite više? Pro uklanja ograničenje: pretplata ili jednokratna kupnja zauvijek.",
+ "Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.": "Želite trenirati češće? Pro uklanja ograničenje: pretplata ili jednokratna kupnja zauvijek.",
  "Historia jest już w telefonie": "Povijest je već na vašem telefonu",
  "Pierwszy trening za Tobą!": "Prvi trening je iza vas!",
  "Super, trenuję dalej!": "Super, nastavljam trenirati!",
@@ -1777,5 +1777,7 @@
  "Masz plan: roczny": "Vaš plan: godišnji",
  "Masz plan: dożywotni": "Vaš plan: doživotni",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "Pozycja pośrednia {n}": "Međupoložaj {n}",
+ "Pozycja pośrednia": "Međupoložaj"
 }

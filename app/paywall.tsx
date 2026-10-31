@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, Text, Pressable, Linking, ActivityIndicator, Alert } from 'react-native';
+import { View, Pressable, Linking, ActivityIndicator, Alert } from 'react-native';
+import { Text } from '@/components/AppText';
 import { ScrollView } from '@/components/Scroll';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useCloseHeader } from '@/components/CloseButton';
@@ -56,7 +57,7 @@ export default function PaywallScreen() {
   const chosen = Array.isArray(products) ? products.find(p => p.plan === sel && !ownedPlans.has(p.plan)) : undefined; const hasSub = SUBSCRIPTION_PLANS.some(p => ownedPlans.has(p));
   /* M1-audytor-generalny-001 (docs/27 3.11): subskrypcja, za którą osoba płaci sama, odnawia się dalej po zakupie dożywotniego — uwaga przed arkuszem Apple, nie dopiero po zakupie;
    * także z kodu promocyjnego (po promocji odnawia się płatnie; decyzja 5a, 28.10.2026), bez Chmury rodzinnej (płaci organizator) */
-  const paysSub = (view.entitlements ?? []).some(e => e.plan !== 'lifetime' && e.source !== 'family' && entitlementActive(e, Date.now()));
+  const paysSub = (view.entitlements ?? []).some(e => e.plan !== 'lifetime' && e.source !== 'family' && e.willAutoRenew !== false /* 101-28: anulowana (dostęp do końca okresu) — bez uwagi; brak informacji = ostrzegamy */ && entitlementActive(e, Date.now()));
   /* M1-046 (02-monetyzacja-601): pełny dostęp z pamięci, a plan nieznany (sklep nie odpowiada) — bez oferty dla darmowych: wstępu, listy planów i stopki */
   const knownFull = view.level === 'full' && !view.active;
   const buy = async () => {

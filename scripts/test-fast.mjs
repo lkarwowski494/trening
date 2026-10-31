@@ -16,6 +16,10 @@ const changed = process.env.TEST_FAST_CHANGED !== undefined ? process.env.TEST_F
   : [...sh(`git diff --name-only ${ref}`), ...sh('git ls-files --others --exclude-standard')];
 const files = [...new Set(changed)].filter(f => /\.(tsx?|jsx?|json|ya?ml)$/.test(f) && !f.startsWith('docs/'));
 if (files.some(f => /^\.maestro\/.+\.ya?ml$/.test(f)) && !files.includes('tests/maestro-flows.test.tsx')) files.push('tests/maestro-flows.test.tsx');
+// 1.0.1 (lekcja po czerwonym tests.yml bfca98c): testy plików generowanych ze słowników (InfoPlist zegarka, widżet, zgody Zdrowia) czytają je z dysku, nie przez import —
+// --findRelatedTests ich nie znajduje. Zmiana słownika (tłumaczeń) dodaje je ręcznie.
+const OD_SLOWNIKA = ['tests/watch-apple-i18n.test.ts', 'tests/widget-i18n.test.ts', 'tests/health-permissions.test.ts', 'tests/i18n-locales.test.ts'];
+if (files.some(f => /^(lib\/locales\/|locales\/|lib\/i18n\.en\.ts$)/.test(f))) for (const t of OD_SLOWNIKA) if (!files.includes(t)) files.push(t);
 const jestBin = join(dirname(createRequire(import.meta.url).resolve('jest/package.json')), 'bin', 'jest.js');
 const command = process.execPath; const jestArgs = [jestBin, '--findRelatedTests', ...files, '--silent', '--reporters=summary'];
 if (planOnly) { console.log(JSON.stringify({ command, args: jestArgs, files })); process.exit(0); }

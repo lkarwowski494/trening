@@ -538,6 +538,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Kropsvægt: »±« er ekstra vægt (plus) eller assistance, fx fra en maskine (minus); elastik er et separat felt med sit niveau. Rekorden er samlede gentagelser uden assistance, og volumen bruger kun den ekstra vægt.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Muskelmasse: sæt pr. muskelgruppe pr. uge op til målet fra Indstillinger (automatisk {m}), {a}–{b} gentagelser (hjemme {c}–{d}), typisk {r1}–{r2} gentagelser i reserve.",
  "Masz dostęp na zawsze": "Du har adgang for altid",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Har du historik i en anden app? Du kan tilføje den fra en CSV-fil.",
  "Masz pełną wersję": "Du har den fulde version",
  "maszyna": "maskine",
  "maszyna belt squat": "belt squat-maskine",
@@ -1334,7 +1335,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "I ugeplanen: {days} — disse dage bliver hviledage.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "I Fremgang vises en markeret uge som bogstavet D i diagrammerne — den ændrer du ikke der.",
  "W tej wersji": "I denne version",
- "W trakcie": "Undervejs",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "I den aktuelle træning fjernes elastikken fra sæt, der ikke er afkrydset endnu.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "I den aktuelle træning markeres den som slettet.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "I en deload-uge tilbyder “Start” og “Gentag seneste” “Færre sæt”: {less}; vægte og skabelon uændret.",
@@ -1777,5 +1777,7 @@
  "Masz plan: roczny": "Din plan: årlig",
  "Masz plan: dożywotni": "Din plan: livstid",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "Pozycja pośrednia {n}": "Mellemstilling {n}",
+ "Pozycja pośrednia": "Mellemstilling"
 }

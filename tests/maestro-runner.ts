@@ -40,6 +40,18 @@ function installVirtualFs(clear: boolean) {
     return uri ? { canceled: false, assets: [{ uri, name: uri.split('/').pop() }] } : { canceled: true };
   });
 }
+/** R-RES (29.10.2026): scenariusz 60 startuje na bazie, której nie da się otworzyć (ekran błędu startu). Na symulatorze uszkodzenie robi powłoka (scripts/ci/e2e-60-baza-uszkodzona.sh);
+ * interpreter udaje je tak: expo-sqlite rzuca przy otwarciu (global.__dbOpenFail), a wirtualny dysk ma plik bazy w Library/SQLite (global.__dbDir → lib/rescue.ts) i kopiuje pliki (copyAsync). */
+export const BAZA_USZKODZONA = '60-baza-uszkodzona.yaml';
+export const RESCUE_SRC = 'file:///c/Library/SQLite/trening.db';
+function installBrokenDb() {
+  const FS = jest.requireMock('expo-file-system/legacy'); (global as any).__dbOpenFail = true; (global as any).__dbDir = '/c/Documents/SQLite';
+  vfsFiles.set(RESCUE_SRC, 'NIE-SQLITE R-RES baza\n');
+  /* język ekranu błędu = język telefonu z ładowania modułu (applyLang('auto') w lib/i18n); bez init() ustawienia aplikacji nie są wczytane, więc interpreter ustawia go sam */
+  (global as any).__locales = [{ languageCode: 'en', languageTag: SIM_TAG }]; require('@/lib/i18n').applyLang('auto');
+  FS.copyAsync.mockImplementation(async ({ from, to }: { from: string; to: string }) => { if (!vfsFiles.has(from)) throw new Error('brak pliku ' + from); vfsFiles.set(to, vfsFiles.get(from)!); });
+}
+export function resetBrokenDb() { (global as any).__dbOpenFail = false; require('@/lib/i18n').applyLang('auto'); delete (global as any).__dbDir; jest.requireMock('expo-file-system/legacy').copyAsync.mockReset(); }
 /** Scenariusz z tagiem `eksperyment` (docs/38 pkt 5): poza listą flows, niesprawdzony jeszcze na symulatorze. */
 export const isExperimental = (file: string) => { try { return /^tags:\n\s+- eksperyment$/m.test(readFileSync(join(DIR, file), 'utf8')); } catch { return false; } };
 /** MAESTRO_DIR — inny katalog scenariuszy (np. stara wersja z gita, żeby sprawdzić, że interpreter odtwarza porażki przebiegu). */
@@ -265,14 +277,17 @@ export class Runner {
     if (n.type === 'TextInput') { if (this.focused && this.focused !== n) await this.blur(); this.focused = n; this.kbScroll(n); this.selectAll = !!n.props.selectTextOnFocus; await act(async () => { n.props.onFocus?.({ nativeEvent: {} }); }); await this.tick(); return; }
     if (this.focused) await this.blur();
     if (n.type === 'RCTSwitch' || n.props.onValueChange) { await act(async () => { fireEvent(n as any, 'valueChange', !n.props.value); }); await this.tick(); return; }
-    await act(async () => { fireEvent.press(n as any); }); await this.tick(100);
+    /* 101-22: stuknięcie w środek kontenera (np. wiersz listy z testID na SwipeRow) trafia w jego przycisk — jak palec; tylko gdy sam kontener nie ma onPress */
+    let target: Node = n;
+    if (typeof n.props.onPress !== 'function' && n.props.accessibilityRole !== 'button') { const inner = (n as any).findAll((x: Node) => x.props.accessibilityRole === 'button' && !/-(del|close)$/.test(String(x.props.testID ?? '')))[0] as Node | undefined; if (inner) target = inner; }
+    await act(async () => { fireEvent.press(target as any); }); await this.tick(100);
   }
   async blur() { const f = this.focused; this.focused = null; if (!f) return; /* pole zdemontowane wraz z ekranem (np. wyszukiwanie + „Back”) — iOS po prostu zdejmuje fokus */ try { await act(async () => { f.props.onEndEditing?.({ nativeEvent: { text: f.props.value } }); f.props.onBlur?.({ nativeEvent: {} }); }); } catch { /* zdemontowane */ } await this.tick(); }
   async run(cmds: any[], file: string) {
     /* ScrollView.scrollTo({ y: 0 }) z aplikacji (np. ekran zakupu po zakupie — karta stanu na górze) przewija też model układu interpretera; iOS robi to naprawdę */
     const proto = (require('react-native').ScrollView as { prototype: { scrollTo?: (o?: { y?: number }) => void } }).prototype; const origScrollTo = proto.scrollTo;
     proto.scrollTo = (o?: { y?: number }) => { if (o && o.y === 0) this.scrollY = new WeakMap(); origScrollTo?.call(proto, o); };
-    try { await this.runSteps(cmds, file); } finally { proto.scrollTo = origScrollTo; }
+    try { await this.runSteps(cmds, file); } finally { proto.scrollTo = origScrollTo; if (this.name === BAZA_USZKODZONA) resetBrokenDb(); }
   }
   async runSteps(cmds: any[], file: string) {
     for (const raw of cmds) { await this.step(raw, file); const d = process.env.MAESTRO_DUMP; if (d && this.log[this.log.length - 1].includes(d)) console.log(`${this.log[this.log.length - 1]}\n  ${this.candidates().map(c => { const b = c.node ? this.screenBox(c.node) : null; return (b ? `[${Math.round(b.x)},${Math.round(b.y)}][${Math.round(b.x + b.w)},${Math.round(b.y + b.h)}] ` : '') + c.texts.join(' | ') + (c.id ? ` #${c.id}` : ''); }).join('\n  ')}`); }
@@ -287,7 +302,7 @@ export class Runner {
           /* `stopApp: false` — powrót na wierzch zamiast restartu: aplikacja dostaje 'active' po czasie spędzonym w tle (pressKey: Home), dane i ekran bez zmian */
           if (arg && arg.stopApp === false) { await this.tick(BG_MS); await emitAppState('active'); await this.tick(100); break; }
           captureAppState();
-          const clear = arg?.clearState !== false; let st: unknown;
+          const clear = arg?.clearState !== false || this.name === BAZA_USZKODZONA /* scenariusz 60: bez stanu do zachowania — baza i tak się nie otwiera */; let st: unknown;
           if (!clear) { await act(async () => { await store.flush(); }); st = JSON.parse(JSON.stringify(saved())); }
           /* E2E 91: na symulatorze zgoda na powiadomienia jest nieustalona (`permissions: all: allow` jej nie obejmuje) — okno I1 przy pierwszym dniu planu */
           if (clear) (global as any).__notifPerm = { ...SIM_NOTIF_PERM };
@@ -299,6 +314,7 @@ export class Runner {
            * po odmowie kolejne prośby nie pokazują okna (canAskAgain = false). Bez tego okna scenariusz mógłby „zezwolić” na coś, czego na symulatorze nikt nie zatwierdził. */
           /* tylko scenariusze z tagiem `eksperyment`: nikt nie sprawdził jeszcze na symulatorze, jak Maestro widzi takie okno (zwykłe scenariusze 01–38 przechodzą w CI bez żadnego stuknięcia w okno systemowe) */
           if (isExperimental(this.name)) installVirtualFs(clear);
+          if (this.name === BAZA_USZKODZONA) installBrokenDb();
           if (!isExperimental(this.name)) delete (global as any).__sysPrompt; else
           (global as any).__sysPrompt = () => new Promise(res => {
             const cur = (global as any).__notifPerm ?? SIM_NOTIF_PERM; if (cur.status === 'denied' || cur.granted) { res(cur); return; }
@@ -383,6 +399,9 @@ export class Runner {
           break;
         }
         case 'assertVisible': if (!(await this.waitFor(sel(arg), true, 1500))) this.fail(step, 'Element niewidoczny.'); break;
+        /* DEC-01 a (1.0.1, 28.10.2026): przytrzymanie otwiera systemowy podgląd dużej zawartości (accessibilityShowsLargeContentViewer) — nakładka iOS poza drzewem aplikacji;
+         * w Jest sprawdzamy, że element do przytrzymania istnieje (prawdziwe przytrzymanie robi Maestro na symulatorze, podgląd — telefon). */
+        case 'longPressOn': if (!(await this.waitFor(sel(arg), true, 1500))) this.fail(step, 'Element do przytrzymania niewidoczny.'); break;
         case 'assertNotVisible': if (!(await this.waitFor(sel(arg), false, 1500))) this.fail(step, 'Element widoczny.'); break;
         case 'scrollUntilVisible': {
           const s = sel(arg); let c: Cand | undefined;

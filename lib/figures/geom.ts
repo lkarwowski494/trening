@@ -150,7 +150,10 @@ export const loopMs = (n: number): number => n < 2 ? 0 : 2 * (n - 1) * (ANIM.mov
  * Kąty, których zdanie nie podaje, są uproszczeniem ilustracyjnym (dokument docs/research/28 wypisuje, co wynika z którego zdania).
  */
 export type Check = { q: 'horiz' | 'joint' | 'alignX' | 'line' | 'low' | 'above' | 'ahead' | 'behind' | 'touch'; c: string; a?: string; b?: string; pts?: string[]; j?: string; eq?: number; tol?: number; y?: number; dy?: number; tb?: Pt };
-export type FrameName = 'start' | 'mid' | 'end';
+/** Pozycje kluczowe: 1 (start), 2 (start, end), 3 (start, mid, end) albo 4 (start, mid, mid2, end — czwarta pozycja, 28.10.2026, wersja 1.0.1). Układ 3-pozycyjny bez zmian. */
+export type FrameName = 'start' | 'mid' | 'mid2' | 'end';
+/** Dozwolone kolejności pozycji wg liczby pozycji (jedno miejsce dla silnika, generatora i testów). */
+export const FRAME_ORDER: Record<number, FrameName[]> = { 1: ['start'], 2: ['start', 'end'], 3: ['start', 'mid', 'end'], 4: ['start', 'mid', 'mid2', 'end'] };
 export type Frame = { n: FrameName; p: Pose; at?: Pt; why: Check[] };
 /** level — druga podpora (np. dłonie przy pompkach, gdy kotwicą jest stopa): w pozach pośrednich figura obraca się wokół kotwicy tak,
  * żeby kierunek kotwica → level przechodził płynnie między pozycjami kluczowymi (bez wchodzenia dłoni pod podłogę). */

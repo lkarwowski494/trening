@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Animated, PixelRatio, useWindowDimensions } from 'react-native';
+import { View, Animated, PixelRatio, useWindowDimensions } from 'react-native';
+import { Text } from '@/components/AppText';
 import { useTheme, font, maxScale, boardDigitSize, RADIUS, SIZE, SPACE } from '@/lib/theme';
 import { Btn, Muted, upperText, monoSafe } from '@/components/ui';
 import { startTimed } from '@/components/WorkoutBlocks';

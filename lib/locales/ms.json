@@ -848,7 +848,7 @@
  "rozgrzewkowa": "pemanasan",
  "RPE / RIR przy serii": "RPE / RIR setiap set",
  "Ruch": "Pelaksanaan",
- "Rysunek ruchu: {opis}": "Lukisan pergerakan: {opis}",
+ "Rysunek ruchu: {opis}": "Animasi pergerakan: {opis}",
  "Rysunek schematyczny — pozycje orientacyjne.": "Lukisan skematik — kedudukan hanya anggaran.",
  "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).": "Kurang daripada {n} hari seminggu: {list} (hari dengan kerja sokongan sahaja = {h}).",
  "sanki": "sled",
@@ -1110,7 +1110,6 @@
  "w planie na: {day} · {n} ćw.": "dirancang untuk: {day} · {n} senaman",
  "W planie tygodnia: {days} — te dni będą wolne.": "Dalam pelan mingguan: {days} — hari-hari ini akan menjadi hari rehat.",
  "W tej wersji": "Dalam versi ini",
- "W trakcie": "Sedang berjalan",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Dalam latihan yang sedang berjalan, getah akan dibuang daripada set yang belum ditanda.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Dalam latihan yang sedang berjalan, ia akan ditanda sebagai dipadam.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Dalam minggu deload, “Mula” dan “Ulang yang terakhir” akan menawarkan “Kurang set”: {less}; beban dan templat tidak berubah.",
@@ -1475,6 +1474,7 @@
  "Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.": "Pembelian tidak dapat dipulihkan. Semak sambungan internet anda.",
  "Potrzebne połączenie z internetem.": "Sambungan internet diperlukan.",
  "Masz dostęp na zawsze": "Anda mempunyai akses selamanya",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Ada sejarah dalam aplikasi lain? Anda boleh menambahkannya daripada fail CSV.",
  "Masz pełną wersję": "Anda mempunyai versi penuh",
  "Dostęp z Chmury rodzinnej": "Akses melalui Perkongsian Keluarga",
  "Dostęp z kodu do {date}": "Akses daripada kod sehingga {date}",
@@ -1777,5 +1777,7 @@
  "Masz plan: roczny": "Pelan anda: tahunan",
  "Masz plan: dożywotni": "Pelan anda: seumur hidup",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "Pozycja pośrednia {n}": "Kedudukan tengah {n}",
+ "Pozycja pośrednia": "Kedudukan tengah"
 }

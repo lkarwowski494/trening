@@ -538,6 +538,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Peso corporeo: “±” è la zavorra (più) o l’assistenza, ad es. di una macchina (meno); l’elastico è un campo a parte con il suo livello. Il record sono le ripetizioni totali senza assistenza, e il volume usa solo la zavorra.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Massa: serie per gruppo muscolare a settimana fino all’obiettivo di Impostazioni (in automatico {m}), {a}–{b} ripetizioni (a casa {c}–{d}), di solito {r1}–{r2} ripetizioni di riserva.",
  "Masz dostęp na zawsze": "Hai accesso per sempre",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Hai una cronologia in un’altra app? Puoi aggiungerla da un file CSV.",
  "Masz pełną wersję": "Hai la versione completa",
  "maszyna": "macchina",
  "maszyna belt squat": "macchina belt squat",
@@ -1334,7 +1335,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "Nel piano settimanale: {days} — questi giorni diventeranno di riposo.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "In Progressi, una settimana segnata appare come la lettera D nei grafici — lì non si cambia.",
  "W tej wersji": "In questa versione",
- "W trakcie": "Durante il movimento",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Nell’allenamento in corso l’elastico verrà rimosso dalle serie non ancora spuntate.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Nell’allenamento in corso verrà segnato come eliminato.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Nella settimana di scarico «Inizia» e «Ripeti l’ultimo» propongono «Meno serie»: {less}; pesi e scheda invariati.",
@@ -1777,5 +1777,7 @@
  "Masz plan: roczny": "Il tuo piano: annuale",
  "Masz plan: dożywotni": "Il tuo piano: a vita",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "Pozycja pośrednia {n}": "Posizione intermedia {n}",
+ "Pozycja pośrednia": "Posizione intermedia"
 }

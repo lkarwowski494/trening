@@ -30,7 +30,33 @@ const HG = (style: HingeParams['style'], impl: HingeParams['impl'], o: Partial<H
   const p = { ...base, ...o };
   return { family: 'hinge', p, lowerFirst: rdl || style === 'goodMorning' };
 };
+/** Wąski chwyt (wskazówka cgbp.grip „na szerokość barków lub trochę węziej”): połowa rozstawu dłoni 18 cm przy barkach 20,5 (BENCH.dims) — przedramię pionowo jak w zwykłym wyciskaniu (docs/50, 1.0.1); dotyk 20 cm poniżej linii stawów (zakres 10–20, figury-wyciskanie.json B5). */
+const CLOSE = { grip: 19, touch: 30 } as const;
+/** Ławka ujemna: dotyk niżej na klatce niż płasko (tułów opuszczony), tak by przedramię na dole było ≤ 10° od pionu także strzałkowo (decyzja 26.10.2026 ±10°); uproszczenie ilustracyjne. */
+const DECLINE = { touch: 26, touchDb: 24 } as const;
+/** Grubość deski w Board Press (cm; uproszczenie ilustracyjne — było `touchB` 17,5 = klatka 11,9 + promień gryfu 1,6 + 4). */
+const BOARD = 4;
+/** Wyciskanie na uchwytach (Band Bench Press, Chain Press): tor jak w wyciskaniu hantli — dłonie szeroko na dole, bliżej na górze (katalog nie podaje; uproszczenie ilustracyjne, jak hantle). */
+const HANDLES = { grip: 32, gripTop: 22, touch: 32 } as const;
+/** Chain Press (101-06, recenzje 29.10.2026; J3): dłonie na dole 18 cm od barku ku stopom (jak w wyciskaniu hantli; katalog: „w tej samej pozycji co wyciskanie hantli”), a łokieć zgięty do 90° (źródło: „Continue until your elbow forms a 90 degree angle”;
+ * docs/research/1-0-1-zrodla-2026-10-29.md pkt 3) — oba warunki da się spełnić naraz: przedramię pionowo pod dłonią, ramię poziomo (łokieć na wysokości barku), więc dłonie są ok. 33 cm nad barkiem (`touchB`), a rozstaw na dole 48,5 cm od osi (ramię 33 cm
+ * i 18 cm od barku ku stopom dają w poprzek √(33² − 18²) ≈ 28 cm od barku, czyli 20,5 + 28); 22 na górze (uproszczenie ilustracyjne). Wcześniej: dłonie 28 cm od barku ku stopom (brzuch, J1) i 127° zgięcia (J2 — osłabienie testu). */
+const CHAIN_PRESS = { ...HANDLES, grip: 48.5, touchB: 33 } as const;
+/** Drążek sześciokątny: bark względem uchwytów na starcie i na wyproście (cm) — na wyproście tułów w pionie (było −6 → tułów −6,4° do tyłu, 1.0.1). */
+const TRAP_SX: [number, number] = [2, -2];
+/** JM Press: sztanga na dole 13 cm za osią barków ku głowie (kąt ramienia wynika), odwiedzenie 45° stałe, zgięcie łokcia 145°, przedramiona lekko zbieżne (uproszczenie ilustracyjne; „ok. 45°” — badacz 28.10.2026, 3 zgodne źródła szczebla 4). */
+const JM = { xb: -13, yb: 14, abd: 45 } as const;
+/** Skull Crusher na ławce ujemnej: ramię 3° ku głowie, sztanga 8 cm nad czubkiem głowy, przedramiona lekko zbieżne (uproszczenie ilustracyjne; ramię „pionowo albo lekko ku głowie” — badacz 28.10.2026, D3, D4). */
+const SKULL = { aHead: 3, clear: 8, inward: 0 } as const;
+/** Martwy ciąg z podłogi (101-02, L-056): kolana jako osobna krzywa — podudzie pochylone ku przodowi na starcie (σ 10°), prosto przy kolanach gryfu; barki przed gryfem do końca ruchu i dopiero na wyproście za nim (late 10);
+ * gryf wchodzi w uda za kolanem (jedna zmiana kierunku toru, ≤ HINGE.dev poniżej prostej). Uproszczenie ilustracyjne (kąty bez źródła; wskazówki karty: dl.close, dl.lift). */
+const DL_KOLANA: Partial<HingeParams> = { knees: { s: [10, 0], late: 10, back: 0.4 }, sx: [6, -9] };
+/** RDL i martwy na prostych nogach ze sztangą i linką (101-03): krzywa kolan — podudzie prawie pionowo (0° → 2°), niezależnie od zgięcia kolana; gryf prowadzony tuż przy udach (tor z jedną zmianą kierunku). Uproszczenie ilustracyjne (kolano ≤ 27° pilnuje figury-1-0-recenzja). */
+const RDL_KOLANA: Partial<HingeParams> = { knees: { s: [0, 2] } };
 const SUMO: Partial<HingeParams> = { stance: 34, toeOut: 40, grip: 12, shin: HINGE.shin.sumo };
+/** Sumo ze sztangą (101-03, 101-04): krzywa kolan jak w martwym ciągu klasycznym, ale podudzie prawie pionowo (σ 6° na starcie), a kolana idą nad palcami (kierunek kolana = rotacja stóp 40°, było 2 × = 80°, czyli w bok) — gryf
+ * przylega do goleni i ud (karta sumo.kneesOut: kolana na zewnątrz w linii stóp). Uproszczenie ilustracyjne. */
+const SUMO_SZTANGA: Partial<HingeParams> = { ...SUMO, kneeOut: 40, knees: { s: [6, 0], late: 10, back: 0.4 }, sx: [6, -9] };
 
 /** Klucz katalogu → wariant. Tylko gotowe rodziny (squat, bench_press, hinge). */
 export const VARIANTS: Record<string, Variant> = {
@@ -65,63 +91,63 @@ export const VARIANTS: Record<string, Variant> = {
   'Bench Press (hantle)': BP('db', { grip: 32, gripTop: 22, touch: 32, vert: true }),
   'Incline Bench Press (sztanga)': BP('barbell', { angle: 30, grip: 35, touch: 40, vert: true }),
   'Incline Bench Press (hantle)': BP('db', { angle: 30, grip: 32, gripTop: 22, touch: 40, vert: true }),
-  'Decline Bench Press': BP('barbell', { angle: -15, touch: 28, vert: true }),
-  'Close Grip Bench Press': BP('barbell', { grip: 12, touch: 30 }),
-  'Decline Bench Press (hantle)': BP('db', { angle: -15, touch: 28, grip: 32, gripTop: 22, vert: true }),
+  'Decline Bench Press': BP('barbell', { angle: -15, touch: DECLINE.touch, vert: true }),
+  'Close Grip Bench Press': BP('barbell', { grip: CLOSE.grip, touch: CLOSE.touch, vert: true }),
+  'Decline Bench Press (hantle)': BP('db', { angle: -15, touch: DECLINE.touchDb, grip: 32, gripTop: 22, vert: true }),
   'Floor Press (hantle)': BP('db', { floor: true, grip: 32, gripTop: 22, vert: true }),
   'Floor Press (sztanga)': BP('barbell', { floor: true, vert: true }),
   'Squeeze Press (hantle)': BP('db', { grip: 7, squeeze: true }),
   'Smith Machine Bench Press': BP('smith', { vert: true }),
   'Smith Machine Incline Press': BP('smith', { angle: 30, touch: 38, flare: 0.068, vert: true }),
-  'JM Press': BP('barbell', { grip: 12, touch: 60, touchB: 10, flare: 0.8 }),
+  'JM Press': BP('barbell', { grip: 12, touch: 62, touchB: 12, flare: 0.8, jm: JM }),
   'One-Arm Kettlebell Floor Press': BP('kb', { floor: true, oneArm: true, grip: 30, vert: true }),
   'One Arm Dumbbell Bench Press': BP('db', { oneArm: true, grip: 32, vert: true }),
   'Barbell Guillotine Bench Press': BP('barbell', { grip: 42, touch: 50, touchB: 9 }),
   'Wide-Grip Barbell Bench Press': BP('barbell', { grip: 45, flare: 0.15, vert: true }),
-  'Smith Machine Decline Press': BP('smith', { angle: -15, touch: 28, vert: true }),
-  'Band Bench Press': BP('band', { vert: true }),
-  'Chain Press': BP('chain', { vert: true }),
+  'Smith Machine Decline Press': BP('smith', { angle: -15, touch: DECLINE.touch, vert: true }),
+  'Band Bench Press': BP('band', { ...HANDLES, vert: true, handles: true }),
+  'Chain Press': BP('chain', { ...CHAIN_PRESS, vert: true, handles: true }),
   'Bench Press with Chains': BP('chain', { vert: true }),
   'Floor Press with Chains': BP('chain', { floor: true, vert: true }),
   'Reverse Band Bench Press': BP('barbell', { band: true, reverse: true, vert: true }),
-  'Board Press': BP('barbell', { touchB: 17.5, vert: true }),
-  'Pin Press': BP('barbell', { touchB: 19, vert: true }),
-  'Close-Grip Dumbbell Press': BP('db', { grip: 10, touch: 30 }),
-  'Close-Grip EZ-Bar Press': BP('barbell', { grip: 12, touch: 30 }),
-  'Smith Machine Close-Grip Bench Press': BP('smith', { grip: 12, touch: 30 }),
+  'Board Press': BP('barbell', { board: BOARD, vert: true }),
+  'Pin Press': BP('barbell', { touchB: 19, pins: true, vert: true }),
+  'Close-Grip Dumbbell Press': BP('db', { grip: CLOSE.grip, touch: CLOSE.touch, vert: true }),
+  'Close-Grip EZ-Bar Press': BP('barbell', { grip: CLOSE.grip, touch: CLOSE.touch, vert: true }),
+  'Smith Machine Close-Grip Bench Press': BP('smith', { grip: CLOSE.grip, touch: CLOSE.touch, vert: true }),
   'Reverse Grip Bench Press': BP('barbell', { grip: 30, touch: 31, vert: true }),
-  'Decline Close-Grip Bench To Skull Crusher': BP('barbell', { angle: -15, grip: 12, touch: 54, touchB: 12 }),
+  'Decline Close-Grip Bench To Skull Crusher': BP('barbell', { angle: -15, grip: CLOSE.grip, touch: DECLINE.touch - 1, vert: true, skull: SKULL }),
   /* ---- zawias ---- */
-  'Deadlift (sztanga)': HG('floor', 'barbell'),
+  'Deadlift (sztanga)': HG('floor', 'barbell', DL_KOLANA),
   'Deadlift (hantle)': HG('floor', 'db', { grip: HINGE.dbFloorGrip }),
-  'Sumo Deadlift': HG('floor', 'barbell', SUMO),
-  'Trap Bar Deadlift': HG('floor', 'trapbar', { yStart: 20, sx: [2, -6] }),
-  'RDL (sztanga)': HG('rdl', 'barbell'),
-  'RDL (hantle/linki)': HG('rdl', 'db'),
+  'Sumo Deadlift': HG('floor', 'barbell', SUMO_SZTANGA),
+  'Trap Bar Deadlift': HG('floor', 'trapbar', { yStart: 20, sx: TRAP_SX }),
+  'RDL (sztanga)': HG('rdl', 'barbell', { ...RDL_KOLANA, sx: [-2, 19] }), /* ramiona ok. 17° od pionu na dole — decyzja właściciela 29.10.2026 (było 23°, sx 25) */
+  'RDL (hantle/linki)': HG('rdl', 'db', RDL_KOLANA),
   'Good Morning': HG('goodMorning', 'barbell'),
-  'Rack Pull': HG('floor', 'barbell', { yStart: 45 }),
-  'Single Leg RDL (hantel)': HG('singleLeg', 'db', { grip: 13 }),
-  'Single Leg RDL (linki)': HG('singleLeg', 'cable', { grip: 13 }),
-  'Cable Pull Through': HG('pullThrough', 'cable', { grip: 6, pull: true, yEnd: 55, sx: [-2, 30] }),
+  'Rack Pull': HG('floor', 'barbell', { ...DL_KOLANA, knees: { ...DL_KOLANA.knees!, s: [3, 0] }, yStart: 45, rack: true }),
+  'Single Leg RDL (hantel)': HG('singleLeg', 'db', { ...RDL_KOLANA, grip: 13 }),
+  'Single Leg RDL (linki)': HG('singleLeg', 'cable', { ...RDL_KOLANA, grip: 13 }),
+  'Cable Pull Through': HG('pullThrough', 'cable', { grip: 6, pull: true, sx: [-2, HINGE.rdlSxEnd] }),
   'Single Arm RDL (hantel/linka)': HG('rdl', 'db', { oneArm: true, grip: 24 }),
   'Sumo Deadlift (kettlebell)': HG('floor', 'kb', { ...SUMO, yStart: 26, grip: 6 }),
-  'Axle Deadlift': HG('floor', 'barbell'),
-  'Deadlift with Bands': HG('floor', 'barbell', { band: true }),
-  'Deadlift with Chains': HG('floor', 'barbell', { chain: true }),
-  'Deficit Deadlift': HG('floor', 'barbell', { platform: 6 }),
-  'Rack Pull with Bands': HG('floor', 'barbell', { yStart: 45, band: true }),
-  'Reverse Band Deadlift': HG('floor', 'barbell', { band: true, reverse: true }),
-  'Cable Deadlift': HG('floor', 'cable', { yStart: 20 }),
-  'Leverage Deadlift': HG('floor', 'trapbar', { yStart: 24, sx: [2, -6] }),
+  'Axle Deadlift': HG('floor', 'barbell', DL_KOLANA),
+  'Deadlift with Bands': HG('floor', 'barbell', { ...DL_KOLANA, band: true }),
+  'Deadlift with Chains': HG('floor', 'barbell', { ...DL_KOLANA, chain: true }),
+  'Deficit Deadlift': HG('floor', 'barbell', { ...DL_KOLANA, platform: 6 }),
+  'Rack Pull with Bands': HG('floor', 'barbell', { ...DL_KOLANA, knees: { ...DL_KOLANA.knees!, s: [3, 0] }, yStart: 45, band: true, rack: true }),
+  'Reverse Band Deadlift': HG('floor', 'barbell', { ...DL_KOLANA, band: true, reverse: true }),
+  'Cable Deadlift': HG('floor', 'cable', { ...DL_KOLANA, yStart: 20 }),
+  'Leverage Deadlift': HG('floor', 'trapbar', { yStart: 24, sx: TRAP_SX }),
   'One-Arm Side Deadlift': HG('floor', 'barbell', { oneArm: true }),
-  'Rickshaw Deadlift': HG('floor', 'trapbar', { yStart: 26, sx: [2, -6] }),
+  'Rickshaw Deadlift': HG('floor', 'trapbar', { yStart: 26, sx: TRAP_SX }),
   'Band Good Morning': HG('goodMorning', 'barbell', { band: true }),
-  'Clean Deadlift': HG('floor', 'barbell'),
-  'Good Morning off Pins': HG('goodMorning', 'barbell'),
-  'Reverse Band Sumo Deadlift': HG('floor', 'barbell', { ...SUMO, band: true, reverse: true }),
+  'Clean Deadlift': HG('floor', 'barbell', DL_KOLANA),
+  'Good Morning off Pins': HG('goodMorning', 'barbell', { rack: true }),
+  'Reverse Band Sumo Deadlift': HG('floor', 'barbell', { ...SUMO_SZTANGA, band: true, reverse: true }),
   'Smith Machine Stiff-Legged Deadlift': HG('rdl', 'smith', { yEnd: 48, sx: [-2, 20] }),
-  'Snatch Deadlift': HG('floor', 'barbell', { grip: 45 }),
-  'Stiff-Legged Barbell Deadlift': HG('rdl', 'barbell', { yEnd: 48, sx: [-2, 20] }),
-  'Sumo Deadlift with Bands': HG('floor', 'barbell', { ...SUMO, band: true }),
-  'Sumo Deadlift with Chains': HG('floor', 'barbell', { ...SUMO, chain: true }),
+  'Snatch Deadlift': HG('floor', 'barbell', { ...DL_KOLANA, sx: [11, -9], grip: 45 }),
+  'Stiff-Legged Barbell Deadlift': HG('rdl', 'barbell', { ...RDL_KOLANA, yEnd: 48 }),
+  'Sumo Deadlift with Bands': HG('floor', 'barbell', { ...SUMO_SZTANGA, band: true }),
+  'Sumo Deadlift with Chains': HG('floor', 'barbell', { ...SUMO_SZTANGA, chain: true }),
 };

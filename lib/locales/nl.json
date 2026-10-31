@@ -538,6 +538,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Lichaamsgewicht: “±” is extra gewicht (plus) of hulp, bijv. van een machine (min); een band is een apart veld met zijn niveau. Het record is het totaal aantal herhalingen zonder hulp, en het volume gebruikt alleen het extra gewicht.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Spiermassa: sets per spiergroep per week tot het doel uit Instellingen (automatisch {m}), {a}–{b} herhalingen (thuis {c}–{d}), meestal {r1}–{r2} herhalingen in reserve.",
  "Masz dostęp na zawsze": "Je hebt voor altijd toegang",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Heb je al een trainingsgeschiedenis in een andere app? Je kunt die toevoegen vanuit een CSV-bestand.",
  "Masz pełną wersję": "Je hebt de volledige versie",
  "maszyna": "machine",
  "maszyna belt squat": "belt squat-machine",
@@ -1334,7 +1335,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "In het weekplan: {days} — deze dagen worden rustdagen.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "In Voortgang verschijnt een gemarkeerde week als de letter D in de grafieken — daar wijzig je dat niet.",
  "W tej wersji": "In deze versie",
- "W trakcie": "Tijdens de beweging",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "In de huidige training wordt de band verwijderd uit sets die nog niet zijn afgevinkt.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "In de huidige training wordt dit als verwijderd gemarkeerd.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "In een deloadweek bieden ‘Start’ en ‘Herhaal laatste’ ‘Minder sets’ aan: {less}; gewichten en sjabloon blijven gelijk.",
@@ -1777,5 +1777,7 @@
  "Masz plan: roczny": "Je abonnement: jaarlijks",
  "Masz plan: dożywotni": "Eenmalige aankoop",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "Pozycja pośrednia {n}": "Tussenpositie {n}",
+ "Pozycja pośrednia": "Tussenpositie"
 }

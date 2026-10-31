@@ -538,6 +538,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Testsúly: a „±” extra súly (plusz) vagy segítség, pl. gépé (mínusz); a gumiszalag külön mező a szintjével. A rekord a segítség nélküli ismétlések összege, a volumen pedig csak az extra súlyt veszi figyelembe.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Izomtömeg: izomcsoportonként heti sorozatszám a(z) Beállításokban megadott célig (automatikusan {m}), {a}–{b} ismétlés (otthon {c}–{d}), általában {r1}–{r2} ismétlés tartalékban.",
  "Masz dostęp na zawsze": "Örökre hozzáfér",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Van előzménye egy másik alkalmazásban? CSV-fájlból hozzáadhatja.",
  "Masz pełną wersję": "Megvan a teljes verzió",
  "maszyna": "gép",
  "maszyna belt squat": "övguggoló gép",
@@ -1334,7 +1335,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "A heti tervben: {days} — ezek a napok pihenőnapok lesznek.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "A Fejlődésben a megjelölt hét D betűként látszik a grafikonokon — ott nem módosítható.",
  "W tej wersji": "Ebben a verzióban",
- "W trakcie": "Mozdulat közben",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "A jelenlegi edzésben a gumiszalag lekerül a még ki nem pipált sorozatokról.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "A jelenlegi edzésben töröltként lesz megjelölve.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Deload héten az „Indítás” és a „Legutóbbi megismétlése” felajánlja a „Kevesebb sorozat” lehetőséget: {less}; a súlyok és a sablon változatlanok.",
@@ -1777,5 +1777,7 @@
  "Masz plan: roczny": "Az Ön csomagja: éves",
  "Masz plan: dożywotni": "Az Ön csomagja: örökös",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "Pozycja pośrednia {n}": "Köztes helyzet {n}",
+ "Pozycja pośrednia": "Köztes helyzet"
 }

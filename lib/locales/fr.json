@@ -538,6 +538,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Poids de corps : « ± » est du lest (plus) ou une assistance, p. ex. d’une machine (moins) ; l’élastique est un champ à part avec son niveau. Le record est le total de répétitions sans assistance, et le volume n’utilise que le lest.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Masse : séries par groupe musculaire par semaine jusqu’à l’objectif de Réglages (automatiquement {m}), {a}–{b} répétitions (à la maison {c}–{d}), en général {r1}–{r2} répétitions en réserve.",
  "Masz dostęp na zawsze": "Vous avez un accès à vie",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Vous avez un historique dans une autre app ? Vous pouvez l’ajouter depuis un fichier CSV.",
  "Masz pełną wersję": "Vous avez la version complète",
  "maszyna": "machine",
  "maszyna belt squat": "machine belt squat",
@@ -1334,7 +1335,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "Dans le plan de la semaine : {days} — ces jours deviendront des jours de repos.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "Dans Progrès, une semaine marquée apparaît sous la forme de la lettre D sur les graphiques — on ne la modifie pas là.",
  "W tej wersji": "Dans cette version",
- "W trakcie": "Pendant le mouvement",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Dans la séance en cours, l’élastique sera retiré des séries non cochées.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "Dans la séance en cours, il sera marqué comme supprimé.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "En semaine de décharge, « Démarrer » et « Répéter la dernière » proposent « Moins de séries » : {less} ; charges et modèle inchangés.",
@@ -1676,7 +1676,7 @@
  "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Vous n’avez aucun modèle avec des exercices. Créez un modèle ou choisissez « Nouveaux modèles et plan ».",
  "Sklep chwilowo niedostępny": "Boutique temporairement indisponible",
  "Nowe szablony i plan": "Nouveaux modèles et plan",
- "Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.": "Envie de plus ? Pro supprime la limite : abonnement ou achat unique à vie.",
+ "Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.": "Envie de vous entraîner plus souvent ? Pro supprime la limite : abonnement ou achat unique à vie.",
  "Historia jest już w telefonie": "Votre historique est maintenant sur votre téléphone",
  "Pierwszy trening za Tobą!": "Première séance terminée !",
  "Super, trenuję dalej!": "Super, je continue !",
@@ -1777,5 +1777,7 @@
  "Masz plan: roczny": "Votre formule : annuelle",
  "Masz plan: dożywotni": "Votre formule : à vie",
  "{n} kg": "{n} kg",
- "{n} lb": "{n} lb"
+ "{n} lb": "{n} lb",
+ "Pozycja pośrednia {n}": "Position intermédiaire {n}",
+ "Pozycja pośrednia": "Position intermédiaire"
 }

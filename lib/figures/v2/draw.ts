@@ -12,8 +12,11 @@ import { LAYER, type Prop, type Role, type Shape, type View } from './scene';
 export const EQUIP = {
   barR: 1.6, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [66, 71] as [number, number], plateW: 2.8, chainZ: 73,
   dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6, medBallR: 11,
+  gripHandleW: 11, gripHandleR: 2.2, /* rączka trzymana w dłoni z gumą albo łańcuchem (Band Bench Press, Chain Press); handleR niżej = uchwyt linki wyciągu */
   benchW: 30, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
   trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, gymBallR: 32.5, foamR: 7.5, foamLen: 90, rollerR: 4.5, rollerDx: -8, rollerDy: 19, rollerHalf: 28, domeR: 30, hyperTop: 75, hyperKat: 45, hyperLen: 30, hyperT: 10, hyperW: 30, hyperRollerDx: 55, hyperRollerDy: -45, tireR: 60, tireW: 25, logR: 15, logLen: 60, hammerLen: 90, hammerHead: 16, beltLen: 35, beltPlateR: 12, wristBar: 30, wristRope: 60, boxSide: 45, sliderR: 8, sliderH: 2, wheelR: 8, wheelW: 4, suspensionFree: 15, suspensionY: 220, sledHalf: 25, sledBase: 12, sledLen: 60, sledPostH: 100, ropeR: 1.9, ropeTop: 400, ropeBottom: 20, dipHalf: 22, dipLen: 60, dipH: 115, dipR: 1.75, preacherTop: 95, preacherKat: 60, preacherLen: 45, preacherSeatDx: 28, preacherSeatY: 48, preacherW: 50, preacherT: 8, preacherSeatW: 30, preacherSeatL: 34, machinePad: 36, leverEnd: 25, leverArm: 60, leverStroke: 60, towerW: 10, cableR: 0.6, cableEnd: 12, cableSpan: 45, handleR: 1.8, strapR: 3.4, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
+  /* deska na klatce (Board Press): długość wzdłuż tułowia i szerokość (cm) — uproszczenie ilustracyjne; stojak z bolcami: połowa rozstawu słupków (wewnątrz talerzy 64,6–72,4, jak `post` ±64), długość bolca i grubość (cm) */
+  boardLen: 18, boardW: 16, rackZ: 61, rackH: 130, pinLen: 10, pinW: 2.4,
 } as const;
 
 export const proj = (p: V3, v: View): V2 => v === 'side' ? [p[0], p[1]] : v === 'front' ? [-p[2], p[1]] : [-p[2], -p[0]];
@@ -224,6 +227,26 @@ export function propShapes(props: Prop[], view: View, hideLever = false): Shape[
         if (pr.hook !== undefined && side) S.push({ k: 'line', a: [pr.x, pr.hook], b: [pr.x + 5, pr.hook], w: 2.4, role: 'frame', z: zKey(LAYER.back, -69), id: 'hook' });
         break;
       }
+      case 'board': {
+        const hw = E.boardLen / 2, ww = E.boardW / 2;
+        const pts = side ? rect(pr.x - hw, pr.y, pr.x + hw, pr.y + pr.h) : view === 'front' ? rect(-ww, pr.y, ww, pr.y + pr.h) : rect(-ww, -(pr.x + hw), ww, -(pr.x - hw));
+        S.push({ k: 'poly', pts, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: view === 'top' ? zKey(LAYER.frontEquip, -1) : zKey(LAYER.backEquip, -20), id: 'board' }); break; /* z góry deska leży na tułowiu, więc nad nim */
+      }
+      case 'rack': {
+        /* słupki stojaka (z boku jeden, z przodu i z góry po obu stronach) i bolce pod gryfem na wysokości y; bolec wystaje ku środkowi stojaka */
+        const pw = E.pinLen / 2;
+        if (side) {
+          S.push({ k: 'line', a: [pr.x, 0], b: [pr.x, pr.h], w: E.postW, role: 'frame', z: zKey(LAYER.back, -70), id: 'rackPost' });
+          S.push({ k: 'line', a: [pr.x - pw, pr.y - E.pinW / 2], b: [pr.x + pw, pr.y - E.pinW / 2], w: E.pinW, role: 'frame', z: zKey(LAYER.back, -69), id: 'rackPin' });
+        } else if (view === 'front') for (const sg of [-1, 1]) {
+          S.push({ k: 'line', a: [sg * E.rackZ, 0], b: [sg * E.rackZ, pr.h], w: E.postW, role: 'frame', z: zKey(LAYER.back, -70), id: 'rackPost' });
+          S.push({ k: 'line', a: [sg * E.rackZ, pr.y - E.pinW / 2], b: [sg * (E.rackZ - E.pinLen), pr.y - E.pinW / 2], w: E.pinW, role: 'frame', z: zKey(LAYER.back, -69), id: 'rackPin' });
+        } else for (const sg of [-1, 1]) {
+          S.push({ k: 'poly', pts: rect(sg * E.rackZ - E.postW / 2, -pr.x - E.postW / 2, sg * E.rackZ + E.postW / 2, -pr.x + E.postW / 2), fill: 'frame', close: true, z: zKey(LAYER.back, -70), id: 'rackPost' });
+          S.push({ k: 'line', a: [sg * E.rackZ, -pr.x], b: [sg * (E.rackZ - E.pinLen), -pr.x], w: E.pinW, role: 'frame', z: zKey(LAYER.back, -69), id: 'rackPin' });
+        }
+        break;
+      }
       case 'box': { const bw = (pr.w ?? E.boxW) / 2; const cz = pr.z ?? 0; S.push({ k: 'poly', pts: side ? rect(pr.x0, 0, pr.x1, pr.top) : view === 'front' ? rect(-cz - bw, 0, -cz + bw, pr.top) : rect(-cz - bw, -pr.x1, -cz + bw, -pr.x0), fill: 'pad', stroke: 'frame', w: 1, close: true, z: view === 'front' ? zKey(LAYER.body, pr.x1 + 0.5) : zKey(LAYER.backEquip, -40), id: 'box' }); break; } /* z przodu skrzynia leży w warstwie ciała wg głębokości (x): bliższa widza zasłania dalsze części ciała */
       case 'bench': {
         const w = pr.w ?? E.benchW; const bp = benchPolys(pr); const ro = rollerAt(pr); const zb = (d: number): number => zKey(LAYER.backEquip, d);
@@ -344,6 +367,7 @@ export function propShapes(props: Prop[], view: View, hideLever = false): Shape[
       }
       case 'band': {
         /* guma sztangi (bar): dwie gumy (hang: zwisa z kotwicy nad gryfem — odmiany „reverse”, znacznik kotwicy) przy końcach gryfu w widoku z przodu i z góry (jak łańcuchy); z boku jedna linia. Guma chwytana w dłoniach (bez bar) — jedna. */
+        if (pr.under) { if (!side) S.push({ k: 'line', a: proj(pr.from, view), b: proj(pr.to, view), w: 0.9, role: 'load', dash: [2.5, 2], z: zKey(LAYER.backEquip, -40), id: 'bandUnder' }); break; } /* odcinek pod ławką: z boku jest punktem, z góry i z przodu zakrywa go siedzisko */
         const zs = pr.bar && !side ? [-E.chainZ, E.chainZ] : [pr.from[2]];
         for (const zz of zs) { const a = proj([pr.from[0], pr.from[1], zz], view), b = proj([pr.to[0], pr.to[1], pr.bar && !side ? zz : pr.to[2]], view); S.push({ k: 'line', a, b, w: 0.9, role: 'load', dash: [2.5, 2], z: zKey(LAYER.frontEquip, 0), id: 'band' }); if (pr.hang && view !== 'top') S.push({ k: 'circle', c: a, r: 2.4, fill: 'frame', z: zKey(LAYER.back, -60), id: 'bandAnchor' }); }
         break; }
@@ -407,6 +431,13 @@ export function propShapes(props: Prop[], view: View, hideLever = false): Shape[
           S.push({ k: 'line', a: [o[0], o[1] - E.dbHandle * 0.75], b: [o[0], o[1] + E.dbHandle * 0.75], w: 2, role: 'steel', z: zz + 0.1, id: 'dbGrip' + pr.side });
         } else if (side) { S.push({ k: 'circle', c: o, r, fill: role, a: near ? 0.85 : 0.55, z: zz, id: 'db' + pr.side }); S.push({ k: 'circle', c: o, r: 1.5, fill: 'steel', z: zz + 0.1, id: 'dbGrip' + pr.side }); }
         else { S.push({ k: 'poly', pts: rect(o[0] - E.dbHandle / 2 - r * 0.6, o[1] - r, o[0] - E.dbHandle / 2 + r * 0.2, o[1] + r), fill: role, a: 0.85, close: true, z: zz, id: 'db' + pr.side }); S.push({ k: 'poly', pts: rect(o[0] + E.dbHandle / 2 - r * 0.2, o[1] - r, o[0] + E.dbHandle / 2 + r * 0.6, o[1] + r), fill: role, a: 0.85, close: true, z: zz, id: 'db' + pr.side }); S.push({ k: 'line', a: [o[0] - E.dbHandle / 2, o[1]], b: [o[0] + E.dbHandle / 2, o[1]], w: 2, role: 'steel', z: zz + 0.1, id: 'dbGrip' + pr.side }); }
+        break;
+      }
+      case 'handle': {
+        /* rączka z uchwytem: z boku przekrój (kółko), z góry i z przodu poprzeczka wzdłuż osi z między dłońmi a gumą/łańcuchem */
+        const o = proj(pr.c, view); const zz = zKey(LAYER.frontEquip, side ? pr.c[2] : pr.c[0]);
+        if (side) S.push({ k: 'circle', c: o, r: E.gripHandleR, fill: 'steel', z: zz, id: 'handle' + pr.side });
+        else S.push({ k: 'line', a: [o[0] - E.gripHandleW / 2, o[1]], b: [o[0] + E.gripHandleW / 2, o[1]], w: E.gripHandleR * 1.6, role: 'steel', z: zz, id: 'handle' + pr.side });
         break;
       }
       case 'kettlebell': {

@@ -99,9 +99,9 @@ describe('squat: Dip Belt Squat — pas z łańcuchem i zwisającym ciężarem, 
 
 describe('guma sztangi: dwie gumy przy końcach gryfu (było: jedna guma pionowo przez środek ciała — tułów, miednicę, ławkę)', () => {
   const BANDED = KEYS.filter(k => [0, 1].some(u => fr(k, u).props.some(p => p.k === 'band' && p.bar)));
-  test('wszystkie warianty „with Bands”, „Reverse Band”, Band Bench Press, Band Good Morning mają gumę z flagą bar; Band Squat (ręce) nie', () => {
-    expect(BANDED).toEqual(expect.arrayContaining(['Squat with Bands', 'Box Squat with Bands', 'Reverse Band Box Squat', 'Reverse Band Power Squat', 'Band Bench Press', 'Reverse Band Bench Press', 'Deadlift with Bands', 'Rack Pull with Bands', 'Reverse Band Deadlift', 'Band Good Morning', 'Sumo Deadlift with Bands', 'Reverse Band Sumo Deadlift']));
-    expect(BANDED).not.toContain('Band Squat');
+  test('wszystkie warianty „with Bands”, „Reverse Band”, Band Good Morning mają gumę z flagą bar; Band Squat (ręce) i Band Bench Press (od 101-05: guma przy uchwytach, bez sztangi) nie', () => {
+    expect(BANDED).toEqual(expect.arrayContaining(['Squat with Bands', 'Box Squat with Bands', 'Reverse Band Box Squat', 'Reverse Band Power Squat', 'Reverse Band Bench Press', 'Deadlift with Bands', 'Rack Pull with Bands', 'Reverse Band Deadlift', 'Band Good Morning', 'Sumo Deadlift with Bands', 'Reverse Band Sumo Deadlift']));
+    expect(BANDED).not.toContain('Band Squat'); expect(BANDED).not.toContain('Band Bench Press');
   });
   /* widoki, które rodzina faktycznie pokazuje (families.ts): przysiad i zawias — bok i przód, wyciskanie — bok i góra */
   test('w widokach rodziny: bok — jedna linia gumy; przód (przysiad, zawias) i góra (wyciskanie) — dwie, po obu stronach (|z| > 60 cm), nie przez oś ciała', () => {
@@ -119,8 +119,8 @@ describe('guma „Reverse Band”: zwisa z góry stojaka do gryfu, nie od gryfu 
     for (const k of REV) for (const u of U) { const f = fr(k, u); const b = bandOf(f); expect([k, u, b.length]).toEqual([k, u, 1]); const bar = f.info.bar as V3;
       expect([k, u, b[0].to[1] === bar[1] && b[0].to[0] === bar[0], b[0].from[1] >= bar[1] + 30]).toEqual([k, u, true, true]); }
   });
-  test('inne gumy sztangi (with Bands, Band Bench Press, Deadlift with Bands) bez zmian: od gryfu do podłogi', () => {
-    for (const k of ['Squat with Bands', 'Box Squat with Bands', 'Band Bench Press', 'Deadlift with Bands', 'Sumo Deadlift with Bands']) for (const u of U) { const f = fr(k, u); const b = bandOf(f)[0]; expect([k, u, b.to[1]]).toEqual([k, u, 0]); expect(b.from[1]).toBe((f.info.bar as V3)[1]); }
+  test('inne gumy sztangi (with Bands, Deadlift with Bands) bez zmian: od gryfu do podłogi', () => {
+    for (const k of ['Squat with Bands', 'Box Squat with Bands', 'Deadlift with Bands', 'Sumo Deadlift with Bands']) for (const u of U) { const f = fr(k, u); const b = bandOf(f)[0]; expect([k, u, b.to[1]]).toEqual([k, u, 0]); expect(b.from[1]).toBe((f.info.bar as V3)[1]); }
   });
   test('w widoku z boku i z przodu/góry guma „Reverse” biegnie ku górze od gryfu (koniec rysunku wyżej niż gryf), nie ku podłodze', () => {
     for (const k of REV) for (const v of viewsOf(k)) { if (v === 'top') continue; const sh = shapesAt(spec(k), 1, v); const bar = sh.find(s => s.id === 'bar')!; const by = bar.k === 'circle' ? bar.c[1] : bar.k === 'line' ? bar.a[1] : 0;
@@ -138,8 +138,8 @@ describe('bench_press: przedramiona pionowo na dole we wszystkich wariantach ze 
   test('odwiedzenie łokcia w widoku z góry 25–65° (sztanga) i 25–50° (hantle, kettlebell) — poza przedziałem były szeroko rozłożone łokcie', () => {
     for (const k of ORDINARY) { const a = abd(fr(k, 1), 'R'); const hi = /hantle|Dumbbell|Kettlebell/.test(k) ? 50 : 65; expect([k, a >= 25 && a <= hi, +a.toFixed(0)]).toEqual([k, true, +a.toFixed(0)]); }
   });
-  test('warianty z założenia inne zostają bez zmian (wąski chwyt, Squeeze, JM, Guillotine, Skull Crusher: bez `vert`)', () => {
-    for (const k of ['Close Grip Bench Press', 'Squeeze Press (hantle)', 'JM Press', 'Barbell Guillotine Bench Press', 'Close-Grip Dumbbell Press', 'Close-Grip EZ-Bar Press', 'Smith Machine Close-Grip Bench Press', 'Decline Close-Grip Bench To Skull Crusher']) expect([k, (VARIANTS[k] as { p: { vert?: boolean } }).p.vert]).toEqual([k, undefined]);
+  test('warianty z założenia inne zostają bez zmian (Squeeze, JM, Guillotine: bez `vert`); wąski chwyt dostał `vert` w 1.0.1 (tests/figury-1-0-1-uwagi.test.ts)', () => {
+    for (const k of ['Squeeze Press (hantle)', 'JM Press', 'Barbell Guillotine Bench Press']) expect([k, (VARIANTS[k] as { p: { vert?: boolean } }).p.vert]).toEqual([k, undefined]);
   });
   test('floor press: łokieć dotyka podłogi, ale nie przenika maty (kolizje ciała i maty ≤ 1,5 cm)', () => {
     for (const k of ['Floor Press (sztanga)', 'Floor Press (hantle)', 'One-Arm Kettlebell Floor Press', 'Floor Press with Chains']) for (const u of U) { const f = fr(k, u); const B = bodyColliders(f.sk).filter(b => /^uarm/.test(b.id)); const E = equipColliders(f.props).filter(e => e.id === 'mat'); for (const b of B) for (const e of E) expect([k, u, gap(b, e) > -1.5]).toEqual([k, u, true]); }

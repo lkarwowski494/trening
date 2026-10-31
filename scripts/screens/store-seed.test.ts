@@ -5,14 +5,14 @@
  *   state-<język>-<wariant>.json — stan aplikacji (klucz „state” w SQLite); warianty: trening (trening w toku, przerwa), adapt (trening w toku
  *     w domu — okno „Dostosuj”), jasny i ciemny (bez treningu w toku); od 18.10.2026 (decyzja właściciela) wszystkie warianty w ciemnym motywie,
  *     chyba że STORE_SEED_THEME=light;
- *   routes-<język>.json — 9 ekranów w kolejności scenorysu: [nazwa, ścieżka expo-router, wariant, akcja Maestro albo ''];
+ *   routes-<język>.json — 10 ekranów w kolejności scenorysu: [nazwa, ścieżka expo-router, wariant, akcja Maestro albo ''];
  *   trening-historia.csv — zmyślony plik CSV (format z popularnych dzienników) do podglądu importu.
  * Dane są zmyślone (wytyczne Apple 2.3.9). Ciężary i powtórzenia to przykład wpisów użytkownika, nie zalecenie (bez liczb merytorycznych).
  * Pole `__sklepSavedAt` (chwila zapisu danych): skrypt zrzutów przesuwa o czas od zapisu czasy treningu w toku i przerwy (scripts/ci/store-screenshots.sh) i je usuwa.
  */
 import * as store from '@/lib/store';
 import * as loc from '@/lib/locations';
-import { LANGS, type Lang } from '@/lib/i18n';
+import { LANGS, applyLang, t, type Lang } from '@/lib/i18n';
 import { base, uid, type Workout, type Template, type TemplateItem, type State } from '@/lib/seed';
 import { localISODate } from '@/lib/state/time';
 import { fresh, set } from '../../tests/helpers';
@@ -30,10 +30,12 @@ const TPL: { key: 'push' | 'pull' | 'legs' | 'fbw'; name: { pl: string; en: stri
 const exByName = (n: string) => { const e = store.getState().exercises.find(x => x.name === n); if (!e) throw new Error('brak ćwiczenia ' + n); return e; };
 const round = (v: number, step: number) => (step ? Math.round(v / step) * step : 0);
 
-/** Ekrany w kolejności scenorysu (zmiana właściciela 14.10.2026: 9 ekranów, „Dostosuj” jako 5.). */
+/** Ekrany w kolejności scenorysu (zmiana właściciela 14.10.2026: 9 ekranów, „Dostosuj” jako 5.; decyzja D3 25.10.2026, docs/48 pkt 5: 10 ekranów,
+ *  karta ćwiczenia z rysunkiem ruchu jako 2. — sekcja „Technika” rozwinięta parametrem `cues=1`, ćwiczenie z animowaną figurą v2). */
 function routes(squatId: string): [string, string, string, string][] {
   return [
     ['trening', '/', 'trening', ''],
+    ['cwiczenie', '/exercise/' + squatId + '?cues=1', 'jasny', ''],
     ['postepy-cwiczenia', '/progress?ex=' + squatId, 'jasny', 'e1rm'],
     ['straznik', '/progress?s=guard', 'ciemny', 'przewin'],
     ['plan', '/plan', 'jasny', ''],
@@ -107,7 +109,7 @@ async function build(lng: Lang, now: number) {
   st.planHistory = [{ from: localISODate(new Date(mon.getTime() - (WEEKS - 1) * 7 * DAY)), days }];
   /* masa ciała co 2 tygodnie (zmyślona) — Postępy bez „nie podano” */
   st.bodyMassLog = Array.from({ length: 6 }, (_, i) => ({ id: uid(), date: localISODate(new Date(now - (10 - i * 2) * 7 * DAY)), kg: 82 - i * 0.4 } as never));
-  st.whatsNewSeen = (require('@/lib/whatsnew') as typeof import('@/lib/whatsnew')).WHATS_NEW[0].id;
+  st.whatsNewSeen = (require('@/lib/whatsnew') as typeof import('@/lib/whatsnew')).WHATS_NEW[0]?.id ?? st.whatsNewSeen /* 1.0.0: pusta historia „Co nowego” (zrzuty 27.10.2026 padały na [0].id) */;
   st.guideSeen = (require('@/lib/guide') as typeof import('@/lib/guide')).GUIDE.map(g => g.id);
   /* podpowiedź deloadu „Nie teraz” (zmyślony użytkownik już ją odłożył) — bez ramki z podpowiedzią nad kalendarzem */
   const dh = (require('@/lib/deload') as typeof import('@/lib/deload')).deloadHint(now); if (dh.kind === 'suggest') st.deloadSnooze = dh.from;
@@ -151,8 +153,11 @@ test('dane pokazowe do zrzutów App Store (wszystkie języki aplikacji, 4 warian
     store.save(); await store.flush();
     expect((require('@/lib/adapt') as typeof import('@/lib/adapt')).adaptCandidates(st.active!, home.id).length).toBeGreaterThanOrEqual(5);
     fs.writeFileSync(path.join(out, `state-${lng}-adapt.json`), snap({ __sklepSavedAt: now }));
-    const r = routes(squat.id); expect(r).toHaveLength(9);
+    const r = routes(squat.id); expect(r).toHaveLength(10); /* Apple: najwyżej 10 zrzutów na rozmiar i język */
     fs.writeFileSync(path.join(out, `routes-${lng}.json`), JSON.stringify(r));
+    /* teksty aplikacji, na które czekają scenariusze scripts/ci/maestro-sklep (zmienne ${NAZWA} → skrypt przekazuje je do Maestro przez -e); przebieg 40861500739: scenariusze znały tylko pl/en */
+    const tk = JSON.parse(fs.readFileSync(path.join(__dirname, '../ci/maestro-sklep/teksty.json'), 'utf8')) as Record<string, string>;
+    applyLang(lng); fs.writeFileSync(path.join(out, `teksty-${lng}.json`), JSON.stringify(Object.fromEntries(Object.entries(tk).map(([k, pl]) => [k, t(pl)])))); applyLang('pl');
   }
   fs.writeFileSync(path.join(out, 'trening-historia.csv'), demoCsv(now));
 }, 900e3);

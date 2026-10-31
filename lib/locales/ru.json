@@ -538,6 +538,7 @@
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "Масса тела: «±» — это доп. вес (плюс) или помощь, например тренажёра (минус); резинка — отдельное поле с уровнем. Рекорд — сумма повторений без помощи, а объём считается только по доп. весу.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Масса: подходов на мышечную группу в неделю до цели из раздела Настройки (автоматически {m}), {a}–{b} повторений (дома {c}–{d}), обычно {r1}–{r2} повторения в запасе.",
  "Masz dostęp na zawsze": "У вас доступ навсегда",
+ "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.": "Есть история в другом приложении? Её можно добавить из файла CSV.",
  "Masz pełną wersję": "У вас полная версия",
  "maszyna": "тренажёр",
  "maszyna belt squat": "тренажёр для приседаний с поясом",
@@ -1334,7 +1335,6 @@
  "W planie tygodnia: {days} — te dni będą wolne.": "В плане на неделю: {days} — эти дни будут выходными.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "В Прогрессе отмеченная неделя видна как буква D на графиках — там её не меняют.",
  "W tej wersji": "В этой версии",
- "W trakcie": "В процессе",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "В текущей тренировке резинка будет убрана из неотмеченных подходов.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "В текущей тренировке будет отмечено как удалённое.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "В разгрузочную неделю «Старт» и «Повторить последнюю» предложат «Меньше подходов»: {less}; веса и шаблон без изменений.",
@@ -1676,7 +1676,7 @@
  "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "У вас нет шаблонов с упражнениями. Создайте шаблон или выберите «Новые шаблоны и план».",
  "Sklep chwilowo niedostępny": "Магазин временно недоступен",
  "Nowe szablony i plan": "Новые шаблоны и план",
- "Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.": "Хотите больше? Pro снимает ограничение: подписка или разовая покупка навсегда.",
+ "Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.": "Хотите тренироваться чаще? Pro снимает ограничение: подписка или разовая покупка навсегда.",
  "Historia jest już w telefonie": "История уже на вашем телефоне",
  "Pierwszy trening za Tobą!": "Первая тренировка позади!",
  "Super, trenuję dalej!": "Отлично, тренируюсь дальше!",
@@ -1777,5 +1777,7 @@
  "Masz plan: roczny": "Ваш план: годовой",
  "Masz plan: dożywotni": "Ваш план: бессрочный",
  "{n} kg": "{n} кг",
- "{n} lb": "{n} фнт"
+ "{n} lb": "{n} фнт",
+ "Pozycja pośrednia {n}": "Промежуточное положение {n}",
+ "Pozycja pośrednia": "Промежуточное положение"
 }

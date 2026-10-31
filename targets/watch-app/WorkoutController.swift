@@ -19,6 +19,9 @@ final class WorkoutController: NSObject, WorkoutDriver, HKWorkoutSessionDelegate
   private var builder: HKLiveWorkoutBuilder?
   private var starting = false
   private var endingByUs = false
+  /// Pauza treningu na telefonie (B-04, 1.0.1): sesja ma być wstrzymana, gdy telefon ma pauzę. Pamiętane też wtedy, gdy sesja jeszcze nie jest w stanie `running`
+  /// (start jest asynchroniczny) — zastosuje je delegat przy przejściu do `running`.
+  private var wantsPaused = false
 
   private var shareTypes: Set<HKSampleType> {
     var s: Set<HKSampleType> = [HKObjectType.workoutType()]
@@ -70,6 +73,7 @@ final class WorkoutController: NSObject, WorkoutDriver, HKWorkoutSessionDelegate
           b.beginCollection(withStart: start) { _, _ in }
           self.isActive = true
           self.endingByUs = false
+          self.wantsPaused = false
           self.onStarted?()
         } catch {
           self.session = nil; self.builder = nil
@@ -78,8 +82,22 @@ final class WorkoutController: NSObject, WorkoutDriver, HKWorkoutSessionDelegate
     }
   }
 
+  /// Pauza i wznowienie sesji razem z telefonem: HealthKit zapisuje zdarzenia pauzy, a czas trwania treningu w Zdrowiu nie liczy pauzy — tak samo jak Historia
+  /// w aplikacji i zapis z telefonu (`healthStart`). Wywołanie spoza stanu `running`/`paused` jest zapamiętane i zastosowane przy zmianie stanu sesji.
+  func setPaused(_ paused: Bool) {
+    wantsPaused = paused
+    applyPause()
+  }
+
+  private func applyPause() {
+    guard let s = session else { return }
+    if wantsPaused, s.state == .running { s.pause() }
+    else if !wantsPaused, s.state == .paused { s.resume() }
+  }
+
   func end(save: Bool, workoutId: String) {
     guard let s = session, let b = builder else { isActive = false; onEnded?(false); return }
+    wantsPaused = false
     endingByUs = true
     s.end()
     session = nil; builder = nil
@@ -102,6 +120,13 @@ final class WorkoutController: NSObject, WorkoutDriver, HKWorkoutSessionDelegate
   // MARK: - HKWorkoutSessionDelegate
 
   func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
+    // Pauza z telefonu mogła nadejść, zanim sesja weszła w `running` (albo `resume` przed końcem pauzy) — dopasowanie stanu sesji do stanu telefonu.
+    if toState == .running || toState == .paused {
+      DispatchQueue.main.async { [weak self] in
+        guard let self = self, self.session === workoutSession else { return }
+        self.applyPause()
+      }
+    }
     // System może zakończyć sesję sam (np. użytkownik włączył systemowe Treningi) — wyświetlanie działa dalej, bez wibracji w tle; zapisuje telefon.
     if (toState == .ended || toState == .stopped), !endingByUs, session === workoutSession, isActive {
       DispatchQueue.main.async { [weak self] in
