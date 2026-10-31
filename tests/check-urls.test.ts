@@ -33,7 +33,7 @@ describe('check-urls: porównanie treści', () => {
   });
   test('stara treść na żywo (inny znacznik wersji / brakujący akapit) jest wykryta', () => {
     const src = site('privacy.html'); expect(run(`return m.wersje(${JSON.stringify(src)})`).length).toBeGreaterThan(0);
-    const stara = src.replace(/1\.0\.0/g, '0.9.0');
+    const stara = src.replace(/(wersja aplikacji|app version) \d+\.\d+\.\d+/g, '$1 0.9.0'); /* 31.10.2026: niezależnie od bieżącej wersji (build 1.0.1) */
     expect(run(`return m.brakujace(${JSON.stringify(src)}, ${JSON.stringify(stara)}).length`)).toBeGreaterThan(0);
     expect(run(`return m.wersje(${JSON.stringify(stara)})`)).not.toEqual(run(`return m.wersje(${JSON.stringify(src)})`));
     expect(run(`return m.brakujace(${JSON.stringify(src)}, ${JSON.stringify(SHELL('<section lang="pl"><p>Zupełnie inna strona</p></section>'))}).length`)).toBeGreaterThan(0);

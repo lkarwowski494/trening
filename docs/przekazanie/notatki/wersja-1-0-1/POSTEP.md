@@ -90,6 +90,8 @@
 - 31.10 ~03:00 PL (koordynator 1.0) przebieg dowodowy 101-32: `store-screenshots` 41153332160 na `r101/klatka` f9a4718d zielony (pl,en,ja,de,el; 6.9; `cwiczenie`; nowy build); log buildu (zadanie 124394575544) `EXPO_PUBLIC_FIGURA_STOP: 1`; artefakt `sklep-zrzuty-6.9-1` (13025371109): 02-cwiczenie 1320×2868 w 5 językach — Back Squat w dole, „zgięcie kolana 118°”; wycinek figury (y 1050–1550, x 40–1220) 0 różnych pikseli między językami; pl z 41036044849 — 90 216/590 000 (losowa klatka). 101-32 zamknięte.
 - 31.10 rano (koordynator 1.0.1): `r101/klatka` scalona do `wersja-1-0-1-r2`; lista kontrolna pierwszego TestFlight 1.0.1 w docs/21.
 
+- 31.10 ~07:00 PL decyzja właściciela (przez koordynatora 1.0; zapis PR #107, docs/18): 1.0.1 nie wychodzi osobno — zmiany wchodzą do 1.1; bez audytu 1.0→1.0.1; ZB-007 anulowane. Build TestFlight tylko do testu na telefonie (1A): wersja 1.0.1 w app.json/package.json/package-lock.json (wariant A; B — 1.0.0 z kolejnym numerem buildu odrzucony: miesza się z buildem 1.0 w zgłoszeniu), test `tests/release-1.0.test.tsx`; „Co nowego” pusta. Wykonalność przyjęcia buildu 1.0.1 przez App Store Connect przy 1.0 w recenzji — niesprawdzona, rozstrzygnie wysyłka. E2E 41174819085 na e796c7e anulowane (bramka `testflight.yml` wymaga E2E na tym samym commicie, `scripts/ci/bramka-e2e.sh`) — nowe E2E na commicie z wersją.
+
 ## Czekające kroki właściciela
 - brak decyzji (D3 → 17°, 101-27 → bez poprawki, 101-17 → B, Reverse Lunge → zatwierdzona wersja widoczna; 29.10.2026)
 - Lekcja Reverse Lunge: wybór A/B (stan na bazie w poleceniach figur) — przy okazji

@@ -10,9 +10,11 @@ const fs = require('fs') as typeof import('fs'); const path = require('path') as
 const J = (f: string) => JSON.parse(fs.readFileSync(path.join(__dirname, '..', f), 'utf8'));
 
 describe('wydanie 1.0.0', () => {
-  test('app.json, package.json i package-lock.json (projekt) — 1.0.0', () => {
+  /* 31.10.2026 (właściciel ~07:00 PL, 1A, przez koordynatora 1.0): linia 1.0.1 nie wychodzi osobno, ale build TestFlight do testu na telefonie
+     ma wersję 1.0.1, żeby nie mylić go z buildem 1.0.0 w zgłoszeniu do recenzji Apple; historia „Co nowego” zostaje pusta (to nie wydanie w App Store). */
+  test('app.json, package.json i package-lock.json (projekt) — 1.0.1 (build testowy linii 1.0.1, 31.10.2026)', () => {
     const lock = J('package-lock.json');
-    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['1.0.0', '1.0.0', '1.0.0', '1.0.0']);
+    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['1.0.1', '1.0.1', '1.0.1', '1.0.1']);
   });
   test('historia „Co nowego” pusta (pierwsza wersja w App Store)', () => {
     expect(WHATS_NEW).toEqual([]);

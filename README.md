@@ -7,7 +7,7 @@
 <!-- /gen:badges-ci -->
 
 <!-- gen:badges-ver -->
-[![Wersja aplikacji](https://img.shields.io/badge/wersja-1.0.0-blue?style=flat)](docs/18-przekazanie.md)
+[![Wersja aplikacji](https://img.shields.io/badge/wersja-1.0.1-blue?style=flat)](docs/18-przekazanie.md)
 [![Minimalny iOS](https://img.shields.io/badge/iOS-16.4%2B-black?style=flat&logo=apple)](https://developer.apple.com/ios/)
 [![Minimalny watchOS](https://img.shields.io/badge/watchOS-10.0%2B-black?style=flat&logo=apple)](https://developer.apple.com/watchos/)
 [![Expo SDK](https://img.shields.io/badge/Expo_SDK-57-000020?style=flat&logo=expo)](https://expo.dev/)
@@ -51,7 +51,7 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 <!-- gen:stats -->
 | Miara | Wartość | Źródło |
 |---|---|---|
-| Wersja aplikacji | 1.0.0 | `app.json`, `package.json` (docs/18) |
+| Wersja aplikacji | 1.0.1 | `app.json`, `package.json` (docs/18) |
 | Minimalny iOS | 16.4 | baza Expo (`ExpoModulesCore.podspec`); tylko iPhone |
 | Minimalny watchOS (Apple Watch) | 10.0 | `targets/watch-app/expo-target.config.js`, docs/35-zegarek-apple.md |
 | Platforma | Expo SDK 57 · React Native 0.86 · React 19.2 · TypeScript 6.0 | `package.json` |
