@@ -5,7 +5,7 @@ import { useTheme, FW, font, TEXT_SCALE_MAX, RADIUS, SIZE, SPACE } from '@/lib/t
 import { lang } from '@/lib/i18n';
 
 /** Styl roli bez interlinii (jak w components/ui.tsx). */
-const plain = (role: Parameters<typeof font>[0]): TextStyle => { const f = font(role); delete f.lineHeight; return f; };
+const plain = (role: Parameters<typeof font>[0]): TextStyle => { const { lineHeight: _lh, ...f } = font(role); return f; };
 
 /** Kontrolka segmentowa: jedna z kilku opcji w jednym wąskim pasku (język, jednostka).
  * Audyt 0.10 (A11-12): na 320 pt długie jednowyrazowe opcje (de „Muskelaufbau”, sv „Fettförbränning”) łamały się w środku wyrazu — opcja z jednym
