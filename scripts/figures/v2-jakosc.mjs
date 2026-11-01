@@ -149,11 +149,15 @@ export const DOTYCZY_BLEDU_CWICZENIE = { 'Rollout (sztanga)': { 'plank.mis.sag':
 /** Większa tolerancja dla wybranych stawów (zapas 2 cm w długości nogi w modelu opadania biodra daje ≤ 13° w kolanie i kostce; „wyraźnie ugięte kolana” to ≥ 30°). */
 export const TOL_BLEDU = { 'plank.mis.sag': { knee: 15, ankle: 15, elbow: 15 } }; /* łokieć: wygięcie lędźwi przesuwa barki względem dłoni na sztandze, więc ręce prostują się o ≤ 15° */
 export const BLAD_POSTAWY = ['plank.mis.sag', 'cobra.mis']; /* widoczny w każdej klatce kluczowej; pozostałe z DOTYCZY_BLEDU (zakres) — w ostatniej */
+/** Błąd zakresu pokazany NA DOLE ruchu (pull_up: „bez wyprostu rąk na dole”, fala 25, 01.11.2026): delta w u = 0 dozwolona i tam widoczna (zamiast w ostatniej klatce), góra jak w pozie poprawnej. */
+export const BLAD_DOL = ['pu.partial'];
 export const ROLLOUTY = ['Rollout (sztanga)', 'Barbell Rollout from Bench', 'Standing Barbell Rollout'];
 const KAT_STAWU = { hip: 'hip', knee: 'knee', ankle: 'ankle', elbow: 'elbow', shElev: 'shoulder' };
 export const LOKIEC_ZA_BARKIEM = { 'Close-Grip Push-Up': 6, 'Incline Push-Up Close-Grip': 6, 'Diamond Push Up': 6 }; /* cm za barkiem w rzucie bocznym (łokieć w tył) */
 /** Grupy błędów POSTAWY (widoczne w każdej klatce); pozostałe (zakres, tempo, bujanie) narastają z fazą ruchu. */
 export const GRUPY_POSTAWY = ['linia', 'przeprost', 'lokcie'];
+/** Grupy błędów pokazanych na dole ruchu (BLAD_DOL): zwolnione z „delta w u = 0 zerowa” (blad-start), ale nie z widoczności (w pierwszej klatce). */
+export const GRUPY_DOL = ['pelna_amplituda'];
 export const RECE_WZDLUZ = ['Lying Leg Raise', 'Reverse Crunch', 'Leg Pull-In', 'Scissor Kick', 'Alternate Heel Touchers'];
 export const PODSTAWA_SZEROKA = ['Single-Arm Push-Up'];
 export const WYMAGA_PODWIESZENIA = /^Suspended /;
@@ -387,7 +391,7 @@ export function rzadBleduDotyczy(v2, poza) {
 export function widocznoscBleduKat(v2, poza) {
   /* R9: widoczność liczona tylko ze stawów z BAZOWEGO obszaru błędu (DOTYCZY_BLEDU[cue], bez wyjątków per ćwiczenie) i z osi tułowia/kręgosłupa — zmiana niezwiązana z błędem (np. prostowanie łokcia) jej nie spełnia;
      klatki, w których biodro pozy poprawnej jest zgięte o > widocznoscBiodroMaxDeg (rolloutowy start w skłonie), są jawnie zwolnione z wymogu „w każdej klatce”. */
-  const o = []; poza.bledy.forEach((b, j) => { const dop = DOTYCZY_BLEDU[b.cue]; if (!dop) return; const us = BLAD_POSTAWY.includes(b.cue) ? poza.klatki.map((k) => k.u) : [poza.klatki[poza.klatki.length - 1].u]; const slabe = [];
+  const o = []; poza.bledy.forEach((b, j) => { const dop = DOTYCZY_BLEDU[b.cue]; if (!dop) return; const us = BLAD_POSTAWY.includes(b.cue) ? poza.klatki.map((k) => k.u) : BLAD_DOL.includes(b.cue) ? [poza.klatki[0].u] : [poza.klatki[poza.klatki.length - 1].u]; const slabe = [];
     for (const u of us) { const fa = v2.keyframeFrame(poza, u), fc = v2.keyframeFrame(poza, u, j); const a = fa.sk, c = fc.sk; if (BLAD_POSTAWY.includes(b.cue) && Math.max(v2.jointAngles(a, 'R').hip, v2.jointAngles(a, 'L').hip) > PROGI.widocznoscBiodroMaxDeg) continue;
       let m = Math.max(Math.abs((fa.pose?.trunkPitch ?? 0) - (fc.pose?.trunkPitch ?? 0)), Math.abs((fa.pose?.spineBend ?? 0) - (fc.pose?.spineBend ?? 0)));
       for (const k of ['R', 'L']) { const x = v2.jointAngles(a, k), y = v2.jointAngles(c, k); for (const [kat, et] of Object.entries(KAT_STAWU)) if (dop.includes(et)) m = Math.max(m, Math.abs(x[kat] - y[kat])); } if (m < PROGI.bladWidocznyDeg) slabe.push(`u = ${u}: ${f1(m)}°`); }

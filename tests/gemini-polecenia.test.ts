@@ -70,7 +70,7 @@ describe('reguły sensu ruchu (data/zrodla/figury-sens.json + v2-sens.mjs; docs/
   });
   test('wzorzec wyliczony z modelu (z błędem pu.partial) przechodzi walidator geometrii i sensu; tabela referencyjna zgodna z wzorcem', () => {
     expect(waliduj(WZ['Pull Up'], 'Pull Up')).toEqual({ ok: true, bledy: [] });
-    const t = run(POL, 'console.log(JSON.stringify(m.tabelaPodciagania()))') as string[]; expect(t).toHaveLength(3); expect(t[1]).toContain('drążek y = 230, chwyt z = ±22: u = 0 → miednica.y = 119.2');
+    const t = run(POL, 'console.log(JSON.stringify(m.tabelaPodciagania()))') as string[]; expect(t).toHaveLength(3); expect(t[1]).toContain('drążek y = 230, chwyt z = ±22: u = 0 → miednica.y = 118.8');
   });
   test('poza poprawna łamiąca regułę jest odrzucana z konkretnym komunikatem: broda pod drążkiem, bujanie miednicy, nogi z przodu, tułów odchylony', () => {
     const a = klon(WZ['Pull Up']); a.klatki[a.klatki.length - 1].miednica[1] -= 10; for (const s of ['R', 'L']) a.klatki[a.klatki.length - 1].nogi[s].kostka[1] -= 10; a.bledy = [];
@@ -144,7 +144,7 @@ describe('gemini-polecenia: treść polecenia v2 (liczby z silnika, reguły z da
     expect(run(POL, 'console.log(JSON.stringify([m.WERSJA_POLECENIA, m.ETYKIETA_WERSJI]))')).toEqual([2, 'polecenie@2']);
   });
   test('punkty odniesienia z modelu: tabela (B, c) → miednica.y dla u = 0 i u = 1, miednica 18 cm za drążkiem, margines, konwencja kąta, kostka = podbicie + nachylenie goleni, reguła klatek (maks. 14 cm na 0,1)', () => {
-    expect(tresc).toContain('drążek y = 230, chwyt z = ±22: u = 0 → miednica.y = 119.2'); expect(tresc).toContain('miednica.x = drążek.x − 18'); expect(tresc).toContain('CELUJ w 63.5 cm');
+    expect(tresc).toContain('drążek y = 230, chwyt z = ±22: u = 0 → miednica.y = 118.8'); expect(tresc).toContain('miednica.x = drążek.x − 18'); expect(tresc).toContain('CELUJ w 63.5 cm');
     expect(tresc).toContain('MARGINES: celuj 1–2 cm i 2–3°'); expect(tresc).toContain('0° = staw wyprostowany'); expect(tresc).toContain('KOSTKA (częsty błąd): kąt kostki = podbicie + nachylenie goleni'); expect(tresc).toContain('REGUŁA KLATEK'); expect(tresc).toContain('≤ 14 cm przy odstępie klatek 0,1');
     expect(tresc).toContain('co najmniej 8 cm'); expect(tresc).toContain('więcej niż 0.3 cm'); expect(tresc).toContain('Wyjątek tej rodziny: zwis i podciąganie');
   });
@@ -170,7 +170,7 @@ describe('gemini-polecenia: treść polecenia v2 (liczby z silnika, reguły z da
     const potrzebne = new Set(cwiczenia.flatMap((c) => { const w = dane.warianty[c]; return typeof w === 'string' ? dane.warianty[w] : w ?? []; }));
     for (const id of potrzebne) expect([id, wPoleceniu.includes(id)]).toEqual([id, true]);
     expect(new Set(wPoleceniu)).toEqual(potrzebne);
-    const liczby: Record<string, string[]> = { broda_nad_drazkiem: ['≥ y drążka + 2 cm'], dol_rece_proste: ['≤ 25°'], miednica_nie_buja: ['o ≤ 3 cm'], nogi_nieruchome: ['-10…5 cm', '≤ 4 cm'], tulow_pion: ['-12°…3°'], rece_proste_caly_ruch: ['≤ 25°'], jedna_reka: ['≥ 15 cm'], miednica_nie_buja_x: ['(x) o ≤ 3 cm'] };
+    const liczby: Record<string, string[]> = { broda_nad_drazkiem: ['≥ y drążka + 2 cm'], dol_rece_proste: ['≤ 8°'], miednica_nie_buja: ['o ≤ 3 cm'], nogi_nieruchome: ['-10…5 cm', '≤ 4 cm'], tulow_pion: ['-12°…3°'], rece_proste_caly_ruch: ['≤ 25°'], jedna_reka: ['≥ 15 cm'], miednica_nie_buja_x: ['(x) o ≤ 3 cm'] };
     for (const [id, fr] of Object.entries(liczby)) { const linia = tresc.split('\n').find((l) => l.includes(`[reguła: ${id}]`))!; for (const f of fr) expect([id, linia.includes(f)]).toEqual([id, true]); }
     for (const [cue, g] of Object.entries(dane.grupy_bledow)) if (cwiczenia.some((c) => tresc.includes(`błędy: ${cue}`) || tresc.includes(`${cue} (`))) expect(tresc).toContain(`${cue} → grupa „${g}”`);
   });
