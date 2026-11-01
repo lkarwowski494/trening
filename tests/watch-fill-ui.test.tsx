@@ -53,6 +53,6 @@ test('rekord: seria „do uzupełnienia” nie ma plakietki rekordu; po „Gotow
   await tap(screen.getByText('Gotowe')); expect(prMap(a).get(a.exercises[0].sets[0].id)?.length).toBeGreaterThan(0);
 });
 test('EN: „to fill in”, „Done”, „Sets to fill in” + [Cancel, Finish anyway]', async () => {
-  await boot('en'); await fromWatch('differ', 0); expect(screen.getByText('to fill in')).toBeTruthy(); expect(screen.getByLabelText('Set 1 to fill in — Bench Press (Barbell)')).toBeTruthy();
+  await boot('en'); await fromWatch('differ', 0); expect(screen.getByText('to fill in')).toBeTruthy(); expect(screen.getByLabelText('Set 1 to fill in — Bench Press')).toBeTruthy();
   await tap(screen.getByText('Finish')); const a = global.__alerts.at(-1)!; expect([a.title, a.buttons!.map(b => b.text)]).toEqual(['Sets to fill in', ['Cancel', 'Finish anyway']]);
 });

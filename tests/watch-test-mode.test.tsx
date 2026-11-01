@@ -60,14 +60,14 @@ describe('panel „Test watch” w treningu', () => {
     await boot('1', '1'); expect(screen.getByTestId('fake-watch-panel')).toBeTruthy(); expect(testWatch()).not.toBeNull();
     for (const l of ['Test watch', 'Test watch: done', 'Test watch: differ', 'Test watch: skip']) expect([l, !!screen.queryByText(l)]).toEqual([l, true]);
     await press('Test watch: differ'); const a = () => S().active!.exercises[0];
-    expect(a().sets[0]).toMatchObject({ done: true, toFill: true }); expect(screen.getByLabelText('Set 1 to fill in — Bench Press (Barbell)')).toBeTruthy();
+    expect(a().sets[0]).toMatchObject({ done: true, toFill: true }); expect(screen.getByLabelText('Set 1 to fill in — Bench Press')).toBeTruthy();
     await press('Test watch: done'); expect(a().sets[1].done).toBe(true); expect(a().sets[1].toFill).toBeUndefined();
     await press('Test watch: skip'); expect(S().active!.exercises.some(e => e.skipped)).toBe(true);
   });
   test('znacznik z atrapy przeżywa restart aplikacji (jak zdarzenie z prawdziwego zegarka)', async () => {
     await boot('1', '1'); await press('Test watch: differ'); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'en' }); await flushAll(10);
-    expect(S().active!.exercises[0].sets[0].toFill).toBe(true); expect(screen.getByLabelText('Set 1 to fill in — Bench Press (Barbell)')).toBeTruthy();
+    expect(S().active!.exercises[0].sets[0].toFill).toBe(true); expect(screen.getByLabelText('Set 1 to fill in — Bench Press')).toBeTruthy();
   });
 });
 

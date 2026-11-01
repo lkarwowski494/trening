@@ -41,9 +41,9 @@ async function runAbove(f: string, cmds: Cmd[], marker: Cmd, target: any, stop?:
 describe('E2E 38563966851: scenariusze z elementem nad krawędzią listy', () => {
   test('07 — „Undo swap” nad listą: scenariusz przewija w górę przed stuknięciem; wersja z przebiegu zatrzymuje się na stuknięciu', async () => {
     const f = '07-zamiana.yaml'; const cmds = load(join(DIR, f)); const shot = { takeScreenshot: '33-po-zamianie' };
-    const scroll = { scrollUntilVisible: { element: 'Undo swap: Bench Press \\(Dumbbell\\)', direction: 'UP', timeout: 30000, centerElement: true } };
-    const target = { text: 'Undo swap: Bench Press \\(Dumbbell\\)' };
-    const stop = { extendedWaitUntil: { visible: 'Swap exercise: Bench Press \\(Barbell\\)', timeout: 30000 } };
+    const scroll = { scrollUntilVisible: { element: 'Undo swap: Dumbbell Bench Press', direction: 'UP', timeout: 30000, centerElement: true } };
+    const target = { text: 'Undo swap: Dumbbell Bench Press' };
+    const stop = { extendedWaitUntil: { visible: 'Swap exercise: Bench Press', timeout: 30000 } };
     await runAbove(f, cmds, shot, target, stop);
     await expect(runAbove(f, without(cmds, scroll), shot, target, stop)).rejects.toThrow(/tapOn "Undo swap[^\n]*\n(Nie znaleziono elementu|Element nad widokiem listy)/);
   });
@@ -142,7 +142,7 @@ describe('E2E 38607952098: 33/34 — zgubiony pierwszy znak powtórzeń („10�
 describe('E2E 38607952098: 12 i 32 — stuknięcie gubione na wolnym symulatorze jest powtarzane', () => {
   const inRetry = (f: string, text: string) => load(join(DIR, f)).some((c: Cmd) => c && typeof c === 'object' && 'retry' in c && JSON.stringify(c.retry.commands).includes(text));
   test('12: wybór „Back Squat” w retry', () => { expect(inRetry('12-usuwanie-gestem.yaml', 'Back Squat,.*')).toBe(true); });
-  test('32: przewinięcie, czekanie na koniec ruchu, stuknięcie „Bench Press (Dumbbell)” i „RECORDS” w jednym retry', () => {
+  test('32: przewinięcie, czekanie na koniec ruchu, stuknięcie „Dumbbell Bench Press” i „RECORDS” w jednym retry', () => {
     const c = load(join(DIR, '32-regularny-uzytkownik.yaml')).find((x: Cmd) => x && typeof x === 'object' && 'retry' in x && JSON.stringify(x).includes('RECORDS'));
     const kinds = c.retry.commands.map((x: Cmd) => (typeof x === 'string' ? x : Object.keys(x)[0]));
     expect(kinds).toEqual(['scrollUntilVisible', 'waitForAnimationToEnd', 'tapOn', 'extendedWaitUntil']);

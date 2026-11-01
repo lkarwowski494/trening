@@ -155,8 +155,8 @@ describe('regresja E2E 89', () => {
   test('gumy: karta „teraz” pokazuje „band: …” małą literą, Maestro porównuje bez wielkości liter — każde stuknięcie przycisku gumy pod „Set done.*”', () => {
     const taps = steps('10-gumy.yaml').filter(l => /tapOn: .*"Band: /.test(l)); expect(taps.length).toBeGreaterThanOrEqual(6);
     for (const l of taps) expect(l).toMatch(/below: "Set done\.\*"|leftOf: "Set 1 done — [^"]+"/); /* E2E 91: wiersz pod kartą po przewinięciu — względem ✓ wiersza */
-    const { EN } = require('@/lib/i18n.en'); const card = EN['Seria zrobiona: {ex}, seria {n}'].replace('{ex}', 'Pull Up').replace('{n}', '1');
-    const row = EN['Seria {n} zrobiona — {ex}'].replace('{ex}', 'Pull Up').replace('{n}', '1');
+    const { EN } = require('@/lib/i18n.en'); const card = EN['Seria zrobiona: {ex}, seria {n}'].replace('{ex}', 'Pull-Up').replace('{n}', '1');
+    const row = EN['Seria {n} zrobiona — {ex}'].replace('{ex}', 'Pull-Up').replace('{n}', '1');
     expect([/^(?:Set done.*)$/i.test(card), /^(?:Set done.*)$/i.test(row)]).toEqual([true, false]); /* kotwica to tylko przycisk karty */
   });
   test('edycja ćwiczenia: stukany chip metryki mieści się na ekranie (jeden z pierwszych trzech) — piąty „weight + time” był poza krawędzią', () => {
@@ -168,8 +168,8 @@ describe('regresja E2E 89', () => {
     for (const c of chips) expect(first).toContain(c);
   });
   test('zamiana z podziałem: odhaczona seria starego ćwiczenia sprawdzana przewinięciem w górę, nie assertVisible od razu', () => {
-    const s = steps('07-zamiana.yaml'); const i = s.findIndex(l => l.includes('"instead of: Overhead Press \\\\(Barbell\\\\).*"'));
-    expect(i).toBeGreaterThan(0); expect(s[i + 1].trim()).toBe('- scrollUntilVisible: { element: "Set 1 done — Overhead Press \\\\(Barbell\\\\)", direction: UP, timeout: 30000 }');
+    const s = steps('07-zamiana.yaml'); const i = s.findIndex(l => l.includes('"instead of: Overhead Press.*"'));
+    expect(i).toBeGreaterThan(0); expect(s[i + 1].trim()).toBe('- scrollUntilVisible: { element: "Set 1 done — Overhead Press", direction: UP, timeout: 30000 }');
   });
 });
 
@@ -196,16 +196,16 @@ describe('regresja E2E 91', () => {
     expect(y('17-biblioteka-technika.yaml')).toContain('- scrollUntilVisible: { element: "Setup", direction: DOWN');
     expect(y('17-biblioteka-technika.yaml')).not.toContain('extendedWaitUntil: { visible: "Setup"');
   });
-  test('10: guma Pull Up wskazana względem ✓ wiersza (leftOf), nie karty „Set done” (po przewinięciu nad ekranem)', () => {
-    const s = steps('10-gumy.yaml'); const after = s.slice(s.indexOf('- extendedWaitUntil: { visible: "Set 1 done — Pull Up", timeout: 30000 }'));
-    expect(after).toContain('- tapOn: { text: "Band: none", below: "Pull Up", leftOf: "Set 1 done — Pull Up" }');
+  test('10: guma Pull-Up wskazana względem ✓ wiersza (leftOf), nie karty „Set done” (po przewinięciu nad ekranem)', () => {
+    const s = steps('10-gumy.yaml'); const after = s.slice(s.indexOf('- extendedWaitUntil: { visible: "Set 1 done — Pull-Up", timeout: 30000 }'));
+    expect(after).toContain('- tapOn: { text: "Band: none", below: "Pull-Up", leftOf: "Set 1 done — Pull-Up" }');
     expect(after.filter((l: string) => /below: "Set done/.test(l))).toEqual([]);
   });
-  test('10 (run 38264871642): guma Pull Up kotwiczona także nagłówkiem „Pull Up” — `leftOf` samo trafiało w gumę wiersza Band Pull Apart (zrzut: Pull Up nadal G1)', () => {
-    const s = steps('10-gumy.yaml'); const after = s.slice(s.indexOf('- extendedWaitUntil: { visible: "Set 1 done — Pull Up", timeout: 30000 }'));
+  test('10 (run 38264871642): guma Pull-Up kotwiczona także nagłówkiem „Pull-Up” — `leftOf` samo trafiało w gumę wiersza Band Pull Apart (zrzut: Pull-Up nadal G1)', () => {
+    const s = steps('10-gumy.yaml'); const after = s.slice(s.indexOf('- extendedWaitUntil: { visible: "Set 1 done — Pull-Up", timeout: 30000 }'));
     const upTo = after.slice(0, after.indexOf('- takeScreenshot: 62-guma-pull-up')).filter((l: string) => /"Band: /.test(l));
     expect(upTo.length).toBe(4);
-    for (const l of upTo) expect(l).toContain('below: "Pull Up"');
+    for (const l of upTo) expect(l).toContain('below: "Pull-Up"');
   });
   test('14 (run 38264871642): przejście Więcej → Przewodnik czeka 30 s (nawigacja jak w innych scenariuszach), nie 15 s', () => {
     const s = steps('14-generator.yaml');
@@ -319,9 +319,9 @@ describe('regresja nocnego run 39537208004 (L-013): klawiatura schowana po wpisa
   /* Pierwszy przebieg dowodowy na gałęzi (run 39578355425, 390 pt): po poprawce klawiatury wyszły trzy dalsze przyczyny małego ekranu — element przy dolnej krawędzi albo pod nią,
    * a stuknięcie trafiało w pasek zakładek / panel nie był widoczny. Zrzuty: 32 — zakładka „More” po stuknięciu „Set 2 done”; 13 — edytor miejsca pod krawędzią; 08 — ⓘ zakresu przy krawędzi. */
   test('08, 13, 32 (run 39578355425): stuknięcia przy dolnej krawędzi poprzedza przewinięcie z wyśrodkowaniem; „Clear place” i rozwinięty zakres szukane przewinięciem, nie samym oczekiwaniem', () => {
-    const s32 = stepsOf(join(dir, '32-regularny-uzytkownik.yaml')); const set2 = '- tapOn: { text: "Set 2 done — Bench Press \\\\(Dumbbell\\\\)" }';
+    const s32 = stepsOf(join(dir, '32-regularny-uzytkownik.yaml')); const set2 = '- tapOn: { text: "Set 2 done — Dumbbell Bench Press" }';
     const i = s32.indexOf(set2); expect(i).toBeGreaterThan(0);
-    expect(s32[i - 1]).toBe('- scrollUntilVisible: { element: "Set 2 done — Bench Press \\\\(Dumbbell\\\\)", direction: DOWN, timeout: 30000, centerElement: true }');
+    expect(s32[i - 1]).toBe('- scrollUntilVisible: { element: "Set 2 done — Dumbbell Bench Press", direction: DOWN, timeout: 30000, centerElement: true }');
     const s13 = stepsOf(join(dir, '13-kalendarz-plan.yaml'));
     expect(s13.filter(l => /extendedWaitUntil: \{ visible: "Clear place"/.test(l))).toEqual([]);
     expect(s13.filter(l => /^- scrollUntilVisible: \{ element: "Clear place", direction: DOWN, timeout: 30000, centerElement: true \}$/.test(l)).length).toBe(1);

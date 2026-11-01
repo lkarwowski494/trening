@@ -611,6 +611,29 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy uruchamiane są testy aplikacji (a po stronie strony: testy na prawdziwym eksporcie)
     - Wtedy test kontraktu zgłasza błąd, zanim strona zostanie zbudowana ze złymi danymi
 
+### BR-BIB-010: Kanoniczne angielskie nazwy ćwiczeń z biblioteki (31.10.2026, ZB-025 b)
+- Przepływ: PR-01
+- Dowód potrzeby: decyzja właściciela 31.10.2026 (docs/18: „nazwy EN — wariant A, P1–P4 wg szkicu”); źródło nazw po `rid` `docs/research/equipment/nazwy-en.json`, generator `scripts/equipment/gen-nazwy-en.mjs` → `lib/nazwy-en.generated.ts`; `lib/i18n.ts` (`exName`), `lib/seed.ts` (`formerEnNamesOf`); testy `tests/nazwy-en.test.ts`
+- Ekrany: `app/exercises.tsx`, `app/picker.tsx`, `app/exercise/[id].tsx`, wszystkie miejsca z nazwą ćwiczenia (`exName`)
+- Test: `tests/nazwy-en.test.ts`, `.maestro/07-zamiana.yaml`
+- Kryteria akceptacji:
+  - Scenariusz: Nowa nazwa w angielskim i w językach z nazwami angielskimi
+    - Zakładając, że język aplikacji jest inny niż polski, a ćwiczenie z biblioteki ma kanoniczną nazwę (267 z 709, np. „Bench Press (Barbell)” → „Bench Press”, „Push Up” → „Push-Up”)
+    - Gdy użytkownik widzi nazwę ćwiczenia na liście, w treningu, szablonie, historii albo w wyborze ćwiczenia
+    - Wtedy widzi nową nazwę według przewodnika stylu (jednostronność „Single-Arm / Single-Leg”, liczba pojedyncza z zamkniętą listą wyjątków, bez „Barbell” w klasycznych bojach, przyrząd jako przedrostek, łączniki w przymiotnikach złożonych); VoiceOver czyta ją głosem angielskim jak dotąd
+  - Scenariusz: Dane użytkownika bez zmian
+    - Zakładając, że użytkownik ma treningi, szablony i historię z ćwiczeniami z biblioteki
+    - Gdy aktualizuje aplikację
+    - Wtedy klucze katalogu, nazwy polskie i dane (SCHEMA_VERSION 19) nie zmieniają się; zmienia się tylko nazwa wyświetlana po angielsku
+  - Scenariusz: Wyszukiwanie po dawnej nazwie
+    - Zakładając, że język aplikacji jest inny niż polski
+    - Gdy użytkownik wpisuje w wyszukiwarce dawną angielską nazwę (np. „Bench Press (Barbell)” albo „RDL”)
+    - Wtedy znajduje obecne ćwiczenie z dopiskiem „dawniej: …”; karta ćwiczenia pokazuje dawną nazwę w wierszu „Dawne nazwy w bibliotece”; w polskim nic się nie zmienia
+  - Scenariusz: Strażnik nazw
+    - Zakładając, że ktoś dodaje albo zmienia nazwę angielską
+    - Gdy uruchamiane są testy
+    - Wtedy nazwa z nawiasem, separatorem „ - ”, ukośnikiem, „Push Up”, „One-Arm”, „SMR”, „Leverage”, „Pulley”, błędną wielkością liter, liczbą mnogą spoza listy wyjątków albo duplikatem po złożeniu nie przechodzi
+
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07
 - Dowód potrzeby: OG-01, OG-09; docs/28-healthkit-etap0.md; `site/privacy.html`

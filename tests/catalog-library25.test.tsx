@@ -264,7 +264,7 @@ describe('języki: nazwy biblioteki po zmianach', () => {
   test('w każdym języku poza polskim nazwy bez polskich dopisków w nawiasach; nowe nazwy unikalne', () => {
     const lib = seedState('pl').exercises; const PL = /\((sztanga|hantle|hantel|linki|ławka|bieżnia|talerz|hantle\/linki|hantel\/linka|dwie linki)\)/;
     for (const l of LANGS.filter(x => x !== 'pl')) { applyLang(l); const names = lib.map(e => exName(e)); expect([l, names.filter(n => PL.test(n))]).toEqual([l, []]); expect(new Set(names).size).toBe(names.length); }
-    applyLang('en'); expect(exName(lib.find(e => e.name === 'Lying Neck Extension (talerz)')!)).toBe('Lying Neck Extension (Plate)'); expect(exName(lib.find(e => e.name === 'Upright Row (hantle)')!)).toBe('Upright Row (Dumbbell)');
+    applyLang('en'); expect(exName(lib.find(e => e.name === 'Lying Neck Extension (talerz)')!)).toBe('Lying Plate Neck Extension'); expect(exName(lib.find(e => e.name === 'Upright Row (hantle)')!)).toBe('Dumbbell Upright Row');
     applyLang('pl'); expect(CATALOG_STEP.rev).toBe(LIB_EXTRA_REV);
   });
 });

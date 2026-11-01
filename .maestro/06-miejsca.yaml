@@ -20,7 +20,7 @@
 #   "unavailable at Bodyweight only are greyed out" ← 'niedostępne w: {l} są wyszarzone' → 'unavailable at {l} are greyed out'
 #   "Place filter: X.*"             ← 'Filtr miejsca: {l}' (instrukcja w podpowiedzi — A11-18) (chip-etykieta „📍 X ✕” w app/picker.tsx; od 04.10.2026 zamiast przełącznika „Pokaż wszystkie”)
 #   "Search exercises…"              ← 'Szukaj ćwiczenia…'                  (jak flow 04)
-#   "Pull Up,.*"                     ← nazwa ćwiczenia z lib/seed.ts (EN bez zmian, exName) — wymaga pullup.bar|rings (catalog.generated.ts)
+#   "Pull-Up,.*"                     ← nazwa ćwiczenia z lib/seed.ts (EN bez zmian, exName) — wymaga pullup.bar|rings (catalog.generated.ts)
 #   "Lat Pulldown,.*"                ← nazwa z lib/seed.ts — wymaga lat_pulldown|cable.high → niedostępne w „Bodyweight only”
 #   "missing:"                       ← 'brak: {m}' → 'missing: {m}'
 #   "Cancel"                         ← 'Anuluj' (headerLeft pickera, components/CloseButton.tsx — zasada 13.10.2026)
@@ -58,7 +58,7 @@ name: Miejsca treningu i filtr ćwiczeń
 - takeScreenshot: 22-drazek-wlaczony
 - scrollUntilVisible: { element: "Available exercises: .*", direction: UP, timeout: 90000 }
 - copyTextFrom: "Available exercises: .*"
-# Drążek odblokowuje m.in. Pull Up / Chin Up — licznik dostępnych ćwiczeń musi się zmienić
+# Drążek odblokowuje m.in. Pull-Up / Chin-Up — licznik dostępnych ćwiczeń musi się zmienić
 - assertTrue: ${maestro.copiedText != output.dostepnePrzed}
 
 # --- Przycisk „Delete place” na dole ekranu miejsca (M3 p5, ZM-04, W2 a): to samo okno co gest; „Cancel” zostawia miejsce (to jedyne i główne — dalsze kroki go potrzebują) ---
@@ -90,13 +90,13 @@ name: Miejsca treningu i filtr ćwiczeń
 - pressKey: Enter
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
-- extendedWaitUntil: { visible: "Pull Up,.*", timeout: 30000 }
+- extendedWaitUntil: { visible: "Pull-Up,.*", timeout: 30000 }
 - assertNotVisible: "Lat Pulldown,.*"
 - takeScreenshot: 24-picker-tylko-dostepne
 # filtr miejsca jako etykieta: „📍 Bodyweight only ✕” zdejmuje filtr
 - tapOn: "Place filter: Bodyweight only.*"
 - extendedWaitUntil: { visible: "unavailable at Bodyweight only are greyed out", timeout: 30000 }
-# pełna baza (854 ćwiczenia, 04.10.2026): „Pull” daje ~38 wyników — Pull Up i Lat Pulldown bywają poza ekranem (Pull Up sprawdzony wyżej,
+# pełna baza (854 ćwiczenia, 04.10.2026): „Pull” daje ~38 wyników — Pull-Up i Lat Pulldown bywają poza ekranem (Pull-Up sprawdzony wyżej,
 # z filtrem); zawężenie wyszukiwania do Lat Pulldown
 - tapOn: "Pull"
 - eraseText: 10

@@ -1,6 +1,6 @@
 # Gumy w miejscu i w treningu (docs/17 pkt 3 i „Gumy w ćwiczeniach z oporem gumy”, scenariusz właściciela 06.10.2026):
-# w miejscu „Home” gumy oporowe z poziomami 1, 2, 4 (zaznaczenie 1, odznaczenie 6) i kolorem poziomu 1; trening z Band Pull Apart
-# (opór gumy) i Pull Up (asysta gumą) — przycisk gumy przechodzi tylko przez poziomy miejsca; zakończenie i guma w zapisanej sesji.
+# w miejscu „Home” gumy oporowe z poziomami 1, 2, 4 (zaznaczenie 1, odznaczenie 6) i kolorem poziomu 1; trening z Band Pull-Apart
+# (opór gumy) i Pull-Up (asysta gumą) — przycisk gumy przechodzi tylko przez poziomy miejsca; zakończenie i guma w zapisanej sesji.
 #
 # Literały (EN z lib/i18n.en.ts / lib/equipment.ts, chyba że zaznaczono inaczej):
 #   "Other workout", "More, tab.*", "Settings", "Places and equipment,.*", "Add place", "Home,.*", "Available exercises: .*",
@@ -12,7 +12,7 @@
 #   "Resistance bands: level N"      ← Chip poziomu w BandLevels (app/more/location/[id].tsx): a11yLabel „{sprzęt}: {'poziom {n}'}”
 #                                      (świeża instalacja ma gumy poziomów 2, 4, 6 — lib/seed.ts; włączenie gum zaznacza te poziomy)
 #   "Band colour: level 1"           ← '{Kolor gumy}: {poziom {n}}' (pole koloru; nowa guma ma kolor 'nowa' → „new”)
-#   "Band Pull Apart, .*" / "Pull Up, .*" ← Item pickera „{title}, {sub}” (sub: sprzęt + ' · band', app/picker.tsx)
+#   "Band Pull-Apart, .*" / "Pull-Up, .*" ← Item pickera „{title}, {sub}” (sub: sprzęt + ' · band', app/picker.tsx)
 #   "Band: X"                        ← 'Guma: {b}' (instrukcja „Tap to change.” w podpowiedzi — audyt 0.10 A11-18) (components/ActiveWorkout.tsx); b = bandA11y '{c}, poziom {n}' → „green, level 1”
 #                                      albo 'brak' → „none”; kolejność: poziomy miejsca rosnąco (store.nextBandId), potem brak
 #                                      E2E 89: karta „teraz” (widok skupiony) pokazuje gumę bieżącej serii tekstem „band: green, level 1”, a Maestro
@@ -38,7 +38,7 @@ name: Gumy w miejscu i w treningu
 - extendedWaitUntil: { visible: "Home,.*", timeout: 30000 }
 - tapOn: "Home,.*"
 - extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
-# Drążek — Pull Up dostępny w Domu (filtr miejsca w wyborze ćwiczeń zostaje włączony)
+# Drążek — Pull-Up dostępny w Domu (filtr miejsca w wyborze ćwiczeń zostaje włączony)
 - scrollUntilVisible: { element: "Bars and dip stations.*", direction: DOWN, timeout: 90000 }
 - tapOn: "Bars and dip stations.*"
 - scrollUntilVisible: { element: { id: "sw-Pull-up bar \\(doorway, wall-mounted\\)" }, direction: DOWN, timeout: 90000 }
@@ -82,7 +82,7 @@ name: Gumy w miejscu i w treningu
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"
 
-# --- Pusty trening + Band Pull Apart (opór gumy) ---
+# --- Pusty trening + Band Pull-Apart (opór gumy) ---
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
@@ -91,13 +91,13 @@ name: Gumy w miejscu i w treningu
 - tapOn: "\\+ Add exercise"
 - extendedWaitUntil: { visible: "Place filter: Home.*", timeout: 30000 }
 - tapOn: "Search exercises…"
-- inputText: "Band Pull Apart"
+- inputText: "Band Pull-Apart"
 - pressKey: Enter
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
-- extendedWaitUntil: { visible: "Band Pull Apart, .*", timeout: 30000 }
-- tapOn: "Band Pull Apart, .*"
-- extendedWaitUntil: { visible: "Set 1 done — Band Pull Apart", timeout: 30000 }
+- extendedWaitUntil: { visible: "Band Pull-Apart, .*", timeout: 30000 }
+- tapOn: "Band Pull-Apart, .*"
+- extendedWaitUntil: { visible: "Set 1 done — Band Pull-Apart", timeout: 30000 }
 # Cykl gumy: brak → 1 → 2 → 4 → brak (6 odznaczone w miejscu) → 1
 - tapOn: { text: "Band: none", below: "Set done.*" }
 - extendedWaitUntil: { visible: "Band: green, level 1", timeout: 15000 }
@@ -111,33 +111,33 @@ name: Gumy w miejscu i w treningu
 - tapOn: { text: "Band: none", below: "Set done.*" }
 - extendedWaitUntil: { visible: "Band: green, level 1", timeout: 15000 }
 - takeScreenshot: 61-guma-band-pull-apart
-- tapOn: "Set 1 done — Band Pull Apart"
+- tapOn: "Set 1 done — Band Pull-Apart"
 - tapOn: { text: "Skip", optional: true }
 
-# --- Pull Up (asysta gumą) ---
+# --- Pull-Up (asysta gumą) ---
 - scrollUntilVisible: { element: "\\+ Add exercise", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "\\+ Add exercise"
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
-- inputText: "Pull Up"
+- inputText: "Pull-Up"
 - pressKey: Enter
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
-- extendedWaitUntil: { visible: "Pull Up, .*", timeout: 30000 }
-- tapOn: "Pull Up, .*"
-- extendedWaitUntil: { visible: "Set 1 done — Pull Up", timeout: 30000 }
-# E2E 91: po przewinięciu do wiersza Pull Up karta „teraz” (z „Set done”) jest nad ekranem — kotwica `below: "Set done.*"` nie istnieje.
-# Przycisk gumy Pull Up wskazujemy względem ✓ jego wiersza (leftOf; tekst karty „band: …” zajmuje całą szerokość karty, więc nie jest na lewo).
-- scrollUntilVisible: { element: "Set 1 done — Pull Up", direction: DOWN, timeout: 30000, centerElement: true }
-# Przebieg 38264871642 (14.10.2026 maszyna, ta sama aplikacja co 38241528019): przy innym przewinięciu w hierarchii był też wiersz Band Pull Apart
-# (✓, „Band: green, level 1” na y=38), a samo `leftOf` nie rozróżnia wierszy — drugie stuknięcie trafiło w gumę Band Pull Apart (zrzut 77: guma Pull Up
-# nadal G1). Kotwica `below: "Pull Up"` (nagłówek ćwiczenia stoi nad jego wierszami) wyklucza wiersze Band Pull Apart; zostaje też leftOf (✓ tego wiersza).
-- tapOn: { text: "Band: none", below: "Pull Up", leftOf: "Set 1 done — Pull Up" }
-- extendedWaitUntil: { visible: { text: "Band: green, level 1", below: "Pull Up", leftOf: "Set 1 done — Pull Up" }, timeout: 15000 }
-- tapOn: { text: "Band: green, level 1", below: "Pull Up", leftOf: "Set 1 done — Pull Up" }
-- extendedWaitUntil: { visible: { text: "Band: red, level 2", below: "Pull Up" }, timeout: 15000 }
+- extendedWaitUntil: { visible: "Pull-Up, .*", timeout: 30000 }
+- tapOn: "Pull-Up, .*"
+- extendedWaitUntil: { visible: "Set 1 done — Pull-Up", timeout: 30000 }
+# E2E 91: po przewinięciu do wiersza Pull-Up karta „teraz” (z „Set done”) jest nad ekranem — kotwica `below: "Set done.*"` nie istnieje.
+# Przycisk gumy Pull-Up wskazujemy względem ✓ jego wiersza (leftOf; tekst karty „band: …” zajmuje całą szerokość karty, więc nie jest na lewo).
+- scrollUntilVisible: { element: "Set 1 done — Pull-Up", direction: DOWN, timeout: 30000, centerElement: true }
+# Przebieg 38264871642 (14.10.2026 maszyna, ta sama aplikacja co 38241528019): przy innym przewinięciu w hierarchii był też wiersz Band Pull-Apart
+# (✓, „Band: green, level 1” na y=38), a samo `leftOf` nie rozróżnia wierszy — drugie stuknięcie trafiło w gumę Band Pull-Apart (zrzut 77: guma Pull-Up
+# nadal G1). Kotwica `below: "Pull-Up"` (nagłówek ćwiczenia stoi nad jego wierszami) wyklucza wiersze Band Pull-Apart; zostaje też leftOf (✓ tego wiersza).
+- tapOn: { text: "Band: none", below: "Pull-Up", leftOf: "Set 1 done — Pull-Up" }
+- extendedWaitUntil: { visible: { text: "Band: green, level 1", below: "Pull-Up", leftOf: "Set 1 done — Pull-Up" }, timeout: 15000 }
+- tapOn: { text: "Band: green, level 1", below: "Pull-Up", leftOf: "Set 1 done — Pull-Up" }
+- extendedWaitUntil: { visible: { text: "Band: red, level 2", below: "Pull-Up" }, timeout: 15000 }
 - takeScreenshot: 62-guma-pull-up
-- tapOn: "Set 1 done — Pull Up"
+- tapOn: "Set 1 done — Pull-Up"
 - tapOn: { text: "Skip", optional: true }
 
 # --- Zakończenie: guma w zapisanej sesji ---

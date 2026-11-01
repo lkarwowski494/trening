@@ -51,7 +51,7 @@ describe('pokrycie katalogu: dokument i liczby z kodu', () => {
     expect(r.figura.v2 + r.figura.v1 + r.figura.bezFigury).toBe(r.cwiczen);
     expect(r.wskazowki.wlasne + r.wskazowki.ogolne + r.wskazowki.bezTekstu).toBe(r.cwiczen);
     expect(r.wskazowki.wlasneZBledami).toBeLessThanOrEqual(r.wskazowki.wlasne);
-    expect(r.pelnaKarta).toBeLessThanOrEqual(Math.min(r.wskazowki.wlasneZBledami, r.figura.v2, r.animowanyBlad, r.roleMiesni));
+    expect(r.pelnaKarta).toBeLessThanOrEqual(Math.min(r.wskazowki.wlasne + r.wskazowki.ogolne, r.czesteBledyTekst, r.figura.v2, r.animowanyBlad, r.roleMiesni));
     expect(Object.values(fix.rodziny).reduce((s, f) => s + f.cwiczen, 0)).toBe(r.cwiczen);
     expect(Object.values(fix.rodziny).reduce((s, f) => s + f.pelnaKarta, 0)).toBe(r.pelnaKarta);
   });
@@ -147,6 +147,32 @@ describe('pokrycie katalogu: cele wersji', () => {
     const plik = join(dir, 'cele.json');
     writeFileSync(plik, JSON.stringify({ wersje: { '2.0': { status: 'próba', min: { pelnaKarta: fix.dobre.pelnaKarta } } } }));
     expect(skrypt('--cel', '2.0', '--cele', plik).status).toBe(0);
+  });
+});
+
+/** Definicja Z3 (ZB-025 a; właściciel 31.10.2026, decyzja 1.1 pkt 3): „pełna karta” liczy zrecenzowany zestaw ogólny wzorca ruchu jako wskazówki, własne wskazówki tylko tam,
+ * gdzie ćwiczenie odbiega od wzorca. Funkcja czysta `elementyKarty` — macierz 3 trybów wskazówek × obecność każdego z pozostałych elementów. */
+type Wej = { wskazowki: 'wlasne' | 'ogolne' | 'brak'; bledyTekst: boolean; figuraV2: boolean; animowanyBlad: boolean; roleMiesni: boolean };
+const elementy = (w: Wej) => JSON.parse(execFileSync('node', ['--input-type=module', '-e', `import { elementyKarty } from './scripts/pokrycie-katalogu.mjs'; console.log(JSON.stringify(elementyKarty(${JSON.stringify(w)})));`], { cwd: root, encoding: 'utf8' })) as { el: Record<string, boolean>; pelna: boolean };
+const pelneWej: Wej = { wskazowki: 'wlasne', bledyTekst: true, figuraV2: true, animowanyBlad: true, roleMiesni: true };
+
+describe('pokrycie katalogu: definicja pełnej karty Z3 (ZB-025 a, 31.10.2026)', () => {
+  test.each([['wlasne', true], ['ogolne', true], ['brak', false]] as const)('tryb wskazówek %s → element „wskazówki” = %s (zestaw ogólny po recenzji liczy się jak własne; bez tekstu nie)', (tryb, ok) => {
+    const r = elementy({ ...pelneWej, wskazowki: tryb });
+    expect(r.el.wskazowki).toBe(ok); expect(r.pelna).toBe(ok);
+  });
+  test('zestaw ogólny po recenzji, z częstymi błędami i figurą, animowanym błędem i rolami mięśni → pełna karta (to, czego stara definicja nie liczyła)', () => {
+    expect(elementy({ ...pelneWej, wskazowki: 'ogolne' }).pelna).toBe(true);
+  });
+  test.each(['bledyTekst', 'figuraV2', 'animowanyBlad', 'roleMiesni'] as const)('brak elementu %s → karta niepełna, a pozostałe elementy bez zmian', brak => {
+    const r = elementy({ ...pelneWej, [brak]: false });
+    expect(r.pelna).toBe(false); expect(Object.values(r.el).filter(v => !v)).toHaveLength(1);
+  });
+  test('wszystkie elementy z listy ELEMENTY (docs/55) mają wartość w wyniku', () => {
+    expect(Object.keys(elementy(pelneWej).el).sort()).toEqual(['animowanyBlad', 'czesteBledy', 'figuraV2', 'roleMiesni', 'wskazowki']);
+  });
+  test('docs/55 opisuje definicję Z3 (zrecenzowany zestaw ogólny albo własne wskazówki)', () => {
+    expect(read('docs/55-pokrycie-katalogu.md')).toMatch(/\*\*Pełna karta\*\* = wskazówki \(własne albo zrecenzowany zestaw ogólny wzorca ruchu — Z3, 31\.10\.2026\)/);
   });
 });
 

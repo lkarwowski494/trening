@@ -11,7 +11,7 @@
 #   "Technique"                                      ← 'Technika' (przycisk sekcji, components/ExerciseCues.tsx; od 27.10.2026 karta ćwiczenia otwiera ją rozwiniętą — pierwsze stuknięcie zwija, drugie rozwija)
 #   "Setup" / "The app does not give medical advice.*"  ← 'Ustawienie' / zdanie o poradach medycznych na końcu sekcji (stopka „Na podstawie…” usunięta 23.10.2026 — źródła są w Ustawienia → Źródła wiedzy)
 #   "Movement drawing: .*"                           ← 'Rysunek ruchu: {opis}' (etykieta VoiceOver obrazu figury, components/ExerciseFigure.tsx)
-#   lib-row-1 / exercises-search / exercise-cues / exercise-figure-v2-image  ← testID: wiersz listy Ćwiczenia (jeden wynik), pole wyszukiwania (app/exercises.tsx), sekcja Technika, obraz figury v2 (101-22: Deadlift (Barbell))
+#   lib-row-1 / exercises-search / exercise-cues / exercise-figure-v2-image  ← testID: wiersz listy Ćwiczenia (jeden wynik), pole wyszukiwania (app/exercises.tsx), sekcja Technika, obraz figury v2 (101-22: Deadlift)
 #   "Pause animation" / "Resume animation"          ← 'Zatrzymaj animację' / 'Wznów animację' (przycisk pod figurą, WCAG 2.2.2)
 # Audyt kontrolny 1, fala 2b (09.10.2026):
 #   UX2-01 — dawna nazwa z katalogu znajduje obecne ćwiczenie: "Back Squat, barbell · formerly: Narrow Stance Squats" ← 'dawniej: {n}' (dopisek wiersza
@@ -85,10 +85,10 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 # --- 101-22: karta Deadlift (sztanga) z rysunkiem v2 (rodzina „zawias biodrowy”); pole listy po id, wiersz wyniku po id (M1-034) ---
 - tapOn: { id: "exercises-search" }
 - eraseText: 40
-- inputText: "Deadlift (Barbell)"
+- inputText: "Deadlift"
 - pressKey: Enter   # reguła: po wpisie w wyszukiwarce zawsze Enter
 - pressKey: Enter   # chowa klawiaturę (L-013)
-- extendedWaitUntil: { visible: "Deadlift \\(Barbell\\), barbell.*", timeout: 15000 }
+- extendedWaitUntil: { visible: "Deadlift, barbell.*", timeout: 15000 }
 - tapOn: { id: "lib-row-1" }   # jeden wynik wyszukiwania (wzór: 27)
 - extendedWaitUntil: { visible: "Technique", timeout: 30000 }
 # 31.10.2026 (scalenie wersja-1-0-1-r2 do linii 1.1): rodzina hinge ukryta do recenzji 1.1 (bramka 4) — krok rysunku warunkowy jak wyżej (wraca do twardego po recenzji)

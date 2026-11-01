@@ -10,7 +10,7 @@
  "now": {
   "setId": "set-0-1",
   "blockId": "block-0",
-  "title": "Bench Press (Barbell)",
+  "title": "Bench Press",
   "counter": "セット 2/3",
   "load": "80 kg × 8",
   "group": null,
@@ -22,17 +22,17 @@
   "startedAt": 1791885600000,
   "endsAt": 1791885690000,
   "totalSec": 90,
-  "cue": "Bench Press (Barbell) · セット 2, 80 kg, 8 回",
+  "cue": "Bench Press · セット 2, 80 kg, 8 回",
   "last": false
  },
  "after": {
   "restSec": 90,
-  "cue": "Bench Press (Barbell) · セット 3, 80 kg, 8 回",
+  "cue": "Bench Press · セット 3, 80 kg, 8 回",
   "last": false,
   "now": {
    "setId": "set-0-2",
    "blockId": "block-0",
-   "title": "Bench Press (Barbell)",
+   "title": "Bench Press",
    "counter": "セット 3/3",
    "load": "80 kg × 8",
    "group": null,

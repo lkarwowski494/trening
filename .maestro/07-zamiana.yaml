@@ -6,11 +6,11 @@
 #   "Home,.*"                        ← LOCATION_PRESET_LABEL.home.en 'Home' + hint 'empty — tick what you have' (lib/equipment.ts)
 #   sw-Adjustable bench              ← testID przełącznika SwitchRow: 'sw-' + EQUIPMENT bench_adj.en (lib/equipment.ts)
 #   sw-Dumbbells \(fixed or quick-adjust\) ← jak wyżej, db_fixed.en; nawiasy poprzedzone \\ (tests/maestro-selectors.test.ts)
-#   "Bench Press \(Barbell\),.*"     ← Item pickera „{title}, {sub}”: exName('Bench Press (sztanga)') → 'Bench Press (Barbell)', sub 'barbell · missing: …'
+#   "Bench Press,.*"     ← Item pickera „{title}, {sub}”: exName('Bench Press (sztanga)') → 'Bench Press', sub 'barbell · missing: …'
 #   "no equipment at Home.*"         ← 'brak sprzętu w: {l}' → 'no equipment at {l}' (components/ActiveWorkout.tsx)
 #   "Swap exercise: X"               ← 'Zamień ćwiczenie: {name}' (accessibilityLabel przycisku „⇄ zamień” w bloku)
 #   "Suggestion 1: X.*"              ← 'Propozycja {n}: {name}' (app/swap.tsx; ranking lib/swap.ts — w Domu z ławką i hantlami:
-#                                      Bench Press (Barbell) → 1. Bench Press (Dumbbell); Overhead Press (Barbell) → 1. Arnold Press — remis
+#                                      Bench Press → 1. Dumbbell Bench Press; Overhead Press → 1. Arnold Press — remis
 #                                      punktów, kolejność alfabetyczna w języku interfejsu; tabela D7: docs/14a-e2-top3.md)
 #   "instead of: X.*"                ← 'zamiast: {name}' (linijka pod nazwą zamiennika)
 #   "Undo swap: X"                   ← 'Cofnij zamianę: {name}' (przycisk „↺ cofnij”)
@@ -52,7 +52,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"
 
-# --- Pusty trening + Bench Press (Barbell) — niedostępny w Domu ---
+# --- Pusty trening + Bench Press — niedostępny w Domu ---
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
@@ -66,36 +66,36 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
-- extendedWaitUntil: { visible: "Bench Press \\(Barbell\\),.*", timeout: 30000 }
-- tapOn: "Bench Press \\(Barbell\\),.*"
+- extendedWaitUntil: { visible: "Bench Press,.*", timeout: 30000 }
+- tapOn: "Bench Press,.*"
 - extendedWaitUntil: { visible: "no equipment at Home.*", timeout: 30000 }
 - takeScreenshot: 31-brak-sprzetu
 
-# --- Zamiana w miejscu: propozycje → Bench Press (Dumbbell) ---
-- scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Barbell\\)", direction: DOWN, timeout: 30000, centerElement: true }  # run 37738868663: przycisk nad paskiem zakładek
-- tapOn: "Swap exercise: Bench Press \\(Barbell\\)"
-- extendedWaitUntil: { visible: "Suggestion 1: Bench Press \\(Dumbbell\\).*", timeout: 30000 }
+# --- Zamiana w miejscu: propozycje → Dumbbell Bench Press ---
+- scrollUntilVisible: { element: "Swap exercise: Bench Press", direction: DOWN, timeout: 30000, centerElement: true }  # run 37738868663: przycisk nad paskiem zakładek
+- tapOn: "Swap exercise: Bench Press"
+- extendedWaitUntil: { visible: "Suggestion 1: Dumbbell Bench Press.*", timeout: 30000 }
 - takeScreenshot: 32-arkusz-propozycje
-- tapOn: "Suggestion 1: Bench Press \\(Dumbbell\\).*"
-- extendedWaitUntil: { visible: "instead of: Bench Press \\(Barbell\\).*", timeout: 30000 }
-- assertVisible: "Set 1 done — Bench Press \\(Dumbbell\\)"
-- assertNotVisible: "Set 2 done — Bench Press \\(Dumbbell\\)"   # ta sama liczba serii (pusty trening: 1)
+- tapOn: "Suggestion 1: Dumbbell Bench Press.*"
+- extendedWaitUntil: { visible: "instead of: Bench Press.*", timeout: 30000 }
+- assertVisible: "Set 1 done — Dumbbell Bench Press"
+- assertNotVisible: "Set 2 done — Dumbbell Bench Press"   # ta sama liczba serii (pusty trening: 1)
 - assertNotVisible: "no equipment at Home.*"
 - takeScreenshot: 33-po-zamianie
 
 # --- Cofnięcie i ponowna zamiana ---
 # run 38563966851: przy dłuższej treści (panel „Test watch” w buildzie E2E) środek listy leży wyżej — przycisk „↺ cofnij” był nad krawędzią listy (y 35–75, lista od 62),
 # a stuknięcie w niego trafiało w pasek stanu; przewinięcie w górę ze środkowaniem przed stuknięciem
-- scrollUntilVisible: { element: "Undo swap: Bench Press \\(Dumbbell\\)", direction: UP, timeout: 30000, centerElement: true }
-- tapOn: "Undo swap: Bench Press \\(Dumbbell\\)"
-- scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Barbell\\)", direction: DOWN, timeout: 30000 }  # M3 fix: przycisk zamiany bywa pod krawędzią (większe cyfry tablicy, 04-studio-projektowe-001)
-- extendedWaitUntil: { visible: "Swap exercise: Bench Press \\(Barbell\\)", timeout: 30000 }
+- scrollUntilVisible: { element: "Undo swap: Dumbbell Bench Press", direction: UP, timeout: 30000, centerElement: true }
+- tapOn: "Undo swap: Dumbbell Bench Press"
+- scrollUntilVisible: { element: "Swap exercise: Bench Press", direction: DOWN, timeout: 30000 }  # M3 fix: przycisk zamiany bywa pod krawędzią (większe cyfry tablicy, 04-studio-projektowe-001)
+- extendedWaitUntil: { visible: "Swap exercise: Bench Press", timeout: 30000 }
 - assertNotVisible: "instead of: .*"
-- scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Barbell\\)", direction: DOWN, timeout: 30000, centerElement: true }  # run 37738868663: przycisk nad paskiem zakładek
-- tapOn: "Swap exercise: Bench Press \\(Barbell\\)"
-- extendedWaitUntil: { visible: "Suggestion 1: Bench Press \\(Dumbbell\\).*", timeout: 30000 }
-- tapOn: "Suggestion 1: Bench Press \\(Dumbbell\\).*"
-- extendedWaitUntil: { visible: "instead of: Bench Press \\(Barbell\\).*", timeout: 30000 }
+- scrollUntilVisible: { element: "Swap exercise: Bench Press", direction: DOWN, timeout: 30000, centerElement: true }  # run 37738868663: przycisk nad paskiem zakładek
+- tapOn: "Swap exercise: Bench Press"
+- extendedWaitUntil: { visible: "Suggestion 1: Dumbbell Bench Press.*", timeout: 30000 }
+- tapOn: "Suggestion 1: Dumbbell Bench Press.*"
+- extendedWaitUntil: { visible: "instead of: Bench Press.*", timeout: 30000 }
 
 # --- Podział: drugie ćwiczenie z 3 seriami, 1 odhaczona → zamiana ---
 - scrollUntilVisible: { element: "\\+ Add exercise", direction: DOWN, timeout: 60000, centerElement: true }  # run 37730170793: bez wyśrodkowania stuknięcie trafiło w pasek zakładek
@@ -106,26 +106,26 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
-- extendedWaitUntil: { visible: "Overhead Press \\(Barbell\\),.*", timeout: 30000 }
-- tapOn: "Overhead Press \\(Barbell\\),.*"
-- extendedWaitUntil: { visible: "Set 1 done — Overhead Press \\(Barbell\\)", timeout: 30000 }
+- extendedWaitUntil: { visible: "Overhead Press,.*", timeout: 30000 }
+- tapOn: "Overhead Press,.*"
+- extendedWaitUntil: { visible: "Set 1 done — Overhead Press", timeout: 30000 }
 - scrollUntilVisible: { element: { text: "\\+ set", index: 1 }, direction: DOWN, timeout: 60000 }
 - tapOn: { text: "\\+ set", index: 1 }
 - scrollUntilVisible: { element: { text: "\\+ set", index: 1 }, direction: DOWN, timeout: 60000 }  # M3 fix: tablica z większymi cyframi (04-studio-projektowe-001) — po dodaniu serii „+ set” schodzi pod listę
 - tapOn: { text: "\\+ set", index: 1 }
-- scrollUntilVisible: { element: "Set 3 done — Overhead Press \\(Barbell\\)", direction: DOWN, timeout: 60000 }
-- tapOn: "Set 1 done — Overhead Press \\(Barbell\\)"
+- scrollUntilVisible: { element: "Set 3 done — Overhead Press", direction: DOWN, timeout: 60000 }
+- tapOn: "Set 1 done — Overhead Press"
 - tapOn: { text: "Skip", optional: true }
-- scrollUntilVisible: { element: "Swap exercise: Overhead Press \\(Barbell\\)", direction: DOWN, timeout: 60000, centerElement: true }  # jak wyżej — przycisk nad paskiem zakładek
-- tapOn: "Swap exercise: Overhead Press \\(Barbell\\)"
+- scrollUntilVisible: { element: "Swap exercise: Overhead Press", direction: DOWN, timeout: 60000, centerElement: true }  # jak wyżej — przycisk nad paskiem zakładek
+- tapOn: "Swap exercise: Overhead Press"
 - extendedWaitUntil: { visible: "Suggestion 1: Arnold Press.*", timeout: 30000 }
 - tapOn: "Suggestion 1: Arnold Press.*"
-- extendedWaitUntil: { visible: "instead of: Overhead Press \\(Barbell\\).*", timeout: 30000 }
+- extendedWaitUntil: { visible: "instead of: Overhead Press.*", timeout: 30000 }
 # E2E 89 (krok 83): po podziale blok Overhead Press (1 odhaczona seria) kurczy się, a lista zostaje przewinięta jak przy przycisku „Swap” —
 # odhaczona seria najpewniej wypadała nad widoczny obszar (bez zrzutu tego kroku; w drzewie Jest blok jest na miejscu — tests/maestro-flows.test.tsx).
 # Przewinięcie do niej zamiast assertVisible.
-- scrollUntilVisible: { element: "Set 1 done — Overhead Press \\(Barbell\\)", direction: UP, timeout: 30000 }
-- assertNotVisible: "Set 2 done — Overhead Press \\(Barbell\\)"
+- scrollUntilVisible: { element: "Set 1 done — Overhead Press", direction: UP, timeout: 30000 }
+- assertNotVisible: "Set 2 done — Overhead Press"
 - scrollUntilVisible: { element: "Set 1 done — Arnold Press", direction: DOWN, timeout: 30000 }
 - scrollUntilVisible: { element: "Set 2 done — Arnold Press", direction: DOWN, timeout: 30000 }
 - assertNotVisible: "Set 3 done — Arnold Press"
@@ -147,24 +147,24 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
       - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 10000 }
 - tapOn: { text: "Finish", below: "Finish workout\\?" }
 - extendedWaitUntil: { visible: "Session", timeout: 30000 }
-- assertVisible: ".*Overhead Press \\(Barbell\\).*"
+- assertVisible: ".*Overhead Press.*"
 - assertVisible: ".*Arnold Press.*"
 - takeScreenshot: 35-historia-po-podziale
 
 # --- D6: przepięcie w edytorze historii (docs/14 pkt 5, krok 7) ---
 #   "Edit session", "Save session", "Save changes\?" ← jak przepływ 05; „⇄ zamień” w edytorze ma ten sam opis „Swap exercise: X”
 - tapOn: "Edit session"
-- extendedWaitUntil: { visible: "Swap exercise: Overhead Press \\(Barbell\\)", timeout: 30000 }
-- tapOn: "Swap exercise: Overhead Press \\(Barbell\\)"  # ekran bez paska zakładek (edytor historii)
-- extendedWaitUntil: { visible: "Suggestion \\d: Overhead Press \\(Dumbbell\\).*", timeout: 30000 }
+- extendedWaitUntil: { visible: "Swap exercise: Overhead Press", timeout: 30000 }
+- tapOn: "Swap exercise: Overhead Press"  # ekran bez paska zakładek (edytor historii)
+- extendedWaitUntil: { visible: "Suggestion \\d: Dumbbell Overhead Press.*", timeout: 30000 }
 - takeScreenshot: 38-edytor-arkusz
-- tapOn: "Suggestion \\d: Overhead Press \\(Dumbbell\\).*"
-- extendedWaitUntil: { visible: "Swap exercise: Overhead Press \\(Dumbbell\\)", timeout: 30000 }
+- tapOn: "Suggestion \\d: Dumbbell Overhead Press.*"
+- extendedWaitUntil: { visible: "Swap exercise: Dumbbell Overhead Press", timeout: 30000 }
 - tapOn: "Save session"
 - tapOn: { text: "Save", below: "Save changes\\?", optional: true }
 - extendedWaitUntil: { visible: "Session", timeout: 30000 }
-- assertVisible: ".*Overhead Press \\(Dumbbell\\).*"
-- assertNotVisible: ".*Overhead Press \\(Barbell\\).*"
+- assertVisible: ".*Dumbbell Overhead Press.*"
+- assertNotVisible: ".*(?<!Dumbbell )Overhead Press.*"   # ZB-025 b (nazwy EN 31.10.2026): sztanga bez przedrostka — „Dumbbell Overhead Press” zostaje
 - takeScreenshot: 39-historia-po-przepieciu
 
 # --- W3: „Always at Home” w treningu z szablonu i podpowiedź przy ponownym starcie (docs/14 pkt 7, krok 9 — rekomendacja) ---
@@ -175,10 +175,10 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }  # układ B (09.10.2026): ekran główny od karty „Dziś” i przycisku startu
 - runFlow: subflows/szablon-testowy.yaml
 - runFlow: subflows/start-szablonu.yaml
-- scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 30000 }  # M3 fix: przycisk zamiany bywa pod krawędzią (większe cyfry tablicy, 04-studio-projektowe-001)
-- extendedWaitUntil: { visible: "Swap exercise: Bench Press \\(Dumbbell\\)", timeout: 30000 }
-- scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 30000, centerElement: true }  # run 37738868663: przycisk nad paskiem zakładek
-- tapOn: "Swap exercise: Bench Press \\(Dumbbell\\)"
+- scrollUntilVisible: { element: "Swap exercise: Dumbbell Bench Press", direction: DOWN, timeout: 30000 }  # M3 fix: przycisk zamiany bywa pod krawędzią (większe cyfry tablicy, 04-studio-projektowe-001)
+- extendedWaitUntil: { visible: "Swap exercise: Dumbbell Bench Press", timeout: 30000 }
+- scrollUntilVisible: { element: "Swap exercise: Dumbbell Bench Press", direction: DOWN, timeout: 30000, centerElement: true }  # run 37738868663: przycisk nad paskiem zakładek
+- tapOn: "Swap exercise: Dumbbell Bench Press"
 - extendedWaitUntil: { visible: "Suggestion 1: .*", timeout: 30000 }
 - tapOn: "Suggestion 1: .*"
 - extendedWaitUntil: { visible: "Always at Home — .*", timeout: 30000 }
@@ -203,7 +203,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 # 11.10.2026: podpowiedź „Usually at Home — X. Swap?” to tekst-przycisk (bez „Zamień”); etykieta VoiceOver „Swap to substitute: X” — stuknięcie otwiera arkusz zamiany
 - extendedWaitUntil: { visible: "Swap to substitute: .*", timeout: 30000 }
 # interpreter E2E 91 (tests/maestro-layout.ts): linijka podpowiedzi przesuwa przycisk zamiany pod pasek zakładek (jak przy pierwszym starcie, run 37738868663)
-- scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 30000, centerElement: true }   # podpowiedź nie zmienia bloku sama
+- scrollUntilVisible: { element: "Swap exercise: Dumbbell Bench Press", direction: DOWN, timeout: 30000, centerElement: true }   # podpowiedź nie zmienia bloku sama
 - takeScreenshot: 37-podpowiedz-zamiennika
 # E2E 0.13.0 (run 38241528019, próba 2): po przewinięciu linijka podpowiedzi leżała przy górnej krawędzi, pod paskiem stanu (zrzut kroku 181 — widać
 # tylko jej dolny skraj). Maestro uznał ją za widoczną (hierarchia iOS nie przycina do listy), stuknął w pasek stanu i arkusz zamiany się nie otworzył.

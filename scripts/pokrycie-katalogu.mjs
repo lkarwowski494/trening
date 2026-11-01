@@ -7,7 +7,8 @@
 //   tests/fixtures/pokrycie-katalogu.json    — te same liczby dla testów; pole `dobre` = metryki, które nie mogą spadać (zapadka),
 //   tests/fixtures/pokrycie-katalogu-min.json — zapisane minimum zapadki; obniżka tylko z polem `powod` (tests/pokrycie-katalogu.test.ts).
 // Cele wersji: docs/research/pokrycie-cele.json (sekcja „Cele” w docs/55; krok listy kontrolnej wydania w docs/39).
-// Definicja „pełnej karty”: własne wskazówki (źródłowe, nie zestaw ogólny) + częste błędy + figura v2 w aplikacji + animowany błąd + role mięśni (analiza 28.10.2026: 17).
+// Definicja „pełnej karty” (Z3, właściciel 31.10.2026, decyzja 3 w docs/18; ZB-025 a): wskazówki (własne ALBO zestaw ogólny wzorca ruchu, ale tylko z recenzją treści — `generalCuesReviewed`
+// — i przy rysowanej figurze) + częste błędy (tekst) + figura v2 w aplikacji + animowany błąd + role mięśni. Dotąd (28.10.2026) liczyły się tylko własne wskazówki (analiza: 17).
 // „Komplet tekstów w języku”: każdy tekst karty (zdania wskazówek, zdania animowanych błędów, zdania ról mięśni) jest w słowniku TEGO języka — angielski tekst zastępczy
 // nie liczy się jako przekład (dla angielskiego i polskiego słownik bazowy jest przekładem).
 // Użycie: node scripts/pokrycie-katalogu.mjs --write | --check | --podnies-minimum | --cel [wersja]
@@ -26,11 +27,18 @@ export const PLIKI = {
 };
 /** Elementy „pełnej karty” (kolejność = kolejność w dokumencie). */
 export const ELEMENTY = [
-  ['wlasneWskazowki', 'własne wskazówki (źródłowe)'], ['czesteBledy', 'częste błędy (własne)'], ['figuraV2', 'figura v2 w aplikacji'],
+  ['wskazowki', 'wskazówki (własne albo zrecenzowany zestaw ogólny)'], ['czesteBledy', 'częste błędy (tekst)'], ['figuraV2', 'figura v2 w aplikacji'],
   ['animowanyBlad', 'animowany błąd'], ['roleMiesni', 'role mięśni'],
 ];
 /** Ile ćwiczeń z jednej grupy braków wypisać z nazwy (dłuższe grupy tylko liczbą). */
 const MAX_NAZW = 25;
+
+/** Elementy pełnej karty (definicja Z3) z wejścia policzonego dla jednego ćwiczenia; jedyne miejsce, które mówi, co składa się na „pełną kartę”.
+ *  wskazowki: 'wlasne' | 'ogolne' (zestaw ogólny z recenzją treści, przy rysowanej figurze) | 'brak'. */
+export function elementyKarty({ wskazowki, bledyTekst, figuraV2, animowanyBlad, roleMiesni }) {
+  const el = { wskazowki: wskazowki === 'wlasne' || wskazowki === 'ogolne', czesteBledy: !!bledyTekst, figuraV2: !!figuraV2, animowanyBlad: !!animowanyBlad, roleMiesni: !!roleMiesni };
+  return { el, pelna: Object.values(el).every(Boolean) };
+}
 
 const own = (o, k) => (o && Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined);
 const tekst = s => typeof s === 'string' && s.trim().length > 0;
@@ -64,13 +72,11 @@ export function policz() {
     /* wskazówki jak ekran karty: własne tylko z lib/cues/data.json (karta ukryta po recenzji treści — brak), zestaw ogólny tylko z recenzją treści i przy rysowanej figurze */
     const wskazowki = sel.mode === 'own' ? (wl ? 'wlasne' : 'brak') : sel.mode === 'general' && cues.generalCuesReviewed(key) && spec ? 'ogolne' : 'brak';
     const bledyTekst = wskazowki === 'wlasne' ? (wl?.mistakes ?? []).length > 0 : wskazowki === 'ogolne' ? sel.err.length > 0 : false;
-    const el = {
-      wlasneWskazowki: wskazowki === 'wlasne', czesteBledy: wskazowki === 'wlasne' && (wl?.mistakes ?? []).length > 0, figuraV2: !!spec, animowanyBlad: bledy.length > 0, roleMiesni: rolki.length > 0,
-    };
+    const { el, pelna } = elementyKarty({ wskazowki, bledyTekst, figuraV2: !!spec, animowanyBlad: bledy.length > 0, roleMiesni: rolki.length > 0 });
     const v1 = !spec && !v2.figureWithheld(key) && !!fig1.figureByKey(key);
     return {
       key, nazwa: dispName(key), rodzina: fam, spec: !!spec, v1, daneV2: !spec && pozy.has(key), wyjatek: !spec && !v1 && wyjatki.has(key), dane: !!spec || pozy.has(key),
-      wskazowki, bledyTekst, el, pelna: Object.values(el).every(Boolean), recenzja: !!spec && zRecenzja.has(fam), cueIds, rolki,
+      wskazowki, bledyTekst, el, pelna, recenzja: !!spec && zRecenzja.has(fam), cueIds, rolki,
     };
   });
 
@@ -79,7 +85,7 @@ export function policz() {
     cwiczen: n,
     figura: { v2: ile(c => c.spec), v1: ile(c => c.v1), bezFigury: ile(c => !c.spec && !c.v1), daneV2NieWlaczone: ile(c => c.daneV2), wyjatekBezAnimacji: ile(c => c.wyjatek) },
     animowanyBlad: ile(c => c.el.animowanyBlad),
-    wskazowki: { wlasne: ile(c => c.wskazowki === 'wlasne'), wlasneZBledami: ile(c => c.el.czesteBledy), ogolne: ile(c => c.wskazowki === 'ogolne'), bezTekstu: ile(c => c.wskazowki === 'brak') },
+    wskazowki: { wlasne: ile(c => c.wskazowki === 'wlasne'), wlasneZBledami: ile(c => c.wskazowki === 'wlasne' && c.bledyTekst), ogolne: ile(c => c.wskazowki === 'ogolne'), bezTekstu: ile(c => c.wskazowki === 'brak') },
     czesteBledyTekst: ile(c => c.bledyTekst),
     roleMiesni: ile(c => c.el.roleMiesni),
     pelnaKarta: ile(c => c.pelna),
@@ -147,7 +153,7 @@ export function renderuj({ cw, fixture, LANGS }) {
   L.push('Wygenerowano z runtime aplikacji poleceniem `node scripts/pokrycie-katalogu.mjs --write` (te same moduły co ekran karty ćwiczenia i eksport strony). Decyzja właściciela 28.10.2026 (M-B): katalog ma być',
     'regularnie powiększany do pełnego — licznik jest generowany z kodu, zapadka `tests/pokrycie-katalogu.test.ts` (część `npm run verify`) nie pozwala, by „dobre” liczby spadły poniżej `tests/fixtures/pokrycie-katalogu-min.json`',
     '(obniżka tylko świadomie, z polem `powod`; podniesienie po fali prac: `node scripts/pokrycie-katalogu.mjs --podnies-minimum`), a lista kontrolna wydania (`docs/39`) wymaga celu wersji z sekcji „Cele”. Dane ćwiczeń, figur i tekstów skrypt tylko liczy.', '');
-  L.push(`**Pełna karta** = własne wskazówki (źródłowe, nie zestaw ogólny) + częste błędy + figura v2 w aplikacji + animowany błąd + role mięśni. **Komplet tekstów w języku** = wszystkie zdania karty (wskazówki, animowane błędy, role mięśni) są w słowniku tego języka;`,
+  L.push(`**Pełna karta** = wskazówki (własne albo zrecenzowany zestaw ogólny wzorca ruchu — Z3, 31.10.2026) + częste błędy (tekst) + figura v2 w aplikacji + animowany błąd + role mięśni. **Komplet tekstów w języku** = wszystkie zdania karty (wskazówki, animowane błędy, role mięśni) są w słowniku tego języka;`,
     'angielski tekst zastępczy nie liczy się jako przekład.', '');
   L.push('## Sumy', '', `Ćwiczeń w katalogu: **${n}**.`, '', '| Co | Ćwiczeń | Udział |', '|---|---:|---:|');
   const w = (nazwa, x) => L.push(`| ${nazwa} | ${x} | ${proc(x, n)} |`);
