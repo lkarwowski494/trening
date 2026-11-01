@@ -227,12 +227,15 @@ export async function readRecovery(): Promise<string | null> {
   if (!db || !recovery) return null;
   const r = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', recovery.key);
   const l = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', recovery.key + '_live').catch(() => null);
+  /* 07-jakosc-002: konfiguracja (szablony, ustawienia, plany) odłożona przez start obok nieczytelnego zapisu — też w kopercie */
+  const c = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', recovery.key + '_cfg').catch(() => null);
   if (!r) return null;
-  if (!l) return r.v;
+  if (!l && !c) return r.v;
   /* T4b: koperta JSON zamiast dopisku po stanie — plik da się po poprawce wczytać importem (parseBackup); stan jako obiekt, gdy jest poprawnym
    * JSON-em, inaczej jako tekst */
   const js = (x: string) => { try { return JSON.parse(x); } catch { return x; } };
-  return JSON.stringify({ format: 'trening-recovery', note: 'state = nieczytelny zapis, live = trening w toku', state: js(r.v), live: js(l.v) }); }
+  return JSON.stringify({ format: 'trening-recovery', note: 'state = nieczytelny zapis, live = trening w toku, cfg = konfiguracja', state: js(r.v),
+      ...(l ? { live: js(l.v) } : {}), ...(c ? { cfg: js(c.v) } : {}) }); }
 /** A11B-1 (audyt zmian 0.11, część 2, wariant A): import i „Wyczyść wszystkie dane” zastępują wszystko — także szkice edycji (ćwiczeń i szablonów
  * w pamięci i w bazie, lib/draft.ts; edycji historii, lib/edit.ts). Szkic sprzed zastąpienia dotyczy starych danych: po „Edytuj → Zapisz” nadpisałby
  * dane z kopii. Moduły szkiców rejestrują tu czyszczenie (store ich nie importuje). */
