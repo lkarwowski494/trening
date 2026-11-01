@@ -17,6 +17,7 @@ import * as edit from '@/lib/edit';
 import * as timer from '@/lib/timer';
 import { buildCsv } from '@/lib/backup';
 import { fresh, ex, addWorkout, saved, seedState } from './helpers';
+import { przejsciaCzasu } from '../scripts/ci/przejscia-czasu';
 
 jest.setTimeout(120000);
 
@@ -73,18 +74,26 @@ const Y2026 = Date.UTC(2026, 0, 1) - DAY, Y2029 = Date.UTC(2029, 0, 1) + DAY;
 const TR = transitions(Y2026, Y2029);
 const TR2026 = TR.filter(x => wall(x.at).y === 2026);
 const GAPS = TR2026.filter(x => x.after > x.before), FOLDS = TR2026.filter(x => x.after < x.before);
-/** Chwile przejść UE (29.03 i 25.10.2026, 01:00 UTC) i USA (8.03 2026 10:00 UTC, 1.11 2026 09:00 UTC) — sprawdzane w każdej strefie. */
-const ABS_EDGES = [Date.UTC(2026, 2, 29, 1), Date.UTC(2026, 9, 25, 1), Date.UTC(2026, 2, 8, 10), Date.UTC(2026, 10, 1, 9)];
+/** Chwile przejść UE (Europe/Warsaw) i USA (America/Los_Angeles) w latach 2026–2028 — WYLICZONE z bazy stref (scripts/ci/przejscia-czasu.js; 07-jakosc-006), nie wpisane
+ * na sztywno — sprawdzane w każdej strefie (też bez DST: wtedy sprawdzają, że nic się nie psuje). */
+const ABS_EDGES = [2026, 2027, 2028].flatMap(r => ['Europe/Warsaw', 'America/Los_Angeles'].flatMap(z => przejsciaCzasu(r, z).map(x => x.at)));
 const EDGES = [...new Set([...TR.map(x => x.at), ...ABS_EDGES])].sort((a, b) => a - b);
 
-/** Znane przejścia 2026 w strefach z macierzy CI (data lokalna, zmiana w minutach) — z tzdata; inna strefa = brak oczekiwań. */
-const KNOWN: Record<string, [string, number][]> = {
-  'Europe/Warsaw': [['2026-03-29', 60], ['2026-10-25', -60]],
+/** Niezależna wyrocznia REGUŁ (nie z bazy stref): n-ta niedziela miesiąca (n > 0) albo ostatnia (n = -1); data 'RRRR-MM-DD'. */
+function niedziela(y: number, mo: number, n: number): string {
+  if (n > 0) { let c = cal(y, mo, 1); while (dow(c) !== 6) c = addDays(c, 1); return iso(addDays(c, 7 * (n - 1))); }
+  let c = cal(y, mo + 1, 0); while (dow(c) !== 6) c = addDays(c, -1); return iso(c);
+}
+/** Znane przejścia roku `y` w strefach z macierzy CI (data lokalna, zmiana w minutach) — z REGUŁ stref (UE: ostatnia niedziela marca i października; USA: 2. niedziela marca
+ * i 1. niedziela listopada; Lord Howe: 1. niedziela kwietnia i października), liczone dla dowolnego roku; inna strefa = brak oczekiwań. */
+const knownFor = (y: number): Record<string, [string, number][]> => ({
+  'Europe/Warsaw': [[niedziela(y, 3, -1), 60], [niedziela(y, 10, -1), -60]],
   'UTC': [], 'Etc/UTC': [],
-  'America/Los_Angeles': [['2026-03-08', 60], ['2026-11-01', -60]],
+  'America/Los_Angeles': [[niedziela(y, 3, 2), 60], [niedziela(y, 11, 1), -60]],
   'Pacific/Kiritimati': [], 'Pacific/Pago_Pago': [], 'Asia/Kolkata': [], 'Asia/Calcutta': [],
-  'Australia/Lord_Howe': [['2026-04-05', -30], ['2026-10-04', 30]],
-};
+  'Australia/Lord_Howe': [[niedziela(y, 4, 1), -30], [niedziela(y, 10, 1), 30]],
+});
+const KNOWN = knownFor(2026);
 export const CI_ZONES = ['Europe/Warsaw', 'UTC', 'America/Los_Angeles', 'Pacific/Kiritimati', 'Pacific/Pago_Pago', 'Asia/Kolkata', 'Australia/Lord_Howe'];
 
 /** Sondy: co 5 h 17 min przez 2026–2028 + otoczenie przejść (±1 ms, ±1 min, ±30 min) + brzegi lokalnych dób w ważnych dniach. */
@@ -109,6 +118,11 @@ describe(`strefa procesu: ${ZONE}`, () => {
   test('wyrocznia Intl zgadza się z silnikiem (getTimezoneOffset) w każdej sondzie — inaczej reszta pliku nie ma podstaw', () => {
     const bad = PROBES.filter(t => offsetMin(t) !== -new Date(t).getTimezoneOffset());
     expect(bad.map(t => new Date(t).toISOString())).toEqual([]);
+  });
+  test('przejsciaCzasu(rok, strefa) (jedno miejsce dla testów i workflowu) zgadza się z regułami stref w latach 2026–2040 — nie tylko 2026/2027 (07-jakosc-006)', () => {
+    for (let y = 2026; y <= 2040; y++) for (const [z, exp] of Object.entries(knownFor(y))) {
+      expect([y, z, przejsciaCzasu(y, z).map(x => [x.data, x.after - x.before])]).toEqual([y, z, exp]);
+    }
   });
   test('przejścia czasu 2026 w tej strefie zgadzają się z tabelą tzdata (strefy z macierzy CI)', () => {
     const found = TR2026.map(x => [iso(calOf(x.at)), x.after - x.before]);

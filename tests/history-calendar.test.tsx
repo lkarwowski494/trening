@@ -6,12 +6,16 @@
 import * as store from '@/lib/store';
 import { LANGS, applyLang as setLang } from '@/lib/i18n';
 import { monthGrid, workoutsByDay, dayKey, shiftMonth, weekdayLabels, monthTitle, dayTitle } from '@/lib/calendar';
-import { fresh, addWorkout, saved } from './helpers';
+import { fresh, addWorkout, saved, pinDate } from './helpers';
 import { renderApp, flushAll, screen, go, tap, act } from './app';
 
 jest.setTimeout(60000);
 /* M1-audytor-generalny-034 (07-jakosc-011): zegar przestawiony w teście (np. luty 2027) nie może przeciekać do następnego — testy czytające „teraz” padały w losowej kolejności */
-afterEach(() => { jest.useRealTimers(); });
+/* M1 07-jakosc-001: testy kalendarza nie czytają prawdziwego zegara — „teraz” jest przypięte (pin), więc wynik nie zależy od dnia uruchomienia
+ * (test padał 1. dnia miesiąca: dzień 2. był w przyszłości). Brzegi (1. i ostatni dzień miesiąca, przełom roku) mają własne przypadki niżej. */
+let unpin: (() => void) | null = null;
+const pin = (iso: string) => { unpin?.(); unpin = pinDate(iso); };
+afterEach(() => { jest.useRealTimers(); unpin?.(); unpin = null; }); /* najpierw zegar Jesta (wraca do przypiętego Date), potem przypięcie */
 afterAll(() => { setLang('pl'); });
 const at = (y: number, m: number, d: number, h = 18) => new Date(y, m, d, h).getTime();
 
@@ -52,6 +56,7 @@ describe('języki: skróty dni tygodnia i nazwa miesiąca', () => {
 });
 
 describe('ekran Historia', () => {
+  beforeEach(() => { pin('2026-10-15T20:00:00'); }); /* środek miesiąca: dni 1. i 2. są w przeszłości; brzegi — osobny blok niżej */
   const boot = async (fn: () => void) => { await fresh(); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await go('/history'); await flushAll(10); };
   test('dni z treningiem w bieżącym miesiącu to przyciski „data, N sesji”; inne dni i nagłówki dni — ukryte dla VoiceOver', async () => {
     const now = new Date(); const d1 = at(now.getFullYear(), now.getMonth(), 1, 9); const d2 = at(now.getFullYear(), now.getMonth(), 2, 9);
@@ -99,5 +104,29 @@ describe('ekran Historia', () => {
     const now = new Date(); const d1 = at(now.getFullYear(), now.getMonth(), 1, 9);
     await boot(() => { addWorkout(d1, [['Back Squat', [{ weight: 100, reps: 5 }]]]); }); const before = JSON.stringify(store.getState());
     await tap(screen.getByTestId(`cal-${dayKey(d1)}`)); await tap(screen.getByLabelText('Poprzedni miesiąc')); expect(JSON.stringify(store.getState())).toBe(before);
+  });
+});
+
+/* 07-jakosc-001: jawne brzegi kalendarza — „dziś” jest 1. dniem miesiąca, ostatnim dniem miesiąca, ostatnim dniem roku, 1 stycznia, 29 lutego. Trening „dziś”
+ * ma być przyciskiem dnia; trening z poprzedniego dnia (inny miesiąc/rok) widać po strzałce wstecz; strzałka w przód prowadzi do następnego miesiąca. */
+describe('ekran Historia: brzegi miesiąca i roku (zegar przypięty)', () => {
+  const boot = async (fn: () => void) => { await fresh(); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await go('/history'); await flushAll(10); };
+  test.each([
+    ['1. dzień miesiąca (1.11.2026)', 2026, 10, 1], ['1. dzień grudnia (1.12.2026)', 2026, 11, 1], ['1 stycznia (1.01.2027)', 2027, 0, 1],
+    ['ostatni dzień miesiąca (31.10.2026)', 2026, 9, 31], ['31 grudnia (31.12.2026)', 2026, 11, 31], ['29 lutego (29.02.2028)', 2028, 1, 29], ['28 lutego roku nieprzestępnego (28.02.2027)', 2027, 1, 28],
+  ])('%s', async (_nazwa, y, m, d) => {
+    pin(`${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}T20:00:00`);
+    const today = at(y, m, d, 9); const yesterday = at(y, m, d - 1, 23); /* d - 1 = 0 → ostatni dzień poprzedniego miesiąca */
+    await boot(() => { addWorkout(today, [['Back Squat', [{ weight: 100, reps: 5 }]]]); addWorkout(yesterday, [['Plank', [{ durationSec: 60 }]]]); });
+    expect(screen.getByText(monthTitle(y, m))).toBeTruthy();
+    expect(screen.getByTestId(`cal-${dayKey(today)}`).props.accessibilityLabel).toBe(`${dayTitle({ y, m, d })}, dziś, 1 sesja`); /* dzisiejszy dzień ma w etykiecie „dziś” */
+    const py = new Date(yesterday).getFullYear(), pm = new Date(yesterday).getMonth(); const sameMonth = pm === m && py === y;
+    if (!sameMonth) { expect(screen.queryByText(monthTitle(py, pm))).toBeNull(); await tap(screen.getByLabelText('Poprzedni miesiąc')); expect(screen.getByText(monthTitle(py, pm))).toBeTruthy(); }
+    expect(screen.getByTestId(`cal-${dayKey(yesterday)}`)).toBeTruthy();
+    const nx = shiftMonth(y, m, 1); if (!sameMonth) await tap(screen.getByLabelText('Następny miesiąc'));
+    await tap(screen.getByLabelText('Następny miesiąc')); expect(screen.getByText(monthTitle(nx.y, nx.m))).toBeTruthy();
+  });
+  test('zegar jest przypięty: new Date() i Date.now() zwracają przypiętą chwilę (strażnik przed powrotem do prawdziwego zegara)', () => {
+    pin('2027-01-01T00:30:00'); expect(new Date().getFullYear()).toBe(2027); expect(new Date().getDate()).toBe(1); expect(Math.abs(Date.now() - new Date(2027, 0, 1, 0, 30).getTime())).toBeLessThan(60e3);
   });
 });

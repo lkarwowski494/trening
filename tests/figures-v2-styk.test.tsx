@@ -18,6 +18,7 @@ import { applyLang } from '@/lib/i18n';
 import { light, dark, lightHC, darkHC } from '@/lib/theme';
 import * as fs from 'fs';
 import * as path from 'path';
+import { krotnosc, LIMIT_KROTNOSCI } from './perf-wzgledny';
 
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 const AI = RN.AccessibilityInfo as unknown as { isReduceMotionEnabled: jest.Mock };
@@ -198,16 +199,17 @@ describe('styki wymagane z danych (figury-sens.json — jedno źródło prawdy)'
 });
 
 describe('wydajność', () => {
-  test('styki, znaczki i poświaty jednej klatki (oba widoki, klatka już policzona) ≤ 20 ms średnio (limit ostrzegawczy na współdzielonym CI; typowo 1–3 ms w Node, z pierwszym obliczeniem styków); ≤ 40 kształtów dodatkowych na widok; pamięć klatek: ta sama klatka to ten sam obiekt', () => {
+  test('styki, znaczki i poświaty jednej klatki (oba widoki, klatka już policzona) koszt względny (krotność czasu odniesienia, tests/perf-wzgledny.ts); ≤ 40 kształtów dodatkowych na widok; pamięć klatek: ta sama klatka to ten sam obiekt', () => {
     const list = KEYS.filter((_, i) => i % 3 === 0).map(k => figureSpec(k)!); for (const s of list) { frameAt(s, 0.5); const e = errorsOf(s)[0]?.error; if (e) frameAt(s, 0.5, e); }
     expect(frameAt(list[0], 0.5)).toBe(frameAt(list[0], 0.5)); expect(frameAt(list[0], 0.5)).not.toBe(frameAt(list[0], 0.25));
-    const t0 = Date.now(); let n = 0; let maxShapes = 0;
-    for (const s of list) for (const v of s.views) { const g = contactShapes(s, 0.5, v, errorsOf(s)[0]?.error); const b = badgeShapes(badgesFor(s, 0.5, v)); maxShapes = Math.max(maxShapes, g.length + b.length); n++; }
-    expect((Date.now() - t0) / n).toBeLessThan(20); expect(maxShapes).toBeLessThanOrEqual(40);
+    let maxShapes = 0; const jobs: (() => void)[] = []; /* 07-jakosc-005: kształty deterministycznie; czas względnie (tests/perf-wzgledny.ts) */
+    for (const s of list) for (const v of s.views) { const er = errorsOf(s)[0]?.error; const g = contactShapes(s, 0.5, v, er); const b = badgeShapes(badgesFor(s, 0.5, v)); maxShapes = Math.max(maxShapes, g.length + b.length); jobs.push(() => { contactShapes(s, 0.5, v, er); badgeShapes(badgesFor(s, 0.5, v)); }); }
+    const k = krotnosc(() => { for (const j of jobs) j(); }, 3) / jobs.length; expect(k).toBeLessThan(LIMIT_KROTNOSCI.styki); expect(maxShapes).toBeLessThanOrEqual(40);
   });
-  test('pełny krok animacji (kształty + tor + styki + znaczki, oba widoki, świeża pozycja) ≤ 60 ms średnio (limit ostrzegawczy na współdzielonym CI; typowo 3–10 ms w Node) i jedna klatka na krok (pamięć klatek) dla każdej rodziny', () => {
-    for (const k of ['Back Squat', 'Bench Press (sztanga)', 'Deadlift (sztanga)', 'Pull Up']) { const s = figureSpec(k)!; const t0 = Date.now(); const N = 12;
-      for (let i = 0; i < N; i++) { const u = (i + 0.37) / (N + 1); for (const v of s.views) { shapesAt(s, u, v, true); contactShapes(s, u, v); badgeShapes(badgesFor(s, u, v)); } }
-      expect([k, (Date.now() - t0) / N < 60]).toEqual([k, true]); const u = 0.41; expect(frameAt(s, u)).toBe(frameAt(s, u)); }
+  test('pełny krok animacji (kształty + tor + styki + znaczki, oba widoki, świeża pozycja) koszt względny (tests/perf-wzgledny.ts) i jedna klatka na krok (pamięć klatek) dla każdej rodziny', () => {
+    for (const key of ['Back Squat', 'Bench Press (sztanga)', 'Deadlift (sztanga)', 'Pull Up']) { const s = figureSpec(key)!; const N = 12;
+      let rep = 0; /* każde wywołanie na świeżych pozycjach (pamięć klatek nie zaniża pomiaru) */
+      const krok = () => { rep++; for (let i = 0; i < N; i++) { const u = (i + 0.37 + rep * 0.013) / (N + 16); for (const v of s.views) { shapesAt(s, u, v, true); contactShapes(s, u, v); badgeShapes(badgesFor(s, u, v)); } } };
+      const k = krotnosc(krok, 1) / N; expect([key, k < LIMIT_KROTNOSCI.krok]).toEqual([key, true]); const u = 0.41; expect(frameAt(s, u)).toBe(frameAt(s, u)); }
   });
 });

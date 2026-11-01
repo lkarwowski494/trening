@@ -1,0 +1,3 @@
+{
+  "audit-perf-ui.test.tsx": "Oczekiwany format daty zależy od bieżącego roku (rok pokazywany tylko dla innego niż 2026) i jest liczony z tego samego zegara co aplikacja — test jest poprawny w każdym roku, brzeg 31.12/1.01 go nie dotyczy (porównanie samego roku, bez dnia i miesiąca)."
+}

@@ -6,7 +6,7 @@ import * as i18n from '@/lib/i18n';
 import { EN } from '@/lib/i18n.en';
 import { buildCsv, parseBackup, buildBackup } from '@/lib/backup';
 import { SCHEMA_VERSION, GROUPS, MUSCLES, METRIC_LABEL, LOAD_MODE_LABEL, MODULE_LABEL, SET_KIND_LABEL, LIB, seedState } from '@/lib/seed';
-import { setBodyMass, fresh, saved, ex, addWorkout, set } from './helpers';
+import { setBodyMass, fresh, saved, ex, addWorkout, set, pinDate } from './helpers';
 
 const DAY = 86400e3;
 const at = (y: number, m: number, d: number, h = 18) => new Date(y, m - 1, d, h).getTime();
@@ -85,6 +85,8 @@ describe('A3 zapis', () => {
 });
 
 describe('A4 obliczenia', () => {
+  /* 07-jakosc-001: „teraz” przypięte na środę w południe — dawniej poniedziałek przed 10:00 dawał trening „w przyszłości” (t0 = poniedziałek 10:00 bieżącego tygodnia) */
+  let unpin: () => void = () => undefined; beforeEach(() => { unpin = pinDate('2026-10-14T12:00:00'); }); afterEach(() => { unpin(); });
   beforeEach(async () => { await fresh(); });
   test('objętość: jedna definicja w historii, tygodniu i sesji', () => {
     const now = new Date(); const t0 = stats.thisMonday(0, now) + 10 * 3600e3;

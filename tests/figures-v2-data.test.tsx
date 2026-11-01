@@ -17,6 +17,7 @@ import { cueText, cueDict } from '@/lib/cues';
 import { metricFor } from '@/lib/seed';
 import { applyLang } from '@/lib/i18n';
 import { light, dark } from '@/lib/theme';
+import { krotnosc, LIMIT_KROTNOSCI } from './perf-wzgledny';
 
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 const AI = RN.AccessibilityInfo as unknown as { isReduceMotionEnabled: jest.Mock };
@@ -141,10 +142,10 @@ describe('komponent z danych (ekran, dostępność)', () => {
 });
 
 describe('wydajność: budżet kształtów i czasu klatki', () => {
-  test('klatka (oba widoki, z mięśniami, torem i błędem) ≤ 120 kształtów na widok; średnio ≤ 15 ms w Node na klatkę; kadr liczony raz (cache)', () => {
-    let n = 0; const t0 = Date.now();
-    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; const er = errorsOf(s)[0]?.error; for (const v of s.views) { const sh = [...shapesAt(s, 0.5, v, true, er), ...trailFor(s, v)]; expect([k, v, sh.length <= 120]).toEqual([k, v, true]); n++; } }
-    expect((Date.now() - t0) / n).toBeLessThan(15);
+  test('klatka (oba widoki, z mięśniami, torem i błędem) ≤ 120 kształtów na widok; koszt względny klatki (tests/perf-wzgledny.ts); kadr liczony raz (cache)', () => {
+    const jobs: (() => void)[] = []; /* 07-jakosc-005: kształty sprawdzane deterministycznie; czas — względnie (tests/perf-wzgledny.ts), nie w ms */
+    for (const [, k] of DATA_KEYS) { const s = figureSpec(k)!; const er = errorsOf(s)[0]?.error; for (const v of s.views) { const sh = [...shapesAt(s, 0.5, v, true, er), ...trailFor(s, v)]; expect([k, v, sh.length <= 120]).toEqual([k, v, true]); jobs.push(() => { shapesAt(s, 0.5, v, true, er); trailFor(s, v); }); } }
+    const k = krotnosc(() => { for (const j of jobs) j(); }, 3) / jobs.length; expect(k).toBeLessThan(LIMIT_KROTNOSCI.klatka);
     const s = figureSpec('Pull Up')!; expect(boxFor(s, 'side')).toBe(boxFor(s, 'side'));
   });
 });
