@@ -24,11 +24,11 @@ describe('reguły uczciwej promocji (M1-055)', () => {
 
 describe('przekaz startowy z zegarkiem (M1-056)', () => {
   test('nowy przekaz jest w docs/15, docs/18 i roli marketingu', () => {
-    for (const f of ['docs/15-app-store.md', 'docs/18-przekazanie.md']) expect(read(f)).toContain(PRZEKAZ);
+    for (const f of ['docs/15-app-store.md', 'docs/18-archiwum-do-30.10.md']) expect(read(f)).toContain(PRZEKAZ); /* wpis 23.10.2026 przeniesiony do archiwum (31.10.2026) */
     expect(agent).toContain(PRZEKAZ);
   });
   test('stare hasło z 13.10.2026 jest oznaczone jako zastąpione i nie występuje poza historią w docs/18', () => {
-    expect(read('docs/18-przekazanie.md')).toMatch(/Bez internetu\.” \(brzmienie do zatwierdzenia; \*\*zastąpione 23\.10\.2026/);
+    expect((read('docs/18-przekazanie.md') + read('docs/18-archiwum-do-30.10.md'))).toMatch(/Bez internetu\.” \(brzmienie do zatwierdzenia; \*\*zastąpione 23\.10\.2026/);
     for (const f of ['docs/15-app-store.md', 'docs/45-widocznosc-w-sklepie.md', 'docs/16-jezyki-i-marka.md', '.claude/agents/marketing.md', 'site/index.html']) {
       expect(read(f)).not.toMatch(/Prosty dziennik siłowni|zostaje w Twoim telefonie/);
     }

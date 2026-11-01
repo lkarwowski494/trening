@@ -5,7 +5,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 const read = (f: string) => fs.readFileSync(path.join(__dirname, '..', f), 'utf8');
-const d18 = read('docs/18-przekazanie.md'); const d40 = read('docs/40-lekcje.md');
+const d18 = read('docs/18-przekazanie.md') + '\n' + read('docs/18-archiwum-do-30.10.md'); const d40 = read('docs/40-lekcje.md');
 
 describe('docs/18 i docs/40 po przeniesieniu kolejki', () => {
   test('decyzje z 20.10.2026 są w docs/18 dokładnie raz', () => {

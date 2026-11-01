@@ -469,6 +469,10 @@ describe('L-049 (opcja A, decyzja właściciela 28.10.2026): znacznik zielonego 
     const x = galaz('kod'); oznacz(x.dir, x.npm); dopisz(x, 'docs/a.md', 'c\n'); oznacz(x.dir, x.npm, 'dokumenty');
     expect(pchnij(x).status).toBe(0); expect(gałęzieZdalne(x.zdalne)).toContain('g');
   });
+  test('H1 + archiwizacja docs/18 (31.10.2026): archiwum decyzji to dokument — kod z pełnym verify, potem commit tylko z docs/18-archiwum-do-30.10.md ze znacznikiem verify:docs → przechodzi', () => {
+    const x = galaz('kod'); oznacz(x.dir, x.npm); mkdirSync(join(x.dir, 'docs'), { recursive: true }); dopisz(x, 'docs/18-archiwum-do-30.10.md', '## Decyzje do 30.10.2026\n'); oznacz(x.dir, x.npm, 'dokumenty');
+    expect(pchnij(x).status).toBe(0); expect(gałęzieZdalne(x.zdalne)).toContain('g');
+  });
   test('H1 (31.10.2026): kod po pełnym verify, potem zmiana kodu tylko z verify:docs → zatrzymane', () => {
     const x = galaz('kod'); oznacz(x.dir, x.npm); dopisz(x, 'docs/a.md', 'c\n'); dopisz(x, 'plik.txt', 'd\n'); oznacz(x.dir, x.npm, 'dokumenty');
     const r = pchnij(x); expect(r.status).not.toBe(0); expect(r.stderr).toContain('znacznik verify:docs'); expect(gałęzieZdalne(x.zdalne)).not.toContain('g');

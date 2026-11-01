@@ -16,7 +16,7 @@ import { namesIn, CFG } from './forbidden-names';
 const ROOT = path.join(__dirname, '..');
 const read = (f: string) => fs.readFileSync(path.join(ROOT, f), 'utf8');
 const d15 = read('docs/15-app-store.md');
-const d18 = read('docs/18-przekazanie.md');
+const d18 = read('docs/18-przekazanie.md') + '\n' + read('docs/18-archiwum-do-30.10.md');
 
 /** Wiersze poza blokami historii. */
 function outsideHistory(text: string): { n: number; line: string }[] {

@@ -662,7 +662,7 @@
    "rodzaje": [
     "źródło cytowane w tekście"
    ],
-   "dokument": "docs/18-przekazanie.md",
+   "dokument": "docs/18-archiwum-do-30.10.md",
    "fraza": "Data Not Collected",
    "zrodla": [
     "App Store Connect, App Privacy „Data Not Collected” (opublikowane 14.10.2026, docs/18; docs/45 Q9 A z 21.10.2026)"
@@ -678,7 +678,7 @@
    "rodzaje": [
     "źródło cytowane w tekście"
    ],
-   "dokument": "docs/18-przekazanie.md",
+   "dokument": "docs/18-archiwum-do-30.10.md",
    "fraza": "Data Not Collected",
    "zrodla": [
     "App Store Connect, App Privacy „Data Not Collected” (brak reklam i śledzenia); brak zależności reklamowych w package.json"

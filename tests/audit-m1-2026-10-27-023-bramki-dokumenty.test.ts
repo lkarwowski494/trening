@@ -22,7 +22,7 @@ describe('M1-023: bramki wydania w dokumentach zgodne z CLAUDE.md', () => {
   });
   test('docs/18: lista znanych problemów nie opisuje błędu zegara interpretera Maestro usuniętego w tests/maestro-runner.ts (maestroNow)', () => {
     expect(read('tests/maestro-runner.ts')).toMatch(/export const maestroNow/);
-    expect(read('docs/18-przekazanie.md')).not.toMatch(/Interpreter Maestro w Jest \(tests\/maestro-flows\) liczy czas od zegara maszyny/);
+    expect((read('docs/18-przekazanie.md') + read('docs/18-archiwum-do-30.10.md'))).not.toMatch(/Interpreter Maestro w Jest \(tests\/maestro-flows\) liczy czas od zegara maszyny/);
   });
   /* Pętla 2 (M2, 28.10.2026; reaudyt 07-jakosc-008): formularz i komentarze e2e-ios.yml nie przypisują trybu ścisłego (bez ponowień) do wydania App Store,
    * a warunek R-015 nie wskazuje kroku w testflight.yml (decyzja 27.10.2026: check:release uruchamia lista zgłoszenia i lista wydawcy — blokada-wydania.mjs). */

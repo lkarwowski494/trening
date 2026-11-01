@@ -15,8 +15,8 @@ const root = path.join(__dirname, '..');
 const read = (f: string) => fs.readFileSync(path.join(root, f), 'utf8');
 /** Wpisy dziennika decyzji przez scripts/decyzje.mjs (Jest nie ładuje .mjs wprost — jak w tests/decyzje-straznik.test.ts). */
 const wpisyDecyzji = (): { data: string; tekst: string }[] => {
-  const plik = JSON.stringify(path.join(root, 'docs/18-przekazanie.md')), skrypt = JSON.stringify(path.join(root, 'scripts/decyzje.mjs'));
-  const r = spawnSync(process.execPath, ['--input-type=module', '-e', `import * as m from ${skrypt}; const t = (await import('node:fs')).readFileSync(${plik}, 'utf8'); console.log(JSON.stringify(m.wpisy(t)));`], { encoding: 'utf8', cwd: root, maxBuffer: 64 * 1024 * 1024 /* 31.10.2026: wynik `wpisy` > 1 MiB (docs/18 urosło) → ENOBUFS */ });
+  const plik = JSON.stringify(['docs/18-przekazanie.md', 'docs/18-archiwum-do-30.10.md'].map(f => path.join(root, f))), skrypt = JSON.stringify(path.join(root, 'scripts/decyzje.mjs'));
+  const r = spawnSync(process.execPath, ['--input-type=module', '-e', `import * as m from ${skrypt}; const fs = await import('node:fs'); console.log(JSON.stringify(${plik}.flatMap(p => m.wpisy(fs.readFileSync(p, 'utf8')))));`], { encoding: 'utf8', cwd: root, maxBuffer: 64 * 1024 * 1024 /* 31.10.2026: wynik `wpisy` > 1 MiB (docs/18 urosło) → ENOBUFS */ });
   if (r.status !== 0) throw new Error(`${r.stderr}${r.error ? ` ${r.error.message}` : ''}`);
   return JSON.parse(r.stdout);
 };

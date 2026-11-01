@@ -13,6 +13,8 @@ import { spawnSync } from 'child_process';
 const ROOT = path.join(__dirname, '..');
 const SKRYPT = path.join(ROOT, 'scripts/decyzje.mjs');
 const D18 = 'docs/18-przekazanie.md';
+const D18_ARCH = 'docs/18-archiwum-do-30.10.md'; /* wpisy do 30.10.2026 włącznie (archiwizacja 31.10.2026, wariant A) */
+const DZIENNIK = [D18, D18_ARCH];
 
 type Wpis = { linia: number; data: string; rodzaj: string; naglowek: string; tekst: string };
 /** Wywołanie funkcji modułu ESM przez node (Jest nie ładuje .mjs wprost). */
@@ -91,12 +93,28 @@ describe('scripts/decyzje.mjs — reguły pola wdrożenia (próbki)', () => {
 });
 
 describe(`${D18}: każdy wpis decyzji ma pole wdrożenia i test albo powód (stan repozytorium)`, () => {
-  /* dziennik czytany w procesie podrzędnym (ponad 128 KB — za długi na argument wywołania) */
-  const czytaj = `(await import('node:fs')).readFileSync(${JSON.stringify(path.join(ROOT, D18))}, 'utf8')`;
-  const wpisy = wywolaj<Wpis[]>(`return m.wpisy(${czytaj});`);
+  /* dziennik czytany w procesie podrzędnym (ponad 128 KB — za długi na argument wywołania); oba pliki: bieżący i archiwum */
+  const czytajPlik = (f: string) => `(await import('node:fs')).readFileSync(${JSON.stringify(path.join(ROOT, f))}, 'utf8')`;
+  const wpisy = DZIENNIK.flatMap(f => wywolaj<Wpis[]>(`return m.wpisy(${czytajPlik(f)});`));
   test('dziennik bez błędów strażnika (wynik jak `npm run check:decyzje`)', () => {
-    expect(wywolaj<unknown[]>(`return m.sprawdz(${JSON.stringify(D18)}, ${czytaj});`)).toEqual([]);
+    for (const f of DZIENNIK) expect({ f, bledy: wywolaj<unknown[]>(`return m.sprawdz(${JSON.stringify(f)}, ${czytajPlik(f)});`) }).toEqual({ f, bledy: [] });
     expect(wpisy.length).toBeGreaterThan(300); /* wstecz od 11.10.2026: 319 wpisów 27.10.2026 */
+  });
+  test('archiwizacja 31.10.2026: PLIKI strażnika obejmują bieżący dziennik i archiwum; wpis z 11.10.2026 jest w archiwum i jest liczony, nie ma go w bieżącym', () => {
+    expect(wywolaj<string[]>('return m.PLIKI;')).toEqual(DZIENNIK);
+    const arch = wywolaj<Wpis[]>(`return m.wpisy(${czytajPlik(D18_ARCH)});`);
+    const biez = wywolaj<Wpis[]>(`return m.wpisy(${czytajPlik(D18)});`);
+    expect(arch.length).toBeGreaterThan(300);
+    expect(arch.some(x => x.data === '2026-10-11')).toBe(true);
+    expect(biez.some(x => x.data === '2026-10-11')).toBe(false);
+    expect(wpisy).toHaveLength(arch.length + biez.length);
+  });
+  test('archiwum zawiera tylko wpisy do 30.10.2026 bez „otwarte/odłożone”; bieżący dziennik trzyma wpisy otwarte, odłożone i od 31.10.2026', () => {
+    const pole = (w: Wpis) => /\[wdrożenie: (otwarte|odłożone)/.test(w.tekst);
+    const arch = wywolaj<Wpis[]>(`return m.wpisy(${czytajPlik(D18_ARCH)});`);
+    const biez = wywolaj<Wpis[]>(`return m.wpisy(${czytajPlik(D18)});`);
+    expect(arch.filter(w => w.data > '2026-10-30' || pole(w))).toEqual([]);
+    expect(biez.filter(w => w.data <= '2026-10-30' && !pole(w))).toEqual([]);
   });
   test('CLI: `npm run check:decyzje` w verify; kod 0 na repozytorium', () => {
     const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));

@@ -18,7 +18,7 @@
 //   albo „niesprawdzona — powód”. Kod, bez kodu, zastąpione, odłożone — bez wymogu.
 // Test: plik istnieje i zawiera datę decyzji (DD.MM.RRRR albo DD.MM) albo podany fragment (np. nazwę testu). Od 28.10.2026 fragment nie
 // zastępuje daty: nowy wskazany test musi zawierać datę decyzji (07-jakosc-005: test wskazuje decyzję, którą pilnuje).
-// Użycie: node scripts/decyzje.mjs --check [plik…]   (domyślnie docs/18-przekazanie.md; kod 1 przy błędach)
+// Użycie: node scripts/decyzje.mjs --check [plik…]   (domyślnie PLIKI = docs/18-przekazanie.md i docs/18-archiwum-do-30.10.md; kod 1 przy błędach)
 //         node scripts/decyzje.mjs --lista [plik]    (JSON wpisów: linia, data, pole wdrożenia, testy — do przeglądu)
 import { spawnSync } from 'node:child_process';
 import { readFileSync, existsSync } from 'node:fs';
@@ -26,7 +26,8 @@ import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-export const PLIKI = ['docs/18-przekazanie.md'];
+/** Dziennik decyzji: bieżący plik i archiwum (wpisy do 30.10.2026 włącznie; właściciel 31.10.2026, wariant A — wynik wpisy() przekroczył 1 MiB, ENOBUFS w testach). */
+export const PLIKI = ['docs/18-przekazanie.md', 'docs/18-archiwum-do-30.10.md'];
 /** Od tej daty wskazany test musi zawierać datę decyzji (fragment nie wystarcza). */
 export const OD_DATY_W_TESCIE = '2026-10-28';
 /** Od tej daty wpis „otwarte” ma pole [wykonalność: …]. */

@@ -9,7 +9,7 @@ import * as path from 'path';
 
 const ROOT = path.join(__dirname, '..');
 const czytaj = (p: string) => fs.readFileSync(path.join(ROOT, p), 'utf8');
-const D18 = czytaj('docs/18-przekazanie.md');
+const D18 = czytaj('docs/18-przekazanie.md') + '\n' + czytaj('docs/18-archiwum-do-30.10.md');
 const D21 = czytaj('docs/21-roadmapa-offline.md');
 
 /** Pozycje 1.0.1 wymienione we wpisie DEC-07 po „1.0.1:” — każda ma pozycję backlogu z wersją 1.0.1 w docs/21. */

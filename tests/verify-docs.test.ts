@@ -19,7 +19,7 @@ const plan = (zmienione: string[]): Plan => {
 };
 
 const DOKUMENTY = [
-  'docs/18-przekazanie.md', 'docs/40-lekcje.md', 'docs/brd/reguly.md', 'CLAUDE.md', 'README.md', '.claude/agents/programista.md',
+  'docs/18-przekazanie.md', 'docs/18-archiwum-do-30.10.md', 'docs/40-lekcje.md', 'docs/brd/reguly.md', 'CLAUDE.md', 'README.md', '.claude/agents/programista.md',
 ];
 const NIE_DOKUMENTY = [
   'lib/plan.ts', 'app/(tabs)/index.tsx', 'components/ActiveWorkout.tsx', 'tests/hak-pre-push.test.ts', 'scripts/readme.mjs', 'scripts/verify-docs.mjs',

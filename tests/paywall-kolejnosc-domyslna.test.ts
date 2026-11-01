@@ -10,6 +10,7 @@ import { PLAN_ORDER } from '@/lib/products';
 
 const root = path.join(__dirname, '..');
 const read = (f: string) => fs.readFileSync(path.join(root, f), 'utf8');
+const ARCH_18 = ['docs/18-archiwum-do-', '30', '.10.md'].join(''); /* nazwa złożona z części: pełna nazwa archiwum byłaby w tym pliku datą, której próbka w tests/decyzje-straznik.test.ts nie może mieć */
 
 describe('ekran zakupu: kolejność planów i plan domyślny (decyzja 27.10.2026)', () => {
   test('PLAN_ORDER: roczny, miesięczny, dożywotni', () => { expect(PLAN_ORDER).toEqual(['yearly', 'monthly', 'lifetime']); });
@@ -24,7 +25,7 @@ describe('ekran zakupu: kolejność planów i plan domyślny (decyzja 27.10.2026
 
 describe('docs/18: wpis decyzji z 27.10.2026 o kolejności planów', () => {
   test('wpis z 27.10.2026 o kolejności planów wskazuje ten plik testu', () => {
-    const l = read('docs/18-przekazanie.md').split('\n').find(x => /^- 27\.10\.2026 ~16:00 UTC \(właściciel, test na telefonie, build 1031\)/.test(x))!;
-    expect(l).toContain('[test: tests/paywall-kolejnosc-domyslna.test.ts]'); expect(read('docs/18-przekazanie.md')).toContain('ZASTĄPIONE 27.10.2026');
+    const l = (read('docs/18-przekazanie.md') + read(ARCH_18)).split('\n').find(x => /^- 27\.10\.2026 ~16:00 UTC \(właściciel, test na telefonie, build 1031\)/.test(x))!;
+    expect(l).toContain('[test: tests/paywall-kolejnosc-domyslna.test.ts]'); expect((read('docs/18-przekazanie.md') + read(ARCH_18))).toContain('ZASTĄPIONE 27.10.2026');
   });
 });

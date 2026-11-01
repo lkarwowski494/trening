@@ -35,7 +35,7 @@ describe('ceny M1 (13.10.2026, stan App Store Connect 14.10.2026)', () => {
   test('README (gen:pricing) i docs/15 pokazują ceny z FAKE_PRICES, docs/18 zapisuje decyzję 20.10.2026 z odrzuconą ceną 4,99', () => {
     const r = read('README.md'); const g = r.slice(r.indexOf('<!-- gen:pricing -->'), r.indexOf('<!-- /gen:pricing -->'));
     expect(g).toMatch(new RegExp(`Roczny[^\\n]*\\| ${num(FAKE_PRICES.yearly).replace('.', '\\.')} \\|`));
-    const d = read('docs/18-przekazanie.md'); const i = d.indexOf('20.10.2026 (właściciel): cena roczna'); expect(i).toBeGreaterThan(-1);
+    const d = (read('docs/18-przekazanie.md') + read('docs/18-archiwum-do-30.10.md')); const i = d.indexOf('20.10.2026 (właściciel): cena roczna'); expect(i).toBeGreaterThan(-1);
     expect(d.slice(i, i + 1200)).toContain('6,99'); expect(d.slice(i, i + 1200)).toContain('odrzucon');
   });
   test('store/Trening.storekit ma te same ceny co FAKE_PRICES', () => {
@@ -64,10 +64,10 @@ describe('ceny M1 (13.10.2026, stan App Store Connect 14.10.2026)', () => {
     const m = JSON.parse(read('store/app-store-metadata.json')).lokalizacje; /* od 22.10.2026 opis w jednym miejscu: store/app-store-metadata.json */
     expect(m.pl.description).toContain('plan miesięczny w cenie porównywalnej z jednym espresso w barze*');
     expect(m['en-US'].description).toContain('monthly plan for about the price of one espresso at a bar*');
-    expect(read('docs/18-przekazanie.md')).toMatch(/opis bez list kwot/);
+    expect((read('docs/18-przekazanie.md') + read('docs/18-archiwum-do-30.10.md'))).toMatch(/opis bez list kwot/);
   });
   test('docs/18: wpis z 14.10.2026 opisuje ceny PL, Family Sharing, darmowe 14 dni, poziomy, Billing Grace Period i Standard EULA', () => {
-    const d = read('docs/18-przekazanie.md'); const i = d.indexOf('14.10.2026 (właściciel): ceny w App Store Connect'); expect(i).toBeGreaterThan(-1);
+    const d = (read('docs/18-przekazanie.md') + read('docs/18-archiwum-do-30.10.md')); const i = d.indexOf('14.10.2026 (właściciel): ceny w App Store Connect'); expect(i).toBeGreaterThan(-1);
     const e = d.slice(i, i + 4000);
     for (const k of ['4,99 zł', '19,99 zł', '59,99 zł', '24,99', '69,99', 'Family Sharing', 'armowy miesiąc', 'poziom 1', 'poziom 2', 'Billing Grace Period', '3 dni', 'All Renewals', 'Standard EULA', 'DSA', '9+']) expect(e).toContain(k);
   });
