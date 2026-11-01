@@ -13,20 +13,20 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 | Co | Ćwiczeń | Udział |
 |---|---:|---:|
-| Figura v2 w aplikacji (rodzina gotowa) | 0 | 0% |
-| Figura v1 w aplikacji (bez v2) | 53 | 7,5% |
-| Bez figury w aplikacji | 656 | 92,5% |
+| Figura v2 w aplikacji (rodzina gotowa) | 87 | 12,3% |
+| Figura v1 w aplikacji (bez v2) | 56 | 7,9% |
+| Bez figury w aplikacji | 566 | 79,8% |
 | — z czego: dane póz v2 są, rodzina jeszcze niewłączona | 449 | 63,3% |
-| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 34 | 4,8% |
-| Animowany błąd | 0 | 0% |
-| Własne wskazówki (źródłowe) | 98 | 13,8% |
-| — z czego z częstymi błędami | 36 | 5,1% |
-| Zestaw ogólny wskazówek wzorca ruchu | 0 | 0% |
-| Bez tekstu wskazówek | 611 | 86,2% |
-| Częste błędy (własne albo zestaw ogólny) | 36 | 5,1% |
+| — z czego: wyjątek bez animacji (brak źródła techniki, powód w danych) | 29 | 4,1% |
+| Animowany błąd | 82 | 11,6% |
+| Własne wskazówki (źródłowe) | 101 | 14,2% |
+| — z czego z częstymi błędami | 39 | 5,5% |
+| Zestaw ogólny wskazówek wzorca ruchu | 70 | 9,9% |
+| Bez tekstu wskazówek | 538 | 75,9% |
+| Częste błędy (własne albo zestaw ogólny) | 109 | 15,4% |
 | Role mięśni | 509 | 71,8% |
-| **Pełna karta** | 0 | 0% |
-| Figura z aktualną recenzją ruchu (bramka 4) | 0 | 0% |
+| **Pełna karta** | 82 | 11,6% |
+| Figura z aktualną recenzją ruchu (bramka 4) | 87 | 12,3% |
 
 ## Cele wersji
 
@@ -36,19 +36,17 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela. 01.11.2026 (ZB-025 a): pełna karta liczona wg Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy tekst + figura v2 + animowany błąd + role mięśni); symulacja stanu docelowego (4 rodziny z recenzją ruchu, wszystkie 538 zestawów ogólnych zrecenzowanych) daje pełną kartę 90 (stara definicja: 17), więc cel 17 jest spójny (nie za wysoki), ale po Z3 nie jest już wartością oczekiwaną — podniesienie celu (np. do 90) wymaga decyzji właściciela.
 
-Cel osiągnięty: **nie** (36 z 47 liczb).
+Cel osiągnięty: **nie** (38 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
-| figura v2 w aplikacji | 98 | 0 | 98 |
-| figura w aplikacji (v2 albo v1) | 151 | 53 | 98 |
-| ćwiczenia z danymi figury v2 (włączonymi albo nie) | 536 | 449 | 87 |
-| animowany błąd | 92 | 0 | 92 |
-| własne wskazówki | 102 | 98 | 4 |
-| własne wskazówki z częstymi błędami | 43 | 36 | 7 |
-| wskazówki (własne lub zestaw ogólny) | 640 | 98 | 542 |
-| częste błędy (tekst) | 557 | 36 | 521 |
-| pełna karta | 17 | 0 | 17 |
+| figura v2 w aplikacji | 98 | 87 | 11 |
+| figura w aplikacji (v2 albo v1) | 151 | 143 | 8 |
+| animowany błąd | 92 | 82 | 10 |
+| własne wskazówki | 102 | 101 | 1 |
+| własne wskazówki z częstymi błędami | 43 | 39 | 4 |
+| wskazówki (własne lub zestaw ogólny) | 640 | 171 | 469 |
+| częste błędy (tekst) | 557 | 109 | 448 |
 | komplet tekstów karty: pl | 671 | 525 | 146 |
 | komplet tekstów karty: en | 671 | 525 | 146 |
 
@@ -60,13 +58,13 @@ Cel osiągnięty: **nie** (36 z 47 liczb).
 | `delt_raise` | do zrobienia | 38 | 0 | 30 | 3 | 5 | 0 | 33 | 0 | 0 |
 | `curl` | do zrobienia | 36 | 0 | 36 | 5 | 6 | 0 | 30 | 0 | 0 |
 | `mobility_stand` | do zrobienia | 36 | 0 | 8 | 0 | 0 | 0 | 36 | 0 | 0 |
-| `hinge` | gotowa | 32 | 0 | 0 | 0 | 7 | 0 | 25 | 0 | 0 |
+| `hinge` | gotowa | 32 | 32 | 0 | 0 | 7 | 25 | 0 | 31 | 32 |
 | `triceps` | do zrobienia | 32 | 0 | 29 | 4 | 4 | 0 | 28 | 0 | 0 |
-| `bench_press` | gotowa | 30 | 0 | 0 | 0 | 5 | 0 | 25 | 0 | 0 |
+| `bench_press` | gotowa | 30 | 30 | 0 | 0 | 5 | 25 | 0 | 28 | 30 |
 | `pushup_plank` | do zrobienia | 30 | 0 | 17 | 4 | 7 | 0 | 23 | 0 | 0 |
 | `plyo` | do zrobienia | 28 | 0 | 27 | 0 | 1 | 0 | 27 | 0 | 0 |
 | `olympic` | do zrobienia | 25 | 0 | 23 | 0 | 0 | 0 | 25 | 0 | 0 |
-| `squat` | gotowa | 25 | 0 | 0 | 0 | 5 | 0 | 20 | 0 | 0 |
+| `squat` | gotowa | 25 | 25 | 0 | 0 | 5 | 20 | 0 | 23 | 25 |
 | `lunge` | do zrobienia | 24 | 0 | 24 | 6 | 6 | 0 | 18 | 0 | 0 |
 | `overhead_press` | do zrobienia | 23 | 0 | 21 | 5 | 5 | 0 | 18 | 0 | 0 |
 | `mobility_floor` | do zrobienia | 22 | 0 | 9 | 0 | 0 | 0 | 22 | 0 | 0 |
@@ -79,7 +77,7 @@ Cel osiągnięty: **nie** (36 z 47 liczb).
 | `calf_raise` | do zrobienia | 13 | 0 | 12 | 2 | 3 | 0 | 10 | 0 | 0 |
 | `forearm` | do zrobienia | 13 | 0 | 11 | 0 | 0 | 0 | 13 | 0 | 0 |
 | `pull_up` | gotowa | 13 | 0 | 11 | 3 | 3 | 0 | 10 | 0 | 0 |
-| `row` | do zrobienia | 13 | 0 | 12 | 3 | 3 | 0 | 10 | 0 | 0 |
+| `row` | do zrobienia | 13 | 0 | 12 | 6 | 6 | 0 | 7 | 0 | 0 |
 | `hip_bridge` | do zrobienia | 11 | 0 | 10 | 3 | 3 | 0 | 8 | 0 | 0 |
 | `cable_row` | do zrobienia | 10 | 0 | 9 | 3 | 3 | 0 | 7 | 0 | 0 |
 | `foam_roll` | do zrobienia | 10 | 0 | 0 | 0 | 0 | 0 | 10 | 0 | 0 |
@@ -144,15 +142,15 @@ Kart z tekstami (wskazówki albo role mięśni): **525**. „Komplet” = karta 
 
 ## Ćwiczenia najbliżej pełnej karty
 
-Pełnych kart: 0. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy dłuższe niż 25 — tylko liczba).
+Pełnych kart: 82. Poniżej ćwiczenia, którym brakuje jednego elementu (grupy dłuższe niż 25 — tylko liczba).
 
-- Brak ćwiczeń z jednym brakującym elementem.
+- Brakuje tylko: animowany błąd — 2: JM Press, Sumo Squat (hantel)
 
 | Brakujących elementów pełnej karty | Ćwiczeń |
 |---:|---:|
-| 0 | 0 |
-| 1 | 0 |
-| 2 | 32 |
-| 3 | 55 |
-| 4 | 437 |
+| 0 | 82 |
+| 1 | 2 |
+| 2 | 23 |
+| 3 | 54 |
+| 4 | 363 |
 | 5 | 185 |
