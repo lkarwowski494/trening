@@ -46,7 +46,7 @@ describe('M1-018: TestFlight czeka na zielony pakiet podstawowy E2E dla tego sam
     for (const k of ['bez_wysylki', 'pomin_bramke_e2e', 'powod']) expect(t).toContain(`      ${k}:`);
   });
   test('e2e-ios.yml: run-name koduje pakiet i zawężenia, żeby bramka rozpoznała pełnowartościowy przebieg', () => {
-    const e = wf('e2e-ios.yml'); expect(e).toMatch(/^run-name: .*E2E iOS · /m); expect(e).toContain("inputs.pakiet || 'podstawowy'"); expect(e).toContain('tylko wybrane'); expect(e).toContain('aplikacja z innego przebiegu');
+    const e = wf('e2e-ios.yml'); expect(e).toMatch(/^run-name: .*E2E iOS · /m); expect(e).toContain("inputs.pakiet || 'podstawowy'"); expect(e).toContain("'wybrane'"); expect(e).toContain("'obca'"); expect(e).toContain('github.sha'); /* format i bramka: tests/bramka-e2e-id.test.ts */
   });
   test('zadanie „bramka” jest pierwsze, bez sekretów, a „build” czeka na nie (przed npm ci); awaryjne pominięcie wymaga powodu i zostaje w podsumowaniu', () => {
     const y = wf('testflight.yml'); const jobs = y.slice(y.indexOf('\njobs:\n'));
@@ -59,18 +59,19 @@ describe('M1-018: TestFlight czeka na zielony pakiet podstawowy E2E dla tego sam
   const fakeGh = (rows: string[][], sleepFile?: string) => { const d = mkdtempSync(join(tmpdir(), 'gh-')); const bin = join(d, 'bin'); mkdirSync(bin); const cnt = join(d, 'n'); writeFileSync(cnt, '0');
     const frames = rows.map(r => r.join('\n')); writeFileSync(join(bin, 'gh'), `#!/usr/bin/env bash\nn=$(cat "${cnt}"); echo $((n+1)) > "${cnt}"\nframes=(${frames.map(f => `'${f.replace(/'/g, "'\\''")}'`).join(' ')})\ni=$n; [ $i -ge \${#frames[@]} ] && i=$((\${#frames[@]}-1))\nprintf '%s' "\${frames[$i]}"\n`); chmodSync(join(bin, 'gh'), 0o755); return bin; };
   const gate = (frames: string[][], env: Record<string, string> = {}) => { const bin = fakeGh(frames); const r = spawnSync('bash', [join(root, 'scripts/ci/bramka-e2e.sh'), 'o/r', 'abc123'], { encoding: 'utf8', env: { ...process.env, PATH: `${bin}:${process.env.PATH}`, BRAMKA_POLL_SEC: '0', BRAMKA_GRACE_POLLS: '2', BRAMKA_MAX_POLLS: '3', ...env } }); return { rc: r.status, out: r.stdout + r.stderr }; };
-  const row = (id: string, status: string, concl: string, title: string) => `${id}\t${status}\t${concl || '-'}\t${title}`;
+  const SHA = 'abc123'; const tyt = (pakiet = 'podstawowy', o: { tryb?: string; zakres?: string; app?: string; sha?: string } = {}) => `E2E iOS · pakiet=${pakiet} · tryb=${o.tryb ?? 'zwykly'} · zakres=${o.zakres ?? 'wszystkie'} · aplikacja=${o.app ?? 'wlasna'} · sha=${o.sha ?? SHA}`;
+  const row = (id: string, status: string, concl: string, title: string) => `${id}\t${status}\t${concl || '-'}\t.github/workflows/e2e-ios.yml\t${title}`;
   test('bramka-e2e.sh: zielony pakiet podstawowy / pełny / ścisły na SHA → przechodzi', () => {
-    for (const t of ['podstawowy', 'pelny', 'ścisły']) expect(gate([[row('1', 'completed', 'success', `E2E iOS · ${t}`)]]).rc).toBe(0);
+    for (const t of [tyt('podstawowy'), tyt('pelny'), tyt('pelny', { tryb: 'scisly' })]) expect(gate([[row('1', 'completed', 'success', t)]]).rc).toBe(0);
   });
   test('bramka-e2e.sh: przebieg zawężony (tylko wybrane / cudza aplikacja) i niezielony się nie liczą; brak przebiegu → błąd z instrukcją', () => {
-    expect(gate([[row('1', 'completed', 'success', 'E2E iOS · podstawowy · tylko wybrane')]]).rc).toBe(1);
-    expect(gate([[row('1', 'completed', 'success', 'E2E iOS · podstawowy · aplikacja z innego przebiegu')]]).rc).toBe(1);
-    const red = gate([[row('1', 'completed', 'failure', 'E2E iOS · podstawowy')]]); expect(red.rc).toBe(1); expect(red.out).toMatch(/czerwon/i);
+    expect(gate([[row('1', 'completed', 'success', tyt('podstawowy', { zakres: 'wybrane' }))]]).rc).toBe(1);
+    expect(gate([[row('1', 'completed', 'success', tyt('podstawowy', { app: 'obca' }))]]).rc).toBe(1);
+    const red = gate([[row('1', 'completed', 'failure', tyt())]]); expect(red.rc).toBe(1); expect(red.out).toMatch(/czerwon/i);
     const none = gate([['']]); expect(none.rc).toBe(1); expect(none.out).toContain('e2e-ios.yml'); expect(none.out).toContain('bez_wysylki');
   });
   test('bramka-e2e.sh: trwający przebieg → czeka i przechodzi, gdy zrobi się zielony; po limicie czekania → błąd', () => {
-    const run = row('1', 'in_progress', '', 'E2E iOS · podstawowy'); const ok = row('1', 'completed', 'success', 'E2E iOS · podstawowy');
+    const run = row('1', 'in_progress', '', tyt()); const ok = row('1', 'completed', 'success', tyt());
     expect(gate([[run], [run], [ok]]).rc).toBe(0); const to = gate([[run]]); expect(to.rc).toBe(1); expect(to.out).toMatch(/limit czekania/i);
   });
 });

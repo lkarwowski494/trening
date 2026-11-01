@@ -57,5 +57,10 @@ describe('dziennik wydań (docs/09): wiersz dla każdego tagu v*-b*', () => {
     }
   });
 
+  /* Audyt jakości 012 (01.11.2026): tests.yml nie pobierał tagów, więc w CI test powyżej był pusty (przeszedłby bez żadnego wiersza). Teraz kasa ma tagi (fetch-tags) — w CI ich brak to błąd. */
+  test('w CI (GITHUB_ACTIONS) kasa zawiera tagi v*-b* — inaczej sprawdzenie wierszy byłoby puste', () => {
+    if (process.env.GITHUB_ACTIONS) expect(tags.length).toBeGreaterThan(0);
+  });
+
   test('build 1019 (przypadek z audytu) ma wiersz', () => { expect(rows.some((r) => r.build === 1019)).toBe(true); });
 });

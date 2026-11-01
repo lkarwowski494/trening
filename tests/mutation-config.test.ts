@@ -22,6 +22,15 @@ describe('konfiguracja testów mutacyjnych (M1-055)', () => {
     expect(natywne).toContain('dzwiek-telefon-1030.test.ts');
     expect(natywne.filter(f => !ignored('tests/' + f))).toEqual([]);
   });
+  /* Nocne 01.11.2026 (audyt jakości 004): tests/m5s1-dni-treningowe.test.ts czyta tekst lib/access.ts (regex na „ENABLED: true”), a w kopii Strykera moduł jest zinstrumentowany —
+     suche przejście padało i mutanty modułu `access` nie były liczone wcale. Test czytający źródło mutowanego modułu nie mierzy logiki (każdy mutant psuje go „z zewnątrz”) — poza konfiguracją mutacji. */
+  test('testy czytające tekst źródłowy mutowanego modułu lib/ są poza konfiguracją mutacji (kopia Strykera instrumentuje moduły)', () => {
+    const mutowane = (JSON.parse(readFileSync(join(root, 'stryker.config.json'), 'utf8')).mutate as string[]).map(m => m.replace(/\.ts$/, ''));
+    const czyta = (f: string) => { const z = readFileSync(join(root, 'tests', f), 'utf8').replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, ''); return mutowane.some(m => new RegExp(`readFileSync\\([^;]*?${m.replace('/', '[/\'", ]+')}\\.ts`).test(z)); };
+    const zrodlowe = testy.filter(czyta);
+    expect(zrodlowe).toContain('m5s1-dni-treningowe.test.ts');
+    expect(zrodlowe.filter(f => !ignored('tests/' + f))).toEqual([]);
+  });
   test('testy z dwoma znanymi przypadkami z audytu są wykluczone: backlog-0.10.1-dane i locations-catalog', () => {
     expect(ignored('tests/backlog-0.10.1-dane.test.ts')).toBe(true);
     expect(ignored('tests/locations-catalog.test.ts')).toBe(true);

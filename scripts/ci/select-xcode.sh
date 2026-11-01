@@ -31,6 +31,7 @@ if [ -z "$best" ]; then
   exit 1
 fi
 echo "Wybrany Xcode: ${bestv} (${best})"
+bash "$(dirname "$0")/sprawdz-wersje.sh" xcode "$bestv"  # minimum z scripts/ci/wersje-minimalne.json (audyt jakości 009)
 if [ "${DRY_RUN:-}" = "1" ]; then exit 0; fi
 sudo xcode-select -s "$best/Contents/Developer"
 xcodebuild -version
