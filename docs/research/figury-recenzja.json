@@ -210,18 +210,26 @@
   "Bent Over Row (sztanga)": {
    "rodzina": "row",
    "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "a5b064215f07",
-   "uwagi": "Ruch i karta zgodne. Zawias w biodrach, kolana lekko ugięte (20°), plecy proste; sztanga z wyprostu rąk do brzucha, tor lekko ukośny ku biodrom (6 j.) — zgodny z row.bbPull. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+   "data": "2026-11-01",
+   "kto": "audytor — recenzja niezależna różnicy danych (bramka 4, L-047), 01.11.2026; poprzednia recenzja: 06-tresci, 27.10.2026",
+   "sha": "c68db590960f",
+   "stan": "zrecenzowana niezależnie (bramka 4, 1.1: odświeżenie skrótu po zmianie tolerancji kolana, rysunek bez zmian)",
+   "uwagi": "Odświeżenie skrótu 01.11.2026: 31.10.2026 (088da78) zawężona tylko tolerancja sprawdzenia kolana «lekko ugięte» (row.hinge) z ±15° do ±10° — zgodnie z jedną granicą konwencji KOLANO_LEKKO_MAX_DEG = 30°; pozy, sprzęt, wskazówki i teksty bez zmian (porównanie danych f8429e6 → HEAD). Pomiar: kolano 20,0° w obu klatkach, łokieć na starcie 0°, dłoń przy biodrze w końcu 0,1 j. — rysunek identyczny z zatwierdzonym 27.10.2026. Karta nadal na liście hidden w lib/cues/data.json (odświeżenie skrótu jej nie odsłania). Poprzednio: Ruch i karta zgodne. Zawias w biodrach, kolana lekko ugięte (20°), plecy proste; sztanga z wyprostu rąk do brzucha, tor lekko ukośny ku biodrom (6 j.) — zgodny z row.bbPull. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "autor": "scalenie 088da78 (r101/klatka, 31.10.2026)",
+   "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny)",
+   "slad": "bez arkusza: pozy, punkty at i sprzęt bez zmian względem wersji zatwierdzonej (porównanie danych f8429e6 → HEAD; skróty starych danych odtworzone bieżącą figuraSkrot) — tor identyczny z ocenionym 27.10.2026"
   },
   "Bent Over Row (hantle)": {
    "rodzina": "row",
    "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "5798d6fc4ce2",
-   "uwagi": "Ruch i karta zgodne. Jak wiosłowanie sztangą w opadzie (ten sam wzorzec); hantle z wyprostu rąk do brzucha. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+   "data": "2026-11-01",
+   "kto": "audytor — recenzja niezależna różnicy danych (bramka 4, L-047), 01.11.2026; poprzednia recenzja: 06-tresci, 27.10.2026",
+   "sha": "5a447a42e01b",
+   "stan": "zrecenzowana niezależnie (bramka 4, 1.1: odświeżenie skrótu po zmianie tolerancji kolana, rysunek bez zmian)",
+   "uwagi": "Odświeżenie skrótu 01.11.2026: 31.10.2026 (088da78) zawężona tylko tolerancja sprawdzenia kolana «lekko ugięte» (row.hinge) z ±15° do ±10° — zgodnie z jedną granicą konwencji KOLANO_LEKKO_MAX_DEG = 30°; pozy, sprzęt, wskazówki i teksty bez zmian (porównanie danych f8429e6 → HEAD). Pomiar: kolano 20,0° w obu klatkach, łokieć na starcie 0°, dłoń przy biodrze w końcu 0,1 j. — rysunek identyczny z zatwierdzonym 27.10.2026. Karta nadal na liście hidden w lib/cues/data.json (odświeżenie skrótu jej nie odsłania). Poprzednio: Ruch i karta zgodne. Jak wiosłowanie sztangą w opadzie (ten sam wzorzec); hantle z wyprostu rąk do brzucha. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "autor": "scalenie 088da78 (r101/klatka, 31.10.2026)",
+   "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny)",
+   "slad": "bez arkusza: pozy, punkty at i sprzęt bez zmian względem wersji zatwierdzonej (porównanie danych f8429e6 → HEAD; skróty starych danych odtworzone bieżącą figuraSkrot) — tor identyczny z ocenionym 27.10.2026"
   },
   "Pendlay Row": {
    "rodzina": "row",
@@ -238,10 +246,14 @@
   "T-Bar Row": {
    "rodzina": "row",
    "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
-   "sha": "8d23f078882d",
-   "uwagi": "Ruch i karta zgodne. Zawias jak w wiosłowaniu w opadzie; gryf od osi przy podłodze za ćwiczącym do uchwytu. Kosmetyka (backlog): talerz rysowany tuż przy dłoniach od strony osi zamiast na końcu gryfu. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
+   "data": "2026-11-01",
+   "kto": "audytor — recenzja niezależna różnicy danych (bramka 4, L-047), 01.11.2026; poprzednia recenzja: 06-tresci, 27.10.2026",
+   "sha": "91f7e0300067",
+   "stan": "zrecenzowana niezależnie (bramka 4, 1.1: odświeżenie skrótu po zmianie tolerancji kolana, rysunek bez zmian)",
+   "uwagi": "Odświeżenie skrótu 01.11.2026: 31.10.2026 (088da78) zawężona tylko tolerancja sprawdzenia kolana «lekko ugięte» (row.hinge) z ±15° do ±10° — zgodnie z jedną granicą konwencji KOLANO_LEKKO_MAX_DEG = 30°; pozy, sprzęt, wskazówki i teksty bez zmian (porównanie danych f8429e6 → HEAD). Pomiar: kolano 20,0° w obu klatkach, łokieć na starcie 0°, dłoń przy biodrze w końcu 0,1 j. — rysunek identyczny z zatwierdzonym 27.10.2026. Karta nadal na liście hidden w lib/cues/data.json (odświeżenie skrótu jej nie odsłania). Poprzednio: Ruch i karta zgodne. Zawias jak w wiosłowaniu w opadzie; gryf od osi przy podłodze za ćwiczącym do uchwytu. Kosmetyka (backlog): talerz rysowany tuż przy dłoniach od strony osi zamiast na końcu gryfu. Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
+   "autor": "scalenie 088da78 (r101/klatka, 31.10.2026)",
+   "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny)",
+   "slad": "bez arkusza: pozy, punkty at i sprzęt bez zmian względem wersji zatwierdzonej (porównanie danych f8429e6 → HEAD; skróty starych danych odtworzone bieżącą figuraSkrot) — tor identyczny z ocenionym 27.10.2026"
   },
   "One Arm Row (hantle)": {
    "rodzina": "row",
