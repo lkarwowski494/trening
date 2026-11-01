@@ -607,9 +607,9 @@
    "klucz": "Wypychanie",
    "rodzaj": "nowe",
    "waga": "niska",
-   "decyzja": "naniesione",
-   "nowe": "Empurrada",
-   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami (nowy wpis nakładki pt-BR: tekst różni się od pt)"
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "Recenzja 01.11.2026: wpis nakładki usunięty — zostaje bazowe pt „Empurrão”; „Empurrada” nie wnosi różnicy regionalnej"
   },
   {
    "grupa": "UI-niska",
@@ -718,7 +718,7 @@
    "rodzaj": "nowe",
    "waga": "niska",
    "decyzja": "naniesione",
-   "nowe": "Вы платите один раз — и пользуетесь навсегда.",
+   "nowe": "Один платёж — и приложение ваше навсегда.",
    "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
   },
   {
@@ -1148,7 +1148,7 @@
    "rodzaj": "wskazowka",
    "waga": "średnia",
    "decyzja": "naniesione",
-   "nowe": "Spúšťaj, kým nie je činka tesne nad čelom — alebo prestaň skôr, ak nadlaktia začnú uchádzať dozadu.",
+   "nowe": "Spúšťaj, kým nie je činka tesne nad čelom — alebo prestaň skôr, ak nadlaktie začne utekať dozadu.",
    "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
   },
   {
@@ -1578,7 +1578,7 @@
    "rodzaj": "wskazowka",
    "waga": "(poza raportem)",
    "decyzja": "naniesione",
-   "nowe": "Спускай, докато лостът е точно над челото — или спри по-рано, ако мишниците започнат да се изнасят назад.",
+   "nowe": "Спускай, докато лостът е точно над челото — или спри по-рано, ако мишниците започнат да бягат назад.",
    "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
   },
   {
@@ -1608,7 +1608,7 @@
    "rodzaj": "wskazowka",
    "waga": "(poza raportem)",
    "decyzja": "naniesione",
-   "nowe": "バーが額のすぐ上に来るまで下ろします。上腕が後ろに倒れ始めたら、その手前で止めます。",
+   "nowe": "バーが額のすぐ上に来るまで下ろします。上腕が後ろに流れ始めたら、そこで止めます。",
    "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
   },
   {
@@ -1618,7 +1618,7 @@
    "rodzaj": "wskazowka",
    "waga": "(poza raportem)",
    "decyzja": "naniesione",
-   "nowe": "바가 이마 바로 위에 올 때까지 내리세요. 위팔이 뒤로 넘어가기 시작하면 그전에 멈추세요.",
+   "nowe": "바가 이마 바로 위에 올 때까지 내리세요 — 위팔이 뒤로 밀리기 시작하면 그 전에 멈추세요.",
    "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
   },
   {
@@ -1648,7 +1648,7 @@
    "rodzaj": "wskazowka",
    "waga": "(poza raportem)",
    "decyzja": "naniesione",
-   "nowe": "Halter alnınızın hemen üstüne gelene kadar indirin — üst kollar geriye kaymaya başlarsa daha önce durun.",
+   "nowe": "Halter alnınızın hemen üstüne gelene kadar indirin — üst kollarınız geriye kaymaya başlarsa daha erken durun.",
    "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
   },
   {
@@ -1658,7 +1658,7 @@
    "rodzaj": "wskazowka",
    "waga": "(poza raportem)",
    "decyzja": "naniesione",
-   "nowe": "放到槓剛好在額頭上方為止；如果上臂開始往後倒，就提早停下。",
+   "nowe": "放到槓剛好在額頭上方為止；如果上臂開始往後跑，就提早停下。",
    "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
   }
  ]
