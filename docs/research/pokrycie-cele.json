@@ -2,9 +2,9 @@
   "_opis": "Cele pokrycia katalogu ćwiczeń per wersja (decyzja właściciela 28.10.2026, M-B). min: metryka → minimalna liczba z tests/fixtures/pokrycie-katalogu.json (pole dobre). Sprawdzenie: node scripts/pokrycie-katalogu.mjs --cel <wersja>; krok listy kontrolnej wydania w docs/39.",
   "wersje": {
     "1.1": {
-      "status": "potwierdzony przez właściciela 31.10.2026 (decyzja 2 = A, docs/18); pełna karta — po zmianie definicji (Z3, ZB-025)",
+      "status": "potwierdzony przez właściciela 31.10.2026 (decyzja 2 = A, docs/18); pełna karta liczona wg definicji Z3 (ZB-025 a, wdrożona 01.11.2026) — liczba 17 z definicji sprzed Z3 zostaje podłogą do decyzji właściciela",
       "ustalono": "28.10.2026",
-      "opis": "Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela.",
+      "opis": "Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela. 01.11.2026 (ZB-025 a): pełna karta liczona wg Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy tekst + figura v2 + animowany błąd + role mięśni); symulacja stanu docelowego (4 rodziny z recenzją ruchu, wszystkie 538 zestawów ogólnych zrecenzowanych) daje pełną kartę 90 (stara definicja: 17), więc cel 17 jest spójny (nie za wysoki), ale po Z3 nie jest już wartością oczekiwaną — podniesienie celu (np. do 90) wymaga decyzji właściciela.",
       "min": {
         "figura.v2": 98,
         "figura.wAplikacji": 151,
