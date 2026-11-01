@@ -7988,7 +7988,8 @@
     },
     "hr": {
      "zalecany": "Povlačenje",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "uwaga": "Faza „Wypychanie” (animacja ruchu): „Potisak” — potoczna nazwa wyciskania na siłowni; „Potiskivanje” brzmi sztucznie (decyzja 01.11.2026, zostaje; do sprawdzenia przez native speakera)."
     },
     "sl": {
      "zalecany": "Vlečenje",
@@ -7996,7 +7997,8 @@
     },
     "sr": {
      "zalecany": "Повлачење",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "uwaga": "Faza „Wypychanie” (animacja ruchu): „Потисак” — potoczna nazwa wyciskania na siłowni (decyzja 01.11.2026, zostaje; do sprawdzenia przez native speakera)."
     },
     "lt": {
      "zalecany": "Prisitraukimas",
@@ -8024,7 +8026,8 @@
     },
     "pt": {
      "zalecany": "Subida",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "uwaga": "Faza „Wypychanie” (animacja ruchu): „Empurrão”; pt-BR dziedziczy to samo, bez własnego wpisu nakładki (recenzja 01.11.2026)."
     },
     "pt-BR": {
      "zalecany": "Subida",
@@ -8346,11 +8349,13 @@
     },
     "pt": {
      "zalecany": "kettlebell",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "uwaga": "Rodzaj żeński: „a kettlebell”, „da kettlebell” (pt europejski)."
     },
     "pt-BR": {
      "zalecany": "kettlebell",
-     "pewnosc": "srednia"
+     "pewnosc": "srednia",
+     "uwaga": "Rodzaj męski: „o kettlebell”, „do kettlebell” (pt-BR); nie żeński jak w pt (recenzja 01.11.2026)."
     },
     "de": {
      "zalecany": "kettlebell",
