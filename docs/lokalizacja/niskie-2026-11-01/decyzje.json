@@ -1,0 +1,1665 @@
+{
+ "_opis": "Decyzje tłumacza: 17 średnich uwag przeglądu API 31.10.2026 spoza ACG-003 (wskazówki techniki) i 140 niskich (101 klucze UI, 39 wskazówki). Dodatkowo skull.depth w językach, których API nie zgłosiło (to samo zgubione „albo wcześniej”). decyzja: naniesione / odrzucone / odłożone / do decyzji (EN). Nakładki pt-BR/es-419 tylko gdy różnią się od bazowego.",
+ "pozycje": [
+  {
+   "grupa": "UI-niska",
+   "jezyk": "bg",
+   "klucz": "imperialny (lb, mi, yd)",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "Słownik jednostka_dystansu_mi bg zaleca „мили”; ta sama zmiana odrzucona w recenzji średnich 31.10 (srednie-2026-10-31/recenzja.md) i 28.10; pytanie do native speakera w docs/16"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "bg",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "По-наситен цвят: основна мускулна група, по-блед: помощна.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "cs",
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Cvik s velkou činkou na trupu nebo nad hlavou a obličejem: doporučuje se jištění — stojan s bezpečnostními rameny a jisticí osoba.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "cs",
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Cvik s velkou činkou na trupu nebo nad hlavou a obličejem: doporučuje se jisticí osoba.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "cs",
+   "klucz": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Cvik s jednoručkami nad hlavou nebo obličejem: doporučuje se jisticí osoba.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "de",
+   "klucz": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Die Linie in „Diese Woche“ und unter „Fortschritt“. Automatisch: {n} Sätze. Manuell: deine eigene Zahl von {min} bis {max}.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "de",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Kräftigere Farbe: Hauptmuskelgruppe, blassere: Hilfsmuskelgruppe.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "el",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Πιο έντονο χρώμα: κύριο μέρος σώματος, πιο απαλό: βοηθητικό.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "en",
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "waga": "niska",
+   "decyzja": "do decyzji (EN)",
+   "nowe": null,
+   "powod": "Zmiana tekstu EN poza zakresem tego zadania — do decyzji koordynatora/właściciela (EN pinują testy DEC-04 i scenariusze Maestro)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "en",
+   "klucz": "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "do decyzji (EN)",
+   "nowe": null,
+   "powod": "Zmiana tekstu EN poza zakresem tego zadania — do decyzji koordynatora/właściciela (EN pinują testy DEC-04 i scenariusze Maestro)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "en",
+   "klucz": "Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "do decyzji (EN)",
+   "nowe": null,
+   "powod": "Zmiana tekstu EN poza zakresem tego zadania — do decyzji koordynatora/właściciela (EN pinują testy DEC-04 i scenariusze Maestro)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "en",
+   "klucz": "lista serii przewijana",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "do decyzji (EN)",
+   "nowe": null,
+   "powod": "Zmiana tekstu EN poza zakresem tego zadania — do decyzji koordynatora/właściciela (EN pinują testy DEC-04 i scenariusze Maestro)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "en",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "do decyzji (EN)",
+   "nowe": null,
+   "powod": "Zmiana tekstu EN poza zakresem tego zadania — do decyzji koordynatora/właściciela (EN pinują testy DEC-04 i scenariusze Maestro)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "en",
+   "klucz": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "do decyzji (EN)",
+   "nowe": null,
+   "powod": "Zmiana tekstu EN poza zakresem tego zadania — do decyzji koordynatora/właściciela (EN pinują testy DEC-04 i scenariusze Maestro)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "en",
+   "klucz": "ramię odsunięte w bok",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "do decyzji (EN)",
+   "nowe": null,
+   "powod": "Zmiana tekstu EN poza zakresem tego zadania — do decyzji koordynatora/właściciela (EN pinują testy DEC-04 i scenariusze Maestro)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "en",
+   "klucz": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "do decyzji (EN)",
+   "nowe": null,
+   "powod": "Zmiana tekstu EN poza zakresem tego zadania — do decyzji koordynatora/właściciela (EN pinują testy DEC-04 i scenariusze Maestro)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "en",
+   "klucz": "Zmniejsz powtórzenia o 1",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "do decyzji (EN)",
+   "nowe": null,
+   "powod": "Zmiana tekstu EN poza zakresem tego zadania — do decyzji koordynatora/właściciela (EN pinują testy DEC-04 i scenariusze Maestro)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "en",
+   "klucz": "Zwiększ powtórzenia o 1",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "do decyzji (EN)",
+   "nowe": null,
+   "powod": "Zmiana tekstu EN poza zakresem tego zadania — do decyzji koordynatora/właściciela (EN pinują testy DEC-04 i scenariusze Maestro)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "es-419",
+   "klucz": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Cardio fuera del plan: la sesión de cardio entra en el plan a partir de {k} días a la semana; con menos, todos los días son de fuerza. Para la salud, conviene hacer al menos {a}–{b} min de actividad moderada por semana (o {c}–{d} min de actividad intensa); también cuenta el movimiento moderado durante el día, como caminar rápido, aunque sea por poco tiempo.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "es-419",
+   "klucz": "Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Cardio en el plan: {n} min por semana. Para la salud, conviene hacer al menos {a}–{b} min de actividad moderada por semana (o {c}–{d} min de actividad intensa); también cuenta el movimiento moderado durante el día, como caminar rápido, aunque sea por poco tiempo.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "es-419",
+   "klucz": "Przerwa trwa — powiadomić na koniec?",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Descanso en curso: ¿te aviso cuando termine?",
+   "powod": "Wersja tłumacza zamiast propozycji API: jedna wersja dla es i es-419 (bez nakładki)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "es-419",
+   "klucz": "Zmniejsz powtórzenia o 1",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Reducir las repeticiones en 1",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "es-419",
+   "klucz": "Zwiększ powtórzenia o 1",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Aumentar las repeticiones en 1",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "es",
+   "klucz": "Przerwa trwa — powiadomić na koniec?",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Descanso en curso: ¿te aviso cuando termine?",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "et",
+   "klucz": "Skąd ta cena? Poznaj indeks espresso.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Miks selline hind? Vaata espressoindeksit.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "fi",
+   "klucz": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Ääniopastus toimii, kun ”Ääni palautuksen lopussa” on päällä. Saman asetuksen voi vaihtaa treeninäkymän ”⋯”-valikosta.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "fr",
+   "klucz": "+ {n} {w}",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "„de plus” jest zamierzone: EN „+ {n} more {w}”, de „weitere”, es „más”, nl „nog” — „+” samo znaczyłoby inaczej"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "hr",
+   "klucz": "Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Kardio: jedna sesija umjerenog napora na zaseban dan; njezino trajanje = trajanje sesije.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "hr",
+   "klucz": "Wypychanie",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odłożone",
+   "nowe": null,
+   "powod": "„Potisak” to potoczna nazwa wyciskania na siłowni (hr „potisak s klupe”); „Potiskivanje” brzmi sztucznie. Do sprawdzenia przez native speakera; sr (80) tak samo"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "id",
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Gerakan dengan barbel di atas batang tubuh atau di atas kepala dan wajah: pengamanan dianjurkan — rak dengan lengan pengaman dan spotter (orang yang berjaga dan siap membantu).",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "id",
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Gerakan dengan barbel di atas batang tubuh atau di atas kepala dan wajah: spotter (orang yang berjaga dan siap membantu) dianjurkan.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "id",
+   "klucz": "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Istirahat: {b} mnt setelah gerakan multi-sendi, {c} mnt setelah gerakan isolasi dan core; lama istirahat yang pasti belum ditetapkan.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "id",
+   "klucz": "Skręca tułów i pochyla go na bok.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Memutar badan dan memiringkannya ke samping.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "it",
+   "klucz": "Bujanie się i wymachy nogami.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Oscillazioni e calci con le gambe.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "it",
+   "klucz": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Non eliminare l’app: insieme all’app spariscono anche dati e backup. Prima tocca «Invia i dati» e salva il file fuori dal telefono.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "it",
+   "klucz": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Recupero. Tempo rimanente: {t}. Recupero totale: {all}.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "ko",
+   "klucz": "{n} mi",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "ko: dystans bez spacji ({n}km, {n}m) — „{n}mi” jest spójne z km/m; kg/lb mają spację, rozbieżność kg/lb vs km/m do osobnej decyzji native speakera"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "ko",
+   "klucz": "{n} yd",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "jak {n} mi (ko)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "ko",
+   "klucz": "Cały rok treningów, rozliczany rocznie.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "1년 동안 운동하고, 1년 단위로 결제됩니다.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "ko",
+   "klucz": "Pauza",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "Słownik faza_pauza ko: „일시정지” (pewność niska, uwaga: bez zmiany do polecenia) — decyzja po native speakerze"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "lv",
+   "klucz": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Līnija sadaļā “Šī nedēļa” un Progresā. Automātiski: sēriju skaits — {n}. Manuāli: jūsu skaitlis no {min} līdz {max}.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "lv",
+   "klucz": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Atpūta. Atlikušais laiks: {t}. Visa atpūta: {all}.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "lv",
+   "klucz": "Super, trenuję dalej!",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Lieliski, turpinu trenēties!",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "lv",
+   "klucz": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "Czas teraźniejszy jest zgodny ze źródłem i z pozostałymi językami; propozycja API wprowadza formę męską „izmantojis” (tekst ma być neutralny płciowo)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "ms",
+   "klucz": "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Rehat: {a} min selepas set berat senaman utama, {b} min selepas senaman pelbagai sendi lain, {c} min selepas senaman satu sendi dan core; tempoh rehat yang tepat tidak ditetapkan.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "nb",
+   "klucz": "Bujanie się i wymachy nogami.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Å svinge og sparke med beina.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "nl",
+   "klucz": "Odsuwa nogę w bok.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Beweegt je been opzij.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "nl",
+   "klucz": "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Minder dan {n} dagen per week: {list} (een dag met alleen ondersteunend werk = {h}).",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "nl",
+   "klucz": "System miar",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Maatstelsel",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt-BR",
+   "klucz": "+ {n} {w}",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "„mais” jest zamierzone (EN „+ {n} more {w}”); jak pt"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt-BR",
+   "klucz": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Cardio: com {k}–{m} dias, você pode transformar os dias acima de {j} em sessões de cardio moderado (“Dias de cardio no plano”, desativado por padrão). Mais exercícios de fortalecimento não trazem necessariamente mais benefícios para a saúde, e vale distribuir a atividade aeróbica por vários dias. Duração da sessão de cardio = tempo da sessão.",
+   "powod": "Cudzysłowy “ ” jak w pt-BR (w pt «»); Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt-BR",
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Toque no rótulo de uma série para mudar o tipo; deslize uma linha para a esquerda para apagá-la. A faixa de repetições é opcional — com ela aparecem as sugestões “↑”. “⇅ SS” liga o exercício ao seguinte em uma supersérie, “✕ SS” o retira do grupo. Ordem: “≡ Reordenar”.",
+   "powod": "Cudzysłowy “ ” jak w pt-BR (w pt «»); Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt-BR",
+   "klucz": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "A linha em “Esta semana” e em Progresso. Automático: {n} séries. Manual: o seu próprio número, de {min} a {max}.",
+   "powod": "Cudzysłowy “ ” jak w pt-BR (w pt «»); Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt-BR",
+   "klucz": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Menu ⋯ no cabeçalho: “Pausar treino” para o relógio do treino; o tempo de pausa não conta para a duração.",
+   "powod": "Cudzysłowy “ ” jak w pt-BR (w pt «»); Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami (nowy wpis nakładki pt-BR: tekst różni się od pt)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt-BR",
+   "klucz": "Pierwszy trening: duży przycisk „Pusty trening” u góry.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Primeiro treino: o botão grande “Treino vazio” em cima.",
+   "powod": "Cudzysłowy “ ” jak w pt-BR (w pt «»); Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami (nowy wpis nakładki pt-BR: tekst różni się od pt)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt-BR",
+   "klucz": "Pomaga zaciskać dłoń na uchwycie.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "„Ajuda a manter a pegada” jest potocznym zwrotem siłowni; „pegador” nie jest naturalny. Pytanie do native speakera pt-BR"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt-BR",
+   "klucz": "Prostuje plecy i trzyma je prosto.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Endireita as costas e as mantém retas.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt-BR",
+   "klucz": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Revise a pré-visualização e “Regras do plano”: nada é salvo até você confirmar.",
+   "powod": "Cudzysłowy “ ” jak w pt-BR (w pt «»); Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt-BR",
+   "klucz": "RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "O RIR vai de 0 a {max}; mais de {max} repetições em reserva são salvas como “leve” (RPE {light}), porque abaixo de RPE {min} a escala descreve o esforço com palavras, não com repetições em reserva.",
+   "powod": "Cudzysłowy “ ” jak w pt-BR (w pt «»); Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt-BR",
+   "klucz": "Wstawanie",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Subida",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt-BR",
+   "klucz": "Wypychanie",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Empurrada",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami (nowy wpis nakładki pt-BR: tekst różni się od pt)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt-BR",
+   "klucz": "Zaciska dłoń na uchwycie.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "jak 55"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt",
+   "klucz": "+ {n} {w}",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "„+ mais {n}” zamierzone (EN „more”), jak de „weitere”"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt",
+   "klucz": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "Czas teraźniejszy zgodny ze źródłem i innymi językami; czas przeszły zmienia komunikat"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt",
+   "klucz": "Wstawanie",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Subida",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "pt",
+   "klucz": "Wypychanie",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Empurrão",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "ro",
+   "klucz": "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "{k} zi de forță pe săptămână este mai puțin decât minimul recomandat (cel puțin {n} zile). Pentru început e un pas bun: puteți face exerciții de forță doar {k} zi pe săptămână, iar cu timpul să ajungeți la {n} — puțină mișcare e mai bună decât nimic.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "ro",
+   "klucz": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Cardio: de la {k} zile pe săptămână, o sesiune într-o zi separată; cu mai puține zile, toate sunt de forță, ca cardioul să nu ia zile de la antrenamentul de forță (fiecare grupă musculară principală cel puțin {n} zile).",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "ro",
+   "klucz": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Cardio: la {k}–{m} zile puteți transforma zilele de peste {j} în sesiuni de cardio moderat („Zile de cardio în plan”, dezactivate implicit). Mai multe exerciții de întărire nu aduc neapărat mai multe beneficii pentru sănătate, iar mișcarea aerobă merită împărțită pe mai multe zile. Durata sesiunii de cardio = durata sesiunii.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "ro",
+   "klucz": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Pauză. Timp rămas: {t}. Durata totală a pauzei: {all}.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "ru",
+   "klucz": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "Spójność: pokrewny tekst ru „Пауза — часы тренировки стоят” używa „часы”; zmiana jednego rozjechałaby terminologię"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "ru",
+   "klucz": "Płacisz raz i masz na zawsze.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Вы платите один раз — и пользуетесь навсегда.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "ru",
+   "klucz": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Проверьте предпросмотр и «Правила плана» — результат сохраняется только после подтверждения.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "sk",
+   "klucz": "Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Kardio: jeden stredne intenzívny tréning v samostatný deň; jeho dĺžka = dĺžka tréningu.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "sk",
+   "klucz": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Pauza. Zostávajúci čas: {t}. Celá pauza: {all}.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "sl",
+   "klucz": "jarda",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "Dla liczb ułamkowych słoweński używa dopełniacza liczby pojedynczej („1,5 jarda”), więc „jarda” jest poprawne. Do sprawdzenia przez native speakera"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "sr",
+   "klucz": "{n} mi",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "Słownik jednostka_dystansu_mi sr: „миља” (pewność niska, pytanie w docs/16); ta sama zmiana odrzucona 28.10 i w recenzji 31.10"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "sr",
+   "klucz": "{n} yd",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "Słownik jednostka_dystansu_yd sr: „јарда”; jak 76"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "sr",
+   "klucz": "Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Кардио: један тренинг умереног напора посебног дана; његово трајање = трајање тренинга.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "sr",
+   "klucz": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Кардио: од {k} дана недељно један тренинг посебног дана; уз мање дана сви су дани снаге, да кардио не би узимао дане тренингу снаге (сваки главни део тела најмање {n} дана).",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "sr",
+   "klucz": "Wypychanie",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odłożone",
+   "nowe": null,
+   "powod": "Jak hr (28): „Потисак” jest potocznym terminem wyciskania; do sprawdzenia przez native speakera"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "sr",
+   "klucz": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Напор: обично {a}–{b} понављања у резерви — близу отказа или {c}–{d}; тачан број није утврђен. Није потребно ићи до отказа.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "sv",
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Uppvärmningsset: {d} av {n} klara",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "tr",
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Türünü değiştirmek için set etiketine dokunun; silmek için satırı sola kaydırın. Tekrar aralığı isteğe bağlıdır; girilirse “↑” ipuçları gösterilir. “⇅ SS” egzersizi sonrakiyle süpersette birleştirir, “✕ SS” gruptan çıkarır. Sıra: “≡ Sırala”.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "tr",
+   "klucz": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Dinlenme. Kalan süre: {t}. Toplam dinlenme: {all}.",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "uk",
+   "klucz": "Miejsce na te dni",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Місце для цих днів",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "uk",
+   "klucz": "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "План змінено: {day} — попередні дні за старим планом",
+   "powod": "Wersja tłumacza zamiast propozycji API: „раніші дні” brzmi sztucznie; „за старим планом” zachowuje sens źródła"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "uk",
+   "klucz": "Prostowanie",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Розгинання",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "uk",
+   "klucz": "System miar",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odłożone",
+   "nowe": null,
+   "powod": "„Система мір” jest naturalnym połączeniem w ukraińskim („метрична система мір”); nazwy ustawienia w iOS nie zweryfikowano. Do sprawdzenia przez native speakera"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "vi",
+   "klucz": "{n} mi",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "Słownik jednostka_dystansu_mi vi: „dặm” (pewność wysoka)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "zh-Hant",
+   "klucz": "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "不購買也可以：每月最多 {n} 個訓練日；歷史紀錄、備份與匯出隨時可用。",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "zh-Hant",
+   "klucz": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "休息。剩餘時間：{t}。休息總長：{all}。",
+   "powod": "Propozycja API zgodna ze słownikiem terminów, kontekstem klucza i siostrzanymi tekstami"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "zh-Hant",
+   "klucz": "System miar",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "odłożone",
+   "nowe": null,
+   "powod": "Nazwy ustawienia w iOS zh-Hant nie zweryfikowano („量測系統” vs „度量衡單位”); zostaje „度量衡系統”. Do sprawdzenia przez native speakera"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "zh-Hant",
+   "klucz": "Zmniejsz ciężar o {n}",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "減少重量 {n}",
+   "powod": "Wersja tłumacza zamiast propozycji API: zh: etykieta przycisku w trybie rozkazującym, czasownik na początku („減少重量”); „將…” brzmi książkowo"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "zh-Hant",
+   "klucz": "Zmniejsz czas o {n}",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "減少時間 {n}",
+   "powod": "Wersja tłumacza zamiast propozycji API: jak 93"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "zh-Hant",
+   "klucz": "Zmniejsz dystans o {n}",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "減少距離 {n}",
+   "powod": "Wersja tłumacza zamiast propozycji API: jak 93"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "zh-Hant",
+   "klucz": "Zmniejsz powtórzenia o 1",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "減少 1 次",
+   "powod": "Wersja tłumacza zamiast propozycji API: jak 93 („減少 1 次”)"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "zh-Hant",
+   "klucz": "Zwiększ ciężar o {n}",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "增加重量 {n}",
+   "powod": "Wersja tłumacza zamiast propozycji API: jak 93"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "zh-Hant",
+   "klucz": "Zwiększ czas o {n}",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "增加時間 {n}",
+   "powod": "Wersja tłumacza zamiast propozycji API: jak 93"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "zh-Hant",
+   "klucz": "Zwiększ dystans o {n}",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "增加距離 {n}",
+   "powod": "Wersja tłumacza zamiast propozycji API: jak 93"
+  },
+  {
+   "grupa": "UI-niska",
+   "jezyk": "zh-Hant",
+   "klucz": "Zwiększ powtórzenia o 1",
+   "rodzaj": "nowe",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "增加 1 次",
+   "powod": "Wersja tłumacza zamiast propozycji API: jak 93"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "da",
+   "klucz": "hang.noSwing",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "At svinge og sparke med benene.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "el",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "Κατέβασε μέχρι η μπάρα να φτάσει λίγο πάνω από το μέτωπο — ή σταμάτα νωρίτερα, αν οι βραχίονες αρχίσουν να φεύγουν προς τα πίσω.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "fi",
+   "klucz": "fsq.elbows",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "Älä anna kyynärpäiden painua alas — silloin paino vetää vartaloa eteen.",
+   "powod": "Wersja tłumacza zamiast propozycji API: inna wersja niż API"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "hu",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "Engedd le, amíg a rúd épp a homlokod fölé ér — vagy állj meg előbb, ha a felkarod hátracsúszik.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "it",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "Scendi finché il bilanciere è appena sopra la fronte — o fermati prima se le braccia iniziano ad andare indietro.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "ko",
+   "klucz": "pendlay.setup",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "odrzucone",
+   "nowe": null,
+   "powod": "Słownik sztanga ko: „바벨”; „바” nie jest zalecane"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "lt",
+   "klucz": "bd.setup",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "Keturpėsčiomis: delnai po pečiais, keliai po klubais, nugara neutralioje padėtyje.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "ms",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "Turunkan hingga bar tepat di atas dahi — atau berhenti lebih awal jika lengan atas mula bergerak ke belakang.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "pt-BR",
+   "klucz": "kb.hips",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "A força vem do quadril, não dos ombros — os braços só guiam o kettlebell.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "pt-BR",
+   "klucz": "kb.move",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "Leve o quadril para trás enquanto o kettlebell passa entre as pernas e depois projete o quadril para a frente — o kettlebell sobe à sua frente.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "pt-BR",
+   "klucz": "kb.setup",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "Fique atrás do kettlebell, pés na largura dos ombros ou um pouco mais abertos; incline-se a partir do quadril com as costas retas e segure a alça com as duas mãos.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "pt-BR",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "Desça até a barra ficar logo acima da testa — ou pare antes se os braços começarem a ir para trás.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "ro",
+   "klucz": "hang.noSwing",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "Balansarea corpului și azvârlirea picioarelor.",
+   "powod": "Wersja tłumacza zamiast propozycji API: inna wersja niż API"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "sk",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "Spúšťaj, kým nie je činka tesne nad čelom — alebo prestaň skôr, ak nadlaktia začnú uchádzať dozadu.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "sl",
+   "klucz": "nordic.catch",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "Ko ne moreš več zavirati, se ujemi z rokama kot pri sklecah.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "sv",
+   "klucz": "hang.noSwing",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "Att gunga med kroppen och sparka med benen.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-średnia",
+   "jezyk": "tr",
+   "klucz": "pp.dip",
+   "rodzaj": "wskazowka",
+   "waga": "średnia",
+   "decyzja": "naniesione",
+   "nowe": "Dizlerde kısa bir bükülme, gövde sıkı.",
+   "powod": "Wersja tłumacza zamiast propozycji API: inna wersja niż API"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "cs",
+   "klucz": "bp.grip",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Uchop činku o něco šířeji, než jsou ramena.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "cs",
+   "klucz": "calf.pressMove",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Odtlač plošinu špičkami co nejdál a pak nech paty vrátit se zpět, dokud neucítíš protažení lýtek.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "cs",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Spouštěj, dokud není činka těsně nad čelem — nebo přestaň dřív, pokud nadloktí začne ujíždět dozadu.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "da",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Sænk, til stangen er lige over panden — eller stop før, hvis overarmene begynder at glide bagud.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "de",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Senke ab, bis die Stange knapp über der Stirn ist — oder hör früher auf, wenn die Oberarme nach hinten wandern.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "en",
+   "klucz": "sq.bar",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "do decyzji (EN)",
+   "nowe": null,
+   "powod": "Zmiana EN poza zakresem — do decyzji (drobna stylistyka)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "es-419",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Baja hasta que la barra quede justo encima de la frente — o para antes si los brazos se te van hacia atrás.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "es",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Baja hasta que la barra quede justo encima de la frente — o para antes si los brazos se te van hacia atrás.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "et",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Langeta, kuni kang on vahetult otsaesise kohal — või peatu varem, kui õlavarred hakkavad taha liikuma.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "fi",
+   "klucz": "gm.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Mene alas vain kevyeen takareisien venytykseen — ylävartalo enintään vaakatasoon.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "fi",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Laske, kunnes tanko on juuri otsan yläpuolella — tai lopeta aiemmin, jos olkavarret alkavat karata taaksepäin.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "id",
+   "klucz": "llc.hips",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Jaga pinggul tetap tertekan ke bangku — jangan melengkungkan punggung.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "id",
+   "klucz": "pendlay.mis.torso",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Mengangkat badan saat menarik.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "id",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Turunkan sampai batang tepat di atas dahi — atau berhenti lebih awal jika lengan atas mulai bergeser ke belakang.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "it",
+   "klucz": "hang.noSwing",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Oscillazioni e calci con le gambe.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "lt",
+   "klucz": "preacher.range",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Naudok visą judesio amplitudę: nuo ištiestos rankos iki visiškai sulenktos alkūnės.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "lt",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Leisk, kol štanga bus vos virš kaktos — arba sustok anksčiau, jei žastai ima slinkti atgal.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "lv",
+   "klucz": "bp.blades",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Savelc lāpstiņas kopā un uz leju un turi tās tā visu kustību.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "lv",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Nolaid, līdz stienis ir tieši virs pieres — vai apstājies agrāk, ja augšdelmi sāk slīdēt atpakaļ.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "nb",
+   "klucz": "hang.noSwing",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Å svinge og sparke med beina.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "nb",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Senk til stangen er like over pannen — eller stopp før hvis overarmene begynner å gli bakover.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "nl",
+   "klucz": "ohp.tall",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Blijf rechtop en stabiel; het gewicht gaat recht omhoog boven je hoofd.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "nl",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Laat zakken tot de stang net boven je voorhoofd is — of stop eerder als je bovenarmen naar achteren gaan.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "pt",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Desce até a barra ficar logo acima da testa — ou para antes se os braços começarem a fugir para trás.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "ro",
+   "klucz": "push.rigid",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Corpul încordat — șoldurile nici nu cad, nici nu se ridică.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "ro",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Coboară până când bara ajunge chiar deasupra frunții — sau oprește-te mai devreme dacă brațele încep să fugă înapoi.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "ru",
+   "klucz": "gcalf.set",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Встань подушечками стоп на край ступеньки, пятки свисают.",
+   "powod": "Wersja tłumacza zamiast propozycji API: inna wersja niż API"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "sl",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Spuščaj, dokler drog ni tik nad čelom — ali se ustavi prej, če nadlakti začneta uhajati nazaj.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "sl",
+   "klucz": "splank.noSag",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Ne dovoli, da boki padejo ali se zasukajo naprej ali nazaj.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "sr",
+   "klucz": "calf.press",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Седи у лег прес, предњи део стопала на доњој ивици платформе, пете ван ње; ноге опружене.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "sr",
+   "klucz": "nordic.setup",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Клекни на меку подлогу; глежњеви морају бити чврсто фиксирани (партнер, ваљци или учвршћење).",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "sv",
+   "klucz": "fsq.rack",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Låt stången vila framtill på axlarna, armbågarna högt, överarmarna ungefär vågräta.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "sv",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Sänk tills stången är strax ovanför pannan — eller stanna tidigare om överarmarna börjar glida bakåt.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "tr",
+   "klucz": "gm.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Yalnızca arka uylukta hafif bir gerilmeye kadar inin — gövde yataydan aşağı inmesin.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "tr",
+   "klucz": "lp.hips",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Leğen kemiğiniz sırtlıktan kalkacak ve beliniz yuvarlanacak kadar derine inmeyin.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "tr",
+   "klucz": "rdl.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Arka uylukta gerilmeyi hissettiğiniz ve sırtınızı düz tutabildiğiniz sürece inin.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "uk",
+   "klucz": "pendlay.mis.torso",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Підйом корпусу під час тяги.",
+   "powod": "Propozycja API poprawna (gramatyka/spójność z siostrzanymi wskazówkami)"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "uk",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Опускай, доки штанга не опиниться трохи над чолом — або зупинись раніше, якщо плечі почнуть відходити назад.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-niska",
+   "jezyk": "vi",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "niska",
+   "decyzja": "naniesione",
+   "nowe": "Hạ đến khi đòn ở ngay trên trán — hoặc dừng sớm hơn nếu cánh tay trên bắt đầu trôi ra sau.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-dodatkowa",
+   "jezyk": "bg",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "(poza raportem)",
+   "decyzja": "naniesione",
+   "nowe": "Спускай, докато лостът е точно над челото — или спри по-рано, ако мишниците започнат да се изнасят назад.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-dodatkowa",
+   "jezyk": "fr",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "(poza raportem)",
+   "decyzja": "naniesione",
+   "nowe": "Descendez jusqu’à ce que la barre soit juste au-dessus du front — ou arrêtez-vous plus tôt si les bras commencent à partir en arrière.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-dodatkowa",
+   "jezyk": "hr",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "(poza raportem)",
+   "decyzja": "naniesione",
+   "nowe": "Spuštaj dok šipka ne bude tik iznad čela — ili stani ranije ako nadlaktice počnu odlaziti natrag.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-dodatkowa",
+   "jezyk": "ja",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "(poza raportem)",
+   "decyzja": "naniesione",
+   "nowe": "バーが額のすぐ上に来るまで下ろします。上腕が後ろに倒れ始めたら、その手前で止めます。",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-dodatkowa",
+   "jezyk": "ko",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "(poza raportem)",
+   "decyzja": "naniesione",
+   "nowe": "바가 이마 바로 위에 올 때까지 내리세요. 위팔이 뒤로 넘어가기 시작하면 그전에 멈추세요.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-dodatkowa",
+   "jezyk": "ru",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "(poza raportem)",
+   "decyzja": "naniesione",
+   "nowe": "Опускай, пока гриф не окажется чуть выше лба — или остановись раньше, если плечи начнут уходить назад.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-dodatkowa",
+   "jezyk": "sr",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "(poza raportem)",
+   "decyzja": "naniesione",
+   "nowe": "Спуштај док шипка не буде тик изнад чела — или стани раније ако надлактице почну да одлазе уназад.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-dodatkowa",
+   "jezyk": "tr",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "(poza raportem)",
+   "decyzja": "naniesione",
+   "nowe": "Halter alnınızın hemen üstüne gelene kadar indirin — üst kollar geriye kaymaya başlarsa daha önce durun.",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  },
+  {
+   "grupa": "wskazówka-dodatkowa",
+   "jezyk": "zh-Hant",
+   "klucz": "skull.depth",
+   "rodzaj": "wskazowka",
+   "waga": "(poza raportem)",
+   "decyzja": "naniesione",
+   "nowe": "放到槓剛好在額頭上方為止；如果上臂開始往後倒，就提早停下。",
+   "powod": "skull.depth: po zmianie zdanie zachowuje polecenie „albo wcześniej, jeśli…” (źródło PL i EN); zmiana we wszystkich językach, także tam, gdzie API nie zgłosiło (bg, fr, hr, ja, ko, ru, sr, tr, zh-Hant), żeby 33 języki miały to samo znaczenie"
+  }
+ ]
+}
