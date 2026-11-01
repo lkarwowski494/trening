@@ -148,7 +148,7 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
     legs: { R: { ankle: [ankleX, ankleY, BENCH.footHalf], toeOut: 8, kneePole }, L: { ankle: [ankleX, ankleY, -BENCH.footHalf], toeOut: 8, kneePole: [kneePole[0], kneePole[1], -kneePole[2]] } },
     arms,
   };
-  info.load = p.impl === 'db' || p.handles ? [c[0], c[1], g] : c; info.hip = hip; info.shoulder = shoulderC; /* hantle: ślad toru przy hantlu (widok z góry), nie w osi ciała */ info.top = top; info.bottom = bottom;
+  info.load = p.impl === 'db' || p.impl === 'kb' || p.handles ? [c[0], c[1], g] : c; info.hip = hip; info.shoulder = shoulderC; /* hantle i kettlebell: ślad toru przy ciężarze (widok z góry), nie w osi ciała */ info.top = top; info.bottom = bottom;
 
   if (p.impl === 'db' || p.impl === 'kb') {
     for (const s of p.oneArm ? ['R'] as const : ['R', 'L'] as const) {
