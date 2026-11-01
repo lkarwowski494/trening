@@ -1,6 +1,7 @@
 import { EN } from './i18n.en';
 import { LOCALES } from './locales';
 import { pluralIndex } from './plural';
+import { NAME_EN } from './nazwy-en.generated';
 
 /*
  * Języki (T-040, LOC-01, ADR-027). Kluczem jest polski tekst źródłowy — kod czyta się jak dotąd,
@@ -135,9 +136,11 @@ const EX_FULL: Record<string, string> = {
 };
 const EX_PAREN: Record<string, string> = { 'sztanga': 'Barbell', 'hantle': 'Dumbbell', 'hantel': 'Dumbbell', 'linki': 'Cable', 'ławka': 'Bench', 'bieżnia': 'Treadmill', 'hantle/linki': 'Dumbbell/Cable', 'hantel/linka': 'Dumbbell/Cable', 'dwie linki': 'Two Cables' /* katalog 04.10.2026 */, 'talerz': 'Plate' /* research biblioteki 09.10.2026: Lying Neck Extension (talerz) */, 'półkula balansowa': 'Balance Dome' /* SEC2-01 */ };
 /** Nazwa ćwiczenia do wyświetlenia. Ćwiczenia własne i przemianowane pokazujemy tak, jak je nazwał użytkownik. */
-export function exName(e: { name: string; lib?: boolean } | undefined | null): string {
+export function exName(e: { name: string; lib?: boolean; libKey?: string } | undefined | null): string {
   if (!e) return '?';
   if (current === 'pl' || !e.lib) return e.name; /* inne języki: nazwy biblioteki po angielsku (jak na siłowniach) */
+  /* ZB-025 b (31.10.2026): kanoniczna nazwa EN po kluczu katalogu (przewodnik stylu; klucze i dane użytkownika bez zmian) — przed tłumaczeniem dopisków EX_PAREN/EX_FULL */
+  { const k = e.libKey ?? e.name; const n = Object.prototype.hasOwnProperty.call(NAME_EN, k) ? NAME_EN[k] : undefined; if (n) return n; }
   { const f = Object.prototype.hasOwnProperty.call(EX_FULL, e.name) ? EX_FULL[e.name] : undefined; if (f) return f; }
   return e.name.replace(/\(([^)]+)\)/g, (m, inner: string) => Object.prototype.hasOwnProperty.call(EX_PAREN, inner) ? `(${EX_PAREN[inner]})` : m);
 }

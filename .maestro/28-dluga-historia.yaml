@@ -127,8 +127,8 @@ name: Długa historia — kilka sesji, rekordy, usunięcie sesji
 # sesje ćwiczenia i ogólny przegląd („Summary”)
 - tapOn: "Progress, tab.*"
 - extendedWaitUntil: { visible: "RECORDS", timeout: 30000 }
-- scrollUntilVisible: { element: "Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 60000, centerElement: true }
-- tapOn: "Bench Press \\(Dumbbell\\)"  # chip wyboru (ćwiczenie ma dane); nowy wykres jest na górze
+- scrollUntilVisible: { element: "Dumbbell Bench Press", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Dumbbell Bench Press"  # chip wyboru (ćwiczenie ma dane); nowy wykres jest na górze
 - extendedWaitUntil: { visible: "RECORDS", timeout: 30000 }
 - assertVisible: "Max weight.*"
 - assertVisible: "e1RM.*"

@@ -26,11 +26,11 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - tapOn: { text: "Set 1 done.*", index: 0 }
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
 - assertVisible: "Workout progress: 1 of 6 sets"
-- tapOn: { text: "Set 1 done — Bench Press \\(Dumbbell\\)" }
+- tapOn: { text: "Set 1 done — Dumbbell Bench Press" }
 - assertNotVisible: "Skip"
 - assertVisible: "Workout progress: 0 of 6 sets"
 # --- przerwa: +15 s, −15 s, Skip ---
-- tapOn: { text: "Set 1 done — Bench Press \\(Dumbbell\\)" }
+- tapOn: { text: "Set 1 done — Dumbbell Bench Press" }
 - extendedWaitUntil: { visible: "Rest\\. Time left: .*Total rest: 1 minute 30 seconds.*", timeout: 15000 }
 - tapOn: "Extend rest by 15 seconds"
 - extendedWaitUntil: { visible: "Rest\\. Time left: .*Total rest: 1 minute 45 seconds.*", timeout: 15000 }
@@ -66,12 +66,12 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - tapOn: "Remove from superset"
 - extendedWaitUntil: { visible: "Link with next into a superset", timeout: 15000 }
 # --- technika ćwiczenia z poziomu treningu i powrót ---
-- scrollUntilVisible: { element: "Technique: Bench Press \\(Dumbbell\\)", direction: UP, timeout: 30000, centerElement: true }
-- tapOn: "Technique: Bench Press \\(Dumbbell\\)"
+- scrollUntilVisible: { element: "Technique: Dumbbell Bench Press", direction: UP, timeout: 30000, centerElement: true }
+- tapOn: "Technique: Dumbbell Bench Press"
 - extendedWaitUntil: { visible: "Back", timeout: 30000 }
 - takeScreenshot: 80-technika-z-treningu
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "Technique: Bench Press \\(Dumbbell\\)", timeout: 30000 }
+- extendedWaitUntil: { visible: "Technique: Dumbbell Bench Press", timeout: 30000 }
 # --- notatka do treningu ---
 # E2E 38483827437 / 38490407634: placeholder pustego pola nie jest tekstem dla Maestro, a struktura etykiety pola wielowierszowego jest nieznana (indeks 1 po etykiecie nie znalazł pola) — pole po testID workout-note
 - scrollUntilVisible: { element: { id: "workout-note" }, direction: DOWN, timeout: 60000, centerElement: true }
@@ -79,7 +79,7 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - inputText: "lekko bolało ramię"
 - tapOn: "Workout note"   # tekst nad polem zdejmuje fokus (hideKeyboard na klawiaturze bez „Gotowe” pada — E2E 38471218362)
 # --- usunięcie ćwiczenia przesunięciem nagłówka bloku ---
-- scrollUntilVisible: { element: "Bent Over Row \\(Dumbbell\\)", direction: UP, timeout: 30000 }
+- scrollUntilVisible: { element: "Dumbbell Bent-Over Row", direction: UP, timeout: 30000 }
 # E2E 39702654990: nagłówek bloku po przewinięciu leży na górnej krawędzi (ex-1 [16,-19][386,30]) i przesunięcie trafiało pod pasek statusu — zsuwamy listę w dół
 - swipe: { start: "50%, 35%", end: "50%, 75%", duration: 400 }
 # E2E 40309850938: po zsunięciu listy do góry blok ex-1 (pod blokiem pierwszego ćwiczenia) bywa poniżej ekranu i nie ma go w hierarchii — przewijamy do niego i środkujemy
@@ -92,7 +92,7 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - extendedWaitUntil: { visible: "Remove from workout\\?", timeout: 15000 }
 - takeScreenshot: 81-usuwanie-cwiczenia
 - tapOn: { text: "Delete", below: "Remove from workout\\?" }
-- extendedWaitUntil: { notVisible: "Bent Over Row \\(Dumbbell\\)", timeout: 15000 }
+- extendedWaitUntil: { notVisible: "Dumbbell Bent-Over Row", timeout: 15000 }
 # --- zakończenie: notatka treningu i notatka serii w zapisanej sesji ---
 - scrollUntilVisible: { element: "Workout options", direction: UP, timeout: 30000 }
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
@@ -107,7 +107,7 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - extendedWaitUntil: { visible: "Session", timeout: 30000 }
 - assertVisible: "lekko bolało ramię"
 - assertVisible: "tempo 3-1-1"
-- assertNotVisible: "Bent Over Row.*"
+- assertNotVisible: "Dumbbell Bent-Over Row.*"
 - takeScreenshot: 82-sesja-z-notatkami
 - tapOn: "Back"
 # --- drugi trening: powrót z podglądu szablonu, blokada startu innego szablonu, odrzucenie ---

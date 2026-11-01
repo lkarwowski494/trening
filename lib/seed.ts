@@ -2,7 +2,8 @@
 // przygotowanie pod wielu użytkowników (konto, trener–podopieczny) bez migracji "z bólem" później.
 // Backup z wersji webowej v0.3 (bez tych pól) jest nadal importowalny — migrate() w store.ts dopisuje brakujące pola.
 import * as Crypto from 'expo-crypto';
-import { fold, exName, type LangSetting, type Lang } from './i18n';
+import { fold, exName, lang, type LangSetting, type Lang } from './i18n';
+import { NAME_EN_FORMER } from './nazwy-en.generated';
 import type { Unit } from './units';
 import type { LoadSpec } from './loads';
 import { GYM_FILL, OPT_FILL, EQUIP_FILL2 } from './equipment';
@@ -238,10 +239,13 @@ const FORMER: ReadonlyMap<string, readonly string[]> = (() => {
   return m;
 })();
 export const formerNamesOf = (e: Pick<Exercise, 'lib' | 'libKey'>): readonly string[] => { const k = catalogKey(e); return (k && FORMER.get(k)) || []; };
+/** ZB-025 b (31.10.2026): dawne ANGIELSKIE nazwy wyświetlane ćwiczenia z biblioteki, zastąpione kanoniczną nazwą EN (lib/nazwy-en.generated.ts) — aliasy wyszukiwania i wiersz „Dawne nazwy”.
+ * Tylko poza polskim (po polsku nazwa = klucz, bez zmian); nie zmieniają klucza katalogu ani danych użytkownika. */
+export const formerEnNamesOf = (e: Pick<Exercise, 'lib' | 'libKey'>): readonly string[] => { const k = catalogKey(e); return k && lang() !== 'pl' ? own(NAME_EN_FORMER, k) ?? [] : []; };
 /** Dawna nazwa ćwiczenia pasująca do szukanego tekstu (już po fold) — po kluczu albo po nazwie wyświetlanej w języku aplikacji (exName). */
-export const formerMatch = (e: Pick<Exercise, 'lib' | 'libKey'>, q: string): string | undefined => q ? formerNamesOf(e).find(n => fold(n).includes(q) || fold(exName({ name: n, lib: true })).includes(q)) : undefined;
+export const formerMatch = (e: Pick<Exercise, 'lib' | 'libKey'>, q: string): string | undefined => q ? formerNamesOf(e).find(n => fold(n).includes(q) || fold(exName({ name: n, lib: true })).includes(q)) ?? formerEnNamesOf(e).find(n => fold(n).includes(q)) : undefined;
 /** Dokładne trafienie dawnej nazwy — wybór ćwiczenia i lista nie proponują wtedy „Utwórz …”. */
-export const formerExact = (e: Pick<Exercise, 'lib' | 'libKey'>, q: string): boolean => !!q && formerNamesOf(e).some(n => fold(n) === q || fold(exName({ name: n, lib: true })) === q);
+export const formerExact = (e: Pick<Exercise, 'lib' | 'libKey'>, q: string): boolean => !!q && (formerNamesOf(e).some(n => fold(n) === q || fold(exName({ name: n, lib: true })) === q) || formerEnNamesOf(e).some(n => fold(n) === q));
 /** Poprawki pól kopiowanych do ćwiczenia (partia, miara, tryb, asysta gumą, partie mięśni) przy kroku katalogu — tylko gdy zapisana wartość jest
  * dokładnie dawną domyślną (zmian użytkownika nie ruszamy); miara i tryb ciężaru z innym mnożnikiem objętości (X2-01) — tylko gdy ćwiczenie nie ma
  * serii ani pozycji szablonu (nic nie znika z widoku, zapisane ciężary nie zmieniają sensu); asysta gumą (DAT2-01) — tylko bez serii z gumą. */

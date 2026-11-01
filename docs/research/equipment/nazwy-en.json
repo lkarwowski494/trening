@@ -1,0 +1,2239 @@
+{
+ "_opis": "Kanoniczne nazwy angielskie ćwiczeń biblioteki po rid (ścieżka B, ZB-025 b; decyzja właściciela 31.10.2026: nazwy EN — wariant A, P1–P4 wg szkicu przewodnika z 30.10.2026). Klucze katalogu i dane użytkownika bez zmian (SCHEMA_VERSION 19). rid → nazwa wyświetlana po angielsku (i w każdym języku poza polskim, DEC-13); dawna = nazwa EN sprzed zmiany (alias wyszukiwania); reguly = reguły przewodnika (W/H/L/S/K/E/A/F, P1–P4). Generuje: node scripts/equipment/gen-nazwy-en.mjs → lib/nazwy-en.generated.ts. Nazwy nowe czekają na recenzję badacza (nazwy ogólne, marki) i recenzenta lokalizacji (naturalność EN) — pole recenzja.",
+ "recenzja": {
+  "badacz": null,
+  "lokalizacja": null
+ },
+ "wpisy": [
+  {
+   "rid": "96e58da0",
+   "dawna": "Bench Press (Barbell)",
+   "nazwa": "Bench Press",
+   "reguly": [
+    "S1",
+    "S2"
+   ]
+  },
+  {
+   "rid": "5b7bf8c4",
+   "dawna": "Bench Press (Dumbbell)",
+   "nazwa": "Dumbbell Bench Press",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "1ca50c53",
+   "dawna": "Incline Bench Press (Barbell)",
+   "nazwa": "Incline Bench Press",
+   "reguly": [
+    "S1",
+    "S2"
+   ]
+  },
+  {
+   "rid": "705d017f",
+   "dawna": "Incline Bench Press (Dumbbell)",
+   "nazwa": "Incline Dumbbell Bench Press",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "0c3fae30",
+   "dawna": "Chest Fly (Dumbbell)",
+   "nazwa": "Dumbbell Fly",
+   "reguly": [
+    "S1",
+    "L3"
+   ]
+  },
+  {
+   "rid": "7ad8aef8",
+   "dawna": "Standing Cable Press",
+   "nazwa": "Standing Cable Chest Press",
+   "reguly": [
+    "W0"
+   ]
+  },
+  {
+   "rid": "de556ca6",
+   "dawna": "Push Up",
+   "nazwa": "Push-Up",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "6494e666",
+   "dawna": "Incline Push Up",
+   "nazwa": "Incline Push-Up",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "e4b2b8ff",
+   "dawna": "Diamond Push Up",
+   "nazwa": "Diamond Push-Up",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "8d99cc4f",
+   "dawna": "Deadlift (Barbell)",
+   "nazwa": "Deadlift",
+   "reguly": [
+    "S1",
+    "S2"
+   ]
+  },
+  {
+   "rid": "02956c6a",
+   "dawna": "Deadlift (Dumbbell)",
+   "nazwa": "Dumbbell Deadlift",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "e89a5985",
+   "dawna": "RDL (Barbell)",
+   "nazwa": "Romanian Deadlift",
+   "reguly": [
+    "S1",
+    "A1",
+    "S2"
+   ]
+  },
+  {
+   "rid": "2368ad5c",
+   "dawna": "RDL (Dumbbell/Cable)",
+   "nazwa": "Dumbbell or Cable Romanian Deadlift",
+   "reguly": [
+    "A1",
+    "S1",
+    "P4"
+   ]
+  },
+  {
+   "rid": "67c3d038",
+   "dawna": "Bent Over Row (Barbell)",
+   "nazwa": "Bent-Over Row",
+   "reguly": [
+    "H2",
+    "S1",
+    "S2"
+   ]
+  },
+  {
+   "rid": "523c030b",
+   "dawna": "Bent Over Row (Dumbbell)",
+   "nazwa": "Dumbbell Bent-Over Row",
+   "reguly": [
+    "H2",
+    "S1"
+   ]
+  },
+  {
+   "rid": "204baa77",
+   "dawna": "One Arm Row (Dumbbell)",
+   "nazwa": "Single-Arm Dumbbell Row",
+   "reguly": [
+    "H3",
+    "S1"
+   ]
+  },
+  {
+   "rid": "16c65d57",
+   "dawna": "Chest Supported Row",
+   "nazwa": "Chest-Supported Row",
+   "reguly": [
+    "H2"
+   ]
+  },
+  {
+   "rid": "662edea9",
+   "dawna": "Seated Cable Row (home)",
+   "nazwa": "Seated Dual-Cable Row",
+   "reguly": [
+    "W0",
+    "E3"
+   ]
+  },
+  {
+   "rid": "20273872",
+   "dawna": "Straight Arm Pulldown",
+   "nazwa": "Straight-Arm Pulldown",
+   "reguly": [
+    "H2"
+   ]
+  },
+  {
+   "rid": "7d083969",
+   "dawna": "Chin Up",
+   "nazwa": "Chin-Up",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "944dc0f9",
+   "dawna": "Pull Up",
+   "nazwa": "Pull-Up",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "7e46f9ec",
+   "dawna": "Neutral Grip Pull Up",
+   "nazwa": "Neutral-Grip Pull-Up",
+   "reguly": [
+    "H1",
+    "H2"
+   ]
+  },
+  {
+   "rid": "e7477f1c",
+   "dawna": "Shrugs (Dumbbell)",
+   "nazwa": "Dumbbell Shrug",
+   "reguly": [
+    "L2",
+    "S1"
+   ]
+  },
+  {
+   "rid": "8bdff5bd",
+   "dawna": "Shrugs (Barbell)",
+   "nazwa": "Barbell Shrug",
+   "reguly": [
+    "L2",
+    "S1"
+   ]
+  },
+  {
+   "rid": "611efa54",
+   "dawna": "Overhead Press (Barbell)",
+   "nazwa": "Overhead Press",
+   "reguly": [
+    "S1",
+    "S2"
+   ]
+  },
+  {
+   "rid": "31139c78",
+   "dawna": "Overhead Press (Dumbbell)",
+   "nazwa": "Dumbbell Overhead Press",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "733d3384",
+   "dawna": "Seated Shoulder Press (Dumbbell)",
+   "nazwa": "Seated Dumbbell Shoulder Press",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "ad78370b",
+   "dawna": "Lateral Raise (Dumbbell)",
+   "nazwa": "Dumbbell Lateral Raise",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "f6ff5284",
+   "dawna": "Reverse Fly (Dumbbell)",
+   "nazwa": "Dumbbell Reverse Fly",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "d2d5e5f6",
+   "dawna": "Upright Row (Dumbbell)",
+   "nazwa": "Dumbbell Upright Row",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "1698f6ee",
+   "dawna": "Biceps Curl (Dumbbell)",
+   "nazwa": "Dumbbell Curl",
+   "reguly": [
+    "S1",
+    "L3"
+   ]
+  },
+  {
+   "rid": "825f0947",
+   "dawna": "EZ Bar Curl",
+   "nazwa": "EZ-Bar Curl",
+   "reguly": [
+    "E1"
+   ]
+  },
+  {
+   "rid": "5d2b92ad",
+   "dawna": "Incline Curl (Dumbbell)",
+   "nazwa": "Incline Dumbbell Curl",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "a74fe6bd",
+   "dawna": "Concentration Curl (Dumbbell)",
+   "nazwa": "Dumbbell Concentration Curl",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "f57b6875",
+   "dawna": "Skullcrusher (Dumbbell)",
+   "nazwa": "Dumbbell Skull Crusher",
+   "reguly": [
+    "L1",
+    "S1"
+   ]
+  },
+  {
+   "rid": "b26dbcbc",
+   "dawna": "Skullcrusher (EZ)",
+   "nazwa": "EZ-Bar Skull Crusher",
+   "reguly": [
+    "L1",
+    "S1"
+   ]
+  },
+  {
+   "rid": "44ea544b",
+   "dawna": "Triceps Dips (Bench)",
+   "nazwa": "Bench Dip",
+   "reguly": [
+    "L2",
+    "S1",
+    "L3"
+   ]
+  },
+  {
+   "rid": "27880c0a",
+   "dawna": "Overhead Triceps Extension (Dumbbell)",
+   "nazwa": "Dumbbell Overhead Triceps Extension",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "542cb2e7",
+   "dawna": "Close Grip Bench Press",
+   "nazwa": "Close-Grip Bench Press",
+   "reguly": [
+    "H2"
+   ]
+  },
+  {
+   "rid": "775db8cc",
+   "dawna": "Belt Squat (cable)",
+   "nazwa": "Cable Belt Squat",
+   "reguly": [
+    "W0",
+    "S1"
+   ]
+  },
+  {
+   "rid": "a1f69eac",
+   "dawna": "Bulgarian Split Squat (Dumbbell)",
+   "nazwa": "Dumbbell Bulgarian Split Squat",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "a1b79aac",
+   "dawna": "Lunges (Dumbbell)",
+   "nazwa": "Dumbbell Lunge",
+   "reguly": [
+    "L2",
+    "S1"
+   ]
+  },
+  {
+   "rid": "cf6131e9",
+   "dawna": "Walking Lunges",
+   "nazwa": "Walking Lunge",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "ee5538cf",
+   "dawna": "Step Up",
+   "nazwa": "Step-Up",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "2d9caf62",
+   "dawna": "Hip Thrust (Barbell)",
+   "nazwa": "Hip Thrust",
+   "reguly": [
+    "S1",
+    "S2"
+   ]
+  },
+  {
+   "rid": "d4dbe8d2",
+   "dawna": "Hip Thrust (Dumbbell)",
+   "nazwa": "Dumbbell Hip Thrust",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "5569dd47",
+   "dawna": "Calf Press (leg press)",
+   "nazwa": "Leg Press Calf Raise",
+   "reguly": [
+    "W1",
+    "S1"
+   ]
+  },
+  {
+   "rid": "64f44c5f",
+   "dawna": "Incline Walk (Treadmill)",
+   "nazwa": "Incline Treadmill Walk",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "3a3a28c0",
+   "dawna": "Burpees",
+   "nazwa": "Burpee",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "9bf70689",
+   "dawna": "Incline Chest Fly (Dumbbell)",
+   "nazwa": "Incline Dumbbell Fly",
+   "reguly": [
+    "S1",
+    "L3"
+   ]
+  },
+  {
+   "rid": "1b06b218",
+   "dawna": "Decline Bench Press (Dumbbell)",
+   "nazwa": "Decline Dumbbell Bench Press",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "3524eadb",
+   "dawna": "Floor Press (Dumbbell)",
+   "nazwa": "Dumbbell Floor Press",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "43c9cf95",
+   "dawna": "Floor Press (Barbell)",
+   "nazwa": "Floor Press",
+   "reguly": [
+    "S1",
+    "S2"
+   ]
+  },
+  {
+   "rid": "0dfe2f27",
+   "dawna": "Squeeze Press (Dumbbell)",
+   "nazwa": "Dumbbell Squeeze Press",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "9e7eaa9e",
+   "dawna": "Cable Fly (low to high)",
+   "nazwa": "Low-to-High Cable Fly",
+   "reguly": [
+    "W1",
+    "S1",
+    "H2"
+   ]
+  },
+  {
+   "rid": "47eded34",
+   "dawna": "Cable Fly (high to low)",
+   "nazwa": "High-to-Low Cable Fly",
+   "reguly": [
+    "W1",
+    "S1",
+    "H2"
+   ]
+  },
+  {
+   "rid": "552c95f9",
+   "dawna": "Single Arm Cable Fly",
+   "nazwa": "Single-Arm Cable Fly",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "dbabc099",
+   "dawna": "Single Arm Cable Chest Press",
+   "nazwa": "Single-Arm Cable Chest Press",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "f9c3ccee",
+   "dawna": "Decline Push Up",
+   "nazwa": "Decline Push-Up",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "5873d31d",
+   "dawna": "Smith Machine Incline Press",
+   "nazwa": "Incline Smith Machine Press",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "7c578e94",
+   "dawna": "Pullover (Dumbbell)",
+   "nazwa": "Dumbbell Pullover",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "dc60e59a",
+   "dawna": "Single Arm Cable Row",
+   "nazwa": "Single-Arm Cable Row",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "97cbb261",
+   "dawna": "Bent Over Row (Cable)",
+   "nazwa": "Cable Bent-Over Row",
+   "reguly": [
+    "H2",
+    "S1"
+   ]
+  },
+  {
+   "rid": "34d54cf9",
+   "dawna": "Seal Row (Barbell)",
+   "nazwa": "Barbell Seal Row",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "7a961cb3",
+   "dawna": "Single Arm Lat Pulldown",
+   "nazwa": "Single-Arm Lat Pulldown",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "bd1491cd",
+   "dawna": "Shrugs (Cable)",
+   "nazwa": "Cable Shrug",
+   "reguly": [
+    "L2",
+    "S1"
+   ]
+  },
+  {
+   "rid": "84fadd0f",
+   "dawna": "Single Arm Overhead Press (Dumbbell)",
+   "nazwa": "Single-Arm Dumbbell Overhead Press",
+   "reguly": [
+    "H3",
+    "S1"
+   ]
+  },
+  {
+   "rid": "632ebf20",
+   "dawna": "Y Raise (Dumbbell)",
+   "nazwa": "Dumbbell Y Raise",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "9ba18829",
+   "dawna": "Upright Row (Cable)",
+   "nazwa": "Cable Upright Row",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "59434aa7",
+   "dawna": "Upright Row (Barbell)",
+   "nazwa": "Barbell Upright Row",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "0f0531b4",
+   "dawna": "Pike Push Up",
+   "nazwa": "Pike Push-Up",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "ddc7d946",
+   "dawna": "Handstand Push Up",
+   "nazwa": "Handstand Push-Up",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "a6ad10ed",
+   "dawna": "External Rotation (Cable)",
+   "nazwa": "Cable External Rotation",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "c076465a",
+   "dawna": "External Rotation (Dumbbell)",
+   "nazwa": "Dumbbell External Rotation",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "2fd11628",
+   "dawna": "Band Pull Apart",
+   "nazwa": "Band Pull-Apart",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "a935f695",
+   "dawna": "Hammer Curl (Cable)",
+   "nazwa": "Cable Hammer Curl",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "1f02eafa",
+   "dawna": "Cable Curl (Two Cables)",
+   "nazwa": "Dual-Cable Curl",
+   "reguly": [
+    "E3",
+    "S1"
+   ]
+  },
+  {
+   "rid": "1b1b8a70",
+   "dawna": "Preacher Curl (EZ)",
+   "nazwa": "EZ-Bar Preacher Curl",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "ec5de4bd",
+   "dawna": "Wrist Curl (Dumbbell)",
+   "nazwa": "Dumbbell Wrist Curl",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "bb6ad54a",
+   "dawna": "Reverse Wrist Curl (Dumbbell)",
+   "nazwa": "Dumbbell Reverse Wrist Curl",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "1fe425fa",
+   "dawna": "Single Arm Triceps Pushdown",
+   "nazwa": "Single-Arm Triceps Pushdown",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "3880d7d2",
+   "dawna": "Triceps Kickback (Cable)",
+   "nazwa": "Cable Triceps Kickback",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "1e0c1fd4",
+   "dawna": "Overhead Triceps Extension (EZ)",
+   "nazwa": "EZ-Bar Overhead Triceps Extension",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "b47610c2",
+   "dawna": "Skullcrusher (Barbell)",
+   "nazwa": "Barbell Skull Crusher",
+   "reguly": [
+    "L1",
+    "S1"
+   ]
+  },
+  {
+   "rid": "f93d6ef4",
+   "dawna": "Single Leg RDL (Dumbbell)",
+   "nazwa": "Single-Leg Dumbbell Romanian Deadlift",
+   "reguly": [
+    "H3",
+    "S1",
+    "A1"
+   ]
+  },
+  {
+   "rid": "1b164036",
+   "dawna": "Single Leg RDL (Cable)",
+   "nazwa": "Single-Leg Cable Romanian Deadlift",
+   "reguly": [
+    "H3",
+    "S1",
+    "A1"
+   ]
+  },
+  {
+   "rid": "378641ff",
+   "dawna": "Single Leg Press",
+   "nazwa": "Single-Leg Press",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "c5422426",
+   "dawna": "Split Squat (Cable)",
+   "nazwa": "Cable Split Squat",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "d9ffd006",
+   "dawna": "Sumo Squat (Dumbbell)",
+   "nazwa": "Dumbbell Sumo Squat",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "83ddab84",
+   "dawna": "Lunges (Barbell)",
+   "nazwa": "Barbell Lunge",
+   "reguly": [
+    "L2",
+    "S1"
+   ]
+  },
+  {
+   "rid": "78af3c3e",
+   "dawna": "Leg Curl (Dumbbell)",
+   "nazwa": "Dumbbell Leg Curl",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "67d23079",
+   "dawna": "Cable Pull Through",
+   "nazwa": "Cable Pull-Through",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "56d1492e",
+   "dawna": "Single Leg Glute Bridge",
+   "nazwa": "Single-Leg Glute Bridge",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "9864f4c8",
+   "dawna": "Single Leg Hip Thrust",
+   "nazwa": "Single-Leg Hip Thrust",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "dabed9ab",
+   "dawna": "Glute Bridge (Barbell)",
+   "nazwa": "Barbell Glute Bridge",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "6197a61b",
+   "dawna": "Sumo Deadlift (kettlebell)",
+   "nazwa": "Kettlebell Sumo Deadlift",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "24086d58",
+   "dawna": "Single Leg Calf Raise",
+   "nazwa": "Single-Leg Calf Raise",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "72078974",
+   "dawna": "Seated Calf Raise (Dumbbell)",
+   "nazwa": "Seated Dumbbell Calf Raise",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "ca4359a7",
+   "dawna": "Calf Raise (Barbell)",
+   "nazwa": "Barbell Calf Raise",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "c0a99694",
+   "dawna": "Calf Raise (Cable)",
+   "nazwa": "Cable Calf Raise",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "745ed79a",
+   "dawna": "Toes to Bar",
+   "nazwa": "Toes-to-Bar",
+   "reguly": [
+    "H2"
+   ]
+  },
+  {
+   "rid": "fb2bf6d1",
+   "dawna": "Plank Shoulder Taps",
+   "nazwa": "Plank Shoulder Tap",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "97859f3e",
+   "dawna": "GHD Sit Up",
+   "nazwa": "GHD Sit-Up",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "25b112df",
+   "dawna": "Sit Up",
+   "nazwa": "Sit-Up",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "312cd4e3",
+   "dawna": "Rollout (Barbell)",
+   "nazwa": "Barbell Rollout",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "6423ce3d",
+   "dawna": "Side Bend (Dumbbell)",
+   "nazwa": "Dumbbell Side Bend",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "40af8b81",
+   "dawna": "Turkish Get Up",
+   "nazwa": "Turkish Get-Up",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "d1e40214",
+   "dawna": "Overhead Carry (Dumbbell)",
+   "nazwa": "Dumbbell Overhead Carry",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "4bb003a0",
+   "dawna": "Farmer's Walk (trap bar)",
+   "nazwa": "Trap Bar Farmer's Walk",
+   "reguly": [
+    "W1",
+    "S1"
+   ]
+  },
+  {
+   "rid": "3fe0adbb",
+   "dawna": "Snatch (Dumbbell)",
+   "nazwa": "Dumbbell Snatch",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "d47706a4",
+   "dawna": "Thruster (Dumbbell)",
+   "nazwa": "Dumbbell Thruster",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "6f635cdd",
+   "dawna": "Single Arm RDL (Dumbbell/Cable)",
+   "nazwa": "Single-Arm Dumbbell or Cable Romanian Deadlift",
+   "reguly": [
+    "H3",
+    "A1",
+    "S1",
+    "P4"
+   ]
+  },
+  {
+   "rid": "95bf2bee",
+   "dawna": "Belt Squat Machine",
+   "nazwa": "Machine Belt Squat",
+   "reguly": [
+    "E5"
+   ]
+  },
+  {
+   "rid": "63d95e34",
+   "dawna": "Around The Worlds",
+   "nazwa": "Around the World",
+   "reguly": [
+    "L2",
+    "W1"
+   ]
+  },
+  {
+   "rid": "a984f904",
+   "dawna": "One-Arm Flat Bench Dumbbell Fly",
+   "nazwa": "Single-Arm Dumbbell Fly",
+   "reguly": [
+    "H3",
+    "K1",
+    "K4"
+   ]
+  },
+  {
+   "rid": "cb32257c",
+   "dawna": "One-Arm Kettlebell Floor Press",
+   "nazwa": "Single-Arm Kettlebell Floor Press",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "885d95e9",
+   "dawna": "One Arm Dumbbell Bench Press",
+   "nazwa": "Single-Arm Dumbbell Bench Press",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "b37aae3e",
+   "dawna": "Wide-Grip Barbell Bench Press",
+   "nazwa": "Wide-Grip Bench Press",
+   "reguly": [
+    "S2"
+   ]
+  },
+  {
+   "rid": "ce60e956",
+   "dawna": "Front Raise And Pullover",
+   "nazwa": "Front Raise and Pullover",
+   "reguly": [
+    "W1"
+   ]
+  },
+  {
+   "rid": "9c596b89",
+   "dawna": "Wide-Grip Decline Barbell Pullover",
+   "nazwa": "Decline Wide-Grip Barbell Pullover",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "ddda27bc",
+   "dawna": "Smith Machine Decline Press",
+   "nazwa": "Decline Smith Machine Press",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "1c9abcb6",
+   "dawna": "Leverage Decline Chest Press",
+   "nazwa": "Decline Machine Chest Press",
+   "reguly": [
+    "E5",
+    "K1"
+   ]
+  },
+  {
+   "rid": "aa94afd5",
+   "dawna": "Leverage Incline Chest Press",
+   "nazwa": "Incline Machine Chest Press",
+   "reguly": [
+    "E5",
+    "K1"
+   ]
+  },
+  {
+   "rid": "bf2d1c87",
+   "dawna": "Push-Up Wide",
+   "nazwa": "Wide-Grip Push-Up",
+   "reguly": [
+    "H2",
+    "K1"
+   ]
+  },
+  {
+   "rid": "93c0dbeb",
+   "dawna": "Push Up to Side Plank",
+   "nazwa": "Push-Up to Side Plank",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "7aae4083",
+   "dawna": "Isometric Wipers",
+   "nazwa": "Isometric Wiper",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "0d11e220",
+   "dawna": "Push-Ups With Feet On A Stability Ball",
+   "nazwa": "Push-Up with Feet on a Stability Ball",
+   "reguly": [
+    "L2",
+    "W1"
+   ]
+  },
+  {
+   "rid": "ed1d368f",
+   "dawna": "Incline Push-Up Reverse Grip",
+   "nazwa": "Incline Reverse-Grip Push-Up",
+   "reguly": [
+    "H2",
+    "K1"
+   ]
+  },
+  {
+   "rid": "35a6d7e7",
+   "dawna": "Plyo Kettlebell Push-Ups",
+   "nazwa": "Plyo Kettlebell Push-Up",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "af2c053b",
+   "dawna": "Barbell Shrug Behind The Back",
+   "nazwa": "Barbell Shrug Behind the Back",
+   "reguly": [
+    "W1",
+    "K3"
+   ]
+  },
+  {
+   "rid": "cf4d620c",
+   "dawna": "Calf-Machine Shoulder Shrug",
+   "nazwa": "Calf Raise Machine Shrug",
+   "reguly": [
+    "E5"
+   ]
+  },
+  {
+   "rid": "8b7add2d",
+   "dawna": "Full Range-Of-Motion Lat Pulldown",
+   "nazwa": "Full-Range-of-Motion Lat Pulldown",
+   "reguly": [
+    "W1",
+    "H2"
+   ]
+  },
+  {
+   "rid": "afe3a485",
+   "dawna": "Gironda Sternum Chins",
+   "nazwa": "Gironda Sternum Chin-Up",
+   "reguly": [
+    "L2",
+    "H1"
+   ]
+  },
+  {
+   "rid": "69a9b809",
+   "dawna": "Muscle Up",
+   "nazwa": "Muscle-Up",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "4691a85c",
+   "dawna": "Kneeling High Pulley Row",
+   "nazwa": "Kneeling High Cable Row",
+   "reguly": [
+    "E4"
+   ]
+  },
+  {
+   "rid": "04c94607",
+   "dawna": "Leverage High Row",
+   "nazwa": "Machine High Row",
+   "reguly": [
+    "E5"
+   ]
+  },
+  {
+   "rid": "9bfac6b8",
+   "dawna": "Leverage Shrug",
+   "nazwa": "Machine Shrug",
+   "reguly": [
+    "E5"
+   ]
+  },
+  {
+   "rid": "20008e9f",
+   "dawna": "London Bridges",
+   "nazwa": "London Bridge",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "9c5c8269",
+   "dawna": "Mixed Grip Chin",
+   "nazwa": "Mixed-Grip Chin-Up",
+   "reguly": [
+    "H2",
+    "H1"
+   ]
+  },
+  {
+   "rid": "d8d3e457",
+   "dawna": "One Arm Chin-Up",
+   "nazwa": "Single-Arm Chin-Up",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "7fa8f6ab",
+   "dawna": "Reverse Grip Bent Over Row",
+   "nazwa": "Reverse-Grip Bent-Over Row",
+   "reguly": [
+    "H2"
+   ]
+  },
+  {
+   "rid": "a1d8a3f4",
+   "dawna": "Seated Good Mornings",
+   "nazwa": "Seated Good Morning",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "76c15d28",
+   "dawna": "Side To Side Chins",
+   "nazwa": "Side-to-Side Chin-Up",
+   "reguly": [
+    "H2",
+    "L2",
+    "H1"
+   ]
+  },
+  {
+   "rid": "77e6e36b",
+   "dawna": "Smith Machine Behind the Back Shrug",
+   "nazwa": "Smith Machine Shrug Behind the Back",
+   "reguly": [
+    "K3"
+   ]
+  },
+  {
+   "rid": "e7a45505",
+   "dawna": "Smith Machine Bent Over Row",
+   "nazwa": "Smith Machine Bent-Over Row",
+   "reguly": [
+    "H2"
+   ]
+  },
+  {
+   "rid": "642b731d",
+   "dawna": "Wide-Grip Pulldown Behind The Neck",
+   "nazwa": "Wide-Grip Pulldown Behind the Neck",
+   "reguly": [
+    "W1"
+   ]
+  },
+  {
+   "rid": "801042da",
+   "dawna": "Standing Barbell Press Behind Neck",
+   "nazwa": "Standing Barbell Press Behind the Neck",
+   "reguly": [
+    "K3"
+   ]
+  },
+  {
+   "rid": "dd0f5355",
+   "dawna": "Push Press - Behind the Neck",
+   "nazwa": "Push Press Behind the Neck",
+   "reguly": [
+    "S4",
+    "K3"
+   ]
+  },
+  {
+   "rid": "51003b6d",
+   "dawna": "See-Saw Press (Alternating Side Press)",
+   "nazwa": "See-Saw Press",
+   "reguly": [
+    "S3"
+   ]
+  },
+  {
+   "rid": "3a1c6fa3",
+   "dawna": "Kettlebell Seated Press",
+   "nazwa": "Seated Kettlebell Press",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "981bcd94",
+   "dawna": "One-Arm Kettlebell Push Press",
+   "nazwa": "Single-Arm Kettlebell Push Press",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "6a629f47",
+   "dawna": "One-Arm Kettlebell Jerk",
+   "nazwa": "Single-Arm Kettlebell Jerk",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "35dbdf07",
+   "dawna": "One-Arm Kettlebell Split Jerk",
+   "nazwa": "Single-Arm Kettlebell Split Jerk",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "335afd0d",
+   "dawna": "One-Arm Lateral Raise (Dumbbell)",
+   "nazwa": "Single-Arm Dumbbell Lateral Raise",
+   "reguly": [
+    "H3",
+    "S1"
+   ]
+  },
+  {
+   "rid": "d233159f",
+   "dawna": "One-Arm Incline Lateral Raise",
+   "nazwa": "Incline Single-Arm Lateral Raise",
+   "reguly": [
+    "H3",
+    "K1"
+   ]
+  },
+  {
+   "rid": "c5cb8d5f",
+   "dawna": "Cable Seated Lateral Raise",
+   "nazwa": "Seated Cable Lateral Raise",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "3b3e81a0",
+   "dawna": "Front Incline Dumbbell Raise",
+   "nazwa": "Incline Dumbbell Front Raise",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "5ce9183e",
+   "dawna": "Straight Raises on Incline Bench",
+   "nazwa": "Straight-Arm Raise on Incline Bench",
+   "reguly": [
+    "H2",
+    "L2"
+   ]
+  },
+  {
+   "rid": "31591a9d",
+   "dawna": "Car Drivers",
+   "nazwa": "Car Driver",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "50bc3b67",
+   "dawna": "Kettlebell Pirate Ships",
+   "nazwa": "Kettlebell Pirate Ship",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "4106a799",
+   "dawna": "Dumbbell Incline Shoulder Raise",
+   "nazwa": "Incline Dumbbell Shoulder Raise",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "ffb52b77",
+   "dawna": "Barbell Incline Shoulder Raise",
+   "nazwa": "Incline Barbell Shoulder Raise",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "9809553d",
+   "dawna": "Smith Incline Shoulder Raise",
+   "nazwa": "Incline Smith Machine Shoulder Raise",
+   "reguly": [
+    "E1",
+    "K1"
+   ]
+  },
+  {
+   "rid": "694dda48",
+   "dawna": "Dumbbell One-Arm Upright Row",
+   "nazwa": "Single-Arm Dumbbell Upright Row",
+   "reguly": [
+    "H3",
+    "K1"
+   ]
+  },
+  {
+   "rid": "958466f1",
+   "dawna": "Smith Machine One-Arm Upright Row",
+   "nazwa": "Single-Arm Smith Machine Upright Row",
+   "reguly": [
+    "H3",
+    "K1"
+   ]
+  },
+  {
+   "rid": "e49d2ee2",
+   "dawna": "Dumbbell Lying One-Arm Rear Lateral Raise",
+   "nazwa": "Lying Single-Arm Dumbbell Rear Lateral Raise",
+   "reguly": [
+    "H3",
+    "K1"
+   ]
+  },
+  {
+   "rid": "da21f0e6",
+   "dawna": "Reverse Flyes With External Rotation",
+   "nazwa": "Reverse Fly with External Rotation",
+   "reguly": [
+    "L1",
+    "W1"
+   ]
+  },
+  {
+   "rid": "507c30f5",
+   "dawna": "One-Arm Cable Rear Lateral Raise",
+   "nazwa": "Single-Arm Cable Rear Lateral Raise",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "a222cb10",
+   "dawna": "Cable Rope Rear-Delt Rows",
+   "nazwa": "Cable Rope Rear Delt Row",
+   "reguly": [
+    "L2",
+    "H2"
+   ]
+  },
+  {
+   "rid": "b019145e",
+   "dawna": "Sled Reverse Flye",
+   "nazwa": "Sled Reverse Fly",
+   "reguly": [
+    "L1"
+   ]
+  },
+  {
+   "rid": "8a23bdef",
+   "dawna": "Isometric Neck Exercise - Front And Back",
+   "nazwa": "Front and Back Isometric Neck Hold",
+   "reguly": [
+    "W1",
+    "S4"
+   ]
+  },
+  {
+   "rid": "d4ce5863",
+   "dawna": "Isometric Neck Exercise - Sides",
+   "nazwa": "Side Isometric Neck Hold",
+   "reguly": [
+    "S4"
+   ]
+  },
+  {
+   "rid": "6adf17da",
+   "dawna": "Lying Neck Extension (Plate)",
+   "nazwa": "Lying Plate Neck Extension",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "4c462d13",
+   "dawna": "Lying Neck Flexion (Plate)",
+   "nazwa": "Lying Plate Neck Flexion",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "e232b4a2",
+   "dawna": "One-Arm Kettlebell Clean and Jerk",
+   "nazwa": "Single-Arm Kettlebell Clean and Jerk",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "d7562db2",
+   "dawna": "Spider Curl (Barbell)",
+   "nazwa": "Barbell Spider Curl",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "d4b0e33c",
+   "dawna": "Seated Close-Grip Concentration Barbell Curl",
+   "nazwa": "Seated Close-Grip Barbell Concentration Curl",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "5eef847c",
+   "dawna": "Lying Supine Dumbbell Curl",
+   "nazwa": "Lying Dumbbell Curl",
+   "reguly": [
+    "K4"
+   ]
+  },
+  {
+   "rid": "07e2f1b5",
+   "dawna": "One Arm Dumbbell Preacher Curl",
+   "nazwa": "Single-Arm Dumbbell Preacher Curl",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "41c7a764",
+   "dawna": "Standing One-Arm Cable Curl",
+   "nazwa": "Standing Single-Arm Cable Curl",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "75d5b41f",
+   "dawna": "Lying Close-Grip Bar Curl On High Pulley",
+   "nazwa": "Lying Close-Grip High Cable Curl",
+   "reguly": [
+    "W1",
+    "E4",
+    "K1"
+   ]
+  },
+  {
+   "rid": "cc90844e",
+   "dawna": "Dumbbell Lying Pronation",
+   "nazwa": "Lying Dumbbell Pronation",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "76807381",
+   "dawna": "Dumbbell Lying Supination",
+   "nazwa": "Lying Dumbbell Supination",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "936fa312",
+   "dawna": "One-Arm Dumbbell Wrist Curl",
+   "nazwa": "Single-Arm Dumbbell Wrist Curl",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "4ce2b3bb",
+   "dawna": "One-Arm Dumbbell Reverse Wrist Curl",
+   "nazwa": "Single-Arm Dumbbell Reverse Wrist Curl",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "cd8ff968",
+   "dawna": "Behind-the-Back Barbell Wrist Curl",
+   "nazwa": "Barbell Wrist Curl Behind the Back",
+   "reguly": [
+    "K3"
+   ]
+  },
+  {
+   "rid": "90efde25",
+   "dawna": "Reverse Plate Curls",
+   "nazwa": "Reverse Plate Curl",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "d17ab165",
+   "dawna": "Bottoms-Up Clean From The Hang Position",
+   "nazwa": "Bottoms-Up Clean from the Hang Position",
+   "reguly": [
+    "W1"
+   ]
+  },
+  {
+   "rid": "1cc1afe1",
+   "dawna": "Farmer's Walk (Farmers Handles)",
+   "nazwa": "Farmer's Walk with Handles",
+   "reguly": [
+    "S3"
+   ]
+  },
+  {
+   "rid": "7869708c",
+   "dawna": "Smith Machine Close-Grip Bench Press",
+   "nazwa": "Close-Grip Smith Machine Bench Press",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "5d75f0eb",
+   "dawna": "Reverse Grip Bench Press",
+   "nazwa": "Reverse-Grip Bench Press",
+   "reguly": [
+    "H2"
+   ]
+  },
+  {
+   "rid": "3ff5abd3",
+   "dawna": "Decline Close-Grip Bench To Skull Crusher",
+   "nazwa": "Decline Close-Grip Bench to Skull Crusher",
+   "reguly": [
+    "W1"
+   ]
+  },
+  {
+   "rid": "6aa2a1b2",
+   "dawna": "Decline EZ Bar Triceps Extension",
+   "nazwa": "Decline EZ-Bar Triceps Extension",
+   "reguly": [
+    "E1"
+   ]
+  },
+  {
+   "rid": "3cf07a53",
+   "dawna": "Lying Close-Grip Barbell Triceps Extension Behind The Head",
+   "nazwa": "Lying Close-Grip Barbell Triceps Extension Behind the Head",
+   "reguly": [
+    "W1"
+   ]
+  },
+  {
+   "rid": "8affff26",
+   "dawna": "One-Arm Lying Dumbbell Triceps Extension",
+   "nazwa": "Lying Single-Arm Dumbbell Triceps Extension",
+   "reguly": [
+    "H3",
+    "K1"
+   ]
+  },
+  {
+   "rid": "93597271",
+   "dawna": "Dumbbell One-Arm Triceps Extension",
+   "nazwa": "Single-Arm Dumbbell Triceps Extension",
+   "reguly": [
+    "H3",
+    "K1"
+   ]
+  },
+  {
+   "rid": "4834c347",
+   "dawna": "Cable Incline Triceps Extension",
+   "nazwa": "Incline Cable Triceps Extension",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "2ab572ee",
+   "dawna": "Cable Lying Triceps Extension",
+   "nazwa": "Lying Cable Triceps Extension",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "677ec4e5",
+   "dawna": "Reverse Grip Triceps Pushdown",
+   "nazwa": "Reverse-Grip Triceps Pushdown",
+   "reguly": [
+    "H2"
+   ]
+  },
+  {
+   "rid": "8dc5d40d",
+   "dawna": "Standing Low-Pulley One-Arm Triceps Extension",
+   "nazwa": "Standing Single-Arm Low Cable Triceps Extension",
+   "reguly": [
+    "H3",
+    "E4",
+    "K1"
+   ]
+  },
+  {
+   "rid": "7fb124e0",
+   "dawna": "Dip Machine",
+   "nazwa": "Machine Dip",
+   "reguly": [
+    "E5"
+   ]
+  },
+  {
+   "rid": "9f094399",
+   "dawna": "Ring Dips",
+   "nazwa": "Ring Dip",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "8cd4a246",
+   "dawna": "Incline Push-Up Close-Grip",
+   "nazwa": "Incline Close-Grip Push-Up",
+   "reguly": [
+    "H2",
+    "K1"
+   ]
+  },
+  {
+   "rid": "492cc23c",
+   "dawna": "Barbell Step Up",
+   "nazwa": "Barbell Step-Up",
+   "reguly": [
+    "H1"
+   ]
+  },
+  {
+   "rid": "46a62c92",
+   "dawna": "Bulgarian Split Squat (Barbell)",
+   "nazwa": "Barbell Bulgarian Split Squat",
+   "reguly": [
+    "S1"
+   ]
+  },
+  {
+   "rid": "30a1285c",
+   "dawna": "One-Arm Overhead Kettlebell Squat",
+   "nazwa": "Single-Arm Overhead Kettlebell Squat",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "6df50c2d",
+   "dawna": "Leverage Deadlift",
+   "nazwa": "Machine Deadlift",
+   "reguly": [
+    "E5"
+   ]
+  },
+  {
+   "rid": "7b4e7fd3",
+   "dawna": "One-Arm Side Deadlift",
+   "nazwa": "Single-Arm Side Deadlift",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "dd6cdae1",
+   "dawna": "Sled Drag (Harness)",
+   "nazwa": "Sled Drag with Harness",
+   "reguly": [
+    "S3"
+   ]
+  },
+  {
+   "rid": "19d77038",
+   "dawna": "Alternate Leg Diagonal Bound",
+   "nazwa": "Alternate-Leg Diagonal Bound",
+   "reguly": [
+    "H2"
+   ]
+  },
+  {
+   "rid": "d248db72",
+   "dawna": "Alternate Leg Push-Off",
+   "nazwa": "Alternate-Leg Push-Off",
+   "reguly": [
+    "H2"
+   ]
+  },
+  {
+   "rid": "30c617b6",
+   "dawna": "Single Leg Push-Off",
+   "nazwa": "Single-Leg Push-Off",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "932e4ff6",
+   "dawna": "Side to Side Box Shuffle",
+   "nazwa": "Side-to-Side Box Shuffle",
+   "reguly": [
+    "H2"
+   ]
+  },
+  {
+   "rid": "31398221",
+   "dawna": "Dumbbell Seated Box Jump",
+   "nazwa": "Seated Dumbbell Box Jump",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "fe035e03",
+   "dawna": "Double Leg Butt Kick",
+   "nazwa": "Double-Leg Butt Kick",
+   "reguly": [
+    "H2"
+   ]
+  },
+  {
+   "rid": "de2b172e",
+   "dawna": "Single Leg Butt Kick",
+   "nazwa": "Single-Leg Butt Kick",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "7f1675a4",
+   "dawna": "Front Cone Hops",
+   "nazwa": "Front Cone Hop",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "5b8f4c58",
+   "dawna": "Barbell Seated Calf Raise",
+   "nazwa": "Seated Barbell Calf Raise",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "039fb885",
+   "dawna": "Downward Facing Balance",
+   "nazwa": "Downward-Facing Balance",
+   "reguly": [
+    "H2"
+   ]
+  },
+  {
+   "rid": "e564de06",
+   "dawna": "Dumbbell Seated One-Leg Calf Raise",
+   "nazwa": "Seated Single-Leg Dumbbell Calf Raise",
+   "reguly": [
+    "H3",
+    "K1"
+   ]
+  },
+  {
+   "rid": "9b1284f1",
+   "dawna": "Prone Flutter Kicks",
+   "nazwa": "Prone Flutter Kick",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "2eb9fd0d",
+   "dawna": "Lateral Cone Hops",
+   "nazwa": "Lateral Cone Hop",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "749eac95",
+   "dawna": "One-Arm Kettlebell Swings",
+   "nazwa": "Single-Arm Kettlebell Swing",
+   "reguly": [
+    "H3",
+    "L2"
+   ]
+  },
+  {
+   "rid": "14b913df",
+   "dawna": "Stiff-Legged Barbell Deadlift",
+   "nazwa": "Stiff-Legged Deadlift",
+   "reguly": [
+    "S2"
+   ]
+  },
+  {
+   "rid": "0a1674dd",
+   "dawna": "Alternate Heel Touchers",
+   "nazwa": "Alternate Heel Toucher",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "2cfc60fd",
+   "dawna": "Cable Crunch With Side Bends (Balance Dome)",
+   "nazwa": "Balance Dome Cable Crunch with Side Bend",
+   "reguly": [
+    "W1",
+    "S1",
+    "L2"
+   ],
+   "wyswietlana": "Cable Crunch With Side Bends (półkula balansowa)"
+  },
+  {
+   "rid": "1a93b54c",
+   "dawna": "Butt-Ups",
+   "nazwa": "Butt-Up",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "5009c6d1",
+   "dawna": "Cable Russian Twists",
+   "nazwa": "Cable Russian Twist",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "16adfc49",
+   "dawna": "Cable Seated Crunch",
+   "nazwa": "Seated Cable Crunch",
+   "reguly": [
+    "K1"
+   ]
+  },
+  {
+   "rid": "40c9ad54",
+   "dawna": "Cocoons",
+   "nazwa": "Cocoon",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "eca0e693",
+   "dawna": "Crunch - Hands Overhead",
+   "nazwa": "Crunch with Hands Overhead",
+   "reguly": [
+    "S4"
+   ]
+  },
+  {
+   "rid": "2222b356",
+   "dawna": "Crunch - Legs On Exercise Ball",
+   "nazwa": "Crunch with Legs on Stability Ball",
+   "reguly": [
+    "W1",
+    "E1",
+    "S4"
+   ]
+  },
+  {
+   "rid": "6db844b2",
+   "dawna": "Frog Sit-Ups",
+   "nazwa": "Frog Sit-Up",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "92fe6eee",
+   "dawna": "Gorilla Chin/Crunch",
+   "nazwa": "Gorilla Chin-Up Crunch",
+   "reguly": [
+    "H1",
+    "W2"
+   ]
+  },
+  {
+   "rid": "9abbde89",
+   "dawna": "Kneeling Cable Crunch With Alternating Oblique Twists",
+   "nazwa": "Kneeling Cable Crunch with Alternating Oblique Twists",
+   "reguly": [
+    "W1"
+   ]
+  },
+  {
+   "rid": "03686829",
+   "dawna": "Oblique Crunches - On The Floor",
+   "nazwa": "Oblique Crunch",
+   "reguly": [
+    "L2",
+    "W1",
+    "S4",
+    "K4"
+   ]
+  },
+  {
+   "rid": "8eaa2b4d",
+   "dawna": "One-Arm High-Pulley Cable Side Bends",
+   "nazwa": "Single-Arm High Cable Side Bend",
+   "reguly": [
+    "H3",
+    "L2",
+    "E4"
+   ]
+  },
+  {
+   "rid": "9fd1e9dd",
+   "dawna": "One-Arm Medicine Ball Slam",
+   "nazwa": "Single-Arm Medicine Ball Slam",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "2da9e334",
+   "dawna": "Pallof Press With Rotation",
+   "nazwa": "Pallof Press with Rotation",
+   "reguly": [
+    "W1"
+   ]
+  },
+  {
+   "rid": "bd10f542",
+   "dawna": "Seated Flat Bench Leg Pull-In",
+   "nazwa": "Seated Leg Pull-In",
+   "reguly": [
+    "K4"
+   ]
+  },
+  {
+   "rid": "4ba92053",
+   "dawna": "Sledgehammer Swings",
+   "nazwa": "Sledgehammer Swing",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "b717035f",
+   "dawna": "Supine One-Arm Overhead Throw",
+   "nazwa": "Supine Single-Arm Overhead Throw",
+   "reguly": [
+    "H3"
+   ]
+  },
+  {
+   "rid": "66d0cd90",
+   "dawna": "Weighted Sit-Ups - With Bands",
+   "nazwa": "Weighted Sit-Up with Bands",
+   "reguly": [
+    "L2",
+    "W1",
+    "S4"
+   ]
+  },
+  {
+   "rid": "ad768106",
+   "dawna": "Chest And Front Of Shoulder Stretch",
+   "nazwa": "Chest and Front of Shoulder Stretch",
+   "reguly": [
+    "W1"
+   ]
+  },
+  {
+   "rid": "3785f29d",
+   "dawna": "Chin To Chest Stretch",
+   "nazwa": "Chin to Chest Stretch",
+   "reguly": [
+    "W1"
+   ]
+  },
+  {
+   "rid": "ccdd5ed5",
+   "dawna": "Leg Swings (Front-to-Back)",
+   "nazwa": "Front-to-Back Leg Swings",
+   "reguly": [
+    "S3"
+   ]
+  },
+  {
+   "rid": "532e55f3",
+   "dawna": "Groiners",
+   "nazwa": "Groiner",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "0c03a774",
+   "dawna": "Hip Circles (Prone)",
+   "nazwa": "Prone Hip Circles",
+   "reguly": [
+    "S3"
+   ]
+  },
+  {
+   "rid": "2e7bea95",
+   "dawna": "Iron Crosses (Stretch)",
+   "nazwa": "Iron Cross Stretch",
+   "reguly": [
+    "L2",
+    "S3"
+   ]
+  },
+  {
+   "rid": "e2b8c7c1",
+   "dawna": "One Knee To Chest",
+   "nazwa": "One Knee to Chest",
+   "reguly": [
+    "W1"
+   ]
+  },
+  {
+   "rid": "f0cd6c32",
+   "dawna": "Round The World Shoulder Stretch",
+   "nazwa": "Round the World Shoulder Stretch",
+   "reguly": [
+    "W1"
+   ]
+  },
+  {
+   "rid": "abcb0603",
+   "dawna": "Leg Swings (Side-to-Side)",
+   "nazwa": "Side-to-Side Leg Swings",
+   "reguly": [
+    "S3"
+   ]
+  },
+  {
+   "rid": "26d6e32c",
+   "dawna": "Standing Soleus And Achilles Stretch",
+   "nazwa": "Standing Soleus and Achilles Stretch",
+   "reguly": [
+    "W1"
+   ]
+  },
+  {
+   "rid": "cfeccd0f",
+   "dawna": "Standing Toe Touches",
+   "nazwa": "Standing Toe Touch",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "22910680",
+   "dawna": "The Straddle",
+   "nazwa": "Straddle Stretch",
+   "reguly": [
+    "W2"
+   ]
+  },
+  {
+   "rid": "3c85132c",
+   "dawna": "Adductor-SMR",
+   "nazwa": "Adductor Foam Roll",
+   "reguly": [
+    "F1"
+   ]
+  },
+  {
+   "rid": "2b5a4aa5",
+   "dawna": "Calves-SMR",
+   "nazwa": "Calf Foam Roll",
+   "reguly": [
+    "F1"
+   ]
+  },
+  {
+   "rid": "f38daa87",
+   "dawna": "Foam Roll: Hamstrings",
+   "nazwa": "Hamstring Foam Roll",
+   "reguly": [
+    "F1"
+   ]
+  },
+  {
+   "rid": "7099e219",
+   "dawna": "Iliotibial Tract-SMR",
+   "nazwa": "IT Band Foam Roll",
+   "reguly": [
+    "F1"
+   ]
+  },
+  {
+   "rid": "564a122f",
+   "dawna": "Latissimus Dorsi-SMR",
+   "nazwa": "Lat Foam Roll",
+   "reguly": [
+    "F1"
+   ]
+  },
+  {
+   "rid": "90486bc9",
+   "dawna": "Peroneals-SMR",
+   "nazwa": "Peroneal Foam Roll",
+   "reguly": [
+    "F1"
+   ]
+  },
+  {
+   "rid": "ac9e7cd6",
+   "dawna": "Piriformis-SMR",
+   "nazwa": "Piriformis Foam Roll",
+   "reguly": [
+    "F1"
+   ]
+  },
+  {
+   "rid": "577cc0a0",
+   "dawna": "Foam Roll: Quadriceps",
+   "nazwa": "Quad Foam Roll",
+   "reguly": [
+    "F1"
+   ]
+  },
+  {
+   "rid": "7deb94b3",
+   "dawna": "Rhomboids-SMR",
+   "nazwa": "Upper Back Foam Roll",
+   "reguly": [
+    "F1"
+   ]
+  },
+  {
+   "rid": "f9dd2033",
+   "dawna": "Foot-SMR",
+   "nazwa": "Foot Roll",
+   "reguly": [
+    "F1"
+   ]
+  },
+  {
+   "rid": "7dc2a266",
+   "dawna": "Frog Hops",
+   "nazwa": "Frog Hop",
+   "reguly": [
+    "L2"
+   ]
+  },
+  {
+   "rid": "310772dc",
+   "dawna": "Toe Touchers",
+   "nazwa": "Toe Toucher",
+   "reguly": [
+    "L2"
+   ]
+  }
+ ]
+}

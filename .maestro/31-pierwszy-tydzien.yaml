@@ -104,23 +104,23 @@ name: Pierwszy tydzień nowego użytkownika
 - tapOn: "Skip"
 - assertNotVisible: "Skip"
 # zamiana ćwiczenia: martwy ciąg / wiosłowanie → propozycja
-- scrollUntilVisible: { element: "Swap exercise: Bent Over Row \\(Barbell\\)", direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: "Swap exercise: Bent Over Row \\(Barbell\\)"
+- scrollUntilVisible: { element: "Swap exercise: Bent-Over Row", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Swap exercise: Bent-Over Row"
 - extendedWaitUntil: { visible: "Suggestion 1: .*", timeout: 30000 }
 - tapOn: "Suggestion 1: .*"
 # run 39410740673: po wyborze zamiennika lista zostaje przewinięta niżej (zrzut kroku 103: „Overhead Press”, „Lat Pulldown”), a wiersz „instead of” leży nad ekranem — przewinięcie z wyśrodkowaniem
-- scrollUntilVisible: { element: "instead of: Bent Over Row \\(Barbell\\).*", direction: UP, timeout: 30000, centerElement: true }
+- scrollUntilVisible: { element: "instead of: Bent-Over Row.*", direction: UP, timeout: 30000, centerElement: true }
 # pominięcie ćwiczenia „na dziś” i przywrócenie
-- scrollUntilVisible: { element: "Skip today: Overhead Press \\(Barbell\\)", direction: DOWN, timeout: 30000, centerElement: true }
+- scrollUntilVisible: { element: "Skip today: Overhead Press", direction: DOWN, timeout: 30000, centerElement: true }
 - takeScreenshot: 83a-przed-pominieciem
-- tapOn: "Skip today: Overhead Press \\(Barbell\\)"
+- tapOn: "Skip today: Overhead Press"
 - takeScreenshot: 83b-po-stukniecie-pomin
 # L-013 (nocny run 39537208004, iPhone 17e 390 pt; zrzut: koniec listy, bez wiersza): po zwinięciu ćwiczenia lista się skraca i przewija do końca — wiersz „skipped today” leży nad ekranem
 - scrollUntilVisible: { element: "skipped today", direction: UP, timeout: 30000, centerElement: true }
 - takeScreenshot: 84-pominiete
 - scrollUntilVisible: { element: "Restore exercise.*", direction: UP, timeout: 30000, centerElement: true }  # run 38363820424: wiersz „pominięte dziś” był nad ekranem — Maestro nie przewija przed stuknięciem
 - tapOn: "Restore exercise.*"
-- scrollUntilVisible: { element: "Set 1 done — Overhead Press \\(Barbell\\)", direction: DOWN, timeout: 30000, centerElement: true }
+- scrollUntilVisible: { element: "Set 1 done — Overhead Press", direction: DOWN, timeout: 30000, centerElement: true }
 - assertNotVisible: "skipped today"
 # dopisana seria
 - scrollUntilVisible: { element: { text: "\\+ set", index: 0 }, direction: UP, timeout: 60000, centerElement: true }
