@@ -37,7 +37,7 @@ describe('SEC2-01: nazwy ćwiczeń katalogu bez znaków towarowych (klucz zostaj
     const both = (k: string) => { applyLang('pl'); const pl = exName(by(k)); applyLang('en'); const en = exName(by(k)); applyLang('pl'); return [pl, en]; };
     expect(both(KEYS.find(k => /bike/i.test(k))!)).toEqual(['Rower powietrzny', 'Air Bike']);
     expect(both(KEYS.find(k => /erg/i.test(k))!)).toEqual(['Ergometr narciarski', 'Ski Ergometer']);
-    expect(both(KEYS.find(k => /crunch/i.test(k))!)).toEqual(['Cable Crunch With Side Bends (półkula balansowa)', 'Cable Crunch With Side Bends (Balance Dome)']);
+    expect(both(KEYS.find(k => /crunch/i.test(k))!)).toEqual(['Cable Crunch With Side Bends (półkula balansowa)', 'Balance Dome Cable Crunch with Side Bend']);
   });
   test('wszystkie ćwiczenia nowej instalacji w 26 językach — nazwa bez nazw z listy', () => {
     const s = seedState('pl'); const bad: string[] = [];

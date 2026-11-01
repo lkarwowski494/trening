@@ -18,7 +18,7 @@ describe('E2E 89 — podprzepływy szablon-testowy i start-szablonu (Upper A), w
     await tap(screen.getByLabelText('Add template')); await flushAll(10);
     const nameF = screen.getByLabelText('Name'); expect(nameF.props.value).toBe('New template');
     await type(nameF, 'Upper A'); await flushAll(5);
-    for (const [q, lbl] of [['Bench Press', 'Bench Press (Dumbbell), dumbbells'], ['Bent Over Row', 'Bent Over Row (Dumbbell), dumbbells']]) {
+    for (const [q, lbl] of [['Bench Press', 'Dumbbell Bench Press, dumbbells'], ['Bent Over Row', 'Dumbbell Bent-Over Row, dumbbells']]) {
       await tap(screen.getByLabelText('+ Add exercise')); await flushAll(10);
       await type(screen.getByPlaceholderText('Search exercises…'), q); await flushAll(5);
       await tap(screen.getByLabelText(lbl)); await flushAll(10);

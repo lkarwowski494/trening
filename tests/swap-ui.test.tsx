@@ -93,11 +93,11 @@ describe('W1 — ekran treningu i arkusz zamiany', () => {
   test('EN bez polskich tekstów (C6)', async () => {
     await renderApp({ saved: await savedWith(['Bench Press (sztanga)'], { locale: 'en' }), locale: 'en' }); await flushAll(20);
     await act(async () => { store.getState().settings.language = 'en'; store.applyPrefs(); store.save(); }); await flushAll(5);
-    await tap(screen.getByLabelText('Swap exercise: Bench Press (Barbell)')); await flushAll(20);
+    await tap(screen.getByLabelText('Swap exercise: Bench Press')); await flushAll(20);
     expect(screen.getByText('Suggestions')).toBeTruthy(); expect(screen.getByLabelText('Show other exercises')).toBeTruthy();
     const txt = JSON.stringify(screen.toJSON()); expect(txt).not.toMatch(/Propozycje|Pokaż inne ćwiczenia|ten sam ruch|już w treningu|zamiast/);
     await tap(screen.getByLabelText(/^Suggestion 1: /)); await flushAll(20);
-    expect(JSON.stringify(screen.toJSON())).toMatch(/instead of: Bench Press \(Barbell\)/);
+    expect(JSON.stringify(screen.toJSON())).toMatch(/instead of: Bench Press/);
   });
 
   test('D5: sekcja „Ten sam ruch, inny przyrząd” — RDL w Domu: stacja; wybór przypina przyrząd (kolumna kg/str.)', async () => {

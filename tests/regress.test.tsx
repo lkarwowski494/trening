@@ -385,7 +385,7 @@ describe('runda 5', () => {
     await renderApp({ locale: 'en' }); addWorkout(Date.now() - 3600e3, [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); store.deleteExercise(ex('Bench Press (hantle)').id);
     await act(async () => { store.startEmpty(); }); await go('/picker?target=active'); await flushAll(10);
     await type(screen.getByPlaceholderText('Search exercises…'), 'bench press (dumbbell)'); await flushAll(10);
-    expect(screen.getByText('Restore “Bench Press (Dumbbell)”')).toBeTruthy(); expect(screen.queryByText(/^Create/)).toBeNull();
+    expect(screen.getByText('Restore “Dumbbell Bench Press”')).toBeTruthy(); expect(screen.queryByText(/^Create/)).toBeNull();
   });
   test('R5-06 zmiana partii: automatyczna partia główna jest podmieniana i nie dubluje pomocniczej', async () => {
     await renderApp(); let e: any; await act(async () => { e = store.newExercise('Moje ćwiczenie'); e.secondaryMuscles = ['plecy']; store.save(e); });
@@ -1931,7 +1931,7 @@ describe('Q-004 (0.14.0): zmiana języka w trakcie przerwy/stopera odświeża Li
     const lb = await bootRest(); expect(lb.sub).toBe('dalej: Pull Up, masa ciała'); /* 0.20: podpis = restCue (ciężar i powtórzenia) */ global.__la.length = 0;
     await pickEnglish();
     const starts = (global.__la as any[][]).filter(x => x[0] === 'start'); expect(starts).toHaveLength(1);
-    expect(starts[0][2]).toBe('next: Pull Up, body weight'); expect(starts[0][5]).toBe('rest|Rest'); expect(timer.T.sub).toBe('next: Pull Up, body weight');
+    expect(starts[0][2]).toBe('next: Pull-Up, body weight'); expect(starts[0][5]).toBe('rest|Rest'); expect(timer.T.sub).toBe('next: Pull-Up, body weight');
     expect(starts[0][3]).toBe(timer.T.endAt); /* koniec przerwy bez zmian */
   });
   test('przypomnienie o porzuconym treningu jest przeplanowane w nowym języku także bez zamontowanego ekranu treningu', async () => {

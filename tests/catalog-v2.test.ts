@@ -128,7 +128,7 @@ describe('katalog ćwiczeń — decyzje 04.10 wieczór', () => {
     expect(CABLES['RDL (hantle/linki)']).toBe(2); expect(CABLES['Wiosłowanie na linkach (siedząc)']).toBe(2);
     expect(CABLES['Single Arm RDL (hantel/linka)']).toBe(1); expect(CABLES['Single Arm Cable Row']).toBe(1);
     const one = lib().find(e => e.name === 'Single Arm RDL (hantel/linka)')!; expect(one).toMatchObject({ implements: 1, loadMode: 'unilateral', pattern: 'hinge', muscles: ['dwugłowe'] });
-    applyLang('en'); expect(exName(one)).toBe('Single Arm RDL (Dumbbell/Cable)'); applyLang('pl');
+    applyLang('en'); expect(exName(one)).toBe('Single-Arm Dumbbell or Cable Romanian Deadlift'); applyLang('pl');
   });
   test('partia „przywodziciele”: na liście partii, region adductors → przywodziciele, bez wyjątków od reguły spójności', () => {
     expect(MUSCLES).toContain('przywodziciele'); expect(MUSCLE_REGIONS.adductors).toBe('przywodziciele'); expect(RULE_EXCEPTIONS).toEqual({});
