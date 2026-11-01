@@ -14,13 +14,21 @@ describe('tests-tz.yml — zadanie „zmiana-czasu” (A)', () => {
     expect(job).not.toBe(''); expect(job).toMatch(/runs-on:\s*ubuntu-latest/); expect(tz).not.toMatch(/secrets\./);
     expect(job).toMatch(/PIN_NOW="\$\{STREFA_CHWILA##\*\|\}"/); expect(job).toMatch(/TZ="\$\{STREFA_CHWILA%%\|\*\}"/); expect(job).toMatch(/fail-fast:\s*false/);
   });
-  test('macierz obejmuje zmianę czasu w Europie jesienią i wiosną oraz w USA; każda chwila to ISO w UTC tuż po zmianie', () => {
-    const poz = [...job.matchAll(/^\s*-\s*(\S+)\|(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)\s*$/gm)].map(m => [m[1], m[2]]);
-    expect(poz).toEqual(expect.arrayContaining([['Europe/Warsaw', '2027-10-31T02:30:00Z'], ['Europe/Warsaw', '2027-03-28T03:00:00Z'], ['America/Los_Angeles', '2027-11-07T10:30:00Z']]));
-    for (const [z, iso] of poz) { /* chwila ma być 0,5–3 h po przejściu — w strefie jest już nowe przesunięcie, a start sprzed kilku godzin wypada w starym */
-      const t = Date.parse(iso); const off = (ms: number) => Date.parse(new Date(ms).toLocaleString('sv-SE', { timeZone: z }).replace(' ', 'T') + 'Z') - ms;
-      expect([z, off(t - 8 * 3600e3) !== off(t)]).toEqual([z, true]);
+  test('macierz obejmuje zmianę czasu w Europie jesienią i wiosną oraz w USA; każda chwila to ISO w UTC tuż po zmianie — WYLICZONA, nie wpisana na sztywno (07-jakosc-006)', () => {
+    expect(job).toMatch(/needs:\s*chwile/); expect(job).toMatch(/strefa_chwila:\s*\$\{\{\s*fromJSON\(needs\.chwile\.outputs\.lista\)\s*\}\}/);
+    expect(job).not.toMatch(/^\s*-\s*\S+\|\d{4}-\d{2}-\d{2}T/m); /* żadnej chwili na sztywno w pliku */
+    expect(tz).toMatch(/node scripts\/ci\/przejscia-czasu\.js macierz/);
+    for (const rok of [2027, 2028, 2031, 2040]) { /* każdy rok: trzy pozycje, a chwila 0,5–3 h po przejściu — w strefie jest już nowe przesunięcie, a start sprzed kilku godzin wypada w starym */
+      const poz = (JSON.parse(execFileSync('node', [path.join(root, 'scripts/ci/przejscia-czasu.js'), 'macierz', String(rok)]).toString()) as string[]).map(x => x.split('|'));
+      expect(poz.map(([z]) => z)).toEqual(['Europe/Warsaw', 'Europe/Warsaw', 'America/Los_Angeles']);
+      const dir = poz.map(([z, iso]) => { const t = Date.parse(iso); const off = (ms: number) => Date.parse(new Date(ms).toLocaleString('sv-SE', { timeZone: z }).replace(' ', 'T') + 'Z') - ms;
+        expect([z, iso, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(iso), off(t - 8 * 3600e3) !== off(t), new Date(t).getUTCFullYear() === rok]).toEqual([z, iso, true, true, true]); return Math.sign(off(t) - off(t - 8 * 3600e3)); });
+      expect(dir).toEqual([-1, 1, -1]); /* jesień (wstecz), wiosna (do przodu), jesień USA */
     }
+  });
+  test('bez argumentu skrypt liczy przejścia PRZYSZŁEGO roku (rok UTC + 1)', () => {
+    const poz = JSON.parse(execFileSync('node', [path.join(root, 'scripts/ci/przejscia-czasu.js'), 'macierz']).toString()) as string[];
+    for (const p of poz) expect(new Date(p.split('|')[1]).getUTCFullYear()).toBe(new Date().getUTCFullYear() + 1);
   });
   test('pliki z własnym zegarem są pominięte (scripts/ci/pin-wykluczenia.mjs), a reszta biegnie z przypiętym „teraz”', () => {
     expect(tz).toMatch(/--testPathIgnorePatterns "\$\(node scripts\/ci\/pin-wykluczenia\.mjs\)"/);
