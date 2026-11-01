@@ -48,7 +48,10 @@ export function contactsOf(f: Frame): ContactPoint[] {
   const body = bodyColliders(sk), eq = equipColliders(f.props).filter(e => SURFACES.test(e.id));
   const touches = (id: string, tol: number = CONTACT.surface): boolean => { const b = body.find(x => x.id === id); return !!b && eq.some(e => gap(b, e) <= tol); };
   if (touches('head', CONTACT.head)) out.push({ id: 'head', kind: 'body', p: sk.head });
-  if (touches('torso')) out.push({ id: 'back', kind: 'body', p: sub(sk.shoulderC, mul(sk.up, 8)) });
+  /* plecy = górna połowa kapsuły tułowia (barki–środek): gdy powierzchni dotyka tylko dolny koniec (miednica na skrzyni), to jest styk „siedzenie”, nie „plecy” */
+  const torso = body.find(x => x.id === 'torso');
+  const upperBack = torso && torso.k === 'capsule' ? { ...torso, id: 'torsoUpper', a: [(torso.a[0] + torso.b[0]) / 2, (torso.a[1] + torso.b[1]) / 2, (torso.a[2] + torso.b[2]) / 2] as V3 } : undefined;
+  if (upperBack && eq.some(e => gap(upperBack, e) <= CONTACT.surface)) out.push({ id: 'back', kind: 'body', p: sub(sk.shoulderC, mul(sk.up, 8)) });
   if (touches('pelvis')) out.push({ id: 'seat', kind: 'body', p: sk.pelvis });
   MEMO.set(f, out); return out;
 }
