@@ -14,7 +14,7 @@
   wszystkie przypadki i wszystkie rodzaje z `docs/20-definicja-ukonczenia.md` (logika, ekran, scenariusz, macierz, niezmienniki, dane,
   języki/wygląd, regresja, E2E Maestro). Rodzaj pominięty tylko z zapisanym powodem w docs/09.
 - W trakcie pracy: `npm run test:fast` (tylko testy związane ze zmienionymi plikami, ~1 min). Przed wypchnięciem: pełne `npm run verify`
-  (typecheck, check:i18n, jest, `expo export --platform ios`, verify:native; ~12 min) — decyzja właściciela 11.10.2026, wariant B;
+  (typecheck, check:i18n, jest, `expo export --platform ios`, verify:native; w CI ok. 22–40 min na 2 rdzeniach, pomiar 01.11.2026 w `scripts/ci/czasy-tests.json`; lokalnie na 4 rdzeniach: <KOORDYNATOR: uzupełnić zmierzony czas>) — decyzja właściciela 11.10.2026, wariant B;
   wyjątek: commit tylko z dokumentami: `npm run verify:docs` (właściciel 21.10.2026; 1–2 min, CI na PR i tak biegnie pełne). Nowe teksty w UI
   przez `t()` i słownik `lib/i18n.en.ts`. Hak pre-push (`scripts/hooks/pre-push`, instalowany przez `npm ci`; lint, check:readme, check:matrix, ok. 35 s)
   nie zastępuje verify; po wypchnięciu sprawdź wynik `tests.yml` i czekaj na zielony (L-009); obejście `git push --no-verify` tylko świadomie. Od 28.10.2026 (L-049, opcja A) hak odmawia wypchnięcia commitu bez znacznika zielonego verify dla jego drzewa (`scripts/verify-znacznik.mjs`, zapis na końcu `npm run verify`; sam commit z dokumentami — znacznik `verify:docs`, także na gałęzi z wcześniejszym kodem, gdy od najbliższego commitu z pełnym verify zmieniły się tylko dokumenty — H1, właściciel 31.10.2026; reguła „dokument” w `scripts/dokumenty.mjs`).

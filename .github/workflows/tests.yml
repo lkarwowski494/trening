@@ -17,9 +17,12 @@ jobs:
   verify:
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 55  # wyliczony z pomiaru: scripts/ci/czasy-tests.json (p95 z 12 przebiegów 22–40 min × 1,25, w górę do 5 min; audyt jakości 007, 01.11.2026) — pilnuje tests/tests-yml-czas.test.ts
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # pełna historia i tagi (audyt jakości 012): tests/audit-m1-050-release-log.test.ts sprawdza wiersz dziennika wydań dla każdego tagu v*-b* — bez tagów test był pusty
+          fetch-tags: true
       - uses: actions/setup-node@v5
         with:
           node-version: 22

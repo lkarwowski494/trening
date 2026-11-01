@@ -1,0 +1,6 @@
+{
+  "_opis": "Minimalne wersje narzędzi CI na macOS (audyt jakości 009, 01.11.2026) — JEDYNE miejsce z tymi liczbami; sprawdza je scripts/ci/sprawdz-wersje.sh (twardy błąd przy niższej). xcode: Expo SDK 56 wymaga Xcode 26.4+ (comment w select-xcode.sh); ios_sdk: SDK symulatora wybranego Xcode (26.4 → iOS 26.4); maestro: najstarsza wersja, na której przeszły przebiegi E2E (2.11.0 — docs/09-archiwum-do-0.11.md, przebiegi 91 i 105; 2.12.0 — przebieg 41036041281).",
+  "xcode": "26.4",
+  "ios_sdk": "26.4",
+  "maestro": "2.11.0"
+}

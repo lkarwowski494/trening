@@ -11,8 +11,10 @@
 # `pakiet: pelny` w trybie zwykłym na standardowym iPhonie — jedno ponowienie scenariusza dozwolone (M1-audytor-generalny-023). Podsumowanie przebiegu wypisuje scenariusze zielone dopiero w ponowieniu (niestabilność
 # widoczna, nie ukryta) i zapisuje czasy per scenariusz w artefakcie e2e-wyniki (scripts/ci/e2e-wyniki.mjs; pilnuje tests/e2e-pakiet.test.ts).
 name: E2E iOS (symulator)
-# Tytuł przebiegu czyta bramka TestFlight (scripts/ci/bramka-e2e.sh, audyt M1-018): „E2E iOS · <pakiet>” bez dopisków = przebieg pełnowartościowy na tym commicie.
-run-name: ${{ format('E2E iOS · {0}{1}{2}', (inputs.tryb_scisly == true && 'ścisły') || inputs.pakiet || 'podstawowy', inputs.tylko_scenariusze != '' && ' · tylko wybrane' || '', inputs.aplikacja_z_przebiegu != '' && ' · aplikacja z innego przebiegu' || '') }}
+# Tytuł przebiegu czyta bramka TestFlight (scripts/ci/bramka-e2e.sh, audyt M1-018; 01.11.2026, audyt jakości 008): pola klucz=wartość (pakiet, tryb, zakres, aplikacja)
+# i PEŁNY SHA commitu — bramka liczy tylko przebieg tego workflowu (pole path z API), na tym commicie, z pakietem podstawowym/pełnym, bez zawężeń. Zmiana formatu = zmiana
+# wzorca w bramce; pilnuje tests/bramka-e2e-id.test.ts.
+run-name: ${{ format('E2E iOS · pakiet={0} · tryb={1} · zakres={2} · aplikacja={3} · sha={4}', inputs.pakiet || 'podstawowy', (inputs.tryb_scisly == true && 'scisly') || 'zwykly', (inputs.tylko_scenariusze != '' && 'wybrane') || 'wszystkie', (inputs.aplikacja_z_przebiegu != '' && 'obca') || 'wlasna', github.sha) }}
 on:
   # decyzja właściciela 06.10.2026 (wariant A): samoczynnie po wypchnięciu na main i gałęzie integracyjne (bez zmian tylko w dokumentacji)
   push:
@@ -175,6 +177,7 @@ jobs:
           ROZMIAR_TEKSTU: ${{ inputs.rozmiar_tekstu }}
         run: |
           SDK=$(xcrun --sdk iphonesimulator --show-sdk-version)
+          bash scripts/ci/sprawdz-wersje.sh ios_sdk "$SDK"  # minimum z scripts/ci/wersje-minimalne.json (audyt jakości 009)
           LIST=$(xcrun simctl list devices available | awk -v h="-- iOS $SDK --" '$0 == h { f = 1; next } /^-- / { f = 0 } f')
           [ -n "$LIST" ] || { echo "Brak symulatorów iOS $SDK — wybór z całej listy"; LIST=$(xcrun simctl list devices available); }
           DEV=""
@@ -200,7 +203,7 @@ jobs:
           [ -n "$MAESTRO_VERSION" ] || unset MAESTRO_VERSION
           curl -fsSL "https://get.maestro.mobile.dev" | bash
           echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
-          "$HOME/.maestro/bin/maestro" --version || true
+          bash scripts/ci/sprawdz-wersje.sh maestro "$("$HOME/.maestro/bin/maestro" --version 2>&1 | tail -1)"  # minimum z scripts/ci/wersje-minimalne.json; wersja w logu (audyt jakości 009)
       - name: Maestro
         if: steps.plan.outputs.main == 'true'
         env:
@@ -365,6 +368,7 @@ jobs:
           ROZMIAR_TEKSTU: ${{ inputs.rozmiar_tekstu }}
         run: |
           SDK=$(xcrun --sdk iphonesimulator --show-sdk-version)
+          bash scripts/ci/sprawdz-wersje.sh ios_sdk "$SDK"  # minimum z scripts/ci/wersje-minimalne.json (audyt jakości 009)
           LIST=$(xcrun simctl list devices available | awk -v h="-- iOS $SDK --" '$0 == h { f = 1; next } /^-- / { f = 0 } f')
           [ -n "$LIST" ] || { echo "Brak symulatorów iOS $SDK — wybór z całej listy"; LIST=$(xcrun simctl list devices available); }
           DEV=""
@@ -389,7 +393,7 @@ jobs:
           [ -n "$MAESTRO_VERSION" ] || unset MAESTRO_VERSION
           curl -fsSL "https://get.maestro.mobile.dev" | bash
           echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
-          "$HOME/.maestro/bin/maestro" --version || true
+          bash scripts/ci/sprawdz-wersje.sh maestro "$("$HOME/.maestro/bin/maestro" --version 2>&1 | tail -1)"  # minimum z scripts/ci/wersje-minimalne.json; wersja w logu (audyt jakości 009)
       - name: Maestro (eksperymenty, każdy plik osobno)
         env:
           MAESTRO_DRIVER_STARTUP_TIMEOUT: '480000'

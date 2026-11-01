@@ -55,6 +55,8 @@ describe('nightly.yml — mutacje po modułach (B)', () => {
       expect(zakresy[0][0]).toBe(1); zakresy.slice(1).forEach(([od], i) => expect(od).toBe(zakresy[i][1] + 1)); expect(zakresy[zakresy.length - 1][1]).toBeGreaterThanOrEqual(dl);
     }
     expect(wpisy.filter(w => w.startsWith('plan:')).length).toBeGreaterThan(1);
+    /* Nocne 01.11.2026 (audyt jakości 004): lib/state/migrate.ts ma 622 mutanty, ok. 1 mutant/min — jedno zadanie (limit 300 min) kończyło na 295 z 622 (anulowane). Min. 3 zakresy: każdy ok. 210 mutantów (~3,5 h). */
+    expect(wpisy.filter(w => w.startsWith('state/migrate:')).length).toBeGreaterThanOrEqual(3);
   });
   test('zadanie modułu: konfiguracja z jednym modułem i bez progu break, limit czasu w granicach, raport jako artefakt', () => {
     expect(nightly).toMatch(/c\.mutate=\['lib\/'\+m\+'\.ts'\+\(r\?':'\+r:''\)\]/); expect(nightly).toMatch(/break: null/); expect(nightly).toMatch(/npx stryker run stryker\.modul\.json/);

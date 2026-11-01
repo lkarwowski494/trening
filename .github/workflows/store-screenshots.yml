@@ -213,6 +213,7 @@ jobs:
           [ -n "$MAESTRO_VERSION" ] || unset MAESTRO_VERSION
           curl -fsSL "https://get.maestro.mobile.dev" | bash
           echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+          bash scripts/ci/sprawdz-wersje.sh maestro "$("$HOME/.maestro/bin/maestro" --version 2>&1 | tail -1)"  # minimum z scripts/ci/wersje-minimalne.json (audyt jakości 009)
       - name: Zrzuty ekranu
         env:
           MAESTRO_DRIVER_STARTUP_TIMEOUT: '480000'

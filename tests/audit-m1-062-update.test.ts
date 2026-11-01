@@ -87,7 +87,7 @@ describe('M1-062: testflight.yml — plik wydania z buildem symulatora przy tagu
 describe('M1-062: bramka-e2e.sh zapisuje numer przebiegu', () => {
   test('na sukces dopisuje run=<id> do GITHUB_OUTPUT', () => {
     const d = mkdtempSync(join(tmpdir(), 'br062-')); const bin = join(d, 'bin'); mkdirSync(bin); const gho = join(d, 'gho');
-    writeFileSync(join(bin, 'gh'), `#!/usr/bin/env bash\nprintf '777\\tcompleted\\tsuccess\\tE2E iOS · podstawowy\\n'\n`); chmodSync(join(bin, 'gh'), 0o755);
+    writeFileSync(join(bin, 'gh'), `#!/usr/bin/env bash\nprintf '777\\tcompleted\\tsuccess\\t.github/workflows/e2e-ios.yml\\tE2E iOS · pakiet=podstawowy · tryb=zwykly · zakres=wszystkie · aplikacja=wlasna · sha=abc\\n'\n`); chmodSync(join(bin, 'gh'), 0o755);
     const r = spawnSync('bash', [join(root, 'scripts/ci/bramka-e2e.sh'), 'o/r', 'abc'], { encoding: 'utf8', env: { ...process.env, PATH: `${bin}:${process.env.PATH}`, GITHUB_OUTPUT: gho } });
     expect(r.status).toBe(0); expect(readFileSync(gho, 'utf8')).toContain('run=777');
   });
