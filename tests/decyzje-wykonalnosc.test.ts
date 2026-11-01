@@ -10,8 +10,8 @@ const ROOT = path.join(__dirname, '..');
 const SKRYPT = path.join(ROOT, 'scripts/decyzje.mjs');
 const bledy = (tekst: string): string[] => {
   const r = spawnSync(process.execPath, ['--input-type=module', '-e',
-    `import * as m from ${JSON.stringify(SKRYPT)}; console.log(JSON.stringify(m.sprawdz('probka.md', ${JSON.stringify(tekst)})));`], { encoding: 'utf8', cwd: ROOT });
-  if (r.status !== 0) throw new Error(r.stderr);
+    `import * as m from ${JSON.stringify(SKRYPT)}; console.log(JSON.stringify(m.sprawdz('probka.md', ${JSON.stringify(tekst)})));`], { encoding: 'utf8', cwd: ROOT, maxBuffer: 64 * 1024 * 1024 /* wynik wpisy(docs/18) > 1 MiB (31.10.2026) — domyślny bufor ucinał proces bez stderr */ });
+  if (r.status !== 0) throw new Error(r.stderr || String(r.error));
   return (JSON.parse(r.stdout) as { blad: string }[]).map(e => e.blad);
 };
 const dziennik = (...wpisy: string[]) => ['# 18', '', '## Decyzje (od 11.10.2026)', ...wpisy, ''].join('\n');

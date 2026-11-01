@@ -1,0 +1,69 @@
+{
+ "_opis": "Wynik recenzji (recenzja.md) dla decyzji-A/B: pozycje „nanies” odłożone/odrzucone przez recenzenta i zmiany wersji recenzenta; czyta tests/lokalizacja-srednie-2026-10-31.test.ts.",
+ "odrzucone_lub_odlozone": [
+  {
+   "jezyk": "bg",
+   "klucz": "{n} mi",
+   "powod": "recenzja: słownik zaleca „мили”; forma bg otwarta (docs/16, 28.10)"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "{n} yd",
+   "powod": "recenzja: słownik zaleca „ярд”"
+  },
+  {
+   "jezyk": "el",
+   "klucz": "{n} kg",
+   "powod": "recenzja: odwraca decyzję właściciela 10a (28.10, „κιλά”)"
+  },
+  {
+   "jezyk": "el",
+   "klucz": "Podciąganie",
+   "powod": "recenzja: słownik faza_ruchu zaleca „Έλξη” (jak fr Traction)"
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "{n} mi",
+   "powod": "recenzja: units-label uk „ми”, słownik"
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "imperialny (lb, mi, yd)",
+   "powod": "recenzja: mieszanie pism, units-label"
+  },
+  {
+   "jezyk": "sk",
+   "klucz": "z {s}",
+   "powod": "odłożone: tekst identyczny z PL wymaga wyjątku w matrix-i18n"
+  },
+  {
+   "jezyk": "it",
+   "klucz": "+ {n} {w}",
+   "powod": "odłożone: tekst identyczny z PL wymaga wyjątku w matrix-i18n"
+  },
+  {
+   "jezyk": "sl",
+   "klucz": "Masz plan: dożywotni",
+   "powod": "odłożone: wymaga zmiany słownika plan_dozywotni sl („trajni”)"
+  },
+  {
+   "jezyk": "en",
+   "klucz": "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.",
+   "powod": "odłożone: brzmienie przypięte testem decyzji DEC-04 a (tests/dec04a-import-w-pierwszych-krokach.test.tsx) i scenariuszem Maestro 59 — zmiana tylko razem z nimi"
+  }
+ ],
+ "wersja_recenzenta": [
+  {
+   "jezyk": "nl",
+   "klucz": "Masz plan: dożywotni",
+   "wartosc": "Je plan: eenmalige aankoop",
+   "powod": "recenzja: „levenslang” = dożywocie jako kara"
+  },
+  {
+   "jezyk": "da",
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "zawiera": "ikke udkørt",
+   "powod": "recenzja: „færdig” = zrobione"
+  }
+ ]
+}

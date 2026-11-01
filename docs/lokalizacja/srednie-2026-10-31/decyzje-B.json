@@ -1,0 +1,328 @@
+{
+ "autor": "tlumacz",
+ "data": "2026-10-31",
+ "pozycje": [
+  {
+   "jezyk": "da",
+   "klucz": "Bujanie się i wymachy nogami.",
+   "decyzja": "nanies",
+   "nowe": "At svinge og sparke med benene.",
+   "powod": "Opis błędu jak siostrzane wskazówki: „At …”."
+  },
+  {
+   "jezyk": "da",
+   "klucz": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "decyzja": "odrzuc",
+   "powod": "Słownik: kopia_zapasowa da = Sikkerhedskopi; zmiana na „backup” wymaga zmiany słownika (do native speakera: w da mieszane w pliku)."
+  },
+  {
+   "jezyk": "da",
+   "klucz": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "decyzja": "odrzuc",
+   "powod": "Słownik: kopia_zapasowa da = Sikkerhedskopi (jak wyżej)."
+  },
+  {
+   "jezyk": "da",
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "decyzja": "nanies",
+   "nowe": "Anstrengelse: indtil endnu en gentagelse ville være svær. Træt, men ikke færdig. Du behøver ikke træne til udmattelse.",
+   "powod": "Zamiast zmieniać termin ze słownika (do_upadku da = udmattelse) usunięto kolizję w zdaniu: pierwsza część nie używa już „udmattet”; „træne til udmattelse” jak w siostrzanych zdaniach."
+  },
+  {
+   "jezyk": "de",
+   "klucz": "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).",
+   "decyzja": "odrzuc",
+   "powod": "„Taste” to standardowy termin przycisku w niemieckim iOS i występuje w tym pliku w kilku tekstach; to nie błąd (Schaltfläche też obecne) — do native speakera, jeśli ma być ujednolicone w całym pliku."
+  },
+  {
+   "jezyk": "de",
+   "klucz": "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.",
+   "decyzja": "odrzuc",
+   "powod": "Jak wyżej: „Taste” poprawne w iOS, ujednolicenie ewentualnie całościowo (native speaker)."
+  },
+  {
+   "jezyk": "en",
+   "klucz": "Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.",
+   "decyzja": "nanies",
+   "nowe": "Got workout history in another app? You can add it from a CSV file.",
+   "powod": "Źródło pyta o posiadanie historii; obecne „Already logging…” zmienia sens."
+  },
+  {
+   "jezyk": "en",
+   "klucz": "Serie na partię w tygodniu (pomocnicza = {h} serii): {list}",
+   "decyzja": "nanies",
+   "nowe": "Sets per muscle group per week (secondary = {h} sets): {list}",
+   "powod": "{h} bywa 0.5 — po angielsku „0.5 sets”."
+  },
+  {
+   "jezyk": "es-419",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "decyzja": "odrzuc",
+   "powod": "Obecne brzmi naturalnie; w es-419 siostrzane „Músculos secundarios” — „secundario” spójne; nie kalkować „parte del cuerpo principal”."
+  },
+  {
+   "jezyk": "es",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "decyzja": "nanies",
+   "nowe": "Color más intenso: grupo muscular principal; más suave: auxiliar.",
+   "powod": "Spójnie z „Músculos auxiliares” w es; „grupo muscular” zostaje (naturalniejsze niż „parte del cuerpo principal”)."
+  },
+  {
+   "jezyk": "es",
+   "klucz": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "decyzja": "nanies",
+   "nowe": "Este mes has entrenado duro y has usado todos los días de entrenamiento gratuitos ({n}). ¡Buen trabajo!",
+   "powod": "Pretérito perfecto naturalniejsze przy podsumowaniu miesiąca."
+  },
+  {
+   "jezyk": "es",
+   "klucz": "Wstawanie",
+   "decyzja": "nanies",
+   "nowe": "Subida",
+   "powod": "Rzeczownik fazy jak Bajada/Empuje; „Subida” jest już użyte dla Podciąganie/Podnoszenie (nie występują razem w jednej animacji). Naturalne w siłowni."
+  },
+  {
+   "jezyk": "fi",
+   "klucz": "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.",
+   "decyzja": "odrzuc",
+   "powod": "Zgodnie z wcześniejszą decyzją (docs/16: „Omalla iPhonella” jak w iOS fi) — do sprawdzenia przez native speakera."
+  },
+  {
+   "jezyk": "fi",
+   "klucz": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+   "decyzja": "odrzuc",
+   "powod": "Jak wyżej: „Omalla iPhonella” (docs/16) — do native speakera."
+  },
+  {
+   "jezyk": "fi",
+   "klucz": "Pliki → Na moim iPhonie → {app} → Backup → {folder}. Zapisz ten folder poza telefonem.",
+   "decyzja": "odrzuc",
+   "powod": "Jak wyżej: „Omalla iPhonella” (docs/16) — do native speakera."
+  },
+  {
+   "jezyk": "fr",
+   "klucz": "jarda",
+   "decyzja": "odrzuc",
+   "powod": "Klucz „jarda” dotyczy wartości całkowitych (live.ts: y zaokrąglone, spokenNoun); liczba mnoga „yards” poprawna."
+  },
+  {
+   "jezyk": "fr",
+   "klucz": "mili",
+   "decyzja": "odrzuc",
+   "powod": "Wartości ułamkowe mil przy biegu to zwykle ≥2 (np. 3,2) — liczba mnoga poprawna; 1–2 mile byłoby wyjątkiem (nie da się rozróżnić tym kluczem)."
+  },
+  {
+   "jezyk": "fr",
+   "klucz": "Podciąganie",
+   "decyzja": "odrzuc",
+   "powod": "Słownik faza_ruchu: fr = Traction (zalecany); zmiana wymaga zmiany słownika — do native speakera („Montée” plausibilne)."
+  },
+  {
+   "jezyk": "fr",
+   "klucz": "Podnoszenie",
+   "decyzja": "odrzuc",
+   "powod": "„Soulevé” naturalne w fazie bojów (soulevé de terre); „Levée” gorsze."
+  },
+  {
+   "jezyk": "hu",
+   "klucz": "Asekuracja",
+   "decyzja": "odrzuc",
+   "powod": "Słownik: asekuracja hu = Biztosítás; nagłówek sekcji Technika, kontekst wyklucza ubezpieczenie; wydłużenie psuje nagłówek — do native speakera."
+  },
+  {
+   "jezyk": "it",
+   "klucz": "+ {n} {w}",
+   "decyzja": "nanies",
+   "nowe": "+ {n} {w}",
+   "powod": "„altri” psuje liczbę pojedynczą (altri 1 esercizio) i zgodnie z docs/16 w it ma być bez „altri”."
+  },
+  {
+   "jezyk": "ja",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "decyzja": "nanies",
+   "nowe": "色が濃いほうが主な部位、薄いほうが補助の部位です。",
+   "powod": "Spójnie z 補助筋 w siostrzanych tekstach."
+  },
+  {
+   "jezyk": "ja",
+   "klucz": "Pauza",
+   "decyzja": "odrzuc",
+   "powod": "Faza animacji, rzeczownik; test K1 wymaga 一時停止 dla pauzy w ja (TERMS), słownik faza_pauza ja = 一時停止. „静止” plausibilne — do native speakera."
+  },
+  {
+   "jezyk": "ko",
+   "klucz": "Jesteśmy z Ciebie dumni!",
+   "decyzja": "nanies",
+   "nowe": "열심히 운동하신 모습이 정말 자랑스럽습니다!",
+   "powod": "Wskazuje, z kogo duma (nagłówek ekranu zakupu po wykorzystaniu darmowych dni); do native speakera."
+  },
+  {
+   "jezyk": "ms",
+   "klucz": "Wstawanie",
+   "decyzja": "odrzuc",
+   "powod": "„Bangun” kojarzy się ze wstawaniem z łóżka; „Berdiri” jest zrozumiałe; do native speakera (ewentualnie „Naik”)."
+  },
+  {
+   "jezyk": "ms",
+   "klucz": "Wyczyść miejsce",
+   "decyzja": "nanies",
+   "nowe": "Kosongkan tempat",
+   "powod": "Jak wariant z zakresem dni: „Buang” = odrzucić; „Kosongkan” oddaje wyczyszczenie przypisania i odróżnia od „Padam tempat”."
+  },
+  {
+   "jezyk": "ms",
+   "klucz": "Wyczyść miejsce: {a} – {b}",
+   "decyzja": "nanies",
+   "nowe": "Kosongkan tempat: {a} – {b}",
+   "powod": "„Buang” = odrzucić/wyrzucić; „Kosongkan” oddaje czyszczenie przypisania i odróżnia od „Padam tempat” (usunięcie miejsca)."
+  },
+  {
+   "jezyk": "nb",
+   "klucz": "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.",
+   "decyzja": "nanies",
+   "nowe": "{n} av {limit} gratis treningsdager {left} denne måneden.",
+   "powod": "Naturalniejszy szyk (jak w da: {left} przed określeniem czasu)."
+  },
+  {
+   "jezyk": "nl",
+   "klucz": "Masz plan: dożywotni",
+   "decyzja": "nanies",
+   "nowe": "Je plan: levenslang",
+   "powod": "Brak „Masz plan:” to błąd; spójnie z „Je abonnement: …” (zakup dożywotni to plan, nie abonament)."
+  },
+  {
+   "jezyk": "nl",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "decyzja": "odrzuc",
+   "powod": "Obecne „hoofdspiergroep/hulpspiergroep” spójne z „Hoofdspieren/Hulpspieren”; „primair lichaamsdeel” nienaturalne."
+  },
+  {
+   "jezyk": "pt-BR",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "decyzja": "nanies",
+   "nowe": "Cor mais forte: grupo muscular principal; mais fraca: auxiliar.",
+   "powod": "Spójnie z „auxiliar” w pt (Músculos auxiliares)."
+  },
+  {
+   "jezyk": "pt",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "decyzja": "nanies",
+   "nowe": "Cor mais forte: grupo muscular principal; cor mais fraca: auxiliar.",
+   "powod": "Spójnie z „Músculos auxiliares”."
+  },
+  {
+   "jezyk": "pt",
+   "klucz": "Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).",
+   "decyzja": "nanies",
+   "nowe": "O grupo muscular auxiliar de um exercício conta como meia série (principal 1, auxiliar 0,5).",
+   "powod": "Spójnie z „auxiliar” w pt."
+  },
+  {
+   "jezyk": "ro",
+   "klucz": "Bujanie się i wymachy nogami.",
+   "decyzja": "nanies",
+   "nowe": "Balansarea corpului și a picioarelor.",
+   "powod": "„loviturile” = kopanie; propozycja wierniejsza."
+  },
+  {
+   "jezyk": "ro",
+   "klucz": "Prostowanie",
+   "decyzja": "nanies",
+   "nowe": "Extensie",
+   "powod": "„Întindere” = też rozciąganie; „Extensie” używane w ro na siłowni i spójne z opisami mięśni."
+  },
+  {
+   "jezyk": "ro",
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "decyzja": "nanies",
+   "nowe": "Efort: până când încă o repetare ar fi grea — oboseală, dar nu la limită. Nu e nevoie să mergeți până la epuizare.",
+   "powod": "Zostaje „epuizare” (słownik do_upadku ro), ale usunięto kolizję „extenuare/epuizare” w jednym zdaniu."
+  },
+  {
+   "jezyk": "ro",
+   "klucz": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "decyzja": "odrzuc",
+   "powod": "Słownik: do_upadku ro = Până la epuizare (spójne w całym pliku, także przycisk „(F)”); brak kolizji w tym zdaniu. Dla native speakera: czy „eșec muscular” lepsze — wtedy zmiana słownika i wszystkich tekstów."
+  },
+  {
+   "jezyk": "ro",
+   "klucz": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "decyzja": "odrzuc",
+   "powod": "Słownik: do_upadku ro = Până la epuizare (jak wyżej)."
+  },
+  {
+   "jezyk": "ro",
+   "klucz": "Zatrzymaj animację",
+   "decyzja": "nanies",
+   "nowe": "Oprește animația",
+   "powod": "Pauză = przerwa między seriami (K1); „Oprește animația” rozłączne z przerwą, naturalne (Reia animația zostaje). Pozycja dodana z polecenia."
+  },
+  {
+   "jezyk": "sv",
+   "klucz": "Bujanie się i wymachy nogami.",
+   "decyzja": "nanies",
+   "nowe": "Att gunga med kroppen och sparka med benen.",
+   "powod": "Opis błędu w formie „Att …” jak siostrzane."
+  },
+  {
+   "jezyk": "sv",
+   "klucz": "Usuń ćwiczenie",
+   "decyzja": "nanies",
+   "nowe": "Radera övning",
+   "powod": "Spójnie z „Radera …” w sv."
+  },
+  {
+   "jezyk": "sv",
+   "klucz": "Usuń serię",
+   "decyzja": "nanies",
+   "nowe": "Radera set",
+   "powod": "Spójnie z „Radera setet?”."
+  },
+  {
+   "jezyk": "tr",
+   "klucz": "Zakończ trening na telefonie",
+   "decyzja": "odrzuc",
+   "powod": "Etykiety przycisków w tr są w krótkiej formie rozkazującej („Antrenmanı bitir”, „Seti bitir”); „bitirin” tylko w zdaniach. Spójność przycisków ma pierwszeństwo."
+  },
+  {
+   "jezyk": "vi",
+   "klucz": "Odciąga ramię do tyłu, gdy przyciągasz.",
+   "decyzja": "nanies",
+   "nowe": "Kéo cánh tay về phía sau trong lúc bạn kéo.",
+   "powod": "„ra sau khi” bywa czytane jako „po tym, jak”."
+  },
+  {
+   "jezyk": "vi",
+   "klucz": "Pomaga odciągać ramię do tyłu, gdy przyciągasz.",
+   "decyzja": "nanies",
+   "nowe": "Hỗ trợ kéo cánh tay về phía sau trong lúc bạn kéo.",
+   "powod": "Jak wyżej."
+  },
+  {
+   "jezyk": "vi",
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "decyzja": "nanies",
+   "nowe": "Mức gắng sức: đến khi lần tiếp theo trở nên khó — mệt nhưng chưa quá sức. Không cần tập đến kiệt sức.",
+   "powod": "Zostaje „kiệt sức” (słownik do_upadku vi), ale pierwsze użycie zmienione, by nie kolidowało z drugim."
+  },
+  {
+   "jezyk": "vi",
+   "klucz": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "decyzja": "odrzuc",
+   "powod": "Słownik: do_upadku vi = Đến kiệt sức (spójne w pliku); brak kolizji w tym zdaniu."
+  },
+  {
+   "jezyk": "vi",
+   "klucz": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "decyzja": "odrzuc",
+   "powod": "Słownik: do_upadku vi = Đến kiệt sức."
+  },
+  {
+   "jezyk": "zh-Hant",
+   "klucz": "Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.",
+   "decyzja": "nanies",
+   "nowe": "匯入的訓練、個人紀錄和圖表隨時可用，沒有網路也可以。每月可免費訓練 {n} 天 — Pro 解除限制，也有一次買斷、永久使用的選項。",
+   "powod": "„新紀錄” dodaje sens „nowe”, którego nie ma w źródle."
+  }
+ ]
+}

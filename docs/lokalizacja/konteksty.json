@@ -463,7 +463,7 @@
  "pas biodrowy": "wariant POZYCJI „pas do dociążania” (lib/equipment.ts opcja belt): pas na biodra do zawieszania ciężaru, nie pas do podtrzymywania pleców [dynamiczny (lista, etykieta albo dane w kodzie)]",
  "Pas do dociążania": "dynamiczny (lista, etykieta albo dane w kodzie)",
  "pauza": "components/ActiveWorkout.tsx:244",
- "Pauza": "components/ExerciseFigureV2.tsx:113",
+ "Pauza": "nazwa FAZY animacji ruchu (anim.ts PhaseName, ExerciseFigureV2.tsx:113) w linii „Opuszczanie 2 s · Pauza · Wypychanie 1 s”: zatrzymanie w pozycji, rzeczownik; NIE przycisk pauzy treningu i NIE przerwa między seriami (słownik: faza_pauza) [components/ExerciseFigureV2.tsx:113]",
  "Pauza treningu": "components/ActiveWorkout.tsx:264",
  "Pełna siłownia": "nazwa PRESETU miejsca treningu (lib/equipment.ts LOCATION_PRESET_LABEL): w pełni wyposażona siłownia; obok „Dom”, „Hotel” [dynamiczny (lista, etykieta albo dane w kodzie)]",
  "Pełna wersja": "app/_layout.tsx:134, components/SubscriptionCard.tsx:19",

@@ -1175,6 +1175,318 @@
    }
   },
   {
+   "id": "faza_pauza",
+   "pl": "pauza — faza animacji ruchu („Pauza” w linii faz)",
+   "znaczenie": "nazwa FAZY animacji ruchu w karcie ćwiczenia („Opuszczanie 2 s · Pauza · Wypychanie 1 s”): zatrzymanie w pozycji, rzeczownik jak siostrzane fazy; NIE przycisk wstrzymania (to pojęcie pauza_treningu)",
+   "kanon": "Pauza",
+   "wykrywaj": "^\\s*pauza\\s*$",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Pauza",
+     "pewnosc": "wysoka"
+    },
+    "en": {
+     "zalecany": "Pause",
+     "pewnosc": "wysoka"
+    },
+    "cs": {
+     "zalecany": "Výdrž",
+     "zakazane": [
+      {
+       "wzorzec": "pauz",
+       "powod": "rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą"
+      },
+      {
+       "wzorzec": "pozastav",
+       "powod": "czasownik/przycisk wstrzymania, a faza to zatrzymanie w pozycji"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "„výdrž” = zatrzymanie w pozycji (výdrž dole); w opisie tempa bywa też „pauza dole”, ale „pauza” to w cs przerwa (K1). Do sprawdzenia przez native speakera."
+    },
+    "sk": {
+     "zalecany": "Výdrž",
+     "zakazane": [
+      {
+       "wzorzec": "pauz",
+       "powod": "rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą"
+      },
+      {
+       "wzorzec": "pozastav",
+       "powod": "czasownik/przycisk wstrzymania, a faza to zatrzymanie w pozycji"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "Jak w cs; „výdrž” naturalne dla izometrycznego zatrzymania. Do sprawdzenia przez native speakera."
+    },
+    "hu": {
+     "zalecany": "Szünet",
+     "zakazane": [
+      {
+       "wzorzec": "szüneteltet",
+       "powod": "to polecenie przycisku pauzy treningu, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "Szünet to normalne słowo na pauzę w tempie ćwiczenia; przerwa między seriami to Pihenő, więc się nie myli."
+    },
+    "ro": {
+     "zalecany": "Menținere",
+     "zakazane": [
+      {
+       "wzorzec": "pauz",
+       "powod": "rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą"
+      },
+      {
+       "wzorzec": "întrerup",
+       "powod": "czasownik/przycisk przerwania, a faza to zatrzymanie w pozycji"
+      },
+      {
+       "wzorzec": "oprire",
+       "powod": "brzmi jak przycisk stop, a nie zatrzymanie w pozycji"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "Rzeczownik odczasownikowy jak Coborâre/Împingere/Tragere în sus (trener: „menține poziția jos”). Do sprawdzenia przez native speakera."
+    },
+    "bg": {
+     "zalecany": "Пауза",
+     "pewnosc": "wysoka"
+    },
+    "hr": {
+     "zalecany": "Pauza",
+     "zakazane": [
+      {
+       "wzorzec": "pauziraj",
+       "powod": "tryb rozkazujący to przycisk, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "sl": {
+     "zalecany": "Premor",
+     "pewnosc": "niska",
+     "uwaga": "Tłumacz (31.10.2026) proponuje „Pavza” — „premor” bliższy przerwie/odpoczynkowi niż zatrzymaniu w ruchu; przegląd API tego nie zgłosił. Do sprawdzenia przez native speakera; bez zmiany."
+    },
+    "sr": {
+     "zalecany": "Пауза",
+     "zakazane": [
+      {
+       "wzorzec": "паузирај",
+       "powod": "tryb rozkazujący to przycisk, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "lt": {
+     "zalecany": "Pauzė",
+     "zakazane": [
+      {
+       "wzorzec": "pristabd",
+       "powod": "czasownik/przycisk wstrzymania, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "lv": {
+     "zalecany": "Pauze",
+     "zakazane": [
+      {
+       "wzorzec": "aptur",
+       "powod": "czasownik/przycisk zatrzymania, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "et": {
+     "zalecany": "Hoidmine",
+     "zakazane": [
+      {
+       "wzorzec": "paus",
+       "powod": "rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą"
+      },
+      {
+       "wzorzec": "peat",
+       "powod": "czasownik/przycisk zatrzymania, a faza to zatrzymanie w pozycji"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "Pasuje do siostrzanych faz na -mine (Langetamine, Surumine); alternatywa „Seisak”. Do sprawdzenia przez native speakera."
+    },
+    "uk": {
+     "zalecany": "Пауза",
+     "zakazane": [
+      {
+       "wzorzec": "призупин",
+       "powod": "czasownik/przycisk wstrzymania, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "es": {
+     "zalecany": "Pausa",
+     "zakazane": [
+      {
+       "wzorzec": "pausar",
+       "powod": "bezokolicznik to przycisk, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "es-419": {
+     "zalecany": "Pausa",
+     "pewnosc": "wysoka"
+    },
+    "pt": {
+     "zalecany": "Pausa",
+     "zakazane": [
+      {
+       "wzorzec": "pausar",
+       "powod": "bezokolicznik to przycisk, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "pt-BR": {
+     "zalecany": "Pausa",
+     "pewnosc": "wysoka"
+    },
+    "de": {
+     "zalecany": "Halten",
+     "zakazane": [
+      {
+       "wzorzec": "pause",
+       "powod": "rdzeń przerwy między seriami (decyzja K1, 09.10.2026) — w tej samej karcie myliłby fazę z przerwą"
+      },
+      {
+       "wzorzec": "anhalt|angehalten",
+       "powod": "czasownik/przycisk „anhalten”, a faza to zatrzymanie w pozycji"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "Bezokolicznik jako rzeczownik jak Absenken/Drücken; trenerzy mówią też „Pause unten”, ale „Pause” to w de przerwa (K1)."
+    },
+    "fr": {
+     "zalecany": "Pause",
+     "zakazane": [
+      {
+       "wzorzec": "mettre en pause",
+       "powod": "polecenie przycisku, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "it": {
+     "zalecany": "Pausa",
+     "zakazane": [
+      {
+       "wzorzec": "metti in pausa",
+       "powod": "polecenie przycisku, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "nl": {
+     "zalecany": "Pauze",
+     "zakazane": [
+      {
+       "wzorzec": "pauzeren",
+       "powod": "bezokolicznik to przycisk, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "sv": {
+     "zalecany": "Paus",
+     "zakazane": [
+      {
+       "wzorzec": "pausa\\b",
+       "powod": "bezokolicznik/polecenie przycisku, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "da": {
+     "zalecany": "Pause",
+     "zakazane": [
+      {
+       "wzorzec": "på pause",
+       "powod": "zwrot przycisku wstrzymania, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "nb": {
+     "zalecany": "Pause",
+     "zakazane": [
+      {
+       "wzorzec": "på pause",
+       "powod": "zwrot przycisku wstrzymania, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "fi": {
+     "zalecany": "Tauko",
+     "zakazane": [
+      {
+       "wzorzec": "keskeytä",
+       "powod": "tryb rozkazujący to przycisk przerwania, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "Tauko to naturalne słowo na pauzę w tempie; przerwa między seriami to Palautus, więc się nie myli."
+    },
+    "tr": {
+     "zalecany": "Duraklama",
+     "zakazane": [
+      {
+       "wzorzec": "duraklat",
+       "powod": "tryb rozkazujący to przycisk, a faza jest rzeczownikiem"
+      }
+     ],
+     "pewnosc": "srednia",
+     "uwaga": "Duraklama to rzeczownik, pasuje do siostrzanych faz; przerwa to Dinlenme."
+    },
+    "el": {
+     "zalecany": "Παύση",
+     "pewnosc": "wysoka"
+    },
+    "id": {
+     "zalecany": "Jeda",
+     "pewnosc": "wysoka"
+    },
+    "ms": {
+     "zalecany": "Jeda",
+     "pewnosc": "wysoka"
+    },
+    "vi": {
+     "zalecany": "Tạm dừng",
+     "pewnosc": "niska",
+     "uwaga": "Tạm dừng to zarazem polecenie przycisku; w tempie ćwiczenia dopuszczalne („tạm dừng ở dưới”) — do sprawdzenia przez native speakera."
+    },
+    "ru": {
+     "zalecany": "Пауза",
+     "pewnosc": "wysoka"
+    },
+    "ja": {
+     "zalecany": "一時停止",
+     "pewnosc": "niska",
+     "uwaga": "Brzmi trochę jak przycisk odtwarzacza; trenerzy mówią też 「静止」/「ポーズ」. Do sprawdzenia przez native speakera."
+    },
+    "ko": {
+     "zalecany": "일시정지",
+     "pewnosc": "niska",
+     "uwaga": "일시정지 to przycisk odtwarzacza; tłumacz i przegląd API (niska) proponują 멈춤 (rzeczownik tempa). Uwaga niska — bez zmiany do polecenia."
+    },
+    "zh-Hant": {
+     "zalecany": "暫停",
+     "pewnosc": "srednia",
+     "uwaga": "暫停 jest rzeczownikiem i czasownikiem; w tempie zrozumiałe (停頓 też bywa)."
+    }
+   }
+  },
+  {
    "id": "seria",
    "pl": "seria",
    "znaczenie": "jedno podejście: kolejne powtórzenia bez odkładania ciężaru (ang. set)",
@@ -7661,7 +7973,13 @@
      "pewnosc": "srednia"
     },
     "ro": {
-     "zalecany": "Tracțiune",
+     "zalecany": "Tragere în sus",
+     "zakazane": [
+      {
+       "wzorzec": "^\\s*trac[țţ]iun[ei]?\\s*$",
+       "powod": "„tracțiuni” to w ro nazwa ćwiczenia (podciąganie na drążku); faza animacji to rzeczownik odczasownikowy jak Coborâre, Împingere (przegląd API 31.10.2026)"
+      }
+     ],
      "pewnosc": "srednia"
     },
     "bg": {

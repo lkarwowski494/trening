@@ -10,8 +10,8 @@ import { spawnSync } from 'child_process';
 const ROOT = path.join(__dirname, '..');
 const SKRYPT = path.join(ROOT, 'scripts/decyzje.mjs');
 const wywolaj = <T>(kod: string): T => {
-  const r = spawnSync(process.execPath, ['--input-type=module', '-e', `import * as m from ${JSON.stringify(SKRYPT)}; console.log(JSON.stringify(await (async () => { ${kod} })()));`], { encoding: 'utf8', cwd: ROOT });
-  if (r.status !== 0) throw new Error(r.stderr); return JSON.parse(r.stdout);
+  const r = spawnSync(process.execPath, ['--input-type=module', '-e', `import * as m from ${JSON.stringify(SKRYPT)}; console.log(JSON.stringify(await (async () => { ${kod} })()));`], { encoding: 'utf8', cwd: ROOT, maxBuffer: 64 * 1024 * 1024 /* wynik wpisy(docs/18) > 1 MiB (31.10.2026) — domyślny bufor ucinał proces bez stderr */ });
+  if (r.status !== 0) throw new Error(r.stderr || String(r.error)); return JSON.parse(r.stdout);
 };
 const DZIENNIK = ['## Decyzje', '',
   '- 01.10.2026 (właściciel): A. [wdrożenie: otwarte → M1-audytor-generalny-006]',
@@ -33,7 +33,7 @@ describe('M1-047: „otwarte → zadanie” przy zadaniu z commitem naprawy', ()
   test('płytka kopia repo (CI, fetch-depth 1) → null: niepełna historia nie udaje pełnej (porażka tests.yml 40716367925)', () => {
     const fs = require('fs') as typeof import('fs'); const os = require('os') as typeof import('os');
     const d = fs.mkdtempSync(path.join(os.tmpdir(), 'm1-047-'));
-    const git = (...a: string[]) => { const r = spawnSync('git', ['-c', 'user.name=t', '-c', 'user.email=t@example.invalid', ...a], { cwd: d, encoding: 'utf8' }); if (r.status !== 0) throw new Error(r.stderr); return r.stdout.trim(); };
+    const git = (...a: string[]) => { const r = spawnSync('git', ['-c', 'user.name=t', '-c', 'user.email=t@example.invalid', ...a], { cwd: d, encoding: 'utf8' }); if (r.status !== 0) throw new Error(r.stderr || String(r.error)); return r.stdout.trim(); };
     git('init', '-q'); git('commit', '-q', '--allow-empty', '-m', 'fix [M1-audytor-generalny-006; x]');
     const z = (root: string) => wywolaj<string[] | null>(`return m.zadaniaZNaprawa(${JSON.stringify(root)});`);
     expect(z(d)).toEqual(['M1-audytor-generalny-006']);

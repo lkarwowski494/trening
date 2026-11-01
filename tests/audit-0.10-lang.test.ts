@@ -40,7 +40,10 @@ const KEYS = Object.keys(EN);
 /** Przerwa między seriami (bez „Import przerwany”, „przerwie pomiar” i „dzień przerwy” — dzień odpoczynku między treningami). */
 const REST_DAY = /dzie[ńn] przerwy|dniem przerwy/;
 const REST_KEYS = KEYS.filter(k => /przerw/i.test(k) && !/przerwan|przerwie pomiar/i.test(k) && !REST_DAY.test(k) && !/pauz/i.test(k));
-const PAUSE_KEYS = KEYS.filter(k => /pauz/i.test(k) && !/przerw/i.test(k));
+/* 31.10.2026 (przegląd API, słownik `faza_pauza`): klucz „Pauza” to nazwa FAZY animacji ruchu (ExerciseFigureV2.tsx:113), nie pauza zegara treningu —
+   nie musi mieć czasownika pauzy (cs/sk „Výdrž”, ro „Menținere”, et „Hoidmine”, de „Halten”); rozłączność z przerwą (K1) nadal sprawdza test niżej. */
+const PHASE_KEYS = ['Pauza'];
+const PAUSE_KEYS = KEYS.filter(k => /pauz/i.test(k) && !/przerw/i.test(k) && !PHASE_KEYS.includes(k));
 const MIXED_KEYS = KEYS.filter(k => /pauz/i.test(k) && /przerw/i.test(k));
 const words = (s: string) => new Set(s.toLowerCase().match(/\p{L}+/gu) ?? []);
 
@@ -48,7 +51,7 @@ describe('K1 (A11-01): przerwa ≠ pauza w każdym języku', () => {
   test('zestawy kluczy nie są puste (kontrola filtra)', () => {
     expect(REST_KEYS.length).toBeGreaterThanOrEqual(25); expect(PAUSE_KEYS.length).toBeGreaterThanOrEqual(5); expect(MIXED_KEYS.length).toBeGreaterThanOrEqual(1);
     expect(REST_KEYS).toEqual(expect.arrayContaining(['Przerwa', 'przerwa', 'przerwa {s}', 'Wydłuż przerwę o 15 sekund']));
-    expect(PAUSE_KEYS).toEqual(expect.arrayContaining(['Pauza', 'pauza', 'Pauza treningu']));
+    expect(PAUSE_KEYS).toEqual(expect.arrayContaining(['pauza', 'Pauza treningu'])); expect(PAUSE_KEYS).not.toContain('Pauza'); expect(KEYS).toContain('Pauza');
   });
   test('słownik terminów obejmuje każdy język poza polskim', () => { expect(Object.keys(TERMS).sort()).toEqual([...NON_PL].sort()); });
   test.each(NON_PL)('%s: wyrazy „Przerwa” i „Pauza” / „pauza” / „Pauza treningu” są rozłączne', l => {

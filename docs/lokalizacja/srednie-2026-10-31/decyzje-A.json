@@ -1,0 +1,272 @@
+{
+ "autor": "tlumacz",
+ "data": "2026-10-31",
+ "pozycje": [
+  {
+   "jezyk": "bg",
+   "klucz": "{n} mi",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "{n} mi"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "{n} yd",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "{n} yd"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "Pokaż częsty błąd",
+   "decyzja": "nanies",
+   "powod": "Spójne z większością pary Pokaż/Ukryj w bg (Показване/Скриване)",
+   "nowe": "Показване на честата грешка"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "Powiadamiaj",
+   "decyzja": "nanies",
+   "powod": "„Известявайте ме” brzmi sztucznie; „Уведомявай ме” krótko i naturalnie",
+   "nowe": "Уведомявай ме"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "Przejdź na ten plan",
+   "decyzja": "nanies",
+   "powod": "Rzeczownik odczasownikowy jak w pozostałych przyciskach bg",
+   "nowe": "Преминаване към този план"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "Ukryj częsty błąd",
+   "decyzja": "nanies",
+   "powod": "Spójne z „Скриване на съобщението”, „Скриване на целите по групи”",
+   "nowe": "Скриване на честата грешка"
+  },
+  {
+   "jezyk": "bg",
+   "klucz": "Zmień plan",
+   "decyzja": "nanies",
+   "powod": "Spójne z „Смяна на шаблона”",
+   "nowe": "Смяна на плана"
+  },
+  {
+   "jezyk": "cs",
+   "klucz": "Wypychanie",
+   "decyzja": "odrzuc",
+   "powod": "„Tlak” to potoczna nazwa ruchu na siłowni (tlaky); „Vytlačování” brzmi książkowo — do sprawdzenia przez native speakera"
+  },
+  {
+   "jezyk": "el",
+   "klucz": "{n} kg",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "{n} kg"
+  },
+  {
+   "jezyk": "el",
+   "klucz": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "Καρδιο: με {k}–{m} ημέρες μπορείτε να μετατρέψετε τις ημέρες πάνω από {j} σε συνεδρίες μέτριου καρδιο («Ημέρες καρδιο στο πρόγραμμα», απενεργοποιημένο από προεπιλογή). Περισσότερες ασκήσεις ενδυνάμωσης δεν δίνουν απαραίτητα περισσότερα οφέλη για την υγεία, και την αερόβια κίνηση καλό είναι να τη μοιράζετε σε αρκετές ημέρες. Διάρκεια συνεδρίας καρδιο = χρόνος συνεδρίας."
+  },
+  {
+   "jezyk": "el",
+   "klucz": "Podciąganie",
+   "decyzja": "nanies",
+   "powod": "Faza ruchu, rzeczownik odczasownikowy jak Κατέβασμα/Σήκωμα; „Έλξη” brzmi jak nazwa ćwiczenia",
+   "nowe": "Τράβηγμα"
+  },
+  {
+   "jezyk": "el",
+   "klucz": "Powiadamiaj",
+   "decyzja": "odrzuc",
+   "powod": "„Ειδοποίησέ με” to naturalny przycisk „powiadom mnie”; sam rzeczownik „Ειδοποίηση” bywa mylony z powiadomieniem"
+  },
+  {
+   "jezyk": "et",
+   "klucz": "Pauza",
+   "decyzja": "odrzuc",
+   "powod": "Klucz już poprawiony na „Hoidmine” (faza); „Paus” kolidowałby z decyzją K1 (paus = przerwa między seriami)"
+  },
+  {
+   "jezyk": "et",
+   "klucz": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+   "decyzja": "nanies",
+   "powod": "Spójne z istniejącym „täieliku väsimuseni” (upadek)",
+   "nowe": "Pingutus: tavaliselt {a}–{b} kordust varus — täieliku väsimuse lähedal või {c}–{d}; täpset arvu pole kindlaks tehtud. Täieliku väsimuseni pole vaja minna."
+  },
+  {
+   "jezyk": "et",
+   "klucz": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+   "decyzja": "nanies",
+   "powod": "Spójne z istniejącym „täieliku väsimuseni” (upadek)",
+   "nowe": "Korduste vahemikud (lihasmass {a}–{b}, kodus ja välise raskuseta {c}–{d}; jõu puhul lisaharjutused {e}–{f}): lihased kasvavad laias raskuste vahemikus, kui seeriad on täieliku väsimuse lähedal."
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "decyzja": "odrzuc",
+   "powod": "W lt partia bywa „raumenų grupė” (filtry, mapa) i „kūno dalis”; obecne jest poprawne i naturalne"
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "Pomaga przyciągać ramię do przodu i do środka, gdy pchasz.",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "Padeda pritraukti ranką į priekį ir į vidų, kai stumiate."
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "Przyciąga ramię do przodu i do środka, gdy pchasz.",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "Pritraukia ranką į priekį ir į vidų, kai stumiate."
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "Przyciąga ramię do przodu i do środka.",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "Pritraukia ranką į priekį ir į vidų."
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "Wyczyść miejsce",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "Išvalyti vietą"
+  },
+  {
+   "jezyk": "lt",
+   "klucz": "Wyczyść miejsce: {a} – {b}",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "Išvalyti vietą: {a} – {b}"
+  },
+  {
+   "jezyk": "lv",
+   "klucz": "Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).",
+   "decyzja": "odrzuc",
+   "powod": "W lv większość tekstów ma „papildu” (partie pomocnicze, ●● papildu); zmiana zepsułaby spójność"
+  },
+  {
+   "jezyk": "ru",
+   "klucz": "Prostowanie",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "Разгибание"
+  },
+  {
+   "jezyk": "ru",
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "decyzja": "nanies",
+   "powod": "Rozgrzewki = serie rozgrzewkowe; zachowany szyk jak w siostrzanym „Подходы: {d} из {n} выполнено”",
+   "nowe": "Разминочные подходы: {d} из {n} выполнено"
+  },
+  {
+   "jezyk": "ru",
+   "klucz": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.",
+   "decyzja": "nanies",
+   "powod": "Skrót „дн.” jak w siostrzanych tekstach (poprawny dla każdego n); „до” nie ma w źródle",
+   "nowe": "Тренируйтесь бесплатно {n} дн. в месяц. Pro снимает ограничение. Отменить можно в любой момент в настройках учётной записи Apple."
+  },
+  {
+   "jezyk": "sk",
+   "klucz": "Wyczyść miejsce",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "Zrušiť výber miesta"
+  },
+  {
+   "jezyk": "sk",
+   "klucz": "Wyczyść miejsce: {a} – {b}",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "Zrušiť výber miesta: {a} – {b}"
+  },
+  {
+   "jezyk": "sk",
+   "klucz": "z {s}",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "z {s}"
+  },
+  {
+   "jezyk": "sl",
+   "klucz": "Masz plan: dożywotni",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "Vaš paket: doživljenjski"
+  },
+  {
+   "jezyk": "sl",
+   "klucz": "Nie usuwaj aplikacji — razem z nią znikną dane i kopie. Najpierw stuknij „Wyślij dane” i zapisz plik poza telefonem.",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "Ne brišite aplikacije — z njo izginejo podatki in kopije. Najprej tapnite »Pošlji podatke« in datoteko shranite zunaj telefona."
+  },
+  {
+   "jezyk": "sr",
+   "klucz": "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "{k} дан тренинга снаге недељно је мање од препорученог минимума (најмање {n} дана). За почетак је то добар корак: можете тренирати снагу само {k} дан недељно, а временом стићи до {n} — мало кретања је боље него ништа."
+  },
+  {
+   "jezyk": "sr",
+   "klucz": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "Општи (за здравље и кондицију): {s} серије по вежби, {a}–{b} понављања (код куће {c}–{d}), до тренутка када би следеће понављање било тешко. За здравље вреди тренирати све главне делове тела најмање {n} дана недељно."
+  },
+  {
+   "jezyk": "sr",
+   "klucz": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+   "decyzja": "nanies",
+   "powod": "Jednoznaczne „до тренутка када би…”; naturalniejsze „Није потребно ићи до отказа”",
+   "nowe": "Напор: до тренутка када би следеће понављање било тешко — умор, али не исцрпљеност. Није потребно ићи до отказа."
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "{n} mi",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "{n} mi"
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "imperialny (lb, mi, yd)",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "імперська (фнт, mi, ярд)"
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+   "decyzja": "nanies",
+   "powod": "Poprawna forma dla każdego n; mianownik jak w etykietach „Підходи: n”",
+   "nowe": "Риска в розділі «Цей тиждень» і в «Прогресі». Автоматично: підходи — {n}. Вручну: ваше число від {min} до {max}."
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+   "decyzja": "odrzuc",
+   "powod": "„група м’язів” jest użyte też w siostrzanych tekstach uk (kolor względem grupy); obecne poprawne"
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).",
+   "decyzja": "nanies",
+   "powod": "Propozycja API poprawna i spójna z kontekstem/siostrzanymi tekstami",
+   "nowe": "Рідше ніж {n} дн. на тиждень: {list} (день лише з допоміжною роботою = {h})."
+  },
+  {
+   "jezyk": "uk",
+   "klucz": "Wypychanie",
+   "decyzja": "odrzuc",
+   "powod": "„Жим” to potoczna nazwa ruchu na siłowni; „Виштовхування” sztuczne — do sprawdzenia przez native speakera"
+  }
+ ]
+}

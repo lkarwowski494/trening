@@ -4896,7 +4896,7 @@
  },
  {
   "pl": "Serie na partię w tygodniu (pomocnicza = {h} serii): {list}",
-  "en": "Sets per muscle group per week (secondary = {h} set): {list}"
+  "en": "Sets per muscle group per week (secondary = {h} sets): {list}"
  },
  {
   "pl": "Serie per partia",
