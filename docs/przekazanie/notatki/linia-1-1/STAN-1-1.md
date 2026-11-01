@@ -1,6 +1,13 @@
 # Linia 1.1 — stan bieżący (aktualizowany po każdym kroku; ostatnio 31.10.2026 ~09:30 PL)
 
-## Teraz (01.11.2026 ~20:30 PL, koordynator linii 1.1 — plan `plan-2026-11-01.md`)
+## Teraz (01.11.2026 ~22:30 PL, koordynator linii 1.1 — sesja nocna)
+- **Strona:** `tests.yml` na `main` techniqueatlas @ ac54b139 ZIELONY (41347675414) — L-086 zamknięte dla tego scalenia. Repo strony dodane do sesji (zgoda właściciela 01.11 ~22:30).
+- **Pokrycie 1.1 (`pokrycie-katalogu --cel 1.1`):** figura v2 0/98, figura 53/151, wskazówki 98/640, częste błędy 36/557, pełna karta 0/17. Przyczyna: po ACG-002 skróty v2 squat/bench_press/hinge nieaktualne (wpisy recenzji z 29.10) → rodziny niewyświetlane. **Fala 2.5 w toku:** 3 audytorów (po rodzinie, arkusze śladu toru, bez zmian w repo); wpisy recenzji dopisuje koordynator po werdykcie ZATWIERDZONE.
+- **ZB-025 b w toku:** agent programista na `fala1/zb025-pelna-karta-nazwy-en` (testy ze starymi nazwami EN, pojedyncze pliki; push bez `--no-verify`).
+- **TestFlight `bez_wysylki` — odłożony (właściciel 01.11 ~22:30: nowy build teraz niepotrzebny);** wariant A (przebieg z zatwierdzeniem `release` po zielonym E2E) gdy właściciel będzie dostępny; wymagany przed wydaniem TestFlight 1.1 (L-001).
+- Przebiegi dowodowe (tests.yml 169bf42/fba531d, E2E podstawowy 41347713932, tests-tz 41347715999, nightly 41347718181) — w toku/kolejce o 22:10 PL.
+
+## Wcześniej (01.11.2026 ~20:30 PL, koordynator linii 1.1 — plan `plan-2026-11-01.md`)
 - **Fala 0 — ZROBIONE.** 0.1: `integracja-1-1` = `acg/fale-napraw` 6330c721 + dokumenty 01.11 + `slownik/faza-pauza` e7ce5f1 (839e4a3). 0.2: archiwizacja docs/18 (`docs/18-archiwum-do-30.10.md`, 494 wpisy przed = po; docs/18 374 KB → 54 KB).
 - **Fala 1 — scalone w `integracja-1-1` (3efadaef + dokumenty), pełne verify zielone 15802 testy (54 min).** 07-jakosc-001/005/006 (zegar, strażnik `tests/straznik-zegar.test.ts`), 002 (koperta ratunkowa z `cfg`), 004/007/008/009/012 (CI; ZB-029 T1 nie zrobione — osobna decyzja), lokalizacja: 17 średnich + 140 niskich uwag, recenzja niezależna POPRAWKI → naniesione. **Przebiegi dowodowe CI do zrobienia** (L-001): `nightly.yml` (mutacje access, 3 zakresy state/migrate), `e2e-ios.yml` podstawowy (nowy tytuł, minima wersji Xcode/Maestro), `testflight.yml` z `bez_wysylki` (bramka E2E po SHA), `tests-tz.yml` (zadanie `chwile`).
 - **Nie scalone: `fala1/zb025-pelna-karta-nazwy-en`** (dc97e0c3, d2002a32; tylko lokalnie w tym kontenerze — wypchnąć przed końcem sesji): (a) pełna karta Z3 gotowa; (b) nazwy EN po rid — testy Jest ze starymi nazwami EN niesprawdzone, stan w `STAN-AGENTA.md` tej gałęzi; potem recenzje badacza i lokalizacji nazw, E2E `tylko_scenariusze` dla 21 scenariuszy. Decyzja właściciela do podjęcia: cel „pełna karta” 17 → 90 po recenzjach.
