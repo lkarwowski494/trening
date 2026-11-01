@@ -27,4 +27,15 @@ describe('ZB-010 (28.10.2026): podatna wersja decode-uri-component poza aplikacj
   test('aktualizacja SDK nie zmienia schematu danych: SCHEMA_VERSION = 19 (lib/seed.ts)', () => {
     expect(require('@/lib/seed').SCHEMA_VERSION).toBe(19);
   });
+  test('expo-router 58 na iOS 26+: nagłówek stosu nieprzezroczysty jak w SDK 57 (headerTransparent: false), tytuł krojem marki', () => {
+    const src = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
+    const opts = src.slice(src.indexOf('<Stack screenOptions={{'), src.indexOf('}}>', src.indexOf('<Stack screenOptions={{')));
+    expect(opts).toMatch(/headerTransparent: false/);
+    expect(opts).toMatch(/headerTitleStyle: \{ fontFamily:/); /* iOS 26+: bez fontFamily nagłówek bierze krój systemowy */
+  });
+  test('expo-router 58: unstable_settings.anchor zamiast usuniętego initialRouteName (zakładki pod ekranem z linku)', () => {
+    const src = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
+    expect(src).toMatch(/export const unstable_settings = \{ anchor: '\(tabs\)' \}/);
+    expect(src).not.toMatch(/initialRouteName/);
+  });
 });
