@@ -629,6 +629,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że język aplikacji jest inny niż polski
     - Gdy użytkownik wpisuje w wyszukiwarce dawną angielską nazwę (np. „Bench Press (Barbell)” albo „RDL”)
     - Wtedy znajduje obecne ćwiczenie z dopiskiem „dawniej: …”; karta ćwiczenia pokazuje dawną nazwę w wierszu „Dawne nazwy w bibliotece”; w polskim nic się nie zmienia
+  - Scenariusz: Usunięte ćwiczenie po dawnej nazwie (01.11.2026)
+    - Zakładając, że użytkownik usunął ćwiczenie z biblioteki (archiwum), a język aplikacji jest inny niż polski
+    - Gdy w wyborze ćwiczenia wpisuje jego dawną angielską nazwę (np. „Bench Press (Dumbbell)”)
+    - Wtedy widzi „Przywróć” tego ćwiczenia, a nie „Utwórz” nowego (`app/picker.tsx`, test `tests/regress.test.tsx` R5-05)
   - Scenariusz: Strażnik nazw
     - Zakładając, że ktoś dodaje albo zmienia nazwę angielską
     - Gdy uruchamiane są testy
