@@ -11,7 +11,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { render, within } from '@testing-library/react-native';
 import * as store from '@/lib/store';
-import { fresh, ex, saved, addWorkout } from './helpers';
+import { fresh, ex, saved, addWorkout, pinDate } from './helpers';
 import { renderApp, flushAll, screen, go, act } from './app';
 import { FullValue, fullValueProps } from '@/components/FullValue';
 
@@ -83,6 +83,8 @@ describe('ekran: edycja sesji z Historii', () => {
 });
 
 describe('ekran: kafelki podsumowań', () => {
+  /* Zegar przypięty do środy w środku dnia (02.11.2026): trening „godzinę temu” w poniedziałek tuż po północy wypadał w poprzednim tygodniu („Treningi: 0”) — wariant L-084 (przesunięcie od Date.now()). */
+  let unpin: () => void = () => undefined; beforeEach(() => { unpin = pinDate('2026-10-14T12:00:00'); }); afterEach(() => { unpin(); });
   test('„Ten tydzień”: każdy kafelek (Treningi, Serie, Objętość, Czas) ma podgląd z pełną wartością', async () => {
     await fresh(); addWorkout(Date.now() - 3600e3, [['Back Squat', [{ weight: 100, reps: 5, done: true }]]], 'Test');
     store.save(); await act(async () => { await store.flush(); });
