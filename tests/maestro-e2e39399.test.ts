@@ -44,5 +44,5 @@ test('36: przed wpisywaniem serii (w-0-0) karta zgody jest zamknięta — start 
 test('31 (run 39410740673): po wyborze zamiennika przewinięcie do „instead of: …” z wyśrodkowaniem zamiast samego czekania', () => {
   const s = steps('31-pierwszy-tydzien.yaml'); const i = s.indexOf('- tapOn: "Suggestion 1: .*"');
   expect(i).toBeGreaterThan(0);
-  expect(s[i + 1]).toBe('- scrollUntilVisible: { element: "instead of: Bent Over Row \\\\(Barbell\\\\).*", direction: UP, timeout: 30000, centerElement: true }');
+  expect(s[i + 1]).toBe('- scrollUntilVisible: { element: "instead of: Bent-Over Row.*", direction: UP, timeout: 30000, centerElement: true }');
 });

@@ -113,6 +113,16 @@
    "reason": "klucz katalogu (Exercise.libKey) „Bosu Ball Cable Crunch With Side Bends” — test odcisków póz po kluczu; nazwa wyświetlana ogólna z LIB_DISPLAY_NAME (SEC2-01)"
   },
   {
+   "path": "lib/nazwy-en.generated.ts",
+   "name": "Bosu",
+   "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika) „Bosu Ball Cable Crunch With Side Bends” — warstwa nazw EN (ZB-025 b) mapuje po kluczu; nazwa wyświetlana neutralna: „Balance Dome Cable Crunch with Side Bend”; plik generowany z docs/research/equipment/nazwy-en.json (01.11.2026)"
+  },
+  {
+   "path": "tests/nazwy-en.test.ts",
+   "name": "Bosu",
+   "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika) „Bosu Ball Cable Crunch With Side Bends” — test sprawdza, że nazwa wyświetlana po kluczu jest neutralna („Balance Dome …”), a nie nazwa marki (01.11.2026)"
+  },
+  {
    "path": "lib/seed.ts",
    "name": "Bosu",
    "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki, figury i Zdrowie po kluczu) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts (SEC2-01); tu: wpis LIB i sama mapa nazw"
