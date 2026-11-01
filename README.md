@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-7429-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-7474-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-50-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -62,8 +62,8 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Komunikaty i teksty | 1081 (z testem: 1081) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 1135 (z testem: 1135) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 165 (z testem: 165) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 646 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 7429 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Pliki testów Jest | 652 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 7474 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 161 (Maestro: 131, Maestro, eksperymentalne: 5, Jest: 10, lista kontrolna wydania (telefon): 15) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 50 (w głównym przebiegu: 46, eksperymentalne: 4) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -263,7 +263,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (59)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (60)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -277,6 +277,7 @@ trening/
 - [`docs/16-jezyki-i-marka.md`](docs/16-jezyki-i-marka.md) — 16. Języki i styl marki
 - [`docs/17-szablon-jak-trening.md`](docs/17-szablon-jak-trening.md) — 17. Szablon jak trening, typy serii, gumy w miejscu (decyzje 05.10.2026)
 - [`docs/18-archiwum-do-11.10.md`](docs/18-archiwum-do-11.10.md) — 18 (archiwum). Przekazanie i decyzje właściciela 06.10–11.10.2026 — zamrożone; bieżący stan: docs/18-przekazanie.md
+- [`docs/18-archiwum-do-30.10.md`](docs/18-archiwum-do-30.10.md) — 18 (archiwum). Decyzje właściciela do 30.10.2026 włącznie — zamrożone; bieżący stan: docs/18-przekazanie.md
 - [`docs/18-przekazanie.md`](docs/18-przekazanie.md) — 18. Przekazanie — stan bieżący (od 11.10.2026)
 - [`docs/19-macierz-testow.md`](docs/19-macierz-testow.md) — 19. Macierz testów (generowana)
 - [`docs/20-definicja-ukonczenia.md`](docs/20-definicja-ukonczenia.md) — 20. Definicja ukończenia funkcjonalności — pełen zakres testów automatycznych

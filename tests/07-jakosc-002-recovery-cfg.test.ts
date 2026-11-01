@@ -1,3 +1,4 @@
+// 07-jakosc-002 (audyt jakości linii 1.1, decyzja DW-2 z 01.11.2026)
 /* Audyt jakości 07-jakosc-002 (P1, utrata danych): readRecovery pomijał klucz „<kopia>_cfg” odłożony przy nieczytelnym „state” —
  * plik ratunkowy i pole `recovery` kopii bezpieczeństwa gubiły szablony i ustawienia. Czerwone przed poprawką. */
 import * as store from '@/lib/store';
