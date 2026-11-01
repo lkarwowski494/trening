@@ -1507,7 +1507,8 @@ describe('runda 58', () => {
     try {
       for (const v of ['16.2', '16.4', '26.0.1', '26.1.1', '26.2', '26.3', '26.4_beta']) fs.mkdirSync(path.join(dir, `Xcode_${v}.app`));
       fs.symlinkSync(path.join(dir, 'Xcode_26.2.app'), path.join(dir, 'Xcode_26.9.app'));
-      expect(run()).toBe(`Wybrany Xcode: 26.3 (${dir}/Xcode_26.3.app)\n`);
+      /* 01.11.2026 (audyt jakości 07-jakosc-009): wybór działa jak dotąd, ale 26.3 < minimum 26.4 (scripts/ci/wersje-minimalne.json) → twardy błąd */
+      { let out = ''; try { run(); } catch (e: any) { out = String(e.stdout); } expect(out).toMatch(new RegExp(`^Wybrany Xcode: 26\\.3 \\(${dir.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}/Xcode_26\\.3\\.app\\)\\n`)); expect(out).toMatch(/::error::xcode 26\.3 jest niższy niż wymagane minimum 26\.4/); }
       fs.mkdirSync(path.join(dir, 'Xcode_26.10.app')); expect(run('26')).toMatch(/^Wybrany Xcode: 26\.10 /);
       let err = ''; try { run('27'); } catch (e: any) { err = String(e.stdout); } expect(err).toMatch(/::error::Brak Xcode 27\.x/); expect(err).toMatch(/Xcode_26\.3\.app/);
     } finally { fs.rmSync(dir, { recursive: true, force: true }); }
@@ -1517,7 +1518,7 @@ describe('runda 58', () => {
       for (const v of ['26.0.1', '26.1.1', '26.2', '26.3', '26.4.1', '26.5', '26.6']) fs.mkdirSync(path.join(dir26, `Xcode_${v}.app`));
       fs.symlinkSync(path.join(dir26, 'Xcode_26.6.app'), path.join(dir26, 'Xcode_26.6.0.app')); fs.symlinkSync(path.join(dir26, 'Xcode_26.4.1.app'), path.join(dir26, 'Xcode_26.4.app'));
       fs.symlinkSync(path.join(dir26, 'Xcode_26.6.app'), path.join(dir26, 'Xcode.app'));
-      expect(run26()).toBe(`Wybrany Xcode: 26.6 (${dir26}/Xcode_26.6.app)\n`);
+      expect(run26()).toBe(`Wybrany Xcode: 26.6 (${dir26}/Xcode_26.6.app)\nWersja xcode 26.6 (minimum 26.4) — OK\n`); /* + kontrola minimum (07-jakosc-009, 01.11.2026) */
     } finally { fs.rmSync(dir26, { recursive: true, force: true }); }
   });
   test('T-051 audyt (NISKIE): zakładki z `expo-router/js-tabs` — `Tabs` z głównego `expo-router` jest przestarzałe od routera 57', () => {

@@ -226,12 +226,11 @@ export async function readRawData(): Promise<string | null> {
 export async function readRecovery(): Promise<string | null> {
   if (!db || !recovery) return null;
   const r = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', recovery.key);
-  const l = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', recovery.key + '_live').catch(() => null);
-  /* 07-jakosc-002: konfiguracja (szablony, ustawienia, plany) odłożona przez start obok nieczytelnego zapisu — też w kopercie */
-  const c = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', recovery.key + '_cfg').catch(() => null);
+  const d = db, k = recovery.key, side = (x: string) => d.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', k + x).catch(() => null);
+  const l = await side('_live'), c = await side('_cfg'); /* 07-jakosc-002: odłożony cfg też w kopercie */
   if (!r) return null;
   if (!l && !c) return r.v;
-  /* T4b: koperta JSON zamiast dopisku po stanie — plik da się po poprawce wczytać importem (parseBackup); stan jako obiekt, gdy jest poprawnym
+  /* T4b: koperta JSON — plik da się po poprawce wczytać importem (parseBackup); stan jako obiekt, gdy jest poprawnym
    * JSON-em, inaczej jako tekst */
   const js = (x: string) => { try { return JSON.parse(x); } catch { return x; } };
   return JSON.stringify({ format: 'trening-recovery', note: 'state = nieczytelny zapis, live = trening w toku, cfg = konfiguracja', state: js(r.v),

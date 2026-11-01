@@ -201,7 +201,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Odrzuć | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-close2-a.test.tsx +11 |
 | Odrzuć trening | app/history/edit/[id].tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/edit-history.test.tsx +6 |
 | Odrzuć zmiany | app/_layout.tsx | tests/audit-k1-fala2b.test.tsx, tests/backlog-0.10.1-dane-ui.test.tsx, tests/edit-history.test.tsx +4 |
-| OK | app/generator.tsx | tests/asc-metadane.test.ts, tests/asc-zrzuty.test.ts, tests/audit-0.10-gen-ui.test.tsx +34 |
+| OK | app/generator.tsx | tests/asc-metadane.test.ts, tests/asc-zrzuty.test.ts, tests/audit-0.10-gen-ui.test.tsx +35 |
 | Opcje ćwiczenia: {name} | components/DragList.tsx | tests/audit-m1-026-kolejnosc-menu.test.tsx, tests/audit-m1-028-delete-menus.test.tsx, tests/swipe-delete.test.tsx |
 | Opcje treningu | components/ActiveWorkout.tsx | tests/m3-components.test.tsx, tests/m3-p2-board-ui.test.tsx, tests/matrix-ui.test.tsx |
 | opcjonalne pole, nie wpływa na objętość | app/more/settings.tsx | tests/matrix-ui.test.tsx |
@@ -351,7 +351,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Utwórz „{name}” | app/exercises.tsx | tests/audit-k1-fala2b.test.tsx, tests/backlog-0410.test.tsx, tests/matrix-logic.test.tsx +2 |
 | W trybie cichym telefon tylko wibruje | app/more/settings.tsx | tests/tryb-cichy-wskazowka.test.tsx |
 | Warunki korzystania | app/more/about.tsx | tests/legal-links.test.tsx, tests/subscription-i18n.test.ts |
-| Wersja | app/more/about.tsx | tests/audit-0.10-data-ui.test.tsx, tests/dec07-odeslanie-docs21.test.ts, tests/dokumenty-na-dysk.test.ts +6 |
+| Wersja | app/more/about.tsx | tests/audit-0.10-data-ui.test.tsx, tests/dec07-odeslanie-docs21.test.ts, tests/dokumenty-na-dysk.test.ts +7 |
 | Wibracje | app/more/settings.tsx | tests/m3-p5d-settings-ui.test.tsx, tests/phone-p1.test.tsx, tests/regress.test.tsx +2 |
 | Widok treningu | app/more/settings.tsx | tests/audit-0.10-tst-ui.test.tsx, tests/info-tip.test.tsx, tests/m3-p5d-settings-ui.test.tsx |
 | Więcej informacji: {name} | components/InfoTip.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/gen-days-ui.test.tsx, tests/info-tip.test.tsx +1 |

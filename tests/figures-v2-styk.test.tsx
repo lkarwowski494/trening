@@ -185,7 +185,7 @@ describe('odstęp znaczków i brak powtórzeń tekstu błędu', () => {
       for (const b of screen.getAllByRole('button').filter(x => /^(Wskazówka|Tip): /.test(String(x.props.accessibilityLabel))).slice(0, 2)) { fireEvent.press(b); expect(dup()).toEqual([]); }
       screen.unmount(); jest.useRealTimers();
     }
-  });
+  }, 15000); /* 01.11.2026: ok. 3 s samodzielnie, 2 języki × render; domyślne 5 s przekraczane pod obciążeniem pełnego verify */
 });
 
 describe('styki wymagane z danych (figury-sens.json — jedno źródło prawdy)', () => {
