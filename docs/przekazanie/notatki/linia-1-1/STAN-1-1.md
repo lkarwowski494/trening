@@ -1,6 +1,14 @@
 # Linia 1.1 — stan bieżący (aktualizowany po każdym kroku; ostatnio 31.10.2026 ~09:30 PL)
 
-## Teraz (02.11.2026 ~12:00 PL, koordynator linii 1.1 — sesja dzienna, po czyszczeniu kontekstu)
+## Teraz (02.11.2026 ~19:30 PL, koordynator linii 1.1 — sesja popołudniowa)
+- **Repo:** `integracja-1-1` @ 6d120e51 (+ ten commit) na origin; pełne verify zielone na e51c51da (scalenia `fix/ci-czas-sdk58`, `e2e/fix-0211`), potem tylko dokumenty (verify:docs). `tests.yml` dla e51c51da/00646ca8 — sprawdzić (L-087) → ZB-010 do archiwum.
+- **W toku (programiści, worktree + flock `/home/user/verify.lock`):** `integracja/p0-reguly` (/home/user/wt-p0 — P0: `book`, oznaczenia, „Czego unikać”, porządki cues.json, ukrycie Wide-Grip Behind The Neck, lista obowiązkowych 51); `proces/scal-galaz-l090` (/home/user/wt-scal — skrypt scalania L-090 A). Scalanie dopiero po zielonym `tests.yml` gałęzi.
+- **Badania obowiązkowe 1.1:** gałąź `badania/obowiazkowe-1-1` (/home/user/wt-obow, lokalnie, niewypchnięta): triceps, ramiona-ciagi, mieszane (+kontynuacja), role-miesni, exrx-otwarte, etap2-kandydaci — propozycje do partii integracji.
+- **Decyzje 02.11 po południu (docs/18):** odpowiedzi szczebli dla fal; ukrycie Wide-Grip Behind The Neck; obowiązkowe muszą wejść → wyjątek ExRx; 6 niszowych z listy (51); progresja RD/HSPU do backlogu; dwa etapy (integracja, potem szczebel 5 — ZB-033); plan toru ruchu (`plan-tor-ruchu-2026-11-02.md`, R1 = partie z jednym odświeżeniem skrótów).
+- **Następnie:** po P0 — P1…P5, R sekwencyjnie; równolegle pilotaż toru ruchu curl i scenariusz 33 (L-091); cel 1.1 + dwa standardy w `scripts/pokrycie-katalogu.mjs`.
+- **Ograniczenia:** dysk ~1,2 GB (85 katalogów `/tmp/atlas-dist-*` z testów techniqueatlas — usunięcie zablokowane uprawnieniami sesji; zadanie poprawki zasugerowane); naraz jedno pełne verify.
+
+## Wcześniej (02.11.2026 ~12:00 PL, koordynator linii 1.1 — sesja dzienna, po czyszczeniu kontekstu)
 - **Przebiegi dowodowe na 40a459e:** `tests-tz` 41400900312 — cały zielony; `e2e-ios` 41400907053: 57 i 58 zielone, 17 padł na maszynie (zgubiona litera przy wpisie; tester E2E: aplikacja w poprawnym stanie); ponowienia na tej samej aplikacji — 17 (41410020064) i 58 z największym rozmiarem tekstu (41410024081) — zielone. `nightly` 41400903946 w toku (mutacje).
 - **ZB-010:** programista domyka na `zb010/sdk` (worktree agenta): stała sterta workerów Jest w konfiguracji verify i CI (wariant A, koordynator 02.11 — OOM workerów 2 GB pod RNTL 14) + odizolowanie testu `jest-ponow` od `NODE_OPTIONS`; potem pełne verify, push, scalenie do `integracja-1-1` i przebiegi dowodowe (`tests.yml`, `ios-unsigned.yml`, E2E podstawowy). Wpis decyzji ZB-010 w docs/18 — przy scaleniu (test strażnika jest na gałęzi). Przeciek pamięci karty v2 pod RNTL 14 (wariant B) — osobna pozycja backlogu.
 - **Poprawka odporności scenariusza 17** (warunkowe ponowienie wpisu + strażnik) — gotowa na gałęzi `e2e/fix-0211`, do scalenia po ZB-010.
