@@ -55,12 +55,17 @@ i uczelniane centrum sportu (Sussex) — szukanie źródeł szczebla 4 dla Band 
 
 ## Git
 
-Commity (lokalnie): 60a2fa5, a527a18, 5b7daf7, dfd94d4, 70e15a4, 951a206, 997766c (+ commit tego pliku).
+Commity: 60a2fa5, a527a18, 5b7daf7, dfd94d4, 70e15a4, 951a206, 997766c, 8e14cc7, fd942c7 (+ commit uzupełnienia tego pliku).
 Verify bazy (15abc58): patrz sekcja „Verify i wypchnięcie” niżej.
 
 ## Verify i wypchnięcie
 
-(uzupełnia koordynator G2 po zakończeniu verify)
+- Pełne `npm run verify` na czystej bazie 15abc58 (02.11.2026, ok. 1,5 h na obciążonej maszynie): **zielone**, znacznik zapisany (pełne, 15abc58). Trzy pliki testów
+  (`audit-k1-bl-mer`, `maestro-flows`, `matrix-dim-langs-routes3`) przerwane brakiem pamięci (heap out of memory → SIGTERM workera) przy 7 badaczach w tle;
+  `jest-ponow` ponowił je osobno — zielone.
+- `npm run verify:docs` w worktree: pierwszy przebieg — 1 test z 104 czerwony bez szczegółów (`--silent`), te same 4 pliki tym samym poleceniem 104/104, powtórka verify:docs zielona
+  (niestabilność do obserwacji). Wymagało `git fetch --unshallow` (płytki klon: brak `origin/main` i punktu rozejścia).
+- Wypchnięcie: `git push -u origin badania/g2-mobilnosc` (hak pre-push) — SHA w raporcie końcowym sesji.
 
 ## Następny krok
 
