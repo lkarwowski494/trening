@@ -62,3 +62,28 @@ Niezależność: dwa serwisy tego samego właściciela = jedno źródło.
 3. **[OTWARTE] HKU CSE i Sussexsport** — to samo kryterium co Western (brak autora i daty → 5), ale ich stron w tej sesji nie czytałem.
 4. **[OTWARTE] Niezależność organizacji certyfikujących** (ISSA, NFPT i inne) — nie sprawdzałem powiązań właścicielskich; przy parze ISSA + NFPT
    jako jedynych dwóch źródłach sprawdzić właściciela (stopka NFPT wskazuje „Summit Professional Education”).
+## Uzupełnienie 2 (koordynator 1.1, 02.11.2026 ~07:55 PL) — pytania sesji G2, G3, G6
+
+Kryteria bez zmian (pkt 1–4 wyżej); rozstrzygnięcia przypadków:
+
+| Źródło / typ | Szczebel | Uzasadnienie (kryterium) |
+|---|---|---|
+| Szpitale i systemy ochrony zdrowia (NHS trust, HSS, Cleveland Clinic, Kansas Health System, NISMAT/Lenox Hill), organizacje zdrowia publicznego i pacjentów (MedlinePlus/NLM, Arthritis Foundation/Versus Arthritis, Cancer Council Victoria), uczelniane służby zdrowia (UHS) | 4 | pkt 1 „instytucja medyczna / wydawca materiałów dla pacjentów” (precedens HSS); pkt 2 spełnia jawne firmowanie przez instytucję — data nie jest wymagana. „4 PROPOZYCJA” G2 → 4. |
+| Uczelniane centra sportu i rekreacji (Sussexsport, Performance Herts, Western, HKU CSE), agencje sportu bez autora (Sport Singapore), CFMWS bez autora | 5 | nie jest to instytucja medyczna ani organizacja szkoląca; bez autora z kwalifikacjami (pkt 1–2). Z autorem z kwalifikacjami w biogramie — warunkowo 4. |
+| Physitrack | 5 | dostawca oprogramowania z aplikacją dla pacjentów; brak autora i daty (pkt 2), strona otoczona marketingiem (pkt 3). Nie liczy się do pary. Istniejące wpisy `data/zrodla/cues.json` z Physitrack jako jednym z dwóch źródeł — do przeliczenia przy integracji (koordynator). |
+| VHI (biblioteka ćwiczeń ubezpieczyciela) | 5 | brak autora i daty, wydawca nie jest placówką medyczną (pkt 1–2). |
+| The Prehab Guys | warunkowo 4 | zespół fizjoterapeutów z kwalifikacjami (pkt 1); liczy się artykuł z autorem; strony sprzedaży programów — 5 (pkt 3). |
+| IronMind | 4 przy artykule z autorem o sprawdzalnych kwalifikacjach (np. trener kadry USA); bez autora — 5 | pkt 1 (wydawca z redakcją, autor z kwalifikacjami), pkt 2 (autor; data pośrednio wystarcza). |
+| Torokhtiy | warunkowo 4 (artykuły techniki z autorem); sklep, programy — nie źródło | jak BarBend: autor z kwalifikacjami (olimpijczyk, trener), pkt 3 tylko dla stron sprzedaży. |
+| Freelap USA, magazyn Coach | warunkowo 4 | pkt 4: liczy się artykuł z autorem z kwalifikacjami w biogramie i redakcją wydawcy; inaczej 5. Freelap nie jest producentem w sensie dokumentacji sprzętu — ocena jak serwis. |
+| ACE — przedruk w dziale prasowym (id 8250) | 4, gdy tekst jest autorstwa ACE lub eksperta ACE; przedruk cudzego artykułu — ocena autora | pkt 2. |
+| WECKMETHOD | 5 dla kettlebelli, dopóki nie potwierdzono, że to dokumentacja własnego sprzętu | pkt 1 (producent tylko dla własnego rodzaju sprzętu). |
+| Human Kinetics — „Plyometric Anatomy” | szczebel wg autorów: do sprawdzenia biogramów; do tego czasu nie liczy się | tabela wyżej (Human Kinetics). |
+| Human Kinetics — fragment o zarzucie hantlem (autor trener) | 4, gdy autor ma sprawdzalne kwalifikacje trenerskie | tabela wyżej. |
+| Fitness Volt, Generation Iron, Healthline, Eleiko (wyciągi) | do rozstrzygnięcia przy następnym uzupełnieniu (sesja G6 zbiera dane w STAN) | — |
+
+**Reguła — drugie źródło błędu (pyt. G3 pkt 8):** źródło podające tylko standard („łokieć zablokowany”) liczy się jako drugie źródło błędu wyłącznie, gdy błąd jest bezpośrednim zaprzeczeniem tego standardu (ta sama część ciała, to samo kryterium, np. „łokieć ugięty nad głową”). Nie liczy się dla przyczyn, skutków ani błędów pokrewnych. Oznaczenie przy wpisie: „błąd = zaprzeczenie standardu”.
+
+**Szczebel książek:** książki NSCA = 3 (podręcznik, nie stanowisko); kilka publikacji tej samej organizacji = jedno źródło.
+
+**Atlas ćwiczeń Centrum Respo (centrumrespo.pl/atlas, decyzja właściciela 02.11.2026, wariant B — sprawdzenie):** szczebel 5. Dziewięć kart z różnych kategorii bez autora, recenzenta, daty i źródeł; strona „o nas” nie wskazuje, kto przygotował atlas; firma prowadzi aplikację z planami treningowymi (centrumrespo.pl/aplikacja/) i sprzedaje diety (pkt 1–3). Użycie: tylko wzór rejestru języka polskiego (pozycja wyjściowa, krótkie polecenia), bez kopiowania zdań. Otwarte: autorstwo atlasu i czy opisy są tłumaczeniem anglojęzycznej bazy.
