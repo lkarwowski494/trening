@@ -1,4 +1,5 @@
 /* P-003 E1 (A): słownik możliwości, pozycje sprzętu, presety, dostępność ćwiczeń, katalog generowany z docs/research/equipment/catalog.json. */
+import { LIB_WYCOFANE } from '@/lib/catalog-wycofane';
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -15,9 +16,9 @@ describe('katalog generowany', () => {
   test('lib/catalog.generated.ts jest aktualny względem catalog.json (gen.mjs --check)', () => {
     expect(() => execFileSync('node', [join(root, 'scripts/equipment/gen.mjs'), '--check'], { stdio: 'pipe' })).not.toThrow();
   });
-  test('katalog obejmuje dokładnie 709 ćwiczeń biblioteki (854 przed researchem biblioteki 09.10.2026: 125 + 123 z katalogu 04.10.2026 + 22 z kroku b + 584 z pełnej bazy 05.10; minus 115 scalonych i 30 usuniętych), z tymi samymi danymi co JSON', () => {
-    expect(Object.keys(CATALOG).sort()).toEqual(LIB.map(l => l[0]).sort());
-    expect(catalog).toHaveLength(709);
+  test('katalog obejmuje dokładnie 708 ćwiczeń biblioteki (854 przed researchem biblioteki 09.10.2026: 125 + 123 z katalogu 04.10.2026 + 22 z kroku b + 584 z pełnej bazy 05.10; minus 115 scalonych i 30 usuniętych), z tymi samymi danymi co JSON', () => {
+    expect(Object.keys(CATALOG).sort()).toEqual([...LIB.map(l => l[0]), ...LIB_WYCOFANE].sort());
+    expect(catalog).toHaveLength(709); /* katalog (JSON) zawiera też ćwiczenie wycofane z biblioteki 02.11.2026 (lib/catalog-wycofane.ts) */
     for (const e of catalog) { const g = CATALOG[e.name]; expect(g.requires).toEqual(e.requires); expect(g.recommended).toEqual(e.recommended); expect(g.loadSource).toBe(e.loadSource); expect(g.pattern).toBe(e.pattern); expect(g.implements).toBe(e.implements); }
   });
   test('każdy wpis używa tylko słownika możliwości; słownik = możliwości z katalogu + kilka sprzętowych', () => {

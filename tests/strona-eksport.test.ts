@@ -73,11 +73,11 @@ describe('eksport dla strony: manifest i przypięcie do wersji', () => {
   });
 });
 
-describe('eksport dla strony: komplet i spójność z runtime aplikacji (macierz: 709 ćwiczeń × 35 języków)', () => {
+describe('eksport dla strony: komplet i spójność z runtime aplikacji (macierz: 708 ćwiczeń × 35 języków)', () => {
   test('każdy język ma wszystkie ćwiczenia biblioteki, w kolejności biblioteki, z polami wymaganymi', () => {
     for (const l of LANGS) {
       const d = data[l]; expect([l, d.exercises.map(e => e.id)]).toEqual([l, LIB.map(r => r[0])]);
-      expect(d.meta.exercises).toBe(709);
+      expect(d.meta.exercises).toBe(708);
       for (const e of d.exercises) {
         expect([l, e.id, typeof e.name === 'string' && e.name.length > 0]).toEqual([l, e.id, true]);
         for (const k of ['group', 'equipment', 'metric', 'pattern', 'family'] as const) expect([e.id, k, typeof e[k]]).toEqual([e.id, k, 'string']);
@@ -87,7 +87,7 @@ describe('eksport dla strony: komplet i spójność z runtime aplikacji (macierz
   });
   test('slugi: a–z 0–9 i „-”, unikalne, te same we wszystkich językach (adres strony nie zależy od języka)', () => {
     const base = data.en.exercises.map(e => e.slug);
-    expect(new Set(base).size).toBe(709);
+    expect(new Set(base).size).toBe(708);
     for (const s of base) expect(s).toMatch(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
     for (const l of LANGS) expect(data[l].exercises.map(e => e.slug)).toEqual(base);
     expect(data.en.exercises.find(e => e.id === 'Back Squat')!.slug).toBe('back-squat');

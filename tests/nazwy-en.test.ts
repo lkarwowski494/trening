@@ -27,7 +27,7 @@ afterEach(() => { applyLang('pl'); });
 describe('nazwy EN po rid: źródło i generator', () => {
   test('267 zmienionych nazw (442 bez zmian z 709); rid istnieją w katalogu, są unikalne; każda nowa nazwa różni się od dawnej', () => {
     expect(zrodlo.wpisy).toHaveLength(267);
-    expect(LIB).toHaveLength(709);
+    expect(LIB).toHaveLength(708);
     const rids = zrodlo.wpisy.map(w => w.rid);
     expect(new Set(rids).size).toBe(267);
     for (const w of zrodlo.wpisy) { expect(kluczOd[w.rid]).toBeDefined(); expect(w.nazwa).not.toBe(w.dawna); expect(w.reguly.length).toBeGreaterThan(0); }

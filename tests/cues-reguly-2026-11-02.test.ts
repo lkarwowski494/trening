@@ -148,8 +148,8 @@ describe('dane po porządkach P0 (02.11.2026)', () => {
       for (const [id, s] of Object.entries(CUE_FULL.sources)) if (s.org === org) expect([id, [4, 5].includes(s.level), typeof (s as { strona?: string }).strona]).toEqual([id, true, 'string']);
     }
   });
-  test('Skakanka i Assault Bike zostają otwarte do czasu kart z fali G6 (P4): każde ćwiczenie bazowe ma wskazówki albo wpis open — tests/cues.test.tsx; luki = dokładnie wskazówki, które po przeliczeniu szczebli tracą parę', () => {
-    expect(Object.keys(CUE_FULL.open)).toEqual(expect.arrayContaining(['Skakanka', 'Assault Bike']));
+  test('Skakanka i drugie ćwiczenie cardio z STAN-g6 zostają otwarte do czasu kart z fali G6 (P4): każde ćwiczenie bazowe ma wskazówki albo wpis open — tests/cues.test.tsx; luki = dokładnie wskazówki, które po przeliczeniu szczebli tracą parę', () => {
+    expect(Object.keys(CUE_FULL.open)).toEqual(expect.arrayContaining(['Skakanka']));
     expect(Object.keys((CUE_FULL as unknown as Data).luki ?? {}).sort()).toEqual([
       'Pendlay Row::pendlay.floor', 'Pendlay Row::pendlay.mis.torso', 'Pendlay Row::pendlay.pull', 'Pendlay Row::pendlay.setup', 'Łydki na stopniu::calf.step',
     ].sort());

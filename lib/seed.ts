@@ -164,7 +164,7 @@ export const muscleLoadOf = (e: Pick<Exercise, 'lib' | 'libKey'> & Partial<Pick<
 /** Katalog 04.10.2026 (decyzja właściciela: rozbudowa własnego katalogu): nowe ćwiczenia biblioteki — JEDNO źródło: docs/research/equipment/catalog.json
  * (pola group/equipment/metric/loadMode/muscles), generowane do lib/catalog.generated.ts. */
 const EXTRA = new Map(CATALOG_LIB_EXTRA.map(r => [r[0], r]));
-export const LIB_EXTRA_NAMES: readonly string[] = CATALOG_LIB_EXTRA.map(r => r[0]);
+export const LIB_EXTRA_NAMES: readonly string[] = CATALOG_LIB_EXTRA.map(r => r[0]).filter(n => !LIB_WYCOFANE.includes(n)); /* bez wycofanych (02.11.2026) */
 /** Nazwy 125 ćwiczeń pierwszej wersji (reguły migracji danych sprzed schematu 10 — runda 52/56). */
 export const LIB_BASE_NAMES: ReadonlySet<string> = new Set(LIB_BASE.map(l => l[0]));
 /** Nazwy pierwszej wersji biblioteki (125, także scalone i przemianowane później) — tylko reguła danych sprzed schematu 10 (flaga lib). */
