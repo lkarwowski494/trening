@@ -70,8 +70,8 @@ describe('sprzęt', () => {
 const BW_COUNT = 144;
 describe('presety miejsc i dostępność', () => {
   const ex = seedState().exercises;
-  test('„Pełna siłownia” → wszystko poza sprzętem strongman (698/709; strongman poza presetem — także circus bell od 09.10.2026)', () => {
-    const g = loc('Siłownia', presetEquipment('gym')); expect(ex.filter(e => availability(e, g).ok)).toHaveLength(698);
+  test('„Pełna siłownia” → wszystko poza sprzętem strongman (697/708; strongman poza presetem — także circus bell od 09.10.2026)', () => {
+    const g = loc('Siłownia', presetEquipment('gym')); expect(ex.filter(e => availability(e, g).ok)).toHaveLength(697);
     const SM = new Set(['tire', 'sledgehammer', 'atlas_stones', 'yoke', 'log_bar', 'keg', 'axle_bar', 'farmers_handles', 'rickshaw', 'circus_bell']);
     expect(ex.filter(e => !availability(e, g).ok).every(e => availability(e, g).missing.every(gr => gr.every(c => SM.has(c))))).toBe(true);
   });
@@ -116,7 +116,7 @@ describe('presety miejsc i dostępność', () => {
     expect(loadKindsFor(CATALOG['Kettlebell Swing'])).toEqual(['kettlebell', 'dumbbell']);
     expect(loadKindsFor(CATALOG['Pull Up'])).toEqual([]);
   });
-  test('dane: seedState ma pola sprzętowe dla wszystkich 709 ćwiczeń, zgodne z katalogiem', () => {
+  test('dane: seedState ma pola sprzętowe dla wszystkich 708 ćwiczeń, zgodne z katalogiem', () => {
     for (const e of seedState().exercises) { const c = CATALOG[e.libKey!] /* SEC2-01: po kluczu — nazwa wyświetlana bywa ogólna */; expect(e.requires).toEqual(c.requires); expect(e.loadSource).toBe(c.loadSource); expect(e.pattern).toBe(c.pattern); expect(e.implements).toBe(c.implements); }
   });
 });

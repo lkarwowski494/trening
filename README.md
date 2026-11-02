@@ -56,7 +56,7 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Minimalny watchOS (Apple Watch) | 10.0 | `targets/watch-app/expo-target.config.js`, docs/35-zegarek-apple.md |
 | Platforma | Expo SDK 58 · React Native 0.88 · React 19.3 · TypeScript 6.0 | `package.json` |
 | Języki interfejsu | 35 | `lib/i18n.ts` (`LANGS`), `app.json`, docs/16-jezyki-i-marka.md |
-| Ćwiczenia w bibliotece | 709 | `lib/seed.ts`, `lib/catalog.generated.ts`, docs/10-miejsca-i-sprzet.md |
+| Ćwiczenia w bibliotece | 708 | `lib/seed.ts`, `lib/catalog.generated.ts`, docs/10-miejsca-i-sprzet.md |
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
 | Elementy UI (przyciski, pola, przełączniki) | 356 (z testem: 356) | docs/19-macierz-testow.md |
 | Komunikaty i teksty | 1082 (z testem: 1082) | docs/19-macierz-testow.md |

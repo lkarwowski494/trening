@@ -5,6 +5,7 @@
  * (gałąź przekazanie-konta). Zakres testów: (a) źródło i generator, (b) macierz: każda zmieniona nazwa × każdy język poza polskim, polski bez zmian,
  * (c) P1–P4 na przykładach, (d) strażnik regex wszystkich 709 nazw EN, (e) stare nazwy EN jako aliasy wyszukiwania, (f) VoiceOver, ćwiczenie własne, slug eksportu.
  */
+import { LIB_WYCOFANE } from '@/lib/catalog-wycofane';
 import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { execFileSync } from 'child_process';
@@ -19,6 +20,8 @@ type Wpis = { rid: string; dawna: string; nazwa: string; reguly: string[]; wyswi
 const zrodlo = JSON.parse(read('docs/research/equipment/nazwy-en.json')) as { wpisy: Wpis[]; recenzja: { badacz: unknown; lokalizacja: unknown } };
 const katalog = JSON.parse(read('docs/research/equipment/catalog.json')) as { name: string; rid: string }[];
 const kluczOd = Object.fromEntries(katalog.map(c => [c.rid, c.name]));
+const WSZYSTKIE = zrodlo.wpisy.slice(); /* 02.11.2026: ćwiczenie wycofane z biblioteki zostaje w tabeli źródła (rid), ale nie w LIB — dalsze testy dotyczą biblioteki */
+zrodlo.wpisy = zrodlo.wpisy.filter(w => !LIB_WYCOFANE.includes(kluczOd[w.rid]));
 const wiersz = (klucz: string) => LIB.find(r => r[0] === klucz)!;
 const nazwaEn = (klucz: string, lang: Parameters<typeof applyLang>[0] = 'en') => { applyLang(lang); return exName(libExercise(wiersz(klucz))); };
 const wpis = (rid: string) => zrodlo.wpisy.find(w => w.rid === rid)!;
@@ -26,7 +29,7 @@ afterEach(() => { applyLang('pl'); });
 
 describe('nazwy EN po rid: źródło i generator', () => {
   test('267 zmienionych nazw (442 bez zmian z 709); rid istnieją w katalogu, są unikalne; każda nowa nazwa różni się od dawnej', () => {
-    expect(zrodlo.wpisy).toHaveLength(267);
+    expect(WSZYSTKIE).toHaveLength(267);
     expect(LIB).toHaveLength(708);
     const rids = zrodlo.wpisy.map(w => w.rid);
     expect(new Set(rids).size).toBe(267);

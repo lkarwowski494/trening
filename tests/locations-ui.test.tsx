@@ -38,7 +38,7 @@ describe('Ustawienia → Miejsca treningu', () => {
     await renderApp(); await go('/more/locations'); await flushAll(10);
     await tap(screen.getByLabelText('Dodaj miejsce')); await tap(screen.getByText('Dom')); await flushAll(10);
     const s = store.getState().settings; expect(s.locations).toHaveLength(1); expect(s.mainLocationId).toBe(s.locations[0].id);
-    expect(screen.getByText(/Miejsce główne/)).toBeTruthy(); expect(screen.getByText(`Dostępne ćwiczenia: ${store.getState().exercises.filter(e => !(e.requires ?? []).length).length} z 709`)).toBeTruthy(); /* research 09.10.2026: 709 ćwiczeń */
+    expect(screen.getByText(/Miejsce główne/)).toBeTruthy(); expect(screen.getByText(`Dostępne ćwiczenia: ${store.getState().exercises.filter(e => !(e.requires ?? []).length).length} z 708`)).toBeTruthy(); /* research 09.10.2026: 709 ćwiczeń */
     await expandEquip(); await toggle('Ławka regulowana', true); expect(s.locations[0].equipment.map(e => e.item)).toEqual(['bench_adj']);
     await toggle('Ławka regulowana: ze skosem w dół', true); /* audyt M7: opcja z nazwą pozycji */ expect(s.locations[0].equipment[0].opts).toEqual(['decline']);
     await toggle('Drążek do podciągania (rozporowy, ścienny)', true); expect(screen.getByText(/Dostępne ćwiczenia: \d+ z 708/)).toBeTruthy();
