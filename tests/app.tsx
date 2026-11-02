@@ -41,6 +41,12 @@ export const type = async (el: Parameters<typeof fireEvent.changeText>[0], text:
 export const flushAll = async (ms = 0) => { await act(async () => { jest.advanceTimersByTime(ms); await Promise.resolve(); await Promise.resolve(); }); };
 export { screen, act, fireEvent };
 export const go = async (href: string) => { await act(async () => { router.push(href as never); }); };
+/** SDK 58 (expo-router 58): `router-store` usunięty — ref kontenera nawigacji (getRootState, getCurrentOptions, canGoBack) z jednego miejsca dla wszystkich testów. */
+export const navRef = () => navigationRef;
+/** RNTL 14 (test-renderer): korzeń drzewa elementów natywnych — następca `screen.UNSAFE_root`. Drzewo ma tylko elementy natywne (typ = napis),
+ * a wyszukiwanie to `queryAll(predykat)` zamiast `findAll` (bez samego elementu, chyba że `{ includeSelf: true }`). */
+export const hostRoot = () => screen.container;
+type HostNode = { props: Record<string, any>; queryAll: (f: (n: HostNode) => boolean) => HostNode[] };
 
 /** Ekran miejsca (05.10.2026): grupy sprzętu są zwinięte — rozwija wszystkie (testy sprzed zwijania). */
 export const expandEquip = async () => { const { EQUIP_GROUPS, EQUIP_GROUP_LABEL, equipLabel } = require('@/lib/equipment'); for (const g of EQUIP_GROUPS) { const el = screen.queryByLabelText(equipLabel(EQUIP_GROUP_LABEL[g])); if (el && !el.props.accessibilityState?.expanded) await tap(el); } };
@@ -52,14 +58,14 @@ export const openCard = async (i = 0) => { const cards = screen.getAllByRole('bu
  */
 export const swipeDelete = async (label: string | RegExp, nth = 0) => {
   const hit = (l: string) => typeof label === 'string' ? l === label : label.test(l);
-  /* ten sam wiersz występuje w drzewie kilka razy (komponent i jego element natywny) — liczymy po funkcji akcji */
-  const all = screen.UNSAFE_root.findAll((n: { props: Record<string, any> }) => typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions) && n.props.accessibilityActions.some((a: { name: string; label?: string }) => a.name === 'delete' && hit(a.label ?? '')));
+  /* ten sam wiersz mógł występować w drzewie kilka razy (komponent i jego element natywny; w RNTL 14 tylko natywne) — liczymy po funkcji akcji */
+  const all = (hostRoot() as unknown as HostNode).queryAll((n: { props: Record<string, any> }) => typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions) && n.props.accessibilityActions.some((a: { name: string; label?: string }) => a.name === 'delete' && hit(a.label ?? '')));
   const el = all.filter((n: { props: Record<string, any> }, i: number) => all.findIndex((m: { props: Record<string, any> }) => m.props.onAccessibilityAction === n.props.onAccessibilityAction) === i)[nth];
   if (!el) throw new Error(`brak wiersza z akcją usuwania „${String(label)}”`);
   await act(async () => { el.props.onAccessibilityAction({ nativeEvent: { actionName: 'delete' } }); });
 };
 /** Etykiety akcji „usuń” widoczne na ekranie (do sprawdzeń, że wiersz da się usunąć gestem). */
-export const deleteActions = (): string[] => screen.UNSAFE_root.findAll((n: { props: Record<string, any> }) => typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions))
+export const deleteActions = (): string[] => (hostRoot() as unknown as HostNode).queryAll((n: { props: Record<string, any> }) => typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions))
   .flatMap((n: { props: Record<string, any> }) => n.props.accessibilityActions.filter((a: { name: string }) => a.name === 'delete').map((a: { label: string }) => a.label)).filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);
 /** Edycja na żądanie (decyzja właściciela 08.10.2026, docs/18): ekran szablonu i ćwiczenia otwiera się w podglądzie — `startEdit` tapuje „Edytuj”
  * (gdy ekran jest w podglądzie), `saveEdit` — „Zapisz” w nagłówku (zmiany trafiają do danych dopiero wtedy). */

@@ -125,53 +125,53 @@ describe('ekran (components/Intro.tsx)', () => {
   afterEach(() => { jest.useRealTimers(); });
   test.each(ICON_SCHEMES)('motyw %s: kwadrat ikony na szerokość ekranu, środek w pionie (jak ekran startowy); pierwsza klatka = sam gryf, ostatnia = ikona w kolorach ikony', async s => {
     const c = iconColors(s); const W = 390, H = 844, k = W / ICON_VIEWBOX;
-    render(<Intro ready={false} onDone={() => {}} scheme={s} frame={0} />); await layout(W, H);
+    await render(<Intro ready={false} onDone={() => {}} scheme={s} frame={0} />); await layout(W, H);
     expect(flat('intro').backgroundColor).toBe(c.bg);
     expect(flat('intro-icon')).toMatchObject({ left: 0, top: (H - W) / 2, width: W, height: W });
     expect(flat('intro-bar')).toMatchObject({ left: ICON_BAR.x * k, top: ICON_BAR.y * k, width: ICON_BAR.w * k, height: ICON_BAR.h * k, borderRadius: ICON_BAR.rx * k, backgroundColor: c.ink });
     const ps = introPieces();
     ps.forEach((p, i) => { expect(flat(`intro-piece-${i}`)).toMatchObject({ left: p.x * k, top: p.y * k, width: p.w * k, height: p.h * k, borderRadius: p.rx * k, backgroundColor: p.fill === 'ink' ? c.ink : c.plate[p.fill] }); expect(p.x * k + tx(`intro-piece-${i}`)).toBeGreaterThanOrEqual(W); });
-    rtl.unmount();
-    render(<Intro ready={false} onDone={() => {}} scheme={s} frame={INTRO_MOVE_MS} />); await layout(W, H);
+    await rtl.unmount();
+    await render(<Intro ready={false} onDone={() => {}} scheme={s} frame={INTRO_MOVE_MS} />); await layout(W, H);
     ps.forEach((_, i) => expect(tx(`intro-piece-${i}`)).toBeCloseTo(0, 6));
-    rtl.unmount();
-    render(<Intro ready={false} onDone={() => {}} scheme={s} frame={300} />); await layout(W, H); /* klatka pośrednia = introFrame */
+    await rtl.unmount();
+    await render(<Intro ready={false} onDone={() => {}} scheme={s} frame={300} />); await layout(W, H); /* klatka pośrednia = introFrame */
     introFrame(300).x.forEach((x, i) => expect(ps[i].x * k + tx(`intro-piece-${i}`)).toBeCloseTo(x * k, 4));
   });
-  test('VoiceOver: grafika ukryta, pominięcie tapnięciem bez elementu dostępności', () => {
-    render(<Intro ready onDone={() => {}} scheme="light" frame={0} />);
+  test('VoiceOver: grafika ukryta, pominięcie tapnięciem bez elementu dostępności', async () => {
+    await render(<Intro ready onDone={() => {}} scheme="light" frame={0} />);
     const n = rtl.getByTestId('intro', H_); expect(n.props.accessibilityElementsHidden).toBe(true); expect(n.props.importantForAccessibility).toBe('no-hide-descendants');
     expect(rtl.getByTestId('intro-skip', H_).props.accessible).toBe(false);
   });
   test('dane gotowe: ekran startowy schowany po zamontowaniu, ruch ok. 1 s, potem znika (onDone) — nie dłużej', async () => {
-    const done = jest.fn(); render(<Intro ready onDone={done} scheme="light" />);
+    const done = jest.fn(); await render(<Intro ready onDone={done} scheme="light" />);
     await tick(40); expect(hide).toHaveBeenCalledTimes(1); expect(done).not.toHaveBeenCalled();
     await tick(INTRO_MOVE_MS - 60); expect(done).not.toHaveBeenCalled();
     await tick(INTRO.fadeMs + 60); expect(done).toHaveBeenCalledTimes(1);
   });
   test('dane ładują się dłużej: ostatnia klatka (ikona) zostaje bez pętli, znika dopiero po załadowaniu', async () => {
-    const done = jest.fn(); render(<Intro ready={false} onDone={done} scheme="dark" />); await layout(390, 844);
+    const done = jest.fn(); await render(<Intro ready={false} onDone={done} scheme="dark" />); await layout(390, 844);
     await tick(INTRO.totalMs + 3000); expect(done).not.toHaveBeenCalled();
     introPieces().forEach((_, i) => expect(tx(`intro-piece-${i}`)).toBeCloseTo(0, 6)); expect(flat('intro').opacity).toBe(1);
-    rtl.rerender(<Intro ready onDone={done} scheme="dark" />); await tick(INTRO.fadeMs - 10); expect(done).not.toHaveBeenCalled(); await tick(20); expect(done).toHaveBeenCalledTimes(1);
+    await rtl.rerender(<Intro ready onDone={done} scheme="dark" />); await tick(INTRO.fadeMs - 10); expect(done).not.toHaveBeenCalled(); await tick(20); expect(done).toHaveBeenCalledTimes(1);
   });
   test('tapnięcie pomija: dane gotowe — od razu aplikacja; dane w drodze — od razu ikona, aplikacja zaraz po załadowaniu', async () => {
-    const done = jest.fn(); render(<Intro ready onDone={done} scheme="light" />); await tick(150);
+    const done = jest.fn(); await render(<Intro ready onDone={done} scheme="light" />); await tick(150);
     await act(async () => { fireEvent(rtl.getByTestId('intro-skip', H_), 'pressIn'); }); await tick(0); expect(done).toHaveBeenCalledTimes(1);
-    rtl.unmount();
-    const d2 = jest.fn(); render(<Intro ready={false} onDone={d2} scheme="light" />); await layout(390, 844); await tick(150);
+    await rtl.unmount();
+    const d2 = jest.fn(); await render(<Intro ready={false} onDone={d2} scheme="light" />); await layout(390, 844); await tick(150);
     await act(async () => { fireEvent(rtl.getByTestId('intro-skip', H_), 'pressIn'); }); await tick(0);
     expect(d2).not.toHaveBeenCalled(); introPieces().forEach((_, i) => expect(tx(`intro-piece-${i}`)).toBeCloseTo(0, 6));
-    rtl.rerender(<Intro ready onDone={d2} scheme="light" />); await tick(0); expect(d2).toHaveBeenCalledTimes(1);
+    await rtl.rerender(<Intro ready onDone={d2} scheme="light" />); await tick(0); expect(d2).toHaveBeenCalledTimes(1);
   });
   test('„Ogranicz ruch”: bez animacji — od razu koniec, ekranu startowego nie chowa (zrobi to expo-router z aplikacją)', async () => {
     rm.mockImplementation(() => Promise.resolve(true));
-    const done = jest.fn(); render(<Intro ready={false} onDone={done} scheme="light" />); await tick(0);
+    const done = jest.fn(); await render(<Intro ready={false} onDone={done} scheme="light" />); await tick(0);
     expect(done).toHaveBeenCalledTimes(1); await tick(2000); expect(hide).not.toHaveBeenCalled(); expect(done).toHaveBeenCalledTimes(1);
   });
   test('system nie odpowiada o „Ogranicz ruch”: po INTRO.reduceMotionWaitMs bez animacji (nie wisi na ekranie)', async () => {
     rm.mockImplementation(() => new Promise(() => {}));
-    const done = jest.fn(); render(<Intro ready onDone={done} scheme="light" />);
+    const done = jest.fn(); await render(<Intro ready onDone={done} scheme="light" />);
     await tick(INTRO.reduceMotionWaitMs - 10); expect(done).not.toHaveBeenCalled(); await tick(20); expect(done).toHaveBeenCalledTimes(1); expect(hide).not.toHaveBeenCalled();
   });
 });

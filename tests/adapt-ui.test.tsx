@@ -14,7 +14,7 @@ jest.setTimeout(60000);
 const S = () => store.getState();
 const blk = (i: number) => S().active!.exercises[i];
 const GYM = 'gym', HOTEL = 'hotel', DOM = 'dom';
-const stack = () => { const { store: rs } = require('expo-router/build/global-state/router-store'); let st = rs.navigationRef.getRootState(); while (st.routes.length === 1 && st.routes[0].name === '__root' && st.routes[0].state) st = st.routes[0].state; return st.routes.map((r: { name: string }) => r.name) as string[]; };
+const stack = () => { const rs = { navigationRef: require('./app').navRef() }; /* SDK 58: router-store usunięty */ let st = rs.navigationRef.getRootState(); while (st.routes.length === 1 && st.routes[0].name === '__root' && st.routes[0].state) st = st.routes[0].state; return st.routes.map((r: { name: string }) => r.name) as string[]; };
 const top = () => stack().at(-1);
 const item = (name: string, id: string) => ({ id, exerciseId: ex(name).id, sets: 3, repMin: 6, repMax: 8, restSec: 120, startWeight: '' as const, targetSec: '' as const, groupId: null });
 const FBW: [string, string][] = [['Bench Press (sztanga)', 'bench'], ['Overhead Press (sztanga)', 'ohp'], ['Pull Up', 'pull'], ['RDL (hantle/linki)', 'rdl']];
@@ -229,13 +229,13 @@ describe('dopiski wierszy, podpowiedzi i tytuł okna', () => {
     const sw = screen.getAllByRole('switch'); expect(sw).toHaveLength(3); expect(sw[1].props.accessibilityHint).toBe('wpisane wartości zamiennika przepadną');
   });
   test('101-17 (29.10.2026, wariant B): tytuł nagłówka jest stały „Dostosuj do miejsca”, a „Dostosuj do: Hotel” to pierwszy wiersz treści', async () => {
-    const title = () => require('expo-router/build/global-state/router-store').store.navigationRef.getCurrentOptions().title as string;
+    const title = () => require('./app').navRef().getCurrentOptions().title as string;
     await boot(); await pickPlace('Hotel'); expect(title()).toBe('Dostosuj do miejsca');
     expect(screen.getByTestId('adapt-place-line').props.children).toBe('Dostosuj do: Hotel');
     await tap(screen.getByTestId('close-modal')); await flushAll(20); await act(async () => { store.cancelWorkout(); }); await flushAll(10); await go('/adapt'); await flushAll(20); expect(title()).toBe('Dostosuj do miejsca');
   });
   test.each(['pl', 'en', 'el'] as const)('101-17: tytuł stały, wiersz z pełną (długą) nazwą miejsca zawija się i jest czytany jako tekst (%s)', async (lang) => {
-    const title = () => require('expo-router/build/global-state/router-store').store.navigationRef.getCurrentOptions().title as string;
+    const title = () => require('./app').navRef().getCurrentOptions().title as string;
     const longName = 'Ξενοδοχείο με γυμναστήριο στην ταράτσα του κτιρίου';
     const w = await savedWorld(FBW, lang === 'pl' ? 'pl' : 'en'); w.settings.locations[1].name = longName;
     await renderApp({ saved: w, locale: lang === 'pl' ? 'pl' : 'en', code: lang }); await flushAll(20); await pickPlace(longName);

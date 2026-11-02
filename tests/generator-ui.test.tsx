@@ -107,7 +107,7 @@ test('English', async () => {
 test('etykiety pól, tytuł ekranu, nazwy sesji i celów; 4 sesje — góra/dół w podglądzie', async () => {
   await boot('/generator');
   expect(screen.getAllByText('Cel').length).toBeGreaterThan(0); expect(screen.getAllByText('Czas sesji').length).toBeGreaterThan(0);
-  const { store: rs } = require('expo-router/build/global-state/router-store'); /* nagłówek natywnego stosu nie renderuje się w Jest — tytuł z opcji ekranu */
+  const rs = { navigationRef: require('./app').navRef() }; /* SDK 58: router-store usunięty */ /* nagłówek natywnego stosu nie renderuje się w Jest — tytuł z opcji ekranu */
   expect(rs.navigationRef.getCurrentOptions()?.title).toBe('Generator szablonów i planu'); /* audyt 0.10 UX-14: jedna nazwa (przewodnik, przycisk) */
   await pickDays(daysFor(4));
   for (const n of ['Góra A', 'Dół A', 'Góra B', 'Dół B']) expect(screen.getAllByText(n).length).toBeGreaterThan(0);

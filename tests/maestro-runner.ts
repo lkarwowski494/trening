@@ -6,7 +6,7 @@ import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { Alert, AppState } from 'react-native';
 import * as store from '@/lib/store';
-import { renderApp, flushAll, screen, act, fireEvent } from './app';
+import { renderApp, flushAll, screen, act, fireEvent, navRef, hostRoot } from './app';
 import { saved } from './helpers';
 import { layout, flat, SCREEN, type LNode, type Box } from './maestro-layout';
 
@@ -78,7 +78,9 @@ type Cand = { node?: Node; texts: string[]; id?: string; alertBtn?: () => void; 
  * CAŁEGO tekstu niezależnie od MULTILINE — kotwice (?<![\s\S]) i (?![\s\S]) to początek i koniec całego tekstu, bo `^`/`$` z flagą m pasują też
  * na granicach linii (run 37900617167, 15: „Permission is hereby granted.*” przechodził tu na treści „MIT License\n\nPermission…”, a na symulatorze nie). */
 export const full = (re: string) => { let r: RegExp; try { r = new RegExp(`(?<![\\s\\S])(?:${re})(?![\\s\\S])`, 'ism'); } catch { r = new RegExp(`(?<![\\s\\S])${re.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\s\\S])`, 'ism'); } /* toRegexSafe: zły wzorzec — dosłownie */ return { test: (t: string) => [t, t.replace(/\n/g, ' ')].some(v => v === re || r.test(v)) }; };
-const isHost = (n: Node) => typeof n.type === 'string';
+const isHost = (n: Node) => typeof n.type === 'string' && n.type !== ''; /* RNTL 14: kontener korzenia ma typ '' */
+/** RNTL 14 (test-renderer): `queryAll` z samym elementem — odpowiednik dawnego `findAll` z react-test-renderer (który zwracał też element, od którego szukano). */
+const qAll = (n: Node, f: (x: Node) => boolean): Node[] => (n as any).queryAll(f, { includeSelf: true });
 const textOf = (n: Node | string): string => typeof n === 'string' ? n : (n.children ?? []).map(textOf).join('');
 const accessibleAncestor = (n: Node) => { for (let p = n.parent; p; p = p.parent) if (isHost(p) && (p.props.accessible === true || (typeof p.props.accessibilityLabel === 'string' && p.props.accessible !== false))) return true; return false; };
 
@@ -86,11 +88,11 @@ export class Runner {
   /** E2E 91: przewinięcie list (klucz: natywny element listy — nowy po ponownym zamontowaniu, jak w aplikacji) — przybliżony układ z tests/maestro-layout.ts */
   scrollY = new WeakMap<object, number>(); boxes: Map<LNode, Box> = new Map();
   hasTabs = false; lastTapAt = 0;
-  relayout() { this.boxes = layout(screen.UNSAFE_root as unknown as LNode); this.hasTabs = this.candidates(true).some(c => c.texts.some(t => /, tab, \d+ of \d+$/.test(t))); return this.boxes; }
-  nav() { return require('expo-router/build/global-state/router-store').store.navigationRef; }
+  relayout() { this.boxes = layout(hostRoot() as unknown as LNode); this.hasTabs = this.candidates(true).some(c => c.texts.some(t => /, tab, \d+ of \d+$/.test(t))); return this.boxes; }
+  nav() { return navRef() as any; } /* SDK 58: router-store usunięty */
   headerTop() { const o = this.nav()?.getCurrentOptions?.() ?? {}; return SCREEN.top + (o.headerShown === false ? 0 : SCREEN.header) + (/modal|sheet/i.test(String(o.presentation ?? '')) ? SCREEN.modal : 0); }
   tabs() { return this.hasTabs; } /* pasek zakładek na ekranie (liczony przy relayout) */
-  scrollKey(sc: LNode): object { return (sc as any)._fiber?.stateNode ?? sc; } /* host instance z react-test-renderer: stały przez życie komponentu */
+  scrollKey(sc: LNode): object { return (sc as any).unstable_fiber?.stateNode ?? sc; } /* host instance (RNTL 14: test-renderer, unstable_fiber): stały przez życie komponentu */
   /** Pozycja na ekranie (pt) — y treści listy minus przewinięcie plus górna krawędź listy. */
   screenBox(n: LNode, fresh = true): { x: number; y: number; w: number; h: number; sc: LNode | null } | null {
     const B = fresh ? this.relayout() : this.boxes; const b = B.get(n); if (!b) return null;
@@ -214,12 +216,12 @@ export class Runner {
   screenCands(): Cand[] {
     const out: Cand[] = [];
     /* pasek nawigacji (w Jest się nie renderuje): tytuł ekranu i przycisk wstecz „Back” — na górze ekranu, więc przed treścią */
-    const nav = require('expo-router/build/global-state/router-store').store.navigationRef; const o = nav?.getCurrentOptions?.() ?? {};
+    const nav = this.nav(); const o = nav?.getCurrentOptions?.() ?? {};
     if (typeof o.title === 'string' && o.title && o.headerShown !== false) out.push({ texts: [o.title], header: true });
     /* okno modalne (presentation modal/sheet) nie ma przycisku „Back” — zamyka je przycisk „Zamknij/Close” z nagłówka (headerRight, testID close-modal; zasada 13.10.2026), a dodatkowo gest w dół z paska nagłówka (E2E 38324474808, scenariusz 21) */
     const modal = /modal|sheet/i.test(String(o.presentation ?? ''));
     if (!modal && nav?.canGoBack?.() && o.headerBackVisible !== false && !o.headerLeft && o.headerShown !== false) out.push({ texts: [typeof o.headerBackTitle === 'string' ? o.headerBackTitle : 'Back'], header: true, alertBtn: () => { nav.goBack(); } });
-    const all = (screen.UNSAFE_root as unknown as Node & { findAll: (f: (n: Node) => boolean) => Node[] }).findAll((n: Node) => isHost(n) && !hidden(n)); /* ekrany pod spodem stosu (aria-hidden) — Maestro ich nie widzi */
+    const all = qAll(hostRoot() as unknown as Node, (n: Node) => isHost(n) && !hidden(n)); /* ekrany pod spodem stosu (aria-hidden) — Maestro ich nie widzi */
     for (const n of all) {
       const p = n.props; const texts: string[] = [];
       if (n.type === 'TextInput') { /* E2E 38483827437 (25): placeholder pustego pola NIE jest tekstem dla Maestro (iOS: placeholderValue), gdy różni się od etykiety dostępności — wcześniej interpreter go dopasowywał */ if (p.value != null && p.value !== '') texts.push(String(p.value)); if (typeof p.accessibilityLabel === 'string') texts.push(p.accessibilityLabel); }
@@ -279,7 +281,7 @@ export class Runner {
     if (n.type === 'RCTSwitch' || n.props.onValueChange) { await act(async () => { fireEvent(n as any, 'valueChange', !n.props.value); }); await this.tick(); return; }
     /* 101-22: stuknięcie w środek kontenera (np. wiersz listy z testID na SwipeRow) trafia w jego przycisk — jak palec; tylko gdy sam kontener nie ma onPress */
     let target: Node = n;
-    if (typeof n.props.onPress !== 'function' && n.props.accessibilityRole !== 'button') { const inner = (n as any).findAll((x: Node) => x.props.accessibilityRole === 'button' && !/-(del|close)$/.test(String(x.props.testID ?? '')))[0] as Node | undefined; if (inner) target = inner; }
+    if (typeof n.props.onPress !== 'function' && n.props.accessibilityRole !== 'button') { const inner = qAll(n, (x: Node) => x.props.accessibilityRole === 'button' && !/-(del|close)$/.test(String(x.props.testID ?? '')))[0] as Node | undefined; if (inner) target = inner; }
     await act(async () => { fireEvent.press(target as any); }); await this.tick(100);
   }
   async blur() { const f = this.focused; this.focused = null; if (!f) return; /* pole zdemontowane wraz z ekranem (np. wyszukiwanie + „Back”) — iOS po prostu zdejmuje fokus */ try { await act(async () => { f.props.onEndEditing?.({ nativeEvent: { text: f.props.value } }); f.props.onBlur?.({ nativeEvent: {} }); }); } catch { /* zdemontowane */ } await this.tick(); }
@@ -415,7 +417,7 @@ export class Runner {
           const c = this.find({ id })[0]; if (!c?.node) this.fail(step, 'Brak wiersza do przesunięcia.');
           let n: Node | null = c!.node!; const hasDel = (x: Node) => Array.isArray(x.props.accessibilityActions) && x.props.accessibilityActions.some((a: any) => a.name === 'delete') && typeof x.props.onAccessibilityAction === 'function';
           let target: Node | null = null; for (let p: Node | null = n; p && !target; p = p.parent) if (hasDel(p)) target = p;
-          if (!target) { const sub = (c!.node as any).findAll((x: Node) => hasDel(x)); target = sub[0] ?? null; }
+          if (!target) { const sub = qAll(c!.node!, (x: Node) => hasDel(x)); target = sub[0] ?? null; }
           if (!target) this.fail(step, 'Wiersz bez akcji usuwania.');
           this.revealed = { node: c!.node!, id };
           await act(async () => { target!.props.onAccessibilityAction({ nativeEvent: { actionName: 'delete' } }); }); await this.tick(); n = null; break;
@@ -456,7 +458,7 @@ export class Runner {
 function nodeState(n: Node, key: 'checked' | 'selected'): boolean {
   const own = (x: Node) => { const st = x.props?.accessibilityState; if (st && typeof st[key] === 'boolean') return st[key] as boolean; if (key === 'checked' && typeof x.props?.value === 'boolean' && typeof x.props?.onValueChange === 'function') return x.props.value as boolean; return undefined; };
   for (let p: Node | null = n, i = 0; p && i < 4; p = p.parent, i++) { const v = own(p); if (v !== undefined) return v; }
-  const sub: Node[] = (n as any).findAll?.((x: Node) => own(x) !== undefined) ?? []; return sub.length ? !!own(sub[0]) : false;
+  const sub: Node[] = qAll(n, (x: Node) => own(x) !== undefined); return sub.length ? !!own(sub[0]) : false;
 }
 function inA11yElement(n: Node) { for (let p = n.parent; p; p = p.parent) if (isHost(p) && p.props.accessible === true) return true; return false; }
 /** Dwa elementy w jednym wierszu: najbliższy wspólny przodek-host ma flexDirection: 'row' (np. wiersz serii: pola, guma, ✓). */

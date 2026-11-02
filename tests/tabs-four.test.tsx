@@ -28,7 +28,7 @@ const back = async () => { await act(async () => { router.back(); }); await flus
 const tab = async (label: string) => { await tap(screen.getByLabelText(new RegExp(`^${label}, (zakładka|tab)`))); await flushAll(10); };
 const lastTrain = () => addWorkout(new Date(2026, 9, 9, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }, { weight: 100, reps: 5 }]]], 'Nogi');
 const treesOf = (): string[] => {
-  const { store: rs } = require('expo-router/build/global-state/router-store'); const names: string[] = [];
+  const rs = { navigationRef: require('./app').navRef() }; /* SDK 58: router-store usunięty */ const names: string[] = [];
   const walk = (st: { routes?: { name: string; state?: unknown }[] } | undefined) => st?.routes?.forEach(r => { names.push(r.name); walk(r.state as never); }); walk(rs.navigationRef.getRootState());
   return names;
 };
