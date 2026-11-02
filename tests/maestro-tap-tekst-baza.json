@@ -670,7 +670,7 @@
   "Upper A, .*": 1,
   "Save session": 1,
   "Save": 1,
-  "Set 1 done — Dumbbell Bench Press": 1
+  "Set 1 done — (Dumbbell Bench Press|Bench Press \\\\(Dumbbell\\\\))": 1
  },
  "34-aktualizacja-sprawdz.yaml": {
   "Finish": 2,
@@ -925,8 +925,8 @@
   "\\\\+ Add exercise": 2,
   "Search exercises…": 2,
   "Continue": 2,
-  "Dumbbell Bench Press, dumbbells": 1,
-  "Dumbbell Bent-Over Row, dumbbells": 1,
+  "Dumbbell Bench Press, dumbbells|Bench Press \\\\(Dumbbell\\\\), dumbbells": 1,
+  "Dumbbell Bent-Over Row, dumbbells|Bent Over Row \\\\(Dumbbell\\\\), dumbbells": 1,
   "Save template": 1,
   "Back": 2,
   "Workout, tab.*": 1
