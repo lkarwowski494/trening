@@ -11,6 +11,7 @@
 import { base, equipFields, loadModeFor, uid, type Exercise, type Group, type MetricType, type SetKind, type State, type Workout, type WExercise, type WSet } from './seed';
 import { snapLb } from './units';
 import { exName } from './i18n';
+import { NAME_EN_FORMER } from './nazwy-en.generated';
 import { clampName, NAME_MAX } from './state/util';
 import { writeLoad } from './state/sets';
 import { normalizeGroups } from './state/groups';
@@ -84,7 +85,9 @@ export interface ExIndex { exact: Map<string, Exercise>; norm: Map<string, Exerc
 export function indexExercises(list: Exercise[]): ExIndex {
   const exact = new Map<string, Exercise>(), norm = new Map<string, Exercise>();
   const put = (m: Map<string, Exercise>, k: string, e: Exercise) => { const o = m.get(k); if (!o || (o.archived && !e.archived)) m.set(k, e); };
-  for (const e of list) for (const nm of new Set([e.name, exName(e)])) { put(exact, nm, e); put(norm, normName(nm), e); }
+  /* ZB-025 b (31.10.2026): plik wyeksportowany przez wcześniejszą wersję w angielskim ma dawne nazwy EN (backup.ts zapisuje exName) — ćwiczenie z biblioteki rozpoznajemy też po nich */
+  const dawneEn = (e: Exercise): readonly string[] => (e.lib === true && typeof e.libKey === 'string' && Object.prototype.hasOwnProperty.call(NAME_EN_FORMER, e.libKey) ? NAME_EN_FORMER[e.libKey] : []);
+  for (const e of list) for (const nm of new Set([e.name, exName(e), ...dawneEn(e)])) { put(exact, nm, e); put(norm, normName(nm), e); }
   return { exact, norm };
 }
 /** Dokładne, potem znormalizowane (także po zamianie dopisku sprzętu); null = brak dopasowania (nowe ćwiczenie użytkownika). */

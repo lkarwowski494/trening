@@ -1,0 +1,7 @@
+{
+  "_opis": "Testy z warunkiem środowiska CI (L-087, 02.11.2026): plik testu → strażnik, który obejmuje WSZYSTKIE workflowy uruchamiające ten test, oraz powód. Nowy test z warunkiem CI bez wpisu blokuje verify (tests/ci-srodowisko.test.ts).",
+  "tests/audit-m1-050-release-log.test.ts": {
+    "straznik": "tests/ci-tagi-jest.test.ts",
+    "powod": "w CI kasa ma mieć tagi v*-b*; strażnik sprawdza fetch-depth: 0 i fetch-tags: true w każdym zadaniu z pełnym Jestem (tests, tests-tz, nightly, testflight)"
+  }
+}

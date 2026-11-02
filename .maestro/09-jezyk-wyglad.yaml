@@ -3,7 +3,7 @@
 #
 # Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
 #   "Other workout", "More, tab.*", "Workout, tab.*", "Settings", "Back", "Empty workout", "\+ Add exercise",
-#   "Search exercises…", "Bench Press \(Barbell\),.*"  ← jak przepływy 06 i 07
+#   "Search exercises…", "Bench Press,.*"  ← jak przepływy 06 i 07
 #   "Language, Phone setting"   ← Item 'Język' + sub 'Jak w telefonie' (app/more/settings.tsx; accessibilityLabel „{title}, {sub}”)
 #   "Polski", "English"         ← LANG_NAME (lib/i18n.ts; Item w app/more/language.tsx)
 #   "Change in iOS Settings.*"  ← 'Zmień w ustawieniach iOS' + wyjaśnienie (Item pod listą języków; Linking.openSettings), M1-064
@@ -103,9 +103,9 @@ name: Język, wygląd i jednostka
 - pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
-- extendedWaitUntil: { visible: "Bench Press \\(Barbell\\),.*", timeout: 30000 }
-- tapOn: "Bench Press \\(Barbell\\),.*"
-- extendedWaitUntil: { visible: "Set 1 done — Bench Press \\(Barbell\\)", timeout: 30000 }
+- extendedWaitUntil: { visible: "Bench Press,.*", timeout: 30000 }
+- tapOn: "Bench Press,.*"
+- extendedWaitUntil: { visible: "Set 1 done — Bench Press", timeout: 30000 }
 - assertVisible: "lb"
 - assertNotVisible: "kg"
 - takeScreenshot: 55-jednostka-lb
@@ -149,7 +149,7 @@ name: Język, wygląd i jednostka
     maxRetries: 2
     commands:
       - tapOn: "Workout, tab.*"
-      - extendedWaitUntil: { visible: "Set 1 done — Bench Press \\(Barbell\\)", timeout: 10000 }
+      - extendedWaitUntil: { visible: "Set 1 done — Bench Press", timeout: 10000 }
 - assertVisible: "kg"
 - assertNotVisible: "lb"
 - takeScreenshot: 56-jednostka-kg
@@ -172,6 +172,6 @@ name: Język, wygląd i jednostka
     maxRetries: 2
     commands:
       - tapOn: "Workout, tab.*"
-      - extendedWaitUntil: { visible: "Set 1 done — Bench Press \\(Barbell\\)", timeout: 10000 }
+      - extendedWaitUntil: { visible: "Set 1 done — Bench Press", timeout: 10000 }
 - scrollUntilVisible: { element: "RIR", direction: DOWN, timeout: 20000 }
 - takeScreenshot: 58-trening-kolumna-rir

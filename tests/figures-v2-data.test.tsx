@@ -80,12 +80,13 @@ describe('błędy z danych (bledy[])', () => {
     }
     expect(faultApplicable(figureSpec('Back Squat')!, 'data:0')).toBe(false);
   });
-  test('macierz: wszystkie ćwiczenia z danymi × poza poprawna i poza błędu × 13 pozycji: brak błędów geometrii (podłoga, zasięg, przenikanie, chwyt); błąd różni się od pozy poprawnej na końcu ruchu', () => {
+  test('macierz: wszystkie ćwiczenia z danymi × poza poprawna i poza błędu × 13 pozycji: brak błędów geometrii (podłoga, zasięg, przenikanie, chwyt); błąd różni się od pozy poprawnej na końcu ruchu (błąd pokazany na dole — pu.partial — na początku ruchu)', () => {
+    const NA_DOLE = ['pu.partial']; /* fala 25, 01.11.2026: „bez wyprostu rąk na dole” widać w u = 0, góra jak w pozie poprawnej (scripts/figures/v2-jakosc.mjs: BLAD_DOL) */
     for (const [, k] of DATA_KEYS) {
       const s = figureSpec(k)!; const errs: (FigError | undefined)[] = [undefined, ...errorsOf(s).map(e => e.error)];
       for (const er of errs) for (const u of U) { const is = checkFrame(frameAt(s, u, er)); if (is.length) throw new Error(`${k} ${er ?? 'poprawna'} u=${u}: ${JSON.stringify(is)}`); }
       for (const e of errorsOf(s)) {
-        const a = frameAt(s, 1).sk, b = frameAt(s, 1, e.error).sk; const pts = (x: typeof a) => [x.pelvis, x.head, x.legs.R.knee, x.legs.R.ankle, x.arms.R.elbow];
+        const uw = NA_DOLE.includes(e.cue) ? 0 : 1; const a = frameAt(s, uw).sk, b = frameAt(s, uw, e.error).sk; const pts = (x: typeof a) => [x.pelvis, x.head, x.legs.R.knee, x.legs.R.ankle, x.arms.R.elbow];
         const dd = Math.max(...pts(a).map((p, i) => Math.hypot(p[0] - pts(b)[i][0], p[1] - pts(b)[i][1], p[2] - pts(b)[i][2]))); expect([k, e.error, dd > 3]).toEqual([k, e.error, true]); /* widoczne: ≥ 3 cm (CONTRACT.visibleCm) */
       }
     }

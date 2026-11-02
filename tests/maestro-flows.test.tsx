@@ -28,7 +28,7 @@ import { Runner, DIR, load } from './maestro-runner';
 /* Bramka 4 (scalenie main 28.10.2026): rysunek v2 pokazuje tylko rodzina z aktualną recenzją ruchu (lib/figures/data.json, pole v2) — do recenzji 1.1 rodziny squat i pull_up są ukryte.
  * Scenariusz 57 sprawdza WYŁĄCZNIE rysowanie figury (fazy, mięśnie z legendą, częsty błąd), więc w tym interpreterze bramka jest dla niego otwarta; na symulatorze 57 (pełny katalog, noc)
  * zaczerwieni się, dopóki rodziny nie przejdą recenzji — tests/recenzja-wyjatki-1-1.json. Scenariusz 17 ma kroki rysunku warunkowe i biegnie przy zamkniętej bramce. */
-const FIGURE_GATE_OPEN = ['57-'];
+const FIGURE_GATE_OPEN: string[] = []; /* 02.11.2026: 57 ma kroki figury v2 Pull-Up warunkowe (pull_up poza v2) i biegnie przy prawdziwej bramce — tests/maestro-57-bramka.test.ts */
 jest.mock('@/lib/figures/data.json', () => {
   const actual = jest.requireActual('@/lib/figures/data.json'); const o = { ...actual };
   Object.defineProperty(o, 'v2', { get: () => { if (!(global as any).__figGateOpen) return actual.v2; const all: string[] = []; all.includes = () => true; return all; } });

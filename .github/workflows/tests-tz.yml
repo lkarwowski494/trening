@@ -37,6 +37,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
+          fetch-depth: 0  # tagi i pełna historia: tests/audit-m1-050-release-log.test.ts wymaga tagów v*-b* w CI (tests/ci-tagi-jest.test.ts, 01.11.2026)
+          fetch-tags: true
           ref: ${{ matrix.ref }}
           persist-credentials: false
       - uses: actions/setup-node@v5
@@ -77,12 +79,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # „strefa|chwila UTC” — jedna pozycja = jedno zadanie; lista z zadania „chwile” (Europa jesienią i wiosną, USA jesienią)
+        # „strefa|chwila UTC” — jedna pozycja = jedno zadanie; lista z zadania „chwile” (Europa jesienią i wiosną, USA jesienią, pierwszy poniedziałek roku 00:30 w Europe/Warsaw — L-084 A, 02.11.2026)
         strefa_chwila: ${{ fromJSON(needs.chwile.outputs.lista) }}
         ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main"]') || format('["{0}"]', github.ref_name)) }}
     steps:
       - uses: actions/checkout@v5
         with:
+          fetch-depth: 0  # tagi i pełna historia: tests/audit-m1-050-release-log.test.ts wymaga tagów v*-b* w CI (tests/ci-tagi-jest.test.ts, 01.11.2026)
+          fetch-tags: true
           ref: ${{ matrix.ref }}
           persist-credentials: false
       - uses: actions/setup-node@v5

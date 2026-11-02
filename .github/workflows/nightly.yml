@@ -54,6 +54,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
+          fetch-depth: 0  # tagi i pełna historia: tests/audit-m1-050-release-log.test.ts wymaga tagów v*-b* w CI (tests/ci-tagi-jest.test.ts, 01.11.2026)
+          fetch-tags: true
           ref: ${{ matrix.ref }}
           persist-credentials: false
       - uses: actions/setup-node@v5
@@ -92,6 +94,11 @@ jobs:
         run: |
           node -e "const c=require('./stryker.config.json'); const [m, r]='${{ matrix.modul }}'.split(':'); c.mutate=['lib/'+m+'.ts'+(r?':'+r:'')]; c.thresholds={...c.thresholds, break: null}; require('fs').writeFileSync('stryker.modul.json', JSON.stringify(c, null, 2))"
       - name: Testy mutacyjne (Stryker, jeden moduł)
+        # 02.11.2026 (nocne 41347718181): zakresy `state/migrate:101-200` i `:201-9999` przekroczyły 300 min — cały zestaw logiki (ok. 700 plików) uruchamiany dla każdego mutanta
+        # (migrate wywołuje się pośrednio w większości testów). Dla migracji MUT_TESTS (jest.mutation.config.js) zawęża zestaw do testów, które sprawdzają migrację i kształt danych
+        # (migracje do schematu, wersje wydane, nieznane pola, miejsca, cele, dni treningowe, normalizacja, reset, nazwy); lista = jedno miejsce, pilnuje tests/nocne-workflowy.test.ts.
+        env:
+          MUT_TESTS: ${{ startsWith(matrix.modul, 'state/migrate') && 'audit-m1-002-premigrate,audit-m1-2026-10-27-014-normalizacja-schemat,audit-m1-lok07-01-migrate-dist,migrate-released,migrate-unknown,places-migrate,swap-schema16,audit-0.10-data,set-goals,m5s1-dni-zapis,audit-k1-log,audit-k1-data,locations-model,live-marker,sec2-01-names,audit-1-0-a2-reset' || '' }}
         run: npx stryker run stryker.modul.json --cleanTempDir false
       - uses: actions/upload-artifact@v4
         if: always()
@@ -112,13 +119,14 @@ jobs:
           sparse-checkout: |
             stryker.config.json
             scripts/ci
+            .github/workflows/nightly.yml
       - uses: actions/download-artifact@v4
         continue-on-error: true  # brak raportów (zadania padły przed zapisem) — podsumowanie mówi wtedy „brak raportów”
         with:
           pattern: mutacje-*
           path: raporty
       - name: Wynik mutacji (wszystkie moduły) w podsumowaniu przebiegu
-        run: node scripts/ci/mutacje-podsumowanie.mjs raporty >> "$GITHUB_STEP_SUMMARY"
+        run: node scripts/ci/mutacje-podsumowanie.mjs raporty stryker.config.json .github/workflows/nightly.yml >> "$GITHUB_STEP_SUMMARY"
   e2e-maly-ekran-ciemny:
     # 19.10.2026 (decyzja właściciela): pełny katalog scenariuszy nocą, niewiążąco — z ponowieniem pojedynczych nieudanych, żeby MIERZYĆ niestabilność
     # (podsumowanie przebiegu + artefakt e2e-wyniki: przeszedł / przeszedł w ponowieniu / padł dwa razy, czasy). Warunek gotowości bramki App Store:

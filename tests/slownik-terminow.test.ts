@@ -140,6 +140,20 @@ describe('słownik terminów: logika (wykrywanie i naruszenia)', () => {
     expect(S.sprawdz(slownik, 'el', rr, 'Κινούμενα σχέδια: {opis}').length).toBe(1); expect(S.sprawdz(slownik, 'el', rr, 'Σχέδιο της κίνησης: {opis}')).toEqual([]);
     expect(slownik.pojecia.find(x => x.id === 'animacja_ruchu')!.jezyki.ms.zalecany).toBe('Animasi pergerakan');
   });
+  test('02.11.2026, pull_up C: „rysunek” w zdaniu pod rysunkiem i „następne powtórzenie” (recenzja lokalizacji)', () => {
+    const z = 'Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.';
+    expect(S.wykryte(slownik.pojecia.find(x => x.id === 'rysunek_zdanie'), z)).toBe(true);
+    expect(S.wykryte(slownik.pojecia.find(x => x.id === 'rysunek_zdanie'), 'Rysunek schematyczny — pozycje orientacyjne.')).toBe(false);
+    expect(S.wykryte(slownik.pojecia.find(x => x.id === 'nastepne_powtorzenie'), z)).toBe(true);
+    expect(S.sprawdz(slownik, 'ja', z, 'イラストは片側だけの動きを示しています。').length).toBe(1);
+    expect(S.sprawdz(slownik, 'hu', z, 'Az ábra a mozdulatot mutatja.').length).toBe(1);
+    expect(S.sprawdz(slownik, 'lt', z, 'Brėžinyje judesys rodomas.').length).toBe(1);
+    expect(S.sprawdz(slownik, 'sv', z, 'Bilden visar rörelsen.').length).toBe(1);
+    expect(S.sprawdz(slownik, 'ms', z, 'Lukisan menunjukkan pergerakan.').length).toBe(1);
+    expect(S.sprawdz(slownik, 'ko', z, '그림은 보여 줍니다. 다음 횟수에서는 끌어올립니다.').length).toBe(1);
+    expect(S.sprawdz(slownik, 'ko', z, '그림은 보여 줍니다. 다음 반복에서는 끌어올립니다.')).toEqual([]);
+    expect(S.sprawdz(slownik, 'zh-Hant', z, '圖中只畫出拉向一側的動作 — 下一下改拉向另一隻手。')).toEqual([]);
+  });
   test('el: squat / bench press / deadlift zalecane po angielsku; pojęcia wykrywane w polskim tekście', () => {
     const zal = (id: string) => slownik.pojecia.find(x => x.id === id)!.jezyki.el.zalecany;
     expect([zal('przysiad'), zal('wyciskanie_lezac'), zal('martwy_ciag')]).toEqual(['squat', 'bench press', 'deadlift']);

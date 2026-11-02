@@ -63,12 +63,12 @@ name: Plan z moich szablonów
 - tapOn: "\\+ Add exercise"
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
-- inputText: "Bent Over Row"
+- inputText: "Bent-Over Row"
 - pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
-- tapOn: "Bent Over Row \\(Dumbbell\\), dumbbells"
-- extendedWaitUntil: { visible: "Bent Over Row \\(Dumbbell\\)", timeout: 30000 }
+- tapOn: "Dumbbell Bent-Over Row, dumbbells"
+- extendedWaitUntil: { visible: "Dumbbell Bent-Over Row", timeout: 30000 }
 - tapOn: "Save template"
 - extendedWaitUntil: { visible: "Edit template", timeout: 30000 }
 - tapOn: "Back"

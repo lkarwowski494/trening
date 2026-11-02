@@ -779,6 +779,7 @@ export const EN: Record<string, string> = {
   'barki do przodu': 'shoulders forward',
   'barki do tyłu': 'shoulders back',
   'Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.': 'Toes pointed slightly out — usually about 15–20°.',
+  'Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.': 'The drawing shows the movement to one side only — on the next rep you pull up toward the other hand.',
   'Mięśnie główne: {lista}': 'Main muscles: {lista}',
   'Mięśnie pomocnicze: {lista}': 'Secondary muscles: {lista}',
   'Dobór mięśni: przybliżony': 'Muscle selection: approximate',

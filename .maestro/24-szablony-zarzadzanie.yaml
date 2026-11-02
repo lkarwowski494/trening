@@ -110,7 +110,7 @@ name: Szablony — duplikat, archiwum, usuwanie, zapis zmian
 - tapOn: "More, tab.*"
 - tapOn: "Templates"
 - extendedWaitUntil: { visible: { id: "tpl-list-1" }, timeout: 30000 }
-- assertVisible: "Upper A, Bench Press.*Back Squat"   # „Zapisz zmiany w szablonie” dopisało do szablonu dodane w treningu ćwiczenie
+- assertVisible: "Upper A, Dumbbell Bench Press.*Back Squat"   # „Zapisz zmiany w szablonie” dopisało do szablonu dodane w treningu ćwiczenie
 - assertVisible: "Upper A \\(2\\), Back Squat.*"   # nowy szablon z sesji (składa się z tego, co zrobiono)
 - takeScreenshot: 75-lista-po-zmianach
 # --- usunięcie przyciskiem na dole podglądu (ZM-04, W2 a, 21.10.2026): to samo okno co gest; Anuluj zostawia, Usuń usuwa i wraca na listę ---

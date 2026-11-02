@@ -73,6 +73,9 @@ jobs:
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # tagi i pełna historia: tests/audit-m1-050-release-log.test.ts wymaga tagów v*-b* w CI (tests/ci-tagi-jest.test.ts, 01.11.2026)
+          fetch-tags: true
       - name: Select Xcode 26.x
         run: bash scripts/ci/select-xcode.sh 26
       - uses: actions/setup-node@v5

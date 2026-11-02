@@ -6,9 +6,9 @@
 #   "Main muscles: .*"                              ← 'Mięśnie główne: {lista}' (legenda mięśni, zawsze widoczna)
 #   "Show common mistake" / "Hide common mistake"   ← 'Pokaż częsty błąd' / 'Ukryj częsty błąd'
 #   "Common mistake: .*"                            ← 'Częsty błąd: {opis}'
-#   "Pulling up 1 s.*" / "Lowering 2 s"               ← fazy rodziny z danych (Pull Up: poses/pull_up.json; 26.10.2026)
+#   "Pulling up 1 s.*" / "Lowering 2 s"               ← fazy rodziny z danych (Pull-Up: poses/pull_up.json; 26.10.2026)
 #   "What the muscles do"                           ← 'Co robią mięśnie' (sekcja ekranu ćwiczenia: mapa mięśni + zdanie o roli każdego mięśnia; 26.10.2026, tests/muscle-roles-ui.test.tsx)
-#   ".*Pulls your upper arm down and back toward your body.*" / ".*Helps bend your elbow as you pull.*"   ← wiersz roli to jeden element: „lats, primary: <zdanie>”;  zdania ról najszerszych i bicepsu (Pull Up, rodzina v_pull)
+#   ".*Pulls your upper arm down and back toward your body.*" / ".*Helps bend your elbow as you pull.*"   ← wiersz roli to jeden element: „lats, primary: <zdanie>”;  zdania ról najszerszych i bicepsu (Pull-Up, rodzina v_pull)
 #   (brak) "Draws your shoulder blades down and together."   ← uproszczenie (łopatki w podciąganiu) nie jest wyświetlane
 appId: pl.lukasz.trening
 name: Figura ruchu v2 - fazy, mięśnie, częsty błąd
@@ -40,17 +40,19 @@ name: Figura ruchu v2 - fazy, mięśnie, częsty błąd
 - tapOn: "Hide common mistake"
 - extendedWaitUntil: { visible: "Show common mistake", timeout: 15000 }
 - assertNotVisible: "Common mistake: .*"
-# Rodzina z danych (poses/pull_up.json): to samo okno dla Pull Up — fazy „Podciąganie 1 s” / „Opuszczanie 2 s”, błąd z danych („Częsty błąd”).
+# Rodzina z danych (poses/pull_up.json): to samo okno dla Pull-Up — fazy „Podciąganie 1 s” / „Opuszczanie 2 s”, błąd z danych („Częsty błąd”).
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - eraseText: 30
-- inputText: "Pull Up"
+- inputText: "Pull-Up"
 - pressKey: Enter
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter
-- tapOn: "Pull Up, .*"
+- tapOn: "Pull-Up, .*"
 - extendedWaitUntil: { visible: "Technique", timeout: 30000 }   # sekcja rozwinięta od razu (27.10.2026, wariant B) — bez tapnięcia (po scaleniu main: stuknięcie zwinęłoby sekcję)
+# 02.11.2026 (bramka 4): pull_up w v2 po wpisie recenzji ruchu (docs/research/figury-recenzja.json, decyzja właściciela C z 02.11.2026) —
+# kroki rysunku v2 Pull-Up znów TWARDE (runFlow warunkowy zdjęty); zniknięcie rysunku Pull-Up zaczerwieni scenariusz (tests/maestro-57-bramka.test.ts).
 - scrollUntilVisible: { element: "Movement drawing: .*", direction: DOWN, timeout: 30000, centerElement: true }
 - assertVisible: "Pulling up 1 s.*"
 - assertVisible: "Lowering 2 s"
@@ -60,7 +62,7 @@ name: Figura ruchu v2 - fazy, mięśnie, częsty błąd
 - takeScreenshot: 87-figura-v2-podciaganie-blad
 - tapOn: "Hide common mistake"
 - extendedWaitUntil: { visible: "Show common mistake", timeout: 15000 }
-# Role mięśni (26.10.2026): ten sam ekran Pull Up niżej — mapa mięśni i zdania; zdanie uproszczone (łopatki w podciąganiu) nie pojawia się.
+# Role mięśni (26.10.2026): ten sam ekran Pull-Up niżej — mapa mięśni i zdania; zdanie uproszczone (łopatki w podciąganiu) nie pojawia się.
 - scrollUntilVisible: { element: "What the muscles do", direction: DOWN, timeout: 30000, centerElement: true }
 - assertVisible: ".*Pulls your upper arm down and back toward your body\\..*"
 - assertVisible: ".*Helps bend your elbow as you pull\\..*"

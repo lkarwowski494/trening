@@ -34,8 +34,8 @@ describe('E2E 91: interpreter odtwarza porażki scenariuszy z 224d229 w tym samy
 
   test('10 — po przewinięciu do wiersza Pull Up karta „Set done” jest nad ekranem: `below: "Set done.*"` nie ma kotwicy', async () => {
     await failsAt('10-gumy.yaml', c => {
-      const i = at(c, { scrollUntilVisible: { element: 'Set 1 done — Pull Up', direction: 'DOWN', timeout: 30000, centerElement: true } });
-      /* M3 p2: tablica „teraz” jest niższa niż dawna karta i przy wierszu Pull Up jeszcze się mieści — do odtworzenia przewijamy do końca listy (tablica nad ekranem) */
+      const i = at(c, { scrollUntilVisible: { element: 'Set 1 done — Pull-Up', direction: 'DOWN', timeout: 30000, centerElement: true } });
+      /* M3 p2: tablica „teraz” jest niższa niż dawna karta i przy wierszu Pull-Up jeszcze się mieści — do odtworzenia przewijamy do końca listy (tablica nad ekranem) */
       return [...c.slice(0, i), { scrollUntilVisible: { element: '\\+ Add exercise', direction: 'DOWN', timeout: 30000, centerElement: true } }, { scrollUntilVisible: { element: 'Band: none', direction: 'DOWN', timeout: 30000, centerElement: true } }, { tapOn: { text: 'Band: none', below: 'Set done.*' } }, ...c.slice(i + 2)];
     }, 'tapOn {"text":"Band: none","below":"Set done.*"}', /Nie znaleziono/);
   });
@@ -67,7 +67,7 @@ describe('E2E 91: interpreter odtwarza porażki scenariuszy z 224d229 w tym samy
      * więc porażki z przebiegu 91 nie da się odtworzyć w tym samym kroku. Przewinięcie z centerElement zostaje w scenariuszu (większa czcionka,
      * dłuższe tłumaczenia) — test pilnuje, że stoi PO podpowiedzi „Swap to substitute: …” i przed zrzutem 37. */
     const c = load(join(DIR, '07-zamiana.yaml')); const hint = at(c, { extendedWaitUntil: { visible: 'Swap to substitute: .*', timeout: 30000 } });
-    const scroll = at(c, { scrollUntilVisible: { element: 'Swap exercise: Bench Press \\(Dumbbell\\)', direction: 'DOWN', timeout: 30000, centerElement: true } });
+    const scroll = at(c, { scrollUntilVisible: { element: 'Swap exercise: Dumbbell Bench Press', direction: 'DOWN', timeout: 30000, centerElement: true } });
     expect(scroll).toBeGreaterThan(hint); expect(c.findIndex(x => same(x, { takeScreenshot: '37-podpowiedz-zamiennika' }))).toBeGreaterThan(scroll);
   });
 

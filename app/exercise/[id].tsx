@@ -10,7 +10,7 @@ import { DeleteButton } from '@/components/DeleteButton';
 import { getState, useTick, exById, deleteExercise, previousFor, save, setSummary, fmtDate, fmtSec, setEquipment, exerciseInHistory, usesBand, finishedWorkouts, wallTs, REST_MAX } from '@/lib/store';
 import { beginObjDraft, objDraft, objDirty, discardObjDraft, commitObjDraft, dropUnsavedNew } from '@/lib/draft';
 import type { Exercise } from '@/lib/seed';
-import { GROUPS, GROUP_TO_MUSCLE, METRICS, METRIC_LABEL, LOAD_MODE_LABEL, MUSCLES, REGION_LABEL, muscleLoadOf, formerNamesOf, unmappedMuscleOf, hasWeight, type Equipment, type LoadMode } from '@/lib/seed';
+import { GROUPS, GROUP_TO_MUSCLE, METRICS, METRIC_LABEL, LOAD_MODE_LABEL, MUSCLES, REGION_LABEL, muscleLoadOf, formerNamesOf, formerEnNamesOf, unmappedMuscleOf, hasWeight, type Equipment, type LoadMode } from '@/lib/seed';
 import { BW_SHARE } from '@/lib/stats';
 import { t, exName, exNameLang, lang } from '@/lib/i18n';
 import { ExerciseCues } from '@/components/ExerciseCues';
@@ -72,7 +72,7 @@ function Preview({ e, cuesOpen, onEdit, onOpen, onProgress, onClose }: { e: Exer
       <ExerciseCues exercise={e} initialOpen={cuesOpen} />{/* wskazówki techniki, etap 1 (docs/18 08.10.2026 ok. 23:50) — UX2-05 (audyt kontrolny 1, wariant B): na górze podglądu, przed danymi konfiguracji */}
       <Row label={t('Partia')} value={t(e.group)} />
       <Row label={t('Sprzęt')} value={t(e.equipment)} />
-      {formerNamesOf(e).length ? <Row label={t('Dawne nazwy w bibliotece')} value={formerNamesOf(e).map(n => exName({ name: n, lib: true })).join(', ')} /> : null}{/* UX2-01 (audyt kontrolny 1): scalone i przemianowane w kroku katalogu 09.10 */}
+      {formerNamesOf(e).length + formerEnNamesOf(e).length ? <Row label={t('Dawne nazwy w bibliotece')} value={[...formerNamesOf(e).map(n => exName({ name: n, lib: true })), ...formerEnNamesOf(e)].join(', ')} /> : null}{/* UX2-01 (audyt kontrolny 1): scalone i przemianowane w kroku katalogu 09.10 */}
       <Row label={t('Co logujesz w serii')} value={t(METRIC_LABEL[m])} infoId="bw-rules" info={bwNote()} />
       {hasWeight(m) && e.equipment !== 'masa ciała' ? <Row label={t('Jak liczyć ciężar w objętości')} value={t(LOAD_MODE_LABEL[e.loadMode ?? 'total'])} /> : null}
       <Row label={t('Przerwa robocza')} value={e.restSec != null ? fmtSec(e.restSec) : t('domyślna {s}', { s: fmtSec(def) })} />

@@ -79,6 +79,8 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `wyciskanie_lezac` | wyciskanie leżąc | ćwiczenie wyciskanie leżąc (bench press); w el zostaje angielska nazwa używana na siłowni |
 | `martwy_ciag` | martwy ciąg | ćwiczenie martwy ciąg (deadlift); w el zostaje angielska nazwa używana na siłowni |
 | `telefon_es419` | telefon (urządzenie użytkownika) | telefon użytkownika; w es-419 potocznie „celular” (jak w aplikacji na telefonie), w es zostaje „teléfono” |
+| `rysunek_zdanie` | rysunek (w zdaniu pod rysunkiem ćwiczenia: „Rysunek pokazuje ruch w jedną stronę…”) | rysunek techniki ćwiczenia w zdaniu opisującym, co pokazuje (recenzja lokalizacji 02.11.2026, pull_up C); słowo ma być takie samo jak w pozostałych podpisach rysunku w tym języku; w ms „Animasi” (rysunek jest animowany, jak w opisie sklepu), nie „lukisan” (obraz malowany) |
+| `nastepne_powtorzenie` | następne powtórzenie (w zdaniu pod rysunkiem ćwiczenia: „w kolejnym powtórzeniu…”) | kolejne powtórzenie w tej samej serii (nie „następnym razem”, nie „następna liczba”); recenzja lokalizacji 02.11.2026, pull_up C |
 
 ## Terminy zalecane (rdzeń)
 
@@ -142,6 +144,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `hu` | `przerwa_robocza` | munkapihenő\|munkaszünet | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `hu` | `faza_pauza` | szüneteltet | to polecenie przycisku pauzy treningu, a faza jest rzeczownikiem |
 | `hu` | `plan_dozywotni` | örök(?!ös\|re) | „Örök” znaczy wieczny (poetycko); plan bez terminu to „örökös” |
+| `hu` | `rysunek_zdanie` | (?<![\p{L}])ábra | w pozostałych podpisach rysunku ćwiczenia plik hu używa „rajz”; „ábra” to wykres / rycina w publikacji |
 | `ro` | `przerwa` | recrea[țt]i | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `ro` | `przerwa_robocza` | pauz[ăa] de lucru | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ro` | `dzien_wolny` | pauz | „pauză” to pauza, nie dzień wolny („zi liberă”) |
@@ -163,6 +166,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `lt` | `przerwa` | pertrauk | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `lt` | `przerwa_robocza` | darbinis poilsis | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `lt` | `faza_pauza` | pristabd | czasownik/przycisk wstrzymania, a faza jest rzeczownikiem |
+| `lt` | `rysunek_zdanie` | brėžin | w pozostałych podpisach rysunku ćwiczenia plik lt używa „piešinys”; „brėžinys” to rysunek techniczny / kreślarski |
 | `lv` | `przerwa` | starpbr[īi]\|pārtraukum | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `lv` | `przerwa_robocza` | darba atpūta | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `lv` | `faza_pauza` | aptur | czasownik/przycisk zatrzymania, a faza jest rzeczownikiem |
@@ -225,6 +229,7 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `sv` | `przerwa_robocza` | arbetspaus | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `sv` | `faza_pauza` | pausa | bezokolicznik/polecenie przycisku, a faza jest rzeczownikiem |
 | `sv` | `seria` | (?<![\p{L}])serie(?![\p{L}]) | „serie” to serial; podejście to „set” |
+| `sv` | `rysunek_zdanie` | (?<![\p{L}])bild | w pozostałych podpisach rysunku ćwiczenia plik sv używa „teckning”; „bild” to dowolny obraz lub zdjęcie, nie rysunek |
 | `da` | `przerwa` | frikvarter | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `da` | `przerwa_robocza` | arbejdspause | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `da` | `faza_pauza` | på pause | zwrot przycisku wstrzymania, a faza jest rzeczownikiem |
@@ -253,9 +258,11 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ms` | `seria` | (?<![\p{L}])siri(?![\p{L}]) | „siri” to serial; podejście to „set” |
 | `ms` | `pozycja_posrednia` | sedang berjalan | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 | `ms` | `animacja_ruchu` | lukisan pergerakan | termin marketingowy w opisie sklepu to „animasi pergerakan”; „lukisan” to obraz malowany, nie animacja |
+| `ms` | `rysunek_zdanie` | lukisan | rysunek techniki jest animowany; w opisie sklepu i podpisie „Animasi pergerakan”; „lukisan” to obraz malowany, nie animacja |
 | `vi` | `przerwa` | giải lao | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `vi` | `przerwa_robocza` | nghỉ giải lao\|nghỉ làm việc | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `vi` | `pozycja_posrednia` | đang diễn ra | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
+| `vi` | `rysunek_zdanie` | hình vẽ | w pozostałych podpisach rysunku ćwiczenia plik vi używa „hình minh họa” |
 | `ru` | `przerwa` | перерыв | znaczy przerwę w pracy/szkole, nie odpoczynek między seriami |
 | `ru` | `przerwa_robocza` | рабочий отдых | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ru` | `seria` | серия | „серия” to odcinek/seria produktów; podejście to „подход” |
@@ -268,17 +275,19 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `ja` | `zegarek` | 腕時計 | zwykły zegarek na rękę; dla Apple Watch w aplikacjach treningowych mówi się „ウォッチ” |
 | `ja` | `lokcie_otwarte` | 肘を広げ | o łokciach przy wyciskaniu mówi się 開く (otwierać), nie 広げる (rozkładać) |
 | `ja` | `lokcie_waskie` | 肘を狭く | kalka z „wąsko”; na siłowni mówi się 肘を締める |
+| `ja` | `rysunek_zdanie` | イラスト | w pozostałych podpisach rysunku ćwiczenia plik ja używa „図”; „イラスト” to ilustracja (ozdobna), nie rysunek techniki |
 | `ko` | `przerwa` | 점심\|휴게 | dotyczy przerwy obiadowej/pokoju socjalnego |
 | `ko` | `przerwa_robocza` | 업무 휴식 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `ko` | `szablon` | 템플릿 | w koreańskich siłowniach „루틴” |
 | `ko` | `plan_subskrypcji` | 플랜 | „플랜” to plan tygodnia (zakładka Plan); wariant subskrypcji to „요금제” |
 | `ko` | `plan_dozywotni` | 영구 | „영구” brzmi jak trwałe/nieodwracalne; zakup bez terminu to „평생 이용” |
 | `ko` | `zegarek` | 시계 | zwykły zegar/zegarek; dla Apple Watch w aplikacjach treningowych mówi się „워치” |
+| `ko` | `nastepne_powtorzenie` | 다음 횟수 | „횟수” to liczba razy (dosłownie „następna liczba”), nie kolejne powtórzenie; w słowniku powtórzenie to „반복” |
 | `zh-Hant` | `przerwa_robocza` | 工作休息\|上班 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `zh-Hant` | `deload` | 減量 | „減量” w tajwańskim żargonie siłowni znaczy odchudzanie (redukcję); deload to „減載” |
 | `zh-Hant` | `pozycja_posrednia` | 進行中 | słowo statusu („w toku”), z numerem czyta się jak stan zadania, nie jak pozycja rysunku |
 
-## Do potwierdzenia przez native speakera (148)
+## Do potwierdzenia przez native speakera (150)
 
 Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym języku? Jeśli nie — jak mówi się naprawdę? (Lista z docs/16.)
 
@@ -424,6 +433,7 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `ja` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `ja` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `ja` | `pozycja_posrednia` | 途中の姿勢 | „途中の姿勢1” czy „途中の姿勢 1” (ze spacją)? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `ja` | `nastepne_powtorzenie` | 次の1回 | do potwierdzenia przez native speakera: „次の1回では” czy „次のレップでは”; „次の回” czyta się jak „następnym razem”, więc go unikamy |
 | `ko` | `faza_pauza` | 일시정지 | 일시정지 to przycisk odtwarzacza; tłumacz i przegląd API (niska) proponują 멈춤 (rzeczownik tempa). Uwaga niska — bez zmiany do polecenia. |
 | `ko` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `ko` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
@@ -432,3 +442,4 @@ Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym 
 | `zh-Hant` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `zh-Hant` | `zegarek` | 手錶 | Termin pomocniczy w słowniku (tekst podpisu zrzutu o zegarku); do sprawdzenia przez native speakera, czy tak mówi się o Apple Watch. |
 | `zh-Hant` | `pozycja_posrednia` | 中間姿勢 | „中間姿勢 1” czy „中間姿勢1” (spacja)? Do sprawdzenia przez native speakera (docs/16, 1.0.1). |
+| `zh-Hant` | `nastepne_powtorzenie` | 下一下 | do potwierdzenia przez native speakera (TW): „下一下” (kolejne powtórzenie, „下” liczy powtórzenia) czy „下一次” (może znaczyć „następnym razem”); zakazu „下一次” nie ustawiamy do czasu odpowiedzi |

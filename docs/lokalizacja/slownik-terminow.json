@@ -10373,6 +10373,71 @@
      "pewnosc": "srednia"
     }
    }
+  },
+  {
+   "id": "rysunek_zdanie",
+   "pl": "rysunek (w zdaniu pod rysunkiem ćwiczenia: „Rysunek pokazuje ruch w jedną stronę…”)",
+   "tylko": ["ja", "hu", "lt", "sv", "vi", "ms"],
+   "znaczenie": "rysunek techniki ćwiczenia w zdaniu opisującym, co pokazuje (recenzja lokalizacji 02.11.2026, pull_up C); słowo ma być takie samo jak w pozostałych podpisach rysunku w tym języku; w ms „Animasi” (rysunek jest animowany, jak w opisie sklepu), nie „lukisan” (obraz malowany)",
+   "kanon": null,
+   "wykrywaj": "^Rysunek pokazuje",
+   "jezyki": {
+    "ja": {
+     "zalecany": "図",
+     "zakazane": [{"wzorzec": "イラスト", "powod": "w pozostałych podpisach rysunku ćwiczenia plik ja używa „図”; „イラスト” to ilustracja (ozdobna), nie rysunek techniki"}],
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "rajz",
+     "zakazane": [{"wzorzec": "(?<![\\p{L}])ábra", "powod": "w pozostałych podpisach rysunku ćwiczenia plik hu używa „rajz”; „ábra” to wykres / rycina w publikacji"}],
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "piešinys",
+     "zakazane": [{"wzorzec": "brėžin", "powod": "w pozostałych podpisach rysunku ćwiczenia plik lt używa „piešinys”; „brėžinys” to rysunek techniczny / kreślarski"}],
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "teckning",
+     "zakazane": [{"wzorzec": "(?<![\\p{L}])bild", "powod": "w pozostałych podpisach rysunku ćwiczenia plik sv używa „teckning”; „bild” to dowolny obraz lub zdjęcie, nie rysunek"}],
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "hình minh họa",
+     "zakazane": [{"wzorzec": "hình vẽ", "powod": "w pozostałych podpisach rysunku ćwiczenia plik vi używa „hình minh họa”"}],
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "animasi",
+     "zakazane": [{"wzorzec": "lukisan", "powod": "rysunek techniki jest animowany; w opisie sklepu i podpisie „Animasi pergerakan”; „lukisan” to obraz malowany, nie animacja"}],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "nastepne_powtorzenie",
+   "pl": "następne powtórzenie (w zdaniu pod rysunkiem ćwiczenia: „w kolejnym powtórzeniu…”)",
+   "tylko": ["ko", "zh-Hant", "ja"],
+   "znaczenie": "kolejne powtórzenie w tej samej serii (nie „następnym razem”, nie „następna liczba”); recenzja lokalizacji 02.11.2026, pull_up C",
+   "kanon": null,
+   "wykrywaj": "w kolejnym powtórzeniu",
+   "jezyki": {
+    "ko": {
+     "zalecany": "다음 반복",
+     "zakazane": [{"wzorzec": "다음 횟수", "powod": "„횟수” to liczba razy (dosłownie „następna liczba”), nie kolejne powtórzenie; w słowniku powtórzenie to „반복”"}],
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "下一下",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera (TW): „下一下” (kolejne powtórzenie, „下” liczy powtórzenia) czy „下一次” (może znaczyć „następnym razem”); zakazu „下一次” nie ustawiamy do czasu odpowiedzi"
+    },
+    "ja": {
+     "zalecany": "次の1回",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera: „次の1回では” czy „次のレップでは”; „次の回” czyta się jak „następnym razem”, więc go unikamy"
+    }
+   }
   }
  ]
 }

@@ -53,7 +53,7 @@ describe('cueSpeech', () => {
     A().exercises.forEach(e => e.sets.forEach(s => { s.done = true; delete s.toFill; })); expect(cueSpeech(A(), sid(2, 1))).toBe('nic więcej do zrobienia');
   });
   test('angielski i funty: ta sama funkcja, tekst w języku aplikacji', async () => {
-    await world(); applyLang('en'); applyUnit('lb'); expect(cueSpeech(A(), sid(0, 0))).toBe('Bench Press (Barbell) · set 2, 176.4 pounds, 8 reps');
+    await world(); applyLang('en'); applyUnit('lb'); expect(cueSpeech(A(), sid(0, 0))).toBe('Bench Press · set 2, 176.4 pounds, 8 reps');
   });
 });
 

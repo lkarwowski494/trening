@@ -274,9 +274,9 @@ describe('ekrany', () => {
     const texts = () => { const out: string[] = []; const walk = (n: any) => { if (!n) return; if (typeof n === 'string') { out.push(n); return; } if (Array.isArray(n)) { n.forEach(walk); return; } if (n.props) { if (typeof n.props.placeholder === 'string') out.push(n.props.placeholder); if (typeof n.props.accessibilityLabel === 'string') out.push(n.props.accessibilityLabel); } (n.children ?? []).forEach(walk); }; walk(screen.toJSON()); return out; };
     const leaks: string[] = []; const check = (where: string) => texts().filter(x => pl.test(x)).forEach(x => leaks.push(`${where}: ${x}`));
     await go(`/history/${w.id}`); await flushAll(20); await tap(screen.getByText('Edit')); await flushAll(20); check('edit');
-    expect(screen.getByLabelText('Save session')).toBeTruthy(); expect(deleteActions()).toContain('Remove exercise: Bench Press (Barbell)'); /* G4: jedna seria — bez gestu serii */
+    expect(screen.getByLabelText('Save session')).toBeTruthy(); expect(deleteActions()).toContain('Remove exercise: Bench Press'); /* G4: jedna seria — bez gestu serii */
     deleteActions().filter(x => pl.test(x)).forEach(x => leaks.push(`akcja usuń: ${x}`)); /* 07.10.2026 wieczór: etykiety gestu usuwania też po angielsku */
-    for (const n of ['Bench Press (Barbell)', 'Chest Dip', 'Plank']) { await swipeDelete(`Remove exercise: ${n}`); leaks.push(...[lastAlert().title].filter(x => pl.test(x))); await alertNow('Remove from workout?', 'Delete'); }
+    for (const n of ['Bench Press', 'Chest Dip', 'Plank']) { await swipeDelete(`Remove exercise: ${n}`); leaks.push(...[lastAlert().title].filter(x => pl.test(x))); await alertNow('Remove from workout?', 'Delete'); }
     await tap(screen.getByText('Save')); expect(lastAlert().title).toBe('Empty workout');
     leaks.push(...[lastAlert().title, lastAlert().msg ?? ''].filter(x => pl.test(x))); await alertNow(lastAlert().title, 'Cancel');
     await tap(screen.getByText('Cancel')); await alertNow('Discard changes?', 'Discard changes');

@@ -24,10 +24,10 @@
           "grupa": "pelna_amplituda",
           "cue": "pu.partial",
           "parametry": {
-            "max_lokiec_deg": 25
+            "max_lokiec_deg": 8
           },
           "zrodlo": "wskazówka pu.partial („bez wyprostu rąk na dole”; opuść się do pełnego wyprostu rąk); źródła w cues.json: ACE, NASM, ExRx",
-          "liczba": "uproszczenie (łokieć ≤ 25° = ramię prawie proste; 0° = prosty)"
+          "liczba": "uproszczenie (łokieć ≤ 8° = ramię prawie proste, jak Dead Hang 7,3°; 0° = prosty; zaostrzone z 25° po recenzji niezależnej fala 25, 01.11.2026 — zwis 14° nie wyglądał na proste ręce)"
         },
         "rece_proste_caly_ruch": {
           "typ": "lokiec_caly_ruch",

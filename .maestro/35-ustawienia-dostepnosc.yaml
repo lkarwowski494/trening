@@ -111,15 +111,15 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - pressKey: Enter   # po wpisie w polu szukania ćwiczeń zawsze Enter (reguła z main) — klawiatura znika, lista zostaje przefiltrowana
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
-- extendedWaitUntil: { visible: "Bench Press \\(Barbell\\),.*", timeout: 30000 }
-- tapOn: "Bench Press \\(Barbell\\),.*"
-- extendedWaitUntil: { visible: "Set 1 done — Bench Press \\(Barbell\\)", timeout: 30000 }
+- extendedWaitUntil: { visible: "Bench Press,.*", timeout: 30000 }
+- tapOn: "Bench Press,.*"
+- extendedWaitUntil: { visible: "Set 1 done — Bench Press", timeout: 30000 }
 - assertVisible: "RIR"
 - assertVisible: "Workout progress: 0 of 1 sets"
 - assertVisible: "Workout options"  # M3 p2: pauza w menu „⋯”
-- assertVisible: "Swap exercise: Bench Press \\(Barbell\\)"
-- assertVisible: "Skip today: Bench Press \\(Barbell\\)"
-- tapOn: "Set 1 done — Bench Press \\(Barbell\\)"
+- assertVisible: "Swap exercise: Bench Press"
+- assertVisible: "Skip today: Bench Press"
+- tapOn: "Set 1 done — Bench Press"
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
 - assertVisible: "rest of 0:45"  # widok „Lista”: przerwa w dolnym pasku (bez tablicy „teraz”)
 - assertVisible: "Shorten rest by 15 seconds"

@@ -470,6 +470,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Pendlay Row, a rysunek i karta mają aktualną recenzję niezależną
     - Gdy rysunek odtwarza ruch
     - Wtedy sztanga startuje z podłogi w każdym powtórzeniu (dolna krawędź talerza przy podłodze, ±0,5 j.), tułów jest prawie równolegle do podłogi (≤ 15° od poziomu, wyraźnie niżej niż w wiosłowaniu sztangą w opadzie) i nie unosi się w czasie ruchu (zmiana ≤ 5°), kolana są lekko ugięte, stopy nie ślizgają się (≤ 2 j.), a sztanga idzie prawie pionowo do dolnej części klatki lub górnej części brzucha; karta mówi o sztandze leżącej na podłodze, dynamicznym przyciągnięciu, starcie od nieruchomej sztangi i błędzie unoszenia tułowia (bez liczby kąta)
+  - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
+    - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)
+    - Wtedy pod rysunkiem widzi zdanie „Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.” (w języku interfejsu, także gdy zestaw ogólny wskazówek nie jest wyświetlany); przy pozostałych podciąganiach i w innych rodzinach tego zdania nie ma
   - Scenariusz: Usunięcie własnego ćwiczenia z podglądu (ZM-04, W2 a, 21.10.2026)
     - Zakładając, że użytkownik ogląda podgląd ćwiczenia własnego
     - Gdy stuka „Usuń z biblioteki” na dole ekranu
@@ -610,6 +614,33 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że kształt pola w eksporcie zmienia się bez zmiany kontraktu
     - Gdy uruchamiane są testy aplikacji (a po stronie strony: testy na prawdziwym eksporcie)
     - Wtedy test kontraktu zgłasza błąd, zanim strona zostanie zbudowana ze złymi danymi
+
+### BR-BIB-010: Kanoniczne angielskie nazwy ćwiczeń z biblioteki (31.10.2026, ZB-025 b)
+- Przepływ: PR-01
+- Dowód potrzeby: decyzja właściciela 31.10.2026 (docs/18: „nazwy EN — wariant A, P1–P4 wg szkicu”); źródło nazw po `rid` `docs/research/equipment/nazwy-en.json`, generator `scripts/equipment/gen-nazwy-en.mjs` → `lib/nazwy-en.generated.ts`; `lib/i18n.ts` (`exName`), `lib/seed.ts` (`formerEnNamesOf`); testy `tests/nazwy-en.test.ts`
+- Ekrany: `app/exercises.tsx`, `app/picker.tsx`, `app/exercise/[id].tsx`, wszystkie miejsca z nazwą ćwiczenia (`exName`)
+- Test: `tests/nazwy-en.test.ts`, `.maestro/07-zamiana.yaml`
+- Kryteria akceptacji:
+  - Scenariusz: Nowa nazwa w angielskim i w językach z nazwami angielskimi
+    - Zakładając, że język aplikacji jest inny niż polski, a ćwiczenie z biblioteki ma kanoniczną nazwę (267 z 709, np. „Bench Press (Barbell)” → „Bench Press”, „Push Up” → „Push-Up”)
+    - Gdy użytkownik widzi nazwę ćwiczenia na liście, w treningu, szablonie, historii albo w wyborze ćwiczenia
+    - Wtedy widzi nową nazwę według przewodnika stylu (jednostronność „Single-Arm / Single-Leg”, liczba pojedyncza z zamkniętą listą wyjątków, bez „Barbell” w klasycznych bojach, przyrząd jako przedrostek, łączniki w przymiotnikach złożonych); VoiceOver czyta ją głosem angielskim jak dotąd
+  - Scenariusz: Dane użytkownika bez zmian
+    - Zakładając, że użytkownik ma treningi, szablony i historię z ćwiczeniami z biblioteki
+    - Gdy aktualizuje aplikację
+    - Wtedy klucze katalogu, nazwy polskie i dane (SCHEMA_VERSION 19) nie zmieniają się; zmienia się tylko nazwa wyświetlana po angielsku
+  - Scenariusz: Wyszukiwanie po dawnej nazwie
+    - Zakładając, że język aplikacji jest inny niż polski
+    - Gdy użytkownik wpisuje w wyszukiwarce dawną angielską nazwę (np. „Bench Press (Barbell)” albo „RDL”)
+    - Wtedy znajduje obecne ćwiczenie z dopiskiem „dawniej: …”; karta ćwiczenia pokazuje dawną nazwę w wierszu „Dawne nazwy w bibliotece”; w polskim nic się nie zmienia
+  - Scenariusz: Usunięte ćwiczenie po dawnej nazwie (01.11.2026)
+    - Zakładając, że użytkownik usunął ćwiczenie z biblioteki (archiwum), a język aplikacji jest inny niż polski
+    - Gdy w wyborze ćwiczenia wpisuje jego dawną angielską nazwę (np. „Bench Press (Dumbbell)”)
+    - Wtedy widzi „Przywróć” tego ćwiczenia, a nie „Utwórz” nowego (`app/picker.tsx`, test `tests/regress.test.tsx` R5-05)
+  - Scenariusz: Strażnik nazw
+    - Zakładając, że ktoś dodaje albo zmienia nazwę angielską
+    - Gdy uruchamiane są testy
+    - Wtedy nazwa z nawiasem, separatorem „ - ”, ukośnikiem, „Push Up”, „One-Arm”, „SMR”, „Leverage”, „Pulley”, błędną wielkością liter, liczbą mnogą spoza listy wyjątków albo duplikatem po złożeniu nie przechodzi
 
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07

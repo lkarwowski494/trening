@@ -122,6 +122,6 @@ name: Aktualizacja — dane w poprzedniej wersji
       - inputText: "1"
       - inputText: "0"
       - assertVisible: { id: "r-0-0", text: "10" }
-- tapOn: { text: "Set 1 done — Bench Press \\(Dumbbell\\)" }
+- tapOn: { text: "Set 1 done — Dumbbell Bench Press" }
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
 - takeScreenshot: 100-trening-w-toku-przed-aktualizacja

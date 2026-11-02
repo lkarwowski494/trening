@@ -42,12 +42,19 @@ describe('wyjątki bramki 4 linii 1.1 (recenzja-wyjatki-1-1.json)', () => {
   test('familyReviewed / shownFigureSpec: rodzina bez aktualnej recenzji — silnik liczy figurę (figureSpec), aplikacja jej nie pokazuje', () => {
     for (const f of WYJ.v2) expect([f, familyReviewed(f)]).toEqual([f, false]);
     expect(familyReviewed('rodzina_nieistniejaca')).toBe(false);
-    expect(figureSpec('Back Squat')).not.toBeNull();
-    expect(shownFigureSpec('Back Squat')).toBeNull();
+    expect(figureSpec('Chin Up')).not.toBeNull();
+    expect(shownFigureSpec('Chin Up')).not.toBeNull(); /* pull_up z aktualnym wpisem od 02.11.2026 (decyzja właściciela C) */
+    /* rodzina bez aktualnego wpisu (symulacja: pull_up zdjęta z listy runtime) — silnik nadal liczy figurę, aplikacja jej nie pokazuje */
+    const lista = FIG_DATA.v2 as string[];
+    const spy = jest.spyOn(lista, 'includes').mockImplementation((x: string) => x !== 'pull_up' && Array.prototype.indexOf.call(lista, x) >= 0);
+    try { expect(familyReviewed('pull_up')).toBe(false); expect(figureSpec('Chin Up')).not.toBeNull(); expect(shownFigureSpec('Chin Up')).toBeNull(); }
+    finally { spy.mockRestore(); }
+    expect(shownFigureSpec('Back Squat')).not.toBeNull(); /* squat po recenzji różnicy 01.11.2026 (decyzja właściciela X) */
   });
-  test('figureWithheld: figura v1 „zastąpiona” przez ukrytą rodzinę v2 nie wraca na ekran (Back Squat); v1 „wyswietlana” (Pull Up) i ćwiczenie bez v2 (Crunch) — bez wstrzymania', () => {
+  test('figureWithheld: figura v1 „zastąpiona” wstrzymana dokładnie wtedy, gdy jej rodzina v2 nie ma aktualnej recenzji; od 01.11.2026 (squat, bench_press, hinge zrecenzowane) Back Squat i Deadlift pokazują v2; v1 „wyswietlana” (Pull Up) i ćwiczenie bez v2 (Crunch) — bez wstrzymania', () => {
     expect(FIG_DATA.replaced).toContain('Back Squat');
-    expect([figureWithheld('Back Squat'), figureWithheld('Deadlift (sztanga)')]).toEqual([true, true]);
+    for (const k of FIG_DATA.replaced) expect([k, figureWithheld(k)]).toEqual([k, !familyReviewed(figureSpec(k)!.family)]);
+    expect([figureWithheld('Back Squat'), figureWithheld('Deadlift (sztanga)')]).toEqual([false, false]);
     expect([figureWithheld('Pull Up'), figureWithheld('Crunch'), figureWithheld('Ćwiczenie własne')]).toEqual([false, false, false]);
   });
 });
@@ -60,12 +67,13 @@ describe('generator (scripts/zrodla-runtime.mjs): lista rodzin v2 i figury „za
     ${mutate}
     const out = buildFigures(full, rec);
     console.log(JSON.stringify({ v2: out.v2, deadlift: 'Deadlift (sztanga)' in out.exercises, fam: rodzinyZAktualnaRecenzja(rec) }));`], { encoding: 'utf8' }));
-  test('bieżący stan: brak rodzin z aktualnym wpisem; figura v1 „zastąpiona” (Deadlift (sztanga)) zostaje w pliku runtime (testy silnika v1), ale ekran jej nie pokazuje (ExerciseCues: figureWithheld)', () => {
-    expect(run('')).toEqual({ v2: [], deadlift: true, fam: [] });
+  test('bieżący stan (02.11.2026): squat, bench_press, hinge (recenzja różnicy po poprawce styków, decyzja X) i pull_up (decyzja właściciela C) z aktualnym wpisem; figura v1 „zastąpiona” (Deadlift (sztanga)) zostaje w pliku runtime (testy silnika v1)', () => {
+    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up'] });
   });
   test('wpis rodziny hinge z bieżącym skrótem: rodzina na liście, figura v1 „zastąpiona” zostaje w pliku runtime; zły skrót — rodzina znika', () => {
-    expect(run("rec.v2.hinge = { ...rec.v2.hinge, werdykt: 'wyswietlana', sha: rodzinaSkrot('hinge') };")).toEqual({ v2: ['hinge'], deadlift: true, fam: ['hinge'] });
-    expect(run("rec.v2.hinge = { ...rec.v2.hinge, werdykt: 'wyswietlana', sha: '000000000000' };").v2).toEqual([]);
-    expect(run("rec.v2.hinge = { ...rec.v2.hinge, werdykt: 'ukryta', sha: rodzinaSkrot('hinge') };").v2).toEqual([]);
+    const tylko = "for (const f of Object.keys(rec.v2)) if (f !== 'hinge') delete rec.v2[f];";
+    expect(run(tylko + "rec.v2.hinge = { ...rec.v2.hinge, werdykt: 'wyswietlana', sha: rodzinaSkrot('hinge') };")).toEqual({ v2: ['hinge'], deadlift: true, fam: ['hinge'] });
+    expect(run(tylko + "rec.v2.hinge = { ...rec.v2.hinge, werdykt: 'wyswietlana', sha: '000000000000' };").v2).toEqual([]);
+    expect(run(tylko + "rec.v2.hinge = { ...rec.v2.hinge, werdykt: 'ukryta', sha: rodzinaSkrot('hinge') };").v2).toEqual([]);
   });
 });
