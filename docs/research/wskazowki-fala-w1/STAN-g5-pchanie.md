@@ -92,4 +92,11 @@ Scalenie przez koordynatora linii 1.1: bloki JSON → `data/zrodla/cues.json`, z
 role → `data/zrodla/role-miesni.json`; niezależna recenzja kart (L-047). Druga fala dla otwartych: szukać źródeł pod konkretny błąd.
 
 ## Wynik verify bazy i wypchnięcia
-(uzupełnia koordynator grupy poniżej)
+- Pełne `npm run verify` na czystej bazie `integracja-1-1` (15abc58), 02.11.2026: **zielone** (EXIT 0; jest 654/656 plików w pierwszym przebiegu,
+  2 przerwane SIGTERM — `jest-ponow`: oba ponowienia zielone; znacznik `pelne`, drzewo c0330e6dbbf1).
+- `npm run verify:docs` w worktree: pierwszy przebieg czerwony (1 test; w logu „ReferenceError: … Jest environment after it has been torn down. From
+  tests/cues.test.tsx”); każdy z 4 testów osobno zielony (public-repo 37, cues 16, e2e-pakiet 20, readme 31); powtórka verify:docs zielona.
+  Ocena: niestabilność `tests/cues.test.tsx` przy wspólnym przebiegu (fałszywe timery po zakończeniu środowiska) — nie z winy zmian (same dokumenty);
+  do sprawdzenia przez koordynatora 1.1, czy wpis do docs/40 / backlog (ten zakres nie zmienia testów).
+- verify:docs wymaga `origin/main` i wspólnego przodka: w płytkiej kopii `git fetch origin main` + `git fetch --deepen=200 origin integracja-1-1 main`.
+- SHA wypchnięć: zob. wiadomość końcowa koordynatora grupy (gałąź `badania/g5-pchanie`).
