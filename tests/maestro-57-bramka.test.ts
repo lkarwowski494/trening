@@ -4,6 +4,8 @@
  * Interpreter działa tu na PRAWDZIWEJ bramce (bez podmiany data.json), czyli tak jak symulator.
  * 1) stary 57 pada w kroku rysunku Pull-Up; 2) nowy przechodzi; 3) Back Squat zostaje twardy (znika rysunek squat -> scenariusz czerwony);
  * 4) strażnik: pull_up w v2 => warunkowy runFlow musi zniknąć.
+ * 02.11.2026 (wpis recenzji v2 pull_up po decyzji właściciela C): pull_up w v2, kroki rysunku Pull-Up w 57 znów twarde —
+ * stary 57 (f77db9b) przechodzi, a bez rysunku pull_up nowy 57 pada w kroku Pull-Up (jak Back Squat).
  */
 import { execFileSync } from 'child_process';
 import { mkdtempSync, writeFileSync } from 'fs';
@@ -28,28 +30,24 @@ const hasWhenPhases = (c: Cmd) => !!c && !!c.runFlow && JSON.stringify(c.runFlow
 const failure = async (cmds: Cmd[]) => { let err: Error | null = null; try { await run(cmds); } catch (e) { err = e as Error; } return err; };
 
 describe('57 przy prawdziwej bramce 4', () => {
-  test('stan danych: squat w v2, pull_up poza v2 (zmiana któregokolwiek wymaga zmiany 57)', () => {
-    expect(v2).toContain('squat'); expect(v2).not.toContain('pull_up');
+  test('stan danych (02.11.2026): squat i pull_up w v2 (zmiana któregokolwiek wymaga zmiany 57)', () => {
+    expect(v2).toContain('squat'); expect(v2).toContain('pull_up');
   });
-  test('stary 57 pada w kroku rysunku Pull-Up', async () => {
-    const err = await failure(stary());
-    expect(err).not.toBeNull();
-    const msg = err!.message.split('\nNa ekranie:')[0];
-    expect(msg).toContain(`krok: ${FILE}:`); expect(msg).toMatch(/Pulling up/);
-  });
+  test('stary 57 (twarde kroki Pull-Up z f77db9b) przechodzi przy pull_up w v2', async () => { await run(stary()); });
   test('nowy 57 przechodzi', async () => { await run(nowy()); });
-  test('Back Squat zostaje twardy: bez rysunku squat nowy 57 pada w kroku rysunku', async () => {
-    const spy = jest.spyOn(v2, 'includes').mockImplementation((x: string) => x !== 'squat' && Array.prototype.indexOf.call(v2, x) >= 0);
-    try { const err = await failure(nowy()); expect(err).not.toBeNull(); expect(err!.message).toMatch(/Movement drawing/); }
+  const bez = async (fam: string, re: RegExp) => {
+    const spy = jest.spyOn(v2, 'includes').mockImplementation((x: string) => x !== fam && Array.prototype.indexOf.call(v2, x) >= 0);
+    try { const err = await failure(nowy()); expect(err).not.toBeNull(); expect(err!.message.split('\nNa ekranie:')[0]).toMatch(re); }
     finally { spy.mockRestore(); }
-  });
+  };
+  test('Back Squat zostaje twardy: bez rysunku squat nowy 57 pada w kroku rysunku', async () => { await bez('squat', /Movement drawing/); });
+  test('Pull-Up twardy (02.11.2026): bez rysunku pull_up nowy 57 pada w kroku rysunku Pull-Up', async () => { await bez('pull_up', /Movement drawing|Pulling up/); });
   test('strażnik: kroki rysunku Pull-Up warunkowe tylko dopóki pull_up nie jest w v2; Back Squat nie jest warunkowy', () => {
     const c = nowy();
-    const pullIdx = c.findIndex(x => x.runFlow && JSON.stringify(x.runFlow.commands).includes('87-figura-v2-podciaganie-blad'));
-    expect(pullIdx).toBeGreaterThan(0);
-    if (v2.includes('pull_up')) expect(hasWhenPhases(c[pullIdx])).toBe(false); // zdejmij runFlow when w 57 po wpisie recenzji pull_up
-    else expect(hasWhenPhases(c[pullIdx])).toBe(true);
-    expect(c.some(hasWhenPhases) && c.filter(hasWhenPhases).length).toBe(1);
+    const warunkowy = c.findIndex(x => x.runFlow && JSON.stringify(x.runFlow.commands).includes('87-figura-v2-podciaganie-blad'));
+    const twardy = c.findIndex(x => x.takeScreenshot === '87-figura-v2-podciaganie-blad');
+    if (v2.includes('pull_up')) { expect(warunkowy).toBe(-1); expect(twardy).toBeGreaterThan(0); expect(c.some(hasWhenPhases)).toBe(false); }
+    else { expect(warunkowy).toBeGreaterThan(0); expect(hasWhenPhases(c[warunkowy])).toBe(true); }
     expect(c.some(x => x.assertVisible === 'Lowering 2 s.*')).toBe(true); // Back Squat: twarde asercje na najwyższym poziomie
   });
 });
