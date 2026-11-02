@@ -1,0 +1,532 @@
+{
+ "_opis": "Ćwiczenia obowiązkowe w 1.1 na poziomie co najmniej „Pełna karta” (decyzja właściciela 02.11.2026, docs/18). Lista z analizy popularności (przybliżenie: katalog bazowy generatora, zrzuty sklepu, klasyczne boje) w backlogu standardu; cardio — osobny lżejszy standard (ta sama decyzja).",
+ "data": "2026-11-02",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Hack Squat",
+   "rodzina": "leg_machine",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Hanging Leg Raise",
+   "rodzina": "core_hang",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Hanging Knee Raise",
+   "rodzina": "core_hang",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Pec Deck",
+   "rodzina": "chest_fly",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Upright Row (hantle)",
+   "rodzina": "delt_raise",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Hip Abduction",
+   "rodzina": "hip_abd_add",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Hip Adduction",
+   "rodzina": "hip_abd_add",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Triceps Dip",
+   "rodzina": "dip",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Ring Dips",
+   "rodzina": "dip",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Close-Grip Push-Up",
+   "rodzina": "pushup_plank",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Pike Push Up",
+   "rodzina": "overhead_press",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Push-Up Wide",
+   "rodzina": "pushup_plank",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Seated Calf Raise (hantle)",
+   "rodzina": "calf_raise",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Lateral Lunge",
+   "rodzina": "lunge",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Single Arm Cable Row",
+   "rodzina": "cable_row",
+   "kategoria": "wskazówki",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Incline Curl (hantle)",
+   "rodzina": "curl",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Bayesian Curl",
+   "rodzina": "curl",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Cable Curl (dwie linki)",
+   "rodzina": "curl",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Cross Body Hammer Curl",
+   "rodzina": "curl",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Hammer Curl (linki)",
+   "rodzina": "curl",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "High Cable Curl",
+   "rodzina": "curl",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Incline Hammer Curl",
+   "rodzina": "curl",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Lying Cable Curl",
+   "rodzina": "curl",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Lying Close-Grip Bar Curl On High Pulley",
+   "rodzina": "curl",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Lying Supine Dumbbell Curl",
+   "rodzina": "curl",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Reverse Cable Curl",
+   "rodzina": "curl",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Standing Concentration Curl",
+   "rodzina": "curl",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Standing Inner-Biceps Curl",
+   "rodzina": "curl",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Standing One-Arm Cable Curl",
+   "rodzina": "curl",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Full Range-Of-Motion Lat Pulldown",
+   "rodzina": "pulldown",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Single Arm Lat Pulldown",
+   "rodzina": "pulldown",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Wide-Grip Pulldown Behind The Neck",
+   "rodzina": "pulldown",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Band Overhead Triceps Extension",
+   "rodzina": "triceps",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Band Skull Crusher",
+   "rodzina": "triceps",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Cable Incline Triceps Extension",
+   "rodzina": "triceps",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Cable Lying Triceps Extension",
+   "rodzina": "triceps",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Decline Dumbbell Triceps Extension",
+   "rodzina": "triceps",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Decline EZ Bar Triceps Extension",
+   "rodzina": "triceps",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Incline Barbell Triceps Extension",
+   "rodzina": "triceps",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Kneeling Cable Triceps Extension",
+   "rodzina": "triceps",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Lying Close-Grip Barbell Triceps Extension Behind The Head",
+   "rodzina": "triceps",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "One-Arm Lying Dumbbell Triceps Extension",
+   "rodzina": "triceps",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Reverse Grip Triceps Pushdown",
+   "rodzina": "triceps",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Triceps Kickback (linki)",
+   "rodzina": "triceps",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Two-Arm Dumbbell Kickback",
+   "rodzina": "triceps",
+   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
+   "braki": [
+    "brak wskazówek"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Dead Bug",
+   "rodzina": "core_floor",
+   "kategoria": "role mięśni",
+   "braki": [
+    "brak ról"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Hollow Hold",
+   "rodzina": "core_floor",
+   "kategoria": "role mięśni",
+   "braki": [
+    "brak ról"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Bird Dog",
+   "rodzina": "core_floor",
+   "kategoria": "role mięśni",
+   "braki": [
+    "brak ról"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Medicine Ball Slam",
+   "rodzina": "sled_throw",
+   "kategoria": "role mięśni",
+   "braki": [
+    "brak ról"
+   ],
+   "danePozV2": true
+  },
+  {
+   "cwiczenie": "Inverted Row",
+   "rodzina": "pushup_plank",
+   "kategoria": "dane póz v2 od zera",
+   "braki": [
+    "brak danych póz v2"
+   ],
+   "danePozV2": false
+  },
+  {
+   "cwiczenie": "Side Plank",
+   "rodzina": "pushup_plank",
+   "kategoria": "dane póz v2 od zera",
+   "braki": [
+    "brak danych póz v2"
+   ],
+   "danePozV2": false
+  },
+  {
+   "cwiczenie": "Ab Wheel",
+   "rodzina": "pushup_plank",
+   "kategoria": "dane póz v2 od zera",
+   "braki": [
+    "brak danych póz v2",
+    "brak ról"
+   ],
+   "danePozV2": false
+  },
+  {
+   "cwiczenie": "Nordic Curl",
+   "rodzina": "leg_isolation",
+   "kategoria": "dane póz v2 od zera",
+   "braki": [
+    "brak danych póz v2"
+   ],
+   "danePozV2": false
+  },
+  {
+   "cwiczenie": "Cable Crunch",
+   "rodzina": "core_floor",
+   "kategoria": "dane póz v2 od zera",
+   "braki": [
+    "brak danych póz v2"
+   ],
+   "danePozV2": false
+  },
+  {
+   "cwiczenie": "Sissy Squat",
+   "rodzina": "leg_isolation",
+   "kategoria": "dane póz v2 od zera",
+   "braki": [
+    "brak danych póz v2",
+    "brak wskazówek"
+   ],
+   "danePozV2": false
+  },
+  {
+   "cwiczenie": "Calf Press (leg press)",
+   "rodzina": "leg_machine",
+   "kategoria": "dane póz v2 od zera",
+   "braki": [
+    "brak danych póz v2"
+   ],
+   "danePozV2": false
+  },
+  {
+   "cwiczenie": "Handstand Push Up",
+   "rodzina": "overhead_press",
+   "kategoria": "dane póz v2 od zera",
+   "braki": [
+    "brak danych póz v2",
+    "brak wskazówek"
+   ],
+   "danePozV2": false
+  },
+  {
+   "cwiczenie": "Meadows Row",
+   "rodzina": "row",
+   "kategoria": "dane póz v2 od zera",
+   "braki": [
+    "brak danych póz v2",
+    "brak wskazówek"
+   ],
+   "danePozV2": false
+  }
+ ]
+}
