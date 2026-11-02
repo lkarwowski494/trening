@@ -36,7 +36,7 @@ describe('ekran Postępy', () => {
   test('mała objętość: skala obejmuje kreskę (widoczna na końcu paska); kreski tylko przy seriach, nie przy objętości', async () => {
     await boot(() => { bench(2); });
     expect(screen.getByTestId('mark-klatka').props.style.left).toBe('100%');
-    const marks = screen.UNSAFE_root.findAll((n: any) => typeof n.props?.testID === 'string' && n.props.testID.startsWith('mark-') && typeof n.type === 'string');
+    const marks = screen.container.queryAll((n: any) => typeof n.props?.testID === 'string' && n.props.testID.startsWith('mark-') && typeof n.type === 'string');
     expect(marks.map((n: any) => n.props.testID).sort()).toEqual(['mark-barki', 'mark-klatka', 'mark-triceps']);
   });
   test('English', async () => {

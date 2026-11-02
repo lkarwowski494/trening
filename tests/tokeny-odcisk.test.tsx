@@ -66,8 +66,8 @@ function fingerprint(): string[] {
   return out;
 }
 const expandAll = async () => {
-  const rows = screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && /^grow-/.test(n.props.testID ?? ''));
-  for (const r of rows) { const b = r.findAll((n: { props: { accessibilityRole?: string } }) => n.props.accessibilityRole === 'button')[0]; if (b) await tap(b); }
+  const rows = screen.container.queryAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && /^grow-/.test(n.props.testID ?? ''));
+  for (const r of rows) { const b = r.queryAll((n: { props: { accessibilityRole?: string } }) => n.props.accessibilityRole === 'button')[0]; if (b) await tap(b); }
   await flushAll(5);
 };
 const moreGuard = async () => { const m = screen.queryByTestId('guard-more'); if (m) { await tap(m); await flushAll(10); } };

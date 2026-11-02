@@ -18,9 +18,9 @@ const S = () => store.getState();
 afterEach(() => { global.__locales = [{ languageCode: 'pl', languageTag: 'pl-PL' }]; applyLang('pl'); });
 const W4 = ['ja', 'ko', 'zh-Hant'] as const;
 /** Teksty na ekranie, które są polskim kluczem z tłumaczeniem w języku `l` (powinny być przetłumaczone). */
-const plLeft = (l: Lang) => { const d = LOCALES[l]!; return screen.UNSAFE_root.findAll((x: { type: unknown; props: { children?: unknown } }) => x.type === 'Text' && typeof x.props.children === 'string').map((x: { props: { children?: unknown } }) => String(x.props.children)).filter(s => Object.prototype.hasOwnProperty.call(d, s) && d[s] !== s); };
+const plLeft = (l: Lang) => { const d = LOCALES[l]!; return screen.container.queryAll((x: { type: unknown; props: { children?: unknown } }) => x.type === 'Text' && typeof x.props.children === 'string').map((x: { props: { children?: unknown } }) => String(x.props.children)).filter(s => Object.prototype.hasOwnProperty.call(d, s) && d[s] !== s); };
 /** Wszystkie teksty na ekranie. */
-const shown = () => screen.UNSAFE_root.findAll((x: { type: unknown; props: { children?: unknown } }) => x.type === 'Text' && typeof x.props.children === 'string').map((x: { props: { children?: unknown } }) => String(x.props.children));
+const shown = () => screen.container.queryAll((x: { type: unknown; props: { children?: unknown } }) => x.type === 'Text' && typeof x.props.children === 'string').map((x: { props: { children?: unknown } }) => String(x.props.children));
 const SCRIPT: Record<typeof W4[number], RegExp> = { ja: /[぀-ヿ一-鿿]/, ko: /[가-힯]/, 'zh-Hant': /[一-鿿]/ };
 
 describe('Ustawienia → Język: 日本語, 한국어, 繁體中文', () => {

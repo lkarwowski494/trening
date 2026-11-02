@@ -13,7 +13,7 @@ import { setsByMuscle, weeklySetsByMuscle, thisMonday } from '@/lib/stats';
 import { PARTS, shadeLevel, rankedMuscles, SHADE_MIX, svgMarkup, mixHex, shadeColor } from '@/lib/musclemap';
 import { light, dark } from '@/lib/theme';
 import { fresh, addWorkout, saved } from './helpers';
-import { renderApp, flushAll, screen, go, act, openInfo } from './app';
+import { renderApp, flushAll, screen, go, act, openInfo, compPropsAll } from './app';
 
 const NOW = new Date(2026, 9, 8, 18, 0);
 const at = (m: number, d: number, h = 18) => new Date(2026, m, d, h).getTime();
@@ -69,7 +69,7 @@ describe('ekran', () => {
   test('kolory z motywu (jasny i ciemny), bez stałych kolorów w komponencie', async () => {
     const src = fs.readFileSync(path.join(__dirname, '../components/MuscleMap.tsx'), 'utf8'); expect(src).not.toMatch(/#[0-9a-fA-F]{3,6}\b/);
     await boot(() => { addWorkout(at(9, 6), [['Bench Press (sztanga)', [{ weight: 80, reps: 5 }]]]); });
-    const fills = screen.UNSAFE_root.findAll((n: any) => n.props && typeof n.props.fill === 'string' && (n.props.cx != null || n.props.d != null)).map((n: any) => n.props.fill.toUpperCase());
+    const fills = compPropsAll(screen.container).filter(p => typeof p.fill === 'string' && (p.cx != null || p.d != null)).map(p => String(p.fill).toUpperCase());
     expect(fills).toContain(shadeColor(4, light.line, light.accent)); expect(fills).toContain(light.line.toUpperCase()); expect(fills).toContain(light.surface2.toUpperCase());
   });
   test('stopnie odróżnialne w obu motywach: kolejne kolory legendy różnią się wyraźnie (min. 12 na kanał), także „bez serii” od stopnia 1', () => {
