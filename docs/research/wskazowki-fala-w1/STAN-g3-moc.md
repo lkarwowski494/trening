@@ -74,6 +74,14 @@ integracji albo w następnej sesji G3 (limit kontekstu tej sesji). Spodziewane s
 Dodatkowo: książki NSCA = 3; kilka publikacji tej samej organizacji = jedno źródło (sprawdzić m.in. Catalyst: artykuły + wideo + Performance Menu
 w olympic-snatch.md liczone jako jedna organizacja — tak już jest). Sygnały o zestawach ogólnych i danych katalogu przejmuje koordynator linii 1.1.
 
+### Uzupełnienie 3 (koordynator linii 1.1, 02.11.2026) — też do zastosowania przy integracji
+- Sama deklaracja recenzji w polityce serwisu nie daje 4 — liczy się strona z autorem z kwalifikacjami i datą (przy recenzji — nazwany recenzent).
+- **Onnit → 5.** Skutek w kb_ballistic-cz1.md: `kbb.cleanSetup` (Onnit + BarBend) i inne zdania z Onnit jako jednym z dwóch źródeł — przeliczyć;
+  Kettlebell Clean/Snatch i zdania zarzutu użyte w One-Arm KB Clean and Jerk (kb_ballistic-cz2.md) mogą spaść do „częściowe”.
+- Eleiko: warunkowo 4 tylko dział edukacji; Experience Life: 4 tylko autor z kwalifikacjami trenerskimi (olympic-clean.md — sprawdzić per strona).
+- Kopie instrukcji (ManualsLib) — liczy się tylko dokument producenta o zgodnym numerze/wersji; Inspire, Mikolo, fit-pro.com — wg reguły.
+- OTWARTE (nie liczą się): Men's Health, Muscle & Strength, Garage Gym Reviews.
+
 ## Zostało (następne kroki — sekcje „Stan” w każdym pliku)
 
 - plyo: 7 ćwiczeń cz2 bez żadnego źródła szczebla 4; drugie źródła dla Lateral Bound, Star Jump, Single Leg Push-Off, Side to Side Box Shuffle; błąd Depth Jump; trop: rozdział o pliometrii w podręczniku NSCA (szczebel 3).
