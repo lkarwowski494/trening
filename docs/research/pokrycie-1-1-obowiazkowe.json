@@ -1,5 +1,5 @@
 {
- "_opis": "Ćwiczenia obowiązkowe w 1.1 na poziomie co najmniej „Pełna karta” (decyzja właściciela 02.11.2026, docs/18). Lista z analizy popularności (przybliżenie: katalog bazowy generatora, zrzuty sklepu, klasyczne boje) w backlogu standardu; cardio — osobny lżejszy standard (ta sama decyzja).",
+ "_opis": "Ćwiczenia obowiązkowe w 1.1 na poziomie co najmniej „Pełna karta” (decyzja właściciela 02.11.2026, docs/18). Lista z analizy popularności (przybliżenie: katalog bazowy generatora, zrzuty sklepu, klasyczne boje) w backlogu standardu; cardio — osobny lżejszy standard (ta sama decyzja). Wide-Grip Pulldown Behind The Neck usunięte z listy (ukryte w aplikacji, decyzja właściciela 02.11.2026 ~17:20): zostaje 57 (docs/18).",
  "data": "2026-11-02",
  "cwiczenia": [
   {
@@ -274,15 +274,6 @@
   },
   {
    "cwiczenie": "Single Arm Lat Pulldown",
-   "rodzina": "pulldown",
-   "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
-   "braki": [
-    "brak wskazówek"
-   ],
-   "danePozV2": true
-  },
-  {
-   "cwiczenie": "Wide-Grip Pulldown Behind The Neck",
    "rodzina": "pulldown",
    "kategoria": "wskazówki (odmiany uginania/wyprostu, ściąganie drążka)",
    "braki": [
