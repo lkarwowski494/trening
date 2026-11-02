@@ -17,7 +17,6 @@ const skanDozwolonyKod1 = (rodziny: string[]) => { try { return skan(rodziny); }
 /* Stan z 28.10.2026 (integracja-1-1 @ b2067b8c): rozbieżności w rodzinach poza zakresem sesji tresc-plyo-sanie; do naprawy przez właścicieli rodzin. */
 const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
   core_floor: ['Superman', 'Crunch', 'Frog Sit-Ups', 'Janda Sit-Up', 'Oblique Crunches - On The Floor', 'Sit Up', 'Toe Touchers', 'Bicycle Crunch', 'Cross-Body Crunch', 'Scissor Kick'],
-  curl: ['Spider Curl', 'Spider Curl (sztanga)', /* ACG-012 31.10.2026 (ręczna poprawka pozy, generator do backlogu) */ 'Barbell Curl', 'EZ Bar Curl', 'Hammer Curl'],
   delt_raise: ['Straight Raises on Incline Bench'],
   calf_raise: [/* ACG-020 31.10.2026 (podest pod przodostopiem; generator do backlogu) */ 'Seated Calf Raise', 'Seated Calf Raise (hantle)', 'Barbell Seated Calf Raise', 'Dumbbell Seated One-Leg Calf Raise'],
   forearm: ['Barbell Wrist Curl', 'Barbell Reverse Wrist Curl', 'Wrist Curl (hantle)', 'Reverse Wrist Curl (hantle)', 'One-Arm Dumbbell Wrist Curl', 'One-Arm Dumbbell Reverse Wrist Curl', 'Cable Wrist Curl'],
@@ -31,7 +30,7 @@ const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
   shrug: ['Middle Back Shrug'],
   thruster: ['Clean and Press'],
 };
-const W_ZAKRESIE = ['plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw'];
+const W_ZAKRESIE = ['plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw', /* pilotaż toru 02.11.2026: generator odtwarza plik (ACG-012 i Spider Curl wniesione do generatora) */ 'curl'];
 
 describe('generator rodziny odtwarza zatwierdzony plik póz', () => {
   test.each(W_ZAKRESIE)('%s: generuj() = plik póz, każda poza ważna', (r) => { expect(skanDozwolonyKod1([r])).toEqual({ [r]: {} }); });

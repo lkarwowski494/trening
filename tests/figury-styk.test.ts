@@ -1,11 +1,14 @@
 /*
  * A1 (zadanie 1.0.1 pakiet A, 29.10.2026; L-056 A, decyzja właściciela): miara styku ciężar–ciało (odstęp i przenikanie) na kadrach co 0,05 oraz pomocnik „dwie miary”
- * (tests/helpers/styk-figur.ts) — dla rodzin squat, bench_press i hinge.
+ * (tests/helpers/styk-figur.ts) — dla rodzin squat, bench_press i hinge (od 02.11.2026 także curl z danych: sekcja R3 na końcu pliku).
  * 101-02, 101-03, 101-04, 101-12 (hinge): kolano jako osobna krzywa (`knees` w rigu hinge), strażnik odstępu ciężar–noga obok strażnika toru; w teście każdej poprawki dwie miary
  * (naprawiana cecha + styk). Stan „przed” odtwarza ten sam rig bez krzywej kolan (wariant z `knees: undefined`) — strażnik musi na nim paść.
  */
+import * as fs from 'fs';
+import * as path from 'path';
+import { keyframeFrame, type PoseData } from '@/lib/figures/v2';
 import { figureSpec, shownFigureSpec, familyReviewed, frameAt, hingeFrame, proj, EQUIP, VARIANTS, V2_WSTRZYMANE, HINGE, type HingeParams } from '@/lib/figures/v2';
-import { KADRY_STYKU, PROG_STYKU, stykKlatki, stykTora, podsumujStyk, dwieMiary, elementyCiezaru } from './helpers/styk-figur';
+import { KADRY_STYKU, PROG_STYKU, stykKlatki, stykTora, stykPozy, podsumujStyk, dwieMiary, elementyCiezaru } from './helpers/styk-figur';
 
 describe('A1: kadry i miara potrafi paść', () => {
   test('kadry co 0,05: 21 wartości od 0 do 1', () => {
@@ -209,5 +212,24 @@ describe('101-02 (A2): start z podłogi bez szarpnięcia — kolana i biodra pro
     const dl = miary('Deadlift (sztanga)'), su = miary('Sumo Deadlift');
     expect([+dl.krok.toFixed(1), +dl.krokKat.toFixed(1), +dl.stosunek.toFixed(1)]).toEqual([0.5, 1.1, 2.2]);
     expect([+su.krok.toFixed(1), +su.krokKat.toFixed(1)]).toEqual([0.3, 0.7]);
+  });
+});
+
+/* R3 (linia 1.1, pilotaż curl 02.11.2026): styk ciężar–ciało także dla rodzin z danych (poses/*.json), również niepodłączonych jeszcze do aplikacji (curl: figureSpec = null do
+ * partii podłączania po recenzji) — klatki z keyframeFrame. Dla uginania nie obowiązuje próg odstępu „blisko nóg” (ciężar jest w dłoniach, a nie przed udami): mierzymy PRZENIKANIE
+ * ciężaru w nogę, tułów albo miednicę (dopuszczalne jak w checkFrame: TOL.pen = 0,3 cm) oraz to, że miara jest skończona w każdym z 21 kadrów. */
+describe('R3: styk ciężar–ciało w rodzinie curl (36 ćwiczeń, kadry co 0,05, także z błędem)', () => {
+  const CURL: Record<string, PoseData> = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/figures/v2/poses/curl.json'), 'utf8')).cwiczenia;
+  const KLUCZE = Object.keys(CURL);
+  test('plik curl ma 36 ćwiczeń', () => { expect(KLUCZE).toHaveLength(36); });
+  test.each(KLUCZE)('%s: przenikanie ciężaru ≤ 0,3 cm w 21 kadrach, skończony odstęp', k => {
+    const s = stykPozy(CURL[k]); expect(s).toHaveLength(21);
+    for (const x of s) expect([k, x.u, Number.isFinite(x.odstep)]).toEqual([k, x.u, true]);
+    const p = podsumujStyk(s); expect([k, +p.maxPrzenikanie.toFixed(2), p.maxPrzenikanie <= PROG_STYKU.przenikanieCm]).toEqual([k, +p.maxPrzenikanie.toFixed(2), true]);
+  });
+  test('miara potrafi paść: hantel/gryf przesunięty w tułów daje przenikanie (Barbell Curl, kadr u = 0)', () => {
+    const f = keyframeFrame(CURL['Barbell Curl'], 0); const s0 = stykKlatki(f); expect(s0.przenikanie).toBe(0); expect(s0.odstep).toBeGreaterThan(0);
+    const w = { ...f, props: f.props.map(p => p.k === 'barbell' ? { ...p, c: [p.c[0] - (s0.odstep + 3), p.c[1], p.c[2]] as [number, number, number] } : p) };
+    expect(stykKlatki(w).przenikanie).toBeGreaterThan(PROG_STYKU.przenikanieCm);
   });
 });
