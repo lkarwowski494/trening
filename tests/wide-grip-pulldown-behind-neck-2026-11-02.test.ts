@@ -29,9 +29,9 @@ describe('biblioteka bez ćwiczenia (02.11.2026)', () => {
     for (const k of ['Lat Pulldown', 'Close-Grip Pulldown']) if ([...LIB_KEYS].includes(k)) expect(LIB_KEYS.has(k)).toBe(true);
     expect(LIB_KEYS.size).toBeGreaterThan(600);
   });
-  test('lista 58 → 57 obowiązkowych: ćwiczenia nie ma w docs/research/pokrycie-1-1-obowiazkowe.json, a opis mówi o decyzji 02.11.2026', () => {
+  test('lista obowiązkowych (58 → 57 → 51 po decyzji ~18:00): ćwiczenia nie ma w docs/research/pokrycie-1-1-obowiazkowe.json, a opis mówi o decyzji 02.11.2026', () => {
     const j = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/pokrycie-1-1-obowiazkowe.json'), 'utf8'));
-    expect(JSON.stringify(j)).not.toContain(NAME.replace(/"/g, ''));
+    expect(j.cwiczenia.map((c: { cwiczenie: string }) => c.cwiczenie)).not.toContain(NAME); expect(j.cwiczenia).toHaveLength(51);
     expect(JSON.stringify(j._opis)).toMatch(/02\.11\.2026/);
   });
 });

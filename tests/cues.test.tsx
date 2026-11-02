@@ -143,7 +143,7 @@ describe('komponent ExerciseCues', () => {
     await render(<ExerciseCues exercise={lib('Plank')} />);
     await fireEvent.press(screen.getByRole('button', { name: t('Technika') }));
     expect(t('Technika')).toBe('Technique');
-    expect(screen.getByRole('header', { name: 'Common mistakes' })).toBeTruthy();
+    expect(screen.getByRole('header', { name: 'What to avoid' })).toBeTruthy();
     expect(screen.getByText(`• ${cueDict('en')[CUE_DATA.exercises['Plank'].setup[0].c]}`)).toBeTruthy();
     expect(screen.getByText(/^The app does not give medical advice\./)).toBeTruthy();
   });

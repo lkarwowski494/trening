@@ -62,10 +62,10 @@ describe('rodzaj podstawy `book` (szczebel 3, 02.11.2026)', () => {
 
 describe('szczebel 5 nie liczy się do pary źródeł; luka tylko jawna', () => {
   test('wskazówka z drugim źródłem szczebla 5 → błąd „1 organizacja”; ta sama wskazówka wpisana w `luki` → zgoda', () => {
-    const d = clone(); d.orgs.Physitrack.level = 5; const r = cueOf(d, 'Łydki na stopniu', 'setup', 'calf.step');
+    const d = clone(); delete d.luki; d.orgs.Physitrack.level = 5; d.sources['physitrack-heel-raise-step'].level = 5; const r = cueOf(d, 'Łydki na stopniu', 'setup', 'calf.step');
     r.s = [['exrx-Gastrocnemius/BWStandingCalfRaise', 'Preparation'], ['physitrack-heel-raise-step', 'opis']];
     expect(text(validate(d))).toMatch(/Łydki na stopniu\.calf\.step: 1 organizacja/);
-    d.luki = { ...(d.luki ?? {}), 'Łydki na stopniu::calf.step': 'test: drugie źródło szczebla ≤ 4 do uzupełnienia' };
+    d.luki = { 'Łydki na stopniu::calf.step': 'test: drugie źródło szczebla ≤ 4 do uzupełnienia' };
     expect(text(validate(d))).not.toMatch(/calf\.step: 1 organizacja/);
   });
   test('luka zbędna (wskazówka ma parę), luka bez powodu i luka wskazująca nieistniejące zdanie → błąd', () => {
@@ -148,8 +148,8 @@ describe('dane po porządkach P0 (02.11.2026)', () => {
       for (const [id, s] of Object.entries(CUE_FULL.sources)) if (s.org === org) expect([id, [4, 5].includes(s.level), typeof (s as { strona?: string }).strona]).toEqual([id, true, 'string']);
     }
   });
-  test('Skakanka i Assault Bike nie są na liście otwartych (STAN-g6); luki = dokładnie wskazówki, które po przeliczeniu szczebli tracą parę', () => {
-    expect(Object.keys(CUE_FULL.open)).not.toEqual(expect.arrayContaining(['Skakanka'])); expect(CUE_FULL.open['Assault Bike']).toBeUndefined();
+  test('Skakanka i Assault Bike zostają otwarte do czasu kart z fali G6 (P4): każde ćwiczenie bazowe ma wskazówki albo wpis open — tests/cues.test.tsx; luki = dokładnie wskazówki, które po przeliczeniu szczebli tracą parę', () => {
+    expect(Object.keys(CUE_FULL.open)).toEqual(expect.arrayContaining(['Skakanka', 'Assault Bike']));
     expect(Object.keys((CUE_FULL as unknown as Data).luki ?? {}).sort()).toEqual([
       'Pendlay Row::pendlay.floor', 'Pendlay Row::pendlay.mis.torso', 'Pendlay Row::pendlay.pull', 'Pendlay Row::pendlay.setup', 'Łydki na stopniu::calf.step',
     ].sort());

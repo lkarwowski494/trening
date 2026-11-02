@@ -67,7 +67,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 ## Podsumowanie
 
 - Ćwiczenia ze wskazówkami: 102; zdań (z powtórzeniami między ćwiczeniami): 458; unikalnych zdań: 310; źródeł: 236.
-- Ćwiczenia bazowe bez wskazówek (otwarte): 20.
+- Ćwiczenia bazowe bez wskazówek (otwarte): 22.
 - Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 20 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc), Lunges (hantle), Walking Lunges, Reverse Lunge.
 
 ## Otwarte — bez wskazówek
@@ -94,6 +94,8 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | Hanging Knee Raise | komplet zależy od uznania materiałów uczelnianych (HKU, Western) i od wariantu z podporem przedramion (docs/research/33, pyt. 1) |
 | Cable Crunch | komplet zależy od uznania Western (szczebel otwarty) i od wariantu stojącego zamiast klęcząc (docs/research/33, pyt. 1) |
 | Hollow Hold | jedno źródło (Root 2019); Aube 2026 tylko nazwa (docs/research/33) |
+| Assault Bike | czy rower stacjonarny to wariant roweru powietrznego z ruchomymi rączkami (jak kąt ławki) — pytanie otwarte; dokumentacji producenta nie udało się odczytać (docs/research/33, pyt. 4) |
+| Skakanka | drugie źródło to organizacja spoza fitnessu (DAN), której szczebel jest otwarty (docs/research/33, pyt. 2) |
 
 ## Luki — wskazówki bez pary źródeł
 
