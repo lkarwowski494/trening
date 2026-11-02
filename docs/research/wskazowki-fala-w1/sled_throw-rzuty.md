@@ -1,26 +1,27 @@
 # Wskazówki techniki — rodzina sled_throw, rzuty piłką lekarską (fala W1, G3)
 
-Data: 02.11.2026. Autor: badacz-merytoryczny (fala W1, G3).
+Data: 02.11.2026. Autor: badacz-merytoryczny (fala W1, G3); druga sesja tego samego dnia — błędy (mistakes), wersje jednorącz, szczeble źródeł.
 Zakres: 9 ćwiczeń z rzutami piłką lekarską (bez sanek — osobny plik). Tylko zbieranie danych; nic nie jest w `lib/` ani w `data/zrodla/cues.json`.
 
-Metoda: zasady z CLAUDE.md („Merytoryczne podstawy”, „Wyjątek dla wskazówek techniki”) i wzór docs/research/33. Każde zdanie
-ma ≥ 2 przeczytane źródła z różnych organizacji (szczebel 4 albo wyższy); wariant tego samego ćwiczenia (klęcząc/stojąc, na podłodze/na piłce
-gimnastycznej, z partnerem/ze ścianą) liczy się z opisem „(wariant: …)”. Zdań z zestawu ogólnego (`lib/figures/v2/cue-sets.json`), których
-przeczytane źródła dla danego ćwiczenia nie potwierdzają, nie wpisuję (polecenie koordynatora 02.11.2026) — opis w „Otwarte”.
-Strony innych aplikacji treningowych pominięte (nie są źródłem; nazw nie zapisuję). ExRx i web.archive.org niedostępne.
+Metoda: zasady z CLAUDE.md („Merytoryczne podstawy”, „Wyjątek dla wskazówek techniki”), wzór docs/research/33 i rozstrzygnięcie szczebli
+koordynatora linii 1.1 z 02.11.2026 (szczebel 4 = organizacja szkoląca/certyfikująca trenerów, serwis z redakcją i recenzją ekspercką albo producent
+o własnym rodzaju sprzętu; autor + data albo treść firmowana; bez marketingu; Breaking Muscle = 5; strony innych aplikacji nie są źródłem).
+Każde zdanie ma ≥ 2 przeczytane źródła z różnych organizacji (szczebel 4 albo wyższy); wariant tego samego ćwiczenia liczy się z opisem „(wariant: …)”.
+Zdań z zestawu ogólnego (`lib/figures/v2/cue-sets.json`), których przeczytane źródła dla danego ćwiczenia nie potwierdzają, nie wpisuję — opis w „Otwarte”.
+ExRx, web.archive.org i topendsports niedostępne.
 
 ## 1. Ćwiczenia
 
 | Klucz | Status | Uwagi |
 |---|---|---|
-| Wall Ball | gotowe | setup, move ×2, mistakes ×1; `sq.mis.kneesIn`, `sq.down`, `sq.kneesToes` z zestawu ogólnego — niepotwierdzone dla wall ball (Otwarte) |
-| Medicine Ball Chest Pass | częściowe | setup, move ×2, tips ×1; brak potwierdzonego błędu |
+| Wall Ball | gotowe | setup, move ×2, mistakes ×1; `wb.catch` stoi na Coach + REP Fitness — Coach do decyzji koordynatora (niżej) |
+| Medicine Ball Chest Pass | częściowe | setup, move (ACE + RFL); brak potwierdzonego błędu — `mbcp.mis.elbows` do decyzji koordynatora (RFL + Freelap USA); `mbcp.catch`, `plank.brace` spadły (Physitrack nie jest źródłem) |
+| Backward Medicine Ball Throw | częściowe | setup, move, tips ×1 (nowe: World Athletics); brak błędu |
+| Standing Two-Arm Overhead Throw | częściowe | setup, move, tips ×1 (nowe: World Athletics); brak błędu |
+| Medicine Ball Scoop Throw | otwarte | po zmianie szczebli tylko jedno źródło (Plyometric Anatomy); Breaking Muscle = 5; strona TRX powiela tę samą listę rzutów (niezależność wątpliwa) |
+| Supine Chest Throw | otwarte | Sussexsport i VHI = szczebel 5 (uzasadnienie niżej) |
+| Supine Two-Arm Overhead Throw | otwarte | Physitrack (nie źródło) + VHI (5) |
 | One-Arm Medicine Ball Slam | otwarte | brak przeczytanego źródła szczebla ≤ 4 o wersji jednorącz |
-| Backward Medicine Ball Throw | częściowe | setup, move; brak błędu; `mb.legs` niepotwierdzone (Otwarte) |
-| Medicine Ball Scoop Throw | częściowe | setup, move; brak błędu; `mb.legs` — drugie źródło nie wymienia kostek (Otwarte) |
-| Standing Two-Arm Overhead Throw | częściowe | setup, move; brak błędu; `mb.legs` — tylko jedno źródło (Otwarte) |
-| Supine Chest Throw | częściowe | setup, move; błędy tylko w jednym źródle (Otwarte) |
-| Supine Two-Arm Overhead Throw | częściowe | setup, move; brak błędu |
 | Supine One-Arm Overhead Throw | otwarte | brak przeczytanego źródła o wersji jednorącz |
 
 ## 2. Dane (propozycja w formacie cues.json)
@@ -29,11 +30,11 @@ Strony innych aplikacji treningowych pominięte (nie są źródłem; nazw nie za
 {
   "orgs": {
     "CrossFit": {"name": "CrossFit — CrossFit Essentials (crossfit.com, materiały szkoleniowe organizacji)", "level": 4, "kind": "org"},
-    "REP Fitness": {"name": "REP Fitness — blog Training (producent sprzętu, 2026)", "level": 4, "kind": "maker"},
-    "Sussexsport": {"name": "University of Sussex, Sussexsport — karty ćwiczeń (PDF; materiały uczelnianego centrum sportu)", "level": 4, "kind": "site"},
-    "VHI": {"name": "VHI — karty ćwiczeń dla pacjentów (biblioteka ćwiczeń dla fizjoterapeutów, publikowana przez Hattiesburg Clinic)", "level": 4, "kind": "site"},
+    "REP Fitness": {"name": "REP Fitness — blog Training (producent sprzętu, m.in. piłek do wall ball, 2026)", "level": 4, "kind": "maker"},
+    "Coach": {"name": "Coach (coachweb.com) — magazyn o treningu, artykuły z autorem i datą", "level": 4, "kind": "site"},
+    "RFL": {"name": "Rugby Football League — karta ćwiczenia „Med Ball Chest Throw” (federacja, szkolenie trenerów)", "level": 4, "kind": "org"},
+    "World Athletics": {"name": "World Athletics — Kids' Athletics, Teaching athletics (federacja, materiały szkoleniowe)", "level": 4, "kind": "org"},
     "Coleman, Szymanski (NSCA, Human Kinetics)": {"name": "NSCA — Strength Training for Baseball, red. Coleman, Szymanski (Human Kinetics; fragment ze strony wydawcy)", "level": 3, "kind": "book"},
-    "Hansen, Kennelly (Human Kinetics)": {"name": "Hansen, Kennelly — Plyometric Anatomy (Human Kinetics; fragment przedrukowany przez FitPro)", "level": 3, "kind": "book"},
     "Manske, Reiman (Wichita State University, Duke University)": {"name": "Manske, Reiman — przegląd testów funkcjonalnych, Sports Health 2013", "level": 3, "kind": "study"}
   },
   "sources": {
@@ -42,16 +43,10 @@ Strony innych aplikacji treningowych pominięte (nie są źródłem; nazw nie za
     "crossfit-wall-ball": {"org": "CrossFit", "title": "The Wall-Ball Shot: CrossFit's Secret Weapon for Cardiovascular Conditioning", "url": "https://www.crossfit.com/essentials/crossfit-wall-ball-secret-weapon", "level": 4},
     "rep-wall-balls": {"org": "REP Fitness", "title": "How to Improve Your Wall Balls", "url": "https://uk.repfitness.com/blogs/training/wall-balls", "level": 4},
     "coach-wall-balls": {"org": "Coach", "title": "How To Do Wall Balls (H. Bullmore, 2023)", "url": "https://www.coachweb.com/medicine-ball-exercises-and-workouts/6542/how-to-do-wall-balls-and-why-it-s-worth-putting-yourself", "level": 4},
-    "physitrack-mb-chest-throw": {"org": "Physitrack", "title": "Medicine ball chest throw", "url": "https://au.physitrack.com/home-exercise-video/medicine-ball-chest-throw", "level": 4},
-    "physitrack-overhead-wall-throws": {"org": "Physitrack", "title": "Overhead Wall Throws (Arms only)", "url": "https://ca.physitrack.com/home-exercise-video/overhead-wall-throws-%2528arms-only%2529", "level": 4},
-    "physitrack-situp-overhead-throw": {"org": "Physitrack", "title": "Sit ups - Ball overhead throw", "url": "https://ie.physitrack.com/home-exercise-video/sit-ups---ball-overhead-throw", "level": 4},
-    "sussex-chest-power": {"org": "Sussexsport", "title": "Upper Body Chest Power (PDF)", "url": "https://www.sussex.ac.uk/sport/documents/upper-body-chest-power.pdf", "level": 4},
-    "sussex-mb-lying-throw": {"org": "Sussexsport", "title": "Level One: Med Ball Throws — lying throw (PDF, 2012)", "url": "https://www.sussex.ac.uk/sport/documents/med-ball-lying-throw.pdf", "level": 4},
-    "vhi-situp-wall-throw": {"org": "VHI", "title": "Sit-Up: Wall Throw (Medicine Ball)", "url": "https://iris.hattiesburgclinic.com/patadv/exkit/Strength Training/English/0250000058fab30m_English.html", "level": 4},
-    "vhi-partner-drop-toss": {"org": "VHI", "title": "Partner Drill: Drop / Toss", "url": "https://iris.hattiesburgclinic.com/patadv/exkit/Stability Ball/English/0450000314mb006m_English.html", "level": 4},
+    "rfl-mb-chest-throw": {"org": "RFL", "title": "Med Ball Chest Throw (karta PDF z oceną 1–5)", "url": "https://www.rugby-league.com/uploads/docs/Med%20Ball%20Chest%20Throw.pdf", "level": 4},
+    "wa-backward-overhead-throw": {"org": "World Athletics", "title": "Backward overhead throw (Kids' Athletics, poziom 3)", "url": "https://worldathletics.org/kids-athletics/teaching-athletics/backward-overhead-throw", "level": 4},
+    "wa-overarm-throw": {"org": "World Athletics", "title": "Overarm throw (Kids' Athletics)", "url": "https://worldathletics.org/kids-athletics/teaching-athletics/overarm-throw", "level": 4},
     "hk-blob-throw": {"org": "Coleman, Szymanski (NSCA, Human Kinetics)", "title": "Medicine ball BLOB throw (between legs, over back) — fragment, oprac. J. Dawes", "url": "https://us.humankinetics.com/blogs/excerpt/medicine-ball-blob-throw-between-legs-over-back", "level": 3},
-    "hk-plyo-anatomy-throws": {"org": "Hansen, Kennelly (Human Kinetics)", "title": "Five medicine ball throws (fragment Plyometric Anatomy)", "url": "https://www.fitpro.com/blog/five-medicine-ball-throws/", "level": 3},
-    "breakingmuscle-overhead-mb-throw": {"org": "Breaking Muscle", "title": "Overhead Medicine Ball Throw (Movement Library)", "url": "https://breakingmuscle.com/?p=67437", "level": 4},
     "pmc-3658404": {"org": "Manske, Reiman (Wichita State University, Duke University)", "title": "Functional Performance Testing for Power and Return to Sports, Sports Health 2013 (Trunk Power Tests)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3658404/", "level": 3}
   },
   "exercises": {
@@ -86,109 +81,61 @@ Strony innych aplikacji treningowych pominięte (nie są źródłem; nazw nie za
     "Medicine Ball Chest Pass": {
       "setup": [
         {"c": "mbcp.setup", "s": [
-          ["physitrack-mb-chest-throw", "instrukcja, zdanie 1 („…the ball held at chest height.”)"],
           ["ace-264", "krok 1, Starting position (przodem do partnera, piłka na wysokości klatki; parafraza; wariant: z wykrokiem)"],
-          ["sussex-chest-power", "Level Two: Standing Chest Pass (podanie do ściany albo partnera; parafraza)"]
+          ["rfl-mb-chest-throw", "Directions, punkty 1–2 („Stand with feet shoulder-width apart and hands behind the ball.”, piłka przyciągnięta do klatki; wariant: rzut na odległość z lekkiego przysiadu)"]
         ]}
       ],
       "move": [
         {"c": "mbcp.move", "s": [
-          ["sussex-chest-power", "Level Two („The ball should travel in a straight line.”)"],
           ["ace-264", "krok 2 (wypchnięcie piłki od klatki do partnera; parafraza; wariant: z wykrokiem)"],
-          ["physitrack-mb-chest-throw", "instrukcja, zdanie 2–3 (odbicie od ściany, podanie jak w koszykówce; parafraza)"]
-        ]},
-        {"c": "mbcp.catch", "s": [
-          ["physitrack-mb-chest-throw", "instrukcja, zdanie 2 („…catch it just in front of your chest.”)"],
-          ["ace-264", "krok 3 (łapiący przyjmuje piłkę wyprostowanymi rękami i wyhamowuje ją do klatki; parafraza)"]
+          ["rfl-mb-chest-throw", "Directions, punkt 3 („…extend your elbows to push ball away from body.”; wariant: rzut na odległość)"]
         ]}
       ],
-      "tips": [
-        {"c": "plank.brace", "s": [
-          ["physitrack-mb-chest-throw", "instrukcja, zdanie 1 i 4 („core muscles tight”, „maintaining a rigid core”)"],
-          ["ace-264", "krok 1 („brace your abs”; parafraza)"]
-        ]}
-      ],
+      "tips": [],
       "mistakes": []
     },
     "Backward Medicine Ball Throw": {
       "setup": [
         {"c": "bmbt.setup", "s": [
           ["pmc-3658404", "Trunk Power Tests → Backward Overhead Medicine Ball Throw, ryc. 2 („The athlete holds a medicine ball with arms straight in front of the body”)"],
-          ["hk-blob-throw", "Setup („…stand with the arms straight and feet approximately shoulder-width apart”)"]
+          ["hk-blob-throw", "Setup („…stand with the arms straight and feet approximately shoulder-width apart”)"],
+          ["wa-backward-overhead-throw", "opis pod tytułem (tyłem do linii, piłka oburącz na długość ramion; parafraza)"]
         ]}
       ],
       "move": [
         {"c": "bmbt.move", "s": [
           ["pmc-3658404", "jw. (ruch zamachowy w dół w biodrach i kolanach, potem „extending forcefully backward to throw the ball over the head”)"],
-          ["hk-blob-throw", "Action (zamach piłką w dół między nogi, wyskok i rzut „overhead and backward as far as possible”)"]
+          ["hk-blob-throw", "Action (zamach piłką w dół między nogi, wyskok i rzut „overhead and backward as far as possible”)"],
+          ["wa-backward-overhead-throw", "opis pod tytułem (przysiad, szybki wyprost nóg, rzut nad głową w tył; parafraza)"]
         ]}
       ],
-      "tips": [],
-      "mistakes": []
-    },
-    "Medicine Ball Scoop Throw": {
-      "setup": [
-        {"c": "scoop.setup", "s": [
-          ["hk-plyo-anatomy-throws", "Underhand Vertical Squat Throw, krok 2 („Descend into a low squat, keeping the torso upright, arms extended and ball in front of the body”)"],
-          ["breakingmuscle-overhead-mb-throw", "start (biodra w tył, piłka opuszczona między kolana do przysiadu; parafraza)"]
+      "tips": [
+        {"c": "bmbt.armsStraight", "s": [
+          ["hk-blob-throw", "Coaching tips („Keep the arms straight throughout the duration of the exercise.”)"],
+          ["wa-backward-overhead-throw", "opis pod tytułem („…keep both arms extended at all time”)"]
         ]}
       ],
-      "move": [
-        {"c": "scoop.move", "s": [
-          ["hk-plyo-anatomy-throws", "Underhand Vertical Squat Throw, krok 3–4 (wyprost jak w wyskoku z przysiadu, ręce proste, piłka wyrzucona w górę; parafraza)"],
-          ["breakingmuscle-overhead-mb-throw", "wyrzut (eksplozja z dołu przysiadu, rzut spod spodu nad głowę łukiem; parafraza)"]
-        ]}
-      ],
-      "tips": [],
       "mistakes": []
     },
     "Standing Two-Arm Overhead Throw": {
       "setup": [
         {"c": "soht.setup", "s": [
           ["ace-178", "Preparation i krok 1 (przodem do partnera, piłka oburącz; parafraza)"],
-          ["physitrack-overhead-wall-throws", "zdanie 1 („Stand tall facing a wall … holding a ball with both hands.”; wariant: tylko ręce)"]
+          ["wa-overarm-throw", "Description („…hold the medicine ball with both hands behind the head”; przodem do kierunku rzutu)"]
         ]}
       ],
       "move": [
         {"c": "soht.move", "s": [
           ["ace-178", "krok 2–3 (piłka nad głowę i za głowę, potem ręce mocno w przód nad głową; parafraza)"],
-          ["hk-plyo-anatomy-throws", "Kneeling Medicine Ball Overhead Pass („Draw the medicine ball behind the head and then pass powerfully to a partner or against a firm wall”; wariant: klęcząc)"],
-          ["physitrack-overhead-wall-throws", "zdanie 2 („Bring the ball forwards and above your head and throw the ball against the wall.”; wariant: tylko ręce)"]
+          ["wa-overarm-throw", "Description („They throw the medicine ball over the head as far as possible…”)"]
         ]}
       ],
-      "tips": [],
-      "mistakes": []
-    },
-    "Supine Chest Throw": {
-      "setup": [
-        {"c": "sct.setup", "s": [
-          ["sussex-mb-lying-throw", "Teaching Points 1–2 (leżenie na plecach na macie, ręce wyciągnięte w górę, gotowe do łapania; parafraza)"],
-          ["vhi-partner-drop-toss", "zdanie 1 („Lie supine over ball, arms outstretched.”; wariant: na piłce gimnastycznej)"]
+      "tips": [
+        {"c": "plank.brace", "s": [
+          ["ace-178", "krok 1–2 („contract and brace the abdominals…”; brzuch napięty także przy zamachu)"],
+          ["wa-overarm-throw", "Coaching points („…keep their trunk muscles tense the whole time…”)"]
         ]}
       ],
-      "move": [
-        {"c": "sct.move", "s": [
-          ["sussex-mb-lying-throw", "Teaching Points 5 („Participant catches the ball and immediately throws it forcefully upwards extending both arms vertically”)"],
-          ["vhi-partner-drop-toss", "zdanie 2 („Catch ball, allowing it to return to chest. Quickly throw ball back up to partner.”; wariant: na piłce gimnastycznej)"]
-        ]}
-      ],
-      "tips": [],
-      "mistakes": []
-    },
-    "Supine Two-Arm Overhead Throw": {
-      "setup": [
-        {"c": "soht2.setup", "s": [
-          ["physitrack-situp-overhead-throw", "instrukcja 1–3 (leżenie, piłka oburącz za głową tuż nad podłogą; parafraza)"],
-          ["vhi-situp-wall-throw", "instrukcja („Holding small medicine ball beyond head…”)"]
-        ]}
-      ],
-      "move": [
-        {"c": "soht2.move", "s": [
-          ["physitrack-situp-overhead-throw", "instrukcja 4 („Sit up and throw the ball to a partner standing in front of you or against a wall.”)"],
-          ["vhi-situp-wall-throw", "instrukcja („…sit up and bounce ball off wall.”)"]
-        ]}
-      ],
-      "tips": [],
       "mistakes": []
     }
   }
@@ -197,7 +144,7 @@ Strony innych aplikacji treningowych pominięte (nie są źródłem; nazw nie za
 
 ## 3. Nowe zdania
 
-Istniejące zdania z `lib/cues/text/pl.json` użyte bez zmian: `plank.brace` (Chest Pass). `slam.move` nie pasuje do wersji jednorącz
+Istniejące zdania z `lib/cues/text/pl.json` użyte bez zmian: `plank.brace` (Standing Two-Arm Overhead Throw). `slam.move` nie pasuje do wersji jednorącz
 („oburącz”). `sq.down`, `sq.kneesToes`, `sq.mis.kneesIn`, `mb.legs` — patrz „Otwarte”.
 
 | Id | PL | EN (propozycja) |
@@ -206,75 +153,92 @@ Istniejące zdania z `lib/cues/text/pl.json` użyte bez zmian: `plank.brace` (Ch
 | wb.move | Zejdź do przysiadu, a wstając, jednym ruchem wyrzuć piłkę w górę, w cel na ścianie. | Squat down, then as you stand, throw the ball up to the target on the wall in one motion. |
 | wb.catch | Złap piłkę po odbiciu i od razu schodź z nią do kolejnego przysiadu. | Catch the ball off the wall and go straight down into the next squat. |
 | wb.mis.shallow | Za płytki przysiad. | Squatting too shallow. |
-| mbcp.setup | Stań przodem do ściany albo partnera, piłka oburącz na wysokości klatki. | Face the wall or a partner, ball in both hands at chest height. |
+| mbcp.setup | Stań przodem do celu, piłka oburącz przy klatce. | Face your target, ball in both hands at your chest. |
 | mbcp.move | Mocno wypchnij piłkę od klatki prosto przed siebie. | Push the ball hard from your chest straight ahead. |
-| mbcp.catch | Złap piłkę przed klatką i od razu podaj ją znowu. | Catch the ball in front of your chest and pass it again right away. |
 | bmbt.setup | Stań tyłem do kierunku rzutu, piłka oburącz na prostych rękach przed sobą. | Stand with your back to the throw, ball in both hands, arms straight in front of you. |
 | bmbt.move | Ugnij biodra i kolana, opuszczając piłkę, potem dynamicznie się wyprostuj i przerzuć ją nad głową za siebie. | Bend your hips and knees as you lower the ball, then drive up hard and throw it back over your head. |
-| scoop.setup | Zejdź do przysiadu z piłką trzymaną nisko przed sobą na prostych rękach. | Squat down holding the ball low in front of you, arms straight. |
-| scoop.move | Wybij się z przysiadu jak do wyskoku i wyrzuć piłkę spod spodu w górę. | Drive out of the squat as if jumping and throw the ball up underhand. |
-| soht.setup | Stań przodem do ściany albo partnera, piłka oburącz. | Face the wall or a partner, ball in both hands. |
+| bmbt.armsStraight | Ręce proste przez cały ruch. | Keep your arms straight the whole way. |
+| soht.setup | Stań przodem do celu, piłka oburącz. | Face your target, ball in both hands. |
 | soht.move | Przenieś piłkę nad głowę, za głowę, potem mocno rzuć ją znad głowy przed siebie. | Take the ball overhead and behind your head, then throw it hard forward from overhead. |
-| sct.setup | Połóż się na plecach, ręce wyciągnięte w górę, gotowe do złapania piłki. | Lie on your back with your arms reaching up, ready to catch the ball. |
-| sct.move | Złap piłkę nad klatką i od razu wyrzuć ją mocno pionowo w górę, prostując ręce. | Catch the ball over your chest and throw it straight back up hard, straightening your arms. |
-| soht2.setup | Połóż się na plecach z piłką trzymaną oburącz za głową. | Lie on your back holding the ball with both hands behind your head. |
-| soht2.move | Usiądź i w trakcie siadu rzuć piłkę znad głowy do partnera albo w ścianę. | Sit up and, as you come up, throw the ball from overhead to a partner or the wall. |
 
-Uwaga do `sct.move`: VHI opisuje pozwolenie piłce zejść do klatki przed wyrzutem, Sussexsport — natychmiastowy wyrzut; zdanie zawiera tylko część wspólną (złap → od razu wyrzuć w górę).
+Zmiany względem pierwszej sesji: `mbcp.setup` i `soht.setup` bez „ściany albo partnera” (ściana miała tylko źródła, które spadły; źródła
+zgodne co do celu przed sobą). Zdania przygotowane w pierwszej sesji, dziś bez dwóch źródeł szczebla ≤ 4 (nie do danych, w „Otwarte”):
+`mbcp.catch`, `scoop.setup`, `scoop.move`, `sct.setup`, `sct.move`, `soht2.setup`, `soht2.move` — brzmienie zostaje w historii gita tego pliku.
 
-## 4. Źródła (nowe)
+## 4. Źródła
 
 | Id | Adres | Organizacja | Szczebel | Co przeczytano |
 |---|---|---|---|---|
-| ace-178 | https://www.acefitness.org/resources/everyone/exercise-library/178/overhead-medicine-ball-throws/ | ACE | 4 | Preparation, kroki 1–3, Exercise Variation |
+| ace-178 | https://www.acefitness.org/resources/everyone/exercise-library/178/overhead-medicine-ball-throws/ | ACE | 4 | Preparation, kroki 1–4; brak sekcji błędów |
 | ace-264 | https://www.acefitness.org/resources/everyone/exercise-library/264/medicine-ball-lunge-to-chest-pass/ | ACE | 4 | kroki 1–6 (wariant z wykrokiem) |
-| crossfit-wall-ball | https://www.crossfit.com/essentials/crossfit-wall-ball-secret-weapon | CrossFit | 4 | sekcja „THE WALL-BALL SHOT” (points of performance, częsty błąd) |
-| rep-wall-balls | https://uk.repfitness.com/blogs/training/wall-balls | REP Fitness (producent) | 4 | opis ruchu, wypowiedź trenerki, częste błędy (akt. 03.08.2026, bez autora) |
-| coach-wall-balls | https://www.coachweb.com/medicine-ball-exercises-and-workouts/6542/how-to-do-wall-balls-and-why-it-s-worth-putting-yourself | Coach | 4 | „How To Do Wall Balls”, porady trenera (2023) |
-| physitrack-mb-chest-throw | https://au.physitrack.com/home-exercise-video/medicine-ball-chest-throw | Physitrack | 4 | instrukcja (4 zdania) |
-| physitrack-overhead-wall-throws | https://ca.physitrack.com/home-exercise-video/overhead-wall-throws-%2528arms-only%2529 | Physitrack | 4 | instrukcja (3 zdania) |
-| physitrack-situp-overhead-throw | https://ie.physitrack.com/home-exercise-video/sit-ups---ball-overhead-throw | Physitrack | 4 | instrukcja (6 zdań) |
-| sussex-chest-power | https://www.sussex.ac.uk/sport/documents/upper-body-chest-power.pdf | Sussexsport | 4 | Level One–Two (PDF, 1 s.) |
-| sussex-mb-lying-throw | https://www.sussex.ac.uk/sport/documents/med-ball-lying-throw.pdf | Sussexsport | 4 | Teaching Points, Look out for (PDF, 1 s.) |
-| vhi-situp-wall-throw | https://iris.hattiesburgclinic.com/patadv/exkit/Strength Training/English/0250000058fab30m_English.html | VHI | 4 | instrukcja (1 zdanie) |
-| vhi-partner-drop-toss | https://iris.hattiesburgclinic.com/patadv/exkit/Stability Ball/English/0450000314mb006m_English.html | VHI | 4 | instrukcja (2 zdania) |
-| hk-blob-throw | https://us.humankinetics.com/blogs/excerpt/medicine-ball-blob-throw-between-legs-over-back | Coleman, Szymanski (NSCA, Human Kinetics) | 3 | Setup, Action, coaching points |
-| hk-plyo-anatomy-throws | https://www.fitpro.com/blog/five-medicine-ball-throws/ | Hansen, Kennelly (Human Kinetics) | 3 | Underhand Vertical Squat Throw (kroki 1–5), Kneeling Overhead Pass, Downward Slam Throw |
-| breakingmuscle-overhead-mb-throw | https://breakingmuscle.com/?p=67437 | Breaking Muscle | 4 | Overhead Medicine Ball Throw — start, przysiad, wyrzut |
+| crossfit-wall-ball | https://www.crossfit.com/essentials/crossfit-wall-ball-secret-weapon | CrossFit | 4 | „THE WALL-BALL SHOT” (points of performance, częsty błąd) |
+| rep-wall-balls | https://uk.repfitness.com/blogs/training/wall-balls | REP Fitness (producent piłek do wall ball) | 4 | opis ruchu, wypowiedź trenerki, częste błędy (akt. 03.08.2026, bez autora — treść firmowana) |
+| coach-wall-balls | https://www.coachweb.com/medicine-ball-exercises-and-workouts/6542/how-to-do-wall-balls-and-why-it-s-worth-putting-yourself | Coach | 4 (do decyzji) | „How To Do Wall Balls” (2023) |
+| rfl-mb-chest-throw | https://www.rugby-league.com/uploads/docs/Med%20Ball%20Chest%20Throw.pdf | RFL | 4 | Directions (4 punkty); tabela ✓/✗: Starting position, Preparation lower/upper body, Coordination and drive, Release |
+| wa-backward-overhead-throw | https://worldathletics.org/kids-athletics/teaching-athletics/backward-overhead-throw | World Athletics | 4 | Aim i opis pod tytułem (2 zdania wskazówek); brak sekcji błędów |
+| wa-overarm-throw | https://worldathletics.org/kids-athletics/teaching-athletics/overarm-throw | World Athletics | 4 | Aim, Description, Coaching points |
+| wa-forward-throw | https://worldathletics.org/kids-athletics/teaching-athletics/forward-throw | World Athletics | 4 | Aim, Description, Coaching points — nie użyte: strona nie mówi, skąd idzie piłka (spod spodu czy od klatki) |
+| hk-blob-throw | https://us.humankinetics.com/blogs/excerpt/medicine-ball-blob-throw-between-legs-over-back | Coleman, Szymanski (NSCA, Human Kinetics) | 3 | Setup, Action, Coaching tips (2) |
 | pmc-3658404 | https://pmc.ncbi.nlm.nih.gov/articles/PMC3658404/ | Manske, Reiman | 3 | Trunk Power Tests → Backward Overhead Medicine Ball Throw, ryc. 2 |
+| hk-plyo-anatomy-throws | https://www.fitpro.com/blog/five-medicine-ball-throws/ | Hansen, Kennelly (Human Kinetics; przedruk FitPro) | do decyzji (3 tylko gdy autor NSCA/naukowiec — nie sprawdziłem) | Underhand Vertical Squat Throw (kroki 1–5, uwaga o spadającej piłce), Kneeling Overhead Pass, Downward Slam Throw |
+| freelap-mb-mistakes | https://www.freelapusa.com/3-mistakes-you-might-be-making-with-medicine-ball-training | Freelap USA (C. Valle) | do decyzji (blog producenta pomiaru czasu, nie o własnym sprzęcie; autor bez kwalifikacji na stronie) | „Your Technique Needs Some Work”: Overhead Throws, Underhand Scoops, Chest Passes and Shot Throws |
+| seedman-ahp | https://advancedhumanperformance.com/blog/the-best-medicine-ball-exercise-youve-never-done | Advanced Human Performance (J. Seedman, PhD) | 5 (blog trenera) | uwaga o podaniu od klatki na stojąco |
+| trx-mb-throws | https://www.trxtraining.com/blogs/news/medicine-ball-throws | TRX (Tristan Z., 29.07.2024) | 4 formalnie, ale nie niezależne od Plyometric Anatomy (ta sama lista pięciu rzutów) | 5 rzutów; brak błędów |
+| tc-building-power-5 | https://training-conditioning.com/article/building-power-part-five/ | Training & Conditioning (N. Tumminello, 2017) | 4 | tylko rzuty boczne (side-scoop, punch) — poza zakresem ćwiczeń |
+| breakingmuscle-overhead-mb-throw | https://breakingmuscle.com/?p=67437 | Breaking Muscle | 5 (rozstrzygnięcie koordynatora) | nie liczy się |
+| sussex-chest-power, sussex-mb-lying-throw | https://www.sussex.ac.uk/sport/documents/upper-body-chest-power.pdf, …/med-ball-lying-throw.pdf | Sussexsport | 5 (niżej) | Level One–Two; Teaching Points, Look out for |
+| vhi-situp-wall-throw, vhi-partner-drop-toss | iris.hattiesburgclinic.com/patadv/exkit/… | VHI | 5 (niżej) | instrukcje 1–2 zdania |
+| physitrack-* (3 strony) | *.physitrack.com/home-exercise-video/… | Physitrack | nie źródło (platforma ćwiczeń = inna aplikacja; do decyzji koordynatora) | instrukcje 3–6 zdań |
 
-Do decyzji audytora: Sussexsport i VHI jako szczebel 4 (w docs/33 Sussexsport był „PROPOZYCJA”); dwa fragmenty Human Kinetics to różne zespoły
-autorów (niezależne), ale ten sam wydawca. Trzy strony Physitrack to jedna organizacja — nigdzie nie liczę ich podwójnie.
+### Rozstrzygnięcie: Sussexsport i VHI — szczebel 5
+
+- **Sussexsport** (centrum sportu University of Sussex): karty są firmowane, ale to materiał dla użytkowników siłowni uczelnianej, nie organizacji
+  szkolącej trenerów ani serwisu z redakcją i recenzją; bez autora, jedna z kart z datą 2012. Warunek (a) z rozstrzygnięcia koordynatora niespełniony → **5**.
+  Wcześniejsza „PROPOZYCJA” w docs/33 — zgodnie z tym tylko wskazówka.
+- **VHI** (karty ćwiczeń dla pacjentów, podawane przez portal kliniki): komercyjna biblioteka ćwiczeń dla fizjoterapeutów (bliżej platformy ćwiczeń niż
+  organizacji szkolącej), bez autora i daty; analogicznie do reguły „WebMD Ignite: 4 tylko materiał placówki z datą” — tu brak daty → **5**.
 
 ## 5. Otwarte
 
-- **One-Arm Medicine Ball Slam** — żadne przeczytane źródło szczebla ≤ 4 nie opisuje wersji jednorącz (ACE 182, Coach i Plyometric Anatomy — tylko oburącz;
-  jedyne trafienia to strony aplikacji, pominięte). `slam.move` mówi „oburącz” — nie pasuje. Zestaw ogólny ma dziś puste ok/err.
-- **Supine One-Arm Overhead Throw** — brak przeczytanego źródła o wersji jednorącz (tylko sklep z suplementami / aplikacje). Zostaje „open”.
-- **Wall Ball: `sq.mis.kneesIn`, `sq.kneesToes`, `sq.down`** (zestaw ogólny dziś) — żadne z trzech przeczytanych źródeł o wall ball nie mówi o kolanach
-  ani o cofaniu bioder; zgodnie z poleceniem koordynatora nie wpisuję. Uwaga: `lib/figures/v2/families.ts` uzasadnia widok z przodu błędem
-  „kolana do środka” — ten błąd nie ma dziś potwierdzenia dla wall ball (do wiadomości koordynatora/rysownika).
-- **Wall Ball: rozbijanie ruchu na przysiad i osobny rzut rękami** — tylko REP Fitness wprost („separate squat, throw, catch, pause, and reset”). Jedno źródło.
-- **Wall Ball: łokcie w dół i do środka, piłka nie zasłania celu, odległość na długość ręki od ściany** — po jednym źródle (CrossFit; Coach).
-- **Wall Ball: głębokość przysiadu jako liczba** („wyraźnie poniżej kolan” w regulaminie zawodów vs „co najmniej równolegle”) — różnica między źródłami; w danych tylko błąd „za płytki przysiad”, bez progu.
-- **`mb.legs` (Backward Throw, Scoop Throw, Standing Two-Arm Overhead Throw)** — „prostuj biodra, kolana i kostki”: Standing Overhead — tylko ACE 178
-  (Physitrack „tylko ręce”, Plyometric Anatomy klęcząc); Scoop — Breaking Muscle wymienia kostki, Plyometric Anatomy tylko kolana i biodra (+ oderwanie stóp);
-  Backward — źródła mówią o wyproście/wyskoku, kostek nie wymieniają. Nie wpisuję.
-- **Backward Throw: ręce proste przez cały ruch; krótkie przejście z zamachu w wyrzut** — tylko fragment NSCA (Coleman, Szymanski). Jedno źródło.
-- **Scoop Throw: uważaj, żeby spadająca piłka w ciebie nie trafiła** — tylko Plyometric Anatomy. Jedno źródło. Kierunek rzutu: źródła — pionowo
-  albo lekko w przód (Plyometric Anatomy) / łukiem nad głową (Breaking Muscle); w danych tylko „w górę”.
-- **Supine Chest Throw: błędy** — „wyginanie pleców”, „piłka nie leci prosto w górę” tylko w karcie Sussexsport („Look out for”). Jedno źródło.
-- **Supine Two-Arm Overhead Throw: napięty brzuch, łapanie przy powrocie do leżenia** — po jednym źródle (VHI; Physitrack).
-- **Chest Pass: błędy** — nie znaleziono w przeczytanych źródłach szczebla ≤ 4 (wskazówka „nie odchylaj się dla rozpędu” tylko na stronach aplikacji).
-- **Chest Pass: szerokość stóp** — Sussexsport „shoulder width”, ACE „hip-width” — pominięta.
-- **Medicine Ball Slam (już w cues.json, poza zakresem):** Coach („How To Do The Mighty Medicine Ball Slam”, 2021: „Try not to bend at the hips.”) przeczy
-  opisowi ACE 182 (pochylenie w biodrach) co do wykonania; `hinge.back` (neutralne plecy) nie jest tym podważone, ale opis ruchu warto przejrzeć przy recenzji rodziny.
-- Niedostępne w tej sesji: ExRx (403), web.archive.org, stack.com (503), topendsports (domena zablokowana), PDF NSCA Basics (403).
+- **Do decyzji koordynatora — `mbcp.mis.elbows`** (Chest Pass): PL „Opuszczone łokcie — zamiast trzymać je na boki, za piłką.”, EN „Dropping your elbows
+  instead of keeping them out to the sides behind the ball.” Źródła: RFL, tabela „Preparation upper body” (✓ „chest up and elbows out”, ✗ „elbows down”;
+  wariant: rzut na odległość z lekkiego przysiadu) i Freelap USA, „Chest Passes and Shot Throws” → „Elbows Up” („Dropping the elbow increases torque on the shoulder…”
+  — uzasadnienie zdrowotne pomijam). Dane gotowe: `{"c": "mbcp.mis.elbows", "s": [["rfl-mb-chest-throw", "Preparation upper body, ✗"], ["freelap-mb-mistakes", "Elbows Up"]]}`.
+  Wejdzie, jeśli Freelap USA zostanie uznany za szczebel 4; inaczej jedno źródło.
+- **Chest Pass: inne błędy** — „ciało leci w przód dla rozpędu” tylko Seedman (5); RFL „ręce pchają przed nogami”, „za mała praca nóg”, „wypuszczenie za nisko/za wysoko”
+  dotyczą rzutu na odległość z przysiadu — jedno źródło. `mbcp.catch` i `plank.brace` — po odrzuceniu Physitrack tylko ACE.
+- **Chest Pass: szerokość stóp** — RFL i Sussexsport „shoulder width”, ACE „hip-width” — pominięta.
+- **Backward Throw: błędy** — źródła (NSCA, World Athletics, Manske) podają tylko wskazówki; brak źródła z błędami. Krótkie przejście z zamachu w wyrzut — tylko NSCA.
+  „Aktywne odbicie nóg przy wypuszczeniu” — tylko World Athletics.
+- **Standing Two-Arm Overhead Throw: błędy** — „blokowanie przednią nogą i przyspieszenie tułowia przez ręce” tylko Freelap USA (i niejasne do krótkiej karty);
+  przegięcie lędźwi — tylko strony aplikacji. `mb.legs` — World Athletics „use the explosive power of their legs” + ACE 178 (potrójny wyprost); `mb.legs` wymienia
+  biodra, kolana i kostki, World Athletics stawów nie wymienia → nie wpisuję (możliwe krótsze zdanie „Rzucaj całym ciałem, z nóg” — do decyzji, nie przygotowane).
+- **Scoop Throw (otwarte):** jedyne źródło ≥ 4 to Plyometric Anatomy (status do decyzji); Breaking Muscle = 5; TRX powiela tę samą listę rzutów. Błąd
+  „rzut z lędźwi zamiast z nóg (prostowanie się jak w szybkim martwym ciągu)” — tylko Freelap USA. „Uważaj, żeby spadająca piłka w ciebie nie trafiła” — tylko
+  Plyometric Anatomy. World Athletics „Forward throw” (plecy proste i napięte przy uginaniu kolan, ręce proste przy wypuszczeniu) nie mówi, że piłka idzie spod spodu — nie użyte.
+- **Supine Chest Throw (otwarte):** Sussexsport (5) i VHI (5). Błędy „wyginanie pleców”, „piłka nie leci prosto w górę” tylko Sussexsport. Brak źródła ≥ 4 (szukano: ACE, NASM, NSCA, producenci).
+- **Supine Two-Arm Overhead Throw (otwarte):** Physitrack (nie źródło) i VHI (5).
+- **One-Arm Medicine Ball Slam (otwarte):** żadne przeczytane źródło szczebla ≤ 4 nie opisuje wersji jednorącz (ACE 182, Coach, Plyometric Anatomy, TRX — tylko oburącz;
+  wyszukiwanie ACE/NASM/NSCA/CrossFit 02.11 — tylko strony aplikacji i blogi). `slam.move` mówi „oburącz” — nie pasuje.
+- **Supine One-Arm Overhead Throw (otwarte):** brak przeczytanego źródła o wersji jednorącz (tylko sklepy i aplikacje).
+- **Wall Ball: `sq.mis.kneesIn`, `sq.kneesToes`, `sq.down`** (zestaw ogólny dziś) — żadne z trzech przeczytanych źródeł nie mówi o kolanach ani o cofaniu bioder; nie wpisuję.
+  `lib/figures/v2/families.ts` uzasadnia widok z przodu błędem „kolana do środka” — dla wall ball niepotwierdzony (do wiadomości koordynatora/rysownika).
+- **Wall Ball: `wb.catch`** stoi na Coach + REP Fitness; jeśli koordynator nie uzna magazynu Coach za szczebel 4 (redakcja tak, recenzja ekspercka niesprawdzona) — do Otwartych.
+- **Wall Ball: rozbijanie ruchu na przysiad i osobny rzut** — tylko REP Fitness. Łokcie w dół i do środka, piłka nie zasłania celu, odległość od ściany — po jednym źródle.
+  Głębokość przysiadu jako liczba — różnica między źródłami; w danych tylko „za płytki przysiad”, bez progu.
+- **Medicine Ball Slam (już w cues.json, poza zakresem):** Coach (2021: „Try not to bend at the hips.”) przeczy opisowi ACE 182 (pochylenie w biodrach); do przejrzenia przy recenzji rodziny.
+- **Szczeble do decyzji koordynatora:** Coach (magazyn), Freelap USA, Plyometric Anatomy (Human Kinetics — czy autorzy spełniają „NSCA albo uznany naukowiec”), Physitrack.
+- Niedostępne: ExRx (403), web.archive.org, stack.com (503 — m.in. artykuł „Med Ball Throwing Exercises: You're Doing Them Wrong”), topendsports (domena zablokowana, także fallback.topendsports.com).
 
 ## 6. Stan
 
-- Zrobione (02.11.2026): wszystkie 9 ćwiczeń przejrzane; 1 gotowe (Wall Ball), 6 częściowych, 2 otwarte; 17 nowych zdań, 16 nowych źródeł, 7 nowych organizacji.
-- Zostało: błędy (mistakes) dla 6 ćwiczeń częściowych; wersje jednorącz (One-Arm Slam, Supine One-Arm Overhead Throw).
-- Następny krok: szukać kart z sekcją błędów (np. materiały NSCA o rzutach piłką lekarską w PDF, inni producenci piłek lekarskich, uczelniane centra sportu);
-  dla wersji jednorącz — materiały rehabilitacji barku (np. programy plyometryczne szpitali) jako „wariant”.
-- Pułapki: wiele trafień wyszukiwarki to strony aplikacji (nie źródło); kilka stron Physitrack = jedna organizacja; PDF Sussexsport czytać z pliku (WebFetch zwraca binaria).
+- Zrobione (02.11.2026, sesja 2): poszukiwanie błędów dla 6 ćwiczeń i wersji jednorącz; rozstrzygnięcie Sussexsport/VHI (5); zastosowanie szczebli koordynatora
+  (Breaking Muscle, Sussexsport, VHI, Physitrack wypadły); nowe źródła: RFL, World Athletics ×2 (+1 przeczytane, nieużyte), Freelap USA, TRX, Training & Conditioning, Seedman.
+  Wynik: 1 gotowe (Wall Ball), 3 częściowe (Chest Pass, Backward Throw, Standing Two-Arm Overhead Throw), 5 otwartych. 11 zdań w danych (1 nowe w tej sesji: `bmbt.armsStraight`),
+  1 zdanie warunkowe (`mbcp.mis.elbows`).
+- Zostało: błędy dla Chest Pass / Backward / Standing Overhead (źródła z sekcją błędów są rzadkie — w przeczytanych materiałach organizacji są tylko wskazówki);
+  zastępstwo dla Scoop i obu Supine; wersje jednorącz (prawdopodobnie zostaną otwarte).
+- Następny krok: decyzja koordynatora o Freelap USA / Coach / Plyometric Anatomy (odblokowuje `mbcp.mis.elbows` i częściowo Scoop); potem szukać kart federacji
+  (inne karty RFL, UK Athletics, Athletics Australia „Athletics Coach”, World Athletics — strona indeksu Teaching athletics) z tabelami ✓/✗ jak w RFL.
+- Pułapki: wyniki wyszukiwania to w większości strony aplikacji (nie źródło); TRX powiela listę rzutów z Plyometric Anatomy (niezależność); PDF czytać narzędziem
+  Read z pliku zapisanego przez WebFetch (WebFetch zwraca binaria); karty World Athletics nie mają sekcji błędów — tylko „Participants should remember…”.
