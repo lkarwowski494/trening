@@ -28,7 +28,9 @@ describe('tests-tz.yml — zadanie „zmiana-czasu” (A)', () => {
   });
   test('bez argumentu skrypt liczy przejścia PRZYSZŁEGO roku (rok UTC + 1)', () => {
     const poz = JSON.parse(execFileSync('node', [path.join(root, 'scripts/ci/przejscia-czasu.js'), 'macierz']).toString()) as string[];
-    for (const p of poz) expect(new Date(p.split('|')[1]).getUTCFullYear()).toBe(new Date().getUTCFullYear() + 1);
+    /* rok z zegara procesu potomnego (ten sam zegar co skrypt): w zadaniu „zmiana-czasu” Jest ma przypięte „teraz” (PIN_NOW, rok przyszły), a skrypt liczy z prawdziwego zegara — 02.11.2026 tests-tz 41368506058 */
+    const rokSkryptu = Number(execFileSync('node', ['-e', 'console.log(new Date().getUTCFullYear())']).toString());
+    for (const p of poz) expect(new Date(p.split('|')[1]).getUTCFullYear()).toBe(rokSkryptu + 1);
   });
   test('pliki z własnym zegarem są pominięte (scripts/ci/pin-wykluczenia.mjs), a reszta biegnie z przypiętym „teraz”', () => {
     expect(tz).toMatch(/--testPathIgnorePatterns "\$\(node scripts\/ci\/pin-wykluczenia\.mjs\)"/);
