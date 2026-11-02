@@ -6,6 +6,23 @@
   Smith Machine Bent Over Row, Bent Over Row (linki), Lying T-Bar Row, Barbell Rear Delt Row.
 - Status: PROPOZYCJA — dane do integracji przez koordynatora linii 1.1
 
+## Korekta szczebli 02.11.2026
+
+Szczeble organizacji przeliczone wg rozstrzygnięcia koordynatora linii 1.1 z 02.11.2026 (szczebel 4 = naraz: (a) organizacja szkoląca
+trenerów, serwis z redakcją i recenzją ekspercką albo producent własnego rodzaju sprzętu; (b) autor + data albo treść firmowana przez organizację;
+(c) nie recenzja z afiliacją ani marketing). Kryteria (b) i (c) sprawdzone na już cytowanych stronach (WebFetch 02.11.2026). Zmiany:
+
+- Ocena organizacji: Fitness Volt — 4 (tylko artykuły o technice); Generation Iron — 4 (tylko artykuły o technice); ATHLEAN-X — 5;
+  Sole Fitness — 5 (nie producent tego rodzaju sprzętu); Bells of Steel — 4 dla własnego sprzętu (sztanga, ławka); Kensui — 5 dla Seal Row ze sztangą
+  (nie ich rodzaj sprzętu); Major Fitness — 4 dla suwnicy Smitha; RitFit — 4 dla suwnicy Smitha; Dumbbells Direct — 5 (sprzedawca); Eisenhorn — bez zmiany
+  wyniku (jedyne źródło ćwiczenia, które i tak jest otwarte). Breaking Muscle — 5 (rozstrzygnięcie). Uzasadnienia w sekcji 3.
+- **Meadows Row**: gotowe → otwarte (wszystkie zdania mają ≤ 1 źródło szczebla 4 — zostaje tylko Generation Iron).
+- **Reverse Grip Bent Over Row**: gotowe → otwarte (zostaje tylko Fitness Volt; Breaking Muscle = 5).
+- **Barbell Rear Delt Row**: gotowe → otwarte (zostaje tylko Generation Iron; Dumbbells Direct = 5).
+- **Seal Row (sztanga)**: zostaje gotowe (Fitness Volt + Bells of Steel); Kensui usunięte z `seal.setup`.
+- **Smith Machine Bent Over Row**, **Lying T-Bar Row**: bez zmian — każde zdanie ma ≥ 2 źródła szczebla 4 z różnych organizacji.
+- Nowe zdania `meadows.*`, `row.revGrip`, `rdrow.*` nie są używane w bloku JSON — przeniesione do „Otwarte” jako kandydaci.
+
 Metoda: wyjątek dla wskazówek techniki (CLAUDE.md, 25.10.2026) — zdanie wchodzi, gdy potwierdzają je ≥ 2 przeczytane (WebFetch, 02.11.2026)
 źródła szczebla 4 z różnych organizacji, opisujące TO ćwiczenie (albo wprost jego wariant). Opis innego ćwiczenia (np. zwykłego wiosłowania
 sztangą dla wersji na suwnicy Smitha) traktuję jako analogię i nie liczę go. Zdania zestawu ogólnego, których przeczytane źródła nie potwierdzają,
@@ -15,37 +32,21 @@ nie trafiają do karty (uzupełnienie briefu koordynatora, 02.11.2026). Liczb (k
 
 | Ćwiczenie (klucz katalogu) | Obecny tryb | Wynik | Uwagi |
 |---|---|---|---|
-| Meadows Row | general (rowBent) | gotowe | 3 niezależne źródła; kąt pochylenia różny (ok. 45° vs prawie poziomo) — pominięty |
-| Seal Row (sztanga) | general (row) | gotowe (krótka karta) | brak ≥ 2 źródeł na błędy; szerokość chwytu tylko w 1 źródle |
-| Reverse Grip Bent Over Row | general (rowBent) | gotowe | 2 źródła wprost o podchwycie; kąt tułowia różny (45° vs prawie poziomo) — pominięty |
-| Smith Machine Bent Over Row | general (rowBent) | gotowe | 3 źródła (2 producentów sprzętu + serwis); wysokość gryfu: część wspólna „na wysokości ud” |
+| Meadows Row | general (rowBent) | otwarte | po korekcie szczebli tylko Generation Iron (4); Sole i ATHLEAN-X = 5 |
+| Seal Row (sztanga) | general (row) | gotowe (krótka karta) | Fitness Volt + Bells of Steel; brak ≥ 2 źródeł na błędy |
+| Reverse Grip Bent Over Row | general (rowBent) | otwarte | po korekcie szczebli tylko Fitness Volt (4); Breaking Muscle = 5 |
+| Smith Machine Bent Over Row | general (rowBent) | gotowe | Major Fitness, RitFit (producenci suwnic) + Generation Iron; wysokość gryfu: część wspólna „na wysokości ud” |
 | Bent Over Row (linki) | general (rowBent) | otwarte | tylko 1 przeczytane źródło (wariant naprzemienny jednorącz); reszta wyników to aplikacje |
-| Lying T-Bar Row | general (row) | gotowe | 2 źródła o wersji z podparciem klatki na maszynie |
-| Barbell Rear Delt Row | general (rowBent) | gotowe (krótka karta) | 2 źródła; kąt tułowia różny (30–45° vs prawie poziomo) — pominięty |
+| Lying T-Bar Row | general (row) | gotowe | Fitness Volt + Generation Iron, wersja z podparciem klatki na maszynie |
+| Barbell Rear Delt Row | general (rowBent) | otwarte | po korekcie szczebli tylko Generation Iron (4); Dumbbells Direct = 5 |
 
 ## 2. Blok JSON do `exercises` w `data/zrodla/cues.json`
 
 ```json
 {
-  "Meadows Row": {
-    "setup": [
-      {"c": "meadows.setup", "s": [["sole-meadows-row", "Equipment Setup; Starting Position 1 (stand sideways, inside foot forward)"], ["athleanx-meadows-row", "How to do Meadows Rows — Setup; Stance (leg nearest the bar forward)"]]},
-      {"c": "meadows.grip", "s": [["sole-meadows-row", "Starting Position 2–4 (hinge, grip the loaded sleeve, other hand on front thigh)"], ["athleanx-meadows-row", "How to — Hinge; Grip (sleeve, free hand on front thigh)"], ["generationiron-meadows-row", "Meadows Row Techniques — grip end of the bar overhand, forearm on front leg"]]}
-    ],
-    "move": [
-      {"c": "meadows.pull", "s": [["sole-meadows-row", "Execution Steps 1, 3 (elbow up and back to the hip; lower slowly)"], ["athleanx-meadows-row", "How to — Pull path; Return (toward the hip; lower under control)"], ["generationiron-meadows-row", "Meadows Row Techniques (pull toward back hip; slowly lower)"]]}
-    ],
-    "tips": [
-      {"c": "meadows.noTwist", "s": [["sole-meadows-row", "Form Tips and Common Mistakes (keep your body still, no rocking or twisting)"], ["athleanx-meadows-row", "How to — Top (keep torso still, don't twist); Common Mistakes — Over-rotating the torso"]]},
-      {"c": "row.fullStretch", "s": [["sole-meadows-row", "Execution Steps 3 (arm fully straighten)"], ["athleanx-meadows-row", "Common Mistakes — Cutting the bottom stretch short"], ["generationiron-meadows-row", "Meadows Row Techniques (lower until elbow is straight)"]]}
-    ],
-    "mistakes": [
-      {"c": "mis.jerk", "s": [["sole-meadows-row", "Form Tips and Common Mistakes (rocking or twisting)"], ["athleanx-meadows-row", "Common Mistakes — Over-rotating the torso (momentum pull)"], ["generationiron-meadows-row", "uwaga po krokach (momentum, keep it controlled)"]]}
-    ]
-  },
   "Seal Row (sztanga)": {
     "setup": [
-      {"c": "seal.setup", "s": [["fitnessvolt-seal-row", "How To Perform Seal Row (bench on boxes/plates, lie face down, overhand grip)"], ["bellsofsteel-seal-row", "wersja z ławką (bench on sturdy objects, lie under it, overhand grip)"], ["kensui-seal-rows", "Traditional Set-up: Barbells; How to set up"]]}
+      {"c": "seal.setup", "s": [["fitnessvolt-seal-row", "How To Perform Seal Row (bench on boxes/plates, lie face down, overhand grip)"], ["bellsofsteel-seal-row", "wersja z ławką (bench on sturdy objects, lie under it, overhand grip)"]]}
     ],
     "move": [
       {"c": "seal.pull", "s": [["fitnessvolt-seal-row", "How To Perform Seal Row (pull toward lower ribs, bar touches the bench; lower slowly)"], ["bellsofsteel-seal-row", "wersja z ławką (pull toward your torso; lower in a controlled way)"]]}
@@ -54,23 +55,6 @@ nie trafiają do karty (uzupełnienie briefu koordynatora, 02.11.2026). Liczb (k
       {"c": "row.pauseTop", "s": [["fitnessvolt-seal-row", "How To Perform Seal Row (pause at the top)"], ["bellsofsteel-seal-row", "wersja z ławką (pause briefly at the top)"]]}
     ],
     "mistakes": []
-  },
-  "Reverse Grip Bent Over Row": {
-    "setup": [
-      {"c": "row.hinge", "s": [["breakingmuscle-reverse-grip-row", "Step 2 (hinge at the hips, knees slightly bent, neutral spine)"], ["fitnessvolt-reverse-grip-row", "Hinge and Torso 3–4 (hinge, back straight, knees slightly bent)"]]},
-      {"c": "row.revGrip", "s": [["breakingmuscle-reverse-grip-row", "Step 1 (underhand, slightly wider than shoulder-width)"], ["fitnessvolt-reverse-grip-row", "Setup and Grip 2 (underhand, about shoulder-width)"]]}
-    ],
-    "move": [
-      {"c": "row.bbPullCtrl", "s": [["breakingmuscle-reverse-grip-row", "Step 3–4 (toward the belly button; lower under control)"], ["fitnessvolt-reverse-grip-row", "Pull Path 6; Return 8 (toward lower ribcage; lower under control) — część wspólna: brzuch"]]}
-    ],
-    "tips": [
-      {"c": "hinge.back", "s": [["breakingmuscle-reverse-grip-row", "Step 2; Step 4 (neutral spine, flat back)"], ["fitnessvolt-reverse-grip-row", "Hinge and Torso 4 (back straight)"]]},
-      {"c": "row.pauseTop", "s": [["breakingmuscle-reverse-grip-row", "Step 4 (hold briefly at the top)"], ["fitnessvolt-reverse-grip-row", "Pull Path 7 (pause briefly at the top)"]]}
-    ],
-    "mistakes": [
-      {"c": "mis.roundBack", "s": [["breakingmuscle-reverse-grip-row", "Common Mistakes — Rounded lower back"], ["fitnessvolt-reverse-grip-row", "Common Mistakes — Rounding the back"]]},
-      {"c": "mis.jerk", "s": [["breakingmuscle-reverse-grip-row", "Common Mistakes — Using momentum"], ["fitnessvolt-reverse-grip-row", "Common Mistakes — Using momentum (jerking or swinging)"]]}
-    ]
   },
   "Smith Machine Bent Over Row": {
     "setup": [
@@ -103,60 +87,47 @@ nie trafiają do karty (uzupełnienie briefu koordynatora, 02.11.2026). Liczb (k
       {"c": "row.slowDown", "s": [["fitnessvolt-cs-tbar-row", "4. Return (lower slowly and under control)"], ["generationiron-cs-tbar-row", "Return 6 (lower slowly, don't let it drop)"]]}
     ],
     "mistakes": []
-  },
-  "Barbell Rear Delt Row": {
-    "setup": [
-      {"c": "rdrow.setup", "s": [["dumbbellsdirect-rear-delt-row", "How-To — Grip; Hinge & Torso (wider than shoulders; hinge at the hips)"], ["generationiron-rear-delt-row", "1. Grip; 2. Hinge and Torso (overhand, wider than shoulders; hinge forward)"]]}
-    ],
-    "move": [
-      {"c": "rdrow.pull", "s": [["dumbbellsdirect-rear-delt-row", "Pull Path & Elbows; Return (elbows flared wide, toward upper chest; lower slowly)"], ["generationiron-rear-delt-row", "3. Elbows; 4. Pull Path; 6. Return (elbows out, toward upper chest; lower slowly)"]]}
-    ],
-    "tips": [],
-    "mistakes": []
   }
 }
 ```
 
-Uwaga dla integracji: w Meadows Row źródło `generationiron-meadows-row` nie potwierdza nogi z przodu — `meadows.setup` opiera się na 2 źródłach
-(Sole, Athlean-X), które zgodnie wskazują nogę bliżej gryfu z przodu.
-
 ## 3. Nowe źródła (wszystkie przeczytane WebFetch 02.11.2026)
 
-| id | org | tytuł | url | szczebel |
+| id | org | tytuł | url | szczebel (po korekcie 02.11.2026) |
 |---|---|---|---|---|
-| sole-meadows-row | Sole Fitness | Meadows Row Workout: Ultimate Guide | https://www.soletreadmills.com/blogs/news/meadows-row-workout-ultimate-guide-with-benefits-proper-form-tips-muscles-worked | 4 |
-| athleanx-meadows-row | ATHLEAN-X | How to Do the Meadows Row | https://learn.athleanx.com/articles/back-for-men/how-to-do-the-meadows-row | 4 |
-| generationiron-meadows-row | Generation Iron | Meadows Row Exercise Guide | https://generationiron.com/meadows-row-exercise-guide/ | 4 |
+| sole-meadows-row | Sole Fitness | Meadows Row Workout: Ultimate Guide | https://www.soletreadmills.com/blogs/news/meadows-row-workout-ultimate-guide-with-benefits-proper-form-tips-muscles-worked | 5 — nie liczy się |
+| athleanx-meadows-row | ATHLEAN-X | How to Do the Meadows Row | https://learn.athleanx.com/articles/back-for-men/how-to-do-the-meadows-row | 5 — nie liczy się |
+| generationiron-meadows-row | Generation Iron | Meadows Row Exercise Guide | https://generationiron.com/meadows-row-exercise-guide/ | 4 (tylko w „Otwarte”) |
 | fitnessvolt-seal-row | Fitness Volt | Seal Row | https://fitnessvolt.com/seal-row/ | 4 |
-| bellsofsteel-seal-row | Bells of Steel | How To Do Seal Rows at Home | https://bellsofsteel.us/blogs/content/how-to-do-seal-rows-at-home | 4 |
-| kensui-seal-rows | Kensui Fitness | Seal Rows | https://kensui.com/blogs/news/seal-rows | 4 |
-| breakingmuscle-reverse-grip-row | Breaking Muscle (istnieje) | Reverse-Grip Bent-Over Row | https://breakingmuscle.com/reverse-grip-bent-over-row/ | 4 |
-| fitnessvolt-reverse-grip-row | Fitness Volt | Barbell Reverse-Grip Bent-Over Row | https://fitnessvolt.com/barbell-reverse-grip-bent-over-row-guide/ | 4 |
-| majorfitness-smith-row | Major Fitness | How to Do Bent Over Rows on Smith Machine | https://www.majorfitness.com/blogs/wiki/how-to-do-bent-over-rows-on-smith-machine-a-step-by-step-guide | 4 |
-| ritfit-smith-row | RitFit | How to Do the Smith Machine Bent Over Row | https://www.ritfitsports.com/blogs/article/how-to-do-the-smith-machine-bent-over-row | 4 |
+| bellsofsteel-seal-row | Bells of Steel | How To Do Seal Rows at Home | https://bellsofsteel.us/blogs/content/how-to-do-seal-rows-at-home | 4 (własny sprzęt: sztanga, ławka) |
+| kensui-seal-rows | Kensui Fitness | Seal Rows | https://kensui.com/blogs/news/seal-rows | 5 dla sztangi — nie liczy się |
+| breakingmuscle-reverse-grip-row | Breaking Muscle (istnieje) | Reverse-Grip Bent-Over Row | https://breakingmuscle.com/reverse-grip-bent-over-row/ | 5 (rozstrzygnięcie) — nie liczy się |
+| fitnessvolt-reverse-grip-row | Fitness Volt | Barbell Reverse-Grip Bent-Over Row | https://fitnessvolt.com/barbell-reverse-grip-bent-over-row-guide/ | 4 (tylko w „Otwarte”) |
+| majorfitness-smith-row | Major Fitness | How to Do Bent Over Rows on Smith Machine | https://www.majorfitness.com/blogs/wiki/how-to-do-bent-over-rows-on-smith-machine-a-step-by-step-guide | 4 (własny sprzęt: suwnica Smitha) |
+| ritfit-smith-row | RitFit | How to Do the Smith Machine Bent Over Row | https://www.ritfitsports.com/blogs/article/how-to-do-the-smith-machine-bent-over-row | 4 (własny sprzęt: suwnica Smitha) |
 | generationiron-smith-row | Generation Iron | Smith Machine Row Exercise Guide | https://generationiron.com/smith-machine-row-exercise-guide/ | 4 |
 | fitnessvolt-cs-tbar-row | Fitness Volt | Chest-Supported T-Bar Row | https://fitnessvolt.com/chest-supported-t-bar-row-guide/ | 4 |
 | generationiron-cs-tbar-row | Generation Iron | Chest Supported T-Bar Row | https://generationiron.com/chest-supported-t-bar-row/ | 4 |
-| dumbbellsdirect-rear-delt-row | Dumbbells Direct | Barbell Rear Delt Row | https://dumbbellsdirect.com/blogs/barbell-exercisesspecific-movements/barbell-rear-delt-row | 4 |
-| generationiron-rear-delt-row | Generation Iron | Barbell Rear Delt Row Exercise Guide | https://generationiron.com/barbell-rear-delt-row-exercise-guide/ | 4 |
-| eisenhorn-alt-cable-bent-row | Eisenhorn | 225 Alternating bent-over rowing with cable pull | https://eisenhorn.com/en/eisenhorn-exercises/225-alternating-bent-over-rowing-with-cable-pull | 4 (tylko w „Otwarte”) |
+| dumbbellsdirect-rear-delt-row | Dumbbells Direct | Barbell Rear Delt Row | https://dumbbellsdirect.com/blogs/barbell-exercisesspecific-movements/barbell-rear-delt-row | 5 (sprzedawca) — nie liczy się |
+| generationiron-rear-delt-row | Generation Iron | Barbell Rear Delt Row Exercise Guide | https://generationiron.com/barbell-rear-delt-row-exercise-guide/ | 4 (tylko w „Otwarte”) |
+| eisenhorn-alt-cable-bent-row | Eisenhorn | 225 Alternating bent-over rowing with cable pull | https://eisenhorn.com/en/eisenhorn-exercises/225-alternating-bent-over-rowing-with-cable-pull | nieoceniane szczegółowo (tylko w „Otwarte”, nie zmienia wyniku) |
 
-Nowe organizacje (propozycja szczebla 4):
+### Ocena nowych organizacji wg kryteriów (a)–(c) (02.11.2026)
 
-| org | kind | uzasadnienie |
-|---|---|---|
-| Fitness Volt | site | serwis specjalistyczny, przewodniki techniki ćwiczeń |
-| Generation Iron | site | serwis specjalistyczny (kulturystyka), przewodniki ćwiczeń |
-| ATHLEAN-X | site | serwis trenera-fizjoterapeuty; przewodniki techniki (do decyzji koordynatora: szczebel 4 albo 5) |
-| Sole Fitness | maker | producent sprzętu (bieżnie, siłownia domowa) — poradnik |
-| Bells of Steel | maker | producent sprzętu siłowego — poradnik |
-| Kensui Fitness | maker | producent sprzętu siłowego — poradnik |
-| Major Fitness | maker | producent sprzętu (suwnice Smitha, klatki) — poradnik |
-| RitFit | maker | producent sprzętu (suwnice Smitha) — poradnik |
-| Dumbbells Direct | maker | sprzedawca sprzętu siłowego — poradnik (do decyzji: sprzedawca, nie producent) |
-| Eisenhorn | maker | producent sprzętu — opis ćwiczenia |
+| org | kind | szczebel | uzasadnienie (a) / (b) / (c) |
+|---|---|---|---|
+| Fitness Volt | site | 4 — tylko artykuły o technice | (a) serwis z opisanym procesem redakcji: strona „editorial-process” deklaruje sprawdzanie treści treningowych przez certyfikowanego trenera i fakt-checking każdego artykułu; (b) autor i data na stronach (np. seal-row: autor z certyfikatem trenera, publikacja 2022, aktualizacja 2024); (c) cytowane strony to przewodniki techniki, nie recenzje produktów (zestawienia produktów w pasku bocznym — nie liczymy takich stron, analogicznie do BarBend) |
+| Generation Iron | site | 4 — tylko artykuły o technice | (a) sieć medialna z zespołem ekspertów; strona Meadows Row ma wiersz „Fact checked by” z ekspertem, strona T-Bar — autor z biogramem i kwalifikacjami; (b) autor i data (sprawdzone na 2 stronach); (c) przewodniki techniki; serwis ma afiliację w recenzjach produktów — tych nie liczymy (jak BarBend) |
+| ATHLEAN-X | site | 5 | (b) autor z kwalifikacjami i data są, ale (c) strona sprzedaje — wezwania do zakupu suplementów i programów treningowych w treści; (a) nie organizacja szkoląca trenerów ani redakcja z recenzją |
+| Sole Fitness | maker | 5 dla Meadows Row | producent bieżni i sprzętu kardio; wiosłowanie sztangą w uchwycie nie jest jego rodzajem sprzętu (rozstrzygnięcie: producent tylko dla własnego sprzętu) |
+| Bells of Steel | maker | 4 dla sztang, ławek, akcesoriów do stojaków | (a) producent sprzętu siłowego (ławki, sztangi, nakładka do seal row); (b) brak autora, data 05.06.2023, treść firmowana przez firmę; (c) linki do własnych produktów, ale strona jest instrukcją ćwiczenia — przyjęte jak u innych producentów z rozstrzygnięcia |
+| Kensui Fitness | maker | 5 dla Seal Row ze sztangą | (b) autor i data są; (c)/(a) strona promuje uchwyty firmy (Swissies, SWVL), a cytowana wersja używa sztangi i ławki — nie jej rodzaj sprzętu |
+| Major Fitness | maker | 4 dla suwnicy Smitha | (a) producent suwnic Smitha; (b) autor (certyfikowany trener w zespole firmy) i data 10.09.2026; (c) linki do produktów, ale główna treść to przewodnik ćwiczenia |
+| RitFit | maker | 4 dla suwnicy Smitha | wymieniony w rozstrzygnięciu jako producent; (b) „RitFit Editorial Team”, aktualizacja 29.10.2026 — treść firmowana; (c) jak wyżej |
+| Dumbbells Direct | shop | 5 | sprzedawca, nie producent (rozstrzygnięcie: sprzedawcy — 5) |
+| Eisenhorn | maker | nieoceniane | jedyne źródło dla Bent Over Row (linki), które pozostaje otwarte niezależnie od szczebla |
 
-Przeczytane, NIE liczone:
+Przeczytane, NIE liczone (bez zmian):
 - Set For Set „Meadows Rows” (setforset.com) — marka odzieżowa; tekst kroków niemal identyczny z Generation Iron (brak niezależności).
 - REP Fitness „How to do a Landmine Row” — o Meadows Row tylko jedno zdanie w „Landmine Row Variations” (wiosłowanie jednorącz, ciało pod kątem do gryfu); za mało na zdanie.
 
@@ -165,49 +136,51 @@ powerliftingtechnique.com (403), library.theprehabguys.com (przekierowanie do lo
 bodybuilding.com/exercises (przekierowanie do sklepu, 404), barbend.com/meadows-row (404), bodysolid.com Exercises/Article/25 (strona o konserwacji, nie ćwiczenie).
 Strony innych aplikacji treningowych z wyników wyszukiwania pominięte (uzupełnienie briefu, 02.11.2026).
 
-## 4. Nowe zdania
+## 4. Nowe zdania (używane w bloku JSON)
 
 | id | PL | EN (propozycja) | źródła |
 |---|---|---|---|
-| meadows.setup | Jeden koniec gryfu w uchwycie do wiosłowania albo w rogu. Stań bokiem do gryfu w wykroku, noga bliżej gryfu z przodu. | One end of the bar in a landmine or a corner. Stand side-on to the bar in a split stance, leg nearer the bar in front. | Sole, Athlean-X |
-| meadows.grip | Pochyl tułów w biodrach, chwyć gryf za końcówkę przy talerzach, wolną rękę oprzyj o udo z przodu. | Hinge at the hips, grab the bar by the loaded sleeve and rest your free hand on your front thigh. | Sole, Athlean-X, Generation Iron |
-| meadows.pull | Ciągnij łokieć w tył, prowadząc gryf w stronę biodra; opuść powoli do wyprostu ręki. | Drive your elbow back and pull the bar toward your hip; lower slowly until your arm is straight. | Sole, Athlean-X, Generation Iron |
-| meadows.noTwist | Tułów nieruchomo — nie skręcaj go, żeby pomóc sobie rozpędem. | Keep your torso still — don't twist to get momentum. | Sole, Athlean-X |
-| seal.setup | Ustaw ławkę wyżej na stabilnych podporach, połóż się na niej przodem i chwyć sztangę pod ławką nachwytem. | Raise the bench on stable supports, lie face down on it and grab the bar below with an overhand grip. | Fitness Volt, Bells of Steel, Kensui |
+| seal.setup | Ustaw ławkę wyżej na stabilnych podporach, połóż się na niej przodem i chwyć sztangę pod ławką nachwytem. | Raise the bench on stable supports, lie face down on it and grab the bar below with an overhand grip. | Fitness Volt, Bells of Steel |
 | seal.pull | Przyciągnij sztangę w stronę ławki, potem opuść ją powoli. | Pull the bar up toward the bench, then lower it slowly. | Fitness Volt, Bells of Steel |
-| row.pauseTop | Na górze zatrzymaj się na chwilę. | Pause briefly at the top. | Seal: FV, BoS; Reverse: BM, FV; Lying T-Bar: FV, GI |
-| row.revGrip | Chwyć sztangę podchwytem, mniej więcej na szerokość barków. | Grab the bar with an underhand grip, about shoulder-width. | Breaking Muscle, Fitness Volt |
-| row.bbPullCtrl | Przyciągnij sztangę do brzucha, potem opuść ją pod kontrolą. | Pull the bar to your stomach, then lower it under control. | Reverse: BM, FV; Smith: RitFit, GI, Major |
+| row.pauseTop | Na górze zatrzymaj się na chwilę. | Pause briefly at the top. | Seal: FV, BoS; Lying T-Bar: FV, GI |
+| row.bbPullCtrl | Przyciągnij sztangę do brzucha, potem opuść ją pod kontrolą. | Pull the bar to your stomach, then lower it under control. | Smith: RitFit, GI, Major |
 | smith.rowSetup | Ustaw gryf na wysokości ud i stań przed nim, stopy mniej więcej na szerokość barków. | Set the bar at thigh height and stand in front of it, feet about shoulder-width apart. | Major Fitness, RitFit, Generation Iron (część wspólna wysokości: od połowy uda do tuż pod pasem) |
 | row.elbowsLead | Ciągnij łokciami, nie dłońmi. | Lead with your elbows, not your hands. | Major Fitness, RitFit |
 | ltbar.setup | Stopy na podeście, chwyć uchwyty nachwytem. | Feet on the platform, grab the handles with an overhand grip. | Fitness Volt, Generation Iron |
 | row.slowDown | Opuszczaj ciężar powoli, nie pozwól mu opaść. | Lower the weight slowly — don't let it drop. | Fitness Volt, Generation Iron |
-| rdrow.setup | Chwyć sztangę nachwytem, wyraźnie szerzej niż barki, i pochyl tułów w biodrach. | Grab the bar overhand, well wider than your shoulders, and hinge at the hips. | Dumbbells Direct, Generation Iron |
-| rdrow.pull | Łokcie szeroko na boki; przyciągnij sztangę do górnej części klatki, potem opuść ją powoli. | Elbows flared wide; pull the bar to your upper chest, then lower it slowly. | Dumbbells Direct, Generation Iron |
 
-Istniejące zdania użyte: `row.hinge`, `row.bbGrip`, `row.fullStretch`, `hinge.back`, `csr.chest`, `tbar.pull`, `mis.roundBack`, `mis.jerk`.
+Istniejące zdania użyte: `row.hinge`, `row.bbGrip`, `hinge.back`, `csr.chest`, `tbar.pull`, `mis.roundBack`, `mis.jerk`.
 Każde nowe zdanie trzeba dodać do `lib/cues/text/pl.json` i `en.json` oraz do rejestru twierdzeń (`node scripts/claims.mjs --stub`), jeśli `check:claims` je rozpozna.
-Nazwa „landmine” w `meadows.setup` po polsku oddana opisowo („uchwyt do wiosłowania”) — do sprawdzenia przez tłumacza ze słownikiem terminów.
 
 ## 5. Otwarte
 
+- **Meadows Row** — [OTWARTE] szczebel źródła wg rozstrzygnięcia 02.11.2026: Sole (5) i ATHLEAN-X (5) nie liczą się; każde zdanie ma najwyżej 1 źródło
+  szczebla 4 (Generation Iron). Kandydaci zdań (gdy znajdzie się drugie źródło szczebla 4):
+  `meadows.setup` „Jeden koniec gryfu w uchwycie do wiosłowania albo w rogu. Stań bokiem do gryfu w wykroku, noga bliżej gryfu z przodu.” (GI nie potwierdza nogi z przodu — dziś 0 źródeł szczebla 4);
+  `meadows.grip` „Pochyl tułów w biodrach, chwyć gryf za końcówkę przy talerzach, wolną rękę oprzyj o udo z przodu.” (GI);
+  `meadows.pull` „Ciągnij łokieć w tył, prowadząc gryf w stronę biodra; opuść powoli do wyprostu ręki.” (GI);
+  `meadows.noTwist` „Tułów nieruchomo — nie skręcaj go, żeby pomóc sobie rozpędem.” (0 źródeł szczebla 4); `row.fullStretch`, `mis.jerk` (GI).
+  EN propozycje jak w poprzedniej wersji pliku (historia gałęzi). Nazwa „landmine” — do sprawdzenia przez tłumacza.
+- **Reverse Grip Bent Over Row** — [OTWARTE] szczebel źródła wg rozstrzygnięcia 02.11.2026: Breaking Muscle = 5; zostaje tylko Fitness Volt
+  (`row.hinge`, `row.revGrip` „Chwyć sztangę podchwytem, mniej więcej na szerokość barków.”, `row.bbPullCtrl`, `hinge.back`, `row.pauseTop`, `mis.roundBack`, `mis.jerk`).
+- **Barbell Rear Delt Row** — [OTWARTE] szczebel źródła wg rozstrzygnięcia 02.11.2026: Dumbbells Direct = 5 (sprzedawca); zostaje tylko Generation Iron
+  (`rdrow.setup` „Chwyć sztangę nachwytem, wyraźnie szerzej niż barki, i pochyl tułów w biodrach.”, `rdrow.pull` „Łokcie szeroko na boki; przyciągnij sztangę do górnej części klatki, potem opuść ją powoli.”).
+- **Seal Row — Kensui** usunięte z `seal.setup` (szczebel 5 dla wersji ze sztangą); zdanie ma nadal 2 źródła (FV, BoS).
 - **Bent Over Row (linki)** — [OTWARTE]: przeczytane tylko 1 źródło spoza aplikacji (Eisenhorn, wariant naprzemienny jednorącz z linkami:
   pochylenie w biodrach, ciągnięcie w stronę biodra, kontrola bez rozpędu). Drugie wyszukiwanie dało wyłącznie strony aplikacji (wykluczone)
   oraz Body-Solid (strona o konserwacji). Do czasu drugiego źródła zostaje zestaw ogólny albo tryb „open”.
 - **Zestaw ogólny `rowBent` / `row` a przeczytane źródła** (informacja o zestawach): zdanie `row.fullStretch` („ręce do końca, barki w dół”)
   nie ma potwierdzenia dla Smitha, Seal Row ani Rear Delt Row (źródła mówią tylko „opuść pod kontrolą/powoli”); `row.bbGrip` („na szerokość barków lub
-  szerzej”) nie pasuje do Reverse Grip (podchwyt) ani do Rear Delt Row (wyraźnie szerzej). `hinge.back` dla Rear Delt Row potwierdza tylko Generation Iron
-  (naturalne wygięcie odcinka lędźwiowego) — Dumbbells Direct mówi tylko o napięciu brzucha, więc pominięte.
-- **Kąt pochylenia tułowia** — źródła się różnią: Meadows (Sole ok. 45° vs Athlean-X prawie poziomo), Reverse Grip (Breaking Muscle ok. 45° vs Fitness Volt
-  prawie poziomo), Rear Delt (Dumbbells Direct 30–45° vs Generation Iron prawie poziomo). Nie wprowadzam liczby; ewentualna część wspólna wymagałaby
-  przedziału, a to liczba techniki — reguła „przedziały kątów: 2 zgodne źródła i żadne nie przeczy” nie jest spełniona.
-- **Błędy dla Seal Row, Lying T-Bar Row, Rear Delt Row** — przeczytane źródła wymieniają różne błędy (np. unoszenie głowy, łokcie przy tułowiu w Rear Delt
-  vs chwyt podchwytem), żaden nie ma 2 zgodnych źródeł.
-- **Meadows Row — wzruszanie barkami** (Athlean-X, Set For Set) — Set For Set nie jest niezależny od Generation Iron i to marka odzieżowa; zostaje jedno źródło.
+  szerzej”) nie pasuje do Reverse Grip (podchwyt) ani do Rear Delt Row (wyraźnie szerzej).
+- **Kąt pochylenia tułowia** — źródła się różnią (Meadows, Reverse Grip, Rear Delt). Nie wprowadzam liczby; reguła „przedziały kątów: 2 zgodne źródła
+  i żadne nie przeczy” nie jest spełniona.
+- **Błędy dla Seal Row, Lying T-Bar Row** — przeczytane źródła wymieniają różne błędy; żaden nie ma 2 zgodnych źródeł.
 - **Smith — odblokowanie gryfu obrotem nadgarstków** (Major Fitness „twist”, Generation Iron „unlatch”) — zgodne, ale pominięte dla zwięzłości karty; można dodać zdanie `smith.unrack`.
-- **ATHLEAN-X i Dumbbells Direct** — szczebel do potwierdzenia przez koordynatora (serwis trenera / sprzedawca). Gdyby uznać je za szczebel 5, tracą
-  komplet: Meadows `meadows.setup` i `meadows.noTwist` (zostaje po 1 źródle) oraz cała karta Rear Delt Row.
+- **Ocena Fitness Volt i Generation Iron** — przyjęte jako 4 wg kryteriów (a)–(c) z zastrzeżeniem „tylko artykuły o technice” (jak BarBend).
+  Gdyby koordynator uznał którąś za 5: bez FV odpada Seal Row i Lying T-Bar Row; bez GI odpada Lying T-Bar Row, a w Smith Row zdania `row.hinge` i `mis.jerk`.
 
 ## 6. Stan
 
-Rodzina `row`: zakończona (6 gotowych, 1 otwarte). Plik `cable_row.md` — osobno.
+Rodzina `row` po korekcie szczebli 02.11.2026: 3 gotowe (Seal Row, Smith Machine Bent Over Row, Lying T-Bar Row), 4 otwarte
+(Meadows Row, Reverse Grip Bent Over Row, Barbell Rear Delt Row, Bent Over Row (linki)). Następny krok dla otwartych: szukać drugiego źródła
+szczebla 4 (organizacje szkolące trenerów, producenci sztang i uchwytów do wiosłowania). Pułapki: ExRx 403, muscleandstrength 403, wiele trafień to aplikacje lub sklepy.

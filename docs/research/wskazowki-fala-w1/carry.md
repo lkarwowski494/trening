@@ -5,13 +5,27 @@
 - Zakres: Overhead Carry (hantle), Farmer's Walk (trap bar), Double Kettlebell Front Rack Carry, Farmer's Walk (Farmers Handles), Rickshaw Carry; dodatkowo próba dopełnienia Farmer's Walk i Suitcase Carry (lista `partial`).
 - Status: PROPOZYCJA — dane do integracji przez koordynatora linii 1.1
 
+## Korekta szczebli 02.11.2026
+
+Szczeble organizacji przeliczone wg rozstrzygnięcia koordynatora linii 1.1 z 02.11.2026 (szczebel 4 = naraz: (a) organizacja szkoląca
+trenerów, serwis z redakcją i recenzją ekspercką albo producent własnego rodzaju sprzętu; (b) autor + data albo treść firmowana przez organizację;
+(c) nie recenzja z afiliacją ani marketing). Zmiany:
+
+- **Catalyst Athletics** — 4 (rozstrzygnięcie). **StrongFirst** — 4: (a) organizacja szkoląca i certyfikująca instruktorów kettlebell;
+  (b) artykuł z autorem (T. Jewett); (c) artykuł merytoryczny, nie recenzja produktu. **Equinox** — 5: sieć klubów fitness (ta sama reguła co
+  PureGym — sieci siłowni = 5); dodatkowo autorka bez podanych uprawnień.
+- **Overhead Carry (hantle)**: zostaje „częściowe”, ale wypada wskazówka `lunge.torso` (zostaje tylko NSCA; Equinox = 5). Ustawienie (Catalyst + StrongFirst)
+  i ruch (Catalyst + NSCA) bez zmian.
+- **Farmer's Walk (Farmers Handles)**, **Farmer's Walk (trap bar)**: bez zmian (ACE, NSCA, NASM).
+- Physitrack i The Prehab Guys (uwaga koordynatora G6, 02.11.2026): w tym pliku żadne z nich nie jest liczone jako źródło — patrz „Otwarte”.
+
 Metoda: wyjątek dla wskazówek techniki (CLAUDE.md, 25.10.2026) — zdanie wchodzi, gdy potwierdzają je ≥ 2 niezależne, przeczytane źródła szczebla 4 z różnych organizacji. Źródło o tym samym ćwiczeniu z innym sprzętem liczy się z opisem „(wariant: …)”. Bez liczb (tempo, dystans, ciężar) i bez twierdzeń zdrowotnych. Wszystkie strony czytane 02.11.2026 (WebFetch; PDF NSCA czytany jako obraz stron).
 
 ## 1. Tabela ćwiczeń
 
 | Ćwiczenie (klucz katalogu) | Obecny tryb | Wynik | Uwagi |
 |---|---|---|---|
-| Overhead Carry (hantle) | general (`carry`) | częściowe | ustawienie, ruch, 1 wskazówka; błędy — otwarte (jedno źródło). Ogólny zestaw do zastąpienia — patrz „Otwarte” (tempo, `carry.noLean`). |
+| Overhead Carry (hantle) | general (`carry`) | częściowe | ustawienie i ruch; wskazówki i błędy — otwarte (jedno źródło szczebla 4). Ogólny zestaw do zastąpienia — patrz „Otwarte” (tempo, `carry.noLean`). |
 | Farmer's Walk (trap bar) | general (`carry`) | częściowe | ruch i 1 wskazówka (wariant: hantle/kettlebelle); ustawienie z trap barem — otwarte (źródła tylko o martwym ciągu = analogia). |
 | Double Kettlebell Front Rack Carry | general (`carry`) | otwarte | tylko NSCA opisuje to ćwiczenie wprost; drugie źródło niedostępne (402/410) albo z aplikacji. |
 | Farmer's Walk (Farmers Handles) | general (`carry`) | częściowe | ta sama karta co Farmer's Walk (wariant: uchwyty strongman zamiast hantli). |
@@ -23,7 +37,7 @@ Metoda: wyjątek dla wskazówek techniki (CLAUDE.md, 25.10.2026) — zdanie wcho
 
 ## 2. JSON do `exercises` (cues.json)
 
-Zawiera ćwiczenia „częściowe” — każde zdanie ma ≥ 2 źródła. Proponuję dopisać je do listy `partial`.
+Zawiera ćwiczenia „częściowe” — każde zdanie ma ≥ 2 źródła szczebla 4 z różnych organizacji. Proponuję dopisać je do listy `partial`.
 
 ```json
 {
@@ -46,15 +60,7 @@ Zawiera ćwiczenia „częściowe” — każde zdanie ma ≥ 2 źródła. Propo
         ]
       }
     ],
-    "tips": [
-      {
-        "c": "lunge.torso",
-        "s": [
-          ["nsca-coach-7-3", "s. 52, Exercise Set-Up (ogólna zasada dla wszystkich odmian: „maintain an upright torso”)"],
-          ["equinox-sa-oh-carry", "How to…, krok 3 (wariant: odważnik w jednej ręce; „Standing tall…”)"]
-        ]
-      }
-    ],
+    "tips": [],
     "mistakes": []
   },
   "Farmer's Walk (Farmers Handles)": {
@@ -117,20 +123,23 @@ Uwaga do „Farmer's Walk (trap bar)”: karta bez ustawienia jest bardzo krótk
 
 ## 3. Nowe źródła
 
-| id | org | tytuł | url | szczebel | czytane |
+| id | org | tytuł | url | szczebel (po korekcie 02.11.2026) | czytane |
 |---|---|---|---|---|---|
 | catalyst-827 | Catalyst Athletics | Dumbbell Overhead Carry (Exercise Library #827) | https://www.catalystathletics.com/exercise/827/Dumbbell-Overhead-Carry/ | 4 | tak, 02.11.2026 (opis, Purpose) |
 | catalyst-888 | Catalyst Athletics | Single-Arm Dumbbell Overhead Carry (#888) | https://catalystathletics.com/exercise/888/Single-Arm-Dumbbell-Overhead-Carry | 4 | tak, 02.11.2026 (opis) — tylko do „Otwarte” |
 | strongfirst-two-carries | StrongFirst | T. Jewett, Two Important Carries for the Clinician | https://www.strongfirst.com/two-important-carries-clinician/ | 4 | tak, 02.11.2026 (Carry No 1: Front Rack; Carry No. 2: Overhead) |
-| equinox-sa-oh-carry | Equinox | Form Check: Single-Arm Kettlebell Overhead Carry (08.2026) | https://www.equinox.com/articles/2026/08/how-to-single-arm-overhead-carry | 4 (do potwierdzenia) | tak, 02.11.2026 (How to…, Common… Mistakes) |
+| equinox-sa-oh-carry | Equinox | Form Check: Single-Arm Kettlebell Overhead Carry (08.2026) | https://www.equinox.com/articles/2026/08/how-to-single-arm-overhead-carry | 5 — nie liczy się | tak, 02.11.2026 (How to…, Common… Mistakes) — tylko do „Otwarte” |
 | ace-390 | ACE | Waiter's Carry (#390) | https://www.acefitness.org/resources/everyone/exercise-library/390/waiter-s-carry/ | 4 | tak, 02.11.2026 — NIE użyte: opisuje noszenie odwróconego odważnika przy barku, a nie nad głową |
 
 Istniejące źródła użyte: `ace-359`, `ace-358`, `nsca-coach-7-3` (PDF przeczytany ponownie: s. 50–52, rycina 3 „Rack Carry”, rycina 5 „Unilateral Overhead Carry”), `nasm-best-abs` (ponownie, sekcje Suitcase Carry i Offset Farmer's Carry).
 
-Nowe organizacje (propozycja szczebla):
-- **Catalyst Athletics** — szkolenie trenerów i zawodników podnoszenia ciężarów (biblioteka ćwiczeń); szczebel 4, `kind: org`.
-- **StrongFirst** — organizacja certyfikująca instruktorów kettlebell; szczebel 4, `kind: org`. Artykuł autorski (autor z certyfikatem organizacji).
-- **Equinox** — sieć klubów, dział artykułów; autorka bez podanych uprawnień. Proponuję szczebel 4 `kind: site` **do decyzji koordynatora**. Jeśli zostanie odrzucony, `lunge.torso` w Overhead Carry ma jedno źródło i wypada z karty.
+### Ocena nowych organizacji wg kryteriów (a)–(c) (02.11.2026)
+
+| Organizacja | kind | Szczebel | Uzasadnienie |
+|---|---|---|---|
+| Catalyst Athletics | org | 4 | rozstrzygnięcie koordynatora linii 1.1; szkolenie trenerów i zawodników podnoszenia ciężarów, biblioteka ćwiczeń firmowana przez organizację |
+| StrongFirst | org | 4 | (a) organizacja szkoląca i certyfikująca instruktorów kettlebell; (b) artykuł z autorem (autor z certyfikatem organizacji); (c) artykuł merytoryczny, nie recenzja ani reklama |
+| Equinox | site | 5 | sieć klubów fitness — ta sama reguła co sieci siłowni (PureGym = 5); autorka bez podanych uprawnień, brak recenzji eksperckiej na stronie |
 
 ## 4. Nowe zdania
 
@@ -141,12 +150,16 @@ Nowe organizacje (propozycja szczebla):
 
 ## 5. Otwarte
 
+**Szczebel źródła wg rozstrzygnięcia 02.11.2026:**
+- Overhead Carry (hantle), wskazówka `lunge.torso` (tułów wyprostowany) — zostaje tylko NSCA s. 52 (ogólna zasada dla wszystkich odmian); Equinox (krok 3, wariant jednorącz) = 5. Usunięte z bloku JSON do czasu drugiego źródła szczebla 4.
+- Physitrack / The Prehab Guys (uwaga koordynatora G6, 02.11.2026: Physitrack — szczebel do decyzji, wstępnie 5, nie liczy się; The Prehab Guys — 4, do potwierdzenia): w tym pliku żadna ich strona nie jest cytowana. Strona fizjoterapeutów z podobną wskazówką do przenoszenia nad głową (punkt niżej) została wcześniej odrzucona jako należąca do firmy z własną aplikacją; nie zapisałem jej adresu, więc nie wiem, czy to The Prehab Guys. Jeśli tak — przy szczeblu 4 „do potwierdzenia” mogłaby dać drugie źródło dla wskazówki o nieruchomych rękach; wymaga ponownego odnalezienia i przeczytania strony.
+
 **Błędy w obecnym zestawie ogólnym (`lib/figures/v2/cue-sets.json`, `f: carry`)** — przeczytane źródła ich nie potwierdzają dla tych wariantów:
-- `carry.walk` („spokojnym, kontrolowanym krokiem”) w **Overhead Carry (hantle)**: tempo jest sprzeczne — NSCA s. 52 (ogólna zasada: „walk slow and controlled”) i Equinox (nie spiesz się; wariant jednorącz) kontra Catalyst #827/#888 („walk at a brisk pace”). Sprzeczność na tym samym szczeblu, więc w karcie nie podajemy tempa — dlatego nowe `ohc.walk`.
+- `carry.walk` („spokojnym, kontrolowanym krokiem”) w **Overhead Carry (hantle)**: tempo jest sprzeczne — NSCA s. 52 (ogólna zasada: „walk slow and controlled”) kontra Catalyst #827/#888 („walk at a brisk pace”); Equinox (nie spiesz się) — szczebel 5, nie rozstrzyga. Sprzeczność na tym samym szczeblu, więc w karcie nie podajemy tempa — dlatego nowe `ohc.walk`.
 - `carry.noLean` („ani w stronę ciężaru, ani od niego”) w Overhead Carry, Front Rack, trap bar, Farmers Handles, Rickshaw (i w Yoke Walk — patrz strongman.md): zdanie opisuje ciężar po jednej stronie (źródła: NASM i NSCA o suitcase carry). Przy obciążeniu symetrycznym żadne przeczytane źródło nie mówi o przechylaniu „w stronę ciężaru”. W kartach własnych go nie używam.
 
 **Ćwiczenia i zdania bez dwóch źródeł:**
-- Overhead Carry (hantle), wskazówka „Ręce i ciężary trzymaj jak najbardziej nieruchomo” — tylko Catalyst (#827). Strona fizjoterapeutów z podobną wskazówką (przenoszenie nad głową) należy do firmy z własną aplikacją treningową, więc nie jest źródłem (uzupełnienie briefu z 02.11).
+- Overhead Carry (hantle), wskazówka „Ręce i ciężary trzymaj jak najbardziej nieruchomo” — tylko Catalyst (#827). Strona fizjoterapeutów z podobną wskazówką należy do firmy z własną aplikacją treningową, więc nie została policzona (patrz wyżej).
 - Overhead Carry (hantle), błąd „Łokcie się uginają, barki podjeżdżają do uszu” — tylko StrongFirst (opis słabej wersji: zgięty łokieć, uniesione barki). Catalyst mówi o „zablokowaniu” pozycji, ale nie opisuje błędu.
 - Double Kettlebell Front Rack Carry — ustawienie: NSCA s. 52 (dwa odważniki oparte o przód barków i górę klatki) i StrongFirst Carry No 1 (łokieć w dół, przy żebrach) opisują różne elementy, a żadne z nich nie potwierdza całego zdania. Strona producenta odważników o rack carry zwróciła 402, strona uczelniana (MacEwan, „front loaded carry”) — 410. Pozostałe trafienia to aplikacje albo bazy bez autora. Ruch i postawa: ogólna zasada NSCA to jedno źródło.
 - Farmer's Walk (trap bar), ustawienie („Stań w środku ramy, chwyć uchwyty, wstań jak w martwym ciągu”) — przeczytane źródła `tb.inside`/`tb.lift` dotyczą martwego ciągu z trap barem, czyli innego ćwiczenia (analogia). Nie znalazłem przeczytanego źródła szczebla 4 o noszeniu z trap barem (wyniki to aplikacje albo sklepy z suplementami).
@@ -156,5 +169,5 @@ Nowe organizacje (propozycja szczebla):
 
 ## 6. Stan
 
-- Zrobione: carry — wszystkie 5 ćwiczeń i dwa dopełnienia ocenione (02.11.2026).
+- Zrobione: carry — wszystkie 5 ćwiczeń i dwa dopełnienia ocenione (02.11.2026); korekta szczebli 02.11.2026 (Equinox = 5 → Overhead Carry traci `lunge.torso`).
 - Pułapki: ExRx 403, Wayback zablokowane (brief); strona producenta odważników (rack carry) 402; strona MacEwan 410; PDF NSCA Coach 7.3 WebFetch zwraca binarnie — czytać plik jako PDF (obraz stron). Wiele trafień na „carry” to strony aplikacji (wykluczone).
