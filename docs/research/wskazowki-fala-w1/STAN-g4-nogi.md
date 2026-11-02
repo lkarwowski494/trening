@@ -56,5 +56,7 @@ Podejrzenie błędnego przypisania rodziny: **London Bridges** (w katalogu zejś
 - Wiele wyników wyszukiwania to strony innych aplikacji — pominięte (nie są źródłem, nazwy nie trafiają do repo).
 
 ## Git i verify
-- Verify bazy (`npm run verify` na `integracja-1-1` 15abc58, czysta kopia): patrz raport końcowy niżej.
-- Commity (lokalnie, wypchnięte po zielonym verify): b747803, 8ba6edb, 23c3a5c, 0976c5d, 10bb308, d2eadfd, 59bb94b, cc06d36, b01940b, c0f9e30, 8a9135e, 21b8b24, 26a4194, 97ad64d 367447c, 2ac8b77, bd989c9 + ten plik.
+- Verify bazy (`npm run verify` na `integracja-1-1` 15abc58, czysta kopia, 02.11.2026): **CZERWONE** (EXIT 1, jest 3287 s). Test Suites: 3 failed / 653 passed; Tests: 1 failed / 15905 passed. Porażki: `tests/deload-ui.test.tsx:72` („Dziś” na ekranie treningu… — przekroczony limit 5000 ms) oraz `tests/maestro-flows.test.tsx` i `tests/matrix-dim-langs-routes3.test.tsx` (proces roboczy jest zabity z zewnątrz, SIGTERM; w logu Mark-Compact ok. 2 GB). `jest-ponow`: „1 porażek innych niż przerwanie z zewnątrz — bez ponawiania”. Prawdopodobnie obciążenie maszyny (równolegle jeden jednoplikowy przebieg jest w drugim worktree i 8 badaczy — bez testów), ale nie potwierdzone: zgodnie z briefem bez ponownego uruchamiania.
+- `npm run verify:docs` w worktree: pada przed sprawdzeniem — `git merge-base origin/main HEAD` bez wspólnej bazy (klon płytki, także po `git fetch origin main`).
+- Push: hak pre-push odmówił (brak znacznika zielonego verify dla bc52101 — L-049). Bez `--no-verify`. **Commity tylko lokalnie w kontenerze** — ryzyko utraty po zamknięciu sesji; do decyzji koordynatora (ponowne verify bazy albo świadomy wyjątek).
+- Commity (lokalnie, NIEWYPCHNIĘTE): b747803, 8ba6edb, 23c3a5c, 0976c5d, 10bb308, d2eadfd, 59bb94b, cc06d36, b01940b, c0f9e30, 8a9135e, 21b8b24, 26a4194, 97ad64d 367447c, 2ac8b77, bd989c9 + ten plik.
