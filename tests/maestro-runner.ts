@@ -12,6 +12,17 @@ import { layout, flat, SCREEN, type LNode, type Box } from './maestro-layout';
 
 const yaml = require('js-yaml');
 
+/* L-088 (02.11.2026, wariant A): kroki Maestro BEZ skutku w Jest. Jedyne miejsce na taką listę — każdy krok obsłużony pustym `break` w `step()` musi tu mieć powód;
+ * strażnik: tests/maestro-kroki-l088-02-11-2026.test.ts (zakres: `.maestro/**\/*.yaml` oprócz config.yaml; nowy krok w scenariuszu bez obsługi albo pusty bez powodu → czerwień). */
+export const KROKI_PUSTE: Record<string, string> = {
+  waitForAnimationToEnd: 'Jest nie ma animacji platformy: aplikacja kończy przejścia w `act`/`tick`, a czekanie na zanik klawiatury odwzorowuje `hideKeyboard`/`blur` (run 38009269888).',
+  takeScreenshot: 'Zrzut jest tylko artefaktem przebiegu na symulatorze; nie zmienia stanu aplikacji ani ekranu (MAESTRO_DUMP wypisuje drzewo na żądanie).',
+};
+/** Klawisze `pressKey` z efektem w interpreterze (inne kończą się błędem kroku, nie po cichu). */
+export const KLAWISZE_Z_EFEKTEM = ['Enter', 'Home'] as const;
+/** Warunki `runFlow.when` obliczane przez interpreter (inny warunek byłby po cichu „prawdą”). */
+export const WARUNKI_RUNFLOW = ['visible', 'notVisible'] as const;
+
 /* 13.10.2026 (katalog PR-11): tło i powrót bez restartu (`pressKey: Home` + `launchApp: { stopApp: false }`). Interpreter przechwytuje nasłuchy AppState aplikacji (jak testy audit-close*)
  * i wysyła zmianę stanu 'background' → 'active'; w tle mija czas (BG_MS), jak na symulatorze, gdzie scenariusz czeka kilkanaście sekund. */
 export const BG_MS = 12000;
@@ -387,7 +398,7 @@ export class Runner {
           const f = this.focused; if (!f) this.fail(step, 'Brak pola z fokusem.'); const n = typeof arg === 'number' ? arg : 50;
           const cur = String(f!.props.value ?? ''); this.selectAll = false; await act(async () => { await fireEvent.changeText(f as any, cur.slice(0, Math.max(0, cur.length - n))); }); await this.tick(); break;
         }
-        case 'pressKey': { if (/^home$/i.test(String(arg))) { await this.blur(); await act(async () => { await store.flush(); }); await emitAppState('background'); break; } const f = this.focused; if (f && /enter/i.test(String(arg))) { await act(async () => { f.props.onSubmitEditing?.({ nativeEvent: { text: f.props.value } }); }); await this.blur(); } break; }
+        case 'pressKey': { if (!KLAWISZE_Z_EFEKTEM.some(k => k.toLowerCase() === String(arg).toLowerCase())) this.fail(step, `pressKey „${arg}”: interpreter zna tylko ${KLAWISZE_Z_EFEKTEM.join(', ')} — dopisz obsługę z efektem.`); if (/^home$/i.test(String(arg))) { await this.blur(); await act(async () => { await store.flush(); }); await emitAppState('background'); break; } const f = this.focused; if (f && /enter/i.test(String(arg))) { await act(async () => { f.props.onSubmitEditing?.({ nativeEvent: { text: f.props.value } }); }); await this.blur(); } break; }
         /* E2E 38471218362 (36, 29): klawiatura numeryczna iOS (number-pad, decimal-pad, numbers-and-punctuation) nie ma klawisza „Gotowe” ani innej akcji zamknięcia — Maestro zgłasza
          * „Couldn't hide the keyboard”. Pole tekstowe z klawiszem Return/Search zamyka się. Fokus zdejmuje stuknięcie w etykietę/tekst ekranu. */
         case 'hideKeyboard': { const kt = String(this.focused?.props?.keyboardType ?? ''); if (/number|decimal|phone|numeric/i.test(kt)) this.fail(step, `Couldn't hide the keyboard (klawiatura „${kt}” nie ma akcji zamknięcia).`); await this.blur(); break; }
@@ -444,7 +455,7 @@ export class Runner {
         case 'runFlow': {
           if (arg === PICKER_SUBFLOW) break; /* okno wyboru pliku iOS — patrz installVirtualFs: wybór wykonał już sam interpreter */
           if (typeof arg === 'string') { await this.run(load(join(DIR, arg)), arg); break; }
-          if (arg.when) { const w = arg.when; const ok = w.visible != null ? this.find(sel(w.visible)).length > 0 : w.notVisible != null ? this.find(sel(w.notVisible)).length === 0 : true; if (!ok) break; }
+          if (arg.when) { const w = arg.when; const nieznane = Object.keys(w).filter(k => !(WARUNKI_RUNFLOW as readonly string[]).includes(k)); if (nieznane.length) this.fail(step, `runFlow.when: warunek „${nieznane.join(', ')}” nieobsługiwany — interpreter zna ${WARUNKI_RUNFLOW.join(', ')}.`); const ok = w.visible != null ? this.find(sel(w.visible)).length > 0 : w.notVisible != null ? this.find(sel(w.notVisible)).length === 0 : true; if (!ok) break; }
           if (arg.file) await this.run(load(join(DIR, arg.file)), arg.file); else await this.run(arg.commands, file); break;
         }
         case 'copyTextFrom': {
