@@ -31,20 +31,20 @@ describe('Side To Side Chins — zdanie o ruchu w jedną stronę (wariant C, 02.
     for (const k of [...PULL_UP, 'Back Squat', 'Sumo Deadlift']) expect([k, oneSideNoteApplies(figureSpec(k)!)]).toEqual([k, false]);
   });
   test('figura: zdanie po polsku pod rysunkiem tylko przy Side To Side Chins', async () => {
-    render(<ExerciseFigureV2 exercise={lib('Side To Side Chins')} />); await flush();
+    await render(<ExerciseFigureV2 exercise={lib('Side To Side Chins')} />); await flush();
     expect(screen.getByTestId('exercise-figure-v2-oneside').props.children).toBe(PL);
-    screen.unmount();
-    for (const k of PULL_UP) { const r = render(<ExerciseFigureV2 exercise={lib(k)} />); await flush(); expect([k, screen.queryByTestId('exercise-figure-v2-oneside')]).toEqual([k, null]); r.unmount(); }
+    await screen.unmount();
+    for (const k of PULL_UP) { const r = await render(<ExerciseFigureV2 exercise={lib(k)} />); await flush(); expect([k, screen.queryByTestId('exercise-figure-v2-oneside')]).toEqual([k, null]); await r.unmount(); }
   });
   test('figura: po angielsku', async () => {
-    applyLang('en'); render(<ExerciseFigureV2 exercise={lib('Side To Side Chins')} />); await flush();
+    applyLang('en'); await render(<ExerciseFigureV2 exercise={lib('Side To Side Chins')} />); await flush();
     expect(screen.getByTestId('exercise-figure-v2-oneside').props.children).toBe(EN);
   });
   test('karta „Technika”: zdanie widoczne mimo braku recenzji zestawu ogólnego; w innym podciąganiu go nie ma', async () => {
-    render(<ExerciseCues exercise={{ ...lib('Side To Side Chins'), recommended: undefined, catalogRev: undefined } as never} initialOpen />); await flush();
+    await render(<ExerciseCues exercise={{ ...lib('Side To Side Chins'), recommended: undefined, catalogRev: undefined } as never} initialOpen />); await flush();
     expect(screen.getByTestId('exercise-figure-v2-oneside').props.children).toBe(PL);
-    screen.unmount();
-    render(<ExerciseCues exercise={{ ...lib('Pull Up'), recommended: undefined, catalogRev: undefined } as never} initialOpen />); await flush();
+    await screen.unmount();
+    await render(<ExerciseCues exercise={{ ...lib('Pull Up'), recommended: undefined, catalogRev: undefined } as never} initialOpen />); await flush();
     expect(screen.queryByTestId('exercise-figure-v2-oneside')).toBeNull();
   });
   test('tekst: zwykłym językiem, bez oznaczenia wagi w interfejsie; wszystkie języki mają tłumaczenie różne od polskiego', () => {

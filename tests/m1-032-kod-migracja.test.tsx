@@ -17,7 +17,7 @@ describe('M1-032: kod diagnostyczny przy błędzie migracji i danych z nowszej w
   test('wyjątek migracji: e-mail z kodem „start: migrate”, bez treści błędu', async () => {
     const state = seedState('pl'); state.settings.defaultRest = 77;
     spies.push(jest.spyOn(require('@/lib/state/migrate'), 'migrate').mockImplementation(() => { throw new Error('boom-migracja'); }));
-    const open = jest.spyOn(Linking, 'openURL').mockResolvedValue(true); spies.push(open);
+    const open = jest.spyOn(Linking, 'openURL').mockResolvedValue(true as never); spies.push(open);
     await renderApp({ saved: state }); await flushAll(50);
     expect(screen.getByText('boom-migracja')).toBeTruthy();
     await tap(screen.getByText(t('Napisz do nas'))); await flushAll(20);

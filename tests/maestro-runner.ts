@@ -408,10 +408,11 @@ export class Runner {
         case 'longPressOn': {
           const s = sel(arg); if (!(await this.waitFor(s, true, 1500))) this.fail(step, 'Element do przytrzymania niewidoczny.');
           const target = this.find(s)[0]; const n = target?.node as Node | undefined;
-          let pr: Node | null = n ?? null; while (pr && typeof pr.props.onPress !== 'function' && typeof pr.props.onLongPress !== 'function') pr = pr.parent as Node | null; /* najbliższy element z obsługą dotyku — jak w fireEvent.press */
+          /* RNTL 14: drzewo ma tylko elementy natywne, a onPress/onLongPress leży na komponencie złożonym (Pressable) — szukamy najbliższego w łańcuchu fiber od elementu w górę */
+          let pr: { props: Record<string, any> } | null = null; for (let f = (n as any)?.unstable_fiber; f && !pr; f = f.return) { const mp = f.memoizedProps; if (mp && (typeof mp.onPress === 'function' || typeof mp.onLongPress === 'function')) pr = { props: mp }; }
           if (n && pr && typeof pr.props.onPress === 'function' && typeof pr.props.onLongPress !== 'function') { const why = this.tapProblem(target); if (why) this.fail(step, `Element ${why}.`); await this.tap(target);
             /* pole z autoFocus (edytor liczby na tablicy) dostaje fokus i klawiaturę od razu po otwarciu — jak na iOS */
-            const af = (screen.UNSAFE_root as unknown as { findAll: (f: (x: Node) => boolean) => Node[] }).findAll((x: Node) => x.type === 'TextInput' && x.props.autoFocus === true)[0];
+            const af = qAll(screen.container as unknown as Node, (x: Node) => x.type === 'TextInput' && x.props.autoFocus === true)[0];
             if (af) { this.focused = af; this.kbScroll(af); }
           }
           break;
