@@ -8,11 +8,11 @@ Pomiar: każdy plik osobno `npx jest <plik> --runInBand --ci`; „przed” w oso
 | | pliki czerwone | testy czerwone |
 |---|---|---|
 | przed (`cdf3539`) | 33 / 33 | 231 / 585 + `figures.test.tsx` w ogóle nie ruszył (41 testów) |
-| po (`5af3149` + commit z raportem) | 1 / 33 | 1 / 626 |
+| po (`2cf073b` + `a4becdd` (raport)) | 1 / 33 | 1 / 626 |
 
 Jedyny czerwony: `tests/audit-0.10-data-ui.test.tsx` — sygnał zachowania, nie API (niżej). `npx tsc --noEmit`: w plikach grupy B i w `tests/fiber-tree.ts` 0 błędów (cały projekt: 300 linii błędów, reszta w plikach innych grup).
 
-Commity: `ab618a4` (fiber-tree, motyw, matrix-a11y), `15723ba` (figury + nagłówek migawki), `21f9a1b`, `9509bbe`, `04b4c33`, `5af3149`.
+Commity (SHA po rebase): `5b24b04` (fiber-tree, motyw, matrix-a11y), `606f1d8` (figury + nagłówek migawki), `eca2ec2`, `16e8687`, `fe1f32b`, `2cf073b`, `a4becdd` (raport).
 
 ## Sygnał zmiany zachowania (asercja nietknięta, do decyzji koordynatora)
 
