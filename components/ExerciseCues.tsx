@@ -23,7 +23,7 @@ import { needsSafety, needsSpotter, needsSpotterDb } from '@/lib/equipment';
  * Stopka: tylko odesłanie do specjalisty — aplikacja nie udziela porad medycznych (CLAUDE.md). Podstawa wskazówek (rodzaje źródeł) — nie przy ćwiczeniu, lecz na ekranie
  * Ustawienia → „Źródła wiedzy” (decyzja właściciela 23.10.2026, docs/18); pełna lista organizacji w docs/research/27.
  */
-const LABEL: Record<CueSection, () => string> = { setup: () => t('Ustawienie'), move: () => t('Ruch'), tips: () => t('Wskazówki'), mistakes: () => t('Częste błędy') };
+const LABEL: Record<CueSection, () => string> = { setup: () => t('Ustawienie'), move: () => t('Ruch'), tips: () => t('Wskazówki'), mistakes: () => t('Czego unikać') };
 
 export function ExerciseCues({ exercise, initialOpen }: { exercise: Pick<Exercise, 'lib' | 'libKey' | 'recommended' | 'catalogRev'>; /** UX2-05: otwarte z „Technika ›” (trening, szablon) — od razu rozwinięte */ initialOpen?: boolean }) {
   const th = useTheme(); const [open, setOpen] = useState(!!initialOpen);

@@ -752,7 +752,7 @@ export const EN: Record<string, string> = {
   'Ustawienie': 'Setup',
   'Ruch': 'Movement',
   'Wskazówki': 'Tips',
-  'Częste błędy': 'Common mistakes',
+  'Czego unikać': 'What to avoid',
   'Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.': 'The app does not give medical advice. If you have pain, an injury or an illness, consult a doctor or physiotherapist.',
     'Mięsień docelowy spoza mapy partii: {m} — nie liczy się w seriach na partię ani na mapie mięśni.': 'Target muscle outside the muscle-group map: {m} — not counted in sets per muscle or on the muscle map.',
   'stożek rotatorów': 'rotator cuff',

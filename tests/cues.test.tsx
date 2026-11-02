@@ -115,7 +115,7 @@ describe('komponent ExerciseCues', () => {
     expect(screen.queryByText('Ustawienie')).toBeNull();
     await fireEvent.press(btn);
     expect(screen.getByRole('button', { name: 'Technika' }).props.accessibilityState).toEqual({ expanded: true });
-    for (const h of ['Ustawienie', 'Ruch', 'Wskazówki', 'Częste błędy']) expect(screen.getByRole('header', { name: h })).toBeTruthy();
+    for (const h of ['Ustawienie', 'Ruch', 'Wskazówki', 'Czego unikać']) expect(screen.getByRole('header', { name: h })).toBeTruthy();
     const first = cueText(CUE_DATA.exercises['Deadlift (sztanga)'].setup[0].c, 'pl');
     expect(screen.getByText(`• ${first}`).props.accessibilityLabel).toBe(first);
     /* 23.10.2026 (docs/18): źródła tylko w Ustawienia → Źródła wiedzy; przy ćwiczeniu nie ma stopki „Na podstawie…” — tests/audit-k1-bl-mer */

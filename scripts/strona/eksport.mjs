@@ -121,7 +121,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
       equipment: Object.fromEntries(['hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki', 'inne'].map(e => [e, t(e)])),
       capabilities: Object.fromEntries(cat.CATALOG_CAPS.map(c => [c, eq.capLabel(c)])),
       /* teksty interfejsu z aplikacji (te same klucze i przekłady co ekran ćwiczenia: sekcje wskazówek, figura, przypis) — strona nie tłumaczy ich osobno */
-      ui: { technique: t('Technika'), setup: t('Ustawienie'), move: t('Ruch'), tips: t('Wskazówki'), mistakes: t('Częste błędy'), generalNote: t('Ogólne wskazówki dla tego ruchu'),
+      ui: { technique: t('Technika'), setup: t('Ustawienie'), move: t('Ruch'), tips: t('Wskazówki'), mistakes: t('Czego unikać'), generalNote: t('Ogólne wskazówki dla tego ruchu'),
         disclaimer: t('Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.'), schematic: t('Rysunek schematyczny — pozycje orientacyjne.'),
         pause: t('Zatrzymaj animację'), resume: t('Wznów animację'), showError: t('Pokaż częsty błąd'), hideError: t('Ukryj częsty błąd'), errorLine: t('Częsty błąd: {opis}'),
         musclesMain: t('Mięśnie główne: {lista}'), musclesAux: t('Mięśnie pomocnicze: {lista}'), musclesApprox: t('Dobór mięśni: przybliżony'), figureLabel: t('Rysunek ruchu: {opis}'),
