@@ -17,3 +17,5 @@ Repo jest publiczne: bez danych osobowych (imię i nazwisko, e-mail, telefon, UD
 | Konto testowe ma plan dożywotni i subskrypcję roczną (piaskownica) — „zakup bez planu” nie da się sprawdzić na jego koncie | docs/18, 29.10.2026 |
 | Obserwacja właściciela: między ok. 15:00 a 24:00 czasu PL maszyn macOS w GitHub Actions zwykle brak (przebiegi czekają i są anulowane); długie przebiegi macOS planować rano | docs/18, 29.10.2026 |
 | Kredyty Google Cloud (projekt próbny Vertex, ok. 1000 zł) wygasają 23.01.2027 | właściciel, 31.10.2026 (przez koordynatora 1.0) |
+| Na Dysku w „Trening App” ma podfolder „06 Źródła merytoryczne (prywatne)” z książkami (m.in. cztery pozycje NSCA i atlas ćwiczeń); wyciągi z książek trafiają tylko tam, nie do repo | właściciel, 02.11.2026 (docs/18) |
+| Jego komputer z Claude nie udostępniał folderów sesjom w chmurze w nocy 01/02.11.2026 (przyczyna nieustalona — otwarte) | sesja koordynatora 1.1, 02.11.2026 |
