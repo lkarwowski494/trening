@@ -5,7 +5,7 @@ Gałąź `zb010/sdk`, start od `cdf3539`. Plan: `raport-zb010.md` pkt 7 (grupa C
 
 ## Stan
 
-- **Zrobione:** wszystkie 26 plików grupy C — commity `ad01993` (1/3), `2b55eda` (2/3), `745f325` (3/3); raport — ten plik.
+- **Zrobione:** wszystkie 26 plików grupy C — commity `dccc77b` (1/3), `a4da5a3` (2/3), `d6c2232` (3/3); raport — ten plik.
 - **Zostało:** 1 czerwony test (sygnał niżej, do decyzji koordynatora). Pomocników wspólnych (`tests/app.tsx`, `tests/helpers.ts`, `tests/maestro-runner.ts`) nie zmieniano.
 - **Następny krok:** koordynator — decyzja w sprawie sygnału 1; pełny Jest i verify po scaleniu grup.
 
