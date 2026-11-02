@@ -71,7 +71,8 @@ Szczegóły stanów:
 
 ## Verify i wypchnięcie
 
-- Pełne `npm run verify` na czystej bazie 2dc54e2 — wynik: patrz raport końcowy (uzupełniany po zakończeniu).
+- Pełne `npm run verify` na czystej bazie 2dc54e2 (02.11.2026): **zielone**, znacznik zapisany (pełne, 2dc54e2c). Jest 660 plików testów, 15 983 testy zaliczone, 3 pominięte. `matrix-dim-langs-routes3` przerwany brakiem pamięci przy 8 badaczach w tle; `jest-ponow` ponowił go osobno — zielony (ten sam objaw co w W1).
+- `npm run verify:docs` w worktree: zielone (45 s).
 - Commity w worktree: 56448d4c, 1f5d4edb, 5d4ee9a8, c5d2a765, fe65e298, 639ab772, 02bb9234, 109696e8 (+ ten plik).
 
 ## Następny krok
