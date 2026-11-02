@@ -213,3 +213,21 @@ pozostałe (część 2) — jak D.
 - `tests/audit-final-auto.test.tsx` (1)
 - `tests/matrix-dim-langs-routes3.test.tsx` (0)
 
+
+### Grupa D — wynik (02.11.2026)
+Sesja https://claude.ai/code/session_01T66VBwRidsQAVnEimA1vFF. Commity: `698105f` (pomocniki, wypchnięte przed startem A–C/E), `fe1110e` (reszta grupy D). Pomiar: każdy plik osobno `npx jest <plik> --runInBand --ci` (jeden proces dla 33 plików kończył się brakiem pamięci).
+
+**Wspólne pomocniki (do użycia w A, B, C, E):**
+- `tests/app.tsx`: `navRef()` — ref nawigacji zamiast usuniętego `expo-router/build/global-state/router-store` (zamiana: `const rs = { navigationRef: require('./app').navRef() }` albo `require('./app').navRef()`; router-store używają jeszcze m.in. `places-scenario`, `interaction-patterns`, `home-plan-header`, `audit-k1-fala2b`, `close-button-guard`, `pick-template`, `ui2-06-gen-back-to-plan`, `audit-0.10-ui`, `subscription-ui`, `adapt-scenario`); `hostRoot()` = `screen.container` (następca `UNSAFE_root`); `compPropsAll(el)` — propsy komponentów złożonych pod elementem przez `unstable_fiber` (np. `Rect` z react-native-svg, którego element natywny ma kolor jako liczbę); `swipeDelete`/`deleteActions` przez `queryAll`; `tap`/`type`/`openInfo`/`closeInfo` czekają na `fireEvent`.
+- `tests/maestro-runner.ts`: `navRef()`, `queryAll(…, { includeSelf: true })` jako odpowiednik `findAll`, `unstable_fiber` zamiast `_fiber`, kontener korzenia (typ `''`) poza `isHost`.
+- Wzorce API RNTL 14 znalezione w D (dotyczą też innych grup): `act(() => …)` bez `await` przecieka do kolejnych kroków i testów (deload-ui, generator-ui) → `await act(…)`; `fireEvent` zwraca obietnicę — bez `await` poza `act` przeciek między testami (reorder-t010: test przechodził sam, padał po poprzednim); `findByProps`/`findAll` → `queryAll`; `within(el)` nie dopasowuje samego `el` (testID na `<Text>`); `render`/`rerender`/`unmount` → `await`.
+
+**Wynik:** grupa D 33 pliki — przed: 33 czerwone pliki, 200/714 czerwonych testów; po `fe1110e`: 3 pliki, 7 testów (store-adapter 1, public-repo 1, readme 5 — niżej). `npx tsc` w `tests/`: 484 → 452 błędów, w zmienionych plikach 0.
+
+**Próbka innych grup (tylko uruchomienie, 12 plików):** przed 43/109 czerwonych, po 41/109 — A: `ux` 2→1, `backlog-0410` 1→1, `trening-naglowek` 5→5; B: `home-b` 3→3, `sets-mark` 1→1, `muscle-map` 1→1; C: `whats-new` 2→2, `cues-014` 2→2, `info-tip` 20→20; E: `plan-reminder` 3→3, `template-cards` 1→0, `audit-journey-b` 2→2. Pozostałe błędy próbki to API w samych plikach (`UNSAFE_getAllByType`, `row.findAll`, `UNSAFE_root.findAll`, `render()` bez `await`) — zgodnie z podziałem na grupy; pomocniki nie dały regresji.
+
+**Sygnały zmiany zachowania / stanu (nie poprawione — asercje, nie API; do decyzji koordynatora):**
+- `tests/store-adapter.test.ts` › „package.json: expo-iap przypięte… expo-store-review w zakresie SDK 57” — oczekuje `/^~57\./`, jest `~58.0.2` (skutek ZB-010; test przypina wersję SDK).
+- `tests/public-repo.test.ts` › „SEC-06: query-string nie jest zależnością bezpośrednią… zostaje jako zależność expo-router” — `lock.packages['node_modules/expo-router'].dependencies['query-string']` jest puste: expo-router ≥ 58.0.13 nie zależy od `query-string` (cel ZB-010, pkt 1); założenie testu nieaktualne.
+- `tests/readme.test.ts` (5) — `scripts/readme.mjs`: „dodaj opis STAN-AGENTA.md do TOP” (plik stanu agenta śledzony w git w korzeniu) oraz nieaktualne bloki generowane README (wersje Expo/RN z package.json, liczba plików testów). Nie API RNTL: koordynator usuwa `STAN-AGENTA.md` przed scaleniem i regeneruje README (`node scripts/readme.mjs --write`) po scaleniu grup.
+- W D żaden test po migracji nie padł na asercji merytorycznej zachowania aplikacji.
