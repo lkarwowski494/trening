@@ -225,7 +225,7 @@ describe('„Ten tydzień”: stosy talerzy z procentem planu (tylko przy planie
     const box = screen.getByTestId('week-stacks'); expect(box.props.accessibilityLabel).toBe('Postęp tygodnia: 60% planu, zrobione 3 z 5 treningów z planu'); expect(box.props.accessible).toBe(true);
     expect(screen.getByText('60% planu tygodnia (3 z 5)')).toBeTruthy();
     for (let i = 0; i < 5; i++) {
-      const r = rects(stack(i)); expect(r).toHaveLength(LOAD_ORDER.length); expect(hidden(stack(i))).toBe(true);
+      const r = rects(stack(i)); expect(r).toHaveLength(LOAD_ORDER.length); expect(hidden(asFiber(stack(i)))).toBe(true);
       if (i < 3) expect([i, r.map(x => x.fill)]).toEqual([i, PLATE_FILLS]); else expect([i, r.every(x => x.fill === 'none' && x.stroke === light.text)]).toEqual([i, true]);
     }
     expect(screen.queryByTestId('week-stack-5', { includeHiddenElements: true })).toBeNull();
