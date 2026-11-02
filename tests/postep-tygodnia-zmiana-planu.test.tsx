@@ -51,17 +51,17 @@ describe('planChangedInWeek — czy plan zmieniono w bieżącym tygodniu', () =>
 
 describe('WeekStacks — dopisek o zmianie planu', () => {
   test('po zmianie w czwartek: dopisek „Plan zmieniony w czw. — …” w treści i w etykiecie VoiceOver; liczby jak wcześniej', async () => {
-    await ownerState(); week7(); const r = render(<WeekStacks />);
+    await ownerState(); week7(); const r = await render(<WeekStacks />);
     expect(r.getByText('33% planu tygodnia (2 z 6)')).toBeTruthy();
     expect(r.getByTestId('week-stacks-note').props.children).toBe('Plan zmieniony w czw. — wcześniejsze dni wg poprzedniego planu');
     expect(r.getByTestId('week-stacks').props.accessibilityLabel).toBe('Postęp tygodnia: 33% planu, zrobione 2 z 6 treningów z planu. Plan zmieniony w czw. — wcześniejsze dni wg poprzedniego planu');
   });
   test('bez zmiany planu w tym tygodniu: brak dopisku, etykieta jak dotąd', async () => {
-    await ownerState(); const r = render(<WeekStacks />);
+    await ownerState(); const r = await render(<WeekStacks />);
     expect(r.queryByTestId('week-stacks-note')).toBeNull(); expect(r.getByTestId('week-stacks').props.accessibilityLabel).toBe('Postęp tygodnia: 50% planu, zrobione 2 z 4 treningów z planu');
   });
   test('angielski: dzień z Intl, tekst ze słownika', async () => {
-    await ownerState(); week7(); applyLang('en'); const r = render(<WeekStacks />);
+    await ownerState(); week7(); applyLang('en'); const r = await render(<WeekStacks />);
     expect(r.getByTestId('week-stacks-note').props.children).toBe('Plan changed on Thu — earlier days follow the previous plan');
   });
 });

@@ -42,10 +42,10 @@ describe('ekran treningu', () => {
     const a = S().active!; const e = a.exercises[0]; e.sets[0].bandId = b.id; e.sets[0].reps = 8;
     const vis = equipVisFor(a, e, e.sets[0]); const band = vis.find(v => v.kind === 'band');
     expect(band).toMatchObject({ kind: 'band', role: 'assist', level: b.level });
-    const r = render(<>{vis.map((v, i) => <EquipVisual key={i} v={v} />)}</>);
+    const r = await render(<>{vis.map((v, i) => <EquipVisual key={i} v={v} />)}</>);
     expect(r.getByLabelText(new RegExp(`^asysta gumą: `))).toBeTruthy();
     /* ta sama guma przy ćwiczeniu z oporem gumy (bez asysty) — „guma: …” */
-    const r2 = render(<EquipVisual v={{ ...band!, role: 'resist' } as never} />); expect(r2.getByLabelText(/^guma: /)).toBeTruthy(); expect(r2.queryByLabelText(/^asysta gumą/)).toBeNull();
+    const r2 = await render(<EquipVisual v={{ ...band!, role: 'resist' } as never} />); expect(r2.getByLabelText(/^guma: /)).toBeTruthy(); expect(r2.queryByLabelText(/^asysta gumą/)).toBeNull();
   });
 });
 

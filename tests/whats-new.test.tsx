@@ -36,7 +36,7 @@ describe('1.0.0: pusta historia (pierwsza wersja w App Store)', () => {
   });
   test('panel wywołany bezpośrednio przy pustej historii nie renderuje niczego (bez błędu)', async () => {
     await boot(); const { WhatsNewPanel } = require('@/components/WhatsNew'); const { render } = require('@testing-library/react-native');
-    const r = render(<WhatsNewPanel onClose={() => {}} />); expect(r.toJSON()).toBeNull();
+    const r = await render(<WhatsNewPanel onClose={() => {}} />); expect(r.toJSON()).toBeNull();
   });
 });
 
@@ -71,7 +71,7 @@ describe('ekran Trening (próbki wpisów)', () => {
   });
   test('9A (11.10.2026): ikona „Co nowego” to iskierka ✦, nie litera „i”; testID i etykieta VoiceOver bez zmian', async () => {
     await boot();
-    const i = screen.getByTestId('whats-new-i'); const glyphs = i.findAll(n => (n.type as unknown) === 'Text').map(n => [n.props.children].flat().join(''));
+    const i = screen.getByTestId('whats-new-i'); const glyphs = i.queryAll(n => (n.type as unknown) === 'Text').map(n => [n.props.children].flat().join(''));
     expect(glyphs).toEqual(['✦']); expect(i.props.accessibilityLabel).toBe('Co nowego'); expect(i.props.accessibilityRole).toBe('button');
   });
   test('nowa osoba: panel z informacją „Zaczynasz od tej wersji” i przyciskiem przewodnika', async () => {

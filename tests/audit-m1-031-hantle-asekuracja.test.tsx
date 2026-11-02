@@ -78,24 +78,24 @@ describe('M1-031 cz. 2: zakres reguły dla hantli (NSCA 2017, Standard 3.2, „f
 
 describe('M1-031 cz. 2: ramka na ekranie ćwiczenia', () => {
   test.each(SPOT_DB)('%s: zdanie o hantlach i osobie asekurującej, bez zdań o sztandze', async key => {
-    await fresh(); render(<ExerciseCues exercise={{ lib: true, libKey: key, recommended: CATALOG[key].recommended } as any} />);
+    await fresh(); await render(<ExerciseCues exercise={{ lib: true, libKey: key, recommended: CATALOG[key].recommended } as any} />);
     expect(rtlScreen.getByText(NOTE_DB)).toBeTruthy(); expect(rtlScreen.getByText('Asekuracja')).toBeTruthy();
     expect(rtlScreen.queryByText(NOTE_BB)).toBeNull(); expect(rtlScreen.queryByText(NOTE_RACK)).toBeNull();
   });
   test.each(['Snatch (hantel)', 'Goblet Squat', 'Hip Thrust (hantel)', 'Biceps Curl (hantle)', 'Deadlift (hantle)', 'Lateral Raise (hantle)'])('%s: bez ramki', async key => {
-    await fresh(); render(<ExerciseCues exercise={{ lib: true, libKey: key, recommended: CATALOG[key].recommended } as any} />);
+    await fresh(); await render(<ExerciseCues exercise={{ lib: true, libKey: key, recommended: CATALOG[key].recommended } as any} />);
     expect(rtlScreen.queryByText(NOTE_DB)).toBeNull(); expect(rtlScreen.queryByText('Asekuracja')).toBeNull();
   });
   test('ćwiczenie z edytowanymi wymaganiami (catalogRev „user”) i własne: bez ramki', async () => {
-    await fresh(); render(<ExerciseCues exercise={{ lib: true, libKey: 'Arnold Press', recommended: [], catalogRev: 'user' } as any} />);
+    await fresh(); await render(<ExerciseCues exercise={{ lib: true, libKey: 'Arnold Press', recommended: [], catalogRev: 'user' } as any} />);
     expect(rtlScreen.queryByText(NOTE_DB)).toBeNull();
   });
   test('wariant sztangi bez zmian (Skullcrusher EZ → zdanie o sztandze, nie o hantlach)', async () => {
-    await fresh(); render(<ExerciseCues exercise={{ lib: true, libKey: 'Skullcrusher (EZ)', recommended: [] } as any} />);
+    await fresh(); await render(<ExerciseCues exercise={{ lib: true, libKey: 'Skullcrusher (EZ)', recommended: [] } as any} />);
     expect(rtlScreen.getByText(NOTE_BB)).toBeTruthy(); expect(rtlScreen.queryByText(NOTE_DB)).toBeNull();
   });
   test('EN: Arnold Press — angielskie zdanie', async () => {
-    await fresh(); applyLang('en'); render(<ExerciseCues exercise={{ lib: true, libKey: 'Arnold Press', recommended: [] } as any} />);
+    await fresh(); applyLang('en'); await render(<ExerciseCues exercise={{ lib: true, libKey: 'Arnold Press', recommended: [] } as any} />);
     expect(rtlScreen.getByText(NOTE_DB_EN)).toBeTruthy();
   });
   test('słowniki: nowe zdanie w EN i w każdym z 33 innych języków (es-419, pt-BR dziedziczą), różne od polskiego i angielskiego', () => {

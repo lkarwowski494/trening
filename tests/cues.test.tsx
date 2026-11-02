@@ -107,13 +107,13 @@ describe('logika', () => {
 
 describe('komponent ExerciseCues', () => {
   beforeEach(async () => { await fresh(); });
-  test('zwinięty: przycisk „Technika” z expanded=false; po stuknięciu sekcje, punkty i stopka; ponowne stuknięcie zwija', () => {
-    render(<ExerciseCues exercise={lib('Deadlift (sztanga)')} />);
+  test('zwinięty: przycisk „Technika” z expanded=false; po stuknięciu sekcje, punkty i stopka; ponowne stuknięcie zwija', async () => {
+    await render(<ExerciseCues exercise={lib('Deadlift (sztanga)')} />);
     const btn = screen.getByRole('button', { name: 'Technika' });
     expect(btn.props.accessibilityState).toEqual({ expanded: false });
     expect(btn.props.accessibilityHint).toBe('Ustawienie, ruch, wskazówki i częste błędy.');
     expect(screen.queryByText('Ustawienie')).toBeNull();
-    fireEvent.press(btn);
+    await fireEvent.press(btn);
     expect(screen.getByRole('button', { name: 'Technika' }).props.accessibilityState).toEqual({ expanded: true });
     for (const h of ['Ustawienie', 'Ruch', 'Wskazówki', 'Częste błędy']) expect(screen.getByRole('header', { name: h })).toBeTruthy();
     const first = cueText(CUE_DATA.exercises['Deadlift (sztanga)'].setup[0].c, 'pl');
@@ -121,27 +121,27 @@ describe('komponent ExerciseCues', () => {
     /* 23.10.2026 (docs/18): źródła tylko w Ustawienia → Źródła wiedzy; przy ćwiczeniu nie ma stopki „Na podstawie…” — tests/audit-k1-bl-mer */
     expect(screen.queryByText(/^Na podstawie/)).toBeNull();
     expect(screen.getByText('Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.')).toBeTruthy();
-    fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
+    await fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
     expect(screen.queryByText('Ustawienie')).toBeNull();
   });
-  test('ćwiczenie własne i ćwiczenie bez wskazówek — nic się nie renderuje', () => {
-    render(<ExerciseCues exercise={{ lib: false }} />);
+  test('ćwiczenie własne i ćwiczenie bez wskazówek — nic się nie renderuje', async () => {
+    await render(<ExerciseCues exercise={{ lib: false }} />);
     expect(screen.toJSON()).toBeNull();
     const open = CUE_DATA.open.find(k => !figureSpec(k)); /* z gotową rodziną v2 sekcja „Technika” jest (figura + wskazówki ogólne) */
-    if (open) { render(<ExerciseCues exercise={lib(open)} />); expect(screen.toJSON()).toBeNull(); }
+    if (open) { await render(<ExerciseCues exercise={lib(open)} />); expect(screen.toJSON()).toBeNull(); }
   });
-  test('kolory z motywu (jasny): tekst wskazówek t.text, nagłówki t.muted, linie t.line', () => {
-    render(<ExerciseCues exercise={lib('Plank')} />);
-    fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
+  test('kolory z motywu (jasny): tekst wskazówek t.text, nagłówki t.muted, linie t.line', async () => {
+    await render(<ExerciseCues exercise={lib('Plank')} />);
+    await fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
     const item = screen.getByText(`• ${cueText(CUE_DATA.exercises['Plank'].setup[0].c, 'pl')}`);
     expect(item.props.style.color).toBe(light.text);
     expect(screen.getByRole('header', { name: 'Ruch' }).props.style.color).toBe(light.muted);
     expect(screen.getByTestId('exercise-cues').props.style.borderColor).toBe(light.line);
   });
-  test('po angielsku: etykiety i treść w języku interfejsu', () => {
+  test('po angielsku: etykiety i treść w języku interfejsu', async () => {
     applyLang('en');
-    render(<ExerciseCues exercise={lib('Plank')} />);
-    fireEvent.press(screen.getByRole('button', { name: t('Technika') }));
+    await render(<ExerciseCues exercise={lib('Plank')} />);
+    await fireEvent.press(screen.getByRole('button', { name: t('Technika') }));
     expect(t('Technika')).toBe('Technique');
     expect(screen.getByRole('header', { name: 'Common mistakes' })).toBeTruthy();
     expect(screen.getByText(`• ${cueDict('en')[CUE_DATA.exercises['Plank'].setup[0].c]}`)).toBeTruthy();

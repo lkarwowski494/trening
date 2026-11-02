@@ -77,18 +77,18 @@ describe('0.14.0 wskazówki: logika i ekran', () => {
   });
   describe('komponent', () => {
     beforeEach(async () => { await fresh(); });
-    test('Bieg: po rozwinięciu tylko nagłówek „Wskazówki”, trzy punkty; bez „Ustawienie” i „Ruch”', () => {
-      render(<ExerciseCues exercise={lib('Bieg')} />);
-      fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
+    test('Bieg: po rozwinięciu tylko nagłówek „Wskazówki”, trzy punkty; bez „Ustawienie” i „Ruch”', async () => {
+      await render(<ExerciseCues exercise={lib('Bieg')} />);
+      await fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
       expect(screen.getByRole('header', { name: 'Wskazówki' })).toBeTruthy();
       expect(screen.queryByRole('header', { name: 'Ustawienie' })).toBeNull(); expect(screen.queryByRole('header', { name: 'Ruch' })).toBeNull();
       for (const id of ['run.stride', 'run.bounce', 'run.under']) expect(screen.getByText(`• ${cueText(id, 'pl')}`)).toBeTruthy();
       expect(screen.queryByText(/^Na podstawie/)).toBeNull(); /* 23.10.2026: źródła tylko w Ustawienia → Źródła wiedzy */
     });
-    test('Nordic Curl po angielsku: trzy sekcje i zdania EN', () => {
+    test('Nordic Curl po angielsku: trzy sekcje i zdania EN', async () => {
       applyLang('en');
-      render(<ExerciseCues exercise={lib('Nordic Curl')} />);
-      fireEvent.press(screen.getByRole('button', { name: t('Technika') }));
+      await render(<ExerciseCues exercise={lib('Nordic Curl')} />);
+      await fireEvent.press(screen.getByRole('button', { name: t('Technika') }));
       for (const h of ['Setup', 'Movement', 'Tips']) expect(screen.queryByRole('header', { name: h }) ?? screen.queryByRole('header', { name: new RegExp(h, 'i') })).toBeTruthy();
       expect(screen.getByText(`• ${cueDict('en')['nordic.catch']}`)).toBeTruthy();
     });
