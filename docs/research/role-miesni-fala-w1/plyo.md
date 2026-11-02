@@ -1,12 +1,15 @@
 # Role mięśni — rodzina plyo (skoki i plyometria), grupa G3
 
-Data: 02.11.2026 · Autor: badacz-merytoryczny (fala W1, G3) · Tylko zbieranie danych — bez zmian w kodzie, `data/zrodla/*.json` i testach.
+Data: 02.11.2026 · Autor: badacz-merytoryczny (fala W1, G3; kontynuacja tego samego dnia — skoki w bok bez wyniku) · Tylko zbieranie danych — bez zmian w kodzie, `data/zrodla/*.json` i testach.
 
 Dane wejściowe: `docs/research/equipment/catalog.json` i `lib/catalog.generated.ts` (muscleLoad, pattern), `data/zrodla/role-miesni.json`
 (format, istniejące funkcje i źródła S1–S28), `lib/muscleRoles.ts` (nameRules przed regułami, wariant zdania „_” — bez fazy),
 `data/zrodla/figury-sens.json` (podział rodziny plyo na `_skok`, `_podskok`, `_obciazony`). Podświetlenie od udziału 0,5 (`MUSCLE_MIN_LOAD = 0.5`
 w `lib/figures/v2/muscles.ts`), więc pary z udziałem 0,25 pominięto. W katalogu nie ma dziś żadnych nameRules dla ćwiczeń tej rodziny
 (są tylko szrugsy i zginanie/prostowanie nadgarstka).
+
+Szczeble źródeł według rozstrzygnięcia koordynatora linii 1.1 (02.11.2026): ACE i NASM (organizacje certyfikujące trenerów, treść firmowana) = 4;
+wpisy tego pliku bez zmian.
 
 ## Wniosek
 
@@ -17,16 +20,16 @@ są już w danych i mają status ustalone albo dwa_zrodla (anatomia: S2, S11, S1
 i bez reguły dla całego `other`.
 
 Nie obejmuje to skoków w bok i po skosie (kierunek ruchu inny niż w przeczytanych źródłach, a do tego dochodzą odwodziciele i przywodziciele) ani
-wyskoku z klęku — te zostają otwarte.
+wyskoku z klęku — te zostają otwarte. Druga sesja (02.11.2026) nie znalazła źródła dla skoków w bok — szczegóły w „Otwarte”.
 
 ## Tabela luk
 
 | Luka (pattern \| region \| rola) | Gotowe (ćwiczenia) | Otwarte (ćwiczenia, powód) |
 |---|---|---|
-| other \| quads \| main | 19: Box Jump, Jump Squat, Weighted Jump Squat, Tuck Jump, Star Jump, Bench Jump, Broad Jump, Depth Jump, Dumbbell Seated Box Jump, Frog Hops, Split Jump, Double Leg Butt Kick, Single-Leg Stride Jump, Alternate Leg Push-Off, Single Leg Push-Off, Box Skip, Front Cone Hops, Single-Leg Hop Progression, Single Leg Butt Kick → `quads.knee_ext` | 7 skoków w bok/po skosie: Side Standing Long Jump, Lateral Box Jump, Lateral Cone Hops, Single-Leg Lateral Hop, Side Hop-Sprint, Side to Side Box Shuffle, Alternate Leg Diagonal Bound — źródła opisują wybicie w górę/w przód; przeniesienie na kierunek boczny to analogia (= uproszczenie, nie wyświetlane). Pozostałe z 31 (Wall Ball, sanki) — plik sled_throw.md |
+| other \| quads \| main | 19: Box Jump, Jump Squat, Weighted Jump Squat, Tuck Jump, Star Jump, Bench Jump, Broad Jump, Depth Jump, Dumbbell Seated Box Jump, Frog Hops, Split Jump, Double Leg Butt Kick, Single-Leg Stride Jump, Alternate Leg Push-Off, Single Leg Push-Off, Box Skip, Front Cone Hops, Single-Leg Hop Progression, Single Leg Butt Kick → `quads.knee_ext` | 7 skoków w bok/po skosie: Side Standing Long Jump, Lateral Box Jump, Lateral Cone Hops, Single-Leg Lateral Hop, Side Hop-Sprint, Side to Side Box Shuffle, Alternate Leg Diagonal Bound — źródła opisują wybicie w górę/w przód; przeniesienie na kierunek boczny to analogia (= uproszczenie, nie wyświetlane). Wall Ball — gotowe w sled_throw.md; sanki — sled_throw.md |
 | other \| quads \| aux | — | Kneeling Jump Squat, Lateral Bound (powody niżej) |
 | other \| glutes \| main | Broad Jump, Dumbbell Seated Box Jump → `glutes.hip_ext` | Kneeling Jump Squat (brak przeczytanego opisu ruchu; figury-sens: „nie badane”), Lateral Bound (skok w bok) |
-| other \| glutes \| aux | 16: Box Jump, Jump Squat, Weighted Jump Squat, Tuck Jump, Star Jump, Bench Jump, Depth Jump, Frog Hops, Split Jump, Double Leg Butt Kick, Single-Leg Stride Jump, Alternate Leg Push-Off, Single Leg Push-Off, Box Skip, Front Cone Hops, Single-Leg Hop Progression → `glutes.hip_ext` | Side Standing Long Jump, Lateral Box Jump, Lateral Cone Hops, Alternate Leg Diagonal Bound (kierunek); Turkish Get Up, Wall Ball, sanki — sled_throw.md |
+| other \| glutes \| aux | 16: Box Jump, Jump Squat, Weighted Jump Squat, Tuck Jump, Star Jump, Bench Jump, Depth Jump, Frog Hops, Split Jump, Double Leg Butt Kick, Single-Leg Stride Jump, Alternate Leg Push-Off, Single Leg Push-Off, Box Skip, Front Cone Hops, Single-Leg Hop Progression → `glutes.hip_ext` | Side Standing Long Jump, Lateral Box Jump, Lateral Cone Hops, Alternate Leg Diagonal Bound (kierunek); Turkish Get Up, sanki — sled_throw.md (Wall Ball tam gotowe) |
 | other \| calves \| aux | 18: Box Jump, Jump Squat, Weighted Jump Squat, Tuck Jump, Star Jump, Bench Jump, Broad Jump, Depth Jump, Frog Hops, Split Jump, Double Leg Butt Kick, Single-Leg Stride Jump, Alternate Leg Push-Off, Single Leg Push-Off, Box Skip, Front Cone Hops, Single-Leg Hop Progression, Single Leg Butt Kick → `calves.plantar_flex` | 7 skoków w bok/po skosie (jak wyżej); sanki — sled_throw.md |
 | other \| hamstrings \| aux | — | Single Leg Butt Kick, Double Leg Butt Kick, Box Skip (w katalogu też 0,5), Kneeling Jump Squat — patrz Otwarte |
 | other \| abductors \| aux | — | Single-Leg Lateral Hop, Lateral Bound — brak przeczytanego źródła o odwodzicielach przy wybiciu w bok |
@@ -155,10 +158,17 @@ wyproście przy wybiciu + jedno badanie szczebla 3 o pracy stawów; funkcje anat
 ćwiczeń (box jump, jump and reach, single-leg push-off) na pokrewne skoki w górę/w przód z tej samej rodziny (np. Tuck Jump, Frog Hops) to ta sama mechanika
 wybicia, którą obie organizacje opisują ogólnie dla skoku; skoków w bok tym nie objęto.
 
+Sprawdzone w drugiej sesji i **nie użyte** (skoki w bok):
+- Kariyama Y, Zushi K. The differences between horizontal and vertical direction during a single-leg rebound jump (ISBS, https://ojs.ub.uni-konstanz.de/cpa/article/view/5636/5129) — przeczytane; skoki w przód i w górę, nie w bok (moment odwodzący biodra przy wybiciu jednonóż) → nie dotyczy kierunku bocznego.
+- Fleischmann J i in. Load-dependent movement regulation of lateral stretch shortening cycle jumps. Eur J Appl Physiol 2010 (streszczenie, springermedicine.com) — skoki w bok, ale streszczenie opisuje przemieszczenia stawów i odruchy, bez wyprostu kolana/biodra przy wybiciu i bez nazw mięśni.
+- Badanie kroku dostawnego (moment wyprostny biodra rośnie z prędkością boczną) — strona lida.sport-iat.de zwróciła 503; tylko streszczenie z wyszukiwarki (nie źródło).
+- Biblioteki ACE i NASM — w wynikach brak stron skoku w bok; NASM `lateral-bound` → 404. Pozostałe wyniki to strony aplikacji i platform ćwiczeń fizjoterapeutycznych (nie są źródłem).
+
 ## Otwarte
 
 - [OTWARTE] Skoki w bok i po skosie (7 ćwiczeń + Lateral Bound) dla quads/glutes/calves — przeczytane źródła opisują wybicie w górę/w przód; nie
-  znalazłem przeczytanego źródła o pracy stawów przy wybiciu w bok (wyszukiwania zwróciły tylko badania lądowania i blogi). Przeniesienie = analogia.
+  znalazłem przeczytanego źródła o pracy stawów przy wybiciu w bok (dwie sesje; wyniki: badania lądowania, streszczenia bez wyprostu stawów, strony aplikacji). Przeniesienie = analogia.
+  Kandydat do przeczytania: pełny tekst Fleischmann i in. 2010 (Eur J Appl Physiol) i badanie kroku dostawnego (ISBS/lida) — gdy dostępne.
 - [OTWARTE] Odwodziciele i przywodziciele w skokach w bok (Single-Leg Lateral Hop, Lateral Bound) — brak przeczytanego badania EMG ani opisu organizacji;
   znalezione były tylko blogi i badania lądowania.
 - [OTWARTE] Dwugłowe uda w Butt Kick (Single/Double Leg) i Box Skip — ruch „pięta do pośladka” to zgięcie kolana (S2, S13), ale nie przeczytałem źródła
@@ -173,8 +183,9 @@ wybicia, którą obie organizacje opisują ogólnie dla skoku; skoków w bok tym
 
 ## Stan
 
-Zrobione: luki quads/glutes/calves dla skoków w górę/w przód (55 par), wyszukanie źródeł dla skoków w bok, odwodzicieli/przywodzicieli, Butt Kick, Kneeling Jump Squat (bez wyniku → Otwarte).
-Zostało: skoki w bok (szukać badań kinetyki wybicia w bok / side-hop take-off z odwrotną dynamiką), Butt Kick (źródło szczebla 3–4), Kneeling Jump Squat.
-Następny krok: koordynator przenosi blok JSON do `data/zrodla/role-miesni.json` (nadanie numerów S29+), dopisuje test listy nameRules, generator przelicza liczby.
+Zrobione: luki quads/glutes/calves dla skoków w górę/w przód (55 par); dwie sesje wyszukiwania dla skoków w bok (bez wyniku → Otwarte), odwodzicieli/przywodzicieli, Butt Kick, Kneeling Jump Squat.
+Zostało: skoki w bok (8 ćwiczeń × quads/glutes/calves), Butt Kick, Kneeling Jump Squat.
+Następny krok: koordynator przenosi blok JSON do `data/zrodla/role-miesni.json` (nadanie numerów S29+), dopisuje test listy nameRules, generator przelicza liczby. Dla skoków w bok — dostęp do pełnego tekstu Fleischmann i in. 2010 albo biblioteka ćwiczeń organizacji szkolącej trenerów z opisem skoku w bok.
 Pułapki: nameRules nie sprawdzają `metric: time` (wszystkie te ćwiczenia mają `reps`/`weight_reps` — w porządku); ACE i NASM to szczebel 4, nie szczebel 2;
-nie wpisywać do listy ćwiczeń, których nie ma w katalogu (wszystkie nazwy sprawdzone w `lib/catalog.generated.ts`/`catalog.json`).
+nie wpisywać do listy ćwiczeń, których nie ma w katalogu (wszystkie nazwy sprawdzone w `lib/catalog.generated.ts`/`catalog.json`); platformy ćwiczeń
+fizjoterapeutycznych i strony aplikacji nie są źródłem; lida.sport-iat.de — 503.
