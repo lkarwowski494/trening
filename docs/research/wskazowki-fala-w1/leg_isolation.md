@@ -2,6 +2,31 @@
 
 Data: 02.11.2026 · autor: badacz-merytoryczny · Status: PROPOZYCJA — dane do integracji przez koordynatora linii 1.1
 
+## Korekta szczebli 02.11.2026 (wpisy pierwszego badacza)
+
+Podstawa: „ROZSTRZYGNIĘCIE” koordynatora linii 1.1 z 02.11.2026 — szczebel 4 wymaga naraz (a) organizacji szkolącej/certyfikującej trenerów,
+serwisu z redakcją i recenzją ekspercką albo producenta własnego rodzaju sprzętu, (b) autora z datą albo treści jawnie firmowanej, (c) braku
+afiliacji i marketingu. Strony sprawdzone ponownie (WebFetch, 02.11.2026); nowych źródeł nie szukano. Do dwóch źródeł liczą się tylko
+niezależne źródła szczebla ≥ 4 (szczebel 3 też), różnych właścicieli.
+
+| Organizacja | Było | Jest | Uzasadnienie wg (a)–(c) |
+|---|---|---|---|
+| NCSF | 4 | 4 | Organizacja certyfikująca trenerów (a); wpis firmowany „By NCSF”, bez autora i daty — treść jawnie firmowana (b); bez afiliacji, wpis edukacyjny (c). |
+| Robertson Training Systems | 4 | 4 | Autor i data (M. Robertson, 22.10.2019 i 13.03.2019) (b); w treści bez afiliacji, tylko dopisek o własnym warsztacie (c); (a) przyjęte, bo serwis prowadzi certyfikację i warsztaty dla trenerów (menu „Certification”, warsztat „Coaching the Lower Body Lifts”) — zakresu certyfikacji strona nie opisuje, do potwierdzenia koordynatora. |
+| E3 Rehab | 4 | **5** | (a) niespełnione: firma sprzedająca programy rehabilitacyjne i płatne konsultacje (strona główna, „Mentoring”), bez szkolenia/certyfikacji trenerów i bez opisanej recenzji; (c) strona artykułu z banerem wyprzedaży i „Shop Now”; autor „Marc” (14.05.2023) bez kwalifikacji na stronie. |
+| The Prehab Guys | 4 | **5** | (a) niespełnione: biblioteka ćwiczeń w subskrypcji (strona /professional/: biblioteka i programy domowe, bez kursów i certyfikacji), recenzja nieopisana; treść firmowana z datą (b), ale strony z wezwaniami do zakupu programów (c — granicznie). Strona deklaruje, że każde ćwiczenie nagrywa i opisuje fizjoterapeuta (DPT) — jeśli koordynator uzna to za recenzję ekspercką, wraca szczebel 4. |
+| Bells of Steel | 4 | 4 | Producent sprzedający własny GHD (artykuł linkuje własny „Reverse Hammer 2 In 1 GHD”) — instrukcja własnego rodzaju sprzętu (a); treść firmowana, data 30.05.2023 (b); bez afiliacji do innych marek, link tylko do własnego produktu, nie recenzja (c). Tylko dla GHD. |
+| McAllister i in. 2014 | 3 | 3 | Recenzowane badanie, J Strength Cond Res 28(6):1573–1580 (PDF, s. 1573); podpis ryc. 1 potwierdzony: „maintain 0° at the hip for the entire range of motion” (s. 1574). |
+
+Przeliczenie zdań (blok JSON w sekcji 2 i 2b):
+
+- **Stability Ball Hamstring Curl** — ACE + NCSF (oba 4) przy każdym zdaniu → bez zmian, **gotowe**.
+- **Reverse Nordic** — po odjęciu E3 Rehab i The Prehab Guys przy każdym zdaniu zostaje tylko Physitrack → wszystkie zdania usunięte z bloku, **otwarte** (sekcja 6).
+- **Glute Ham Raise** — `ghr.heels` (RTS + Bells of Steel) zostaje (2 źródła), ale `ghr.setup`, `ghr.move` (tylko Bells of Steel), `nordic.hips` (tylko McAllister) i `ghr.mis.arch` (tylko RTS) mają po 1 źródle → ćwiczenie bez ustawienia i ruchu, **otwarte**; `ghr.heels` przeniesione do zdań częściowych (sekcja 4).
+- **Slider Hamstring Curl** (wpis kontynuacji, polecenie koordynatora) — RTS zostaje 4, ale The Prehab Guys = 5: `slcurl.setup`, `slcurl.move`, `ballcurl.mis.sag` (tylko NISMAT) i `llc.control` (tylko RTS) mają po 1 źródle → usunięte z bloku, **otwarte**.
+- Skutek poza zakresem tej korekty (wpisy kontynuacji, bloku nie zmieniałem — do decyzji koordynatora): przy The Prehab Guys = 5 **Standing Leg Curl** traci `scurl.knee` i `lcurl.full` (zostaje 0 wskazówek), a **Standing Cable Leg Curl** traci `scurl.knee` (zostaje 1 wskazówka) — oba poniżej minimum. Physitrack (ta sama natura: komercyjna biblioteka ćwiczeń dla fizjoterapeutów) nie był w tej korekcie oceniany ponownie; zgodność ocen Physitrack i The Prehab Guys — do rozstrzygnięcia koordynatora.
+- Gotowe w rodzinie: przed korektą 8 (w tym 1 warunkowo), po korekcie 5 (w tym 1 warunkowo); przy konsekwentnym zastosowaniu oceny The Prehab Guys do wpisów kontynuacji — 3.
+
 Metoda jak w `docs/research/33-wskazowki-partia2.md`: każde zdanie ma ≥ 2 przeczytane (WebFetch) źródła szczebla 4 z różnych organizacji
 (albo szczebel 3 + 4), o tym ćwiczeniu lub jego wariancie (oznaczone „(wariant: …)”). Bez liczb (tempo, obciążenia) i bez twierdzeń o zdrowiu.
 Źródła o innym ćwiczeniu (analogia) się nie liczą. Strony innych aplikacji pominięte (polecenie koordynatora 02.11).
@@ -12,82 +37,22 @@ Kontynuacja (drugi badacz, 02.11.2026): ocena szczebli wg „ROZSTRZYGNIĘCIA”
 | Ćwiczenie (klucz katalogu) | Wynik | Uwagi |
 |---|---|---|
 | Sissy Squat | otwarte | ruch + 1 wskazówka mają 2 źródła; brak ustawienia z 2 źródłami (sekcja 6) — druga tura poszukiwań bez wyniku |
-| Reverse Nordic | gotowe | Physitrack, The Prehab Guys, E3 Rehab |
-| Glute Ham Raise | gotowe | The Prehab Guys, Bells of Steel (producent GHD), Robertson Training Systems; McAllister i in. 2014 (szczebel 3) do pozycji bioder |
-| Standing Leg Curl | gotowe | Body-Solid (instrukcja producenta, stacja z wałkami), Physitrack (wariant: obciążnik na kostce), The Prehab Guys (wariant: masa ciała) |
-| Standing Cable Leg Curl | gotowe (warunkowo) | jedyne źródło o wersji z wyciągiem: REP Fitness; pozostałe to warianty stojącego uginania (sekcja 6) |
+| Reverse Nordic | otwarte (korekta 02.11) | E3 Rehab i The Prehab Guys → szczebel 5; zostaje tylko Physitrack (sekcja 6) |
+| Glute Ham Raise | otwarte (korekta 02.11) | The Prehab Guys → 5; z 2 źródłami zostaje tylko `ghr.heels` (RTS, Bells of Steel); ustawienie i ruch — tylko Bells of Steel (sekcja 6) |
+| Standing Leg Curl | gotowe — do decyzji koordynatora | Body-Solid (instrukcja producenta, stacja z wałkami), Physitrack (wariant: obciążnik na kostce), The Prehab Guys (wariant: masa ciała); przy The Prehab Guys = 5 brak wskazówek z 2 źródłami (korekta 02.11) |
+| Standing Cable Leg Curl | gotowe (warunkowo) — do decyzji koordynatora | jedyne źródło o wersji z wyciągiem: REP Fitness; pozostałe to warianty stojącego uginania (sekcja 6); przy The Prehab Guys = 5 zostaje 1 wskazówka (korekta 02.11) |
 | Leg Curl (hantel) | otwarte | znalezione opisy (2 serwisy) nie spełniają kryteriów szczebla 4 (sekcja 6) |
 | Single-Leg Leg Extension | gotowe | NFPT (wariant: obunóż), Hoist (instrukcja producenta, wariant: obunóż), Physitrack (jednonóż, maszyna) |
-| Stability Ball Hamstring Curl | gotowe | ACE #59, NCSF (wariant: jednonóż) |
-| Slider Hamstring Curl | gotowe | The Prehab Guys (wariant: jednonóż), NISMAT (wariant: ręcznik), Robertson Training Systems |
+| Stability Ball Hamstring Curl | gotowe | ACE #59, NCSF (wariant: jednonóż) — oba szczebel 4 po korekcie 02.11 |
+| Slider Hamstring Curl | otwarte (korekta 02.11) | The Prehab Guys → 5; każde zdanie ma tylko 1 źródło szczebla 4 (NISMAT albo RTS) (sekcja 6) |
 | Seated Band Hamstring Curl | gotowe | Physitrack, StayWell / WebMD Ignite (materiał Vanderbilt Health) |
 
 ## 2. Wpisy do `cues.json` → `exercises`
 
+Korekta 02.11.2026: wpisy Reverse Nordic i Glute Ham Raise usunięte z bloku (ćwiczenia otwarte — sekcja 6).
+
 ```json
 {
-  "Reverse Nordic": {
-    "setup": [
-      {"c": "rnordic.setup", "s": [
-        ["physitrack-reverse-nordic", "opis ćwiczenia (wysoki klęk na macie, nogi na szerokość bioder; parafraza)"],
-        ["e3-reverse-nordics", "How to set up („Kneel on a soft surface, such as a pad, pillow, or towel, with your knees roughly hip width apart or greater”)"],
-        ["prehab-reverse-nordic", "HOW („tall kneeling position with something under your knees for comfort”)"]
-      ]}
-    ],
-    "move": [
-      {"c": "rnordic.move", "s": [
-        ["physitrack-reverse-nordic", "opis ćwiczenia (powoli odchyl całe ciało w tył, wróć pod kontrolą; parafraza)"],
-        ["e3-reverse-nordics", "How to perform („slowly lean back as far as you can comfortably control before returning to the starting position”)"],
-        ["prehab-reverse-nordic", "HOW (odchylenie w tył i powrót do klęku; parafraza)"]
-      ]}
-    ],
-    "tips": [
-      {"c": "rnordic.line", "s": [
-        ["physitrack-reverse-nordic", "opis ćwiczenia (napnij pośladki i brzuch; biodra w przód w linii z tułowiem i udami; parafraza)"],
-        ["e3-reverse-nordics", "How to perform (pośladki i brzuch napięte; „a straight line between your knees, hips, and shoulders”)"]
-      ]},
-      {"c": "llc.control", "s": [
-        ["physitrack-reverse-nordic", "opis ćwiczenia (powolne do umiarkowanego tempo, powrót pod kontrolą; parafraza)"],
-        ["e3-reverse-nordics", "How to perform („focus on slow and controlled repetitions”)"]
-      ]}
-    ],
-    "mistakes": [
-      {"c": "rnordic.mis.hips", "s": [
-        ["physitrack-reverse-nordic", "opis ćwiczenia („Do not allow your hips to drop backwards”)"],
-        ["e3-reverse-nordics", "How to perform (linia kolana–biodra–barki przez cały ruch; błąd = jej złamanie w biodrach; parafraza)"]
-      ]}
-    ]
-  },
-  "Glute Ham Raise": {
-    "setup": [
-      {"c": "ghr.setup", "s": [
-        ["prehab-raise-ghd", "HOW („feet anchored into a GHD and the pads resting comfortably on your thighs”)"],
-        ["bos-ghd-use", "Glute Ham Raise (stopy zaczepione, poduszki o przód ud; parafraza)"]
-      ]}
-    ],
-    "move": [
-      {"c": "ghr.move", "s": [
-        ["prehab-raise-ghd", "HOW (z pełnego wyprostu powoli w dół, do pozycji równoległej do podłogi; parafraza)"],
-        ["bos-ghd-use", "Glute Ham Raise (z wysokiego klęku tułów w przód do równoległej, powrót przez napięcie tyłu ud i pośladków; parafraza)"]
-      ]}
-    ],
-    "tips": [
-      {"c": "nordic.hips", "s": [
-        ["prehab-raise-ghd", "HOW („keeping your body in a plank type of position the whole time”)"],
-        ["mcallister-2014", "ryc. 1, podpis (biodro utrzymywane w 0° przez cały zakres; parafraza)"]
-      ]},
-      {"c": "ghr.heels", "s": [
-        ["rts-ghr", "„Find (and keep) your heels” (pięty przy płycie przez całą serię; parafraza)"],
-        ["bos-ghd-use", "Glute Ham Raise (powrót z naciskiem piętami; parafraza)"]
-      ]}
-    ],
-    "mistakes": [
-      {"c": "ghr.mis.arch", "s": [
-        ["prehab-raise-ghd", "COMPENSATION („try not to arch your back by keeping your glutes and hamstrings engaged”)"],
-        ["rts-ghr", "błędy (mocno wygięte plecy, pięty oderwane, rozpęd; parafraza)"]
-      ]}
-    ]
-  },
   "Stability Ball Hamstring Curl": {
     "setup": [
       {"c": "ballcurl.setup", "s": [
@@ -117,9 +82,11 @@ Kontynuacja (drugi badacz, 02.11.2026): ocena szczebli wg „ROZSTRZYGNIĘCIA”
 }
 ```
 
-Uwaga do `ballcurl.mis.sag` i `rnordic.mis.hips`: drugie źródło podaje wskazówkę pozytywną (linia ciała), błąd jest jej zaprzeczeniem — tak jak w metodzie docs/33; jeśli koordynator przyjmuje tylko błąd nazwany wprost, oba ćwiczenia i tak zostają „gotowe” (ustawienie, ruch, ≥ 2 wskazówki).
+Uwaga do `ballcurl.mis.sag`: drugie źródło (ACE) podaje wskazówkę pozytywną (linia ciała), błąd jest jej zaprzeczeniem — tak jak w metodzie docs/33; NCSF nazywa błąd wprost (biodra nie mogą opadać, sprawdzone 02.11.2026).
 
 ### 2b. Wpisy z kontynuacji (02.11.2026)
+
+Korekta 02.11.2026: wpis Slider Hamstring Curl usunięty z bloku (ćwiczenie otwarte — sekcja 6). Wpisy Standing Leg Curl i Standing Cable Leg Curl pozostawione bez zmian — zależą od decyzji koordynatora o szczeblu The Prehab Guys (sekcja „Korekta szczebli”).
 
 ```json
 {
@@ -229,39 +196,13 @@ Uwaga do `ballcurl.mis.sag` i `rnordic.mis.hips`: drugie źródło podaje wskaz�
       ]}
     ],
     "mistakes": []
-  },
-  "Slider Hamstring Curl": {
-    "setup": [
-      {"c": "slcurl.setup", "s": [
-        ["prehab-single-leg-hamstring-curl-slider", "(wariant: jednonóż) HOW (na plecach, kolana ugięte, ślizgacz pod stopą; parafraza)"],
-        ["nismat-hamstring-sliders", "(wariant: ręcznik) („Lie on your back, bend your knees and place a towel under your feet”)"]
-      ]}
-    ],
-    "move": [
-      {"c": "slcurl.move", "s": [
-        ["prehab-single-leg-hamstring-curl-slider", "(wariant: jednonóż) HOW (biodra w górę, wyprostuj nogę na ślizgaczu, przyciągnij stopę z biodrami w górze; parafraza)"],
-        ["nismat-hamstring-sliders", "(wariant: ręcznik) (mostek, wysunięcie nóg do wyprostu, powrót „without dropping your hips”)"]
-      ]}
-    ],
-    "tips": [
-      {"c": "llc.control", "s": [
-        ["prehab-single-leg-hamstring-curl-slider", "(wariant: jednonóż) COMPENSATION („Control the slide out and back in, don’t go too fast”)"],
-        ["rts-valslide-leg-curl", "wskazówki („Lower slowly and under control!”)"]
-      ]}
-    ],
-    "mistakes": [
-      {"c": "ballcurl.mis.sag", "s": [
-        ["nismat-hamstring-sliders", "(wariant: ręcznik) powrót „without dropping your hips”"],
-        ["prehab-single-leg-hamstring-curl-slider", "(wariant: jednonóż) HOW („while keeping your hips raised”; błąd = zaprzeczenie)"]
-      ]}
-    ]
   }
 }
 ```
 
-Uwaga: `ballcurl.mis.sag` przy Slider Hamstring Curl — oba źródła mówią pozytywnie („biodra w górze”, „bez opuszczania bioder”); ta sama zasada co wyżej. Bez tego wpisu ćwiczenie ma tylko 1 wskazówkę — wtedy „otwarte”.
-
 ## 4. Nowe zdania
+
+Korekta 02.11.2026: zdania `rnordic.*`, `ghr.setup`, `ghr.move`, `ghr.mis.arch` i `slcurl.*` dotyczą ćwiczeń otwartych — nie do aplikacji, dopóki ćwiczenie otwarte (brzmienie zostaje jako propozycja); `ghr.heels` — w tabeli zdań częściowych niżej. `ballcurl.mis.sag` zostaje (Stability Ball Hamstring Curl).
 
 | id | PL | EN (propozycja) | uzasadnienie potrzeby |
 |---|---|---|---|
@@ -286,7 +227,7 @@ Uwaga: `ballcurl.mis.sag` przy Slider Hamstring Curl — oba źródła mówią p
 | slcurl.setup | Połóż się na plecach, kolana ugięte, pięty na ślizgaczach. | Lie on your back, knees bent, heels on the sliders. | ballcurl.setup — piłka i biodra od razu w górze |
 | slcurl.move | Unieś biodra, wysuń nogi do wyprostu, potem przyciągnij pięty z powrotem — biodra cały czas w górze. | Lift your hips, slide your legs out until straight, then pull your heels back in — hips up the whole time. | brak ruchu ze ślizgaczami |
 
-Zdania z tabeli poprzednika `scurl.move` i `scurl.knee` przechodzą z „częściowych” do użycia (Standing Leg Curl, Standing Cable Leg Curl).
+Zdania z tabeli poprzednika `scurl.move` i `scurl.knee` przechodzą z „częściowych” do użycia (Standing Leg Curl, Standing Cable Leg Curl) — korekta 02.11.2026: `scurl.knee` ma po niej tylko 1 źródło szczebla 4 (Physitrack), jeśli The Prehab Guys = 5.
 
 Zdania częściowe (do ćwiczeń otwartych, nie do aplikacji dopóki ćwiczenie otwarte):
 
@@ -296,25 +237,28 @@ Zdania częściowe (do ćwiczeń otwartych, nie do aplikacji dopóki ćwiczenie 
 | sissy.torso | Plecy proste, tułów napięty przez cały ruch. | Back straight, torso braced throughout. | issa-squat-variations („The back remains straight throughout the exercise”), barbend-sissy-squat (Common Mistakes: Not Bracing Your Torso) |
 | scurl.move | Zegnij kolano, przyciągając piętę w stronę pośladka; opuść ją powoli. | Bend your knee, bringing your heel toward your glute; lower it slowly. | (wariant: bez maszyny) physitrack-otago-standing-curl, prehab-standing-hamstring-curl; od kontynuacji też bodysolid-g6b-standing-curl |
 | scurl.knee | Udo nogi ćwiczącej przy drugim udzie — kolano nie ucieka w przód ani w bok. | Keep the working thigh next to the other one — don't let the knee drift forward or out. | (wariant: bez maszyny) physitrack-otago-standing-curl („Keep the thighs parallel”, parafraza), prehab-standing-hamstring-curl („Keep your knee in tight, don’t let your hip come out”) |
+| ghr.heels | Pięty cały czas dociśnięte do płyty. | Keep your heels pressed into the plate the whole time. | rts-ghr („make sure to find – and keep – your heels in contact throughout”), bos-ghd-use (sekcja Glute Ham Raise: „Push through your heels”) — korekta 02.11.2026 |
 
 ## 5. Nowe źródła
+
+Korekta 02.11.2026: szczebel E3 Rehab i The Prehab Guys zmieniony na 5 (sekcja „Korekta szczebli”).
 
 | id | adres | organizacja | szczebel | cytat / miejsce |
 |---|---|---|---|---|
 | ace-59 | https://www.acefitness.org/resources/everyone/exercise-library/59/stability-ball-hamstring-curl/ | ACE | 4 | Steps 1–4; Tips |
 | ace-301 | https://www.acefitness.org/resources/everyone/exercise-library/301/single-leg-hamstring-curl/ | ACE | 4 | opis (wariant jednonóż; ta sama organizacja co ace-59 — nie liczy się jako drugie źródło) |
-| ncsf-single-leg-ball-curl | https://www.ncsf.org/blog/183-single-leg-stability-ball-leg-curl | NCSF | 4 | opis i przestrogi (biodra nie opadają, miednica neutralna) |
+| ncsf-single-leg-ball-curl | https://www.ncsf.org/blog/183-single-leg-stability-ball-leg-curl | NCSF | 4 | opis i przestrogi (biodra nie opadają, miednica neutralna); wpis „By NCSF”, bez daty (sprawdzone 02.11.2026) |
 | issa-squat-variations | https://www.issaonline.com/blog/post/23-squat-variations-for-a-mind-blowing-lower-body-workout | ISSA | 4 | sekcja Sissy Squat: „a sissy squat involves leaning backward while squatting down.” |
 | barbend-sissy-squat | https://barbend.com/sissy-squat/ | BarBend | 4 | How to; Common Mistakes |
 | physitrack-reverse-nordic | https://us.physitrack.com/home-exercise-video/nordic-curl---reversed | Physitrack | 4 | „Do not allow your hips to drop backwards” |
-| prehab-reverse-nordic | https://theprehabguys.com/vimeo-video/reverse-nordic-hamstring-curl/ | The Prehab Guys | 4 | HOW; COMPENSATION („Do not round or bend your back.”) |
-| e3-reverse-nordics | https://e3rehab.com/how-to-set-up-perform-and-program-reverse-nordics/ | E3 Rehab | 4 | How to set up; How to perform |
-| prehab-raise-ghd | https://theprehabguys.com/vimeo-video/raise-ghd/ | The Prehab Guys | 4 | HOW; COMPENSATION |
-| bos-ghd-use | https://bellsofsteel.us/blogs/content/how-to-use-a-ghd-machine | Bells of Steel | 4 | sekcja Glute Ham Raise |
-| rts-ghr | https://robertsontrainingsystems.com/blog/how-to-perform-the-glute-ham-raise/ | Robertson Training Systems | 4 | „Find (and keep) your heels.”; opis błędów |
-| mcallister-2014 | https://oliverfinlay.com/assets/pdf/mcallister%20et%20al%20(2014)%20muscle%20activation%20during%20various%20hamstring%20exercises.pdf | McAllister i in. (University of Memphis) | 3 | J Strength Cond Res 2014;28(6):1573–80, ryc. 1 (podpis): „maintain 0° at the hip for the entire range of motion.” (kopia PDF na stronie autora; zaleca się podmienić na adres wydawcy/PubMed przy integracji) |
+| prehab-reverse-nordic | https://theprehabguys.com/vimeo-video/reverse-nordic-hamstring-curl/ | The Prehab Guys | 5 (korekta 02.11) | HOW; COMPENSATION („Do not round or bend your back.”); 10.08.2019, akt. 19.07.2021 |
+| e3-reverse-nordics | https://e3rehab.com/how-to-set-up-perform-and-program-reverse-nordics/ | E3 Rehab | 5 (korekta 02.11) | How to set up; How to perform; autor „Marc”, 14.05.2023 |
+| prehab-raise-ghd | https://theprehabguys.com/vimeo-video/raise-ghd/ | The Prehab Guys | 5 (korekta 02.11) | HOW; COMPENSATION; 13.02.2023, akt. 28.02.2023 |
+| bos-ghd-use | https://bellsofsteel.us/blogs/content/how-to-use-a-ghd-machine | Bells of Steel | 4 | sekcja Glute Ham Raise; 30.05.2023; producent własnego GHD |
+| rts-ghr | https://robertsontrainingsystems.com/blog/how-to-perform-the-glute-ham-raise/ | Robertson Training Systems | 4 | M. Robertson, 22.10.2019: „Find (and keep) your heels.”; opis błędów |
+| mcallister-2014 | https://oliverfinlay.com/assets/pdf/mcallister%20et%20al%20(2014)%20muscle%20activation%20during%20various%20hamstring%20exercises.pdf | McAllister i in. (University of Memphis) | 3 | J Strength Cond Res 2014;28(6):1573–80, ryc. 1 (podpis, s. 1574): „maintain 0° at the hip for the entire range of motion.” (kopia PDF na stronie autora; zaleca się podmienić na adres wydawcy/PubMed przy integracji) |
 | physitrack-otago-standing-curl | https://ca.physitrack.com/home-exercise-video/otago-standing-hamstring-curl | Physitrack | 4 | opis („Stand close to your support and hold on.”) |
-| prehab-standing-hamstring-curl | https://theprehabguys.com/vimeo-video/standing-hamstring-curl-2/ | The Prehab Guys | 4 | HOW; COMPENSATION |
+| prehab-standing-hamstring-curl | https://theprehabguys.com/vimeo-video/standing-hamstring-curl-2/ | The Prehab Guys | 5 (korekta 02.11) | HOW; COMPENSATION |
 | nfpt-leg-extensions | https://nfpt.com/how-to-do-leg-extensions/ | NFPT | 4 | autor w ramce: Robert Bovee (kwalifikacje i biogram), 11.08.2025; Setup, Execution, Common Mistakes |
 | hoist-hd3400 | https://www.hoistfitness.com/pages/hd-3400-leg-extension-leg-curl | Hoist Fitness | 4 | instrukcja własnej maszyny do prostowania/uginania; „your knee joint is aligned with the pivot point of the exercise arm” |
 | physitrack-knee-extension-machine | https://na.physitrack.com/home-exercise-video/knee-extension---machine | Physitrack | 4 | „Knee extension single leg - machine”; opis |
@@ -322,7 +266,7 @@ Zdania częściowe (do ćwiczeń otwartych, nie do aplikacji dopóki ćwiczenie 
 | staywell-seated-hamstring-curl | https://healthlibrary.vanderbilthealth.com/library/HealthSheets/3,S,90814 | WebMD Ignite (StayWell) — publikacja Vanderbilt Health | 4 | „Seated Hamstring Curl (Strength)”, kroki 1–3; recenzja: E. Oswald PT DPT i in., 01.02.2025 |
 | bodysolid-g6b-standing-curl | https://music.manualsonline.com/manuals/mfg/body_solid/g6b.html?p=74 | Body-Solid | 4 | instrukcja G6B, s. 74 „Standing Leg Curl (Hamstrings)” (kopia instrukcji producenta w serwisie z instrukcjami; przy integracji podmienić na PDF producenta, jeśli dostępny) |
 | rep-ankle-strap | https://repfitness.com/blogs/training/creative-ways-to-use-the-ankle-strap-for-a-cable-machine | REP Fitness | 4 | A. Heckel, 11.04.2023 (akt. 03.08.2026); „raise the weighted leg so your heels touch your glutes for hamstring raises” |
-| prehab-single-leg-hamstring-curl-slider | https://theprehabguys.com/vimeo-video/single-leg-hamstring-curl-slider/ | The Prehab Guys | 4 | HOW; COMPENSATION |
+| prehab-single-leg-hamstring-curl-slider | https://theprehabguys.com/vimeo-video/single-leg-hamstring-curl-slider/ | The Prehab Guys | 5 (korekta 02.11) | HOW; COMPENSATION |
 | nismat-hamstring-sliders | https://nismat.org/2023/12/11/hamstring-sliders/amp/ | NISMAT | 4 | „Hamstring Sliders” (11.12.2023): powrót „without dropping your hips” |
 | rts-valslide-leg-curl | https://robertsontrainingsystems.com/blog/crush-your-hamstrings-and-glutes-with-the-valslide-leg-curl/ | Robertson Training Systems | 4 | M. Robertson, 13.03.2019: „Lower slowly and under control!” |
 
@@ -335,14 +279,14 @@ Ocena nowych organizacji wg kryteriów a–c (kontynuacja):
 - **REP Fitness** — producent wyciągów i opasek na kostkę; artykuł z autorem i datą o własnym rodzaju sprzętu → 4; uwaga: blog ma też charakter sprzedażowy — do decyzji koordynatora.
 - **WebMD Ignite (StayWell)** — materiał opublikowany przez placówkę medyczną (Vanderbilt Health) z datą recenzji → 4 wg reguły dla WebMD Ignite.
 - **NISMAT** (Nicholas Institute of Sports Medicine and Athletic Trauma) — instytut medycyny sportowej przy szpitalu; treść firmowana przez instytut, data w adresie → 4.
-- Do weryfikacji przez koordynatora wpisów poprzednika wg nowych kryteriów: **NCSF** (organizacja certyfikująca — a spełnione; autora i daty wpisu nie sprawdzano) i **Robertson Training Systems** (autor i data są; kwalifikacji na stronie brak, firma prowadzi szkolenia dla trenerów). Przy RTS jako 5: Glute Ham Raise traci `ghr.heels` (zostaje Bells of Steel) i drugie źródło `ghr.mis.arch`; Slider Hamstring Curl traci drugie źródło `llc.control` → wtedy oba „otwarte” lub karta krótsza.
+- Wpisy poprzednika (NCSF, Robertson Training Systems, E3 Rehab, The Prehab Guys, Bells of Steel, McAllister) — ocenione w sekcji „Korekta szczebli 02.11.2026” na początku pliku.
 
 ```json
 {
   "orgs": {
     "NCSF": {"name": "National Council on Strength and Fitness — blog edukacyjny (ncsf.org)", "level": 4, "kind": "org"},
     "ISSA": {"name": "International Sports Sciences Association — blog edukacyjny (issaonline.com)", "level": 4, "kind": "org"},
-    "E3 Rehab": {"name": "E3 Rehab — artykuły edukacyjne (e3rehab.com, fizjoterapeuci)", "level": 4, "kind": "site"},
+    "E3 Rehab": {"name": "E3 Rehab — artykuły na stronie firmy sprzedającej programy rehabilitacyjne (e3rehab.com)", "level": 5, "kind": "site"},
     "Bells of Steel": {"name": "Bells of Steel — blog producenta sprzętu (GHD)", "level": 4, "kind": "maker"},
     "Robertson Training Systems": {"name": "Robertson Training Systems — blog trenerski (M. Robertson, IFAST)", "level": 4, "kind": "site"},
     "McAllister i in. (University of Memphis)": {"name": "McAllister i in. (University of Memphis) — badanie, J Strength Cond Res 2014", "level": 3, "kind": "study"},
@@ -360,14 +304,14 @@ Ocena nowych organizacji wg kryteriów a–c (kontynuacja):
     "issa-squat-variations": {"org": "ISSA", "title": "23 Squat Variations (sekcja Sissy Squat)", "url": "https://www.issaonline.com/blog/post/23-squat-variations-for-a-mind-blowing-lower-body-workout", "level": 4},
     "barbend-sissy-squat": {"org": "BarBend", "title": "Sissy Squat", "url": "https://barbend.com/sissy-squat/", "level": 4},
     "physitrack-reverse-nordic": {"org": "Physitrack", "title": "Nordic curl - reversed", "url": "https://us.physitrack.com/home-exercise-video/nordic-curl---reversed", "level": 4},
-    "prehab-reverse-nordic": {"org": "The Prehab Guys", "title": "Reverse Nordic Curl", "url": "https://theprehabguys.com/vimeo-video/reverse-nordic-hamstring-curl/", "level": 4},
-    "e3-reverse-nordics": {"org": "E3 Rehab", "title": "How to set up, perform, and program reverse Nordics", "url": "https://e3rehab.com/how-to-set-up-perform-and-program-reverse-nordics/", "level": 4},
-    "prehab-raise-ghd": {"org": "The Prehab Guys", "title": "Raise - GHD", "url": "https://theprehabguys.com/vimeo-video/raise-ghd/", "level": 4},
+    "prehab-reverse-nordic": {"org": "The Prehab Guys", "title": "Reverse Nordic Curl", "url": "https://theprehabguys.com/vimeo-video/reverse-nordic-hamstring-curl/", "level": 5},
+    "e3-reverse-nordics": {"org": "E3 Rehab", "title": "How to set up, perform, and program reverse Nordics", "url": "https://e3rehab.com/how-to-set-up-perform-and-program-reverse-nordics/", "level": 5},
+    "prehab-raise-ghd": {"org": "The Prehab Guys", "title": "Raise - GHD", "url": "https://theprehabguys.com/vimeo-video/raise-ghd/", "level": 5},
     "bos-ghd-use": {"org": "Bells of Steel", "title": "How To Use A GHD Machine?", "url": "https://bellsofsteel.us/blogs/content/how-to-use-a-ghd-machine", "level": 4},
     "rts-ghr": {"org": "Robertson Training Systems", "title": "How to Perform the Glute-Ham Raise", "url": "https://robertsontrainingsystems.com/blog/how-to-perform-the-glute-ham-raise/", "level": 4},
     "mcallister-2014": {"org": "McAllister i in. (University of Memphis)", "title": "Muscle Activation During Various Hamstring Exercises (JSCR 2014)", "url": "https://oliverfinlay.com/assets/pdf/mcallister%20et%20al%20(2014)%20muscle%20activation%20during%20various%20hamstring%20exercises.pdf", "level": 3},
     "physitrack-otago-standing-curl": {"org": "Physitrack", "title": "Otago Standing Hamstring Curl", "url": "https://ca.physitrack.com/home-exercise-video/otago-standing-hamstring-curl", "level": 4},
-    "prehab-standing-hamstring-curl": {"org": "The Prehab Guys", "title": "Standing Hamstring Curl", "url": "https://theprehabguys.com/vimeo-video/standing-hamstring-curl-2/", "level": 4},
+    "prehab-standing-hamstring-curl": {"org": "The Prehab Guys", "title": "Standing Hamstring Curl", "url": "https://theprehabguys.com/vimeo-video/standing-hamstring-curl-2/", "level": 5},
     "nfpt-leg-extensions": {"org": "NFPT", "title": "How To Do Leg Extensions (R. Bovee, 11.08.2025)", "url": "https://nfpt.com/how-to-do-leg-extensions/", "level": 4},
     "hoist-hd3400": {"org": "Hoist Fitness", "title": "HD-3400 Leg Extension/Leg Curl", "url": "https://www.hoistfitness.com/pages/hd-3400-leg-extension-leg-curl", "level": 4},
     "physitrack-knee-extension-machine": {"org": "Physitrack", "title": "Knee extension single leg - machine", "url": "https://na.physitrack.com/home-exercise-video/knee-extension---machine", "level": 4},
@@ -375,15 +319,21 @@ Ocena nowych organizacji wg kryteriów a–c (kontynuacja):
     "staywell-seated-hamstring-curl": {"org": "WebMD Ignite (StayWell)", "title": "Seated Hamstring Curl (Strength) — Vanderbilt Health, recenzja 01.02.2025", "url": "https://healthlibrary.vanderbilthealth.com/library/HealthSheets/3,S,90814", "level": 4},
     "bodysolid-g6b-standing-curl": {"org": "Body-Solid", "title": "G6B Owner's Manual, s. 74 — Standing Leg Curl", "url": "https://music.manualsonline.com/manuals/mfg/body_solid/g6b.html?p=74", "level": 4},
     "rep-ankle-strap": {"org": "REP Fitness", "title": "Creative Ways to Use the Ankle Strap for a Cable Machine (A. Heckel, 2023/2026)", "url": "https://repfitness.com/blogs/training/creative-ways-to-use-the-ankle-strap-for-a-cable-machine", "level": 4},
-    "prehab-single-leg-hamstring-curl-slider": {"org": "The Prehab Guys", "title": "Single Leg Hamstring Curl - Slider", "url": "https://theprehabguys.com/vimeo-video/single-leg-hamstring-curl-slider/", "level": 4},
+    "prehab-single-leg-hamstring-curl-slider": {"org": "The Prehab Guys", "title": "Single Leg Hamstring Curl - Slider", "url": "https://theprehabguys.com/vimeo-video/single-leg-hamstring-curl-slider/", "level": 5},
     "nismat-hamstring-sliders": {"org": "NISMAT", "title": "Hamstring Sliders (11.12.2023)", "url": "https://nismat.org/2023/12/11/hamstring-sliders/amp/", "level": 4},
     "rts-valslide-leg-curl": {"org": "Robertson Training Systems", "title": "Crush Your Hamstrings and Glutes with the ValSlide Leg Curl (13.03.2019)", "url": "https://robertsontrainingsystems.com/blog/crush-your-hamstrings-and-glutes-with-the-valslide-leg-curl/", "level": 4}
   }
 }
 ```
 
+Uwaga: organizacja „The Prehab Guys” nie ma wpisu w `orgs` tego pliku (zdefiniowana wcześniej poza tą rodziną) — przy integracji jej `level` należy ustawić na 5, chyba że koordynator uzna deklarację „każde ćwiczenie opisuje fizjoterapeuta” za recenzję ekspercką.
+
 ## 6. Otwarte
 
+- **Reverse Nordic (korekta 02.11.2026)** — E3 Rehab i The Prehab Guys mają szczebel 5; przy każdym zdaniu (`rnordic.setup`, `rnordic.move`, `rnordic.line`, `llc.control`, `rnordic.mis.hips`) zostaje jedno źródło szczebla 4 (Physitrack). Treść trzech źródeł jest zgodna, ale nie wystarcza. Rozstrzygnie: drugie źródło szczebla 4 o tym ćwiczeniu (np. organizacja certyfikująca trenerów) albo decyzja koordynatora, że The Prehab Guys = 4.
+- **Glute Ham Raise (korekta 02.11.2026)** — z 2 źródłami zostaje tylko `ghr.heels` (RTS + Bells of Steel). Jedno źródło szczebla ≥ 4: `ghr.setup`, `ghr.move` (Bells of Steel), `nordic.hips` (McAllister 2014 — szczebel 3, ryc. 1 i opis metody: neutralne biodro przez cały zakres), `ghr.mis.arch` (RTS: „their back is crazy arched”). Rozstrzygnie: drugie źródło szczebla 4 z ustawieniem i ruchem GHR (np. fragment podręcznika techniki NSCA, który zwracał 403 — sekcja 7) albo decyzja koordynatora o The Prehab Guys. RTS nie był ponownie czytany pod kątem ustawienia i ruchu (polecenie: bez nowych twierdzeń).
+- **Slider Hamstring Curl (korekta 02.11.2026)** — RTS zostaje 4, ale przy The Prehab Guys = 5: `slcurl.setup`, `slcurl.move`, `ballcurl.mis.sag` mają tylko NISMAT, `llc.control` tylko RTS. Rozstrzygnie: drugie źródło szczebla 4 albo decyzja o The Prehab Guys.
+- **Standing Leg Curl, Standing Cable Leg Curl (skutek korekty 02.11.2026, bloku nie zmieniono)** — przy The Prehab Guys = 5 pierwsze traci obie wskazówki, drugie `scurl.knee`; oba poniżej minimum. Do decyzji koordynatora razem ze spójną oceną Physitrack.
 - **Sissy Squat** — brak ustawienia z 2 źródłami: BarBend (stopy pod biodrami, przytrzymanie framugi/sztangi w stojaku), ISSA o ustawieniu milczy (wspomina tylko maszynę, która blokuje podudzia). Rozstrzygnie: drugie źródło z listy organizacji z pozycją wyjściową (np. NSCA, ACE). Zdania częściowe `sissy.move`, `sissy.torso` gotowe do użycia, gdy dojdzie ustawienie. Kontynuacja 02.11: brak strony ACE/NASM/NSCA/Coach w wyszukiwarce; mennohenselmans.com — 403; ironmaster.com — 404; PRx Performance opisuje wersję z gumą za kolanami (inny wariant, stopy złączone — sprzeczne z „pod biodrami” u BarBend, więc i tak nie do wspólnego zdania); Physitrack ma tylko „Easier Sissy Squat in Kneeling” (inny wariant, nieprzeczytany). Pozostałe trafienia to strony aplikacji, sklepy i agregatory (szczebel 5 lub zakaz).
 - **Standing Cable Leg Curl (warunkowo gotowe)** — o wersji z wyciągiem jest jedno źródło (REP Fitness, ustawienie i ruch); wskazówki opierają się na wariantach stojącego uginania (maszyna z wałkami, obciążnik na kostce, masa ciała). Jeśli koordynator uzna, że wyciąg z opaską to wariant „z dodatkiem” wymagający własnego źródła — ćwiczenie „otwarte”. Rozstrzygnie: drugie źródło szczebla 4 o wersji z wyciągiem (np. instrukcja producenta wyciągu z opaską).
 - **Standing Leg Curl** — źródło o maszynie jest jedno (Body-Solid); dlatego zdanie ustawienia jest ogólne („przodem do maszyny lub podpory, przytrzymaj się”), bez wałka i osi kolana. Szczegół maszyny (piętą pod dolny wałek, kolano tuż pod górną poduszką) — jedno źródło, nie wpisane.
@@ -400,6 +350,6 @@ Ocena nowych organizacji wg kryteriów a–c (kontynuacja):
 ## 7. Dostęp
 
 - ExRx (403) i web.archive.org (zablokowane) — pominięte zgodnie z poleceniem koordynatora.
-- 404: barbend.com/reverse-nordic-curl/, barbend.com/glute-ham-raise/, breakingmuscle.com/sissy-squat/, breakingmuscle.com/glute-ham-raise/, garagegymreviews.com/sissy-squat, theprehabguys.com/vimeo-video/sissy-squat/, theprehabguys.com/vimeo-video/reverse-nordic/, elitefts.com (artykuł o ustawieniu GHR); z kontynuacji: nasm.org/resource-center/exercise-library/leg-extension i …/single-leg-leg-extension, ironmaster.com (wpis o sissy squat).
+- 404: barbend.com/reverse-nordic-curl/, barbend.com/glute-ham-raise/, breakingmuscle.com/sissy-squat/, breakingmuscle.com/glute-ham-raise/, garagegymreviews.com/sissy-squat, theprehabguys.com/vimeo-video/sissy-squat/, theprehabguys.com/vimeo-video/reverse-nordic/, elitefts.com (artykuł o ustawieniu GHR); z kontynuacji: nasm.org/resource-center/exercise-library/leg-extension i …/single-leg-leg-extension, ironmaster.com (wpis o sissy squat); z korekty 02.11: theprehabguys.com/about-us/, e3rehab.com/about/.
 - 403: powerliftingtechnique.com, nsca.com i dxpprod.nsca.com (Kinetic Select „Glute Ham Raise”, fragment podręcznika techniki NSCA — warto przeczytać innym kanałem), sportsrehab.ucsf.edu (protokół PDF); z kontynuacji: mennohenselmans.com.
 - Inne: muscleandfitness.com (narzędzie nie pobiera), stack.com (503), manualshive.com (instrukcja ślizgaczy — blokada antybotowa), library.theprehabguys.com/?p=… (przekierowanie do logowania), ericcressey.com (treść tylko w filmie); z kontynuacji: bodysolid.com/Exercises/Article/46/Leg-Extension (strona o konserwacji, bez instrukcji ćwiczenia).
