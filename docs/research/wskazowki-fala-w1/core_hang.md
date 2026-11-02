@@ -148,3 +148,7 @@ z kwalifikacjami; zaleca wstrzymanie oddechu i lekki łuk w lędźwiach — sprz
 
 Dopisał koordynator grupy G1 na podstawie ustaleń badaczy (sekcja 6 w `wskazowki-fala-w1/core_floor-2.md`).
 Bez zmian stanu. Western SRS i HKU CSE to uczelniane centra sportu bez autora — szczebel 5 (jak dotąd). Reguła „błąd = zaprzeczenie standardu” nie przywraca żadnego zdania: `hang.noSwing` ma już dwa źródła szczebla 4; pozostałe błędy nie mają standardu w drugiej organizacji.
+
+## Korekta szczebli — uzupełnienie 3 (02.11.2026)
+
+Bez zmian stanu — ustalenia zbiorcze w `core_standing-2.md`, sekcja „Stan”, podsekcja „Uzupełnienie 3 dla pozostałych plików grupy”.

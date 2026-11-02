@@ -336,3 +336,7 @@ Skutek dla ćwiczeń:
 - „Superman” Health and Wellbeing Queensland to ruch z klęku podpartego (inne ćwiczenie) — nieużyta.
 - ACE nie ma w bibliotece zwykłego sit-upu.
 - Wiele wyników „sit-up”/„dragon flag” to strony aplikacji treningowych — pominięte.
+
+## Korekta szczebli — uzupełnienie 3 (02.11.2026)
+
+Bez zmian stanu — ustalenia zbiorcze w `core_standing-2.md`, sekcja „Stan”, podsekcja „Uzupełnienie 3 dla pozostałych plików grupy”.

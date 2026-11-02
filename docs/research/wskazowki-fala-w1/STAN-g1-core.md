@@ -3,7 +3,7 @@
 Gałąź `badania/g1-core` (od `integracja-1-1` @ 15abc58). Tylko pliki w `docs/research/wskazowki-fala-w1/` i `docs/research/role-miesni-fala-w1/`;
 kod, `data/zrodla/`, `lib/` i testy bez zmian (polecenie właściciela 02.11.2026). Integracja — koordynator linii 1.1.
 
-Szczeble źródeł wg rozstrzygnięcia koordynatora linii 1.1 z 02.11.2026 i jego uzupełnienia 2 (zastosowane we wszystkich plikach; sekcje „Korekta szczebli 02.11.2026” i „… uzupełnienie 2”).
+Szczeble źródeł wg rozstrzygnięcia koordynatora linii 1.1 z 02.11.2026 i jego uzupełnień 2 i 3 (zastosowane we wszystkich plikach; sekcje „Korekta szczebli 02.11.2026”, „… uzupełnienie 2” i „… uzupełnienie 3”). Po uzupełnieniu 3: Cable Woodchop 4 zdania, Kettlebell Windmill 6, Double Kettlebell Windmill 6, Reverse Hyperextension 3 (liczba gotowych ćwiczeń bez zmian).
 Zdania, które straciły drugie źródło, są w plikach jako „kandydaci wstrzymani” / „otwarte” — z treścią i miejscami, nie do wdrożenia.
 
 ## Wynik na rodzinę — wskazówki techniki
@@ -50,7 +50,7 @@ Właściciel (produkt):
 4. Weighted Ball Side Bend — w źródłach leżenie bokiem na piłce; przypisany zestaw stojący — `core_standing-2.md`.
 
 Koordynator linii / audytor (szczeble i reguła wariantu):
-- dwa różne szpitale NHS = dwie organizacje? (od tego zależy `neck.isoFront.press`); karta „Front And Back” tylko z przodem; RelayHealth na stronie kliniki (logo w obrazku — nieodczytane); `core_standing.windmill.mis.elbow` — czy dwa źródła szczebla 4 z samym standardem („ręka prosta”) wystarczą bez źródła podającego błąd wprost; TeachMeAnatomy (cały rejestr ról — przy szczeblu 5 `lower_back.spine_ext` zostaje z jednym źródłem),
+- dwa różne szpitale NHS = dwie organizacje? (od tego zależy `neck.isoFront.press`); karta „Front And Back” tylko z przodem; RelayHealth na stronie kliniki (logo w obrazku — nieodczytane); `core_standing.windmill.mis.elbow` — czy dwa źródła szczebla 4 z samym standardem („ręka prosta”) wystarczą bez źródła podającego błąd wprost; Experience Life na stronie windmilla (rola „coach at Life Time” bez certyfikatu na tej stronie — od tego zależy 6 vs 3 zdania Kettlebell Windmill i 6 vs 2 Double Kettlebell Windmill), ujednolicenie id zdań windmilla między core_standing-1 i -2; TeachMeAnatomy (cały rejestr ról — przy szczeblu 5 `lower_back.spine_ext` zostaje z jednym źródłem),
   Institute of Motion (firmowanie przez adres — Cable Woodchop), seria artykułów TRX (Suspended Reverse Crunch),
   Intermountain Health, platforma fizjoterapeutyczna obecna w `orgs` (nie liczona);
 - wariant czy analogia: Decline Crunch, Decline/Cable Reverse Crunch, Double Kettlebell Windmill (karta bez zdania o drugim kettlebellu);

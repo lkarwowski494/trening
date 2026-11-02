@@ -163,3 +163,7 @@ Podstawa: uzupełnienie 2 rozstrzygnięcia koordynatora linii 1.1 (02.11.2026).
 | Physitrack (nieczytana) | nie liczona | 5 | reguła wprost. |
 
 Skutek: żadne ćwiczenie nie zmienia stanu (gotowe 2 → 2).
+
+## Korekta szczebli — uzupełnienie 3 (02.11.2026)
+
+Bez zmian stanu — ustalenia zbiorcze w `core_standing-2.md`, sekcja „Stan”, podsekcja „Uzupełnienie 3 dla pozostałych plików grupy”.

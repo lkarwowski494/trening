@@ -10,15 +10,16 @@ odrzucone mimo trafień w wyszukiwarce. Miejsce „opis” = jedyny akapit instr
 Szczebel 4 = naraz: (a) organizacja szkoląca/certyfikująca trenerów, serwis z redakcją i recenzją ekspercką albo producent własnego rodzaju sprzętu;
 (b) autor z datą albo treść jawnie firmowana przez organizację; (c) nie recenzja afiliacyjna ani marketing. Dwa serwisy jednego właściciela = jedno źródło.
 Sieci siłowni/klubów = 5. Ocena każdego źródła — kolumna „szczebel i powód” w sekcji 4. Zdania z < 2 źródłami szczebla 4 i ćwiczenia z < 2 zdaniami przeniesione
-do sekcji 5 (dane zachowane w bloku „Kandydaci wstrzymani — nie do wdrożenia”). Spójność z `core_standing-2.md`: Life Time = 5 (sekcja 7).
-Uzupełnienie 2 (02.11.2026) — sekcja 8.
+do sekcji 5 (dane zachowane w bloku „Kandydaci wstrzymani — nie do wdrożenia”). Uzupełnienie 2 — sekcja 8.
+**Uzupełnienie 3 (02.11.2026) — sekcja 9:** Life Time „Experience Life” warunkowo 4 per strona (autor z kwalifikacjami trenerskimi + data) — obie strony
+spełniają warunek → szczebel 4; to odwraca korektę z sekcji 7 dla Life Time.
 
 ## 1. Tabela
 
 | klucz | stan | liczba zdań | uwagi |
 |---|---|---|---|
-| Cable Woodchop | gotowe | 3 | ACE + Institute of Motion (`setup`, `move`, `trunk`); `mis.arch` wstrzymane (Life Time — 5); zestaw ogólny (`chop.close`, `plank.brace`, `rt.control`, `mis.jerk`) niepotwierdzony — „otwarte” |
-| Kettlebell Windmill | gotowe | 3 | ACE #386 + Catalyst #522 (`setup` w nowym brzmieniu, `move`, `wm.arm`); `knees`, `mis.elbow`, `wm.eyes` wstrzymane (Life Time i MTI — 5) |
+| Cable Woodchop | gotowe | 4 | ACE + Institute of Motion + Life Time (`setup`, `move`, `trunk`, `mis.arch`); od uzupełnienia 3 `move`, `trunk` i `mis.arch` nie zależą od IoM; zestaw ogólny (`chop.close`, `plank.brace`, `rt.control`, `mis.jerk`) niepotwierdzony — „otwarte” |
+| Kettlebell Windmill | gotowe | 6 | ACE #386 + Catalyst #522 + Life Time (`setup` w nowym brzmieniu bez rozstawu stóp, `move`, `wm.arm`, `knees`, `wm.eyes`, `mis.elbow`) |
 | Side Bend (hantel) | gotowe | 2 | 2 nowe zdania (ISSA + Catalyst #497); `sb.plane` → otwarte (drugie źródło to sprzedawca — szczebel 5) |
 | Landmine Rotation | otwarte | 0 | po rozstrzygnięciu: Dynamo Fitness i Performance Herts — szczebel 5 |
 | Barbell Side Bend | otwarte | 0 | zostało 1 zdanie (`core_standing.sidebend.move`) — za mało na kartę |
@@ -27,7 +28,7 @@ Uzupełnienie 2 (02.11.2026) — sekcja 8.
 | Medicine Ball Full Twist | otwarte | 0 | RDX — szczebel 5; zostaje tylko Intermountain Health (4 — potwierdzone uzupełnieniem 2); do tego sprawa katalogowa (ćwiczenie w parze) |
 | Bent Press | otwarte | 0 | Breaking Muscle i Legendary Strength — szczebel 5 |
 
-## 2. JSON do `exercises` (tylko gotowe, po korekcie 02.11.2026 — spójność Life Time)
+## 2. JSON do `exercises` (tylko gotowe, po uzupełnieniu 3 z 02.11.2026)
 
 ```json
 {
@@ -41,33 +42,57 @@ Uzupełnienie 2 (02.11.2026) — sekcja 8.
     "move": [
       {"c": "core_standing.woodchop.move", "s": [
         ["ace-340", "opis (linka w dół „in front of the left hip”, potem „slowly reversing the motion”; wariant: w klęku)"],
-        ["iom-lx48264v", "opis („perform a chopping motion high to low”)"]
+        ["iom-lx48264v", "opis („perform a chopping motion high to low”)"],
+        ["lifetime-wood-chop", "kroki, krok 4 (ciężar „down and across your body” do zewnętrznej strony biodra; wariant: hantel)"]
       ]}
     ],
     "tips": [
       {"c": "core_standing.woodchop.trunk", "s": [
         ["iom-lx48264v", "opis („initiating the movement from the torso and obliques”)"],
-        ["ace-108", "Step 6 (biodra obracają się razem z rękami; wariant: piłka lekarska)"]
+        ["ace-108", "Step 6 (biodra obracają się razem z rękami; wariant: piłka lekarska)"],
+        ["lifetime-wood-chop", "Common Mistakes → Doing too little („using only your arms to lift and lower the weight”; wariant: hantel)"]
+      ]}
+    ],
+    "mistakes": [
+      {"c": "core_standing.woodchop.mis.arch", "s": [
+        ["lifetime-wood-chop", "Common Mistakes → Doing too much („arching your back as you raise the weight”; wariant: hantel)"],
+        ["ace-108", "Step 2 (łopatki w dół i w tył „without arching your low back”; wariant: piłka lekarska)"]
       ]}
     ]
   },
   "Kettlebell Windmill": {
     "setup": [
       {"c": "core_standing.windmill.setup", "s": [
-        ["catalyst-522", "opis („Stand with a shoulder-width or slightly wider stance and hold a dumbbell or kettlebell overhead with one arm.”)"],
-        ["ace-386", "opis („Stand with the feet wider than shoulder-width apart, and hold a kettlebell in the left hand”; potem „pressing the kettlebell straight overhead”)"]
+        ["catalyst-522", "opis („hold a dumbbell or kettlebell overhead with one arm”)"],
+        ["ace-386", "opis („pressing the kettlebell straight overhead”)"],
+        ["lifetime-kb-windmill", "kroki, krok 1 („press a single kettlebell overhead”)"]
       ]}
     ],
     "move": [
       {"c": "core_standing.windmill.move", "s": [
         ["catalyst-522", "opis („push the hips back and toward the side holding the weight”; wolna dłoń do podłogi po wewnętrznej stronie przeciwnej stopy)"],
-        ["ace-386", "opis („sinking back into the left hip”; prawa ręka „along the inside of the right leg”; powrót: „push the hips forward”)"]
+        ["ace-386", "opis („sinking back into the left hip”; prawa ręka „along the inside of the right leg”; powrót: „push the hips forward”)"],
+        ["lifetime-kb-windmill", "kroki, krok 4 (dolna ręka „trace the inside of your leg”)"]
       ]}
     ],
     "tips": [
       {"c": "wm.arm", "s": [
         ["catalyst-522", "opis („rotating the trunk to keep the loaded arm straight up”)"],
         ["ace-386", "opis („Keeping the left arm straight during the movement.”)"]
+      ]},
+      {"c": "core_standing.windmill.knees", "s": [
+        ["catalyst-522", "opis („Keeping the knees close to straight”)"],
+        ["lifetime-kb-windmill", "kroki, krok 2 („Keep a soft bend in the opposite knee.”)"]
+      ]},
+      {"c": "wm.eyes", "s": [
+        ["ace-386", "opis („Turn to look up at the left hand”)"],
+        ["lifetime-kb-windmill", "kroki, krok 3 („Keep your eyes on the kettlebell.”)"]
+      ]}
+    ],
+    "mistakes": [
+      {"c": "core_standing.windmill.mis.elbow", "s": [
+        ["lifetime-kb-windmill", "lista błędów we wstępie („Bending the elbow of your top arm.”)"],
+        ["ace-386", "opis („Keeping the left arm straight during the movement.” — standard; błąd = zaprzeczenie standardu)"]
       ]}
     ]
   },
@@ -90,24 +115,14 @@ Uzupełnienie 2 (02.11.2026) — sekcja 8.
 
 Uwaga do `core_standing.sidebend.move`: „powoli” — Catalyst („controlled tempo”); ISSA tempa nie podaje. Jeśli recenzent uzna to za element bez 2 źródeł, wersja bez tempa: „Skłoń się w bok, wróć do pionu i skłoń się w drugą stronę.”
 
+Uwaga do `core_standing.windmill.mis.elbow`: błąd wprost podaje Life Time (szczebel 4 od uzupełnienia 3), standard „ręka prosta” — ACE #386 (inna organizacja); wzór z `neck.md` (pierwsze źródło podaje błąd, drugie standard) spełniony bez potrzeby decyzji koordynatora.
+
 ### Kandydaci wstrzymani — nie do wdrożenia (dane zachowane; brak 2 źródeł szczebla 4)
 
 ```json
 {
-  "Cable Woodchop": {
-    "move": [{"c": "core_standing.woodchop.move", "s": [["lifetime-wood-chop", "kroki („Lower the dumbbell down and across your body”, do zewnętrznej strony biodra; „powerful yet controlled”; wariant: hantel; szczebel 5 — dodatkowe źródło, zdanie i tak gotowe przez ACE + IoM)"]]}],
-    "tips": [{"c": "core_standing.woodchop.trunk", "s": [["lifetime-wood-chop", "Common Mistakes → Doing too little („using only your arms to lift and lower the weight”; wariant: hantel; szczebel 5 — zdanie i tak gotowe)"]]}],
-    "mistakes": [{"c": "core_standing.woodchop.mis.arch", "s": [["lifetime-wood-chop", "Common Mistakes → Doing too much („arching your back as you raise the weight”; wariant: hantel; szczebel 5)"], ["ace-108", "Step 2 (łopatki w dół i w tył „without arching your low back”; wariant: piłka lekarska)"]]}]
-  },
   "Kettlebell Windmill": {
-    "setup": [{"c": "core_standing.windmill.setup (brzmienie sprzed korekty: z „palce odwrócone od ręki z ciężarem”)", "s": [["lifetime-kb-windmill", "kroki (stopy obrócone od strony ręki z kettlebellem, „angling them about 45 degrees”; szczebel 5)"]]}],
-    "move": [{"c": "core_standing.windmill.move", "s": [["lifetime-kb-windmill", "kroki (dolna ręka wzdłuż wewnętrznej strony przedniej nogi, powrót do stania; szczebel 5 — zdanie i tak gotowe)"]]}],
-    "tips": [
-      {"c": "wm.arm", "s": [["lifetime-kb-windmill", "wskazówki (górna ręka wyprostowana, łokieć zablokowany, sięga do sufitu; szczebel 5 — zdanie i tak gotowe)"]]},
-      {"c": "core_standing.windmill.knees", "s": [["catalyst-522", "opis („Keeping the knees close to straight”)"], ["lifetime-kb-windmill", "kroki (lekko ugięte kolano — „soft bend”; szczebel 5)"]]},
-      {"c": "wm.eyes", "s": [["ace-386", "opis („Turn to look up at the left hand”)"], ["lifetime-kb-windmill", "(szczebel 5)"], ["mti-1321", "(szczebel 5)"]]}
-    ],
-    "mistakes": [{"c": "core_standing.windmill.mis.elbow", "s": [["lifetime-kb-windmill", "Common Mistakes (uginanie łokcia górnej ręki; szczebel 5)"], ["catalyst-522", "opis (ręka z ciężarem „straight up” — wskazówka, nie błąd wprost; błąd = zaprzeczenie standardu)"], ["ace-386", "opis (ręka prosta — wskazówka, nie błąd wprost; błąd = zaprzeczenie standardu)"]]}]
+    "setup": [{"c": "rozstaw i kąt stóp (bez zdania)", "s": [["lifetime-kb-windmill", "kroki, krok 1 (stopy „about 45 degrees”, start „under your hips”); błędy: „no wider than shoulder width”"], ["catalyst-522", "„shoulder-width or slightly wider”"], ["ace-386", "„wider than shoulder-width”"]]}]
   },
   "Landmine Rotation": {
     "setup": [{"c": "core_standing.landmine.setup", "s": [["dynamo-landmine-180", "kroki („Adopt a wide stance”)"], ["herts-landmine-rotation", "kroki („with a wide stance for balance”)"]]}],
@@ -152,22 +167,25 @@ Do wdrożenia (ćwiczenia gotowe):
 | core_standing.woodchop.setup | Stań bokiem do wyciągu ustawionego wysoko i chwyć uchwyt oburącz. | Stand side-on to a high cable and grip the handle with both hands. |
 | core_standing.woodchop.move | Prowadź uchwyt ukośnie w dół przez ciało do biodra po drugiej stronie, potem pod kontrolą wróć do góry. | Pull the handle diagonally down across your body to the opposite hip, then return to the top under control. |
 | core_standing.woodchop.trunk | Ruch zaczynaj tułowiem — ręce tylko trzymają uchwyt, nie ciągną same. | Start the movement with your torso — your arms just hold the handle, they don't do the pulling. |
-| core_standing.windmill.setup | Stopy nieco szerzej niż barki; kettlebell trzymaj nad głową na prostej ręce. | Feet a little wider than shoulder-width; hold the kettlebell overhead on a straight arm. |
+| core_standing.woodchop.mis.arch | Wyginanie pleców w łuk przy unoszeniu ciężaru. | Arching your back as the weight goes up. |
+| core_standing.windmill.setup | Wypchnij kettlebell nad głowę i trzymaj go na prostej ręce. | Press the kettlebell overhead and hold it there on a straight arm. |
 | core_standing.windmill.move | Wypchnij biodra w tył, w stronę ręki z ciężarem, i zsuwaj wolną dłoń po wewnętrznej stronie przeciwnej nogi w dół; wróć tą samą drogą. | Push your hips back toward the loaded side and slide your free hand down the inside of the opposite leg; come back up the same way. |
+| core_standing.windmill.knees | Nogi prawie proste — kolana tylko lekko ugięte. | Legs nearly straight — just a soft bend in the knees. |
+| core_standing.windmill.mis.elbow | Uginanie łokcia ręki z ciężarem. | Bending the elbow of the arm holding the weight. |
 | core_standing.sidebend.setup | Stań w lekkim rozkroku i trzymaj hantel w jednej ręce przy boku. | Stand with your feet about shoulder-width apart, holding a dumbbell in one hand at your side. |
 | core_standing.sidebend.move | Powoli skłoń się w bok, wróć do pionu i skłoń się w drugą stronę. | Slowly bend to one side, come back upright and bend to the other side. |
 
-Uwaga do `core_standing.windmill.setup` (zmiana brzmienia 02.11.2026): poprzednie brzmienie („Stopy mniej więcej na szerokość barków, palce odwrócone od ręki z ciężarem; …”)
-opierało „palce odwrócone” wyłącznie na Life Time (teraz szczebel 5), a „na szerokość barków” przeczy ACE #386 („wider than shoulder-width”). Część wspólna Catalyst
-(„shoulder-width or slightly wider”) i ACE („wider than shoulder-width”): „nieco szerzej niż barki”. Nowe brzmienie wymaga `claims.mjs --stub`/`--rehash` przy wdrożeniu.
+Uwaga do `core_standing.windmill.setup` (druga zmiana brzmienia, uzupełnienie 3, 02.11.2026): brzmienie z korekty („Stopy nieco szerzej niż barki; …”) opierało rozstaw
+na Catalyst + ACE. Od uzupełnienia 3 Life Time jest szczeblem 4 i przeczy rozstawowi ACE („no wider than shoulder width” wobec „wider than shoulder-width”) —
+sprzeczność na tym samym szczeblu bez wspólnej części dla wszystkich trzech źródeł, więc rozstaw usunięty ze zdania (różnica w sekcji 5). Zostaje część wspólna
+trzech źródeł: kettlebell nad głową na prostej ręce. Nowe brzmienie wymaga `claims.mjs --stub`/`--rehash` przy wdrożeniu.
+Uwaga do `core_standing.windmill.knees`: Catalyst — kolana „close to straight” (obie nogi), Life Time — „soft bend” w kolanie przeciwnej nogi; część wspólna:
+nogi prawie proste, lekkie ugięcie dozwolone.
 
 Przygotowane, ale wstrzymane/otwarte (nie wdrażać, dopóki nie będzie 2 źródeł szczebla 4):
 
 | id | PL | EN |
 |---|---|---|
-| core_standing.woodchop.mis.arch | Wyginanie pleców w łuk przy unoszeniu ciężaru. | Arching your back as the weight goes up. |
-| core_standing.windmill.knees | Nogi prawie proste — kolana tylko lekko ugięte. | Legs nearly straight — just a soft bend in the knees. |
-| core_standing.windmill.mis.elbow | Uginanie łokcia ręki z ciężarem. | Bending the elbow of the arm holding the weight. |
 | core_standing.landmine.setup | Stań szeroko i unieś koniec sztangi oburącz na prostych rękach. | Take a wide stance and lift the end of the bar with both hands, arms straight. |
 | core_standing.landmine.move | Prowadź koniec sztangi łukiem z jednego boku na drugi, obracając tułów; ręce cały czas proste. | Swing the end of the bar in an arc from one side to the other by rotating your torso; keep your arms straight throughout. |
 | core_standing.cabletwist.setup | Oprzyj górę pleców na piłce, unieś biodra do linii z tułowiem i trzymaj uchwyt na prostych rękach nad klatką. | Rest your upper back on the ball, lift your hips in line with your torso and hold the handle on straight arms above your chest. |
@@ -180,16 +198,16 @@ Przygotowane, ale wstrzymane/otwarte (nie wdrażać, dopóki nie będzie 2 źró
 | core_standing.bentpress.move | Odchylaj tułów w bok i w dół, z dala od ciężaru — ręka prostuje się, bo wchodzisz pod kettlebell, a nie wypychasz go w górę. | Lean your torso sideways and down, away from the weight — your arm straightens because you get under the kettlebell, not because you press it up. |
 | core_standing.bentpress.stand | Z zablokowaną ręką wstań, trzymając ciężar nad głową. | With your arm locked out, stand up holding the weight overhead. |
 
-## 4. Nowe źródła (z oceną szczebla wg rozstrzygnięcia 02.11.2026)
+## 4. Nowe źródła (z oceną szczebla wg rozstrzygnięcia 02.11.2026 i uzupełnień 2–3)
 
 | id | adres | organizacja | szczebel i powód |
 |---|---|---|---|
 | ace-340 | https://www.acefitness.org/resources/everyone/exercise-library/340/kneeling-wood-chop/ | ACE (Kneeling Wood Chop #340) | 4 — organizacja certyfikująca trenerów, treść firmowana |
 | ace-108 | https://www.acefitness.org/resources/everyone/exercise-library/108/standing-wood-chop/ | ACE (Standing Wood Chop #108) | 4 — jw. (ta sama organizacja co ace-340) |
 | ace-386 | https://www.acefitness.org/resources/everyone/exercise-library/386/kettlebell-windmill/ | ACE (Kettlebell Windmill #386); przeczytane 02.11.2026 (też w `core_standing-2.md`) | 4 — jw.; bez autora i daty, stopka „The American Council on Exercise” (treść firmowana) |
-| iom-lx48264v | https://platform.instituteofmotion.com/library/activity/lx48264v | Institute of Motion | 4 — sprawdzone ponownie 02.11.2026: (a) organizacja szkoląca trenerów — strona główna instituteofmotion.com, sekcja „Fitness Education”: kursy AHHPS Level 1–3 dla „Fitness Professionals” (certyfikatu/akredytacji CEU strona nie wymienia); (b) brak autora i daty, treść na platformie organizacji (subdomena instituteofmotion.com, „Program Builder”), ale nazwa organizacji nie pada w tekście strony ćwiczenia — firmowanie przez domenę; (c) strona ćwiczenia bez reklam, afiliacji i sklepu. Najsłabszy punkt: (b) — do potwierdzenia przez koordynatora; od tego zależą wszystkie 3 zdania woodchop |
-| lifetime-wood-chop | https://experiencelife.lifetime.life/article/how-to-do-the-wood-chop/ | Life Time, „Experience Life” (M. Fazeli Fard, RKC, starsza redaktorka, 20.12.2024) | 5 — korekta 02.11.2026 (spójność z `core_standing-2.md`): (a) niespełnione — wydawca to sieć klubów (jak PureGym); brak noty o recenzji eksperckiej; (c) reklamy i odnośniki do sklepu na stronach magazynu (wg `core_standing-2.md`, sekcja 6) |
-| lifetime-kb-windmill | https://experiencelife.lifetime.life/article/the-kettlebell-windmill/ | Life Time, „Experience Life” (M. Fazeli Fard, 24.04.2020) | 5 — jw. |
+| iom-lx48264v | https://platform.instituteofmotion.com/library/activity/lx48264v | Institute of Motion | 4 — sprawdzone ponownie 02.11.2026: (a) organizacja szkoląca trenerów — strona główna instituteofmotion.com, sekcja „Fitness Education”: kursy AHHPS Level 1–3 dla „Fitness Professionals” (certyfikatu/akredytacji CEU strona nie wymienia); (b) brak autora i daty, treść na platformie organizacji (subdomena instituteofmotion.com, „Program Builder”), ale nazwa organizacji nie pada w tekście strony ćwiczenia — firmowanie przez domenę; (c) strona ćwiczenia bez reklam, afiliacji i sklepu. Najsłabszy punkt: (b) — do potwierdzenia przez koordynatora; od uzupełnienia 3 zależy od tego tylko `woodchop.setup` |
+| lifetime-wood-chop | https://experiencelife.lifetime.life/article/how-to-do-the-wood-chop/ | Life Time, „Experience Life” (M. Fazeli Fard, 20.12.2024) | **4** — uzupełnienie 3 (WebFetch 02.11.2026): biogram na stronie „Maggie Fazeli Fard, RKC, is an Experience Life senior editor.” (RKC — certyfikat instruktora kettlebell), data 20.12.2024; nazwanego recenzenta brak (niewymagany przy autorze z kwalifikacjami) |
+| lifetime-kb-windmill | https://experiencelife.lifetime.life/article/the-kettlebell-windmill/ | Life Time, „Experience Life” (M. Fazeli Fard, 24.04.2020) | **4** — uzupełnienie 3 (WebFetch 02.11.2026): biogram na stronie „…senior editor and Alpha Strong coach at Life Time.” (rola trenerska; certyfikat RKC tej samej autorki podany na stronie wood chop), data 24.04.2020. Słabszy punkt niż wood chop: sama ta strona podaje rolę trenerki, nie certyfikat — do potwierdzenia przez koordynatora |
 | catalyst-522 | https://catalystathletics.com/exercise/522/Windmill | Catalyst Athletics | 4 — wg listy koordynatora; ponownie przeczytane 02.11.2026 (o wzroku, łokciu i kącie stóp nic) |
 | catalyst-497 | https://catalystathletics.com/exercise/497/Side-Bend/ | Catalyst Athletics (Side Bend; kettlebell, hantel, talerz) | 4 — wg listy |
 | catalyst-701 | https://catalystathletics.com/exercise/701/Barbell-Side-Bend | Catalyst Athletics (Barbell Side Bend) | 4 — wg listy |
@@ -209,21 +227,22 @@ Przygotowane, ale wstrzymane/otwarte (nie wdrażać, dopóki nie będzie 2 źró
 Odrzucone (przeczytane, nie pasują): Sussex Sport PDF „Anti Rotations and Pallof Press” (bez obrotu), Australian Fitness Academy (warianty Pallof bez obrotu),
 EliteFTS „Anti-Rotational Drills (Pallof Press)” (bez obrotu), Training Station (bez obrotu), Performance Herts #1297 (bez obrotu).
 Odrzucone z zasady: biblioteka ćwiczeń firmy fizjoterapeutycznej, która sprzedaje też aplikację (Pallof z obrotem na gumie) — potraktowana jak strona aplikacji.
-Szukanie zastępczego źródła dla `woodchop.mis.arch` (02.11.2026): wyszukiwarka nie zwróciła stron ACE/NASM/ISSA/BarBend o błędzie „wyginanie pleców” w woodchop — tylko strony aplikacji, agregatory i prasa ogólna (nieliczone).
+Eleiko — w tym pliku nieużyte (strony nie znalezione w indeksie, sekcja 6 „Pułapki”); uzupełnienie 3 go nie dotyczy.
 
 ## 5. Otwarte
 
-- **Korekta 02.11.2026 (spójność Life Time) — skutki:** `core_standing.woodchop.mis.arch` ma tylko ACE #108 → wstrzymane. W windmillu `knees` (tylko Catalyst), `mis.elbow` (błąd wprost tylko Life Time; ACE i Catalyst mówią „ręka prosta” jako wskazówkę — spójnie z `core_standing-2.md` nie liczę odwrócenia wskazówki jako źródła błędu) i `wm.eyes` (ACE #386 + dwa źródła szczebla 5) → wstrzymane.
-- **Reguła błędu (uzupełnienie 2) — `windmill.mis.elbow`:** uginanie łokcia jest bezpośrednim zaprzeczeniem standardu ACE #386 i Catalyst #522 („ręka prosta”), więc oba mogą być **drugim** źródłem błędu („błąd = zaprzeczenie standardu”). Pierwszego źródła szczebla 4, które podaje ten błąd wprost, nie ma (wprost tylko Life Time = 5) — wg wzoru z `neck.md` (pierwsze źródło podaje błąd, drugie standard) zdanie zostaje wstrzymane. **Do decyzji koordynatora:** czy dwa niezależne źródła szczebla 4 ze standardem, którego błąd jest bezpośrednim zaprzeczeniem, wystarczą bez źródła podającego błąd wprost (wtedy `mis.elbow` → gotowe, windmill 3 → 4 zdania).
-- **Institute of Motion (b):** jeśli koordynator nie uzna firmowania przez domenę za „treść jawnie firmowaną”, Cable Woodchop spada do 0 zdań z 2 źródłami (każde ma tylko ACE) → otwarte w całości.
+- **Kettlebell Windmill — rozstaw stóp (od uzupełnienia 3 sprzeczność na szczeblu 4):** Catalyst #522 „shoulder-width or slightly wider”, ACE #386 „wider than shoulder-width”,
+  Life Time „no wider than shoulder width” (lista błędów) i start ze stopami „under your hips” (krok 1). ACE i Life Time się wykluczają; wspólnej części dla trzech
+  źródeł brak → rozstaw poza kartą. Kąt stóp 45° — tylko Life Time (liczba — pełne zasady, jedno źródło). „Windmill to nie skłon w bok” (Life Time: „Bending at the waist or laterally flexing the spine”) — jedno źródło szczebla 4. `mis.jerk` — niepotwierdzone.
+- **Institute of Motion (b):** jeśli koordynator nie uzna firmowania przez domenę za „treść jawnie firmowaną”, Cable Woodchop traci tylko `woodchop.setup` (pozostałe 3 zdania mają ACE + Life Time) → nadal gotowe, 3 zdania.
+- **Life Time — strona windmilla:** biogram podaje rolę „Alpha Strong coach at Life Time”, certyfikat RKC tej samej autorki widnieje na stronie wood chop (2024). Jeśli koordynator uzna, że sama rola trenerki bez certyfikatu na stronie nie spełnia warunku, Kettlebell Windmill wraca do 3 zdań (`setup` w obecnym brzmieniu nadal ma Catalyst + ACE).
 - **Cable Woodchop — możliwe błędy zestawu ogólnego** (`lib/figures/v2/cue-sets.json`, dziś `general`):
   - `chop.close` („Ciężar blisko ciała…”) — w wersji z wyciągiem ręce są wyciągnięte; „blisko ciała” mówi tylko ACE #108 o piłce w etapie 1 → niepotwierdzone, możliwy błąd zestawu.
   - `plank.brace` — napięcie brzucha wprost tylko ACE #108 (jedna organizacja).
-  - `rt.control`, `mis.jerk` — „kontrola” jest u ACE („slowly”); Life Time (szczebel 5) zaleca ruch szybki („Quickly and with control”) — po korekcie nie tworzy sprzeczności na tym samym szczeblu, ale „płynnie, bez rzucania” nadal ma tylko jedną organizację szczebla 4.
-  - Różnica w ACE: #340 (klęk) — górna część ciała nieruchomo; #108 i Institute of Motion — obrót tułowia. Część wspólna w karcie: tor ukośny z góry do przeciwnego biodra, ruch prowadzi tułów.
+  - `rt.control`, `mis.jerk` — tempo: ACE „slowly”, Life Time „Quickly and with control” / „powerful yet controlled” — od uzupełnienia 3 różnica na tym samym szczeblu; część wspólna „pod kontrolą” (jest w `woodchop.move`), tempo poza kartą. Brzmienia `rt.control` w tej sesji nie sprawdzano — przy wdrożeniu porównać z częścią wspólną.
+  - Różnica w ACE: #340 (klęk) — górna część ciała nieruchomo; #108, Institute of Motion i Life Time — ruch z tułowia. Część wspólna w karcie: tor ukośny z góry do przeciwnego biodra, ruch prowadzi tułów.
   - Obrót tylnej stopy (ACE #108 etap 3) — pominięty: u ACE dopiero w etapie zaawansowanym.
 - **Landmine Rotation:** po rozstrzygnięciu brak źródła szczebla 4. Dodatkowo sprzeczność Dynamo („trunk and hips”) vs Herts („Keep your hips facing forward”). Zestaw ogólny (`rt.control`, `plank.brace`, `mis.jerk`) — żadne przeczytane źródło tego nie mówi → możliwy błąd zestawu. Następny krok: ACE/ISSA/NSCA/Catalyst — wpis landmine rotation („landmine 180”, „rainbow”).
-- **Kettlebell Windmill:** zestaw ogólny przypisuje `wm.eyes` → dziś jedno źródło szczebla 4 (ACE #386). Szerokość stóp: Catalyst „shoulder-width or slightly wider”, ACE „wider than shoulder-width” → „nieco szerzej niż barki” (Life Time „nie szerzej niż barki” — szczebel 5, nie liczy się). Kąt stóp 45° i obrót palców — tylko Life Time (5) → nie wpisane. „Windmill to nie skłon w bok” — tylko Life Time. `mis.jerk` — niepotwierdzone.
 - **Side Bend (hantel):** `sb.plane` — Catalyst #497 („hips and shoulders remain squared off facing forward”) + Dumbbells Direct (szczebel 5) → jedno źródło szczebla 4, otwarte; ISSA umieszcza ćwiczenie w płaszczyźnie czołowej, ale „bez skrętu i pochylenia” wprost nie pisze. Wolna ręka na głowie — tylko Catalyst. „Hantel wzdłuż nogi do kolana” — tylko ISSA. Liczby powtórzeń (Catalyst 10–15) — nie wpisane.
 - **Barbell Side Bend:** ustawienie sztangi (jak do przysiadu) — tylko Catalyst #701; `sb.plane` — Catalyst #701 + Dumbbells Direct (5); `core_standing.sidebend.move` — Catalyst #701 + ISSA (wariant: hantel) — jedyne zdanie z 2 źródłami → za mało na kartę. Zestaw ogólny `dyn.control` („zakres zwiększaj stopniowo”) — żadne przeczytane źródło tego nie mówi → możliwy błąd zestawu.
 - **Pallof Press With Rotation:** obrót od wyciągu po wypchnięciu, biodra przodem, ruch z tułowia, pauza, powolny powrót — tylko Speediance (jeden właściciel). `pallof.setup` (Speediance odsyła do ustawienia zwykłego Pallofa + ACE #332 i Mullane 2021 jako wariant bez obrotu) — jedno zdanie, za mało na kartę; do decyzji koordynatora, czy zwykły Pallof liczy się tu jako wariant. `pallof.noTwist` NIE pasuje do tej pozycji (ćwiczenie zakłada obrót) — jeśli zestaw ogólny/rodzinny je przypisuje, to błąd. Zakres obrotu (20–45° ze streszczenia wyszukiwarki) — nieprzeczytany.
@@ -237,12 +256,13 @@ Szukanie zastępczego źródła dla `woodchop.mis.arch` (02.11.2026): wyszukiwar
 - Zrobione (02.11.2026, sesja 2): Side Bend (hantel), Barbell Side Bend, Pallof Press With Rotation, Cable Russian Twists, Medicine Ball Full Twist, Bent Press; zastosowane rozstrzygnięcie koordynatora o szczeblach do całego pliku.
 - Zrobione (02.11.2026, sesja 3): korekta spójności Life Time = 5 (sekcja 7); ocena Institute of Motion i Mountain Tactical Institute wg (a)–(c); ACE #386 dodane do windmilla.
 - Zrobione (02.11.2026, uzupełnienie 2): sekcja 8 — Intermountain = 4, stan bez zmian (3 gotowe → 3 gotowe).
-- Wynik: gotowe — Cable Woodchop (3), Kettlebell Windmill (3), Side Bend (hantel) (2); otwarte — Landmine Rotation, Barbell Side Bend, Pallof Press With Rotation, Cable Russian Twists, Medicine Ball Full Twist, Bent Press.
-- Do decyzji koordynatora: Institute of Motion — czy firmowanie przez domenę spełnia (b) (od tego zależy cały woodchop); Speediance; czy zwykły Pallof liczy się jako wariant Pallofa z obrotem; nowe brzmienie `core_standing.windmill.setup`; `windmill.mis.elbow` wg reguły błędu (p. 5).
-- Następny krok: szukać drugiego źródła szczebla 4 (ACE, NASM, ISSA, NFPT z autorem, Catalyst, BarBend — tylko artykuły o technice; materiały szpitali — od uzupełnienia 2 szczebel 4) dla: `woodchop.mis.arch`, `windmill.knees`, `wm.eyes`, obrotu w Pallof z obrotem, landmine rotation, bent press, cable russian twist (na piłce), `sb.plane`, ustawienia w barbell side bend, Medicine Ball Full Twist (drugie źródło obok Intermountain).
-- Pułapki: ExRx 403, archiwum zablokowane; NASM nie ma wpisu woodchop ani side bend; strony Eleiko (inspire360) słabo indeksowane; wyszukiwarka zwraca głównie strony aplikacji; `sport.herts.ac.uk` → `performanceherts.co.uk`; muscleandstrength 403 (i tak się nie liczy); biblioteka ćwiczeń sklepu z suplementami — przekierowanie i 404; johnsonfitness.com 403; stack.com 503; mtntactical.com/about → 404; narzędzie Edit niedostępne — zapis tylko przez pełne Write.
+- Zrobione (02.11.2026, uzupełnienie 3): sekcja 9 — Life Time = 4 (obie strony: autorka z kwalifikacjami + data); przywrócone `woodchop.mis.arch`, `windmill.knees`, `wm.eyes`, `windmill.mis.elbow`; `windmill.setup` bez rozstawu stóp (sprzeczność ACE/Life Time).
+- Wynik: gotowe — Cable Woodchop (4), Kettlebell Windmill (6), Side Bend (hantel) (2); otwarte — Landmine Rotation, Barbell Side Bend, Pallof Press With Rotation, Cable Russian Twists, Medicine Ball Full Twist, Bent Press.
+- Do decyzji koordynatora: Institute of Motion — czy firmowanie przez domenę spełnia (b) (od uzupełnienia 3 zależy od tego tylko `woodchop.setup`); strona windmilla Life Time — czy rola „coach at Life Time” wystarcza; Speediance; czy zwykły Pallof liczy się jako wariant Pallofa z obrotem; nowe brzmienie `core_standing.windmill.setup`.
+- Następny krok: szukać drugiego źródła szczebla 4 (ACE, NASM, ISSA, NFPT z autorem, Catalyst, BarBend — tylko artykuły o technice; materiały szpitali — od uzupełnienia 2 szczebel 4) dla: obrotu w Pallof z obrotem, landmine rotation, bent press, cable russian twist (na piłce), `sb.plane`, ustawienia w barbell side bend, Medicine Ball Full Twist (drugie źródło obok Intermountain).
+- Pułapki: ExRx 403, archiwum zablokowane; NASM nie ma wpisu woodchop ani side bend; strony Eleiko (inspire360) słabo indeksowane; wyszukiwarka zwraca głównie strony aplikacji; `sport.herts.ac.uk` → `performanceherts.co.uk`; muscleandstrength 403 (i tak się nie liczy); biblioteka ćwiczeń sklepu z suplementami — przekierowanie i 404; johnsonfitness.com 403; stack.com 503; mtntactical.com/about → 404; experiencelife.lifetime.life/author/… → 404 (biogram tylko na stronie artykułu); narzędzie Edit niedostępne — zapis tylko przez pełne Write.
 
-## 7. Korekta szczebli 02.11.2026 (spójność Life Time)
+## 7. Korekta szczebli 02.11.2026 (spójność Life Time) — dla Life Time ZASTĄPIONA uzupełnieniem 3 (sekcja 9)
 
 Podstawa: `core_standing-2.md`, sekcja 6 — Life Time „Experience Life” = 5 (wydawca to sieć klubów jak PureGym, brak recenzji eksperckiej, reklamy, odnośnik do sklepu).
 Tu było „4 warunkowo” — ujednolicone. Strony ACE #386, Catalyst #522, Institute of Motion (biblioteka i strona główna) i mtntactical.com przeczytane ponownie 02.11.2026 (WebFetch).
@@ -258,18 +278,7 @@ Tu było „4 warunkowo” — ujednolicone. Strony ACE #386, Catalyst #522, Ins
 | ćwiczenie / zdanie | przed | po |
 |---|---|---|
 | Cable Woodchop | gotowe, 4 zdania | gotowe, 3 zdania |
-| `core_standing.woodchop.setup` | ACE #340 + IoM | bez zmian |
-| `core_standing.woodchop.move` | ACE #340 + IoM + Life Time | ACE #340 + IoM (Life Time do wstrzymanych jako dodatkowe) |
-| `core_standing.woodchop.trunk` | IoM + Life Time + ACE #108 | IoM + ACE #108 |
-| `core_standing.woodchop.mis.arch` | Life Time + ACE #108 | wstrzymane (tylko ACE) |
 | Kettlebell Windmill | gotowe, 5 zdań | gotowe, 3 zdania |
-| `core_standing.windmill.setup` | Catalyst + Life Time; „na szerokość barków, palce odwrócone…” | Catalyst + ACE #386; nowe brzmienie „nieco szerzej niż barki” bez palców |
-| `core_standing.windmill.move` | Catalyst + Life Time | Catalyst + ACE #386 |
-| `wm.arm` | Catalyst + Life Time | Catalyst + ACE #386 |
-| `core_standing.windmill.knees` | Catalyst + Life Time | wstrzymane (tylko Catalyst) |
-| `core_standing.windmill.mis.elbow` | Life Time + Catalyst | wstrzymane (błąd wprost tylko Life Time) |
-| `wm.eyes` | otwarte (Life Time + MTI) | otwarte (ACE #386 + dwa źródła szczebla 5) |
-| pozostałe ćwiczenia | bez Life Time | bez zmian |
 
 Uwaga: liczba ćwiczeń gotowych bez zmian (3 z 9), zdań gotowych 11 → 8.
 
@@ -281,4 +290,31 @@ Uwaga: liczba ćwiczeń gotowych bez zmian (3 z 9), zdań gotowych 11 → 8.
 | herts-landmine-rotation | 5 | 5 | uczelniane centrum/obiekt sportowy bez autora. |
 | pozostałe (IoM, Speediance, Life Time, MTI, RDX, Breaking Muscle, Legendary) | bez zmian | bez zmian | nie podlegają regułom uzupełnienia 2. |
 
-Skutek: Medicine Ball Full Twist ma nadal tylko jedno źródło szczebla 4 (Intermountain; RDX = 5) → otwarte. Reguła błędu: `windmill.mis.elbow` i `woodchop.mis.arch` nie mają źródła szczebla 4 podającego błąd wprost obok standardu z drugiej organizacji (`mis.arch`: ACE #108 wprost, drugiej organizacji ze standardem „plecy bez łuku” brak) → wstrzymane; `mis.elbow` do decyzji (p. 5). Gotowe: 3 → 3 (8 zdań).
+Skutek: Medicine Ball Full Twist ma nadal tylko jedno źródło szczebla 4 → otwarte. Gotowe: 3 → 3 (8 zdań).
+
+## 9. Korekta szczebli — uzupełnienie 3 (02.11.2026)
+
+Podstawa: uzupełnienie 3 rozstrzygnięcia koordynatora linii 1.1 (02.11.2026) — sama deklaracja recenzji w polityce serwisu nie daje 4; Life Time „Experience Life”
+warunkowo 4 tylko dla strony z autorem z kwalifikacjami trenerskimi i datą. Obie strony przeczytane ponownie (WebFetch 02.11.2026): biogram, data, recenzent, treść
+(krok 1–4, lista błędów, „Common Mistakes”).
+
+| źródło | przed | po | powód |
+|---|---|---|---|
+| lifetime-wood-chop | 5 | **4** | biogram „Maggie Fazeli Fard, RKC, is an Experience Life senior editor.”; data 20.12.2024 |
+| lifetime-kb-windmill | 5 | **4** (do potwierdzenia) | biogram „…Alpha Strong coach at Life Time.”; data 24.04.2020; certyfikat RKC autorki podany na stronie wood chop |
+| iom, ACE, Catalyst, ISSA, Speediance, Intermountain, pozostałe 5 | bez zmian | bez zmian | nie należą do kategorii z uzupełnienia 3; Eleiko w pliku nieużyte |
+
+| ćwiczenie / zdanie | przed | po | powód |
+|---|---|---|---|
+| Cable Woodchop | gotowe, 3 zdania | gotowe, **4** zdania | — |
+| `core_standing.woodchop.move` | ACE #340 + IoM | ACE #340 + IoM + Life Time | dodatkowe źródło; nie zależy już od IoM |
+| `core_standing.woodchop.trunk` | IoM + ACE #108 | IoM + ACE #108 + Life Time | jw. |
+| `core_standing.woodchop.mis.arch` | wstrzymane (tylko ACE #108) | **gotowe** (Life Time wprost + ACE #108 „without arching your low back”) | przywrócone |
+| Kettlebell Windmill | gotowe, 3 zdania | gotowe, **6** zdań | — |
+| `core_standing.windmill.setup` | Catalyst + ACE; „Stopy nieco szerzej niż barki; …” | Catalyst + ACE + Life Time; **nowe brzmienie bez rozstawu** | rozstaw: sprzeczność ACE vs Life Time na szczeblu 4 |
+| `core_standing.windmill.move` | Catalyst + ACE | + Life Time | dodatkowe źródło |
+| `core_standing.windmill.knees` | wstrzymane (tylko Catalyst) | **gotowe** (Catalyst + Life Time) | przywrócone |
+| `wm.eyes` | wstrzymane (ACE + dwa źródła 5) | **gotowe** (ACE + Life Time) | przywrócone; brzmienie zestawu „patrz na górną dłoń” zgodne z obydwoma |
+| `core_standing.windmill.mis.elbow` | wstrzymane (błąd wprost tylko Life Time = 5) | **gotowe** (Life Time wprost + ACE standard) | przywrócone wg reguły błędu (wzór `neck.md`) |
+
+Skutek: gotowe 3 → 3 ćwiczenia; zdań gotowych 8 → 12 (woodchop 3 → 4, windmill 3 → 6, side bend 2). Obniżone: rozstaw stóp w `windmill.setup` (usunięty ze zdania).
