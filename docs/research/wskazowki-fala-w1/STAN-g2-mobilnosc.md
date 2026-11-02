@@ -20,28 +20,27 @@ Koordynator G2 (sesja badań). Gałąź `badania/g2-mobilnosc` od `integracja-1-
 | rotator_cuff | `rotator_cuff.md`; role: `../role-miesni-fala-w1/rotator_cuff.md` |
 | mobility_floor | `mobility_floor-nogi.md`, `mobility_floor-tulow.md`, `mobility_floor-uzupelnienie.md`; role: `../role-miesni-fala-w1/mobility_floor.md` |
 | mobility_stand | `mobility_stand-statyczne.md`, `-statyczne-2.md`, `-statyczne-3.md`, `mobility_stand-dynamiczne.md`, `-dynamiczne-uzupelnienie.md` |
-| wszystkie | `korekta-szczebli-2026-11-02.md` — ma pierwszeństwo przed plikami fali (z zastrzeżeniem koordynatora G2 na początku pliku) |
+| wszystkie | `korekta-szczebli-2026-11-02.md` (ocena źródeł z dowodami), potem `przeliczenie-2026-11-02.md` — stan końcowy, ma pierwszeństwo |
 
 ## Wynik na rodzinę (ćwiczenia: gotowe / częściowe / otwarte)
 
-Dwa stany, bo korekta szczebli czeka na odpowiedź koordynatora linii 1.1 (czy szpitale, uczelnie i organizacje zdrowia bez daty/autora spełniają szczebel 4 — pytanie wysłane 02.11.2026).
+Stan końcowy = `przeliczenie-2026-11-02.md` (uzupełnienie 2 rozstrzygnięcia szczebli koordynatora linii 1.1 z 02.11.2026: szpitale, organizacje zdrowia i uczelniane służby zdrowia → 4;
+uczelniane centra sportu, Sport Singapore, CFMWS i Extension bez autora, VHI → 5). Kolumna „przed korektą” — dla porównania.
 
-| Rodzina | Ćwiczeń | Przed korektą | Po korekcie (ścisła) | Nowe zdania | Role mięśni |
+| Rodzina | Ćwiczeń | Przed korektą | **Stan końcowy** | Nowe zdania | Role mięśni |
 |---|---|---|---|---|---|
-| foam_roll | 10 | 9 / 0 / 1 | 6 / 2 / 2 | 26 | nie dotyczy (brak podświetlanych mięśni) |
-| rotator_cuff | 8 | 7 / 0 / 1 | 3 / 0 / 5 | 18 | 8 par gotowych (7 ćwiczeń komplet), 2 pary otwarte (Cuban Press: front_delt, upper_back); 2 nowe funkcje |
-| mobility_floor | 22 | 15 / 3 / 4 | 8 / 5 / 9 | 48 | Downward Facing Balance — bez roli z powodem; reszta nie dotyczy |
-| mobility_stand | 36 | 20 / 5 / 11 | 10 / 7 / 19 | 55 | nie dotyczy |
-| **razem** | **76** | **51 / 8 / 17** | **27 / 14 / 35** | **147** | 8 par gotowych, 2 otwarte, 1 ćwiczenie bez roli |
+| foam_roll | 10 | 9 / 0 / 1 | **9 / 0 / 1** | 26 | nie dotyczy (brak podświetlanych mięśni) |
+| rotator_cuff | 8 | 7 / 0 / 1 | **3 / 0 / 5** | 18 | 8 par gotowych (7 ćwiczeń komplet), 2 pary otwarte (Cuban Press: front_delt, upper_back); 2 nowe funkcje |
+| mobility_floor | 22 | 15 / 3 / 4 | **10 / 4 / 8** | 48 | Downward Facing Balance — bez roli z powodem; reszta nie dotyczy |
+| mobility_stand | 36 | 20 / 5 / 11 | **15 / 3 / 18** | 55 | nie dotyczy |
+| **razem** | **76** | **51 / 8 / 17** | **37 / 7 / 32** | **147** | 8 par gotowych, 2 otwarte, 1 ćwiczenie bez roli |
 
-Szczegóły stanu ćwiczeń po korekcie: tabela „zmiany stanu” w `korekta-szczebli-2026-11-02.md`; korekta nie objęła plików `mobility_stand-statyczne-2/-3`,
-`mobility_floor-uzupelnienie`, `mobility_stand-dynamiczne-uzupelnienie` (te pisane już wg rozstrzygnięcia; źródła uczelni oznaczone „4 PROPOZYCJA”) — w wierszu „po korekcie”
-koordynator G2 przyjął: Wrist Circles → otwarte, Shoulder Circles → częściowe (UC Berkeley, Iowa jak w korekcie), Standing Biceps → częściowe (ruch tylko z serwisu konsumenckiego —
-praktyka docs/research/33: odrzucone).
+Przeliczenie wypisuje też 73 zdania do pominięcia przy integracji (< 2 niezależne źródła szczebla ≤ 4). Rotator_cuff spada przez źródła marketingowe (Gym Reapers, Sole, Coach)
+i uczelniane centrum sportu (Sussex) — szukanie źródeł szczebla 4 dla Band Pull Apart, External Rotation (linki), Cable Internal Rotation, Cuban Press to najtańszy następny krok.
 
 ## Otwarte do decyzji (nie dane)
 
-1. **Szczebel instytucji** (szpitale, NHS, uczelnie, organizacje zdrowia) bez daty/autora — koordynator linii 1.1. Od tego zależy ok. 24 ćwiczeń (różnica kolumn wyżej).
+1. ~~Szczebel instytucji~~ — rozstrzygnięty przez koordynatora linii 1.1 (uzupełnienie 2, 02.11.2026), zastosowany w przeliczeniu. Do zrobienia przy integracji: reguła „drugie źródło błędu = zaprzeczenie standardu” i sprawdzenie 11 PDF-ów „4p”.
 2. **Zestaw ogólny** `st.*` / `dyn.*` / `smr.*`: przeczytane źródła prawie nigdzie nie potwierdzają `st.breathe`, `st.mis.force`, `st.noBounce`, `dyn.mis.jerk`, `smr.mis.fast` dla konkretnych ćwiczeń
    (szczegóły w „Otwarte” każdego pliku). Rekomendacja badaczy: ćwiczenia otwarte bez zdań z zestawu ogólnego. Band Pull Apart: `rear.elbows`, `rear.arms`, `mis.jerk` niepotwierdzone.
 3. **Przypisanie rodzin:** Iron Crosses (Stretch), Hip Circles (Prone), Lying Leg Crossover Swings — w leżeniu/klęku, a w `mobility_stand` (`families.ts:140`, reguła po słowach);
