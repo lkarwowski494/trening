@@ -69,7 +69,9 @@ Oba widać na rysunku (tułów pionowo za sankami; zaokrąglony odcinek lędźwi
 - Błędy: `bcsd.mis.knees` — zaprzeczenie ustawienia; EliteFTS wprost („not letting your knees touch the ground”). `bcsd.mis.back` —
   zaprzeczenie „plecy płasko” z `bcsd.move` (ACE „keeping the back straight”, EliteFTS „keeping your back flat”).
 
-## 2. Blok do wdrożenia
+## 2. Blok
+
+### Blok do wdrożenia
 
 ```json
 {

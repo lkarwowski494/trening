@@ -63,7 +63,9 @@ Granice uproszczenia (do recenzji):
 
 Jeśli koordynator nie przyjmie uproszczenia „złożenie” — Clean and Press zostaje otwarte (zestaw ogólny `oly`, `lib/figures/v2/cue-sets.json:141`).
 
-## 3. Blok do wdrożenia
+## 3. Blok
+
+### Blok do wdrożenia
 
 Źródła z bloków W1 (po przeliczeniu): `catalyst-193`, `barbend-jerk-exercises` (olympic-jerk), `catalyst-67`, `catalyst-68`, `rogue-hang-squat-clean`, `barbend-hang-clean`,
 `barbend-power-clean`, `barbend-clean`, `experiencelife-power-clean` (olympic-clean); `ace-71`, `exrx-DeltoidAnterior/BBMilitaryPress` — istniejące w `data/zrodla/cues.json`.
