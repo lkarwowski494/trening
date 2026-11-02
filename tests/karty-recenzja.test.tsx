@@ -94,7 +94,7 @@ describe('plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy', (
     await render(<ExerciseCues exercise={lib('Sumo Deadlift with Bands')} initialOpen />);
     /* zestaw ogólny jest przy figurze v2 — w linii 1.1 rodzina hinge czeka na recenzję ruchu (tests/recenzja-wyjatki-1-1.json), więc dopisku nie ma, dopóki lista rodzin rysowanych (lib/figures/data.json) jej nie zawiera */
     expect(!!screen.queryByTestId('exercise-cues-general-note')).toBe(FIG_DATA.v2.includes('hinge'));
-  });
+  }, 60000); /* limit 60 s (02.11.2026, ZB-010): po migracji do RNTL 14 test jest asynchroniczny — obowiązuje limit czasu Jest (domyślnie 5 s); pierwszy render karty z rysunkiem v2 ładuje dane figur */
 });
 
 describe('regresja: zmiana treści po recenzji unieważnia wpis (generator)', () => {

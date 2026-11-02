@@ -56,7 +56,7 @@ describe('MER2-07: podpis wskazówek bez nazw organizacji i marek', () => {
     /* bramka działa: nazwy są w dokumencie źródeł (docs/research/27), tylko nie w aplikacji */
     expect(SOURCE_NAMES.test(fs.readFileSync(path.join(root, 'docs/research/27-wskazowki-zrodla.md'), 'utf8'))).toBe(true);
     expect(fs.readFileSync(path.join(root, 'components/ExerciseCues.tsx'), 'utf8')).not.toMatch(/c\.orgs|cueOrgs/);
-  }, 120000); /* RNTL 14: render i press asynchroniczne — 26 języków × wszystkie ćwiczenia ok. 30 s (pomiar 02.11.2026) */
+  }, 480000); /* RNTL 14: render i press asynchroniczne — 26 języków × wszystkie ćwiczenia; pomiar 02.11.2026 (ZB-010): ponad 120 s (126 s i przekroczony limit przy 120 s), pamięć rośnie ok. 160 KB na otwartą kartę po unmount */
 });
 
 /*
