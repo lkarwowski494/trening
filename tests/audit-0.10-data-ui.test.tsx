@@ -78,7 +78,7 @@ describe('Masa ciała z datą: ekran pomiarów, Ustawienia, Postępy', () => {
 });
 
 describe('N3 / PERF-01: zakładka Ćwiczenia — wirtualizacja, przeliczanie tylko przy zmianie listy', () => {
-  const rowsOnScreen = () => screen.UNSAFE_root.findAll((n: { props: Record<string, any> }) => typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions) && n.props.accessibilityActions.some((a: { label?: string }) => /^Usuń z biblioteki: /.test(a.label ?? ''))).map((n: { props: Record<string, any> }) => n.props.onAccessibilityAction).filter((f: unknown, i: number, a: unknown[]) => a.indexOf(f) === i).length;
+  const rowsOnScreen = () => screen.container.queryAll((n: { props: Record<string, any> }) => typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions) && n.props.accessibilityActions.some((a: { label?: string }) => /^Usuń z biblioteki: /.test(a.label ?? ''))).map((n: { props: Record<string, any> }) => n.props.onAccessibilityAction).filter((f: unknown, i: number, a: unknown[]) => a.indexOf(f) === i).length;
   test('700+ ćwiczeń (po researchu biblioteki 709): na ekranie najwyżej kilkadziesiąt wierszy; szukanie nadal znajduje każde ćwiczenie', async () => {
     await boot(); await go('/exercises'); await flushAll(10);
     expect(S().exercises.filter(e => !e.archived).length).toBeGreaterThan(700); expect(rowsOnScreen()).toBeLessThanOrEqual(80); expect(rowsOnScreen()).toBeGreaterThan(5);

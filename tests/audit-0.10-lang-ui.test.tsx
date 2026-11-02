@@ -8,11 +8,12 @@ import { applyLang, t, exName, type Lang } from '@/lib/i18n';
 import { LOCALES } from '@/lib/locales';
 import { renderApp, flushAll, screen, go, tap, openCard } from './app';
 import { fresh, withDemoTemplates } from './helpers';
+import { fiberRoot } from './fiber-tree';
 
 jest.setTimeout(300000);
 type Node = any; // eslint-disable-line @typescript-eslint/no-explicit-any
 const flat = (x: unknown): Record<string, any> => (RN.StyleSheet.flatten((typeof x === 'function' ? (x as (s: { pressed: boolean }) => unknown)({ pressed: false }) : x) as never) ?? {}) as Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
-const texts = (): Node[] => screen.UNSAFE_root.findAll((n: Node) => n.type === 'Text');
+const texts = (): Node[] => screen.container.queryAll((n: Node) => n.type === 'Text');
 const str = (n: Node): string => { const out: string[] = []; const w = (x: Node) => { if (x == null) return; if (typeof x === 'string' || typeof x === 'number') { out.push(String(x)); return; } if (Array.isArray(x)) { x.forEach(w); return; } if (x.props) w(x.props.children); }; w(n.props.children); return out.join(''); };
 afterEach(() => { applyLang('pl'); jest.restoreAllMocks(); });
 
@@ -29,7 +30,7 @@ function langGaps(l: Lang): { n: number; bad: string[] } {
     if (reads) { n++; if (p.accessibilityLanguage !== l && !(p.accessibilityLanguage === 'en' && l !== 'pl' && isLibName(String(p.accessibilityLabel ?? str(x))))) bad.push(`${x.type} „${String(p.accessibilityLabel ?? str(x)).slice(0, 40)}”`); }
     for (const c of x.children ?? []) walk(c, inText || x.type === 'Text');
   };
-  walk(screen.UNSAFE_root, false);
+  walk(screen.container, false);
   return { n, bad };
 }
 /** Start aplikacji w danym języku (ustawienie w danych, jak wybór na liście języków). */
@@ -77,7 +78,7 @@ describe('K2 (A11-09): VoiceOver czyta głosem języka aplikacji', () => {
   test('lista języków: każdy wiersz ma accessibilityLanguage = kod języka (nazwa czytana jej głosem), „Jak w telefonie” — język aplikacji', async () => {
     const { LANGS, LANG_NAME } = require('@/lib/i18n');
     await bootIn('de', '/more/language');
-    const rows = (label: string) => screen.UNSAFE_root.findAll((n: Node) => typeof n.type === 'string' && n.props?.accessibilityRole === 'button' && n.props.accessibilityLabel === label);
+    const rows = (label: string) => screen.container.queryAll((n: Node) => typeof n.type === 'string' && n.props?.accessibilityRole === 'button' && n.props.accessibilityLabel === label);
     for (const l of LANGS) {
       const r = [...rows(LANG_NAME[l]), ...rows(t('{name}, wybrany', { name: LANG_NAME[l] }))];
       expect([l, r.length > 0, r.every((x: Node) => x.props.accessibilityLanguage === l)]).toEqual([l, true, true]);
@@ -127,7 +128,7 @@ describe('K3 (A11-11): krój liczb (Barlow Condensed, cyfry tabelaryczne) bez li
       if (Array.isArray(x)) { x.forEach(c => walk(c, fam, tab)); return; }
       if (typeof x !== 'object') return; const sty = flat(x.props?.style); walk(x.children, sty.fontFamily ?? fam, sty.fontVariant ? (sty.fontVariant as string[]).includes('tabular-nums') : tab);
     };
-    for (const r of ['/progress', `/history/${wid}`, '/']) { await go(r); await flushAll(10); walk(screen.UNSAFE_root); }
+    for (const r of ['/progress', `/history/${wid}`, '/']) { await go(r); await flushAll(10); walk(screen.container); }
     expect(monoSeen).toBeGreaterThan(5); expect(greekInMono).toEqual([]);
   });
   test('monoSafe: litery greckie krojem tekstu, reszta bez zmian (cyrylicę krój zastępczy systemu dobiera sam — FALLBACK_SCRIPTS)', () => {
@@ -153,25 +154,25 @@ describe('K2/K3: kontrast, pola dotyku, przełącznik-chip, wyszarzone wiersze',
   test('A11-06: ramka pola, puste pole ✓ serii i tor wyłączonego przełącznika — ctrlLine (≥ 3:1), nie line', async () => {
     const { light, dark } = require('@/lib/theme'); const CTRL = [light.ctrlLine, dark.ctrlLine];
     await bootIn('pl', '/', () => { const st = store.getState(); store.startFromTemplate(st.templates[0]); });
-    const inputs = screen.UNSAFE_root.findAll((n: Node) => n.type === 'TextInput');
+    const inputs = screen.container.queryAll((n: Node) => n.type === 'TextInput');
     expect(inputs.length).toBeGreaterThan(0); expect(inputs.map((i: Node) => flat(i.props.style).borderColor).filter((c: string) => !CTRL.includes(c))).toEqual([]);
-    const boxes = screen.UNSAFE_root.findAll((n: Node) => typeof n.type === 'string' && n.props.accessibilityRole === 'checkbox' && n.props.accessibilityState?.checked === false);
+    const boxes = screen.container.queryAll((n: Node) => typeof n.type === 'string' && n.props.accessibilityRole === 'checkbox' && n.props.accessibilityState?.checked === false);
     expect(boxes.length).toBeGreaterThan(0); expect(boxes.map((b: Node) => flat(b.props.style).borderColor).filter((c: string) => !CTRL.includes(c))).toEqual([]);
     await go('/more/settings'); await flushAll(10);
-    const sw = screen.UNSAFE_root.findAll((n: Node) => typeof n.type !== 'string' && typeof n.props.onValueChange === 'function' && n.props.ios_backgroundColor !== undefined);
+    const sw = fiberRoot().findAll((n: Node) => typeof n.type !== 'string' && typeof n.props.onValueChange === 'function' && n.props.ios_backgroundColor !== undefined);
     expect(sw.length).toBeGreaterThan(3); expect(sw.filter((x: Node) => !(CTRL.includes(x.props.ios_backgroundColor) && CTRL.includes(x.props.trackColor.false))).length).toBe(0);
   });
   test('A11-15: pola dotyku ≥ 44 pt (wysokość + hitSlop): opcje Segmented, dni kalendarza, pasek tygodnia, starsze wpisy „Co nowego”', async () => {
     const eff = (n: Node) => { const st = flat(n.props.style); const h = Math.max(st.minHeight ?? 0, st.height ?? 0); const hs = n.props.hitSlop; const v = typeof hs === 'number' ? 2 * hs : hs ? (hs.top ?? 0) + (hs.bottom ?? 0) : 0; return h + v; };
     const small: string[] = [];
-    const check = (sel: (n: Node) => boolean, what: string) => { const ns = screen.UNSAFE_root.findAll((n: Node) => typeof n.type !== 'string' && typeof n.props.onPress === 'function' && sel(n)); if (!ns.length) small.push(`${what}: brak`); for (const n of ns) { const h = eff(n) || eff(n.children?.[0] ?? { props: {} }); if (h < 44) small.push(`${what}: ${h}`); } };
+    const check = (sel: (n: Node) => boolean, what: string) => { const ns = fiberRoot().findAll((n: Node) => typeof n.type !== 'string' && typeof n.props.onPress === 'function' && sel(n)); if (!ns.length) small.push(`${what}: brak`); for (const n of ns) { const h = eff(n) || eff(n.children?.[0] ?? { props: {} }); if (h < 44) small.push(`${what}: ${h}`); } };
     await bootIn('pl', '/more/settings'); check(n => n.props.accessibilityRole === 'button' && typeof n.props.accessibilityHint === 'string' && n.props.accessibilityHint === t('Wygląd'), 'Segmented');
     await go('/generator'); await flushAll(10); check(n => n.props.accessibilityHint === t('Cel'), 'Segmented (Cel)');
     await bootIn('pl', '/history', () => { const id = store.getState().templates[0].id; for (let i = 0; i < 7; i++) plan.setWeekDay(i, id); });
-    const days = screen.UNSAFE_root.findAll((n: Node) => typeof n.type !== 'string' && /^cal-/.test(n.props.testID ?? '') && typeof n.props.onPress === 'function');
+    const days = fiberRoot().findAll((n: Node) => typeof n.type !== 'string' && /^cal-/.test(n.props.testID ?? '') && typeof n.props.onPress === 'function');
     expect(days.length).toBeGreaterThan(27); for (const d of days.slice(0, 3)) { const face = flat(d.props.children?.props?.style); const hs = d.props.hitSlop; if (Math.min(Math.max(face.height ?? 0, face.minHeight ?? 0), face.width ?? 0) + 2 * (typeof hs === 'number' ? hs : 0) < 44) small.push(`dzień kalendarza: ${face.height ?? face.minHeight}+2×${hs}`); }
     await go('/'); await flushAll(10);
-    for (const s of screen.UNSAFE_root.findAll((n: Node) => typeof n.type !== 'string' && /^strip-/.test(n.props.testID ?? '') && typeof n.props.onPress === 'function')) if (eff(s) < 44) small.push(`pasek tygodnia: ${eff(s)}`);
+    for (const s of fiberRoot().findAll((n: Node) => typeof n.type !== 'string' && /^strip-/.test(n.props.testID ?? '') && typeof n.props.onPress === 'function')) if (eff(s) < 44) small.push(`pasek tygodnia: ${eff(s)}`);
     expect(small).toEqual([]);
   });
   test('A11-16: wiersz wyszarzony, ale aktywny (wybór ćwiczenia: brak sprzętu w miejscu) — bez przezroczystości, tytuł kolorem muted (≥ 4,5:1)', async () => {
@@ -179,7 +180,7 @@ describe('K2/K3: kontrast, pola dotyku, przełącznik-chip, wyszarzone wiersze',
     const locations = require('@/lib/locations');
     await bootIn('pl', '/', () => { const st = store.getState(); const l = locations.addLocation('bodyweight'); locations.setMainLocation(l.id); st.settings.pickerShowAll = true; store.startFromTemplate(st.templates[0]); });
     await go('/picker?target=active'); await flushAll(10);
-    const rows = screen.UNSAFE_root.findAll((n: Node) => typeof n.type === 'string' && n.props.accessibilityRole === 'button' && /brak|niedost/i.test(String(n.props.accessibilityLabel ?? '')));
+    const rows = screen.container.queryAll((n: Node) => typeof n.type === 'string' && n.props.accessibilityRole === 'button' && /brak|niedost/i.test(String(n.props.accessibilityLabel ?? '')));
     expect(rows.length).toBeGreaterThan(0);
     for (const r of rows.slice(0, 5)) { expect(flat(r.props.style).opacity ?? 1).toBe(1); }
     const dimTitles = texts().filter(x => [light.muted, dark.muted].includes(flat(x.props.style).color) && flat(x.props.style).fontSize === 17 /* M3: tytuł wiersza 17 (rola bodyStrong), było 16 */);
@@ -188,12 +189,12 @@ describe('K2/K3: kontrast, pola dotyku, przełącznik-chip, wyszarzone wiersze',
 });
 
 describe('K3 (A11-18, A11-19): szum VoiceOver, podwójne glify, złamania linii', () => {
-  const labels = () => screen.UNSAFE_root.findAll((n: Node) => typeof n.type === 'string' && typeof n.props.accessibilityLabel === 'string').map((n: Node) => n.props.accessibilityLabel as string);
+  const labels = () => screen.container.queryAll((n: Node) => typeof n.type === 'string' && typeof n.props.accessibilityLabel === 'string').map((n: Node) => n.props.accessibilityLabel as string);
   test('instrukcje „Tapnij, by…” są w podpowiedziach, nie w etykietach (trening, szablon, wybór ćwiczenia, zamiana)', async () => {
     let tplId = '';
     await bootIn('pl', '/', () => { const st = store.getState(); tplId = st.templates[0].id; st.settings.showRpe = true; const locations = require('@/lib/locations'); locations.addLocation('gym'); store.startFromTemplate(st.templates[0]); });
     const bad: string[] = []; const hints: string[] = [];
-    const scan = () => { bad.push(...labels().filter(l => /Tapnij|Stuknij/.test(l) && !/^Nie udało się zapisać/.test(l) /* baner błędu zapisu: widoczny tekst wiersza */)); hints.push(...screen.UNSAFE_root.findAll((n: Node) => typeof n.type === 'string' && /Tapnij, by/.test(String(n.props.accessibilityHint ?? ''))).map((n: Node) => n.props.accessibilityHint)); };
+    const scan = () => { bad.push(...labels().filter(l => /Tapnij|Stuknij/.test(l) && !/^Nie udało się zapisać/.test(l) /* baner błędu zapisu: widoczny tekst wiersza */)); hints.push(...screen.container.queryAll((n: Node) => typeof n.type === 'string' && /Tapnij, by/.test(String(n.props.accessibilityHint ?? ''))).map((n: Node) => n.props.accessibilityHint)); };
     scan();
     const blk = store.getState().active!.exercises[0].id;
     for (const r of [`/template/${tplId}`, '/picker?target=active', `/swap?target=active:${blk}`]) { await go(r); await flushAll(10); scan(); }
@@ -209,7 +210,7 @@ describe('K3 (A11-18, A11-19): szum VoiceOver, podwójne glify, złamania linii'
   test('zamiana: „↺ przywróć” i „Inne ▾” bez drugiego glifu obok; „Co nowego”: starsze wpisy bez „▸” w etykiecie', async () => {
     await bootIn('pl', '/', () => { const st = store.getState(); store.startFromTemplate(st.templates[0]); });
     const blk = store.getState().active!.exercises[0].id; await go(`/swap?target=active:${blk}`); await flushAll(10);
-    const glyphs = screen.UNSAFE_root.findAll((n: Node) => n.type === 'Text' && n.props.accessible === false && ['▾', '▴', '↺'].includes(str(n)));
+    const glyphs = screen.container.queryAll((n: Node) => n.type === 'Text' && n.props.accessible === false && ['▾', '▴', '↺'].includes(str(n)));
     expect(glyphs.map(str)).toEqual([]);
     await go('/'); await flushAll(10); await go('/more'); await flushAll(10);
     expect(labels().filter(l => /^[▸▾] /.test(l))).toEqual([]);
@@ -224,7 +225,7 @@ describe('K3 (A11-18, A11-19): szum VoiceOver, podwójne glify, złamania linii'
 });
 
 describe('K3 (A11-18): podpowiedzi VoiceOver po przeniesieniu instrukcji z etykiet', () => {
-  const hintOf = (label: string | RegExp) => screen.UNSAFE_root.findAll((n: Node) => typeof n.type === 'string' && (typeof label === 'string' ? n.props.accessibilityLabel === label : label.test(String(n.props.accessibilityLabel ?? '')))).map((n: Node) => String(n.props.accessibilityHint ?? ''));
+  const hintOf = (label: string | RegExp) => screen.container.queryAll((n: Node) => typeof n.type === 'string' && (typeof label === 'string' ? n.props.accessibilityLabel === label : label.test(String(n.props.accessibilityLabel ?? '')))).map((n: Node) => String(n.props.accessibilityHint ?? ''));
   test('filtry (wybór ćwiczenia, zamiana), typ serii w szablonie, przerwa i guma — etykieta = nazwa i wartość, podpowiedź = instrukcja', async () => {
     let tplId = '';
     await bootIn('pl', '/', () => { const st = store.getState(); tplId = st.templates[0].id; const locations = require('@/lib/locations'); const l = locations.addLocation('gym'); locations.setMainLocation(l.id); store.startFromTemplate(st.templates[0]); });
@@ -233,7 +234,7 @@ describe('K3 (A11-18): podpowiedzi VoiceOver po przeniesieniu instrukcji z etyki
     await go('/picker?target=active'); await flushAll(10);
     expect(hintOf(/^Filtr miejsca(?: wyłączony)?: /).every(h => ['Tapnij, by zdjąć.', 'Tapnij, by pokazać tylko dostępne.'].includes(h))).toBe(true);
     await go(`/swap?target=active:${blk}`); await flushAll(10); await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
-    const grp = screen.UNSAFE_root.findAll((n: Node) => typeof n.type === 'string' && /^Filtr partii: /.test(String(n.props.accessibilityLabel ?? '')))[0];
+    const grp = screen.container.queryAll((n: Node) => typeof n.type === 'string' && /^Filtr partii: /.test(String(n.props.accessibilityLabel ?? '')))[0];
     expect(grp.props.accessibilityHint).toBe('Tapnij, by zdjąć.'); await tap(grp); await flushAll(5);
     expect(hintOf(/^Filtr partii wyłączony: /)).toContain('Tapnij, by włączyć.');
     await go(`/template/${tplId}?edit=1`); /* edycja na żądanie: edytor po „Edytuj” */ await flushAll(10); await openCard(0); await flushAll(5);

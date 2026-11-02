@@ -18,8 +18,8 @@ const S = () => store.getState();
 afterEach(async () => { applyUnit('kg'); try { S(); } catch { return; } await timer.stop(); await timer.stopSet(); });
 const boot = async (url?: string) => { await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url }); await flushAll(10); };
 const lastAlert = (title?: string) => title ? [...global.__alerts].reverse().find(x => x.title === title) : global.__alerts[global.__alerts.length - 1];
-const titles = () => screen.UNSAFE_root.findAll((n: any) => n.type === 'RNSScreenStackHeaderConfig').map((n: any) => n.props.title);
-const dbl = async (el: any) => { await act(async () => { fireEvent.press(el); fireEvent.press(el); }); await flushAll(10); };
+const titles = () => screen.container.queryAll((n: any) => n.type === 'RNSScreenStackHeaderConfig').map((n: any) => n.props.title);
+const dbl = async (el: any) => { await act(async () => { await fireEvent.press(el); fireEvent.press(el); }); await flushAll(10); };
 const lastNotif = (id: string) => [...(global.__notifications as any[])].reverse().find(n => n.identifier === id);
 /** M3 p2 (ZM-02): pauza jest w menu „⋯” treningu (dawny przycisk „Pauza” przy zegarze zniknął) */
 const pauseViaMenu = async () => { await tap(screen.getByTestId('more-button')); const o = (global as any).__sheets[(global as any).__sheets.length - 1].opts.options as string[]; await act(async () => { (global as any).__pickSheet(o.indexOf('Pauza treningu')); }); await flushAll(10); };
@@ -127,9 +127,9 @@ describe('F6 (LIVE-06 / LIVE-07): widok skupiony', () => {
     expect(screen.getAllByText('Pomiń')).toHaveLength(1); /* przerwa w karcie */
     await act(async () => { fireEvent(screen.getByTestId('focus-card'), 'layout', { nativeEvent: { layout: { x: 0, y: 120, width: 360, height: 420 } } }); fireEvent(screen.getByTestId('board-face'), 'layout', { nativeEvent: { layout: { x: 16, y: 16, width: 320, height: 64 } } }); });
     const sv = screen.getByTestId('workout-scroll');
-    await act(async () => { fireEvent.scroll(sv, { nativeEvent: { contentOffset: { x: 0, y: 400 }, contentSize: { width: 360, height: 2000 }, layoutMeasurement: { width: 360, height: 700 } } }); }); await flushAll(10);
+    await act(async () => { await fireEvent.scroll(sv, { nativeEvent: { contentOffset: { x: 0, y: 400 }, contentSize: { width: 360, height: 2000 }, layoutMeasurement: { width: 360, height: 700 } } }); }); await flushAll(10);
     expect(screen.getAllByText('Pomiń')).toHaveLength(2); /* karta poza ekranem — pasek przerwy na dole */
-    await act(async () => { fireEvent.scroll(sv, { nativeEvent: { contentOffset: { x: 0, y: 100 }, contentSize: { width: 360, height: 2000 }, layoutMeasurement: { width: 360, height: 700 } } }); }); await flushAll(10);
+    await act(async () => { await fireEvent.scroll(sv, { nativeEvent: { contentOffset: { x: 0, y: 100 }, contentSize: { width: 360, height: 2000 }, layoutMeasurement: { width: 360, height: 700 } } }); }); await flushAll(10);
     expect(screen.getAllByText('Pomiń')).toHaveLength(1);
   });
 });

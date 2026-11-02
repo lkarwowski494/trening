@@ -12,6 +12,7 @@ import { SCHEMA_VERSION } from '@/lib/seed';
 import { fresh, saved, withDemoTemplates, addWorkout, pressAlert } from './helpers';
 import { renderApp, flushAll, screen, tap, act, go, swipeDelete, openInfo } from './app';
 import { fireEvent, within } from '@testing-library/react-native';
+import { asFiber } from './fiber-tree';
 const dayPanel = () => within(screen.getByTestId('day-panel-wrap')); /* przycisk „Dopisz trening wstecz” jest też w nagłówku Kalendarza — panel dnia osobno */
 import { FlatList, Linking } from 'react-native';
 
@@ -30,7 +31,7 @@ const lastAlert = (title: string) => [...global.__alerts].reverse().find(x => x.
 const press = async (title: string, btn: string) => { await act(async () => { pressAlert(title, btn); }); await flushAll(5); };
 const openDay = async (k: string) => { await tap(screen.getByTestId(`cal-${k}`)); await flushAll(5); };
 const showAll = async () => { const b = screen.queryByText(/^Więcej możliwości/); if (b) { await tap(b); await flushAll(5); } };
-const panelButtons = () => screen.getByTestId('day-panel').findAll((n: any) => n.props.accessibilityRole === 'button' && typeof n.props.onPress === 'function' && n.props.accessibilityLabel).map((n: any) => n.props.accessibilityLabel as string).filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);
+const panelButtons = () => asFiber(screen.getByTestId('day-panel')).findAll((n: any) => n.props.accessibilityRole === 'button' && typeof n.props.onPress === 'function' && n.props.accessibilityLabel).map((n: any) => n.props.accessibilityLabel as string).filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);
 
 describe('A2 — panel dnia: jeden stan dnia (dayStatus)', () => {
   test('A2 (X-01 U1/UX-01): miniony dzień zrobiony z planu — „Zrobione: <sesja> ›” prowadzi do sesji, bez przesuwania i bez „Opuszczony”', async () => {
@@ -142,7 +143,7 @@ describe('A9, A11-05, D4 — pasek tygodnia, kalendarz, deload', () => {
     await openDay('2026-10-21'); await tap(screen.getByText('Więcej opcji')); await flushAll(5);
     await tap(screen.getByText('Oznacz tydzień jako deload')); await flushAll(5);
     expect(store.isDeloadWeek(at('2026-10-21'))).toBe(true); expect(screen.getByText('Zdejmij oznaczenie deload')).toBeTruthy();
-    act(() => { store.toggleDeloadWeek(NOW.getTime()); }); await go('/'); await flushAll(10);
+    await act(() => { store.toggleDeloadWeek(NOW.getTime()); }); await go('/'); await flushAll(10);
     expect(screen.getByText('Tydzień deload')).toBeTruthy(); /* M3 p2: osobna linia na tablicy „Dziś” (bez „Dziś · ”) */
   });
   test('D4 (UX-06): podpowiedź deload ma „Nie teraz” — znika do następnego tygodnia', async () => {
@@ -191,7 +192,7 @@ describe('UX-15 A, B1–B4 — ekran Plan tygodnia', () => {
     await tap(screen.getByLabelText('poniedziałek, Wolne')); await flushAll(5);
     expect(screen.getByText('Nogi')).toBeTruthy(); await tap(screen.getByLabelText(`poniedziałek: ${t[2].name}`)); await flushAll(5);
     expect(plan.weekPlanDays()[0]).toBe(t[2].id); expect(screen.getByLabelText(`poniedziałek, ${t[2].name}`)).toBeTruthy();
-    const texts = screen.UNSAFE_root.findAll((n: any) => n.type === 'Text').map((n: any) => String(n.props.children));
+    const texts = screen.container.queryAll((n: any) => n.type === 'Text').map((n: any) => String(n.props.children));
     expect(texts.findIndex(x => /Inne plany/i.test(x))).toBeLessThan(texts.findIndex(x => /Dni tygodnia/i.test(x)));
   });
   test('B2 A (UX-04): „+ Nowy plan” — osobny wpis edytowany przed aktywacją; aktywny bez zmian; aktywacja z opisem zmian dni (B1)', async () => {
@@ -199,7 +200,7 @@ describe('UX-15 A, B1–B4 — ekran Plan tygodnia', () => {
     await tap(screen.getByLabelText('Dodaj plan')); await flushAll(10);
     expect(screen.getByText('Ten plan jeszcze nie obowiązuje. Zmień nazwę i dni, potem „Ustaw jako aktywny”.')).toBeTruthy();
     const f = screen.getByLabelText('Nazwa planu'); expect(f.props.value).toBe('Nowy plan');
-    await act(async () => { fireEvent.changeText(f, 'Urlop'); }); await act(async () => { fireEvent(f, 'endEditing', { nativeEvent: { text: 'Urlop' } }); }); await flushAll(5);
+    await act(async () => { await fireEvent.changeText(f, 'Urlop'); }); await act(async () => { fireEvent(f, 'endEditing', { nativeEvent: { text: 'Urlop' } }); }); await flushAll(5);
     await tap(screen.getByLabelText('poniedziałek, ' + t[0].name)); await flushAll(5); await tap(screen.getByLabelText(`poniedziałek: ${t[2].name}`)); await flushAll(5);
     expect(plan.weekPlanDays()[0]).toBe(t[0].id); expect(plan.planName()).toBe('Rutyna'); expect(plan.savedPlans()[0]).toMatchObject({ name: 'Urlop', days: [t[2].id, null, null, null, null, null, null] });
     await tap(screen.getByLabelText('Ustaw jako aktywny: Urlop')); await flushAll(5);
@@ -211,9 +212,9 @@ describe('UX-15 A, B1–B4 — ekran Plan tygodnia', () => {
   test('B2: zmiana nazwy w „Inne plany” (tapnięcie planu → nazwa); pusta nazwa przy wyjściu — poprzednia', async () => {
     await boot(ids => { plan.setWeekDay(0, ids[0]); plan.newPlan('Wakacje'); }, '/plan');
     await tap(screen.getByText('Wakacje')); await flushAll(10);
-    const f = screen.getByLabelText('Nazwa planu'); await act(async () => { fireEvent.changeText(f, ''); }); await act(async () => { fireEvent(f, 'endEditing', { nativeEvent: { text: '' } }); }); await flushAll(5);
+    const f = screen.getByLabelText('Nazwa planu'); await act(async () => { await fireEvent.changeText(f, ''); }); await act(async () => { fireEvent(f, 'endEditing', { nativeEvent: { text: '' } }); }); await flushAll(5);
     expect(plan.savedPlans()[0].name).toBe('Wakacje');
-    await act(async () => { fireEvent.changeText(screen.getByLabelText('Nazwa planu'), 'Ferie'); }); await act(async () => { fireEvent(screen.getByLabelText('Nazwa planu'), 'endEditing', { nativeEvent: { text: 'Ferie' } }); }); await flushAll(5);
+    await act(async () => { await fireEvent.changeText(screen.getByLabelText('Nazwa planu'), 'Ferie'); }); await act(async () => { fireEvent(screen.getByLabelText('Nazwa planu'), 'endEditing', { nativeEvent: { text: 'Ferie' } }); }); await flushAll(5);
     expect(plan.savedPlans()[0].name).toBe('Ferie');
   });
   test('B3 (DAT-03): 50 zapisanych planów — bez „+ Nowy plan”, komunikat; generator też nie dopisze 51.', async () => {
@@ -224,7 +225,7 @@ describe('UX-15 A, B1–B4 — ekran Plan tygodnia', () => {
   });
   test('B4 (UI-05): nazwa planu zapisywana przy każdej zmianie pola — „+ Nowy plan” nie bierze starej nazwy', async () => {
     await boot(ids => { plan.setWeekDay(0, ids[0]); plan.setPlanName('Rutyna'); }, '/plan');
-    await act(async () => { fireEvent.changeText(screen.getByLabelText('Nazwa planu'), 'Redukcja jesień'); }); await flushAll(5);
+    await act(async () => { await fireEvent.changeText(screen.getByLabelText('Nazwa planu'), 'Redukcja jesień'); }); await flushAll(5);
     expect(plan.planName()).toBe('Redukcja jesień');
     await tap(screen.getByLabelText('Dodaj plan')); await flushAll(10); expect(plan.planName()).toBe('Redukcja jesień'); expect(plan.savedPlans()[0].name).toBe('Nowy plan');
   });
@@ -240,7 +241,7 @@ describe('I1 — zgoda na powiadomienia dla przypomnienia z planu', () => {
     expect(g.__notifPermAsked).toBe(0); await press('Przypomnienie o treningu z planu', 'Dalej'); await flushAll(5); expect(g.__notifPermAsked).toBe(1);
     global.__alerts.length = 0; await tap(screen.getByLabelText('wtorek, Wolne')); await flushAll(5); await tap(screen.getByLabelText(`wtorek: ${t[0].name}`)); await flushAll(10);
     expect(lastAlert('Przypomnienie o treningu z planu')).toBeUndefined(); /* plan już był — bez ponownego pytania */
-    g.__notifPerm = { granted: true }; act(() => { plan.setWeekDay(0, null); plan.setWeekDay(1, null); }); await flushAll(5);
+    g.__notifPerm = { granted: true }; await act(() => { plan.setWeekDay(0, null); plan.setWeekDay(1, null); }); await flushAll(5);
     await tap(screen.getByLabelText('środa, Wolne')); await flushAll(5); await tap(screen.getByLabelText(`środa: ${t[0].name}`)); await flushAll(10);
     expect(lastAlert('Przypomnienie o treningu z planu')).toBeUndefined(); /* zgoda już jest */
   });
@@ -313,7 +314,7 @@ describe('macierz — podpowiedzi VoiceOver i teksty pomocnicze ekranów planu (
     expect(screen.getByLabelText(/^poniedziałek, /).props.accessibilityHint).toBe('Wybierz szablon na ten dzień.');
     expect(screen.queryByLabelText('Ustaw jako aktywny: P4')).toBeNull(); await tap(screen.getByText('Pokaż wszystkie (4)')); await flushAll(5); expect(screen.getByLabelText('Ustaw jako aktywny: P4')).toBeTruthy();
     await go('/plan?id=brak'); await flushAll(10); expect(screen.getByText('Nie ma takiego planu.')).toBeTruthy();
-    act(() => { plan.setDayPlan('2026-10-10', S().templates[2].id); plan.activatePlan(plan.savedPlans().find(p => p.name === 'P1')!.id); });
+    await act(() => { plan.setDayPlan('2026-10-10', S().templates[2].id); plan.activatePlan(plan.savedPlans().find(p => p.name === 'P1')!.id); });
     const prev = plan.savedPlans().find(p => p.overrides && Object.keys(p.overrides).length)!; await go(`/plan?id=${prev.id}`); await flushAll(10);
     expect(screen.getByText('Zmiany pojedynczych dni zapisane z tym planem: 1 — wrócą po aktywacji.')).toBeTruthy();
   });
