@@ -470,6 +470,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Pendlay Row, a rysunek i karta mają aktualną recenzję niezależną
     - Gdy rysunek odtwarza ruch
     - Wtedy sztanga startuje z podłogi w każdym powtórzeniu (dolna krawędź talerza przy podłodze, ±0,5 j.), tułów jest prawie równolegle do podłogi (≤ 15° od poziomu, wyraźnie niżej niż w wiosłowaniu sztangą w opadzie) i nie unosi się w czasie ruchu (zmiana ≤ 5°), kolana są lekko ugięte, stopy nie ślizgają się (≤ 2 j.), a sztanga idzie prawie pionowo do dolnej części klatki lub górnej części brzucha; karta mówi o sztandze leżącej na podłodze, dynamicznym przyciągnięciu, starcie od nieruchomej sztangi i błędzie unoszenia tułowia (bez liczby kąta)
+  - Scenariusz: Zdanie o ruchu w jedną stronę pod rysunkiem Side To Side Chins (decyzja właściciela 02.11.2026, wariant C; test `tests/figures-v2-pull-up-jedna-strona.test.tsx`; rysunek wyświetlany dopiero po recenzji niezależnej, bramka 4)
+    - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
+    - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)
+    - Wtedy pod rysunkiem widzi zdanie „Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.” (w języku interfejsu, także gdy zestaw ogólny wskazówek nie jest wyświetlany); przy pozostałych podciąganiach i w innych rodzinach tego zdania nie ma
   - Scenariusz: Usunięcie własnego ćwiczenia z podglądu (ZM-04, W2 a, 21.10.2026)
     - Zakładając, że użytkownik ogląda podgląd ćwiczenia własnego
     - Gdy stuka „Usuń z biblioteki” na dole ekranu

@@ -1779,5 +1779,6 @@
  "{n} kg": "{n} кг",
  "{n} lb": "{n} фнт",
  "Pozycja pośrednia {n}": "Промежуточное положение {n}",
- "Pozycja pośrednia": "Промежуточное положение"
+ "Pozycja pośrednia": "Промежуточное положение",
+ "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.": "На рисунке движение показано только в одну сторону — в следующем повторении вы подтягиваетесь к другой руке."
 }

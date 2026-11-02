@@ -74,3 +74,9 @@ export function cueTextGaps(families: Pick<Family, 'id' | 'status'>[], pl: Recor
   }
   return out;
 }
+
+/** Ćwiczenia, których rysunek pokazuje ruch zawsze w jedną stronę, choć w ćwiczeniu strona zmienia się co powtórzenie (decyzja właściciela 02.11.2026, wariant C: Side To Side Chins —
+ * podciągnięcie ku prawej dłoni, bez naprzemienności). Pod rysunkiem stoi wtedy jedno zdanie (testID exercise-figure-v2-oneside), niezależne od recenzji zestawu ogólnego wskazówek.
+ * Lista leży tu, nie w ui.ts: ui.ts wchodzi do skrótu rigów (scripts/zrodla-runtime.mjs V2_WSPOLNE), a zmiana skrótu unieważnia recenzje ruchu wszystkich rodzin (bramka 4). */
+export const ONE_SIDE_FIGURES: readonly string[] = ['Side To Side Chins'];
+export const oneSideNoteApplies = (spec: { key: string }): boolean => ONE_SIDE_FIGURES.includes(spec.key);

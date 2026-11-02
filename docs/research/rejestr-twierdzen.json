@@ -939,6 +939,20 @@
    "fraza": "Krótkie zmniejszenie objętości przy utrzymanym ciężarze nie odbiera efektów",
    "uwaga": "Liczba „1/3–1/2” = skutek reguły ceil(n/2) w lib/deload-sets.ts (cięcie 33–50%) — uproszczenie we wspólnym przedziale źródeł o taperze (30–70%) i praktyki trenerów (25–>50%); deload jako propozycja do zatwierdzenia. Wpis dodany, bo od 1.0.1 check:claims pilnuje liczb (C-2).",
    "przeglad": "26.10.2026: programista — audyt 1.0 C-2; wpis zrobiony z istniejącego opisu w docs/research/22 sekcja 2 (źródła tam), bez nowej oceny źródeł; do przeglądu badacza przy najbliższym przeglądzie rejestru."
+  },
+  {
+   "id": "T-061",
+   "kotwica": "Rysunek pokazuje ruch w jedną stronę — w kolejnym ",
+   "skrot": "3e5637c921",
+   "skrotEn": "9b90a4ef70",
+   "rodzaje": [
+    "uproszczenie"
+   ],
+   "zrodla": [],
+   "dokument": "docs/18-przekazanie.md",
+   "fraza": "pull_up — Side To Side Chins: wariant C",
+   "uwaga": "Opis rysunku, nie twierdzenie dziedzinowe: figura Side To Side Chins pokazuje podciągnięcie zawsze ku prawej dłoni (bez naprzemienności), a zdanie pod rysunkiem nazywa to uproszczeniem zwykłym językiem (bez słowa „uproszczenie” w interfejsie — markerErrors). Brak źródeł zewnętrznych: treść wynika z decyzji właściciela 02.11.2026 (wariant C), nie ze źródeł wiedzy.",
+   "przeglad": "02.11.2026: programista — decyzja właściciela 02.11.2026 (docs/18, pull_up — Side To Side Chins: wariant C); tekst opisuje rysunek, nie wiedzę dziedzinową, więc bez przeglądu źródeł badacza."
   }
  ],
  "bezTwierdzenia": [

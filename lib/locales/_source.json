@@ -4757,6 +4757,10 @@
   "en": "Movement"
  },
  {
+  "pl": "Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.",
+  "en": "The drawing shows the movement to one side only — on the next rep you pull up toward the other hand."
+ },
+ {
   "pl": "Rysunek ruchu: {opis}",
   "en": "Movement drawing: {opis}"
  },
