@@ -191,14 +191,15 @@
    "kind": "study"
   },
   "Physitrack": {
-   "name": "Physitrack — Exercise library (us.physitrack.com, biblioteka ćwiczeń domowych dla fizjoterapeutów)",
-   "level": 4,
+   "name": "Physitrack — Exercise library (us.physitrack.com, biblioteka ćwiczeń domowych dla fizjoterapeutów) — szczebel 5 (decyzja 02.11.2026: bez autora i kwalifikacji, serwis/dostawca; nie liczy się do pary)",
+   "level": 5,
    "kind": "site"
   },
   "The Prehab Guys": {
    "name": "The Prehab Guys — biblioteka ćwiczeń (theprehabguys.com, fizjoterapeuci)",
    "level": 4,
-   "kind": "site"
+   "kind": "site",
+   "warunkowo": "artykuł z autorem (zespół fizjoterapeutów z kwalifikacjami); strona bez autora albo sprzedaży programów — szczebel 5 (docs/18, 02.11.2026, uzupełnienie 2)"
   },
   "BarBend": {
    "name": "BarBend — Exercise Guides (barbend.com; autor CSCS, weryfikacja NASM-CPT i USAW-L2)",
@@ -206,14 +207,15 @@
    "kind": "site"
   },
   "Breaking Muscle": {
-   "name": "Breaking Muscle — Exercise Guides (breakingmuscle.com; serwis specjalistyczny)",
-   "level": 4,
+   "name": "Breaking Muscle — Exercise Guides (breakingmuscle.com; serwis specjalistyczny) — szczebel 5 (decyzja 02.11.2026: bez autora i kwalifikacji, serwis/dostawca; nie liczy się do pary)",
+   "level": 5,
    "kind": "site"
   },
   "Coach": {
    "name": "Coach (coachweb.com) — How To, ekspert z akredytacją NSCA",
    "level": 4,
-   "kind": "site"
+   "kind": "site",
+   "warunkowo": "artykuł z autorem z kwalifikacjami w biogramie, datą i redakcją wydawcy; inaczej szczebel 5 (docs/18, 02.11.2026, uzupełnienie 2)"
   }
  },
  "sources": {
@@ -1680,13 +1682,14 @@
    "org": "Physitrack",
    "title": "Heel raises on a step",
    "url": "https://us.physitrack.com/home-exercise-video/heel-raises-on-a-step",
-   "level": 4
+   "level": 5
   },
   "prehab-heel-raise-off-step": {
    "org": "The Prehab Guys",
    "title": "Heel Raise – Off Step",
    "url": "https://theprehabguys.com/vimeo-video/heel-raise-off-step/",
-   "level": 4
+   "level": 5,
+   "strona": "odczyt 02.11.2026: strona bez podpisu autora i biogramu (publikacja 03.08.2019, aktualizacja 15.07.2021) → 5; do potwierdzenia przez badacza"
   },
   "barbend-pendlay-row": {
    "org": "BarBend",
@@ -1698,13 +1701,14 @@
    "org": "Breaking Muscle",
    "title": "Pendlay Row",
    "url": "https://breakingmuscle.com/pendlay-row/",
-   "level": 4
+   "level": 5
   },
   "coach-pendlay-row": {
    "org": "Coach",
    "title": "How To Do The Pendlay Row",
    "url": "https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row",
-   "level": 4
+   "level": 5,
+   "strona": "odczyt 02.11.2026: podpis „By Harry Bullmore” (staff writer; biogram bez kwalifikacji trenerskich), aktualizacja 23.03.2023 — brak autora z kwalifikacjami → 5; do potwierdzenia przez badacza"
   }
  },
  "exercises": {
@@ -9007,9 +9011,7 @@
   "Hanging Leg Raise": "NASM opisuje tylko progresję; źródła uczelniane niespójne (tekst i zdjęcie) (docs/research/33)",
   "Hanging Knee Raise": "komplet zależy od uznania materiałów uczelnianych (HKU, Western) i od wariantu z podporem przedramion (docs/research/33, pyt. 1)",
   "Cable Crunch": "komplet zależy od uznania Western (szczebel otwarty) i od wariantu stojącego zamiast klęcząc (docs/research/33, pyt. 1)",
-  "Hollow Hold": "jedno źródło (Root 2019); Aube 2026 tylko nazwa (docs/research/33)",
-  "Assault Bike": "czy rower stacjonarny to wariant roweru powietrznego z ruchomymi rączkami (jak kąt ławki) — pytanie otwarte; dokumentacji producenta nie udało się odczytać (docs/research/33, pyt. 4)",
-  "Skakanka": "drugie źródło to organizacja spoza fitnessu (DAN), której szczebel jest otwarty (docs/research/33, pyt. 2)"
+  "Hollow Hold": "jedno źródło (Root 2019); Aube 2026 tylko nazwa (docs/research/33)"
  },
  "partial": [
   "Back Extension",
@@ -9033,5 +9035,12 @@
   "Walking Lunges",
   "Reverse Lunge"
  ],
- "partialNote": "Ćwiczenia, w których research (docs/research/31, 33) potwierdził mniej niż komplet sekcji (ustawienie, ruch, ≥ 2 wskazówki): łącznie ≥ 2 wskazówki z dwoma niezależnymi źródłami; brakujące sekcje nie są dopisywane z jednego źródła. Lista dotyczy tylko ćwiczeń dodanych w 0.14.0."
+ "partialNote": "Ćwiczenia, w których research (docs/research/31, 33) potwierdził mniej niż komplet sekcji (ustawienie, ruch, ≥ 2 wskazówki): łącznie ≥ 2 wskazówki z dwoma niezależnymi źródłami; brakujące sekcje nie są dopisywane z jednego źródła. Lista dotyczy tylko ćwiczeń dodanych w 0.14.0.",
+ "luki": {
+  "Pendlay Row::pendlay.setup": "drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5, własność BarBend) + Coach (5 per strona)",
+  "Pendlay Row::pendlay.pull": "drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5) + Coach (5 per strona)",
+  "Pendlay Row::pendlay.floor": "drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5)",
+  "Pendlay Row::pendlay.mis.torso": "drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5); brak zdania ustawienia/ruchu do wniosku",
+  "Łydki na stopniu::calf.step": "drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): ExRx (4) + Physitrack (5) + The Prehab Guys (5 per strona)"
+ }
 }

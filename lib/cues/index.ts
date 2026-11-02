@@ -21,8 +21,8 @@ export type CueSection = typeof CUE_SECTIONS[number];
 export type CueRef = { c: string };
 /** Rodzaj organizacji źródła (podpis w aplikacji — audyt kontrolny 1 MER2-07 = SEC2-02, decyzja właściciela 09.10.2026 wariant A: bez nazw
  * organizacji i marek w tekstach aplikacji, pełna lista w docs/research/27): organizacja szkoleniowa (biblioteka ćwiczeń), serwis specjalistyczny,
- * producent sprzętu, badanie w recenzowanym czasopiśmie. Kolejność = kolejność w podpisie. */
-export const CUE_BASIS_KINDS = ['org', 'site', 'maker', 'study'] as const;
+ * producent sprzętu, badanie w recenzowanym czasopiśmie, książka uznanego autora (`book`, szczebel 3, 02.11.2026: w danych tylko nieprzezroczysty identyfikator). Kolejność = kolejność w podpisie. */
+export const CUE_BASIS_KINDS = ['org', 'site', 'maker', 'study', 'book'] as const;
 export type CueBasisKind = typeof CUE_BASIS_KINDS[number];
 type CueData = { exercises: Record<string, Record<CueSection, CueRef[]>>; /** rodzaje źródeł ćwiczenia w kolejności CUE_BASIS_KINDS (obliczone z pełnych danych) */ basis: Record<string, CueBasisKind[]>; /** klucze ćwiczeń bez wskazówek (powody — tylko w pełnych danych) */ open: string[]; /** 0.14.0: ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część) */ partial: string[];
   /** M1-audytor-generalny-038 (DEC-10 a, 28.10.2026): karty ze wskazówkami bez aktualnej recenzji treści (bramka 4) — nie wyświetlane */ hidden: string[];
