@@ -15,79 +15,185 @@ trenerów, serwis z redakcją i recenzją ekspercką albo producent własnego ro
   college'u nie jest organizacją szkolącą trenerów ani serwisem z redakcją i recenzją ekspercką — ta sama kategoria co Western Univ. SRS (= 5 w rozstrzygnięciu).
   **Bells of Steel** → 4 tylko dla własnego sprzętu (wałek do nadgarstków) — nie zmienia wyniku, bo drugie źródło Wrist Roller (GymNation) odpadło.
   Liczą się: ACE (#29, #30) i Coach.
-- **Wrist Curl (hantle)**: gotowe → częściowe (zostaje tylko `wr.range`; `wr.setupUp`, `wr.forearms`, `curl.control`, `wr.mis.lift` — 1 źródło).
-- **Reverse Wrist Curl (hantle)**: gotowe → częściowe (zostaje tylko `wr.setupDown`).
-- **One-Arm Dumbbell Reverse Wrist Curl**: gotowe → częściowe (zostaje tylko `wr.setupDown`, wariant: oburącz).
-- **Barbell Wrist Curl, Barbell Reverse Wrist Curl, One-Arm Dumbbell Wrist Curl, Cable Wrist Curl, Wrist Roller**: gotowe → otwarte.
-- Nowe zdania `wr.setupUp`, `wr.revMove`, `wroll.*` nie są używane w bloku JSON — przeniesione do „Otwarte” jako kandydaci.
+- Po korekcie: Wrist Curl (hantle), Reverse Wrist Curl (hantle), One-Arm Dumbbell Reverse Wrist Curl → częściowe (po 1 zdaniu); pozostałe → otwarte.
+
+## Kontynuacja 02.11.2026 (ten sam dzień, po korekcie)
+
+Wykonane: (1) ponowne, dokładne czytanie ACE #29, #30 i stron Coach (wrist curl, reverse wrist curl) pod kątem `wr.setupUp`, `wr.forearms`,
+`curl.control`, `wr.revMove`, `wr.mis.lift`; (2) nowe źródła szczebla 4 spoza sieci siłowni: Catalyst Athletics (4 wg rozstrzygnięcia),
+Fitness Volt i Generation Iron (wstępnie 4 — tylko artykuły o technice z autorem i datą), Bells of Steel ponownie (producent wałka).
+
+Wynik ponownego czytania:
+- ACE #30 Step 1 — dłonie w górę (supinacja), łokcie i przedramiona na ławce, hantle zwisają poza krawędź → potwierdza `wr.setupUp`.
+  Step 2 — nadgarstki „slowly” przechodzą w wyprost → potwierdza `curl.control`. O nieruchomych przedramionach — tylko pośrednio (bez prostowania rąk
+  i odchylania się) → nie liczę dla `wr.forearms`. Notes — jedyny opisany błąd to puszczanie chwytu (toczenie do palców), nie odrywanie przedramion.
+- ACE #29 Step 1 — pronacja, przedramiona na ławce, hantle poza krawędzią (`wr.setupDown`); Step 2 — powolne opadanie nadgarstków w stronę podłogi;
+  Step 3 — uniesienie ciężaru samymi nadgarstkami → potwierdza `curl.control` i ruch `wr.revMove` (w nowym brzmieniu, niżej).
+- Coach wrist curl i reverse wrist curl — oba: przedramiona zostają na oparciu przez cały ruch (`wr.forearms`); żadna strona nie mówi o tempie
+  opuszczania ani o błędach. Reverse: nachwyt, uniesienie dłoni grzbietem w górę (liczba kąta pominięta).
+- `wr.mis.lift` (odrywanie przedramion) — żadne przeczytane źródło nie podaje tego wprost jako błędu; Coach mówi tylko pozytywnie „trzymaj na oparciu”.
+  Zostaje w „Otwarte” (nie zamieniam wskazówki w błąd post factum).
+
+Zmiana brzmienia kandydata `wr.revMove`: poprzednie „…unieś je grzbietem w swoją stronę — pracują same nadgarstki” — „w swoją stronę” nie ma w żadnym
+źródle. Nowe, krótsze brzmienie potwierdzone przez ACE #29, Catalyst (wrist extension) i Coach (reverse) — patrz sekcja 4.
 
 Metoda jak w `docs/research/33-wskazowki-partia2.md`: zdanie wchodzi do karty, gdy potwierdzają je ≥ 2 przeczytane źródła szczebla 4
 z różnych organizacji (wyjątek dla wskazówek techniki, CLAUDE.md, 25.10.2026). Źródło o innym wariancie sprzętowym tego samego ruchu
-liczy się z opisem „(wariant: …)”. Liczby (kąty, powtórzenia, tempo) z przeczytanych stron pominięte celowo.
+liczy się z opisem „(wariant: …)”. Liczby (kąty, powtórzenia, czasy, tempo) z przeczytanych stron pominięte celowo.
 
 ## 1. Tabela ćwiczeń
 
 | Ćwiczenie (klucz katalogu) | Obecny tryb | Wynik | Uwagi |
 |---|---|---|---|
-| Wrist Curl (hantle) | general `wrist` | częściowe (1 zdanie) | `wr.range`: Coach + ACE #30 |
-| Reverse Wrist Curl (hantle) | general `wrist` | częściowe (1 zdanie) | `wr.setupDown`: ACE #29 + Coach |
-| Barbell Wrist Curl | general `wrist` | otwarte | źródła wprost (GymNation, NTCC) = 5 |
-| Barbell Reverse Wrist Curl | general `wrist` | otwarte | jw. |
-| One-Arm Dumbbell Wrist Curl | general `wrist` | otwarte | źródło wprost (GymNation) = 5; zostaje po 1 źródle szczebla 4 na zdanie |
-| One-Arm Dumbbell Reverse Wrist Curl | general `wrist` | częściowe (1 zdanie) | `wr.setupDown`: ACE #29 + Coach (wariant: oburącz) |
-| Cable Wrist Curl | general `wrist` | otwarte | źródło wprost (GymNation) = 5 |
-| Behind-the-Back Barbell Wrist Curl | general `wrist` | otwarte | jedno źródło (GymNation, teraz 5), wewnętrznie sprzeczne |
-| Wrist Roller | open | otwarte | Bells of Steel (4) + GymNation (5) → 1 źródło |
-| Plate Pinch | open | otwarte | tylko PureGym (5) |
-| Reverse Plate Curls | general `curl` | otwarte | brak przeczytanego źródła |
-| Dumbbell Lying Pronation | open | otwarte | ruch potwierdzony tylko w wariancie klęcząc/siedząc; ustawienie leżąc — brak źródła |
-| Dumbbell Lying Supination | open | otwarte | jak wyżej |
+| Wrist Curl (hantle) | general `wrist` | gotowe (4 zdania) | `wr.setupUp`, `wr.range`, `wr.forearms`, `curl.control`; część źródeł jako wariant (sztanga, wyciąg) |
+| Reverse Wrist Curl (hantle) | general `wrist` | gotowe (4 zdania) | `wr.setupDown`, `wr.revMove`, `wr.forearms`, `curl.control` |
+| Barbell Wrist Curl | general `wrist` | gotowe (4 zdania) | Catalyst wprost dla ustawienia i ruchu; `wr.forearms` i `curl.control` tylko z wariantów (hantle, wyciąg) |
+| Barbell Reverse Wrist Curl | general `wrist` | gotowe (4 zdania) | Catalyst, Generation Iron, Fitness Volt wprost |
+| One-Arm Dumbbell Wrist Curl | general `wrist` | gotowe — karta wyłącznie z wariantów | brak przeczytanego źródła szczebla 4 dla wersji jednorącz; decyzja koordynatora |
+| One-Arm Dumbbell Reverse Wrist Curl | general `wrist` | gotowe — karta wyłącznie z wariantów | jw. |
+| Cable Wrist Curl | general `wrist` | gotowe (4 zdania) | Generation Iron wprost (wyciąg dolny); `wr.range` tylko z wariantów; ustawienie ławki przy wyciągu — 1 źródło |
+| Behind-the-Back Barbell Wrist Curl | general `wrist` | otwarte | nie szukano w tej turze; jedyne przeczytane (GymNation) = 5 i wewnętrznie sprzeczne |
+| Wrist Roller | open | gotowe (2 zdania) | `wroll.setup` (Bells of Steel + Fitness Volt), `wroll.move` (Bells of Steel + Catalyst + Fitness Volt) |
+| Plate Pinch | open | otwarte | 1 źródło szczebla 4 (Fitness Volt); PureGym = 5 |
+| Reverse Plate Curls | general `curl` | otwarte | brak przeczytanego źródła (nie szukano w tej turze) |
+| Dumbbell Lying Pronation | open | otwarte | źródła sprzeczne co do ustawienia leżąc (patrz „Otwarte”) |
+| Dumbbell Lying Supination | open | otwarte | jw.; Generation Iron dla tej strony bez autora (GI Team) = 5 |
 
-Uwaga dla koordynatora: trzy karty „częściowe” mają po jednym zdaniu. Rekomendacja: nie zastępować nimi zestawu ogólnego, dopóki nie zostaną
-dopełnione — możliwe, że wystarczy ponowne, dokładne czytanie ACE #29/#30 i stron Coach pod kątem `wr.forearms`, `curl.control`, `wr.revMove`
-(tego nie robiłem — zadanie korekty bez nowego researchu). Blok JSON zawiera je, żeby decyzja była po stronie integracji.
+Uwaga dla koordynatora: „karta wyłącznie z wariantów” (One-Arm wersje) — każde zdanie ma ≥ 2 źródła szczebla 4, ale żadne nie opisuje wersji
+jednorącz. Zgodne z briefem (wariant sprzętu/chwytu się liczy), ale rekomenduję świadomą decyzję; jeśli nie — usunąć te dwa wpisy z JSON.
+Fitness Volt i Generation Iron: wspólny właściciel niesprawdzony; żadne zdanie w JSON nie opiera się wyłącznie na tej parze.
 
 ## 2. Wpisy do `exercises` (cues.json)
 
 ```json
 {
   "Wrist Curl (hantle)": {
-    "setup": [],
-    "move": [
-      {"c": "wr.range", "s": [["coach-wrist-curl", "Step 2 (roll the dumb-bells to the ends of your fingers, then curl up your wrists)"], ["ace-30", "Step 2–3"]]}
+    "setup": [
+      {"c": "wr.setupUp", "s": [["ace-30", "Step 1"], ["catalyst-wrist-curl", "opis ćwiczenia, zdanie 1 (wariant: sztanga, przedramiona na udach)"]]}
     ],
-    "tips": [],
+    "move": [
+      {"c": "wr.range", "s": [["coach-wrist-curl", "Step 2"], ["ace-30", "Step 2–3"], ["catalyst-wrist-curl", "opis ćwiczenia, zdanie 2 (wariant: sztanga)"]]}
+    ],
+    "tips": [
+      {"c": "wr.forearms", "s": [["coach-wrist-curl", "Step 3 (keep your forearms on the pad)"], ["gi-cable-wrist-curl", "kroki: przedramiona nieruchomo, pracują nadgarstki (wariant: wyciąg)"]]},
+      {"c": "curl.control", "s": [["ace-30", "Step 2 (slowly)"], ["gi-cable-wrist-curl", "kroki: powolny, kontrolowany powrót (wariant: wyciąg)"]]}
+    ],
     "mistakes": []
   },
   "Reverse Wrist Curl (hantle)": {
     "setup": [
-      {"c": "wr.setupDown", "s": [["ace-29", "Step 1 (pronate your forearms… palms downward)"], ["coach-reverse-wrist-curl", "Step 1"]]}
+      {"c": "wr.setupDown", "s": [["ace-29", "Step 1 (pronate your forearms)"], ["coach-reverse-wrist-curl", "Step 1–2"]]}
     ],
-    "move": [],
-    "tips": [],
+    "move": [
+      {"c": "wr.revMove", "s": [["ace-29", "Step 2–3"], ["coach-reverse-wrist-curl", "Step 3"], ["catalyst-wrist-ext", "opis ćwiczenia, zdanie 2 (wariant: sztanga)"]]}
+    ],
+    "tips": [
+      {"c": "wr.forearms", "s": [["coach-reverse-wrist-curl", "Step 4 (keep your forearms on the pad)"], ["gi-wrist-curl-bench", "kroki: przedramiona nieruchomo, pracują nadgarstki (wariant: sztanga)"]]},
+      {"c": "curl.control", "s": [["ace-29", "Step 2 (slowly)"], ["gi-wrist-curl-bench", "kroki: powolny, kontrolowany powrót (wariant: sztanga)"]]}
+    ],
+    "mistakes": []
+  },
+  "Barbell Wrist Curl": {
+    "setup": [
+      {"c": "wr.setupUp", "s": [["catalyst-wrist-curl", "opis ćwiczenia, zdanie 1"], ["ace-30", "Step 1 (wariant: hantle)"], ["gi-cable-wrist-curl", "kroki: chwyt, przedramiona na udach (wariant: wyciąg)"]]}
+    ],
+    "move": [
+      {"c": "wr.range", "s": [["catalyst-wrist-curl", "opis ćwiczenia, zdanie 2"], ["ace-30", "Step 2–3 (wariant: hantle)"], ["coach-wrist-curl", "Step 2 (wariant: hantle)"]]}
+    ],
+    "tips": [
+      {"c": "wr.forearms", "s": [["coach-wrist-curl", "Step 3 (wariant: hantle)"], ["gi-cable-wrist-curl", "kroki (wariant: wyciąg)"]]},
+      {"c": "curl.control", "s": [["ace-30", "Step 2 (wariant: hantle)"], ["gi-cable-wrist-curl", "kroki (wariant: wyciąg)"]]}
+    ],
+    "mistakes": []
+  },
+  "Barbell Reverse Wrist Curl": {
+    "setup": [
+      {"c": "wr.setupDown", "s": [["gi-wrist-curl-bench", "kroki: nachwyt, przedramiona na ławce, nadgarstki poza krawędzią"], ["catalyst-wrist-ext", "opis ćwiczenia, zdanie 1 (przedramiona na udach)"], ["ace-29", "Step 1 (wariant: hantle)"]]}
+    ],
+    "move": [
+      {"c": "wr.revMove", "s": [["catalyst-wrist-ext", "opis ćwiczenia, zdanie 2"], ["ace-29", "Step 2–3 (wariant: hantle)"]]}
+    ],
+    "tips": [
+      {"c": "wr.forearms", "s": [["gi-wrist-curl-bench", "kroki: przedramiona nieruchomo"], ["coach-reverse-wrist-curl", "Step 4 (wariant: hantle)"]]},
+      {"c": "curl.control", "s": [["gi-wrist-curl-bench", "kroki: powolny, kontrolowany powrót"], ["fv-reverse-bb-wrist-curl", "How to: opuszczanie (slowly lower)"]]}
+    ],
+    "mistakes": []
+  },
+  "One-Arm Dumbbell Wrist Curl": {
+    "setup": [
+      {"c": "wr.setupUp", "s": [["ace-30", "Step 1 (wariant: oburącz)"], ["catalyst-wrist-curl", "opis ćwiczenia, zdanie 1 (wariant: sztanga)"]]}
+    ],
+    "move": [
+      {"c": "wr.range", "s": [["coach-wrist-curl", "Step 2 (wariant: oburącz)"], ["ace-30", "Step 2–3 (wariant: oburącz)"]]}
+    ],
+    "tips": [
+      {"c": "wr.forearms", "s": [["coach-wrist-curl", "Step 3 (wariant: oburącz)"], ["gi-cable-wrist-curl", "kroki (wariant: wyciąg)"]]},
+      {"c": "curl.control", "s": [["ace-30", "Step 2 (wariant: oburącz)"], ["gi-cable-wrist-curl", "kroki (wariant: wyciąg)"]]}
+    ],
     "mistakes": []
   },
   "One-Arm Dumbbell Reverse Wrist Curl": {
     "setup": [
-      {"c": "wr.setupDown", "s": [["ace-29", "Step 1 (wariant: oburącz)"], ["coach-reverse-wrist-curl", "Step 1 (wariant: oburącz)"]]}
+      {"c": "wr.setupDown", "s": [["ace-29", "Step 1 (wariant: oburącz)"], ["coach-reverse-wrist-curl", "Step 1–2 (wariant: oburącz)"]]}
     ],
-    "move": [],
+    "move": [
+      {"c": "wr.revMove", "s": [["ace-29", "Step 2–3 (wariant: oburącz)"], ["coach-reverse-wrist-curl", "Step 3 (wariant: oburącz)"]]}
+    ],
+    "tips": [
+      {"c": "wr.forearms", "s": [["coach-reverse-wrist-curl", "Step 4 (wariant: oburącz)"], ["gi-wrist-curl-bench", "kroki (wariant: sztanga)"]]},
+      {"c": "curl.control", "s": [["ace-29", "Step 2 (wariant: oburącz)"], ["gi-wrist-curl-bench", "kroki (wariant: sztanga)"]]}
+    ],
+    "mistakes": []
+  },
+  "Cable Wrist Curl": {
+    "setup": [
+      {"c": "wr.setupUp", "s": [["gi-cable-wrist-curl", "kroki: podchwyt, przedramiona na udach, nadgarstki poza kolanami"], ["catalyst-wrist-curl", "opis ćwiczenia, zdanie 1 (wariant: sztanga)"]]}
+    ],
+    "move": [
+      {"c": "wr.range", "s": [["catalyst-wrist-curl", "opis ćwiczenia, zdanie 2 (wariant: sztanga)"], ["ace-30", "Step 2–3 (wariant: hantle)"]]}
+    ],
+    "tips": [
+      {"c": "wr.forearms", "s": [["gi-cable-wrist-curl", "kroki: przedramiona nieruchomo"], ["coach-wrist-curl", "Step 3 (wariant: hantle)"]]},
+      {"c": "curl.control", "s": [["gi-cable-wrist-curl", "kroki: powolny, kontrolowany powrót"], ["ace-30", "Step 2 (wariant: hantle)"]]}
+    ],
+    "mistakes": []
+  },
+  "Wrist Roller": {
+    "setup": [
+      {"c": "wroll.setup", "s": [["bos-wrist-roller", "How to: stanie, wałek oburącz przed sobą"], ["fv-wrist-roller", "How to: ręce uniesione przed sobą, stopy rozstawione"]]}
+    ],
+    "move": [
+      {"c": "wroll.move", "s": [["bos-wrist-roller", "How to: obrót nadgarstków, potem powolne opuszczenie"], ["catalyst-wrist-roller", "opis ćwiczenia (roll the weight up; reverse at a controlled speed)"], ["fv-wrist-roller", "How to: nawijanie dłońmi, potem powolne opuszczenie"]]}
+    ],
     "tips": [],
     "mistakes": []
   }
 }
 ```
 
+Uwaga do numerów kroków Coach: strony nie mają numeracji — „Step N” = N-te zdanie instrukcji w kolejności na stronie (stan 02.11.2026).
+
 ## 3. Nowe źródła
 
 | id | org | tytuł | url | szczebel (po korekcie 02.11.2026) | czytane |
 |---|---|---|---|---|---|
-| ace-29 | ACE | Wrist Curl - Extension (#29) | https://www.acefitness.org/resources/everyone/exercise-library/29/wrist-curl-extension/ | 4 | 02.11.2026 |
-| ace-30 | ACE | Wrist Curl - Flexion (#30) | https://www.acefitness.org/resources/everyone/exercise-library/30/wrist-curl-flexion/ | 4 | 02.11.2026 |
+| ace-29 | ACE | Wrist Curl - Extension (#29) | https://www.acefitness.org/resources/everyone/exercise-library/29/wrist-curl-extension/ | 4 | 02.11.2026 (dwukrotnie) |
+| ace-30 | ACE | Wrist Curl - Flexion (#30) | https://www.acefitness.org/resources/everyone/exercise-library/30/wrist-curl-flexion/ | 4 | 02.11.2026 (dwukrotnie) |
 | ace-31 | ACE | Wrist Supination and Pronation (#31) | https://www.acefitness.org/resources/everyone/exercise-library/31/wrist-supination-and-pronation/ | 4 | 02.11.2026 (tylko „Otwarte”) |
-| coach-wrist-curl | Coach | Introduction: Wrist curl | https://www.coachweb.com/exercises/arm-exercises/163/wrist-curl | 4 | 02.11.2026 |
-| coach-reverse-wrist-curl | Coach | Variation: Reverse wrist curl | https://coachweb.com/exercises/arm-exercises/2835/variation-reverse-wrist-curl | 4 | 02.11.2026 |
+| coach-wrist-curl | Coach | Introduction: Wrist curl (Coach Staff, 12.06.2009) | https://www.coachweb.com/exercises/arm-exercises/163/wrist-curl | 4 | 02.11.2026 (dwukrotnie) |
+| coach-reverse-wrist-curl | Coach | Variation: Reverse wrist curl (Coach Staff, 12.06.2009) | https://coachweb.com/exercises/arm-exercises/2835/variation-reverse-wrist-curl | 4 | 02.11.2026 (dwukrotnie) |
 | coach-forearm-rotation | Coach | Variation: Forearm rotation | https://www.coachweb.com/exercises/3123/2-dumb-bell-forearm-rotation | 4 | 02.11.2026 (tylko „Otwarte”) |
+| catalyst-wrist-curl | Catalyst Athletics | Barbell Wrist Curl (#517) | https://catalystathletics.com/exercise/517/Barbell-Wrist-Curl/ | 4 (rozstrzygnięcie) | 02.11.2026 |
+| catalyst-wrist-ext | Catalyst Athletics | Barbell Wrist Extension (#518) | https://catalystathletics.com/exercise/518/Barbell-Wrist-Extension/ | 4 | 02.11.2026 |
+| catalyst-wrist-roller | Catalyst Athletics | Wrist Roller Flexion (#788); #516 Wrist Roller Extension ma ten sam opis | https://catalystathletics.com/exercise/788/Wrist-Roller-Flexion/ | 4 | 02.11.2026 |
+| gi-wrist-curl-bench | Generation Iron | Wrist Curl Over Bench (Forearms) – Exercise Guide (Vidur Saini; aktualizacja 22.04.2019) | https://generationiron.com/wrist-curl-over-bench-exercise-guide/ | 4 wstępnie (artykuł o technice, autor + data) | 02.11.2026 |
+| gi-cable-wrist-curl | Generation Iron | Seated Two-Arm Palms-Up Low-Pulley Wrist Curl – Exercise Guide (Vidur Saini; aktualizacja 22.04.2019) | https://generationiron.com/seated-two-arm-palms-up-low-pulley-wrist-curl-exercise-guide/ | 4 wstępnie | 02.11.2026 |
+| fv-reverse-bb-wrist-curl | Fitness Volt | Build Strong Forearms with Barbell Reverse Wrist Curls (Tom Miller, CSCS; 25.10.2024) | https://fitnessvolt.com/barbell-reverse-wrist-curl-guide/ | 4 wstępnie | 02.11.2026 |
+| fv-wrist-roller | Fitness Volt | Wrist roller (Patrick Dale; 22.09.2021, zm. 11.08.2024) | https://fitnessvolt.com/wrist-roller/ | 4 wstępnie | 02.11.2026 |
+| fv-plate-pinch | Fitness Volt | Plate Pinch guide (Matthew Magnante, ACE; 15.11.2023) | https://fitnessvolt.com/plate-pinch-guide/ | 4 wstępnie | 02.11.2026 (tylko „Otwarte”) |
+| fv-lying-pronation | Fitness Volt | Dumbbell Lying Pronation (Matthew Magnante, ACE; 19.01.2021) | https://fitnessvolt.com/dumbbell-lying-pronation/ | 4 wstępnie | 02.11.2026 (tylko „Otwarte”) |
+| gi-lying-supination | Generation Iron | Dumbbell Lying Supination – Exercise Guide (GI Team, 24.04.2019) | https://generationiron.com/dumbbell-lying-supination-exercise-guide/ | 5 — brak autora osobowego | 02.11.2026 (tylko „Otwarte”) |
+| bos-wrist-roller | Bells of Steel | How To Use a Wrist Roller (blog, 08.04.2025) | https://bellsofsteel.us/blogs/content/how-to-use-a-wrist-roller | 4 (własny sprzęt) | 02.11.2026 (dwukrotnie) |
 | ntcc-forearm | NTCC Athletics | Live Like an Athlete — Forearm Exercises | https://ntcc.edu/athletics/live-athlete/exercises/forearm-exercises | 5 — nie liczy się | 02.11.2026 |
 | puregym-wrist-curls | PureGym | Wrist Curls | https://www.puregym.com/exercises/arms-and-shoulders/forearm-and-grip-exercises/wrist-curls/ | 5 — nie liczy się | 02.11.2026 |
 | puregym-wrist-extensions | PureGym | Wrist Extensions | https://www.puregym.com/exercises/arms-and-shoulders/forearm-and-grip-exercises/wrist-extensions/ | 5 — nie liczy się | 02.11.2026 |
@@ -99,66 +205,70 @@ dopełnione — możliwe, że wystarczy ponowne, dokładne czytanie ACE #29/#30 
 | gymnation-cable-wrist-curl | GymNation | Cable Wrist Curl | https://gymnation.com/en-ae/exercise-library/cable-wrist-curl/ | 5 — nie liczy się | 02.11.2026 |
 | gymnation-bb-behind-back | GymNation | Barbell Standing Back Wrist Curl | https://gymnation.com/en-ae/exercise-library/barbell-standing-back-wrist-curl/ | 5 — nie liczy się | 02.11.2026 |
 | gymnation-wrist-roller | GymNation | Wrist Roller | https://gymnation.com/exercise-library/wrist-roller | 5 — nie liczy się | 02.11.2026 |
-| bos-wrist-roller | Bells of Steel | How To Use a Wrist Roller (blog, 08.04.2025) | https://bellsofsteel.us/blogs/content/how-to-use-a-wrist-roller | 4 (własny sprzęt) | 02.11.2026 (tylko „Otwarte”) |
 
-### Ocena nowych organizacji wg kryteriów (a)–(c) (02.11.2026)
+### Ocena organizacji wg kryteriów (a)–(c) (02.11.2026)
 
 | Organizacja | Szczebel | Uzasadnienie |
 |---|---|---|
-| NTCC Athletics | 5 | (a) nie spełnione: dział sportu college'u, nie organizacja szkoląca/certyfikująca trenerów ani serwis z redakcją i recenzją ekspercką; ta sama kategoria co uczelniany ośrodek sportu oceniony w rozstrzygnięciu na 5 (Western Univ. SRS). Do potwierdzenia przez koordynatora, bo brief z 02.11 wymieniał „uczelniane centra sportu” wśród przykładów szczebla 4 — późniejsze rozstrzygnięcie ma pierwszeństwo |
-| PureGym | 5 | sieć siłowni (rozstrzygnięcie) |
-| GymNation | 5 | sieć siłowni — ta sama reguła co PureGym; dodatkowo strona Behind-the-Back zawiera błąd anatomiczny |
-| Bells of Steel | 4 tylko dla własnego sprzętu | producent sprzętu siłowego, w tym wałków do nadgarstków; blog firmowany przez firmę, z datą |
+| Catalyst Athletics | 4 | rozstrzygnięcie koordynatora; opisy ćwiczeń bez autora osobowego, treść firmowana „© Catalyst Athletics” (b) |
+| Fitness Volt | 4 wstępnie | brief koordynatora: tylko artykuły o technice z autorem i datą; wszystkie użyte strony mają autora z biogramem (CSCS, ACE, trener) i datę. Uwaga: `fv-reverse-bb-wrist-curl` miesza nazwy „extending/flexed” — użyte tylko zdanie o powolnym opuszczaniu, jednoznaczne |
+| Generation Iron | 4 wstępnie (strony z autorem); 5 (strony „GI Team”) | autor (Vidur Saini) bez kwalifikacji w biogramie, data aktualizacji; stopka z ogólną informacją o linkach afiliacyjnych, ale treść to opis techniki, nie recenzja produktu (c). Najsłabsze z użytych źródeł — w JSON zawsze obok innej organizacji szczebla 4 |
+| Bells of Steel | 4 tylko dla własnego sprzętu | producent wałków do nadgarstków; blog firmowany, z datą (bez autora osobowego) |
+| NTCC Athletics | 5 | dział sportu college'u (jak Western Univ. SRS w rozstrzygnięciu) |
+| PureGym, GymNation | 5 | sieci siłowni |
 
-Odrzucone/niedostępne: ExRx (403), web.archive.org (zablokowane dla narzędzia), muscleandstrength.com (403), elitefts.com (404 na dwóch
-stronach indeksu), barbend.com/wrist-curl (404), Physitrack „wrist roller” (to inne ćwiczenie — wyprost nadgarstka z gumą; nie liczy się),
-strona Motra (aplikacja treningowa — wykluczona briefem). Pozostałe trafienia wyszukiwarki to aplikacje albo serwisy niskiej jakości — nie czytane jako źródła.
+Odrzucone/niedostępne: ExRx (403), web.archive.org (zablokowane), muscleandstrength.com (403), elitefts.com (404, także strona wrist roller),
+barbend.com/wrist-roller i barbend.com/wrist-curl (404), barbend.com/?p=24678 (strona główna, nie artykuł), fitnessvolt.com/wrist-curls (404),
+generationiron.com/plate-pinch-exercise-guide (404), Physitrack (wstępnie 5, nie liczony), trafienia z aplikacji treningowych (wykluczone briefem).
 
 ## 4. Nowe zdania
 
-Używane w bloku JSON: istniejące `wr.range` oraz jedno nowe zdanie:
+Używane w bloku JSON (istniejące: `wr.range`, `wr.forearms`, `curl.control`):
 
 | id | PL | EN (propozycja) | Uzasadnienie |
 |---|---|---|---|
-| wr.setupDown | Oprzyj przedramiona dłońmi w dół, tak żeby nadgarstki wystawały poza oparcie. | Rest your forearms palms down, with your wrists hanging off the edge. | ace-29 Step 1; coach-reverse-wrist-curl Step 1. |
+| wr.setupDown | Oprzyj przedramiona dłońmi w dół, tak żeby nadgarstki wystawały poza oparcie. | Rest your forearms palms down, with your wrists hanging off the edge. | ace-29 Step 1; coach-reverse-wrist-curl; gi-wrist-curl-bench; catalyst-wrist-ext. |
+| wr.setupUp | Oprzyj przedramiona dłońmi do góry, tak żeby nadgarstki wystawały poza oparcie. | Rest your forearms palms up, with your wrists hanging off the edge. | ace-30 Step 1; catalyst-wrist-curl; gi-cable-wrist-curl. |
+| wr.revMove | Opuść dłonie, potem unieś je samymi nadgarstkami. | Let your hands drop, then lift them using just your wrists. | ace-29 Step 2–3; catalyst-wrist-ext; coach-reverse-wrist-curl. (Zastępuje wcześniejszego kandydata z „grzbietem w swoją stronę”.) |
+| wroll.setup | Stań prosto i trzymaj wałek oburącz, ręce uniesione przed sobą. | Stand tall and hold the roller with both hands, arms raised in front of you. | bos-wrist-roller; fv-wrist-roller. |
+| wroll.move | Nawijaj linkę ruchem nadgarstków, aż ciężar się podniesie; potem powoli ją odwiń. | Roll the cord up with your wrists until the weight rises, then unroll it slowly. | bos-wrist-roller; catalyst-wrist-roller; fv-wrist-roller. |
 
-Kandydaci bez kompletu źródeł szczebla 4 (treść w „Otwarte”): `wr.setupUp`, `wr.revMove`, `wroll.setup`, `wroll.move`, `wroll.arms`, `wroll.mis.elbows`.
-EN propozycje kandydatów — w poprzedniej wersji pliku (historia gałęzi).
+Uwaga o tłumaczeniu: brzmienia do przeglądu przez recenzenta lokalizacji (naturalność, termin „wałek”/„linka” wg słownika terminów).
 
 ## 5. Otwarte
 
-- **Zdania poniżej 2 źródeł — szczebel źródła wg rozstrzygnięcia 02.11.2026** (PureGym, GymNation, NTCC = 5):
-  - Wrist Curl (hantle): `wr.setupUp` „Oprzyj przedramiona dłońmi do góry, tak żeby nadgarstki wystawały poza oparcie.” (tylko ACE #30),
-    `wr.forearms` (tylko Coach), `curl.control` (tylko ACE #30), `wr.mis.lift` (tylko Coach).
-  - Reverse Wrist Curl (hantle): `wr.revMove` „Opuść dłonie, potem unieś je grzbietem w swoją stronę — pracują same nadgarstki.” (tylko ACE #29),
-    `wr.forearms`, `wr.mis.lift` (tylko Coach), `curl.control` (tylko ACE #29).
-  - One-Arm Dumbbell Reverse Wrist Curl: `wr.revMove`, `wr.forearms`, `curl.control`, `wr.mis.lift` — po 1 źródle (ACE albo Coach, wariant: oburącz).
-  - Barbell Wrist Curl, Barbell Reverse Wrist Curl, One-Arm Dumbbell Wrist Curl, Cable Wrist Curl — przy tych ćwiczeniach zapisane cytowania dają
-    najwyżej 1 źródło szczebla 4 na zdanie. Możliwe dopełnienie jako wariant: para Coach + ACE #30 potwierdza `wr.range` dla hantli (patrz Wrist Curl),
-    a para ACE #29 + Coach — `wr.setupDown`; do decyzji koordynatora, czy karta złożona wyłącznie z wariantów jest akceptowalna.
-  - Wrist Roller: `wroll.setup` „Stań prosto i trzymaj wałek oburącz przed sobą na wysokości barków, ręce proste.”, `wroll.move` „Obracając
-    nadgarstkami, nawijaj linkę, aż ciężar dojdzie do wałka; potem powoli ją odwijaj.”, `wroll.arms` „Ręce zostają proste — pracują nadgarstki,
-    nie barki.”, `wroll.mis.elbows` „Opuszczanie łokci i rąk w trakcie nawijania.” — tylko Bells of Steel (4).
-- **Zestaw ogólny `wrist` dla wersji „reverse”:** `wr.range` („Opuść ciężar tak nisko, jak pozwala nadgarstek…”) nie jest potwierdzone dla wersji
-  z dłońmi w dół — ACE i Coach nie mówią o zakresie dolnym. Informacja o błędzie zestawu ogólnego.
-- **Toczenie ciężaru do końców palców w wrist curl:** Coach (Step 2) to zaleca, ACE #30 (Notes/Tips) opisuje to jako częsty błąd
-  zwiększający ryzyko dla nadgarstka. Sprzeczność na tym samym szczeblu, do tego twierdzenie o zdrowiu → ani wskazówka, ani błąd.
-  Zdanie `wr.range` celowo nie mówi o rozluźnieniu chwytu.
-- **Siła chwytu:** ACE (#30, #31) — ściskać rączkę mocno; GymNation — nie ściskać za mocno. Pominięte.
-- **Behind-the-Back Barbell Wrist Curl:** jedyne przeczytane źródło (GymNation, teraz szczebel 5) opisuje ruch jako „extending your wrists”,
-  choć to zgięcie nadgarstka; strona wewnętrznie niespójna. Do szukania: rzetelne źródło szczebla 4.
-- **Plate Pinch:** tylko PureGym (szczebel 5). Potrzebne 2 źródła szczebla 4.
-- **Reverse Plate Curls:** brak przeczytanego źródła; zestaw ogólny `curl` to analogia do uginania ramion — dla tego wariantu niepotwierdzona.
-- **Dumbbell Lying Pronation / Dumbbell Lying Supination:** ruch rotacji potwierdzony w wariancie klęcząc/siedząc z przedramieniem
-  na ławce: ACE #31 (Step 1–3) i Coach „Forearm rotation”. Kandydaci zdań: `fa.rotWrist` „Nadgarstek prosto — obraca się tylko przedramię.”
-  (ACE Step 2–3 + Coach krok 3) i `fa.rotSupport` „Przedramię oparte przez cały ruch.” (ACE Step 1 + Coach krok 1). Brak źródła
-  dla ustawienia leżąc — dlatego nie wpisane do JSON.
-- **Cable Wrist Curl — ustawienie przy wyciągu**, **Wrist Roller — kierunek nawijania, praca na stojaku, tempo:** jedno źródło albo liczby → pominięte.
+- **`wr.mis.lift` „Przedramiona odrywają się od podparcia.”** — żadne przeczytane źródło szczebla 4 nie podaje tego jako błędu (Coach tylko
+  pozytywnie: przedramiona na oparciu). Nie wpisane do żadnej karty. Informacja o zestawie ogólnym `wrist`: ten błąd jest niepotwierdzony.
+- **Zestaw ogólny `wrist` dla wersji „reverse”:** `wr.range` („Opuść ciężar tak nisko, jak pozwala nadgarstek…”) nie wpisane do wersji z dłońmi
+  w dół — tam ruch opisuje `wr.revMove`. Informacja o błędzie zestawu ogólnego (dotyczy wersji reverse).
+- **Toczenie ciężaru do końców palców:** Coach (wrist curl) to zaleca, ACE #30 (Notes) opisuje jako częsty błąd zwiększający ryzyko dla nadgarstka;
+  Catalyst #517 dopuszcza wyprost palców na dole. Sprzeczność na tym samym szczeblu + twierdzenie o zdrowiu → ani wskazówka, ani błąd.
+- **Siła chwytu:** ACE (#30) — ściskać mocno; GymNation (5) — nie za mocno. Pominięte.
+- **Cable Wrist Curl — ustawienie ławki przed dolnym wyciągiem:** tylko Generation Iron → jedno źródło.
+- **Wrist Roller:** `wroll.arms` „Ręce zostają proste — pracują nadgarstki, nie barki.” i `wroll.mis.elbows` „Opuszczanie łokci i rąk w trakcie
+  nawijania.” — tylko Bells of Steel (Fitness Volt mówi ogólnie o „oszukiwaniu” zamiast pracy przedramion, bez łokci). Wysokość barków — tylko Bells of Steel.
+  Kierunek nawijania (przód/tył) i praca na stojaku — jedno źródło na wariant.
+- **Plate Pinch:** tylko Fitness Volt (4); PureGym = 5; BarBend i Generation Iron — brak strony (404/strona główna). Potrzebne drugie źródło szczebla 4.
+- **Behind-the-Back Barbell Wrist Curl:** w tej turze nie szukano; jedyne przeczytane (GymNation, 5) wewnętrznie sprzeczne.
+- **Reverse Plate Curls:** brak przeczytanego źródła (w tej turze nie szukano).
+- **Dumbbell Lying Pronation / Supination:** ustawienie leżąc sprzeczne między przeczytanymi stronami — Fitness Volt (pronacja): ramię na ławce przed sobą;
+  Generation Iron (supinacja, GI Team = 5): ramię przy tułowiu, łokieć zgięty. Ruch rotacji w wariancie klęcząc/siedząc z przedramieniem na ławce:
+  ACE #31 (Step 1–3) i Coach „Forearm rotation” — kandydaci `fa.rotWrist` „Nadgarstek prosto — obraca się tylko przedramię.” i `fa.rotSupport`
+  „Przedramię oparte przez cały ruch.” Brak 2 zgodnych źródeł dla ustawienia leżąc → nie do JSON. Fitness Volt dodatkowo podaje mięśnie barku
+  jako główne — sprawa dla agenta ról mięśni, nie wskazówek.
+- **Błędy (`mistakes`) we wszystkich kartach puste:** ACE #30 opisuje tylko błąd toczenia do palców (sporny, wyżej); Fitness Volt (reverse) wymienia
+  m.in. odstawanie łokci i zbyt szybkie powtórzenia — po 1 źródle.
 
 ## 6. Stan
 
-Po korekcie szczebli 02.11.2026: 3 ćwiczenia częściowe po 1 zdaniu (Wrist Curl hantle, Reverse Wrist Curl hantle, One-Arm Dumbbell Reverse
-Wrist Curl), 10 otwartych. Następny krok: dokładne ponowne czytanie ACE #29/#30 i stron Coach (wrist curl, reverse wrist curl) pod kątem
-`wr.setupUp`, `wr.forearms`, `curl.control`, `wr.revMove`, `wr.mis.lift`; potem drugie źródło szczebla 4 dla Wrist Roller (obok Bells of Steel),
-Plate Pinch i wersji ze sztangą/wyciągiem (organizacje szkolące trenerów, producenci sprzętu). Pułapki: ExRx 403, web.archive.org niedostępne
-dla WebFetch, muscleandstrength 403, elitefts 404, wiele trafień to aplikacje (wykluczone) albo sieci siłowni (szczebel 5).
+Po kontynuacji 02.11.2026: gotowe 8 kart (Wrist Curl hantle, Reverse Wrist Curl hantle, Barbell Wrist Curl, Barbell Reverse Wrist Curl,
+One-Arm Dumbbell Wrist Curl i One-Arm Dumbbell Reverse Wrist Curl — obie wyłącznie z wariantów, Cable Wrist Curl, Wrist Roller), otwarte 5
+(Behind-the-Back Barbell Wrist Curl, Plate Pinch, Reverse Plate Curls, Dumbbell Lying Pronation, Dumbbell Lying Supination).
+Nowe zdania: 5 (`wr.setupDown`, `wr.setupUp`, `wr.revMove`, `wroll.setup`, `wroll.move`). Nowe źródła: 10 (Catalyst ×3, Fitness Volt ×4, Generation Iron ×3, z czego `gi-lying-supination` ma szczebel 5).
+
+Zostało: drugie źródło szczebla 4 dla Plate Pinch; źródła dla Behind-the-Back Barbell Wrist Curl i Reverse Plate Curls; wersje leżące
+(rozstrzygnąć ustawienie); błędy (`mistakes`) — szukać źródeł, które wprost nazywają błędy (np. organizacje szkolące trenerów — NASM, ISSA nie dały
+trafień w wyszukiwarce; spróbować bezpośrednio ich bibliotek). Decyzje koordynatora: karty wyłącznie z wariantów (One-Arm), szczebel Fitness Volt
+i Generation Iron (wstępny), sprawdzenie, czy Fitness Volt i Generation Iron nie mają wspólnego właściciela.
+Pułapki: ExRx 403, web.archive.org zablokowane, muscleandstrength 403, elitefts 404, BarBend — wiele adresów 404, większość trafień wyszukiwarki
+to aplikacje treningowe (wykluczone); strony Coach bez numeracji kroków.
