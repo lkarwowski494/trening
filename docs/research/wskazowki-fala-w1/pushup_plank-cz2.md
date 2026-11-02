@@ -151,3 +151,8 @@ sprawdzone przez WebFetch 02.11.2026 (NFPT ×2, E3 Rehab, Experience Life); bez 
 - Rollout (sztanga): gotowe → gotowe.
 - Plyo Push-Up: gotowe → otwarte.
 - Pozostałe 6 ćwiczeń: otwarte → otwarte.
+
+## Korekta 2 szczebli (koordynator grupy, 02.11.2026, uzupełnienie 2 rozstrzygnięcia koordynatora linii 1.1)
+- Coach (magazyn) — warunkowo 4 tylko z autorem z kwalifikacjami. `coach-plank-shoulder-tap`: autor N. Harris-Fry, opisany jako dziennikarz od 2015, bez certyfikatów; technika bez przypisanego eksperta (WebFetch 02.11.2026) → **5**.
+- Skutek: **Plank Shoulder Taps: gotowe → otwarte** (zostaje tylko PFP fit-pro.com); wpis w bloku JSON wyżej NIEWAŻNY.
+- The Prehab Guys — warunkowo 4 (artykuł z autorem z kwalifikacjami); użyte strony bez autora → 5 bez zmian.

@@ -16,13 +16,13 @@ korektę wg tego rozstrzygnięcia (sekcje „Korekta szczebli (02.11.2026)”; o
 | Rodzina | Bez wskazówek | Gotowe | Częściowe | Otwarte | Pliki |
 |---|---|---|---|---|---|
 | bench_press | 25 | 6 (Decline BP, Smith Bench, Smith Incline, JM Press, Bench Press with Chains, One Arm DB Bench) + Squeeze Press warunkowo | 0 | 18–19 | bench_press-cz1.md, -cz1b.md, -cz2.md |
-| pushup_plank | 23 | 3 (Ab Wheel, Plank Shoulder Taps, Rollout (sztanga)) | 1 (Renegade Row) | 19 | pushup_plank-cz1.md, -cz2.md |
+| pushup_plank | 23 | 2 (Ab Wheel, Rollout (sztanga)) | 1 (Renegade Row) | 20 | pushup_plank-cz1.md, -cz2.md |
 | overhead_press | 18 | 5 (Arnold, Seated Barbell Military, Kettlebell Press, Band Shoulder Press, Standing Barbell Press Behind Neck) | 1 (Landmine Press) | 12 | overhead_press-cz1.md, -cz1b.md, -cz2.md |
 | chest_fly | 18 | 1 (Pec Deck) | 3 (Cable Fly low→high, Band Chest Fly, Pullover (hantel)) | 14 | chest_fly-cz1.md, -cz2.md |
 | dip | 4 | 0 | 1 (Dip Machine) | 3 | dip.md |
 | chest_press_machine | 3 | 0 | 0 | 3 | chest_press_machine.md |
 | cable_press | 3 | 0 | 1 (Single Arm Cable Chest Press) | 2 | cable_press.md |
-| **Razem** | **94** | **15 (+1 warunkowo)** | **7** | **71–72** | |
+| **Razem** | **94** | **14 (+1 warunkowo)** | **7** | **72–73** | |
 
 Uwaga bench_press: Squeeze Press (hantle) —
 warunkowe (Mikolo bez autora/daty, korekta A ocenia, że Mikolo nie produkuje hantli → najpewniej otwarte). Liczby w kolumnie „Gotowe” do
@@ -35,6 +35,12 @@ Przy scalaniu policz z bloków JSON (`node -e` po plikach) — liczba w raportac
 „Push Press - Behind the Neck” są NIEWAŻNE (po korekcie otwarte, zob. `overhead_press-cz1b.md`); Arnold, Seated Barbell, Kettlebell, Band — brać z cz1b
 (nadpisuje cz1); „Standing Barbell Press Behind Neck” — z cz1. `bench_press-cz1b.md`: „Squeeze Press (hantle)” warunkowe (pytanie 4, Mikolo).
 Wpisy częściowe (z dopiskiem): Single Arm Cable Chest Press, Cable Fly (low to high), Band Chest Fly, Pullover (hantel), Dip Machine, Landmine Press, Renegade Row.
+
+**Uzupełnienie 2 szczebli (koordynator 1.1, 02.11 ~07:55):** Coach przy Plank Shoulder Taps → 5 (autor bez kwalifikacji) → ćwiczenie otwarte
+(wpis w JSON `pushup_plank-cz2.md` nieważny, notka na końcu pliku). Physitrack → 5 (potwierdza otwarte Single Arm OHP). Reguła „błąd = zaprzeczenie
+standardu”: odwrotna wskazówka liczy się jako drugie źródło błędu tylko przy bezpośrednim zaprzeczeniu — Seated Barbell i Band Shoulder Press
+(`ohp.mis.arch` vs „keep the back straight”) — bezpośrednie zaprzeczenie → zostają gotowe, oznaczyć przy scalaniu „błąd = zaprzeczenie standardu”;
+`ohp.mis.flare` vs „elbows pointed forward” (Seated Barbell) — do oceny recenzenta. Pytanie 5 niżej — rozstrzygnięte tą regułą.
 
 ## Wynik — role mięśni (`docs/research/role-miesni-fala-w1/`)
 Wszystkie propozycje to reguły po nazwie (`nameRules`) — sprawdzane w `matchRole` przed regułami rodziny i blokadą „rodzina z fazą + ćwiczenie na czas”; zdanie bez fazy.
