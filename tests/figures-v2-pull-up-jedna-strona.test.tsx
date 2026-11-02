@@ -33,8 +33,11 @@ describe('Side To Side Chins — zdanie o ruchu w jedną stronę (wariant C, 02.
   test('figura: zdanie po polsku pod rysunkiem tylko przy Side To Side Chins', async () => {
     await render(<ExerciseFigureV2 exercise={lib('Side To Side Chins')} />); await flush();
     expect(screen.getByTestId('exercise-figure-v2-oneside').props.children).toBe(PL);
-    await screen.unmount();
-    for (const k of PULL_UP) { const r = await render(<ExerciseFigureV2 exercise={lib(k)} />); await flush(); expect([k, screen.queryByTestId('exercise-figure-v2-oneside')]).toEqual([k, null]); await r.unmount(); }
+  });
+  /* 02.11.2026 (zb010): 10 rysunków w jednym teście przekraczało limit 5 s na obciążonej maszynie CI (plik 6,7 s, run 41444512304) — jeden test na ćwiczenie, każdy z własnym limitem */
+  test.each(PULL_UP)('figura: %s — bez zdania o ruchu w jedną stronę', async (k) => {
+    await render(<ExerciseFigureV2 exercise={lib(k)} />); await flush();
+    expect([k, screen.queryByTestId('exercise-figure-v2-oneside')]).toEqual([k, null]);
   });
   test('figura: po angielsku', async () => {
     applyLang('en'); await render(<ExerciseFigureV2 exercise={lib('Side To Side Chins')} />); await flush();
