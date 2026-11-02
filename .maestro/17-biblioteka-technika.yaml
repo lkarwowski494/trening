@@ -88,6 +88,16 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - inputText: "Deadlift"
 - pressKey: Enter   # reguła: po wpisie w wyszukiwarce zawsze Enter
 - pressKey: Enter   # chowa klawiaturę (L-013)
+# 02.11.2026 (przebieg 41400907053): symulator zgubił literę przy inputText — w polu „Deadlft”, lista „No matches” (aplikacja przeszukuje poprawnie; test Jest: 24 wyniki dla „Deadlift”).
+# Wpis powtarzany raz, gdy wiersza nie widać (tests/maestro-17-wpis.test.ts)
+- runFlow:
+    when: { notVisible: "Deadlift, barbell.*" }
+    commands:
+      - tapOn: { id: "exercises-search" }
+      - eraseText: 40
+      - inputText: "Deadlift"
+      - pressKey: Enter
+      - pressKey: Enter
 - extendedWaitUntil: { visible: "Deadlift, barbell.*", timeout: 15000 }
 - tapOn: { id: "lib-row-1" }   # jeden wynik wyszukiwania (wzór: 27)
 - extendedWaitUntil: { visible: "Technique", timeout: 30000 }
