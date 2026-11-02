@@ -19,7 +19,7 @@ const boot = async (fn: () => void = () => {}, url = '/', locale: 'pl' | 'en' = 
   jest.useFakeTimers({ now: NOW }); await fresh(undefined, locale); fn();
   await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
 };
-const goalGroups = () => screen.UNSAFE_root.findAll((n: { type: unknown; props: Record<string, unknown> }) => typeof n.type === 'string' && n.props.accessibilityRole === 'radiogroup' && /^(Cel serii|Set goal): /.test(String(n.props.accessibilityLabel)));
+const goalGroups = () => screen.container.queryAll((n: { type: unknown; props: Record<string, unknown> }) => typeof n.type === 'string' && n.props.accessibilityRole === 'radiogroup' && /^(Cel serii|Set goal): /.test(String(n.props.accessibilityLabel)));
 const grpOf = (label: string) => screen.getAllByLabelText(label, { exact: true }).find(n => n.props.accessibilityRole === 'radiogroup')!;
 /** Paski mają accessibilityElementsHidden (VoiceOver czyta wiersz) — testID szukamy z ukrytymi. */
 const bar = (id: string) => screen.getByTestId(id, { includeHiddenElements: true });
@@ -76,7 +76,7 @@ describe('Ustawienia: cel serii na partię', () => {
 
 describe('Postępy → „Strażnik progresji” (strażnik progresji, 14.10.2026): cel każdej partii', () => {
   const lbl = (part: string) => within(screen.getByTestId(`grow-${part}`)).getByRole('button').props.accessibilityLabel as string;
-  const rowIds = () => screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && /^grow-/.test(String(n.props.testID))).map((n: { props: { testID?: string } }) => String(n.props.testID).replace('grow-', ''));
+  const rowIds = () => screen.container.queryAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && /^grow-/.test(String(n.props.testID))).map((n: { props: { testID?: string } }) => String(n.props.testID).replace('grow-', ''));
   test('barki i plecy jako całe partie (bez części); cel = cel partii (domyślnie 10, ręczny cel jednej partii nie rusza pozostałych); kreska zawsze w połowie skali 2× cel', async () => {
     await boot(() => { week(); S().settings.weeklySetGoals = { klatka: 20, barki: 4 }; store.save(); }, '/progress');
     expect(rowIds()).toEqual(expect.arrayContaining(['klatka', 'barki', 'plecy', 'triceps', 'biceps']));

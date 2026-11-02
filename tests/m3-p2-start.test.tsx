@@ -31,7 +31,7 @@ describe('nagłówek ekranu: „Planowanie” jako PlanningButton (W1 c)', () =>
   test('z planem: przycisk „Planowanie” w nagłówku ekranu (linia tytułu „Trening”), nie w karcie planu; stuknięcie → ekran planu', async () => {
     await boot(t => { setPlan(t, { 3: 0 }, 'Góra / Dół'); hist(); });
     const b = screen.getByTestId('planning-button'); expect(b.props.accessibilityLabel).toBe('Planowanie'); expect(within(screen.getByTestId('plan-header')).queryByText('Planowanie')).toBeNull();
-    const ids = screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string; accessibilityRole?: string } }) => typeof n.type === 'string' && (n.props.testID === 'planning-button' || n.props.testID === 'today-plan')).map((n: { props: { testID?: string } }) => n.props.testID);
+    const ids = screen.container.queryAll((n: { type: unknown; props: { testID?: string; accessibilityRole?: string } }) => typeof n.type === 'string' && (n.props.testID === 'planning-button' || n.props.testID === 'today-plan')).map((n: { props: { testID?: string } }) => n.props.testID);
     expect(ids[0]).toBe('planning-button'); await tap(b); await flushAll(10); expect(screen.getByDisplayValue('Góra / Dół')).toBeTruthy();
   });
   test('bez planu (są treningi): przycisk nazywa się „Ustaw plan”; nowa osoba (bez planu i treningów): przycisku w nagłówku nie ma (są „Pierwsze kroki”)', async () => {
@@ -54,7 +54,7 @@ describe('K3 (23.10.2026): „Planowanie” w linii tytułu, jak w zakładce Pla
     await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'pl', width }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
     const row = screen.getByTestId('title-row');
     expect(within(row).getByTestId('planning-button').props.accessibilityLabel).toBe('Planowanie');
-    const order = row.findAll((n: { type: unknown; props: { testID?: string; accessibilityRole?: string } }) => typeof n.type === 'string' && (n.props.accessibilityRole === 'header' || n.props.testID === 'planning-button')).map((n: { props: { testID?: string } }) => n.props.testID ?? 'header');
+    const order = row.queryAll((n: { type: unknown; props: { testID?: string; accessibilityRole?: string } }) => typeof n.type === 'string' && (n.props.accessibilityRole === 'header' || n.props.testID === 'planning-button')).map((n: { props: { testID?: string } }) => n.props.testID ?? 'header');
     expect(order).toEqual(['header', 'planning-button']);
     expect(flat(row).flexWrap).toBe('wrap');
     const h = screen.getByRole('header', { name: 'Trening' }); expect(h.props.numberOfLines).toBeUndefined();
@@ -77,7 +77,7 @@ describe('tablica „Dziś” (W3 a)', () => {
   });
   test('kolejność na ekranie: nazwa planu → pasek tygodnia → tablica „Dziś” → przycisk startu', async () => {
     await boot(t => { setPlan(t, { 3: 0 }, 'Plan'); hist(); });
-    const ids = screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && ['plan-header', 'week-strip', 'today-board', 'start-panel'].includes(n.props.testID as string)).map((n: { props: { testID?: string } }) => n.props.testID);
+    const ids = screen.container.queryAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && ['plan-header', 'week-strip', 'today-board', 'start-panel'].includes(n.props.testID as string)).map((n: { props: { testID?: string } }) => n.props.testID);
     expect(ids).toEqual(['plan-header', 'week-strip', 'today-board', 'start-panel']);
   });
 });
