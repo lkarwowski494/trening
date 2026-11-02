@@ -51,15 +51,22 @@ name: Figura ruchu v2 - fazy, mięśnie, częsty błąd
 - pressKey: Enter
 - tapOn: "Pull-Up, .*"
 - extendedWaitUntil: { visible: "Technique", timeout: 30000 }   # sekcja rozwinięta od razu (27.10.2026, wariant B) — bez tapnięcia (po scaleniu main: stuknięcie zwinęłoby sekcję)
-- scrollUntilVisible: { element: "Movement drawing: .*", direction: DOWN, timeout: 30000, centerElement: true }
-- assertVisible: "Pulling up 1 s.*"
-- assertVisible: "Lowering 2 s"
-- scrollUntilVisible: { element: "Show common mistake", direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: "Show common mistake"
-- extendedWaitUntil: { visible: "Common mistake: .*", timeout: 15000 }
-- takeScreenshot: 87-figura-v2-podciaganie-blad
-- tapOn: "Hide common mistake"
-- extendedWaitUntil: { visible: "Show common mistake", timeout: 15000 }
+- extendedWaitUntil: { visible: "Pulling up 1 s.*", timeout: 8000, optional: true }   # licznik faz jest tylko w figurze v2; podpis „Movement drawing” ma też figura v1 (Pull-Up ją ma), więc nim nie rozróżnimy
+# 02.11.2026 (bramka 4, fail-closed): rysunek v2 pokazuje tylko rodzina z wpisem recenzji ruchu (lib/figures/data.json, pole v2). pull_up NIE jest w v2 (decyzja C, docs/18 02.11) —
+# jej karta ma tylko figurę v1 (bez licznika faz i przełącznika błędu), więc kroki figury v2 Pull-Up są warunkowe. Back Squat (squat jest w v2) zostaje TWARDY: zniknięcie jego rysunku zaczerwieni scenariusz.
+# ZDJĄĆ runFlow, gdy pull_up trafi do v2 po wpisie recenzji — pilnuje tego tests/maestro-57-bramka.test.ts (czerwony, gdy pull_up jest w v2, a krok nadal warunkowy; noc 41347718181).
+- runFlow:
+    when: { visible: "Pulling up 1 s.*" }
+    commands:
+      - scrollUntilVisible: { element: "Movement drawing: .*", direction: DOWN, timeout: 30000, centerElement: true }
+      - assertVisible: "Pulling up 1 s.*"
+      - assertVisible: "Lowering 2 s"
+      - scrollUntilVisible: { element: "Show common mistake", direction: DOWN, timeout: 30000, centerElement: true }
+      - tapOn: "Show common mistake"
+      - extendedWaitUntil: { visible: "Common mistake: .*", timeout: 15000 }
+      - takeScreenshot: 87-figura-v2-podciaganie-blad
+      - tapOn: "Hide common mistake"
+      - extendedWaitUntil: { visible: "Show common mistake", timeout: 15000 }
 # Role mięśni (26.10.2026): ten sam ekran Pull-Up niżej — mapa mięśni i zdania; zdanie uproszczone (łopatki w podciąganiu) nie pojawia się.
 - scrollUntilVisible: { element: "What the muscles do", direction: DOWN, timeout: 30000, centerElement: true }
 - assertVisible: ".*Pulls your upper arm down and back toward your body\\..*"
