@@ -2,6 +2,22 @@
 
 Data: 02.11.2026 · autor: badacz-merytoryczny · **Status: PROPOZYCJA — dane do integracji przez koordynatora linii 1.1**
 
+## Korekta szczebli 2 (02.11.2026)
+
+Zastosowano ROZSTRZYGNIĘCIE 2 koordynatora linii 1.1 (02.11.2026 ~07:55). Bez nowych źródeł; autor strony sprawdzony WebFetch 02.11.2026.
+
+- **The Prehab Guys → 5** dla `prehab-suitcase-deadlift-kb`: strona nie podaje autora ani kwalifikacji (tylko „Published Jan 27, 2022 /
+  Updated Apr 21, 2022” i firmowanie serwisu) — warunek „artykuł z autorem z kwalifikacjami” niespełniony.
+- **One-Arm Side Deadlift: gotowe → otwarte.** Zostaje jedno źródło szczebla 4 (Onnit). Usunięty z bloku JSON cały wpis — 4 zdania
+  (`sdl.setup`, `sdl.move`, `hinge.back`, `sdl.mis.lean`); dane do „Częściowe” (3a). Źródła `prehab-suitcase-deadlift-kb`
+  i `onnit-suitcase-deadlift` usunięte z bloku `sources`.
+- **Clean Deadlift: bez zmiany, gotowe.** Reguła błędów: `mis.barAway` — Catalyst podaje tylko standard („sztanga jak najbliżej nóg”),
+  BarBend/Vaughn nazywa błąd wprost (barki przed sztangą → sztanga ucieka w przód). Błąd jest bezpośrednim zaprzeczeniem standardu →
+  zdanie zostaje z oznaczeniem **„błąd = zaprzeczenie standardu”**.
+- Physitrack, Coach, Torokhtiy, Freelap, NSCA, szpitale, uczelniane centra sportu — w pliku nie występują. Barbell Logic, Rusin, elitefts
+  — tylko w „Otwarte”, bez zmian.
+- Wynik: gotowe **2 → 1** (Clean Deadlift); otwarte 12 → 13.
+
 ## Korekta szczebli 02.11.2026
 
 Zastosowano rozstrzygnięcie koordynatora linii 1.1 z 02.11.2026 (szczebel 4 = (a) organizacja szkoląca trenerów, serwis z redakcją i recenzją ekspercką albo producent własnego rodzaju sprzętu; (b) autor z datą albo treść firmowana; (c) nie recenzja z linkami afiliacyjnymi ani marketing; Breaking Muscle — 5 i nigdy niezależne od BarBend).
@@ -9,8 +25,7 @@ Zastosowano rozstrzygnięcie koordynatora linii 1.1 z 02.11.2026 (szczebel 4 = (
 - Zmienione szczeble: `Fitness Volt` „4? do akceptacji” → **5** (serwis treningowy bez organizacji szkolącej i bez wskazanej recenzji eksperckiej, odsyła do recenzji produktów — ocena i sprawdzenie strony w `kneeling_hinge.md`); `BoxLife Magazine` „4? do akceptacji” → **5** (magazyn bez recenzji eksperckiej, autor bez podanych kwalifikacji — nie spełnia (a)); `Breaking Muscle` 4 → **5** (lista koordynatora); `Gymreapers` „4?” → **5** (marka akcesoriów, autor bez kwalifikacji; nie wykazano, że gumy to jej własny rodzaj sprzętu — źródło i tak tylko w „Otwarte”).
 - Sprawdzone strony (WebFetch 02.11.2026): BarBend `news/chad-vaughn-clean-deadlift` — artykuł o technice, autor Chad Vaughn (olimpijczyk, trener USA Weightlifting), aktualizacja 17.07.2023, bez linków produktowych w treści → **4**. Bells of Steel `how-to-do-the-cable-deadlift` — poradnik producenta z datą 23.10.2023, o wyciągach, które sam produkuje (linki do własnych wież z wyciągiem) → **4** dla martwego ciągu na wyciągu.
 - Ćwiczenia, które spadły do otwartych: **Axle Deadlift** (gotowe warunkowo → otwarte; każde zdanie miało BarBend + Fitness Volt), **Cable Deadlift** (gotowe warunkowo → otwarte; `hinge.back` traci BoxLife, zostaje 1 zdanie we wskazówkach i błędach).
-- Zdania usunięte z bloku JSON: 5 (Axle: `axle.setup`, `dl.lift`, `dl.close`, `dl.mis.hipsFirst`; Cable: `hinge.back`). Pozostałe zdania Cable Deadlift (`cabledl.setup`, `tb.lift`, `cabledl.close` — Eleiko + Bells of Steel) przeniesione do danych częściowych. Przy One-Arm Side Deadlift usunięto z `hinge.back` źródło `bm-one-hand-deadlift` (zostają 2 inne — zdanie bez zmian).
-- Clean Deadlift i One-Arm Side Deadlift — bez zmian, gotowe.
+- Zdania usunięte z bloku JSON: 5 (Axle: `axle.setup`, `dl.lift`, `dl.close`, `dl.mis.hipsFirst`; Cable: `hinge.back`). Pozostałe zdania Cable Deadlift (`cabledl.setup`, `tb.lift`, `cabledl.close` — Eleiko + Bells of Steel) przeniesione do danych częściowych. Przy One-Arm Side Deadlift usunięto z `hinge.back` źródło `bm-one-hand-deadlift`.
 - Oznaczenia „DO AKCEPTACJI” i „4?” usunięte — zastąpione oceną wyżej.
 
 Metoda jak w `docs/research/33-wskazowki-partia2.md` („Metoda”): każde zdanie ma ≥ 2 przeczytane źródła szczebla 4 z różnych
@@ -28,8 +43,8 @@ treningowych z wyników wyszukiwania pominięto i nie zapisano.
 | Leverage Deadlift | otwarte | ExRx (403); znalezione opisy tylko w bazach innych aplikacji (nie źródło). |
 | Clean Deadlift | gotowe | Catalyst Athletics + BarBend (artykuł o technice Chada Vaughna). |
 | Snatch Deadlift | otwarte | tylko Catalyst Athletics; materiały o „snatch-grip deadlift” to inne ćwiczenie (Catalyst wprost odróżnia) — analogia. |
-| One-Arm Side Deadlift | gotowe | (wariant: kettlebell) The Prehab Guys + Onnit (producent kettlebelli, autor CSCS). |
-| Deadlift with Bands | otwarte | ustawienie gum: Gymreapers (5) i Barbell Logic — po korekcie 1 źródło szczebla 4; ruch zawodnika — tylko Gymreapers. |
+| One-Arm Side Deadlift | otwarte (korekta 2) | (wariant: kettlebell) Onnit (4); The Prehab Guys — strona bez autora → 5. |
+| Deadlift with Bands | otwarte | ustawienie gum: Gymreapers (5) i Barbell Logic — 1 źródło szczebla 4; ruch zawodnika — tylko Gymreapers. |
 | Deadlift with Chains | otwarte | tylko elitefts (Wendler) — samo zawieszenie łańcuchów; brak drugiego źródła. |
 | Rack Pull with Bands | otwarte | nie znaleziono źródła o tym wariancie. |
 | Reverse Band Deadlift | otwarte | ustawienie gum: 2 źródła (Barbell Logic; Rusin — wariant: trap bar); ruch — tylko Rusin. |
@@ -38,7 +53,7 @@ treningowych z wyników wyszukiwania pominięto i nie zapisano.
 | Sumo Deadlift with Chains | otwarte | j.w. — brak źródła o wersji sumo z łańcuchami. |
 | Rickshaw Deadlift | otwarte | tylko opisy sprzętu (wymiary uchwytów) i baza innej aplikacji; strona ćwiczenia elitefts — 404. |
 
-Wynik po korekcie: gotowe 2 (Clean Deadlift, One-Arm Side Deadlift), otwarte 12 (przed korektą: gotowe 2, gotowe warunkowo 2, otwarte 10).
+Wynik po korekcie 2: gotowe 1 (Clean Deadlift), otwarte 13 (po korekcie 1: gotowe 2, otwarte 12; przed korektą 1: gotowe 2, gotowe warunkowo 2, otwarte 10).
 
 ## 2. Uzasadnienie zdań (źródło — miejsce)
 
@@ -47,16 +62,8 @@ Wynik po korekcie: gotowe 2 (Clean Deadlift, One-Arm Side Deadlift), otwarte 12 
 - `cdl.move` (nowe) — Catalyst (opis: nacisk całą stopą, ten sam kąt pleców, aż sztanga minie kolana; parafraza); BarBend / Vaughn („back is holding position as legs lift”; kąt pleców przy podłodze taki sam jak nad kolanem; parafraza).
 - `dl.close` (istniejące) — Catalyst (opis: sztanga blisko nóg; parafraza); BarBend / Vaughn (ustawienie barków nad sztangą, żeby „keep bar close”).
 - `hinge.back` (istniejące) — Catalyst (opis: plecy usztywnione i wyprostowane, płaskie; parafraza); BarBend / Vaughn (napięcie pleców i utrzymanie ich pozycji; parafraza).
-- `mis.barAway` (istniejące) — BarBend / Vaughn (barki przed sztangą → sztanga ucieka do przodu, ciało za nią; parafraza); Catalyst (opis: sztanga jak najbliżej nóg; parafraza).
-- Pominięte z zestawu ogólnego: `dl.lift` (pełny wyprost na górze — tylko Catalyst), `mis.roundBack` (żadne ze źródeł nie opisuje tego błędu wprost).
-
-### One-Arm Side Deadlift (gotowe; wariant: kettlebell)
-- `sdl.setup` (nowe) — `prehab-suitcase-deadlift-kb` (HOW) „Stand with a kettlebell on the ground at the outside of one foot.” (stopy na szerokość barków); `onnit-suitcase-deadlift` (Suitcase Deadlift, krok 1: ciężar z boku jednej nogi, stopy na szerokość bioder; parafraza). Część wspólna rozstawu: biodra–barki.
-- `sdl.move` (nowe) — The Prehab Guys (HOW: pochylenie w biodrach, ugięcie kolan, chwyt; „push into the ground with your feet and extend your body back up straight”); Onnit (krok 2–3: najpierw biodra, kolana tyle, ile trzeba) „Drive your feet through the floor and extend your hips to stand tall.”
-- `hinge.back` (istniejące) — The Prehab Guys (HOW: „back flat”); Onnit (krok 2: długi kręgosłup; parafraza). (`bm-one-hand-deadlift`, wariant: sztanga — szczebel 5, nie liczy się.)
-- `sdl.mis.lean` (nowe) — The Prehab Guys (COMPENSATION) „Don't lean to the side picking up the weight, stay strong and upright.”; Onnit (krok 3: barki równo, tułów prosty, „avoid any twisting or bending”).
-- Pominięte: `dl.lift` (tekst dla sztangi przed nogami), `mis.roundBack` (żadne źródło wprost).
-- Uwaga dla integracji: katalog nie mówi, jakim sprzętem — źródła opisują kettlebell (2) i sztangę (1); zdania nie wymieniają sprzętu.
+- `mis.barAway` (istniejące) — BarBend / Vaughn (barki przed sztangą → sztanga ucieka do przodu, ciało za nią; parafraza — błąd wprost); Catalyst (opis: sztanga jak najbliżej nóg; parafraza — tylko standard). **Błąd = zaprzeczenie standardu** (korekta 2).
+- Pominięte z zestawu ogólnego: `dl.lift` (pełny wyprost na górze — tylko Catalyst), `mis.roundBack` (żadne ze źródeł nie opisuje tego błędu wprost; korekta 2: standard „plecy płaskie” jest u obu źródeł, ale żadne nie nazywa błędu, więc reguła „błąd = zaprzeczenie standardu” nie wystarcza — potrzebne choć jedno źródło z błędem).
 
 ## 3. Wpisy do `cues.json` → `exercises`
 
@@ -74,21 +81,7 @@ Wynik po korekcie: gotowe 2 (Clean Deadlift, One-Arm Side Deadlift), otwarte 12 
       {"c": "hinge.back", "s": [["catalyst-176", "opis (back braced and extended)"], ["barbend-vaughn-clean-deadlift", "back tension and position maintenance"]]}
     ],
     "mistakes": [
-      {"c": "mis.barAway", "s": [["barbend-vaughn-clean-deadlift", "shoulders in front → bar drifts forward"], ["catalyst-176", "opis (bar as close as possible)"]]}
-    ]
-  },
-  "One-Arm Side Deadlift": {
-    "setup": [
-      {"c": "sdl.setup", "s": [["prehab-suitcase-deadlift-kb", "HOW (wariant: kettlebell)"], ["onnit-suitcase-deadlift", "Suitcase Deadlift, krok 1 (wariant: kettlebell)"]]}
-    ],
-    "move": [
-      {"c": "sdl.move", "s": [["prehab-suitcase-deadlift-kb", "HOW"], ["onnit-suitcase-deadlift", "kroki 2–3"]]}
-    ],
-    "tips": [
-      {"c": "hinge.back", "s": [["prehab-suitcase-deadlift-kb", "HOW (back flat)"], ["onnit-suitcase-deadlift", "krok 2 (long spine)"]]}
-    ],
-    "mistakes": [
-      {"c": "sdl.mis.lean", "s": [["prehab-suitcase-deadlift-kb", "COMPENSATION"], ["onnit-suitcase-deadlift", "krok 3 (avoid twisting or bending)"]]}
+      {"c": "mis.barAway", "s": [["barbend-vaughn-clean-deadlift", "shoulders in front → bar drifts forward"], ["catalyst-176", "opis (bar as close as possible) — błąd = zaprzeczenie standardu"]]}
     ]
   }
 }
@@ -96,6 +89,12 @@ Wynik po korekcie: gotowe 2 (Clean Deadlift, One-Arm Side Deadlift), otwarte 12 
 
 ### 3a. Częściowe (ćwiczenia otwarte — nie do `cues.json`)
 
+- **One-Arm Side Deadlift** (korekta 2) — 1 źródło szczebla 4 (`onnit-suitcase-deadlift`, wariant: kettlebell); `prehab-suitcase-deadlift-kb` — 5 (strona bez autora).
+  - `sdl.setup` — Onnit krok 1 (ciężar z boku jednej nogi, stopy na szerokość bioder); The Prehab Guys HOW („Stand with a kettlebell on the ground at the outside of one foot.”, stopy na szerokość barków). Część wspólna rozstawu: biodra–barki.
+  - `sdl.move` — Onnit kroki 2–3 („Drive your feet through the floor and extend your hips to stand tall.”); The Prehab Guys HOW.
+  - `hinge.back` — Onnit krok 2 (długi kręgosłup); The Prehab Guys HOW („back flat”). (`bm-one-hand-deadlift`, wariant: sztanga — 5.)
+  - `sdl.mis.lean` — Onnit krok 3 („avoid any twisting or bending” — błąd wprost); The Prehab Guys COMPENSATION („Don't lean to the side picking up the weight, stay strong and upright.”).
+  - Uwaga: katalog nie mówi, jakim sprzętem — źródła opisują kettlebell (2) i sztangę (1); zdania nie wymieniają sprzętu.
 - **Axle Deadlift** — 1 źródło szczebla 4 (`barbend-axle-deadlift`); `fitnessvolt-axle-vs-barbell` — 5.
   - `axle.setup` — BarBend Step 1: Setup; Fitness Volt Stance; Grip (Fitness Volt: „The only real difference between axle and barbell deadlifts is the bar itself.”).
   - `dl.lift` — BarBend Step 2–3; Fitness Volt Pull; Lockout.
@@ -109,9 +108,9 @@ Wynik po korekcie: gotowe 2 (Clean Deadlift, One-Arm Side Deadlift), otwarte 12 
 |---|---|---|---|
 | `cdl.setup` | Ustaw się jak do zarzutu: chwyt jak do zarzutu, kolana wypchnięte na zewnątrz, aż dotkną rąk. | Set up like for a clean: clean grip, knees pushed out until they touch your arms. | Pozycja startowa inna niż w zwykłym martwym ciągu (kolana do rąk). |
 | `cdl.move` | Odrywaj sztangę nogami, trzymając ten sam kąt pleców, aż minie kolana. | Drive the bar up with your legs, holding the same back angle until it passes your knees. | Sedno ćwiczenia według obu źródeł; `dl.lift` mówi o jednoczesnym prostowaniu bioder — tu biodra otwierają się dopiero nad kolanami. |
-| `sdl.setup` | Postaw ciężar z boku jednej stopy; stopy na szerokość bioder do barków. | Set the weight beside one foot; feet hip- to shoulder-width apart. | Ustawienie z ciężarem z boku — brak zdania. |
-| `sdl.move` | Cofnij biodra i ugnij kolana, chwyć ciężar jedną ręką; wypchnij stopy w podłogę i wstań prosto. | Push your hips back and bend your knees, grab the weight with one hand; drive through the floor and stand tall. | Ruch z ciężarem z boku, jedną ręką — brak zdania. |
-| `sdl.mis.lean` | Przechylanie się w bok albo skręcanie tułowia przy podnoszeniu. | Leaning to the side or twisting as you lift. | `carry.noLean` dotyczy marszu („idź wyprostowany”). |
+| `sdl.setup` | Postaw ciężar z boku jednej stopy; stopy na szerokość bioder do barków. | Set the weight beside one foot; feet hip- to shoulder-width apart. | Wstrzymane (korekta 2, ćwiczenie otwarte). |
+| `sdl.move` | Cofnij biodra i ugnij kolana, chwyć ciężar jedną ręką; wypchnij stopy w podłogę i wstań prosto. | Push your hips back and bend your knees, grab the weight with one hand; drive through the floor and stand tall. | Wstrzymane (korekta 2). |
+| `sdl.mis.lean` | Przechylanie się w bok albo skręcanie tułowia przy podnoszeniu. | Leaning to the side or twisting as you lift. | Wstrzymane (korekta 2). |
 
 Wstrzymane w korekcie 02.11 (ćwiczenia otwarte): `axle.setup` („Stopy na szerokość bioder; chwyć gruby gryf oburącz nachwytem.” / „Feet hip-width apart; grab the thick bar with both hands, overhand.”), `dl.mis.hipsFirst` („Biodra idą w górę szybciej niż barki.” / „Hips shooting up faster than the shoulders.”), `cabledl.setup` („Stań przodem do wyciągu z drążkiem na dolnym bloczku, stopy na szerokość bioder; chwyć drążek nachwytem, ręce proste.”), `cabledl.close` („Prowadź drążek blisko ciała przez cały ruch.”).
 
@@ -120,17 +119,17 @@ Wstrzymane w korekcie 02.11 (ćwiczenia otwarte): `axle.setup` („Stopy na szer
 | id | adres | organizacja | szczebel | miejsce / cytat |
 |---|---|---|---|---|
 | `barbend-axle-deadlift` | https://barbend.com/axle-deadlift/ | BarBend (istniejąca) | 4 (artykuł o technice) | Step 1–3 (autor CSCS) |
-| `fitnessvolt-axle-vs-barbell` | https://fitnessvolt.com/axle-deadlift-vs-barbell-deadlift/ | Fitness Volt (nowa) | 5 (korekta 02.11) | „The only real difference between axle and barbell deadlifts is the bar itself.” |
+| `fitnessvolt-axle-vs-barbell` | https://fitnessvolt.com/axle-deadlift-vs-barbell-deadlift/ | Fitness Volt (nowa) | 5 | „The only real difference between axle and barbell deadlifts is the bar itself.” |
 | `eleiko-6582f9bc` | https://eleiko.inspire360.com/resource/6582f9bcd6c0e9bcec04fe16 | Eleiko (istniejąca) | 4 | Setup; Movement; Cues |
 | `bos-cable-deadlift` | https://bellsofsteel.us/blogs/content/how-to-do-the-cable-deadlift | Bells of Steel (nowa, producent wyciągów) | 4 (własny rodzaj sprzętu) | kroki; Back; Movement (bez autora, firmowane, 23.10.2023) |
-| `boxlife-cable-deadlift` | https://boxlifemagazine.com/cable-deadlift/ | BoxLife Magazine (nowa) | 5 (korekta 02.11) | plecy płaskie (autor bez kwalifikacji) |
+| `boxlife-cable-deadlift` | https://boxlifemagazine.com/cable-deadlift/ | BoxLife Magazine (nowa) | 5 | plecy płaskie (autor bez kwalifikacji) |
 | `catalyst-176` | https://www.catalystathletics.com/exercise/176/Clean-Deadlift/ | Catalyst Athletics (nowa) | 4 | opis ćwiczenia |
 | `catalyst-187` | https://catalystathletics.com/exercise/187/Snatch-Deadlift/ | Catalyst Athletics | 4 | opis (tylko do „Otwarte”) |
 | `barbend-vaughn-clean-deadlift` | https://barbend.com/news/chad-vaughn-clean-deadlift/ | BarBend (istniejąca) | 4 (artykuł o technice, autor i data sprawdzone 02.11) | „back is holding position as legs lift” |
-| `prehab-suitcase-deadlift-kb` | https://theprehabguys.com/vimeo-video/suitcase-deadlift-kettlebell/ | The Prehab Guys (istniejąca) | 4 | HOW; COMPENSATION |
-| `onnit-suitcase-deadlift` | https://www.onnit.com/academy/barbell-exercise-1-arm-suitcase-deadlift | Onnit (nowa, producent kettlebelli; autor CSCS) | 4 (własny rodzaj sprzętu: kettlebell) | adres przekierowuje do „The Best Kettlebell Deadlift Exercises”, sekcja Suitcase Deadlift |
-| `bm-one-hand-deadlift` | https://breakingmuscle.com/?p=147467 | Breaking Muscle (istniejąca) | 5 (korekta 02.11) | „How Much Can You Deadlift With One Hand?” — po korekcie nieużyte |
-| `gymreapers-banded-deadlift` | https://gymreapers.com/blogs/news/banded-deadlifts | Gymreapers (nowa, marka akcesoriów) | 5 (korekta 02.11) | Step 1–6 (tylko do „Otwarte”) |
+| `prehab-suitcase-deadlift-kb` | https://theprehabguys.com/vimeo-video/suitcase-deadlift-kettlebell/ | The Prehab Guys (istniejąca) | 5 (korekta 2: strona bez autora; daty 27.01.2022 / 21.04.2022) | HOW; COMPENSATION — tylko do „Częściowe” |
+| `onnit-suitcase-deadlift` | https://www.onnit.com/academy/barbell-exercise-1-arm-suitcase-deadlift | Onnit (nowa, producent kettlebelli; autor CSCS) | 4 (własny rodzaj sprzętu: kettlebell) | adres przekierowuje do „The Best Kettlebell Deadlift Exercises”, sekcja Suitcase Deadlift — ćwiczenie otwarte |
+| `bm-one-hand-deadlift` | https://breakingmuscle.com/?p=147467 | Breaking Muscle (istniejąca) | 5 | „How Much Can You Deadlift With One Hand?” — nieużyte |
+| `gymreapers-banded-deadlift` | https://gymreapers.com/blogs/news/banded-deadlifts | Gymreapers (nowa, marka akcesoriów) | 5 | Step 1–6 (tylko do „Otwarte”) |
 | `barbelllogic-bands` | https://barbell-logic.com/?p=5455 | Barbell Logic (nowa, szkoła trenerów) | 4 (a) — autor/data nieodnotowane, sprawdzić przy użyciu | Bands for the Deadlift; Reverse Bands (tylko do „Otwarte”) |
 | `rusin-reverse-band` | https://drjohnrusin.com/how-to-use-the-lightening-band-aka-reverse-band-method | Dr John Rusin (nowa, fizjoterapeuta-trener) | nieoceniane wg (a)–(c) — źródło tylko do „Otwarte”, ocenić przy użyciu | The Reverse Band Trap Bar Deadlift |
 | `elitefts-wendler-chains` | https://elitefts.com/blogs/training/deadlifting-with-chains | elitefts (nowa, producent gum i łańcuchów) | 4 dla gum i łańcuchów | The Set Up; Important Points (tylko do „Otwarte”) |
@@ -144,14 +143,12 @@ Wstrzymane w korekcie 02.11 (ćwiczenia otwarte): `axle.setup` („Stopy na szer
   },
   "sources": {
     "catalyst-176": {"org": "Catalyst Athletics", "title": "Clean Deadlift", "url": "https://www.catalystathletics.com/exercise/176/Clean-Deadlift/", "level": 4},
-    "barbend-vaughn-clean-deadlift": {"org": "BarBend", "title": "Chad Vaughn — clean deadlift (2023)", "url": "https://barbend.com/news/chad-vaughn-clean-deadlift/", "level": 4},
-    "prehab-suitcase-deadlift-kb": {"org": "The Prehab Guys", "title": "Suitcase Deadlift (Kettlebell)", "url": "https://theprehabguys.com/vimeo-video/suitcase-deadlift-kettlebell/", "level": 4},
-    "onnit-suitcase-deadlift": {"org": "Onnit", "title": "The Best Kettlebell Deadlift Exercises — Suitcase Deadlift", "url": "https://www.onnit.com/academy/barbell-exercise-1-arm-suitcase-deadlift", "level": 4}
+    "barbend-vaughn-clean-deadlift": {"org": "BarBend", "title": "Chad Vaughn — clean deadlift (2023)", "url": "https://barbend.com/news/chad-vaughn-clean-deadlift/", "level": 4}
   }
 }
 ```
 
-(Źródła ćwiczeń otwartych — `barbend-axle-deadlift`, `fitnessvolt-axle-vs-barbell`, `eleiko-6582f9bc`, `bos-cable-deadlift`, `boxlife-cable-deadlift`, `bm-one-hand-deadlift`, `catalyst-187`, `gymreapers-banded-deadlift`, `barbelllogic-bands`, `rusin-reverse-band`, `elitefts-wendler-chains` — nie wchodzą do `sources`, dopóki nie zasilą gotowego ćwiczenia. Organizacje `Fitness Volt`, `BoxLife Magazine` — szczebel 5, bez wpisu do `orgs`, dopóki nieużyte.)
+(Źródła ćwiczeń otwartych — `onnit-suitcase-deadlift`, `prehab-suitcase-deadlift-kb`, `barbend-axle-deadlift`, `fitnessvolt-axle-vs-barbell`, `eleiko-6582f9bc`, `bos-cable-deadlift`, `boxlife-cable-deadlift`, `bm-one-hand-deadlift`, `catalyst-187`, `gymreapers-banded-deadlift`, `barbelllogic-bands`, `rusin-reverse-band`, `elitefts-wendler-chains` — nie wchodzą do `sources`, dopóki nie zasilą gotowego ćwiczenia. Organizacje `Fitness Volt`, `BoxLife Magazine` — szczebel 5, bez wpisu do `orgs`, dopóki nieużyte. Wpis `Onnit` w `orgs` zostaje jako ocena organizacji (używany też w `hinge-cz1.md`). Uwaga dla integracji: „The Prehab Guys” w `orgs` istniejącego `cues.json` — wg ROZSTRZYGNIĘCIA 2 szczebel per strona, 4 tylko z autorem z kwalifikacjami.)
 
 ## 6. Otwarte
 
@@ -159,21 +156,23 @@ Informacja o zestawach ogólnych (`cue-sets.json`): dla żadnego z 14 wariantów
 zestawu (`dl.lift`, `hinge.back`, `dl.close`, `mis.roundBack`; Rickshaw: `tb.lift`; sumo: `sumo.kneesOut`). W szczególności
 `mis.roundBack` nie ma 2 źródeł przy żadnym wariancie, a zestawy dla wersji z gumami/łańcuchami/sumo i Rickshaw nie mają źródła o tym wariancie.
 
-- **Axle Deadlift** (korekta 02.11) — po korekcie tylko BarBend (4). Rozstrzygnie: drugie źródło szczebla 4 o martwym ciągu z grubym gryfem (np. producent takiego gryfu, organizacja szkoląca trenerów); Breaking Muscle się nie liczy (5, ten sam właściciel co BarBend).
-- **Cable Deadlift** (korekta 02.11) — brakuje drugiego zdania we wskazówkach/błędach (`hinge.back` ma po korekcie tylko Bells of Steel). Rozstrzygnie: drugie źródło szczebla 4 o plecach albo o błędzie (np. inny producent wyciągów).
-- **Snatch Deadlift** — jedno źródło (Catalyst 187: pięty na szerokość bioder, palce na zewnątrz, kolana wypchnięte do rąk, chwyt rwania, barki nad sztangą, ten sam kąt pleców do minięcia kolan, sztanga blisko nóg). Rozstrzygnie: drugi opis „snatch deadlift” (nie „snatch-grip deadlift”) od innej organizacji, np. federacji podnoszenia ciężarów lub Eleiko.
-- **Leverage Deadlift** — brak źródła szczebla 4 (ExRx 403; reszta to bazy innych aplikacji). Rozstrzygnie: instrukcja producenta maszyny.
-- **Deadlift with Bands** — ustawienie gum: Barbell Logic „Bands for the Deadlift” (kołki szeroko, gumy prostopadle do gryfu) + Gymreapers Step 1 (szczebel 5 po korekcie) → 1 źródło szczebla 4. Proponowane zdanie (nie do aplikacji): „Zaczep gumy o oba końce gryfu i zakotwicz je nisko, równo po obu stronach.” Ruch zawodnika — tylko Gymreapers. Rozstrzygnie: drugi opis z gumami od organizacji szczebla 4 (np. producent gum).
-- **Reverse Band Deadlift** — ustawienie: Barbell Logic „Reverse Bands”; Rusin (wariant: trap bar — gumy zaczepione o górę stojaka, pomagają przy podłodze). Rusin nieoceniony wg (a)–(c). Ruch („przyspieszaj z podłogi aż do wyprostu”) — tylko Rusin. Rozstrzygnie: ocena Rusina i drugi opis ruchu.
-- **Deadlift with Chains** — tylko elitefts/Wendler (łańcuchy równo po obu stronach, za zawodnikiem, nie przed gryfem). Rozstrzygnie: drugie źródło (Barbell Logic odsyła do filmu innego serwisu — tekst bez kroków).
-- **Rack Pull with Bands, Reverse Band Sumo Deadlift, Sumo Deadlift with Bands, Sumo Deadlift with Chains** — brak jakiegokolwiek przeczytanego źródła o tych wariantach. Bazowe `Sumo Deadlift` ma wskazówki, ale żadne źródło nie mówi, że wersja z dodatkiem ma ten sam ruch.
-- **Rickshaw Deadlift** — brak opisu techniki (tylko wymiary sprzętu; elitefts exercise-index 404).
-- **`hinge.back` a „arch your lower back”** (Fitness Volt) — po korekcie bez znaczenia dla kart (Fitness Volt się nie liczy); uwaga zostaje dla przeglądu zestawu ogólnego.
+- **One-Arm Side Deadlift** (korekta 2) — po korekcie tylko Onnit (4); The Prehab Guys (strona bez autora) = 5. Dane w 3a. Rozstrzygnie: drugie źródło szczebla 4 o martwym ciągu z ciężarem z boku (suitcase), np. strona The Prehab Guys z autorem-fizjoterapeutą albo organizacja szkoląca trenerów.
+- **Axle Deadlift** (korekta 02.11) — tylko BarBend (4). Rozstrzygnie: drugie źródło szczebla 4 o martwym ciągu z grubym gryfem; Breaking Muscle się nie liczy (5, ten sam właściciel co BarBend).
+- **Cable Deadlift** (korekta 02.11) — brakuje drugiego zdania we wskazówkach/błędach (`hinge.back` ma tylko Bells of Steel). Rozstrzygnie: drugie źródło szczebla 4 o plecach albo o błędzie.
+- **Snatch Deadlift** — jedno źródło (Catalyst 187). Rozstrzygnie: drugi opis „snatch deadlift” (nie „snatch-grip deadlift”) od innej organizacji.
+- **Leverage Deadlift** — brak źródła szczebla 4. Rozstrzygnie: instrukcja producenta maszyny.
+- **Deadlift with Bands** — ustawienie gum: Barbell Logic + Gymreapers (5) → 1 źródło szczebla 4. Proponowane zdanie (nie do aplikacji): „Zaczep gumy o oba końce gryfu i zakotwicz je nisko, równo po obu stronach.” Ruch zawodnika — tylko Gymreapers.
+- **Reverse Band Deadlift** — ustawienie: Barbell Logic „Reverse Bands”; Rusin (wariant: trap bar). Rusin nieoceniony wg (a)–(c). Ruch — tylko Rusin. Rozstrzygnie: ocena Rusina i drugi opis ruchu.
+- **Deadlift with Chains** — tylko elitefts/Wendler. Rozstrzygnie: drugie źródło.
+- **Rack Pull with Bands, Reverse Band Sumo Deadlift, Sumo Deadlift with Bands, Sumo Deadlift with Chains** — brak jakiegokolwiek przeczytanego źródła o tych wariantach.
+- **Rickshaw Deadlift** — brak opisu techniki.
+- **`hinge.back` a „arch your lower back”** (Fitness Volt) — bez znaczenia dla kart; uwaga dla przeglądu zestawu ogólnego.
 
 ## 7. Dostęp
 
-- ExRx.net — 403; web.archive.org i archive.ph — zablokowane przez narzędzie (nie próbowano dalej, zgodnie z koordynatorem).
-- powerliftingtechnique.com — 403 (banded deadlift; reverse band deadlift nieczytany).
-- elitefts.com/education/… (deadlifting-with-chains, reverse band deadlift, rickshaw deadlift) — 404; wersja w `blogs/training` działała.
-- barbend.com/clean-deadlift/ — 404; bodybuilding.com/exercises/deadlift-with-bands → 404 po przekierowaniu; garagegymreviews.com/suitcase-deadlift — 404.
-- catalystathletics.com/exercise/120/ — strona ogólna biblioteki (zły numer); poprawne: 176 (clean), 187 (snatch).
+- ExRx.net — 403; web.archive.org i archive.ph — zablokowane przez narzędzie.
+- powerliftingtechnique.com — 403.
+- elitefts.com/education/… — 404; wersja w `blogs/training` działała.
+- barbend.com/clean-deadlift/ — 404; bodybuilding.com/exercises/deadlift-with-bands → 404; garagegymreviews.com/suitcase-deadlift — 404.
+- catalystathletics.com/exercise/120/ — strona ogólna biblioteki; poprawne: 176 (clean), 187 (snatch).
+- Korekta 2 (02.11.2026): ponownie przeczytana strona The Prehab Guys `suitcase-deadlift-kettlebell` — tylko w celu sprawdzenia autora.

@@ -2,6 +2,21 @@
 
 Data: 02.11.2026 · autor: badacz-merytoryczny · **Status: PROPOZYCJA — dane do integracji przez koordynatora linii 1.1**
 
+## Korekta szczebli 2 (02.11.2026)
+
+Zastosowano ROZSTRZYGNIĘCIE 2 koordynatora linii 1.1 (02.11.2026 ~07:55). Bez nowych źródeł.
+
+- W pliku nie występują Physitrack, The Prehab Guys, Torokhtiy, Freelap, NSCA, szpitale ani uczelniane centra sportu. Coach
+  (`coachweb.com/.../184/good-morning`) jest tylko w „Dostęp” jako nieliczony (wersja stojąca); po sprawdzeniu 02.11.2026 (autor
+  Nick Harris-Fry, dziennikarz bez kwalifikacji trenerskich) i tak szczebel 5 — szczegóły w `hinge-cz1.md`, „Korekta szczebli 2”.
+- Reguła błędów: w pliku brak zdań `.mis.` (żaden błąd nie był proponowany).
+- Zdania w blokach JSON: blok `exercises` pusty — bez zmian.
+- Wynik: gotowe **0 → 0** (Seated Good Mornings i Kneeling Squat nadal otwarte; dzięki nowym regułom żadne nie zyskuje drugiego źródła).
+- Sekcja „Stan korekty” na końcu pliku (oceny do przeniesienia do `squat-cz2.md`) zostawiona bez zmian. Uwaga dla wykonawcy
+  `squat-cz2.md`: lista w tej sekcji powstała przed ROZSTRZYGNIĘCIEM 2 — przy przenoszeniu zastosuj też ROZSTRZYGNIĘCIE 2
+  (m.in. Physitrack → 5, co zamyka pytanie z „Pułapek”; uczelniane centra sportu bez autora → 5, uczelniane służby zdrowia → 4;
+  The Prehab Guys, Coach, Torokhtiy, Freelap — 4 tylko z autorem z kwalifikacjami).
+
 ## Korekta szczebli 02.11.2026
 
 Zastosowano rozstrzygnięcie koordynatora linii 1.1 z 02.11.2026 (szczebel 4 = (a) organizacja szkoląca trenerów, serwis z redakcją i recenzją ekspercką albo producent własnego rodzaju sprzętu; (b) autor z datą albo treść firmowana; (c) nie recenzja z linkami afiliacyjnymi ani marketing).
@@ -74,7 +89,7 @@ zalecenie podstawowe to plecy wyprostowane przez cały ruch. Z tego powodu **nie
 
 | Ćwiczenie / zdanie | Powód | Co by rozstrzygnęło |
 |---|---|---|
-| Seated Good Mornings — całość (korekta 02.11) | po korekcie tylko Catalyst 184 (4); Fitness Volt — 5 | drugie źródło szczebla 4 o good morning w siadzie (organizacja szkoląca trenerów, serwis z recenzją ekspercką) |
+| Seated Good Mornings — całość (korekta 02.11) | po korekcie tylko Catalyst 184 (4); Fitness Volt — 5; korekta 2 bez zmian | drugie źródło szczebla 4 o good morning w siadzie (organizacja szkoląca trenerów, serwis z recenzją ekspercką, artykuł z autorem z kwalifikacjami) |
 | Kneeling Squat — całość | brak 2 przeczytanych źródeł szczebla 4 | biblioteka organizacji szkolącej trenerów z opisem przysiadu w klęku ze sztangą |
 | Seated Good Mornings — głębokość | Catalyst: „tak nisko, jak utrzymasz wyprost pleców”; Fitness Volt: „do rozciągnięcia tyłu ud” — różne kryteria; `gm.depth` (poziom tułowia) bez źródła dla wersji siedzącej | drugie źródło szczebla 4 |
 | Seated Good Mornings — źródło Fitness Volt | artykuł niespójny wewnętrznie (sekcje „Proper Form” i FAQ opisują inny chwyt/krzesło); używana była tylko sekcja instrukcji ze sztangą na plecach | — (źródło nie liczy się po korekcie) |
@@ -84,7 +99,7 @@ zalecenie podstawowe to plecy wyprostowane przez cały ruch. Z tego powodu **nie
 ## Dostęp
 
 - exrx.net — 403; web.archive.org — zablokowane.
-- coachweb.com/exercises/back-exercises/184/good-morning — czytane, ale opisuje tylko wersję stojącą (nie liczone).
+- coachweb.com/exercises/back-exercises/184/good-morning — czytane, ale opisuje tylko wersję stojącą (nie liczone; po korekcie 2 i tak szczebel 5 — autor bez kwalifikacji).
 
 ## Stan korekty
 
