@@ -2,6 +2,16 @@
 
 Data: 02.11.2026 · autor: badacz-merytoryczny · **Status: PROPOZYCJA — dane do integracji przez koordynatora linii 1.1**
 
+## Korekta szczebli 2 (02.11.2026)
+
+Zastosowano ROZSTRZYGNIĘCIE 2 koordynatora linii 1.1 (02.11.2026, ok. 07:55). Bez nowych źródeł.
+
+- **The Prehab Guys** (`prehab-single-leg-hip-thrust`) 4 → **5**: sprawdzone 02.11 (WebFetch) — strona `vimeo-video` nie ma autora ani kwalifikacji, jest tylko data („Published Jul 31, 2019”, „Updated Jul 15, 2021”) i stopka firmy; warunek „autor z kwalifikacjami” niespełniony.
+- **Single Leg Hip Thrust: gotowe → otwarte** — każde zdanie miało Catalyst 723 + Prehab; zostaje 1 źródło szczebla 4. Usunięte z bloku JSON 4 zdania (`ht.slSetup`, `gb.slMove`, `ht.rigid`, `ht.mis.arch`); dane w „Dane częściowe”. Nowe zdanie `ht.slSetup` wstrzymane.
+- NSCA (`nsca-scj-hip-thrust`) — jedna publikacja, jedno źródło (bez zmian). Physitrack, Coach, Torokhtiy, Freelap, uczelniane centra sportu — w tym pliku nie występują.
+- Reguła błędów: `ht.mis.arch` przy Single Leg Glute Bridge ma w obu źródłach jawne ostrzeżenie (ACE 145 Step 2 — przeprost/wygięcie; Catalyst 496 — „not excessive lumbar extension”), więc nie opiera się na samym standardzie — bez zmian.
+- Gotowe: przed 2 → po **1** (Single Leg Glute Bridge).
+
 ## Korekta szczebli 02.11.2026
 
 Zastosowano rozstrzygnięcie koordynatora linii 1.1 z 02.11.2026 (szczebel 4 = (a) organizacja szkoląca trenerów, serwis z redakcją i recenzją albo producent własnego rodzaju sprzętu; (b) autor z datą albo treść firmowana; (c) nie marketing ani afiliacja; jeden właściciel = jedno źródło).
@@ -24,7 +34,7 @@ ExRx (403) i web.archive.org (zablokowane) — nie czytane, nie liczone (uzupeł
 |---|---|---|
 | Single Leg Glute Bridge | **gotowe** | ACE 145 (wersja jednonóż) + Catalyst Athletics 496. Ustawienie wolnej nogi różni się między źródłami (ACE: kolano przyciągnięte do klatki; Catalyst: noga wyprostowana) — zdanie podaje obie możliwości. |
 | Glute Bridge (sztanga) | **otwarte** | Po korekcie każde zdanie ma tylko 1 źródło szczebla 4 (ACE Certified 7403); PureGym — szczebel 5. Dane częściowe niżej. |
-| Single Leg Hip Thrust | **gotowe** | Catalyst Athletics 723 („Single Leg Bench-Supported Glute Bridge” = plecy na ławce, jednonóż) + The Prehab Guys „Single Leg Hip Thrust”. Wolna noga — jak wyżej. |
+| Single Leg Hip Thrust | **otwarte (korekta 2, 02.11)** | Catalyst Athletics 723 (4) + The Prehab Guys (strona bez autora → 5) — tylko 1 źródło szczebla 4. Dane częściowe niżej. |
 | Machine Hip Thrust | **otwarte (korekta 02.11)** | Bells of Steel (producent maszyny, 4) + Asphalt Green (operator centrów sportu, 5) — tylko 1 źródło szczebla 4. Dane częściowe niżej. |
 | Smith Machine Hip Thrust | **otwarte (korekta 02.11)** | Major Fitness (4) + Dynamo Fitness (sprzedawca sprzętu, 5) — tylko 1 źródło szczebla 4. Dane częściowe niżej. |
 | Frog Pump | **otwarte** | Nie znaleziono 2 przeczytanych źródeł szczebla 4 z różnych organizacji (zgadnięte adresy BarBend, Breaking Muscle — 404; reszta wyników to aplikacje lub blogi bez autora). |
@@ -48,20 +58,6 @@ ExRx (403) i web.archive.org (zablokowane) — nie czytane, nie liczone (uzupeł
     "mistakes": [
       {"c": "ht.mis.arch", "s": [["ace-145", "Step 2"], ["catalyst-496", "opis (not excessive lumbar extension)"]]}
     ]
-  },
-  "Single Leg Hip Thrust": {
-    "setup": [
-      {"c": "ht.slSetup", "s": [["catalyst-723", "opis (upper back on a padded bench, one foot flat, other leg extended)"], ["prehab-single-leg-hip-thrust", "Setup (mid-back against a bench, one knee toward chest)"]]}
-    ],
-    "move": [
-      {"c": "gb.slMove", "s": [["catalyst-723", "opis (push through the whole foot, favoring the heel; lower under control)"], ["prehab-single-leg-hip-thrust", "Execution; Cues (drive through your heel; slowly return)"]]}
-    ],
-    "tips": [
-      {"c": "ht.rigid", "s": [["catalyst-723", "opis (movement comes from the hip)"], ["prehab-single-leg-hip-thrust", "Avoid (most of the movement from the hips and pelvis)"]]}
-    ],
-    "mistakes": [
-      {"c": "ht.mis.arch", "s": [["catalyst-723", "opis (avoid arching excessively through the lower back)"], ["prehab-single-leg-hip-thrust", "Avoid (arching your lower back)"]]}
-    ]
   }
 }
 ```
@@ -71,10 +67,9 @@ ExRx (403) i web.archive.org (zablokowane) — nie czytane, nie liczone (uzupeł
 | id | PL | EN (propozycja) | Uzasadnienie potrzeby |
 |---|---|---|---|
 | `gb.slSetup` | Połóż się na plecach, jedno kolano ugięte, stopa płasko na podłodze; drugą nogę wyprostuj albo przyciągnij kolano do klatki. | Lie on your back, one knee bent with that foot flat on the floor; straighten the other leg or pull that knee toward your chest. | `gb.setup` opisuje obie stopy na podłodze; wersja jednonóż ma inne ustawienie. Dwie możliwości wolnej nogi = część wspólna i różnica źródeł (ACE 145 / Catalyst 496). |
-| `ht.slSetup` | Oprzyj plecy o ławkę, jedna stopa płasko na podłodze; drugą nogę wyprostuj albo przyciągnij kolano do klatki. | Rest your back against a bench, one foot flat on the floor; straighten the other leg or pull that knee toward your chest. | Jak wyżej, wersja z ławką. „Plecy” bez „górnej części” — Catalyst: upper back, Prehab Guys: mid-back. |
-| `gb.slMove` | Dociskając stopę do podłogi, zwłaszcza piętę, unieś biodra; opuść je powoli. | Press your foot into the floor, especially the heel, and lift your hips; lower them slowly. | `gb.move` (linia barki–biodra–kolana) i `gb.heels` („stopy”) nie mają źródeł dla wersji jednonóż w tym brzmieniu; wspólne dla obu wariantów jednonóż. |
+| `gb.slMove` | Dociskając stopę do podłogi, zwłaszcza piętę, unieś biodra; opuść je powoli. | Press your foot into the floor, especially the heel, and lift your hips; lower them slowly. | `gb.move` (linia barki–biodra–kolana) i `gb.heels` („stopy”) nie mają źródeł dla wersji jednonóż w tym brzmieniu. |
 
-Zdania wstrzymane w korekcie 02.11 (ćwiczenia otwarte; propozycje zostają do czasu drugiego źródła): `ht.machSetup`, `ht.machNoRest`, `ht.smithSetup`, `ht.smithUnhook` — brzmienie w „Dane częściowe”.
+Zdania wstrzymane (ćwiczenia otwarte; propozycje zostają do czasu drugiego źródła): `ht.slSetup` (korekta 2) — PL „Oprzyj plecy o ławkę, jedna stopa płasko na podłodze; drugą nogę wyprostuj albo przyciągnij kolano do klatki.” / EN „Rest your back against a bench, one foot flat on the floor; straighten the other leg or pull that knee toward your chest.”; `ht.machSetup`, `ht.machNoRest`, `ht.smithSetup`, `ht.smithUnhook` (korekta 1) — brzmienie w „Dane częściowe”.
 
 ## Nowe źródła
 
@@ -82,8 +77,8 @@ Zdania wstrzymane w korekcie 02.11 (ćwiczenia otwarte; propozycje zostają do c
 |---|---|---|---|---|
 | `ace-145` | https://www.acefitness.org/resources/everyone/exercise-library/145/glute-bridge-single-leg-progression/ | ACE (istnieje) | 4 | Step 1–3; Step 2: „Avoid pushing your hips too high as this generally increases the amount of hyperextension (arching).” |
 | `catalyst-496` | https://www.catalystathletics.com/exercise/496/Single-Leg-Glute-Bridge/ | Catalyst Athletics (nowa) | 4 | opis: „ensure the motion is at the hip” |
-| `catalyst-723` | https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/ | Catalyst Athletics (nowa) | 4 | opis (plecy na ławce, jednonóż; parafraza narzędzia) |
-| `prehab-single-leg-hip-thrust` | https://theprehabguys.com/vimeo-video/single-leg-hip-thrust/ | The Prehab Guys (istnieje) | 4 | Setup: „Begin with your mid-back against a bench or elevated surface.” |
+| `catalyst-723` | https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/ | Catalyst Athletics (nowa) | 4 | opis (plecy na ławce, jednonóż; parafraza narzędzia) — tylko w „Dane częściowe” |
+| `prehab-single-leg-hip-thrust` | https://theprehabguys.com/vimeo-video/single-leg-hip-thrust/ | The Prehab Guys (istnieje) | **5** (korekta 2: strona bez autora) | Setup: „Begin with your mid-back against a bench or elevated surface.” — tylko w „Dane częściowe” |
 | `bos-hip-thrust-machine` | https://bellsofsteel.us/blogs/content/how-to-do-hip-thrusts-with-a-machine | Bells of Steel (nowa; proponowana też w `leg_machine.md`) | 4 (tylko własny rodzaj sprzętu) | krok 3: „Your feet should be flat on the footplate, about shoulder-width apart.” (27.05.2024, bez autora, firmowane) |
 | `asphaltgreen-hip-thrust-machine` | https://asphaltgreen.org/blog/the-beginners-guide-to-the-hip-thrust-machine | Asphalt Green (nowa) | 5 (korekta 02.11) | Step-by-step 2–4 (parafraza narzędzia); 10.11.2023, bez autora |
 | `majorfitness-smith-hip-thrust` | https://www.majorfitness.com/blogs/wiki/how-to-set-up-hip-thrust-on-smith-machine-a-step-by-step-guide | Major Fitness (nowa) | 4 (tylko maszyna Smitha) | Setup 1–6, Execution 1–5 (parafraza narzędzia); 24.06.2026 |
@@ -97,6 +92,7 @@ m.in. na ExRx, którego dziś nie da się odczytać. Ten artykuł (s. 59–60) p
 w zgięciu bioder, gruba podkładka, stopy płasko), ruch (wyprost bioder, kontrolowane opuszczanie) oraz „ruch z bioder, nie z odcinka
 lędźwiowo-miednicznego” (`ht.rigid` / `ht.mis.arch`). Może zastąpić ExRx jako drugie źródło. Nie potwierdza `ht.hold` (jest tylko
 „grab a hold of the barbell” przy przetaczaniu sztangi). Kopia PDF leży na stronie trzeciej; oryginał: archiwum Strength Cond J (journals.lww.com/nsca-scj).
+Inne publikacje NSCA (np. książki, PTQ) liczyłyby się razem z tym artykułem jako jedno źródło (rozstrzygnięcie 2).
 
 ```json
 {
@@ -112,7 +108,7 @@ lędźwiowo-miednicznego” (`ht.rigid` / `ht.mis.arch`). Może zastąpić ExRx 
     "ace-145": {"org": "ACE", "title": "Glute Bridge Single Leg Progression (#145)", "url": "https://www.acefitness.org/resources/everyone/exercise-library/145/glute-bridge-single-leg-progression/", "level": 4},
     "catalyst-496": {"org": "Catalyst Athletics", "title": "Single-Leg Glute Bridge (#496)", "url": "https://www.catalystathletics.com/exercise/496/Single-Leg-Glute-Bridge/", "level": 4},
     "catalyst-723": {"org": "Catalyst Athletics", "title": "Single-Leg Bench-Supported Glute Bridge (#723)", "url": "https://www.catalystathletics.com/exercise/723/Single-Leg-Bench-Supported-Glute-Bridge/", "level": 4},
-    "prehab-single-leg-hip-thrust": {"org": "The Prehab Guys", "title": "Single Leg Hip Thrust", "url": "https://theprehabguys.com/vimeo-video/single-leg-hip-thrust/", "level": 4},
+    "prehab-single-leg-hip-thrust": {"org": "The Prehab Guys", "title": "Single Leg Hip Thrust (strona bez autora)", "url": "https://theprehabguys.com/vimeo-video/single-leg-hip-thrust/", "level": 5},
     "bos-hip-thrust-machine": {"org": "Bells of Steel", "title": "How to Do Hip Thrusts with a Machine (2024)", "url": "https://bellsofsteel.us/blogs/content/how-to-do-hip-thrusts-with-a-machine", "level": 4},
     "asphaltgreen-hip-thrust-machine": {"org": "Asphalt Green", "title": "The Beginner's Guide to the Hip Thrust Machine (2023)", "url": "https://asphaltgreen.org/blog/the-beginners-guide-to-the-hip-thrust-machine", "level": 5},
     "majorfitness-smith-hip-thrust": {"org": "Major Fitness", "title": "How to Do Hip Thrusts on Smith Machine (2026)", "url": "https://www.majorfitness.com/blogs/wiki/how-to-set-up-hip-thrust-on-smith-machine-a-step-by-step-guide", "level": 4},
@@ -123,7 +119,16 @@ lędźwiowo-miednicznego” (`ht.rigid` / `ht.mis.arch`). Może zastąpić ExRx 
 }
 ```
 
+Uwaga: `prehab-single-leg-hip-thrust` jest już w `cues.json` jako szczebel 4 (wpis organizacji The Prehab Guys) — przy integracji koordynator decyduje, czy szczebel zmienia się dla całej organizacji, czy tylko dla stron `vimeo-video` bez autora.
+
 ## Dane częściowe (ćwiczenia otwarte — nie do `cues.json`)
+
+### Single Leg Hip Thrust (korekta 2; 1 źródło szczebla 4: `catalyst-723`; drugie `prehab-single-leg-hip-thrust` — 5)
+
+- `ht.slSetup` — Catalyst 723 opis (upper back on a padded bench, one foot flat, other leg extended); Prehab Setup (mid-back against a bench, one knee toward chest).
+- `gb.slMove` — Catalyst 723 opis (push through the whole foot, favoring the heel; lower under control); Prehab Execution, Cues (drive through your heel; slowly return).
+- `ht.rigid` — Catalyst 723 opis (movement comes from the hip); Prehab Avoid (most of the movement from the hips and pelvis).
+- `ht.mis.arch` — Catalyst 723 opis (avoid arching excessively through the lower back); Prehab Avoid (arching your lower back).
 
 ### Glute Bridge (sztanga)
 
@@ -154,6 +159,7 @@ lędźwiowo-miednicznego” (`ht.rigid` / `ht.mis.arch`). Może zastąpić ExRx 
 
 | Ćwiczenie / zdanie | Powód | Co by rozstrzygnęło |
 |---|---|---|
+| Single Leg Hip Thrust — całość (korekta 2) | The Prehab Guys: strona bez autora → 5; zostaje tylko Catalyst 723 | drugie źródło szczebla 4 o hip thruście jednonóż z plecami na ławce (organizacja szkoląca trenerów albo strona Prehab Guys z autorem z kwalifikacjami) |
 | Glute Bridge (sztanga) — całość | po korekcie 02.11 każde zdanie ma 1 źródło szczebla 4 (ACE Certified 7403); PureGym — 5 | drugie źródło szczebla 4 o mostku ze sztangą na podłodze |
 | Machine Hip Thrust — całość (korekta 02.11) | Asphalt Green to operator centrów sportu (5); zostaje tylko Bells of Steel | drugie źródło szczebla 4: inny producent maszyny do hip thrustu albo organizacja szkoląca trenerów |
 | Smith Machine Hip Thrust — całość (korekta 02.11) | Dynamo Fitness to sprzedawca (5); zostaje tylko Major Fitness | drugie źródło szczebla 4 o hip thruście na maszynie Smitha |
@@ -162,7 +168,8 @@ lędźwiowo-miednicznego” (`ht.rigid` / `ht.mis.arch`). Może zastąpić ExRx 
 | London Bridges | prawdopodobnie błędna rodzina (ćwiczenie na linie, nie mostek) | decyzja koordynatora o rodzinie; wtedy research jako ćwiczenie chwytu/przyciągania |
 | Machine Hip Thrust — maszyny bez pasa | `ht.machSetup` zakłada pas na biodrach (oba źródła: maszyna z pasem) | źródło o maszynie z wałkiem/podkładką na biodrach |
 | Pozycja wolnej nogi (jednonóż) | ACE 145 i Prehab Guys — kolano do klatki; Catalyst — noga prosta | zdanie podaje obie; figura pokazuje jedną — do decyzji przy animacji |
-| Zestawy ogólne (`cue-sets.json`) — informacja o błędach | Single Leg Glute Bridge i Single Leg Hip Thrust: `gb.move` (linia barki–biodra–kolana) i `gb.heels` („stopy”) — przeczytane źródła wersji jednonóż nie potwierdzają tego brzmienia. Frog Pump: `gb.heels` — w frog pump stopy są złączone podeszwami; przeczytanych źródeł brak. Stability Ball Hip Bridge: `gb.move`, `ht.rigid` bez źródeł o tym wariancie. Smith, Machine Hip Thrust, Glute Bridge (sztanga): po korekcie żadne zdanie nie ma 2 źródeł szczebla 4 | przegląd zestawów po integracji kart; zdania niepotwierdzone usunąć z zestawu ogólnego |
+| The Prehab Guys w `cues.json` | organizacja zapisana jako szczebel 4; strony `vimeo-video` nie mają autora (sprawdzone 2 strony 02.11) | decyzja koordynatora: zmiana szczebla organizacji albo tylko tych stron |
+| Zestawy ogólne (`cue-sets.json`) — informacja o błędach | Single Leg Glute Bridge i Single Leg Hip Thrust: `gb.move` (linia barki–biodra–kolana) i `gb.heels` („stopy”) — przeczytane źródła wersji jednonóż nie potwierdzają tego brzmienia. Frog Pump: `gb.heels` — w frog pump stopy są złączone podeszwami; przeczytanych źródeł brak. Stability Ball Hip Bridge: `gb.move`, `ht.rigid` bez źródeł o tym wariancie. Smith, Machine Hip Thrust, Glute Bridge (sztanga), Single Leg Hip Thrust: po korektach żadne zdanie nie ma 2 źródeł szczebla 4 | przegląd zestawów po integracji kart; zdania niepotwierdzone usunąć z zestawu ogólnego |
 
 ## Dostęp
 

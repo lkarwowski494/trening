@@ -2,6 +2,25 @@
 
 Data: 02.11.2026 · Autor: badacz-merytoryczny · **Status: PROPOZYCJA — dane do integracji przez koordynatora linii 1.1**
 
+## Korekta szczebli 2 (02.11.2026)
+
+Zastosowano ROZSTRZYGNIĘCIE 2 koordynatora linii 1.1 (02.11.2026, ok. 07:55). Bez nowych źródeł.
+
+- **Physitrack** (`physitrack-seated-calf-raises`, `physitrack-sl-heel-raise-step-board`, `physitrack-heel-raise-step`) 4 → **5** (lista koordynatora).
+- **The Prehab Guys** (`prehab-sl-calf-raise-off-step`, `prehab-seated-heel-raise`, `prehab-seated-calf-raise-off-step`, `prehab-heel-raise-off-step`) 4 → **5**: strony `vimeo-video` bez autora i kwalifikacji (sprawdzone 02.11 na dwóch stronach tego serwisu — ten sam szablon: data i stopka firmy, bez autora; opis w `glute_floor.md` i `hip_bridge.md`).
+- **UTHSC Campus Recreation** — 5 (bez zmian; uczelniane centrum rekreacji bez autora).
+- **University of Illinois Extension** (`illinois-seated-calf-raises`) — oceniony 02.11 (WebFetch): strona programu Eat.Move.Save. uczelnianej służby upowszechniania wiedzy, bez autora, recenzenta i daty. To nie szpital, nie uczelniana służba zdrowia ani organizacja pacjentów; najbliżej mu do „uczelnianego programu dla ogółu bez autora” → zostaje **5**. Ocena nie zmienia wyniku: strona opisuje siad bez ciężaru („Sit tall in your chair with your feet flat on the floor”), więc i tak nie daje ustawienia z ciężarem na kolanach.
+- Potwierdzone 4: ACE, NASM, Major Fitness (tylko Smith), Bodylastics i Performance Health (tylko gumy). NFPT „Guest” — 5 bez zmian.
+- Reguła błędów: `calf.mis.partial` przy Smith Machine Calf Raise — oba źródła jawnie wymieniają błąd (Major Fitness „Cutting reps short”; NASM — szybkie, niepełne powtórzenia) — bez oznaczenia. Przy **Band Calf Raise** dodane `calf.mis.partial`: NASM (jawny błąd; wariant: stojąc na podeście) + Bodylastics (standard „as high on your toes as you can go” i „Lower your heels back to the floor under control”) — **błąd = zaprzeczenie standardu** (skrócony zakres to bezpośrednie zaprzeczenie pełnego wspięcia i opuszczenia). Źródło już przeczytane w tym pliku.
+- Zmiany w kartach:
+  - **Single Leg Calf Raise: gotowe → otwarte** — każde zdanie zostaje z 1 źródłem szczebla 4 (`calf.stepOne`, `calf.knees` — ACE 73; `calf.move`, `calf.mis.partial` — NASM).
+  - **Seated Calf Raise (hantle), Barbell Seated Calf Raise, Dumbbell Seated One-Leg Calf Raise: gotowe → otwarte** — ustawienie siedzące (`calf.seated`, `calf.seatedOne`) i `calf.rise` opierały się wyłącznie na Physitrack + Prehab (oba 5); zostają `calf.pause` (tylko ACE), `calf.bigToe` (tylko Bodylastics), `calf.mis.partial` (tylko NASM).
+  - **Smith Machine Calf Raise** — zostaje gotowe (Major Fitness + NASM/ACE, bez Physitrack i Prehab).
+  - **Band Calf Raise** — zostaje gotowe: `calf.bigToe` usunięte (Bodylastics + Prehab → 1), w zamian `calf.mis.partial` (wyżej).
+- Zdania usunięte z bloku JSON: 20 wpisów (Single Leg 4, trzy wersje siedzące po 5, Band Calf Raise 1 — `calf.bigToe`); dodany 1 (`calf.mis.partial` przy Band Calf Raise). Dane w pkt 2a.
+- Nowe zdania wstrzymane: `calf.stepOne`, `calf.seated`, `calf.seatedOne`, `calf.bigToe` (brak 2 źródeł szczebla 4 przy każdym ćwiczeniu).
+- Gotowe: przed 6 → po **2** (Smith Machine Calf Raise, Band Calf Raise).
+
 ## Korekta szczebli 02.11.2026
 
 Zastosowano rozstrzygnięcie koordynatora linii 1.1 z 02.11.2026 (szczebel 4 = (a) organizacja szkoląca trenerów, serwis z redakcją i recenzją albo producent własnego rodzaju sprzętu; (b) autor z datą albo treść firmowana; (c) nie marketing ani afiliacja).
@@ -10,9 +29,7 @@ Zastosowano rozstrzygnięcie koordynatora linii 1.1 z 02.11.2026 (szczebel 4 = (
 - Sprawdzone i potwierdzone 4: Major Fitness — data 16.07.2026, marka sprzedająca własne maszyny Smitha, instrukcja użycia tego sprzętu (linki do własnych produktów na końcu, ale to nie zestawienie produktów) → 4 tylko dla maszyny Smitha. Bodylastics, Performance Health — producenci gum → 4 (przy innych ćwiczeniach liczą się jako źródło wariantu tego samego ruchu).
 - Ćwiczenia, które spadły do otwartych: **Calf Raise (sztanga)** (gotowe → otwarte; `calf.feet` zostało z samym ACE 51).
 - Zdania usunięte: 2 — `calf.feet` przy Calf Raise (sztanga) (wraz z kartą) i `calf.mis.bounce` przy Smith Machine Calf Raise (NASM + NFPT → 1). Smith Machine Calf Raise zostaje gotowe (`calf.pause` + `calf.mis.partial`).
-- Zdania utrzymane po dopisaniu źródła już przeczytanego w tym pliku dla tego samego zdania przy wersji siedzącej z hantlami (bez nowych źródeł): `calf.rise` i `calf.pause` przy Barbell Seated Calf Raise i Dumbbell Seated One-Leg Calf Raise — zamiast Illinois (5) liczą się `prehab-seated-heel-raise` (HOW, wariant: bez obciążenia) i `physitrack-seated-calf-raises` (Tips).
-- Physitrack i The Prehab Guys zostają na szczeblu 4 jak w `cues.json` (organizacje już zatwierdzone w rejestrze); pytanie o Physitrack w „Otwarte”.
-- Nowe zdanie `calf.mis.bounce` wstrzymane (po korekcie tylko NASM).
+- (Korekta 1 utrzymywała wersje siedzące dzięki Physitrack i Prehab — po korekcie 2 te źródła mają szczebel 5, patrz wyżej.)
 
 Metoda: brief fali W1 (G4) i docs/research/33 („Metoda”). Każde zdanie ma ≥ 2 przeczytane (WebFetch, 02.11.2026) źródła szczebla 4
 z różnych organizacji. Wariant tego samego ćwiczenia (inny sprzęt, stojąc/siedząc, jednonóż/obunóż, bez obciążenia) liczy się z opisem
@@ -22,80 +39,21 @@ z różnych organizacji. Wariant tego samego ćwiczenia (inny sprzęt, stojąc/s
 
 | Ćwiczenie (klucz katalogu) | Wynik | Uwagi |
 |---|---|---|
-| Single Leg Calf Raise | gotowe | 1 ustawienie, 1 ruch, 1 wskazówka, 1 błąd. Bez wskazówek tempa — jedno przeczytane źródło tej wersji zaleca szybkie tempo (pkt 5). |
-| Calf Raise (sztanga) | otwarte (korekta 02.11) | Brak ustawienia: `calf.feet` miało ACE 51 i UTHSC (5). Częściowe dane w pkt 2a. |
-| Seated Calf Raise (hantle) | gotowe | Nowe zdania na ustawienie siedzące. |
-| Smith Machine Calf Raise | gotowe | Major Fitness (producent maszyn Smitha) + NASM; po korekcie bez `calf.mis.bounce`. |
+| Single Leg Calf Raise | otwarte (korekta 2) | Każde zdanie ma 1 źródło szczebla 4 (ACE 73 albo NASM); Physitrack i Prehab — 5. Dane w pkt 2a. |
+| Calf Raise (sztanga) | otwarte (korekta 1) | Brak ustawienia: `calf.feet` ma tylko ACE 51 (UTHSC — 5). Dane w pkt 2a. |
+| Seated Calf Raise (hantle) | otwarte (korekta 2) | Brak ustawienia i ruchu z 2 źródłami szczebla 4 (Physitrack, Prehab — 5). |
+| Smith Machine Calf Raise | **gotowe** | Major Fitness (producent maszyn Smitha) + NASM; ACE 51 przy `calf.pause`. |
 | Calf Raise (linki) | otwarte | Brak przeczytanego źródła wariantu z wyciągiem z listy organizacji; znalezione strony to aplikacje albo serwisy spoza listy. |
-| Donkey Calf Raise | otwarte | Jedyne źródło wersji donkey (NFPT) — szczebel 5 po korekcie. |
-| Barbell Seated Calf Raise | gotowe | Te same zdania co wersja z hantlami (wariant: sztanga na kolanach — źródła mówią o „ciężarze na kolanach”). |
-| Dumbbell Seated One-Leg Calf Raise | gotowe | Nowe zdanie ustawienia dla jednej nogi. |
-| Band Calf Raise | gotowe | Ustawienie tylko jako część wspólna dwóch producentów (guma pod stopami albo zaczepiona nisko — różnica w pkt 5). |
+| Donkey Calf Raise | otwarte | Jedyne źródło wersji donkey (NFPT) — szczebel 5. |
+| Barbell Seated Calf Raise | otwarte (korekta 2) | Jak wersja z hantlami. |
+| Dumbbell Seated One-Leg Calf Raise | otwarte (korekta 2) | Jak wersja z hantlami. |
+| Band Calf Raise | **gotowe** | Bodylastics + Performance Health (producenci gum); ustawienie tylko jako część wspólna (różnica w pkt 5); błąd `calf.mis.partial` — błąd = zaprzeczenie standardu (Bodylastics). |
 | Smith Machine Reverse Calf Raise | otwarte | Inny ruch: unoszenie palców przy opartych piętach (mięsień piszczelowy przedni; notatka katalogu `catalog.json`: „Toe raise with heels on a platform”). Zestaw `calf` do niego nie pasuje; nie szukano źródeł w tej fali. |
 
 ## 2. Wpisy do `cues.json` → `exercises` (ćwiczenia gotowe)
 
 ```json
 {
- "Single Leg Calf Raise": {
-  "setup": [
-   {"c": "calf.stepOne", "s": [
-    ["prehab-sl-calf-raise-off-step", "HOW (jedna noga, przednia część stopy na krawędzi, pięta poza nią; podpora do równowagi) i COMPENSATION („hold onto something”)"],
-    ["physitrack-sl-heel-raise-step-board", "Instrukcja („Stand on one leg on a step with your heel over the edge.”)"],
-    ["ace-73", "Step 1 (dłonie na ścianie); Step 4, Exercise Variation (1) Single-leg Calf Raise (wariant: z podłogi)"]
-   ]}
-  ],
-  "move": [
-   {"c": "calf.move", "s": [
-    ["physitrack-sl-heel-raise-step-board", "Instrukcja (pięta w dół, potem wspięcie na palce, kontrolowany powrót)"],
-    ["prehab-sl-calf-raise-off-step", "COMPENSATION („Make sure you go through your full range of motion at your ankle.”)"],
-    ["nasm-calf-blog", "Technique Standards That Change Everything (pełne rozciągnięcie, pięty poniżej palców na podwyższeniu; wariant: obunóż)"]
-   ]}
-  ],
-  "tips": [
-   {"c": "calf.knees", "s": [
-    ["prehab-sl-calf-raise-off-step", "HOW (kolano proste) i COMPENSATION („Do not let your knee bend as that is a different exercise.”)"],
-    ["ace-73", "Step 2 (knees extended); Step 4, Variation (1) single-leg"],
-    ["physitrack-heel-raise-step", "Instrukcja 3 („Keeping your knees straight…”; wariant: obunóż)"]
-   ]}
-  ],
-  "mistakes": [
-   {"c": "calf.mis.partial", "s": [
-    ["prehab-sl-calf-raise-off-step", "COMPENSATION (pełny zakres w stawie skokowym)"],
-    ["nasm-calf-blog", "Technique Standards That Change Everything (szybkie, niepełne powtórzenia jako częsty błąd)"]
-   ]}
-  ]
- },
- "Seated Calf Raise (hantle)": {
-  "setup": [
-   {"c": "calf.seated", "s": [
-    ["physitrack-seated-calf-raises", "Step 1 („Sit with a weighted object on your knees.”); Tips (hantle)"],
-    ["prehab-seated-calf-raise-off-step", "HOW (siad, ciężar na kolanie na podkładce)"]
-   ]}
-  ],
-  "move": [
-   {"c": "calf.rise", "s": [
-    ["physitrack-seated-calf-raises", "Step 2 (wspięcie na palce, kontrolowany powrót)"],
-    ["prehab-seated-heel-raise", "HOW (wariant: bez obciążenia)"]
-   ]}
-  ],
-  "tips": [
-   {"c": "calf.pause", "s": [
-    ["ace-51", "Step 6 (wariant: stojąc, sztanga)"],
-    ["physitrack-seated-calf-raises", "Tips („Move slowly and smoothly…”)"]
-   ]},
-   {"c": "calf.bigToe", "s": [
-    ["prehab-seated-heel-raise", "COMPENSATION (duży palec nie traci kontaktu z podłożem)"],
-    ["bodylastics-standing-calf-raise-flat-bands", "Tip („Push through your big toe as you raise your heels.”; wariant: guma, stojąc)"]
-   ]}
-  ],
-  "mistakes": [
-   {"c": "calf.mis.partial", "s": [
-    ["nasm-calf-blog", "Technique Standards That Change Everything"],
-    ["prehab-heel-raise-off-step", "COMPENSATION (wariant: stojąc)"]
-   ]}
-  ]
- },
  "Smith Machine Calf Raise": {
   "setup": [
    {"c": "calf.edge", "s": [
@@ -122,66 +80,6 @@ z różnych organizacji. Wariant tego samego ćwiczenia (inny sprzęt, stojąc/s
    ]}
   ]
  },
- "Barbell Seated Calf Raise": {
-  "setup": [
-   {"c": "calf.seated", "s": [
-    ["physitrack-seated-calf-raises", "Step 1 (ciężar na kolanach; wariant: dowolny ciężar)"],
-    ["prehab-seated-calf-raise-off-step", "HOW (ciężar na kolanie na podkładce)"]
-   ]}
-  ],
-  "move": [
-   {"c": "calf.rise", "s": [
-    ["physitrack-seated-calf-raises", "Step 2"],
-    ["prehab-seated-heel-raise", "HOW (wariant: bez obciążenia)"]
-   ]}
-  ],
-  "tips": [
-   {"c": "calf.pause", "s": [
-    ["ace-51", "Step 6 (wariant: stojąc)"],
-    ["physitrack-seated-calf-raises", "Tips („Move slowly and smoothly…”)"]
-   ]},
-   {"c": "calf.bigToe", "s": [
-    ["prehab-seated-heel-raise", "COMPENSATION"],
-    ["bodylastics-standing-calf-raise-flat-bands", "Tip (wariant: guma, stojąc)"]
-   ]}
-  ],
-  "mistakes": [
-   {"c": "calf.mis.partial", "s": [
-    ["nasm-calf-blog", "Technique Standards That Change Everything"],
-    ["prehab-heel-raise-off-step", "COMPENSATION (wariant: stojąc)"]
-   ]}
-  ]
- },
- "Dumbbell Seated One-Leg Calf Raise": {
-  "setup": [
-   {"c": "calf.seatedOne", "s": [
-    ["prehab-seated-calf-raise-off-step", "HOW („a weight resting on that padded surface” — na kolanie)"],
-    ["physitrack-seated-calf-raises", "Step 1; Tips (hantle; wariant: obunóż)"]
-   ]}
-  ],
-  "move": [
-   {"c": "calf.rise", "s": [
-    ["physitrack-seated-calf-raises", "Step 2 (wariant: obunóż)"],
-    ["prehab-seated-heel-raise", "HOW (wariant: obunóż, bez obciążenia)"]
-   ]}
-  ],
-  "tips": [
-   {"c": "calf.pause", "s": [
-    ["ace-73", "Step 2–3; Variation (1) single-leg (wariant: stojąc)"],
-    ["physitrack-seated-calf-raises", "Tips (wariant: obunóż)"]
-   ]},
-   {"c": "calf.bigToe", "s": [
-    ["prehab-seated-heel-raise", "COMPENSATION"],
-    ["bodylastics-standing-calf-raise-flat-bands", "Tip (wariant: guma, stojąc)"]
-   ]}
-  ],
-  "mistakes": [
-   {"c": "calf.mis.partial", "s": [
-    ["nasm-calf-blog", "Technique Standards That Change Everything"],
-    ["prehab-sl-calf-raise-off-step", "COMPENSATION (wariant: jednonóż, stojąc)"]
-   ]}
-  ]
- },
  "Band Calf Raise": {
   "setup": [
    {"c": "calf.band", "s": [
@@ -199,72 +97,77 @@ z różnych organizacji. Wariant tego samego ćwiczenia (inny sprzęt, stojąc/s
    {"c": "calf.pause", "s": [
     ["theraband-ankle-calf-raise-standing", "Step Four („Hold and slowly return.”)"],
     ["ace-51", "Step 6 (wariant: sztanga)"]
-   ]},
-   {"c": "calf.bigToe", "s": [
-    ["bodylastics-standing-calf-raise-flat-bands", "Tip"],
-    ["prehab-seated-heel-raise", "COMPENSATION (wariant: siedząc, bez gumy)"]
    ]}
   ],
-  "mistakes": []
+  "mistakes": [
+   {"c": "calf.mis.partial", "s": [
+    ["nasm-calf-blog", "Technique Standards That Change Everything (szybkie, niepełne powtórzenia jako częsty błąd; wariant: stojąc na podeście)"],
+    ["bodylastics-standing-calf-raise-flat-bands", "Movement (pełne wspięcie i opuszczenie pięt na podłogę; błąd = zaprzeczenie standardu)"]
+   ]}
+  ]
  }
 }
 ```
 
-Uwaga: źródła szczebla 5 (`uthsc-calf-raises`, `illinois-seated-calf-raises`, `nfpt-donkey-calf-raise`) usunięte z bloków powyżej — nie liczą się do dwóch źródeł.
+Uwaga: źródła szczebla 5 (Physitrack, The Prehab Guys, `uthsc-calf-raises`, `illinois-seated-calf-raises`, `nfpt-donkey-calf-raise`) nie występują w blokach powyżej — nie liczą się do dwóch źródeł.
 
 ### 2a. Częściowe (ćwiczenia otwarte — nie do `cues.json`)
 
-- **Calf Raise (sztanga)** — brak ustawienia (`calf.feet`: tylko `ace-51` Step 4; `uthsc-calf-raises` — 5). Zdania z 2 źródłami szczebla 4:
-  - ruch `calf.rise`: `ace-51` Step 5–6; `physitrack-heel-raise-step` Instrukcje 3–4 (wariant: bez obciążenia, na stopniu);
-  - wskazówki `calf.knees`: `ace-51` Step 5; `prehab-heel-raise-off-step` HOW i COMPENSATION; `physitrack-heel-raise-step` Instrukcja 3 — UWAGA: ACE 51 mówi o lekko ugiętych kolanach („slight bend in knees”), pozostałe o prostych; brzmienie do sprawdzenia przed integracją;
-  - `calf.pause`: `ace-51` Step 6; `theraband-ankle-calf-raise-standing` Step Four (wariant: guma);
-  - błąd `calf.mis.partial`: `nasm-calf-blog`; `prehab-heel-raise-off-step` (wariant: bez obciążenia). `calf.mis.bounce` — tylko NASM (NFPT — 5).
-- **Donkey Calf Raise** — po korekcie żadne zdanie nie ma 2 źródeł szczebla 4 (NFPT — 5; ruch `calf.move` i błąd `calf.mis.bounce` mają tylko NASM jako wariant).
+- **Single Leg Calf Raise** (korekta 2) — z 1 źródłem szczebla 4 każde zdanie:
+  - `calf.stepOne`: ACE 73 Step 1 i Variation (1) (wariant: z podłogi); Prehab SL off step HOW, Physitrack step board — 5;
+  - `calf.move`: NASM Technique Standards (wariant: obunóż); Physitrack, Prehab — 5;
+  - `calf.knees`: ACE 73 Step 2 i Variation (1); Prehab, Physitrack — 5;
+  - `calf.mis.partial`: NASM; Prehab — 5. ACE 73 nie był zapisany jako standard pełnego zakresu — reguła „błąd = zaprzeczenie standardu” niezastosowana.
+- **Seated Calf Raise (hantle), Barbell Seated Calf Raise, Dumbbell Seated One-Leg Calf Raise** (korekta 2):
+  - `calf.seated` / `calf.seatedOne`: tylko Physitrack Step 1 („Sit with a weighted object on your knees.”) i Prehab seated off step HOW — oba 5; Illinois — siad bez ciężaru, 5;
+  - `calf.rise`: Physitrack Step 2, Prehab seated heel raise HOW, Illinois — wszystkie 5;
+  - `calf.pause`: ACE 51 Step 6 (wariant: stojąc) albo ACE 73 (wariant: stojąc, jednonóż) — 1 organizacja; Physitrack Tips, Illinois — 5;
+  - `calf.bigToe`: Bodylastics Tip (wariant: guma, stojąc); Prehab seated heel raise — 5;
+  - `calf.mis.partial`: NASM; Prehab — 5.
+- **Calf Raise (sztanga)** — brak ustawienia (`calf.feet`: tylko `ace-51` Step 4; `uthsc-calf-raises` — 5). Po korekcie 2:
+  - ruch `calf.rise`: `ace-51` Step 5–6; `physitrack-heel-raise-step` — 5 → 1 źródło;
+  - wskazówki `calf.knees`: `ace-51` Step 5; Prehab, Physitrack — 5 → 1 źródło. UWAGA: ACE 51 mówi o lekko ugiętych kolanach („slight bend in knees”), pozostałe o prostych; brzmienie do sprawdzenia przed integracją;
+  - `calf.pause`: `ace-51` Step 6; `theraband-ankle-calf-raise-standing` Step Four (wariant: guma) → 2 źródła;
+  - błąd `calf.mis.partial`: `nasm-calf-blog`; Prehab — 5 → 1 źródło. `calf.mis.bounce` — tylko NASM (NFPT — 5).
+- **Donkey Calf Raise** — żadne zdanie nie ma 2 źródeł szczebla 4 (NFPT — 5; ruch `calf.move` i błąd `calf.mis.bounce` mają tylko NASM jako wariant).
 
 ## 3. Nowe zdania
 
 | id | PL | EN (propozycja) | Uzasadnienie potrzeby |
 |---|---|---|---|
-| `calf.stepOne` | Stań jedną stopą na krawędzi stopnia, pięta poza krawędzią; przytrzymaj się czegoś dla równowagi. | Stand on one foot on the edge of a step, heel hanging off; hold on to something for balance. | `calf.step`/`calf.edge` mówią o obu stopach. |
-| `calf.rise` | Wspinaj się na palce, potem pod kontrolą opuść pięty. | Rise up onto your toes, then lower your heels under control. | `calf.move` zakłada rozciągnięcie poniżej poziomu palców (podest); źródła wersji z podłogi i siedzących tego nie potwierdzają. |
-| `calf.seated` | Usiądź i połóż ciężar na kolanach. | Sit and rest the weight on your knees. | Brak zdania ustawienia siedzącego. |
-| `calf.seatedOne` | Usiądź i połóż hantel na kolanie ćwiczącej nogi. | Sit and rest the dumbbell on the knee of the working leg. | Wersja jednonóż. |
+| `calf.rise` | Wspinaj się na palce, potem pod kontrolą opuść pięty. | Rise up onto your toes, then lower your heels under control. | `calf.move` zakłada rozciągnięcie poniżej poziomu palców (podest); źródła wersji z podłogi tego nie potwierdzają. Używane w Band Calf Raise. |
 | `calf.band` | Stań prosto, trzymając w dłoniach końce gumy albo uchwyty. | Stand tall, holding the band ends or handles. | Część wspólna dwóch ustawień z gumą. |
-| `calf.bigToe` | Wspinając się, dociskaj duży palec do podłoża. | Press your big toe down as you rise. | Nowa wskazówka z dwóch organizacji. |
 
-Wycofane w korekcie 02.11 (1 źródło szczebla 4): `calf.feet` („Stopy rozstaw najwyżej na szerokość bioder.” / „Feet no wider than hip-width apart.”), `calf.mis.bounce` („Odbijanie się w najniższym punkcie.” / „Bouncing at the bottom.”).
+Wstrzymane w korekcie 2 (brak 2 źródeł szczebla 4 przy każdym ćwiczeniu): `calf.stepOne` („Stań jedną stopą na krawędzi stopnia, pięta poza krawędzią; przytrzymaj się czegoś dla równowagi.” / „Stand on one foot on the edge of a step, heel hanging off; hold on to something for balance.”), `calf.seated` („Usiądź i połóż ciężar na kolanach.” / „Sit and rest the weight on your knees.”), `calf.seatedOne` („Usiądź i połóż hantel na kolanie ćwiczącej nogi.” / „Sit and rest the dumbbell on the knee of the working leg.”), `calf.bigToe` („Wspinając się, dociskaj duży palec do podłoża.” / „Press your big toe down as you rise.”).
+
+Wycofane w korekcie 1 (1 źródło szczebla 4): `calf.feet` („Stopy rozstaw najwyżej na szerokość bioder.” / „Feet no wider than hip-width apart.”), `calf.mis.bounce` („Odbijanie się w najniższym punkcie.” / „Bouncing at the bottom.”).
 
 ## 4. Nowe źródła
 
 | id | adres | organizacja | szczebel | miejsce / cytat |
 |---|---|---|---|---|
-| `uthsc-calf-raises` | https://webprod8.uthsc.edu/studentsuccess/campus-rec/documents/calf-raises.pdf | UTHSC Campus Recreation | 5 (korekta 02.11) | „Raise up to the balls of your feet without leaning forward.” |
-| `illinois-seated-calf-raises` | https://eat-move-save.extension.illinois.edu/move/exercise/seated-calf-raises | University of Illinois Extension | 5 (korekta 02.11) | „Hold for 5-10 seconds before lowering your heels back down slowly.” (liczby nie przenoszone) |
-| `physitrack-seated-calf-raises` | https://www.physitrack.com/exercise-library/how-to-perform-the-seated-calf-raises-exercise | Physitrack | 4 | „Sit with a weighted object on your knees.” |
-| `physitrack-sl-heel-raise-step-board` | https://ca.physitrack.com/home-exercise-video/single-leg-heel-raise-on-a-step-board | Physitrack | 4 | „Stand on one leg on a step with your heel over the edge.” |
-| `prehab-sl-calf-raise-off-step` | https://theprehabguys.com/vimeo-video/single-leg-calf-raises-off-step/ | The Prehab Guys | 4 | COMPENSATION: „Do not let your knee bend as that is a different exercise.” |
-| `prehab-seated-heel-raise` | https://theprehabguys.com/vimeo-video/seated-heel-raise/ | The Prehab Guys | 4 | COMPENSATION: kontakt dużego palca z podłożem |
-| `prehab-seated-calf-raise-off-step` | https://theprehabguys.com/vimeo-video/seated-calf-raise-off-step-quick/ | The Prehab Guys | 4 | HOW (tylko ustawienie; tempo tej wersji — szybkie, nie przenoszone) |
+| `uthsc-calf-raises` | https://webprod8.uthsc.edu/studentsuccess/campus-rec/documents/calf-raises.pdf | UTHSC Campus Recreation | 5 | „Raise up to the balls of your feet without leaning forward.” |
+| `illinois-seated-calf-raises` | https://eat-move-save.extension.illinois.edu/move/exercise/seated-calf-raises | University of Illinois Extension | 5 (ocena 02.11, korekta 2) | Step 1: „Sit tall in your chair with your feet flat on the floor.” |
+| `physitrack-seated-calf-raises` | https://www.physitrack.com/exercise-library/how-to-perform-the-seated-calf-raises-exercise | Physitrack | **5** (korekta 2) | „Sit with a weighted object on your knees.” |
+| `physitrack-sl-heel-raise-step-board` | https://ca.physitrack.com/home-exercise-video/single-leg-heel-raise-on-a-step-board | Physitrack | **5** (korekta 2) | „Stand on one leg on a step with your heel over the edge.” |
+| `prehab-sl-calf-raise-off-step` | https://theprehabguys.com/vimeo-video/single-leg-calf-raises-off-step/ | The Prehab Guys | **5** (korekta 2: bez autora) | COMPENSATION: „Do not let your knee bend as that is a different exercise.” |
+| `prehab-seated-heel-raise` | https://theprehabguys.com/vimeo-video/seated-heel-raise/ | The Prehab Guys | **5** (korekta 2) | COMPENSATION: kontakt dużego palca z podłożem |
+| `prehab-seated-calf-raise-off-step` | https://theprehabguys.com/vimeo-video/seated-calf-raise-off-step-quick/ | The Prehab Guys | **5** (korekta 2) | HOW (ustawienie; tempo tej wersji — szybkie) |
 | `majorfitness-smith-calf-raise` | https://www.majorfitness.com/blogs/wiki/how-to-do-calf-raises-on-smith-machine-a-step-by-step-guide | Major Fitness | 4 (tylko maszyna Smitha) | „Don't just let gravity take over on the way down” (Lower with control) |
-| `nfpt-donkey-calf-raise` | https://nfpt.com/?p=4330 | NFPT | 5 (korekta 02.11: byline „Guest”) | „Do not bounce as you reach the point where your calf is in a stretched position.” |
-| `bodylastics-standing-calf-raise-flat-bands` | https://bodylastics.com/exercise/standing-calf-raises-with-flat-bands | Bodylastics | 4 | „Push through your big toe as you raise your heels.” |
-| `theraband-ankle-calf-raise-standing` | https://www.performancehealthacademy.com/exercises/thera-band-ankle-calf-raise-in-standing.html | Performance Health | 4 | „Hold and slowly return.” |
+| `nfpt-donkey-calf-raise` | https://nfpt.com/?p=4330 | NFPT | 5 (korekta 1: byline „Guest”) | „Do not bounce as you reach the point where your calf is in a stretched position.” |
+| `bodylastics-standing-calf-raise-flat-bands` | https://bodylastics.com/exercise/standing-calf-raises-with-flat-bands | Bodylastics | 4 (tylko gumy) | „Push through your big toe as you raise your heels.” |
+| `theraband-ankle-calf-raise-standing` | https://www.performancehealthacademy.com/exercises/thera-band-ankle-calf-raise-in-standing.html | Performance Health | 4 (tylko gumy) | „Hold and slowly return.” |
 
-Istniejące, przeczytane ponownie 02.11.2026: `ace-51`, `ace-73`, `nasm-calf-blog`, `physitrack-heel-raise-step`, `prehab-heel-raise-off-step`.
+Istniejące, przeczytane ponownie 02.11.2026: `ace-51`, `ace-73`, `nasm-calf-blog`, `physitrack-heel-raise-step` (5 po korekcie 2), `prehab-heel-raise-off-step` (5 po korekcie 2).
 
 ```json
 {
  "orgs": {
   "Major Fitness": {"name": "Major Fitness — wiki marki sprzedającej własne maszyny Smitha i stojaki (szczebel 4 tylko dla tego sprzętu)", "level": 4, "kind": "maker"},
-  "Bodylastics": {"name": "Bodylastics — biblioteka ćwiczeń producenta gum oporowych", "level": 4, "kind": "maker"},
-  "Performance Health": {"name": "Performance Health Academy — instrukcje ćwiczeń producenta gum Thera-Band", "level": 4, "kind": "maker"}
+  "Bodylastics": {"name": "Bodylastics — biblioteka ćwiczeń producenta gum oporowych (szczebel 4 tylko dla gum)", "level": 4, "kind": "maker"},
+  "Performance Health": {"name": "Performance Health Academy — instrukcje ćwiczeń producenta gum Thera-Band (szczebel 4 tylko dla gum)", "level": 4, "kind": "maker"}
  },
  "sources": {
-  "physitrack-seated-calf-raises": {"org": "Physitrack", "title": "Seated calf raises", "url": "https://www.physitrack.com/exercise-library/how-to-perform-the-seated-calf-raises-exercise", "level": 4},
-  "physitrack-sl-heel-raise-step-board": {"org": "Physitrack", "title": "Single-leg Heel Raise on a Step Board", "url": "https://ca.physitrack.com/home-exercise-video/single-leg-heel-raise-on-a-step-board", "level": 4},
-  "prehab-sl-calf-raise-off-step": {"org": "The Prehab Guys", "title": "Single Leg Calf Raises Off Step", "url": "https://theprehabguys.com/vimeo-video/single-leg-calf-raises-off-step/", "level": 4},
-  "prehab-seated-heel-raise": {"org": "The Prehab Guys", "title": "Seated Heel Raise", "url": "https://theprehabguys.com/vimeo-video/seated-heel-raise/", "level": 4},
-  "prehab-seated-calf-raise-off-step": {"org": "The Prehab Guys", "title": "Seated Calf Raise Off Step (Quick)", "url": "https://theprehabguys.com/vimeo-video/seated-calf-raise-off-step-quick/", "level": 4},
   "majorfitness-smith-calf-raise": {"org": "Major Fitness", "title": "How to Do Calf Raises on Smith Machine (wiki, 16.07.2026)", "url": "https://www.majorfitness.com/blogs/wiki/how-to-do-calf-raises-on-smith-machine-a-step-by-step-guide", "level": 4},
   "bodylastics-standing-calf-raise-flat-bands": {"org": "Bodylastics", "title": "Standing Calf Raises With Flat Bands", "url": "https://bodylastics.com/exercise/standing-calf-raises-with-flat-bands", "level": 4},
   "theraband-ankle-calf-raise-standing": {"org": "Performance Health", "title": "Thera-Band Ankle Calf Raise in Standing", "url": "https://www.performancehealthacademy.com/exercises/thera-band-ankle-calf-raise-in-standing.html", "level": 4}
@@ -272,22 +175,24 @@ Istniejące, przeczytane ponownie 02.11.2026: `ace-51`, `ace-73`, `nasm-calf-blo
 }
 ```
 
-Źródła szczebla 5 (`uthsc-calf-raises`, `illinois-seated-calf-raises`, `nfpt-donkey-calf-raise`) i ich organizacje — bez wpisu do `cues.json`, dopóki nie zasilają gotowej karty (gdyby koordynator chciał je zapisać: `level: 5`).
+Źródła szczebla 5 i ich organizacje — bez wpisu do `cues.json`, dopóki nie zasilają gotowej karty (gdyby koordynator chciał je zapisać: `level: 5`). `physitrack-heel-raise-step` i `prehab-heel-raise-off-step` są już w `cues.json` jako szczebel 4 — patrz pkt 5.
 
 ## 5. Otwarte
 
-- **Calf Raise (sztanga) — ustawienie** (korekta 02.11) — `calf.feet` ma tylko ACE 51 (szczebel 4); UTHSC to szczebel 5. Rozstrzygnie: drugie źródło szczebla 4 o ustawieniu stóp przy wspięciach ze sztangą (albo wariancie stojącym). Przy integracji sprawdzić też brzmienie `calf.knees` (ACE 51: lekko ugięte kolana; inne: proste).
-- **`calf.mis.bounce`** (korekta 02.11) — tylko NASM (NFPT — 5). Rozstrzygnie: drugie źródło szczebla 4 o odbijaniu się w dolnym punkcie.
+- **Physitrack i The Prehab Guys w `cues.json`** (korekta 2) — obie organizacje zapisane tam jako szczebel 4; wg rozstrzygnięcia 2 Physitrack = 5, a strony `vimeo-video` Prehab Guys nie mają autora. Istniejące karty (np. `Standing Calf Raise`, `Łydki na stopniu`) mogą przez to stracić drugie źródło — do przeglądu przez koordynatora.
+- **Single Leg Calf Raise** (korekta 2) — rozstrzygnie: drugie źródło szczebla 4 o wersji jednonóż na stopniu (ustawienie, ruch, proste kolano).
+- **Wersje siedzące z ciężarem** (korekta 2) — rozstrzygnie: dwa źródła szczebla 4 o ustawieniu siedzącym z ciężarem na kolanach (np. organizacja szkoląca trenerów albo producent maszyny do wspięć siedząc).
+- **Calf Raise (sztanga) — ustawienie** (korekta 1) — `calf.feet` ma tylko ACE 51 (szczebel 4); UTHSC to szczebel 5. Rozstrzygnie: drugie źródło szczebla 4 o ustawieniu stóp przy wspięciach ze sztangą (albo wariancie stojącym). Przy integracji sprawdzić też brzmienie `calf.knees` (ACE 51: lekko ugięte kolana; inne: proste).
+- **`calf.mis.bounce`** (korekta 1) — tylko NASM (NFPT — 5). Rozstrzygnie: drugie źródło szczebla 4 o odbijaniu się w dolnym punkcie.
 - **NFPT „Guest”** — jeśli koordynator ustali, że biogram (Robert Bovee) to autor artykułów NFPT, `nfpt-donkey-calf-raise` wraca do 4 i wraca `calf.mis.bounce` przy Smith Machine Calf Raise (NASM + NFPT).
-- **Physitrack a zasada „dokumentacja innych aplikacji”** — Physitrack to platforma do zlecania ćwiczeń przez fizjoterapeutów, w `cues.json` zatwierdzona jako szczebel 4. Koordynator rozstrzyga, czy reguła o aplikacjach jej dotyczy; jeśli tak, `calf.seated`, `calf.seatedOne`, `calf.rise` i `calf.pause` przy wersjach siedzących straciłyby drugie źródło.
-- **Calf Raise (linki)** — brak przeczytanego źródła wersji z wyciągiem od organizacji szczebla 4. Formalnie wystarczyłyby źródła wariantów (inny sprzęt) — `calf.edge`, `calf.move`, `calf.knees`, `calf.mis.partial` jak dla maszyny Smitha; nie wpisuję bez decyzji, czy uchwyty z dolnych bloczków to tylko „inny sprzęt”. Rozstrzygnie: 2 źródła szczebla 4 (np. producent stacji z wyciągami) o wspięciach z wyciągiem.
-- **Donkey Calf Raise** — jedyne źródło wersji donkey (NFPT) ma po korekcie szczebel 5. Rozstrzygnie: dwa źródła szczebla 4 o wersji donkey (strony ACE/NASM go nie mają).
+- **Calf Raise (linki)** — brak przeczytanego źródła wersji z wyciągiem od organizacji szczebla 4. Formalnie wystarczyłyby źródła wariantów (inny sprzęt) — `calf.edge`, `calf.move`, `calf.mis.partial` jak dla maszyny Smitha; nie wpisuję bez decyzji, czy uchwyty z dolnych bloczków to tylko „inny sprzęt”. Rozstrzygnie: 2 źródła szczebla 4 (np. producent stacji z wyciągami) o wspięciach z wyciągiem.
+- **Donkey Calf Raise** — jedyne źródło wersji donkey (NFPT) ma szczebel 5. Rozstrzygnie: dwa źródła szczebla 4 o wersji donkey (strony ACE/NASM go nie mają).
 - **Smith Machine Reverse Calf Raise** — inny ruch: unoszenie palców przy opartych piętach, pracuje mięsień piszczelowy przedni. Zestaw `calf` jest błędny; potrzebna osobna rodzina albo osobne zdania i źródła o tym ruchu. Nie badane.
-- **Tempo przy jednej nodze** — przeczytana strona `https://us.physitrack.com/home-exercise-video/single-leg-calf-raise` (wersja z podłogi przy ścianie) każe „Continue this movement at a fast pace”. Inne źródła (ACE 73, Prehab SL, Physitrack step board) mówią o powolnym, kontrolowanym opuszczaniu. Sprzeczność na tym samym szczeblu, więc dla Single Leg Calf Raise pominąłem `calf.pause`. Także `prehab-seated-calf-raise-off-step` to wersja szybka („quickly push up”), dlatego użyłem jej tylko do ustawienia. Do rozstrzygnięcia, czy szybkie wersje to osobne ćwiczenia — wtedy tempo można dodać.
-- **Podest a podłoga (sztanga, guma, wersje siedzące)** — ACE 51 (sztanga) i źródła siedzące, a także te z gumą, opisują ćwiczenie z podłogi. NASM, Physitrack i Prehab (wersje stojące) oraz Major Fitness (Smith) — z podestu; Major Fitness wymienia brak podestu jako błąd („Skipping the platform”). Część wspólna: `calf.rise` bez rozciągnięcia poniżej poziomu palców. Opcjonalna wskazówka „możesz stanąć na podeście” — [OTWARTE].
+- **Tempo przy jednej nodze** — przeczytana strona `https://us.physitrack.com/home-exercise-video/single-leg-calf-raise` (szczebel 5) każe „Continue this movement at a fast pace”. Inne źródła (ACE 73, Prehab SL, Physitrack step board) mówią o powolnym, kontrolowanym opuszczaniu. Do rozstrzygnięcia, czy szybkie wersje to osobne ćwiczenia.
+- **Podest a podłoga (sztanga, guma, wersje siedzące)** — ACE 51 (sztanga) i źródła siedzące, a także te z gumą, opisują ćwiczenie z podłogi. NASM (wersje stojące) oraz Major Fitness (Smith) — z podestu; Major Fitness wymienia brak podestu jako błąd („Skipping the platform”). Część wspólna: `calf.rise` bez rozciągnięcia poniżej poziomu palców. Przy Band Calf Raise `calf.mis.partial` z NASM (podest) dotyczy tylko skróconego zakresu — nie przenosi wymogu podestu. Opcjonalna wskazówka „możesz stanąć na podeście” — [OTWARTE].
 - **Band Calf Raise — ustawienie** — Bodylastics: guma zaczepiona nisko w drzwiach, uchwyty na wysokości barków. Performance Health: guma pod przednią częścią stóp, końce przy biodrach. Do aplikacji idzie tylko część wspólna `calf.band`. Który wariant opisuje klucz katalogu (`fedb`: „Calf Raises - With Bands”) — [OTWARTE].
 - **Błędy w zestawach ogólnych `cue-sets.json` (informacja dla koordynatora)**:
-  - zestaw `calf` (`calf.move`, `calf.pause`, `calf.mis.partial`) przy Calf Raise (sztanga), Seated Calf Raise (hantle), Barbell Seated Calf Raise, Dumbbell Seated One-Leg Calf Raise i Band Calf Raise używa `calf.move` („…aż poczujesz rozciągnięcie”). Przeczytane źródła tych wersji (z podłogi) tego nie potwierdzają;
+  - zestaw `calf` (`calf.move`, `calf.pause`, `calf.mis.partial`) przy Calf Raise (sztanga), wersjach siedzących i Band Calf Raise używa `calf.move` („…aż poczujesz rozciągnięcie”). Przeczytane źródła tych wersji (z podłogi) tego nie potwierdzają;
   - przy Single Leg Calf Raise `calf.pause` ma przeczącą stronę (tempo, wyżej);
   - przy Smith Machine Reverse Calf Raise zestaw `open` jest prawidłowy.
 - **Kąt stóp (palce do środka/na zewnątrz)** — ACE 51, ACE 73 i NFPT wiążą go z naciskiem na część łydki. To twierdzenie o działaniu mięśni, nie wskazówka techniki, więc go nie wpisuję.
