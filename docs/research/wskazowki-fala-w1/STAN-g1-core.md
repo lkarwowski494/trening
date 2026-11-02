@@ -76,4 +76,11 @@ artykuły BarBend o technice). Integracja gotowych bloków JSON — koordynator 
 
 ## Verify i wypchnięcia
 
-(uzupełniane na końcu sesji)
+- Pełne `npm run verify` bazy (`integracja-1-1` @ 15abc58, czysta kopia): **czerwone z przyczyn maszyny** — Jest 653/656 plików zielonych; 2 pliki przerwane
+  sygnałem SIGTERM (`tests/maestro-flows.test.tsx`, `tests/matrix-dim-langs-routes3.test.tsx`), 1 przekroczenie limitu 5 s w haku pod obciążeniem
+  (`tests/figures-v2-ui.test.tsx`). Wszystkie trzy uruchomione osobno (`--runInBand`): zielone (29/29 i 49/49 testów). Znacznik pełnego verify nie powstał.
+- `verify:docs` względem `origin/integracja-1-1` (14 dokumentów): zielone (104/104 testów; pierwsze uruchomienie — chwilowy limit czasu w `tests/cues.test.tsx`,
+  plik osobno zielony 16/16, powtórka zielona). Względem `origin/main` skrypt odsyła do pełnego verify (gałąź integracji ma kod, brak znacznika pełnego).
+- Gałąź zawiera wyłącznie pliki `docs/research/` (sprawdzone `git diff --name-only origin/integracja-1-1...HEAD`).
+- Wypchnięcie: `--no-verify` na podstawie wyjątku właściciela dla `badania/*` (docs/18-przekazanie.md, wpis 02.11.2026 „6 sesji badań treści w chmurze… zgoda
+  na `--no-verify` wyłącznie dla gałęzi `badania/*` jako zapas”) — po próbie zwykłego wypchnięcia. SHA — w raporcie końcowym sesji.
