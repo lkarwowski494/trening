@@ -9,7 +9,7 @@ import { renderApp, flushAll, screen, act, tap, go } from './app';
 jest.setTimeout(60000);
 afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
 const day = 86400e3;
-const badges = () => screen.UNSAFE_root.findAll((n: any) => n.type === 'Text' && n.props.children === 'PR').length;
+const badges = () => screen.container.queryAll((n: any) => n.type === 'Text' && n.props.children === 'PR').length;
 
 async function setup(locale: 'pl' | 'en') {
   await renderApp({ locale });
@@ -39,7 +39,7 @@ test('LIVE-1 blocks + untick/retick: one badge, same set in history and summary'
   expect([...stats.prMap(w).entries()]).toEqual(live);
   expect((global.__alerts as any[]).filter(x => /rekord/.test(x.title))).toEqual([]); /* 11.10.2026: karta zamiast okienka */
   expect(screen.getByText(/^↑ Objętość 1[\s\u00a0\u202f]?500 kg/)).toBeTruthy();
-  const hist = screen.UNSAFE_root.findAll((n: any) => n.type === 'Text').map((n: any) => [].concat(n.props.children).filter((x: any) => typeof x === 'string').join('')).filter((x: string) => /^Rekord/.test(x));
+  const hist = screen.container.queryAll((n: any) => n.type === 'Text').map((n: any) => [].concat(n.props.children).filter((x: any) => typeof x === 'string').join('')).filter((x: string) => /^Rekord/.test(x));
   // eslint-disable-next-line no-console
   log('history', JSON.stringify(hist));
   expect(hist).toEqual(['Rekord: objętość treningu']); /* M1-audytor-generalny-030 */

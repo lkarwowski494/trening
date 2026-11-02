@@ -8,7 +8,7 @@ import { renderApp, flushAll, screen, go, act } from './app';
 
 jest.setTimeout(60000);
 const boot = async (fn: () => void = () => {}) => { await fresh(); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10); };
-const order = (labels: string[]) => { const all = screen.UNSAFE_root.findAll((n: { props: Record<string, unknown> }) => typeof n.props.children === 'string').map((n: { props: Record<string, unknown> }) => n.props.children as string); return labels.map(l => all.findIndex(x => x.includes(l))); };
+const order = (labels: string[]) => { const all = screen.container.queryAll((n: { props: Record<string, unknown> }) => typeof n.props.children === 'string').map((n: { props: Record<string, unknown> }) => n.props.children as string); return labels.map(l => all.findIndex(x => x.includes(l))); };
 
 describe('UI2-09', () => {
   test('Ustawienia: limit przerwy ze stałej REST_MAX, bez literału 1800', () => {
