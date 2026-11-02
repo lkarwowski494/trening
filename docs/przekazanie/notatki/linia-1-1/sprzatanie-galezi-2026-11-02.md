@@ -8,7 +8,7 @@ Zostały (aktywne): gałęzie stałe, `badania/*` (źródła integracji P1–P5 
 ## Stan wykonania (02.11.2026 ~21:20 PL)
 
 - Lokalne: zrobione (41 gałęzi, lista niżej).
-- Zdalne: **nie wykonane z sesji agenta** — `git push --delete` odrzucony przez politykę gita sesji w chmurze (HTTP 403, nie obchodzimy); tag archiwalny na starym SHA zatrzymuje hak pre-push (L-049: brak znacznika verify dla drzewa). Do wykonania przez właściciela z własnego klona (z katalogu repo, po `git fetch origin`):
+- Zdalne: **zrobione przez właściciela 02.11.2026** (Codespaces, polecenia niżej); sprawdzenie koordynatora `git ls-remote`: 20 tagów `archiwum/*` na właściwych SHA (20/20), 0 gałęzi z listy pozostało, na GitHubie 20 gałęzi (stałe, `badania/*` ×14, `proces/scal-galaz-l090`, `claude/wizardly-curie-476stg`). Wcześniej: nie wykonane z sesji agenta — `git push --delete` odrzucony przez politykę gita sesji w chmurze (HTTP 403, nie obchodzimy); tag archiwalny na starym SHA zatrzymuje hak pre-push (L-049: brak znacznika verify dla drzewa). Do wykonania przez właściciela z własnego klona (z katalogu repo, po `git fetch origin`):
 
 ```bash
 # 1) archiwum w tagach (20) — --no-verify świadomie: tag wskazuje commit już obecny na GitHubie, nic nowego nie jest publikowane
