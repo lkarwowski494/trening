@@ -60,4 +60,5 @@ Nowy research ma małą szansę: otwarte to głównie ćwiczenia niszowe (strong
 ## Git i verify
 
 - **Verify bazy (`2dc54e2`, pełne `npm run verify`, 02.11.2026): ZIELONE** — exit 0; Jest 658/660 w pierwszym przebiegu, 2 pliki (`maestro-flows`, `matrix-dim-langs-routes2`) przerwane SIGTERM workera, ponowione osobno przez `jest-ponow` — zielone; 15 934 testów zaliczonych, 3 pominięte; natywne OK; znacznik `pelne` zapisany.
-- Commity: `8bed9db7` (carry, strongman), następny — pozostałe rodziny i ten plik. SHA wypchnięcia — raport końcowy sesji.
+- Commity: `8bed9db7` (carry, strongman), `bfe393c1` (pozostałe rodziny i ten plik), potem ten wpis.
+- **verify:docs w worktree:** pierwszy przebieg (przy 5 badaczach w toku) — 1 test czerwony w `tests/cues.test.tsx` (Jest po czasie, jak w W1); drugi przebieg na spokojnej maszynie zielony (152/152, 253 s), znacznik `dokumenty` zapisany; wypchnięcie bez `--no-verify`, hak przepuścił.
