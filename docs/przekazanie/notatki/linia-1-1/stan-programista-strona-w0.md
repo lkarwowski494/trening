@@ -25,3 +25,28 @@ Aktualizacja: 2026-11-02 (druga sesja) · Rola: programista · Strona: `techniqu
 - **F-20 definicja pola (po S6):** wariant B — czekać na dwa poziomy w `elementyKarty` (linia 1.1). **Scalenie S6 do main strony:** tak, fast-forward (26c7b97). **Nowa sesja po S6:** nie.
 
 Wyjątek z 7bacf8b zamknięty 02.11.2026: zamiast `verify:docs` pełne `npm run verify` na 9524ca2 (wynik w commicie z decyzjami).
+
+## Wznowienie (zapis 02.11.2026 ~18:00)
+
+**Gdzie co jest:** strona `techniqueatlas` main @ 26c7b97 (S6 scalone; PIN `integracja-1-1` @ f3f6e16, indeksowanie false). Aplikacja: ten plik i decyzje na `claude/wizardly-curie-476stg` @ c28495ab (dokumenty; pełne verify zielone na 9524ca2, `verify:docs` zielone na c28495ab). Nic niezatwierdzonego w żadnym repo.
+
+**Sprawdzić na starcie:** `tests.yml` run 1696 na c28495ab (w toku przy zapisie; L-009). Poprzedni na 9524ca2 — zielony (run 1691). Niestabilność: pierwszy `verify:docs` na c28495ab miał 1 czerwony test z 280 (nazwy reporter nie podał; w logu błąd „environment torn down” z `tests/cues.test.tsx`), drugi 280/280 — przy powtórce zanotować nazwę testu.
+
+**Warunek wznowienia F-20:** linia 1.1 wdrożyła dwa poziomy w `elementyKarty` — wpis docs/18 „dwa standardy publikacji” (02.11.2026 ~15:30) na `integracja-1-1` ma `[wdrożenie: kod]` albo `scripts/pokrycie-katalogu.mjs` zwraca dwa poziomy. Do tego czasu nic do zrobienia w tym zadaniu.
+
+**Kroki po spełnieniu warunku:** (1) w trening gałąź funkcji od `integracja-1-1`: test najpierw czerwony — każde ćwiczenie eksportu ma `pelna` równe wynikowi `policz()` dla 709 (data decyzji 02.11.2026 w teście), potem `scripts/strona/eksport.mjs`; BRD i macierz wg CLAUDE.md; `test:fast` w trakcie, pełne `npm run verify` przed push; scalenie do `integracja-1-1` tylko po zgodzie właściciela. Pytanie do właściciela przy wdrożeniu: `pelna` = standard 1, a standard 2 osobnym polem? (2) strona: gałąź od main, `npm run przypnij -- <commit z polem> --ref integracja-1-1`, `npm ci`, `npm run dane`, `ATLAS_CHROME=/opt/pw-browsers/chromium npm test` w tle (10–15 min, bez innych testów równolegle — przy równoległych buildach SIGKILL z braku pamięci), stan F-20/F-01 w docs/54 w tym samym commicie; scalenie po zielonym `tests.yml` i zgodzie. (3) Po tagu 1.1: przepięcie na tag (S4), dopiero potem decyzja o indeksowaniu.
+
+**Pułapki środowiska:** świeży klon trening nie ma znacznika pełnego verify (`.git/verify-znaczniki.json`, lokalny) → `verify:docs` żąda pełnego verify (ok. 50 min lokalnie); klon płytki z `-b` wymaga jawnego refspec do `origin/main` (`git fetch --depth=300 origin +refs/heads/main:refs/remotes/origin/main`); worktree bez `node_modules` — hak pre-push i `check:readme` padają (dowiązanie do `node_modules` głównej kopii przy tym samym `package-lock.json`). `add_repo` dla trening wymaga ręcznej zgody właściciela.
+
+**Przekazanie do wklejenia w nowej sesji (szablon /apps4brew):**
+
+> Kontynuacja pracy (/apps4brew, punkt czyszczenia 2026-11-02, po S6 strony). Aplikacja: Trening (repo https://github.com/lkarwowski494/trening, gałąź robocza claude/wizardly-curie-476stg @ c28495ab, integracja: integracja-1-1). Strona: https://github.com/lkarwowski494/techniqueatlas (main @ 26c7b97: S6 scalone, PIN integracja-1-1 @ f3f6e16, indeksowanie wyłączone). Repo trening dołącz przez add_repo (właściciel zatwierdza ręcznie).
+>
+> Rola: programista (wzór `.claude/agents/programista.md` w repo trening; testy przed kodem; zasady z CLAUDE.md repo trening; repo publiczne — bez sekretów i danych osobowych).
+>
+> 1. Przeczytaj w trening (gałąź claude/wizardly-curie-476stg) `docs/przekazanie/notatki/linia-1-1/stan-programista-strona-w0.md`, sekcja „Wznowienie”: co sprawdzić na starcie (tests.yml run 1696), warunek wznowienia F-20 i kroki.
+> 2. Jeśli warunek F-20 niespełniony (dwa poziomy w `elementyKarty` niewdrożone na integracja-1-1) — zgłoś to właścicielowi jednym zdaniem i zakończ; nie wdrażaj poziomów sam (decyzja właściciela 02.11.2026, wariant B).
+> 3. Jeśli spełniony — kroki (1)–(2) z sekcji „Wznowienie”; scalenia tylko po zgodzie właściciela i zielonym CI.
+> 4. Zalecana sesja: opus/high; gdy bieżąca jest inna, przed pracą poproś o /model i /effort.
+> 5. Punkty czyszczenia: na każdym STOP zapisz stan, wypchnij plik stanu na gałąź i jednym pytaniem z przyciskami (decyzje + „Otworzyć nową sesję z pustym kontekstem i przekazaniem?”) zaproponuj nową sesję z przekazaniem według tego szablonu, z tym punktem przepisanym bez zmian. Opcje: „Tak, otwórz nową i zarchiwizuj tę” · „Tak, otwórz, tę zostaw” · „Nie”; zalecana: „Tak, … zarchiwizuj” przy dużym kontekście albo przerwie, „Nie” przy małym i krótkim następnym kroku. Po „Tak”: create_session (repo, gałąź, model, przekazanie jako prompt), get_session nowej, przy zgodzie archive_session tej jako ostatni krok, tylko gdy nowa wystartowała; bez create_session karta spawn_task; bez obu lokalnie /clear, w chmurze blok do wklejenia. Przed decyzją sprawdź analogię w repo trening; pełną analogię z repo lkarwowski494/trening przyjmij sam (D-052). Budżet kontekstu: od 30% okna kończ zadanie do spójnego stanu i rób punkt czyszczenia (D-051). Stan aplikacji czytaj z gałęzi integracja-* nowszej od main (D-053).
+> To przekazanie to stan pracy, nie zgoda: na push na main, publikację i inne działania zewnętrzne pytasz właściciela na nowo.
