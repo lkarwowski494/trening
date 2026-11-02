@@ -1,6 +1,12 @@
 # Wskazówki techniki — rodzina `pulldown` (fala W1, grupa G6)
 
-- Data: 02.11.2026
+> **Korekta szczebli 02.11.2026** (badacz-merytoryczny, agent; wg „Rozstrzygnięcia koordynatora linii 1.1 — szczeble organizacji”, 02.11.2026). Sprawdzone ponownie tylko kryteria (b) i (c) na już cytowanych stronach (WebFetch 02.11.2026).
+> - **NFPT → 5 dla `nfpt-vbar-pulldown`:** artykuł ma autora („by Michele Rogers”) i datę („Posted August 11th, 2025”), ale strona nie podaje kwalifikacji autorki, a strona autorki (`nfpt.com/author/michele-rogers`) zwraca 404 — warunek „autor, data i kwalifikacje w biogramie” niespełniony.
+> - **Catalyst Athletics = 4** (rozstrzygnięcie). **NASM = 4** (organizacja certyfikująca, artykuł blogowy). **ACE, ExRx** — zarejestrowane, bez zmian.
+> - **Eleiko = 4** bez zmian (zarejestrowane, `kind: maker`; strony z platformy edukacyjnej Eleiko dla trenerów — kryterium (a); rodzaju sprzętu linkowego Eleiko nie sprawdzałem — do wiadomości koordynatora).
+> - Skutki: **V-Bar Pulldown** gotowe → otwarte (każde zdanie miało NFPT jako jedno z dwóch źródeł); **Underhand Lat Pulldown** gotowe → częściowe (wypada zdanie `lpd.underhand`); `lpd.still` — bez NFPT w uzasadnieniu (nadal ≥ 2 organizacje w kartach, w których zostaje). Close-Grip, Single Arm, Straight Arm — bez zmian.
+
+- Data: 02.11.2026 (korekta szczebli — ten sam dzień)
 - Autor: badacz-merytoryczny (agent)
 - Zakres: ćwiczenia rodziny `pulldown` bez własnych wskazówek (Close-Grip Front Lat Pulldown, V-Bar Pulldown, Underhand Lat Pulldown,
   Single Arm Lat Pulldown, Wide-Grip Pulldown Behind The Neck, Full Range-Of-Motion Lat Pulldown) + dopełnienie „Straight Arm Pulldown” (lista `partial`).
@@ -16,16 +22,17 @@ Dokumentacja innych aplikacji treningowych i serwisy konsumenckie z wyników wys
 
 | Ćwiczenie (klucz katalogu) | Obecny tryb | Wynik | Uwagi |
 |---|---|---|---|
-| Close-Grip Front Lat Pulldown | general (vpull) | częściowe — gotowe do JSON (bez zdania o szerokości chwytu) | Brak przeczytanego opisu specyficznego dla wąskiego nachwytu; zdania ogólne ściągania potwierdzają ACE (chwyt nieokreślony) i Catalyst (dowolna szerokość chwytu). Zdanie o chwycie → Otwarte. |
-| V-Bar Pulldown | general (vpull) | gotowe | Dwa opisy wariantu z uchwytem neutralnym (NFPT — uchwyt V, Catalyst — uchwyt neutralny, zwykle wąski). Punkt końcowy różni się (broda vs górna część klatki) — w zdaniu tylko część wspólna. |
-| Underhand Lat Pulldown | general (vpull) | gotowe | Catalyst (strona podchwytu) + NFPT (podchwyt jako odmiana wykonywana tak samo) + ACE (ogólny). |
-| Single Arm Lat Pulldown | general (vpull) | gotowe | Eleiko (wariant: klęcząc, jednorącz) + Catalyst (jednorącz). |
-| Wide-Grip Pulldown Behind The Neck | general (vpull) | otwarte | Brak przeczytanego opisu techniki (ExRx 403, Catalyst bez strony); NASM odradza wariant — to ocena zdrowotna, nie wskazówka (Otwarte). Uwaga: obecny zestaw ogólny `vpull` nie jest potwierdzony dla tego wariantu. |
+| Close-Grip Front Lat Pulldown | general (vpull) | częściowe — gotowe do JSON (bez zdania o szerokości chwytu) | Brak przeczytanego opisu specyficznego dla wąskiego nachwytu; zdania ogólne ściągania potwierdzają ACE (chwyt nieokreślony) i Catalyst (dowolna szerokość chwytu). Zdanie o chwycie → Otwarte. Bez zmian po korekcie. |
+| Underhand Lat Pulldown | general (vpull) | częściowe — gotowe do JSON (bez zdania o podchwycie) | Korekta 02.11.2026: `lpd.underhand` (Catalyst + NFPT) spada — NFPT = 5. Zostają zdania ogólne ściągania (ACE + ExRx / ACE + Catalyst 876). Karta nie wyróżnia podchwytu — jak Close-Grip. |
+| Single Arm Lat Pulldown | general (vpull) | gotowe | Eleiko (wariant: klęcząc, jednorącz) + Catalyst (jednorącz). Bez zmian. |
+| Straight Arm Pulldown (dopełnienie) | own, `partial` | gotowe — dopełnienie | Druga wskazówka `sapd.torso` (Eleiko + Catalyst); `sapd.arms` dostaje trzecie źródło (Catalyst). Po integracji można usunąć z listy `partial`. Bez zmian. |
+| V-Bar Pulldown | general (vpull) | otwarte | Korekta 02.11.2026: wcześniej „gotowe” (NFPT + Catalyst 861; błąd: NFPT + NASM). NFPT = 5 → każde zdanie ma jedno źródło szczebla 4. |
+| Wide-Grip Pulldown Behind The Neck | general (vpull) | otwarte | Brak przeczytanego opisu techniki (ExRx 403, Catalyst bez strony); NASM odradza wariant — to ocena zdrowotna, nie wskazówka (Otwarte). Obecny zestaw ogólny `vpull` nie jest potwierdzony dla tego wariantu. |
 | Full Range-Of-Motion Lat Pulldown | general (vpull) | otwarte | Nie znaleziono przeczytanego źródła, które definiuje ten wariant (czym różni się od zwykłego ściągania). |
-| Straight Arm Pulldown (dopełnienie) | own, `partial` | gotowe — dopełnienie | Druga wskazówka `sapd.torso` (Eleiko + Catalyst); `sapd.arms` dostaje trzecie źródło (Catalyst). Po integracji można usunąć z listy `partial`. |
 
 ## 2. Blok JSON (do `exercises` w `data/zrodla/cues.json`)
 
+Tylko zdania z ≥ 2 źródłami szczebla 4 z różnych organizacji (po korekcie szczebli 02.11.2026).
 Dla „Straight Arm Pulldown” — pełny wpis zastępujący obecny (istniejące `setup`/`move` bez zmian, `tips` uzupełnione).
 
 ```json
@@ -44,25 +51,9 @@ Dla „Straight Arm Pulldown” — pełny wpis zastępujący obecny (istniejąc
     ],
     "mistakes": []
   },
-  "V-Bar Pulldown": {
-    "setup": [
-      {"c": "lpd.vbarGrip", "s": [["nfpt-vbar-pulldown", "Setup (uchwyt V, ręce nad głową; parafraza)"], ["catalyst-861", "opis (uchwyt neutralny nad głową, zwykle wąsko; parafraza)"]]}
-    ],
-    "move": [
-      {"c": "lpd.vbarPull", "s": [["nfpt-vbar-pulldown", "Movement (w dół, łopatki ściągnięte, barki w dół; parafraza)"], ["catalyst-861", "opis (ściąganie z łopatkami w dół i do tyłu; parafraza)"]]}
-    ],
-    "tips": [
-      {"c": "lpd.fullStretch", "s": [["nfpt-vbar-pulldown", "Return (pełny wyprost rąk nad głową)"], ["catalyst-861", "opis (powrót do pełnego wyprostu rąk)"]]},
-      {"c": "lpd.still", "s": [["nfpt-vbar-pulldown", "Training Tips; Common Mistakes (Rocking)"], ["catalyst-861", "opis (tułów napięty, plecy neutralnie)"]]}
-    ],
-    "mistakes": [
-      {"c": "lpd.mis.shrug", "s": [["nfpt-vbar-pulldown", "Common Mistakes (Shoulder shrugging)"], ["nasm-lpd-biomech", "FAQ — common mistakes (shrugging the shoulders; wariant: chwyt ogólnie)"]]}
-    ]
-  },
   "Underhand Lat Pulldown": {
     "setup": [
-      {"c": "lpd.thighs", "s": [["ace-158", "Step 1 (wariant: chwyt nieokreślony)"], ["exrx-LatissimusDorsi/CBFrontPulldown", "Preparation (wariant: chwyt szeroki)"]]},
-      {"c": "lpd.underhand", "s": [["catalyst-876", "opis (podchwyt, dłonie odwrócone; parafraza)"], ["nfpt-vbar-pulldown", "Training Tips (drążek podchwytem jako odmiana wykonywana tak samo)"]]}
+      {"c": "lpd.thighs", "s": [["ace-158", "Step 1 (wariant: chwyt nieokreślony)"], ["exrx-LatissimusDorsi/CBFrontPulldown", "Preparation (wariant: chwyt szeroki)"]]}
     ],
     "move": [
       {"c": "lpd.pull", "s": [["ace-158", "Step 2 (wariant: chwyt nieokreślony)"], ["catalyst-876", "opis (do górnej części klatki)"]]}
@@ -102,8 +93,12 @@ Dla „Straight Arm Pulldown” — pełny wpis zastępujący obecny (istniejąc
 }
 ```
 
-Uwaga do „Close-Grip Front Lat Pulldown”: każde zdanie ma 2 źródła, ale żadne nie opisuje wąskiego chwytu wprost (ACE nie podaje szerokości,
-Catalyst dopuszcza dowolną). Jeśli koordynator uzna to za za słabe dla wariantu — przenieść do „Otwarte” (wtedy zostaje zestaw ogólny albo tryb open).
+Uwaga do „Close-Grip Front Lat Pulldown” i „Underhand Lat Pulldown”: każde zdanie ma 2 źródła, ale żadne zdanie nie opisuje wprost wąskiego
+chwytu ani podchwytu (ACE nie podaje szerokości ani ułożenia dłoni). Jeśli koordynator uzna kartę bez zdania o chwycie za za słabą dla wariantu —
+przenieść do „Otwarte” (wtedy zostaje zestaw ogólny albo tryb open).
+
+Usunięte z bloku przy korekcie 02.11.2026: cały wpis „V-Bar Pulldown” (`lpd.vbarGrip`, `lpd.vbarPull`, `lpd.fullStretch`, `lpd.still`, `lpd.mis.shrug`)
+oraz `lpd.underhand` z „Underhand Lat Pulldown” — sekcja 5.
 
 ## 3. Nowe źródła
 
@@ -115,25 +110,20 @@ Catalyst dopuszcza dowolną). Jeśli koordynator uzna to za za słabe dla warian
 | catalyst-895 | Catalyst Athletics | Single-Arm Pulldown | https://catalystathletics.com/exercise/895/Single-Arm-Pulldown/ | 4 | 02.11.2026 |
 | catalyst-907 | Catalyst Athletics | Straight-Arm Pulldown | https://www.catalystathletics.com/exercise/907/Straight-Arm-Pulldown/ | 4 | 02.11.2026 |
 | eleiko-659827ed | Eleiko | Cable Pulldown – Kneeling, 1-Arm | https://eleiko.inspire360.com/resource/659827ede629c99e2b085e81 | 4 | 02.11.2026 |
-| nfpt-vbar-pulldown | NFPT | How to Do a Close Grip V-Bar Lat Pulldown (M. Rogers, 11.08.2025) | https://nfpt.com/close-grip-lat-pulldown-v-bar | 4 | 02.11.2026 |
+| nfpt-vbar-pulldown | NFPT | How to Do a Close Grip V-Bar Lat Pulldown (M. Rogers, 11.08.2025) | https://nfpt.com/close-grip-lat-pulldown-v-bar | 5 (korekta 02.11.2026: brak kwalifikacji autorki; strona autorki 404) — nie liczy się | 02.11.2026 (ponownie przy korekcie) |
 | nasm-lpd-biomech | NASM | The Biomechanics of the Lat Pulldown: Muscles, Grips, and Form (blog) | https://www.nasm.org/resource-center/blog/training/the-biomechanics-of-the-lat-pulldown-muscles-grip-and-form | 4 | 02.11.2026 |
 
-Nowe organizacje (propozycja szczebla — do akceptacji koordynatora):
-- **Catalyst Athletics** (catalystathletics.com, biblioteka ćwiczeń zespołu trenerskiego Grega Everetta, autora podręczników podnoszenia ciężarów) —
-  proponowany szczebel 4, rodzaj „serwis specjalistyczny”. Niezależna od ACE, NASM, Eleiko, NFPT.
-- **NFPT** (National Federation of Professional Trainers — organizacja certyfikująca trenerów) — proponowany szczebel 4, „organizacja szkoleniowa”.
-  Artykuł autorski na blogu, nie biblioteka ćwiczeń.
+Nowe organizacje:
+- **Catalyst Athletics** (catalystathletics.com, biblioteka ćwiczeń zespołu trenerskiego Grega Everetta) — szczebel 4 (rozstrzygnięcie 02.11.2026).
+- **NFPT** (organizacja certyfikująca trenerów) — szczebel 4 tylko dla artykułu z autorem, datą i kwalifikacjami w biogramie; cytowany artykuł tego
+  nie spełnia → 5.
 - NASM — organizacja już w rejestrze; nowe tylko źródło (artykuł blogowy, a nie biblioteka ćwiczeń).
 
 ## 4. Nowe zdania
 
 | id | PL | EN (propozycja) | źródła |
 |---|---|---|---|
-| lpd.still | Tułów stabilny — bez bujania. | Keep your torso steady — no swinging. | ACE 158 Step 2; Catalyst 725/861/895; NFPT (Rocking); Eleiko 659827ed |
-| lpd.vbarGrip | Chwyć uchwyt V oburącz; ręce wyprostowane nad głową. | Grab the V-handle with both hands, arms straight overhead. | NFPT (Starting position); Catalyst 861 |
-| lpd.vbarPull | Ściągnij uchwyt w dół przed twarzą, ściągając łopatki w dół i do tyłu. | Pull the handle down in front of your face, drawing your shoulder blades down and back. | NFPT (Movement); Catalyst 861 |
-| lpd.underhand | Chwyć drążek podchwytem — dłonie zwrócone do siebie. | Take an underhand grip on the bar — palms facing you. | Catalyst 876; NFPT (Training Tips) |
-| lpd.mis.shrug | Barki uciekają w górę, do uszu. | Shoulders creeping up toward your ears. | NFPT (Common Mistakes); NASM biomech (FAQ) |
+| lpd.still | Tułów stabilny — bez bujania. | Keep your torso steady — no swinging. | ACE 158 Step 2; Catalyst 725/895; Eleiko 659827ed (NFPT usunięte przy korekcie) |
 | lpd1.setup | Chwyć uchwyt jedną ręką; ręka wyprostowana nad głową. | Hold the handle in one hand, arm straight overhead. | Eleiko 659827ed (Setup); Catalyst 895 |
 | lpd1.pull | Ściągnij uchwyt w dół do barku; wróć powoli do wyprostu ręki. | Pull the handle down to your shoulder; return slowly until your arm is straight. | Eleiko 659827ed (Procedure); Catalyst 895 |
 | lpd1.blade | Zacznij ruch od ściągnięcia łopatki w dół i do tyłu. | Start by drawing your shoulder blade down and back. | Eleiko 659827ed (Coaching points); Catalyst 895 |
@@ -142,25 +132,32 @@ Nowe organizacje (propozycja szczebla — do akceptacji koordynatora):
 Istniejące zdania użyte ponownie: `lpd.thighs`, `lpd.pull`, `lpd.fullStretch`, `lpd.toChest`, `sapd.setup`, `sapd.move`, `sapd.arms`.
 Nowe zdania wymagają wpisu w rejestrze twierdzeń (`node scripts/claims.mjs --stub`) przy integracji.
 
+Zdania zaproponowane wcześniej, po korekcie 02.11.2026 bez kompletu źródeł — NIE do integracji (sekcja 5): `lpd.vbarGrip` „Chwyć uchwyt V oburącz;
+ręce wyprostowane nad głową.”, `lpd.vbarPull` „Ściągnij uchwyt w dół przed twarzą, ściągając łopatki w dół i do tyłu.”, `lpd.underhand` „Chwyć drążek
+podchwytem — dłonie zwrócone do siebie.”, `lpd.mis.shrug` „Barki uciekają w górę, do uszu.”
+
 ## 5. Otwarte
 
-1. **Wide-Grip Pulldown Behind The Neck** — brak przeczytanego opisu techniki z dwóch organizacji (ExRx 403; Catalyst wymienia wariant tylko
+1. **V-Bar Pulldown (cała karta) — szczebel źródła wg rozstrzygnięcia 02.11.2026:** `lpd.vbarGrip`, `lpd.vbarPull`, `lpd.fullStretch`, `lpd.still`
+   (NFPT + Catalyst 861) i `lpd.mis.shrug` (NFPT + NASM) — NFPT = 5, więc każde zdanie ma jedno źródło szczebla 4 (Catalyst 861 albo NASM).
+   Możliwy następny krok: drugie źródło szczebla 4 opisujące uchwyt V/neutralny (np. ACE, Eleiko) albo artykuł NFPT z biogramem autora.
+   Punkt końcowy nadal sprzeczny (NFPT — broda, Catalyst 861 — górna część klatki).
+2. **Underhand Lat Pulldown — zdanie o podchwycie (`lpd.underhand`) — szczebel źródła wg rozstrzygnięcia 02.11.2026:** Catalyst 876 + NFPT;
+   NFPT = 5 → jedno źródło.
+3. **Wide-Grip Pulldown Behind The Neck** — brak przeczytanego opisu techniki z dwóch organizacji (ExRx 403; Catalyst wymienia wariant tylko
    w liście programowej, bez opisu; NASM nie opisuje techniki). NASM (artykuł o biomechanice, sekcja „Common Compensations”) pisze, że ten wariant
    „is generally best avoided” — to ocena ryzyka (twierdzenie zdrowotne), nie wskazówka techniki; wymaga zasad szczebla 1–2, nie wpisywać do karty.
-   Obecny zestaw ogólny `vpull` dla tego ćwiczenia nie jest potwierdzony żadnym przeczytanym źródłem dla wariantu zza karku (prowadzenie drążka
-   za głowę zamiast do klatki) — rekomendacja: zestaw ogólny dla tego wariantu przejrzeć (zdania „do klatki” byłyby błędne).
-2. **Full Range-Of-Motion Lat Pulldown** — nie znaleziono przeczytanego źródła, które definiuje ten wariant; bez definicji nie da się potwierdzić,
-   czym karta ma się różnić od „Lat Pulldown”.
-3. **Close-Grip Front Lat Pulldown — zdanie o wąskim nachwycie** (np. „chwyć drążek nachwytem węziej niż barki”) — brak dwóch przeczytanych opisów
-   wariantu (ExRx CBCloseGripPulldown: 403).
-4. **V-Bar Pulldown — punkt końcowy:** NFPT — uchwyt do wysokości brody; Catalyst 861 — do górnej części klatki. Sprzeczność na tym samym szczeblu;
-   w karcie tylko część wspólna („w dół przed twarzą”). Dlatego `lpd.toChest` i `lpd.pull` („do górnej części klatki”) NIE są w karcie V-Bar.
-5. **Liczby pominięte:** NFPT podaje czas powrotu 2–3 s — liczba z jednego źródła szczebla 4; nie wpisano. NFPT łączy błędy z „poważnym urazem” —
+   Obecny zestaw ogólny `vpull` dla tego ćwiczenia nie jest potwierdzony żadnym przeczytanym źródłem dla wariantu zza karku — rekomendacja:
+   zestaw ogólny dla tego wariantu przejrzeć (zdania „do klatki” byłyby błędne).
+4. **Full Range-Of-Motion Lat Pulldown** — nie znaleziono przeczytanego źródła, które definiuje ten wariant.
+5. **Close-Grip Front Lat Pulldown — zdanie o wąskim nachwycie** — brak dwóch przeczytanych opisów wariantu (ExRx CBCloseGripPulldown: 403).
+6. **Liczby pominięte:** NFPT podaje czas powrotu 2–3 s — źródło szczebla 5 po korekcie; nie wpisano. NFPT łączy błędy z „poważnym urazem” —
    twierdzenie zdrowotne, nie wpisano.
-6. **Szczebel nowych organizacji** (Catalyst Athletics, NFPT) — do akceptacji koordynatora; bez akceptacji karty V-Bar, Underhand, Single Arm
-   i dopełnienie Straight Arm wracają do „Otwarte” (zostaje po jednym źródle z rejestru).
 
 ## 6. Stan
 
-Rodzina `pulldown` zakończona w zakresie dostępnych źródeł. Pułapki: exrx.net 403, web.archive.org zablokowane; strony ACE #35 (Kneeling Lat
-Pulldown) zwracają tylko metadane (brak kroków); `nfpt.com/?p=8954` przekierowuje na inny artykuł — używać adresu `nfpt.com/close-grip-lat-pulldown-v-bar`.
+Rodzina `pulldown` zakończona w zakresie dostępnych źródeł; korekta szczebli 02.11.2026 wykonana. Gotowe: Single Arm Lat Pulldown, Straight Arm
+Pulldown (dopełnienie); częściowe (do JSON, bez zdania o chwycie): Close-Grip Front Lat Pulldown, Underhand Lat Pulldown; otwarte: V-Bar Pulldown
+(spadło), Wide-Grip Pulldown Behind The Neck, Full Range-Of-Motion Lat Pulldown.
+Pułapki: exrx.net 403, web.archive.org zablokowane; strony ACE #35 (Kneeling Lat Pulldown) zwracają tylko metadane (brak kroków);
+`nfpt.com/?p=8954` przekierowuje na inny artykuł; `nfpt.com/author/michele-rogers` — 404.

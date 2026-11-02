@@ -1,6 +1,13 @@
 # Wskazówki techniki — rodzina `shrug` (fala W1, grupa G6)
 
-- Data: 02.11.2026
+> **Korekta szczebli 02.11.2026** (badacz-merytoryczny, agent; wg „Rozstrzygnięcia koordynatora linii 1.1 — szczeble organizacji”, 02.11.2026).
+> - Bez zmian w wynikach. Plik używa tylko źródeł `ace-72`, `ace-75` (ACE — organizacja certyfikująca, zarejestrowana, szczebel 4) oraz
+>   `exrx-TrapeziusUpper/BBShrug`, `exrx-TrapeziusUpper/DBShrug` (ExRx — zarejestrowany, szczebel 4); żadne z nich nie jest objęte zmianą szczebla.
+> - Organizacje odrzucone wcześniej (serwisy konsumenckie, strony aplikacji) pozostają odrzucone. Life Fitness/Hammer Strength (producent maszyn —
+>   własny rodzaj sprzętu, szczebel 4 wg rozstrzygnięcia) — nadal bez instrukcji ruchu, nie jest źródłem zdania.
+> - Status „warunkowo” dla „Shrugs (linki)” i „Leverage Shrug” wynika z oceny wariantu sprzętu, nie ze szczebla — bez zmian.
+
+- Data: 02.11.2026 (korekta szczebli — ten sam dzień)
 - Autor: badacz-merytoryczny (agent)
 - Zakres: ćwiczenia rodziny `shrug` bez własnych wskazówek: Shrugs (linki), Barbell Shrug Behind The Back, Smith Machine Behind the Back Shrug,
   Leverage Shrug, Calf-Machine Shoulder Shrug, Middle Back Shrug. Wzory: „Shrugs (sztanga)”, „Shrugs (hantle)”.
@@ -22,14 +29,14 @@ Wyniki wyszukiwania dla wariantów to wyłącznie serwisy konsumenckie i strony 
 
 | Ćwiczenie (klucz katalogu) | Obecny tryb | Wynik | Uwagi |
 |---|---|---|---|
-| Shrugs (linki) | general (shrug) | częściowe — warunkowo do JSON | Tylko zdania wspólne z wariantów sprzętu (sztanga/hantle: ACE + ExRx). Brak opisu ustawienia przy wyciągu. |
-| Leverage Shrug | general (shrug) | częściowe — warunkowo do JSON (bez ustawienia) | Ruch i wskazówki jak w wariantach sprzętu; ustawienie przy maszynie dźwigniowej — brak źródła. |
+| Shrugs (linki) | general (shrug) | częściowe — warunkowo do JSON | Tylko zdania wspólne z wariantów sprzętu (sztanga/hantle: ACE + ExRx). Brak opisu ustawienia przy wyciągu. Korekta szczebli: bez zmian. |
+| Leverage Shrug | general (shrug) | częściowe — warunkowo do JSON (bez ustawienia) | Ruch i wskazówki jak w wariantach sprzętu; ustawienie przy maszynie dźwigniowej — brak źródła. Korekta szczebli: bez zmian. |
 | Barbell Shrug Behind The Back | general (shrug) | częściowe — warunkowo do JSON (bez ustawienia) | Ruch jak w szrugu ze sztangą; zdanie „sztanga za plecami, dłonie do tyłu” — brak dwóch źródeł (Otwarte). |
 | Smith Machine Behind the Back Shrug | general (shrug) | częściowe — warunkowo do JSON (bez ustawienia) | Jak wyżej; dodatkowo brak źródła o ustawieniu w suwnicy. |
 | Calf-Machine Shoulder Shrug | general (shrug) | częściowe — warunkowo do JSON (bez ustawienia) | Ciężar na barkach (wałki maszyny), nie w rękach — `shrug.setup` NIE pasuje. Ruch i wskazówki jak w wariantach. |
 | Middle Back Shrug | general (row) | otwarte | Inny ruch (ściąganie łopatek, nie unoszenie barków); brak przeczytanego źródła. Zdania `shrug.*` nie pasują. |
 
-„Warunkowo” = każde zdanie ma 2 przeczytane źródła z dwóch organizacji, ale oba opisują inny sprzęt (wariant: sztanga z przodu / hantle).
+„Warunkowo” = każde zdanie ma 2 przeczytane źródła z dwóch organizacji szczebla 4 (ACE, ExRx), ale oba opisują inny sprzęt (wariant: sztanga z przodu / hantle).
 Decyzja koordynatora: przyjąć jako „wariant sprzętu” (zasada z briefu) albo zostawić te ćwiczenia w trybie ogólnym do czasu znalezienia opisów wariantów.
 Rekomendacja: przyjąć tylko dla „Shrugs (linki)” i „Leverage Shrug” (ciężar w opuszczonych rękach, ruch identyczny); dla wariantów „za plecami”
 i maszyny na łydki karta bez ustawienia byłaby myląca — zostawić tryb ogólny po przeglądzie zestawu (Otwarte 2–3).
@@ -70,7 +77,7 @@ sprzętu” także dla nich: `move` + `tips` identyczne jak w „Leverage Shrug�
 
 ## 3. Nowe źródła
 
-Brak. (ACE #72 i #75 — istniejące `ace-72`, `ace-75`, przeczytane ponownie 02.11.2026.)
+Brak. (ACE #72 i #75 — istniejące `ace-72`, `ace-75`, przeczytane ponownie 02.11.2026; szczebel 4 bez zmian po korekcie.)
 
 ## 4. Nowe zdania
 
@@ -81,8 +88,9 @@ Brak (użyte istniejące: `shrug.setup`, `shrug.move`, `shrug.high`, `shrug.tall
 1. **Shrugs (linki), Leverage Shrug — ustawienie przy sprzęcie** (np. „chwyć uchwyty dolnego wyciągu, ręce opuszczone”): brak przeczytanego opisu
    wariantu w ACE, NASM, Eleiko, Catalyst, Life Fitness; ExRx (CBShrug, LVShrug) — 403.
 2. **Barbell / Smith Machine Behind the Back Shrug** — zdanie o trzymaniu sztangi za plecami (dłonie do tyłu): znalezione wyłącznie w serwisach
-   konsumenckich i na stronach innych aplikacji (odrzucone); jedna strona firmy fizjoterapeutów (biblioteka ćwiczeń) — szczebel nieustalony,
-   nie czytana do końca. ExRx (BBRearShrug, SMRearShrug) — 403. Bez tego zdania karta nie odróżnia wariantu od zwykłego szrugu.
+   konsumenckich i na stronach innych aplikacji (odrzucone); jedna strona firmy fizjoterapeutów (biblioteka ćwiczeń) — szczebel nieustalony
+   (ocena wg kryteriów (a)–(c) rozstrzygnięcia 02.11.2026 niewykonana), nie czytana do końca. ExRx (BBRearShrug, SMRearShrug) — 403.
+   Bez tego zdania karta nie odróżnia wariantu od zwykłego szrugu.
 3. **Calf-Machine Shoulder Shrug** — obecny zestaw ogólny `shrug` (jeśli zawiera ciężar w rękach) jest dla tego wariantu błędny: ciężar leży na
    barkach pod wałkami maszyny. Do przeglądu zestawu ogólnego; własne ustawienie — brak źródła.
 4. **Middle Back Shrug** — inny ruch (ściąganie łopatek, zwykle w leżeniu przodem — niepotwierdzone); obecny tryb ogólny `row` — nie sprawdzono
@@ -92,6 +100,7 @@ Brak (użyte istniejące: `shrug.setup`, `shrug.move`, `shrug.high`, `shrug.tall
 
 ## 6. Stan
 
-Zrobione: przegląd źródeł dla 6 wariantów; wynik warunkowy dla 2, otwarte 4. Zostało: znaleźć drugie (poza ExRx) źródła wariantów — najlepiej
+Zrobione: przegląd źródeł dla 6 wariantów; wynik warunkowy dla 2 (rekomendowane) + 3 (nierekomendowane), otwarte 1 (Middle Back Shrug);
+korekta szczebli 02.11.2026 — bez zmian w wynikach. Zostało: znaleźć drugie (poza ExRx) źródła wariantów — najlepiej
 w środowisku z dostępem do web.archive.org (ExRx: CBShrug, LVShrug, BBRearShrug, SMRearShrug, LVShrugCalfMachine) albo w materiałach producentów
 maszyn (instrukcje obsługi z opisem ćwiczenia). Pułapki: exrx.net 403; web.archive.org zablokowane; karty produktów Hammer Strength bez instrukcji ruchu.
