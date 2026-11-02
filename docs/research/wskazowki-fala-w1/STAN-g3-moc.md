@@ -56,6 +56,24 @@ nie dodano (objęłyby niepowiązane ćwiczenia). Nowych funkcji brak. Numery ź
   Bench Jump — przeskok czy wskok (definicja niejasna); Muscle Snatch upper_back i One-Arm KB C&J front_delt jako główne — źródła przeczą.
 - `muscleLoadOf` (`lib/seed.ts`) pomija regiony ≥ 0,5 przy pustych `muscles`/`secondaryMuscles` → Medicine Ball Slam i 6 innych rzutów bez wierszy mięśni.
 
+## Odpowiedzi koordynatora linii 1.1 (02.11.2026 ~07:55 PL) — NIE zastosowane jeszcze w plikach rodzin
+
+Źródło: wiadomość koordynatora (trafi do `docs/research/szczeble-organizacji-2026-11-02.md` na `badania/lokalne-0211`). Zastosować przy
+integracji albo w następnej sesji G3 (limit kontekstu tej sesji). Spodziewane skutki:
+1. IronMind → 4 przy autorze o sprawdzalnych kwalifikacjach (Schmitz — tak). Skutek: Split Snatch gotowe bez warunku; w olympic-clean.md
+   wracają `olympic.splitCatch`, `olympic.blockStart`, `olympic.shrugTop` (blok 2b) — przeliczyć Split Clean, Block Clean, Clean Shrug.
+2. Torokhtiy → warunkowo 4 dla artykułów techniki z autorem; strony sklepu/programów — nie źródło. Przejrzeć wycofane wpisy (rwanie: powrót z nożyc; plyo: Weighted Jump Squat).
+3. Physitrack → 5 (potwierdza obecne liczenie; blok 2b w plyo-cz2.md odrzucony).
+4. NISMAT → 4 (Lateral Cone Hops: ruch). 5. Performance Herts, Sussexsport, VHI → 5; karta fizjoterapii trustu NHS → 4 (plyo: przeliczyć).
+6. Freelap USA, Coach → warunkowo 4 (autor z kwalifikacjami w biogramie + redakcja) — sprawdzić biogramy; zależą `mbcp.mis.elbows`, `wb.catch`.
+   ACE 8250 → 4, gdy tekst ACE/eksperta ACE (zależy `kbb.lockout`); WECKMETHOD → 5.
+7. Human Kinetics wg autora; „Plyometric Anatomy” nie liczy się do sprawdzenia biogramów; fragment trenera z kwalifikacjami → 4 (Dumbbell Clean).
+8. Drugie źródło błędu ze standardu — tylko gdy błąd jest bezpośrednim zaprzeczeniem standardu (ta sama część ciała i kryterium);
+   oznaczać „błąd = zaprzeczenie standardu”. Skutek: `tgu.mis.bentArm` (łokieć ugięty vs zablokowany) — liczy się; `kbb.mis.armPull`,
+   `kbb.dbMisArmPull` („siła z nóg i bioder”) — nie (przyczyna, nie zaprzeczenie); Sled Push „zginanie łokci” — źródła sobie przeczą, nie liczy się.
+Dodatkowo: książki NSCA = 3; kilka publikacji tej samej organizacji = jedno źródło (sprawdzić m.in. Catalyst: artykuły + wideo + Performance Menu
+w olympic-snatch.md liczone jako jedna organizacja — tak już jest). Sygnały o zestawach ogólnych i danych katalogu przejmuje koordynator linii 1.1.
+
 ## Zostało (następne kroki — sekcje „Stan” w każdym pliku)
 
 - plyo: 7 ćwiczeń cz2 bez żadnego źródła szczebla 4; drugie źródła dla Lateral Bound, Star Jump, Single Leg Push-Off, Side to Side Box Shuffle; błąd Depth Jump; trop: rozdział o pliometrii w podręczniku NSCA (szczebel 3).
