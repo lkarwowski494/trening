@@ -62,7 +62,7 @@ function arrayLen(file, name) {
   };
   visit(sf); if (n < 0) fail(`${file}: brak ${name}`); return n;
 }
-const libraryCount = () => arrayLen('lib/seed.ts', 'LIB_BASE') + arrayLen('lib/catalog.generated.ts', 'CATALOG_LIB_EXTRA');
+const libraryCount = () => arrayLen('lib/seed.ts', 'LIB_BASE') + arrayLen('lib/catalog.generated.ts', 'CATALOG_LIB_EXTRA') - arrayLen('lib/catalog-wycofane.ts', 'LIB_WYCOFANE'); /* wycofane z biblioteki 02.11.2026 */
 
 /** Przypadki testowe liczone STATYCZNIE (bez uruchamiania Jesta): wywołania test( / it( z .only/.skip/.each(…)( ; pętla z test( w środku liczy się raz. */
 function staticTestCalls(files) {

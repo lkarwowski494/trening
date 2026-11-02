@@ -58,11 +58,11 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | Berling i in. (University of Wisconsin–La Crosse) | Berling i in. (University of Wisconsin–La Crosse) — badanie, J Cardiopulm Rehabil 2006 (abstrakt) | 3 | badanie (czasopismo recenzowane) |
 | de Oliveira i in. (Federal University of Paraná) | de Oliveira i in. (Federal University of Paraná) — badanie, Sci Rep 2020 | 3 | badanie (czasopismo recenzowane) |
 | Hofmann i in. (Cybex Research Institute) | Hofmann i in. (Cybex Research Institute) — badanie, Int J Exerc Sci 2014 (abstrakt; instytut producenta sprzętu) | 3 | badanie (czasopismo recenzowane) |
-| Physitrack | Physitrack — Exercise library (us.physitrack.com, biblioteka ćwiczeń domowych dla fizjoterapeutów) | 4 | serwis specjalistyczny |
-| The Prehab Guys | The Prehab Guys — biblioteka ćwiczeń (theprehabguys.com, fizjoterapeuci) | 4 | serwis specjalistyczny |
+| Physitrack | Physitrack — Exercise library (us.physitrack.com, biblioteka ćwiczeń domowych dla fizjoterapeutów) — szczebel 5 (decyzja 02.11.2026: bez autora i kwalifikacji, serwis/dostawca; nie liczy się do pary) | 5 | serwis specjalistyczny |
+| The Prehab Guys | The Prehab Guys — biblioteka ćwiczeń (theprehabguys.com, fizjoterapeuci) | 4 (warunkowo 4: artykuł z autorem (zespół fizjoterapeutów z kwalifikacjami); strona bez autora albo sprzedaży programów — szczebel 5 (docs/18, 02.11.2026, uzupełnienie 2)) | serwis specjalistyczny |
 | BarBend | BarBend — Exercise Guides (barbend.com; autor CSCS, weryfikacja NASM-CPT i USAW-L2) | 4 | serwis specjalistyczny |
-| Breaking Muscle | Breaking Muscle — Exercise Guides (breakingmuscle.com; serwis specjalistyczny) | 4 | serwis specjalistyczny |
-| Coach | Coach (coachweb.com) — How To, ekspert z akredytacją NSCA | 4 | serwis specjalistyczny |
+| Breaking Muscle | Breaking Muscle — Exercise Guides (breakingmuscle.com; serwis specjalistyczny) — szczebel 5 (decyzja 02.11.2026: bez autora i kwalifikacji, serwis/dostawca; nie liczy się do pary) | 5 | serwis specjalistyczny |
+| Coach | Coach (coachweb.com) — How To, ekspert z akredytacją NSCA | 4 (warunkowo 4: artykuł z autorem z kwalifikacjami w biogramie, datą i redakcją wydawcy; inaczej szczebel 5 (docs/18, 02.11.2026, uzupełnienie 2)) | serwis specjalistyczny |
 
 ## Podsumowanie
 
@@ -97,6 +97,18 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | Assault Bike | czy rower stacjonarny to wariant roweru powietrznego z ruchomymi rączkami (jak kąt ławki) — pytanie otwarte; dokumentacji producenta nie udało się odczytać (docs/research/33, pyt. 4) |
 | Skakanka | drugie źródło to organizacja spoza fitnessu (DAN), której szczebel jest otwarty (docs/research/33, pyt. 2) |
 
+## Luki — wskazówki bez pary źródeł
+
+Po przeliczeniu szczebli (docs/18, 02.11.2026) wskazówka ma tylko jedno źródło szczebla ≤ 4; zostaje w danych do uzupełnienia przez badacza, a lista może się tylko skracać (skrypt zgłasza lukę, która ma już parę).
+
+| Ćwiczenie | Zdanie | Powód |
+|---|---|---|
+| Pendlay Row | `pendlay.setup` | drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5, własność BarBend) + Coach (5 per strona) |
+| Pendlay Row | `pendlay.pull` | drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5) + Coach (5 per strona) |
+| Pendlay Row | `pendlay.floor` | drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5) |
+| Pendlay Row | `pendlay.mis.torso` | drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): BarBend (4) + Breaking Muscle (5); brak zdania ustawienia/ruchu do wniosku |
+| Łydki na stopniu | `calf.step` | drugie źródło szczebla ≤ 4 do uzupełnienia po przeliczeniu szczebli (docs/18, 02.11.2026): ExRx (4) + Physitrack (5) + The Prehab Guys (5 per strona) |
+
 ## Wskazówki i źródła
 
 ### Deadlift (sztanga)
@@ -117,7 +129,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Prowadź sztangę blisko nóg przez cały ruch. — ExRx.net: [BBDeadlift](https://web.archive.org/web/20221218023338/https://exrx.net/WeightExercises/ErectorSpinae/BBDeadlift) (Comments (keep bar close to body)); NASM: [Barbell Deadlift](https://www.nasm.org/resource-center/exercise-library/barbell-deadlift) (Common Mistakes (bar drifting away)); Stronger by Science: [How to Deadlift: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-deadlift/) (Bar Path) `dl.close`
 - Na starcie barki mniej więcej nad sztangą, ręce proste. — NASM: [Barbell Deadlift](https://www.nasm.org/resource-center/exercise-library/barbell-deadlift) (Step 2 (shoulders over the bar)); ExRx.net: [BBDeadlift](https://web.archive.org/web/20221218023338/https://exrx.net/WeightExercises/ErectorSpinae/BBDeadlift) (Comments (shoulder slightly behind bar in powerlifting… arms straight)); Stronger by Science: [How to Deadlift: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-deadlift/) (Bar Path (bar a bit behind the shoulder)) `dl.hipsLow`
 
-**Częste błędy**
+**Czego unikać**
 
 - Zaokrąglanie pleców, żeby dociągnąć ciężar. — NASM: [Barbell Deadlift](https://www.nasm.org/resource-center/exercise-library/barbell-deadlift) (Common Mistakes (excessive spinal flexion)); ACE: [Deadlift (#6)](https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/) (opis (keep back flat)) `mis.roundBack`
 - Sztanga odjeżdża od ciała. — NASM: [Barbell Deadlift](https://www.nasm.org/resource-center/exercise-library/barbell-deadlift) (Common Mistakes); ExRx.net: [BBDeadlift](https://web.archive.org/web/20221218023338/https://exrx.net/WeightExercises/ErectorSpinae/BBDeadlift) (Comments) `mis.barAway`
@@ -154,7 +166,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — ExRx.net: [TBDeadlift](https://web.archive.org/web/20210506155208/https://exrx.net/WeightExercises/ErectorSpinae/TBDeadlift) (Preparation; Comments (low back taut, back straight)); NASM: [Barbell Deadlift](https://www.nasm.org/resource-center/exercise-library/barbell-deadlift) (Step 3; Step 4 (neutral spine)) `hinge.back`
 - Na starcie barki mniej więcej nad sztangą, ręce proste. — ExRx.net: [TBDeadlift](https://web.archive.org/web/20210506155208/https://exrx.net/WeightExercises/ErectorSpinae/TBDeadlift) (Comments (shoulders high, arms straight)); NASM: [Barbell Deadlift](https://www.nasm.org/resource-center/exercise-library/barbell-deadlift) (Step 2 (shoulders over the bar)) `dl.hipsLow`
 
-**Częste błędy**
+**Czego unikać**
 
 - Zaokrąglanie pleców, żeby dociągnąć ciężar. — NASM: [Barbell Deadlift](https://www.nasm.org/resource-center/exercise-library/barbell-deadlift) (Common Mistakes (excessive spinal flexion)); ExRx.net: [TBDeadlift](https://web.archive.org/web/20210506155208/https://exrx.net/WeightExercises/ErectorSpinae/TBDeadlift) (Comments (back straight)) `mis.roundBack`
 
@@ -174,7 +186,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis (back straight/flat)); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Comments (low back straight)) `hinge.back`
 - Na dole wyprostuj ręce do końca, barki swobodnie w dół. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis (until the elbows are completely straight)); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Execution (arms extended, shoulders stretched downward)) `row.fullStretch`
 
-**Częste błędy**
+**Czego unikać**
 
 - Zaokrąglanie pleców, żeby dociągnąć ciężar. — ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Comments (low back rounded due to poor form)); ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis (keep the back flat)) `mis.roundBack`
 
@@ -193,7 +205,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis (back straight/flat)); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Comments (low back straight)) `hinge.back`
 - Na dole wyprostuj ręce do końca, barki swobodnie w dół. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis (until the elbows are completely straight)); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Execution (arms extended, shoulders stretched downward)) `row.fullStretch`
 
-**Częste błędy**
+**Czego unikać**
 
 - Zaokrąglanie pleców, żeby dociągnąć ciężar. — ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Comments (low back rounded due to poor form)); ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis (keep the back flat)) `mis.roundBack`
 
@@ -201,21 +213,21 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Ustawienie**
 
-- Sztanga leży na podłodze. Pochyl tułów prawie równolegle do podłogi, kolana lekko ugięte, plecy proste. — BarBend: [Pendlay Row](https://barbend.com/Pendlay-row/) (How to, Step 1 (barbell on the floor); FAQ (back roughly parallel to the floor)); Breaking Muscle: [Pendlay Row](https://breakingmuscle.com/pendlay-row/) (Step 1 (slight bend in the knees, upper body parallel to the ground)); Coach: [How To Do The Pendlay Row](https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row) (How To (knees slightly bent, neutral spine; kąt tułowia w źródle 20–30° — część wspólna: prawie równolegle)) `pendlay.setup`
+- Sztanga leży na podłodze. Pochyl tułów prawie równolegle do podłogi, kolana lekko ugięte, plecy proste. — BarBend: [Pendlay Row](https://barbend.com/Pendlay-row/) (How to, Step 1 (barbell on the floor); FAQ (back roughly parallel to the floor)); Breaking Muscle: [Pendlay Row](https://breakingmuscle.com/pendlay-row/) (szczebel 5 — nie liczy się do pary; Step 1 (slight bend in the knees, upper body parallel to the ground)); Coach: [How To Do The Pendlay Row](https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row) (szczebel 5 — nie liczy się do pary; How To (knees slightly bent, neutral spine; kąt tułowia w źródle 20–30° — część wspólna: prawie równolegle)) `pendlay.setup`
 - Chwyć sztangę nachwytem, na szerokość barków lub szerzej. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Preparation) `row.bbGrip`
 
 **Ruch**
 
-- Dynamicznie przyciągnij sztangę do dolnej części klatki albo brzucha, potem odłóż ją na podłogę. — BarBend: [Pendlay Row](https://barbend.com/Pendlay-row/) (How to, Step 2 (explosively pull the barbell to the base of the chest)); Breaking Muscle: [Pendlay Row](https://breakingmuscle.com/pendlay-row/) (Step 2 (explosive pull; bar touches lower chest or upper abdomen, then returns to the ground)); Coach: [How To Do The Pendlay Row](https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row) (How To (explosively pull the bar towards the stomach)) `pendlay.pull`
+- Dynamicznie przyciągnij sztangę do dolnej części klatki albo brzucha, potem odłóż ją na podłogę. — BarBend: [Pendlay Row](https://barbend.com/Pendlay-row/) (How to, Step 2 (explosively pull the barbell to the base of the chest)); Breaking Muscle: [Pendlay Row](https://breakingmuscle.com/pendlay-row/) (szczebel 5 — nie liczy się do pary; Step 2 (explosive pull; bar touches lower chest or upper abdomen, then returns to the ground)); Coach: [How To Do The Pendlay Row](https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row) (szczebel 5 — nie liczy się do pary; How To (explosively pull the bar towards the stomach)) `pendlay.pull`
 
 **Wskazówki**
 
-- Każde powtórzenie zaczynaj od sztangi nieruchomej na podłodze. — BarBend: [Pendlay Row](https://barbend.com/Pendlay-row/) (Benefits (each rep is done from a dead stop on the floor)); Breaking Muscle: [Pendlay Row](https://breakingmuscle.com/pendlay-row/) (Step 2 (complete rest on the ground before the next rep); Mistakes — Bouncing Off the Floor) `pendlay.floor`
-- Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Comments); Coach: [How To Do The Pendlay Row](https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row) (How To (neutral spine, hinged at the hips with knees slightly bent)) `hinge.back`
+- Każde powtórzenie zaczynaj od sztangi nieruchomej na podłodze. — BarBend: [Pendlay Row](https://barbend.com/Pendlay-row/) (Benefits (each rep is done from a dead stop on the floor)); Breaking Muscle: [Pendlay Row](https://breakingmuscle.com/pendlay-row/) (szczebel 5 — nie liczy się do pary; Step 2 (complete rest on the ground before the next rep); Mistakes — Bouncing Off the Floor) `pendlay.floor`
+- Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Comments); Coach: [How To Do The Pendlay Row](https://www.coachweb.com/back-exercises/7785/how-to-do-the-pendlay-row) (szczebel 5 — nie liczy się do pary; How To (neutral spine, hinged at the hips with knees slightly bent)) `hinge.back`
 
-**Częste błędy**
+**Czego unikać**
 
-- Unoszenie tułowia przy przyciąganiu. — BarBend: [Pendlay Row](https://barbend.com/Pendlay-row/) (Common Mistakes — Back Angle (rising during the pull)); Breaking Muscle: [Pendlay Row](https://breakingmuscle.com/pendlay-row/) (Mistakes — Moving Your Upper Body (maintain a strict parallel position)) `pendlay.mis.torso`
+- Unoszenie tułowia przy przyciąganiu. — BarBend: [Pendlay Row](https://barbend.com/Pendlay-row/) (Common Mistakes — Back Angle (rising during the pull)); Breaking Muscle: [Pendlay Row](https://breakingmuscle.com/pendlay-row/) (szczebel 5 — nie liczy się do pary; Mistakes — Moving Your Upper Body (maintain a strict parallel position)) `pendlay.mis.torso`
 - Zaokrąglanie pleców, żeby dociągnąć ciężar. — ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Comments); ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis) `mis.roundBack`
 
 ### One Arm Row (hantle)
@@ -264,7 +276,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — ExRx.net: [LVTBarRow](https://web.archive.org/web/20250118124947/https://exrx.net/WeightExercises/BackGeneral/LVTBarRow) (Comments (keep low back straight)); ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis) `hinge.back`
 - Na dole wyprostuj ręce do końca, barki swobodnie w dół. — ExRx.net: [LVTBarRowLM](https://web.archive.org/web/20190824065349/https://www.exrx.net/WeightExercises/BackGeneral/LVTBarRowLM) (Execution; Comments (full arm extension)); ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis) `row.fullStretch`
 
-**Częste błędy**
+**Czego unikać**
 
 - Zaokrąglanie pleców, żeby dociągnąć ciężar. — ExRx.net: [LVTBarRow](https://web.archive.org/web/20250118124947/https://exrx.net/WeightExercises/BackGeneral/LVTBarRow) (Comments); ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis) `mis.roundBack`
 
@@ -283,7 +295,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Na końcu ruchu klatka do przodu, łopatki ściągnięte w tył. — ACE: [Seated Row (#48)](https://www.acefitness.org/resources/everyone/exercise-library/48/seated-row/) (opis (lift the chest)); ExRx.net: [CBSeatedRow](https://web.archive.org/web/20220816182625/https://exrx.net/WeightExercises/BackGeneral/CBSeatedRow) (Execution (shoulders back, chest forward)); NASM: [Seated Machine Row Close Grip](https://www.nasm.org/resource-center/exercise-library/seated-machine-row-close-grip) (Step 3 (retracting your shoulder blades)) `scr.chest`
 - Wracaj powoli, bez odbijania ciężaru na końcu. — ACE: [Seated Row (#48)](https://www.acefitness.org/resources/everyone/exercise-library/48/seated-row/) (opis (slowly straightening the arms)); ExRx.net: [CBSeatedRow](https://web.archive.org/web/20220816182625/https://exrx.net/WeightExercises/BackGeneral/CBSeatedRow) (Comments (do not pause or bounce at bottom)); NASM: [Seated Machine Row Close Grip](https://www.nasm.org/resource-center/exercise-library/seated-machine-row-close-grip) (Step 4 (with control)) `scr.control`
 
-**Częste błędy**
+**Czego unikać**
 
 - Szarpanie i rzucanie ciężarem zamiast kontrolowanego ruchu. — NASM: [Seated Machine Row Close Grip](https://www.nasm.org/resource-center/exercise-library/seated-machine-row-close-grip) (Common Mistakes (jerky movements, momentum)); ExRx.net: [CBSeatedRow](https://web.archive.org/web/20220816182625/https://exrx.net/WeightExercises/BackGeneral/CBSeatedRow) (Comments (do not bounce)) `mis.jerk`
 
@@ -302,7 +314,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Na końcu ruchu klatka do przodu, łopatki ściągnięte w tył. — ACE: [Seated Row (#48)](https://www.acefitness.org/resources/everyone/exercise-library/48/seated-row/) (opis (lift the chest)); ExRx.net: [CBSeatedRow](https://web.archive.org/web/20220816182625/https://exrx.net/WeightExercises/BackGeneral/CBSeatedRow) (Execution (shoulders back, chest forward)); NASM: [Seated Machine Row Close Grip](https://www.nasm.org/resource-center/exercise-library/seated-machine-row-close-grip) (Step 3 (retracting your shoulder blades)) `scr.chest`
 - Wracaj powoli, bez odbijania ciężaru na końcu. — ACE: [Seated Row (#48)](https://www.acefitness.org/resources/everyone/exercise-library/48/seated-row/) (opis (slowly straightening the arms)); ExRx.net: [CBSeatedRow](https://web.archive.org/web/20220816182625/https://exrx.net/WeightExercises/BackGeneral/CBSeatedRow) (Comments (do not pause or bounce at bottom)); NASM: [Seated Machine Row Close Grip](https://www.nasm.org/resource-center/exercise-library/seated-machine-row-close-grip) (Step 4 (with control)) `scr.control`
 
-**Częste błędy**
+**Czego unikać**
 
 - Szarpanie i rzucanie ciężarem zamiast kontrolowanego ruchu. — NASM: [Seated Machine Row Close Grip](https://www.nasm.org/resource-center/exercise-library/seated-machine-row-close-grip) (Common Mistakes (jerky movements, momentum)); ExRx.net: [CBSeatedRow](https://web.archive.org/web/20220816182625/https://exrx.net/WeightExercises/BackGeneral/CBSeatedRow) (Comments (do not bounce)) `mis.jerk`
 
@@ -352,7 +364,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Zacznij ruch od ściągnięcia łopatek w dół. — ACE: [Pull Ups (#191)](https://www.acefitness.org/resources/everyone/exercise-library/191/pull-ups/) (Step 1 (depress and retract your scapulae)); NASM: [Pull Up](https://www.nasm.org/resource-center/exercise-library/pull-up) (Step 2 (depress your shoulder blades)) `pu.shoulders`
 - Bez bujania i wymachów nogami. — ACE: [Pull Ups (#191)](https://www.acefitness.org/resources/everyone/exercise-library/191/pull-ups/) (Step 2 (avoid swinging)); NASM: [Pull Up](https://www.nasm.org/resource-center/exercise-library/pull-up) (Common Mistakes (momentum or kipping)) `pu.noSwing`
 
-**Częste błędy**
+**Czego unikać**
 
 - Skracanie ruchu — bez wyprostu rąk na dole. — NASM: [Pull Up](https://www.nasm.org/resource-center/exercise-library/pull-up) (Common Mistakes (not achieving full range of motion)); ExRx.net: [BWPullup](https://web.archive.org/web/20230524140351/https://exrx.net/WeightExercises/LatissimusDorsi/BWPullup) (Execution (arms and shoulders fully extended)) `pu.partial`
 
@@ -371,7 +383,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Zacznij ruch od ściągnięcia łopatek w dół. — ACE: [Chin Ups (#190)](https://www.acefitness.org/resources/everyone/exercise-library/190/chin-ups/) (Step 1 (depress and retract your scapulae)); NASM: [Pull Up](https://www.nasm.org/resource-center/exercise-library/pull-up) (Step 2 (podciąganie nachwytem — ta sama zasada)) `pu.shoulders`
 - Bez bujania i wymachów nogami. — ACE: [Chin Ups (#190)](https://www.acefitness.org/resources/everyone/exercise-library/190/chin-ups/) (Step 2 (avoid swinging)); NASM: [Pull Up](https://www.nasm.org/resource-center/exercise-library/pull-up) (Common Mistakes (podciąganie nachwytem — ta sama zasada)) `pu.noSwing`
 
-**Częste błędy**
+**Czego unikać**
 
 - Skracanie ruchu — bez wyprostu rąk na dole. — ACE: [Chin Ups (#190)](https://www.acefitness.org/resources/everyone/exercise-library/190/chin-ups/) (Step 3 (until your arms are fully extended)); ExRx.net: [BWUnderhandChinup](https://web.archive.org/web/20230523091658/https://exrx.net/WeightExercises/LatissimusDorsi/BWUnderhandChinup) (Execution (arms and shoulders fully extended)) `pu.partial`
 
@@ -391,7 +403,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Zacznij ruch od ściągnięcia łopatek w dół. — ACE: [Pull Ups (#191)](https://www.acefitness.org/resources/everyone/exercise-library/191/pull-ups/) (Step 1); NASM: [Pull Up](https://www.nasm.org/resource-center/exercise-library/pull-up) (Step 2) `pu.shoulders`
 - Bez bujania i wymachów nogami. — ACE: [Pull Ups (#191)](https://www.acefitness.org/resources/everyone/exercise-library/191/pull-ups/) (Step 2); NASM: [Pull Up](https://www.nasm.org/resource-center/exercise-library/pull-up) (Common Mistakes) `pu.noSwing`
 
-**Częste błędy**
+**Czego unikać**
 
 - Skracanie ruchu — bez wyprostu rąk na dole. — NASM: [Pull Up](https://www.nasm.org/resource-center/exercise-library/pull-up) (Common Mistakes); ExRx.net: [BWPullupN](https://web.archive.org/web/20220412004706/https://exrx.net/WeightExercises/LatissimusDorsi/BWPullupN) (Execution (arms and shoulders fully extended)) `pu.partial`
 
@@ -410,7 +422,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Łokcie zostają przy bokach — pracuje przedramię, nie ramię. — ACE: [Seated Biceps Curl (#44)](https://www.acefitness.org/resources/everyone/exercise-library/44/seated-biceps-curl/) (Step 2 (without moving your elbows forward)); ExRx.net: [DBCurl](https://web.archive.org/web/20240105203817/https://exrx.net/WeightExercises/Biceps/DBCurl) (Execution (with elbows to sides)) `curl.elbows`
 - Tułów nieruchomo: bez bujania i odchylania się. — ACE: [Seated Biceps Curl (#44)](https://www.acefitness.org/resources/everyone/exercise-library/44/seated-biceps-curl/) (Step 2 (without arching your back)); NASM: [Barbell Bicep Curl](https://www.nasm.org/resource-center/exercise-library/barbell-bicep-curl) (Common Mistakes (swinging; sztanga — ta sama zasada)) `curl.noSwing`
 
-**Częste błędy**
+**Czego unikać**
 
 - Wysuwanie łokci do przodu albo od tułowia. — ACE: [Seated Biceps Curl (#44)](https://www.acefitness.org/resources/everyone/exercise-library/44/seated-biceps-curl/) (Step 2); NASM: [Barbell Bicep Curl](https://www.nasm.org/resource-center/exercise-library/barbell-bicep-curl) (Common Mistakes (elbows drift away from the body)) `curl.mis.elbows`
 
@@ -429,7 +441,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Łokcie zostają przy bokach — pracuje przedramię, nie ramię. — ACE: [Bicep Curl (#70)](https://www.acefitness.org/resources/everyone/exercise-library/70/bicep-curl/) (opis (elbows next to the middle of the body)); NASM: [Barbell Bicep Curl](https://www.nasm.org/resource-center/exercise-library/barbell-bicep-curl) (Step 2; FAQ (elbow positioning)); ExRx.net: [BBCurl](https://web.archive.org/web/20230314202340/https://exrx.net/WeightExercises/Biceps/BBCurl) (Execution (with elbows to side)) `curl.elbows`
 - Tułów nieruchomo: bez bujania i odchylania się. — ACE: [Bicep Curl (#70)](https://www.acefitness.org/resources/everyone/exercise-library/70/bicep-curl/) (opis (keep chest still)); NASM: [Barbell Bicep Curl](https://www.nasm.org/resource-center/exercise-library/barbell-bicep-curl) (Common Mistakes (swinging)) `curl.noSwing`
 
-**Częste błędy**
+**Czego unikać**
 
 - Wysuwanie łokci do przodu albo od tułowia. — NASM: [Barbell Bicep Curl](https://www.nasm.org/resource-center/exercise-library/barbell-bicep-curl) (Common Mistakes); ACE: [Bicep Curl (#70)](https://www.acefitness.org/resources/everyone/exercise-library/70/bicep-curl/) (opis) `curl.mis.elbows`
 
@@ -448,7 +460,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Łokcie zostają przy bokach — pracuje przedramię, nie ramię. — ExRx.net: [BBCurl](https://web.archive.org/web/20230314202340/https://exrx.net/WeightExercises/Biceps/BBCurl) (Execution); ACE: [Bicep Curl (#70)](https://www.acefitness.org/resources/everyone/exercise-library/70/bicep-curl/) (opis); NASM: [Barbell Bicep Curl](https://www.nasm.org/resource-center/exercise-library/barbell-bicep-curl) (Step 2) `curl.elbows`
 - Tułów nieruchomo: bez bujania i odchylania się. — ACE: [Bicep Curl (#70)](https://www.acefitness.org/resources/everyone/exercise-library/70/bicep-curl/) (opis); NASM: [Barbell Bicep Curl](https://www.nasm.org/resource-center/exercise-library/barbell-bicep-curl) (Common Mistakes) `curl.noSwing`
 
-**Częste błędy**
+**Czego unikać**
 
 - Wysuwanie łokci do przodu albo od tułowia. — NASM: [Barbell Bicep Curl](https://www.nasm.org/resource-center/exercise-library/barbell-bicep-curl) (Common Mistakes); ACE: [Bicep Curl (#70)](https://www.acefitness.org/resources/everyone/exercise-library/70/bicep-curl/) (opis) `curl.mis.elbows`
 
@@ -467,7 +479,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Łokcie zostają przy bokach — pracuje przedramię, nie ramię. — ACE: [Hammer Curl (#10)](https://www.acefitness.org/resources/everyone/exercise-library/10/hammer-curl/) (Step 2 (without moving your elbows forward)); ExRx.net: [DBHammerCurl](https://web.archive.org/web/20220412005934/https://exrx.net/WeightExercises/Brachioradialis/DBHammerCurl) (Execution (with elbows to sides)) `curl.elbows`
 - Tułów nieruchomo: bez bujania i odchylania się. — ACE: [Hammer Curl (#10)](https://www.acefitness.org/resources/everyone/exercise-library/10/hammer-curl/) (Step 2 (keeping your torso erect)); NASM: [Barbell Bicep Curl](https://www.nasm.org/resource-center/exercise-library/barbell-bicep-curl) (Common Mistakes (swinging; sztanga — ta sama zasada)) `curl.noSwing`
 
-**Częste błędy**
+**Czego unikać**
 
 - Wysuwanie łokci do przodu albo od tułowia. — ACE: [Hammer Curl (#10)](https://www.acefitness.org/resources/everyone/exercise-library/10/hammer-curl/) (Step 2); ExRx.net: [DBHammerCurl](https://web.archive.org/web/20220412005934/https://exrx.net/WeightExercises/Brachioradialis/DBHammerCurl) (Execution) `curl.mis.elbows`
 
@@ -502,7 +514,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Schodź, dopóki czujesz rozciąganie tyłu ud i utrzymasz proste plecy. — ACE: [Romanian Deadlift (#317)](https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/) (opis (until feeling some tension along the back of the legs)); NASM: [Romanian Deadlift Barbell](https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell) (Step 3; FAQ (range of motion)); ExRx.net: [RomanianDeadlift](https://web.archive.org/web/20230304211839/https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift) (Execution (once hamstring is stretched)) `rdl.depth`
 - Prowadź sztangę blisko nóg przez cały ruch. — ACE: [Romanian Deadlift (#317)](https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/) (opis (keeping the bar very close to the body)); ExRx.net: [RomanianDeadlift](https://web.archive.org/web/20230304211839/https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift) (Execution (tracing front contour of legs)) `dl.close`
 
-**Częste błędy**
+**Czego unikać**
 
 - Zaokrąglanie pleców, żeby dociągnąć ciężar. — NASM: [Romanian Deadlift Barbell](https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell) (Common Mistakes); ExRx.net: [RomanianDeadlift](https://web.archive.org/web/20230304211839/https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift) (Comments) `mis.roundBack`
 - Zbyt mocno ugięte kolana — ruch zamienia się w przysiad. — NASM: [Romanian Deadlift Barbell](https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell) (Common Mistakes (bending the knees too much)); ACE: [Romanian Deadlift (#317)](https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/) (opis (slight bend in both knees)) `rdl.mis.knees`
@@ -522,7 +534,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — NASM: [Dumbbell Romanian Deadlift](https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift) (Step 2; Step 3); ExRx.net: [DBStraightLegDeadlift](https://web.archive.org/web/20220203041733/https://exrx.net/WeightExercises/Hamstrings/DBStraightLegDeadlift) (Comments); ACE: [Romanian Deadlift (#317)](https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/) (opis) `hinge.back`
 - Schodź, dopóki czujesz rozciąganie tyłu ud i utrzymasz proste plecy. — NASM: [Dumbbell Romanian Deadlift](https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift) (Step 3; FAQ); ACE: [Romanian Deadlift (#317)](https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/) (opis) `rdl.depth`
 
-**Częste błędy**
+**Czego unikać**
 
 - Zaokrąglanie pleców, żeby dociągnąć ciężar. — NASM: [Dumbbell Romanian Deadlift](https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift) (Common Mistakes); ACE: [Romanian Deadlift (#317)](https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/) (opis) `mis.roundBack`
 - Zbyt mocno ugięte kolana — ruch zamienia się w przysiad. — NASM: [Dumbbell Romanian Deadlift](https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift) (Common Mistakes); ACE: [Romanian Deadlift (#317)](https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/) (opis) `rdl.mis.knees`
@@ -543,7 +555,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Schodź tylko do łagodnego rozciągnięcia tyłu ud — nie dalej niż do poziomu tułowia. — ExRx.net: [BBGoodMorning](https://web.archive.org/web/20230311202405/https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning) (Execution (until parallel); Comments (mild stretch)); NASM: [Good Mornings](https://www.nasm.org/resource-center/exercise-library/good-mornings) (Step 3; FAQ (forward lean)) `gm.depth`
 - Zacznij od bardzo lekkiego ciężaru i dokładaj stopniowo. — ExRx.net: [BBGoodMorning](https://web.archive.org/web/20230311202405/https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning) (Comments (begin with very light weight)); NASM: [Good Mornings](https://www.nasm.org/resource-center/exercise-library/good-mornings) (Common Mistakes (excessive weight); FAQ) `gm.light`
 
-**Częste błędy**
+**Czego unikać**
 
 - Zaokrąglanie pleców, żeby dociągnąć ciężar. — NASM: [Good Mornings](https://www.nasm.org/resource-center/exercise-library/good-mornings) (Common Mistakes); ExRx.net: [BBGoodMorning](https://web.archive.org/web/20230311202405/https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning) (Execution (keeping back straight)) `mis.roundBack`
 
@@ -655,7 +667,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Schodź tak nisko, jak pozwala ruchomość przy prostych plecach i całych stopach na podłodze — zwykle co najmniej do równoległego ud. — ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 4); Stronger by Science: [How to Squat: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-squat/) (Depth); ExRx.net: [BBFullSquat](https://web.archive.org/web/20221204065643/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat) (Execution (until knees and hips are fully bent)) `sq.depth`
 - Plecy proste, klatka uniesiona. — ACE: [Back Squat (#11)](https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/) (opis (straight back, chest up)); ExRx.net: [BBFullSquat](https://web.archive.org/web/20221204065643/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat) (Comments (back straight)) `sq.back`
 
-**Częste błędy**
+**Czego unikać**
 
 - Kolana zapadające się do środka. — Stronger by Science: [How to Squat: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-squat/) (FAQ: My knees are caving in); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 4); ExRx.net: [BBFullSquat](https://web.archive.org/web/20221204065643/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat) (Comments) `sq.mis.kneesIn`
 - Odrywanie pięt od podłogi. — ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 4; Step 6 (heels flat)); ExRx.net: [BBFullSquat](https://web.archive.org/web/20221204065643/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat) (Comments (feet flat on floor)) `sq.mis.heels`
@@ -677,7 +689,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Ciężar blisko ciała, klatka nie opada do przodu. — NASM: [Goblet Squat](https://www.nasm.org/resource-center/exercise-library/goblet-squat) (Common Mistakes (drooping the chest, weight drifting away)); ACE: [Goblet Squat (#362)](https://www.acefitness.org/resources/everyone/exercise-library/362/goblet-squat/) (opis (elbows close to the rib cage, back straight)) `gob.close`
 - Kolana idą w linii palców stóp — nie zapadają się do środka. — NASM: [Goblet Squat](https://www.nasm.org/resource-center/exercise-library/goblet-squat) (Common Mistakes (knees cave inward)); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 4 (ten sam wzorzec)) `sq.kneesToes`
 
-**Częste błędy**
+**Czego unikać**
 
 - Kolana zapadające się do środka. — NASM: [Goblet Squat](https://www.nasm.org/resource-center/exercise-library/goblet-squat) (Common Mistakes); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 4) `sq.mis.kneesIn`
 
@@ -697,7 +709,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Schodź tak nisko, jak pozwala ruchomość przy prostych plecach i całych stopach na podłodze — zwykle co najmniej do równoległego ud. — ExRx.net: [CBSquatBelt](https://web.archive.org/web/20191210074910/https://exrx.net/WeightExercises/Quadriceps/CBSquatBelt) (Execution (thighs just past parallel)); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 4) `sq.depth`
 - Plecy proste, klatka uniesiona. — ExRx.net: [CBSquatBelt](https://web.archive.org/web/20191210074910/https://exrx.net/WeightExercises/Quadriceps/CBSquatBelt) (Comments (back straight, chest high)); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 2; Step 3) `sq.back`
 
-**Częste błędy**
+**Czego unikać**
 
 - Odrywanie pięt od podłogi. — ExRx.net: [CBSquatBelt](https://web.archive.org/web/20191210074910/https://exrx.net/WeightExercises/Quadriceps/CBSquatBelt) (Comments (feet flat)); ACE: [Bodyweight Squat (#135)](https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/) (Step 4; Step 6) `sq.mis.heels`
 
@@ -718,7 +730,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Nie schodź tak nisko, by miednica odrywała się od oparcia, a dolne plecy zaokrąglały. — ACE: [Seated Leg Press (#154)](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) (Step 3; Step 4 (butt off the seat, thighs against ribcage)); ExRx.net: [SL45LegPress](https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SL45LegPress) (Comments (without forcing hips to bend at waist)) `lp.hips`
 - Kolana idą w linii palców stóp — nie zapadają się do środka. — ExRx.net: [SL45LegPress](https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SL45LegPress) (Comments (knees pointed same direction as feet)); NASM: [Leg Press](https://www.nasm.org/resource-center/exercise-library/leg-press) (Common Mistakes (knees cave inward)) `sq.kneesToes`
 
-**Częste błędy**
+**Czego unikać**
 
 - Kolana zapadające się do środka. — NASM: [Leg Press](https://www.nasm.org/resource-center/exercise-library/leg-press) (Common Mistakes); ExRx.net: [LVSeatedLegPress](https://web.archive.org/web/20230304211727/https://exrx.net/WeightExercises/Quadriceps/LVSeatedLegPress) (Comments) `sq.mis.kneesIn`
 
@@ -737,7 +749,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Plecy proste przez cały ruch. — ACE: [Bulgarian Split Squat (#366)](https://www.acefitness.org/resources/everyone/exercise-library/366/bulgarian-split-squat/) (opis (back straight)); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Step 2; Step 3 (upright posture)); ExRx.net: [DBSingleLegSplitSquat](https://web.archive.org/web/20220920153216/https://exrx.net/WeightExercises/Quadriceps/DBSingleLegSplitSquat) (Comments (torso upright)) `lunge.torso`
 - Przednie kolano w linii palców stopy. — ExRx.net: [DBSingleLegSplitSquat](https://web.archive.org/web/20220920153216/https://exrx.net/WeightExercises/Quadriceps/DBSingleLegSplitSquat) (Comments); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes (front knee cave inward)) `lunge.knee`
 
-**Częste błędy**
+**Czego unikać**
 
 - Przednie kolano uciekające do środka. — NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes); ExRx.net: [DBSingleLegSplitSquat](https://web.archive.org/web/20220920153216/https://exrx.net/WeightExercises/Quadriceps/DBSingleLegSplitSquat) (Comments) `lunge.mis.kneeIn`
 
@@ -828,7 +840,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Ruch tylko w biodrach — na górze nie wyginaj lędźwi w łuk. — ExRx.net: [BBHipThrust](https://web.archive.org/web/20210507002610/https://exrx.net/WeightExercises/GluteusMaximus/BBHipThrust) (Comments (torso rigid; avoid chest arching and anterior pelvic tilt)); ACE: [Glute Bridge (#49)](https://www.acefitness.org/resources/everyone/exercise-library/49/glute-bridge/) (Step 2; wskazówka końcowa (avoid arching your lower back)) `ht.rigid`
 - Przytrzymuj ciężar dłońmi, żeby się nie przetaczał. — ExRx.net: [BBHipThrust](https://web.archive.org/web/20210507002610/https://exrx.net/WeightExercises/GluteusMaximus/BBHipThrust) (Comments (keep bar from rolling back with hands)); ACE: [Hip Bridge (#318)](https://www.acefitness.org/resources/everyone/exercise-library/318/hip-bridge/) (opis (hold on to the bar)) `ht.hold`
 
-**Częste błędy**
+**Czego unikać**
 
 - Przeprost w lędźwiach na górze zamiast wyprostu w biodrach. — ExRx.net: [BBHipThrust](https://web.archive.org/web/20210507002610/https://exrx.net/WeightExercises/GluteusMaximus/BBHipThrust) (Comments); ACE: [Glute Bridge (#49)](https://www.acefitness.org/resources/everyone/exercise-library/49/glute-bridge/) (wskazówka końcowa) `ht.mis.arch`
 
@@ -847,7 +859,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Ruch tylko w biodrach — na górze nie wyginaj lędźwi w łuk. — ExRx.net: [BBHipThrust](https://web.archive.org/web/20210507002610/https://exrx.net/WeightExercises/GluteusMaximus/BBHipThrust) (Comments); ACE: [Glute Bridge (#49)](https://www.acefitness.org/resources/everyone/exercise-library/49/glute-bridge/) (Step 2; wskazówka końcowa) `ht.rigid`
 - Przytrzymuj ciężar dłońmi, żeby się nie przetaczał. — ACE: [Elevated Glute Bridge (#367)](https://www.acefitness.org/resources/everyone/exercise-library/367/elevated-glute-bridge/) (opis (rest them on top of the hips)); ExRx.net: [BBHipThrust](https://web.archive.org/web/20210507002610/https://exrx.net/WeightExercises/GluteusMaximus/BBHipThrust) (Comments) `ht.hold`
 
-**Częste błędy**
+**Czego unikać**
 
 - Przeprost w lędźwiach na górze zamiast wyprostu w biodrach. — ExRx.net: [BBHipThrust](https://web.archive.org/web/20210507002610/https://exrx.net/WeightExercises/GluteusMaximus/BBHipThrust) (Comments); ACE: [Glute Bridge (#49)](https://www.acefitness.org/resources/everyone/exercise-library/49/glute-bridge/) (wskazówka końcowa) `ht.mis.arch`
 
@@ -866,7 +878,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Nie wypychaj bioder wyżej niż linia tułowia — lędźwie bez przeprostu. — ACE: [Glute Bridge (#49)](https://www.acefitness.org/resources/everyone/exercise-library/49/glute-bridge/) (Step 2; wskazówka końcowa); NASM: [Floor Bridge](https://www.nasm.org/resource-center/exercise-library/floor-bridge) (Common Mistakes (excessive lower back arching)) `gb.noArch`
 - Dociskaj stopy, zwłaszcza pięty, do podłogi. — ACE: [Glute Bridge (#49)](https://www.acefitness.org/resources/everyone/exercise-library/49/glute-bridge/) (Step 2 (press your heels into the floor)); NASM: [Floor Bridge](https://www.nasm.org/resource-center/exercise-library/floor-bridge) (Step 3; FAQ (driving through your heels)) `gb.heels`
 
-**Częste błędy**
+**Czego unikać**
 
 - Przeprost w lędźwiach na górze zamiast wyprostu w biodrach. — ACE: [Glute Bridge (#49)](https://www.acefitness.org/resources/everyone/exercise-library/49/glute-bridge/) (wskazówka końcowa); NASM: [Floor Bridge](https://www.nasm.org/resource-center/exercise-library/floor-bridge) (Common Mistakes; FAQ) `ht.mis.arch`
 
@@ -900,7 +912,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Kolana proste lub tylko lekko ugięte — ruch wyłącznie w stawach skokowych. — ExRx.net: [LVStandingCalfRaise](https://web.archive.org/web/20230407071949/https://exrx.net/WeightExercises/Gastrocnemius/LVStandingCalfRaise) (Comments); ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis (slight bend in knees)) `calf.knees`
 - Zatrzymaj się chwilę na górze i opuszczaj powoli. — ACE: [Calf Raises (#51)](https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/) (opis (pause at the top, slowly roll the heels down)); NASM: [Leg Press Calf Raise](https://www.nasm.org/resource-center/exercise-library/leg-press-calf-raise) (Step 4 (with control)) `calf.pause`
 
-**Częste błędy**
+**Czego unikać**
 
 - Skrócony zakres — bez pełnego wspięcia i opuszczenia. — NASM: [Leg Press Calf Raise](https://www.nasm.org/resource-center/exercise-library/leg-press-calf-raise) (Common Mistakes); ExRx.net: [LVStandingCalfRaise](https://web.archive.org/web/20230407071949/https://exrx.net/WeightExercises/Gastrocnemius/LVStandingCalfRaise) (Execution (as high as possible… until calves are stretched)) `calf.mis.partial`
 
@@ -908,7 +920,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Ustawienie**
 
-- Stań przednią częścią stóp na stabilnym stopniu, pięty poza krawędzią; przytrzymaj się czegoś dla równowagi. — ExRx.net: [BWStandingCalfRaise](https://web.archive.org/web/20210501093132/https://exrx.net/WeightExercises/Gastrocnemius/BWStandingCalfRaise) (Preparation; Comments); Physitrack: [Heel raises on a step](https://us.physitrack.com/home-exercise-video/heel-raises-on-a-step) (Instrukcja: „Walk your feet back so that your heels are off the edge of the step.” (przytrzymanie się podpory)); The Prehab Guys: [Heel Raise – Off Step](https://theprehabguys.com/vimeo-video/heel-raise-off-step/) (HOW: „Place a step in front of a wall or an object to use for balance. Step onto the box with the balls of your feet on the edge of the box, and your heels off the box.”) `calf.step`
+- Stań przednią częścią stóp na stabilnym stopniu, pięty poza krawędzią; przytrzymaj się czegoś dla równowagi. — ExRx.net: [BWStandingCalfRaise](https://web.archive.org/web/20210501093132/https://exrx.net/WeightExercises/Gastrocnemius/BWStandingCalfRaise) (Preparation; Comments); Physitrack: [Heel raises on a step](https://us.physitrack.com/home-exercise-video/heel-raises-on-a-step) (szczebel 5 — nie liczy się do pary; Instrukcja: „Walk your feet back so that your heels are off the edge of the step.” (przytrzymanie się podpory)); The Prehab Guys: [Heel Raise – Off Step](https://theprehabguys.com/vimeo-video/heel-raise-off-step/) (szczebel 5 — nie liczy się do pary; HOW: „Place a step in front of a wall or an object to use for balance. Step onto the box with the balls of your feet on the edge of the box, and your heels off the box.”) `calf.step`
 
 **Ruch**
 
@@ -934,7 +946,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Kolana proste lub tylko lekko ugięte — ruch wyłącznie w stawach skokowych. — ExRx.net: [SL45CalfPress](https://web.archive.org/web/20231122093928/https://exrx.net/WeightExercises/Gastrocnemius/SL45CalfPress) (Comments); ACE: [Calf Raise (#294)](https://www.acefitness.org/resources/everyone/exercise-library/294/calf-raise/) (opis (keeping legs straight)) `calf.knees`
 - Zatrzymaj się chwilę na górze i opuszczaj powoli. — NASM: [Leg Press Calf Raise](https://www.nasm.org/resource-center/exercise-library/leg-press-calf-raise) (Step 4 (with control)); ACE: [Calf Raise (#294)](https://www.acefitness.org/resources/everyone/exercise-library/294/calf-raise/) (opis (slowly return)) `calf.pause`
 
-**Częste błędy**
+**Czego unikać**
 
 - Skrócony zakres — bez pełnego wspięcia i opuszczenia. — NASM: [Leg Press Calf Raise](https://www.nasm.org/resource-center/exercise-library/leg-press-calf-raise) (Common Mistakes); ExRx.net: [SL45CalfPress](https://web.archive.org/web/20231122093928/https://exrx.net/WeightExercises/Gastrocnemius/SL45CalfPress) (Execution) `calf.mis.partial`
 
@@ -1104,7 +1116,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Biodra nie opadają ani nie unoszą się. — ACE: [Front Plank (#32)](https://www.acefitness.org/resources/everyone/exercise-library/32/front-plank/) (Step 2 (avoid sagging or hiking)); NASM: [Plank](https://www.nasm.org/resource-center/exercise-library/plank) (Step 2; Common Mistakes) `plank.noSag`
 - Napnij brzuch, żeby tułów był sztywny. — ACE: [Front Plank (#32)](https://www.acefitness.org/resources/everyone/exercise-library/32/front-plank/) (Step 1 (contract your core to stiffen your torso)); NASM: [Plank](https://www.nasm.org/resource-center/exercise-library/plank) (Step 2 (engage your core)) `plank.brace`
 
-**Częste błędy**
+**Czego unikać**
 
 - Opadające biodra i wygięte w łuk lędźwie. — NASM: [Plank](https://www.nasm.org/resource-center/exercise-library/plank) (Common Mistakes); ACE: [Front Plank (#32)](https://www.acefitness.org/resources/everyone/exercise-library/32/front-plank/) (Step 2) `plank.mis.sag`
 - Wstrzymywanie oddechu. — NASM: [Plank](https://www.nasm.org/resource-center/exercise-library/plank) (Common Mistakes (holding the breath)); ACE: [Front Plank (#32)](https://www.acefitness.org/resources/everyone/exercise-library/32/front-plank/) (Step 2 (continue to breathe)) `plank.mis.breath`
@@ -1124,7 +1136,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Biodra nie opadają i nie skręcają się w przód ani w tył. — NASM: [Side Plank](https://www.nasm.org/resource-center/exercise-library/side-plank) (Step 3; Common Mistakes); ACE: [Side Plank (#303)](https://www.acefitness.org/resources/everyone/exercise-library/303/side-plank/) (opis (body in a straight line)) `splank.noSag`
 - Napnij brzuch, żeby tułów był sztywny. — ACE: [Side Plank (#303)](https://www.acefitness.org/resources/everyone/exercise-library/303/side-plank/) (opis (squeeze the muscles of the stomach and glutes)); NASM: [Side Plank](https://www.nasm.org/resource-center/exercise-library/side-plank) (Step 2 (engage your core)) `plank.brace`
 
-**Częste błędy**
+**Czego unikać**
 
 - Łokieć wysunięty przed bark albo cofnięty za niego. — NASM: [Side Plank](https://www.nasm.org/resource-center/exercise-library/side-plank) (Common Mistakes); ACE: [Side Plank (#303)](https://www.acefitness.org/resources/everyone/exercise-library/303/side-plank/) (opis (elbow directly under the shoulder)) `splank.mis.elbow`
 
@@ -1143,7 +1155,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Lędźwie przy podłodze — nie wyginaj pleców w łuk. — NASM: [Dead Bug](https://www.nasm.org/resource-center/exercise-library/dead-bug) (Step 2; Common Mistakes); ACE: [Supine Dead Bug (#147)](https://www.acefitness.org/resources/everyone/exercise-library/147/supine-dead-bug/) (Step 1 (without increasing the arch in your low back)) `db.back`
 - Ruszaj się powoli i oddychaj normalnie. — NASM: [Dead Bug](https://www.nasm.org/resource-center/exercise-library/dead-bug) (Common Mistakes; FAQ (movement speed)); ACE: [Supine Dead Bug (#147)](https://www.acefitness.org/resources/everyone/exercise-library/147/supine-dead-bug/) (Step 3; wskazówka końcowa (continue to breathe)) `db.slow`
 
-**Częste błędy**
+**Czego unikać**
 
 - Wstrzymywanie oddechu. — NASM: [Dead Bug](https://www.nasm.org/resource-center/exercise-library/dead-bug) (Common Mistakes); ACE: [Supine Dead Bug (#147)](https://www.acefitness.org/resources/everyone/exercise-library/147/supine-dead-bug/) (wskazówka końcowa) `plank.mis.breath`
 
@@ -1224,7 +1236,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Ląduj miękko: ugięte kolana, biodra cofnięte w tył. — ACE: [Box Jumps (#115)](https://www.acefitness.org/resources/everyone/exercise-library/115/box-jumps/) (Step 4–6); NASM: [Box Jumps](https://www.nasm.org/resource-center/exercise-library/box-jumps) (Common Mistakes (landing with straight knees)) `bj.land`
 - Zacznij od niskiej skrzyni i podnoś ją dopiero, gdy lądowanie jest pewne. — ACE: [Box Jumps (#115)](https://www.acefitness.org/resources/everyone/exercise-library/115/box-jumps/) (Step 1; Step 7; wskazówka końcowa); NASM: [Box Jumps](https://www.nasm.org/resource-center/exercise-library/box-jumps) (Common Mistakes; FAQ (box height for beginners)) `bj.height`
 
-**Częste błędy**
+**Czego unikać**
 
 - Lądowanie na sztywnych, wyprostowanych nogach. — NASM: [Box Jumps](https://www.nasm.org/resource-center/exercise-library/box-jumps) (Common Mistakes); ACE: [Box Jumps (#115)](https://www.acefitness.org/resources/everyone/exercise-library/115/box-jumps/) (Step 5 (avoid locking your knees)) `bj.mis.stiff`
 
@@ -1244,7 +1256,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Ściągnij łopatki do siebie i w dół i utrzymaj je tak przez cały ruch. — NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Step 2 (retract your shoulder blades)); Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (Scapular position) `bp.blades`
 - Opuszczaj ciężar powoli — bez odbijania od klatki. — Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (Descent (lower the bar under control)); NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (lowering the bar too quickly)) `bp.control`
 
-**Częste błędy**
+**Czego unikać**
 
 - Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (excessive lower back arching)); Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (Foot position (butt won’t come off the bench)); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)) `bp.mis.arch`
 
@@ -1264,7 +1276,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Ściągnij łopatki do siebie i w dół i utrzymaj je tak przez cały ruch. — NASM: [Incline Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press) (Step 2); ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 2 (hantle — ta sama zasada)) `bp.blades`
 - Opuszczaj ciężar powoli — bez odbijania od klatki. — NASM: [Incline Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press) (Common Mistakes (lowering the bar too quickly)); ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 3 (slowly lower)) `bp.control`
 
-**Częste błędy**
+**Czego unikać**
 
 - Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Incline Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press) (Common Mistakes); ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 3; Step 4 (avoid any arching in the low back)); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)) `bp.mis.arch`
 
@@ -1283,7 +1295,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Ściągnij łopatki do siebie i w dół i utrzymaj je tak przez cały ruch. — ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 2); NASM: [Two Arm Incline Dumbbell Chest Press](https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press) (Step 2) `bp.blades`
 - Opuszczaj ciężar powoli — bez odbijania od klatki. — ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 3); NASM: [Two Arm Incline Dumbbell Chest Press](https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press) (Common Mistakes (lowering too quickly or bouncing)) `bp.control`
 
-**Częste błędy**
+**Czego unikać**
 
 - Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Two Arm Incline Dumbbell Chest Press](https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press) (Common Mistakes); ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 3; Step 4); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)) `bp.mis.arch`
 
@@ -1333,7 +1345,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Tułów sztywny — biodra nie opadają i nie unoszą się. — ACE: [Push Up (#41)](https://www.acefitness.org/resources/everyone/exercise-library/41/push-up/) (Step 3; Step 4 (do not allow your low back to sag or your hips to hike)); NASM: [Push Up](https://www.nasm.org/resource-center/exercise-library/push-up) (Common Mistakes (hips sag)); ExRx.net: [BWPushup](https://web.archive.org/web/20230523091736/https://exrx.net/WeightExercises/PectoralSternal/BWPushup) (Comments (body kept straight)) `push.rigid`
 - Napnij brzuch, żeby tułów był sztywny. — ACE: [Push Up (#41)](https://www.acefitness.org/resources/everyone/exercise-library/41/push-up/) (Step 2 (bracing)); NASM: [Push Up](https://www.nasm.org/resource-center/exercise-library/push-up) (Step 2 (engage your core)) `plank.brace`
 
-**Częste błędy**
+**Czego unikać**
 
 - Skracanie ruchu — za płytko w dół albo bez wyprostu na górze. — NASM: [Push Up](https://www.nasm.org/resource-center/exercise-library/push-up) (Common Mistakes (adequate range of motion)); ExRx.net: [BWPushup](https://web.archive.org/web/20230523091736/https://exrx.net/WeightExercises/PectoralSternal/BWPushup) (Execution (lower to floor; until arms are extended)) `push.mis.partial`
 
@@ -1413,7 +1425,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Ściągnij łopatki do siebie i w dół i utrzymaj je tak przez cały ruch. — ACE: [Chest Press (#19)](https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/) (Step 2); NASM: [Two Arm Dumbbell Chest Press With Band](https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band) (Step 2 (retract your shoulders)) `bp.blades`
 - Opuszczaj ciężar powoli — bez odbijania od klatki. — ACE: [Chest Press (#19)](https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/) (Step 3 (slowly lower… without bouncing)); NASM: [Two Arm Dumbbell Chest Press With Band](https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band) (Step 4 (lower with control)) `bp.control`
 
-**Częste błędy**
+**Czego unikać**
 
 - Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — ACE: [Chest Press (#19)](https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/) (Step 3; Step 4 (avoid any arching in the low back)); NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (sztanga — ta sama zasada)); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)) `bp.mis.arch`
 
@@ -1450,7 +1462,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Schodź tak nisko, jak pozwala ruchomość przy prostych plecach i całych stopach na podłodze — zwykle co najmniej do równoległego ud. — ExRx.net: [BBFrontSquat](https://web.archive.org/web/20230304211839/https://exrx.net/WeightExercises/Quadriceps/BBFrontSquat) (Execution (just past parallel)); ACE: [Front Squat (#22)](https://www.acefitness.org/resources/everyone/exercise-library/22/front-squat/) (Step 4); NASM: [Dumbbell Front Squat](https://www.nasm.org/resource-center/exercise-library/dumbbell-front-squat) (Step 3; Common Mistakes) `sq.depth`
 - Plecy proste, klatka uniesiona. — ExRx.net: [BBFrontSquat](https://web.archive.org/web/20230304211839/https://exrx.net/WeightExercises/Quadriceps/BBFrontSquat) (Comments (back straight)); ACE: [Front Squat (#22)](https://www.acefitness.org/resources/everyone/exercise-library/22/front-squat/) (Step 6 (back, chest and head-up position)) `sq.back`
 
-**Częste błędy**
+**Czego unikać**
 
 - Odrywanie pięt od podłogi. — NASM: [Dumbbell Front Squat](https://www.nasm.org/resource-center/exercise-library/dumbbell-front-squat) (Common Mistakes (rising onto the toes)); ExRx.net: [BBFrontSquat](https://web.archive.org/web/20230304211839/https://exrx.net/WeightExercises/Quadriceps/BBFrontSquat) (Comments (feet flat on floor)) `sq.mis.heels`
 
@@ -1514,7 +1526,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 - Plecy proste (neutralne) przez cały ruch — bez zaokrąglania. — NASM: [Kettlebell Deadlift](https://www.nasm.org/resource-center/exercise-library/kettlebell-deadlift) (Step 2; Step 3; Step 4); ACE: [Deadlift (#6)](https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/) (opis) `hinge.back`
 - Wstając, wypychaj biodra w przód aż do pełnego wyprostu. — NASM: [Kettlebell Deadlift](https://www.nasm.org/resource-center/exercise-library/kettlebell-deadlift) (Step 3 (drive your hips forward)); ACE: [Deadlift (#6)](https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/) (opis (push the hips forward to move to standing)) `dbdl.hips`
 
-**Częste błędy**
+**Czego unikać**
 
 - Zaokrąglanie pleców, żeby dociągnąć ciężar. — NASM: [Kettlebell Deadlift](https://www.nasm.org/resource-center/exercise-library/kettlebell-deadlift) (Common Mistakes); ACE: [Deadlift (#6)](https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/) (opis) `mis.roundBack`
 

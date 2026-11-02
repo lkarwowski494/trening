@@ -121,6 +121,11 @@
    "rodzaj": "nowy",
    "pl": "Rzut",
    "en": "Throw"
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Czego unikać",
+   "en": "What to avoid"
   }
  ]
 }

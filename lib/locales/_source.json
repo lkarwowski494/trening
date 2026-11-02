@@ -980,6 +980,10 @@
   "en": "Missing something? Request a feature"
  },
  {
+  "pl": "Czego unikać",
+  "en": "What to avoid"
+ },
+ {
   "pl": "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.",
   "en": "Waiting to be saved to Apple Health: {n}. It will be retried when the app starts and when you return to it."
  },
@@ -990,10 +994,6 @@
  {
   "pl": "czerwona",
   "en": "red"
- },
- {
-  "pl": "Częste błędy",
-  "en": "Common mistakes"
  },
  {
   "pl": "Częsty błąd: {opis}",

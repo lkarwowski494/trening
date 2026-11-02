@@ -83,7 +83,7 @@ describe('eksport dla strony: karty i figury jak w aplikacji (bramka 4, DEC-10 a
   const fixture = () => { const s = skroty(); return { squat: wpis(s.skroty.squat), bench_press: wpis(s.skroty.bench_press), hinge: wpis(s.skroty.hinge) }; };
   test('tryb wskazówek w eksporcie = tryb w aplikacji dla każdego ćwiczenia (karta własna spoza listy hidden; zestaw ogólny tylko z recenzją treści i przy figurze)', () => {
     const { atlas } = eksport('karty-fixture', fixture());
-    expect(atlas.exercises.length).toBe(709);
+    expect(atlas.exercises.length).toBe(708);
     for (const e of atlas.exercises) expect([e.id, e.cues.scope]).toEqual([e.id, tryb(e.id, !!e.figure)]);
     expect(atlas.exercises.filter(e => e.cues.scope === 'general').length).toBeGreaterThan(10); /* są zestawy ogólne z recenzją przy figurach squat/bench/hinge */
   });

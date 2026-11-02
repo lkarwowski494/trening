@@ -3,51 +3,51 @@
   "minimum": {
     "figura.v2": 98,
     "figura.wAplikacji": 151,
-    "figura.zDanymiV2": 536,
+    "figura.zDanymiV2": 535,
     "animowanyBlad": 92,
     "wskazowki.wlasne": 98,
     "wskazowki.wlasneZBledami": 36,
     "wskazowki.zTekstem": 175,
     "czesteBledyTekst": 113,
-    "roleMiesni": 509,
+    "roleMiesni": 508,
     "pelnaKarta": 87,
     "recenzjaFigur": 98,
     "nazwaLokalna.razem": 0,
-    "jezyk.pl.kompletne": 532,
-    "jezyk.en.kompletne": 532,
-    "jezyk.cs.kompletne": 532,
-    "jezyk.sk.kompletne": 532,
-    "jezyk.hu.kompletne": 532,
-    "jezyk.ro.kompletne": 532,
-    "jezyk.bg.kompletne": 532,
-    "jezyk.hr.kompletne": 532,
-    "jezyk.sl.kompletne": 532,
-    "jezyk.sr.kompletne": 532,
-    "jezyk.lt.kompletne": 532,
-    "jezyk.lv.kompletne": 532,
-    "jezyk.et.kompletne": 532,
-    "jezyk.uk.kompletne": 532,
-    "jezyk.es.kompletne": 532,
-    "jezyk.es-419.kompletne": 532,
-    "jezyk.pt.kompletne": 532,
-    "jezyk.pt-BR.kompletne": 532,
-    "jezyk.de.kompletne": 532,
-    "jezyk.fr.kompletne": 532,
-    "jezyk.it.kompletne": 532,
-    "jezyk.nl.kompletne": 532,
-    "jezyk.sv.kompletne": 532,
-    "jezyk.da.kompletne": 532,
-    "jezyk.nb.kompletne": 532,
-    "jezyk.fi.kompletne": 532,
-    "jezyk.tr.kompletne": 532,
-    "jezyk.el.kompletne": 532,
-    "jezyk.id.kompletne": 532,
-    "jezyk.ms.kompletne": 532,
-    "jezyk.vi.kompletne": 532,
-    "jezyk.ru.kompletne": 532,
-    "jezyk.ja.kompletne": 532,
-    "jezyk.ko.kompletne": 532,
-    "jezyk.zh-Hant.kompletne": 532
+    "jezyk.pl.kompletne": 531,
+    "jezyk.en.kompletne": 531,
+    "jezyk.cs.kompletne": 531,
+    "jezyk.sk.kompletne": 531,
+    "jezyk.hu.kompletne": 531,
+    "jezyk.ro.kompletne": 531,
+    "jezyk.bg.kompletne": 531,
+    "jezyk.hr.kompletne": 531,
+    "jezyk.sl.kompletne": 531,
+    "jezyk.sr.kompletne": 531,
+    "jezyk.lt.kompletne": 531,
+    "jezyk.lv.kompletne": 531,
+    "jezyk.et.kompletne": 531,
+    "jezyk.uk.kompletne": 531,
+    "jezyk.es.kompletne": 531,
+    "jezyk.es-419.kompletne": 531,
+    "jezyk.pt.kompletne": 531,
+    "jezyk.pt-BR.kompletne": 531,
+    "jezyk.de.kompletne": 531,
+    "jezyk.fr.kompletne": 531,
+    "jezyk.it.kompletne": 531,
+    "jezyk.nl.kompletne": 531,
+    "jezyk.sv.kompletne": 531,
+    "jezyk.da.kompletne": 531,
+    "jezyk.nb.kompletne": 531,
+    "jezyk.fi.kompletne": 531,
+    "jezyk.tr.kompletne": 531,
+    "jezyk.el.kompletne": 531,
+    "jezyk.id.kompletne": 531,
+    "jezyk.ms.kompletne": 531,
+    "jezyk.vi.kompletne": 531,
+    "jezyk.ru.kompletne": 531,
+    "jezyk.ja.kompletne": 531,
+    "jezyk.ko.kompletne": 531,
+    "jezyk.zh-Hant.kompletne": 531
   },
   "rekord": {
     "figura.v2": 98,
@@ -108,8 +108,8 @@
       "data": "29.10.2026"
     },
     "figura.zDanymiV2": {
-      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
-      "data": "29.10.2026"
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
     },
     "animowanyBlad": {
       "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
@@ -128,12 +128,12 @@
       "data": "29.10.2026"
     },
     "jezyk.pl.kompletne": {
-      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
-      "data": "29.10.2026"
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
     },
     "jezyk.en.kompletne": {
-      "powod": "scalenie main: skróty recenzji 1.0 nie pasują do rysunków 1.1 — do recenzji 1.1 (rodziny squat, bench_press, hinge i pull_up ukryte w aplikacji do recenzji ruchu; zestawy ogólne wskazówek bez recenzji treści niewidoczne; bramka 4 fail-closed)",
-      "data": "29.10.2026"
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
     },
     "wskazowki.wlasne": {
       "powod": "scalenie main: karty ukryte po recenzji treści (bramka 4, DEC-10 a) i zdania błędów usunięte z kart decyzją właściciela 1a 2a (M1-audytor-generalny-038)",
@@ -142,6 +142,142 @@
     "wskazowki.wlasneZBledami": {
       "powod": "scalenie main: karty ukryte po recenzji treści (bramka 4, DEC-10 a) i zdania błędów usunięte z kart decyzją właściciela 1a 2a (M1-audytor-generalny-038)",
       "data": "29.10.2026"
+    },
+    "roleMiesni": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.cs.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.sk.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.hu.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.ro.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.bg.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.hr.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.sl.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.sr.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.lt.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.lv.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.et.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.uk.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.es.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.es-419.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.pt.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.pt-BR.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.de.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.fr.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.it.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.nl.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.sv.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.da.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.nb.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.fi.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.tr.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.el.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.id.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.ms.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.vi.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.ru.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.ja.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.ko.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
+    },
+    "jezyk.zh-Hant.kompletne": {
+      "powod": "ukrycie ćwiczenia Wide-Grip Pulldown Behind The Neck (decyzja właściciela 02.11.2026 ~17:20): katalog 709 → 708, ćwiczenie miało dane póz v2, role mięśni i komplet tekstów karty",
+      "data": "02.11.2026"
     }
   }
 }

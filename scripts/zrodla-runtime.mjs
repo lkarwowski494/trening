@@ -18,6 +18,7 @@ import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { resolve as resolveFig } from './figures/gen.mjs';
+import { srcLevel, MAX_COUNT_LEVEL } from './cues/gen.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const FULL_CUES = join(root, 'data/zrodla/cues.json'), FULL_FIG = join(root, 'data/zrodla/figures.json');
@@ -31,7 +32,7 @@ export const SHOWN = ['wyswietlana', 'zastapiona'];
 /** Pliki rigu gotowych rodzin v2 (skrót recenzji rodziny = rig + wspólny moduł rigów + warianty). */
 export const V2_RIGS = { squat: 'squat.ts', bench_press: 'benchPress.ts', hinge: 'hinge.ts' };
 /** Kolejność rodzajów w podpisie = CUE_BASIS_KINDS w lib/cues/index.ts. */
-export const BASIS_ORDER = ['org', 'site', 'maker', 'study'];
+export const BASIS_ORDER = ['org', 'site', 'maker', 'study', 'book'];
 const SECTIONS = ['setup', 'move', 'tips', 'mistakes'];
 
 /**
@@ -48,7 +49,7 @@ export function buildCues(full, review) {
     if (!ok(full, ex)) { hidden.push(ex); continue; }
     exercises[ex] = Object.fromEntries(Object.keys(x).map(sec => [sec, x[sec].map(r => ({ c: r.c }))]));
     const kinds = new Set();
-    for (const sec of SECTIONS) for (const r of x[sec] ?? []) for (const [sid] of r.s) kinds.add(full.orgs[full.sources[sid].org].kind);
+    for (const sec of SECTIONS) for (const r of x[sec] ?? []) for (const [sid] of r.s) { const src = full.sources[sid]; if (src && srcLevel(full, src) <= MAX_COUNT_LEVEL) kinds.add(full.orgs[src.org].kind); } /* „wniosek” nie jest źródłem; szczebel 5 nie wchodzi do podpisu (02.11.2026) */
     basis[ex] = BASIS_ORDER.filter(k => kinds.has(k));
   }
   const general = review ? Object.keys(review.sets?.items ?? {}).filter(k => review.sets.items[k].b === 'general' && SHOWN_CARD.includes(review.rec.zestawy?.[k]?.werdykt) && review.rec.zestawy[k].sha === zestawSkrot(review.sets, review.pl, k)) : [];

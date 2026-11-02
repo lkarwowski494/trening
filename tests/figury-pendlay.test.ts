@@ -115,8 +115,10 @@ describe('Pendlay Row: karta (wskazówki) — start od nieruchomej sztangi, tuł
     for (const id of NEW_IDS) {
       const refs = Object.values(CUES.exercises[KEY]).flat().filter((r: unknown) => (r as { c: string }).c === id).flatMap((r: unknown) => (r as { s: [string, string][] }).s);
       expect(refs.length).toBeGreaterThanOrEqual(2);
-      expect(new Set(refs.map(([sid]) => CUES.sources[sid].org)).size).toBeGreaterThanOrEqual(2);
-      for (const [sid, at] of refs) { expect(CUES.sources[sid].level).toBe(4); expect(at.length).toBeGreaterThan(5); expect(CUES.sources[sid].url).toMatch(/^https:\/\//); }
+      /* 02.11.2026: Breaking Muscle i (per strona) Coach = szczebel 5 — nie liczą się do pary; zdanie z jednym źródłem szczebla 4 stoi na jawnej liście luk (cues.json `luki`) do uzupełnienia */
+      const l4 = new Set(refs.filter(([sid]) => CUES.sources[sid].level <= 4).map(([sid]) => CUES.sources[sid].org));
+      expect(l4.size).toBeGreaterThanOrEqual(`${KEY}::${id}` in (CUES.luki ?? {}) ? 1 : 2);
+      for (const [sid, at] of refs) { expect([4, 5]).toContain(CUES.sources[sid].level); expect(at.length).toBeGreaterThan(5); expect(CUES.sources[sid].url).toMatch(/^https:\/\//); }
     }
   });
   test('teksty: wszystkie języki wskazówek mają 4 nowe zdania; bez cyfr (kąt tułowia bez liczby), bez nazw źródeł; PL/EN zgodne z raportem badacza', () => {
