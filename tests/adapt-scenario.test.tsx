@@ -15,7 +15,7 @@ jest.setTimeout(90000);
 afterEach(async () => { try { await timer.stop(); await timer.stopSet(); } catch { /* brak stanu */ } jest.useRealTimers(); });
 const S = () => store.getState();
 const blk = (i: number) => S().active!.exercises[i];
-const stack = () => { const { store: rs } = require('expo-router/build/global-state/router-store'); let st = rs.navigationRef.getRootState(); while (st.routes.length === 1 && st.routes[0].name === '__root' && st.routes[0].state) st = st.routes[0].state; return st.routes.map((r: { name: string }) => r.name) as string[]; };
+const stack = () => { const rs = { navigationRef: require('./app').navRef() }; /* SDK 58: router-store usunięty */ let st = rs.navigationRef.getRootState(); while (st.routes.length === 1 && st.routes[0].name === '__root' && st.routes[0].state) st = st.routes[0].state; return st.routes.map((r: { name: string }) => r.name) as string[]; };
 const top = () => stack().at(-1);
 const FBW: [string, string][] = [['Bench Press (sztanga)', 'bench'], ['Overhead Press (sztanga)', 'ohp'], ['Pull Up', 'pull'], ['RDL (hantle/linki)', 'rdl']];
 const MON = new Date(2026, 9, 12, 9, 0), WED = new Date(2026, 9, 14, 9, 0);
