@@ -8,7 +8,7 @@
  */
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import * as yaml from 'js-yaml';
+const yaml = require('js-yaml');
 
 const DIR = join(__dirname, '..', '.maestro');
 const OLD = ['Bench Press (Dumbbell), dumbbells', 'Bench Press (Dumbbell)', 'Bent Over Row (Dumbbell), dumbbells', 'Bent Over Row (Dumbbell)', 'Set 1 done — Bench Press (Dumbbell)'];
