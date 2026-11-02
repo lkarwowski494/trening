@@ -22,7 +22,7 @@ Szczeble źródeł poprawione wg rozstrzygnięcia koordynatora z 02.11.2026 — 
 | Reverse Grip Bench Press | zob. cz1b | j.w. |
 | Squeeze Press (hantle) | zob. cz1b | j.w. |
 
-## Blok JSON do data/zrodla/cues.json (sekcja exercises)
+## Blok JSON do data/zrodla/cues.json (sekcja exercises) — NIEAKTUALNY — patrz przeliczenie 02.11.2026 (`przeliczenie-szczebli-2026-11-02.md`, „Korekta 2”: Decline Bench Press skrócony, Smith Machine Bench Press otwarte)
 
 Tylko ćwiczenia „gotowe”. Bloki częściowe ćwiczeń „otwartych” — w sekcji „Otwarte” (do uzupełnienia, nie do aplikacji).
 

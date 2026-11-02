@@ -21,7 +21,7 @@ Szczeble źródeł poprawione 02.11.2026 wg rozstrzygnięcia koordynatora linii 
 | One-Arm Flat Bench Dumbbell Fly | otwarte | brak źródła o wersji jednorącz na ławce |
 | Band Chest Fly | częściowe (bez błędu) | ustawienie + ruch + 1 wskazówka z 2–3 źródeł (Thera-Band, ACE 160, Bodylastics); brak błędu z 2 źródeł (wzór: „Cable Fly” w repo ma `mistakes: []`) |
 
-## Blok JSON do data/zrodla/cues.json (sekcja exercises)
+## Blok JSON do data/zrodla/cues.json (sekcja exercises) — NIEAKTUALNY — patrz przeliczenie 02.11.2026 (`przeliczenie-szczebli-2026-11-02.md`, „Korekta 2”: Cable Fly (low to high) otwarte; Band Chest Fly przeniesiony do bloku przeliczenia)
 
 ```json
 {

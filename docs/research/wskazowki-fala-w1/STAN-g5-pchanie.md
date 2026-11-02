@@ -9,7 +9,33 @@ korektę wg tego rozstrzygnięcia (sekcje „Korekta szczebli (02.11.2026)”; o
 ## Punkt wyjścia (zrzut z `assignAll()`, `LIB`, `cue-sets.json`, `data/zrodla/cues.json`, `muscleRoleRows`)
 117 ćwiczeń w 7 rodzinach; bez własnych wskazówek: 94; z luką roli mięśnia: 27 ćwiczeń (20 par rodzina–wzorzec–mięsień).
 
-## Wynik — wskazówki (stan PO korektach szczebli: rozstrzygnięcie + uzupełnienia 2 i 3)
+## Po przeliczeniu koordynatora 02.11.2026 — obowiązuje
+
+Przeliczone: `overhead_press-cz2.md`, `chest_fly-cz2.md`, The Prehab Guys przy Kettlebell Press i Band Shoulder Press (`overhead_press-cz1b.md`).
+Dowody per źródło i **aktualny blok dla tych trzech plików oraz (po korekcie 2) dla `bench_press-cz1.md` i `chest_fly-cz1.md`**: `przeliczenie-szczebli-2026-11-02.md` („Blok do wdrożenia (po przeliczeniu 02.11.2026)”).
+Bloki JSON `overhead_press-cz1b.md:43`, `overhead_press-cz2.md:26`, `chest_fly-cz2.md:23` — **NIEAKTUALNE — patrz przeliczenie 02.11.2026**.
+Sekcje przeliczenia nie zostały dopisane na końcu tych plików (narzędzie zapisu nadpisuje cały plik; limit kontekstu) — do decyzji koordynatora.
+
+| Rodzina | Ćwiczenia badane | Własne z błędami | Własne bez błędów | Otwarte | Nowe zdania |
+|---|---|---|---|---|---|
+| bench_press | 25 | **4** (Decline BP — krótsza karta, JM Press, Bench Press with Chains, One Arm DB Bench) — Major Fitness = 5 (korekta 2); **ryzyko Bells of Steel** | 0 | **21** | `bench.smith.*` wstrzymane (Smith Bench otwarte) |
+| pushup_plank | 23 | 1 (Rollout (sztanga)) | 2 (Ab Wheel, Renegade Row) | 20 | bez zmian (pliki) |
+| overhead_press | 18 | **2** (Arnold, Seated Barbell Military) | 1 (Landmine Press) | **15** | `ohp.mis.leanBack` i zdania `band.ohp*`/`kbp.*` wstrzymane (ćwiczenia otwarte) |
+| chest_fly | 18 | 0 | **1** (Band Chest Fly) | **17** | `po.dbSetup`, `po.move`, `po.lower`, `cfly.low.setup`, `cfly.low.move` wstrzymane (Pullover, Cable Fly low→high otwarte) |
+| dip | 4 | 0 | 0 | 4 | — |
+| chest_press_machine | 3 | 0 | 0 | 3 | — |
+| cable_press | 3 | 0 | 0 | 3 | — |
+| **Razem** | **94** | **7** | **4** | **83** | |
+
+Zmiany względem poprzedniej tabeli (10 gotowych / 6 częściowych / 78 otwartych):
+- **Kettlebell Press: gotowe → otwarte** — strona The Prehab Guys bez autora (= 5, uzup. 2 per strona); zostaje ACE 395 (ustawienie, ruch) i StrongFirst (błąd), po jednym.
+- **Band Shoulder Press: gotowe → otwarte** — strona The Prehab Guys bez autora (= 5); każde zdanie zostaje z samym Bodylastics.
+- **Pullover (hantel): częściowe → otwarte** — REP Fitness = 5 (autor bez kwalifikacji, ogólny poradnik w dziale „Guides”, baner sprzedaży); `po.dbSetup` zostaje z samym BarBend. Możliwy powrót, jeśli ACE 37 opisuje ustawienie (nieczytane w przeliczeniu).
+- Landmine Press — bez zmian (BarBend: M. Dewar, CSCS, akt. 25.11.2024; OriGym: J. Brady, dyplom trenera personalnego, akt. 29.06.2026).
+- Arnold Press: z `ohp.mis.arch` usunięty Fitness Volt (data tylko w metadanych) — zostaje ISSA + BarBend, karta bez zmian.
+- **Korekta 2 (rozstrzygnięcie koordynatora 02.11.2026): Major Fitness = 5** (trzy strony: bez instrukcji konkretnej maszyny, banery; poradnik Cable Fly ma autora z certyfikatami — mimo to blog producenta). Przed korektą 2: 8 / 5 / 81. **Smith Machine Bench Press: własna z błędami → otwarta** (zostaje sam RitFit); **Cable Fly (low to high): własna bez błędów → otwarta** (zostaje sam ACE 163); Decline Bench Press zostaje własną z błędami bez `bp.grip` i `bp.control`. Ryzyko: Bells of Steel (ten sam charakter strony) — przy 5 Decline BP otwarta (6 / 4 / 84). Szczegóły i blok: `przeliczenie-szczebli-2026-11-02.md`, „Korekta 2”.
+
+## Wynik — wskazówki (stan PO korektach szczebli: rozstrzygnięcie + uzupełnienia 2 i 3 — przed przeliczeniem 02.11.2026, zachowane dla historii)
 „gotowe” = min. 1 ustawienie + 1 ruch + 1 błąd, każde zdanie ≥ 2 niezależne źródła szczebla 4; „częściowe” = ustawienie i ruch bez błędu
 (w JSON tylko z dopiskiem — decyzja przy scalaniu, czy karty częściowe idą do aplikacji); reszta „otwarte” z powodem w plikach.
 
@@ -39,15 +65,16 @@ Arnold `ohp.elbowsUnder` (ISSA + Fitness Volt) — nie dopisane; Decline Bench P
 `chest_fly-cz2.md`: Machine Pullover ma teraz 0 źródeł (opis w pliku nieaktualny; stan otwarte bez zmian).
 
 **Pułapka przy scalaniu (bloki JSON):** z bloku `overhead_press-cz1.md` NIE brać niczego (Standing BTN po uzupełnieniu 3 też otwarte). `overhead_press-cz1.md` ma blok sprzed korekty — wpisy „Single Arm Overhead Press (hantel)” i
-„Push Press - Behind the Neck” są NIEWAŻNE (po korekcie otwarte, zob. `overhead_press-cz1b.md`); Arnold, Seated Barbell, Kettlebell, Band — brać z cz1b
-(nadpisuje cz1); „Standing Barbell Press Behind Neck” — z cz1. `bench_press-cz1b.md`: „Squeeze Press (hantle)” warunkowe (pytanie 4, Mikolo).
-Wpisy częściowe (z dopiskiem): Single Arm Cable Chest Press, Cable Fly (low to high), Band Chest Fly, Pullover (hantel), Dip Machine, Landmine Press, Renegade Row.
+„Push Press - Behind the Neck” są NIEWAŻNE (po korekcie otwarte, zob. `overhead_press-cz1b.md`); Arnold i Seated Barbell — brać z bloku przeliczenia
+`przeliczenie-szczebli-2026-11-02.md` (Kettlebell i Band — po przeliczeniu otwarte, nie brać). `bench_press-cz1b.md`: „Squeeze Press (hantle)” warunkowe (pytanie 4, Mikolo).
+Wpisy częściowe (z dopiskiem): Band Chest Fly (Cable Fly (low to high) — po korekcie 2 otwarte), Landmine Press, Renegade Row, Ab Wheel (Single Arm Cable Chest Press, Dip Machine — po uzup. 3 otwarte; Pullover (hantel) — po przeliczeniu otwarte).
 
 **Uzupełnienie 2 szczebli (koordynator 1.1, 02.11 ~07:55):** Coach przy Plank Shoulder Taps → 5 (autor bez kwalifikacji) → ćwiczenie otwarte
 (wpis w JSON `pushup_plank-cz2.md` nieważny, notka na końcu pliku). Physitrack → 5 (potwierdza otwarte Single Arm OHP). Reguła „błąd = zaprzeczenie
 standardu”: odwrotna wskazówka liczy się jako drugie źródło błędu tylko przy bezpośrednim zaprzeczeniu — Seated Barbell i Band Shoulder Press
 (`ohp.mis.arch` vs „keep the back straight”) — bezpośrednie zaprzeczenie → zostają gotowe, oznaczyć przy scalaniu „błąd = zaprzeczenie standardu”;
 `ohp.mis.flare` vs „elbows pointed forward” (Seated Barbell) — do oceny recenzenta. Pytanie 5 niżej — rozstrzygnięte tą regułą.
+(Przeliczenie 02.11.2026: Band Shoulder Press otwarte z innego powodu — Prehab bez autora.)
 
 ## Wynik — role mięśni (`docs/research/role-miesni-fala-w1/`)
 Wszystkie propozycje to reguły po nazwie (`nameRules`) — sprawdzane w `matchRole` przed regułami rodziny i blokadą „rodzina z fazą + ćwiczenie na czas”; zdanie bez fazy.
@@ -79,6 +106,7 @@ wyklucza pomocniczy piersiowy. Opcje (do decyzji koordynatora 1.1 — produktowo
 - Front Raise And Pullover — `po.slow` („wracaj nad klatkę”) prawdopodobnie nie pasuje (start ze sztangą na udach; niepotwierdzone).
 
 ## Otwarte pytania dla koordynatora linii 1.1
+0. **Z przeliczenia 02.11.2026:** [ROZSTRZYGNIĘTE 02.11.2026: Major Fitness = 5 — korekta 2]; nowe: Bells of Steel (ten sam charakter strony — 4 czy 5); miejsce sekcji przeliczenia (jeden plik zamiast końca każdego pliku).
 1. Karty „częściowe” (bez błędu) — czy wdrażać (wzór: istniejące wpisy z pustym `mistakes`, np. „Incline Push Up”, „Triceps Dips (ławka)”).
 2. Rozbieżność korekt: Eleiko — korekta A: 4 (platforma edukacyjna firmowana marką), korekta B: 5 (brak autora/daty) → ujednolicić.
 3. Kopie instrukcji Life Fitness z serwisu z instrukcjami (Pec Deck, Dip Machine, maszyny) — przyjęte jako 4; jeśli odrzucone, Pec Deck → otwarte.
@@ -102,10 +130,11 @@ Role mięśni — wariant A (reguły po nazwie + funkcje utrzymania z własnym s
 ExRx 403; web.archive.org zablokowane w narzędziu; muscleandstrength 403; kettlebellkings 402; StrongFirst 307 (niektóre strony); elitefts 404 (część);
 tao.dragondoor poza siecią sesji; StatPearls captcha; Physiopedia, BJSM, MDPI 403. Wiele trafień to strony aplikacji — nie są źródłem.
 Id źródeł ról W1G5-1…7 robocze (przy scalaniu kolejne numery S; W1G5-4 = istniejące L6-S6).
+Strony The Prehab Guys (`/vimeo-video/…`) zwykle bez autora — sprawdzać każdą; poradniki producentów („Guides”, „/blogs/wiki/”) — sprawdzać autora i kwalifikacje.
 
 ## Następny krok
-Scalenie przez koordynatora linii 1.1: bloki JSON → `data/zrodla/cues.json`, zdania → `lib/cues/text/pl.json` + EN (recenzent-lokalizacji),
-role → `data/zrodla/role-miesni.json`; niezależna recenzja kart (L-047). Druga fala dla otwartych: szukać źródeł pod konkretny błąd.
+Decyzja koordynatora w pkt 0 (Bells of Steel w G5). Scalenie przez koordynatora linii 1.1: bloki JSON → `data/zrodla/cues.json` (dla overhead_press-cz1b, -cz2 i chest_fly-cz2 — blok z `przeliczenie-szczebli-2026-11-02.md`), zdania → `lib/cues/text/pl.json` + EN (recenzent-lokalizacji),
+role → `data/zrodla/role-miesni.json`; niezależna recenzja kart (L-047). Druga fala dla otwartych: szukać źródeł pod konkretny błąd; Kettlebell Press, Band Shoulder Press, Pullover (hantel) — drugie źródło szczebla 4.
 
 ## Wynik verify bazy i wypchnięcia
 - Pełne `npm run verify` na czystej bazie `integracja-1-1` (15abc58), 02.11.2026: **zielone** (EXIT 0; jest 654/656 plików w pierwszym przebiegu,
@@ -115,4 +144,5 @@ role → `data/zrodla/role-miesni.json`; niezależna recenzja kart (L-047). Drug
   Ocena: niestabilność `tests/cues.test.tsx` przy wspólnym przebiegu (fałszywe timery po zakończeniu środowiska) — nie z winy zmian (same dokumenty);
   do sprawdzenia przez koordynatora 1.1, czy wpis do docs/40 / backlog (ten zakres nie zmienia testów).
 - verify:docs wymaga `origin/main` i wspólnego przodka: w płytkiej kopii `git fetch origin main` + `git fetch --deepen=200 origin integracja-1-1 main`.
+- Przeliczenie 02.11.2026: zmiany tylko w kopii roboczej (scratchpad) — `STAN-g5-pchanie.md`, nowy `przeliczenie-szczebli-2026-11-02.md`; bez commitu i testów.
 - SHA wypchnięć: zob. wiadomość końcowa koordynatora grupy (gałąź `badania/g5-pchanie`).
