@@ -18,12 +18,21 @@ describe('tests-tz.yml — zadanie „zmiana-czasu” (A)', () => {
     expect(job).toMatch(/needs:\s*chwile/); expect(job).toMatch(/strefa_chwila:\s*\$\{\{\s*fromJSON\(needs\.chwile\.outputs\.lista\)\s*\}\}/);
     expect(job).not.toMatch(/^\s*-\s*\S+\|\d{4}-\d{2}-\d{2}T/m); /* żadnej chwili na sztywno w pliku */
     expect(tz).toMatch(/node scripts\/ci\/przejscia-czasu\.js macierz/);
-    for (const rok of [2027, 2028, 2031, 2040]) { /* każdy rok: trzy pozycje, a chwila 0,5–3 h po przejściu — w strefie jest już nowe przesunięcie, a start sprzed kilku godzin wypada w starym */
+    for (const rok of [2027, 2028, 2031, 2040]) { /* każdy rok: trzy przejścia + poniedziałek 00:30 (L-084 A), a chwila 0,5–3 h po przejściu — w strefie jest już nowe przesunięcie, a start sprzed kilku godzin wypada w starym */
       const poz = (JSON.parse(execFileSync('node', [path.join(root, 'scripts/ci/przejscia-czasu.js'), 'macierz', String(rok)]).toString()) as string[]).map(x => x.split('|'));
-      expect(poz.map(([z]) => z)).toEqual(['Europe/Warsaw', 'Europe/Warsaw', 'America/Los_Angeles']);
-      const dir = poz.map(([z, iso]) => { const t = Date.parse(iso); const off = (ms: number) => Date.parse(new Date(ms).toLocaleString('sv-SE', { timeZone: z }).replace(' ', 'T') + 'Z') - ms;
+      expect(poz.map(([z]) => z)).toEqual(['Europe/Warsaw', 'Europe/Warsaw', 'America/Los_Angeles', 'Europe/Warsaw']);
+      const dir = poz.slice(0, 3).map(([z, iso]) => { const t = Date.parse(iso); const off = (ms: number) => Date.parse(new Date(ms).toLocaleString('sv-SE', { timeZone: z }).replace(' ', 'T') + 'Z') - ms;
         expect([z, iso, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(iso), off(t - 8 * 3600e3) !== off(t), new Date(t).getUTCFullYear() === rok]).toEqual([z, iso, true, true, true]); return Math.sign(off(t) - off(t - 8 * 3600e3)); });
       expect(dir).toEqual([-1, 1, -1]); /* jesień (wstecz), wiosna (do przodu), jesień USA */
+    }
+  });
+  test('L-084 (A, 02.11.2026): czwarta pozycja to poniedziałek 00:30 czasu lokalnego (Europe/Warsaw), liczony, w roku przyszłym — „teraz − 1 h” wypada w poprzednim tygodniu', () => {
+    for (const rok of [2027, 2028, 2031, 2040]) {
+      const [strefa, isoChwila] = (JSON.parse(execFileSync('node', [path.join(root, 'scripts/ci/przejscia-czasu.js'), 'macierz', String(rok)]).toString()) as string[])[3].split('|');
+      const t = Date.parse(isoChwila); const w = (ms: number) => new Intl.DateTimeFormat('en-US', { timeZone: strefa, weekday: 'long', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).format(new Date(ms));
+      const dzien = Number(new Intl.DateTimeFormat('en-US', { timeZone: strefa, day: 'numeric' }).format(new Date(t))); const rokLok = new Intl.DateTimeFormat('en-US', { timeZone: strefa, year: 'numeric' }).format(new Date(t));
+      expect([rok, strefa, rokLok, dzien <= 7, w(t)]).toEqual([rok, 'Europe/Warsaw', String(rok), true, 'Monday 00:30']);
+      expect(w(t - 3600e3)).toBe('Sunday 23:30');
     }
   });
   test('bez argumentu skrypt liczy przejścia PRZYSZŁEGO roku (rok UTC + 1)', () => {
@@ -68,16 +77,30 @@ describe('nightly.yml — mutacje po modułach (B)', () => {
     expect(nightly).toMatch(/mutacje-podsumowanie:\s*\n(?:.*\n)*?\s*needs: \[mutacje\]/); expect(nightly).toMatch(/pattern: mutacje-\*/);
     expect(nightly).toMatch(/needs: \[losowe, mutacje, e2e-maly-ekran-ciemny\]/); expect(nightly).not.toMatch(/secrets\./);
   });
+  /* Nocne 41347718181 (02.11.2026, wariant A): `state/migrate:101-200` i `:201-9999` przekroczyły 300 min — dla każdego mutanta biegł cały zestaw logiki (migrate wołają pośrednio prawie wszystkie testy).
+     Dla modułów `state/migrate:*` krok Strykera dostaje MUT_TESTS (jest.mutation.config.js) z testami migracji i kształtu danych. */
+  test('02.11.2026: zadania `state/migrate:*` mają MUT_TESTS z istniejącymi testami, które zostają w konfiguracji mutacji; inne moduły — pusty', () => {
+    const krok = nightly.slice(nightly.indexOf('Testy mutacyjne (Stryker, jeden moduł)'));
+    const m = /MUT_TESTS:\s*\$\{\{\s*startsWith\(matrix\.modul, 'state\/migrate'\) && '([^']+)' \|\| ''\s*\}\}/.exec(krok);
+    expect(m).not.toBeNull(); const lista = m![1].split(',');
+    expect(lista.length).toBeGreaterThanOrEqual(10); expect(new Set(lista).size).toBe(lista.length);
+    const cfg = require('../jest.mutation.config.js') as { testPathIgnorePatterns: string[] };
+    for (const n of lista) {
+      const rel = `tests/${n}.test.ts`; expect([n, fs.existsSync(path.join(root, rel))]).toEqual([n, true]);
+      expect([n, cfg.testPathIgnorePatterns.some(p => new RegExp(p).test('/' + rel))]).toEqual([n, false]); /* wykluczony plik zostałby po cichu pominięty */
+    }
+    for (const n of ['migrate-unknown', 'migrate-released', 'places-migrate', 'swap-schema16']) expect(lista).toContain(n);
+  });
   test('M1-047: w nightly.yml nie ma bramki „3 kolejne nocne pełne przebiegi” jako obowiązującej', () => { expect(nightly).not.toMatch(/^\s*#\s*3 kolejne nocne/m); });
 });
 
 describe('scripts/ci/mutacje-podsumowanie.mjs', () => {
   const rap = (f: Record<string, string[]>) => ({ files: Object.fromEntries(Object.entries(f).map(([k, v]) => [k, { mutants: v.map(status => ({ status })) }])) });
-  const uruchom = (raporty: object[], mutate: string[], prog: number | null) => {
+  const uruchom = (raporty: object[], mutate: string[], prog: number | null, workflow?: string) => {
     const d = fs.mkdtempSync(path.join(require('os').tmpdir(), 'mut-'));
     raporty.forEach((r, i) => { fs.mkdirSync(path.join(d, `mutacje-${i}`)); fs.writeFileSync(path.join(d, `mutacje-${i}`, 'report.json'), JSON.stringify(r)); });
     const cfg = path.join(d, 's.json'); fs.writeFileSync(cfg, JSON.stringify({ mutate, thresholds: { break: prog } }));
-    try { return { kod: 0, out: execFileSync('node', [path.join(root, 'scripts/ci/mutacje-podsumowanie.mjs'), d, cfg], { stdio: 'pipe' }).toString() }; }
+    try { return { kod: 0, out: execFileSync('node', [path.join(root, 'scripts/ci/mutacje-podsumowanie.mjs'), d, cfg, ...(workflow ? [workflow] : [])], { stdio: 'pipe' }).toString() }; }
     catch (e) { return { kod: (e as { status: number }).status, out: String((e as { stdout: Buffer }).stdout) }; }
   };
   test('sumuje moduły z katalogów artefaktów i całość; wykryte = Killed + Timeout; wszystkie = bez Ignored', () => {
@@ -88,5 +111,34 @@ describe('scripts/ci/mutacje-podsumowanie.mjs', () => {
     const b = uruchom([rap({ 'lib/a.ts': ['Killed'] })], ['lib/a.ts', 'lib/b.ts'], 40); expect(b.kod).toBe(1); expect(b.out).toMatch(/Brak raportu modułów: lib\/b\.ts/);
     const p = uruchom([rap({ 'lib/a.ts': ['Survived', 'Survived', 'Killed'] })], ['lib/a.ts'], 40); expect(p.kod).toBe(1); expect(p.out).toMatch(/poniżej progu 40%/);
     const n = uruchom([], ['lib/a.ts'], 40); expect(n.kod).toBe(1); expect(n.out).toMatch(/Brak raportów/);
+  });
+  /* Nocne 41347718181 (02.11.2026): raporty zakresów jednego modułu wpadają do jednego pliku — brak raportu jednego zakresu dawał zielone na częściowych danych. */
+  describe('zakresy modułu dzielonego (02.11.2026)', () => {
+    const wf = (lista: string) => { const f = path.join(fs.mkdtempSync(path.join(require('os').tmpdir(), 'wf-')), 'nightly.yml'); fs.writeFileSync(f, `jobs:\n  mutacje:\n    strategy:\n      matrix:\n        modul: [${lista}]\n`); return f; };
+    const wLinii = (plik: string, linie: number[]) => ({ files: { [plik]: { mutants: linie.map(l => ({ status: 'Killed', location: { start: { line: l, column: 1 }, end: { line: l, column: 5 } } })) } } });
+    const WF = wf("units, 'plan:1-130', 'plan:131-260', 'plan:261-9999'");
+    test('wszystkie zakresy mają mutanty → kod 0', () => {
+      const r = uruchom([wLinii('lib/plan.ts', [10]), wLinii('lib/plan.ts', [200]), wLinii('lib/plan.ts', [300]), rap({ 'lib/units.ts': ['Killed'] })], ['lib/plan.ts', 'lib/units.ts'], 40, WF);
+      expect(r.kod).toBe(0); expect(r.out).not.toMatch(/Brak raportu zakresów/);
+    });
+    test('brak raportu jednego zakresu (środkowego) → kod 1 i nazwa zakresu, choć plik modułu ma raport', () => {
+      const r = uruchom([wLinii('lib/plan.ts', [10]), wLinii('lib/plan.ts', [300]), rap({ 'lib/units.ts': ['Killed'] })], ['lib/plan.ts', 'lib/units.ts'], 40, WF);
+      expect(r.kod).toBe(1); expect(r.out).toMatch(/Brak raportu zakresów: lib\/plan\.ts:131-260/); expect(r.out).not.toMatch(/Brak raportu modułów/);
+    });
+    test('bez trzeciego argumentu zakresy nie są sprawdzane (zgodność wsteczna); mutanty bez location nie liczą się do zakresu', () => {
+      expect(uruchom([wLinii('lib/plan.ts', [10])], ['lib/plan.ts'], 40).kod).toBe(0);
+      expect(uruchom([rap({ 'lib/plan.ts': ['Killed'] })], ['lib/plan.ts'], 40, wf("'plan:1-130'")).kod).toBe(1);
+    });
+    test('prawdziwy nightly.yml: raporty ze wszystkich pozycji `modul:` → kod 0; bez zakresu migracji 101-200 → kod 1 z nazwą', () => {
+      const poz = (/modul:\s*\[([^\]]+)\]/.exec(nightly)![1]).split(',').map(x => x.trim().replace(/['"]/g, '')).filter(x => /:\d+-\d+$/.test(x)).map(x => ({ plik: `lib/${x.split(':')[0]}.ts`, od: +x.split(':')[1].split('-')[0], nazwa: x }));
+      const wszystkie = poz.map(z => wLinii(z.plik, [z.od]));
+      const mutate = [...new Set(poz.map(z => z.plik))]; const real = path.join(root, '.github/workflows/nightly.yml');
+      expect(uruchom(wszystkie, mutate, 0, real).kod).toBe(0);
+      const bez = uruchom(poz.filter(z => z.nazwa !== 'state/migrate:101-200').map(z => wLinii(z.plik, [z.od])), mutate, 0, real);
+      expect(bez.kod).toBe(1); expect(bez.out).toMatch(/Brak raportu zakresów: lib\/state\/migrate\.ts:101-200/);
+    });
+    test('nightly.yml przekazuje podsumowaniu workflow (sparse-checkout + argument), żeby zakresy były sprawdzane w CI', () => {
+      expect(nightly).toMatch(/sparse-checkout: \|[^]*?\.github\/workflows\/nightly\.yml/); expect(nightly).toMatch(/mutacje-podsumowanie\.mjs raporty stryker\.config\.json \.github\/workflows\/nightly\.yml/);
+    });
   });
 });

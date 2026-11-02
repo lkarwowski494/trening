@@ -79,7 +79,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # „strefa|chwila UTC” — jedna pozycja = jedno zadanie; lista z zadania „chwile” (Europa jesienią i wiosną, USA jesienią)
+        # „strefa|chwila UTC” — jedna pozycja = jedno zadanie; lista z zadania „chwile” (Europa jesienią i wiosną, USA jesienią, pierwszy poniedziałek roku 00:30 w Europe/Warsaw — L-084 A, 02.11.2026)
         strefa_chwila: ${{ fromJSON(needs.chwile.outputs.lista) }}
         ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main"]') || format('["{0}"]', github.ref_name)) }}
     steps:

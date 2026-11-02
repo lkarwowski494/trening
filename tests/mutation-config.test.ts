@@ -3,6 +3,7 @@
    a konfiguracja dalej obejmuje testy logiki. */
 import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
+import { czytaZrodlo } from '../scripts/ci/czyta-zrodlo-modulu';
 
 const root = join(__dirname, '..');
 const cfg = require('../jest.mutation.config.js') as { testPathIgnorePatterns: string[]; testMatch: string[]; testTimeout?: number };
@@ -26,10 +27,26 @@ describe('konfiguracja testów mutacyjnych (M1-055)', () => {
      suche przejście padało i mutanty modułu `access` nie były liczone wcale. Test czytający źródło mutowanego modułu nie mierzy logiki (każdy mutant psuje go „z zewnątrz”) — poza konfiguracją mutacji. */
   test('testy czytające tekst źródłowy mutowanego modułu lib/ są poza konfiguracją mutacji (kopia Strykera instrumentuje moduły)', () => {
     const mutowane = (JSON.parse(readFileSync(join(root, 'stryker.config.json'), 'utf8')).mutate as string[]).map(m => m.replace(/\.ts$/, ''));
-    const czyta = (f: string) => { const z = readFileSync(join(root, 'tests', f), 'utf8').replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, ''); return mutowane.some(m => new RegExp(`readFileSync\\([^;]*?${m.replace('/', '[/\'", ]+')}\\.ts`).test(z)); };
-    const zrodlowe = testy.filter(czyta);
+    const zrodlowe = testy.filter(f => czytaZrodlo(readFileSync(join(root, 'tests', f), 'utf8'), mutowane));
     expect(zrodlowe).toContain('m5s1-dni-treningowe.test.ts');
     expect(zrodlowe.filter(f => !ignored('tests/' + f))).toEqual([]);
+  });
+  /* Nocne 41347718181 (analiza 02.11.2026, wariant A): tests/audit-m1-045-store-description.test.ts czyta lib/access.ts pomocnikiem read() (ścieżka nie stoi przy readFileSync) — dawny regex tego
+     nie widział i suche przejście Strykera dla `access` padało; to samo audit-m1-046 (code() → lib/timer.ts) i m5s1-bez-proby (tablica ścieżek). Testy logiki tych modułów zostają. */
+  test('02.11.2026: testy czytające źródło przez pomocnik (read/code) albo z tablicy ścieżek są poza konfiguracją; testy logiki access/timer zostają', () => {
+    for (const f of ['audit-m1-045-store-description', 'audit-m1-046-privacy-notifications', 'm5s1-bez-proby']) expect([f, ignored(`tests/${f}.test.ts`)]).toEqual([f, true]);
+    for (const f of ['access', 'timer-logic', 'entitlement', 'csv-import-logic']) { expect(testy).toContain(`${f}.test.ts`); expect([f, ignored(`tests/${f}.test.ts`)]).toEqual([f, false]); }
+  });
+  test('czytaZrodlo: literał ścieżki + readFileSync (także w pomocniku); sam import, komentarz i brak odczytu nie liczą się', () => {
+    const m = ['lib/access', 'lib/state/migrate'];
+    expect(czytaZrodlo("const read = (f) => fs.readFileSync(f); read('lib/access.ts')", m)).toBe(true);
+    expect(czytaZrodlo('const r = fs.readFileSync; r(`lib/state/migrate.ts`)', m)).toBe(true);
+    expect(czytaZrodlo('const files = ["lib/access.ts"]; fs.readFileSync(files[0])', m)).toBe(true);
+    expect(czytaZrodlo("import { PAYWALL } from '@/lib/access'; fs.readFileSync('docs/x.md')", m)).toBe(false);
+    expect(czytaZrodlo("// 'lib/access.ts'\nfs.readFileSync('docs/x.md')", m)).toBe(false);
+    expect(czytaZrodlo("const x = 'lib/access.ts';", m)).toBe(false);
+    expect(czytaZrodlo("fs.readFileSync(path.join(__dirname, '../lib/access.ts'), 'utf8')", m)).toBe(true);
+    expect(czytaZrodlo("fs.readFileSync('lib/accessory.ts')", m)).toBe(false);
   });
   test('testy z dwoma znanymi przypadkami z audytu są wykluczone: backlog-0.10.1-dane i locations-catalog', () => {
     expect(ignored('tests/backlog-0.10.1-dane.test.ts')).toBe(true);
