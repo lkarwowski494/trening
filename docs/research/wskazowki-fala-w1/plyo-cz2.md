@@ -8,6 +8,8 @@ Uwaga o zbiorze, z którego pochodzą nazwy katalogu (pole `fedb`): według rozs
 
 **Physitrack (2. sesja):** to platforma ćwiczeń dla fizjoterapeutów — według rozstrzygnięcia 02.11 dokumentacja innych aplikacji nie jest źródłem, a jej status jest niepewny. Wpisy, które stały na Physitrack + 1 źródle, przeniosłem do osobnego bloku **„warunkowo — do decyzji koordynatora”** (sekcja 2b); w głównym bloku danych zostaje tylko to, co ma 2 źródła bez Physitrack. Producenci liczą się tylko dla własnego rodzaju sprzętu (inSPORTline — skrzynie plyometryczne: tak).
 
+> **Przeliczenie 02.11.2026:** statusy w sekcji 1 i bloki w sekcjach 2 i 2b są NIEAKTUALNE — wiążąca jest sekcja „Korekta szczebli — przeliczenie koordynatora 02.11.2026” na końcu pliku (Physitrack = 5, NISMAT = 4, kryterium karty: ustawienie + ruch).
+
 ## 1. Tabela ćwiczeń
 
 | Klucz | Status | Uwagi |
@@ -28,7 +30,7 @@ Uwaga o zbiorze, z którego pochodzą nazwy katalogu (pole `fedb`): według rozs
 | Side Hop-Sprint | otwarte | Brak przeczytanego źródła szczebla 4. |
 | Single-Leg Hop Progression | otwarte | Brak przeczytanego źródła szczebla 4. |
 
-## 2. Dane (format `data/zrodla/cues.json`) — bez Physitrack
+## 2. Dane (format `data/zrodla/cues.json`) — bez Physitrack — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 ```json
 {
@@ -133,7 +135,7 @@ Uwaga o zbiorze, z którego pochodzą nazwy katalogu (pole `fedb`): według rozs
 }
 ```
 
-## 2b. Warunkowo — do decyzji koordynatora (wpisy stojące na Physitrack + 1 źródle)
+## 2b. Warunkowo — do decyzji koordynatora (wpisy stojące na Physitrack + 1 źródle) — NIEAKTUALNY — patrz przeliczenie 02.11.2026 (Physitrack = 5, blok odrzucony)
 
 Wyniki pierwszej sesji, zachowane bez zmian. Wdrożyć tylko, jeżeli koordynator uzna Physitrack za źródło szczebla 4; inaczej pozostają otwarte.
 
@@ -254,3 +256,76 @@ Odrzucone jako źródła (zasady projektu): strony innych aplikacji treningowych
 - Zostało: Single Leg Push-Off, Side to Side Box Shuffle (drugie źródło), błędy w Front Cone Hops, Single-Leg Lateral Hop i Alternate Leg Push-Off; zastępstwa Physitrack; 7 ćwiczeń bez żadnego źródła (w 3. sesji nie szukane).
 - Następny krok: fragmenty wydawcy Human Kinetics z podręcznika NSCA (rozdział o pliometrii: box drills — single-leg / side-to-side push-off; depth jumps) — jeśli dostępne, szczebel 3 i rozwiązuje kilka ćwiczeń naraz; potem pozostałe 7 ćwiczeń.
 - Pułapki: strony innych aplikacji dominują w wynikach wyszukiwania — odrzucać; Physitrack ma adresy regionalne (us/uk/ca/au) tej samej treści — jedno źródło; The Prehab Guys: adresy `library.…?p=` przekierowują na logowanie, publiczne są `theprehabguys.com/vimeo-video/…` (nie każda nazwa istnieje — 404); blogi sklepów odzieżowych (bez autora) — szczebel 5; PDF-y: WebFetch nie wyciąga tekstu — czytać zapisany plik narzędziem Read ze stronami (kosztowne w kontekście — po 1–3 strony).
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3) i rozstrzygnięcia koordynatora z 02.11.2026 (Physitrack = 5;
+The Prehab Guys warunkowo 4 per strona; NISMAT i NHS — instytucje medyczne = 4, firmowanie wystarcza). Kryterium karty z 02.11.2026: ustawienie + ruch.
+
+| Źródło | Szczebel | Dowód |
+|---|---|---|
+| ACE (#118, #120, #246, #230, #115), NASM (box jumps), Catalyst #552 | 4 | bez zmian |
+| insportline-qt1005 | 4 | producent skrzyń plyo — instrukcja własnego sprzętu (rozstrzygnięcie: producent tylko dla własnego rodzaju sprzętu) |
+| nismat-lat-jump-cone | **4** (było: do potwierdzenia) | NISMAT — instytut medycyny sportowej szpitala Lenox Hill; instytucja medyczna, firmowanie wystarcza (uzup. 2, wiersz szpitali; rozstrzygnięcie koordynatora 02.11) |
+| physitrack-lat-hops-hurdles, physitrack-lat-jumps-hurdles | **5** | uzup. 2, wiersz Physitrack (brak autora i daty, otoczenie marketingowe) |
+| prehab-lat-sl-hop-cone | **nie liczy się (5)** | nie otwierana osobno; strony `theprehabguys.com/vimeo-video/…` sprawdzone w plyo-cz1 (2 strony, WebFetch 02.11) nie mają autora — warunek „autor z kwalifikacjami” niespełniony. Bez wpływu na wynik: Single-Leg Lateral Hop i tak bez drugiego źródła |
+| bfs-plyo-2020 | bez rozstrzygnięcia (nie liczę) | BFS nie ma wiersza w pliku szczebli; dokument firmowany, bez autora osobowego. Bez wpływu: Front Cone Hops i tak bez ustawienia |
+| hk-radcliffe-box-skip | bez rozstrzygnięcia (biogram nieczytany) | jedno źródło — bez wpływu |
+| fiso-haagahelia-box-drills, ufl-recsports-handout | 5 / nieprzeczytany | bez zmian |
+
+| Zdanie (ćwiczenie) | Źródła ≥ 4 po przeliczeniu | Stan |
+|---|---|---|
+| `plyo.pushoff.setup`, `plyo.altPushoff.move` (Alternate Leg Push-Off) | ACE #246 + inSPORTline | zostaje |
+| `plyo.coneLat.hop` (Lateral Cone Hops, ruch) | ACE #120 + NISMAT (4) | zostaje jako zdanie — karta bez ustawienia |
+| `plyo.coneLat.setup`, `plyo.coneLat.move`, `jump.land`, `plyo.landTrunk`, `plyo.quickOff`, `jump.mis.stiff` (Lateral Cone Hops, blok 2b) | ACE (Physitrack = 5) | **spada** (odrzucone) |
+| `plyo.slLatHop.setup`, `plyo.slLatHop.move`, `plyo.landSoft` (Single-Leg Lateral Hop, blok 2b) | — (Physitrack 5, Prehab Guys strona bez autora) | **spada** (odrzucone) |
+| `plyo.coneFwd.hop` (Front Cone Hops, ruch) | ACE #118 + BFS (bez rozstrzygnięcia) | bez zmian — warunkowe; karta i tak bez ustawienia |
+| `bj.land`, `bj.mis.stiff` (Dumbbell Seated Box Jump) | ACE #115 + NASM | zostaje jako zdania — karta bez ustawienia i ruchu |
+
+| Karta | Stan przed | Stan po |
+|---|---|---|
+| Alternate Leg Push-Off | częściowe | **własna bez błędów** |
+| Lateral Cone Hops | częściowe (warunkowo gotowe) | **otwarta** (tylko ruch; ustawienie stało na Physitrack) |
+| Dumbbell Seated Box Jump | częściowe | **otwarta** (brak ustawienia i ruchu; są tylko lądowanie i błąd) |
+| Front Cone Hops | częściowe (warunkowo) | **otwarta** (brak ustawienia) |
+| Single-Leg Lateral Hop | otwarte (warunkowo częściowe) | otwarta |
+| pozostałe 10 (Alternate Leg Diagonal Bound, Box Skip, Single-Leg Stride Jump, Single Leg Push-Off, Side to Side Box Shuffle, Double/Single Leg Butt Kick, Side Standing Long Jump, Side Hop-Sprint, Single-Leg Hop Progression) | otwarte | otwarte |
+
+Razem cz2 (15 ćwiczeń): przed — gotowe 0, częściowe 3 (+1 warunkowo; przy uznaniu Physitrack: 1 gotowe), otwarte 11–12; po — własne z błędami 0, własne bez błędów 1, otwarte 14.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+Ten blok definiuje też `insportline-qt1005` i org `inSPORTline`, których używa Depth Jump w bloku `plyo-cz1.md`.
+
+```json
+{
+ "sources": {
+  "ace-246": {"org": "ACE", "title": "Alternate Leg Push-off (#246)", "url": "https://www.acefitness.org/resources/everyone/exercise-library/246/alternate-leg-push-off/", "level": 4},
+  "insportline-qt1005": {"org": "inSPORTline", "title": "Plyometric Box Set — instrukcja (QT1005), s. 3 „Plyo Boxes Exercises”", "url": "https://www.insportline.eu/upload/file/7267_manual_QT1005_or.pdf", "level": 4}
+ },
+ "orgs": {
+  "inSPORTline": {"name": "inSPORTline — instrukcja zestawu skrzyń plyometrycznych (producent sprzętu)", "level": 4, "kind": "maker"}
+ },
+ "exercises": {
+  "Alternate Leg Push-Off": {
+   "setup": [
+    {"c": "plyo.pushoff.setup", "s": [["ace-246", "Step 1"], ["insportline-qt1005", "s. 3, ALTERNATING PUSH-OFF (pierwsza pozycja), Start"]]}
+   ],
+   "move": [
+    {"c": "plyo.altPushoff.move", "s": [["ace-246", "Step 2–3"], ["insportline-qt1005", "s. 3, ALTERNATING PUSH-OFF (pierwsza pozycja), Action"]]}
+   ],
+   "tips": [],
+   "mistakes": []
+  }
+ }
+}
+```
+
+Nowe zdania w bloku (2): `plyo.pushoff.setup`, `plyo.altPushoff.move`. Poza blokiem (potwierdzone, ale karta otwarta): `plyo.coneLat.hop` (ACE + NISMAT);
+`bj.land`, `bj.mis.stiff` dla Dumbbell Seated Box Jump. Warunkowe: `plyo.coneFwd.hop` (BFS bez rozstrzygnięcia).
+
+Wątpliwości:
+1. Lateral Cone Hops: ACE #120 Step 1 opisuje ustawienie — jeśli NISMAT (3 zdania) zawiera też ustawienie (start bokiem do pachołka), karta byłaby własna; treści NISMAT
+   pod tym kątem nie sprawdzałem (przeliczenie, nie fala badań).
+2. Dumbbell Seated Box Jump i Lateral Cone Hops mają potwierdzone zdania lądowania/błędu albo ruchu, ale przy kryterium „ustawienie + ruch” nie dostają karty — do decyzji
+   programisty/koordynatora, czy pojedyncze potwierdzone zdania mają trafić do danych bez karty.

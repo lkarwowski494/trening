@@ -13,6 +13,8 @@ IDEA (PDF) — 404; garagegymreviews.com — 404 (i tak „nie liczyć”); barb
 StrongFirst: adresy `?p=` czasem dają 307, czasem prowadzą do adresu kanonicznego. Te strony nie są źródłami w tym pliku.
 Strony innych aplikacji treningowych z wyników wyszukiwania pominięto (nie są źródłem, nazwy nie trafiają do repo). Physitrack — nie użyty.
 
+> **Przeliczenie 02.11.2026:** statusy w sekcji (1) i blok w sekcji (2) są NIEAKTUALNE — wiążąca jest sekcja „Korekta szczebli — przeliczenie koordynatora 02.11.2026” na końcu pliku (Onnit = 5, ACE 8250 nie liczony).
+
 ## (1) Ćwiczenia
 
 | Klucz | Status | Uwagi |
@@ -29,6 +31,8 @@ Strony innych aplikacji treningowych z wyników wyszukiwania pominięto (nie są
 | Kettlebell Pirate Ships | otwarte | brak źródeł szczebla 4 |
 
 ## (2) Dane
+
+**NIEAKTUALNY — patrz przeliczenie 02.11.2026** (blok do wdrożenia na końcu pliku).
 
 ```json
 {
@@ -224,9 +228,9 @@ Uwaga do `kbb.dbSnatchMove`: łapanie hantla w przysiadzie podaje tylko BarBend 
 | sf-pak-clean | https://www.strongfirst.com/an-olympic-weightlifting-approach-to-coaching-the-kettlebell-clean/ | StrongFirst | 4 | progresja, błędy (casting, impact, arms overpowering legs) |
 | sf-free-hand (poza danymi) | https://www.strongfirst.com/free-hand-one-arm-swing/ | StrongFirst (B. Jones, ok. 05.2016) | 4 | barki „squared-off” wymagane; opcje wolnej ręki; błędy: wolna ręka jako napęd, dłoń na udzie |
 | sf-chains-dbl-snatch (poza danymi) | https://www.strongfirst.com/improve-your-double-kettlebell-snatch/ | StrongFirst | 4 | „Using Chains…” (hip finish → bell floats up; punch straight up); błędów brak |
-| onnit-kb-clean | https://www.onnit.com/academy/one-arm-kettlebell-clean | Onnit (producent kettlebelli) | 4 | kroki 1–4 |
-| onnit-kb-snatch | https://onnit.com/academy/kettlebell-snatch | Onnit (producent kettlebelli) | 4 | kroki 1–5, „Common Mistakes” |
-| ace-press-8250-snatch | https://www.acefitness.org/about-ace/press-room/in-the-news/8250/how-to-do-the-kettlebell-snatch-to-feel-totally-powerful-shape/ | ACE (przedruk artykułu magazynu) | 4 (PROPOZYCJA) | kroki A–G |
+| onnit-kb-clean | https://www.onnit.com/academy/one-arm-kettlebell-clean | Onnit (producent kettlebelli) | 4 → **5 (przeliczenie 02.11.2026)** | kroki 1–4 |
+| onnit-kb-snatch | https://onnit.com/academy/kettlebell-snatch | Onnit (producent kettlebelli) | 4 → **5 (przeliczenie 02.11.2026)** | kroki 1–5, „Common Mistakes” |
+| ace-press-8250-snatch | https://www.acefitness.org/about-ace/press-room/in-the-news/8250/how-to-do-the-kettlebell-snatch-to-feel-totally-powerful-shape/ | ACE (przedruk artykułu magazynu) | 4 (PROPOZYCJA) → **nie liczy się (przeliczenie 02.11.2026)** | kroki A–G |
 | ace-5386-adv-kb | https://www.acefitness.org/resources/pros/expert-articles/5386/advanced-kettlebell-workout-for-increased-strength-and-conditioning/ | ACE (21.04.2015) | 4 | Double Kettlebell Swing, Double Kettlebell Clean |
 | ace-392 (poza danymi) | https://www.acefitness.org/resources/everyone/exercise-library/392/single-arm-swing/ | ACE | 4 | opis (stopy na szer. barków, chwyt jedną ręką, plecy proste, siła z nóg i bioder, wolna ręka w tył i w przód) |
 | barbend-kb-clean | https://barbend.com/kettlebell-clean/ | BarBend (D. Fraiser) | 4 | kroki 1–5, Common Mistakes, Double Kettlebell Clean |
@@ -262,6 +266,7 @@ Zrobione (02.11.2026): Kettlebell Clean (gotowe, z setup), Kettlebell Snatch (go
 przeklasyfikowanie źródeł wg rozstrzygnięcia koordynatora (Breaking Muscle usunięte z danych, Onnit tylko dla kettlebelli, WECKMETHOD nie liczony);
 próby dla One-Arm Swing, Dumbbell Clean, Double Snatch, Sumo High Pull, Bottoms-Up Clean, Pirate Ships — w „Otwarte”.
 Dla drugiego badacza (kb_ballistic-cz2, Clean and Jerk): zdania zarzutu z Kettlebell Clean — `kbb.cleanSetup`, `kbb.cleanMove`, `kbb.rack`, `kb.hips`, `kbb.mis.bang`, `kbb.mis.armPull`, `kbb.mis.cast` — każde z ≥ 2 źródłami szczebla 4.
+(Przeliczenie 02.11.2026: `kbb.cleanSetup` i `kbb.mis.bang` (clean) mają już tylko 1 źródło — patrz sekcja na końcu.)
 
 Zostało: One-Arm Kettlebell Swings (drugie źródło szczebla 4 o wariancie jednorącz: setup/move/błąd), Dumbbell Clean (źródło szczebla 4), Double Kettlebell Clean (błędy),
 Double Kettlebell Snatch, Kettlebell Sumo High Pull, Bottoms-Up Clean From The Hang Position, Kettlebell Pirate Ships; `kbb.close` w snatch (drugie źródło).
@@ -272,3 +277,115 @@ NFPT — ponowić później (503, nagłówek Retry-After 3600 s), liczyć tylko 
 Pułapki: exrx.net 403 i web.archive.org zablokowane; nsca.com/…/kinetic-select 403; kettlebellkings.com 402; rkcblog.dragondoor.com 503; garagegymreviews.com 404 (i tak nie liczyć);
 strongfirst.com — `?p=` czasem 307, czasem prowadzi do adresu kanonicznego; zgadnięte adresy StrongFirst i Rogue często 404 — szukać adresu wyszukiwarką.
 Wyszukiwarka zwraca głównie strony aplikacji treningowych — nie są źródłem.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3). Strony warunkowe sprawdzone WebFetch 02.11.2026.
+
+| Źródło | Szczebel | Dowód |
+|---|---|---|
+| StrongFirst (sf-*; kilka artykułów = jedna organizacja) | 4 | szkoła instruktorów kettlebell, artykuły z autorem (bez zmian) |
+| onnit-kb-clean, onnit-kb-snatch | **5** | uzupełnienie 3, wiersz Onnit: artykuły bez daty, sklep z suplementami (pkt 2–3) |
+| ace-press-8250-snatch | **nie liczy się (5)** | uzupełnienie 2: przedruk cudzego artykułu — ocena autora. Strona: „By Megan Falk”, „This article originally appeared in SHAPE on January 23, 2023”; autorka bez podanych kwalifikacji. Ekspertka cytowana w tekście („an ACE-certified personal trainer…”) nie jest autorką — patrz wątpliwości |
+| ace-5386-adv-kb | 4 | treść ACE z datą 21.04.2015 |
+| barbend-kb-clean | 4 | strona: „Written by Damali Fraiser”, biogram „Canadian Kettlebell Instructor…”, „Last updated on September 25th, 2023” |
+| barbend-kb-snatch | 4 | strona: „Written by Alex Polish, NASM-CNC, ACE-CPT, SITA-SIFS”, „Last updated on August 9th, 2023” |
+| barbend-db-snatch | 4 | autor M. Dewar, CSCS; aktualizacja J. Dickson, NASM-CPT, USAW-L2, 26.11.2024 (dowód w tytule źródła, sekcja 2) |
+| rogue-alt-db-snatch | 4 | producent hantli — instrukcja własnego rodzaju sprzętu |
+
+| Zdanie (ćwiczenie) | Źródła ≥ 4 po przeliczeniu | Stan |
+|---|---|---|
+| kbb.cleanSetup (KB Clean) | BarBend | **spada** (Onnit 5) |
+| kbb.cleanMove (KB Clean) | StrongFirst + BarBend | zostaje |
+| kbb.rack (KB Clean) | StrongFirst + BarBend | zostaje |
+| kb.hips (KB Clean) | StrongFirst + BarBend | zostaje |
+| kbb.mis.bang (KB Clean) | StrongFirst | **spada** (Onnit 5) |
+| kbb.mis.armPull (KB Clean) | StrongFirst + BarBend — oba wprost jako błąd | zostaje |
+| kbb.mis.cast (KB Clean) | StrongFirst + BarBend | zostaje |
+| kbb.snatchSetup (KB Snatch) | StrongFirst | **spada** (ACE 8250, Onnit) |
+| kbb.snatchMove (KB Snatch) | StrongFirst | **spada** (ACE 8250, Onnit) |
+| kb.hips (KB Snatch) | StrongFirst | **spada** (Onnit) |
+| kbb.punch (KB Snatch) | StrongFirst + BarBend | zostaje |
+| kbb.lockout (KB Snatch) | — | **spada** (ACE 8250, Onnit) |
+| kbb.mis.bang (KB Snatch) | StrongFirst + BarBend | zostaje |
+| kbb.mis.armPull (KB Snatch) | — wprost jako błąd tylko Onnit; StrongFirst = przyczyna, nie zaprzeczenie standardu (uzup. 2, reguła drugiego źródła błędu) | **spada** |
+| kbb.dbSnatchSetup, kbb.dbSnatchMove, kbb.dbArmLate, kbb.lockout (Snatch (hantel)) | BarBend + Rogue | zostaje |
+| kbb.dbMisArmPull (Snatch (hantel)) | BarBend wprost; Rogue tylko zasada („only use the arm after…”) — przyczyna, nie zaprzeczenie standardu | **spada** |
+| kbb.dblStance, kbb.dblCleanMove (Double KB Clean) | ACE 5386 + BarBend | zostaje |
+
+| Karta | Stan przed | Stan po |
+|---|---|---|
+| Kettlebell Clean | gotowe | **otwarta** (brak zdania ustawienia; ruch, 2 wskazówki i 2 błędy potwierdzone — wystarczy jedno źródło ustawienia szczebla 4 obok BarBend) |
+| Kettlebell Snatch | gotowe | **otwarta** (brak ustawienia i ruchu; zostają `kbb.punch`, `kbb.mis.bang`) |
+| Snatch (hantel) | gotowe | **własna bez błędów** |
+| Double Kettlebell Clean | częściowe | **własna bez błędów** (kryterium karty z 02.11: ustawienie + ruch) |
+| One-Arm Kettlebell Swings, Dumbbell Clean, Double Kettlebell Snatch, Kettlebell Sumo High Pull, Bottoms-Up Clean From The Hang Position, Kettlebell Pirate Ships | otwarte | otwarte (Dumbbell Clean: Human Kinetics/Shimonek mógłby być 4 wg uzup. 2, ale drugie źródło to Onnit = 5 → nadal 1) |
+
+Klucz katalogu: „Snatch” w bloku nie istnieje; właściwy klucz to **„Snatch (hantel)”** (`/home/user/trening/lib/catalog.generated.ts:251`) — poprawiony w bloku niżej.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+```json
+{
+ "sources": {
+  "barbend-db-snatch": {"org": "BarBend", "title": "Dumbbell Snatch (M. Dewar, CSCS; aktualizacja J. Dickson, NASM-CPT, USAW-L2, 26.11.2024)", "url": "https://barbend.com/dumbbell-snatch/", "level": 4},
+  "rogue-alt-db-snatch": {"org": "Rogue", "title": "Movement Demo — Alternating Dumbbell Snatch (Set Up, Execution)", "url": "https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-alternating-dumbbell-snatch", "level": 4},
+  "ace-5386-adv-kb": {"org": "ACE", "title": "Advanced Kettlebell Workout for Increased Strength and Conditioning (ACE, 21.04.2015)", "url": "https://www.acefitness.org/resources/pros/expert-articles/5386/advanced-kettlebell-workout-for-increased-strength-and-conditioning/", "level": 4},
+  "barbend-kb-clean": {"org": "BarBend", "title": "Kettlebell Clean (D. Fraiser, Canadian Kettlebell Instructor, 25.09.2023)", "url": "https://barbend.com/kettlebell-clean/", "level": 4}
+ },
+ "orgs": {
+  "Rogue": {"name": "Rogue Fitness — Movement Library producenta sztang i hantli (roguefitness.com/theindex); liczona tylko dla własnego rodzaju sprzętu", "level": 4, "kind": "maker"}
+ },
+ "exercises": {
+  "Snatch (hantel)": {
+   "setup": [
+    {"c": "kbb.dbSnatchSetup", "s": [
+     ["barbend-db-snatch", "Step 1: Squat Down (dumbbell directly below you; deadlift-like start, chest up; back flat)"],
+     ["rogue-alt-db-snatch", "Set Up (dumbbell between your feet; hinge, one hand on the dumbbell in a deadlift set up; flat back)"]
+    ]}
+   ],
+   "move": [
+    {"c": "kbb.dbSnatchMove", "s": [
+     ["barbend-db-snatch", "Step 2–3 (forcefully extend your body; guide it vertically; extend the arm from underneath; elbow locked out)"],
+     ["rogue-alt-db-snatch", "Execution (drive the floor away; extend hips and knees, shrug; pull and punch the dumbbell overhead)"]
+    ]}
+   ],
+   "tips": [
+    {"c": "kbb.dbArmLate", "s": [
+     ["barbend-db-snatch", "Common Mistakes: Pulling With Your Arms (arm relaxed, legs and hips do the work in the first half)"],
+     ["rogue-alt-db-snatch", "Execution (Only use the arm after extending the hips and knees)"]
+    ]},
+    {"c": "kbb.lockout", "s": [
+     ["barbend-db-snatch", "Step 3–4 (elbow is locked out; keeping your loaded arm locked out)"],
+     ["rogue-alt-db-snatch", "Execution (Arm locked out)"]
+    ]}
+   ],
+   "mistakes": []
+  },
+  "Double Kettlebell Clean": {
+   "setup": [
+    {"c": "kbb.dblStance", "s": [
+     ["ace-5386-adv-kb", "Double Kettlebell Swing (feet wider than hip-width apart; neutral spine as the bells go back between the legs)"],
+     ["barbend-kb-clean", "Double Kettlebell Clean (you'll need a wider stance to hike both bells between your legs)"]
+    ]}
+   ],
+   "move": [
+    {"c": "kbb.dblCleanMove", "s": [
+     ["ace-5386-adv-kb", "Double Kettlebell Clean (after hip extension pull the kettlebell in at the hip, rotate around the wrist, finish in the rack on arm and chest)"],
+     ["barbend-kb-clean", "Double Kettlebell Clean (same form as the single-arm clean, one bell in each hand) + Steps 2–4"]
+    ]}
+   ],
+   "tips": [],
+   "mistakes": []
+  }
+ }
+}
+```
+
+Zdania potwierdzone, ale poza blokiem (ich karty są otwarte): KB Clean — `kbb.cleanMove`, `kbb.rack`, `kb.hips`, `kbb.mis.armPull`, `kbb.mis.cast`;
+KB Snatch — `kbb.punch`, `kbb.mis.bang`. Nowe zdania w bloku: `kbb.dbSnatchSetup`, `kbb.dbSnatchMove`, `kbb.dbArmLate`, `kbb.lockout`, `kbb.dblStance`, `kbb.dblCleanMove` (6).
+
+Wątpliwości:
+1. ACE 8250 — instrukcje kroków mogą pochodzić od cytowanej trenerki z certyfikatem ACE (Kelly Matthews); autorką tekstu jest dziennikarka. Jeśli koordynator
+   uzna przedruk za „tekst eksperta ACE” — KB Snatch odzyskuje `kbb.snatchSetup` i `kbb.snatchMove` (ACE + StrongFirst) i staje się „własna z błędami”; `kbb.lockout` nadal 1 źródło.
+2. Kettlebell Clean — „zarzut” jest fazą One-Arm KB Clean and Jerk (kb_ballistic-cz2.md); brak `kbb.cleanSetup` przenosi się tam.

@@ -10,6 +10,8 @@ Każde zdanie ma ≥ 2 przeczytane źródła z różnych organizacji (szczebel 4
 Zdań z zestawu ogólnego (`lib/figures/v2/cue-sets.json`), których przeczytane źródła dla danego ćwiczenia nie potwierdzają, nie wpisuję — opis w „Otwarte”.
 ExRx, web.archive.org i topendsports niedostępne.
 
+> **Przeliczenie 02.11.2026:** statusy w sekcji 1 i blok w sekcji 2 są NIEAKTUALNE — wiążąca jest sekcja „Korekta szczebli — przeliczenie koordynatora 02.11.2026” na końcu pliku (Coach i Freelap USA — strony bez autora z kwalifikacjami = nie liczą się).
+
 ## 1. Ćwiczenia
 
 | Klucz | Status | Uwagi |
@@ -24,7 +26,7 @@ ExRx, web.archive.org i topendsports niedostępne.
 | One-Arm Medicine Ball Slam | otwarte | brak przeczytanego źródła szczebla ≤ 4 o wersji jednorącz |
 | Supine One-Arm Overhead Throw | otwarte | brak przeczytanego źródła o wersji jednorącz |
 
-## 2. Dane (propozycja w formacie cues.json)
+## 2. Dane (propozycja w formacie cues.json) — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 ```json
 {
@@ -242,3 +244,121 @@ zgodne co do celu przed sobą). Zdania przygotowane w pierwszej sesji, dziś bez
   (inne karty RFL, UK Athletics, Athletics Australia „Athletics Coach”, World Athletics — strona indeksu Teaching athletics) z tabelami ✓/✗ jak w RFL.
 - Pułapki: wyniki wyszukiwania to w większości strony aplikacji (nie źródło); TRX powiela listę rzutów z Plyometric Anatomy (niezależność); PDF czytać narzędziem
   Read z pliku zapisanego przez WebFetch (WebFetch zwraca binaria); karty World Athletics nie mają sekcji błędów — tylko „Participants should remember…”.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3) i rozstrzygnięcia koordynatora z 02.11.2026 (Freelap USA i Coach warunkowo 4
+per autor — biogram z kwalifikacjami; Physitrack = 5). Kryterium karty z 02.11.2026: ustawienie + ruch. Strony warunkowe sprawdzone WebFetch 02.11.2026.
+
+| Źródło | Szczebel | Dowód |
+|---|---|---|
+| ace-178, ace-264 | 4 | bez zmian |
+| crossfit-wall-ball | 4 | organizacja szkoląca trenerów, treść firmowana (bez zmian) |
+| rep-wall-balls | 4 | producent piłek do wall ball — własny rodzaj sprzętu, treść firmowana, akt. 03.08.2026 |
+| rfl-mb-chest-throw, wa-backward-overhead-throw, wa-overarm-throw | 4 | federacje — materiały szkoleniowe firmowane (bez zmian) |
+| hk-blob-throw (NSCA, Human Kinetics), pmc-3658404 | 3 | książka NSCA (uzup. 2: książki NSCA = 3), przegląd w czasopiśmie |
+| coach-wall-balls | **nie liczy się (5)** | strona: „By Harry Bullmore Contributions by Nick Harris-Fry”, „last updated 28 November 2023”; biogram autora: „Harry covers news, reviews and features for Coach…”, „over a decade of training experience” — brak kwalifikacji trenerskich; recenzenta brak |
+| freelap-mb-mistakes | **nie liczy się (5)** | strona: tylko „By Carl Valle” i zdjęcie — bez biogramu, kwalifikacji i daty |
+| hk-plyo-anatomy-throws (przedruk FitPro) | nie liczy się | uzup. 2: „Plyometric Anatomy” — do sprawdzenia biogramów, do tego czasu nie liczy się (bez zmian; jedno źródło Scoop) |
+| trx-mb-throws | nie niezależne (bez zmian) | powiela listę z Plyometric Anatomy |
+| sussex-*, vhi-*, physitrack-*, breakingmuscle-*, seedman-ahp | 5 | bez zmian (uzup. 2) |
+
+| Zdanie (ćwiczenie) | Źródła ≥ 4 (lub 3) po przeliczeniu | Stan |
+|---|---|---|
+| `wb.setup`, `wb.move`, `wb.mis.shallow` (Wall Ball) | CrossFit + REP Fitness (Coach odpada jako trzecie) | zostaje |
+| `wb.catch` (Wall Ball) | REP Fitness (Coach = 5) | **spada** |
+| `mbcp.setup`, `mbcp.move` (Chest Pass) | ACE #264 + RFL (warianty opisane) | zostaje |
+| `mbcp.mis.elbows` (Chest Pass, warunkowe) | RFL (Freelap = 5) | nie wchodzi (było: do decyzji) |
+| `bmbt.setup`, `bmbt.move` (Backward Throw) | Manske (3) + NSCA/HK (3) + World Athletics (4) | zostaje |
+| `bmbt.armsStraight` (Backward Throw) | NSCA/HK (3) + World Athletics (4) | zostaje |
+| `soht.setup`, `soht.move`, `plank.brace` (Standing Two-Arm Overhead Throw) | ACE #178 + World Athletics | zostaje |
+
+| Karta | Stan przed | Stan po |
+|---|---|---|
+| Wall Ball | gotowe | **własna z błędami** (bez `wb.catch`) |
+| Medicine Ball Chest Pass | częściowe | **własna bez błędów** |
+| Backward Medicine Ball Throw | częściowe | **własna bez błędów** |
+| Standing Two-Arm Overhead Throw | częściowe | **własna bez błędów** |
+| Medicine Ball Scoop Throw, Supine Chest Throw, Supine Two-Arm Overhead Throw, One-Arm Medicine Ball Slam, Supine One-Arm Overhead Throw | otwarte | otwarte |
+
+Razem rzuty (9 ćwiczeń): przed — gotowe 1, częściowe 3, otwarte 5; po — własne z błędami 1, własne bez błędów 3, otwarte 5.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+```json
+{
+ "orgs": {
+  "CrossFit": {"name": "CrossFit — CrossFit Essentials (crossfit.com, materiały szkoleniowe organizacji)", "level": 4, "kind": "org"},
+  "REP Fitness": {"name": "REP Fitness — blog Training (producent sprzętu, m.in. piłek do wall ball, 2026)", "level": 4, "kind": "maker"},
+  "RFL": {"name": "Rugby Football League — karta ćwiczenia „Med Ball Chest Throw” (federacja, szkolenie trenerów)", "level": 4, "kind": "org"},
+  "World Athletics": {"name": "World Athletics — Kids' Athletics, Teaching athletics (federacja, materiały szkoleniowe)", "level": 4, "kind": "org"},
+  "Coleman, Szymanski (NSCA, Human Kinetics)": {"name": "NSCA — Strength Training for Baseball, red. Coleman, Szymanski (Human Kinetics; fragment ze strony wydawcy)", "level": 3, "kind": "book"},
+  "Manske, Reiman (Wichita State University, Duke University)": {"name": "Manske, Reiman — przegląd testów funkcjonalnych, Sports Health 2013", "level": 3, "kind": "study"}
+ },
+ "sources": {
+  "ace-178": {"org": "ACE", "title": "Overhead Medicine Ball Throws (#178)", "url": "https://www.acefitness.org/resources/everyone/exercise-library/178/overhead-medicine-ball-throws/", "level": 4},
+  "ace-264": {"org": "ACE", "title": "Medicine Ball Lunge to Chest Pass (#264)", "url": "https://www.acefitness.org/resources/everyone/exercise-library/264/medicine-ball-lunge-to-chest-pass/", "level": 4},
+  "crossfit-wall-ball": {"org": "CrossFit", "title": "The Wall-Ball Shot: CrossFit's Secret Weapon for Cardiovascular Conditioning", "url": "https://www.crossfit.com/essentials/crossfit-wall-ball-secret-weapon", "level": 4},
+  "rep-wall-balls": {"org": "REP Fitness", "title": "How to Improve Your Wall Balls", "url": "https://uk.repfitness.com/blogs/training/wall-balls", "level": 4},
+  "rfl-mb-chest-throw": {"org": "RFL", "title": "Med Ball Chest Throw (karta PDF z oceną 1–5)", "url": "https://www.rugby-league.com/uploads/docs/Med%20Ball%20Chest%20Throw.pdf", "level": 4},
+  "wa-backward-overhead-throw": {"org": "World Athletics", "title": "Backward overhead throw (Kids' Athletics, poziom 3)", "url": "https://worldathletics.org/kids-athletics/teaching-athletics/backward-overhead-throw", "level": 4},
+  "wa-overarm-throw": {"org": "World Athletics", "title": "Overarm throw (Kids' Athletics)", "url": "https://worldathletics.org/kids-athletics/teaching-athletics/overarm-throw", "level": 4},
+  "hk-blob-throw": {"org": "Coleman, Szymanski (NSCA, Human Kinetics)", "title": "Medicine ball BLOB throw (between legs, over back) — fragment, oprac. J. Dawes", "url": "https://us.humankinetics.com/blogs/excerpt/medicine-ball-blob-throw-between-legs-over-back", "level": 3},
+  "pmc-3658404": {"org": "Manske, Reiman (Wichita State University, Duke University)", "title": "Functional Performance Testing for Power and Return to Sports, Sports Health 2013 (Trunk Power Tests)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3658404/", "level": 3}
+ },
+ "exercises": {
+  "Wall Ball": {
+   "setup": [
+    {"c": "wb.setup", "s": [["rep-wall-balls", "opis ruchu („holding the ball at your chest”)"], ["crossfit-wall-ball", "THE WALL-BALL SHOT („Keep the ball low to the chest.”)"]]}
+   ],
+   "move": [
+    {"c": "wb.move", "s": [["rep-wall-balls", "wypowiedź trenerki („squat and as soon as you open your hips, throw the ball”)"], ["crossfit-wall-ball", "THE WALL-BALL SHOT (przysiad na początku każdego powtórzenia, wyrzut w cel; parafraza)"]]}
+   ],
+   "tips": [],
+   "mistakes": [
+    {"c": "wb.mis.shallow", "s": [["crossfit-wall-ball", "THE WALL-BALL SHOT („…it is very common to see poor squat depth in this exercise.”)"], ["rep-wall-balls", "częste błędy (za płytki przysiad; „Quarter squats won't provide the full benefit”)"]]}
+   ]
+  },
+  "Medicine Ball Chest Pass": {
+   "setup": [
+    {"c": "mbcp.setup", "s": [["ace-264", "krok 1, Starting position (przodem do partnera, piłka na wysokości klatki; parafraza; wariant: z wykrokiem)"], ["rfl-mb-chest-throw", "Directions, punkty 1–2 („Stand with feet shoulder-width apart and hands behind the ball.”, piłka przyciągnięta do klatki; wariant: rzut na odległość z lekkiego przysiadu)"]]}
+   ],
+   "move": [
+    {"c": "mbcp.move", "s": [["ace-264", "krok 2 (wypchnięcie piłki od klatki do partnera; parafraza; wariant: z wykrokiem)"], ["rfl-mb-chest-throw", "Directions, punkt 3 („…extend your elbows to push ball away from body.”; wariant: rzut na odległość)"]]}
+   ],
+   "tips": [],
+   "mistakes": []
+  },
+  "Backward Medicine Ball Throw": {
+   "setup": [
+    {"c": "bmbt.setup", "s": [["pmc-3658404", "Trunk Power Tests → Backward Overhead Medicine Ball Throw, ryc. 2 („The athlete holds a medicine ball with arms straight in front of the body”)"], ["hk-blob-throw", "Setup („…stand with the arms straight and feet approximately shoulder-width apart”)"], ["wa-backward-overhead-throw", "opis pod tytułem (tyłem do linii, piłka oburącz na długość ramion; parafraza)"]]}
+   ],
+   "move": [
+    {"c": "bmbt.move", "s": [["pmc-3658404", "jw. (ruch zamachowy w dół w biodrach i kolanach, potem „extending forcefully backward to throw the ball over the head”)"], ["hk-blob-throw", "Action (zamach piłką w dół między nogi, wyskok i rzut „overhead and backward as far as possible”)"], ["wa-backward-overhead-throw", "opis pod tytułem (przysiad, szybki wyprost nóg, rzut nad głową w tył; parafraza)"]]}
+   ],
+   "tips": [
+    {"c": "bmbt.armsStraight", "s": [["hk-blob-throw", "Coaching tips („Keep the arms straight throughout the duration of the exercise.”)"], ["wa-backward-overhead-throw", "opis pod tytułem („…keep both arms extended at all time”)"]]}
+   ],
+   "mistakes": []
+  },
+  "Standing Two-Arm Overhead Throw": {
+   "setup": [
+    {"c": "soht.setup", "s": [["ace-178", "Preparation i krok 1 (przodem do partnera, piłka oburącz; parafraza)"], ["wa-overarm-throw", "Description („…hold the medicine ball with both hands behind the head”; przodem do kierunku rzutu)"]]}
+   ],
+   "move": [
+    {"c": "soht.move", "s": [["ace-178", "krok 2–3 (piłka nad głowę i za głowę, potem ręce mocno w przód nad głową; parafraza)"], ["wa-overarm-throw", "Description („They throw the medicine ball over the head as far as possible…”)"]]}
+   ],
+   "tips": [
+    {"c": "plank.brace", "s": [["ace-178", "krok 1–2 („contract and brace the abdominals…”; brzuch napięty także przy zamachu)"], ["wa-overarm-throw", "Coaching points („…keep their trunk muscles tense the whole time…”)"]]}
+   ],
+   "mistakes": []
+  }
+ }
+}
+```
+
+Nowe zdania w bloku (10): `wb.setup`, `wb.move`, `wb.mis.shallow`, `mbcp.setup`, `mbcp.move`, `bmbt.setup`, `bmbt.move`, `bmbt.armsStraight`, `soht.setup`, `soht.move`.
+Wypadło: `wb.catch` (+ org `Coach`). `mbcp.mis.elbows` zostaje w „Otwarte” (jedno źródło).
+
+Wątpliwości:
+1. Medicine Ball Slam (istniejący wpis w `cues.json`) — jeśli opiera się na Coach (2021), trzeba sprawdzić autora tamtej strony tą samą miarą; poza zakresem tego przeliczenia.

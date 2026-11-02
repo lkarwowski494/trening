@@ -15,6 +15,8 @@ wcześniejszych wpisów: Rogue (Jump Squat bez sprzętu) i Torokhtiy (skok ze sz
 usunięte z danych; Weighted Jump Squat oparty teraz na Catalyst #353 + badaniu Suchomel i in. 2019 (szczebel 3, opis wykonania w metodach).
 Topend Sports (brak autora i daty) = 5 — nie liczy się.
 
+> **Przeliczenie 02.11.2026:** statusy w sekcji 1 i blok w sekcji 2 są NIEAKTUALNE — wiążąca jest sekcja „Korekta szczebli — przeliczenie koordynatora 02.11.2026” na końcu pliku (The Prehab Guys bez autora na stronach = nie liczy się; Torokhtiy = 4 przy autorze).
+
 ## 1. Ćwiczenia
 
 | Klucz | Status | Uwagi |
@@ -32,7 +34,7 @@ Topend Sports (brak autora i daty) = 5 — nie liczy się.
 | Frog Hops | otwarte | 3. sesja: szukane w ACE/NASM/ISSA/NFPT — brak; wyniki to strony aplikacji, blogi sklepów i serwisy bez autora (szczebel 5) |
 | Kneeling Jump Squat | otwarte | 3. sesja: jedno źródło — EliteFTS (N. Harvey, 10.11.2017; szczebel do decyzji: sklep sprzętu z blogiem trenerów); Catalyst — brak w dziale skoków (19 ćwiczeń sprawdzonych) |
 
-## 2. Dane (propozycja do `data/zrodla/cues.json`)
+## 2. Dane (propozycja do `data/zrodla/cues.json`) — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 ```json
 {
@@ -301,3 +303,179 @@ filtr sprzętu „Raised Platform/Box” (3. sesja) — tylko #246, #115, #206, 
 - Pułapki: NASM ma tylko kilka stron skoków (`squat-jump`, `tuck-jump`, `lunge-jump`, `box-jumps`); ACE — brak „bound/skater/star/frog/depth” w mapie
   strony; Catalyst — dział skoków ma 19 ćwiczeń (lista w źródle `catalyst-dzial-16`); wyniki wyszukiwarki dla skoków to w większości strony aplikacji i sklepy
   z odzieżą (szczebel 5) — pomijać; PDF-y z obrazami czytać narzędziem Read ze stronami (WebFetch nie wyciąga tekstu z PDF).
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3) i rozstrzygnięcia koordynatora z 02.11.2026 (The Prehab Guys warunkowo 4
+per strona — autor z kwalifikacjami i data; NISMAT i NHS — instytucje medyczne = 4; Torokhtiy warunkowo 4 — artykuł techniki z autorem). Strony warunkowe
+sprawdzone WebFetch 02.11.2026.
+
+| Źródło | Szczebel | Dowód |
+|---|---|---|
+| ACE (#116, #177, #180, #234, #115), NASM, Catalyst Athletics, ISSA | 4 | bez zmian (rozstrzygnięcie, tabela) |
+| pmc-4723169 (Louder i in. 2015), pmc-6724584 (Suchomel i in. 2019) | 3 | badania, opis wykonania w metodach |
+| insportline-qt1005 | 4 | producent skrzyń — instrukcja własnego sprzętu (definicja w plyo-cz2) |
+| prehab-broad-jump | **nie liczy się (5)** | strona: brak autora i kwalifikacji; tylko „Updated Dec 10, 2021 / Published Jun 11, 2020” i stopka „© 2026 The Prehab Guys, Inc.” — warunek „autor z kwalifikacjami” niespełniony |
+| prehab-cm-lat-box-jump | **nie liczy się (5)** | strona: brak autora; „Updated Jun 22, 2020 Published Apr 23, 2019”, stopka firmy |
+| prehab-continuous-lateral-bound (nieużyte) | nie liczy się (5) | ta sama konstrukcja stron `vimeo-video` (bez autora) — nie otwierana osobno; Lateral Bound i tak 1 źródło |
+| torokhtiy-barbell-squat-jump | **4** (było: wycofane) | strona: „Author: Oleksiy Torokhtiy”, podpis „Olympic Weightlifting Champion, PhD in Sport Science”, „Updated on September 16, 2024”; artykuł techniki (na stronie linki afiliacyjne i promocja produktu — treść instruktażowa, liczy się wg reguły Torokhtiy z uzup. 2) |
+| nhs-kmpt-star-jumps | **4** (było: do decyzji) | trust NHS — instytucja medyczna, firmowanie wystarcza (rozstrzygnięcie koordynatora 02.11) |
+| topendsports-star-jumps | 5 | bez autora i daty (bez zmian) |
+| performance-herts-broad-jump (nieużyte) | 5 | uczelniane centrum sportu bez autora (uzup. 2) |
+| elitefts-kneeling-jumps, elitefts-depth (nieużyte) | bez rozstrzygnięcia | EliteFTS nie ma wiersza w pliku szczebli; w sled_throw liczony jako producent sanek (własny sprzęt) — dla skoków bez sprzętu EliteFTS to nie dotyczy. Bez wpływu: Kneeling Jump Squat i tak 1 źródło |
+| bellsofsteel-bench-jumps, justfly-depth-jump | 5 | bez zmian |
+
+| Zdanie (ćwiczenie) | Źródła ≥ 4 (lub 3) po przeliczeniu | Stan |
+|---|---|---|
+| Jump Squat: `lunge.stand`, `plyo.dip`, `plyo.extend`, `jump.land`, `jump.mis.stiff` | ACE + NASM (+ Catalyst) | zostaje |
+| Tuck Jump: `lunge.stand`, `jump.drive`, `plyo.tuck`, `jump.land`, `jump.mis.stiff` | ACE + NASM (+ Catalyst) | zostaje |
+| Split Jump: `plyo.splitSetup`, `plyo.splitSwitch`, `jump.land`, `jump.mis.stiff` | ACE + NASM | zostaje |
+| Weighted Jump Squat: `plyo.wjsBarBack`, `plyo.wjsMove` | Catalyst #353 + Suchomel (3) + **Torokhtiy** | zostaje (3 źródła) |
+| Weighted Jump Squat: `jump.land` | Catalyst #353 + Torokhtiy („soft knees”) (+ warianty ACE/NASM) | zostaje — teraz bez potrzeby wariantu |
+| Weighted Jump Squat: `jump.mis.stiff` | warianty ACE/NASM + Torokhtiy („soft knees”, błąd = zaprzeczenie standardu) | zostaje |
+| Weighted Jump Squat: `sq.back` (kandydat do przywrócenia) | Torokhtiy („straight lower back”, „chest up”); Catalyst #353 — sprawdzone WebFetch: o plecach i klatce **nie mówi** („maintaining proper posture and balance”) | **nie wraca** — 1 źródło |
+| Broad Jump: `plyo.broadLoad`, `plyo.broadDrive`, `plyo.broadLand` | ACE #177 + Catalyst #549 | zostaje |
+| Broad Jump: `jump.mis.stiff` | ACE #177 (Step 6) + Catalyst #549 pkt 3 („absorb … by bending the knees and hips”) — błąd = zaprzeczenie standardu (ta sama część ciała, to samo kryterium); Prehab Guys odpada | zostaje (zmiana drugiego źródła) |
+| Depth Jump: `plyo.depthStep`, `plyo.depthRebound` | Catalyst #551 + Louder (3) (+ inSPORTline dla kroku) | zostaje |
+| Lateral Box Jump: `plyo.latBox.setup`, `plyo.latBox.move` | ISSA (Prehab Guys = 5) | **spada** |
+| Lateral Box Jump: `bj.land`, `bj.mis.stiff` | ACE #115 tylko jako wariant (Prehab Guys = 5) | **spada** |
+| Star Jump (nie było w danych) | NHS (4) + Topend (5) → 1 źródło; NHS opisuje inny wariant lądowania | bez zmian (poza danymi) |
+
+| Karta | Stan przed | Stan po |
+|---|---|---|
+| Jump Squat | gotowe | **własna z błędami** |
+| Tuck Jump | gotowe | **własna z błędami** |
+| Split Jump | gotowe | **własna z błędami** |
+| Weighted Jump Squat | gotowe | **własna z błędami** (Torokhtiy jako trzecie źródło; lądowanie i błąd już nie tylko na wariantach) |
+| Broad Jump | gotowe | **własna z błędami** (błąd: ACE + Catalyst, błąd = zaprzeczenie standardu) |
+| Depth Jump | częściowe | **własna bez błędów** (kryterium karty z 02.11: ustawienie + ruch) |
+| Lateral Box Jump | gotowe (warunkowo) | **otwarta** (ustawienie i ruch — tylko ISSA) |
+| Lateral Bound | otwarte | otwarta (jedyne źródło Prehab Guys = 5 → zero źródeł szczebla 4) |
+| Star Jump | otwarte | otwarta (NHS = 4, ale jedno źródło) |
+| Bench Jump, Frog Hops, Kneeling Jump Squat | otwarte | otwarte |
+
+Razem cz1 (12 ćwiczeń): przed — gotowe 5 + 1 warunkowo, częściowe 1, otwarte 5; po — własne z błędami 5, własne bez błędów 1, otwarte 6.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+`insportline-qt1005` i org `inSPORTline`, `ISSA` — zdefiniowane w bloku do wdrożenia w `plyo-cz2.md` (ISSA już niepotrzebne w cz1 — Lateral Box Jump wypadł).
+
+```json
+{
+ "orgs": {
+  "Catalyst Athletics": {"name": "Catalyst Athletics — Exercise Library (catalystathletics.com; podnoszenie ciężarów, G. Everett)", "level": 4, "kind": "site"},
+  "Louder, Bressel, Bressel (Utah State University)": {"name": "Louder, Bressel, Bressel (Utah State University) — badanie, J Hum Kinet 2015 (użyty tylko opis wykonania)", "level": 3, "kind": "study"},
+  "Suchomel i in. (J Hum Kinet 2019)": {"name": "Suchomel, McKeever, Sijuwade, Carpenter, McMahon, Loturco, Comfort — badanie, J Hum Kinet 2019 (użyty tylko opis wykonania)", "level": 3, "kind": "study"},
+  "Torokhtiy": {"name": "Torokhtiy Weightlifting — przewodniki techniki z autorem (O. Torokhtiy, podpis: „Olympic Weightlifting Champion, PhD in Sport Science”); sklep i programy — nie źródło", "level": 4, "kind": "site"}
+ },
+ "sources": {
+  "ace-116": {"org": "ACE", "title": "Squat Jumps (#116)", "url": "https://www.acefitness.org/resources/everyone/exercise-library/116/squat-jumps/", "level": 4},
+  "ace-177": {"org": "ACE", "title": "Forward Linear Jumps (#177)", "url": "https://www.acefitness.org/resources/everyone/exercise-library/177/forward-linear-jumps/", "level": 4},
+  "ace-180": {"org": "ACE", "title": "Tuck Jump (#180)", "url": "https://www.acefitness.org/resources/everyone/exercise-library/180/tuck-jump/", "level": 4},
+  "ace-234": {"org": "ACE", "title": "Cycled Split-Squat Jump (#234)", "url": "https://www.acefitness.org/resources/everyone/exercise-library/234/cycled-split-squat-jump/", "level": 4},
+  "nasm-squat-jump": {"org": "NASM", "title": "Squat Jump", "url": "https://www.nasm.org/resource-center/exercise-library/squat-jump", "level": 4},
+  "nasm-tuck-jump": {"org": "NASM", "title": "Tuck Jump", "url": "https://www.nasm.org/resource-center/exercise-library/tuck-jump", "level": 4},
+  "nasm-lunge-jump": {"org": "NASM", "title": "Lunge Jump", "url": "https://www.nasm.org/resource-center/exercise-library/lunge-jump", "level": 4},
+  "catalyst-353": {"org": "Catalyst Athletics", "title": "Back Squat Jump (#353)", "url": "https://catalystathletics.com/exercise/353/Back-Squat-Jump/", "level": 4},
+  "catalyst-549": {"org": "Catalyst Athletics", "title": "Broad Jump (#549)", "url": "https://www.catalystathletics.com/exercise/549/Broad-Jump/", "level": 4},
+  "catalyst-551": {"org": "Catalyst Athletics", "title": "Depth Jump (#551)", "url": "https://catalystathletics.com/exercise/551/Depth-Jump/", "level": 4},
+  "catalyst-555": {"org": "Catalyst Athletics", "title": "Squat Vertical Jump (#555)", "url": "https://catalystathletics.com/exercise/555/Squat-Vertical-Jump/", "level": 4},
+  "catalyst-558": {"org": "Catalyst Athletics", "title": "Tuck Jump (#558)", "url": "https://catalystathletics.com/exercise/558/Tuck-Jump/", "level": 4},
+  "pmc-4723169": {"org": "Louder, Bressel, Bressel (Utah State University)", "title": "The Kinetic Specificity of Plyometric Training: Verbal Cues Revisited (J Hum Kinet 2015;49:201–208)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4723169/", "level": 3},
+  "pmc-6724584": {"org": "Suchomel i in. (J Hum Kinet 2019)", "title": "The Effect of Load Placement on the Power Production Characteristics of Three Lower Extremity Jumping Exercises (J Hum Kinet 2019)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6724584/", "level": 3},
+  "torokhtiy-barbell-squat-jump": {"org": "Torokhtiy", "title": "Barbell Squat Jump (O. Torokhtiy, akt. 16.09.2024)", "url": "https://torokhtiy.com/blogs/guides/barbell-squat-jump", "level": 4}
+ },
+ "exercises": {
+  "Jump Squat": {
+   "setup": [
+    {"c": "lunge.stand", "s": [["ace-116", "Step 1 (feet hip-width apart)"], ["nasm-squat-jump", "Step 1: Setup (feet hip-width apart)"]]}
+   ],
+   "move": [
+    {"c": "plyo.dip", "s": [["ace-116", "Step 2 (push hips back and bend at the knees)"], ["nasm-squat-jump", "Step 2: Brace/Position (quarter-squat or half-squat)"], ["catalyst-555", "Instructions (squat … into the bottom)"]]},
+    {"c": "plyo.extend", "s": [["ace-116", "Step 3 (extending ankles, knees and hips)"], ["nasm-squat-jump", "Step 3: Execute/Drive"], ["catalyst-555", "Instructions (drive into a maximal vertical jump)"]]}
+   ],
+   "tips": [
+    {"c": "jump.land", "s": [["ace-116", "Step 5 (land softly; don't lock out the knees)"], ["nasm-squat-jump", "Step 4: Return/Descent (land softly … bent knees)"], ["catalyst-555", "Instructions (absorb the landing … bending the knees and hips)"]]}
+   ],
+   "mistakes": [
+    {"c": "jump.mis.stiff", "s": [["nasm-squat-jump", "Common Mistakes, pkt 1 (landing with straight or minimally bent knees)"], ["ace-116", "Step 5 (don't lock out your knees)"]]}
+   ]
+  },
+  "Tuck Jump": {
+   "setup": [
+    {"c": "lunge.stand", "s": [["ace-180", "Step 1 (feet about hip-width apart)"], ["nasm-tuck-jump", "Step 1: Setup (feet hip-width apart)"]]}
+   ],
+   "move": [
+    {"c": "jump.drive", "s": [["ace-180", "Step 3; wskazówka końcowa (arms forward and up)"], ["nasm-tuck-jump", "Step 3: Execute/Drive (extend hips, knees, ankles while swinging arms upward)"], ["catalyst-558", "opis (swing the arms forward and up, push against the ground)"]]},
+    {"c": "plyo.tuck", "s": [["ace-180", "Step 3 (pull your knees toward your chest)"], ["nasm-tuck-jump", "Step 3: Execute/Drive (drive your knees toward your chest)"], ["catalyst-558", "opis (pull the knees up as high as possible)"]]}
+   ],
+   "tips": [
+    {"c": "jump.land", "s": [["ace-180", "Step 4 (land softly; don't lock knees)"], ["nasm-tuck-jump", "Step 4: Return/Descent (land softly … bent knees)"]]}
+   ],
+   "mistakes": [
+    {"c": "jump.mis.stiff", "s": [["nasm-tuck-jump", "Common Mistakes, pkt 1"], ["ace-180", "Step 4 (don't lock your knees or quads)"]]}
+   ]
+  },
+  "Split Jump": {
+   "setup": [
+    {"c": "plyo.splitSetup", "s": [["ace-234", "Step 1: Starting Position (right leg forward, left leg back)"], ["nasm-lunge-jump", "Step 3: Execute/Drive (step forward into a lunge position)"]]}
+   ],
+   "move": [
+    {"c": "plyo.splitSwitch", "s": [["ace-234", "Step 2–4 (launch, swap legs in the air, land with the other leg in front)"], ["nasm-lunge-jump", "Step 3–4 (jumping to switch leg positions; land … opposite leg forward)"]]}
+   ],
+   "tips": [
+    {"c": "jump.land", "s": [["ace-234", "Step 4: Landing (touch down softly; avoid locking out your knees)"], ["nasm-lunge-jump", "Step 4: Return/Descent (absorbing impact with bent knees)"]]}
+   ],
+   "mistakes": [
+    {"c": "jump.mis.stiff", "s": [["nasm-lunge-jump", "Common Mistakes, pkt 1 (landing with straight knees)"], ["ace-234", "Step 4 (avoid locking out your knees)"]]}
+   ]
+  },
+  "Weighted Jump Squat": {
+   "setup": [
+    {"c": "plyo.wjsBarBack", "s": [["catalyst-353", "Instructions, pkt 1 (bar in back squat position, held tightly against the body)"], ["pmc-6724584", "Methods, Procedures (external load on the upper back, similar to a back squat)"], ["torokhtiy-barbell-squat-jump", "technika (bar on the shoulders behind the neck, like a back squat)"]]}
+   ],
+   "move": [
+    {"c": "plyo.wjsMove", "s": [["catalyst-353", "Instructions, pkt 2 (drive up … maximal vertical jump)"], ["pmc-6724584", "Methods, Procedures (rapid countermovement, then jump as high as possible)"], ["torokhtiy-barbell-squat-jump", "technika (jump as high as possible)"]]}
+   ],
+   "tips": [
+    {"c": "jump.land", "s": [["catalyst-353", "Instructions, pkt 4 (absorb the landing)"], ["ace-116", "Step 5 (wariant: bez obciążenia)"], ["nasm-squat-jump", "Step 4: Return/Descent (wariant: bez obciążenia)"], ["torokhtiy-barbell-squat-jump", "technika (land on soft knees)"]]}
+   ],
+   "mistakes": [
+    {"c": "jump.mis.stiff", "s": [["nasm-squat-jump", "Common Mistakes, pkt 1 (wariant: bez obciążenia)"], ["ace-116", "Step 5 (wariant: bez obciążenia)"], ["torokhtiy-barbell-squat-jump", "technika (land on soft knees) — błąd = zaprzeczenie standardu"]]}
+   ]
+  },
+  "Broad Jump": {
+   "setup": [
+    {"c": "plyo.broadLoad", "s": [["ace-177", "Step 2: Downward Phase (push hips back; arms behind you)"], ["catalyst-549", "Instructions, pkt 1 (bend knees and hips, swing arms back)"]]}
+   ],
+   "move": [
+    {"c": "plyo.broadDrive", "s": [["ace-177", "Step 3: Jumping Movement (drive forward and up; arms overhead)"], ["catalyst-549", "opis i pkt 2 (swing arms forward, push hard; as far forward as possible)"]]}
+   ],
+   "tips": [
+    {"c": "plyo.broadLand", "s": [["ace-177", "Step 4–6 (legs forward; bend knees and hips to absorb)"], ["catalyst-549", "Instructions, pkt 3 (reach feet forward, absorb by bending knees and hips)"]]}
+   ],
+   "mistakes": [
+    {"c": "jump.mis.stiff", "s": [["ace-177", "Step 6 (lądowanie na prostych kolanach)"], ["catalyst-549", "Instructions, pkt 3 (absorb the landing by bending the knees and hips) — błąd = zaprzeczenie standardu"]]}
+   ]
+  },
+  "Depth Jump": {
+   "setup": [
+    {"c": "plyo.depthStep", "s": [["catalyst-551", "Instructions (stand at the front edge of a box … step off)"], ["pmc-4723169", "Methods (subjects were asked to step forward off the box)"], ["insportline-qt1005", "s. 3, SQUAT DEPTH JUMP, Action (Step off the box) — źródło zdefiniowane w plyo-cz2"]]}
+   ],
+   "move": [
+    {"c": "plyo.depthRebound", "s": [["catalyst-551", "Instructions (land on the balls of both feet … drive straight back up)"], ["pmc-4723169", "Methods (subsequent vertical jump; cues: as high / as quick as possible)"]]}
+   ],
+   "tips": [],
+   "mistakes": []
+  }
+ }
+}
+```
+
+Nowe zdania w bloku (12): `plyo.dip`, `plyo.extend`, `plyo.tuck`, `plyo.splitSetup`, `plyo.splitSwitch`, `plyo.broadLoad`, `plyo.broadDrive`, `plyo.broadLand`,
+`plyo.wjsBarBack`, `plyo.wjsMove`, `plyo.depthStep`, `plyo.depthRebound`. Wypadły z bloku: `plyo.latBox.setup`, `plyo.latBox.move` (+ użycia `bj.land`, `bj.mis.stiff` w Lateral Box Jump).
+
+Wątpliwości:
+1. Sekcja 5 („Weighted Jump Squat — `sq.back` … tylko Catalyst #353”) była nieścisła: strona Catalyst #353 (WebFetch 02.11) nie mówi o plecach ani o klatce; „plecy proste, klatka w górze” podaje tylko Torokhtiy.
+2. Lateral Box Jump wróci do „własnej” przy drugim źródle szczebla 4 dla ustawienia i ruchu (obok ISSA) — strony Prehab Guys z autorem nie znaleziono w tej sesji (nie szukano szeroko).
+3. Lateral Bound / Prehab Guys „Continuous Lateral Bound” — strony nie otwierałem; wniosek „bez autora” z tej samej konstrukcji dwóch otwartych stron `vimeo-video`.

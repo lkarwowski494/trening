@@ -8,6 +8,8 @@ Zarzuty i rwania kettlebellem — `kb_ballistic-cz1.md` (inny badacz; tu tylko o
 
 **Status: PROPOZYCJA — nic nie jest w `data/zrodla/` ani `lib/`.** Tylko zbieranie danych (polecenie właściciela 02.11.2026).
 
+> **Przeliczenie 02.11.2026:** statusy w sekcji 1 i blok w sekcji 2 są NIEAKTUALNE — wiążąca jest sekcja „Korekta szczebli — przeliczenie koordynatora 02.11.2026” na końcu pliku.
+
 Metoda: wyjątek dla wskazówek techniki z CLAUDE.md — zdanie ustalone, gdy zgadzają się ≥ 2 niezależne, przeczytane źródła szczebla 4
 z różnych organizacji; tylko część wspólna; bez liczb, tempa i twierdzeń o zdrowiu. Wariant tego samego ćwiczenia (jedna/dwie ręce,
 podrzut zwykły/nożycowy) liczy się z opisem „(wariant: …)”; inne ćwiczenie = analogia, nie liczy się. Wyjątek: w Clean and Jerk fazy
@@ -45,6 +47,8 @@ Zmiany po przeglądzie szczebli (02.11.2026, druga sesja):
 | One-Arm Kettlebell Split Jerk | otwarte | po wykluczeniu Nuffield Health zostaje jedno źródło szczebla 4 (ACE, dwa kettlebelle) — brak setup/move/błędów |
 
 ## 2. Dane (format `data/zrodla/cues.json`)
+
+**NIEAKTUALNY — patrz przeliczenie 02.11.2026** (blok do wdrożenia na końcu pliku).
 
 Organizacje `ACE`, `BarBend` istnieją w `data/zrodla/cues.json`; `StrongFirst` definiuje plik cz1 (ta sama organizacja).
 
@@ -299,12 +303,12 @@ Wycofane z pierwszej wersji (do „Otwarte”): `kbj.mis.hips`, `kbj.mis.arms`, 
 | sf-go-ballistic-jerk | https://www.strongfirst.com/go-ballistic-the-jerk-for-barbell-and-kettlebell/ | StrongFirst | 4 | podrzut kettlebellem, kroki 1–5, uwaga o ugięciu. Cytat: „Dip straight down bending only at the knees while keeping the heels planted.” |
 | ace-385 | https://www.acefitness.org/resources/everyone/exercise-library/385/push-jerk/ | ACE | 4 | opis (dwa kettlebelle, podrzut nożycowy, opuszczanie). Cytat: „Keep the back straight and bend the knees slightly to dip at the hips”. |
 | barbend-kb-jerk-vs-pp | https://barbend.com/kettlebell-jerk-vs-push-press | BarBend | 4 | sekcje „Kettlebell Push Press”, „Kettlebell Jerk”. Cytat: „the knees, ankles, and hips are not rebent following the initial leg drive phases”. |
-| df-dkb-pp | https://dangerouslyfit.com.au/kettlebell-exercise/double-kettlebell-push-press | Dangerously Fit Academy | 4 (graniczny (c)) | Teaching Points. Cytat: „Absorb the impact as you lower the kettlebells under control and pull them back into the 'racked' position”. |
-| df-kb-jerk | https://www.dangerouslyfit.com.au/?p=16223 | Dangerously Fit Academy | 4 (graniczny (c)) | Teaching Points 1–9 (single jerk). Cytat: „Dip under the kettlebell to catch them before extending the hips and standing tall”. |
+| df-dkb-pp | https://dangerouslyfit.com.au/kettlebell-exercise/double-kettlebell-push-press | Dangerously Fit Academy | 4 (graniczny (c)) → **[OTWARTE] w przeliczeniu 02.11.2026** | Teaching Points. Cytat: „Absorb the impact as you lower the kettlebells under control and pull them back into the 'racked' position”. |
+| df-kb-jerk | https://www.dangerouslyfit.com.au/?p=16223 | Dangerously Fit Academy | 4 (graniczny (c)) → **[OTWARTE] w przeliczeniu 02.11.2026** | Teaching Points 1–9 (single jerk). Cytat: „Dip under the kettlebell to catch them before extending the hips and standing tall”. |
 | nuffield-kb-clean-press | https://nuffieldhealth.com/article/how-to-kettlebell-clean-and-press | Nuffield Health | 5 — nie liczony | push press, split jerk; nie spełnia (a). |
 | breakingmuscle-kb-jerk | https://breakingmuscle.com/how-to-master-the-kettlebell-jerk/ | Breaking Muscle | 5 — nie liczony | etapy podrzutu (z pierwszej sesji). |
 | — | https://www.ikmf-world.com/rules/performance-exercises-rules | IKMF (federacja zawodów) | nie liczony | przepisy zawodów: fiksacja, „press-out”, brak drugiego ugięcia jako „no count”; strona nie wspomina o szkoleniu trenerów, bez daty — nie spełnia (a)/(b). Tylko trop. |
-| — | https://www.motra.com/exercises/kettlebellPushPress | aplikacja treningowa | nie jest źródłem | pominięte (dokumentacja aplikacji). |
+| — | (strona aplikacji treningowej z wyników wyszukiwania; adres usunięty w przeliczeniu 02.11.2026 — dokumentacja innych aplikacji nie jest źródłem) | aplikacja treningowa | nie jest źródłem | pominięte (dokumentacja aplikacji). |
 | — | https://ironedge.com.au/blog/kettlebell-jerk-technique-tips-from-the-ice-chamber/ | sklep | 5 | adres przekierowuje na stronę główną sklepu — brak treści. |
 
 ## 5. Otwarte
@@ -352,3 +356,136 @@ Następny krok: ponowić blog RKC „The Kettlebell Jerk” (503) i blog produce
 o podrzucie kettlebellem w NSCA (artykuły/PDF) i u producentów kettlebelli.
 Pułapki: ExRx/Wayback, RKC, kettlebellkings niedostępne; strony aplikacji w wynikach wyszukiwania nie są źródłem; ironedge to sklep;
 przepisy zawodów (IKMF, IKO) nie są biblioteką trenerską; PDF IKO > 10 MB (narzędzie nie czyta); id `kbb.rack` zajęte przez cz1.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3). Dodatkowo usunięty adres strony aplikacji treningowej
+z tabeli źródeł (dokumentacja innych aplikacji nie jest źródłem; wpis trafiłby pod `tests/forbidden-names.json`).
+
+| Źródło | Szczebel | Dowód |
+|---|---|---|
+| cf-dkb-pp-jerk (CrossFit) | 4 | organizacja szkoląca, autor J. Martone, 01.2008 (sekcja 4) |
+| sf-go-ballistic-jerk (StrongFirst) | 4 | szkoła instruktorów, autorka Certified Senior Instructor (sekcja wyżej) |
+| ace-385 (ACE) | 4 | biblioteka ćwiczeń ACE, treść firmowana |
+| barbend-kb-jerk-vs-pp | 4 | autor M. Dewar, CSCS, aktualizacja 24.08.2023 (dowód zapisany w sekcji „Zmiany po przeglądzie”; strony nie otwierałem ponownie) |
+| df-dkb-pp, df-kb-jerk (Dangerously Fit) | **[OTWARTE] — nie liczę** | brak rozstrzygnięcia w `szczeble-organizacji-2026-11-02.md` (zgłoszone w STAN-g3-moc.md:42 jako „granicznie kryterium c”, odpowiedź koordynatora go nie obejmuje). Strona bez autora i daty, linkuje do płatnego kursu |
+| onnit-kb-clean (cz1) | **5** | uzupełnienie 3, Onnit |
+| barbend-kb-clean, sf-pak-clean (cz1) | 4 | patrz przeliczenie w kb_ballistic-cz1.md |
+
+| Zdanie (ćwiczenie) | Źródła ≥ 4 po przeliczeniu | Stan |
+|---|---|---|
+| kbb.rackStart (oba Push Press) | CrossFit | **spada** (Dangerously Fit nieliczony) |
+| kbpp.move, pp.legs, kbpp.mis.rebend (oba Push Press) | CrossFit + BarBend | zostaje |
+| kbb.lower (Push Press i Jerk, wszystkie) | CrossFit | **spada** (Dangerously Fit nieliczony) |
+| kbj.rack (oba Jerk) | StrongFirst + CrossFit + ACE | zostaje |
+| kbj.move (oba Jerk) | StrongFirst + BarBend + CrossFit | zostaje |
+| kbb.wrist, kbb.dip, kbj.fullExt (oba Jerk) | StrongFirst + CrossFit | zostaje |
+| kbj.lockFirst (oba Jerk, C&J) | StrongFirst + CrossFit | zostaje |
+| kbb.cleanSetup (C&J) | BarBend | **spada** (Onnit 5) |
+| kbcj.move (C&J) | CrossFit + ACE | zostaje |
+| kbb.cleanMove, kbb.rack, kbb.mis.cast, kbb.mis.armPull (C&J) | StrongFirst + BarBend (ta sama faza) | zostaje |
+| kbb.mis.bang (C&J) | StrongFirst | **spada** (Onnit 5) |
+| kbb.dip (C&J) | StrongFirst + CrossFit | zostaje |
+
+| Karta | Stan przed | Stan po |
+|---|---|---|
+| One-Arm Kettlebell Push Press | gotowe | **otwarta** — brak ustawienia (tylko CrossFit); przy uznaniu Dangerously Fit za 4 → własna z błędami |
+| Double Kettlebell Push Press | gotowe | **otwarta** — jw. |
+| One-Arm Kettlebell Jerk | częściowe | **własna bez błędów** (bez `kbb.lower`) |
+| Double Kettlebell Jerk | częściowe | **własna bez błędów** (bez `kbb.lower`) |
+| One-Arm Kettlebell Clean and Jerk | gotowe | **otwarta** — brak ustawienia (`kbb.cleanSetup` 1 źródło); ruch i 2 błędy potwierdzone |
+| One-Arm Kettlebell Split Jerk | otwarte | otwarta |
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+```json
+{
+  "orgs": {
+    "CrossFit": { "name": "CrossFit — Essentials (crossfit.com; organizacja certyfikująca trenerów)", "level": 4, "kind": "org" }
+  },
+  "sources": {
+    "cf-dkb-pp-jerk": { "org": "CrossFit", "title": "Double-Kettlebell Push Press and Jerk (J. Martone, 01.2008)", "url": "https://crossfit.com/essentials/double-kettlebell-push-press-and-jerk", "level": 4 },
+    "sf-go-ballistic-jerk": { "org": "StrongFirst", "title": "Go Ballistic—The Jerk for Barbell and Kettlebell (M. Kwon Gracia)", "url": "https://www.strongfirst.com/go-ballistic-the-jerk-for-barbell-and-kettlebell/", "level": 4 },
+    "ace-385": { "org": "ACE", "title": "Push-jerk (#385; kettlebells)", "url": "https://www.acefitness.org/resources/everyone/exercise-library/385/push-jerk/", "level": 4 },
+    "barbend-kb-jerk-vs-pp": { "org": "BarBend", "title": "Kettlebell Jerk vs Push Press (M. Dewar, CSCS; akt. 24.08.2023)", "url": "https://barbend.com/kettlebell-jerk-vs-push-press", "level": 4 }
+  },
+  "exercises": {
+    "One-Arm Kettlebell Jerk": {
+      "setup": [
+        { "c": "kbj.rack", "s": [
+          ["sf-go-ballistic-jerk", "kettlebell jerk, krok 1 (single kettlebell or pair; elbow down and close to your ribs)"],
+          ["cf-dkb-pp-jerk", "The Rack (elbows directly over the hips; no space between arms and torso) (wariant: dwa kettlebelle)"],
+          ["ace-385", "opis (bell on the chest near the shoulder, elbows close to the rib cage) (wariant: dwa kettlebelle, podrzut nożycowy)"]
+        ] }
+      ],
+      "move": [
+        { "c": "kbj.move", "s": [
+          ["sf-go-ballistic-jerk", "kettlebell jerk, kroki 2–5 (dip, drive, lockout + re-bend under, stand up)"],
+          ["barbend-kb-jerk-vs-pp", "Kettlebell Jerk (leg and hip drive; bend knees, hips and ankles to receive the load lower overhead)"],
+          ["cf-dkb-pp-jerk", "Jerk (drop under the weight as you drive it overhead; then stand) (wariant: dwa kettlebelle)"]
+        ] }
+      ],
+      "tips": [
+        { "c": "kbb.wrist", "s": [
+          ["sf-go-ballistic-jerk", "kettlebell jerk, krok 1 (vertical forearms and straight wrists)"],
+          ["cf-dkb-pp-jerk", "The Rack (wrist straight or just slightly flexed — część wspólna: prosto) (wariant: dwa kettlebelle)"]
+        ] },
+        { "c": "kbb.dip", "s": [
+          ["sf-go-ballistic-jerk", "kettlebell jerk, krok 2 (dip straight down)"],
+          ["cf-dkb-pp-jerk", "Jerk, krok 2 (dip slightly, torso upright) (wariant: dwa kettlebelle)"]
+        ] },
+        { "c": "kbj.fullExt", "s": [
+          ["sf-go-ballistic-jerk", "kettlebell jerk, krok 3 (bells stay in the rack until hips and knees have fully extended)"],
+          ["cf-dkb-pp-jerk", "Jerk (extend the hips completely before the second dip) (wariant: dwa kettlebelle)"]
+        ] },
+        { "c": "kbj.lockFirst", "s": [
+          ["sf-go-ballistic-jerk", "kettlebell jerk, kroki 4–5 (full overhead lock out, re-bend to get under; then stand up)"],
+          ["cf-dkb-pp-jerk", "Jerk („drop and lock”; then extend the knees) (wariant: dwa kettlebelle)"]
+        ] }
+      ],
+      "mistakes": []
+    },
+    "Double Kettlebell Jerk": {
+      "setup": [
+        { "c": "kbj.rack", "s": [
+          ["cf-dkb-pp-jerk", "The Rack (elbows directly over the hips; no space between arms and torso)"],
+          ["sf-go-ballistic-jerk", "kettlebell jerk, krok 1 (pair of kettlebells; elbow close to the ribs)"],
+          ["ace-385", "opis (elbows close to the rib cage) (wariant: podrzut nożycowy)"]
+        ] }
+      ],
+      "move": [
+        { "c": "kbj.move", "s": [
+          ["cf-dkb-pp-jerk", "Jerk, kroki 1–5"],
+          ["sf-go-ballistic-jerk", "kettlebell jerk, kroki 2–5 (one arm or both)"],
+          ["barbend-kb-jerk-vs-pp", "Kettlebell Jerk"]
+        ] }
+      ],
+      "tips": [
+        { "c": "kbb.wrist", "s": [
+          ["cf-dkb-pp-jerk", "The Rack (straight or just slightly flexed)"],
+          ["sf-go-ballistic-jerk", "kettlebell jerk, krok 1 (straight wrists)"]
+        ] },
+        { "c": "kbb.dip", "s": [
+          ["cf-dkb-pp-jerk", "Jerk, krok 2 (dip slightly, torso upright)"],
+          ["sf-go-ballistic-jerk", "kettlebell jerk, krok 2 (dip straight down)"]
+        ] },
+        { "c": "kbj.fullExt", "s": [
+          ["cf-dkb-pp-jerk", "Jerk (extend the hips completely before the second dip)"],
+          ["sf-go-ballistic-jerk", "kettlebell jerk, krok 3 (bells stay in the rack until hips and knees fully extend)"]
+        ] },
+        { "c": "kbj.lockFirst", "s": [
+          ["cf-dkb-pp-jerk", "Jerk („drop and lock”; then extend the knees)"],
+          ["sf-go-ballistic-jerk", "kettlebell jerk, kroki 4–5"]
+        ] }
+      ],
+      "mistakes": []
+    }
+  }
+}
+```
+
+Nowe zdania w bloku: `kbj.rack`, `kbj.move`, `kbb.wrist`, `kbb.dip`, `kbj.fullExt`, `kbj.lockFirst` (6). Poza blokiem (karty otwarte, zdania
+potwierdzone): `kbpp.move`, `pp.legs`, `kbpp.mis.rebend`, `kbcj.move`.
+
+Wątpliwości: (1) Dangerously Fit — do rozstrzygnięcia koordynatora; przy szczeblu 4 oba Push Press wracają jako „własna z błędami”
+(`kbb.rackStart`, `kbb.lower`), a `kbb.lower` wraca w obu Jerk. (2) „Ta sama faza” w C&J — nadal decyzja audytora; i tak karta otwarta (brak ustawienia).

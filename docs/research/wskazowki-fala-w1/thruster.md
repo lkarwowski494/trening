@@ -21,6 +21,10 @@ CrossFit (organizacja szkoląca trenerów) — 4; Life Time / Experience Life �
 
 ## 2. Dane (propozycja)
 
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+Przeliczenie 02.11.2026 (sekcja na końcu pliku) nie zmieniło bloku — Life Time spełnia warunek uzupełnienia 3 na tej stronie.
+
 ```json
 {
   "sources": {
@@ -118,3 +122,29 @@ Nie użyte z dzisiejszego zestawu ogólnego: `sq.kneesToes` — tylko CrossFit (
   Sesja 2: szczebel Life Time potwierdzony (4); Clean and Press — ponowne wyszukiwanie bez wyniku.
 - Zostało: źródła dla Clean and Press (NSCA, gdy dostępne; zasoby Eleiko).
 - Pułapka: `catalog.json` — „Kettlebell Thruster” ma `equipment: "hantle"` i `loadMode: "per_dumbbell"` (do zgłoszenia programiście).
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3). Experience Life wg uzupełnienia 3: 5 domyślnie, 4 tylko przy autorze ze
+sprawdzalnymi kwalifikacjami trenerskimi na tej stronie — sprawdzone WebFetch 02.11.2026.
+
+| Źródło | Szczebel | Dowód |
+|---|---|---|
+| ace-357 (ACE) | 4 | organizacja certyfikująca, treść firmowana (rozstrzygnięcie, kryterium 1–2) |
+| crossfit-thruster (CrossFit) | 4 | organizacja szkoląca trenerów, data 12.04.2019 w tytule strony |
+| lifetime-thruster (Experience Life) | 4 | strona: „By Maggie Fazeli Fard \| Experience Life June 19, 2024”; biogram: „Maggie Fazeli Fard, RKC, is an Experience Life senior editor.” — RKC = certyfikat instruktora kettlebell (kwalifikacja trenerska; rozwinięcia skrótu strona nie podaje — uwaga w wątpliwościach) |
+
+| Zdanie (ćwiczenie) | Źródła ≥ 4 | Stan |
+|---|---|---|
+| thruster.dbSetup, thruster.move, sq.down, thruster.depth, sq.back, thruster.fullExt, sq.mis.heels (Thruster hantle) | ACE/CrossFit/Life Time — w każdym ≥ 2 | zostaje |
+| thruster.kbSetup, thruster.move, thruster.depth, thruster.fullExt, ohp.tall, sq.mis.heels (Kettlebell Thruster) | CrossFit + Life Time | zostaje |
+
+| Karta | Stan |
+|---|---|
+| Thruster (hantle) | własna z błędami |
+| Kettlebell Thruster | własna z błędami |
+| Clean and Press | otwarta |
+
+Wątpliwość: Kettlebell Thruster i wszystkie zdania o kettlebellu opierają się na parze CrossFit + Life Time; Life Time liczy się tylko dzięki „RKC” w biogramie
+autorki (skrót nierozwinięty na stronie). Jeśli koordynator nie uzna RKC za kwalifikację trenerską — Kettlebell Thruster spada do otwartej, Thruster (hantle)
+zostaje bez `thruster.fullExt` i `sq.mis.heels` (wtedy własna bez błędów: ACE + CrossFit dla setup, sq.down, depth).

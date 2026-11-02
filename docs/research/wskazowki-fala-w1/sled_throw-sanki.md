@@ -8,6 +8,8 @@ Sled Forward Drag with Press, Sled Overhead Backward Walk, Spider Crawl (definic
 `lib/figures/v2/poses/sled_throw.json`). Reguła: wyjątek dla wskazówek techniki z CLAUDE.md — zdanie wchodzi, gdy potwierdzają je
 2 niezależne, przeczytane źródła szczebla 4 z różnych organizacji. Tylko zbieranie danych — kod, `data/zrodla/*.json` i `lib/**` bez zmian.
 
+> **Przeliczenie 02.11.2026:** statusy w sekcji 1 i blok w sekcji 2 są NIEAKTUALNE — wiążąca jest sekcja „Korekta szczebli — przeliczenie koordynatora 02.11.2026” na końcu pliku.
+
 ## 1. Ćwiczenia
 
 | Klucz | Status | Uwagi |
@@ -22,7 +24,7 @@ Sled Forward Drag with Press, Sled Overhead Backward Walk, Spider Crawl (definic
 | Sled Overhead Backward Walk | otwarte | O8. |
 | Spider Crawl | otwarte | O9. |
 
-## 2. Dane (format `data/zrodla/cues.json`)
+## 2. Dane (format `data/zrodla/cues.json`) — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 ```json
 {
@@ -212,3 +214,96 @@ strona Invictus o pchaniu sanek (bez treści). Strony aplikacji treningowych i s
   StrongFirst o get-upie z listą błędów; (4) dla młota — producenci młotów/opon z instrukcją.
 - Pułapki: strony PDF Torque to obrazy (duży koszt kontekstu); indeks ćwiczeń EliteFTS zwraca 404; większość wyników o pchaniu sanek to
   strony zawodów, aplikacji i sklepów odzieżowych (szczebel 5 albo zakazane); BarBend dział „news” — status szczebla niepewny.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3); reguła „błąd = zaprzeczenie standardu” (uzup. 2). Kryterium karty z 02.11.2026: ustawienie + ruch.
+
+| Źródło | Szczebel | Dowód |
+|---|---|---|
+| ace-388, ACE ProSource 5686 (jedna organizacja), catalyst-481, sf-sinister | 4 | bez zmian; ProSource to publikacja ACE (treść firmowana, 11.2015) |
+| rep-sled-push, rep-sled-pull | 4 | producent sanek — materiał o własnym rodzaju sprzętu |
+| torque-utg-2024 | 4 | producent sanek TANK — instrukcja własnego sprzętu (kopia u dystrybutora; dokument producenta z tytułem i rokiem) |
+| elitefts-shove, elitefts-drag-variations, elitefts-backward-pull | 4 | producent sanek (Prowler, sanki do ciągnięcia) — własny rodzaj sprzętu, artykuły z autorem i datą (bez zmian) |
+| barbend-sled-push | 4 | strona (WebFetch 02.11): „Written by Mike Dewar”, biogram „Certified Strength and Conditioning Specialist (CSCS)”, „Last updated on June 28th, 2024”; artykuł techniki. Krok 2: „lean forward so that your spine is parallel to the ground and your lower back is flat” — potwierdza brzmienie `hinge.back` |
+| onnit sledgehammer (nieużyte) | **5** (było: 4) | uzup. 3, wiersz Onnit |
+| bm-sled-6wk, Velites, GoodLife, Seedman, Robins | 5 | bez zmian |
+| BarBend „doing-turkish-get-ups-wrong” (dział news, nieużyte) | bez oceny | nie otwierane — bez wpływu |
+
+| Zdanie (ćwiczenie) | Źródła ≥ 4 po przeliczeniu | Stan |
+|---|---|---|
+| `sled.pushGrip`, `sled.legs`, `sled.lean`, `hinge.back` (Sled Push) | Rep Fitness + BarBend (+ Torque, EliteFTS) | zostaje |
+| `tgu.setup`, `tgu.move`, `tgu.arm`, `tgu.eyesLow` (Turkish Get Up) | Catalyst + ACE (+ StrongFirst dla `tgu.arm`) | zostaje |
+| `tgu.mis.bentArm` (Turkish Get Up) | ACE ProSource 5686 (błąd wprost) + StrongFirst pkt 3 (łokieć zablokowany) — **błąd = zaprzeczenie standardu** (ta sama część ciała, to samo kryterium; wymieniony wprost w uzup. 2 STAN pkt 8) | **wchodzi** (było: wariant do decyzji) |
+| `sled.backGrip` (Backward Drag) | Rep Fitness + EliteFTS | zostaje jako zdanie — karta bez ruchu |
+| Sled Push „zginanie łokci” | Torque vs BarBend/Rep — sprzeczność na szczeblu 4 | nie wchodzi (bez zmian) |
+
+| Karta | Stan przed | Stan po |
+|---|---|---|
+| Turkish Get Up | częściowe | **własna z błędami** |
+| Sled Push | częściowe | **własna bez błędów** |
+| Backward Drag | częściowe | **otwarta** (tylko ustawienie; `sled.backWalk` 1 źródło) |
+| Sled Drag (Harness), Sledgehammer Swings, Bear Crawl Sled Drag, Sled Forward Drag with Press, Sled Overhead Backward Walk, Spider Crawl | otwarte | otwarte |
+
+Razem sanki (9 ćwiczeń): przed — gotowe 0, częściowe 3, otwarte 6; po — własne z błędami 1, własne bez błędów 1, otwarte 7.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+```json
+{
+ "orgs": {
+  "Rep Fitness": {"name": "Rep Fitness — blog Training (producent sanek i sprzętu; autor z NASM-CPT, weryfikacja NASM-CPT)", "level": 4, "kind": "maker"},
+  "EliteFTS": {"name": "EliteFTS — artykuły szkoleniowe (producent sanek do ciągnięcia i pchania, autorzy-trenerzy)", "level": 4, "kind": "maker"},
+  "Torque Fitness": {"name": "Torque Fitness — Ultimate TANK Training Guide (producent sanek do pchania i ciągnięcia)", "level": 4, "kind": "maker"},
+  "Catalyst Athletics": {"name": "Catalyst Athletics — Exercise Library (catalystathletics.com; szkolenie trenerów podnoszenia ciężarów)", "level": 4, "kind": "site"},
+  "StrongFirst": {"name": "StrongFirst — standardy i artykuły szkoły instruktorów kettlebell (strongfirst.com)", "level": 4, "kind": "org"}
+ },
+ "sources": {
+  "ace-388": {"org": "ACE", "title": "Turkish Get-up (#388)", "url": "https://www.acefitness.org/resources/everyone/exercise-library/388/turkish-get-up/", "level": 4},
+  "catalyst-481": {"org": "Catalyst Athletics", "title": "Turkish Get-up (#481)", "url": "https://catalystathletics.com/exercise/481/Turkish-Get-up/", "level": 4},
+  "sf-sinister": {"org": "StrongFirst", "title": "Sinister — Get-Up Standards", "url": "https://www.strongfirst.com/achieve/sinister/", "level": 4},
+  "rep-sled-push": {"org": "Rep Fitness", "title": "Sled Push Technique Guide (2026)", "url": "https://repfitness.com/blogs/training/sled-push-technique", "level": 4},
+  "barbend-sled-push": {"org": "BarBend", "title": "How to Do the Sled Push (M. Dewar, CSCS, akt. 28.06.2024)", "url": "https://barbend.com/sled-push/", "level": 4},
+  "elitefts-shove": {"org": "EliteFTS", "title": "Shove It! Top Pushing Moves (D. Balzarini, 05.07.2011)", "url": "https://elitefts.com/blogs/training/shove-it-top-pushing-moves", "level": 4},
+  "torque-utg-2024": {"org": "Torque Fitness", "title": "Ultimate TANK Training Guide (2024, PDF; kopia u dystrybutora)", "url": "https://cdn.fitshop.co.uk/files/torque/functional_training_and_strongman/TOR-TANKMX/Ultimate_TANK_Training_Guide_2024.pdf", "level": 4},
+  "ace-5686-tgu": {"org": "ACE", "title": "ACE Technique Series: Turkish Get-up (ProSource, 11.2015)", "url": "https://www.acefitness.org/continuing-education/prosource/november-2015/5686/ace-technique-series-turkish-get-up/", "level": 4}
+ },
+ "exercises": {
+  "Sled Push": {
+   "setup": [
+    {"c": "sled.pushGrip", "s": [["rep-sled-push", "Choose Your Hand Position (wysokie uchwyty na prostych rękach albo niższe; parafraza)"], ["barbend-sled-push", "How to Do the Sled Push, krok 2 („Place the hands about halfway down the sled handles.”)"], ["torque-utg-2024", "s. 40, Push, Instructions 1 („Grasp handles with both hands…”)"], ["elitefts-shove", "Prowler („…grab the handles, get in a proper forward lean position, and get pushing.”)"]]}
+   ],
+   "move": [
+    {"c": "sled.legs", "s": [["rep-sled-push", "Take Short, Quick Steps („Don't push with your arms since they are not nearly as strong as your legs.”)"], ["barbend-sled-push", "krok 3 („…begin aggressively driving forward with your legs.”; odpychanie przodem stopy)"]]}
+   ],
+   "tips": [
+    {"c": "sled.lean", "s": [["rep-sled-push", "Get Low and Lean In (pochylenie ok. 45°; parafraza)"], ["barbend-sled-push", "krok 2 (pochylenie w przód, plecy płasko, blisko równolegle do podłoża; parafraza)"], ["elitefts-shove", "Prowler („get in a proper forward lean position”)"]]},
+    {"c": "hinge.back", "s": [["rep-sled-push", "Get Low and Lean In (plecy płaskie) oraz Avoid These Common Mistakes (bez zaokrąglania lędźwi; parafraza)"], ["barbend-sled-push", "krok 2 („…lean forward so your back is flat…” — parafraza w odpowiedzi strony)"]]}
+   ],
+   "mistakes": []
+  },
+  "Turkish Get Up": {
+   "setup": [
+    {"c": "tgu.setup", "s": [["catalyst-481", "opis, zdania 1–2 („Lie on your back and hold a kettlebell or similar straight up in one extended arm.”)"], ["ace-388", "ustawienie (na plecach, kolano po stronie ciężaru ugięte, stopa płasko, ciężar prosto nad sobą; parafraza)"]]}
+   ],
+   "move": [
+    {"c": "tgu.move", "s": [["catalyst-481", "opis, zdania 4–11 (podpór na wolnej ręce, wysoki mostek, noga pod siebie do klęku, wstanie, powrót tą samą drogą; parafraza)"], ["ace-388", "kroki wstawania i powrotu (dłoń w podłogę, mostek, kolano pod biodra, klęk, wstanie; odwrotnie w dół; parafraza)"]]}
+   ],
+   "tips": [
+    {"c": "tgu.arm", "s": [["catalyst-481", "opis, zdanie 10 („with the weight still stabilized overhead on a straight arm”)"], ["ace-388", "ustawienie i krok wstawania („hold it straight overhead”; „Continue to hold the right arm overhead”)"], ["sf-sinister", "Get-Up Standards, punkty 3 i 8 („The elbow on the kettlebell side is locked and the shoulder is packed.”)"]]},
+    {"c": "tgu.eyesLow", "s": [["catalyst-481", "opis, zdanie 6 („It typically helps to look at the weight throughout the exercise.”)"], ["ace-388", "krok mostka („Keeping the eyes on the kettlebell throughout the movement”)"]]}
+   ],
+   "mistakes": [
+    {"c": "tgu.mis.bentArm", "s": [["ace-5686-tgu", "błędy (ręka z ciężarem ugięta w łokciu — wprost jako błąd)"], ["sf-sinister", "Get-Up Standards, punkt 3 („The elbow on the kettlebell side is locked…”) — błąd = zaprzeczenie standardu"]]}
+   ]
+  }
+ }
+}
+```
+
+Nowe zdania w bloku (5): `sled.pushGrip`, `tgu.setup`, `tgu.move`, `tgu.eyesLow`, `tgu.mis.bentArm` (PL „Ręka z ciężarem ugina się w łokciu.” / EN „The arm holding the weight bends at the elbow.”).
+Wypadło z bloku: `sled.backGrip` (karta Backward Drag otwarta) i źródła `rep-sled-pull`, `elitefts-drag-variations`.
+
+Wątpliwości:
+1. `tgu.eyesLow` zastępuje `tgu.eyes` z zestawu ogólnego (O2a) — zmiana zestawu ogólnego należy do koordynatora/programisty.
+2. `tgu.arm` mówi o kettlebellu, katalog dopuszcza hantel (O2) — sprawa produktowa, bez zmian.

@@ -6,6 +6,8 @@ Szczeble źródeł wg rozstrzygnięcia koordynatora linii 1.1 z 02.11.2026 (drug
 
 Dostęp w tej sesji: nsca.com → 403; muscleandstrength.com → 403; educ.jmu.edu — poza dozwoloną siecią; startingstrength.com → 403; PDF Queensland Weightlifting Association nieczytelny; ExRx/Wayback — pominięte (uzupełnienie briefu); Catalyst `/exercise/214/` (Split Snatch) — narzędzie widzi tylko nawigację, bez opisu; Rogue „movement-demo-snatch-balance” → 404. Strony aplikacji treningowych z wyników wyszukiwania pominięto.
 
+> **Przeliczenie 02.11.2026:** statusy w sekcji 1 i bloki w sekcji 2 są NIEAKTUALNE — wiążąca jest sekcja „Korekta szczebli — przeliczenie koordynatora 02.11.2026” na końcu pliku.
+
 ## 1. Ćwiczenia
 
 | Klucz | Status | Uwagi |
@@ -22,6 +24,8 @@ Dostęp w tej sesji: nsca.com → 403; muscleandstrength.com → 403; educ.jmu.e
 | Snatch Shrug | otwarte | jedno źródło szczebla 4 (Catalyst); drugie nie znalezione; opis rozbieżności w „Otwarte” |
 
 ## 2. Dane (propozycja w formacie `data/zrodla/cues.json`)
+
+**NIEAKTUALNY — patrz przeliczenie 02.11.2026** (blok do wdrożenia na końcu pliku).
 
 ```json
 {
@@ -289,3 +293,245 @@ Przeczytane, ale nie liczone (szczebel 5):
 - Zostało: decyzja koordynatora o szczeblu IronMind (i potwierdzenie Torokhtiy = 5); drugie źródło błędu dla Snatch Balance; Snatch Shrug (drugie źródło szczebla 4).
 - Następny krok: spróbować USA Weightlifting (materiały kursu L1, jeśli publiczne) i Eleiko (blog) dla Snatch Balance i Snatch Shrug; Catalyst #214 innym narzędziem.
 - Pułapki: BarBend `/snatch/` = rwanie hantlem; `barbend.com/patrick-oconnell-snatch-guide` „Gone”; `barbend.com/?p=…` i `/snatch-pull/` (404) prowadzą na stronę główną; Catalyst `/exercise/1/` pusta — rwanie to 58; Catalyst #214 bez opisu w narzędziu; Rogue nie ma strony snatch balance (404); performancemenu.com = ten sam wydawca co Catalyst (nie liczyć jako niezależne).
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3) i rozstrzygnięcia koordynatora z 02.11.2026 (IronMind = 4 tylko z autorem z kwalifikacjami
+i datą; Torokhtiy — ocena wg kryteriów 1–4). Strony warunkowe sprawdzone WebFetch 02.11.2026. Punkt 4a (propozycje) zastąpiony tą tabelą.
+
+| Źródło | Szczebel | Dowód |
+|---|---|---|
+| catalyst-*, catalyst-art-*, catalyst-video-*, catalyst-pm-815 (jedna organizacja) | 4 | rozstrzygnięcie, wiersz Catalyst Athletics; Performance Menu = ten sam wydawca |
+| rogue-* | 4 | producent sztang — instrukcja własnego rodzaju sprzętu |
+| crossfit-snatch-forward | 4 | organizacja szkoląca trenerów; autor O'Connor (CF-L4), 2025 |
+| barbend-power-snatch | 4 | „Written by Riley Stefan”; biogram: USAW L1, ACSM-CPT, magisterium z fizjologii wysiłku; „Last updated on November 6th, 2024” |
+| barbend-fix-your-snatch | 4 | „Written by Riley Stefan” (biogram jak wyżej); „Last updated on June 29th, 2024” |
+| barbend-muscle-snatch | 4 (wątpliwość 2) | „Written by Calvin Trieu”, „Updated… on November 20th, 2024”; biogram: licencjat i magisterium z fizjologii wysiłku (bez certyfikatu trenerskiego) |
+| barbend-snatch-balance | 4 (wątpliwość 2) | „Written by Mike Dewar”, „Last updated on June 29th, 2024”; biogram: „Master's in Exercise Physiology and a Bachelor's in Exercise Science” |
+| barbend-hang-lifts | 4 | „Written by Jake Dickson, NASM-CPT, USAW-L2”, „Last updated on November 22nd, 2024” |
+| barbend-blocks-vs-hang | 4 | „Written by Jake Dickson, NASM-CPT, USAW-L2”, „Last updated on August 16th, 2023” |
+| ironmind-split | **4** (bez warunku) | „By Jim Schmitz”, „U.S. Olympic Weightlifting Team Coach 1980, 1988 & 1992”; data pośrednia: IronMind News „06 JULY 2012” |
+| torokhtiy-snatch-balance (store.torokhtiy.com/blogs/exercises/snatch-balance) | **4** (warunkowo, wątpliwość 1) | autor Oleksiy Torokhtiy — „Olympic Weightlifting Champion, PhD in Sport Science”; data „October 15, 2026”; artykuł techniki (uzup. 2: artykuły techniki z autorem — warunkowo 4); otoczenie handlowe: banery promocji i „BUY NOW” do własnego programu |
+| torokhtiy split-snatch (…/blogs/exercises/split-snatch) | 4 (warunkowo) | ten sam autor i data; nie zmienia danych — drugie źródło dla powrotu z nożyc nadal brak (Catalyst opisuje to tylko dla podrzutu — analogia) |
+| torokhtiy snatch-pull (J. Szymanowski) | nie sprawdzone | niepotrzebne — Snatch Pull ma już 2 błędy z 2 organizacji |
+
+| Zdanie (ćwiczenie) | Źródła ≥ 4 po przeliczeniu | Stan |
+|---|---|---|
+| olympic.splitMove (Split Snatch) | IronMind + Catalyst (Performance Menu) | zostaje — **bez warunku** |
+| olympic.mis.slowDrop (Snatch Balance) — nowe | Torokhtiy (błąd wprost) + Catalyst #80 (drop „as quickly as possible”) — błąd = zaprzeczenie standardu (szybkość zejścia pod sztangę) | **nowe, gotowe** |
+| olympic.mis.standEarly (Snatch Balance) — nowe | Torokhtiy („Rushing the Stand Up”) + Catalyst #80 („Making sure it’s stable and secure, stand again with the bar overhead.”) — błąd = zaprzeczenie standardu (stabilność przed wstaniem) | **nowe, gotowe** |
+| pozostałe zdania bloku | bez zmian (≥ 2 organizacje szczebla 4) | zostaje |
+
+Nowe zdania (teksty):
+
+| id | PL | EN |
+|---|---|---|
+| olympic.mis.slowDrop | Zbyt wolne zejście pod sztangę. | Dropping under the bar too slowly. |
+| olympic.mis.standEarly | Wstawanie, zanim sztanga jest stabilna nad głową. | Standing up before the bar is stable overhead. |
+
+| Karta | Stan przed | Stan po |
+|---|---|---|
+| Barbell Snatch, Power Snatch, Hang Snatch, Snatch Pull, Muscle Snatch, Block Snatch, Block Power Snatch | gotowe | własna z błędami |
+| Split Snatch | gotowe warunkowo | **własna z błędami** (IronMind = 4) |
+| Snatch Balance | częściowe | **własna z błędami** (2 nowe błędy; zależy od Torokhtiy — wątpliwość 1) |
+| Snatch Shrug | otwarte | otwarta (jedno źródło szczebla 4) |
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+```json
+{
+ "orgs": {
+  "Catalyst Athletics": {"name": "Catalyst Athletics — Olympic Weightlifting Exercise Library, artykuły i wideo (catalystathletics.com; Greg Everett); także dziennik Performance Menu tego samego wydawcy", "level": 4, "kind": "site"},
+  "CrossFit": {"name": "CrossFit — Pro Coach „Ask a Coach” (crossfit.com; trener CF-L4)", "level": 4, "kind": "org"},
+  "Rogue Fitness": {"name": "Rogue Fitness — The Index, Movement Library (producent sztang i sprzętu do podnoszenia ciężarów)", "level": 4, "kind": "maker"},
+  "IronMind": {"name": "IronMind — artykuły „Jim Schmitz on the Lifts” (autor: trener kadry olimpijskiej USA 1980/1988/1992; liczone z datą, także pośrednią z IronMind News)", "level": 4, "kind": "site"},
+  "Torokhtiy": {"name": "Torokhtiy Weightlifting — artykuły techniki z autorem O. Torokhtiy (olimpijczyk, PhD nauk o sporcie) i datą; strony sklepu i programów — nie źródło", "level": 4, "kind": "site"}
+ },
+ "sources": {
+  "catalyst-58": {"org": "Catalyst Athletics", "title": "Snatch (#58)", "url": "https://www.catalystathletics.com/exercise/58/Snatch/", "level": 4},
+  "catalyst-61": {"org": "Catalyst Athletics", "title": "Power Snatch (#61)", "url": "https://www.catalystathletics.com/exercise/61/", "level": 4},
+  "catalyst-62": {"org": "Catalyst Athletics", "title": "Hang Power Snatch (#62)", "url": "https://www.catalystathletics.com/exercise/62/Hang-Power-Snatch/", "level": 4},
+  "catalyst-80": {"org": "Catalyst Athletics", "title": "Snatch Balance (#80)", "url": "https://www.catalystathletics.com/exercise/80/Snatch-Balance/", "level": 4},
+  "catalyst-96": {"org": "Catalyst Athletics", "title": "Muscle Snatch (#96)", "url": "https://www.catalystathletics.com/exercise/96/Muscle-Snatch/", "level": 4},
+  "catalyst-97": {"org": "Catalyst Athletics", "title": "Snatch Pull (#97)", "url": "https://www.catalystathletics.com/exercise/97/Snatch-Pull/", "level": 4},
+  "catalyst-203": {"org": "Catalyst Athletics", "title": "Block Power Snatch (#203)", "url": "https://www.catalystathletics.com/exercise/203/Block-Power-Snatch/", "level": 4},
+  "catalyst-207": {"org": "Catalyst Athletics", "title": "Block Snatch (#207)", "url": "https://catalystathletics.com/exercise/207/Block-Snatch/", "level": 4},
+  "catalyst-art-2076": {"org": "Catalyst Athletics", "title": "Everett: Keeping the Bar Close — The 3 Biggest Mistakes You're Making (2017)", "url": "https://catalystathletics.com/article/2076/Keeping-the-Bar-Close-The-3-Biggest-Mistakes-Youre-Making", "level": 4},
+  "catalyst-art-1904": {"org": "Catalyst Athletics", "title": "Everett: Arm Bend in the Snatch & Clean — It's Still Not the Solution", "url": "https://catalystathletics.com/article/1904/Arm-Bend-in-the-Snatch-Clean-Its-Still-Not-the-Solution-to-/", "level": 4},
+  "catalyst-video-1499": {"org": "Catalyst Athletics", "title": "How To Stop Swinging Snatch & Clean Pulls (wideo z opisem)", "url": "https://catalystathletics.com/video/1499/How-To-Stop-Swinging-Snatch-Clean-Pulls", "level": 4},
+  "catalyst-video-1539": {"org": "Catalyst Athletics", "title": "Arm Bend In Snatch & Clean Pulls? (wideo z opisem)", "url": "https://catalystathletics.com/video/1539/Arm-Bend-In-Snatch-Clean-Pulls/", "level": 4},
+  "catalyst-pm-815": {"org": "Catalyst Athletics", "title": "Everett: Ask Greg, Issue 130 (Performance Menu, XI 2015) — split snatch", "url": "https://performancemenu.com/article/815/Greg-Everett", "level": 4},
+  "barbend-power-snatch": {"org": "BarBend", "title": "Power Snatch (R. Stefan, USAW-L1)", "url": "https://barbend.com/power-snatch/", "level": 4},
+  "barbend-fix-your-snatch": {"org": "BarBend", "title": "Need to Fix Your Snatch? (R. Stefan, USAW-L1)", "url": "https://barbend.com/fix-your-snatch/", "level": 4},
+  "barbend-muscle-snatch": {"org": "BarBend", "title": "Muscle Snatch (C. Trieu, 2024)", "url": "https://barbend.com/muscle-snatch/", "level": 4},
+  "barbend-snatch-balance": {"org": "BarBend", "title": "Snatch Balance (M. Dewar, CSCS)", "url": "https://barbend.com/snatch-balance/", "level": 4},
+  "barbend-hang-lifts": {"org": "BarBend", "title": "What Are Hang Lifts in Weightlifting? (J. Dickson, USAW-L2)", "url": "https://barbend.com/what-are-hang-lifts-in-weightlifting/", "level": 4},
+  "barbend-blocks-vs-hang": {"org": "BarBend", "title": "Weightlifting Blocks vs. the Hang (J. Dickson, USAW-L2)", "url": "https://barbend.com/weightlifting-blocks-vs-hang/", "level": 4},
+  "crossfit-snatch-forward": {"org": "CrossFit", "title": "O'Connor (CF-L4): Ask a Coach — Missing the Bar Forward in the Snatch (2025)", "url": "https://www.crossfit.com/pro-coach/ask-a-coach-missing-bar-forward-snatch", "level": 4},
+  "rogue-snatch-pull": {"org": "Rogue Fitness", "title": "Movement Demo — Snatch Pull (2025)", "url": "https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-snatch-pull", "level": 4},
+  "rogue-hang-squat-snatch": {"org": "Rogue Fitness", "title": "Movement Demo — Hang Squat Snatch", "url": "https://www.roguefitness.com/gb/theindex/movement-library/movement-demo-hang-squat-snatch", "level": 4},
+  "rogue-hang-power-snatch": {"org": "Rogue Fitness", "title": "Movement Demo — Hang Power Snatch", "url": "https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-power-snatch", "level": 4},
+  "ironmind-split": {"org": "IronMind", "title": "Jim Schmitz: Split Lifting Technique (ok. 07.2012 — data z wpisu IronMind News 06.07.2012, który go zapowiada)", "url": "https://ironmind.com/articles/jim-schmitz-on-the-lifts/Split-Lifting-Technique/", "level": 4},
+  "torokhtiy-snatch-balance": {"org": "Torokhtiy", "title": "Snatch Balance (O. Torokhtiy, olimpijczyk, PhD nauk o sporcie, 15.10.2026)", "url": "https://store.torokhtiy.com/blogs/exercises/snatch-balance", "level": 4}
+ },
+ "exercises": {
+  "Barbell Snatch": {
+   "setup": [
+    {"c": "olympic.setup", "s": [["catalyst-58", "opis wykonania, start (snatch-width grip; back extended; shoulder joint above the bar)"], ["barbend-power-snatch", "Step 1 Set Your Start (wide snatch grip; back tight) i Step 2 (shoulders over the bar) — wariant power"]]}
+   ],
+   "move": [
+    {"c": "olympic.snatchMove", "s": [["catalyst-58", "opis wykonania (push with the legs; extend the hips; pull elbows up and out; squat under; stand once secure)"], ["rogue-hang-squat-snatch", "Extension, Receive (full depth overhead squat, locked out arms) — wariant: ze zwisu"]]}
+   ],
+   "tips": [
+    {"c": "oly.close", "s": [["catalyst-58", "opis wykonania (keeping the bar as close to the body as possible)"], ["rogue-hang-squat-snatch", "Arms (high elbows to keep the bar close to the body) — wariant: ze zwisu (uproszczenie)"], ["barbend-power-snatch", "Muscles Worked › Upper & Lower Back (keep the bar tight to your body) — wariant power (uproszczenie)"]]},
+    {"c": "oly.legs", "s": [["catalyst-58", "start (arms relaxed and straight) i ciąg (push with the legs)"], ["rogue-hang-squat-snatch", "Extension (leg drive and the arms remaining straight) — wariant: ze zwisu (uproszczenie)"], ["barbend-power-snatch", "Step 2 (arms should remain straight as you pull) — wariant power (uproszczenie)"]]},
+    {"c": "olympic.overBar", "s": [["barbend-fix-your-snatch", "pkt 2 Not Staying Over the Bar"], ["rogue-hang-squat-snatch", "Extension (shoulders and chest stay over the bar for as long as possible) — wariant: ze zwisu"]]}
+   ],
+   "mistakes": [
+    {"c": "olympic.mis.away", "s": [["crossfit-snatch-forward", "First Pull: The bar separates from the body; Second Pull: Hips are banging into the bar"], ["catalyst-art-2076", "pkt 1 Forward Imbalance in the Pull, pkt 2 Bumping the Bar Off the Hips"]]},
+    {"c": "olympic.mis.armsEarly", "s": [["crossfit-snatch-forward", "Second Pull: Early Arm Pull"], ["catalyst-art-1904", "Why It's a Problem"]]},
+    {"c": "olympic.mis.softLockout", "s": [["crossfit-snatch-forward", "Third Pull: Lazy lockout"], ["barbend-fix-your-snatch", "pkt 4 A Loose Catch"]]}
+   ]
+  },
+  "Power Snatch": {
+   "setup": [
+    {"c": "olympic.setup", "s": [["barbend-power-snatch", "Step 1 Set Your Start, Step 2 Pull Into the Hip (shoulders over the bar)"], ["catalyst-58", "start — rwanie ogólnie (uproszczenie: ten sam start)"], ["catalyst-61", "opis wykonania (set the starting position tightly)"]]}
+   ],
+   "move": [
+    {"c": "olympic.powerMove", "s": [["catalyst-61", "opis wykonania (extend the hips; pull elbows up and out; remain above a parallel squat)"], ["barbend-power-snatch", "Steps 2–4 (hip crease above knee in the catch)"], ["rogue-hang-power-snatch", "Receive (hip crease higher than the top of the knees) — wariant: ze zwisu"]]}
+   ],
+   "tips": [
+    {"c": "oly.close", "s": [["catalyst-61", "opis wykonania (bar as close to the body as possible)"], ["barbend-power-snatch", "Muscles Worked › Upper & Lower Back (keep the bar tight to your body)"]]},
+    {"c": "oly.legs", "s": [["barbend-power-snatch", "Step 2 (arms should remain straight as you pull)"], ["rogue-hang-power-snatch", "Extension (leg drive, arms remaining straight) — wariant: ze zwisu"], ["catalyst-61", "opis wykonania (push with the legs)"]]},
+    {"c": "olympic.overBar", "s": [["barbend-power-snatch", "Step 2 (shoulders vertically over the bar)"], ["rogue-hang-power-snatch", "Extension (shoulders and chest over the bar as long as possible) — wariant: ze zwisu"]]}
+   ],
+   "mistakes": [
+    {"c": "olympic.mis.away", "s": [["crossfit-snatch-forward", "First/Second Pull — rwanie ogólnie (uproszczenie)"], ["catalyst-art-2076", "pkt 1–2 — rwanie i zarzut ogólnie (uproszczenie)"]]},
+    {"c": "olympic.mis.armsEarly", "s": [["crossfit-snatch-forward", "Second Pull: Early Arm Pull — rwanie ogólnie (uproszczenie)"], ["catalyst-art-1904", "Why It's a Problem — rwanie i zarzut ogólnie (uproszczenie)"]]},
+    {"c": "olympic.mis.softLockout", "s": [["crossfit-snatch-forward", "Third Pull: Lazy lockout (uproszczenie)"], ["barbend-fix-your-snatch", "pkt 4 A Loose Catch (uproszczenie)"]]}
+   ]
+  },
+  "Hang Snatch": {
+   "setup": [
+    {"c": "olympic.hangSetup", "s": [["catalyst-62", "opis wykonania (deadlift the bar to standing; lower under control to the hang) — wariant power"], ["rogue-hang-squat-snatch", "Hang Position (hips pushed back; flat back; shoulders on top or just in front of the bar)"], ["barbend-hang-lifts", "What Is the Hang Position (bar suspended; lowered by hinging at the hips)"]]}
+   ],
+   "move": [
+    {"c": "olympic.snatchMove", "s": [["rogue-hang-squat-snatch", "Extension, Pull Under, Receive (full depth overhead squat), Lockout"], ["catalyst-58", "opis wykonania — rwanie ogólnie (uproszczenie: inny start)"]]}
+   ],
+   "tips": [
+    {"c": "oly.close", "s": [["rogue-hang-squat-snatch", "Arms (high elbows to keep the bar close to the body)"], ["catalyst-62", "opis wykonania (bar as close to the body as possible)"]]},
+    {"c": "oly.legs", "s": [["rogue-hang-squat-snatch", "Extension (leg drive and the arms remaining straight)"], ["barbend-hang-lifts", "legs extend fully before your arms do any work (hang muscle snatch — wariant)"], ["catalyst-58", "rwanie ogólnie"]]},
+    {"c": "olympic.overBar", "s": [["rogue-hang-squat-snatch", "Extension"], ["barbend-fix-your-snatch", "pkt 2 — rwanie ogólnie"]]}
+   ],
+   "mistakes": [
+    {"c": "olympic.mis.away", "s": [["crossfit-snatch-forward", "Second Pull: Hips banging into the bar (uproszczenie)"], ["catalyst-art-2076", "pkt 2 Bumping the Bar Off the Hips (uproszczenie)"]]},
+    {"c": "olympic.mis.armsEarly", "s": [["crossfit-snatch-forward", "Second Pull: Early Arm Pull (uproszczenie)"], ["catalyst-art-1904", "Why It's a Problem (uproszczenie)"]]},
+    {"c": "olympic.mis.softLockout", "s": [["crossfit-snatch-forward", "Third Pull: Lazy lockout (uproszczenie)"], ["barbend-fix-your-snatch", "pkt 4 A Loose Catch (uproszczenie)"]]}
+   ]
+  },
+  "Snatch Pull": {
+   "setup": [
+    {"c": "olympic.setup", "s": [["catalyst-97", "opis (set the snatch starting position tightly; arms relaxed)"], ["rogue-snatch-pull", "Setup (snatch grip) i Extension (chest and shoulders over the bar); Common cues (flat back)"]]}
+   ],
+   "move": [
+    {"c": "olympic.pullMove", "s": [["catalyst-97", "opis (push with the legs; extend the entire body; shrug up and back)"], ["rogue-snatch-pull", "First Pull, Extension (triple extension), Shrug (finish with a powerful shrug)"]]}
+   ],
+   "tips": [
+    {"c": "oly.close", "s": [["catalyst-97", "opis (keep the bar as close to the legs as possible; at no point should it move away)"], ["rogue-snatch-pull", "First Pull (keeping the bar close to the legs)"]]},
+    {"c": "oly.legs", "s": [["catalyst-97", "opis (arms relaxed and stretched long; push with the legs)"], ["rogue-snatch-pull", "Bar Close and Arms Straight; Do NOT pull with the arms"]]}
+   ],
+   "mistakes": [
+    {"c": "olympic.mis.armsEarly", "s": [["catalyst-video-1539", "opis wideo (ciągi: rozpocząć pracę rąk dopiero po wyproście nóg i bioder)"], ["rogue-snatch-pull", "Shrug (Do NOT pull with the arms — this isn't a high pull)"]]},
+    {"c": "olympic.mis.away", "s": [["catalyst-video-1499", "opis wideo (ciągi: sztanga odbija od ciała po kontakcie z biodrami; 5 przyczyn)"], ["crossfit-snatch-forward", "First Pull / Second Pull — fazy ciągu rwania (uproszczenie)"]]}
+   ]
+  },
+  "Muscle Snatch": {
+   "setup": [
+    {"c": "olympic.setup", "s": [["catalyst-96", "opis (set your snatch starting position) — uproszczenie: start jak w rwaniu"], ["barbend-muscle-snatch", "Setup (snatch starting position; shoulders over or slightly ahead of the bar)"]]}
+   ],
+   "move": [
+    {"c": "olympic.msMove", "s": [["catalyst-96", "opis (extend close to vertically; pull elbows up and out; turn the bar over; legs tight pushing into the floor)"], ["barbend-muscle-snatch", "Second Pull, Turnover, Lockout (without re-bending your legs)"]]}
+   ],
+   "tips": [
+    {"c": "oly.close", "s": [["catalyst-96", "opis (bar as close to the body as possible)"], ["barbend-muscle-snatch", "Bar Close"]]}
+   ],
+   "mistakes": [
+    {"c": "olympic.mis.leanBack", "s": [["catalyst-96", "opis (extend close to vertically rather than leaning the trunk farther back)"], ["barbend-muscle-snatch", "Common Mistakes: Going Too Heavy (lean back too far)"]]}
+   ]
+  },
+  "Snatch Balance": {
+   "setup": [
+    {"c": "olympic.sbSetup", "s": [["catalyst-80", "opis (barbell behind your neck with a snatch-width grip)"], ["barbend-snatch-balance", "Step 1 Set Up (on the back, hands in the snatch grip)"]]}
+   ],
+   "move": [
+    {"c": "olympic.sbMove", "s": [["catalyst-80", "opis (bend the knees; drive up; move feet into receiving stance; squat into the bottom of an overhead squat; stand)"], ["barbend-snatch-balance", "Step 2 Press and Dip, Step 3 Receive the Bar, Then Stand"]]}
+   ],
+   "tips": [
+    {"c": "olympic.sbPush", "s": [["catalyst-80", "opis (punch the arms aggressively up into the bar)"], ["barbend-snatch-balance", "Step 3 (reach the arms into the barbell) i wskazówki (pushing up and into it)"]]}
+   ],
+   "mistakes": [
+    {"c": "olympic.mis.slowDrop", "s": [["torokhtiy-snatch-balance", "Common Mistakes: Lack of Speed in the Drop"], ["catalyst-80", "opis (drop under „as quickly as possible” — błąd = zaprzeczenie standardu)"]]},
+    {"c": "olympic.mis.standEarly", "s": [["torokhtiy-snatch-balance", "Common Mistakes: Rushing the Stand Up"], ["catalyst-80", "opis („Making sure it’s stable and secure, stand again with the bar overhead.” — błąd = zaprzeczenie standardu)"]]}
+   ]
+  },
+  "Block Snatch": {
+   "setup": [
+    {"c": "olympic.blockSetup", "s": [["catalyst-207", "opis (most commonly the bar starting at knee height)"], ["barbend-blocks-vs-hang", "knee-height blocks (stronger position than the floor)"]]},
+    {"c": "olympic.setup", "s": [["catalyst-207", "opis (same position as in a snatch with the bar at that height)"], ["catalyst-58", "start — rwanie ogólnie"], ["barbend-power-snatch", "Step 1–2 — wariant power z podłogi (uproszczenie: inny start)"]]}
+   ],
+   "move": [
+    {"c": "olympic.snatchMove", "s": [["catalyst-207", "opis (push with the legs; extend; pull elbows up and out; squat under; fix overhead; stand)"], ["rogue-hang-squat-snatch", "Extension, Pull Under, Receive — wariant ze zwisu (uproszczenie: inny start)"]]}
+   ],
+   "tips": [
+    {"c": "oly.close", "s": [["catalyst-207", "opis (bar as close to the body as possible)"], ["rogue-hang-squat-snatch", "Arms (high elbows to keep the bar close) — wariant ze zwisu (uproszczenie)"]]}
+   ],
+   "mistakes": [
+    {"c": "olympic.mis.away", "s": [["crossfit-snatch-forward", "Second Pull (uproszczenie)"], ["catalyst-art-2076", "pkt 2 (uproszczenie)"]]},
+    {"c": "olympic.mis.armsEarly", "s": [["crossfit-snatch-forward", "Second Pull: Early Arm Pull (uproszczenie)"], ["catalyst-art-1904", "Why It's a Problem (uproszczenie)"]]}
+   ]
+  },
+  "Block Power Snatch": {
+   "setup": [
+    {"c": "olympic.blockSetup", "s": [["catalyst-203", "opis (most commonly the bar starting at knee height)"], ["barbend-blocks-vs-hang", "Block Height (knee-height blocks; above knee for high-block power variations)"]]}
+   ],
+   "move": [
+    {"c": "olympic.powerMove", "s": [["catalyst-203", "opis (push with the legs; extend; pull elbows up and out; remain above a parallel squat)"], ["barbend-power-snatch", "Steps 3–4 (uproszczenie: inny start)"]]}
+   ],
+   "tips": [
+    {"c": "oly.close", "s": [["catalyst-203", "opis (bar as close to the body as possible)"], ["barbend-power-snatch", "Muscles Worked › Upper & Lower Back (uproszczenie)"]]}
+   ],
+   "mistakes": [
+    {"c": "olympic.mis.away", "s": [["crossfit-snatch-forward", "Second Pull (uproszczenie)"], ["catalyst-art-2076", "pkt 2 (uproszczenie)"]]},
+    {"c": "olympic.mis.armsEarly", "s": [["crossfit-snatch-forward", "Second Pull: Early Arm Pull (uproszczenie)"], ["catalyst-art-1904", "Why It's a Problem (uproszczenie)"]]}
+   ]
+  },
+  "Split Snatch": {
+   "setup": [
+    {"c": "olympic.setup", "s": [["catalyst-58", "start — rwanie ogólnie (uproszczenie: ten sam start)"], ["barbend-power-snatch", "Step 1–2 — wariant power (uproszczenie)"], ["ironmind-split", "ciąg „just as you would for a power or squat lift” (uproszczenie: start jak w rwaniu)"]]}
+   ],
+   "move": [
+    {"c": "olympic.splitMove", "s": [["ironmind-split", "opis rwania i zarzutu w nożycach (ciąg jak w rwaniu; jedna noga ok. 1 stopy do przodu, druga ok. 2 stóp do tyłu; szybkie nogi i ręce; powrót do stania)"], ["catalyst-pm-815", "odpowiedź o split snatch („a single-leg squat with the other foot behind you”)"]]}
+   ],
+   "tips": [
+    {"c": "oly.close", "s": [["catalyst-58", "rwanie ogólnie (uproszczenie)"], ["barbend-power-snatch", "Muscles Worked › Upper & Lower Back — wariant power (uproszczenie)"]]}
+   ],
+   "mistakes": [
+    {"c": "olympic.mis.armsEarly", "s": [["crossfit-snatch-forward", "Second Pull: Early Arm Pull — rwanie ogólnie (uproszczenie)"], ["catalyst-art-1904", "Why It's a Problem — rwanie ogólnie (uproszczenie)"]]}
+   ]
+  }
+ }
+}
+```
+
+Nowe zdania w bloku (18): `olympic.setup`, `olympic.snatchMove`, `olympic.powerMove`, `olympic.hangSetup`, `olympic.blockSetup`, `olympic.pullMove`, `olympic.msMove`,
+`olympic.sbSetup`, `olympic.sbMove`, `olympic.sbPush`, `olympic.overBar`, `olympic.mis.away`, `olympic.mis.armsEarly`, `olympic.mis.softLockout`, `olympic.mis.leanBack`,
+`olympic.splitMove`, `olympic.mis.slowDrop`, `olympic.mis.standEarly`. Istniejące: `oly.close`, `oly.legs`.
+
+Wątpliwości:
+1. Torokhtiy liczony jako 4 dla artykułu techniki z autorem i datą mimo banerów sprzedaży na tej samej stronie (analogicznie do Eleiko w uzup. 3: „artykuł nie jest reklamą
+   produktu, ale otoczenie handlowe”). Jeśli koordynator uzna to za pkt 3 — Snatch Balance wraca do „własna bez błędów” (oba nowe błędy wypadają).
+2. BarBend: Trieu (Muscle Snatch) i Dewar (Snatch Balance) mają w biogramie wykształcenie kierunkowe (magisterium z fizjologii wysiłku), a nie certyfikat trenerski, i strony
+   nie mają „Expert Verified”. Liczę jako „autor z kwalifikacjami”. Jeśli koordynator wymaga certyfikatu trenerskiego — Muscle Snatch traci `olympic.setup`, `olympic.msMove`,
+   `oly.close`, `olympic.mis.leanBack` (→ otwarta), Snatch Balance traci wszystkie zdania (→ otwarta).
+3. **Kolizja identyfikatorów między plikami (do integracji):** `olympic.powerMove`, `olympic.splitMove` i `olympic.mis.armsEarly` mają tu inne brzmienie niż w olympic-jerk.md
+   (rwanie vs podrzut). Przy wdrożeniu jeden z plików musi dostać inne id (np. `olympic.snatchPowerMove`, `olympic.snatchSplitMove`) — nie zmieniam id w tym przeliczeniu.
