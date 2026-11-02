@@ -69,7 +69,7 @@ test('deload: oznaczenie tygodnia w Postępach → restart → start z szablonu 
   const c = deloadCounts(t[0]); await startTpl(t[0].name); await flushAll(5); await press('Tydzień deload', 'Mniej serii');
   expect(S().active!.exercises.reduce((a, e) => a + e.sets.filter(s => s.kind !== 'warmup').length, 0)).toBe(c.less); expect(S().active!.deload).toBe(true);
   await restart('/'); expect(S().active!.deload).toBe(true);
-  act(() => { store.cancelWorkout(); store.toggleDeloadWeek(NOW.getTime()); }); await restart('/'); expect(store.isDeloadWeek(NOW.getTime())).toBe(false);
+  await act(async () => { store.cancelWorkout(); store.toggleDeloadWeek(NOW.getTime()); }); await restart('/'); expect(store.isDeloadWeek(NOW.getTime())).toBe(false);
   await startTpl(t[0].name); await flushAll(5); expect(lastAlert('Tydzień deload')).toBeUndefined(); expect(S().active?.templateId).toBe(t[0].id);
 });
 

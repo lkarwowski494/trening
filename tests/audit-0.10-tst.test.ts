@@ -56,20 +56,20 @@ describe('LOGIKA: funkcje lib/ bez testu zachowania (M5)', () => {
 
   test('store.useTick / useHistTick / useCfgTick / useExercisesTick: który zapis przerysowuje który ekran (PERF-01/02, runda 14)', async () => {
     await fresh();
-    const tick = renderHook(() => store.useTick()); const hist = renderHook(() => store.useHistTick()); const cfg = renderHook(() => store.useCfgTick()); const exs = renderHook(() => store.useExercisesTick());
+    const tick = await renderHook(() => store.useTick()); const hist = await renderHook(() => store.useHistTick()); const cfg = await renderHook(() => store.useCfgTick()); const exs = await renderHook(() => store.useExercisesTick());
     const snap = () => [tick.result.current, hist.result.current, cfg.result.current, exs.result.current];
     /* wpis w treningu w toku: tylko useTick */
-    act(() => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); }); let a = snap(); act(() => { S().active!.exercises[0].sets[0].reps = 7; store.save(S().active!); }); let b = snap();
+    await act(() => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); }); let a = snap(); await act(() => { S().active!.exercises[0].sets[0].reps = 7; store.save(S().active!); }); let b = snap();
     expect([a[0] !== b[0], a[1] === b[1], a[2] === b[2], a[3] === b[3]]).toEqual([true, true, true, true]);
     /* zmiana szablonu: useCfgTick tak, historia nie */
-    let tp = store.newTemplate(); act(() => { tp = store.newTemplate(); }); a = snap(); act(() => { tp.name = 'X'; store.save(tp); }); b = snap();
+    let tp = store.newTemplate(); await act(() => { tp = store.newTemplate(); }); a = snap(); await act(() => { tp.name = 'X'; store.save(tp); }); b = snap();
     expect([a[0] !== b[0], a[1] === b[1], a[2] !== b[2]]).toEqual([true, true, true]);
     /* zmiana nazwy ćwiczenia: lista ćwiczeń tak; notatka ćwiczenia: lista nie */
-    const e = ex('Plank'); a = snap(); act(() => { e.name = 'Deska'; store.save(e); }); b = snap(); expect(a[3] !== b[3]).toBe(true);
-    a = snap(); act(() => { e.notes = 'x'; store.save(e); }); b = snap(); expect(a[3] === b[3]).toBe(true);
+    const e = ex('Plank'); a = snap(); await act(() => { e.name = 'Deska'; store.save(e); }); b = snap(); expect(a[3] !== b[3]).toBe(true);
+    a = snap(); await act(() => { e.notes = 'x'; store.save(e); }); b = snap(); expect(a[3] === b[3]).toBe(true);
     /* zakończenie treningu (historia): useHistTick i useCfgTick */
-    act(() => { store.toggleDone(0, 0); });
-    a = snap(); act(() => { store.finishWorkout(); }); b = snap(); expect([a[1] !== b[1], a[2] !== b[2]]).toEqual([true, true]);
+    await act(() => { store.toggleDone(0, 0); });
+    a = snap(); await act(() => { store.finishWorkout(); }); b = snap(); expect([a[1] !== b[1], a[2] !== b[2]]).toEqual([true, true]);
     [tick, hist, cfg, exs].forEach(h => h.unmount());
   });
 });

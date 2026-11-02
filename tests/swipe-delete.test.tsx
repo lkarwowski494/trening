@@ -34,25 +34,25 @@ describe('komponent', () => {
   const mount = (onDelete = jest.fn(), disabled = false) => render(
     <SwipeRow label="Usuń X" title="Usunąć X?" message="opis" onDelete={onDelete} disabled={disabled}>{a11y => <Text {...a11y} accessible accessibilityLabel="Wiersz X">X</Text>}</SwipeRow>);
   test('akcja VoiceOver „usuń” na elemencie wiersza; przycisk pod wierszem ukryty, dopóki wiersz zamknięty', async () => {
-    await fresh(); const r = mount();
+    await fresh(); const r = await mount();
     expect(r.getByLabelText('Wiersz X').props.accessibilityActions).toEqual([{ name: 'delete', label: 'Usuń X' }]);
     expect(r.queryByLabelText('Usuń X')).toBeNull(); expect(r.getByLabelText('Usuń X', { includeHiddenElements: true })).toBeTruthy();
   });
   test('potwierdzenie: „Nie” nic nie usuwa, „Usuń” usuwa raz', async () => {
-    await fresh(); const del = jest.fn(); const r = mount(del);
-    await rtlAct(async () => { fireEvent(r.getByLabelText('Wiersz X'), 'accessibilityAction', { nativeEvent: { actionName: 'delete' } }); });
+    await fresh(); const del = jest.fn(); const r = await mount(del);
+    await rtlAct(async () => { await fireEvent(r.getByLabelText('Wiersz X'), 'accessibilityAction', { nativeEvent: { actionName: 'delete' } }); });
     expect(lastAlert()).toMatchObject({ title: 'Usunąć X?', msg: 'opis' }); expect(lastAlert().buttons!.map((b: any) => b.text)).toEqual(['Anuluj', 'Usuń']);
     await rtlAct(async () => { pressAlert('Usunąć X?', 'Anuluj'); }); expect(del).not.toHaveBeenCalled();
-    await rtlAct(async () => { fireEvent(r.getByLabelText('Wiersz X'), 'accessibilityAction', { nativeEvent: { actionName: 'activate' } }); }); expect(global.__alerts.length).toBe(1); /* inna akcja — bez pytania */
-    await rtlAct(async () => { fireEvent(r.getByLabelText('Wiersz X'), 'accessibilityAction', { nativeEvent: { actionName: 'delete' } }); });
+    await rtlAct(async () => { await fireEvent(r.getByLabelText('Wiersz X'), 'accessibilityAction', { nativeEvent: { actionName: 'activate' } }); }); expect(global.__alerts.length).toBe(1); /* inna akcja — bez pytania */
+    await rtlAct(async () => { await fireEvent(r.getByLabelText('Wiersz X'), 'accessibilityAction', { nativeEvent: { actionName: 'delete' } }); });
     await rtlAct(async () => { pressAlert('Usunąć X?', 'Usuń'); }); expect(del).toHaveBeenCalledTimes(1);
   });
   test('zamknięty wiersz: przycisk „Usuń” pod spodem nie przyjmuje dotyku (odsłania go dopiero przesunięcie)', async () => {
-    await fresh(); const del = jest.fn(); const r = mount(del); const n = global.__alerts.length;
-    await rtlAct(async () => { fireEvent.press(r.getByLabelText('Usuń X', { includeHiddenElements: true })); }); expect(global.__alerts.length).toBe(n); expect(del).not.toHaveBeenCalled();
+    await fresh(); const del = jest.fn(); const r = await mount(del); const n = global.__alerts.length;
+    await rtlAct(async () => { await fireEvent.press(r.getByLabelText('Usuń X', { includeHiddenElements: true })); }); expect(global.__alerts.length).toBe(n); expect(del).not.toHaveBeenCalled();
   });
   test('disabled: bez akcji i bez przycisku', async () => {
-    await fresh(); const r = mount(jest.fn(), true);
+    await fresh(); const r = await mount(jest.fn(), true);
     expect(r.getByLabelText('Wiersz X').props.accessibilityActions).toBeUndefined(); expect(r.queryByLabelText('Usuń X', { includeHiddenElements: true })).toBeNull();
   });
 });

@@ -63,7 +63,7 @@ describe('strażnik: źródła', () => {
 });
 
 type Nav = { routes: { name: string; state?: Nav }[] };
-const stack = () => { const { store: rs } = require('expo-router/build/global-state/router-store'); let st: Nav = rs.navigationRef.getRootState();
+const stack = () => { const rs = { navigationRef: require('./app').navRef() }; /* SDK 58: router-store usunięty */ let st: Nav = rs.navigationRef.getRootState();
   while (st.routes.length === 1 && st.routes[0].name === '__root' && st.routes[0].state) st = st.routes[0].state; return st.routes.map(r => r.name); };
 const go = async (href: string) => { await act(async () => { require('expo-router').router.push(href as never); }); for (let i = 0; i < 6; i++) await flushAll(10); };
 async function boot(locale: 'pl' | 'en', theme: 'light' | 'dark') {

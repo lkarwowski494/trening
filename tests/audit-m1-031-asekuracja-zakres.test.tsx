@@ -87,19 +87,19 @@ describe('M1-031: zakres reguły (NSCA 2017, Standard 3.2)', () => {
 
 describe('M1-031: ramka na ekranie ćwiczenia', () => {
   test.each(RACK_NEW)('%s: zdanie „stojaki … oraz osoba asekurująca”', async key => {
-    await fresh(); render(<ExerciseCues exercise={{ lib: true, libKey: key, recommended: CATALOG[key].recommended } as any} />);
+    await fresh(); await render(<ExerciseCues exercise={{ lib: true, libKey: key, recommended: CATALOG[key].recommended } as any} />);
     expect(rtlScreen.getByText(NOTE_RACK)).toBeTruthy(); expect(rtlScreen.queryByText(NOTE_SPOT)).toBeNull();
   });
   test.each(SPOT)('%s: zdanie „zalecana osoba asekurująca”, bez stojaków', async key => {
-    await fresh(); render(<ExerciseCues exercise={{ lib: true, libKey: key, recommended: CATALOG[key].recommended } as any} />);
+    await fresh(); await render(<ExerciseCues exercise={{ lib: true, libKey: key, recommended: CATALOG[key].recommended } as any} />);
     expect(rtlScreen.getByText(NOTE_SPOT)).toBeTruthy(); expect(rtlScreen.getByText('Asekuracja')).toBeTruthy(); expect(rtlScreen.queryByText(NOTE_RACK)).toBeNull();
   });
   test.each(['Push Press', 'Hip Thrust (sztanga)', 'Deadlift (sztanga)', 'Bench Press (hantle)'])('%s: bez ramki', async key => {
-    await fresh(); render(<ExerciseCues exercise={{ lib: true, libKey: key, recommended: CATALOG[key].recommended } as any} />);
+    await fresh(); await render(<ExerciseCues exercise={{ lib: true, libKey: key, recommended: CATALOG[key].recommended } as any} />);
     expect(rtlScreen.queryByText(NOTE_RACK)).toBeNull(); expect(rtlScreen.queryByText(NOTE_SPOT)).toBeNull();
   });
   test('EN: Skullcrusher (EZ) — angielskie zdanie', async () => {
-    await fresh(); applyLang('en'); render(<ExerciseCues exercise={{ lib: true, libKey: 'Skullcrusher (EZ)', recommended: [] } as any} />);
+    await fresh(); applyLang('en'); await render(<ExerciseCues exercise={{ lib: true, libKey: 'Skullcrusher (EZ)', recommended: [] } as any} />);
     expect(rtlScreen.getByText(NOTE_SPOT_EN)).toBeTruthy();
   });
   test('słowniki: nowe zdanie w EN i w każdym z 33 innych języków (es-419, pt-BR dziedziczą)', () => {

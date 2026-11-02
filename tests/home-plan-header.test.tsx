@@ -21,9 +21,9 @@ const boot = async (fn: (t: Template[]) => void = () => {}, url = '/', locale: '
 const setPlan = (t: Template[], days: Record<number, number>, name = '') => { jest.setSystemTime(new Date(2026, 9, 5, 6).getTime()); for (const [i, k] of Object.entries(days)) plan.setWeekDay(Number(i), t[k].id); if (name) plan.setPlanName(name); jest.setSystemTime(NOW.getTime()); };
 const hist = () => addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Nogi');
 type Nav = { routes: { name: string; state?: Nav }[] };
-const stack = () => { const { store: rs } = require('expo-router/build/global-state/router-store'); let st: Nav = rs.navigationRef.getRootState();
+const stack = () => { const rs = { navigationRef: require('./app').navRef() }; let st: Nav = rs.navigationRef.getRootState();
   while (st.routes.length === 1 && st.routes[0].name === '__root' && st.routes[0].state) st = st.routes[0].state; return st.routes.map(r => r.name); };
-const order = (...ids: string[]) => { const all = screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && ids.includes(n.props.testID as string)).map((n: { props: { testID?: string } }) => n.props.testID as string); return ids.map(id => all.indexOf(id)); };
+const order = (...ids: string[]) => { const all = screen.container.queryAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && ids.includes(n.props.testID as string)).map((n: { props: { testID?: string } }) => n.props.testID as string); return ids.map(id => all.indexOf(id)); };
 const labels = () => screen.getAllByRole('button').map(b => b.props.accessibilityLabel as string);
 
 describe('nagłówek planu nad kalendarzem', () => {

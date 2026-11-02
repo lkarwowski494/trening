@@ -1,11 +1,11 @@
 /* Warstwa C planu testów (09): automatyczne miary UX na wyrenderowanych ekranach. */
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet } from 'react-native';
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { dark, light } from '@/lib/theme';
 import { LIB, metricFor, type Equipment } from '@/lib/seed';
 import { rowLayout } from '@/components/ActiveWorkout';
-import { renderApp, tap, flushAll, screen, go, act, type, openCard, swipeDelete, startEdit, startTpl } from './app';
+import { renderApp, tap, flushAll, screen, go, act, type, openCard, swipeDelete, startEdit, startTpl, hostRoot } from './app';
 import { ex, pressAlert, seedWithDemo } from './helpers';
 
 jest.setTimeout(60000);
@@ -133,7 +133,7 @@ test('C9 żaden ekran nie zgłasza ostrzeżeń Reacta (poza act w testach)', asy
 
 test('C10 pola tekstowe ograniczają powiększenie tekstu', async () => {
   await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A');
-  const inputs = screen.UNSAFE_getAllByType(TextInput);
+  const inputs = hostRoot().queryAll((n: any) => n.type === 'TextInput'); /* RNTL 14: tylko elementy natywne */
   expect(inputs.length).toBeGreaterThan(5);
   expect(inputs.filter(i => !(i.props.maxFontSizeMultiplier > 0))).toHaveLength(0);
   void pressAlert;

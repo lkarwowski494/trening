@@ -145,7 +145,7 @@ describe('szczegóły sesji', () => {
   test('dopasowany trening z zegarka: tętno śr./maks. i aktywne kcal; czas sesji z aplikacji (czasu z zegarka nie ma)', async () => {
     await detail(w => { w.workouts.push(watchStrength(at('2026-10-10', 18, 3), 50, { hr: { avg: 128, max: 161 }, kcal: 312 })); });
     expect(screen.getByText('Apple Health (zegarek): tętno śr. 128 /min, maks. 161 /min · 312 kcal aktywne')).toBeTruthy();
-    expect(screen.getByTestId('session-health').findByProps({ accessibilityLabel: 'Z zegarka: tętno średnie 128 na minutę, maksymalne 161; 312 kilokalorii aktywnych' })).toBeTruthy();
+    expect(screen.getByTestId('session-health').queryAll(n => n.props.accessibilityLabel === 'Z zegarka: tętno średnie 128 na minutę, maksymalne 161; 312 kilokalorii aktywnych', { includeSelf: true })).toHaveLength(1); /* RNTL 14: findByProps → queryAll (findByProps wymagał dokładnie jednego) */
   });
   test('bez zegarka (normalny przypadek) i bez wartości: nic, także po załadowaniu; odczyt wyłączony: nic i zero zapytań', async () => {
     await detail(() => {}); expect(screen.queryByTestId('session-health')).toBeNull(); expect(screen.queryByText('Apple Health…')).toBeNull();

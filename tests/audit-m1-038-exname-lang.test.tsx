@@ -33,7 +33,7 @@ describe('ekrany: nazwa biblioteki czytana po angielsku', () => {
   test('lista „Ćwiczenia” w de: wiersz biblioteki ma język wymowy en (Pressable i napis), ćwiczenie własne — de', async () => {
     await fresh(undefined, 'pl'); own(); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'de' as never, url: '/exercises' }); await flushAll(20);
-    const titles = screen.getAllByTestId(/^lib-row-\d+$/).map(r => r.findAll(n => (n.type as unknown) === 'Text' && n.props.children !== 'Löschen')[0]).filter(Boolean);
+    const titles = screen.getAllByTestId(/^lib-row-\d+$/).map(r => r.queryAll(n => (n.type as unknown) === 'Text' && n.props.children !== 'Löschen')[0]).filter(Boolean);
     const libRows = titles.filter(x => x.props.children !== 'Moje ćwiczenie'); expect(libRows.length).toBeGreaterThan(3);
     for (const x of libRows) expect([x.props.children, x.props.accessibilityLanguage]).toEqual([x.props.children, 'en']);
     let btn = libRows[0].parent; while (btn && btn.props.accessibilityRole !== 'button') btn = btn.parent; expect(btn?.props.accessibilityLanguage).toBe('en'); /* element dostępności wiersza */

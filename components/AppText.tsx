@@ -5,10 +5,10 @@
  * Cała aplikacja importuje Text stąd, nie z 'react-native' (strażnik: eslint no-restricted-imports + tests/matrix-a11y.test.tsx).
  */
 import React from 'react';
-import { Text as RNText, type TextProps } from 'react-native';
+import { Text as RNText, type TextInstance, type TextProps } from 'react-native';
 import { TEXT_SCALE_MAX } from '@/lib/theme';
 
-export function Text(props: TextProps & { ref?: React.Ref<RNText> }) {
+export function Text(props: TextProps & { ref?: React.Ref<TextInstance> }) {
   return <RNText {...props} maxFontSizeMultiplier={props.maxFontSizeMultiplier ?? TEXT_SCALE_MAX} />; /* `?? `: jawne undefined (np. Txt bez limitu) też dostaje domyślny */
 }
 export type { TextProps };

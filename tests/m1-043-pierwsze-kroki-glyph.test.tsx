@@ -12,6 +12,7 @@ import { applyLang } from '@/lib/i18n';
 import { TEXT_SCALE_MAX, GLYPH_SCALE_MAX } from '@/lib/theme';
 import { fresh, saved } from './helpers';
 import { renderApp, flushAll, screen, act } from './app';
+import { fiberRoot } from './fiber-tree';
 
 jest.setTimeout(60000);
 type Node = { type: unknown; props: Record<string, unknown> & { style?: unknown; children?: unknown }; parent: Node | null; children: unknown[] };
@@ -26,7 +27,7 @@ describe('M1-043: T-04 — znaki-ikony w stanie pierwszego uruchomienia („Pier
     await fresh(undefined, 'pl'); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'pl', url: '/' }); await flushAll(10);
     expect(screen.getByTestId('first-steps')).toBeTruthy();
-    const texts = (screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === 'Text') as unknown as Node[]);
+    const texts = (fiberRoot().findAll(n => n.type === 'Text') as unknown as Node[]) /* RNTL 14: rodzice z komponentami złożonymi (Pressable z onPress) — tests/fiber-tree.ts */;
     const bad: string[] = []; let glyphs = 0;
     for (const tx of texts) {
       const g = raw(tx); if (!GLYPH.test(g)) continue;

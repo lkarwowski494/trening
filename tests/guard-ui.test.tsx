@@ -53,12 +53,12 @@ const boot = async (fn: () => void = () => {}, url = '/', locale: 'pl' | 'en' = 
   jest.useFakeTimers({ now: NOW }); await fresh(undefined, locale); fn(); S().settings.theme = theme; scheme = theme; store.saveCfg();
   await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url, width }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
 };
-const find = (id: string) => screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && n.props.testID === id);
+const find = (id: string) => screen.container.queryAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && n.props.testID === id);
 const has = (id: string) => find(id).length > 0;
 const textOf = (id: string): string => { const n = find(id)[0]; const walk = (x: unknown): string => typeof x === 'string' || typeof x === 'number' ? String(x) : Array.isArray(x) ? x.map(walk).join('') : x && typeof x === 'object' && 'props' in (x as object) ? walk((x as { props: { children?: unknown } }).props.children) : ''; return walk((n as unknown as { props: { children?: unknown } }).props.children); };
-const order = (...ids: string[]) => { const all = screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && ids.some(i => n.props.testID === i)).map((n: { props: { testID?: string } }) => n.props.testID as string); return ids.map(id => all.indexOf(id)); };
+const order = (...ids: string[]) => { const all = screen.container.queryAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && ids.some(i => n.props.testID === i)).map((n: { props: { testID?: string } }) => n.props.testID as string); return ids.map(id => all.indexOf(id)); };
 /** stan sylwetki partii = ostatni człon testID kształtów (kolory SVG w Jest to uchwyty pędzli, nie napisy) */
-const stateOf = (muscle: string): string[] => [...new Set(screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && (n.props.testID ?? '').startsWith(`guard-map-${muscle}-`)).map((n: { props: { testID?: string } }) => (n.props.testID as string).split('-').pop() as string))];
+const stateOf = (muscle: string): string[] => [...new Set(screen.container.queryAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && (n.props.testID ?? '').startsWith(`guard-map-${muscle}-`)).map((n: { props: { testID?: string } }) => (n.props.testID as string).split('-').pop() as string))];
 const flat = (st: unknown): Record<string, number> => Object.assign({}, ...[st].flat(Infinity as 1).filter(Boolean) as object[]);
 const DIRS: Exclude<GuardDir, 'deload'>[] = ['up', 'same', 'down', 'unknown', 'none'];
 
@@ -141,7 +141,7 @@ describe('Postępy: „Strażnik progresji”', () => {
     }, '/progress');
     const ids = ['ggrp-below', 'ggrp-down', 'ggrp-unknown', 'ggrp-same', 'ggrp-up', 'grow-none']; const o = order(...ids);
     expect(o.every(i => i >= 0)).toBe(true); expect([...o].sort((x, y) => x - y)).toEqual(o); expect(has('ggrp-new')).toBe(false);
-    const inGroup = (g: string): string[] => screen.getByTestId(g).findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && /^grow-/.test(n.props.testID ?? '')).map((n: { props: { testID?: string } }) => n.props.testID as string);
+    const inGroup = (g: string): string[] => screen.getByTestId(g).queryAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && /^grow-/.test(n.props.testID ?? '')).map((n: { props: { testID?: string } }) => n.props.testID as string);
     expect(inGroup('ggrp-below')).toEqual(['grow-klatka']); expect(inGroup('ggrp-down')).toEqual(['grow-czworogłowe', 'grow-pośladki', 'grow-przywodziciele']); expect(inGroup('ggrp-unknown')).toEqual(['grow-dwugłowe']);
     expect(inGroup('ggrp-same')).toEqual(['grow-biceps']); expect(inGroup('ggrp-up')).toEqual(['grow-barki', 'grow-triceps']);
     expect(within(screen.getByTestId('grow-none')).getByText('Bez serii: plecy, łydki, core, przedramiona')).toBeTruthy();
@@ -252,7 +252,7 @@ describe('wygląd: jasny / ciemny, kontrast, wąski ekran, duża czcionka', () =
     jest.spyOn(RN.PixelRatio, 'getFontScale').mockReturnValue(2); const dims = RN.Dimensions.get; jest.spyOn(RN.Dimensions, 'get').mockImplementation(((k: 'window' | 'screen') => ({ ...dims(k), fontScale: 2 })) as never);
     const errs: string[] = []; jest.spyOn(console, 'error').mockImplementation((...a: unknown[]) => { const m = String(a[0]); if (!/not wrapped in act/.test(m)) errs.push(m.slice(0, 200)); });
     for (const locale of ['pl', 'en'] as const) {
-      await boot(mixed, '/', locale, 320); expect(has('guard-map')).toBe(true); const clipped = screen.UNSAFE_root.findAll((n: { props: Record<string, unknown> }) => n.props.numberOfLines !== undefined && ['guard-short', 'guard-less'].includes(n.props.testID as string)); expect(clipped).toEqual([]);
+      await boot(mixed, '/', locale, 320); expect(has('guard-map')).toBe(true); const clipped = screen.container.queryAll((n: { props: Record<string, unknown> }) => n.props.numberOfLines !== undefined && ['guard-short', 'guard-less'].includes(n.props.testID as string)); expect(clipped).toEqual([]);
       await boot(mixed, '/progress', locale, 320); expect(has('guard-section')).toBe(true);
       await tap(within(screen.getByTestId('grow-czworogłowe')).getByRole('button')); await flushAll(5); expect(has('gdet-czworogłowe')).toBe(true);
     }

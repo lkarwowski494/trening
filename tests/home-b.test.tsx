@@ -22,7 +22,7 @@ const boot = async (prep: (t: Template[]) => void = () => {}, locale: 'pl' | 'en
 /** plan ustawiony w poniedziałek 5.10 (historia planu) — `days`: indeks dnia (pon = 0) → indeks szablonu */
 const setPlan = (t: Template[], days: Record<number, number>) => { jest.setSystemTime(at(5, 6)); for (const [i, k] of Object.entries(days)) plan.setWeekDay(Number(i), t[k].id); jest.setSystemTime(NOW); };
 const labels = () => screen.getAllByRole('button').map(b => b.props.accessibilityLabel as string);
-const order = (...ids: string[]) => { const all = screen.UNSAFE_root.findAll(n => typeof n.type === 'string' && ids.includes(n.props.testID)).map(n => n.props.testID as string); return ids.map(id => all.indexOf(id)); };
+const order = (...ids: string[]) => { const all = screen.container.queryAll(n => typeof n.type === 'string' && ids.includes(n.props.testID)).map(n => n.props.testID as string); return ids.map(id => all.indexOf(id)); };
 
 describe('logika (lib/home.ts)', () => {
   beforeEach(() => { jest.useFakeTimers({ now: NOW }); });
@@ -79,7 +79,7 @@ describe('ekran', () => {
     await boot(t => { addWorkout(at(6), [['Back Squat', [{ weight: 100, reps: 5 }]]], t[0].name); });
     await tap(screen.getByLabelText('Ustaw plan')); await flushAll(10); await openInfo('plan-days'); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.')).toBeTruthy() /* ⓘ 14.10.2026: opis pod ⓘ przy „Dni tygodnia” */;
     await tap(screen.getByText('Plan z moich szablonów')); await flushAll(10);
-    expect(screen.UNSAFE_root.findAll(n => (n.type as unknown) === 'RNSScreenStackHeaderConfig').map(n => n.props.title)).toContain('Plan z moich szablonów'); /* app/generator.tsx ?mode=own (feat-plan-moje) */
+    expect(screen.container.queryAll(n => (n.type as unknown) === 'RNSScreenStackHeaderConfig').map(n => n.props.title)).toContain('Plan z moich szablonów'); /* app/generator.tsx ?mode=own (feat-plan-moje) */
   });
   test('z planem: „Start: <dzisiejszy>” z podpisem, arkusz z „Inny z planu”; nagłówek „Plan: nazwa” z „Planowaniem” nad kalendarzem (bez wiersza pod „Ten tydzień”)', async () => {
     const t = await boot(t => { setPlan(t, { 3: 0, 4: 2 }); plan.setPlanName('Góra / Dół'); addWorkout(at(6), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Nogi'); });

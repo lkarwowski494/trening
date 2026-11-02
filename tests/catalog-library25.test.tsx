@@ -213,7 +213,7 @@ describe('miara ciężar + dystans (noszenie, sanki)', () => {
     store.startEmpty(); store.addExerciseToActive(store.exById(fw.id)!); await flushAll(20);
     expect(screen.getAllByText('m', { includeHiddenElements: true }) /* A11-18: nagłówki kolumn ukryte przed VoiceOver */.length).toBeGreaterThan(0); expect(screen.queryByText('▶')).toBeNull();
     await go(`/progress?ex=${fw.id}`); await flushAll(20); expect(screen.getByText('Najdłuższy dystans')).toBeTruthy();
-  });
+  }, 60000); /* limit 60 s (02.11.2026, ZB-010): po migracji do RNTL 14 test jest asynchroniczny, więc obowiązuje limit czasu Jest (domyślnie 5 s) (test padł na 5 s przy równoległym obciążeniu maszyny) */
 });
 
 describe('logika listy domyślnej (wariant B)', () => {

@@ -25,10 +25,10 @@ const boot = async (fn: () => void = () => {}, url = '/', locale: 'pl' | 'en' = 
 /** „Inny trening” → „Z szablonu”. */
 const openPick = async (en = false) => { await tap(screen.getByLabelText(en ? 'Other workout' : 'Inny trening')); await flushAll(5); await tap(screen.getByLabelText(/^(Z szablonu|From a template)$/)); await flushAll(10); };
 type Nav = { routes: { name: string; state?: Nav }[] };
-const stack = () => { const { store: rs } = require('expo-router/build/global-state/router-store'); let st: Nav = rs.navigationRef.getRootState();
+const stack = () => { const rs = { navigationRef: require('./app').navRef() }; let st: Nav = rs.navigationRef.getRootState();
   while (st.routes.length === 1 && st.routes[0].name === '__root' && st.routes[0].state) st = st.routes[0].state; return st.routes.map(r => r.name); };
 const lastAlert = (title: string) => [...global.__alerts].reverse().find(x => x.title === title);
-const header = () => screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === 'RNSScreenStackHeaderConfig').map((n: { props: { title?: string } }) => n.props.title);
+const header = () => screen.container.queryAll((n: { type: unknown }) => n.type === 'RNSScreenStackHeaderConfig').map((n: { props: { title?: string } }) => n.props.title);
 
 describe('wiersze i foldery', () => {
   test('„Z szablonu” z arkusza → ekran „Wybierz szablon”: arkusz zamknięty, szablony z folderami jako nagłówkami, „Start” przy każdym, opis wiersza', async () => {
@@ -84,7 +84,7 @@ describe('start i zamknięcie', () => {
   });
   test('podwójne tapnięcie „Start” w tygodniu deload → jedno pytanie; „Anuluj” zostawia wybór otwarty, „Pełny trening” startuje', async () => {
     let id = ''; await boot(() => { mk('A'); id = mk('B').id; store.toggleDeloadWeek(NOW.getTime()); });
-    await openPick(); const b = screen.getByLabelText('Start: B'); await act(async () => { fireEvent.press(b); fireEvent.press(b); }); await flushAll(5);
+    await openPick(); const b = screen.getByLabelText('Start: B'); await act(async () => { await fireEvent.press(b); fireEvent.press(b); }); await flushAll(5);
     expect(global.__alerts.filter(x => x.title === 'Tydzień deload')).toHaveLength(1);
     await act(async () => { pressAlert('Tydzień deload', 'Anuluj'); }); await flushAll(1500); expect(S().active).toBeNull(); expect(stack()).toEqual(['(tabs)', 'pick-template']);
     await tap(screen.getByLabelText('Start: B')); await flushAll(5); await act(async () => { pressAlert('Tydzień deload', 'Pełny trening'); }); await flushAll(10);
@@ -92,7 +92,7 @@ describe('start i zamknięcie', () => {
   });
   test('podwójne tapnięcie „Start” poza deload → jeden trening', async () => {
     await boot(() => { mk('A'); mk('B'); });
-    await openPick(); const b = screen.getByLabelText('Start: B'); await act(async () => { fireEvent.press(b); fireEvent.press(b); }); await flushAll(10);
+    await openPick(); const b = screen.getByLabelText('Start: B'); await act(async () => { await fireEvent.press(b); fireEvent.press(b); }); await flushAll(10);
     expect(S().active).not.toBeNull(); expect(S().active!.templateId).toBeTruthy(); expect(stack()).toEqual(['(tabs)']); expect(global.__alerts).toHaveLength(0); /* jedno uruchomienie, bez błędów */
   });
   test('trening już w toku (strażnik): „Start” nie nadpisuje treningu, tylko wraca do niego', async () => {
@@ -103,7 +103,7 @@ describe('start i zamknięcie', () => {
   });
   test('„Anuluj” w nagłówku zamyka wybór bez startu; podwójne „Anuluj” nie cofa dalej', async () => {
     await boot(() => { mk('A'); });
-    await openPick(); const cancel = screen.getByTestId('close-modal'); await act(async () => { fireEvent.press(cancel); fireEvent.press(cancel); }); await flushAll(10);
+    await openPick(); const cancel = screen.getByTestId('close-modal'); await act(async () => { await fireEvent.press(cancel); fireEvent.press(cancel); }); await flushAll(10);
     expect(S().active).toBeNull(); expect(stack()).toEqual(['(tabs)']); expect(screen.getByTestId('start-main')).toBeTruthy();
   });
   test('brak szablonów (wejście z linku): „Nie masz jeszcze szablonów.”, bez wyszukiwarki', async () => {

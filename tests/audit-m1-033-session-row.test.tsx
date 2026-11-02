@@ -30,7 +30,7 @@ describe('wiersz sesji w Postępach', () => {
       const [date, summary] = [screen.getByTestId(r.props.testID.replace('row', 'date')), screen.getByTestId(r.props.testID.replace('row', 'summary'))];
       expect(date.props.numberOfLines).toBeUndefined(); expect(summary.props.numberOfLines).toBeUndefined(); /* zawija się, nie ucina */
       expect(Number(flat(summary).marginTop ?? 0)).toBeGreaterThanOrEqual(8);
-      const kids = r.findAll(n => /^session-(date|summary)-/.test(n.props.testID ?? '')).map(n => String(n.props.testID).split('-')[1]);
+      const kids = r.queryAll(n => /^session-(date|summary)-/.test(n.props.testID ?? '')).map(n => String(n.props.testID).split('-')[1]);
       expect(kids.indexOf('date')).toBeLessThan(kids.indexOf('summary'));
     }
   });

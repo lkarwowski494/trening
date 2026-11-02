@@ -18,6 +18,7 @@ import * as plan from '@/lib/plan';
 import { appRoutes, routeGaps } from './routes';
 import { DAY_MARKS, MARK_STROKE } from '@/lib/motif';
 import { richState, routesFor } from './a11y-routes';
+import { fiberRoot } from './fiber-tree';
 
 jest.setTimeout(180000);
 
@@ -28,10 +29,10 @@ const flat = (x: unknown): Record<string, any> => (RN.StyleSheet.flatten((typeof
 /** Ukrywa poddrzewo przed VoiceOver: aria-hidden / accessibilityElementsHidden / no-hide-descendants albo display:none (ekrany pod spodem w stosie). */
 const hides = (x: Node): boolean => { const p = x.props ?? {}; return !!(p.accessibilityElementsHidden || p.importantForAccessibility === 'no-hide-descendants' || p['aria-hidden'] || flat(p.style).display === 'none'); };
 /** Wszystkie węzły widoczne dla VoiceOver — jedno przejście od korzenia (pomija ukryte poddrzewa). */
-const visibleNodes = (): Node[] => { const out: Node[] = []; const walk = (x: Node) => { if (!x || typeof x !== 'object' || hides(x)) return; out.push(x); for (const c of x.children ?? []) walk(c); }; walk(screen.UNSAFE_root); return out; };
+const visibleNodes = (): Node[] => { const out: Node[] = []; const walk = (x: Node) => { if (!x || typeof x !== 'object' || hides(x)) return; out.push(x); for (const c of x.children ?? []) walk(c); }; walk(fiberRoot()); return out; };
 /** Tekst czytany przez VoiceOver z dzieci (bez elementów accessible={false}). */
 /** Wszystkie węzły, także ukryte przed VoiceOver (znaki-ikony ›, ▾ mają accessible=false — widoczne okiem, więc podlegają skali tekstu). */
-const allNodes = (): Node[] => { const out: Node[] = []; const walk = (x: Node) => { if (!x || typeof x !== 'object') return; out.push(x); for (const c of x.children ?? []) walk(c); }; walk(screen.UNSAFE_root); return out; };
+const allNodes = (): Node[] => { const out: Node[] = []; const walk = (x: Node) => { if (!x || typeof x !== 'object') return; out.push(x); for (const c of x.children ?? []) walk(c); }; walk(fiberRoot()); return out; };
 const rawText = (n: Node): string => { const out: string[] = []; const walk = (x: Node) => { if (x == null) return; if (typeof x === 'string' || typeof x === 'number') { out.push(String(x)); return; } if (Array.isArray(x)) { x.forEach(walk); return; } walk(x.children); }; walk(n); return out.join('').trim(); };
 const textOf = (n: Node): string => { const out: string[] = []; const walk = (x: Node) => { if (x == null) return; if (typeof x === 'string' || typeof x === 'number') { out.push(String(x)); return; } if (Array.isArray(x)) { x.forEach(walk); return; } if (x.props?.accessible === false || x.props?.importantForAccessibility === 'no') return; walk(x.children); }; walk(n); return out.join(' ').replace(/\s+/g, ' ').trim(); };
 const nameOf = (n: Node): string => n.props.accessibilityLabel ?? n.props['aria-label'] ?? textOf(n);
@@ -206,7 +207,7 @@ describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności i
     for (const r of R.routes) {
       await go(r); await flushAll(10);
       const tech = r.startsWith('/exercise/') ? screen.queryByRole('button', { name: 'Technika' }) : null; /* A11N-04: sekcja „Technika” rozwinięta (od 27.10.2026 domyślnie już jest — stukamy tylko, gdy zwinięta) */
-      if (tech) { if (!tech.props.accessibilityState?.expanded) { await act(async () => { fireEvent.press(tech); }); await flushAll(5); } R.techOpen = true; }
+      if (tech) { if (!tech.props.accessibilityState?.expanded) { await act(async () => { await fireEvent.press(tech); }); await flushAll(5); } R.techOpen = true; }
       const all: Node[] = visibleNodes();
       for (const i of all.filter(x => x.type === 'TextInput')) R.inputs.push({ r, m: i.props.maxFontSizeMultiplier, multi: !!i.props.multiline });
       for (const tx of allNodes().filter(x => x.type === 'Text')) {

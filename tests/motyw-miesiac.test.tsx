@@ -15,7 +15,7 @@ import { periodRange } from '@/lib/period';
 import { PLATE_COLORS } from '@/lib/discColors';
 import { light, dark } from '@/lib/theme';
 import { fresh, addWorkout, saved } from './helpers';
-import { renderApp, flushAll, screen, go, act } from './app';
+import { renderApp, flushAll, screen, go, act, compPropsAll } from './app';
 
 jest.setTimeout(60000);
 const at = (m: number, d: number, h = 18) => new Date(2026, m - 1, d, h).getTime();
@@ -65,7 +65,7 @@ describe('logika: monthWeeks', () => {
 });
 
 type Node = ReturnType<typeof screen.getByTestId>;
-const rects = (n: Node) => n.findAll(x => typeof x.type !== 'string' && typeof x.props.fill === 'string' && 'width' in x.props).map(x => ({ fill: String(x.props.fill), stroke: x.props.stroke as string | undefined }));
+const rects = (n: Node) => compPropsAll(n).filter(p => typeof p.fill === 'string' && 'width' in p).map(p => ({ fill: String(p.fill), stroke: p.stroke as string | undefined })); /* RNTL 14: komponenty złożone (Rect) przez unstable_fiber — tests/app.tsx */
 const hidden = (n: Node) => { for (let x: Node | null = n; x; x = x.parent as Node | null) if (x.props.accessibilityElementsHidden === true && x.props.importantForAccessibility === 'no-hide-descendants') return true; return false; };
 const boot = async (p: () => void, locale: 'pl' | 'en' = 'pl', theme: 'light' | 'dark' = 'light') => {
   jest.useFakeTimers({ now: NOW }); await fresh(undefined, locale); p(); S().settings.theme = theme; store.saveCfg(); await act(async () => { await store.flush(); });

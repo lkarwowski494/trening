@@ -85,14 +85,14 @@ describe('Przewodnik: zdanie o osobnych przełącznikach', () => {
 });
 
 describe('wąski ekran: segmenty Ustawień bez zawijania etykiet (decyzja właściciela 21.10.2026)', () => {
-  const groups = () => screen.UNSAFE_root.findAll((n: { type: unknown; props: Record<string, unknown> }) => n.type === 'View' && n.props.accessibilityRole === 'radiogroup');
+  const groups = () => screen.container.queryAll((n: { type: unknown; props: Record<string, unknown> }) => n.type === 'View' && n.props.accessibilityRole === 'radiogroup');
   const dirOf = (g: { props: { style?: unknown } }) => (StyleSheet.flatten(g.props.style as never) as { flexDirection?: string }).flexDirection;
   test.each(['pl', 'en'] as const)('%s przy 390 pt: każdy segment w jednym rzędzie, każda etykieta w jednej linii (krój się zmniejsza zamiast zawijać)', async locale => {
     await boot(locale, () => {}, 390);
     const gs = groups(); expect(gs.length).toBeGreaterThanOrEqual(4); /* Wygląd, System miar, Widok treningu, Zapowiedzi głosowe (+ Skala wysiłku po włączeniu RPE) */
     for (const g of gs) {
       expect([g.props.accessibilityLabel, dirOf(g)]).toEqual([g.props.accessibilityLabel, 'row']);
-      const texts = g.findAll((n: { type: unknown; props: Record<string, unknown> }) => n.type === 'Text' && typeof n.props.children === 'string');
+      const texts = g.queryAll((n: { type: unknown; props: Record<string, unknown> }) => n.type === 'Text' && typeof n.props.children === 'string');
       expect(texts.length).toBeGreaterThan(1);
       for (const tx of texts) expect([g.props.accessibilityLabel, tx.props.children, tx.props.numberOfLines]).toEqual([g.props.accessibilityLabel, tx.props.children, 1]);
     }
@@ -101,7 +101,7 @@ describe('wąski ekran: segmenty Ustawień bez zawijania etykiet (decyzja właś
     await boot('pl', () => {}, 320);
     const by = (label: string) => groups().find(g => g.props.accessibilityLabel === label)!;
     expect(dirOf(by('System miar'))).toBe('column'); expect(dirOf(by('Zapowiedzi głosowe'))).toBe('column'); expect(dirOf(by('Widok treningu'))).toBe('row');
-    for (const label of ['System miar', 'Zapowiedzi głosowe']) for (const tx of by(label).findAll((n: { type: unknown; props: Record<string, unknown> }) => n.type === 'Text' && typeof n.props.children === 'string')) expect(tx.props.numberOfLines).toBeUndefined();
+    for (const label of ['System miar', 'Zapowiedzi głosowe']) for (const tx of by(label).queryAll((n: { type: unknown; props: Record<string, unknown> }) => n.type === 'Text' && typeof n.props.children === 'string')) expect(tx.props.numberOfLines).toBeUndefined();
     expect(screen.getByTestId('unit-system-lb').props.accessibilityState.selected).toBe(false); /* opcje dalej działają jako przyciski z testID */
   });
 });

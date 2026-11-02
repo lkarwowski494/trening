@@ -8,6 +8,7 @@ import * as RN from 'react-native';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
+import { compPropsAll } from './app';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
 import { measuredAngle, shownFigureSpec, TEMPO } from '@/lib/figures/v2';
 jest.mock('@/lib/figures/data.json', () => require('./figure-gate-open').openFigureGate(jest.requireActual('@/lib/figures/data.json'))); /* bramka 4 otwarta: test sprawdza zatrzymanie animacji w buildzie zrzutów (101-32), nie decyzję o wyświetlaniu — w linii 1.1 rodziny v2 bez aktualnej recenzji są ukryte (fail-closed, scalenie wersja-1-0-1-r2 31.10.2026) */
@@ -16,14 +17,14 @@ const ZEWNETRZNA = process.env.EXPO_PUBLIC_FIGURA_STOP; // wartość z otoczenia
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 const AI = RN.AccessibilityInfo as unknown as { isReduceMotionEnabled: jest.Mock };
 const flush = async () => { await act(async () => { await Promise.resolve(); }); };
-const pathsOf = (): string => screen.UNSAFE_root.findAll((n: { props: Record<string, unknown> }) => typeof n.props.d === 'string').map((n: { props: Record<string, unknown> }) => n.props.d as string).join();
+const pathsOf = (): string => compPropsAll(screen.container).filter(p => typeof p.d === 'string').map(p => p.d as string).join();
 const wf = (n: string) => readFileSync(join(__dirname, '..', '.github/workflows', n), 'utf8');
 afterEach(() => { delete process.env.EXPO_PUBLIC_FIGURA_STOP; jest.useRealTimers(); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(false)); });
 
 describe('101-32: figura zatrzymana w buildzie zrzutów (30.10.2026)', () => {
   test('z flagą: widok animowany, ten sam rysunek w każdej chwili, kąt pozycji u = 1 (Back Squat — dół przysiadu)', async () => {
     process.env.EXPO_PUBLIC_FIGURA_STOP = '1'; jest.useFakeTimers(); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(false));
-    render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
+    await render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
     expect(screen.getByTestId('exercise-figure-v2-anim')).toBeTruthy();
     const d0 = pathsOf();
     for (const t of [TEMPO.holdMs, TEMPO.downMs, 1234, 4000]) { await act(async () => { jest.advanceTimersByTime(t); }); expect(pathsOf()).toBe(d0); }
@@ -33,16 +34,16 @@ describe('101-32: figura zatrzymana w buildzie zrzutów (30.10.2026)', () => {
   });
   test('bez flagi: animacja się zmienia (TestFlight i App Store bez zmian)', async () => {
     jest.useFakeTimers(); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(false));
-    render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
+    await render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
     const d0 = pathsOf(); await act(async () => { jest.advanceTimersByTime(TEMPO.holdMs + TEMPO.downMs / 2); }); expect(pathsOf()).not.toBe(d0);
   });
   test('z flagą: „Ogranicz ruch” i pauza nadal dają widok statyczny (dostępność bez zmian)', async () => {
     process.env.EXPO_PUBLIC_FIGURA_STOP = '1'; AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(true));
-    const r = render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
-    expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy(); r.unmount();
+    const r = await render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
+    expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy(); await r.unmount();
     AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(false));
-    render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
-    fireEvent.press(screen.getByRole('button', { name: 'Zatrzymaj animację' }));
+    await render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
+    await fireEvent.press(screen.getByRole('button', { name: 'Zatrzymaj animację' }));
     expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy();
   });
   test('flaga tylko w buildzie zrzutów: store-screenshots.yml tak (krok Build), testflight.yml ma straż, e2e-ios.yml nie ustawia; otoczenie verify bez flagi', () => {

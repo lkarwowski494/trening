@@ -23,7 +23,7 @@ const boot = async (fn: () => void = () => {}, locale: 'pl' | 'en' = 'pl') => {
   await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/' }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
 };
 const box = () => within(screen.getByTestId('first-steps'));
-const flat = (el: { props: { style?: unknown } }) => StyleSheet.flatten(typeof el.props.style === 'function' ? (el.props.style as (s: { pressed: boolean }) => unknown)({ pressed: false }) : el.props.style as never) as Record<string, unknown>;
+const flat = (el: { props: { style?: unknown } }) => StyleSheet.flatten((typeof el.props.style === 'function' ? (el.props.style as (s: { pressed: boolean }) => unknown)({ pressed: false }) : el.props.style) as never) as Record<string, unknown>;
 const STEP3_START = 'Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.';
 const STEP3_EMPTY = 'Pierwszy trening: duży przycisk „Pusty trening” u góry.';
 

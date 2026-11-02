@@ -287,9 +287,9 @@ describe('strona www aplikacji (GitHub Pages)', () => {
 describe('zależności i konfiguracja natywna', () => {
   const fs = require('fs') as typeof import('fs'); const root = join(__dirname, '..');
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')); const lock = JSON.parse(readFileSync(join(root, 'package-lock.json'), 'utf8'));
-  test('SEC-06: query-string nie jest zależnością bezpośrednią (kod jej nie importuje; zostaje jako zależność expo-router)', () => {
+  test('SEC-06: query-string nie jest zależnością bezpośrednią (kod jej nie importuje; od SDK 58 nie ma jej też w drzewie zależności — expo-router ≥ 58.0.13, 02.11.2026)', () => {
     expect(pkg.dependencies['query-string']).toBeUndefined(); expect(lock.packages[''].dependencies['query-string']).toBeUndefined();
-    expect(lock.packages['node_modules/expo-router'].dependencies['query-string']).toBeTruthy();
+    expect(lock.packages['node_modules/expo-router'].dependencies?.['query-string']).toBeUndefined();
     const files = (d: string): string[] => fs.readdirSync(join(root, d), { withFileTypes: true }).flatMap(e => e.isDirectory() ? files(join(d, e.name)) : /\.(ts|tsx)$/.test(e.name) ? [join(d, e.name)] : []);
     expect(['lib', 'app', 'components'].flatMap(files).filter(f => /from 'query-string'|require\('query-string'\)/.test(readFileSync(join(root, f), 'utf8')))).toEqual([]);
   });
@@ -305,9 +305,9 @@ describe('zależności i konfiguracja natywna', () => {
 });
 
 describe('TST2-09 (audyt kontrolny 1): testflight.yml sprawdza to samo co verify', () => {
-  test('krok testów uruchamia `npm run verify` (jedno źródło listy sprawdzeń) z limitem sterty 3 GB; verify obejmuje wszystkie sprawdzenia', () => {
+  test('krok testów uruchamia `npm run verify` (jedno źródło listy sprawdzeń) bez własnej sterty (stała w scripts/ci/jest-sterta.json, 02.11.2026); verify obejmuje wszystkie sprawdzenia', () => {
     const y = wf('testflight.yml'); const step = y.slice(y.indexOf('- name: Testy'), y.indexOf('- name:', y.indexOf('- name: Testy') + 5));
-    expect(step).toMatch(/NODE_OPTIONS: --max-old-space-size=3072/);
+    expect(step).not.toMatch(/max-old-space-size/);
     expect(step).toMatch(/run: npm run verify\s*$/m);
     const v = require('../package.json').scripts.verify as string;
     for (const c of ['npm run typecheck', 'npm run check:i18n', 'npm run check:cues', 'npm run check:figures', 'jest', 'npm run check:matrix', 'npm run check:licenses', 'expo export --platform ios', 'npm run verify:native']) expect({ c, in: v.includes(c) }).toEqual({ c, in: true });

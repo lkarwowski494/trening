@@ -1,0 +1,5 @@
+{
+  "_opis": "Jedyne miejsce na limity sterty Node (MB) dla Jest (02.11.2026, koordynator zb010, wariant A). workerowMB: sterta każdego procesu roboczego — ustawia ją tests/global-setup.js w procesie głównym Jest przed startem workerów (dziedziczą NODE_OPTIONS), więc działa w verify, CI i przy gołym `npx jest`. ponowienieMB: sterta pojedynczego ponowienia --runInBand w scripts/jest-ponow.mjs (jeden proces, więc może dostać więcej). Domyślne ~2 GB nie wystarczało: maestro-flows, matrix-dim-langs-routes3 i audit-k1-bl-mer kończyły się „out of memory” (RNTL 14: ok. 160 KB sterty na otwartą kartę ćwiczenia). Strażnik: tests/jest-sterta-02-11-2026.test.ts.",
+  "workerowMB": 4096,
+  "ponowienieMB": 6144
+}

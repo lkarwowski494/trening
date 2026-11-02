@@ -19,7 +19,7 @@ async function open(name: string, locale: 'pl' | 'en' = 'pl', scheme: 'light' | 
   await fresh(undefined, locale); const id = ex(name).id; store.save(); await act(async () => { await store.flush(); });
   await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale }); await flushAll(10); await go(`/exercise/${id}`); await flushAll(10);
 }
-const texts = (root: { findAll: (f: (n: never) => boolean) => { props: { children?: unknown } }[] }) => root.findAll((n: { type?: unknown }) => n.type === 'Text' as never).map(n => [n.props.children].flat().join(''));
+const texts = (root: { queryAll: (f: (n: never) => boolean) => { props: { children?: unknown } }[] }) => root.queryAll((n: { type?: unknown }) => n.type === 'Text' as never).map(n => [n.props.children].flat().join(''));
 const rolesBlock = () => screen.getByTestId('muscle-roles');
 const blockTexts = () => texts(rolesBlock() as never);
 

@@ -35,7 +35,7 @@ describe('M1-012: błąd zapytania o karencję nie unieważnia odczytu zakupów'
   test('start aplikacji: stan „full” mimo błędu zapytania pomocniczego (bez zapamiętanego stanu — ponowna instalacja)', async () => {
     await fresh(); resetEntitlementsForTests(); PAYWALL.ENABLED = true; iap().purchases = [buy('lifetime')]; iap().statusFail = 'status niedostępny';
     setStoreAdapter(createNativeStore()); await initEntitlements();
-    const { result } = renderHook(() => useAccess()); await act(async () => { await Promise.resolve(); });
+    const { result } = await renderHook(() => useAccess()); await act(async () => { await Promise.resolve(); });
     expect(result.current.level).toBe('full'); expect(result.current.active?.plan).toBe('lifetime');
   });
   test('brak jakiegokolwiek uprawnienia i błąd zapytania pomocniczego → wyjątek (aplikacja: unknown, nie free)', async () => {

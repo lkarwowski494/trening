@@ -362,7 +362,7 @@ describe('app/_layout', () => {
   test('tytuł okna wyboru ćwiczenia: „Wybierz ćwiczenie”', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); }); await go('/picker?target=active'); await flushAll(10);
     /* nagłówek natywnego stosu nie renderuje się w Jest — tytuł z opcji bieżącego ekranu nawigatora */
-    const { store: rs } = require('expo-router/build/global-state/router-store');
+    const rs = { navigationRef: require('./app').navRef() }; /* SDK 58: router-store usunięty */
     expect(rs.navigationRef.getCurrentRoute()?.name).toBe('picker'); expect(rs.navigationRef.getCurrentOptions()?.title).toBe('Wybierz ćwiczenie');
   });
 });

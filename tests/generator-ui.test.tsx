@@ -77,11 +77,11 @@ test('5 sesji — ostrzeżenie o parach dzień po dniu; miejsce z listy miejsc; 
   await tap(screen.getByText('Bez ograniczeń sprzętu')); await flushAll(5); expect(screen.queryByText(/ — 3 × 12–\u206020, /)).toBeNull();
   expect(screen.queryByText(pairs)).toBeNull(); /* research partii (docs/research/24 5.3, 09.10.2026): pełna siłownia, 5 sesji — 0 par */
   /* partie zmienione przez użytkownika (wyciskania z czworogłowymi jako główną) — górne i dolne dni dzielą partię, para nie do uniknięcia: ostrzeżenie, nie blokada */
-  act(() => { for (const n of ['Bench Press (sztanga)', 'Bench Press (hantle)']) S().exercises.find(e => e.name === n)!.muscles = ['klatka', 'czworogłowe']; });
+  await act(() => { for (const n of ['Bench Press (sztanga)', 'Bench Press (hantle)']) S().exercises.find(e => e.name === n)!.muscles = ['klatka', 'czworogłowe']; });
   await tap(screen.getByText('45 min')); await flushAll(5); expect(screen.getByText(pairs)).toBeTruthy();
   await tap(screen.getByText('Dom')); await flushAll(5); expect(screen.getAllByText(/ — 3 × 12–\u206020, przerwa /).length).toBeGreaterThan(0);
   await tap(screen.getByText('Bez ograniczeń sprzętu')); await flushAll(5);
-  act(() => { S().exercises.forEach(e => { e.archived = true; }); }); await tap(screen.getByText('90 min')); await flushAll(5); /* wszystkie ćwiczenia usunięte (w pamięci — migracja usuwa nieużywane zarchiwizowane) */
+  await act(() => { S().exercises.forEach(e => { e.archived = true; }); }); await tap(screen.getByText('90 min')); await flushAll(5); /* wszystkie ćwiczenia usunięte (w pamięci — migracja usuwa nieużywane zarchiwizowane) */
   expect(screen.getAllByText('Brak ćwiczeń dostępnych w tym miejscu.').length).toBeGreaterThan(0);
   expect(screen.queryByText('Zapisz szablony i plan')).toBeNull(); /* audyt 0.10 X-10: nic do zapisania — bez przycisku (puste szablony nie trafiają do planu) */
 });
@@ -107,7 +107,7 @@ test('English', async () => {
 test('etykiety pól, tytuł ekranu, nazwy sesji i celów; 4 sesje — góra/dół w podglądzie', async () => {
   await boot('/generator');
   expect(screen.getAllByText('Cel').length).toBeGreaterThan(0); expect(screen.getAllByText('Czas sesji').length).toBeGreaterThan(0);
-  const { store: rs } = require('expo-router/build/global-state/router-store'); /* nagłówek natywnego stosu nie renderuje się w Jest — tytuł z opcji ekranu */
+  const rs = { navigationRef: require('./app').navRef() }; /* SDK 58: router-store usunięty */ /* nagłówek natywnego stosu nie renderuje się w Jest — tytuł z opcji ekranu */
   expect(rs.navigationRef.getCurrentOptions()?.title).toBe('Generator szablonów i planu'); /* audyt 0.10 UX-14: jedna nazwa (przewodnik, przycisk) */
   await pickDays(daysFor(4));
   for (const n of ['Góra A', 'Dół A', 'Góra B', 'Dół B']) expect(screen.getAllByText(n).length).toBeGreaterThan(0);

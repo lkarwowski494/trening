@@ -44,10 +44,10 @@ describe('M1-015: logika', () => {
 describe('M1-015: sekcja „Technika” / ramka na ekranie ćwiczenia', () => {
   test.each(NEED)('%s: zdanie o asekuracji widoczne (PL)', async key => {
     await fresh(); const e = { lib: true, libKey: key, recommended: CATALOG[key].recommended } as any;
-    render(<ExerciseCues exercise={e} />); expect(rtlScreen.getByText(NOTE)).toBeTruthy(); expect(rtlScreen.getByText(TITLE)).toBeTruthy();
+    await render(<ExerciseCues exercise={e} />); expect(rtlScreen.getByText(NOTE)).toBeTruthy(); expect(rtlScreen.getByText(TITLE)).toBeTruthy();
   });
   test('ćwiczenie bez zalecenia asekuracji (hantle) i własne — bez ramki', async () => {
-    await fresh(); render(<ExerciseCues exercise={{ lib: true, libKey: 'Bench Press (hantle)', recommended: [] } as any} />); expect(rtlScreen.queryByText(NOTE)).toBeNull();
+    await fresh(); await render(<ExerciseCues exercise={{ lib: true, libKey: 'Bench Press (hantle)', recommended: [] } as any} />); expect(rtlScreen.queryByText(NOTE)).toBeNull();
   });
   test('ekran /exercise/<id> (Decline Bench Press — bez wskazówek techniki): zdanie widoczne', async () => {
     await fresh(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go(`/exercise/${ex('Decline Bench Press').id}`); await flushAll(10);

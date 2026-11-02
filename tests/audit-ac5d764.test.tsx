@@ -7,11 +7,11 @@ import { NumInput } from '@/components/ui';
 const device = (tag: string) => { global.__locales = [{ languageCode: tag.split('-')[0], languageTag: tag }]; };
 afterEach(() => { device('pl-PL'); applyLang('pl'); });
 
-test('MEDIUM 1: pole liczbowe z przecinkiem dziesiętnym w językach, które go używają (cs, es…), z kropką po angielsku', () => {
+test('MEDIUM 1: pole liczbowe z przecinkiem dziesiętnym w językach, które go używają (cs, es…), z kropką po angielsku', async () => {
   for (const [l, want] of [['pl', '12,5'], ['cs', '12,5'], ['es', '12,5'], ['uk', '12,5'], ['en', '12.5']] as const) {
     device(l === 'en' ? 'en-US' : `${l}-XX`); applyLang(l);
-    const r = render(<NumInput value={12.5} onNum={() => {}} decimal accessibilityLabel="w" />);
-    expect([l, screen.getByLabelText('w').props.value]).toEqual([l, want]); r.unmount();
+    const r = await render(<NumInput value={12.5} onNum={() => {}} decimal accessibilityLabel="w" />);
+    expect([l, screen.getByLabelText('w').props.value]).toEqual([l, want]); await r.unmount();
   }
 });
 

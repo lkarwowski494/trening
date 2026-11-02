@@ -11,6 +11,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
+import { compPropsAll } from './app';
 import { FIG_DATA, figureFor, figureByKey, figureLabel, frameLabel, figureFrames, figureAt, toSvg, svgPath } from '@/lib/figures';
 import {
   SEG, ANIM, STROKE, PROP_R, side, norm, rawPoints, posePoints, jointAngles, toHorizontal, angleAt, lerpPose, lerpPt, loopAt, loopMs,
@@ -255,27 +256,27 @@ describe('lib/figures', () => {
 });
 
 describe('komponent ExerciseFigure', () => {
-  const pathsOf = () => screen.UNSAFE_root.findAll((n: { props: Record<string, unknown> }) => typeof n.props.d === 'string' && n.props.strokeLinecap === 'round').map((n: { props: Record<string, unknown> }) => n.props.d as string);
+  const pathsOf = () => compPropsAll(screen.container).filter(p => typeof p.d === 'string' && p.strokeLinecap === 'round').map(p => p.d as string);
   test('animacja: pętla zmienia rysunek; pauza zatrzymuje (statyczne pozycje z podpisami), wznowienie wraca — WCAG 2.2.2', async () => {
     jest.useFakeTimers(); setReduce(false);
-    render(<ExerciseFigure exercise={lib('Back Squat')} />); await flush();
+    await render(<ExerciseFigure exercise={lib('Back Squat')} />); await flush();
     expect(screen.getByTestId('exercise-figure-anim')).toBeTruthy();
     const d0 = pathsOf().join();
     await act(async () => { jest.advanceTimersByTime(ANIM.holdMs + ANIM.moveMs / 2); });
     expect(pathsOf().join()).not.toBe(d0);
     const btn = screen.getByRole('button', { name: 'Zatrzymaj animację' });
-    expect(btn).toBeTruthy(); fireEvent.press(btn);
+    expect(btn).toBeTruthy(); await fireEvent.press(btn);
     expect(screen.queryByTestId('exercise-figure-anim')).toBeNull();
     expect(screen.getByTestId('exercise-figure-static')).toBeTruthy();
     expect(screen.getByText('Pozycja wyjściowa')).toBeTruthy(); expect(screen.getByText('Pozycja końcowa')).toBeTruthy();
     const dp = pathsOf().join(); await act(async () => { jest.advanceTimersByTime(3000); }); expect(pathsOf().join()).toBe(dp);
-    fireEvent.press(screen.getByRole('button', { name: 'Wznów animację' }));
+    await fireEvent.press(screen.getByRole('button', { name: 'Wznów animację' }));
     expect(screen.getByTestId('exercise-figure-anim')).toBeTruthy();
     expect(loopMs(2)).toBeGreaterThan(0); /* pętla trwa w nieskończoność (> 5 s) — dlatego przycisk pauzy jest zawsze przy animacji */
   });
   test('Ogranicz ruch włączone → statyczne pozycje obok siebie, bez animacji i bez przycisku pauzy', async () => {
     jest.useFakeTimers(); setReduce(true);
-    render(<ExerciseFigure exercise={lib(KEYS.find(k => fig(k).frames.length === 3)!)} />); await flush(); /* figury poprawione w 1.0.1 (Push Press, Step Up, wykroki…) czekają na recenzję bramki 4 — pierwsza wyświetlana figura z 3 pozycjami */
+    await render(<ExerciseFigure exercise={lib(KEYS.find(k => fig(k).frames.length === 3)!)} />); await flush(); /* figury poprawione w 1.0.1 (Push Press, Step Up, wykroki…) czekają na recenzję bramki 4 — pierwsza wyświetlana figura z 3 pozycjami */
     expect(screen.queryByTestId('exercise-figure-anim')).toBeNull();
     for (const n of ['start', 'mid', 'end']) expect(screen.getByTestId(`exercise-figure-frame-${n}`)).toBeTruthy();
     expect(screen.getByText('Pozycja pośrednia')).toBeTruthy();
@@ -284,10 +285,10 @@ describe('komponent ExerciseFigure', () => {
   });
   test('zmiana ustawienia „Ogranicz ruch” w trakcie — animacja się zatrzymuje; przed odczytem ustawienia — statycznie', async () => {
     setReduce('never');
-    const { unmount } = render(<ExerciseFigure exercise={lib('Back Squat')} />); await flush();
-    expect(screen.getByTestId('exercise-figure-static')).toBeTruthy(); unmount();
+    const { unmount } = await render(<ExerciseFigure exercise={lib('Back Squat')} />); await flush();
+    expect(screen.getByTestId('exercise-figure-static')).toBeTruthy(); await unmount();
     setReduce(false);
-    render(<ExerciseFigure exercise={lib('Back Squat')} />); await flush();
+    await render(<ExerciseFigure exercise={lib('Back Squat')} />); await flush();
     expect(screen.getByTestId('exercise-figure-anim')).toBeTruthy();
     const call = AI.addEventListener.mock.calls.filter((c: unknown[]) => c[0] === 'reduceMotionChanged').pop();
     await act(async () => { (call![1] as (v: boolean) => void)(true); });
@@ -297,20 +298,20 @@ describe('komponent ExerciseFigure', () => {
   test('błąd odczytu ustawienia — animacja z przyciskiem pauzy; odpięcie słuchacza przy odmontowaniu', async () => {
     AI.isReduceMotionEnabled.mockImplementation(() => Promise.reject(new Error('x')));
     const remove = jest.fn(); AI.addEventListener.mockImplementation(() => ({ remove }));
-    const { unmount } = render(<ExerciseFigure exercise={lib('Back Squat')} />); await flush();
+    const { unmount } = await render(<ExerciseFigure exercise={lib('Back Squat')} />); await flush();
     expect(screen.getByRole('button', { name: 'Zatrzymaj animację' })).toBeTruthy();
-    unmount(); expect(remove).toHaveBeenCalled();
+    await unmount(); expect(remove).toHaveBeenCalled();
   });
   test('pozycja statyczna jednej klatki (deska) — bez podpisu klatki i bez pauzy; ćwiczenie bez figury → nic', async () => {
     setReduce(false);
-    render(<ExerciseFigure exercise={lib('Plank')} />); await flush();
+    await render(<ExerciseFigure exercise={lib('Plank')} />); await flush();
     expect(screen.getByTestId('exercise-figure-frame-start')).toBeTruthy();
     expect(screen.queryByText('Pozycja wyjściowa')).toBeNull();
     expect(screen.queryByRole('button', { name: 'Zatrzymaj animację' })).toBeNull();
     expect(screen.getByText('Rysunek schematyczny — pozycje orientacyjne.')).toBeTruthy();
-    render(<ExerciseFigure exercise={lib('Crunch')} />);
+    await render(<ExerciseFigure exercise={lib('Crunch')} />);
     expect(screen.toJSON()).toBeNull();
-    render(<ExerciseFigure exercise={{ lib: false }} />);
+    await render(<ExerciseFigure exercise={{ lib: false }} />);
     expect(screen.toJSON()).toBeNull();
   });
   test('cztery pozycje (Ogranicz ruch): siatka 2×2 w kolejności start, mid, mid2, end; podpisy „Pozycja pośrednia 1/2”, pętla 4 pozycji dłuższa niż 5 s (pauza WCAG); przy trzech pozycjach bez numerów', async () => {
@@ -321,7 +322,7 @@ describe('komponent ExerciseFigure', () => {
     try {
       expect(FRAME_ORDER[4]).toEqual(['start', 'mid', 'mid2', 'end']);
       setReduce(true);
-      render(<ExerciseFigure exercise={lib('Push Press')} />); await flush();
+      await render(<ExerciseFigure exercise={lib('Push Press')} />); await flush();
       const st = screen.getByTestId('exercise-figure-static');
       const flat = RN.StyleSheet.flatten(st.props.style) as { flexWrap?: string; flexDirection?: string };
       expect([flat.flexDirection, flat.flexWrap]).toEqual(['row', 'wrap']);
@@ -339,10 +340,10 @@ describe('komponent ExerciseFigure', () => {
     FIG_DATA.exercises['Push Press'] = full['Push Press'];
     try {
       setReduce(true);
-      render(<ExerciseFigure exercise={lib('Push Press')} />); await flush();
+      await render(<ExerciseFigure exercise={lib('Push Press')} />); await flush();
       const st = screen.getByTestId('exercise-figure-static');
       const row = RN.StyleSheet.flatten(st.props.style) as { gap: number };
-      type Inst = import('react-test-renderer').ReactTestInstance;
+      type Inst = import('test-renderer').TestInstance; /* RNTL 14 */
       const cells = st.children.filter((c): c is Inst => typeof c !== 'string');
       expect(cells.length).toBe(4);
       const GUTTERS = 2 * 16 + 2 * 16; /* margines ekranu 16 pt + wypełnienie karty 16 pt po obu stronach — najwęższy przypadek */
@@ -368,31 +369,31 @@ describe('komponent ExerciseFigure', () => {
   });
   test('VoiceOver: jeden obraz z opisem ruchu; po angielsku etykiety w języku interfejsu', async () => {
     setReduce(true);
-    render(<ExerciseFigure exercise={lib('Deadlift (sztanga)')} />); await flush();
+    await render(<ExerciseFigure exercise={lib('Deadlift (sztanga)')} />); await flush();
     const img = screen.getByTestId('exercise-figure-image');
     expect(img.props.accessibilityRole).toBe('image'); expect(img.props.accessible).toBe(true);
     expect(img.props.accessibilityLabel).toBe(figureLabel('Deadlift (sztanga)', 'pl'));
     applyLang('en'); setReduce(false);
-    render(<ExerciseFigure exercise={lib('Deadlift (sztanga)')} />); await flush();
+    await render(<ExerciseFigure exercise={lib('Deadlift (sztanga)')} />); await flush();
     expect(screen.getAllByTestId('exercise-figure-image').pop()!.props.accessibilityLabel).toMatch(/^Movement drawing: /);
     expect(screen.getByRole('button', { name: 'Pause animation' })).toBeTruthy();
   });
   test.each([['light', light], ['dark', dark]] as const)('kolory z motywu (%s): ciało = tekst, dalsza strona = muted, ciężar = akcent, podłoga = linia', async (mode, th) => {
     jest.spyOn(RN, 'useColorScheme').mockImplementation((() => mode) as never); setReduce(true);
-    render(<ExerciseFigure exercise={lib('Deadlift (sztanga)')} />); await flush();
-    const strokes = new Set(screen.UNSAFE_root.findAll((n: { props: Record<string, unknown> }) => typeof n.props.stroke === 'string').map((n: { props: Record<string, unknown> }) => n.props.stroke as string));
+    await render(<ExerciseFigure exercise={lib('Deadlift (sztanga)')} />); await flush();
+    const strokes = new Set(compPropsAll(screen.container).filter(p => typeof p.stroke === 'string').map(p => p.stroke as string));
     for (const c of [th.text, th.muted, th.accent, th.line]) expect([mode, c, strokes.has(c)]).toEqual([mode, c, true]);
     expect(screen.getByText('Pozycja wyjściowa').props.style.color).toBe(th.muted);
   });
   test.each(['Back Squat', 'Bench Press (sztanga)', 'Lateral Raise (hantle)', 'Pull Up', 'Plank'])('zrzut SVG (statycznie, jasny motyw): %s', async k => {
     jest.spyOn(RN, 'useColorScheme').mockImplementation((() => 'light') as never); setReduce(true);
-    render(<ExerciseFigure exercise={lib(k)} />); await flush();
+    await render(<ExerciseFigure exercise={lib(k)} />); await flush();
     expect(screen.toJSON()).toMatchSnapshot();
   });
   test('useReduceMotion: null przed odczytem, potem wartość systemu', async () => {
     setReduce(true); let seen: (boolean | null)[] = [];
     function Probe() { seen.push(useReduceMotion()); return null; }
-    render(<Probe />); expect(seen[0]).toBeNull(); await flush(); expect(seen[seen.length - 1]).toBe(true);
+    await render(<Probe />); expect(seen[0]).toBeNull(); await flush(); expect(seen[seen.length - 1]).toBe(true);
     seen = [];
   });
 });
@@ -400,17 +401,17 @@ describe('komponent ExerciseFigure', () => {
 describe('sekcja „Technika” z figurą', () => {
   test('po rozwinięciu figura jest nad tekstem wskazówek; ćwiczenie z listy otwartej figur — same wskazówki', async () => {
     setReduce(true);
-    render(<ExerciseCues exercise={lib('Back Squat')} />);
+    await render(<ExerciseCues exercise={lib('Back Squat')} />);
     expect(screen.queryByTestId('exercise-figure-v2')).toBeNull();
-    fireEvent.press(screen.getByRole('button', { name: 'Technika' })); await flush();
+    await fireEvent.press(screen.getByRole('button', { name: 'Technika' })); await flush();
     /* figura v2 zastępuje v1 tam, gdzie rodzina v2 jest gotowa (Back Squat) */
     expect(screen.getByTestId('exercise-figure-v2')).toBeTruthy();
     expect(screen.queryByTestId('exercise-figure')).toBeNull();
     const json = JSON.stringify(screen.toJSON());
     expect(json.indexOf('exercise-figure-v2')).toBeLessThan(json.indexOf('["Ustawienie"]'));
     expect(json.indexOf('["Ustawienie"]')).toBeGreaterThan(0);
-    render(<ExerciseCues exercise={lib('Crunch')} />);
-    fireEvent.press(screen.getByRole('button', { name: 'Technika' })); await flush();
+    await render(<ExerciseCues exercise={lib('Crunch')} />);
+    await fireEvent.press(screen.getByRole('button', { name: 'Technika' })); await flush();
     expect(screen.queryByTestId('exercise-figure')).toBeNull();
     expect(screen.getByRole('header', { name: 'Ruch' })).toBeTruthy();
   });

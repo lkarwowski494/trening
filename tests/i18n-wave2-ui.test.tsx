@@ -44,7 +44,7 @@ describe('dane: ustawienie języka przeżywa restart, migrację i kopię', () =>
 
 describe('„Jak w telefonie”: telefon z Indonezji, Malezji, Wietnamu', () => {
   /** Teksty na ekranie, które są polskim kluczem z tłumaczeniem w języku `l` (powinny być przetłumaczone). */
-  const plLeft = (l: Lang) => { const d = LOCALES[l]!; return screen.UNSAFE_root.findAll((x: { type: unknown; props: { children?: unknown } }) => x.type === 'Text' && typeof x.props.children === 'string').map((x: { props: { children?: unknown } }) => String(x.props.children)).filter(s => Object.prototype.hasOwnProperty.call(d, s) && d[s] !== s); };
+  const plLeft = (l: Lang) => { const d = LOCALES[l]!; return screen.container.queryAll((x: { type: unknown; props: { children?: unknown } }) => x.type === 'Text' && typeof x.props.children === 'string').map((x: { props: { children?: unknown } }) => String(x.props.children)).filter(s => Object.prototype.hasOwnProperty.call(d, s) && d[s] !== s); };
   test.each([['id', 'id', 'id-ID'], ['ms', 'ms', 'ms-MY'], ['vi', 'vi', 'vi-VN'], ['id', 'in', 'in-ID'] /* przestarzały kod CLDR */] as const)('%s na telefonie %s / %s (start aplikacji): ekran Treningu i zakładki w tym języku, bez tekstów po polsku', async (l, code, tag) => {
     const s = seedWithDemo(l); s.settings.language = 'auto';
     await renderApp({ saved: s, code, tag }); await flushAll(10);

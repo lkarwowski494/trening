@@ -10,7 +10,7 @@ import { InfoTip, InfoButton, InfoBox, useInfoOpen } from '@/components/InfoTip'
 import { Icon, type IconName } from '@/components/Icon';
 
 /** Styl roli bez interlinii — dla tekstów, których rozmiar ekrany nadpisują stylem (Muted, Txt, Field): interlinia z roli zostałaby przy innym rozmiarze. */
-const plain = (role: Parameters<typeof font>[0]): TextStyle => { const f = font(role); delete f.lineHeight; return f; };
+const plain = (role: Parameters<typeof font>[0]): TextStyle => { const { lineHeight: _lh, ...f } = font(role); return f; };
 
 /** Zwykły tekst nagłówka (etykieta ⓘ dla VoiceOver; bez wersalików). */
 const plainOf = (c: React.ReactNode): string => React.Children.toArray(c).map(x => typeof x === 'string' || typeof x === 'number' ? String(x) : '').join('');

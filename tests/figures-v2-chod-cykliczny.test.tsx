@@ -237,32 +237,32 @@ describe('ekran: karta marszowego ćwiczenia (komponent)', () => {
   const lib = (key: string) => ({ lib: true as const, libKey: key });
   afterEach(() => { applyLang('pl'); jest.useRealTimers(); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(false)); });
   const angleText = (): string => { const el = screen.queryByTestId('exercise-figure-v2-angle'); return el ? String(React.Children.toArray(el.props.children).join('')) : ''; };
-  const phasesText = (): string => screen.getByTestId('exercise-figure-v2-phases').findAllByType(RN.Text).map(n => String(React.Children.toArray(n.props.children).join(''))).join('|');
+  const phasesText = (): string => screen.getByTestId('exercise-figure-v2-phases').queryAll((n: any) => n.type === 'Text').map(n => String(React.Children.toArray(n.props.children).join(''))).join('|');
   const lineFor = (k: string, p: number): string => { const m = measuredAngle(figureSpec(k)!, p); return `Kąt na rysunku: ${m.joint === 'knee' ? 'zgięcie kolana' : 'zgięcie biodra'} ${Math.round(m.deg)}°`; };
 
   test.each(['Sled Push', 'Yoke Walk', "Farmer's Walk"])('%s: animacja idzie po pętli cyklicznej — linia kąta w chwili t równa się pomiarowi w cycleAt(t), także w drugiej połowie (bez cofania i bez pauzy)', async (k) => {
-    jest.useFakeTimers(); setReduce(false); render(<ExerciseFigureV2 exercise={lib(k)} />); await flush();
+    jest.useFakeTimers(); setReduce(false); await render(<ExerciseFigureV2 exercise={lib(k)} />); await flush();
     expect(angleText()).toBe(lineFor(k, 0));
     let t = 0; for (const dt of [396, 594, 495, 495, 495, 495]) /* wielokrotności kroku zegara 33 ms */ { await act(async () => { jest.advanceTimersByTime(dt); }); t += dt; const exp = lineFor(k, cycleAt(t)); const got = angleText();
       expect(Math.abs(Number(got.match(/(-?\d+)°/)![1]) - Number(exp.match(/(-?\d+)°/)![1]))).toBeLessThanOrEqual(1); }
     expect(phasesText()).toBe('Marsz');
   });
   test('licznik: „Marsz” bez sekund i bez pauzy także dla Sled Push i Yoke Walk; kąt: staw nogi', async () => {
-    setReduce(true); for (const k of ['Sled Push', 'Yoke Walk']) { const r = render(<ExerciseFigureV2 exercise={lib(k)} />); await flush(); expect(phasesText()).toBe('Marsz'); expect(angleText()).toMatch(/^Kąt na rysunku: zgięcie (kolana|biodra) -?\d+°$/); r.unmount(); }
+    setReduce(true); for (const k of ['Sled Push', 'Yoke Walk']) { const r = await render(<ExerciseFigureV2 exercise={lib(k)} />); await flush(); expect(phasesText()).toBe('Marsz'); expect(angleText()).toMatch(/^Kąt na rysunku: zgięcie (kolana|biodra) -?\d+°$/); await r.unmount(); }
   });
   test('„Zatrzymaj animację” zatrzymuje pętlę cykliczną, „Wznów” ją wznawia (jak w pozostałych figurach)', async () => {
-    jest.useFakeTimers(); setReduce(false); render(<ExerciseFigureV2 exercise={lib('Sled Push')} />); await flush();
-    await act(async () => { jest.advanceTimersByTime(700); }); fireEvent.press(screen.getByTestId('exercise-figure-v2-pause')); const a = angleText();
+    jest.useFakeTimers(); setReduce(false); await render(<ExerciseFigureV2 exercise={lib('Sled Push')} />); await flush();
+    await act(async () => { jest.advanceTimersByTime(700); }); await fireEvent.press(screen.getByTestId('exercise-figure-v2-pause')); const a = angleText();
     await act(async () => { jest.advanceTimersByTime(1500); }); expect(angleText()).toBe(a);
-    fireEvent.press(screen.getByTestId('exercise-figure-v2-pause')); await act(async () => { jest.advanceTimersByTime(900); }); expect(angleText()).not.toBe(a);
+    await fireEvent.press(screen.getByTestId('exercise-figure-v2-pause')); await act(async () => { jest.advanceTimersByTime(900); }); expect(angleText()).not.toBe(a);
   });
   test('„Ogranicz ruch”: pozycje statyczne z podpisami, bez przycisku pauzy i bez animacji', async () => {
-    setReduce(true); render(<ExerciseFigureV2 exercise={lib('Yoke Walk')} />); await flush();
+    setReduce(true); await render(<ExerciseFigureV2 exercise={lib('Yoke Walk')} />); await flush();
     expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy(); expect(screen.queryByTestId('exercise-figure-v2-anim')).toBeNull(); expect(screen.queryByTestId('exercise-figure-v2-pause')).toBeNull();
     expect(screen.getByText('Pozycja wyjściowa')).toBeTruthy(); expect(screen.getByText('Pozycja końcowa')).toBeTruthy(); expect(angleText()).toBe(lineFor('Yoke Walk', 1));
   });
   test('język EN: licznik „Walking”, linia kąta po angielsku', async () => {
-    applyLang('en'); setReduce(true); render(<ExerciseFigureV2 exercise={lib('Sled Push')} />); await flush();
+    applyLang('en'); setReduce(true); await render(<ExerciseFigureV2 exercise={lib('Sled Push')} />); await flush();
     expect(phasesText()).toBe('Walking'); expect(angleText()).toMatch(/^Angle in the drawing: (knee|hip) flexion -?\d+°$/); expect(EN.Marsz).toBe('Walking');
   });
 });

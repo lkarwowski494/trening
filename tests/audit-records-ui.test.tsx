@@ -9,7 +9,7 @@ import { addWorkout } from './helpers';
 jest.setTimeout(60000);
 afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
 
-const texts = () => screen.UNSAFE_root.findAll((n: any) => n.type === 'Text').map((n: any) => { const c = n.props.children; return Array.isArray(c) ? c.filter((x: any) => typeof x === 'string' || typeof x === 'number').join('') : (typeof c === 'string' || typeof c === 'number' ? String(c) : ''); }).filter(Boolean);
+const texts = () => screen.container.queryAll((n: any) => n.type === 'Text').map((n: any) => { const c = n.props.children; return Array.isArray(c) ? c.filter((x: any) => typeof x === 'string' || typeof x === 'number').join('') : (typeof c === 'string' || typeof c === 'number' ? String(c) : ''); }).filter(Boolean);
 const PL = /[ąćęłńśźżĄĆĘŁŃŚŹŻ]|\bpow\.|\bseria\b|objęto|łączny|suma |Najlep|Najwię|Najdłu|dociąż|rekord|REKORDY|Sesje|najlepsza/;
 
 const day = 86400e3;

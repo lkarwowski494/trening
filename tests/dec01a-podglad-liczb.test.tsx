@@ -17,7 +17,7 @@ import { FullValue, fullValueProps } from '@/components/FullValue';
 
 jest.setTimeout(60000);
 const S = () => store.getState();
-const hostsWith = (title: string | RegExp) => screen.UNSAFE_root.findAll(n => typeof n.type === 'string' && n.props.accessibilityShowsLargeContentViewer === true
+const hostsWith = (title: string | RegExp) => screen.container.queryAll(n => typeof n.type === 'string' && n.props.accessibilityShowsLargeContentViewer === true
   && typeof n.props.accessibilityLargeContentTitle === 'string' && (typeof title === 'string' ? n.props.accessibilityLargeContentTitle === title : title.test(n.props.accessibilityLargeContentTitle)));
 
 describe('fullValueProps: logika', () => {
@@ -32,16 +32,16 @@ describe('fullValueProps: logika', () => {
 });
 
 describe('FullValue: komponent', () => {
-  test('kontener z podglądem, układ z przekazanego stylu, dzieci bez zmian; nie jest elementem dostępności (VoiceOver czyta pole)', () => {
-    const { UNSAFE_root, getByText } = render(<FullValue label="ciężar" value={1234.5} style={{ width: 70 }}><></></FullValue>);
-    const host = UNSAFE_root.findAll(n => typeof n.type === 'string')[0];
+  test('kontener z podglądem, układ z przekazanego stylu, dzieci bez zmian; nie jest elementem dostępności (VoiceOver czyta pole)', async () => {
+    const { container, getByText } = await render(<FullValue label="ciężar" value={1234.5} style={{ width: 70 }}><></></FullValue>);
+    const host = container.queryAll(n => typeof n.type === 'string')[0];
     expect(host.props.accessibilityLargeContentTitle).toBe('ciężar: 1234.5'); expect(host.props.accessibilityShowsLargeContentViewer).toBe(true);
     expect(host.props.style).toEqual({ width: 70 }); expect(host.props.accessible).toBeUndefined();
     expect(() => getByText('x')).toThrow();
   });
-  test('pusta wartość: kontener bez podglądu', () => {
-    const { UNSAFE_root } = render(<FullValue label="ciężar" value=""><></></FullValue>);
-    expect(UNSAFE_root.findAll(n => typeof n.type === 'string')[0].props.accessibilityShowsLargeContentViewer).toBeUndefined();
+  test('pusta wartość: kontener bez podglądu', async () => {
+    const { container } = await render(<FullValue label="ciężar" value=""><></></FullValue>);
+    expect(container.queryAll(n => typeof n.type === 'string')[0].props.accessibilityShowsLargeContentViewer).toBeUndefined();
   });
 });
 

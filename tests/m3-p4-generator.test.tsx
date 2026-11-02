@@ -19,7 +19,7 @@ const titles = () => global.__alerts.map(a => a.title);
 const lastAlert = (title: string) => [...global.__alerts].reverse().find(x => x.title === title);
 const press = async (title: string, btn: string) => { const a = lastAlert(title)!; expect(a).toBeTruthy(); await act(async () => { a.buttons!.find(b => b.text === btn)!.onPress?.(); }); await flushAll(10); };
 type Nav = { routes: { name: string; state?: Nav }[] };
-const stack = () => { const { store: rs } = require('expo-router/build/global-state/router-store'); let st: Nav = rs.navigationRef.getRootState();
+const stack = () => { const rs = { navigationRef: require('./app').navRef() }; /* SDK 58: router-store usunięty */ let st: Nav = rs.navigationRef.getRootState();
   while (st.routes.length === 1 && st.routes[0].name === '__root' && st.routes[0].state) st = st.routes[0].state; return st.routes.map(r => r.name); };
 const activePlanWithDay = () => { withDemoTemplates(); const tp = store.getState().templates[0]; plan.setWeekDay(0, tp.id); plan.setPlanName('Mój obecny'); };
 

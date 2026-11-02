@@ -133,12 +133,12 @@ describe('backup.exportRecovery', () => {
 describe('edit.useDraftTick', () => {
   test('hook odświeża się po touchDraft i po discardDraft istniejącego szkicu; discard nieistniejącego — bez odświeżenia', async () => {
     await fresh(); const w = addWorkout(H, [['Bench Press (sztanga)', [{ weight: 60, reps: 8 }]]]);
-    const { result } = renderHook(() => edit.useDraftTick());
+    const { result } = await renderHook(() => edit.useDraftTick());
     const r0 = result.current;
-    hookAct(() => { edit.touchDraft(); }); expect(result.current).toBe(r0 + 1);
+    await hookAct(() => { edit.touchDraft(); }); expect(result.current).toBe(r0 + 1);
     const d = edit.beginEdit(w.id)!; expect(result.current).toBe(r0 + 1); /* nowy szkic bez powiadamiania */
-    hookAct(() => { edit.discardDraft(d.key); }); expect(result.current).toBe(r0 + 2);
-    hookAct(() => { edit.discardDraft('nie-ma'); }); expect(result.current).toBe(r0 + 2);
+    await hookAct(() => { edit.discardDraft(d.key); }); expect(result.current).toBe(r0 + 2);
+    await hookAct(() => { edit.discardDraft('nie-ma'); }); expect(result.current).toBe(r0 + 2);
   });
 });
 
@@ -359,29 +359,29 @@ describe('seed.libExercise', () => {
 /* ============================== store ============================== */
 describe('store.useStore', () => {
   test('selektor czytany od nowa po każdej zmianie stanu', async () => {
-    await fresh(); const { result } = renderHook(() => store.useStore(s => s.templates.length));
+    await fresh(); const { result } = await renderHook(() => store.useStore(s => s.templates.length));
     expect(result.current).toBe(0);
-    hookAct(() => { store.newTemplate(); }); expect(result.current).toBe(1);
-    hookAct(() => { store.deleteTemplate(store.getState().templates[0].id); }); expect(result.current).toBe(0);
+    await hookAct(() => { store.newTemplate(); }); expect(result.current).toBe(1);
+    await hookAct(() => { store.deleteTemplate(store.getState().templates[0].id); }); expect(result.current).toBe(0);
   });
 });
 
 describe('store.usePrefsTick', () => {
   test('klucz język|jednostka|motyw — zmienia się tylko przy zmianie preferencji', async () => {
-    await fresh(); let renders = 0; const { result } = renderHook(() => { renders++; return store.usePrefsTick(); });
+    await fresh(); let renders = 0; const { result } = await renderHook(() => { renders++; return store.usePrefsTick(); });
     expect(result.current).toBe('auto|kg|dark'); const r0 = renders;
-    hookAct(() => { store.newTemplate(); }); expect(renders).toBe(r0); /* inna zmiana — bez przerysowania */
-    hookAct(() => { store.getState().settings.unit = 'lb'; store.save(); }); expect(result.current).toBe('auto|lb|dark');
-    hookAct(() => { store.getState().settings.language = 'en'; store.getState().settings.theme = 'dark'; store.save(); }); expect(result.current).toBe('en|lb|dark');
+    await hookAct(() => { store.newTemplate(); }); expect(renders).toBe(r0); /* inna zmiana — bez przerysowania */
+    await hookAct(() => { store.getState().settings.unit = 'lb'; store.save(); }); expect(result.current).toBe('auto|lb|dark');
+    await hookAct(() => { store.getState().settings.language = 'en'; store.getState().settings.theme = 'dark'; store.save(); }); expect(result.current).toBe('en|lb|dark');
   });
 });
 
 describe('store.useForegroundTick', () => {
   test('rośnie tylko przy powrocie na pierwszy plan (refreshViews), nie przy zwykłym zapisie', async () => {
-    await fresh(); const { result } = renderHook(() => store.useForegroundTick()); const r0 = result.current;
-    hookAct(() => { store.newTemplate(); }); expect(result.current).toBe(r0);
-    hookAct(() => { store.refreshViews(); }); expect(result.current).toBe(r0 + 1);
-    hookAct(() => { store.refreshViews(); }); expect(result.current).toBe(r0 + 2);
+    await fresh(); const { result } = await renderHook(() => store.useForegroundTick()); const r0 = result.current;
+    await hookAct(() => { store.newTemplate(); }); expect(result.current).toBe(r0);
+    await hookAct(() => { store.refreshViews(); }); expect(result.current).toBe(r0 + 1);
+    await hookAct(() => { store.refreshViews(); }); expect(result.current).toBe(r0 + 2);
   });
 });
 
@@ -614,12 +614,12 @@ describe('theme.applyTheme', () => {
 });
 
 describe('theme.useTheme', () => {
-  test('jasny schemat → paleta jasna; ciemny i nieznany → ciemna', () => {
+  test('jasny schemat → paleta jasna; ciemny i nieznany → ciemna', async () => {
     const rn = require('react-native');
     const spy = jest.spyOn(rn, 'useColorScheme');
-    spy.mockReturnValue('light'); expect(renderHook(() => useTheme()).result.current).toBe(light);
-    spy.mockReturnValue('dark'); expect(renderHook(() => useTheme()).result.current).toBe(dark);
-    spy.mockReturnValue(null); expect(renderHook(() => useTheme()).result.current).toBe(dark);
+    spy.mockReturnValue('light'); expect((await renderHook(() => useTheme())).result.current).toBe(light);
+    spy.mockReturnValue('dark'); expect((await renderHook(() => useTheme())).result.current).toBe(dark);
+    spy.mockReturnValue(null); expect((await renderHook(() => useTheme())).result.current).toBe(dark);
     expect(light.bg).not.toBe(dark.bg);
   });
 });

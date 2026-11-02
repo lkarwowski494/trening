@@ -20,9 +20,9 @@ afterEach(async () => { try { await timer.stop(); await timer.stopSet(); } catch
 const S = () => store.getState();
 const GYM = 'gym', HOTEL = 'hotel', DOM = 'dom';
 const THU = new Date(2026, 9, 8, 9, 0);
-const stack = () => { const { store: rs } = require('expo-router/build/global-state/router-store'); let st = rs.navigationRef.getRootState(); while (st.routes.length === 1 && st.routes[0].name === '__root' && st.routes[0].state) st = st.routes[0].state; return st.routes.map((r: any) => r.name) as string[]; };
+const stack = () => { const rs = { navigationRef: require('./app').navRef() }; /* SDK 58: router-store usunięty */ let st = rs.navigationRef.getRootState(); while (st.routes.length === 1 && st.routes[0].name === '__root' && st.routes[0].state) st = st.routes[0].state; return st.routes.map((r: any) => r.name) as string[]; };
 const top = () => stack().at(-1);
-const title = () => require('expo-router/build/global-state/router-store').store.navigationRef.getCurrentOptions().title as string;
+const title = () => require('./app').navRef().getCurrentOptions().title as string;
 const FBW: [string, string][] = [['Bench Press (sztanga)', 'bench'], ['Overhead Press (sztanga)', 'ohp'], ['Pull Up', 'pull'], ['RDL (hantle/linki)', 'rdl']];
 const item = (name: string, id: string) => ({ id, exerciseId: ex(name).id, sets: 3, repMin: 6, repMax: 8, restSec: 120, startWeight: '' as const, targetSec: '' as const, groupId: null });
 

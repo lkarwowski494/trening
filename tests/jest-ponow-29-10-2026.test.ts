@@ -10,6 +10,9 @@ import { spawnSync } from 'child_process';
 
 const ROOT = path.join(__dirname, '..');
 const SKRYPT = path.join(ROOT, 'scripts/jest-ponow.mjs');
+/* Sterta: jedno miejsce na liczby — scripts/ci/jest-sterta.json (zb010, 02.11.2026); test nie powtarza liczb */
+const STERTA = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts/ci/jest-sterta.json'), 'utf8')) as { workerowMB: number; ponowienieMB: number };
+const flaga = (mb: number) => `--max-old-space-size=${mb}`;
 
 const SIGTERM = 'Test suite failed to run\n\n  A jest worker process (pid=123) was terminated by another process: signal=SIGTERM, exitCode=null. Operation: ...';
 const SIGKILL = SIGTERM.replace('SIGTERM', 'SIGKILL');
@@ -30,12 +33,14 @@ fs.writeFileSync(out, JSON.stringify(w));
 process.exit(w.success ? 0 : 1);
 `;
 
-function uruchom(...przebiegi: object[]) {
+/** nodeOptions: NODE_OPTIONS otoczenia dla skryptu (domyślnie puste — test nie zależy od zmiennej, z którą działa verify). */
+function uruchom(...przebiegi: object[]) { return uruchomZ('', ...przebiegi); }
+function uruchomZ(nodeOptions: string, ...przebiegi: object[]) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'jest-ponow-test-'));
   fs.writeFileSync(path.join(dir, 'fake.js'), FAKE);
   fs.writeFileSync(path.join(dir, 'scenariusz.json'), JSON.stringify(przebiegi));
   try {
-    const r = spawnSync(process.execPath, [SKRYPT, '--maxWorkers=2'], { cwd: ROOT, encoding: 'utf8', env: { ...process.env, JEST_PONOW_JEST: path.join(dir, 'fake.js'), FAKE_DIR: dir } });
+    const r = spawnSync(process.execPath, [SKRYPT, '--maxWorkers=2'], { cwd: ROOT, encoding: 'utf8', env: { ...process.env, JEST_PONOW_JEST: path.join(dir, 'fake.js'), FAKE_DIR: dir, NODE_OPTIONS: nodeOptions } });
     const wywolania = fs.readdirSync(dir).filter(f => f.startsWith('call-')).sort().map(f => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as string[]);
     return { kod: r.status, log: r.stderr, wywolania };
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
@@ -49,11 +54,19 @@ describe('scripts/jest-ponow.mjs — ponawia tylko przerwania z zewnątrz (decyz
     expect(r.wywolania[0]).toContain('--maxWorkers=2'); /* pierwszy przebieg zachowuje argumenty */
     expect(r.wywolania[1]).toEqual(expect.arrayContaining(['--runInBand', '--runTestsByPath', '/b.test.ts']));
     expect(r.wywolania[1]).not.toContain('/a.test.ts');
-    expect(r.wywolania[1]).toContainEqual(expect.stringMatching(/NODE_OPTIONS=.*--max-old-space-size=4096$/)); /* ponowienie z większą stertą (OOM workera = „SIGTERM”) */
-    expect(r.wywolania[0]).not.toContainEqual(expect.stringMatching(/--max-old-space-size=4096$/));
+    expect(r.wywolania[1]).toContain(`NODE_OPTIONS=${flaga(STERTA.ponowienieMB)}`); /* ponowienie z większą stertą (OOM workera = „SIGTERM”) */
+    expect(r.wywolania[0]).toContain('NODE_OPTIONS='); /* pierwszy przebieg: sterta workerów pochodzi z tests/global-setup.js, nie ze skryptu */
+    expect(r.wywolania[0].join(' ')).not.toContain(flaga(STERTA.ponowienieMB));
     expect(r.log).toMatch(/ponawiam TYLKO je/);
     expect(r.log).toContain('/b.test.ts');
     expect(r.log).toMatch(/SIGTERM/);
+  });
+  test('(a1) NODE_OPTIONS otoczenia ze sterta workerów (verify z ustawioną stertą): pierwszy przebieg ją zachowuje, ponowienie ma jedną, większą wartość i zachowuje inne opcje', () => {
+    expect(STERTA.ponowienieMB).toBeGreaterThan(STERTA.workerowMB);
+    const r = uruchomZ(`--no-warnings ${flaga(STERTA.workerowMB)}`, wynik(przerwany('/b.test.ts')), wynik(zielony('/b.test.ts')));
+    expect(r.kod).toBe(0);
+    expect(r.wywolania[0]).toContain(`NODE_OPTIONS=--no-warnings ${flaga(STERTA.workerowMB)}`);
+    expect(r.wywolania[1]).toContain(`NODE_OPTIONS=--no-warnings ${flaga(STERTA.ponowienieMB)}`);
   });
   test('(a2) SIGKILL z tym samym komunikatem „terminated by another process” też jest przerwaniem', () => {
     const r = uruchom(wynik(przerwany('/b.test.ts', SIGKILL)), wynik(zielony('/b.test.ts')));

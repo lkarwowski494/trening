@@ -101,9 +101,9 @@ describe('UX2-01: wyszukiwanie po dawnej nazwie — ekrany', () => {
 });
 
 /* ---------------- UX2-05: technika z treningu i szablonu ---------------- */
-const routeNames = (): string[] => { const { store: rs } = require('expo-router/build/global-state/router-store'); const names: string[] = [];
+const routeNames = (): string[] => { const rs = { navigationRef: require('./app').navRef() }; const names: string[] = [];
   const walk = (st: { routes?: { name: string; state?: unknown }[] } | undefined) => st?.routes?.forEach(r => { names.push(r.name); walk(r.state as never); }); walk(rs.navigationRef.getRootState()); return names; };
-const dbl = async (el: Parameters<typeof tap>[0]) => { await act(async () => { fireEvent.press(el); fireEvent.press(el); }); await flushAll(10); };
+const dbl = async (el: Parameters<typeof tap>[0]) => { await act(async () => { await fireEvent.press(el); await fireEvent.press(el); }); await flushAll(10); };
 const cuesOpen = () => screen.getByTestId('exercise-cues-toggle').props.accessibilityState?.expanded;
 
 describe('UX2-05: wskazówki techniki z treningu na żywo i z szablonu', () => {
@@ -169,7 +169,7 @@ const bootPlan = async (fn: (ids: string[]) => void) => {
   await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/history' }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
   return tp;
 };
-const moveTitles = () => screen.getByTestId('suggestions').findAll((n: { props: Record<string, unknown> }) => typeof n.props.accessibilityLabel === 'string' && /^Zastosuj: /.test(n.props.accessibilityLabel as string))
+const moveTitles = () => screen.getByTestId('suggestions').queryAll((n: { props: Record<string, unknown> }) => typeof n.props.accessibilityLabel === 'string' && /^Zastosuj: /.test(n.props.accessibilityLabel as string))
   .map((n: { props: Record<string, unknown> }) => (n.props.accessibilityLabel as string).slice('Zastosuj: '.length)).filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);
 const FOOT = /dwa dni pod rząd przy tej samej liczbie serii/;
 
@@ -250,10 +250,10 @@ describe('UI2-02: podwójne tapnięcie nie otwiera dwóch ekranów ani nie tworz
   });
   test('Chip `nav`: blokada jak w Btn — drugie tapnięcie w ciągu chwili nic nie robi, po chwili znów działa', async () => {
     const React = require('react'); const { render } = require('@testing-library/react-native'); const { Chip } = require('@/components/ui');
-    const fn = jest.fn(); const r = render(React.createElement(Chip, { label: 'X', on: false, nav: true, onPress: fn }));
-    await act(async () => { fireEvent.press(r.getByText('X')); fireEvent.press(r.getByText('X')); }); expect(fn).toHaveBeenCalledTimes(1);
-    await act(async () => { jest.advanceTimersByTime(1000); }); await act(async () => { fireEvent.press(r.getByText('X')); }); expect(fn).toHaveBeenCalledTimes(2);
-    const g = jest.fn(); const r2 = render(React.createElement(Chip, { label: 'Y', on: false, onPress: g })); await act(async () => { fireEvent.press(r2.getByText('Y')); fireEvent.press(r2.getByText('Y')); }); expect(g).toHaveBeenCalledTimes(2); /* bez nav — przełącznik, bez blokady */
+    const fn = jest.fn(); const r = await render(React.createElement(Chip, { label: 'X', on: false, nav: true, onPress: fn }));
+    await act(async () => { await fireEvent.press(r.getByText('X')); await fireEvent.press(r.getByText('X')); }); expect(fn).toHaveBeenCalledTimes(1);
+    await act(async () => { jest.advanceTimersByTime(1000); }); await act(async () => { await fireEvent.press(r.getByText('X')); }); expect(fn).toHaveBeenCalledTimes(2);
+    const g = jest.fn(); const r2 = await render(React.createElement(Chip, { label: 'Y', on: false, onPress: g })); await act(async () => { await fireEvent.press(r2.getByText('Y')); await fireEvent.press(r2.getByText('Y')); }); expect(g).toHaveBeenCalledTimes(2); /* bez nav — przełącznik, bez blokady */
   });
 });
 

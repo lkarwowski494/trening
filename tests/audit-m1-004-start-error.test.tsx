@@ -26,7 +26,7 @@ describe('M1-004: ekran błędu startu — nie tylko ponowienie', () => {
     const kv = snapshot(); (Sharing.shareAsync as jest.Mock).mockClear();
     await tap(screen.getByText(t('Wyślij dane'))); await flushAll(20);
     expect(Sharing.shareAsync).toHaveBeenCalledTimes(1); expect((Sharing.shareAsync as jest.Mock).mock.calls[0][0]).toBe('file:///doc/Backup/trening-2026-10-12-090000-2.json');
-    spies.push(jest.spyOn(Linking, 'openURL').mockResolvedValue(true));
+    spies.push(jest.spyOn(Linking, 'openURL').mockResolvedValue(true as never));
     await tap(screen.getByText(t('Napisz do nas'))); await flushAll(20);
     expect((Linking.openURL as jest.Mock).mock.calls[0][0]).toContain(`mailto:${SUPPORT_EMAIL}`);
     expect(snapshot()).toEqual(kv); expect(AUTO_KEEP).toBeGreaterThan(0);

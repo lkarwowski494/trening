@@ -66,7 +66,7 @@ const barlow = (f: 'title600' | 'title700'): string => (boldTextOn() && f === 't
  */
 export function font(role: TypeRole): TextStyle {
   const x = TYPE[role];
-  const s: TextStyle = { fontSize: x.size, lineHeight: x.lineHeight };
+  const s: { -readonly [K in keyof TextStyle]: TextStyle[K] } = { fontSize: x.size, lineHeight: x.lineHeight }; /* SDK 58: TextStyle tylko do odczytu */
   if (x.font === 'body') { s.fontFamily = 'System'; s.fontWeight = x.weight ?? '400'; } else s.fontFamily = barlow(x.font);
   if (x.tabular) s.fontVariant = ['tabular-nums'];
   if (x.tracking) s.letterSpacing = +(x.tracking * x.size).toFixed(2);

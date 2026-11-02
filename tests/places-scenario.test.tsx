@@ -15,7 +15,7 @@ jest.setTimeout(120000);
 afterEach(async () => { try { await timer.stop(); await timer.stopSet(); } catch { /* brak stanu */ } jest.useRealTimers(); });
 const S = () => store.getState();
 const blk = (i: number) => S().active!.exercises[i];
-const stack = () => { const { store: rs } = require('expo-router/build/global-state/router-store'); let st = rs.navigationRef.getRootState(); while (st.routes.length === 1 && st.routes[0].name === '__root' && st.routes[0].state) st = st.routes[0].state; return st.routes.map((r: any) => r.name) as string[]; };
+const stack = () => { const rs = { navigationRef: require('./app').navRef() }; /* SDK 58: router-store usunięty */ let st = rs.navigationRef.getRootState(); while (st.routes.length === 1 && st.routes[0].name === '__root' && st.routes[0].state) st = st.routes[0].state; return st.routes.map((r: any) => r.name) as string[]; };
 const top = () => stack().at(-1);
 const FBW: [string, string][] = [['Bench Press (sztanga)', 'bench'], ['Overhead Press (sztanga)', 'ohp'], ['Pull Up', 'pull'], ['RDL (hantle/linki)', 'rdl']];
 const FRI = new Date(2026, 9, 9, 9, 0), SAT_EARLY = new Date(2026, 9, 10, 7, 30), SAT = new Date(2026, 9, 10, 9, 0), MON = new Date(2026, 9, 12, 9, 0);
@@ -45,7 +45,7 @@ test('Hotel piątek–niedziela: ustawienie w panelu dnia → przypomnienie z �
 
   /* start: miejsce dnia, okno samo */
   jest.setSystemTime(SAT.getTime()); await flushAll(10); await startTpl('FBW');
-  expect(S().active!.locationId).toBe('hotel'); expect(top()).toBe('adapt'); expect(require('expo-router/build/global-state/router-store').store.navigationRef.getCurrentOptions().title).toBe('Dostosuj do miejsca'); expect(screen.getByTestId('adapt-place-line').props.children).toBe('Dostosuj do: Hotel'); /* 101-17, decyzja właściciela 29.10.2026: tytuł stały, nazwa miejsca w wierszu adapt-place-line */
+  expect(S().active!.locationId).toBe('hotel'); expect(top()).toBe('adapt'); expect(require('./app').navRef().getCurrentOptions().title).toBe('Dostosuj do miejsca'); expect(screen.getByTestId('adapt-place-line').props.children).toBe('Dostosuj do: Hotel'); /* 101-17, decyzja właściciela 29.10.2026: tytuł stały, nazwa miejsca w wierszu adapt-place-line */
   const benchTo = (screen.getAllByText(/^Bench Press \(sztanga\) → /)[0].props.children as string).split(' → ')[1];
   await tap(screen.getAllByText(/^Overhead Press \(sztanga\) → /)[0]); await flushAll(20); expect(top()).toBe('swap');
   const props = screen.getAllByLabelText(/^Propozycja \d: /); const k = Math.min(1, props.length - 1); const manual = /^Propozycja \d: ([^,]+)/.exec(props[k].props.accessibilityLabel)![1]; await tap(props[k]); await flushAll(20);

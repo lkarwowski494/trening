@@ -95,8 +95,7 @@ jobs:
         # na Ubuntu w tests.yml limit jest wyższy) — 3 GB na proces × 2 procesy mieści się w pamięci maszyny (Jest na 3 rdzeniach: 2 procesy robocze).
         # TST2-09 (audyt kontrolny 1): ta sama lista sprawdzeń co verify w tests.yml (wskazówki, figury, licencje, eksport iOS) — jedno źródło: package.json.
         # Przed uruchomieniem tego workflow: zielone E2E (e2e-ios.yml) na tym samym commicie (CLAUDE.md „Audyty i wydania”, pkt 2).
-        env:
-          NODE_OPTIONS: --max-old-space-size=3072
+        # 02.11.2026 (zb010): sterta workerów Jest z jednego miejsca — scripts/ci/jest-sterta.json (ustawia tests/global-setup.js); tu bez własnego NODE_OPTIONS.
         run: npm run verify
       - name: Logika zegarka — testy jednostkowe Swift (targets/watch-tests)
         run: cd targets && swift test

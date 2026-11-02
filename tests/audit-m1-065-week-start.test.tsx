@@ -42,15 +42,15 @@ describe('ekran Historia: kalendarz od pierwszego dnia tygodnia regionu', () => 
     addWorkout(at(2026, 9, 6), [['Back Squat', [{ weight: 100, reps: 5 }]]]); await act(async () => { await store.flush(); });
     const sv = JSON.parse(JSON.stringify(saved())); if (deload) sv.deloadWeeks = ['2026-10-12']; await renderApp({ saved: sv, locale, url: '/history' }); jest.setSystemTime(new Date(2026, 9, 8, 9, 0).getTime()); await flushAll(10);
   }
-  const heads = () => screen.getByTestId('history-calendar').findAll(n => (n.type as unknown) === 'Text' && typeof n.props.children === 'string' && /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)/.test(n.props.children as string)).map(n => n.props.children as string);
-  const firstDay = () => screen.getByTestId('history-calendar').findAll(n => typeof n.props.testID === 'string' && /^cal-\d{4}-\d{2}-\d{2}$/.test(n.props.testID))[0].props.testID as string;
+  const heads = () => screen.getByTestId('history-calendar').queryAll(n => (n.type as unknown) === 'Text' && typeof n.props.children === 'string' && /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)/.test(n.props.children as string)).map(n => n.props.children as string);
+  const firstDay = () => screen.getByTestId('history-calendar').queryAll(n => typeof n.props.testID === 'string' && /^cal-\d{4}-\d{2}-\d{2}$/.test(n.props.testID))[0].props.testID as string;
   test('niedziela (firstWeekday 1): nagłówki Sun…Sat, pierwszy dzień października 2026 (czwartek) stoi w 5. kolumnie', async () => {
     await boot(1); expect(heads().map(h => h.slice(0, 3))).toEqual(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']); expect(firstDay()).toBe('cal-2026-10-01');
-    const all = screen.getByTestId('history-calendar').findAll(n => typeof n.props.testID === 'string' && /^cal-\d{4}/.test(n.props.testID)).map(n => n.props.testID as string); expect(new Set(all).size).toBe(31);
+    const all = screen.getByTestId('history-calendar').queryAll(n => typeof n.props.testID === 'string' && /^cal-\d{4}/.test(n.props.testID)).map(n => n.props.testID as string); expect(new Set(all).size).toBe(31);
   });
   test('tydzień deload (poniedziałek 12.10) w układzie od niedzieli: ramka na wierszu 11–17.10 (od niedzieli), nie na 4–10.10; testID z poniedziałkiem', async () => {
     await boot(1, 'en', true); const rows = screen.getAllByTestId('cal-deload-2026-10-12'); expect(rows.length).toBeGreaterThan(0); expect(screen.queryByTestId('cal-deload-2026-10-05')).toBeNull();
-    const row = rows[0]; const keys = row.findAll(n => typeof n.props.testID === 'string' && /^cal-\d{4}-\d{2}-\d{2}$/.test(n.props.testID)).map(n => n.props.testID as string);
+    const row = rows[0]; const keys = row.queryAll(n => typeof n.props.testID === 'string' && /^cal-\d{4}-\d{2}-\d{2}$/.test(n.props.testID)).map(n => n.props.testID as string);
     expect([...new Set(keys)]).toEqual(['11', '12', '13', '14', '15', '16', '17'].map(d => `cal-2026-10-${d}`));
   });
   test('poniedziałek (firstWeekday 2) i brak informacji o regionie: nagłówki Mon…Sun jak dotąd', async () => {

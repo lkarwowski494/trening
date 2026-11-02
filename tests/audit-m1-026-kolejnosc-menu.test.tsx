@@ -25,9 +25,9 @@ async function drag(testID: string, dy: number) {
   for (let k = 0; k < 5; k++) { const ny = y + dy / 5; await act(async () => { h.props.onResponderMove(touch(ny, y)); }); y = ny; }
   await act(async () => { h.props.onResponderRelease(touch(y, y)); }); await flushAll(200);
 }
-function layoutRows(h: number) { for (const el of screen.getAllByTestId(/^drag-/)) { let p: any = el.parent; while (p && !p.props.onLayout) p = p.parent; if (p) fireEvent(p, 'layout', { nativeEvent: { layout: { x: 0, y: 0, width: 300, height: h } } }); } }
+async function layoutRows(h: number) { for (const el of screen.getAllByTestId(/^drag-/)) { let p: any = el.parent; while (p && !p.props.onLayout) p = p.parent; if (p) await act(async () => { await fireEvent(p, 'layout', { nativeEvent: { layout: { x: 0, y: 0, width: 300, height: h } } }); }); } }
 const open = async (tplId: string) => { await go(`/reorder?target=template:${tplId}`); await flushAll(50); };
-const menu = async (key: string) => { const n = sheets().length; await act(async () => { fireEvent.press(screen.getByTestId('move-menu-' + key)); }); expect(sheets().length).toBe(n + 1); return sheets().at(-1)!; };
+const menu = async (key: string) => { const n = sheets().length; await act(async () => { await fireEvent.press(screen.getByTestId('move-menu-' + key)); }); expect(sheets().length).toBe(n + 1); return sheets().at(-1)!; };
 const pick = async (s: Sheet, label: string) => { const i = s.opts.options.indexOf(label); expect(i).toBeGreaterThanOrEqual(0); await act(async () => { s.cb(i); }); await flushAll(20); };
 
 describe('ekran Kolejność: przycisk zamiast gestu', () => {
@@ -50,10 +50,10 @@ describe('ekran Kolejność: przycisk zamiast gestu', () => {
   });
   test('przesunięcie z menu = ten sam wynik co przeciągnięcie (ćwiczenie za superset, superset w całości, kolejność w supersecie)', async () => {
     /* przeciąganie (jak tests/reorder-t010.test.tsx) */
-    await fresh(); const a = mkTpl(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await open(a.id); layoutRows(60);
+    await fresh(); const a = mkTpl(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await open(a.id); await await layoutRows(60);
     await drag('drag-i:it-BackSquat', 50); const d1 = order(a.id);
-    layoutRows(60); const ga = store.getState().templates.find(x => x.id === a.id)!.items[0].groupId!; await drag('drag-g:' + ga, 50); const d2 = order(a.id);
-    layoutRows(60); await drag('drag-i:it-PullUp', -50); const d3 = order(a.id);
+    await layoutRows(60); const ga = store.getState().templates.find(x => x.id === a.id)!.items[0].groupId!; await drag('drag-g:' + ga, 50); const d2 = order(a.id);
+    await layoutRows(60); await drag('drag-i:it-PullUp', -50); const d3 = order(a.id);
     /* te same ruchy z menu */
     await fresh(); const b = mkTpl(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await open(b.id);
     await pick(await menu('i:it-BackSquat'), 'Przesuń niżej'); expect(order(b.id)).toEqual(d1);
