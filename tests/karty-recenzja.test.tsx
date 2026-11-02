@@ -11,6 +11,7 @@ import React from 'react';
 import * as fs from 'fs';
 import * as path from 'path';
 import { execFileSync } from 'child_process';
+import * as RN from 'react-native';
 import { render, screen } from '@testing-library/react-native';
 import { CUE_DATA, generalCuesReviewed } from '@/lib/cues';
 import { FIG_DATA } from '@/lib/figures';
@@ -63,6 +64,12 @@ describe('zapis recenzji treści kart (M1-audytor-generalny-038, DEC-10 a, 28.10
 });
 
 describe('plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy', () => {
+  /* 02.11.2026 (zb010, przyczyna czerwonego tests.yml 41438924662 / 41444512304): testy tej sekcji sprawdzają teksty karty, nie ruch. Animowany rysunek (reduce-motion = false)
+     tyka co TEMPO.tickMs (33 ms) i każde tyknięcie to renderowanie rysunku w asynchronicznym `act` RNTL 14; przy obciążonym procesorze (CI, 2 rdzenie) render trwa dłużej niż tyknięcie,
+     kolejka `act` nie opróżnia się i test wisi do limitu (180 s). Bez animacji (jak przy włączonym „ogranicz ruch”) test jest deterministyczny. */
+  const AI = RN.AccessibilityInfo as unknown as { isReduceMotionEnabled: jest.Mock };
+  beforeEach(() => { AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(true)); });
+  afterEach(() => { AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(false)); });
   test('karty: w runtime tylko karty z aktualną recenzją; pozostałe na liście „hidden”', () => {
     expect(Object.keys(RT.exercises).sort()).toEqual(OWN.filter(cardOk).sort());
     expect([...(RT.hidden ?? [])].sort()).toEqual(OWN.filter(k => !cardOk(k)).sort());
@@ -87,6 +94,14 @@ describe('plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy', (
     await render(<ExerciseCues exercise={lib(z as string)} initialOpen />);
     expect(screen.queryByTestId('exercise-cues-general-note')).toBeNull();
     expect(screen.queryByRole('header', { name: 'Wskazówki' })).toBeNull();
+  });
+  test('regresja 02.11.2026 (zb010): karta w tych testach nie uruchamia animacji rysunku (brak interwału tyknięć), więc `act` nie wisi przy obciążonym procesorze', async () => {
+    const spy = jest.spyOn(global, 'setInterval');
+    try {
+      await render(<ExerciseCues exercise={lib('Sumo Deadlift')} initialOpen />);
+      expect(screen.getByRole('header', { name: 'Ustawienie' })).toBeTruthy();
+      expect(spy.mock.calls.filter(c => c[1] === 33)).toEqual([]); /* 33 = TEMPO.tickMs (lib/figures/v2/anim.ts) */
+    } finally { spy.mockRestore(); }
   });
   test('karta i zestaw z recenzją się pokazują (Sumo Deadlift — własne; Sumo Deadlift with Bands — ogólne z dopiskiem)', async () => {
     await render(<ExerciseCues exercise={lib('Sumo Deadlift')} initialOpen />);
