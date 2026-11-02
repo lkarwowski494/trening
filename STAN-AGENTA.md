@@ -5,7 +5,7 @@ Autor: programista linii 1.1 (sesja https://claude.ai/code/session_01T66VBwcaVQM
 ## Zrobione
 - c9b256a — SDK 58 (`expo` 58.0.22, `expo-router` 58.0.29, RN 0.88.1, React 19.3.0, Jest 30.5, RNTL 14.1 + `test-renderer` 1.3.1); `decode-uri-component` i `query-string` poza drzewem (`npm ls` puste); kod aplikacji: `npx tsc` 0 błędów poza `tests/`; `tests/app.tsx` (cleanup, navigationRef, await renderRouter), `tests/smoke.test.tsx` zielony; licencje przegenerowane (`check:licenses` OK).
 - 477d0f3 — `headerTransparent: false` (iOS 26+), test `tests/zb010-sdk.test.ts` 5/5 zielony, szkic raportu.
-- **Gałąź NIE jest wypchnięta**: hak pre-push wymaga zielonego verify (L-049); `--no-verify` zakazane w zleceniu. Commity tylko lokalnie w tej sesji (kontener ulotny — koordynator: zdecyduj, czy wypchnąć wyjątkowo jako WIP za zgodą właściciela, czy kontynuować w tej sesji).
+- Gałąź wypchnięta z `--no-verify` jako wyjątek nazwany (właściciel 02.11.2026 ~05:10 PL, docs/18 ZB-010 A); plan grup migracji: raport pkt 7.
 
 ## Pełny Jest na c9b256a (bez 477d0f3), lokalnie
 653 pliki, 129 czerwonych (3 błędy wykonania); 15 781 testów: 14 939 zielonych, 839 czerwonych.

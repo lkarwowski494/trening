@@ -1,6 +1,6 @@
 # ZB-010 — aktualizacja Expo SDK 57 → 58 (raport programisty, 01.11.2026)
 
-Gałąź `zb010/sdk` od `origin/integracja-1-1` @ fba531d. Stan: **w toku** (szczegóły i następny krok: `STAN-AGENTA.md` w katalogu głównym gałęzi).
+Gałąź `zb010/sdk` od `origin/integracja-1-1` @ fba531d. Stan: **w toku — migracja testów RNTL 14** (pkt 7; szczegóły: `STAN-AGENTA.md`).
 
 ## 1. Dlaczego SDK 58 (sprawdzone w rejestrze npm, 01.11.2026)
 - `decode-uri-component` 0.2.2 wchodziło tylko przez `expo-router` → `query-string` ^7.1.3.
@@ -45,7 +45,7 @@ Gałąź `zb010/sdk` od `origin/integracja-1-1` @ fba531d. Stan: **w toku** (szc
 ## 4. Wyniki (uzupełniane)
 - `tests/zb010-sdk.test.ts`: przed zmianą 2 czerwone (decode-uri-component 0.2.2, expo-router 57), po — 5/5 zielone.
 - `npx tsc --noEmit`: kod aplikacji 0 błędów; `tests/` — w toku.
-- Pełne `npm run verify`: — (po migracji testów).
+- Pełny Jest (c9b256a): 15 781 testów, 14 939 zielonych, 839 czerwonych (129 z 653 plików). Pełne `npm run verify`: — (po migracji testów).
 - `npm audit` dla decode-uri-component: — (po migracji; `npm ls` już puste).
 - `ios-unsigned.yml`: — ; `e2e-ios.yml` pakiet podstawowy: — .
 
@@ -56,3 +56,160 @@ Gałąź `zb010/sdk` od `origin/integracja-1-1` @ fba531d. Stan: **w toku** (szc
 
 ## 6. Proponowany wpis decyzji do docs/18 (dla koordynatora)
 - 01.11.2026 (koordynator linii 1.1, ZB-010 wykonanie wariantu A z 28.10.2026): aktualizacja Expo SDK 57 → 58 (expo-router 58.0.29 bez `query-string`, `decode-uri-component` usunięte z drzewa) w linii 1.1 bez zmiany schematu (19). Odrzucone: pozostanie na SDK 57 (brak poprawki w expo-router 57.x). [wdrożenie: kod] [test: tests/zb010-sdk.test.ts]
+
+## 7. Stan po 02.11.2026 i plan migracji testów do RNTL 14 (dla nowych sesji)
+
+- Wypchnięcie gałęzi roboczej z `--no-verify` — wyjątek nazwany, decyzja właściciela 02.11.2026 ~05:10 PL (docs/18, ZB-010 A). Do `integracja-1-1` dopiero po migracji testów i pełnym verify (wtedy hak sam przepuści).
+- Pełny Jest (lokalnie, c9b256a): 653 pliki, 129 czerwonych; 15 781 testów, 839 czerwonych. Kod aplikacji typecheck czysty; `tests/` — 484 błędy tsc.
+- Zasada wspólna: najpierw pomocniki (`tests/app.tsx`, `tests/helpers.ts`, `tests/maestro-runner.ts`, `swipeDelete` używa `UNSAFE_root`) — jedna sesja (grupa D) zaczyna od nich i wypycha przed startem A–C/E, inaczej konflikty. Agenci uruchamiają pojedyncze pliki (`npx jest <plik> --runInBand`); pełny Jest i verify raz, po scaleniu grup. Nie zmieniać asercji merytorycznie — tylko API testów; test, który po migracji pada na asercji, to sygnał zmiany zachowania (SDK 58) do zgłoszenia, nie do „poprawienia” oczekiwania.
+- Pliki migawek (`*.snap.ios`): pełny Jest zmienił `tests/figures.test.tsx.snap.ios` (1 linia) — cofnięte; przy migracji uruchamiać z `--ci`.
+
+### Grupa A — 13 plików, 98 czerwonych testów
+zapytania po typie komponentu (`UNSAFE_*ByType`) — przepisanie na testID/etykiety (test-renderer widzi tylko elementy natywne); najtrudniejsza.
+
+- `tests/regress.test.tsx` (21)
+- `tests/figures-v2-chod-cykliczny.test.tsx` (7)
+- `tests/figures-v2-katy-fazy.test.tsx` (8)
+- `tests/edit-on-demand.test.tsx` (5)
+- `tests/m3-components.test.tsx` (26)
+- `tests/interaction-patterns.test.tsx` (8)
+- `tests/figures-v2-petla-jednokierunkowa.test.tsx` (9)
+- `tests/ux.test.tsx` (2)
+- `tests/backlog-0410.test.tsx` (1)
+- `tests/trening-naglowek.test.tsx` (5)
+- `tests/audit-perf-ui.test.tsx` (2)
+- `tests/audit-m1-066-pseudo.test.tsx` (2)
+- `tests/m1-017-kalendarz-skala.test.tsx` (2)
+
+### Grupa B — 33 plików, 253 czerwonych testów
+`UNSAFE_root.findAll` → `screen.root`/`container.queryAll` (sprawdzić, czy predykat dotyczy propsów elementu natywnego).
+
+- `tests/motyw.test.tsx` (17)
+- `tests/audit-0.10-live.test.tsx` (2)
+- `tests/audit-0.10-ui.test.tsx` (4)
+- `tests/figures.test.tsx` (17)
+- `tests/audit-0.10-plan-ui.test.tsx` (20)
+- `tests/guard-ui.test.tsx` (20)
+- `tests/matrix-a11y.test.tsx` (9)
+- `tests/audit-k1-bl-mer.test.tsx` (3)
+- `tests/figures-v2-styk.test.tsx` (3)
+- `tests/progression-ui.test.tsx` (12)
+- `tests/audit-0.10-lang-ui.test.tsx` (22)
+- `tests/audit-0.10-data-ui.test.tsx` (4)
+- `tests/figures-v2-ui.test.tsx` (20)
+- `tests/period-bars.test.tsx` (7)
+- `tests/home-b.test.tsx` (3)
+- `tests/set-goals-ui.test.tsx` (2)
+- `tests/pick-template.test.tsx` (9)
+- `tests/m3-p2-start.test.tsx` (4)
+- `tests/home-plan-header.test.tsx` (5)
+- `tests/m3-p5d-settings-ui.test.tsx` (3)
+- `tests/dec01a-podglad-liczb.test.tsx` (9)
+- `tests/muscle-map.test.tsx` (1)
+- `tests/tokeny-odcisk.test.tsx` (3)
+- `tests/i18n-wave4-ui.test.tsx` (15)
+- `tests/i18n-wave3-ui.test.tsx` (8)
+- `tests/i18n-wave2-ui.test.tsx` (5)
+- `tests/figura-klatka-zrzutu.test.tsx` (3)
+- `tests/sets-mark.test.tsx` (1)
+- `tests/audit-records-live.test.tsx` (1)
+- `tests/audit-records-ui.test.tsx` (16)
+- `tests/m1-043-pierwsze-kroki-glyph.test.tsx` (1)
+- `tests/ui2-08-saved-plan-title.test.tsx` (3)
+- `tests/ui2-09-leftovers.test.tsx` (1)
+
+### Grupa C — 26 plików, 218 czerwonych testów
+`render`/`renderHook` bez `await` (RNTL 14 zwraca obietnicę) i wyniki render używane synchronicznie.
+
+- `tests/matrix-logic.test.tsx` (5)
+- `tests/audit-k1-fala2b.test.tsx` (10)
+- `tests/subscription-ui.test.tsx` (2)
+- `tests/swipe-delete.test.tsx` (31)
+- `tests/figury-recenzja.test.tsx` (1)
+- `tests/audit-0.10-tst.test.ts` (1)
+- `tests/figures-v2-data.test.tsx` (3)
+- `tests/audit-m1-031-asekuracja-zakres.test.tsx` (34)
+- `tests/figures-v2-wstrzymane.test.ts` (0)
+- `tests/info-tip.test.tsx` (20)
+- `tests/karty-recenzja.test.tsx` (2)
+- `tests/cues.test.tsx` (4)
+- `tests/audit-m1-031-hantle-asekuracja.test.tsx` (36)
+- `tests/whats-new.test.tsx` (2)
+- `tests/cues-014.test.tsx` (2)
+- `tests/audit-0.10-tst-ui.test.tsx` (1)
+- `tests/audit-m1-015-asekuracja.test.tsx` (44)
+- `tests/postep-tygodnia-zmiana-planu.test.tsx` (3)
+- `tests/audit-m1-031-contrast.test.tsx` (1)
+- `tests/audit-m1-024-bold.test.tsx` (1)
+- `tests/audit-m1-012-status.test.ts` (1)
+- `tests/audit-m1-2026-10-27-032-kod-diagnostyczny.test.tsx` (1)
+- `tests/health-use.test.tsx` (5)
+- `tests/audit-m1-p3-coverage.test.tsx` (2)
+- `tests/whatsnew-biezacy-build.test.tsx` (5)
+- `tests/audit-ac5d764.test.tsx` (1)
+
+### Grupa D — 33 plików, 199 czerwonych testów
+pozostałe przez `tests/app.tsx`/`maestro-runner` — najpierw `tests/maestro-runner.ts` (router-store → navigationRef), potem kolejność nawigacji, `fireEvent` w `act`, asercje (część 1).
+
+- `tests/intro.test.tsx` (13)
+- `tests/maestro-e2e38563.test.tsx` (11)
+- `tests/maestro-e2e91.test.tsx` (9)
+- `tests/maestro-zycie.test.tsx` (5)
+- `tests/maestro-flows.test.tsx` (49)
+- `tests/maestro-e2e105.test.tsx` (4)
+- `tests/maestro-script.test.tsx` (2)
+- `tests/maestro-e2e-modal.test.tsx` (3)
+- `tests/scenario-full.test.tsx` (13)
+- `tests/matrix-ui.test.tsx` (7)
+- `tests/edit-history.test.tsx` (5)
+- `tests/public-repo.test.ts` (1)
+- `tests/m3-p2-board-ui.test.tsx` (1)
+- `tests/adapt-ui.test.tsx` (19)
+- `tests/places-ui.test.tsx` (10)
+- `tests/store-adapter.test.ts` (1)
+- `tests/health-read-ui.test.tsx` (2)
+- `tests/m3-p3-postepy-historia.test.tsx` (1)
+- `tests/audit-r83.test.tsx` (1)
+- `tests/guide.test.tsx` (1)
+- `tests/m3-fix-e2e.test.tsx` (3)
+- `tests/live2-split-template.test.tsx` (1)
+- `tests/readme.test.ts` (4)
+- `tests/tabs-four.test.tsx` (5)
+- `tests/generator-ui.test.tsx` (4)
+- `tests/reorder-t010.test.tsx` (6)
+- `tests/flows.test.tsx` (1)
+- `tests/swap-alternates.test.tsx` (1)
+- `tests/locations-ui.test.tsx` (1)
+- `tests/m3-p5-delete.test.tsx` (6)
+- `tests/deload-ui.test.tsx` (4)
+- `tests/motyw-miesiac.test.tsx` (2)
+- `tests/m3-p4-generator.test.tsx` (3)
+
+### Grupa E — 24 plików, 71 czerwonych testów
+pozostałe (część 2) — jak D.
+
+- `tests/places-scenario.test.tsx` (1)
+- `tests/plan-reminder.test.tsx` (3)
+- `tests/plans-multi-ui.test.tsx` (4)
+- `tests/audit-close2-a.test.tsx` (7)
+- `tests/close-button-guard.test.tsx` (16)
+- `tests/audit-m1-026-kolejnosc-menu.test.tsx` (2)
+- `tests/adapt-scenario.test.tsx` (1)
+- `tests/scenario-0.10.test.tsx` (2)
+- `tests/audit-m1-065-week-start.test.tsx` (3)
+- `tests/ui2-06-gen-back-to-plan.test.tsx` (5)
+- `tests/muscle-roles-ui.test.tsx` (6)
+- `tests/xcheck-0610b.test.tsx` (1)
+- `tests/audit-m1-027-pasek-tygodnia.test.tsx` (2)
+- `tests/audit-records-misc.test.tsx` (1)
+- `tests/audit-m1-032-total-bars.test.tsx` (3)
+- `tests/audit-m1-025-muscle-caption.test.tsx` (4)
+- `tests/audit-m1-038-exname-lang.test.tsx` (1)
+- `tests/audit-journey-b.test.tsx` (2)
+- `tests/audit-m1-033-session-row.test.tsx` (3)
+- `tests/sec-link-z-parametrami.test.tsx` (0)
+- `tests/template-cards.test.tsx` (1)
+- `tests/audit-final2-ui.test.tsx` (2)
+- `tests/audit-final-auto.test.tsx` (1)
+- `tests/matrix-dim-langs-routes3.test.tsx` (0)
+
