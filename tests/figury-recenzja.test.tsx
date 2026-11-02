@@ -116,16 +116,16 @@ describe('ekran: figura ukryta po recenzji — sekcja „Technika” bez rysunku
   test('rejestr: lista figur v1 „ukryta” jest spójna z danymi runtime (ukryta ⇒ brak figury w lib/figures/data.json)', () => {
     for (const k of UKRYTE) expect([k, FIG_DATA.exercises[k]]).toEqual([k, undefined]);
   });
-  (UKRYTE.length ? test.each(UKRYTE) : test.skip.each(['(brak ukrytych)']))('%s', k => {
+  (UKRYTE.length ? test.each(UKRYTE) : test.skip.each(['(brak ukrytych)']))('%s', async k => {
     expect(REC.v1[k].werdykt).toBe('ukryta');
-    render(<ExerciseCues exercise={lib(k)} initialOpen />);
+    await render(<ExerciseCues exercise={lib(k)} initialOpen />);
     expect(screen.queryByTestId('exercise-figure')).toBeNull();
     expect(screen.queryByTestId('exercise-figure-v2')).toBeNull();
     expect(screen.getByRole('header', { name: 'Ruch' })).toBeTruthy();
     expect(CUE_DATA.exercises[k]).toBeTruthy();
   });
-  test('figura z recenzją się renderuje (Pull Up, Overhead Press (sztanga), Reverse Lunge — 29.10.2026)', () => {
-    for (const k of ['Pull Up', 'Overhead Press (sztanga)', 'Reverse Lunge']) { render(<ExerciseCues exercise={lib(k)} initialOpen />); expect([k, screen.getAllByTestId('exercise-figure').length > 0]).toEqual([k, true]); }
+  test('figura z recenzją się renderuje (Pull Up, Overhead Press (sztanga), Reverse Lunge — 29.10.2026)', async () => {
+    for (const k of ['Pull Up', 'Overhead Press (sztanga)', 'Reverse Lunge']) { await render(<ExerciseCues exercise={lib(k)} initialOpen />); expect([k, screen.getAllByTestId('exercise-figure').length > 0]).toEqual([k, true]); }
   });
 });
 

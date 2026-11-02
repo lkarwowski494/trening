@@ -36,7 +36,7 @@ const txt = (s: string | RegExp) => screen.queryByText(s); const lbl = (s: strin
 describe('ekran zakupu: ceny, nazwy i opisy planów (bez okresu próbnego)', () => {
   test('EN: trzy plany w kolejności roczny, miesięczny, dożywotni; ceny dokładnie ze sklepu; nazwa, cena i opis w etykiecie VoiceOver; nagłówek z limitem 5 dni', async () => {
     await boot({ locale: 'en' });
-    expect(require('expo-router/build/global-state/router-store').store.navigationRef.getCurrentOptions()?.title).toBe('Full version'); /* H1 zdublowany z nagłówkiem usunięty (N28) */
+    expect(require('./app').navRef().getCurrentOptions()?.title).toBe('Full version'); /* H1 zdublowany z nagłówkiem usunięty (N28) */
     const labels = ['yearly', 'monthly', 'lifetime'].map(p => screen.getByTestId(`plan-${p}`).props.accessibilityLabel);
     expect(labels).toEqual([`Training is part of my week, ${FAKE_PRICES.yearly}/year. A whole year of workouts, billed yearly.`, `Still finding my rhythm, ${FAKE_PRICES.monthly}/month. Pay month by month and stop whenever you like.`, `Training is my life, ${FAKE_PRICES.lifetime} one-time. Pay once, keep it forever.`]);
     expect(screen.getByText('Train 5 days a month for free. Pro removes the limit. Cancel anytime in your Apple account settings.')).toBeTruthy(); expect(screen.queryByText(/free trial|days free/i)).toBeNull();
@@ -236,9 +236,9 @@ describe('blokada startu ze wszystkich dróg w interfejsie', () => {
 
 describe('useAccess (hook widoku)', () => {
   test('odzwierciedla stan sklepu i licznik treningów; po zdarzeniu transakcji odświeża się bez restartu', async () => {
-    await boot({ locale: 'en', live: 3, url: '/' }); const h = renderHook(() => useAccess());
+    await boot({ locale: 'en', live: 3, url: '/' }); const h = await renderHook(() => useAccess());
     expect(h.result.current).toMatchObject({ enabled: true, level: 'free' }); expect(h.result.current.decision).toMatchObject({ used: 3, remaining: 2, limit: 5, allowed: true });
-    await act(async () => { fake.setEntitlements([life]); }); await settle(); expect(h.result.current).toMatchObject({ level: 'full', active: expect.objectContaining({ plan: 'lifetime' }) }); h.unmount();
+    await act(async () => { fake.setEntitlements([life]); }); await settle(); expect(h.result.current).toMatchObject({ level: 'full', active: expect.objectContaining({ plan: 'lifetime' }) }); await h.unmount();
   });
 });
 

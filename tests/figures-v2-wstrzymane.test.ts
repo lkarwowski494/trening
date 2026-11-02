@@ -46,12 +46,12 @@ describe('ekran karty (29.10.2026, wstrzymanie zdjęte): JM Press i Skull Crushe
   const { applyLang } = require('@/lib/i18n') as typeof import('@/lib/i18n');
   const ELBOWS = 'Łokcie blisko tułowia przez cały ruch.';
   beforeAll(() => applyLang('pl'));
-  test.each(KLUCZE)('%s: sekcja „Technika” widoczna z rysunkiem v2, bez zdania o łokciach', k => {
-    const r = render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: k }, initialOpen: true }));
-    expect(r.queryByText(ELBOWS)).toBeNull(); expect(r.getByTestId('exercise-cues')).toBeTruthy(); expect(r.queryByTestId('exercise-figure-v2')).not.toBeNull(); r.unmount();
+  test.each(KLUCZE)('%s: sekcja „Technika” widoczna z rysunkiem v2, bez zdania o łokciach', async k => {
+    const r = await render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: k }, initialOpen: true }));
+    expect(r.queryByText(ELBOWS)).toBeNull(); expect(r.getByTestId('exercise-cues')).toBeTruthy(); expect(r.queryByTestId('exercise-figure-v2')).not.toBeNull(); await r.unmount();
   });
-  test('kontrast: wyciskanie wąskim chwytem na maszynie Smitha nadal z sekcją „Technika” (rysunek v2)', () => {
-    const r = render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: 'Smith Machine Close-Grip Bench Press' }, initialOpen: true }));
+  test('kontrast: wyciskanie wąskim chwytem na maszynie Smitha nadal z sekcją „Technika” (rysunek v2)', async () => {
+    const r = await render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: 'Smith Machine Close-Grip Bench Press' }, initialOpen: true }));
     expect(r.getByTestId('exercise-cues')).toBeTruthy();
   });
 });
@@ -77,10 +77,10 @@ describe('martwe ciągi z podłogi — wstrzymanie zdjęte 29.10.2026 (wcześnie
   test('wszystkie 11 z rysunkiem (shownFigureSpec), poza V2_WSTRZYMANE', () => {
     for (const k of DL) { expect([k, shownFigureSpec(k) !== null]).toEqual([k, true]); expect([k, k in V2_WSTRZYMANE]).toEqual([k, false]); }
   });
-  test('karta: sekcja „Technika” z rysunkiem v2 (i wskazówkami tekstowymi)', () => {
+  test('karta: sekcja „Technika” z rysunkiem v2 (i wskazówkami tekstowymi)', async () => {
     expect(hasTechnique({ lib: true, libKey: 'Deadlift (sztanga)' })).toBe(true);
-    const r = render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: 'Deadlift (sztanga)' }, initialOpen: true }));
-    expect(r.getByTestId('exercise-cues')).toBeTruthy(); expect(r.queryByTestId('exercise-figure-v2')).not.toBeNull(); expect(r.queryByTestId('exercise-figure')).toBeNull(); r.unmount();
+    const r = await render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: 'Deadlift (sztanga)' }, initialOpen: true }));
+    expect(r.getByTestId('exercise-cues')).toBeTruthy(); expect(r.queryByTestId('exercise-figure-v2')).not.toBeNull(); expect(r.queryByTestId('exercise-figure')).toBeNull(); await r.unmount();
   });
   test('kontrast: martwy ciąg rumuński i sumo nadal z rysunkiem', () => {
     expect(shownFigureSpec('RDL (sztanga)')).not.toBeNull(); expect(shownFigureSpec('Sumo Deadlift')).not.toBeNull();
@@ -147,10 +147,10 @@ describe('29.10.2026: 18 figur v2 zdjętych z V2_WSTRZYMANE po recenzjach niezal
   test.each(OSIEMNASCIE)('%s: shownFigureSpec nie null, hasTechnique true, poza V2_WSTRZYMANE', k => {
     expect(shownFigureSpec(k)).not.toBeNull(); expect(hasTechnique({ lib: true, libKey: k })).toBe(true); expect(k in V2_WSTRZYMANE).toBe(false);
   });
-  test.each(OSIEMNASCIE)('%s: karta pokazuje sekcję „Technika” z rysunkiem v2', k => {
+  test.each(OSIEMNASCIE)('%s: karta pokazuje sekcję „Technika” z rysunkiem v2', async k => {
     const React = require('react') as typeof import('react'); const { render } = require('@testing-library/react-native') as typeof import('@testing-library/react-native');
     const { ExerciseCues } = require('@/components/ExerciseCues') as typeof import('@/components/ExerciseCues');
-    const r = render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: k }, initialOpen: true }));
-    expect(r.getByTestId('exercise-cues')).toBeTruthy(); expect(r.queryByTestId('exercise-figure-v2')).not.toBeNull(); r.unmount();
+    const r = await render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: k }, initialOpen: true }));
+    expect(r.getByTestId('exercise-cues')).toBeTruthy(); expect(r.queryByTestId('exercise-figure-v2')).not.toBeNull(); await r.unmount();
   });
 });
