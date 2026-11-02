@@ -45,6 +45,6 @@ Sesja https://claude.ai/code/session_01T66VBz67FeP8xtERTjmhpy, gałąź `zb010/s
 
 ## Stan
 
-- Zrobione: `96151e7` (ux, backlog-0410, audit-perf-ui, audit-m1-066-pseudo, m1-017), `0732a30` (comp-by-type, trening-naglowek, edit-on-demand, interaction-patterns), `023ef88` (3 × figures-v2), `fc46674` (m3-components), `2938c72` (regress), commit z tym raportem.
+- Zrobione: `b636814` (ux, backlog-0410, audit-perf-ui, audit-m1-066-pseudo, m1-017), `0732a30` (comp-by-type, trening-naglowek, edit-on-demand, interaction-patterns), `023ef88` (3 × figures-v2), `fc46674` (m3-components), `2938c72` (regress), `8e90375` (raport).
 - Zostało w grupie A: tylko sygnał T-051 (decyzja koordynatora).
 - Następny krok (koordynator): po scaleniu grup — pełny Jest i verify; decyzja o `eas.json` / T-051.
