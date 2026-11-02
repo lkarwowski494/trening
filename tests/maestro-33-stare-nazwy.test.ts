@@ -48,8 +48,8 @@ describe('L-091: scenariusz 33 na nazwach ćwiczeń POPRZEDNIEJ wersji (v1.0.1-b
     expect(NEW.some(l => full(sel as string, l))).toBe(true);
   });
   it.each(inputs.map(s => [s.sel]))('wpisane w wyszukiwarce „%s” znajduje ćwiczenie w starej wersji (fold: małe litery, bez myślnika — stary fold go nie usuwa)', q => {
-    const fold = (x: string) => x.toLowerCase().replace(/\s+/g, ' ').trim();
-    expect(OLD.some(l => fold(l).includes(fold(q as string)))).toBe(true);
+    const male = (x: string) => x.toLowerCase().replace(/\s+/g, ' ').trim();
+    expect(OLD.some(l => male(l).includes(male(q as string)))).toBe(true);
   });
   it('wyszukiwarka ma zapytania dla obu ćwiczeń szablonu', () => { expect(inputs.map(s => s.sel)).toEqual(['Bench Press', 'Bent Over Row']); });
 });
