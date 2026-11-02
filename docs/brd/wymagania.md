@@ -444,7 +444,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Wskazówki w języku aplikacji
     - Zakładając, że ćwiczenie ma wskazówki techniki
     - Gdy użytkownik otwiera ćwiczenie
-    - Wtedy sekcje „Ustawienie”, „Ruch”, „Wskazówki” i „Częste błędy” są po polsku lub w języku aplikacji; nazwa ćwiczenia z biblioteki zostaje po angielsku (decyzja 2026-10-19)
+    - Wtedy sekcje „Ustawienie”, „Ruch”, „Wskazówki” i „Czego unikać” są po polsku lub w języku aplikacji; nazwa ćwiczenia z biblioteki zostaje po angielsku (decyzja 2026-10-19)
   - Scenariusz: Sekcja „Technika” w karcie ćwiczenia jest domyślnie rozwinięta (decyzja właściciela 2026-10-27, wariant B; wyjątek od zamrożenia zakresu 1.0)
     - Zakładając, że ćwiczenie ma wskazówki techniki
     - Gdy użytkownik otwiera kartę ćwiczenia z biblioteki, z historii albo z Postępów (wejście poza treningiem na żywo)
@@ -474,6 +474,18 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik otwiera sekcję „Technika” ćwiczenia Side To Side Chins, a rysunek ma aktualną recenzję niezależną
     - Gdy ogląda rysunek (podciągnięcie ku prawej dłoni, bez naprzemienności)
     - Wtedy pod rysunkiem widzi zdanie „Rysunek pokazuje ruch w jedną stronę — w kolejnym powtórzeniu podciągasz się do drugiej dłoni.” (w języku interfejsu, także gdy zestaw ogólny wskazówek nie jest wyświetlany); przy pozostałych podciąganiach i w innych rodzinach tego zdania nie ma
+  - Scenariusz: Nagłówek sekcji błędów to „Czego unikać” (decyzja właściciela 02.11.2026; test `tests/czego-unikac-2026-11-02.test.tsx`)
+    - Zakładając, że ćwiczenie ma w karcie sekcję błędów (ze źródeł albo wnioskowanych ze zdania ustawienia lub ruchu)
+    - Gdy użytkownik otwiera sekcję „Technika” (po polsku albo po angielsku)
+    - Wtedy sekcja nazywa się „Czego unikać” („What to avoid”), nie „Częste błędy”, bo wniosek z potwierdzonego ruchu nie dowodzi częstości; to samo na stronie z ćwiczeniami
+  - Scenariusz: Ćwiczenie ukryte w aplikacji nie znika z danych użytkownika (decyzja właściciela 02.11.2026 o „Wide-Grip Pulldown Behind The Neck”; test `tests/wide-grip-pulldown-behind-neck-2026-11-02.test.ts`)
+    - Zakładając, że ćwiczenie jest wycofane z biblioteki (źródło odradza wariant), a użytkownik ma je w treningu lub szablonie
+    - Gdy aplikacja startuje po aktualizacji
+    - Wtedy nowy użytkownik i lista wyboru go nie mają, a u istniejącego użytkownika użyte ćwiczenie zostaje jako ćwiczenie własne (nazwa, historia i szablony bez zmian), nieużyte i nietknięte znika
+  - Scenariusz: Zasady źródeł wskazówek w danych (decyzje 02.11.2026; test `tests/cues-reguly-2026-11-02.test.ts`, strażnik `npm run check:cues`)
+    - Zakładając, że zdanie wskazówki trafia do danych kart
+    - Gdy sprawdzana jest para źródeł
+    - Wtedy liczą się źródła szczebla 2–4 z różnych organizacji (szczebel 5 i odwołanie „analogia” nie), książka uznanego autora to szczebel 3 z nieprzezroczystym identyfikatorem bez adresu, ustawienie i ruch mogą mieć znacznik „jedno_zrodlo” przy jednym źródle szczebla 3 lub wyższym, błąd może być wnioskowany ze zdania ustawienia, ruchu lub wskazówki tej samej karty (`["wniosek", "<id>"]`), a wskazówka bez pary może stać tylko na jawnej liście `luki` z powodem
   - Scenariusz: Usunięcie własnego ćwiczenia z podglądu (ZM-04, W2 a, 21.10.2026)
     - Zakładając, że użytkownik ogląda podgląd ćwiczenia własnego
     - Gdy stuka „Usuń z biblioteki” na dole ekranu
