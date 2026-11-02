@@ -3,6 +3,7 @@
 Data: 02.11.2026. Autor: badacz merytoryczny (agent). Zakres: tylko zbieranie danych (polecenie właściciela 02.11.2026). Dziś w
 `data/zrodla/role-miesni.json` szyja jest celowo bez opisu (`withoutRole.miesnie`, `nameRules._opis` „Szyja: bez opisu”, `open` — reguły po nazwie
 to decyzja produktowa). **Włączenie czegokolwiek z tego pliku wymaga decyzji właściciela** (dopuszczenie reguł po nazwie dla szyi).
+Szczeble źródeł 4–5 sprawdzone 02.11.2026 — sekcja „Korekta szczebli 02.11.2026” na końcu (bez zmian statusów).
 
 Dane wejściowe: katalog (`docs/research/equipment/catalog.json`) — wszystkie 5 ćwiczeń: `pattern: isolation`, `muscleLoad: {"neck": 1}` (rola main);
 izometrie `metric: time`, talerz i uprząż `metric: weight_reps`. Rodzina isolation nie ma fazy (`phases`), więc zdanie = sam `text.main` + „.”.
@@ -87,8 +88,8 @@ nie opisują pracy izometrycznej mięśni szyi, a zdanie jest w praktyce powtór
 |---|---|---|---|---|
 | S4 (istnieje — dopisać miejsce i cytaty) | https://openstax.org/books/anatomy-and-physiology-2e/pages/11-3-axial-muscles-of-the-head-neck-and-back | OpenStax (Rice University), Anatomy and Physiology 2e, rozdz. 11.3 | 3 | podrozdz. „Muscles That Move the Head”: „The major muscle that laterally flexes and rotates the head is the sternocleidomastoid.”; tab. „Muscles That Move the Head” (11.5): mostkowo-obojczykowo-sutkowy „bilaterally: flexion”; półkolcowy, płatowy i najdłuższy głowy „bilaterally: extension” |
 | S30 (nowe w tym pliku; to samo co L2-S30 w docs/research/25-biblioteka/L2-zrodla.md) | https://pubmed.ncbi.nlm.nih.gov/8610245/ | Conley MS i in., Spine 1995;20(23):2505–12 | 3 | Results (abstrakt): „extension--semispinalis capitis and cervicis and splenius capitis; flexion--sternocleidomastoid and longus capitis and colli” (+ „lateral flexion--sternocleidomastoid”) |
-| S31 | https://www.kenhub.com/en/library/anatomy/sternocleidomastoid-muscle | Kenhub (A. Karunaharamoorthy, rec. D. Mytilinaios; akt. 30.10.2023) | 4 | „Function”: jednostronnie zgina szyję w bok tej samej strony i obraca głowę w przeciwną (parafraza); obustronnie: „A bilateral contraction elevates the head by dorsally extending the upper cervical joints.” |
-| S32 | https://www.kenhub.com/en/library/anatomy/splenius-capitis-muscle | Kenhub (S. Shahid; przegl. 25.05.2023) | 4 | „Functions”: „Biletaral [sic] contraction of splenius capitis results in extension of the head on the neck.” |
+| S31 | https://www.kenhub.com/en/library/anatomy/sternocleidomastoid-muscle | Kenhub (A. Karunaharamoorthy, rec. D. Mytilinaios; akt. 30.10.2023) | 4 (sprawdzone 02.11.2026 wg kryteriów koordynatora — bez zmian) | „Function”: jednostronnie zgina szyję w bok tej samej strony i obraca głowę w przeciwną (parafraza); obustronnie: „A bilateral contraction elevates the head by dorsally extending the upper cervical joints.” |
+| S32 | https://www.kenhub.com/en/library/anatomy/splenius-capitis-muscle | Kenhub (S. Shahid; przegl. 25.05.2023) | 4 (jw.) | „Functions”: „Biletaral [sic] contraction of splenius capitis results in extension of the head on the neck.” |
 
 Numery S30–S32 są robocze — plik ma już S1…S28 (wdrażający nada kolejne wolne). S31 i S32 to ta sama organizacja (Kenhub) — liczą się jako jedno źródło przy jednej funkcji (nie używane razem).
 
@@ -102,7 +103,16 @@ Numery S30–S32 są robocze — plik ma już S1…S28 (wdrażający nada kolejn
 4. **EN** — „Bends your neck forward” / „Straightens your neck” do przeglądu tłumacza.
 5. Ostrzeżenia zdrowotne dot. szyi nie należą do ról mięśni — poza zakresem (aplikacja nie daje porad medycznych).
 
+## Korekta szczebli 02.11.2026
+
+Sprawdzone tylko źródła szczebla 4–5 (polecenie koordynatora linii 1.1); OpenStax (S4) i Conley (S30) — szczebel 3, bez zmian.
+- S31, S32 (Kenhub): 4 → 4. (a) serwis edukacyjny z redakcją i recenzją medyczną (recenzent i data przeglądu podane przy wpisach), (b) autor i data, (c) treść edukacyjna.
+- Żadna funkcja nie zależy od Kenhub: `neck.flex` i `neck.ext` mają po dwa źródła szczebla 3 (S4 + S30), `neck.lat_flex` — S4 + S30 (+ S31).
+- Cytat HealthLink BC w części „Izometria” to tylko uzasadnienie „bez opisu” (nie twierdzenie w aplikacji); jego szczebel oceniono w `wskazowki-fala-w1/neck.md` (4 — treść Healthwise/WebMD Ignite opublikowana z datą przez placówkę medyczną).
+- Ćwiczenia gotowe: **3 przed → 3 po** (nadal czekają na decyzję właściciela A/B).
+
 ## Stan
 
 02.11.2026: 3 funkcje zaproponowane (2 z regułą, `neck.lat_flex` bez ćwiczenia), 3 ćwiczenia gotowe do reguły po nazwie, 2 izometrie — rekomendacja „bez opisu”.
+Korekta szczebli 02.11.2026: bez zmian statusów.
 Nic nie wdrożone; blokuje decyzja właściciela (opcje A/B wyżej).

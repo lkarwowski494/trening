@@ -3,6 +3,7 @@
 Data: 02.11.2026 · autor: badacz-merytoryczny · tylko zbieranie danych (bez zmian w `data/zrodla/`).
 
 Funkcje (`obliques.rotate`, `obliques.side_bend`, `obliques.antirotation`), źródła S29-g1…S34-g1, metoda i blok JSON — **w `core_floor.md`** (tam też `nameRules` dla ćwiczeń z tej tabeli). Role par: `MUSCLE_LOAD` w `lib/catalog.generated.ts` + `muscles`/`secondaryMuscles` w `docs/research/equipment/catalog.json`; opis ruchu z pola `note` katalogu.
+Szczeble źródeł 4–5 sprawdzone 02.11.2026 — sekcja „Korekta szczebli 02.11.2026” na końcu i w `core_floor.md`.
 
 ## Pary
 
@@ -39,7 +40,7 @@ Wszystkie wpisy dla tej grupy są w bloku `core_floor.md` (`nameRules` `obliques
 
 ## Źródła
 
-Jak w `core_floor.md`: `obliques.rotate` — S3, S16, S18, S29-g1, S31-g1; `obliques.side_bend` — S3, S18, S29-g1, S31-g1; `obliques.antirotation` — S34-g1 (jedno źródło, szczebel 5).
+Jak w `core_floor.md` (po korekcie 02.11.2026 liczone): `obliques.rotate` — S3 (OpenStax, 3), S16 (TeachMeAnatomy, 4 — do decyzji koordynatora), S18 (Kenhub, 4), S29-g1 (Elsevier, 4); `obliques.side_bend` — S3, S18, S29-g1; S31-g1 (learnmuscles) wymieniony nadal, ale po korekcie szczebel 5 — nie liczy się; `obliques.antirotation` — S34-g1 (jedno źródło, szczebel 5).
 
 ## Otwarte
 
@@ -48,8 +49,16 @@ Jak w `core_floor.md`: `obliques.rotate` — S3, S16, S18, S29-g1, S31-g1; `obli
 - [OTWARTE] Windmill, Double Windmill, Bent Press, Kettlebell Figure 8 — ruchy złożone (skłon w biodrze + pochylenie/skręt tułowia, ramię nad głową); bez źródła opisującego, co robią w nich skośne, barki i dwugłowe, przypisanie byłoby zgadywaniem.
 - [OTWARTE] Barki w Landmine Rotation i Spell Caster — ruch ramion nie wynika jednoznacznie z opisu.
 
+## Korekta szczebli 02.11.2026
+
+Sprawdzone źródła szczebla 4–5 używane w tym pliku (szczegóły i powody — `core_floor.md`, sekcja o tej samej nazwie):
+- S31-g1 (learnmuscles): 4 → 5 (marketing na stronie, brak redakcji/recenzji). Bez wpływu: `obliques.rotate` ma nadal OpenStax + Kenhub + Elsevier (+ TeachMeAnatomy), `obliques.side_bend` — OpenStax + Kenhub + Elsevier.
+- S29-g1 (Elsevier), S18 (Kenhub): 4 — bez zmian. S16 (TeachMeAnatomy): 4 w rejestrze, warunek (a) do decyzji koordynatora linii — tu bez wpływu.
+- S34-g1 (Sussex Sport): 5 — bez zmian (Pallof Press nadal „jedno źródło”).
+- Pary gotowe: **13 przed → 13 po**.
+
 ## Stan
 
-- Zrobione: 13 par gotowych (skośne główne: 9 × skręt, 4 × skłon boczny), pozostałe otwarte z powodem.
+- Zrobione: 13 par gotowych (skośne główne: 9 × skręt, 4 × skłon boczny), pozostałe otwarte z powodem. Korekta szczebli 02.11.2026 — bez zmian statusów.
 - Zostało: przeniesienie do danych i przeliczenie generatorem; ewentualnie szukanie źródeł dla ruchów złożonych (windmill, bent press).
 - Pułapki: `Pallof Press With Rotation` ma wzorzec `core_anti_rot` — musi trafić do `nameRules` (sprawdzane przed regułą rodziny), inaczej dostałby `antirotation`.
