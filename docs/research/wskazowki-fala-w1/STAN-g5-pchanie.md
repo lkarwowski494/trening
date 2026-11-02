@@ -82,6 +82,15 @@ wyklucza pomocniczy piersiowy. Opcje (do decyzji koordynatora 1.1 — produktowo
 6. Co przedstawiają Band Bench Press i Chain Press (guma/łańcuchy + ławka, bez sztangi?) oraz Clock Push-Up (dwa różne ćwiczenia pod tą nazwą).
 7. Renegade Row — NASM Best Abs jako drugie źródło `renegade.mis.twist` (wtedy gotowe).
 
+## Odpowiedzi koordynatora linii 1.1 (02.11.2026)
+1. Karty „częściowe” (ustawienie + ruch) — kwalifikują się (minimalna karta własna, decyzja koordynatora 02.11 w docs/18); przy integracji z pustym `mistakes`.
+2./4. Szczeble Eleiko, Inspire US, Barbell Logic, Onnit, Healthline, Men's Health, Experience Life, fit-pro.com, OriGym, Fitness Volt, Mikolo —
+   „uzupełnienie 3” badacza koordynatora; oznaczenia warunkowe zostają. Coach i Physitrack — jak w uzupełnieniu 2 (5).
+3. Kopie instrukcji Life Fitness — warunkowo 4 (dokumentacja producenta tylko dla jego maszyny; inna marka = analogia), ostatecznie w uzupełnieniu 3.
+5. Rozstrzygnięte regułą „błąd = zaprzeczenie standardu”.
+6. Band Bench Press, Chain Press (bench_press-cz2.md „Otwarte”) i Clock Push-Up (pushup_plank-cz1.md „Otwarte”) — obie interpretacje opisane; rozstrzyga koordynator przy integracji z katalogiem.
+Role mięśni — wariant A (reguły po nazwie + funkcje utrzymania z własnym statusem); jedno badanie = „jedno źródło”, analogia = „uproszczenie”.
+
 ## Pułapki
 ExRx 403; web.archive.org zablokowane w narzędziu; muscleandstrength 403; kettlebellkings 402; StrongFirst 307 (niektóre strony); elitefts 404 (część);
 tao.dragondoor poza siecią sesji; StatPearls captcha; Physiopedia, BJSM, MDPI 403. Wiele trafień to strony aplikacji — nie są źródłem.
