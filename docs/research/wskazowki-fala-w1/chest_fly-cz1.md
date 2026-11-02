@@ -4,21 +4,22 @@ Metoda: brief fali W1 + CLAUDE.md („Wyjątek dla wskazówek techniki”): zdan
 szczebla 4 i żadne przeczytane nie przeczy. Wszystkie źródła przeczytane 02.11.2026 (WebFetch). ExRx (403) i web.archive.org
 (zablokowane) niedostępne — istniejących wpisów ExRx nie używam dla nowych wariantów, bo nie mogłem ich przeczytać.
 Strony aplikacji treningowych i serwisy konsumenckie z wyników wyszukiwania pominięte (nie są źródłem, nazwy nie zapisane).
+Szczeble źródeł poprawione 02.11.2026 wg rozstrzygnięcia koordynatora linii 1.1 — patrz „Korekta szczebli” na końcu.
 
 ## Ćwiczenia
 
 | Ćwiczenie | Stan (gotowe/otwarte) | Uwagi |
 |---|---|---|
-| Pec Deck | gotowe | 3 ustawienie/ruch + 1 błąd; Hoist + Life Fitness (instrukcja maszyny przez kopię w serwisie z instrukcjami — patrz Otwarte 2) + Western (pomocniczo, szczebel otwarty) |
-| Incline Chest Fly (hantle) | otwarte | tylko 1 źródło wprost o ławce skośnej (NFPT); ACE 21 opisuje ławkę płaską (analogia) |
+| Pec Deck | gotowe | 3 ustawienie/ruch + 1 błąd; Hoist + Life Fitness (instrukcja maszyny przez kopię w serwisie z instrukcjami — patrz Otwarte 2); Western (szczebel 5) usunięte z bloku |
+| Incline Chest Fly (hantle) | otwarte | tylko 1 źródło wprost o ławce skośnej (NFPT, wpis gościnny — szczebel 5); ACE 21 opisuje ławkę płaską (analogia) |
 | Cable Fly (high to low) | otwarte | tylko 1 źródło wprost (Major Fitness); ACE 160 i NASM opisują bloczki na wysokości barków lub tuż wyżej, nie „z góry w dół” |
-| Cable Fly (low to high) | gotowe (krótka karta) | ustawienie + ruch z 2 źródeł (ACE 163, Major Fitness); błąd i łokcie — po 1 źródle |
+| Cable Fly (low to high) | częściowe (bez błędu) | ustawienie + ruch z 2 źródeł (ACE 163, Major Fitness); błąd i łokcie — po 1 źródle |
 | Incline Cable Fly | otwarte | brak przeczytanego źródła o rozpiętkach na wyciągu leżąc na ławce skośnej |
 | Flat Bench Cable Fly | otwarte | brak źródła o wersji leżąc; Major Fitness opisuje wersję siedząc na ławce (inne ćwiczenie niż figura — ławka 0°, leżąc) |
 | Single Arm Cable Fly | otwarte | wspólny tylko błąd (skręt tułowia: ACE 163 wariant jednorącz + Bodylastics, guma); ustawienie i ruch po 1 źródle |
 | Decline Dumbbell Fly | otwarte | brak przeczytanego źródła szczebla 4 o ławce skośnej w dół — patrz Otwarte 6 (zdania zestawu ogólnego) |
 | One-Arm Flat Bench Dumbbell Fly | otwarte | brak źródła o wersji jednorącz na ławce |
-| Band Chest Fly | gotowe (bez błędów) | ustawienie + ruch + 1 wskazówka z 2–3 źródeł (Thera-Band, ACE 160, Bodylastics); brak błędu z 2 źródeł (wzór: „Cable Fly” w repo ma `mistakes: []`) |
+| Band Chest Fly | częściowe (bez błędu) | ustawienie + ruch + 1 wskazówka z 2–3 źródeł (Thera-Band, ACE 160, Bodylastics); brak błędu z 2 źródeł (wzór: „Cable Fly” w repo ma `mistakes: []`) |
 
 ## Blok JSON do data/zrodla/cues.json (sekcja exercises)
 
@@ -28,12 +29,10 @@ Strony aplikacji treningowych i serwisy konsumenckie z wyników wyszukiwania pom
   "setup": [
    {"c": "pdeck.seat", "s": [
      ["hoist-rs1302", "kroki 1–2 (ADJUST seat so handles are shoulder level)"],
-     ["lifefitness-pro-manual", "s. 17, Pec fly — seat adjustment; starting position (elbows slightly below shoulder height)"],
-     ["western-chest", "Pec-Delt Fly, setup (uchwyty między wysokością ucha a barku; pomocniczo)"]]},
+     ["lifefitness-pro-manual", "s. 17, Pec fly — seat adjustment; starting position (elbows slightly below shoulder height)"]]},
    {"c": "pdeck.back", "s": [
      ["hoist-hd3900", "Pec Fly steps 1 (back upright against the pad); setup 1 (seat height)"],
-     ["lifefitness-pro-manual", "s. 17, starting position (back flat against pad, head up)"],
-     ["western-chest", "Pec-Delt Fly, form tip (back flat into bench, plant feet; pomocniczo)"]]}
+     ["lifefitness-pro-manual", "s. 17, starting position (back flat against pad, head up)"]]}
   ],
   "move": [
    {"c": "pdeck.move", "s": [
@@ -109,15 +108,15 @@ krok/wykrok w przód” wspólna; jeśli recenzent uzna „wykrok” za jedno ź
 
 | id | adres | organizacja | szczebel | data odczytu |
 |---|---|---|---|---|
-| hoist-hd3900 | https://hoistfitness.com/pages/hd-3900-pec-fly-rear-delt | Hoist Fitness (producent sprzętu, nowa org., kind: maker) | 4 | 02.11.2026 |
+| hoist-hd3900 | https://hoistfitness.com/pages/hd-3900-pec-fly-rear-delt | Hoist Fitness (producent maszyny — własny rodzaj sprzętu; nowa org., kind: maker) | 4 | 02.11.2026 |
 | hoist-rs1302 | https://www.hoistfitness.com/pages/rs-1302-pec-fly | Hoist Fitness (ta sama org. co wyżej — nie liczy się jako drugie niezależne) | 4 | 02.11.2026 |
-| lifefitness-pro-manual | https://www.manualsdir.com/manuals/166239/life-fitness-pro-series.html?page=17 | Life Fitness (instrukcja Pro Series, s. 17 „Rear deltoid/pectoral fly (SU35) — pec fly exercise”; kopia w serwisie z instrukcjami) | 4 | 02.11.2026 |
-| western-chest | https://www.uwo.ca/campusrec/orientation/equipment_guides/chest.html | Western University, Sport and Recreation Services | 4 (PROPOZYCJA; otwarte — docs/33 pyt. 1) | 02.11.2026 |
+| lifefitness-pro-manual | https://www.manualsdir.com/manuals/166239/life-fitness-pro-series.html?page=17 | Life Fitness (instrukcja Pro Series, s. 17 „Rear deltoid/pectoral fly (SU35) — pec fly exercise”; kopia w serwisie z instrukcjami; treść firmowana przez producenta własnej maszyny) | 4 | 02.11.2026 |
+| western-chest | https://www.uwo.ca/campusrec/orientation/equipment_guides/chest.html | Western University, Sport and Recreation Services | 5 | 02.11.2026 |
 | ace-163 | https://www.acefitness.org/education-and-resources/lifestyle/exercise-library/163/standing-incline-cable-flyes/ | ACE — Standing Incline Cable Flyes (#163) | 4 | 02.11.2026 |
-| majorfitness-cable-fly | https://www.majorfitness.com/blogs/training-tips/cable-chest-fly | Major Fitness (producent sprzętu do domu; blog, A. Wang, 13.05.2026; nowa org., kind: maker) | 4 | 02.11.2026 |
-| therabend-chest-flies | https://www.performancehealthacademy.com/exercises/thera-band-chest-flies.html | Performance Health (producent gum Thera-Band; nowa org., kind: maker) | 4 | 02.11.2026 |
-| bodylastics-crossover-fly | https://bodylastics.com/crossover-chest-fly/ | Bodylastics USA (producent gum; nowa org., kind: maker) | 4 | 02.11.2026 |
-| nfpt-incline-fly | https://nfpt.com/?p=4355 | NFPT — „How To Do Incline Bench Dumbbell Flyes” (autor „Guest”, 11.08.2025) | 4 | 02.11.2026 (tylko do Otwartych) |
+| majorfitness-cable-fly | https://www.majorfitness.com/blogs/training-tips/cable-chest-fly | Major Fitness (producent wyciągów i bramownic do domu — własny rodzaj sprzętu; A. Wang, NSCA-CPT, NASM-CES, 13.05.2026; treść w większości instruktażowa; nowa org., kind: maker) | 4 | 02.11.2026 |
+| therabend-chest-flies | https://www.performancehealthacademy.com/exercises/thera-band-chest-flies.html | Performance Health (producent gum Thera-Band — własny rodzaj sprzętu; nowa org., kind: maker) | 4 | 02.11.2026 |
+| bodylastics-crossover-fly | https://bodylastics.com/crossover-chest-fly/ | Bodylastics USA (producent gum — własny rodzaj sprzętu; nowa org., kind: maker) | 4 | 02.11.2026 |
+| nfpt-incline-fly | https://nfpt.com/?p=4355 | NFPT — „How To Do Incline Bench Dumbbell Flyes” (autor „Guest”, bez kwalifikacji; 11.08.2025) | 5 | 02.11.2026 (tylko do Otwartych) |
 
 Uwaga do id `ace-163`: ten sam numer 163 w bibliotece ACE wskazuje też inną stronę (Elliptical Trainer, inny adres) — przed wpisem sprawdzić, czy w `sources` nie ma już `ace-163`.
 Istniejące źródła użyte ponownie: `ace-160` (Standing Chest Fly; sprzęt na stronie: „Resistance Bands/Cables”).
@@ -126,11 +125,11 @@ Istniejące źródła użyte ponownie: `ace-160` (Standing Chest Fly; sprzęt na
 
 | ćwiczenie/zdanie | powód |
 |---|---|
-| 1. Incline Chest Fly (hantle) | wprost o ławce skośnej tylko NFPT (wpis gościnny); ACE 21 i treść WebMD Ignite (ColumbiaDoctors) — ławka płaska / „ławka lub piłka” = analogia. Kąt ławki: NFPT 30–45°, inne strony (konsumenckie, nie źródła) 15–45° — liczba nieustalona |
-| 2. Life Fitness przez kopię instrukcji | czytana kopia w serwisie z instrukcjami, nie strona producenta (jak przedruk NSCA w docs/33 pyt. 3). Gdy recenzent odrzuci kopię, Pec Deck opiera się na Hoist + Western (szczebel otwarty) → wtedy otwarte |
+| 1. Incline Chest Fly (hantle) | wprost o ławce skośnej tylko NFPT (wpis gościnny, szczebel 5); ACE 21 i treść WebMD Ignite (ColumbiaDoctors) — ławka płaska / „ławka lub piłka” = analogia. Kąt ławki: NFPT 30–45°, inne strony (konsumenckie, nie źródła) 15–45° — liczba nieustalona |
+| 2. Life Fitness przez kopię instrukcji | czytana kopia w serwisie z instrukcjami, nie strona producenta (jak przedruk NSCA w docs/33 pyt. 3). Przyjęte jako szczebel 4, bo treść jest dokumentem producenta własnej maszyny. Gdy recenzent odrzuci kopię, Pec Deck ma tylko Hoist (Western → szczebel 5) → wtedy otwarte |
 | 3. Cable Fly (high to low) | tylko Major Fitness (bloczki najwyżej, ręce kończą przy biodrach); ACE 160 i NASM Cable Crossover — bloczki na wysokości barków lub tuż wyżej, dłonie przed klatką (inny tor). Thera-Band: wyższy zaczep = „decline fly”, bez opisu toru |
 | 4. Cable Fly (low to high) — łokcie, powrót, błąd | `fly.elbows`: wprost dla tego wariantu tylko ACE 163 (Major Fitness — kąt łokcia w sekcji wersji podstawowej); „wracaj powoli” — tylko ACE 163; błąd „pochylanie się w przód” — tylko ACE 163 |
-| 5. Single Arm Cable Fly | wspólny tylko błąd „skręcanie tułowia/barków za ręką” (ACE 163, wariant jednorącz; Bodylastics, guma jednorącz — inny sprzęt); ustawienie (wolna ręka na biodrze/stojaku — Major Fitness; bokiem do zaczepu — Bodylastics) i ruch — po 1 źródle |
+| 5. Single Arm Cable Fly | wspólny tylko błąd „skręcanie tułowia/barków za ręką” (ACE 163, wariant jednorącz; Bodylastics, guma jednorącz — inny sprzęt, a producent gum liczy się tylko dla gum); ustawienie (wolna ręka na biodrze/stojaku — Major Fitness; bokiem do zaczepu — Bodylastics) i ruch — po 1 źródle |
 | 6. Decline Dumbbell Fly | brak przeczytanego źródła szczebla 4 (ACE, NASM, NFPT nie mają strony; reszta wyników — serwisy konsumenckie i aplikacje). Zdania zestawu ogólnego (`fly.elbows`, `fly.control`, `mis.jerk`) nie wspominają ławki, ale żadne przeczytane źródło ich dla ławki skośnej w dół nie potwierdza → wg uzupełnienia briefu (pkt 3) nie wpisywać jako własnych; do decyzji koordynatora, czy zostaje zestaw ogólny. Szczegóły ławki w dół (zaczepienie stóp, wejście z hantlami) — bez źródła |
 | 7. One-Arm Flat Bench Dumbbell Fly | brak źródła o wersji jednorącz na ławce (tylko serwisy konsumenckie) |
 | 8. Incline Cable Fly, Flat Bench Cable Fly | brak źródła o rozpiętkach na wyciągu leżąc (skośnie/płasko); Major Fitness: wersja siedząc na ławce płaskiej — inna pozycja niż figura |
@@ -143,3 +142,23 @@ Zrobione wszystkie 10 ćwiczeń części 1 (3 z blokiem JSON, 7 otwartych). Puł
 strona NFPT z archiwum (archive25.nfpt.com) — 503, PDF rozszerzenia UNL — 403, strona UQ Pressbooks — 403.
 Następny krok, jeśli wracamy do otwartych: instrukcje maszyn i podręczniki producentów (np. tablice ćwiczeń przy wyciągach
 z ławką), materiały organizacji szkolących trenerów z opisem wersji na ławce skośnej w dół i skośnej.
+
+## Korekta szczebli (02.11.2026)
+
+Podstawa: rozstrzygnięcie koordynatora linii 1.1 z 02.11.2026 (kryteria (a)(b)(c)). Autor, data i charakter strony Major Fitness
+sprawdzone przez WebFetch 02.11.2026; bez nowych badań treści.
+
+Źródła:
+- western-chest (Western Univ. SRS): 4 (propozycja) → 5 (rozstrzygnięcie); usunięte z list `s` w bloku JSON.
+- nfpt-incline-fly (NFPT, autor „Guest”): 4 → 5 — brak autora z kwalifikacjami; użyte tylko w „Otwarte”.
+- majorfitness-cable-fly (Major Fitness): 4 → 4 — producent wyciągów (własny rodzaj sprzętu), autor z certyfikatami i data, treść w większości instruktażowa.
+- lifefitness-pro-manual (Life Fitness, kopia instrukcji): 4 → 4 — dokument producenta dla własnej maszyny; zastrzeżenie o kopii w Otwarte 2.
+- hoist-hd3900, hoist-rs1302 (Hoist): 4 → 4 — producent własnej maszyny (jedna organizacja).
+- therabend-chest-flies (Performance Health), bodylastics-crossover-fly (Bodylastics): 4 → 4 — producenci gum, tylko dla ćwiczeń z gumą.
+- ace-163, ace-160: 4 → 4.
+
+Ćwiczenia:
+- Pec Deck: gotowe → gotowe (każde zdanie nadal ma Hoist + Life Fitness).
+- Cable Fly (low to high): gotowe (krótka karta) → częściowe (bez błędu).
+- Band Chest Fly: gotowe (bez błędów) → częściowe (bez błędu).
+- Pozostałe 7 ćwiczeń: otwarte → otwarte.
