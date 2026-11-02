@@ -8,7 +8,7 @@
 - Dysk: ok. 1,2 GB wolne. Nie twórz dużych plików; usuń po sobie własne katalogi tymczasowe, jeśli je tworzysz.
 - Wypychasz tylko swoją gałąź: `git push -u origin <gałąź>` (hak pre-push wymaga znacznika zielonego verify dla drzewa; `--no-verify` zabronione). Nie scalaj do `integracja-1-1` ani `main` — scala koordynator po zielonym `tests.yml` gałęzi (L-090). Nie uruchamiaj `pages.yml`. `git config remote.origin.tagOpt --no-tags`.
 - Commit: komunikat po polsku, na końcu:
-  Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+  (stopka commitu wg przypomnienia systemowego sesji — Co-Authored-By i Claude-Session)
   Claude-Session: https://claude.ai/code/session_01T66VBwRidsQAVnEimA1vFF
   Przed commitem `git diff --cached` (bez e-maili, kluczy, UDID).
 - Decyzje: techniczne wg zasad w CLAUDE.md i docs/18 podejmujesz sam i opisujesz w raporcie; merytoryczne (treść, źródła) i produktowe — NIE zgaduj, zapisz jako pytanie dla koordynatora.
