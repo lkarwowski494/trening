@@ -305,9 +305,9 @@ describe('zależności i konfiguracja natywna', () => {
 });
 
 describe('TST2-09 (audyt kontrolny 1): testflight.yml sprawdza to samo co verify', () => {
-  test('krok testów uruchamia `npm run verify` (jedno źródło listy sprawdzeń) z limitem sterty 3 GB; verify obejmuje wszystkie sprawdzenia', () => {
+  test('krok testów uruchamia `npm run verify` (jedno źródło listy sprawdzeń) bez własnej sterty (stała w scripts/ci/jest-sterta.json, 02.11.2026); verify obejmuje wszystkie sprawdzenia', () => {
     const y = wf('testflight.yml'); const step = y.slice(y.indexOf('- name: Testy'), y.indexOf('- name:', y.indexOf('- name: Testy') + 5));
-    expect(step).toMatch(/NODE_OPTIONS: --max-old-space-size=3072/);
+    expect(step).not.toMatch(/max-old-space-size/);
     expect(step).toMatch(/run: npm run verify\s*$/m);
     const v = require('../package.json').scripts.verify as string;
     for (const c of ['npm run typecheck', 'npm run check:i18n', 'npm run check:cues', 'npm run check:figures', 'jest', 'npm run check:matrix', 'npm run check:licenses', 'expo export --platform ios', 'npm run verify:native']) expect({ c, in: v.includes(c) }).toEqual({ c, in: true });
