@@ -58,6 +58,7 @@
      który pokazuje wynik na gotowym produkcie (np. uprawnienia w wyeksportowanym pakiecie); testy samego pliku workflowu nie wystarczą.
      Pierwszy zapis nowego albo zmienionego skryptu wysyłki do usługi zewnętrznej (np. App Store Connect) — najpierw na jednym elemencie (wejście zawężające),
      sprawdzenie wyniku w usłudze, dopiero potem całość; dry-run nie zastępuje tego kroku (właściciel 30.10.2026, wariant A; lekcja o zapisie zrzutów 0/64 w docs/40).
+     Test z warunkiem środowiska CI (`process.env.GITHUB_ACTIONS`) ma strażnika obejmującego wszystkie workflowy, które go uruchamiają (lista `tests/ci-srodowisko.json`, strażnik `tests/ci-srodowisko.test.ts`, wzór `tests/ci-tagi-jest.test.ts`), a przebieg dowodowy jest zaliczony dopiero, gdy CAŁY workflow jest zielony — czerwony z innej przyczyny nic nie dowodzi o pozostałych zadaniach (właściciel 02.11.2026, wariant A; L-087).
   2. *Rejestr ryzyk z blokadą:* każde ryzyko „niepotwierdzone / rozstrzygnie build” trafia do sekcji „Rejestr ryzyk” w `docs/40-lekcje.md`
      z warunkiem zamknięcia (automatyczne sprawdzenie albo konkretny krok dla właściciela). Otwarte ryzyko blokuje wydanie.
   3. *Telefon zaraz po buildzie:* po każdym TestFlight pierwsze zadanie właściciela to krótka lista kontrolna (ok. 5 min, krok po kroku)

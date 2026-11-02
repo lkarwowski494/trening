@@ -18,12 +18,21 @@ describe('tests-tz.yml — zadanie „zmiana-czasu” (A)', () => {
     expect(job).toMatch(/needs:\s*chwile/); expect(job).toMatch(/strefa_chwila:\s*\$\{\{\s*fromJSON\(needs\.chwile\.outputs\.lista\)\s*\}\}/);
     expect(job).not.toMatch(/^\s*-\s*\S+\|\d{4}-\d{2}-\d{2}T/m); /* żadnej chwili na sztywno w pliku */
     expect(tz).toMatch(/node scripts\/ci\/przejscia-czasu\.js macierz/);
-    for (const rok of [2027, 2028, 2031, 2040]) { /* każdy rok: trzy pozycje, a chwila 0,5–3 h po przejściu — w strefie jest już nowe przesunięcie, a start sprzed kilku godzin wypada w starym */
+    for (const rok of [2027, 2028, 2031, 2040]) { /* każdy rok: trzy przejścia + poniedziałek 00:30 (L-084 A), a chwila 0,5–3 h po przejściu — w strefie jest już nowe przesunięcie, a start sprzed kilku godzin wypada w starym */
       const poz = (JSON.parse(execFileSync('node', [path.join(root, 'scripts/ci/przejscia-czasu.js'), 'macierz', String(rok)]).toString()) as string[]).map(x => x.split('|'));
-      expect(poz.map(([z]) => z)).toEqual(['Europe/Warsaw', 'Europe/Warsaw', 'America/Los_Angeles']);
-      const dir = poz.map(([z, iso]) => { const t = Date.parse(iso); const off = (ms: number) => Date.parse(new Date(ms).toLocaleString('sv-SE', { timeZone: z }).replace(' ', 'T') + 'Z') - ms;
+      expect(poz.map(([z]) => z)).toEqual(['Europe/Warsaw', 'Europe/Warsaw', 'America/Los_Angeles', 'Europe/Warsaw']);
+      const dir = poz.slice(0, 3).map(([z, iso]) => { const t = Date.parse(iso); const off = (ms: number) => Date.parse(new Date(ms).toLocaleString('sv-SE', { timeZone: z }).replace(' ', 'T') + 'Z') - ms;
         expect([z, iso, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(iso), off(t - 8 * 3600e3) !== off(t), new Date(t).getUTCFullYear() === rok]).toEqual([z, iso, true, true, true]); return Math.sign(off(t) - off(t - 8 * 3600e3)); });
       expect(dir).toEqual([-1, 1, -1]); /* jesień (wstecz), wiosna (do przodu), jesień USA */
+    }
+  });
+  test('L-084 (A, 02.11.2026): czwarta pozycja to poniedziałek 00:30 czasu lokalnego (Europe/Warsaw), liczony, w roku przyszłym — „teraz − 1 h” wypada w poprzednim tygodniu', () => {
+    for (const rok of [2027, 2028, 2031, 2040]) {
+      const [strefa, isoChwila] = (JSON.parse(execFileSync('node', [path.join(root, 'scripts/ci/przejscia-czasu.js'), 'macierz', String(rok)]).toString()) as string[])[3].split('|');
+      const t = Date.parse(isoChwila); const w = (ms: number) => new Intl.DateTimeFormat('en-US', { timeZone: strefa, weekday: 'long', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).format(new Date(ms));
+      const dzien = Number(new Intl.DateTimeFormat('en-US', { timeZone: strefa, day: 'numeric' }).format(new Date(t))); const rokLok = new Intl.DateTimeFormat('en-US', { timeZone: strefa, year: 'numeric' }).format(new Date(t));
+      expect([rok, strefa, rokLok, dzien <= 7, w(t)]).toEqual([rok, 'Europe/Warsaw', String(rok), true, 'Monday 00:30']);
+      expect(w(t - 3600e3)).toBe('Sunday 23:30');
     }
   });
   test('bez argumentu skrypt liczy przejścia PRZYSZŁEGO roku (rok UTC + 1)', () => {
