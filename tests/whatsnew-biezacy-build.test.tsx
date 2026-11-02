@@ -14,7 +14,7 @@ let mockBuild: string | undefined;
 jest.mock('@/lib/version', () => new Proxy(jest.requireActual('@/lib/version'), { get: (t, k) => (k === 'BUILD_NUMBER' ? mockBuild : t[k as string]) }));
 jest.mock('expo-router', () => ({ ...jest.requireActual('expo-router'), useRouter: () => ({ push: jest.fn() }) }));
 
-const open = async () => { await fresh(); const { WhatsNewPanel } = require('@/components/WhatsNew'); render(<WhatsNewPanel onClose={() => {}} />); };
+const open = async () => { await fresh(); const { WhatsNewPanel } = require('@/components/WhatsNew'); await render(<WhatsNewPanel onClose={() => {}} />); };
 
 describe('„Co nowego”: tytuł najnowszego wpisu = uruchomiony build', () => {
   zProbkami();

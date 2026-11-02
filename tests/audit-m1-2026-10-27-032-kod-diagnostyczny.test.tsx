@@ -21,7 +21,7 @@ describe('M1-032: kod diagnostyczny w wiadomości z ekranu błędu startu', () =
   test('ekran błędu startu: „Napisz do nas” otwiera pocztę z kodem etapu, bez treści błędu (decyzja 7a, 28.10.2026); bez danych treningowych z zapisu', async () => {
     const state = seedState('pl'); state.settings.defaultRest = 77;
     const spy = jest.spyOn(require('@/lib/draft'), 'restoreObjDrafts').mockImplementation(() => { throw new Error('boom-po-init'); });
-    const open = jest.spyOn(Linking, 'openURL').mockResolvedValue(true);
+    const open = jest.spyOn(Linking, 'openURL').mockResolvedValue(undefined);
     try {
       await renderApp({ saved: state }); await flushAll(50);
       await tap(screen.getByText(t('Napisz do nas'))); await flushAll(20);
@@ -32,11 +32,11 @@ describe('M1-032: kod diagnostyczny w wiadomości z ekranu błędu startu', () =
   });
   test('StartError z kodem etapu i treścią błędu: adres mailto zawiera kod etapu, a NIE zawiera treści błędu (decyzja 7a, 28.10.2026); treść błędu nadal na ekranie', async () => {
     const { render, fireEvent } = require('@testing-library/react-native'); const { StartError } = require('@/components/StartError');
-    const open = jest.spyOn(Linking, 'openURL').mockResolvedValue(true);
+    const open = jest.spyOn(Linking, 'openURL').mockResolvedValue(undefined);
     try {
-      const r = render(<StartError title="Ekran nie mógł się wyświetlić." detail="Cannot read 'Moje tajne notatki' of undefined" diag="boot:init t=1200 s=19 n=2" onRetry={() => {}} />);
+      const r = await render(<StartError title="Ekran nie mógł się wyświetlić." detail="Cannot read 'Moje tajne notatki' of undefined" diag="boot:init t=1200 s=19 n=2" onRetry={() => {}} />);
       expect(r.getByText(/Moje tajne notatki/)).toBeTruthy();
-      fireEvent.press(r.getByText(t('Napisz do nas'))); await flushAll(5);
+      await fireEvent.press(r.getByText(t('Napisz do nas'))); await flushAll(5);
       const url = String(open.mock.calls.at(-1)![0]);
       expect(bodyOf(url)).toContain('boot:init t=1200 s=19 n=2'); expect(decodeURIComponent(url)).not.toMatch(/tajne|Cannot read/);
     } finally { open.mockRestore(); }
