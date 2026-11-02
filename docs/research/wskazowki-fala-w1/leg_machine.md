@@ -2,6 +2,21 @@
 
 Data: 02.11.2026 · autor: badacz-merytoryczny · **Status: PROPOZYCJA — dane do integracji przez koordynatora linii 1.1**
 
+## Korekta szczebli 2 (02.11.2026)
+
+Podstawa: „ROZSTRZYGNIĘCIE 2” koordynatora linii 1.1 (02.11.2026 ~07:55). Nowych źródeł nie szukano; strony sprawdzone WebFetch 02.11.2026.
+
+- Zmienione szczeble:
+  - `The Prehab Guys` (`prehab-single-leg-leg-press-machine`) 4 → **5**: strona sprawdzona 02.11 — brak osoby i kwalifikacji, tylko marka „The Prehab Guys, Inc.” i daty (opublikowano 26.04.2023, akt. 30.05.2023); rozstrzygnięcie 2 wymaga autora z kwalifikacjami.
+  - Physitrack, Coach, Torokhtiy, Freelap, uczelniane centra sportu, szpitale — w tym pliku nie występują.
+  - NSCA — nie występuje.
+- Przeliczenie zdań:
+  - **Single Leg Press: gotowe → otwarte.** Każde zdanie (`slp.setup`, `lp.move`, `lp.noLock`, `sq.mis.kneesIn`) miało NASM + The Prehab Guys → zostaje 1 źródło szczebla 4 (NASM). Usunięte z bloku JSON: 4 zdania (cały wpis). Dane częściowe — w sekcji B i „Otwarte”.
+  - Reguła błędów: `sq.mis.kneesIn` przy Single Leg Press miał NASM wprost — reguła „zaprzeczenia standardu” niczego nie odzyskuje (drugie źródło ma szczebel 5).
+  - **Hack Squat — bez zmian: otwarte, karta ukryta („do poprawy”).** Liczą się tylko `hack.setup2` i `hack.move` (Bells of Steel + BarBend); wskazówek i błędów z 2 źródłami szczebla 4 — 0. Druga korekta nie dotyka żadnego źródła tej karty.
+  - Belt Squat Machine, Pendulum Squat, Smith Machine Leg Press, Lying Machine Squat — bez zmian (otwarte).
+- Gotowe w pliku: przed 1 (Single Leg Press) → po **0**.
+
 ## Korekta szczebli 02.11.2026
 
 Zastosowano rozstrzygnięcie koordynatora linii 1.1 z 02.11.2026 (szczebel 4 = (a) organizacja szkoląca trenerów, serwis z redakcją i recenzją ekspercką albo producent własnego rodzaju sprzętu; (b) autor z datą albo treść firmowana; (c) nie marketing ani afiliacja; Breaking Muscle — 5 i nigdy niezależne od BarBend).
@@ -15,7 +30,7 @@ Zastosowano rozstrzygnięcie koordynatora linii 1.1 z 02.11.2026 (szczebel 4 = (
 - Sprawdzone i potwierdzone 4: BarBend `hack-squat-machine` — artykuł o technice (Jake Dickson, NASM-CPT, USAW-L2; aktualizacja 03.06.2025; bez linków produktowych w treści); Bells of Steel — producent maszyn (hack squat, belt squat); Major Fitness — marka własnych maszyn Smitha; Barbell Logic — firma szkoląca trenerów (spełnia (a); autor/data nieodnotowane — dotyczy tylko ćwiczenia otwartego); RitFit — producent sprzętu (czy produkuje maszynę do pendulum squat — nieodnotowane; dotyczy tylko ćwiczenia otwartego).
 - Ćwiczenia, które spadły do otwartych: **Hack Squat** (gotowe → otwarte). Po korekcie zostają tylko `hack.setup2` i `hack.move` (Bells of Steel + BarBend); `lp.heels` (NFPT + Breaking Muscle), `hack.hips` (BarBend + NFPT + Breaking Muscle → 1), `sq.kneesToes` i `sq.mis.kneesIn` (Bells of Steel + Breaking Muscle) tracą drugie źródło. Karta Hack Squat zostaje ukryta jak dotąd („do poprawy”).
 - Zdania usunięte z bloku JSON: 4 (Hack Squat: `lp.heels`, `hack.hips`, `sq.kneesToes`, `sq.mis.kneesIn`); `hack.setup2`, `hack.move` przeniesione do danych częściowych.
-- Single Leg Press — bez zmian, gotowe. Belt Squat, Pendulum Squat, Smith Machine Leg Press — były otwarte; Pendulum i Smith Machine Leg Press po korekcie nie mają już żadnego zdania z 2 źródłami szczebla 4.
+- Single Leg Press — w tej korekcie bez zmian (gotowe; zmiana dopiero w korekcie 2). Belt Squat, Pendulum Squat, Smith Machine Leg Press — były otwarte; Pendulum i Smith Machine Leg Press po korekcie nie mają już żadnego zdania z 2 źródłami szczebla 4.
 - Oznaczenia „DO AKCEPTACJI” i „4?” usunięte — zastąpione oceną wyżej.
 
 Metoda: jak w `docs/research/33-wskazowki-partia2.md` (wyjątek dla wskazówek techniki z CLAUDE.md: 2 zgodne, niezależne
@@ -27,14 +42,19 @@ Strony innych aplikacji treningowych pominięte (nie są źródłem, nazwy poza 
 
 | Ćwiczenie (klucz katalogu) | Wynik | Uwagi |
 |---|---|---|
-| Hack Squat | **otwarte (korekta 02.11)** | ustawienie (`hack.setup2`) i ruch (`hack.move`) — Bells of Steel + BarBend; wskazówek/błędów z 2 źródłami szczebla 4 — 0 |
-| Single Leg Press | **gotowe** (1 nowe zdanie) | NASM + The Prehab Guys; `lp.heels` z zestawu ogólnego bez 2 źródeł |
+| Hack Squat | **otwarte — karta ukryta („do poprawy”), bez zmian w korekcie 2** | ustawienie (`hack.setup2`) i ruch (`hack.move`) — Bells of Steel + BarBend; wskazówek/błędów z 2 źródłami szczebla 4 — 0 |
+| Single Leg Press | **otwarte (korekta 2, 02.11)** | The Prehab Guys → 5; każde zdanie ma tylko NASM |
 | Belt Squat Machine | otwarte | ustawienie i ruch mają 2 źródła (Bells of Steel, Barbell Logic); wskazówek/błędów z 2 źródłami — 0 |
 | Pendulum Squat | otwarte | po korekcie tylko RitFit (4); Legion Athletics i Fitness Volt — 5 |
 | Smith Machine Leg Press | otwarte | po korekcie tylko Major Fitness (4); Dynamo Fitness — 5 |
 | Lying Machine Squat | otwarte | brak przeczytanego źródła (wyniki to strony aplikacji i strony bez treści) |
 
+Gotowe: 0 — brak bloku JSON z wpisami do `cues.json` → `exercises`.
+
 ## A. Hack Squat (karta „do poprawy”, `figury-recenzja.json`)
+
+**Stan karty po korekcie 2: otwarta, nie wyświetlana (bez zmian względem korekty 1).** Do aplikacji nie wchodzi żadne zdanie;
+dane częściowe niżej.
 
 Problem z recenzji 28.10.2026: każde z 5 zdań miało jedno źródło o hack squat (ExRx, nieczytelne 28.10 i dziś) i drugie o prasie
 nóg (analogia). Przeczytano cztery źródła o hack squat na maszynie: NFPT, BarBend, Breaking Muscle, Bells of Steel (producent maszyn
@@ -84,44 +104,17 @@ Dane częściowe (nie do `cues.json`, ćwiczenie otwarte):
 
 ## B. Pozostałe ćwiczenia rodziny `leg_machine`
 
-### Single Leg Press — gotowe
+### Single Leg Press — otwarte (korekta 2, 02.11)
 
-Źródła: NASM „Single-Leg Press” (Setup, Movement, Common Mistakes) i The Prehab Guys „Single Leg Leg Press – Machine”
-(opis ćwiczenia: ustawienie, ruch, kompensacje). `lp.setup` nie pasuje (mówi o obu stopach i liczbie — kąt prosty), stąd nowe zdanie `slp.setup`.
-
-```json
-{
-  "Single Leg Press": {
-    "setup": [
-      {"c": "slp.setup", "s": [
-        ["nasm-single-leg-press", "Setup (back and head against the backrest; one foot on the platform, the other off it)"],
-        ["prehab-single-leg-leg-press-machine", "Setup (seated position; bring the leg up to the plate; keep the opposite leg down and stable)"]
-      ]}
-    ],
-    "move": [
-      {"c": "lp.move", "s": [
-        ["prehab-single-leg-leg-press-machine", "Movement (push the plate away by straightening the knees, the hips…; slowly lower the plate)"],
-        ["nasm-single-leg-press", "Movement (press the platform forward by extending your leg; lower the platform back with control)"]
-      ]}
-    ],
-    "tips": [
-      {"c": "lp.noLock", "s": [
-        ["prehab-single-leg-leg-press-machine", "Compensations (do not lock out the knees at the end of the press)"],
-        ["nasm-single-leg-press", "Movement; Common Mistakes (locking out the knee at full extension)"]
-      ]}
-    ],
-    "mistakes": [
-      {"c": "sq.mis.kneesIn", "s": [
-        ["nasm-single-leg-press", "Common Mistakes (allowing the knee to cave inward)"],
-        ["prehab-single-leg-leg-press-machine", "Compensations (do not let the legs rotate in or out)"]
-      ]}
-    ]
-  }
-}
-```
-
-Ocena (zamiast „do decyzji recenzenta”): przy `sq.mis.kneesIn` The Prehab Guys mówi o „obracaniu nogi do środka albo na zewnątrz” — to ten sam błąd toru kolana, kierunkowo zgodny z NASM, więc liczę go jako drugie źródło; recenzja niezależna (bramka 4) może to zakwestionować — wtedy ćwiczenie spada do „otwarte”.
-Zestaw ogólny (`cue-sets.json`) ma też `lp.heels` — tu tylko The Prehab Guys („nacisk przez palce i pięty”), NASM nie mówi o piętach → nie wpisano.
+Źródła: NASM „Single-Leg Press” (Setup, Movement, Common Mistakes; 4) i The Prehab Guys „Single Leg Leg Press – Machine”
+(opis ćwiczenia: ustawienie, ruch, kompensacje; **5** po korekcie 2 — tylko informacja). `lp.setup` nie pasuje (mówi o obu stopach
+i liczbie — kąt prosty), stąd nowe zdanie `slp.setup`. Po korekcie żadne zdanie nie ma 2 źródeł szczebla 4 — blok JSON usunięty.
+Zebrane (1 źródło szczebla 4 = NASM; The Prehab Guys zgodne, szczebel 5):
+- `slp.setup` — NASM „Setup” (plecy i głowa na oparciu; jedna stopa na platformie, druga poza nią); Prehab „Setup” (zgodne).
+- `lp.move` — NASM „Movement” (wypchnij platformę, prostując nogę; opuść pod kontrolą); Prehab „Movement” (zgodne).
+- `lp.noLock` — NASM „Movement; Common Mistakes” (blokowanie kolana w pełnym wyproście); Prehab „Compensations” (zgodne).
+- `sq.mis.kneesIn` — NASM „Common Mistakes” (kolano zapada się do środka); Prehab „Compensations” (noga obraca się do środka lub na zewnątrz — zgodne kierunkowo).
+Zestaw ogólny (`cue-sets.json`) ma też `lp.heels` — tylko The Prehab Guys („nacisk przez palce i pięty”, szczebel 5), NASM nie mówi o piętach → nie wpisano.
 
 ### Belt Squat Machine — otwarte
 
@@ -158,18 +151,18 @@ suplementami bez treści instrukcji. Zestaw ogólny (`hack.move`, `sq.kneesToes`
 
 ## Nowe zdania
 
+Wszystkie zdania niżej dotyczą ćwiczeń otwartych (po korekcie 2 także `slp.setup`) — do użycia dopiero, gdy ćwiczenie dostanie
+brakujące zdania z 2 źródłami. PL/EN — do przeglądu recenzenta lokalizacji (naturalność).
+
 | id | PL | EN (propozycja) | uzasadnienie |
 |---|---|---|---|
-| `slp.setup` | Usiądź w maszynie plecami na oparciu; jedną stopę postaw na platformie, drugą nogę zdejmij i trzymaj spokojnie. | Sit in the machine with your back against the backrest; put one foot on the platform, take the other leg off and keep it still. | `lp.setup` mówi o obu stopach i kącie kolan. |
+| `slp.setup` (otwarte ćwiczenie, korekta 2) | Usiądź w maszynie plecami na oparciu; jedną stopę postaw na platformie, drugą nogę zdejmij i trzymaj spokojnie. | Sit in the machine with your back against the backrest; put one foot on the platform, take the other leg off and keep it still. | `lp.setup` mówi o obu stopach i kącie kolan. Po korekcie 2 — 1 źródło szczebla 4 (NASM). |
 | `hack.setup2` (otwarte ćwiczenie) | Oprzyj plecy o oparcie, a barki o poduszki; stopy na platformie mniej więcej od szerokości bioder do szerokości barków. | Rest your back against the pad and your shoulders under the shoulder pads; feet on the platform somewhere between hip- and shoulder-width. | `hack.setup` („na szerokość bioder”) nie ma 2 źródeł szczebla 4. |
 | `hack.hips` (otwarte ćwiczenie) | Biodra i plecy cały czas przy oparciu. | Keep your hips and back against the pad the whole time. | `lp.hips` łączy oderwanie miednicy z głębokością (prasa); EN „seat” nie pasuje. Po korekcie 1 źródło szczebla 4. |
 | `belt.setup` (otwarte ćwiczenie) | Zapnij pas na biodrach, nie w talii; stań na platformie, stopy mniej więcej na szerokość barków. | Put the belt around your hips, not your waist; stand on the platform, feet about shoulder-width apart. | Brak zdania o pasie. |
 | `belt.move` (otwarte ćwiczenie) | Zejdź w przysiad pod kontrolą, potem wstań, wypychając się nogami. | Squat down under control, then stand up by driving through your legs. | `sq.down` zawiera cofanie bioder — źródła o maszynie tego nie mówią. |
 | `smlp.setup` (otwarte ćwiczenie) | Połóż się na plecach pod sztangą maszyny Smitha i oprzyj o nią stopy. | Lie on your back under the Smith machine bar and put your feet against it. | Brak zdania o tym ustawieniu. Po korekcie 1 źródło szczebla 4. |
 | `smlp.move` (otwarte ćwiczenie) | Opuść sztangę, uginając kolana, potem wypchnij ją w górę, prostując nogi. | Lower the bar by bending your knees, then press it back up by straightening your legs. | `lp.move` mówi o platformie. Po korekcie 1 źródło szczebla 4. |
-
-Zdania przy otwartych ćwiczeniach — do użycia dopiero, gdy ćwiczenie dostanie brakujące zdania z 2 źródłami. PL/EN — do przeglądu
-recenzenta lokalizacji (naturalność).
 
 ## Nowe źródła
 
@@ -180,7 +173,7 @@ recenzenta lokalizacji (naturalność).
 | `breakingmuscle-hack-squat` | https://breakingmuscle.com/hack-squat/ (L. Boyce) | Breaking Muscle | 5 (korekta 02.11) | „maintain contact between your hips and the pad” (Step 2) |
 | `bellsofsteel-hack-squat` | https://bellsofsteel.us/blogs/content/how-to-use-hack-squat-machine | Bells of Steel (producent maszyn) — nowa | 4 | „Do not let your knees cave in or go past your toes.” (Tips) |
 | `nasm-single-leg-press` | https://www.nasm.org/resource-center/exercise-library/single-leg-press | NASM | 4 | „Sit on the leg press machine with your back and head firmly against the backrest.” (Setup) |
-| `prehab-single-leg-leg-press-machine` | https://theprehabguys.com/vimeo-video/single-leg-leg-press-machine/ | The Prehab Guys | 4 | „Do not lock out the knees at the end of the press motion.” (Compensations) |
+| `prehab-single-leg-leg-press-machine` | https://theprehabguys.com/vimeo-video/single-leg-leg-press-machine/ | The Prehab Guys | **5** (korekta 2, 02.11: bez autora z kwalifikacjami) | „Do not lock out the knees at the end of the press motion.” (Compensations) |
 | `bellsofsteel-belt-squat` | https://bellsofsteel.us/blogs/content/how-to-use-a-belt-squat-machine | Bells of Steel | 4 | pas na biodrach, nie w talii (Setup) |
 | `barbelllogic-belt-squat` | https://barbell-logic.com/how-to-do-the-belt-squat-exercise/ | Barbell Logic (szkolenie trenerów) — nowa | 4 | „Place the belt around your hips and clip it to the machine.” (Set Up) |
 | `ritfit-pendulum-squat` | https://www.ritfitsports.com/blogs/article/how-to-do-the-pendulum-squat | RitFit (producent sprzętu) — nowa | 4 | „Bend the knees and hips together while keeping your heels down and knees tracking with the toes.” |
@@ -189,26 +182,21 @@ recenzenta lokalizacji (naturalność).
 | `majorfitness-smith-leg-press` | https://www.majorfitness.com/blogs/wiki/how-to-do-leg-press-on-smith-machine-a-step-by-step-guide | Major Fitness — nowa | 4 (tylko maszyna Smitha) | Positioning, Executing the Press |
 | `dynamo-wide-vertical-leg-press` | https://blog.dynamofitness.com.au/?p=3057 | Dynamo Fitness (sprzedawca sprzętu) — nowa | 5 (korekta 02.11) | „Lie on your back with your legs extended towards the ceiling” |
 
-### Nowe źródła — JSON (tylko źródła gotowego ćwiczenia; pozostałe — po zasileniu gotowej karty)
+### Nowe źródła — JSON
 
-```json
-{
-  "sources": {
-    "nasm-single-leg-press": {"org": "NASM", "title": "Single-Leg Press", "url": "https://www.nasm.org/resource-center/exercise-library/single-leg-press", "level": 4},
-    "prehab-single-leg-leg-press-machine": {"org": "The Prehab Guys", "title": "Single Leg Leg Press – Machine", "url": "https://theprehabguys.com/vimeo-video/single-leg-leg-press-machine/", "level": 4}
-  }
-}
-```
+Po korekcie 2 w pliku nie ma gotowego ćwiczenia — brak wpisów do `sources` do integracji teraz. Gdy ćwiczenie się domknie: dopisać
+tylko źródła szczebla 4 (np. `nasm-single-leg-press`); `prehab-single-leg-leg-press-machine` (5) nie dopisywać jako źródła liczonego.
 
-Organizacje do `orgs` (gdy zasilą gotowe ćwiczenie): `Bells of Steel` (4, maker — tylko własny rodzaj sprzętu), `Barbell Logic` (4, org szkoląca trenerów), `RitFit` (4, maker — tylko własny rodzaj sprzętu), `Major Fitness` (4, maker — maszyna Smitha), `NFPT` (4 tylko artykuł z autorem, datą i biogramem; `nfpt-hack-squat` — 5), `Legion Athletics` (5), `Fitness Volt` (5), `Dynamo Fitness` (5).
+Organizacje do `orgs` (gdy zasilą gotowe ćwiczenie): `Bells of Steel` (4, maker — tylko własny rodzaj sprzętu), `Barbell Logic` (4, org szkoląca trenerów), `RitFit` (4, maker — tylko własny rodzaj sprzętu), `Major Fitness` (4, maker — maszyna Smitha), `NFPT` (4 tylko artykuł z autorem, datą i biogramem; `nfpt-hack-squat` — 5), `Legion Athletics` (5), `Fitness Volt` (5), `Dynamo Fitness` (5), `The Prehab Guys` (4 tylko strona z autorem z kwalifikacjami; strony z tego pliku — 5).
 
 ## Otwarte
 
-- **Hack Squat** (korekta 02.11) — po korekcie wskazówek/błędów z 2 źródłami szczebla 4 brak. Kandydaci: `hack.hips` (BarBend; drugie potrzebne), `sq.kneesToes`/`sq.mis.kneesIn` i `lp.noLock` (Bells of Steel; drugie potrzebne), `lp.heels` (brak źródła 4). Rozstrzygnie: drugie źródło szczebla 4 o hack squat (inny producent maszyny, organizacja szkoląca trenerów, artykuł NFPT z wskazanym autorem). `lp.noLock` — Breaking Muscle (5) przeczy, ale przegrywa szczeblem.
+- **Hack Squat** (korekta 02.11; bez zmian w korekcie 2) — wskazówek/błędów z 2 źródłami szczebla 4 brak; karta ukryta. Kandydaci: `hack.hips` (BarBend; drugie potrzebne), `sq.kneesToes`/`sq.mis.kneesIn` i `lp.noLock` (Bells of Steel; drugie potrzebne), `lp.heels` (brak źródła 4). Rozstrzygnie: drugie źródło szczebla 4 o hack squat (inny producent maszyny, organizacja szkoląca trenerów, artykuł NFPT z wskazanym autorem). `lp.noLock` — Breaking Muscle (5) przeczy, ale przegrywa szczeblem.
+- **Single Leg Press** (korekta 2) — każde zdanie (`slp.setup`, `lp.move`, `lp.noLock`, `sq.mis.kneesIn`) ma 1 źródło szczebla 4 (NASM); The Prehab Guys bez autora → 5. Rozstrzygnie: drugie źródło szczebla 4 o prasie jednonóż (producent maszyny, inna organizacja szkoląca trenerów, strona The Prehab Guys z autorem).
 - **Hack Squat / `sq.kneesPast`** — Bells of Steel (i NFPT): kolana nie przed palce; nie przenosić tego zdania z przysiadu na hack squat.
 - **Hack Squat / `hack.setup`** — szerokość „bioder” bez 2 źródeł szczebla 4; czy zastąpić `hack.setup2` także w zestawach ogólnych — decyzja koordynatora.
 - **NFPT „Guest”** — jeśli koordynator ustali autora artykułów NFPT (np. biogram Roberta Bovee to autor), `nfpt-hack-squat` wraca do 4 i Hack Squat dostaje `hack.hips` (BarBend + NFPT) oraz `lp.noLock` (Bells of Steel + NFPT) → gotowe.
-- **Single Leg Press / `lp.heels`** (zestaw ogólny) — 1 źródło (The Prehab Guys). Rozstrzygnie: drugie źródło o prasie jednonóż.
+- **Single Leg Press / `lp.heels`** (zestaw ogólny) — tylko The Prehab Guys (5). Rozstrzygnie: dwa źródła szczebla 4 o prasie jednonóż.
 - **Belt Squat Machine** — brak wskazówek/błędów z 2 źródłami; zestaw ogólny `squat` (`sq.down`, `sq.kneesToes`) nie ma źródeł o tej maszynie. Rozstrzygnie: dalsze źródło szczebla 4 o maszynie z wskazówkami o kolanach/tułowiu.
 - **Pendulum Squat** — po korekcie tylko RitFit (4). Rozstrzygnie: drugie źródło szczebla 4 (producent maszyny, organizacja szkoląca trenerów).
 - **Smith Machine Leg Press** — po korekcie tylko Major Fitness (4); warianty różne (ławka/podłoga, nakładka, szeroko). Rozstrzygnie: drugie źródło szczebla 4.
