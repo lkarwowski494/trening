@@ -11,6 +11,7 @@ import React from 'react';
 import * as RN from 'react-native';
 import { AccessibilityInfo, Animated, Appearance } from 'react-native';
 import { render, fireEvent } from '@testing-library/react-native';
+import { asFiber, fiberRoot, type FNode } from './fiber-tree';
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import {
@@ -204,12 +205,12 @@ describe('kolory', () => {
 });
 
 /* ---------- 3. ekran: karta „Dziś” i „Ten tydzień” ---------- */
-type Node = ReturnType<typeof screen.getByTestId>;
+type Node = FNode;
 /** prostokąty SVG pod węzłem (komponent Rect z react-native-svg: fill/stroke jako napisy) */
-const rects = (n: Node) => n.findAll(x => typeof x.type !== 'string' && typeof x.props.fill === 'string' && 'width' in x.props).map(x => ({ fill: String(x.props.fill), stroke: x.props.stroke as string | undefined }));
+const rects = (n: object) => asFiber(n).findAll(x => typeof x.type !== 'string' && typeof x.props.fill === 'string' && 'width' in x.props).map(x => ({ fill: String(x.props.fill), stroke: x.props.stroke as string | undefined }));
 /** kolory filiżanki odpoczynku (spodek, ucho, czarka — Rect i Path z react-native-svg): zbiór fill/stroke bez 'none' */
-const cupColors = (n: Node) => [...new Set(n.findAll(x => typeof x.type !== 'string' && ('d' in x.props || 'width' in x.props) && (typeof x.props.fill === 'string' || typeof x.props.stroke === 'string')).flatMap(x => [x.props.fill, x.props.stroke]).filter((c): c is string => typeof c === 'string' && c !== 'none'))];
-const iconsIn = (n: Node) => n.findAll(x => typeof x.type === 'string' && typeof x.props.testID === 'string' && /^day-icon-/.test(x.props.testID)).map(x => String(x.props.testID));
+const cupColors = (n: object) => [...new Set(asFiber(n).findAll(x => typeof x.type !== 'string' && ('d' in x.props || 'width' in x.props) && (typeof x.props.fill === 'string' || typeof x.props.stroke === 'string')).flatMap(x => [x.props.fill, x.props.stroke]).filter((c): c is string => typeof c === 'string' && c !== 'none'))];
+const iconsIn = (n: object) => asFiber(n).findAll(x => typeof x.type === 'string' && typeof x.props.testID === 'string' && /^day-icon-/.test(x.props.testID)).map(x => String(x.props.testID));
 const stack = (i: number) => screen.getByTestId(`week-stack-${i}`, { includeHiddenElements: true });
 const hidden = (n: Node) => { for (let x: Node | null = n; x; x = x.parent as Node | null) if (x.props.accessibilityElementsHidden === true && x.props.importantForAccessibility === 'no-hide-descendants') return true; return false; };
 const PLATE_FILLS: string[] = LOAD_ORDER.map(c => PLATE_COLORS[c]);
@@ -248,12 +249,12 @@ describe('„Ten tydzień”: stosy talerzy z procentem planu (tylko przy planie
     expect(done.some(x => PLATE_FILLS.includes(x.fill))).toBe(false);
     expect(rects(mark('2026-10-09'))).toEqual([{ fill: 'none', stroke: light.accent }]);
     expect(rects(mark('2026-10-07'))).toEqual([{ fill: 'none', stroke: light.ctrlLine }]);
-    for (const k of ['2026-10-05', '2026-10-07', '2026-10-09']) { const ic = mark(k).findAll(x => typeof x.type === 'string' && /^day-icon-/.test(String(x.props.testID ?? '')))[0]; expect([k, hidden(ic)]).toEqual([k, true]); } /* dekoracja — stan dnia w etykiecie */
+    for (const k of ['2026-10-05', '2026-10-07', '2026-10-09']) { const ic = asFiber(mark(k)).findAll(x => typeof x.type === 'string' && /^day-icon-/.test(String(x.props.testID ?? '')))[0]; expect([k, hidden(ic)]).toEqual([k, true]); } /* dekoracja — stan dnia w etykiecie */
     expect(screen.getByTestId('strip-2026-10-05').props.accessibilityLabel).toMatch(/^poniedziałek, 5 października, zrobione: A/);
     expect(screen.getByTestId('strip-2026-10-06').props.accessibilityLabel).toMatch(/zrobiony inny trening: B, opuszczony: A/);
     expect(screen.getByTestId('strip-2026-10-07').props.accessibilityLabel).toMatch(/opuszczony: A/); expect(screen.getByTestId('strip-2026-10-09').props.accessibilityLabel).toMatch(/zaplanowany: A/);
     /* odpoczynek (decyzja 09.10.2026 wieczór): filiżanka w kolorze ctrlLine, ukryta przed VoiceOver; stan dnia w etykiecie — „odpoczynek” */
-    const cup = mark('2026-10-08').findAll(x => x.props.testID === 'day-icon-rest')[0]; expect(hidden(cup)).toBe(true);
+    const cup = asFiber(mark('2026-10-08')).findAll(x => x.props.testID === 'day-icon-rest')[0]; expect(hidden(cup)).toBe(true);
     expect(cupColors(mark('2026-10-08'))).toEqual([light.ctrlLine]);
     expect(screen.getByTestId('strip-2026-10-08').props.accessibilityLabel).toBe('czwartek, 8 października, dziś, odpoczynek'); expect(screen.getByTestId('strip-2026-10-11').props.accessibilityLabel).toBe('niedziela, 11 października, odpoczynek');
     expect(flat(screen.getByTestId('strip-2026-10-08').props.style).borderColor).toBe(light.accent); expect(flat(screen.getByTestId('strip-2026-10-09').props.style).borderColor).toBe('transparent');
@@ -267,7 +268,7 @@ describe('„Ten tydzień”: stosy talerzy z procentem planu (tylko przy planie
     expect(screen.getByTestId('strip-2026-10-08').props.accessibilityLabel).toBe('czwartek, 8 października, dziś, wolne');
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10); /* restart */
     expect(screen.queryByTestId('week-stacks')).toBeNull(); expect(screen.queryAllByTestId('day-icon-rest', { includeHiddenElements: true })).toEqual([]);
-    expect(render(<WeekStacks progress={null} />).toJSON()).toBeNull();
+    expect((await render(<WeekStacks progress={null} />)).toJSON()).toBeNull();
   });
   test.each([['pl', 'Postęp tygodnia: 100% planu, zrobione 1 z 1 treningów z planu', '100% planu tygodnia (1 z 1)'], ['en', 'Weekly progress: 100% of the plan, 1 of 1 planned workouts done', '100% of the weekly plan (1 of 1)']] as const)('język %s: wszystko z planu zrobione → 100%, stos pełny', async (l, label, txt) => {
     jest.useFakeTimers({ now: NOW }); await boot(planWeek([0], [0]), l);
@@ -308,12 +309,12 @@ describe('odpoczynek: filiżanka espresso w dniu bez treningu w planie (decyzja 
     const mark = (k: string) => screen.getByTestId(`strip-mark-${k}`, { includeHiddenElements: true });
     expect(['2026-10-05', '2026-10-06', '2026-10-07', '2026-10-08', '2026-10-09'].map(k => iconsIn(mark(k)))).toEqual([['day-icon-done'], ['day-icon-rest'], ['day-icon-rest'], [], []]);
   });
-  test('RestCup: spodek, ucho (pierścień, obrys) i czarka w jednym kolorze; pole 24 × 18 pt; ukryta przed VoiceOver', () => {
-    const { RestCup } = require('@/components/Motif'); const r = render(<RestCup color="#767a80" />);
+  test('RestCup: spodek, ucho (pierścień, obrys) i czarka w jednym kolorze; pole 24 × 18 pt; ukryta przed VoiceOver', async () => {
+    const { RestCup } = require('@/components/Motif'); const r = await render(<RestCup color="#767a80" />);
     const root = r.getByTestId('day-icon-rest', { includeHiddenElements: true }); expect(root.props.accessibilityElementsHidden).toBe(true); expect(root.props.importantForAccessibility).toBe('no-hide-descendants');
-    const svg = root.findAll(x => typeof x.type !== 'string' && x.props.viewBox)[0]; expect([svg.props.width, svg.props.height]).toEqual([MINI_ICON.w, MINI_ICON.h]);
-    expect(cupColors(root)).toEqual(['#767a80']); expect(root.findAll(x => typeof x.type !== 'string' && x.props.d === restCup().body).length).toBeGreaterThan(0);
-    expect(root.findAll(x => typeof x.type !== 'string' && x.props.fill === 'none' && x.props.stroke === '#767a80' && x.props.strokeWidth === REST_CUP.sw).length).toBeGreaterThan(0); /* ucho */
+    const svg = asFiber(root).findAll(x => typeof x.type !== 'string' && x.props.viewBox)[0]; expect([svg.props.width, svg.props.height]).toEqual([MINI_ICON.w, MINI_ICON.h]);
+    expect(cupColors(root)).toEqual(['#767a80']); expect(asFiber(root).findAll(x => typeof x.type !== 'string' && x.props.d === restCup().body).length).toBeGreaterThan(0);
+    expect(asFiber(root).findAll(x => typeof x.type !== 'string' && x.props.fill === 'none' && x.props.stroke === '#767a80' && x.props.strokeWidth === REST_CUP.sw).length).toBeGreaterThan(0); /* ucho */
   });
 });
 
@@ -332,9 +333,9 @@ describe('puste stany z motywem A2 (dekoracja, ukryta przed VoiceOver)', () => {
   });
   test.each([['light', light], ['dark', dark]] as const)('wyszukiwanie bez wyników: grafika w barwach motywu A2 (%s)', async (n, th) => {
     await boot(() => {}, 'pl', n); await go('/exercises'); await flushAll(10);
-    const { fireEvent } = require('@testing-library/react-native'); await act(async () => { fireEvent.changeText(screen.getByPlaceholderText(/Szukaj/), 'qqqzzz'); }); await flushAll(10);
+    const { fireEvent } = require('@testing-library/react-native'); await act(async () => { await fireEvent.changeText(screen.getByPlaceholderText(/Szukaj/), 'qqqzzz'); }); await flushAll(10);
     expect(screen.getByText('Nic nie pasuje.')).toBeTruthy();
-    const fills = screen.getByTestId('empty-art', { includeHiddenElements: true }).findAll(x => typeof x.props.fill === 'string').map(x => String(x.props.fill));
+    const fills = asFiber(screen.getByTestId('empty-art', { includeHiddenElements: true })).findAll(x => typeof x.props.fill === 'string').map(x => String(x.props.fill));
     for (const k of ['motif25', 'motif20', 'motif15', 'motif10', 'motifBar'] as const) expect(fills).toContain(th[k]);
   });
   test('przy skali tekstu 2,0 (duży tekst) grafiki nie ma, tekst pustego stanu zostaje', async () => {
@@ -346,11 +347,11 @@ describe('puste stany z motywem A2 (dekoracja, ukryta przed VoiceOver)', () => {
 /* ---------- 5. zakładki ---------- */
 describe('ikony zakładek w geometrii talerzy', () => {
   const NAMES = Object.keys({ workout: 1, history: 1, progress: 1, more: 1 } satisfies Record<TabIconName, 1>) as TabIconName[];
-  test.each(NAMES)('%s: tylko zaokrąglone prostokąty i linie (bez kół), co najmniej dwa talerze', name => {
-    const r = render(<TabIcon name={name} color="#123456" />);
-    const kinds = r.UNSAFE_root.findAll(x => typeof x.type !== 'string' && ['Rect', 'Circle', 'Path', 'Ellipse'].includes((x.type as { displayName?: string; name?: string }).displayName ?? (x.type as { name?: string }).name ?? '')).map(x => (x.type as { displayName?: string; name?: string }).displayName ?? (x.type as { name?: string }).name);
+  test.each(NAMES)('%s: tylko zaokrąglone prostokąty i linie (bez kół), co najmniej dwa talerze', async name => {
+    const r = await render(<TabIcon name={name} color="#123456" />);
+    const kinds = fiberRoot(r.container).findAll(x => typeof x.type !== 'string' && ['Rect', 'Circle', 'Path', 'Ellipse'].includes((x.type as { displayName?: string; name?: string }).displayName ?? (x.type as { name?: string }).name ?? '')).map(x => (x.type as { displayName?: string; name?: string }).displayName ?? (x.type as { name?: string }).name);
     expect(kinds).not.toContain('Circle'); expect(kinds).not.toContain('Ellipse');
-    const rects = r.UNSAFE_root.findAll(x => ((x.type as { displayName?: string; name?: string }).displayName ?? (x.type as { name?: string }).name) === 'Rect');
+    const rects = fiberRoot(r.container).findAll(x => ((x.type as { displayName?: string; name?: string }).displayName ?? (x.type as { name?: string }).name) === 'Rect');
     expect(rects.filter(x => Number(x.props.rx) > 0).length).toBeGreaterThanOrEqual(2);
   });
   test('etykiety VoiceOver zakładek bez zmian (tabA11y; E2E opiera się na nich)', async () => {
@@ -408,10 +409,10 @@ describe('kalendarz: pod dniem ikona — pełna (zrobione) albo obwódka (zaplan
     expect(rects(screen.getByTestId('cal-2026-10-07'))).toEqual([{ fill: 'none', stroke: th.ctrlLine }]);
     expect(cupColors(screen.getByTestId('cal-2026-10-08'))).toEqual([th.ctrlLine]); expect(screen.getByTestId('cal-2026-10-08').props.accessibilityLabel).not.toMatch(/odpoczynek|rest day/); /* stan dnia — wartość, etykieta bez zmian */
     expect(screen.queryByTestId('cal-legend')).toBeNull(); expect(screen.queryAllByTestId(/^day-plate-/, { includeHiddenElements: true })).toEqual([]);
-    const faceOf = (k: string) => flat(screen.getByTestId(`cal-${k}`).findAll(x => typeof x.type === 'string' && flat(x.props.style).width === CAL_FACE.w)[0].props.style);
+    const faceOf = (k: string) => flat(asFiber(screen.getByTestId(`cal-${k}`)).findAll(x => typeof x.type === 'string' && flat(x.props.style).width === CAL_FACE.w)[0].props.style);
     expect([faceOf('2026-10-08').borderColor, faceOf('2026-10-08').borderWidth]).toEqual([th.accent, 2]); /* dziś */
     expect(faceOf('2026-10-09').borderWidth).toBe(0); /* zaplanowany: bez kółka planu — sama obwódka ikony */
-    await act(async () => { fireEvent.press(screen.getByTestId('cal-2026-10-05')); }); await flushAll(5);
+    await act(async () => { await fireEvent.press(screen.getByTestId('cal-2026-10-05')); }); await flushAll(5);
     expect([faceOf('2026-10-05').borderColor, faceOf('2026-10-05').backgroundColor]).toEqual([th.text, th.surface2]); /* wybrany dzień */
   });
   test('miesiąc bez treningów i bez planu — żadnej ikony, bez legendy', async () => {
