@@ -19,8 +19,11 @@ const NATIVE = fs.readdirSync(path.join(__dirname, 'tests')).filter(f => f.endsW
 /* Nocne 01.11.2026 (audyt jakości 004): testy czytające TEKST mutowanego modułu lib/ (np. regex na źródle lib/access.ts) padają w suchym przejściu, bo kopia Strykera
  * instrumentuje moduł; nie mierzą logiki (strażnik: tests/mutation-config.test.ts). */
 const MUTATED = require('./stryker.config.json').mutate.map(m => m.replace(/\.ts$/, ''));
+/* 02.11.2026 (nocne 41347718181): wykrywanie szersze — literał 'lib/<moduł>.ts' + readFileSync, także przez pomocnik read()/code() albo tablicę ścieżek
+ * (audit-m1-045, audit-m1-046, m5s1-bez-proby); jedno miejsce: scripts/ci/czyta-zrodlo-modulu.js (używa go też tests/mutation-config.test.ts). */
+const { czytaZrodlo } = require('./scripts/ci/czyta-zrodlo-modulu');
 const SOURCE_TEXT = fs.readdirSync(path.join(__dirname, 'tests')).filter(f => f.endsWith('.test.ts')
-  && MUTATED.some(m => new RegExp(`readFileSync\\([^;]*?${m.replace('/', '[/\'", ]+')}\\.ts`).test(fs.readFileSync(path.join(__dirname, 'tests', f), 'utf8').replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, '')))).map(f => f.replace(/\.test\.ts$/, ''));
+  && czytaZrodlo(fs.readFileSync(path.join(__dirname, 'tests', f), 'utf8'), MUTATED)).map(f => f.replace(/\.test\.ts$/, ''));
 /* MUT_TESTS=plan-calendar,generator — przebieg lokalny tylko na wskazanych plikach (szybciej, gdy mutujemy jeden moduł) */
 const only = process.env.MUT_TESTS ? process.env.MUT_TESTS.split(',').map(n => `<rootDir>/tests/${n.trim()}.test.ts`) : null;
 module.exports = { ...base, testTimeout: 30000 /* nocne 25.10.2026: zimny render ekranu w kopii Strykera przekraczał domyślne 5 s (tests/catalog-v2) */, workerIdleMemoryLimit: undefined /* inaczej Jest uruchamia testy w procesach potomnych także przy runInBand — pokrycie per test nie wraca do Strykera */, rootDir: __dirname, testMatch: only ?? ['<rootDir>/tests/*.test.ts'], testPathIgnorePatterns: ['/node_modules/', ...[...SLOW_OR_UNRELATED, ...SPAWNING, ...NATIVE, ...SOURCE_TEXT].map(n => `/tests/${n}\\.test\\.ts$`)] };
