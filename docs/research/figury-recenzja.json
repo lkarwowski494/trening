@@ -311,33 +311,27 @@
   },
   "Pull Up": {
    "rodzina": "pull_up",
-   "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "werdykt": "zastapiona",
+   "data": "2026-11-02",
+   "kto": "nie recenzowana jako v1 od 02.11.2026 — ćwiczenie wyświetla figurę v2 rodziny pull_up (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
    "sha": "d3fe671da49d",
-   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie” z biodrem pod drążkiem i tułów na górze odchylony o 14° (ramię w tym samym kierunku): rozrzut biodra 7 j. (było 22). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
-   "wada": "W animacji ciało buja się w przód i w tył pod drążkiem: biodro przesuwa się o ok. 22 j. (ok. 38 cm) — sprzeczne ze wskazówką „Bez bujania i wymachów nogami” (pu.noSwing).",
-   "poprawka": "Pozycja pośrednia z biodrem pod drążkiem i lekkie odchylenie tułowia na górze (ramię w tym samym kierunku); rozrzut biodra ≤ 10 j."
+   "uwagi": "Wcześniej (27.10.2026) wyswietlana jako v1: 06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie). Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Dodana pozycja „w trakcie” z biodrem pod drążkiem i tułów na górze odchylony o 14° (ramię w tym samym kierunku): rozrzut biodra 7 j. (było 22). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
   },
   "Chin Up": {
    "rodzina": "pull_up",
-   "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "werdykt": "zastapiona",
+   "data": "2026-11-02",
+   "kto": "nie recenzowana jako v1 od 02.11.2026 — ćwiczenie wyświetla figurę v2 rodziny pull_up (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
    "sha": "c551131b4f68",
-   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Jak Pull Up: pozycja „w trakcie” z biodrem pod drążkiem, odchylenie tułowia na górze; rozrzut biodra ok. 8 j. (było 22,2). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
-   "wada": "W animacji ciało buja się w przód i w tył pod drążkiem: biodro przesuwa się o ok. 22 j. (ok. 38 cm) — sprzeczne ze wskazówką „Bez bujania i wymachów nogami” (pu.noSwing).",
-   "poprawka": "Pozycja pośrednia z biodrem pod drążkiem i lekkie odchylenie tułowia na górze (ramię w tym samym kierunku); rozrzut biodra ≤ 10 j."
+   "uwagi": "Wcześniej (27.10.2026) wyswietlana jako v1: 06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie). Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Jak Pull Up: pozycja „w trakcie” z biodrem pod drążkiem, odchylenie tułowia na górze; rozrzut biodra ok. 8 j. (było 22,2). Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
   },
   "Neutral Grip Pull Up": {
    "rodzina": "pull_up",
-   "werdykt": "wyswietlana",
-   "data": "2026-10-27",
-   "kto": "06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie)",
+   "werdykt": "zastapiona",
+   "data": "2026-11-02",
+   "kto": "nie recenzowana jako v1 od 02.11.2026 — ćwiczenie wyświetla figurę v2 rodziny pull_up (recenzja rodziny w sekcji v2); przy wycofaniu v2 wymaga recenzji",
    "sha": "130597855e6d",
-   "uwagi": "Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Jak Chin Up. Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji).",
-   "wada": "W animacji ciało buja się w przód i w tył pod drążkiem: biodro przesuwa się o ok. 22 j. (ok. 38 cm) — sprzeczne ze wskazówką „Bez bujania i wymachów nogami” (pu.noSwing).",
-   "poprawka": "Pozycja pośrednia z biodrem pod drążkiem i lekkie odchylenie tułowia na górze (ramię w tym samym kierunku); rozrzut biodra ≤ 10 j."
+   "uwagi": "Wcześniej (27.10.2026) wyswietlana jako v1: 06-tresci — recenzja bramki 4 (agent spoza autorów figur v1; M1-audytor-generalny-005): podgląd PNG klatek i póz pośrednich, tory punktów, karta (wskazówki, mięśnie). Poprawiona po recenzji (decyzja właściciela 27.10.2026, pkt 7a): Jak Chin Up. Sprawdzone podglądem PNG i testem regresji tests/figury-recenzja.test.tsx (zasada audytów pkt 2: naprawę sprawdza test, nie kolejna recenzja). Mięśnie z katalogu: przegląd wiarygodności (źródła mięśni nieotwierane w tej recenzji)."
   },
   "Lunges (hantle)": {
    "rodzina": "lunge",
@@ -688,11 +682,11 @@
    "data": "2026-11-02",
    "kto": "audytor — recenzja niezależna ruchu rodziny pull_up v2 po poprawkach P1–P4 (bramka 4, L-047, L-050), 01.11.2026; uzupełnienie o wariant C właściciela 02.11.2026 (zdanie uproszczenia Side To Side Chins pod rysunkiem, a467515; recenzja lokalizacji 3d0e048, poprawki 39bdecf)",
    "sha": "7f1633589728",
-   "liczba": 11,
+   "liczba": 13,
    "stan": "zrecenzowana niezależnie (bramka 4, L-047 A, L-050) — linia 1.1, po poprawkach P1–P4 i decyzji właściciela C (02.11.2026)",
    "autor": "programista fala25/pull-up (db0ea8e)",
    "recenzent": "audytor (sesja koordynatora linii 1.1, niezależny; drugi recenzent rodziny)",
-   "uwagi": "01.11.2026, recenzja niezależna po poprawkach db0ea8e (integracja-1-1 @ 05bbb2c), skrót 7f1633589728, 11 ćw. P1 naprawione: pu.partial — łokieć u=0 51,1–51,2° (poprawna 4,1–5,8°), miednica +6,5 cm, u=1 jak poprawna (łokieć 142,3–142,7°, broda +3,0 cm). P2 naprawione: Gironda — odstęp mostek–drążek maleje monotonicznie do 1,6 cm w u=1, bez przenikania, odchylenie −40°, łuk −20°. P4 naprawione: łokieć u=0 0,0–7,3° (≤ 8°), reguła dol_rece_proste 8°. P3: Side To Side — skłon 28°, łokcie 129,5/100,7°, miednica bez ruchu w bok; brak naprzemienności stron — rozstrzygnięcie: wariant C właściciela 02.11.2026 (zdanie pod rysunkiem, a467515: lista ONE_SIDE_FIGURES w lib/figures/v2/cueSets.ts poza skrótem rigu — skrót 7f1633589728 potwierdzony `zrodla-runtime.mjs --skroty` 02.11.2026 po a467515 i 39bdecf). checkFrame 0 co 0,01; ciągłość krok ≤ 2,5 cm/0,01. Wspólne zmiany (BLAD_DOL, GRUPY_DOL, NA_DOLE) tylko pu.partial. NISKIE P5–P7 w backlogu.",
+   "uwagi": "01.11.2026, recenzja niezależna po poprawkach db0ea8e (integracja-1-1 @ 05bbb2c), skrót 7f1633589728, 11 ćw. rysowanych z 13 przypisanych do rodziny (Muscle Up i Rope Climb bez danych póz — figureSpec null, bez rysunku; liczba = przypisane, jak w tests/figury-recenzja.test.tsx) P1 naprawione: pu.partial — łokieć u=0 51,1–51,2° (poprawna 4,1–5,8°), miednica +6,5 cm, u=1 jak poprawna (łokieć 142,3–142,7°, broda +3,0 cm). P2 naprawione: Gironda — odstęp mostek–drążek maleje monotonicznie do 1,6 cm w u=1, bez przenikania, odchylenie −40°, łuk −20°. P4 naprawione: łokieć u=0 0,0–7,3° (≤ 8°), reguła dol_rece_proste 8°. P3: Side To Side — skłon 28°, łokcie 129,5/100,7°, miednica bez ruchu w bok; brak naprzemienności stron — rozstrzygnięcie: wariant C właściciela 02.11.2026 (zdanie pod rysunkiem, a467515: lista ONE_SIDE_FIGURES w lib/figures/v2/cueSets.ts poza skrótem rigu — skrót 7f1633589728 potwierdzony `zrodla-runtime.mjs --skroty` 02.11.2026 po a467515 i 39bdecf). checkFrame 0 co 0,01; ciągłość krok ≤ 2,5 cm/0,01. Wspólne zmiany (BLAD_DOL, GRUPY_DOL, NA_DOLE) tylko pu.partial. NISKIE P5–P7 w backlogu.",
    "slad": "Arkusze arkusz-slad.mjs 11 ćw. × 2 widoki + tryb pu.partial ×6, obejrzane w pełnej rozdzielczości: Pull Up bok (poprawna i błąd), przód (błąd), Side To Side przód, Gironda bok (×4 przy u=1), Wide-Grip Rear przód. Tor miednicy pionowy bez bujania (Gironda x 0→12 cm z odchylenia)."
   }
  },
@@ -1248,6 +1242,36 @@
    "kto": "audytor — recenzja niezależna treści karty (L-047, bramka 4), 29.10.2026, po zmianie calf.edge (podest)",
    "sha": "ba118e804b14",
    "uwagi": "calf.edge (stań przednią częścią stóp na krawędzi podestu, pięty poza krawędzią): NASM Leg Press Calf Raise Step 1 (to samo ustawienie stopy, inne ćwiczenie — analogia) oraz Prehab Guys i Physitrack (wersja na stopniu), przeczytane 29.10.2026; ExRx LVStandingCalfRaise niedostępne (exrx.net — wyzwanie JS, web.archive.org zrywa połączenie), do ponownego odczytu. calf.move, calf.knees, calf.pause, calf.mis.partial: NASM i ACE #51 przeczytane — zgodne. Karta spójna, bez liczb i twierdzeń o zdrowiu."
+  },
+  "Pull Up": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — przeniesione z recenzji v1 z 27.10.2026 (figura i wskazówki recenzowane razem), bo od 02.11.2026 figura v1 jest „zastąpiona” przez v2 rodziny pull_up",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1, data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (agent spoza autorów; recenzja bramki 4 z 27.10.2026, M1-audytor-generalny-005)",
+   "kto": "06-tresci — recenzja bramki 4 z 27.10.2026 (figura v1 + karta); wpis karty przeniesiony przez koordynatora linii 1.1 02.11.2026 bez zmiany treści",
+   "sha": "c92badecedd8",
+   "uwagi": "Treść karty bez zmian od recenzji 27.10.2026: skrót v1 (figura + wskazówki) d3fe671da49d był aktualny do 02.11.2026 (tests/figury-recenzja.test.tsx zielony na integracja-1-1 @ 3d0e048). Przeniesienie, nie nowa recenzja."
+  },
+  "Chin Up": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — przeniesione z recenzji v1 z 27.10.2026 (figura i wskazówki recenzowane razem), bo od 02.11.2026 figura v1 jest „zastąpiona” przez v2 rodziny pull_up",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1, data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (agent spoza autorów; recenzja bramki 4 z 27.10.2026, M1-audytor-generalny-005)",
+   "kto": "06-tresci — recenzja bramki 4 z 27.10.2026 (figura v1 + karta); wpis karty przeniesiony przez koordynatora linii 1.1 02.11.2026 bez zmiany treści",
+   "sha": "bacc1d53c95c",
+   "uwagi": "Treść karty bez zmian od recenzji 27.10.2026: skrót v1 (figura + wskazówki) c551131b4f68 był aktualny do 02.11.2026 (tests/figury-recenzja.test.tsx zielony na integracja-1-1 @ 3d0e048). Przeniesienie, nie nowa recenzja."
+  },
+  "Neutral Grip Pull Up": {
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, treść karty) — przeniesione z recenzji v1 z 27.10.2026 (figura i wskazówki recenzowane razem), bo od 02.11.2026 figura v1 jest „zastąpiona” przez v2 rodziny pull_up",
+   "autor": "badacz merytoryczny i programista (agenci; wskazówki etapu 1, data/zrodla/cues.json, teksty lib/cues/text/pl.json)",
+   "recenzent": "06-tresci (agent spoza autorów; recenzja bramki 4 z 27.10.2026, M1-audytor-generalny-005)",
+   "kto": "06-tresci — recenzja bramki 4 z 27.10.2026 (figura v1 + karta); wpis karty przeniesiony przez koordynatora linii 1.1 02.11.2026 bez zmiany treści",
+   "sha": "f6c1f0a2e60d",
+   "uwagi": "Treść karty bez zmian od recenzji 27.10.2026: skrót v1 (figura + wskazówki) 130597855e6d był aktualny do 02.11.2026 (tests/figury-recenzja.test.tsx zielony na integracja-1-1 @ 3d0e048). Przeniesienie, nie nowa recenzja."
   }
  },
  "zestawy": {
@@ -2031,6 +2055,226 @@
    "kto": "audytor — recenzja niezależna treści zestawu (decyzja właściciela 28.10.2026 „003 → 1.0.1”); raport w notatkach przekazanie-konta docs/przekazanie/notatki/wersja-1-0-1/",
    "sha": "78c1fe12ffea",
    "uwagi": "gcalf.set/move/support/knee — każde ≥2 zgodne organizacje szczebla 4, bez liczb i nazw źródeł; err puste (źródła nie podają błędów wariantu). Zestaw pokaże się dopiero z figurą v2 rodziny rozciągania."
+  },
+  "Gironda Sternum Chins": {
+   "rodzina": "vpull",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "8c36dcc1e8f9",
+   "uwagi": "Podciąganie do mostka (figura v2 pull_up, drążek): ściąganie łopatek w dół, łokcie w dół do boków, bez bujania, pełny wyprost na dole — zgodne z ruchem."
+  },
+  "Mixed Grip Chin": {
+   "rodzina": "vpull",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "8c36dcc1e8f9",
+   "uwagi": "Podciąganie chwytem mieszanym (figura v2 pull_up, drążek): zdania zestawu vpull zgodne z ruchem, nic nie zależy od ułożenia dłoni."
+  },
+  "One Arm Chin-Up": {
+   "rodzina": "vpull",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "8c36dcc1e8f9",
+   "uwagi": "Podciąganie jednorącz (figura v2 pull_up, drążek, druga ręka wolna): zdania zgodne z ruchem; „łokcie” w liczbie mnogiej przy jednej ręce — drobna niezręczność, nie fałsz."
+  },
+  "Scapular Pull-Up": {
+   "rodzina": "vpull",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "5441980854c1",
+   "uwagi": "Podciąganie łopatkowe (figura v2 pull_up, drążek, ruch tylko obręczy barkowej): pu.shoulders opisuje cały ruch, pu.noSwing zgodne; bez zdań o zgięciu łokci."
+  },
+  "Side To Side Chins": {
+   "rodzina": "vpull",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "72e4c860325c",
+   "uwagi": "Podciąganie na boki (figura v2 pull_up, drążek, szeroki chwyt): zdania zgodne z ruchem; zdanie o rysunku w jedną stronę jest osobno (ONE_SIDE_FIGURES, decyzja 02.11.2026 C)."
+  },
+  "Wide-Grip Rear Pull-Up": {
+   "rodzina": "vpull",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "72e4c860325c",
+   "uwagi": "Podciąganie szerokim chwytem za kark (figura v2 pull_up, drążek): pu.shoulders, pu.noSwing, pu.partial zgodne z ruchem."
+  },
+  "Gorilla Chin/Crunch": {
+   "rodzina": "hanging",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "5faeb3667bc1",
+   "uwagi": "Zwis podchwytem z unoszeniem kolan (figura v2 pull_up, drążek): hang.slow (opuszczanie nóg), pu.shoulders, hang.noSwing zgodne z ruchem."
+  },
+  "Overhead Stretch": {
+   "rodzina": "stretch",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "0869a1be9df2",
+   "uwagi": "Rozciąganie statyczne stojąc: zestaw stretch (powoli do napięcia, bez sprężynowania, oddech, bez wciskania na siłę) zgodny; figura v2 jeszcze nie pokazywana — wpis zadziała po włączeniu rodziny (skrót zestawu bez zmian)."
+  },
+  "Seated Close-Grip Concentration Barbell Curl": {
+   "rodzina": "curl",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "57beffa85533",
+   "uwagi": "Uginanie sztangi w siadzie, łokcie oparte: curl.control, curl.noSwing, mis.jerk zgodne; figura v2 jeszcze nie pokazywana."
+  },
+  "Split Jump": {
+   "rodzina": "jump",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "cfe91a4457a4",
+   "uwagi": "Wykroki z wyskokiem: jump.drive, jump.land, jump.mis.stiff zgodne; figura v2 jeszcze nie pokazywana."
+  },
+  "Push-Ups With Feet On A Stability Ball": {
+   "rodzina": "pushup",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "975e83a10180",
+   "uwagi": "Pompki ze stopami na piłce: plank.brace, push.rigid, push.mis.partial, plank.mis.sag zgodne (piłka wzmacnia wagę sztywnego tułowia); figura v2 jeszcze nie pokazywana."
+  },
+  "Block Power Snatch": {
+   "rodzina": "oly",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "232b3661bba2",
+   "uwagi": "Rwanie siłowe z bloków: oly.back (start), oly.close, oly.legs, oly.mis zgodne — start z bloków nie zmienia sensu zdań; figura v2 jeszcze nie pokazywana."
+  },
+  "Kneeling Hip Flexor Stretch": {
+   "rodzina": "stretch",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "0869a1be9df2",
+   "uwagi": "Rozciąganie zginaczy biodra w klęku: zestaw stretch zgodny; figura v2 jeszcze nie pokazywana."
+  },
+  "Barbell Step Up": {
+   "rodzina": "lunge",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "598b671d28f0",
+   "uwagi": "Wejście na podwyższenie ze sztangą: stepup.move, stepup.knee, lunge.torso, lunge.mis.kneeIn (przednie = noga na podwyższeniu) zgodne; figura v2 jeszcze nie pokazywana."
+  },
+  "Decline Dumbbell Fly": {
+   "rodzina": "fly",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "815db3c89ef8",
+   "uwagi": "Rozpiętki na ławce skośnej w dół: fly.elbows, fly.control, mis.jerk zgodne — kąt ławki nie zmienia zdań; figura v2 jeszcze nie pokazywana."
+  },
+  "One-Arm Kettlebell Jerk": {
+   "rodzina": "pushPress",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "cb9bd7c3e35d",
+   "uwagi": "Podrzut kettlebella jednorącz: pp.dip, pp.legs zgodne (zdania nie przeczą drugiemu ugięciu pod ciężar); zestaw bez częstych błędów (err pusty) — nie podnosi licznika błędów; figura v2 jeszcze nie pokazywana."
+  },
+  "Cable Russian Twists": {
+   "rodzina": "rotation",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "09eeb2383c46",
+   "uwagi": "Skręty tułowia z linką: rt.control, rt.back, mis.jerk zgodne niezależnie od pozycji; figura v2 jeszcze nie pokazywana."
+  },
+  "Peroneals-SMR": {
+   "rodzina": "smr",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "7280160e4b61",
+   "uwagi": "Rolowanie mięśni strzałkowych: smr.slow, smr.tender, smr.mis.fast zgodne; figura v2 jeszcze nie pokazywana."
+  },
+  "One-Arm Dumbbell Reverse Wrist Curl": {
+   "rodzina": "wrist",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "8b1a50266007",
+   "uwagi": "Prostowanie nadgarstka nachwytem z hantlem: wr.forearms, wr.range, wr.mis.lift zgodne; figura v2 jeszcze nie pokazywana."
+  },
+  "Calf Raise (linki)": {
+   "rodzina": "calf",
+   "werdykt": "wyswietlana",
+   "data": "2026-11-02",
+   "stan": "zrecenzowana niezależnie (bramka 4, przypisanie zestawu ogólnego do ruchu ćwiczenia i teksty wskazówek, 02.11.2026)",
+   "autor": "badacz merytoryczny (agent; zestawy ogólne na wzorzec ruchu, 25.10.2026; lib/figures/v2/cue-sets.json, źródła data/zrodla/wskazowki-ogolne.json)",
+   "recenzent": "audytor (próbna partia linii 1.1, niezależny; nie pisał zestawów)",
+   "kto": "audytor — próbna partia recenzji zestawów ogólnych linii 1.1 (bramka 4, L-047), 02.11.2026",
+   "sha": "58dfc0b13605",
+   "uwagi": "Wspięcia na palce z linką: calf.move, calf.pause, calf.mis.partial zgodne (calf.move zakłada podwyższenie pod palcami — przy staniu na podłodze rozciągnięcie mniejsze, nie fałsz); figura v2 jeszcze nie pokazywana."
   }
  }
 }

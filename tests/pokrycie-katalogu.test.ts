@@ -129,10 +129,10 @@ describe('pokrycie katalogu: cele wersji', () => {
   test('--cel 1.1: kod 0 i „osiągnięty”, gdy wszystkie liczby celu są osiągnięte; inaczej kod 1 i dokładnie te metryki, których brakuje (po scaleniu main 29.10.2026 rodziny v2 są ukryte do recenzji 1.1 — cel nieosiągnięty)', () => {
     const r = skrypt('--cel', '1.1'); const braki = Object.entries(cele.wersje['1.1'].min).filter(([m, v]) => (fix.dobre[m] ?? 0) < v).map(([m]) => m);
     if (!braki.length) { expect(r.status).toBe(0); expect(r.stdout).toMatch(/osiągnięty/); return; }
-    expect(r.status).toBe(1); expect(r.stderr).toMatch(/NIE osiągnięty/); expect(braki).toEqual(expect.arrayContaining(['figura.v2']));
+    expect(r.status).toBe(1); expect(r.stderr).toMatch(/NIE osiągnięty/); expect(braki).not.toContain('figura.v2'); /* 02.11.2026: pull_up w v2 — figura v2 98/98; brakują metryki tekstów (Z3: zestaw ogólny tylko przy figurze v2) */
     /* 01.11.2026 (ZB-025 a/b, Z3): pełna karta liczona wg definicji Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy + figura v2 + animowany błąd + role mięśni)
      * jest ponad celem 17 (rodziny squat, bench_press, hinge zatwierdzone ponownie; pull_up ukryta) — brakuje już tylko figur v2 i metryk pochodnych. Gdyby spadła pod cel, komunikat musi ją nazwać. */
-    expect(r.stderr).toMatch(/figura v2 w aplikacji: \d+ z \d+/);
+    expect(r.stderr).not.toMatch(/figura v2 w aplikacji: \d+ z \d+/); expect(r.stderr).toMatch(/wskazówki \(własne lub zestaw ogólny\): \d+ z \d+/);
     if (braki.includes('pelnaKarta')) expect(r.stderr).toMatch(/pełna karta: \d+ z \d+/); else expect(r.stderr).not.toMatch(/pełna karta: \d+ z \d+/);
   });
   test('--cel: wersja bez celu → kod 1', () => {

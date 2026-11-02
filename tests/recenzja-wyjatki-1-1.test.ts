@@ -43,7 +43,12 @@ describe('wyjątki bramki 4 linii 1.1 (recenzja-wyjatki-1-1.json)', () => {
     for (const f of WYJ.v2) expect([f, familyReviewed(f)]).toEqual([f, false]);
     expect(familyReviewed('rodzina_nieistniejaca')).toBe(false);
     expect(figureSpec('Chin Up')).not.toBeNull();
-    expect(shownFigureSpec('Chin Up')).toBeNull(); /* pull_up bez aktualnej recenzji (01.11.2026: POPRAWKI P1–P4) */
+    expect(shownFigureSpec('Chin Up')).not.toBeNull(); /* pull_up z aktualnym wpisem od 02.11.2026 (decyzja właściciela C) */
+    /* rodzina bez aktualnego wpisu (symulacja: pull_up zdjęta z listy runtime) — silnik nadal liczy figurę, aplikacja jej nie pokazuje */
+    const lista = FIG_DATA.v2 as string[];
+    const spy = jest.spyOn(lista, 'includes').mockImplementation((x: string) => x !== 'pull_up' && Array.prototype.indexOf.call(lista, x) >= 0);
+    try { expect(familyReviewed('pull_up')).toBe(false); expect(figureSpec('Chin Up')).not.toBeNull(); expect(shownFigureSpec('Chin Up')).toBeNull(); }
+    finally { spy.mockRestore(); }
     expect(shownFigureSpec('Back Squat')).not.toBeNull(); /* squat po recenzji różnicy 01.11.2026 (decyzja właściciela X) */
   });
   test('figureWithheld: figura v1 „zastąpiona” wstrzymana dokładnie wtedy, gdy jej rodzina v2 nie ma aktualnej recenzji; od 01.11.2026 (squat, bench_press, hinge zrecenzowane) Back Squat i Deadlift pokazują v2; v1 „wyswietlana” (Pull Up) i ćwiczenie bez v2 (Crunch) — bez wstrzymania', () => {
@@ -62,8 +67,8 @@ describe('generator (scripts/zrodla-runtime.mjs): lista rodzin v2 i figury „za
     ${mutate}
     const out = buildFigures(full, rec);
     console.log(JSON.stringify({ v2: out.v2, deadlift: 'Deadlift (sztanga)' in out.exercises, fam: rodzinyZAktualnaRecenzja(rec) }));`], { encoding: 'utf8' }));
-  test('bieżący stan (01.11.2026): squat, bench_press, hinge z aktualnym wpisem (recenzja różnicy po poprawce styków, decyzja X); figura v1 „zastąpiona” (Deadlift (sztanga)) zostaje w pliku runtime (testy silnika v1)', () => {
-    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge'], deadlift: true, fam: ['squat', 'bench_press', 'hinge'] });
+  test('bieżący stan (02.11.2026): squat, bench_press, hinge (recenzja różnicy po poprawce styków, decyzja X) i pull_up (decyzja właściciela C) z aktualnym wpisem; figura v1 „zastąpiona” (Deadlift (sztanga)) zostaje w pliku runtime (testy silnika v1)', () => {
+    expect(run('')).toEqual({ v2: ['squat', 'bench_press', 'hinge', 'pull_up'], deadlift: true, fam: ['squat', 'bench_press', 'hinge', 'pull_up'] });
   });
   test('wpis rodziny hinge z bieżącym skrótem: rodzina na liście, figura v1 „zastąpiona” zostaje w pliku runtime; zły skrót — rodzina znika', () => {
     const tylko = "for (const f of Object.keys(rec.v2)) if (f !== 'hinge') delete rec.v2[f];";

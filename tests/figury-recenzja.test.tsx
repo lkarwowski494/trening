@@ -124,8 +124,8 @@ describe('ekran: figura ukryta po recenzji — sekcja „Technika” bez rysunku
     expect(screen.getByRole('header', { name: 'Ruch' })).toBeTruthy();
     expect(CUE_DATA.exercises[k]).toBeTruthy();
   });
-  test('figura z recenzją się renderuje (Pull Up, Overhead Press (sztanga), Reverse Lunge — 29.10.2026)', () => {
-    for (const k of ['Pull Up', 'Overhead Press (sztanga)', 'Reverse Lunge']) { render(<ExerciseCues exercise={lib(k)} initialOpen />); expect([k, screen.getAllByTestId('exercise-figure').length > 0]).toEqual([k, true]); }
+  test('figura z recenzją się renderuje (Lat Pulldown, Overhead Press (sztanga), Reverse Lunge — 29.10.2026; Pull Up od 02.11.2026 rysuje v2 rodziny pull_up)', () => {
+    for (const k of ['Lat Pulldown', 'Overhead Press (sztanga)', 'Reverse Lunge']) { render(<ExerciseCues exercise={lib(k)} initialOpen />); expect([k, screen.getAllByTestId('exercise-figure').length > 0]).toEqual([k, true]); }
   });
 });
 

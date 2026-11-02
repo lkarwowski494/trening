@@ -41,7 +41,7 @@ describe('57 przy prawdziwej bramce 4', () => {
     finally { spy.mockRestore(); }
   };
   test('Back Squat zostaje twardy: bez rysunku squat nowy 57 pada w kroku rysunku', async () => { await bez('squat', /Movement drawing/); });
-  test('Pull-Up twardy (02.11.2026): bez rysunku pull_up nowy 57 pada w kroku rysunku Pull-Up', async () => { await bez('pull_up', /Movement drawing|Pulling up/); });
+  test('Pull-Up twardy (02.11.2026): bez rysunku pull_up nowy 57 pada w kroku rysunku Pull-Up', async () => { await bez('pull_up', /Movement drawing|Pulling up|Technique/); /* bez v2 karta Pull-Up nie ma sekcji z rysunkiem — scenariusz pada w pierwszym kroku sekcji */ });
   test('strażnik: kroki rysunku Pull-Up warunkowe tylko dopóki pull_up nie jest w v2; Back Squat nie jest warunkowy', () => {
     const c = nowy();
     const warunkowy = c.findIndex(x => x.runFlow && JSON.stringify(x.runFlow.commands).includes('87-figura-v2-podciaganie-blad'));
