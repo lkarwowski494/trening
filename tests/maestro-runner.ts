@@ -401,7 +401,19 @@ export class Runner {
         case 'assertVisible': if (!(await this.waitFor(sel(arg), true, 1500))) this.fail(step, 'Element niewidoczny.'); break;
         /* DEC-01 a (1.0.1, 28.10.2026): przytrzymanie otwiera systemowy podgląd dużej zawartości (accessibilityShowsLargeContentViewer) — nakładka iOS poza drzewem aplikacji;
          * w Jest sprawdzamy, że element do przytrzymania istnieje (prawdziwe przytrzymanie robi Maestro na symulatorze, podgląd — telefon). */
-        case 'longPressOn': if (!(await this.waitFor(sel(arg), true, 1500))) this.fail(step, 'Element do przytrzymania niewidoczny.'); break;
+        /* E2E 41347718181 (58, 02.11.2026): React Native Pressable bez onLongPress wywołuje onPress po zwolnieniu długiego przytrzymania (Pressability) — przytrzymanie liczby na tablicy
+         * (board-value-*) otwiera więc edytor z klawiaturą, jak stuknięcie. Interpreter odtwarza to tylko dla elementu z onPress i bez onLongPress; inne przytrzymania zostają bez skutku. */
+        case 'longPressOn': {
+          const s = sel(arg); if (!(await this.waitFor(s, true, 1500))) this.fail(step, 'Element do przytrzymania niewidoczny.');
+          const target = this.find(s)[0]; const n = target?.node as Node | undefined;
+          let pr: Node | null = n ?? null; while (pr && typeof pr.props.onPress !== 'function' && typeof pr.props.onLongPress !== 'function') pr = pr.parent as Node | null; /* najbliższy element z obsługą dotyku — jak w fireEvent.press */
+          if (n && pr && typeof pr.props.onPress === 'function' && typeof pr.props.onLongPress !== 'function') { const why = this.tapProblem(target); if (why) this.fail(step, `Element ${why}.`); await this.tap(target);
+            /* pole z autoFocus (edytor liczby na tablicy) dostaje fokus i klawiaturę od razu po otwarciu — jak na iOS */
+            const af = (screen.UNSAFE_root as unknown as { findAll: (f: (x: Node) => boolean) => Node[] }).findAll((x: Node) => x.type === 'TextInput' && x.props.autoFocus === true)[0];
+            if (af) { this.focused = af; this.kbScroll(af); }
+          }
+          break;
+        }
         case 'assertNotVisible': if (!(await this.waitFor(sel(arg), false, 1500))) this.fail(step, 'Element widoczny.'); break;
         case 'scrollUntilVisible': {
           const s = sel(arg); let c: Cand | undefined;

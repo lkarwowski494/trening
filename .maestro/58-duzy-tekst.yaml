@@ -42,6 +42,10 @@ name: Duży tekst dostępności — ekran Trening
 # nie widzi (kontrola na telefonie), więc asercja sprawdza tylko, że po przytrzymaniu ekran treningu działa dalej (zrzut 590 — kadr w pełnej rozdzielczości)
 - longPressOn: { id: "board-value-weight" }
 - takeScreenshot: 590-po-przytrzymaniu-liczby
+# E2E 41347718181 (02.11.2026): przytrzymanie liczby bez obsługi onLongPress kończy się onPress — na symulatorze otwiera edytor liczby z klawiaturą numeryczną (zrzut 590),
+# a stuknięcie ✓ serii pod klawiaturą trafiało w klawisz „3” (ciężar „3 lb”, seria nieodhaczona, brak przerwy). Klawiatura numeryczna nie ma „Gotowe” (hideKeyboard pada,
+# E2E 38471218362) — fokus zdejmuje stuknięcie w opis tablicy nad klawiaturą (jak 29 i 36); gdy edytor się nie otworzył, stuknięcie w opis nic nie zmienia.
+- tapOn: { id: "board-desc" }
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 15000 }
 - tapOn: { text: "Set 1 done.*", index: 0 }
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
