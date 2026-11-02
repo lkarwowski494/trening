@@ -46,6 +46,13 @@ describe('macierz języków: opisy uprawnień zaktualizowane we wszystkich języ
   test('verify-native pilnuje tych samych opisów w prebuildzie (lista sprzed 0.16 + brak „nie odczytuje” w pl/en)', () => {
     const v = fs.readFileSync(path.join(root, 'scripts/verify-native.mjs'), 'utf8'); expect(v).toContain('tests/fixtures/health-usage-pre016.json'); expect(v).toMatch(/nie odczytuje\|does not read/);
   });
+  test('verify-native czyta InfoPlist.strings z kluczami w cudzysłowie i bez (SDK 58 zapisuje "Klucz" = "…"; 02.11.2026, zb010) — każdy wzorzec klucza HealthKit ma opcjonalne cudzysłowy', () => {
+    const v = fs.readFileSync(path.join(root, 'scripts/verify-native.mjs'), 'utf8');
+    expect(v).not.toMatch(/\/NSHealth(?:Update|Share)UsageDescription = /); /* goły klucz bez opcjonalnych cudzysłowów byłby fałszywą czerwienią po prebuildzie SDK 58 */
+    expect((v.match(/"\?NSHealth(?:Update|Share)UsageDescription"\? = /g) || []).length).toBeGreaterThanOrEqual(4);
+    expect(v).toContain('`"?${k}"? = ');
+    for (const linia of ['"NSHealthShareUsageDescription" = "Opis odczytu Zdrowia."', 'NSHealthShareUsageDescription = "Opis odczytu Zdrowia."']) expect(/"?NSHealthShareUsageDescription"? = "[^"]{10,}"/.test(linia)).toBe(true);
+  });
 });
 
 describe('polityka prywatności (site/privacy.html)', () => {

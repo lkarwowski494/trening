@@ -17,7 +17,7 @@ try {
   ok(!ent.includes('aps-environment'), 'entitlements: aps-environment (Push) — darmowe Apple ID tego nie podpisze');
   { const want = readFileSync(root + 'scripts/ci/required-entitlements-app.txt', 'utf8').split('\n').map(l => l.replace(/#.*/, '').trim()).filter(Boolean).sort();
     const keys = [...ent.matchAll(/<key>([^<]+)<\/key>/g)].map(m => m[1]).sort(); ok(JSON.stringify(keys) === JSON.stringify(want), `entitlements: dokładnie ${want.join(', ')}, są: ` + keys.join(', ')); } /* runda 63: dokładny zbiór kluczy; 19.10.2026: + time-sensitive, lista w jednym miejscu (strażnik testflight.yml) */
-  for (const l of ['pl', 'en']) { const p = root + `ios/Trening/Supporting/${l}.lproj/InfoPlist.strings`; ok(existsSync(p) && /NSHealthUpdateUsageDescription = "[^"]{10,}"/.test(readFileSync(p, 'utf8')) && /NSHealthShareUsageDescription = "[^"]{10,}"/.test(readFileSync(p, 'utf8')), `InfoPlist.strings ${l}: brak lub zły format`); }
+  for (const l of ['pl', 'en']) { const p = root + `ios/Trening/Supporting/${l}.lproj/InfoPlist.strings`; ok(existsSync(p) && /"?NSHealthUpdateUsageDescription"? = "[^"]{10,}"/.test(readFileSync(p, 'utf8')) && /"?NSHealthShareUsageDescription"? = "[^"]{10,}"/.test(readFileSync(p, 'utf8')), `InfoPlist.strings ${l}: brak lub zły format`); }
   const plist = readFileSync(root + 'ios/Trening/Info.plist', 'utf8');
   ok(!plist.includes('UIBackgroundModes'), 'Info.plist: UIBackgroundModes (nieużywany tryb w tle)');
   ok(/<key>NSSupportsLiveActivities<\/key>\s*<true\/>/.test(plist), 'Info.plist: NSSupportsLiveActivities ≠ true'); /* runda 64: wartość, nie sam klucz */
@@ -45,10 +45,10 @@ try {
   const lproj = readdirSync(root + 'ios/Trening/Supporting').filter(d => d.endsWith('.lproj'));
   const langs = readdirSync(root + 'lib/locales').filter(f => /^[a-z]{2}\.json$/.test(f)).length + 2; /* + pl, en */
   ok(lproj.length >= langs, `InfoPlist.strings: ${lproj.length} języków, oczekiwano ${langs}`);
-  for (const d of lproj) { const t = readFileSync(root + `ios/Trening/Supporting/${d}/InfoPlist.strings`, 'utf8'); ok(/NSHealthUpdateUsageDescription = "[^"]{10,}"/.test(t) && /NSHealthShareUsageDescription = "[^"]{10,}"/.test(t), `InfoPlist.strings ${d}: brak lub zły format`); }
+  for (const d of lproj) { const t = readFileSync(root + `ios/Trening/Supporting/${d}/InfoPlist.strings`, 'utf8'); ok(/"?NSHealthUpdateUsageDescription"? = "[^"]{10,}"/.test(t) && /"?NSHealthShareUsageDescription"? = "[^"]{10,}"/.test(t), `InfoPlist.strings ${d}: brak lub zły format`); }
   /* 0.16.0 (odczyt z Apple Health, docs/29 rozdz. 8 i 15 pkt 9): aplikacja czyta Zdrowie, więc żaden język nie może zostać przy opisie sprzed 0.16 („nie odczytuje danych zdrowotnych”,
    * zapis bez wzmianki o usuwaniu kopii) — teksty sprzed zmiany: tests/fixtures/health-usage-pre016.json; polski i angielski dodatkowo bez zdania „nie odczytuje” / „does not read” */
-  { const stale = JSON.parse(readFileSync(root + 'tests/fixtures/health-usage-pre016.json', 'utf8')); const val = (t, k) => (t.match(new RegExp(`${k} = "((?:[^"\\\\]|\\\\.)*)"`)) || [])[1]?.replace(/\\(.)/g, '$1');
+  { const stale = JSON.parse(readFileSync(root + 'tests/fixtures/health-usage-pre016.json', 'utf8')); const val = (t, k) => (t.match(new RegExp(`"?${k}"? = "((?:[^"\\\\]|\\\\.)*)"`)) || [])[1]?.replace(/\\(.)/g, '$1');
     for (const d of lproj) { const code = d.replace(/\.lproj$/, ''); const t = readFileSync(root + `ios/Trening/Supporting/${d}/InfoPlist.strings`, 'utf8'); const sh = val(t, 'NSHealthShareUsageDescription'), up = val(t, 'NSHealthUpdateUsageDescription');
       ok(!stale[code] || (sh !== stale[code].share && up !== stale[code].update), `InfoPlist.strings ${d}: opis uprawnienia HealthKit sprzed 0.16 (aplikacja czyta Zdrowie — zaktualizuj tłumaczenie w locales/${code}.json)`);
       if (code === 'pl' || code === 'en') ok(!/nie odczytuje|does not read|doesn't read/i.test(sh ?? '') && /kroki|steps/i.test(sh ?? ''), `InfoPlist.strings ${d}: opis odczytu Zdrowia nieaktualny`); } }
