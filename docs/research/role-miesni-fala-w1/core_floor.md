@@ -236,3 +236,9 @@ i TeachMeAnatomy otwarte ponownie (WebFetch 02.11.2026); Kenhub oceniony z zapis
 | S16 (TeachMeAnatomy; także S10 i inne w rejestrze) | 4 | 4 w rejestrze — **do decyzji koordynatora linii** | (b) autor (Dr O. Jones) i data aktualizacji (01.02.2026); (c) reklama własnej płatnej wersji serwisu, bez afiliacji; (a) strona nie opisuje redakcji ani recenzji — wątpliwe. Źródło całego istniejącego rejestru ról mięśni, więc decyzja wykracza poza ten plik. | w tym pliku: `obliques.rotate` bez zmian (OpenStax + Kenhub + Elsevier). Poza nim: gdyby 5, `lower_back.spine_ext` (S4 + S10) → „jedno źródło” dla wszystkich par w danych, w tym Superman i Lower Back Curl z tej fali |
 | S34-g1 (Sussex Sport) | 5 | 5 | bez zmiany. | — |
 | S32-g1 | 2 | 2 (bez zmian; poza zakresem) | uwaga: twierdzenie stoi w tle przeglądu, więc dla niego ma wagę pojedynczej publikacji — status `dwa_zrodla` (nie „ustalone”) pozostaje właściwy. | — |
+
+
+## Korekta szczebli — uzupełnienie 2 (02.11.2026)
+
+Dopisał koordynator grupy G1 na podstawie ustaleń badaczy (sekcja 6 w `wskazowki-fala-w1/core_floor-2.md`).
+Bez zmian stanu. Uzupełnienie 2 dotyczy organizacji zdrowia, centrów sportu i serwisów trenerskich; źródła ról to podręczniki anatomii i serwisy anatomiczne (S-id), których nie obejmuje. Sussex Sport (S34-g1, uczelniane centrum sportu) — szczebel 5 bez względu na autora, bo i tak jest jedynym źródłem `obliques.antirotation`. TeachMeAnatomy — nadal do decyzji koordynatora linii (uzupełnienie 2 go nie obejmuje).

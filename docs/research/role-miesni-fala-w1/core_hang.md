@@ -36,3 +36,9 @@ S30-g1 (Kenhub) nie jest niezależne od S18, a S31-g1 (learnmuscles) po korekcie
 - Zrobione: 3 pary gotowe (nowa reguła wspólna), L-Sit otwarte. Korekta szczebli 02.11.2026 — bez zmian statusów.
 - Zostało: przeniesienie do danych; ewentualny przegląd, czy wznosy nóg w zwisie należą do `core_flexion`.
 - Pułapki: `obliques.trunk_flex` zależy od szczebla Elsevier (S29-g1).
+
+
+## Korekta szczebli — uzupełnienie 2 (02.11.2026)
+
+Dopisał koordynator grupy G1 na podstawie ustaleń badaczy (sekcja 6 w `wskazowki-fala-w1/core_floor-2.md`).
+Bez zmian stanu. Uzupełnienie 2 dotyczy organizacji zdrowia, centrów sportu i serwisów trenerskich; źródła ról to podręczniki anatomii i serwisy anatomiczne (S-id), których nie obejmuje. Sussex Sport (S34-g1, uczelniane centrum sportu) — szczebel 5 bez względu na autora, bo i tak jest jedynym źródłem `obliques.antirotation`. TeachMeAnatomy — nadal do decyzji koordynatora linii (uzupełnienie 2 go nie obejmuje).

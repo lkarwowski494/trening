@@ -62,3 +62,9 @@ Sprawdzone źródła szczebla 4–5 używane w tym pliku (szczegóły i powody �
 - Zrobione: 13 par gotowych (skośne główne: 9 × skręt, 4 × skłon boczny), pozostałe otwarte z powodem. Korekta szczebli 02.11.2026 — bez zmian statusów.
 - Zostało: przeniesienie do danych i przeliczenie generatorem; ewentualnie szukanie źródeł dla ruchów złożonych (windmill, bent press).
 - Pułapki: `Pallof Press With Rotation` ma wzorzec `core_anti_rot` — musi trafić do `nameRules` (sprawdzane przed regułą rodziny), inaczej dostałby `antirotation`.
+
+
+## Korekta szczebli — uzupełnienie 2 (02.11.2026)
+
+Dopisał koordynator grupy G1 na podstawie ustaleń badaczy (sekcja 6 w `wskazowki-fala-w1/core_floor-2.md`).
+Bez zmian stanu. Uzupełnienie 2 dotyczy organizacji zdrowia, centrów sportu i serwisów trenerskich; źródła ról to podręczniki anatomii i serwisy anatomiczne (S-id), których nie obejmuje. Sussex Sport (S34-g1, uczelniane centrum sportu) — szczebel 5 bez względu na autora, bo i tak jest jedynym źródłem `obliques.antirotation`. TeachMeAnatomy — nadal do decyzji koordynatora linii (uzupełnienie 2 go nie obejmuje).

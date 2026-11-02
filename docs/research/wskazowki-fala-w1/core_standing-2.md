@@ -4,7 +4,7 @@ Data: 02.11.2026. Autor: badacz merytoryczny (agent). Tryb: tylko zbieranie dany
 Metoda: `docs/research/33-wskazowki-partia2.md` („Metoda”) i `docs/research/27-wskazowki-zrodla.md`; wyjątek dla wskazówek techniki z CLAUDE.md
 (2 zgodne, przeczytane źródła szczebla 4 z różnych organizacji na każde zdanie). Strony innych aplikacji treningowych nie są źródłem (uzupełnienie
 briefu koordynatora) — pominięte i nienazwane. ExRx — 403, archiwum — zablokowane (nie próbowano ponownie).
-Szczeble źródeł poprawione 02.11.2026 wg rozstrzygnięcia koordynatora linii 1.1 — sekcja „Korekta szczebli 02.11.2026” na końcu.
+Szczeble źródeł poprawione 02.11.2026 wg rozstrzygnięcia koordynatora linii 1.1 — sekcja „Korekta szczebli 02.11.2026” na końcu; uzupełnienie 2 — sekcja 7.
 
 ## 1. Tabela
 
@@ -73,7 +73,7 @@ bez opisu drugiego kettlebella wprowadza w błąd, przenieść ćwiczenie do otw
     "mistakes": [
       {"c": "core_standing.windmill.mis.elbow", "s": [
         ["lifetime-el-kb-windmill", "Common mistakes, „Bending the top elbow” — szczebel 5 po korekcie"],
-        ["ace-386", "opis, start (wariant: jeden kettlebell; polecenie trzymania górnej ręki prosto — odwrotność błędu)"]
+        ["ace-386", "opis, start (wariant: jeden kettlebell; polecenie trzymania górnej ręki prosto — odwrotność błędu; błąd = zaprzeczenie standardu)"]
       ]}
     ]
   },
@@ -126,14 +126,14 @@ Uwagi:
 
 ## 4. Nowe źródła
 
-| id | adres | organizacja | szczebel (po korekcie 02.11.2026) |
+| id | adres | organizacja | szczebel (po korekcie 02.11.2026 i uzupełnieniu 2) |
 |---|---|---|---|
 | ace-386 | https://acefitness.org/resources/everyone/exercise-library/386/high-windmill | ACE — „High Windmill (#386)” | 4 |
 | ace-382 | https://www.acefitness.org/resources/everyone/exercise-library/382/figure-eight/ | ACE — „Figure Eight (#382)” | 4 |
 | lifetime-el-kb-windmill | https://experiencelife.lifetime.life/article/the-kettlebell-windmill/ | Life Time — magazyn „Experience Life” (M. Fazeli Fard, 24.04.2020) | **5** (było: 4 PROPOZYCJA) — powód w sekcji „Korekta” |
 | gymreapers-kb-figure-8 | https://uk.gymreapers.com/blogs/news/kettlebell-figure-8 | Gymreapers — blog producenta akcesoriów (R. Pilon, 11.08.2023) | **5** (było: 4 PROPOZYCJA) — powód w sekcji „Korekta” |
 | breakingmuscle-kb-figure-8-hold | https://breakingmuscle.com/?p=60011 | Breaking Muscle — „2 Kettlebell Exercises to Create Incredible Trunk Power” (W. J. Dorey, akt. 22.11.2021) | **5** (było: 4) — rozstrzygnięcie koordynatora |
-| prehab-seated-thoracic-rotation-dowel | https://theprehabguys.com/vimeo-video/seated-thoracic-rotation-dowel-2/ | The Prehab Guys — „Seated Thoracic Rotation – Dowel” | 4 wg wcześniejszego wpisu (organizacja w rejestrze); nie oceniane ponownie — użyte tylko w „otwarte”, nie wpływa na stan |
+| prehab-seated-thoracic-rotation-dowel | https://theprehabguys.com/vimeo-video/seated-thoracic-rotation-dowel-2/ | The Prehab Guys — „Seated Thoracic Rotation – Dowel” | uzupełnienie 2: warunkowo 4 tylko przy autorze z kwalifikacjami — biogramu nie sprawdzano (strona wideo, bez wpływu na stan: jedyne przeczytane źródło) |
 | catalyst-522 (nie nowe — z `core_standing-1.md`) | https://catalystathletics.com/exercise/522/Windmill | Catalyst Athletics | 4 (rozstrzygnięcie koordynatora); użyte zamiast Life Time |
 
 ## 5. Otwarte
@@ -141,11 +141,13 @@ Uwagi:
 - **Double Kettlebell Windmill — po korekcie:** `setup` (drugi kettlebell w dole) — jedyne źródło wprost to Experience Life (szczebel 5);
   `windmill.up` i `wm.eyes` — ACE + Experience Life → po jednym źródle szczebla 4; `mis.elbow` wprost tylko Experience Life. Do zamknięcia: drugie
   źródło szczebla 4 opisujące windmill z dwoma kettlebellami (ISSA, NFPT z autorem i datą, BarBend o technice) albo Catalyst #522 przeczytany ponownie pod kątem powrotu i wzroku.
+- **Double Kettlebell Windmill — `mis.elbow` a reguła błędu (uzupełnienie 2):** ACE #386 i Catalyst #522 podają standard „ręka prosta”, którego uginanie łokcia jest bezpośrednim zaprzeczeniem → każde może być **drugim** źródłem błędu. Brakuje pierwszego źródła szczebla 4 z błędem wprost (tylko Life Time = 5) → wstrzymane; ta sama sprawa do decyzji koordynatora co w `core_standing-1.md` p. 5.
 - **Double Kettlebell Windmill — `mis.jerk` (zestaw ogólny):** żadne z przeczytanych źródeł (ACE #386, Experience Life) nie wymienia szarpania
   jako błędu. Możliwy błąd zestawu ogólnego — w karcie pominięte.
 - **Double Kettlebell Windmill — dalsze zdania:** „ruch nie jest skłonem w bok” i „schodź tylko tak nisko, jak pozwala ruchomość” —
   tylko Experience Life (szczebel 5). Stopy obrócone ok. 45° — jedno źródło (liczba — pełne zasady). Rozstaw stóp — sprzeczność (pkt 3).
 - **Kettlebell Figure 8 (po korekcie całe ćwiczenie):** każde zdanie ma tylko ACE #382; Gymreapers (artykuł poleca kettlebelle Gymreapers) i Breaking Muscle — szczebel 5.
+  `figure8.mis.hunch` — ACE #382 nie podaje standardu postawy pleców, więc reguła błędu nie ma zastosowania.
   Do zamknięcia: drugie źródło szczebla 4 (ISSA, NFPT z autorem i datą, BarBend o technice, Catalyst, producent kettlebelli z własną biblioteką ćwiczeń).
 - **Seated Barbell Twist:** przeczytane jedno źródło — The Prehab Guys (wariant: drążek gimnastyczny, ćwiczenie mobilności;
   „rotate only your upper and mid back back and forth to each side”, „Do this in a slow and controlled motion”). Druga strona serwisu
@@ -157,7 +159,7 @@ Uwagi:
 - **Weighted Ball Side Bend:** opis w katalogu źródłowym (free-exercise-db, szczebel 5 — tylko do rozpoznania ruchu, nie źródło): leżenie bokiem na piłce
   gimnastycznej, talerz przy głowie, skłon tułowia w bok. Zestaw ogólny `sideBend` (skłon stojąc) i figura stojąca — **prawdopodobnie błędne
   przypisanie** (do sprawdzenia przez koordynatora/recenzję figur). Źródła: strona uczelni (James Madison University, PDF „Stability ball core
-  routine”) — 503; serwis jednoautorski — szczebel niepewny. Brak 2 źródeł.
+  routine”) — 503 (uzupełnienie 2: uczelnia bez autora → 5, z autorem z kwalifikacjami warunkowo 4); serwis jednoautorski — szczebel niepewny. Brak 2 źródeł.
 - **Cable Judo Flip, Spell Caster, Bosu Ball Cable Crunch With Side Bends:** tylko strony aplikacji i agregatory; opisy wzajemnie sprzeczne
   (Spell Caster: zamach w poprzek ciała vs. skłon w bok vs. zawias; Bosu: klęk / siad / stanie). Zestawy ogólne `rotation` dla Judo Flip
   (`rt.control`, `plank.brace`, `mis.jerk`) — bez przeczytanego źródła. Do ponownej próby: biblioteki producentów wyciągów i ACE/NASM pod innymi nazwami.
@@ -181,12 +183,25 @@ serwisu z redakcją i recenzją ekspercką albo producenta własnego rodzaju spr
 | Kettlebell Figure 8 | gotowe | otwarte | 3 → 0 |
 | pozostałe 6 | otwarte | otwarte | 0 → 0 |
 
+## 7. Korekta szczebli — uzupełnienie 2 (02.11.2026): bez zmian stanu
+
+The Prehab Guys (Seated Barbell Twist) — warunkowo 4 tylko z autorem z kwalifikacjami; to jedyne przeczytane źródło, więc ćwiczenie zostaje otwarte niezależnie od biogramu. JMU (Weighted Ball Side Bend) — niedostępne (503), uczelnia. Reguła błędu sprawdzona dla `windmill.mis.elbow` i `figure8.mis.hunch` (p. 5) — żadne nie wraca. Gotowe: 1 → 1 (2 zdania).
+
 ## Stan
 
 - Przed korektą: 2 z 8 gotowe (Double Kettlebell Windmill — 6 zdań, Kettlebell Figure 8 — 3 zdania).
 - Po korekcie 02.11.2026: **1 z 8 gotowe** (Double Kettlebell Windmill — 2 zdania, oba z wariantu z jednym kettlebellem); Kettlebell Figure 8 → otwarte.
   Wyniki nie usunięte — wstrzymani kandydaci w pkt 2 („Kandydaci wstrzymani przy korekcie”).
+- Po uzupełnieniu 2 (02.11.2026): bez zmian — 1 z 8 gotowe (sekcja 7).
 - Otwarte: 7 kluczy (pkt 5), w tym 1 podejrzenie błędnego przypisania figury/zestawu (Weighted Ball Side Bend) i 1 niepotwierdzony `mis.jerk` (windmill).
 - Następny krok: (1) koordynator — decyzja, czy karta windmilla z dwoma kettlebellami bez zdania o drugim kettlebellu może być „gotowa”; ujednolicić zdania
-  z `core_standing-1.md`; (2) drugie źródło szczebla 4 dla Figure 8 i windmilla z dwoma kettlebellami (ISSA, NFPT z autorem, BarBend o technice);
+  z `core_standing-1.md`; decyzja o `mis.elbow` wg reguły błędu; (2) drugie źródło szczebla 4 dla Figure 8 i windmilla z dwoma kettlebellami (ISSA, NFPT z autorem, BarBend o technice);
   (3) ponowna próba dla otwartych: PDF JMU (503), strony producentów wyciągów, nazwy alternatywne w ACE/NASM.
+
+### Stan zadania „uzupełnienie 2” dla całej fali (druga sesja, zatrzymane na limicie kontekstu, 02.11.2026)
+
+Przejrzane i zapisane (sekcja „uzupełnienie 2” dopisana): `wskazowki-fala-w1/neck.md`, `core_floor-1.md`, `core_floor-2.md` (sesja 1); `core_floor-3.md`, `core_standing-1.md`, `core_standing-2.md` (sesja 2) — we wszystkich trzech bez zmian stanu.
+
+**NIEprzejrzane:** `wskazowki-fala-w1/core_hang.md`, `back_extension.md`; `role-miesni-fala-w1/core_floor.md`, `core_standing.md`, `core_hang.md`, `back_extension.md`, `neck.md`.
+Wstępne ustalenia dla nich — w `core_floor-2.md`, sekcja 6 (Western SRS i HKU CSE → 5; StayWell/OU Health → 4; Sussex Sport — sprawdzić autora; w rolach `neck.md` dopisać NHS = 4, HealthLink BC/Kaiser/UMM = jedno źródło).
+Otwarta sprawa dla koordynatora z tej sesji: reguła błędu, gdy błąd wprost podaje tylko źródło szczebla 5, a dwa źródła szczebla 4 podają standard (windmill `mis.elbow`).

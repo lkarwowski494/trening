@@ -11,6 +11,7 @@ Szczebel 4 = naraz: (a) organizacja szkoląca/certyfikująca trenerów, serwis z
 (b) autor z datą albo treść jawnie firmowana przez organizację; (c) nie recenzja afiliacyjna ani marketing. Dwa serwisy jednego właściciela = jedno źródło.
 Sieci siłowni/klubów = 5. Ocena każdego źródła — kolumna „szczebel i powód” w sekcji 4. Zdania z < 2 źródłami szczebla 4 i ćwiczenia z < 2 zdaniami przeniesione
 do sekcji 5 (dane zachowane w bloku „Kandydaci wstrzymani — nie do wdrożenia”). Spójność z `core_standing-2.md`: Life Time = 5 (sekcja 7).
+Uzupełnienie 2 (02.11.2026) — sekcja 8.
 
 ## 1. Tabela
 
@@ -23,7 +24,7 @@ do sekcji 5 (dane zachowane w bloku „Kandydaci wstrzymani — nie do wdrożeni
 | Barbell Side Bend | otwarte | 0 | zostało 1 zdanie (`core_standing.sidebend.move`) — za mało na kartę |
 | Pallof Press With Rotation | otwarte | 0 | obrót tylko Speediance (jedna organizacja); samo `pallof.setup` = 1 zdanie |
 | Cable Russian Twists | otwarte | 0 | weighttraining.guide — szczebel 5; zostaje tylko ACE #65 (wariant bez wyciągu) |
-| Medicine Ball Full Twist | otwarte | 0 | RDX — szczebel 5; zostaje tylko Intermountain Health; do tego sprawa katalogowa (ćwiczenie w parze) |
+| Medicine Ball Full Twist | otwarte | 0 | RDX — szczebel 5; zostaje tylko Intermountain Health (4 — potwierdzone uzupełnieniem 2); do tego sprawa katalogowa (ćwiczenie w parze) |
 | Bent Press | otwarte | 0 | Breaking Muscle i Legendary Strength — szczebel 5 |
 
 ## 2. JSON do `exercises` (tylko gotowe, po korekcie 02.11.2026 — spójność Life Time)
@@ -106,7 +107,7 @@ Uwaga do `core_standing.sidebend.move`: „powoli” — Catalyst („controlled
       {"c": "core_standing.windmill.knees", "s": [["catalyst-522", "opis („Keeping the knees close to straight”)"], ["lifetime-kb-windmill", "kroki (lekko ugięte kolano — „soft bend”; szczebel 5)"]]},
       {"c": "wm.eyes", "s": [["ace-386", "opis („Turn to look up at the left hand”)"], ["lifetime-kb-windmill", "(szczebel 5)"], ["mti-1321", "(szczebel 5)"]]}
     ],
-    "mistakes": [{"c": "core_standing.windmill.mis.elbow", "s": [["lifetime-kb-windmill", "Common Mistakes (uginanie łokcia górnej ręki; szczebel 5)"], ["catalyst-522", "opis (ręka z ciężarem „straight up” — wskazówka, nie błąd wprost)"], ["ace-386", "opis (ręka prosta — wskazówka, nie błąd wprost)"]]}]
+    "mistakes": [{"c": "core_standing.windmill.mis.elbow", "s": [["lifetime-kb-windmill", "Common Mistakes (uginanie łokcia górnej ręki; szczebel 5)"], ["catalyst-522", "opis (ręka z ciężarem „straight up” — wskazówka, nie błąd wprost; błąd = zaprzeczenie standardu)"], ["ace-386", "opis (ręka prosta — wskazówka, nie błąd wprost; błąd = zaprzeczenie standardu)"]]}]
   },
   "Landmine Rotation": {
     "setup": [{"c": "core_standing.landmine.setup", "s": [["dynamo-landmine-180", "kroki („Adopt a wide stance”)"], ["herts-landmine-rotation", "kroki („with a wide stance for balance”)"]]}],
@@ -197,10 +198,10 @@ Przygotowane, ale wstrzymane/otwarte (nie wdrażać, dopóki nie będzie 2 źró
 | speediance-pallof-cable | https://www.speediance.com/blogs/fitness/pallof-press-with-cable | Speediance (Y. Chen, 09.04.2026) | jw.; ten sam właściciel → razem z poprzednim jedno źródło |
 | mti-1321 | https://mtntactical.com/exercises/mnt1321-kettlebell-windmill/ | Mountain Tactical Institute | 5 — sprawdzone ponownie 02.11.2026 (strona główna mtntactical.com; /about → 404): (a) niespełnione — firma sprzedająca plany („Athlete Subscription”, licencje dla siłowni), o szkoleniu/certyfikacji trenerów strona nic nie mówi; nie redakcja, nie producent; (c) niespełnione — strona prowadzi do sprzedaży planów |
 | dynamo-landmine-180 | https://blog.dynamofitness.com.au/?p=2716 | Dynamo Fitness | 5 — brak autora i daty, wpis z „SHOP NOW” (marketing); nie ustalono, czy produkuje własny landmine |
-| herts-landmine-rotation | https://performanceherts.co.uk/news-exercise-of-the-month-1352 | Performance Herts (Uniwersytet Hertfordshire) | 5 — (a) niespełnione: klub/obiekt sportowy, nie szkoli trenerów, nie redakcja, nie producent |
+| herts-landmine-rotation | https://performanceherts.co.uk/news-exercise-of-the-month-1352 | Performance Herts (Uniwersytet Hertfordshire) | 5 — (a) niespełnione: klub/obiekt sportowy, nie szkoli trenerów, nie redakcja, nie producent; uzupełnienie 2: uczelniane centrum sportu bez autora → 5 (bez zmian) |
 | dumbbellsdirect-side-bends | https://dumbbellsdirect.com/blogs/dumbbell-exercises-specific-movements/dumbbell-side-bends | Dumbbells Direct (11.09.2026, bez autora) | 5 — sprzedawca sprzętu, blog sklepu |
 | wtg-cable-russian-twist | https://weighttraining.guide/exercises/cable-russian-twist-on-a-stability-ball | weighttraining.guide (M. Livelo) | 5 — serwis jednej osoby bez redakcji i recenzji, promuje własny e-book |
-| intermountain-mb-partner | https://www.intermountainhealth.org/blogs/two-person-medicine-ball-workout | Intermountain Health (sieć szpitali; 15.01.2014, akt. 25.10.2023, autor „Unknown”) | 4 warunkowo — materiał placówki medycznej z datą (analogia do reguły WebMD Ignite); do potwierdzenia przez koordynatora |
+| intermountain-mb-partner | https://www.intermountainhealth.org/blogs/two-person-medicine-ball-workout | Intermountain Health (sieć szpitali; 15.01.2014, akt. 25.10.2023, autor „Unknown”) | **4** — uzupełnienie 2 (02.11.2026): system ochrony zdrowia, treść jawnie firmowana → 4 (data niewymagana) |
 | rdx-mb-pass | https://blogs.rdxsports.com/?p=4063 | RDX Sports (16.02.2016, bez autora) | 5 — blog marketingowy producenta; nie ustalono, czy piłki lekarskie to jego własny rodzaj sprzętu |
 | breakingmuscle-bent-press-2 | https://breakingmuscle.com/tackle-the-kettlebell-bent-press-part-2/ | Breaking Muscle (C. Abbott, akt. 22.11.2021) | 5 — wg listy |
 | legendary-bent-press | https://legendarystrength.com/?p=11339 | Legendary Strength (L. Christopher, 24.09.2019) | 5 — strona trenera sprzedająca własne produkty; nie organizacja szkoląca, nie redakcja |
@@ -213,6 +214,7 @@ Szukanie zastępczego źródła dla `woodchop.mis.arch` (02.11.2026): wyszukiwar
 ## 5. Otwarte
 
 - **Korekta 02.11.2026 (spójność Life Time) — skutki:** `core_standing.woodchop.mis.arch` ma tylko ACE #108 → wstrzymane. W windmillu `knees` (tylko Catalyst), `mis.elbow` (błąd wprost tylko Life Time; ACE i Catalyst mówią „ręka prosta” jako wskazówkę — spójnie z `core_standing-2.md` nie liczę odwrócenia wskazówki jako źródła błędu) i `wm.eyes` (ACE #386 + dwa źródła szczebla 5) → wstrzymane.
+- **Reguła błędu (uzupełnienie 2) — `windmill.mis.elbow`:** uginanie łokcia jest bezpośrednim zaprzeczeniem standardu ACE #386 i Catalyst #522 („ręka prosta”), więc oba mogą być **drugim** źródłem błędu („błąd = zaprzeczenie standardu”). Pierwszego źródła szczebla 4, które podaje ten błąd wprost, nie ma (wprost tylko Life Time = 5) — wg wzoru z `neck.md` (pierwsze źródło podaje błąd, drugie standard) zdanie zostaje wstrzymane. **Do decyzji koordynatora:** czy dwa niezależne źródła szczebla 4 ze standardem, którego błąd jest bezpośrednim zaprzeczeniem, wystarczą bez źródła podającego błąd wprost (wtedy `mis.elbow` → gotowe, windmill 3 → 4 zdania).
 - **Institute of Motion (b):** jeśli koordynator nie uzna firmowania przez domenę za „treść jawnie firmowaną”, Cable Woodchop spada do 0 zdań z 2 źródłami (każde ma tylko ACE) → otwarte w całości.
 - **Cable Woodchop — możliwe błędy zestawu ogólnego** (`lib/figures/v2/cue-sets.json`, dziś `general`):
   - `chop.close` („Ciężar blisko ciała…”) — w wersji z wyciągiem ręce są wyciągnięte; „blisko ciała” mówi tylko ACE #108 o piłce w etapie 1 → niepotwierdzone, możliwy błąd zestawu.
@@ -226,7 +228,7 @@ Szukanie zastępczego źródła dla `woodchop.mis.arch` (02.11.2026): wyszukiwar
 - **Barbell Side Bend:** ustawienie sztangi (jak do przysiadu) — tylko Catalyst #701; `sb.plane` — Catalyst #701 + Dumbbells Direct (5); `core_standing.sidebend.move` — Catalyst #701 + ISSA (wariant: hantel) — jedyne zdanie z 2 źródłami → za mało na kartę. Zestaw ogólny `dyn.control` („zakres zwiększaj stopniowo”) — żadne przeczytane źródło tego nie mówi → możliwy błąd zestawu.
 - **Pallof Press With Rotation:** obrót od wyciągu po wypchnięciu, biodra przodem, ruch z tułowia, pauza, powolny powrót — tylko Speediance (jeden właściciel). `pallof.setup` (Speediance odsyła do ustawienia zwykłego Pallofa + ACE #332 i Mullane 2021 jako wariant bez obrotu) — jedno zdanie, za mało na kartę; do decyzji koordynatora, czy zwykły Pallof liczy się tu jako wariant. `pallof.noTwist` NIE pasuje do tej pozycji (ćwiczenie zakłada obrót) — jeśli zestaw ogólny/rodzinny je przypisuje, to błąd. Zakres obrotu (20–45° ze streszczenia wyszukiwarki) — nieprzeczytany.
 - **Cable Russian Twists:** po rozstrzygnięciu tylko ACE #65 (wariant bez wyciągu, dłonie złożone). Kierunek „od wyciągu”, wydech — tylko weighttraining.guide (5). Kolana 90° — tylko ACE (liczba). `rt.setup` / `rt.move` (siad) nie pasują do wersji na piłce.
-- **Medicine Ball Full Twist:** w przeczytanych źródłach nazwa oznacza ćwiczenie w parze (podawanie piłki plecami do siebie); katalog wymaga tylko piłki (`loadSource: none`), bez partnera → sprawa produktowa/katalogowa dla analityka (opis „w parze”, zmiana nazwy albo wersja solo). Po rozstrzygnięciu: Intermountain (4 warunkowo) + RDX (5) → każde zdanie ma 1 źródło. Odległość 2–3 stopy — tylko streszczenie wyszukiwarki.
+- **Medicine Ball Full Twist:** w przeczytanych źródłach nazwa oznacza ćwiczenie w parze (podawanie piłki plecami do siebie); katalog wymaga tylko piłki (`loadSource: none`), bez partnera → sprawa produktowa/katalogowa dla analityka (opis „w parze”, zmiana nazwy albo wersja solo). Po uzupełnieniu 2: Intermountain = 4 (potwierdzone) + RDX (5) → każde zdanie nadal ma 1 źródło szczebla 4. Odległość 2–3 stopy — tylko streszczenie wyszukiwarki.
 - **Bent Press:** oba źródła szczebla 5. `wm.eyes` w zestawie ogólnym — żadne przeczytane źródło bent press o wzroku nie mówi → możliwy błąd zestawu. Ustawienie stóp: brak części wspólnej. Następny krok: Catalyst (biblioteka ćwiczeń), organizacje kettlebellowe (RKC/StrongFirst — sprawdzić kryteria a–c).
 
 ## 6. Stan
@@ -234,9 +236,10 @@ Szukanie zastępczego źródła dla `woodchop.mis.arch` (02.11.2026): wyszukiwar
 - Zrobione (02.11.2026, sesja 1): Cable Woodchop, Landmine Rotation, Kettlebell Windmill.
 - Zrobione (02.11.2026, sesja 2): Side Bend (hantel), Barbell Side Bend, Pallof Press With Rotation, Cable Russian Twists, Medicine Ball Full Twist, Bent Press; zastosowane rozstrzygnięcie koordynatora o szczeblach do całego pliku.
 - Zrobione (02.11.2026, sesja 3): korekta spójności Life Time = 5 (sekcja 7); ocena Institute of Motion i Mountain Tactical Institute wg (a)–(c); ACE #386 dodane do windmilla.
+- Zrobione (02.11.2026, uzupełnienie 2): sekcja 8 — Intermountain = 4, stan bez zmian (3 gotowe → 3 gotowe).
 - Wynik: gotowe — Cable Woodchop (3), Kettlebell Windmill (3), Side Bend (hantel) (2); otwarte — Landmine Rotation, Barbell Side Bend, Pallof Press With Rotation, Cable Russian Twists, Medicine Ball Full Twist, Bent Press.
-- Do decyzji koordynatora: Institute of Motion — czy firmowanie przez domenę spełnia (b) (od tego zależy cały woodchop); Intermountain Health; Speediance; czy zwykły Pallof liczy się jako wariant Pallofa z obrotem; nowe brzmienie `core_standing.windmill.setup`.
-- Następny krok: szukać drugiego źródła szczebla 4 (ACE, NASM, ISSA, NFPT z autorem, Catalyst, BarBend — tylko artykuły o technice) dla: `woodchop.mis.arch`, `windmill.knees`, `wm.eyes`, obrotu w Pallof z obrotem, landmine rotation, bent press, cable russian twist (na piłce), `sb.plane`, ustawienia w barbell side bend.
+- Do decyzji koordynatora: Institute of Motion — czy firmowanie przez domenę spełnia (b) (od tego zależy cały woodchop); Speediance; czy zwykły Pallof liczy się jako wariant Pallofa z obrotem; nowe brzmienie `core_standing.windmill.setup`; `windmill.mis.elbow` wg reguły błędu (p. 5).
+- Następny krok: szukać drugiego źródła szczebla 4 (ACE, NASM, ISSA, NFPT z autorem, Catalyst, BarBend — tylko artykuły o technice; materiały szpitali — od uzupełnienia 2 szczebel 4) dla: `woodchop.mis.arch`, `windmill.knees`, `wm.eyes`, obrotu w Pallof z obrotem, landmine rotation, bent press, cable russian twist (na piłce), `sb.plane`, ustawienia w barbell side bend, Medicine Ball Full Twist (drugie źródło obok Intermountain).
 - Pułapki: ExRx 403, archiwum zablokowane; NASM nie ma wpisu woodchop ani side bend; strony Eleiko (inspire360) słabo indeksowane; wyszukiwarka zwraca głównie strony aplikacji; `sport.herts.ac.uk` → `performanceherts.co.uk`; muscleandstrength 403 (i tak się nie liczy); biblioteka ćwiczeń sklepu z suplementami — przekierowanie i 404; johnsonfitness.com 403; stack.com 503; mtntactical.com/about → 404; narzędzie Edit niedostępne — zapis tylko przez pełne Write.
 
 ## 7. Korekta szczebli 02.11.2026 (spójność Life Time)
@@ -269,3 +272,13 @@ Tu było „4 warunkowo” — ujednolicone. Strony ACE #386, Catalyst #522, Ins
 | pozostałe ćwiczenia | bez Life Time | bez zmian |
 
 Uwaga: liczba ćwiczeń gotowych bez zmian (3 z 9), zdań gotowych 11 → 8.
+
+## 8. Korekta szczebli — uzupełnienie 2 (02.11.2026): bez zmian stanu
+
+| źródło | przed | po | powód |
+|---|---|---|---|
+| intermountain-mb-partner | 4 warunkowo | **4** | system ochrony zdrowia, treść jawnie firmowana; data niewymagana. |
+| herts-landmine-rotation | 5 | 5 | uczelniane centrum/obiekt sportowy bez autora. |
+| pozostałe (IoM, Speediance, Life Time, MTI, RDX, Breaking Muscle, Legendary) | bez zmian | bez zmian | nie podlegają regułom uzupełnienia 2. |
+
+Skutek: Medicine Ball Full Twist ma nadal tylko jedno źródło szczebla 4 (Intermountain; RDX = 5) → otwarte. Reguła błędu: `windmill.mis.elbow` i `woodchop.mis.arch` nie mają źródła szczebla 4 podającego błąd wprost obok standardu z drugiej organizacji (`mis.arch`: ACE #108 wprost, drugiej organizacji ze standardem „plecy bez łuku” brak) → wstrzymane; `mis.elbow` do decyzji (p. 5). Gotowe: 3 → 3 (8 zdań).

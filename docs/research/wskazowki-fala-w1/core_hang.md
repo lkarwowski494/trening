@@ -142,3 +142,9 @@ z kwalifikacjami; zaleca wstrzymanie oddechu i lekki łuk w lędźwiach — sprz
 - Następny krok: ISSA i NFPT (szczebel 4 wg koordynatora) — wpisy „hanging leg raise”, „toes to bar”, „L-sit”; BarBend — artykuły o technice.
 - Pułapki: Catalyst #525 bez treści przez WebFetch; wyszukiwarka zwraca głównie aplikacje; ExRx 403; PDF przez WebFetch — zapisany plik
   da się odczytać narzędziem Read (tak przeczytano HKU i Gaiam w back_extension).
+
+
+## Korekta szczebli — uzupełnienie 2 (02.11.2026)
+
+Dopisał koordynator grupy G1 na podstawie ustaleń badaczy (sekcja 6 w `wskazowki-fala-w1/core_floor-2.md`).
+Bez zmian stanu. Western SRS i HKU CSE to uczelniane centra sportu bez autora — szczebel 5 (jak dotąd). Reguła „błąd = zaprzeczenie standardu” nie przywraca żadnego zdania: `hang.noSwing` ma już dwa źródła szczebla 4; pozostałe błędy nie mają standardu w drugiej organizacji.

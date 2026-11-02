@@ -135,3 +135,9 @@ manuals.plus (instrukcja Dynasty) i blog Mirafit — 403.
 - Następny krok: ISSA/NFPT/BarBend (artykuły o technice) — „stability ball back extension”, „reverse hyper”; instrukcje innych producentów piłek.
 - Pułapki: Westside „Reverse Hyper Fundamentals” — 404; manuals.plus i Mirafit — 403; ExRx 403; PDF-y przez WebFetch są binarne, ale
   zapisany plik czyta narzędzie Read (tak HKU i Gaiam).
+
+
+## Korekta szczebli — uzupełnienie 2 (02.11.2026)
+
+Dopisał koordynator grupy G1 na podstawie ustaleń badaczy (sekcja 6 w `wskazowki-fala-w1/core_floor-2.md`).
+Bez zmian stanu. StayWell w bibliotece OU Health (placówka ochrony zdrowia) — szczebel 4, jak w ocenie z drugiej sesji; Lower Back Curl gotowe (2 zdania). HKU CSE — szczebel 5.

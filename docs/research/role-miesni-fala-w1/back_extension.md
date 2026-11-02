@@ -37,3 +37,9 @@ Pary gotowe: **1 przed → 1 po** (warunkowo, jw.).
 - Zrobione: 1 para gotowa. Korekta szczebli 02.11.2026 — bez zmiany statusu; zależność od decyzji o TeachMeAnatomy zapisana.
 - Zostało: przeniesienie do danych (wspólna lista z Superman — `core_floor.md`); decyzja koordynatora o TeachMeAnatomy.
 - Pułapki: brak poza zależnością od S10.
+
+
+## Korekta szczebli — uzupełnienie 2 (02.11.2026)
+
+Dopisał koordynator grupy G1 na podstawie ustaleń badaczy (sekcja 6 w `wskazowki-fala-w1/core_floor-2.md`).
+Bez zmian stanu. Uzupełnienie 2 dotyczy organizacji zdrowia, centrów sportu i serwisów trenerskich; źródła ról to podręczniki anatomii i serwisy anatomiczne (S-id), których nie obejmuje. Sussex Sport (S34-g1, uczelniane centrum sportu) — szczebel 5 bez względu na autora, bo i tak jest jedynym źródłem `obliques.antirotation`. TeachMeAnatomy — nadal do decyzji koordynatora linii (uzupełnienie 2 go nie obejmuje).

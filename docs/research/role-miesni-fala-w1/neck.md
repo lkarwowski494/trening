@@ -116,3 +116,9 @@ Sprawdzone tylko źródła szczebla 4–5 (polecenie koordynatora linii 1.1); Op
 02.11.2026: 3 funkcje zaproponowane (2 z regułą, `neck.lat_flex` bez ćwiczenia), 3 ćwiczenia gotowe do reguły po nazwie, 2 izometrie — rekomendacja „bez opisu”.
 Korekta szczebli 02.11.2026: bez zmian statusów.
 Nic nie wdrożone; blokuje decyzja właściciela (opcje A/B wyżej).
+
+
+## Korekta szczebli — uzupełnienie 2 (02.11.2026)
+
+Dopisał koordynator grupy G1 na podstawie ustaleń badaczy (sekcja 6 w `wskazowki-fala-w1/core_floor-2.md`).
+Bez zmian stanu ról. Dla porządku: ulotki szpitali NHS — szczebel 4; HealthLink BC, Kaiser Permanente i UMass Memorial publikują tę samą licencjonowaną treść (Healthwise/WebMD Ignite) — jedno źródło. Źródła anatomiczne funkcji szyi (OpenStax, Conley 1995, Kenhub) bez zmian. Włączenie opisów szyi czeka na decyzję właściciela A/B.
