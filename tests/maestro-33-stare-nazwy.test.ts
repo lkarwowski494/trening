@@ -47,7 +47,7 @@ describe('L-091: scenariusz 33 na nazwach ćwiczeń POPRZEDNIEJ wersji (v1.0.1-b
   it.each(exercise.map(s => [s.f || '33', s.sel]))('%s: selektor „%s” nadal trafia w nazwę bieżącą (pozostałe scenariusze, 34)', (_f, sel) => {
     expect(NEW.some(l => full(sel as string, l))).toBe(true);
   });
-  it.each(inputs.map(s => [s.sel]))('wpisane w wyszukiwarce „%s” znajduje ćwiczenie w starej wersji (fold: małe litery, bez myślnika — stary fold go nie usuwa)', q => {
+  it.each(inputs.map(s => [s.sel]))('wpisane w wyszukiwarce „%s” znajduje ćwiczenie w starej wersji (małe litery, bez myślnika — stare składanie go nie usuwa)', q => {
     const male = (x: string) => x.toLowerCase().replace(/\s+/g, ' ').trim();
     expect(OLD.some(l => male(l).includes(male(q as string)))).toBe(true);
   });
