@@ -1,6 +1,6 @@
 # Wskazówki techniki — rodzina olympic, grupa zarzutu (clean)
 
-Data: 02.11.2026. Autor: badacz-merytoryczny (fala W1, G3).
+Data: 02.11.2026. Autor: badacz-merytoryczny (fala W1, G3). Uzupełnienie: druga sesja tego samego dnia (sekcje oznaczone „[sesja 2]”).
 Zakres: Power Clean, Clean, Hang Clean, Clean and Jerk, Clean Pull, Block Clean, Block Power Clean, Split Clean, Clean Shrug, Rack Delivery
 (dziś zestaw ogólny `oly`; Rack Delivery bez zestawu). Status: **zebrane dane, PROPOZYCJA** — nic nie trafia do `lib/` ani `data/zrodla/` w tej fali.
 
@@ -9,12 +9,21 @@ Strony czytane przez WebFetch 02.11.2026 (narzędzie zwraca parafrazę z krótki
 Dostęp: ExRx (403) i web.archive.org (zablokowane) — nieużyte; NSCA (artykuł NSCA Coach i PDF TSAC) — 403, nieużyte.
 Strony aplikacji treningowych z wyników wyszukiwania pominięto (nie są źródłem; nazwy nie trafiają do repo).
 
+**[sesja 2] Szczeble wg rozstrzygnięcia koordynatora linii 1.1 (02.11.2026)** — sprawdzone dla użytych organizacji:
+Catalyst Athletics — 4; CrossFit (organizacja szkoląca trenerów, treść firmowana) — 4; BarBend — 4, bo wszystkie użyte strony to artykuły o technice
+z autorem i datą; Coach i Experience Life — 4 (redakcja, autor, data); Rogue Fitness i Eleiko — producenci sztang, użyci tylko dla ćwiczeń ze sztangą (własny
+rodzaj sprzętu) — 4. **IronMind — niepewny**: artykuły J. Schmitza mają autora i kwalifikacje, ale **nie mają daty** (sprawdzone na stronie
+„Clean Deadlift & Shrug”: tylko stopka „© 2025”), a IronMind nie produkuje sztang (wydawca, chwytaki) → warunek (b) „autor+data” niespełniony;
+do rozstrzygnięcia koordynatora. Do tego czasu **IronMind nie liczy się do dwóch źródeł** — zdanie `olympic.splitCatch` w Split Clean przeniesione do „Otwarte”,
+a nowe zdania oparte na IronMind są w bloku warunkowym (sekcja 2b), nie w danych.
+
 **Uproszczenie „bazowy ruch zarzutu”.** Strona Power Clean (catalyst-67, akapit 1) mówi, że power clean różni się od pełnego zarzutu
 tylko głębokością przyjęcia; strony Block Clean / Block Power Clean (catalyst-379, -380) — że start z podestów to ta sama pozycja co w zarzucie
-z ziemi na tej wysokości; Split Clean (catalyst-211, ironmind-split) — że ciąg jest jak w zarzucie, inne jest tylko przyjęcie w wykroku.
+z ziemi na tej wysokości; Split Clean (catalyst-211) — że ciąg jest jak w zarzucie, inne jest tylko przyjęcie w wykroku.
 Dlatego dla faz wspólnych (ustawienie pleców, ciąg, wyprost, obrót łokci, błędy ciągu) źródło innego wariantu zarzutu liczę jako „opis bazowego
 ruchu” — przy takim źródle w miejscu dopisek „(bazowy ruch: …)”, a ćwiczenie ma w uwagach „uproszczenie”. Źródło o innym ćwiczeniu (np. zrywie,
-podciąganiu ciągu) jako analogii — nie liczę.
+podciąganiu ciągu) jako analogii — nie liczę. [sesja 2] Tak samo w Clean and Jerk: strona CrossFit o podrzucie (crossfit-jerk) opisuje ten sam podrzut,
+który kończy dwubój — dopisek „(bazowy ruch: podrzut)”.
 
 ## 1. Ćwiczenia
 
@@ -23,27 +32,31 @@ podciąganiu ciągu) jako analogii — nie liczę.
 | Power Clean | gotowe | wszystkie zdania z 2–4 źródłami o power clean; jedno źródło błędu „biodra za wcześnie” i „sztanga odjeżdża” o pełnym zarzucie (bazowy ruch) — uproszczenie |
 | Clean | gotowe | część źródeł o power clean (ten sam ciąg wg catalyst-67) — uproszczenie |
 | Hang Clean | gotowe | błędy ze źródeł o zarzucie z ziemi (różnica tylko w starcie) — uproszczenie; „pełny przysiad” zgodny z catalyst-68 i rogue-hang-squat-clean |
-| Block Clean | częściowe | brak zdania o samym ustawieniu przy podestach (jedno źródło) → Otwarte; reszta z bazowego ruchu — uproszczenie |
+| Clean and Jerk | **gotowe [sesja 2]** | nowe źródło crossfit-cj (cała strona o dwuboju: zarzut + podrzut + błędy) — część podrzutu potwierdzona z catalyst-76; `olympic.mis.forward` z bazowym ruchem (podrzut) — uproszczenie |
+| Clean Pull | **gotowe [sesja 2]** | nowe źródło barbend-clean-pull (artykuł o technice); błąd `olympic.mis.arms` potwierdzony (BarBend + Rogue) |
+| Block Clean | częściowe | brak zdania o samym starcie z podestów z 2 źródeł szczebla 4 (drugie to IronMind — niepewny szczebel, sekcja 2b); reszta z bazowego ruchu — uproszczenie |
 | Block Power Clean | częściowe | jak Block Clean |
-| Split Clean | częściowe | potwierdzone tylko „przyjęcie w wykroku”; szczegóły wykroku i wstawania → Otwarte; ciąg z bazowego ruchu — uproszczenie |
-| Clean and Jerk | częściowe | część zarzutu potwierdzona (z bazowym ruchem — uproszczenie); część podrzutu (jerk) → Otwarte |
-| Clean Pull | częściowe | setup i move potwierdzone; błędy → Otwarte (tylko po jednym źródle o tym ćwiczeniu) |
-| Clean Shrug | otwarte | jedno przeczytane źródło (catalyst-93) |
+| Split Clean | częściowe | **[sesja 2] `olympic.splitCatch` cofnięte do Otwarte** (drugie źródło to IronMind); zostają tylko fazy ciągu z bazowego ruchu — brak zdania o samym wykroku; uproszczenie |
+| Clean Shrug | otwarte | catalyst-93 + IronMind („Clean Deadlift & Shrug”, wariant z ziemi) — gotowe zdanie w sekcji 2b, warunkowo |
 | Rack Delivery | otwarte | jedno przeczytane źródło (catalyst-544); brak w `poses/olympic.json` |
 
 Zdania zestawu ogólnego `oly` sprawdzone: `oly.close` i `oly.legs` — potwierdzone tam, gdzie wpisane niżej. `oly.back` („…klatka do góry”) — część „klatka
 do góry” nie ma 2 źródeł dla power clean / clean (mają ją tylko rogue-* i experiencelife w fazie ciągu) → zastąpione `olympic.setupBack`. `oly.mis` (dwa błędy
 w jednym zdaniu) — „plecy się zaokrąglają” nie występuje jako błąd w przeczytanych źródłach → nie wpisane; zamiast niego `mis.barAway` i `olympic.mis.*`.
+[sesja 2] Clean Shrug: dzisiejszy zestaw ogólny (`oly.back`, `oly.close`, `oly.mis`) — `oly.close` ma tylko catalyst-93 („keep the bar against the body”);
+IronMind mówi o sztandze przy piszczelach w fazie z ziemi, której w Clean Shrug (start ze zwisu, poza `Clean Shrug` w `poses/olympic.json`, klatka 0: tułów pochylony ok. 23°) nie ma.
 
 ## 2. Dane (format `cues.json`)
+
+Wersja po sesji 2 (Clean and Jerk i Clean Pull rozszerzone; Split Clean bez `olympic.splitCatch`; reszta bez zmian).
 
 ```json
 {
  "orgs": {
   "Catalyst Athletics": {"name": "Catalyst Athletics — Olympic Weightlifting Exercise Library (catalystathletics.com)", "level": 4, "kind": "site"},
-  "Rogue Fitness": {"name": "Rogue Fitness — The Index, Movement Library (producent sprzętu)", "level": 4, "kind": "maker"},
+  "Rogue Fitness": {"name": "Rogue Fitness — The Index, Movement Library (producent sztang i sprzętu do podnoszenia ciężarów)", "level": 4, "kind": "maker"},
   "Experience Life": {"name": "Experience Life (magazyn Life Time) — artykuł instruktażowy, autor CSCS", "level": 4, "kind": "site"},
-  "IronMind": {"name": "IronMind — Jim Schmitz on the Lifts (wydawca i producent sprzętu; autor: trener kadry olimpijskiej USA)", "level": 4, "kind": "maker"}
+  "CrossFit": {"name": "CrossFit — Essentials (materiały edukacyjne organizacji szkolącej trenerów)", "level": 4, "kind": "org"}
  },
  "sources": {
   "catalyst-67": {"org": "Catalyst Athletics", "title": "Power Clean", "url": "https://www.catalystathletics.com/exercise/67/Power-Clean/", "level": 4},
@@ -57,12 +70,14 @@ w jednym zdaniu) — „plecy się zaokrąglają” nie występuje jako błąd w
   "barbend-power-clean": {"org": "BarBend", "title": "The Power Clean Exercise: How To… (akt. 25.03.2024)", "url": "https://barbend.com/power-clean/", "level": 4},
   "barbend-clean": {"org": "BarBend", "title": "How to Do the Clean… (akt. 19.11.2024)", "url": "https://barbend.com/how-to-do-the-clean/", "level": 4},
   "barbend-hang-clean": {"org": "BarBend", "title": "How to Do a Hang Clean (akt. 19.12.2023)", "url": "https://barbend.com/hang-clean/", "level": 4},
+  "barbend-clean-pull": {"org": "BarBend", "title": "Clean Pull guide (J. Dickson, USAW-L2, akt. 15.07.2024)", "url": "https://barbend.com/clean-pull-guide/", "level": 4},
   "coach-power-clean": {"org": "Coach", "title": "How To Master The Power Clean (11.10.2018)", "url": "https://www.coachweb.com/barbell-exercises/6964/how-to-master-the-power-clean", "level": 4},
   "rogue-clean-pull": {"org": "Rogue Fitness", "title": "Movement Demo — Clean Pull", "url": "https://www.roguefitness.com/theindex/movement-library/movement-demo-clean-pull", "level": 4},
   "rogue-hang-squat-clean": {"org": "Rogue Fitness", "title": "Movement Demo — Hang Squat Clean", "url": "https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-squat-clean", "level": 4},
   "rogue-hang-power-clean": {"org": "Rogue Fitness", "title": "Movement Demo — Hang Power Clean", "url": "https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-power-clean", "level": 4},
   "experiencelife-power-clean": {"org": "Experience Life", "title": "How to Power Clean (A. Heffernan, CSCS, 20.05.2019)", "url": "https://experiencelife.lifetime.life/article/learn-to-power-clean/", "level": 4},
-  "ironmind-split": {"org": "IronMind", "title": "Split Lifting Technique (J. Schmitz)", "url": "https://ironmind.com/articles/jim-schmitz-on-the-lifts/Split-Lifting-Technique/", "level": 4}
+  "crossfit-cj": {"org": "CrossFit", "title": "The Clean and Jerk (Essentials, 21.01.2020)", "url": "https://www.crossfit.com/essentials/the-clean-and-jerk", "level": 4},
+  "crossfit-jerk": {"org": "CrossFit", "title": "Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)", "url": "https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk", "level": 4}
  },
  "exercises": {
   "Power Clean": {
@@ -88,22 +103,22 @@ w jednym zdaniu) — „plecy się zaokrąglają” nie występuje jako błąd w
   },
   "Clean": {
    "setup": [
-    {"c": "olympic.setupBack", "s": [["catalyst-59", "akapit Setup (trunk braced, back extended)"], ["barbend-power-clean", "Step 2 (bazowy ruch: power clean — ten sam ciąg wg catalyst-67)"]]}
+    {"c": "olympic.setupBack", "s": [["catalyst-59", "akapit Setup (trunk braced, back extended)"], ["barbend-power-clean", "Step 2 (bazowy ruch: power clean — ten sam ciąg wg catalyst-67)"], ["crossfit-cj", "Setup Position (back flat; shoulders slightly in front of the bar)"]]}
    ],
    "move": [
     {"c": "olympic.legsFirst", "s": [["catalyst-59", "akapit First pull (legs push through the whole foot); Setup (arms straight)"], ["barbend-clean", "Push, Hard (pushing into the floor with your legs)"]]},
-    {"c": "olympic.extend", "s": [["catalyst-59", "akapit First pull (keep driving, extend hips forcefully)"], ["barbend-clean", "Extend Up (mid to high-thigh, triple extension)"]]},
-    {"c": "olympic.under", "s": [["catalyst-59", "akapity Third pull / Receive (elbows spin around the bar to rack)"], ["barbend-clean", "Flip and Rack"]]},
-    {"c": "olympic.catchLow", "s": [["catalyst-59", "akapity Third pull / Recovery (squat under; drive up immediately)"], ["barbend-clean", "Flip and Rack (drop under, catch, stand up)"]]}
+    {"c": "olympic.extend", "s": [["catalyst-59", "akapit First pull (keep driving, extend hips forcefully)"], ["barbend-clean", "Extend Up (mid to high-thigh, triple extension)"], ["crossfit-cj", "Clean — Second Pull (from mid-thigh, fully extend hips and legs)"]]},
+    {"c": "olympic.under", "s": [["catalyst-59", "akapity Third pull / Receive (elbows spin around the bar to rack)"], ["barbend-clean", "Flip and Rack"], ["crossfit-cj", "Clean — Third Pull (elbows high, bar racked on the shoulders)"]]},
+    {"c": "olympic.catchLow", "s": [["catalyst-59", "akapity Third pull / Recovery (squat under; drive up immediately)"], ["barbend-clean", "Flip and Rack (drop under, catch, stand up)"], ["crossfit-cj", "Clean — Third Pull (finish in a front squat and stand up)"]]}
    ],
    "tips": [
-    {"c": "oly.close", "s": [["catalyst-59", "akapit Second pull (bar close to the body)"], ["coach-power-clean", "5. Bar Path (bazowy ruch: power clean)"]]},
-    {"c": "oly.legs", "s": [["barbend-clean", "Common Mistakes: Trying to „Muscle It”"], ["experiencelife-power-clean", "Common Mistakes: Pulling with the arms (bazowy ruch: power clean)"]]}
+    {"c": "oly.close", "s": [["catalyst-59", "akapit Second pull (bar close to the body)"], ["coach-power-clean", "5. Bar Path (bazowy ruch: power clean)"], ["crossfit-cj", "Clean — First/Second Pull (bar close to the body)"]]},
+    {"c": "oly.legs", "s": [["barbend-clean", "Common Mistakes: Trying to „Muscle It”"], ["experiencelife-power-clean", "Common Mistakes: Pulling with the arms (bazowy ruch: power clean)"], ["crossfit-cj", "Clean — Second Pull (arms long)"]]}
    ],
    "mistakes": [
     {"c": "olympic.mis.hipsEarly", "s": [["barbend-clean", "Common Mistakes: Hips Rising Early"], ["coach-power-clean", "2. First Pull (bazowy ruch: power clean)"]]},
-    {"c": "mis.barAway", "s": [["barbend-clean", "Common Mistakes: Kicking the Bar"], ["experiencelife-power-clean", "Common Mistakes: Bar drifting away (bazowy ruch: power clean)"]]},
-    {"c": "olympic.mis.arms", "s": [["barbend-clean", "Common Mistakes: Trying to „Muscle It”"], ["experiencelife-power-clean", "Common Mistakes: Bending the arms too early (bazowy ruch: power clean)"]]}
+    {"c": "mis.barAway", "s": [["barbend-clean", "Common Mistakes: Kicking the Bar"], ["experiencelife-power-clean", "Common Mistakes: Bar drifting away (bazowy ruch: power clean)"], ["crossfit-cj", "Common Faults: Incomplete first pull (bar drifts from the body)"]]},
+    {"c": "olympic.mis.arms", "s": [["barbend-clean", "Common Mistakes: Trying to „Muscle It”"], ["experiencelife-power-clean", "Common Mistakes: Bending the arms too early (bazowy ruch: power clean)"], ["crossfit-cj", "Common Faults: Pulling early on the clean (arms bend before full hip and knee extension)"]]}
    ]
   },
   "Hang Clean": {
@@ -166,8 +181,7 @@ w jednym zdaniu) — „plecy się zaokrąglają” nie występuje jako błąd w
    ],
    "move": [
     {"c": "olympic.legsFirst", "s": [["catalyst-59", "akapit First pull (bazowy ruch)"], ["barbend-clean", "Push, Hard (bazowy ruch)"]]},
-    {"c": "olympic.extend", "s": [["catalyst-59", "akapit First pull (bazowy ruch)"], ["barbend-clean", "Extend Up (bazowy ruch)"]]},
-    {"c": "olympic.splitCatch", "s": [["catalyst-211", "akapit Execution (squat clean mechanics, under in a split position)"], ["ironmind-split", "akapit o split clean (pulled just as for a power or squat lift; front leg forward, back leg backward)"]]}
+    {"c": "olympic.extend", "s": [["catalyst-59", "akapit First pull (bazowy ruch)"], ["barbend-clean", "Extend Up (bazowy ruch)"]]}
    ],
    "tips": [],
    "mistakes": [
@@ -176,28 +190,72 @@ w jednym zdaniu) — „plecy się zaokrąglają” nie występuje jako błąd w
   },
   "Clean and Jerk": {
    "setup": [
-    {"c": "olympic.setupBack", "s": [["catalyst-76", "akapit Clean (braced back)"], ["barbend-clean", "Setup (bazowy ruch: zarzut)"]]}
+    {"c": "olympic.setupBack", "s": [["catalyst-76", "akapit Clean (braced back)"], ["crossfit-cj", "Setup Position (back flat)"]]}
    ],
    "move": [
-    {"c": "olympic.legsFirst", "s": [["catalyst-76", "akapit Clean (push with the legs through the whole foot)"], ["barbend-clean", "Push, Hard (bazowy ruch)"]]},
-    {"c": "olympic.under", "s": [["catalyst-76", "akapit Transition and rack (spin the elbows around the bar)"], ["barbend-clean", "Flip and Rack (bazowy ruch)"]]},
-    {"c": "olympic.catchLow", "s": [["catalyst-76", "akapit Transition and rack (receiving squat, then stand)"], ["barbend-clean", "Flip and Rack (bazowy ruch)"]]}
+    {"c": "olympic.legsFirst", "s": [["catalyst-76", "akapit Clean (push with the legs through the whole foot)"], ["barbend-clean", "Push, Hard (bazowy ruch: zarzut)"]]},
+    {"c": "olympic.extend", "s": [["crossfit-cj", "Clean — Second Pull (from mid-thigh, fully extend hips and legs)"], ["barbend-clean", "Extend Up (bazowy ruch: zarzut)"]]},
+    {"c": "olympic.under", "s": [["catalyst-76", "akapit Transition and rack (spin the elbows around the bar)"], ["crossfit-cj", "Clean — Third Pull (elbows high, bar racked on the shoulders)"]]},
+    {"c": "olympic.catchLow", "s": [["catalyst-76", "akapit Transition and rack (receiving squat, then stand)"], ["crossfit-cj", "Clean — Third Pull (finish in a front squat and stand up)"]]},
+    {"c": "olympic.splitMove", "s": [["catalyst-76", "część jerk (dip, drive straight back up with the legs, push the bar up, move the feet into the split as you punch the elbows)"], ["crossfit-cj", "Jerk — Dip / Drive / Split-Receive (arms push under the bar, feet into a split, arms locked out)"]]}
    ],
-   "tips": [],
+   "tips": [
+    {"c": "oly.close", "s": [["crossfit-cj", "Clean — First/Second Pull (bar close to the body)"], ["catalyst-59", "akapit Second pull (bazowy ruch: zarzut)"]]},
+    {"c": "olympic.dip", "s": [["catalyst-76", "część jerk („Dip by bending at the knees only with the trunk vertical”)"], ["crossfit-cj", "Jerk — Dip (hips and shoulders travel straight down, torso vertical)"]]},
+    {"c": "pp.legs", "s": [["catalyst-76", "część jerk („As you finish the extension of the legs, push the bar up…”)"], ["crossfit-cj", "Jerk — Drive (aggressively extends the hips and knees), potem Split/Receive (arms push under)"]]},
+    {"c": "olympic.feetHands", "s": [["catalyst-76", "część jerk (move the feet into the split as you punch the elbows)"], ["crossfit-cj", "Jerk — Split/Receive (arms locked out at the time the feet hit the floor)"]]},
+    {"c": "olympic.recover", "s": [["catalyst-76", "część jerk (secure the bar, then recover to standing with the bar still overhead)"], ["crossfit-cj", "Jerk — Recovery (feet back in line, bar stays overhead)"]]}
+   ],
    "mistakes": [
-    {"c": "olympic.mis.arms", "s": [["barbend-clean", "Common Mistakes: Trying to „Muscle It” (bazowy ruch)"], ["experiencelife-power-clean", "Common Mistakes: Bending the arms too early (bazowy ruch)"]]}
+    {"c": "olympic.mis.arms", "s": [["crossfit-cj", "Common Faults: Pulling early on the clean"], ["barbend-clean", "Common Mistakes: Trying to „Muscle It” (bazowy ruch)"]]},
+    {"c": "mis.barAway", "s": [["crossfit-cj", "Common Faults: Incomplete first pull (bar drifts from the body)"], ["barbend-clean", "Common Mistakes: Kicking the Bar (bazowy ruch)"]]},
+    {"c": "olympic.mis.forward", "s": [["catalyst-76", "część jerk (drive straight back up)"], ["crossfit-jerk", "Common Faults — Fault #2 (drives the barbell out front; bazowy ruch: podrzut)"]]}
    ]
   },
   "Clean Pull": {
    "setup": [
-    {"c": "olympic.setupBack", "s": [["catalyst-98", "akapit Setup (trunk braced, back extended)"], ["rogue-clean-pull", "Start Position (flat back)"]]}
+    {"c": "olympic.setupBack", "s": [["catalyst-98", "akapit Setup (trunk braced, back extended)"], ["rogue-clean-pull", "Start Position (flat back)"], ["barbend-clean-pull", "Step 1 — Set Up (low, braced starting posture)"]]}
    ],
    "move": [
-    {"c": "olympic.triple", "s": [["catalyst-98", "akapity Extension / Heels and top position (extend roughly vertically, heels rise naturally)"], ["rogue-clean-pull", "Execution (explode through hips, knees, and ankles)"]]}
+    {"c": "olympic.triple", "s": [["catalyst-98", "akapity Extension / Heels and top position (extend roughly vertically, heels rise naturally)"], ["rogue-clean-pull", "Execution (explode through hips, knees, and ankles)"], ["barbend-clean-pull", "Step 3 — Get Tall (extend hips and legs, then shrug)"]]}
    ],
    "tips": [],
-   "mistakes": []
+   "mistakes": [
+    {"c": "olympic.mis.arms", "s": [["barbend-clean-pull", "Common Clean Pull Mistakes: Using Your Arms (only shrug once you've fully extended)"], ["rogue-clean-pull", "Execution (bez ciągnięcia rękami — wg notatki z sesji 1)"]]}
+   ]
   }
+ }
+}
+```
+
+### 2b. Blok warunkowy — tylko jeśli koordynator uzna IronMind za szczebel 4 [sesja 2]
+
+NIE są to dane do wdrożenia. Każde zdanie ma po jednym źródle szczebla 4 (Catalyst) + IronMind (autor z kwalifikacjami, bez daty).
+
+```json
+{
+ "orgs": {
+  "IronMind": {"name": "IronMind — Jim Schmitz on the Lifts (wydawca; autor: trener kadry olimpijskiej USA 1980, 1988, 1992; artykuły bez daty)", "level": "4?", "kind": "site"}
+ },
+ "sources": {
+  "ironmind-split": {"org": "IronMind", "title": "Split Lifting Technique (J. Schmitz)", "url": "https://ironmind.com/articles/jim-schmitz-on-the-lifts/Split-Lifting-Technique/", "level": "4?"},
+  "ironmind-clean-dl-shrug": {"org": "IronMind", "title": "Clean Deadlift & Shrug (J. Schmitz)", "url": "https://ironmind.com/articles/jim-schmitz-on-the-lifts/Clean-Deadlift-Shrug/", "level": "4?"},
+  "ironmind-blocks": {"org": "IronMind", "title": "Lifting off Blocks (J. Schmitz)", "url": "https://ironmind.com/articles/jim-schmitz-on-the-lifts/Lifting-off-Blocks/", "level": "4?"},
+  "catalyst-93": {"org": "Catalyst Athletics", "title": "Clean Shrug", "url": "https://www.catalystathletics.com/exercise/93/Clean-Shrug/", "level": 4}
+ },
+ "exercises": {
+  "Split Clean": {"move": [
+   {"c": "olympic.splitCatch", "s": [["catalyst-211", "akapit Execution (squat clean mechanics, under in a split position)"], ["ironmind-split", "akapit o split clean (pulled just as for a power or squat lift; front leg forward, back leg backward)"]]}
+  ]},
+  "Block Clean": {"setup": [
+   {"c": "olympic.blockStart", "s": [["catalyst-379", "akapit o starcie („from a dead stop with no prior stretch…”; static start)"], ["ironmind-blocks", "akapit 3 (dead stop — no hip, back or leg movement before the pull)"]]}
+  ]},
+  "Block Power Clean": {"setup": [
+   {"c": "olympic.blockStart", "s": [["catalyst-380", "akapit o starcie („beginning from a dead stop…”)"], ["ironmind-blocks", "akapit 3 (dead stop; artykuł o zarzutach i zrywach z podestów)"]]}
+  ]},
+  "Clean Shrug": {"move": [
+   {"c": "olympic.shrugTop", "s": [["catalyst-93", "opis (extend the entire body approximately vertically, shrug up and back; heels rise naturally)"], ["ironmind-clean-dl-shrug", "akapit 4 (fully extend hips, knees and ankles, shrug, rise onto toes; „deltoids to the earlobes”; wariant: start z ziemi)"]]}
+  ]}
  }
 }
 ```
@@ -218,8 +276,11 @@ w jednym zdaniu) — „plecy się zaokrąglają” nie występuje jako błąd w
 | olympic.splitCatch | Ciągnij jak w zwykłym zarzucie, a sztangę przyjmij w wykroku — jedna noga w przód, druga w tył. | Pull as in a regular clean, but catch the bar in a split — one foot forward, one back. |
 | olympic.mis.arms | Ciągnięcie rękami za wcześnie, zanim nogi i biodra skończą wyprost. | Pulling with the arms before the legs and hips finish the extension. |
 | olympic.mis.hipsEarly | Biodra idą w górę szybciej niż barki na początku ciągu. | Hips shooting up faster than the shoulders off the floor. |
+| olympic.blockStart [sesja 2, warunkowe] | Ruszaj z miejsca, bez bujania — od pierwszej chwili mocno ciągnij. | Start from a dead stop, no rocking — pull hard from the very first moment. |
+| olympic.shrugTop [sesja 2, warunkowe] | Wyprostuj biodra, kolana i kostki i mocno wzrusz barkami w górę — pięty same się uniosą. | Extend your hips, knees and ankles and shrug hard — your heels will rise on their own. |
 
-Istniejące zdania użyte słowo w słowo: `oly.close`, `oly.legs`, `mis.barAway`.
+Istniejące zdania użyte słowo w słowo: `oly.close`, `oly.legs`, `mis.barAway`, `pp.legs` (Clean and Jerk). Zdania z olympic-jerk.md użyte w Clean and Jerk
+(jedna przestrzeń nazw, bez dubli): `olympic.splitMove`, `olympic.dip`, `olympic.feetHands`, `olympic.recover`, `olympic.mis.forward`.
 
 ## 4. Źródła (przeczytane 02.11.2026)
 
@@ -229,51 +290,66 @@ Istniejące zdania użyte słowo w słowo: `oly.close`, `oly.legs`, `mis.barAway
 | catalyst-59 | https://www.catalystathletics.com/exercise/59/Clean/ | Catalyst Athletics | 4 | Setup, First/Second pull, Third pull, Receive, Recovery |
 | catalyst-68 | https://www.catalystathletics.com/exercise/68/Hang-Clean/ | Catalyst Athletics | 4 | pozycje zwisu, początek ruchu, łokcie, przyjęcie |
 | catalyst-98 | https://www.catalystathletics.com/exercise/98/Clean-Pull/ | Catalyst Athletics | 4 | Setup, Pull, Extension, Finish, Heels |
-| catalyst-379 | https://www.catalystathletics.com/exercise/379/Block-Clean/ | Catalyst Athletics | 4 | wysokość podestów, Setup and pull, Receive |
-| catalyst-380 | https://www.catalystathletics.com/exercise/380/Block-Power-Clean/ | Catalyst Athletics | 4 | Setup, Pull, Receive depth |
+| catalyst-379 | https://www.catalystathletics.com/exercise/379/Block-Clean/ | Catalyst Athletics | 4 | wysokość podestów („most commonly… knee height”), Setup and pull, start „from a dead stop” (sesja 2), Receive |
+| catalyst-380 | https://www.catalystathletics.com/exercise/380/Block-Power-Clean/ | Catalyst Athletics | 4 | Setup, Pull, Receive depth, start „from a dead stop” (sesja 2) |
 | catalyst-211 | https://www.catalystathletics.com/exercise/211/Split-Clean/ | Catalyst Athletics | 4 | Execution (tylko ogólnie) |
-| catalyst-93 | https://www.catalystathletics.com/exercise/93/Clean-Shrug/ | Catalyst Athletics | 4 | start, ruch, koniec, czego nie robić (jedyne źródło — Otwarte) |
-| catalyst-544 | https://www.catalystathletics.com/exercise/544/Clean-Rack-Delivery/ | Catalyst Athletics | 4 | pozycja „strach na wróble”, obrót łokci, błąd: pochylanie klatki do sztangi (jedyne źródło — Otwarte) |
-| catalyst-76 | https://www.catalystathletics.com/exercise/76/Clean-Jerk/ | Catalyst Athletics | 4 | Clean, Transition and rack, dip/drive, split, recovery |
-| barbend-power-clean | https://barbend.com/power-clean/ | BarBend | 4 | Steps 1–5, Common Mistakes (Using Your Arms, Pulling Early, Deadlifting the Weight) |
-| barbend-clean | https://barbend.com/how-to-do-the-clean/ | BarBend | 4 | Setup, Push Hard, Extend Up, Flip and Rack, Common Mistakes (4) |
-| barbend-hang-clean | https://barbend.com/hang-clean/ | BarBend | 4 | Steps 1–4, FAQ steps, Common Mistakes |
+| catalyst-93 | https://www.catalystathletics.com/exercise/93/Clean-Shrug/ | Catalyst Athletics | 4 | start (stojąc, sztanga wysoko na udach), wyprost pionowy, wzruszenie „up and back”, pięty same się unoszą, sztanga przy ciele (sesja 2: ponownie) |
+| catalyst-544 | https://www.catalystathletics.com/exercise/544/Clean-Rack-Delivery/ | Catalyst Athletics | 4 | pozycja „scarecrow”, obrót łokci, błąd: pochylanie klatki do sztangi (sesja 2: ponownie; nadal jedyne źródło) |
+| catalyst-76 | https://www.catalystathletics.com/exercise/76/Clean-Jerk/ | Catalyst Athletics | 4 | Clean, Transition and rack, część jerk (dip, drive, split, recovery — sesja 2: cytaty sprawdzone); brak sekcji błędów |
+| barbend-power-clean | https://barbend.com/power-clean/ | BarBend | 4 (artykuł o technice) | Steps 1–5, Common Mistakes (Using Your Arms, Pulling Early, Deadlifting the Weight) |
+| barbend-clean | https://barbend.com/how-to-do-the-clean/ | BarBend | 4 (artykuł o technice) | Setup, Push Hard, Extend Up, Flip and Rack, Common Mistakes (4) |
+| barbend-hang-clean | https://barbend.com/hang-clean/ | BarBend | 4 (artykuł o technice) | Steps 1–4, FAQ steps, Common Mistakes |
+| barbend-clean-pull | https://barbend.com/clean-pull-guide/ | BarBend | 4 (artykuł o technice; J. Dickson, NASM-CPT, USAW-L2, 15.07.2024) | Step 1–3, Common Clean Pull Mistakes (Treating It Like a Deadlift, Coming Up Onto Toes Early, Using Your Arms) — sesja 2 |
 | coach-power-clean | https://www.coachweb.com/barbell-exercises/6964/how-to-master-the-power-clean | Coach | 4 | kroki 1–5 (Strong Stance … Bar Path) |
-| rogue-clean-pull | https://www.roguefitness.com/theindex/movement-library/movement-demo-clean-pull | Rogue Fitness | 4 | Movement Breakdown: Start Position, Execution |
+| rogue-clean-pull | https://www.roguefitness.com/theindex/movement-library/movement-demo-clean-pull | Rogue Fitness (producent sztang) | 4 | Movement Breakdown: Start Position, Execution |
 | rogue-hang-squat-clean | https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-squat-clean | Rogue Fitness | 4 | Start/Hang Position, Execution, przyjęcie w pełnym przysiadzie |
 | rogue-hang-power-clean | https://www.roguefitness.com/theindex/movement-library/movement-demo-hang-power-clean | Rogue Fitness | 4 | jak wyżej, przyjęcie w niepełnym przysiadzie (do przyszłego Hang Power Clean; tu nieużyte w danych) |
 | experiencelife-power-clean | https://experiencelife.lifetime.life/article/learn-to-power-clean/ | Experience Life | 4 | kroki 1–4, Common Mistakes |
-| ironmind-split | https://ironmind.com/articles/jim-schmitz-on-the-lifts/Split-Lifting-Technique/ | IronMind | 4 | opis split clean (ciąg jak w zarzucie, noga w przód / w tył, szybkie stopy) |
+| crossfit-cj | https://www.crossfit.com/essentials/the-clean-and-jerk | CrossFit | 4 | Setup Position; Clean: First/Second/Third Pull, Transition; Jerk: Dip, Drive, Split/Receive („should be locked out at the time that the feet hit the floor on the split”), Recovery; Common Faults (5) — sesja 2 |
+| crossfit-jerk | https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk | CrossFit | 4 | czytane w olympic-jerk.md; tu tylko Fault #2 (bazowy ruch: podrzut) |
+| ironmind-split | https://ironmind.com/articles/jim-schmitz-on-the-lifts/Split-Lifting-Technique/ | IronMind | **4? (bez daty — do rozstrzygnięcia)** | opis split clean (ciąg jak w zarzucie, noga w przód / w tył, szybkie stopy) |
+| ironmind-clean-dl-shrug | https://ironmind.com/articles/jim-schmitz-on-the-lifts/Clean-Deadlift-Shrug/ | IronMind | **4?** | akapity 2–10: ustawienie z ziemi, proste ręce, wyprost + wzruszenie + palce, błędy (zgięte ręce, okrągłe plecy, szarpanie) — sesja 2 |
+| ironmind-blocks | https://ironmind.com/articles/jim-schmitz-on-the-lifts/Lifting-off-Blocks/ | IronMind | **4?** | akapity 1–9: wysokość (zwykle połowa ud), start z bezruchu (akapit 3), uwagi o odkładaniu na środek podestów — sesja 2 |
 
-Uwaga o niezależności: barbend-clean i barbend-power-clean to ta sama organizacja — w żadnym zdaniu nie liczą się razem jako dwa źródła.
-catalyst-59/-67/-68/-76/-379/-380/-211 — ta sama organizacja; w każdym zdaniu najwyżej jedno z nich.
+Uwaga o niezależności: barbend-* to jedna organizacja — w żadnym zdaniu nie liczą się razem jako dwa źródła. catalyst-* — ta sama organizacja;
+w każdym zdaniu najwyżej jedno z nich liczone. crossfit-cj i crossfit-jerk — jedna organizacja (CrossFit).
+
+Przeczytane w sesji 2 i nieprzydatne: zasoby Eleiko z PDF „Training for the Jerk” (Push Press, Tall Push Jerk, Tall Split Jerk, wykroki, wyciskanie
+stojąc — żadnego o Clean Shrug / Block / Split Clean / Jerk Balance / Jerk Dip; adresy w olympic-jerk.md); IronMind „One in Front, One in Back…” (o podejściach
+w zawodach, nie o technice). PDF Eleiko „Weightlifting Strength Station” — treść skompresowana, nieczytelna przez WebFetch.
 
 ## 5. Otwarte
 
-- [OTWARTE] **Clean Shrug** — tylko catalyst-93; nie znalazłem drugiego przeczytanego źródła szczebla 4 (strony z wyników to biblioteki aplikacji lub sklepy
-  — pominięte). Zestawu `oly` nie potwierdzam dla tego ćwiczenia: `oly.legs` („ręce proste jak najdłużej”) nie pasuje do ruchu bez przyjęcia sztangi.
-- [OTWARTE] **Rack Delivery** — tylko catalyst-544 (ustawienie w pozycji „strach na wróble”, obrót łokci, błąd: pochylanie klatki do sztangi). Brak drugiego źródła.
-  Ćwiczenie nie ma pozy w `lib/figures/v2/poses/olympic.json`.
-- [OTWARTE] **Block Clean / Block Power Clean — ustawienie przy podestach** („ustaw się tak, jak w zarzucie z ziemi na tej wysokości”, zwykle na wys. kolan) —
-  tylko Catalyst (379, 380). Drugie źródło z wyników było stroną aplikacji — pominięte.
-- [OTWARTE] **Split Clean — szczegóły wykroku i wstawania** (odległości stóp, przednia goleń pionowo, która noga wraca pierwsza) — ironmind-split podaje odległości,
-  pozostałe szczegóły tylko w źródłach z wyszukiwarki (nieprzeczytane / aplikacje). Liczby („ok. 1 stopa / 2 stopy”) — jedno źródło, poza wyjątkiem dla techniki.
-- [OTWARTE] **Clean and Jerk — część podrzutu** (krótkie ugięcie samymi kolanami, wybicie nogami, wykrok, ustabilizuj sztangę przed wstaniem) — tylko catalyst-76.
-  Zdania `pp.dip`/`pp.legs` z zestawu ogólnego `pushPress` mają źródła o push pressie — dla podrzutu to analogia, nie wpisane.
-- [OTWARTE] **Clean Pull — błędy** (sztanga odjeżdża od ciała: catalyst-98; „nie ciągnij rękami”: rogue-clean-pull) — po jednym źródle na zdanie.
-  Także `oly.close` dla Clean Pull — tylko catalyst-98 wprost.
-- [OTWARTE] **Pozycja sztangi nad stopą na starcie** — catalyst-* mówi „nad przodostopiem” (balls of the foot), rogue-* i barbend-hang-clean „nad śródstopiem”:
+- [OTWARTE] **Szczebel IronMind** — autor imiennie (trener kadry USA), brak daty artykułów; nie producent sztang. Wg rozstrzygnięcia z 02.11 warunek (b) niespełniony
+  → do decyzji koordynatora. Od tego zależą: `olympic.splitCatch` (Split Clean), `olympic.blockStart` (Block Clean, Block Power Clean), `olympic.shrugTop` (Clean Shrug) — sekcja 2b.
+- [OTWARTE] **Clean Shrug** — catalyst-93 + IronMind (warunkowo). Brak wspólnego ustawienia (Catalyst: start stojąc ze sztangą wysoko na udach; IronMind: z ziemi)
+  i wspólnego błędu (Catalyst: sztanga odjeżdża; IronMind: zgięte ręce, okrągłe plecy) — nawet przy uznaniu IronMind ćwiczenie byłoby „częściowe” (tylko move).
+  Zestaw ogólny `oly` (`oly.back`, `oly.close`, `oly.mis`) nie jest potwierdzony dla tego ćwiczenia — krótsza karta zamiast niego. Muscle & Strength (403, a szczebel „otwarte”) — nie liczę.
+- [OTWARTE] **Rack Delivery** — tylko catalyst-544 (ustawienie w pozycji „strach na wróble”, obrót łokci, błąd: pochylanie klatki do sztangi). Brak drugiego źródła
+  (sesja 2: wyszukiwania dały tylko strony aplikacji i blogi). Ćwiczenie nie ma pozy w `lib/figures/v2/poses/olympic.json`.
+- [OTWARTE] **Block Clean / Block Power Clean — start z podestów** — `olympic.blockStart` z Catalyst + IronMind (warunkowo). **Wysokość podestów — rozbieżność**:
+  Catalyst „most commonly… knee height”, IronMind „above the knees around the middle of the thighs” → część wspólna: „mniej więcej na wysokości kolan lub nieco wyżej”; nie wpisane (liczba/konwencja).
+- [OTWARTE] **Split Clean — wykrok** — `olympic.splitCatch` (catalyst-211 + IronMind, warunkowo). Szczegóły (odległości stóp, przednia goleń pionowo, która noga wraca pierwsza)
+  — w sesji 2 znalezione tylko źródła o podrzucie (split jerk) — analogia, nie liczę. Liczby IronMind („ok. 1 stopa / 2 stopy”) — poza wyjątkiem dla techniki.
+- [OTWARTE] **Clean and Jerk — powrót z wykroku „najpierw przednia stopa”** — crossfit-cj (Recovery) + crossfit-jerk — jedna organizacja; catalyst-76 nie podaje kolejności. Nie wpisane.
+- [OTWARTE] **Clean and Jerk — błąd „nogi z przodu za daleko / tylna noga prosta”** (crossfit-cj, Poor split jerk footwork) — jedno źródło.
+- [OTWARTE] **Clean Pull — `oly.close`, `mis.barAway`** — tylko catalyst-98; **„za wczesne wspięcie na palce”** — tylko barbend-clean-pull.
+- [OTWARTE] **Pozycja sztangi nad stopą na starcie** — catalyst-* mówi „nad przodostopiem” (balls of the foot), rogue-*, barbend-hang-clean i crossfit-cj („weight through the midfoot”) „nad śródstopiem”:
   rozbieżność na tym samym szczeblu; nie wpisane. Część wspólna: sztanga blisko piszczeli, nad stopą.
-- [OTWARTE] **Wysokie łokcie w przyjęciu / błąd „łokcie nisko”** — catalyst-59/-67 (elbows high) i barbend-clean (Incomplete Front Rack); dla Clean to by wystarczyło,
-  ale zdanie łączy się z twierdzeniem o obciążeniu nadgarstków (zdrowie) — pominięte; do decyzji, czy wpisać samo „łokcie wysoko” (`olympic.rack`).
-- [OTWARTE] **`oly.back`** („klatka do góry”) i **`oly.mis`** („plecy się zaokrąglają”) — dla tych ćwiczeń brak 2 źródeł na całe zdanie (patrz sekcja 1).
-- Źródła niedostępne w tej sesji: ExRx (403), web.archive.org (zablokowane), NSCA (nsca.com i dxpprod.nsca.com — 403): „A Simple Approach to Teaching the Power Clean
-  in a Group Environment” (TSAC Report) i „Integration of Clean Variations…” (NSCA Coach) — warto przeczytać w kolejnej fali do Block/Split/Shrug.
+- [OTWARTE] **Wysokie łokcie w przyjęciu / błąd „łokcie nisko”** — catalyst-59/-67, barbend-clean (Incomplete Front Rack), crossfit-cj (Collapsing in the clean receiving position: „Keep the chest up and elbows high”).
+  Trzy organizacje — merytorycznie wystarczy dla Clean i Clean and Jerk; zdanie `olympic.rack` („Łokcie wysoko, sztanga na przodzie barków.”) gotowe do wpisania,
+  ale pominięte w sesji 1 z powodu łączenia z twierdzeniem o nadgarstkach — wersja bez twierdzenia o zdrowiu do decyzji koordynatora.
+- [OTWARTE] **`oly.back`** („klatka do góry”) i **`oly.mis`** („plecy się zaokrąglają”) — dla tych ćwiczeń brak 2 źródeł na całe zdanie (patrz sekcja 1); crossfit-cj ma „rounded backs”
+  tylko w przyjęciu zarzutu, nie w ciągu.
+- Źródła niedostępne: ExRx (403), web.archive.org (zablokowane), NSCA (nsca.com i dxpprod.nsca.com — 403), educ.jmu.edu (zablokowany host), Muscle & Strength (403).
 
 ## 6. Stan
 
-- Zrobione: przeczytane 19 stron (10 Catalyst, 3 BarBend, 1 Coach, 3 Rogue, 1 Experience Life, 1 IronMind); 3 ćwiczenia gotowe, 5 częściowych, 2 otwarte; 12 nowych zdań.
-- Zostało: drugie źródło dla Clean Shrug, Rack Delivery, ustawienia przy podestach, szczegółów wykroku w Split Clean, części podrzutu w Clean and Jerk, błędów Clean Pull.
-- Następny krok: spróbować NSCA (inna ścieżka dostępu), USA Weightlifting, Eleiko (biblioteka wideo z opisami) i IronMind (inne artykuły Schmitza, np. o podrzucie).
+- Zrobione (sesja 1): 19 stron; 12 nowych zdań. (Sesja 2): +5 stron użytych (crossfit-cj, barbend-clean-pull, ironmind-clean-dl-shrug, ironmind-blocks, ponownie catalyst-76/-93/-379/-380/-544),
+  +6 stron Eleiko i 1 IronMind przejrzanych bez wyniku. Stan: **5 gotowe** (Power Clean, Clean, Hang Clean, Clean and Jerk, Clean Pull), **3 częściowe** (Block Clean, Block Power Clean,
+  Split Clean), **2 otwarte** (Clean Shrug, Rack Delivery). 2 nowe zdania warunkowe (`olympic.blockStart`, `olympic.shrugTop`). Poprawka szczebli: IronMind wyłączony z liczenia, `olympic.splitCatch` cofnięte.
+- Zostało: decyzja o szczeblu IronMind; drugie źródło dla Rack Delivery i ustawienia w Clean Shrug; szczegóły wykroku Split Clean.
+- Następny krok: jeśli IronMind = 4 — przenieść blok 2b do danych (Block × 2 → gotowe po dodaniu błędu z bazowego ruchu, już jest; Split Clean → częściowe z wykrokiem).
+  Inaczej szukać: USA Weightlifting (materiały kursu L1 — PDF), Eleiko inspire360 (zasoby o zarzucie — adresy nieznane; PDF-y programów nieczytelne przez WebFetch).
 - Pułapki: Catalyst przez WebFetch czasem zwraca inną stronę przy złym numerze (adres /exercise/58/ dał „Snatch”) — sprawdzaj tytuł strony; Rogue ma wiele adresów 404
-  (dobre: `movement-demo-clean-pull`, `-hang-squat-clean`, `-hang-power-clean`; strona „The Power Clean” to samo wideo bez tekstu).
+  (dobre: `movement-demo-clean-pull`, `-hang-squat-clean`, `-hang-power-clean`); PDF-y Eleiko są skompresowane — WebFetch czyta tylko adresy linków, nie tekst.

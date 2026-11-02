@@ -1,11 +1,15 @@
 # Wskazówki techniki — rodzina thruster
 
-Data: 02.11.2026. Autor: badacz-merytoryczny (fala W1, G3).
+Data: 02.11.2026. Autor: badacz-merytoryczny (fala W1, G3). Uzupełnienie: druga sesja tego samego dnia (oznaczenia „[sesja 2]”).
 Zakres: Thruster (hantle), Kettlebell Thruster, Clean and Press (dziś zestaw ogólny „squat” albo „oly” w `lib/figures/v2/cue-sets.json`).
 Status: tylko zebrane dane (polecenie właściciela 02.11.2026) — nic nie jest wdrożone. Metoda jak w docs/research/27 i 33: każde zdanie
 w danym ćwiczeniu ma ≥ 2 przeczytane źródła szczebla 4 z różnych organizacji; wariant sprzętu tego samego ćwiczenia liczy się z opisem „(wariant: …)”.
 
 Dostęp: ExRx (403) i web.archive.org nie były używane; strony aplikacji treningowych pominięte. NASM — strony o thrusterze nie znaleziono.
+
+[sesja 2] Szczeble wg rozstrzygnięcia koordynatora linii 1.1 (02.11.2026): ACE (organizacja certyfikująca trenerów, treść firmowana) — 4;
+CrossFit (organizacja szkoląca trenerów) — 4; Life Time / Experience Life — magazyn z redakcją, artykuł z autorką i datą, bez recenzji produktów — 4
+(warunki a–c spełnione). Wpisy z sesji 1 bez zmian.
 
 ## 1. Ćwiczenia
 
@@ -13,7 +17,7 @@ Dostęp: ExRx (403) i web.archive.org nie były używane; strony aplikacji treni
 |---|---|---|
 | Thruster (hantle) | gotowe | ACE #357 „Squat to Overhead Press” (hantle) + CrossFit (sztanga, z opisem wariantu z hantlami) + Life Time (wersja z hantlami) |
 | Kettlebell Thruster | gotowe | CrossFit (wariant z kettlebellami opisany wprost) + Life Time (wersja z kettlebellami opisana wprost); uwaga: w `catalog.json` pole `equipment` = „hantle” — do sprawdzenia przez programistę (poza zakresem tego zadania) |
-| Clean and Press | otwarte | nie znaleziono 2 przeczytanych źródeł szczebla 4 o połączeniu zarzutu i wyciskania; łączenie kart zarzutu i wyciskania = analogia |
+| Clean and Press | otwarte | [sesja 2] ponowne wyszukiwanie (ACE, NASM, ISSA, NSCA, producenci) — brak przeczytanych stron szczebla 4 o tym ćwiczeniu; wyniki to strony aplikacji, portale bez redakcji i serwisy o statusie „otwarte” (np. Muscle & Strength) |
 
 ## 2. Dane (propozycja)
 
@@ -87,17 +91,18 @@ Nie użyte z dzisiejszego zestawu ogólnego: `sq.kneesToes` — tylko CrossFit (
 |---|---|---|---|---|
 | ace-357 | https://www.acefitness.org/resources/everyone/exercise-library/357/squat-to-overhead-press/ | ACE (istniejąca) | 4 | cały opis (akapit bez numerów kroków), sprzęt: hantle |
 | crossfit-thruster | https://www.crossfit.com/essentials/the-thruster | CrossFit (nowa; ta sama org co w olympic-jerk.md) | 4 | How to Perform (Set-up, Front Squat, Overhead Press, Finish Position), Common Mistakes (3 punkty), Dumbbell or Kettlebell Thruster |
-| lifetime-thruster | https://experiencelife.lifetime.life/article/how-to-do-the-thruster/ | Life Time (nowa) | 4 (PROPOZYCJA) | Instructions 1–4, Form Cues, Common Mistakes and Tips, wersje: hantle, kettlebell, sztanga |
-
-Uwaga do „Life Time”: magazyn operatora klubów fitness, autorka z certyfikatem kettlebell; jeśli audytor uzna za szczebel 5, Thruster (hantle)
-zostaje gotowy (ACE + CrossFit dla dbSetup, sq.down, thruster.depth), ale `thruster.move` (ACE + Life Time), `sq.back`, `thruster.fullExt`,
-`sq.mis.heels` tracą drugie źródło; Kettlebell Thruster spada do „otwarte”.
+| lifetime-thruster | https://experiencelife.lifetime.life/article/how-to-do-the-thruster/ | Life Time (nowa) | 4 (sesja 2: potwierdzone wg rozstrzygnięcia z 02.11 — redakcja, autorka, data) | Instructions 1–4, Form Cues, Common Mistakes and Tips, wersje: hantle, kettlebell, sztanga |
 
 ## 5. Otwarte
 
 - **Clean and Press** — dziś zestaw ogólny „oly” (`oly.back`, `oly.close`, `ohp.tall`, `oly.mis`). Nie znaleziono dwóch przeczytanych źródeł
-  szczebla 4 o tym ćwiczeniu (Eleiko ma osobno zarzut i wyciskanie, nie połączenie; wyniki wyszukiwania to serwisy aplikacji i portale, szczebel 5
-  albo poza zasadami). Zgodnie z uzupełnieniem briefu: zdań zestawu ogólnego nie potwierdzono dla tego ćwiczenia — krótsza karta albo brak.
+  szczebla 4 o tym ćwiczeniu. [sesja 2] Ponowne wyszukiwanie: wyniki to strony aplikacji treningowych (nie są źródłem), portale bez redakcji eksperckiej,
+  Muscle & Strength (szczebel „otwarte” wg rozstrzygnięcia z 02.11 — nie liczę) i serwis kursów ogólnych; żadnej strony ACE, NASM, ISSA, NSCA, CrossFit ani
+  producenta sztang o połączeniu zarzutu z wyciskaniem. Złożenie karty z kart Power Clean (olympic-clean.md) i wyciskania stojąc = analogia — nie liczę.
+  Zgodnie z uzupełnieniem briefu: zdań zestawu ogólnego nie potwierdzono dla tego ćwiczenia — krótsza karta albo brak. **Informacja o zestawie**: `oly.mis`
+  („plecy się zaokrąglają…”) i `oly.back` nie mają 2 źródeł nawet dla zarzutów (olympic-clean.md, sekcja 1).
+  Kandydaci do sprawdzenia: Eleiko inspire360 (zasoby „Clean” i „Overhead Press — Standing” istnieją osobno; o połączeniu — nieznane),
+  materiały NSCA (403 w tej sesji).
 - **Kolejność nogi → ręce w thrusterze**: CrossFit, Common Mistakes, „the athlete presses the bar before completing full hip and leg extension”
   (błąd), a ACE #357 mówi „at the same time press the dumbbells overhead”, Life Time „pressing the weight overhead as you rise”. Część wspólna:
   wyciskanie w trakcie wstawania (wpisane jako „wstając, jednym ruchem”); różnica: CrossFit wymaga pełnego wyprostu bioder przed pracą rąk.
@@ -110,5 +115,6 @@ zostaje gotowy (ACE + CrossFit dla dbSetup, sq.down, thruster.depth), ale `thrus
 ## 6. Stan
 
 - Zrobione: 3 ćwiczenia przejrzane; 2 gotowe (Thruster hantle, Kettlebell Thruster), 1 otwarte (Clean and Press); 5 nowych zdań; 3 nowe źródła, 2 nowe orgs (CrossFit wspólna z olympic-jerk.md).
-- Zostało: źródła dla Clean and Press (np. biblioteki NSCA/NASM, karta producenta sprzętu); ocena szczebla „Life Time” przez audytora.
+  Sesja 2: szczebel Life Time potwierdzony (4); Clean and Press — ponowne wyszukiwanie bez wyniku.
+- Zostało: źródła dla Clean and Press (NSCA, gdy dostępne; zasoby Eleiko).
 - Pułapka: `catalog.json` — „Kettlebell Thruster” ma `equipment: "hantle"` i `loadMode: "per_dumbbell"` (do zgłoszenia programiście).

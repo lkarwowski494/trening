@@ -1,6 +1,6 @@
 # Wskazówki techniki — rodzina olympic: podrzut (jerk)
 
-Data: 02.11.2026. Autor: badacz-merytoryczny (fala W1, G3).
+Data: 02.11.2026. Autor: badacz-merytoryczny (fala W1, G3). Uzupełnienie: druga sesja tego samego dnia (oznaczenia „[sesja 2]”).
 Zakres: Split Jerk, Power Jerk, Squat Jerk, Jerk Dip Squat, Jerk Balance (dziś zestaw ogólny „pushPress” albo brak w `lib/figures/v2/cue-sets.json`).
 Status: tylko zebrane dane (polecenie właściciela 02.11.2026) — nic nie jest wdrożone. Metoda jak w docs/research/27 i 33: każde zdanie
 w danym ćwiczeniu ma ≥ 2 przeczytane źródła szczebla 4 z różnych organizacji; zdania własne, część wspólna źródeł; bez liczb i twierdzeń o zdrowiu.
@@ -9,6 +9,10 @@ Dostęp: ExRx (403) i web.archive.org nie były używane; strona uczelniana z ka
 strona uczelniana Wellesley — 403. Strony aplikacji treningowych pominięto (nie są źródłem). Strona sklepu/szkoleń trenera olimpijskiego
 (seminaria, programy) przeczytana, ale zakwalifikowana jako szczebel 5 — nie liczy się (patrz „Otwarte”).
 
+[sesja 2] Szczeble wg rozstrzygnięcia koordynatora linii 1.1 (02.11.2026): Catalyst — 4; CrossFit (organizacja szkoląca trenerów, treść firmowana) — 4;
+Eleiko — producent sztang, użyty tylko dla ćwiczeń ze sztangą — 4; BarBend — 4, bo oba użyte artykuły dotyczą techniki i mają autora oraz datę.
+Wpisy z sesji 1 bez zmian.
+
 ## 1. Ćwiczenia
 
 | Klucz | Status | Uwagi |
@@ -16,8 +20,8 @@ strona uczelniana Wellesley — 403. Strony aplikacji treningowych pominięto (n
 | Split Jerk | gotowe | 3 organizacje (Catalyst, Eleiko, CrossFit); 2 zdania istniejące nie pasują słowo w słowo (pp.setup — szerokość chwytu bez źródła; pp.dip — patrz nowe olympic.dip); pp.legs pasuje |
 | Power Jerk | gotowe | Eleiko ma stronę „Push Jerk – Barbell” — wariant nazwy (Catalyst: nazwy power/push jerk bywają używane zamiennie; różnica — czy stopy się przestawiają); CrossFit: power jerk = stopy z szerokości bioder na szerokość barków |
 | Squat Jerk | gotowe | 2 organizacje (Catalyst, CrossFit); pp.legs tylko 1 źródło — nie wpisane |
-| Jerk Dip Squat | otwarte | tylko 1 organizacja (Catalyst); UWAGA: dzisiejszy zestaw ogólny zawiera pp.legs („siła wybicia…”), a źródło mówi wprost, że w tym ćwiczeniu nie ma wybicia — patrz „Otwarte” |
-| Jerk Balance | otwarte | tylko 1 organizacja (Catalyst); inne znalezione opisy to blogi trenerów (szczebel 5) albo serwisy, których nie przeczytano |
+| Jerk Dip Squat | **gotowe [sesja 2]** | Catalyst + BarBend (artykuł o ugięciu w podrzucie, z opisem tego ćwiczenia jako wolniejszej odmiany); UWAGA nadal aktualna: zestaw ogólny zawiera `pp.legs`, a oba źródła mówią, że tu nie ma wybicia — patrz „Otwarte” |
+| Jerk Balance | **częściowe [sesja 2]** | Catalyst + BarBend: ustawienie i ruch potwierdzone; błędy tylko u Catalyst → brak zdania w mistakes |
 
 ## 2. Dane (propozycja)
 
@@ -31,7 +35,9 @@ strona uczelniana Wellesley — 403. Strony aplikacji treningowych pominięto (n
     "catalyst-194": {"org": "Catalyst Athletics", "title": "Jerk Dip Squat (Exercise Library #194)", "url": "https://catalystathletics.com/exercise/194/Jerk-Dip-Squat/", "level": 4},
     "eleiko-659c5689": {"org": "Eleiko", "title": "Split Jerk – Barbell", "url": "https://eleiko.inspire360.com/resource/659c5689126db289c70119d6", "level": 4},
     "eleiko-659c5377": {"org": "Eleiko", "title": "Push Jerk – Barbell", "url": "https://eleiko.inspire360.com/resource/659c5377bb34667a190b10a0", "level": 4},
-    "crossfit-jerk": {"org": "CrossFit", "title": "Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)", "url": "https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk", "level": 4}
+    "crossfit-jerk": {"org": "CrossFit", "title": "Foundational Movement: Jerk — What Is a Jerk? (B. Burgener, 29.08.2023)", "url": "https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk", "level": 4},
+    "barbend-jerk-dip": {"org": "BarBend", "title": "Jerk Dip — Technique & Benefits (K. Ferriello, akt. 31.07.2023)", "url": "https://barbend.com/jerk-dip-technique-benefits/", "level": 4},
+    "barbend-jerk-exercises": {"org": "BarBend", "title": "Exercises to Strengthen Your Jerk (R. Stefan, akt. 01.07.2024)", "url": "https://barbend.com/exercises-to-strengthen-jerk", "level": 4}
   },
   "orgs": {
     "Catalyst Athletics": {"name": "Catalyst Athletics — Exercise Library (G. Everett, szkolenie trenerów podnoszenia ciężarów)", "level": 4, "kind": "site"},
@@ -90,6 +96,28 @@ strona uczelniana Wellesley — 403. Strony aplikacji treningowych pominięto (n
       "mistakes": [
         {"c": "olympic.mis.forward", "s": [["crossfit-jerk", "Common Faults — Fault #2 (wspólne dla stylów)"], ["catalyst-75", "opis (drive straight back up)"]]}
       ]
+    },
+    "Jerk Dip Squat": {
+      "setup": [
+        {"c": "olympic.dipBrace", "s": [["catalyst-194", "opis („Brace your trunk as you would for a jerk”)"], ["barbend-jerk-dip", "Bracing (fill core and chest with a deep breath, push it against the abdominal wall)"]]}
+      ],
+      "move": [
+        {"c": "olympic.dipSquat", "s": [["catalyst-194", "opis (dip as for a jerk but at a controlled speed; change direction at a controlled speed; stand again naturally) + Notes (no drive or speed)"], ["barbend-jerk-dip", "opis odmian (jerk dip squat: „slower and more controlled movement than the jerk dip in an actual jerk”; wybicie dodaje dopiero odmiana „jerk drive”)"]]}
+      ],
+      "tips": [],
+      "mistakes": [
+        {"c": "olympic.mis.dipRushed", "s": [["barbend-jerk-dip", "wstęp (rushed dips that force the lifter to shift out of position)"], ["catalyst-194", "opis (controlled speed regardless of your normal dip tempo; tension throughout legs and hips)"]]}
+      ]
+    },
+    "Jerk Balance": {
+      "setup": [
+        {"c": "olympic.balanceSetup", "s": [["catalyst-193", "opis (jerk rack position; step about a foot-length back with the front foot into a partial split)"], ["barbend-jerk-exercises", "Jerk Balance (jerk split stance slightly „shorter” than where you'd receive the bar; bar in the front rack)"]]}
+      ],
+      "move": [
+        {"c": "olympic.balanceMove", "s": [["catalyst-193", "opis (dip straight down, drive straight up, punch the bar overhead, step the front foot forward into the full split)"], ["barbend-jerk-exercises", "Jerk Balance (dip and drive from the shortened split; catch overhead while sliding the front leg out)"]]}
+      ],
+      "tips": [],
+      "mistakes": []
     }
   }
 }
@@ -109,9 +137,16 @@ strona uczelniana Wellesley — 403. Strony aplikacji treningowych pominięto (n
 | olympic.mis.forward | Wybijanie sztangi w przód zamiast prosto w górę. | Driving the bar forward instead of straight up. |
 | olympic.mis.armsEarly | Wypychanie rękami, zanim nogi skończą wybicie. | Pushing with the arms before the legs finish the drive. |
 | olympic.mis.pressOut | Łapanie sztangi na ugiętych rękach i dociskanie jej do góry. | Catching the bar on bent arms and pressing it out. |
+| olympic.dipBrace [sesja 2] | Zanim ugniesz kolana, mocno napnij tułów. | Brace your trunk hard before you bend your knees. |
+| olympic.dipSquat [sesja 2] | Ugnij kolana jak przed podrzutem, ale wolno i pod kontrolą, i spokojnie wróć do stania — bez wybijania sztangi. | Dip like you would for a jerk, but slow and controlled, then stand back up smoothly — no drive. |
+| olympic.mis.dipRushed [sesja 2] | Zbyt szybkie ugięcie, po którym wypadasz z pozycji. | Rushing the dip and getting pulled out of position. |
+| olympic.balanceSetup [sesja 2] | Sztanga oparta z przodu barków, stopy w skróconym wykroku — przednia stopa bliżej niż w pełnym wykroku. | Bar resting on the front of your shoulders, feet in a short split — front foot closer in than in your full split. |
+| olympic.balanceMove [sesja 2] | Ugnij kolana, wybij w górę i wypychając sztangę nad głowę, wysuń przednią stopę do pełnego wykroku. | Dip, drive up and, as you push the bar overhead, step the front foot out into your full split. |
 
 Istniejące zdanie użyte: `pp.legs` (pasuje słowo w słowo do Split Jerk i Power Jerk). Nie użyte: `pp.setup` (szerokość chwytu bez źródła
 dla podrzutu), `pp.dip` („tułów napięty” — w źródłach o podrzucie tylko Catalyst; zastąpione `olympic.dip`), `ohp.*`, `fsq.*` (inne ćwiczenia).
+[sesja 2] `olympic.dip` („krótkie”) nie wpisane do Jerk Dip Squat — tam zejście ma być wolne, a nie tylko krótkie; zamiast tego `olympic.dipSquat`.
+Zdania podrzutu użyte też w Clean and Jerk (olympic-clean.md) — te same id, bez dubli.
 
 ## 4. Źródła
 
@@ -120,35 +155,47 @@ dla podrzutu), `pp.dip` („tułów napięty” — w źródłach o podrzucie ty
 | catalyst-60 | https://catalystathletics.com/exercise/60/Split-Jerk | Catalyst Athletics (nowa) | 4 | cały opis (stopy, pozycja sztangi, ugięcie, wybicie, wykrok, powrót), Notes, Variations |
 | catalyst-72 | https://catalystathletics.com/exercise/72/Power-Jerk/ | Catalyst Athletics | 4 | cały opis + Notes (power vs push jerk; głębokość powyżej równoległości) |
 | catalyst-75 | https://catalystathletics.com/exercise/75/Squat-Jerk/ | Catalyst Athletics | 4 | cały opis + Notes |
-| catalyst-193 | https://catalystathletics.com/exercise/193/Jerk-Balance/ | Catalyst Athletics | 4 | opis, Notes (najczęstsze błędy), Purpose |
-| catalyst-194 | https://catalystathletics.com/exercise/194/Jerk-Dip-Squat/ | Catalyst Athletics | 4 | opis, Notes („strictly about strength and position—it does not involve a drive”), Purpose |
-| eleiko-659c5689 | https://eleiko.inspire360.com/resource/659c5689126db289c70119d6 | Eleiko (istniejąca) | 4 | Start Position, Procedure, Coaching Key („The feet and hands finish at the same time.”) |
+| catalyst-193 | https://catalystathletics.com/exercise/193/Jerk-Balance/ | Catalyst Athletics | 4 | opis, Notes (najczęstsze błędy), Purpose; sesja 2: ponownie (ustawienie, ruch, błędy) |
+| catalyst-194 | https://catalystathletics.com/exercise/194/Jerk-Dip-Squat/ | Catalyst Athletics | 4 | opis, Notes („strictly about strength and position—it does not involve a drive”), Purpose; sesja 2: ponownie |
+| eleiko-659c5689 | https://eleiko.inspire360.com/resource/659c5689126db289c70119d6 | Eleiko (istniejąca; producent sztang) | 4 | Start Position, Procedure, Coaching Key („The feet and hands finish at the same time.”) |
 | eleiko-659c5377 | https://eleiko.inspire360.com/resource/659c5377bb34667a190b10a0 | Eleiko | 4 | Start Position, Procedure, Coaching Key |
 | crossfit-jerk | https://www.crossfit.com/essentials/foundational-movement-jerk-what-is-a-jerk | CrossFit (nowa) | 4 | opisy stylów push/power, split, squat; Common Faults #1 („The lifter presses the bar out to complete the lift.”) i #2 („The lifter drives the barbell out front.”) |
+| barbend-jerk-dip | https://barbend.com/jerk-dip-technique-benefits/ | BarBend (istniejąca) | 4 (artykuł o technice, autor + data) | sesja 2: Unracking, Bracing, Stance, dip (kolana, prędkość, głębokość), odmiany (jerk dip squat — wolniej i pod kontrolą; jerk drive), wstęp o błędach |
+| barbend-jerk-exercises | https://barbend.com/exercises-to-strengthen-jerk | BarBend | 4 (artykuł o technice, autor + data) | sesja 2: Jerk Balance (ustawienie, ruch, korzyści), Jerk With Slow Dip, Common Jerk Mistakes (ogólne) |
 
 Uwaga do org „CrossFit”: organizacja szkoląca trenerów, nie aplikacja — zgodne z wyjątkiem dla wskazówek techniki; w aplikacji i tak bez nazw.
+barbend-jerk-dip i barbend-jerk-exercises — jedna organizacja; w żadnym zdaniu nie liczą się razem.
+
+Przejrzane w sesji 2 bez wyniku dla Jerk Dip Squat / Jerk Balance: zasoby Eleiko z PDF „Training for the Jerk”
+(https://programs.eleiko.com/hubfs/Programs/Eleiko%20Program%20-%20Jerk%20Training.pdf — tekst nieczytelny, adresy linków czytelne):
+659c4d34… = Push Press, 659c50b6… = Tall Push Jerk, 659c54d7… = Tall Split Jerk, 65848315… = Forward Lunge, 658d94bc… = Reverse Lunge, 659466a4… = Overhead Press —
+żadna strona o Jerk Balance ani Jerk Dip; Tall Push/Split Jerk mogą się przydać przyszłym kartom. IronMind „Jerk Support & Jerk Support and Recover” — inne ćwiczenia.
 
 ## 5. Otwarte
 
-- **Jerk Dip Squat** — tylko Catalyst. Do tego **dzisiejszy zestaw ogólny jest merytorycznie sprzeczny ze źródłem**: zawiera `pp.legs`
-  („Siła wybicia idzie z nóg i bioder — ręce kończą ruch”), a catalyst-194, Notes, mówi, że w tym ćwiczeniu nie ma wybicia ani szybkości.
+- **Jerk Dip Squat — zestaw ogólny merytorycznie sprzeczny ze źródłami** (sesja 1, potwierdzone w sesji 2 drugim źródłem): zawiera `pp.legs`
+  („Siła wybicia idzie z nóg i bioder — ręce kończą ruch”), a catalyst-194 (Notes) i barbend-jerk-dip (wybicie dopiero w odmianie „jerk drive”) mówią, że w tym ćwiczeniu nie ma wybicia.
   Rekomendacja dla koordynatora: usunąć `pp.legs` z zestawu „Jerk Dip Squat” (błędne twierdzenie → wg progu wydania WYSOKIE). `pp.dip`
-  („ugięcie krótkie, tułów napięty”) — źródło mówi o kontrolowanym zejściu; zgodne kierunkowo, ale tylko 1 źródło.
-- **Jerk Balance** — tylko Catalyst (ustawienie w częściowym wykroku, wykrok przednią nogą, tylna stopa cały czas na podłodze; błąd:
-  „diving the chest forward rather than stepping into the split”). Drugie źródło szczebla 4 nie znalezione (opisy znalezione przez wyszukiwarkę
-  — blogi trenerów i serwisy, nieprzeczytane albo szczebel 5).
+  („ugięcie krótkie, tułów napięty”) — „krótkie” nie pasuje do wolnego zejścia; zastąpić `olympic.dipBrace` + `olympic.dipSquat`.
+- **Jerk Dip Squat — głębokość** (BarBend: „four to six inches”, Catalyst ogólnie ~10% wzrostu w innym miejscu) — liczby poza wyjątkiem; **oddech** przed ugięciem — tylko BarBend.
+- **Jerk Dip Squat — rozbieżność o kolanach w ustawieniu**: BarBend „knees kept straight (though not locked)”, „pushing their knees wide”; Catalyst bez wskazówki — jedno źródło.
+- **Jerk Balance — błędy**: „rzucanie klatki w przód zamiast wejścia w wykrok przednią stopą i biodrami” i „za dużo ciężaru na przedniej nodze” — tylko catalyst-193;
+  barbend-jerk-exercises nie podaje błędów dla tego ćwiczenia. Tylna stopa cały czas na podłodze — też tylko Catalyst. Odległość wysunięcia (BarBend „10 to 12 inches”, Catalyst „a foot-length”) — liczby, nie wpisane.
 - **Squat Jerk — `pp.legs`**: tylko Catalyst wprost (CrossFit mówi o „aggressive, vertical drive”, bez kolejności nogi → ręce). Dzisiejszy
   zestaw ogólny ma `pp.dip` i `pp.legs` — przy przejściu na własne wskazówki oba wypadają (zastąpione `olympic.dip`).
-- **Split Jerk — powrót z wykroku** (najpierw przednia stopa pół kroku w tył, potem tylna): tylko CrossFit — nie wpisane.
+- **Split Jerk — powrót z wykroku** (najpierw przednia stopa pół kroku w tył, potem tylna): CrossFit (dwie strony: crossfit-jerk, crossfit-cj — jedna organizacja); Catalyst ma osobny artykuł
+  „Why Do We Recover Front Foot First in the Split Jerk” (nieprzeczytany w tej sesji — kandydat na drugie źródło).
 - **Split Jerk — błędy z poradnika trenera** (płytkie ugięcie, nierówny wykrok, za wąskie ustawienie): store.torokhtiy.com/blogs/exercises/split-jerk-exercise,
   „4 Common Split Jerk Mistakes” — strona szkoleń i programów trenera, zakwalifikowana jako szczebel 5; bez drugiego źródła szczebla 4.
 - **Power Jerk — Eleiko „Push Jerk”**: liczone jako wariant nazwy; jeśli audytor uzna push jerk (stopy bez ruchu) za inne ćwiczenie, Power Jerk
   i tak ma 2 organizacje (Catalyst, CrossFit) dla `olympic.jerkSetup`, `olympic.powerMove`, `olympic.dip`, `olympic.mis.forward`; wtedy
   `pp.legs`, `olympic.feetHands`, `olympic.recover`, `olympic.mis.armsEarly`, `olympic.mis.pressOut` mają tylko 1 źródło.
-- Karta CSCCa „Split Jerk” (educ.jmu.edu) — host niedostępny w sesji; do sprawdzenia przy kolejnej okazji jako możliwe drugie źródło dla Jerk Balance/powrotu.
+- Karta CSCCa „Split Jerk” (educ.jmu.edu) — host zablokowany w sieci sesji; pominięta.
 
 ## 6. Stan
 
-- Zrobione: 5 ćwiczeń przejrzanych; 3 gotowe (Split, Power, Squat Jerk), 2 otwarte (Jerk Dip Squat, Jerk Balance); 10 nowych zdań; 8 nowych źródeł, 2 nowe orgs.
-- Zostało: drugie źródło dla Jerk Dip Squat i Jerk Balance; decyzja o usunięciu `pp.legs` z zestawu ogólnego „Jerk Dip Squat”.
-- Pułapki: ExRx/Wayback niedostępne; Catalyst ma różne numery stron — #62 to „Hang Snatch”, nie podrzut.
+- Zrobione: 5 ćwiczeń; **4 gotowe** (Split, Power, Squat Jerk; Jerk Dip Squat — sesja 2), **1 częściowe** (Jerk Balance — brak błędów); 15 nowych zdań (10 + 5 w sesji 2);
+  10 źródeł (2 nowe w sesji 2: barbend-jerk-dip, barbend-jerk-exercises), 2 nowe orgs. Szczeble sprawdzone wg rozstrzygnięcia z 02.11 — bez zmian w danych.
+- Zostało: drugie źródło dla błędów Jerk Balance; decyzja o usunięciu `pp.legs` z zestawu ogólnego „Jerk Dip Squat”.
+- Następny krok: przeczytać artykuł Catalyst o powrocie z wykroku (drugie źródło dla „najpierw przednia stopa” obok CrossFit); poszukać błędów Jerk Balance w materiałach USA Weightlifting.
+- Pułapki: ExRx/Wayback niedostępne; Catalyst ma różne numery stron — #62 to „Hang Snatch”, nie podrzut; PDF-y Eleiko — WebFetch czyta tylko adresy linków.
