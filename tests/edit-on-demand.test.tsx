@@ -5,7 +5,7 @@
 import * as store from '@/lib/store';
 import * as draft from '@/lib/draft';
 import { fresh, ex, pressAlert, saved, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act, startEdit, saveEdit, tplDraft, exDraft, openCard } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, startEdit, saveEdit, tplDraft, exDraft, openCard, hostRoot } from './app';
 import type { Template } from '@/lib/seed';
 
 jest.setTimeout(60000);
@@ -21,6 +21,7 @@ const boot = async (fn: () => void = () => {}, url?: string, locale: 'pl' | 'en'
 
 describe('lib/draft — szkic poza stanem', () => {
   test('beginObjDraft: głęboka kopia, ten sam szkic przy ponownym „Edytuj”; save(szkic) nie zapisuje do bazy ani nie unieważnia historii', async () => {
+    jest.useFakeTimers(); /* SDK 58: fałszywy zegar włącza dopiero renderRouter (expo-router/testing-library), a ten test go nie woła — wcześniej był już włączony */
     await fresh(); const t = mkTpl(); await act(async () => { await store.flush(); }); const kv = global.__kv.get('state'); const hist = store.getHistRev();
     const d = draft.beginObjDraft<Template>('template', t.id)!; expect(d).not.toBe(t); expect(d.items[0]).not.toBe(t.items[0]); expect(draft.beginObjDraft('template', t.id)).toBe(d);
     expect(store.isDraftObj(d)).toBe(true); expect(store.isDraftObj(t)).toBe(false);
@@ -30,6 +31,7 @@ describe('lib/draft — szkic poza stanem', () => {
     draft.discardObjDraft('template', t.id); expect(draft.objDraft('template', t.id)).toBeUndefined(); expect(draft.templateForEdit(t.id)).toBe(t); expect(draft.objDirty('template', t.id)).toBe(false);
   });
   test('commitObjDraft: przenosi zmiany do obiektu w stanie (ta sama tożsamość), usuwa pola skasowane w szkicu, zachowuje archiwum; bez zmian — bez zapisu', async () => {
+    jest.useFakeTimers(); /* jak wyżej (SDK 58) */
     await fresh(); const t = mkTpl(); t.folder = 'Siła'; store.save(t); const ts = t.updatedAt;
     draft.beginObjDraft('template', t.id); expect(draft.commitObjDraft('template', t.id)).toBe(true); expect(t.updatedAt).toBe(ts); /* nic nie zmieniono */
     const d = draft.beginObjDraft<Template>('template', t.id)!; delete d.folder; d.note = '  RIR  1 '; d.items.reverse(); (d as Template & { archived?: true }).archived = true;
@@ -65,7 +67,7 @@ describe('ekran ćwiczenia: podgląd → Edytuj → Anuluj / Zapisz', () => {
     await boot(() => { addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }, { weight: 100, reps: 5 }]]]); });
     await act(async () => { jest.advanceTimersByTime(1000); await store.flush(); }); const before = snap(); const kv = global.__kv.get('state'); const e = ex('Back Squat');
     await go(`/exercise/${e.id}`); await flushAll(10);
-    const { TextInput } = require('react-native'); expect(screen.UNSAFE_queryAllByType(TextInput)).toHaveLength(0);
+    expect(hostRoot().queryAll((n: any) => n.type === 'TextInput')).toHaveLength(0); /* RNTL 14: tylko elementy natywne */
     expect(screen.getByLabelText('Partia: nogi')).toBeTruthy(); expect(screen.getByLabelText('Sprzęt: sztanga')).toBeTruthy(); expect(screen.getByLabelText('Co logujesz w serii: ciężar + powtórzenia')).toBeTruthy();
     expect(screen.getByLabelText(/^Przerwa robocza: /)).toBeTruthy(); expect(screen.getByLabelText(/^Partie główne \(1 seria\): /)).toBeTruthy();
     expect(screen.getByLabelText(/^Sesja .*: 100×5, 100×5$/)).toBeTruthy(); expect(screen.getByText('Postępy')).toBeTruthy();
@@ -110,7 +112,7 @@ describe('ekran ćwiczenia: podgląd → Edytuj → Anuluj / Zapisz', () => {
 describe('ekran szablonu: podgląd „jak trening” → Edytuj → Anuluj / Zapisz', () => {
   test('podgląd: nazwa, notatka, „Start”, serie jak w treningu (VoiceOver: „Seria 1: 60 kg × 6–8”), przerwa; bez pól; wejście nie zmienia danych', async () => {
     let id = ''; await boot(() => { id = mkTpl().id; }); const before = snap(); await go(`/template/${id}`); await flushAll(10);
-    const { TextInput } = require('react-native'); expect(screen.UNSAFE_queryAllByType(TextInput)).toHaveLength(0);
+    expect(hostRoot().queryAll((n: any) => n.type === 'TextInput')).toHaveLength(0); /* RNTL 14: tylko elementy natywne */
     expect(screen.getByLabelText('Notatka: RIR 2')).toBeTruthy(); expect(screen.getByLabelText('Start: Push')).toBeTruthy();
     expect(screen.getAllByLabelText('Seria 1: 60 kg × 6–8').length).toBe(1); expect(screen.getByText('zakres 6–8 · przerwa 2:30')).toBeTruthy();
     expect(screen.getByText(/^2 ćw\. · 5 serii$/)).toBeTruthy(); expect(screen.queryByText('+ Dodaj ćwiczenie')).toBeNull(); expect(screen.queryByText('≡ Kolejność')).toBeNull();
@@ -151,7 +153,7 @@ describe('ekran szablonu: podgląd „jak trening” → Edytuj → Anuluj / Zap
 });
 
 describe('teksty edycji na żądanie, pierwszych kroków i edycji sesji (macierz: każdy komunikat pokazany)', () => {
-  const headers = () => screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === 'RNSScreenStackHeaderConfig').map((n: { props: { title?: string } }) => n.props.title);
+  const headers = () => hostRoot().queryAll((n: { type: unknown }) => n.type === 'RNSScreenStackHeaderConfig').map((n: { props: { title?: string } }) => n.props.title);
   test('ćwiczenie: „Ostatnie treningi” i „Jeszcze nie było w treningu.”; tytuł „Edycja ćwiczenia”; nowe ćwiczenie ze zmianami — „Nowe ćwiczenie nie zostanie zapisane.”', async () => {
     await boot(); const e = ex('Back Squat'); await go(`/exercise/${e.id}`); await flushAll(10);
     expect(screen.getByRole('header', { name: 'Ostatnie treningi' })).toBeTruthy(); expect(screen.getByText('Jeszcze nie było w treningu.')).toBeTruthy();

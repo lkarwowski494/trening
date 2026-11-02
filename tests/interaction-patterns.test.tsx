@@ -16,7 +16,8 @@ import { setAutoSavedNotice, autoSavedNotice, useAutoSavedNotice } from '@/lib/n
 import { workoutInProgressNotice } from '@/lib/start';
 import { Btn, Item } from '@/components/ui';
 import { fresh, saved, seedWithDemo, withDemoTemplates } from './helpers';
-import { renderApp, flushAll, screen, tap, act, go, type } from './app';
+import { renderApp, flushAll, screen, tap, act, go, type, navRef } from './app';
+import { compByType } from './comp-by-type';
 
 const NOW = new Date(2026, 9, 13, 9);
 const S = () => store.getState();
@@ -28,8 +29,8 @@ const boot = async (url: string, locale: 'pl' | 'en' = 'pl', fn: () => void = ()
 /* 101-14: pierwszy rozruch aplikacji w pliku to zimne ładowanie wszystkich ekranów (transformacja Babel bez pamięci podręcznej: ok. 6,9 s z `--no-cache`,
  * ok. 4–6 s pod obciążeniem; z ciepłą pamięcią ok. 0,8 s). Wcześniej płacił je pierwszy test „+” (limit 5 s → niestabilny). Teraz płaci je jawny rozgrzewający
  * beforeAll z osobnym limitem 60 s, a testy zachowują domyślny limit 5 s. */
-beforeAll(async () => { await boot('/templates'); cleanup(); }, 60000);
-const route = () => { const { store: rs } = require('expo-router/build/global-state/router-store'); let st = rs.navigationRef.getRootState(); while (st.routes[st.index ?? st.routes.length - 1].state) st = st.routes[st.index ?? st.routes.length - 1].state; return st.routes[st.index ?? st.routes.length - 1].name as string; };
+beforeAll(async () => { await boot('/templates'); await cleanup(); /* RNTL 14: cleanup — obietnica */ }, 60000);
+const route = () => { let st = navRef().getRootState() as any; /* SDK 58: router-store usunięty — tests/app.tsx navRef() */ while (st.routes[st.index ?? st.routes.length - 1].state) st = st.routes[st.index ?? st.routes.length - 1].state; return st.routes[st.index ?? st.routes.length - 1].name as string; };
 
 describe('lib/confirm: jedno słowo rezygnacji', () => {
   test('cancelButton = „Anuluj” (styl cancel, opcjonalna akcja); backToEditButton = „Wróć do edycji”; okButton = „OK”', () => {
@@ -55,15 +56,15 @@ describe('lib/confirm: jedno słowo rezygnacji', () => {
 });
 
 describe('lib/announce i lib/notices', () => {
-  test('announce() woła VoiceOver; useAnnounce tylko dla niepustego, zmienionego tekstu', () => {
+  test('announce() woła VoiceOver; useAnnounce tylko dla niepustego, zmienionego tekstu', async () => {
     const spy = jest.spyOn(AccessibilityInfo, 'announceForAccessibility').mockImplementation(() => {});
     announce('Zapisano'); expect(spy).toHaveBeenCalledWith('Zapisano');
-    const h = renderHook(({ t }: { t: string | null }) => useAnnounce(t), { initialProps: { t: null as string | null } });
-    expect(spy).toHaveBeenCalledTimes(1); h.rerender({ t: 'Błąd pola' }); expect(spy).toHaveBeenLastCalledWith('Błąd pola'); h.rerender({ t: 'Błąd pola' }); expect(spy).toHaveBeenCalledTimes(2); h.rerender({ t: null }); expect(spy).toHaveBeenCalledTimes(2);
+    const h = await renderHook(({ t }: { t: string | null }) => useAnnounce(t), { initialProps: { t: null as string | null } }); /* RNTL 14: renderHook/rerender — obietnice */
+    expect(spy).toHaveBeenCalledTimes(1); await h.rerender({ t: 'Błąd pola' }); expect(spy).toHaveBeenLastCalledWith('Błąd pola'); await h.rerender({ t: 'Błąd pola' }); expect(spy).toHaveBeenCalledTimes(2); await h.rerender({ t: null }); expect(spy).toHaveBeenCalledTimes(2);
   });
-  test('notices: ustawienie i zdjęcie komunikatu autozapisu; hook useAutoSavedNotice reaguje na zmianę', () => {
+  test('notices: ustawienie i zdjęcie komunikatu autozapisu; hook useAutoSavedNotice reaguje na zmianę', async () => {
     setAutoSavedNotice('x'); expect(autoSavedNotice()).toBe('x'); setAutoSavedNotice(null); expect(autoSavedNotice()).toBeNull();
-    const h = renderHook(() => useAutoSavedNotice()); expect(h.result.current).toBeNull(); act(() => { setAutoSavedNotice('y'); }); expect(h.result.current).toBe('y'); act(() => { setAutoSavedNotice(null); }); expect(h.result.current).toBeNull();
+    const h = await renderHook(() => useAutoSavedNotice()); expect(h.result.current).toBeNull(); await act(() => { setAutoSavedNotice('y'); }); expect(h.result.current).toBe('y'); await act(() => { setAutoSavedNotice(null); }); expect(h.result.current).toBeNull();
   });
   test('tytuły błędów mówią, co się nie udało (PL i EN): zakup', () => {
     const { t } = require('@/lib/i18n'); expect(t('Nie udało się dokończyć zakupu')).toBe('Nie udało się dokończyć zakupu'); applyLang('en'); expect(t('Nie udało się dokończyć zakupu')).toBe('Couldn\'t complete the purchase');
@@ -117,13 +118,13 @@ describe('wspólne komponenty ekranów', () => {
     await boot('/generator'); const g = screen.getByLabelText('Generator szablonów i planu'); expect(g.props.accessibilityRole).toBe('radiogroup');
     expect(screen.getByLabelText('Nowe szablony i plan').props.accessibilityState.selected).toBe(true); await tap(screen.getByLabelText('Plan z moich szablonów')); expect(screen.getByLabelText('Plan z moich szablonów').props.accessibilityState.selected).toBe(true);
   });
-  test('Btn loading: wskaźnik, stan busy+disabled VoiceOver, brak wywołania onPress; Btn expanded', () => {
-    const fn = jest.fn(); const r = render(<><Btn title="Eksport" loading onPress={fn} /><Btn title="Więcej" expanded onPress={fn} /></>);
-    fireEvent.press(r.getByText('Eksport')); expect(fn).not.toHaveBeenCalled(); expect(r.getByLabelText('Eksport').props.accessibilityState).toMatchObject({ busy: true, disabled: true }); expect(r.UNSAFE_queryByType(require('react-native').ActivityIndicator)).toBeTruthy();
+  test('Btn loading: wskaźnik, stan busy+disabled VoiceOver, brak wywołania onPress; Btn expanded', async () => {
+    const fn = jest.fn(); const r = await render(<><Btn title="Eksport" loading onPress={fn} /><Btn title="Więcej" expanded onPress={fn} /></>);
+    await fireEvent.press(r.getByText('Eksport')); expect(fn).not.toHaveBeenCalled(); expect(r.getByLabelText('Eksport').props.accessibilityState).toMatchObject({ busy: true, disabled: true }); expect(compByType(r.container, require('react-native').ActivityIndicator)[0]).toBeTruthy(); /* RNTL 14: komponent złożony przez unstable_fiber */
     expect(r.getByLabelText('Więcej').props.accessibilityState).toMatchObject({ expanded: true });
   });
-  test('Item expanded / selected → accessibilityState', () => {
-    const r = render(<><Item title="A" expanded={false} onPress={() => {}} /><Item title="B" selected onPress={() => {}} /><Item title="C" onPress={() => {}} /></>);
+  test('Item expanded / selected → accessibilityState', async () => {
+    const r = await render(<><Item title="A" expanded={false} onPress={() => {}} /><Item title="B" selected onPress={() => {}} /><Item title="C" onPress={() => {}} /></>);
     expect(r.getByLabelText('A').props.accessibilityState).toMatchObject({ expanded: false }); expect(r.getByLabelText('B').props.accessibilityState).toMatchObject({ selected: true }); expect(r.getByLabelText('C').props.accessibilityState?.expanded).toBeUndefined(); expect(r.getByLabelText('C').props.accessibilityState?.selected).toBeUndefined();
   });
   test('Ustawienia: „Cele partii” — stała etykieta, stan expanded zmienia się po stuknięciu', async () => {
