@@ -91,6 +91,7 @@
 - Workflowy (`.github/workflows`): zmiany wypycha koordynator na gałąź funkcji i **scala sam** po prawdziwym przebiegu dowodowym (wynik na gotowym produkcie),
   bez nowych sekretów i uprawnień, z opisem zmiany w PR; właściciel dostaje informację, nie pytanie (właściciel 21.10.2026; zastępuje zatwierdzanie
   scaleniem z 14.10.2026). Wysyłka do TestFlight i App Store nadal tylko po zatwierdzeniu właściciela (środowisko `release`). Właściciela prowadzimy zadanie po zadaniu z instrukcją krok po kroku, nie zbiorczą listą.
+- Scalanie gałęzi z kodem do `integracja-1-1`/`main` tylko przez `node scripts/scal-galaz.mjs <gałąź> [--do <docelowa>]` — scala, gdy `tests.yml` dla SHA głowy gałęzi źródłowej ma `conclusion: success` (w toku → kod 3, czerwony/brak przebiegu → odmowa; same dokumenty względem docelowej bez CI, dowód `verify:docs`); nie scalaj ręcznie `git merge` (L-090 A, właściciel 02.11.2026; test: `tests/scal-galaz.test.ts`).
 - Gałęzie: praca na gałęzi funkcji od `main` (właściciel 21.10.2026; `integration/0.9.0` usunięta przy sprzątaniu gałęzi); scalenie do `main` tylko na polecenie właściciela. Nie łącz aktualizacji SDK ze zmianą
   schematu danych w jednym wydaniu.
 
