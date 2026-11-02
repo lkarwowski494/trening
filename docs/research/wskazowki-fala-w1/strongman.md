@@ -1,67 +1,46 @@
 # Wskazówki techniki — rodzina `strongman` (fala W1, G6)
 
-- Data: 02.11.2026
+- Data: 02.11.2026 (część 1 i kontynuacja tego samego dnia)
 - Autor: badacz-merytoryczny (agent)
 - Zakres: Tire Flip, Atlas Stones, Sandbag Load, Yoke Walk, Log Lift, Keg Load, Jefferson Squat, Circus Bell, Conan's Wheel, Power Stairs
 - Status: PROPOZYCJA — dane do integracji przez koordynatora linii 1.1
 
-Metoda: jak w `carry.md`. Wskazówka wchodzi, gdy potwierdzają ją ≥ 2 niezależne, przeczytane źródła szczebla 4 z różnych organizacji. Bez liczb i bez twierdzeń zdrowotnych: kilka przeczytanych źródeł pisze o urazach (np. bicepsa przy oponie i kamieniu), ale tych treści celowo nie przenoszę. Wszystkie strony czytane 02.11.2026 (WebFetch). W tej niszy źródła szczebla 4 to głównie producenci sprzętu strongman z działem szkoleniowym (artykuły trenerów) i serwisy trenerskie.
+Metoda: jak w `carry.md`. Wskazówka wchodzi, gdy potwierdzają ją ≥ 2 niezależne, przeczytane źródła szczebla 4 z różnych organizacji. Bez liczb i bez twierdzeń zdrowotnych: kilka przeczytanych źródeł pisze o urazach (np. bicepsa przy oponie i kamieniu, palców przy kamieniu), ale tych treści celowo nie przenoszę. Wszystkie strony czytane 02.11.2026 (WebFetch).
+
+**Kontynuacja (02.11.2026) — zmiana po rozstrzygnięciu koordynatora o szczeblach organizacji.** Każdą organizację oceniłem według kryteriów (a) rodzaj organizacji, (b) autor i data albo treść firmowana, (c) bez marketingu i afiliacji (tabela w p. 3). Skutki: EliteFTS, Strength Shop i Fitness Volt spadają do szczebla 5. Cerberus Strength oznaczam jako „4 warunkowo”, bo nie przeczytałem strony, która potwierdza, że kłody i kamienie to jego własny sprzęt. Doszły źródła BarBend (szczebel 4, artykuły o technice). Wpisy oparte na Cerberusie przeniosłem do osobnego bloku „warunkowe” (p. 2b). W JSON w p. 2a są tylko wpisy z dwoma bezwarunkowymi źródłami szczebla 4.
 
 ## 1. Tabela ćwiczeń
 
 | Ćwiczenie | Obecny tryb | Wynik | Uwagi |
 |---|---|---|---|
-| Tire Flip | open | gotowe | ustawienie, ruch (2), 1 błąd |
-| Atlas Stones | open | częściowe | ustawienie (2), ruch (2); brak wspólnego błędu |
-| Sandbag Load | open | otwarte | nie zbadano (limit kontekstu) — patrz „Stan” |
-| Yoke Walk | general (`carry`) | gotowe | ustawienie, ruch, 1 wskazówka, 1 błąd; ogólny zestaw do zastąpienia (patrz „Otwarte”) |
-| Log Lift | open | gotowe | ustawienie, ruch (2), 1 błąd |
-| Keg Load | open | otwarte | nie zbadano |
-| Jefferson Squat | general (`squat`) | otwarte | nie zbadano; obecny zestaw przysiadu (`sq.*`) wymaga sprawdzenia (ustawienie okrakiem nad sztangą jest inne) |
-| Circus Bell | open | otwarte | nie zbadano |
+| Tire Flip | open | częściowe | tylko `tf.push` (8weeksout + BarBend). Bez EliteFTS (szczebel 5) `tf.setup`, `tf.drive` i `tf.mis.arms` mają po jednym źródle szczebla 4; przy `tf.setup` BarBend opisuje rozstaw sumo (patrz „Otwarte”) |
+| Atlas Stones | open | częściowe | `as.setup`, `as.lap`, `as.extend` (8weeksout + BarBend); `as.grip` warunkowe (Cerberus); błędu brak — źródła sobie przeczą (patrz „Otwarte”) |
+| Sandbag Load | open | częściowe | tylko `sb.lap` (BarBend + Bells of Steel); reszta ma jedno źródło szczebla 4 |
+| Yoke Walk | general (`carry`) | gotowe | ustawienie, ruch, wskazówka, błąd (Bells of Steel + BarBend); `yoke.brace` w nowym brzmieniu, bez wdechu; ogólny zestaw do zastąpienia |
+| Log Lift | open | warunkowe | `log.clean` (nowe brzmienie) i `log.press` (krótsze): Cerberus + BarBend; gotowe, jeśli koordynator uzna Cerberusa za szczebel 4 |
+| Keg Load | open | otwarte | brak dwóch przeczytanych źródeł szczebla 4 o ładowaniu beczki |
+| Jefferson Squat | general (`squat`) | otwarte | obecny zestaw tylko częściowo potwierdzony dla tego wariantu (patrz „Otwarte”); jedno źródło szczebla 4 |
+| Circus Bell | open | otwarte | nie zbadano (limit kontekstu) |
 | Conan's Wheel | open | otwarte | nie zbadano |
 | Power Stairs | open | otwarte | nie zbadano |
 
-## 2. JSON do `exercises` (cues.json)
+## 2a. JSON do `exercises` (cues.json) — dwa bezwarunkowe źródła szczebla 4
 
 ```json
 {
   "Tire Flip": {
-    "setup": [
-      {
-        "c": "tf.setup",
-        "s": [
-          ["elitefts-tire-flip", "setup (four-point stance, klatka wciśnięta w oponę; ręce szeroko)"],
-          ["8wo-tire-flip", "Setup (przysiad, klatka oparta o oponę; chwyt na zewnątrz stóp)"]
-        ]
-      }
-    ],
+    "setup": [],
     "move": [
-      {
-        "c": "tf.drive",
-        "s": [
-          ["elitefts-tire-flip", "drive (biodra wypychają oponę w górę, pełny wyprost)"],
-          ["8wo-tire-flip", "Drive (wstajesz, klatka i barki cały czas w kontakcie z oponą)"]
-        ]
-      },
       {
         "c": "tf.push",
         "s": [
-          ["elitefts-tire-flip", "finish („drive the tire forward as if bench pressing it away from your chest”)"],
-          ["8wo-tire-flip", "Flip/Push (dłońmi przepchnij oponę na drugą stronę)"]
+          ["8wo-tire-flip", "Flip/Push (dłońmi przepchnij oponę na drugą stronę)"],
+          ["barbend-strongman-ex", "1. Tire flip (po złapaniu opony na wysokości klatki przepchnij ją z wykroku)"]
         ]
       }
     ],
     "tips": [],
-    "mistakes": [
-      {
-        "c": "tf.mis.arms",
-        "s": [
-          ["elitefts-tire-flip", "common errors (podnoszenie jak w martwym ciągu na prostych rękach; podciąganie rękami)"],
-          ["8wo-tire-flip", "Common Mistakes (klatka i barki tracą kontakt z oponą przy wstawaniu; parafraza)"]
-        ]
-      }
-    ]
+    "mistakes": []
   },
   "Atlas Stones": {
     "setup": [
@@ -69,14 +48,7 @@ Metoda: jak w `carry.md`. Wskazówka wchodzi, gdy potwierdzają ją ≥ 2 niezal
         "c": "as.setup",
         "s": [
           ["8wo-atlas", "Setup and Stance („straddling directly over the top of the stone”)"],
-          ["cerberus-atlas", "Setup & Stance (rozstaw stóp mniej więcej na szerokość kamienia)"]
-        ]
-      },
-      {
-        "c": "as.grip",
-        "s": [
-          ["8wo-atlas", "Grip (kamień ściśnięty między przedramionami)"],
-          ["cerberus-atlas", "Grip (ściskanie przedramionami i dłońmi)"]
+          ["barbend-atlas", "Step 1 Grip the Stone (środek kamienia między łukami stóp)"]
         ]
       }
     ],
@@ -85,14 +57,28 @@ Metoda: jak w `carry.md`. Wskazówka wchodzi, gdy potwierdzają ją ≥ 2 niezal
         "c": "as.lap",
         "s": [
           ["8wo-atlas", "Loading the Lap"],
-          ["cerberus-atlas", "Lapping the Stone (kamień przeniesiony nad kolana)"]
+          ["barbend-atlas", "Step 2 Lap the Stone (kamień do bioder, usiądź w tył, kamień na udach)"]
         ]
       },
       {
         "c": "as.extend",
         "s": [
           ["8wo-atlas", "Extension (najpierw biodra w górę, potem wypchnięcie bioder)"],
-          ["cerberus-atlas", "Lapping the Stone / Extension (siła bioder, pełny wyprost)"]
+          ["barbend-atlas", "Step 3 Drive Up to Load the Stone (wstajesz, wypychając biodra do przodu)"]
+        ]
+      }
+    ],
+    "tips": [],
+    "mistakes": []
+  },
+  "Sandbag Load": {
+    "setup": [],
+    "move": [
+      {
+        "c": "sb.lap",
+        "s": [
+          ["barbend-sandbag", "Step-By-Step Sandbag Guide, kroki 3–4 (ruch jak w RDL; za kolanami usiądź w tył i przyciągnij worek na uda)"],
+          ["bos-sandbag", "lifting („Deadlift the bag into your lap.”; biodra w tył)"]
         ]
       }
     ],
@@ -105,7 +91,7 @@ Metoda: jak w `carry.md`. Wskazówka wchodzi, gdy potwierdzają ją ≥ 2 niezal
         "c": "yoke.setup",
         "s": [
           ["bos-yoke", "setup („Position the crossbeam on your back.”)"],
-          ["strengthshop-yoke", "Bar Position (belka na górze mięśni czworobocznych)"]
+          ["barbend-yoke", "Step 1 Get Under the Yoke (barki czworoboczne dociśnięte do belki, góra pleców jako półka)"]
         ]
       }
     ],
@@ -113,8 +99,8 @@ Metoda: jak w `carry.md`. Wskazówka wchodzi, gdy potwierdzają ją ≥ 2 niezal
       {
         "c": "yoke.brace",
         "s": [
-          ["bos-yoke", "Bracing (napięcie brzucha na starcie, utrzymane przez cały marsz)"],
-          ["strengthshop-yoke", "Unracking („Take a big breath, brace your core, and stand up with the weight.”)"]
+          ["bos-yoke", "Bracing (napięcie brzucha przed startem)"],
+          ["barbend-yoke", "Step 1 Form Tip, Step 2 Stand Up (napnij brzuch, potem wstań)"]
         ]
       }
     ],
@@ -122,8 +108,8 @@ Metoda: jak w `carry.md`. Wskazówka wchodzi, gdy potwierdzają ją ≥ 2 niezal
       {
         "c": "yoke.steps",
         "s": [
-          ["bos-yoke", "Step Length (krótkie kroki, pięta przed palcami drugiej stopy)"],
-          ["strengthshop-yoke", "Step Length („keep your steps small and fast”)"]
+          ["bos-yoke", "Step Length (krótkie kroki)"],
+          ["barbend-yoke", "Step 3 Take Small, Quick Steps"]
         ]
       }
     ],
@@ -132,44 +118,7 @@ Metoda: jak w `carry.md`. Wskazówka wchodzi, gdy potwierdzają ją ≥ 2 niezal
         "c": "yoke.mis.stride",
         "s": [
           ["bos-yoke", "Common Mistakes (zbyt duże kroki)"],
-          ["strengthshop-yoke", "Common Mistakes („Long strides create lateral sway…”)"]
-        ]
-      }
-    ]
-  },
-  "Log Lift": {
-    "setup": [
-      {
-        "c": "log.grip",
-        "s": [
-          ["elitefts-log-mistakes", "mistake 2 (chwyt dokładnie pośrodku)"],
-          ["cerberus-log", "Setup and Grip („hands bang in the middle of the log”)"]
-        ]
-      }
-    ],
-    "move": [
-      {
-        "c": "log.clean",
-        "s": [
-          ["elitefts-log-mistakes", "mistakes 4–5 (kłoda na udach, potem łokcie „punch… under the log”)"],
-          ["cerberus-log", "The Clean (kłoda przy ciele po podniesieniu na uda, łokcie pod kłodę)"]
-        ]
-      },
-      {
-        "c": "log.press",
-        "s": [
-          ["elitefts-log-mistakes", "Press / mistake 8 (wybicie z bioder)"],
-          ["cerberus-log", "Press and Dip-Drive; Lockout (krótkie ugięcie, wypchnięcie, wyprost rąk)"]
-        ]
-      }
-    ],
-    "tips": [],
-    "mistakes": [
-      {
-        "c": "log.mis.elbows",
-        "s": [
-          ["elitefts-log-mistakes", "mistakes 4 i 6 (łokcie za nisko przy zakładaniu i w pozycji na klatce)"],
-          ["cerberus-log", "Common Mistakes (opadające łokcie przenoszą ciężar do przodu)"]
+          ["barbend-yoke", "Step 3 Form Tip (długie kroki psują stabilność tułowia i bioder)"]
         ]
       }
     ]
@@ -177,66 +126,124 @@ Metoda: jak w `carry.md`. Wskazówka wchodzi, gdy potwierdzają ją ≥ 2 niezal
 }
 ```
 
-„Atlas Stones” jest częściowe (bez wskazówek i błędów), więc proponuję je na listę `partial`.
+„Tire Flip”, „Atlas Stones” i „Sandbag Load” są częściowe, więc proponuję je na listę `partial`. „Yoke Walk” jest kompletne.
 
-## 3. Nowe źródła
+## 2b. Wpisy warunkowe — oparte na Cerberus Strength („4 warunkowo”)
+
+Do JSON tylko wtedy, gdy koordynator uzna Cerberus Strength za szczebel 4 (patrz p. 3).
+
+```json
+{
+  "Atlas Stones": {
+    "setup": [
+      {
+        "c": "as.grip",
+        "s": [
+          ["8wo-atlas", "Grip (kamień ściśnięty między przedramionami)"],
+          ["cerberus-atlas", "Grip (ściskanie przedramionami i dłońmi)"]
+        ]
+      }
+    ]
+  },
+  "Log Lift": {
+    "setup": [],
+    "move": [
+      {
+        "c": "log.clean",
+        "s": [
+          ["cerberus-log", "The Clean (kłoda na udach, potem blisko ciała na klatkę)"],
+          ["barbend-strongman-ex", "2. Log lift (kłoda na udach, potem po tułowiu na barki)"]
+        ]
+      },
+      {
+        "c": "log.press",
+        "s": [
+          ["cerberus-log", "Press and Dip-Drive; Lockout (wypchnięcie nad głowę do wyprostu rąk)"],
+          ["barbend-strongman-ex", "2. Log lift (z klatki wyciskanie, podrzut albo wybicie nad głowę)"]
+        ]
+      }
+    ],
+    "tips": [],
+    "mistakes": []
+  }
+}
+```
+
+## 3. Źródła
+
+### 3.1 Ocena organizacji (rozstrzygnięcie koordynatora z 02.11.2026)
+
+| Organizacja | (a) rodzaj | (b) autor/data | (c) marketing | Szczebel |
+|---|---|---|---|---|
+| 8weeksout | serwis trenera, który prowadzi kurs certyfikujący dla trenerów (strona `8weeksout.com/conditioning-certification/`, czytana 02.11.2026) | artykuły z datą, firmowane | artykuły o technice bez sprzedaży | **4** |
+| BarBend | serwis z redakcją; autorzy z kwalifikacjami (CSCS, NASM-CPT) | autor + data aktualizacji; przy kamieniu także recenzent | artykuły o technice (nie recenzje produktów) | **4** |
+| Bells of Steel | producent; jarzmo i worki to jego własne produkty (artykuły linkują do własnego jarzma i worków) | treść firmowana, z datą (2022), bez autora | głównie instruktaż, na końcu warstwa sprzedażowa | **4** (tylko jarzmo i worek — własny sprzęt) |
+| Cerberus Strength | sklep i marka sprzętu strongman; na przeczytanych stronach brak potwierdzenia, że kłoda i kamienie to jego własny sprzęt | „CERBERUS Media” + podpisany trener + data | treść artykułu bez promocji, ale strona ma banery sklepu | **4 warunkowo** — do decyzji koordynatora |
+| EliteFTS | producent sprzętu siłowego; opona i kłoda to nie jego sprzęt (nie potwierdzono); brak informacji o recenzji eksperckiej | autor + data | artykuł bez sprzedaży | **5** (dla tych artykułów) |
+| Strength Shop | producent/sklep sprzętu strongman | data, bez autora | artykuł o jarzmie zbudowany wokół promocji własnego jarzma i innych produktów („mainly sales-oriented”) | **5** |
+| Fitness Volt | serwis fitness; strona bez autora, bez informacji o redakcji ani recenzji | brak autora | — | **5** |
+| Gegns Gym (dawniej adres grindergym) | siłownia, strona bez autora | brak | — | **5** (wskazówka praktyki, nie liczy się) |
+| USAWA | federacja trójboju ogólnego (all-round), nie szkoli trenerów | autor + data (2012) | bez sprzedaży | **5** — nie spełnia (a); tylko wskazówka |
+
+### 3.2 Źródła (wszystkie czytane 02.11.2026)
 
 | id | org | tytuł | url | szczebel | czytane |
 |---|---|---|---|---|---|
-| elitefts-tire-flip | EliteFTS | C.J. Murphy, Tire Flipping: Tips and Techniques (2006) | https://elitefts.com/blogs/training/tire-flipping-tips-and-techniques | 4 | tak, 02.11.2026 |
-| elitefts-log-mistakes | EliteFTS | M. Mastell, 9 Log Press Mistakes and How to Fix Them (2015) | https://elitefts.com/blogs/training/9-log-press-mistakes-and-how-to-fix-them | 4 | tak, 02.11.2026 |
-| 8wo-tire-flip | 8weeksout | Tire Flip Technique (2014) | https://8weeksout.com/2014/06/03/tire-flip-technique/ | 4 | tak, 02.11.2026 |
-| 8wo-atlas | 8weeksout | Atlas Stone (2014) | https://8weeksout.com/?p=2853 | 4 | tak, 02.11.2026 |
-| cerberus-atlas | Cerberus Strength | Become the Queen/King of the Atlas Stones (S. Bradley, 2023) | https://cerberus-strength.com/blogs/training-tips/become-the-queen-king-of-the-atlas-stones-with-sandra-bradley | 4 | tak, 02.11.2026 |
-| cerberus-log | Cerberus Strength | Log Lifting Tips & Techniques (D. McPherson, 2023) | https://cerberus-strength.com/blogs/training-tips/log-lifting-tips-techniques-with-pro-coach-dale-mcpherson | 4 | tak, 02.11.2026 |
-| bos-yoke | Bells of Steel | How to Get Into Strongman: Yoke Walk (2022) | https://www.bellsofsteel.us/blog/gear-education/how-to-get-into-strongman-yoke-walk/ | 4 | tak, 02.11.2026 |
-| strengthshop-yoke | Strength Shop | Master the Yoke (2026) | https://strengthshop.eu/blogs/news/master-the-yoke-your-guide-to-yoke-training-for-strongman-athletes | 4 | tak, 02.11.2026 |
+| elitefts-tire-flip | EliteFTS | C.J. Murphy, Tire Flipping: Tips and Techniques (2006) | https://elitefts.com/blogs/training/tire-flipping-tips-and-techniques | 5 (było 4) | tak |
+| elitefts-log-mistakes | EliteFTS | M. Mastell, 9 Log Press Mistakes and How to Fix Them (2015) | https://elitefts.com/blogs/training/9-log-press-mistakes-and-how-to-fix-them | 5 (było 4) | tak |
+| 8wo-tire-flip | 8weeksout | Tire Flip Technique (2014) | https://8weeksout.com/2014/06/03/tire-flip-technique/ | 4 | tak |
+| 8wo-atlas | 8weeksout | Atlas Stone (2014) | https://8weeksout.com/?p=2853 | 4 | tak |
+| cerberus-atlas | Cerberus Strength | Become the Queen/King of the Atlas Stones (S. Bradley, 2023) | https://cerberus-strength.com/blogs/training-tips/become-the-queen-king-of-the-atlas-stones-with-sandra-bradley | 4 warunkowo | tak |
+| cerberus-log | Cerberus Strength | Log Lifting Tips & Techniques (D. McPherson, 2023) | https://cerberus-strength.com/blogs/training-tips/log-lifting-tips-techniques-with-pro-coach-dale-mcpherson | 4 warunkowo | tak |
+| bos-yoke | Bells of Steel | How to Get Into Strongman: Yoke Walk (2022) | https://www.bellsofsteel.us/blog/gear-education/how-to-get-into-strongman-yoke-walk/ | 4 | tak |
+| strengthshop-yoke | Strength Shop | Master the Yoke (2026) | https://strengthshop.eu/blogs/news/master-the-yoke-your-guide-to-yoke-training-for-strongman-athletes | 5 (było 4) | tak |
+| barbend-atlas | BarBend | Everything You Need to Know About Hoisting Atlas Stones (M. Gill, akt. M. Dewar 26.06.2024, recenzja ekspercka) | https://barbend.com/strongman-atlas-stone-technique/ | 4 | tak (nowe) |
+| barbend-yoke | BarBend | Get Lean, Get Strong, and Get Fast With the Yoke Walk (M. Dewar, akt. 20.11.2024) | https://barbend.com/yoke-walk/ | 4 | tak (nowe) |
+| barbend-sandbag | BarBend | Why Every Athlete Can Benefit From Sandbag Training (M. Barker), sekcja „Step-By-Step Sandbag Guide” | https://barbend.com/sandbag-training/ | 4 | tak (nowe) |
+| barbend-strongman-ex | BarBend | The 10 Best Strongman Exercises (J. Dickson, recenzja 03.07.2024) | https://barbend.com/best-strongman-exercises/ | 4 (zestawienie ćwiczeń z opisem wykonania, nie recenzja produktów) | tak (nowe) |
+| bos-sandbag | Bells of Steel | How to Get Into Strongman: Filling and Lifting Sandbags (2022) | https://www.bellsofsteel.us/blog/gear-education/how-to-get-into-strongman-filling-and-lifting-sandbags | 4 | tak (nowe) |
+| barbend-jefferson | BarBend | Jefferson Squat – Exercise Guide (A. Barr, akt. 18.06.2025) | https://barbend.com/jefferson-squat | 4 | tak (nowe; użyte tylko w „Otwarte”) |
 
-Nowe organizacje (propozycja szczebla 4):
-- **EliteFTS** — producent sprzętu siłowego z działem szkoleniowym (artykuły trenerów); `kind: maker`.
-- **8weeksout** — serwis trenera przygotowania motorycznego (artykuły z autorem); `kind: site`.
-- **Cerberus Strength** — producent sprzętu strongman (artykuły trenerów z imienia i nazwiska); `kind: maker`.
-- **Bells of Steel** — producent sprzętu (blog, bez autora); `kind: maker`.
-- **Strength Shop** — producent sprzętu strongman (blog, bez autora); `kind: maker`.
+Przeczytane, ale niewliczone (szczebel 5): Fitness Volt „Sandbag Loading” (https://fitnessvolt.com/strongman/training/sandbag-loading), Gegns Gym „Sandbag Carry and Load” (https://gegnsgym.com/?p=90275), USAWA „Jefferson Lift Technique” (https://www.usawa.com/?p=8520), Lift Big Eat Big „Keg Carry” (https://liftbigeatbig.com/?p=6753 — to inne ćwiczenie, noszenie beczki, więc tylko analogia), Breaking Muscle „Must-Have Equipment for Strongman Training” (szczebel 5, bez instrukcji ładowania beczki), Cerberus „Mastering the Art of Sandbag Training” (bez instrukcji techniki).
 
-Niezależność: w każdej parze źródła pochodzą z dwóch różnych organizacji. 8weeksout i Cerberus występują przy dwóch ćwiczeniach, ale za każdym razem z innym partnerem.
+Nowe organizacje: **BarBend** już jest w `orgs`. **Bells of Steel** — szczebel 4 dla własnego sprzętu (jarzmo, worki), `kind: maker`. **8weeksout** — szczebel 4, `kind: site` (prowadzi kurs certyfikujący trenerów). **Cerberus Strength** — do decyzji (patrz 3.1). EliteFTS i Strength Shop — nie dodawać jako organizacji szczebla 4.
 
 ## 4. Nowe zdania
 
-| id | PL | EN (propozycja) | Źródła |
-|---|---|---|---|
-| tf.setup | Przykucnij przy oponie, oprzyj o nią klatkę i chwyć ją szeroko, dłonie szerzej niż stopy. | Crouch at the tire, put your chest against it and take a wide grip, hands outside your feet. | elitefts-tire-flip, 8wo-tire-flip |
-| tf.drive | Wypchnij oponę nogami i biodrami w górę i do przodu, klatka cały czas przy oponie. | Drive the tire up and forward with your legs and hips, chest staying on the tire. | elitefts-tire-flip, 8wo-tire-flip |
-| tf.push | Gdy opona stanie wyżej, przepchnij ją rękami na drugą stronę. | Once the tire is up, push it over with your hands. | elitefts-tire-flip, 8wo-tire-flip |
-| tf.mis.arms | Podrywanie opony samymi rękami, z klatką oderwaną od opony. | Yanking the tire up with your arms, chest off the tire. | elitefts-tire-flip, 8wo-tire-flip (parafraza: utrata kontaktu klatki) |
-| as.setup | Stań nad kamieniem tak, żeby był między stopami. | Stand over the stone so it sits between your feet. | 8wo-atlas, cerberus-atlas |
-| as.grip | Obejmij kamień przedramionami i dłońmi i mocno go ściśnij. | Wrap your forearms and hands around the stone and squeeze hard. | 8wo-atlas, cerberus-atlas |
-| as.lap | Podnieś kamień nad kolana i oprzyj go na udach. | Lift the stone over your knees and rest it on your thighs. | 8wo-atlas, cerberus-atlas |
-| as.extend | Z ud mocno wypchnij biodra i wyprostuj się, unosząc kamień wyżej. | From your lap, drive your hips through and stand up, bringing the stone higher. | 8wo-atlas, cerberus-atlas |
-| yoke.setup | Wejdź pod jarzmo i oprzyj belkę na górze pleców. | Get under the yoke and set the crossbar on your upper back. | bos-yoke, strengthshop-yoke |
-| yoke.brace | Weź wdech, napnij brzuch i wstań; trzymaj to napięcie przez cały marsz. | Breathe in, brace and stand up; keep that brace the whole walk. | bos-yoke, strengthshop-yoke |
-| yoke.steps | Rób krótkie kroki. | Take short steps. | bos-yoke, strengthshop-yoke |
-| yoke.mis.stride | Za długie kroki — jarzmo zaczyna się kołysać. | Strides too long — the yoke starts to sway. | bos-yoke (zbyt duże kroki), strengthshop-yoke (kołysanie) — druga część zdania tylko w Strength Shop; przy ostrożnej integracji zostaw „Za długie kroki.” |
-| log.grip | Chwyć kłodę za uchwyty, dokładnie pośrodku. | Grab the log handles dead centre. | elitefts-log-mistakes, cerberus-log |
-| log.clean | Podnieś kłodę na uda, przyciągnij ją do siebie i wbij łokcie pod nią, zakładając ją na klatkę. | Bring the log to your lap, pull it in close and punch your elbows under it to rack it on your chest. | elitefts-log-mistakes, cerberus-log |
-| log.press | Krótko ugnij nogi i mocno wypchnij kłodę nad głowę, aż ręce się wyprostują. | Dip briefly and drive the log overhead until your arms are straight. | elitefts-log-mistakes, cerberus-log |
-| log.mis.elbows | Łokcie opadają i kłoda ucieka do przodu. | Elbows drop and the log drifts forward. | elitefts-log-mistakes, cerberus-log |
+| id | PL | EN (propozycja) | Źródła | Stan |
+|---|---|---|---|---|
+| tf.push | Gdy opona stanie wyżej, przepchnij ją rękami na drugą stronę. | Once the tire is up, push it over with your hands. | 8wo-tire-flip, barbend-strongman-ex | do JSON |
+| as.setup | Stań nad kamieniem tak, żeby był między stopami. | Stand over the stone so it sits between your feet. | 8wo-atlas, barbend-atlas | do JSON |
+| as.lap | Podnieś kamień nad kolana i oprzyj go na udach. | Lift the stone over your knees and rest it on your thighs. | 8wo-atlas, barbend-atlas | do JSON |
+| as.extend | Z ud mocno wypchnij biodra i wyprostuj się, unosząc kamień wyżej. | From your lap, drive your hips through and stand up, bringing the stone higher. | 8wo-atlas, barbend-atlas | do JSON |
+| as.grip | Obejmij kamień przedramionami i dłońmi i mocno go ściśnij. | Wrap your forearms and hands around the stone and squeeze hard. | 8wo-atlas, cerberus-atlas | warunkowe |
+| sb.lap | Cofnij biodra, podnieś worek jak w martwym ciągu i przyciągnij go na uda. | Push your hips back, deadlift the bag and pull it into your lap. | barbend-sandbag, bos-sandbag | do JSON (nowe) |
+| yoke.setup | Wejdź pod jarzmo i oprzyj belkę na górze pleców. | Get under the yoke and set the crossbar on your upper back. | bos-yoke, barbend-yoke | do JSON |
+| yoke.brace | **Nowe brzmienie:** Napnij brzuch, zanim wstaniesz z jarzmem. | Brace your core before you stand up with the yoke. | bos-yoke, barbend-yoke | do JSON |
+| yoke.steps | Rób krótkie kroki. | Take short steps. | bos-yoke, barbend-yoke | do JSON |
+| yoke.mis.stride | **Nowe brzmienie:** Za długie kroki. | Strides too long. | bos-yoke, barbend-yoke | do JSON |
+| log.clean | **Nowe brzmienie:** Podnieś kłodę na uda, a potem poprowadź ją blisko tułowia na klatkę. | Bring the log to your lap, then roll it up close to your body onto your chest. | cerberus-log, barbend-strongman-ex | warunkowe |
+| log.press | **Nowe brzmienie:** Wypchnij kłodę nad głowę, aż ręce się wyprostują. | Drive the log overhead until your arms are straight. | cerberus-log, barbend-strongman-ex | warunkowe |
 
-Uwaga do `yoke.brace` i oddechu: zasada wskazówek oddechu to „bez wstrzymywania oddechu”. Zdanie mówi tylko „weź wdech i napnij brzuch”. Oba źródła opisują dalej krótkie oddechy w czasie marszu, a jedno z nich (Cerberus, kłoda) ostrzega przed wstrzymywaniem oddechu. Przed integracją do sprawdzenia przez recenzenta zgodności z wzorcem `plank.brace`/oddech w docs/32. Jeśli istnieje już zdanie „napnij brzuch” (np. `plank.brace`), rozważ jego użycie.
+Wycofane z propozycji (zostały po jednym źródle szczebla 4 po obniżeniu EliteFTS i Strength Shop): `tf.setup`, `tf.drive`, `tf.mis.arms`, `log.grip`, `log.mis.elbows`. Brzmienia z części 1 zostają w historii pliku; nie wprowadzać.
+
+**`yoke.brace` a zasada oddechu.** Poprzednie brzmienie („Weź wdech, napnij brzuch i wstań; trzymaj to napięcie przez cały marsz”) zmieniam na „Napnij brzuch, zanim wstaniesz z jarzmem.” Powód: zasada CLAUDE.md dopuszcza tylko proste wskazówki oddechu bez wstrzymywania, a wdech przed napięciem w połączeniu z „trzymaj napięcie przez cały marsz” można odczytać jako wstrzymanie oddechu. BarBend (Step 1–2) mówi tylko o napięciu brzucha, bez oddechu. „Przez cały marsz” było tylko w Bells of Steel, więc też wypada. Jeśli koordynator woli zdanie istniejące, `plank.brace` („Napnij brzuch, żeby tułów był sztywny.”) też ma pokrycie w obu źródłach, ale nie mówi, kiedy się napiąć.
 
 ## 5. Otwarte
 
-- **Błędy w zestawie ogólnym — Yoke Walk** (`lib/figures/v2/cue-sets.json`: `ok: ["carry.walk"]`): `carry.walk` mówi „spokojnym, kontrolowanym krokiem”, a oba przeczytane źródła o jarzmie mówią o krokach krótkich i szybkich (Strength Shop: „small and fast”). Zestaw ogólny jest tu sprzeczny ze źródłami; własna karta go zastępuje.
-- **Jefferson Squat** (`general`, `squat`: `sq.down`, `sq.back`, `sq.kneesToes`, `sq.mis.kneesIn`, `sq.mis.heels`) — nie sprawdzone; w tym przysiadzie stoi się okrakiem nad sztangą, więc zdania z przysiadu ze sztangą na plecach mogą nie pasować. Do zbadania.
-- **Atlas Stones — błędy**: brak wspólnego błędu. 8weeksout wymienia ciągnięcie konwencjonalne/sumo i wkładanie dłoni pod kamień, a Cerberus — puszczanie kamienia na górze. Każde to jedno źródło. Strona EliteFTS „Training the Atlas Stones” zwraca 404.
-- **Tire Flip — rozstaw dłoni**: 8weeksout uznaje ustawienie dłoni pośrodku opony (przy rozstawie sumo) za błędną poradę. Inne źródła z wyszukiwania podają różne warianty, dlatego `tf.setup` mówi tylko „szeroko, dłonie szerzej niż stopy” (część wspólna).
-- **Log Lift — nieużyte**: wskazówki o głowie przy wyproście (tylko Cerberus) i o pochyleniu kłody od siebie przy chwycie (tylko EliteFTS) mają po jednym źródle.
-- **Niedostępne / wykluczone**: NSCA Kinetic Select „Strongman Training” — 403; EliteFTS „Technical Breakdown of the Yoke Walk” i „9 log press mistakes” (adres /education/) — 404 (wersja /blogs/ działa); strona z „log clean and press 101” przekierowuje do domeny aplikacji treningowej, więc jest wykluczona.
-- **Nie zbadane** (limit kontekstu): Sandbag Load, Keg Load, Circus Bell, Conan's Wheel, Power Stairs, Jefferson Squat.
+- **Błędy w zestawie ogólnym — Yoke Walk** (`lib/figures/v2/cue-sets.json`: `ok: ["carry.walk"]`): `carry.walk` mówi „spokojnym, kontrolowanym krokiem”, a przeczytane źródła o jarzmie mówią o krokach krótkich i szybkich (BarBend: „small, choppy steps”). Zestaw ogólny przeczy źródłom; karta własna go zastępuje.
+- **Jefferson Squat — zestaw ogólny** (`ok: ["sq.back", "sq.kneesToes"]`, `err: ["sq.mis.kneesIn"]`): zestaw pasuje tylko częściowo. BarBend (Stance/Grip/Ascent) potwierdza klatkę uniesioną i kolana na zewnątrz, ale ustawienie jest inne niż w przysiadzie: stopy po obu stronach sztangi, przednia na wprost, tylna obrócona w bok, chwyt mieszany. Przy obróconej tylnej stopie „kolana w linii palców” (`sq.kneesToes`) nie jest potwierdzone. Źródło mówi „kolana nad kostkami, na zewnątrz”. Kolan zapadających się do środka (`sq.mis.kneesIn`) BarBend nie wymienia. To błąd zestawu w sensie „niepotwierdzony dla tego wariantu” (nie sprzeczny). Drugie źródło szczebla 4 nie znalezione: USAWA (szczebel 5) opisuje wersję z martwego ciągu i dopuszcza unoszenie pięt; Garage Gym Reviews według rozstrzygnięcia koordynatora nie liczy się. Propozycja na teraz: zmienić Jefferson Squat na `open` albo zostawić tylko `sq.back` jako uproszczenie — do decyzji koordynatora.
+- **Atlas Stones — błędy**: źródła sobie przeczą. 8weeksout uznaje wkładanie dłoni pod kamień za błąd, a BarBend (Step 1) każe wsunąć dłonie jak najgłębiej pod kamień. Przed ciągnięciem jak w klasycznym/sumo martwym ciągu ostrzega tylko 8weeksout; BarBend zaleca skłon jak w RDL i ostrzega przed nienazwanymi „innymi technikami”, więc tego błędu wprost nie nazywa. Puszczanie kamienia na górze — tylko Cerberus. Nie ma wspólnego błędu; nie wprowadzać.
+- **Tire Flip — rozstaw dłoni i ustawienie**: 8weeksout: dłonie na zewnątrz stóp, klatka oparta o oponę; BarBend: rozstaw sumo, ręce zwisają w dół (dłonie wewnątrz stóp). Sprzeczność na tym samym szczeblu, a części wspólnej („przykucnij szeroko i chwyć spód opony”) nie da się podać bez wyboru wariantu. `tf.drive` i `tf.mis.arms`: tylko 8weeksout (EliteFTS teraz szczebel 5).
+- **Sandbag Load — reszta**: ustawienie nad workiem (BarBend; Fitness Volt — szczebel 5), objęcie worka i przyciśnięcie do klatki (Bells of Steel; BarBend opisuje to tylko przy noszeniu worka, czyli analogia), wyprost bioder przy ładowaniu (BarBend; Fitness Volt — szczebel 5). Błąd „podciąganie worka rękami”: Bells of Steel tak; Fitness Volt opisuje ruch „martwy ciąg i wiosłowanie”, czyli raczej przeczy. Każde z tych to jedno źródło szczebla 4.
+- **Keg Load**: brak dwóch przeczytanych źródeł szczebla 4. Bodybuilding.com przekierowuje na sklep i daje 404; strona ATR Training Systems — 404; Gegns Gym — szczebel 5; Lift Big Eat Big opisuje noszenie beczki (podniesienie na uda), czyli inne ćwiczenie. Strona EliteFTS „keg loading rotational” w wyszukiwarce pokazała tylko treść dla członków.
+- **Log Lift**: jeśli Cerberus nie zostanie uznany za szczebel 4, całe ćwiczenie jest otwarte. `log.grip` i `log.mis.elbows` — w każdym przypadku jedno źródło szczebla 4.
+- **Niedostępne / wykluczone**: NSCA Kinetic Select „Strongman Training” — 403; EliteFTS „Technical Breakdown of the Yoke Walk” i „9 log press mistakes” (adres /education/) — 404; strona z „log clean and press 101” przekierowuje do domeny aplikacji treningowej (wykluczona); grindergym.com przekierowuje na gegnsgym.com (inna nazwa, ta sama siłownia — szczebel 5); Mirafit (sandbag) — 403; strony baz ćwiczeń aplikacji z wyników wyszukiwania — wykluczone.
+- **Nie zbadane** (limit kontekstu): Circus Bell, Conan's Wheel, Power Stairs.
 
 ## 6. Stan
 
-- Zrobione (02.11.2026): Tire Flip, Atlas Stones (częściowe), Yoke Walk, Log Lift. Plik `carry.md` jest kompletny.
-- Zostało: Sandbag Load, Keg Load, Jefferson Squat, Circus Bell, Conan's Wheel, Power Stairs.
-- Następny krok: dla każdego ćwiczenia szukać par producent sprzętu strongman (Cerberus, Strength Shop, Bells of Steel, EliteFTS — działy blog/training) i serwisu trenerskiego. Wydaje się, że Cerberus ma serię artykułów trenerskich o konkurencjach (adres `/blogs/training-tips/` — do sprawdzenia). Dla Jefferson Squat najpierw sprawdzić, czy obecny zestaw `sq.*` w ogóle pasuje.
-- Pułapki: ExRx 403, Wayback zablokowane; NSCA Kinetic Select 403; EliteFTS — adresy `/education/...` dają 404, działają `/blogs/training/...`; wiele trafień to bazy aplikacji (wykluczone); nie przenosić twierdzeń o urazach ani liczb (wymiarów opon, długości kroku, ciężarów).
+- Zrobione (02.11.2026): część 1 (Tire Flip, Atlas Stones, Yoke Walk, Log Lift); kontynuacja: ponowna ocena wszystkich organizacji według rozstrzygnięcia koordynatora (p. 3.1); nowe źródła BarBend ×4 i Bells of Steel (worek); Sandbag Load (częściowe), Keg Load (otwarte), Jefferson Squat (ocena zestawu ogólnego, otwarte), `yoke.brace` w nowym brzmieniu; drugie źródło dla błędu Atlas Stones — sprawdzone, źródła sobie przeczą (otwarte).
+- Zostało: Circus Bell, Conan's Wheel, Power Stairs; decyzja koordynatora o Cerberusie (od niej zależą Log Lift i `as.grip`); drugie źródło szczebla 4 dla Jefferson Squat i Keg Load.
+- Następny krok: Circus Bell — BarBend ma artykuł „Get Stronger Single-Handedly: Starting with the Strongman Circus Dumbbell” (https://barbend.com/news/get-stronger-single-handedly-starting-strongman-circus-dumbbell/, nieprzeczytany; z wyszukiwarki wynika, że jest tam ustawienie dzwonu na barku); szukać drugiego producenta, dla którego dzwon to własny sprzęt. Conan's Wheel i Power Stairs — mało źródeł; najpierw BarBend, potem producenci tych przyrządów.
+- Pułapki: ExRx 403, Wayback zablokowane; NSCA Kinetic Select 403; EliteFTS, Strength Shop, Fitness Volt, siłownie, USAWA — szczebel 5 (nie liczą się); Garage Gym Reviews — według koordynatora nie liczyć; strony baz ćwiczeń aplikacji (np. adresy `*.app`, `*.pages.dev`) — wykluczone; Bells of Steel liczy się tylko dla własnego sprzętu (jarzmo, worki); nie przenosić liczb (wymiarów, długości kroku, ciężarów, serii) ani twierdzeń o urazach.
