@@ -1,6 +1,6 @@
 # Wskazówki techniki — rodzina plyo (skoki), część 1
 
-Data: 02.11.2026. Autor: badacz-merytoryczny (fala W1, G3); uzupełnienie: druga sesja tego samego zadania, 02.11.2026. Zadanie: tylko zbieranie danych
+Data: 02.11.2026. Autor: badacz-merytoryczny (fala W1, G3); uzupełnienia: druga i trzecia sesja tego samego zadania, 02.11.2026. Zadanie: tylko zbieranie danych
 (polecenie właściciela 02.11.2026) — nic nie jest w `data/zrodla/cues.json` ani `lib/`. Wdrożenie — programista po akceptacji; teksty EN — tłumacz (propozycje niżej).
 
 Metoda: wyjątek dla wskazówek techniki z CLAUDE.md — każde zdanie ma ≥ 2 przeczytane, niezależne źródła (różne organizacje) szczebla 4
@@ -22,15 +22,15 @@ Topend Sports (brak autora i daty) = 5 — nie liczy się.
 | Jump Squat | gotowe | ACE #116, NASM, Catalyst #555; bez zdania o rękach (źródła się różnią — „Otwarte”). Rogue usunięty (producent, nie jego sprzęt) — bez wpływu, zostały ≥ 2 źródła |
 | Broad Jump | gotowe | setup/move/wskazówka: ACE #177, Catalyst #549; błąd `jump.mis.stiff`: ACE #177 Step 6 + The Prehab Guys „Broad Jump” (COMPENSATION) — uzupełnione w 2. sesji |
 | Weighted Jump Squat | gotowe | setup/move: Catalyst #353 + Suchomel i in. 2019 (metody); lądowanie i błąd — Catalyst #353 + warianty bez obciążenia (ACE #116, NASM). `sq.back` wycofane (po usunięciu Torokhtiy — jedno źródło) |
-| Depth Jump | częściowe | setup/move: Catalyst #551 + badanie Louder i in. 2015; brak błędu z 2 źródłami; ISSA opisuje „zeskok” i głębokie ugięcie — sprzeczność, „Otwarte” |
+| Depth Jump | częściowe | setup/move: Catalyst #551 + badanie Louder i in. 2015; 3. sesja: `plyo.depthStep` dodatkowo inSPORTline (instrukcja skrzyń, „SQUAT DEPTH JUMP”). Nadal brak błędu z 2 źródłami (szukane w 3. sesji — „Otwarte”); ISSA opisuje „zeskok” i głębokie ugięcie — sprzeczność |
 | Tuck Jump | gotowe | ACE #180, NASM, Catalyst #558 |
 | Split Jump | gotowe | ACE #234 (Cycled Split-Squat Jump), NASM Lunge Jump |
+| Lateral Box Jump | gotowe (warunkowo) | 3. sesja: setup/move — ISSA (17.06.2024) + The Prehab Guys „Counter Movement Lateral Vertical Box Jump”. Lądowanie i błąd — Prehab Guys (to ćwiczenie) + ACE #115 jako **wariant: skok na skrzynię przodem** (ISSA nazywa skok boczny wariantem box jumpa) — do oceny recenzenta; bez wariantu → „częściowe” |
 | Lateral Bound | otwarte | nadal jedno przeczytane źródło szczebla 4 (The Prehab Guys) |
 | Star Jump | otwarte | jedyne opisy: Topend Sports (bez autora → 5) i karta fizjoterapii trustu NHS (bez daty, inny wariant lądowania) — za mało |
-| Bench Jump | otwarte | nie szukano w 2. sesji (kolejność zadań); brak źródeł; niejasna definicja |
-| Lateral Box Jump | otwarte | nie szukano w 2. sesji; brak przeczytanych źródeł |
-| Frog Hops | otwarte | nie szukano w 2. sesji; brak drugiego źródła; źródła się różnią |
-| Kneeling Jump Squat | otwarte | nie szukano w 2. sesji; brak źródeł szczebla 4 |
+| Bench Jump | otwarte | 3. sesja: definicja niejednoznaczna — katalog (25-biblioteka L6) „przeskoki przez ławkę”, figura ze skrzynią, jedyny znaleziony opis producenta ławek (Bells of Steel, 22.11.2023, bez autora, ton marketingowy → 5) — wskok NA ławkę. Brak źródeł szczebla 4 w ACE/NASM/ISSA/Catalyst |
+| Frog Hops | otwarte | 3. sesja: szukane w ACE/NASM/ISSA/NFPT — brak; wyniki to strony aplikacji, blogi sklepów i serwisy bez autora (szczebel 5) |
+| Kneeling Jump Squat | otwarte | 3. sesja: jedno źródło — EliteFTS (N. Harvey, 10.11.2017; szczebel do decyzji: sklep sprzętu z blogiem trenerów); Catalyst — brak w dziale skoków (19 ćwiczeń sprawdzonych) |
 
 ## 2. Dane (propozycja do `data/zrodla/cues.json`)
 
@@ -67,6 +67,8 @@ Topend Sports (brak autora i daty) = 5 — nie liczy się.
     "catalyst-555": {"org": "Catalyst Athletics", "title": "Squat Vertical Jump (#555)", "url": "https://catalystathletics.com/exercise/555/Squat-Vertical-Jump/", "level": 4},
     "catalyst-558": {"org": "Catalyst Athletics", "title": "Tuck Jump (#558)", "url": "https://catalystathletics.com/exercise/558/Tuck-Jump/", "level": 4},
     "prehab-broad-jump": {"org": "The Prehab Guys", "title": "Broad Jump", "url": "https://theprehabguys.com/vimeo-video/broad-jump-2/", "level": 4},
+    "prehab-cm-lat-box-jump": {"org": "The Prehab Guys", "title": "Counter Movement Lateral Vertical Box Jump", "url": "https://theprehabguys.com/vimeo-video/counter-movement-lateral-vertical-box-jump/", "level": 4},
+    "issa-box-jump-strategies": {"org": "ISSA", "title": "5 Strategies to Boost Your Box Jump Results (17.06.2024)", "url": "https://www.issaonline.com/blog/post/5-strategies-to-boost-your-box-jump-results", "level": 4},
     "pmc-4723169": {"org": "Louder, Bressel, Bressel (Utah State University)", "title": "The Kinetic Specificity of Plyometric Training: Verbal Cues Revisited (J Hum Kinet 2015;49:201–208)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4723169/", "level": 3},
     "pmc-6724584": {"org": "Suchomel i in. (J Hum Kinet 2019)", "title": "The Effect of Load Placement on the Power Production Characteristics of Three Lower Extremity Jumping Exercises (J Hum Kinet 2019)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6724584/", "level": 3}
   },
@@ -145,13 +147,27 @@ Topend Sports (brak autora i daty) = 5 — nie liczy się.
     },
     "Depth Jump": {
       "setup": [
-        {"c": "plyo.depthStep", "s": [["catalyst-551", "Instructions (stand at the front edge of a box … step off)"], ["pmc-4723169", "Methods (subjects were asked to step forward off the box)"]]}
+        {"c": "plyo.depthStep", "s": [["catalyst-551", "Instructions (stand at the front edge of a box … step off)"], ["pmc-4723169", "Methods (subjects were asked to step forward off the box)"], ["insportline-qt1005", "s. 3, SQUAT DEPTH JUMP, Action (Step off the box) — źródło zdefiniowane w plyo-cz2"]]}
       ],
       "move": [
         {"c": "plyo.depthRebound", "s": [["catalyst-551", "Instructions (land on the balls of both feet … drive straight back up)"], ["pmc-4723169", "Methods (subsequent vertical jump; cues: as high / as quick as possible)"]]}
       ],
       "tips": [],
       "mistakes": []
+    },
+    "Lateral Box Jump": {
+      "setup": [
+        {"c": "plyo.latBox.setup", "s": [["issa-box-jump-strategies", "część o wariantach: lateral box jump (standing to one side of the box)"], ["prehab-cm-lat-box-jump", "HOW (box set to the right of you; start with both feet on the ground)"]]}
+      ],
+      "move": [
+        {"c": "plyo.latBox.move", "s": [["issa-box-jump-strategies", "część o wariantach: lateral box jump (jumping laterally)"], ["prehab-cm-lat-box-jump", "HOW (jump explosively up to the right, onto the box)"]]}
+      ],
+      "tips": [
+        {"c": "bj.land", "s": [["prehab-cm-lat-box-jump", "COMPENSATION (bend hips and knees; send the hips back)"], ["ace-115", "Step 4–6 (wariant: skok na skrzynię przodem)"]]}
+      ],
+      "mistakes": [
+        {"c": "bj.mis.stiff", "s": [["prehab-cm-lat-box-jump", "COMPENSATION (if you do not let them bend much, you will land stiff and hard)"], ["ace-115", "Step 5 (wariant: skok na skrzynię przodem; avoid locking your knees)"]]}
+      ]
     }
   }
 }
@@ -160,6 +176,9 @@ Topend Sports (brak autora i daty) = 5 — nie liczy się.
 Uwaga do danych: `Depth Jump` ma puste `mistakes` — status „częściowe”; programista decyduje, czy karta częściowa jest wyświetlana
 (reguła briefu: ≥ 1 zdanie w setup/move i ≥ 1 w mistakes, inaczej nie „gotowe”). Weighted Jump Squat: lądowanie i błąd stoją na wariancie bez
 obciążenia (ACE, NASM) + Catalyst #353 tylko dla lądowania — zgodnie z metodą wariantów z tego pliku; do oceny recenzenta.
+Lateral Box Jump (3. sesja): `bj.land` i `bj.mis.stiff` mają jedno źródło tego ćwiczenia (Prehab Guys) + ACE #115 jako wariant skoku przodem —
+do oceny recenzenta; jeśli wariant kierunku się nie liczy, usunąć `tips` i `mistakes` (status „częściowe”). `ace-115` i org `The Prehab Guys`
+istnieją już w `cues.json`; org ISSA w `cues.json` NIE istnieje — definicja w `plyo-cz2.md` (sprostowanie koordynatora 02.11.2026). `insportline-qt1005` — zdefiniowane w `plyo-cz2.md`.
 
 ## 3. Nowe zdania
 
@@ -177,11 +196,14 @@ obciążenia (ACE, NASM) + Catalyst #353 tylko dla lądowania — zgodnie z meto
 | plyo.wjsMove | Zejdź do przysiadu i wybij się w górę jak najmocniej. | Squat down and jump up as hard as you can. |
 | plyo.depthStep | Zejdź ze skrzyni krokiem w przód. | Step forward off the box. |
 | plyo.depthRebound | Wyląduj na obu stopach i od razu, jak najszybciej, odbij się w górę. | Land on both feet and spring straight back up as fast as you can. |
+| plyo.latBox.setup (3. sesja) | Stań bokiem do skrzyni. | Stand side-on to the box. |
+| plyo.latBox.move (3. sesja) | Wskocz na skrzynię w bok. | Jump sideways up onto the box. |
 | ~~plyo.wjsBar~~ (wycofane 2. sesja) | Sztanga na górze pleców, trzymana mocno, żeby się nie przesuwała. | — „trzymana mocno” potwierdza tylko Catalyst; zastąpione przez `plyo.wjsBarBack` |
 
 Użyte istniejące zdania (treść sprawdzona słowo w słowo ze źródłami ćwiczenia): `lunge.stand`, `jump.drive` (tylko Tuck Jump),
-`jump.land`, `jump.mis.stiff`. `sq.back` wycofane z Weighted Jump Squat (jedno źródło po zmianie szczebli). Zdań Box Jump (`bj.*`) nie użyłem:
-`bj.land` („biodra cofnięte”) i `bj.setup`/`bj.move` (skrzynia) nie pasują słowo w słowo do żadnego z ćwiczeń tej części.
+`jump.land`, `jump.mis.stiff`; w 3. sesji `bj.land` („ugięte kolana, biodra cofnięte w tył” — Prehab Guys: bend hips and knees, send the hips back)
+i `bj.mis.stiff` dla Lateral Box Jump (z zastrzeżeniem wariantu). `sq.back` wycofane z Weighted Jump Squat (jedno źródło po zmianie szczebli).
+`bj.setup`/`bj.move` (stanie przed skrzynią, wskok przodem) nie pasują do Lateral Box Jump.
 
 ## 4. Źródła
 
@@ -192,6 +214,7 @@ Użyte istniejące zdania (treść sprawdzona słowo w słowo ze źródłami ćw
 | ace-180 | https://www.acefitness.org/resources/everyone/exercise-library/180/tuck-jump/ | ACE | 4 | Step 1–4, wskazówki i wariant |
 | ace-234 | https://www.acefitness.org/resources/everyone/exercise-library/234/cycled-split-squat-jump/ | ACE | 4 | Step 1–5, wskazówki końcowe |
 | ace-120 (nieużyte tu) | https://www.acefitness.org/resources/everyone/exercise-library/120/lateral-cone-jumps/ | ACE | 4 | Step 1–8 — skoki obunóż w bok przez pachołki; inne ćwiczenie niż Lateral Bound / Lateral Box Jump |
+| ace-115 (istniejące) | https://www.acefitness.org/resources/everyone/exercise-library/115/box-jumps/ | ACE | 4 | Step 4–6 (lądowanie) — użyte w 3. sesji jako wariant dla Lateral Box Jump |
 | nasm-squat-jump | https://www.nasm.org/resource-center/exercise-library/squat-jump | NASM | 4 | Step 1–4, Common Mistakes |
 | nasm-tuck-jump | https://www.nasm.org/resource-center/exercise-library/tuck-jump | NASM | 4 | Step 1–4, Common Mistakes |
 | nasm-lunge-jump | https://www.nasm.org/resource-center/exercise-library/lunge-jump | NASM | 4 | Step 1–4, Common Mistakes |
@@ -200,7 +223,10 @@ Użyte istniejące zdania (treść sprawdzona słowo w słowo ze źródłami ćw
 | catalyst-551 | https://catalystathletics.com/exercise/551/Depth-Jump/ | Catalyst Athletics | 4 | Instructions; Variations („heels … touch”), wysokość/progresja (liczby pominięte); brak listy błędów (sprawdzone ponownie w 2. sesji) |
 | catalyst-555 | https://catalystathletics.com/exercise/555/Squat-Vertical-Jump/ | Catalyst Athletics | 4 | Instructions |
 | catalyst-558 | https://catalystathletics.com/exercise/558/Tuck-Jump/ | Catalyst Athletics | 4 | opis |
+| catalyst-dzial-16 (3. sesja, nieużyte) | https://www.catalystathletics.com/exercises/section/16/Jumping-Plyometrics/ | Catalyst Athletics | 4 | lista 19 ćwiczeń działu skoków — brak skoku z klęku, skoku bocznego na skrzynię, skoków przez ławkę i „żabek” |
 | prehab-broad-jump | https://theprehabguys.com/vimeo-video/broad-jump-2/ | The Prehab Guys | 4 | HOW, FEEL, COMPENSATION: „If you do not let them bend much, you will land "stiff" and hard.”; „They should not dive inwards on the landing.” |
+| prehab-cm-lat-box-jump (3. sesja) | https://theprehabguys.com/vimeo-video/counter-movement-lateral-vertical-box-jump/ | The Prehab Guys | 4 | HOW: skrzynia „to the right of you”, start obunóż, wyskok w bok na skrzynię; COMPENSATION: kolana nie do środka, „you will land "stiff" and hard”, biodra w tył. Nie mówi wprost o lądowaniu obiema stopami na skrzyni |
+| issa-box-jump-strategies (3. sesja) | https://www.issaonline.com/blog/post/5-strategies-to-boost-your-box-jump-results | ISSA (firmowane, 17.06.2024) | 4 | lateral box jump: „standing to one side of the box and jumping laterally”; dla tego wariantu brak lądowania i błędów; dla zwykłego box jumpa: start na szerokość barków, zamach rąk, lądowanie na środku skrzyni |
 | pmc-4723169 | https://pmc.ncbi.nlm.nih.gov/articles/PMC4723169/ | Louder, Bressel, Bressel (Utah State University) | 3 | Methods (procedura depth jump) |
 | pmc-6724584 | https://pmc.ncbi.nlm.nih.gov/articles/PMC6724584/ | Suchomel i in. (J Hum Kinet 2019) | 3 | Methods, Procedures: „The JS exercise was performed by holding the external load on the upper back, similar to a back squat.”; szybkie ugięcie i skok „as high as possible”; lądowania nie opisuje |
 | rogue-jump-squat (wycofane) | https://www.roguecanada.ca/theindex/movement-library/movement-demo-jump-squat | Rogue Fitness (producent) | 5 dla tego ćwiczenia | producent, ćwiczenie bez jego sprzętu (rozstrzygnięcie 02.11) |
@@ -209,14 +235,19 @@ Użyte istniejące zdania (treść sprawdzona słowo w słowo ze źródłami ćw
 | issa-plyo-guide (nieużyte) | https://www.issaonline.com/blog/post/the-essential-guide-to-plyometrics-plus-a-sample-workout | ISSA (firmowane, 05.02.2024) | 4 | Depth jump: „Jump off a box, landing on the floor. Allow your knees to do a deep bend, then do a vertical jump.” — sprzeczne z Catalyst/Louder (krok, szybkie odbicie); broad jump tylko z nazwy |
 | justfly-depth-jump (nieużyte) | https://www.just-fly-sports.com/depth-jump-guide/ | Just Fly Sports (J. Smith; bez podpisu na stronie) | 5 (brak autora i daty na stronie) | „Athletes shouldn't simply drop straight down off the box…”; pięty uderzające mocno = za wysoka skrzynia |
 | elitefts-depth (nieużyte) | https://elitefts.com/blogs/training/depth-jumps-and-depth-land-progressions-to-increase-the-vertical-jump | EliteFTS (C. Janek, 09.10.2018) | 4? (do decyzji — sklep sprzętu z blogiem) | opisuje głównie depth land; brak listy błędów depth jump |
+| elitefts-kneeling-jumps (3. sesja, nieużyte) | https://elitefts.com/coaching-logs/daily-movements-kneeling-jumps-with-weight | EliteFTS (N. Harvey, 10.11.2017) | 4? (do decyzji — jak wyżej) | start z klęku, biodra wyprostowane; „Drop your hips down quickly and rebound up…”; lądowanie w pozycji atletycznej, kolana lekko na zewnątrz, klatka w górze; brak listy błędów. Jedyne źródło dla Kneeling Jump Squat |
+| nsca-schexnayder-2022 (3. sesja, nieużyte) | https://www.nsca.com/globalassets/events/pdf/nat22/schexnayder-boo-hands-on-talk.pdf | NSCA — konferencja krajowa 2022 (B. Schexnayder, CSCS) | 4 (materiał NSCA z autorem i datą) | s. 1–9: same hasła programowania (wysokość skrzyni, gęstość) — brak opisu techniki i błędów depth jump |
+| bellsofsteel-bench-jumps (3. sesja, nieużyte) | https://bellsofsteel.us/blogs/content/bench-jumps | Bells of Steel (producent ławek; blog bez autora, 22.11.2023) | 5 (bez autora, ton marketingowy) | wskok NA ławkę, lądowanie na ugiętych kolanach, zejście krokiem — inna definicja niż katalog („przez ławkę”) |
+| pmc-4637913 (3. sesja, nieużyte) | https://pmc.ncbi.nlm.nih.gov/articles/PMC4637913/ | Davies, Riemann, Manske 2015 (przegląd narracyjny) | 3 | Tab. 6 — tylko nazwy ćwiczeń (m.in. side to side push off jumps, single leg push off box, depth jumps); brak opisów wykonania i błędów (przeczytane do ok. 100 tys. znaków) |
 | nhs-kmpt-star-jumps (nieużyte) | https://www.kentmedwaymentalhealth.nhs.uk/pdf-documents/coronavirus-documents/coronavirus-page-documents/physiotherapy-cardio-workout/star-jumps-and-butt-kicks/ | trust NHS (fizjoterapia) | 4? (placówka medyczna; daty na stronie brak) | Star jumps: „Jump as high as you can into a big star shape.”; lądowanie z rozstawionymi nogami (inny wariant) |
 | prehab-continuous-lateral-bound (nieużyte) | https://theprehabguys.com/vimeo-video/continuous-lateral-bound/ | The Prehab Guys | 4 | HOW, COMPENSATION — jedyne źródło dla Lateral Bound |
 | topendsports-star-jumps (nieużyte) | https://www.topendsports.com/fitness/technique/star-jumps.htm | Topend Sports | 5 (brak autora i daty) | technika pkt 1–4 |
 
 Niedostępne: NASM `broad-jump`, `depth-jump(s)`, `split-jump`, `lateral-bound`, `skater-jumps`, `star-jumps`, `broad-jumps` (404);
 NSCA wideo „Exercise Technique: Depth Jump” (403); Dick's Sporting Goods „How to Do a Lateral Bound” (403, ponownie w 2. sesji); stack.com (503, ponownie);
-Rogue `movement-demo-broad-jump` (404); The Prehab Guys „Squat Jumps” (logowanie); Royal Navy „star jumps” (403); simplifaster.com (403);
-elitefts `/education/…` (404). ACE: mapa strony sprawdzona w całości do id ~377 — brak „bound”, „skater”, „star”, „frog”, „depth”.
+Rogue `movement-demo-broad-jump` (404); The Prehab Guys „Squat Jumps” (logowanie), `lateral-box-jump/` i `depth-jump/` (404, 3. sesja); Royal Navy „star jumps” (403); simplifaster.com (403);
+elitefts `/education/…` (404). Brookbush Institute „lateral hop to single leg box jump” — treść instrukcji niewidoczna (3. sesja). ACE: mapa strony sprawdzona w całości do id ~377 — brak „bound”, „skater”, „star”, „frog”, „depth”;
+filtr sprzętu „Raised Platform/Box” (3. sesja) — tylko #246, #115, #206, #230, #211, #28.
 
 ## 5. Otwarte
 
@@ -228,10 +259,13 @@ elitefts `/education/…` (404). ACE: mapa strony sprawdzona w całości do id ~
   szerzej niż biodra. Dla Jump Squat i Tuck Jump `lunge.stand` opiera się na ACE + NASM; dla Broad Jump pominięte.
 - **Broad Jump — kolana do środka** (`sq.mis.kneesIn`): tylko The Prehab Guys (COMPENSATION). Drugie źródło brak — nie wpisane.
 - **Broad Jump — „reset po każdym skoku”** (Catalyst) vs skoki ciągłe jako wariant (ACE Step 7) — nie wpisane.
-- **Depth Jump — błąd**: brak dwóch źródeł szczebla 4. Kandydaci: „zeskok prosto w dół zamiast kroku w przód” (Just Fly — szczebel 5; Stack niedostępny),
+- **Depth Jump — błąd** (szukane ponownie w 3. sesji: NSCA — wideo 403, prezentacja Schexnayder 2022 bez techniki; Prehab Guys — brak strony; Davies 2015 — tylko nazwy;
+  instrukcja skrzyń inSPORTline — bez błędów): brak dwóch źródeł szczebla 4. Kandydaci: „zeskok prosto w dół zamiast kroku w przód” (Just Fly — szczebel 5; Stack niedostępny),
   „pięty mocno uderzają = skrzynia za wysoka” (Just Fly; Catalyst każe pozwolić piętom dotknąć podłogi — sprzeczność). Nie wpisane.
-- **Depth Jump — sprzeczność w wykonaniu**: ISSA („Jump off a box”, „deep bend”) vs Catalyst #551 i Louder i in. (krok ze skrzyni, szybkie odbicie).
-  Ten sam szczebel 4 (+ badanie 3) — w danych krok ze skrzyni (szczebel 3 wygrywa), różnica zapisana tutaj.
+  Następny krok: rozdział o pliometrii w podręczniku NSCA (Essentials of Strength Training and Conditioning — szczebel 3, zdjęcia z 2008 r. krążą w materiałach
+  uczelnianych) albo fragment wydawcy, jeśli dostępny.
+- **Depth Jump — sprzeczność w wykonaniu**: ISSA („Jump off a box”, „deep bend”) vs Catalyst #551 i Louder i in. (krok ze skrzyni, szybkie odbicie) — 3. sesja: krok
+  potwierdza też inSPORTline. Ten sam szczebel 4 (+ badanie 3) — w danych krok ze skrzyni (szczebel 3 wygrywa), różnica zapisana tutaj.
 - **Depth Jump — definicja**: katalog („zeskok z jednej skrzyni i wskok na drugą”) różni się od przeczytanych źródeł (zeskok i wyskok pionowy z
   podłogi). Do decyzji analityka.
 - **Weighted Jump Squat** — `sq.back` (plecy proste) i „skacz prosto w górę, nie w przód” — tylko Catalyst #353; ciężar — liczba, nie wpisane.
@@ -239,9 +273,18 @@ elitefts `/education/…` (404). ACE: mapa strony sprawdzona w całości do id ~
   NFPT (brak wyników), sklep sportowy (403); reszta wyników — strony aplikacji i serwisy bez autora.
 - **Star Jump** — Topend Sports (szczebel 5) + trust NHS (bez daty; lądowanie w rozkroku = inny wariant niż Topend, który wraca do przysiadu). Część wspólna
   (wyskok z rozłożeniem rąk i nóg w gwiazdę) ma tylko jedno źródło spełniające kryteria — nie wpisane. Royal Navy (403) — do ponowienia.
-- **Bench Jump, Lateral Box Jump, Frog Hops, Kneeling Jump Squat** — bez zmian względem 1. sesji (nie szukano w 2. sesji z powodu limitu kontekstu).
+- **Lateral Box Jump** (3. sesja) — (a) czy skok przodem na skrzynię (ACE #115) liczy się jako wariant dla lądowania i błędu — do oceny recenzenta;
+  (b) `sq.mis.kneesIn` (kolana do środka) — tylko Prehab Guys; (c) „lądowanie obiema stopami na skrzyni” — żadne z dwóch źródeł nie mówi wprost, nie wpisane;
+  (d) zestaw ogólny nie dotyczy (ćwiczenie nie ma dziś zestawu `jump` w cue-sets — sprawdzić przy wdrożeniu).
+- **Bench Jump** (3. sesja) — definicja niejednoznaczna: katalog/L6 „przeskoki przez ławkę”, figura z „skrzynią”, producent ławek opisuje wskok NA ławkę.
+  Najpierw decyzja analityka, który ruch to jest; źródeł szczebla 4 nie znaleziono (ACE/NASM/ISSA/Catalyst). Zestaw ogólny `jump` (`jump.drive`, `jump.land`,
+  `jump.mis.stiff`) przypisany dziś w cue-sets — niepotwierdzony dla tego ćwiczenia (informacja o błędzie zestawu).
+- **Frog Hops** (3. sesja) — brak źródła szczebla 4; opisy tylko w serwisach bez autora, sklepach i stronach aplikacji (pominięte). Źródła różnią się (ręce do podłogi
+  vs za głową; skok w miejscu vs w przód) — nawet przy źródłach trzeba część wspólną.
+- **Kneeling Jump Squat** (3. sesja) — jedno źródło (EliteFTS, szczebel do decyzji); katalog ma sztangę i stojak — EliteFTS opisuje wersję z ciężarem ogólnie
+  („with weight”), bez sztangi wprost. Nie wpisane.
 - **Do decyzji koordynatora — szczeble**: Performance Herts (uczelniane centrum sportu, bez autora), NISMAT/trust NHS (placówki medyczne — reguła
-  „materiał placówki medycznej z datą” dotyczy tu analogicznie), EliteFTS (sklep sprzętu z blogiem eksperckim).
+  „materiał placówki medycznej z datą” dotyczy tu analogicznie), EliteFTS (sklep sprzętu z blogiem eksperckim; artykuły z autorem i datą).
 
 ## 6. Stan
 
@@ -249,9 +292,12 @@ elitefts `/education/…` (404). ACE: mapa strony sprawdzona w całości do id ~
 - Zrobione (2. sesja, 02.11): Broad Jump → gotowe (błąd z Prehab Guys); szczeble poprawione wg rozstrzygnięcia 02.11 (Rogue, Torokhtiy, Topend wycofane;
   Weighted Jump Squat przebudowany na Catalyst + Suchomel 2019, `plyo.wjsBar` → `plyo.wjsBarBack`, `sq.back` wycofane); Depth Jump — błędy szukane, nadal otwarte;
   Lateral Bound i Star Jump — szukane, nadal otwarte.
-- Stan: gotowe 5 (Jump Squat, Broad Jump, Weighted Jump Squat, Tuck Jump, Split Jump), częściowe 1 (Depth Jump), otwarte 6.
-- Zostało: błąd Depth Jump; drugie źródło Lateral Bound i Star Jump; Bench Jump, Lateral Box Jump, Frog Hops, Kneeling Jump Squat (nie szukane w 2. sesji).
-- Następny krok: Royal Navy „get fit to join” (star jumps — inny adres/region), producenci skrzyń plyometrycznych (instrukcje PDF z „lateral box jump”,
-  „bench/box hops”), Special Olympics (podręczniki trenerów, PDF — adres `specialolympics.ca/…/Agility.pdf` 404), NSCA Coach/PTQ PDF.
+- Zrobione (3. sesja, 02.11): Lateral Box Jump → gotowe warunkowo (ISSA + Prehab Guys; lądowanie/błąd z wariantem przodem); Bench Jump, Frog Hops, Kneeling Jump Squat —
+  szukane, nadal otwarte (powody w „Otwarte”); Depth Jump — błąd szukany ponownie (NSCA, Prehab Guys, Davies), nadal brak; `plyo.depthStep` + 3. źródło (inSPORTline).
+- Stan: gotowe 5 + 1 warunkowo (Lateral Box Jump), częściowe 1 (Depth Jump), otwarte 5 (Lateral Bound, Star Jump, Bench Jump, Frog Hops, Kneeling Jump Squat).
+- Zostało: błąd Depth Jump; drugie źródło Lateral Bound i Star Jump; Kneeling Jump Squat (drugie źródło); Bench Jump (najpierw definicja); Frog Hops.
+- Następny krok: podręcznik NSCA (rozdział o pliometrii — fragmenty wydawcy Human Kinetics: „box drills”, „depth jumps”) — da opisy depth jump, push-off i lateral box jump
+  ze szczebla 3; Royal Navy „get fit to join” (star jumps); wykaz ćwiczeń BFS (patrz `plyo-cz2.md`) nie ma opisów techniki.
 - Pułapki: NASM ma tylko kilka stron skoków (`squat-jump`, `tuck-jump`, `lunge-jump`, `box-jumps`); ACE — brak „bound/skater/star/frog/depth” w mapie
-  strony; wyniki wyszukiwarki dla skoków to w większości strony aplikacji i sklepy z odzieżą (np. blogi sklepów odzieżowych — szczebel 5) — pomijać.
+  strony; Catalyst — dział skoków ma 19 ćwiczeń (lista w źródle `catalyst-dzial-16`); wyniki wyszukiwarki dla skoków to w większości strony aplikacji i sklepy
+  z odzieżą (szczebel 5) — pomijać; PDF-y z obrazami czytać narzędziem Read ze stronami (WebFetch nie wyciąga tekstu z PDF).
