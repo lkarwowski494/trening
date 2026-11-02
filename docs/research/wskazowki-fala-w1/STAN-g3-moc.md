@@ -94,4 +94,10 @@ Pułapki: ExRx 403, web.archive.org zablokowane, nsca.com 403, educ.jmu.edu i bi
 
 ## Commity i weryfikacja
 
-Commity lokalne na `badania/g3-moc` (od 0567769 do b977d72, sam katalog docs/research). Wynik verify bazy i SHA wypchnięcia — niżej.
+Commity na `badania/g3-moc` (od 0567769, wyłącznie pliki `docs/research/`).
+- Pełne `npm run verify` na bazie `integracja-1-1` (15abc58): **zielone** (wyjście 0; dwa pliki przerwane SIGTERM przez maszynę — `maestro-flows`,
+  `matrix-dim-langs-routes3` — ponowione przez jest-ponow osobno i zielone); znacznik pełny dla 15abc58.
+- `npm run verify:docs` w worktree: 1. przebieg — 1/168 czerwony (`tests/cues.test.tsx`: „środowisko Jest już zamknięte”, jednorazowo; ten plik
+  osobno 16/16), 2. przebieg — **zielony 168/168**, znacznik „dokumenty” dla edb53be. Wcześniej trzeba było `git fetch --unshallow origin`
+  (płytki klon: brak `git merge-base origin/main HEAD`). Niestabilność zgłoszona koordynatorowi linii 1.1.
+- Wypchnięte zwykłym `git push` (bez `--no-verify`): edb53be, potem ten commit.
