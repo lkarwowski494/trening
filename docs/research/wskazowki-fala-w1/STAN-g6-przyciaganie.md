@@ -57,4 +57,9 @@ Po decyzjach 1–4 przeliczyć statusy (bez nowego researchu). Nowy research tyl
 
 ## Git i verify
 
-Commity lokalne: `8c99385`, `3a23b1e`, `f495287`, `6719bc7`, `b62c3fe`, `fa3a0e0`, `4bd1a2a`, `92b5253`, `57d31ab`, `7d6c4d3`, `f023abe`, `06db1cd`, `1130691`, `b6a004e`, `c49ed36`, `04e93f7` (+ ten plik). Wynik verify bazy i SHA wypchnięcia — w sekcji niżej (uzupełniane po zakończeniu verify).
+Commity lokalne: `8c99385`, `3a23b1e`, `f495287`, `6719bc7`, `b62c3fe`, `fa3a0e0`, `4bd1a2a`, `92b5253`, `57d31ab`, `7d6c4d3`, `f023abe`, `06db1cd`, `1130691`, `b6a004e`, `c49ed36`, `04e93f7` (+ ten plik). Dalej: `08288d3` (skutki uzupełnienia 2) i commit z tym wpisem.
+
+- **Verify bazy (`15abc58`, pełne `npm run verify`, 02.11.2026): ZIELONE** — exit 0; Jest 654/656 w pierwszym przebiegu, 2 pliki (`matrix-dim-langs-routes2`, `maestro-flows`) przerwane z zewnątrz (SIGTERM workera przy obciążeniu maszyny 8 badaczami), ponowione przez `jest-ponow` osobno — zielone; 15 906 testów zaliczonych, 3 pominięte; natywne OK; znacznik `pelne` dla drzewa bazy zapisany.
+- **verify:docs w worktree:** pierwszy przebieg — 1 test czerwony w `tests/cues.test.tsx` (pod obciążeniem; czas Jest 366 s), drugi przebieg zielony (152/152, 399 s), znacznik `dokumenty` zapisany. Do obserwacji jako możliwa niestabilność pod obciążeniem — przyczyny nie badano (sesja tylko zbiera dane).
+- Płytkie repo: verify:docs wymagał `git fetch --deepen=300 origin main` (inaczej brak merge-base z `origin/main`).
+- SHA wypchnięcia: ostatni commit gałęzi `badania/g6-przyciaganie` na origin (podany też w raporcie końcowym koordynatora G6).
