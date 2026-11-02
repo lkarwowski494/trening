@@ -36,7 +36,7 @@ angielski tekst zastępczy nie liczy się jako przekład.
 
 Cel startowy 1.1 = stan bieżący na dzień wprowadzenia licznika (28.10.2026, integracja-1-1 @ 55ba40cb); wartości docelowe ustali właściciel (ma być więcej niż stan bieżący — katalog jest powiększany do pełnego). 31.10.2026 (scalenie wersja-1-0-1-r2): 33 liczb kompletu kart języków podniesione 524 → 525 do minimum zapadki (przekład bp.elbowsMid z 1.0.1) — nadal cel startowy, liczby docelowe w decyzji 2 właściciela. 01.11.2026 (ZB-025 a): pełna karta liczona wg Z3 (wskazówki własne albo zrecenzowany zestaw ogólny + częste błędy tekst + figura v2 + animowany błąd + role mięśni); symulacja stanu docelowego (4 rodziny z recenzją ruchu, wszystkie 538 zestawów ogólnych zrecenzowanych) daje pełną kartę 90 (stara definicja: 17), więc cel 17 jest spójny (nie za wysoki), ale po Z3 nie jest już wartością oczekiwaną — podniesienie celu (np. do 90) wymaga decyzji właściciela. 02.11.2026 (wpis v2 pull_up i 7 zestawów ogólnych rodziny po próbnej partii recenzji): liczby celu niższe od minimum zapadki podniesione do minimum (jak 31.10.2026) — nadal cel startowy, bez zmiany decyzji 2. 02.11.2026 (P0 integracji): cele figura.zDanymiV2, roleMiesni i komplet tekstów karty w 33 językach obniżone o 1 (532 → 531, 536 → 535, 509 → 508) — ukrycie Wide-Grip Pulldown Behind The Neck zmniejszyło katalog do 708 (decyzja właściciela 02.11.2026); nie jest to spadek jakości.
 
-Cel osiągnięty: **nie** (41 z 47 liczb).
+Cel osiągnięty: **nie** (8 z 47 liczb).
 
 | Metryka | Cel | Stan | Brakuje |
 |---|---:|---:|---:|
@@ -44,8 +44,41 @@ Cel osiągnięty: **nie** (41 z 47 liczb).
 | własne wskazówki z częstymi błędami | 43 | 39 | 4 |
 | wskazówki (własne lub zestaw ogólny) | 640 | 178 | 462 |
 | częste błędy (tekst) | 557 | 116 | 441 |
-| komplet tekstów karty: pl | 671 | 531 | 140 |
-| komplet tekstów karty: en | 671 | 531 | 140 |
+| komplet tekstów karty: pl | 671 | 528 | 143 |
+| komplet tekstów karty: en | 671 | 528 | 143 |
+| komplet tekstów karty: cs | 531 | 528 | 3 |
+| komplet tekstów karty: sk | 531 | 528 | 3 |
+| komplet tekstów karty: hu | 531 | 528 | 3 |
+| komplet tekstów karty: ro | 531 | 528 | 3 |
+| komplet tekstów karty: bg | 531 | 528 | 3 |
+| komplet tekstów karty: hr | 531 | 528 | 3 |
+| komplet tekstów karty: sl | 531 | 528 | 3 |
+| komplet tekstów karty: sr | 531 | 528 | 3 |
+| komplet tekstów karty: lt | 531 | 528 | 3 |
+| komplet tekstów karty: lv | 531 | 528 | 3 |
+| komplet tekstów karty: et | 531 | 528 | 3 |
+| komplet tekstów karty: uk | 531 | 528 | 3 |
+| komplet tekstów karty: es | 531 | 528 | 3 |
+| komplet tekstów karty: es-419 | 531 | 528 | 3 |
+| komplet tekstów karty: pt | 531 | 528 | 3 |
+| komplet tekstów karty: pt-BR | 531 | 528 | 3 |
+| komplet tekstów karty: de | 531 | 528 | 3 |
+| komplet tekstów karty: fr | 531 | 528 | 3 |
+| komplet tekstów karty: it | 531 | 528 | 3 |
+| komplet tekstów karty: nl | 531 | 528 | 3 |
+| komplet tekstów karty: sv | 531 | 528 | 3 |
+| komplet tekstów karty: da | 531 | 528 | 3 |
+| komplet tekstów karty: nb | 531 | 528 | 3 |
+| komplet tekstów karty: fi | 531 | 528 | 3 |
+| komplet tekstów karty: tr | 531 | 528 | 3 |
+| komplet tekstów karty: el | 531 | 528 | 3 |
+| komplet tekstów karty: id | 531 | 528 | 3 |
+| komplet tekstów karty: ms | 531 | 528 | 3 |
+| komplet tekstów karty: vi | 531 | 528 | 3 |
+| komplet tekstów karty: ru | 531 | 528 | 3 |
+| komplet tekstów karty: ja | 531 | 528 | 3 |
+| komplet tekstów karty: ko | 531 | 528 | 3 |
+| komplet tekstów karty: zh-Hant | 531 | 528 | 3 |
 
 ## Rodziny ruchu
 
@@ -97,45 +130,45 @@ Cel osiągnięty: **nie** (41 z 47 liczb).
 
 ## Języki
 
-Kart z tekstami (wskazówki albo role mięśni): **531**. „Komplet” = karta ma wszystkie teksty w słowniku języka (bez angielskiego zastępczego). Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie poza polskim) — 0.
+Kart z tekstami (wskazówki albo role mięśni): **528**. „Komplet” = karta ma wszystkie teksty w słowniku języka (bez angielskiego zastępczego). Nazwy lokalne: pole jeszcze nie istnieje (nazwy biblioteki są angielskie poza polskim) — 0.
 
 | Język | Kart kompletnych | Kart z brakiem | Brakujących tekstów | Nazwy lokalne |
 |---|---:|---:|---:|---:|
-| pl | 531 | 0 | 0 | 0 |
-| en | 531 | 0 | 0 | 0 |
-| cs | 531 | 0 | 0 | 0 |
-| sk | 531 | 0 | 0 | 0 |
-| hu | 531 | 0 | 0 | 0 |
-| ro | 531 | 0 | 0 | 0 |
-| bg | 531 | 0 | 0 | 0 |
-| hr | 531 | 0 | 0 | 0 |
-| sl | 531 | 0 | 0 | 0 |
-| sr | 531 | 0 | 0 | 0 |
-| lt | 531 | 0 | 0 | 0 |
-| lv | 531 | 0 | 0 | 0 |
-| et | 531 | 0 | 0 | 0 |
-| uk | 531 | 0 | 0 | 0 |
-| es | 531 | 0 | 0 | 0 |
-| es-419 | 531 | 0 | 0 | 0 |
-| pt | 531 | 0 | 0 | 0 |
-| pt-BR | 531 | 0 | 0 | 0 |
-| de | 531 | 0 | 0 | 0 |
-| fr | 531 | 0 | 0 | 0 |
-| it | 531 | 0 | 0 | 0 |
-| nl | 531 | 0 | 0 | 0 |
-| sv | 531 | 0 | 0 | 0 |
-| da | 531 | 0 | 0 | 0 |
-| nb | 531 | 0 | 0 | 0 |
-| fi | 531 | 0 | 0 | 0 |
-| tr | 531 | 0 | 0 | 0 |
-| el | 531 | 0 | 0 | 0 |
-| id | 531 | 0 | 0 | 0 |
-| ms | 531 | 0 | 0 | 0 |
-| vi | 531 | 0 | 0 | 0 |
-| ru | 531 | 0 | 0 | 0 |
-| ja | 531 | 0 | 0 | 0 |
-| ko | 531 | 0 | 0 | 0 |
-| zh-Hant | 531 | 0 | 0 | 0 |
+| pl | 528 | 0 | 0 | 0 |
+| en | 528 | 0 | 0 | 0 |
+| cs | 528 | 0 | 0 | 0 |
+| sk | 528 | 0 | 0 | 0 |
+| hu | 528 | 0 | 0 | 0 |
+| ro | 528 | 0 | 0 | 0 |
+| bg | 528 | 0 | 0 | 0 |
+| hr | 528 | 0 | 0 | 0 |
+| sl | 528 | 0 | 0 | 0 |
+| sr | 528 | 0 | 0 | 0 |
+| lt | 528 | 0 | 0 | 0 |
+| lv | 528 | 0 | 0 | 0 |
+| et | 528 | 0 | 0 | 0 |
+| uk | 528 | 0 | 0 | 0 |
+| es | 528 | 0 | 0 | 0 |
+| es-419 | 528 | 0 | 0 | 0 |
+| pt | 528 | 0 | 0 | 0 |
+| pt-BR | 528 | 0 | 0 | 0 |
+| de | 528 | 0 | 0 | 0 |
+| fr | 528 | 0 | 0 | 0 |
+| it | 528 | 0 | 0 | 0 |
+| nl | 528 | 0 | 0 | 0 |
+| sv | 528 | 0 | 0 | 0 |
+| da | 528 | 0 | 0 | 0 |
+| nb | 528 | 0 | 0 | 0 |
+| fi | 528 | 0 | 0 | 0 |
+| tr | 528 | 0 | 0 | 0 |
+| el | 528 | 0 | 0 | 0 |
+| id | 528 | 0 | 0 | 0 |
+| ms | 528 | 0 | 0 | 0 |
+| vi | 528 | 0 | 0 | 0 |
+| ru | 528 | 0 | 0 | 0 |
+| ja | 528 | 0 | 0 | 0 |
+| ko | 528 | 0 | 0 | 0 |
+| zh-Hant | 528 | 0 | 0 | 0 |
 
 ## Ćwiczenia najbliżej pełnej karty
 

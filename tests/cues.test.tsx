@@ -19,6 +19,8 @@ import * as store from '@/lib/store';
 import { fresh } from './helpers';
 import { renderApp, screen as appScreen, tap, flushAll } from './app';
 
+import P1_MOBILNOSC from './fixtures/cues-p1-mobilnosc.json';
+
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 afterEach(() => { applyLang('pl'); });
 
@@ -26,7 +28,8 @@ describe('dane wskazówek', () => {
   test('każde ćwiczenie bazowe ma wskazówki albo jest na liście otwartych z powodem; poza bazą — nic', () => {
     const covered = new Set([...Object.keys(CUE_DATA.exercises), ...CUE_DATA.open, ...CUE_DATA.hidden]); /* hidden — karty ukryte po recenzji treści (M1-audytor-generalny-038, 28.10.2026) */
     expect([...LIB_BASE_NAMES].filter(n => !covered.has(n))).toEqual([]);
-    expect([...covered].filter(n => !LIB_BASE_NAMES.has(n))).toEqual([]);
+    /* poza bazą tylko karty własne z partii P1 integracji badań (G2 mobilność, 02.11.2026; lista w tests/fixtures/cues-p1-mobilnosc.json) */
+    expect([...covered].filter(n => !LIB_BASE_NAMES.has(n) && !P1_MOBILNOSC.cwiczenia.includes(n))).toEqual([]);
     for (const k of CUE_DATA.open) expect(CUE_DATA.exercises[k]).toBeUndefined(); /* powody otwartych — tests/zrodla-pelne-cues.test.ts */
     expect(Object.keys(CUE_DATA.exercises).length).toBeGreaterThanOrEqual(70);
   });
