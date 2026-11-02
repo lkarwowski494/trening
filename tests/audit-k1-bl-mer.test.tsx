@@ -35,28 +35,28 @@ describe('MER2-07: podpis wskazówek bez nazw organizacji i marek', () => {
     expect(cueBasis('xyz')).toEqual([]);
     for (const k of Object.keys(CUE_DATA.exercises)) { const b = cueBasis(k); expect(b.length).toBeGreaterThan(0); expect([...b].sort((x, y) => CUE_BASIS_KINDS.indexOf(x) - CUE_BASIS_KINDS.indexOf(y))).toEqual(b); }
   });
-  test('ekran: przy wskazówkach nie ma stopki ze źródłami (decyzja właściciela 23.10.2026 — źródła tylko w Ustawienia → Źródła wiedzy); zostaje zdanie o poradach medycznych', () => {
+  test('ekran: przy wskazówkach nie ma stopki ze źródłami (decyzja właściciela 23.10.2026 — źródła tylko w Ustawienia → Źródła wiedzy); zostaje zdanie o poradach medycznych', async () => {
     for (const k of ['Rowing Machine', 'Back Squat']) {
-      const { unmount } = render(<ExerciseCues exercise={lib(k)} />);
-      fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
+      const { unmount } = await render(<ExerciseCues exercise={lib(k)} />);
+      await fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
       expect(screen.queryByText(/^Na podstawie/)).toBeNull(); expect(screen.queryByText(/Własne sformułowania/)).toBeNull();
-      expect(screen.getByText(/^Aplikacja nie udziela porad medycznych/)).toBeTruthy(); unmount();
+      expect(screen.getByText(/^Aplikacja nie udziela porad medycznych/)).toBeTruthy(); await unmount();
     }
-    applyLang('en'); render(<ExerciseCues exercise={lib('Back Squat')} />);
-    fireEvent.press(screen.getByRole('button', { name: 'Technique' }));
+    applyLang('en'); await render(<ExerciseCues exercise={lib('Back Squat')} />);
+    await fireEvent.press(screen.getByRole('button', { name: 'Technique' }));
     expect(screen.queryByText(/^Based on/)).toBeNull(); expect(screen.queryByText(/Our own wording/)).toBeNull();
   });
-  test('regresja: żaden tekst aplikacji (słownik EN, 24 słowniki, wskazówki 26 języków, podpis każdego ćwiczenia w każdym języku) nie zawiera nazw źródeł', () => {
+  test('regresja: żaden tekst aplikacji (słownik EN, 24 słowniki, wskazówki 26 języków, podpis każdego ćwiczenia w każdym języku) nie zawiera nazw źródeł', async () => {
     const bad: string[] = [];
     for (const [k, v] of Object.entries(EN)) if (SOURCE_NAMES.test(k) || SOURCE_NAMES.test(v)) bad.push(`en: ${k}`);
     for (const [l, d] of Object.entries(LOCALES)) for (const [k, v] of Object.entries(d ?? {})) if (SOURCE_NAMES.test(v)) bad.push(`${l}: ${k}`);
     for (const l of LANGS) for (const [id, v] of Object.entries(cueDict(l))) if (SOURCE_NAMES.test(v)) bad.push(`cue ${l}: ${id}`);
-    for (const l of LANGS) { applyLang(l); for (const k of Object.keys(CUE_DATA.exercises)) { const { unmount } = render(<ExerciseCues exercise={lib(k)} />); fireEvent.press(screen.getByRole('button', { name: t('Technika') })); for (const x of screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === 'Text')) { const s = JSON.stringify(x.props.children); if (SOURCE_NAMES.test(s)) bad.push(`${l} ${k}: ${s.slice(0, 60)}`); } unmount(); } }
+    for (const l of LANGS) { applyLang(l); for (const k of Object.keys(CUE_DATA.exercises)) { const { unmount } = await render(<ExerciseCues exercise={lib(k)} />); await fireEvent.press(screen.getByRole('button', { name: t('Technika') })); for (const x of screen.container.queryAll((n: { type: unknown }) => n.type === 'Text')) { const s = JSON.stringify(x.props.children); if (SOURCE_NAMES.test(s)) bad.push(`${l} ${k}: ${s.slice(0, 60)}`); } await unmount(); } }
     expect(bad).toEqual([]);
     /* bramka działa: nazwy są w dokumencie źródeł (docs/research/27), tylko nie w aplikacji */
     expect(SOURCE_NAMES.test(fs.readFileSync(path.join(root, 'docs/research/27-wskazowki-zrodla.md'), 'utf8'))).toBe(true);
     expect(fs.readFileSync(path.join(root, 'components/ExerciseCues.tsx'), 'utf8')).not.toMatch(/c\.orgs|cueOrgs/);
-  });
+  }, 120000); /* RNTL 14: render i press asynchroniczne — 26 języków × wszystkie ćwiczenia ok. 30 s (pomiar 02.11.2026) */
 });
 
 /*
@@ -203,8 +203,8 @@ describe('A11N-03: fr — spacja nierozdzielająca przed ; : ! ? » i po «', ()
     expect(Object.entries(LOCALES.fr!).filter(([, v]) => BAD.test(v)).map(([k]) => k.slice(0, 50))).toEqual([]);
     expect(Object.entries(cueDict('fr')).filter(([, v]) => BAD.test(v)).map(([k]) => k)).toEqual([]);
   });
-  test('ekran: wskazówka po francusku ma NBSP („…\\u00a0;”)', () => {
-    applyLang('fr'); render(<ExerciseCues exercise={lib('Bird Dog')} />); fireEvent.press(screen.getByRole('button', { name: t('Technika') }));
+  test('ekran: wskazówka po francusku ma NBSP („…\\u00a0;”)', async () => {
+    applyLang('fr'); await render(<ExerciseCues exercise={lib('Bird Dog')} />); await fireEvent.press(screen.getByRole('button', { name: t('Technika') }));
     expect(screen.getByText(`• ${cueDict('fr')['bd.setup']}`, { normalizer: (x: string) => x }).props.children).toMatch(/pattes\u00a0: mains/);
   });
   test('bramka działa', () => { expect(BAD.test('À quatre pattes : mains')).toBe(true); expect(BAD.test('À quatre pattes\u00a0: mains')).toBe(false); expect(BAD.test('« Afficher\u00a0»')).toBe(true); });

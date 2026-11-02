@@ -114,21 +114,21 @@ describe('strzałki na końcach toru ruchu', () => {
 describe('komponent: poświaty, znaczki, stuknięcie, dostępność', () => {
   test('przysiad: znaczki ✓ jako przyciski z etykietą „Wskazówka: …”; stuknięcie zatrzymuje animację i pokazuje tekst wskazówki pod rysunkiem; widok błędu: ✕ z etykietą „Częsty błąd: …”', async () => {
     jest.useFakeTimers(); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(false));
-    render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush(); await act(async () => { jest.advanceTimersByTime(100); });
-    const w = screen.UNSAFE_root.findAll((n: { props: Record<string, unknown> }) => n.props.testID === 'exercise-figure-v2-side' || n.props.testID === 'exercise-figure-v2-front'); expect(w.length).toBeGreaterThan(0);
+    await render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush(); await act(async () => { jest.advanceTimersByTime(100); });
+    const w = screen.container.queryAll((n: { props: Record<string, unknown> }) => n.props.testID === 'exercise-figure-v2-side' || n.props.testID === 'exercise-figure-v2-front'); expect(w.length).toBeGreaterThan(0);
     /* układ (onLayout) w testach nie liczy szerokości — wywołujemy go jak urządzenie */
-    for (const n of screen.UNSAFE_root.findAll((x: { props: Record<string, unknown> }) => typeof x.props.onLayout === 'function')) await act(async () => { (n.props.onLayout as (e: unknown) => void)({ nativeEvent: { layout: { width: 160, height: 120 } } }); });
+    for (const n of screen.container.queryAll((x: { props: Record<string, unknown> }) => typeof x.props.onLayout === 'function')) await act(async () => { (n.props.onLayout as (e: unknown) => void)({ nativeEvent: { layout: { width: 160, height: 120 } } }); });
     const b = screen.getAllByRole('button').filter(x => /^Wskazówka: /.test(String(x.props.accessibilityLabel))); expect(b.length).toBeGreaterThan(0); expect(b.length).toBeLessThanOrEqual(2 * BADGE_MAX);
-    fireEvent.press(b[0]); expect(screen.getByTestId('exercise-figure-v2-badge-text').props.children.join('')).toMatch(/^✓ /); expect(screen.getByRole('button', { name: 'Wznów animację' })).toBeTruthy();
-    fireEvent.press(screen.getByRole('button', { name: 'Pokaż częsty błąd' }));
-    for (const n of screen.UNSAFE_root.findAll((x: { props: Record<string, unknown> }) => typeof x.props.onLayout === 'function')) await act(async () => { (n.props.onLayout as (e: unknown) => void)({ nativeEvent: { layout: { width: 160, height: 120 } } }); });
+    await fireEvent.press(b[0]); expect(screen.getByTestId('exercise-figure-v2-badge-text').props.children.join('')).toMatch(/^✓ /); expect(screen.getByRole('button', { name: 'Wznów animację' })).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: 'Pokaż częsty błąd' }));
+    for (const n of screen.container.queryAll((x: { props: Record<string, unknown> }) => typeof x.props.onLayout === 'function')) await act(async () => { (n.props.onLayout as (e: unknown) => void)({ nativeEvent: { layout: { width: 160, height: 120 } } }); });
     const e = screen.getAllByRole('button').filter(x => /^Częsty błąd: /.test(String(x.props.accessibilityLabel))); expect(e.length).toBeGreaterThan(0); expect(screen.queryByTestId('exercise-figure-v2-badge-text')).toBeNull();
-    fireEvent.press(e[0]); expect(screen.queryByTestId('exercise-figure-v2-badge-text')).toBeNull(); /* tekst błędu jest w wierszu „Częsty błąd” — bez powtórzenia */ expect(screen.getByTestId('exercise-figure-v2-error')).toBeTruthy();
+    await fireEvent.press(e[0]); expect(screen.queryByTestId('exercise-figure-v2-badge-text')).toBeNull(); /* tekst błędu jest w wierszu „Częsty błąd” — bez powtórzenia */ expect(screen.getByTestId('exercise-figure-v2-error')).toBeTruthy();
   });
   test('EN: etykiety znaczków po angielsku („Tip: …”)', async () => {
     jest.useFakeTimers(); applyLang('en'); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(true));
-    render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
-    for (const n of screen.UNSAFE_root.findAll((x: { props: Record<string, unknown> }) => typeof x.props.onLayout === 'function')) await act(async () => { (n.props.onLayout as (e: unknown) => void)({ nativeEvent: { layout: { width: 160, height: 120 } } }); });
+    await render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
+    for (const n of screen.container.queryAll((x: { props: Record<string, unknown> }) => typeof x.props.onLayout === 'function')) await act(async () => { (n.props.onLayout as (e: unknown) => void)({ nativeEvent: { layout: { width: 160, height: 120 } } }); });
     expect(screen.getAllByRole('button').some(x => /^Tip: /.test(String(x.props.accessibilityLabel)))).toBe(true);
   });
   test('kształty w SVG: poświaty styku w kolorach z palety obu motywów; poświata nie zmienia kadru (shapesAt bez styków)', () => {
@@ -173,17 +173,17 @@ describe('odstęp znaczków i brak powtórzeń tekstu błędu', () => {
   test('żaden tekst błędu ani wskazówki nie występuje na ekranie dwa razy (przysiad: wybór błędu, stuknięcie znaczka ✕ i ✓), w PL i EN', async () => {
     for (const lng of ['pl', 'en'] as const) {
       jest.useFakeTimers(); applyLang(lng); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(true));
-      render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
-      const layout = async () => { for (const n of screen.UNSAFE_root.findAll((x: { props: Record<string, unknown> }) => typeof x.props.onLayout === 'function')) await act(async () => { (n.props.onLayout as (e: unknown) => void)({ nativeEvent: { layout: { width: 160, height: 120 } } }); }); };
-      const texts = (): string[] => screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === RN.Text).map((n: { props: { children?: unknown } }) => [n.props.children].flat(3).join('').replace(/^[✕✓] /, '').replace(/^(Częsty błąd|Common mistake): /, '')).filter(t => t.length > 12);
+      await render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
+      const layout = async () => { for (const n of screen.container.queryAll((x: { props: Record<string, unknown> }) => typeof x.props.onLayout === 'function')) await act(async () => { (n.props.onLayout as (e: unknown) => void)({ nativeEvent: { layout: { width: 160, height: 120 } } }); }); };
+      const texts = (): string[] => screen.container.queryAll((n: { type: unknown }) => n.type === 'Text').map((n: { props: { children?: unknown } }) => [n.props.children].flat(3).join('').replace(/^[✕✓] /, '').replace(/^(Częsty błąd|Common mistake): /, '')).filter(t => t.length > 12);
       const dup = () => { const t = texts(); return t.filter((x, i) => t.indexOf(x) !== i); };
-      fireEvent.press(screen.getByTestId('exercise-figure-v2-error-toggle')); await layout(); expect(dup()).toEqual([]);
+      await fireEvent.press(screen.getByTestId('exercise-figure-v2-error-toggle')); await layout(); expect(dup()).toEqual([]);
       const es = errorsOf(figureSpec('Back Squat')!); expect(es.length).toBeGreaterThan(1);
-      for (const e of es) { const chip = screen.queryByTestId(`exercise-figure-v2-error-${e.error}`); if (chip) fireEvent.press(chip); /* wybrany błąd nie ma chipa (tekst jest w wierszu „Częsty błąd”) */ await layout(); expect(dup()).toEqual([]); expect(texts().filter(x => x === errorText(e.cue)).length).toBe(1);
-        for (const b of screen.getAllByRole('button').filter(x => /^(Częsty błąd|Common mistake): /.test(String(x.props.accessibilityLabel)))) { fireEvent.press(b); expect(dup()).toEqual([]); } }
-      fireEvent.press(screen.getByTestId('exercise-figure-v2-error-toggle')); await layout();
-      for (const b of screen.getAllByRole('button').filter(x => /^(Wskazówka|Tip): /.test(String(x.props.accessibilityLabel))).slice(0, 2)) { fireEvent.press(b); expect(dup()).toEqual([]); }
-      screen.unmount(); jest.useRealTimers();
+      for (const e of es) { const chip = screen.queryByTestId(`exercise-figure-v2-error-${e.error}`); if (chip) await fireEvent.press(chip); /* wybrany błąd nie ma chipa (tekst jest w wierszu „Częsty błąd”) */ await layout(); expect(dup()).toEqual([]); expect(texts().filter(x => x === errorText(e.cue)).length).toBe(1);
+        for (const b of screen.getAllByRole('button').filter(x => /^(Częsty błąd|Common mistake): /.test(String(x.props.accessibilityLabel)))) { await fireEvent.press(b); expect(dup()).toEqual([]); } }
+      await fireEvent.press(screen.getByTestId('exercise-figure-v2-error-toggle')); await layout();
+      for (const b of screen.getAllByRole('button').filter(x => /^(Wskazówka|Tip): /.test(String(x.props.accessibilityLabel))).slice(0, 2)) { await fireEvent.press(b); expect(dup()).toEqual([]); }
+      await screen.unmount(); jest.useRealTimers();
     }
   }, 15000); /* 01.11.2026: ok. 3 s samodzielnie, 2 języki × render; domyślne 5 s przekraczane pod obciążeniem pełnego verify */
 });
