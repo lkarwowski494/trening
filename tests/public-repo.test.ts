@@ -287,9 +287,9 @@ describe('strona www aplikacji (GitHub Pages)', () => {
 describe('zależności i konfiguracja natywna', () => {
   const fs = require('fs') as typeof import('fs'); const root = join(__dirname, '..');
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')); const lock = JSON.parse(readFileSync(join(root, 'package-lock.json'), 'utf8'));
-  test('SEC-06: query-string nie jest zależnością bezpośrednią (kod jej nie importuje; zostaje jako zależność expo-router)', () => {
+  test('SEC-06: query-string nie jest zależnością bezpośrednią (kod jej nie importuje; od SDK 58 nie ma jej też w drzewie zależności — expo-router ≥ 58.0.13, 02.11.2026)', () => {
     expect(pkg.dependencies['query-string']).toBeUndefined(); expect(lock.packages[''].dependencies['query-string']).toBeUndefined();
-    expect(lock.packages['node_modules/expo-router'].dependencies['query-string']).toBeTruthy();
+    expect(lock.packages['node_modules/expo-router'].dependencies?.['query-string']).toBeUndefined();
     const files = (d: string): string[] => fs.readdirSync(join(root, d), { withFileTypes: true }).flatMap(e => e.isDirectory() ? files(join(d, e.name)) : /\.(ts|tsx)$/.test(e.name) ? [join(d, e.name)] : []);
     expect(['lib', 'app', 'components'].flatMap(files).filter(f => /from 'query-string'|require\('query-string'\)/.test(readFileSync(join(root, f), 'utf8')))).toEqual([]);
   });

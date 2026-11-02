@@ -49,7 +49,7 @@ describe('ekran karty (29.10.2026, wstrzymanie zdjęte): JM Press i Skull Crushe
   test.each(KLUCZE)('%s: sekcja „Technika” widoczna z rysunkiem v2, bez zdania o łokciach', async k => {
     const r = await render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: k }, initialOpen: true }));
     expect(r.queryByText(ELBOWS)).toBeNull(); expect(r.getByTestId('exercise-cues')).toBeTruthy(); expect(r.queryByTestId('exercise-figure-v2')).not.toBeNull(); await r.unmount();
-  });
+  }, 60000); /* limit 60 s (02.11.2026, ZB-010): po migracji do RNTL 14 test jest asynchroniczny, więc obowiązuje limit czasu Jest; pomiar: 9,4 s na RNTL 13, 23,7 s w sesji migracji */
   test('kontrast: wyciskanie wąskim chwytem na maszynie Smitha nadal z sekcją „Technika” (rysunek v2)', async () => {
     const r = await render(React.createElement(ExerciseCues, { exercise: { lib: true, libKey: 'Smith Machine Close-Grip Bench Press' }, initialOpen: true }));
     expect(r.getByTestId('exercise-cues')).toBeTruthy();

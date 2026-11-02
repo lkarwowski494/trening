@@ -24,6 +24,10 @@ describe('ZB-010 (28.10.2026): podatna wersja decode-uri-component poza aplikacj
     expect(patch).toBeGreaterThanOrEqual(13);
     expect(entries('query-string').filter(e => !atLeast(e.v, [9, 0]))).toEqual([]);
   });
+  test('02.11.2026: decode-uri-component i query-string nieobecne w package-lock.json (cel ZB-010 osiągnięty — drzewo bez podatnego parsera linków)', () => {
+    expect(entries('decode-uri-component')).toEqual([]);
+    expect(entries('query-string')).toEqual([]);
+  });
   test('aktualizacja SDK nie zmienia schematu danych: SCHEMA_VERSION = 19 (lib/seed.ts)', () => {
     expect(require('@/lib/seed').SCHEMA_VERSION).toBe(19);
   });

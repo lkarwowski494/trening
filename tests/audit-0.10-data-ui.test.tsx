@@ -142,7 +142,7 @@ describe('SEC-08: Więcej → O aplikacji → Licencje open source', () => {
     expect(by('react')[2]).toBe('MIT'); expect(by('react')[3].join(' ')).toMatch(/Meta Platforms/);
     expect(by('Barlow Condensed (czcionka)')[2]).toBe('OFL-1.1'); expect(by('Barlow Condensed (czcionka)')[3].join(' ')).toMatch(/Copyright 2017 The Barlow Project Authors/); expect(LICENSES.some(r => /ibm-plex/.test(r[0]))).toBe(false); /* M3 (STOP E3, docs/18): IBM Plex nie jest dołączony do aplikacji */
     expect(LICENSE_TEXTS.MIT.text).toMatch(/Permission is hereby granted, free of charge/); expect(LICENSES.some(r => r[0] === 'jest')).toBe(false); /* bez devDependencies */
-    expect(LICENSES.some(r => r[0] === 'query-string')).toBe(true); /* SEC-06: zostaje jako zależność expo-router — tylko bezpośrednia usunięta */
+    expect(LICENSES.some(r => r[0] === 'query-string')).toBe(false); /* SEC-06 (02.11.2026, SDK 58): query-string zniknął z drzewa zależności (expo-router ≥ 58.0.13), więc nie ma go na liście licencji */
   });
 });
 
