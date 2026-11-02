@@ -266,6 +266,7 @@ Zadanie M1-audytor-generalny-037; do 1.0 weszły: wiersz „Pełna wersja”, do
 
 ### Backlog bez priorytetu (decyzja właściciela 08.10.2026)
 Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właściciel nie poprosi o listę (CLAUDE.md).
+- Zdanie o progresji przy Ring Dips i Handstand Push Up (podpór na kółkach, nauka na klockach/miękkim podłożu; źródła szczebla 4 w `docs/research/wskazowki-obowiazkowe-1-1/mieszane.md`, gałąź `badania/obowiazkowe-1-1`) — właściciel 02.11.2026: nie w 1.1; przed wdrożeniem ocena badacza, czy to twierdzenie o zdrowiu.
 - Wydanie natywne — sekcja 4n niżej (przyciski przerwy na ekranie blokady, widżet, kontrolka w Centrum sterowania).
 - Wydanie Health — biblioteka `@kingstinct/react-native-healthkit` 8 → 16: odczyt aktywnych kcal, ocena wysiłku (`workoutEffortScore`; RPE → ocena **[OTWARTE]**),
   prawdziwe zdarzenia pauzy z `Workout.pauses`, masa ciała i pomiary ciała.
