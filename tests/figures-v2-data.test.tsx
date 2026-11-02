@@ -114,31 +114,31 @@ describe('regresja: tekst częstego błędu (bez gołego id wskazówki)', () => 
 describe('komponent z danych (ekran, dostępność)', () => {
   test('Pull Up: obraz z etykietą, licznik faz „Podciąganie 1 s · Pauza · Opuszczanie 2 s”, „Kąt na rysunku: zgięcie łokcia”, legenda mięśni, pauza i przełącznik błędu z tekstem błędu', async () => {
     jest.useFakeTimers(); setReduce(false);
-    render(<ExerciseFigureV2 exercise={lib('Pull Up')} />); await flush();
+    await render(<ExerciseFigureV2 exercise={lib('Pull Up')} />); await flush();
     expect(screen.getByLabelText(/^Rysunek ruchu: /)).toBeTruthy();
     expect(screen.getByText('Podciąganie 1 s ·')).toBeTruthy(); expect(screen.getByText('Opuszczanie 2 s')).toBeTruthy();
     expect(screen.getByTestId('exercise-figure-v2-angle').props.children).toMatch(/zgięcie łokcia \d+°/);
     expect(screen.getByTestId('exercise-figure-v2-legend')).toBeTruthy(); expect(screen.getByTestId('exercise-figure-v2-side')).toBeTruthy(); expect(screen.getByTestId('exercise-figure-v2-front')).toBeTruthy();
-    fireEvent.press(screen.getByRole('button', { name: 'Pokaż częsty błąd' }));
+    await fireEvent.press(screen.getByRole('button', { name: 'Pokaż częsty błąd' }));
     expect(screen.getByText('Częsty błąd: Skracanie ruchu — bez wyprostu rąk na dole.')).toBeTruthy(); expect(screen.getByRole('button', { name: 'Ukryj częsty błąd' })).toBeTruthy();
-    fireEvent.press(screen.getByRole('button', { name: 'Ukryj częsty błąd' })); expect(screen.queryByTestId('exercise-figure-v2-error')).toBeNull();
-    fireEvent.press(screen.getByRole('button', { name: 'Zatrzymaj animację' })); expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: 'Ukryj częsty błąd' })); expect(screen.queryByTestId('exercise-figure-v2-error')).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: 'Zatrzymaj animację' })); expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy();
   });
   test('EN: fazy i błąd po angielsku („Pulling up 1 s”, „Lowering 2 s”, „Common mistake: …”); Pull Up pokazuje tekst z t() zamiast id', async () => {
     jest.useFakeTimers(); setReduce(false); applyLang('en');
-    render(<ExerciseFigureV2 exercise={lib('Pull Up')} />); await flush();
+    await render(<ExerciseFigureV2 exercise={lib('Pull Up')} />); await flush();
     expect(screen.getByText('Pulling up 1 s ·')).toBeTruthy(); expect(screen.getByText('Lowering 2 s')).toBeTruthy();
-    fireEvent.press(screen.getByRole('button', { name: 'Show common mistake' })); expect(screen.getByText('Common mistake: Cutting the range short — not straightening your arms at the bottom.')).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: 'Show common mistake' })); expect(screen.getByText('Common mistake: Cutting the range short — not straightening your arms at the bottom.')).toBeTruthy();
   });
   test('wiele błędów: Gironda Sternum Chins ma jeden (bez listy wyboru); Ogranicz ruch → statycznie start i koniec bez przycisku pauzy; Dead Hang statycznie jedna pozycja bez licznika faz', async () => {
     jest.useFakeTimers(); setReduce(true);
-    const r = render(<ExerciseFigureV2 exercise={lib('Gironda Sternum Chins')} />); await flush();
+    const r = await render(<ExerciseFigureV2 exercise={lib('Gironda Sternum Chins')} />); await flush();
     expect(screen.queryByTestId('exercise-figure-v2-anim')).toBeNull(); expect(screen.getByText('Pozycja wyjściowa')).toBeTruthy(); expect(screen.queryByRole('button', { name: 'Zatrzymaj animację' })).toBeNull();
-    fireEvent.press(screen.getByRole('button', { name: 'Pokaż częsty błąd' })); expect(screen.queryByTestId('exercise-figure-v2-error-data0')).toBeNull(); r.unmount();
-    setReduce(false); render(<ExerciseFigureV2 exercise={lib('Dead Hang')} />); await flush();
+    await fireEvent.press(screen.getByRole('button', { name: 'Pokaż częsty błąd' })); expect(screen.queryByTestId('exercise-figure-v2-error-data0')).toBeNull(); await r.unmount();
+    setReduce(false); await render(<ExerciseFigureV2 exercise={lib('Dead Hang')} />); await flush();
     expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy(); expect(screen.queryByTestId('exercise-figure-v2-phases')).toBeNull(); expect(screen.queryByText('Pozycja wyjściowa')).toBeNull();
   });
-  test('ćwiczenie rodziny bez danych (Muscle Up) → komponent nic nie rysuje', async () => { setReduce(false); render(<ExerciseFigureV2 exercise={lib('Muscle Up')} />); await flush(); expect(screen.queryByTestId('exercise-figure-v2')).toBeNull(); });
+  test('ćwiczenie rodziny bez danych (Muscle Up) → komponent nic nie rysuje', async () => { setReduce(false); await render(<ExerciseFigureV2 exercise={lib('Muscle Up')} />); await flush(); expect(screen.queryByTestId('exercise-figure-v2')).toBeNull(); });
   test('legenda mięśni z katalogu dla ćwiczeń z danymi (główne: najszersze grzbietu)', () => { const l = legendOf('Pull Up')!; expect(l.main.length).toBeGreaterThan(0); });
 });
 

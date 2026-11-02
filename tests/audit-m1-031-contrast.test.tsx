@@ -48,12 +48,12 @@ describe('palety wysokiego kontrastu', () => {
 
 describe('useTheme + ustawienie systemu', () => {
   const Probe = () => { const t = useTheme(); return <Text testID="c">{t.line}</Text>; };
-  test('wariant HC po włączeniu w trakcie działania (jasny i ciemny schemat) i powrót po wyłączeniu', () => {
+  test('wariant HC po włączeniu w trakcie działania (jasny i ciemny schemat) i powrót po wyłączeniu', async () => {
     for (const sc of ['light', 'dark'] as const) {
       scheme = sc; const base = sc === 'light' ? light : dark; const hc = sc === 'light' ? lightHC : darkHC;
-      const r = render(<Probe />); expect(r.getByTestId('c').props.children).toBe(base.line);
-      act(() => { prefs().setA11yPrefs({ contrast: true }); }); expect(r.getByTestId('c').props.children).toBe(hc.line);
-      act(() => { prefs().setA11yPrefs({ contrast: false }); }); expect(r.getByTestId('c').props.children).toBe(base.line); r.unmount();
+      const r = await render(<Probe />); expect(r.getByTestId('c').props.children).toBe(base.line);
+      await act(() => { prefs().setA11yPrefs({ contrast: true }); }); expect(r.getByTestId('c').props.children).toBe(hc.line);
+      await act(() => { prefs().setA11yPrefs({ contrast: false }); }); expect(r.getByTestId('c').props.children).toBe(base.line); await r.unmount();
     }
   });
   test('aplikacja: start z „Zwiększ kontrast” i zdarzenie darkerSystemColorsChanged zmieniają tło kart bez restartu', async () => {

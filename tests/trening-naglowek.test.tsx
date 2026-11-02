@@ -12,7 +12,8 @@ import { HEADER, SPACE } from '@/lib/theme';
 import { PARTS } from '@/lib/musclemap';
 import { setA11yPrefs, __resetA11yPrefsForTests } from '@/lib/a11yPrefs';
 import { fresh, saved, addWorkout, withDemoTemplates } from './helpers';
-import { renderApp, flushAll, screen, tap, act } from './app';
+import { renderApp, flushAll, screen, tap, act, hostRoot } from './app';
+import { compByType } from './comp-by-type';
 import type { Template } from '@/lib/seed';
 
 jest.setTimeout(60000);
@@ -33,7 +34,7 @@ describe('1. ikonka sztangi po tytule zamiast dużej grafiki', () => {
     expect(screen.queryByTestId('start-motif', { includeHiddenElements: true })).toBeNull(); expect(screen.queryByTestId('bar-motif', { includeHiddenElements: true })).toBeNull();
     const icon = screen.getByTestId('title-barbell', { includeHiddenElements: true }); expect(icon.props.accessibilityElementsHidden).toBe(true); expect(icon.props.importantForAccessibility).toBe('no-hide-descendants');
     expect(flat(icon).position).not.toBe('absolute');
-    const row = screen.getByTestId('title-row'); const order = row.findAll(n => typeof n.type === 'string' && (n.props.accessibilityRole === 'header' || n.props.testID === 'title-barbell')).map(n => n.props.testID ?? 'header');
+    const row = screen.getByTestId('title-row'); const order = row.queryAll((n: any) => typeof n.type === 'string' && (n.props.accessibilityRole === 'header' || n.props.testID === 'title-barbell'), { includeSelf: true }).map((n: any) => n.props.testID ?? 'header'); /* RNTL 14: findAll → queryAll (z samym elementem) */
     expect(order).toEqual(['header', 'title-barbell']);
   });
   test('etykieta nagłówka „Trening” bez zmian (ikona nie dodaje tekstu); ikona jest też przy „Zwiększ kontrast”', async () => {
@@ -56,10 +57,10 @@ describe('2. wspólny nagłówek zakładek', () => {
 describe('3. wskaźnik przewijania (kreska przy prawej krawędzi)', () => {
   test('ScrollView i listy na zakładkach ukrywają wskaźnik (pionowy i poziomy)', async () => {
     fontScale(1); await boot();
-    const sv = screen.UNSAFE_root.findAllByType(ScrollView); expect(sv.length).toBeGreaterThan(0);
+    const sv = compByType(hostRoot(), ScrollView); /* RNTL 14: komponenty złożone przez unstable_fiber (tests/comp-by-type.ts) */ expect(sv.length).toBeGreaterThan(0);
     for (const s of sv) { expect(s.props.showsVerticalScrollIndicator).toBe(false); expect(s.props.showsHorizontalScrollIndicator).toBe(false); }
     await tap(screen.getByLabelText(/^Plan, .*zakładka/)); await flushAll(10);
-    const ls = screen.UNSAFE_root.findAllByType(FlatList); expect(ls.length).toBeGreaterThan(0);
+    const ls = compByType(hostRoot(), FlatList); expect(ls.length).toBeGreaterThan(0);
     for (const l of ls) expect(l.props.showsVerticalScrollIndicator).toBe(false);
   });
 });

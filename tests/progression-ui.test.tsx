@@ -36,19 +36,19 @@ const boot = async (fn: () => void = () => {}, url = '/', locale: 'pl' | 'en' = 
   jest.useFakeTimers({ now: NOW }); await fresh(undefined, locale); fn();
   await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url, width }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
 };
-const order = (...ids: string[]) => { const all = screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && ids.includes(n.props.testID as string)).map((n: { props: { testID?: string } }) => n.props.testID as string); return ids.map(id => all.indexOf(id)); };
-const header = () => screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === 'RNSScreenStackHeaderConfig').map((n: { props: { title?: string } }) => n.props.title);
+const order = (...ids: string[]) => { const all = screen.container.queryAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && ids.includes(n.props.testID as string)).map((n: { props: { testID?: string } }) => n.props.testID as string); return ids.map(id => all.indexOf(id)); };
+const header = () => screen.container.queryAll((n: { type: unknown }) => n.type === 'RNSScreenStackHeaderConfig').map((n: { props: { title?: string } }) => n.props.title);
 /* SegBar i legenda są ukryte przed VoiceOver (liczby czyta etykieta wiersza) — szukamy w drzewie, nie w dostępnych elementach */
-const find = (id: string) => screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && n.props.testID === id);
+const find = (id: string) => screen.container.queryAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && n.props.testID === id);
 const has = (id: string) => find(id).length > 0;
 /* legenda ma własny kontener — „wykonane” jest też podpisem kafelka Progresji */
-const legend = (word: string) => find('seg-legend').flatMap((l: { findAll: (f: (n: { type: unknown; props: { children?: unknown } }) => boolean) => unknown[] }) => l.findAll(n => n.type === 'Text' && n.props.children === word)).length;
+const legend = (word: string) => find('seg-legend').flatMap((l: { queryAll: (f: (n: { type: unknown; props: { children?: unknown } }) => boolean) => unknown[] }) => l.queryAll(n => n.type === 'Text' && n.props.children === word)).length;
 /* ekran szczegółów leży na stosie nad ekranem głównym (ten zostaje zamontowany pod spodem) — przeglądamy tylko poddrzewo szczegółów */
 const prog = () => screen.getByTestId('progression-screen');
-const findP = (id: string) => prog().findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && n.props.testID === id);
+const findP = (id: string) => prog().queryAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && n.props.testID === id);
 const hasP = (id: string) => findP(id).length > 0;
-const legendP = (word: string) => prog().findAll((n: { type: unknown; props: { children?: unknown } }) => n.type === 'Text' && n.props.children === word).length;
-const orderP = (...ids: string[]) => { const all = prog().findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && ids.includes(n.props.testID as string)).map((n: { props: { testID?: string } }) => n.props.testID as string); return ids.map(id => all.indexOf(id)); };
+const legendP = (word: string) => prog().queryAll((n: { type: unknown; props: { children?: unknown } }) => n.type === 'Text' && n.props.children === word).length;
+const orderP = (...ids: string[]) => { const all = prog().queryAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && ids.includes(n.props.testID as string)).map((n: { props: { testID?: string } }) => n.props.testID as string); return ids.map(id => all.indexOf(id)); };
 
 describe('„Ten tydzień”: tylko ten tydzień — kafelki, sylwetka, serie na partię', () => {
   test('kolejność: kalendarz → start → Ten tydzień (kafelki, stosy planu, sylwetka i serie) — bez sekcji Progresja (14.10.2026); 4 kafelki z Objętością', async () => {

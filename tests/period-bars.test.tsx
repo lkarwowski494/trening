@@ -14,6 +14,7 @@ import { contrast, GRAPHIC_MIN } from '@/lib/motif';
 import { fmtVolShort } from '@/components/ProgressBars';
 import { fresh, saved, addWorkout } from './helpers';
 import { renderApp, flushAll, screen, act } from './app';
+import { asFiber } from './fiber-tree';
 
 jest.setTimeout(60000);
 const NOW = new Date(2026, 9, 8, 9, 0); /* czwartek; tydzień pon 5 … nd 11 października 2026 */
@@ -37,7 +38,7 @@ const get = (id: string) => { const a = all(id); if (!a.length) throw new Error(
 const has = (id: string) => all(id).length > 0;
 const flat = (s: unknown): Record<string, any> => Object.assign({}, ...(Array.isArray(s) ? s.map(flat) : s ? [s] : []));
 const style = (id: string) => flat(get(id).props.style);
-const idx = (...ids: string[]) => { const ns = screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && typeof n.props.testID === 'string'); return ids.map(i => ns.findIndex((n: { props: { testID?: string } }) => n.props.testID === i)); };
+const idx = (...ids: string[]) => { const ns = screen.container.queryAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && typeof n.props.testID === 'string'); return ids.map(i => ns.findIndex((n: { props: { testID?: string } }) => n.props.testID === i)); };
 const texts = (id: string) => within(get(id)).queryAllByText(/./, { includeHiddenElements: true }).map(x => [x.props.children].flat().join(''));
 
 describe('Postępy: serie per partia — dwa słupki (ten tydzień wyżej, poprzedni niżej)', () => {
@@ -100,9 +101,9 @@ describe('Postępy: serie per partia — dwa słupki (ten tydzień wyżej, poprz
     const dims = RN.Dimensions.get; jest.spyOn(RN.Dimensions, 'get').mockImplementation(((k: 'window' | 'screen') => ({ ...dims(k), fontScale: 2 })) as never);
     const errs: string[] = []; jest.spyOn(console, 'error').mockImplementation((...a: unknown[]) => { const m = String(a[0]); if (!/not wrapped in act/.test(m)) errs.push(m.slice(0, 200)); });
     await boot(both, '/progress', 'en', 'light', 320);
-    const row = get('crow-sets-klatka'); const tx = row.findAll((n: { type: unknown }) => n.type === 'Text');
+    const row = get('crow-sets-klatka'); const tx = row.queryAll((n: { type: unknown }) => n.type === 'Text');
     expect(tx.length).toBeGreaterThanOrEqual(5); for (const n of tx) { expect(n.props.numberOfLines).toBeUndefined(); expect(n.props.ellipsizeMode).toBeUndefined(); }
-    const line = within(row).getByText('This week').parent!; expect(flat(line.props.style).flexShrink ?? 1).toBe(1); expect(errs).toEqual([]);
+    const line = asFiber(within(row).getByText('This week')).parent!; /* RNTL 14: rodzic jak w dawnym drzewie (komponent Text) — tests/fiber-tree.ts */ expect(flat(line.props.style).flexShrink ?? 1).toBe(1); expect(errs).toEqual([]);
   });
 });
 
@@ -141,6 +142,6 @@ describe('Progresja (szczegóły): serie i objętość per partia — dwa słupk
     jest.spyOn(RN.PixelRatio, 'getFontScale').mockReturnValue(2);
     const dims = RN.Dimensions.get; jest.spyOn(RN.Dimensions, 'get').mockImplementation(((k: 'window' | 'screen') => ({ ...dims(k), fontScale: 2 })) as never);
     await boot(both, '/progression?c=week', 'en', 'dark', 320);
-    for (const n of screen.getByTestId('prow-sets-klatka').findAll((x: { type: unknown }) => x.type === 'Text')) { expect(n.props.numberOfLines).toBeUndefined(); }
+    for (const n of screen.getByTestId('prow-sets-klatka').queryAll((x: { type: unknown }) => x.type === 'Text')) { expect(n.props.numberOfLines).toBeUndefined(); }
   });
 });

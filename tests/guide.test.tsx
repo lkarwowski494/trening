@@ -124,7 +124,7 @@ describe('ekrany', () => {
       g.steps().forEach((s, i) => expect(screen.getByText(`${i + 1}. ${s}`)).toBeTruthy());
       await tap(screen.getByLabelText(`Pokaż: ${g.title()}`)); await flushAll(10); expectOn[g.id]();
       /* H1 (audyt 0.10, UI-04/UX-09): „Pokaż” zakładki nie kładzie drugiego zestawu zakładek na stos — jeden „(tabs)” */
-      const { store: rs } = require('expo-router/build/global-state/router-store'); const names: string[] = [];
+      const rs = { navigationRef: require('./app').navRef() }; /* SDK 58: router-store usunięty */ const names: string[] = [];
       const walk = (st: { routes?: { name: string; state?: unknown }[] } | undefined) => st?.routes?.forEach(r => { names.push(r.name); walk(r.state as never); }); walk(rs.navigationRef.getRootState());
       expect([g.id, names.filter((n: string) => n === '(tabs)').length]).toEqual([g.id, 1]);
     }

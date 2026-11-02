@@ -19,7 +19,7 @@ async function killDuringPlank(target: number, hours: number) {
   await flushAll(60e3);
   await tap(screen.getByLabelText('Start stopera serii')); expect(timer.S.on).toBe(true); expect(timer.S.targetSec).toBe(target);
   await flushAll(20e3); await store.flush();
-  const st = saved(); r1.unmount();
+  const st = saved(); await r1.unmount();
   // renderRouter re-installs the fake clock at "now", so we move the saved timestamps back instead of the clock forward
   const D = hours * 3600e3; const sh = (x: any) => typeof x === 'number' ? x - D : x;
   st.active!.startedAt = sh(st.active!.startedAt); st.active!.exercises.forEach(e => e.sets.forEach(s => { s.completedAt = sh(s.completedAt); }));

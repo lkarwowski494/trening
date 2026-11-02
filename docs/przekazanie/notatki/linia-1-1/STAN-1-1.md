@@ -1,6 +1,14 @@
 # Linia 1.1 — stan bieżący (aktualizowany po każdym kroku; ostatnio 31.10.2026 ~09:30 PL)
 
-## Teraz (02.11.2026 ~07:35 PL, koordynator linii 1.1 — sesja dzienna)
+## Teraz (02.11.2026 ~12:00 PL, koordynator linii 1.1 — sesja dzienna, po czyszczeniu kontekstu)
+- **Przebiegi dowodowe na 40a459e:** `tests-tz` 41400900312 — cały zielony; `e2e-ios` 41400907053: 57 i 58 zielone, 17 padł na maszynie (zgubiona litera przy wpisie; tester E2E: aplikacja w poprawnym stanie); ponowienia na tej samej aplikacji — 17 (41410020064) i 58 z największym rozmiarem tekstu (41410024081) — zielone. `nightly` 41400903946 w toku (mutacje).
+- **ZB-010:** programista domyka na `zb010/sdk` (worktree agenta): stała sterta workerów Jest w konfiguracji verify i CI (wariant A, koordynator 02.11 — OOM workerów 2 GB pod RNTL 14) + odizolowanie testu `jest-ponow` od `NODE_OPTIONS`; potem pełne verify, push, scalenie do `integracja-1-1` i przebiegi dowodowe (`tests.yml`, `ios-unsigned.yml`, E2E podstawowy). Wpis decyzji ZB-010 w docs/18 — przy scaleniu (test strażnika jest na gałęzi). Przeciek pamięci karty v2 pod RNTL 14 (wariant B) — osobna pozycja backlogu.
+- **Poprawka odporności scenariusza 17** (warunkowe ponowienie wpisu + strażnik) — gotowa na gałęzi `e2e/fix-0211`, do scalenia po ZB-010.
+- **Zapisane dziś:** szczeble — uzupełnienie 3; odpowiedzi dla sesji G5 (karty częściowe wchodzą; role mięśni wariant A) — docs/18; backlog bench_press i niestabilny `tests/cues.test.tsx` — docs/21.
+- **Następnie:** integracja badań (`badania/lokalne-0211` + G1–G6) partiami przez programistę; plan fal pod cele 1.1 = B dla właściciela.
+- **Otwarte do właściciela:** szyja `neck.flex`/`neck.ext` (A/B, sesja G1), Toes to Bar ścisły czy z wymachem (G1), mechanizm lekcji Maestro (A/B) i wcześniejsze pytania.
+
+## Wcześniej (02.11.2026 ~07:35 PL, koordynator linii 1.1 — sesja dzienna)
 - **Repo:** pełne verify zielone na 40a459e (znacznik pełne), wypchnięte `integracja-1-1` 15abc58..40a459e. `tests-tz` 41390042535 na f77db9b — cały zielony (L-087 dowód zamknięty). Przebiegi dowodowe na 40a459e uruchomione: `tests-tz`, `nightly` (`pomin_losowe`, `pomin_e2e`), `e2e-ios` `tylko_scenariusze` 57 58 17 (świeży build; potem 58 z `rozmiar_tekstu` na tej aplikacji).
 - **ZB-010:** grupa D zakończona (cdf3539 na `zb010/sdk`; 33 pliki → 3 pliki / 7 testów: sygnały store-adapter `~57`→`~58`, public-repo SEC-06 `query-string`, readme). Uruchomione 4 sesje w chmurze dla grup A, B, C, E (ta sama gałąź, rebase przed push, raporty `zb010-grupa-{a,b,c,e}.md`).
 - **Badania treści:** 6 sesji G1–G6 w toku (gałęzie `badania/<slug>`, tylko `docs/research`); lokalnie 9 gałęzi `badania/*-lokalnie` do scalenia na `badania/lokalne-0211`; 3 badaczy książkowych (wyniki poza repo, na prywatny Dysk — docs/18 02.11.2026).

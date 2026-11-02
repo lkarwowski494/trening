@@ -24,7 +24,7 @@ const startBench = (n = 3, name = 'Bench Press (sztanga)') => { store.startEmpty
 const vals = (a: ReturnType<typeof startBench>, si: number, v: { weight?: number; reps?: number }) => { Object.assign(A().exercises[0].sets[si], v); };
 const sheet = () => G.__sheets[G.__sheets.length - 1];
 const pick = async (label: string | RegExp) => { const i = sheet().opts.options.findIndex(o => typeof label === 'string' ? o === label : label.test(o)); if (i < 0) throw new Error('brak pozycji ' + String(label) + ' w ' + sheet().opts.options.join(' | ')); await act(async () => { sheet().cb(i); }); await flushAll(10); };
-const text = (id: string) => within(screen.getByTestId(id)).queryByText(/.+/)?.props.children;
+const text = (id: string) => { const n = screen.getByTestId(id); /* RNTL 14: within(element) nie dopasowuje samego elementu — testID bywa na samym <Text> */ return (n.type === 'Text' && n.children.some(c => typeof c === 'string' && /.+/.test(c)) ? n : within(n).queryByText(/.+/))?.props.children; };
 
 describe('ZM-01: tablica „teraz” — dane i wpis', () => {
   test('nazwa ćwiczenia wersalikami przez upperText (pl: styl wersalików, tekst bez zmian), liczby „—” gdy brak wyniku (nie „0”), „seria n z m”', async () => {

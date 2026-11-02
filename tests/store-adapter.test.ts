@@ -94,8 +94,8 @@ describe('bez sieci poza StoreKit (R9 z docs/27, docs/30 3.1)', () => {
   test('app.json: wtyczka expo-iap bez opcji (żadnego klucza iapkit, alternatywnych sklepów ani Androida), brak extra.iapkitApiKey', () => {
     const app = JSON.parse(read('app.json')).expo; expect(app.plugins).toContain('expo-iap'); expect(JSON.stringify(app)).not.toMatch(/iapkit|onside|vega|alternativeBilling/i);
   });
-  test('package.json: expo-iap przypięte dokładnie (bez ^ ani ~) do wersji sprawdzonej w docs/30; expo-store-review w zakresie SDK 57; lockfile zgodny', () => {
-    const pkg = JSON.parse(read('package.json')); expect(pkg.dependencies['expo-iap']).toBe('5.8.1'); expect(pkg.dependencies['expo-store-review']).toMatch(/^~57\./);
+  test('package.json: expo-iap przypięte dokładnie (bez ^ ani ~) do wersji sprawdzonej w docs/30; expo-store-review w zakresie bieżącego SDK (główny numer expo); lockfile zgodny', () => {
+    const pkg = JSON.parse(read('package.json')); expect(pkg.dependencies['expo-iap']).toBe('5.8.1'); const sdk = String(pkg.dependencies.expo).match(/(\d+)\./)![1]; expect(pkg.dependencies['expo-store-review']).toMatch(new RegExp(`^~${sdk}\\.`));
     const lock = JSON.parse(read('package-lock.json')); expect(lock.packages['node_modules/expo-iap'].version).toBe('5.8.1'); expect(lock.packages['node_modules/expo-iap'].license).toBe('MIT');
     expect(fs.existsSync(path.join(root, 'node_modules/expo-iap/ios/ExpoIap.podspec'))).toBe(true);
   });

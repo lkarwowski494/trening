@@ -18,7 +18,7 @@ async function killDuringPlank(target: number, hours: number) {
   await flushAll(60e3);
   await tap(screen.getByLabelText('Start stopera serii'));
   await flushAll(20e3); await store.flush();
-  const st = saved(); r1.unmount();
+  const st = saved(); await r1.unmount();
   const D = hours * 3600e3; const sh = (x: any) => typeof x === 'number' ? x - D : x;
   st.active!.startedAt = sh(st.active!.startedAt); st.active!.exercises.forEach(e => e.sets.forEach(s => { s.completedAt = sh(s.completedAt); }));
   st.timer.setStartAt = sh(st.timer.setStartAt); st.timer.restEndAt = sh(st.timer.restEndAt);

@@ -5,7 +5,7 @@
  * nie zmieściłby się w kolumnie nawet po zmniejszeniu, pasek pokazuje skróty jednoliterowe z Intl (weekday: 'narrow'; data dnia jest pod spodem,
  * pełna nazwa w etykiecie VoiceOver). Reguła: lib/calendar stripLabelsFit (szerokość skrótu szacowana zachowawczo: 0,62 em na znak — przybliżenie).
  */
-import { Dimensions, StyleSheet, Text } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import { stripLabelsFit, stripColumnPt, weekdayLabels, fmtWeekdayNarrow, STRIP_CHAR_EM, STRIP_MIN_SHRINK } from '@/lib/calendar';
@@ -26,7 +26,7 @@ const boot = async (width: number, fontScale: number) => {
   await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'pl', width }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
 };
 /** Skróty dni w pasku (pierwszy tekst w kolumnie dnia). */
-const stripLabels = () => Array.from({ length: 7 }, (_, i) => { const k = `2026-10-${String(5 + i).padStart(2, '0')}`; return screen.getByTestId(`strip-${k}`).findAll(x => x.type === Text)[0]; });
+const stripLabels = () => Array.from({ length: 7 }, (_, i) => { const k = `2026-10-${String(5 + i).padStart(2, '0')}`; return screen.getByTestId(`strip-${k}`).queryAll(x => (x.type as unknown) === 'Text')[0]; });
 const capPt = (scale: number) => (font('caption').fontSize as number) * Math.min(scale, NUM_SCALE_MAX);
 
 describe('reguła stripLabelsFit (lib/calendar)', () => {

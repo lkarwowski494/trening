@@ -5,7 +5,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { t, tIn, setPseudo, isPseudo } from '@/lib/i18n';
-import { renderApp, flushAll, screen, go } from './app';
+import { renderApp, flushAll, go, hostRoot } from './app';
 
 jest.setTimeout(60000);
 afterEach(() => setPseudo(false));
@@ -22,7 +22,7 @@ describe('pseudolokalizacja', () => {
   test('tIn (język podany wprost, np. powiadomienia) nie jest owijany — to tekst dla systemu, nie dla ekranu', () => { setPseudo(true); expect(tIn('en', 'Ustawienia')).not.toContain('⟦'); });
   test.each(['/more/settings', '/more'] as const)('ekran %s: każdy tekst z literami jest w ⟦…⟧ (nic nie omija t())', async url => {
     setPseudo(true); await renderApp({ url }); await go(url); await flushAll(10);
-    const texts = screen.UNSAFE_getAllByType(require('react-native').Text).map((n: { props: { children?: unknown } }) => [n.props.children].flat(5).filter(c => typeof c === 'string').join(''));
+    const texts = hostRoot().queryAll((n: any) => n.type === 'Text').map((n: { props: { children?: unknown } }) => [n.props.children].flat(5).filter(c => typeof c === 'string').join(''));
     const bare = texts.filter((x: string) => /\p{L}{2}/u.test(x) && !/^⟦[\s\S]*⟧$/.test(x) && !/^Trening [\d.]*$/.test(x) /* nazwa aplikacji + wersja (marka, nie tekst) */ && !/^\p{L}+, \d{1,2} \p{L}+$/u.test(x) /* data z Intl */);
     expect(texts.some((x: string) => x.startsWith('⟦'))).toBe(true);
     expect(bare).toEqual([]);

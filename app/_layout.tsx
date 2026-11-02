@@ -31,7 +31,7 @@ import { StartError } from '@/components/StartError';
 const loadFonts = () => { let to: ReturnType<typeof setTimeout> | undefined; return Promise.race([Font.loadAsync(FONT_FILES), new Promise(r => { to = setTimeout(r, 3000); })]).catch(() => {}).finally(() => clearTimeout(to)); };
 
 // Runda 27: link otwierający ekran ze stosu (np. trening://template/…) kładzie pod nim zakładki — zawsze jest droga powrotu.
-export const unstable_settings = { initialRouteName: '(tabs)' };
+export const unstable_settings = { anchor: '(tabs)' }; /* expo-router 58: dawna nazwa ustawienia usunięta — anchor dodaje zakładki pod ekranem otwartym linkiem (przewodnik migracji SDK 57→58) */
 
 export default function RootLayout() {
   const th = useTheme(); const [ready, setReady] = useState(false); const [err, setErr] = useState<string | null>(null); const [diag, setDiag] = useState<string | undefined>(undefined); const errRef = useRef(false); errRef.current = err != null;
@@ -110,7 +110,7 @@ function Root() {
     <>
       <StatusBar style="auto" />
       <PersistErrorAlert />
-      <Stack screenOptions={{ headerStyle: { backgroundColor: th.bg }, headerTintColor: th.text, headerTitleStyle: { fontFamily: font('navTitle').fontFamily, fontSize: font('navTitle').fontSize }, headerShadowVisible: false, contentStyle: { backgroundColor: th.bg }, headerBackTitle: t('Wróć') }}>
+      <Stack screenOptions={{ headerStyle: { backgroundColor: th.bg }, headerTintColor: th.text, headerTitleStyle: { fontFamily: font('navTitle').fontFamily, fontSize: font('navTitle').fontSize }, headerShadowVisible: false, headerTransparent: false /* expo-router 58: na iOS 26+ domyślnie przezroczysty — zostaje wygląd z SDK 57 */, contentStyle: { backgroundColor: th.bg }, headerBackTitle: t('Wróć') }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="picker" options={{ presentation: 'modal', title: t('Wybierz ćwiczenie') }} />
         <Stack.Screen name="swap" options={{ presentation: 'modal', title: t('Zamień ćwiczenie') }} />

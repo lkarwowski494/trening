@@ -185,9 +185,9 @@ describe('linia pomiaru: tekst i etykiety (logika)', () => {
 
 describe('ekran: karta z rodziną z danych (komponent)', () => {
   const angleText = (): string => { const el = screen.queryByTestId('exercise-figure-v2-angle'); return el ? String(React.Children.toArray(el.props.children).join('')) : ''; };
-  const phasesText = (): string => screen.getByTestId('exercise-figure-v2-phases').findAllByType(RN.Text).map(n => String(React.Children.toArray(n.props.children).join(''))).join('|');
+  const phasesText = (): string => screen.getByTestId('exercise-figure-v2-phases').queryAll((n: any) => n.type === 'Text').map(n => String(React.Children.toArray(n.props.children).join(''))).join('|');
   let cur: { unmount: () => void } | null = null;
-  const show = async (k: string) => { cur?.unmount(); setReduce(true); cur = render(<ExerciseFigureV2 exercise={lib(k)} />); await flush(); };
+  const show = async (k: string) => { await cur?.unmount(); setReduce(true); cur = await render(<ExerciseFigureV2 exercise={lib(k)} />); await flush(); };
   afterEach(() => { cur = null; });
   test('wznos bokiem: kąt stawu ramienia (nie kolana), licznik Unoszenie 1 s · Opuszczanie 2 s; wartość = pozycja końcowa z geometrii', async () => {
     await show('Lateral Raise (hantle)'); const m = measuredAngle(spec('Lateral Raise (hantle)'), 1);
@@ -208,14 +208,14 @@ describe('ekran: karta z rodziną z danych (komponent)', () => {
     await show('Car Drivers'); expect(screen.queryByTestId('exercise-figure-v2-angle')).toBeNull(); expect(screen.getByTestId('exercise-figure-v2-phases')).toBeTruthy();
   });
   test('animacja: noszenie podczas pętli ma cały czas jedną fazę „Marsz”, a kąt zmienia się z klatką', async () => {
-    jest.useFakeTimers(); setReduce(false); render(<ExerciseFigureV2 exercise={lib('Farmer\'s Walk')} />); await flush();
+    jest.useFakeTimers(); setReduce(false); await render(<ExerciseFigureV2 exercise={lib('Farmer\'s Walk')} />); await flush();
     const a0 = angleText(); await act(async () => { jest.advanceTimersByTime(TEMPO.holdMs + TEMPO.upMs / 2); }); expect(angleText()).not.toBe(a0);
     await act(async () => { jest.advanceTimersByTime(1700); }); expect(phasesText()).toBe('Marsz');
   });
   test('VoiceOver: nowe linie mają język interfejsu i ograniczoną skalę tekstu jak istniejąca linia kąta; pomiar kursywą (nie zalecenie)', async () => {
     await show('Shrugs (sztanga)'); const a = screen.getByTestId('exercise-figure-v2-angle');
     expect(a.props.accessibilityLanguage).toBe('pl'); expect(a.props.maxFontSizeMultiplier).toBe(TEXT_SCALE_MAX); expect(a.props.style.fontStyle).toBe('italic');
-    const ph = screen.getByTestId('exercise-figure-v2-phases').findAllByType(RN.Text)[0]; expect(ph.props.accessibilityLanguage).toBe('pl'); expect(ph.props.maxFontSizeMultiplier).toBe(TEXT_SCALE_MAX);
+    const ph = screen.getByTestId('exercise-figure-v2-phases').queryAll((n: any) => n.type === 'Text')[0]; expect(ph.props.accessibilityLanguage).toBe('pl'); expect(ph.props.maxFontSizeMultiplier).toBe(TEXT_SCALE_MAX);
   });
   test('język EN: szablony, etykiety i nazwy faz po angielsku', async () => {
     applyLang('en'); await show('Barbell Wrist Curl'); const m = measuredAngle(spec('Barbell Wrist Curl'), 1);

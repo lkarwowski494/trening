@@ -1,9 +1,9 @@
 import { renderRouter, screen } from 'expo-router/testing-library';
-import { act, cleanupAsync, fireEvent } from '@testing-library/react-native';
+import { act, cleanup, fireEvent } from '@testing-library/react-native';
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { router } from 'expo-router';
-import { store as routerStore } from 'expo-router/build/global-state/router-store';
+import { navigationRef } from 'expo-router/build/global-state/navigationRef'; /* SDK 58: router-store usunięty — ref kontenera nawigacji osobno */
 
 /** Uruchamia całą aplikację (prawdziwe ekrany expo-router) na świeżym stanie. */
 /** `navTimers` (domyślnie true): odtworzone zachowanie expo-router 4 — przy każdej zmianie nawigacji `jest.runOnlyPendingTimers()` (niżej).
@@ -13,34 +13,45 @@ export async function renderApp(opts: { saved?: unknown; locale?: 'pl' | 'en'; u
    * odświeżał jeszcze zamontowane drzewo z poprzedniego startu — wspólny stan routera — a to czytało już wyzerowany store
    * („store not initialised”). Poprzednie uruchomienie odmontowujemy, zanim zerujemy store, tak jak zamknięcie aplikacji przed ponownym startem.
    * `screen` i tak wskazywał tylko ostatni render, więc asercje dotyczą wyłącznie nowego drzewa (jak przed aktualizacją). */
-  await cleanupAsync();
+  await cleanup(); /* RNTL 14: cleanup() jest asynchroniczne (dawne cleanupAsync) */
   global.__kv.clear(); global.__dbFail = false; global.__alerts.length = 0; global.__notifications.length = 0; global.__la.length = 0;
   global.__locales = [{ languageCode: opts.code ?? opts.locale ?? 'pl', languageTag: opts.tag ?? (opts.locale === 'en' ? 'en-GB' : 'pl-PL') }];
   if (opts.saved !== undefined) global.__kv.set('state', typeof opts.saved === 'string' ? opts.saved : JSON.stringify(opts.saved));
   for (const [k, v] of Object.entries(opts.kv ?? {})) global.__kv.set(k, v);
   store.__resetForTests(); require('@/lib/planReminder').__resetReminderAsk(); /* X-11: nowe uruchomienie */ timer.T.on = false; timer.S.on = false; require('@/lib/intro').__resetIntroForTests(); require('@/lib/notices').__resetNoticesForTests(); /* nowy start = zimny start (animacja: components/Intro.tsx) */
-  const r = renderRouter('./app', { initialUrl: opts.url ?? '/' });
+  const r = await renderRouter('./app', { initialUrl: opts.url ?? '/' }); /* expo-router 58: renderRouter zwraca obietnicę */
   /* SDK 53: renderRouter z expo-router 4 przy każdej zmianie stanu nawigacji wołał jest.runOnlyPendingTimers()
    * (subscribeToRootState) — wszystkie 922 testy pisano i sprawdzano przy tym zachowaniu (np. komunikat „Zapisałem trening”
    * z opóźnieniem 500 ms po starcie, blokada podwójnego „Edytuj” 1 s po powrocie z edytora). expo-router 5 to usunął,
    * więc odtwarzamy je tutaj tym samym zdarzeniem ('state' kontenera nawigacji), żeby zegar testów biegł jak przed aktualizacją
    * i żadna asercja „czegoś nie ma” nie stała się pusta przez niewykonane timery. */
-  if (!routerStore.navigationRef?.addListener) throw new Error('tests/app.tsx: brak store.navigationRef w expo-router — sprawdź odtworzenie runOnlyPendingTimers po aktualizacji routera');
-  if (opts.navTimers !== false) routerStore.navigationRef.addListener('state', () => jest.runOnlyPendingTimers());
+  if (!navigationRef?.addListener) throw new Error('tests/app.tsx: brak navigationRef w expo-router — sprawdź odtworzenie runOnlyPendingTimers po aktualizacji routera');
+  if (opts.navTimers !== false) navigationRef.addListener('state', () => jest.runOnlyPendingTimers());
   // Czekamy na init() krokami fałszywego zegara (findBy* z fałszywymi timerami potrafił zapętlić się przy kolejnych testach).
   for (let i = 0; i < 40 && !store.isReadyForTests(); i++) await act(async () => { jest.advanceTimersByTime(10); await Promise.resolve(); });
   await act(async () => { jest.advanceTimersByTime(10); await Promise.resolve(); });
   return r;
 }
-export const tap = async (el: Parameters<typeof fireEvent.press>[0]) => { await act(async () => { fireEvent.press(el); }); };
+export const tap = async (el: Parameters<typeof fireEvent.press>[0]) => { await act(async () => { await fireEvent.press(el); }); };
 /** Wzorzec ⓘ (docs/32 wzorzec 27): rozwija/zwija objaśnienie `info-{id}` (testID przycisku w components/InfoTip.tsx). */
-export const openInfo = async (id: string) => { const b = screen.getByTestId(`info-${id}`); if (!b.props.accessibilityState?.expanded) await act(async () => { fireEvent.press(b); }); };
-export const closeInfo = async (id: string) => { const b = screen.getByTestId(`info-${id}`); if (b.props.accessibilityState?.expanded) await act(async () => { fireEvent.press(b); }); };
-export const type = async (el: Parameters<typeof fireEvent.changeText>[0], text: string) => { await act(async () => { fireEvent.changeText(el, text); }); };
+export const openInfo = async (id: string) => { const b = screen.getByTestId(`info-${id}`); if (!b.props.accessibilityState?.expanded) await act(async () => { await fireEvent.press(b); }); };
+export const closeInfo = async (id: string) => { const b = screen.getByTestId(`info-${id}`); if (b.props.accessibilityState?.expanded) await act(async () => { await fireEvent.press(b); }); };
+export const type = async (el: Parameters<typeof fireEvent.changeText>[0], text: string) => { await act(async () => { await fireEvent.changeText(el, text); }); };
 /** renderRouter włącza fałszywe timery Jesta — czas przesuwamy ręcznie (setTimeout/setInterval/Date). */
 export const flushAll = async (ms = 0) => { await act(async () => { jest.advanceTimersByTime(ms); await Promise.resolve(); await Promise.resolve(); }); };
 export { screen, act, fireEvent };
 export const go = async (href: string) => { await act(async () => { router.push(href as never); }); };
+/** SDK 58 (expo-router 58): `router-store` usunięty — ref kontenera nawigacji (getRootState, getCurrentOptions, canGoBack) z jednego miejsca dla wszystkich testów. */
+export const navRef = () => navigationRef;
+/** RNTL 14 (test-renderer): korzeń drzewa elementów natywnych — następca `screen.UNSAFE_root`. Drzewo ma tylko elementy natywne (typ = napis),
+ * a wyszukiwanie to `queryAll(predykat)` zamiast `findAll` (bez samego elementu, chyba że `{ includeSelf: true }`). */
+export const hostRoot = () => screen.container;
+type HostNode = { props: Record<string, any>; queryAll: (f: (n: HostNode) => boolean) => HostNode[] };
+/** RNTL 14: drzewo nie zawiera komponentów złożonych (np. `Rect` z react-native-svg, którego element natywny ma kolor już przeliczony na liczbę).
+ * Zwraca propsy komponentów złożonych pod `root` — dla każdego elementu natywnego te między nim a jego natywnym rodzicem (z `unstable_fiber`),
+ * w kolejności od góry; odpowiednik dawnego `findAll(x => typeof x.type !== 'string' && …)` z react-test-renderer. */
+export const compPropsAll = (root: { queryAll: (f: (n: any) => boolean, o?: { includeSelf?: boolean }) => any[] }): Record<string, any>[] =>
+  root.queryAll(() => true).flatMap((h: any) => { const out: Record<string, any>[] = []; for (let f = h.unstable_fiber?.return; f && typeof f.type !== 'string' && f.tag !== 3; f = f.return) if (f.type != null && typeof f.type !== 'symbol') out.unshift(f.memoizedProps); return out; });
 
 /** Ekran miejsca (05.10.2026): grupy sprzętu są zwinięte — rozwija wszystkie (testy sprzed zwijania). */
 export const expandEquip = async () => { const { EQUIP_GROUPS, EQUIP_GROUP_LABEL, equipLabel } = require('@/lib/equipment'); for (const g of EQUIP_GROUPS) { const el = screen.queryByLabelText(equipLabel(EQUIP_GROUP_LABEL[g])); if (el && !el.props.accessibilityState?.expanded) await tap(el); } };
@@ -52,14 +63,14 @@ export const openCard = async (i = 0) => { const cards = screen.getAllByRole('bu
  */
 export const swipeDelete = async (label: string | RegExp, nth = 0) => {
   const hit = (l: string) => typeof label === 'string' ? l === label : label.test(l);
-  /* ten sam wiersz występuje w drzewie kilka razy (komponent i jego element natywny) — liczymy po funkcji akcji */
-  const all = screen.UNSAFE_root.findAll((n: { props: Record<string, any> }) => typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions) && n.props.accessibilityActions.some((a: { name: string; label?: string }) => a.name === 'delete' && hit(a.label ?? '')));
+  /* ten sam wiersz mógł występować w drzewie kilka razy (komponent i jego element natywny; w RNTL 14 tylko natywne) — liczymy po funkcji akcji */
+  const all = (hostRoot() as unknown as HostNode).queryAll((n: { props: Record<string, any> }) => typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions) && n.props.accessibilityActions.some((a: { name: string; label?: string }) => a.name === 'delete' && hit(a.label ?? '')));
   const el = all.filter((n: { props: Record<string, any> }, i: number) => all.findIndex((m: { props: Record<string, any> }) => m.props.onAccessibilityAction === n.props.onAccessibilityAction) === i)[nth];
   if (!el) throw new Error(`brak wiersza z akcją usuwania „${String(label)}”`);
   await act(async () => { el.props.onAccessibilityAction({ nativeEvent: { actionName: 'delete' } }); });
 };
 /** Etykiety akcji „usuń” widoczne na ekranie (do sprawdzeń, że wiersz da się usunąć gestem). */
-export const deleteActions = (): string[] => screen.UNSAFE_root.findAll((n: { props: Record<string, any> }) => typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions))
+export const deleteActions = (): string[] => (hostRoot() as unknown as HostNode).queryAll((n: { props: Record<string, any> }) => typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions))
   .flatMap((n: { props: Record<string, any> }) => n.props.accessibilityActions.filter((a: { name: string }) => a.name === 'delete').map((a: { label: string }) => a.label)).filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);
 /** Edycja na żądanie (decyzja właściciela 08.10.2026, docs/18): ekran szablonu i ćwiczenia otwiera się w podglądzie — `startEdit` tapuje „Edytuj”
  * (gdy ekran jest w podglądzie), `saveEdit` — „Zapisz” w nagłówku (zmiany trafiają do danych dopiero wtedy). */

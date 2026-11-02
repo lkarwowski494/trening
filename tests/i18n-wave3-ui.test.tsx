@@ -16,9 +16,9 @@ import { seedWithDemo } from './helpers';
 const S = () => store.getState();
 afterEach(() => { global.__locales = [{ languageCode: 'pl', languageTag: 'pl-PL' }]; applyLang('pl'); });
 /** Teksty na ekranie, które są polskim kluczem z tłumaczeniem w języku `l` (powinny być przetłumaczone). */
-const plLeft = (l: Lang) => { const d = LOCALES[l]!; return screen.UNSAFE_root.findAll((x: { type: unknown; props: { children?: unknown } }) => x.type === 'Text' && typeof x.props.children === 'string').map((x: { props: { children?: unknown } }) => String(x.props.children)).filter(s => Object.prototype.hasOwnProperty.call(d, s) && d[s] !== s); };
+const plLeft = (l: Lang) => { const d = LOCALES[l]!; return screen.container.queryAll((x: { type: unknown; props: { children?: unknown } }) => x.type === 'Text' && typeof x.props.children === 'string').map((x: { props: { children?: unknown } }) => String(x.props.children)).filter(s => Object.prototype.hasOwnProperty.call(d, s) && d[s] !== s); };
 /** Wszystkie teksty na ekranie. */
-const shown = () => screen.UNSAFE_root.findAll((x: { type: unknown; props: { children?: unknown } }) => x.type === 'Text' && typeof x.props.children === 'string').map((x: { props: { children?: unknown } }) => String(x.props.children));
+const shown = () => screen.container.queryAll((x: { type: unknown; props: { children?: unknown } }) => x.type === 'Text' && typeof x.props.children === 'string').map((x: { props: { children?: unknown } }) => String(x.props.children));
 
 describe('Ustawienia → Język: Русский', () => {
   test('na liście „Русский” obok „Українська”; wybór zapisuje się, ekran ustawień po rosyjsku', async () => {

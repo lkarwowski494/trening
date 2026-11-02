@@ -123,10 +123,10 @@ describe('ekran: karta ćwiczenia z pętlą jednokierunkową (komponent)', () =>
   const lib = (key: string) => ({ lib: true as const, libKey: key });
   afterEach(() => { applyLang('pl'); jest.useRealTimers(); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(false)); });
   const angleVal = (): number => { const el = screen.getByTestId('exercise-figure-v2-angle'); return Number(String(React.Children.toArray(el.props.children).join('')).match(/(-?\d+)°/)![1]); };
-  const phasesText = (): string => screen.getByTestId('exercise-figure-v2-phases').findAllByType(RN.Text).map(n => String(React.Children.toArray(n.props.children).join(''))).join('|');
+  const phasesText = (): string => screen.getByTestId('exercise-figure-v2-phases').queryAll((n: any) => n.type === 'Text').map(n => String(React.Children.toArray(n.props.children).join(''))).join('|');
 
   test('Jump Squat: kąt w chwili t równa się pomiarowi w oneWayAt(t); po końcu pętli wraca skokiem do pozycji wyjściowej (nie odtwarza ruchu wstecz)', async () => {
-    jest.useFakeTimers(); setReduce(false); render(<ExerciseFigureV2 exercise={lib('Jump Squat')} />); await flush();
+    jest.useFakeTimers(); setReduce(false); await render(<ExerciseFigureV2 exercise={lib('Jump Squat')} />); await flush();
     const s = figureSpec('Jump Squat')!; expect(angleVal()).toBe(Math.round(measuredAngle(s, 0).deg));
     let t = 0; const widziane: number[] = [];
     for (const dt of [726, 396, 396, 495, 495, 495]) { await act(async () => { jest.advanceTimersByTime(dt); }); t += dt; const exp = Math.round(measuredAngle(s, oneWayAt(t)).deg); widziane.push(angleVal()); expect(Math.abs(angleVal() - exp)).toBeLessThanOrEqual(1); }
@@ -134,26 +134,26 @@ describe('ekran: karta ćwiczenia z pętlą jednokierunkową (komponent)', () =>
     expect(oneWayAt(t)).toBeLessThan(0.1);
   });
   test.each([['Jump Squat', 'Skok'], ['Box Jump', 'Skok'], ['Wall Ball', 'Rzut'], ['Medicine Ball Slam', 'Rzut']])('%s: licznik to jedna faza „%s” bez sekund i bez pauzy', async (k, faza) => {
-    setReduce(true); render(<ExerciseFigureV2 exercise={lib(k)} />); await flush();
+    setReduce(true); await render(<ExerciseFigureV2 exercise={lib(k)} />); await flush();
     expect(phasesText()).toBe(faza); expect(phasesText()).not.toMatch(/Pauza|Opuszczanie|[0-9]/);
   });
   test('„Zatrzymaj animację” zatrzymuje pętlę, „Wznów” ją wznawia', async () => {
-    jest.useFakeTimers(); setReduce(false); render(<ExerciseFigureV2 exercise={lib('Broad Jump')} />); await flush();
-    await act(async () => { jest.advanceTimersByTime(1000); }); fireEvent.press(screen.getByTestId('exercise-figure-v2-pause')); const a = angleVal();
+    jest.useFakeTimers(); setReduce(false); await render(<ExerciseFigureV2 exercise={lib('Broad Jump')} />); await flush();
+    await act(async () => { jest.advanceTimersByTime(1000); }); await fireEvent.press(screen.getByTestId('exercise-figure-v2-pause')); const a = angleVal();
     await act(async () => { jest.advanceTimersByTime(1500); }); expect(angleVal()).toBe(a);
-    fireEvent.press(screen.getByTestId('exercise-figure-v2-pause')); await act(async () => { jest.advanceTimersByTime(300); }); expect(angleVal()).not.toBe(a);
+    await fireEvent.press(screen.getByTestId('exercise-figure-v2-pause')); await act(async () => { jest.advanceTimersByTime(300); }); expect(angleVal()).not.toBe(a);
   });
   test('„Ogranicz ruch”: pozycje statyczne z podpisami, bez pauzy i bez animacji', async () => {
-    setReduce(true); render(<ExerciseFigureV2 exercise={lib('Lateral Bound')} />); await flush();
+    setReduce(true); await render(<ExerciseFigureV2 exercise={lib('Lateral Bound')} />); await flush();
     expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy(); expect(screen.queryByTestId('exercise-figure-v2-anim')).toBeNull(); expect(screen.queryByTestId('exercise-figure-v2-pause')).toBeNull();
     expect(screen.getByText('Pozycja wyjściowa')).toBeTruthy(); expect(screen.getByText('Pozycja końcowa')).toBeTruthy();
   });
   test('Wall Ball: dwa widoki (bok i przód) w animacji', async () => {
-    setReduce(false); render(<ExerciseFigureV2 exercise={lib('Wall Ball')} />); await flush();
+    setReduce(false); await render(<ExerciseFigureV2 exercise={lib('Wall Ball')} />); await flush();
     expect(screen.getByTestId('exercise-figure-v2-side')).toBeTruthy(); expect(screen.getByTestId('exercise-figure-v2-front')).toBeTruthy();
   });
   test('język EN: „Jump” i „Throw”', async () => {
-    applyLang('en'); setReduce(true); const a = render(<ExerciseFigureV2 exercise={lib('Jump Squat')} />); await flush(); expect(phasesText()).toBe('Jump'); a.unmount();
-    render(<ExerciseFigureV2 exercise={lib('Wall Ball')} />); await flush(); expect(phasesText()).toBe('Throw'); expect(EN.Skok).toBe('Jump'); expect(EN.Rzut).toBe('Throw');
+    applyLang('en'); setReduce(true); const a = await render(<ExerciseFigureV2 exercise={lib('Jump Squat')} />); await flush(); expect(phasesText()).toBe('Jump'); await a.unmount();
+    await render(<ExerciseFigureV2 exercise={lib('Wall Ball')} />); await flush(); expect(phasesText()).toBe('Throw'); expect(EN.Skok).toBe('Jump'); expect(EN.Rzut).toBe('Throw');
   });
 });

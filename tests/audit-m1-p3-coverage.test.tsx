@@ -11,12 +11,12 @@ import { restExplainDismissed, dismissRestExplain, requestRestNotificationPermis
 afterEach(() => { (global as any).__sysPrompt = undefined; __resetA11yPrefsForTests(); __resetReminderAsk(); (global as any).__notifPerm = undefined; (global as any).__notifPermReq = undefined; (global as any).__notifPermAsked = 0; });
 
 describe('a11yPrefs: boldTextOn i useA11yPrefs', () => {
-  test('boldTextOn zwraca ustawienie; useA11yPrefs odświeża komponent po zmianie w trakcie działania', () => {
+  test('boldTextOn zwraca ustawienie; useA11yPrefs odświeża komponent po zmianie w trakcie działania', async () => {
     expect(boldTextOn()).toBe(false);
     const C = () => { const p = useA11yPrefs(); return <Text testID="v">{`${p.bold}/${p.contrast}`}</Text>; };
-    const r = render(<C />); expect(r.getByTestId('v').props.children).toBe('false/false');
-    rtlAct(() => { setA11yPrefs({ bold: true }); }); expect(boldTextOn()).toBe(true); expect(a11yPrefs().bold).toBe(true); expect(r.getByTestId('v').props.children).toBe('true/false');
-    rtlAct(() => { setA11yPrefs({ contrast: true }); }); expect(r.getByTestId('v').props.children).toBe('true/true');
+    const r = await render(<C />); expect(r.getByTestId('v').props.children).toBe('false/false');
+    await rtlAct(() => { setA11yPrefs({ bold: true }); }); expect(boldTextOn()).toBe(true); expect(a11yPrefs().bold).toBe(true); expect(r.getByTestId('v').props.children).toBe('true/false');
+    await rtlAct(() => { setA11yPrefs({ contrast: true }); }); expect(r.getByTestId('v').props.children).toBe('true/true');
   });
 });
 describe('planReminder: karta wyjaśnienia przed zgodą', () => {
@@ -33,8 +33,8 @@ describe('planReminder: karta wyjaśnienia przed zgodą', () => {
   });
 });
 describe('MuscleRows: domyślne nazwy okresów', () => {
-  test('bez `names`: „Ten okres” i „Poprzedni okres” przy każdym pasku (M1-032)', () => {
+  test('bez `names`: „Ten okres” i „Poprzedni okres” przy każdym pasku (M1-032)', async () => {
     const { MuscleRows } = require('@/components/ProgressBars'); const rows = [{ key: 'Klatka', label: 'Klatka', done: 1000, planned: 0, prev: 800, up: true }];
-    const r = render(<MuscleRows rows={rows} metric="volume" />); expect(r.getAllByText('Ten okres', { exact: false }).length).toBeGreaterThan(0); expect(r.getAllByText('Poprzedni okres', { exact: false }).length).toBeGreaterThan(0);
+    const r = await render(<MuscleRows rows={rows} metric="volume" />); expect(r.getAllByText('Ten okres', { exact: false }).length).toBeGreaterThan(0); expect(r.getAllByText('Poprzedni okres', { exact: false }).length).toBeGreaterThan(0);
   });
 });

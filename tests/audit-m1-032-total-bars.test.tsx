@@ -24,7 +24,7 @@ const boot = async (url: string) => {
   await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
 };
 const prog = () => screen.getByTestId('progression-screen');
-const has = (id: string) => prog().findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && n.props.testID === id).length > 0;
+const has = (id: string) => prog().queryAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && n.props.testID === id).length > 0;
 
 describe('sumy w Progresji: okres 2 z prążkami i nazwą okresu', () => {
   test.each([['week', 'Ten tydzień', 'Poprzedni tydzień'], ['prevWeek', 'Poprzedni tydzień', '2 tyg. temu'], ['month', 'Ten miesiąc', 'Poprzedni miesiąc']] as const)('%s: objętość i serie — okres 1 pełny (SegBar), okres 2 HatchBar z prążkami; przy każdym pasku nazwa okresu', async (kind, n1, n2) => {

@@ -8,7 +8,8 @@ import { setBodyMass, fresh, ex, addWorkout, pressAlert, seedState, withDemoTemp
 import { setWeekDay } from '@/lib/plan';
 import { fireEvent } from '@testing-library/react-native';
 import { router } from 'expo-router';
-import { renderApp, tap, type, flushAll, screen, go, act, openCard, swipeDelete, deleteActions, startEdit, saveEdit, tplDraft, exDraft, startTpl, openTpl } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, openCard, swipeDelete, deleteActions, startEdit, saveEdit, tplDraft, exDraft, startTpl, openTpl, hostRoot } from './app';
+import { compByType } from './comp-by-type';
 
 jest.setTimeout(30000);
 const at = (y: number, m: number, d: number, h = 18) => new Date(y, m - 1, d, h).getTime();
@@ -282,10 +283,9 @@ describe('runda 3', () => {
   });
   test('R3-10 pola w edytorze szablonu i porannym wpisie mają opis dla VoiceOver', async () => {
     await renderApp({ saved: seedWithDemo() }); await go(`/template/${store.getState().templates[0].id}`); await flushAll(10); await startEdit();
-    const { TextInput } = require('react-native');
-    expect(screen.UNSAFE_getAllByType(TextInput).filter((i: any) => !i.props.accessibilityLabel)).toHaveLength(0);
+    expect(hostRoot().queryAll((n: any) => n.type === 'TextInput').filter( /* RNTL 14: tylko elementy natywne */(i: any) => !i.props.accessibilityLabel)).toHaveLength(0);
     await go('/more/morning'); await flushAll(10);
-    expect(screen.UNSAFE_getAllByType(TextInput).filter((i: any) => !i.props.accessibilityLabel)).toHaveLength(0);
+    expect(hostRoot().queryAll((n: any) => n.type === 'TextInput').filter((i: any) => !i.props.accessibilityLabel)).toHaveLength(0);
   });
   test('R3-11 szablon bez ćwiczeń nie ma „Duplikuj”', async () => {
     await renderApp(); await go('/templates'); await flushAll(10); await tap(screen.getByLabelText('Dodaj szablon')); await flushAll(10);
@@ -577,8 +577,8 @@ describe('runda 9', () => {
   });
   test('R9-06 teksty w wierszu serii mają limit powiększenia', async () => {
     await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A');
-    const { Text } = require('react-native'); const btn = screen.getAllByLabelText(/^Seria 1 zrobiona/)[0];
-    expect(btn.findAllByType(Text).every((x: any) => x.props.maxFontSizeMultiplier > 0)).toBe(true);
+    const btn = screen.getAllByLabelText(/^Seria 1 zrobiona/)[0];
+    expect(btn.queryAll((n: any) => n.type === 'Text', { includeSelf: true }).every((x: any) => x.props.maxFontSizeMultiplier > 0)).toBe(true);
   });
   test('R9-07 Start w edytorze otwartym z zakładki Szablony przechodzi do treningu', async () => {
     await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; await go('/templates'); await flushAll(10); await tap(screen.getByText(tpl.name)); await flushAll(10);
@@ -692,9 +692,9 @@ describe('runda 13', () => {
   });
   test('R13-03 etykiety osi wykresu mieszczą się w lewym marginesie', async () => {
     await fresh(); const { render } = require('@testing-library/react-native'); const { LineChart } = require('@/components/Chart'); const { Text: SvgText } = require('react-native-svg');
-    const r = render(<LineChart points={[{ x: 1, y: 100, label: 'a' }, { x: 2, y: 102.5, label: 'b' }]} fmt={(v: number) => `${v.toFixed(2).replace('.', ',')} kg`} />);
-    act(() => { r.UNSAFE_root.findAll((n: any) => typeof n.props?.onLayout === 'function')[0].props.onLayout({ nativeEvent: { layout: { width: 320 } } }); });
-    const ticks = r.UNSAFE_getAllByType(SvgText).filter((x: any) => x.props.textAnchor === 'end' && / kg$/.test(String(x.props.children)));
+    const r = await render(<LineChart points={[{ x: 1, y: 100, label: 'a' }, { x: 2, y: 102.5, label: 'b' }]} fmt={(v: number) => `${v.toFixed(2).replace('.', ',')} kg`} />);
+    await act(() => { r.container.queryAll((n: any) => typeof n.props?.onLayout === 'function')[0].props.onLayout({ nativeEvent: { layout: { width: 320 } } }); });
+    const ticks = compByType(r.container, SvgText).filter((x: any) => x.props.textAnchor === 'end' && / kg$/.test(String(x.props.children)));
     expect(ticks.length).toBeGreaterThanOrEqual(3); for (const tk of ticks) expect(tk.props.x).toBeGreaterThanOrEqual(6 * String(tk.props.children).length);
   });
   test('R13-04 zakładki bez treningu nie przerysowują się przy wpisach w treningu (useHistTick)', async () => {
@@ -721,9 +721,9 @@ describe('runda 15', () => {
   test('R15-01 oś wykresu powtórzeń bez ułamków binarnych', async () => {
     await fresh(); const { render } = require('@testing-library/react-native'); const { LineChart } = require('@/components/Chart'); const { Text: SvgText } = require('react-native-svg');
     const k = stats.chartKeysFor(ex('Chin Up')).find(x => x.key === 'maxReps')!;
-    const r = render(<LineChart points={[{ x: 1, y: 4, label: 'a' }, { x: 2, y: 11, label: 'b' }, { x: 3, y: 18, label: 'c' }]} fmt={k.fmt} />);
-    act(() => { r.UNSAFE_root.findAll((n: any) => typeof n.props?.onLayout === 'function')[0].props.onLayout({ nativeEvent: { layout: { width: 347 } } }); });
-    const labels = r.UNSAFE_getAllByType(SvgText).map((x: any) => String(x.props.children)).filter((x: string) => /^[\d,.\-]+$/.test(x));
+    const r = await render(<LineChart points={[{ x: 1, y: 4, label: 'a' }, { x: 2, y: 11, label: 'b' }, { x: 3, y: 18, label: 'c' }]} fmt={k.fmt} />);
+    await act(() => { r.container.queryAll((n: any) => typeof n.props?.onLayout === 'function')[0].props.onLayout({ nativeEvent: { layout: { width: 347 } } }); });
+    const labels = compByType(r.container, SvgText).map((x: any) => String(x.props.children)).filter((x: string) => /^[\d,.\-]+$/.test(x));
     expect(labels.length).toBeGreaterThanOrEqual(3); for (const l of labels) expect(l.length).toBeLessThanOrEqual(4);
   });
 });
@@ -742,9 +742,9 @@ describe('runda 16', () => {
   });
   test('R16-02 wykres ze stałą ujemną wartością ma poprawną oś', async () => {
     await fresh(); const { render } = require('@testing-library/react-native'); const { LineChart } = require('@/components/Chart'); const { Text: SvgText } = require('react-native-svg');
-    const r = render(<LineChart points={[{ x: 1, y: -20, label: 'a' }, { x: 2, y: -20, label: 'b' }]} fmt={(v: number) => String(Math.round(v))} />);
-    act(() => { r.UNSAFE_root.findAll((n: any) => typeof n.props?.onLayout === 'function')[0].props.onLayout({ nativeEvent: { layout: { width: 320 } } }); });
-    const ticks = r.UNSAFE_getAllByType(SvgText).filter((x: any) => x.props.textAnchor === 'end' && x.props.x < 100).map((x: any) => ({ y: x.props.y, v: Number(x.props.children) }));
+    const r = await render(<LineChart points={[{ x: 1, y: -20, label: 'a' }, { x: 2, y: -20, label: 'b' }]} fmt={(v: number) => String(Math.round(v))} />);
+    await act(() => { r.container.queryAll((n: any) => typeof n.props?.onLayout === 'function')[0].props.onLayout({ nativeEvent: { layout: { width: 320 } } }); });
+    const ticks = compByType(r.container, SvgText).filter((x: any) => x.props.textAnchor === 'end' && x.props.x < 100).map((x: any) => ({ y: x.props.y, v: Number(x.props.children) }));
     const sorted = [...ticks].sort((a, b) => a.y - b.y); expect(sorted[0].v).toBeGreaterThan(sorted[sorted.length - 1].v); expect(Math.max(...ticks.map((t: any) => t.v))).toBeLessThan(0);
   });
   test('R16-03 usunięta guma nie przechodzi do nowego treningu', async () => {
@@ -1753,8 +1753,8 @@ describe('runda 70 (audyt tematyczny T1/T2)', () => {
     await renderApp(); const st = store.getState(); st.settings.unit = 'lb'; store.applyPrefs(); store.save();
     addWorkout(Date.now() - 2 * 86400e3, [['Back Squat', [{ weight: units.wIn(220.5) as number, reps: 5 }]], ['Pull Up', [{ reps: 1 }]]]); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: units.wIn(220.6) as number, reps: 5 }]], ['Pull Up', [{ reps: 6 }]]]);
     await go('/progress?ex=' + ex('Back Squat').id); await flushAll(10);
-    const txt = (re: RegExp) => screen.UNSAFE_root.findAll((n: any) => typeof n.props?.children === 'string' && re.test(n.props.children) && n.type === 'Text').map((n: any) => n.props.children);
-    const labels = screen.UNSAFE_root.findAll((n: any) => n.props && typeof n.props.children === 'string' && / lb$/.test(n.props.children) && n.props.textAnchor === 'end').map((n: any) => n.props.children);
+    const txt = (re: RegExp) => hostRoot().queryAll((n: any) => typeof n.props?.children === 'string' && re.test(n.props.children) && n.type === 'Text').map((n: any) => n.props.children);
+    const labels = compByType(hostRoot(), require('react-native-svg').Text).filter((n: any) => n.props && typeof n.props.children === 'string' && / lb$/.test(n.props.children) && n.props.textAnchor === 'end').map((n: any) => n.props.children);
     expect(new Set(labels).size).toBe(labels.length); void txt; units.applyUnit('kg');
   });
 });
@@ -1846,7 +1846,7 @@ describe('runda 73 — rekord = suma na treningu + e1RM (decyzja 01.10)', () => 
   test('R73-05 karta rekordów: pierwszy wiersz to najlepszy trening, drugi e1RM', async () => {
     await renderApp(); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]);
     await go('/progress?ex=' + ex('Back Squat').id); await flushAll(10);
-    const txt = screen.UNSAFE_root.findAll((n: any) => n.type === 'Text' && typeof n.props.children === 'string').map((n: any) => n.props.children as string);
+    const txt = hostRoot().queryAll((n: any) => n.type === 'Text' && typeof n.props.children === 'string').map((n: any) => n.props.children as string);
     const i = txt.indexOf('Najlepszy trening (objętość)'), j = txt.findIndex((x: string, k: number) => k > i && x === 'e1RM'); expect(i).toBeGreaterThan(-1); expect(j).toBeGreaterThan(i);
   });
 });
@@ -1862,7 +1862,7 @@ describe('verify 09.10.2026 (migrate-idem, ziarno 994171374): pauza krótsza ni�
 describe('B1 (build 1004; zmienione 11.10.2026): stała zachęta do planu (bez „Ukryj”), pasek tygodnia bez dat', () => {
   const boot = async (locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); addWorkout(at(2026, 10, 6), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Nogi'); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale }); await flushAll(10); };
   /* tekst w poddrzewie (within z RNTL nie widzi węzłów ekranu expo-router) */
-  const textsIn = (id: string): string[] => screen.getByTestId(id).findAll(n => (n.type as unknown) === 'Text').map(n => [n.props.children].flat().join(''));
+  const textsIn = (id: string): string[] => screen.getByTestId(id).queryAll((n: any) => n.type === 'Text', { includeSelf: true }).map((n: any) => [n.props.children].flat().join(''));
   const card = () => ({ has: (x: string) => textsIn('today-plan').includes(x) });
   test('11.10.2026: zachęta do planu = stały nagłówek „Bez planu tygodnia · Ustaw plan”; bez „Ukryj”, tekstu zachęty i przełącznika w Ustawieniach', async () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });

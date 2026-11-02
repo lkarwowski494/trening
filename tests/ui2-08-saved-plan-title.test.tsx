@@ -11,7 +11,7 @@ const boot = async (url: string, fn: () => void = () => {}, locale: 'pl' | 'en' 
   await fresh(undefined, locale); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url }); await flushAll(10);
 };
 /** Tytuł nagłówka ekranu na wierzchu stosu. */
-const title = () => { const t = screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === 'RNSScreenStackHeaderConfig').map((n: { props: { title?: string } }) => n.props.title); return t[t.length - 1]; };
+const title = () => { const t = screen.container.queryAll((n: { type: unknown }) => n.type === 'RNSScreenStackHeaderConfig').map((n: { props: { title?: string } }) => n.props.title); return t[t.length - 1]; };
 
 describe('UI2-08 — tytuł zapisanego planu', () => {
   test('„+ Nowy plan” → nagłówek z nazwą planu, nie „Plan tygodnia”; idzie za wpisaną nazwą; aktywny plan — „Planowanie”', async () => {

@@ -19,7 +19,7 @@ const boot = async (fn: () => void = () => {}, locale: 'pl' | 'en' = 'pl') => {
   await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/' }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
 };
 const box = () => within(screen.getByTestId('first-steps'));
-const flat = (el: { props: { style?: unknown } }) => StyleSheet.flatten(typeof el.props.style === 'function' ? (el.props.style as (s: { pressed: boolean }) => unknown)({ pressed: false }) : el.props.style as never) as Record<string, unknown>;
+const flat = (el: { props: { style?: unknown } }) => StyleSheet.flatten((typeof el.props.style === 'function' ? (el.props.style as (s: { pressed: boolean }) => unknown)({ pressed: false }) : el.props.style) as never) as Record<string, unknown>;
 const STEP4 = 'Masz historię w innej aplikacji? Możesz ją dopisać z pliku CSV.';
 
 describe('DEC-04 a: krok „zaimportuj historię” w Pierwszych krokach', () => {

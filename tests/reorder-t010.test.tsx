@@ -63,7 +63,7 @@ async function drag(testID: string, dy: number) {
   await act(async () => { h.props.onResponderRelease(touch(y, y)); }); await flushAll(200);
 }
 /** Wysokości wierszy (onLayout nie odpala się w testach): rodzic uchwytu z onLayout. */
-function layoutRows(h: number) { for (const el of screen.getAllByTestId(/^drag-/)) { let p: any = el.parent; while (p && !p.props.onLayout) p = p.parent; if (p) fireEvent(p, 'layout', { nativeEvent: { layout: { x: 0, y: 0, width: 300, height: h } } }); } }
+async function layoutRows(h: number) { for (const el of screen.getAllByTestId(/^drag-/)) { let p: any = el.parent; while (p && !p.props.onLayout) p = p.parent; if (p) await fireEvent(p, 'layout', { nativeEvent: { layout: { x: 0, y: 0, width: 300, height: h } } }); } }
 
 describe('ekran kolejności', () => {
   afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
@@ -74,13 +74,13 @@ describe('ekran kolejności', () => {
   test('szablon: przeciągnięcie pojedynczego ćwiczenia za superset; superset w całości; kolejność w supersecie', async () => {
     await fresh(); const tpl = mkTpl(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) });
     await go(`/template/${tpl.id}`); await flushAll(20); await startEdit(); await tap(screen.getByText('≡ Kolejność')); await flushAll(50); /* edycja na żądanie (decyzja właściciela 08.10.2026): „Edytuj” → szkic → „Zapisz” */
-    expect(screen.getByText('SS A')).toBeTruthy(); layoutRows(60);
+    expect(screen.getByText('SS A')).toBeTruthy(); await layoutRows(60);
     const items = () => tplDraft(tpl.id).items; /* Kolejność w edycji działa na szkicu */
     await drag('drag-i:it-BackSquat', 50); expect(items().map(x => x.id)).toEqual(['it-BenchPress', 'it-PullUp', 'it-BackSquat', 'it-Deadlift']);
     expect(items()[0].groupId).toBe(items()[1].groupId); expect(items()[0].groupId).not.toBeNull();
-    layoutRows(60); const g = items()[0].groupId!; await drag('drag-g:' + g, 200); expect(items().map(x => x.id)).toEqual(['it-BackSquat', 'it-Deadlift', 'it-BenchPress', 'it-PullUp']);
-    layoutRows(60); await drag('drag-i:it-PullUp', -70); expect(items().map(x => x.id)).toEqual(['it-BackSquat', 'it-Deadlift', 'it-PullUp', 'it-BenchPress']); expect(items()[2].groupId).toBe(g);
-    layoutRows(60); await drag('drag-i:it-Deadlift', 10); expect(items()[1].id).toBe('it-Deadlift'); // za mało, by minąć środek sąsiada
+    await layoutRows(60); const g = items()[0].groupId!; await drag('drag-g:' + g, 200); expect(items().map(x => x.id)).toEqual(['it-BackSquat', 'it-Deadlift', 'it-BenchPress', 'it-PullUp']);
+    await layoutRows(60); await drag('drag-i:it-PullUp', -70); expect(items().map(x => x.id)).toEqual(['it-BackSquat', 'it-Deadlift', 'it-PullUp', 'it-BenchPress']); expect(items()[2].groupId).toBe(g);
+    await layoutRows(60); await drag('drag-i:it-Deadlift', 10); expect(items()[1].id).toBe('it-Deadlift'); // za mało, by minąć środek sąsiada
   });
 
   test('VoiceOver: akcje „Przesuń wyżej/niżej” na uchwycie, wartość „n z m”', async () => {
@@ -96,7 +96,7 @@ describe('ekran kolejności', () => {
     await fresh(); const tpl = mkTpl(); store.startFromTemplate(tpl); const a = store.getState().active!;
     store.toggleDone(0, 0); const s0 = a.exercises[0].sets[0].id; await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(20);
-    await tap(screen.getByText('≡ Kolejność')); await flushAll(50); layoutRows(60);
+    await tap(screen.getByText('≡ Kolejność')); await flushAll(50); await layoutRows(60);
     expect(screen.getByText('3 serie, ✓ 1')).toBeTruthy();
     await drag('drag-i:' + store.getState().active!.exercises[0].id, 200);
     const w = store.getState().active!; expect(w.exercises.map(e => store.getState().exercises.find(x => x.id === e.exerciseId)!.name)).toEqual(['Bench Press (sztanga)', 'Pull Up', 'Leg Press', 'Back Squat']);
@@ -114,7 +114,7 @@ describe('ekran kolejności', () => {
 
   test('lista zmienia się pod palcem → przeciąganie przerwane, bez przesunięcia', async () => {
     await fresh(); const tpl = mkTpl(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) });
-    await go(`/reorder?target=template:${tpl.id}`); await flushAll(50); layoutRows(60);
+    await go(`/reorder?target=template:${tpl.id}`); await flushAll(50); await layoutRows(60);
     const h = screen.getByTestId('drag-i:it-BackSquat'); await act(async () => { h.props.onResponderGrant(touch(300, 300)); h.props.onResponderMove(touch(400, 300)); });
     await act(async () => { const t2 = store.getState().templates.find(x => x.id === tpl.id)!; t2.items.splice(3, 1); store.save(t2); }); await flushAll(20);
     await act(async () => { h.props.onResponderRelease(touch(400, 400)); }); await flushAll(50);
@@ -124,7 +124,7 @@ describe('ekran kolejności', () => {
   test('przytrzymanie przy dolnej krawędzi przewija listę i przesuwa cel dalej niż sam ruch palca', async () => {
     await fresh(); const tpl = store.newTemplate(); const names = ['Back Squat', 'Pull Up', 'Plank', 'Chin Up', 'Leg Press', 'Push Up', 'Bieg', 'Bench Press (sztanga)'];
     names.forEach((n, i) => tpl.items.push({ id: 'r' + i, exerciseId: ex(n).id, sets: 3, repMin: 5, repMax: 8, restSec: null, startWeight: '', targetSec: '', groupId: null })); store.save(tpl);
-    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go(`/reorder?target=template:${tpl.id}`); await flushAll(50); layoutRows(60);
+    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go(`/reorder?target=template:${tpl.id}`); await flushAll(50); await layoutRows(60);
     let sv: any = screen.getByTestId('drag-i:r0').parent; while (sv && !sv.props.onContentSizeChange) sv = sv.parent;
     await act(async () => { sv.props.onLayout({ nativeEvent: { layout: { x: 0, y: 0, width: 300, height: 300 } } }); sv.props.onContentSizeChange(300, 900); });
     const h = screen.getByTestId('drag-i:r0'); await act(async () => { h.props.onResponderGrant(touch(30, 30)); h.props.onResponderMove(touch(290, 30)); });
@@ -136,7 +136,7 @@ describe('ekran kolejności', () => {
   test('audyt: id grupy równe id ćwiczenia (ręcznie edytowany backup) — superset przeciąga się sam, nie pierwsze ćwiczenie', async () => {
     await fresh(); store.startEmpty(); for (const n of ['Back Squat', 'Pull Up', 'Plank', 'Chin Up']) store.addExerciseToActive(ex(n));
     const a = store.getState().active!; a.exercises.forEach((e, i) => { e.id = String(i + 1); }); a.exercises[2].groupId = '1'; a.exercises[3].groupId = '1'; store.save(a); await store.flush();
-    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/reorder?target=active'); await flushAll(50); layoutRows(60);
+    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/reorder?target=active'); await flushAll(50); await layoutRows(60);
     await drag('drag-g:1', -200); expect(store.getState().active!.exercises.map(e => e.id)).toEqual(['3', '4', '1', '2']);
   });
   test('audyt: rozerwana grupa w szablonie z importu porządkowana przy wczytaniu', async () => {

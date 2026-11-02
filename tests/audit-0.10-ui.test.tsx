@@ -20,7 +20,7 @@ const S = () => store.getState();
 const lastAlert = () => global.__alerts[global.__alerts.length - 1];
 const alertOf = (title: string) => [...global.__alerts].reverse().find(a => a.title === title);
 const boot = async (fn: () => void = () => {}, url?: string, locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url, locale }); await flushAll(10); };
-const blocked = () => screen.UNSAFE_root.findAll((n: { type: unknown; props: Record<string, any> }) => typeof n.type === 'string' && typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions) && n.props.accessibilityActions.some((a: { name: string }) => a.name === 'blocked'));
+const blocked = () => screen.container.queryAll((n: { type: unknown; props: Record<string, any> }) => typeof n.type === 'string' && typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions) && n.props.accessibilityActions.some((a: { name: string }) => a.name === 'blocked'));
 const mkTpl = (name = 'Push', rows = true) => { const t = store.newTemplate(); t.name = name; t.note = 'Wysiłek: zwykle 0–3 powtórzenia w zapasie (RIR); do upadku nie trzeba.';
   t.items.push({ id: 'a', exerciseId: ex('Bench Press (sztanga)').id, sets: 3, repMin: 6, repMax: 8, restSec: null, startWeight: 60, targetSec: '', groupId: null, ...(rows ? { rows: [{ id: 'w', kind: 'warmup', reps: 10, weight: 40, durationSec: '', distanceM: '' }, { id: 'r1', kind: 'normal', reps: '', weight: 60, durationSec: '', distanceM: '' }, { id: 'r2', kind: 'normal', reps: '', weight: 60, durationSec: '', distanceM: '' }, { id: 'r3', kind: 'drop', reps: '', weight: 40, durationSec: '', distanceM: '' }] } : {}) },
     { id: 'b', exerciseId: ex('Pull Up').id, sets: 2, repMin: null, repMax: null, restSec: 120, startWeight: '', targetSec: '', groupId: null });
@@ -102,7 +102,7 @@ describe('G5 — konwencje okien i SwipeRow', () => {
   });
   test('UI-17: PanResponder wiersza nie zmienia się przy przerysowaniu (gest nie zeruje się); jeden odsłonięty wiersz', async () => {
     await boot(() => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addSet(0); });
-    const rowH = () => screen.UNSAFE_root.findAll((n: { props: Record<string, any> }) => typeof n.props.onResponderGrant === 'function' && n.props.onMoveShouldSetResponder)[0].props.onResponderGrant;
+    const rowH = () => screen.container.queryAll((n: { props: Record<string, any> }) => typeof n.props.onResponderGrant === 'function' && n.props.onMoveShouldSetResponder)[0].props.onResponderGrant;
     const before = rowH(); await act(async () => { store.save(S().active); }); await flushAll(5); expect(rowH()).toBe(before);
   });
   test('UI-15: same zarchiwizowane szablony — pusty stan na zakładce Szablony; trening wstecz pokazuje archiwum pod „Archiwum”', async () => {
@@ -256,8 +256,8 @@ describe('trening w toku: notatka szablonu, licznik serii roboczych, notka medyc
 
 describe('F7 — przyciski przejścia bez podwójnego ekranu', () => {
   test('podwójne „Planowanie” w Kalendarzu otwiera jeden ekran planu', async () => {
-    await boot(undefined, '/history'); const b = screen.getByText('Planowanie'); await act(async () => { fireEvent.press(b); fireEvent.press(b); }); await flushAll(10); /* oba w jednym act — jak dwa tapnięcia w ~100 ms (testowy słuchacz nawigacji przesuwa zegar po każdym przejściu) */
-    const { store: rs } = require('expo-router/build/global-state/router-store'); const names: string[] = [];
+    await boot(undefined, '/history'); const b = screen.getByText('Planowanie'); await act(async () => { await fireEvent.press(b); fireEvent.press(b); }); await flushAll(10); /* oba w jednym act — jak dwa tapnięcia w ~100 ms (testowy słuchacz nawigacji przesuwa zegar po każdym przejściu) */
+    const rs = { navigationRef: require('./app').navRef() }; const names: string[] = [];
     const walk = (st: { routes?: { name: string; state?: unknown }[] } | undefined) => st?.routes?.forEach(r => { names.push(r.name); walk(r.state as never); }); walk(rs.navigationRef.getRootState());
     expect(names.filter(n => n === 'plan')).toHaveLength(1);
   });

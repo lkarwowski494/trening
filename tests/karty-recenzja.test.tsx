@@ -77,24 +77,24 @@ describe('plik runtime lib/cues/data.json: tylko recenzowane karty i zestawy', (
     expect(generalCuesReviewed('Lateral Lunge')).toBe(false); /* rodzina lunge bez figury v2 — bez recenzji */
     expect(generalCuesReviewed('Back Squat')).toBe(false); /* karta własna, nie zestaw ogólny */
   });
-  test('karta „do poprawy” (Hack Squat) nie ma sekcji „Technika”; zestaw bez aktualnej recenzji nie pokazuje wskazówek ogólnych', () => {
+  test('karta „do poprawy” (Hack Squat) nie ma sekcji „Technika”; zestaw bez aktualnej recenzji nie pokazuje wskazówek ogólnych', async () => {
     expect(REC.karty?.['Hack Squat']?.werdykt).toBe('do poprawy');
-    render(<ExerciseCues exercise={lib('Hack Squat')} initialOpen />);
+    await render(<ExerciseCues exercise={lib('Hack Squat')} initialOpen />);
     expect(screen.queryByTestId('exercise-cues')).toBeNull();
     /* od 28.10.2026 (decyzja właściciela „1a”, M1-audytor-generalny-038) żaden zestaw nie jest „do poprawy” — wtedy zestaw ogólny bez wpisu recenzji (Lateral Lunge) */
     const z = Object.entries(REC.zestawy ?? {}).find(([, e]) => e.werdykt === 'do poprawy')?.[0] ?? 'Lateral Lunge';
     expect(generalCuesReviewed(z)).toBe(false);
-    render(<ExerciseCues exercise={lib(z as string)} initialOpen />);
+    await render(<ExerciseCues exercise={lib(z as string)} initialOpen />);
     expect(screen.queryByTestId('exercise-cues-general-note')).toBeNull();
     expect(screen.queryByRole('header', { name: 'Wskazówki' })).toBeNull();
   });
-  test('karta i zestaw z recenzją się pokazują (Sumo Deadlift — własne; Sumo Deadlift with Bands — ogólne z dopiskiem)', () => {
-    render(<ExerciseCues exercise={lib('Sumo Deadlift')} initialOpen />);
+  test('karta i zestaw z recenzją się pokazują (Sumo Deadlift — własne; Sumo Deadlift with Bands — ogólne z dopiskiem)', async () => {
+    await render(<ExerciseCues exercise={lib('Sumo Deadlift')} initialOpen />);
     expect(screen.getByRole('header', { name: 'Ustawienie' })).toBeTruthy();
-    render(<ExerciseCues exercise={lib('Sumo Deadlift with Bands')} initialOpen />);
+    await render(<ExerciseCues exercise={lib('Sumo Deadlift with Bands')} initialOpen />);
     /* zestaw ogólny jest przy figurze v2 — w linii 1.1 rodzina hinge czeka na recenzję ruchu (tests/recenzja-wyjatki-1-1.json), więc dopisku nie ma, dopóki lista rodzin rysowanych (lib/figures/data.json) jej nie zawiera */
     expect(!!screen.queryByTestId('exercise-cues-general-note')).toBe(FIG_DATA.v2.includes('hinge'));
-  });
+  }, 180000); /* limit 180 s (02.11.2026, ZB-010; pomiar: samodzielnie plik 22 s, w pełnym równoległym verify ten test przekroczył 60 s — pierwszy render dwóch kart ładuje dane figur przy obciążonych workerach): po migracji do RNTL 14 test jest asynchroniczny — obowiązuje limit czasu Jest (domyślnie 5 s); pierwszy render karty z rysunkiem v2 ładuje dane figur */
 });
 
 describe('regresja: zmiana treści po recenzji unieważnia wpis (generator)', () => {

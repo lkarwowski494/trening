@@ -74,16 +74,16 @@ describe('ekrany', () => {
   test('aplikacja planuje przypomnienia po starcie i po zmianie planu', async () => {
     const t = await boot(ids => { plan.setWeekDay(4, ids[1]); }, '/');
     expect(ids()).toContain('plan-2026-10-09');
-    global.__notifications.length = 0; act(() => { plan.setDayPlan('2026-10-10', t[0].id); }); await flushAll(10);
+    global.__notifications.length = 0; await act(async () => { plan.setDayPlan('2026-10-10', t[0].id); }); await flushAll(10);
     expect(ids()).toEqual(['plan-2026-10-09', 'plan-2026-10-10', 'plan-2026-10-16', 'plan-2026-10-23', 'plan-2026-10-30']);
   });
   test('Ustawienia: przełącznik z opisem; wyłączenie zapisuje false i odwołuje', async () => {
     await boot(ids => { plan.setWeekDay(4, ids[1]); }, '/more/settings');
     expect(screen.getByText('rano o 8:00 w dniu zaplanowanego treningu')).toBeTruthy();
     const sw = screen.getByLabelText('Przypomnienie o treningu z planu'); expect(sw.props.accessibilityState.checked).toBe(true);
-    global.__notifications.length = 0; await act(async () => { fireEvent(sw, 'valueChange', false); }); await flushAll(10);
+    global.__notifications.length = 0; await act(async () => { await fireEvent(sw, 'valueChange', false); }); await flushAll(10);
     expect(S().settings.planReminder).toBe(false); expect(ids()).toEqual([]); expect(global.__cancelled).toContain('plan-2026-10-09');
-    await act(async () => { fireEvent(screen.getByLabelText('Przypomnienie o treningu z planu'), 'valueChange', true); }); await flushAll(10); expect('planReminder' in S().settings).toBe(false); expect(ids()).toContain('plan-2026-10-09');
+    await act(async () => { await fireEvent(screen.getByLabelText('Przypomnienie o treningu z planu'), 'valueChange', true); }); await flushAll(10); expect('planReminder' in S().settings).toBe(false); expect(ids()).toContain('plan-2026-10-09');
   });
   test('English', async () => {
     await boot(ids => { plan.setWeekDay(4, ids[1]); }, '/more/settings', 'en');

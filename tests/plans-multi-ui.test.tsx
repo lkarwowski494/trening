@@ -27,8 +27,8 @@ const press = async (title: string, btn: string) => { const a = lastAlert(title)
 test('nazwa planu: pole z podpowiedzią „Mój plan”, zapis przy każdej zmianie i porządek przy końcu edycji (B4)', async () => {
   await boot(ids => { plan.setWeekDay(0, ids[0]); });
   const f = screen.getByLabelText('Nazwa planu'); expect(f.props.placeholder).toBe('Mój plan');
-  await act(async () => { fireEvent.changeText(f, ' Rutyna '); }); await flushAll(5); expect(plan.planName()).toBe(' Rutyna ');
-  await act(async () => { fireEvent(f, 'endEditing', { nativeEvent: { text: ' Rutyna ' } }); }); await flushAll(5); expect(plan.planName()).toBe('Rutyna');
+  await act(async () => { await fireEvent.changeText(f, ' Rutyna '); }); await flushAll(5); expect(plan.planName()).toBe(' Rutyna ');
+  await act(async () => { await fireEvent(f, 'endEditing', { nativeEvent: { text: ' Rutyna ' } }); }); await flushAll(5); expect(plan.planName()).toBe('Rutyna');
 });
 test('„+ Nowy plan” → edycja przed aktywacją → „Inne plany” z opisem i dniami; „Ustaw jako aktywny” z potwierdzeniem; „Anuluj” bez zmian', async () => {
   const t = await boot(ids => { plan.setWeekDay(0, ids[0]); plan.setWeekDay(2, ids[1]); });
@@ -40,7 +40,7 @@ test('„+ Nowy plan” → edycja przed aktywacją → „Inne plany” z opise
   await act(async () => { const { router } = require('expo-router'); router.back(); }); await flushAll(10);
   expect(screen.getByText('Inne plany')).toBeTruthy(); await openInfo('other-plans'); expect(screen.getByText('Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem. Tapnij plan, by zmienić jego nazwę i dni.')).toBeTruthy();
   expect(screen.getByText('Nowy plan')).toBeTruthy(); expect(screen.getByText(new RegExp(`^pon\\. ${t[2].name}, śr\\. ${t[1].name}$`) /* M1-audytor-generalny-029 */)).toBeTruthy();
-  act(() => { plan.setDayPlan('2026-10-09', t[2].id); }); await flushAll(5);
+  await act(async () => { plan.setDayPlan('2026-10-09', t[2].id); }); await flushAll(5);
   await tap(screen.getByLabelText('Ustaw jako aktywny: Nowy plan')); await flushAll(5);
   expect(lastAlert('Ustawić „Nowy plan” jako aktywny plan?')!.msg).toBe('Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś (1) — wrócą, gdy znów go ustawisz.');
   await press('Ustawić „Nowy plan” jako aktywny plan?', 'Anuluj'); expect(plan.weekPlanDays()[0]).toBe(t[0].id);

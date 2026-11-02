@@ -37,11 +37,11 @@ describe('F / FW: kroje i wagi według „Pogrubiony tekst”', () => {
     expect([FW.regular.fontWeight, FW.semibold.fontWeight, FW.bold.fontWeight]).toEqual(['600', '700', '700']);
     for (const r of ROLES) if (F[r] !== 'System') expect([r, !!(FONT_FILES as Record<string, unknown>)[F[r]]]).toEqual([r, true]);
   });
-  test('komponent z useTheme() odświeża wagę po zmianie ustawienia w trakcie działania — i wraca po wyłączeniu', () => {
+  test('komponent z useTheme() odświeża wagę po zmianie ustawienia w trakcie działania — i wraca po wyłączeniu', async () => {
     const Probe = () => { useTheme(); return <Text testID="p" style={{ ...FW.regular }}>x</Text>; };
-    const r = render(<Probe />); expect(fam(r.getByTestId('p'))).toEqual({ fontFamily: 'System', fontWeight: '400' });
-    act(() => { prefs().setA11yPrefs({ bold: true }); }); expect(fam(r.getByTestId('p')).fontWeight).toBe('600');
-    act(() => { prefs().setA11yPrefs({ bold: false }); }); expect(fam(r.getByTestId('p')).fontWeight).toBe('400');
+    const r = await render(<Probe />); expect(fam(r.getByTestId('p'))).toEqual({ fontFamily: 'System', fontWeight: '400' });
+    await act(() => { prefs().setA11yPrefs({ bold: true }); }); expect(fam(r.getByTestId('p')).fontWeight).toBe('600');
+    await act(() => { prefs().setA11yPrefs({ bold: false }); }); expect(fam(r.getByTestId('p')).fontWeight).toBe('400');
   });
 });
 
