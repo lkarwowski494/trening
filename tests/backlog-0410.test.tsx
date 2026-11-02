@@ -6,7 +6,7 @@ import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import * as edit from '@/lib/edit';
 import { fresh, ex, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, hostRoot } from './app';
 
 jest.setTimeout(60000);
 afterEach(async () => { edit.__resetDrafts(); try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
@@ -66,7 +66,7 @@ test('arkusz „Inne” (audyt 04.10): przewijanie nie gubi tapnięcia przy klaw
   await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(20);
   await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
   await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
-  const sv = screen.UNSAFE_getAllByType(require('react-native').ScrollView).find((x: any) => x.props.keyboardShouldPersistTaps === 'handled'); expect(sv).toBeTruthy();
+  const sv = hostRoot().queryAll((n: any) => n.type === 'RCTScrollView').find((x: any) => x.props.keyboardShouldPersistTaps === 'handled'); expect(sv).toBeTruthy();
   await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Bench Press (hantle)'); await flushAll(5);
   await tap(screen.getByText('Przywróć „Bench Press (hantle)”')); await flushAll(20);
   expect(store.getState().active!.exercises[0].exerciseId).toBe(ex('Bench Press (hantle)').id); expect(ex('Bench Press (hantle)').archived).toBeFalsy();
