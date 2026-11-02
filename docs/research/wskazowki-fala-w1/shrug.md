@@ -6,6 +6,8 @@
 > - Organizacje odrzucone wcześniej (serwisy konsumenckie, strony aplikacji) pozostają odrzucone. Life Fitness/Hammer Strength (producent maszyn —
 >   własny rodzaj sprzętu, szczebel 4 wg rozstrzygnięcia) — nadal bez instrukcji ruchu, nie jest źródłem zdania.
 > - Status „warunkowo” dla „Shrugs (linki)” i „Leverage Shrug” wynika z oceny wariantu sprzętu, nie ze szczebla — bez zmian.
+>
+> **Przeliczenie koordynatora 02.11.2026 — nadrzędne; sekcja na końcu pliku.**
 
 - Data: 02.11.2026 (korekta szczebli — ten sam dzień)
 - Autor: badacz-merytoryczny (agent)
@@ -41,7 +43,7 @@ Decyzja koordynatora: przyjąć jako „wariant sprzętu” (zasada z briefu) al
 Rekomendacja: przyjąć tylko dla „Shrugs (linki)” i „Leverage Shrug” (ciężar w opuszczonych rękach, ruch identyczny); dla wariantów „za plecami”
 i maszyny na łydki karta bez ustawienia byłaby myląca — zostawić tryb ogólny po przeglądzie zestawu (Otwarte 2–3).
 
-## 2. Blok JSON (warunkowo — patrz wyżej)
+## 2. Blok JSON (warunkowo — patrz wyżej) — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 ```json
 {
@@ -104,3 +106,54 @@ Zrobione: przegląd źródeł dla 6 wariantów; wynik warunkowy dla 2 (rekomendo
 korekta szczebli 02.11.2026 — bez zmian w wynikach. Zostało: znaleźć drugie (poza ExRx) źródła wariantów — najlepiej
 w środowisku z dostępem do web.archive.org (ExRx: CBShrug, LVShrug, BBRearShrug, SMRearShrug, LVShrugCalfMachine) albo w materiałach producentów
 maszyn (instrukcje obsługi z opisem ćwiczenia). Pułapki: exrx.net 403; web.archive.org zablokowane; karty produktów Hammer Strength bez instrukcji ruchu.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3); kryterium karty z decyzji 02.11.2026 (karta własna = min. 1 zdanie ustawienia + 1 zdanie ruchu; bez ustawienia albo ruchu = otwarte). Bez nowych źródeł.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód |
+|---|---|---|
+| `ace-72`, `ace-75` (ACE) | 4 | organizacja certyfikująca trenerów; strony firmowane ACE (precedens docs/research/27); jedna organizacja = jedno źródło |
+| `exrx-TrapeziusUpper/BBShrug`, `exrx-TrapeziusUpper/DBShrug` (ExRx) | 4 | precedens docs/research/27 (serwis z redakcją); czytane przez migawkę archiwum w partii 27; dziś 403 — bez ponownego odczytu |
+
+### Zdania → stan
+
+| Zdanie | Źródła | Stan |
+|---|---|---|
+| `shrug.setup` | ACE + ExRx (oba: inny sprzęt) | zostaje — warunkowo (decyzja 4: karta ze źródeł wariantu sprzętu) |
+| `shrug.move`, `shrug.high`, `shrug.tall` | ACE + ExRx (inny sprzęt) | zostają — warunkowo (jw.) |
+
+### Karty → stan
+
+| Ćwiczenie | Stan | Powód |
+|---|---|---|
+| Shrugs (linki) | **własna bez błędów — WARUNKOWA** | ustawienie + ruch, ale wyłącznie ze źródeł wariantu (sztanga/hantle) — decyzja 4 koordynatora; oznaczenie „uproszczenie (analogia sprzętu)” |
+| Leverage Shrug | otwarta (było: warunkowo do JSON) | brak zdania ustawienia → nie spełnia kryterium karty |
+| Barbell Shrug Behind The Back, Smith Machine Behind the Back Shrug, Calf-Machine Shoulder Shrug | otwarte | brak ustawienia |
+| Middle Back Shrug | otwarta | brak źródeł |
+
+Liczby: przed — 0 gotowych, 2 warunkowe, 4 otwarte; po — 0 własnych, 1 warunkowa (Shrugs (linki)), 5 otwartych.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+Bezwarunkowo: **pusty** (`{}`). Wyłącznie po decyzji koordynatora „karta ze źródeł wariantu sprzętu — tak” (decyzja 4) — blok warunkowy:
+
+```json
+{
+  "Shrugs (linki)": {
+    "setup": [
+      {"c": "shrug.setup", "s": [["ace-72", "opis (wariant: sztanga; ręce opuszczone, stań prosto)"], ["exrx-TrapeziusUpper/DBShrug", "Preparation (wariant: hantle)"]]}
+    ],
+    "move": [
+      {"c": "shrug.move", "s": [["ace-72", "opis (wariant: sztanga)"], ["exrx-TrapeziusUpper/BBShrug", "Execution (wariant: sztanga)"]]}
+    ],
+    "tips": [
+      {"c": "shrug.high", "s": [["ace-72", "opis (as high as possible; wariant: sztanga)"], ["exrx-TrapeziusUpper/BBShrug", "Execution (as high as possible; wariant: sztanga)"]]},
+      {"c": "shrug.tall", "s": [["ace-72", "opis (hips straight, back tall; only the shoulders; wariant: sztanga)"], ["exrx-TrapeziusUpper/DBShrug", "Comments (standing upright; wariant: hantle)"]]}
+    ],
+    "mistakes": []
+  }
+}
+```

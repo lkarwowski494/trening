@@ -31,7 +31,7 @@
 | Incline Walk (bieżnia) (partial) | partial | **dopełnione** (ustawienie, ruch, wskazówka, błąd) | NordicTrack + Sunny (marsz z nachyleniem) + Precor + Lifespan (wejście na bieżnię) |
 | Rower (partial) | partial | **dopełnione częściowo** (ustawienie, wskazówki, błąd) | HSS + NordicTrack + M. Yoke i C. Armbruster (Human Kinetics); ruch (praca nóg) nadal pusty |
 
-## 2. Blok JSON do `exercises` w `data/zrodla/cues.json` (sesja 1)
+## 2. Blok JSON do `exercises` w `data/zrodla/cues.json` (sesja 1) — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 ```json
 {
@@ -109,7 +109,7 @@ Treadmill Walking: źródła `berling-2006`, `hofmann-2014`, `nordictrack-inclin
 Jumping Jacks: odwołanie do `physitrack-jumping-jack` usunięte z bloku (koordynator G6, 02.11.2026 — nie liczy się do dwóch źródeł); zdanie `jump.land` ma nadal NASM + The Prehab Guys.
 Zasada cytatu: najwyżej jedno zdanie cytowane na źródło; reszta odwołań to parafrazy z miejscem.
 
-## 2a. Dopełnienie i nowe wpisy (sesja 2, 02.11.2026)
+## 2a. Dopełnienie i nowe wpisy (sesja 2, 02.11.2026) — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 Pozycje do DOPISANIA na koniec istniejących list w `cues.json` (Assault Bike i Treadmill Walking — do bloku z sekcji 2; Incline Walk, Bieg, Rower —
 do wpisów już w `cues.json`). High Knees, Fast Skipping, Carioca Quick Step — wpisy nowe. Burpees — bez zmian (sekcja 5).
@@ -318,3 +318,106 @@ Istniejące zdania użyte ponownie: `bike.seat`, `bike.foot`, `jump.land`, `walk
 - Zostało: drugie źródła dla Battle Ropes, Ski Erg, Burpees (wskazówki), Rower (ruch), High Knees (tułów); decyzja koordynatora linii 1.1 o szczeblu The Prehab Guys i Physitrack.
 - Następny krok: Ski Erg — szukać drugiej organizacji szkolącej trenerów albo instrukcji innego producenta ergometru narciarskiego; Battle Ropes — producent lin (instrukcja albo poradnik firmowy).
 - Pułapki: ExRx 403, web.archive.org zablokowane; assaultfitness.com/blogs/university/* — 404; support.lifefitness.com i support.sportsmith.com — 403; manualowl.com — 403 (manualsdir.com i manualslib.com działają); nsca.com/education/articles/kinetic-select/* — 403 (także dxpprod.nsca.com); brooksrunning.com — 403; canada.humankinetics.com przekierowuje — używać us.humankinetics.com; PDF-y (ACE Fit Facts, CrossFit Journal, StairMaster) WebFetch nie dekoduje — czytać zapisany plik narzędziem Read po stronach; nasm.org `…/high-knees` i `…/battle-ropes` — 404. W tej sesji agent nie miał narzędzia Edit ani Bash — plik aktualizowany pełnym zapisem.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3) oraz rozstrzygnięcia koordynatora 02.11.2026: **B. Lee (autor gościnny bez kwalifikacji trenerskich) = 5**; kopie instrukcji nieutożsamione z oryginałem producenta nie liczą się. Kryterium karty z decyzji 02.11.2026. Wynik przeliczenia: STAN-g6-przyciaganie.md, „Stan przeliczenia 02.11.2026” (poprawiony o rozstrzygnięcie o B. Lee).
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód (strona, autor/data albo powód) |
+|---|---|---|
+| `cfj-lee-rope` (CrossFit Journal), `hk-lee-rope` (Human Kinetics) | **5** | autor B. Lee bez kwalifikacji trenerskich (prezes firmy produkującej skakanki, tekst gościnny) — rozstrzygnięcie koordynatora 02.11.2026 |
+| `prehab-jumping-jack`, `prehab-high-knees`, `prehab-a-skip`, `prehab-ladder-carioca` (The Prehab Guys) | **5** | biblioteka wideo bez autora, sprzedaż programów (`g6-szczeble-uzupelnienie-2.md`) |
+| `ucalgary-carioca` | 5 | uczelniany ośrodek, bez autora (uzup. 2) |
+| `schwinn-ad6-manual`, `lf-x15-manual`, `precor-935-manual` (serwisy z kopiami), `stairmaster-sm3-manual` (PDF na serwerze sprzedawcy) | **nie liczą się** | kopie instrukcji nieutożsamione z oryginałem producenta (uzup. 3 + rozstrzygnięcie 02.11.2026) |
+| `smai-airfit-tips` | **nie liczy się** | WebFetch 02.11.2026: brak daty; dwa różne podpisy („Josh Scully” w nagłówku, „Bruce Smith-Wright, Exercise Physiologist” na końcu); strona nie mówi, że AirFit to produkt SMAI |
+| `rep-airbike-setup` (REP Fitness) | 4 | producent rowerów powietrznych; R. MacPherson, CSCS, daty (sekcja 3) |
+| `hk-yoke-cycling` (Human Kinetics: Yoke i Armbruster), `carr-hk-drills` (Carr) | 3 | autorzy z doktoratem (uzup. 2) |
+| ACE, NASM, HSS, NordicTrack, Sunny, Lifespan, Life Fitness (artykuł), Bells of Steel (schodołaz), Concept2 | 4 | bez zmian |
+
+### Zdania → stan
+
+| Zdanie | Ćwiczenie | Źródła po przeliczeniu | Stan |
+|---|---|---|---|
+| `rope.length`, `rope.elbows`, `rope.wrists`, `rope.low`, `rope.upright`, `rope.knees` | Skakanka | tylko ACE (Lee = 5) | **spadają** |
+| `bike.seat` | Assault Bike | rep-airbike-setup + c2-bikeerg-setup (Schwinn — kopia) | zostaje, ale karta bez ruchu |
+| `bike.foot` | Assault Bike | REP + Concept2 + HSS | zostaje, ale karta bez ruchu |
+| `abike.reach`, `abike.arms` | Assault Bike | tylko REP (SMAI nie liczy się) | **spadają** |
+| `jj.setup`, `jj.move`, `jump.land` | Jumping Jacks | tylko NASM | **spadają** |
+| `hk.knee`, `skip.move` | High Knees, Fast Skipping | tylko Carr | **spadają** |
+| `car.move` | Carioca Quick Step | brak źródła ≤ 4 | **spada** |
+| `walk.upright`, `stair.rails` | Stair Climber | tylko Bells of Steel (StairMaster — kopia); karta i tak bez ustawienia i ruchu | **spadają** |
+| `ell.feet`, `ell.upright`, `ell.grip`, `ell.heel` | Orbitrek | tylko Sunny (Life Fitness X15 — kopia) | **spadają** |
+| `tread.straddle` | Treadmill Walking, Incline Walk | tylko Lifespan (Precor — kopia) | **spada** |
+| `walk.rails`, `walk.upright`, `walk.gaze` | Treadmill Walking | źródła ≥ 2, ale karta bez ustawienia i ruchu | poza blokiem (karta otwarta) |
+| `walk.short`, `walk.gaze`, `walk.mis.bend` | Incline Walk (`partial`) | NordicTrack + Sunny / NordicTrack + Lifespan | zostają (dopełnienie) |
+| `run.arms`, `run.tall`, `run.mis.overstride` | Bieg (`partial`) | NASM + HSS | zostają (dopełnienie) |
+| `bike.elbows`, `bike.back`, `bike.shoulders`, `bike.grip`, `bike.mis.rock` | Rower (`partial`) | HSS, NordicTrack, REP, Yoke i Armbruster (3) | zostają (dopełnienie) |
+
+### Karty → stan
+
+| Ćwiczenie | Stan | Powód |
+|---|---|---|
+| Skakanka | **otwarta** (było: gotowe; w STAN przed rozstrzygnięciem — warunkowa) | Lee = 5 → zostaje tylko ACE |
+| Assault Bike | **otwarta** (było: gotowe) | ustawienie jest, ruch `abike.arms` spada (SMAI) |
+| Jumping Jacks, High Knees, Fast Skipping, Carioca Quick Step | **otwarte** | The Prehab Guys / ucalgary = 5 |
+| Stair Climber, Orbitrek, Treadmill Walking | **otwarte** (było: gotowe) | kopie instrukcji nie liczą się; bez ustawienia albo ruchu |
+| Battle Ropes, Ski Erg | otwarte | bez zmian |
+| Incline Walk, Bieg, Rower | `partial` — dopełnienia w osobnym bloku | nie karty własne; Incline Walk bez ustawienia (`tread.straddle` spadł) → zostaje na liście `partial` |
+
+Liczby: przed — gotowe 6 + dopełnienie, częściowe 3, otwarte 2; po — własne z błędami 0, własne bez błędów 0, otwarte 11 (w tym Skakanka); dopełnienia `partial`: 11 zdań.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+Brak kart własnych — blok pusty:
+
+```json
+{}
+```
+
+### Blok do wdrożenia — dopełnienia `partial` (po przeliczeniu 02.11.2026)
+
+Pozycje do DOPISANIA na koniec istniejących list wpisów `partial` w `cues.json` (nie zmieniają statusu `partial`):
+
+```json
+{
+  "Incline Walk (bieżnia)": {
+    "move": [
+      {"c": "walk.short", "s": [["nordictrack-incline", "Form First („take shorter, more controlled steps” przy większym nachyleniu)"], ["sunny-incline-walk", "Steps (krótkie, szybkie kroki, zwłaszcza przy większym nachyleniu; parafraza)"]]}
+    ],
+    "tips": [
+      {"c": "walk.gaze", "s": [["nordictrack-incline", "Form First (patrz przed siebie, nie w dół; parafraza)"], ["lifespan-treadmill-safety", "(wariant: bez nachylenia) wzrok przed siebie; parafraza"]]}
+    ],
+    "mistakes": [
+      {"c": "walk.mis.bend", "s": [["nordictrack-incline", "Form First (lekkie pochylenie jest normalne, ale bez przesadnego pochylania do przodu; parafraza)"], ["sunny-incline-walk", "Lean / Common Mistakes (pochylenie z kostek, nie z pasa; mocne zgięcie w biodrach to błąd; parafraza)"]]}
+    ]
+  },
+  "Bieg": {
+    "move": [
+      {"c": "run.arms", "s": [["nasm-running-gait", "What to Observe — Lateral/Anterior View (ręce przód–tył, nie przez linię środkową ciała; parafraza)"], ["hss-running-form", "Arms (ręce luźno, w rytm nóg, góra–dół, nie na boki; parafraza)"]]}
+    ],
+    "tips": [
+      {"c": "run.tall", "s": [["hss-running-form", "Posture („Run tall…”; lekkie pochylenie do przodu, nie sztywno)"], ["nasm-running-gait", "What to Observe — Lateral View (lekkie pochylenie normalne); Common Faults — Excessive Forward Trunk Lean; parafraza"]]}
+    ],
+    "mistakes": [
+      {"c": "run.mis.overstride", "s": [["nasm-running-gait", "Common Faults — Overstriding (stopa ląduje za daleko przed ciałem; parafraza)"], ["hss-running-form", "Foot strike (stopa pod środkiem ciężkości, nie daleko przed sobą; parafraza)"], ["pmc-4887549", "Spatiotemporal Factors (parafraza)"]]}
+    ]
+  },
+  "Rower": {
+    "setup": [
+      {"c": "bike.elbows", "s": [["hss-bike", "Posture (lekko ugięte łokcie; parafraza)"], ["hk-yoke-cycling", "ustawienie siodełka przód–tył (łokcie lekko ugięte przy chwycie kierownicy; parafraza)"]]}
+    ],
+    "tips": [
+      {"c": "bike.back", "s": [["hss-bike", "Posture (kręgosłup w miarę prosty, brzuch napięty; parafraza)"], ["nordictrack-bike-mistakes", "błąd 3 („engage your core, keep your back straight…”)"], ["hk-yoke-cycling", "„maintain neutral spinal alignment on the bike”"]]},
+      {"c": "bike.shoulders", "s": [["hss-bike", "Posture (barki z dala od uszu; parafraza)"], ["hk-yoke-cycling", "łopatki w dół, bez garbienia i unoszenia barków; parafraza"], ["nordictrack-bike-mistakes", "błąd 2 (szyja, ręce i barki rozluźnione; parafraza)"]]},
+      {"c": "bike.grip", "s": [["nordictrack-bike-mistakes", "błąd 2 (dłonie lekko na kierownicy; parafraza)"], ["hk-yoke-cycling", "„ride with a relaxed grip and neutral wrists”"]]}
+    ],
+    "mistakes": [
+      {"c": "bike.mis.rock", "s": [["hk-yoke-cycling", "„The rider's hips will rock back and forth” przy za wysokim siodełku"], ["rep-airbike-setup", "(wariant: rower powietrzny) seat height (kołysanie bioder przy za wysokim siodełku; parafraza)"]]}
+    ]
+  }
+}
+```
+
+Nowe zdania w dopełnieniach: `walk.short`, `walk.gaze`, `walk.mis.bend`, `run.arms`, `run.tall`, `run.mis.overstride`, `bike.elbows`, `bike.back`, `bike.shoulders`, `bike.grip`, `bike.mis.rock` (11). Uwaga do integracji: wpisów „Skakanka” i „Assault Bike” NIE usuwać z `open` w `cues.json` (obie karty otwarte); Incline Walk zostaje na liście `partial`.

@@ -4,6 +4,7 @@
 - Autor: badacz-merytoryczny (agent)
 - Zakres: Overhead Carry (hantle), Farmer's Walk (trap bar), Double Kettlebell Front Rack Carry, Farmer's Walk (Farmers Handles), Rickshaw Carry; dodatkowo próba dopełnienia Farmer's Walk i Suitcase Carry (lista `partial`).
 - Status: PROPOZYCJA — dane do integracji przez koordynatora linii 1.1
+- **Przeliczenie koordynatora 02.11.2026 — nadrzędne; sekcja na końcu pliku (Farmer's Walk (trap bar) otwarte — brak ustawienia).**
 
 ## Korekta szczebli 02.11.2026
 
@@ -35,7 +36,7 @@ Metoda: wyjątek dla wskazówek techniki (CLAUDE.md, 25.10.2026) — zdanie wcho
 
 „Częściowe” = jak lista `partial` w `data/zrodla/cues.json`: komplet tylko tych sekcji, które mają ≥ 2 źródła; brakujących sekcji nie dopisujemy z jednego źródła.
 
-## 2. JSON do `exercises` (cues.json)
+## 2. JSON do `exercises` (cues.json) — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 Zawiera ćwiczenia „częściowe” — każde zdanie ma ≥ 2 źródła szczebla 4 z różnych organizacji. Proponuję dopisać je do listy `partial`.
 
@@ -171,3 +172,101 @@ Istniejące źródła użyte: `ace-359`, `ace-358`, `nsca-coach-7-3` (PDF przecz
 
 - Zrobione: carry — wszystkie 5 ćwiczeń i dwa dopełnienia ocenione (02.11.2026); korekta szczebli 02.11.2026 (Equinox = 5 → Overhead Carry traci `lunge.torso`).
 - Pułapki: ExRx 403, Wayback zablokowane (brief); strona producenta odważników (rack carry) 402; strona MacEwan 410; PDF NSCA Coach 7.3 WebFetch zwraca binarnie — czytać plik jako PDF (obraz stron). Wiele trafień na „carry” to strony aplikacji (wykluczone).
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3; „kilka publikacji tej samej organizacji = jedno źródło”); kryterium karty z decyzji 02.11.2026. Plik nie używa źródeł warunkowych z uzupełnienia 3 — bez nowych odczytów stron.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód |
+|---|---|---|
+| `ace-359`, `ace-358` (ACE) | 4 | organizacja certyfikująca; dwie strony = jedno źródło |
+| `nsca-coach-7-3` (NSCA, czasopismo „NSCA Coach”) | 4 w parze, liczone raz | publikacja NSCA; uzup. 2: kilka publikacji NSCA = jedno źródło (tu jedna) |
+| `nasm-best-abs` (NASM) | 4 | organizacja certyfikująca |
+| `catalyst-827` (Catalyst Athletics) | 4 | rozstrzygnięcie (tabela główna) |
+| `strongfirst-two-carries` (StrongFirst) | 4 — **ocena badacza, spoza list rozstrzygnięcia** | organizacja certyfikująca instruktorów kettlebell, artykuł z autorem (T. Jewett); od tej oceny zależy `ohc.setup` (STAN, decyzja 3) |
+| `equinox-sa-oh-carry` (Equinox) | 5 | sieć klubów — bez zmian |
+
+### Zdania → stan
+
+| Zdanie | Ćwiczenie | Źródła | Stan |
+|---|---|---|---|
+| `ohc.setup` | Overhead Carry | Catalyst + StrongFirst | zostaje (zależne od oceny StrongFirst) |
+| `ohc.walk` | Overhead Carry | Catalyst + NSCA (wariant) | zostaje |
+| `carry.two`, `carry.walk`, `lunge.torso` | Farmers Handles | ACE + NSCA (+ NASM) — warianty sprzętu | zostają |
+| `carry.walk`, `lunge.torso` | trap bar | ACE + NSCA — warianty | zostają jako zdania, ale karta bez ustawienia |
+
+### Karty → stan
+
+| Ćwiczenie | Stan | Powód |
+|---|---|---|
+| Overhead Carry (hantle) | własna bez błędów | ustawienie + ruch |
+| Farmer's Walk (Farmers Handles) | własna bez błędów | ustawienie + ruch (źródła o hantlach/kettlebellach — wariant sprzętu, oznaczony) |
+| Farmer's Walk (trap bar) | **otwarta** (było: częściowe) | brak zdania ustawienia (źródła o trap barze dotyczą martwego ciągu — analogia) |
+| Double Kettlebell Front Rack Carry, Rickshaw Carry | otwarte | bez zmian |
+| Farmer's Walk, Suitcase Carry (dopełnienia `partial`) | bez zmian | — |
+
+Liczby: przed — częściowe 3, otwarte 2; po — własne z błędami 0, własne bez błędów 2, otwarte 3.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+```json
+{
+  "Overhead Carry (hantle)": {
+    "setup": [
+      {
+        "c": "ohc.setup",
+        "s": [
+          ["catalyst-827", "opis („Hold a dumbbell overhead in each hand with the palms forward and lock in the position…”); Purpose (ręce pionowo)"],
+          ["strongfirst-two-carries", "Carry No. 2: Overhead (wariant: przenoszenie nad głową w artykule o odważnikach; łokieć wyprostowany, ramię blisko ucha)"]
+        ]
+      }
+    ],
+    "move": [
+      {
+        "c": "ohc.walk",
+        "s": [
+          ["catalyst-827", "opis (marsz na zadany czas albo dystans, ciężary jak najstabilniej)"],
+          ["nsca-coach-7-3", "s. 52, Exercise Set-Up (wariant: waiter's walk — ciężar nad głową w jednej ręce; przenoszenie na czas albo dystans)"]
+        ]
+      }
+    ],
+    "tips": [],
+    "mistakes": []
+  },
+  "Farmer's Walk (Farmers Handles)": {
+    "setup": [
+      {
+        "c": "carry.two",
+        "s": [
+          ["ace-359", "opis (wariant: hantle; ręce wzdłuż boków, ciężary przy biodrach)"],
+          ["nsca-coach-7-3", "s. 52, Exercise Set-Up (wariant: równy ciężar w każdej ręce)"]
+        ]
+      }
+    ],
+    "move": [
+      {
+        "c": "carry.walk",
+        "s": [
+          ["ace-359", "opis (wariant: hantle; marsz na ustalony dystans)"],
+          ["nsca-coach-7-3", "s. 52 („walk slow and controlled”)"]
+        ]
+      }
+    ],
+    "tips": [
+      {
+        "c": "lunge.torso",
+        "s": [
+          ["ace-359", "opis (wariant: hantle; plecy proste)"],
+          ["nsca-coach-7-3", "s. 52 („maintain an upright torso”)"],
+          ["nasm-best-abs", "Offset Farmer's Carry, Coaching Tip (wariant: ciężary nierówne; postawa wyprostowana)"]
+        ]
+      }
+    ],
+    "mistakes": []
+  }
+}
+```
+
+Nowe zdania w bloku: `ohc.setup`, `ohc.walk` (2).

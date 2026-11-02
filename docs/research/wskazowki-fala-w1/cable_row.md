@@ -5,6 +5,7 @@
 - Zakres: ćwiczenia rodziny `cable_row` bez własnych wskazówek — Single Arm Cable Row, Machine Row, Standing Cable Row, Kneeling High Pulley Row,
   Leverage High Row, Cable Rope Rear-Delt Rows, Sled Row.
 - Status: PROPOZYCJA — dane do integracji przez koordynatora linii 1.1 (praca NIEDOKOŃCZONA — patrz „Stan”)
+- **Przeliczenie koordynatora 02.11.2026 — nadrzędne; sekcja na końcu pliku.**
 
 Metoda jak w `row.md` (ta sama fala): ≥ 2 przeczytane (WebFetch, 02.11.2026) źródła szczebla 4 z różnych organizacji o TYM ćwiczeniu (wariant sprzętu
 oznaczony); strony aplikacji treningowych wykluczone; zdania zestawu ogólnego bez potwierdzenia nie przechodzą; bez liczb. Szczeble wg rozstrzygnięcia
@@ -23,7 +24,7 @@ z autorem i datą albo treścią firmowaną, bez marketingu i afiliacji; sprzeda
 | Leverage High Row | general (row) | otwarte | Fitness Volt (szczebel do decyzji) + Set For Set (marka odzieżowa → 5); zestaw ogólny `row.fullStretch` przeczy Fitness Volt |
 | Sled Row | open | otwarte | tylko Generation Iron (wariant „sled pull” stojąc, strona z deklaracją afiliacji); reszta to aplikacje, free-exercise-db lub serwisy otwarte |
 
-## 2. Blok JSON do `exercises` w `data/zrodla/cues.json`
+## 2. Blok JSON do `exercises` w `data/zrodla/cues.json` — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 ```json
 {
@@ -76,9 +77,9 @@ zdanie mówi „górna część klatki” (część wspólna przedziału).
 | id | org | tytuł | url | szczebel |
 |---|---|---|---|---|
 | ace-337 | ACE (istnieje) | Single Arm Row (cable) | https://www.acefitness.org/resources/everyone/exercise-library/337/single-arm-row/ | 4 |
-| prehabguys-single-arm-row-cable | The Prehab Guys (istnieje) | Single Arm Row – Cable | https://theprehabguys.com/vimeo-video/single-arm-row-cable/ | 4 |
-| physitrack-seated-row-machine | Physitrack (istnieje) | Seated row, machine | https://us.physitrack.com/home-exercise-video/seated-row%252c-machine | 4 (org do ponownej oceny — patrz uwaga wyżej) |
-| physitrack-cable-rowing-standing | Physitrack (istnieje) | Cable Machine Rowing in Standing | https://ie.physitrack.com/home-exercise-video/cable-machine-rowing-in-standing | 4 (jw.) |
+| prehabguys-single-arm-row-cable | The Prehab Guys (istnieje) | Single Arm Row – Cable | https://theprehabguys.com/vimeo-video/single-arm-row-cable/ | 4 (przeliczenie 02.11.2026: **5**) |
+| physitrack-seated-row-machine | Physitrack (istnieje) | Seated row, machine | https://us.physitrack.com/home-exercise-video/seated-row%252c-machine | 4 (org do ponownej oceny — patrz uwaga wyżej; przeliczenie 02.11.2026: **5**) |
+| physitrack-cable-rowing-standing | Physitrack (istnieje) | Cable Machine Rowing in Standing | https://ie.physitrack.com/home-exercise-video/cable-machine-rowing-in-standing | 4 (jw.; przeliczenie 02.11.2026: **5**) |
 | yourhouse-cable-row | Your House Fitness (nowa) | Exercise Tutorial: Cable Row | https://www.yourhousefitness.com/blog/exercise-tutorial-cable-row | **5** — blog sieci siłowni (rozstrzygnięcie 02.11) — nie liczy się |
 | healthline-seated-row | Healthline (nowa) | Seated Row: muscles, how-to, variations | https://www.healthline.com/health/seated-row | 4 — serwis z redakcją i recenzją medyczną (autorka, recenzent DPT, data 31.05.2019) |
 | majorfitness-cable-rear-delt-row | Major Fitness (proponowana w `row.md`) | How to Do a Cable Rear Delt Row | https://www.majorfitness.com/blogs/training-tips/how-to-do-a-cable-rear-delt-row | 4 — producent sprzętu kablowego (bramy/wyciągi, akcesoria), treść firmowana, data 02.08.2024; bez autora, linki do własnych produktów |
@@ -154,3 +155,74 @@ Istniejące zdanie użyte: `mis.jerk` (Machine Row). Zdania `row.*` z `row.md` (
 - Pułapki: exrx.net 403; muscleandstrength.com 403 (i tak „otwarte, nie licz”); bodybuilding.com/exercises przekierowuje (404); silversneakers.com 403;
   adresy barbend.com/?p=… i breakingmuscle.com/?p=… z wyszukiwarki prowadzą do strony głównej; większość wyników to strony aplikacji (wykluczone);
   strony „substitute-exercises” Fitness Volt mają kroki skopiowane z free-exercise-db (5); PDF-y Uniwersytetu Sussex są obrazami (WebFetch nie czyta tekstu).
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3); kryterium karty z decyzji 02.11.2026.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód |
+|---|---|---|
+| `ace-337` (ACE) | 4 | organizacja certyfikująca, strona firmowana |
+| `nasm-seated-machine-row-close-grip` (NASM) | 4 | organizacja certyfikująca |
+| `healthline-seated-row` (Healthline) | **4** | uzup. 3 (warunkowo 4: autor, data, nazwany recenzent z kwalifikacjami). WebFetch 02.11.2026: „Medically reviewed by Gregory Minnis, DPT — Written by Kirsten Nunez on May 31, 2019” |
+| `prehabguys-single-arm-row-cable` (The Prehab Guys) | **5** | `g6-szczeble-uzupelnienie-2.md`, tabela 1: biblioteka wideo bez autora, przycisk sprzedaży programu; uzup. 2: liczy się tylko artykuł z autorem |
+| `physitrack-seated-row-machine`, `physitrack-cable-rowing-standing` | **5** | uzup. 2 (Physitrack = 5) |
+| `majorfitness-cable-rear-delt-row` (Major Fitness) | 4 | producent sprzętu kablowego — własny rodzaj sprzętu (rozstrzygnięcie dla producentów); treść firmowana, data 02.08.2024 |
+| `bellsofsteel-rear-delt-cable` (Bells of Steel) | 4 | producent wyciągów — własny rodzaj sprzętu; treść firmowana, data 06.12.2023 |
+| `fitnessvolt-cable-rear-delt-row-rope` (Fitness Volt) | 4 (warunkowo spełnione) | uzup. 3: autor z kwalifikacjami w podpisie i data — w pliku: autor z biogramem (MD), daty 2019/2024; bez nazwanego recenzenta (wątpliwość — STAN, decyzja 8) |
+| `fitnessvolt-machine-high-row` | nie oceniane per strona | bez wpływu (Leverage High Row ma i tak jedno źródło) |
+| `generationiron-sled-push-pull` | 5 | uzup. 3: liczy się tylko autor z listy ekspertów GI; deklaracja afiliacji; bez wpływu (Sled Row otwarte) |
+| `yourhouse-cable-row`, `setforset-machine-high-row`, `fitnessvolt-khpr`, `dynamo-kneeling-incline-row` | 5 | bez zmian |
+
+### Zdania → stan
+
+| Zdanie | Ćwiczenie | Źródła po przeliczeniu | Stan |
+|---|---|---|---|
+| `cr1.setup`, `cr1.pull` | Single Arm Cable Row | tylko ACE | **spadają** |
+| `mrow.setup`, `mrow.pull` | Machine Row | NASM + Healthline | zostają (Physitrack usunięty) |
+| `mis.jerk` | Machine Row | NASM + Healthline (błąd wprost w obu) | zostaje |
+| `rdcr.setup`, `rdcr.pull` | Cable Rope Rear-Delt Rows | Major Fitness + Bells of Steel (wariant: drążek) + Fitness Volt | zostają; słowo „lina” — Major Fitness + Fitness Volt |
+
+### Karty → stan
+
+| Ćwiczenie | Stan | Powód |
+|---|---|---|
+| Machine Row | **własna z błędami** | ustawienie + ruch + `mis.jerk` (NASM + Healthline) |
+| Cable Rope Rear-Delt Rows | własna bez błędów | ustawienie + ruch |
+| Single Arm Cable Row | **otwarta** (było: gotowe) | The Prehab Guys = 5 → jedno źródło |
+| Standing Cable Row, Kneeling High Pulley Row, Leverage High Row, Sled Row | otwarte | bez zmian |
+
+Liczby: przed — gotowe 3, otwarte 4; po — własne z błędami 1, własne bez błędów 1, otwarte 5.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+```json
+{
+  "Machine Row": {
+    "setup": [
+      {"c": "mrow.setup", "s": [["nasm-seated-machine-row-close-grip", "Step 1–2 (adjust seat to the handles, feet on the platform, grip the handles)"], ["healthline-seated-row", "How to do a seated row, setup (adjust seat and chest pad so shoulders are level with the handles; sit upright; hold the handle)"]]}
+    ],
+    "move": [
+      {"c": "mrow.pull", "s": [["nasm-seated-machine-row-close-grip", "Step 3–4 (pull toward your torso driving the elbows back; lower)"], ["healthline-seated-row", "How to do a seated row, pull and return (bend the elbows keeping them tucked; slowly extend the arms)"]]}
+    ],
+    "tips": [],
+    "mistakes": [
+      {"c": "mis.jerk", "s": [["nasm-seated-machine-row-close-grip", "Common mistakes (jerking the weight)"], ["healthline-seated-row", "Common mistakes: swinging torso; rapid movements (wariant: seated row machine / cable)"]]}
+    ]
+  },
+  "Cable Rope Rear-Delt Rows": {
+    "setup": [
+      {"c": "rdcr.setup", "s": [["majorfitness-cable-rear-delt-row", "Setup (cable at chest height, rope, palms facing down, step back until the cable is taut)"], ["bellsofsteel-rear-delt-cable", "Cable Wide-Grip Row (wariant: szeroki drążek zamiast liny; pulley at chest height, overhand grip, step back until under tension)"], ["fitnessvolt-cable-rear-delt-row-rope", "Instructions, step 1 (rope at about mid-chest level, stand a few feet back)"]]}
+    ],
+    "move": [
+      {"c": "rdcr.pull", "s": [["majorfitness-cable-rear-delt-row", "Movement; Return (elbows flared perpendicular to the body, pull toward the shoulders; slowly let the rope return)"], ["bellsofsteel-rear-delt-cable", "Cable Wide-Grip Row (wariant: drążek; elbows high and wide, pull to upper chest, return slowly)"], ["fitnessvolt-cable-rear-delt-row-rope", "Instructions, steps 2–3 (flare elbows out, pull toward mid-chest; slowly straighten the arms forward)"]]}
+    ],
+    "tips": [],
+    "mistakes": []
+  }
+}
+```
+
+Nowe zdania w bloku: `mrow.setup`, `mrow.pull`, `rdcr.setup`, `rdcr.pull` (4). Przy ścisłym odczycie reguły Fitness Volt (wymagany nazwany recenzent) w `rdcr.setup` zamienić „liny” na „uchwyt” (Bells of Steel — wariant z drążkiem).

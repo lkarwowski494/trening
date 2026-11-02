@@ -26,7 +26,7 @@ Metoda: jak w `carry.md`. Wskazówka wchodzi, gdy potwierdzają ją ≥ 2 niezal
 | Conan's Wheel | open | otwarte | brak przeczytanego źródła szczebla 4 o technice |
 | Power Stairs | open | otwarte | brak przeczytanego źródła szczebla 4 o technice |
 
-## 2a. JSON do `exercises` (cues.json) — dwa bezwarunkowe źródła szczebla 4
+## 2a. JSON do `exercises` (cues.json) — dwa bezwarunkowe źródła szczebla 4 — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 ```json
 {
@@ -220,3 +220,62 @@ Wycofane z propozycji (zostały po jednym źródle szczebla 4 po obniżeniu Elit
 - Wynik rodziny: gotowe — Yoke Walk; częściowe — Tire Flip, Atlas Stones, Sandbag Load; otwarte — Log Lift, Keg Load, Jefferson Squat, Circus Bell, Conan's Wheel, Power Stairs.
 - Zostało (opcjonalnie, niska szansa): drugi producent z tekstem o technice kłody i dzwonu (blog Bells of Steel bezpośrednio, strony pomocy Rogue); decyzja koordynatora o zestawie ogólnym Jefferson Squat (`open` albo samo `sq.back`).
 - Pułapki: ExRx 403, Wayback zablokowane; NSCA Kinetic Select 403; Mirafit i powerliftingtechnique.com 403; EliteFTS, Strength Shop, Fitness Volt, Cerberus, siłownie, USAWA, Lift Big Eat Big — szczebel 5 (nie liczą się); Garage Gym Reviews — według koordynatora nie liczyć; strony baz ćwiczeń aplikacji (np. adresy `*.app`, `*.pages.dev`) — wykluczone; Bells of Steel liczy się tylko dla własnego sprzętu (jarzmo, worki); nie przenosić liczb (wymiarów, długości kroku, ciężarów, serii) ani twierdzeń o urazach.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3) oraz rozstrzygnięcia koordynatora 02.11.2026, w tym: **8weeksout — otwarte (nie liczy się do pary źródeł szczebla 4)**. Kryterium karty z decyzji 02.11.2026. Wynik przeliczenia: STAN-g6-przyciaganie.md, „Stan przeliczenia 02.11.2026” (poprawiony o rozstrzygnięcie o 8weeksout).
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód (strona, autor/data albo powód) |
+|---|---|---|
+| `barbend-yoke` (BarBend) | **4** | WebFetch 02.11.2026: „Written by Mike Dewar”, CSCS, magister fizjologii wysiłku; „Last updated on November 20th, 2024” |
+| `barbend-atlas` (BarBend) | **4** | aktualizacja M. Dewar 26.06.2024, recenzja ekspercka (sekcja 3.2) |
+| `barbend-strongman-ex`, `barbend-sandbag` (BarBend) | nie sprawdzane per strona | bez wpływu (Tire Flip i Sandbag Load bez ustawienia przy każdym szczeblu) |
+| `bos-yoke`, `bos-sandbag` (Bells of Steel) | 4 | producent jarzma i worków (własny sprzęt), treść firmowana, data 2022 |
+| `8wo-atlas`, `8wo-tire-flip` (8weeksout) | **otwarte — nie liczy się** (było 4, ocena badacza) | rozstrzygnięcie koordynatora 02.11.2026: ocena 8weeksout otwarta; do czasu rozstrzygnięcia nie liczy się do pary |
+| Cerberus Strength, EliteFTS, Strength Shop, Fitness Volt (strona bez autora), Gegns Gym, USAWA | 5 | bez zmian (sekcja 3.1) |
+
+### Zdania → stan
+
+| Zdanie | Ćwiczenie | Źródła po przeliczeniu | Stan |
+|---|---|---|---|
+| `yoke.setup`, `yoke.brace`, `yoke.steps`, `yoke.mis.stride` | Yoke Walk | bos-yoke + barbend-yoke | zostają |
+| `as.setup`, `as.lap`, `as.extend` | Atlas Stones | tylko barbend-atlas (8weeksout otwarte) | **spadają** |
+| `tf.push` | Tire Flip | tylko barbend-strongman-ex | **spada** |
+| `sb.lap` | Sandbag Load | barbend-sandbag + bos-sandbag | zostaje jako materiał; karta bez ustawienia → nie w bloku |
+
+### Karty → stan
+
+| Ćwiczenie | Stan | Powód |
+|---|---|---|
+| Yoke Walk | własna z błędami | ustawienie + ruch + wskazówka + błąd (Bells of Steel + BarBend) |
+| Atlas Stones | **otwarta** (STAN przed rozstrzygnięciem: własna bez błędów) | każde zdanie ma tylko BarBend |
+| Tire Flip | **otwarta** (było: częściowe) | tylko ruch, a i ten na jednym źródle |
+| Sandbag Load | **otwarta** (było: częściowe) | tylko ruch `sb.lap`, bez ustawienia |
+| Log Lift, Keg Load, Jefferson Squat, Circus Bell, Conan's Wheel, Power Stairs | otwarte | bez zmian |
+
+Liczby: przed — gotowe 1, częściowe 3, otwarte 6; po — własne z błędami 1, własne bez błędów 0, otwarte 9. Przy przyszłej ocenie 8weeksout = 4 wraca Atlas Stones (własna bez błędów: `as.setup`, `as.lap`, `as.extend` z bloku 2a).
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+```json
+{
+  "Yoke Walk": {
+    "setup": [
+      {"c": "yoke.setup", "s": [["bos-yoke", "setup („Position the crossbeam on your back.”)"], ["barbend-yoke", "Step 1 Get Under the Yoke (barki czworoboczne dociśnięte do belki, góra pleców jako półka)"]]}
+    ],
+    "move": [
+      {"c": "yoke.brace", "s": [["bos-yoke", "Bracing (napięcie brzucha przed startem)"], ["barbend-yoke", "Step 1 Form Tip, Step 2 Stand Up (napnij brzuch, potem wstań)"]]}
+    ],
+    "tips": [
+      {"c": "yoke.steps", "s": [["bos-yoke", "Step Length (krótkie kroki)"], ["barbend-yoke", "Step 3 Take Small, Quick Steps"]]}
+    ],
+    "mistakes": [
+      {"c": "yoke.mis.stride", "s": [["bos-yoke", "Common Mistakes (zbyt duże kroki)"], ["barbend-yoke", "Step 3 Form Tip (długie kroki psują stabilność tułowia i bioder)"]]}
+    ]
+  }
+}
+```
+
+Nowe zdania w bloku: `yoke.setup`, `yoke.brace`, `yoke.steps`, `yoke.mis.stride` (4). Organizacji 8weeksout nie dodawać do `orgs` do czasu rozstrzygnięcia.

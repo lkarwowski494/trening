@@ -5,6 +5,8 @@
 > - **Catalyst Athletics = 4** (rozstrzygnięcie). **NASM = 4** (organizacja certyfikująca, artykuł blogowy). **ACE, ExRx** — zarejestrowane, bez zmian.
 > - **Eleiko = 4** bez zmian (zarejestrowane, `kind: maker`; strony z platformy edukacyjnej Eleiko dla trenerów — kryterium (a); rodzaju sprzętu linkowego Eleiko nie sprawdzałem — do wiadomości koordynatora).
 > - Skutki: **V-Bar Pulldown** gotowe → otwarte (każde zdanie miało NFPT jako jedno z dwóch źródeł); **Underhand Lat Pulldown** gotowe → częściowe (wypada zdanie `lpd.underhand`); `lpd.still` — bez NFPT w uzasadnieniu (nadal ≥ 2 organizacje w kartach, w których zostaje). Close-Grip, Single Arm, Straight Arm — bez zmian.
+>
+> **Przeliczenie koordynatora 02.11.2026 — nadrzędne; sekcja na końcu pliku (Eleiko na tych stronach = 5 → Single Arm Lat Pulldown otwarte).**
 
 - Data: 02.11.2026 (korekta szczebli — ten sam dzień)
 - Autor: badacz-merytoryczny (agent)
@@ -30,7 +32,7 @@ Dokumentacja innych aplikacji treningowych i serwisy konsumenckie z wyników wys
 | Wide-Grip Pulldown Behind The Neck | general (vpull) | otwarte | Brak przeczytanego opisu techniki (ExRx 403, Catalyst bez strony); NASM odradza wariant — to ocena zdrowotna, nie wskazówka (Otwarte). Obecny zestaw ogólny `vpull` nie jest potwierdzony dla tego wariantu. |
 | Full Range-Of-Motion Lat Pulldown | general (vpull) | otwarte | Nie znaleziono przeczytanego źródła, które definiuje ten wariant (czym różni się od zwykłego ściągania). |
 
-## 2. Blok JSON (do `exercises` w `data/zrodla/cues.json`)
+## 2. Blok JSON (do `exercises` w `data/zrodla/cues.json`) — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 Tylko zdania z ≥ 2 źródłami szczebla 4 z różnych organizacji (po korekcie szczebli 02.11.2026).
 Dla „Straight Arm Pulldown” — pełny wpis zastępujący obecny (istniejące `setup`/`move` bez zmian, `tips` uzupełnione).
@@ -109,7 +111,7 @@ oraz `lpd.underhand` z „Underhand Lat Pulldown” — sekcja 5.
 | catalyst-876 | Catalyst Athletics | Reverse-Grip Lat Pulldown | https://www.catalystathletics.com/exercise/876/Reverse-Grip-Lat-Pulldown/ | 4 | 02.11.2026 |
 | catalyst-895 | Catalyst Athletics | Single-Arm Pulldown | https://catalystathletics.com/exercise/895/Single-Arm-Pulldown/ | 4 | 02.11.2026 |
 | catalyst-907 | Catalyst Athletics | Straight-Arm Pulldown | https://www.catalystathletics.com/exercise/907/Straight-Arm-Pulldown/ | 4 | 02.11.2026 |
-| eleiko-659827ed | Eleiko | Cable Pulldown – Kneeling, 1-Arm | https://eleiko.inspire360.com/resource/659827ede629c99e2b085e81 | 4 | 02.11.2026 |
+| eleiko-659827ed | Eleiko | Cable Pulldown – Kneeling, 1-Arm | https://eleiko.inspire360.com/resource/659827ede629c99e2b085e81 | 4 (przeliczenie 02.11.2026: **5** — bez autora i daty) | 02.11.2026 |
 | nfpt-vbar-pulldown | NFPT | How to Do a Close Grip V-Bar Lat Pulldown (M. Rogers, 11.08.2025) | https://nfpt.com/close-grip-lat-pulldown-v-bar | 5 (korekta 02.11.2026: brak kwalifikacji autorki; strona autorki 404) — nie liczy się | 02.11.2026 (ponownie przy korekcie) |
 | nasm-lpd-biomech | NASM | The Biomechanics of the Lat Pulldown: Muscles, Grips, and Form (blog) | https://www.nasm.org/resource-center/blog/training/the-biomechanics-of-the-lat-pulldown-muscles-grip-and-form | 4 | 02.11.2026 |
 
@@ -161,3 +163,77 @@ Pulldown (dopełnienie); częściowe (do JSON, bez zdania o chwycie): Close-Grip
 (spadło), Wide-Grip Pulldown Behind The Neck, Full Range-Of-Motion Lat Pulldown.
 Pułapki: exrx.net 403, web.archive.org zablokowane; strony ACE #35 (Kneeling Lat Pulldown) zwracają tylko metadane (brak kroków);
 `nfpt.com/?p=8954` przekierowuje na inny artykuł; `nfpt.com/author/michele-rogers` — 404.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3); kryterium karty z decyzji 02.11.2026. Strony warunkowe sprawdzone WebFetch 02.11.2026.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód |
+|---|---|---|
+| `ace-158`, `ace-334` (ACE) | 4 | organizacja certyfikująca; firmowane (precedens docs/research/27) |
+| `exrx-LatissimusDorsi/CBFrontPulldown` (ExRx) | 4 | precedens docs/research/27 (migawka archiwum) |
+| `catalyst-725`, `-861`, `-876`, `-895`, `-907` (Catalyst Athletics) | 4 | rozstrzygnięcie (tabela główna): biblioteka firmowana przez Catalyst Athletics, Inc.; jedna organizacja = jedno źródło |
+| `nasm-lpd-biomech` (NASM) | 4 | organizacja certyfikująca |
+| `eleiko-659827ed` (Eleiko, platforma edukacyjna eleiko.inspire360.com) | **5** | WebFetch 02.11.2026: brak autora, brak daty, nagłówek „Eleiko”, sformułowanie „Eleiko Education” nie występuje; opis ogólny („Attach a handle to a cable pulley at head height”), nie dokumentacja konkretnego wyciągu Eleiko. Uzupełnienie 3: dział edukacji liczy się z autorem albo firmowany „Eleiko Education”; jako producent — tylko dokumentacja własnego sprzętu |
+| `eleiko-659842f4`, `eleiko-6598447e` (ta sama platforma) | nie liczy się | `659842f4` — HTTP 500 (dwie próby 02.11.2026), nieotwarta → nie liczy się; `6598447e` nieotwierana — ta sama platforma i format co `659827ed` |
+| `nfpt-vbar-pulldown` (NFPT) | 5 | bez kwalifikacji autorki (korekta 02.11.2026, bez zmian) |
+
+### Zdania → stan
+
+| Zdanie | Ćwiczenie | Źródła po przeliczeniu | Stan |
+|---|---|---|---|
+| `lpd.thighs`, `lpd.pull`, `lpd.fullStretch`, `lpd.toChest`, `lpd.still` | Close-Grip Front | ACE + ExRx / ACE + Catalyst | zostają |
+| `lpd.thighs`, `lpd.pull`, `lpd.toChest`, `lpd.fullStretch` | Underhand | ACE + ExRx / ACE + Catalyst | zostają |
+| `lpd1.setup`, `lpd1.pull`, `lpd1.blade`, `lpd.still` | Single Arm | tylko Catalyst | **spadają** |
+| `sapd.torso` | Straight Arm (dopełnienie) | tylko Catalyst | **spada** |
+| `sapd.arms` (trzecie źródło) | Straight Arm | ACE + Catalyst | zostaje (2 organizacje) |
+
+### Karty → stan
+
+| Ćwiczenie | Stan | Powód |
+|---|---|---|
+| Close-Grip Front Lat Pulldown | własna bez błędów | ustawienie (`lpd.thighs`) + ruch (`lpd.pull`); zastrzeżenie bez zmian: karta nie opisuje wąskiego chwytu |
+| Underhand Lat Pulldown | własna bez błędów | jw.; karta nie opisuje podchwytu |
+| Single Arm Lat Pulldown | **otwarta** (było: gotowe) | Eleiko na tej stronie = 5 → każde zdanie ma tylko Catalyst |
+| Straight Arm Pulldown (istniejący wpis `partial`) | **[OTWARTE] — do przeglądu koordynatora** | dopełnienie `sapd.torso` spada; istniejące w `data/zrodla/cues.json` (wiersz 8000 i dalej) `sapd.setup` i `sapd.move` stoją na ACE + `eleiko-659842f4` — strona nieotwarta (HTTP 500), a ta platforma bez autora i daty = 5 wg uzupełnienia 3 → po przeliczeniu jedno źródło. Wpis jest już w danych aplikacji — decyzja o nim należy do koordynatora (poza tą falą) |
+| V-Bar Pulldown, Wide-Grip Behind The Neck, Full ROM | otwarte | bez zmian |
+
+Liczby: przed — gotowe 1 (+ dopełnienie), częściowe 2, otwarte 3; po — własne z błędami 0, własne bez błędów 2, otwarte 4; dopełnienie Straight Arm: tylko trzecie źródło `catalyst-907` przy `sapd.arms` (do decyzji razem z przeglądem wpisu).
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+```json
+{
+  "Close-Grip Front Lat Pulldown": {
+    "setup": [
+      {"c": "lpd.thighs", "s": [["ace-158", "Step 1 (wariant: chwyt nieokreślony)"], ["exrx-LatissimusDorsi/CBFrontPulldown", "Preparation (wariant: chwyt szeroki)"]]}
+    ],
+    "move": [
+      {"c": "lpd.pull", "s": [["ace-158", "Step 2 (wariant: chwyt nieokreślony)"], ["catalyst-725", "opis (wariant: chwyt; strona dopuszcza dowolną szerokość chwytu)"]]}
+    ],
+    "tips": [
+      {"c": "lpd.fullStretch", "s": [["ace-158", "Step 4 (wariant: chwyt nieokreślony)"], ["catalyst-725", "opis (powrót do pełnego wyprostu rąk; wariant: chwyt)"]]},
+      {"c": "lpd.toChest", "s": [["ace-158", "Step 3 (wariant: chwyt nieokreślony)"], ["catalyst-725", "opis (drążek przy obojczykach; wariant: chwyt)"]]},
+      {"c": "lpd.still", "s": [["ace-158", "Step 2 (nie odchylaj się dalej w trakcie ściągania; wariant: chwyt nieokreślony)"], ["catalyst-725", "opis (tułów napięty, bez zaokrąglania i bujania; wariant: chwyt)"]]}
+    ],
+    "mistakes": []
+  },
+  "Underhand Lat Pulldown": {
+    "setup": [
+      {"c": "lpd.thighs", "s": [["ace-158", "Step 1 (wariant: chwyt nieokreślony)"], ["exrx-LatissimusDorsi/CBFrontPulldown", "Preparation (wariant: chwyt szeroki)"]]}
+    ],
+    "move": [
+      {"c": "lpd.pull", "s": [["ace-158", "Step 2 (wariant: chwyt nieokreślony)"], ["catalyst-876", "opis (do górnej części klatki)"]]}
+    ],
+    "tips": [
+      {"c": "lpd.toChest", "s": [["ace-158", "Step 3 (wariant: chwyt nieokreślony)"], ["catalyst-876", "opis (drążek przy obojczykach)"]]},
+      {"c": "lpd.fullStretch", "s": [["ace-158", "Step 4 (wariant: chwyt nieokreślony)"], ["catalyst-876", "opis (powrót do pełnego wyprostu rąk nad głową)"]]}
+    ],
+    "mistakes": []
+  }
+}
+```
+
+Nowe zdania w bloku: `lpd.still` (1). Wpis „Straight Arm Pulldown” celowo poza blokiem (wyżej).

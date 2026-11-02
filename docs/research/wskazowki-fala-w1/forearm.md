@@ -63,7 +63,7 @@ Uwaga dla koordynatora: „karta wyłącznie z wariantów” (One-Arm wersje) �
 jednorącz. Zgodne z briefem (wariant sprzętu/chwytu się liczy), ale rekomenduję świadomą decyzję; jeśli nie — usunąć te dwa wpisy z JSON.
 Fitness Volt i Generation Iron: wspólny właściciel niesprawdzony; żadne zdanie w JSON nie opiera się wyłącznie na tej parze.
 
-## 2. Wpisy do `exercises` (cues.json)
+## 2. Wpisy do `exercises` (cues.json) — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 ```json
 {
@@ -272,3 +272,102 @@ trafień w wyszukiwarce; spróbować bezpośrednio ich bibliotek). Decyzje koord
 i Generation Iron (wstępny), sprawdzenie, czy Fitness Volt i Generation Iron nie mają wspólnego właściciela.
 Pułapki: ExRx 403, web.archive.org zablokowane, muscleandstrength 403, elitefts 404, BarBend — wiele adresów 404, większość trafień wyszukiwarki
 to aplikacje treningowe (wykluczone); strony Coach bez numeracji kroków.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3) oraz rozstrzygnięcia koordynatora 02.11.2026: Fitness Volt = 4, gdy strona ma autora z kwalifikacjami w podpisie i widoczną datę (nazwany recenzent „najlepiej”, nie warunek); Generation Iron = 4 tylko dla autora z listy ekspertów GI. Kryterium karty z decyzji 02.11.2026. Wynik przeliczenia: STAN-g6-przyciaganie.md, „Stan przeliczenia 02.11.2026”.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód (strona, autor/data albo powód) |
+|---|---|---|
+| `coach-wrist-curl`, `coach-reverse-wrist-curl` (Coach) | **5** | „Coach Staff”, bez autora z kwalifikacjami (uzup. 2) |
+| `gi-wrist-curl-bench`, `gi-cable-wrist-curl` (Generation Iron) | **5** | autor V. Saini bez kwalifikacji w biogramie GI, spoza listy ekspertów GI (uzup. 3 + rozstrzygnięcie 02.11.2026) |
+| `gi-lying-supination` (Generation Iron) | 5 | „GI Team”, bez autora osobowego (bez zmian) |
+| `fv-reverse-bb-wrist-curl` (Fitness Volt) | **4** | Tom Miller, CSCS; 25.10.2024 (sekcja 3) |
+| `fv-wrist-roller` (Fitness Volt) | **4** | WebFetch 02.11.2026: „By Patrick Dale, PT, ex-Marine”, biogram: trener personalny, egzaminator kwalifikacji fitness; daty w metadanych 22.09.2021 / 11.08.2024; bez recenzenta (wg rozstrzygnięcia nie warunek) |
+| `fv-plate-pinch`, `fv-lying-pronation` | nie sprawdzane per strona | bez wpływu (ćwiczenia otwarte przy każdym szczeblu — jedno źródło) |
+| `ace-29`, `ace-30` (ACE) | 4 | bez zmian |
+| `catalyst-wrist-curl`, `catalyst-wrist-ext`, `catalyst-wrist-roller` (Catalyst Athletics) | 4 | rozstrzygnięcie |
+| `bos-wrist-roller` (Bells of Steel) | 4 | producent wałków (własny sprzęt), treść firmowana, data 08.04.2025 |
+| NTCC, PureGym, GymNation | 5 | bez zmian |
+
+### Zdania → stan
+
+| Zdanie | Ćwiczenie | Źródła po przeliczeniu | Stan |
+|---|---|---|---|
+| `wr.setupUp` | Wrist Curl (hantle), Barbell Wrist Curl | ace-30 + catalyst-wrist-curl | zostaje |
+| `wr.range` | Wrist Curl (hantle), Barbell Wrist Curl | ace-30 + catalyst-wrist-curl | zostaje (Coach usunięty z cytowań) |
+| `wr.setupDown` | Barbell Reverse Wrist Curl | catalyst-wrist-ext + ace-29 | zostaje (GI usunięte) |
+| `wr.revMove` | Barbell Reverse Wrist Curl | catalyst-wrist-ext + ace-29 | zostaje |
+| `wroll.setup` | Wrist Roller | bos-wrist-roller + fv-wrist-roller | zostaje |
+| `wroll.move` | Wrist Roller | bos-wrist-roller + catalyst-wrist-roller + fv-wrist-roller | zostaje |
+| `wr.forearms` | wszystkie karty | tylko Coach/GI (5) | **spada** |
+| `curl.control` | wszystkie karty | ACE albo FV + GI (5) → jedno źródło | **spada** |
+| `wr.setupDown` | Reverse Wrist Curl (hantle), One-Arm Reverse | tylko ace-29 (Coach = 5) | **spada** (catalyst-wrist-ext jako wariant sztangi nie był użyty przez badacza — decyzja koordynatora) |
+| `wr.setupUp` | Cable Wrist Curl | tylko catalyst (GI = 5) | **spada** |
+
+### Karty → stan
+
+| Ćwiczenie | Stan | Powód |
+|---|---|---|
+| Wrist Curl (hantle) | własna bez błędów | ustawienie `wr.setupUp` + ruch `wr.range` |
+| Barbell Wrist Curl | własna bez błędów | ustawienie `wr.setupUp` + ruch `wr.range` |
+| Barbell Reverse Wrist Curl | własna bez błędów | ustawienie `wr.setupDown` + ruch `wr.revMove` |
+| Wrist Roller | własna bez błędów | ustawienie `wroll.setup` + ruch `wroll.move` |
+| Reverse Wrist Curl (hantle) | **otwarta** (było: gotowe) | bez ustawienia (`wr.setupDown` tylko ACE) |
+| One-Arm Dumbbell Wrist Curl | **otwarta** (było: gotowe) | bez ruchu (`wr.range` z Coach = 5; ACE jako jedyne) — wg STAN |
+| One-Arm Dumbbell Reverse Wrist Curl | **otwarta** (było: gotowe) | ustawienie i ruch na Coach = 5 |
+| Cable Wrist Curl | **otwarta** (było: gotowe) | bez ustawienia |
+| Behind-the-Back, Plate Pinch, Reverse Plate Curls, Lying Pronation, Lying Supination | otwarte | bez zmian |
+
+Liczby: przed — gotowe 8, otwarte 5; po — własne z błędami 0, własne bez błędów 4, otwarte 9.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+```json
+{
+  "Wrist Curl (hantle)": {
+    "setup": [
+      {"c": "wr.setupUp", "s": [["ace-30", "Step 1"], ["catalyst-wrist-curl", "opis ćwiczenia, zdanie 1 (wariant: sztanga, przedramiona na udach)"]]}
+    ],
+    "move": [
+      {"c": "wr.range", "s": [["ace-30", "Step 2–3"], ["catalyst-wrist-curl", "opis ćwiczenia, zdanie 2 (wariant: sztanga)"]]}
+    ],
+    "tips": [],
+    "mistakes": []
+  },
+  "Barbell Wrist Curl": {
+    "setup": [
+      {"c": "wr.setupUp", "s": [["catalyst-wrist-curl", "opis ćwiczenia, zdanie 1"], ["ace-30", "Step 1 (wariant: hantle)"]]}
+    ],
+    "move": [
+      {"c": "wr.range", "s": [["catalyst-wrist-curl", "opis ćwiczenia, zdanie 2"], ["ace-30", "Step 2–3 (wariant: hantle)"]]}
+    ],
+    "tips": [],
+    "mistakes": []
+  },
+  "Barbell Reverse Wrist Curl": {
+    "setup": [
+      {"c": "wr.setupDown", "s": [["catalyst-wrist-ext", "opis ćwiczenia, zdanie 1 (przedramiona na udach)"], ["ace-29", "Step 1 (wariant: hantle)"]]}
+    ],
+    "move": [
+      {"c": "wr.revMove", "s": [["catalyst-wrist-ext", "opis ćwiczenia, zdanie 2"], ["ace-29", "Step 2–3 (wariant: hantle)"]]}
+    ],
+    "tips": [],
+    "mistakes": []
+  },
+  "Wrist Roller": {
+    "setup": [
+      {"c": "wroll.setup", "s": [["bos-wrist-roller", "How to: stanie, wałek oburącz przed sobą"], ["fv-wrist-roller", "How to: ręce uniesione przed sobą, stopy rozstawione"]]}
+    ],
+    "move": [
+      {"c": "wroll.move", "s": [["bos-wrist-roller", "How to: obrót nadgarstków, potem powolne opuszczenie"], ["catalyst-wrist-roller", "opis ćwiczenia (roll the weight up; reverse at a controlled speed)"], ["fv-wrist-roller", "How to: nawijanie dłońmi, potem powolne opuszczenie"]]}
+    ],
+    "tips": [],
+    "mistakes": []
+  }
+}
+```
+
+Nowe zdania w bloku: `wr.setupUp`, `wr.setupDown`, `wr.revMove`, `wroll.setup`, `wroll.move` (5); `wr.range` istnieje. Organizacje Coach i Generation Iron (strony V. Saini) nie trafiają do `cues.json` z tej rodziny.

@@ -5,6 +5,7 @@
 - Zakres: ćwiczenia rodziny `row` bez własnych wskazówek — Meadows Row, Seal Row (sztanga), Reverse Grip Bent Over Row,
   Smith Machine Bent Over Row, Bent Over Row (linki), Lying T-Bar Row, Barbell Rear Delt Row.
 - Status: PROPOZYCJA — dane do integracji przez koordynatora linii 1.1
+- **Przeliczenie koordynatora 02.11.2026 — nadrzędne; sekcja na końcu pliku (Lying T-Bar Row spada, Smith bez `row.hinge` i `mis.jerk`).**
 
 ## Korekta szczebli 02.11.2026
 
@@ -40,7 +41,7 @@ nie trafiają do karty (uzupełnienie briefu koordynatora, 02.11.2026). Liczb (k
 | Lying T-Bar Row | general (row) | gotowe | Fitness Volt + Generation Iron, wersja z podparciem klatki na maszynie |
 | Barbell Rear Delt Row | general (rowBent) | otwarte | po korekcie szczebli tylko Generation Iron (4); Dumbbells Direct = 5 |
 
-## 2. Blok JSON do `exercises` w `data/zrodla/cues.json`
+## 2. Blok JSON do `exercises` w `data/zrodla/cues.json` — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 ```json
 {
@@ -184,3 +185,82 @@ Każde nowe zdanie trzeba dodać do `lib/cues/text/pl.json` i `en.json` oraz do 
 Rodzina `row` po korekcie szczebli 02.11.2026: 3 gotowe (Seal Row, Smith Machine Bent Over Row, Lying T-Bar Row), 4 otwarte
 (Meadows Row, Reverse Grip Bent Over Row, Barbell Rear Delt Row, Bent Over Row (linki)). Następny krok dla otwartych: szukać drugiego źródła
 szczebla 4 (organizacje szkolące trenerów, producenci sztang i uchwytów do wiosłowania). Pułapki: ExRx 403, muscleandstrength 403, wiele trafień to aplikacje lub sklepy.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3, zwłaszcza uzup. 3: Fitness Volt i Generation Iron — szczebel daje konkretna strona); kryterium karty z decyzji 02.11.2026. Strony warunkowe sprawdzone WebFetch 02.11.2026.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód (strona, autor/data albo powód) |
+|---|---|---|
+| `fitnessvolt-seal-row` (Fitness Volt) | **4** | podpis „By Vidur Saini”, biogram: „ACE-certified personal trainer, writer, and editor”; daty w metadanych strony: publikacja 08.02.2022, zmiana 11.08.2024; bez nazwanego recenzenta i bez deklaracji afiliacji na stronie (wątpliwość — STAN, decyzja 8) |
+| `fitnessvolt-cs-tbar-row` (Fitness Volt) | **5** | podpis „By Vanja Vukas”, biogram: student wydziału sportu i założyciel bloga — brak kwalifikacji trenerskich (uzup. 3: wymagany autor z kwalifikacjami); daty w metadanych 19.04.2024 / 11.08.2024 |
+| `generationiron-cs-tbar-row` (Generation Iron) | **5** | „by Terry Ramos”, 13.03.2024; biogram: B.S. Kinesiology, ACSM CPT, ISSA CSCS; „This post may contain affiliate links”. Uzup. 3: GI warunkowo 4 „tylko artykuł podpisany przez osobę z listy ekspertów” — generationiron.com/about/ (02.11.2026): T. Ramos jest w „Our Team” jako Staff Writer, nie w „Our Experts” |
+| `generationiron-smith-row` (Generation Iron) | **5** | „by Terry Ramos”, „Published on Aug 1, 2025”; ten sam autor spoza listy ekspertów; deklaracja afiliacji u góry strony |
+| `generationiron-meadows-row`, `generationiron-rear-delt-row` | nie sprawdzane per strona | bez wpływu (ćwiczenia otwarte przy każdym szczeblu) |
+| `fitnessvolt-reverse-grip-row` | nie sprawdzane per strona | bez wpływu (jedno źródło) |
+| `bellsofsteel-seal-row` (Bells of Steel) | 4 | producent — własny sprzęt (sztanga, ławka); treść firmowana, data 05.06.2023 |
+| `majorfitness-smith-row` (Major Fitness) | 4 | producent suwnic Smitha; autor (certyfikowany trener w zespole firmy), data 10.09.2026 |
+| `ritfit-smith-row` (RitFit) | 4 | producent suwnic Smitha (rozstrzygnięcie); „RitFit Editorial Team”, 29.10.2026 |
+| Sole, ATHLEAN-X, Kensui (sztanga), Breaking Muscle, Dumbbells Direct | 5 | bez zmian |
+
+### Zdania → stan
+
+| Zdanie | Ćwiczenie | Źródła po przeliczeniu | Stan |
+|---|---|---|---|
+| `seal.setup`, `seal.pull`, `row.pauseTop` | Seal Row | Fitness Volt + Bells of Steel | zostają |
+| `smith.rowSetup`, `row.bbGrip`, `row.bbPullCtrl`, `hinge.back` | Smith | Major Fitness + RitFit | zostają (GI usunięte z cytowań) |
+| `row.elbowsLead` | Smith | Major Fitness + RitFit | zostaje |
+| `mis.roundBack` | Smith | Major Fitness + RitFit (błąd wprost w obu) | zostaje |
+| `row.hinge` | Smith | tylko RitFit | **spada** |
+| `mis.jerk` | Smith | tylko RitFit | **spada** |
+| `ltbar.setup`, `csr.chest`, `tbar.pull`, `row.pauseTop`, `row.slowDown` | Lying T-Bar Row | żadne źródło szczebla 4 | **spadają** |
+
+### Karty → stan
+
+| Ćwiczenie | Stan | Powód |
+|---|---|---|
+| Smith Machine Bent Over Row | **własna z błędami** | ustawienie (`smith.rowSetup`, `row.bbGrip`) + ruch (`row.bbPullCtrl`) + błąd `mis.roundBack` |
+| Seal Row (sztanga) | własna bez błędów | ustawienie + ruch (Fitness Volt + Bells of Steel) |
+| Lying T-Bar Row | **otwarta** (było: gotowe) | oba źródła = 5 na tych stronach |
+| Meadows Row, Reverse Grip Bent Over Row, Barbell Rear Delt Row, Bent Over Row (linki) | otwarte | bez zmian |
+
+Liczby: przed — gotowe 3, otwarte 4; po — własne z błędami 1, własne bez błędów 1, otwarte 5.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+```json
+{
+  "Seal Row (sztanga)": {
+    "setup": [
+      {"c": "seal.setup", "s": [["fitnessvolt-seal-row", "How To Perform Seal Row (bench on boxes/plates, lie face down, overhand grip)"], ["bellsofsteel-seal-row", "wersja z ławką (bench on sturdy objects, lie under it, overhand grip)"]]}
+    ],
+    "move": [
+      {"c": "seal.pull", "s": [["fitnessvolt-seal-row", "How To Perform Seal Row (pull toward lower ribs, bar touches the bench; lower slowly)"], ["bellsofsteel-seal-row", "wersja z ławką (pull toward your torso; lower in a controlled way)"]]}
+    ],
+    "tips": [
+      {"c": "row.pauseTop", "s": [["fitnessvolt-seal-row", "How To Perform Seal Row (pause at the top)"], ["bellsofsteel-seal-row", "wersja z ławką (pause briefly at the top)"]]}
+    ],
+    "mistakes": []
+  },
+  "Smith Machine Bent Over Row": {
+    "setup": [
+      {"c": "smith.rowSetup", "s": [["majorfitness-smith-row", "How to 1–2 (bar around upper thigh; feet about shoulder-width)"], ["ritfit-smith-row", "How-to Steps 1–2 (bar about mid-thigh; feet hip to shoulder width)"]]},
+      {"c": "row.bbGrip", "s": [["majorfitness-smith-row", "How to 3 (overhand, shoulder-width or slightly wider)"], ["ritfit-smith-row", "How-to Steps 3 (pronated, a bit wider than shoulder width)"]]}
+    ],
+    "move": [
+      {"c": "row.bbPullCtrl", "s": [["ritfit-smith-row", "How-to Steps 7–8 (lower ribs or upper waist; lower under control)"], ["majorfitness-smith-row", "How to 5–6 (toward the torso; lower under control)"]]}
+    ],
+    "tips": [
+      {"c": "hinge.back", "s": [["majorfitness-smith-row", "How to 7 (same neutral spine every rep)"], ["ritfit-smith-row", "How-to Steps 5 (without rounding your back)"]]},
+      {"c": "row.elbowsLead", "s": [["majorfitness-smith-row", "How to 5 (lead with your elbows, not your hands); Common Mistakes — Pulling with your arms"], ["ritfit-smith-row", "How-to Steps 7 (drive elbows back rather than curling with your hands)"]]}
+    ],
+    "mistakes": [
+      {"c": "mis.roundBack", "s": [["majorfitness-smith-row", "Common Mistakes — Rounded lower back"], ["ritfit-smith-row", "Common Mistakes 2 — Rounding the low back"]]}
+    ]
+  }
+}
+```
+
+Nowe zdania w bloku: `seal.setup`, `seal.pull`, `row.pauseTop`, `row.bbPullCtrl`, `smith.rowSetup`, `row.elbowsLead` (6). `smith.rowSetup` — część wspólna wysokości gryfu teraz z dwóch producentów: „górna część uda” (Major) i „połowa uda” (RitFit) — brzmienie „na wysokości ud” pozostaje w części wspólnej.

@@ -8,6 +8,8 @@
 > - **BarBend 4** — wszystkie cytowane artykuły dotyczą techniki (nie recenzje produktów). **Coach 4** (zarejestrowany; (b) „By Joel Snape”, „Published 21 May 2018”; (c) sekcja muscle-up bez linków i produktów — link afiliacyjny tylko we wstępie o kółkach; jawnej recenzji eksperckiej brak, technika od cytowanego trenera kalisteniki — do wiadomości koordynatora).
 > - **The Prehab Guys** — nie przesądzam: (b) spełnione (treść firmowana, „Updated Aug 6, 2021 Published Jul 2, 2020”), (a) wątpliwe (firma fizjoterapeutów z kursami dla klinicystów i własną aplikacją), (c) strona komercyjna wokół opisu. W tym pliku wynik nie zależy od tej oceny.
 > - Skutki: **Dead Hang** gotowe → otwarte (zostaje tylko BarBend); **Scapular Pull-Up** gotowe → otwarte (najwyżej Prehab Guys); **Gironda Sternum Chins** warunkowe → otwarte; **Rope Climb** warunkowe → gotowe (BarBend + Rx Smart Gear); **Muscle Up** — bez zmian (gotowe). One Arm Chin-Up — nadal jedno źródło (GORNATION).
+>
+> **Przeliczenie koordynatora 02.11.2026 — nadrzędne; sekcja na końcu pliku (Coach = 5 → Muscle Up otwarte).**
 
 - Data: 02.11.2026 (dwie sesje badacza tego samego dnia; druga — kontynuacja od sekcji „Stan”; korekta szczebli — ten sam dzień)
 - Autor: badacz-merytoryczny (agent)
@@ -37,7 +39,7 @@ Obecny zestaw ogólny Dead Hang (`lib/figures/v2/cue-sets.json`: `ok: ["npu.hang
 | Side To Side Chins | general (`vpull`) | otwarte | Znalezione opisy dotyczą innego ruchu (przesuwanie się w górze, „typewriter”) — analogia, nie liczy się. |
 | Gorilla Chin/Crunch | general (`hanging`) | otwarte | Jedyny przeczytany opis spoza aplikacji ma autorkę bez podanych kwalifikacji (szczebel 5). |
 
-## 3. Blok JSON do `exercises` w `data/zrodla/cues.json`
+## 3. Blok JSON do `exercises` w `data/zrodla/cues.json` — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 Tylko ćwiczenia z ≥ 2 źródłami szczebla 4 z różnych organizacji na każde zdanie (po korekcie szczebli 02.11.2026).
 
@@ -114,9 +116,9 @@ Uwagi:
 | barbend-grip-exercises | BarBend | The 10 Best Grip Exercises (sekcja Dead Hang; autor CSCS) | https://barbend.com/best-grip-exercises/ | 4 (artykuł o technice) | 02.11.2026 |
 | barbend-women-pull-up | BarBend | A Ladies' Guide to Your First Pull-Up (sekcja Dead hang; porady DPT) | https://barbend.com/women-pull-up-guide/ | 4 (artykuł o technice) | 02.11.2026 |
 | breakingmuscle-shoulders-control | Breaking Muscle | Get Your Shoulders Under Control (sekcja The Simple Hang) | https://breakingmuscle.com/fitness/get-your-shoulders-under-control | 5 (rozstrzygnięcie 02.11.2026) | 02.11.2026 |
-| prehabguys-scapular-pull-up | The Prehab Guys | Scapular Pull Up (opis pod wideo w bibliotece ćwiczeń; „Updated Aug 6, 2021”) | https://theprehabguys.com/vimeo-video/scapular-pull-up-2/ | do oceny koordynatora ((b) tak, (a) wątpliwe, (c) strona komercyjna) | 02.11.2026 (ponownie przy korekcie) |
+| prehabguys-scapular-pull-up | The Prehab Guys | Scapular Pull Up (opis pod wideo w bibliotece ćwiczeń; „Updated Aug 6, 2021”) | https://theprehabguys.com/vimeo-video/scapular-pull-up-2/ | do oceny koordynatora ((b) tak, (a) wątpliwe, (c) strona komercyjna); przeliczenie 02.11.2026: **5** | 02.11.2026 (ponownie przy korekcie) |
 | barbend-muscle-up | BarBend | How to Do Muscle-Ups — Progressions, Benefits, and More (autor CSCS, M.S. fizjologia wysiłku) | https://barbend.com/muscle-up/ | 4 (artykuł o technice) | 02.11.2026 |
-| coach-gymnastic-rings | Coach | How To Start Training With Gymnastic Rings (sekcja muscle-up; porady trenera kalisteniki; 21.05.2018) | https://www.coachweb.com/exercises/home-workouts/4502/gymnastic-ring-workouts-for-small-spaces | 4 | 02.11.2026 (ponownie przy korekcie) |
+| coach-gymnastic-rings | Coach | How To Start Training With Gymnastic Rings (sekcja muscle-up; porady trenera kalisteniki; 21.05.2018) | https://www.coachweb.com/exercises/home-workouts/4502/gymnastic-ring-workouts-for-small-spaces | 4; przeliczenie 02.11.2026: **5** | 02.11.2026 (ponownie przy korekcie) |
 | barbend-rope-climbs | BarBend | 6 Reasons Strength Athletes Should Do Rope Climbs (Plus How To Master Them) (autor CSCS) | https://barbend.com/6-reasons-strength-athletes-rope-climbs/ | 4 (artykuł o technice) | 02.11.2026 |
 | rxsg-rope-foot-locks | Rx Smart Gear (nowa) | Don't be a Dope on a Rope: 3 Foot Locks to Climb like a Champ | https://rxsmartgear.com/blogs/news/dont-be-a-dope-on-a-rope-3-foot-locks-to-climb-like-a-champ | 4 — tylko liny (rozstrzygnięcie 02.11.2026) | 02.11.2026 |
 | breakingmuscle-chin-up | Breaking Muscle | How to Do the Chin-Up (sekcja Sternum Chin-Up) | https://breakingmuscle.com/chin-up/ | 5 (rozstrzygnięcie 02.11.2026) | 02.11.2026 |
@@ -172,3 +174,73 @@ Zdania zaproponowane wcześniej, po korekcie 02.11.2026 bez kompletu źródeł �
 - Zostało (decyzje koordynatora): (1) przegląd wpisu Physitrack w `orgs` (szczebel 5 wg (a)–(c) — wpływa na inne rodziny); (2) ocena The Prehab Guys wg (a)–(c); (3) tryb `open` zamiast zestawu ogólnego dla Dead Hang (`npu.hang` o uchwytach), Gironda i Wide-Grip Rear Pull-Up; (4) termin „fałszywy chwyt” w słowniku terminów.
 - Następny krok (jeśli wracamy): drugie źródło szczebla 4 dla Dead Hang i Scapular Pull-Up (producenci drążków, np. GORNATION; organizacje szkolące trenerów); drugie źródło dla One Arm Chin-Up.
 - Pułapki: `exrx.net` — 403; `web.archive.org` — zablokowane; `barbend.com/dead-hang/` i `barbend.com/rope-climb/` — 404; `bodybuilding.com/exercises/...` przekierowuje na sklep; strony CrossFit o linie — tylko wideo; wiele wyników to strony aplikacji (wykluczone).
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie + uzupełnienia 1–3); `g6-szczeble-uzupelnienie-2.md` (strony Coach i The Prehab Guys sprawdzone 02.11.2026); kryterium karty z decyzji 02.11.2026.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód |
+|---|---|---|
+| `coach-gymnastic-rings` (Coach) | **5** | uzup. 2: magazyn Coach warunkowo 4 tylko z autorem z kwalifikacjami w biogramie; `g6-szczeble-uzupelnienie-2.md`, tabela 1: J. Snape — biogram bez kwalifikacji trenerskich, porady o muscle-upie bez przypisanej osoby, link afiliacyjny w treści |
+| `barbend-muscle-up` (BarBend) | 4 | artykuł o technice, autor CSCS (zapis w pliku); bez wpływu — Muscle Up i tak ma jedną organizację |
+| `barbend-rope-climbs` (BarBend) | **4** | WebFetch 02.11.2026: „Written by Jake Boly, CSCS”; „Last updated on August 29th, 2023”; magister nauk o sporcie; w treści brak linków zakupowych |
+| `rxsg-rope-foot-locks` (Rx Smart Gear) | 4 | producent lin — własny rodzaj sprzętu (rozstrzygnięcie dla producentów) |
+| `prehabguys-scapular-pull-up` (The Prehab Guys) | 5 | `g6-szczeble-uzupelnienie-2.md`, tabela 1: biblioteka wideo bez autora |
+| `gornation-one-arm-pull-up` (GORNATION) | 4 (drążki) | bez zmian; jedno źródło |
+| Physitrack, Breaking Muscle, Dynamo | 5 | bez zmian |
+| `barbend-grip-exercises`, `barbend-women-pull-up` | 4 | jedna organizacja (BarBend) — Dead Hang nadal jedno źródło |
+
+### Zdania → stan
+
+| Zdanie | Ćwiczenie | Źródła po przeliczeniu | Stan |
+|---|---|---|---|
+| `mu.grip`, `mu.transition`, `mu.press` | Muscle Up | tylko BarBend | **spadają** |
+| `rope.lock`, `rope.legs`, `rope.rewrap` | Rope Climb | BarBend + Rx Smart Gear | zostają |
+
+### Karty → stan
+
+| Ćwiczenie | Stan | Powód |
+|---|---|---|
+| Rope Climb | własna bez błędów | ustawienie (`rope.lock`) + ruch (`rope.legs`, `rope.rewrap`) |
+| Muscle Up | **otwarta** (było: gotowe) | Coach = 5 → jedno źródło |
+| Dead Hang, Scapular Pull-Up, Gironda, Mixed Grip, One Arm, Wide-Grip Rear, Side To Side, Gorilla | otwarte | bez zmian |
+
+Liczby: przed — gotowe 2, otwarte 8; po — własne z błędami 0, własne bez błędów 1, otwarte 9.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+```json
+{
+  "Rope Climb": {
+    "setup": [
+      {
+        "c": "rope.lock",
+        "s": [
+          ["barbend-rope-climbs", "S-lock — krok Wrap (rope from inside of one leg over the ankle, back under to the middle of the foot)"],
+          ["rxsg-rope-foot-locks", "S Wrap / J Wrap (rope wrapped around one leg or under one foot and clamped with the other foot)"]
+        ]
+      }
+    ],
+    "move": [
+      {
+        "c": "rope.legs",
+        "s": [
+          ["barbend-rope-climbs", "S-lock — krok Stand (foot acts as a step, push up with the legs)"],
+          ["rxsg-rope-foot-locks", "część o pracy nóg (push through the legs rather than pulling with the arms)"]
+        ]
+      },
+      {
+        "c": "rope.rewrap",
+        "s": [
+          ["barbend-rope-climbs", "S-lock — krok Re-wrap (re-wrap the foot each time you climb a little)"],
+          ["rxsg-rope-foot-locks", "S Wrap / J Wrap (re-wrapping the lock as you ascend)"]
+        ]
+      }
+    ]
+  }
+}
+```
+
+Nowe zdania w bloku: `rope.lock`, `rope.legs`, `rope.rewrap` (3). Rysunek Rope Climb dziś pomijany (docs/54) — karta w trybie bez rysunku.
