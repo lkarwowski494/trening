@@ -32,11 +32,11 @@ export async function renderApp(opts: { saved?: unknown; locale?: 'pl' | 'en'; u
   await act(async () => { jest.advanceTimersByTime(10); await Promise.resolve(); });
   return r;
 }
-export const tap = async (el: Parameters<typeof fireEvent.press>[0]) => { await act(async () => { fireEvent.press(el); }); };
+export const tap = async (el: Parameters<typeof fireEvent.press>[0]) => { await act(async () => { await fireEvent.press(el); }); };
 /** Wzorzec ⓘ (docs/32 wzorzec 27): rozwija/zwija objaśnienie `info-{id}` (testID przycisku w components/InfoTip.tsx). */
-export const openInfo = async (id: string) => { const b = screen.getByTestId(`info-${id}`); if (!b.props.accessibilityState?.expanded) await act(async () => { fireEvent.press(b); }); };
-export const closeInfo = async (id: string) => { const b = screen.getByTestId(`info-${id}`); if (b.props.accessibilityState?.expanded) await act(async () => { fireEvent.press(b); }); };
-export const type = async (el: Parameters<typeof fireEvent.changeText>[0], text: string) => { await act(async () => { fireEvent.changeText(el, text); }); };
+export const openInfo = async (id: string) => { const b = screen.getByTestId(`info-${id}`); if (!b.props.accessibilityState?.expanded) await act(async () => { await fireEvent.press(b); }); };
+export const closeInfo = async (id: string) => { const b = screen.getByTestId(`info-${id}`); if (b.props.accessibilityState?.expanded) await act(async () => { await fireEvent.press(b); }); };
+export const type = async (el: Parameters<typeof fireEvent.changeText>[0], text: string) => { await act(async () => { await fireEvent.changeText(el, text); }); };
 /** renderRouter włącza fałszywe timery Jesta — czas przesuwamy ręcznie (setTimeout/setInterval/Date). */
 export const flushAll = async (ms = 0) => { await act(async () => { jest.advanceTimersByTime(ms); await Promise.resolve(); await Promise.resolve(); }); };
 export { screen, act, fireEvent };
@@ -47,6 +47,11 @@ export const navRef = () => navigationRef;
  * a wyszukiwanie to `queryAll(predykat)` zamiast `findAll` (bez samego elementu, chyba że `{ includeSelf: true }`). */
 export const hostRoot = () => screen.container;
 type HostNode = { props: Record<string, any>; queryAll: (f: (n: HostNode) => boolean) => HostNode[] };
+/** RNTL 14: drzewo nie zawiera komponentów złożonych (np. `Rect` z react-native-svg, którego element natywny ma kolor już przeliczony na liczbę).
+ * Zwraca propsy komponentów złożonych pod `root` — dla każdego elementu natywnego te między nim a jego natywnym rodzicem (z `unstable_fiber`),
+ * w kolejności od góry; odpowiednik dawnego `findAll(x => typeof x.type !== 'string' && …)` z react-test-renderer. */
+export const compPropsAll = (root: { queryAll: (f: (n: any) => boolean, o?: { includeSelf?: boolean }) => any[] }): Record<string, any>[] =>
+  root.queryAll(() => true).flatMap((h: any) => { const out: Record<string, any>[] = []; for (let f = h.unstable_fiber?.return; f && typeof f.type !== 'string' && f.tag !== 3; f = f.return) if (f.type != null && typeof f.type !== 'symbol') out.unshift(f.memoizedProps); return out; });
 
 /** Ekran miejsca (05.10.2026): grupy sprzętu są zwinięte — rozwija wszystkie (testy sprzed zwijania). */
 export const expandEquip = async () => { const { EQUIP_GROUPS, EQUIP_GROUP_LABEL, equipLabel } = require('@/lib/equipment'); for (const g of EQUIP_GROUPS) { const el = screen.queryByLabelText(equipLabel(EQUIP_GROUP_LABEL[g])); if (el && !el.props.accessibilityState?.expanded) await tap(el); } };

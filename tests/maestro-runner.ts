@@ -278,11 +278,11 @@ export class Runner {
     const n = c.node!;
     if (n.type === 'TextInput') { if (this.focused && this.focused !== n) await this.blur(); this.focused = n; this.kbScroll(n); this.selectAll = !!n.props.selectTextOnFocus; await act(async () => { n.props.onFocus?.({ nativeEvent: {} }); }); await this.tick(); return; }
     if (this.focused) await this.blur();
-    if (n.type === 'RCTSwitch' || n.props.onValueChange) { await act(async () => { fireEvent(n as any, 'valueChange', !n.props.value); }); await this.tick(); return; }
+    if (n.type === 'RCTSwitch' || n.props.onValueChange) { await act(async () => { await fireEvent(n as any, 'valueChange', !n.props.value); }); await this.tick(); return; }
     /* 101-22: stuknięcie w środek kontenera (np. wiersz listy z testID na SwipeRow) trafia w jego przycisk — jak palec; tylko gdy sam kontener nie ma onPress */
     let target: Node = n;
     if (typeof n.props.onPress !== 'function' && n.props.accessibilityRole !== 'button') { const inner = qAll(n, (x: Node) => x.props.accessibilityRole === 'button' && !/-(del|close)$/.test(String(x.props.testID ?? '')))[0] as Node | undefined; if (inner) target = inner; }
-    await act(async () => { fireEvent.press(target as any); }); await this.tick(100);
+    await act(async () => { await fireEvent.press(target as any); }); await this.tick(100);
   }
   async blur() { const f = this.focused; this.focused = null; if (!f) return; /* pole zdemontowane wraz z ekranem (np. wyszukiwanie + „Back”) — iOS po prostu zdejmuje fokus */ try { await act(async () => { f.props.onEndEditing?.({ nativeEvent: { text: f.props.value } }); f.props.onBlur?.({ nativeEvent: {} }); }); } catch { /* zdemontowane */ } await this.tick(); }
   async run(cmds: any[], file: string) {
@@ -380,12 +380,12 @@ export class Runner {
           const f = this.focused; if (!f) this.fail(step, 'Brak pola z fokusem.');
           const cur = this.selectAll ? '' : String(f!.props.value ?? ''); this.selectAll = false;
           const typed = this.inputFilter ? this.inputFilter(String(arg), f!) : String(arg); /* E2E 105: zgubione znaki z przebiegu symulatora (testy) */
-          await act(async () => { fireEvent.changeText(f as any, cur + typed); }); await this.tick(); break;
+          await act(async () => { await fireEvent.changeText(f as any, cur + typed); }); await this.tick(); break;
         }
         case 'eraseText': {
           if (this.alertOpen != null && global.__alerts[this.alertOpen].prompt) { const cur = String((this as any).promptVal ?? global.__alerts[this.alertOpen].def ?? ''); (this as any).promptVal = cur.slice(0, Math.max(0, cur.length - (typeof arg === 'number' ? arg : 50))); break; }
           const f = this.focused; if (!f) this.fail(step, 'Brak pola z fokusem.'); const n = typeof arg === 'number' ? arg : 50;
-          const cur = String(f!.props.value ?? ''); this.selectAll = false; await act(async () => { fireEvent.changeText(f as any, cur.slice(0, Math.max(0, cur.length - n))); }); await this.tick(); break;
+          const cur = String(f!.props.value ?? ''); this.selectAll = false; await act(async () => { await fireEvent.changeText(f as any, cur.slice(0, Math.max(0, cur.length - n))); }); await this.tick(); break;
         }
         case 'pressKey': { if (/^home$/i.test(String(arg))) { await this.blur(); await act(async () => { await store.flush(); }); await emitAppState('background'); break; } const f = this.focused; if (f && /enter/i.test(String(arg))) { await act(async () => { f.props.onSubmitEditing?.({ nativeEvent: { text: f.props.value } }); }); await this.blur(); } break; }
         /* E2E 38471218362 (36, 29): klawiatura numeryczna iOS (number-pad, decimal-pad, numbers-and-punctuation) nie ma klawisza „Gotowe” ani innej akcji zamknięcia — Maestro zgłasza

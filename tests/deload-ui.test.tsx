@@ -60,7 +60,7 @@ describe('B: start w tygodniu deload', () => {
     await press('Tydzień deload', 'Anuluj'); expect(S().active).toBeNull();
     await startTpl(t[0].name); await flushAll(5); await press('Tydzień deload', 'Pełny trening');
     const full = S().active!.exercises.map(e => e.sets.filter(s => s.kind !== 'warmup').length); const w0 = S().active!.exercises.map(e => e.sets.map(s => s.weight));
-    act(() => { S().active = null; store.save(); }); await flushAll(5);
+    await act(() => { S().active = null; store.save(); }); await flushAll(5);
     await startTpl(t[0].name); await flushAll(5); await press('Tydzień deload', 'Mniej serii');
     expect(S().active!.exercises.map(e => e.sets.filter(s => s.kind !== 'warmup').length)).toEqual(full.map(deloadKeep));
     S().active!.exercises.forEach((e, i) => e.sets.forEach((s, j) => expect(s.weight).toBe(w0[i][j])));
@@ -88,7 +88,7 @@ describe('English', () => {
     expect(screen.getByText('Training weeks without a deload: 4.')).toBeTruthy(); await openInfo('deload');
     expect(screen.getByText('Training weeks in a row without a deload: 4. A deload usually comes every 4–6 weeks — that is common practice, not a fixed rule.')).toBeTruthy();
     expect(screen.getByText(/^Plan a deload from /)).toBeTruthy();
-    act(() => { store.toggleDeloadWeek(NOW.getTime()); }); await flushAll(5);
+    await act(() => { store.toggleDeloadWeek(NOW.getTime()); }); await flushAll(5);
     expect(screen.getByText('This week: deload. When you start a workout I will suggest about 1/3–1/2 fewer sets (e.g. 2 of 3; exercises with 1 set unchanged), same weights.')).toBeTruthy(); /* audyt 0.10 (MER-04) */
     expect(screen.getByText('Outlined row — deload week.')).toBeTruthy(); /* audyt 0.10 A11-05 */
     expect(t.length).toBeGreaterThan(0);
