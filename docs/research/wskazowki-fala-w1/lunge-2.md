@@ -1,3 +1,5 @@
+**Przeliczenie szczebli 02.11.2026 (na końcu pliku):** żadna karta z tego pliku nie spełnia kryterium karty — patrz sekcja „Korekta szczebli — przeliczenie koordynatora 02.11.2026”.
+
 # Wskazówki techniki — fala W1, rodzina „lunge”, część 2
 
 Data: 02.11.2026. Autor: badacz merytoryczny (agent). Status: **PROPOZYCJA** — nic nie jest w `lib/` ani w `data/`. Kontynuacja
@@ -36,7 +38,7 @@ Data: 02.11.2026. Autor: badacz merytoryczny (agent). Status: **PROPOZYCJA** —
 | Elevated Back Lunge | otwarte | wykrok w tył z podwyższenia — żadnej organizacji szczebla 4 (tylko magazyny i aplikacje) |
 | Split Squat (linki) | otwarte | Eleiko „Split Squat, Front – Dual Cable, Straight Bar” (nieprzeczytane w całości — tylko fragment w wyszukiwarce); canfitpro „Cable Horizontal Split Squat” to inny ruch (przesunięcie w poziomie, nie w dół) |
 
-## 2. Blok JSON do `data/zrodla/cues.json`
+## 2. Blok JSON do `data/zrodla/cues.json` — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 Nowe i zmienione wpisy ćwiczeń (dopisać do bloku z części 1; `Split Squat`, `Lunges (sztanga)`, `Barbell Walking Lunge` — uzupełnić listy `s`):
 
@@ -168,3 +170,54 @@ Przeczytane, nieużyte także: WebMD Ignite „Leg and Knee Exercises: Leg Press
   pełne przeczytanie Eleiko „Split Squat, Front – Dual Cable, Straight Bar” (6581db4f…) i szukanie drugiej organizacji dla wersji z linką.
 - Pułapki: PDF przez WebFetch nie daje tekstu — czytać zapisany plik narzędziem Read (PDF z obrazami zużywa dużo kontekstu); część stron „organizacji szkoleniowych”
   przeszła w aplikacje — sprawdzać stopkę i opis strony; blogi firm sprzętowych powtarzają liczby z free-exercise-db („12 inches”) — sprawdzać niezależność.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły jak w `lunge.md` (ta sama sekcja na końcu pliku; tam pełna tabela kart rodziny). Tu: źródła i zdania wniesione przez część 2.
+Strony warunkowe sprawdzone WebFetch-em 02.11.2026; cytaty skrócone.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód / powód |
+|---|---|---|
+| NASM (nasm-single-leg-press) | 4 | precedens NASM (szczeble-organizacji, kryterium pkt 1) |
+| NSCA — PTQ 4(4), Boyd, Milton (nsca-ptq-lunge) | 4 (≤ 4) | organizacja szkoląca/certyfikująca; kilka publikacji NSCA = jedno źródło (uzup. 2) |
+| canfitpro (canfitpro-cable-split, canfitpro-curtsey) | 4 | organizacja certyfikująca trenerów; canfitpro.com/blog/mom-cable-horizontal-split-squat/ (WebFetch 02.11.2026): „By Coach Kennedy” (biogram: trener, trzykrotny „canfitpro PRO TRAINER of the Year”), 10.10.2019. **Ale** to ruch w poziomie — strona: „Remember, it's horizontal, not vertical.” → dla Split Squat to inne ćwiczenie (analogia), nie wariant; nie liczy się do `lunge.knee` |
+| PhysioRehab (physiorehab-k3; adres physiorehab-com.treepl.co) | **5** | kryteria 1–4 (WebFetch 02.11.2026): pkt 1 — strona nie mówi, że publikuje ją klinika (link do osobnej kliniki), brak deklaracji recenzji klinicznej; pkt 2 — brak autora z kwalifikacjami i daty (tylko „© 2026 PHYSIOREHAB.COM”); pkt 3 — sprzedaż na stronie („Lifetime Access”, „All-Access Pass”, „Physio Shop”, telekonsultacje) |
+| RitFit (ritfit-smith-bss, ritfit-pistol) | **5** | WebFetch 02.11.2026: „By RitFit Editorial Team” — zespół z doświadczeniem „in fitness products and marketing” (pkt 1–2: brak autora z kwalifikacjami); data „Updated on Oct 29, 2026”; pkt 3: sekcja „Featured Products” z cenami i „Quick add”. Artykuł nie jest instrukcją konkretnej maszyny (dotyczy każdej maszyny Smitha) — wyjątek producenta nie ma zastosowania |
+| Dynamo Fitness (dynamo-smith-bss) | **5** | sprzedawca sprzętu (zlecenie koordynatora; szczeble-organizacji: sprzedawcy = 5) |
+| Major Fitness (majorfitness-pistol) | 5 | blog firmy sprzętowej, ten sam typ co RitFit (nie otwierano — nieużyte) |
+| The Prehab Guys (prehab-*) | nie przeliczano | nieużyte w kartach; warunkowo 4 tylko z autorem na stronie (uzup. 2) |
+| Sussex Sport (sussex-pistol) | 5 | uzup. 2: uczelniane centra sportu bez autora = 5 (nieużyte) |
+| WebMD Ignite (webmd-ignite-lunge) | nie liczy się | patrz `lunge.md`, korekta — brak daty na stronie UMass |
+| Eleiko (eleiko-65848315, -6581e6ea) | 5 | patrz `lunge.md`, korekta — platforma inspire360 bez autora i daty |
+
+### Zdania → stan
+
+| Karta | Zdanie | Źródła po przeliczeniu | Stan |
+|---|---|---|---|
+| Single Leg Press | `lp1.move` (nowe) | NASM; PhysioRehab (5) | spada — jedno źródło |
+| Single Leg Press | `lp1.knee` (nowe) | NASM; PhysioRehab (5) | spada — jedno źródło |
+| Smith Machine Bulgarian Split Squat | `smithbss.setup` (nowe) | RitFit (5), Dynamo (5) | spada — brak źródła szczebla ≤ 4 |
+| Smith Machine Bulgarian Split Squat | `bss.setup` | ACE-366; Eleiko (5) | spada |
+| Split Squat | `split.setup` | NSCA PTQ + Catalyst-174 | zostaje w wersji skróconej (patrz `lunge.md`) |
+| Split Squat | `lunge.knee` | NSCA PTQ; canfitpro (analogia — ruch w poziomie); WebMD (nie liczy się) | spada — jedno źródło |
+| Lunges (sztanga), Barbell Walking Lunge | `lunge.knee`, `lunge.mis.kneeIn` | NSCA PTQ; Eleiko (5); WebMD (nie liczy się) | spada — jedno źródło (O-6 wraca) |
+
+### Karty → stan
+
+| Karta | Stan |
+|---|---|
+| Single Leg Press | otwarta — brak ustawienia (O2-2), ruch tylko NASM |
+| Smith Machine Bulgarian Split Squat | otwarta — ustawienie i ruch tylko ACE (wariant) |
+| Split Squat | otwarta — brak zdania ruchu (patrz `lunge.md`) |
+| Lunges (sztanga), Barbell Walking Lunge | bez zmian z tej części — własne bez błędów wg `lunge.md` (uzupełnienia o kolano z tej części spadły) |
+| Curtsy Lunge, Crossover Reverse Lunge, Slider Reverse Lunge, Lunge Pass Through, Single-Leg High Box Squat, Smith Machine Pistol Squat, Cossack Squat, Barbell Side Split Squat, Suspended Split Squat, Elevated Back Lunge, Split Squat (linki) | otwarte (bez zmian) |
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+Brak kart z tej części spełniających kryterium — nic do wklejenia z tego pliku (karty własne rodziny — blok w `lunge.md`).
+
+```json
+{}
+```

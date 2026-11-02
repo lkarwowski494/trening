@@ -30,7 +30,7 @@ Wszystkie źródła przeczytane przez WebFetch 02.11.2026. fedb zwraca przez nar
 
 Razem po obu częściach: **11 gotowych** (8 z części 1 + 3 tu, w tym 1 warunkowo), **27 otwartych**.
 
-## 2. Blok JSON do `data/zrodla/cues.json` (tylko gotowe)
+## 2. Blok JSON do `data/zrodla/cues.json` (tylko gotowe) — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 ```json
 {
@@ -154,3 +154,47 @@ Cytaty do weryfikacji (≤ 1 fraza na źródło; narzędzie podało je jako dos�
 - Zostało: otwarte 3 (zależy od decyzji o szczeblu portali), 4 (wyciąg siedząc / jednorącz tył, sanie), 2 (pochodzenie wpisu Halo + Extension).
 - Pułapki: ExRx 403; strona producenta kettlebelli z wyników zwraca 402; wiele wyników to strony aplikacji — pomijać i nie zapisywać ich nazw;
   NFPT ma artykuły „How to do…” dla części ćwiczeń (wyszukiwanie `site:nfpt.com`) — warto sprawdzić dla otwartych 4.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `docs/research/szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie, uzupełnienia 2 i 3). Kryterium karty (decyzje 02.11.2026):
+zdanie gotowe = ≥ 2 niezależne organizacje szczebla ≤ 4, przeczytane; karta własna = min. 1 zdanie ustawienia + 1 zdanie ruchu; „z błędami” = + min. 1 błąd;
+bez ruchu albo bez ustawienia = otwarta. Plik powstał przed rozstrzygnięciem szczebli (nagłówek: „fedb = jedno źródło szczebla 4”) — po rozstrzygnięciu fedb = 5.
+Przeliczenie części 1 i blok rodziny do wdrożenia: `delt_raise.md`, sekcja o tym samym tytule.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód / powód |
+|---|---|---|
+| free-exercise-db (fedb-*, 3 strony w bloku + 5 przeczytanych) | 5 | szczeble-organizacji, „Rozstrzygnięcia”, wiersz free-exercise-db |
+| ACE (ace-394, Halo) | 4 | precedens ACE (kryterium pkt 1) |
+| Bodylastics (bodylastics-lateral-raise) | 4 — tylko ćwiczenia z taśmami | szczeble-organizacji, „Rozstrzygnięcia”, wiersz Bodylastics; Band Lateral Raise jest ćwiczeniem z taśmą — liczy się |
+| NFPT (nfpt-incline-side-lateral, „by Guest”, 11.08.2025) | 4 warunkowo — nie rozstrzygane | szczeble-organizacji, wiersz NFPT: liczy się artykuł z autorem, datą i kwalifikacjami w biogramie. Strony nie otwierano ponownie: nawet przy szczeblu 4 to jedyne źródło ≤ 4 dla karty, wynik się nie zmienia |
+
+### Zdania → stan
+
+| Karta | Zdanie | Źródła po przeliczeniu | Stan |
+|---|---|---|---|
+| Kettlebell Halo | `halo.setup`, `halo.move`, `halo.dir`, `halo.torso` | tylko ace-394 | spada (jedno źródło) |
+| Band Lateral Raise | `blat.setup`, `lat.move`, `lat.height`, `mis.jerk` | tylko bodylastics-lateral-raise | spada |
+| One-Arm Incline Lateral Raise | `inc1.setup`, `inc1.move`, `inc1.sides` | najwyżej nfpt-incline-side-lateral | spada |
+
+### Karty → stan
+
+| Karta | Stan |
+|---|---|
+| Kettlebell Halo | otwarta — jedno źródło szczebla 4 (ACE) po odjęciu fedb |
+| Band Lateral Raise | otwarta — jedno źródło szczebla 4 (Bodylastics) |
+| One-Arm Incline Lateral Raise | otwarta — najwyżej jedno źródło szczebla 4 (NFPT, warunkowo) |
+| pozostałe z sekcji 1 (Halo + Extension, Front Raise to Overhead ×2, Front Incline Dumbbell Raise, Straight Raises on Incline Bench, Incline Shoulder Raise ×3, Car Drivers, Y Raise ×2, Machine Lateral Raise, wyciąg/sanie ×3, upright row ×6) | bez zmian: otwarte (fedb był jedynym źródłem albo brak źródła) |
+
+Wszystkie trzy karty z bloku miały zdanie `move` — powodem „otwarta” jest brak drugiego źródła, nie brak ruchu.
+Do fali W2: Halo i Band Lateral Raise mają po jednym źródle szczebla 4 — wystarczy drugie niezależne źródło (nie fedb, nie aplikacje).
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+Brak kart spełniających kryterium — nic do wklejenia z tego pliku (blok rodziny: `delt_raise.md`).
+
+```json
+{}
+```

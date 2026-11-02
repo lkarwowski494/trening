@@ -1,5 +1,8 @@
 # Wskazówki techniki — fala W1, rodzina „curl”, część 2 (2026-11)
 
+**Przeliczenie szczebli 02.11.2026 (na końcu pliku):** free-exercise-db i Western University = szczebel 5; żadna karta nie spełnia kryterium karty —
+patrz sekcja „Korekta szczebli — przeliczenie koordynatora 02.11.2026”. Oceny szczebli w sekcji 0 niżej są NIEAKTUALNE.
+
 Autor: badacz-merytoryczny (agent), 02.11.2026. Kontynuacja `docs/research/wskazowki-fala-w1/curl.md` (worktree agent-ab725cc87bc0c4452)
 po odrzuceniu przez koordynatora dokumentacji innej aplikacji treningowej jako źródła. Ten plik **zastępuje** blok JSON z curl.md
 dla wpisów, w których to źródło było drugim; Barbell Preacher Curl zostaje jak w curl.md (patrz jednak Otwarte pkt 1).
@@ -60,7 +63,7 @@ linie, jednorącz z wyciągu, ławce skośnej, modlitewniku i wyciągu z nachwyt
 `mis.jerk` i `curl.mis.elbows` wszędzie (źródła rzadko mają sekcję błędów); `preacher.range` przy maszynie (tylko ACE);
 `curl.control` przy Incline Curl, Incline Hammer, One Arm DB Preacher, Cable/Hammer/Zottman Preacher i High Cable Curl (jedno źródło).
 
-## 2. Blok JSON do `data/zrodla/cues.json`
+## 2. Blok JSON do `data/zrodla/cues.json` — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 ### 2a. Organizacje (`orgs`) — dopisać do Catalyst z curl.md (bez org odrzuconej)
 
@@ -386,3 +389,79 @@ Krótkie cytaty (jedno zdanie na źródło):
 - Zostało: 11 otwartych (pkt 6) i decyzje z pkt 1–4.
 - Następny krok: po decyzji o BarBend/M&S — Cross Body Hammer, Bayesian i warianty leżące (BarBend ma Bayesian; przeczytać w całości).
 - Pułapki: WebFetch streszcza — cytaty wyżej to krótkie dosłowne fragmenty z odpowiedzi narzędzia; free-exercise-db ma błędy kopiowania (Seated Close-Grip Concentration — krok 3 mówi o hantlach).
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `docs/research/szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie, uzupełnienia 2 i 3). Kryterium karty (decyzje 02.11.2026): zdanie gotowe = ≥ 2
+niezależne organizacje szczebla ≤ 4, przeczytane; karta własna = min. 1 zdanie ustawienia + 1 zdanie ruchu; „z błędami” = + min. 1 błąd; bez ruchu albo bez
+ustawienia = otwarta. Kilka stron tej samej organizacji (issa-12-curls + issa-biceps-guide) = jedno źródło.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód / powód |
+|---|---|---|
+| Catalyst Athletics (catalyst-*) | 4 | szczeble-organizacji, „Rozstrzygnięcia”, wiersz Catalyst Athletics |
+| ISSA (issa-12-curls, issa-biceps-guide) | 4 — jedno źródło | szczeble-organizacji, wiersz ISSA (warunek: autor i data albo firmowane „ISSA”; obie strony na blogu ISSA, issa-12-curls z datą 22.09.2025) |
+| ACE (ace-184, ace-prosource-2014-biceps) | 4 — jedno źródło | precedens ACE (kryterium pkt 1) |
+| free-exercise-db (fedb-*) | **5** (było 4) | szczeble-organizacji, wiersz free-exercise-db: brak autorów, dat, redakcji |
+| Western University SRS (uwo-biceps-triceps) | **5** (było 4) | szczeble-organizacji, wiersz Western University; uzupełnienie 2, wiersz „Uczelniane centra sportu” |
+| BarBend — barbend-spider-curl | 4 (warunek spełniony) | WebFetch 02.11.2026: autor Jake Dickson, NASM-CPT, USAW-L2; „Last updated on November 17th, 2024”; bez recenzenta. **Ale** strona opisuje ustawienie siedząc tułowiem o oparcie, nie wprost „przodem” — wg narzędzia: „The page doesn't describe lying prone” (krok 2) |
+| BarBend — barbend-drag-curl | nie sprawdzano | jedyną parą jest free-exercise-db (5), więc wynik nie zmienia stanu zdań |
+| Nunes i in. 2020 (pmc-7460162) | 3 | badanie recenzowane; sprzęt w sekcji 2.5 opisany w curl.md niespójnie (curl.md, tabela wyników „Cable Preacher Curl” vs blok 2c „sztanga”) — nie liczę jako pary dla wariantu z wyciągiem |
+
+### Zdania → stan
+
+| Karta | Zdanie | Źródła ≤ 4 po przeliczeniu | Stan |
+|---|---|---|---|
+| Preacher Curl (EZ) | `preacher.arms` | Catalyst + ISSA | zostaje |
+| Preacher Curl (EZ) | `preacher.range` | ISSA + Catalyst | zostaje |
+| Preacher Curl (EZ) | `curl.control` | Catalyst (fedb = 5) | spada |
+| One Arm Dumbbell Preacher Curl | `preacher.arms`, `preacher.range` | Catalyst + ISSA | zostaje |
+| Incline Curl (hantle) | `incline.setup` | Catalyst + ISSA | zostaje |
+| Incline Hammer Curl | `incline.setup` | ISSA (wprost) + Catalyst (ta sama pozycja, inny chwyt) | zostaje — oznaczenie „uproszczenie” (Catalyst: analogia chwytu; samo zdanie nie mówi o chwycie) |
+| Zottman Curl | `zottman.move`, `curl.control` | Catalyst + ISSA | zostaje |
+| Reverse Curl | `curl.revGrip` (krótkie brzmienie), `curl.elbows`, `curl.control` | Catalyst + ISSA | zostaje |
+| Standing Dumbbell Reverse Curl | `curl.revGripDb`, `curl.elbows`, `curl.control` | ISSA (fedb = 5) | spada |
+| Concentration Curl (hantle) | `conc.setup` | Catalyst + ISSA + ACE | zostaje |
+| Concentration Curl (hantle) | `curl.control` | Catalyst + ISSA | zostaje |
+| Machine Biceps Curl | `machineCurl.setup`, `curl.control` | ACE (Western = 5) | spada |
+| Reverse Cable Curl | `curl.revCableSetup`, `curl.control` | Catalyst (fedb = 5) | spada |
+| Reverse EZ-Bar Preacher Curl | `preacher.arms` | Catalyst + ISSA | zostaje |
+| Reverse EZ-Bar Preacher Curl | `curl.revGrip`, `curl.control` | Catalyst (fedb = 5) | spada |
+| Reverse EZ-Bar Preacher Curl | `preacher.range` | ISSA (fedb = 5) | spada |
+| Hammer Curl (linki) | `curl.ropeSetup`, `curl.control` | Catalyst (fedb = 5) | spada |
+| Standing One-Arm Cable Curl | `curl.cable1Setup`, `curl.control` | Catalyst (fedb = 5) | spada |
+| Cable Preacher Curl | `preacher.arms` | ISSA (fedb = 5) | spada |
+| Cable Preacher Curl | `preacher.range` | ISSA (+ Nunes 2020 — sprzęt niepewny) | spada — [OTWARTE] sprawdzić sekcję 2.5 Nunes 2020 |
+| Preacher Hammer Dumbbell Curl | `preacher.arms`, `preacher.range` | ISSA (fedb = 5) | spada |
+| Zottman Preacher Curl | `preacher.arms`, `preacher.range` | ISSA (fedb = 5) | spada |
+| Zottman Preacher Curl | `zottman.move` | wprost tylko fedb (5); ISSA i Catalyst — analogia | spada |
+| High Cable Curl | `curl.highArms` | ISSA (fedb = 5) | spada |
+| Spider Curl | `spider.setup` („Połóż się przodem…”) | Catalyst; BarBend nie opisuje leżenia przodem | spada — [OTWARTE] przeczytać krok 2 BarBend ręcznie |
+| Spider Curl | `spider.arm` | Catalyst + BarBend (Dickson, NASM-CPT, 17.11.2024) | zostaje |
+| Drag Curl | `drag.path`, `curl.control` | BarBend (fedb = 5) | spada |
+
+Pozycje „otwarte” z sekcji 1 (11 kluczy) — bez zmian; wszystkie opierały się na free-exercise-db albo nie miały drugiego źródła.
+
+### Karty → stan
+
+Wszystkie karty z bloku 2c mają `"move": []` (oprócz Zottman Curl i Drag Curl z `"setup": []`). Wg kryterium karty — **otwarte: brak zdania ruchu**
+(do fali W2; zdań nie wymyślam). Jedyna karta z ustawieniem i ruchem, Zottman Preacher Curl, traci oba po przeliczeniu.
+
+| Karta | Stan |
+|---|---|
+| Preacher Curl (EZ), One Arm Dumbbell Preacher Curl, Incline Curl (hantle), Incline Hammer Curl, Reverse Curl, Concentration Curl (hantle), Reverse EZ-Bar Preacher Curl, Spider Curl | otwarta — brak zdania ruchu (do fali W2); zdania ustawienia/wskazówki wyżej „zostaje” są gotowe do użycia w W2 |
+| Zottman Curl | otwarta — brak zdania ustawienia (do fali W2); `zottman.move` gotowe |
+| Standing Dumbbell Reverse Curl, Machine Biceps Curl, Reverse Cable Curl, Hammer Curl (linki), Standing One-Arm Cable Curl, Cable Preacher Curl, Preacher Hammer Dumbbell Curl, Zottman Preacher Curl, High Cable Curl, Drag Curl | otwarta — brak potwierdzonego ustawienia lub ruchu po przeliczeniu (free-exercise-db / Western = 5) |
+| 11 kluczy „otwarte” z sekcji 1 | otwarta (bez zmian) |
+
+Nowe zdania (sekcja 3) po przeliczeniu: gotowe `curl.revGrip` (krótkie), `preacher.arms`; z curl.md: `conc.setup`, `incline.setup`, `zottman.move`, `spider.arm`.
+Spadają: `curl.revGripDb`, `curl.revCableSetup`, `curl.ropeSetup`, `curl.cable1Setup`, `machineCurl.setup`, `curl.highArms`, `drag.path`, `spider.setup`.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+Brak kart spełniających kryterium (żadna nie ma jednocześnie ustawienia i ruchu z dwóch źródeł ≤ 4) — nic do wklejenia jako karta własna.
+
+```json
+{}
+```

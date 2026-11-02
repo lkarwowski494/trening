@@ -1,5 +1,7 @@
 **Koordynator linii 1.1, 02.11.2026:** jedno ze źródeł użytych przez badacza to dokumentacja innej aplikacji treningowej — odrzucone (dokumentacja konkurencyjnej aplikacji nie jest przyjmowana jako źródło wskazówek: wpis źródła trafiłby do rejestru `data/zrodla/cues.json`, który obejmuje lista `tests/forbidden-names.json` (pole scope), a materiały konkurencji trzymamy na Dysku — CLAUDE.md „Treści cudze i nazwy innych firm”). Wpisy, w których było drugim źródłem, są **otwarte** do ponownego wyszukania drugiego źródła; bez zmian zostają tylko Concentration Curl (hantle) i Barbell Preacher Curl (wg raportu badacza). Bloku JSON nie wklejać bez ponownej weryfikacji.
 
+**Przeliczenie szczebli 02.11.2026 (na końcu pliku):** żadna karta z tego pliku nie spełnia kryterium karty — patrz sekcja „Korekta szczebli — przeliczenie koordynatora 02.11.2026”.
+
 # Wskazówki techniki — fala W1, rodzina „curl” (2026-11)
 
 Autor: badacz-merytoryczny (agent), 02.11.2026. Zakres: ćwiczenia z `lib/figures/v2/cue-sets.json` z `"b":"general","f":"curl"`,
@@ -57,7 +59,7 @@ Uwaga o zakresie: wpisy celowo nie zawierają zdań z zestawu ogólnego, któryc
 (np. `curl.elbows` przy curlu na ławce skośnej, `curl.dbMove` z obrotem dłoni przy curlu na skosie — Catalyst każe trzymać dłonie do przodu,
 `mis.jerk` bez drugiego źródła). Lepiej krótsza karta niż zdanie bez podstaw.
 
-## 2. Blok JSON do `data/zrodla/cues.json`
+## 2. Blok JSON do `data/zrodla/cues.json` — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 ### 2a. Nowe organizacje (`orgs`)
 
@@ -311,3 +313,53 @@ Przeczytane bez użycia w danych: catalyst-829 (Dumbbell Preacher Curl, oburącz
   drugie źródło: [źródło odrzucone: dokumentacja innej aplikacji].com (adresy w formie `/nazwa-cwiczenia/`, nie zawsze istnieją) albo ACE/NASM.
 - Pułapki: ExRx i web.archive.org niedostępne z tego środowiska; [źródło odrzucone: dokumentacja innej aplikacji] często nie ma sekcji „błędy” — błędów (mistakes) nie da się zwykle potwierdzić dwoma źródłami;
   narzędzie WebFetch potrafi streszczać — cytaty wyżej są dosłowne z odpowiedzi narzędzia, audytor powinien otworzyć 2–3 losowe strony.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `docs/research/szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie, uzupełnienia 2 i 3). Kryterium karty (decyzje 02.11.2026):
+zdanie gotowe = ≥ 2 niezależne organizacje szczebla ≤ 4, przeczytane; karta własna = min. 1 zdanie ustawienia + 1 zdanie ruchu; „z błędami” = + min. 1 błąd;
+bez ruchu albo bez ustawienia = otwarta. Ten plik zastępuje w większości `curl-2.md` (sekcja 2c tamże); tu przeliczenie wpisów z bloku 2c powyżej.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód / powód |
+|---|---|---|
+| Catalyst Athletics (catalyst-*) | 4 | szczeble-organizacji, tabela „Rozstrzygnięcia”, wiersz Catalyst Athletics |
+| ACE (ace-prosource-2014-biceps) | 4 | precedens ACE (szczeble-organizacji, kryterium pkt 1) |
+| [źródło odrzucone: dokumentacja innej aplikacji] (sl-*, 7 stron) | odrzucone | dokumentacja innej aplikacji nie jest źródłem (koordynator 1.1, 02.11.2026; linia 1 tego pliku) |
+| Nunes i in. 2020 (pmc-7460162) | 3 | badanie recenzowane |
+| Havers i in. 2025 (pmc-12621570) | 3 | badanie recenzowane; tylko ustawienie testowe (sekcja 2.5) |
+
+### Zdania → stan
+
+| Karta | Zdanie | Źródła po przeliczeniu | Stan |
+|---|---|---|---|
+| Barbell Preacher Curl | `preacher.setup` („…pachą blisko jej krawędzi”, `lib/cues/text/pl.json:255`) | pacha: tylko Havers (3); Catalyst nie mówi o pasze (curl-2.md, Otwarte pkt 1) | spada — jedno źródło dla pachy; zastąpić `preacher.arms` (curl-2.md) |
+| Barbell Preacher Curl | `preacher.range` | Catalyst-868 + Nunes 2020 (3) | zostaje |
+| Barbell Preacher Curl | `curl.control` | Catalyst-868 + Nunes 2020 (tempo opuszczania dłuższe) | zostaje |
+| Preacher Curl (EZ) | `preacher.setup` | jak wyżej | spada |
+| Preacher Curl (EZ) | `preacher.range`, `curl.control` | tylko Catalyst-868 (w tym pliku) | spada (w curl-2.md `preacher.range` wraca z ISSA) |
+| One Arm Dumbbell Preacher Curl | `preacher.setup`, `preacher.range` | tylko Catalyst-889 | spada |
+| Concentration Curl (hantle) | `conc.setup` | Catalyst-816 + ACE | zostaje |
+| Incline Curl (hantle) | `incline.setup` | tylko Catalyst-850 | spada (w curl-2.md wraca z ISSA) |
+| Spider Curl | `spider.setup`, `spider.arm` | tylko Catalyst-835 | spada (patrz curl-2.md) |
+| Zottman Curl | `zottman.move`, `curl.control` | tylko Catalyst-915 | spada (w curl-2.md wraca z ISSA) |
+| Reverse Curl | `curl.revGrip`, `curl.elbows` | tylko Catalyst-873 | spada (w curl-2.md wraca z ISSA) |
+
+### Karty → stan
+
+Wszystkie 8 kart ma `"move": []` (oprócz Zottman Curl, który ma `"setup": []`) — wg kryterium karty to **otwarte: brak zdania ruchu** (Zottman Curl: brak zdania
+ustawienia); zdania ruchu do fali W2, nie wymyślane tutaj.
+
+| Karta | Stan |
+|---|---|
+| Barbell Preacher Curl, Preacher Curl (EZ), One Arm Dumbbell Preacher Curl, Concentration Curl (hantle), Incline Curl (hantle), Spider Curl, Reverse Curl | otwarta — brak zdania ruchu (do fali W2) |
+| Zottman Curl | otwarta — brak zdania ustawienia (do fali W2) |
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+Brak kart spełniających kryterium — nic do wklejenia z tego pliku.
+
+```json
+{}
+```

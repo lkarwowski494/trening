@@ -41,7 +41,7 @@ Dostęp: ExRx.net nadal 403 (sprawdzone 02.11.2026, `CBSeatedLateralRaise`); str
 
 Razem: **8 gotowych, 30 otwartych** (w tym 6 wariantów upright row zależnych od jednej decyzji).
 
-## 2. Blok JSON do `data/zrodla/cues.json` (tylko gotowe)
+## 2. Blok JSON do `data/zrodla/cues.json` (tylko gotowe) — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 Wstawić do sekcji ćwiczeń; nowe źródła i organizacje — sekcja 4. `Alternating Deltoid Raise` bez `setup` celowo (ACG-010: start „przy udach”
 w fedb vs „przed udami, dłonie do tyłu” w Catalyst; `lat.setup` mówi „łokcie lekko ugięte”, Catalyst — proste ręce).
@@ -251,3 +251,92 @@ Cytaty do weryfikacji (≤ 1 zdanie na źródło):
 - Zrobione: lista 38 ćwiczeń; 8 gotowych z blokiem JSON, 12 nowych zdań (1 z ACG-010), 14 nowych źródeł, 2 nowe organizacje; reszta oznaczona z powodem.
 - Zostało (następny agent): pkt 6 „nie badane” — zacząć od Front Raise to Overhead (fedb + szukać Catalyst/ACE), Incline Shoulder Raise (fedb ×3 + 2. źródło), Kettlebell Halo; potem pkt 5 (drugie źródła dla wyciągu/taśmy).
 - Pułapki: ExRx 403 (bez Wayback); free-exercise-db zwraca tylko parafrazy przez WebFetch (cytować indeks `instructions[i]`); PDF HSS czytać przez Read z `pages` (WebFetch nie wyciąga tekstu); Catalyst często „nieco powyżej barków” i „proste ręce” — brać część wspólną; lista Catalyst: https://catalystathletics.com/exercises/section/17/Accessory-Upper-Body/ (brak Y raise, scaption, plate raise, halo).
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `docs/research/szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie, uzupełnienia 2 i 3). Kryterium karty (decyzje 02.11.2026):
+zdanie gotowe = ≥ 2 niezależne organizacje szczebla ≤ 4, przeczytane; karta własna = min. 1 zdanie ustawienia + 1 zdanie ruchu; „z błędami” = + min. 1 błąd;
+bez ruchu albo bez ustawienia = otwarta. Ten plik powstał przed rozstrzygnięciem szczebli (fedb liczony jako 4 — „Otwarte” pkt 1 wyżej); przeliczenie obejmuje
+blok z sekcji 2 i ćwiczenia otwarte z sekcji 1. Część 2 rodziny — przeliczenie w `delt_raise-2.md`.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód / powód |
+|---|---|---|
+| free-exercise-db (fedb-*, 8 stron) | 5 | szczeble-organizacji, tabela „Rozstrzygnięcia”, wiersz free-exercise-db (brak autorów, dat, redakcji; zmiana względem ACG-010) |
+| Catalyst Athletics (catalyst-803, -812, -822) | 4 | szczeble-organizacji, tabela „Rozstrzygnięcia”, wiersz Catalyst Athletics |
+| ACE (ace-26, ace-34, ace-353, ace-354, ace-295) | 4 | precedens ACE (szczeble-organizacji, kryterium pkt 1); kilka stron ACE = jedno źródło |
+| ACE Certified, „A Pro's Guide to Muscle Mechanics: The Shoulders” (ace-cert-8951) | 4 — ta sama organizacja co ace-* | autor Pete McCall, MS, CSCS; wydanie wrzesień 2025 (WebFetch 02.11.2026); przy parze liczy się jako ACE, nie jako druga organizacja |
+| HSS, K. M. Sutton, MD (hss-sutton-shoulder, PDF) | 4 | szczeble-organizacji, Uzupełnienie 2, wiersz „Szpitale i systemy ochrony zdrowia (… HSS …)” = 4; tekst s. 1 przeczytany ponownie 02.11.2026 (pdftotext). Rozstrzyga „Otwarte” pkt 2 wyżej |
+| Western University SRS (Machine Lateral Raise) | 5 | szczeble-organizacji, „Rozstrzygnięcia”, wiersz Western University; Uzupełnienie 2 (uczelniane centra sportu = 5). Rozstrzyga „Otwarte” pkt 4 wyżej — negatywnie |
+
+### Zdania → stan
+
+| Karta | Zdanie | Źródła po przeliczeniu | Stan |
+|---|---|---|---|
+| Alternating Deltoid Raise | `adr.move`, `front.elbows`, `lat.height`, `mis.jerk` | tylko catalyst-822 | spada (jedno źródło) |
+| One-Arm Lateral Raise (hantel) | `lat1.setup` | HSS s. 1 „arm at your side with the elbow straight” + ace-26 Step 1 (wariant: dwie ręce) | zostaje |
+| One-Arm Lateral Raise (hantel) | `lat1.move` | HSS s. 1 „until the hands reach shoulder level… slowly lower” + ace-354 (wariant: wyciąg) | zostaje |
+| One-Arm Lateral Raise (hantel) | `rear.elbows` | HSS s. 1 „Raise the arm straight” + ace-26 Step 1/4 | zostaje |
+| One-Arm Lateral Raise (hantel) | `mis.jerk` | tylko HSS („Pause and slowly lower”) | spada |
+| Front Plate Raise | `front2.setup`, `front.move`, `front.elbows`, `lat.height`, `mis.jerk` | tylko catalyst-803 | spada |
+| Single Dumbbell Front Raise | `front2.setup`, `front.move`, `front.elbows`, `lat.height`, `mis.jerk` | tylko catalyst-803 | spada |
+| Cable Front Raise | `cfr.setup`, `front.move`, `front.elbows`, `lat.height`, `mis.jerk` | tylko catalyst-812 | spada |
+| Dumbbell Lying One-Arm Rear Lateral Raise | `rear1.setup` | tylko HSS s. 3 (ACE-34 nie był cytowany dla ustawienia) | spada |
+| Dumbbell Lying One-Arm Rear Lateral Raise | `rear1.move`, `rear.elbows` | HSS s. 3 + ace-34 (wariant: dwie ręce) | zostaje (karta i tak otwarta — brak ustawienia) |
+| Dumbbell Scaption | `scap.setup` w brzmieniu z sekcji 3 („…kciuki skierowane w przód”) | kciuki: tylko HSS („thumbs face forward”); ACE 8951 mówi inaczej: „palms rotated up at a 45-degree angle” | spada w tym brzmieniu → **zostaje po skróceniu** do `scap.setup` = „Stań prosto, hantle w dłoniach, ręce proste.” (HSS s. 1 full-can „keeping the elbows straight” + ACE 8951 „arms are straight”); nowe brzmienie do recenzji i `claims.mjs --stub` |
+| Dumbbell Scaption | `scap.move` | HSS s. 1 „shoulder level with a slight outward angle (30°)” + ACE 8951 „shoulder height in a 30-degree angle to the front of the body” | zostaje |
+| Dumbbell Scaption | `sapd.arms` | HSS s. 1 + ACE 8951 (ręce proste) | zostaje |
+| Cable Reverse Fly | `crf.setup`, `crf.move`, `crf.pause` | tylko ace-353 | spada |
+| Machine Lateral Raise (sekcja 5 pkt 4) | propozycja ustawienia i ruchu | ACE 295 + Western SRS (5) | nie wchodzi — jedno źródło |
+
+### Karty → stan
+
+| Karta | Stan |
+|---|---|
+| One-Arm Lateral Raise (hantel) | **własna bez błędów** (`lat1.setup`, `lat1.move`, `rear.elbows`; `mis.jerk` spadł) |
+| Dumbbell Scaption | **własna bez błędów** (`scap.setup` w skróconym brzmieniu, `scap.move`, `sapd.arms`) |
+| Dumbbell Lying One-Arm Rear Lateral Raise | otwarta — brak zdania ustawienia (`rear1.setup` tylko HSS; do fali W2 — sprawdzić, czy ACE 34 Step 1 opisuje leżenie przodem) |
+| Alternating Deltoid Raise | otwarta — brak zdania ustawienia (było celowo puste) i ruch tylko z jednego źródła |
+| Front Plate Raise, Single Dumbbell Front Raise, Cable Front Raise, Cable Reverse Fly | otwarta — jedno źródło szczebla 4 (Catalyst albo ACE) po odjęciu fedb |
+| Machine Lateral Raise | otwarta — Western SRS = 5 |
+| pozostałe z sekcji 1 (upright row ×6, wyciąg/taśma/ławka skośna jednorącz, nie badane) | bez zmian: otwarte (część 2 przelicza swoje w `delt_raise-2.md`) |
+
+Wszystkie karty z tego pliku mają zdanie `move` — brak ruchu nie jest powodem „otwarta” (tylko brak ustawienia albo drugiego źródła).
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+Źródła: `hss-sutton-shoulder`, `ace-354`, `ace-cert-8951` (nowe, sekcja 4 wyżej); `ace-26` (istnieje). fedb nie wpisany do `s` (szczebel 5 — nie liczy się;
+programista nie dodaje wpisów `fedb-*` z tego pliku). Nowe zdania: `lat1.setup`, `lat1.move`, `scap.setup` (brzmienie skrócone — wyżej), `scap.move`.
+
+```json
+{
+  "One-Arm Lateral Raise (hantel)": {
+    "setup": [
+      {"c": "lat1.setup", "s": [["hss-sutton-shoulder", "s. 1, Lateral Raises (arm at your side with the elbow straight)"], ["ace-26", "Step 1 (wariant: dwie ręce; elbows extended or holding a slight bend)"]]}
+    ],
+    "move": [
+      {"c": "lat1.move", "s": [["hss-sutton-shoulder", "s. 1, Lateral Raises (until the hands reach shoulder level; slowly lower)"], ["ace-354", "opis (wariant: wyciąg; parallel to the floor, slowly lower)"]]}
+    ],
+    "tips": [
+      {"c": "rear.elbows", "s": [["hss-sutton-shoulder", "s. 1, Lateral Raises (raise the arm straight)"], ["ace-26", "Step 1; Step 4 (wariant: dwie ręce; keeping your elbows slightly extended)"]]}
+    ],
+    "mistakes": []
+  },
+  "Dumbbell Scaption": {
+    "setup": [
+      {"c": "scap.setup", "s": [["hss-sutton-shoulder", "s. 1, Standing forward flexion (‘full-can’) (keeping the elbows straight)"], ["ace-cert-8951", "Dumbbell V-Raise, starting position (arms are straight)"]]}
+    ],
+    "move": [
+      {"c": "scap.move", "s": [["hss-sutton-shoulder", "s. 1, full-can (forward and upward to shoulder level, outward angle 30°)"], ["ace-cert-8951", "Dumbbell V-Raise (shoulder height, 30° to the front; wariant: na zmianę rękami)"]]}
+    ],
+    "tips": [
+      {"c": "sapd.arms", "s": [["hss-sutton-shoulder", "s. 1, full-can (keeping the elbows straight)"], ["ace-cert-8951", "Dumbbell V-Raise (arms straight)"]]}
+    ],
+    "mistakes": []
+  }
+}
+```
+
+Zmiana zdania względem sekcji 3: `scap.setup` PL „Stań prosto, hantle w dłoniach, ręce proste.”, EN „Stand tall, dumbbells in hand, arms straight.” (bez kciuków — rozbieżność HSS/ACE).
+Uwaga: `lat1.setup` mówi „przy udzie”; HSS „at your side” — zgodne kierunkowo, recenzent lokalizacji może woleć „przy boku”.

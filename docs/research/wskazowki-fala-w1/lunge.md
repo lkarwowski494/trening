@@ -1,3 +1,5 @@
+**Przeliczenie szczebli 02.11.2026 (na końcu pliku):** 3 karty własne bez błędów (Lunges (sztanga), Barbell Walking Lunge, Barbell Step Up), reszta otwarta — patrz sekcja „Korekta szczebli — przeliczenie koordynatora 02.11.2026”.
+
 # Wskazówki techniki — fala W1, rodzina „lunge” (wykroki, przysiad bułgarski, wejścia na podwyższenie)
 
 Data: 02.11.2026. Autor: badacz merytoryczny (agent). Status: **PROPOZYCJA** — nic nie jest w `lib/` ani w `data/`; wdrożenie robi koordynator/programista
@@ -40,7 +42,7 @@ Data: 02.11.2026. Autor: badacz merytoryczny (agent). Status: **PROPOZYCJA** —
 | Smith Machine Pistol Squat | otwarte | nie szukano |
 | Crossover Reverse Lunge | otwarte | nie szukano; uwaga: w `cue-sets.json` ma `f: "mobility"`, a `familyOf` daje `lunge` (wyjątek) — do sprawdzenia przez programistę |
 
-## 2. Blok JSON do `data/zrodla/cues.json` (tylko gotowe)
+## 2. Blok JSON do `data/zrodla/cues.json` (tylko gotowe) — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 Ćwiczenia (do obiektu ćwiczeń):
 
@@ -220,3 +222,122 @@ Przeczytane, nieużyte: ACE #94 (Forward Lunge bez obciążenia — brak wskazó
 - Zostało: O-1, O-2 (12 ćwiczeń), O-3, O-4.
 - Następny krok: szukać drugiej organizacji dla Cossack Squat i Barbell Side Split Squat (obok Catalyst), Curtsy Lunge, Split Squat (linki) — Eleiko ma dwie strony z wyciągiem.
 - Pułapki: WebFetch zwraca parafrazy — sprawdzać, czy cytat jest dosłowny; wiele źródeł przy wykroku mówi „kolano nie przed palce” — nie przenosić (sprzeczne z `sq.kneesPast`); NASM ma inne adresy niż zgadywane (`/resource-center/exercise-library/<slug>` daje 404 dla prostych nazw); w dokumentach nie wpisywać nazw marek sprzętu podwieszanego (opis neutralny).
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `docs/research/szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie, uzupełnienia 2 i 3). Kryterium karty (decyzje 02.11.2026):
+zdanie gotowe = ≥ 2 niezależne organizacje szczebla ≤ 4, przeczytane; karta własna = min. 1 zdanie ustawienia + 1 zdanie ruchu; „z błędami” = + min. 1 błąd;
+bez ruchu albo bez ustawienia = otwarta. Przeliczenie obejmuje karty z obu części (ten plik + `lunge-2.md`, który uzupełnia listy `s`); w `lunge-2.md` — tylko jego źródła i zdania.
+Strony warunkowe sprawdzone WebFetch-em 02.11.2026 (autor, data); cytaty skrócone.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód / powód |
+|---|---|---|
+| ACE (ace-8, ace-50, ace-364, ace-139, ace-366, ace-28) | 4 | precedens ACE (szczeble-organizacji, kryterium pkt 1); kilka stron = jedna organizacja |
+| Catalyst Athletics (catalyst-354, -174, -560, -600) | 4 | szczeble-organizacji, „Rozstrzygnięcia”, wiersz Catalyst Athletics; jedna organizacja |
+| Eleiko (eleiko-65848315, -6581e00b, -6581e6ea, -6584b6f9, -658d8baf; platforma eleiko.inspire360.com) | **5** | uzup. 3, wiersz Eleiko: liczy się tylko dział edukacji z autorem (education.eleiko.com). Strona eleiko.inspire360.com/resource/65848315a77c608cad0ebaf2 (WebFetch 02.11.2026): brak autora, brak daty; stopka tylko adres pomocy technicznej Inspire360 i logo Inspire360 — platforma zewnętrzna, nie „Eleiko Education” z autorem. Pozostałe 4 strony tej samej platformy — ten sam układ (nie otwierane osobno) |
+| Landow, Jarmon — „All-Pro Performance Training” (Human Kinetics, ©2021; hk-landow-stepup) | 4 | szczeble-organizacji, wiersz Human Kinetics: szczebel wg autora. Fragment u wydawcy: „This is an excerpt from All-Pro Performance Training by Loren Landow, Chris Jarmon.” (bez daty wpisu). Kwalifikacje — strona książki us.humankinetics.com/products/all-pro-performance-training: „Loren Landow, CSCS *D, has been a sports performance coach for over two decades.”; Jarmon CSCS. Trenerzy, nie autorzy naukowi → 4, nie 3 |
+| WebMD Ignite u UMass Memorial Health (webmd-ignite-lunge) | **nie liczy się** | szczeble-organizacji, wiersz WebMD Ignite: liczy się „tylko materiał publikowany przez placówkę medyczną z datą”. Strona ummhealth.org/health-library/leg-and-knee-exercises-leg-lunge (WebFetch 02.11.2026): „Content provided by WebMD Ignite”, brak daty przeglądu i recenzentów (tylko rok praw autorskich 2026). Wątpliwość: uzup. 2 (szpitale — data niewymagana) — przyjęto węższą regułę z wiersza WebMD Ignite |
+| Rady Children’s PT (rchsd.org, PDF) | nieużyte | i tak nieużyte w kartach |
+
+### Zdania → stan
+
+| Karta | Zdanie | Źródła po przeliczeniu | Stan |
+|---|---|---|---|
+| Lunges (sztanga) | `lunge.bbSetup` (nowe) | ACE-8 + Catalyst-354 | zostaje |
+| Lunges (sztanga) | `lunge.fwd` | ACE-8 + Catalyst-354 | zostaje |
+| Lunges (sztanga) | `lunge.torso` | ACE-8 + Catalyst-354 | zostaje |
+| Lunges (sztanga) | `lunge.knee` | Eleiko (5), WebMD Ignite (nie liczy się), NSCA PTQ (z `lunge-2.md`) | spada — tylko NSCA |
+| Lunges (sztanga) | `lunge.mis.kneeIn` | Eleiko (5), NSCA PTQ | spada — tylko NSCA |
+| Split Squat | `split.setup` (nowe) | Catalyst-174 + NSCA PTQ (Starting Position, `lunge-2.md`); Eleiko (5), WebMD (nie) | zostaje **w wersji skróconej**: „Stań w wykroku: jedna stopa z przodu, druga z tyłu.” — „oparta na palcach” ma tylko NSCA (tylna pięta w górze) |
+| Split Squat | `bss.move` | Catalyst-174; Eleiko (5) | spada — jedno źródło (NSCA PTQ, Table 2 „Completely Stationary”, nie przypisany w pliku do ruchu — do sprawdzenia w fali W2) |
+| Split Squat | `lunge.torso` | Catalyst-174 + NSCA PTQ (s. 44–45 Starting Position: tułów wyprostowany — zapisane w `lunge-2.md`, sekcja 4) | zostaje |
+| Split Squat | `lunge.knee` | patrz `lunge-2.md` | spada |
+| Barbell Walking Lunge | `lunge.bbSetup` | ACE-8 + Catalyst-354 (wariant: wykrok w przód ze sztangą) | zostaje (wariant) |
+| Barbell Walking Lunge | `lunge.walk` | ACE-139 + Catalyst-600/354 | zostaje |
+| Barbell Walking Lunge | `lunge.torso` | Catalyst-600 + ACE-139 | zostaje |
+| Barbell Walking Lunge | `lunge.knee`, `lunge.mis.kneeIn` | Eleiko (5), WebMD (nie), NSCA PTQ | spada — tylko NSCA |
+| Bulgarian Split Squat (sztanga) | `bss.setup`, `bss.move`, `lunge.torso` | ACE-366; Eleiko (5) | spada — tylko ACE |
+| Smith Machine Bulgarian Split Squat | `bss.setup`, `bss.move`, `lunge.torso` | ACE-366; Eleiko (5) | spada (o `smithbss.setup` — `lunge-2.md`) |
+| Barbell Step Up | `lunge.bbSetup` | Landow i Jarmon (4) + Catalyst-560 | zostaje |
+| Barbell Step Up | `stepup.move` | Catalyst-560 + Landow i Jarmon + ACE-28 (wariant: hantle) | zostaje |
+| Barbell Step Up | `lunge.torso` | Landow i Jarmon + ACE-28 (wariant: hantle) | zostaje |
+| Lateral Lunge | `latl.move` (nowe) | ACE-50/364; Eleiko (5) | spada — tylko ACE |
+| Lateral Lunge | `sq.mis.heels` | ACE-50; Eleiko (5) | spada — tylko ACE |
+
+### Karty → stan
+
+Karty mają zdania `move` (sprawdzone: brak ruchu tylko tam, gdzie spadło jedyne drugie źródło — Split Squat, BSS, Lateral Lunge).
+
+| Karta | Stan |
+|---|---|
+| Lunges (sztanga) | **własna bez błędów** (ustawienie `lunge.bbSetup`, ruch `lunge.fwd`, wskazówka `lunge.torso`; kolano i błąd kolana spadły) |
+| Barbell Walking Lunge | **własna bez błędów** (`lunge.bbSetup` — wariant, `lunge.walk`, `lunge.torso`) |
+| Barbell Step Up | **własna bez błędów** (`lunge.bbSetup`, `stepup.move`, `lunge.torso`) |
+| Split Squat | otwarta — brak zdania ruchu (`bss.move` jedno źródło) |
+| Bulgarian Split Squat (sztanga), Smith Machine Bulgarian Split Squat | otwarta — ustawienie i ruch tylko ACE |
+| Lateral Lunge | otwarta — brak ustawienia (O-4), ruch tylko ACE |
+| Pozostałe 12 z tabeli 1 (Barbell Side Split Squat, Cossack Squat, Curtsy Lunge, Elevated Back Lunge, Split Squat (linki), Suspended Split Squat, Slider Reverse Lunge, Lunge Pass Through, Single Leg Press, Single-Leg High Box Squat, Smith Machine Pistol Squat, Crossover Reverse Lunge) | otwarte (Single Leg Press — patrz `lunge-2.md`) |
+
+Razem: 19 ćwiczeń — 3 własne bez błędów, 0 z błędami, 16 otwartych.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+Tylko źródła szczebla ≤ 4 w listach `s`. Nowe zdanie: `lunge.bbSetup` (PL i EN jak w sekcji 3). `split.setup` (skrócone) czeka — karta Split Squat otwarta.
+
+```json
+{
+  "Lunges (sztanga)": {
+    "setup": [
+      {"c": "lunge.bbSetup", "s": [["ace-8", "Step 1 (bar behind the neck, across the upper back)"], ["catalyst-354", "opis (barbell on the back)"]]}
+    ],
+    "move": [
+      {"c": "lunge.fwd", "s": [["ace-8", "Step 2–3 (back knee almost to the floor; push through the front foot)"], ["catalyst-354", "opis (back knee very lightly touches the floor; push off the front leg)"]]}
+    ],
+    "tips": [
+      {"c": "lunge.torso", "s": [["ace-8", "Step 2 (back straight through the entire movement)"], ["catalyst-354", "opis (upright trunk)"]]}
+    ],
+    "mistakes": []
+  },
+  "Barbell Walking Lunge": {
+    "setup": [
+      {"c": "lunge.bbSetup", "s": [["ace-8", "Step 1 (wariant: wykrok w przód ze sztangą)"], ["catalyst-354", "opis (barbell on the back; wariant)"]]}
+    ],
+    "move": [
+      {"c": "lunge.walk", "s": [["ace-139", "Step 3–5"], ["catalyst-600", "opis (one continuous step; wariant: ciężar nad głową)"], ["catalyst-354", "opis (głębokość: back knee very lightly touches the floor)"]]}
+    ],
+    "tips": [
+      {"c": "lunge.torso", "s": [["catalyst-600", "opis (upright posture)"], ["ace-139", "Step 3 (spine extended)"]]}
+    ],
+    "mistakes": []
+  },
+  "Barbell Step Up": {
+    "setup": [
+      {"c": "lunge.bbSetup", "s": [["hk-landow-stepup", "Bottom-Up Step-Up (barbell back squat position along the upper back)"], ["catalyst-560", "opis (barbell on the back)"]]}
+    ],
+    "move": [
+      {"c": "stepup.move", "s": [["catalyst-560", "opis (foot on a box or bench; lift with the raised leg to standing; control the motion back down)"], ["hk-landow-stepup", "Bottom-Up Step-Up (drive the foot into the box; controls his descent)"], ["ace-28", "Step 2–3 (wariant: hantle)"]]}
+    ],
+    "tips": [
+      {"c": "lunge.torso", "s": [["hk-landow-stepup", "Bottom-Up Step-Up (upright posture through trunk and shoulders)"], ["ace-28", "Step 2 (torso upright; wariant: hantle)"]]}
+    ],
+    "mistakes": []
+  }
+}
+```
+
+Nowe źródła (do `sources`; `ace-139`, `ace-28` już są):
+
+```json
+{
+  "ace-8": {"org": "ACE", "title": "Forward Lunge (#8, ze sztangą)", "url": "https://www.acefitness.org/resources/everyone/exercise-library/8/forward-lunge/", "level": 4},
+  "catalyst-354": {"org": "Catalyst Athletics", "title": "Lunge (exercise library #354)", "url": "https://catalystathletics.com/exercise/354/Lunge/", "level": 4},
+  "catalyst-560": {"org": "Catalyst Athletics", "title": "Step-up (exercise library #560)", "url": "https://www.catalystathletics.com/exercise/560/Step-up/", "level": 4},
+  "catalyst-600": {"org": "Catalyst Athletics", "title": "Overhead Walking Lunge (exercise library #600)", "url": "https://catalystathletics.com/exercise/600/Overhead-Walking-Lunge/", "level": 4},
+  "hk-landow-stepup": {"org": "Landow, Jarmon (Human Kinetics)", "title": "Landow L, Jarmon C: All-Pro Performance Training (Human Kinetics, 2021) — fragment „Bottom-Up Step-Up”", "url": "https://us.humankinetics.com/blogs/excerpt/want-to-boost-your-acceleration-try-this-strength-move", "level": 4}
+}
+```
+
+Nowe organizacje (do `orgs`, jeśli ich nie ma): „Catalyst Athletics” (4, `kind: "site"`), „Landow, Jarmon (Human Kinetics)” (4 — książka trenerów CSCS; wcześniej proponowane 3).
+Odpada z propozycji części 1: źródła Eleiko (5 stron), `webmd-ignite-lunge`, `ace-50`, `ace-364`, `catalyst-174` (karta otwarta).

@@ -65,7 +65,7 @@ Kolejność: najpierw popularne (ZOSTAJE w `docs/research/25-biblioteka/L1-zrodl
 
 Podsumowanie: **11 gotowych** (4 z pełnym zestawem i źródłem o tym samym ćwiczeniu; 7 częściowo — „wariant” lub „tylko wskazówki”) oraz **17 otwartych** (w tym 3 z trybu `open`).
 
-## (2) Blok JSON do `data/zrodla/cues.json`
+## (2) Blok JSON do `data/zrodla/cues.json` — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 Nowe źródła (`sources`) i organizacje (`orgs`) są w sekcji (4). Ćwiczenia (tylko gotowe):
 
@@ -271,3 +271,81 @@ Przeczytane, ale nieużyte:
 - Zostało: częste błędy (5.3), Skullcrusher (sztanga) — ustawienie i ruch, warianty na ławce skośnej i ujemnej oraz leżąc z wyciągiem — potrzebne źródła inne niż ExRx.
 - Pułapki: zdania `skull.setup`/`skull.move`/`skull.depth` i `ote.setup` dotyczą konkretnego sprzętu („gryf”, „hantel oburącz”) — nie przypisywać
   ich innym wariantom; `skull.upperArm` („pionowo”) tylko na płaskiej ławce.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `docs/research/szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie, uzupełnienia 2 i 3). Kryterium karty (decyzje 02.11.2026): zdanie gotowe = ≥ 2
+niezależne organizacje szczebla ≤ 4, przeczytane; karta własna = min. 1 zdanie ustawienia + 1 zdanie ruchu; „z błędami” = + min. 1 błąd; bez ruchu albo bez
+ustawienia = otwarta. Kilka stron tej samej organizacji (ace-36/55/74/185; issa-tri-top5 + issa-band-20) = jedno źródło. Źródło o innym sprzęcie liczy się
+z dopiskiem „wariant” (metoda tego pliku). Wpisy Skullcrusher (sztanga), Skullcrusher (hantle), Machine Triceps Extension, Standing Low-Pulley One-Arm,
+Dumbbell One-Arm, Single Arm Triceps Pushdown i Overhead Triceps Extension (EZ) zastępuje `triceps-2.md` — ich przeliczenie jest tam. Tu: wpisy, które
+zostają tylko w tym pliku.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód / powód |
+|---|---|---|
+| ACE (ace-36, ace-55, ace-74, ace-185) | 4 — jedno źródło | precedens ACE (szczeble-organizacji, kryterium pkt 1) |
+| ISSA (issa-tri-top5, issa-band-20) | 4 — jedno źródło | szczeble-organizacji, wiersz ISSA; obie strony na blogu ISSA z datą 05.02.2024 (sekcja 4 tego pliku) |
+| Human Kinetics — Naternicola (hk-naternicola) | 4 | szczeble-organizacji, wiersz Human Kinetics („ocena autora”). WebFetch 02.11.2026, us.humankinetics.com/products/fitness-steps-to-success: N. L. Naternicola — magister wychowania fizycznego (WVU), „faculty member and master trainer for the American Council on Exercise”; książka ©2015. Strona fragmentu nie podaje kwalifikacji ani daty. Uwaga: autorka jest trenerką ACE — przy parze ACE + Naternicola niezależność organizacyjna (inny wydawca), ale wspólne środowisko szkoleniowe (wątpliwość dla koordynatora) |
+| Human Kinetics — Delavier, Gundill (hk-delavier) | 3 (rozstrzygnięcie (a) koordynatora, triceps-2.md „Metoda”) | WebFetch 02.11.2026: strona fragmentu bez kwalifikacji autorów i bez daty; szczebel z rozstrzygnięcia (a), nie z dowodu na stronie |
+| Hoist Fitness (hoist-rs2103) | 4 tylko dla maszyny Hoist RS-2103; dla ogólnej „Machine Triceps Extension” — nie liczy się | szczeble-organizacji, wiersz Hoist; sekcja 5 pkt 4 tego pliku: RS-2103 to inny typ maszyny (wypychanie do przodu) |
+
+### Zdania → stan (wpisy tylko z tego pliku)
+
+| Karta | Zdanie | Źródła ≤ 4 po przeliczeniu | Stan |
+|---|---|---|---|
+| Triceps Kickback | `kick.setup`, `kick.move`, `kick.upperArm`, `press.noLock` | ACE #55 + ISSA | zostaje |
+| Triceps Kickback (linki) | `kick.move`, `kick.upperArm`, `press.noLock` | ACE #55 + ISSA (wariant: hantel / guma) | zostaje |
+| Standing Overhead Barbell Triceps Extension, Kettlebell Overhead Triceps Extension | `ote.setupLoad`, `ote.moveLoad`, `ote.upperArm`, `press.noLock` | ACE #74 + Naternicola + ISSA (wariant: hantel) | zostaje |
+| jw. | `ote.elbowsIn` | ACE #74 + Naternicola (wariant: hantel) | zostaje |
+| Machine Triceps Extension (wersja z części 1) | `press.noLock` | Naternicola; Hoist — inny typ maszyny | spada (patrz triceps-2.md) |
+
+### Karty → stan
+
+| Karta | Stan |
+|---|---|
+| Triceps Kickback | **własna bez błędów** (błędy kickbacku — po jednym źródle ≤ 4, sekcja 5 pkt 3; triceps-2.md sekcja 5 pkt 4) |
+| Standing Overhead Barbell Triceps Extension | **własna bez błędów** (wariant; `mis.archBack` z triceps-2.md spada — patrz tamże) |
+| Kettlebell Overhead Triceps Extension | **własna bez błędów** (wariant; jw.) |
+| Triceps Kickback (linki) | otwarta — brak zdania ustawienia (do fali W2); zdania ruchu i wskazówek gotowe |
+| 17 kluczy „otwarte” z sekcji 1 | patrz triceps-2.md (część z nich zmieniła stan w części 2) |
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+Tylko karty, które zostają wyłącznie w tym pliku. Pozostałe karty rodziny — blok w `triceps-2.md`; oba bloki są rozłączne i razem dają komplet rodziny.
+Źródła i organizacje: ace-36/55/74, issa-tri-top5, issa-band-20, hk-naternicola (sekcja 4; `kind` = `book`, szczebel 4 — wg przeliczenia wyżej).
+
+```json
+{
+  "Triceps Kickback": {
+    "setup": [{"c": "kick.setup", "s": [["ace-55", "Step 1; Step 2"], ["issa-tri-top5", "#3 Triceps Kickback (knee and palm on bench, lean forward; elbow 90°)"], ["issa-band-20", "Triceps Kickback (neutral spine; arm tight to the side; wariant: guma)"]]}],
+    "move": [{"c": "kick.move", "s": [["ace-55", "Step 3; Step 4"], ["issa-tri-top5", "#3 Triceps Kickback"]]}],
+    "tips": [
+      {"c": "kick.upperArm", "s": [["ace-55", "Step 3 (upper arm stationary next to torso)"], ["issa-tri-top5", "#3 Triceps Kickback (you don't move the upper arm)"]]},
+      {"c": "press.noLock", "s": [["ace-55", "Step 3 (until your elbow is fully extended)"], ["issa-tri-top5", "#3 Triceps Kickback (Don't lock the elbow)"]]}
+    ],
+    "mistakes": []
+  },
+  "Standing Overhead Barbell Triceps Extension": {
+    "setup": [{"c": "ote.setupLoad", "s": [["ace-74", "Step 2 (wariant: hantel)"], ["hk-naternicola", "Figure 5.27, Preparation; Movement (wariant: hantel)"], ["issa-tri-top5", "#2 (wariant: hantel)"]]}],
+    "move": [{"c": "ote.moveLoad", "s": [["ace-74", "Step 2; Step 3 (wariant: hantel)"], ["hk-naternicola", "Figure 5.27, Movement (wariant: hantel)"], ["issa-tri-top5", "#2 (wariant: hantel)"]]}],
+    "tips": [
+      {"c": "ote.upperArm", "s": [["ace-74", "Step 3; wskazówka końcowa (wariant: hantel)"], ["hk-naternicola", "Figure 5.27, Movement (wariant: hantel)"], ["issa-tri-top5", "#2 (wariant: hantel)"]]},
+      {"c": "ote.elbowsIn", "s": [["ace-74", "wskazówka końcowa (wariant: hantel)"], ["hk-naternicola", "Figure 5.27, Movement (wariant: hantel)"]]},
+      {"c": "press.noLock", "s": [["ace-74", "Step 2 (wariant: hantel)"], ["hk-naternicola", "Figure 5.27, Preparation (wariant: hantel)"], ["issa-tri-top5", "#2 (wariant: hantel)"]]}
+    ],
+    "mistakes": []
+  },
+  "Kettlebell Overhead Triceps Extension": {
+    "setup": [{"c": "ote.setupLoad", "s": [["ace-74", "Step 2 (wariant: hantel)"], ["hk-naternicola", "Figure 5.27, Preparation; Movement (wariant: hantel)"], ["issa-tri-top5", "#2 (wariant: hantel)"]]}],
+    "move": [{"c": "ote.moveLoad", "s": [["ace-74", "Step 2; Step 3 (wariant: hantel)"], ["hk-naternicola", "Figure 5.27, Movement (wariant: hantel)"], ["issa-tri-top5", "#2 (wariant: hantel)"]]}],
+    "tips": [
+      {"c": "ote.upperArm", "s": [["ace-74", "Step 3; wskazówka końcowa (wariant: hantel)"], ["hk-naternicola", "Figure 5.27, Movement (wariant: hantel)"], ["issa-tri-top5", "#2 (wariant: hantel)"]]},
+      {"c": "ote.elbowsIn", "s": [["ace-74", "wskazówka końcowa (wariant: hantel)"], ["hk-naternicola", "Figure 5.27, Movement (wariant: hantel)"]]},
+      {"c": "press.noLock", "s": [["ace-74", "Step 2 (wariant: hantel)"], ["hk-naternicola", "Figure 5.27, Preparation (wariant: hantel)"], ["issa-tri-top5", "#2 (wariant: hantel)"]]}
+    ],
+    "mistakes": []
+  }
+}
+```

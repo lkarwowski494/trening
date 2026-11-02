@@ -47,7 +47,7 @@ Podsumowanie: z części 1 i 2 razem **14 gotowych z ustawieniem i ruchem** (11 
 JM Press); wszystkie trzy wpisy „tylko wskazówki” z części 1 mają teraz ustawienie i ruch. Częste błędy: 9 wpisów ma co najmniej jeden.
 Otwarte: 14 kluczy (w tym 3 z trybu `open`).
 
-## (2) Blok JSON do `data/zrodla/cues.json`
+## (2) Blok JSON do `data/zrodla/cues.json` — NIEAKTUALNY — patrz przeliczenie 02.11.2026
 
 Wpisy z tego bloku **zastępują** wpisy o tych samych kluczach z części 1. Wpisów z części 1 niewymienionych tutaj (Triceps Kickback, Triceps Kickback (linki))
 nie zmieniam. Id źródeł z części 1 bez zmian; nowe źródła w sekcji (4).
@@ -304,3 +304,154 @@ Przeczytane, nieliczone albo nieużyte:
 - Zostało: punkty 1–7 z sekcji 5; częste błędy kickbacku i maszyny (drugie źródło wprost); wersje na ławce skośnej/ujemnej, leżąc z wyciągiem, z gumą.
 - Pułapki: `skull.upperArm` tylko na płaskiej ławce; `machTri.move` zakłada wypychanie w dół; NFPT i PureGym różnią się co do kierunku opuszczania w skull crusher;
   REP to dwa artykuły jednej organizacji — w jednym zdaniu liczyć raz.
+
+## Korekta szczebli — przeliczenie koordynatora 02.11.2026
+
+Reguły: `docs/research/szczeble-organizacji-2026-11-02.md` (rozstrzygnięcie, uzupełnienia 2 i 3). Kryterium karty (decyzje 02.11.2026): zdanie gotowe = ≥ 2
+niezależne organizacje szczebla ≤ 4, przeczytane; karta własna = min. 1 zdanie ustawienia + 1 zdanie ruchu; „z błędami” = + min. 1 błąd; bez ruchu albo bez
+ustawienia = otwarta. Kilka stron tej samej organizacji = jedno źródło. Źródło o innym sprzęcie / wersji oburącz liczy się z dopiskiem „wariant” (metoda części 1).
+Reguła „błąd = zaprzeczenie standardu” (uzupełnienie 2): źródło ≤ 4 podające wprost przeciwny standard (ta sama część ciała, to samo kryterium) jest drugim
+źródłem błędu. Szczeble ACE, ISSA, Human Kinetics (Naternicola, Delavier), Hoist — jak w przeliczeniu w `triceps.md`.
+
+### Źródła → szczebel
+
+| Źródło | Szczebel | Dowód / powód |
+|---|---|---|
+| ACE (ace-36, ace-74, ace-185, ace-292) | 4 — jedno źródło | precedens ACE |
+| ISSA (issa-tri-top5) | 4 | wiersz ISSA; data 05.02.2024 |
+| Catalyst Athletics (catalyst-801, -878, -894, -898, -909) | 4 — jedno źródło | szczeble-organizacji, „Rozstrzygnięcia”, wiersz Catalyst Athletics |
+| Human Kinetics — Naternicola | 4 | przeliczenie w `triceps.md` (biogram na stronie książki: master trainer ACE, mgr WF; ©2015) |
+| Human Kinetics — Delavier, Gundill | 3 | rozstrzygnięcie (a) w sekcji „Metoda”; strona bez kwalifikacji i daty (WebFetch 02.11.2026) |
+| NFPT (nfpt-lying, nfpt-seated, nfpt-rope, nfpt-reverse, nfpt-kickback) | **nie liczy się (5)** (było 4) | wiersz NFPT: liczy się artykuł z autorem, datą i kwalifikacjami w biogramie. WebFetch 02.11.2026 (lying, reverse, seated, rope): podpis „by Guest”, „Posted August 11th, 2025”; na stronie biogram R. Bovee („Certified Master PPT, RTS, ETS, FTS”), ale strona nie mówi, że to autor tekstu. Autor nieustalony → nie liczy się (wątpliwość dla koordynatora: jeśli Bovee jest autorem, NFPT = 4). nfpt-kickback nieotwierany ponownie (używany tylko w sekcji 5) |
+| REP Fitness (rep-cable-overhead, rep-cable-best) | **5** (było 4) | brief: sprzedawcy = 5; precedens Mikolo (uzupełnienie 3: blog producenta/sprzedawcy — 5, dokumentacja tylko własnej maszyny). Artykuły blogowe o technice na wyciągu ogólnym, nie dokumentacja maszyny REP |
+| Precor (precor-rsl0208) | **5** (było 4) | strona produktu (opis handlowy, kryterium pkt 3), nie instrukcja; i tak dotyczy tylko maszyny Precor (kryterium pkt 1) |
+| EliteFTS (elitefts-jm) | **5** (było 4) | sklep ze sprzętem do trójboju — brief: sprzedawcy = 5; precedens Mikolo (blog sprzedawcy). Brak osobnego rozstrzygnięcia dla EliteFTS — wątpliwość dla koordynatora (autor D. Tate, data 28.07.2026; analogia IronMind „4 z autorem o sprawdzalnych kwalifikacjach” niesprawdzona) |
+| Hoist (hoist-rs2103) | nie liczy się dla tej karty | inny typ maszyny (część 1, sekcja 5 pkt 4); producent = 4 tylko dla własnej maszyny |
+| PureGym, fitness24seven, Dynamo Fitness | 5 (bez zmian — już nieliczone) | uzupełnienie 2/3, sieci siłowni i sprzedawcy |
+
+### Zdania → stan
+
+| Karta | Zdanie | Źródła ≤ 4 po przeliczeniu | Stan |
+|---|---|---|---|
+| Skullcrusher (sztanga) | `skullBb.setup` | ACE #36 (NFPT nie liczy się) | spada |
+| Skullcrusher (sztanga) | `skull.move`, `skull.upperArm` | ACE #36 + ISSA #2 (leżąc, sztanga dozwolona) | zostaje |
+| Skullcrusher (sztanga) | `ote.elbowsIn`, `llc.control` | ACE #36 (NFPT) | spada |
+| Skullcrusher (sztanga) | `press.noLock` | ISSA (NFPT) | spada |
+| Skullcrusher (hantle) | `skullDb.setup`, `skullDb.move`, `skull.upperArm` | ISSA + ACE #36 (wariant: sztanga) | zostaje |
+| Skullcrusher (hantle) | `ote.elbowsIn` | ACE (NFPT) | spada |
+| Skullcrusher (hantle) | `press.noLock` | ISSA (NFPT) | spada |
+| Machine Triceps Extension | `machTri.setup`, `machTri.move`, `llc.control` | ACE #292 + Naternicola | zostaje (uwaga: Naternicola — trenerka ACE, patrz triceps.md) |
+| Machine Triceps Extension | `machTri.pivot` | Naternicola (Precor = 5) | spada |
+| Machine Triceps Extension | `press.noLock` | Naternicola (Hoist — inny typ maszyny) | spada |
+| Standing Low-Pulley One-Arm | `lpote.setup` | Catalyst #894 (REP = 5) | spada |
+| Standing Low-Pulley One-Arm | `lpote.move` | Catalyst #894 + ACE #74 (wariant: hantel) | zostaje (zdanie gotowe, karta otwarta) |
+| Standing Low-Pulley One-Arm | `ote1.upperArm` | Catalyst #894 + ISSA (wariant: hantel) | zostaje |
+| Standing Low-Pulley One-Arm | `press1.noLock` | ISSA (REP = 5) | spada |
+| Standing Low-Pulley One-Arm, Dumbbell One-Arm, Overhead (EZ), Standing Overhead Barbell, Kettlebell | `mis.archBack` | Naternicola (REP = 5) | spada — kandydat do reguły „błąd = zaprzeczenie standardu” z ACE #74 („bez zmiany pozycji tułowia”, część 1 sekcja 5 pkt 3), ale brzmienia ACE #74 w tej sesji nie czytałem → [OTWARTE] |
+| Dumbbell One-Arm | `ote1.setup` | ISSA + ACE #74 + Naternicola + Catalyst #894 (warianty) | zostaje |
+| Dumbbell One-Arm | `ote1.move`, `press1.noLock` | ISSA + ACE #74 (wariant: oburącz) | zostaje |
+| Dumbbell One-Arm | `ote1.upperArm` | ISSA + Catalyst + ACE | zostaje |
+| Single Arm Triceps Pushdown | `tpd1.setup`, `tpd1.move`, `tpd1.elbow` | ACE #185 + Catalyst #898 | zostaje |
+| Single Arm Triceps Pushdown | `press1.noLock` | ACE #185 (NFPT) | spada |
+| Single Arm Triceps Pushdown | `mis.elbowAway1` | ACE #185 (wprost: „forward movement of your elbows”) + Catalyst #898 („elbow close to the side”) | zostaje — oznaczenie „błąd = zaprzeczenie standardu” (Catalyst) |
+| Single Arm Triceps Pushdown | `mis.torso` | Delavier (3; „avoid any swaying of the torso”, wariant: oburącz) + ACE #185 (tułów nieruchomo, część 1 sekcja 5 pkt 3) | zostaje — oznaczenie „błąd = zaprzeczenie standardu” (ACE) |
+| Single Arm Triceps Pushdown | `mis.jerk` | (NFPT, REP) | spada |
+| Overhead Triceps Extension (EZ) | `ote.setupLoad`, `ote.elbowsIn` | ACE #74 + Naternicola (wariant: hantel; NFPT o gryfie EZ nie liczy się) | zostaje (wariant) |
+| Overhead Triceps Extension (EZ) | `ote.moveLoad`, `ote.upperArm`, `press.noLock` | ACE #74 + ISSA (wariant: hantel) | zostaje (wariant) |
+| Reverse Grip Triceps Pushdown | `rgpd.setup`, `rgpd.move`, `tpd.elbows` | Catalyst #878 (NFPT) | spada |
+| Reverse Grip Triceps Pushdown | `press.noLock` | ACE #185 (nachwyt) (NFPT) | spada |
+| Reverse Grip Triceps Pushdown | `mis.elbowsAway` | ACE #185 (nachwyt) + Catalyst #878 (zaprzeczenie standardu „elbows close to the sides”) — ale karta i tak otwarta | zdanie zostaje, nieużyte |
+| Reverse Grip Triceps Pushdown | `mis.jerk` | (NFPT, REP) | spada |
+| Tate Press | `tate.setup`, `tate.move` | ISSA #5 + Catalyst #909 | zostaje |
+| JM Press | `jm.setup`, `jm.move`, `mis.jmElbows` | Catalyst #801 (EliteFTS = 5) | spada |
+| Standing Overhead Barbell, Kettlebell | (zdania z części 1) | patrz triceps.md | zostają |
+
+### Karty → stan (cała rodzina, części 1 i 2)
+
+| Karta | Stan |
+|---|---|
+| Single Arm Triceps Pushdown | **własna z błędami** (`mis.elbowAway1`, `mis.torso`) |
+| Skullcrusher (hantle) | **własna bez błędów** |
+| Machine Triceps Extension | **własna bez błędów** (kierunek ruchu figury — sekcja 5 pkt 7, bez zmian) |
+| Dumbbell One-Arm Triceps Extension | **własna bez błędów** |
+| Overhead Triceps Extension (EZ) | **własna bez błędów** (wariant: źródła o hantlu) |
+| Tate Press | **własna bez błędów** |
+| Triceps Kickback, Standing Overhead Barbell, Kettlebell Overhead | **własne bez błędów** (blok w triceps.md) |
+| Skullcrusher (sztanga) | otwarta — brak zdania ustawienia (`skullBb.setup` spada); `skull.move`, `skull.upperArm` gotowe |
+| Standing Low-Pulley One-Arm | otwarta — brak zdania ustawienia (`lpote.setup` spada); `lpote.move`, `ote1.upperArm` gotowe |
+| Reverse Grip Triceps Pushdown | otwarta — brak ustawienia i ruchu (NFPT nie liczy się) |
+| JM Press | otwarta — brak ustawienia i ruchu (EliteFTS = 5) |
+| Triceps Kickback (linki) | otwarta — brak zdania ustawienia (triceps.md) |
+| 14 kluczy „otwarte” z sekcji 1 tego pliku | otwarta (bez zmian) |
+
+Razem: 28 kluczy; własne z błędami 1, własne bez błędów 8, otwarte 19.
+
+Nowe zdania (sekcja 3 części 1 i 2) po przeliczeniu — gotowe i użyte w kartach (20): `kick.setup`, `kick.move`, `kick.upperArm`, `skullDb.setup`,
+`skullDb.move`, `ote.setupLoad`, `ote.moveLoad`, `machTri.setup`, `machTri.move`, `ote1.setup`, `ote1.move`, `ote1.upperArm`, `press1.noLock`, `tpd1.setup`,
+`tpd1.move`, `tpd1.elbow`, `tate.setup`, `tate.move`, `mis.elbowAway1`, `mis.torso`. Gotowe, nieużyte (karta otwarta): `lpote.move`, `mis.elbowsAway`.
+Spadają: `skullBb.setup`, `machTri.pivot`, `lpote.setup`, `rgpd.setup`, `rgpd.move`, `jm.setup`, `jm.move`, `mis.archBack`, `mis.jmElbows`.
+
+### Blok do wdrożenia (po przeliczeniu 02.11.2026)
+
+Karty z tego pliku spełniające kryterium; uzupełnia blok w `triceps.md` (rozłączne klucze). Źródła potrzebne do wdrożenia: ace-36/74/185/292, issa-tri-top5,
+catalyst-894/-898/-909, hk-naternicola, hk-delavier (`kind` = `book`). Nie wdrażać źródeł nfpt-*, rep-*, precor-*, elitefts-*, hoist-* (żadne zdanie bloku na nich nie stoi).
+
+```json
+{
+  "Skullcrusher (hantle)": {
+    "setup": [{"c": "skullDb.setup", "s": [["issa-tri-top5", "#2, wersja leżąc"], ["ace-36", "Step 1 (wariant: sztanga)"]]}],
+    "move": [{"c": "skullDb.move", "s": [["issa-tri-top5", "#2, wersja leżąc"], ["ace-36", "Step 2; Step 3 (wariant: sztanga)"]]}],
+    "tips": [
+      {"c": "skull.upperArm", "s": [["ace-36", "Step 2 (wariant: sztanga)"], ["issa-tri-top5", "#2, wersja leżąc"]]}
+    ],
+    "mistakes": []
+  },
+  "Machine Triceps Extension": {
+    "setup": [{"c": "machTri.setup", "s": [["ace-292", "Step 2 (Sitting with a tall back, rest the upper arms on the pad and grasp the handles)"], ["hk-naternicola", "Figure 5.28, przygotowanie, kroki 1–3"]]}],
+    "move": [{"c": "machTri.move", "s": [["ace-292", "Step 3; Step 4 (press the hands downward; slowly return)"], ["hk-naternicola", "Figure 5.28, Movement 1 i 3; Misstep (downward phase)"]]}],
+    "tips": [
+      {"c": "llc.control", "s": [["hk-naternicola", "Figure 5.28, Movement 1 i 3"], ["ace-292", "Step 4 (Slowly return)"]]}
+    ],
+    "mistakes": []
+  },
+  "Dumbbell One-Arm Triceps Extension": {
+    "setup": [{"c": "ote1.setup", "s": [["issa-tri-top5", "#2 (or use one arm at a time)"], ["ace-74", "Step 2 (wariant: oburącz)"], ["hk-naternicola", "Figure 5.27 (elbows pointing upward; wariant: oburącz)"], ["catalyst-894", "Description (one hand overhead; wariant: wyciąg)"]]}],
+    "move": [{"c": "ote1.move", "s": [["issa-tri-top5", "#2 (one arm at a time)"], ["ace-74", "Step 2; Step 3 (wariant: oburącz)"]]}],
+    "tips": [
+      {"c": "ote1.upperArm", "s": [["issa-tri-top5", "#2 (keep your upper arm still)"], ["catalyst-894", "Description (wariant: wyciąg)"], ["ace-74", "Step 3 (wariant: oburącz)"]]},
+      {"c": "press1.noLock", "s": [["issa-tri-top5", "#2 (not lock the elbows)"], ["ace-74", "Step 2 (wariant: oburącz)"]]}
+    ],
+    "mistakes": []
+  },
+  "Single Arm Triceps Pushdown": {
+    "setup": [{"c": "tpd1.setup", "s": [["ace-185", "Step 1; Step 3 (wersja jednorącz)"], ["catalyst-898", "Description (one hand; high cable attachment; elbow close to the side)"]]}],
+    "move": [{"c": "tpd1.move", "s": [["ace-185", "Step 2; Step 3"], ["catalyst-898", "Description (extend the elbow maximally, then return to the top under control)"]]}],
+    "tips": [
+      {"c": "tpd1.elbow", "s": [["ace-185", "Step 1; wskazówka końcowa"], ["catalyst-898", "Description (elbow close to the side)"]]}
+    ],
+    "mistakes": [
+      {"c": "mis.elbowAway1", "s": [["ace-185", "wskazówka końcowa (forward movement of your elbows)"], ["catalyst-898", "Description (elbow close to the side; błąd = zaprzeczenie standardu)"]]},
+      {"c": "mis.torso", "s": [["hk-delavier", "Cable Push-Down (avoid any swaying of the torso; wariant: oburącz)"], ["ace-185", "Step 2 (tułów nieruchomo; błąd = zaprzeczenie standardu)"]]}
+    ]
+  },
+  "Overhead Triceps Extension (EZ)": {
+    "setup": [{"c": "ote.setupLoad", "s": [["ace-74", "Step 2 (wariant: hantel)"], ["hk-naternicola", "Figure 5.27 (wariant: hantel)"]]}],
+    "move": [{"c": "ote.moveLoad", "s": [["ace-74", "Step 2; Step 3 (wariant: hantel)"], ["issa-tri-top5", "#2 (wariant: hantel)"]]}],
+    "tips": [
+      {"c": "ote.upperArm", "s": [["ace-74", "Step 3 (wariant: hantel)"], ["issa-tri-top5", "#2 (wariant: hantel)"]]},
+      {"c": "ote.elbowsIn", "s": [["ace-74", "wskazówka końcowa (wariant: hantel)"], ["hk-naternicola", "Figure 5.27 (wariant: hantel)"]]},
+      {"c": "press.noLock", "s": [["ace-74", "Step 2 (wariant: hantel)"], ["issa-tri-top5", "#2 (wariant: hantel)"]]}
+    ],
+    "mistakes": []
+  },
+  "Tate Press": {
+    "setup": [{"c": "tate.setup", "s": [["issa-tri-top5", "#5 Tate Press (lying on a bench; dumbbells upright as in a bench press)"], ["catalyst-909", "Description (Lie supine on a bench … pressed straight up)"]]}],
+    "move": [{"c": "tate.move", "s": [["issa-tri-top5", "#5 Tate Press (lower toward the chest, elbows pointing outward; press back up)"], ["catalyst-909", "Description (elbows out to the sides … lower the dumbbells to the chest; extend again)"]]}],
+    "tips": [],
+    "mistakes": []
+  }
+}
+```
+
+Uwaga do `mis.torso`: miejsce w ACE #185 („Step 2”) przyjęte za częścią 1 (sekcja 5 pkt 3: „ACE #185 tylko »tułów nieruchomo«”) bez ponownego otwarcia strony — przed wpisem
+do rejestru sprawdzić dokładny krok (recenzja L-047).
