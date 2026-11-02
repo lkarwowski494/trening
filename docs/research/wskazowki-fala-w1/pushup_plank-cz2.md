@@ -4,14 +4,14 @@ Zasady: wyjątek dla wskazówek techniki (2 niezależne źródła szczebla 4, ż
 z 02.11.2026 (strony innych aplikacji treningowych nie są źródłem; zdania zestawu ogólnego tylko, gdy przeczytane źródła potwierdzają je dla wariantu).
 Wszystkie strony przeczytane narzędziem 02.11.2026; miejsce podane przy każdym odwołaniu. Liczb (powtórzenia, czasy, wysokości skrzyń)
 i ostrzeżeń zdrowotnych ze źródeł nie przenoszę.
-Szczeble źródeł poprawione 02.11.2026 wg rozstrzygnięcia koordynatora linii 1.1 — patrz „Korekta szczebli” na końcu. Źródła szczebla 5
-usunięte z list `s` w bloku JSON (nie liczą się do dwóch źródeł).
+Szczeble źródeł poprawione 02.11.2026 wg rozstrzygnięcia koordynatora linii 1.1 — patrz „Korekta szczebli”, „Korekta 2 szczebli” i
+„Korekta szczebli — uzupełnienie 3” na końcu. Źródła szczebla 5 usunięte z list `s` w bloku JSON (nie liczą się do dwóch źródeł).
 
 ## Ćwiczenia
 | Ćwiczenie | Stan (gotowe/otwarte) | Uwagi |
 |---|---|---|
-| Ab Wheel | gotowe | Catalyst + Echelon (instrukcja producenta kółka) + Experience Life; PureGym (szczebel 5) usunięte z bloku |
-| Plank Shoulder Taps | gotowe | Coach + PFP (fit-pro.com); SATS (szczebel 5) usunięte; `ptap.setup` skrócone (bez „dłonie pod barkami” — tylko Coach), `plank.noSag` wycofane |
+| Ab Wheel | częściowe (bez błędu) | po uzupełnieniu 3: Experience Life → 5 (autorka bez podanych kwalifikacji trenerskich); ustawienie i ruch — Catalyst + Echelon; `rollout.range`, `plank.brace`, `rollout.mis.arch` — tylko Catalyst → Otwarte |
+| Plank Shoulder Taps | otwarte | Coach → 5 (uzupełnienie 2), fit-pro.com → 5 (uzupełnienie 3); brak źródła szczebla 4 |
 | Copenhagen Plank | otwarte | po korekcie tylko Catalyst (NFPT bez biogramu z kwalifikacjami → 5; E3 Rehab → 5) |
 | Renegade Row | częściowe (bez błędu) | ACE 355 + BarBend: ustawienie i ruch; błąd i `plank.brace` — po korekcie tylko BarBend (NFPT → 5) |
 | Rollout (sztanga) | gotowe (krótka karta) | ACE 309 (sztanga) + Catalyst (wprost: kółko albo sztanga z obrotowymi tulejami) |
@@ -24,24 +24,16 @@ usunięte z list `s` w bloku JSON (nie liczą się do dwóch źródeł).
 | Plyo Kettlebell Push-Ups | otwarte | tylko bazy ćwiczeń i aplikacje |
 
 ## Blok JSON do data/zrodla/cues.json (sekcja exercises)
+„Ab Wheel” i „Renegade Row” — wpisy częściowe (bez błędu; karty częściowe kwalifikują się wg odpowiedzi koordynatora 1.1 z 02.11.2026).
+Wpis „Plank Shoulder Taps” usunięty (otwarte po uzupełnieniach 2 i 3).
+
 ```json
 {
  "Ab Wheel": {
-  "setup": [{"c": "rollout.wheel.setup", "s": [["catalyst-ab-rollout", "opis (kneel, wheel close to the knees, arms straight)"], ["echelon-ab-wheel", "s. 1, AB ROLL — START"], ["explife-ab-rollout", "kroki 1–2; Common mistakes (Bending the arms)"]]}],
-  "move": [{"c": "rollout.wheel.move", "s": [["echelon-ab-wheel", "s. 1, AB ROLL — FINISH"], ["catalyst-ab-rollout", "opis (roll out, pull back)"], ["explife-ab-rollout", "kroki 3–5"]]}],
-  "tips": [
-   {"c": "rollout.range", "s": [["catalyst-ab-rollout", "opis (as straight and close to the ground as possible while maintaining the brace; avoid hyperextension)"], ["explife-ab-rollout", "krok 5; Common mistakes (Rolling too far)"]]},
-   {"c": "plank.brace", "s": [["catalyst-ab-rollout", "opis (brace the abs hard)"], ["explife-ab-rollout", "Common mistakes (brace your core)"]]}
-  ],
-  "mistakes": [{"c": "rollout.mis.arch", "s": [["catalyst-ab-rollout", "opis (avoid hyperextension of the lower back)"], ["explife-ab-rollout", "Common mistakes (Arching the back)"]]}]
- },
- "Plank Shoulder Taps": {
-  "setup": [{"c": "ptap.setup", "s": [["coach-plank-shoulder-tap", "How to (starting position)"], ["pfp-tall-plank-shoulder-taps", "Setup (tall plank)"]]}],
-  "move": [{"c": "ptap.move", "s": [["coach-plank-shoulder-tap", "How to"], ["pfp-tall-plank-shoulder-taps", "Execution"]]}],
-  "tips": [
-   {"c": "plank.brace", "s": [["pfp-tall-plank-shoulder-taps", "Execution (brace your core)"], ["coach-plank-shoulder-tap", "How to (engage your core and glutes)"]]}
-  ],
-  "mistakes": [{"c": "ptap.mis.rock", "s": [["coach-plank-shoulder-tap", "How to; mistakes (hips rocking side to side)"], ["pfp-tall-plank-shoulder-taps", "Coaching points; common mistakes (rotation of the pelvis or rib cage)"]]}]
+  "setup": [{"c": "rollout.wheel.setup", "s": [["catalyst-ab-rollout", "opis (kneel, wheel close to the knees, arms straight)"], ["echelon-ab-wheel", "s. 1, AB ROLL — START"]]}],
+  "move": [{"c": "rollout.wheel.move", "s": [["echelon-ab-wheel", "s. 1, AB ROLL — FINISH"], ["catalyst-ab-rollout", "opis (roll out, pull back)"]]}],
+  "tips": [],
+  "mistakes": []
  },
  "Renegade Row": {
   "setup": [{"c": "renegade.setup", "s": [["ace-355", "Preparation; Step 1"], ["barbend-renegade-row", "Step 1 — Set Your Base (feet wider than shoulder-width)"]]}],
@@ -63,7 +55,7 @@ usunięte z list `s` w bloku JSON (nie liczą się do dwóch źródeł).
 
 ## Nowe zdania (id | PL | EN)
 Uwaga: identyfikatory `wheel.*` zaproponowane w docs/33 nie trafiły do `lib/cues/text/pl.json`; proponuję nazwy `rollout.*`, bo zdania zakresu i błędu dotyczą też sztangi.
-Zdania oznaczone „(nieużyte)” po korekcie z 02.11.2026 nie występują w bloku JSON — propozycje do czasu znalezienia drugiego źródła szczebla 4.
+Zdania oznaczone „(nieużyte)” nie występują w bloku JSON — propozycje do czasu znalezienia drugiego źródła szczebla 4.
 
 | id | PL | EN |
 |---|---|---|
@@ -73,9 +65,9 @@ Zdania oznaczone „(nieużyte)” po korekcie z 02.11.2026 nie występują w bl
 | rollout.bar.move | Wytocz sztangę do przodu, opuszczając tułów ku podłodze, i przyciągnij ją z powrotem. | Roll the bar forward, lowering your torso toward the floor, then pull it back in. |
 | rollout.range | Wytaczaj tylko tak daleko, jak dasz radę bez wyginania lędźwi. | Roll out only as far as you can without arching your lower back. |
 | rollout.mis.arch | Wygięte w łuk lędźwie przy wytaczaniu. | Lower back arching as you roll out. |
-| ptap.setup | Wejdź w podpór na prostych rękach. (skrócone 02.11.2026 — „dłonie pod barkami” tylko Coach) | Get into a plank on straight arms. |
-| ptap.move | Unieś jedną dłoń, dotknij nią przeciwnego barku i odstaw; zmieniaj ręce. | Lift one hand, tap the opposite shoulder and put it back; alternate hands. |
-| ptap.mis.rock | Kołysanie biodrami na boki przy każdym dotknięciu. | Hips rocking side to side with each tap. |
+| ptap.setup (nieużyte) | Wejdź w podpór na prostych rękach. | Get into a plank on straight arms. |
+| ptap.move (nieużyte) | Unieś jedną dłoń, dotknij nią przeciwnego barku i odstaw; zmieniaj ręce. | Lift one hand, tap the opposite shoulder and put it back; alternate hands. |
+| ptap.mis.rock (nieużyte) | Kołysanie biodrami na boki przy każdym dotknięciu. | Hips rocking side to side with each tap. |
 | cph.setup (nieużyte) | Połóż się na boku, przedramię na podłodze; górną stopę oprzyj na ławce, dolna noga pod ławką. | Lie on your side, forearm on the floor; rest your top foot on the bench, bottom leg under it. |
 | cph.move (nieużyte) | Unieś biodra, aż ciało utworzy prostą linię, a dolną nogę oderwij od podłogi; wytrzymaj. | Lift your hips until your body forms a straight line, bottom leg off the floor; hold. |
 | cph.mis.line (nieużyte) | Biodra opadają albo uciekają za wysoko — ciało wychodzi z linii. | Hips sagging or hiking too high — the body loses its straight line. |
@@ -84,7 +76,7 @@ Zdania oznaczone „(nieużyte)” po korekcie z 02.11.2026 nie występują w bl
 | renegade.mis.twist (nieużyte) | Skręcanie bioder i tułowia, żeby dźwignąć hantel. | Twisting the hips and torso to heave the dumbbell up. |
 | plyo.move (nieużyte) | Zejdź w dół jak w pompce i wypchnij się mocno, aż dłonie oderwą się od podłogi. | Lower as in a push-up, then push up hard enough for your hands to leave the floor. |
 
-Zdania istniejące użyte: `plank.brace` (tylko w kontekstach potwierdzonych wyżej). Po korekcie nieużyte: `plank.noSag`, `plank.mis.sag`, `push.setup`.
+Zdania istniejące użyte: `plank.brace` (tylko Rollout (sztanga)). Nieużyte: `plank.noSag`, `plank.mis.sag`, `push.setup`.
 
 ## Nowe źródła (id | adres | organizacja | szczebel | data odczytu)
 | id | adres | organizacja | szczebel | data odczytu |
@@ -97,10 +89,10 @@ Zdania istniejące użyte: `plank.brace` (tylko w kontekstach potwierdzonych wy�
 | catalyst-ab-rollout | https://catalystathletics.com/exercise/135/Ab-Rollout | Catalyst Athletics — biblioteka ćwiczeń | 4 | 02.11.2026 |
 | catalyst-copenhagen-plank | https://catalystathletics.com/exercise/565/Copenhagen-Plank | Catalyst Athletics | 4 | 02.11.2026 |
 | echelon-ab-wheel | https://cdn.shopify.com/s/files/1/2422/9487/files/ECHELON-AB-WHEEL-EXERCISE-GUIDE.pdf | Echelon Fitness — instrukcja ćwiczeń do własnego kółka (producent, PDF 2021, s. 1) | 4 | 02.11.2026 |
-| explife-ab-rollout | https://experiencelife.lifetime.life/?p=31209 | Experience Life (magazyn z redakcją, wydawca Life Time; M. Fazeli Fard, starsza redaktorka i trenerka; 05.11.2019) | 4 | 02.11.2026 |
+| explife-ab-rollout | https://experiencelife.lifetime.life/?p=31209 | Experience Life (wydawca Life Time; M. Fazeli Fard — w biogramie „senior editor and Alpha Strong coach at Life Time”, bez nazwanych kwalifikacji/certyfikatów trenerskich; 05.11.2019) | 5 (uzupełnienie 3) | 02.11.2026 |
 | puregym-ab-wheel | https://www.puregym.com/exercises/abs/ab-wheel-rollouts/ | PureGym — biblioteka ćwiczeń sieci klubów, bez autora | 5 | 02.11.2026 |
-| coach-plank-shoulder-tap | https://www.coachweb.com/core-exercises/8846/plank-shoulder-tap | Coach (magazyn z redakcją; N. Harris-Fry, 18.02.2021) | 4 | 02.11.2026 |
-| pfp-tall-plank-shoulder-taps | https://fit-pro.com/article-4275-Tall-plank-shoulder-taps.html | Personal Fitness Professional (fit-pro.com, magazyn branżowy trenerów; B. Schiff, fizjoterapeuta; 01.12.2017) | 4 | 02.11.2026 |
+| coach-plank-shoulder-tap | https://www.coachweb.com/core-exercises/8846/plank-shoulder-tap | Coach (magazyn; N. Harris-Fry, dziennikarz, 18.02.2021) | 5 (uzupełnienie 2) | 02.11.2026 |
+| pfp-tall-plank-shoulder-taps | https://fit-pro.com/article-4275-Tall-plank-shoulder-taps.html | Personal Fitness Professional (fit-pro.com; B. Schiff, fizjoterapeuta; 01.12.2017) | 5 (uzupełnienie 3: fit-pro.com = 5) | 02.11.2026 |
 | sats-plank-shoulder-tap | https://www.sats.dk/ovelser/plank-with-shoulder-tap | SATS — biblioteka ćwiczeń sieci klubów | 5 | 02.11.2026 |
 | e3rehab-copenhagen-plank | https://e3rehab.com/how-to-perform-copenhagen-planks/ | E3 Rehab (autor „Marc” bez kwalifikacji, 12.05.2024; strona sprzedaje programy) | 5 | 02.11.2026 |
 | nasm-plyometric-push-up | https://www.nasm.org/resource-center/exercise-library/plyometric-push-up | NASM | 4 | 02.11.2026 |
@@ -115,7 +107,7 @@ Istniejące źródło użyte pomocniczo: `nasm-best-abs` (sekcja Renegade Row: b
 3. **Copenhagen Plank — „łokieć pod barkiem”, „zmień stronę”, oparcie górnej nogi:** pierwsze tylko w wynikach wyszukiwarki ze stron aplikacji; NFPT pisze o przedramieniu, Catalyst nie opisuje ręki. Zmiana strony — żadne z trzech źródeł wprost. Oparcie: NFPT, E3 — stopa; Catalyst — „noga” bez wskazania. Wariant z kolanem na ławce to inne ćwiczenie (łatwiejsze).
 4. **Renegade Row — `plank.brace`, `renegade.mis.twist` (wycofane z bloku 02.11.2026):** po korekcie tylko BarBend (Step 1 „brace your core”; Common Mistakes — Twisting Your Body); NFPT → szczebel 5. Do `renegade.mis.twist` NASM Best Abs (szczebel 4, sekcja Renegade Row: biodra ustawione równo) był użyty tylko pomocniczo — recenzent może uznać go za drugie źródło (zdanie w formie wskazówki, nie błędu); bez tej decyzji błąd zostaje otwarty.
 5. **Renegade Row — pompka między wiosłowaniami:** tylko ACE 355 (NASM Best Abs wymienia ją jako progresję). Jeśli animacja pokazuje pompkę, potrzebny drugi opis wersji z pompką. „Łokieć blisko tułowia” — tylko ACE 355 (strona innej aplikacji się nie liczy).
-6. **Plank Shoulder Taps — `plank.noSag` (wycofane z bloku 02.11.2026), „dłonie pod barkami”:** biodra bez opadania/unoszenia — Coach (How to) + SATS (szczebel 5); „dłonie pod barkami” — Coach + SATS (PFP mówi tylko „tall plank”). Dlatego `ptap.setup` skrócone do „Wejdź w podpór na prostych rękach.” (Coach + PFP).
+6. **Plank Shoulder Taps — cała karta (`ptap.setup`, `ptap.move`, `ptap.mis.rock`, `plank.brace`, `plank.noSag`):** po uzupełnieniach 2 i 3 brak źródła szczebla 4 (Coach → 5, PFP/fit-pro.com → 5, SATS → 5). Miejsca: Coach „How to; mistakes”, PFP „Setup; Execution; Coaching points”.
 7. **Rollout (sztanga) — chwyt na szerokość barków, ręce proste:** szerokość chwytu tylko ACE 309; ręce proste tylko Catalyst — poza kartą.
 8. **Plyo Push-Up — `push.setup`, `plyo.move`, `plank.brace`, `plank.mis.sag` (wycofane z bloku 02.11.2026):** po korekcie tylko NASM (Setup; Step 2–3; Common Mistakes „hips drop”); REP Fitness → szczebel 5 (blog producenta o ćwiczeniu bez jego sprzętu).
 9. **Plyo Push-Up — lądowanie na ugiętych łokciach:** NASM (Step 3; Common Mistakes) wprost; drugiego źródła szczebla 4 nie przeczytałem (strony z tym zdaniem w wynikach to aplikacje albo dawały 403). Badanie Moore 2012 (Protocol) każe „złapać się” na ugiętych łokciach, ale w wariancie lądowania na skrzyniach. Kandydat do uzupełnienia — szukać drugiego opisu.
@@ -123,6 +115,7 @@ Istniejące źródło użyte pomocniczo: `nasm-best-abs` (sekcja Renegade Row: b
 11. **Standing Barbell Rollout, Barbell Rollout from Bench, Suspended Fallout:** Catalyst wspomina wersję stojącą tylko jako opcję („kneel or stand”), bez opisu; wersji z ławki i fallout na taśmach — brak źródła szczebla 4 (strony producenta taśm nie znalazłem w wynikach). Analogia do rolloutu z klęku byłaby „uproszczeniem” — nie wpisuję.
 12. **Echelon** — producent sprzętu z własną aplikacją; użyta wyłącznie instrukcja papierowa do własnego kółka (dokumentacja producenta dla własnego rodzaju sprzętu, nie dokumentacja aplikacji).
 13. **Twierdzenia zdrowotne i liczby ze źródeł** (ostrzeżenia o lędźwiach, kontuzje barku, liczby serii/sekund, wysokości skrzyń, tempo 2-1-2) — nie przenoszę.
+14. **Ab Wheel — `rollout.range`, `plank.brace`, `rollout.mis.arch` (wycofane z bloku w uzupełnieniu 3):** tylko Catalyst (opis: „as straight and close to the ground as possible while maintaining the brace”; „brace the abs hard”; „avoid hyperextension of the lower back”); Experience Life (krok 5; Common mistakes) → 5. Echelon (s. 1) nie podaje zakresu ani błędów. Uwaga: dla Rollout (sztanga) te same zdania mają ACE 309 + Catalyst — przeniesienie ACE 309 (sztanga) na kółko byłoby analogią. Jeśli koordynator uzna „Alpha Strong coach at Life Time” za kwalifikację trenerską, Experience Life wraca do 4 i Ab Wheel do „gotowe”.
 
 ## Korekta szczebli (02.11.2026)
 
@@ -135,17 +128,17 @@ sprawdzone przez WebFetch 02.11.2026 (NFPT ×2, E3 Rehab, Experience Life); bez 
 - puregym-ab-wheel: „otwarty” → 5 (rozstrzygnięcie: sieci siłowni).
 - sats-plank-shoulder-tap: „otwarty” → 5 (sieć klubów, bez autora).
 - e3rehab-copenhagen-plank (E3 Rehab): 4 (propozycja) → 5 — autor bez kwalifikacji, strona sprzedaje programy.
-- explife-ab-rollout (Experience Life): 4 (propozycja) → 4 — magazyn z redakcją, autorka (starsza redaktorka, trenerka) i data; artykuł bez promocji produktów (tylko odnośniki wydawcy).
+- explife-ab-rollout (Experience Life): 4 (propozycja) → 4 — magazyn z redakcją, autorka (starsza redaktorka, trenerka) i data; artykuł bez promocji produktów (tylko odnośniki wydawcy). (Zmienione w uzupełnieniu 3 — niżej.)
 - repfitness-plyometric (REP Fitness): 4 → 5 — producent liczy się tylko dla własnego rodzaju sprzętu; pompka bez sprzętu.
 - catalyst-ab-rollout, catalyst-copenhagen-plank: 4 → 4 (rozstrzygnięcie).
 - barbend-renegade-row: 4 → 4 (artykuł o technice).
 - echelon-ab-wheel: 4 → 4 (instrukcja do własnego kółka).
-- coach-plank-shoulder-tap, pfp-tall-plank-shoulder-taps: 4 → 4 (magazyny z redakcją, autor i data).
+- coach-plank-shoulder-tap, pfp-tall-plank-shoulder-taps: 4 → 4 (magazyny z redakcją, autor i data). (Zmienione w uzupełnieniach 2 i 3.)
 - ace-309, ace-355, nasm-plyometric-push-up: 4 → 4. moore-2012: 3 → 3.
 
 Ćwiczenia:
-- Ab Wheel: gotowe → gotowe (usunięte odwołania do PureGym).
-- Plank Shoulder Taps: gotowe → gotowe (usunięte SATS; `ptap.setup` skrócone; `plank.noSag` wycofane).
+- Ab Wheel: gotowe → gotowe (usunięte odwołania do PureGym). (Zmienione w uzupełnieniu 3.)
+- Plank Shoulder Taps: gotowe → gotowe (usunięte SATS; `ptap.setup` skrócone; `plank.noSag` wycofane). (Zmienione w uzupełnieniu 2.)
 - Copenhagen Plank: gotowe → otwarte.
 - Renegade Row: gotowe → częściowe (bez błędu; `plank.brace` i `renegade.mis.twist` wycofane).
 - Rollout (sztanga): gotowe → gotowe.
@@ -154,5 +147,20 @@ sprawdzone przez WebFetch 02.11.2026 (NFPT ×2, E3 Rehab, Experience Life); bez 
 
 ## Korekta 2 szczebli (koordynator grupy, 02.11.2026, uzupełnienie 2 rozstrzygnięcia koordynatora linii 1.1)
 - Coach (magazyn) — warunkowo 4 tylko z autorem z kwalifikacjami. `coach-plank-shoulder-tap`: autor N. Harris-Fry, opisany jako dziennikarz od 2015, bez certyfikatów; technika bez przypisanego eksperta (WebFetch 02.11.2026) → **5**.
-- Skutek: **Plank Shoulder Taps: gotowe → otwarte** (zostaje tylko PFP fit-pro.com); wpis w bloku JSON wyżej NIEWAŻNY.
+- Skutek: **Plank Shoulder Taps: gotowe → otwarte** (zostaje tylko PFP fit-pro.com); wpis w bloku JSON usunięty w uzupełnieniu 3.
 - The Prehab Guys — warunkowo 4 (artykuł z autorem z kwalifikacjami); użyte strony bez autora → 5 bez zmian.
+
+## Korekta szczebli — uzupełnienie 3 (02.11.2026)
+
+Podstawa: „Uzupełnienie 3 szczebli” koordynatora linii 1.1 (Experience Life: 4 tylko z autorem z kwalifikacjami trenerskimi; fit-pro.com: 5).
+Experience Life sprawdzone WebFetch 02.11.2026: podpis „By Maggie Fazeli Fard | Experience Life”, 05.11.2019; biogram: „senior editor and
+Alpha Strong coach at Life Time” — rola trenerska w sieci klubów, ale bez nazwanych kwalifikacji ani certyfikatu → potraktowane jako brak kwalifikacji.
+
+Źródła:
+- explife-ab-rollout: 4 → 5.
+- pfp-tall-plank-shoulder-taps (fit-pro.com): 4 → 5.
+
+Ćwiczenia:
+- Ab Wheel: gotowe → częściowe (ustawienie + ruch: Catalyst + Echelon; `rollout.range`, `plank.brace`, `rollout.mis.arch` → Otwarte 14).
+- Plank Shoulder Taps: otwarte → otwarte (0 źródeł szczebla 4); nieważny wpis usunięty z bloku JSON.
+- Rollout (sztanga), Renegade Row: bez zmian (gotowe / częściowe; ACE, Catalyst, BarBend nieobjęte uzupełnieniem 3).

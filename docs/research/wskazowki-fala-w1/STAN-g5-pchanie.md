@@ -9,20 +9,20 @@ korektę wg tego rozstrzygnięcia (sekcje „Korekta szczebli (02.11.2026)”; o
 ## Punkt wyjścia (zrzut z `assignAll()`, `LIB`, `cue-sets.json`, `data/zrodla/cues.json`, `muscleRoleRows`)
 117 ćwiczeń w 7 rodzinach; bez własnych wskazówek: 94; z luką roli mięśnia: 27 ćwiczeń (20 par rodzina–wzorzec–mięsień).
 
-## Wynik — wskazówki (stan PO korekcie szczebli)
+## Wynik — wskazówki (stan PO korektach szczebli: rozstrzygnięcie + uzupełnienia 2 i 3)
 „gotowe” = min. 1 ustawienie + 1 ruch + 1 błąd, każde zdanie ≥ 2 niezależne źródła szczebla 4; „częściowe” = ustawienie i ruch bez błędu
 (w JSON tylko z dopiskiem — decyzja przy scalaniu, czy karty częściowe idą do aplikacji); reszta „otwarte” z powodem w plikach.
 
 | Rodzina | Bez wskazówek | Gotowe | Częściowe | Otwarte | Pliki |
 |---|---|---|---|---|---|
-| bench_press | 25 | 6 (Decline BP, Smith Bench, Smith Incline, JM Press, Bench Press with Chains, One Arm DB Bench) + Squeeze Press warunkowo | 0 | 18–19 | bench_press-cz1.md, -cz1b.md, -cz2.md |
-| pushup_plank | 23 | 2 (Ab Wheel, Rollout (sztanga)) | 1 (Renegade Row) | 20 | pushup_plank-cz1.md, -cz2.md |
-| overhead_press | 18 | 5 (Arnold, Seated Barbell Military, Kettlebell Press, Band Shoulder Press, Standing Barbell Press Behind Neck) | 1 (Landmine Press) | 12 | overhead_press-cz1.md, -cz1b.md, -cz2.md |
-| chest_fly | 18 | 1 (Pec Deck) | 3 (Cable Fly low→high, Band Chest Fly, Pullover (hantel)) | 14 | chest_fly-cz1.md, -cz2.md |
-| dip | 4 | 0 | 1 (Dip Machine) | 3 | dip.md |
+| bench_press | 25 | 5 (Decline BP, Smith Bench, JM Press, Bench Press with Chains, One Arm DB Bench) | 0 | 20 | bench_press-cz1.md, -cz1b.md, -cz2.md |
+| pushup_plank | 23 | 1 (Rollout (sztanga)) | 2 (Ab Wheel, Renegade Row) | 20 | pushup_plank-cz1.md, -cz2.md |
+| overhead_press | 18 | 4 (Arnold, Seated Barbell Military, Kettlebell Press, Band Shoulder Press) | 1 (Landmine Press) | 13 | overhead_press-cz1.md (blok NIEWAŻNY), -cz1b.md, -cz2.md |
+| chest_fly | 18 | 0 | 3 (Cable Fly low→high, Band Chest Fly, Pullover (hantel)) | 15 | chest_fly-cz1.md, -cz2.md |
+| dip | 4 | 0 | 0 | 4 | dip.md |
 | chest_press_machine | 3 | 0 | 0 | 3 | chest_press_machine.md |
-| cable_press | 3 | 0 | 1 (Single Arm Cable Chest Press) | 2 | cable_press.md |
-| **Razem** | **94** | **14 (+1 warunkowo)** | **7** | **72–73** | |
+| cable_press | 3 | 0 | 0 | 3 | cable_press.md |
+| **Razem** | **94** | **10** | **6** | **78** | |
 
 Uwaga bench_press: Squeeze Press (hantle) —
 warunkowe (Mikolo bez autora/daty, korekta A ocenia, że Mikolo nie produkuje hantli → najpewniej otwarte). Liczby w kolumnie „Gotowe” do
@@ -31,7 +31,14 @@ przeliczenia przez koordynatora przy scalaniu z bloków JSON (źródło prawdy: 
 Nowe zdania: zaproponowane łącznie ok. 130 (PL + EN) — po korekcie część przeszła do „Otwarte” jako kandydaci; zdania w blokach JSON = te do wdrożenia.
 Przy scalaniu policz z bloków JSON (`node -e` po plikach) — liczba w raportach agentów sprzed korekty jest zawyżona.
 
-**Pułapka przy scalaniu (bloki JSON):** `overhead_press-cz1.md` ma blok sprzed korekty — wpisy „Single Arm Overhead Press (hantel)” i
+**Uzupełnienie 3 (02.11.2026) zastosowane** — sekcje „Korekta szczebli — uzupełnienie 3” w 10 plikach. Zmiany stanu: Pec Deck, Smith Incline,
+Standing Barbell Press Behind Neck, Squeeze Press: gotowe → otwarte; Dip Machine, Single Arm Cable Chest Press: częściowe → otwarte; Ab Wheel: gotowe → częściowe.
+Life Fitness: kopia (Pro Series Owner's Manual M051-00416-A000, 03.2001) niepotwierdzona u producenta (support.lifefitness.com 403) → nie źródło.
+Graniczne: Experience Life (autorka — trenerka sieci klubów bez certyfikatu; jeśli uznana → Ab Wheel gotowe); Fitness Volt (P. Dale — data tylko w metadanych);
+Arnold `ohp.elbowsUnder` (ISSA + Fitness Volt) — nie dopisane; Decline Bench Press (hantle) i Floor Press (sztanga) — kandydaci na „częściowe” (analogia / spór o nogi).
+`chest_fly-cz2.md`: Machine Pullover ma teraz 0 źródeł (opis w pliku nieaktualny; stan otwarte bez zmian).
+
+**Pułapka przy scalaniu (bloki JSON):** z bloku `overhead_press-cz1.md` NIE brać niczego (Standing BTN po uzupełnieniu 3 też otwarte). `overhead_press-cz1.md` ma blok sprzed korekty — wpisy „Single Arm Overhead Press (hantel)” i
 „Push Press - Behind the Neck” są NIEWAŻNE (po korekcie otwarte, zob. `overhead_press-cz1b.md`); Arnold, Seated Barbell, Kettlebell, Band — brać z cz1b
 (nadpisuje cz1); „Standing Barbell Press Behind Neck” — z cz1. `bench_press-cz1b.md`: „Squeeze Press (hantle)” warunkowe (pytanie 4, Mikolo).
 Wpisy częściowe (z dopiskiem): Single Arm Cable Chest Press, Cable Fly (low to high), Band Chest Fly, Pullover (hantel), Dip Machine, Landmine Press, Renegade Row.
