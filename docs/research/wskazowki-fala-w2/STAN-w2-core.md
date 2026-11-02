@@ -66,4 +66,6 @@ Weighted Ball Side Bend, Cable Judo Flip, Bosu Ball Cable Crunch With Side Bends
 
 - Pełne `npm run verify` bazy (`integracja-1-1` @ 2dc54e2, czysta kopia, 4 rdzenie): **zielone**, wyjście 0; Jest 659/660 plików w pierwszym przebiegu,
   `tests/maestro-flows.test.tsx` przerwany SIGTERM i ponowiony przez `jest-ponow` osobno — 49/49; znacznik pełnego verify zapisany (drzewo 8063b655e26c).
-- `verify:docs` w worktree i wypchnięcie bez `--no-verify` — wynik i SHA w raporcie końcowym sesji.
+- `npm run verify:docs` (H1 — względem commitu z pełnym verify 2dc54e2): zielone, 104/104 testów; pierwsze uruchomienie z jawnym ref `origin/integracja-1-1` — 1 test czerwony z limitu czasu, 4 pliki osobno (`--runInBand`) zielone, powtórka zielona. Znacznik `dokumenty` zapisany.
+- Wypchnięcie bez `--no-verify`: c4950a3 (wszystkie badania + STAN). Ten wpis — commit następny po c4950a3 na `badania/w2-core`.
+- Pułapka: kontener ma płytki klon — `verify:docs` z domyślnym ref pada na `git merge-base origin/main` (brak wspólnego przodka); przed nim `git fetch --deepen=2000 origin main integracja-1-1`. Z jawnym ref znacznik dla haka nie powstaje (`scripts/verify-docs.mjs:103`).
