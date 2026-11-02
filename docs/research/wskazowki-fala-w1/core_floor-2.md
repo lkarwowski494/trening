@@ -1,91 +1,33 @@
 # Wskazówki techniki — fala W1, core_floor część 2 (02.11.2026)
 
-Autor: badacz merytoryczny (agent). Status: PROPOZYCJA — nic nie jest w `lib/` ani w `data/zrodla/`. Zakres: 14 kluczy katalogu (brief koordynatora 02.11.2026).
+Autor: badacz merytoryczny (agent; sesja 1 i sesja 2 tego samego dnia). Status: PROPOZYCJA — nic nie jest w `lib/` ani w `data/zrodla/`. Zakres: 14 kluczy katalogu (brief koordynatora 02.11.2026).
 Metoda: `docs/research/33-wskazowki-partia2.md` („Metoda”), wyjątek dla wskazówek techniki z CLAUDE.md (2 zgodne źródła szczebla 4 z różnych organizacji, przeczytane przez WebFetch 02.11.2026).
-ExRx (403) i web.archive.org (zablokowane) — nieużywane. Strony aplikacji treningowych nie są źródłem (uzupełnienie briefu 02.11.2026) — wyniki wyszukiwania z takich stron pominięte i nigdzie nie zapisane.
+**Kryteria szczebla 4 — rozstrzygnięcie koordynatora linii 1.1 (02.11.2026), zastosowane w sesji 2 także do wyników sesji 1:** naraz (a) organizacja szkoląca/certyfikująca trenerów, serwis z redakcją i recenzją ekspercką albo producent własnego rodzaju sprzętu; (b) autor z datą albo treść jawnie firmowana przez organizację; (c) nie recenzja afiliacyjna ani marketing. Ocena każdego źródła — pkt 4.
+ExRx (403) i web.archive.org (zablokowane) — nieużywane. Strony aplikacji treningowych nie są źródłem — wyniki z takich stron pominięte i nigdzie nie zapisane.
 
 ## 1. Tabela
 
 | Klucz | Stan | Zdań | Uwagi |
 |---|---|---|---|
-| Stability Ball Knee Tuck | gotowe | 2 | ACE #60 + klinika (VHI) + rysunek HKU; zestaw ogólny (`plank.brace`, `plank.mis.sag`) niepotwierdzony — pkt 5 |
-| Crunch - Legs On Exercise Ball | gotowe | 4 | klinika (VHI) + książka poradnikowa (Wiley); zestaw ogólny częściowo niepotwierdzony — pkt 5 |
-| Cable Seated Crunch | gotowe (warianty) | 2 | istniejące `cc.ribs`, `cc.slow`; źródła to warianty: stojąc z linką (ACE #331), siedząc na maszynie (Bowflex, ACE #291); `mis.jerk` niepotwierdzony |
-| Decline Reverse Crunch | gotowe (wariant) | 2 | istniejące `rcrunch.move`, `rcrunch.hips`; źródła opisują wersję na podłodze, NASM wymienia „decline reverse crunch” jako progresję tego ćwiczenia; `mis.jerk` niepotwierdzony |
+| Decline Reverse Crunch | gotowe (wariant) | 2 | istniejące `rcrunch.move`, `rcrunch.hips`; ACE #76 + NASM (oba szczebel 4); źródła opisują wersję na podłodze, NASM wymienia „decline reverse crunch” jako progresję; `mis.jerk` niepotwierdzony |
 | Cable Reverse Crunch | gotowe (wariant) — do oceny audytora | 2 | jak wyżej; źródła bez linki (wariant: bez obciążenia); żadne przeczytane źródło nie opisuje wersji z linką |
-| Cross-Body Crunch | otwarte | 0 | brak 2 przeczytanych źródeł szczebla 4 |
-| Alternate Heel Touchers | otwarte | 0 | jw.; uczelniane PDF niedostępne (404/503) |
+| Stability Ball Knee Tuck | otwarte (kandydaci) | 0 | po rozstrzygnięciu 02.11: ACE #60 = 4, karta VHI = 5 (bez autora i daty) → każde zdanie ma 1 źródło szczebla 4; było „gotowe” w sesji 1 |
+| Crunch - Legs On Exercise Ball | otwarte (kandydaci) | 0 | po rozstrzygnięciu: karta VHI = 5, „Exercise Balls For Dummies” = 5 → 0 źródeł szczebla 4; było „gotowe” w sesji 1 |
+| Cable Seated Crunch | otwarte (kandydaci) | 0 | po rozstrzygnięciu: Bowflex liczy się tylko dla własnego sprzętu (maszyna z oporem prętów), nie dla wyciągu; ACE #331 i #291 to jedna organizacja → 1 źródło; było „gotowe (warianty)” |
+| Frog Sit-Ups | otwarte (kandydaci) | 0 | sesja 2: Coach (Future plc) = 5 (bez recenzji eksperckiej, linki afiliacyjne), PureGym = 5 (rozstrzygnięcie) |
+| Janda Sit-Up | otwarte (kandydaci) | 0 | sesja 2: Breaking Muscle = 5 (rozstrzygnięcie), strona prywatna C. Bassa = 5; twierdzenia o zginaczach bioder i kręgosłupie → otwarte |
+| Alternate Heel Touchers | otwarte (kandydat) | 0 | sesja 2: BarBend (artykuł o technice = 4) — jedno źródło; Cal Poly Pomona 404, JMU 503 |
+| Butt-Ups | otwarte | 0 | sesja 2: tylko aplikacje, serwisy komercyjne i platforma fizjoterapeutyczna |
+| Cross-Body Crunch | otwarte | 0 | sesja 2: ponowna próba bez wyniku (JMU 503, podręcznik UQ 403) |
 | Crunch - Hands Overhead | otwarte | 0 | brak źródła szczebla 4 |
-| Decline Oblique Crunch | otwarte | 0 | brak źródła szczebla 4 |
+| Decline Oblique Crunch | otwarte | 0 | sesja 2: wyszukiwanie ISSA/NASM/BarBend bez wyniku |
 | Kneeling Cable Crunch With Alternating Oblique Twists | otwarte | 0 | brak źródła ze skrętem; źródła bez skrętu = analogia |
-| Leg Pull-In | otwarte | 0 | brak źródła szczebla 4; zestaw ogólny podejrzany |
-| Frog Sit-Ups | otwarte | 0 | nie badane w tej sesji (limit kontekstu); wcześniej (docs/research/25-biblioteka/L6-zrodla.md) „brak źródła” |
-| Janda Sit-Up | otwarte | 0 | jw. |
-| Butt-Ups | otwarte | 0 | jw.; `data/zrodla/figury-sens.json`: opis tylko w serwisach komercyjnych |
+| Leg Pull-In | otwarte | 0 | sesja 2: tylko aplikacje i serwisy komercyjne; zestaw ogólny podejrzany |
 
 ## 2. Blok do `exercises` (tylko gotowe)
 
 ```json
 {
- "Stability Ball Knee Tuck": {
-  "setup": [
-   {"c": "core_floor.ballTuck.setup", "s": [
-    ["ace-60", "Step 2 („Walk your hands forward… until your thighs or knees rest on the ball”)"],
-    ["vhi-hattiesburg-prone-knee-tuck", "instrukcja, zdanie 1 („walk forward on ball until it rests under shins”)"],
-    ["hku-hlthfit-ball", "s. 1, rysunki „SB Jackknife (knees start on ball)” / „(ankles start on ball)” — tylko rysunek, źródło pomocnicze"]
-   ]}
-  ],
-  "move": [
-   {"c": "core_floor.ballTuck.move", "s": [
-    ["ace-60", "Step 3 („slowly pull your knees towards your chest, rolling the ball forward”)"],
-    ["vhi-hattiesburg-prone-knee-tuck", "instrukcja, zdanie 2 („Roll ball toward hands by bringing knees toward chest”)"]
-   ]}
-  ],
-  "tips": [],
-  "mistakes": []
- },
- "Crunch - Legs On Exercise Ball": {
-  "setup": [
-   {"c": "core_floor.legsBall.setup", "s": [
-    ["vhi-hattiesburg-ball-basic-crunch", "instrukcja, zdanie 1 („Lie supine with legs on top of ball, hands at head.”)"],
-    ["dummies-exercise-balls-crunch", "krok 1 („Lying on the floor, rest your lower legs on the ball.”) i krok o dłoniach („With your hands on either side of your head…”)"]
-   ]}
-  ],
-  "move": [
-   {"c": "core_floor.legsBall.move", "s": [
-    ["vhi-hattiesburg-ball-basic-crunch", "instrukcja, zdanie 3 („Then raise shoulders and upper back toward ceiling.”)"],
-    ["dummies-exercise-balls-crunch", "krok o unoszeniu barków („…slowly lift your shoulders from the floor toward your knees”)"]
-   ]}
-  ],
-  "tips": [
-   {"c": "core_floor.legsBall.squeeze", "s": [
-    ["vhi-hattiesburg-ball-basic-crunch", "instrukcja, zdanie 2 („Tighten abdominals, contract hamstrings, and squeeze ball.”)"],
-    ["dummies-exercise-balls-crunch", "krok 2 („As you tighten your abdominals, grasp the ball between your legs…”)"]
-   ]},
-   {"c": "core_floor.neckRelaxed", "s": [
-    ["vhi-hattiesburg-ball-basic-crunch", "instrukcja („Keep head and neck neutral.”)"],
-    ["dummies-exercise-balls-crunch", "krok o szyi („Relax your neck as you curl up into a crunch.”)"]
-   ]}
-  ],
-  "mistakes": []
- },
- "Cable Seated Crunch": {
-  "setup": [],
-  "move": [
-   {"c": "cc.ribs", "s": [
-    ["ace-331", "opis („rolling the rib cage down against the pull of the cable”; biodra bez ruchu) (wariant: stojąc)"],
-    ["bowflex-2-manual-p49", "s. 49 Seated (Resisted) Abdominal Crunch („curl only your torso, slowly moving your ribs toward your hips”; „without moving the hips”) (wariant: siedząc na ławce maszyny, plecy odchylone)"]
-   ]}
-  ],
-  "tips": [
-   {"c": "cc.slow", "s": [
-    ["ace-331", "opis („slowly returning to the top”) (wariant: stojąc)"],
-    ["bowflex-2-manual-p49", "s. 49 („Slowly reverse the motion returning to the starting position”) (wariant: maszyna)"],
-    ["ace-291", "opis („Return slowly to the starting position.”) (wariant: maszyna z wybieranym ciężarem)"]
-   ]}
-  ],
-  "mistakes": []
- },
  "Decline Reverse Crunch": {
   "setup": [],
   "move": [
@@ -123,56 +65,73 @@ ExRx (403) i web.archive.org (zablokowane) — nieużywane. Strony aplikacji tre
 
 Uwaga do `ace-76`: przy Reverse Crunch w cues.json źródło ma inne „miejsce”; cytaty wyżej przeczytane ponownie 02.11.2026 (Starting Position, Step 2, Step 3 i uwaga końcowa bez nagłówka).
 
+Uwaga do `ace-331` (przeczytany ponownie w sesji 2, 02.11.2026): strona „Standing Crunch” nie ma sekcji „Starting Position” ani numerowanych kroków — cały opis to jeden akapit (ustawienie: „the hips straight with the knees slightly bent”, wyciąg w najwyższym położeniu, lina przy uszach; ruch: „Focus on rolling the rib cage down against the pull of the cable and slowly returning to the top.”). Druga połowa `cc.ribs` („biodra zostają w miejscu”) ma w ACE #331 tylko pośrednie oparcie (biodra wyprostowane w ustawieniu); wprost mówi to tylko Bowflex. Miejsce cytatu w `data/zrodla/cues-zestawy.json` należy poprawić na „jedyny akapit opisu” (zadanie dla wykonawcy, nie dla badacza).
+
 ## 3. Nowe zdania
 
-| id | PL | EN |
-|---|---|---|
-| core_floor.ballTuck.setup | Połóż się brzuchem na piłce i przejdź na dłoniach do przodu, aż piłka znajdzie się pod goleniami albo kolanami. | Lie face down on the ball and walk your hands forward until the ball sits under your shins or knees. |
-| core_floor.ballTuck.move | Przyciągaj kolana do klatki, tocząc piłkę w stronę dłoni. | Pull your knees toward your chest, rolling the ball toward your hands. |
-| core_floor.legsBall.setup | Połóż się na plecach, łydki oprzyj na piłce, dłonie przy głowie. | Lie on your back with your lower legs resting on the ball and your hands by your head. |
-| core_floor.legsBall.move | Unieś barki i górną część pleców od podłogi. | Lift your shoulders and upper back off the floor. |
-| core_floor.legsBall.squeeze | Napnij brzuch i przytrzymaj piłkę nogami. | Brace your abs and hold the ball with your legs. |
-| core_floor.neckRelaxed | Szyja luźno, głowa w jednej linii z tułowiem. | Keep your neck relaxed and your head in line with your torso. |
+Brak zdań w gotowych ćwiczeniach — oba używają istniejących `rcrunch.move`, `rcrunch.hips`.
 
-`core_floor.neckRelaxed` — id bez przyrostka ćwiczenia, bo zdanie jest ogólne; przy kolizji z częścią 1/3 zmienić na `core_floor.legsBall.neck`. Istniejące zdania użyte: `cc.ribs`, `cc.slow`, `rcrunch.move`, `rcrunch.hips`.
+Zdania-kandydaci (NIE do `lib/`; wejdą, gdy znajdzie się drugie źródło szczebla 4 — pkt 5):
 
-## 4. Nowe źródła
-
-| id | Adres | Organizacja | Szczebel |
+| id | PL | EN | Ćwiczenie |
 |---|---|---|---|
-| ace-60 | https://www.acefitness.org/resources/everyone/exercise-library/60/stability-ball-knee-tucks/ | ACE | 4 |
-| ace-291 | https://www.acefitness.org/resources/everyone/exercise-library/291/seated-crunch/ | ACE | 4 |
-| ace-331 | https://www.acefitness.org/resources/everyone/exercise-library/331/standing-crunch/ | ACE (zaproponowane w docs/33; sprawdzić, czy jest w `sources` — cytat za `data/zrodla/cues-zestawy.json`, nie czytany ponownie w tej sesji) | 4 |
-| vhi-hattiesburg-prone-knee-tuck | https://iris.hattiesburgclinic.com/patadv/exkit/Stability%20Ball/English/0450000216co080m_English.html | Hattiesburg Clinic — karty ćwiczeń dla pacjentów (treść © VHI), „Prone Knee Tuck” | 4 (PROPOZYCJA) |
-| vhi-hattiesburg-ball-basic-crunch | https://iris.hattiesburgclinic.com/patadv/exkit/Stability%20Ball/English/0450000196co070m_English.html | jw., „Basic Crunch” (nogi na piłce) | 4 (PROPOZYCJA) |
-| hku-hlthfit-ball | https://cse.hku.hk/document/hlthfit_StabilityBall.pdf | HKU CSE (org już w docs/33) | 4 |
-| dummies-exercise-balls-crunch | https://www.dummies.com/article/how-to-do-abdominal-crunches-with-an-exercise-ball-206649 | L. Chabut, „Exercise Balls For Dummies” (Wiley) — fragment książki | 4 (PROPOZYCJA; książka poradnikowa instruktorki, nie podręcznik naukowy) |
-| bowflex-2-manual-p49 | https://www.manualslib.com/manual/19974/Bowflex-2.html?page=49 | Bowflex — instrukcja właściciela „Bowflex 2”, s. 49 (kopia w serwisie z instrukcjami) | 4 (producent sprzętu) |
+| core_floor.ballTuck.setup | Połóż się brzuchem na piłce i przejdź na dłoniach do przodu, aż piłka znajdzie się pod goleniami albo kolanami. | Lie face down on the ball and walk your hands forward until the ball sits under your shins or knees. | Stability Ball Knee Tuck |
+| core_floor.ballTuck.move | Przyciągaj kolana do klatki, tocząc piłkę w stronę dłoni. | Pull your knees toward your chest, rolling the ball toward your hands. | jw. |
+| core_floor.legsBall.setup | Połóż się na plecach, łydki oprzyj na piłce, dłonie przy głowie. | Lie on your back with your lower legs resting on the ball and your hands by your head. | Crunch - Legs On Exercise Ball |
+| core_floor.legsBall.move | Unieś barki i górną część pleców od podłogi. | Lift your shoulders and upper back off the floor. | jw. |
+| core_floor.legsBall.squeeze | Napnij brzuch i przytrzymaj piłkę nogami. | Brace your abs and hold the ball with your legs. | jw. |
+| core_floor.legsBall.neck | Szyja luźno, głowa w jednej linii z tułowiem. | Keep your neck relaxed and your head in line with your torso. | jw. (dawniej `core_floor.neckRelaxed`, przemianowane wg briefu) |
+| core_floor.frog.setup | Połóż się na plecach, złącz stopy podeszwami i pozwól kolanom opaść na boki; ręce wyciągnij za głowę. | Lie on your back, put the soles of your feet together and let your knees drop out to the sides; reach your arms overhead. | Frog Sit-Ups |
+| core_floor.frog.move | Napnij brzuch i unieś tułów, sięgając dłońmi w stronę stóp. | Brace your abs and sit up, reaching your hands toward your feet. | jw. (+ istniejące `rot.slow` na powrót) |
+| core_floor.frog.easier | Za ciężko? Trzymaj ręce przy klatce. | Too hard? Keep your arms at your chest. | jw. |
+| core_floor.janda.move | Unosząc tułów, dociskaj pięty do podłogi i ciągnij je do siebie, napinając tył ud i pośladki. | As you curl up, press your heels into the floor and pull them toward you, tightening your hamstrings and glutes. | Janda Sit-Up |
 
-Propozycje `orgs`:
-- „Hattiesburg Clinic / VHI” — materiały edukacyjne kliniki dla pacjentów (karty ćwiczeń VHI), szczebel 4, kind „site”; do decyzji audytora (jak WebMD Ignite w docs/33).
-- „Wiley — For Dummies (L. Chabut)” — książka poradnikowa, szczebel 4, kind „site” (albo „book”, jeśli schemat pozwala).
-- „Bowflex” — instrukcja producenta sprzętu, szczebel 4, kind „maker”. Uwaga: czytana kopia w serwisie manualslib, nie strona producenta.
+## 4. Źródła i ocena szczebla (kryteria koordynatora 02.11.2026)
+
+| id | Adres | Organizacja | (a) | (b) | (c) | Szczebel |
+|---|---|---|---|---|---|---|
+| ace-60 | https://www.acefitness.org/resources/everyone/exercise-library/60/stability-ball-knee-tucks/ | ACE | tak — certyfikuje trenerów | treść firmowana przez ACE | tak | 4 |
+| ace-76 | (już w `sources`) | ACE | tak | tak | tak | 4 |
+| ace-291 | https://www.acefitness.org/resources/everyone/exercise-library/291/seated-crunch/ | ACE | tak | tak | tak | 4 (ta sama organizacja co ace-331 — razem jedno źródło) |
+| ace-331 | https://www.acefitness.org/resources/everyone/exercise-library/331/standing-crunch/ | ACE; miejsce: jedyny akapit opisu (przeczytany ponownie 02.11.2026) | tak | tak | tak | 4 |
+| nasm-best-abs | (już w `sources`) | NASM | tak | tak | tak | 4 |
+| vhi-hattiesburg-prone-knee-tuck | https://iris.hattiesburgclinic.com/patadv/exkit/Stability%20Ball/English/0450000216co080m_English.html | karta VHI na serwerze Hattiesburg Clinic | nie wykazano — VHI to dostawca kart ćwiczeń, nie organizacja szkoląca ani serwis z recenzją; strona nie nosi nawet marki kliniki | nie — tylko „Copyright © VHI”, bez autora i daty (przeczytane ponownie 02.11.2026) | tak | 5 — nie liczy się |
+| vhi-hattiesburg-ball-basic-crunch | https://iris.hattiesburgclinic.com/patadv/exkit/Stability%20Ball/English/0450000196co070m_English.html | jw., „Basic Crunch” | jw. | jw. (karta tego samego typu) | tak | 5 — nie liczy się |
+| hku-hlthfit-ball | https://cse.hku.hk/document/hlthfit_StabilityBall.pdf | HKU CSE (centrum sportu uczelni) | nie — centrum sportu uczelni, nie organizacja szkoląca | firmowane przez HKU | tak | 5; i tak tylko rysunek, źródło pomocnicze |
+| dummies-exercise-balls-crunch | https://www.dummies.com/article/how-to-do-abdominal-crunches-with-an-exercise-ball-206649 | L. Chabut, „Exercise Balls For Dummies” (Wiley) | nie wykazano — poradnik instruktorki w wydawnictwie ogólnym, brak informacji o recenzji eksperckiej; nie Human Kinetics, autorka nie NSCA ani naukowiec | autor tak | nie sprawdzono | 5 — nie liczy się |
+| bowflex-2-manual-p49 | https://www.manualslib.com/manual/19974/Bowflex-2.html?page=49 | instrukcja Bowflex 2 (kopia w serwisie z instrukcjami) | tak — producent, ale tylko dla własnego sprzętu (maszyna z oporem prętów) | firmowane przez Bowflex; kopia u strony trzeciej, wierność nieweryfikowana | tak (instrukcja, nie reklama) | 4 tylko dla ćwiczeń na maszynie Bowflex; dla wyciągu (Cable Seated Crunch) — nie liczy się |
+| coach-frog-situp | https://www.coachweb.com/abs-exercies/5863/the-frog-sit-up-is-murder-on-the-abs | magazyn Coach (Future plc), N. Harris-Fry, „last updated 10 May 2023” | nie — redakcja bez wskazanej recenzji eksperckiej, autor dziennikarz | tak | nie — strona deklaruje prowizje afiliacyjne | 5 — nie liczy się |
+| puregym-butterfly-situps | https://www.puregym.com/exercises/abs/butterfly-sit-ups/ | PureGym | — | — | — | 5 (rozstrzygnięcie koordynatora) |
+| breakingmuscle-janda | https://breakingmuscle.com/save-your-spine-and-forget-the-ghd-enter-the-janda-sit-up/ | Breaking Muscle, C. Marker (PhD, CSCS) | — | — | — | 5 (rozstrzygnięcie; nigdy niezależne od BarBend) |
+| cbass-janda | https://cbass.com/HardestSitup.htm | strona prywatna C. Bassa (2000) | nie — strona prywatna autora | autor i rok tak | tak | 5 — nie liczy się |
+| barbend-heel-touches | https://barbend.com/heel-touches/ | BarBend, J. Zucker (NCSF CPT) | artykuł o technice | autor tak | — | 4 (rozstrzygnięcie: BarBend 4 tylko artykuły o technice) |
+
+Propozycje `orgs`: brak nowych do dodania (sesja 1 proponowała VHI, Wiley, Bowflex — wycofane dla tego pliku; Bowflex można dodać jako „maker” tylko dla ćwiczeń na jego maszynach).
 
 ## 5. Otwarte
 
-Możliwe błędy zestawu ogólnego (zdania w `cue-sets.json` bez potwierdzenia dla tego ćwiczenia):
-- Stability Ball Knee Tuck: `plank.brace`, `plank.mis.sag` — tylko ACE #60 („Avoid arching (sagging) your lower back…”); drugie źródło nie znalezione.
-- Crunch - Legs On Exercise Ball: `crunch.lowBack` — tylko VHI („Keep low and middle back on floor”); `crunch.neck` w części „nie ciągnij głowy rękami” — bez źródła (zastąpione `core_floor.neckRelaxed`); `crunch.move` — „wracaj powoli” tylko w książce; `mis.jerk` — bez źródła.
-- Cable Seated Crunch, Decline Reverse Crunch, Cable Reverse Crunch: `mis.jerk` — żadne przeczytane źródło nie mówi tego wprost (NASM: „Slow, controlled reps are preferred over momentum” to wskazówka tempa, nie błąd — jedno źródło).
-- Leg Pull-In: zestaw `rcrunch.hips` + `db.slow` — ćwiczenie zaczyna się z nogami wyprostowanymi (przyciąganie kolan), `db.slow` pochodzi z dead buga — prawdopodobnie analogia; bez źródła szczebla 4.
-- Kneeling Cable Crunch With Alternating Oblique Twists: `cc.slow` — źródła (ACE #331, Bowflex) bez skrętu; ze skrętem to analogia.
-- Alternate Heel Touchers, Cross-Body Crunch, Decline Oblique Crunch, Crunch - Hands Overhead: zestaw `crunch.*` — brak źródeł szczebla 4 dla tych ćwiczeń.
+Kandydaci — zdania z pkt 3, którym brakuje drugiego źródła szczebla 4:
+- Stability Ball Knee Tuck: `core_floor.ballTuck.setup` — ACE #60 Step 2 („Walk your hands forward… until your thighs or knees rest on the ball”); `core_floor.ballTuck.move` — ACE #60 Step 3 („slowly pull your knees towards your chest, rolling the ball forward”). Karta VHI zgodna, ale szczebel 5. Także `plank.brace`, `plank.mis.sag` z zestawu ogólnego — tylko ACE #60.
+- Crunch - Legs On Exercise Ball: wszystkie 4 zdania mają tylko VHI + książkę (oba 5). Zestaw ogólny (`crunch.lowBack`, `crunch.neck`, `crunch.move`, `mis.jerk`) — bez źródła szczebla 4.
+- Cable Seated Crunch: `cc.ribs`, `cc.slow` — tylko ACE (#331 stojąc z liną; #291 maszyna) = jedna organizacja. Trop: producent wyciągów z instrukcją do ćwiczenia „cable crunch” na własnym sprzęcie; NASM/ISSA. `mis.jerk` — bez źródła.
+- Frog Sit-Ups: `core_floor.frog.setup`, `.move`, `.easier` + `rot.slow` — zgodne Coach (sekcja „How To Do The Frog Sit-Up”) i PureGym („How To Do Butterfly Sit Ups”, kroki 1–5), oba szczebel 5. Zestaw `crunch.*` nie pasuje (źródła opisują pełny siad z rękami za głową).
+- Janda Sit-Up: `core_floor.janda.move` — Breaking Muscle, sekcja „How to Do a Janda Sit Up” („…performing a crunch while actively driving the heel into the ground.”) i C. Bass, sekcja „Bungee Cords Help”, akapit 3 („squeeze the glutes and pull your calves back against the roller pads with the hamstrings”) — oba szczebel 5. Twierdzenia, że ruch „wyłącza zginacze bioder” albo „chroni dolny odcinek pleców” — o działaniu/zdrowiu, niepotwierdzone (sam Marker przytacza krytykę) → nie do aplikacji. Materiałów uczelni ani fizjoterapii nie znaleziono.
+- Alternate Heel Touchers: BarBend, „How to Do the Heel Touch”, kroki 1–4 (leżenie, kolana ugięte; uniesione barki i głowa, lędźwie przy podłodze; na przemian dłoń do pięty, zgięcie w bok; powoli, z kontrolą) i „Common Heel Touch Mistakes” („Pulling from Your Neck”) — jedno źródło szczebla 4; brak drugiego (Cal Poly Pomona 404, JMU 503, artykuł medialny przekierowany na stronę główną, blog producenta 403).
 
-Powody „otwarte” i dalsze tropy:
-- Cross-Body Crunch, Alternate Heel Touchers, Crunch - Hands Overhead, Decline Oblique Crunch: w wynikach wyszukiwania tylko strony aplikacji i serwisy komercyjne. Tropy: uczelniane PDF z ćwiczeniami brzucha (Cal Poly Pomona `cpp.edu/health/docs/abdominals.pdf` — 404; James Madison University, Exercise and Movement Center, karty „core fitness” — 503 dnia 02.11.2026) — ponowić później.
-- Physitrack (platforma fizjoterapeutyczna; org już w cues.json) ma strony dla „crunch – elbow to knee” i crunch z nogami na piłce — nieliczone wg uzupełnienia briefu (strony aplikacji). Pytanie do koordynatora: czy Physitrack, już obecny w `orgs`, wolno liczyć.
-- Cable Reverse Crunch, Decline Reverse Crunch: „gotowe” opiera się na regule wariantu; jeśli audytor uzna, że ławka skośna albo linka zmieniają ćwiczenie, oba wracają do „otwarte”.
-- Frog Sit-Ups, Janda Sit-Up, Butt-Ups: nie szukane w tej sesji; wcześniejsze rundy nie znalazły źródła szczebla ≤ 4.
+Platforma fizjoterapeutyczna (już w `orgs`): w wynikach dla Butt-Ups, Leg Pull-In i Cross-Body Crunch — nieczytana i nieliczona wg briefu; decyzja koordynatora linii (rozstrzygnięcie z 02.11 jej nie obejmuje).
+
+Inne:
+- Cable Reverse Crunch, Decline Reverse Crunch: „gotowe” opiera się na regule wariantu; jeśli audytor uzna, że ławka skośna albo linka zmieniają ćwiczenie, oba wracają do „otwarte”. `mis.jerk` — NASM („Slow, controlled reps are preferred over momentum”) to wskazówka tempa, jedno źródło.
+- Leg Pull-In: zestaw `rcrunch.hips` + `db.slow` — `db.slow` pochodzi z dead buga, prawdopodobnie analogia; bez źródła szczebla 4.
+- Kneeling Cable Crunch With Alternating Oblique Twists: `cc.slow` — źródła bez skrętu = analogia (i po rozstrzygnięciu i tak tylko ACE).
+- Cross-Body Crunch, Decline Oblique Crunch, Crunch - Hands Overhead: zestaw `crunch.*` bez źródeł szczebla 4. Tropy: JMU Exercise and Movement Center (`cisat.jmu.edu/kin/emc/documents/…core fitness.pdf`, „Tic Tac Toe_core training.pdf” — 503 w obu sesjach; uczelnia — ocenić kryteriami po odczycie), University of Queensland, podręcznik „exercise delivery” (`uq.pressbooks.pub/exercisedelivery/chapter/oblique-crunch/` — 403), ISSA i NFPT (nie przeszukane wprost), BarBend (artykuły o technice).
+- Butt-Ups: nazwa bywa używana dla różnych ćwiczeń (podpór na przedramionach z unoszeniem bioder; leżenie na plecach z wypychaniem bioder) — przed recenzją ruchu trzeba ustalić wariant katalogu.
 
 ## 6. Stan
 
-- Zrobione (02.11.2026): 5 gotowych (Stability Ball Knee Tuck, Crunch - Legs On Exercise Ball, Cable Seated Crunch, Decline Reverse Crunch, Cable Reverse Crunch — trzy ostatnie na zasadzie wariantu), 6 nowych zdań; 9 otwartych.
-- Zostało: Frog Sit-Ups, Janda Sit-Up, Butt-Ups (nie szukane); ponowne próby dla Cross-Body Crunch, Alternate Heel Touchers, Decline Oblique Crunch, Crunch - Hands Overhead, Leg Pull-In, Kneeling Cable Crunch With Alternating Oblique Twists.
-- Następny krok: ponowić PDF JMU/Cal Pomona; przeszukać instrukcje producentów ławek skośnych i wyciągów (np. instrukcje ławek do brzuszków — ćwiczenia z ławką skośną) oraz karty VHI w innych klinikach (zestaw „Strength Training”, „Core”).
-- Pułapki: ExRx 403; strony aplikacji w wynikach wyszukiwania dominują — pomijać; karty VHI w Hattiesburg są osiągalne pojedynczo (indeks katalogu zwraca 403, podstrony z wyszukiwarki działają); PDF HKU to same rysunki (tylko źródło pomocnicze).
+- Sesja 1 (02.11.2026): 5 „gotowych”, 6 nowych zdań.
+- Sesja 2 (02.11.2026): zbadane Frog Sit-Ups, Janda Sit-Up, Butt-Ups; ponowione Cross-Body Crunch, Alternate Heel Touchers, Leg Pull-In, Decline Oblique Crunch, uczelniane PDF (404/503/403). ACE #331 przeczytany ponownie — miejsce: jedyny akapit opisu (pkt 2). `core_floor.neckRelaxed` → `core_floor.legsBall.neck`. Zastosowane rozstrzygnięcie koordynatora o szczeblach: VHI, Wiley/Dummies, Coach, PureGym, Breaking Muscle, strona C. Bassa, HKU CSE = 5; Bowflex = 4 tylko dla własnego sprzętu → Stability Ball Knee Tuck, Crunch - Legs On Exercise Ball, Cable Seated Crunch cofnięte do „otwarte (kandydaci)”.
+- Razem: 2 gotowe (Decline Reverse Crunch, Cable Reverse Crunch — wariant, istniejące zdania), 12 otwartych (6 z kandydatami w pkt 5); 0 nowych zdań do `lib/`, 10 zdań-kandydatów.
+- Zostało: drugie źródło szczebla 4 dla kandydatów (najbliżej: Stability Ball Knee Tuck i Alternate Heel Touchers — każdemu brakuje jednego źródła; szukać w ISSA, NFPT z autorem i datą, BarBend o technice, NASM); Crunch - Hands Overhead i Kneeling Cable Crunch… — nie ponawiane w sesji 2.
+- Następny krok: przeszukać ISSA/NFPT/NASM/BarBend dla: stability ball knee tuck, heel touches, cable crunch, frog/butterfly sit-up; ponowić JMU i UQ.
+- Pułapki: ExRx 403; strony aplikacji dominują w wynikach — pomijać; muscleandstrength.com i uq.pressbooks.pub — 403; livestrong.com przekierowuje na inną stronę główną; karty VHI bez autora i daty (szczebel 5); ACE — wiele stron to jedna organizacja.
