@@ -218,10 +218,10 @@ describe('101-02 (A2): start z podłogi bez szarpnięcia — kolana i biodra pro
 /* R3 (linia 1.1, pilotaż curl 02.11.2026): styk ciężar–ciało także dla rodzin z danych (poses/*.json), również niepodłączonych jeszcze do aplikacji (curl: figureSpec = null do
  * partii podłączania po recenzji) — klatki z keyframeFrame. Dla uginania nie obowiązuje próg odstępu „blisko nóg” (ciężar jest w dłoniach, a nie przed udami): mierzymy PRZENIKANIE
  * ciężaru w nogę, tułów albo miednicę (dopuszczalne jak w checkFrame: TOL.pen = 0,3 cm) oraz to, że miara jest skończona w każdym z 21 kadrów. */
-describe('R3: styk ciężar–ciało w rodzinie curl (36 ćwiczeń, kadry co 0,05, także z błędem)', () => {
+describe('R3: styk ciężar–ciało w rodzinie curl (34 ćwiczenia, kadry co 0,05, także z błędem)', () => {
   const CURL: Record<string, PoseData> = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/figures/v2/poses/curl.json'), 'utf8')).cwiczenia;
   const KLUCZE = Object.keys(CURL);
-  test('plik curl ma 36 ćwiczeń', () => { expect(KLUCZE).toHaveLength(36); });
+  test('plik curl ma 34 ćwiczenia (36 w rodzinie − Zottman Curl i Zottman Preacher Curl: wyjątki bez rysunku, W8, decyzja właściciela 03.11.2026)', () => { expect(KLUCZE).toHaveLength(34); expect(KLUCZE).not.toContain('Zottman Curl'); expect(KLUCZE).not.toContain('Zottman Preacher Curl'); });
   test.each(KLUCZE)('%s: przenikanie ciężaru ≤ 0,3 cm w 21 kadrach, skończony odstęp', k => {
     const s = stykPozy(CURL[k]); expect(s).toHaveLength(21);
     for (const x of s) expect([k, x.u, Number.isFinite(x.odstep)]).toEqual([k, x.u, true]);
