@@ -42,7 +42,8 @@ describe('pełne dane wskazówek (data/zrodla/cues.json)', () => {
     const HOSTS = /cse\.hku\.hk|uwo\.ca|sussex\.ac\.uk|ummhealth\.org|dan\.org|coachesontario\.ca|exrx\.net/;
     const bad = Object.entries(CUE_FULL.sources).filter(([id, s]) => !id.startsWith('exrx-') && HOSTS.test(s.url ?? '')).map(([id]) => id);
     expect(bad).toEqual([]);
-    for (const o of Object.keys(CUE_FULL.orgs)) expect(o).not.toMatch(/HKU|Western SRS|Sussex|WebMD|^DAN$|NSCA ETM/);
+    /* WebMD Ignite wyjęte z zakazu (decyzja koordynatora 02.11.2026, uzupełnienie 2): strona placówki medycznej z datą = szczebel 4, jedna organizacja niezależnie od hosta; strony bez daty lub na portalu ubezpieczyciela (UMass, Centene) = 5 i nie wchodzą do danych (ummhealth.org w HOSTS) */
+    for (const o of Object.keys(CUE_FULL.orgs)) expect(o).not.toMatch(/HKU|Western SRS|Sussex|^DAN$|NSCA ETM/);
   });
   test('każda nowa wskazówka: ≥ 2 różne organizacje bez „analogii”; miejsce w źródle; Wall Sit „oddech” nie liczy zespołu Wilesa podwójnie', () => {
     for (const k of NEW) for (const sec of CUE_SECTIONS) for (const r of CUE_FULL.exercises[k][sec]) {

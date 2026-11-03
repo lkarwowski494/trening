@@ -196,6 +196,35 @@ describe('słownik terminów: logika (wykrywanie i naruszenia)', () => {
     const ro = LOCALES.ro as Record<string, string>; expect(ro['Podciąganie']).toBe('Tragere în sus');
     expect(S.sprawdz(slownik, 'ro', 'Podciąganie', 'Tracţiune').length).toBe(1); /* recenzja 31.10.2026: także ţ z cedyllą */
   });
+  /* Recenzja lokalizacji P1 (mobilność), 02.11.2026: strażnik nie złapał dwóch błędów — „pas” zamiast „taśma” do rozciągania oraz „przenieś ciężar” (masa ciała) przy pojęciu „ciężar” = obciążenie.
+     Dochodzą „krążenia” (nie „zataczaj koła”) i „podwijanie miednicy”. Pojęcia dotyczą PL i EN (pozostałe 33 języki wg przekładu z poprawionej bazy). */
+  test('02.11.2026, P1 mobilność: regresja — „pas” i „przenieś ciężar” są wykrywane, poprawione brzmienia przechodzą', () => {
+    const pas = 'Usiądź i załóż pas lub ręcznik na stopę.', tasma = 'Usiądź i załóż taśmę albo ręcznik na stopę.';
+    expect(S.sprawdz(slownik, 'pl', pas, pas).map((n: { pojecie: string }) => n.pojecie)).toEqual(['tasma_rozciaganie']);
+    expect(S.sprawdz(slownik, 'pl', tasma, tasma)).toEqual([]);
+    expect(S.sprawdz(slownik, 'en', tasma, 'Sit and loop a belt or towel around your foot.').length).toBe(1);
+    expect(S.sprawdz(slownik, 'en', tasma, 'Sit and loop a strap or towel around your foot.')).toEqual([]);
+    const cw = 'Ugnij przednie kolano i przenieś ciężar w stronę ściany; tylna noga prosta, pięta na podłodze.', cw2 = 'Ugnij przednie kolano i pochyl się do ściany; tylna noga prosta, pięta na podłodze.';
+    expect(S.sprawdz(slownik, 'pl', cw, cw).map((n: { pojecie: string }) => n.pojecie)).toEqual(['ciezar']);
+    expect(S.sprawdz(slownik, 'pl', cw2, cw2)).toEqual([]);
+    expect(S.sprawdz(slownik, 'pl', 'Ciężar ciała na przednią nogę.', 'Ciężar ciała na przednią nogę.').length).toBe(1);
+    expect(S.sprawdz(slownik, 'pl', 'Dobierz ciężar tak, by technika się nie zmieniała.', 'Dobierz ciężar tak, by technika się nie zmieniała.')).toEqual([]); /* ciężar = obciążenie — dozwolone */
+    expect(S.sprawdz(slownik, 'en', cw, 'Shift your weight toward the wall.').length).toBe(1);
+    const kr = 'Zataczaj stopą koła w kostce.'; expect(S.sprawdz(slownik, 'pl', kr, kr).length).toBe(1); expect(S.sprawdz(slownik, 'pl', 'Krąż stopą.', 'Krąż stopą.')).toEqual([]);
+    const mi = 'Garbienie się i odchylanie miednicy w tył.'; expect(S.sprawdz(slownik, 'pl', mi, mi).length).toBe(1); expect(S.sprawdz(slownik, 'pl', 'Garbienie się i podwijanie miednicy.', 'Garbienie się i podwijanie miednicy.')).toEqual([]);
+    expect(S.sprawdz(slownik, 'en', mi, 'Rounding your back with a posterior pelvic tilt.').length).toBe(1);
+  });
+  test('02.11.2026, P1 mobilność: wskazówki PL i EN mobilności (mobility_*, foam_roll.*, rotator_cuff.*) nie łamią terminów taśma / krążenia / podwijanie miednicy / ciężar', () => {
+    const enCues = JSON.parse(fs.readFileSync(path.join(root, 'lib/cues/text/en.json'), 'utf8')) as Record<string, string>;
+    const ids = Object.keys(cuesPl).filter(i => /^(mobility_|foam_roll\.|rotator_cuff\.)/.test(i)); expect(ids.length).toBeGreaterThan(70);
+    const bad: string[] = [];
+    for (const i of ids) {
+      for (const n of S.sprawdz(slownik, 'pl', cuesPl[i], cuesPl[i]) as { pojecie: string }[]) bad.push(`pl ${i} [${n.pojecie}]`);
+      for (const n of S.sprawdz(slownik, 'en', cuesPl[i], enCues[i] ?? '') as { pojecie: string }[]) bad.push(`en ${i} [${n.pojecie}]`);
+    }
+    expect(bad).toEqual([]);
+    expect(cuesPl['mobility_floor.u.ankleStrap']).toContain('taśm'); expect(enCues['mobility_floor.u.ankleStrap']).toContain('strap');
+  });
   test('blok promptu: tylko wpisy języka docelowego, z terminem zalecanym i zakazanym', () => {
     const b: string = S.blokPromptu(slownik, 'ja');
     expect(b).toContain('インターバル'); expect(b).toContain('休憩'); expect(b).toContain('naturalnie');
