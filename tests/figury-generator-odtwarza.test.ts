@@ -29,15 +29,13 @@ const ROZJAZDY_POZA_ZAKRESEM: Record<string, string[]> = {
   rotator_cuff: ['External Rotation (linki)', 'External Rotation with Band', 'Internal Rotation with Band', 'Cable Internal Rotation', 'Reverse Flyes With External Rotation'],
   row: ['Lying T-Bar Row', 'Chest Supported Row', /* wyjątek nazwany 01.11.2026 (koordynator 1.1): karty Bent Over Row ×2 i T-Bar Row wróciły po recenzji v1, więc częsty błąd mis.roundBack ma opis i generator rysuje jego pozę, której nie ma w zatwierdzonym row.json; rodzina row v2 niewyświetlana — poza błędu wejdzie przez recenzję rodziny (fala 2) */ 'Bent Over Row (sztanga)', 'Bent Over Row (hantle)', 'T-Bar Row'],
   shrug: ['Middle Back Shrug'],
-  thruster: ['Clean and Press', /* wyjątek nazwany 03.11.2026 (P2 mocy): karty własne Kettlebell Thruster i Thruster (hantle) nie mają częstego błędu zestawu ogólnego sq.mis.heels, więc generator nie rysuje jego pozy, którą zatwierdzony plik ma; poza błędu zostaje do czasu recenzji kart i figur rodziny (usunięcie zmieniłoby odciski póz w testach recenzji) */ 'Kettlebell Thruster', 'Thruster (hantle)'],
+  thruster: ['Clean and Press'],
 };
 
-/* Wyjątek w zakresie (nazwany 03.11.2026, P2 mocy): Wall Ball ma kartę własną bez częstego błędu sq.mis.kneesIn z zestawu ogólnego, więc generator go nie rysuje, a zatwierdzony plik póz ma jego pozę. Poza błędu zostaje do recenzji kart i figur rodziny (usunięcie zmieniłoby odciski póz pilnowane testami recenzji); lista nie zalega — test poniżej sprawdza dokładnie ten wpis. */
-const ROZJAZDY_W_ZAKRESIE: Record<string, Record<string, string>> = { sled_throw: { 'Wall Ball': 'różne błędy lub sprzęt (błędów: generator 0, plik 1)' } };
 const W_ZAKRESIE = ['plyo', 'core_hang', 'core_standing', 'strongman', 'sled_throw'];
 
 describe('generator rodziny odtwarza zatwierdzony plik póz', () => {
-  test.each(W_ZAKRESIE)('%s: generuj() = plik póz, każda poza ważna', (r) => { expect(skanDozwolonyKod1([r])).toEqual({ [r]: ROZJAZDY_W_ZAKRESIE[r] ?? {} }); });
+  test.each(W_ZAKRESIE)('%s: generuj() = plik póz, każda poza ważna', (r) => { expect(skanDozwolonyKod1([r])).toEqual({ [r]: {} }); });
 
   test('rodziny spoza zakresu: rozbieżności dokładnie jak na liście (lista nie rośnie i nie zalega)', () => {
     const wszystkie = skanDozwolonyKod1([]) as Record<string, Record<string, string>>;
