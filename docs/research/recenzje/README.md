@@ -12,6 +12,8 @@ i nie przepisuje w nich skrótów (lekcja: wykonawca przepisał skróty `sha` w 
 
 ## Strażnik
 
-`tests/l047-recenzja-niezalezna.test.ts`: każdy wpis `karty` z werdyktem „wyswietlana” i datą od 04.11.2026 (dzień wejścia strażnika) ma w którymś pliku
-`docs/research/recenzje/*.json` wpis o tym samym kluczu i identycznych `sha`, `werdykt`, `recenzent`. Wpisy starsze (28.10–03.11.2026) zostają bez pliku
-recenzenta — historii nie przepisujemy.
+`tests/l047-recenzja-niezalezna.test.ts`: każdy wpis `karty` z werdyktem „wyswietlana”, którego nie ma na zamrożonej liście `tests/l047-lista-zamrozona.json`, ma w którymś pliku
+`docs/research/recenzje/*.json` wpis o tym samym kluczu i identycznych `sha`, `werdykt`, `recenzent`. Lista (zamrożona 03.11.2026; zastąpiła próg daty, który
+dawał się obejść datą wpisu) ma dwie części: `zwolnione` — karty zrecenzowane przed regułą (historii nie przepisujemy) i `do_uzupelnienia` — karty P1/P2 bez
+pliku recenzenta, z polem `termin`. Lista tylko maleje (limity `maks`, nowej karty nie dopisujemy); gdy plik recenzenta ma zgodny wpis, kartę usuwa się z listy;
+po terminie `do_uzupelnienia` musi być pusta.
