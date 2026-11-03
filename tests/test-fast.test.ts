@@ -33,3 +33,32 @@ describe('test:fast (M1-059)', () => {
     expect(plan(['lib/units.ts']).files).toEqual(['lib/units.ts']);
   });
 });
+
+/* Decyzja właściciela 03.11.2026 (wariant A): verify:szybkie liczy zmienione pliki od wspólnego przodka z origin/integracja-1-1 albo origin/main — nie tylko niezacommitowane. */
+describe('test:fast --od-bazy (03.11.2026)', () => {
+  const { mkdtempSync, writeFileSync, mkdirSync, rmSync } = require('fs'); const { tmpdir } = require('os');
+  const E = { ...process.env, GIT_AUTHOR_NAME: 't', GIT_AUTHOR_EMAIL: 't@e.invalid', GIT_COMMITTER_NAME: 't', GIT_COMMITTER_EMAIL: 't@e.invalid' } as NodeJS.ProcessEnv; delete E.TEST_FAST_CHANGED;
+  const g = (cwd: string, ...a: string[]) => execFileSync('git', a, { cwd, env: E, encoding: 'utf8' }).trim();
+  const dirs: string[] = []; afterAll(() => { for (const d of dirs) rmSync(d, { recursive: true, force: true }); });
+  test('gałąź z kilkoma commitami: plan zawiera pliki ze wszystkich commitów od merge-base, bez plików, które już są na bazie', () => {
+    const d = mkdtempSync(join(tmpdir(), 'tf-')); dirs.push(d);
+    g(d, 'init', '-q', '-b', 'main'); mkdirSync(join(d, 'lib')); writeFileSync(join(d, 'lib/stare.ts'), '1\n'); g(d, 'add', '-A'); g(d, 'commit', '-q', '-m', 's');
+    g(d, 'update-ref', 'refs/remotes/origin/main', 'HEAD'); g(d, 'checkout', '-q', '-b', 'f');
+    writeFileSync(join(d, 'lib/a.ts'), '1\n'); g(d, 'add', '-A'); g(d, 'commit', '-q', '-m', '1');
+    writeFileSync(join(d, 'lib/b.ts'), '1\n'); g(d, 'add', '-A'); g(d, 'commit', '-q', '-m', '2');
+    writeFileSync(join(d, 'lib/c.ts'), '1\n'); /* nieśledzony */
+    const p = JSON.parse(execFileSync('node', [script, '--plan', '--od-bazy'], { cwd: d, env: E, encoding: 'utf8' }));
+    expect(p.files.sort()).toEqual(['lib/a.ts', 'lib/b.ts', 'lib/c.ts']); expect(p.baza).toMatch(/^[0-9a-f]{40}$/);
+    const bez = JSON.parse(execFileSync('node', [script, '--plan'], { cwd: d, env: E, encoding: 'utf8' }));
+    expect(bez.files).toEqual(['lib/c.ts']); /* dotychczasowe zachowanie (względem HEAD) bez zmian */
+  });
+  test('wybiera bliższą bazę z origin/integracja-1-1 i origin/main; bez żadnej — względem HEAD', () => {
+    const d = mkdtempSync(join(tmpdir(), 'tf-')); dirs.push(d);
+    g(d, 'init', '-q', '-b', 'main'); writeFileSync(join(d, 'x.ts'), '1\n'); g(d, 'add', '-A'); g(d, 'commit', '-q', '-m', 's');
+    const plan = () => JSON.parse(execFileSync('node', [script, '--plan', '--od-bazy'], { cwd: d, env: E, encoding: 'utf8' }));
+    expect(plan().baza).toBe(g(d, 'rev-parse', 'HEAD'));
+    g(d, 'update-ref', 'refs/remotes/origin/main', 'HEAD'); writeFileSync(join(d, 'y.ts'), '1\n'); g(d, 'add', '-A'); g(d, 'commit', '-q', '-m', 'i');
+    g(d, 'update-ref', 'refs/remotes/origin/integracja-1-1', 'HEAD'); writeFileSync(join(d, 'z.ts'), '1\n'); g(d, 'add', '-A'); g(d, 'commit', '-q', '-m', 'f');
+    expect(plan().files).toEqual(['z.ts']);
+  });
+});
