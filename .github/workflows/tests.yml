@@ -20,7 +20,7 @@ jobs:
   kontrole:
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
-    timeout-minutes: 20  # tymczasowo do pierwszego pomiaru po podziale; docelowo z scripts/ci/czasy-tests.json (tests/tests-yml-czas.test.ts)
+    timeout-minutes: 10  # p95 × zapas z pomiaru po podziale (przebieg 41684571202): scripts/ci/czasy-tests.json (tests/tests-yml-czas.test.ts)
     steps:
       - uses: actions/checkout@v5
         with:
@@ -36,7 +36,7 @@ jobs:
   jest:
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
-    timeout-minutes: 35  # tymczasowo do pierwszego pomiaru po podziale; docelowo z scripts/ci/czasy-tests.json (tests/tests-yml-czas.test.ts)
+    timeout-minutes: 20  # p95 × zapas z pomiaru po podziale (przebieg 41684571202): scripts/ci/czasy-tests.json (tests/tests-yml-czas.test.ts)
     strategy:
       fail-fast: false  # każda część kończy się sama — pełna lista porażek w jednym przebiegu
       matrix:

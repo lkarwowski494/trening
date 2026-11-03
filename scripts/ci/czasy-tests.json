@@ -61,12 +61,38 @@
     "jest": {
       "minimalna_probka": 4,
       "limit_tymczasowy_min": 35,
-      "probka_min": []
+      "probka_min": [
+        {
+          "przebieg": 41684571202,
+          "czesc": 1,
+          "min": 6.1
+        },
+        {
+          "przebieg": 41684571202,
+          "czesc": 2,
+          "min": 13.8
+        },
+        {
+          "przebieg": 41684571202,
+          "czesc": 3,
+          "min": 11.6
+        },
+        {
+          "przebieg": 41684571202,
+          "czesc": 4,
+          "min": 8.6
+        }
+      ]
     },
     "kontrole": {
       "minimalna_probka": 1,
       "limit_tymczasowy_min": 20,
-      "probka_min": []
+      "probka_min": [
+        {
+          "przebieg": 41684571202,
+          "min": 4.2
+        }
+      ]
     }
   }
 }

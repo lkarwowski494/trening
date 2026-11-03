@@ -152,7 +152,7 @@ Uwagi do kroków:
 ### Szacunek czasu
 
 - **Agent:** Z-02 1–2 h, Z-03 2–4 h, Z-05 do 1 h, finalizacja notatek recenzenta i opisu z testami ok. 1,5 h, skrypt wgrywania zrzutów (jeśli D2 = skrypt) 2–3 h, przegląd każdego obrazu zrzutów ok. 1 h. Razem ok. 9–13 h pracy agenta, z równoległością krócej.
-- **Czekanie:** CI (verify ok. 25 min, pełny katalog E2E ok. 1,5 h, build TestFlight ok. 1,5 h, zrzuty 35 języków — **zmierzone 27.10.2026: 2,7–3,5 min na ekran, czyli 16–20 h na rozmiar przy jednym zadaniu (limit zadania 180 min ucina przebieg po ok. 6 językach); wymaga podziału na równoległe zadania — D7**), kolejka maszyn macOS u GitHuba (ponawiamy przebiegi bez maszyny), **przegląd Apple (czas nieznany)**.
+- **Czekanie:** CI (`tests.yml` ok. 14 min po podziale na części — ZB-029, 03.11.2026; wcześniej verify ok. 25 min, pełny katalog E2E ok. 1,5 h, build TestFlight ok. 1,5 h, zrzuty 35 języków — **zmierzone 27.10.2026: 2,7–3,5 min na ekran, czyli 16–20 h na rozmiar przy jednym zadaniu (limit zadania 180 min ucina przebieg po ok. 6 językach); wymaga podziału na równoległe zadania — D7**), kolejka maszyn macOS u GitHuba (ponawiamy przebiegi bez maszyny), **przegląd Apple (czas nieznany)**.
 - **Właściciel:** telefon po buildzie 45–75 min (lista + zakupy), App Store Connect łącznie ok. 1–1,5 h w kilku podejściach, decyzje D1–D7 ok. 30 min.
 
 ## 2. Notatki dla App Review (EN) — szkic do pola Notes
